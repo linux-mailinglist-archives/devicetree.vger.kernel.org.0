@@ -2,325 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BCFF43C5756
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 12:59:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 941983C56BA
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 12:58:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349643AbhGLIby (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jul 2021 04:31:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53034 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358806AbhGLI0R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 04:26:17 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B581C0A88DA
-        for <devicetree@vger.kernel.org>; Mon, 12 Jul 2021 01:18:23 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id t5so10515523wrw.12
-        for <devicetree@vger.kernel.org>; Mon, 12 Jul 2021 01:18:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=kPH1IzeOGDJWRvF+hQvSOgoifVXeHmaKHK5lulTS72A=;
-        b=KRkNysoeVgE24fFmaqYZ1rHqLCyO0W0DYhux+1Rht5aHbchzjL+Dwo97xcbAW7Hmr8
-         DEOguzOiL3i6M/NAHpjvWdONY2mnqFwJ7E+BYlW4zFHWyYkeQe0YUkqIjpQ+CqE+s5vv
-         2dwQQxv3K/ZOa0eiQlU2x03lf0ZKBwZczhznGKtpQ0b2+dM7rK1A9pYCaOThmtq2hyaH
-         jSRcx5S5MycS/Bv1oeWe125/thAOQsPYVJo96zy7GgMN4XUcZuAlNjUdId9pZUGvtM5U
-         GBB2FwTH0tox6Zo4hdJvNFlNh477mr5+OBNicFPaNFe1+g/i8RZ6rhY2KbQcdDg+d/0o
-         FCFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=kPH1IzeOGDJWRvF+hQvSOgoifVXeHmaKHK5lulTS72A=;
-        b=YeKnDbvSUZMYvUuIwZBKRRGNoDMmFRfU7ScVrkRus+dLAN4OZUHJ9u/pfn46vLXpJe
-         mPfptBu5/xqRcSvE2AG2+XehHlOOjmgLPfKko61Y6CD9MYX58G5M6UuEvn5ex5are2R5
-         7RK2fU7pejLQTlKNO4r+uJNPFGOQbjvQnhkadUTMCiMIR7n0/iu7FUf1LTNthtvdsytY
-         Y61vl6G0udg68lQHiiLC4YMqPcbtUA6RkUeCQeKBpA9GFOg+e9ZUaKrziAh9XxCubJkM
-         JL72+JN/wRJGQw5pNxu1bJFr0HMBvr0Z8n8pbpRtQL0Ad3w6WNS6yWidb6LBzXjlM8dw
-         Lbiw==
-X-Gm-Message-State: AOAM5311FeluXezdzWkGtGpF3bSAc0flXMkTavqzkkxCIOOkD0KY5gVv
-        XE0foG+WLcc4yhM7OrQ3FlW4Xg==
-X-Google-Smtp-Source: ABdhPJw3eLakDx8YWXrA04CxC2ibj9EVmdwKTPTmTlExbDqvqJeykvBhTN4HqbH3oWcuFf9fHaCnlw==
-X-Received: by 2002:a05:6000:108:: with SMTP id o8mr19045739wrx.154.1626077902152;
-        Mon, 12 Jul 2021 01:18:22 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id p5sm13969585wrd.25.2021.07.12.01.18.20
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 12 Jul 2021 01:18:21 -0700 (PDT)
-Subject: Re: [RFC PATCH 05/13] ASoC: qcom: audioreach: add q6apm support
-To:     Rob Herring <robh@kernel.org>
-Cc:     bjorn.andersson@linaro.org, broonie@kernel.org,
-        plai@codeaurora.org, tiwai@suse.de, devicetree@vger.kernel.org,
-        perex@perex.cz, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
-        bgoswami@codeaurora.org
-References: <20210607152836.17154-1-srinivas.kandagatla@linaro.org>
- <20210607152836.17154-6-srinivas.kandagatla@linaro.org>
- <20210618201718.GA2807622@robh.at.kernel.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <e7f2fcdd-31e2-2cb1-2f94-257c723c6436@linaro.org>
-Date:   Mon, 12 Jul 2021 09:18:20 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1348239AbhGLIXm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jul 2021 04:23:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47048 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1350529AbhGLIWk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Jul 2021 04:22:40 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 192B56115A;
+        Mon, 12 Jul 2021 08:19:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1626077992;
+        bh=oiAKFE0F6sF9YhyTJBg+1E7QA8xdjUhbMNjBvBqhUp8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=H9jyRPsSgBpbzr0U7ugKnFGzSoeoZh5NLAuVVLjzojjgZMF9Bi7QDBe63AvxT6u1Q
+         I26ah/GCPI4ObdZlhUbfZsw2J48Uv6FHO/57yuvvkf1iqhzFqkDJ0ZYWtFTOzpfRct
+         fXjUl2cqjppSFPFC645Ij1uroFqSCsRaowmOiiOcgg2q2Chml5QMW3eT4LXyqWNxcm
+         lfBvRHbUZ9U4pQzokko9yBubUmZNweaq6btX9sIpLoqPBuUcp87VAAMrtfGygEhYUb
+         jtzdtZg6HZdC+EMQsLx5b3WGiinShYyUoq2Js3uYe5CNiRgL+yZSq9kJ1Sf++HbRMj
+         7hMLbk6aSYnpg==
+Date:   Mon, 12 Jul 2021 13:49:44 +0530
+From:   Manivannan Sadhasivam <mani@kernel.org>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>, linuxarm@huawei.com,
+        mauro.chehab@huawei.com,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Binghui Wang <wangbinghui@hisilicon.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Xiaowei Song <songxiaowei@hisilicon.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Subject: Re: [PATCH v3 0/9] Add support for Hikey 970 PCIe
+Message-ID: <20210712081944.GC8113@workstation>
+References: <cover.1625826353.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20210618201718.GA2807622@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1625826353.git.mchehab+huawei@kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Mauro,
 
+On Fri, Jul 09, 2021 at 12:41:36PM +0200, Mauro Carvalho Chehab wrote:
+> As requested by Rob Herring, this series split the PHY part into a separate driver.
+> Then, it adds support for Kirin 970 on a single patch.
+> 
+> With this change, the PHY-specific device tree bindings for Kirin 960 moved
+> to its own PHY properties.
+> 
+> Manivannan,
+> 
+> Please notice that the last two patches are marked as co-developed:
+> 
+> 	phy: hisilicon: add driver for Kirin 970 PCIe PHY
+> 	arm64: dts: hisilicon: Add support for HiKey 970 PCIe controller hardware
+> 
+> The first one contains the code you submitted in the past adding
+> support for Kirin 970 at the pcie-kirin driver, modified by me and
+> moved to a separate driver.
+> 
+> The second one is the DTS file, also modified by me in order to split the PHY
+> properties from the PCIe ones.
+> 
+> Please send your SoB to confirm that both changes are OK for you.
+> 
 
-On 18/06/2021 21:17, Rob Herring wrote:
-> On Mon, Jun 07, 2021 at 04:28:28PM +0100, Srinivas Kandagatla wrote:
->> Add support to q6apm (Audio Process Manager) component which is
->> core Audioreach service running in the DSP.
->>
->> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->> ---
->>   include/dt-bindings/sound/qcom,q6apm.h | 215 ++++++++
-> 
-> This goes in the binding patch.
-> 
+I'm fine with the changes. The dts patch already has my s-o-b as you
+preserved my authorship and I've sent my s-o-b for the driver patch.
+I used my korg address for the driver patch but that's fine as all these
+efforts were done in my spare time.
 
-Thanks Rob for review,
-Yes, I agree I will move this to bindings.
+Thanks,
+Mani
 
---srini
->>   sound/soc/qcom/audioreach/Makefile     |   2 +-
->>   sound/soc/qcom/audioreach/audioreach.c | 252 +++++++++
->>   sound/soc/qcom/audioreach/audioreach.h |   6 +
->>   sound/soc/qcom/audioreach/q6apm.c      | 695 +++++++++++++++++++++++++
->>   sound/soc/qcom/audioreach/q6apm.h      | 171 ++++++
->>   6 files changed, 1340 insertions(+), 1 deletion(-)
->>   create mode 100644 include/dt-bindings/sound/qcom,q6apm.h
->>   create mode 100644 sound/soc/qcom/audioreach/q6apm.c
->>   create mode 100644 sound/soc/qcom/audioreach/q6apm.h
->>
->> diff --git a/include/dt-bindings/sound/qcom,q6apm.h b/include/dt-bindings/sound/qcom,q6apm.h
->> new file mode 100644
->> index 000000000000..38e3a426b15a
->> --- /dev/null
->> +++ b/include/dt-bindings/sound/qcom,q6apm.h
->> @@ -0,0 +1,215 @@
->> +/* SPDX-License-Identifier: GPL-2.0 */
+> Tested on Hikey970:
 > 
-> Dual license.
+>   $ lspci
+>   00:00.0 PCI bridge: Huawei Technologies Co., Ltd. Device 3670 (rev 01)
+>   01:00.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+>   02:01.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+>   02:04.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+>   02:05.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+>   02:07.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+>   02:09.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+>   06:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller (rev 07)
 > 
->> +#ifndef __DT_BINDINGS_Q6_APM_H__
->> +#define __DT_BINDINGS_Q6_APM_H__
->> +
->> +#define	MSM_FRONTEND_DAI_MULTIMEDIA1	1
->> +#define	MSM_FRONTEND_DAI_MULTIMEDIA2	2
->> +#define	MSM_FRONTEND_DAI_MULTIMEDIA3	3
->> +#define	MSM_FRONTEND_DAI_MULTIMEDIA4	4
->> +#define	MSM_FRONTEND_DAI_MULTIMEDIA5	5
->> +#define	MSM_FRONTEND_DAI_MULTIMEDIA6	6
->> +#define	MSM_FRONTEND_DAI_MULTIMEDIA7	7
->> +#define	MSM_FRONTEND_DAI_MULTIMEDIA8	8
->> +
->> +/* Audio Process Manager (APM) virtual ports IDs */
->> +#define HDMI_RX		1
->> +#define SLIMBUS_0_RX    2
->> +#define SLIMBUS_0_TX    3
->> +#define SLIMBUS_1_RX    4
->> +#define SLIMBUS_1_TX    5
->> +#define SLIMBUS_2_RX    6
->> +#define SLIMBUS_2_TX    7
->> +#define SLIMBUS_3_RX    8
->> +#define SLIMBUS_3_TX    9
->> +#define SLIMBUS_4_RX    10
->> +#define SLIMBUS_4_TX    11
->> +#define SLIMBUS_5_RX    12
->> +#define SLIMBUS_5_TX    13
->> +#define SLIMBUS_6_RX    14
->> +#define SLIMBUS_6_TX    15
->> +#define PRIMARY_MI2S_RX		16
->> +#define PRIMARY_MI2S_TX		17
->> +#define SECONDARY_MI2S_RX	18
->> +#define SECONDARY_MI2S_TX	19
->> +#define TERTIARY_MI2S_RX	20
->> +#define TERTIARY_MI2S_TX	21
->> +#define QUATERNARY_MI2S_RX	22
->> +#define QUATERNARY_MI2S_TX	23
->> +#define PRIMARY_TDM_RX_0	24
->> +#define PRIMARY_TDM_TX_0	25
->> +#define PRIMARY_TDM_RX_1	26
->> +#define PRIMARY_TDM_TX_1	27
->> +#define PRIMARY_TDM_RX_2	28
->> +#define PRIMARY_TDM_TX_2	29
->> +#define PRIMARY_TDM_RX_3	30
->> +#define PRIMARY_TDM_TX_3	31
->> +#define PRIMARY_TDM_RX_4	32
->> +#define PRIMARY_TDM_TX_4	33
->> +#define PRIMARY_TDM_RX_5	34
->> +#define PRIMARY_TDM_TX_5	35
->> +#define PRIMARY_TDM_RX_6	36
->> +#define PRIMARY_TDM_TX_6	37
->> +#define PRIMARY_TDM_RX_7	38
->> +#define PRIMARY_TDM_TX_7	39
->> +#define SECONDARY_TDM_RX_0	40
->> +#define SECONDARY_TDM_TX_0	41
->> +#define SECONDARY_TDM_RX_1	42
->> +#define SECONDARY_TDM_TX_1	43
->> +#define SECONDARY_TDM_RX_2	44
->> +#define SECONDARY_TDM_TX_2	45
->> +#define SECONDARY_TDM_RX_3	46
->> +#define SECONDARY_TDM_TX_3	47
->> +#define SECONDARY_TDM_RX_4	48
->> +#define SECONDARY_TDM_TX_4	49
->> +#define SECONDARY_TDM_RX_5	50
->> +#define SECONDARY_TDM_TX_5	51
->> +#define SECONDARY_TDM_RX_6	52
->> +#define SECONDARY_TDM_TX_6	53
->> +#define SECONDARY_TDM_RX_7	54
->> +#define SECONDARY_TDM_TX_7	55
->> +#define TERTIARY_TDM_RX_0	56
->> +#define TERTIARY_TDM_TX_0	57
->> +#define TERTIARY_TDM_RX_1	58
->> +#define TERTIARY_TDM_TX_1	59
->> +#define TERTIARY_TDM_RX_2	60
->> +#define TERTIARY_TDM_TX_2	61
->> +#define TERTIARY_TDM_RX_3	62
->> +#define TERTIARY_TDM_TX_3	63
->> +#define TERTIARY_TDM_RX_4	64
->> +#define TERTIARY_TDM_TX_4	65
->> +#define TERTIARY_TDM_RX_5	66
->> +#define TERTIARY_TDM_TX_5	67
->> +#define TERTIARY_TDM_RX_6	68
->> +#define TERTIARY_TDM_TX_6	69
->> +#define TERTIARY_TDM_RX_7	70
->> +#define TERTIARY_TDM_TX_7	71
->> +#define QUATERNARY_TDM_RX_0	72
->> +#define QUATERNARY_TDM_TX_0	73
->> +#define QUATERNARY_TDM_RX_1	74
->> +#define QUATERNARY_TDM_TX_1	75
->> +#define QUATERNARY_TDM_RX_2	76
->> +#define QUATERNARY_TDM_TX_2	77
->> +#define QUATERNARY_TDM_RX_3	78
->> +#define QUATERNARY_TDM_TX_3	79
->> +#define QUATERNARY_TDM_RX_4	80
->> +#define QUATERNARY_TDM_TX_4	81
->> +#define QUATERNARY_TDM_RX_5	82
->> +#define QUATERNARY_TDM_TX_5	83
->> +#define QUATERNARY_TDM_RX_6	84
->> +#define QUATERNARY_TDM_TX_6	85
->> +#define QUATERNARY_TDM_RX_7	86
->> +#define QUATERNARY_TDM_TX_7	87
->> +#define QUINARY_TDM_RX_0	88
->> +#define QUINARY_TDM_TX_0	89
->> +#define QUINARY_TDM_RX_1	90
->> +#define QUINARY_TDM_TX_1	91
->> +#define QUINARY_TDM_RX_2	92
->> +#define QUINARY_TDM_TX_2	93
->> +#define QUINARY_TDM_RX_3	94
->> +#define QUINARY_TDM_TX_3	95
->> +#define QUINARY_TDM_RX_4	96
->> +#define QUINARY_TDM_TX_4	97
->> +#define QUINARY_TDM_RX_5	98
->> +#define QUINARY_TDM_TX_5	99
->> +#define QUINARY_TDM_RX_6	100
->> +#define QUINARY_TDM_TX_6	101
->> +#define QUINARY_TDM_RX_7	102
->> +#define QUINARY_TDM_TX_7	103
->> +#define DISPLAY_PORT_RX		104
->> +#define WSA_CODEC_DMA_RX_0	105
->> +#define WSA_CODEC_DMA_TX_0	106
->> +#define WSA_CODEC_DMA_RX_1	107
->> +#define WSA_CODEC_DMA_TX_1	108
->> +#define WSA_CODEC_DMA_TX_2	109
->> +#define VA_CODEC_DMA_TX_0	110
->> +#define VA_CODEC_DMA_TX_1	111
->> +#define VA_CODEC_DMA_TX_2	112
->> +#define RX_CODEC_DMA_RX_0	113
->> +#define TX_CODEC_DMA_TX_0	114
->> +#define RX_CODEC_DMA_RX_1	115
->> +#define TX_CODEC_DMA_TX_1	116
->> +#define RX_CODEC_DMA_RX_2	117
->> +#define TX_CODEC_DMA_TX_2	118
->> +#define RX_CODEC_DMA_RX_3	119
->> +#define TX_CODEC_DMA_TX_3	120
->> +#define RX_CODEC_DMA_RX_4	121
->> +#define TX_CODEC_DMA_TX_4	122
->> +#define RX_CODEC_DMA_RX_5	123
->> +#define TX_CODEC_DMA_TX_5	124
->> +#define RX_CODEC_DMA_RX_6	125
->> +#define RX_CODEC_DMA_RX_7	126
->> +
->> +#define LPASS_CLK_ID_PRI_MI2S_IBIT	1
->> +#define LPASS_CLK_ID_PRI_MI2S_EBIT	2
->> +#define LPASS_CLK_ID_SEC_MI2S_IBIT	3
->> +#define LPASS_CLK_ID_SEC_MI2S_EBIT	4
->> +#define LPASS_CLK_ID_TER_MI2S_IBIT	5
->> +#define LPASS_CLK_ID_TER_MI2S_EBIT	6
->> +#define LPASS_CLK_ID_QUAD_MI2S_IBIT	7
->> +#define LPASS_CLK_ID_QUAD_MI2S_EBIT	8
->> +#define LPASS_CLK_ID_SPEAKER_I2S_IBIT	9
->> +#define LPASS_CLK_ID_SPEAKER_I2S_EBIT	10
->> +#define LPASS_CLK_ID_SPEAKER_I2S_OSR	11
->> +#define LPASS_CLK_ID_QUI_MI2S_IBIT	12
->> +#define LPASS_CLK_ID_QUI_MI2S_EBIT	13
->> +#define LPASS_CLK_ID_SEN_MI2S_IBIT	14
->> +#define LPASS_CLK_ID_SEN_MI2S_EBIT	15
->> +#define LPASS_CLK_ID_INT0_MI2S_IBIT	16
->> +#define LPASS_CLK_ID_INT1_MI2S_IBIT	17
->> +#define LPASS_CLK_ID_INT2_MI2S_IBIT	18
->> +#define LPASS_CLK_ID_INT3_MI2S_IBIT	19
->> +#define LPASS_CLK_ID_INT4_MI2S_IBIT	20
->> +#define LPASS_CLK_ID_INT5_MI2S_IBIT	21
->> +#define LPASS_CLK_ID_INT6_MI2S_IBIT	22
->> +#define LPASS_CLK_ID_QUI_MI2S_OSR	23
->> +#define LPASS_CLK_ID_PRI_PCM_IBIT	24
->> +#define LPASS_CLK_ID_PRI_PCM_EBIT	25
->> +#define LPASS_CLK_ID_SEC_PCM_IBIT	26
->> +#define LPASS_CLK_ID_SEC_PCM_EBIT	27
->> +#define LPASS_CLK_ID_TER_PCM_IBIT	28
->> +#define LPASS_CLK_ID_TER_PCM_EBIT	29
->> +#define LPASS_CLK_ID_QUAD_PCM_IBIT	30
->> +#define LPASS_CLK_ID_QUAD_PCM_EBIT	31
->> +#define LPASS_CLK_ID_QUIN_PCM_IBIT	32
->> +#define LPASS_CLK_ID_QUIN_PCM_EBIT	33
->> +#define LPASS_CLK_ID_QUI_PCM_OSR	34
->> +#define LPASS_CLK_ID_PRI_TDM_IBIT	35
->> +#define LPASS_CLK_ID_PRI_TDM_EBIT	36
->> +#define LPASS_CLK_ID_SEC_TDM_IBIT	37
->> +#define LPASS_CLK_ID_SEC_TDM_EBIT	38
->> +#define LPASS_CLK_ID_TER_TDM_IBIT	39
->> +#define LPASS_CLK_ID_TER_TDM_EBIT	40
->> +#define LPASS_CLK_ID_QUAD_TDM_IBIT	41
->> +#define LPASS_CLK_ID_QUAD_TDM_EBIT	42
->> +#define LPASS_CLK_ID_QUIN_TDM_IBIT	43
->> +#define LPASS_CLK_ID_QUIN_TDM_EBIT	44
->> +#define LPASS_CLK_ID_QUIN_TDM_OSR	45
->> +#define LPASS_CLK_ID_MCLK_1		46
->> +#define LPASS_CLK_ID_MCLK_2		47
->> +#define LPASS_CLK_ID_MCLK_3		48
->> +#define LPASS_CLK_ID_MCLK_4		49
->> +#define LPASS_CLK_ID_INTERNAL_DIGITAL_CODEC_CORE	50
->> +#define LPASS_CLK_ID_INT_MCLK_0		51
->> +#define LPASS_CLK_ID_INT_MCLK_1		52
->> +#define LPASS_CLK_ID_MCLK_5		53
->> +#define LPASS_CLK_ID_WSA_CORE_MCLK	54
->> +#define LPASS_CLK_ID_WSA_CORE_NPL_MCLK	55
->> +#define LPASS_CLK_ID_VA_CORE_MCLK	56
->> +#define LPASS_CLK_ID_TX_CORE_MCLK	57
->> +#define LPASS_CLK_ID_TX_CORE_NPL_MCLK	58
->> +#define LPASS_CLK_ID_RX_CORE_MCLK	59
->> +#define LPASS_CLK_ID_RX_CORE_NPL_MCLK	60
->> +#define LPASS_CLK_ID_VA_CORE_2X_MCLK	61
->> +
->> +#define LPASS_HW_AVTIMER_VOTE		101
->> +#define LPASS_HW_MACRO_VOTE		102
->> +#define LPASS_HW_DCODEC_VOTE		103
->> +
->> +#define Q6APM_MAX_CLK_ID			104
->> +
->> +#define LPASS_CLK_ATTRIBUTE_INVALID		0x0
->> +#define LPASS_CLK_ATTRIBUTE_COUPLE_NO		0x1
->> +#define LPASS_CLK_ATTRIBUTE_COUPLE_DIVIDEND	0x2
->> +#define LPASS_CLK_ATTRIBUTE_COUPLE_DIVISOR	0x3
->> +
->> +#endif /* __DT_BINDINGS_Q6_APM_H__ */
+>   $ ethtool enp6s0
+>   Settings for enp6s0:
+> 	Supported ports: [ TP	 MII ]
+> 	Supported link modes:   10baseT/Half 10baseT/Full
+> 	                        100baseT/Half 100baseT/Full
+> 	                        1000baseT/Half 1000baseT/Full
+> 	Supported pause frame use: Symmetric Receive-only
+> 	Supports auto-negotiation: Yes
+> 	Supported FEC modes: Not reported
+> 	Advertised link modes:  10baseT/Half 10baseT/Full
+> 	                        100baseT/Half 100baseT/Full
+> 	                        1000baseT/Half 1000baseT/Full
+> 	Advertised pause frame use: Symmetric Receive-only
+> 	Advertised auto-negotiation: Yes
+> 	Advertised FEC modes: Not reported
+> 	Link partner advertised link modes:  10baseT/Half 10baseT/Full
+> 	                                     100baseT/Half 100baseT/Full
+> 	Link partner advertised pause frame use: Symmetric Receive-only
+> 	Link partner advertised auto-negotiation: Yes
+> 	Link partner advertised FEC modes: Not reported
+> 	Speed: 100Mb/s
+> 	Duplex: Full
+> 	Auto-negotiation: on
+> 	master-slave cfg: preferred slave
+> 	master-slave status: slave
+> 	Port: Twisted Pair
+> 	PHYAD: 0
+> 	Transceiver: external
+> 	MDI-X: Unknown
+>   netlink error: Operation not permitted
+> 	Link detected: yes
+> 
+> Partially tested on Hikey 960[1]:
+> 
+>   $ lspci
+>   00:00.0 PCI bridge: Huawei Technologies Co., Ltd. Device 3660 (rev 01)
+> 
+> [1] The Hikey 960 doesn't come with any internal PCIe device.
+>     Its hardware supports just an external device via a M.2 slot that
+>     doesn't support SATA. I ordered a NVMe device to test, but the vendor
+>     is currently out of supply. It should take 4-5 weeks to arrive here. I'll
+>     run an extra test on it once it arrives.
+> 
+> Manivannan Sadhasivam (1):
+>   arm64: dts: hisilicon: Add support for HiKey 970 PCIe controller
+>     hardware
+> 
+> Mauro Carvalho Chehab (8):
+>   dt-bindings: phy: add bindings for Hikey 960 PCIe PHY
+>   dt-bindings: phy: add bindings for Hikey 970 PCIe PHY
+>   dt-bindings: PCI: kirin: fix compatible string
+>   dt-bindings: PCI: kirin: drop PHY properties
+>   phy: hisilicon: add a PHY driver for Kirin 960
+>   PCI: kirin: drop the PHY logic from the driver
+>   PCI: kirin: use regmap for APB registers
+>   phy: hisilicon: add driver for Kirin 970 PCIe PHY
+> 
+>  .../devicetree/bindings/pci/kirin-pcie.txt    |  21 +-
+>  .../phy/hisilicon,phy-hi3660-pcie.yaml        |  82 ++
+>  .../phy/hisilicon,phy-hi3670-pcie.yaml        | 101 ++
+>  arch/arm64/boot/dts/hisilicon/hi3660.dtsi     |  29 +-
+>  arch/arm64/boot/dts/hisilicon/hi3670.dtsi     |  72 ++
+>  .../boot/dts/hisilicon/hikey970-pmic.dtsi     |   1 -
+>  drivers/pci/controller/dwc/pcie-kirin.c       | 298 ++----
+>  drivers/phy/hisilicon/Kconfig                 |  20 +
+>  drivers/phy/hisilicon/Makefile                |   2 +
+>  drivers/phy/hisilicon/phy-hi3660-pcie.c       | 325 +++++++
+>  drivers/phy/hisilicon/phy-hi3670-pcie.c       | 892 ++++++++++++++++++
+>  11 files changed, 1572 insertions(+), 271 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/phy/hisilicon,phy-hi3660-pcie.yaml
+>  create mode 100644 Documentation/devicetree/bindings/phy/hisilicon,phy-hi3670-pcie.yaml
+>  create mode 100644 drivers/phy/hisilicon/phy-hi3660-pcie.c
+>  create mode 100644 drivers/phy/hisilicon/phy-hi3670-pcie.c
+> 
+> -- 
+> 2.31.1
+> 
+> 
