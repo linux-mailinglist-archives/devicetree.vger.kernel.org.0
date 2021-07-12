@@ -2,224 +2,384 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9230B3C6263
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 20:08:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CFBC3C626C
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 20:10:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235821AbhGLSLO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jul 2021 14:11:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50948 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230477AbhGLSLO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 14:11:14 -0400
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 354E9C0613DD;
-        Mon, 12 Jul 2021 11:08:25 -0700 (PDT)
-Received: by mail-pj1-x102d.google.com with SMTP id oj10-20020a17090b4d8ab0290172f77377ebso505622pjb.0;
-        Mon, 12 Jul 2021 11:08:25 -0700 (PDT)
+        id S233881AbhGLSNh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jul 2021 14:13:37 -0400
+Received: from mail-eopbgr1410137.outbound.protection.outlook.com ([40.107.141.137]:27424
+        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230477AbhGLSNh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Jul 2021 14:13:37 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=juu3xBorubXl/6cr/0k+vMd8cDDB2sREijlBBxCk98LQF5ZC54fo0P+/8FyJILC7B4slOJxTvBr2jvesvDTQyY2QUzAI3P4nTrTFJMkM+++yZQ91irRWo6fwgxiFuOGeC+yxMo0zwGUDFpC4mI74kyEBW5sAmC1Ju0CvpuRpBUWhv8HL6NvcndDs/Aa0qk8BnTfNh7/8trKi2PTyNZQD9VVFKSpuCq3K+Fb+NaBC5JW8PVjdULs5Clcx/2GIhzRxOydPxJf+OaYSySUiqVvgOv/odQXEKWyakxjb4Wx4wGCHZ6Uatlmrh/CYe2XbBHewp4imqXnvRs2m3rt4jfdf9g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=f9dcgJ1zIMFpaVnqxq7Dc5o2BTfs+pbwHay6Q0wj1B0=;
+ b=guwhmecA0x2OsLKGMujECsefhtQCKjXJqOwP6fKZhx5VWukvOfYV8kVNgYh5DpTaj6j4RSk1flVGHsuzDZNWjpqG0X1+nyOX3T7uqamplGuaIZ1qaSOzGNArWFAiT5JKvAt54SbJyZzfjDhwDmYo8duKMpJrj0eRYq4kyU+eklR5X7umYs1NCz0+CWb3J21MfJRxpFLGkeVnamxaTkrGro/eVPlJTMq5unhFHpu3ULub2N5S2wwG1tx0MA5pHu8rJLipfcIzIgLRy/N/JXoCoOlSGHTpUIWwMB+xWoVPQCquSwesWfA2LhYIIuBQ4EMPZSPlbLqx1Xzy+BQ2nc5R8A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=gbTiIYDwnSRaycek8BzkWNkickJLY09hCzQewdWq06g=;
-        b=nznOig5fwNxtcKpcN3/6YidTdr5sJ9YLOCQ6WboYBMI+npnzgBllgo60PysPXG0BYX
-         2t2ZTwR6bexNoxnzkn519PXN1g2BlGwpC0ShfixIjUoSYq7HNXBwjMIVsbgQCRevCemj
-         Ib9gEbZFA33V8M+yPFyUd1jQ8arxxiJ+RiJ7MVzdXQtbji28WGvASPo/pePFG174aK1O
-         03h1TCytAz+JR9I/hajDLm2nlq7ybq6jkD5AzK8uNXhjgwGQZgiijz1Sn3CJe6DLIicy
-         Fr11J3FfAiRZakNmHK9zOx8FbDjYwmr7XEWkJP51vGzbaumm19VNczACMwTh4kTPvFdt
-         UpEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=gbTiIYDwnSRaycek8BzkWNkickJLY09hCzQewdWq06g=;
-        b=bNqU84OjFq8lUH8O+801c17RLubZHp6P0YoqzM2R6oZRCXB37bJftMbuswGy57KRII
-         NxL44tsCf87WO3YJPYM3XTNqrWizza6AatL+0I7SE0vskZQhUWjhxWiC/Rhhg4+zNZrc
-         0bHbFbZAfVU61+xTtbJQXobtSSS240Gig5gcIO0P3Hg8Ejd2ShhxgNeSyYk6UuLMycAA
-         at9Ew8+suIesOToFyGcrH257oYPe3K8K63wdKZWFS98fkFKG6uum441uEgujd2a+JN2I
-         WlWjf4RKx4+WFCeFK7J5KH2d12iAzzplIyOht97Gv3IfYmW+hOOIDQx9btHjvmNbReAR
-         VOtA==
-X-Gm-Message-State: AOAM533ZGHVtM0BHzW7vFr0ZQ4825D1GKztOzoiRFhnZf7sJTtlmKv2y
-        8LwA3iChbgJ0l0nsS2yNTTQ=
-X-Google-Smtp-Source: ABdhPJy4qZUxXiKF6OSytusjkdkuB01I24Jonu7WrNPoA+9OAZ/j1HTFRSh69as7QCuYSLmWwIaX+A==
-X-Received: by 2002:a17:90b:3d4:: with SMTP id go20mr15205998pjb.170.1626113304727;
-        Mon, 12 Jul 2021 11:08:24 -0700 (PDT)
-Received: from marsc.168.1.7 ([2804:30c:b7d:3600:4da5:ab7e:d25a:f030])
-        by smtp.gmail.com with ESMTPSA id j2sm16625902pfj.168.2021.07.12.11.08.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jul 2021 11:08:24 -0700 (PDT)
-Date:   Mon, 12 Jul 2021 15:08:19 -0300
-From:   Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Michael.Hennerich@analog.com, lars@metafoo.de,
-        devicetree@vger.kernel.org, Nuno Sa <Nuno.Sa@analog.com>
-Subject: Re: [PATCH 00/17] iio:adc:ad7280a Cleanup and proposed staging
- graduation.
-Message-ID: <YOyFE/yHrLQxKpkU@marsc.168.1.7>
-References: <20210614113507.897732-1-jic23@kernel.org>
- <YNIfkaRZtWIXPbAj@marsc.168.1.7>
- <20210623093741.00007d1d@Huawei.com>
- <20210711155051.713c1207@jic23-huawei>
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=f9dcgJ1zIMFpaVnqxq7Dc5o2BTfs+pbwHay6Q0wj1B0=;
+ b=QPgoS2L4TH+kesJQ9YW2pFxkuzPoamIf+Xsv35PAt64CZ86I5fllu21BeXmo5gqn2Y1XTgE9ZGdKpplpUyyfQyzxAmiGM2JCXZMwgP8S4PlWLafysfpoljxWEdKnGijWMhsPppl4m3HRUufHCyUbWGlKERxQQ7FCQLGfPX61laI=
+Authentication-Results: xilinx.com; dkim=none (message not signed)
+ header.d=none;xilinx.com; dmarc=none action=none header.from=renesas.com;
+Received: from OSAPR01MB3892.jpnprd01.prod.outlook.com (2603:1096:604:5b::23)
+ by OS0PR01MB5441.jpnprd01.prod.outlook.com (2603:1096:604:a5::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4308.21; Mon, 12 Jul
+ 2021 18:10:45 +0000
+Received: from OSAPR01MB3892.jpnprd01.prod.outlook.com
+ ([fe80::e1ee:a98a:2ba3:aee4]) by OSAPR01MB3892.jpnprd01.prod.outlook.com
+ ([fe80::e1ee:a98a:2ba3:aee4%7]) with mapi id 15.20.4308.027; Mon, 12 Jul 2021
+ 18:10:44 +0000
+Subject: Re: [PATCH v3 1/2] dt-bindings: Add binding for Renesas 8T49N241
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        sboyd@kernel.org, mturquette@baylibre.com, geert+renesas@glider.be,
+        david.cater.jc@renesas.com, michal.simek@xilinx.com
+References: <20210707182659.20548-1-alexander.helms.jy@renesas.com>
+ <20210707182659.20548-2-alexander.helms.jy@renesas.com>
+ <20210712162816.GA2050345@robh.at.kernel.org>
+In-Reply-To: <20210712162816.GA2050345@robh.at.kernel.org>
+From:   Alex Helms <alexander.helms.jy@renesas.com>
+Message-ID: <7f519cb8-68ca-bee7-2c21-06d6ec5e5b68@renesas.com>
+Date:   Mon, 12 Jul 2021 11:10:37 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SJ0PR03CA0127.namprd03.prod.outlook.com
+ (2603:10b6:a03:33c::12) To OSAPR01MB3892.jpnprd01.prod.outlook.com
+ (2603:1096:604:5b::23)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210711155051.713c1207@jic23-huawei>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [132.158.153.85] (68.225.135.226) by SJ0PR03CA0127.namprd03.prod.outlook.com (2603:10b6:a03:33c::12) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4308.19 via Frontend Transport; Mon, 12 Jul 2021 18:10:42 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 967e4d0f-af82-46da-0bb3-08d945605dac
+X-MS-TrafficTypeDiagnostic: OS0PR01MB5441:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <OS0PR01MB54416933EA6CDDAA242E7D9FC8159@OS0PR01MB5441.jpnprd01.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: rRzEhxie3l6yIdEhmxsQW1zqViTKfiBT886UAauuDufJHwkWMeyjyxUSPC2ycj8qXXmjEfbsK7AFuEcs8jiJPoc3321xFQ+tTCDyySqUyHJJ8ixv1DgkALBiS4qiyg789Cx5Ufx0+AwZC7EjTN68p91pfx29ks6A5DI1otMAz67UbV1PKnOk6UTpo6GbkhFjHNjfd8iJZy2rGuLF8kUOJtOW3vniCeSlpCpsi2fiYifxKlUDKmE5EnjiNa2VV1Ot21StXHIoE97x0WBsWEUhu8zjCEdDyOpXgxyzW8wZwuHB1n1086wQvGC1ekUNr3U/fmEMz7q8FNPjbOfmONvPoUpX4kXBPNF574pHB8+V9p6VS1Ztani1AWydPWtoRDCra/6vglXO8CHz4k9FMHaLl256i1RKiJATuy3JDUpNM3NLchV6efJE37RXrc4rhI+ju+BGKVWnECBg0m8OQXXKm5xnR5owYg+nN8rZTIAcfAwWs0I8YhHkG6LYnsqD7TDPwD7LP/H1skX66C/tNosulzjarfCf0yDY3QRp2dXHJTv9M7jn9TnMiRLzeYqawneRhuFSkLjS5kTnZX+5acq8L88DeE9RGjeIAXGQkFW5WsnCDixMQ0U8dl1McLIsTaZ6CKQlyOmDOM7J/TzE5rxI+U83Aq9IuDd/iR3LdVcuDr49W+1+JlmzKEL1TgHP1fZprwu+Lm/6S1OKlJBlHz9u48+gjFEtY5g3VdeOU07Ared4LiLw+fVf0TdAOaxvj08R7M5hB1C9lIfQ5i9I5P+tXqmLXgxTEETWzPcwSlyvvfje1irApF4cncMaMdQK4CTNSg0gTnereBalpWuIdAvUQNW/vAy33sTt97nYx+Ie605ddZaagntvr2LmrykeGzFoXWYB9rluf6FOFIalGnuIcd1OjNmhRQky7x4sSpAboSl8rYNKXFrvZ875ClA3fzkk
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSAPR01MB3892.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(39850400004)(136003)(366004)(376002)(396003)(8676002)(83380400001)(2616005)(956004)(66476007)(2906002)(4326008)(66556008)(86362001)(45080400002)(478600001)(38100700002)(966005)(26005)(16576012)(53546011)(31696002)(6706004)(6486002)(316002)(6916009)(31686004)(8936002)(38350700002)(66946007)(186003)(52116002)(36756003)(5660300002)(6666004)(78286007)(45980500001)(43740500002)(505234006);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?R1dwaHhGb2pWd0MxRTgxdUxRUHp6SGtSSWZuRXlDWC8rMVBydTBIZ05vRVE5?=
+ =?utf-8?B?R29lRWlYeHdXWVk3SWRYanZqUHNaK3ExZkVrcWRjMGtkSzFOaFpwWnpBa1N2?=
+ =?utf-8?B?R1dLMHAxSzNIZHpHMEdEdUZhOU1RUTM0ckI0TkdEdlJxNTg5OEZLaFBvMi85?=
+ =?utf-8?B?UFN0NlA4b1I0d2dpSE9xWWtVdUNoM3hHS04wdjBjdnFMdXR6Y2pINjJ4amhM?=
+ =?utf-8?B?bGszWkRFRXVqTkIrWk9jVlFvRmNxMU0wMndtcS9vQUVWajZMY3NuVi9uRWUv?=
+ =?utf-8?B?bFZPNFVwWEFMZjl0WGEwaEUyV3U2aGdyNndJUjZHWFQ5ZWZWeUZKS3BaMFVp?=
+ =?utf-8?B?R3R6cWNJYWhpeC9SbkpXMkozOUJWc04wQW9lNENZb3EwSUo5UjVVZ0piVHND?=
+ =?utf-8?B?eVF5S01NVGdRZjRNa0FaUTg0VjZZVnR3SzNnQkFycG9CU1V3emc4VVBta21E?=
+ =?utf-8?B?UEs1SStUVnlpbGV1ZmczL2dvaFRvRUpwb3l5SVV0M1h3K1F5R1hqZjVUOWNl?=
+ =?utf-8?B?dnI1SVhBMVpHOU4wVUdtT01yLzFuTUM1SjRoUFRjTGtUR2EyY0I0cDVFZnJu?=
+ =?utf-8?B?bWprb0I2WE11Nm9nSzdUSU9aN0ZDdlhPbHFVWnFaMjBZODEydXphOWdVTS9n?=
+ =?utf-8?B?dk5ZcENHOUJEbVdoTDJFSG5jRktGQlhhbUE4ajVLaTdYc3BJNDFhNDBaUDNL?=
+ =?utf-8?B?T1Z6Vmc2UmlwemVQb2xyZ0hTSmxQL3BzT055RSt5b0VscWhXTTZ5TTdLcE9a?=
+ =?utf-8?B?bmNCQnJoY01sYjk1Zk1hVmY0RXdqYUNLY25GTkovanJZWnF0RnlhTnJwTEo1?=
+ =?utf-8?B?NklsMXpCVUlBaXFHMmdSTU5uK0RtRnNycUlTUE9VMGJpY0VuSi9pSjNHTUVT?=
+ =?utf-8?B?ZmxTakNVSnZMSklra3VSaGkzbFlGSXRJU0U2ZS9WMGN3aFpXU3pHRVo1dmFQ?=
+ =?utf-8?B?ZGZMR0hvdzJ5QzZ5eCsyRW9CS05QZisxRk9oWFh1K29YMVViVlZ3WEY4STRC?=
+ =?utf-8?B?QjJmZkVmMjZRb0ZncTZxcE5FOXkxN2tEVUNhN2ZPSGM2NlRWK2ZVUnU1MEFR?=
+ =?utf-8?B?R1IvY3YxSmVuc2RHZ2x4UGtGbTdXUEhwL0lYSUNIKzBGYmRLZGxvTXM2UnVx?=
+ =?utf-8?B?eTVsL0RzM2R6T1dhYnV3ZGRJamw1enRJamM5WmxnWVJvWDk2RmR0L3NZYzRz?=
+ =?utf-8?B?UHBkYjBxWjRYQ2I2TFBKVjkvR09IV0ViRWE3MWZETlFEY3BwbzlUT1ovV3JH?=
+ =?utf-8?B?NjZndnZVbUY5VkZXVnNZZ2hnYTFaU21oemtrUnNRWDllUE1ENjJWcS9LekR0?=
+ =?utf-8?B?d21XYjlsZUtpd01keUgxejZ1S3JmLzBHZjk2MDYxdW5hYUFOOURIWUFyZzFr?=
+ =?utf-8?B?TmNLM0YyakN1alNzL1QybU04TFE0SWRVQU4yb1d5cUw1RGlHNWhxamc0d3Bh?=
+ =?utf-8?B?N0d0eGEzSm5uVFVTT2lFa1pLUWZVOTdkWHljWUpqbjU5QUVnV3hHR1FYdkZU?=
+ =?utf-8?B?UTVETEh0SjROS0Z6MjRPYTlHOEhlb0wvVEkwRVc0MjRYcUlwOElPSzlYeGVP?=
+ =?utf-8?B?Q0tXclBWT3Rzd1ZZQ0M0Q3lKdjBRbmxKc1VoVUVyS0F3RW9wQ3c4dk9UMlYv?=
+ =?utf-8?B?eFN5c2NCQ21YUzJmdEpOTGlDcDR2czBMamRVUWh4SC9mK1ZYaGduQlluYlpC?=
+ =?utf-8?B?cXZ3TGtodkVuSFd2YzdaaEhVT3YzTE5DQVA3bmh3L1BHempUQ01WbWo4OFNw?=
+ =?utf-8?Q?4Pw3/nkUTgaQnS9PEyHh3b29E+cvG78M8Q9s2Q0?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 967e4d0f-af82-46da-0bb3-08d945605dac
+X-MS-Exchange-CrossTenant-AuthSource: OSAPR01MB3892.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jul 2021 18:10:44.2108
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2V2bjzBdj9YVG3Ib0tFvBKiM6lquZZsT96gm0ZrFAvMHH7G7ruGHmAtiirdCydkvc2lril+nQLWIQ6d3/kCFvDBpht/aRWzaidvJv5ydyr8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS0PR01MB5441
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/11, Jonathan Cameron wrote:
-> On Wed, 23 Jun 2021 09:37:41 +0100
-> Jonathan Cameron <Jonathan.Cameron@Huawei.com> wrote:
+On 7/12/2021 9:28 AM, Rob Herring wrote:
+> On Wed, Jul 07, 2021 at 11:26:58AM -0700, Alex Helms wrote:
+>> Renesas 8T49N241 has 4 outputs, 1 integral and 3 fractional dividers.
+>> The 8T49N241 accepts up to two differential or single-ended input clocks
+>> and a fundamental-mode crystal input. The internal PLL can lock to either
+>> of the input reference clocks or to the crystal to behave as a frequency
+>> synthesizer.
+>>
+>> Signed-off-by: Alex Helms <alexander.helms.jy@renesas.com>
+>> ---
+>>  .../bindings/clock/renesas,8t49n241.yaml      | 188 ++++++++++++++++++
+>>  MAINTAINERS                                   |   6 +
+>>  2 files changed, 194 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/clock/renesas,8t49n241.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/renesas,8t49n241.yaml b/Documentation/devicetree/bindings/clock/renesas,8t49n241.yaml
+>> new file mode 100644
+>> index 000000000..4e26b3f11
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/clock/renesas,8t49n241.yaml
+>> @@ -0,0 +1,188 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: https://jpn01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fschemas%2Fclock%2Frenesas%2C8t49n241.yaml%23&amp;data=04%7C01%7Calexander.helms.jy%40renesas.com%7Cb047bd6bed2448f744e708d945521084%7C53d82571da1947e49cb4625a166a4a2a%7C0%7C1%7C637617041032675498%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=RYKX4RbZlT0YS3ka1oZ79%2BFTvUKtLUoEFkqMG6hLjYE%3D&amp;reserved=0
+>> +$schema: https://jpn01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=04%7C01%7Calexander.helms.jy%40renesas.com%7Cb047bd6bed2448f744e708d945521084%7C53d82571da1947e49cb4625a166a4a2a%7C0%7C1%7C637617041032675498%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=qG%2F%2Bc%2BiaSBDT0pIP%2Bvk7jjplus1UZJrehllaRtsDGKI%3D&amp;reserved=0
+>> +
+>> +title: Binding for Renesas 8T49N241 Universal Frequency Translator
+>> +
+>> +description: |
+>> +  The 8T49N241 has one fractional-feedback PLL that can be used as a
+>> +  jitter attenuator and frequency translator. It is equipped with one
+>> +  integer and three fractional output dividers, allowing the generation
+>> +  of up to four different output frequencies, ranging from 8kHz to 1GHz.
+>> +  These frequencies are completely independent of each other, the input
+>> +  reference frequencies and the crystal reference frequency. The device
+>> +  places virtually no constraints on input to output frequency conversion,
+>> +  supporting all FEC rates, including the new revision of ITU-T
+>> +  Recommendation G.709 (2009), most with 0ppm conversion error.
+>> +  The outputs may select among LVPECL, LVDS, HCSL or LVCMOS output levels.
+>> +
+>> +  The driver can read a full register map from the DT, and will use that
+>> +  register map to initialize the attached part (via I2C) when the system
+>> +  boots. Any configuration not supported by the common clock framework
+>> +  must be done via the full register map, including optimized settings.
+>> +
+>> +  The 8T49N241 accepts up to two differential or single-ended input clocks
+>> +  and a fundamental-mode crystal input. The internal PLL can lock to either
+>> +  of the input reference clocks or just to the crystal to behave as a
+>> +  frequency synthesizer. The PLL can use the second input for redundant
+>> +  backup of the primary input reference, but in this case, both input clock
+>> +  references must be related in frequency.
+>> +
+>> +  All outputs are currently assumed to be LVDS, unless overridden in the
+>> +  full register map in the DT.
+>> +
+>> +maintainers:
+>> +  - Alex Helms <alexander.helms.jy@renesas.com>
+>> +  - David Cater <david.cater.jc@renesas.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - 8t49n241
 > 
-> > On Tue, 22 Jun 2021 14:36:17 -0300
-> > Marcelo Schmitt <marcelo.schmitt1@gmail.com> wrote:
-> > 
-> > > Hey Jonathan,
-> > > 
-> > > On 06/14, Jonathan Cameron wrote:  
-> > > > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > > > 
-> > > > Hi All,
-> > > > 
-> > > > This one proved an interesting diversion.
-> > > > 
-> > > > Work done against a somewhat hacked up QEMU emulation of 3 daisy chained
-> > > > ad7280a devices (18 channels).  Note that the emulation isn't complete
-> > > > but does do chaining, CRC, and readout of channels etc in a fashion that
-> > > > worked with the original driver (up to the bug in patch 1) and continues
-> > > > to work with the updated version. I've not intention to upstream the
-> > > > emulation (as would need to make it more completed and flexible), but
-> > > > happy to share it with anyone who is interested.    
-> > > 
-> > > I'm interested in seeing your device emulation with QEMU.
-> > > I was looking at the ad7150 emulation you shared earlier this year but had
-> > > some trouble getting the i2c slave created.  
-> > 
-> > Sure.  Let me do a bit of tidying up they I'll push a suitable branch out.
-> > (probably will still have lots of stuff missing!)
-> > 
-> > Might take a little while to get to this though.
+> Needs a vendor prefix.
 > 
-> I pretended to myself for a few weeks that I'd get around to tidying this up in
-> a remotely meaningful way.  That's clearly not happening so I pushed out the
-> untidy version with appropriate eats babies messages:
-> 
-> https://github.com/jic23/qemu/commits/ad7280a-hacks
 
-Thanks. I don't mind if it's not exactly tidy or elegant code provided I
-can understand whats going on and get it running.
+Will fix in next patch version.
 
+>> +
+>> +  reg:
+>> +    description: I2C device address
+>> +    enum: [ 0x7c, 0x6c, 0x7d, 0x6d, 0x7e, 0x6e, 0x7f, 0x6f ]
+>> +
+>> +  '#clock-cells':
+>> +    const: 1
+>> +
+>> +  clock-names:
+>> +    description: Name of the input clock
 > 
-> Note there is loads of stuff that isn't implemented as it was developed alongside
-> this patch series to verify individual patches rather than with the intent of
-> actually emulating the device.
+> Drop. That's every 'clock-names'.
 > 
-OK, will be aware of that.
 
-> It's hard coded to 2 a chain of 3 ad7280a devices because that seemed to hit most possible
-> corner cases.
-> 
-> The top commit has the launch string I'm using.  You'll need a filesystem, but
-> you can probably use one of the convenient ones debian posts as nocloud cloud
-> images. 
-> 
-> There is some info on that on people.kernel.org/jic23 as I wrote up how to test
-> CXL stuff on ARM recently and gave guidance on easy ways to get a filesystem.
-> http://cdimage.debian.org/cdimage/cloud/sid/daily/20210702-691/debian-sid-nocloud-arm64-daily-20210702-691.qcow2
-> will probably work and is more recent than the one linked from that blog post. 
+Will remove in next patch version.
 
-I was using a debian imgage created from following the instructions on a
-tutorial pointed by the QEMU docs.
-https://translatedcode.wordpress.com/2017/07/24/installing-debian-on-qemus-64-bit-arm-virt-board/
-Anyhow, I'll chance to the nocloud one if see things don't get working.
-
+>> +    minItems: 1
+>> +    maxItems: 3
+>> +    items:
+>> +      enum: [ input-xtal, input-clk0, input-clk1 ]
 > 
-> Give me a shout if you need more specific guidance than this very very rough guide!
-
-Sure, let's see if I can get through it now. Otherwise ...
-
+> 'input-' is redundant.
 > 
-> I mentioned this thread in the diversion the rust on linux thread took into
-> use of QEMU to emulate devices which motivated me to stop being lazy and at least
-> post this hideous version.  Probably the most useful bit is how to get a working
-> spi device emulated on the arm virt machine as that is very handy for all manner
-> of testing.  One day someone might implement a large set of IIO device emulation
-> and bolt it into a CI...
 
-Agree, it's hard to get IIO drivers runtime tested because we often don't
-have the required hardware to do it. I think emulation would help us with
-that or, at least, would give us a little bit more confidence in our
-changes than just relying on sharp eyes and compile/static tests.
-Puching that into a CI would also be rather nice.
+Will remove in next patch version.
 
+>> +
+>> +  clocks:
+>> +    minItems: 1
+>> +    maxItems: 3
+>> +
+>> +  settings:
+>> +    description: Optional, list of space separated ASCII numbers in hex.
 > 
-> Jonathan
+> Huh?
 > 
-> > 
-> > > 
-> > > Being able to see it running, I may feel more confident to provide a review
-> > > for this set :)  
-> > 
-> > :)
-> > 
-> > > 
-> > > Regards,
-> > > 
-> > > Marcelo  
-> > > > 
-> > > > I briefly flirted with posting a patch to just drop the driver entirely,
-> > > > but the part is still available and it looked like fun + isn't going
-> > > > to greatly impact maintainability of the subsystem long term so is low
-> > > > cost even if it goes obsolete sometime soonish.
-> > > > 
-> > > > There are lots of things we could do after this set to improved the driver
-> > > > and make things more flexible, but it should basically 'just work'
-> > > > 
-> > > > Anyhow, as normal for staging graduations, last patch has rename detection
-> > > > turned off so that people can easily see what I am proposing we move
-> > > > out of staging.
-> > > > 
-> > > > Jonathan Cameron (17):
-> > > >   staging:iio:adc:ad7280a: Fix handing of device address bit reversing.
-> > > >   staging:iio:adc:ad7280a: Register define cleanup.
-> > > >   staging:iio:adc:ad7280a: rename _read() to _read_reg()
-> > > >   staging:iio:adc:ad7280a: Split buff[2] into tx and rx parts
-> > > >   staging:iio:adc:ad7280a: Use bitfield ops to managed fields in
-> > > >     transfers.
-> > > >   staging:iio:adc:ad7280a: Switch to standard event control
-> > > >   staging:iio:adc:ad7280a: Standardize extended ABI naming
-> > > >   staging:iio:adc:ad7280a: Drop unused timestamp channel.
-> > > >   staging:iio:adc:ad7280a: Trivial comment formatting cleanup
-> > > >   staging:iio:adc:ad7280a: Make oversampling_ratio a runtime control
-> > > >   staging:iio:adc:ad7280a: Cleanup includes
-> > > >   staging:iio:ad7280a: Reflect optionality of irq in ABI
-> > > >   staging:iio:adc:ad7280a: Use a local dev pointer to avoid &spi->dev
-> > > >   staging:iio:adc:ad7280a: Use device properties to replace platform
-> > > >     data.
-> > > >   dt-bindings:iio:adc:ad7280a: Add binding
-> > > >   iio:adc:ad7280a: Document ABI for cell balance switches
-> > > >   iio:adc:ad7280a: Move out of staging
-> > > > 
-> > > >  .../ABI/testing/sysfs-bus-iio-adc-ad7280a     |   14 +
-> > > >  .../bindings/iio/adc/adi,ad7280a.yaml         |   87 ++
-> > > >  drivers/iio/adc/Kconfig                       |   11 +
-> > > >  drivers/iio/adc/Makefile                      |    1 +
-> > > >  drivers/iio/adc/ad7280a.c                     | 1116 +++++++++++++++++
-> > > >  drivers/staging/iio/adc/Kconfig               |   11 -
-> > > >  drivers/staging/iio/adc/Makefile              |    1 -
-> > > >  drivers/staging/iio/adc/ad7280a.c             | 1044 ---------------
-> > > >  drivers/staging/iio/adc/ad7280a.h             |   37 -
-> > > >  9 files changed, 1229 insertions(+), 1093 deletions(-)
-> > > >  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-adc-ad7280a
-> > > >  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7280a.yaml
-> > > >  create mode 100644 drivers/iio/adc/ad7280a.c
-> > > >  delete mode 100644 drivers/staging/iio/adc/ad7280a.c
-> > > >  delete mode 100644 drivers/staging/iio/adc/ad7280a.h
-> > > > 
-> > > > -- 
-> > > > 2.32.0
-> > > >     
-> > 
+>> +      This list is the entire register map of the product and must contain
+>> +      791 items.
 > 
+> What is this for?
+> 
+> Seems suspect, but would need a vendor prefix and type at a minimum.
+> 
+
+The description could be better, I'll improve it in the next patch version.
+More info about it is in the main description for the device tree at the
+top of the schema. The user can provide the entire register map to be
+written to the device during initialization. This provides the user a way
+to fully customize the device without limitations. This is typically used
+by users who have spent time optimizing the device for performance and
+want to use those exact settings.
+
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - '#clock-cells'
+>> +  - clocks
+>> +  - clock-names
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    /* 25MHz reference clock */
+>> +    input_clk0: input_clk0 {
+>> +      compatible = "fixed-clock";
+>> +      #clock-cells = <0>;
+>> +      clock-frequency = <25000000>;
+>> +    };
+>> +
+>> +    i2c@0 {
+>> +        reg = <0x0 0x100>;
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +
+>> +        renesas8t49n241_1: clock-generator@6c {
+>> +            compatible = "renesas,8t49n241";
+>> +            reg = <0x6c>;
+>> +            #clock-cells = <1>;
+>> +
+>> +            clocks = <&input_clk0>;
+>> +            clock-names = "input-clk0";
+>> +        };
+>> +    };
+>> +
+>> +    /* Consumer referencing the 8T49N241 Q1 */
+>> +    consumer {
+>> +        /* ... */
+>> +        clocks = <&renesas8t49n241_1 1>;
+>> +        /* ... */
+>> +    };
+>> +  - |
+>> +    /* 40MHz crystal */
+>> +    input_xtal: input_xtal {
+>> +      compatible = "fixed-clock";
+>> +      #clock-cells = <0>;
+>> +      clock-frequency = <40000000>;
+>> +    };
+>> +
+>> +    i2c@0 {
+>> +        reg = <0x0 0x100>;
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +
+>> +        renesas8t49n241_2: clock-generator@6c {
+>> +            compatible = "renesas,8t49n241";
+>> +            reg = <0x6c>;
+>> +            #clock-cells = <1>;
+>> +
+>> +            clocks = <&input_xtal>;
+>> +            clock-names = "input-xtal";
+>> +
+>> +            settings=[
+>> +                09 50 00 60 67 C5 6C FF 03 00 30 00 00 01 00 00
+>> +                01 07 00 00 07 00 00 77 6D 06 00 00 00 00 00 FF
+>> +                FF FF FF 00 3F 00 2A 00 16 33 33 00 01 00 00 D0
+>> +                00 00 00 00 00 00 00 00 00 04 00 00 00 02 00 00
+>> +                00 00 00 00 00 00 00 17 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 D7 0A 2B 20 00 00 00 0B
+>> +                00 00 00 00 00 00 00 00 00 00 27 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                C3 00 08 01 00 00 00 00 00 00 00 00 00 30 00 00
+>> +                00 0A 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>> +                00 00 00 00 85 00 00 9C 01 D4 02 71 07 00 00 00
+>> +                00 83 00 10 02 08 8C
+>> +            ];
+>> +        };
+>> +    };
+>> +
+>> +    /* Consumer referencing the 8T49N241 Q1 */
+>> +    consumer {
+>> +        /* ... */
+>> +        clocks = <&renesas8t49n241_2 1>;
+>> +        /* ... */
+>> +    };
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 0cce91cd5..882d79ead 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -15575,6 +15575,12 @@ F:	include/linux/rpmsg/
+>>  F:	include/uapi/linux/rpmsg.h
+>>  F:	samples/rpmsg/
+>>  
+>> +RENESAS 8T49N24X DRIVER
+>> +M:	Alex Helms <alexander.helms.jy@renesas.com>
+>> +M:	David Cater <david.cater.jc@renesas.com>
+>> +S:	Odd Fixes
+>> +F:	Documentation/devicetree/bindings/clock/renesas,8t49n241.yaml
+>> +
+>>  RENESAS CLOCK DRIVERS
+>>  M:	Geert Uytterhoeven <geert+renesas@glider.be>
+>>  L:	linux-renesas-soc@vger.kernel.org
+>> -- 
+>> 2.30.2
+>>
+>>
