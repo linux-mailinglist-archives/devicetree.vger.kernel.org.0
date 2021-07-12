@@ -2,62 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A2523C62CA
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 20:41:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A3A63C6332
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 21:07:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230477AbhGLSoG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jul 2021 14:44:06 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44368 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236017AbhGLSoE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Jul 2021 14:44:04 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5DE80611CB;
-        Mon, 12 Jul 2021 18:41:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626115275;
-        bh=e//PfPkISlb21wssK1bjd4TW7DNOcSX1l1Av6v2WG+s=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=c1xjBxYT38Be4lYoF3QXwQnD+SMr+rg6afZfryQrS0hBPVS/DklJVY08nPAVRJ8/9
-         d0fyv4iiytXvr2OzTbXDakQNEZtiD4jpyfiStQJwaTUL8Rt/Uh8eAxdOVtuOQDjhoj
-         ZFbay6aZ0rZDk419K82DI0RWixnK/F+WqeX0hyK0CJcFlPpUikxi/QBHBo42Yr1By4
-         +gQGMU3eLY7lTx3ZUQki+Nwvf0mzPH+hTSLcWtA0YWX/QpSfhoeZqmKjWlHxP+Ef20
-         TFVGSjyHwFuTLcUvEjEBx1YaSMkKjs3qxbDUqfo1JOCsbkW/OlclqgagbAUr2oZ7P/
-         khBDK7uXuA0Gg==
-Date:   Mon, 12 Jul 2021 11:41:14 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     <alexandru.tachici@analog.com>
-Cc:     <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>,
-        <andrew@lunn.ch>, <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-        <davem@davemloft.net>
-Subject: Re: [PATCH v2 4/7] net: phy: adin1100: Add ethtool get_stats
- support
-Message-ID: <20210712114114.35d7771b@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20210712130631.38153-5-alexandru.tachici@analog.com>
-References: <20210712130631.38153-1-alexandru.tachici@analog.com>
-        <20210712130631.38153-5-alexandru.tachici@analog.com>
+        id S236078AbhGLTKJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jul 2021 15:10:09 -0400
+Received: from mail-io1-f52.google.com ([209.85.166.52]:37378 "EHLO
+        mail-io1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236084AbhGLTKI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 15:10:08 -0400
+Received: by mail-io1-f52.google.com with SMTP id l18so19047381iow.4;
+        Mon, 12 Jul 2021 12:07:19 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=VmcRJht2x/uN0knUjln6QgNgSrdkyqiua1j8QRrNut0=;
+        b=bAc08CLT5ghs9XD6g4yjkvABYRJklS5rQrOLiOQNBWDh81ofLRsM1Nd+VDwSvbXf8t
+         7yGKb41L4t79dtrW6+JcxIyQqHASKVto7Lbq9i7OdUddsJ2HcmK37r3O6g9fJAVBpueK
+         tlQq/AE80OyjrslHYsUz5Ob5XdjnmXDDultLBYhgIqpWRmCicC7iwwf8OFpWqp/MF9VN
+         vDJOTGwKzy8l5FK1ngvJ2LeZPQ2uSbLKqbZnFkajQv0lG5iJziO52DiXDXtH676AmpCF
+         YQG3NoSyercPhxfkMsLH7/OT/QDCMpQ93OTER5iJSL0x4CIXHgLVhcufjszi5do5GtE5
+         vTiw==
+X-Gm-Message-State: AOAM532aoE8z7dowIPotmToitdheedtG57AvVOMSfJUG2ChHT4Ipxs4g
+        vDQoOXb9NL1K+4Jvy3AoeA==
+X-Google-Smtp-Source: ABdhPJwAC+XS9JfOz2h1JYILI1SxRdnRBCsJxMoNWOPCYSdzKKl0qZBUqROHqRvEsywCbKS7YHsZ3w==
+X-Received: by 2002:a5e:8e44:: with SMTP id r4mr332283ioo.124.1626116838853;
+        Mon, 12 Jul 2021 12:07:18 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id y22sm1553509ioy.50.2021.07.12.12.07.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Jul 2021 12:07:18 -0700 (PDT)
+Received: (nullmailer pid 2310216 invoked by uid 1000);
+        Mon, 12 Jul 2021 19:07:14 -0000
+Date:   Mon, 12 Jul 2021 13:07:14 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Felipe Balbi <balbi@kernel.org>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH v2 01/13] dt-bindings: usb: mtu3: remove support VBUS
+ detection of extcon
+Message-ID: <20210712190714.GA2310182@robh.at.kernel.org>
+References: <1624008558-16949-1-git-send-email-chunfeng.yun@mediatek.com>
+ <1624008558-16949-2-git-send-email-chunfeng.yun@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1624008558-16949-2-git-send-email-chunfeng.yun@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 12 Jul 2021 16:06:28 +0300 alexandru.tachici@analog.com wrote:
-> +static const struct adin_hw_stat adin_hw_stats[] = {
-> +	{ "total_frames_error_count",		0x8008 },
-> +	{ "total_frames_count",			0x8009, 0x800A }, /* hi, lo */
-> +	{ "length_error_frames_count",		0x800B },
-> +	{ "alignment_error_frames_count",	0x800C },
-> +	{ "symbol_error_count",			0x800D },
-> +	{ "oversized_frames_count",		0x800E },
-> +	{ "undersized_frames_count",		0x800F },
-> +	{ "odd_nibble_frames_count",		0x8010 },
-> +	{ "odd_preamble_packet_count",		0x8011 },
-> +	{ "false_carrier_events_count",		0x8013 },
-> +};
+On Fri, 18 Jun 2021 17:29:06 +0800, Chunfeng Yun wrote:
+> Due to no platforms use a multi-funtion pin to detect VBUS
+> status until now when support dual role mode, prefer not to
+> support it anymore;
+> Another reason is that the controller doesn't support idle status,
+> the dual role port works as device or as host, using an IDDIG pin
+> is good enough, this will help to save another multi-function pin;
+> And fix a typo of 'neede';
+> Last modify example using VBUS to turn on/off device, for device
+> only mode, the driver doesn't get extcon.
+> 
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> ---
+> v2: no changes
+> ---
+>  .../bindings/usb/mediatek,mtu3.yaml           | 22 +++++++++++++++----
+>  1 file changed, 18 insertions(+), 4 deletions(-)
+> 
 
-Since this phy seems to implement a lot MAC stats would it make sense
-to plumb thru the new ethtool API for PHYs (ethtool_eth_mac_stats etc.)
-rather than let the same string proliferation problem spring up in
-another section of the code?
+Acked-by: Rob Herring <robh@kernel.org>
