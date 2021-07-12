@@ -2,189 +2,308 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 309B23C6009
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 18:03:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B12C63C6013
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 18:04:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230114AbhGLQGl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jul 2021 12:06:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50032 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230022AbhGLQGk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 12:06:40 -0400
-Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCEBCC0613E8
-        for <devicetree@vger.kernel.org>; Mon, 12 Jul 2021 09:03:51 -0700 (PDT)
-Received: by mail-oi1-x22b.google.com with SMTP id w127so25013918oig.12
-        for <devicetree@vger.kernel.org>; Mon, 12 Jul 2021 09:03:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=VYQdhl8WGpNZn7IHwYKLRg9DV0FPfiQGFVFR4KPgX0c=;
-        b=XSGbCrKyqK3ndOMFIBRp2HQGP9z52L4aOKWsy8RvSGGGFh+fx3biWqeYIqZwHykyu+
-         Jcz6zYKUDqSUwEDhLxYnftrY/LDZX+WEpNDBmyv5I2nyjHXPMnqLTTSz3nxLEFV4QbBA
-         OzW8SlBs5mCHHjCVVZp+b4mYvXXm94EtBVfHm8v4IbrykDmgM3De6gIKrVvbt8W/A/V6
-         beYDXOsm92b/ca0dXkn3rruOtDznbLyGfWxJ+Sd15Rnj7dUS6BJDVG6yFhb5jqSr3Bk8
-         OmDrAWqDlaIC5k70/KHUtRyrmVlHJQjkgnK05uzjpXXYWEeIXFNV0SDmJaLPUVr5vAIX
-         131Q==
+        id S229589AbhGLQHa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jul 2021 12:07:30 -0400
+Received: from mail-io1-f51.google.com ([209.85.166.51]:33627 "EHLO
+        mail-io1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229525AbhGLQHa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 12:07:30 -0400
+Received: by mail-io1-f51.google.com with SMTP id z11so1582068iow.0;
+        Mon, 12 Jul 2021 09:04:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=VYQdhl8WGpNZn7IHwYKLRg9DV0FPfiQGFVFR4KPgX0c=;
-        b=XaCmLT39s+N8hHq8O4SdVgyeAeWCzlbMYmY2SugPTCWQ9xLj/azV8tRjkfr6K16+ER
-         F+wZyJK9TyXSuosk2pEmQROHaLlzI3PVuniovFMbe8e7RP2tIFgpciZ28natUcYIto3N
-         uWf5LB1HSrTgFI4793i7AWLiy3yaRUq1O2LCq4867BQfvK0u2Dfk4Za3rLw3aJKjN46h
-         gIhhtz7De54+ulRFXPJi7TYg0urF0a/TNHHeGsn0Lf7asDo+ZS36at0FYfk7QQsWuxm6
-         SCIktpToUzJCUpfDgtv3YG80LICNwBRaN1zuL4SoBi3BMPzKDDBeAU6o2t6PstZZhfxW
-         owuA==
-X-Gm-Message-State: AOAM530NHhd2VA/SJiiUHXvbroDJ2dEY4f26ilh+/xrEJlEhd+KZ7/5m
-        iFA2wh9EPaBFwCq0P7d33F24wQ==
-X-Google-Smtp-Source: ABdhPJxWVvHGQqmw4XVHZ9oLKOii3peGSB6g8nki90kRoK68heA+KbKagj74e1DGjUmoUOwQsea0jA==
-X-Received: by 2002:aca:acc5:: with SMTP id v188mr10863888oie.167.1626105831020;
-        Mon, 12 Jul 2021 09:03:51 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id z5sm3229154oib.14.2021.07.12.09.03.49
+         :mime-version:content-disposition:in-reply-to;
+        bh=t7zLlkpjqidi7PE+jjVFSaEwNjSZq4b1sP5J9W4oGrw=;
+        b=kwGLpAkrzYN6kQjbIywssQ+V1kZQPdOgryo4G9b0PR5EP3TlKDBdcAhhp84LHaf+es
+         oh5LU0+mr7BFF4ahooU3uugab2PlpMFfd6H8zlwKaYnadyBKxz1Iqh2WZR1dNhoq14Ph
+         teLFLCrzzAEG6OczpBrnAD3lzp1nOFTvm2STgmhGYEqZOhesCFsHJFgtE5+4/NJixAoC
+         AyalG8Idj+3C0shTGRZOFTB+1awNJ73MV1amSCasPNn6fReV5SundnIwcEFAbtmwleoE
+         husT7fhccLpO/XQTR7Ieu5LsvSFHmrD/RN413nKlokPKFVcShmCzlxNeyvkynxJp5cIS
+         SVVA==
+X-Gm-Message-State: AOAM530z+5Jhq2L/9RLToxNbWvW6klBKdFm7TR8uqPmII41nQdeMJW0X
+        JyX2GkwEch7O5x0B2guZ3g==
+X-Google-Smtp-Source: ABdhPJzOLYeTmZxL5V7NzmoyZPyyvU5QgZDr4OPjKFj9sUcqyCj09ZQNxbo71clkNp7eJvo9fYYvmQ==
+X-Received: by 2002:a05:6638:3594:: with SMTP id v20mr44293107jal.25.1626105878851;
+        Mon, 12 Jul 2021 09:04:38 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id t15sm6942731iln.36.2021.07.12.09.04.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jul 2021 09:03:50 -0700 (PDT)
-Date:   Mon, 12 Jul 2021 11:03:48 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Prasad Malisetty <pmaliset@codeaurora.org>
-Cc:     agross@kernel.org, bhelgaas@google.com, robh+dt@kernel.org,
-        swboyd@chromium.org, lorenzo.pieralisi@arm.com,
-        svarbanov@mm-sol.com, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mgautam@codeaurora.org,
-        dianders@chromium.org, mka@chromium.org, sanm@codeaurora.org
-Subject: Re: [PATCH v3 4/4] PCIe: qcom: Add support to control pipe clk mux
-Message-ID: <YOxn5GWQsEH/+bSm@yoga>
-References: <1624377651-30604-1-git-send-email-pmaliset@codeaurora.org>
- <1624377651-30604-5-git-send-email-pmaliset@codeaurora.org>
+        Mon, 12 Jul 2021 09:04:37 -0700 (PDT)
+Received: (nullmailer pid 2022797 invoked by uid 1000);
+        Mon, 12 Jul 2021 16:04:35 -0000
+Date:   Mon, 12 Jul 2021 10:04:35 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Pavo Banicevic <pavo.banicevic@sartura.hr>
+Cc:     linux-doc@vger.kernel.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-kernel@vger.kernel.org, geert+renesas@glider.be,
+        Max.Merchel@tq-group.com, linux@rempel-privat.de, daniel@0x0f.com,
+        shawnguo@kernel.org, sam@ravnborg.org, arnd@arndb.de,
+        krzysztof.kozlowski@canonical.com, corbet@lwn.net,
+        lee.jones@linaro.org, pavel@ucw.cz, linux@roeck-us.net,
+        jdelvare@suse.com, goran.medic@sartura.hr, luka.perkov@sartura.hr,
+        luka.kovacic@sartura.hr, Robert Marko <robert.marko@sartura.hr>
+Subject: Re: [PATCH v8 1/7] dt-bindings: Add IEI vendor prefix and IEI
+ WT61P803 PUZZLE driver bindings
+Message-ID: <20210712160435.GA1994579@robh.at.kernel.org>
+References: <20210705134939.28691-1-pavo.banicevic@sartura.hr>
+ <20210705134939.28691-2-pavo.banicevic@sartura.hr>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=windows-1252
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1624377651-30604-5-git-send-email-pmaliset@codeaurora.org>
+In-Reply-To: <20210705134939.28691-2-pavo.banicevic@sartura.hr>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 22 Jun 11:00 CDT 2021, Prasad Malisetty wrote:
-
-> pipe-clk mux needs to switch between pipe_clk
-
-If you spell "pipe-clk mux" as "gcc_pcie_N_pipe_clk_src" there's no
-ambiguity in which clock you refer to.
-
-> and XO as part of LPM squence. This is done by setting
-> pipe_clk mux as parent of pipe_clk after phy init.
-
-I thought the two possible cases where:
-
-xo -> gcc_pcie_N_pipe_clk_src -> gcc_pcie_N_pipe_clk
-PHY::pipe_clk -> gcc_pcie_N_pipe_clk_src -> gcc_pcie_N_pipe_clk
-
-But here you're saying that you're setting the parent of PHY::pipe_clk
-to gcc_pcie_N_pipe_clk?
-
-> This is a new requirement for sc7280.
-> For accessing to DBI registers during L23,
-> need to switch the pipe clock with free-running
-> clock (TCXO) using GCC’s registers
-
-So in previous platforms we could access DBI registers, in L23, without
-any clock?
-
-What happens if we use xo as parent for the pipe clock
-
+On Mon, Jul 05, 2021 at 03:49:33PM +0200, Pavo Banicevic wrote:
+> From: Luka Kovacic <luka.kovacic@sartura.hr>
 > 
-> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
+> Add the IEI WT61P803 PUZZLE Device Tree bindings for MFD, HWMON and LED
+> drivers. A new vendor prefix is also added accordingly for
+> IEI Integration Corp.
+> 
+> Signed-off-by: Luka Kovacic <luka.kovacic@sartura.hr>
+> Signed-off-by: Pavo Banicevic <pavo.banicevic@sartura.hr>
+> Cc: Luka Perkov <luka.perkov@sartura.hr>
+> Cc: Robert Marko <robert.marko@sartura.hr>
 > ---
->  drivers/pci/controller/dwc/pcie-qcom.c | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
+>  .../hwmon/iei,wt61p803-puzzle-hwmon.yaml      | 53 ++++++++++++
+>  .../leds/iei,wt61p803-puzzle-leds.yaml        | 44 ++++++++++
+>  .../bindings/mfd/iei,wt61p803-puzzle.yaml     | 82 +++++++++++++++++++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+>  4 files changed, 181 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/iei,wt61p803-puzzle-hwmon.yaml
+>  create mode 100644 Documentation/devicetree/bindings/leds/iei,wt61p803-puzzle-leds.yaml
+>  create mode 100644 Documentation/devicetree/bindings/mfd/iei,wt61p803-puzzle.yaml
 > 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index 8a7a300..80e9ee4 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -166,6 +166,9 @@ struct qcom_pcie_resources_2_7_0 {
->  	struct regulator_bulk_data supplies[2];
->  	struct reset_control *pci_reset;
->  	struct clk *pipe_clk;
-> +	struct clk *pipe_clk_mux;
-> +	struct clk *pipe_ext_src;
-> +	struct clk *ref_clk_src;
->  };
->  
->  union qcom_pcie_resources {
-> @@ -1167,6 +1170,20 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
->  	if (ret < 0)
->  		return ret;
->  
-> +	if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280")) {
+> diff --git a/Documentation/devicetree/bindings/hwmon/iei,wt61p803-puzzle-hwmon.yaml b/Documentation/devicetree/bindings/hwmon/iei,wt61p803-puzzle-hwmon.yaml
+> new file mode 100644
+> index 000000000000..c24a24e90495
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/iei,wt61p803-puzzle-hwmon.yaml
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/iei,wt61p803-puzzle-hwmon.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: IEI WT61P803 PUZZLE MCU HWMON module from IEI Integration Corp.
+> +
+> +maintainers:
+> +  - Luka Kovacic <luka.kovacic@sartura.hr>
+> +
+> +description: |
+> +  This module is a part of the IEI WT61P803 PUZZLE MFD device. For more details
+> +  see Documentation/devicetree/bindings/mfd/iei,wt61p803-puzzle.yaml.
+> +
+> +  The HWMON module is a sub-node of the MCU node in the Device Tree.
+> +
+> +properties:
+> +  compatible:
+> +    const: iei,wt61p803-puzzle-hwmon
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^fan-group@[0-1]$":
+> +    type: object
+> +    properties:
+> +      reg:
+> +        minimum: 0
+> +        maximum: 1
+> +        description:
+> +          Fan group ID
+> +
+> +      cooling-levels:
+> +        minItems: 1
+> +        maxItems: 255
+> +        description:
+> +          Cooling levels for the fans (PWM value mapping)
+> +    description: |
+> +      Properties for each fan group.
+> +    required:
+> +      - reg
+> +
+> +required:
+> +  - compatible
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +
+> +additionalProperties: false
+> diff --git a/Documentation/devicetree/bindings/leds/iei,wt61p803-puzzle-leds.yaml b/Documentation/devicetree/bindings/leds/iei,wt61p803-puzzle-leds.yaml
+> new file mode 100644
+> index 000000000000..dc3e39aafd3e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/iei,wt61p803-puzzle-leds.yaml
+> @@ -0,0 +1,44 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/iei,wt61p803-puzzle-leds.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: IEI WT61P803 PUZZLE MCU LED module from IEI Integration Corp.
+> +
+> +maintainers:
+> +  - Luka Kovacic <luka.kovacic@sartura.hr>
+> +
+> +description: |
+> +  This module is a part of the IEI WT61P803 PUZZLE MFD device. For more details
+> +  see Documentation/devicetree/bindings/mfd/iei,wt61p803-puzzle.yaml.
+> +
+> +  The LED module is a sub-node of the MCU node in the Device Tree.
+> +
+> +properties:
+> +  compatible:
+> +    const: iei,wt61p803-puzzle-leds
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  "led@0":
 
-So this is the first 2.7.0 that has this need? Are we just going to add
-more compatibles to this list going forward?
+Don't need quotes.
 
-> +		res->pipe_clk_mux = devm_clk_get(dev, "pipe_mux");
-> +		if (IS_ERR(res->pipe_clk_mux))
-> +			return PTR_ERR(res->pipe_clk_mux);
+> +    type: object
+> +    $ref: common.yaml
+> +    description: |
+> +      Properties for a single LED.
+> +    properties:
+> +      reg:
+> +        description:
+> +          Index of the LED. Only one LED is supported at the moment.
+> +        const: 0
 
-So this is gcc_pcie_N_pipe_clk_src?
+If there can only be 1 LED, just make an 'led' node and drop reg.
 
 > +
-> +		res->pipe_ext_src = devm_clk_get(dev, "phy_pipe");
-> +		if (IS_ERR(res->pipe_ext_src))
-> +			return PTR_ERR(res->pipe_ext_src);
+> +required:
+> +  - compatible
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +
+> +additionalProperties: false
+> diff --git a/Documentation/devicetree/bindings/mfd/iei,wt61p803-puzzle.yaml b/Documentation/devicetree/bindings/mfd/iei,wt61p803-puzzle.yaml
+> new file mode 100644
+> index 000000000000..2452631505cc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/iei,wt61p803-puzzle.yaml
+> @@ -0,0 +1,82 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/iei,wt61p803-puzzle.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: IEI WT61P803 PUZZLE MCU from IEI Integration Corp.
+> +
+> +maintainers:
+> +  - Luka Kovacic <luka.kovacic@sartura.hr>
+> +
+> +description: |
+> +  IEI WT61P803 PUZZLE MCU is embedded in some IEI Puzzle series boards.
+> +  It's used for controlling system power states, fans, LEDs and temperature
+> +  sensors.
+> +
+> +  For Device Tree bindings of other sub-modules (HWMON, LEDs) refer to the
+> +  binding documents under the respective subsystem directories.
+> +
+> +properties:
+> +  compatible:
+> +    const: iei,wt61p803-puzzle
+> +
+> +  current-speed:
+> +    description:
+> +      Serial bus speed in bps
+> +    maxItems: 1
+> +
+> +  enable-beep: true
+> +
+> +  hwmon:
+> +    $ref: ../hwmon/iei,wt61p803-puzzle-hwmon.yaml
 
-And this is the pipe_clk coming out of the PHY (What I call
-PHY::pipe_clk above)?
+/schemas/hwmon/...
 
 > +
-> +		res->ref_clk_src = devm_clk_get(dev, "ref");
-> +		if (IS_ERR(res->ref_clk_src))
-> +			return PTR_ERR(res->ref_clk_src);
+> +  leds:
+> +    $ref: ../leds/iei,wt61p803-puzzle-leds.yaml
 
-And this is TCXO?
+/schemas/leds/...
 
-> +	}
 > +
->  	res->pipe_clk = devm_clk_get(dev, "pipe");
->  	return PTR_ERR_OR_ZERO(res->pipe_clk);
->  }
-> @@ -1255,6 +1272,11 @@ static void qcom_pcie_deinit_2_7_0(struct qcom_pcie *pcie)
->  static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
->  {
->  	struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
-> +	struct dw_pcie *pci = pcie->pci;
-> +	struct device *dev = pci->dev;
+> +required:
+> +  - compatible
+> +  - current-speed
 > +
-> +	if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280"))
-> +		clk_set_parent(res->pipe_clk_mux, res->pipe_ext_src);
->  
-
-So after phy_power_on() (not "phy init" as you say in the commit
-message, perhaps you don't mean phy_init() but in general terms "phy
-initialization") you need to make sure that gcc_pcie_N_pipe_clk_src is
-actually fed by PHY::pipe_clk?
-
-1) What's the gcc_pcie_N_pipe_clk_src parent before this?
-
-2) Will the PHY initialization really succeed if the pipe_clk feeding
-back from gcc isn't based on the PHY's pipe_clk? Is this a change in
-sc7280?
-
-3) In the commit message you're talking about the need to make XO the
-parent of gcc_pcie_N_pipe_clk_src during L23, where in this patch does
-that happen?
-
-Regards,
-Bjorn
-
->  	return clk_prepare_enable(res->pipe_clk);
->  }
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/leds/common.h>
+> +    serial {
+> +        mcu {
+> +            compatible = "iei,wt61p803-puzzle";
+> +            current-speed = <115200>;
+> +            enable-beep;
+> +
+> +            leds {
+> +                compatible = "iei,wt61p803-puzzle-leds";
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                led@0 {
+> +                    reg = <0>;
+> +                    function = LED_FUNCTION_POWER;
+> +                    color = <LED_COLOR_ID_BLUE>;
+> +                };
+> +            };
+> +
+> +            hwmon {
+> +                compatible = "iei,wt61p803-puzzle-hwmon";
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                fan-group@0 {
+> +                    #cooling-cells = <2>;
+> +                    reg = <0x00>;
+> +                    cooling-levels = <64 102 170 230 250>;
+> +                };
+> +
+> +                fan-group@1 {
+> +                    #cooling-cells = <2>;
+> +                    reg = <0x01>;
+> +                    cooling-levels = <64 102 170 230 250>;
+> +                };
+> +            };
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index b868cefc7c55..e02b6d6eb568 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -509,6 +509,8 @@ patternProperties:
+>      description: IC Plus Corp.
+>    "^idt,.*":
+>      description: Integrated Device Technologies, Inc.
+> +  "^iei,.*":
+> +    description: IEI Integration Corp.
+>    "^ifi,.*":
+>      description: Ingenieurburo Fur Ic-Technologie (I/F/I)
+>    "^ilitek,.*":
 > -- 
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
+> 2.31.1
+> 
 > 
