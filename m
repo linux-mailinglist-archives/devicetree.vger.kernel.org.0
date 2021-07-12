@@ -2,87 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A96D03C5B00
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 13:05:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E29B3C5B20
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 13:05:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234484AbhGLKum (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jul 2021 06:50:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35384 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234469AbhGLKu2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Jul 2021 06:50:28 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C36CA610CD;
-        Mon, 12 Jul 2021 10:47:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626086860;
-        bh=rRB64sjiBKQruseT1bEUVq+5wupC8VMPtoVNxCyIyEI=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=CqaBZWa8B/RzkMpNzg2pUREb4m99FHCCi+BgPzMI3gBp7KIaEjQDI15R967JPVHZN
-         fy6kfNvy7u+HGV+NdZZ0jhyLagk87O22kRz7sj/RJx4ODORvj4HkdyVC3nqOCu0mip
-         3628geIVhUvowjNSywPgGajW8aWQHlNc9x+pX30XdnKSAZBXH4IPeRqKp6ZnL1oSpV
-         Pklg2fgfMCsbiyl3JnJP12QWxKO/qzXzWWA/OeE7XqUGFYHqFx63I6F0Ro24NCbYrO
-         Y2EXbVByywveXqyWiYwTKLBoHezzRGwAIgnBQ44siYYghnsaIIRsJPZn/DhpJM146M
-         7DNM2DtMMeqTA==
-From:   Mark Brown <broonie@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>
-Cc:     Mark Brown <broonie@kernel.org>, linux-tegra@vger.kernel.org,
-        Sameer Pujar <spujar@nvidia.com>,
-        Jon Hunter <jonathanh@nvidia.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: Re: (subset) [PATCH v2 0/2] arm64: tegra: Enable audio IOMMU support on Tegra194
-Date:   Mon, 12 Jul 2021 11:45:57 +0100
-Message-Id: <162608623153.3192.16025207604600677942.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210708103432.1690385-1-thierry.reding@gmail.com>
-References: <20210708103432.1690385-1-thierry.reding@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        id S234036AbhGLLFf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jul 2021 07:05:35 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:35873 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234923AbhGLLFf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Jul 2021 07:05:35 -0400
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 91254580AF9;
+        Mon, 12 Jul 2021 07:02:46 -0400 (EDT)
+Received: from imap21 ([10.202.2.71])
+  by compute1.internal (MEProxy); Mon, 12 Jul 2021 07:02:46 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=mime-version:message-id:in-reply-to:references:date:from:to
+        :cc:subject:content-type; s=fm1; bh=7XyyQqaPm43E+iSA6HEfleHFR36O
+        XWaTALDg2LKUkgk=; b=xwjCPhQd0xWBFg4xsAE2OGMHZIACEIN1AJC4/+P1tGFa
+        zFL9zncOUF+88bPV4qC+v3E7iAk/B35NTHUyEOSkRgG7DSSWNVNPahmq1x1xIyt8
+        4izt0VYsxKGG+T46UjGfpIaKfZZ8Es+pEE3BrhqUGS7NrwHItHj7ziHDqLCk5yO5
+        BX+j+ak2TQILZEpGSnmaTz8D8iZNqvD9hKOGjsXr++0eL8e/9vH9MZhsMLb6F3Lm
+        b1N5B6ApWbQAr81c0TUy+atLA/e2NCg0RhEgz+5avim4jRUbr/EbCUjk7N5e5VHr
+        LbbySTBnDLc9v/AOt3UjWzA4FeKCRsE0CDoOLA5yng==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=7XyyQq
+        aPm43E+iSA6HEfleHFR36OXWaTALDg2LKUkgk=; b=ouodfEzeihWXi3YKhCGJZb
+        3fslL+cRjTPE3SGqWePpDDraM1i8uBW7MNNt9ObldK51+CKThOEA+xoBsIwyrEOz
+        rjcnOgpxvNKQlv3ZRKmqJFQk48dBEDdlzgnevSfYpdfNy6aEMRDbWeKHZsSjAQ6s
+        zzOs35CsOfDIQkV0yIVkYU8lancSJLXt1Ih04iiN0+jJUGDELJWZBt2U3SEPFpVo
+        CPYkW1LNkeKgY7ToNMwfWrbrZ7m+FSW29OqJsbsh/fVculWVsWOuhOxU/YTQEct2
+        twiAkhSj+LxuB5iSs4FrpVv5wg5e+fzmMcb2oa8D/lNbjtCQkPA9oAJmqPF1Zu5Q
+        ==
+X-ME-Sender: <xms:VCHsYA9j-VSGyScKqbwUdt9sdp3bXneZd2nejh2qEDZXx_yH_9Kr-Q>
+    <xme:VCHsYIvD-NiUWimqxHR6JGRvKR4Ve-vh7YB_JIQ94-X8N_1IXhakNvoTF2RNYB7_1
+    GXYda5R1h4bdm7tqV0>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddruddvgdeffecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedfufhvvghn
+    ucfrvghtvghrfdcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrfgrth
+    htvghrnhepgfeigeeiffeuhfettdejgfetjeetfeelfefgfefgvddvtdfghfffudehvdef
+    keffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepsh
+    hvvghnsehsvhgvnhhpvghtvghrrdguvghv
+X-ME-Proxy: <xmx:VCHsYGB8HqcvOxogMoO8DO4BapMlpVjlA1jc7UMGbCFoZgbPXXqDmg>
+    <xmx:VCHsYAehHLkhao02W5b4WQdO4XiqlfIM8Xdbv0TTx8E1nlu-w64Ufg>
+    <xmx:VCHsYFOelErVvdihV7A_Wm3nrBKOp2eWiNgYaY8YmkuRRaOWE7af2w>
+    <xmx:ViHsYGv8DWHIuMz381N0ZC19MlCwPID0_5WLnpeWGpRLhGqtQNZAHQ>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id D489951C0060; Mon, 12 Jul 2021 07:02:44 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-531-g1160beca77-fm-20210705.001-g1160beca
+Mime-Version: 1.0
+Message-Id: <16ffb4ec-86a4-4300-b175-5d7a1fcbf994@www.fastmail.com>
+In-Reply-To: <YNx2U4GPoKxV3PWd@maud>
+References: <20210627143405.77298-1-sven@svenpeter.dev>
+ <20210627143405.77298-4-sven@svenpeter.dev> <YNx2U4GPoKxV3PWd@maud>
+Date:   Mon, 12 Jul 2021 13:02:24 +0200
+From:   "Sven Peter" <sven@svenpeter.dev>
+To:     "Alyssa Rosenzweig" <alyssa@collabora.com>
+Cc:     "Will Deacon" <will@kernel.org>,
+        "Robin Murphy" <robin.murphy@arm.com>,
+        "Joerg Roedel" <joro@8bytes.org>,
+        "Arnd Bergmann" <arnd@kernel.org>, devicetree@vger.kernel.org,
+        "Hector Martin" <marcan@marcan.st>, linux-kernel@vger.kernel.org,
+        "Marc Zyngier" <maz@kernel.org>,
+        "Mohamed Mediouni" <mohamed.mediouni@caramail.com>,
+        "Stan Skowronek" <stan@corellium.com>,
+        linux-arm-kernel@lists.infradead.org,
+        "Mark Kettenis" <mark.kettenis@xs4all.nl>,
+        "Petr Mladek via iommu" <iommu@lists.linux-foundation.org>,
+        "Alexander Graf" <graf@amazon.com>,
+        "Alyssa Rosenzweig" <alyssa.rosenzweig@collabora.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Rouven Czerwinski" <r.czerwinski@pengutronix.de>
+Subject: Re: [PATCH v4 3/3] iommu: dart: Add DART iommu driver
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 8 Jul 2021 12:34:30 +0200, Thierry Reding wrote:
-> This small series addresses a minor issue with how IOMMU support is
-> wired up on various Tegra generations. Currently the virtual "card"
-> device is used to allocate DMA memory for, but since that device does
-> not actually exist, the path to memory cannot be correctly described.
-> 
-> To address this, this series moves to using the ADMAIF as the DMA device
-> for audio. This is a real device that can have a proper DMA mask set and
-> with which a stream ID can be associated with in the SMMU. The memory
-> accesses technically originate from the ADMA controller (that the ADMAIF
-> uses), but DMA channel are dynamically allocated at runtime while DMA
-> memory is allocated at driver load time, drivers won't have access to
-> the ADMA device yet.
-> 
-> [...]
+Hi,
 
-Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+On Wed, Jun 30, 2021, at 15:49, Alyssa Rosenzweig wrote:
+> Looks really good! Just a few minor comments. With them addressed,
+> 
+> 	Reviewed-by: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
 
 Thanks!
 
-[1/2] ASoC: tegra: Use ADMAIF component for DMA allocations
-      commit: 0dfc21c1a4cac321749a53c92da616d9546d00e3
+> 
+> > +	  Say Y here if you are using an Apple SoC with a DART IOMMU.
+> 
+> Nit: Do we need to spell out "with a DART IOMMU"? Don't all the apple
+> socs need DART?
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Good point, I'll remove it.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+> 
+> > +/*
+> > + * This structure is used to identify a single stream attached to a domain.
+> > + * It's used as a list inside that domain to be able to attach multiple
+> > + * streams to a single domain. Since multiple devices can use a single stream
+> > + * it additionally keeps track of how many devices are represented by this
+> > + * stream. Once that number reaches zero it is detached from the IOMMU domain
+> > + * and all translations from this stream are disabled.
+> > + *
+> > + * @dart: DART instance to which this stream belongs
+> > + * @sid: stream id within the DART instance
+> > + * @num_devices: count of devices attached to this stream
+> > + * @stream_head: list head for the next stream
+> > + */
+> > +struct apple_dart_stream {
+> > +	struct apple_dart *dart;
+> > +	u32 sid;
+> > +
+> > +	u32 num_devices;
+> > +
+> > +	struct list_head stream_head;
+> > +};
+> 
+> It wasn't obvious to me why we can get away without reference counting.
+> Looking ahead it looks like we assert locks in each case. Maybe add
+> that to the comment?
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+Sure, I'll add that to the comment.
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+> 
+> ```
+> > +static void apple_dart_hw_set_ttbr(struct apple_dart *dart, u16 sid, u16 idx,
+> > +				   phys_addr_t paddr)
+> > +{
+> > +	writel(DART_TTBR_VALID | (paddr >> DART_TTBR_SHIFT),
+> > +	       dart->regs + DART_TTBR(sid, idx));
+> > +}
+> ```
+> 
+> Should we be checking alignment here? Something like
+> 
+>     BUG_ON(paddr & ((1 << DART_TTBR_SHIFT) - 1));
+> 
 
-Thanks,
-Mark
+Sure, right now paddr will always be aligned but adding that
+BUG_ON doesn't hurt :)
+
+
+
+Best,
+
+Sven
