@@ -2,73 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A3BB93C6345
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 21:09:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5571B3C6352
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 21:11:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236225AbhGLTMB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jul 2021 15:12:01 -0400
-Received: from mail-io1-f42.google.com ([209.85.166.42]:47033 "EHLO
-        mail-io1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236086AbhGLTMA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 15:12:00 -0400
-Received: by mail-io1-f42.google.com with SMTP id y8so24029087iop.13;
-        Mon, 12 Jul 2021 12:09:11 -0700 (PDT)
+        id S234287AbhGLTNy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jul 2021 15:13:54 -0400
+Received: from mail-il1-f172.google.com ([209.85.166.172]:42616 "EHLO
+        mail-il1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233504AbhGLTNx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 15:13:53 -0400
+Received: by mail-il1-f172.google.com with SMTP id h3so20627703ilc.9;
+        Mon, 12 Jul 2021 12:11:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ryL66cZ8Fxa8J8T2kT+ROKwZPDNvqOBInHf/KU5Wb9Q=;
-        b=kSxJ3+F+F97DuxgvTdvt/8hgSL6fCdNdT6OGixJjHsSK/izxpjJOTx62APPiCvRma4
-         fZVRg9E45xbWsK70Xm+TsP+zxdQC81oAXkSUDQJ6n5coyBv5Xwi2u97MbU7Mo8wMB+tq
-         6oLyDJ5QPgz9L/JCa8hoJZv/nHF3KXZdg5bS7xlASGiPKCvY7gxZ2PFJ9FXrHxaPyGrL
-         TN3mdUujVZeIm6k4xrUwLmFAYO9k2DuD4fjYBLOU82OFMKsaKGUmYb9h0d6yY2+17wM7
-         0dG9E6AEkTMQkKmspeYF5eSWAF4GWisxO7mXYRPegsGsbQwJsUzTj+Galpv9KzsMclea
-         Xrzg==
-X-Gm-Message-State: AOAM530qIc8bSAYnixtbqNX1y3ZMkg+4IhRMD6e83ijpEaV77ks+m2iB
-        ieDi1GVyR1QcNABD5waLIA==
-X-Google-Smtp-Source: ABdhPJy39M69RtfgFiUmpHIfZOMl8DpTTtviRMPj97/AnkFI0/PdUC4voQTnLuHSilmE5r2HP20Wtg==
-X-Received: by 2002:a6b:f013:: with SMTP id w19mr336514ioc.182.1626116951298;
-        Mon, 12 Jul 2021 12:09:11 -0700 (PDT)
+        bh=KDeCEh+D/0pr2XfzfVAb7hT42m+8aaWxMNpNgHC5hY8=;
+        b=OsTLrovMvPLOL/pguYjlluLXDrA9Bbl4CgXGVDvxjiLzO7eZ9uKAU1e8OLokmP9IaT
+         sLAs+q6VhkWBe5nas7d2Xkx+fNfBgFySTemNWHjRFf5ycSBp3W9x3CcwTQ9ZLgbJZdYx
+         Z9oIJXJ4KdMwj9djpYbUOXhN9rrcVl4ymqcC+qnFmfg2wUXP2WFn9UINJgsU24qPXZmk
+         bhsm204396M/d+uBFLvpVTU6U9B8j9y1AqRT8oWttAf7iuJmtv/4JIFNv3E4nPYtuoC4
+         FDEFzbVdWYYLcxy21TKd9CgDC6TdKvyDXXonSoPZmEGnl1ULdMuVO9zr3N4JmgXk+TYO
+         uK7w==
+X-Gm-Message-State: AOAM531AxO+wE9EU1qTXQ1dkFRXX+WQg6G7qrAOe5uxx/NUFgqfZ4z3N
+        xDDKkq0YfsfXPBP6EG7/vQ==
+X-Google-Smtp-Source: ABdhPJxINxOQbkOPSUeTHrh+j560TiyF4+WVEtfyHKvmJlOXN+oa6fjedFHors7KConAc0zn96SOSw==
+X-Received: by 2002:a92:c805:: with SMTP id v5mr221476iln.293.1626117064532;
+        Mon, 12 Jul 2021 12:11:04 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id 15sm8577700ilt.66.2021.07.12.12.09.08
+        by smtp.gmail.com with ESMTPSA id d8sm5312716ilq.88.2021.07.12.12.11.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jul 2021 12:09:10 -0700 (PDT)
-Received: (nullmailer pid 2313419 invoked by uid 1000);
-        Mon, 12 Jul 2021 19:09:07 -0000
-Date:   Mon, 12 Jul 2021 13:09:07 -0600
+        Mon, 12 Jul 2021 12:11:03 -0700 (PDT)
+Received: (nullmailer pid 2316421 invoked by uid 1000);
+        Mon, 12 Jul 2021 19:11:00 -0000
+Date:   Mon, 12 Jul 2021 13:11:00 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     linux-kernel@vger.kernel.org, Felipe Balbi <balbi@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-mediatek@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 04/13] dt-bindings: usb: mtu3: add wakeup interrupt
-Message-ID: <20210712190907.GA2313362@robh.at.kernel.org>
-References: <1624008558-16949-1-git-send-email-chunfeng.yun@mediatek.com>
- <1624008558-16949-5-git-send-email-chunfeng.yun@mediatek.com>
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>
+Cc:     festevam@gmail.com, kernel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        phone-devel@vger.kernel.org, kernel@puri.sm,
+        laurent.pinchart@ideasonboard.com, linux-kernel@vger.kernel.org,
+        linux-staging@lists.linux.dev, shawnguo@kernel.org,
+        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org,
+        mchehab@kernel.org, slongerbeam@gmail.com, krzk@kernel.org,
+        m.felsch@pengutronix.de
+Subject: Re: [PATCH v5 1/3] dt-bindings: media: document the
+ nxp,imx8mq-mipi-csi2 receiver phy and controller
+Message-ID: <20210712191100.GA2316363@robh.at.kernel.org>
+References: <20210618095753.114557-1-martin.kepplinger@puri.sm>
+ <20210618095753.114557-2-martin.kepplinger@puri.sm>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1624008558-16949-5-git-send-email-chunfeng.yun@mediatek.com>
+In-Reply-To: <20210618095753.114557-2-martin.kepplinger@puri.sm>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 18 Jun 2021 17:29:09 +0800, Chunfeng Yun wrote:
-> Add an dedicated interrupt which is usually EINT to support runtime PM,
-> meanwhile add "interrupt-names" property, for backward compatibility,
-> it's optional and used when wakeup interrupt exists
+On Fri, 18 Jun 2021 11:57:51 +0200, Martin Kepplinger wrote:
+> The i.MX8MQ SoC integrates a different MIPI CSI receiver as the i.MX8MM so
+> describe the DT bindings for it.
 > 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
 > ---
-> v2: no changes
-> ---
->  .../devicetree/bindings/usb/mediatek,mtu3.yaml      | 13 ++++++++++++-
->  1 file changed, 12 insertions(+), 1 deletion(-)
+>  .../bindings/media/nxp,imx8mq-mipi-csi2.yaml  | 173 ++++++++++++++++++
+>  1 file changed, 173 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
