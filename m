@@ -2,132 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 267343C403D
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 02:03:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 003493C40C3
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 03:03:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229758AbhGLAFy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Jul 2021 20:05:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54482 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229660AbhGLAFy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jul 2021 20:05:54 -0400
-Received: from mail-vs1-xe2e.google.com (mail-vs1-xe2e.google.com [IPv6:2607:f8b0:4864:20::e2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27732C0613E5
-        for <devicetree@vger.kernel.org>; Sun, 11 Jul 2021 17:03:06 -0700 (PDT)
-Received: by mail-vs1-xe2e.google.com with SMTP id f4so5582118vsh.11
-        for <devicetree@vger.kernel.org>; Sun, 11 Jul 2021 17:03:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nigauri-org.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=k1+A7QcokWdPNl2M1r52ewHwT7LYjcRk65lo+mWhFnY=;
-        b=md8aiR8HKvNkFp+5k0RYao/RYfhmbAQooL535E6rA1GS0eCtls+Xl1dmep5lAQosKh
-         49XSxAckn4oXHGQEj1Ncer5NYD9BGSh10/KgfIVln+xJHdopb8gJdCWNYdxt8Geryo+x
-         4pGOf3tJqpgDWuUG+B74GnPg6wQjt811/FDJ4Nrs5Xiewp5fRVM8mmVGjTqj5A8H5hRq
-         oJv8LZcchBU5epKasgyMXODsrK++YWJN675SBhWxZY2hqDIdPvvXNuKvyS7+FLBVRfgD
-         Ld6TQ5TzhTblkx5hmk+hcIs+BJCRNT2r3L1keAWLQeIh1rV6F7m5DIuMZnqOAoUBNn0P
-         hKoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=k1+A7QcokWdPNl2M1r52ewHwT7LYjcRk65lo+mWhFnY=;
-        b=t/BABDfW/t1BjOCH7v3Y382GeJAgm7SjifZiOlAcdg0s176bp71j/o+VilOLir/FFC
-         Y5N0+qfleCIGrLVdOEV0H5xs64EqVCl2aJ/4ZtzLccEomTk4N5Zgw+FHFFLhRsAlDDAC
-         udZ09iPGJqfxPRczpG5l8AF8xN4HG05UR3fFvjxUfh4szpYaREWtJtLqrFkNuYUr752e
-         e7dOKXq9sCVmWiAXuvQeCgqZ4r4aOhybeEi9YlGXzSQ58rMhXZPaHtXPoPafqLDNz67p
-         DAJwLzMwiXxr3tq3XoerZlinlWpdhdwUyF3vAEcX55XlE6I21Uj/rIwKWPYSsLG+RS3d
-         FJBQ==
-X-Gm-Message-State: AOAM532KtnB2VA2/UNnUBUq1qnZQU0tlNBtEiH7tJCTkRAKrIzS6fSMs
-        0iRhSV26JfkplW/5ldhCWIbzl3Rxo6zpJYqn23w1
-X-Google-Smtp-Source: ABdhPJxANIsr4SOpdxnprb0mqLLonVDY6CQ0YruScAGFr0HZPF0Vf/yNL8cJmSzWAYg6KwaR4bXie2IvjN+PFCcRB7s=
-X-Received: by 2002:a05:6102:3089:: with SMTP id l9mr13148901vsb.2.1626048185107;
- Sun, 11 Jul 2021 17:03:05 -0700 (PDT)
+        id S232481AbhGLBGC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Jul 2021 21:06:02 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:56282 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S232307AbhGLBGC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jul 2021 21:06:02 -0400
+X-UUID: 5e22745fd2e64c1682dc8dddd4a55a8b-20210712
+X-UUID: 5e22745fd2e64c1682dc8dddd4a55a8b-20210712
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <yongqiang.niu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1017235728; Mon, 12 Jul 2021 09:03:09 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs02n2.mediatek.inc (172.21.101.101) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 12 Jul 2021 09:03:00 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 12 Jul 2021 09:03:00 +0800
+From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>
+Subject: [PATCH v2, 0/3] drm/mediatek: Separate aal module
+Date:   Mon, 12 Jul 2021 09:02:55 +0800
+Message-ID: <1626051778-13577-1-git-send-email-yongqiang.niu@mediatek.com>
+X-Mailer: git-send-email 1.8.1.1.dirty
 MIME-Version: 1.0
-References: <20210707071616.28976-1-matt@traverse.com.au> <20210707071616.28976-3-matt@traverse.com.au>
- <CABMQnVL379GkR_s5c91a0LAPMemup_Lq8U+qU9M1-kBWfVqmTw@mail.gmail.com>
- <YOYiDlQM/xfgb0CH@piout.net> <CABMQnV+zxURp2K3aXjH3cobndoAXjTdb4xB4w+mMJmjnwyPyLg@mail.gmail.com>
- <YOjsm9wujqczPIKw@piout.net>
-In-Reply-To: <YOjsm9wujqczPIKw@piout.net>
-From:   Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-Date:   Mon, 12 Jul 2021 09:02:38 +0900
-Message-ID: <CABMQnVLMeDTNgDmuNKxbBYA4B4n0krzq5WQ8Lh4RKhVN_tPTJA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: rtc: add Epson RX-8025 and RX-8035
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Mathew McBride <matt@traverse.com.au>, linux-rtc@vger.kernel.org,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Chnage since v1:
+- seprate patch
+- keep gamma register setting with cpu
 
-2021=E5=B9=B47=E6=9C=8810=E6=97=A5(=E5=9C=9F) 9:41 Alexandre Belloni <alexa=
-ndre.belloni@bootlin.com>:
->
-> Hello,
->
-> On 09/07/2021 16:19:49+0900, Nobuhiro Iwamatsu wrote:
-> > Hi,
-> >
-> > 2021=E5=B9=B47=E6=9C=888=E6=97=A5(=E6=9C=A8) 6:52 Alexandre Belloni <al=
-exandre.belloni@bootlin.com>:
-> > >
-> > > On 08/07/2021 06:46:31+0900, Nobuhiro Iwamatsu wrote:
-> > > > Hi,
-> > > >
-> > > > 2021=E5=B9=B47=E6=9C=887=E6=97=A5(=E6=B0=B4) 16:17 Mathew McBride <=
-matt@traverse.com.au>:
-> > > > >
-> > > > > These are supported by the rtc-rx8025 module. RX-8025
-> > > > > also has support in ds1307 due to compatible time registers.
-> > > > >
-> > > > > Signed-off-by: Mathew McBride <matt@traverse.com.au>
-> > > > > ---
-> > > > >  Documentation/devicetree/bindings/rtc/trivial-rtc.yaml | 3 +++
-> > > > >  1 file changed, 3 insertions(+)
-> > > > >
-> > > > > diff --git a/Documentation/devicetree/bindings/rtc/trivial-rtc.ya=
-ml b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-> > > > > index 7548d8714871..13925bb78ec7 100644
-> > > > > --- a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-> > > > > @@ -32,6 +32,9 @@ properties:
-> > > > >        - dallas,ds3232
-> > > > >        # I2C-BUS INTERFACE REAL TIME CLOCK MODULE
-> > > > >        - epson,rx8010
-> > > > > +      # I2C-BUS INTERFACE REAL TIME CLOCK MODULE
-> > > > > +      - epson,rx8025
-> > > > > +      - epson,rx8035
-> > > >
-> > > > 'epson,rx8035' is unnsecessary.
-> > > > This lists compatible string, so we don't list compatible that does=
-n't exist.
-> > > >
-> > >
-> > > Well, the previous patch adds it.
-> > >
-> >
-> > I couldn't find anything to add "epson,rx8035" as device tree compatibl=
-e in
-> > previous patch(rtc: rx8025: implement RX-8035 support)....
-> > I think that i2c_device_id was added and it is not device tree compatib=
-le.
-> > Can you tell me if my understanding is wrong?
->
-> Having "rx8035" in the struct i2c_device_id array is enough to have the
-> driver probed using DT. IIRC, it is a side effect of
-> i2c_of_match_device_sysfs()
+Yongqiang Niu (3):
+  drm/mediatek: Separate aal module
+  drm/mediatek: add mt8183 aal support
+  arm64: dts: mt8183: refine aal compatible name
 
-I understood. Thanks for the explanation.
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi    |   3 +-
+ drivers/gpu/drm/mediatek/Makefile           |   3 +-
+ drivers/gpu/drm/mediatek/mtk_disp_aal.c     | 167 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/mediatek/mtk_disp_drv.h     |   9 ++
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c |  39 +------
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c      |   8 +-
+ drivers/gpu/drm/mediatek/mtk_drm_drv.h      |   1 +
+ 7 files changed, 188 insertions(+), 42 deletions(-)
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_aal.c
 
-Best regards,
-  Nobuhiro
+-- 
+1.8.1.1.dirty
 
---=20
-Nobuhiro Iwamatsu
-   iwamatsu at {nigauri.org / debian.org}
-   GPG ID: 40AD1FA6
