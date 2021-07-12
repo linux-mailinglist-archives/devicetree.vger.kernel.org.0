@@ -2,122 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 242463C5B79
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 13:44:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C45B3C5CF1
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 15:06:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231153AbhGLL1V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jul 2021 07:27:21 -0400
-Received: from mail-vk1-f180.google.com ([209.85.221.180]:46009 "EHLO
-        mail-vk1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229644AbhGLL1U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 07:27:20 -0400
-Received: by mail-vk1-f180.google.com with SMTP id j190so3897419vkg.12;
-        Mon, 12 Jul 2021 04:24:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=wSI56+0wl/8uoFZkYYEX3Cn5WjSYU9NFzgAm+bp0lBU=;
-        b=TZAcxELme0KH+lXKl+7Iw9ntlmy0E2d0LvO0n4Q5956NBZbClvqIt3eL73mH46ec2f
-         p9ieGyiVbYdMJnNJUwcl/eMh0it5+nCHZHbu8yZDT7b7qGVrtFq5rmzJlwfEfefe4HVk
-         meFtdsSJXrb9YC/Q0ehQrevA1v2ldY38A0oE4cTyEsVugFuiwcpVAsAXSrYm77MP4jdZ
-         ePonhYopbSFc3yv+14Wxl7UidVi5W3K+u5FwKB3dQp21UFb9e7QMwyceDybgLbDtVXfp
-         BJM6GRWarNg+krn5r6z+RjMf0wb5I1Xiq0RxT0IVYGzRXtTKdN/eqnPmlf4UuXBLTezu
-         gmmA==
-X-Gm-Message-State: AOAM5310kBt1QV2bfIZ2hr/5QbtjB51O15ZfAJRMi01PSSpu8DEYXfu4
-        3Sv+k8zWxhUj3awhy5PSrwws2mTKlc0mA+3Pf3XykiNgCkQ=
-X-Google-Smtp-Source: ABdhPJzl+b8ID+5NtPNSzacYozt9cW/uQxXEYZQYcG4NKJ5aeR9N2kMo9YCHMcaHTF4gY4uSOKuGr5NU+gxzNe5ovNo=
-X-Received: by 2002:a1f:1a41:: with SMTP id a62mr42439346vka.5.1626089070907;
- Mon, 12 Jul 2021 04:24:30 -0700 (PDT)
+        id S232700AbhGLNHj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jul 2021 09:07:39 -0400
+Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:59563 "EHLO
+        wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232911AbhGLNHi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Jul 2021 09:07:38 -0400
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.west.internal (Postfix) with ESMTP id 97F4A320097D;
+        Mon, 12 Jul 2021 09:04:49 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Mon, 12 Jul 2021 09:04:50 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm3; bh=Rcs3Ch4ZR57Nqwcqf6oEyE4+YDq
+        HFvkhQcrGpgYfg64=; b=A+gBGpjmjVGfZYJDYRTJekz/FYnEG6l1bz+xGG1rCF1
+        7PSaU0HYjKKXJiRth60YbjK9FiCpvIDt0v2X+xPzcNtkRiUrwcFfxSTV1mb1kq91
+        nxVvXXeYN2D/KY6/qdl6Zgx8oFZRc8zyuqYc0m4YIVBIi2qYKdnjRX370lm97nlu
+        Z1jJp3ZJ/qC0yGH/z9zbLfQ6RNw6X0YSimSg2uM8FLSfBeNB3kiDietbPPNCDaxN
+        7a91c5D65zjPULQNV4ru2CnW82eZEdXd1VaQ3aUtylOm/QWHAW2deHWvYxvbVh/O
+        JFq9rTZrjAlNmY+u6Xh+NYDEW8CsqndKggjymgr5Hyg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=Rcs3Ch
+        4ZR57Nqwcqf6oEyE4+YDqHFvkhQcrGpgYfg64=; b=r1kA+dExo30rjPtHSgyWKG
+        gG3CrRrP5tOk7+MPdabE4XgAiAIv0HRWJ8bwIIfl5gH0o6vUKJ6oIcLQJPPxeLsP
+        zy05PIEsh2L0cS7svtJ5m/rGdpFUCoCp1CKAkqcIvTBLT8qG3vVtTamQOH7/f62m
+        fcIQAjQha+8G7Ml4+LeIAoGnE5KF4DESbDmrt35OxxXx9+hi1gUiIN/W4Vom0kv6
+        lmsa60CSszgbCZBNjBw+ofgoe9RL5c+JDKpcfT19C9Ee9qHdf+z9v9lCzzbLT7iD
+        kCyFHPant0bYm9Ofgyd61ZpUrPORiM7IbLTWlhXi63MWXO3+p7tPdYFhpQD6FLNA
+        ==
+X-ME-Sender: <xms:8D3sYBIJ1MXbi9Pl6V7gha_0ft0Gb8ES0s-goNYAmOzFj4LHjWnThA>
+    <xme:8D3sYNIk_PvsG6OpzB-ol9A42ie8n65WuZ1BERQcAAvz-fv9qJlQW-XfNWwWhM1Pp
+    OhjorV_e4zqgNArwLg>
+X-ME-Received: <xmr:8D3sYJuxaNgMxFoe_-kz5KwG3Kz_gb8Ex2hJmISgrw5TQ4HSYxBFwx9l8zVt_pU-rYG7OMmo5oNiayB6--B9YVcjZrql1GvPOlEi>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddruddvgdehkecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
+    udenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
+    igihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:8D3sYCZN7J0yLlEJ_k_NR4Izs25R-EoHaZr2phOyuIDHgLNK7eAfOA>
+    <xmx:8D3sYIbBONqWIhK35u0YIK-Nu4rBLwhxo19MoJJSCj77Glr5oLnxRg>
+    <xmx:8D3sYGBmdwRN-ivW_fzCTrCzJ2cMdE6JTgybnZhS2GqjzFJuaYAyug>
+    <xmx:8T3sYNPWfWoUOgnFFFXoxZ2WTJ_Fplyr-tUBxIkCY1kpCvxvaKocCg>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 12 Jul 2021 09:04:47 -0400 (EDT)
+Date:   Mon, 12 Jul 2021 15:04:44 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH] iio: st-sensors: Update ST Sensor bindings
+Message-ID: <20210712130444.bois24oukqmxpg27@gilmour>
+References: <20210412122331.1631643-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
-References: <20210709201603.2625664-1-drew@beagleboard.org>
-In-Reply-To: <20210709201603.2625664-1-drew@beagleboard.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 12 Jul 2021 13:24:19 +0200
-Message-ID: <CAMuHMdVBVAzy3cZtR1pOTNq3wTgGx+0_dvUXU118XfT+rCOSrw@mail.gmail.com>
-Subject: Re: [PATCH v3] dt-bindings: riscv: add starfive jh7100 bindings
-To:     Drew Fustini <drew@beagleboard.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Michael Zhu <michael.zhu@starfivetech.com>,
-        Wei Fu <tekkamanninja@gmail.com>,
-        Jack Zhu <jack.zhu@starfivetech.com>,
-        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="s4is6jmvmxy6re4k"
+Content-Disposition: inline
+In-Reply-To: <20210412122331.1631643-1-linus.walleij@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Drew,
 
-On Fri, Jul 9, 2021 at 10:17 PM Drew Fustini <drew@beagleboard.org> wrote:
-> Add DT binding documentation for the StarFive JH7100 Soc [1] and the
-> BeagleV Starlight JH7100 board [2].
->
-> [1] https://github.com/starfive-tech/beaglev_doc
-> [2] https://github.com/beagleboard/beaglev-starlight
->
-> Signed-off-by: Drew Fustini <drew@beagleboard.org>
-> ---
-> v3 changes:
-> - added revision number for the board and soc after question from Palmer
+--s4is6jmvmxy6re4k
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks for the update!
+Hi,
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/riscv/starfive.yaml
-> @@ -0,0 +1,27 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/riscv/starfive.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: StarFive SoC-based boards
-> +
-> +maintainers:
-> +  - Michael Zhu <michael.zhu@starfivetech.com>
-> +  - Drew Fustini <drew@beagleboard.org>
-> +
-> +description:
-> +  StarFive SoC-based boards
-> +
-> +properties:
-> +  $nodename:
-> +    const: '/'
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - const: beagle,beaglev-starlight-jh7100-r0
-> +          - const: starfive,jh7100-r0
+On Mon, Apr 12, 2021 at 02:23:31PM +0200, Linus Walleij wrote:
+> This adjusts the ST Sensor bindings with the more fine-grained
+> syntax checks that were proposed late in the last kernel cycle
+> and colliding with parallel work.
+>=20
+> Cc: devicetree@vger.kernel.org
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 
-While I can be convinced about the board revision number (probably you
-know better if there will be different board revisions that matter),
-I'm wondering if the revision number makes sense for the SoC part.
-Will there be a new revision of jh7100, or will the next revision
-be jh7110, which will use a different compatible value anyway?
-Is there an on-chip register that allows the kernel to find out the
-revision info? Might be better to use that with soc_device_register()
-and soc_device_match().
+I'm not really sure of how I supposed to fix this, but this creates an
+issue on the Pinephone
+(arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.2.dts) that has a
+LIS3MDL with only the DRDY pin routed and thus only has a single
+interrupt in the DT.
 
-> +
-> +additionalProperties: true
-> +
-> +...
+One of the if condition in that patch enforces that there's two
+interrupts for the LIS3MDL, but it's not really clear to me why after
+looking at the datasheet?
 
-Gr{oetje,eeting}s,
+Maxime
 
-                        Geert
+--s4is6jmvmxy6re4k
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+-----BEGIN PGP SIGNATURE-----
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYOw96AAKCRDj7w1vZxhR
+xbT+AQC+p4e2mIE5uGFDLwspa2G6MWgr/Q3L79r6b4l66TT6UQD8DEsk0jRSA1yX
+XdYri3VMN8H0bx1/H6HtCkltEaUCPwA=
+=FQ4o
+-----END PGP SIGNATURE-----
+
+--s4is6jmvmxy6re4k--
