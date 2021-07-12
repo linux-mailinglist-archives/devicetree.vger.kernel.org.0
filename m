@@ -2,117 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C45B3C5CF1
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 15:06:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 461213C5CCD
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 15:02:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232700AbhGLNHj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jul 2021 09:07:39 -0400
-Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:59563 "EHLO
-        wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232911AbhGLNHi (ORCPT
+        id S234426AbhGLNBN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jul 2021 09:01:13 -0400
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:58296 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233737AbhGLNBK (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Jul 2021 09:07:38 -0400
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.west.internal (Postfix) with ESMTP id 97F4A320097D;
-        Mon, 12 Jul 2021 09:04:49 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Mon, 12 Jul 2021 09:04:50 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=Rcs3Ch4ZR57Nqwcqf6oEyE4+YDq
-        HFvkhQcrGpgYfg64=; b=A+gBGpjmjVGfZYJDYRTJekz/FYnEG6l1bz+xGG1rCF1
-        7PSaU0HYjKKXJiRth60YbjK9FiCpvIDt0v2X+xPzcNtkRiUrwcFfxSTV1mb1kq91
-        nxVvXXeYN2D/KY6/qdl6Zgx8oFZRc8zyuqYc0m4YIVBIi2qYKdnjRX370lm97nlu
-        Z1jJp3ZJ/qC0yGH/z9zbLfQ6RNw6X0YSimSg2uM8FLSfBeNB3kiDietbPPNCDaxN
-        7a91c5D65zjPULQNV4ru2CnW82eZEdXd1VaQ3aUtylOm/QWHAW2deHWvYxvbVh/O
-        JFq9rTZrjAlNmY+u6Xh+NYDEW8CsqndKggjymgr5Hyg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=Rcs3Ch
-        4ZR57Nqwcqf6oEyE4+YDqHFvkhQcrGpgYfg64=; b=r1kA+dExo30rjPtHSgyWKG
-        gG3CrRrP5tOk7+MPdabE4XgAiAIv0HRWJ8bwIIfl5gH0o6vUKJ6oIcLQJPPxeLsP
-        zy05PIEsh2L0cS7svtJ5m/rGdpFUCoCp1CKAkqcIvTBLT8qG3vVtTamQOH7/f62m
-        fcIQAjQha+8G7Ml4+LeIAoGnE5KF4DESbDmrt35OxxXx9+hi1gUiIN/W4Vom0kv6
-        lmsa60CSszgbCZBNjBw+ofgoe9RL5c+JDKpcfT19C9Ee9qHdf+z9v9lCzzbLT7iD
-        kCyFHPant0bYm9Ofgyd61ZpUrPORiM7IbLTWlhXi63MWXO3+p7tPdYFhpQD6FLNA
-        ==
-X-ME-Sender: <xms:8D3sYBIJ1MXbi9Pl6V7gha_0ft0Gb8ES0s-goNYAmOzFj4LHjWnThA>
-    <xme:8D3sYNIk_PvsG6OpzB-ol9A42ie8n65WuZ1BERQcAAvz-fv9qJlQW-XfNWwWhM1Pp
-    OhjorV_e4zqgNArwLg>
-X-ME-Received: <xmr:8D3sYJuxaNgMxFoe_-kz5KwG3Kz_gb8Ex2hJmISgrw5TQ4HSYxBFwx9l8zVt_pU-rYG7OMmo5oNiayB6--B9YVcjZrql1GvPOlEi>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddruddvgdehkecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
-    udenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
-    igihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:8D3sYCZN7J0yLlEJ_k_NR4Izs25R-EoHaZr2phOyuIDHgLNK7eAfOA>
-    <xmx:8D3sYIbBONqWIhK35u0YIK-Nu4rBLwhxo19MoJJSCj77Glr5oLnxRg>
-    <xmx:8D3sYGBmdwRN-ivW_fzCTrCzJ2cMdE6JTgybnZhS2GqjzFJuaYAyug>
-    <xmx:8T3sYNPWfWoUOgnFFFXoxZ2WTJ_Fplyr-tUBxIkCY1kpCvxvaKocCg>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 12 Jul 2021 09:04:47 -0400 (EDT)
-Date:   Mon, 12 Jul 2021 15:04:44 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH] iio: st-sensors: Update ST Sensor bindings
-Message-ID: <20210712130444.bois24oukqmxpg27@gilmour>
-References: <20210412122331.1631643-1-linus.walleij@linaro.org>
+        Mon, 12 Jul 2021 09:01:10 -0400
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 16CCpXMN014668;
+        Mon, 12 Jul 2021 08:58:06 -0400
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+        by mx0a-00128a01.pphosted.com with ESMTP id 39r4982tua-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 12 Jul 2021 08:58:06 -0400
+Received: from SCSQMBX11.ad.analog.com (SCSQMBX11.ad.analog.com [10.77.17.10])
+        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 16CCw4jQ040615
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 12 Jul 2021 08:58:05 -0400
+Received: from SCSQMBX11.ad.analog.com (10.77.17.10) by
+ SCSQMBX11.ad.analog.com (10.77.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.5;
+ Mon, 12 Jul 2021 05:58:03 -0700
+Received: from zeus.spd.analog.com (10.66.68.11) by scsqmbx11.ad.analog.com
+ (10.77.17.10) with Microsoft SMTP Server id 15.2.858.5 via Frontend
+ Transport; Mon, 12 Jul 2021 05:58:03 -0700
+Received: from localhost.localdomain ([10.48.65.12])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 16CCvx09018858;
+        Mon, 12 Jul 2021 08:57:59 -0400
+From:   <alexandru.tachici@analog.com>
+To:     <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <robh+dt@kernel.org>, <andrew@lunn.ch>, <hkallweit1@gmail.com>,
+        <linux@armlinux.org.uk>, <davem@davemloft.net>, <kuba@kernel.org>,
+        Alexandru Tachici <alexandru.tachici@analog.com>
+Subject: [PATCH v2 0/7] net: phy: adin1100: Add initial support for ADIN1100 industrial PHY
+Date:   Mon, 12 Jul 2021 16:06:24 +0300
+Message-ID: <20210712130631.38153-1-alexandru.tachici@analog.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="s4is6jmvmxy6re4k"
-Content-Disposition: inline
-In-Reply-To: <20210412122331.1631643-1-linus.walleij@linaro.org>
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: QCqkTfX_Nu-Y2LYv_YguK4XFUADAkWRk
+X-Proofpoint-ORIG-GUID: QCqkTfX_Nu-Y2LYv_YguK4XFUADAkWRk
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
+ definitions=2021-07-12_07:2021-07-12,2021-07-12 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 impostorscore=0
+ mlxlogscore=999 adultscore=0 lowpriorityscore=0 malwarescore=0 mlxscore=0
+ priorityscore=1501 bulkscore=0 clxscore=1011 suspectscore=0 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2104190000
+ definitions=main-2107120101
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Alexandru Tachici <alexandru.tachici@analog.com>
 
---s4is6jmvmxy6re4k
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The ADIN1100 is a low power single port 10BASE-T1L transceiver designed for
+industrial Ethernet applications and is compliant with the IEEE 802.3cg
+Ethernet standard for long reach 10 Mb/s Single Pair Ethernet.
 
-Hi,
+Ethtool output:
+        Settings for eth1:
+        Supported ports: [ TP	 MII ]
+        Supported link modes:   10baseT1L/Full
+                                2400mv
+                                1000mv
+        Supported pause frame use: Transmit-only
+        Supports auto-negotiation: Yes
+        Supported FEC modes: Not reported
+        Advertised link modes:  10baseT1L/Full
+                                2400mv
+                                1000mv
+        Advertised pause frame use: Transmit-only
+        Advertised auto-negotiation: Yes
+        Advertised FEC modes: Not reported
+        Link partner advertised link modes:  10baseT1L/Full
+                                             2400mv
+        Link partner advertised pause frame use: No
+        Link partner advertised auto-negotiation: Yes
+        Link partner advertised FEC modes: Not reported
+        Speed: 10Mb/s
+        Duplex: Full
+        Auto-negotiation: on
+        master-slave cfg: preferred master
+        master-slave status: master
+        Port: MII
+        PHYAD: 0
+        Transceiver: external
+        Link detected: yes
+SQI: 7/7
 
-On Mon, Apr 12, 2021 at 02:23:31PM +0200, Linus Walleij wrote:
-> This adjusts the ST Sensor bindings with the more fine-grained
-> syntax checks that were proposed late in the last kernel cycle
-> and colliding with parallel work.
->=20
-> Cc: devicetree@vger.kernel.org
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+1. Add basic support for ADIN1100.
 
-I'm not really sure of how I supposed to fix this, but this creates an
-issue on the Pinephone
-(arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.2.dts) that has a
-LIS3MDL with only the DRDY pin routed and thus only has a single
-interrupt in the DT.
+Alexandru Ardelean (1):
+  net: phy: adin1100: Add initial support for ADIN1100 industrial PHY
 
-One of the if condition in that patch enforces that there's two
-interrupts for the LIS3MDL, but it's not really clear to me why after
-looking at the datasheet?
+1. Added 10baset-T1L link modes.
 
-Maxime
+2. Added 10base-T1L voltage levels link modes. 1v is the default TX level.
+2.4 V support depends on pin configuration and power supply.
 
---s4is6jmvmxy6re4k
-Content-Type: application/pgp-signature; name="signature.asc"
+3. Allow user to access error and frame counters through ethtool.
 
------BEGIN PGP SIGNATURE-----
+4. Allow user to set the master-slave configuration of ADIN1100.
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYOw96AAKCRDj7w1vZxhR
-xbT+AQC+p4e2mIE5uGFDLwspa2G6MWgr/Q3L79r6b4l66TT6UQD8DEsk0jRSA1yX
-XdYri3VMN8H0bx1/H6HtCkltEaUCPwA=
-=FQ4o
------END PGP SIGNATURE-----
+5. Convert MSE to SQI using a predefined table and allow user access
+through ethtool.
 
---s4is6jmvmxy6re4k--
+6. DT bindings for ADIN1100.
+
+Alexandru Tachici (6):
+  ethtool: Add 10base-T1L link mode entries
+  ethtool: Add 10base-T1L voltage levels link mode entries
+  net: phy: adin1100: Add ethtool get_stats support
+  net: phy: adin1100: Add ethtool master-slave support
+  net: phy: adin1100: Add SQI support
+  dt-bindings: adin1100: Add binding for ADIN1100 Ethernet PHY
+
+Changelog v1 -> v2:
+  - Added ETHTOOL_LINK_MODE_10baseT1L_Full_BIT and ETHTOOL_LINK_MODE_10baseT1L_Half_BIT.
+  Using only full duplex here as chip supports full duplex only
+  - removed .match_phy_device
+  - removed link partner advertising of modes not present in the kernel
+  - enable/disable only the PCS loopback
+  - replaced custom timeout implementations with phy_read_mmd_poll_timeout
+  - added link modes for 1.0 V and 2.4 V TX levels
+  - removed link change notify
+  - check if 2.4v TX level is supported in adin_get_features call and set
+  corresponding link mode
+
+ .../devicetree/bindings/net/adi,adin1100.yaml |  45 ++
+ drivers/net/phy/Kconfig                       |   7 +
+ drivers/net/phy/Makefile                      |   1 +
+ drivers/net/phy/adin1100.c                    | 533 ++++++++++++++++++
+ drivers/net/phy/phy-core.c                    |   4 +-
+ include/uapi/linux/ethtool.h                  |   4 +
+ net/ethtool/common.c                          |   6 +
+ 7 files changed, 599 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/net/adi,adin1100.yaml
+ create mode 100644 drivers/net/phy/adin1100.c
+
+--
+2.25.1
