@@ -2,225 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EBA43C63BE
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 21:29:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F66E3C63DB
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 21:44:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236360AbhGLTcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jul 2021 15:32:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33336 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235784AbhGLTcK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Jul 2021 15:32:10 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6E44861042;
-        Mon, 12 Jul 2021 19:29:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626118161;
-        bh=j1Mvi65cl2/cIwVJYp7ZDx+Gdipahh4iTI4pBBKB4uA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=j5MqUeLwJw5EnEwWB9WXSch7p2OJmp/BZBRck9S50kT3NHdzBhk3Dz23SVjozwLBb
-         DjqnBzSEOjJ5qK3mUXpkUHRhUWc9X0L+DyC3RDB/8zG/BUm7w+5yN0ymC5TutyADH8
-         4aAnnf6G9yWoueucZB13Ll754IgHpgcLM6Act3aw296HLmPS4FsjyfnyJE2BWghbd+
-         nN/r9CK7H8ovQtYbUdbBFtxxvcLClKdvrLYkyTLAbpY5B96ZuvM08Wgswj8hpo257G
-         /hnPNrzXa9lzmvgW3PnjLY7FBuKKjKZIWSMVh9n0nZxo5+lw349RK5pwEeWIcd5AXP
-         TQN9aUXjHlP4g==
-Received: by mail-ed1-f48.google.com with SMTP id s15so29622794edt.13;
-        Mon, 12 Jul 2021 12:29:21 -0700 (PDT)
-X-Gm-Message-State: AOAM5305HrKd4rDlNfcJIjWgtUtJNakFoTGBpaGfTqa6C4Wcinacppoj
-        27rpZGY53vPVtcBev6sMT8y9zGtlqcVuoumNbA==
-X-Google-Smtp-Source: ABdhPJzgIAQeV36cxRH5njXhL2qszra4IdOEFO60zdvNQCMqb908NgXTj4OjjfYUnYSuBVnzV9zoETCiKTZ/WAEvXzs=
-X-Received: by 2002:a05:6402:5193:: with SMTP id q19mr551574edd.258.1626118160045;
- Mon, 12 Jul 2021 12:29:20 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210625234018.1324681-1-bjorn.andersson@linaro.org>
- <20210625234018.1324681-3-bjorn.andersson@linaro.org> <20210701190313.GA2736150@robh.at.kernel.org>
- <YOiHBPH1+7dJN6rn@ripper>
-In-Reply-To: <YOiHBPH1+7dJN6rn@ripper>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 12 Jul 2021 13:29:07 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKtn_5b7oyd-bOFv6R-5b-mpKs=jbnt87zPQqDAFLsumg@mail.gmail.com>
-Message-ID: <CAL_JsqKtn_5b7oyd-bOFv6R-5b-mpKs=jbnt87zPQqDAFLsumg@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: soc: qcom: aoss: Convert to YAML
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Sibi S <sibis@codeaurora.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S234868AbhGLTrY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jul 2021 15:47:24 -0400
+Received: from relmlor2.renesas.com ([210.160.252.172]:61964 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S230199AbhGLTrX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Jul 2021 15:47:23 -0400
+X-IronPort-AV: E=Sophos;i="5.84,234,1620658800"; 
+   d="scan'208";a="87354838"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 13 Jul 2021 04:44:33 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 5FE5840E011B;
+        Tue, 13 Jul 2021 04:44:30 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v2 0/5] pin and gpio controller driver for Renesas RZ/G2L
+Date:   Mon, 12 Jul 2021 20:44:17 +0100
+Message-Id: <20210712194422.12405-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 9, 2021 at 11:29 AM Bjorn Andersson
-<bjorn.andersson@linaro.org> wrote:
->
-> On Thu 01 Jul 12:03 PDT 2021, Rob Herring wrote:
->
-> > On Fri, Jun 25, 2021 at 04:40:17PM -0700, Bjorn Andersson wrote:
-> > > Convert to YAML in order to allow validation.
-> > >
-> > > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > > ---
-> > >
-> > > I'm aware that this conflicts with Sibi's removal of '#power-domain-cells', but
-> > > that's a trivial change regardless of which of the two patches gets in first.
-> > >
-> > >  .../bindings/soc/qcom/qcom,aoss-qmp.txt       |  90 --------------
-> > >  .../bindings/soc/qcom/qcom,aoss-qmp.yaml      | 115 ++++++++++++++++++
-> > >  2 files changed, 115 insertions(+), 90 deletions(-)
-> > >  delete mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.txt
-> > >  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.txt b/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.txt
-> > > deleted file mode 100644
-> > > index 3747032311a4..000000000000
-> > > --- a/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.txt
-> > > +++ /dev/null
-> > > @@ -1,90 +0,0 @@
-> > > -Qualcomm Always-On Subsystem side channel binding
-> > > -
-> > > -This binding describes the hardware component responsible for side channel
-> > > -requests to the always-on subsystem (AOSS), used for certain power management
-> > > -requests that is not handled by the standard RPMh interface. Each client in the
-> > > -SoC has it's own block of message RAM and IRQ for communication with the AOSS.
-> > > -The protocol used to communicate in the message RAM is known as Qualcomm
-> > > -Messaging Protocol (QMP)
-> > > -
-> > > -The AOSS side channel exposes control over a set of resources, used to control
-> > > -a set of debug related clocks and to affect the low power state of resources
-> > > -related to the secondary subsystems. These resources are exposed as a set of
-> > > -power-domains.
-> > > -
-> > > -- compatible:
-> > > -   Usage: required
-> > > -   Value type: <string>
-> > > -   Definition: must be one of:
-> > > -               "qcom,sc7180-aoss-qmp"
-> > > -               "qcom,sc7280-aoss-qmp"
-> > > -               "qcom,sc8180x-aoss-qmp"
-> > > -               "qcom,sdm845-aoss-qmp"
-> > > -               "qcom,sm8150-aoss-qmp"
-> > > -               "qcom,sm8250-aoss-qmp"
-> > > -               "qcom,sm8350-aoss-qmp"
-> > > -               and:
-> > > -               "qcom,aoss-qmp"
-> > > -
-> > > -- reg:
-> > > -   Usage: required
-> > > -   Value type: <prop-encoded-array>
-> > > -   Definition: the base address and size of the message RAM for this
-> > > -               client's communication with the AOSS
-> > > -
-> > > -- interrupts:
-> > > -   Usage: required
-> > > -   Value type: <prop-encoded-array>
-> > > -   Definition: should specify the AOSS message IRQ for this client
-> > > -
-> > > -- mboxes:
-> > > -   Usage: required
-> > > -   Value type: <prop-encoded-array>
-> > > -   Definition: reference to the mailbox representing the outgoing doorbell
-> > > -               in APCS for this client, as described in mailbox/mailbox.txt
-> > > -
-> > > -- #clock-cells:
-> > > -   Usage: optional
-> > > -   Value type: <u32>
-> > > -   Definition: must be 0
-> > > -               The single clock represents the QDSS clock.
-> > > -
-> > > -- #power-domain-cells:
-> > > -   Usage: optional
-> > > -   Value type: <u32>
-> > > -   Definition: must be 1
-> > > -               The provided power-domains are:
-> > > -               CDSP state (0), LPASS state (1), modem state (2), SLPI
-> > > -               state (3), SPSS state (4) and Venus state (5).
-> > > -
-> > > -= SUBNODES
-> > > -The AOSS side channel also provides the controls for three cooling devices,
-> > > -these are expressed as subnodes of the QMP node. The name of the node is used
-> > > -to identify the resource and must therefor be "cx", "mx" or "ebi".
-> > > -
-> > > -- #cooling-cells:
-> > > -   Usage: optional
-> > > -   Value type: <u32>
-> > > -   Definition: must be 2
-> > > -
-> > > -= EXAMPLE
-> > > -
-> > > -The following example represents the AOSS side-channel message RAM and the
-> > > -mechanism exposing the power-domains, as found in SDM845.
-> > > -
-> > > -  aoss_qmp: qmp@c300000 {
-> > > -     compatible = "qcom,sdm845-aoss-qmp", "qcom,aoss-qmp";
-> > > -     reg = <0x0c300000 0x100000>;
-> > > -     interrupts = <GIC_SPI 389 IRQ_TYPE_EDGE_RISING>;
-> > > -     mboxes = <&apss_shared 0>;
-> > > -
-> > > -     #power-domain-cells = <1>;
-> > > -
-> > > -     cx_cdev: cx {
-> > > -           #cooling-cells = <2>;
-> > > -     };
-> > > -
-> > > -     mx_cdev: mx {
-> > > -           #cooling-cells = <2>;
-> > > -     };
-> > > -  };
-> > > diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
-> > > new file mode 100644
-> > > index 000000000000..1b9de8e49356
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
-> > > @@ -0,0 +1,115 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/soc/qcom/qcom,aoss-qmp.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Qualcomm Always-On Subsystem side channel binding
-> > > +
-> > > +maintainers:
-> > > +  - Bjorn Andersson <bjorn.andersson@linaro.org>
-> > > +
-> > > +description:
-> > > +  This binding describes the hardware component responsible for side channel
-> > > +  requests to the always-on subsystem (AOSS), used for certain power management
-> > > +  requests that is not handled by the standard RPMh interface. Each client in the
-> > > +  SoC has it's own block of message RAM and IRQ for communication with the AOSS.
-> > > +  The protocol used to communicate in the message RAM is known as Qualcomm
-> > > +  Messaging Protocol (QMP)
-> > > +
-> > > +  The AOSS side channel exposes control over a set of resources, used to control
-> > > +  a set of debug related clocks and to affect the low power state of resources
-> > > +  related to the secondary subsystems. These resources are exposed as a set of
-> > > +  power-domains.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    items:
-> > > +      - enum:
-> > > +        - "qcom,sc7180-aoss-qmp"
-> > > +        - "qcom,sc7280-aoss-qmp"
-> > > +        - "qcom,sc8180x-aoss-qmp"
-> > > +        - "qcom,sdm845-aoss-qmp"
-> > > +        - "qcom,sm8150-aoss-qmp"
-> > > +        - "qcom,sm8250-aoss-qmp"
-> > > +        - "qcom,sm8350-aoss-qmp"
-> > > +      - const: "qcom,aoss-qmp"
-> >
-> > Don't need quotes. With that and the indentation fixed:
-> >
->
-> I've installed yamllint and fixed this for v2.
->
-> But can you please help me understand why the members of the enum should
-> have double indentation here? Is it just that the indentation counts
-> from the 'e' and not the '-'?
+Hi All,
 
-There's 2 established styles for this. You used one and I picked the
-other. I feel that having the extra indent helps distinguish from
-missing a '-' which is quite easy to do and miss when staring at the
-YAML.
+This patch series adds pin and gpio controller driver for Renesas RZ/G2L
+SoC. RZ/G2L has a simple pin and GPIO controller combined similar to RZ/A2.
 
-Rob
+This patch series applies on top of https://git.kernel.org/pub/scm/linux/
+kernel/git/geert/renesas-drivers.git/log/?h=topic/rzg2l-update-clock-defs-v4
+
+Cheers,
+Prabhakar
+
+Changes for v2:
+* Added support for per pin pinmux support
+* Added support for pins to set configs
+* Dropped pfc-r9a07g044.c/h
+* Fixed review comments pointed by Geert
+* Included clock/reset changes
+* Included DTS/I changes
+
+Lad Prabhakar (5):
+  dt-bindings: pinctrl: renesas,rzg2l-pinctrl: Add DT bindings for
+    RZ/G2L pinctrl
+  pinctrl: renesas: Add RZ/G2L pin and gpio controller driver
+  drivers: clk: renesas: r9a07g044-cpg: Add GPIO clock and reset entries
+  arm64: dts: renesas: r9a07g044: Add pinctrl node
+  arm64: dts: renesas: rzg2l-smarc: Add scif0 pins
+
+ .../pinctrl/renesas,rzg2l-pinctrl.yaml        |  155 +++
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi    |   13 +
+ arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi  |   10 +
+ drivers/clk/renesas/r9a07g044-cpg.c           |    5 +
+ drivers/pinctrl/renesas/Kconfig               |   11 +
+ drivers/pinctrl/renesas/Makefile              |    1 +
+ drivers/pinctrl/renesas/pinctrl-rzg2l.c       | 1196 +++++++++++++++++
+ include/dt-bindings/pinctrl/rzg2l-pinctrl.h   |   23 +
+ 8 files changed, 1414 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/renesas/pinctrl-rzg2l.c
+ create mode 100644 include/dt-bindings/pinctrl/rzg2l-pinctrl.h
+
+
+base-commit: 06c1e6911a7a76b446e4b00fc8bad5d8465932f8
+-- 
+2.17.1
+
