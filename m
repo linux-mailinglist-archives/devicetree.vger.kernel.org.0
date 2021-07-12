@@ -2,169 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D0653C55BA
+	by mail.lfdr.de (Postfix) with ESMTP id E20F33C55BC
 	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 12:56:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245344AbhGLILt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jul 2021 04:11:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48232 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353276AbhGLIBs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 04:01:48 -0400
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0214C0610EF
-        for <devicetree@vger.kernel.org>; Mon, 12 Jul 2021 00:53:07 -0700 (PDT)
-Received: by mail-pf1-x42f.google.com with SMTP id q10so15596566pfj.12
-        for <devicetree@vger.kernel.org>; Mon, 12 Jul 2021 00:53:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=8H0yUJOEvi3zZTuxDoA57QDVjTfFiJnGcoqqzbwxmVs=;
-        b=ZG5p7Tqp7gaCXtfqcGueAgC03BaZ6tkCjgmLL+HntOiwhJVqLV6P6FH1PU6ijigIwa
-         2D4aHrU2WxmK0t/cVP5bhnfA6Hkfog08BhnyIsOcgCOM9FnYRcvnd7v6hZUq3SbkC8p8
-         drICwrUijHqS3WKlo2GtM6VUvreUSiSm45XYaSrDodqEoAdcJwkF91hPc2NmPEe2cBy8
-         Ln6qOoZO1+4J3z+jn4vMSOYSxCAI7XrZrZj0PRJtLPs4Ww9EUDq+huGj459Y7BO1sr9d
-         e2PNoPqExJBslLp/TZZ8xwXSDQ/72n1gP1FAu2OXrZICejo4aQ5No5TQFgZsULmFensl
-         vafw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=8H0yUJOEvi3zZTuxDoA57QDVjTfFiJnGcoqqzbwxmVs=;
-        b=Qz82Jj9cFjxDslyFgyJnvRvfwyqezJiukk48d3PavCLrOqD2f7b9xW7HYJmbH/6edU
-         qCqaP43wuno0Yr/xSzkbZ3nGj5Ft2ZXih8Tg1mDuveqyejKd2r3bFWuniGZ2W1GBYPTV
-         UTr9NfZuza9UIGxhaQql//q/3YViP8RLjgxPp6qXu8q2AfI0D6u72kQJC3eQKqUjwuYB
-         l+/BBZXjQRHMBqCFk8KVfogyWJ/0fOBvpuTOm64leQr+usDsTFlHlH25neO7HbNohYWg
-         Lne4vJQMX2V424n0eHatPmxl8//nOaYb6RMY3qNqP1z2e/x1oUZf02uEK0TyBsbpLMXd
-         NtxA==
-X-Gm-Message-State: AOAM531t4cxMUgTSoxeOhBGNmH2E+JjTfptqYB/7LpFJKpfR1a/04e8x
-        CUqnzzzLqk74ZT6ZofeQwg0t
-X-Google-Smtp-Source: ABdhPJwSTnl9VFCmFcSRDus9OJnYbw708x25bRrEGojoECLrgUODo4vjpCMqB2mk+hCd78dAXbA+kw==
-X-Received: by 2002:a62:1d86:0:b029:32a:311a:9595 with SMTP id d128-20020a621d860000b029032a311a9595mr10855485pfd.74.1626076387347;
-        Mon, 12 Jul 2021 00:53:07 -0700 (PDT)
-Received: from workstation ([120.138.12.18])
-        by smtp.gmail.com with ESMTPSA id z3sm16409753pgl.77.2021.07.12.00.53.03
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 12 Jul 2021 00:53:07 -0700 (PDT)
-Date:   Mon, 12 Jul 2021 13:23:02 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        devicetree@vger.kernel.org, PCI <linux-pci@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        hemantk@codeaurora.org,
-        Siddartha Mohanadoss <smohanad@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sriharsha Allenki <sallenki@codeaurora.org>,
-        skananth@codeaurora.org, vpernami@codeaurora.org,
-        Veerabhadrarao Badiganti <vbadigan@codeaurora.org>
-Subject: Re: [PATCH v5 0/3] Add Qualcomm PCIe Endpoint driver support
-Message-ID: <20210712075302.GA8113@workstation>
-References: <20210630034653.10260-1-manivannan.sadhasivam@linaro.org>
- <CAL_JsqLHp3kBc1VtGVRxVr_k69GqSC_JX88jo3stdM4W9Qq6AQ@mail.gmail.com>
+        id S1344383AbhGLILu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jul 2021 04:11:50 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:60826 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1355638AbhGLIKK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 04:10:10 -0400
+X-UUID: 8eab63c0825a494fb72f3489822534c5-20210712
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=pYihUe16LMSA8Z5B8sReIfUro/yCMswXaige3lLlv3k=;
+        b=WH3RlvhMtzj5bi2g9GfaCo+Qjkau9BbZftNtDEhMvaunJb4wP5HVjQ9MGlDoAKJV5/RUX6mA/F0BfkDUssc72SEuowPyFrG8JNGOgS5HzMKvQvkRBzY7hW5xO4h0MQQuMQ6erTW+g4QTQvKOyYE6hf+BdfG/bMOsO/luqbrahTs=;
+X-UUID: 8eab63c0825a494fb72f3489822534c5-20210712
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 405197711; Mon, 12 Jul 2021 16:07:16 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 12 Jul 2021 16:07:08 +0800
+Received: from [10.17.3.153] (10.17.3.153) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 12 Jul 2021 16:07:07 +0800
+Message-ID: <1626077227.7221.20.camel@mhfsdcap03>
+Subject: Re: [PATCH v1, 06/14] media: mtk-vcodec: Add irq interface for core
+ hardware
+From:   mtk12024 <yunfei.dong@mediatek.com>
+To:     Tzung-Bi Shih <tzungbi@google.com>
+CC:     Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        "Tiffany Lin" <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        "Fritz Koenig" <frkoenig@chromium.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Mon, 12 Jul 2021 16:07:07 +0800
+In-Reply-To: <CA+Px+wWRE0DR15GgorZnoN1xdAqoau94gkoF7-x7h2hd21ZGXg@mail.gmail.com>
+References: <20210707062157.21176-1-yunfei.dong@mediatek.com>
+         <20210707062157.21176-7-yunfei.dong@mediatek.com>
+         <CA+Px+wWRE0DR15GgorZnoN1xdAqoau94gkoF7-x7h2hd21ZGXg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqLHp3kBc1VtGVRxVr_k69GqSC_JX88jo3stdM4W9Qq6AQ@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 01, 2021 at 09:25:01AM -0600, Rob Herring wrote:
-> On Tue, Jun 29, 2021 at 9:47 PM Manivannan Sadhasivam
-> <manivannan.sadhasivam@linaro.org> wrote:
-> >
-> > Hello,
-> >
-> > This series adds support for Qualcomm PCIe Endpoint controller found
-> > in platforms like SDX55. The Endpoint controller is based on the designware
-> > core with additional Qualcomm wrappers around the core.
-> >
-> > The driver is added separately unlike other Designware based drivers that
-> > combine RC and EP in a single driver. This is done to avoid complexity and
-> > to maintain this driver autonomously.
-> >
-> > The driver has been validated with an out of tree MHI function driver on
-> > SDX55 based Telit FN980 EVB connected to x86 host machine over PCIe.
-> >
-> > Thanks,
-> > Mani
-> >
-> > Changes in v5:
-> >
-> > * Removed the DBI register settings that are not needed
-> > * Used the standard definitions available in pci_regs.h
-> > * Added defines for all the register fields
-> > * Removed the left over code from previous iteration
-> >
-> > Changes in v4:
-> >
-> > * Removed the active_config settings needed for IPA integration
-> > * Switched to writel for couple of relaxed versions that sneaked in
-> 
-> I thought we resolved this discussion. Use _relaxed variants unless
-> you need the stronger ones.
-> 
+SGkgVHp1bmctQmksDQoNClRoYW5rcyBmb3IgeW91ciBkZXRhaWwgZmVlZGJhY2suDQpJIGFkZCB0
+aGUgZGVzY3JpcHRpb24gYWNjb3JkaW5nIHRvIHlvdXIgZWFjaCBjb21tZW50cy4NCg0KT24gRnJp
+LCAyMDIxLTA3LTA5IGF0IDE1OjU5ICswODAwLCBUenVuZy1CaSBTaGloIHdyb3RlOg0KPiBPbiBX
+ZWQsIEp1bCA3LCAyMDIxIGF0IDI6MjIgUE0gWXVuZmVpIERvbmcgPHl1bmZlaS5kb25nQG1lZGlh
+dGVrLmNvbT4gd3JvdGU6DQo+ID4gK3N0YXRpYyBpbnQgbXRrX3Zjb2RlY19nZXRfaHdfY291bnQo
+c3RydWN0IG10a192Y29kZWNfZGV2ICpkZXYpDQo+ID4gK3sNCj4gPiArICAgICAgIGlmIChkZXYt
+PnZkZWNfcGRhdGEtPmh3X2FyY2ggPT0gTVRLX1ZERUNfUFVSRV9TSU5HTEVfQ09SRSkNCj4gPiAr
+ICAgICAgICAgICAgICAgcmV0dXJuIDE7DQo+ID4gKyAgICAgICBlbHNlIGlmIChkZXYtPnZkZWNf
+cGRhdGEtPmh3X2FyY2ggPT0gTVRLX1ZERUNfTEFUX1NJTkdMRV9DT1JFKQ0KPiA+ICsgICAgICAg
+ICAgICAgICByZXR1cm4gMjsNCj4gPiArICAgICAgIGVsc2UNCj4gPiArICAgICAgICAgICAgICAg
+cmV0dXJuIDA7DQo+ID4gK30NCj4gVXNlIGEgc3dpdGNoIC4uIGNhc2UgLi4gd291bGQgYmUgZWFz
+aWVyIHRvIHJlYWQuDQpZZXMNCj4gV291bGQgaXQgYmUgYmV0dGVyIHRvIHVzZSBzb21lIG1hY3Jv
+IG9yIGVudW1zIGZvciB0aGUgbWFnaWMgbnVtYmVycz8NClllcywgYWRkIGVudW1zIGZvciBtYWdp
+YyBudW1iZXJzLiANCmVudW0gbXRrX3ZkZWNfaHdfY291bnQgew0KCU1US19WREVDX05PX0hXID0g
+MCwNCglNVEtfVkRFQ19PTkVfQ09SRSwNCglNVEtfVkRFQ19PTkVfTEFUX09ORV9DT1JFLA0KCU1U
+S19WREVDX01BWF9IV19DT1VOVCwNCn07DQo+ID4gQEAgLTExMyw4ICsxMTQsNyBAQCBzdGF0aWMg
+aW50IG10a192ZGVjX2NvbXBfaW5pdF9pcnEoc3RydWN0IG10a192ZGVjX2NvbXBfZGV2ICpkZXYp
+DQo+ID4gICAgICAgICB9DQo+ID4NCj4gPiAgICAgICAgIHJldCA9IGRldm1fcmVxdWVzdF9pcnEo
+JnBkZXYtPmRldiwgZGV2LT5kZWNfaXJxLA0KPiA+IC0gICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgbXRrX3ZkZWNfY29tcF9pcnFfaGFuZGxlciwNCj4gPiAtICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgIDAsIHBkZXYtPm5hbWUsIGRldik7DQo+ID4gKyAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICBtdGtfdmRlY19jb21wX2lycV9oYW5kbGVyLCAwLCBwZGV2LT5uYW1lLCBk
+ZXYpOw0KPiBUaGUgY2hhbmdlIGlzIGlycmVsZXZhbnQgdG8gdGhpcyBwYXRjaC4NCldpbGwgZml4
+Lg0KPiA+IEBAIC0xNTQsOCArMTU0LDEwIEBAIHN0YXRpYyBpbnQgbXRrX3ZkZWNfY29tcF9wcm9i
+ZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQ0KPiA+ICAgICAgICAgICAgICAgICBkbWFf
+c2V0X21hc2tfYW5kX2NvaGVyZW50KCZwZGV2LT5kZXYsIERNQV9CSVRfTUFTSygzNCkpOw0KPiA+
+DQo+ID4gICAgICAgICByZXQgPSBtdGtfdmRlY19jb21wX2luaXRfaXJxKGRldik7DQo+ID4gLSAg
+ICAgICBpZiAocmV0KQ0KPiA+ICsgICAgICAgaWYgKHJldCkgew0KPiA+ICsgICAgICAgICAgICAg
+ICBkZXZfZXJyKCZwZGV2LT5kZXYsICJGYWlsZWQgdG8gcmVnaXN0ZXIgaXJxIGhhbmRsZXIuXG4i
+KTsNCj4gPiAgICAgICAgICAgICAgICAgZ290byBlcnI7DQo+ID4gKyAgICAgICB9DQo+IFRoZSBj
+aGFuZ2Ugc2hvdWxkbid0IGJlIGluIHRoaXMgcGF0Y2guICBJbnN0ZWFkLCBhbm90aGVyIHBhdGNo
+IHRoYXQNCj4gYWRkcyB0aGUgbXRrX3ZkZWNfY29tcF9pbml0X2lycSgpIGludm9jYXRpb24uDQo+
+IA0KPiA+ICtpbnQgbXRrX3Zjb2RlY193YWl0X2Zvcl9jb21wX2RvbmVfY3R4KHN0cnVjdCBtdGtf
+dmNvZGVjX2N0eCAgKmN0eCwNCj4gUmVtb3ZlIHRoZSBleHRyYSBzcGFjZSBiZWZvcmUgIipjdHgi
+Lg0KV2lsIGZpeC4NCg==
 
-I thought the discussion was resolved in favor of using read/writel. Here
-is the last reply from Bjorn:
-
-"I think we came to the conclusion that writel() was better
-than incorrect use of writel_relaxed() followed by wmb(). And in this
-particular case it's definitely not happening in a hot code path..."
-
-IMO, it is safer to use readl/writel calls than the relaxed variants.
-And so far the un-written rule I assumed is, only consider using the
-relaxed variants if the code is in hot path (but somehow I used the
-relaxed version in v1 :P )
-
-Thanks,
-Mani
-
-> Rob
-> 
-> >
-> > Changes in v3:
-> >
-> > * Lot of minor cleanups to the driver patch based on review from Bjorn and Stan.
-> > * Noticeable changes are:
-> >   - Got rid of _relaxed calls and used readl/writel
-> >   - Got rid of separate TCSR memory region and used syscon for getting the
-> >     register offsets for Perst registers
-> >   - Changed the wake gpio handling logic
-> >   - Added remove() callback and removed "suppress_bind_attrs"
-> >   - stop_link() callback now just disables PERST IRQ
-> > * Added MMIO region and doorbell interrupt to the binding
-> > * Added logic to write MMIO physicall address to MHI base address as it is
-> >   for the function driver to work
-> >
-> > Changes in v2:
-> >
-> > * Addressed the comments from Rob on bindings patch
-> > * Modified the driver as per binding change
-> > * Fixed the warnings reported by Kbuild bot
-> > * Removed the PERST# "enable_irq" call from probe()
-> >
-> > Manivannan Sadhasivam (3):
-> >   dt-bindings: pci: Add devicetree binding for Qualcomm PCIe EP
-> >     controller
-> >   PCI: dwc: Add Qualcomm PCIe Endpoint controller driver
-> >   MAINTAINERS: Add entry for Qualcomm PCIe Endpoint driver and binding
-> >
-> >  .../devicetree/bindings/pci/qcom,pcie-ep.yaml | 160 ++++
-> >  MAINTAINERS                                   |  10 +-
-> >  drivers/pci/controller/dwc/Kconfig            |  10 +
-> >  drivers/pci/controller/dwc/Makefile           |   1 +
-> >  drivers/pci/controller/dwc/pcie-qcom-ep.c     | 742 ++++++++++++++++++
-> >  5 files changed, 922 insertions(+), 1 deletion(-)
-> >  create mode 100644 Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-> >  create mode 100644 drivers/pci/controller/dwc/pcie-qcom-ep.c
-> >
-> > --
-> > 2.25.1
-> >
