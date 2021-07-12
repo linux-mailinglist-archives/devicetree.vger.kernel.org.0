@@ -2,121 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3A0E3C645F
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 21:56:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 077783C64AF
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 22:05:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236673AbhGLT7R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jul 2021 15:59:17 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38888 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234152AbhGLT7O (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Jul 2021 15:59:14 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2F0B061248;
-        Mon, 12 Jul 2021 19:56:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626119786;
-        bh=1/iV0tWnFbbXO0GEHBAo7CuxKn/rRuPYJSACK0eLi3Y=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=dQfSsq1jx3lPxRdhODpiKgtXXpCGYxn7qC7Mp6Qgn9xJMpqM7nyemeJpfKs2Q57Vo
-         GtZsmsqTa2/1W0MjFg2D3M4LmiYHFOWnRikS8R0iq8MpMoE2NU78hsgZfql/OyAyU0
-         s/OSvAhCsvY5bs5x3cE+wvD4ujHlTSJ4imynk8zcG5eFybGJbkqo5sYqc5w9UgDjnV
-         PU933Js1WfIABFGPFg9jvh5Sd750+2vO9p8N5Maf1nvDmnXMd0wtUJQQ4RQiavownL
-         puxNnd78xJitKg4Lo4ErrYooveUSMSVETo9JVilH/lxlWnIfY2Q37vbFjZw1ASBdr7
-         mJMxypxtJw/IA==
-Received: by mail-ej1-f43.google.com with SMTP id dt7so7078571ejc.12;
-        Mon, 12 Jul 2021 12:56:26 -0700 (PDT)
-X-Gm-Message-State: AOAM533DyzXIDJyZufyWEIzOqya6l51g1u5NEcFHfgc4HUDABt8GGeM/
-        yI//I552HnjlHw/mcwYtUmkVb+h+hT9htzHywg==
-X-Google-Smtp-Source: ABdhPJzQP4XLVaKnqd28Ulh5L6F8VcTh8R/AfPyMs7r6K12YgTls+lWlluw/s3Hp7usHqSXhQeJH8grhlH9YOxbSMiM=
-X-Received: by 2002:a17:906:b18d:: with SMTP id w13mr816201ejy.341.1626119784749;
- Mon, 12 Jul 2021 12:56:24 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210630034653.10260-1-manivannan.sadhasivam@linaro.org>
- <CAL_JsqLHp3kBc1VtGVRxVr_k69GqSC_JX88jo3stdM4W9Qq6AQ@mail.gmail.com> <20210712075302.GA8113@workstation>
-In-Reply-To: <20210712075302.GA8113@workstation>
+        id S233983AbhGLUHv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jul 2021 16:07:51 -0400
+Received: from mail-io1-f50.google.com ([209.85.166.50]:36745 "EHLO
+        mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233299AbhGLUHv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 16:07:51 -0400
+Received: by mail-io1-f50.google.com with SMTP id u7so24190340ion.3;
+        Mon, 12 Jul 2021 13:05:01 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=eU8NZJGeRlOXg3sl+j9LmKuiwWZGjFx2BmOO4WsxHwQ=;
+        b=nXPfZB/XDMQgb6oGnBN3dPZeQstWqvdJ4R6jDxZTMj4dka2SzMWqy1KOfY6M3ovGIa
+         TQg0sIqQZwfYugd2PVFlxl4AG2bo2eztyLuAm3F/Qio//V4PBdREc3TvqaY6fgwsEM8Y
+         7uGvbMpf6Zja6MjwRIsRqyOFU8DVpHaMeQyYass82uz7duWFtrpMl2WvUXKQX/+wbEdf
+         zLsIlI7zHEmtbkKG1Te+ZNK0R+e2okqrzs1u+aUxgvqU8Iue/M4eoYy8ac5cxBuljdCr
+         dV4q44X/ByT+ZtP5woUMY6GqrKVqYvSClC+olpRlRT4f0A0iLsksEXZkAKOyR95K4ZVt
+         cOZw==
+X-Gm-Message-State: AOAM530TGQm6yUbMW4zOg5/btPdCP4zJqD7go/5CTIyAvnnsDhll9/HA
+        wsjYkDFdCCR1ujlzfH4fk4xa9Y2txw==
+X-Google-Smtp-Source: ABdhPJzzLX+ZdqoCfmxhhaV8Y94O6v7F+qOxJCcAbfAlxsuTPGYrt9RQmKau2ZsrZtOfICFUSyHGCQ==
+X-Received: by 2002:a5d:83c4:: with SMTP id u4mr469396ior.21.1626120301443;
+        Mon, 12 Jul 2021 13:05:01 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id n13sm8619755ilq.5.2021.07.12.13.04.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Jul 2021 13:05:00 -0700 (PDT)
+Received: (nullmailer pid 2397426 invoked by uid 1000);
+        Mon, 12 Jul 2021 20:04:58 -0000
+Date:   Mon, 12 Jul 2021 14:04:58 -0600
 From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 12 Jul 2021 13:56:12 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ4R3+mx9bT4WsKRx4fS5UFbe8en+fRq65HTGcfxaxaNQ@mail.gmail.com>
-Message-ID: <CAL_JsqJ4R3+mx9bT4WsKRx4fS5UFbe8en+fRq65HTGcfxaxaNQ@mail.gmail.com>
-Subject: Re: [PATCH v5 0/3] Add Qualcomm PCIe Endpoint driver support
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        devicetree@vger.kernel.org, PCI <linux-pci@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        hemantk@codeaurora.org,
-        Siddartha Mohanadoss <smohanad@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sriharsha Allenki <sallenki@codeaurora.org>,
-        skananth@codeaurora.org, vpernami@codeaurora.org,
-        Veerabhadrarao Badiganti <vbadigan@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        dafna.hirschfeld@collabora.com, helen.koike@collabora.com,
+        ezequiel@collabora.com, robh+dt@kernel.org,
+        Laurent.pinchart@ideasonboard.com, linux-media@vger.kernel.org
+Subject: Re: [PATCH v6 02/10] dt-bindings: media: rkisp1: fix pclk clock-name
+Message-ID: <20210712200458.GA2397368@robh.at.kernel.org>
+References: <20210618130238.4171196-1-heiko@sntech.de>
+ <20210618130238.4171196-3-heiko@sntech.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210618130238.4171196-3-heiko@sntech.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 12, 2021 at 1:53 AM Manivannan Sadhasivam
-<manivannan.sadhasivam@linaro.org> wrote:
->
-> On Thu, Jul 01, 2021 at 09:25:01AM -0600, Rob Herring wrote:
-> > On Tue, Jun 29, 2021 at 9:47 PM Manivannan Sadhasivam
-> > <manivannan.sadhasivam@linaro.org> wrote:
-> > >
-> > > Hello,
-> > >
-> > > This series adds support for Qualcomm PCIe Endpoint controller found
-> > > in platforms like SDX55. The Endpoint controller is based on the designware
-> > > core with additional Qualcomm wrappers around the core.
-> > >
-> > > The driver is added separately unlike other Designware based drivers that
-> > > combine RC and EP in a single driver. This is done to avoid complexity and
-> > > to maintain this driver autonomously.
-> > >
-> > > The driver has been validated with an out of tree MHI function driver on
-> > > SDX55 based Telit FN980 EVB connected to x86 host machine over PCIe.
-> > >
-> > > Thanks,
-> > > Mani
-> > >
-> > > Changes in v5:
-> > >
-> > > * Removed the DBI register settings that are not needed
-> > > * Used the standard definitions available in pci_regs.h
-> > > * Added defines for all the register fields
-> > > * Removed the left over code from previous iteration
-> > >
-> > > Changes in v4:
-> > >
-> > > * Removed the active_config settings needed for IPA integration
-> > > * Switched to writel for couple of relaxed versions that sneaked in
-> >
-> > I thought we resolved this discussion. Use _relaxed variants unless
-> > you need the stronger ones.
-> >
->
-> I thought the discussion was resolved in favor of using read/writel. Here
-> is the last reply from Bjorn:
->
-> "I think we came to the conclusion that writel() was better
-> than incorrect use of writel_relaxed() followed by wmb(). And in this
-> particular case it's definitely not happening in a hot code path..."
+On Fri, 18 Jun 2021 15:02:30 +0200, Heiko Stuebner wrote:
+> From: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+> 
+> Having a clock name as "pclk_isp" suggests really hard a remnant from
+> the vendor kernel.
+> 
+> Right now no driver _and_ no devicetree actually uses this clock name
+> so there is still time to fix that naming.
+> 
+> Therefore drop the "_isp" suffix and only name it pclk.
+> 
+> Signed-off-by: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+> ---
+>  Documentation/devicetree/bindings/media/rockchip-isp1.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-Certainly if you're needing wmb(), then you shouldn't be using
-_relaxed() variants.
-
-> IMO, it is safer to use readl/writel calls than the relaxed variants.
-
-Sure, and it's safer to have one big lock than it is to have no locks
-or lots of small locks.
-
-> And so far the un-written rule I assumed is, only consider using the
-> relaxed variants if the code is in hot path (but somehow I used the
-> relaxed version in v1 :P )
-
-If you want any real conclusion, then best to fix the 'un-written' part.
-
-But what I say for every PCI review, is use the _relaxed() variants.
-
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
