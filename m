@@ -2,168 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F24A3C7810
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 22:35:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A9A33C790E
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 23:38:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234290AbhGMUiU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jul 2021 16:38:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43590 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235322AbhGMUiU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 16:38:20 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAD41C0613DD;
-        Tue, 13 Jul 2021 13:35:29 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id ec55so10087165edb.1;
-        Tue, 13 Jul 2021 13:35:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lz1iNRVmJl/8c02nO6mcAo+x0LUik5FJFjS42Nicby8=;
-        b=I93Jw38f4suLZLxrcS11ROvBezOGU4JjFfcwHEGortMfxkTfN8UAqSPN2szzMQAE1d
-         er50D8stbzEiVr8XMg/kJF9abJbF/jEILEq+03llk6uLCKV4l6mvLKVURuLRWX5jDO1N
-         6lZUTJqBPyMJnqbGgBCap5EmeHutNScznEb6M3SAf+4+1tCA2UZ+C1I0JvqBECH2O2uo
-         Habw2ErqzBpxlKBIy5n7bDd40kv1SiqUqkdD5kFy2Ri+Ds5oprwISZsx66w577mnLpwx
-         f7wx0iZY+ozU/lpPvIjZdZkdG8/gJ2Z613VMV3zROZv0ZkbAXj2hjH/7wovNCCu/34CS
-         zeFQ==
+        id S235756AbhGMVku (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jul 2021 17:40:50 -0400
+Received: from mail-il1-f174.google.com ([209.85.166.174]:39768 "EHLO
+        mail-il1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234947AbhGMVkt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 17:40:49 -0400
+Received: by mail-il1-f174.google.com with SMTP id a7so5409805iln.6;
+        Tue, 13 Jul 2021 14:37:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lz1iNRVmJl/8c02nO6mcAo+x0LUik5FJFjS42Nicby8=;
-        b=UJQ9KD9DmIZUtSURh1qVG+qIwgBGHvQKhfhyej2E4Gy78gKc6wdPAc/XcginK+zOl1
-         bIZgzMT3KB1R0oNQN73dER/obU7FwLog3z19PhSYfBiPNf0QAXnkB4ypE0cx+3JjUSF4
-         z2PoeCJZyQOdeKQqg38XxsiqDHPy4FplnBrkC+gLJsKHs6ygmV6AhqM0izx/Cazq6reh
-         6hEOZkaw8F7HLNV3EpIGfBjuT5zXg7gVHuRvxKd759aKlbCCctsuh3mBF37xqWbp0ZWX
-         FEOjHZJCIXRI6H1D7F4U1TqQaC5dYz9u6jXfM9bHVILfid+jr5vJNf+Dpe/4es/pi4yV
-         /IWg==
-X-Gm-Message-State: AOAM5305IB9FPIO3KbbP16SWYs8bDCHqkkGO/NVHgAqrtjT1vdt7K0Yi
-        tAiXaJ5g5a+cAOHqnCVcdeRHsY+3pKYVadsfpSo=
-X-Google-Smtp-Source: ABdhPJxtOwqdJeTKPSUanACIrHdPw1eVvCe+a/6kJEv5H4LVBcI1ek6HLhA0gFT9a/FkLDXR9ho5PMGWfIoQ2V5HXnU=
-X-Received: by 2002:a05:6402:190c:: with SMTP id e12mr8137065edz.176.1626208528146;
- Tue, 13 Jul 2021 13:35:28 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210713055227.1142-1-linux.amoon@gmail.com> <20210713055227.1142-2-linux.amoon@gmail.com>
- <CAFBinCD3ahpNQhP_jWZ3-4nXx8OqZOAANCpTN3BrsULRbYZHVw@mail.gmail.com> <CANAwSgTh02qg=cMT8tpHcEfAs5yW2vHQ7tPOkvuKXos_fOmh8A@mail.gmail.com>
-In-Reply-To: <CANAwSgTh02qg=cMT8tpHcEfAs5yW2vHQ7tPOkvuKXos_fOmh8A@mail.gmail.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Tue, 13 Jul 2021 22:35:17 +0200
-Message-ID: <CAFBinCC-kD-MW+bwqCZH5AjYDhxWa_pN2WEnHuiZpx=RhUdROQ@mail.gmail.com>
-Subject: Re: [PATCHv1 1/3] ARM: dts: meson8b: odroidc1: Add usb phy power node
-To:     Anand Moon <linux.amoon@gmail.com>
-Cc:     linux-phy@lists.infradead.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        Matt Corallo <oc2udbzfd@mattcorallo.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Emiliano Ingrassia <ingrassia@epigenesys.com>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=XG4xRifa1Y/AuqQNHbBHo4FxHIDghL/k6L/P4dYHb4s=;
+        b=fJ4+B/8EB84whatQgRu+Bh7UaFLgC+QfeFq+ATBpiCwE5GxKdTeQw+AKXtxuZWwAmR
+         g6m1n2Tpb4dCAlBthOvjL+f21t+PAwxc5R+5cGS8nEbCZKjTZLLjZRaW2KnkhTWchm+/
+         7zZsFy+2dshjQNDwuDPULKzy70MiPul3TtG9pRIBVCmVystqiiAhjZRkiOngHtR3e2iu
+         Bbzod2huH8FYo5zdf2sJkqaI14Bvl1Rvof2axD21gVVGksSH1KZiPgTIYRXIjApZb4Ot
+         xvrExPBLVXv1SdxjR0SNPzsA4x2SGRajIgGE7ObdmJEzPtT/HoKBxRoe5+6//fd8YuSZ
+         3CiA==
+X-Gm-Message-State: AOAM531IByBNu5OKATT1DJXa8e/Q6+QrBOwqMss0v7r3WnseuL+1pcVG
+        A0kUp2EO1JTOzm5gq0SsJA==
+X-Google-Smtp-Source: ABdhPJzwQ8achpdhJTPLQ7MBLIBm/5e6ZfshfMm2jmNNlXzIu+Aih5AMKlmxesIcV/77YUtvBSEUjQ==
+X-Received: by 2002:a05:6e02:1527:: with SMTP id i7mr4276502ilu.134.1626212278680;
+        Tue, 13 Jul 2021 14:37:58 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id t15sm106235iln.36.2021.07.13.14.37.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Jul 2021 14:37:57 -0700 (PDT)
+Received: (nullmailer pid 879321 invoked by uid 1000);
+        Tue, 13 Jul 2021 21:37:53 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-clk@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org
+In-Reply-To: <20210712194422.12405-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20210712194422.12405-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210712194422.12405-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: pinctrl: renesas,rzg2l-pinctrl: Add DT bindings for RZ/G2L pinctrl
+Date:   Tue, 13 Jul 2021 15:37:53 -0600
+Message-Id: <1626212273.288301.879320.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Anand,
+On Mon, 12 Jul 2021 20:44:18 +0100, Lad Prabhakar wrote:
+> Add device tree binding documentation and header file for Renesas
+> RZ/G2L pinctrl.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+>  .../pinctrl/renesas,rzg2l-pinctrl.yaml        | 155 ++++++++++++++++++
+>  include/dt-bindings/pinctrl/rzg2l-pinctrl.h   |  23 +++
+>  2 files changed, 178 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
+>  create mode 100644 include/dt-bindings/pinctrl/rzg2l-pinctrl.h
+> 
 
-On Tue, Jul 13, 2021 at 8:45 PM Anand Moon <linux.amoon@gmail.com> wrote:
->
-> Hi Martin,
->
-> Thanks for reviewing the changes,
->
-> On Tue, 13 Jul 2021 at 20:35, Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
-> >
-> > Hi Anand,
-> >
-> > On Tue, Jul 13, 2021 at 7:53 AM Anand Moon <linux.amoon@gmail.com> wrote:
-> > >
-> > > Add missing usb phy power node for phy mode fix below warning.
-> > >
-> > > [    1.253149] phy phy-c1108820.phy.0: Looking up phy-supply from device tree
-> > > [    1.253166] phy phy-c1108820.phy.0: Looking up phy-supply property
-> > >                 in node /soc/cbus@c1100000/phy@8820 failed
-> > I did some testing on my own Odroid-C1+ and this patch is not doing
-> > anything for me.
-> > more information below.
-> Some device node for USB will have
-The mistake I made before is considering USB VBUS as PHY power supply.
-I believe the USB PHY is actually powered by the AVDD18_USB_ADC and
-USB33_VDDIOH signals. See the S905 datasheet [0], page 25
-These are 1.8V and 3.3V signals while you are adding a 5V regulator.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-[...]
-> > > +               /*
-> > > +                * signal name from schematics: USB_POWER
-> > > +                */
-> > Just a few lines below you're saying that the name from the schematics is PWREN
-> > If this patch is getting another round then please clarify the actual
-> > signal name, or name both signals if the schematics is actually using
-> > both names.
-> >
-> As per the schematics.
-> PWREN ---> GPIOAO.BIT5      gpio pin control
-> USB_POWER ---> P5V0          power source regulator.
-ah, thanks for clarifying this
-my suggestion is to put that exact paragraph into the comment to avoid confusion
+yamllint warnings/errors:
 
-[...]
-> > Can you please give this a try on your Odroid-C1 as well?
-> > The conclusion from my own testing is that GPIOAO_5 doesn't seem to be
-> > related to USB1 (host-only) because if it was then inverting the
-> > polarity (from active high to active low) should result in a change.
-> >
->
-> Ok I have modified as per above but not changes in gpio polarity
-> from active high to active low. see below.
->
-> # Odroid C1
-> [alarm@archl-c1e ~]$ sudo cat /sys/kernel/debug/gpio | grep USB
->  gpio-1953 (USB_HUB_RST_N       |usb-hub-reset       ) out hi
->  gpio-1954 (USB_OTG_PWREN       |regulator-usbp_pwr_e) out hi
->
-> # Odroid C2
-> [alarm@archl-c2lm ~]$  sudo cat /sys/kernel/debug/gpio | grep usb
->  gpio-501 (USB HUB nRESET      |usb-hub-reset       ) out hi
->  gpio-502 (USB OTG Power En    |regulator-usb-pwrs  ) out hi
-that's strange, my result is different
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.example.dts:29.34-35 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1418: dt_binding_check] Error 2
+\ndoc reference errors (make refcheckdocs):
 
-  gpio = <&gpio_ao GPIOAO_5 GPIO_ACTIVE_HIGH>;
-  enable-active-high;
-gives me:
-  # grep USB_OTG_PWREN /sys/kernel/debug/gpio
-  gpio-418 (USB_OTG_PWREN       |regulator-usb-pwr-en) out hi
+See https://patchwork.ozlabs.org/patch/1504169
 
-  gpio = <&gpio_ao GPIOAO_5 GPIO_ACTIVE_LOW>;
-gives me:
-  # grep USB_OTG_PWREN /sys/kernel/debug/gpio
-  gpio-418 (USB_OTG_PWREN       |regulator-usb-pwr-en) out lo ACTIVE LOW
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-Did you remove the "enable-active-high;" in your "active low" test?
-GPIO polarity for regulators is managed with that flag, not just with
-GPIO_ACTIVE_{HIGH,LOW}
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-[...]
-> > >  &usb1_phy {
-> > >         status = "okay";
-> > > +       phy-supply = <&usb_pwr_en>;
-> > From the schematics it seems that this is not the PHY supply (which I
-> > admittedly have used incorrectly for VBUS before).
-> > In the schematics that I have (odroid-c1+_rev0.4_20150615.pdf) it
-> > seems to be enabling VBUS.
-> > So in that case a vbus-supply property should be used inside &usb1 instead.
-> >
-> As per the debug log I have added this since core phy looking for this property
-Let's discuss the results with different polarities first, then we can
-also discuss the rest.
+pip3 install dtschema --upgrade
 
+Please check and re-submit.
 
-Best regards,
-Martin
