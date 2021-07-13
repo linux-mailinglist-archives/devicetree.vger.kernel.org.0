@@ -2,115 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CEF63C6DE3
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 11:54:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 954853C6E07
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 11:56:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235458AbhGMJ5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jul 2021 05:57:11 -0400
-Received: from lucky1.263xmail.com ([211.157.147.130]:35958 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235453AbhGMJ5H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 05:57:07 -0400
-Received: from localhost (unknown [192.168.167.13])
-        by lucky1.263xmail.com (Postfix) with ESMTP id 06134D5BD9;
-        Tue, 13 Jul 2021 17:54:09 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-SKE-CHECKED: 1
-X-ANTISPAM-LEVEL: 2
-Received: from localhost.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P30158T139873832912640S1626170037329023_;
-        Tue, 13 Jul 2021 17:53:59 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <f4edf0553fb64da733e924475bc5017d>
-X-RL-SENDER: jon.lin@rock-chips.com
-X-SENDER: jon.lin@rock-chips.com
-X-LOGIN-NAME: jon.lin@rock-chips.com
-X-FST-TO: linux-spi@vger.kernel.org
-X-RCPT-COUNT: 20
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-From:   Jon Lin <jon.lin@rock-chips.com>
-To:     linux-spi@vger.kernel.org
-Cc:     jon.lin@rock-chips.com, broonie@kernel.org, robh+dt@kernel.org,
-        heiko@sntech.de, jbx6244@gmail.com, hjc@rock-chips.com,
-        yifeng.zhao@rock-chips.com, sugar.zhang@rock-chips.com,
-        linux-rockchip@lists.infradead.org, linux-mtd@lists.infradead.org,
-        p.yadav@ti.com, macroalpha82@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        linux-clk@vger.kernel.org, Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH v12 10/10] arm64: dts: rockchip: Enable SFC for Odroid Go Advance
-Date:   Tue, 13 Jul 2021 17:53:55 +0800
-Message-Id: <20210713095355.3249-1-jon.lin@rock-chips.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210713094718.1709-1-jon.lin@rock-chips.com>
-References: <20210713094718.1709-1-jon.lin@rock-chips.com>
+        id S235328AbhGMJ6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jul 2021 05:58:53 -0400
+Received: from mail-bn8nam11on2064.outbound.protection.outlook.com ([40.107.236.64]:30268
+        "EHLO NAM11-BN8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S235188AbhGMJ6w (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Jul 2021 05:58:52 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=S3U4ewNW/kRNSDE19GzjyFjjd8bZgSk0AmHT0HjI4pfhmbBX5vtJ8gF0pxSs5NC+irPHIo+MT19Mjx012qPg2GOlgHsM4CjwkAZQEcfhM7HItfvnhWJBuV3wfU1e+/6/SdPnFPEcz2nGuB+z2gnlz50JYyW6xZD66Ly/QKak42XHtXhW/Hqa2QyWjx0zA12YT/zqQ5apy3rizUlMeXTBlXuNvhhRSUQAneHszEyt5Ni2YQfBwVpoNJNwk42IK2nAUERIi+IVESBb12hejAEnT1JhNy3gluieW0fu8sTWR5OiWhOUNZiSEThZERgaipYW2eMSaSUJ34gNXROd63U8+w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tzg/FshLNyzzEhroK+GUUnEWu2aruViXEgZTkf+TkuU=;
+ b=OcdRaeshX96zxNjw2OLCzZD9l3aKOf4yUrG06SERLIaIEr7BfWz0xjJdITnMWxGpa7CqzTWSM2mHoqYtHiIp9jW4vgwDAARMLNTBOY5CRTb/3kxILiO17WqRrNnTpC0nzhSuPUSsz16Z8NYIkh8Q2xa/VYxVhUxoR9zb6jhj4AP7QLUyBIlB+Ov2VBDs7LrtaA/fuxQOYpyf/sbP5WWy4stXzl0/0CuvCdvz1qI4dgyT7p+lCY4AueKHQ0WKK+vLceO2Nf3B8iKlxEj8AWuF772TfR7TuCBvgIAZYR4hcA3OTPb6eVDGRsxNsOyTWc1Jai/X8dtLiUX5+YS3iQ+cpQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.112.34) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tzg/FshLNyzzEhroK+GUUnEWu2aruViXEgZTkf+TkuU=;
+ b=Dwh8Oq0LvPwml3NISDZ0vAonPkmkX7h0NoS8Pdf3QCHiMRvrFlJAfBWBReRYj2uyO9aT5hAdOcYIDULKfiPV97KwQp8FTg+Tys75eJ+xne9mX8z8Xy03QkOMvZTtNp2NPZ9/A7EJ3Wda3KBVfoKyEd+WeqYp7d4zciay/FvmohKb3D3NN5HODnupCtOH0yEZkNbl5+xm3VD1JZYhv4aUGPwZlFmdpx3A7XzvWjyAsNhtOkY7MgH+bXyn3g/6aYR4LjggxblsV5ikAZdfsk5Drg+371qejZl5byH3a+M9uf8Pr1MqWXEvLQPaFjsdcSeAw67z4zJ5GPV4DBG4JHLGwg==
+Received: from BN0PR04CA0001.namprd04.prod.outlook.com (2603:10b6:408:ee::6)
+ by DM4PR12MB5359.namprd12.prod.outlook.com (2603:10b6:5:39e::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4308.23; Tue, 13 Jul
+ 2021 09:56:00 +0000
+Received: from BN8NAM11FT046.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:ee:cafe::5e) by BN0PR04CA0001.outlook.office365.com
+ (2603:10b6:408:ee::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4308.20 via Frontend
+ Transport; Tue, 13 Jul 2021 09:56:00 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.34)
+ smtp.mailfrom=nvidia.com; vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.112.34 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.112.34; helo=mail.nvidia.com;
+Received: from mail.nvidia.com (216.228.112.34) by
+ BN8NAM11FT046.mail.protection.outlook.com (10.13.177.127) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.4308.20 via Frontend Transport; Tue, 13 Jul 2021 09:56:00 +0000
+Received: from [10.26.49.10] (172.20.187.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 13 Jul
+ 2021 09:55:56 +0000
+Subject: Re: [PATCH] arm64: tegra: Enable SMMU support for PCIe on Tegra194
+To:     Vidya Sagar <vidyas@nvidia.com>, <robh+dt@kernel.org>,
+        <thierry.reding@gmail.com>
+CC:     <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kthota@nvidia.com>,
+        <mmaddireddy@nvidia.com>, <sagar.tv@gmail.com>
+References: <20210713044414.25536-1-vidyas@nvidia.com>
+From:   Jon Hunter <jonathanh@nvidia.com>
+Message-ID: <3fb8cabd-901b-d968-33da-cd163fe305dc@nvidia.com>
+Date:   Tue, 13 Jul 2021 10:55:54 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+MIME-Version: 1.0
+In-Reply-To: <20210713044414.25536-1-vidyas@nvidia.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [172.20.187.5]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 0cb124ed-6ed0-47f5-666e-08d945e46b53
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5359:
+X-Microsoft-Antispam-PRVS: <DM4PR12MB5359134925C4374F084A4D77D9149@DM4PR12MB5359.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2582;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: yOYzoUMGgcVionJLuYEmE//4/O2lXupD1yd5CLB0pwvpHz9xf6rHNbr6eJItAkLiCSxFpOtbJPOLuJoLVMb9ptsA3z7dkJma9ayQZ4bqJB9TsU6tKyQf/FuYWwBS2nWoXs10c/MbM1iEgB5F3fYS9D3W1Rj1kO3wmtze94JT4IOXQct47UYJz+54xP+APqyEkLm6MoqU345QogPt1KnReErpoTDBUdfoeA+kR66AL6HjajKdip+6UAgnofW7PfHcQxn23lmTmQPPb+Vlr+P/uG6bEniwyFgYR2oQWVuVM8fENQrDWr31NgM3bRQ55aqmkMNeMuWYcvdaWsjV0ydH7Y3u0WqigU3gjw/SMh7WYQMkiMzrKLp7ZGLTFC/hnVudp24wnZ2ApB404IJkWzWFwlxKeYejF39Gno+4HTlh7KXRBnY9DsUC1MmeFBJnIz/vkSU1XqJ/cXFgBtW+2grXpeagPwq9yqx7oQKBzX5Vuqc9vS83yZ90etKK0kgL/1YbDmUlYaGQTQWmG83mgDd2D5CzeWCCiigFZLc6jqTgoyTvGUrENcKZZ6pk3gk57f5/Rf2SgcL7+n/TGSp9sjLZWhQUy0ub0FzaxGhamgqdJiEhLQYtpyr0oi/XRdjqv61LFCs9w6kwK39a1SmfAYTvgNDNL/WCBaSAkQ1AOSQnFyWGyKutcqmkeTQj4qALFX8FpfC9Y9iZF/WcJU42LKdysDoFOy760OE/YE6r83N1/S4CxAkCKtHWAz+31PoDvfTqCzw3I/txhtHYi6/5OJxuIg==
+X-Forefront-Antispam-Report: CIP:216.228.112.34;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:schybrid03.nvidia.com;CAT:NONE;SFS:(4636009)(376002)(346002)(39860400002)(396003)(136003)(36840700001)(46966006)(16576012)(356005)(82310400003)(70206006)(110136005)(2906002)(34020700004)(54906003)(86362001)(4326008)(316002)(8676002)(16526019)(47076005)(36860700001)(83380400001)(26005)(2616005)(478600001)(70586007)(186003)(53546011)(426003)(336012)(8936002)(31696002)(82740400003)(5660300002)(36906005)(7636003)(31686004)(36756003)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jul 2021 09:56:00.3304
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0cb124ed-6ed0-47f5-666e-08d945e46b53
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.112.34];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT046.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5359
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chris Morgan <macromorgan@hotmail.com>
 
-This enables the Rockchip Serial Flash Controller for the Odroid Go
-Advance. Note that while the attached SPI NOR flash and the controller
-both support quad read mode, only 2 of the required 4 pins are present.
-The rx bus width is set to 2 for this reason, and tx bus width is set
-to 1 for compatibility reasons.
+On 13/07/2021 05:44, Vidya Sagar wrote:
+> As of commit c7289b1c8a4e ("arm64: tegra: Enable SMMU support on
+> Tegra194"), SMMU support is enabled system-wide on Tegra194. However,
+> there was a bit of overlap between the SMMU enablement and the PCIe
+> support addition, so the PCIe device tree nodes are missing the iommus
+> and interconnects properties. This in turn leads to SMMU faults for
+> these devices, since by default the ARM SMMU will fault.
+> 
+> Add the iommus and interconnects properties to all the PCIe device
+> tree nodes to restore their functionality.
+> 
+> Fixes: c7289b1c8a4e ("arm64: tegra: Enable SMMU support on Tegra194")
+> 
+> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+> ---
+>  arch/arm64/boot/dts/nvidia/tegra194.dtsi | 60 +++++++++++++++++++++---
+>  1 file changed, 54 insertions(+), 6 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
+> index 076d5efc4c3d..b55522aacfb0 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
+> +++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
+> @@ -1840,7 +1840,11 @@
+>  
+>  		interconnects = <&mc TEGRA194_MEMORY_CLIENT_PCIE1R &emc>,
+>  				<&mc TEGRA194_MEMORY_CLIENT_PCIE1W &emc>;
+> -		interconnect-names = "read", "write";
+> +		interconnect-names = "dma-mem", "dma-mem";
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
----
 
-Changes in v12: None
-Changes in v11:
-- The tx is set to 1 for Odroid Go Advance device
+Thierry indicated that the convention we have been using is that only
+the entry is called 'dma-mem'. So could be good to update this to be
+consistent with the other interconnect-names entries. Otherwise ...
 
-Changes in v10: None
-Changes in v9: None
-Changes in v8: None
-Changes in v7: None
-Changes in v6: None
-Changes in v5: None
-Changes in v4: None
-Changes in v3: None
-Changes in v2: None
-Changes in v1: None
+Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
 
- .../boot/dts/rockchip/rk3326-odroid-go2.dts      | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+Cheers
+Jon
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-index 49c97f76df77..4410a6ef5ada 100644
---- a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-@@ -484,6 +484,22 @@
- 	status = "okay";
- };
- 
-+&sfc {
-+	pinctrl-0 = <&sfc_clk &sfc_cs0 &sfc_bus2>;
-+	pinctrl-names = "default";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <108000000>;
-+		spi-rx-bus-width = <2>;
-+		spi-tx-bus-width = <1>;
-+	};
-+};
-+
- &tsadc {
- 	status = "okay";
- };
 -- 
-2.17.1
-
-
-
+nvpublic
