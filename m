@@ -2,231 +2,319 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D5743C796E
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 00:10:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50F8E3C7978
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 00:14:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236466AbhGMWNO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jul 2021 18:13:14 -0400
-Received: from mail-il1-f176.google.com ([209.85.166.176]:41634 "EHLO
-        mail-il1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236350AbhGMWNN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 18:13:13 -0400
-Received: by mail-il1-f176.google.com with SMTP id p3so4740837ilg.8;
-        Tue, 13 Jul 2021 15:10:22 -0700 (PDT)
+        id S236412AbhGMWR1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jul 2021 18:17:27 -0400
+Received: from mail-io1-f47.google.com ([209.85.166.47]:40868 "EHLO
+        mail-io1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235973AbhGMWR0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 18:17:26 -0400
+Received: by mail-io1-f47.google.com with SMTP id l5so29153647iok.7;
+        Tue, 13 Jul 2021 15:14:35 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=I836Y03DloC/Q/3mWy2ffCQlaq2BnV1RVfWxpJJqnrc=;
-        b=i4+EP1+1wUp9l2CMrRT8iwHthOirTLIdSUKapuWBPkDywOVr0MgwEtTFGF1+ji+wYr
-         buc/0rSZgABJCjxCGFg8X7pcOeX89tpCUIkTL5QDzZfPkmkHytIbWkraeaSvjyTXVIUi
-         77W6Bn2cwn21f/0e+7PL4w8EBEN5vhxZusY+4i6TwXAZNRpcTHrLl2rozB9NshS2Ps7x
-         7RhkOrcByTHWJAveJKAWRtT5AQ5BHyosDXU4v2xR61XvYqomnh+3A8G/cvx3fyfTLc7i
-         tGu3rF6LJ2l0iqWlYzJrRK33EM7ClQCweqh8w9a9yOd9wFZP0ojGyt5H3G/QrdAHCeyQ
-         TSPA==
-X-Gm-Message-State: AOAM533JiNGSKC4Xi8McOmiz3BRWuoqCrboSpng2yXdzRt+RsuA87sL0
-        Iyn7MXHAWqG0b67Qv/wIuiqwrHyY0w==
-X-Google-Smtp-Source: ABdhPJxe/x6Fgg1IHu4QCdFXT48XelScmqOeXRMOVdkc3PeJRWWeb0LQHPvVdUUEzFgOIeIK/WQEEw==
-X-Received: by 2002:a92:7d08:: with SMTP id y8mr4125420ilc.43.1626214222086;
-        Tue, 13 Jul 2021 15:10:22 -0700 (PDT)
+        bh=RpU6tfEd13P9yTBdvZdhGhlLt5ObHps/ZkeBp0WE0QA=;
+        b=WzXeyk5idb10YtXdVHcIc1VFDKztbKiJGOynvqU1W1eoZTo/butXACmF284sv4DI48
+         eEwfKgpEfBS6I0v3cqn1jJLULunHHjce+a7Ofk3hT/K0zjAi0xmvT051NFq0KchJ4CIA
+         lM3Zf2pKPLalVxwFxVTXBL5LiYTzdJI5+PbbGOa7xhqYUWlmfFLojkG+pSYnYEoTMx/g
+         pWYcyKbDmYhJ6Lum09iTLX3Kv0rsxUvy29HZNqcuBXGU58HLPBk2M5e9JA16dgdVEXA+
+         AF4lfz91XM/IVhV8piqR0CLG6k689wHgW/rVDED5q7FKbfV7CtgdIDdhZSiN5LxBhhpb
+         hRNw==
+X-Gm-Message-State: AOAM532LCx6VxbzZ9giri8b1OwtLA2zZvoB+2eP5feqOdlpXVd4H6DXN
+        Lac1A+UficgaxJp6HZ8vYw==
+X-Google-Smtp-Source: ABdhPJzuVTo5lRZxqxJXVtSulqUkfqAXPBFkEEpwR+JcZEG4LgbqZ7v6QYhqAItUH3hRjVsS4lroTA==
+X-Received: by 2002:a05:6638:3882:: with SMTP id b2mr6002780jav.15.1626214475237;
+        Tue, 13 Jul 2021 15:14:35 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id b9sm161468ilo.23.2021.07.13.15.10.14
+        by smtp.gmail.com with ESMTPSA id z22sm73610iog.13.2021.07.13.15.14.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jul 2021 15:10:21 -0700 (PDT)
-Received: (nullmailer pid 934954 invoked by uid 1000);
-        Tue, 13 Jul 2021 22:10:10 -0000
-Date:   Tue, 13 Jul 2021 16:10:10 -0600
+        Tue, 13 Jul 2021 15:14:34 -0700 (PDT)
+Received: (nullmailer pid 941748 invoked by uid 1000);
+        Tue, 13 Jul 2021 22:14:31 -0000
+Date:   Tue, 13 Jul 2021 16:14:31 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Xin Ji <xji@analogixsemi.com>
-Cc:     Robert Foss <robert.foss@linaro.org>,
-        David Airlie <airlied@linux.ie>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Ricardo =?iso-8859-1?Q?Ca=F1uelo?= 
-        <ricardo.canuelo@collabora.com>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, Bernie Liang <bliang@analogixsemi.com>,
-        Sheng Pan <span@analogixsemi.com>,
-        Zhen Li <zhenli@analogixsemi.com>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v9 1/4] dt-bindings:drm/bridge:anx7625:add vendor define
- flags
-Message-ID: <20210713221010.GA916196@robh.at.kernel.org>
-References: <cover.1624349479.git.xji@analogixsemi.com>
- <308427448195e2db37a32997c6d32905c96ca876.1624349480.git.xji@analogixsemi.com>
- <CAG3jFys6D=-L-Aez4aWuE4nM7qJCtn4wPws3TKxbkRzcAoFR0A@mail.gmail.com>
- <20210707073051.GA936385@anxtwsw-Precision-3640-Tower>
+To:     Billy Tsai <billy_tsai@aspeedtech.com>
+Cc:     lee.jones@linaro.org, joel@jms.id.au, andrew@aj.id.au,
+        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
+        p.zabel@pengutronix.de, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org, BMC-SW@aspeedtech.com
+Subject: Re: [v9 1/2] dt-bindings: Add bindings for aspeed pwm-tach.
+Message-ID: <20210713221431.GA936073@robh.at.kernel.org>
+References: <20210709065217.6153-1-billy_tsai@aspeedtech.com>
+ <20210709065217.6153-2-billy_tsai@aspeedtech.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210707073051.GA936385@anxtwsw-Precision-3640-Tower>
+In-Reply-To: <20210709065217.6153-2-billy_tsai@aspeedtech.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 07, 2021 at 03:30:51PM +0800, Xin Ji wrote:
-> On Thu, Jun 24, 2021 at 01:57:22PM +0200, Robert Foss wrote:
-> > Hey Xin,
-> > 
-> > I would like to merge this series now, but this patch needs a review
-> > first. Maybe Laurent/Rob Herring are good candidates.
-> > 
-> > 
-> > Rob.
-> Hi Rob, I get Laurent/Rob comments before, and explained why we needs
-> these DT properties, so far, I didn't get any response.
+On Fri, Jul 09, 2021 at 02:52:16PM +0800, Billy Tsai wrote:
+> This patch adds device binding for aspeed pwm-tach device which is a
+> multi-function device include pwm and tach function and pwm/tach device
+> bindings which should be the child-node of pwm-tach device.
 
-Do I have to go dig that up? If it was more than a week ago, assume I 
-don't remember. This is 1 of 100 bindings a week.
-
-Justify why this is needed in your commit message.
-
-> Hi Rob Herring and Laurent, for the DT property lane0/1-swing, Google
-> engineer has strong demond for them, they don't want to move DP swing
-> adjusting to kernel, thus may cause change the driver code in each
-> project, so config them in DT is a best option.
-
-Where's the ack from a Google engineer?
+I'll say it again, the fan control h/w needs some common bindings for 
+describing fans and fan connections to pwm and tach. I'm not going to 
+sign off on more fan bindings just doing their own thing.
 
 > 
-> Thanks,
-> Xin
-> > 
-> > On Tue, 22 Jun 2021 at 14:31, Xin Ji <xji@analogixsemi.com> wrote:
-> > >
-> > > Add 'bus-type' and 'data-lanes' define for port0. Define DP tx lane0,
-> > > lane1 swing register array define, and audio enable flag.
-> > >
-> > > Signed-off-by: Xin Ji <xji@analogixsemi.com>
-> > > ---
-> > >  .../display/bridge/analogix,anx7625.yaml      | 57 ++++++++++++++++++-
-> > >  1 file changed, 56 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > > index ab48ab2f4240..9e604d19a3d5 100644
-> > > --- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > > +++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > > @@ -43,6 +43,26 @@ properties:
-> > >    vdd33-supply:
-> > >      description: Regulator that provides the supply 3.3V power.
-> > >
-> > > +  analogix,lane0-swing:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > > +    minItems: 1
-> > > +    maxItems: 20
-> > > +    description:
-> > > +      an array of swing register setting for DP tx lane0 PHY, please don't
-> > > +      add this property, or contact vendor.
-
-Why do we have the property if we're not supposed to add it.
-
-> > > +
-> > > +  analogix,lane1-swing:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > > +    minItems: 1
-> > > +    maxItems: 20
-> > > +    description:
-> > > +      an array of swing register setting for DP tx lane1 PHY, please don't
-> > > +      add this property, or contact vendor.
-> > > +
-> > > +  analogix,audio-enable:
-> > > +    type: boolean
-> > > +    description: let the driver enable audio HDMI codec function or not.
-
-Wouldn't we have a 'port' node if audio is to be enabled?
-
-> > > +
-> > >    ports:
-> > >      $ref: /schemas/graph.yaml#/properties/ports
-> > >
-> > > @@ -50,13 +70,43 @@ properties:
-> > >        port@0:
-> > >          $ref: /schemas/graph.yaml#/properties/port
-> > >          description:
-> > > -          Video port for MIPI DSI input.
-> > > +          MIPI DSI/DPI input.
-> > > +
-> > > +        properties:
-> > > +          endpoint:
-> > > +            $ref: /schemas/media/video-interfaces.yaml#
-> > > +            type: object
-> > > +            additionalProperties: false
-
-Use 'unevaluatedProperties: false' instead...
-
-> > > +
-> > > +            properties:
-> > > +              remote-endpoint: true
-
-...And drop this.
-
-> > > +              bus-type: true
-
-This device supports all the possible bus types? What's the default as 
-it is not required?
-
-> > > +              data-lanes: true
-
-And up to 8 lanes? 
-
-> > > +
-> > > +            required:
-> > > +              - remote-endpoint
-> > > +
-> > > +        required:
-> > > +          - endpoint
-
-You can drop both 'required'.
-
-> > > +
-> > >
-> > >        port@1:
-> > >          $ref: /schemas/graph.yaml#/properties/port
-> > >          description:
-> > >            Video port for panel or connector.
-> > >
-> > > +        properties:
-> > > +          endpoint:
-> > > +            $ref: /schemas/media/video-interfaces.yaml#
-
-Doesn't look like anything from video-interfaces.yaml is used. This 
-whole chunk is not needed.
-
-> > > +            type: object
-> > > +            additionalProperties: false
-> > > +
-> > > +            properties:
-> > > +              remote-endpoint: true
-> > > +
-> > > +            required:
-> > > +              - remote-endpoint
-> > > +
-> > >      required:
-> > >        - port@0
-> > >        - port@1
-> > > @@ -87,6 +137,9 @@ examples:
-> > >              vdd10-supply = <&pp1000_mipibrdg>;
-> > >              vdd18-supply = <&pp1800_mipibrdg>;
-> > >              vdd33-supply = <&pp3300_mipibrdg>;
-> > > +            analogix,audio-enable;
-> > > +            analogix,lane0-swing = <0x14 0x54 0x64 0x74 0x29 0x7b 0x77 0x5b>;
-> > > +            analogix,lane1-swing = <0x14 0x54 0x64 0x74 0x29 0x7b 0x77 0x5b>;
-> > >
-> > >              ports {
-> > >                  #address-cells = <1>;
-> > > @@ -96,6 +149,8 @@ examples:
-> > >                      reg = <0>;
-> > >                      anx7625_in: endpoint {
-> > >                          remote-endpoint = <&mipi_dsi>;
-> > > +                        bus-type = <5>;
-> > > +                        data-lanes = <0 1 2 3>;
-> > >                      };
-> > >                  };
-> > >
-> > > --
-> > > 2.25.1
-> > >
+> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
+> ---
+>  .../bindings/hwmon/aspeed,ast2600-tach.yaml   | 69 +++++++++++++++
+>  .../bindings/mfd/aspeed,ast2600-pwm-tach.yaml | 87 +++++++++++++++++++
+>  .../bindings/pwm/aspeed,ast2600-pwm.yaml      | 64 ++++++++++++++
+>  3 files changed, 220 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/aspeed,ast2600-tach.yaml
+>  create mode 100644 Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/aspeed,ast2600-tach.yaml b/Documentation/devicetree/bindings/hwmon/aspeed,ast2600-tach.yaml
+> new file mode 100644
+> index 000000000000..a08471f96a61
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/aspeed,ast2600-tach.yaml
+> @@ -0,0 +1,69 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2021 Aspeed, Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/aspeed,ast2600-tach.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Aspeed Ast2600 Tach controller
+> +
+> +maintainers:
+> +  - Billy Tsai <billy_tsai@aspeedtech.com>
+> +
+> +description: |
+> +  The Aspeed Tach controller can support upto 16 fan input.
+> +  This module is part of the ast2600-pwm-tach multi-function device. For more
+> +  details see ../mfd/aspeed,ast2600-pwm-tach.yaml.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - aspeed,ast2600-tach
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  pinctrl-0: true
+> +
+> +  pinctrl-names:
+> +    const: default
+> +
+> +required:
+> +  - compatible
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +
+> +additionalProperties:
+> +  type: object
+> +  properties:
+> +    reg:
+> +      description:
+> +        The tach channel used for this fan.
+> +      maxItems: 1
+> +
+> +    aspeed,min-rpm:
+> +      description:
+> +        define the minimal revolutions per minute of the measure fan
+> +        used to calculate the sample period of tach
+> +      default: 1000
+> +
+> +    aspeed,pulse-pr:
+> +      description:
+> +        Value specifying the number of pulses per revolution of the
+> +        monitored FAN.
+> +      default: 2
+> +
+> +    aspeed,tach-div:
+> +      description:
+> +        define the tachometer clock divider as an integer. Formula of
+> +        tach clock = clock source / (2^tach-div)^2
+> +      minimum: 0
+> +      maximum: 15
+> +      # The value that should be used if the property is not present
+> +      default: 5
+> +
+> +  required:
+> +    - reg
+> diff --git a/Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml b/Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml
+> new file mode 100644
+> index 000000000000..ab49aff1928a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml
+> @@ -0,0 +1,87 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2021 Aspeed, Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/aspeed,ast2600-pwm-tach.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: PWM Tach controller Device Tree Bindings
+> +
+> +description: |
+> +  The PWM Tach controller is represented as a multi-function device which
+> +  includes:
+> +    PWM
+> +    Tach
+> +
+> +maintainers:
+> +  - Billy Tsai <billy_tsai@aspeedtech.com>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - aspeed,ast2600-pwm-tach
+> +      - const: syscon
+> +      - const: simple-mfd
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - resets
+> +
+> +patternProperties:
+> +  "^pwm(@[0-9a-f]+)?$":
+> +    $ref: ../pwm/aspeed,ast2600-pwm.yaml
+> +
+> +  "^tach(@[0-9a-f]+)?$":
+> +    $ref: ../hwmon/aspeed,ast2600-tach.yaml
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/ast2600-clock.h>
+> +    pwm_tach: pwm_tach@1e610000 {
+> +      compatible = "aspeed,ast2600-pwm-tach", "syscon", "simple-mfd";
+> +      reg = <0x1e610000 0x100>;
+> +      clocks = <&syscon ASPEED_CLK_AHB>;
+> +      resets = <&syscon ASPEED_RESET_PWM>;
+> +
+> +      pwm: pwm {
+> +        compatible = "aspeed,ast2600-pwm";
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        #pwm-cells = <3>;
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&pinctrl_pwm0_default>;
+> +        pwm-ch@0 {
+> +          reg = <0>;
+> +          aspeed,wdt-reload-enable;
+> +          aspeed,wdt-reload-duty-point = <32>;
+> +        };
+> +      };
+> +
+> +      tach: tach {
+> +        compatible = "aspeed,ast2600-tach";
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&pinctrl_tach0_default>;
+> +        tach-ch@0 {
+> +          reg = <0>;
+> +          aspeed,min-rpm = <1000>;
+> +          aspeed,pulse-pr = <2>;
+> +          aspeed,tach-div = <5>;
+> +        };
+> +      };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml b/Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml
+> new file mode 100644
+> index 000000000000..f501f8a769df
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml
+> @@ -0,0 +1,64 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2021 Aspeed, Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/aspeed,ast2600-pwm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Aspeed Ast2600 PWM controller
+> +
+> +maintainers:
+> +  - Billy Tsai <billy_tsai@aspeedtech.com>
+> +
+> +description: |
+> +  The Aspeed PWM controller can support upto 16 PWM outputs.
+> +  This module is part of the ast2600-pwm-tach multi-function device. For more
+> +  details see ../mfd/aspeed,ast2600-pwm-tach.yaml.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - aspeed,ast2600-pwm
+> +
+> +  "#pwm-cells":
+> +    const: 3
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  pinctrl-0: true
+> +
+> +  pinctrl-names:
+> +    const: default
+> +
+> +required:
+> +  - compatible
+> +  - "#pwm-cells"
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +
+> +additionalProperties:
+> +  description: Set extend properties for each pwm channel.
+> +  type: object
+> +  properties:
+> +    reg:
+> +      description:
+> +        The pwm channel index.
+> +      maxItems: 1
+> +
+> +    aspeed,wdt-reload-enable:
+> +      type: boolean
+> +      description:
+> +        Enable the function of wdt reset reload duty point.
+> +
+> +    aspeed,wdt-reload-duty-point:
+> +      description:
+> +        Define the duty point after wdt reset, 0 = 100%
+> +      minimum: 0
+> +      maximum: 255
+> +
+> +  required:
+> +    - reg
+> -- 
+> 2.25.1
+> 
 > 
