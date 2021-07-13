@@ -2,81 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3822B3C72D1
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 17:10:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E90D83C72EF
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 17:14:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236901AbhGMPNS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jul 2021 11:13:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53342 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236873AbhGMPNR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 11:13:17 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99ED8C0613E9;
-        Tue, 13 Jul 2021 08:10:27 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id ec55so8757718edb.1;
-        Tue, 13 Jul 2021 08:10:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=GXSApPPLGUhhXM/V78f8wajJ1bbfuwFyK0zy0kRxBqA=;
-        b=tLM2bZBt40bgP5Vo+Gh6dkRxvT+9Sr8VSaJWjxsi90cSlMfCWM90/OhXLI6uHq7BtK
-         RpjBkoU29VPD7/3V5PLHRn4dGaWEy22WHP4FX3DMYZYT50UyPrKKZ8g2+Q1C8JPfP4OI
-         4Kmw+o23DEBPHF/VRXclj+xENv2LnWhMDnV/OsjbkihotRXXfd+vdYhIxKYt/OCrtItf
-         aKVw6fB4kh/6ZDsK35gAKPc//Ibd4gHwno4abwP2H6BPrhpPP8anuS7FOl72RwJ+BbA2
-         DVy6NBq6+XZzdj85xrqyZ/LYLvOjoysbhEzBfDiidmeZAGNXiOFGhA1UEvWyZNBgSbDB
-         E4DA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=GXSApPPLGUhhXM/V78f8wajJ1bbfuwFyK0zy0kRxBqA=;
-        b=GzJqsdHHCu8L4ZKMrVXLGgDDAfxLznO+SCAc2ZJVzYijNmJXHox4sf6xu4chDGKaI/
-         VLDkbgInLdEUhlW2/i+pRTy60awpQSStUwq/DQXnGUHQIAQU9WqiWuOyuOtGPovJEYb7
-         UMcaRdYtw15UUhKVoanO0XRGZBZSO8dnzYy/ABv0Zaf8j6f2JZqKtrSPQ75pUcw+uI2g
-         E11JxJK12h+x/iFoaYq4x2ZsOz1TwfWQbrxjaci9DJG7lTAD2c/yLOy3YH0XY/5V76GJ
-         +lsGv7K02yICJHm7dFclhHhSGt6r5thyKlcxR6Fdpg/n2ICL3Kr3wZ30oMBljcrkP76b
-         v5gA==
-X-Gm-Message-State: AOAM530+jaRF+9ccHIuqWr9MfZvcAXC4AijeWwUmSwuRmerGcUsI59dn
-        lt0G1SfcxStzvSs2BB0RATrZ8hLtmC0IZtaDQ/g=
-X-Google-Smtp-Source: ABdhPJzCxYkRS51Xrr9LI81R5hzAdh5tZIviK3d3m2EE0Sh2KMgNVn6R7JxtZZxPw8xNgGZ3DtaTSVLMPZOFuUzzmYk=
-X-Received: by 2002:a50:fb04:: with SMTP id d4mr6302757edq.143.1626189026249;
- Tue, 13 Jul 2021 08:10:26 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210713055227.1142-1-linux.amoon@gmail.com> <20210713055227.1142-3-linux.amoon@gmail.com>
-In-Reply-To: <20210713055227.1142-3-linux.amoon@gmail.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Tue, 13 Jul 2021 17:10:15 +0200
-Message-ID: <CAFBinCC9rR1F7Fgg5sao4h3qtFZU6OTTJMgmSJMibyBv0nGjMQ@mail.gmail.com>
-Subject: Re: [PATCHv1 2/3] phy: amlogic: meson8b-usb2: Power off the PHY by
- putting it into reset mode
-To:     Anand Moon <linux.amoon@gmail.com>
-Cc:     linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Matt Corallo <oc2udbzfd@mattcorallo.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Emiliano Ingrassia <ingrassia@epigenesys.com>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        id S237038AbhGMPQ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jul 2021 11:16:59 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:43659 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236970AbhGMPQ7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Jul 2021 11:16:59 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1626189249; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=geWynaJJrC10VJR2i0AbaYFJW+GpDlbTGEZUL8tGP4U=; b=flz7e++vpLMhwoqBP5LkuLCE8OFqOsbYtjBtSoSadGTcL0qMiCZ3OcidR83Y9bLVfZTHlFjU
+ MMXBUYvGOjkwyeMyKwUKvYzNp7vvnclsDGiCPbufFFzWxlIgI4JkC7R+VjMu4Dwon/g7mHvG
+ FkpCmTfJwJRJY+cRHcPFAbLKRU4=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
+ 60edad6706ea41c941b27b97 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 13 Jul 2021 15:12:39
+ GMT
+Sender: tdas=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 319FCC43460; Tue, 13 Jul 2021 15:12:39 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from tdas-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: tdas)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 95072C433F1;
+        Tue, 13 Jul 2021 15:12:33 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 95072C433F1
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=tdas@codeaurora.org
+From:   Taniya Das <tdas@codeaurora.org>
+To:     Stephen Boyd <sboyd@kernel.org>,
+        =?UTF-8?q?Michael=20Turquette=20=C2=A0?= <mturquette@baylibre.com>
+Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org, robh+dt@kernel.org,
+        Taniya Das <tdas@codeaurora.org>
+Subject: [PATCH v3 0/7] Add support for DISP/VIDEO/GPU CCs for SC7280
+Date:   Tue, 13 Jul 2021 20:42:16 +0530
+Message-Id: <1626189143-12957-1-git-send-email-tdas@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 13, 2021 at 7:53 AM Anand Moon <linux.amoon@gmail.com> wrote:
->
-> Power off the PHY by putting it into reset mode.
->
-> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-based on code from the vendor kernel [0] this gets my:
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Add support for display, video & graphics clock controllers on SC7280
+along with the bindings for each of the clock controllers.
 
+[v3]
+ * Update BSD license for Device Tree documentation and bindings for display,
+   graphics, video and also global clock controller.
+ * Update 'const' for all the VCO tables.
+ * Remove critical video xo clock from video driver as the clock is enabled
+   from HW and no SW modelled clock required.
 
-[0] https://github.com/endlessm/linux-meson/blob/0672f0b61eb92ba63c91d858a678d2c3a0bba06a/drivers/amlogic/usb/dwc_otg/310/dwc_otg_attr.c#L706
+[v2]
+ * Use the .hws instead of clk_parent_data when the whole array is
+   clk_hw pointers for all the clock drivers.
+
+[v1]
+ * Documentation binding for DISP, GPU, VIDEO clock controller for SC7280.
+ * Add the DISP, GPU, VIDEO clock drivers for SC7280.
+
+Taniya Das (7):
+  dt-bindings: clock: qcom: Update license for GCC SC7280
+  dt-bindings: clock: Add SC7280 DISPCC clock binding
+  clk: qcom: Add display clock controller driver for SC7280
+  dt-bindings: clock: Add SC7280 GPUCC clock binding
+  clk: qcom: Add graphics clock controller driver for SC7280
+  dt-bindings: clock: Add SC7280 VideoCC clock binding
+  clk: qcom: Add video clock controller driver for SC7280
+
+ .../devicetree/bindings/clock/qcom,gpucc.yaml      |   6 +-
+ .../bindings/clock/qcom,sc7280-dispcc.yaml         |  94 +++
+ .../devicetree/bindings/clock/qcom,videocc.yaml    |   6 +-
+ drivers/clk/qcom/Kconfig                           |  25 +
+ drivers/clk/qcom/Makefile                          |   3 +
+ drivers/clk/qcom/dispcc-sc7280.c                   | 908 +++++++++++++++++++++
+ drivers/clk/qcom/gpucc-sc7280.c                    | 491 +++++++++++
+ drivers/clk/qcom/videocc-sc7280.c                  | 325 ++++++++
+ include/dt-bindings/clock/qcom,dispcc-sc7280.h     |  55 ++
+ include/dt-bindings/clock/qcom,gcc-sc7280.h        |   2 +-
+ include/dt-bindings/clock/qcom,gpucc-sc7280.h      |  35 +
+ include/dt-bindings/clock/qcom,videocc-sc7280.h    |  27 +
+ 12 files changed, 1972 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,sc7280-dispcc.yaml
+ create mode 100644 drivers/clk/qcom/dispcc-sc7280.c
+ create mode 100644 drivers/clk/qcom/gpucc-sc7280.c
+ create mode 100644 drivers/clk/qcom/videocc-sc7280.c
+ create mode 100644 include/dt-bindings/clock/qcom,dispcc-sc7280.h
+ create mode 100644 include/dt-bindings/clock/qcom,gpucc-sc7280.h
+ create mode 100644 include/dt-bindings/clock/qcom,videocc-sc7280.h
+
+--
+Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
+of the Code Aurora Forum, hosted by the  Linux Foundation.
+
