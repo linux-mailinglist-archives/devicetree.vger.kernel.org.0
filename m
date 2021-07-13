@@ -2,163 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 916D23C6D1A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 11:18:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94B963C6D3F
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 11:24:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234735AbhGMJU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jul 2021 05:20:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57322 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235018AbhGMJU4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 05:20:56 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91B17C0613E9
-        for <devicetree@vger.kernel.org>; Tue, 13 Jul 2021 02:18:05 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id p8so29522104wrr.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Jul 2021 02:18:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=ewEO5MHGcmAYvogawgNCpQFpb7n+ZIMY7fSG23QfRTM=;
-        b=IPBbiZ2JbktF+haUg2zYgBjGTi9+Mdvb5IEohZtSNIOMef+cZvCtpNlH72FG7q7UCs
-         ibHJFhOu8yjCK7DBREPzXjTAshbnjRkbEzpgm05Mh502bISWJBVIpyd7Y2WgmhE6/B4D
-         dvF6WluGEWJcksqoDZKIKpErB0bqbQ7SusaxDRAZ2I9tfl9b2m0NkJJQooOZj8dX7JM6
-         U9sEse5FpSAs/N4zrmUGPZuJNRGGgsdXRIryt+MDy1N7X2PY0eZHsO3Co4VQ+lHrn0bw
-         wtndCWrMH84W4mzZ5X7c6IMtitYUTYk6rJkdTeO1XAZlarTqnB0DvVgkOZkH2aQRPOhv
-         YgaQ==
+        id S234819AbhGMJ10 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jul 2021 05:27:26 -0400
+Received: from mail-ua1-f41.google.com ([209.85.222.41]:41774 "EHLO
+        mail-ua1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234397AbhGMJ10 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 05:27:26 -0400
+Received: by mail-ua1-f41.google.com with SMTP id e22so4200433uaa.8;
+        Tue, 13 Jul 2021 02:24:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=ewEO5MHGcmAYvogawgNCpQFpb7n+ZIMY7fSG23QfRTM=;
-        b=m+f0d8/WfrjVisC8GgEbhCzwYIcmICYmpibom5iNBz68QaQGdsWLO2q85ZBYhNMyZn
-         vrg0J1/dYAy4bHawkhafCh9b4EWlVpnuNZwKiSXatPQHCMchsUZ1F/87w9zEu7BOio9G
-         BU2pGoIwgaQ4exYZHiThJer7b6+t8eG41AkpkEr0eKZL02ZOrMkhzt3iCr9dyvBjc7l/
-         mhQF4SYOkIOgqeBYPZ1z5GSAQoamv9j5cs+QsYIpQhQtMGibD4DWEi/AIf7t9yq+aTtc
-         e8c+SbG8h81tfhwF3n2cY32dQaQlXGg6uO1GIpi5TqR4GkR1Q+Kq2vFJ3CqLQOFc01/v
-         TyeQ==
-X-Gm-Message-State: AOAM532Oz2BajeQOEO4fa9F+s/JdtBuatFqrltv+aPoQmz0HIle0YqQ3
-        V5poGRTiH8M9WZ20PaYQz5SM3A==
-X-Google-Smtp-Source: ABdhPJxk+wHbMBSyJZq1DnAP6a6eJsWWNd4mXYLV79Ryi/iwYbkATYfbBhs56+4Bzqmr4OxnR8T23g==
-X-Received: by 2002:a5d:63ca:: with SMTP id c10mr4323761wrw.163.1626167884123;
-        Tue, 13 Jul 2021 02:18:04 -0700 (PDT)
-Received: from google.com ([109.180.115.218])
-        by smtp.gmail.com with ESMTPSA id o3sm17061852wrw.56.2021.07.13.02.18.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jul 2021 02:18:03 -0700 (PDT)
-Date:   Tue, 13 Jul 2021 10:18:01 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Emil Renner Berthing <kernel@esmil.dk>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        "Andrew F. Davis" <afd@ti.com>, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/3] mfd: tps65086: Make interrupt line optional
-Message-ID: <YO1aSSSankv+cAru@google.com>
-References: <20210625224744.1020108-1-kernel@esmil.dk>
- <20210625224744.1020108-3-kernel@esmil.dk>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hRHcPSp8vPymwcz1/KJlrg/3zz/sOu8Ehh9q7i76d+0=;
+        b=uH078N4oyyI9DQm5p3iq8Eyyxwgxoqi5kpOnkNushvXJz1v1+7YnLlip0Ssg1YXcjk
+         ZZQAeks0xi7XFL463+TWnQTbxs+bvoR1iOpNMZxIc66FfsHAmgPjWTGlDkKYMbUs6/gv
+         rqCUCHQWPdlRywpIZH27A4Up/+hX9Fp2OVxjFX0NXg26s3WQq1tqIgzqDcm7DlZPm9vZ
+         zE81+VnsqPBqBwQeVWLDvR08FMwQWLEdC6ZUilZfv/mt97UuVnlzorqhFfindNgaVqSc
+         c/FOmkgAd49Zcq7FVh5i323fEQPBy/2Wr7bTiOX8TDPMia7AaWMe6eAigLT8en9T/PMH
+         nD3g==
+X-Gm-Message-State: AOAM533KdyOi/2Ev8qTiieeFUuM9WCwFb2Yp7HkwX0ieUifZNuZWyQbC
+        27EgwXTNjMjfDJ+xCpcK7709d2cmpkdSyqU3WjyHUcoPR/4=
+X-Google-Smtp-Source: ABdhPJyTiTkkKjo1c9EXH9r8TqDbuE8rIPejJfusgUQBhqggVemMgEy0iBSBswJkAE38OkEuxxGmBPYnx61c7zKCNPI=
+X-Received: by 2002:a9f:3f0d:: with SMTP id h13mr4627826uaj.100.1626168275941;
+ Tue, 13 Jul 2021 02:24:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210625224744.1020108-3-kernel@esmil.dk>
+References: <20210611152108.6785-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdWJQESFmhV+c-QmivXCWPx21QcB-HSzjxf8KsXh_DAvfw@mail.gmail.com>
+ <CAMuHMdXG9H_mOtA_a9t0K8BVaR4p0DcWgNeL0786YvybV2Hqgw@mail.gmail.com>
+ <CA+V-a8tk6uCeRwmiTh=Ds+8DYVUqCYs64nX_9ksDXXdSd-rxNA@mail.gmail.com>
+ <CAMuHMdUg5v3qsFQsg783nC=o_BL3pL6YqqQphGQHHOaCeakj5Q@mail.gmail.com>
+ <20210713085508.nq6473icf5gt3nm5@bogus> <CAMuHMdVG6eji_uW+7egeQH=77fwQnN_qQ4hRHgQa4XQYQrbL9Q@mail.gmail.com>
+ <20210713091108.7nx2d2fxolx2wrg5@bogus>
+In-Reply-To: <20210713091108.7nx2d2fxolx2wrg5@bogus>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 13 Jul 2021 11:24:24 +0200
+Message-ID: <CAMuHMdUgAutuRes9yTsDVCZ+rMeyQrhuX+BW60ft7_S9OU3RRg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: r9a07g044: Add missing GICv3 node properties
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 26 Jun 2021, Emil Renner Berthing wrote:
+Hi Sudeep,
 
-> The BeagleV Starlight v0.9 board[1] doesn't have the IRQB line routed to
-> the SoC, but it is still useful to be able to reach the PMIC over I2C
+On Tue, Jul 13, 2021 at 11:16 AM Sudeep Holla <sudeep.holla@arm.com> wrote:
+> On Tue, Jul 13, 2021 at 11:04:09AM +0200, Geert Uytterhoeven wrote:
+> > On Tue, Jul 13, 2021 at 10:56 AM Sudeep Holla <sudeep.holla@arm.com> wrote:
+> > > On Tue, Jul 13, 2021 at 10:30:36AM +0200, Geert Uytterhoeven wrote:
+>
+> [...]
+>
+> > > > And a possible use case: the RT CPU core may want to reset the AP GIC.
+> > >
+> > > I didn't want to add new bindings without details on the implementation
+> > > to avoid possible issues with backward compatibility as this was not
+> > > thought through completely and correctly before it was added.
+> > >
+> > > OK, now let us discuss your use-case: *RT CPU wants to reset AP GIC*
+> > >
+> > > 1. Will it just reset AP GIC or will it request the AP reset as a whole ?
+> > >    I am not sure if we can handle former, if you think otherwise what is
+> > >    the reset notification mechanism ?
+> > >
+> > > 2. Will that bypass secure world/PSCI ? Again more details on this would
+> > >    be helpful to visualise the entire use-case end-to-end better.
+> > >
+> > > By GIC reset, I am assuming it will be complete GIC reset including it's
+> > > CPU interface.
+> > >
+> > > I don't think we can reset GIC without actual CPU reset. Even if we get
+> > > some notification magically to the CPU that its GIC alone needs to be
+> > > reset, it needs to safely higher exceptions to get its GIC CPU interface
+> > > reprogrammed to correct (saved) values before OS can reprogram the NS
+> > > world values. All these seems overall complicated and may be unnecessary.
+> >
+> > Probably both.  Might make sense to reset on wake-up, after having disabled
+> > clocks and powered down the AP CPU, AP GIC, ...
+> >
+>
+> /me confused. If this is arm64 platform, then you have to use *PSCI* and
+> I expect the reset to be done as part of CPU wake-up in PSCI firmware.
 
-What is still useful?
+DT Rule #1: DT describes hardware not software policy.
 
-The GPIO and Regulator drivers?
+The fact that _Linux_ must use PSCI is a (unfortunate) software policy.
+What about other OSes, or bare-metal software?
 
-> for the other functionality it provides.
-> 
-> [1] https://github.com/beagleboard/beaglev-starlight
-> 
-> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> ---
->  .../devicetree/bindings/mfd/ti,tps65086.yaml  |  3 ---
->  drivers/mfd/tps65086.c                        | 21 ++++++++++---------
->  2 files changed, 11 insertions(+), 13 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/ti,tps65086.yaml b/Documentation/devicetree/bindings/mfd/ti,tps65086.yaml
-> index ba638bd10a58..4b629fcc0df9 100644
-> --- a/Documentation/devicetree/bindings/mfd/ti,tps65086.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/ti,tps65086.yaml
-> @@ -87,9 +87,6 @@ additionalProperties: false
->  required:
->    - compatible
->    - reg
-> -  - interrupts
-> -  - interrupt-controller
-> -  - '#interrupt-cells'
+> > If that bypasses PSCI: well, if the unsecure software can do it, it
+> > means the hardware is not secure. Or at least Linux has to be trusted.
+>
+> No, if the system has PSCI, then you simply can't bypass that for GIC
+> reset. Or at-least I am failing to understand the complete flow of that.
 
-I can't say that I've been keeping up with the latest DT binding
-changes, but shouldn't these lines be relocated into some kind of
-optional listing?
+PSCI can only prevent other software from bypassing GIC reset if PSCI
+programs the hardware to prevent access to the GIC reset (if possible
+at all).
 
-Or are optional properties omitted from documentation?
+Gr{oetje,eeting}s,
 
->    - gpio-controller
->    - '#gpio-cells'
->    - regulators
-> diff --git a/drivers/mfd/tps65086.c b/drivers/mfd/tps65086.c
-> index 341466ef20cc..cc3478ee9a64 100644
-> --- a/drivers/mfd/tps65086.c
-> +++ b/drivers/mfd/tps65086.c
-> @@ -100,29 +100,30 @@ static int tps65086_probe(struct i2c_client *client,
->  		 (char)((version & TPS65086_DEVICEID_OTP_MASK) >> 4) + 'A',
->  		 (version & TPS65086_DEVICEID_REV_MASK) >> 6);
->  
-> -	ret = regmap_add_irq_chip(tps->regmap, tps->irq, IRQF_ONESHOT, 0,
-> -				  &tps65086_irq_chip, &tps->irq_data);
-> -	if (ret) {
-> -		dev_err(tps->dev, "Failed to register IRQ chip\n");
-> -		return ret;
-> +	if (tps->irq > 0) {
-
-Are you sure that the 0th line is not a valid IRQ?
-
-> +		ret = regmap_add_irq_chip(tps->regmap, tps->irq, IRQF_ONESHOT, 0,
-> +					  &tps65086_irq_chip, &tps->irq_data);
-> +		if (ret) {
-> +			dev_err(tps->dev, "Failed to register IRQ chip\n");
-> +			return ret;
-> +		}
->  	}
->  
->  	ret = mfd_add_devices(tps->dev, PLATFORM_DEVID_AUTO, tps65086_cells,
->  			      ARRAY_SIZE(tps65086_cells), NULL, 0,
->  			      regmap_irq_get_domain(tps->irq_data));
-> -	if (ret) {
-> +	if (ret && tps->irq > 0)
->  		regmap_del_irq_chip(tps->irq, tps->irq_data);
-> -		return ret;
-> -	}
->  
-> -	return 0;
-> +	return ret;
->  }
->  
->  static int tps65086_remove(struct i2c_client *client)
->  {
->  	struct tps65086 *tps = i2c_get_clientdata(client);
->  
-> -	regmap_del_irq_chip(tps->irq, tps->irq_data);
-> +	if (tps->irq > 0)
-> +		regmap_del_irq_chip(tps->irq, tps->irq_data);
->  
->  	return 0;
->  }
+                        Geert
 
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
