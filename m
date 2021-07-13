@@ -2,125 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 75D0E3C6F32
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 13:12:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3491A3C6F84
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 13:18:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235671AbhGMLPk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jul 2021 07:15:40 -0400
-Received: from foss.arm.com ([217.140.110.172]:41188 "EHLO foss.arm.com"
+        id S236018AbhGMLVA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jul 2021 07:21:00 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47956 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235390AbhGMLPk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Jul 2021 07:15:40 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 461F61FB;
-        Tue, 13 Jul 2021 04:12:50 -0700 (PDT)
-Received: from bogus (unknown [10.57.79.213])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C08BA3F7D8;
-        Tue, 13 Jul 2021 04:12:45 -0700 (PDT)
-Date:   Tue, 13 Jul 2021 12:11:43 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Etienne CARRIERE <etienne.carriere@st.com>
-Cc:     Sumit Garg <sumit.garg@linaro.org>, Marc Zyngier <maz@kernel.org>,
-        Jens Wiklander <jens.wiklander@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        OP-TEE TrustedFirmware <op-tee@lists.trustedfirmware.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Jerome Forissier <jerome@forissier.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Etienne Carriere <etienne.carriere@linaro.org>
-Subject: Re: [PATCH v2 0/7] Asynchronous notifications from secure world
-Message-ID: <20210713111143.g6ztdakegs6ck25s@bogus>
-References: <PAXPR10MB4687E737261282B78600272DFD189@PAXPR10MB4687.EURPRD10.PROD.OUTLOOK.COM>
+        id S235390AbhGMLU6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Jul 2021 07:20:58 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 344AA61178;
+        Tue, 13 Jul 2021 11:18:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1626175088;
+        bh=G3DpPuSACBy7CTePMGBCkcBIAOUG+KzTOSbhqPO32E0=;
+        h=From:To:Cc:Subject:Date:From;
+        b=ESQW+vzQ0c21D41buSWvccNUGNN5X8LojV5B2NWlcjYl2b6wJFnmkm9KDpYL3TNL4
+         rrN9gvVBsEag7eI0F+SoyUW+J0OXR/jx+8pQ+G3L2wf0MKChDFnsWYxxs9UBsbPGb3
+         aBVcjc4QeCYJH34IodncdvAo5y3Of1z7bEwT8A1aVLwyz+qdfP6FuEeiSnp3LCwFXm
+         cFq3kW0T54mQ9bcWKq1SWiMHvSj/V/egkSpQ7K0Vqggii237AqGFUdSwVvv5vFtfNp
+         oUqISdXQa/Du+5om3X1ugLJoi8bcUNt+w74aGT3o97FhKjPGPWJ0d9lgRc7fXGeDYf
+         468P+XCrKyARQ==
+Received: by mail.kernel.org with local (Exim 4.94.2)
+        (envelope-from <mchehab@kernel.org>)
+        id 1m3GQK-006b3Y-Rv; Tue, 13 Jul 2021 13:18:00 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@axis.com, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-omap@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: [PATCH v4 0/5] convert designware-pcie.txt and kirin-pcie.txt to yaml
+Date:   Tue, 13 Jul 2021 13:17:50 +0200
+Message-Id: <cover.1626174242.git.mchehab+huawei@kernel.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <PAXPR10MB4687E737261282B78600272DFD189@PAXPR10MB4687.EURPRD10.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: 8bit
+Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 09, 2021 at 08:05:57AM +0000, Etienne CARRIERE wrote:
-> Hello Sudeep and all,
-> 
-> On Wed, 7 Jul 2021 at 19:52, Sudeep Holla <sudeep.holla@arm.com> wrote:
-> >
-> > Hi Sumit,
-> >
-> > I was holding off you reply as I didn't have all the background on this.
-> > Achin did mention that this is preparatory work for FFA notifications.
-> > I did mention to him that this is more than that, it is custom extension
-> > to address what FF-A notification is trying to in standard way.
-> >
-> > I share same opinion as Marc Z.
-> >
-> > On Wed, Jul 07, 2021 at 11:22:23AM +0530, Sumit Garg wrote:
-> > > On Tue, 6 Jul 2021 at 18:16, Marc Zyngier <maz@kernel.org> wrote:
-> >
-> > [...]
-> >
-> > > >
-> > > > I don't care about OP-TEE. If you are proposing a contract between S
-> > > > and NS, it has to be TEE and OS independent. That's how the
-> > > > architecture works.
-> > > >
-> > >
-> > > Agree, here we are not proposing a common contract among the S and NS
-> > > world that every TEE (based on Arm TrustZone) will use to communicate
-> > > with REE (Linux in our case) but rather an OP-TEE specific
-> > > notifications feature that is built on top of OP-TEE specific ABIs.
-> > >
-> > > And I can see your arguments coming from an FFA perspective but there
-> > > are platforms like the ones based on Armv7 which don't support FFA
-> > > ABI. Maybe Jens can elaborate how this feature will fit in when FFA
-> > > comes into picture?
-> > >
-> >
-> > I can understand that but won't those platforms add the support both in
-> > the kernel(current series) and secure world to address notifications.
-> > While you could argue that it is small extension to what is already present
-> > but I prefer they support FF-A is they need such a support instead of adding
-> > custom mechanisms. It is hard to maintain and each vendor will deviate
-> > from this custom mechanism and soon we will have bunch of them to handle.
->
-> There exist armv7-a platforms that expect OP-TEE notification support and
-> will not move the FF-A, like the stm32mp15. This platform won't move to FF-A
-> mainly due to the memory cost of the added SPM layer and the device physical
-> constraints.
+Hi Rob,
 
-Fair enough on the use-case and the analysis for not being able to use FF-A.
-As you may already know it doesn't simply this problem. This has been
-discussed for years and FF-A was assumed to be the solution when FF-A
-spec work started.
+This series (in particular, the last patch) depends on this series:
+	https://lore.kernel.org/lkml/cover.1626157454.git.mchehab+huawei@kernel.org/
 
-> We have a usecase for OP-TEE notification. We're working on the integration
-> of an SCMI server in OP-TEE. SCMI notification is a feature needed is this
-> scope and it requires OP-TEE async notification means as those proposed
-> here.
->
+It convert designware-pcie.txt and kirin-pcie.txt to DT schema.
 
-I am aware of this use-case, I understand. But I can only share rants
-which I know doesn't help much.
+This series uses a different strategy than v4: after doing lots of tests and
+trying to tweak the syntax, I opted to create two files instead of one.
 
-> This OP-TEE async notif also brings a lot of value in OP-TEE as it allows a
-> OP-TEE secure thread (i.e. executing a trusted application service) to
-> gently wait on a secure interrupt (as a slow bus transaction completion or
-> many other usecase) with the CPU relaxed. This support is provided by the
-> proposed series. I believe existing device should be able to leverage this
-> OP-TEE feature without needing their OP-TEE to move to the new FF-A
-> interface.
->
+The first one (snps,dw-pcie.yaml) uses the pci-bus.yaml schema.
+The second one (add snps,dw-pcie-ep.yaml) uses the pci-ep.yaml schema.
 
-While I agree these are nice to have in OPTEE, the timing is just odd.
+Without splitting it into two, I was unable to find a way that would work,
+due to the need of using:
 
-We are trying hard to push FF-A as standard solution to address all such
-issues that couldn't be solved with OPTEE + DT, now we are back to address
-the same in parallel to FF-A.
+	AllOf:
+	   - $ref: /schemas/pci/pci-bus.yaml#
 
---
-Regards,
-Sudeep
+For the non-endpoint part.
+
+In order to make easier to review, I also opted to split the patch into
+4 ones:
+
+patch 1:
+   adds the Designware PCI DT schema;
+patch 2:
+   adds the Designware PCI endpoint DT schema;
+patch 3:
+   changes the existing references to point to the new schemas.
+   On yaml files, it uses the proper $ref to point to the right DT schema;
+patch 4
+   drops the old txt file.
+
+Patch5 is independent: it converts the pcie-kirin.txt to DT schema and
+adds a reference to the newly-converted DWC schema.
+
+It should be noticed that I had to make a few amends at the "reg" field
+on patches 1 and 2, in order to avoid warnings about some properties
+found on some DWC-dependent DT schemas, as some have "addr_space",
+"link", "app" and "elbi".
+
+With this change, it now passes "make dt_binding_check".
+
+Mauro Carvalho Chehab (5):
+  dt-bindings: PCI: add snps,dw-pcie.yaml
+  dt-bindings: PCI: add snps,dw-pcie-ep.yaml
+  dt-bindings: PCI: update references to Designware schema
+  dt-bindings: PCI: remove designware-pcie.txt
+  dt-bindings: PCI: kirin-pcie.txt: Convert it to yaml
+
+ .../bindings/pci/amlogic,meson-pcie.txt       |  4 +-
+ .../bindings/pci/axis,artpec6-pcie.txt        |  2 +-
+ .../bindings/pci/designware-pcie.txt          | 77 ---------------
+ .../bindings/pci/fsl,imx6q-pcie.txt           |  2 +-
+ .../bindings/pci/hisilicon,kirin-pcie.yaml    | 81 ++++++++++++++++
+ .../bindings/pci/hisilicon-histb-pcie.txt     |  2 +-
+ .../devicetree/bindings/pci/kirin-pcie.txt    | 41 --------
+ .../bindings/pci/layerscape-pci.txt           |  2 +-
+ .../bindings/pci/nvidia,tegra194-pcie.txt     |  5 +-
+ .../devicetree/bindings/pci/pci-armada8k.txt  |  2 +-
+ .../devicetree/bindings/pci/pcie-al.txt       |  2 +-
+ .../devicetree/bindings/pci/qcom,pcie.txt     | 14 +--
+ .../bindings/pci/samsung,exynos-pcie.yaml     |  4 +-
+ .../bindings/pci/sifive,fu740-pcie.yaml       |  4 +-
+ .../bindings/pci/snps,dw-pcie-ep.yaml         | 90 +++++++++++++++++
+ .../devicetree/bindings/pci/snps,dw-pcie.yaml | 96 +++++++++++++++++++
+ .../pci/socionext,uniphier-pcie-ep.yaml       |  4 +-
+ .../devicetree/bindings/pci/ti-pci.txt        |  4 +-
+ .../devicetree/bindings/pci/uniphier-pcie.txt |  2 +-
+ MAINTAINERS                                   |  5 +-
+ 20 files changed, 297 insertions(+), 146 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pci/designware-pcie.txt
+ create mode 100644 Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pci/kirin-pcie.txt
+ create mode 100644 Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
+
+-- 
+2.31.1
+
+
