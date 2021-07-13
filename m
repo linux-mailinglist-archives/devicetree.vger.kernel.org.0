@@ -2,98 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A0D103C6D0D
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 11:16:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A9703C6D13
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 11:17:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234726AbhGMJTA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jul 2021 05:19:00 -0400
-Received: from foss.arm.com ([217.140.110.172]:39018 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234397AbhGMJS7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Jul 2021 05:18:59 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F257E31B;
-        Tue, 13 Jul 2021 02:16:09 -0700 (PDT)
-Received: from bogus (unknown [10.57.79.213])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 81C003F7D8;
-        Tue, 13 Jul 2021 02:16:08 -0700 (PDT)
-Date:   Tue, 13 Jul 2021 10:15:02 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH] arm64: dts: renesas: r9a07g044: Add missing GICv3 node
- properties
-Message-ID: <20210713091108.7nx2d2fxolx2wrg5@bogus>
-References: <20210611152108.6785-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdWJQESFmhV+c-QmivXCWPx21QcB-HSzjxf8KsXh_DAvfw@mail.gmail.com>
- <CAMuHMdXG9H_mOtA_a9t0K8BVaR4p0DcWgNeL0786YvybV2Hqgw@mail.gmail.com>
- <CA+V-a8tk6uCeRwmiTh=Ds+8DYVUqCYs64nX_9ksDXXdSd-rxNA@mail.gmail.com>
- <CAMuHMdUg5v3qsFQsg783nC=o_BL3pL6YqqQphGQHHOaCeakj5Q@mail.gmail.com>
- <20210713085508.nq6473icf5gt3nm5@bogus>
- <CAMuHMdVG6eji_uW+7egeQH=77fwQnN_qQ4hRHgQa4XQYQrbL9Q@mail.gmail.com>
+        id S234735AbhGMJTx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jul 2021 05:19:53 -0400
+Received: from frasgout.his.huawei.com ([185.176.79.56]:3391 "EHLO
+        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234726AbhGMJTx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 05:19:53 -0400
+Received: from fraeml739-chm.china.huawei.com (unknown [172.18.147.201])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4GPF9J3xX8z6L7wy;
+        Tue, 13 Jul 2021 17:05:56 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml739-chm.china.huawei.com (10.206.15.220) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Tue, 13 Jul 2021 11:17:01 +0200
+Received: from localhost (10.47.87.34) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Tue, 13 Jul
+ 2021 10:17:00 +0100
+Date:   Tue, 13 Jul 2021 10:16:42 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Liam Beguin <liambeguin@gmail.com>
+CC:     Jonathan Cameron <jic23@kernel.org>, <lars@metafoo.de>,
+        <Michael.Hennerich@analog.com>,
+        <charles-antoine.couret@essensium.com>, <Nuno.Sa@analog.com>,
+        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 4/4] dt-bindings: iio: adc: ad7949: add
+ adi,reference-source
+Message-ID: <20210713101642.00001262@Huawei.com>
+In-Reply-To: <CCRBPUEYGCAC.CJ1Y3GDWQYYJ@shaak>
+References: <20210709155856.1732245-1-liambeguin@gmail.com>
+        <20210709155856.1732245-5-liambeguin@gmail.com>
+        <20210710180001.051f7367@jic23-huawei>
+        <CCRBPUEYGCAC.CJ1Y3GDWQYYJ@shaak>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdVG6eji_uW+7egeQH=77fwQnN_qQ4hRHgQa4XQYQrbL9Q@mail.gmail.com>
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.47.87.34]
+X-ClientProxiedBy: lhreml722-chm.china.huawei.com (10.201.108.73) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 13, 2021 at 11:04:09AM +0200, Geert Uytterhoeven wrote:
-> Hi Sudeep,
+On Mon, 12 Jul 2021 13:05:23 -0400
+"Liam Beguin" <liambeguin@gmail.com> wrote:
+
+> Hi Jonathan,
 > 
-> On Tue, Jul 13, 2021 at 10:56 AM Sudeep Holla <sudeep.holla@arm.com> wrote:
-> > On Tue, Jul 13, 2021 at 10:30:36AM +0200, Geert Uytterhoeven wrote:
-
-[...]
-
-> > > And a possible use case: the RT CPU core may want to reset the AP GIC.
+> On Sat Jul 10, 2021 at 1:00 PM EDT, Jonathan Cameron wrote:
+> > On Fri, 9 Jul 2021 11:58:56 -0400
+> > Liam Beguin <liambeguin@gmail.com> wrote:
+> >  
+> > > From: Liam Beguin <lvb@xiphos.com>
+> > > 
+> > > Add bindings documentation for the adi,reference-source property.
+> > > This property is required to properly configure the ADC sample request
+> > > based on which reference source should be used for the calculation.  
 > >
-> > I didn't want to add new bindings without details on the implementation
-> > to avoid possible issues with backward compatibility as this was not
-> > thought through completely and correctly before it was added.
+> > Should this be per channel? That will effect some of what I say below...
+> >  
+> 
+> We could make it per channel. Ideally, I'd also like to add support for
+> differential channels, so might as well add per channel configurations
+> now.
+> 
+> > > 
+> > > Signed-off-by: Liam Beguin <lvb@xiphos.com>
+> > > ---
+> > >  .../bindings/iio/adc/adi,ad7949.yaml          | 21 +++++++++++++++++++
+> > >  1 file changed, 21 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7949.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7949.yaml
+> > > index 9b56bd4d5510..eae3121cad01 100644
+> > > --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7949.yaml
+> > > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7949.yaml
+> > > @@ -35,6 +35,27 @@ properties:
+> > >    "#io-channel-cells":
+> > >      const: 1
+> > >  
+> > > +  adi,reference-select:  
 > >
-> > OK, now let us discuss your use-case: *RT CPU wants to reset AP GIC*
+> > This is one field in the register, but it's not one thing, so lets break
+> > it up
+> > in DT. We should do this both to make for more readable dts files and to
+> > enforce the requirements on regulators...
+> >  
+> > > +    description: |
+> > > +      Select the reference voltage source to use when converting samples.
+> > > +      Acceptable values are:
+> > > +      - 0: Internal reference and temperature sensor enabled.
+> > > +           Vref=2.5V, buffered output
+> > > +      - 1: Internal reference and temperature sensor enabled.
+> > > +           Vref=4.096V, buffered output
+> > > +      - 2: Use external reference, temperature sensor enabled.
+> > > +           Internal buffer disabled
+> > > +      - 3: Use external reference, internal buffer and temperature sensor
+> > > +           enabled.
+> > > +      - 6: Use external reference, internal buffer and temperature sensor
+> > > +           disabled.
+> > > +      - 7: Use external reference, internal buffer enabled.
+> > > +           Internal reference and temperature sensor disabled.  
 > >
-> > 1. Will it just reset AP GIC or will it request the AP reset as a whole ?
-> >    I am not sure if we can handle former, if you think otherwise what is
-> >    the reset notification mechanism ?
+> > So question 1 is whether to use an external or internal reference.
+> > Normally we'd make the coarse decision of whether to use an external
+> > reference
+> > by whether there is a regulator provided. That won't work so well if we
+> > make
+> > this per channel.
 > >
-> > 2. Will that bypass secure world/PSCI ? Again more details on this would
-> >    be helpful to visualise the entire use-case end-to-end better.
+> > Question 2, assuming internal reference, what voltage? Those should take
+> > an actual voltage (probably in mV and match against an enum of the two
+> > possible values).
+> > Binding should check to make sure this isn't specified as well as saying
+> > we
+> > are using an external refernce.
 > >
-> > By GIC reset, I am assuming it will be complete GIC reset including it's
-> > CPU interface.
-> >
-> > I don't think we can reset GIC without actual CPU reset. Even if we get
-> > some notification magically to the CPU that its GIC alone needs to be
-> > reset, it needs to safely higher exceptions to get its GIC CPU interface
-> > reprogrammed to correct (saved) values before OS can reprogram the NS
-> > world values. All these seems overall complicated and may be unnecessary.
->
-> Probably both.  Might make sense to reset on wake-up, after having disabled
-> clocks and powered down the AP CPU, AP GIC, ...
->
+> > Question 3, assuming external reference, is temperature sensor enabled?
+> > - actually dumb question, but why would anyone not want this enabled?
+> > Maybe turn it
+> > off in runtime pm, but in general if you've fitted a chip with a
+> > temperature sensor
+> > you at least sometimes want to measure temperature! So my gut feeling is
+> > don't
+> > allow this to be controlled (effectively drop cases 6 and 7 above as
+> > being
+> > unlikely to be of interest to anyone)
+> >  
+> 
+> I like your suggestion of breaking this down so far, it would look
+> something like this:
+> 
+> 	ad7949: adc@0 {
+> 		compatible = "adi,ad7949";
+> 		reg = <0>;
+> 
+> 		vref-supply = <&vdd_supply>;
+> 
+> 		channel@0 {
+> 			adi,internal-ref-mv = <2500>;
+> 			reg = <0>;
+> 		};
+> 
+> 		channel@1 {
+> 			reg = <1>;
+> 			/*
+> 			 * defaults to vref-supply if defined or error
+> 			 * out
+> 			 */
+> 		};
+> 	};
+> 
+> > Question 4, Is the internal buffer enabled when using and external
+> > reference.
+> > This one is interesting. We could just expose it in general, but I
+> > wonder
+> > if we can do something that reflects how it is used. From the various
+> > figures in
+> > the datasheet this seems to be coupled to whether the external reference
+> > is on
+> > pin REF_IN or pin REF. If that's the case can we have two optional regs
+> > only
+> > one of which should be supplied? However, this gets more fiddly because
+> > the default right now is vref-supply actually being connected to the
+> > vrefin connection.
+> > That's annoying as it stops us using the obvious naming...
+> > Hence I think we can have
+> > vref-supply (actually connected to vrefin) and vref-unbuffered-supply
+> >  
+> 
+> I really like the idea of using the same names as the datasheet
+> (vref-supply and vrefin-supply), to infer the buffered state,
+> but it's annoying (and confusing) that it's setup the other way
+> right now.
+> 
+> I wonder what happens if the reference is connected to refin and we're
+> configured as unbuffered (and the other way around).
+> I looked around and I might be able to test it on one setup I have where
+> the external reference is connected to REF.
+> 
+> If it's not a breaking change, would it be okay with you to follow the
+> datasheet naming?
 
-/me confused. If this is arm64 platform, then you have to use *PSCI* and
-I expect the reset to be done as part of CPU wake-up in PSCI firmware.
+Absolutely. If we can get away with fixing that it would be great.
 
-> If that bypasses PSCI: well, if the unsecure software can do it, it
-> means the hardware is not secure. Or at least Linux has to be trusted.
->
+Jonathan
 
-No, if the system has PSCI, then you simply can't bypass that for GIC
-reset. Or at-least I am failing to understand the complete flow of that.
+> 
+> Liam
+> 
+> >
+> >  
+> > > +
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    enum: [0, 1, 2, 3, 6, 7]
+> > > +    default: 7
+> > > +
+> > >  required:
+> > >    - compatible
+> > >    - reg  
 
---
-Regards,
-Sudeep
