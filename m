@@ -2,77 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E19FC3C714F
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 15:37:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B11C3C71C2
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 16:03:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236468AbhGMNka (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jul 2021 09:40:30 -0400
-Received: from mail-vk1-f177.google.com ([209.85.221.177]:41634 "EHLO
-        mail-vk1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236222AbhGMNka (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 09:40:30 -0400
-Received: by mail-vk1-f177.google.com with SMTP id q124so1732291vka.8;
-        Tue, 13 Jul 2021 06:37:40 -0700 (PDT)
+        id S236720AbhGMOGH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jul 2021 10:06:07 -0400
+Received: from mail-il1-f171.google.com ([209.85.166.171]:34471 "EHLO
+        mail-il1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236765AbhGMOGH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 10:06:07 -0400
+Received: by mail-il1-f171.google.com with SMTP id e13so23300087ilc.1;
+        Tue, 13 Jul 2021 07:03:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ks+aQKe2+n4Zk0Ta4yhtI3Gp8O8SNuAgjxZAciGA2PU=;
-        b=QxbfGksVo9mep89bil9LSDVB8K2B9KKcFKa+EXApU3ZWViA6CAT/ZgdPzDIvxEIKjw
-         WVWh/gSP6Zwfs6Np+El5G41d6pLHHSA30Usa41TkJRzGIvTlBwBn71grKr2pj3N1oBza
-         j0paunip912RjjPABfcKvSlkrFQwFOqi1+zUgOmfFOvn+rp+RPpdwbo5j09OQjnC5GGv
-         E2DRd3ef79u18KjiUzaJuneRd/BoOAiMew9AosEoYvhN3SR6NP73iOkylm8cREOGtI/n
-         xqXtIgRJm9yaAwD/L+ommMy40Vsx584XJ39+tJw0mmORW0xtAt8gDeiXjG+LY9BbZnLk
-         m5vg==
-X-Gm-Message-State: AOAM5314fmwtzQok8pYBT75b8JqXjcFRHolQC48c/5QnOI8WPp7/zB6C
-        vXkJT9pWfHFYvPJ4To5lq6G9RpbP2FPF2aGBGMY=
-X-Google-Smtp-Source: ABdhPJzbX0h4Uh+m6cq4jAo57sstkGWVD2F8nZ8RsWP64JZ3iNA/azYn/kT1fRyfpJYji4mRYdsYPVQZmFe18hOGedk=
-X-Received: by 2002:a05:6122:b72:: with SMTP id h18mr5122218vkf.1.1626183459647;
- Tue, 13 Jul 2021 06:37:39 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210712194422.12405-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210712194422.12405-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20210712194422.12405-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 13 Jul 2021 15:37:28 +0200
-Message-ID: <CAMuHMdX4bmJgtESAM50n7XbphG8BTJcC7GrDSQ+1LFrQMQpgfQ@mail.gmail.com>
-Subject: Re: [PATCH v2 3/5] drivers: clk: renesas: r9a07g044-cpg: Add GPIO
- clock and reset entries
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=sTck8MT1tcfpVCvL1kgsklddyUpTEtuVs7S3TVtOJY0=;
+        b=SrDZNtvdgMPFw4Jye5GTBSnSBJawROP0DtP0nBwdtUEi0EglYqRLwyOU2EMVHQPmgG
+         Tyl66RQAC6p7RubgAAvf5X4opK6ajIGRoeI1RaJ59nMSPjmgcoxMdVkeEAnPIubqfGSj
+         fgEhck5wDsUoB9M+m9A9uCqb5QC8eTnIDvzD6tuAQqkRJpGMf2MJ7gEO/m5XdfK28q1V
+         axRpdgtfC44xu0VrOpYLuQh05P2QMPlgshZ6dklY1DaUicZNbX/A0UxLTkTXbwBjwQMn
+         G1pbVvAYRclKOUh6qV/27Qy5JoFo9Zbh7JJWGtHoIilIueAhWNqqwxpWoMkYgi5TuWuh
+         HCLQ==
+X-Gm-Message-State: AOAM532ZQJgNMniMtvKOuXRFNlJv4vsWUHgpXrLaKOMQvLjlJFzGeDAU
+        6PtTnfYQrxG8ZkbAdDNZvA==
+X-Google-Smtp-Source: ABdhPJzrE0TMePTKV6hzrsV09nnwJnBTynrp9bH4nZNdyfgGXyIW71KBdOIQERmDZOb82by5hSyJTA==
+X-Received: by 2002:a92:d10:: with SMTP id 16mr3000342iln.189.1626184997191;
+        Tue, 13 Jul 2021 07:03:17 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id f3sm719146iob.30.2021.07.13.07.03.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Jul 2021 07:03:16 -0700 (PDT)
+Received: (nullmailer pid 129710 invoked by uid 1000);
+        Tue, 13 Jul 2021 14:03:13 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Sascha Hauer <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        kernel@collabora.com, linux-kernel@vger.kernel.org,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Ian Ray <ian.ray@ge.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-spi@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+In-Reply-To: <20210712150242.146545-2-sebastian.reichel@collabora.com>
+References: <20210712150242.146545-1-sebastian.reichel@collabora.com> <20210712150242.146545-2-sebastian.reichel@collabora.com>
+Subject: Re: [PATCHv6 1/3] dt-bindings: misc: ge-achc: Convert to DT schema format
+Date:   Tue, 13 Jul 2021 08:03:13 -0600
+Message-Id: <1626184993.653258.129709.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 12, 2021 at 9:44 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> Add GPIO clock and reset entries in CPG driver.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+On Mon, 12 Jul 2021 17:02:40 +0200, Sebastian Reichel wrote:
+> Convert the binding to DT schema format. Also update the binding
+> to fix shortcomings
+> 
+>  * Add "nxp,kinetis-k20" fallback compatible
+>  * add programming SPI interface and reset GPIO
+>  * add main clock
+>  * add voltage supplies
+>  * drop spi-max-frequency from required properties,
+>    driver will setup max. frequency
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
+>  .../devicetree/bindings/misc/ge-achc.txt      | 26 --------
+>  .../devicetree/bindings/misc/ge-achc.yaml     | 65 +++++++++++++++++++
+>  2 files changed, 65 insertions(+), 26 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/misc/ge-achc.txt
+>  create mode 100644 Documentation/devicetree/bindings/misc/ge-achc.yaml
+> 
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-clk-for-v5.15.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Gr{oetje,eeting}s,
+yamllint warnings/errors:
 
-                        Geert
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/misc/ge-achc.example.dt.yaml: spi: spi@1:reg: [[1], [0]] is too long
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spi/spi-controller.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/misc/ge-achc.example.dt.yaml: spi: spi@1:reg: Additional items are not allowed ([0] was unexpected)
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spi/spi-controller.yaml
+\ndoc reference errors (make refcheckdocs):
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+See https://patchwork.ozlabs.org/patch/1504037
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
