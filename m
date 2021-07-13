@@ -2,187 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EA523C6CB7
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 10:55:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEC113C6CC9
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 11:00:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234690AbhGMI6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jul 2021 04:58:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52084 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234603AbhGMI6R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 04:58:17 -0400
-Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6680C0613EE
-        for <devicetree@vger.kernel.org>; Tue, 13 Jul 2021 01:55:27 -0700 (PDT)
-Received: by mail-io1-xd2e.google.com with SMTP id u7so26158880ion.3
-        for <devicetree@vger.kernel.org>; Tue, 13 Jul 2021 01:55:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8N5vxZ+XOSZKbHdolxGC0+lxunV1DuxqjzH0fWfK6pg=;
-        b=Ea/lB5m0qpzAGNCrLW9/eTdpJ7fn5dESxi0iIvMUhhUK2sxTbNryT7fLdpsZXugZFg
-         XjYS9dPFFEQVnQHtkmx0ZzReho38PIyLQycr1pfiKaPA/CG0ixp7jlObGt/hJE0vrbaU
-         ZaJfrlRKnEAVO9o4Fc3k1TM7wAEYcTf7xB0y1IqqvmZYOhUc8iIXZIMy+gakPO20WqzD
-         VnCaove9rBf4m99Wa4nrM22HnkP1gCmTpCYt+QIjpHgPI1x8IYui/sV11kDUBtQIc8wH
-         RIc9nhoeM05hl6Xk01iGKgFPsCER7Z44FNNgTIBkWW86Oengfug0Tk3ZP9DAnsOrd7K8
-         vjlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8N5vxZ+XOSZKbHdolxGC0+lxunV1DuxqjzH0fWfK6pg=;
-        b=ZLCBwHrCME+fy4/SvSTmANM54hQTpVaLEwDoguHT1hjPY6XLXq/eW2ccq7MsBgFo4+
-         JSn4cBbRknTJwekiWbIDfC3DTJ9bMlhWQtqYXbgoPlgN1z53sxVD1GcJCwqu0rEAUDWw
-         Vaxu2N3G0GLyoTHAAKMTMjZh6Qv7JfTTlqfLPtVTah6X1wqR0LEufhXWKUY1XhvSE4GN
-         NYnz+QlpkFPpxUbFsfPhCA3o5GupE98VjU4lvObHB1WGBlXE56CNrfJ8rEYqWqhlhv1B
-         tX2Dyk5gxtDKWSDsjJruVYPh/tQoVxJn3ixvTd47O0DnwGyWxHmngCciivWxrKLvX7D0
-         /u3g==
-X-Gm-Message-State: AOAM5324hfaiMrIMmlnA6dCMBtM+ODXixahZJnn0c6koGUBzCHzAZJfI
-        sNkw3wf6V2sjmwMLLUzUdwn/E10URnl462LRCNG8QQ==
-X-Google-Smtp-Source: ABdhPJwQFi0gughVz6hGyUli3OcpQDysiaCpxIUKrfimeC3Iqz/Ng2CI6wAEyfv1x/QZryBR/5jbWzTe3QxDljMJNNg=
-X-Received: by 2002:a5d:87d0:: with SMTP id q16mr2438017ios.109.1626166527031;
- Tue, 13 Jul 2021 01:55:27 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210707062157.21176-1-yunfei.dong@mediatek.com>
- <20210707062157.21176-8-yunfei.dong@mediatek.com> <CA+Px+wUjJwksVfU6N8VZ9WMw-F-DHu67XwvDvMoiMcUBKF=P6Q@mail.gmail.com>
- <1626074875.7221.15.camel@mhfsdcap03>
-In-Reply-To: <1626074875.7221.15.camel@mhfsdcap03>
-From:   Tzung-Bi Shih <tzungbi@google.com>
-Date:   Tue, 13 Jul 2021 16:55:16 +0800
-Message-ID: <CA+Px+wUK=4iAk+OG1wCFHMdi5+japOngCEoY9g9bSbNNLKca2Q@mail.gmail.com>
-Subject: Re: [PATCH v1, 07/14] media: mtk-vcodec: Add msg queue feature for
- lat and core architecture
-To:     mtk12024 <Yunfei.Dong@mediatek.com>
-Cc:     Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S234603AbhGMJDh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jul 2021 05:03:37 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:59226 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S234121AbhGMJDg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 05:03:36 -0400
+X-UUID: f648231f35e343cd92fe1bac49f99370-20210713
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=/SkvQQ3+rtq2S0/tdyj0Z0yx4+LQp8I/gV8vayHB1eA=;
+        b=eJeCnaVA92IGHPSnF4fRU+uuPIXGaxtF5vFMGURAcc/jXq0+2SDrAZP4SGsRcPmL8NZBqrS/GDtLMoFSFLv7q/NXzkM/mqHx4nvYKq94h1faSNM3SIOQkzjjk2tji5eH4S1LVq3RGdRgvk/Af0xx7D2zVDCI89YxU4uzn3J+GVc=;
+X-UUID: f648231f35e343cd92fe1bac49f99370-20210713
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 777364225; Tue, 13 Jul 2021 17:00:41 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS33N2.mediatek.inc
+ (172.27.4.76) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 13 Jul
+ 2021 17:00:39 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 13 Jul 2021 17:00:38 +0800
+Message-ID: <1626166838.29490.4.camel@mhfsdcap03>
+Subject: Re: [PATCH v2 02/13] dt-bindings: usb: mtu3: add optional property
+ to disable usb2 ports
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        <linux-usb@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Date:   Tue, 13 Jul 2021 17:00:38 +0800
+In-Reply-To: <20210712190809.GA2310371@robh.at.kernel.org>
+References: <1624008558-16949-1-git-send-email-chunfeng.yun@mediatek.com>
+         <1624008558-16949-3-git-send-email-chunfeng.yun@mediatek.com>
+         <20210712190809.GA2310371@robh.at.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
+MIME-Version: 1.0
+X-TM-SNTS-SMTP: 1F30D6F3E0CBFBFE6BBF7E6E74BA7C17CB540E6A07D0FFC39EB0D4C6EC885D8A2000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 12, 2021 at 3:28 PM mtk12024 <yunfei.dong@mediatek.com> wrote:
-> On Fri, 2021-07-09 at 17:39 +0800, Tzung-Bi Shih wrote:
-> > On Wed, Jul 7, 2021 at 2:22 PM Yunfei Dong <yunfei.dong@mediatek.com> wrote:
-> > Doesn't it need to call mtk_vcodec_mem_free() and kfree() for any failure paths?
-> When allocate memory fail, will call deinit function auto, then free all allocated memory.
-I guess you mean: if vdec_msg_queue_init() fails,
-vdec_msg_queue_deinit() should be called?
+T24gTW9uLCAyMDIxLTA3LTEyIGF0IDEzOjA4IC0wNjAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
+T24gRnJpLCBKdW4gMTgsIDIwMjEgYXQgMDU6Mjk6MDdQTSArMDgwMCwgQ2h1bmZlbmcgWXVuIHdy
+b3RlOg0KPiA+IEFkZCBzdXBwb3J0IHRvIGRpc2FibGUgc3BlY2lmaWMgdXNiMiBob3N0IHBvcnRz
+LCBpdCdzIHVzZWZ1bCB3aGVuDQo+ID4gYSB1c2IyIHBvcnQgaXMgZGlzYWJsZWQgb24gc29tZSBw
+bGF0Zm9ybXMsIGJ1dCBlbmFibGVkIG9uIG90aGVycyBmb3INCj4gPiB0aGUgc2FtZSBTb0MsIGFu
+b3RoZXIgY2FzZSBpcyB0aGF0IHRoZSBkaWZmZXJlbnQgcGFja2FnZSBtYXkgc3VwcG9ydA0KPiA+
+IGRpZmZlcmVudCBudW1iZXIgb2YgcG9ydHMuDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogQ2h1
+bmZlbmcgWXVuIDxjaHVuZmVuZy55dW5AbWVkaWF0ZWsuY29tPg0KPiA+IC0tLQ0KPiA+IHYyOiBu
+byBjaGFuZ2VzDQo+ID4gLS0tDQo+ID4gIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5n
+cy91c2IvbWVkaWF0ZWssbXR1My55YW1sIHwgNiArKysrKysNCj4gPiAgMSBmaWxlIGNoYW5nZWQs
+IDYgaW5zZXJ0aW9ucygrKQ0KPiA+IA0KPiA+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2Rl
+dmljZXRyZWUvYmluZGluZ3MvdXNiL21lZGlhdGVrLG10dTMueWFtbCBiL0RvY3VtZW50YXRpb24v
+ZGV2aWNldHJlZS9iaW5kaW5ncy91c2IvbWVkaWF0ZWssbXR1My55YW1sDQo+ID4gaW5kZXggMmNh
+YzdhODdjZTM2Li4zZTZmMjc1MGY0OGQgMTAwNjQ0DQo+ID4gLS0tIGEvRG9jdW1lbnRhdGlvbi9k
+ZXZpY2V0cmVlL2JpbmRpbmdzL3VzYi9tZWRpYXRlayxtdHUzLnlhbWwNCj4gPiArKysgYi9Eb2N1
+bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdXNiL21lZGlhdGVrLG10dTMueWFtbA0KPiA+
+IEBAIC0xNjYsNiArMTY2LDEyIEBAIHByb3BlcnRpZXM6DQo+ID4gICAgICBkZXNjcmlwdGlvbjog
+VGhlIG1hc2sgdG8gZGlzYWJsZSB1M3BvcnRzLCBiaXQwIGZvciB1M3BvcnQwLA0KPiA+ICAgICAg
+ICBiaXQxIGZvciB1M3BvcnQxLCAuLi4gZXRjDQo+ID4gIA0KPiA+ICsgIG1lZGlhdGVrLHUycC1k
+aXMtbXNrOg0KPiANCj4gSnVzdCBzcGVsbCBvdXQgJ21hc2snLg0KVGhlcmUgaXMgYWxyZWFkeSBh
+IHByb3BlcnR5ICJtZWRpYXRlayx1M3AtZGlzLW1zayIsIHByZWZlciB0byB1c2UgdGhlDQpzYW1l
+IGZvcm1hdCwgdGhhbmtzDQoNCj4gDQo+ID4gKyAgICAkcmVmOiAvc2NoZW1hcy90eXBlcy55YW1s
+Iy9kZWZpbml0aW9ucy91aW50MzINCj4gPiArICAgIGRlc2NyaXB0aW9uOiBUaGUgbWFzayB0byBk
+aXNhYmxlIHUycG9ydHMsIGJpdDAgZm9yIHUycG9ydDAsDQo+ID4gKyAgICAgIGJpdDEgZm9yIHUy
+cG9ydDEsIC4uLiBldGM7IGJ1dCBjYW4ndCBkaXNhYmxlIHUycG9ydDAgaWYgZHVhbCByb2xlIG1v
+ZGUNCj4gPiArICAgICAgaXMgZW5hYmxlZCwgc28gd2lsbCBiZSBza2lwcGVkIGluIHRoaXMgY2Fz
+ZS4NCj4gPiArDQo+ID4gICMgUmVxdWlyZWQgY2hpbGQgbm9kZSB3aGVuIHN1cHBvcnQgZHVhbC1y
+b2xlDQo+ID4gIHBhdHRlcm5Qcm9wZXJ0aWVzOg0KPiA+ICAgICJedXNiQFswLTlhLWZdKyQiOg0K
+PiA+IC0tIA0KPiA+IDIuMTguMA0KPiA+IA0KPiA+IA0KDQo=
 
-If so:
-- It is not "auto".  It depends on callers to invoke _deinit() if _init() fails.
-- The API usage would be a bit weird: if the object hasn't been
-initialized, shall we de-initialize it?
-
-> > > +struct vdec_lat_buf *vdec_msg_queue_get_core_buf(
-> > > +       struct mtk_vcodec_dev *dev)
-> > > +{
-> > > +       struct vdec_lat_buf *buf;
-> > > +       int ret;
-> > > +
-> > > +       spin_lock(&dev->core_lock);
-> > > +       if (list_empty(&dev->core_queue)) {
-> > > +               mtk_v4l2_debug(3, "core queue is NULL, num_core = %d", dev->num_core);
-> > > +               spin_unlock(&dev->core_lock);
-> > > +               ret = wait_event_freezable(dev->core_read,
-> > > +                       !list_empty(&dev->core_queue));
-> > > +               if (ret)
-> > > +                       return NULL;
-> > Should be !ret?
-> According the definidtion, when condition is true, return value is 0.
-Yeah, you're right.  I was confused a bit with wait_event_timeout().
-
-> > > +bool vdec_msg_queue_wait_lat_buf_full(struct vdec_msg_queue *msg_queue)
-> > > +{
-> > > +       long timeout_jiff;
-> > > +       int ret, i;
-> > > +
-> > > +       for (i = 0; i < NUM_BUFFER_COUNT + 2; i++) {
-> > > +              timeout_jiff = msecs_to_jiffies(1000);
-> > > +              ret = wait_event_timeout(msg_queue->lat_read,
-> > > +                    msg_queue->num_lat == NUM_BUFFER_COUNT, timeout_jiff);
-> > > +              if (ret) {
-> > > +                     mtk_v4l2_debug(3, "success to get lat buf: %d",
-> > > +                            msg_queue->num_lat);
-> > > +                     return true;
-> > > +              }
-> > > +       }
-> > Why does it need the loop?  i is unused.
-> Core maybe decode timeout, need to wait all core buffer process
-> completely.
-The point is: the i is unused.  If it needs more time to complete,
-could it just wait for (NUM_BUFFER_COUNT + 2) * 1000 msecs?
-
-> > > +       msg_queue->init_done = false;
-> > Have no idea what init_done does in the code.  It is not included in
-> > any branch condition.
-> When call vdec_msg_queue_init will set this parameter to true.
-The point is: if init_done doesn't change any code branch but just a
-flag, does it really need the flag?
-
-For example usages:
-- If see the msg_queue->init_done has already been set to true in
-vdec_msg_queue_init(), return errors.
-- If see the msg_queue->init_done has already been set to false in
-vdec_msg_queue_deinit(), return errors.
-
-In the cases, I believe it brings very limited benefit (i.e. the
-msg_queue is likely to _init and _deinit only once).
-
-> > > +/**
-> > > + * vdec_msg_queue_get_core_buf - get used core buffer for lat decode.
-> > > + * @dev: mtk vcodec device
-> > > + */
-> > > +struct vdec_lat_buf *vdec_msg_queue_get_core_buf(
-> > > +       struct mtk_vcodec_dev *dev);
-> > This is weird: vdec_msg_queue's operator but manipulating mtk_vcodec_dev?
-> vdec_msg_queue is used to share message between lat and core, for each
-> instance has its lat msg queue list, but all instance share one core msg
-> queue list. When try to get core buffer need to get it from core queue
-> list. Then queue it to lat queue list when core decode done.
-I guess you mean: during runtime, it has n lat queues and 1 core queue.
-
-If so, would it be intuitive and simple by:
-
-msg_queue *core_q;
-msg_queue *lat_q[LAT_N];
-
-vdec_msg_queue_dequeue(core_q) if it wants to get from core queue.
-vdec_msg_queue_enqueue(lat_q[X], data) if it wants to put data to lat queue X.
-
-> > > +/**
-> > > + * vdec_msg_queue_buf_to_lat - queue buf to lat for lat decode.
-> > > + * @buf: current lat buffer
-> > > + */
-> > > +void vdec_msg_queue_buf_to_lat(struct vdec_lat_buf *buf);
-> > It should at least accept a struct vdec_msg_queue argument (or which
-> > msg queue should the buf put into?).
-> All buffer is struct vdec_lat_buf, used to share info between lat and core queue list.
-The API semantic needs to provide a way to specify which msg_queue the
-buf would put into.
-
-> > The position of struct vdec_msg_queue is weird.  It looks like the msg
-> > queue is only for struct vdec_lat_buf.  If so, would vdec_msg_queue be
-> > better to call vdec_lat_queue or something similar?
-> >
-> > It shouldn't touch the core queue in mtk_vcodec_dev anyway.  Is it
-> > possible to generalize the queue-related code for both lat and core
-> > queues?
-> Lat queue list is separately for each instance, but only has one core
-> queue list.
-Suggested to generalize the vdec_msg_queue to handle both lat and core
-(and maybe furthermore).  See comment above.
