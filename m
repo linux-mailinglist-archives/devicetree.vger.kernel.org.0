@@ -2,154 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B0713C79C0
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 00:34:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B7EF3C79C6
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 00:42:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236072AbhGMWhj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jul 2021 18:37:39 -0400
-Received: from mail-il1-f179.google.com ([209.85.166.179]:36732 "EHLO
-        mail-il1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234957AbhGMWhj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 18:37:39 -0400
-Received: by mail-il1-f179.google.com with SMTP id j5so7238222ilk.3;
-        Tue, 13 Jul 2021 15:34:47 -0700 (PDT)
+        id S236754AbhGMWpl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jul 2021 18:45:41 -0400
+Received: from mail-il1-f174.google.com ([209.85.166.174]:45921 "EHLO
+        mail-il1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236696AbhGMWpk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 18:45:40 -0400
+Received: by mail-il1-f174.google.com with SMTP id b6so15266187iln.12;
+        Tue, 13 Jul 2021 15:42:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=MSpVDdjqrdKEACiUcRPjy60421QiTWxnM6Nv9gHM6wY=;
-        b=Mv+jEAUw4W/FqGmDKWOwy8YX7CRs7+X1chLzCJzdoETkwG51NtmgfKKqBUR6p3DAAj
-         n92ixAIT2W8N+VAoVriGw/uYFzom2AbFheDjwPEvIwFJo7XGv5/KAws77tuV91ypRWC+
-         7k1YpVXFtgiZ+OClTc4FRujIVsosCmmxziKHyT1RV5uSyeaanxgOvu9zuk2jEl367dyC
-         ixrEo5oAB6MOxx2MnrNa9pbibV70BCiRi2QxPQw19xTjoG253t42wTWmGpL67UkLTgrz
-         Hon1d/z/8xFLt8cYufD6DwSpT6UfPLW7JLjenUONNullCC5QXe6W5Qqpla0zqtPOs+W3
-         gkow==
-X-Gm-Message-State: AOAM533wdiKU/MrGP91aapnVhriVAT2SF2xsB18pf3C2Clj4euhtrYY/
-        5XZXJK9+kXb2+HvC71CjzA==
-X-Google-Smtp-Source: ABdhPJztQrp4XrTfokmTBuOkLRxzwLyi96owtmbuyUFlJa6C+A/GJH9q5TB2oBwuCMMltSFkJ5WYFw==
-X-Received: by 2002:a92:6f07:: with SMTP id k7mr4629322ilc.276.1626215687443;
-        Tue, 13 Jul 2021 15:34:47 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=lsdCSpnf6ZiX83NlGYzoBdbib31n+VNXkgCApsj7nLM=;
+        b=Z1Q/A5TNbwI2IdwMaC0xCigJJejksDH4+iY3IaOFrFm0GzpYSRGuBMLudA75lfUIJg
+         Sl1HC/DHNwnnodlOsL/VqtrKq1Lzy1yPp0EBD3Zbq4Bo4FGP2sWTIvdmfNMleJqzJ7bY
+         Ytm6EVOUoSzlegTZ4Wf9zYLHv9Uc2C38q+M9hdxyahVXzKojhVp4SIG2H44cZLhGRJAW
+         O4CCe14x4WLjBc+jKn+l+58T65hA8TNfVxXw38oeQeJ1Epp20GT8/9mpNCWYomMSTz9g
+         WBy/I9TncXUNRrPdBVWT3UTdgsQDB+xDzrH6uWIU56ksktfUoShzntivu+m66hhQcKuo
+         AoqQ==
+X-Gm-Message-State: AOAM530W1vEvEezVioQhyXLbfpeN7VkPfaS9um4Fb4UUpBUprAF/9OfW
+        xh+Uzdh1OZFWLcdx9YY5hQ==
+X-Google-Smtp-Source: ABdhPJyBP0Vwy0xP55H7Iy5+swmvS2mXaRlbYo72hNyvVC3lYhapXdsdp3wMpbQQcMkPLHtj0RgrfA==
+X-Received: by 2002:a92:c883:: with SMTP id w3mr3687073ilo.76.1626216169897;
+        Tue, 13 Jul 2021 15:42:49 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id r4sm181262ilb.42.2021.07.13.15.34.43
+        by smtp.gmail.com with ESMTPSA id p10sm177941ilh.57.2021.07.13.15.42.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jul 2021 15:34:46 -0700 (PDT)
-Received: (nullmailer pid 973017 invoked by uid 1000);
-        Tue, 13 Jul 2021 22:34:42 -0000
-Date:   Tue, 13 Jul 2021 16:34:42 -0600
+        Tue, 13 Jul 2021 15:42:49 -0700 (PDT)
+Received: (nullmailer pid 985485 invoked by uid 1000);
+        Tue, 13 Jul 2021 22:42:45 -0000
+Date:   Tue, 13 Jul 2021 16:42:45 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?5ZGo55Cw5p2wIChaaG91IFlhbmppZSk=?= 
-        <zhouyanjie@wanyeetech.com>
-Cc:     mturquette@baylibre.com, sboyd@kernel.org,
-        linux-mips@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        paul@crapouillou.net, dongsheng.qiu@ingenic.com,
-        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
-        sihui.liu@ingenic.com, jun.jiang@ingenic.com,
-        sernia.zhou@foxmail.com
-Subject: Re: [PATCH v6 08/11] dt-bindings: clock: Add JZ4775 clock bindings.
-Message-ID: <20210713223442.GA968962@robh.at.kernel.org>
-References: <1624981102-26248-1-git-send-email-zhouyanjie@wanyeetech.com>
- <1624981102-26248-9-git-send-email-zhouyanjie@wanyeetech.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Cc:     bjorn.andersson@linaro.org, viresh.kumar@linaro.org,
+        agross@kernel.org, rjw@rjwysocki.net, devicetree@vger.kernel.org,
+        amit.kucheria@linaro.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, jami.kettunen@somainline.org,
+        paul.bouchara@somainline.org,
+        ~postmarketos/upstreaming@lists.sr.ht, jeffrey.l.hugo@gmail.com
+Subject: Re: [PATCH v6 9/9] dt-bindings: cpufreq: qcom-hw: Make reg-names a
+ required property
+Message-ID: <20210713224245.GA981311@robh.at.kernel.org>
+References: <20210701105730.322718-1-angelogioacchino.delregno@somainline.org>
+ <20210701105730.322718-10-angelogioacchino.delregno@somainline.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1624981102-26248-9-git-send-email-zhouyanjie@wanyeetech.com>
+In-Reply-To: <20210701105730.322718-10-angelogioacchino.delregno@somainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 29, 2021 at 11:38:19PM +0800, 周琰杰 (Zhou Yanjie) wrote:
-> Add the clock bindings for the JZ4775 SoC from Ingenic.
-> 
-> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
+On Thu, Jul 01, 2021 at 12:57:30PM +0200, AngeloGioacchino Del Regno wrote:
+> The property reg-names is required after the addition of the OSM
+> programming sequence, as that mandates specifying different register
+> domains; to avoid confusion and improve devicetree readability,
+> specifying the regions names was made mandatory.
+
+Can't take patches missing a S-o-b.
+
+Making existing properties required breaks compatibility. That's okay on 
+*all* the platforms using this? If so, that needs to be crystal clear in 
+the commit msg.
+
 > ---
+>  Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> Notes:
->     v5:
->     New patch.
->     
->     v5->v6:
->     No change.
-> 
->  include/dt-bindings/clock/jz4775-cgu.h | 59 ++++++++++++++++++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 include/dt-bindings/clock/jz4775-cgu.h
-> 
-> diff --git a/include/dt-bindings/clock/jz4775-cgu.h b/include/dt-bindings/clock/jz4775-cgu.h
-> new file mode 100644
-> index 00000000..8c2af69
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/jz4775-cgu.h
-> @@ -0,0 +1,59 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-
-Dual license please.
-
-> +/*
-> + * This header provides clock numbers for the ingenic,jz4775-cgu DT binding.
-> + *
-> + * They are roughly ordered as:
-> + *   - external clocks
-> + *   - PLLs
-> + *   - muxes/dividers in the order they appear in the jz4775 programmers manual
-> + *   - gates in order of their bit in the CLKGR* registers
-
-Can one convert index to register/bit offset? If you can avoid made up 
-numbers and use something that corresponds to the h/w, that's preferred.
-
-> + */
-> +
-> +#ifndef __DT_BINDINGS_CLOCK_JZ4775_CGU_H__
-> +#define __DT_BINDINGS_CLOCK_JZ4775_CGU_H__
-> +
-> +#define JZ4775_CLK_EXCLK		0
-> +#define JZ4775_CLK_RTCLK		1
-> +#define JZ4775_CLK_APLL			2
-> +#define JZ4775_CLK_MPLL			3
-> +#define JZ4775_CLK_OTGPHY		4
-> +#define JZ4775_CLK_SCLKA		5
-> +#define JZ4775_CLK_UHC			6
-> +#define JZ4775_CLK_UHCPHY		7
-> +#define JZ4775_CLK_CPUMUX		8
-> +#define JZ4775_CLK_CPU			9
-> +#define JZ4775_CLK_L2CACHE		10
-> +#define JZ4775_CLK_AHB0			11
-> +#define JZ4775_CLK_AHB2PMUX		12
-> +#define JZ4775_CLK_AHB2			13
-> +#define JZ4775_CLK_PCLK			14
-> +#define JZ4775_CLK_DDR			15
-> +#define JZ4775_CLK_VPU			16
-> +#define JZ4775_CLK_OTG			17
-> +#define JZ4775_CLK_EXCLK_DIV2	18
-> +#define JZ4775_CLK_I2S			19
-> +#define JZ4775_CLK_LCD			20
-> +#define JZ4775_CLK_MSCMUX		21
-> +#define JZ4775_CLK_MSC0			22
-> +#define JZ4775_CLK_MSC1			23
-> +#define JZ4775_CLK_MSC2			24
-> +#define JZ4775_CLK_SSI			25
-> +#define JZ4775_CLK_CIM0			26
-> +#define JZ4775_CLK_CIM1			27
-> +#define JZ4775_CLK_PCM			28
-> +#define JZ4775_CLK_BCH			29
-> +#define JZ4775_CLK_EXCLK_DIV512	30
-> +#define JZ4775_CLK_RTC			31
-> +#define JZ4775_CLK_NEMC			32
-> +#define JZ4775_CLK_I2C0			33
-> +#define JZ4775_CLK_I2C1			34
-> +#define JZ4775_CLK_I2C2			35
-> +#define JZ4775_CLK_SADC			36
-> +#define JZ4775_CLK_UART0		37
-> +#define JZ4775_CLK_UART1		38
-> +#define JZ4775_CLK_UART2		39
-> +#define JZ4775_CLK_UART3		40
-> +#define JZ4775_CLK_PDMA			41
-> +#define JZ4775_CLK_MAC			42
-> +
-> +#endif /* __DT_BINDINGS_CLOCK_JZ4775_CGU_H__ */
+> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+> index 29b663321a0b..17fd6a6cefb0 100644
+> --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+> @@ -98,6 +98,7 @@ else:
+>  required:
+>    - compatible
+>    - reg
+> +  - reg-names
+>    - clocks
+>    - clock-names
+>    - '#freq-domain-cells'
 > -- 
-> 2.7.4
+> 2.32.0
 > 
 > 
