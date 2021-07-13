@@ -2,123 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62CD73C6CA6
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 10:49:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 344183C6CBC
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 10:56:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234903AbhGMIwq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jul 2021 04:52:46 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:34076 "EHLO gloria.sntech.de"
+        id S234599AbhGMI7D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jul 2021 04:59:03 -0400
+Received: from foss.arm.com ([217.140.110.172]:38752 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234982AbhGMIwi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Jul 2021 04:52:38 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1m3E6k-00086V-2I; Tue, 13 Jul 2021 10:49:38 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        hjc@rock-chips.com, airlied@linux.ie, daniel@ffwll.ch,
-        robh+dt@kernel.org, algea.cao@rock-chips.com,
-        andy.yan@rock-chips.com,
-        Michael Riesch <michael.riesch@wolfvision.net>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: rockchip: Add compatible for rk3568 HDMI
-Date:   Tue, 13 Jul 2021 10:49:37 +0200
-Message-ID: <3865833.Ac65pObt5d@diego>
-In-Reply-To: <1bd64284-0a20-12e3-e2e7-19cdfdbf1a25@wolfvision.net>
-References: <20210707120323.401785-1-benjamin.gaignard@collabora.com> <20210707120323.401785-2-benjamin.gaignard@collabora.com> <1bd64284-0a20-12e3-e2e7-19cdfdbf1a25@wolfvision.net>
+        id S234796AbhGMI7D (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Jul 2021 04:59:03 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 113F431B;
+        Tue, 13 Jul 2021 01:56:13 -0700 (PDT)
+Received: from bogus (unknown [10.57.79.213])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EF0CE3F7D8;
+        Tue, 13 Jul 2021 01:56:10 -0700 (PDT)
+Date:   Tue, 13 Jul 2021 09:55:08 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH] arm64: dts: renesas: r9a07g044: Add missing GICv3 node
+ properties
+Message-ID: <20210713085508.nq6473icf5gt3nm5@bogus>
+References: <20210611152108.6785-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdWJQESFmhV+c-QmivXCWPx21QcB-HSzjxf8KsXh_DAvfw@mail.gmail.com>
+ <CAMuHMdXG9H_mOtA_a9t0K8BVaR4p0DcWgNeL0786YvybV2Hqgw@mail.gmail.com>
+ <CA+V-a8tk6uCeRwmiTh=Ds+8DYVUqCYs64nX_9ksDXXdSd-rxNA@mail.gmail.com>
+ <CAMuHMdUg5v3qsFQsg783nC=o_BL3pL6YqqQphGQHHOaCeakj5Q@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMuHMdUg5v3qsFQsg783nC=o_BL3pL6YqqQphGQHHOaCeakj5Q@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
-
-Am Dienstag, 13. Juli 2021, 10:44:00 CEST schrieb Michael Riesch:
-> The HDMI TX block in the RK3568 requires two power supplies, which have
-> to be enabled in some cases (at least on the RK3568 EVB1 the voltages
-> VDDA0V9_IMAGE and VCCA1V8_IMAGE are disabled by default). It would be
-> great if this was considered by the driver and the device tree binding.
-> I am not sure, though, whether this is a RK3568 specific or
-> rockchip_dw_hdmi specific thing. Maybe it can even enter the Synopsis DW
-> HDMI driver.
-
-I do remember that this discussion happened many years back already.
-And yes the supplies are needed for all but back then there was opposition
-as these are supposedly phy-related supplies, not for the dw-hdmi itself.
-[There are variants with an external phy, like on the rk3328]
-
-See discussion on [0]
-
-[0] https://dri-devel.freedesktop.narkive.com/pen2zWo1/patch-v3-1-2-drm-bridge-dw-hdmi-support-optional-supply-regulators
-
-
-
-> On 7/7/21 2:03 PM, Benjamin Gaignard wrote:
-> > Define a new compatible for rk3568 HDMI.
-> > This version of HDMI hardware block needs two new clocks hclk_vio and hclk
-> > to provide phy reference clocks.
-> > 
-> > Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> > ---
-> > version 2:
-> > - Add the clocks needed for the phy.
-> > 
-> >  .../bindings/display/rockchip/rockchip,dw-hdmi.yaml         | 6 +++++-
-> >  1 file changed, 5 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-> > index 75cd9c686e985..cb8643b3a8b84 100644
-> > --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-> > +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-> > @@ -23,6 +23,7 @@ properties:
-> >        - rockchip,rk3288-dw-hdmi
-> >        - rockchip,rk3328-dw-hdmi
-> >        - rockchip,rk3399-dw-hdmi
-> > +      - rockchip,rk3568-dw-hdmi
-> >  
-> >    reg-io-width:
-> >      const: 4
-> > @@ -51,8 +52,11 @@ properties:
-> >            - vpll
-> >        - enum:
-> >            - grf
-> > +          - hclk_vio
-> > +          - vpll
-> > +      - enum:
-> > +          - hclk
-> >            - vpll
-> > -      - const: vpll
+On Tue, Jul 13, 2021 at 10:30:36AM +0200, Geert Uytterhoeven wrote:
+> Hi Prabhakar,
 > 
-> The description and documentation of the clocks are somewhat misleading
-> IMHO. This is not caused by your patches, of course. But maybe this is a
-> chance to clean them up a bit.
-> 
-> It seems that the CEC clock is an optional clock of the dw-hdmi driver.
-> Shouldn't it be documented in the synopsys,dw-hdmi.yaml?
-> 
-> Also, it would be nice if the clocks hclk_vio and hclk featured a
-> description in the binding.
-> 
-> BTW, I am not too familiar with the syntax here, but shouldn't items in
-> clocks and items in clock-names be aligned (currently, there is a plain
-> list vs. an enum structure)?
-> 
-> Best regards,
-> Michael
-> 
-> >  
-> >    ddc-i2c-bus:
-> >      $ref: /schemas/types.yaml#/definitions/phandle
-> > 
-> 
+> On Tue, Jul 13, 2021 at 10:22 AM Lad, Prabhakar
+> <prabhakar.csengg@gmail.com> wrote:
+> > On Tue, Jul 13, 2021 at 9:08 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > On Mon, Jun 14, 2021 at 2:48 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > > On Fri, Jun 11, 2021 at 5:21 PM Lad Prabhakar
+> > > > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > > > > Add the below missing properties into GIC node,
+> > > > > - clocks
+> > > > > - clock-names
+> > > > > - power-domains
+> > > > > - resets
+> > > > >
+> > > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > >
+> > > > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > >
+> > > > Queueing pending on[1].
+> > > >
+> > > > > [1] https://lore.kernel.org/linux-devicetree/
+> > > > >     20210609155108.16590-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+> > >
+> > > The dependency has been accepted, but this patch needs a respin
+> > > for the changed clocks.
+> > >
+> > Thank you for pointing this out. wrt resets the GIC has two signals
+> > (which I learnt lately when the dependency path was accepted). Earlier
+> > discussion in irc with Sudeep pointed out that there wouldn't be any
+> > use case of having GIC resets in DTSI, so either we drop the resets
+> > property in DT binding doc or correct it.
+> >
+> > Let me know your thoughts on this and how we proceed further.
+>
+> DT Rule #1: DT describes hardware not software policy.
+>
 
+Completely agreed, no disagreement 😄.
 
+> And a possible use case: the RT CPU core may want to reset the AP GIC.
+>
 
+I didn't want to add new bindings without details on the implementation
+to avoid possible issues with backward compatibility as this was not
+thought through completely and correctly before it was added.
 
+OK, now let us discuss your use-case: *RT CPU wants to reset AP GIC*
+
+1. Will it just reset AP GIC or will it request the AP reset as a whole ?
+   I am not sure if we can handle former, if you think otherwise what is
+   the reset notification mechanism ?
+
+2. Will that bypass secure world/PSCI ? Again more details on this would
+   be helpful to visualise the entire use-case end-to-end better.
+
+By GIC reset, I am assuming it will be complete GIC reset including it's
+CPU interface.
+
+I don't think we can reset GIC without actual CPU reset. Even if we get
+some notification magically to the CPU that its GIC alone needs to be
+reset, it needs to safely higher exceptions to get its GIC CPU interface
+reprogrammed to correct (saved) values before OS can reprogram the NS
+world values. All these seems overall complicated and may be unnecessary.
+
+--
+Regards,
+Sudeep
