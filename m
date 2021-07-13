@@ -2,125 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B75A3C6B15
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 09:18:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED9093C6BE3
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 10:08:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234116AbhGMHUw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jul 2021 03:20:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57892 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233843AbhGMHUv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 03:20:51 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E5BDC0613EE
-        for <devicetree@vger.kernel.org>; Tue, 13 Jul 2021 00:18:02 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id a6so28500164ljq.3
-        for <devicetree@vger.kernel.org>; Tue, 13 Jul 2021 00:18:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=v/rXhAg8/mS9EW+OBkg4YZ134yjPtz+YcrIsxDtxXHw=;
-        b=gdFmIqRJGerDFfRedrGfJCYZTiEOVZPen6UFik8USN7wSEnDhX8+z7XGhUv1Xe1UET
-         E60fQrM+rX8DuBoVnFZ+G3Kjv2Ny2c1X0zx9mmRF4HZnwKIPPcavSze3deQaq8cs/zzi
-         E1JxLrPpNqdXrdD9/4sn9ONH67XXUg9JnnlSU=
+        id S234357AbhGMILO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jul 2021 04:11:14 -0400
+Received: from mail-vs1-f50.google.com ([209.85.217.50]:38837 "EHLO
+        mail-vs1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234157AbhGMILO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 04:11:14 -0400
+Received: by mail-vs1-f50.google.com with SMTP id o7so11810302vss.5;
+        Tue, 13 Jul 2021 01:08:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=v/rXhAg8/mS9EW+OBkg4YZ134yjPtz+YcrIsxDtxXHw=;
-        b=mR+xps4E8xBlygMmu3kOnt284GlVYARCOL+hbMosKf46iCymQ1bpIxo0oZxe/yjqGV
-         g9Ruj0SXpt9fDKTDZJpZwmzz9KEXQIe4qbwOigvZd6aRULOXHv0xsFFx2Y4Oh9lxVzBJ
-         DjTcGxbXles704OzOvZGsR2OwPhxRoMUS5Sj+AmGbljs6VEaWZ9H0v0tM1oITAVgZT75
-         ibjep93kk4iDGKvMefuxhudKLh/yhE4yZZQyrN0Xy2wfFkUgdqbq+8NQf6MhlBKjTsiJ
-         NKW5NnXO3wmAEerh4VdslS5WNpa9nY+oaibtvxwKipuBxhs3wrrlnt/mjRTYiT3LnfPn
-         6GxQ==
-X-Gm-Message-State: AOAM530PGC9GS6agsqE3RceRez0EO9/LN50FirwPQF1u8dq1aqcaph6U
-        /3BowQ7EPJG0+KS77q2NZ/btekl0CJSkoJ4+9IidSA==
-X-Google-Smtp-Source: ABdhPJwvNEV51r8aYwOBO8oRSgDCsy56hMQEygkoe/TYR9OaSobFtYzNx+irktn74bxJOc20Xg0McmWpytNswEZxIRA=
-X-Received: by 2002:a2e:5c42:: with SMTP id q63mr2849499ljb.23.1626160680315;
- Tue, 13 Jul 2021 00:18:00 -0700 (PDT)
+        bh=wRoIJpTR/M6E5j1WnKRpCzpdmXhgP0lgm/zazhAiEy8=;
+        b=nltWMV9arxqpmM20wLW3yVspCYYagVq56Js980Ox3UpCnIdNX2GqGTNso9TrWIOJMN
+         Heqhj75gXkcxBO6cbPg9oyvKg911bVEPRaCCn7amh/j/tYVSNnOSQC61sNkzS4RHhgRl
+         qDsKIFoyzsJ4wk6NmFo/KcEv30hMyDwa4i8yN0g9BbcY4XhjJtRBLvB+gw6JCJQ1IIMn
+         miXAXzKiewFvsKk70Nwioppn7EmA0UD4tUd22/81UTOz2FziF3n1LhZusJ1cumuzP15t
+         /9uIsynCd6wmWa60Q//UTK2IJoesAdEmgiUcpiBLNgZ1pIzcEjakWc1k1XU5VQo3+/7p
+         UpvA==
+X-Gm-Message-State: AOAM533BqoG0XtVJ7cW1qC8UWuYJdF6lz47tcHVsYNjCO6VuzIKvab5W
+        p86LaGCiN4xzzHXQJoH562G0tlQQfgnVzk/Eg1o=
+X-Google-Smtp-Source: ABdhPJwukdhbY8ARFewuWNPEQEWTUmgD2WTIYo0XJnQqmsT8lxfdDdQ+HYZoG9zmtA5gdyctP4W9nh7zSOqNi5H5OjA=
+X-Received: by 2002:a67:3c2:: with SMTP id 185mr4711906vsd.42.1626163703197;
+ Tue, 13 Jul 2021 01:08:23 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210710081722.1828-1-zhiyong.tao@mediatek.com> <20210710081722.1828-2-zhiyong.tao@mediatek.com>
-In-Reply-To: <20210710081722.1828-2-zhiyong.tao@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Tue, 13 Jul 2021 15:17:49 +0800
-Message-ID: <CAGXv+5GXg0RuOQkh4vaRmcLpehZiXnEUXBvEaObiatAa1sXvaA@mail.gmail.com>
-Subject: Re: [PATCH v10 1/2] dt-bindings: pinctrl: mt8195: add rsel define
-To:     Zhiyong Tao <zhiyong.tao@mediatek.com>
+References: <20210611152108.6785-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdWJQESFmhV+c-QmivXCWPx21QcB-HSzjxf8KsXh_DAvfw@mail.gmail.com>
+In-Reply-To: <CAMuHMdWJQESFmhV+c-QmivXCWPx21QcB-HSzjxf8KsXh_DAvfw@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 13 Jul 2021 10:08:12 +0200
+Message-ID: <CAMuHMdXG9H_mOtA_a9t0K8BVaR4p0DcWgNeL0786YvybV2Hqgw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: r9a07g044: Add missing GICv3 node properties
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>, mark.rutland@arm.com,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        hui.liu@mediatek.com, Eddie Huang <eddie.huang@mediatek.com>,
-        light.hsieh@mediatek.com, biao.huang@mediatek.com,
-        hongzhou.yang@mediatek.com, sean.wang@mediatek.com,
-        seiya.wang@mediatek.com, devicetree@vger.kernel.org,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org
+        Magnus Damm <magnus.damm@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Prabhakar,
 
-On Sat, Jul 10, 2021 at 4:17 PM Zhiyong Tao <zhiyong.tao@mediatek.com> wrote:
+On Mon, Jun 14, 2021 at 2:48 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> On Fri, Jun 11, 2021 at 5:21 PM Lad Prabhakar
+> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > Add the below missing properties into GIC node,
+> > - clocks
+> > - clock-names
+> > - power-domains
+> > - resets
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 >
-> This patch adds rsel define for mt8195.
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 >
-> Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
-> ---
->  include/dt-bindings/pinctrl/mt65xx.h | 9 +++++++++
->  1 file changed, 9 insertions(+)
+> Queueing pending on[1].
 >
-> diff --git a/include/dt-bindings/pinctrl/mt65xx.h b/include/dt-bindings/pinctrl/mt65xx.h
-> index 7e16e58fe1f7..f5934abcd1bd 100644
-> --- a/include/dt-bindings/pinctrl/mt65xx.h
-> +++ b/include/dt-bindings/pinctrl/mt65xx.h
-> @@ -16,6 +16,15 @@
->  #define MTK_PUPD_SET_R1R0_10 102
->  #define MTK_PUPD_SET_R1R0_11 103
->
-> +#define MTK_PULL_SET_RSEL_000  200
-> +#define MTK_PULL_SET_RSEL_001  201
-> +#define MTK_PULL_SET_RSEL_010  202
-> +#define MTK_PULL_SET_RSEL_011  203
-> +#define MTK_PULL_SET_RSEL_100  204
-> +#define MTK_PULL_SET_RSEL_101  205
-> +#define MTK_PULL_SET_RSEL_110  206
-> +#define MTK_PULL_SET_RSEL_111  207
-> +
+> > [1] https://lore.kernel.org/linux-devicetree/
+> >     20210609155108.16590-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
 
-Instead of all the obscure macros and the new custom "rsel" property,
-which BTW is not in the bindings, can't we just list the actual bias
-resistance of each setting? We could also migrate away from R1R0.
+The dependency has been accepted, but this patch needs a respin
+for the changed clocks.
 
-Then we can specify the setting with the standard bias-pull-up/down
-properties [1].
+Gr{oetje,eeting}s,
 
-Also, please ask internally if Mediatek could relicense all the header
-files that Mediatek has contributed under include/dt-bindings/pinctrl/ [2]
-to GPL-2.0 and BSD dual license. These files are part of the DT bindings
-and we really want them to be dual licensed as well, and not just the
-YAML files.
+                        Geert
 
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Regards
-ChenYu
-
-
-[1] https://elixir.bootlin.com/linux/latest/source/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml#L37
-[2] Note that a few files were contributed by other people
-
->  #define MTK_DRIVE_2mA  2
->  #define MTK_DRIVE_4mA  4
->  #define MTK_DRIVE_6mA  6
-> --
-> 2.18.0
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
