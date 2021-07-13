@@ -2,93 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EE6E3C72CB
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 17:08:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3822B3C72D1
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 17:10:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236873AbhGMPLD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jul 2021 11:11:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34208 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236842AbhGMPLC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Jul 2021 11:11:02 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 806B96128C;
-        Tue, 13 Jul 2021 15:08:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626188892;
-        bh=KQT9Z7YvdNmZBh89mDjGFdmNP8HcF0vPgCUlUtMtO2s=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ScxjE7H5N+kVpb24NJU63pQmaWeACZZBfks1bx8BuONJRYyPvRjsGlB/jd1H/EkAl
-         VGS9K0Owgm+DDKGMrB+VIESptkq1BVBSDkcUBh0DktLvTX6q+8Q4eioQkWQy0tYqal
-         S7oTxCgra71qXsW9uUWU5ARrw5t+kBlYig/jqV2Gfd55wA2T5n3Z3L/668pDdfto2u
-         R/Q+1CI2wsRUgEMrb1T7WOEWD2HDYbxn7myEDoSWQmFKi1CwQu0A46ky2XgIYeTAXo
-         t8m746YdWk6AQquc/CzD60fRaq0+mc74tQzEZ2oUGA651EQkInPcJRKljjsG6+eWNN
-         60QqKDl24sOkQ==
-Received: by mail-ej1-f46.google.com with SMTP id ga14so27092121ejc.6;
-        Tue, 13 Jul 2021 08:08:12 -0700 (PDT)
-X-Gm-Message-State: AOAM533XFjXVmNGyZVDhQnh9DakcwxxgWaLpNhQHXfG+iugl1qDAYAF8
-        jhBq3x8ZQHW8zu/oPhfAV2SVcLN7jAc3630wSA==
-X-Google-Smtp-Source: ABdhPJw0Fw8R0C28MNb/35eTmgMsYLTieB81Bgmf7Xw5IEUhfkDZhHhFuE2ymY7Si9cBaq9rTITzvM87u6UeMl1LOAk=
-X-Received: by 2002:a17:907:9720:: with SMTP id jg32mr6142376ejc.108.1626188891073;
- Tue, 13 Jul 2021 08:08:11 -0700 (PDT)
+        id S236901AbhGMPNS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jul 2021 11:13:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53342 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236873AbhGMPNR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 11:13:17 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99ED8C0613E9;
+        Tue, 13 Jul 2021 08:10:27 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id ec55so8757718edb.1;
+        Tue, 13 Jul 2021 08:10:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=GXSApPPLGUhhXM/V78f8wajJ1bbfuwFyK0zy0kRxBqA=;
+        b=tLM2bZBt40bgP5Vo+Gh6dkRxvT+9Sr8VSaJWjxsi90cSlMfCWM90/OhXLI6uHq7BtK
+         RpjBkoU29VPD7/3V5PLHRn4dGaWEy22WHP4FX3DMYZYT50UyPrKKZ8g2+Q1C8JPfP4OI
+         4Kmw+o23DEBPHF/VRXclj+xENv2LnWhMDnV/OsjbkihotRXXfd+vdYhIxKYt/OCrtItf
+         aKVw6fB4kh/6ZDsK35gAKPc//Ibd4gHwno4abwP2H6BPrhpPP8anuS7FOl72RwJ+BbA2
+         DVy6NBq6+XZzdj85xrqyZ/LYLvOjoysbhEzBfDiidmeZAGNXiOFGhA1UEvWyZNBgSbDB
+         E4DA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=GXSApPPLGUhhXM/V78f8wajJ1bbfuwFyK0zy0kRxBqA=;
+        b=GzJqsdHHCu8L4ZKMrVXLGgDDAfxLznO+SCAc2ZJVzYijNmJXHox4sf6xu4chDGKaI/
+         VLDkbgInLdEUhlW2/i+pRTy60awpQSStUwq/DQXnGUHQIAQU9WqiWuOyuOtGPovJEYb7
+         UMcaRdYtw15UUhKVoanO0XRGZBZSO8dnzYy/ABv0Zaf8j6f2JZqKtrSPQ75pUcw+uI2g
+         E11JxJK12h+x/iFoaYq4x2ZsOz1TwfWQbrxjaci9DJG7lTAD2c/yLOy3YH0XY/5V76GJ
+         +lsGv7K02yICJHm7dFclhHhSGt6r5thyKlcxR6Fdpg/n2ICL3Kr3wZ30oMBljcrkP76b
+         v5gA==
+X-Gm-Message-State: AOAM530+jaRF+9ccHIuqWr9MfZvcAXC4AijeWwUmSwuRmerGcUsI59dn
+        lt0G1SfcxStzvSs2BB0RATrZ8hLtmC0IZtaDQ/g=
+X-Google-Smtp-Source: ABdhPJzCxYkRS51Xrr9LI81R5hzAdh5tZIviK3d3m2EE0Sh2KMgNVn6R7JxtZZxPw8xNgGZ3DtaTSVLMPZOFuUzzmYk=
+X-Received: by 2002:a50:fb04:: with SMTP id d4mr6302757edq.143.1626189026249;
+ Tue, 13 Jul 2021 08:10:26 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210712150242.146545-1-sebastian.reichel@collabora.com>
- <20210712150242.146545-2-sebastian.reichel@collabora.com> <1626184993.653258.129709.nullmailer@robh.at.kernel.org>
-In-Reply-To: <1626184993.653258.129709.nullmailer@robh.at.kernel.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 13 Jul 2021 09:07:57 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqK2v9W=+GLEpAUFWeD4P3uiq2i7CWkwP9t76+e6dTtQ8A@mail.gmail.com>
-Message-ID: <CAL_JsqK2v9W=+GLEpAUFWeD4P3uiq2i7CWkwP9t76+e6dTtQ8A@mail.gmail.com>
-Subject: Re: [PATCHv6 1/3] dt-bindings: misc: ge-achc: Convert to DT schema format
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Sascha Hauer <kernel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        Collabora Kernel ML <kernel@collabora.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Ian Ray <ian.ray@ge.com>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Mark Brown <broonie@kernel.org>
+References: <20210713055227.1142-1-linux.amoon@gmail.com> <20210713055227.1142-3-linux.amoon@gmail.com>
+In-Reply-To: <20210713055227.1142-3-linux.amoon@gmail.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Tue, 13 Jul 2021 17:10:15 +0200
+Message-ID: <CAFBinCC9rR1F7Fgg5sao4h3qtFZU6OTTJMgmSJMibyBv0nGjMQ@mail.gmail.com>
+Subject: Re: [PATCHv1 2/3] phy: amlogic: meson8b-usb2: Power off the PHY by
+ putting it into reset mode
+To:     Anand Moon <linux.amoon@gmail.com>
+Cc:     linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Matt Corallo <oc2udbzfd@mattcorallo.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Emiliano Ingrassia <ingrassia@epigenesys.com>,
+        devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 13, 2021 at 8:03 AM Rob Herring <robh@kernel.org> wrote:
+On Tue, Jul 13, 2021 at 7:53 AM Anand Moon <linux.amoon@gmail.com> wrote:
 >
-> On Mon, 12 Jul 2021 17:02:40 +0200, Sebastian Reichel wrote:
-> > Convert the binding to DT schema format. Also update the binding
-> > to fix shortcomings
-> >
-> >  * Add "nxp,kinetis-k20" fallback compatible
-> >  * add programming SPI interface and reset GPIO
-> >  * add main clock
-> >  * add voltage supplies
-> >  * drop spi-max-frequency from required properties,
-> >    driver will setup max. frequency
-> >
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > ---
-> >  .../devicetree/bindings/misc/ge-achc.txt      | 26 --------
-> >  .../devicetree/bindings/misc/ge-achc.yaml     | 65 +++++++++++++++++++
-> >  2 files changed, 65 insertions(+), 26 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/misc/ge-achc.txt
-> >  create mode 100644 Documentation/devicetree/bindings/misc/ge-achc.yaml
-> >
+> Power off the PHY by putting it into reset mode.
 >
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->
-> yamllint warnings/errors:
->
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/misc/ge-achc.example.dt.yaml: spi: spi@1:reg: [[1], [0]] is too long
->         From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spi/spi-controller.yaml
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/misc/ge-achc.example.dt.yaml: spi: spi@1:reg: Additional items are not allowed ([0] was unexpected)
->         From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spi/spi-controller.yaml
+> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+based on code from the vendor kernel [0] this gets my:
+Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-Ignore this. The necessary change is in v5.14-rc1.
 
-Rob
+[0] https://github.com/endlessm/linux-meson/blob/0672f0b61eb92ba63c91d858a678d2c3a0bba06a/drivers/amlogic/usb/dwc_otg/310/dwc_otg_attr.c#L706
