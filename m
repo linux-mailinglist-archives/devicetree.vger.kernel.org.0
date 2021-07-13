@@ -2,211 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 75B8A3C6F7C
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 13:18:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA7823C6F93
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 13:19:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235960AbhGMLU7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jul 2021 07:20:59 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47986 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235709AbhGMLU6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Jul 2021 07:20:58 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 41A146128B;
-        Tue, 13 Jul 2021 11:18:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626175088;
-        bh=B4jrV49pQ0ECfJdfLnhF4upHjmaI6gwsWgymRUmtsww=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=M/hGq9nN5Spi10U04g6BPiGuDeOAaCGttOByIKYPI8P8iZyGgs3pt3En5+Fk9czK6
-         cORhGJdSpgjkQCbGdw1UuTFU+Xxau2vbLYKyU/Qv82EFizSfgMC1G8Si63FGQHG2Cr
-         hEaEgQv5n4UWGNhsCbEFQriXhe9wfdngRRYyRNZV+qtMILKrDWlvcQM9UPoPWF8xdK
-         zOXvev+d7i68ctZSjdN4yqoLyV/bdurXqy1bFmG0qookhuSj2QVR7K59P7WnIUCbv2
-         NohKhOOwFCPHzxo3wvm5Dn23grBhz4YZMGjlzersJxoOPTaJYd3VtkOt9aDgJvRSWd
-         ex8EmOfN/8XkA==
-Received: by mail.kernel.org with local (Exim 4.94.2)
-        (envelope-from <mchehab@kernel.org>)
-        id 1m3GQL-006b3n-2v; Tue, 13 Jul 2021 13:18:01 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Binghui Wang <wangbinghui@hisilicon.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+        id S235413AbhGMLVd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jul 2021 07:21:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57102 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235574AbhGMLVd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 07:21:33 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CDC7C0613EE;
+        Tue, 13 Jul 2021 04:18:42 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id 141so12867515ljj.2;
+        Tue, 13 Jul 2021 04:18:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=DmW58CuQRiPy8Sg0c4NVO3FTMCEg7IqqiVpTucaJ3Tw=;
+        b=pabDNbwM68BJYigpwysEF85rUs211QosqbU8je6wotBV50cemlTavOMzN1CN6vUAa1
+         bxhS3HOMeoZq+xr0xRnedvScLuAX6X1m+gW0lHfl8BWSZdVSQLbdlAV6+RfnmeTEMv+k
+         aoyfJchdeYQWBKp/S7L/a5bmQEVNWuSA+8SqUba9qBBBMfeP7XJvxhgm76wW24c/6Ld0
+         tY+/ljx9S/G+o5gMEXfmQDLmsoeFK8aVJag0ZxMhb8stDjzZ/ypHL0xZygRGSXPkNBPs
+         rk8Rxu3MmsWRdv6UpxdaMIPthQv2rw8I0CiPo22t1s0ihY12hS8Qs0cZSg+PHR6Ndvd/
+         uSwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=DmW58CuQRiPy8Sg0c4NVO3FTMCEg7IqqiVpTucaJ3Tw=;
+        b=oU/ukQwy6/eXlxFUUCQ5tBZFtgVAFsWJuPCENWlETtGUV4fHWOqczThvp42DOdLyfx
+         OmaK6vIxMEqPjhCls4Olzsvg7HUG1vxEmQUo0FPTgpQjg38VS1AAOJiRyhFgrXrpZnMb
+         030EmIRTH4H4W52/TABCx7/5lwuw1BTqlPFeW9ZywNpm2kuRBp9jzeIn0CrHGyUrDNlX
+         SnWBsf6axpLKzxdW5X6AwtPjyCnVA6sOO6V1bXr9bCGGFnSixjuFna+NLg40PMTzDQ82
+         Zlyl92skHlgwg21s4gaYhZfyzdqRyzb7RI134YKS5lJDtxTibK1kJ+nZA2bTL2zIo3Uz
+         eaOA==
+X-Gm-Message-State: AOAM531DomxcGhFYUD25sJy08nB1qC/pDAUvpDXYwbqhjD19e4LeQIEI
+        HazCqMnMopI3HXpyz3lbSNk=
+X-Google-Smtp-Source: ABdhPJyvTGjEOf/NF26HuZzFFaI4eu/hHQhCJ+22spNmcJAWehw9gBPsA+afahpC0rX9Ib53v8by6Q==
+X-Received: by 2002:a2e:88ca:: with SMTP id a10mr1850235ljk.361.1626175120561;
+        Tue, 13 Jul 2021 04:18:40 -0700 (PDT)
+Received: from [192.168.1.100] ([178.176.78.85])
+        by smtp.gmail.com with ESMTPSA id k12sm1442939lfv.14.2021.07.13.04.18.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Jul 2021 04:18:40 -0700 (PDT)
+Subject: Re: [PATCH v2 5/5] arm64: dts: renesas: rzg2l-smarc: Add scif0 pins
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
         Rob Herring <robh+dt@kernel.org>,
-        Xiaowei Song <songxiaowei@hisilicon.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org
-Subject: [PATCH v4 5/5] dt-bindings: PCI: kirin-pcie.txt: Convert it to yaml
-Date:   Tue, 13 Jul 2021 13:17:55 +0200
-Message-Id: <1f9b2f372364328e9cd3a18cf605ad541f3de4ab.1626174242.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1626174242.git.mchehab+huawei@kernel.org>
-References: <cover.1626174242.git.mchehab+huawei@kernel.org>
+        Linus Walleij <linus.walleij@linaro.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+References: <20210712194422.12405-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20210712194422.12405-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
+Organization: Brain-dead Software
+Message-ID: <53e6c8fa-311f-f100-dd06-d806ab593488@gmail.com>
+Date:   Tue, 13 Jul 2021 14:18:30 +0300
+User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
+In-Reply-To: <20210712194422.12405-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the file into a JSON description at the yaml format.
+On 12.07.2021 22:44, Lad Prabhakar wrote:
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- .../bindings/pci/hisilicon,kirin-pcie.yaml    | 81 +++++++++++++++++++
- .../devicetree/bindings/pci/kirin-pcie.txt    | 41 ----------
- MAINTAINERS                                   |  2 +-
- 3 files changed, 82 insertions(+), 42 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml
- delete mode 100644 Documentation/devicetree/bindings/pci/kirin-pcie.txt
+> Add scif0 pins in pinctrl node and update the scif0 node
+> to include pinctrl property.
 
-diff --git a/Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml b/Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml
-new file mode 100644
-index 000000000000..f797e2cc3da6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml
-@@ -0,0 +1,81 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pci/hisilicon,kirin-pcie.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: HiSilicon Kirin SoCs PCIe host DT description
-+
-+maintainers:
-+  - Xiaowei Song <songxiaowei@hisilicon.com>
-+  - Binghui Wang <wangbinghui@hisilicon.com>
-+
-+description: |
-+  Kirin PCIe host controller is based on the Synopsys DesignWare PCI core.
-+  It shares common functions with the PCIe DesignWare core driver and
-+  inherits common properties defined in
-+  Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml.
-+
-+allOf:
-+  - $ref: /schemas/pci/pci-bus.yaml#
-+
-+properties:
-+  compatible:
-+    contains:
-+      enum:
-+        - hisilicon,kirin960-pcie
-+        - hisilicon,kirin970-pcie
-+
-+  reg:
-+    description: |
-+      Should contain rc_dbi, apb, config registers location and length.
-+
-+  reg-names:
-+    items:
-+      - const: dbi          # controller configuration registers
-+      - const: apb          # apb Ctrl register defined by Kirin
-+      - const: config       # PCIe configuration space registers
-+
-+  "#address-cells":
-+    const: 3
-+
-+  "#size-cells":
-+    const: 2
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    soc {
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+
-+      pcie: pcie@f4000000 {
-+        compatible = "hisilicon,kirin960-pcie";
-+        reg = <0x0 0xf4000000 0x0 0x1000>,
-+              <0x0 0xff3fe000 0x0 0x1000>,
-+              <0x0 0xf4000000 0 0x2000>;
-+        reg-names = "dbi","apb", "config";
-+        bus-range = <0x0  0x1>;
-+        #address-cells = <3>;
-+        #size-cells = <2>;
-+        device_type = "pci";
-+        ranges = <0x02000000 0x0 0x00000000 0x0 0xf5000000 0x0 0x2000000>;
-+        num-lanes = <1>;
-+        #interrupt-cells = <1>;
-+        interrupts = <0 283 4>;
-+        interrupt-names = "msi";
-+        interrupt-map-mask = <0xf800 0 0 7>;
-+        interrupt-map = <0x0 0 0 1 &gic GIC_SPI 282 IRQ_TYPE_LEVEL_HIGH>,
-+                        <0x0 0 0 2 &gic GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>,
-+                        <0x0 0 0 3 &gic GIC_SPI 284 IRQ_TYPE_LEVEL_HIGH>,
-+                        <0x0 0 0 4 &gic GIC_SPI 285 IRQ_TYPE_LEVEL_HIGH>;
-+      };
-+    };
-diff --git a/Documentation/devicetree/bindings/pci/kirin-pcie.txt b/Documentation/devicetree/bindings/pci/kirin-pcie.txt
-deleted file mode 100644
-index 3a36eeb1c434..000000000000
---- a/Documentation/devicetree/bindings/pci/kirin-pcie.txt
-+++ /dev/null
-@@ -1,41 +0,0 @@
--HiSilicon Kirin SoCs PCIe host DT description
--
--Kirin PCIe host controller is based on the Synopsys DesignWare PCI core.
--It shares common functions with the PCIe DesignWare core driver and
--inherits common properties defined in
--Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml.
--
--Additional properties are described here:
--
--Required properties
--- compatible:
--	"hisilicon,kirin960-pcie"
--	"hisilicon,kirin970-pcie"
--- reg: Should contain rc_dbi, apb, config registers location and length.
--- reg-names: Must include the following entries:
--  "dbi": controller configuration registers;
--  "apb": apb Ctrl register defined by Kirin;
--  "config": PCIe configuration space registers.
--
--Optional properties:
--
--Example based on kirin960:
--
--	pcie@f4000000 {
--		compatible = "hisilicon,kirin960-pcie";
--		reg = <0x0 0xf4000000 0x0 0x1000>, <0x0 0xff3fe000 0x0 0x1000>,
--		      <0x0 0xF4000000 0 0x2000>;
--		reg-names = "dbi","apb", "config";
--		bus-range = <0x0  0x1>;
--		#address-cells = <3>;
--		#size-cells = <2>;
--		device_type = "pci";
--		ranges = <0x02000000 0x0 0x00000000 0x0 0xf5000000 0x0 0x2000000>;
--		num-lanes = <1>;
--		#interrupt-cells = <1>;
--		interrupt-map-mask = <0xf800 0 0 7>;
--		interrupt-map = <0x0 0 0 1 &gic 0 0 0  282 4>,
--				<0x0 0 0 2 &gic 0 0 0  283 4>,
--				<0x0 0 0 3 &gic 0 0 0  284 4>,
--				<0x0 0 0 4 &gic 0 0 0  285 4>;
--	};
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b54bd9dd07ec..d5f53b2d3f9c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14420,7 +14420,7 @@ M:	Xiaowei Song <songxiaowei@hisilicon.com>
- M:	Binghui Wang <wangbinghui@hisilicon.com>
- L:	linux-pci@vger.kernel.org
- S:	Maintained
--F:	Documentation/devicetree/bindings/pci/kirin-pcie.txt
-+F:	Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml
- F:	drivers/pci/controller/dwc/pcie-kirin.c
- 
- PCIE DRIVER FOR HISILICON STB
--- 
-2.31.1
+    Properties? There are a couple... :-)
 
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+>   arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi | 10 ++++++++++
+>   1 file changed, 10 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
+> index adcd4f50519e..0987163f25ee 100644
+> --- a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
+[...]
+>   	clock-frequency = <24000000>;
+>   };
+>   
+> +&pinctrl {
+> +	scif0_pins: scif0 {
+> +		pinmux = <RZG2L_PORT_PINMUX(38, 0, 1)>,	/* TxD */
+> +			 <RZG2L_PORT_PINMUX(38, 1, 1)>;	/* RxD */
+> +	};
+> +};
+> +
+>   &scif0 {
+> +	pinctrl-0 = <&scif0_pins>;
+> +	pinctrl-names = "default";
+>   	status = "okay";
+>   };
+> 
+
+MBR, Sergei
