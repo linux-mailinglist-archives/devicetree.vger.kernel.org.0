@@ -2,101 +2,250 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA42E3C6765
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 02:22:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B584A3C676C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 02:24:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233701AbhGMAZm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jul 2021 20:25:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50922 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233672AbhGMAZc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 20:25:32 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5747BC0613E9;
-        Mon, 12 Jul 2021 17:22:43 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id x25so34059549lfu.13;
-        Mon, 12 Jul 2021 17:22:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=LHMjl6v+1/z8wJKRrF+q+23p2ixGAoh6EkLjt4MZTjE=;
-        b=jiW8y8g6pdyhRM4uMdpXkWIFO7Xb89L5NGKePWnVUe+yA7+VP5URwMjPobX5jfWulK
-         gSb17dKjQdHcOQmvCyTekQFiWtEBOJi/Dl44qAZ4bCgiFIRXdnlR4exZw6QFLV+NxYrI
-         hiRJVYtwS+pj5u1yVrWfiQQviYYnUKAKDl0YloHnh9u35bNL0Gni6EtmDDlAci4+Zgp/
-         MHK1XrLdc4l4WINofxSEN8wyj5yuUpQo2hzdhPelq2ybm5G8+ZE+00HJW8QeSep4ncVc
-         MKwumlXVVL79ZHBN++QiG29p1zlmKOuz+M0Iu3wH/CkTYZpXRxhfzsd7O3yNwIvQs7aE
-         mu3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=LHMjl6v+1/z8wJKRrF+q+23p2ixGAoh6EkLjt4MZTjE=;
-        b=CZ+Nl/6ZiuYQPlTd9l/IIACU7TRSiUk8hdWxoE66wWKQ/SBT3ptm0N9PRT1cZWGJhn
-         5evh+nzNcUDUOwh+i84LWMzCPecX+x6dpPXkJzfajfyxqLvAqi9TmCsAIsD1GNdIRZhQ
-         TOo8eNVGsdt70hsz3gIC8oGqVfMuKMqaKNRfSaCXmbAcMMyS6eQ97TTVyePsNKifQHYT
-         tvNBqkJ3+GxCR4OR+Z5npq0ETsuXbp0G7el0RGCqlNxZHiptUWTbmL7HvUaBtNddNeRL
-         F6KMTjEpSyByKT+l4xY39uiluA/30/Ilv6eHNkO5eu1fvD1P2+0GuDZjzJXQwBGPlBMK
-         Y+KQ==
-X-Gm-Message-State: AOAM5300Dyb8C38u8RjWgbTnAzFapJ4PXuegeCfg771PacOwzua0gob/
-        b0ObVd57GP6mSwJSaODkDzYr6lQtByE=
-X-Google-Smtp-Source: ABdhPJyklp2niBlI5qcNHdbeTgIqoUU9MU2T6GictWwRo4KZQc1szt0TRJ+VAnZmAp8XOGBpm1z3eg==
-X-Received: by 2002:a05:6512:260a:: with SMTP id bt10mr1119212lfb.636.1626135761389;
-        Mon, 12 Jul 2021 17:22:41 -0700 (PDT)
-Received: from [192.168.2.145] (94-29-37-113.dynamic.spd-mgts.ru. [94.29.37.113])
-        by smtp.googlemail.com with ESMTPSA id r19sm1801133lji.108.2021.07.12.17.22.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Jul 2021 17:22:40 -0700 (PDT)
-Subject: Re: [PATCH v3 06/12] dt-bindings: power: supply: smb347-charger:
- Document USB VBUS regulator
-To:     Rob Herring <robh@kernel.org>
-Cc:     Thierry Reding <treding@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        David Heidelberg <david@ixit.cz>, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20210704225433.32029-1-digetx@gmail.com>
- <20210704225433.32029-7-digetx@gmail.com>
- <20210712153905.GA1980362@robh.at.kernel.org>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <9032e807-b4d3-bacf-6c39-d3a2c7c57f3e@gmail.com>
-Date:   Tue, 13 Jul 2021 03:22:40 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S233607AbhGMA1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jul 2021 20:27:37 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42030 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233491AbhGMA1h (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Jul 2021 20:27:37 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 577C461249;
+        Tue, 13 Jul 2021 00:24:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1626135888;
+        bh=KexV+4F3TgN4PPH4fBSUjkTODP7+uxdjEVPvdNWA3ek=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=efNv2ZKOQmeZOzjaWJvY+GGdSdjEMfy1vzaR/X6ySrmMtOdN/rb6XSpLr2EssXBsa
+         c0ht1ljsmxEqenKRNycCRiooGY2sogJkyPHIJ2T9LWcK2C+n7B3/kWWUcbtUMQh8YQ
+         Ipc/JneCNEEMgTb1Z7tXZOopQwElPl3roo5YgVGHNj+uugtCGu0+tMCBUa71MaQeiv
+         AFIU3EnPzs3XJzlTxRxVpsmGZIocKROZc39+qoOS7xG/BCQT6OOZluMXud37p0yjN9
+         d2WwQmrW/ULkhSZ18v4noIr5MP7g//aZ5rs2q7EagHbYPzXCTM4r+y61PcaTJ09a4I
+         HtFMH2QFFBrIA==
+Received: by mail-ej1-f54.google.com with SMTP id i20so38086112ejw.4;
+        Mon, 12 Jul 2021 17:24:48 -0700 (PDT)
+X-Gm-Message-State: AOAM530G4j+LFRagV5g/qlQeU7GrPGmxZI2xTQelUjmyfa1gTA1zcuZ9
+        ue6e8uzO9rxBRaAwInusTqbm6Yjac+V8lL+5NQ==
+X-Google-Smtp-Source: ABdhPJzbNtMkeM1yr6+TVDvgJG2LQ1xNzk1FIO6ziqPDzewhB10dddOwyHMlOtOpBIsKU25K3xu2hWGbrYxzWaqPvF0=
+X-Received: by 2002:a17:907:62a1:: with SMTP id nd33mr2043181ejc.303.1626135886765;
+ Mon, 12 Jul 2021 17:24:46 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210712153905.GA1980362@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <1626072109-2657-1-git-send-email-yongqiang.niu@mediatek.com> <1626072109-2657-2-git-send-email-yongqiang.niu@mediatek.com>
+In-Reply-To: <1626072109-2657-2-git-send-email-yongqiang.niu@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Tue, 13 Jul 2021 08:24:35 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_8=fdhVosGKj0uAqYemka3=PX+LOvnDPpTWfqBHaJgJ_Q@mail.gmail.com>
+Message-ID: <CAAOTY_8=fdhVosGKj0uAqYemka3=PX+LOvnDPpTWfqBHaJgJ_Q@mail.gmail.com>
+Subject: Re: [PATCH v2] drm/mediatek: clear pending flag when cmdq packet is done.
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Hsin-Yi Wang <hsinyi@chromium.org>, CK Hu <ck.hu@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-12.07.2021 18:39, Rob Herring пишет:
->> +  summit,inok-polarity:
->> +    description: |
->> +      Polarity of INOK signal indicating presence of external power supply.
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    enum:
->> +      - 0 # SMB3XX_SYSOK_INOK_ACTIVE_LOW
->> +      - 1 # SMB3XX_SYSOK_INOK_ACTIVE_HIGH
->> +
->> +  usb-vbus:
->> +    $ref: "../../regulator/regulator.yaml#"
->> +    type: object
->        unevaluatedProperties: false
-> 
-> With that,
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> 
+Hi, Yongqiang:
 
-I tried to add the unevaluatedProperties + a random unrelated property
-to the example usb-vbus node and dt_binding_check is happy with that. So
-the unevaluatedProperties has no effect, is it supposed to be so?
+Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2021=E5=B9=B47=E6=9C=
+=8812=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=882:42=E5=AF=AB=E9=81=93=
+=EF=BC=9A
+>
+> In cmdq mode, packet may be flushed before it is executed, so
+> the pending flag should be cleared after cmdq packet is done.
+
+I would like this patch to base on the series [1] because that series
+use the standard mailbox callback interface.
+
+[1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=3D5143=
+69
+
+Regards,
+Chun-Kuang.
+
+>
+> Signed-off-by: CK Hu <ck.hu@mediatek.com>
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_drm_crtc.c | 92 +++++++++++++++++++++++++++=
++++---
+>  1 file changed, 85 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c b/drivers/gpu/drm/me=
+diatek/mtk_drm_crtc.c
+> index 40df2c8..8cd107b 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
+> @@ -73,6 +73,13 @@ struct mtk_crtc_state {
+>         unsigned int                    pending_vrefresh;
+>  };
+>
+> +#if IS_REACHABLE(CONFIG_MTK_CMDQ)
+> +struct mtk_cmdq_cb_data {
+> +       struct cmdq_pkt                 *cmdq_handle;
+> +       struct mtk_drm_crtc             *mtk_crtc;
+> +};
+> +#endif
+> +
+>  static inline struct mtk_drm_crtc *to_mtk_crtc(struct drm_crtc *c)
+>  {
+>         return container_of(c, struct mtk_drm_crtc, base);
+> @@ -224,7 +231,64 @@ struct mtk_ddp_comp *mtk_drm_ddp_comp_for_plane(stru=
+ct drm_crtc *crtc,
+>  #if IS_REACHABLE(CONFIG_MTK_CMDQ)
+>  static void ddp_cmdq_cb(struct cmdq_cb_data data)
+>  {
+> -       cmdq_pkt_destroy(data.data);
+> +       struct mtk_cmdq_cb_data *cb_data =3D data.data;
+> +       struct mtk_drm_crtc *mtk_crtc;
+> +       struct mtk_crtc_state *state;
+> +       unsigned int i;
+> +
+> +       if (!cb_data) {
+> +               DRM_ERROR("cmdq callback data is null pointer!\n");
+> +               return;
+> +       }
+> +
+> +       if (data.sta !=3D 0) {
+> +               DRM_WARN("cmdq callback error %d!!\n", data.sta);
+> +               goto destroy_pkt;
+> +       }
+> +
+> +       mtk_crtc =3D cb_data->mtk_crtc;
+> +       if (!mtk_crtc) {
+> +               DRM_ERROR("cmdq callback mtk_crtc is null pointer!\n");
+> +               goto destroy_pkt;
+> +       }
+> +
+> +       state =3D to_mtk_crtc_state(mtk_crtc->base.state);
+> +
+> +       if (state->pending_config) {
+> +               state->pending_config =3D false;
+> +       }
+> +
+> +       if (mtk_crtc->pending_planes) {
+> +               for (i =3D 0; i < mtk_crtc->layer_nr; i++) {
+> +                       struct drm_plane *plane =3D &mtk_crtc->planes[i];
+> +                       struct mtk_plane_state *plane_state;
+> +
+> +                       plane_state =3D to_mtk_plane_state(plane->state);
+> +
+> +                       if (plane_state->pending.config)
+> +                               plane_state->pending.config =3D false;
+> +               }
+> +               mtk_crtc->pending_planes =3D false;
+> +       }
+> +
+> +       if (mtk_crtc->pending_async_planes) {
+> +               for (i =3D 0; i < mtk_crtc->layer_nr; i++) {
+> +                       struct drm_plane *plane =3D &mtk_crtc->planes[i];
+> +                       struct mtk_plane_state *plane_state;
+> +
+> +                       plane_state =3D to_mtk_plane_state(plane->state);
+> +
+> +                       if (plane_state->pending.async_config)
+> +                               plane_state->pending.async_config =3D fal=
+se;
+> +               }
+> +               mtk_crtc->pending_async_planes =3D false;
+> +       }
+> +
+> +destroy_pkt:
+> +       if (cb_data->cmdq_handle)
+> +               cmdq_pkt_destroy(cb_data->cmdq_handle);
+> +
+> +       kfree(cb_data);
+>  }
+>  #endif
+>
+> @@ -378,7 +442,8 @@ static void mtk_crtc_ddp_config(struct drm_crtc *crtc=
+,
+>                                     state->pending_vrefresh, 0,
+>                                     cmdq_handle);
+>
+> -               state->pending_config =3D false;
+> +               if (!cmdq_handle)
+> +                       state->pending_config =3D false;
+>         }
+>
+>         if (mtk_crtc->pending_planes) {
+> @@ -398,9 +463,12 @@ static void mtk_crtc_ddp_config(struct drm_crtc *crt=
+c,
+>                                 mtk_ddp_comp_layer_config(comp, local_lay=
+er,
+>                                                           plane_state,
+>                                                           cmdq_handle);
+> -                       plane_state->pending.config =3D false;
+> +                       if (!cmdq_handle)
+> +                               plane_state->pending.config =3D false;
+>                 }
+> -               mtk_crtc->pending_planes =3D false;
+> +
+> +               if (!cmdq_handle)
+> +                       mtk_crtc->pending_planes =3D false;
+>         }
+>
+>         if (mtk_crtc->pending_async_planes) {
+> @@ -420,9 +488,13 @@ static void mtk_crtc_ddp_config(struct drm_crtc *crt=
+c,
+>                                 mtk_ddp_comp_layer_config(comp, local_lay=
+er,
+>                                                           plane_state,
+>                                                           cmdq_handle);
+> -                       plane_state->pending.async_config =3D false;
+> +
+> +                       if (!cmdq_handle)
+> +                               plane_state->pending.async_config =3D fal=
+se;
+>                 }
+> -               mtk_crtc->pending_async_planes =3D false;
+> +
+> +               if (!cmdq_handle)
+> +                       mtk_crtc->pending_async_planes =3D false;
+>         }
+>  }
+>
+> @@ -469,13 +541,19 @@ static void mtk_drm_crtc_update_config(struct mtk_d=
+rm_crtc *mtk_crtc,
+>         }
+>  #if IS_REACHABLE(CONFIG_MTK_CMDQ)
+>         if (mtk_crtc->cmdq_client) {
+> +               struct mtk_cmdq_cb_data *cb_data;
+> +
+>                 mbox_flush(mtk_crtc->cmdq_client->chan, 2000);
+>                 cmdq_handle =3D cmdq_pkt_create(mtk_crtc->cmdq_client, PA=
+GE_SIZE);
+>                 cmdq_pkt_clear_event(cmdq_handle, mtk_crtc->cmdq_event);
+>                 cmdq_pkt_wfe(cmdq_handle, mtk_crtc->cmdq_event, false);
+>                 mtk_crtc_ddp_config(crtc, cmdq_handle);
+>                 cmdq_pkt_finalize(cmdq_handle);
+> -               cmdq_pkt_flush_async(cmdq_handle, ddp_cmdq_cb, cmdq_handl=
+e);
+> +
+> +               cb_data =3D kmalloc(sizeof(*cb_data), GFP_KERNEL);
+> +               cb_data->cmdq_handle =3D cmdq_handle;
+> +               cb_data->mtk_crtc =3D mtk_crtc;
+> +               cmdq_pkt_flush_async(cmdq_handle, ddp_cmdq_cb, cb_data);
+>         }
+>  #endif
+>         mtk_crtc->config_updating =3D false;
+> --
+> 1.8.1.1.dirty
+>
