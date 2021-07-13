@@ -2,451 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63B483C6C19
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 10:39:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E84203C6C21
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 10:44:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234603AbhGMImM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jul 2021 04:42:12 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46632 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234512AbhGMImM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Jul 2021 04:42:12 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 667EE611CB;
-        Tue, 13 Jul 2021 08:39:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626165562;
-        bh=NPsCtWdGFx1mXGQ1yI4ME6zfRGklNQElsVvOuGSvTD4=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=kRKP1QxY0785pt8Q0IGaK5nOl0X3B3u6N5MLaEOD9rLLPNZoK9SA58lcVG0O30Vfl
-         g7Fw2RSArHPcQihTVzNbv5BditrNvAg2uEe/kz3B0AwDQw+OlCLP4olXsuqzOvk0Ac
-         4rX6elwTnyC/Sm6FBBFfZeLnz87HwVtKe0Cmuv4/1BdJfvf26Yp/NKG31gcnrJvyHz
-         Tj0/NkJGfR8EPmL5thbXNDqX9qQ/+3o/iuxyDVLEyYDjEjU1p6GPxqPtY7D77qyt84
-         1ga72L1MuTaAU0BQjyo2Br5xUQ1yrxGKYhkYBsTjr8cpPJDhmnH3FoxWGWDUUcLx9n
-         YrKCSnaMA75AA==
-From:   Felipe Balbi <balbi@kernel.org>
-To:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Wesley Cheng <wcheng@codeaurora.org>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "agross@kernel.org" <agross@kernel.org>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "frowand.list@gmail.com" <frowand.list@gmail.com>
-Cc:     "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "jackp@codeaurora.org" <jackp@codeaurora.org>
-Subject: Re: [PATCH v14 3/6] usb: dwc3: Resize TX FIFOs to meet EP bursting
- requirements
-In-Reply-To: <b65463e9-3a8d-1ee5-3e26-09990aa8ec53@synopsys.com>
-References: <1625908395-5498-1-git-send-email-wcheng@codeaurora.org>
- <1625908395-5498-4-git-send-email-wcheng@codeaurora.org>
- <b65463e9-3a8d-1ee5-3e26-09990aa8ec53@synopsys.com>
-Date:   Tue, 13 Jul 2021 11:39:13 +0300
-Message-ID: <87czrmzjym.fsf@kernel.org>
+        id S234577AbhGMIqz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jul 2021 04:46:55 -0400
+Received: from mail-vi1eur05on2077.outbound.protection.outlook.com ([40.107.21.77]:32992
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S234121AbhGMIqy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Jul 2021 04:46:54 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BQlItuqBhSziqOnnnZHHfOSmVhADGOX3VWVU8qlZo847axwEOQu2XGUuNPHVpQL+I49BmUHfo7ypOX2U28AgZ5vpSZn2iX9OjhXZ7Bbk0r9QXJrHw0XBZKDtMtZap+GdLv50eEcnt5Ixtj9mqvNrkxW2Od3FfHreWnCRjAJSAAY+fg3Cbujr1zXiKTESTbNkYVGyo55bwusBjXze9bqa27+Km15yEk6oNOeV1I3j8364FyUMK7H+sde7oiwlZo9K/IsF1TQ8hGwFQ2H15856oFWIZLSuq/idKRulE1u1WU0XtZXgig6AJYoucgnZaJiZIVrfVDdJiEcByt5BGCoc8w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=o6z6cRcL5ZaJtkebEHEpfrL4LGa/7GHBeCEyg3dC55w=;
+ b=fp5pNxdWjLIbTx2D+ulumIz7qi7IrAQDazAurA5+CUytlKBs9ogRkZqfj0SS0z4UoZMpieQsWhB8zXA3KtX4LHo/I5TKUej+Macb2R2wb7LPHyvtuYvXyxT78F1ZKIAeuEqh0FOj5FxXLLq5j5IKXCKH3fO8FrJgXF4zvUhdSFmLW2yRYujYeOVEg5Bp6LDmfS8ohKGmiceXF7aDw/yuFAoZ4HRLgANpPap2HuUC+lWImKDSHiDUqquOSbP0aUoDT+E/THx3ACdqjBFLfY2MylkwDULfZ0CMl6wfVNNt+MvTidjiWwnnnNsJwVSkkTTjObhbmNng1OzWj8BMwWaSOg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=o6z6cRcL5ZaJtkebEHEpfrL4LGa/7GHBeCEyg3dC55w=;
+ b=unlIuiyMMZQRVJbpYWgNGdXbfL8cVOfemCakLxfdJ99I/KBaEoulK62hJlhOj1tK5rZYvkbZjuewkxP0R0PUpdM12rzqRBJaFdWMA5bgn2Kg+/nCRm3jnjK4YKs7lgdiMqYQnte+3t0ueRKMvuuunU5/U8rFcOMDHOR1l22M/b4=
+Authentication-Results: collabora.com; dkim=none (message not signed)
+ header.d=none;collabora.com; dmarc=none action=none
+ header.from=wolfvision.net;
+Received: from DBBPR08MB4523.eurprd08.prod.outlook.com (2603:10a6:10:c8::19)
+ by DBBPR08MB6298.eurprd08.prod.outlook.com (2603:10a6:10:1f7::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4308.23; Tue, 13 Jul
+ 2021 08:44:02 +0000
+Received: from DBBPR08MB4523.eurprd08.prod.outlook.com
+ ([fe80::ade3:93e2:735c:c10b]) by DBBPR08MB4523.eurprd08.prod.outlook.com
+ ([fe80::ade3:93e2:735c:c10b%7]) with mapi id 15.20.4308.027; Tue, 13 Jul 2021
+ 08:44:02 +0000
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: rockchip: Add compatible for
+ rk3568 HDMI
+To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        hjc@rock-chips.com, heiko@sntech.de, airlied@linux.ie,
+        daniel@ffwll.ch, robh+dt@kernel.org, algea.cao@rock-chips.com,
+        andy.yan@rock-chips.com
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+References: <20210707120323.401785-1-benjamin.gaignard@collabora.com>
+ <20210707120323.401785-2-benjamin.gaignard@collabora.com>
+From:   Michael Riesch <michael.riesch@wolfvision.net>
+Organization: WolfVision GmbH
+Message-ID: <1bd64284-0a20-12e3-e2e7-19cdfdbf1a25@wolfvision.net>
+Date:   Tue, 13 Jul 2021 10:44:00 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
+In-Reply-To: <20210707120323.401785-2-benjamin.gaignard@collabora.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AM5PR1001CA0012.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:206:2::25) To DBBPR08MB4523.eurprd08.prod.outlook.com
+ (2603:10a6:10:c8::19)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha256; protocol="application/pgp-signature"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.100.125] (91.118.163.37) by AM5PR1001CA0012.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:206:2::25) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4308.20 via Frontend Transport; Tue, 13 Jul 2021 08:44:01 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: c04c85cd-549e-40c3-d79c-08d945da5d72
+X-MS-TrafficTypeDiagnostic: DBBPR08MB6298:
+X-Microsoft-Antispam-PRVS: <DBBPR08MB629869DDDE29F235C9D4FA38F2149@DBBPR08MB6298.eurprd08.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 0oHd9oJZXWkSok+MhwYw9kdq00BvKD4ro7zXCNv7xRDZjHI9lf5Ee+xTvvDVJlhfInXMgLeEDgWLqb0wqgd/0c32C/2sMvxBbKfMHOFqyZpQBBJxNKXgu7ytooGmQrpkux/9tQy/bck8l88v5oAMja9uxTCWBHb2wdjiMzrGeeZES3eTL+lFnLYPvfuWNmES13yNIw9TFp7nvrw+4gfWgznFaJaquJutrs2iiUXtrTaAYzVi0ciKKuSbF5k5U3SbYSxcbX+yk526A0StJiCdhIvKDgcaOkcreNl8BTU7gkNM+A7aUbWyy5UTlNLCVc9rgB6ALes10HYDz9Ogp6Rk5bXocppMHDiMNyWjhCOvAnfq/AWx2zVHpvyLHNM91mKW3oit+3lOfGe26Ba2jyYMjKyeDighNz9sfN3GVU4PcRcjQqY7gRLBgOiizLczhpMnovEELwtFd5zBKj2v2Ap17qVU0e4IXVAQ1DP3QPX8TW8Cf1nGoBR55jXc8hAta3YrBE6UX2ZNKl7duQZjk6F1mD0lxWgZCvhsCiVabVTjqCDJfIaTUl9uY61UkPaJeHxq7ySE5pwxkGL0jX6wx++hE1sqnUY5ZjQvN8l3zneT+2YL3SO3IPD/vXta7aYK/oFMr+eIzGVRvnHVYmGBVJ5T7GlSMpXGqYjIXhmC7tan76jhRIiuC4LJYHWlrZsBCNKzzBABC8cqfEk9Mvyblci1QvU6Sr0pl7kaFAGth/VyM+Nw7tOJVBSrJLkaQC7NhWy7zA4MtoQqGljrmS/hZ8bUlw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR08MB4523.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39840400004)(366004)(346002)(136003)(376002)(396003)(2616005)(38350700002)(956004)(4326008)(8936002)(53546011)(16576012)(316002)(31696002)(83380400001)(38100700002)(2906002)(86362001)(26005)(5660300002)(186003)(36756003)(44832011)(6486002)(66556008)(36916002)(66476007)(66946007)(8676002)(478600001)(52116002)(31686004)(7416002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U0IwcDNxRXlJRGZsVE1ISGZoYmFSSWJMaEdTM3hFbmk3UEZSTVRRTmRoZzJ6?=
+ =?utf-8?B?VXhEMUh6QzNZSFc2NWR2SlZ4LzRSV1pYdnZxL08yOE9uWFZ2RmovWHoxVGln?=
+ =?utf-8?B?M3FZejBEYWRIUDhST0d3WVBHK0t1bk1rU0loR2xpS2NyaXJoWGhQVExsU1p4?=
+ =?utf-8?B?c1FDTDZYaHdMUVNsaERMdDU2b1g5TjlFYjFEYmtZcjhjQ3FPdnJaOThNUTNL?=
+ =?utf-8?B?dHM0VlFZTVlreHZCbWdGSi81K1JjTzQzOTNFRWdQV1d1cHhZbTQrVUkrSTJl?=
+ =?utf-8?B?K3g0YjM5ZFZCQzlaZWNpN2ZUYXRHcFovdHJJajU1dTdxWkUzRms5MzMvNmw5?=
+ =?utf-8?B?MXQ2UlF1MnZEZUdZTS9zOE9FakJxTVdUVmdFSzhBZGp3Uno0bVhNRUEzM2NW?=
+ =?utf-8?B?Znl2R1Vuc1Nmd0w2Y0tRY2VDTG9qM1psUnhtVWxuUUx2REtlS3lBRDB0ZXBP?=
+ =?utf-8?B?Y0FKM0c4MDBWNlMrN3RJS21icG5JcmRRbHVWUHB3cnAzbDRDSS94Zkh1STRT?=
+ =?utf-8?B?a0xUeFZ3cGFKbTFpTEhITWxpbUYxNE1RMndyTlNkQmo4ZnFQcUFJdEJoZDM1?=
+ =?utf-8?B?K0poTm53KzAzZWlrTkNjL21EUmdCVkRYSGdDMHNKNTkxZXV3VlpQK1hFQ1VS?=
+ =?utf-8?B?T3ZVbGd5UldOOHd3bjQxc0Rwbk5IOTlQdkJ4S1hMcVZYLytQZXpDWE1tTHdE?=
+ =?utf-8?B?dVhJTXRhU0ZLdHE4UU84REQvbXU0dkROZndRd3JwVURPeVlJWVlBU2V3eWhP?=
+ =?utf-8?B?K2xtVDBBU1JvZjlvMDcxL0RuOWFyemdSR2MyUjc4YzVSNVJFcXVDMEdhWFh4?=
+ =?utf-8?B?Ri9PNi9MMnpDblRGUVMrRUVPMjdsZTVzYmFQb3RwdlFSSlY1c0NYZEgvczNs?=
+ =?utf-8?B?QlBiVDFnRndtd3ltVHE1Q3VNaHlyUUJSdzFtRTVjaVJIVDQycHZQSHJYRFUz?=
+ =?utf-8?B?VnVLYWVxSy8xVlZzemlsYVZ1ak1zWDNjSC9LTFJ3NjJlTy9xTFRhbnBUbVRG?=
+ =?utf-8?B?QkNvN1l0aWdjMXhqbklZRktrTmRSOUxMN1NoK2tKZVhEMUV0WmYxTU5xcFAx?=
+ =?utf-8?B?cDQ4eXNuREZ1NFN5VXZzY1JqQkpkK3NSWFljVGIyWXJoNnEyc0loVXR5NXRn?=
+ =?utf-8?B?SGJPN3RSRWdacEszM01vR3IyUWw4Y2RXN1IyYThXNTZ0QnQ1dHlVWmltL1hj?=
+ =?utf-8?B?UzNidGc0OHdHVFlLMmVRc0tBNzNvRnpmb0MrM2pDSnlTenRaNXN2V0w2dEVu?=
+ =?utf-8?B?VkMzWmswSFpIbDdCSnIzaHRNVi9zb2d4VkFmYUVUS1pFSWFUT0FLclUvcVFB?=
+ =?utf-8?B?aSt5emtuMXltbmNWVk14T3hHaS9Oa3FPSkRCMWJiaDhvVDhDd2NuNTdDUkZm?=
+ =?utf-8?B?djRpRTUzQ1d6bzlCVDQ4RWN5d1VmT1RON2ZWQlZxK3JXckpIUUVpRXdjMlFF?=
+ =?utf-8?B?aTdNNHdYa0NxeXJGa2U3VW4ybGsvL29jQUgwSTZ6MElPU2M5UkxxazlpU3ZX?=
+ =?utf-8?B?R1Y0eHJCVjhTOE5veGNDSmRSSUFQMUdMTVI3RFJ0RElxK3JKTFl3Tk1KY0ty?=
+ =?utf-8?B?WlA5VjAyQWV4QjN2M3pIVEtZV1RjWUdhdzBDdFF2UGNJVlc0NlFNR05ucVcw?=
+ =?utf-8?B?MTIweU1YeHFZV2RTYmpFcmprNmt5ZWpUN3l2THpGT0Rpb1F2VitVZTVYeXEx?=
+ =?utf-8?B?TGkyaUp6c1FGWms2NVlmQzRHSUx2M1VmRWJsZ2IvczZqUzhYdHltMCsxOEta?=
+ =?utf-8?Q?dbssc9w2bvSlw5ooJcTBk5JgcCa+dhAX6loul8x?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: c04c85cd-549e-40c3-d79c-08d945da5d72
+X-MS-Exchange-CrossTenant-AuthSource: DBBPR08MB4523.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jul 2021 08:44:02.4489
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: pcZ3NZL+X4aEdNEQyohG6hlknQtxgpD8/OopBKaxPISzSM2h/wwrczki++7zrccnozMzvYoae40LTHFz52p/EjKVlarhc4KOLSL6EtQ8F0w=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR08MB6298
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
+Hello Benjamin,
 
+The HDMI TX block in the RK3568 requires two power supplies, which have
+to be enabled in some cases (at least on the RK3568 EVB1 the voltages
+VDDA0V9_IMAGE and VCCA1V8_IMAGE are disabled by default). It would be
+great if this was considered by the driver and the device tree binding.
+I am not sure, though, whether this is a RK3568 specific or
+rockchip_dw_hdmi specific thing. Maybe it can even enter the Synopsis DW
+HDMI driver.
 
-Hi,
+On 7/7/21 2:03 PM, Benjamin Gaignard wrote:
+> Define a new compatible for rk3568 HDMI.
+> This version of HDMI hardware block needs two new clocks hclk_vio and hclk
+> to provide phy reference clocks.
+> 
+> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+> ---
+> version 2:
+> - Add the clocks needed for the phy.
+> 
+>  .../bindings/display/rockchip/rockchip,dw-hdmi.yaml         | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
+> index 75cd9c686e985..cb8643b3a8b84 100644
+> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
+> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
+> @@ -23,6 +23,7 @@ properties:
+>        - rockchip,rk3288-dw-hdmi
+>        - rockchip,rk3328-dw-hdmi
+>        - rockchip,rk3399-dw-hdmi
+> +      - rockchip,rk3568-dw-hdmi
+>  
+>    reg-io-width:
+>      const: 4
+> @@ -51,8 +52,11 @@ properties:
+>            - vpll
+>        - enum:
+>            - grf
+> +          - hclk_vio
+> +          - vpll
+> +      - enum:
+> +          - hclk
+>            - vpll
+> -      - const: vpll
 
-Thinh Nguyen <Thinh.Nguyen@synopsys.com> writes:
-> Wesley Cheng wrote:
->> Some devices have USB compositions which may require multiple endpoints
->> that support EP bursting.  HW defined TX FIFO sizes may not always be
->> sufficient for these compositions.  By utilizing flexible TX FIFO
->> allocation, this allows for endpoints to request the required FIFO depth=
- to
->> achieve higher bandwidth.  With some higher bMaxBurst configurations, us=
-ing
->> a larger TX FIFO size results in better TX throughput.
->>=20
->> By introducing the check_config() callback, the resizing logic can fetch
->> the maximum number of endpoints used in the USB composition (can contain
->> multiple configurations), which helps ensure that the resizing logic can
->> fulfill the configuration(s), or return an error to the gadget layer
->> otherwise during bind time.
->>=20
->> Signed-off-by: Wesley Cheng <wcheng@codeaurora.org>
->> ---
->>  drivers/usb/dwc3/core.c   |  15 +++
->>  drivers/usb/dwc3/core.h   |  16 ++++
->>  drivers/usb/dwc3/ep0.c    |   2 +
->>  drivers/usb/dwc3/gadget.c | 232 +++++++++++++++++++++++++++++++++++++++=
-+++++++
->>  4 files changed, 265 insertions(+)
->>=20
->> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
->> index ba74ad7..b194aecd 100644
->> --- a/drivers/usb/dwc3/core.c
->> +++ b/drivers/usb/dwc3/core.c
->> @@ -1267,6 +1267,7 @@ static void dwc3_get_properties(struct dwc3 *dwc)
->>  	u8			rx_max_burst_prd;
->>  	u8			tx_thr_num_pkt_prd;
->>  	u8			tx_max_burst_prd;
->> +	u8			tx_fifo_resize_max_num;
->>  	const char		*usb_psy_name;
->>  	int			ret;
->>=20=20
->> @@ -1282,6 +1283,13 @@ static void dwc3_get_properties(struct dwc3 *dwc)
->>  	 */
->>  	hird_threshold =3D 12;
->>=20=20
->> +	/*
->> +	 * default to a TXFIFO size large enough to fit 6 max packets.  This
->> +	 * allows for systems with larger bus latencies to have some headroom
->> +	 * for endpoints that have a large bMaxBurst value.
->> +	 */
->> +	tx_fifo_resize_max_num =3D 6;
->> +
->>  	dwc->maximum_speed =3D usb_get_maximum_speed(dev);
->>  	dwc->max_ssp_rate =3D usb_get_maximum_ssp_rate(dev);
->>  	dwc->dr_mode =3D usb_get_dr_mode(dev);
->> @@ -1325,6 +1333,11 @@ static void dwc3_get_properties(struct dwc3 *dwc)
->>  				&tx_thr_num_pkt_prd);
->>  	device_property_read_u8(dev, "snps,tx-max-burst-prd",
->>  				&tx_max_burst_prd);
->> +	dwc->do_fifo_resize =3D device_property_read_bool(dev,
->> +							"tx-fifo-resize");
->> +	if (dwc->do_fifo_resize)
->> +		device_property_read_u8(dev, "tx-fifo-max-num",
->> +					&tx_fifo_resize_max_num);
->
-> Why is this check here? The dwc->tx_fifo_resize_max_num should store
-> whatever property the user sets. Whether the driver wants to use this
+The description and documentation of the clocks are somewhat misleading
+IMHO. This is not caused by your patches, of course. But maybe this is a
+chance to clean them up a bit.
 
-Ack!
+It seems that the CEC clock is an optional clock of the dw-hdmi driver.
+Shouldn't it be documented in the synopsys,dw-hdmi.yaml?
 
-> property should depend on "dwc->do_fifo_resize". Also why don't we have
-> "snps," prefix to be consistent with the other properties?
+Also, it would be nice if the clocks hclk_vio and hclk featured a
+description in the binding.
 
-Ack!
+BTW, I am not too familiar with the syntax here, but shouldn't items in
+clocks and items in clock-names be aligned (currently, there is a plain
+list vs. an enum structure)?
 
-> Can we enforce to a single property? If the designer wants to enable
-> this feature, he/she can to provide the tx-fifo-max-num. This would
-> simplify the driver a bit. Since this is to optimize for performance,
-> the user should know/want/test the specific value if they want to set
-> for their setup and not hoping that the default setting not break their
-> setup. So we can remove the "do_fifo_resize" property and just check
-> whether tx_fifo_resize_max_num is set.
+Best regards,
+Michael
 
-Ack!
-
-All very valid points :-)
-
->> diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
->> index dccdf13..735e9be 100644
->> --- a/drivers/usb/dwc3/core.h
->> +++ b/drivers/usb/dwc3/core.h
->> @@ -1023,6 +1023,7 @@ struct dwc3_scratchpad_array {
->>   * @rx_max_burst_prd: max periodic ESS receive burst size
->>   * @tx_thr_num_pkt_prd: periodic ESS transmit packet count
->>   * @tx_max_burst_prd: max periodic ESS transmit burst size
->> + * @tx_fifo_resize_max_num: max number of fifos allocated during txfifo=
- resize
->>   * @hsphy_interface: "utmi" or "ulpi"
->>   * @connected: true when we're connected to a host, false otherwise
->>   * @delayed_status: true when gadget driver asks for delayed status
->> @@ -1037,6 +1038,7 @@ struct dwc3_scratchpad_array {
->>   *	1	- utmi_l1_suspend_n
->>   * @is_fpga: true when we are using the FPGA board
->>   * @pending_events: true when we have pending IRQs to be handled
->> + * @do_fifo_resize: true when txfifo resizing is enabled for dwc3 endpo=
-ints
->>   * @pullups_connected: true when Run/Stop bit is set
->>   * @setup_packet_pending: true when there's a Setup Packet in FIFO. Wor=
-karound
->>   * @three_stage_setup: set if we perform a three phase setup
->> @@ -1079,6 +1081,11 @@ struct dwc3_scratchpad_array {
->>   * @dis_split_quirk: set to disable split boundary.
->>   * @imod_interval: set the interrupt moderation interval in 250ns
->>   *			increments or 0 to disable.
->> + * @max_cfg_eps: current max number of IN eps used across all USB confi=
-gs.
->> + * @last_fifo_depth: last fifo depth used to determine next fifo ram st=
-art
->> + *		     address.
->> + * @num_ep_resized: carries the current number endpoints which have had=
- its tx
->> + *		    fifo resized.
->>   */
->>  struct dwc3 {
->>  	struct work_struct	drd_work;
->> @@ -1233,6 +1240,7 @@ struct dwc3 {
->>  	u8			rx_max_burst_prd;
->>  	u8			tx_thr_num_pkt_prd;
->>  	u8			tx_max_burst_prd;
->> +	u8			tx_fifo_resize_max_num;
->>=20=20
->>  	const char		*hsphy_interface;
->>=20=20
->> @@ -1246,6 +1254,7 @@ struct dwc3 {
->>  	unsigned		is_utmi_l1_suspend:1;
->>  	unsigned		is_fpga:1;
->>  	unsigned		pending_events:1;
->> +	unsigned		do_fifo_resize:1;
->>  	unsigned		pullups_connected:1;
->>  	unsigned		setup_packet_pending:1;
->>  	unsigned		three_stage_setup:1;
->> @@ -1281,6 +1290,10 @@ struct dwc3 {
->>  	unsigned		dis_split_quirk:1;
->>=20=20
->>  	u16			imod_interval;
->> +
->> +	int			max_cfg_eps;
->> +	int			last_fifo_depth;
->> +	int			num_ep_resized;
->>  };
->>=20=20
->>  #define INCRX_BURST_MODE 0
->> @@ -1512,6 +1525,7 @@ int dwc3_send_gadget_ep_cmd(struct dwc3_ep *dep, u=
-nsigned int cmd,
->>  		struct dwc3_gadget_ep_cmd_params *params);
->>  int dwc3_send_gadget_generic_command(struct dwc3 *dwc, unsigned int cmd,
->>  		u32 param);
->> +void dwc3_gadget_clear_tx_fifos(struct dwc3 *dwc);
->>  #else
->>  static inline int dwc3_gadget_init(struct dwc3 *dwc)
->>  { return 0; }
->> @@ -1531,6 +1545,8 @@ static inline int dwc3_send_gadget_ep_cmd(struct d=
-wc3_ep *dep, unsigned int cmd,
->>  static inline int dwc3_send_gadget_generic_command(struct dwc3 *dwc,
->>  		int cmd, u32 param)
->>  { return 0; }
->> +static inline void dwc3_gadget_clear_tx_fifos(struct dwc3 *dwc)
->> +{ }
->>  #endif
->>=20=20
->>  #if IS_ENABLED(CONFIG_USB_DWC3_DUAL_ROLE)
->> diff --git a/drivers/usb/dwc3/ep0.c b/drivers/usb/dwc3/ep0.c
->> index 3cd2942..d28d085 100644
->> --- a/drivers/usb/dwc3/ep0.c
->> +++ b/drivers/usb/dwc3/ep0.c
->> @@ -619,6 +619,8 @@ static int dwc3_ep0_set_config(struct dwc3 *dwc, str=
-uct usb_ctrlrequest *ctrl)
->>  		return -EINVAL;
->>=20=20
->>  	case USB_STATE_ADDRESS:
->> +		dwc3_gadget_clear_tx_fifos(dwc);
->> +
->>  		ret =3D dwc3_ep0_delegate_req(dwc, ctrl);
->>  		/* if the cfg matches and the cfg is non zero */
->>  		if (cfg && (!ret || (ret =3D=3D USB_GADGET_DELAYED_STATUS))) {
->> diff --git a/drivers/usb/dwc3/gadget.c b/drivers/usb/dwc3/gadget.c
->> index af6d7f1..e56f1a6 100644
->> --- a/drivers/usb/dwc3/gadget.c
->> +++ b/drivers/usb/dwc3/gadget.c
->> @@ -632,6 +632,187 @@ static void dwc3_stop_active_transfer(struct dwc3_=
-ep *dep, bool force,
->>  		bool interrupt);
->>=20=20
->>  /**
->> + * dwc3_gadget_calc_tx_fifo_size - calculates the txfifo size value
->> + * @dwc: pointer to the DWC3 context
->> + * @nfifos: number of fifos to calculate for
->> + *
->> + * Calculates the size value based on the equation below:
->> + *
->> + * DWC3 revision 280A and prior:
->> + * fifo_size =3D mult * (max_packet / mdwidth) + 1;
->> + *
->> + * DWC3 revision 290A and onwards:
->> + * fifo_size =3D mult * ((max_packet + mdwidth)/mdwidth + 1) + 1
->> + *
->> + * The max packet size is set to 1024, as the txfifo requirements mainl=
-y apply
->> + * to super speed USB use cases.  However, it is safe to overestimate t=
-he fifo
->> + * allocations for other scenarios, i.e. high speed USB.
->> + */
->> +static int dwc3_gadget_calc_tx_fifo_size(struct dwc3 *dwc, int mult)
->> +{
->> +	int max_packet =3D 1024;
->> +	int fifo_size;
->> +	int mdwidth;
->> +
->> +	mdwidth =3D dwc3_mdwidth(dwc);
->> +
->> +	/* MDWIDTH is represented in bits, we need it in bytes */
->> +	mdwidth >>=3D 3;
->> +
->> +	if (DWC3_VER_IS_PRIOR(DWC3, 290A))
->> +		fifo_size =3D mult * (max_packet / mdwidth) + 1;
->> +	else
->> +		fifo_size =3D mult * ((max_packet + mdwidth) / mdwidth) + 1;
->> +	return fifo_size;
->> +}
->> +
->> +/**
->> + * dwc3_gadget_clear_tx_fifo_size - Clears txfifo allocation
->> + * @dwc: pointer to the DWC3 context
->> + *
->> + * Iterates through all the endpoint registers and clears the previous =
-txfifo
->> + * allocations.
->> + */
->> +void dwc3_gadget_clear_tx_fifos(struct dwc3 *dwc)
->> +{
->> +	struct dwc3_ep *dep;
->> +	int fifo_depth;
->> +	int size;
->> +	int num;
->> +
->> +	if (!dwc->do_fifo_resize)
->> +		return;
->> +
->> +	/* Read ep0IN related TXFIFO size */
->> +	dep =3D dwc->eps[1];
->> +	size =3D dwc3_readl(dwc->regs, DWC3_GTXFIFOSIZ(0));
->> +	if (DWC3_IP_IS(DWC3))
->> +		fifo_depth =3D DWC3_GTXFIFOSIZ_TXFDEP(size);
->> +	else
->> +		fifo_depth =3D DWC31_GTXFIFOSIZ_TXFDEP(size);
->> +
->> +	dwc->last_fifo_depth =3D fifo_depth;
->> +	/* Clear existing TXFIFO for all IN eps except ep0 */
->> +	for (num =3D 3; num < min_t(int, dwc->num_eps, DWC3_ENDPOINTS_NUM);
->> +	     num +=3D 2) {
->> +		dep =3D dwc->eps[num];
->> +		/* Don't change TXFRAMNUM on usb31 version */
->> +		size =3D DWC3_IP_IS(DWC3) ? 0 :
->> +			dwc3_readl(dwc->regs, DWC3_GTXFIFOSIZ(num >> 1)) &
->> +				   DWC31_GTXFIFOSIZ_TXFRAMNUM;
->> +
->> +		dwc3_writel(dwc->regs, DWC3_GTXFIFOSIZ(num >> 1), size);
->> +	}
->> +	dwc->num_ep_resized =3D 0;
->> +}
->> +
->> +/*
->> + * dwc3_gadget_resize_tx_fifos - reallocate fifo spaces for current use=
--case
->> + * @dwc: pointer to our context structure
->> + *
->> + * This function will a best effort FIFO allocation in order
->> + * to improve FIFO usage and throughput, while still allowing
->> + * us to enable as many endpoints as possible.
->> + *
->> + * Keep in mind that this operation will be highly dependent
->> + * on the configured size for RAM1 - which contains TxFifo -,
->> + * the amount of endpoints enabled on coreConsultant tool, and
->> + * the width of the Master Bus.
->> + *
->> + * In general, FIFO depths are represented with the following equation:
->> + *
->> + * fifo_size =3D mult * ((max_packet + mdwidth)/mdwidth + 1) + 1
->> + *
->> + * In conjunction with dwc3_gadget_check_config(), this resizing logic =
-will
->> + * ensure that all endpoints will have enough internal memory for one m=
-ax
->> + * packet per endpoint.
->> + */
->> +static int dwc3_gadget_resize_tx_fifos(struct dwc3_ep *dep)
->> +{
->> +	struct dwc3 *dwc =3D dep->dwc;
->> +	int fifo_0_start;
->> +	int ram1_depth;
->> +	int fifo_size;
->> +	int min_depth;
->> +	int num_in_ep;
->> +	int remaining;
->> +	int num_fifos =3D 1;
->> +	int fifo;
->> +	int tmp;
->> +
->> +	if (!dwc->do_fifo_resize)
->> +		return 0;
->> +
->> +	/* resize IN endpoints except ep0 */
->> +	if (!usb_endpoint_dir_in(dep->endpoint.desc) || dep->number <=3D 1)
->> +		return 0;
->
->> +
->> +	ram1_depth =3D DWC3_RAM1_DEPTH(dwc->hwparams.hwparams7);
->> +
->> +	if ((dep->endpoint.maxburst > 1 &&
->> +	     usb_endpoint_xfer_bulk(dep->endpoint.desc)) ||
->> +	    usb_endpoint_xfer_isoc(dep->endpoint.desc))
->> +		num_fifos =3D 3;
->> +
->> +	if (dep->endpoint.maxburst > 6 &&
->> +	    usb_endpoint_xfer_bulk(dep->endpoint.desc) && DWC3_IP_IS(DWC31))
->> +		num_fifos =3D dwc->tx_fifo_resize_max_num;
->
-> Why only bulk? Isoc should be at least equal or more than bulk.
-> Also, make this applicable to DWC_usb32 also.
-
-this should be applicable to all DWC3 versions, no? dwc3, 31 and 32.
-
->> @@ -648,6 +829,10 @@ static int __dwc3_gadget_ep_enable(struct dwc3_ep *=
-dep, unsigned int action)
->>  	int			ret;
->>=20=20
->>  	if (!(dep->flags & DWC3_EP_ENABLED)) {
->> +		ret =3D dwc3_gadget_resize_tx_fifos(dep);
->> +		if (ret)
->> +			return ret;
->> +
->>  		ret =3D dwc3_gadget_start_config(dep);
->>  		if (ret)
->>  			return ret;
->> @@ -2498,6 +2683,7 @@ static int dwc3_gadget_stop(struct usb_gadget *g)
->>=20=20
->>  	spin_lock_irqsave(&dwc->lock, flags);
->>  	dwc->gadget_driver	=3D NULL;
->> +	dwc->max_cfg_eps =3D 0;
->>  	spin_unlock_irqrestore(&dwc->lock, flags);
->>=20=20
->>  	free_irq(dwc->irq_gadget, dwc->ev_buf);
->> @@ -2585,6 +2771,51 @@ static int dwc3_gadget_vbus_draw(struct usb_gadge=
-t *g, unsigned int mA)
->>  	return ret;
->>  }
->>=20=20
->> +/**
->> + * dwc3_gadget_check_config - ensure dwc3 can support the USB configura=
-tion
->> + * @g: pointer to the USB gadget
->> + *
->> + * Used to record the maximum number of endpoints being used in a USB c=
-omposite
->> + * device. (across all configurations)  This is to be used in the calcu=
-lation
->> + * of the TXFIFO sizes when resizing internal memory for individual end=
-points.
->> + * It will help ensured that the resizing logic reserves enough space f=
-or at
->> + * least one max packet.
->> + */
->> +static int dwc3_gadget_check_config(struct usb_gadget *g)
-
-Might be better to pass the actual config being used. And, instead of
-check_config, perhaps validate_config is a little more fitting.
-
-=2D-=20
-balbi
-
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQFFBAEBCAAvFiEE9DumQ60WEZ09LIErzlfNM9wDzUgFAmDtUTERHGJhbGJpQGtl
-cm5lbC5vcmcACgkQzlfNM9wDzUg2LAgAgNDwBaeK0uX0Cv8lJlJDHPfjzb8HkXfo
-+3eCag9AJtv1BzaZDb6K+rzsYmGR+DFBKVbCdsNfj3aAyJLXuBhZrD94iaphzKJZ
-y9KfnkIgLGhg0qv7wOcdkdp/6rw3Z9gKIU0BmT3qgg8ZH4YbnQBXzPC3f5bfhQ9R
-oIVj1bfTlbuzzwHwga3g/4djS5AB89bIbU+5yLYQwlB72cxQ1pG+lO2Z8SBdYaGr
-yLSf3tazKNshE/Qeli5h0G09M1pznBeJ0MUTFi2vU7JmWGH/l2Lf9QxErzhMreJr
-I0Pzz0d0V/0H47ERdxyXa+ztzlwYz11QiIoAruarkz6g9CdJrbE7zw==
-=epcY
------END PGP SIGNATURE-----
---=-=-=--
+>  
+>    ddc-i2c-bus:
+>      $ref: /schemas/types.yaml#/definitions/phandle
+> 
