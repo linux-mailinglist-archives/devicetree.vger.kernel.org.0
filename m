@@ -2,105 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C602E3C6BF4
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 10:22:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06E3F3C6BF6
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 10:27:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234525AbhGMIZU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jul 2021 04:25:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44388 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234157AbhGMIZU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 04:25:20 -0400
-Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24DD1C0613DD;
-        Tue, 13 Jul 2021 01:22:31 -0700 (PDT)
-Received: by mail-yb1-xb35.google.com with SMTP id g5so33427328ybu.10;
-        Tue, 13 Jul 2021 01:22:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=0BCqHMaAx2kOi6ab1rjdKAgYu6O9OVQh5PAF7ii/zbU=;
-        b=lZf26XMyXMl1ZZiq5hdP8xfFXM4dCEL0j3yWFj3xmFNcuptk5xaaNxiNwvSp3MjSng
-         6h+aaowOlIfuKNhu28lnNUmfvko79N9GJdte8M2s6Wr+rOexaE9gJE6Ze6CaxMzvT4Aa
-         +Hd8fqWphG8WHvi3+WOnjMileCGVTpvdhwt3BcPSxIueWDVYbfUlI5SLVkrs7umJ25kn
-         ASjpEO7RVcwo7V0XqaAe9A4g+hiXxGfwbxSEFfduCXaxUUTUvS5d/YBQpmhRaPWyY01u
-         wYnJHDtKWPB7WPzOf7rD0BGw/2e1Xw7zuZ0T1rK1R0LAYo2vVIcJCqEGVmFLBKNl8zz/
-         LaCA==
+        id S234396AbhGMIaU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jul 2021 04:30:20 -0400
+Received: from smtp-relay-canonical-1.canonical.com ([185.125.188.121]:33600
+        "EHLO smtp-relay-canonical-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234305AbhGMIaU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Jul 2021 04:30:20 -0400
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPS id 87ACC40618
+        for <devicetree@vger.kernel.org>; Tue, 13 Jul 2021 08:27:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1626164849;
+        bh=90RfES78KpkRVfn+LDGEBestSWCPHLKDvATyG+mU35k=;
+        h=MIME-Version:From:Date:Message-ID:Subject:To:Content-Type;
+        b=YWeTI36B0kgYg15aAF40wfbi3IITOo9U51Oj4LMsGAvLArUyDfzbkaFoasJ/6yPnA
+         YYEZGpz2w0NHQJW9E97Uql45XcrivpwuG3KL0ZxZxMKWeaf+QW7oK6ckTyznOCBlXP
+         c0gYaC/KRJ0gQpTXiy2nsA31vcq03kokCvDwBqEJnvy930BTjxFPcYpOjgPYROqT6n
+         cTnyDGwhqkYS21b68SAF88kzmrcJqOfiqvSP4Adgd+63T8rbiWflZcaH9swFbBrdLE
+         KmgwOrlz2Jn2ch6Y0uZfpbEYtrC9XCj1NVl3OwmL7MVc4hiaBFlmcIaVMB6q3+jIgE
+         e5scM8DfOxfNg==
+Received: by mail-ed1-f71.google.com with SMTP id o8-20020aa7dd480000b02903954c05c938so11527193edw.3
+        for <devicetree@vger.kernel.org>; Tue, 13 Jul 2021 01:27:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=0BCqHMaAx2kOi6ab1rjdKAgYu6O9OVQh5PAF7ii/zbU=;
-        b=msdFdYJ2RUBjd1gjg3G4ML9bjS+tRd4v3juSa12/QciddylDL82K2J0AFpYNwvkzhQ
-         WbHFLvpzhyFU35Sifd/YOG7p29qui2MjPF/QGGFnnd7ZPmTQIfeAEgfslhEt3xN2wKNV
-         uDzBeURAVeRjGXX/4i2EyEo4kG5jAqajugmOJkbFQHSlQhzkay6kQyjzR90KBJAdE1Rn
-         qVk/NuiYcjdRrqosBvkRgrnqru6RSwbX8tU9oIpOXHKBRAM3pM6wUV4tCpSdBO23fibG
-         2KvPovUBpOvKqMpbeB08idNkuBdhVQCAaIHPjI21dDNzgHpA66sdaa6T0QQab8aAZcPE
-         AadQ==
-X-Gm-Message-State: AOAM530ROLmXOOW517xpBU6OE6s5s3413X0lvO/XGll0SL+JGd35covK
-        VjvjWRRMJXuHQ+arS9u9/Dkuw3BPDe1Jot0LbiLz1Uuap/Y=
-X-Google-Smtp-Source: ABdhPJw/pXvo2SkSCWmvtTPGorKpwdMqPoV8O4Tf08cQNkkhaZxjx4+oljmnFNXmeswnh6b7d2jilrnJyyM/pymv+II=
-X-Received: by 2002:a25:b9d0:: with SMTP id y16mr4276628ybj.62.1626164550386;
- Tue, 13 Jul 2021 01:22:30 -0700 (PDT)
+        bh=90RfES78KpkRVfn+LDGEBestSWCPHLKDvATyG+mU35k=;
+        b=qpbqbaJuPWKYKCgzQQEX37Zjet5mgDl0uwAVpx0MTap5TkujcN/fQHY3rvfNz11Jmy
+         CIz+X+lt6fHtRxqUDsZ4yybYQJWf6FquPk6AsyTpN9d0NeMYmQt2kboV17wmRDTgNlIJ
+         pMKdCVSCuzFUUh4+lGqy6kjyr3tNjFkUPiopgz3jTRUEYnnzZx09L2CY8YRjcDF5gnA8
+         W6Dp1DWg6FmYYKyAHiItWWJ4xEdxZAXFQcsswlsGP23tzQAJCtf9KHrmrRE1TjsMlKxz
+         dNFgOGp2NrnlRWqVGzrOx97upueLrD7QZzjYiFB7aKbnMPPD0RRkQPjbA9KVNit3BBXP
+         cyiA==
+X-Gm-Message-State: AOAM531PerwzMXV4sC0fMB06UtLnmkgCFr9XJ1te7mUuQSOvY9rZo5ZI
+        wosXwaQYb9jJ/kkc8Gdfui0fpaayoqP6KwfL4BVfCXvduJujUdCFyoq/LPcJ8xhyM7g/IGl2qX6
+        Ox5c+5UzHyUn5IjTpd7iZYUCGJDXUDLL8DFc3lDnPwHNzAbS3V9HpUPk=
+X-Received: by 2002:a05:6402:22c6:: with SMTP id dm6mr4216570edb.228.1626164849064;
+        Tue, 13 Jul 2021 01:27:29 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJx6pMwHXiAOSlFdfU7dpEd4HNiijqnguwMj60Om1zIodF74a4IJRoAK85lRX6uXsRE4r1JyfuuOAOPiOEGbvtY=
+X-Received: by 2002:a05:6402:22c6:: with SMTP id dm6mr4216563edb.228.1626164848899;
+ Tue, 13 Jul 2021 01:27:28 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210611152108.6785-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdWJQESFmhV+c-QmivXCWPx21QcB-HSzjxf8KsXh_DAvfw@mail.gmail.com> <CAMuHMdXG9H_mOtA_a9t0K8BVaR4p0DcWgNeL0786YvybV2Hqgw@mail.gmail.com>
-In-Reply-To: <CAMuHMdXG9H_mOtA_a9t0K8BVaR4p0DcWgNeL0786YvybV2Hqgw@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Tue, 13 Jul 2021 09:22:04 +0100
-Message-ID: <CA+V-a8tk6uCeRwmiTh=Ds+8DYVUqCYs64nX_9ksDXXdSd-rxNA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: r9a07g044: Add missing GICv3 node properties
-To:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
+References: <20210621140036.2879563-1-thierry.reding@gmail.com>
+ <162442779339.5511.14827117243689906234.b4-ty@canonical.com> <CAL_JsqL3WMOrPNzF-juqL8y20dAjt0BZaZU-yLnekKKCjTqmMA@mail.gmail.com>
+In-Reply-To: <CAL_JsqL3WMOrPNzF-juqL8y20dAjt0BZaZU-yLnekKKCjTqmMA@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Date:   Tue, 13 Jul 2021 10:27:18 +0200
+Message-ID: <CA+Eumj6hSOLJ32u5P00684BiLe3=1QztxWc9BFXWe5iQHSA9mA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: arm-smmu: Fix json-schema syntax
+To:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        devicetree@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        Joerg Roedel <joro@8bytes.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
-
-On Tue, Jul 13, 2021 at 9:08 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+On Mon, 12 Jul 2021 at 16:14, Rob Herring <robh+dt@kernel.org> wrote:
 >
-> Hi Prabhakar,
->
-> On Mon, Jun 14, 2021 at 2:48 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > On Fri, Jun 11, 2021 at 5:21 PM Lad Prabhakar
-> > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > > Add the below missing properties into GIC node,
-> > > - clocks
-> > > - clock-names
-> > > - power-domains
-> > > - resets
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> On Tue, Jun 22, 2021 at 11:56 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@canonical.com> wrote:
 > >
-> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > On Mon, 21 Jun 2021 16:00:36 +0200, Thierry Reding wrote:
+> > > Commit 4287861dca9d ("dt-bindings: arm-smmu: Add Tegra186 compatible
+> > > string") introduced a jsonschema syntax error as a result of a rebase
+> > > gone wrong. Fix it.
 > >
-> > Queueing pending on[1].
+> > Applied, thanks!
 > >
-> > > [1] https://lore.kernel.org/linux-devicetree/
-> > >     20210609155108.16590-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+> > [1/1] dt-bindings: arm-smmu: Fix json-schema syntax
+> >       commit: bf3ec9deaa33889630722c47f7bb86ba58872ea7
 >
-> The dependency has been accepted, but this patch needs a respin
-> for the changed clocks.
->
-Thank you for pointing this out. wrt resets the GIC has two signals
-(which I learnt lately when the dependency path was accepted). Earlier
-discussion in irc with Sudeep pointed out that there wouldn't be any
-use case of having GIC resets in DTSI, so either we drop the resets
-property in DT binding doc or correct it.
+> Applied where? Now Linus's master is broken.
 
-Let me know your thoughts on this and how we proceed further.
+To memory controller drivers tree. Pushed to soc folks some time ago:
+https://lore.kernel.org/lkml/20210625073604.13562-1-krzysztof.kozlowski@canonical.com/
 
-Cheers,
-Prabhakar
+Cc: Arnd and Olof,
+Any comments on merging these fixes? They should go to current RC.
+
+Best regards,
+Krzysztof
