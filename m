@@ -2,120 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 092853C748E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 18:32:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6263F3C7501
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 18:37:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230087AbhGMQfP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jul 2021 12:35:15 -0400
-Received: from mail-vs1-f53.google.com ([209.85.217.53]:40865 "EHLO
-        mail-vs1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbhGMQfP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 12:35:15 -0400
-Received: by mail-vs1-f53.google.com with SMTP id z7so927062vsn.7;
-        Tue, 13 Jul 2021 09:32:24 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=wEFTIvfldYQdWbU0+dVTlFsldmIwtOaNGFmep4ASxsw=;
-        b=WKCBz66ADoc5oeZPvxZrFzzIPkQaPxaFCNknC9Jy4WXvZlv82z43xH7koz1PXZ3F/F
-         NdWp0sek2lTm/hIlvcQkp4FWirGqMe0yJY/Pvwu6z9Kgglga8dkTpIQNr5c7xGLAMqvf
-         Cw98khs7l41aYbiAk6dtdX17j9kX+qOY5arLnmn/dAc1yau7EiDh5x0Qj+w9iglcFd2x
-         9K73LPMDk64QnrrG/QMG/Ifc/z2hFhvd4pssgZFRkDPKV2nAd+J8tGvPMPqs8+PNamee
-         xIIvrc3vvXrZqu10m9sJUTrDDC3RxlUjtcCQOVUHXykrOVzwN9fKd8pl3S0vTKWE0x55
-         e7XA==
-X-Gm-Message-State: AOAM531G26l2grUrL6Aq4c17u7IwOQNWcIc2QaC/L2W6hYKRgALr72ei
-        3VOItlVDCqXMcJgRoVy6WkYKn8wYS8mPXkOfqAg=
-X-Google-Smtp-Source: ABdhPJxgGxKbu2+X0LPxRNPOhDg6pRFwCAZKuV6SHtapVvue/ES1G10rouYV5IkbldkxmkDs9aYQXDupBEil3x963kk=
-X-Received: by 2002:a67:8702:: with SMTP id j2mr7454255vsd.3.1626193944361;
- Tue, 13 Jul 2021 09:32:24 -0700 (PDT)
+        id S235684AbhGMQj3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jul 2021 12:39:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45096 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235572AbhGMQjZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 12:39:25 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 278E3C0613B7;
+        Tue, 13 Jul 2021 09:35:37 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: sre)
+        with ESMTPSA id 187CB1F41E15
+Received: by jupiter.universe (Postfix, from userid 1000)
+        id 409274800C6; Tue, 13 Jul 2021 18:35:32 +0200 (CEST)
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, Ian Ray <ian.ray@ge.com>,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@collabora.com,
+        Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: [PATCHv7 0/3] GE Healthcare PPD firmware upgrade driver for ACHC
+Date:   Tue, 13 Jul 2021 18:35:25 +0200
+Message-Id: <20210713163528.119185-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <20210629220328.13366-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20210629220328.13366-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20210701202141.GA2859816@robh.at.kernel.org> <CA+V-a8sAvEQesjdKX8WzPZvPtt70pfm7qk-AGdy5QFrwXSKZrw@mail.gmail.com>
-In-Reply-To: <CA+V-a8sAvEQesjdKX8WzPZvPtt70pfm7qk-AGdy5QFrwXSKZrw@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 13 Jul 2021 18:32:13 +0200
-Message-ID: <CAMuHMdUoX5NyM7bN4c+JtO=n2v6HsxTaCqkeRrKBz8wmRu-ruw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: Add binding documentation for
- Renesas RZ/G2L A/D converter
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-iio@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+Hi,
 
-On Tue, Jul 13, 2021 at 6:01 PM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
-> On Thu, Jul 1, 2021 at 9:21 PM Rob Herring <robh@kernel.org> wrote:
-> > On Tue, Jun 29, 2021 at 11:03:27PM +0100, Lad Prabhakar wrote:
-> > > Add binding documentation for Renesas RZ/G2L A/D converter block.
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > ---
-> > >  .../bindings/iio/adc/renesas,rzg2l-adc.yaml   | 121 ++++++++++++++++++
-> > >  1 file changed, 121 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml b/Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
-> > > new file mode 100644
-> > > index 000000000000..db935d6d59eb
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
-> > > @@ -0,0 +1,121 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/iio/adc/renesas,rzg2l-adc.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Renesas RZ/G2L ADC
-> > > +
-> > > +maintainers:
-> > > +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > +
-> > > +description: |
-> > > +  A/D Converter block is a successive approximation analog-to-digital converter
-> > > +  with a 12-bit accuracy. Up to eight analog input channels can be selected.
-> > > +  Conversions can be performed in single or repeat mode. Result of the ADC is
-> > > +  stored in a 32-bit data register corresponding to each channel.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    oneOf:
-> >
-> > You can drop oneOf here.
-> >
-> Dropping oneOf from here dt_binding_check complains with below report,
-> Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml:
-> properties:compatible: [{'items': [{'enum':
-> ['renesas,r9a07g044-adc']}, {'const': 'renesas,rzg2l-adc'}]}] is not
-> of type 'object', 'boolean'
-> from schema $id: http://json-schema.org/draft-07/schema#
+The PPD has a secondary processor (NXP Kinetis K20), which can be
+programmed from the main system. It is connected to the main processor
+by having it's EzPort interface connected to the SPI bus. Currently
+both (normal and EzPort) interfaces are simply exposed to userspace.
+This does not work for the EzPort, since EzPort usage requires a device
+reset. The proper solution is to do the flashing from kernel space
+with properly timed toggling of EzPort chip-select and reset line. In
+PATCHv2 it was suggested, that this should happen via an SPI ancillary
+device, so this is how it has been implemented now. The SPI core
+changes have been applied in PATCHv5 and are part of v5.14-rc1.
 
-You forgot to drop the dash in front of the items, right?
+Changes since PATCHv6:
+ * https://lore.kernel.org/lkml/20210712150242.146545-1-sebastian.reichel@collabora.com/
+ * use kstrtoul() in sysfs store routines
+ * merge nxp-ezport.c into gehc-achc.c
+ * reword commit message
 
-Gr{oetje,eeting}s,
+Changes since PATCHv5:
+ * https://lore.kernel.org/lkml/20210621175359.126729-1-sebastian.reichel@collabora.com/
+ * Rebased to v5.14-rc1
+ * Fixed compilation as module
+ * Dropped no longer needed module.h include from ezport code
 
-                        Geert
+Changes since PATCHv4:
+ * https://lore.kernel.org/lkml/20210609151235.48964-1-sebastian.reichel@collabora.com/
+ * Add Rob's Acked-by to ge-achc binding update
+ * Don't use of_property_read_u32_index() in of_spi_parse_dt()
+ * Don't build separate module for EzPort code
+ * Use GPL2-only for the header
+ * ACHC_MAX_FREQ -> ACHC_MAX_FREQ_HZ
+ * Only accept '1' for the sysfs files, not any data
+ * Update sysfs file documentation
+ * Rebased to spi-next tree (b8f9dce0f4eb)
+
+Changes since PATCHv3:
+ * https://lore.kernel.org/lkml/20210528113346.37137-1-sebastian.reichel@collabora.com/
+ * Add Rob's Acked-by to 2nd patch
+ * use GPL-2-only instead of GPL-2+
+ * use %zu for printing a size_t
+ * use driver's .dev_groups to register sysfs group
+ * Add sysfs property documentation
+ * split EzPort and ACHC drivers into separate patches
+ * drop minItems/maxItems from achc binding, which seems to fix the problems
+   reported by dt_binding_check. The information of two items being required
+   is implied by the explicit item list.
+ * drop spidev functionality for the main SPI interface. The current firmware
+   communicates via UART and adding spidev support is complex. If future firmware
+   releases start using it, spidev support for the main interface can be added
+   later.
+
+Changes since PATCHv2:
+ * https://lore.kernel.org/lkml/20180327135259.30890-1-sebastian.reichel@collabora.co.uk/
+ * add SPI core support for ancillary devices
+ * modify ACHC binding to make use of ancillary device
+ * rewrite driver to use ancillary device
+ * rebased to 5.13-rc1
+
+Changes since PATCHv1:
+ * https://lore.kernel.org/lkml/20180320172201.2065-1-sebastian.reichel@collabora.co.uk/
+ * split DT binding update into its own patch
+ * add sysfs attribute documentation
+ * fix problem reported by kbuild test robot
+
+-- Sebastian
+
+Sebastian Reichel (3):
+  dt-bindings: misc: ge-achc: Convert to DT schema format
+  ARM: dts: imx53-ppd: Fix ACHC entry
+  misc: gehc-achc: new driver
+
+ .../ABI/testing/sysfs-driver-ge-achc          |  14 +
+ .../devicetree/bindings/misc/ge-achc.txt      |  26 -
+ .../devicetree/bindings/misc/ge-achc.yaml     |  65 +++
+ arch/arm/boot/dts/imx53-ppd.dts               |  23 +-
+ drivers/misc/Kconfig                          |  11 +
+ drivers/misc/Makefile                         |   1 +
+ drivers/misc/gehc-achc.c                      | 542 ++++++++++++++++++
+ drivers/spi/spidev.c                          |   1 -
+ 8 files changed, 646 insertions(+), 37 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-driver-ge-achc
+ delete mode 100644 Documentation/devicetree/bindings/misc/ge-achc.txt
+ create mode 100644 Documentation/devicetree/bindings/misc/ge-achc.yaml
+ create mode 100644 drivers/misc/gehc-achc.c
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.30.2
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
