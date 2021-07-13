@@ -2,85 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AEC113C6CC9
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 11:00:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9671A3C6CD4
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 11:04:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234603AbhGMJDh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jul 2021 05:03:37 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:59226 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S234121AbhGMJDg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 05:03:36 -0400
-X-UUID: f648231f35e343cd92fe1bac49f99370-20210713
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=/SkvQQ3+rtq2S0/tdyj0Z0yx4+LQp8I/gV8vayHB1eA=;
-        b=eJeCnaVA92IGHPSnF4fRU+uuPIXGaxtF5vFMGURAcc/jXq0+2SDrAZP4SGsRcPmL8NZBqrS/GDtLMoFSFLv7q/NXzkM/mqHx4nvYKq94h1faSNM3SIOQkzjjk2tji5eH4S1LVq3RGdRgvk/Af0xx7D2zVDCI89YxU4uzn3J+GVc=;
-X-UUID: f648231f35e343cd92fe1bac49f99370-20210713
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 777364225; Tue, 13 Jul 2021 17:00:41 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS33N2.mediatek.inc
- (172.27.4.76) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 13 Jul
- 2021 17:00:39 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 13 Jul 2021 17:00:38 +0800
-Message-ID: <1626166838.29490.4.camel@mhfsdcap03>
-Subject: Re: [PATCH v2 02/13] dt-bindings: usb: mtu3: add optional property
- to disable usb2 ports
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        <linux-usb@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Date:   Tue, 13 Jul 2021 17:00:38 +0800
-In-Reply-To: <20210712190809.GA2310371@robh.at.kernel.org>
-References: <1624008558-16949-1-git-send-email-chunfeng.yun@mediatek.com>
-         <1624008558-16949-3-git-send-email-chunfeng.yun@mediatek.com>
-         <20210712190809.GA2310371@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S234397AbhGMJHK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jul 2021 05:07:10 -0400
+Received: from mail-ua1-f52.google.com ([209.85.222.52]:33471 "EHLO
+        mail-ua1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234121AbhGMJHK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 05:07:10 -0400
+Received: by mail-ua1-f52.google.com with SMTP id d2so8372793uan.0;
+        Tue, 13 Jul 2021 02:04:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WQWSg0jDhNONrBiZZkx/bcj5j+pFk4TYCqn0Z+sXNdk=;
+        b=e9PtSQHEDPAPJzEbQJup31n6O5Z0EKW89aoKf/K/xIpFaOP/MwNb8nAF1TsKu2qwLy
+         HHpuCxZA5oWSuCoEc1W6Svtmn8xHFO363TtX6hdFomTL4IfalCsjfyG9pCjdfeNtjjPc
+         O4FvO64giMxE0t55UM/Yh+5IqRf/jeC1/SR+azdVi1NCSv8aAp+EWiiEXNvCcE4WXN06
+         Lpdle7Z0mKDle0B8b9qYffXJhj8c5IfQdRfhzt19uApyQ6L5aUsYHLNP9bKtjSRuBtaR
+         c2hEtCqmiUd1lNmBxzyWSkwpY8l449sSoGqxU4UrzsEhh24aqt2RUmDC0WB+50Y2c6Dd
+         FvGg==
+X-Gm-Message-State: AOAM532f+ZKbfr4BK6M2V2RVDA03YToXEtRV2Rq0YizlgaLycA1Iutcx
+        T4+HNf3umk7E5gJLtWypsXu/TmCiZ/gVySmHibA=
+X-Google-Smtp-Source: ABdhPJxmIw0nXS2cU2uL1fDZHeZi7584axKXsQoQpys4cUbFsG87WiXR+tlSUdpuTvQK+kGDHhgf0FSjubiQ2jxtfIM=
+X-Received: by 2002:a9f:3f0d:: with SMTP id h13mr4554003uaj.100.1626167060423;
+ Tue, 13 Jul 2021 02:04:20 -0700 (PDT)
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 1F30D6F3E0CBFBFE6BBF7E6E74BA7C17CB540E6A07D0FFC39EB0D4C6EC885D8A2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+References: <20210611152108.6785-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdWJQESFmhV+c-QmivXCWPx21QcB-HSzjxf8KsXh_DAvfw@mail.gmail.com>
+ <CAMuHMdXG9H_mOtA_a9t0K8BVaR4p0DcWgNeL0786YvybV2Hqgw@mail.gmail.com>
+ <CA+V-a8tk6uCeRwmiTh=Ds+8DYVUqCYs64nX_9ksDXXdSd-rxNA@mail.gmail.com>
+ <CAMuHMdUg5v3qsFQsg783nC=o_BL3pL6YqqQphGQHHOaCeakj5Q@mail.gmail.com> <20210713085508.nq6473icf5gt3nm5@bogus>
+In-Reply-To: <20210713085508.nq6473icf5gt3nm5@bogus>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 13 Jul 2021 11:04:09 +0200
+Message-ID: <CAMuHMdVG6eji_uW+7egeQH=77fwQnN_qQ4hRHgQa4XQYQrbL9Q@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: r9a07g044: Add missing GICv3 node properties
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gTW9uLCAyMDIxLTA3LTEyIGF0IDEzOjA4IC0wNjAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
-T24gRnJpLCBKdW4gMTgsIDIwMjEgYXQgMDU6Mjk6MDdQTSArMDgwMCwgQ2h1bmZlbmcgWXVuIHdy
-b3RlOg0KPiA+IEFkZCBzdXBwb3J0IHRvIGRpc2FibGUgc3BlY2lmaWMgdXNiMiBob3N0IHBvcnRz
-LCBpdCdzIHVzZWZ1bCB3aGVuDQo+ID4gYSB1c2IyIHBvcnQgaXMgZGlzYWJsZWQgb24gc29tZSBw
-bGF0Zm9ybXMsIGJ1dCBlbmFibGVkIG9uIG90aGVycyBmb3INCj4gPiB0aGUgc2FtZSBTb0MsIGFu
-b3RoZXIgY2FzZSBpcyB0aGF0IHRoZSBkaWZmZXJlbnQgcGFja2FnZSBtYXkgc3VwcG9ydA0KPiA+
-IGRpZmZlcmVudCBudW1iZXIgb2YgcG9ydHMuDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogQ2h1
-bmZlbmcgWXVuIDxjaHVuZmVuZy55dW5AbWVkaWF0ZWsuY29tPg0KPiA+IC0tLQ0KPiA+IHYyOiBu
-byBjaGFuZ2VzDQo+ID4gLS0tDQo+ID4gIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5n
-cy91c2IvbWVkaWF0ZWssbXR1My55YW1sIHwgNiArKysrKysNCj4gPiAgMSBmaWxlIGNoYW5nZWQs
-IDYgaW5zZXJ0aW9ucygrKQ0KPiA+IA0KPiA+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2Rl
-dmljZXRyZWUvYmluZGluZ3MvdXNiL21lZGlhdGVrLG10dTMueWFtbCBiL0RvY3VtZW50YXRpb24v
-ZGV2aWNldHJlZS9iaW5kaW5ncy91c2IvbWVkaWF0ZWssbXR1My55YW1sDQo+ID4gaW5kZXggMmNh
-YzdhODdjZTM2Li4zZTZmMjc1MGY0OGQgMTAwNjQ0DQo+ID4gLS0tIGEvRG9jdW1lbnRhdGlvbi9k
-ZXZpY2V0cmVlL2JpbmRpbmdzL3VzYi9tZWRpYXRlayxtdHUzLnlhbWwNCj4gPiArKysgYi9Eb2N1
-bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdXNiL21lZGlhdGVrLG10dTMueWFtbA0KPiA+
-IEBAIC0xNjYsNiArMTY2LDEyIEBAIHByb3BlcnRpZXM6DQo+ID4gICAgICBkZXNjcmlwdGlvbjog
-VGhlIG1hc2sgdG8gZGlzYWJsZSB1M3BvcnRzLCBiaXQwIGZvciB1M3BvcnQwLA0KPiA+ICAgICAg
-ICBiaXQxIGZvciB1M3BvcnQxLCAuLi4gZXRjDQo+ID4gIA0KPiA+ICsgIG1lZGlhdGVrLHUycC1k
-aXMtbXNrOg0KPiANCj4gSnVzdCBzcGVsbCBvdXQgJ21hc2snLg0KVGhlcmUgaXMgYWxyZWFkeSBh
-IHByb3BlcnR5ICJtZWRpYXRlayx1M3AtZGlzLW1zayIsIHByZWZlciB0byB1c2UgdGhlDQpzYW1l
-IGZvcm1hdCwgdGhhbmtzDQoNCj4gDQo+ID4gKyAgICAkcmVmOiAvc2NoZW1hcy90eXBlcy55YW1s
-Iy9kZWZpbml0aW9ucy91aW50MzINCj4gPiArICAgIGRlc2NyaXB0aW9uOiBUaGUgbWFzayB0byBk
-aXNhYmxlIHUycG9ydHMsIGJpdDAgZm9yIHUycG9ydDAsDQo+ID4gKyAgICAgIGJpdDEgZm9yIHUy
-cG9ydDEsIC4uLiBldGM7IGJ1dCBjYW4ndCBkaXNhYmxlIHUycG9ydDAgaWYgZHVhbCByb2xlIG1v
-ZGUNCj4gPiArICAgICAgaXMgZW5hYmxlZCwgc28gd2lsbCBiZSBza2lwcGVkIGluIHRoaXMgY2Fz
-ZS4NCj4gPiArDQo+ID4gICMgUmVxdWlyZWQgY2hpbGQgbm9kZSB3aGVuIHN1cHBvcnQgZHVhbC1y
-b2xlDQo+ID4gIHBhdHRlcm5Qcm9wZXJ0aWVzOg0KPiA+ICAgICJedXNiQFswLTlhLWZdKyQiOg0K
-PiA+IC0tIA0KPiA+IDIuMTguMA0KPiA+IA0KPiA+IA0KDQo=
+Hi Sudeep,
 
+On Tue, Jul 13, 2021 at 10:56 AM Sudeep Holla <sudeep.holla@arm.com> wrote:
+> On Tue, Jul 13, 2021 at 10:30:36AM +0200, Geert Uytterhoeven wrote:
+> > On Tue, Jul 13, 2021 at 10:22 AM Lad, Prabhakar
+> > <prabhakar.csengg@gmail.com> wrote:
+> > > On Tue, Jul 13, 2021 at 9:08 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > > On Mon, Jun 14, 2021 at 2:48 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > > > On Fri, Jun 11, 2021 at 5:21 PM Lad Prabhakar
+> > > > > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > > > > > Add the below missing properties into GIC node,
+> > > > > > - clocks
+> > > > > > - clock-names
+> > > > > > - power-domains
+> > > > > > - resets
+> > > > > >
+> > > > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > > > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > > >
+> > > > > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > > >
+> > > > > Queueing pending on[1].
+> > > > >
+> > > > > > [1] https://lore.kernel.org/linux-devicetree/
+> > > > > >     20210609155108.16590-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+> > > >
+> > > > The dependency has been accepted, but this patch needs a respin
+> > > > for the changed clocks.
+> > > >
+> > > Thank you for pointing this out. wrt resets the GIC has two signals
+> > > (which I learnt lately when the dependency path was accepted). Earlier
+> > > discussion in irc with Sudeep pointed out that there wouldn't be any
+> > > use case of having GIC resets in DTSI, so either we drop the resets
+> > > property in DT binding doc or correct it.
+> > >
+> > > Let me know your thoughts on this and how we proceed further.
+> >
+> > DT Rule #1: DT describes hardware not software policy.
+> >
+>
+> Completely agreed, no disagreement .
+
+Good ;-)
+
+> > And a possible use case: the RT CPU core may want to reset the AP GIC.
+>
+> I didn't want to add new bindings without details on the implementation
+> to avoid possible issues with backward compatibility as this was not
+> thought through completely and correctly before it was added.
+>
+> OK, now let us discuss your use-case: *RT CPU wants to reset AP GIC*
+>
+> 1. Will it just reset AP GIC or will it request the AP reset as a whole ?
+>    I am not sure if we can handle former, if you think otherwise what is
+>    the reset notification mechanism ?
+>
+> 2. Will that bypass secure world/PSCI ? Again more details on this would
+>    be helpful to visualise the entire use-case end-to-end better.
+>
+> By GIC reset, I am assuming it will be complete GIC reset including it's
+> CPU interface.
+>
+> I don't think we can reset GIC without actual CPU reset. Even if we get
+> some notification magically to the CPU that its GIC alone needs to be
+> reset, it needs to safely higher exceptions to get its GIC CPU interface
+> reprogrammed to correct (saved) values before OS can reprogram the NS
+> world values. All these seems overall complicated and may be unnecessary.
+
+Probably both.  Might make sense to reset on wake-up, after having disabled
+clocks and powered down the AP CPU, AP GIC, ...
+
+If that bypasses PSCI: well, if the unsecure software can do it, it
+means the hardware is not secure. Or at least Linux has to be trusted.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
