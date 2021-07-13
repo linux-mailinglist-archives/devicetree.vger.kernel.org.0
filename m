@@ -2,105 +2,252 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EA5E3C68F4
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 05:58:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94F043C6924
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 06:21:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229454AbhGMEAu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jul 2021 00:00:50 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:21993 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229436AbhGMEAt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Jul 2021 00:00:49 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1626148680; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=w42WAE4DU8ptf8ebzyNY4PLTveQspPorDiUyQcBnboo=;
- b=oYgMQZanp1u8lbYD7YtVCRfaEYE+pNWcta6ZBNwqZBmy647gZeQt4b0QGd+1TYIO4Y9d1I07
- D0v6n3lDbCYyYmju3hoOapKTQnkmJoeYqxKjKPwaWQ8yAS6emHX8oM4Vy22BsuaDJj5GEszu
- 8odFq19/HyWuxmkZrtKaOK6IFJA=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
- 60ed0f457b2963a282f2e137 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 13 Jul 2021 03:57:57
- GMT
-Sender: skakit=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 60FF4C4338A; Tue, 13 Jul 2021 03:57:56 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: skakit)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id CF787C433D3;
-        Tue, 13 Jul 2021 03:57:55 +0000 (UTC)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 13 Jul 2021 09:27:55 +0530
-From:   skakit@codeaurora.org
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>
-Cc:     David Collins <collinsd@codeaurora.org>, kgunda@codeaurora.org,
-        linux-input@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
-        Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: [PATCH V4 0/5] Add support for PMK8350 PON_HLOS PMIC peripheral
-In-Reply-To: <1620800053-26405-1-git-send-email-skakit@codeaurora.org>
-References: <1620800053-26405-1-git-send-email-skakit@codeaurora.org>
-Message-ID: <676720d932927fa0850924500da565df@codeaurora.org>
-X-Sender: skakit@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+        id S229449AbhGMEXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jul 2021 00:23:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46964 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229436AbhGMEXt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 00:23:49 -0400
+Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A11C8C0613DD;
+        Mon, 12 Jul 2021 21:21:00 -0700 (PDT)
+Received: by mail-qk1-x730.google.com with SMTP id q190so20353004qkd.2;
+        Mon, 12 Jul 2021 21:21:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:content-transfer-encoding:date:message-id:from:to:cc
+         :subject:references:in-reply-to;
+        bh=8NA/aiB+EPeP5agFXPDEWwbuZmONbn8hs65mOdjo90E=;
+        b=u2ZZ/wddx4jiSxD+EsMWy/YdYWsP5gJA2u8vA7b4HUutkMaY4jEuRuuIsVNLH37RKs
+         wsEsPU6a8kAH0ZHXClKZFb+ihojE3s54kH1H61RrhQTagTbsgLusrGgPI9CMb6r3Vlm1
+         mpuPggKGhymrEP8CHsfy1dE9h48i3SMFxfu8RIbnINz9R8gdqe8NzX2o97bAaq17jIlm
+         EOC0ewFhHbX2vf2QC1Or60awM+sKG9u9yL0wSQZI1A0Ztr96fKsQwpM5bv7f4ee59B3B
+         dVhVQTkWk9CJG7yz94tXByZKWE12rgazwjuOg68/T1VolPiNDEVZ65ofmP6c0uZs24Rf
+         +MNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:from:to:cc:subject:references:in-reply-to;
+        bh=8NA/aiB+EPeP5agFXPDEWwbuZmONbn8hs65mOdjo90E=;
+        b=r+BNFQnrAmku+ftDKHer0blm4IX71pkwvKl9sXDB0eBqzG0TrcV38o+9XtzoKKE/PH
+         4+q8ZKn/h8/IW+52fJ6cKzGcCIjv2WM9GS6ObKwE1LWrhs16oaM8awwChLXQJh985M8/
+         enFxc96WQUE/ShZTQmXwO5Jgi8jzePK44sO7X9WIFUMyrNUGMBtaUX2H5ChfPgKeE/zF
+         wPpmtEb7EAjTAUOu6VRPNV/Vc65yWjA2w/f4+6VZP8E2tyMhwB5VbHPoeWWmv+P2zcJn
+         P3HyYwB2kLNGNQe3NrGBVR8+0JWoyXqPZbj9lKqx3fysVpjqQEDhJAQIJGloTrHs9rkb
+         udYw==
+X-Gm-Message-State: AOAM532cJP4yz0UHI+EzB234HN2I8DuTWAsNSyDo+meSwacWgbQBcnZG
+        /VSXspnvcfuIb+Tcw0hrLUA=
+X-Google-Smtp-Source: ABdhPJzGNriWBi2sW60H9zEhh/xjic7z/9LY0JmnqxQ5ohSy4+gi4yc7IWaSYzqt8ivS+6MnGhy0gQ==
+X-Received: by 2002:ae9:ed03:: with SMTP id c3mr2156146qkg.418.1626150059668;
+        Mon, 12 Jul 2021 21:20:59 -0700 (PDT)
+Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
+        by smtp.gmail.com with ESMTPSA id x15sm7379996qkm.66.2021.07.12.21.20.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Jul 2021 21:20:59 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Tue, 13 Jul 2021 00:20:57 -0400
+Message-Id: <CCRQ33B4B96F.3IX5IUAK24F49@shaak>
+From:   "Liam Beguin" <liambeguin@gmail.com>
+To:     "Rob Herring" <robh@kernel.org>
+Cc:     <peda@axentia.se>, <jic23@kernel.org>, <lars@metafoo.de>,
+        <pmeerw@pmeerw.net>, <linux-kernel@vger.kernel.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4 10/10] dt-bindings: iio: afe: add bindings for
+ temperature transducers
+References: <20210706160942.3181474-1-liambeguin@gmail.com>
+ <20210706160942.3181474-11-liambeguin@gmail.com>
+ <20210712161156.GA2029104@robh.at.kernel.org>
+In-Reply-To: <20210712161156.GA2029104@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dmitry,
+On Mon Jul 12, 2021 at 12:11 PM EDT, Rob Herring wrote:
+> On Tue, Jul 06, 2021 at 12:09:42PM -0400, Liam Beguin wrote:
+> > From: Liam Beguin <lvb@xiphos.com>
+> >=20
+> > An ADC is often used to measure other quantities indirectly.
+> > This binding describe one case, the measurement of a temperature
+> > through a temperature transducer (either voltage or current).
+> >=20
+> > Signed-off-by: Liam Beguin <lvb@xiphos.com>
+> > ---
+> >  .../iio/afe/temperature-transducer.yaml       | 111 ++++++++++++++++++
+> >  1 file changed, 111 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/iio/afe/temperatu=
+re-transducer.yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/iio/afe/temperature-tran=
+sducer.yaml b/Documentation/devicetree/bindings/iio/afe/temperature-transdu=
+cer.yaml
+> > new file mode 100644
+> > index 000000000000..b5a4fbfe75e4
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/iio/afe/temperature-transducer.=
+yaml
+> > @@ -0,0 +1,111 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/iio/afe/temperature-transducer.yaml=
+#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Temperature Transducer
+> > +
+> > +maintainers:
+> > +  - Liam Beguin <lvb@xiphos.com>
+> > +
+> > +description: |
+> > +  A temperature transducer is a device that converts a thermal quantit=
+y
+> > +  into any other physical quantity. This binding applies to temperatur=
+e to
+> > +  voltage (like the LTC2997), and temperature to current (like the AD5=
+90)
+> > +  linear transducers.
+> > +  In both cases these are assumed to be connected to a voltage ADC.
+> > +
+> > +  When an io-channel measures the output voltage of a temperature anal=
+og front
+> > +  end such as a temperature transducer, the interesting measurement is=
+ almost
+> > +  always the corresponding temperature, not the voltage output. This b=
+inding
+> > +  describes such a circuit.
+> > +
+> > +  The general transfer function here is (using SI units)
+> > +    V(T) =3D Rsense * Isense(T)
+> > +    T =3D (Isense(T) / alpha) + offset
+> > +    T =3D 1 / (Rsense * alpha) * (V + offset * Rsense * alpha)
+> > +
+> > +  When using a temperature to voltage transducer, Rsense is set to 1.
+> > +
+> > +  The following circuits show a temperature to current and a temperatu=
+re to
+> > +  voltage transducer that can be used with this binding.
+> > +
+> > +           VCC
+> > +          -----
+> > +            |
+> > +        +---+---+
+> > +        | AD590 |                               VCC
+> > +        +---+---+                              -----
+> > +            |                                    |
+> > +            V proportional to T             +----+----+
+> > +            |                          D+ --+         |
+> > +            +---- Vout                      | LTC2997 +--- Vout
+> > +            |                          D- --+         |
+> > +        +---+----+                          +---------+
+> > +        | Rsense |                               |
+> > +        +---+----+                             -----
+> > +            |                                   GND
+> > +          -----
+> > +           GND
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: temperature-transducer
+> > +
+> > +  io-channels:
+> > +    maxItems: 1
+> > +    description: |
+> > +      Channel node of a voltage io-channel.
+> > +
+> > +  '#io-channel-cells':
+> > +    const: 0
 
-On 2021-05-12 11:44, satya priya wrote:
-> David Collins (2):
->   input: pm8941-pwrkey: add support for PMK8350 PON_HLOS PMIC 
-> peripheral
->   dt-bindings: input: pm8941-pwrkey: add pmk8350 compatible strings
-> 
+Hi Rob,
 
+>
+> This is a io-channel consumer and producer?
+>
 
-> satya priya (3):
->   dt-bindings: power: reset: Change 'additionalProperties' to true
->   dt-bindings: input: pm8941-pwrkey: Convert pm8941 power key binding 
-> to
->     yaml
->   dt-bindings: power: reset: qcom-pon: Convert qcom PON binding to yaml
-> 
-Could you please pick these 3 patches.
+Yes, this is a consumer and a producer.
+It consumes a single ADC channel and can be fed to something like hwmon.
 
-Thanks,
-Satya Priya
->  .../bindings/input/qcom,pm8941-pwrkey.txt          |  53 -----------
->  .../bindings/input/qcom,pm8941-pwrkey.yaml         |  51 ++++++++++
->  .../devicetree/bindings/power/reset/qcom,pon.txt   |  49 ----------
->  .../devicetree/bindings/power/reset/qcom,pon.yaml  |  80 
-> ++++++++++++++++
->  .../bindings/power/reset/reboot-mode.yaml          |   2 +-
->  drivers/input/misc/pm8941-pwrkey.c                 | 103 
-> ++++++++++++++-------
->  6 files changed, 204 insertions(+), 134 deletions(-)
->  delete mode 100644
-> Documentation/devicetree/bindings/input/qcom,pm8941-pwrkey.txt
->  create mode 100644
-> Documentation/devicetree/bindings/input/qcom,pm8941-pwrkey.yaml
->  delete mode 100644 
-> Documentation/devicetree/bindings/power/reset/qcom,pon.txt
->  create mode 100644 
-> Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
+> > +
+> > +  sense-offset-millicelsius:
+> > +    description: |
+> > +      Temperature offset. The default is <0>.
+> > +      This offset is commonly used to convert from Kelvins to degrees =
+Celsius.
+> > +      In that case, sense-offset-millicelsius would be set to <(-27315=
+0)>.
+>
+> default: 0
+>
+> > +
+> > +  sense-resistor-ohms:
+> > +    description: |
+> > +      The sense resistor. Defaults to <1>.
+> > +      Set sense-resistor-ohms to <1> when using a temperature to volta=
+ge
+> > +      transducer.
+>
+> default: 1
+>
+> Though why would we set the value to 1 if the default is 1?
+>
+
+I can rephrase this. I meant to say that the default will make this
+behave like a temperature to voltage transducer.
+
+Liam
+
+> > +
+> > +  alpha-ppm-per-celsius:
+> > +    description: |
+> > +      Sometimes referred to as output gain, slope, or temperature coef=
+ficient.
+> > +
+> > +      alpha is expressed in parts per million which can be micro-amps =
+per
+> > +      degrees Celsius or micro-volts per degrees Celsius. The is the m=
+ain
+> > +      characteristic of a temperature transducer and should be stated =
+in the
+> > +      datasheet.
+> > +
+> > +additionalProperties: false
+>
+> Blank line here.
+>
+> > +required:
+> > +  - compatible
+> > +  - io-channels
+> > +  - alpha-ppm-per-celsius
+> > +
+> > +examples:
+> > +  - |
+> > +    ad950: temperature-sensor-0 {
+> > +        compatible =3D "temperature-transducer";
+> > +        #io-channel-cells =3D <0>;
+> > +        io-channels =3D <&temp_adc 3>;
+> > +
+> > +        sense-offset-millicelsius =3D <(-273150)>; /* Kelvin to degree=
+s Celsius */
+> > +        sense-resistor-ohms =3D <8060>;
+> > +        alpha-ppm-per-celsius =3D <1>; /* 1 uA/K */
+> > +    };
+> > +  - |
+> > +    znq_tmp: temperature-sensor-1 {
+> > +        compatible =3D "temperature-transducer";
+> > +        #io-channel-cells =3D <0>;
+> > +        io-channels =3D <&temp_adc 2>;
+> > +
+> > +        sense-offset-millicelsius =3D <(-273150)>; /* Kelvin to degree=
+s Celsius */
+> > +        alpha-ppm-per-celsius =3D <4000>; /* 4 mV/K */
+> > +    };
+> > +...
+> > --=20
+> > 2.30.1.489.g328c10930387
+> >=20
+> >=20
+
