@@ -2,99 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56DF93C6F08
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 12:56:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75D0E3C6F32
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 13:12:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235552AbhGMK7g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jul 2021 06:59:36 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44448 "EHLO mail.kernel.org"
+        id S235671AbhGMLPk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jul 2021 07:15:40 -0400
+Received: from foss.arm.com ([217.140.110.172]:41188 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235508AbhGMK7e (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Jul 2021 06:59:34 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 864666127C;
-        Tue, 13 Jul 2021 10:56:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1626173805;
-        bh=CUz5DNHYp7J2Qi4kShmm8q0o4eae/stvnRk/KeoGgd8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=X2g8iUO2SdpRvF+7XcoZeodN1uD/DGbSvIZCBZ3/PIeX7UEFhAXoM75bDR2IFYbGV
-         gkfE37qOel6g+2CxBLKDLqHGu6gcGWEHq8dLpo7fgRPShZfFUiI1pvwPMy22N1LVLa
-         bVWRlGdFxmR7Qy4j08trX7JsaoJbMg7RWM66gEL0=
-Date:   Tue, 13 Jul 2021 12:56:41 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>, Ian Ray <ian.ray@ge.com>,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCHv6 3/3] misc: gehc-achc: new driver
-Message-ID: <YO1xaUAgO2LnXLva@kroah.com>
-References: <20210712150242.146545-1-sebastian.reichel@collabora.com>
- <20210712150242.146545-4-sebastian.reichel@collabora.com>
- <YOx/3YaIg24Tx+OQ@kroah.com>
- <20210712232016.feixz7mqingdc7ck@earth.universe>
- <YO0nn5iX2835Zta9@kroah.com>
- <20210713104600.gbhixaf7r4cukg6i@earth.universe>
+        id S235390AbhGMLPk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Jul 2021 07:15:40 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 461F61FB;
+        Tue, 13 Jul 2021 04:12:50 -0700 (PDT)
+Received: from bogus (unknown [10.57.79.213])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C08BA3F7D8;
+        Tue, 13 Jul 2021 04:12:45 -0700 (PDT)
+Date:   Tue, 13 Jul 2021 12:11:43 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Etienne CARRIERE <etienne.carriere@st.com>
+Cc:     Sumit Garg <sumit.garg@linaro.org>, Marc Zyngier <maz@kernel.org>,
+        Jens Wiklander <jens.wiklander@linaro.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        OP-TEE TrustedFirmware <op-tee@lists.trustedfirmware.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        Jerome Forissier <jerome@forissier.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Etienne Carriere <etienne.carriere@linaro.org>
+Subject: Re: [PATCH v2 0/7] Asynchronous notifications from secure world
+Message-ID: <20210713111143.g6ztdakegs6ck25s@bogus>
+References: <PAXPR10MB4687E737261282B78600272DFD189@PAXPR10MB4687.EURPRD10.PROD.OUTLOOK.COM>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210713104600.gbhixaf7r4cukg6i@earth.universe>
+In-Reply-To: <PAXPR10MB4687E737261282B78600272DFD189@PAXPR10MB4687.EURPRD10.PROD.OUTLOOK.COM>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 13, 2021 at 12:46:00PM +0200, Sebastian Reichel wrote:
-> Hi,
+On Fri, Jul 09, 2021 at 08:05:57AM +0000, Etienne CARRIERE wrote:
+> Hello Sudeep and all,
 > 
-> On Tue, Jul 13, 2021 at 07:41:51AM +0200, Greg Kroah-Hartman wrote:
-> > On Tue, Jul 13, 2021 at 01:20:16AM +0200, Sebastian Reichel wrote:
-> > > On Mon, Jul 12, 2021 at 07:46:05PM +0200, Greg Kroah-Hartman wrote:
-> > > > On Mon, Jul 12, 2021 at 05:02:42PM +0200, Sebastian Reichel wrote:
-> > > > > General Electric Healthcare's PPD has a secondary processor from
-> > > > > NXP's Kinetis K20 series. That device has two SPI chip selects:
-> > > > > 
-> > > > > The main interface's behaviour depends on the loaded firmware
-> > > > > and is currently unused.
-> > > > > 
-> > > > > The secondary interface can be used to update the firmware using
-> > > > > EzPort protocol. This is implemented by this driver using the
-> > > > > kernel's firmware API. It's not done during probe time, since
-> > > > > the device has non-volatile memory and flashing lasts almost 3
-> > > > > minutes.
-> > > > 
-> > > > In thinking about this some more, why does it matter?  Spin up a
-> > > > workqueue when probing and do the firmware loading then. That way you
-> > > > do not end up creating yet another custom user/kernel api just to do
-> > > > something as trivial as loading the firmware for a device.
-> > > > 
-> > > > And I think the firmware loader even handles async loading, or at least
-> > > > it used to, maybe not anymore, it's a complex api, I recommend reading
-> > > > the docs...
-> > > 
-> > > Flashing the firmware during boot instead of on-demand is not
-> > > a good idea for two reasons:
-> > > 
-> > > 1. This will wear the flash memory of the microcontroller for no
-> > >    good reason.
-> > 
-> > Why would you boot with this hardware and not want the firmware
-> > loaded?
-> 
-> As written in the commit message this code is updateing the firmware
-> in non-volatile memory, so the previously flashed FW will be used
-> until a new one is flashed.
-> 
-> The datasheet for the memory being programmed states, that it has a
-> guaranteed programming endurance of 10.000 times. So programming it
-> at every boot instead of manually when a new FW should be flashed
-> (i.e. once every few years) shortens the device life time considerably.
+> On Wed, 7 Jul 2021 at 19:52, Sudeep Holla <sudeep.holla@arm.com> wrote:
+> >
+> > Hi Sumit,
+> >
+> > I was holding off you reply as I didn't have all the background on this.
+> > Achin did mention that this is preparatory work for FFA notifications.
+> > I did mention to him that this is more than that, it is custom extension
+> > to address what FF-A notification is trying to in standard way.
+> >
+> > I share same opinion as Marc Z.
+> >
+> > On Wed, Jul 07, 2021 at 11:22:23AM +0530, Sumit Garg wrote:
+> > > On Tue, 6 Jul 2021 at 18:16, Marc Zyngier <maz@kernel.org> wrote:
+> >
+> > [...]
+> >
+> > > >
+> > > > I don't care about OP-TEE. If you are proposing a contract between S
+> > > > and NS, it has to be TEE and OS independent. That's how the
+> > > > architecture works.
+> > > >
+> > >
+> > > Agree, here we are not proposing a common contract among the S and NS
+> > > world that every TEE (based on Arm TrustZone) will use to communicate
+> > > with REE (Linux in our case) but rather an OP-TEE specific
+> > > notifications feature that is built on top of OP-TEE specific ABIs.
+> > >
+> > > And I can see your arguments coming from an FFA perspective but there
+> > > are platforms like the ones based on Armv7 which don't support FFA
+> > > ABI. Maybe Jens can elaborate how this feature will fit in when FFA
+> > > comes into picture?
+> > >
+> >
+> > I can understand that but won't those platforms add the support both in
+> > the kernel(current series) and secure world to address notifications.
+> > While you could argue that it is small extension to what is already present
+> > but I prefer they support FF-A is they need such a support instead of adding
+> > custom mechanisms. It is hard to maintain and each vendor will deviate
+> > from this custom mechanism and soon we will have bunch of them to handle.
+>
+> There exist armv7-a platforms that expect OP-TEE notification support and
+> will not move the FF-A, like the stm32mp15. This platform won't move to FF-A
+> mainly due to the memory cost of the added SPM layer and the device physical
+> constraints.
 
-Ah, ok, that was not obvious at all.  This is much more like a "BIOS
-update" in that it is infrequent.  You might want to document the heck
-out of this so others are not confused like me.
+Fair enough on the use-case and the analysis for not being able to use FF-A.
+As you may already know it doesn't simply this problem. This has been
+discussed for years and FF-A was assumed to be the solution when FF-A
+spec work started.
 
-thanks,
+> We have a usecase for OP-TEE notification. We're working on the integration
+> of an SCMI server in OP-TEE. SCMI notification is a feature needed is this
+> scope and it requires OP-TEE async notification means as those proposed
+> here.
+>
 
-greg k-h
+I am aware of this use-case, I understand. But I can only share rants
+which I know doesn't help much.
+
+> This OP-TEE async notif also brings a lot of value in OP-TEE as it allows a
+> OP-TEE secure thread (i.e. executing a trusted application service) to
+> gently wait on a secure interrupt (as a slow bus transaction completion or
+> many other usecase) with the CPU relaxed. This support is provided by the
+> proposed series. I believe existing device should be able to leverage this
+> OP-TEE feature without needing their OP-TEE to move to the new FF-A
+> interface.
+>
+
+While I agree these are nice to have in OPTEE, the timing is just odd.
+
+We are trying hard to push FF-A as standard solution to address all such
+issues that couldn't be solved with OPTEE + DT, now we are back to address
+the same in parallel to FF-A.
+
+--
+Regards,
+Sudeep
