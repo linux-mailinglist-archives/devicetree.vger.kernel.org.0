@@ -2,167 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EF133C6EFC
-	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 12:51:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56DF93C6F08
+	for <lists+devicetree@lfdr.de>; Tue, 13 Jul 2021 12:56:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235826AbhGMKxy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jul 2021 06:53:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50772 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235843AbhGMKxw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 06:53:52 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DD28C0613EE
-        for <devicetree@vger.kernel.org>; Tue, 13 Jul 2021 03:51:01 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id j3so8973421plx.7
-        for <devicetree@vger.kernel.org>; Tue, 13 Jul 2021 03:51:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=xzH7sesTaozGr2aBJCA9PbVMd+/TXsUDxdM6aSXl45Y=;
-        b=UfdEgV6ejBlsj8JxfNTCpyqoujkZOrd26OFYbtyNGrFFn1w8vIXL3x/tuh8kYEN7zh
-         gMfxw3nWN67wNY+Ia620l6fmfgeo/5SjhwpvWAQldauqCMbEN1360puiqwBIkfK5Q4uZ
-         wpSwJXVJjy3E6hA7Xjo4ciCm1nwSoklVD0YtzlI7ndrcYmCfBkYSFY80XKzfNVNVyMst
-         nFIHVvEmojYLFlPQ2vf2P4X/xU56jTh3kY+isL6DcaxrPFjSjGwGKwIfDMUc7lh/xYoG
-         z4d/R32YPIe0nHFMqPqcSzBaoBw9/4vKH5Sp/SESjA6uqWTeDPV9t93lEi7qZGCipQA5
-         YXzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=xzH7sesTaozGr2aBJCA9PbVMd+/TXsUDxdM6aSXl45Y=;
-        b=Zoq6QGsGhiepNwq5Iuh7ZbQ7DjPe0/AK4/llN1ZhZmTyrdZdwHzKUaSVFjdg2u1/0b
-         uU/gUI0bI+wwwEiOrralkokmynK+EkM6ncKeArdc/EFJTMIS+VxAru8PgOWgwABlYlTS
-         tu80R5IA1rZwuB4z+acinlTRE/MMkjJksFBcS/bEE8BDcwLJkyimPpoNyiWQenWxceCQ
-         NjiqmUXV310bSYvkZKpWfATyKkpVMgF2jtztp0EsabwFyAISoIcCJaOcOaecxRHkupZ/
-         2JaDIHm4QsFq9UV1AVp0gu//mcPpmFoTNMVlA07EA/eiw41QVMcoZ1yQAduCARnr599r
-         3nYg==
-X-Gm-Message-State: AOAM530bbbQZ/PfyXPdcxYkuCxPLA9PpET6jROSCrp4ZqUQVFHrLxmwQ
-        DTpoYXQLSgsv6WIqFyBesCrmlw==
-X-Google-Smtp-Source: ABdhPJwILSYWfsnEQ84NtkqSWa5u44NasPrQyL0/31BO0LHU+8bXmC3BJV9TCS/WGUJGHGqqDIiLVA==
-X-Received: by 2002:a17:90b:1294:: with SMTP id fw20mr18966339pjb.100.1626173460987;
-        Tue, 13 Jul 2021 03:51:00 -0700 (PDT)
-Received: from localhost ([106.201.108.2])
-        by smtp.gmail.com with ESMTPSA id i8sm5898474pfk.18.2021.07.13.03.51.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jul 2021 03:51:00 -0700 (PDT)
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Jason Wang <jasowang@redhat.com>,
-        "Michael S. Tsirkin" <mst@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>,
-        =?UTF-8?q?Alex=20Benn=C3=A9e?= <alex.bennee@linaro.org>,
-        "Enrico Weigelt, metux IT consult" <info@metux.net>,
-        Jie Deng <jie.deng@intel.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        virtualization@lists.linux-foundation.org,
-        linux-gpio@vger.kernel.org
-Subject: [PATCH 5/5] dt-bindings: gpio: Add bindings for gpio-virtio
-Date:   Tue, 13 Jul 2021 16:20:34 +0530
-Message-Id: <268086e273df0c53e3a9a1e751304c63e50ebe12.1626173013.git.viresh.kumar@linaro.org>
-X-Mailer: git-send-email 2.31.1.272.g89b43f80a514
-In-Reply-To: <cover.1626173013.git.viresh.kumar@linaro.org>
-References: <cover.1626173013.git.viresh.kumar@linaro.org>
+        id S235552AbhGMK7g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jul 2021 06:59:36 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44448 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235508AbhGMK7e (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Jul 2021 06:59:34 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 864666127C;
+        Tue, 13 Jul 2021 10:56:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1626173805;
+        bh=CUz5DNHYp7J2Qi4kShmm8q0o4eae/stvnRk/KeoGgd8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=X2g8iUO2SdpRvF+7XcoZeodN1uD/DGbSvIZCBZ3/PIeX7UEFhAXoM75bDR2IFYbGV
+         gkfE37qOel6g+2CxBLKDLqHGu6gcGWEHq8dLpo7fgRPShZfFUiI1pvwPMy22N1LVLa
+         bVWRlGdFxmR7Qy4j08trX7JsaoJbMg7RWM66gEL0=
+Date:   Tue, 13 Jul 2021 12:56:41 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, Ian Ray <ian.ray@ge.com>,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCHv6 3/3] misc: gehc-achc: new driver
+Message-ID: <YO1xaUAgO2LnXLva@kroah.com>
+References: <20210712150242.146545-1-sebastian.reichel@collabora.com>
+ <20210712150242.146545-4-sebastian.reichel@collabora.com>
+ <YOx/3YaIg24Tx+OQ@kroah.com>
+ <20210712232016.feixz7mqingdc7ck@earth.universe>
+ <YO0nn5iX2835Zta9@kroah.com>
+ <20210713104600.gbhixaf7r4cukg6i@earth.universe>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210713104600.gbhixaf7r4cukg6i@earth.universe>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-gpio-virtio represents a virtio GPIO controller and this patch adds
-binding for the same. The gpio-virtio subnode can be part of a
-virtio,mmio node and is based on its binding.
+On Tue, Jul 13, 2021 at 12:46:00PM +0200, Sebastian Reichel wrote:
+> Hi,
+> 
+> On Tue, Jul 13, 2021 at 07:41:51AM +0200, Greg Kroah-Hartman wrote:
+> > On Tue, Jul 13, 2021 at 01:20:16AM +0200, Sebastian Reichel wrote:
+> > > On Mon, Jul 12, 2021 at 07:46:05PM +0200, Greg Kroah-Hartman wrote:
+> > > > On Mon, Jul 12, 2021 at 05:02:42PM +0200, Sebastian Reichel wrote:
+> > > > > General Electric Healthcare's PPD has a secondary processor from
+> > > > > NXP's Kinetis K20 series. That device has two SPI chip selects:
+> > > > > 
+> > > > > The main interface's behaviour depends on the loaded firmware
+> > > > > and is currently unused.
+> > > > > 
+> > > > > The secondary interface can be used to update the firmware using
+> > > > > EzPort protocol. This is implemented by this driver using the
+> > > > > kernel's firmware API. It's not done during probe time, since
+> > > > > the device has non-volatile memory and flashing lasts almost 3
+> > > > > minutes.
+> > > > 
+> > > > In thinking about this some more, why does it matter?  Spin up a
+> > > > workqueue when probing and do the firmware loading then. That way you
+> > > > do not end up creating yet another custom user/kernel api just to do
+> > > > something as trivial as loading the firmware for a device.
+> > > > 
+> > > > And I think the firmware loader even handles async loading, or at least
+> > > > it used to, maybe not anymore, it's a complex api, I recommend reading
+> > > > the docs...
+> > > 
+> > > Flashing the firmware during boot instead of on-demand is not
+> > > a good idea for two reasons:
+> > > 
+> > > 1. This will wear the flash memory of the microcontroller for no
+> > >    good reason.
+> > 
+> > Why would you boot with this hardware and not want the firmware
+> > loaded?
+> 
+> As written in the commit message this code is updateing the firmware
+> in non-volatile memory, so the previously flashed FW will be used
+> until a new one is flashed.
+> 
+> The datasheet for the memory being programmed states, that it has a
+> guaranteed programming endurance of 10.000 times. So programming it
+> at every boot instead of manually when a new FW should be flashed
+> (i.e. once every few years) shortens the device life time considerably.
 
-Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
----
-Depends on:
+Ah, ok, that was not obvious at all.  This is much more like a "BIOS
+update" in that it is infrequent.  You might want to document the heck
+out of this so others are not confused like me.
 
-https://lore.kernel.org/lkml/7c716c2eb7ace5b5a560d8502af93101dbb53d24.1626170146.git.viresh.kumar@linaro.org/
----
- .../devicetree/bindings/gpio/gpio-virtio.yaml | 67 +++++++++++++++++++
- 1 file changed, 67 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/gpio/gpio-virtio.yaml
+thanks,
 
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-virtio.yaml b/Documentation/devicetree/bindings/gpio/gpio-virtio.yaml
-new file mode 100644
-index 000000000000..c813cdfd60fd
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpio/gpio-virtio.yaml
-@@ -0,0 +1,67 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpio/gpio-virtio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Virtio memory mapped GPIO controller
-+
-+maintainers:
-+  - Viresh Kumar <viresh.kumar@linaro.org>
-+
-+description:
-+  Virtio GPIO controller, see /schemas/virtio/mmio.yaml for more details.
-+
-+allOf:
-+  - $ref: /schemas/gpio/gpio.yaml#
-+
-+properties:
-+  $nodename:
-+    pattern: '^gpio-virtio@[0-9]+$'
-+
-+  reg:
-+    description:
-+      The cell is the device ID of the GPIO device (VIRTIO_ID_GPIO) as per
-+      dt-bindings/virtio/virtio_ids.h.
-+    const: 41
-+    $ref: /schemas/virtio/mmio.yaml#/properties/reg
-+
-+  gpio-controller: true
-+
-+  "#gpio-cells":
-+    const: 2
-+
-+  interrupt-controller: true
-+
-+  "#interrupt-cells":
-+    const: 2
-+
-+required:
-+  - reg
-+  - gpio-controller
-+  - "#gpio-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/virtio/virtio_ids.h>
-+
-+    virtio@3000 {
-+        compatible = "virtio,mmio";
-+        reg = <0x3000 0x100>;
-+        interrupts = <41>;
-+
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        gpio-virtio@0 {
-+            reg = <VIRTIO_ID_GPIO>;
-+            gpio-controller;
-+            #gpio-cells = <2>;
-+            interrupt-controller;
-+            #interrupt-cells = <2>;
-+        };
-+    };
-+
-+...
--- 
-2.31.1.272.g89b43f80a514
-
+greg k-h
