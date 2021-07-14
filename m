@@ -2,149 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD4E83C87E0
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 17:43:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E0093C87E4
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 17:44:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232354AbhGNPq0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 11:46:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39988 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232318AbhGNPqZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Jul 2021 11:46:25 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D6831613C8;
-        Wed, 14 Jul 2021 15:43:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626277413;
-        bh=/Hc6tz85MTUadhdIRSG2oaN3rM7XRWUzy2dI1TVpQNU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ckDkrimm+MK/okCfOz5+C1/IGeSHPSaA4wAdG/WJ6m9CM7AJEABcRoubzKwcWY8lm
-         5OA6EG3Bwvw3tTkmY4v9yS+LFU+1nQPq4V3RDu5L04CWVJBfGf1MqZM65YVk+VLkTp
-         pomV+O2fmWbejjx5bAVzu7ACeO34xtpEwMW8/bGbZy/+fg4t6UHcKpVKBzSETidfng
-         4kBQ+frsxb7+h2LMLQAsPIWHR/nbvDcoDIWWi+fwFcNDoD95QUx+UJfD4j626w4Dp+
-         mVx3D19y8hyJS4dBVavrXcRLvwSF+isb4i+IV/U1sKyWkGaBtvbUyJG9Di0tD/FPd3
-         5ZTX60eJ8+tGw==
-Received: by mail-ej1-f41.google.com with SMTP id hc15so4071020ejc.4;
-        Wed, 14 Jul 2021 08:43:33 -0700 (PDT)
-X-Gm-Message-State: AOAM533t/RxdGyrgmwyMJIm4JDAhGxhUmWG/QMoLrOWmPPs0ofEYdym9
-        AOU8T69+MVt3Td97zOtIDI4ylUZ9Y5tK5FqdoQ==
-X-Google-Smtp-Source: ABdhPJzMA2/c1kwXXfJV0KwSIgHuC8FkqivEpe59TEvEKJgJDyWLdmKNNJ3+1Mw5Fuv3WHmBfdjEupGaJ+DBVGPgWVQ=
-X-Received: by 2002:a17:907:5096:: with SMTP id fv22mr12588246ejc.525.1626277412327;
- Wed, 14 Jul 2021 08:43:32 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.1626173013.git.viresh.kumar@linaro.org> <aa4bf68fdd13b885a6dc1b98f88834916d51d97d.1626173013.git.viresh.kumar@linaro.org>
- <CAL_Jsq+SiE+ciZfASHKUfLU1YMPfB43YmSciT_+gQHvL99_wUA@mail.gmail.com>
- <20210713151917.zouwfckidnjxvohn@vireshk-i7> <CAL_JsqL9255n5RT=Gq_uru7rEP0bSVcyfXEPRY4F0M4S2HPvTA@mail.gmail.com>
- <CAK8P3a3Gve=M9GF-E+2OJED1Hd1qngxOkVSO15wB0jVWK8D0_Q@mail.gmail.com>
-In-Reply-To: <CAK8P3a3Gve=M9GF-E+2OJED1Hd1qngxOkVSO15wB0jVWK8D0_Q@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 14 Jul 2021 09:43:20 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKLjFx9AOcMiyxdQvDU7V8Sak8YPyrJm2TuSE-TTqvREw@mail.gmail.com>
-Message-ID: <CAL_JsqKLjFx9AOcMiyxdQvDU7V8Sak8YPyrJm2TuSE-TTqvREw@mail.gmail.com>
-Subject: Re: [PATCH 1/5] dt-bindings: virtio: mmio: Add support for device subnode
-To:     Arnd Bergmann <arnd@kernel.org>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Jason Wang <jasowang@redhat.com>,
-        "Michael S. Tsirkin" <mst@redhat.com>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>,
-        =?UTF-8?B?QWxleCBCZW5uw6ll?= <alex.bennee@linaro.org>,
-        "Enrico Weigelt, metux IT consult" <info@metux.net>,
-        Jie Deng <jie.deng@intel.com>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE" 
-        <virtualization@lists.linux-foundation.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S239651AbhGNPrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 11:47:03 -0400
+Received: from mail-io1-f54.google.com ([209.85.166.54]:38820 "EHLO
+        mail-io1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232318AbhGNPrD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 11:47:03 -0400
+Received: by mail-io1-f54.google.com with SMTP id k11so2663611ioa.5;
+        Wed, 14 Jul 2021 08:44:11 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=5YB4Tq0do2Mv/Zmb1piIDXwZsU75wE5dE6JnJKDMhms=;
+        b=QfA5odVldPPLNVItksVYirXp060cc7eyjpma3VRLvfJQdHQl1CONNBsFj+dDTNq7so
+         ZjwYAlfAVUEV7zUf7sfGen1eZD0zUBwjD1Xv59hdcXO8hDyVLxMqhyUr1dlh+9BzmDCU
+         SG4RHMLtA72brIUo+B+SjKecakWDS+DhHJ1JTsRlYTpNxXLTfyUiqN8UwCEYdxHTMzxq
+         FRP+Liq1sEjnaRtxqKLWx+8FcUKgAneuiPrJ//XEO48q43zPsp+6tSgmWbPyE5HGWovs
+         CS9AqCWfYqgusfq/jF779XX0At2TUFQ7xP8OZ/xdfb25XtRfq2hakwxBb7EIrIYXSLOd
+         c7PQ==
+X-Gm-Message-State: AOAM5300equMUXDCPNesPgm+c/eGc68qd7QJg8MVcTWLzYYLW5RLxBei
+        DFfsbUAhUI7ohAF1LTuQVA==
+X-Google-Smtp-Source: ABdhPJyPjXPKcfWDptVloc+ivSzKnBM195jJHUB2Jb10U6MBNPl9P9Vn45YvwEeB2LpgUYCJHEW7Yw==
+X-Received: by 2002:a02:90cb:: with SMTP id c11mr9574373jag.53.1626277451015;
+        Wed, 14 Jul 2021 08:44:11 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id t15sm1377991ile.28.2021.07.14.08.44.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jul 2021 08:44:09 -0700 (PDT)
+Received: (nullmailer pid 2630511 invoked by uid 1000);
+        Wed, 14 Jul 2021 15:44:06 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>
+Cc:     linux-media@vger.kernel.org, mchehab@kernel.org,
+        phone-devel@vger.kernel.org, linux-imx@nxp.com,
+        linux-staging@lists.linux.dev, kernel@pengutronix.de,
+        m.felsch@pengutronix.de, linux-arm-kernel@lists.infradead.org,
+        krzk@kernel.org, shawnguo@kernel.org, kernel@puri.sm,
+        slongerbeam@gmail.com, festevam@gmail.com,
+        laurent.pinchart@ideasonboard.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20210714111931.324485-2-martin.kepplinger@puri.sm>
+References: <20210714111931.324485-1-martin.kepplinger@puri.sm> <20210714111931.324485-2-martin.kepplinger@puri.sm>
+Subject: Re: [PATCH v6 1/3] dt-bindings: media: document the nxp,imx8mq-mipi-csi2 receiver phy and controller
+Date:   Wed, 14 Jul 2021 09:44:06 -0600
+Message-Id: <1626277446.705587.2630510.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 13, 2021 at 2:34 PM Arnd Bergmann <arnd@kernel.org> wrote:
->
-> On Tue, Jul 13, 2021 at 9:35 PM Rob Herring <robh+dt@kernel.org> wrote:
-> > On Tue, Jul 13, 2021 at 9:19 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
-> > >
-> > > On 13-07-21, 08:43, Rob Herring wrote:
-> > > > On Tue, Jul 13, 2021 at 4:50 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
-> > > > >
-> > > > > Allow virtio,mmio nodes to contain device specific subnodes. Since each
-> > > > > virtio,mmio node can represent a single virtio device, each virtio node
-> > > > > is allowed to contain a maximum of one device specific subnode.
-> > > >
-> > > > Doesn't sound like we need 2 nodes here. Just add I2C devices as child
-> > > > nodes. You could add a more specific compatible string, but the
-> > > > protocol is discoverable, so that shouldn't be necessary.
-> > >
-> > > I am not sure if it will be a problem, but you can clarify it better.
-> >
-> > > The parent node (virtio,mmio) is used to create a platform device,
-> > > virtio-mmio, (and so assigned as its of_node) and we create the
-> > > virtio-device from probe() of this virtio-mmio device.
-> > >
-> > > Is it going to be a problem if two devices in kernel use the same
-> > > of_node ?
-> >
-> > There shouldn't be. We have nodes be multiple providers (e.g clocks
-> > and resets) already.
->
-> I think this would be a little different, but it can still work. There is in
-> fact already some precedent of doing this, with Jean-Philippe's virtio-iommu
-> binding, which is documented in both
->
-> Documentation/devicetree/bindings/virtio/iommu.txt
-> Documentation/devicetree/bindings/virtio/mmio.txt
->
-> Unfortunately, those are still slightly different from where I think we should
-> be going here, but it's probably close enough to fit into the general
-> system.
->
-> What we have with virtio-iommu is two special hacks:
->  - on virtio-mmio, a node with 'compatible="virtio,mmio"' may optionally
->    have an '#iommu-cells=<1>', in which case we assume it's an iommu.
->  - for virtio-pci, the node has the standard PCI 'reg' property but a special
->    'compatible="virtio,pci-iommu"' property that I think is different from any
->    other PCI node.
+On Wed, 14 Jul 2021 13:19:29 +0200, Martin Kepplinger wrote:
+> The i.MX8MQ SoC integrates a different MIPI CSI receiver as the i.MX8MM so
+> describe the DT bindings for it.
+> 
+> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../bindings/media/nxp,imx8mq-mipi-csi2.yaml  | 173 ++++++++++++++++++
+>  1 file changed, 173 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
+> 
 
-How is that different? PCI device can be a VID/PID compatible or
-omitted, but can also be a "typical" compatible string.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> I think for other virtio devices, we should come up with a way to define a
-> binding per device (i2c, gpio, ...) without needing to cram this into the
-> "virtio,mmio" binding or coming up with special compatible strings for
-> PCI devices.
->
-> Having a child device for the virtio device type gives a better separation
-> here, since it lets you have two nodes with 'compatible' strings that each
-> make sense for their respective parent buses: The parent is either a PCI
-> device or a plain mmio based device, and the child is a virtio device with
-> its own namespace for compatible values. As you say, the downside is
-> that this requires an extra node that is redundant because there is always
-> a 1:1 relation with its parent.
->
-> Having a combined node gets rid of the redundancy but if we want to
-> identify the device for the purpose of defining a custom binding, it would have
-> to have two compatible strings, something like
->
-> compatible="virtio,mmio", "virtio,device34";
+yamllint warnings/errors:
 
-The order seems backwards here. 'virtio,device34' is more specific.
-Though I guess the meanings are orthogonal.
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.example.dts:37.28-29 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1418: dt_binding_check] Error 2
+\ndoc reference errors (make refcheckdocs):
 
-> for a virtio-mmio device of device-id 34 (i2c), or a PCI device with
->
-> compatible="pci1af4,1041", "virtio,device34";
+See https://patchwork.ozlabs.org/patch/1505152
 
-But this seems the right order. Though does '1041' have any specific
-meaning or device IDs are just dynamically assigned? It seems to be
-the latter from my brief scan of the code.
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-> which also does not quite feel right.
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-I guess it comes down to is 'virtio,mmio' providing a bus or is it
-just a device? I guess a bus (so 2 nodes) does make sense here.
-'virtio,mmio' defines how you access/discover the virtio queues (the
-bus) and the functional device (i2c, gpio, iommu, etc.) is accessed
-via the virtio queues.
+pip3 install dtschema --upgrade
 
-Rob
+Please check and re-submit.
+
