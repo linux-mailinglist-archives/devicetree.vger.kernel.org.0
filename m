@@ -2,103 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A4F23C804B
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 10:34:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF3DB3C8060
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 10:38:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238658AbhGNIgl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 04:36:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35524 "EHLO
+        id S238496AbhGNIl2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 04:41:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238654AbhGNIgl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 04:36:41 -0400
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C7E8C061766
-        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 01:33:50 -0700 (PDT)
-Received: by mail-pj1-x1033.google.com with SMTP id g6-20020a17090adac6b029015d1a9a6f1aso3217978pjx.1
-        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 01:33:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=MBGbqvseaowVXgAUsLtxjTmL1uju2aQqqvQPrdOEUMI=;
-        b=DJ9YnE3ngEe0jYQuWtwKj6BzT1epPGW0zyW78ZbCveShTZTUHkL/JiQP9S6bzo8F8F
-         l3paefGgmM9pRe5VtkkRq+WeH7yGtHUihQ0DsOtD1TwMVV0fdr92lRnSgTk1ySg6TuXA
-         Fzk+wh2ARsgs/b/dkmLIeNHk7sU+KLvZzM2oHC05J0oDHNC4I9dppJ0FjIw757H7JiwK
-         nXVqD+jZ2zq16S9diEyUYkwx0/MCtzlVoOUQLcmbXGoaaQFXb7fC12Hgmxk4cZjqrRlM
-         WrNJzOwc0/VkCV6CYJtEU/4gBDZPIKMo7GC1bBaS7EqQuXtUiN+aaPbQQwpFsHeQaTT1
-         W7Ng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=MBGbqvseaowVXgAUsLtxjTmL1uju2aQqqvQPrdOEUMI=;
-        b=ImqKhEuG8/Oms9WkD+P9Dz5hTqZr1GRJXig63UrcieNtHO2JosXLJq9sxN1iqWX0eb
-         OmR2r/ygcL/o+Aegsh6OrpBcPKq9Fbu5BGJHF6Tdw98ZY81i9yhEo3tgJotcm/kGOJsB
-         tcq/cC/AWa+ZFNvoZYTeCt5dT4mGFSV9+pHkLmJL+NmoHhzgt0O4XE7m5JiddwGazH3p
-         3vdRDKqIOOadtzwBdSebinX6twkh0jNgEtyknTR5jjHdaOatER6dXLUcWofAg3DAah+V
-         6gv3PViQPRk6XvBrX+E+A6Ch7JzqCUxrt3uyMbgB0yOa7tM54KaKsxpb/6f3BczvP1/M
-         cIRQ==
-X-Gm-Message-State: AOAM530zcTNtIsincrTbQbDumnK0SGYZ8PGjfrNMOR0wFEqJ8CwB1ZrF
-        vYyu5ouTkn0CAq/RWins7Pwr
-X-Google-Smtp-Source: ABdhPJxVPTaoeeFm4HleyI7+aCvHDOhg5OcAq43DlRs3qQUlyHhh3E3vCjq9zoPN+9VtgoXRvcvR/g==
-X-Received: by 2002:a17:90a:5907:: with SMTP id k7mr8764652pji.196.1626251629553;
-        Wed, 14 Jul 2021 01:33:49 -0700 (PDT)
-Received: from localhost.localdomain ([120.138.13.241])
-        by smtp.gmail.com with ESMTPSA id p40sm1774446pfw.79.2021.07.14.01.33.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jul 2021 01:33:49 -0700 (PDT)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     kishon@ti.com, lorenzo.pieralisi@arm.com, bhelgaas@google.com,
-        robh@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        hemantk@codeaurora.org, smohanad@codeaurora.org,
-        bjorn.andersson@linaro.org, sallenki@codeaurora.org,
-        skananth@codeaurora.org, vpernami@codeaurora.org,
-        vbadigan@codeaurora.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v6 3/3] MAINTAINERS: Add entry for Qualcomm PCIe Endpoint driver and binding
-Date:   Wed, 14 Jul 2021 14:03:16 +0530
-Message-Id: <20210714083316.7835-4-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210714083316.7835-1-manivannan.sadhasivam@linaro.org>
-References: <20210714083316.7835-1-manivannan.sadhasivam@linaro.org>
+        with ESMTP id S238482AbhGNIl2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 04:41:28 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B39EC06175F;
+        Wed, 14 Jul 2021 01:38:37 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9EA68CC;
+        Wed, 14 Jul 2021 10:38:35 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1626251915;
+        bh=YbyFIqNHO3+cig/EdKRQenB4YdAV8pA1dPKaR9Ajrb0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=pZ0PKnDxKLI8zEjX4dbxQdGSqpGC0WsyAIK8YFApt9/5WfEUne+DwoFdwe719/AfP
+         q88kPyOc7s2GDRkoRX0SP6fZstxlduNZ7cq5hBJ6OQf97998wtga0XVb+HHu7oxcGp
+         +ri5+FqXm+R52UKo3X+sPsPQYvQ0Z+iF5BLNOVbc=
+Date:   Wed, 14 Jul 2021 11:38:34 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>,
+        Brian Norris <computersforpeace@gmail.com>,
+        Kamal Dasu <kdasu.kdev@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Sebastian Siewior <bigeasy@linutronix.de>,
+        linux-clk@vger.kernel.org, iommu@lists.linux-foundation.org,
+        linux-mtd@lists.infradead.org, linux-rtc@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: More dropping redundant minItems/maxItems
+Message-ID: <YO6iinTsYE6EC+mn@pendragon.ideasonboard.com>
+References: <20210713193453.690290-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210713193453.690290-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MAINTAINERS entry for Qualcomm PCIe Endpoint driver and its
-devicetree binding. While at it, let's also fix the PCIE RC entry to
-cover only the RC driver.
+Hi Rob,
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- MAINTAINERS | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+Thank you for the patch.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index bd7aff0c120f..cdd370138b9f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14254,7 +14254,15 @@ M:	Stanimir Varbanov <svarbanov@mm-sol.com>
- L:	linux-pci@vger.kernel.org
- L:	linux-arm-msm@vger.kernel.org
- S:	Maintained
--F:	drivers/pci/controller/dwc/*qcom*
-+F:	drivers/pci/controller/dwc/pcie-qcom.c
-+
-+PCIE ENDPOINT DRIVER FOR QUALCOMM
-+M:	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-+L:	linux-pci@vger.kernel.org
-+L:	linux-arm-msm@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-+F:	drivers/pci/controller/dwc/pcie-qcom-ep.c
- 
- PCIE DRIVER FOR ROCKCHIP
- M:	Shawn Lin <shawn.lin@rock-chips.com>
+On Tue, Jul 13, 2021 at 01:34:53PM -0600, Rob Herring wrote:
+> Another round of removing redundant minItems/maxItems from new schema in
+> the recent merge window.
+> 
+> If a property has an 'items' list, then a 'minItems' or 'maxItems' with the
+> same size as the list is redundant and can be dropped. Note that is DT
+> schema specific behavior and not standard json-schema behavior. The tooling
+> will fixup the final schema adding any unspecified minItems/maxItems.
+> 
+> This condition is partially checked with the meta-schema already, but
+> only if both 'minItems' and 'maxItems' are equal to the 'items' length.
+> An improved meta-schema is pending.
+> 
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: Joerg Roedel <joro@8bytes.org>
+> Cc: Will Deacon <will@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Cc: Miquel Raynal <miquel.raynal@bootlin.com>
+> Cc: Richard Weinberger <richard@nod.at>
+> Cc: Vignesh Raghavendra <vigneshr@ti.com>
+> Cc: Alessandro Zummo <a.zummo@towertech.it>
+> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>
+> Cc: Brian Norris <computersforpeace@gmail.com>
+> Cc: Kamal Dasu <kdasu.kdev@gmail.com>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Sebastian Siewior <bigeasy@linutronix.de>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: linux-clk@vger.kernel.org
+> Cc: iommu@lists.linux-foundation.org
+> Cc: linux-mtd@lists.infradead.org
+> Cc: linux-rtc@vger.kernel.org
+> Cc: linux-usb@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+> ---
+>  .../devicetree/bindings/clock/brcm,iproc-clocks.yaml      | 1 -
+>  .../devicetree/bindings/iommu/rockchip,iommu.yaml         | 2 --
+>  .../bindings/memory-controllers/arm,pl353-smc.yaml        | 1 -
+>  Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml  | 8 --------
+>  .../devicetree/bindings/rtc/faraday,ftrtc010.yaml         | 1 -
+>  Documentation/devicetree/bindings/usb/nxp,isp1760.yaml    | 2 --
+>  6 files changed, 15 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/brcm,iproc-clocks.yaml b/Documentation/devicetree/bindings/clock/brcm,iproc-clocks.yaml
+> index 8dc7b404ee12..1174c9aa9934 100644
+> --- a/Documentation/devicetree/bindings/clock/brcm,iproc-clocks.yaml
+> +++ b/Documentation/devicetree/bindings/clock/brcm,iproc-clocks.yaml
+> @@ -50,7 +50,6 @@ properties:
+>  
+>    reg:
+>      minItems: 1
+> -    maxItems: 3
+>      items:
+>        - description: base register
+>        - description: power register
+> diff --git a/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml b/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
+> index d2e28a9e3545..ba9124f721f1 100644
+> --- a/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
+> +++ b/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
+> @@ -28,14 +28,12 @@ properties:
+>        - description: configuration registers for MMU instance 0
+>        - description: configuration registers for MMU instance 1
+>      minItems: 1
+> -    maxItems: 2
+>  
+>    interrupts:
+>      items:
+>        - description: interruption for MMU instance 0
+>        - description: interruption for MMU instance 1
+>      minItems: 1
+> -    maxItems: 2
+>  
+>    clocks:
+>      items:
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml b/Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml
+> index 7a63c85ef8c5..01c9acf9275d 100644
+> --- a/Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml
+> +++ b/Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml
+> @@ -57,7 +57,6 @@ properties:
+>  
+>    ranges:
+>      minItems: 1
+> -    maxItems: 3
+>      description: |
+>        Memory bus areas for interacting with the devices. Reflects
+>        the memory layout with four integer values following:
+> diff --git a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
+> index e5f1a33332a5..dd5a64969e37 100644
+> --- a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
+> @@ -84,7 +84,6 @@ properties:
+>  
+>    interrupts:
+>      minItems: 1
+> -    maxItems: 3
+>      items:
+>        - description: NAND CTLRDY interrupt
+>        - description: FLASH_DMA_DONE if flash DMA is available
+> @@ -92,7 +91,6 @@ properties:
+>  
+>    interrupt-names:
+>      minItems: 1
+> -    maxItems: 3
+>      items:
+>        - const: nand_ctlrdy
+>        - const: flash_dma_done
+> @@ -148,8 +146,6 @@ allOf:
+>      then:
+>        properties:
+>          reg-names:
+> -          minItems: 2
+> -          maxItems: 2
+>            items:
+>              - const: nand
+>              - const: nand-int-base
+> @@ -161,8 +157,6 @@ allOf:
+>      then:
+>        properties:
+>          reg-names:
+> -          minItems: 3
+> -          maxItems: 3
+>            items:
+>              - const: nand
+>              - const: nand-int-base
+> @@ -175,8 +169,6 @@ allOf:
+>      then:
+>        properties:
+>          reg-names:
+> -          minItems: 3
+> -          maxItems: 3
+>            items:
+>              - const: nand
+>              - const: iproc-idm
+> diff --git a/Documentation/devicetree/bindings/rtc/faraday,ftrtc010.yaml b/Documentation/devicetree/bindings/rtc/faraday,ftrtc010.yaml
+> index 657c13b62b67..056d42daae06 100644
+> --- a/Documentation/devicetree/bindings/rtc/faraday,ftrtc010.yaml
+> +++ b/Documentation/devicetree/bindings/rtc/faraday,ftrtc010.yaml
+> @@ -30,7 +30,6 @@ properties:
+>      maxItems: 1
+>  
+>    clocks:
+> -    minItems: 2
+>      items:
+>        - description: PCLK clocks
+>        - description: EXTCLK clocks. Faraday calls it CLK1HZ and says the clock
+> diff --git a/Documentation/devicetree/bindings/usb/nxp,isp1760.yaml b/Documentation/devicetree/bindings/usb/nxp,isp1760.yaml
+> index a88f99adfe8e..f238848ad094 100644
+> --- a/Documentation/devicetree/bindings/usb/nxp,isp1760.yaml
+> +++ b/Documentation/devicetree/bindings/usb/nxp,isp1760.yaml
+> @@ -25,14 +25,12 @@ properties:
+>  
+>    interrupts:
+>      minItems: 1
+> -    maxItems: 2
+>      items:
+>        - description: Host controller interrupt
+>        - description: Device controller interrupt in isp1761
+>  
+>    interrupt-names:
+>      minItems: 1
+> -    maxItems: 2
+>      items:
+>        - const: host
+>        - const: peripheral
+
 -- 
-2.25.1
+Regards,
 
+Laurent Pinchart
