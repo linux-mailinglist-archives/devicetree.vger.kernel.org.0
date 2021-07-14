@@ -2,78 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E67103C9292
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 22:52:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 888453C9298
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 22:53:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233453AbhGNUzW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 16:55:22 -0400
-Received: from mail-io1-f45.google.com ([209.85.166.45]:38491 "EHLO
-        mail-io1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229782AbhGNUzV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 16:55:21 -0400
-Received: by mail-io1-f45.google.com with SMTP id k11so3813176ioa.5;
-        Wed, 14 Jul 2021 13:52:29 -0700 (PDT)
+        id S232404AbhGNU4g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 16:56:36 -0400
+Received: from mail-il1-f173.google.com ([209.85.166.173]:45684 "EHLO
+        mail-il1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229782AbhGNU4g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 16:56:36 -0400
+Received: by mail-il1-f173.google.com with SMTP id b6so2926896iln.12;
+        Wed, 14 Jul 2021 13:53:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=m1BjMiFm/xS6B+fxE+xnjxZgvS0rjMUop/UpczXhIRU=;
-        b=AUlDcWB9Qn0numGYySriFLb/5yJJ1dhkCvku3MyTuwQKieDIgQr9Plv2CSgsp+chWf
-         kRUzy0gb/9rtaAuyCsFddzrm1MlTQWo1vygPPwW5H9gQ2J/2RW9uwthTMI2M/9IozSOg
-         nix1fYIz6iIRdf5ptHXyoUjPSZDqshHeYJwpjouc/ejeEQ6kraZ1Yt2l8Ipir9ZpB8yW
-         WJ34W4up8oDpg13w3Zhy+Rj9S3m8iR1wEuNaJ99GRpKDKH/EyWAbiregWdgYgEVXfdxy
-         VuiBFKutaYZuWIN/7sTYgyruLXREF6Iobn0zaqzIMZnjhQMe5dMTC0StoaHgUICAi+yD
-         ExPg==
-X-Gm-Message-State: AOAM530NtXLilobtYvP1qmY4LJMhOENF/TFbnv4HmbGE0DX008v7G5RW
-        GeIgTO3Lgh5yM0F9rbaamLmq+UKjIe9C
-X-Google-Smtp-Source: ABdhPJzx/mstRn2IXdCjC+oslK6tvpCMxnRGPLU8xCC2kA2scrk6HyIlrAdk7TZMLBdoO+P1sG+RPA==
-X-Received: by 2002:a5d:9958:: with SMTP id v24mr51618ios.4.1626295949319;
-        Wed, 14 Jul 2021 13:52:29 -0700 (PDT)
+        bh=jr13OOnV/5xQJZmAAzLknLpGGMlSu87JqZcDrYUOYUI=;
+        b=pwZ+8kDL/wgb60OE7EbchY97oju8jCJ6cX01JunJ7kSHxNIVjicceJldp4zA5T9GT0
+         jL1PNfRCMAdypRCjthU5DhQF1ZjmYUHsPbAgl5j704paH+CzXgtuftj3HCX/m0cL6NQD
+         2QK7ufISo47JqEsLWaPI8u++oWKSVQQphZHKz0u+IKXF19HdnpjUzr9H1U5NmI4fEpej
+         h7gcob7i+TR7nDHPxQGLCxVSkbA4v03iS7OMmqsZu9tzKzPS35t4U5iHY/tkVXL0tc99
+         SwPGOBg1aj9w21/5GEz0AJBTNk96J/TT7+IF+PDG6f/Eva64bPsj6wZESa7ej9sBD2XI
+         0Y1g==
+X-Gm-Message-State: AOAM533eRFEZLLjE6PHvOnvVtEWkFHuUOKwNm55nqOtGUeWLF6QHKp2Z
+        UMhcAGZFtIfAlgMDIYHeXw==
+X-Google-Smtp-Source: ABdhPJz56d6TGksTBsE+Egmj4caxPDuY0YSu77IZ0tPX1ExSHNPhuqc/BGv3+2ro0VauAnkfNAH/6Q==
+X-Received: by 2002:a92:d98c:: with SMTP id r12mr8512532iln.304.1626296024209;
+        Wed, 14 Jul 2021 13:53:44 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id j24sm1832785ioo.16.2021.07.14.13.52.26
+        by smtp.gmail.com with ESMTPSA id x1sm1752660ioa.54.2021.07.14.13.53.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jul 2021 13:52:28 -0700 (PDT)
-Received: (nullmailer pid 3501321 invoked by uid 1000);
-        Wed, 14 Jul 2021 20:52:25 -0000
-Date:   Wed, 14 Jul 2021 14:52:25 -0600
+        Wed, 14 Jul 2021 13:53:43 -0700 (PDT)
+Received: (nullmailer pid 3503450 invoked by uid 1000);
+        Wed, 14 Jul 2021 20:53:42 -0000
+Date:   Wed, 14 Jul 2021 14:53:42 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     djw@t-chip.com.cn
-Cc:     Jagan Teki <jagan@amarulasolutions.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <uwe@kleine-koenig.org>,
-        Liang Chen <cl@rock-chips.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Wayne Chou <zxf@t-chip.com.cn>, linux-kernel@vger.kernel.org,
-        Heiko Stuebner <heiko@sntech.de>,
-        Johan Jonker <jbx6244@gmail.com>,
-        linux-rockchip@lists.infradead.org,
-        Kongxin Deng <dkx@t-chip.com.cn>, devicetree@vger.kernel.org,
-        Chen-Yu Tsai <wens@csie.org>,
-        David Bauer <mail@david-bauer.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH v0 1/2] dt-bindings: add doc for Firefly
- ROC-RK3399-PC-PLUS
-Message-ID: <20210714205225.GA3501265@robh.at.kernel.org>
-References: <20210628035402.16812-1-djw@t-chip.com.cn>
- <20210628035402.16812-2-djw@t-chip.com.cn>
+To:     Corentin Labbe <clabbe@baylibre.com>
+Cc:     linus.walleij@linaro.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, richard@nod.at, miquel.raynal@bootlin.com,
+        vigneshr@ti.com, devicetree@vger.kernel.org,
+        linux-mtd@lists.infradead.org
+Subject: Re: [PATCH v2] dt_bindings: mtd: partitions: redboot: convert to YAML
+Message-ID: <20210714205342.GA3503393@robh.at.kernel.org>
+References: <20210628191440.2823024-1-clabbe@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210628035402.16812-2-djw@t-chip.com.cn>
+In-Reply-To: <20210628191440.2823024-1-clabbe@baylibre.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 28 Jun 2021 11:54:01 +0800, djw@t-chip.com.cn wrote:
-> From: Levin Du <djw@t-chip.com.cn>
+On Mon, 28 Jun 2021 19:14:40 +0000, Corentin Labbe wrote:
+> Converts mtd/partitions/redboot-fis.txt to YAML.
 > 
-> Add devicetree binding documentation for the Firefly ROC-RK3399-PC-PLUS.
-> 
-> Signed-off-by: Levin Du <djw@t-chip.com.cn>
+> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 > ---
+> Changes since v1:
+> - fixed yamllint errors
+> - removed @0 from flash
 > 
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  .../bindings/mtd/partitions/redboot-fis.txt   | 27 ------------
+>  .../bindings/mtd/partitions/redboot-fis.yaml  | 42 +++++++++++++++++++
+>  2 files changed, 42 insertions(+), 27 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mtd/partitions/redboot-fis.txt
+>  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/redboot-fis.yaml
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
