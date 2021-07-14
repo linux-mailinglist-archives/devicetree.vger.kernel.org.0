@@ -2,77 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 006C33C933B
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 23:42:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F1C43C93E4
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 00:34:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229928AbhGNVo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 17:44:58 -0400
-Received: from mail-il1-f171.google.com ([209.85.166.171]:37469 "EHLO
-        mail-il1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229535AbhGNVo6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 17:44:58 -0400
-Received: by mail-il1-f171.google.com with SMTP id o8so3064448ilf.4;
-        Wed, 14 Jul 2021 14:42:05 -0700 (PDT)
+        id S235809AbhGNWd4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 18:33:56 -0400
+Received: from mail-il1-f179.google.com ([209.85.166.179]:35607 "EHLO
+        mail-il1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235650AbhGNWd4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 18:33:56 -0400
+Received: by mail-il1-f179.google.com with SMTP id a11so3179622ilf.2;
+        Wed, 14 Jul 2021 15:31:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=HNyxqUP4x4MwonkkSsPuo4EdEZPNoq+cX0dHKb+rfxg=;
-        b=WFpIJeGonObbmGP/Vz/MsRZK/ngeTuyYKA0Im2/Lefza+uytTKrIeAWXxXKbj26CE/
-         90CdDO3+T30npPwosvw8pcAPIYtFbu4NuepBOhMo9pXLg1EnW7hGNfUZj4elfPQM4ELB
-         YE//brNrQkU6BcgQ5iNsr2cdGXfZrpoNVIwxmtA886mBv2y0ZpbFqPzjhGQ9UeQk0vdJ
-         6fGR4gVZkRCv7T8M0c7Rd99DrauvxEguKdx8U/N+npLTFtcdwSabGA2Y2zch+GeF/zAg
-         foT7sk67YHTYOtz6/l2fBwak0miGF43SK6KFDqm/knHOSX2gCdHFPxYNjw7Agm7k9GEU
-         KmIg==
-X-Gm-Message-State: AOAM533iaEqQWSEeukMgfykHts5VCtsn+COdDL8zBS/ub6x+R1hCCmnm
-        IwEk7vumm4cBV0+EgdnI7A==
-X-Google-Smtp-Source: ABdhPJwi0NoRw5ew7avbRsmhhvF8eJfBB591l/RnYgf98Dh2maBxcQ+QHHVsim4OApePaxIs9Wh2oA==
-X-Received: by 2002:a92:660f:: with SMTP id a15mr8413285ilc.182.1626298925090;
-        Wed, 14 Jul 2021 14:42:05 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=IdK0IO2DN+mRcPjrdhNoWbulNJtj9bPZcIWuLX28H2o=;
+        b=eHzVErcInt+tFYxYjw1MG/eelsVMbLiatHM49iwbJoVIthXMIoq+klYkzNmyTyMu0A
+         yiiaV2uwtjRZhQEI7RrIa6sz0rDumr8tmUKGZo+W3QIQobUlPyYZ8cVPtRR40iP+H23A
+         a1LQm7kHcNV7N35W49EcTRxo3ps5wK/gMOmlor0EIrot1M1xN5PGSnLWuEXLyJiO0icl
+         bWWXFT1zvWqZjSKbP6DRBHtmURM0G+0mxlIacZucJ2Yq0l+evu3FxRzdUYZKr5hEXNms
+         1HOlgoq0GN0jCdrJWahPCuO7QVvjBDdTKOha71GG1EwmD7YXmqG9MMOQrF3qLTSwx2vN
+         6fvA==
+X-Gm-Message-State: AOAM532dLkhzc6blQzUxCfMiuFAb9ZW0MhEsziGPSptDwXwp/GmlU7hZ
+        lBtun3Ap8PToC/aOrL/fnA==
+X-Google-Smtp-Source: ABdhPJwkQqrE9WhjInb9jEM0M38D4KnzR/ziBq0L5GV92HdpriU7PYWwrXjCPOgBtnNAiz3ZF5QHPQ==
+X-Received: by 2002:a05:6e02:1154:: with SMTP id o20mr105554ill.168.1626301863235;
+        Wed, 14 Jul 2021 15:31:03 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id b16sm1023075ioh.5.2021.07.14.14.42.03
+        by smtp.gmail.com with ESMTPSA id p6sm1997996ilg.4.2021.07.14.15.31.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jul 2021 14:42:04 -0700 (PDT)
-Received: (nullmailer pid 3578879 invoked by uid 1000);
-        Wed, 14 Jul 2021 21:42:02 -0000
-Date:   Wed, 14 Jul 2021 15:42:02 -0600
+        Wed, 14 Jul 2021 15:31:02 -0700 (PDT)
+Received: (nullmailer pid 3653436 invoked by uid 1000);
+        Wed, 14 Jul 2021 22:30:59 -0000
+Date:   Wed, 14 Jul 2021 16:30:59 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     devicetree@vger.kernel.org,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        linux-renesas-soc@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>
-Subject: Re: [PATCH] dt-bindings: mfd: bd9571mwv: Convert to json-schema
-Message-ID: <20210714214202.GA3578819@robh.at.kernel.org>
-References: <d11f3ec58dd8213dfc8be59dd81db060b508b08c.1625147091.git.geert+renesas@glider.be>
+To:     =?utf-8?B?6raM7Jik7ZuI?= <ohoono.kwon@samsung.com>
+Cc:     "ohkwon1043@gmail.com" <ohkwon1043@gmail.com>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "frowand.list@gmail.com" <frowand.list@gmail.com>
+Subject: Re: [PATCH] of: base: remove unnecessary for loop
+Message-ID: <20210714223059.GA3653253@robh.at.kernel.org>
+References: <CGME20210701140328epcms1p85149318b6c18fa18b3c7c8e966c14db0@epcms1p8>
+ <20210701140328epcms1p85149318b6c18fa18b3c7c8e966c14db0@epcms1p8>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <d11f3ec58dd8213dfc8be59dd81db060b508b08c.1625147091.git.geert+renesas@glider.be>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210701140328epcms1p85149318b6c18fa18b3c7c8e966c14db0@epcms1p8>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 01 Jul 2021 15:51:21 +0200, Geert Uytterhoeven wrote:
-> Convert the ROHM BD9571MWV/BD9574MWF Power Management Integrated Circuit
-> (PMIC) Device Tree binding documentation to json-schema.
+On Thu, 01 Jul 2021 23:03:28 +0900, 권오훈 wrote:
+> In __of_get_next_child function, loop iteration for getting next node is
+> unnecessary.
 > 
-> Make the "regulators" subnode optional, as not all users describe the
-> regulators.
+> for loop is already checking if next is NULL or not, and
+> of_node_get(next) always returns next itself.
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Therefore checking return value in the if clause always evaluates to
+> true, and thus it always breaks out from for loop in the first iteration.
+> 
+> Remove the unnecessary for loop for readability.
+> 
+> I tested the code as below, and it showed that BUG was never called.
+> 
+> -       for (; next; next = next->sibling)
+> +       for (; next; next = next->sibling) {
+>                 if (of_node_get(next))
+>                         break;
+> +               BUG();
+> +       }
+> 
+> Signed-off-by: Ohhoon Kwon <ohoono.kwon@samsung.com>
 > ---
-> I have listed Marek as the maintainer, as he wrote the original
-> bindings.  Marek: Please scream if this is inappropriate ;-)
-> ---
->  .../devicetree/bindings/mfd/bd9571mwv.txt     |  69 ----------
->  .../bindings/mfd/rohm,bd9571mwv.yaml          | 127 ++++++++++++++++++
->  2 files changed, 127 insertions(+), 69 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mfd/bd9571mwv.txt
->  create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd9571mwv.yaml
+>  drivers/of/base.c | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Applied, thanks!
