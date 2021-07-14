@@ -2,255 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 410173C842A
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 14:00:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 285BD3C8432
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 14:03:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239254AbhGNMC4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 08:02:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55188 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239276AbhGNMCx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 08:02:53 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A65D0C061766;
-        Wed, 14 Jul 2021 05:00:01 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id h9so2988203ljm.5;
-        Wed, 14 Jul 2021 05:00:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=2npMGSVMz93HDxKFt2vGxTMDB6GmAmEEWPg6NT2aXQs=;
-        b=rk8KJK+wAW/0L1Hr5gSfUxfI5yh+B4nNkIHbRX2mUq6p2OqnyLv85lQF64i8yfHldp
-         jSoR+abxra7dhixDjqf9A3c0qvvv8bCf4k7Jspcb9kPfVNDeqCv4gnYYM+mzjAs8Owc3
-         GpZDI7+mabxI6TDghTnyMRXSO4DR5KHnU4G59+y5gm80X5cut+t3neuWGChGSfimJ3wF
-         4lr0F0CHOnicvLpbJZto8VYy1LJJeLYNDqPj68V7vCz8o+kqVj5X+x1+fHhBFJji2IrD
-         10KVO1ZVDHgbkhOC0KwnD7MmzdIvscPGHgde0TpiPtJtMC6+dkMKH+P2ljhkL3p/gt0x
-         e4aA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=2npMGSVMz93HDxKFt2vGxTMDB6GmAmEEWPg6NT2aXQs=;
-        b=s/7CQQFlMV8If9VtPyzC0cpoNPBjeUJ5fcwlvZP4Uf6v4qG7XDh5GPT62aF84RFKPz
-         VtXdUXiyQ+IhUPUWXzGiIZtZCJLi3vCJAI9x5eSy9ymmP5Gm+A/p0Izy8gMiyCVGhq3h
-         0eZTzLkUJK1ABqLTwixT6nGlFYya27l0/FuXDui6N3nVQMf2QePu8kEPEQYUQt6DAgny
-         1lz7keeEZI3NNnYtt3JQqWbqfGcCOPR8Vw62MjjyIBpLbX9mVebMsU9z7XcqYyknlaz+
-         VAlW7I43Hez5y5twOVN5ODH1pfbzU1+RkaLOLKTLD875hsFjiEZ/BXoSMx7T8jJguEX5
-         bBtQ==
-X-Gm-Message-State: AOAM532OHEb5Q9n72bMaB/dCEdKX8tI/pHQFdvf5ZdNAwOO5ixIG6EOh
-        EZhMVQoX65BePxEgDgW7f/ZIoCLadIM=
-X-Google-Smtp-Source: ABdhPJxRXEMPkgjgf2al80idTVWUieRnheauI9rCtgfQ2cRFxozEZt5qO3sP9o9GA1eYyHAJ2PF/2w==
-X-Received: by 2002:a2e:a288:: with SMTP id k8mr8577728lja.107.1626263999864;
-        Wed, 14 Jul 2021 04:59:59 -0700 (PDT)
-Received: from [192.168.2.145] (94-29-37-113.dynamic.spd-mgts.ru. [94.29.37.113])
-        by smtp.googlemail.com with ESMTPSA id x3sm149458lfr.201.2021.07.14.04.59.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Jul 2021 04:59:59 -0700 (PDT)
-Subject: Re: [PATCH v8 2/9] clk: tegra: Fix refcounting of gate clocks
-To:     Jon Hunter <jonathanh@nvidia.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Prashant Gaikwad <pgaikwad@nvidia.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-tegra@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20210516163041.12818-1-digetx@gmail.com>
- <20210516163041.12818-3-digetx@gmail.com>
- <fa13f623-dbd1-9b0c-dfd1-8d58800e04b4@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <e61f1ee5-2c1e-7a1b-094e-810a587ce3cd@gmail.com>
-Date:   Wed, 14 Jul 2021 14:59:58 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+        id S231265AbhGNMGB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 08:06:01 -0400
+Received: from foss.arm.com ([217.140.110.172]:34250 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230492AbhGNMGA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Jul 2021 08:06:00 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 21097D6E;
+        Wed, 14 Jul 2021 05:03:09 -0700 (PDT)
+Received: from [10.57.36.240] (unknown [10.57.36.240])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E03B53F694;
+        Wed, 14 Jul 2021 05:03:06 -0700 (PDT)
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: rockchip: Add compatible for
+ rk3568 HDMI
+To:     Michael Riesch <michael.riesch@wolfvision.net>,
+        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        hjc@rock-chips.com, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, algea.cao@rock-chips.com,
+        andy.yan@rock-chips.com
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+References: <20210707120323.401785-1-benjamin.gaignard@collabora.com>
+ <20210707120323.401785-2-benjamin.gaignard@collabora.com>
+ <1bd64284-0a20-12e3-e2e7-19cdfdbf1a25@wolfvision.net>
+ <3865833.Ac65pObt5d@diego>
+ <33532a38-52e6-179a-9ed9-76bbb9618168@wolfvision.net>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <f7722b3d-4432-ce14-e4c8-4759496ff65f@arm.com>
+Date:   Wed, 14 Jul 2021 13:02:59 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <fa13f623-dbd1-9b0c-dfd1-8d58800e04b4@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+In-Reply-To: <33532a38-52e6-179a-9ed9-76bbb9618168@wolfvision.net>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-14.07.2021 14:48, Jon Hunter пишет:
+On 2021-07-14 10:19, Michael Riesch wrote:
+> Hello Heiko,
 > 
-> On 16/05/2021 17:30, Dmitry Osipenko wrote:
->> The refcounting of the gate clocks has a bug causing the enable_refcnt
->> to underflow when unused clocks are disabled. This happens because clk
->> provider erroneously bumps the refcount if clock is enabled at a boot
->> time, which it shouldn't be doing, and it does this only for the gate
->> clocks, while peripheral clocks are using the same gate ops and the
->> peripheral clocks are missing the initial bump. Hence the refcount of
->> the peripheral clocks is 0 when unused clocks are disabled and then the
->> counter is decremented further by the gate ops, causing the integer
->> underflow.
+> On 7/13/21 10:49 AM, Heiko Stübner wrote:
+>> Hi Michael,
 >>
->> Fix this problem by removing the erroneous bump and by implementing the
->> disable_unused() callback, which disables the unused gates properly.
+>> Am Dienstag, 13. Juli 2021, 10:44:00 CEST schrieb Michael Riesch:
+>>> The HDMI TX block in the RK3568 requires two power supplies, which have
+>>> to be enabled in some cases (at least on the RK3568 EVB1 the voltages
+>>> VDDA0V9_IMAGE and VCCA1V8_IMAGE are disabled by default). It would be
+>>> great if this was considered by the driver and the device tree binding.
+>>> I am not sure, though, whether this is a RK3568 specific or
+>>> rockchip_dw_hdmi specific thing. Maybe it can even enter the Synopsis DW
+>>> HDMI driver.
 >>
->> The visible effect of the bug is such that the unused clocks are never
->> gated if a loaded kernel module grabs the unused clocks and starts to use
->> them. In practice this shouldn't cause any real problems for the drivers
->> and boards supported by the kernel today.
+>> I do remember that this discussion happened many years back already.
+>> And yes the supplies are needed for all but back then there was opposition
+>> as these are supposedly phy-related supplies, not for the dw-hdmi itself.
+>> [There are variants with an external phy, like on the rk3328]
 >>
->> Acked-by: Thierry Reding <treding@nvidia.com>
->> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
->> ---
->>  drivers/clk/tegra/clk-periph-gate.c | 72 +++++++++++++++++++----------
->>  drivers/clk/tegra/clk-periph.c      | 11 +++++
->>  2 files changed, 58 insertions(+), 25 deletions(-)
+>> See discussion on [0]
 >>
->> diff --git a/drivers/clk/tegra/clk-periph-gate.c b/drivers/clk/tegra/clk-periph-gate.c
->> index 4b31beefc9fc..dc3f92678407 100644
->> --- a/drivers/clk/tegra/clk-periph-gate.c
->> +++ b/drivers/clk/tegra/clk-periph-gate.c
->> @@ -48,18 +48,9 @@ static int clk_periph_is_enabled(struct clk_hw *hw)
->>  	return state;
->>  }
->>  
->> -static int clk_periph_enable(struct clk_hw *hw)
->> +static void clk_periph_enable_locked(struct clk_hw *hw)
->>  {
->>  	struct tegra_clk_periph_gate *gate = to_clk_periph_gate(hw);
->> -	unsigned long flags = 0;
->> -
->> -	spin_lock_irqsave(&periph_ref_lock, flags);
->> -
->> -	gate->enable_refcnt[gate->clk_num]++;
->> -	if (gate->enable_refcnt[gate->clk_num] > 1) {
->> -		spin_unlock_irqrestore(&periph_ref_lock, flags);
->> -		return 0;
->> -	}
->>  
->>  	write_enb_set(periph_clk_to_bit(gate), gate);
->>  	udelay(2);
->> @@ -78,6 +69,32 @@ static int clk_periph_enable(struct clk_hw *hw)
->>  		udelay(1);
->>  		writel_relaxed(0, gate->clk_base + LVL2_CLK_GATE_OVRE);
->>  	}
->> +}
->> +
->> +static void clk_periph_disable_locked(struct clk_hw *hw)
->> +{
->> +	struct tegra_clk_periph_gate *gate = to_clk_periph_gate(hw);
->> +
->> +	/*
->> +	 * If peripheral is in the APB bus then read the APB bus to
->> +	 * flush the write operation in apb bus. This will avoid the
->> +	 * peripheral access after disabling clock
->> +	 */
->> +	if (gate->flags & TEGRA_PERIPH_ON_APB)
->> +		tegra_read_chipid();
->> +
->> +	write_enb_clr(periph_clk_to_bit(gate), gate);
->> +}
->> +
->> +static int clk_periph_enable(struct clk_hw *hw)
->> +{
->> +	struct tegra_clk_periph_gate *gate = to_clk_periph_gate(hw);
->> +	unsigned long flags = 0;
->> +
->> +	spin_lock_irqsave(&periph_ref_lock, flags);
->> +
->> +	if (!gate->enable_refcnt[gate->clk_num]++)
->> +		clk_periph_enable_locked(hw);
->>  
->>  	spin_unlock_irqrestore(&periph_ref_lock, flags);
->>  
->> @@ -91,21 +108,28 @@ static void clk_periph_disable(struct clk_hw *hw)
->>  
->>  	spin_lock_irqsave(&periph_ref_lock, flags);
->>  
->> -	gate->enable_refcnt[gate->clk_num]--;
->> -	if (gate->enable_refcnt[gate->clk_num] > 0) {
->> -		spin_unlock_irqrestore(&periph_ref_lock, flags);
->> -		return;
->> -	}
->> +	WARN_ON(!gate->enable_refcnt[gate->clk_num]);
->> +
->> +	if (--gate->enable_refcnt[gate->clk_num] == 0)
->> +		clk_periph_disable_locked(hw);
->> +
->> +	spin_unlock_irqrestore(&periph_ref_lock, flags);
->> +}
+>> [0] https://dri-devel.freedesktop.narkive.com/pen2zWo1/patch-v3-1-2-drm-bridge-dw-hdmi-support-optional-supply-regulators
 > 
+> Thanks for the pointer. My summary of this discussion would be the
+> following:
 > 
-> A consequence of this change is now I see the following on Tegra210
-> Jetson Nano ...
+>   - There was no consensus on how to handle the issue. The voltages still
+> have to be enabled from the outside of the driver.
+>   - Open question: rockchip-specific or general solution? (one may detect
+> a tendency towards a rockchip-specific solution)
+>   - Open question: separation of the phy from the dw_hdmi IP core?
 > 
-> [    8.138810] ------------[ cut here ]------------
-> [    8.150529] WARNING: CPU: 3 PID: 1 at /dvs/git/dirty/git-master_l4t-upstream/kernel/drivers/clk/tegra/clk-periph-gate.c:103 clk_periph_disable+0x68/0x90
-> [    8.164279] Modules linked in:
-> [    8.167373] CPU: 3 PID: 1 Comm: swapper/0 Not tainted 5.14.0-rc1-gb34c0e9111d0 #1
-> [    8.174905] Hardware name: NVIDIA Jetson Nano Developer Kit (DT)
-> [    8.180934] pstate: 000000c5 (nzcv daIF -PAN -UAO -TCO BTYPE=--)
-> [    8.186983] pc : clk_periph_disable+0x68/0x90
-> [    8.191388] lr : clk_periph_disable+0x20/0x90
-> [    8.195788] sp : ffff8000120abca0
-> [    8.199123] x29: ffff8000120abca0 x28: 0000000000000000 x27: ffff800011791070
-> [    8.206331] x26: ffff8000116e0458 x25: ffff800011fe3000 x24: ffff800011fe3000
-> [    8.213527] x23: ffff000080138000 x22: 0000000000000000 x21: 00000000000000c0
-> [    8.220725] x20: ffff0000800391b8 x19: ffff800012047000 x18: 0000000000000068
-> [    8.227920] x17: 0000000000000007 x16: 0000000000000001 x15: ffff800011222000
-> [    8.235116] x14: ffff8000120ab940 x13: ffff800011f629b8 x12: ffff000000000001
-> [    8.242313] x11: 0000000000000000 x10: 0000000000000000 x9 : 0000000000000000
-> [    8.249507] x8 : 0000000000000000 x7 : 0000000000000000 x6 : 0000000000000004
-> [    8.256700] x5 : ffff800011040d10 x4 : 0000000000000000 x3 : 000000000000000f
-> [    8.263892] x2 : ffff00008000c400 x1 : 0000000000000000 x0 : 0000000000000000
-> [    8.271088] Call trace:
-> [    8.273557]  clk_periph_disable+0x68/0x90
-> [    8.277615]  clk_sdmmc_mux_disable+0x1c/0x28
-> [    8.281924]  clk_disable_unused_subtree+0xac/0xe4
-> [    8.286685]  clk_disable_unused_subtree+0x3c/0xe4
-> [    8.291433]  clk_disable_unused_subtree+0x3c/0xe4
-> [    8.296182]  clk_disable_unused_subtree+0x3c/0xe4
-> [    8.300931]  clk_disable_unused_subtree+0x3c/0xe4
-> [    8.305678]  clk_disable_unused+0x5c/0xe8
-> [    8.309730]  do_one_initcall+0x58/0x1b8
-> [    8.313607]  kernel_init_freeable+0x22c/0x29c
-> [    8.318002]  kernel_init+0x20/0x120
-> [    8.321536]  ret_from_fork+0x10/0x18
-> [    8.325150] ---[ end trace b5b8bc7cd88ff097 ]---
+> First of all, IMHO the driver should enable those voltages, otherwise we
+> will have the same discussion again in 5-6 years :-)
 > 
-> 
-> Any thoughts on how to resolve this?
-> 
-> I now see this has been picked up for stable, but I don't see where
-> this was tagged for stable and so I am not sure how that happened?
+> Then, the rockchip,dw-hdmi binding features a property "phys",
+> presumably to handle external phys (e.g., for the RK3328). This fact and
+> the referenced discussion suggest a rockchip-specific solution.
 
-Seems you'll need to implement the disable_unused() callback for the
-clk_sdmmc_mux to fix it. It's good that this problem has been caught.
+FWIW I've long thought that cleaning up the phy situation in dw-hdmi 
+would be a good idea. It's always seemed a bit sketchy that on RK3328 we 
+still validate modes against the tables for the Synopsys phy which isn't 
+relevant, and if that does allow a clock rate through that the actual 
+phy rejects then things just go horribly wrong and the display breaks.
 
-diff --git a/drivers/clk/tegra/clk-sdmmc-mux.c
-b/drivers/clk/tegra/clk-sdmmc-mux.c
-index 316912d3b1a4..4f2c3309eea4 100644
---- a/drivers/clk/tegra/clk-sdmmc-mux.c
-+++ b/drivers/clk/tegra/clk-sdmmc-mux.c
-@@ -194,6 +194,15 @@ static void clk_sdmmc_mux_disable(struct clk_hw *hw)
- 	gate_ops->disable(gate_hw);
- }
+> In the Rockchip documentation (at least for RK3328, RK3399 and RK3568),
+> there are two extra voltages denoted as "HDMI PHY analog power". It
+> would be tempting to add the internal phy to the device tree and glue it
+> to the dw-hdmi using the "phys" property. However, as pointed out in the
+> referenced discussion, the configuration registers of the phy are
+> somewhat interleaved with the dw-hdmi registers and a clear separation
+> may be tricky.
 
-+static void clk_sdmmc_mux_disable_unused(struct clk_hw *hw)
-+{
-+	struct tegra_sdmmc_mux *sdmmc_mux = to_clk_sdmmc_mux(hw);
-+	const struct clk_ops *gate_ops = sdmmc_mux->gate_ops;
-+	struct clk_hw *gate_hw = &sdmmc_mux->gate.hw;
-+
-+	gate_ops->disable_unused(gate_hw);
-+}
-+
- static void clk_sdmmc_mux_restore_context(struct clk_hw *hw)
- {
- 	struct clk_hw *parent = clk_hw_get_parent(hw);
-@@ -218,6 +227,7 @@ static const struct clk_ops tegra_clk_sdmmc_mux_ops = {
- 	.is_enabled = clk_sdmmc_mux_is_enabled,
- 	.enable = clk_sdmmc_mux_enable,
- 	.disable = clk_sdmmc_mux_disable,
-+	.disable_unused = clk_sdmmc_mux_disable_unused,
- 	.restore_context = clk_sdmmc_mux_restore_context,
- };
+Conceptually I don't think there's any issue with the HDMI node being 
+its own phy provider where appropriate. At the DT level it should simply 
+be a case of having both sets of properties, e.g.:
 
+	&hdmi {
+		#phy-cells = <0>;
+		phys = <&hdmi>;
+	};
+
+And at the driver level AFAICS it's pretty much just a case of dw-hdmi 
+additionally registering itself as a phy provider if the internal phy is 
+present - the only difference then should be that it can end up calling 
+back into itself via the common phy API rather than directly via 
+internal special-cases.
+
+Robin.
+
+> As a more pragmatic alternative, we could add optional supplies to the
+> rockchip,dw-hdmi binding and evaluate the "phys" property. If the latter
+> is not specified, the internal phy is used and the supplies must be
+> enabled. Would such an approach be acceptable?
+> 
+> Best regards,
+> Michael
+> 
+>>> On 7/7/21 2:03 PM, Benjamin Gaignard wrote:
+>>>> Define a new compatible for rk3568 HDMI.
+>>>> This version of HDMI hardware block needs two new clocks hclk_vio and hclk
+>>>> to provide phy reference clocks.
+>>>>
+>>>> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+>>>> ---
+>>>> version 2:
+>>>> - Add the clocks needed for the phy.
+>>>>
+>>>>   .../bindings/display/rockchip/rockchip,dw-hdmi.yaml         | 6 +++++-
+>>>>   1 file changed, 5 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
+>>>> index 75cd9c686e985..cb8643b3a8b84 100644
+>>>> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
+>>>> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
+>>>> @@ -23,6 +23,7 @@ properties:
+>>>>         - rockchip,rk3288-dw-hdmi
+>>>>         - rockchip,rk3328-dw-hdmi
+>>>>         - rockchip,rk3399-dw-hdmi
+>>>> +      - rockchip,rk3568-dw-hdmi
+>>>>   
+>>>>     reg-io-width:
+>>>>       const: 4
+>>>> @@ -51,8 +52,11 @@ properties:
+>>>>             - vpll
+>>>>         - enum:
+>>>>             - grf
+>>>> +          - hclk_vio
+>>>> +          - vpll
+>>>> +      - enum:
+>>>> +          - hclk
+>>>>             - vpll
+>>>> -      - const: vpll
+>>>
+>>> The description and documentation of the clocks are somewhat misleading
+>>> IMHO. This is not caused by your patches, of course. But maybe this is a
+>>> chance to clean them up a bit.
+>>>
+>>> It seems that the CEC clock is an optional clock of the dw-hdmi driver.
+>>> Shouldn't it be documented in the synopsys,dw-hdmi.yaml?
+>>>
+>>> Also, it would be nice if the clocks hclk_vio and hclk featured a
+>>> description in the binding.
+>>>
+>>> BTW, I am not too familiar with the syntax here, but shouldn't items in
+>>> clocks and items in clock-names be aligned (currently, there is a plain
+>>> list vs. an enum structure)?
+>>>
+>>> Best regards,
+>>> Michael
+>>>
+>>>>   
+>>>>     ddc-i2c-bus:
+>>>>       $ref: /schemas/types.yaml#/definitions/phandle
+>>>>
+>>>
+>>
+>>
+>>
+>>
+> 
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> 
