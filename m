@@ -2,96 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B10B13C9436
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 01:10:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5268E3C943F
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 01:14:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237396AbhGNXM4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 19:12:56 -0400
-Received: from mail-io1-f43.google.com ([209.85.166.43]:41771 "EHLO
-        mail-io1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229928AbhGNXM4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 19:12:56 -0400
-Received: by mail-io1-f43.google.com with SMTP id z9so4145489iob.8;
-        Wed, 14 Jul 2021 16:10:03 -0700 (PDT)
+        id S231374AbhGNXQ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 19:16:56 -0400
+Received: from mail-io1-f53.google.com ([209.85.166.53]:38700 "EHLO
+        mail-io1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229928AbhGNXQz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 19:16:55 -0400
+Received: by mail-io1-f53.google.com with SMTP id k11so4219029ioa.5;
+        Wed, 14 Jul 2021 16:14:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=YLUvGWBUmjKSetxSon9JscWVz0P9qvwgt8I5+BcK8F0=;
-        b=sUYyjKG7LNGsMOJri5o1pFOak7pByiK8+rEKFE46hVgTu5MPLkL72pzdyaF6zbWlfC
-         A2bQsq6CnscZV1GL94Qc71dkv8Y9cZFM8RbhrATmaEP9ex88n71wwBrV17KsjtmxS7xt
-         R6MxwTjbm/IdCpuj/ipo2ohE12BuprdBLMr6BhzHoUa9CTLcKsIMSNf5xoN/0U4vE5SF
-         YYjZHZMJU8qS+Od81VboGd9HFANUIQ9BQ0zi6Ow/ZWl5l/M4DPs9NdlH1F0uOHCTHMW9
-         WYSvx1FQojOAtFPNdFuoc7h5cK28FqfTzpFsrraH4mdslu0G8PW+V17x2G6YZzOH93XK
-         +fXg==
-X-Gm-Message-State: AOAM530OhwWiVtn0IIzvZXLfqVqZIuzWz1aw5dVnvjPbo6c7ICdgVUEW
-        738H961slHD+RQC6MABsGg==
-X-Google-Smtp-Source: ABdhPJwItOx56dX2xisR7HWLFDXoKMNwFdNj1TdV7Khq8AMg+ss+hULiWEara0juvrGDf56/iWljWA==
-X-Received: by 2002:a05:6638:289:: with SMTP id c9mr571973jaq.14.1626304202707;
-        Wed, 14 Jul 2021 16:10:02 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=yctG1YdIV6Px1SU8AGyelV3I04Eay9VEBZw3/gPji0I=;
+        b=J7WtvQXYABOKqMy9t0fVEhBaknmr0kCM3XDtpratd1Eds9/9J1vZFDqHEBIH0yd8Rw
+         2W+kk0UlIY/VZdLiW2uPqICi8iA5CfK0xvSBPUKWOwyR42IevIOU6dz9FPtKltkxVcYE
+         JcTmk1KyUpqWSDDkLeTp3RAAHkDb5sCQef49D5LQ+/f7l9R9BN5INL0v26ATcoTqxbtZ
+         WNShKZw6K3WXjrRZkL6KHVD+5gLK7MhQxNeeV9gcwfm1IcX6GPGrj6DgcyrESdbzeg56
+         IL7qHxoDX19ih4sh/wSBmFkwkP4dAKBKHDlcWb+z2GDFP1LuBZIM2o1gpYoPqcwoQmb+
+         gMTQ==
+X-Gm-Message-State: AOAM532xxlWPlr+vdL1CLn/BYUmcUsiZJxmlQrUcQSSzc8UmJYhd8Mqz
+        tZ62P80m9t7KAzfg+Lv2Aw==
+X-Google-Smtp-Source: ABdhPJwGGiAhes2rUVASRwJcoN46W1Ft9CMHVmWXDoXe7onpUc9CAAeihSmKlq4JbiFGP1n65a40Fg==
+X-Received: by 2002:a5e:9917:: with SMTP id t23mr426233ioj.158.1626304442393;
+        Wed, 14 Jul 2021 16:14:02 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id u13sm1964286iot.29.2021.07.14.16.10.01
+        by smtp.gmail.com with ESMTPSA id q1sm2119376ioi.42.2021.07.14.16.14.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jul 2021 16:10:02 -0700 (PDT)
-Received: (nullmailer pid 3713794 invoked by uid 1000);
-        Wed, 14 Jul 2021 23:10:00 -0000
-Date:   Wed, 14 Jul 2021 17:10:00 -0600
+        Wed, 14 Jul 2021 16:14:01 -0700 (PDT)
+Received: (nullmailer pid 3720101 invoked by uid 1000);
+        Wed, 14 Jul 2021 23:13:59 -0000
+Date:   Wed, 14 Jul 2021 17:13:59 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <treding@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        David Heidelberg <david@ixit.cz>, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v3 02/12] dt-bindings: phy: tegra20-usb-phy: Document
- properties needed for OTG mode
-Message-ID: <20210714231000.GB3697673@robh.at.kernel.org>
-References: <20210704225433.32029-1-digetx@gmail.com>
- <20210704225433.32029-3-digetx@gmail.com>
- <20210712154139.GB1980362@robh.at.kernel.org>
- <8fe56e89-9e1e-f5e2-5a47-242b5b3d085a@gmail.com>
+To:     Tzung-Bi Shih <tzungbi@google.com>
+Cc:     Yunfei Dong <Yunfei.Dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v1, 04/14] dt-bindings: media: mtk-vcodec: Separate video
+ encoder and decoder dt-bindings
+Message-ID: <20210714231359.GA3715372@robh.at.kernel.org>
+References: <20210707062157.21176-1-yunfei.dong@mediatek.com>
+ <20210707062157.21176-5-yunfei.dong@mediatek.com>
+ <CA+Px+wWQREny2KSjDfgdnMvk8GKKqr+QvRdSR8YXc1i73wbJSQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8fe56e89-9e1e-f5e2-5a47-242b5b3d085a@gmail.com>
+In-Reply-To: <CA+Px+wWQREny2KSjDfgdnMvk8GKKqr+QvRdSR8YXc1i73wbJSQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 13, 2021 at 02:33:11AM +0300, Dmitry Osipenko wrote:
-> 12.07.2021 18:41, Rob Herring пишет:
-> >> +  nvidia,pmc:
-> >> +    $ref: /schemas/types.yaml#/definitions/phandle
-> >> +    description:
-> >> +      Phandle to Power Management controller.
-> >> +
-> > Add a cell to this for the PHY reg offset and then get rid of the index:
-> > 
-> >> +  nvidia,phy-instance:
-> >> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >> +    minimum: 0
-> >> +    maximum: 2
-> >> +    description: Unique hardware ID.
+On Thu, Jul 08, 2021 at 06:04:54PM +0800, Tzung-Bi Shih wrote:
+> On Wed, Jul 7, 2021 at 2:22 PM Yunfei Dong <yunfei.dong@mediatek.com> wrote:
+> >  .../media/mediatek-vcodec-decoder.txt         | 169 ++++++++++++++++++
+> >  .../media/mediatek-vcodec-encoder.txt         |  73 ++++++++
+> >  2 files changed, 242 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/mediatek-vcodec-decoder.txt
+> >  create mode 100644 Documentation/devicetree/bindings/media/mediatek-vcodec-encoder.txt
+> The patch is weird.  Its title says "separate" but the changes are all
+> creating new content.
 > 
-> The instance ID belongs to the USB h/w and not to PMC. It may look like
-> I added the ID just to get offsets within PMC, but it's not like that.
-> The Tegra documentation explicitly assigns unique IDs to the USB
-> controllers and PHYs. Hence this ID should be the property of the PHY
-> hardware, IMO.
+> Would expect the patch to remove content from some files (e.g.
+> Documentation/devicetree/bindings/media/mediatek-vcodec.txt) and
+> separate into 2 files.
 
-It looks like the use is calculating register offsets in a PMC register. 
-That's quite common and including that with the phandle is the preferred 
-way to describe it.
+Except h/w doesn't change. Using the component framework is not a reason 
+to change bindings.
 
-Lots of docs have UART1, UART2, UART3, etc. module numbering. We don't 
-copy that into DT.
+Also, note that any major changes or additions should be in schema 
+format now.
 
 Rob
-
