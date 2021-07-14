@@ -2,234 +2,484 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF3DB3C8060
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 10:38:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 411703C806B
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 10:40:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238496AbhGNIl2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 04:41:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36712 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238482AbhGNIl2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 04:41:28 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B39EC06175F;
-        Wed, 14 Jul 2021 01:38:37 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9EA68CC;
-        Wed, 14 Jul 2021 10:38:35 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1626251915;
-        bh=YbyFIqNHO3+cig/EdKRQenB4YdAV8pA1dPKaR9Ajrb0=;
+        id S238496AbhGNIne (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 04:43:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41368 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238432AbhGNInd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Jul 2021 04:43:33 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 768C66052B;
+        Wed, 14 Jul 2021 08:40:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1626252042;
+        bh=bfNXYXimZQNo2Rq73E7CBOo5JBBeQLDgGN+znUkyMF8=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pZ0PKnDxKLI8zEjX4dbxQdGSqpGC0WsyAIK8YFApt9/5WfEUne+DwoFdwe719/AfP
-         q88kPyOc7s2GDRkoRX0SP6fZstxlduNZ7cq5hBJ6OQf97998wtga0XVb+HHu7oxcGp
-         +ri5+FqXm+R52UKo3X+sPsPQYvQ0Z+iF5BLNOVbc=
-Date:   Wed, 14 Jul 2021 11:38:34 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>,
-        Brian Norris <computersforpeace@gmail.com>,
-        Kamal Dasu <kdasu.kdev@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Sebastian Siewior <bigeasy@linutronix.de>,
-        linux-clk@vger.kernel.org, iommu@lists.linux-foundation.org,
-        linux-mtd@lists.infradead.org, linux-rtc@vger.kernel.org,
-        linux-usb@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: More dropping redundant minItems/maxItems
-Message-ID: <YO6iinTsYE6EC+mn@pendragon.ideasonboard.com>
-References: <20210713193453.690290-1-robh@kernel.org>
+        b=m5CyxS1K0spBnInSS17k/WlvHPQgc/PWFxZyWAfK6AjBOh5kYloZ0XUMJ+eshijj3
+         ZbCVR6nc3L3z0Spa2WlQ2Ft1N9xbdY/l0NA6Uz7a3yrr9PN+9cCqJQe9JPutUsoTCX
+         2Y5qeKfXgDudJ9afKTXM5gCidSVg7pugKsvnxjplJ9V9i9jO/IZEo7J5rBiXuzVbMV
+         FTuPO14pXtmowcEgfJzwVUBeCzBtdjw2FVnvIFipuLjGZsdcf0P2DoJR4cJdx+3lGI
+         VTMOMTJ8IXQI4xKaRKhvHrOSe5KO3DXgYXdMJeDOc9q+yeuY27qMqdKiiz0CWv0RWt
+         x85u7rDOUk7kg==
+Date:   Wed, 14 Jul 2021 16:40:36 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Jacky Bai <ping.bai@nxp.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v3 09/11] dt-bindings: clock: Add imx8ulp clock support
+Message-ID: <20210714084035.GN4419@dragon>
+References: <20210625011355.3468586-1-ping.bai@nxp.com>
+ <20210625011355.3468586-10-ping.bai@nxp.com>
+ <20210714082059.GJ4419@dragon>
+ <DBBPR04MB7930E079DF8E37970670183C87139@DBBPR04MB7930.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210713193453.690290-1-robh@kernel.org>
+In-Reply-To: <DBBPR04MB7930E079DF8E37970670183C87139@DBBPR04MB7930.eurprd04.prod.outlook.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-Thank you for the patch.
-
-On Tue, Jul 13, 2021 at 01:34:53PM -0600, Rob Herring wrote:
-> Another round of removing redundant minItems/maxItems from new schema in
-> the recent merge window.
+On Wed, Jul 14, 2021 at 08:31:25AM +0000, Jacky Bai wrote:
+> > Subject: Re: [PATCH v3 09/11] dt-bindings: clock: Add imx8ulp clock support
+> > 
+> > On Fri, Jun 25, 2021 at 09:13:53AM +0800, Jacky Bai wrote:
+> > > Add the clock dt-binding file for i.MX8ULP.
+> > >
+> > > Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+> > > ---
+> > >  - v3 changes:
+> > >    use 'GPL-2.0-only OR BSD-2-Clause' license for imx8ulp-clock.yaml
+> > >
+> > >  - v2 changes:
+> > >    update the license
+> > > ---
+> > >  .../bindings/clock/imx8ulp-clock.yaml         |  72 +++++
+> > >  include/dt-bindings/clock/imx8ulp-clock.h     | 261
+> > ++++++++++++++++++
+> > >  2 files changed, 333 insertions(+)
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/clock/imx8ulp-clock.yaml
+> > >  create mode 100644 include/dt-bindings/clock/imx8ulp-clock.h
+> > 
+> > What's the status of imx8ulp clock driver?  The clock driver needs to include
+> > this imx8ulp-clock.h header, no?
 > 
-> If a property has an 'items' list, then a 'minItems' or 'maxItems' with the
-> same size as the list is redundant and can be dropped. Note that is DT
-> schema specific behavior and not standard json-schema behavior. The tooling
-> will fixup the final schema adding any unspecified minItems/maxItems.
+> It is on my local tree as a separate patchset. Yes, the clock driver has dependency on this
+> patchset due to the header file, so I plan to send it out when this patchset is accepted.
+
+I think you should land clock driver and bindings first, and then this
+patchset.
+
+Shawn
+
 > 
-> This condition is partially checked with the meta-schema already, but
-> only if both 'minItems' and 'maxItems' are equal to the 'items' length.
-> An improved meta-schema is pending.
 > 
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: Joerg Roedel <joro@8bytes.org>
-> Cc: Will Deacon <will@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> Cc: Miquel Raynal <miquel.raynal@bootlin.com>
-> Cc: Richard Weinberger <richard@nod.at>
-> Cc: Vignesh Raghavendra <vigneshr@ti.com>
-> Cc: Alessandro Zummo <a.zummo@towertech.it>
-> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>
-> Cc: Brian Norris <computersforpeace@gmail.com>
-> Cc: Kamal Dasu <kdasu.kdev@gmail.com>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Sebastian Siewior <bigeasy@linutronix.de>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: linux-clk@vger.kernel.org
-> Cc: iommu@lists.linux-foundation.org
-> Cc: linux-mtd@lists.infradead.org
-> Cc: linux-rtc@vger.kernel.org
-> Cc: linux-usb@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> ---
->  .../devicetree/bindings/clock/brcm,iproc-clocks.yaml      | 1 -
->  .../devicetree/bindings/iommu/rockchip,iommu.yaml         | 2 --
->  .../bindings/memory-controllers/arm,pl353-smc.yaml        | 1 -
->  Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml  | 8 --------
->  .../devicetree/bindings/rtc/faraday,ftrtc010.yaml         | 1 -
->  Documentation/devicetree/bindings/usb/nxp,isp1760.yaml    | 2 --
->  6 files changed, 15 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/brcm,iproc-clocks.yaml b/Documentation/devicetree/bindings/clock/brcm,iproc-clocks.yaml
-> index 8dc7b404ee12..1174c9aa9934 100644
-> --- a/Documentation/devicetree/bindings/clock/brcm,iproc-clocks.yaml
-> +++ b/Documentation/devicetree/bindings/clock/brcm,iproc-clocks.yaml
-> @@ -50,7 +50,6 @@ properties:
->  
->    reg:
->      minItems: 1
-> -    maxItems: 3
->      items:
->        - description: base register
->        - description: power register
-> diff --git a/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml b/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
-> index d2e28a9e3545..ba9124f721f1 100644
-> --- a/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/rockchip,iommu.yaml
-> @@ -28,14 +28,12 @@ properties:
->        - description: configuration registers for MMU instance 0
->        - description: configuration registers for MMU instance 1
->      minItems: 1
-> -    maxItems: 2
->  
->    interrupts:
->      items:
->        - description: interruption for MMU instance 0
->        - description: interruption for MMU instance 1
->      minItems: 1
-> -    maxItems: 2
->  
->    clocks:
->      items:
-> diff --git a/Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml b/Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml
-> index 7a63c85ef8c5..01c9acf9275d 100644
-> --- a/Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml
-> +++ b/Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml
-> @@ -57,7 +57,6 @@ properties:
->  
->    ranges:
->      minItems: 1
-> -    maxItems: 3
->      description: |
->        Memory bus areas for interacting with the devices. Reflects
->        the memory layout with four integer values following:
-> diff --git a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
-> index e5f1a33332a5..dd5a64969e37 100644
-> --- a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
-> @@ -84,7 +84,6 @@ properties:
->  
->    interrupts:
->      minItems: 1
-> -    maxItems: 3
->      items:
->        - description: NAND CTLRDY interrupt
->        - description: FLASH_DMA_DONE if flash DMA is available
-> @@ -92,7 +91,6 @@ properties:
->  
->    interrupt-names:
->      minItems: 1
-> -    maxItems: 3
->      items:
->        - const: nand_ctlrdy
->        - const: flash_dma_done
-> @@ -148,8 +146,6 @@ allOf:
->      then:
->        properties:
->          reg-names:
-> -          minItems: 2
-> -          maxItems: 2
->            items:
->              - const: nand
->              - const: nand-int-base
-> @@ -161,8 +157,6 @@ allOf:
->      then:
->        properties:
->          reg-names:
-> -          minItems: 3
-> -          maxItems: 3
->            items:
->              - const: nand
->              - const: nand-int-base
-> @@ -175,8 +169,6 @@ allOf:
->      then:
->        properties:
->          reg-names:
-> -          minItems: 3
-> -          maxItems: 3
->            items:
->              - const: nand
->              - const: iproc-idm
-> diff --git a/Documentation/devicetree/bindings/rtc/faraday,ftrtc010.yaml b/Documentation/devicetree/bindings/rtc/faraday,ftrtc010.yaml
-> index 657c13b62b67..056d42daae06 100644
-> --- a/Documentation/devicetree/bindings/rtc/faraday,ftrtc010.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/faraday,ftrtc010.yaml
-> @@ -30,7 +30,6 @@ properties:
->      maxItems: 1
->  
->    clocks:
-> -    minItems: 2
->      items:
->        - description: PCLK clocks
->        - description: EXTCLK clocks. Faraday calls it CLK1HZ and says the clock
-> diff --git a/Documentation/devicetree/bindings/usb/nxp,isp1760.yaml b/Documentation/devicetree/bindings/usb/nxp,isp1760.yaml
-> index a88f99adfe8e..f238848ad094 100644
-> --- a/Documentation/devicetree/bindings/usb/nxp,isp1760.yaml
-> +++ b/Documentation/devicetree/bindings/usb/nxp,isp1760.yaml
-> @@ -25,14 +25,12 @@ properties:
->  
->    interrupts:
->      minItems: 1
-> -    maxItems: 2
->      items:
->        - description: Host controller interrupt
->        - description: Device controller interrupt in isp1761
->  
->    interrupt-names:
->      minItems: 1
-> -    maxItems: 2
->      items:
->        - const: host
->        - const: peripheral
-
--- 
-Regards,
-
-Laurent Pinchart
+> BR
+> Jacky Bai
+> > 
+> > Shawn
+> > 
+> > >
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/clock/imx8ulp-clock.yaml
+> > > b/Documentation/devicetree/bindings/clock/imx8ulp-clock.yaml
+> > > new file mode 100644
+> > > index 000000000000..d840ccff413e
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/clock/imx8ulp-clock.yaml
+> > > @@ -0,0 +1,72 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
+> > > +---
+> > > +$id:
+> > > +https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevi
+> > >
+> > +cetree.org%2Fschemas%2Fclock%2Fimx8ulp-clock.yaml%23&amp;data=04
+> > %7C01
+> > >
+> > +%7Cping.bai%40nxp.com%7C06a6f8805ef6412603f408d946a05526%7C686
+> > ea1d3bc
+> > >
+> > +2b4c6fa92cd99c5c301635%7C0%7C0%7C637618476709944038%7CUnkno
+> > wn%7CTWFpb
+> > >
+> > +GZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVC
+> > I6Mn
+> > >
+> > +0%3D%7C1000&amp;sdata=eHQ5T73U6dJdEgbDjE5LwSW%2FOksPE0TJ6un
+> > u7VQFzRA%3
+> > > +D&amp;reserved=0
+> > > +$schema:
+> > > +https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevi
+> > >
+> > +cetree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=04%7C01%7Cpi
+> > ng.bai%
+> > >
+> > +40nxp.com%7C06a6f8805ef6412603f408d946a05526%7C686ea1d3bc2b4c6
+> > fa92cd9
+> > >
+> > +9c5c301635%7C0%7C0%7C637618476709954002%7CUnknown%7CTWFpb
+> > GZsb3d8eyJWI
+> > >
+> > +joiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7
+> > C1000&
+> > >
+> > +amp;sdata=GL%2FbUEAkgmxD5rmQywcK3OjMb0w8u4xJwW7x1uN2%2BYI
+> > %3D&amp;rese
+> > > +rved=0
+> > > +
+> > > +title: NXP i.MX8ULP Clock Control Module Binding
+> > > +
+> > > +maintainers:
+> > > +  - Jacky Bai <ping.bai@nxp.com>
+> > > +
+> > > +description: |
+> > > +  On i.MX8ULP, The clock sources generation, distribution and
+> > > +management is
+> > > +  under the control of several CGCs & PCCs modules. The CGC modules
+> > > +generate
+> > > +  and distribute clocks on the device. PCC modules control clock
+> > > +selection,
+> > > +  optional division and clock gating mode for peripherals
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - fsl,imx8ulp-cgc1
+> > > +      - fsl,imx8ulp-cgc2
+> > > +      - fsl,imx8ulp-pcc3
+> > > +      - fsl,imx8ulp-pcc4
+> > > +      - fsl,imx8ulp-pcc5
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  clocks:
+> > > +    description:
+> > > +      specify the external clocks used by the CGC module, the clocks
+> > > +      are rosc, sosc, frosc, lposc
+> > > +    maxItems: 4
+> > > +
+> > > +  clock-names:
+> > > +    description:
+> > > +      specify the external clocks names used by the CGC module. the
+> > valid
+> > > +      clock names should rosc, sosc, frosc, lposc.
+> > > +    maxItems: 4
+> > > +
+> > > +  '#clock-cells':
+> > > +    const: 1
+> > > +    description:
+> > > +      The clock consumer should specify the desired clock by having the
+> > clock
+> > > +      ID in its "clocks" phandle cell. See
+> > include/dt-bindings/clock/imx8ulp-clock.h
+> > > +      for the full list of i.MX8ULP clock IDs.
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - '#clock-cells'
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  # Clock Control Module node:
+> > > +  - |
+> > > +    clock-controller@292c0000 {
+> > > +        compatible = "fsl,imx8ulp-cgc1";
+> > > +        reg = <0x292c0000 0x10000>;
+> > > +        clocks = <&rosc>, <&sosc>, <&frosc>, <&lposc>;
+> > > +        clock-names = "rosc", "sosc", "frosc", "lposc";
+> > > +        #clock-cells = <1>;
+> > > +    };
+> > > +
+> > > +  - |
+> > > +    clock-controller@292d0000 {
+> > > +        compatible = "fsl,imx8ulp-pcc3";
+> > > +        reg = <0x292d0000 0x10000>;
+> > > +        #clock-cells = <1>;
+> > > +    };
+> > > diff --git a/include/dt-bindings/clock/imx8ulp-clock.h
+> > > b/include/dt-bindings/clock/imx8ulp-clock.h
+> > > new file mode 100644
+> > > index 000000000000..5bd2044633d3
+> > > --- /dev/null
+> > > +++ b/include/dt-bindings/clock/imx8ulp-clock.h
+> > > @@ -0,0 +1,261 @@
+> > > +/* SPDX-License-Identifier: GPL-2.0+ OR MIT */
+> > > +/*
+> > > + * Copyright 2021 NXP
+> > > + */
+> > > +
+> > > +#ifndef __DT_BINDINGS_CLOCK_IMX8ULP_H #define
+> > > +__DT_BINDINGS_CLOCK_IMX8ULP_H
+> > > +
+> > > +#define IMX8ULP_CLK_DUMMY			0
+> > > +#define IMX8ULP_CLK_ROSC			1
+> > > +#define IMX8ULP_CLK_FROSC			2
+> > > +#define IMX8ULP_CLK_LPOSC			3
+> > > +#define IMX8ULP_CLK_SOSC			4
+> > > +
+> > > +/* CGC1 */
+> > > +#define IMX8ULP_CLK_SPLL2			5
+> > > +#define IMX8ULP_CLK_SPLL3			6
+> > > +#define IMX8ULP_CLK_A35_SEL			7
+> > > +#define IMX8ULP_CLK_A35_DIV			8
+> > > +#define IMX8ULP_CLK_SPLL2_PRE_SEL		9
+> > > +#define IMX8ULP_CLK_SPLL3_PRE_SEL		10
+> > > +#define IMX8ULP_CLK_SPLL3_PFD0			11
+> > > +#define IMX8ULP_CLK_SPLL3_PFD1			12
+> > > +#define IMX8ULP_CLK_SPLL3_PFD2			13
+> > > +#define IMX8ULP_CLK_SPLL3_PFD3			14
+> > > +#define IMX8ULP_CLK_SPLL3_PFD0_DIV1		15
+> > > +#define IMX8ULP_CLK_SPLL3_PFD0_DIV2		16
+> > > +#define IMX8ULP_CLK_SPLL3_PFD1_DIV1		17
+> > > +#define IMX8ULP_CLK_SPLL3_PFD1_DIV2		18
+> > > +#define IMX8ULP_CLK_SPLL3_PFD2_DIV1		19
+> > > +#define IMX8ULP_CLK_SPLL3_PFD2_DIV2		20
+> > > +#define IMX8ULP_CLK_SPLL3_PFD3_DIV1		21
+> > > +#define IMX8ULP_CLK_SPLL3_PFD3_DIV2		22
+> > > +#define IMX8ULP_CLK_NIC_SEL			23
+> > > +#define IMX8ULP_CLK_NIC_AD_DIVPLAT		24
+> > > +#define IMX8ULP_CLK_NIC_PER_DIVPLAT		25
+> > > +#define IMX8ULP_CLK_XBAR_SEL			26
+> > > +#define IMX8ULP_CLK_XBAR_AD_DIVPLAT		27
+> > > +#define IMX8ULP_CLK_XBAR_DIVBUS			28
+> > > +#define IMX8ULP_CLK_XBAR_AD_SLOW		29
+> > > +#define IMX8ULP_CLK_SOSC_DIV1			30
+> > > +#define IMX8ULP_CLK_SOSC_DIV2			31
+> > > +#define IMX8ULP_CLK_SOSC_DIV3			32
+> > > +#define IMX8ULP_CLK_FROSC_DIV1			33
+> > > +#define IMX8ULP_CLK_FROSC_DIV2			34
+> > > +#define IMX8ULP_CLK_FROSC_DIV3			35
+> > > +#define IMX8ULP_CLK_SPLL3_VCODIV		36
+> > > +#define IMX8ULP_CLK_SPLL3_PFD0_DIV1_GATE	37
+> > > +#define IMX8ULP_CLK_SPLL3_PFD0_DIV2_GATE	38
+> > > +#define IMX8ULP_CLK_SPLL3_PFD1_DIV1_GATE	39
+> > > +#define IMX8ULP_CLK_SPLL3_PFD1_DIV2_GATE	40
+> > > +#define IMX8ULP_CLK_SPLL3_PFD2_DIV1_GATE	41
+> > > +#define IMX8ULP_CLK_SPLL3_PFD2_DIV2_GATE	42
+> > > +#define IMX8ULP_CLK_SPLL3_PFD3_DIV1_GATE	43
+> > > +#define IMX8ULP_CLK_SPLL3_PFD3_DIV2_GATE	44
+> > > +#define IMX8ULP_CLK_SOSC_DIV1_GATE		45
+> > > +#define IMX8ULP_CLK_SOSC_DIV2_GATE		46
+> > > +#define IMX8ULP_CLK_SOSC_DIV3_GATE		47
+> > > +#define IMX8ULP_CLK_FROSC_DIV1_GATE		48
+> > > +#define IMX8ULP_CLK_FROSC_DIV2_GATE		49
+> > > +#define IMX8ULP_CLK_FROSC_DIV3_GATE		50
+> > > +#define IMX8ULP_CLK_SAI4_SEL			51
+> > > +#define IMX8ULP_CLK_SAI5_SEL			52
+> > > +#define IMX8ULP_CLK_AUD_CLK1			53
+> > > +#define IMX8ULP_CLK_ARM				54
+> > > +#define IMX8ULP_CLK_ENET_TS_SEL			55
+> > > +
+> > > +#define IMX8ULP_CLK_CGC1_END			56
+> > > +
+> > > +/* CGC2 */
+> > > +#define IMX8ULP_CLK_PLL4_PRE_SEL	0
+> > > +#define IMX8ULP_CLK_PLL4		1
+> > > +#define IMX8ULP_CLK_PLL4_VCODIV		2
+> > > +#define IMX8ULP_CLK_DDR_SEL		3
+> > > +#define IMX8ULP_CLK_DDR_DIV		4
+> > > +#define IMX8ULP_CLK_LPAV_AXI_SEL	5
+> > > +#define IMX8ULP_CLK_LPAV_AXI_DIV	6
+> > > +#define IMX8ULP_CLK_LPAV_AHB_DIV	7
+> > > +#define IMX8ULP_CLK_LPAV_BUS_DIV	8
+> > > +#define IMX8ULP_CLK_PLL4_PFD0		9
+> > > +#define IMX8ULP_CLK_PLL4_PFD1		10
+> > > +#define IMX8ULP_CLK_PLL4_PFD2		11
+> > > +#define IMX8ULP_CLK_PLL4_PFD3		12
+> > > +#define IMX8ULP_CLK_PLL4_PFD0_DIV1_GATE	13
+> > > +#define IMX8ULP_CLK_PLL4_PFD0_DIV2_GATE	14
+> > > +#define IMX8ULP_CLK_PLL4_PFD1_DIV1_GATE	15
+> > > +#define IMX8ULP_CLK_PLL4_PFD1_DIV2_GATE	16
+> > > +#define IMX8ULP_CLK_PLL4_PFD2_DIV1_GATE	17
+> > > +#define IMX8ULP_CLK_PLL4_PFD2_DIV2_GATE	18
+> > > +#define IMX8ULP_CLK_PLL4_PFD3_DIV1_GATE	19
+> > > +#define IMX8ULP_CLK_PLL4_PFD3_DIV2_GATE	20
+> > > +#define IMX8ULP_CLK_PLL4_PFD0_DIV1	21
+> > > +#define IMX8ULP_CLK_PLL4_PFD0_DIV2	22
+> > > +#define IMX8ULP_CLK_PLL4_PFD1_DIV1	23
+> > > +#define IMX8ULP_CLK_PLL4_PFD1_DIV2	24
+> > > +#define IMX8ULP_CLK_PLL4_PFD2_DIV1	25
+> > > +#define IMX8ULP_CLK_PLL4_PFD2_DIV2	26
+> > > +#define IMX8ULP_CLK_PLL4_PFD3_DIV1	27
+> > > +#define IMX8ULP_CLK_PLL4_PFD3_DIV2	28
+> > > +#define IMX8ULP_CLK_CGC2_SOSC_DIV1_GATE	29
+> > > +#define IMX8ULP_CLK_CGC2_SOSC_DIV2_GATE	30
+> > > +#define IMX8ULP_CLK_CGC2_SOSC_DIV3_GATE	31
+> > > +#define IMX8ULP_CLK_CGC2_SOSC_DIV1	32
+> > > +#define IMX8ULP_CLK_CGC2_SOSC_DIV2	33
+> > > +#define IMX8ULP_CLK_CGC2_SOSC_DIV3	34
+> > > +#define IMX8ULP_CLK_CGC2_FROSC_DIV1_GATE	35
+> > > +#define IMX8ULP_CLK_CGC2_FROSC_DIV2_GATE	36
+> > > +#define IMX8ULP_CLK_CGC2_FROSC_DIV3_GATE	37
+> > > +#define IMX8ULP_CLK_CGC2_FROSC_DIV1	38
+> > > +#define IMX8ULP_CLK_CGC2_FROSC_DIV2	39
+> > > +#define IMX8ULP_CLK_CGC2_FROSC_DIV3	40
+> > > +#define IMX8ULP_CLK_AUD_CLK2		41
+> > > +#define IMX8ULP_CLK_SAI6_SEL		42
+> > > +#define IMX8ULP_CLK_SAI7_SEL		43
+> > > +#define IMX8ULP_CLK_SPDIF_SEL		44
+> > > +#define IMX8ULP_CLK_HIFI_SEL		45
+> > > +#define IMX8ULP_CLK_HIFI_DIVCORE	46
+> > > +#define IMX8ULP_CLK_HIFI_DIVPLAT	47
+> > > +#define IMX8ULP_CLK_DSI_PHY_REF		48
+> > > +
+> > > +#define IMX8ULP_CLK_CGC2_END		49
+> > > +
+> > > +/* PCC3 */
+> > > +#define IMX8ULP_CLK_WDOG3		0
+> > > +#define IMX8ULP_CLK_WDOG4		1
+> > > +#define IMX8ULP_CLK_LPIT1		2
+> > > +#define IMX8ULP_CLK_TPM4		3
+> > > +#define IMX8ULP_CLK_TPM5		4
+> > > +#define IMX8ULP_CLK_FLEXIO1		5
+> > > +#define IMX8ULP_CLK_I3C2		6
+> > > +#define IMX8ULP_CLK_LPI2C4		7
+> > > +#define IMX8ULP_CLK_LPI2C5		8
+> > > +#define IMX8ULP_CLK_LPUART4		9
+> > > +#define IMX8ULP_CLK_LPUART5		10
+> > > +#define IMX8ULP_CLK_LPSPI4		11
+> > > +#define IMX8ULP_CLK_LPSPI5		12
+> > > +#define IMX8ULP_CLK_DMA1_MP		13
+> > > +#define IMX8ULP_CLK_DMA1_CH0		14
+> > > +#define IMX8ULP_CLK_DMA1_CH1		15
+> > > +#define IMX8ULP_CLK_DMA1_CH2		16
+> > > +#define IMX8ULP_CLK_DMA1_CH3		17
+> > > +#define IMX8ULP_CLK_DMA1_CH4		18
+> > > +#define IMX8ULP_CLK_DMA1_CH5		19
+> > > +#define IMX8ULP_CLK_DMA1_CH6		20
+> > > +#define IMX8ULP_CLK_DMA1_CH7		21
+> > > +#define IMX8ULP_CLK_DMA1_CH8		22
+> > > +#define IMX8ULP_CLK_DMA1_CH9		23
+> > > +#define IMX8ULP_CLK_DMA1_CH10		24
+> > > +#define IMX8ULP_CLK_DMA1_CH11		25
+> > > +#define IMX8ULP_CLK_DMA1_CH12		26
+> > > +#define IMX8ULP_CLK_DMA1_CH13		27
+> > > +#define IMX8ULP_CLK_DMA1_CH14		28
+> > > +#define IMX8ULP_CLK_DMA1_CH15		29
+> > > +#define IMX8ULP_CLK_DMA1_CH16		30
+> > > +#define IMX8ULP_CLK_DMA1_CH17		31
+> > > +#define IMX8ULP_CLK_DMA1_CH18		32
+> > > +#define IMX8ULP_CLK_DMA1_CH19		33
+> > > +#define IMX8ULP_CLK_DMA1_CH20		34
+> > > +#define IMX8ULP_CLK_DMA1_CH21		35
+> > > +#define IMX8ULP_CLK_DMA1_CH22		36
+> > > +#define IMX8ULP_CLK_DMA1_CH23		37
+> > > +#define IMX8ULP_CLK_DMA1_CH24		38
+> > > +#define IMX8ULP_CLK_DMA1_CH25		39
+> > > +#define IMX8ULP_CLK_DMA1_CH26		40
+> > > +#define IMX8ULP_CLK_DMA1_CH27		41
+> > > +#define IMX8ULP_CLK_DMA1_CH28		42
+> > > +#define IMX8ULP_CLK_DMA1_CH29		43
+> > > +#define IMX8ULP_CLK_DMA1_CH30		44
+> > > +#define IMX8ULP_CLK_DMA1_CH31		45
+> > > +#define IMX8ULP_CLK_MU3_A		46
+> > > +
+> > > +#define IMX8ULP_CLK_PCC3_END		47
+> > > +
+> > > +/* PCC4 */
+> > > +#define IMX8ULP_CLK_FLEXSPI2		0
+> > > +#define IMX8ULP_CLK_TPM6		1
+> > > +#define IMX8ULP_CLK_TPM7		2
+> > > +#define IMX8ULP_CLK_LPI2C6		3
+> > > +#define IMX8ULP_CLK_LPI2C7		4
+> > > +#define IMX8ULP_CLK_LPUART6		5
+> > > +#define IMX8ULP_CLK_LPUART7		6
+> > > +#define IMX8ULP_CLK_SAI4		7
+> > > +#define IMX8ULP_CLK_SAI5		8
+> > > +#define IMX8ULP_CLK_PCTLE		9
+> > > +#define IMX8ULP_CLK_PCTLF		10
+> > > +#define IMX8ULP_CLK_USDHC0		11
+> > > +#define IMX8ULP_CLK_USDHC1		12
+> > > +#define IMX8ULP_CLK_USDHC2		13
+> > > +#define IMX8ULP_CLK_USB0		14
+> > > +#define IMX8ULP_CLK_USB0_PHY		15
+> > > +#define IMX8ULP_CLK_USB1		16
+> > > +#define IMX8ULP_CLK_USB1_PHY		17
+> > > +#define IMX8ULP_CLK_USB_XBAR		18
+> > > +#define IMX8ULP_CLK_ENET		19
+> > > +#define IMX8ULP_CLK_SFA1		20
+> > > +#define IMX8ULP_CLK_RGPIOE		21
+> > > +#define IMX8ULP_CLK_RGPIOF		22
+> > > +
+> > > +#define IMX8ULP_CLK_PCC4_END		23
+> > > +
+> > > +/* PCC5 */
+> > > +#define IMX8ULP_CLK_TPM8		0
+> > > +#define IMX8ULP_CLK_SAI6		1
+> > > +#define IMX8ULP_CLK_SAI7		2
+> > > +#define IMX8ULP_CLK_SPDIF		3
+> > > +#define IMX8ULP_CLK_ISI			4
+> > > +#define IMX8ULP_CLK_CSI_REGS 		5
+> > > +#define IMX8ULP_CLK_PCTLD		6
+> > > +#define IMX8ULP_CLK_CSI			7
+> > > +#define IMX8ULP_CLK_DSI			8
+> > > +#define IMX8ULP_CLK_WDOG5		9
+> > > +#define IMX8ULP_CLK_EPDC		10
+> > > +#define IMX8ULP_CLK_PXP			11
+> > > +#define IMX8ULP_CLK_SFA2		12
+> > > +#define IMX8ULP_CLK_GPU2D		13
+> > > +#define IMX8ULP_CLK_GPU3D		14
+> > > +#define IMX8ULP_CLK_DC_NANO		15
+> > > +#define IMX8ULP_CLK_CSI_CLK_UI 		16
+> > > +#define IMX8ULP_CLK_CSI_CLK_ESC		17
+> > > +#define IMX8ULP_CLK_RGPIOD		18
+> > > +#define IMX8ULP_CLK_DMA2_MP		19
+> > > +#define IMX8ULP_CLK_DMA2_CH0		20
+> > > +#define IMX8ULP_CLK_DMA2_CH1		21
+> > > +#define IMX8ULP_CLK_DMA2_CH2		22
+> > > +#define IMX8ULP_CLK_DMA2_CH3		23
+> > > +#define IMX8ULP_CLK_DMA2_CH4		24
+> > > +#define IMX8ULP_CLK_DMA2_CH5		25
+> > > +#define IMX8ULP_CLK_DMA2_CH6		26
+> > > +#define IMX8ULP_CLK_DMA2_CH7		27
+> > > +#define IMX8ULP_CLK_DMA2_CH8		28
+> > > +#define IMX8ULP_CLK_DMA2_CH9		29
+> > > +#define IMX8ULP_CLK_DMA2_CH10		30
+> > > +#define IMX8ULP_CLK_DMA2_CH11		31
+> > > +#define IMX8ULP_CLK_DMA2_CH12		32
+> > > +#define IMX8ULP_CLK_DMA2_CH13		33
+> > > +#define IMX8ULP_CLK_DMA2_CH14		34
+> > > +#define IMX8ULP_CLK_DMA2_CH15		35
+> > > +#define IMX8ULP_CLK_DMA2_CH16		36
+> > > +#define IMX8ULP_CLK_DMA2_CH17		37
+> > > +#define IMX8ULP_CLK_DMA2_CH18		38
+> > > +#define IMX8ULP_CLK_DMA2_CH19		39
+> > > +#define IMX8ULP_CLK_DMA2_CH20		40
+> > > +#define IMX8ULP_CLK_DMA2_CH21		41
+> > > +#define IMX8ULP_CLK_DMA2_CH22		42
+> > > +#define IMX8ULP_CLK_DMA2_CH23		43
+> > > +#define IMX8ULP_CLK_DMA2_CH24		44
+> > > +#define IMX8ULP_CLK_DMA2_CH25		45
+> > > +#define IMX8ULP_CLK_DMA2_CH26		46
+> > > +#define IMX8ULP_CLK_DMA2_CH27		47
+> > > +#define IMX8ULP_CLK_DMA2_CH28		48
+> > > +#define IMX8ULP_CLK_DMA2_CH29		49
+> > > +#define IMX8ULP_CLK_DMA2_CH30		50
+> > > +#define IMX8ULP_CLK_DMA2_CH31		51
+> > > +#define IMX8ULP_CLK_MU2_B		52
+> > > +#define IMX8ULP_CLK_MU3_B		53
+> > > +#define IMX8ULP_CLK_AVD_SIM		54
+> > > +#define IMX8ULP_CLK_DSI_TX_ESC		55
+> > > +
+> > > +#define IMX8ULP_CLK_PCC5_END		56
+> > > +
+> > > +#endif
+> > > --
+> > > 2.26.2
+> > >
