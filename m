@@ -2,90 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FA713C84FC
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 15:08:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B2BC3C852A
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 15:20:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231485AbhGNNLY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 09:11:24 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33358 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231338AbhGNNLX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Jul 2021 09:11:23 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C2646613B9;
-        Wed, 14 Jul 2021 13:08:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1626268111;
-        bh=KIO73uVOgAHUJ2tW1iAFvOKar4Y4IkrEUHdCZSKRr8U=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=myoJUPUnh11X57SjfqOXaxapv3wGdGj0ms5k3evtuw+sLNhV9XrpRNwamVPSclPfS
-         fw8+ArVTk6ff9xN+xeR+Weg4RReQQE8q/vAbBPEv+OX2nT81FSlqkdM5kE3yu4UHLQ
-         cF1q6yEG3mCdhZ8WBVp7PWZIp4NNK3P2tYer/09Y=
-Date:   Wed, 14 Jul 2021 15:08:28 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>,
-        Brian Norris <computersforpeace@gmail.com>,
-        Kamal Dasu <kdasu.kdev@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Sebastian Siewior <bigeasy@linutronix.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-clk@vger.kernel.org, iommu@lists.linux-foundation.org,
-        linux-mtd@lists.infradead.org, linux-rtc@vger.kernel.org,
-        linux-usb@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: More dropping redundant minItems/maxItems
-Message-ID: <YO7hzMnIlCdE/z8K@kroah.com>
-References: <20210713193453.690290-1-robh@kernel.org>
+        id S231478AbhGNNXL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 09:23:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45236 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231665AbhGNNXA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 09:23:00 -0400
+Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [IPv6:2a02:1800:120:4::f00:14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26BBFC0613E0
+        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 06:20:08 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed10:39cc:190a:2775:cfe7])
+        by xavier.telenet-ops.be with bizsmtp
+        id V1L52500H1ccfby011L5pm; Wed, 14 Jul 2021 15:20:06 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1m3eo1-00193t-8r; Wed, 14 Jul 2021 15:20:05 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1m3eo0-00AapU-Pw; Wed, 14 Jul 2021 15:20:04 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH/RFC 0/4] dt-bindings: i2c: renesas,riic: Add interrupt-names
+Date:   Wed, 14 Jul 2021 15:19:59 +0200
+Message-Id: <cover.1626267422.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210713193453.690290-1-robh@kernel.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 13, 2021 at 01:34:53PM -0600, Rob Herring wrote:
-> Another round of removing redundant minItems/maxItems from new schema in
-> the recent merge window.
-> 
-> If a property has an 'items' list, then a 'minItems' or 'maxItems' with the
-> same size as the list is redundant and can be dropped. Note that is DT
-> schema specific behavior and not standard json-schema behavior. The tooling
-> will fixup the final schema adding any unspecified minItems/maxItems.
-> 
-> This condition is partially checked with the meta-schema already, but
-> only if both 'minItems' and 'maxItems' are equal to the 'items' length.
-> An improved meta-schema is pending.
-> 
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: Joerg Roedel <joro@8bytes.org>
-> Cc: Will Deacon <will@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> Cc: Miquel Raynal <miquel.raynal@bootlin.com>
-> Cc: Richard Weinberger <richard@nod.at>
-> Cc: Vignesh Raghavendra <vigneshr@ti.com>
-> Cc: Alessandro Zummo <a.zummo@towertech.it>
-> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>
-> Cc: Brian Norris <computersforpeace@gmail.com>
-> Cc: Kamal Dasu <kdasu.kdev@gmail.com>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Sebastian Siewior <bigeasy@linutronix.de>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: linux-clk@vger.kernel.org
-> Cc: iommu@lists.linux-foundation.org
-> Cc: linux-mtd@lists.infradead.org
-> Cc: linux-rtc@vger.kernel.org
-> Cc: linux-usb@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
+	Hi all,
 
-Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+The Renesas RZ/A and RZ/G2L I2C Bus Interface has no less than 8
+interrupts.  So I think it makes sense to use "interrupt-names"
+property, to make it easier to review the interrupt mappings in DTS
+files.
+
+Hence this series documents the "interrupt-names" property in the DT
+bindings, adds the property to the DTS files, and marks it required in
+the DT bindings. Obviously the last step cannot be applied until all
+earlier patches are upstream.
+
+What do you think?
+Thanks for your comments!
+
+Geert Uytterhoeven (4):
+  dt-bindings: i2c: renesas,riic: Add interrupt-names
+  ARM: dts: rza: Add I2C interrupt-names
+  arm64: dts: renesas: r9a07g044: Add I2C interrupt-names
+  dt-bindings: i2c: renesas,riic: Make interrupt-names required
+
+ .../devicetree/bindings/i2c/renesas,riic.yaml | 30 ++++++++++++++-----
+ arch/arm/boot/dts/r7s72100.dtsi               |  8 +++++
+ arch/arm/boot/dts/r7s9210.dtsi                |  8 +++++
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi    |  8 +++++
+ 4 files changed, 46 insertions(+), 8 deletions(-)
+
+-- 
+2.25.1
+
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
