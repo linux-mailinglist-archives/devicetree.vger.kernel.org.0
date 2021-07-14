@@ -2,166 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BBA33C8963
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 19:10:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 039E03C8984
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 19:15:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229679AbhGNRNG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 13:13:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41826 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229673AbhGNRNG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 13:13:06 -0400
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92CA4C061762
-        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 10:10:14 -0700 (PDT)
-Received: by mail-ot1-x32c.google.com with SMTP id f93-20020a9d03e60000b02904b1f1d7c5f4so3200074otf.9
-        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 10:10:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=WljVwMgt8MmNIHRKgOl9FuBOXN9yb1WIc0SSJd8F1g8=;
-        b=FRGUPPRXo0hHbuF+jBDSkTQ4iqndt8V5NTcAOFVGAThqMwCCzwZk5K8tPXv3w7BSxc
-         H5vHHmNXht7h/k2YbrL+cC8dTSSkBgo6nEBu2xjeHv1RPfS+t7+iqImknJVDQKz2wLuq
-         z2XZBihUpbHe/UwEuBhXIAe0ml1gyRDe8jz7738KOq3L6iBOE01PXMIkqrbT4iBwZGdf
-         aVE30AmAd+7LTLpUY10fj8M/x2ACQAkIr45arQ6F/oeE5EVqHVD4/6J2cvvRt1/ZwD9r
-         korpQK4VwcptZsV0WXhyUOZ/IM/s6yBarr6tYxHfiNmb/EoVAA4dSbGJVGZHK5gro/OA
-         YblQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=WljVwMgt8MmNIHRKgOl9FuBOXN9yb1WIc0SSJd8F1g8=;
-        b=gpxTTBpd6NJjcaFnz2O40WFmmG/2Tzgbu52+tjB0XGCA2ui7Fl1ED0HFVcWfw05kys
-         UxddHxTQ0Kss25kc06ftYO0NO0Xwkw8/qd8MJ+VyNPbgmsSycjGJLdlk4glePvZ1p+cc
-         jpKDqP+QL7sux3wCLhXMlLXaVIxD3tqVBGxvslWJSk6w38r4NZ9HZen34+HAYg2jxriX
-         yMp0dZCuyWgpBHST+e36/V0IKQK5jKa1wnaKttx3nWbvvQ6Sdr/NcX6eetT+r4TgqSVp
-         YmQSGUR/+vjxZ7Smj2gF8uwMp1RrqFovzyLQ8qa9M4fQtvKjAPuiS5ndrqSNckrY6uT1
-         XDyw==
-X-Gm-Message-State: AOAM533TPbEyn7G62L717azUHQjJyIC8DY4SRT5ttElnAXzrrdCAOvJU
-        cP/Yyv2Ndcqpz2C/4rQbcQe89A==
-X-Google-Smtp-Source: ABdhPJzj4XrbFecWv5la+KvE6ks1sWoks2nxcoBXwLoxijbRm2q4j+1XJjRlx6BCSdTVX6lyGC7ESg==
-X-Received: by 2002:a05:6830:1118:: with SMTP id w24mr9162120otq.89.1626282613845;
-        Wed, 14 Jul 2021 10:10:13 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id i188sm615879oih.7.2021.07.14.10.10.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jul 2021 10:10:13 -0700 (PDT)
-Date:   Wed, 14 Jul 2021 12:10:10 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-bluetooth@vger.kernel.org
-Subject: Re: [PATCH v3 2/7] regulator: qca6390: add support for QCA639x
- powerup sequence
-Message-ID: <YO8ackdFtbGhAqtM@yoga>
-References: <20210621223141.1638189-1-dmitry.baryshkov@linaro.org>
- <20210621223141.1638189-3-dmitry.baryshkov@linaro.org>
- <CAPDyKFo6dmjw0TnaK7=35dq5Si_6YYpeeSa=gU++1od7WkQZ7A@mail.gmail.com>
- <20210706115517.GB4529@sirena.org.uk>
- <CAPDyKFr=8spZBD+bTe3SjS=nATL-ByFu_epnT2Z4chSuQNke2w@mail.gmail.com>
- <CAA8EJppSV--TBjnGxGhaTHeKWdpM6uz70bg7diU3_K7OHoka4g@mail.gmail.com>
- <20210714164710.GC2719790@robh.at.kernel.org>
+        id S239234AbhGNRRb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 13:17:31 -0400
+Received: from mga01.intel.com ([192.55.52.88]:35631 "EHLO mga01.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239635AbhGNRRb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Jul 2021 13:17:31 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10045"; a="232208078"
+X-IronPort-AV: E=Sophos;i="5.84,239,1620716400"; 
+   d="scan'208";a="232208078"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2021 10:14:39 -0700
+X-IronPort-AV: E=Sophos;i="5.84,239,1620716400"; 
+   d="scan'208";a="413353810"
+Received: from alpinagh-mobl1.amr.corp.intel.com (HELO [10.212.71.223]) ([10.212.71.223])
+  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2021 10:14:37 -0700
+Subject: Re: [PATCH v2 16/16] ASoC: qcom: sm8250: Add audioreach support
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, lgirdwood@gmail.com, tiwai@suse.de,
+        plai@codeaurora.org, linux-kernel@vger.kernel.org
+References: <20210714153039.28373-1-srinivas.kandagatla@linaro.org>
+ <20210714153039.28373-17-srinivas.kandagatla@linaro.org>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Message-ID: <67e19b85-7f97-c965-04ea-6a46eaf19f3f@linux.intel.com>
+Date:   Wed, 14 Jul 2021 12:12:36 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210714164710.GC2719790@robh.at.kernel.org>
+In-Reply-To: <20210714153039.28373-17-srinivas.kandagatla@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 14 Jul 11:47 CDT 2021, Rob Herring wrote:
 
-> On Thu, Jul 08, 2021 at 02:37:44PM +0300, Dmitry Baryshkov wrote:
-> > Hi,
-> > 
-> > On Thu, 8 Jul 2021 at 13:10, Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> > >
-> > > - Peter (the email was bouncing)
-> > 
-> > + Peter's kernel.org address
-> > 
-> > >
-> > > On Tue, 6 Jul 2021 at 13:55, Mark Brown <broonie@kernel.org> wrote:
-> > > >
-> > > > On Tue, Jul 06, 2021 at 09:54:03AM +0200, Ulf Hansson wrote:
-> > > > > On Tue, 22 Jun 2021 at 00:32, Dmitry Baryshkov
-> > > >
-> > > > > > Qualcomm QCA6390/1 is a family of WiFi + Bluetooth SoCs, with BT part
-> > > > > > being controlled through the UART and WiFi being present on PCIe
-> > > > > > bus. Both blocks share common power sources. Add device driver handling
-> > > > > > power sequencing of QCA6390/1.
-> > > >
-> > > > > Power sequencing of discoverable buses have been discussed several
-> > > > > times before at LKML. The last attempt [1] I am aware of, was in 2017
-> > > > > from Peter Chen. I don't think there is a common solution, yet.
-> > > >
-> > > > This feels a bit different to the power sequencing problem - it's not
-> > > > exposing the individual inputs to the device but rather is a block that
-> > > > manages everything but needs a bit of a kick to get things going (I'd
-> > > > guess that with ACPI it'd be triggered via AML).  It's in the same space
-> > > > but it's not quite the same issue I think, something that can handle
-> > > > control of the individual resources might still struggle with this.
-> > >
-> > > Well, to me it looks very similar to those resouses we could manage
-> > > with the mmc pwrseq, for SDIO. It's also typically the same kind of
-> > > combo-chips that moved from supporting SDIO to PCIe, for improved
-> > > performance I guess. More importantly, the same constraint to
-> > > pre-power on the device is needed to allow it to be discovered/probed.
-> > 
-> > In our case we'd definitely use pwrseq for PCIe bus and we can also
-> > benefit from using pwrseq for serdev and for platform busses also (for
-> > the same story of WiFi+BT chips).
-> > 
-> > I can take a look at rewriting pwrseq code to also handle the PCIe
-> > bus. Rewriting it to be a generic lib seems like an easy task,
-> > plugging it into PCIe code would be more fun.
-> > 
-> > Platform and serdev... Definitely even more fun.
+
+On 7/14/21 10:30 AM, Srinivas Kandagatla wrote:
+> This patch adds support for parsing dt for AudioReach based soundcards
+> which only have backend DAI links in DT.
 > 
-> I don't want to see pwrseq (the binding) expanded to other buses. If 
-> that was the answer, we wouldn't be having this discussion. It was a 
-> mistake for MMC IMO. 
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> ---
+>  sound/soc/qcom/sm8250.c | 144 +++++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 143 insertions(+), 1 deletion(-)
 > 
+> diff --git a/sound/soc/qcom/sm8250.c b/sound/soc/qcom/sm8250.c
+> index fe8fd7367e21..421f9d1d2bed 100644
+> --- a/sound/soc/qcom/sm8250.c
+> +++ b/sound/soc/qcom/sm8250.c
+> @@ -20,6 +20,141 @@ struct sm8250_snd_data {
+>  	struct sdw_stream_runtime *sruntime[AFE_PORT_MAX];
+>  };
+>  
+> +static int qcom_audioreach_snd_parse_of(struct snd_soc_card *card)
+> +{
+> +	struct device_node *np;
+> +	struct device_node *codec = NULL;
+> +	struct device_node *platform = NULL;
+> +	struct device_node *cpu = NULL;
+> +	struct device *dev = card->dev;
+> +	struct snd_soc_dai_link *link;
+> +	struct of_phandle_args args;
+> +	struct snd_soc_dai_link_component *dlc;
+> +	int ret, num_links;
+> +
+> +	ret = snd_soc_of_parse_card_name(card, "model");
+> +	if (ret) {
+> +		dev_err(dev, "Error parsing card name: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	/* DAPM routes */
+> +	if (of_property_read_bool(dev->of_node, "audio-routing")) {
+> +		ret = snd_soc_of_parse_audio_routing(card, "audio-routing");
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	/* Populate links */
+> +	num_links = of_get_child_count(dev->of_node);
+> +
+> +	/* Allocate the DAI link array */
+> +	card->dai_link = devm_kcalloc(dev, num_links, sizeof(*link), GFP_KERNEL);
+> +	if (!card->dai_link)
+> +		return -ENOMEM;
+> +
+> +	card->num_links = num_links;
+> +	link = card->dai_link;
+> +
+> +	for_each_child_of_node(dev->of_node, np) {
+> +
+> +		dlc = devm_kzalloc(dev, 2 * sizeof(*dlc), GFP_KERNEL);
+> +		if (!dlc) {
+> +			ret = -ENOMEM;
+> +			goto err_put_np;
+> +		}
+> +
+> +		link->cpus	= &dlc[0];
+> +		link->platforms	= &dlc[1];
+> +
+> +		link->num_cpus		= 1;
+> +		link->num_platforms	= 1;
+> +
+> +
+> +		ret = of_property_read_string(np, "link-name", &link->name);
+> +		if (ret) {
+> +			dev_err(card->dev, "error getting codec dai_link name\n");
+> +			goto err_put_np;
+> +		}
+> +
+> +		cpu = of_get_child_by_name(np, "cpu");
+> +		platform = of_get_child_by_name(np, "platform");
+> +		codec = of_get_child_by_name(np, "codec");
+> +		if (!cpu) {
+> +			dev_err(dev, "%s: Can't find cpu DT node\n", link->name);
+> +			ret = -EINVAL;
+> +			goto err;
+> +		}
+> +
+> +		if (!platform) {
+> +			dev_err(dev, "%s: Can't find platform DT node\n", link->name);
+> +			ret = -EINVAL;
+> +			goto err;
+> +		}
+> +
+> +		if (!codec) {
+> +			dev_err(dev, "%s: Can't find codec DT node\n", link->name);
+> +			ret = -EINVAL;
+> +			goto err;
+> +		}
+> +
+> +		ret = of_parse_phandle_with_args(cpu, "sound-dai", "#sound-dai-cells", 0, &args);
+> +		if (ret) {
+> +			dev_err(card->dev, "%s: error getting cpu phandle\n", link->name);
+> +			goto err;
+> +		}
+> +
+> +		link->cpus->of_node = args.np;
+> +		link->id = args.args[0];
+> +
+> +		ret = snd_soc_of_get_dai_name(cpu, &link->cpus->dai_name);
+> +		if (ret) {
+> +			if (ret != -EPROBE_DEFER)
+> +				dev_err(card->dev, "%s: error getting cpu dai name: %d\n",
+> +					link->name, ret);
+> +			goto err;
+> +		}
+> +
+> +		link->platforms->of_node = of_parse_phandle(platform, "sound-dai", 0);
+> +		if (!link->platforms->of_node) {
+> +			dev_err(card->dev, "%s: platform dai not found\n", link->name);
+> +			ret = -EINVAL;
+> +			goto err;
+> +		}
+> +
+> +		ret = snd_soc_of_get_dai_link_codecs(dev, codec, link);
+> +		if (ret < 0) {
+> +			if (ret != -EPROBE_DEFER)
+> +				dev_err(card->dev, "%s: codec dai not found: %d\n",
+> +					link->name, ret);
+> +			goto err;
+> +		}
+> +
+> +		/* DPCM backend */
+> +		link->no_pcm = 1;
+> +		link->ignore_pmdown_time = 1;
+> +		link->ignore_suspend = 1;
 
-But what do you want to see?
+why are those two fields set unconditionally?
 
-We have a single piece of hardware that needs a specific power sequence,
-which is interacted with using both UART and PCIe.
+If you parse information from DT shouldn't those links be explicitly tagged as requiring those fields to be set?
 
-> If pwrseq works as a kernel library/api, then I have no issue with that.
-> 
-> > 
-> > > Therefore, I think it would be worth having a common solution for
-> > > this, rather than a solution per subsystem or even worse, per device.
-> 
-> Power sequencing requirements are inheritently per device unless we're 
-> talking about standard connectors. 
-> 
+It's a recurring battle for me to ask why people set them in Intel machine drivers, I find it really odd that you would set them since they aren't without side effect on clocks and suspend.
 
-Do you mean "device" as in the IC or device as in struct device? Because
-we do have one physical IC, that has a need for a specific power on
-sequence, but we have two struct device, on two different busses in
-Linux interacting with this thing.
+> +
+> +		link->stream_name = link->name;
+> +		snd_soc_dai_link_set_capabilities(link);
+> +		link++;
+> +
+> +		of_node_put(cpu);
+> +		of_node_put(codec);
+> +		of_node_put(platform);
+> +
+> +	}
+> +
+> +	return 0;
+> +err:
+> +	of_node_put(cpu);
+> +	of_node_put(codec);
+> +	of_node_put(platform);
+> +err_put_np:
+> +	of_node_put(np);
+> +	return ret;
+> +}
+> +
 
-> This is a solved problem on MDIO. It's quite simple. If there's a DT 
-> node for a device you haven't discovered, then probe it anyways.
-> 
-
-Okay, so DT tells us that there's actually a WiFi thing on the PCIe bus,
-even though we can't find it, so we probe something...then what?
-
-Regards,
-Bjorn
