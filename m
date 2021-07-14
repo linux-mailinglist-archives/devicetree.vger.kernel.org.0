@@ -2,35 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C14A93C8C5F
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:39:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C4043C8C66
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:39:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233642AbhGNTlv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 15:41:51 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36464 "EHLO mail.kernel.org"
+        id S234357AbhGNTl5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 15:41:57 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36536 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233889AbhGNTlo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Jul 2021 15:41:44 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 445F8613D0;
-        Wed, 14 Jul 2021 19:38:51 +0000 (UTC)
+        id S233427AbhGNTlq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Jul 2021 15:41:46 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id BA981613E5;
+        Wed, 14 Jul 2021 19:38:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626291532;
-        bh=Xqm3V5AtxhUsIjIu3F59Y1o7AfocRBgBIMh/YO06G8w=;
+        s=k20201202; t=1626291534;
+        bh=UsKyJiGxM5oZPFswj1xWUd9yE/lYzjzQ8OFYzK+hWQM=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=g6m1HTi2veuVbeznoq97ODnLXQbr5dJZaOxU/w0Vn2t+4Q0uXFfprEJexQGKj4qpg
-         bCeX3jVGiyujSOyqGKUlRZNlD5tov/z/nj/dd3VG+mohpAqdrixj6MP7CkDDqu+19T
-         7G0ThARchTqx/doIY3Rg2lbft9jsjbQyqRQOlnS4A6ZOe2MrB+WTmKfJIGkHNKEqmn
-         Osaf514B9YALrT+wbON+TvxSfFlBNHaF21s3Zb4q92NJ3+1+z45HNkKRje7Wc2KVul
-         9SSkLaCJKcFk7oe//uUBN5jpGGOVT8z1sxOWDEMql56ICLVN+3BxyIK6ZIXFTEkp3P
-         x5tfGwlmbqW6w==
+        b=kdlwtvA1B6fDKPMdjyz6piwWGWUr1ImClOTSeTArfOQY/TScvmdjXcVeLwApWrKqZ
+         teubXNqnwcpEEUUlgF/8XX2z2NW5ICA6O0pq4mSf4BpnwQbvrC1zo06a2iXQJCS0j4
+         iD+e8mci1GXAwsT7Pjr059WnxwY5q3RVbyT8ZwChyOA4OM7caKim3Ce4zm6//G7zbl
+         /RZ2Po7xPX6z9d5/w2plj1xgY6ArFWhMVXyfO70qCHs/a2Tu7kLUAz6Wi3KLZjPNLE
+         ostiOsKRrhh2cXPKTtdXlhmEOOvdH80pUOsUVKfb4k0Vv3t1N92uvKWK/mJz6L0xkB
+         xhsm5i/K238ww==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+Cc:     Adam Ford <aford173@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
         Sasha Levin <sashal@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.13 035/108] ARM: dts: ux500: Fix orientation of Janice accelerometer
-Date:   Wed, 14 Jul 2021 15:36:47 -0400
-Message-Id: <20210714193800.52097-35-sashal@kernel.org>
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.13 037/108] arm64: dts: renesas: beacon: Fix USB extal reference
+Date:   Wed, 14 Jul 2021 15:36:49 -0400
+Message-Id: <20210714193800.52097-37-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210714193800.52097-1-sashal@kernel.org>
 References: <20210714193800.52097-1-sashal@kernel.org>
@@ -42,37 +43,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Linus Walleij <linus.walleij@linaro.org>
+From: Adam Ford <aford173@gmail.com>
 
-[ Upstream commit e409c1e1d5cb164361229e3a3f084e4a32544fb6 ]
+[ Upstream commit 56bc54496f5d6bc638127bfc9df3742cbf0039e7 ]
 
-This fixes up the axis on the Janice accelerometer to give
-the right orientation according to tests.
+The USB extal clock reference isn't associated to a crystal, it's
+associated to a programmable clock, so remove the extal reference,
+add the usb2_clksel.  Since usb_extal is referenced by the versaclock,
+reference it here so the usb2_clksel can get the proper clock speed
+of 50MHz.
 
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+Signed-off-by: Adam Ford <aford173@gmail.com>
+Link: https://lore.kernel.org/r/20210513114617.30191-1-aford173@gmail.com
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/ste-ux500-samsung-janice.dts | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+ arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/ste-ux500-samsung-janice.dts b/arch/arm/boot/dts/ste-ux500-samsung-janice.dts
-index eaf8039d10ad..25af066f6f3a 100644
---- a/arch/arm/boot/dts/ste-ux500-samsung-janice.dts
-+++ b/arch/arm/boot/dts/ste-ux500-samsung-janice.dts
-@@ -583,10 +583,9 @@ i2c-gate {
- 					accelerometer@08 {
- 						compatible = "bosch,bma222";
- 						reg = <0x08>;
--						/* FIXME: no idea about this */
--						mount-matrix = "1", "0", "0",
--							       "0", "1", "0",
--							       "0", "0", "1";
-+						mount-matrix = "0", "1", "0",
-+							       "-1", "0", "0",
-+							       "0", "0", "-1";
- 						vddio-supply = <&ab8500_ldo_aux2_reg>; // 1.8V
- 						vdd-supply = <&ab8500_ldo_aux1_reg>; // 3V
- 					};
+diff --git a/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi b/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
+index 8d3a4d6ee885..bd3d26b2a2bb 100644
+--- a/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
++++ b/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
+@@ -319,8 +319,10 @@ &sdhi3 {
+ 	status = "okay";
+ };
+ 
+-&usb_extal_clk {
+-	clock-frequency = <50000000>;
++&usb2_clksel {
++	clocks = <&cpg CPG_MOD 703>, <&cpg CPG_MOD 704>,
++		  <&versaclock5 3>, <&usb3s0_clk>;
++	status = "okay";
+ };
+ 
+ &usb3s0_clk {
 -- 
 2.30.2
 
