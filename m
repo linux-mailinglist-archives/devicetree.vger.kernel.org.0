@@ -2,126 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A8723C8577
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 15:39:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 022EA3C8584
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 15:46:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232543AbhGNNls (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 09:41:48 -0400
-Received: from mickerik.phytec.de ([195.145.39.210]:56718 "EHLO
-        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232444AbhGNNlq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 09:41:46 -0400
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-        q=dns/txt; i=@phytec.de; t=1626269931; x=1628861931;
-        h=From:Sender:Reply-To:Subject:Date:Message-Id:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=Fi8CUC/821UJ4ETQjYvefvR9ynmRH/8tbcOi/xffdlc=;
-        b=ocTiVrxvTatABXXeW87rqK0P0ISWZqZU5UzmuuhsBZi09tYshSEbC3pRBjM8mRON
-        sSI8Ch74ePz/BIdJPdFO3KSEEs4miF1s8lJimcJ44pkjKV9BCCk+Oc/kFJ1G6hZ6
-        a2JeP+YkjHu9gRSahzLZtydvgwioxejSCxmJBPUCtt4=;
-X-AuditID: c39127d2-1e4f970000001daf-28-60eee8eb2292
-Received: from idefix.phytec.de (Unknown_Domain [172.16.0.10])
-        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id DD.57.07599.BE8EEE06; Wed, 14 Jul 2021 15:38:51 +0200 (CEST)
-Received: from augenblix2.phytec.de ([172.16.0.56])
-          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
-          with ESMTP id 2021071415385071-1154293 ;
-          Wed, 14 Jul 2021 15:38:50 +0200 
-From:   Stefan Riedmueller <s.riedmueller@phytec.de>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Stefan Riedmueller <s.riedmueller@phytec.de>,
-        Rob Herring <robh@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        id S231819AbhGNNt3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 09:49:29 -0400
+Received: from mail-il1-f182.google.com ([209.85.166.182]:45679 "EHLO
+        mail-il1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231478AbhGNNt2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 09:49:28 -0400
+Received: by mail-il1-f182.google.com with SMTP id b6so1602025iln.12;
+        Wed, 14 Jul 2021 06:46:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=bylNDni7LUKM7pnvITfXsrZTIr6B2PAmOuvv1NHx8Os=;
+        b=P4v8PyWHHHFOwzlU2Utzs6Lv5JtidYpO/wKUoPdmE5IgsQeBxcviWg8XJsio6vmGtK
+         TRYg3rh6EPQBzV+yeDY2Et6TcF33dqidoxkztK2hSQdiy7/xi64DEXLcALuNem9N5JiX
+         o0Dgl4H/1xp7iEpYJAuJH1QxPsRNSwb+Dloe5G+xWIsvZmtyg3Xp+yCemRp3B2jgLZsF
+         8S66UdxdaO4poFuoBXLgLEKG8Mw95mH0+xVRhYJLSMhS9gDqjrT3cLLfIujzEwSKj19b
+         KygcGcvYt3thvtT4yvjR30LYyDE64GKeL5xaNdk+kcrTXmH1AdOagBbZfA/VjTO7SASy
+         hZFw==
+X-Gm-Message-State: AOAM531joPPc+CuKm2vOT70WibT1cyPMAuPgxicja2swMgGfvZZm5BGX
+        z2kXaAgo74YBnl35JmRNiw==
+X-Google-Smtp-Source: ABdhPJwzly6VLXsrTTboxhXnHeZCdEuUQxDBu27t3pSa2+1X8fR4x8BA5P9eHwkkY5vz+JeKbPGq8A==
+X-Received: by 2002:a92:8712:: with SMTP id m18mr6301471ild.132.1626270397009;
+        Wed, 14 Jul 2021 06:46:37 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id t8sm1178729iog.21.2021.07.14.06.46.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jul 2021 06:46:36 -0700 (PDT)
+Received: (nullmailer pid 2452887 invoked by uid 1000);
+        Wed, 14 Jul 2021 13:46:32 -0000
+Date:   Wed, 14 Jul 2021 07:46:32 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Russell King <linux@armlinux.org.uk>,
+        Nicolas Pitre <nico@fluxnic.net>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Dave Young <dyoung@redhat.com>,
+        Mike Rapoport <rppt@kernel.org>, Baoquan He <bhe@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-riscv@lists.infradead.org, kexec@lists.infradead.org,
+        linux-mm@kvack.org, linux-renesas-soc@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v6 6/6] media: dt-bindings: mt9p031: Add missing required properties
-Date:   Wed, 14 Jul 2021 15:38:49 +0200
-Message-Id: <20210714133849.1041619-7-s.riedmueller@phytec.de>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210714133849.1041619-1-s.riedmueller@phytec.de>
-References: <20210714133849.1041619-1-s.riedmueller@phytec.de>
+Subject: Re: [PATCH v4 01/10] crash_dump: Make elfcorehdr_{addr,size} always
+ visible
+Message-ID: <20210714134632.GA2441138@robh.at.kernel.org>
+References: <cover.1626266516.git.geert+renesas@glider.be>
+ <0721f629d5e75b7b7e655458a63cbd767baaa409.1626266516.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 14.07.2021 15:38:50,
-        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 14.07.2021 15:38:50
-X-TNEFEvaluated: 1
-Content-Transfer-Encoding: quoted-printable
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrPLMWRmVeSWpSXmKPExsWyRoCBS/f1i3cJBvfeMFnMP3KO1aJz4hJ2
-        i8u75rBZ9GzYymqxbNMfJovWvUfYLf7v2cFu8WnLNyYHDo/ZHTNZPTat6mTzmHcy0OPzJrkA
-        ligum5TUnMyy1CJ9uwSujBXH17IV7OKtWDb/GlsD43SuLkZODgkBE4lF546zdzFycQgJbGOU
-        2Lr6F5RzgVFi6sSn7CBVbAJGEgumNTKBJEQE2hgldhxpZgJJMAtcZpT49tUHxBYWCJF4de8V
-        I4jNIqAq8fnwBpYuRg4OXgE7iUuv3CG2yUvMvPQdbCangL1E99F/LCC2EFDJncvzwVp5BQQl
-        Ts58wgKyS0LgCqPE3XXPGSGahSROLz7LDLFXW2LZwtfMExgFZiHpmYUktYCRaRWjUG5mcnZq
-        UWa2XkFGZUlqsl5K6iZGYCAfnqh+aQdj3xyPQ4xMHIyHGCU4mJVEeJcavU0Q4k1JrKxKLcqP
-        LyrNSS0+xCjNwaIkzruBtyRMSCA9sSQ1OzW1ILUIJsvEwSnVwOggcmuft/UL93NX563wzfDs
-        /bLzm033huO/iueeje+69+4kp5HxqvP/fryzvOktYja/5Lf6newjijdioldv7q+5dHA9u0yU
-        xtVgzhes1Xe+WOU6ZpQ/ndER9OZk0Lm7lpKRSvnzK1ee17FYEbeeY8WfxTLH6rqlF91NXz+D
-        55j2DYWFLGG1dx8psRRnJBpqMRcVJwIAZyOklVICAAA=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0721f629d5e75b7b7e655458a63cbd767baaa409.1626266516.git.geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add missing required clocks and supply regulator properties for the
-sensor input clock and vdd, vdd=5Fio and vaa supply regulators.
+On Wed, Jul 14, 2021 at 02:50:11PM +0200, Geert Uytterhoeven wrote:
+> Make the forward declarations of elfcorehdr_addr and elfcorehdr_size
+> always available, like is done for phys_initrd_start and
+> phys_initrd_size.  Code referring to these symbols can then just check
+> for IS_ENABLED(CONFIG_CRASH_DUMP), instead of requiring conditional
+> compilation using an #ifdef, thus preparing to increase compile
+> coverage.
+> 
+> Suggested-by: Rob Herring <robh+dt@kernel.org>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> v4:
+>   - New.
+> ---
+>  include/linux/crash_dump.h | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
+> 
+> diff --git a/include/linux/crash_dump.h b/include/linux/crash_dump.h
+> index a5192b718dbe4f9a..ad31893d13d634de 100644
+> --- a/include/linux/crash_dump.h
+> +++ b/include/linux/crash_dump.h
+> @@ -10,13 +10,14 @@
+>  
+>  #include <linux/pgtable.h> /* for pgprot_t */
+>  
+> +/* For IS_ENABLED(CONFIG_CRASH_DUMP) */
+> +extern unsigned long long elfcorehdr_addr;
+> +extern unsigned long long elfcorehdr_size;
+> +
+>  #ifdef CONFIG_CRASH_DUMP
+>  #define ELFCORE_ADDR_MAX	(-1ULL)
+>  #define ELFCORE_ADDR_ERR	(-2ULL)
 
-Signed-off-by: Stefan Riedmueller <s.riedmueller@phytec.de>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../bindings/media/i2c/aptina,mt9p031.yaml    | 22 +++++++++++++++++++
- 1 file changed, 22 insertions(+)
+Seems like these could be needed and no need to hide them, so perhaps 
+just move the #ifdef down.
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/aptina,mt9p031.yam=
-l b/Documentation/devicetree/bindings/media/i2c/aptina,mt9p031.yaml
-index 1531ecd1ed95..8cf485d64753 100644
---- a/Documentation/devicetree/bindings/media/i2c/aptina,mt9p031.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/aptina,mt9p031.yaml
-@@ -24,6 +24,18 @@ properties:
-     description: I2C device address
-     maxItems: 1
-=20
-+  clocks:
-+    maxItems: 1
-+
-+  vdd-supply:
-+    description: Digital supply voltage, 1.8 V
-+
-+  vdd=5Fio-supply:
-+    description: I/O supply voltage, 1.8 or 2.8 V
-+
-+  vaa-supply:
-+    description: Analog supply voltage, 2.8 V
-+
-   reset-gpios:
-     maxItems: 1
-     description: Chip reset GPIO
-@@ -65,6 +77,10 @@ properties:
- required:
-   - compatible
-   - reg
-+  - clocks
-+  - vdd-supply
-+  - vdd=5Fio-supply
-+  - vaa-supply
-   - port
-=20
- additionalProperties: false
-@@ -80,6 +96,12 @@ examples:
-             reg =3D <0x5d>;
-             reset-gpios =3D <&gpio=5Fsensor 0 0>;
-=20
-+            clocks =3D <&sensor=5Fclk>;
-+
-+            vdd-supply =3D <&reg=5Fvdd>;
-+            vdd=5Fio-supply =3D <&reg=5Fvdd=5Fio>;
-+            vaa-supply =3D <&reg=5Fvaa>;
-+
-             port {
-                 mt9p031=5F1: endpoint {
-                     input-clock-frequency =3D <6000000>;
---=20
-2.25.1
-
+>  
+> -extern unsigned long long elfcorehdr_addr;
+> -extern unsigned long long elfcorehdr_size;
+> -
+>  extern int elfcorehdr_alloc(unsigned long long *addr, unsigned long long *size);
+>  extern void elfcorehdr_free(unsigned long long addr);
+>  extern ssize_t elfcorehdr_read(char *buf, size_t count, u64 *ppos);
+> -- 
+> 2.25.1
+> 
+> 
