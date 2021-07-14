@@ -2,119 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BDE1C3C8876
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 18:14:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3D913C88C4
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 18:37:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232310AbhGNQRN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 12:17:13 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:35306 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234172AbhGNQRL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Jul 2021 12:17:11 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1626279259; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=3m3ujPPUr/nzfZFzuGmZxwg1jheYBx6zT3o3L19ELMs=;
- b=NC8P3HKfgFlpN3Je4uR3pNRTE4LGSOUo3WCh1ozgUbG/MowjwnNjolZmYkZjLJ8mkAtH2VVR
- 5pU/QBu9oW5YRHBNJsrqN5eOXHseV7RikW1Tftbgcr/qzRmp32qSZNE2HpChd7Dys/iMfk1l
- dv/hXkO+ZjSdtyzRQ1Y0J9YBirg=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
- 60ef0d4696a66e66b2bb2364 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 14 Jul 2021 16:13:58
- GMT
-Sender: kathirav=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 1B18BC4323A; Wed, 14 Jul 2021 16:13:58 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: kathirav)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id E31AAC433F1;
-        Wed, 14 Jul 2021 16:13:55 +0000 (UTC)
+        id S229595AbhGNQkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 12:40:07 -0400
+Received: from mail-io1-f53.google.com ([209.85.166.53]:33754 "EHLO
+        mail-io1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229561AbhGNQkH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 12:40:07 -0400
+Received: by mail-io1-f53.google.com with SMTP id z11so2949777iow.0;
+        Wed, 14 Jul 2021 09:37:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=E4AvJhetNwASZem5dl8Fp/vANmJkc1r/xjwo+QbtJNI=;
+        b=SmxSX7dN7b+AMmVcxi63JWOF+vk+g6OW4+pZzEnkpfvVC67rxMcoPH+H47JVL6TpaL
+         eiFMG0K4LRp26bIofw67PIuY7bpTVbvn8AE0z3ImZjYTHrmVr7aUun0GW8tCZR65JDR4
+         gGPf4rcSUiagovs1RHrf1rWqOi6LP9ot8iTWy+pf1Go3BGqoxHOgwLIQg3vMP+2T1+la
+         eG5/HNcL1Afzbx9fVnAuFXdjIfgeRh7eXK5/mjT3YkPYgxN86aABirfjm7yhl/ICt0iL
+         f2jvZnMlZZ4bGOsl5V/SUd/HGVmigzO28rVR028ekKHwVN1+cN/Kj/o2BaO5jvbNL0FU
+         ZcAA==
+X-Gm-Message-State: AOAM532l7INibQWErnJNbwtgMUrqoem3OXhYT3p+Q6VVW5rSIFV7TGqW
+        QmIocaKj2kH3v3ixDla94w==
+X-Google-Smtp-Source: ABdhPJyyqzjI4orQEKBGudclxA6i5CqYo1oBoYaIfnzXMXkj0ILABCTs+SeLuzpf8Is17w4C3VeFtg==
+X-Received: by 2002:a02:ad08:: with SMTP id s8mr9861761jan.40.1626280634475;
+        Wed, 14 Jul 2021 09:37:14 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id r1sm1078472ilt.37.2021.07.14.09.37.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jul 2021 09:37:13 -0700 (PDT)
+Received: (nullmailer pid 2719225 invoked by uid 1000);
+        Wed, 14 Jul 2021 16:37:10 -0000
+Date:   Wed, 14 Jul 2021 10:37:10 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     David Airlie <airlied@linux.ie>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Shawn Guo <shawnguo@kernel.org>,
+        dri-devel@lists.freedesktop.org,
+        Fabio Estevam <festevam@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: display: simple: add some Logic
+ Technologies and Multi-Inno panels
+Message-ID: <20210714163710.GA2718995@robh.at.kernel.org>
+References: <20210714045349.10963-1-o.rempel@pengutronix.de>
+ <20210714045349.10963-2-o.rempel@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 14 Jul 2021 21:43:55 +0530
-From:   Kathiravan T <kathirav@codeaurora.org>
-To:     Baruch Siach <baruch@tkos.co.il>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine-K?= =?UTF-8?Q?=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Balaji Prakash J <bjagadee@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Marko <robert.marko@sartura.hr>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 1/4] arm64: dts: ipq6018: correct TCSR block area
-In-Reply-To: <f79128fa287e37ee59cb03ae04b319ecb3d68c29.1626176145.git.baruch@tkos.co.il>
-References: <f79128fa287e37ee59cb03ae04b319ecb3d68c29.1626176145.git.baruch@tkos.co.il>
-Message-ID: <6c28d9dbf5d3a4d7c543fc7b0308eb20@codeaurora.org>
-X-Sender: kathirav@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210714045349.10963-2-o.rempel@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-07-13 17:05, Baruch Siach wrote:
-> According to Bjorn Andersson[1], &tcsr_q6 base is 0x01937000 with size
-> 0x21000. Adjust qcom,halt-regs offsets (add 0x8000) to match the new
-> syscon base.
+On Wed, 14 Jul 2021 06:53:46 +0200, Oleksij Rempel wrote:
+> Add Logictechno and Multi-Inno panels:
+> - Logic Technologies LTTD800x480 L2RT 7" 800x480 TFT Resistive Touch Module
+> - Logic Technologies LTTD800480070-L6WH-RT 7” 800x480 TFT Resistive Touch Module
+> - Multi-Inno Technology Co.,Ltd MI1010AIT-1CP 10.1" 1280x800 LVDS IPS Cap Touch Mod.
 > 
-> [1] https://lore.kernel.org/r/YLgO0Aj1d4w9EcPv@yoga
-> 
-> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 > ---
-> v5: New patch in this series
-> ---
->  arch/arm64/boot/dts/qcom/ipq6018.dtsi | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+>  .../devicetree/bindings/display/panel/panel-simple.yaml     | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> index 6ee7b99c21ec..72ac36c1be57 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> @@ -270,9 +270,9 @@ tcsr_mutex_regs: syscon@1905000 {
->  			reg = <0x0 0x01905000 0x0 0x8000>;
->  		};
-> 
-> -		tcsr_q6: syscon@1945000 {
-> +		tcsr_q6: syscon@1937000 {
 
-We can remove the q6 reference and make it as just 'tcsr'?
 
->  			compatible = "syscon";
-> -			reg = <0x0 0x01945000 0x0 0xe000>;
-> +			reg = <0x0 0x01937000 0x0 0x21000>;
->  		};
-> 
->  		blsp_dma: dma-controller@7884000 {
-> @@ -615,7 +615,7 @@ q6v5_wcss: remoteproc@cd00000 {
->  			clocks = <&gcc GCC_PRNG_AHB_CLK>;
->  			clock-names = "prng";
-> 
-> -			qcom,halt-regs = <&tcsr_q6 0xa000 0xd000 0x0>;
-> +			qcom,halt-regs = <&tcsr_q6 0x12000 0x15000 0x8000>;
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
 
-This seems to be not correct. 0x01945000 - 0x01937000 = 0xE000 but here 
-the values are adjusted with 0x8000 not with 0xE000.
+If a tag was not added on purpose, please state why and what changed.
 
-> 
->  			qcom,smem-states = <&wcss_smp2p_out 0>,
->  					   <&wcss_smp2p_out 1>;
-
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
-member of Code Aurora Forum, hosted by The Linux Foundation
