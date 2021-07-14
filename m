@@ -2,90 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C01E73C9135
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 22:04:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9050A3C9180
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 22:05:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233967AbhGNT6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 15:58:55 -0400
-Received: from mail-io1-f54.google.com ([209.85.166.54]:44911 "EHLO
-        mail-io1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241913AbhGNTyv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 15:54:51 -0400
-Received: by mail-io1-f54.google.com with SMTP id v26so3603144iom.11;
-        Wed, 14 Jul 2021 12:51:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=JdBJNAtYvBdjGt7vqYO3Z871VY9xVAV5SBNAA/ScJgk=;
-        b=Iz0cgX5Euf6vI1E3J5bIqggaazD8t9lDsiGC0rN8o1Rjm7+nSv3l59FbCHsP0w4OrK
-         nRI0bifTxroUwXoH/e0vxP9iSn/wy9oLJj1ohTM1pCIhz8jCFllCXMBQTXP4odGLgeON
-         V6QnF15g/UCKtdvlhAojKPcXbtIqDi9z636PzVpbPme8MWZhG2FvvXkNB+y1zKehoGvS
-         a14MzW0Sf6VxmIm2hsAE3kuY/NGFEwU+0KvfSbN012dKQmlpNvBb1Oz2Parn4Vg6+noT
-         ppEs/lGsV3crT+w/l30XSTRKy4+yAr5qsBqpzypmk7ztRqZFsZx5w/QQ17T6CrFi29sE
-         w9Bg==
-X-Gm-Message-State: AOAM532go0EjB+zaZnyfqQL1Lgl0tpeWFxlE8dYGGcFg86JZDlrEwAm0
-        aeDIOTMal+g+FtlxxekADA==
-X-Google-Smtp-Source: ABdhPJztT4eyiIkF00BNIDS67g07hFOMZlkoZzL0+Dum9aBnIYEwwjrOIduGi/sgiIaXyoV76PYBQA==
-X-Received: by 2002:a05:6638:1350:: with SMTP id u16mr4483881jad.19.1626292318228;
-        Wed, 14 Jul 2021 12:51:58 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id p21sm1853042iog.37.2021.07.14.12.51.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jul 2021 12:51:57 -0700 (PDT)
-Received: (nullmailer pid 3286595 invoked by uid 1000);
-        Wed, 14 Jul 2021 19:51:54 -0000
-Date:   Wed, 14 Jul 2021 13:51:54 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Michael Srba <Michael.Srba@seznam.cz>,
-        Mark Brown <broonie@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        phone-devel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: input/ts/zinitix: Convert to YAML, fix
- and extend
-Message-ID: <20210714195154.GA3286486@robh.at.kernel.org>
-References: <20210625113435.2539282-1-linus.walleij@linaro.org>
+        id S240129AbhGNUCi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 16:02:38 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:43942 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S242214AbhGNUAV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Jul 2021 16:00:21 -0400
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1m3l0X-0007dL-3M; Wed, 14 Jul 2021 21:57:25 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     cl@rock-chips.com, lee.jones@linaro.org
+Cc:     robh+dt@kernel.org, jbx6244@gmail.com, zhangqing@rock-chips.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Liang Chen <cl@rock-chips.com>
+Subject: Re: [PATCH v1 2/3] dt-binding: mfd: syscon: add rk3568 QoS register compatible
+Date:   Wed, 14 Jul 2021 21:57:24 +0200
+Message-ID: <5440081.dumfJixkPq@diego>
+In-Reply-To: <20210624114719.1685-3-cl@rock-chips.com>
+References: <20210624114719.1685-1-cl@rock-chips.com> <20210624114719.1685-3-cl@rock-chips.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210625113435.2539282-1-linus.walleij@linaro.org>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 25 Jun 2021 13:34:34 +0200, Linus Walleij wrote:
-> This converts the Zinitix BT4xx and BT5xx touchscreen bindings to YAML, fix
-> them up a bit and extends them.
+Am Donnerstag, 24. Juni 2021, 13:47:18 CEST schrieb cl@rock-chips.com:
+> From: Liang Chen <cl@rock-chips.com>
 > 
-> We list all the existing BT4xx and BT5xx components with compatible strings.
-> These are all similar, use the same bindings and work in similar ways.
+> Document rk3568 compatible for QoS registers.
 > 
-> We rename the supplies from the erroneous vdd/vddo to the actual supply
-> names vcca/vdd as specified on the actual component. It is long established
-> that supplies shall be named after the supply pin names of a component.
-> The confusion probably stems from that in a certain product the rails to the
-> component were named vdd/vddo. Drop some notes on how OS implementations should
-> avoid confusion by first looking for vddo, and if that exists assume the
-> legacy binding pair and otherwise use vcca/vdd.
-> 
-> Add reset-gpios as sometimes manufacturers pulls a GPIO line to the reset
-> line on the chip.
-> 
-> Add optional touchscreen-fuzz-x and touchscreen-fuzz-y properties.
-> 
-> Cc: Mark Brown <broonie@kernel.org>
-> Cc: Michael Srba <Michael.Srba@seznam.cz>
-> Cc: phone-devel@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Liang Chen <cl@rock-chips.com>
+
+Acked-by: Heiko Stuebner <heiko@sntech.de>
+
+@Lee: I guess this one is yours :-)
+
+
 > ---
->  .../input/touchscreen/zinitix,bt400.yaml      | 115 ++++++++++++++++++
->  .../bindings/input/touchscreen/zinitix.txt    |  40 ------
->  2 files changed, 115 insertions(+), 40 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/zinitix,bt400.yaml
->  delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/zinitix.txt
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> index f14ae6da0068..206f73ffc249 100644
+> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> @@ -48,6 +48,7 @@ properties:
+>                - rockchip,rk3066-qos
+>                - rockchip,rk3288-qos
+>                - rockchip,rk3399-qos
+> +              - rockchip,rk3568-qos
+>                - samsung,exynos3-sysreg
+>                - samsung,exynos4-sysreg
+>                - samsung,exynos5-sysreg
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+
+
+
