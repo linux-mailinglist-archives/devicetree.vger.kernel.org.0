@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7881F3C8FCB
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:59:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 699363C8FD1
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:59:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240399AbhGNTxS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 15:53:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45484 "EHLO mail.kernel.org"
+        id S239799AbhGNTxW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 15:53:22 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45586 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241164AbhGNTuZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Jul 2021 15:50:25 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0418C613F1;
-        Wed, 14 Jul 2021 19:47:06 +0000 (UTC)
+        id S241181AbhGNTu0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Jul 2021 15:50:26 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 88A84613E4;
+        Wed, 14 Jul 2021 19:47:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626292027;
-        bh=HG60cVCT1JCULS2JgAMUWLUPnq+0jbxwrhCzMn1w3TY=;
+        s=k20201202; t=1626292030;
+        bh=SQaQxcoYPD2WkNoTMDKDF1nlZWKMRoqYQhtnlrvxRHw=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=V2vpaD/5yE4/Kn5Nhy1S5l/fxYpNF3V00lzUnnL8x7qru+2Wzq1bOJgJDx/3aN/03
-         Fz6Fy80ctqooeLvhPX0GNYWwC+UBCFYV75tWEc4YzwGkYzdqQ9FExUzGrslXlmOIK+
-         SqblS9FXyGkQosNxkaclUz8iTqZrHZd/YPBzIrTmhtAJwzW1mCG7gKR9iCY2F7jAS6
-         JXH1AmlmEEGV6mYhOGr0VFSke9Wx02XRPlSAzSjvyCBIF65Sk9YnFpTaqAu7zu8l6Y
-         uAKjlfW15i4w82R2fKbZ1WZnw7CKO+XSZAPhb2JeewGAIwSQShQfCluVs51AJMTCvC
-         Fxw9FINoemmLw==
+        b=SPZHnanGevVDraDPERweTW2DJ0soxpaFZizWb2U/mrpZyoGaXMRQbi1Kwx93YoYbI
+         OpiRFEgDr0tT2z7Bl/QPvLKiw/n4OpPmvlOK6V/yTjGb9UWlkFSdZ4r++vG+Ep44Mk
+         MYquQ5DS7J5EUpZOTDCS85NN+9OJiHQae0EtgnIWdSLCd2JIdKdafB34Bd4Lavmv6z
+         5R+C1pig6MYEJLHB3eWp+CnNzosXo7DMtskwyzc4mX8OocahjBmkQDDmA+NUZ1ld5I
+         5KZPJa8cxV1xViCW9f/d4+PZzIhPXQieB1dKu+WXec5eab4CUwioaHGyJv0Xw3Ot5y
+         2UMJDdgl3LJ/Q==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.19 29/39] ARM: dts: stm32: move stmmac axi config in ethernet node on stm32mp15
-Date:   Wed, 14 Jul 2021 15:46:14 -0400
-Message-Id: <20210714194625.55303-29-sashal@kernel.org>
+Cc:     Mian Yousaf Kaukab <ykaukab@suse.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sasha Levin <sashal@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 31/39] arm64: dts: ls208xa: remove bus-num from dspi node
+Date:   Wed, 14 Jul 2021 15:46:16 -0400
+Message-Id: <20210714194625.55303-31-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210714194625.55303-1-sashal@kernel.org>
 References: <20210714194625.55303-1-sashal@kernel.org>
@@ -43,51 +43,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alexandre Torgue <alexandre.torgue@foss.st.com>
+From: Mian Yousaf Kaukab <ykaukab@suse.de>
 
-[ Upstream commit fb1406335c067be074eab38206cf9abfdce2fb0b ]
+[ Upstream commit 8240c972c1798ea013cbb407722295fc826b3584 ]
 
-It fixes the following warning seen running "make dtbs_check W=1"
+On LS2088A-RDB board, if the spi-fsl-dspi driver is built as module
+then its probe fails with the following warning:
 
-Warning (simple_bus_reg): /soc/stmmac-axi-config: missing or empty
-reg/ranges property
+[   10.471363] couldn't get idr
+[   10.471381] WARNING: CPU: 4 PID: 488 at drivers/spi/spi.c:2689 spi_register_controller+0x73c/0x8d0
+...
+[   10.471651] fsl-dspi 2100000.spi: Problem registering DSPI ctlr
+[   10.471708] fsl-dspi: probe of 2100000.spi failed with error -16
 
-Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
+Reason for the failure is that bus-num property is set for dspi node.
+However, bus-num property is not set for the qspi node. If probe for
+spi-fsl-qspi happens first then id 0 is dynamically allocated to it.
+Call to spi_register_controller() from spi-fsl-dspi driver then fails.
+Since commit 29d2daf2c33c ("spi: spi-fsl-dspi: Make bus-num property
+optional") bus-num property is optional. Remove bus-num property from
+dspi node to fix the issue.
+
+Signed-off-by: Mian Yousaf Kaukab <ykaukab@suse.de>
+Signed-off-by: Shawn Guo <shawnguo@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/stm32mp157c.dtsi | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/stm32mp157c.dtsi b/arch/arm/boot/dts/stm32mp157c.dtsi
-index c50c36baba75..4278a4b22860 100644
---- a/arch/arm/boot/dts/stm32mp157c.dtsi
-+++ b/arch/arm/boot/dts/stm32mp157c.dtsi
-@@ -964,12 +964,6 @@ crc1: crc@58009000 {
- 			status = "disabled";
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+index ebe0cd4bf2b7..8c22ce904e65 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+@@ -479,7 +479,6 @@ dspi: spi@2100000 {
+ 			clocks = <&clockgen 4 3>;
+ 			clock-names = "dspi";
+ 			spi-num-chipselects = <5>;
+-			bus-num = <0>;
  		};
  
--		stmmac_axi_config_0: stmmac-axi-config {
--			snps,wr_osr_lmt = <0x7>;
--			snps,rd_osr_lmt = <0x7>;
--			snps,blen = <0 0 0 0 16 8 4>;
--		};
--
- 		ethernet0: ethernet@5800a000 {
- 			compatible = "st,stm32mp1-dwmac", "snps,dwmac-4.20a";
- 			reg = <0x5800a000 0x2000>;
-@@ -992,6 +986,12 @@ ethernet0: ethernet@5800a000 {
- 			snps,axi-config = <&stmmac_axi_config_0>;
- 			snps,tso;
- 			status = "disabled";
-+
-+			stmmac_axi_config_0: stmmac-axi-config {
-+				snps,wr_osr_lmt = <0x7>;
-+				snps,rd_osr_lmt = <0x7>;
-+				snps,blen = <0 0 0 0 16 8 4>;
-+			};
- 		};
- 
- 		usbh_ohci: usbh-ohci@5800c000 {
+ 		esdhc: esdhc@2140000 {
 -- 
 2.30.2
 
