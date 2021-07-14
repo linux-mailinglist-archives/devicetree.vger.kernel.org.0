@@ -2,80 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3143E3C87EF
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 17:47:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 941303C87F5
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 17:50:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239674AbhGNPuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 11:50:46 -0400
-Received: from mail-il1-f181.google.com ([209.85.166.181]:35718 "EHLO
-        mail-il1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232318AbhGNPuq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 11:50:46 -0400
-Received: by mail-il1-f181.google.com with SMTP id a11so2061267ilf.2;
-        Wed, 14 Jul 2021 08:47:54 -0700 (PDT)
+        id S239608AbhGNPwx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 11:52:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51654 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232318AbhGNPwx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 11:52:53 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84154C06175F
+        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 08:50:01 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id v6so4391960lfp.6
+        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 08:50:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=HuXyhV/rL3PyLi43cKtfEQ2MV0dm3XNpKrIgVwhAo/g=;
+        b=O+eL5JfgUWl3FK4aDNAd+bfpq+d1EBxA6jE62lV7yCdUkQ3J1+i/SIxkjuNanOCJoK
+         4Xc+nH+p0h/QuPmLQPDk44OT5tdfacRRetqXWOEe//JPJG1VwK0vCmXBG8uAmSLBWm1X
+         GGC/H8p/3DARC1NznBRiF2PhLmOhPZuM+E8q6B/LysmqA3Mgo7fymui7wtm8ahIXbwr2
+         /eaz6ulg9XGKakQMXlUsFwItaaBMxhQSBb0Mv5Krh3puatHRztJLiF6xkw4tZkJp0Mmd
+         85q+amkFusTapVyIDFGIvYXT2fph+RsYRRiWtuV05ChZxfqcAPDSKKCd8YFjBCZRjwqN
+         XAng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=sR0t2+c6Dwhb8bFvG4vyou+fHYcdXM7gxmXBgVkYtr0=;
-        b=Uxo4SZK9qnQK7L5rGSCdwDQ6ZtGSsCzJf3dpZAYnTLCzUbA07OyvT+f9FpoMPbAN3x
-         qPNgDY89fC+xqRvr3vabqeGv3eYvPzUskltRiScOmtLaGjaw/7FAs+4tiTBfD4fZVS/n
-         0SSAnVEtgsf3PLDD2ycyL2EJRxfRs+yaQbdKJLWpuhoDWZ+320rbNZqrhskwHQb6v8P1
-         lmsEx1LyGBqH8uWxmYnQSpt7XRgJ4wXMe1a8Mcor7UxLa5p3d5e9pb/xmLVez3WlG0t9
-         B66sQNgyJvTltHlFTUhFhEj+imuIQOGdnt8eaMV9+uPx+yid51zTweYfOwIC9Os4mrC7
-         qY9w==
-X-Gm-Message-State: AOAM533BDvQkWCJ8OabfR92yOUjJgvyHE2DVzdNx2ba6+jgrEX2xXZmz
-        0L9Hgv+K2Vuyxz3ln+M8YA09HHoQ6w==
-X-Google-Smtp-Source: ABdhPJy3NhGyKKGahaIaf0Q7iePgPaRsX7TBvrkcY9MyS6ZiEOuVNk5khOJi7bUZXLs2g+c8YbBaYw==
-X-Received: by 2002:a92:8707:: with SMTP id m7mr7175288ild.177.1626277674594;
-        Wed, 14 Jul 2021 08:47:54 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id m184sm1399141ioa.17.2021.07.14.08.47.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jul 2021 08:47:53 -0700 (PDT)
-Received: (nullmailer pid 2636816 invoked by uid 1000);
-        Wed, 14 Jul 2021 15:47:51 -0000
-Date:   Wed, 14 Jul 2021 09:47:51 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>
-Subject: Re: [PATCH 01/15] dt-bindings: iio: dac: adi,ad5421: Add missing
- binding document.
-Message-ID: <20210714154751.GA2636782@robh.at.kernel.org>
-References: <20210627163244.1090296-1-jic23@kernel.org>
- <20210627163244.1090296-2-jic23@kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=HuXyhV/rL3PyLi43cKtfEQ2MV0dm3XNpKrIgVwhAo/g=;
+        b=m/J6ESjweLMEiQMLlmiyS0hV5QomTHIF93gbrj/fWCZgE3/ZHrHHR0M3P7V01mS63G
+         jWzCbTq12kYUMKE557352uc+LpUgEkEVmP9sF5rpc5qKBJ0uO6LeBm+c5RoJHE5NvQe/
+         s8UtIHpmly2oMI9onSL3xGP/Gf9bW7VBZRkJ/a1gCthl1Jl4OSaIKP8pM2zLsAcmQtoU
+         2TthEH60lWY2Q3XsikcFYNTYt5yy7Mg3YtswPQfyL9yK+INp/rpXiyb2JUqB3SwP67NN
+         DPyT8ynDOES/F+xsHtL81o+IaRgWRQpVAXLRv/jMB4FPkKbEskltuic76ksEkIEKOaRE
+         Xulg==
+X-Gm-Message-State: AOAM530yJgMSBJY9UAVnsiPYUqQW5WE9oOk128DH+HtzlRdxNTaxxveA
+        sHf1TMFtZgVnRyyuoFxuw5lpg4m9gKp7lanDcoA45w==
+X-Google-Smtp-Source: ABdhPJymcEfAeRu0lBLQ1JQvUd10cmfracwv0jyItvjzzrZi+zJAyh/PuxFsLdriHMDsGDBzpRKTs3YiNdx8WsPuNOQ=
+X-Received: by 2002:a05:6512:3696:: with SMTP id d22mr5358270lfs.586.1626277799889;
+ Wed, 14 Jul 2021 08:49:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210627163244.1090296-2-jic23@kernel.org>
+References: <20210703173456.4002549-1-linus.walleij@linaro.org> <20210712145749.GA1911897@robh.at.kernel.org>
+In-Reply-To: <20210712145749.GA1911897@robh.at.kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 14 Jul 2021 17:49:48 +0200
+Message-ID: <CACRpkdZDLSA5YJtc3XCkfPZUNqo1MOWLBwVDGQ4vN8cDXD3aYg@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: hwmon: Convert NTC thermistor to YAML
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        linux-hwmon@vger.kernel.org,
+        Javier Martinez Canillas <javier@dowhile0.org>,
+        Johannes Pointner <johannes.pointner@gmail.com>,
+        Peter Rosin <peda@axentia.se>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 27 Jun 2021 17:32:30 +0100, Jonathan Cameron wrote:
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> 
-> This is documented what is currently the case.  There are a number
-> of things that could be added, but I don't feel the binding elements
-> are obvious enough to document without a driver implementation to
-> verify they are good choices.
-> 
-> These include
-> * Range
-> * Regulators, both input and potentially output (if the loop being
->   driven is ever described).
-> 
-> I've listed Lars and myself as maintainers of the binding, but if
-> anyone else wants to be added they would be most welcome!
-> 
-> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Cc: Lars-Peter Clausen <lars@metafoo.de>
-> ---
->  .../bindings/iio/dac/adi,ad5421.yaml          | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
-> 
+On Mon, Jul 12, 2021 at 4:57 PM Rob Herring <robh@kernel.org> wrote:
+> On Sat, Jul 03, 2021 at 07:34:56PM +0200, Linus Walleij wrote:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> > +  compatible:
+> > +    oneOf:
+> > +      - const: epcos,b57330v2103
+> > +      - const: epcos,b57891s0103
+> > +      - const: murata,ncp15wb473
+> > +      - const: murata,ncp18wb473
+> > +      - const: murata,ncp21wb473
+> > +      - const: murata,ncp03wb473
+> > +      - const: murata,ncp15wl333
+> > +      - const: murata,ncp03wf104
+> > +      - const: murata,ncp15xh103
+>
+> All these can be 1 enum.
+
+Yes that works fine.
+
+> > +      # Deprecated "ntp," compatible strings
+> > +      - const: ntc,ncp15wb473
+> > +        deprecated: true
+> > +      - const: ntc,ncp18wb473
+> > +        deprecated: true
+> > +      - const: ntc,ncp21wb473
+> > +        deprecated: true
+> > +      - const: ntc,ncp03wb473
+> > +        deprecated: true
+> > +      - const: ntc,ncp15wl333
+> > +        deprecated: true
+>
+> And these too.
+
+How? I'm lost here.
+
+This:
+
+  compatible:
+    enum:
+      - epcos,b57330v2103
+      - epcos,b57891s0103
+      - murata,ncp15wb473
+      - murata,ncp18wb473
+      - murata,ncp21wb473
+      - murata,ncp03wb473
+      - murata,ncp15wl333
+      - murata,ncp03wf104
+      - murata,ncp15xh103
+      # Deprecated "ntp," compatible strings
+      - ntc,ncp15wb473
+        deprecated: true
+      - ntc,ncp18wb473
+        deprecated: true
+      - ntc,ncp21wb473
+        deprecated: true
+      - ntc,ncp03wb473
+        deprecated: true
+      - ntc,ncp15wl333
+        deprecated: true
+
+Yields this:
+
+uamel.yaml.scanner.ScannerError: mapping values are not allowed here
+  in "<unicode string>", line 81, column 19:
+            deprecated: true
+                      ^ (line: 81)
+make[3]: *** [../Documentation/devicetree/bindings/Makefile:20:
+Documentation/devicetree/bindings/hwmon/ntc-thermistor.example.dts]
+Error 1
+make[3]: *** Deleting file
+'Documentation/devicetree/bindings/hwmon/ntc-thermistor.example.dts'
+../Documentation/devicetree/bindings/hwmon/ntc-thermistor.yaml:81:19:
+[error] syntax error: mapping values are not allowed here (syntax)
+
+This does not happen with oneOf const:s.
+
+Yours,
+Linus Walleij
