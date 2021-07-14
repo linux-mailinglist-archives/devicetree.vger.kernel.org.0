@@ -2,95 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6534E3C85FB
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 16:21:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 643643C8634
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 16:32:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232265AbhGNOXz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 10:23:55 -0400
-Received: from mga14.intel.com ([192.55.52.115]:33729 "EHLO mga14.intel.com"
+        id S232128AbhGNOew (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 10:34:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54224 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232097AbhGNOXx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Jul 2021 10:23:53 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10044"; a="210170332"
-X-IronPort-AV: E=Sophos;i="5.84,239,1620716400"; 
-   d="scan'208";a="210170332"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2021 07:21:01 -0700
-X-IronPort-AV: E=Sophos;i="5.84,239,1620716400"; 
-   d="scan'208";a="413300245"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2021 07:20:58 -0700
-Received: from andy by smile with local (Exim 4.94.2)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1m3fkq-00DLq4-QY; Wed, 14 Jul 2021 17:20:52 +0300
-Date:   Wed, 14 Jul 2021 17:20:52 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+        id S231994AbhGNOev (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Jul 2021 10:34:51 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 794F6611C0;
+        Wed, 14 Jul 2021 14:31:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1626273120;
+        bh=yOtNr7+suOgCN8lqCfrgSJAyiWcSVdSY6iRNrdbFZhk=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=CUy3JmLCk2IixwQv/YKxv0BOKrIP0Wng778B2qv0WWTi1D3mA4pwYuluzh1lT5sSH
+         pUKvskeYOIZERqRWJ4F6TBvBz7GPpeJeRDTBiSLHmvu09MepIoWnlyu5zdfnHNaWZo
+         jOHlJuG/JLPdGOSNyPSPU3s5SAIxvf+xEzmrCVHmVs4bh4pimol5Bi/q36n6KSmeKr
+         FC+9YwtZ2RvfPaaVo/ekzvTcf5A8vKqP8ZIjegfPhq0vgOfQXdg7zoTGqVERwkf1to
+         C/DHZQjLJw8xnjxNETTkpYJc2b8fRhIfRfAFRdfysueWqUmefn2K7e7akTXXzdqRpZ
+         c/7Rh0WShWwhg==
+Date:   Wed, 14 Jul 2021 16:31:54 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 To:     Rob Herring <robh@kernel.org>
-Cc:     shruthi.sanil@intel.com,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
+Cc:     Bjorn Helgaas <helgaas@kernel.org>, Linuxarm <linuxarm@huawei.com>,
+        mauro.chehab@huawei.com, Manivannan Sadhasivam <mani@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, kris.pan@linux.intel.com,
-        Mark Gross <mgross@linux.intel.com>,
-        srikanth.thokala@intel.com,
-        "Raja Subramanian, Lakshmi Bai" 
-        <lakshmi.bai.raja.subramanian@intel.com>,
-        mallikarjunappa.sangannavar@intel.com
-Subject: Re: [PATCH v4 1/2] dt-bindings: timer: Add bindings for Intel Keem
- Bay SoC Timer
-Message-ID: <YO7yxEgdzobD1jeu@smile.fi.intel.com>
-References: <20210628061410.8009-1-shruthi.sanil@intel.com>
- <20210628061410.8009-2-shruthi.sanil@intel.com>
- <20210714024756.GA1355219@robh.at.kernel.org>
- <YO6ome7Opd6kjqua@smile.fi.intel.com>
- <CAL_Jsq+4vEfL5ZQzREXU7Mo1AUx1ZbdHTmJDwauEL890O7S7qg@mail.gmail.com>
+        linux-phy@lists.infradead.org
+Subject: Re: [PATCH v5 2/8] dt-bindings: phy: Add bindings for HiKey 970
+ PCIe PHY
+Message-ID: <20210714163154.02e7d5b9@coco.lan>
+In-Reply-To: <CAL_JsqJehoGakG1kXs8XC_c4UHfVE9oF2M3Ww9eizCa_Jn_TDQ@mail.gmail.com>
+References: <cover.1626157454.git.mchehab+huawei@kernel.org>
+        <baa7e71e13953b28a11fffdcef35195099feb7fd.1626157454.git.mchehab+huawei@kernel.org>
+        <20210714022649.GA1324196@robh.at.kernel.org>
+        <20210714091435.322d68b1@coco.lan>
+        <CAL_JsqJehoGakG1kXs8XC_c4UHfVE9oF2M3Ww9eizCa_Jn_TDQ@mail.gmail.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+4vEfL5ZQzREXU7Mo1AUx1ZbdHTmJDwauEL890O7S7qg@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 14, 2021 at 08:07:44AM -0600, Rob Herring wrote:
-> On Wed, Jul 14, 2021 at 3:04 AM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
-> > On Tue, Jul 13, 2021 at 08:47:56PM -0600, Rob Herring wrote:
-> > > On Mon, Jun 28, 2021 at 11:44:09AM +0530, shruthi.sanil@intel.com wrote:
+Em Wed, 14 Jul 2021 08:17:05 -0600
+Rob Herring <robh@kernel.org> escreveu:
+
+> On Wed, Jul 14, 2021 at 1:14 AM Mauro Carvalho Chehab
+> <mchehab+huawei@kernel.org> wrote:
 > >
-> > > > +  The parent node represents the common general configuration details and
-> > > > +  the child nodes represents the counter and timers.
+> > Em Tue, 13 Jul 2021 20:26:49 -0600
+> > Rob Herring <robh@kernel.org> escreveu:
+> >  
+> > > On Tue, Jul 13, 2021 at 08:28:35AM +0200, Mauro Carvalho Chehab wrote:  
+> >  
+> > > > +  reset-gpios:
+> > > > +    description: PCI PERST reset GPIOs
+> > > > +    maxItems: 4  
 > > >
-> > > I don't think all the child nodes are necessary. Are the counters and
-> > > timers configurable (say on another SoC)? If not, then a single node
-> > > here would suffice.
+> > > Hiding the 4 ports in the phy?  
 > >
-> > If you may notice the children may have different properties that can't be
-> > known ahead, such as IRQ line. On some platforms it may be this mapping, on
-> > another it maybe different.
+> > Rob,
+> >
+> > I'm not trying to hide anything.
+> >
+> > There are several differences with regards to how PERST# is handled between
+> > HiKey 960 and HiKey 970.
+> >
+> > From hardware perspective, you can see the schematics of both boards:
+> >
+> >         https://github.com/96boards/documentation/raw/master/consumer/hikey/hikey960/hardware-docs/HiKey960_SoC_Reference_Manual.pdf
+> >         https://www.96boards.org/documentation/consumer/hikey/hikey970/hardware-docs/files/hikey970-schematics.pdf
+> >
+> > The 960 PHY has the SoC directly connected to a PCIE M.2 slot
+> > (model 10130616) without any external bridge chipset. It uses a single
+> > GPIO (GPIO 089) for the PERST# signal, connected via a voltage converter
+> > (from 1.8V to 3.3V).
+> >
+> >         $ lspci
+> >         00:00.0 PCI bridge: Huawei Technologies Co., Ltd. Device 3660 (rev 01)
+> >
+> > The 970 PHY has an external PCI bridge chipset (PLX Technology PEX 8606).
+> > Besides the bridge, the hardware comes with an Ethernet PCI adapter, a
+> > M.2 slot and a mini-PCIe connector. Each one with its own PERST# signal,
+> > mapped to different GPIO pins, and each one using its own voltage
+> > converter.
+> >
+> >         $ lspci
+> >         00:00.0 PCI bridge: Huawei Technologies Co., Ltd. Device 3670 (rev 01)
+> >         01:00.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+> >         02:01.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+> >         02:04.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+> >         02:05.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+> >         02:07.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+> >         02:09.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+> >         06:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller (rev 07)
+> >
+> > On other words, there are 4 GPIOs mapped to different PERST# pins in
+> > the hardware:
+> >
+> > - GPIO 56 is connected to the PERST# pin at PEX 8606;
+> > - GPIO 25 is connected to the PERST# pin at the M.2 slot;
+> > - GPIO 220 is connected to the PERST# pin at the PCIe mini slot;
+> > - GPIO 203 is connected to the PERST# pin at the Ethernet chipset.
+> >
+> > Maybe due to different electrical requirements, the hardware design
+> > use different GPIOs instead of feeding them altogether.
+> >
+> > Anyway, the fact is that the PHY on 970 has 4 different GPIOs that are
+> > need in order for the hardware to work. and this is specific to this
+> > particular PHY.  
 > 
-> What I noticed is it's all the same clock and 1 interrupt for each
-> timer can be just a single 'interrupts' property with 8 entries.
+> This hierarchy could be done on any board. It has nothing to do with the PHY.
 
-This may work.
+True, but right now, the pci-bus.yaml prevents it, as it allows just 
+one reset GPIO[1]:
 
-> Is there a platform that's different or that's a hypothetical? Because
-> hypothetically, every aspect of every IP could change. But we don't
-> try to parameterize everything in DT. It's a judgement call between
-> implying things from compatible and explicit DT properties.
-> 
-> > With all respect for the simplification I think we can't do it here.
-> 
-> You can. Any data in DT could be in the kernel. It's a question of
-> balance, not can or can't.
+  reset-gpios:
+    description: GPIO controlled connection to PERST# signal
+    maxItems: 1
 
-Not only, it's also matters of what exactly hardware is: 8 timers or timer with
-8 channels. If it's the former one, I prefer to have DT exactly like originally
-suggested, otherwise I will agree on your proposal.
+[1] https://github.com/robherring/dt-schema/blob/master/schemas/pci/pci-bus.yaml
 
--- 
-With Best Regards,
-Andy Shevchenko
+If the schema will be changed to allow multiple reset-gpios, It should
+be possible to keep this at the pcie-kirin.c driver with something like:
 
+	static int kirin_pcie_power_on(struct kirin_pcie *kirin_pcie)
+	{
+		int ret;
 
+		ret = phy_init(kirin_pcie->phy);
+		if (ret)
+			return ret;
+
+		ret = phy_power_on(kirin_pcie->phy);
+
+                /* perst assert Endpoints */
+                usleep_range(21000, 23000);
+                for (i = 0; i < phy->n_gpio_resets; i++) {
+                        ret = gpio_direction_output(phy->gpio_id_reset[i], 1);
+                        if (ret) {
+				phy_power_off(kirin_pcie->phy);
+                                return ret;
+			}
+                }
+                usleep_range(10000, 11000);
+
+		return phy_reset(kirin_pcie->phy);
+	}
+
+This would work for both 960 - where phy_reset() is not needed,
+and for 970, where it would set the eye diagram for the PHY.
+
+Should I send a patch for pci-bus.yaml via github?
+
+Thanks,
+Mauro
