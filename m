@@ -2,74 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BDDF3C8B7C
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:16:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 222893C8B7D
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:17:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229735AbhGNTTL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 15:19:11 -0400
-Received: from mail-il1-f171.google.com ([209.85.166.171]:41523 "EHLO
-        mail-il1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230185AbhGNTTK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 15:19:10 -0400
-Received: by mail-il1-f171.google.com with SMTP id p3so2674708ilg.8
-        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 12:16:18 -0700 (PDT)
+        id S230239AbhGNTTv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 15:19:51 -0400
+Received: from mail-io1-f41.google.com ([209.85.166.41]:46888 "EHLO
+        mail-io1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230185AbhGNTTu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 15:19:50 -0400
+Received: by mail-io1-f41.google.com with SMTP id p186so3471744iod.13
+        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 12:16:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=k6UdIsR9QWKyvUQsaj8l0q6rq6YbdNXchi5NiYB3pg8=;
-        b=t/ZoWAKnd6mjD0lYgMct4T5fJtnOOFKFI7oisS0N/rIYXAO83c0nRFvmIsYFBqFF9y
-         /6xToPeqSq3hEZErwRlF65ggzOXiYCLH4ESZSWWGmicsWTHgpsL+Y4+nXGCjMLNNhpG+
-         RliSnsyMtDPYMJuSWhpCzC7vig4LqzEftTrRdWXsxRFbYa/s3AmTjEGqPT+x1TnFSNDo
-         V7ZlHctOkZHoOa95/wxEN+Ww3i96HVFSYsGuqK0nUaWNycJihj+n4LrxLaKBRDsVNQns
-         Xker4AYjm7rpvxIY/RddHsFjgUocd1cNvMYyR2CNmcISRKBe5sNpcZwTDIU1WscAjrYP
-         sung==
-X-Gm-Message-State: AOAM5319AdZjdAi/2nD8MbtF9oBopO74gDrjYT7pJSfp+L1osso/33pb
-        sMrG2qRB8gIl87AdwTAUiQ==
-X-Google-Smtp-Source: ABdhPJxCPEFXChA6njG+04k5xO9/acW08GGVhpyGH9iOzo/SAFKCrF/sIwc/iq/VE2DME5e+oE3PfQ==
-X-Received: by 2002:a92:b748:: with SMTP id c8mr7764208ilm.302.1626290177918;
-        Wed, 14 Jul 2021 12:16:17 -0700 (PDT)
+        bh=5wDdV9LhVyBRNA3TMQrxpx1/Y5TKktPkFTbniEPr3dk=;
+        b=CDexufSmBNt8DNgHkmT9tFRW1raNOZLB+OgiMQRJQhr+xDgF+D1s9y+GtYeFJy1ht7
+         xHsVV/qP8uPrCW6LmgzF1XgyYgevZR16vK7SxIiSA3yWvUl6nea0+c4ag3gIOGo1o0Co
+         8iTZxhbn3nJrtGwR++AhNZqIM9BM06uZXvIbC2DtYIaWod7l24TW3wtjU3iR2cUNE8+z
+         UIH1kX1hzOdVnpKeNn2PWxCzn/JNk8/cc/AG/YsCsdt01vGxSoAf1uN61jjwEzB6I7ui
+         s0DqDbXq42+Gk/Wb7yGAP377O6CJHX7Tew7LdbL0jlWNXt3TpenaXoY05azTuWp/MEos
+         5/mQ==
+X-Gm-Message-State: AOAM530X3s4NBytwqcfFugyiTlk/qi3VOwzi4HKbfmgZ1exh2tZZWS6a
+        91m92wEz728rCFEnesP18A==
+X-Google-Smtp-Source: ABdhPJzmAN28wR2pS1YotRvUzFDvekH+cUPoPoIWuYwRgiJe0iw8k9q+St71oX1teh6AHEiqi4UzNw==
+X-Received: by 2002:a6b:c305:: with SMTP id t5mr8505787iof.202.1626290218660;
+        Wed, 14 Jul 2021 12:16:58 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id t11sm1665884ilj.63.2021.07.14.12.16.16
+        by smtp.gmail.com with ESMTPSA id b9sm1834656ilo.23.2021.07.14.12.16.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jul 2021 12:16:16 -0700 (PDT)
-Received: (nullmailer pid 2994093 invoked by uid 1000);
-        Wed, 14 Jul 2021 19:16:15 -0000
-Date:   Wed, 14 Jul 2021 13:16:15 -0600
+        Wed, 14 Jul 2021 12:16:58 -0700 (PDT)
+Received: (nullmailer pid 2998056 invoked by uid 1000);
+        Wed, 14 Jul 2021 19:16:56 -0000
+Date:   Wed, 14 Jul 2021 13:16:56 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Suman Anna <s-anna@ti.com>
-Cc:     Santosh Shilimkar <ssantosh@kernel.org>,
-        Jan Kiszka <jan.kiszka@siemens.com>,
-        devicetree@vger.kernel.org, Lokesh Vutla <lokeshvutla@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-arm-kernel@lists.infradead.org,
+Cc:     Jan Kiszka <jan.kiszka@siemens.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
         Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-Subject: Re: [PATCH 1/2] dt-bindings: soc: ti: pruss: Update bindings for K3
+        devicetree@vger.kernel.org, Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH] dt-bindings: irqchip: Update pruss-intc binding for K3
  AM64x SoCs
-Message-ID: <20210714191615.GA2994029@robh.at.kernel.org>
-References: <20210623165032.31223-1-s-anna@ti.com>
- <20210623165032.31223-2-s-anna@ti.com>
+Message-ID: <20210714191656.GA2997956@robh.at.kernel.org>
+References: <20210623170630.1430-1-s-anna@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210623165032.31223-2-s-anna@ti.com>
+In-Reply-To: <20210623170630.1430-1-s-anna@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 23 Jun 2021 11:50:31 -0500, Suman Anna wrote:
-> The K3 AM64x SoCs also have the Gigabit Ethernet capable PRU-ICSS IP
-> that is present on existing K3 AM65x and J721E SoCs (ICSSG). The IP
-> is similar to the ones used on K3 J721E or AM65x SR2.0 SoCs.
-> 
-> Update the PRUSS bindings for these ICSSG instances.
+On Wed, 23 Jun 2021 12:06:30 -0500, Suman Anna wrote:
+> The K3 AM64x SoCs also have a ICSSG IP that is similar to existing K3
+> AM65x and J721E SoCs. The ICSSG interrupt controller is identical to
+> that of the INTC on J721E SoCs, and supports 20 host interrupts and
+> 160 input events from various SoC interrupt sources. All the 8 output
+> host interrupts are routed to multiple entities though. Update the
+> PRUSS interrupt controller binding with this information, though the
+> same K3 compatible shall be used for the ICSSG INTC on AM64x SoCs.
 > 
 > Signed-off-by: Suman Anna <s-anna@ti.com>
 > ---
->  Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
+>  .../bindings/interrupt-controller/ti,pruss-intc.yaml          | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Applied, thanks!
