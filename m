@@ -2,74 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E776C3C912D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 22:04:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7CC43C9133
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 22:04:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239569AbhGNT6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 15:58:40 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49182 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241366AbhGNTwS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Jul 2021 15:52:18 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id CB81061408;
-        Wed, 14 Jul 2021 19:48:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626292122;
-        bh=hlH8BbQ65qD6St2GHLj3WZH2zz2r3k/1PkdScImkti8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=q+PEnQn5F4frtYwARcXX1AJGlmXJf0zFvkFGMR+o/PHDaqyelCrUuklutXGqEnsFE
-         riCjk6b0zQX9LOmVW9+5nIcQnGo08hwM8Al4OJly4SpP8RTrud6kCH+1v/ED3BABAy
-         tLygNvyIY/Ns+5NmJdJMd1mZ4HMoR9mkmFsPHgFrZek57XO06My3A0AO9IbavvGDZB
-         y1teI4A1GVjJ1dNNNGVZKJ11Ac1EevLvSZwhiXC38aoWMZwCAGp/3ZVkgk5CbqeNDV
-         +47g/jMBaD5lw2chOpnHvbOak7QTrZgtHOiXf1iiAcY1EuzoGWtHCn8JQGntDBix7S
-         PSr+S7eI1PBcw==
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Grygorii Strashko <grygorii.strashko@ti.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Sasha Levin <sashal@kernel.org>, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.4 06/10] ARM: dts: omap5-board-common: align gpio hog names with dt-schema
-Date:   Wed, 14 Jul 2021 15:48:29 -0400
-Message-Id: <20210714194833.56197-6-sashal@kernel.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210714194833.56197-1-sashal@kernel.org>
-References: <20210714194833.56197-1-sashal@kernel.org>
+        id S231824AbhGNT6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 15:58:53 -0400
+Received: from mail-il1-f179.google.com ([209.85.166.179]:35700 "EHLO
+        mail-il1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240260AbhGNTwd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 15:52:33 -0400
+Received: by mail-il1-f179.google.com with SMTP id a11so2782712ilf.2;
+        Wed, 14 Jul 2021 12:49:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=IMbohv2IVExOXkTG/AjJ+c4zhRP07MFGASU5a/RAwQw=;
+        b=NgdgmFNjof33ij17I4aq1Gva22MQMbyXvJiOyUhG96S1k2+F+sXrKayWqpZyw4Xdtl
+         pJCL58mFrEkxWlwK6eAnv9WqtJ2hFnGFJnIIQTdI8hq5OPGfNYD//b3DmbjpkrZZdhkS
+         jgY6OrenXKqK7/maQnz+SPljiuNuwC++vCRrndjO2N2ktLkGF6SZ51qA4M4BCvbJR5fA
+         ZB63LWxcVButRNKhXBzO0Fiy9rS6ZqvMyD02uycWNDshobYWIlSWs+IzzJ0L2h7/FAIp
+         FbJq1zbCcfYhE5QIzkr9sVsA7mRpZP4q+9Fov6isHVXf2ZnsD5EiiGNr4Kq7mgTLaTcO
+         FG/g==
+X-Gm-Message-State: AOAM532ygzXQU60s2YNJo6AteMmfRDUsu8/7gTeq9x1mzsmn6s83tymP
+        rRRDlYRKOB5ZQXdhzkiTxw==
+X-Google-Smtp-Source: ABdhPJy9I4yrqo70ker5u/Rx9afOG+/tlSZLFXkTDlPFZfAApgPsrw4sGDCDPT4ZvbpejxyCb4avzA==
+X-Received: by 2002:a92:2e08:: with SMTP id v8mr7281669ile.50.1626292180120;
+        Wed, 14 Jul 2021 12:49:40 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id z7sm1834958iox.4.2021.07.14.12.49.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jul 2021 12:49:39 -0700 (PDT)
+Received: (nullmailer pid 3278259 invoked by uid 1000);
+        Wed, 14 Jul 2021 19:49:38 -0000
+Date:   Wed, 14 Jul 2021 13:49:38 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     devicetree@vger.kernel.org, heiko@sntech.de,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: power: convert
+ rockchip-io-domain.txt to YAML
+Message-ID: <20210714194938.GA3278225@robh.at.kernel.org>
+References: <20210625111746.6269-1-jbx6244@gmail.com>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210625111746.6269-1-jbx6244@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Grygorii Strashko <grygorii.strashko@ti.com>
+On Fri, 25 Jun 2021 13:17:43 +0200, Johan Jonker wrote:
+> Current dts files with 'io-domains' nodes are manually verified.
+> In order to automate this process rockchip-io-domain.txt has to be
+> converted to YAML.
+> 
+> Changed:
+>   Add supply properties for:
+>     rockchip,rk3328-io-voltage-domain
+>     rockchip,rv1108-io-voltage-domain
+>     rockchip,rv1108-pmu-io-voltage-domain
+> 
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> ---
+> 
+> Changed V2:
+>   move grf part in separate patch
+>   modify pin description
+> 
+> ---
+> 
+> note for rob+dt:
+> unevaluatedProperties and
+> allOf:
+>   -if:
+> doesn't seem to work.
+> Changed to
+> allOf:
+>   - $ref:
+> ---
+>  .../bindings/power/rockchip-io-domain.txt          | 135 ---------
+>  .../bindings/power/rockchip-io-domain.yaml         | 330 +++++++++++++++++++++
+>  2 files changed, 330 insertions(+), 135 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/power/rockchip-io-domain.txt
+>  create mode 100644 Documentation/devicetree/bindings/power/rockchip-io-domain.yaml
+> 
 
-[ Upstream commit 4823117cb80eedf31ddbc126b9bd92e707bd9a26 ]
-
-The GPIO Hog dt-schema node naming convention expect GPIO hogs node names
-to end with a 'hog' suffix.
-
-Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm/boot/dts/omap5-board-common.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/omap5-board-common.dtsi b/arch/arm/boot/dts/omap5-board-common.dtsi
-index 41e80e7f20be..282d393b63b6 100644
---- a/arch/arm/boot/dts/omap5-board-common.dtsi
-+++ b/arch/arm/boot/dts/omap5-board-common.dtsi
-@@ -132,7 +132,7 @@ sound: sound {
- 
- &gpio8 {
- 	/* TI trees use GPIO instead of msecure, see also muxing */
--	p234 {
-+	msecure-hog {
- 		gpio-hog;
- 		gpios = <10 GPIO_ACTIVE_HIGH>;
- 		output-high;
--- 
-2.30.2
-
+Reviewed-by: Rob Herring <robh@kernel.org>
