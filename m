@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1CF63C8780
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 17:31:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42F203C8782
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 17:31:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239701AbhGNPdw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 11:33:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47140 "EHLO
+        id S239709AbhGNPd5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 11:33:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239693AbhGNPdv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 11:33:51 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3423C06175F
-        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 08:30:58 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id u1so3775775wrs.1
-        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 08:30:58 -0700 (PDT)
+        with ESMTP id S239686AbhGNPd5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 11:33:57 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EF6FC06175F
+        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 08:31:05 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id l8-20020a05600c1d08b02902333d79327aso1085340wms.3
+        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 08:31:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=cyAk2v6poN79l/B5El2Lg5vZD9WF0qfTOCiPdf+Otvs=;
-        b=IQ81BEeqHSAOKWWAGUEj0WQM1Y9dLNj45SvUf/i6Fg/S4caLxT3GSgCk2astVt6tGx
-         wTNnrt2lyu548zAuYOe1c5opM3TR7OX09cewGWgWbUKHIO/ppLtB/1aL99wQ4MdnmmOG
-         kreNMt7Y5RVV/b+bi/OjrunewMu/+hO+80yfLCly/sLel7tn47skrRbJTYl6lmLcVf+d
-         gjN8wcUPgeaPbWhMA2EO/nhTzKeYLrmpkNq8RfrUTN0G653S2bk0uze5TdyokKMQii22
-         aZS04uYdnZI4MagUnzeyCNQflCCctT9WTstTeBcm+ZIP9dVZW7UFpb2nd148Oowos9QT
-         lwcg==
+        bh=UrNm6WC6FkrE8NCfyfqxMMW9r3LTd4X3kSslIi+iafU=;
+        b=c7nJy1CCafNyk5ARpsiv/GYzpBo97LDBfVc80FFOF4i68EHkl2hENl466304IAHD8G
+         yYw0pOQteFnLeco5tvonZN3X7BTWQ5jaHKJ14BbQ/WCwLCVoYKxy9Vsjpkvtvs1vx7yO
+         Cn3OI4BJYMEfNhV2v4gMq1XRf/S8GGP7iOFeVjbWbHeeSWjrDQuUJE7gfLsnqV1lFXXu
+         YuXkFpwNiDhAqTr+v/XPB6gzozxExO5smbc2rCTIKbYhxoMqyoE3vqoSHRDSR5eAGExG
+         49UK23sNKp85mVjdOIe6eOn5fmmypNRHCJQ5/18mPeqLuqp0A8Dhev+MDg0aSSIpdwQw
+         z21w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=cyAk2v6poN79l/B5El2Lg5vZD9WF0qfTOCiPdf+Otvs=;
-        b=rLzc5J8UNYirl1nYLh5KcloGSA4P3R7lJFkXuB8B0PbazSZbZQ81lePEx87PWWREMW
-         JuqK5xwne2BqqfPFYamX2o+7YRGWSyxM3gJ15UkRQnZ3CyqI6fSUTzy87cv6NP6c9yRP
-         wUnLQJMZrtBPOAPC4ZgOsxSbHgcC9fWTcj9gOSYIz7Fgbwn5VRaf18Qf55yNZyy68pmZ
-         hH6danom87atEQJOhCoD78r1rXNXsJUHkU5yhnRsnwgWy2fCzWpD0W2L/g3N0RbL9Q4l
-         +RdJ+TM+XuVfk4jKpw1B1XbP2sku0T8+bHxtEk/sPPDb2MZkwDXGa/WreUdh4gqyr46k
-         OM5A==
-X-Gm-Message-State: AOAM532pAgQOjDlPTe/8l+6g+r+xJEqLOZE2RnKdVQEbL6+4WbxTN8Ml
-        2IIj6xF+7atSlACgdVqLm5m9WQ==
-X-Google-Smtp-Source: ABdhPJxOEEP6C/7xE6RL/b7h3fOki8X23zLH8VvUv37XIXufGUZaBSsNIxf3wHpQ5jG3OtYTGdu0cA==
-X-Received: by 2002:adf:facf:: with SMTP id a15mr13664180wrs.39.1626276657504;
-        Wed, 14 Jul 2021 08:30:57 -0700 (PDT)
+        bh=UrNm6WC6FkrE8NCfyfqxMMW9r3LTd4X3kSslIi+iafU=;
+        b=AHMWe/jdnypG8ajRIOI+A9qtrpDmYmEQ5aY7WO7IDHdlKDEMx2LYBL+8ZJrbUUv+sZ
+         wS9MNg1TBARwXk7zjEWbHZE2leehqkz2PIS09N6iJFIuqBxGTJxdNT7qwM1VTKeJgkMt
+         Qsugp+LtdQD9C5h6cjAa2hy+JpeZBmN6tmjpQ3GkduLGsVNYiIqpVyxbOA3VzBAFbuxP
+         7InzhlQxbaSttkBBqB2n/OZtYUBfXPJeXsnaTZ44oUAyE9hPfzxyLGQ+eHUuEgMgbjja
+         KP338eLLhkbnf3sv9Qb+j4Vtgv38VRiqUuaSQ25Y+KPAPDVggCUe6ac5k6zqLbW2zrPF
+         BiHA==
+X-Gm-Message-State: AOAM531WLumwwUPyl5eJL9M5PjMiFkq37CsvpVZ/vPm8BK9Lwke2rvLI
+        XI76tagfU82IC4+fODaMUjkCCQ==
+X-Google-Smtp-Source: ABdhPJx3HVOA/QLWBWfKgrRTOHSvk6i+9bN+9/LmB4lQSx1wfvv3b6xCndGB0fIYxP+dnpcXcgknRw==
+X-Received: by 2002:a1c:143:: with SMTP id 64mr11940913wmb.187.1626276658727;
+        Wed, 14 Jul 2021 08:30:58 -0700 (PDT)
 Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id y6sm2465174wma.48.2021.07.14.08.30.56
+        by smtp.gmail.com with ESMTPSA id y6sm2465174wma.48.2021.07.14.08.30.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jul 2021 08:30:57 -0700 (PDT)
+        Wed, 14 Jul 2021 08:30:58 -0700 (PDT)
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 To:     bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
 Cc:     plai@codeaurora.org, tiwai@suse.de, devicetree@vger.kernel.org,
@@ -54,9 +54,9 @@ Cc:     plai@codeaurora.org, tiwai@suse.de, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
         bgoswami@codeaurora.org,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v2 03/16] soc: qcom: apr: Add GPR support
-Date:   Wed, 14 Jul 2021 16:30:26 +0100
-Message-Id: <20210714153039.28373-4-srinivas.kandagatla@linaro.org>
+Subject: [PATCH v2 04/16] ASoC: qcom: dt-bindings: add bindings Audio Processing manager
+Date:   Wed, 14 Jul 2021 16:30:27 +0100
+Message-Id: <20210714153039.28373-5-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20210714153039.28373-1-srinivas.kandagatla@linaro.org>
 References: <20210714153039.28373-1-srinivas.kandagatla@linaro.org>
@@ -66,383 +66,128 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Qualcomm Generic Packet router aka GPR is the IPC mechanism found
-in AudioReach next generation signal processing framework to perform
-command and response messages between various processors.
+This patch adds bindings support for Qualcomm Audio Processing Manager
+service in Audio DSP.
 
-GPR has concepts of static and dynamic port, all static services like
-APM (Audio Processing Manager), PRM (Proxy resource manager) have
-fixed port numbers where as dynamic services like graphs have dynamic
-port numbers which are allocated at runtime. All GPR packet messages
-will have source and destination domain and port along with opcode
-and payload.
+Audio Process Manager is one of the static service in DSP which is
+responsible for Command/response handling, graph Management
+and Control/Event management between modules.
 
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 ---
- drivers/soc/qcom/Kconfig     |   8 ++
- drivers/soc/qcom/apr.c       | 157 ++++++++++++++++++++++++++++++++++-
- include/linux/soc/qcom/apr.h |  58 +++++++++++++
- 3 files changed, 221 insertions(+), 2 deletions(-)
+ .../devicetree/bindings/sound/qcom,q6apm.yaml | 87 +++++++++++++++++++
+ include/dt-bindings/sound/qcom,q6apm.h        |  8 ++
+ 2 files changed, 95 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6apm.yaml
+ create mode 100644 include/dt-bindings/sound/qcom,q6apm.h
 
-diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
-index 79b568f82a1c..0b6e6412c98e 100644
---- a/drivers/soc/qcom/Kconfig
-+++ b/drivers/soc/qcom/Kconfig
-@@ -209,4 +209,12 @@ config QCOM_APR
- 	  application processor and QDSP6. APR is
- 	  used by audio driver to configure QDSP6
- 	  ASM, ADM and AFE modules.
+diff --git a/Documentation/devicetree/bindings/sound/qcom,q6apm.yaml b/Documentation/devicetree/bindings/sound/qcom,q6apm.yaml
+new file mode 100644
+index 000000000000..6f27567523a9
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/qcom,q6apm.yaml
+@@ -0,0 +1,87 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/sound/qcom,q6apm.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 +
-+config QCOM_GPR
-+	tristate "Qualcomm GPR Bus (Generic Packet Router)"
-+	select QCOM_APR
-+	help
-+          Enable GPR IPC protocol support between
-+          application processor and QDSP6. GPR is
-+          used by audio driver to configure QDSP6.
- endmenu
-diff --git a/drivers/soc/qcom/apr.c b/drivers/soc/qcom/apr.c
-index ef49d26c6848..b8ef77ab993a 100644
---- a/drivers/soc/qcom/apr.c
-+++ b/drivers/soc/qcom/apr.c
-@@ -17,8 +17,13 @@
- 
- enum {
- 	PR_TYPE_APR = 0,
-+	PR_TYPE_GPR,
- };
- 
-+/* Some random values tbh which does not collide with static modules */
-+#define GPR_DYNAMIC_PORT_START	0x10000000
-+#define GPR_DYNAMIC_PORT_END	0x20000000
++title: Qualcomm Audio Process Manager binding
 +
- struct packet_router {
- 	struct rpmsg_endpoint *ch;
- 	struct device *dev;
-@@ -69,6 +74,85 @@ int apr_send_pkt(struct apr_device *adev, struct apr_pkt *pkt)
- }
- EXPORT_SYMBOL_GPL(apr_send_pkt);
- 
-+void gpr_free_port(gpr_port_t *port)
-+{
-+	struct packet_router *gpr = port->pr;
-+	unsigned long flags;
++maintainers:
++  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 +
-+	spin_lock_irqsave(&gpr->svcs_lock, flags);
-+	idr_remove(&gpr->svcs_idr, port->id);
-+	spin_unlock_irqrestore(&gpr->svcs_lock, flags);
++description: |
++  This binding describes the Qualcomm Audio Process Manager service in DSP
 +
-+	kfree(port);
-+}
-+EXPORT_SYMBOL_GPL(gpr_free_port);
++properties:
++  compatible:
++    const: qcom,q6apm
 +
-+gpr_port_t *gpr_alloc_port(struct apr_device *gdev, struct device *dev,
-+				gpr_port_cb cb,	void *priv)
-+{
-+	struct packet_router *pr = dev_get_drvdata(gdev->dev.parent);
-+	gpr_port_t *port;
-+	struct pkt_router_svc *svc;
-+	int id;
++  reg:
++    maxItems: 1
 +
-+	port = kzalloc(sizeof(*port), GFP_KERNEL);
-+	if (!port)
-+		return ERR_PTR(-ENOMEM);
++  '#address-cells':
++    const: 1
 +
-+	svc = port;
-+	svc->callback = cb;
-+	svc->pr = pr;
-+	svc->priv = priv;
-+	svc->dev = dev;
-+	spin_lock_init(&svc->lock);
++  '#size-cells':
++    const: 0
 +
-+	spin_lock(&pr->svcs_lock);
-+	id = idr_alloc_cyclic(&pr->svcs_idr, svc, GPR_DYNAMIC_PORT_START,
-+			      GPR_DYNAMIC_PORT_END, GFP_ATOMIC);
-+	if (id < 0) {
-+		dev_err(dev, "Unable to allocate dynamic GPR src port\n");
-+		kfree(port);
-+		spin_unlock(&pr->svcs_lock);
-+		return ERR_PTR(-ENOMEM);
-+	}
++#APM Services
++patternProperties:
++  'apm@[0-9]+$':
++    type: object
++    description:
++      APM devices use subnodes for services.
 +
-+	svc->id = id;
-+	spin_unlock(&pr->svcs_lock);
++    properties:
++      compatible:
++        enum:
++          - qcom,q6apm-dais
++          - qcom,q6apm-bedais
 +
-+	dev_info(dev, "Adding GPR src port (%x)\n", svc->id);
++      iommus:
++        maxItems: 1
 +
-+	return port;
-+}
-+EXPORT_SYMBOL_GPL(gpr_alloc_port);
++      "#sound-dai-cells":
++        const: 1
 +
-+static int pkt_router_send_svc_pkt(struct pkt_router_svc *svc, struct gpr_pkt *pkt)
-+{
-+	struct packet_router *pr = svc->pr;
-+	struct gpr_hdr *hdr;
-+	unsigned long flags;
-+	int ret;
++      reg:
++        maxItems: 1
 +
-+	hdr = &pkt->hdr;
++    required:
++      - compatible
++      - reg
++      - '#sound-dai-cells'
 +
-+	spin_lock_irqsave(&svc->lock, flags);
-+	ret = rpmsg_trysend(pr->ch, pkt, hdr->pkt_size);
-+	spin_unlock_irqrestore(&svc->lock, flags);
++    additionalProperties: false
 +
-+	return ret ? ret : hdr->pkt_size;
-+}
++required:
++  - compatible
++  - reg
 +
-+int gpr_send_pkt(struct apr_device *gdev, struct gpr_pkt *pkt)
-+{
-+	return pkt_router_send_svc_pkt(&gdev->svc, pkt);
-+}
-+EXPORT_SYMBOL_GPL(gpr_send_pkt);
++additionalProperties: false
 +
-+int gpr_send_port_pkt(gpr_port_t *port, struct gpr_pkt *pkt)
-+{
-+	return pkt_router_send_svc_pkt(port, pkt);
-+}
-+EXPORT_SYMBOL_GPL(gpr_send_port_pkt);
++examples:
++  - |
++    gpr {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        gprservice@1 {
++          compatible = "qcom,q6apm";
++          reg = <1>;
 +
- static void apr_dev_release(struct device *dev)
- {
- 	struct apr_device *adev = to_apr_device(dev);
-@@ -173,6 +257,59 @@ static int apr_do_rx_callback(struct packet_router *apr, struct apr_rx_buf *abuf
- 	return 0;
- }
- 
-+static int gpr_do_rx_callback(struct packet_router *gpr, struct apr_rx_buf *abuf)
-+{
-+	uint16_t hdr_size, ver;
-+	struct pkt_router_svc *svc = NULL;
-+	struct gpr_resp_pkt resp;
-+	struct gpr_hdr *hdr;
-+	unsigned long flags;
-+	void *buf = abuf->buf;
-+	int len = abuf->len;
++          #address-cells = <1>;
++          #size-cells = <0>;
 +
-+	hdr = buf;
-+	ver = hdr->version;
-+	if (ver > GPR_PKT_VER + 1)
-+		return -EINVAL;
++          apm@1 {
++            compatible = "qcom,q6apm-dais";
++            #sound-dai-cells = <1>;
++            reg = <1>;
++          };
 +
-+	hdr_size = hdr->hdr_size;
-+	if (hdr_size < GPR_PKT_HEADER_WORD_SIZE) {
-+		dev_err(gpr->dev, "GPR: Wrong hdr size:%d\n", hdr_size);
-+		return -EINVAL;
-+	}
++          apm@2 {
++            compatible = "qcom,q6apm-bedais";
++            #sound-dai-cells = <1>;
++            reg = <2>;
++          };
++        };
++    };
+diff --git a/include/dt-bindings/sound/qcom,q6apm.h b/include/dt-bindings/sound/qcom,q6apm.h
+new file mode 100644
+index 000000000000..3c3987eb6e95
+--- /dev/null
++++ b/include/dt-bindings/sound/qcom,q6apm.h
+@@ -0,0 +1,8 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++#ifndef __DT_BINDINGS_Q6_APM_H__
++#define __DT_BINDINGS_Q6_APM_H__
 +
-+	if (hdr->pkt_size < GPR_PKT_HEADER_BYTE_SIZE || hdr->pkt_size != len) {
-+		dev_err(gpr->dev, "GPR: Wrong packet size\n");
-+		return -EINVAL;
-+	}
++/* Audio Process Manager (APM) virtual ports IDs */
++#include <dt-bindings/sound/qcom,q6afe.h>
 +
-+	resp.hdr = *hdr;
-+	resp.payload_size = hdr->pkt_size - (hdr_size * 4);
-+
-+	/*
-+	 * NOTE: hdr_size is not same as GPR_HDR_SIZE as remote can include
-+	 * optional headers in to gpr_hdr which should be ignored
-+	 */
-+	if (resp.payload_size > 0)
-+		resp.payload = buf + (hdr_size *  4);
-+
-+
-+	spin_lock_irqsave(&gpr->svcs_lock, flags);
-+	svc = idr_find(&gpr->svcs_idr, hdr->dest_port);
-+	spin_unlock_irqrestore(&gpr->svcs_lock, flags);
-+
-+	if (!svc) {
-+		dev_err(gpr->dev, "GPR: Port(%x) is not registered\n",
-+			hdr->dest_port);
-+		return -EINVAL;
-+	}
-+
-+	if (svc->callback)
-+		svc->callback(&resp, svc->priv, 0);
-+
-+	return 0;
-+}
-+
- static void apr_rxwq(struct work_struct *work)
- {
- 	struct packet_router *apr = container_of(work, struct packet_router, rx_work);
-@@ -185,6 +322,9 @@ static void apr_rxwq(struct work_struct *work)
- 			case PR_TYPE_APR:
- 				apr_do_rx_callback(apr, abuf);
- 				break;
-+			case PR_TYPE_GPR:
-+				gpr_do_rx_callback(apr, abuf);
-+				break;
- 			default:
- 				break;
- 			}
-@@ -223,8 +363,13 @@ static int apr_device_probe(struct device *dev)
- {
- 	struct apr_device *adev = to_apr_device(dev);
- 	struct apr_driver *adrv = to_apr_driver(dev->driver);
-+	int ret;
- 
--	return adrv->probe(adev);
-+	ret = adrv->probe(adev);
-+	if (!ret)
-+		adev->svc.callback = adrv->gpr_callback;
-+
-+	return ret;
- }
- 
- static int apr_device_remove(struct device *dev)
-@@ -297,6 +442,10 @@ static int apr_add_device(struct device *dev, struct device_node *np,
- 		dev_set_name(&adev->dev, "aprsvc:%s:%x:%x", adev->name,
- 			     domain_id, svc_id);
- 		break;
-+	case PR_TYPE_GPR:
-+		dev_set_name(&adev->dev, "gprsvc:%s:%x:%x", adev->name,
-+			     domain_id, svc_id);
-+		break;
- 	default:
- 		break;
- 	}
-@@ -314,7 +463,7 @@ static int apr_add_device(struct device *dev, struct device_node *np,
- 	of_property_read_string_index(np, "qcom,protection-domain",
- 				      1, &adev->service_path);
- 
--	dev_info(dev, "Adding APR dev: %s\n", dev_name(&adev->dev));
-+	dev_info(dev, "Adding APR/GPR dev: %s\n", dev_name(&adev->dev));
- 
- 	ret = device_register(&adev->dev);
- 	if (ret) {
-@@ -446,6 +595,9 @@ static int apr_probe(struct rpmsg_device *rpdev)
- 	if (of_device_is_compatible(dev->of_node, "qcom,apr")) {
- 		ret = of_property_read_u32(dev->of_node, "qcom,apr-domain", &apr->dest_domain_id);
- 		apr->type = PR_TYPE_APR;
-+	} else if (of_device_is_compatible(dev->of_node, "qcom,gpr")) {
-+		ret = of_property_read_u32(dev->of_node, "qcom,gpr-domain", &apr->dest_domain_id);
-+		apr->type = PR_TYPE_GPR;
- 	}
- 
- 	if (ret) {
-@@ -532,6 +684,7 @@ EXPORT_SYMBOL_GPL(apr_driver_unregister);
- static const struct of_device_id pkt_router_of_match[] = {
- 	{ .compatible = "qcom,apr"},
- 	{ .compatible = "qcom,apr-v2"},
-+	{ .compatible = "qcom,gpr"},
- 	{}
- };
- MODULE_DEVICE_TABLE(of, pkt_router_of_match);
-diff --git a/include/linux/soc/qcom/apr.h b/include/linux/soc/qcom/apr.h
-index 6dc0e160131b..10024a4ef18e 100644
---- a/include/linux/soc/qcom/apr.h
-+++ b/include/linux/soc/qcom/apr.h
-@@ -7,6 +7,7 @@
- #include <linux/device.h>
- #include <linux/mod_devicetable.h>
- #include <dt-bindings/soc/qcom,apr.h>
-+#include <dt-bindings/soc/qcom,gpr.h>
- 
- extern struct bus_type aprbus;
- 
-@@ -75,19 +76,65 @@ struct apr_resp_pkt {
- 	int payload_size;
- };
- 
-+struct gpr_hdr {
-+	uint32_t version:4;
-+	uint32_t hdr_size:4;
-+	uint32_t pkt_size:24;
-+	uint32_t dest_domain:8;
-+	uint32_t src_domain:8;
-+	uint32_t reserved:16;
-+	uint32_t src_port;
-+	uint32_t dest_port;
-+	uint32_t token;
-+	uint32_t opcode;
-+} __packed;
-+
-+struct gpr_pkt {
-+	struct gpr_hdr hdr;
-+	uint32_t payload[0];
-+};
-+
-+struct gpr_resp_pkt {
-+	struct gpr_hdr hdr;
-+	void *payload;
-+	int payload_size;
-+};
-+
-+#define GPR_HDR_SIZE			sizeof(struct gpr_hdr)
-+#define GPR_PKT_VER			0x0
-+#define GPR_PKT_HEADER_WORD_SIZE	((sizeof(struct gpr_pkt) + 3) >> 2)
-+#define GPR_PKT_HEADER_BYTE_SIZE	(GPR_PKT_HEADER_WORD_SIZE << 2)
-+
-+#define GPR_BASIC_RSP_RESULT		0x02001005
-+
-+struct gpr_ibasic_rsp_result_t {
-+	uint32_t opcode;
-+	uint32_t status;
-+};
-+
-+#define GPR_BASIC_EVT_ACCEPTED		0x02001006
-+
-+struct gpr_ibasic_rsp_accepted_t {
-+	uint32_t opcode;
-+};
-+
- /* Bits 0 to 15 -- Minor version,  Bits 16 to 31 -- Major version */
- #define APR_SVC_MAJOR_VERSION(v)	((v >> 16) & 0xFF)
- #define APR_SVC_MINOR_VERSION(v)	(v & 0xFF)
- 
-+typedef int (*gpr_port_cb) (struct gpr_resp_pkt *d, void *priv, int op);
- struct packet_router;
- struct pkt_router_svc {
- 	struct device *dev;
-+	gpr_port_cb callback;
- 	struct packet_router *pr;
- 	spinlock_t lock;
- 	int id;
- 	void *priv;
- };
- 
-+typedef struct pkt_router_svc gpr_port_t;
-+
- struct apr_device {
- 	struct device	dev;
- 	uint16_t	svc_id;
-@@ -99,6 +146,8 @@ struct apr_device {
- 	struct list_head node;
- };
- 
-+typedef struct apr_device gpr_device_t;
-+
- #define to_apr_device(d) container_of(d, struct apr_device, dev)
- 
- struct apr_driver {
-@@ -106,10 +155,12 @@ struct apr_driver {
- 	int	(*remove)(struct apr_device *sl);
- 	int	(*callback)(struct apr_device *a,
- 			    struct apr_resp_pkt *d);
-+	int	(*gpr_callback)(struct gpr_resp_pkt *d, void *data, int op);
- 	struct device_driver		driver;
- 	const struct apr_device_id	*id_table;
- };
- 
-+typedef struct apr_driver gpr_driver_t;
- #define to_apr_driver(d) container_of(d, struct apr_driver, driver)
- 
- /*
-@@ -132,7 +183,14 @@ void apr_driver_unregister(struct apr_driver *drv);
- #define module_apr_driver(__apr_driver) \
- 	module_driver(__apr_driver, apr_driver_register, \
- 			apr_driver_unregister)
-+#define module_gpr_driver(__gpr_driver) module_apr_driver(__gpr_driver)
- 
- int apr_send_pkt(struct apr_device *adev, struct apr_pkt *pkt);
- 
-+gpr_port_t *gpr_alloc_port(gpr_device_t *gdev, struct device *dev,
-+				gpr_port_cb cb, void *priv);
-+void gpr_free_port(gpr_port_t *port);
-+int gpr_send_port_pkt(gpr_port_t *port, struct gpr_pkt *pkt);
-+int gpr_send_pkt(gpr_device_t *gdev, struct gpr_pkt *pkt);
-+
- #endif /* __QCOM_APR_H_ */
++#endif /* __DT_BINDINGS_Q6_APM_H__ */
 -- 
 2.21.0
 
