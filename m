@@ -2,226 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C2F83C7B9F
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 04:19:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACF133C7BA3
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 04:19:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237513AbhGNCWA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jul 2021 22:22:00 -0400
-Received: from mail-io1-f43.google.com ([209.85.166.43]:36422 "EHLO
-        mail-io1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237370AbhGNCV7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 22:21:59 -0400
-Received: by mail-io1-f43.google.com with SMTP id u7so185683ion.3;
-        Tue, 13 Jul 2021 19:19:08 -0700 (PDT)
+        id S237397AbhGNCWT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jul 2021 22:22:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36290 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237554AbhGNCWS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 22:22:18 -0400
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87C2BC0613E9
+        for <devicetree@vger.kernel.org>; Tue, 13 Jul 2021 19:19:27 -0700 (PDT)
+Received: by mail-pg1-x530.google.com with SMTP id u14so628900pga.11
+        for <devicetree@vger.kernel.org>; Tue, 13 Jul 2021 19:19:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=YUWPTzB4dLR17/T5lZ7IYCIE7LvDfGsZbPME2WfdaEQ=;
+        b=Skmc4/PTwW2vYOAvkxNEp/sYehALwIe3vbYmis9pp8B8s8+wKbwKLLkS2x6Uw0hnu3
+         0svGx8KcIUZK3SigWkrI1LBoqGu1Gr/zfFuUkQYY1z+GkIQJyZmhGqeDKIrbtkGJkA9/
+         pV4SFmb6Em4EJHyfkvu52ERl3YZgKA2kl4gFPSlJlROoiehQQIfHPqiC99fxTZvdJuLd
+         EiLrpiwCuiSYVnmy8yfgjiy36rHG6vuajRXQqWXRpeItlXDPp/KYqloeAmd8U0ejyp7Z
+         +rOKfLdJcEVKX2jUAiZJFb1dHgMx8bLQzO3xc3+iNg0jTqpv8EwU3a8X/RGDZ9tV/fe8
+         53JQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=J7z2oSLzVMt4SabkTXK9Gz/CtB++JstqH99nEoet3iE=;
-        b=tLeKFGed7hMGtdG+YEo/E3MiLo5Smg+0EwDZgpsaqz6E3cObuh23dEVtfK9DEcTzpX
-         pIudCTJ1uZroMcXvOON/sAVqqr2LH6DPMCs5GIDH9CgmFY9hjxE8wIWoCV6QlpvXuMZe
-         NA/hczMpAs2iEMZ5LEsDKF38FOyTcD5bJfAHNRH6BGWM6FJd1AePR5dHN6LDNkO8oLMy
-         bGp9XgJ2VRBVRPCPtqMVwslGJKi+y/mUQuFuUPbZ7ov42EGkK8nKq84V2r+2y9OR5IYx
-         LLugrjbKbB8vkT+7R6tzIE/yxHwlz2h5bLpFsMJd1st+mEv1fQ4Y2SdAoXa2y4IaH5eB
-         Qujw==
-X-Gm-Message-State: AOAM530fzlVpZv5x5NB/Joa1QDbrA+jQRaxQHhvZrKDNtmf3+R0KG3Mi
-        4CKou00J+pD3u9u+5BqmqSDHJogYhA==
-X-Google-Smtp-Source: ABdhPJyYsxBeRLUDTa6xK3WqJToa3dq7jqxLFr8eHgRDm1wJ2nu9DBMqK6ES7lSkInARegyykqkf3g==
-X-Received: by 2002:a6b:b2d1:: with SMTP id b200mr5412440iof.187.1626229147947;
-        Tue, 13 Jul 2021 19:19:07 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id c7sm431400ile.69.2021.07.13.19.19.06
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=YUWPTzB4dLR17/T5lZ7IYCIE7LvDfGsZbPME2WfdaEQ=;
+        b=TaRHR0zrRrVy0eGO5AMbWg4rSg3BpgdVLtahRcN6E6+gM4Xio+NuIOWaIFZP5KtG11
+         6qKkCyDWUuM/ZyqOF1Y2RJj+/DJeRu5fqQhfS50FQRtvYUO8NpkaV3damgIOHlAkOCTP
+         xs9JY19Hm4RMU/Q8VOGrIEMT79f4xbdE0XhpNm4RZ/+stokoSUQ7YnhE48D2dBPsU6Rs
+         EzVq6dw87WFMQoBlC+8KGZ571DVdFSsihTvQD+2uOTFE0ZOVf3n9yxC/0itZ0CdE8vZG
+         Yl/Z67jFbXcHjOh7f8i7J3AkM6jKCX8cE9jY8V1PvZ4+l5fC2InYCSOK0iH1jiuur9A5
+         ik8A==
+X-Gm-Message-State: AOAM532vLnbIVFV4TG6R9XQnVGcPlvA5RBiuLv6ioLFjsmGAmlKkiCRi
+        ZD8J9o3IAbUQ39mbMc/gCNDNSA==
+X-Google-Smtp-Source: ABdhPJxLOPLEDHG4baKqARncau1utGS0ltDshGrrtQ4HLM6pZ8LZIXvVGdAGINqm7KHcuA2FTBkJpw==
+X-Received: by 2002:a63:6e09:: with SMTP id j9mr6980452pgc.275.1626229167125;
+        Tue, 13 Jul 2021 19:19:27 -0700 (PDT)
+Received: from localhost ([106.201.108.2])
+        by smtp.gmail.com with ESMTPSA id a6sm437140pjq.27.2021.07.13.19.19.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jul 2021 19:19:07 -0700 (PDT)
-Received: (nullmailer pid 1317722 invoked by uid 1000);
-        Wed, 14 Jul 2021 02:19:04 -0000
-Date:   Tue, 13 Jul 2021 20:19:04 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Stefan Riedmueller <s.riedmueller@phytec.de>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 5/6] media: dt-bindings: mt9p031: Convert bindings to
- yaml
-Message-ID: <20210714021904.GA1312716@robh.at.kernel.org>
-References: <20210712085535.11907-1-s.riedmueller@phytec.de>
- <20210712085535.11907-6-s.riedmueller@phytec.de>
+        Tue, 13 Jul 2021 19:19:26 -0700 (PDT)
+Date:   Wed, 14 Jul 2021 07:49:24 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Jason Wang <jasowang@redhat.com>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>,
+        Alex =?utf-8?Q?Benn=C3=A9e?= <alex.bennee@linaro.org>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        Jie Deng <jie.deng@intel.com>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE" 
+        <virtualization@lists.linux-foundation.org>
+Subject: Re: [PATCH 1/5] dt-bindings: virtio: mmio: Add support for device
+ subnode
+Message-ID: <20210714021924.uob5wrasipzhbyrj@vireshk-i7>
+References: <cover.1626173013.git.viresh.kumar@linaro.org>
+ <aa4bf68fdd13b885a6dc1b98f88834916d51d97d.1626173013.git.viresh.kumar@linaro.org>
+ <CAL_Jsq+SiE+ciZfASHKUfLU1YMPfB43YmSciT_+gQHvL99_wUA@mail.gmail.com>
+ <20210713151917.zouwfckidnjxvohn@vireshk-i7>
+ <CAL_JsqL9255n5RT=Gq_uru7rEP0bSVcyfXEPRY4F0M4S2HPvTA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210712085535.11907-6-s.riedmueller@phytec.de>
+In-Reply-To: <CAL_JsqL9255n5RT=Gq_uru7rEP0bSVcyfXEPRY4F0M4S2HPvTA@mail.gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 12, 2021 at 10:55:34AM +0200, Stefan Riedmueller wrote:
-> Convert mt9p031 sensor bindings to yaml schema. Also update the
-> MAINTAINERS entry.
+On 13-07-21, 13:34, Rob Herring wrote:
+> On Tue, Jul 13, 2021 at 9:19 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+> > We already do this for linux-event-codes.h and so I thought it is the
+> > right way of doing it :)
 > 
-> Although input-clock-frequency and pixel-clock-frequency have not been
-> definded as endpoint propierties in the textual bindings, the sensor
-> does parse them from the endpoint. Thus move these properties to the
-> endpoint in the new yaml bindings.
+> Humm, maybe it's okay. Please double check then...
 > 
-> Signed-off-by: Stefan Riedmueller <s.riedmueller@phytec.de>
-> ---
->  .../bindings/media/i2c/aptina,mt9p031.yaml    | 75 +++++++++++++++++++
->  .../devicetree/bindings/media/i2c/mt9p031.txt | 40 ----------
->  MAINTAINERS                                   |  1 +
->  3 files changed, 76 insertions(+), 40 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/aptina,mt9p031.yaml
->  delete mode 100644 Documentation/devicetree/bindings/media/i2c/mt9p031.txt
+> > Else we can create a new copy, which will be a mess, or use hardcoded
+> > values.
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/aptina,mt9p031.yaml b/Documentation/devicetree/bindings/media/i2c/aptina,mt9p031.yaml
-> new file mode 100644
-> index 000000000000..ad9a2db73d86
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/aptina,mt9p031.yaml
-> @@ -0,0 +1,75 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/aptina,mt9p031.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Aptina 1/2.5-Inch 5Mp CMOS Digital Image Sensor
-> +
-> +maintainers:
-> +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> +
-> +description: |
-> +  The Aptina MT9P031 is a 1/2.5-inch CMOS active pixel digital image sensor
-> +  with an active array size of 2592H x 1944V. It is programmable through a
-> +  simple two-wire serial interface.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - aptina,mt9p031
-> +      - aptina,mt9p031m
-> +
-> +  reg:
-> +    description: I2C device address
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description: Chip reset GPIO
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml#
+> Though you may not need the header based on what Arnd and I have suggested.
 
-Doesn't look like you use any properties from video-interfaces.yaml. You 
-should just reference graph.yaml#/$defs/endpoint-base instead.
+Yeah, we may not need it at all. New node or not, reg property will
+get converted to a compatible anyway..
 
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          input-clock-frequency: true
-> +          pixel-clock-frequency: true
+Thanks.
 
-These are custom properties, so they need a type, description, and any 
-constraints.
-
-> +
-> +        required:
-> +          - input-clock-frequency
-> +          - pixel-clock-frequency
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c0 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        mt9p031@5d {
-> +            compatible = "aptina,mt9p031";
-> +            reg = <0x5d>;
-> +            reset-gpios = <&gpio_sensor 0 0>;
-> +
-> +            port {
-> +                mt9p031_1: endpoint {
-> +                    input-clock-frequency = <6000000>;
-> +                    pixel-clock-frequency = <96000000>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +...
-> diff --git a/Documentation/devicetree/bindings/media/i2c/mt9p031.txt b/Documentation/devicetree/bindings/media/i2c/mt9p031.txt
-> deleted file mode 100644
-> index cb60443ff78f..000000000000
-> --- a/Documentation/devicetree/bindings/media/i2c/mt9p031.txt
-> +++ /dev/null
-> @@ -1,40 +0,0 @@
-> -* Aptina 1/2.5-Inch 5Mp CMOS Digital Image Sensor
-> -
-> -The Aptina MT9P031 is a 1/2.5-inch CMOS active pixel digital image sensor with
-> -an active array size of 2592H x 1944V. It is programmable through a simple
-> -two-wire serial interface.
-> -
-> -Required Properties:
-> -- compatible: value should be either one among the following
-> -	(a) "aptina,mt9p031" for mt9p031 sensor
-> -	(b) "aptina,mt9p031m" for mt9p031m sensor
-> -
-> -- input-clock-frequency: Input clock frequency.
-> -
-> -- pixel-clock-frequency: Pixel clock frequency.
-> -
-> -Optional Properties:
-> -- reset-gpios: Chip reset GPIO
-> -
-> -For further reading on port node refer to
-> -Documentation/devicetree/bindings/media/video-interfaces.txt.
-> -
-> -Example:
-> -
-> -	i2c0@1c22000 {
-> -		...
-> -		...
-> -		mt9p031@5d {
-> -			compatible = "aptina,mt9p031";
-> -			reg = <0x5d>;
-> -			reset-gpios = <&gpio3 30 0>;
-> -
-> -			port {
-> -				mt9p031_1: endpoint {
-> -					input-clock-frequency = <6000000>;
-> -					pixel-clock-frequency = <96000000>;
-> -				};
-> -			};
-> -		};
-> -		...
-> -	};
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index a61f4f3b78a9..33dd81237a91 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -12635,6 +12635,7 @@ M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->  L:	linux-media@vger.kernel.org
->  S:	Maintained
->  T:	git git://linuxtv.org/media_tree.git
-> +F:	Documentation/devicetree/bindings/media/i2c/aptina,mt9p031.yaml
->  F:	drivers/media/i2c/mt9p031.c
->  F:	include/media/i2c/mt9p031.h
->  
-> -- 
-> 2.25.1
-> 
-> 
+-- 
+viresh
