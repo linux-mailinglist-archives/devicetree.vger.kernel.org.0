@@ -2,240 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0382A3C7FF6
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 10:24:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBE693C7FF9
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 10:26:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238449AbhGNI1S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 04:27:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37670 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229940AbhGNI1R (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Jul 2021 04:27:17 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A09D3613AF;
-        Wed, 14 Jul 2021 08:24:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626251066;
-        bh=rUQGs4Iz7LN/L5dlQePw8z6jZXSqSiwYHQTvU6/GcZc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PIAdIE7ByXwOuYem9ic8mutTNKJ5Nj/qifmCbWnEsovNBTMBMR/ISvftuL1j2+qnY
-         d66PICAuSHC00rSS2KhE4coLd/DAxBOvmuismv//bW9pDWhHfLnyY2uAYhjqTPbcUD
-         WIgSomzgJhhiGao3ljWLmvE40cxr5EXK1JJXkIOgu119BZqp7Eq/mdxLn8tlvIc+lM
-         bGvBQ+EGWri3esF0jz/y1DpkVJ56abx63R3YqIaroVUt/67oymqBN2qRgnxNnFoHD6
-         UAT6TuX1qO/wa7IuMuCCsQACm7G/oq+BOWPx7oOagKQg8xW8fMxhZKTVPiRoPQtsni
-         /sJ+kp6qR3blw==
-Date:   Wed, 14 Jul 2021 16:24:20 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Jacky Bai <ping.bai@nxp.com>
-Cc:     robh+dt@kernel.org, sboyd@kernel.org, s.hauer@pengutronix.de,
-        linus.walleij@linaro.org, aisheng.dong@nxp.com, festevam@gmail.com,
-        kernel@pengutronix.de, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 11/11] arm64: dts: imx8ulp: Add the basic dts for
- imx8ulp evk board
-Message-ID: <20210714082420.GK4419@dragon>
-References: <20210625011355.3468586-1-ping.bai@nxp.com>
- <20210625011355.3468586-12-ping.bai@nxp.com>
+        id S229940AbhGNI3Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 04:29:16 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:48908 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238489AbhGNI3Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 04:29:16 -0400
+Received: from [IPv6:2a02:810a:880:f54:e49e:3ed0:1a77:5623] (unknown [IPv6:2a02:810a:880:f54:e49e:3ed0:1a77:5623])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: dafna)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id C15441F41B8C;
+        Wed, 14 Jul 2021 09:26:22 +0100 (BST)
+Subject: Re: [PATCH v6 03/11] iommu/mediatek: Add device_link between the
+ consumer and the larb devices
+To:     Yong Wu <yong.wu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        David Airlie <airlied@linux.ie>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc:     Evan Green <evgreen@chromium.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Will Deacon <will.deacon@arm.com>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>, anan.sun@mediatek.com,
+        ming-fan.chen@mediatek.com, yi.kuo@mediatek.com,
+        acourbot@chromium.org, linux-media@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Xia Jiang <xia.jiang@mediatek.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Eizan Miyamoto <eizan@chromium.org>, anthony.huang@mediatek.com
+References: <20210714025626.5528-1-yong.wu@mediatek.com>
+ <20210714025626.5528-4-yong.wu@mediatek.com>
+From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+Message-ID: <f7b2c5e5-f540-b885-f063-9611031035bc@collabora.com>
+Date:   Wed, 14 Jul 2021 10:26:20 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210625011355.3468586-12-ping.bai@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20210714025626.5528-4-yong.wu@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 25, 2021 at 09:13:55AM +0800, Jacky Bai wrote:
-> Add the basic dts file for i.MX8ULP EVK board.
-> Only the necessary devices for minimal system boot up are enabled:
-> enet, emmc, usb, console uart.
+
+
+On 14.07.21 04:56, Yong Wu wrote:
+> MediaTek IOMMU-SMI diagram is like below. all the consumer connect with
+> smi-larb, then connect with smi-common.
 > 
-> some of the devices' pin status may lost during low power mode,
-> so additional sleep pinctrl properties are included by default.
+>          M4U
+>           |
+>      smi-common
+>           |
+>    -------------
+>    |         |    ...
+>    |         |
+> larb1     larb2
+>    |         |
+> vdec       venc
 > 
-> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+> When the consumer works, it should enable the smi-larb's power which
+> also need enable the smi-common's power firstly.
+> 
+> Thus, First of all, use the device link connect the consumer and the
+> smi-larbs. then add device link between the smi-larb and smi-common.
+> 
+> This patch adds device_link between the consumer and the larbs.
+> 
+> When device_link_add, I add the flag DL_FLAG_STATELESS to avoid calling
+> pm_runtime_xx to keep the original status of clocks. It can avoid two
+> issues:
+> 1) Display HW show fastlogo abnormally reported in [1]. At the beggining,
+> all the clocks are enabled before entering kernel, but the clocks for
+> display HW(always in larb0) will be gated after clk_enable and clk_disable
+> called from device_link_add(->pm_runtime_resume) and rpm_idle. The clock
+> operation happened before display driver probe. At that time, the display
+> HW will be abnormal.
+> 
+> 2) A deadlock issue reported in [2]. Use DL_FLAG_STATELESS to skip
+> pm_runtime_xx to avoid the deadlock.
+> 
+> Corresponding, DL_FLAG_AUTOREMOVE_CONSUMER can't be added, then
+> device_link_removed should be added explicitly.
+> 
+> [1] https://lore.kernel.org/linux-mediatek/1564213888.22908.4.camel@mhfsdcap03/
+> [2] https://lore.kernel.org/patchwork/patch/1086569/
+> 
+> Suggested-by: Tomasz Figa <tfiga@chromium.org>
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
 > ---
->  - v3 changes:
->    no
+>   drivers/iommu/mtk_iommu.c    | 22 ++++++++++++++++++++++
+>   drivers/iommu/mtk_iommu_v1.c | 20 +++++++++++++++++++-
+>   2 files changed, 41 insertions(+), 1 deletion(-)
 > 
->  - v2 changes:
->    add the memory node place holder
->    update the license
-> ---
->  arch/arm64/boot/dts/freescale/Makefile        |   1 +
->  arch/arm64/boot/dts/freescale/imx8ulp-evk.dts | 148 ++++++++++++++++++
->  2 files changed, 149 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8ulp-evk.dts
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index 25806c4924cb..8c24a05d55af 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -65,5 +65,6 @@ dtb-$(CONFIG_ARCH_MXC) += imx8qm-mek.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8qxp-ai_ml.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8qxp-colibri-eval-v3.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8qxp-mek.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += imx8ulp-evk.dtb
->  
->  dtb-$(CONFIG_ARCH_S32) += s32v234-evb.dtb
-> diff --git a/arch/arm64/boot/dts/freescale/imx8ulp-evk.dts b/arch/arm64/boot/dts/freescale/imx8ulp-evk.dts
-> new file mode 100644
-> index 000000000000..de84f29c12ce
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8ulp-evk.dts
-> @@ -0,0 +1,148 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright 2021 NXP
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "imx8ulp.dtsi"
-> +
-> +/ {
-> +	model = "NXP i.MX8ULP EVK";
-> +	compatible = "fsl,imx8ulp-evk", "fsl,imx8ulp";
-> +
-> +	chosen {
-> +		stdout-path = &lpuart5;
-> +	};
-> +
-> +	memory@40000000 {
+> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
+> index a02dde094788..ee742900cf4b 100644
+> --- a/drivers/iommu/mtk_iommu.c
+> +++ b/drivers/iommu/mtk_iommu.c
+> @@ -571,22 +571,44 @@ static struct iommu_device *mtk_iommu_probe_device(struct device *dev)
+>   {
+>   	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
+>   	struct mtk_iommu_data *data;
+> +	struct device_link *link;
+> +	struct device *larbdev;
+> +	unsigned int larbid;
+>   
+>   	if (!fwspec || fwspec->ops != &mtk_iommu_ops)
+>   		return ERR_PTR(-ENODEV); /* Not a iommu client device */
+>   
+>   	data = dev_iommu_priv_get(dev);
+>   
+> +	/*
+> +	 * Link the consumer device with the smi-larb device(supplier)
+> +	 * The device in each a larb is a independent HW. thus only link
+> +	 * one larb here.
+> +	 */
+> +	larbid = MTK_M4U_TO_LARB(fwspec->ids[0]);
+> +	larbdev = data->larb_imu[larbid].dev;
+> +	link = device_link_add(dev, larbdev,
+> +			       DL_FLAG_PM_RUNTIME | DL_FLAG_STATELESS);
+> +	if (!link)
+> +		dev_err(dev, "Unable to link %s\n", dev_name(larbdev));
+shoudn't ERR_PTR be returned in case of failure?
 
-Unit-address doesn't seem to match 'reg' property.
+Thanks,
+Dafna
 
-Shawn
-
-> +		device_type = "memory";
-> +		reg = <0x0 0x80000000 0 0x80000000>;
-> +	};
-> +};
+>   	return &data->iommu;
+>   }
+>   
+>   static void mtk_iommu_release_device(struct device *dev)
+>   {
+>   	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
+> +	struct mtk_iommu_data *data;
+> +	struct device *larbdev;
+> +	unsigned int larbid;
+>   
+>   	if (!fwspec || fwspec->ops != &mtk_iommu_ops)
+>   		return;
+>   
+> +	data = dev_iommu_priv_get(dev);
+> +	larbid = MTK_M4U_TO_LARB(fwspec->ids[0]);
+> +	larbdev = data->larb_imu[larbid].dev;
+> +	device_link_remove(dev, larbdev);
 > +
-> +&fec {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_enet>;
-> +	phy-mode = "rmii";
-> +	phy-handle = <&ethphy>;
-> +	status = "okay";
+>   	iommu_fwspec_free(dev);
+>   }
+>   
+> diff --git a/drivers/iommu/mtk_iommu_v1.c b/drivers/iommu/mtk_iommu_v1.c
+> index d9365a3d8dc9..d2a7c66b8239 100644
+> --- a/drivers/iommu/mtk_iommu_v1.c
+> +++ b/drivers/iommu/mtk_iommu_v1.c
+> @@ -424,7 +424,9 @@ static struct iommu_device *mtk_iommu_probe_device(struct device *dev)
+>   	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
+>   	struct of_phandle_args iommu_spec;
+>   	struct mtk_iommu_data *data;
+> -	int err, idx = 0;
+> +	int err, idx = 0, larbid;
+> +	struct device_link *link;
+> +	struct device *larbdev;
+>   
+>   	while (!of_parse_phandle_with_args(dev->of_node, "iommus",
+>   					   "#iommu-cells",
+> @@ -445,6 +447,14 @@ static struct iommu_device *mtk_iommu_probe_device(struct device *dev)
+>   
+>   	data = dev_iommu_priv_get(dev);
+>   
+> +	/* Link the consumer device with the smi-larb device(supplier) */
+> +	larbid = mt2701_m4u_to_larb(fwspec->ids[0]);
+> +	larbdev = data->larb_imu[larbid].dev;
+> +	link = device_link_add(dev, larbdev,
+> +			       DL_FLAG_PM_RUNTIME | DL_FLAG_STATELESS);
+> +	if (!link)
+> +		dev_err(dev, "Unable to link %s\n", dev_name(larbdev));
 > +
-> +	mdio {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
+>   	return &data->iommu;
+>   }
+>   
+> @@ -465,10 +475,18 @@ static void mtk_iommu_probe_finalize(struct device *dev)
+>   static void mtk_iommu_release_device(struct device *dev)
+>   {
+>   	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
+> +	struct mtk_iommu_data *data;
+> +	struct device *larbdev;
+> +	unsigned int larbid;
+>   
+>   	if (!fwspec || fwspec->ops != &mtk_iommu_ops)
+>   		return;
+>   
+> +	data = dev_iommu_priv_get(dev);
+> +	larbid = mt2701_m4u_to_larb(fwspec->ids[0]);
+> +	larbdev = data->larb_imu[larbid].dev;
+> +	device_link_remove(dev, larbdev);
 > +
-> +		ethphy: ethernet-phy {
-> +			reg = <1>;
-> +			micrel,led-mode = <1>;
-> +		};
-> +	};
-> +};
-> +
-> +&lpuart5 {
-> +	/* console */
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&pinctrl_lpuart5>;
-> +	pinctrl-1 = <&pinctrl_lpuart5>;
-> +	status = "okay";
-> +};
-> +
-> +&usbotg1 {
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&pinctrl_otgid1>;
-> +	pinctrl-1 = <&pinctrl_otgid1>;
-> +	dr_mode = "otg";
-> +	hnp-disable;
-> +	srp-disable;
-> +	adp-disable;
-> +	status = "okay";
-> +};
-> +
-> +&usbphy1 {
-> +	status = "okay";
-> +};
-> +
-> +&usbmisc1 {
-> +	status = "okay";
-> +};
-> +
-> +&usbotg2 {
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&pinctrl_otgid2>;
-> +	pinctrl-1 = <&pinctrl_otgid2>;
-> +	dr_mode = "otg";
-> +	hnp-disable;
-> +	srp-disable;
-> +	adp-disable;
-> +	status = "okay";
-> +};
-> +
-> +&usbphy2 {
-> +	status = "okay";
-> +};
-> +
-> +&usbmisc2 {
-> +	status = "okay";
-> +};
-> +
-> +&usdhc0 {
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&pinctrl_usdhc0>;
-> +	pinctrl-1 = <&pinctrl_usdhc0>;
-> +	non-removable;
-> +	bus-width = <4>;
-> +	status = "okay";
-> +};
-> +
-> +&iomuxc1 {
-> +	pinctrl_enet: enetgrp {
-> +		fsl,pins = <
-> +			MX8ULP_PAD_PTE15__ENET0_MDC     0x43
-> +			MX8ULP_PAD_PTE14__ENET0_MDIO    0x43
-> +			MX8ULP_PAD_PTE17__ENET0_RXER    0x43
-> +			MX8ULP_PAD_PTE18__ENET0_CRS_DV  0x43
-> +			MX8ULP_PAD_PTF1__ENET0_RXD0     0x43
-> +			MX8ULP_PAD_PTE20__ENET0_RXD1    0x43
-> +			MX8ULP_PAD_PTE16__ENET0_TXEN    0x43
-> +			MX8ULP_PAD_PTE23__ENET0_TXD0    0x43
-> +			MX8ULP_PAD_PTE22__ENET0_TXD1    0x43
-> +			MX8ULP_PAD_PTE19__ENET0_REFCLK  0x43
-> +			MX8ULP_PAD_PTF10__ENET0_1588_CLKIN 0x43
-> +		>;
-> +	};
-> +
-> +	pinctrl_lpuart5: lpuart5grp {
-> +		fsl,pins = <
-> +			MX8ULP_PAD_PTF14__LPUART5_TX	0x3
-> +			MX8ULP_PAD_PTF15__LPUART5_RX	0x3
-> +		>;
-> +	};
-> +
-> +	pinctrl_otgid1: usb1grp {
-> +		fsl,pins = <
-> +			MX8ULP_PAD_PTF2__USB0_ID	0x10003
-> +		>;
-> +	};
-> +
-> +	pinctrl_otgid2: usb2grp {
-> +		fsl,pins = <
-> +			MX8ULP_PAD_PTD23__USB1_ID	0x10003
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc0: usdhc0grp {
-> +		fsl,pins = <
-> +			MX8ULP_PAD_PTD1__SDHC0_CMD	0x43
-> +			MX8ULP_PAD_PTD2__SDHC0_CLK	0x10042
-> +			MX8ULP_PAD_PTD10__SDHC0_D0	0x43
-> +			MX8ULP_PAD_PTD9__SDHC0_D1	0x43
-> +			MX8ULP_PAD_PTD8__SDHC0_D2	0x43
-> +			MX8ULP_PAD_PTD7__SDHC0_D3	0x43
-> +			MX8ULP_PAD_PTD6__SDHC0_D4	0x43
-> +			MX8ULP_PAD_PTD5__SDHC0_D5	0x43
-> +			MX8ULP_PAD_PTD4__SDHC0_D6	0x43
-> +			MX8ULP_PAD_PTD3__SDHC0_D7	0x43
-> +			MX8ULP_PAD_PTD11__SDHC0_DQS	0x10042
-> +		>;
-> +	};
-> +};
-> -- 
-> 2.26.2
+>   	iommu_fwspec_free(dev);
+>   }
+>   
 > 
