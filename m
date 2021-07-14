@@ -2,39 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68AFE3C8F43
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:56:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C6343C8F46
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:57:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241276AbhGNTwM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 15:52:12 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47276 "EHLO mail.kernel.org"
+        id S239471AbhGNTwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 15:52:15 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45484 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240248AbhGNTth (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Jul 2021 15:49:37 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id BA587613F2;
-        Wed, 14 Jul 2021 19:44:55 +0000 (UTC)
+        id S240413AbhGNTtq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Jul 2021 15:49:46 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0AEAA61442;
+        Wed, 14 Jul 2021 19:45:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626291896;
-        bh=Xe1YxtBwK5MDibkRq5gzYlM4QXbTY8HByV5XQO5CWhM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=gSjibXeQL1AAuTY6AhdtggvNtxoWW0fdJi/7GKbxN8qIL/TgqcUMk8rHvHDE02FJe
-         Dk/AvXVlnUA3Mm1q3jityxnD8HD7l37dNkxBDat02VDkSEmnn2emJEoq9JbwhzBPhG
-         UKoZOvnJ2SDor9LFhQhl5PguNQr+ffU+6TtYTGynDB8EVEjPFJdiicLTwqNAz6DyiK
-         8fMv9vudmKuppkMfGNgZCqOVPoqCaH/PDaquyjwbdw3YBdLU9HluWcxQzCjwPVf2vx
-         Ll7PAdunf3BrCbALSLkPtyMp1lQHG/HBVj5lRH9WNizoIdOOOGfSao37BzCwgqwT1s
-         +unWct8GFdkRQ==
+        s=k20201202; t=1626291915;
+        bh=tLc5nzgnUmTYKzhsyWF55wUNyfDEs77Zz3eivk1Uu8A=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Ss9K7+EeQIIJsHr1B1gloAVtqo++Zb3sFtEi8zvQ7ZKUD8BGcSMnMou3quYk+Oozj
+         K+niEdxUoTPfbRSnInkPdWHw5ML+hNUAUynPUwv8EzR/jcilrjcaCMj5z1PWoyu7aF
+         WpQsCQehe0muSJz06o854CaalMWrNRUAos+G69YYQBf063MY9ImbcNZnGeQan3ryip
+         QXpp9nsuaZqpFz1Awk9fsIuFgMkqmU1O+OLkEo4YQcf2/fI2rP4jpkjCcClkBgo2kV
+         HrKeMzvO9V+qQ/pjOuTgiurbn6vCLDYqwfWMOClfjWEgLJwykmD60khSeqw/xWa1sr
+         nM9fzJSp3X5NQ==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Konstantin Porotchkin <kostap@marvell.com>,
-        Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Sasha Levin <sashal@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.10 76/88] arch/arm64/boot/dts/marvell: fix NAND partitioning scheme
-Date:   Wed, 14 Jul 2021 15:42:51 -0400
-Message-Id: <20210714194303.54028-76-sashal@kernel.org>
+Cc:     Corentin Labbe <clabbe@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.4 01/51] ARM: dts: gemini: rename mdio to the right name
+Date:   Wed, 14 Jul 2021 15:44:23 -0400
+Message-Id: <20210714194513.54827-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210714194303.54028-1-sashal@kernel.org>
-References: <20210714194303.54028-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -43,32 +40,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Konstantin Porotchkin <kostap@marvell.com>
+From: Corentin Labbe <clabbe@baylibre.com>
 
-[ Upstream commit e3850467bf8c82de4a052619136839fe8054b774 ]
+[ Upstream commit fc5b59b945b546e27977e99a5ca6fe61179ff0d2 ]
 
-Eliminate 1MB gap between Linux and filesystem partitions.
+ethernet-phy is not the right name for mdio, fix it.
 
-Signed-off-by: Konstantin Porotchkin <kostap@marvell.com>
-Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/marvell/cn9130-db.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/boot/dts/gemini-dlink-dns-313.dts | 2 +-
+ arch/arm/boot/dts/gemini-nas4220b.dts      | 2 +-
+ arch/arm/boot/dts/gemini-rut1xx.dts        | 2 +-
+ arch/arm/boot/dts/gemini-wbd111.dts        | 2 +-
+ arch/arm/boot/dts/gemini-wbd222.dts        | 2 +-
+ 5 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/marvell/cn9130-db.dts b/arch/arm64/boot/dts/marvell/cn9130-db.dts
-index ce49a70d88a0..d24294888400 100644
---- a/arch/arm64/boot/dts/marvell/cn9130-db.dts
-+++ b/arch/arm64/boot/dts/marvell/cn9130-db.dts
-@@ -258,7 +258,7 @@ partition@0 {
- 			};
- 			partition@200000 {
- 				label = "Linux";
--				reg = <0x200000 0xd00000>;
-+				reg = <0x200000 0xe00000>;
- 			};
- 			partition@1000000 {
- 				label = "Filesystem";
+diff --git a/arch/arm/boot/dts/gemini-dlink-dns-313.dts b/arch/arm/boot/dts/gemini-dlink-dns-313.dts
+index 360642a02a48..d0bbf2b970df 100644
+--- a/arch/arm/boot/dts/gemini-dlink-dns-313.dts
++++ b/arch/arm/boot/dts/gemini-dlink-dns-313.dts
+@@ -140,7 +140,7 @@ map1 {
+ 		};
+ 	};
+ 
+-	mdio0: ethernet-phy {
++	mdio0: mdio {
+ 		compatible = "virtual,mdio-gpio";
+ 		/* Uses MDC and MDIO */
+ 		gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>, /* MDC */
+diff --git a/arch/arm/boot/dts/gemini-nas4220b.dts b/arch/arm/boot/dts/gemini-nas4220b.dts
+index 521714f38eed..e1020e07e136 100644
+--- a/arch/arm/boot/dts/gemini-nas4220b.dts
++++ b/arch/arm/boot/dts/gemini-nas4220b.dts
+@@ -62,7 +62,7 @@ led-green-os {
+ 		};
+ 	};
+ 
+-	mdio0: ethernet-phy {
++	mdio0: mdio {
+ 		compatible = "virtual,mdio-gpio";
+ 		gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>, /* MDC */
+ 			<&gpio0 21 GPIO_ACTIVE_HIGH>; /* MDIO */
+diff --git a/arch/arm/boot/dts/gemini-rut1xx.dts b/arch/arm/boot/dts/gemini-rut1xx.dts
+index 9611ddf06792..79f17988884f 100644
+--- a/arch/arm/boot/dts/gemini-rut1xx.dts
++++ b/arch/arm/boot/dts/gemini-rut1xx.dts
+@@ -56,7 +56,7 @@ led-power {
+ 		};
+ 	};
+ 
+-	mdio0: ethernet-phy {
++	mdio0: mdio {
+ 		compatible = "virtual,mdio-gpio";
+ 		gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>, /* MDC */
+ 			<&gpio0 21 GPIO_ACTIVE_HIGH>; /* MDIO */
+diff --git a/arch/arm/boot/dts/gemini-wbd111.dts b/arch/arm/boot/dts/gemini-wbd111.dts
+index 3a2761dd460f..5602ba8f30f2 100644
+--- a/arch/arm/boot/dts/gemini-wbd111.dts
++++ b/arch/arm/boot/dts/gemini-wbd111.dts
+@@ -68,7 +68,7 @@ led-greeb-l3 {
+ 		};
+ 	};
+ 
+-	mdio0: ethernet-phy {
++	mdio0: mdio {
+ 		compatible = "virtual,mdio-gpio";
+ 		gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>, /* MDC */
+ 			<&gpio0 21 GPIO_ACTIVE_HIGH>; /* MDIO */
+diff --git a/arch/arm/boot/dts/gemini-wbd222.dts b/arch/arm/boot/dts/gemini-wbd222.dts
+index 52b4dbc0c072..a4a260c36d75 100644
+--- a/arch/arm/boot/dts/gemini-wbd222.dts
++++ b/arch/arm/boot/dts/gemini-wbd222.dts
+@@ -67,7 +67,7 @@ led-green-l3 {
+ 		};
+ 	};
+ 
+-	mdio0: ethernet-phy {
++	mdio0: mdio {
+ 		compatible = "virtual,mdio-gpio";
+ 		gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>, /* MDC */
+ 			<&gpio0 21 GPIO_ACTIVE_HIGH>; /* MDIO */
 -- 
 2.30.2
 
