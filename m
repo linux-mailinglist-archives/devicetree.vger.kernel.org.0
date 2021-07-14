@@ -2,211 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 780273C9423
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 00:59:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 412693C9426
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 01:02:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234988AbhGNXCG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 19:02:06 -0400
-Received: from mail-io1-f42.google.com ([209.85.166.42]:41654 "EHLO
-        mail-io1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230388AbhGNXCE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 19:02:04 -0400
-Received: by mail-io1-f42.google.com with SMTP id z9so4118751iob.8;
-        Wed, 14 Jul 2021 15:59:12 -0700 (PDT)
+        id S236900AbhGNXEg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 19:04:36 -0400
+Received: from mail-io1-f44.google.com ([209.85.166.44]:34506 "EHLO
+        mail-io1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230388AbhGNXEg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 19:04:36 -0400
+Received: by mail-io1-f44.google.com with SMTP id g22so4202866iom.1;
+        Wed, 14 Jul 2021 16:01:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=KbmmvJeOdCwoGDuIj5l12VzKcZvZF1mWFuwkSqXYzIU=;
-        b=uWxDdo7XmoH3pXS4Z0JawwMC8Aua6PU1A8wABjcPdagOvgNo+TXzbQHPU3wOLtAkKA
-         kgbpS/h/87vmDkzQGKYmocYEaESmp65tozGlXydaD+RcIWhtHY5LBrH7JYUTwUOFyp7c
-         pD1s5gfZk9qoEsK+0SWmk9jN9OF1pTn1qiGsmoL2BXlONbBqMCoV7aAxQwx9UHGOlEJ9
-         lDIu/7qug/U4obJn6qGp1odBBfE6wDXw8B48ictCWI4XNCeAqR43RAmZUM8BQygkr8UO
-         4netThIjBc/UEL5SmR7svWK+OuPOHUgAB3JiS+wqW6svA+Q5Rva+TLhMN6X3XsLKZFCX
-         tzqg==
-X-Gm-Message-State: AOAM533rX8j36MlEO7TWqlObIuJQfyjLhBGUiBjXWkFGE7im3j2YKVse
-        /Vp57z6hUT9orrmgUAQS2w==
-X-Google-Smtp-Source: ABdhPJwwXy+4iyS+HLc4HV+QnkK5rCaaq570TtPqkCjQuhoTLFUejfe6LH7FZkoFaPiq9IW/aXVh9A==
-X-Received: by 2002:a05:6602:2285:: with SMTP id d5mr391182iod.24.1626303552011;
-        Wed, 14 Jul 2021 15:59:12 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=iWYj7BYmLf4sE9pZYmPOjA7KWU/Cdxu9ZYSyNE9Xa2o=;
+        b=CQX9I86nolMTA+nUCqykOHWs1MpTYKS1kP4Xoh+GVhuif5TTLZ+rBapSAP5afKv9ga
+         yiO8k80LBmwnd+2t62Sgk8UjPfWkW5J7EmzfybmH2zaNoW0t2U9T81/BdrKwqzYFvn7h
+         SZzihneyU/I67HaOL1n5mql4FS2AVJByG9ixER06ynfQ6K66Ff2KKm+zP5dTcl67fnz1
+         MckFkKlFK6wxo58/k+WKGwNL9HRdjeJgfl4eOaZoqfNnLqHZ0C0DPLiaS6v/F9TrajgL
+         /WXVT6UDUqwQWdxh03CM5GLkK7gND5rC/Om+EjNjdlZxt6TPwnq4RpN5SqS7VYh7GDlu
+         RmIg==
+X-Gm-Message-State: AOAM5324E19B95MeIlgVa0Fc9b+dkLKKeQW5t5nZ9G0ZhLLl6hQdICEp
+        dafCAAIgjqrQCuxa2akB8g==
+X-Google-Smtp-Source: ABdhPJxRnII1A4P7617nk+P/dL3rkhW199nEWSWXEjBvCWsHF3w+QlDdvckSGvOuEEncV11dSrn9uQ==
+X-Received: by 2002:a6b:6016:: with SMTP id r22mr407400iog.12.1626303703032;
+        Wed, 14 Jul 2021 16:01:43 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id g15sm744716ild.29.2021.07.14.15.59.08
+        by smtp.gmail.com with ESMTPSA id l8sm2217302iok.26.2021.07.14.16.01.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jul 2021 15:59:11 -0700 (PDT)
-Received: (nullmailer pid 3697302 invoked by uid 1000);
-        Wed, 14 Jul 2021 22:59:08 -0000
-Date:   Wed, 14 Jul 2021 16:59:08 -0600
+        Wed, 14 Jul 2021 16:01:42 -0700 (PDT)
+Received: (nullmailer pid 3701173 invoked by uid 1000);
+        Wed, 14 Jul 2021 23:01:40 -0000
+Date:   Wed, 14 Jul 2021 17:01:40 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Inki Dae <inki.dae@samsung.com>,
-        Joonyoung Shim <jy0922.shim@samsung.com>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        Marek Vasut <marex@denx.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
-Subject: Re: [RFC PATCH 12/17] dt-bindings: display: bridge:
- samsung,mipi-dsim: Add i.MX8MM support
-Message-ID: <20210714225908.GA3694990@robh.at.kernel.org>
-References: <20210704090230.26489-1-jagan@amarulasolutions.com>
- <20210704090230.26489-13-jagan@amarulasolutions.com>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <treding@nvidia.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Peter Chen <peter.chen@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        David Heidelberg <david@ixit.cz>, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v3 06/12] dt-bindings: power: supply: smb347-charger:
+ Document USB VBUS regulator
+Message-ID: <20210714230140.GA3697673@robh.at.kernel.org>
+References: <20210704225433.32029-1-digetx@gmail.com>
+ <20210704225433.32029-7-digetx@gmail.com>
+ <20210712153905.GA1980362@robh.at.kernel.org>
+ <9032e807-b4d3-bacf-6c39-d3a2c7c57f3e@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210704090230.26489-13-jagan@amarulasolutions.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <9032e807-b4d3-bacf-6c39-d3a2c7c57f3e@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jul 04, 2021 at 02:32:25PM +0530, Jagan Teki wrote:
-> Samsung MIPI DSIM bridge can also be found in i.MX8MM SoC.
+On Tue, Jul 13, 2021 at 03:22:40AM +0300, Dmitry Osipenko wrote:
+> 12.07.2021 18:39, Rob Herring пишет:
+> >> +  summit,inok-polarity:
+> >> +    description: |
+> >> +      Polarity of INOK signal indicating presence of external power supply.
+> >> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >> +    enum:
+> >> +      - 0 # SMB3XX_SYSOK_INOK_ACTIVE_LOW
+> >> +      - 1 # SMB3XX_SYSOK_INOK_ACTIVE_HIGH
+> >> +
+> >> +  usb-vbus:
+> >> +    $ref: "../../regulator/regulator.yaml#"
+> >> +    type: object
+> >        unevaluatedProperties: false
+> > 
+> > With that,
+> > 
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > 
 > 
-> Add dt-bingings for it.
-> 
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> ---
->  .../display/bridge/samsung,mipi-dsim.yaml     | 84 ++++++++++++++++++-
->  1 file changed, 83 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
-> index b2970734ffd7..bd12d5706291 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
-> @@ -26,6 +26,7 @@ properties:
->        - samsung,exynos5410-mipi-dsi
->        - samsung,exynos5422-mipi-dsi
->        - samsung,exynos5433-mipi-dsi
-> +      - fsl,imx8mm-mipi-dsim
->  
->    reg:
->      maxItems: 1
-> @@ -39,6 +40,10 @@ properties:
->    '#size-cells':
->      const: 0
->  
-> +  assigned-clock-parents: true
-> +  assigned-clock-rates: true
-> +  assigned-clocks: true
+> I tried to add the unevaluatedProperties + a random unrelated property
+> to the example usb-vbus node and dt_binding_check is happy with that. So
+> the unevaluatedProperties has no effect, is it supposed to be so?
 
-You don't need these. They are always allowed if 'clocks' is present.
+Yes, until support lands upstream[1].
 
-> +
->    clocks:
->      minItems: 2
->      maxItems: 5
-> @@ -102,7 +107,7 @@ properties:
->          properties:
->            endpoint@0:
->              $ref: /schemas/graph.yaml#/properties/endpoint
-> -            description: sub-node describing the input from MIC
-> +            description: sub-node describing the input from MIC or LCDIF
->  
->          unevaluatedProperties: false
->  
-> @@ -128,6 +133,30 @@ required:
->  
->  allOf:
->    - $ref: ../dsi-controller.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: fsl,imx8mm-mipi-dsim
-> +
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 2
-> +
-> +        clock-names:
-> +          items:
-> +            - const: bus_clk
-> +            - const: sclk_mipi
-> +
-> +        ports:
-> +          required:
-> +            - port@0
-> +            - port@1
-> +
-> +      required:
-> +        - ports
-> +
->    - if:
->        properties:
->          compatible:
-> @@ -221,6 +250,59 @@ additionalProperties:
->    type: object
->  
->  examples:
-> +  - |
-> +    #include <dt-bindings/clock/imx8mm-clock.h>
-> +    #include <dt-bindings/power/imx8mm-power.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    dsi@32e10000 {
-> +       compatible = "fsl,imx8mm-mipi-dsim";
-> +       reg = <0x32e10000 0x400>;
-> +       clocks = <&clk IMX8MM_CLK_DSI_CORE>,
-> +                <&clk IMX8MM_CLK_DSI_PHY_REF>;
-> +       clock-names = "bus_clk", "sclk_mipi";
-> +       assigned-clocks = <&clk IMX8MM_CLK_DSI_CORE>,
-> +                         <&clk IMX8MM_VIDEO_PLL1_OUT>,
-> +                         <&clk IMX8MM_CLK_DSI_PHY_REF>;
-> +       assigned-clock-parents = <&clk IMX8MM_SYS_PLL1_266M>,
-> +                         <&clk IMX8MM_VIDEO_PLL1_BYPASS>,
-> +                         <&clk IMX8MM_VIDEO_PLL1_OUT>;
-> +       assigned-clock-rates = <266000000>, <594000000>, <27000000>;
-> +       interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
-> +       phys = <&mipi_phy 0>;
-> +       phy-names = "dsim";
-> +       power-domains = <&dispmix_blk_ctl IMX8MM_BLK_CTL_PD_DISPMIX_MIPI_DSI>;
-> +       samsung,burst-clock-frequency = <891000000>;
-> +       samsung,esc-clock-frequency = <54000000>;
-> +       samsung,pll-clock-frequency = <27000000>;
-> +       status = "disabled";
-> +
-> +       ports {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          port@0 {
-> +             reg = <0>;
-> +             #address-cells = <1>;
-> +             #size-cells = <0>;
-> +
-> +             dsi_in_lcdif: endpoint@0 {
-> +                reg = <0>;
-> +                remote-endpoint = <&lcdif_out_dsi>;
-> +             };
-> +          };
-> +
-> +          port@1 {
-> +             reg = <1>;
-> +
-> +             dsi_out_panel: endpoint {
-> +                remote-endpoint = <&panel_in_dsi>;
-> +             };
-> +          };
-> +       };
-> +    };
-> +
->    - |
->      #include <dt-bindings/clock/exynos5433.h>
->      #include <dt-bindings/gpio/gpio.h>
-> -- 
-> 2.25.1
-> 
-> 
+Rob
+
+[1] https://github.com/Julian/jsonschema/pull/817
