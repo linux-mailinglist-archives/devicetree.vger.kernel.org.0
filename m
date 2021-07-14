@@ -2,43 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 613D93C8D75
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:43:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1159B3C8D7E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:43:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235401AbhGNTos (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 15:44:48 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37912 "EHLO mail.kernel.org"
+        id S236075AbhGNToz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 15:44:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38626 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232491AbhGNToA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Jul 2021 15:44:00 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 79BE1613E7;
-        Wed, 14 Jul 2021 19:40:56 +0000 (UTC)
+        id S236618AbhGNToK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Jul 2021 15:44:10 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 40A25613D9;
+        Wed, 14 Jul 2021 19:40:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626291657;
-        bh=iN64Nju1qH1qcqi/eb1cC/Pur69G1WJCJKWq+HCzSUY=;
+        s=k20201202; t=1626291660;
+        bh=MigKeHk+d0yUqlclcbta5DIS8H+OA0+RmEPj7A5xbWQ=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=FDdZOcII82ymerGNQrFDanBW8jfumUvGB1oLymabfN6Mv1nX6HTUJykWvAbnq42+U
-         7DOpLMqU90/yywSspipyQfnhB+CmTIqa9brBYBBJ4OeZ7uvNcWpLOmSKABG5P7BzIj
-         e8vn8xuOpqEH2SNknIim8SGSiHsxg52QNXS9ROaKaJiBwB6gDnkMQ7Ee2ty6JpbzX/
-         Ohi1IckO2tFL+0FjfaZujfHvC7l5O4T0orf3rXhQBmL8alC1+jQSkThnxBZvJVXE3o
-         9Z1H2PH8aK9RTdLkceFRaxtlWS39Ie08tKnTBbNvNvh7weH/NLNzZFvp7PCFJp43Y5
-         B4c6zs4QYv6ig==
+        b=Nc25pJgh/9WEscO7kNAyWHPdAIP8PidIfvSV4OKPVfjPIzItdsY+HNLZ3EEAKw144
+         Kuej0UtkZ+0Bn6PIkermxg7PaAsfVkLbDRM/Dhlh2OXkeYN5nCmG9sp3918wAVxW6H
+         2wKdzbUEy76SGKJP3EktcNBgd1YorXkid1A/i2lOTWW0rLrN6+aR7Qcyhmm7wX+q2i
+         JiZKpbaerGnofXkffFYfPD24VXaQb9q2QfWSSsYyDHUNfH+Ml+ul7lru0bRuyM3AAM
+         CXm5JiM8o0pUoxR3b/RSmo/UtAj8Z1iC4ivyWvwPR/B8Gf8VDQaD9mStZPTYXVhBB0
+         uPtAVIz90h/5w==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Elaine Zhang <zhangqing@rock-chips.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.12 014/102] arm64: dts: rockchip: Fix power-controller node names for rk3399
-Date:   Wed, 14 Jul 2021 15:39:07 -0400
-Message-Id: <20210714194036.53141-14-sashal@kernel.org>
+Cc:     =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Sasha Levin <sashal@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.12 016/102] ARM: dts: BCM5301X: Fix NAND nodes names
+Date:   Wed, 14 Jul 2021 15:39:09 -0400
+Message-Id: <20210714194036.53141-16-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210714194036.53141-1-sashal@kernel.org>
 References: <20210714194036.53141-1-sashal@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
@@ -46,169 +44,110 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Elaine Zhang <zhangqing@rock-chips.com>
+From: Rafał Miłecki <rafal@milecki.pl>
 
-[ Upstream commit 148bbe29f9108812c6fedd8a228f9e1ed6b422f7 ]
+[ Upstream commit b660269cba748dfd07eb5551a88ff34d5ea0b86e ]
 
-Use more generic names (as recommended in the device tree specification
-or the binding documentation)
+This matches nand-controller.yaml requirements.
 
-Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-Link: https://lore.kernel.org/r/20210417112952.8516-8-jbx6244@gmail.com
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/rockchip/rk3399.dtsi | 40 ++++++++++++------------
- 1 file changed, 20 insertions(+), 20 deletions(-)
+ arch/arm/boot/dts/bcm4708-luxul-xwc-1000.dts      | 4 ++--
+ arch/arm/boot/dts/bcm47094-dlink-dir-885l.dts     | 4 ++--
+ arch/arm/boot/dts/bcm5301x-nand-cs0.dtsi          | 4 ++--
+ arch/arm/boot/dts/bcm5301x.dtsi                   | 2 +-
+ arch/arm/boot/dts/bcm953012k.dts                  | 4 ++--
+ arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi | 2 +-
+ 6 files changed, 10 insertions(+), 10 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-index 02e8d9b5174d..b265cc1b558d 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-@@ -971,26 +971,26 @@ power: power-controller {
- 			#size-cells = <0>;
+diff --git a/arch/arm/boot/dts/bcm4708-luxul-xwc-1000.dts b/arch/arm/boot/dts/bcm4708-luxul-xwc-1000.dts
+index 8636600385fd..c81944cd6d0b 100644
+--- a/arch/arm/boot/dts/bcm4708-luxul-xwc-1000.dts
++++ b/arch/arm/boot/dts/bcm4708-luxul-xwc-1000.dts
+@@ -24,8 +24,8 @@ memory@0 {
+ 		reg = <0x00000000 0x08000000>;
+ 	};
  
- 			/* These power domains are grouped by VD_CENTER */
--			pd_iep@RK3399_PD_IEP {
-+			power-domain@RK3399_PD_IEP {
- 				reg = <RK3399_PD_IEP>;
- 				clocks = <&cru ACLK_IEP>,
- 					 <&cru HCLK_IEP>;
- 				pm_qos = <&qos_iep>;
- 			};
--			pd_rga@RK3399_PD_RGA {
-+			power-domain@RK3399_PD_RGA {
- 				reg = <RK3399_PD_RGA>;
- 				clocks = <&cru ACLK_RGA>,
- 					 <&cru HCLK_RGA>;
- 				pm_qos = <&qos_rga_r>,
- 					 <&qos_rga_w>;
- 			};
--			pd_vcodec@RK3399_PD_VCODEC {
-+			power-domain@RK3399_PD_VCODEC {
- 				reg = <RK3399_PD_VCODEC>;
- 				clocks = <&cru ACLK_VCODEC>,
- 					 <&cru HCLK_VCODEC>;
- 				pm_qos = <&qos_video_m0>;
- 			};
--			pd_vdu@RK3399_PD_VDU {
-+			power-domain@RK3399_PD_VDU {
- 				reg = <RK3399_PD_VDU>;
- 				clocks = <&cru ACLK_VDU>,
- 					 <&cru HCLK_VDU>;
-@@ -999,94 +999,94 @@ pd_vdu@RK3399_PD_VDU {
- 			};
- 
- 			/* These power domains are grouped by VD_GPU */
--			pd_gpu@RK3399_PD_GPU {
-+			power-domain@RK3399_PD_GPU {
- 				reg = <RK3399_PD_GPU>;
- 				clocks = <&cru ACLK_GPU>;
- 				pm_qos = <&qos_gpu>;
- 			};
- 
- 			/* These power domains are grouped by VD_LOGIC */
--			pd_edp@RK3399_PD_EDP {
-+			power-domain@RK3399_PD_EDP {
- 				reg = <RK3399_PD_EDP>;
- 				clocks = <&cru PCLK_EDP_CTRL>;
- 			};
--			pd_emmc@RK3399_PD_EMMC {
-+			power-domain@RK3399_PD_EMMC {
- 				reg = <RK3399_PD_EMMC>;
- 				clocks = <&cru ACLK_EMMC>;
- 				pm_qos = <&qos_emmc>;
- 			};
--			pd_gmac@RK3399_PD_GMAC {
-+			power-domain@RK3399_PD_GMAC {
- 				reg = <RK3399_PD_GMAC>;
- 				clocks = <&cru ACLK_GMAC>,
- 					 <&cru PCLK_GMAC>;
- 				pm_qos = <&qos_gmac>;
- 			};
--			pd_sd@RK3399_PD_SD {
-+			power-domain@RK3399_PD_SD {
- 				reg = <RK3399_PD_SD>;
- 				clocks = <&cru HCLK_SDMMC>,
- 					 <&cru SCLK_SDMMC>;
- 				pm_qos = <&qos_sd>;
- 			};
--			pd_sdioaudio@RK3399_PD_SDIOAUDIO {
-+			power-domain@RK3399_PD_SDIOAUDIO {
- 				reg = <RK3399_PD_SDIOAUDIO>;
- 				clocks = <&cru HCLK_SDIO>;
- 				pm_qos = <&qos_sdioaudio>;
- 			};
--			pd_tcpc0@RK3399_PD_TCPD0 {
-+			power-domain@RK3399_PD_TCPD0 {
- 				reg = <RK3399_PD_TCPD0>;
- 				clocks = <&cru SCLK_UPHY0_TCPDCORE>,
- 					 <&cru SCLK_UPHY0_TCPDPHY_REF>;
- 			};
--			pd_tcpc1@RK3399_PD_TCPD1 {
-+			power-domain@RK3399_PD_TCPD1 {
- 				reg = <RK3399_PD_TCPD1>;
- 				clocks = <&cru SCLK_UPHY1_TCPDCORE>,
- 					 <&cru SCLK_UPHY1_TCPDPHY_REF>;
- 			};
--			pd_usb3@RK3399_PD_USB3 {
-+			power-domain@RK3399_PD_USB3 {
- 				reg = <RK3399_PD_USB3>;
- 				clocks = <&cru ACLK_USB3>;
- 				pm_qos = <&qos_usb_otg0>,
- 					 <&qos_usb_otg1>;
- 			};
--			pd_vio@RK3399_PD_VIO {
-+			power-domain@RK3399_PD_VIO {
- 				reg = <RK3399_PD_VIO>;
+-	nand: nand@18028000 {
+-		nandcs@0 {
++	nand_controller: nand-controller@18028000 {
++		nand@0 {
+ 			partitions {
+ 				compatible = "fixed-partitions";
  				#address-cells = <1>;
- 				#size-cells = <0>;
+diff --git a/arch/arm/boot/dts/bcm47094-dlink-dir-885l.dts b/arch/arm/boot/dts/bcm47094-dlink-dir-885l.dts
+index e635a15041dd..a6e2aeb28675 100644
+--- a/arch/arm/boot/dts/bcm47094-dlink-dir-885l.dts
++++ b/arch/arm/boot/dts/bcm47094-dlink-dir-885l.dts
+@@ -25,8 +25,8 @@ memory@0 {
+ 		      <0x88000000 0x08000000>;
+ 	};
  
--				pd_hdcp@RK3399_PD_HDCP {
-+				power-domain@RK3399_PD_HDCP {
- 					reg = <RK3399_PD_HDCP>;
- 					clocks = <&cru ACLK_HDCP>,
- 						 <&cru HCLK_HDCP>,
- 						 <&cru PCLK_HDCP>;
- 					pm_qos = <&qos_hdcp>;
- 				};
--				pd_isp0@RK3399_PD_ISP0 {
-+				power-domain@RK3399_PD_ISP0 {
- 					reg = <RK3399_PD_ISP0>;
- 					clocks = <&cru ACLK_ISP0>,
- 						 <&cru HCLK_ISP0>;
- 					pm_qos = <&qos_isp0_m0>,
- 						 <&qos_isp0_m1>;
- 				};
--				pd_isp1@RK3399_PD_ISP1 {
-+				power-domain@RK3399_PD_ISP1 {
- 					reg = <RK3399_PD_ISP1>;
- 					clocks = <&cru ACLK_ISP1>,
- 						 <&cru HCLK_ISP1>;
- 					pm_qos = <&qos_isp1_m0>,
- 						 <&qos_isp1_m1>;
- 				};
--				pd_vo@RK3399_PD_VO {
-+				power-domain@RK3399_PD_VO {
- 					reg = <RK3399_PD_VO>;
- 					#address-cells = <1>;
- 					#size-cells = <0>;
+-	nand: nand@18028000 {
+-		nandcs@0 {
++	nand_controller: nand-controller@18028000 {
++		nand@0 {
+ 			partitions {
+ 				compatible = "fixed-partitions";
+ 				#address-cells = <1>;
+diff --git a/arch/arm/boot/dts/bcm5301x-nand-cs0.dtsi b/arch/arm/boot/dts/bcm5301x-nand-cs0.dtsi
+index 925a7c9ce5b7..be9a00ff752d 100644
+--- a/arch/arm/boot/dts/bcm5301x-nand-cs0.dtsi
++++ b/arch/arm/boot/dts/bcm5301x-nand-cs0.dtsi
+@@ -6,8 +6,8 @@
+  */
  
--					pd_vopb@RK3399_PD_VOPB {
-+					power-domain@RK3399_PD_VOPB {
- 						reg = <RK3399_PD_VOPB>;
- 						clocks = <&cru ACLK_VOP0>,
- 							 <&cru HCLK_VOP0>;
- 						pm_qos = <&qos_vop_big_r>,
- 							 <&qos_vop_big_w>;
- 					};
--					pd_vopl@RK3399_PD_VOPL {
-+					power-domain@RK3399_PD_VOPL {
- 						reg = <RK3399_PD_VOPL>;
- 						clocks = <&cru ACLK_VOP1>,
- 							 <&cru HCLK_VOP1>;
+ / {
+-	nand@18028000 {
+-		nandcs: nandcs@0 {
++	nand-controller@18028000 {
++		nandcs: nand@0 {
+ 			compatible = "brcm,nandcs";
+ 			reg = <0>;
+ 			#address-cells = <1>;
+diff --git a/arch/arm/boot/dts/bcm5301x.dtsi b/arch/arm/boot/dts/bcm5301x.dtsi
+index 7db72a2f1020..092ec525c01c 100644
+--- a/arch/arm/boot/dts/bcm5301x.dtsi
++++ b/arch/arm/boot/dts/bcm5301x.dtsi
+@@ -501,7 +501,7 @@ rng: rng@18004000 {
+ 		reg = <0x18004000 0x14>;
+ 	};
+ 
+-	nand: nand@18028000 {
++	nand_controller: nand-controller@18028000 {
+ 		compatible = "brcm,nand-iproc", "brcm,brcmnand-v6.1", "brcm,brcmnand";
+ 		reg = <0x18028000 0x600>, <0x1811a408 0x600>, <0x18028f00 0x20>;
+ 		reg-names = "nand", "iproc-idm", "iproc-ext";
+diff --git a/arch/arm/boot/dts/bcm953012k.dts b/arch/arm/boot/dts/bcm953012k.dts
+index 046c59fb4846..de40bd59a5fa 100644
+--- a/arch/arm/boot/dts/bcm953012k.dts
++++ b/arch/arm/boot/dts/bcm953012k.dts
+@@ -49,8 +49,8 @@ memory@80000000 {
+ 	};
+ };
+ 
+-&nand {
+-	nandcs@0 {
++&nand_controller {
++	nand@0 {
+ 		compatible = "brcm,nandcs";
+ 		reg = <0>;
+ 		nand-on-flash-bbt;
+diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+index 9e799328c6db..037fdd07d43b 100644
+--- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
++++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+@@ -269,7 +269,7 @@ nand@1800 {
+ 			interrupt-names = "nand";
+ 			status = "okay";
+ 
+-			nandcs: nandcs@0 {
++			nandcs: nand@0 {
+ 				compatible = "brcm,nandcs";
+ 				reg = <0>;
+ 			};
 -- 
 2.30.2
 
