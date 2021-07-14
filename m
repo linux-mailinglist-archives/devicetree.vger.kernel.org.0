@@ -2,347 +2,263 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E5C483C865A
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 16:51:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 823A03C865E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 16:53:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232310AbhGNOyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 10:54:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37730 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231797AbhGNOyU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 10:54:20 -0400
-Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [IPv6:2a02:1800:120:4::f00:14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04F76C06175F
-        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 07:51:28 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed10:bcf3:b2b1:dff6:480b])
-        by xavier.telenet-ops.be with bizsmtp
-        id V2rR2500Q4sai0K012rRUZ; Wed, 14 Jul 2021 16:51:27 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1m3gEP-001AAj-7C; Wed, 14 Jul 2021 16:51:25 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1m3gEO-00AcE3-Od; Wed, 14 Jul 2021 16:51:24 +0200
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH resend v2] dt-bindings: display: ssd1307fb: Convert to json-schema
-Date:   Wed, 14 Jul 2021 16:51:22 +0200
-Message-Id: <20210714145122.2530176-1-geert@linux-m68k.org>
-X-Mailer: git-send-email 2.25.1
+        id S231797AbhGNO4H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 10:56:07 -0400
+Received: from mail-io1-f49.google.com ([209.85.166.49]:43669 "EHLO
+        mail-io1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231977AbhGNO4G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 10:56:06 -0400
+Received: by mail-io1-f49.google.com with SMTP id k16so2413221ios.10;
+        Wed, 14 Jul 2021 07:53:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=BwxSFbLgKWQgLIZuiUqRuKMKvZuG6jXDVbbJMI4fKZQ=;
+        b=udzk1GsYstZNXPOWhbfzeac4F4NMGe6yvEw6qPJZ31z3YdnjLSgCUNV2z7fH0Jr82t
+         05wdnh9HR5n7caxToSR2eDb+pfZjTVtfzRBv3sd9Fi4ZmKVayOc3Fk0+7hTt+z1irdSc
+         rUmLgc8UROD5aeHsC65675IN3uX9DzLJw3hGi0qBek1Aw/msY440dol7+yiGpgXMS5eb
+         Sm7RErQcDRf0AgNIcA4AMSPoQjF5Oien3MWfr51njUoKBXHF0ElWlehKIZs6rCXqhcWY
+         DCA6m8fNsUkcDGMuIFfBgzXC5qBDQoNDk1oMAZ27Sfb+jEKZc0tM7s4aHMaepgl0+EvS
+         3txQ==
+X-Gm-Message-State: AOAM531PzbPRlOIOgSXgVm4+6CMG7QOBHPwJ+2Q2W8EWUIQNE6tyJtYH
+        PWte5RVSB6xR4Aiuyh/OfA==
+X-Google-Smtp-Source: ABdhPJyH3lufhfX1XMNyJYC7/+LlYLvP6+EB8uzvbQksP2PDthAIkNWPm6H7BCQv4VXYffEHYLcH+Q==
+X-Received: by 2002:a05:6602:1544:: with SMTP id h4mr7531945iow.76.1626274393946;
+        Wed, 14 Jul 2021 07:53:13 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id q186sm1414370ioq.1.2021.07.14.07.53.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jul 2021 07:53:13 -0700 (PDT)
+Received: (nullmailer pid 2553523 invoked by uid 1000);
+        Wed, 14 Jul 2021 14:53:08 -0000
+Date:   Wed, 14 Jul 2021 08:53:08 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Russell King <linux@armlinux.org.uk>,
+        Nicolas Pitre <nico@fluxnic.net>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Dave Young <dyoung@redhat.com>,
+        Mike Rapoport <rppt@kernel.org>, Baoquan He <bhe@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-riscv@lists.infradead.org, kexec@lists.infradead.org,
+        linux-mm@kvack.org, linux-renesas-soc@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 10/10] ARM: Parse kdump DT properties
+Message-ID: <20210714145308.GC2441138@robh.at.kernel.org>
+References: <cover.1626266516.git.geert+renesas@glider.be>
+ <daaed4fcfe5ad62056cfb6f4ebea026f6b8a99f5.1626266516.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <daaed4fcfe5ad62056cfb6f4ebea026f6b8a99f5.1626266516.git.geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Solomon SSD1307 Framebuffer Device Tree binding
-documentation to json-schema.
+On Wed, Jul 14, 2021 at 02:50:20PM +0200, Geert Uytterhoeven wrote:
+> Parse the following DT properties in the crash dump kernel, to provide a
+> modern interface between kexec and the crash dump kernel:
+>   - linux,elfcorehdr: ELF core header segment, similar to the
+>     "elfcorehdr=" kernel parameter.
+>   - linux,usable-memory-range: Usable memory reserved for the crash dump
+>     kernel.
+>     This makes the memory reservation explicit.  If present, Linux no
+>     longer needs to mask the program counter, and rely on the "mem="
+>     kernel parameter to obtain the start and size of usable memory.
+> 
+> For backwards compatibility, the traditional method to derive the start
+> of memory is still used if "linux,usable-memory-range" is absent, and
+> the "elfcorehdr=" and "mem=" kernel parameters are still parsed.
+> 
+> Loosely based on the ARM64 version by Akashi Takahiro.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> The corresponding patch for kexec-tools is "[PATCH] arm: kdump: Add DT
+> properties to crash dump kernel's DTB", which is still valid:
+> https://lore.kernel.org/linux-arm-kernel/20200902154129.6358-1-geert+renesas@glider.be/
+> 
+> v4:
+>   - Remove references to architectures in chosen.txt, to avoid having to
+>     change this again when more architectures copy kdump support,
+>   - Remove the architecture-specific code for parsing
+>     "linux,usable-memory-range" and "linux,elfcorehdr", as the FDT core
+>     code now takes care of this,
+>   - Move chosen.txt change to patch changing the FDT core,
+>   - Use IS_ENABLED(CONFIG_CRASH_DUMP) instead of #ifdef,
+> 
+> v3:
+>   - Rebase on top of accepted solution for DTB memory information
+>     handling, which is part of v5.12-rc1,
+> 
+> v2:
+>   - Rebase on top of reworked DTB memory information handling.
+> ---
+>  .../arm/boot/compressed/fdt_check_mem_start.c | 48 ++++++++++++++++---
+>  arch/arm/mm/init.c                            | 30 ++++++++++++
+>  2 files changed, 72 insertions(+), 6 deletions(-)
+> 
+> diff --git a/arch/arm/boot/compressed/fdt_check_mem_start.c b/arch/arm/boot/compressed/fdt_check_mem_start.c
+> index 62450d824c3ca180..9291a2661bdfe57f 100644
+> --- a/arch/arm/boot/compressed/fdt_check_mem_start.c
+> +++ b/arch/arm/boot/compressed/fdt_check_mem_start.c
+> @@ -55,16 +55,17 @@ static uint64_t get_val(const fdt32_t *cells, uint32_t ncells)
+>   * DTB, and, if out-of-range, replace it by the real start address.
+>   * To preserve backwards compatibility (systems reserving a block of memory
+>   * at the start of physical memory, kdump, ...), the traditional method is
+> - * always used if it yields a valid address.
+> + * used if it yields a valid address, unless the "linux,usable-memory-range"
+> + * property is present.
+>   *
+>   * Return value: start address of physical memory to use
+>   */
+>  uint32_t fdt_check_mem_start(uint32_t mem_start, const void *fdt)
+>  {
+> -	uint32_t addr_cells, size_cells, base;
+> +	uint32_t addr_cells, size_cells, usable_base, base;
+>  	uint32_t fdt_mem_start = 0xffffffff;
+> -	const fdt32_t *reg, *endp;
+> -	uint64_t size, end;
+> +	const fdt32_t *usable, *reg, *endp;
+> +	uint64_t size, usable_end, end;
+>  	const char *type;
+>  	int offset, len;
+>  
+> @@ -80,6 +81,27 @@ uint32_t fdt_check_mem_start(uint32_t mem_start, const void *fdt)
+>  	if (addr_cells > 2 || size_cells > 2)
+>  		return mem_start;
+>  
+> +	/*
+> +	 * Usable memory in case of a crash dump kernel
+> +	 * This property describes a limitation: memory within this range is
+> +	 * only valid when also described through another mechanism
+> +	 */
+> +	usable = get_prop(fdt, "/chosen", "linux,usable-memory-range",
+> +			  (addr_cells + size_cells) * sizeof(fdt32_t));
+> +	if (usable) {
+> +		size = get_val(usable + addr_cells, size_cells);
+> +		if (!size)
+> +			return mem_start;
+> +
+> +		if (addr_cells > 1 && fdt32_ld(usable)) {
+> +			/* Outside 32-bit address space */
+> +			return mem_start;
+> +		}
+> +
+> +		usable_base = fdt32_ld(usable + addr_cells - 1);
+> +		usable_end = usable_base + size;
+> +	}
+> +
+>  	/* Walk all memory nodes and regions */
+>  	for (offset = fdt_next_node(fdt, -1, NULL); offset >= 0;
+>  	     offset = fdt_next_node(fdt, offset, NULL)) {
+> @@ -107,7 +129,20 @@ uint32_t fdt_check_mem_start(uint32_t mem_start, const void *fdt)
+>  
+>  			base = fdt32_ld(reg + addr_cells - 1);
+>  			end = base + size;
+> -			if (mem_start >= base && mem_start < end) {
+> +			if (usable) {
+> +				/*
+> +				 * Clip to usable range, which takes precedence
+> +				 * over mem_start
+> +				 */
+> +				if (base < usable_base)
+> +					base = usable_base;
+> +
+> +				if (end > usable_end)
+> +					end = usable_end;
+> +
+> +				if (end <= base)
+> +					continue;
+> +			} else if (mem_start >= base && mem_start < end) {
+>  				/* Calculated address is valid, use it */
+>  				return mem_start;
+>  			}
+> @@ -123,7 +158,8 @@ uint32_t fdt_check_mem_start(uint32_t mem_start, const void *fdt)
+>  	}
+>  
+>  	/*
+> -	 * The calculated address is not usable.
+> +	 * The calculated address is not usable, or was overridden by the
+> +	 * "linux,usable-memory-range" property.
+>  	 * Use the lowest usable physical memory address from the DTB instead,
+>  	 * and make sure this is a multiple of 2 MiB for phys/virt patching.
+>  	 */
+> diff --git a/arch/arm/mm/init.c b/arch/arm/mm/init.c
+> index 6162a070a4104a26..dfaee199554dda97 100644
+> --- a/arch/arm/mm/init.c
+> +++ b/arch/arm/mm/init.c
+> @@ -4,6 +4,7 @@
+>   *
+>   *  Copyright (C) 1995-2005 Russell King
+>   */
+> +#include <linux/crash_dump.h>
+>  #include <linux/kernel.h>
+>  #include <linux/errno.h>
+>  #include <linux/swap.h>
+> @@ -221,8 +222,35 @@ void check_cpu_icache_size(int cpuid)
+>  }
+>  #endif
+>  
+> +/*
+> + * reserve_elfcorehdr() - reserves memory for elf core header
+> + *
+> + * This function reserves the memory occupied by an elf core header
+> + * described in the device tree. This region contains all the
+> + * information about primary kernel's core image and is used by a dump
+> + * capture kernel to access the system memory on primary kernel.
+> + */
+> +static void __init reserve_elfcorehdr(void)
+> +{
+> +	if (!IS_ENABLED(CONFIG_CRASH_DUMP) || !elfcorehdr_size)
+> +		return;
+> +
+> +	if (memblock_is_region_reserved(elfcorehdr_addr, elfcorehdr_size)) {
+> +		pr_warn("elfcorehdr is overlapped\n");
+> +		return;
+> +	}
+> +
+> +	memblock_reserve(elfcorehdr_addr, elfcorehdr_size);
 
-Fix the spelling of the "pwms" property.
-Document default values.
-Make properties with default values not required.
+Can't this be in common code?
 
-Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-v2:
-  - Add Reviewed-by,
-  - Document solomon,dclk-{div,freq} defaults.
----
- .../bindings/display/solomon,ssd1307fb.yaml   | 208 ++++++++++++++++++
- .../devicetree/bindings/display/ssd1307fb.txt |  60 -----
- 2 files changed, 208 insertions(+), 60 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
- delete mode 100644 Documentation/devicetree/bindings/display/ssd1307fb.txt
-
-diff --git a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-new file mode 100644
-index 0000000000000000..2ed2a7d0ca2fa23e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-@@ -0,0 +1,208 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/solomon,ssd1307fb.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Solomon SSD1307 OLED Controller Framebuffer
-+
-+maintainers:
-+  - Maxime Ripard <mripard@kernel.org>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - solomon,ssd1305fb-i2c
-+      - solomon,ssd1306fb-i2c
-+      - solomon,ssd1307fb-i2c
-+      - solomon,ssd1309fb-i2c
-+
-+  reg:
-+    maxItems: 1
-+
-+  pwms:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  vbat-supply:
-+    description: The supply for VBAT
-+
-+  solomon,height:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 16
-+    description:
-+      Height in pixel of the screen driven by the controller
-+
-+  solomon,width:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 96
-+    description:
-+      Width in pixel of the screen driven by the controller
-+
-+  solomon,page-offset:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 1
-+    description:
-+      Offset of pages (band of 8 pixels) that the screen is mapped to
-+
-+  solomon,segment-no-remap:
-+    type: boolean
-+    description:
-+      Display needs normal (non-inverted) data column to segment mapping
-+
-+  solomon,col-offset:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 0
-+    description:
-+      Offset of columns (COL/SEG) that the screen is mapped to
-+
-+  solomon,com-seq:
-+    type: boolean
-+    description:
-+      Display uses sequential COM pin configuration
-+
-+  solomon,com-lrremap:
-+    type: boolean
-+    description:
-+      Display uses left-right COM pin remap
-+
-+  solomon,com-invdir:
-+    type: boolean
-+    description:
-+      Display uses inverted COM pin scan direction
-+
-+  solomon,com-offset:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 0
-+    description:
-+      Number of the COM pin wired to the first display line
-+
-+  solomon,prechargep1:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 2
-+    description:
-+      Length of deselect period (phase 1) in clock cycles
-+
-+  solomon,prechargep2:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 2
-+    description:
-+      Length of precharge period (phase 2) in clock cycles.  This needs to be
-+      the higher, the higher the capacitance of the OLED's pixels is.
-+
-+  solomon,dclk-div:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 1
-+    maximum: 16
-+    description:
-+      Clock divisor. The default value is controller-dependent.
-+
-+  solomon,dclk-frq:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 0
-+    maximum: 15
-+    description:
-+      Clock frequency, higher value means higher frequency.
-+      The default value is controller-dependent.
-+
-+  solomon,lookup-table:
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    maxItems: 4
-+    description:
-+      8 bit value array of current drive pulse widths for BANK0, and colors A,
-+      B, and C. Each value in range of 31 to 63 for pulse widths of 32 to 64.
-+      Color D is always width 64.
-+
-+  solomon,area-color-enable:
-+    type: boolean
-+    description:
-+      Display uses color mode
-+
-+  solomon,low-power:
-+    type: boolean
-+    description:
-+      Display runs in low power mode
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: solomon,ssd1305fb-i2c
-+    then:
-+      properties:
-+        solomon,dclk-div:
-+          default: 1
-+        solomon,dclk-frq:
-+          default: 7
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: solomon,ssd1306fb-i2c
-+    then:
-+      properties:
-+        solomon,dclk-div:
-+          default: 1
-+        solomon,dclk-frq:
-+          default: 8
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: solomon,ssd1307fb-i2c
-+    then:
-+      properties:
-+        solomon,dclk-div:
-+          default: 2
-+        solomon,dclk-frq:
-+          default: 12
-+      required:
-+        - pwms
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: solomon,ssd1309fb-i2c
-+    then:
-+      properties:
-+        solomon,dclk-div:
-+          default: 1
-+        solomon,dclk-frq:
-+          default: 10
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c1 {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            ssd1307: oled@3c {
-+                    compatible = "solomon,ssd1307fb-i2c";
-+                    reg = <0x3c>;
-+                    pwms = <&pwm 4 3000>;
-+                    reset-gpios = <&gpio2 7>;
-+            };
-+
-+            ssd1306: oled@3d {
-+                    compatible = "solomon,ssd1306fb-i2c";
-+                    reg = <0x3c>;
-+                    pwms = <&pwm 4 3000>;
-+                    reset-gpios = <&gpio2 7>;
-+                    solomon,com-lrremap;
-+                    solomon,com-invdir;
-+                    solomon,com-offset = <32>;
-+                    solomon,lookup-table = /bits/ 8 <0x3f 0x3f 0x3f 0x3f>;
-+            };
-+    };
-diff --git a/Documentation/devicetree/bindings/display/ssd1307fb.txt b/Documentation/devicetree/bindings/display/ssd1307fb.txt
-deleted file mode 100644
-index 2dcb6d12d1371536..0000000000000000
---- a/Documentation/devicetree/bindings/display/ssd1307fb.txt
-+++ /dev/null
-@@ -1,60 +0,0 @@
--* Solomon SSD1307 Framebuffer Driver
--
--Required properties:
--  - compatible: Should be "solomon,<chip>fb-<bus>". The only supported bus for
--    now is i2c, and the supported chips are ssd1305, ssd1306, ssd1307 and
--    ssd1309.
--  - reg: Should contain address of the controller on the I2C bus. Most likely
--         0x3c or 0x3d
--  - pwm: Should contain the pwm to use according to the OF device tree PWM
--         specification [0]. Only required for the ssd1307.
--  - solomon,height: Height in pixel of the screen driven by the controller
--  - solomon,width: Width in pixel of the screen driven by the controller
--  - solomon,page-offset: Offset of pages (band of 8 pixels) that the screen is
--    mapped to.
--
--Optional properties:
--  - reset-gpios: The GPIO used to reset the OLED display, if available. See
--                 Documentation/devicetree/bindings/gpio/gpio.txt for details.
--  - vbat-supply: The supply for VBAT
--  - solomon,segment-no-remap: Display needs normal (non-inverted) data column
--                              to segment mapping
--  - solomon,col-offset: Offset of columns (COL/SEG) that the screen is mapped to.
--  - solomon,com-seq: Display uses sequential COM pin configuration
--  - solomon,com-lrremap: Display uses left-right COM pin remap
--  - solomon,com-invdir: Display uses inverted COM pin scan direction
--  - solomon,com-offset: Number of the COM pin wired to the first display line
--  - solomon,prechargep1: Length of deselect period (phase 1) in clock cycles.
--  - solomon,prechargep2: Length of precharge period (phase 2) in clock cycles.
--                         This needs to be the higher, the higher the capacitance
--                         of the OLED's pixels is
--  - solomon,dclk-div: Clock divisor 1 to 16
--  - solomon,dclk-frq: Clock frequency 0 to 15, higher value means higher
--                      frequency
--  - solomon,lookup-table: 8 bit value array of current drive pulse widths for
--                          BANK0, and colors A, B, and C. Each value in range
--                          of 31 to 63 for pulse widths of 32 to 64. Color D
--                          is always width 64.
--  - solomon,area-color-enable: Display uses color mode
--  - solomon,low-power. Display runs in low power mode
--
--[0]: Documentation/devicetree/bindings/pwm/pwm.txt
--
--Examples:
--ssd1307: oled@3c {
--        compatible = "solomon,ssd1307fb-i2c";
--        reg = <0x3c>;
--        pwms = <&pwm 4 3000>;
--        reset-gpios = <&gpio2 7>;
--};
--
--ssd1306: oled@3c {
--        compatible = "solomon,ssd1306fb-i2c";
--        reg = <0x3c>;
--        pwms = <&pwm 4 3000>;
--        reset-gpios = <&gpio2 7>;
--        solomon,com-lrremap;
--        solomon,com-invdir;
--        solomon,com-offset = <32>;
--        solomon,lookup-table = /bits/ 8 <0x3f 0x3f 0x3f 0x3f>;
--};
--- 
-2.25.1
-
+> +
+> +	pr_info("Reserving %llu KiB of memory at 0x%llx for elfcorehdr\n",
+> +		elfcorehdr_size >> 10, elfcorehdr_addr);
+> +}
+> +
+>  void __init arm_memblock_init(const struct machine_desc *mdesc)
+>  {
+> +	/* Handle linux,usable-memory-range property */
+> +	memblock_cap_memory_range(cap_mem_addr, cap_mem_size);
+> +
+>  	/* Register the kernel text, kernel data and initrd with memblock. */
+>  	memblock_reserve(__pa(KERNEL_START), KERNEL_END - KERNEL_START);
+>  
+> @@ -236,6 +264,8 @@ void __init arm_memblock_init(const struct machine_desc *mdesc)
+>  
+>  	early_init_fdt_scan_reserved_mem();
+>  
+> +	reserve_elfcorehdr();
+> +
+>  	/* reserve memory for DMA contiguous allocations */
+>  	dma_contiguous_reserve(arm_dma_limit);
+>  
+> -- 
+> 2.25.1
+> 
+> 
