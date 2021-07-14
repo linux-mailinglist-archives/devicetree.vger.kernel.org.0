@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DF443C8E57
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:45:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EE9A3C8E5E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:45:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238293AbhGNTrV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 15:47:21 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38286 "EHLO mail.kernel.org"
+        id S238326AbhGNTre (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 15:47:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38404 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235369AbhGNTqZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Jul 2021 15:46:25 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0A4CB613D7;
-        Wed, 14 Jul 2021 19:42:40 +0000 (UTC)
+        id S236860AbhGNTqa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Jul 2021 15:46:30 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 97F65613E8;
+        Wed, 14 Jul 2021 19:42:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626291761;
-        bh=v+MV/6ENIztnzvXcOK3p0Wx92DZwmfJY9AACJQvcQZ4=;
+        s=k20201202; t=1626291764;
+        bh=bJOeM4Fan3/lEmKugSFVzgY8cVs2vwVBou4cqklMHRM=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=NOSvRrsXFIFuHMutvlXj+QtewgCfR5StPa6pTh1rHEfXSTkf2MzwAy007qQbDI9ku
-         ctGd9HIz7UQYZt2lT2ZUfGasXCHqg89Brx43D9nw8vCqaNaGPWqcLs37ToEmwznSAc
-         UNGhqGwEsr/ASC/tUbU6a29yXSATfiDJPPAHmZbu/xJVq1BZOQYEoQvyy8SRcJhIwn
-         0F8Hevvo0aEMpYgH6ubJoriurEdjhUl8iz7vt4/crUUnUatGYC6jZW2v8IGh1hB+zf
-         mMOrUtVxvqnnJ0T1UPuw0B8h3ZPdaylEOO37E+zvatDPA/86SHUWtbURKsRZvGe04b
-         hR/XBkVURiZ7w==
+        b=P/5JoAjYetfk7ZZa6MQfWFaMNb6BAFsuLj/tDYEFlM+T8Zc3XElYlpcgPrdTPJ2JE
+         DCzFS9g6L8K8TR7lTAXAY4c0h7P3LORKS91QgnkI+CyNYiHkNtMlq+AUspIIr9NKm5
+         2U1Ep8oEJCioqECLqYbztBUQ+xlOmDzCt5tFed6iCDh+QX2els79vxjCOSJ3jULvmr
+         PfgI/iGNDJG6zPn5fmpGNZ13SHJT/TJZ+6XeGxk6yXEO2sWtl15tLV7fLmczAh+PZa
+         bRt0vr4snLpbfg/aw7WcM94xU8RyxNhpiaAmycLhwdgl/4v14VSa2ZpuGhO8HL5y7v
+         +Kb3YBrW6pJIw==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sasha Levin <sashal@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.12 088/102] arm64: dts: qcom: sm8150: Disable Adreno and modem by default
-Date:   Wed, 14 Jul 2021 15:40:21 -0400
-Message-Id: <20210714194036.53141-88-sashal@kernel.org>
+Cc:     Konstantin Porotchkin <kostap@marvell.com>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Sasha Levin <sashal@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.12 090/102] arch/arm64/boot/dts/marvell: fix NAND partitioning scheme
+Date:   Wed, 14 Jul 2021 15:40:23 -0400
+Message-Id: <20210714194036.53141-90-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210714194036.53141-1-sashal@kernel.org>
 References: <20210714194036.53141-1-sashal@kernel.org>
@@ -43,115 +43,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Konrad Dybcio <konrad.dybcio@somainline.org>
+From: Konstantin Porotchkin <kostap@marvell.com>
 
-[ Upstream commit b1dc3c6b3dabbedaf896a3c1a998da191c311c70 ]
+[ Upstream commit e3850467bf8c82de4a052619136839fe8054b774 ]
 
-Components that rely on proprietary (not to mention signed!) firmware should
-not be enabled by default, as lack of the aforementioned firmware could cause
-various issues, from random errors to straight-up failing to boot.
+Eliminate 1MB gap between Linux and filesystem partitions.
 
-Not enabling modem back on the HDK, as it uses a sa8150.
-
-Also fixed a sorting mistake in both boards' dt while at it.
-
-Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-Link: https://lore.kernel.org/r/20210611203301.101067-1-konrad.dybcio@somainline.org
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Signed-off-by: Konstantin Porotchkin <kostap@marvell.com>
+Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/qcom/sm8150-hdk.dts | 10 +++++++++-
- arch/arm64/boot/dts/qcom/sm8150-mtp.dts | 10 +++++++++-
- arch/arm64/boot/dts/qcom/sm8150.dtsi    |  6 ++++++
- 3 files changed, 24 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/marvell/cn9130-db.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
-index fb2cf3d987a1..50ee3bb97325 100644
---- a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
-@@ -354,7 +354,11 @@ vreg_l6f_2p85: ldo6 {
- 	};
- };
- 
--&qupv3_id_1 {
-+&gmu {
-+	status = "okay";
-+};
-+
-+&gpu {
- 	status = "okay";
- };
- 
-@@ -372,6 +376,10 @@ resin {
- 	};
- };
- 
-+&qupv3_id_1 {
-+	status = "okay";
-+};
-+
- &remoteproc_adsp {
- 	status = "okay";
- 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-index 3774f8e63416..7de54b2e497e 100644
---- a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-@@ -349,7 +349,11 @@ vreg_l6f_2p85: ldo6 {
- 	};
- };
- 
--&qupv3_id_1 {
-+&gmu {
-+	status = "okay";
-+};
-+
-+&gpu {
- 	status = "okay";
- };
- 
-@@ -367,6 +371,10 @@ resin {
- 	};
- };
- 
-+&qupv3_id_1 {
-+	status = "okay";
-+};
-+
- &remoteproc_adsp {
- 	status = "okay";
- 	firmware-name = "qcom/sm8150/adsp.mdt";
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index 778613d3410b..468e57f48ad0 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -793,6 +793,8 @@ gpu: gpu@2c00000 {
- 
- 			qcom,gmu = <&gmu>;
- 
-+			status = "disabled";
-+
- 			zap-shader {
- 				memory-region = <&gpu_mem>;
+diff --git a/arch/arm64/boot/dts/marvell/cn9130-db.dts b/arch/arm64/boot/dts/marvell/cn9130-db.dts
+index 79020e6d2792..741ae534b477 100644
+--- a/arch/arm64/boot/dts/marvell/cn9130-db.dts
++++ b/arch/arm64/boot/dts/marvell/cn9130-db.dts
+@@ -260,7 +260,7 @@ partition@0 {
  			};
-@@ -860,6 +862,8 @@ gmu: gmu@2c6a000 {
- 
- 			operating-points-v2 = <&gmu_opp_table>;
- 
-+			status = "disabled";
-+
- 			gmu_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
-@@ -947,6 +951,8 @@ remoteproc_mpss: remoteproc@4080000 {
- 			qcom,smem-states = <&modem_smp2p_out 0>;
- 			qcom,smem-state-names = "stop";
- 
-+			status = "disabled";
-+
- 			glink-edge {
- 				interrupts = <GIC_SPI 449 IRQ_TYPE_EDGE_RISING>;
- 				label = "modem";
+ 			partition@200000 {
+ 				label = "Linux";
+-				reg = <0x200000 0xd00000>;
++				reg = <0x200000 0xe00000>;
+ 			};
+ 			partition@1000000 {
+ 				label = "Filesystem";
 -- 
 2.30.2
 
