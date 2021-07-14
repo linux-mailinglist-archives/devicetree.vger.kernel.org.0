@@ -2,278 +2,279 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D0EF3C92AD
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 23:00:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E35BA3C92BD
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 23:05:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230508AbhGNVDC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 17:03:02 -0400
-Received: from mail-yb1-f181.google.com ([209.85.219.181]:43901 "EHLO
-        mail-yb1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230180AbhGNVDC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 17:03:02 -0400
-Received: by mail-yb1-f181.google.com with SMTP id g5so5401856ybu.10;
-        Wed, 14 Jul 2021 14:00:09 -0700 (PDT)
+        id S233310AbhGNVH5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 17:07:57 -0400
+Received: from mail-io1-f43.google.com ([209.85.166.43]:40504 "EHLO
+        mail-io1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231452AbhGNVH5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 17:07:57 -0400
+Received: by mail-io1-f43.google.com with SMTP id l5so3849808iok.7;
+        Wed, 14 Jul 2021 14:05:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JxzyyREwq06Hzronh5MwIhSbRu7e1HNovcwkk/6kr5g=;
-        b=JPcL+3i4Dth+38fdqJ4dXso3tUTu8CiFs1SKXKkEWx2bO8HxE278kLivJq0JPObr+N
-         vPLl3s2zxZmJqronF+xQZ2PLoO2LG8OAdiGcGXfg2VLjxVYYWBPf337Qdrfrk9Xwf/cv
-         Nk5HATOc2X4NNl0M2pVjfBJ0UnqwGvGbGpDtT+F0A8Zh98ZwfT0lYr05G4eWy/NiHiHu
-         M1nXBQyFLymqgz5R2Psyi6S4t/iskNzEM5yLNObfud8vnkaZwHZLcAy9HK8aJ/mHFQe6
-         5MZxFVg2x/vXnixE5i3VPhNjDzyq5hkBwuLTHHQNBOLdfQb1uwFZvB7br7xXWCm0Br9Z
-         +otw==
-X-Gm-Message-State: AOAM533y8m0Q4TUjZNohEzc/dA23219ITzv3V2kvt90RzBbM3v5SB1F2
-        VJvTuNTkZtinbjlagHCfsJqw3pBsZ55KVf/nqPk=
-X-Google-Smtp-Source: ABdhPJwBpmW9NBF5oy/Um3cWuJsyHmWSlrJSIAUML9hxE6ITzApsxqdoPcECaMY7eUN53+4mHEMrp2rdDZnRc15KruQ=
-X-Received: by 2002:a25:8093:: with SMTP id n19mr16104389ybk.414.1626296409369;
- Wed, 14 Jul 2021 14:00:09 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=uFlLvjLhE+D5X3z01n3T7/D1edVtL4g+ysZ7NAiCzC8=;
+        b=Y0LOmIYtMXR5Jt9BKurpaNTU8tSl/d+x9BSFnUPtffusCFULWCA3lui3WTjrLHW74Q
+         ducFR0yA8x0D4t8ZWjKC8r/JxkJiqEVlBg9rHpatnRA05ABLRyV363LjWQrP5FpiVW2i
+         qbqNZDhw6o9GFb4fBZIrPFJqYzt6UHvg8R0A38GP9dR5IH536VjpSGg9Owtj4g3ziUD/
+         LBojmgyvxrC8sheXA8rqyBe8m9k747v+VqeNM9nvedBct4WnC5yQxOvq9EkkrjaT+TXl
+         x49s0nQI9EItG+iPPcv1LfZ4kasxEAFdly3Wsil4FeYFE+Av4SMWEye+QMIfb9/2drgU
+         lcKw==
+X-Gm-Message-State: AOAM5337fV/mXxQH/oWrVzEWQsnowzFJZuWt5uVTkvrWQbySYEHSPVSU
+        1OTjvK1XizCZZ8LBpfEJbA==
+X-Google-Smtp-Source: ABdhPJwHfWZOiOMqxgq7S7wSy3VFa4SGeHXDDjjR+0+RTr6LodRjuwpKb3ch8Qwm9JHaUJ9lq+nE+w==
+X-Received: by 2002:a05:6602:2bc9:: with SMTP id s9mr60381iov.11.1626296704235;
+        Wed, 14 Jul 2021 14:05:04 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id h6sm1718611iop.40.2021.07.14.14.05.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jul 2021 14:05:03 -0700 (PDT)
+Received: (nullmailer pid 3521178 invoked by uid 1000);
+        Wed, 14 Jul 2021 21:04:58 -0000
+Date:   Wed, 14 Jul 2021 15:04:58 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Ming Qian <ming.qian@nxp.com>
+Cc:     mchehab@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        hverkuil-cisco@xs4all.nl, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, aisheng.dong@nxp.com,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 01/13] dt-bindings: media: imx8q: add imx video codec
+ bindings
+Message-ID: <20210714210458.GA3512308@robh.at.kernel.org>
+References: <cover.1624954576.git.ming.qian@nxp.com>
+ <201c608e24da92498fde48708afa2dedde5c8f0b.1624954576.git.ming.qian@nxp.com>
 MIME-Version: 1.0
-References: <20210625224744.1020108-1-kernel@esmil.dk> <20210625224744.1020108-2-kernel@esmil.dk>
- <20210714204400.GB3476672@robh.at.kernel.org>
-In-Reply-To: <20210714204400.GB3476672@robh.at.kernel.org>
-From:   Emil Renner Berthing <kernel@esmil.dk>
-Date:   Wed, 14 Jul 2021 22:59:57 +0200
-Message-ID: <CANBLGcxonf7w9a3T78-8gkNy2YVkxR5RZVvWfYBP6VgvWQ+cxg@mail.gmail.com>
-Subject: Re: [PATCH v1 1/3] dt-bindings: mfd: convert tps65086.txt to YAML
-To:     Rob Herring <robh@kernel.org>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        "Andrew F. Davis" <afd@ti.com>, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <201c608e24da92498fde48708afa2dedde5c8f0b.1624954576.git.ming.qian@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Jul 2021 at 22:44, Rob Herring <robh@kernel.org> wrote:
-> On Sat, Jun 26, 2021 at 12:47:42AM +0200, Emil Renner Berthing wrote:
-> > This converts the tps65086.txt binding description to YAML schema so
-> > dts files can be verified automatically.
-> >
-> > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> > ---
-> > @Andrew: The dt-bindings meta schema requires a maintainer entry. I hope
-> > it's ok that I've added you, otherwise I don't know who should be
-> > listed.
->
-> Anyone that knows the h/w and/or cares if the binding is changed or
-> deleted. If you can't find anyone, then good, one less binding. :)
+On Tue, Jun 29, 2021 at 04:21:02PM +0800, Ming Qian wrote:
+> Add devicetree binding documentation for IMX8Q Video Processing Unit IP
+> 
+> Signed-off-by: Ming Qian <ming.qian@nxp.com>
+> Signed-off-by: Shijie Qin <shijie.qin@nxp.com>
+> Signed-off-by: Zhou Peng <eagle.zhou@nxp.com>
+> ---
+>  .../bindings/media/nxp,imx8q-vpu.yaml         | 191 ++++++++++++++++++
+>  1 file changed, 191 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/nxp,imx8q-vpu.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8q-vpu.yaml b/Documentation/devicetree/bindings/media/nxp,imx8q-vpu.yaml
+> new file mode 100644
+> index 000000000000..b9e38caf3d10
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/nxp,imx8q-vpu.yaml
+> @@ -0,0 +1,191 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/nxp,imx8q-vpu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP i.MX8Q video encode and decode accelerators
+> +
+> +maintainers:
+> +  - Ming Qian <ming.qian@nxp.com>
+> +  - Shijie Qin <shijie.qin@nxp.com>
+> +
+> +description: |-
+> +  The Amphion MXC video encoder(Windsor) and decoder(Malone) accelerators present
+> +  on NXP i.MX8Q SoCs.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^vpu@[0-9a-f]+$"
+> +
+> +  compatible:
+> +    oneOf:
+> +      - const: nxp,imx8qm-vpu
+> +      - const: nxp,imx8qxp-vpu
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  memory-region:
+> +    description:
+> +      Phandle to a node describing reserved memory used by VPU.
+> +      (see bindings/reserved-memory/reserved-memory.txt)
 
-Hmm.. unless someone else responds I guess I'll just put myself then
-since I at least care that it isn't deleted.
+How many?
 
-> >
-> >  .../devicetree/bindings/mfd/ti,tps65086.yaml  | 127 ++++++++++++++++++
-> >  .../devicetree/bindings/mfd/tps65086.txt      |  54 --------
-> >  2 files changed, 127 insertions(+), 54 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/mfd/ti,tps65086.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/mfd/tps65086.txt
-> >
-> > diff --git a/Documentation/devicetree/bindings/mfd/ti,tps65086.yaml b/Documentation/devicetree/bindings/mfd/ti,tps65086.yaml
-> > new file mode 100644
-> > index 000000000000..ba638bd10a58
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mfd/ti,tps65086.yaml
-> > @@ -0,0 +1,127 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/mfd/ti,tps65086.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: TPS65086 Power Management Integrated Circuit (PMIC)
-> > +
-> > +maintainers:
-> > +  - Andrew F. Davis <afd@ti.com>
->
-> Not a valid email any more.
->
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: ti,tps65086
-> > +
-> > +  reg:
-> > +    const: 0x5e
-> > +    description: I2C slave address
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  interrupt-controller: true
-> > +
-> > +  '#interrupt-cells':
-> > +    const: 2
-> > +    description: |
-> > +      The first cell is the IRQ number. The second cell is the flags,
-> > +      encoded as trigger masks from ../interrupt-controller/interrupts.txt.
-> > +
-> > +  gpio-controller: true
-> > +
-> > +  '#gpio-cells':
-> > +    const: 2
-> > +    description: |
-> > +      The first cell is the pin number and the second cell is used to specify
-> > +      flags.  See ../gpio/gpio.txt for more information.
-> > +
-> > +  regulators:
-> > +    type: object
-> > +    description: |
-> > +      List of child nodes that specify the regulator initialization data.
-> > +      Child nodes must be named after their hardware counterparts:
-> > +      buck[1-6], ldoa[1-3], swa1, swb[1-2], and vtt.
-> > +      Each child node is defined using the standard binding for regulators and
-> > +      the optional regulator properties defined below.
-> > +
-> > +    patternProperties:
-> > +      "^buck[1-6]$":
-> > +        type: object
-> > +        $ref: ../regulator/regulator.yaml
-> > +
-> > +        properties:
-> > +          regulator-name: true
-> > +          regulator-boot-on: true
-> > +          regulator-always-on: true
-> > +          regulator-min-microvolt: true
-> > +          regulator-max-microvolt: true
-> > +          ti,regulator-step-size-25mv:
-> > +            type: boolean
-> > +            description: |
-> > +              Set this if the regulator is factory set with a 25mv step voltage
-> > +              mapping.
-> > +          ti,regulator-decay:
-> > +            type: boolean
-> > +            description: |
-> > +              Set this if the output needs to decay, default is for the output
-> > +              to slew down.
-> > +
-> > +        additionalProperties: false
-> > +
-> > +      "^(ldoa[1-3]|swa1|swb[1-2]|vtt)$":
-> > +        type: object
-> > +        $ref: ../regulator/regulator.yaml
-> > +
-> > +        properties:
-> > +          regulator-name: true
-> > +          regulator-boot-on: true
-> > +          regulator-always-on: true
-> > +          regulator-min-microvolt: true
-> > +          regulator-max-microvolt: true
-> > +
-> > +        additionalProperties: false
-> > +
-> > +additionalProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - interrupt-controller
-> > +  - '#interrupt-cells'
-> > +  - gpio-controller
-> > +  - '#gpio-cells'
-> > +  - regulators
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    i2c0 {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        pmic: tps65086@5e {
->
-> pmic@5e
+> +
+> +patternProperties:
+> +  "^mailbox@[0-9a-f]+$":
+> +    description:
+> +      Each vpu encoder or decoder correspond a MU, which used for communication
+> +      between driver and firmware. Implement via mailbox on driver.
+> +    $ref: ../mailbox/fsl,mu.yaml#
+> +
+> +
+> +  "^vpu_core@[0-9a-f]+$":
+> +    description:
+> +      Each core correspond a decoder or encoder, need to configure them
+> +      separately. NXP i.MX8QM SoC has one decoder and two encoder, i.MX8QXP SoC
+> +      has one decoder and one encoder.
+> +    type: object
+> +
+> +    properties:
+> +      compatible:
+> +        oneOf:
+> +          - const: nxp,imx8q-vpu-decoder
+> +          - const: nxp,imx8q-vpu-encoder
+> +
+> +      reg:
+> +        maxItems: 1
+> +
+> +      power-domains:
+> +        maxItems: 1
+> +
+> +      mbox-names:
+> +        items:
+> +          - const: tx0
+> +          - const: tx1
+> +          - const: rx
+> +
+> +      mboxes:
+> +        description:
+> +          List of phandle of 2 MU channels for tx, 1 MU channel for rx.
+> +        maxItems: 1
+> +
+> +      nxp,boot-region:
+> +        description:
+> +          Phandle to a node describing reserved memory used by firmware
+> +          loading.
+> +        $ref: /schemas/types.yaml#/definitions/phandle
 
-Will fix, thanks!
+'memory-region' is what points to reserved regions. If you have more 
+than one, then you need to define what each index is.
 
-> > +            compatible = "ti,tps65086";
-> > +            reg = <0x5e>;
-> > +            interrupt-parent = <&gpio1>;
-> > +            interrupts = <28 IRQ_TYPE_LEVEL_LOW>;
-> > +            interrupt-controller;
-> > +            #interrupt-cells = <2>;
-> > +            gpio-controller;
-> > +            #gpio-cells = <2>;
-> > +
-> > +            regulators {
-> > +                buck1 {
-> > +                    regulator-name = "vcc1";
-> > +                    regulator-min-microvolt = <1600000>;
-> > +                    regulator-max-microvolt = <1600000>;
-> > +                    regulator-boot-on;
-> > +                    ti,regulator-decay;
-> > +                    ti,regulator-step-size-25mv;
-> > +                };
-> > +            };
-> > +        };
-> > +    };
-> > +
-> > +...
-> > diff --git a/Documentation/devicetree/bindings/mfd/tps65086.txt b/Documentation/devicetree/bindings/mfd/tps65086.txt
-> > deleted file mode 100644
-> > index 67eac0ed32df..000000000000
-> > --- a/Documentation/devicetree/bindings/mfd/tps65086.txt
-> > +++ /dev/null
-> > @@ -1,54 +0,0 @@
-> > -* TPS65086 Power Management Integrated Circuit (PMIC) bindings
-> > -
-> > -Required properties:
-> > - - compatible                : Should be "ti,tps65086".
-> > - - reg                       : I2C slave address.
-> > - - interrupts                : The interrupt line the device is connected to.
-> > - - interrupt-controller      : Marks the device node as an interrupt controller.
-> > - - #interrupt-cells  : The number of cells to describe an IRQ, should be 2.
-> > -                         The first cell is the IRQ number.
-> > -                         The second cell is the flags, encoded as trigger
-> > -                         masks from ../interrupt-controller/interrupts.txt.
-> > - - gpio-controller      : Marks the device node as a GPIO Controller.
-> > - - #gpio-cells          : Should be two.  The first cell is the pin number and
-> > -                            the second cell is used to specify flags.
-> > -                            See ../gpio/gpio.txt for more information.
-> > - - regulators:          : List of child nodes that specify the regulator
-> > -                            initialization data. Child nodes must be named
-> > -                            after their hardware counterparts: buck[1-6],
-> > -                            ldoa[1-3], swa1, swb[1-2], and vtt. Each child
-> > -                            node is defined using the standard binding for
-> > -                            regulators and the optional regulator properties
-> > -                            defined below.
-> > -
-> > -Optional regulator properties:
-> > - - ti,regulator-step-size-25mv       : This is applicable for buck[1-6], set this
-> > -                                 if the regulator is factory set with a 25mv
-> > -                                 step voltage mapping.
-> > - - ti,regulator-decay                : This is applicable for buck[1-6], set this if
-> > -                                 the output needs to decay, default is for
-> > -                                 the output to slew down.
-> > -
-> > -Example:
-> > -
-> > -     pmic: tps65086@5e {
-> > -             compatible = "ti,tps65086";
-> > -             reg = <0x5e>;
-> > -             interrupt-parent = <&gpio1>;
-> > -             interrupts = <28 IRQ_TYPE_LEVEL_LOW>;
-> > -             interrupt-controller;
-> > -             #interrupt-cells = <2>;
-> > -             gpio-controller;
-> > -             #gpio-cells = <2>;
-> > -
-> > -             regulators {
-> > -                     buck1 {
-> > -                             regulator-name = "vcc1";
-> > -                             regulator-min-microvolt = <1600000>;
-> > -                             regulator-max-microvolt = <1600000>;
-> > -                             regulator-boot-on;
-> > -                             ti,regulator-decay;
-> > -                             ti,regulator-step-size-25mv;
-> > -                     };
-> > -             };
-> > -     };
-> > --
-> > 2.32.0
-> >
-> >
+> +
+> +      nxp,rpc-region:
+> +        description:
+> +          Phandle to a node describing reserved memory used by RPC shared
+> +          memory between firmware and driver.
+> +        $ref: /schemas/types.yaml#/definitions/phandle
+> +
+> +      nxp,print-offset:
+> +        description:
+> +          The memory offset from RPC address, used by reserve firmware log.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +    required:
+> +      - compatible
+> +      - reg
+> +      - power-domains
+> +      - mbox-names
+> +      - mboxes
+> +      - nxp,boot-region
+> +      - nxp,rpc-region
+> +      - nxp,print-offset
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - power-domains
+> +  - memory-region
+> +
+> +additionalProperties: true
+
+Nope. 'true' is only acceptible for common bindings.
+
+> +
+> +examples:
+> +  # Device node example for i.MX8QM platform:
+> +  - |
+> +    #include <dt-bindings/firmware/imx/rsrc.h>
+> +
+> +    vpu: vpu@2c000000 {
+> +      compatible = "nxp,imx8qm-vpu";
+> +      ranges = <0x2c000000 0x2c000000 0x2000000>;
+> +      reg = <0x2c000000 0x1000000>;
+> +      #address-cells = <1>;
+> +      #size-cells = <1>;
+> +      power-domains = <&pd IMX_SC_R_VPU>;
+> +      memory-region = <&vpu_reserved>;
+> +
+> +      mu_m0: mailbox@2d000000 {
+> +        compatible = "fsl,imx6sx-mu";
+> +        reg = <0x2d000000 0x20000>;
+> +        interrupts = <0 472 4>;
+> +        #mbox-cells = <2>;
+> +        power-domains = <&pd IMX_SC_R_VPU_MU_0>;
+> +      };
+> +
+> +      mu1_m0: mailbox@2d020000 {
+> +        compatible = "fsl,imx6sx-mu";
+> +        reg = <0x2d020000 0x20000>;
+> +        interrupts = <0 473 4>;
+> +        #mbox-cells = <2>;
+> +        power-domains = <&pd IMX_SC_R_VPU_MU_1>;
+> +      };
+> +
+> +      mu2_m0: mailbox@2d040000 {
+> +        compatible = "fsl,imx6sx-mu";
+> +        reg = <0x2d040000 0x20000>;
+> +        interrupts = <0 474 4>;
+> +        #mbox-cells = <2>;
+> +        power-domains = <&pd IMX_SC_R_VPU_MU_2>;
+> +      };
+> +
+> +      vpu_core0: vpu_core@2d080000 {
+> +        compatible = "nxp,imx8q-vpu-decoder";
+> +        reg = <0x2d080000 0x10000>;
+> +        power-domains = <&pd IMX_SC_R_VPU_DEC_0>;
+> +        mbox-names = "tx0", "tx1", "rx";
+> +        mboxes = <&mu_m0 0 0
+> +                  &mu_m0 0 1
+> +                  &mu_m0 1 0>;
+> +        nxp,boot-region = <&decoder_boot>;
+> +        nxp,rpc-region = <&decoder_rpc>;
+> +        nxp,print-offset = <0x180000>;
+> +      };
+> +
+> +      vpu_core1: vpu_core@2d090000 {
+> +        compatible = "nxp,imx8q-vpu-encoder";
+> +        reg = <0x2d090000 0x10000>;
+> +        power-domains = <&pd IMX_SC_R_VPU_ENC_0>;
+> +        mbox-names = "tx0", "tx1", "rx";
+> +        mboxes = <&mu1_m0 0 0
+> +                  &mu1_m0 0 1
+> +                  &mu1_m0 1 0>;
+> +        nxp,boot-region = <&encoder1_boot>;
+> +        nxp,rpc-region = <&encoder1_rpc>;
+> +        nxp,print-offset = <0x80000>;
+> +      };
+> +
+> +      vpu_core2: vpu_core@2d0a0000 {
+> +        reg = <0x2d0a0000 0x10000>;
+> +        compatible = "nxp,imx8q-vpu-encoder";
+> +        power-domains = <&pd IMX_SC_R_VPU_ENC_1>;
+> +        mbox-names = "tx0", "tx1", "rx";
+> +        mboxes = <&mu2_m0 0 0
+> +                  &mu2_m0 0 1
+> +                  &mu2_m0 1 0>;
+> +        nxp,boot-region = <&encoder2_boot>;
+> +        nxp,rpc-region = <&encoder2_rpc>;
+> +        nxp,print-offset = <0x80000>;
+> +      };
+> +    };
+> +
+> +...
+> -- 
+> 2.31.1
+> 
+> 
