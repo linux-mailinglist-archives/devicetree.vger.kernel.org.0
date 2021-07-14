@@ -2,130 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D61CB3C806D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 10:41:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48EC13C8077
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 10:44:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238496AbhGNIo0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 04:44:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37410 "EHLO
+        id S238619AbhGNIq7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 04:46:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238432AbhGNIo0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 04:44:26 -0400
+        with ESMTP id S238582AbhGNIq6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 04:46:58 -0400
 Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81F37C06175F;
-        Wed, 14 Jul 2021 01:41:34 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id 9327A1F42ABD
-Subject: Re: [PATCH 3/6] arm64: dts: mt8173: Add the mmsys reset bit to reset
- the dsi0
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
-        Jitao Shi <jitao.shi@mediatek.com>,
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D886C06175F;
+        Wed, 14 Jul 2021 01:44:07 -0700 (PDT)
+Received: from [IPv6:2a02:810a:880:f54:e49e:3ed0:1a77:5623] (unknown [IPv6:2a02:810a:880:f54:e49e:3ed0:1a77:5623])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: dafna)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 42F781F42B41;
+        Wed, 14 Jul 2021 09:44:04 +0100 (BST)
+Subject: Re: [PATCH v6 06/11] drm/mediatek: Add pm runtime support for ovl and
+ rdma
+To:     Yong Wu <yong.wu@mediatek.com>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Eizan Miyamoto <eizan@chromium.org>,
-        Collabora Kernel ML <kernel@collabora.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
+        Joerg Roedel <joro@8bytes.org>,
         Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-References: <20210630144646.868702-1-enric.balletbo@collabora.com>
- <20210630164623.3.I7bd7d9a8da5e2894711b700a1127e6902a2b2f1d@changeid>
- <CAAOTY_-VAvKCkBj1q4euWFcmbnNUJfXpG9rh9vua80yrok-y9w@mail.gmail.com>
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Message-ID: <406a96c6-8547-1908-0f52-fca783d05262@collabora.com>
-Date:   Wed, 14 Jul 2021 10:41:30 +0200
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        David Airlie <airlied@linux.ie>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc:     Evan Green <evgreen@chromium.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Will Deacon <will.deacon@arm.com>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>, anan.sun@mediatek.com,
+        ming-fan.chen@mediatek.com, yi.kuo@mediatek.com,
+        acourbot@chromium.org, linux-media@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Xia Jiang <xia.jiang@mediatek.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Eizan Miyamoto <eizan@chromium.org>,
+        anthony.huang@mediatek.com,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        CK Hu <ck.hu@mediatek.com>
+References: <20210714025626.5528-1-yong.wu@mediatek.com>
+ <20210714025626.5528-7-yong.wu@mediatek.com>
+From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+Message-ID: <61aa5aa9-5bd2-e99c-02ef-f5d13526eb43@collabora.com>
+Date:   Wed, 14 Jul 2021 10:44:01 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <CAAOTY_-VAvKCkBj1q4euWFcmbnNUJfXpG9rh9vua80yrok-y9w@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20210714025626.5528-7-yong.wu@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chun-Kuang,
 
-Thank you for the review.
 
-On 1/7/21 0:48, Chun-Kuang Hu wrote:
-> HI, Enric:
+On 14.07.21 04:56, Yong Wu wrote:
+> From: Yongqiang Niu <yongqiang.niu@mediatek.com>
 > 
-> Enric Balletbo i Serra <enric.balletbo@collabora.com> 於 2021年6月30日 週三 下午10:47寫道：
->>
->> Reset the DSI hardware is needed to prevent different settings between
->> the bootloader and the kernel.
->>
->> Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
->> ---
->>
->>  arch/arm64/boot/dts/mediatek/mt8173.dtsi  | 2 ++
->>  include/dt-bindings/reset/mt8173-resets.h | 2 ++
->>  2 files changed, 4 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
->> index e5596fe01a1d..36c3998eb7f1 100644
->> --- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
->> +++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
->> @@ -1036,6 +1036,7 @@ mmsys: syscon@14000000 {
->>                         assigned-clocks = <&topckgen CLK_TOP_MM_SEL>;
->>                         assigned-clock-rates = <400000000>;
->>                         #clock-cells = <1>;
->> +                       #reset-cells = <1>;
->>                         mboxes = <&gce 0 CMDQ_THR_PRIO_HIGHEST>,
->>                                  <&gce 1 CMDQ_THR_PRIO_HIGHEST>;
->>                         mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0 0x1000>;
->> @@ -1262,6 +1263,7 @@ dsi0: dsi@1401b000 {
->>                                  <&mmsys CLK_MM_DSI0_DIGITAL>,
->>                                  <&mipi_tx0>;
->>                         clock-names = "engine", "digital", "hs";
->> +                       resets = <&mmsys MT8173_MMSYS_SW0_RST_B_DISP_DSI0>;
+> Prepare for smi cleaning up "mediatek,larb".
 > 
-> Add this in binding document. It would be good if the binding document
-> is in yaml format.
+> Display use the dispsys device to call pm_rumtime_get_sync before.
+> This patch add pm_runtime_xx with ovl and rdma device whose nodes has
+> "iommus" property, then display could help pm_runtime_get for smi via
+> ovl or rdma device.
 > 
-
-Ack, will add this optional property in the mediatek,dsi.txt binding.
-
-I can try to translate it to yaml but IMO would be better if someone that really
-knows the hardware and has access to the datasheet could do it. From the current
-.txt file I can deduce most of the things, but still I can lack some kind of
-information, i.e I know that there are three clocks, but don't know if all three
-are needed (from .txt yes, are all needed but not sure), also I know that the
-names of the clocks are "engine", "digital", and "hs", but I don't know the
-description of these clocks.
-
-IMHO would be nice if someone from Mediatek can take care of all the binding
-migration to yaml.
-
-Cheers,
-  Enric
-
-> Regards,
-> Chun-Kuang.
+> CC: CK Hu <ck.hu@mediatek.com>
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> (Yong: Use pm_runtime_resume_and_get instead of pm_runtime_get_sync)
+> Acked-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> ---
+>   drivers/gpu/drm/mediatek/mtk_disp_ovl.c  |  9 ++++++++-
+>   drivers/gpu/drm/mediatek/mtk_disp_rdma.c |  9 ++++++++-
+>   drivers/gpu/drm/mediatek/mtk_drm_crtc.c  | 12 +++++++++++-
+>   3 files changed, 27 insertions(+), 3 deletions(-)
 > 
->>                         phys = <&mipi_tx0>;
->>                         phy-names = "dphy";
->>                         status = "disabled";
->> diff --git a/include/dt-bindings/reset/mt8173-resets.h b/include/dt-bindings/reset/mt8173-resets.h
->> index ba8636eda5ae..6a60c7cecc4c 100644
->> --- a/include/dt-bindings/reset/mt8173-resets.h
->> +++ b/include/dt-bindings/reset/mt8173-resets.h
->> @@ -27,6 +27,8 @@
->>  #define MT8173_INFRA_GCE_FAXI_RST       40
->>  #define MT8173_INFRA_MMIOMMURST         47
->>
->> +/* MMSYS resets */
->> +#define MT8173_MMSYS_SW0_RST_B_DISP_DSI0       25
->>
->>  /*  PERICFG resets */
->>  #define MT8173_PERI_UART0_SW_RST        0
->> --
->> 2.30.2
->>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
+> index fa9d79963cd3..ea5760f856ec 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
+> @@ -11,6 +11,7 @@
+>   #include <linux/of_device.h>
+>   #include <linux/of_irq.h>
+>   #include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+>   #include <linux/soc/mediatek/mtk-cmdq.h>
+>   
+>   #include "mtk_disp_drv.h"
+> @@ -414,15 +415,21 @@ static int mtk_disp_ovl_probe(struct platform_device *pdev)
+>   		return ret;
+>   	}
+>   
+> +	pm_runtime_enable(dev);
+> +
+>   	ret = component_add(dev, &mtk_disp_ovl_component_ops);
+> -	if (ret)
+> +	if (ret) {
+> +		pm_runtime_disable(dev);
+>   		dev_err(dev, "Failed to add component: %d\n", ret);
+> +	}
+>   
+>   	return ret;
+>   }
+>   
+>   static int mtk_disp_ovl_remove(struct platform_device *pdev)
+>   {
+> +	pm_runtime_disable(&pdev->dev);
+> +
+>   	return 0;
+>   }
+>   
+> diff --git a/drivers/gpu/drm/mediatek/mtk_disp_rdma.c b/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
+> index 705f28ceb4dd..0f31d1c8e37c 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
+> @@ -9,6 +9,7 @@
+>   #include <linux/of_device.h>
+>   #include <linux/of_irq.h>
+>   #include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+>   #include <linux/soc/mediatek/mtk-cmdq.h>
+>   
+>   #include "mtk_disp_drv.h"
+> @@ -327,9 +328,13 @@ static int mtk_disp_rdma_probe(struct platform_device *pdev)
+>   
+>   	platform_set_drvdata(pdev, priv);
+>   
+> +	pm_runtime_enable(dev);
+> +
+>   	ret = component_add(dev, &mtk_disp_rdma_component_ops);
+> -	if (ret)
+> +	if (ret) {
+> +		pm_runtime_disable(dev);
+>   		dev_err(dev, "Failed to add component: %d\n", ret);
+> +	}
+>   
+>   	return ret;
+>   }
+> @@ -338,6 +343,8 @@ static int mtk_disp_rdma_remove(struct platform_device *pdev)
+>   {
+>   	component_del(&pdev->dev, &mtk_disp_rdma_component_ops);
+>   
+> +	pm_runtime_disable(&pdev->dev);
+> +
+>   	return 0;
+>   }
+>   
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c b/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
+> index 474efb844249..08e3f352377d 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
+> @@ -557,9 +557,15 @@ static void mtk_drm_crtc_atomic_enable(struct drm_crtc *crtc,
+>   		return;
+>   	}
+>   
+> +	ret = pm_runtime_resume_and_get(comp->dev);
+> +	if (ret < 0)
+> +		DRM_DEV_ERROR(comp->dev, "Failed to enable power domain: %d\n",
+> +			      ret);
+
+shouldn't the code return in case of failure here?
+
+Thanks,
+Dafna
+
+> +
+>   	ret = mtk_crtc_ddp_hw_init(mtk_crtc);
+>   	if (ret) {
+>   		mtk_smi_larb_put(comp->larb_dev);
+> +		pm_runtime_put(comp->dev);
+>   		return;
+>   	}
+>   
+> @@ -572,7 +578,7 @@ static void mtk_drm_crtc_atomic_disable(struct drm_crtc *crtc,
+>   {
+>   	struct mtk_drm_crtc *mtk_crtc = to_mtk_crtc(crtc);
+>   	struct mtk_ddp_comp *comp = mtk_crtc->ddp_comp[0];
+> -	int i;
+> +	int i, ret;
+>   
+>   	DRM_DEBUG_DRIVER("%s %d\n", __func__, crtc->base.id);
+>   	if (!mtk_crtc->enabled)
+> @@ -596,6 +602,10 @@ static void mtk_drm_crtc_atomic_disable(struct drm_crtc *crtc,
+>   	drm_crtc_vblank_off(crtc);
+>   	mtk_crtc_ddp_hw_fini(mtk_crtc);
+>   	mtk_smi_larb_put(comp->larb_dev);
+> +	ret = pm_runtime_put(comp->dev);
+> +	if (ret < 0)
+> +		DRM_DEV_ERROR(comp->dev, "Failed to disable power domain: %d\n",
+> +			      ret);
+>   
+>   	mtk_crtc->enabled = false;
+>   }
+> 
