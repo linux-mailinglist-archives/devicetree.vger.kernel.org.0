@@ -2,288 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B6FAE3C86D5
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 17:12:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B58BC3C8725
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 17:13:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239757AbhGNPOl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 11:14:41 -0400
-Received: from leibniz.telenet-ops.be ([195.130.137.77]:58260 "EHLO
-        leibniz.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239771AbhGNPOh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 11:14:37 -0400
-Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [IPv6:2a02:1800:120:4::f00:13])
-        by leibniz.telenet-ops.be (Postfix) with ESMTPS id 4GQ1Ds35hbzMqcMj
-        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 17:11:41 +0200 (CEST)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed10:bcf3:b2b1:dff6:480b])
-        by baptiste.telenet-ops.be with bizsmtp
-        id V3Bf250024sai0K013Bf65; Wed, 14 Jul 2021 17:11:41 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1m3gXy-001ARe-PW; Wed, 14 Jul 2021 17:11:38 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1m3gXx-00AchN-UO; Wed, 14 Jul 2021 17:11:37 +0200
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-To:     Robin van der Gracht <robin@protonic.nl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Miguel Ojeda <ojeda@kernel.org>,
-        Paul Burton <paulburton@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Pavel Machek <pavel@ucw.cz>, Marek Behun <marek.behun@nic.cz>
-Cc:     devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: [PATCH v3 19/19] auxdisplay: ht16k33: Add LED support
-Date:   Wed, 14 Jul 2021 17:11:30 +0200
-Message-Id: <20210714151130.2531831-20-geert@linux-m68k.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210714151130.2531831-1-geert@linux-m68k.org>
-References: <20210714151130.2531831-1-geert@linux-m68k.org>
+        id S232445AbhGNPQk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 11:16:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43056 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239608AbhGNPQk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 11:16:40 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1437CC06175F;
+        Wed, 14 Jul 2021 08:13:48 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id e20so3906939ljn.8;
+        Wed, 14 Jul 2021 08:13:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=GztcTOsUqEihFXn3Q2HotsLpAiI5v2MRtVUADm5nE2M=;
+        b=GuuD5AUWzD4szy767jIAfUPEbCm+DAz3oMX+l+cze0C6RVSHnnS4HMlCovzyloBU30
+         O7+Fi92es4OtWurIs7RZQlMv5K5fB3dZQD3/T/X5gTuKGy3VSx3EafxIuokhnVENrCmr
+         Ntr+rR/0/Lpyg0lGTctYYXkxTPt+lNNK0Yb+88MyqMS8ITsPPYCv9KiHJUjWlWSxu9dV
+         wi91vfNZO8hNiquAekt7JIMQTEZY1VlUMOnqf9NXMHs4SoS6yaZv56wsmdl7o0AE+EtH
+         wM7Gayrcbr56p1g/B+Ee4eRESfnUukSzXs9cF3a0qv8bnwuJTwMqz+WKQiIaxvW8IoFA
+         lnLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=GztcTOsUqEihFXn3Q2HotsLpAiI5v2MRtVUADm5nE2M=;
+        b=KHqSpAhgS+0H6p35+l1CUEeEjNJHnCg+izF+cJSykkjg/BeKHpk63R7rwhvCZUkgF1
+         2lRtzR+4EIHPyt8Tsc09uuFz5KHmHoL5Aqe4YrWBGOa+WrPegTiAJNbNGF1vMObduhqT
+         j0Wl6s8IC4b24CQ+t+zr5ViIzFQRQs6MLclumLiVnXIMWYwUhRQuTjFrrIRWU92AmSJO
+         tp2v1AxTf1qBmMFT1d0VKlRtd7aQ7FU6NUxXFB6jGinchN0O9xGkPmw8k1LlPtnqFYzQ
+         yImmb9n6RVB2pvlvVafNUCAK31g+id8bcg5FJVaSerCMc5X31KpzGSAl/YQyK9fUfws5
+         R+Tg==
+X-Gm-Message-State: AOAM53371u9XQnymFrq21lnDzoYGzqDIQOmLOejH32B4Ako/DIxBjvlM
+        rpKTBxwyXeFwOk5zzw2gEgAoxJ/eLcc=
+X-Google-Smtp-Source: ABdhPJxd7XItkZMbc1ywTqFI9DfcL57kFHqq8ei6QSbVOkDgVsFwR8X39raQrW0tQZWkGd0ptYtISA==
+X-Received: by 2002:a2e:9e95:: with SMTP id f21mr9383501ljk.137.1626275626276;
+        Wed, 14 Jul 2021 08:13:46 -0700 (PDT)
+Received: from [192.168.2.145] (94-29-37-113.dynamic.spd-mgts.ru. [94.29.37.113])
+        by smtp.googlemail.com with ESMTPSA id t24sm184249lfb.76.2021.07.14.08.13.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Jul 2021 08:13:45 -0700 (PDT)
+Subject: Re: [PATCH v8 2/9] clk: tegra: Fix refcounting of gate clocks
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Jon Hunter <jonathanh@nvidia.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Prashant Gaikwad <pgaikwad@nvidia.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-tegra@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20210516163041.12818-1-digetx@gmail.com>
+ <20210516163041.12818-3-digetx@gmail.com>
+ <fa13f623-dbd1-9b0c-dfd1-8d58800e04b4@nvidia.com>
+ <e61f1ee5-2c1e-7a1b-094e-810a587ce3cd@gmail.com>
+Message-ID: <35e7f162-1746-82c7-4129-0654beb77a79@gmail.com>
+Date:   Wed, 14 Jul 2021 18:13:44 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
+In-Reply-To: <e61f1ee5-2c1e-7a1b-094e-810a587ce3cd@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Instantiate a single LED based on the "led" subnode in DT.
-This allows the user to control display brightness and blinking (backed
-by hardware support) through the LED class API and triggers, and exposes
-the display color.  The LED will be named
-"auxdisplay:<color>:<function>".
+14.07.2021 14:59, Dmitry Osipenko пишет:
+> I now see this has been picked up for stable, but I don't see where
+> this was tagged for stable and so I am not sure how that happened?
 
-When running in dot-matrix mode and if no "led" subnode is found, the
-driver falls back to the traditional backlight mode, to preserve
-backwards compatibility.
-
-Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
----
-v3:
-  - Remove unneeded C++ comment,
-  - Use "err" instead of "error" to be consistent with existing driver
-    naming style,
-  - Make the creation of the LED device dependent on the presence of the
-    "led" subnode in DT, so it can be used in dot-matrix mode too.
-  - Use led_init_data() and devm_led_classdev_register_ext() to retrieve
-    all LED properties from DT, instead of manual LED name construction
-    based on just the "color" property,
-
-v2:
-  - Use "auxdisplay" instead of DRIVER_NAME in LED name.
----
- drivers/auxdisplay/ht16k33.c | 124 ++++++++++++++++++++++++++++++-----
- 1 file changed, 107 insertions(+), 17 deletions(-)
-
-diff --git a/drivers/auxdisplay/ht16k33.c b/drivers/auxdisplay/ht16k33.c
-index 3b555e119e326cec..8c9a4a554a680ff2 100644
---- a/drivers/auxdisplay/ht16k33.c
-+++ b/drivers/auxdisplay/ht16k33.c
-@@ -18,6 +18,7 @@
- #include <linux/backlight.h>
- #include <linux/input.h>
- #include <linux/input/matrix_keypad.h>
-+#include <linux/leds.h>
- #include <linux/workqueue.h>
- #include <linux/mm.h>
- 
-@@ -34,6 +35,10 @@
- 
- #define REG_DISPLAY_SETUP		0x80
- #define REG_DISPLAY_SETUP_ON		BIT(0)
-+#define REG_DISPLAY_SETUP_BLINK_OFF	(0 << 1)
-+#define REG_DISPLAY_SETUP_BLINK_2HZ	(1 << 1)
-+#define REG_DISPLAY_SETUP_BLINK_1HZ	(2 << 1)
-+#define REG_DISPLAY_SETUP_BLINK_0HZ5	(3 << 1)
- 
- #define REG_ROWINT_SET			0xA0
- #define REG_ROWINT_SET_INT_EN		BIT(0)
-@@ -94,12 +99,14 @@ struct ht16k33_seg {
- struct ht16k33_priv {
- 	struct i2c_client *client;
- 	struct delayed_work work;
-+	struct led_classdev led;
- 	struct ht16k33_keypad keypad;
- 	union {
- 		struct ht16k33_fbdev fbdev;
- 		struct ht16k33_seg seg;
- 	};
- 	enum display_type type;
-+	uint8_t blink;
- };
- 
- static const struct fb_fix_screeninfo ht16k33_fb_fix = {
-@@ -158,7 +165,7 @@ static DEVICE_ATTR(map_seg14, 0644, map_seg_show, map_seg_store);
- 
- static int ht16k33_display_on(struct ht16k33_priv *priv)
- {
--	uint8_t data = REG_DISPLAY_SETUP | REG_DISPLAY_SETUP_ON;
-+	uint8_t data = REG_DISPLAY_SETUP | REG_DISPLAY_SETUP_ON | priv->blink;
- 
- 	return i2c_smbus_write_byte(priv->client, data);
- }
-@@ -173,8 +180,10 @@ static int ht16k33_brightness_set(struct ht16k33_priv *priv,
- {
- 	int err;
- 
--	if (brightness == 0)
-+	if (brightness == 0) {
-+		priv->blink = REG_DISPLAY_SETUP_BLINK_OFF;
- 		return ht16k33_display_off(priv);
-+	}
- 
- 	err = ht16k33_display_on(priv);
- 	if (err)
-@@ -184,6 +193,49 @@ static int ht16k33_brightness_set(struct ht16k33_priv *priv,
- 				    REG_BRIGHTNESS | (brightness - 1));
- }
- 
-+static int ht16k33_brightness_set_blocking(struct led_classdev *led_cdev,
-+					   enum led_brightness brightness)
-+{
-+	struct ht16k33_priv *priv = container_of(led_cdev, struct ht16k33_priv,
-+						 led);
-+
-+	return ht16k33_brightness_set(priv, brightness);
-+}
-+
-+static int ht16k33_blink_set(struct led_classdev *led_cdev,
-+			     unsigned long *delay_on, unsigned long *delay_off)
-+{
-+	struct ht16k33_priv *priv = container_of(led_cdev, struct ht16k33_priv,
-+						 led);
-+	unsigned int delay;
-+	uint8_t blink;
-+	int err;
-+
-+	if (!*delay_on && !*delay_off) {
-+		blink = REG_DISPLAY_SETUP_BLINK_1HZ;
-+		delay = 1000;
-+	} else if (*delay_on <= 750) {
-+		blink = REG_DISPLAY_SETUP_BLINK_2HZ;
-+		delay = 500;
-+	} else if (*delay_on <= 1500) {
-+		blink = REG_DISPLAY_SETUP_BLINK_1HZ;
-+		delay = 1000;
-+	} else {
-+		blink = REG_DISPLAY_SETUP_BLINK_0HZ5;
-+		delay = 2000;
-+	}
-+
-+	err = i2c_smbus_write_byte(priv->client,
-+				   REG_DISPLAY_SETUP | REG_DISPLAY_SETUP_ON |
-+				   blink);
-+	if (err)
-+		return err;
-+
-+	priv->blink = blink;
-+	*delay_on = *delay_off = delay;
-+	return 0;
-+}
-+
- static void ht16k33_fb_queue(struct ht16k33_priv *priv)
- {
- 	struct ht16k33_fbdev *fbdev = &priv->fbdev;
-@@ -425,6 +477,35 @@ static void ht16k33_seg14_update(struct work_struct *work)
- 	i2c_smbus_write_i2c_block_data(priv->client, 0, ARRAY_SIZE(buf), buf);
- }
- 
-+static int ht16k33_led_probe(struct device *dev, struct led_classdev *led,
-+			     unsigned int brightness)
-+{
-+	struct led_init_data init_data = {};
-+	struct device_node *node;
-+	int err;
-+
-+	/* The LED is optional */
-+	node = of_get_child_by_name(dev->of_node, "led");
-+	if (!node)
-+		return 0;
-+
-+	led->brightness_set_blocking = ht16k33_brightness_set_blocking;
-+	led->blink_set = ht16k33_blink_set;
-+	led->flags = LED_CORE_SUSPENDRESUME;
-+	led->brightness = brightness;
-+	led->max_brightness = MAX_BRIGHTNESS;
-+
-+	init_data.fwnode = of_fwnode_handle(node);
-+	init_data.devicename = "auxdisplay";
-+	init_data.devname_mandatory = true;
-+
-+	err = devm_led_classdev_register_ext(dev, led, &init_data);
-+	if (err)
-+		dev_err(dev, "Failed to register LED\n");
-+
-+	return err;
-+}
-+
- static int ht16k33_keypad_probe(struct i2c_client *client,
- 				struct ht16k33_keypad *keypad)
- {
-@@ -498,24 +579,28 @@ static int ht16k33_fbdev_probe(struct device *dev, struct ht16k33_priv *priv,
- 			       uint32_t brightness)
- {
- 	struct ht16k33_fbdev *fbdev = &priv->fbdev;
--	struct backlight_properties bl_props;
--	struct backlight_device *bl;
-+	struct backlight_device *bl = NULL;
- 	int err;
- 
--	/* Backlight */
--	memset(&bl_props, 0, sizeof(struct backlight_properties));
--	bl_props.type = BACKLIGHT_RAW;
--	bl_props.max_brightness = MAX_BRIGHTNESS;
-+	if (!priv->led.dev) {
-+		/* backwards compatibility with DT lacking an led subnode */
-+		struct backlight_properties bl_props;
- 
--	bl = devm_backlight_device_register(dev, DRIVER_NAME"-bl", dev, priv,
--					    &ht16k33_bl_ops, &bl_props);
--	if (IS_ERR(bl)) {
--		dev_err(dev, "failed to register backlight\n");
--		return PTR_ERR(bl);
--	}
-+		memset(&bl_props, 0, sizeof(struct backlight_properties));
-+		bl_props.type = BACKLIGHT_RAW;
-+		bl_props.max_brightness = MAX_BRIGHTNESS;
-+
-+		bl = devm_backlight_device_register(dev, DRIVER_NAME"-bl", dev,
-+						    priv, &ht16k33_bl_ops,
-+						    &bl_props);
-+		if (IS_ERR(bl)) {
-+			dev_err(dev, "failed to register backlight\n");
-+			return PTR_ERR(bl);
-+		}
- 
--	bl->props.brightness = brightness;
--	ht16k33_bl_update_status(bl);
-+		bl->props.brightness = brightness;
-+		ht16k33_bl_update_status(bl);
-+	}
- 
- 	/* Framebuffer (2 bytes per column) */
- 	BUILD_BUG_ON(PAGE_SIZE < HT16K33_FB_SIZE);
-@@ -575,7 +660,7 @@ static int ht16k33_seg_probe(struct device *dev, struct ht16k33_priv *priv,
- 	struct ht16k33_seg *seg = &priv->seg;
- 	int err;
- 
--	err = ht16k33_brightness_set(priv, MAX_BRIGHTNESS);
-+	err = ht16k33_brightness_set(priv, brightness);
- 	if (err)
- 		return err;
- 
-@@ -653,6 +738,11 @@ static int ht16k33_probe(struct i2c_client *client)
- 		dft_brightness = MAX_BRIGHTNESS;
- 	}
- 
-+	/* LED */
-+	err = ht16k33_led_probe(dev, &priv->led, dft_brightness);
-+	if (err)
-+		return err;
-+
- 	/* Keypad */
- 	if (client->irq > 0) {
- 		err = ht16k33_keypad_probe(client, &priv->keypad);
--- 
-2.25.1
-
+I don't know it was picked for stable. Maybe bot picks up all patches
+that have a "fix" word in commit message.
