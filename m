@@ -2,68 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1427C3C8B7A
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:15:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BDDF3C8B7C
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:16:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240064AbhGNTSj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 15:18:39 -0400
-Received: from mail-io1-f54.google.com ([209.85.166.54]:46705 "EHLO
-        mail-io1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229735AbhGNTSj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 15:18:39 -0400
-Received: by mail-io1-f54.google.com with SMTP id p186so3467372iod.13;
-        Wed, 14 Jul 2021 12:15:47 -0700 (PDT)
+        id S229735AbhGNTTL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 15:19:11 -0400
+Received: from mail-il1-f171.google.com ([209.85.166.171]:41523 "EHLO
+        mail-il1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230185AbhGNTTK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 15:19:10 -0400
+Received: by mail-il1-f171.google.com with SMTP id p3so2674708ilg.8
+        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 12:16:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=qokcf0qnNXxANCouZM+vm8WlzhoKngxqS47WEOvpyiw=;
-        b=p7fjoFLF1KB4Wh0obSrbhiaM49obw3nbNJUj5AFm9ftrDpB3yvnaaGp4mtNRWC3vmV
-         7cg2Hiv9cAY+/0BC0/84DAm9lMRJw/xrGBxV2VFOP7f0zd+pSHYJRjjj1kjBu3lb5b3y
-         eAhDcYh/U7OjUaYy+nNLzOjuuR3P6M99bgi8VyF+PNECDrPn17JQx0mwAQvHYswoE/13
-         XLNVi2u8E2ZJRSP3IO97QL2yNnW5KXzA62qmUWSwSlsGP24CTXbR0NHxuPIusHywkz9b
-         Bg1B9+e0Ntqaqk0PJJsFniwzjq4u9fDt10jTbrsHypJ/D72ldreNIwLab85PlQDKz+Oe
-         K8eQ==
-X-Gm-Message-State: AOAM532SojDw2hU6J55P61McJpVflRy0Mbnhm0gBBEyi3p3cEONXLhco
-        7oRXb40Qh2iDoFecMyQnhg==
-X-Google-Smtp-Source: ABdhPJwoiD++aWTbqrkSBGFWU2brt5M3O0OT1auNjVG6kLBspkdzqmsrhIzvTwWXPxlvSZwXIIV7nw==
-X-Received: by 2002:a05:6602:1c4:: with SMTP id w4mr8013951iot.44.1626290147179;
-        Wed, 14 Jul 2021 12:15:47 -0700 (PDT)
+        bh=k6UdIsR9QWKyvUQsaj8l0q6rq6YbdNXchi5NiYB3pg8=;
+        b=t/ZoWAKnd6mjD0lYgMct4T5fJtnOOFKFI7oisS0N/rIYXAO83c0nRFvmIsYFBqFF9y
+         /6xToPeqSq3hEZErwRlF65ggzOXiYCLH4ESZSWWGmicsWTHgpsL+Y4+nXGCjMLNNhpG+
+         RliSnsyMtDPYMJuSWhpCzC7vig4LqzEftTrRdWXsxRFbYa/s3AmTjEGqPT+x1TnFSNDo
+         V7ZlHctOkZHoOa95/wxEN+Ww3i96HVFSYsGuqK0nUaWNycJihj+n4LrxLaKBRDsVNQns
+         Xker4AYjm7rpvxIY/RddHsFjgUocd1cNvMYyR2CNmcISRKBe5sNpcZwTDIU1WscAjrYP
+         sung==
+X-Gm-Message-State: AOAM5319AdZjdAi/2nD8MbtF9oBopO74gDrjYT7pJSfp+L1osso/33pb
+        sMrG2qRB8gIl87AdwTAUiQ==
+X-Google-Smtp-Source: ABdhPJxCPEFXChA6njG+04k5xO9/acW08GGVhpyGH9iOzo/SAFKCrF/sIwc/iq/VE2DME5e+oE3PfQ==
+X-Received: by 2002:a92:b748:: with SMTP id c8mr7764208ilm.302.1626290177918;
+        Wed, 14 Jul 2021 12:16:17 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id t11sm1665314ilj.63.2021.07.14.12.15.45
+        by smtp.gmail.com with ESMTPSA id t11sm1665884ilj.63.2021.07.14.12.16.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jul 2021 12:15:46 -0700 (PDT)
-Received: (nullmailer pid 2991097 invoked by uid 1000);
-        Wed, 14 Jul 2021 19:15:43 -0000
-Date:   Wed, 14 Jul 2021 13:15:43 -0600
+        Wed, 14 Jul 2021 12:16:16 -0700 (PDT)
+Received: (nullmailer pid 2994093 invoked by uid 1000);
+        Wed, 14 Jul 2021 19:16:15 -0000
+Date:   Wed, 14 Jul 2021 13:16:15 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Cc:     Masami Hiramatsu <mhiramat@kernel.org>, devicetree@vger.kernel.org,
+To:     Suman Anna <s-anna@ti.com>
+Cc:     Santosh Shilimkar <ssantosh@kernel.org>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        devicetree@vger.kernel.org, Lokesh Vutla <lokeshvutla@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Subject: Re: [PATCH] dt-bindings: reset: Convert UniPhier glue reset to
- json-schema
-Message-ID: <20210714191543.GA2991022@robh.at.kernel.org>
-References: <1624413208-17562-1-git-send-email-hayashi.kunihiko@socionext.com>
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+Subject: Re: [PATCH 1/2] dt-bindings: soc: ti: pruss: Update bindings for K3
+ AM64x SoCs
+Message-ID: <20210714191615.GA2994029@robh.at.kernel.org>
+References: <20210623165032.31223-1-s-anna@ti.com>
+ <20210623165032.31223-2-s-anna@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1624413208-17562-1-git-send-email-hayashi.kunihiko@socionext.com>
+In-Reply-To: <20210623165032.31223-2-s-anna@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 23 Jun 2021 10:53:28 +0900, Kunihiko Hayashi wrote:
-> Convert the UniPhier peripheral glue reset binding to DT schema format.
+On Wed, 23 Jun 2021 11:50:31 -0500, Suman Anna wrote:
+> The K3 AM64x SoCs also have the Gigabit Ethernet capable PRU-ICSS IP
+> that is present on existing K3 AM65x and J721E SoCs (ICSSG). The IP
+> is similar to the ones used on K3 J721E or AM65x SR2.0 SoCs.
 > 
-> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+> Update the PRUSS bindings for these ICSSG instances.
+> 
+> Signed-off-by: Suman Anna <s-anna@ti.com>
 > ---
->  .../reset/socionext,uniphier-glue-reset.yaml       | 88 ++++++++++++++++++++++
->  .../devicetree/bindings/reset/uniphier-reset.txt   | 61 ---------------
->  2 files changed, 88 insertions(+), 61 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/reset/socionext,uniphier-glue-reset.yaml
->  delete mode 100644 Documentation/devicetree/bindings/reset/uniphier-reset.txt
+>  Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
