@@ -2,247 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63EE73C8793
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 17:31:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16B5E3C87C8
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 17:35:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239763AbhGNPeQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 11:34:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47232 "EHLO
+        id S239570AbhGNPiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 11:38:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239806AbhGNPeM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 11:34:12 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24ED8C061766
-        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 08:31:20 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id f190so282941wmf.4
-        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 08:31:20 -0700 (PDT)
+        with ESMTP id S239554AbhGNPiL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 11:38:11 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB8A3C061760
+        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 08:35:18 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id q16so4315335lfa.5
+        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 08:35:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ZEdZ+N0eteL07jx0I8YEw4d+MAwVooRKuXAZfHn0G4c=;
-        b=o8OW1IjbQQi6PtfzBXMIEY4tiI0ap0Kt2MGwbR8boavQl52oeAP5UXZvaeWqaouKmD
-         LtIfYmHledzcF5ZIZJfec+Vp4q4/jCUxWDg13hEcjltXz4oIVTEwxostfSpqfCtJeDDT
-         TS2CJaTjHqIr3mNnNiVQeRBpIGQAsSGkTqhZ+mo5e8m2rXsF0ADLSLDr/zRWpESZlFaA
-         AFcPtm/LzZMs4mc9MAnnR4HE5olfQ0m4oJhIi1OZdnd3DCnqCNhxt6NPYEA3dgCzNsJg
-         3U82hCMZf6la8KXXJbcnUj9agzFhAVQutht5hmY3aXOaj/IcMpiSyo8MomJryKTMWbLe
-         kRMA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=eJaKL3ISTdN+YsCpp2uZ/iZyyKrQcH2+/HmeVpNKc+k=;
+        b=YNM5znqWLu/ak5ElXJ7+tVvApRP533MCiRC/c9M1ul0cQEDdgq5WTuQoibx/TQarn5
+         454GxKvs4QRRAGX1iqDJerVBNSlRNgolsmnqmsvTIbX3gAOVhGSNpjH0O7qAMM4S9JzI
+         KhDTJWUZ0DRvOto8XqImUb/rqzjUnPyVVwFR5AnUOpqlCZqXPoTYR9fLkhYerVp63ThE
+         dduGnV7umYqO/iHXGajnR2sk7K+FKKDRAwe0RfV7pP4+MQiXH0FxKtbD1ZlO3lnEYlMv
+         +kBo+/iasD+B8thv91hyORAyslGjWw5lLvJJnCWKR6BaeJ21Gm/I3w5zKCNuJbxJFChI
+         Gs4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ZEdZ+N0eteL07jx0I8YEw4d+MAwVooRKuXAZfHn0G4c=;
-        b=YEQcARe7uFnlGkgXZMYdFxPM627xL5jXM6yuFOTtwZ6eswX7tkXj1F5fNRoV0csbj5
-         3SoLi4yRS5364dRJg+ypKdZOQs6M9mar91tPqpGPNm4HwBuFQYedz4dAiREJ8c/15klb
-         v+VWznqxODlVoTPpC4OgA7CgKMcCK8xs7ig1glpr1KzJ94GqKIagG700K46eKsrf+WtV
-         tIcQ/1ZRhfotzbxuBhLDKGu8T6APhKTviQNm2xgN9Rqid0i0NUFcqAJ7mwsJoB8lgLm0
-         7uyoLHEqE8fVTjnF9Cuz8f7stlozHPpHJhnoqFBCcVd5cFuBOUjpfcoKE+ngpDbwbK2c
-         L2/g==
-X-Gm-Message-State: AOAM531jkYgeJ/ODgQi7MM2EnU5RskZPuuOdF3Zjh8YqVoL1Xvru/62z
-        PwOJrJYFfiLgEwTahGbtfTHl32RTHpddiA==
-X-Google-Smtp-Source: ABdhPJxMq5u6bp0AhaCau+hfSV80bZY1Xk5pC2hJLFrKZKsutCwD7Upe/TiV9izAmYHXf6hBb3CQDQ==
-X-Received: by 2002:a05:600c:3b93:: with SMTP id n19mr4772987wms.3.1626276678690;
-        Wed, 14 Jul 2021 08:31:18 -0700 (PDT)
-Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id y6sm2465174wma.48.2021.07.14.08.31.17
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=eJaKL3ISTdN+YsCpp2uZ/iZyyKrQcH2+/HmeVpNKc+k=;
+        b=mZPlOuT8lshRMnwXVqFxyJ9Rox7W7iBkXP9F2t3h05kGNtpuYPgdV2D3LLuc6Rm+11
+         eikwUOgiG3CknIpRYojJYS2OMY4pE5c9MCkJzSU4hakpHeO8dqOhnsg8CQl0U5CToTCH
+         UsDhXcXUXEzwXG+46Y0gDs+hEIo/a8KmpBv9qczvvoSL8aJyCEpq1INSTl8XlJLQ5xau
+         ukJIgnzr2AHH3MwaFfgOE6bjdKaiXSry5QTeVXkrPJuNO5xdFl79lxo0XBBZXb/UA48y
+         lUYdBMJnW9W06XhKfUaN7nY77ig5oXMp43WKx1a18zfbL+3pwOpw/kqI4ORdGL84xjQU
+         GasQ==
+X-Gm-Message-State: AOAM533fwET/bf8xTsEoZHwObye9qgbO+Y16BRksXIfFSfbYPG/XwWGI
+        ddei9EkF4OLWHPt3Gp0h1Zk2Hw==
+X-Google-Smtp-Source: ABdhPJwEQOZlZOb/n6TqWTOOheo4WuwJ08Xi6CcwgCqMETjN5RHcrIqQ2n1/DGS8mYOsFxnrKuj7uQ==
+X-Received: by 2002:a05:6512:714:: with SMTP id b20mr8349664lfs.488.1626276917236;
+        Wed, 14 Jul 2021 08:35:17 -0700 (PDT)
+Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
+        by smtp.gmail.com with ESMTPSA id y3sm269984ljj.121.2021.07.14.08.35.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jul 2021 08:31:18 -0700 (PDT)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
-Cc:     plai@codeaurora.org, tiwai@suse.de, devicetree@vger.kernel.org,
-        perex@perex.cz, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
-        bgoswami@codeaurora.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v2 16/16] ASoC: qcom: sm8250: Add audioreach support
-Date:   Wed, 14 Jul 2021 16:30:39 +0100
-Message-Id: <20210714153039.28373-17-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20210714153039.28373-1-srinivas.kandagatla@linaro.org>
-References: <20210714153039.28373-1-srinivas.kandagatla@linaro.org>
+        Wed, 14 Jul 2021 08:35:17 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>
+Cc:     linux-watchdog@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, Marc Zyngier <maz@kernel.org>
+Subject: [PATCH 1/2] dt-bindings: watchdog: Add Maxim MAX63xx bindings
+Date:   Wed, 14 Jul 2021 17:33:13 +0200
+Message-Id: <20210714153314.1004147-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support for parsing dt for AudioReach based soundcards
-which only have backend DAI links in DT.
+This adds devicetree bindings for the Maxim MAX63xx watchdog
+timers.
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: devicetree@vger.kernel.org
+Cc: Marc Zyngier <maz@kernel.org>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- sound/soc/qcom/sm8250.c | 144 +++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 143 insertions(+), 1 deletion(-)
+ .../bindings/watchdog/maxim,max63xx.yaml      | 44 +++++++++++++++++++
+ 1 file changed, 44 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml
 
-diff --git a/sound/soc/qcom/sm8250.c b/sound/soc/qcom/sm8250.c
-index fe8fd7367e21..421f9d1d2bed 100644
---- a/sound/soc/qcom/sm8250.c
-+++ b/sound/soc/qcom/sm8250.c
-@@ -20,6 +20,141 @@ struct sm8250_snd_data {
- 	struct sdw_stream_runtime *sruntime[AFE_PORT_MAX];
- };
- 
-+static int qcom_audioreach_snd_parse_of(struct snd_soc_card *card)
-+{
-+	struct device_node *np;
-+	struct device_node *codec = NULL;
-+	struct device_node *platform = NULL;
-+	struct device_node *cpu = NULL;
-+	struct device *dev = card->dev;
-+	struct snd_soc_dai_link *link;
-+	struct of_phandle_args args;
-+	struct snd_soc_dai_link_component *dlc;
-+	int ret, num_links;
+diff --git a/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml b/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml
+new file mode 100644
+index 000000000000..f2105eedac2c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml
+@@ -0,0 +1,44 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/maxim,max63xx.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	ret = snd_soc_of_parse_card_name(card, "model");
-+	if (ret) {
-+		dev_err(dev, "Error parsing card name: %d\n", ret);
-+		return ret;
-+	}
++title: Maxim 63xx Watchdog Timers
 +
-+	/* DAPM routes */
-+	if (of_property_read_bool(dev->of_node, "audio-routing")) {
-+		ret = snd_soc_of_parse_audio_routing(card, "audio-routing");
-+		if (ret)
-+			return ret;
-+	}
++allOf:
++  - $ref: "watchdog.yaml#"
 +
-+	/* Populate links */
-+	num_links = of_get_child_count(dev->of_node);
++maintainers:
++  - Marc Zyngier <maz@kernel.org>
++  - Linus Walleij <linus.walleij@linaro.org>
 +
-+	/* Allocate the DAI link array */
-+	card->dai_link = devm_kcalloc(dev, num_links, sizeof(*link), GFP_KERNEL);
-+	if (!card->dai_link)
-+		return -ENOMEM;
++properties:
++  compatible:
++    oneOf:
++      - const: maxim,max6369
++      - const: maxim,max6370
++      - const: maxim,max6371
++      - const: maxim,max6372
++      - const: maxim,max6373
++      - const: maxim,max6374
 +
-+	card->num_links = num_links;
-+	link = card->dai_link;
++  reg:
++    description: This is a 1-byte memory-mapped address
++    maxItems: 1
 +
-+	for_each_child_of_node(dev->of_node, np) {
++required:
++  - compatible
++  - reg
 +
-+		dlc = devm_kzalloc(dev, 2 * sizeof(*dlc), GFP_KERNEL);
-+		if (!dlc) {
-+			ret = -ENOMEM;
-+			goto err_put_np;
-+		}
++unevaluatedProperties: false
 +
-+		link->cpus	= &dlc[0];
-+		link->platforms	= &dlc[1];
++examples:
++  - |
++    wdt: watchdog@50000000 {
++        compatible = "maxim,max6369";
++        reg = <0x50000000 0x1>;
++        timeout-sec = <10>;
++    };
 +
-+		link->num_cpus		= 1;
-+		link->num_platforms	= 1;
-+
-+
-+		ret = of_property_read_string(np, "link-name", &link->name);
-+		if (ret) {
-+			dev_err(card->dev, "error getting codec dai_link name\n");
-+			goto err_put_np;
-+		}
-+
-+		cpu = of_get_child_by_name(np, "cpu");
-+		platform = of_get_child_by_name(np, "platform");
-+		codec = of_get_child_by_name(np, "codec");
-+		if (!cpu) {
-+			dev_err(dev, "%s: Can't find cpu DT node\n", link->name);
-+			ret = -EINVAL;
-+			goto err;
-+		}
-+
-+		if (!platform) {
-+			dev_err(dev, "%s: Can't find platform DT node\n", link->name);
-+			ret = -EINVAL;
-+			goto err;
-+		}
-+
-+		if (!codec) {
-+			dev_err(dev, "%s: Can't find codec DT node\n", link->name);
-+			ret = -EINVAL;
-+			goto err;
-+		}
-+
-+		ret = of_parse_phandle_with_args(cpu, "sound-dai", "#sound-dai-cells", 0, &args);
-+		if (ret) {
-+			dev_err(card->dev, "%s: error getting cpu phandle\n", link->name);
-+			goto err;
-+		}
-+
-+		link->cpus->of_node = args.np;
-+		link->id = args.args[0];
-+
-+		ret = snd_soc_of_get_dai_name(cpu, &link->cpus->dai_name);
-+		if (ret) {
-+			if (ret != -EPROBE_DEFER)
-+				dev_err(card->dev, "%s: error getting cpu dai name: %d\n",
-+					link->name, ret);
-+			goto err;
-+		}
-+
-+		link->platforms->of_node = of_parse_phandle(platform, "sound-dai", 0);
-+		if (!link->platforms->of_node) {
-+			dev_err(card->dev, "%s: platform dai not found\n", link->name);
-+			ret = -EINVAL;
-+			goto err;
-+		}
-+
-+		ret = snd_soc_of_get_dai_link_codecs(dev, codec, link);
-+		if (ret < 0) {
-+			if (ret != -EPROBE_DEFER)
-+				dev_err(card->dev, "%s: codec dai not found: %d\n",
-+					link->name, ret);
-+			goto err;
-+		}
-+
-+		/* DPCM backend */
-+		link->no_pcm = 1;
-+		link->ignore_pmdown_time = 1;
-+		link->ignore_suspend = 1;
-+
-+		link->stream_name = link->name;
-+		snd_soc_dai_link_set_capabilities(link);
-+		link++;
-+
-+		of_node_put(cpu);
-+		of_node_put(codec);
-+		of_node_put(platform);
-+
-+	}
-+
-+	return 0;
-+err:
-+	of_node_put(cpu);
-+	of_node_put(codec);
-+	of_node_put(platform);
-+err_put_np:
-+	of_node_put(np);
-+	return ret;
-+}
-+
- static int sm8250_be_hw_params_fixup(struct snd_soc_pcm_runtime *rtd,
- 				     struct snd_pcm_hw_params *params)
- {
-@@ -199,7 +334,12 @@ static int sm8250_platform_probe(struct platform_device *pdev)
- 	card->dev = dev;
- 	dev_set_drvdata(dev, card);
- 	snd_soc_card_set_drvdata(card, data);
--	ret = qcom_snd_parse_of(card);
-+	if (of_device_is_compatible(dev->of_node, "qcom,sm8250-audioreach-sndcard") ||
-+		of_device_is_compatible(dev->of_node, "qcom,qrb5165-rb5-audioreach-sndcard"))
-+		ret = qcom_audioreach_snd_parse_of(card);
-+	else
-+		ret = qcom_snd_parse_of(card);
-+
- 	if (ret)
- 		return ret;
- 
-@@ -211,6 +351,8 @@ static int sm8250_platform_probe(struct platform_device *pdev)
- static const struct of_device_id snd_sm8250_dt_match[] = {
- 	{.compatible = "qcom,sm8250-sndcard"},
- 	{.compatible = "qcom,qrb5165-rb5-sndcard"},
-+	{.compatible = "qcom,sm8250-audioreach-sndcard" },
-+	{.compatible = "qcom,qrb5165-rb5-audioreach-sndcard" },
- 	{}
- };
- 
++...
 -- 
-2.21.0
+2.31.1
 
