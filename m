@@ -2,228 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 965583C8A83
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 20:13:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 253E43C8AAD
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 20:19:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230264AbhGNSQb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 14:16:31 -0400
-Received: from mail-4319.protonmail.ch ([185.70.43.19]:54243 "EHLO
-        mail-4319.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229651AbhGNSQb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 14:16:31 -0400
-X-Greylist: delayed 1795 seconds by postgrey-1.27 at vger.kernel.org; Wed, 14 Jul 2021 14:16:29 EDT
-Date:   Wed, 14 Jul 2021 18:13:33 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail; t=1626286415;
-        bh=EG9s5cdMOG7EmUExUP0PZhifhepV9YS4Df7DmQpR5Cg=;
-        h=Date:To:From:Cc:Reply-To:Subject:From;
-        b=PHZYwtmuTLKCorL5dGE1q1194Yp6y/WzEdAg5vh9VBCs4LrJQ+D7AqjkS/X7QXbHt
-         ifFfiXRANUF9O/Eym/4cbZsy8u/+6XIE5WNyJlhiAboUcUO3FuAqrwA3c5J38wHYbH
-         xA+h28VLZb9Z19lHyxEnxPd+hVvv3efoHuAddvgA=
-To:     Rob Herring <robh@kernel.org>
-From:   Yassine Oudjana <y.oudjana@protonmail.com>
-Cc:     Stanimir Varbanov <stanimir.varbanov@linaro.org>,
-        devicetree@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
-Subject: Re:  [PATCH] media: dt-bindings: media: venus: Add firmware-name
-Message-ID: <w_oXpbK_lWn1_5cR6AJDWVC_MW4ykO44yTR61UCxS-ifxbyjTmlqksj1DJYERqVyvQBAnxLgJ5-7JEDC8CjgUnuLq7kJbTYVrIVsdxt_D-w=@protonmail.com>
+        id S238941AbhGNSWu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 14:22:50 -0400
+Received: from foss.arm.com ([217.140.110.172]:38086 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230091AbhGNSWu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Jul 2021 14:22:50 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E3219D6E;
+        Wed, 14 Jul 2021 11:19:57 -0700 (PDT)
+Received: from [10.57.36.240] (unknown [10.57.36.240])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 830E83F774;
+        Wed, 14 Jul 2021 11:19:55 -0700 (PDT)
+Subject: Re: [PATCH v4 0/3] Apple M1 DART IOMMU driver
+To:     Sven Peter <sven@svenpeter.dev>, Will Deacon <will@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>
+Cc:     Arnd Bergmann <arnd@kernel.org>, devicetree@vger.kernel.org,
+        Hector Martin <marcan@marcan.st>, linux-kernel@vger.kernel.org,
+        Marc Zyngier <maz@kernel.org>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        iommu@lists.linux-foundation.org, Alexander Graf <graf@amazon.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Rob Herring <robh+dt@kernel.org>, r.czerwinski@pengutronix.de
+References: <20210627143405.77298-1-sven@svenpeter.dev>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <7261df01-34a9-4e53-37cd-ae1aa15b1fb4@arm.com>
+Date:   Wed, 14 Jul 2021 19:19:50 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+In-Reply-To: <20210627143405.77298-1-sven@svenpeter.dev>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wednesday, July 14th, 2021 at 10:03 PM, Rob Herring <robh@kernel.org> wr=
-ote:
+On 2021-06-27 15:34, Sven Peter wrote:
+[...]
+> In the long term, I'd like to extend the dma-iommu framework itself to
+> support iommu pagesizes with a larger granule than the CPU pagesize if that is
+> something you agree with.
 
-> On Tue, Jun 22, 2021 at 04:20:24PM +0000, Yassine Oudjana wrote:
->
-> > Date: Tue, 22 Jun 2021 20:08:25 +0400
-> >
-> > Subject: [PATCH] media: dt-bindings: media: venus: Add firmware-name
-> >
-> > Support for parsing the firmware-name property was added a while ago 1,
-> >
-> > but the dt-bindings were never updated with the new property. This patc=
-h
-> >
-> > adds it to all venus dt-bindings.
-> >
-> > Signed-off-by: Yassine Oudjana y.oudjana@protonmail.com
-> >
-> > .../devicetree/bindings/media/qcom,msm8916-venus.yaml | 5 +++++
-> >
-> > .../devicetree/bindings/media/qcom,msm8996-venus.yaml | 5 +++++
-> >
-> > .../devicetree/bindings/media/qcom,sc7180-venus.yaml | 5 +++++
-> >
-> > .../devicetree/bindings/media/qcom,sdm845-venus-v2.yaml | 5 +++++
-> >
-> > .../devicetree/bindings/media/qcom,sdm845-venus.yaml | 5 +++++
-> >
-> > 5 files changed, 25 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/media/qcom,msm8916-venus=
-.yaml b/Documentation/devicetree/bindings/media/qcom,msm8916-venus.yaml
-> >
-> > index 59ab16ad12f1..cb1b866d9c37 100644
-> >
-> > --- a/Documentation/devicetree/bindings/media/qcom,msm8916-venus.yaml
-> >
-> > +++ b/Documentation/devicetree/bindings/media/qcom,msm8916-venus.yaml
-> >
-> > @@ -80,6 +80,11 @@ properties:
-> >
-> > required:
-> >
-> > - iommus
-> >
-> > -   firmware-name:
-> > -   maxItems: 1
->
-> Not an array.
->
-Noted.
+BTW this isn't something we can fully support in general. IOMMU API 
+users may expect this to work:
 
-> Is there a specific pattern and/or default name you can specify?
->
-The pattern is usually something like "qcom/<soc>/<device>/venus.mbn", but =
-it can be any path really.
-The default would be to not set this property.
+iommu_map(domain, iova, page_to_phys(p1), PAGE_SIZE, prot);
+iommu_map(domain, iova + PAGE_SIZE, page_to_phys(p2), PAGE_SIZE, prot);
 
-> > -   description: |
-> > -        Relative firmware image path for venus.
-> >
-> >
-> >
-> > required:
-> >
-> > -   compatible
-> > -   reg
-> >
-> >     diff --git a/Documentation/devicetree/bindings/media/qcom,msm8996-v=
-enus.yaml b/Documentation/devicetree/bindings/media/qcom,msm8996-venus.yaml
-> >
-> >     index 199f45217b4a..b8809325138f 100644
-> >
-> >     --- a/Documentation/devicetree/bindings/media/qcom,msm8996-venus.ya=
-ml
-> >
-> >     +++ b/Documentation/devicetree/bindings/media/qcom,msm8996-venus.ya=
-ml
-> >
-> >     @@ -107,6 +107,11 @@ properties:
-> >
-> >     required:
-> >     -   iommus
-> >
-> > -   firmware-name:
-> > -   maxItems: 1
-> > -   description: |
-> > -        Relative firmware image path for venus.
-> >
-> >
-> >
-> > required:
-> >
-> > -   compatible
-> > -   reg
-> >
-> >     diff --git a/Documentation/devicetree/bindings/media/qcom,sc7180-ve=
-nus.yaml b/Documentation/devicetree/bindings/media/qcom,sc7180-venus.yaml
-> >
-> >     index 04013e5dd044..ffd3e2850366 100644
-> >
-> >     --- a/Documentation/devicetree/bindings/media/qcom,sc7180-venus.yam=
-l
-> >
-> >     +++ b/Documentation/devicetree/bindings/media/qcom,sc7180-venus.yam=
-l
-> >
-> >     @@ -99,6 +99,11 @@ properties:
-> >
-> >     required:
-> >     -   iommus
-> >
-> > -   firmware-name:
-> > -   maxItems: 1
-> > -   description: |
-> > -        Relative firmware image path for venus.
-> >
-> >
-> >
-> > required:
-> >
-> > -   compatible
-> > -   reg
-> >
-> >     diff --git a/Documentation/devicetree/bindings/media/qcom,sdm845-ve=
-nus-v2.yaml b/Documentation/devicetree/bindings/media/qcom,sdm845-venus-v2.=
-yaml
-> >
-> >     index 04b9af4db191..cd7a5e1374ce 100644
-> >
-> >     --- a/Documentation/devicetree/bindings/media/qcom,sdm845-venus-v2.=
-yaml
-> >
-> >     +++ b/Documentation/devicetree/bindings/media/qcom,sdm845-venus-v2.=
-yaml
-> >
-> >     @@ -94,6 +94,11 @@ properties:
-> >
-> >     required:
-> >     -   iommus
-> >
-> > -   firmware-name:
-> > -   maxItems: 1
-> > -   description: |
-> > -        Relative firmware image path for venus.
-> >
-> >
-> >
-> > required:
-> >
-> > -   compatible
-> > -   reg
-> >
-> >     diff --git a/Documentation/devicetree/bindings/media/qcom,sdm845-ve=
-nus.yaml b/Documentation/devicetree/bindings/media/qcom,sdm845-venus.yaml
-> >
-> >     index 680f37726fdf..ae256238a637 100644
-> >
-> >     --- a/Documentation/devicetree/bindings/media/qcom,sdm845-venus.yam=
-l
-> >
-> >     +++ b/Documentation/devicetree/bindings/media/qcom,sdm845-venus.yam=
-l
-> >
-> >     @@ -108,6 +108,11 @@ properties:
-> >
-> >     required:
-> >     -   iommus
-> >
-> > -   firmware-name:
-> > -   maxItems: 1
-> > -   description: |
-> > -        Relative firmware image path for venus.
-> >
-> >
-> >
-> > required:
-> >
-> > -   compatible
-> > -   reg
-> >
-> >     --
-> >
-> >     2.32.0
+Although they do in principle have visibility of pgsize_bitmap, I still 
+doubt anyone is really prepared for CPU-page-aligned mappings to fail.
+Even at the DMA API level you could hide *some* of it (at the cost of 
+effectively only having 1/4 of the usable address space), but there are 
+still cases like where v4l2 has a hard requirement that a page-aligned 
+scatterlist can be mapped into a contiguous region of DMA addresses.
+
+> This would be important to later support the thunderbolt DARTs since I would be
+> very uncomfortable to have these running in (software or hardware) bypass mode.
+
+Funnily enough that's the one case that would be relatively workable, 
+since untrusted devices are currently subject to bounce-buffering of the 
+entire DMA request, so it doesn't matter so much how the bounce buffer 
+itself is mapped. Even with the possible future optimisation of only 
+bouncing the non-page-aligned start and end parts of a buffer I think it 
+still works (the physical alignment just has to be considered in terms 
+of the IOMMU granule).
+
+Robin.
