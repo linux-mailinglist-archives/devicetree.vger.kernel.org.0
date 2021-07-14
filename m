@@ -2,36 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 676903C8E27
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:45:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A2A73C8E3A
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:45:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236564AbhGNTqn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 15:46:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37944 "EHLO mail.kernel.org"
+        id S237990AbhGNTq5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 15:46:57 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38756 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237149AbhGNTp6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Jul 2021 15:45:58 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1FD8C613D3;
-        Wed, 14 Jul 2021 19:42:23 +0000 (UTC)
+        id S237545AbhGNTqG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Jul 2021 15:46:06 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2AFF06140C;
+        Wed, 14 Jul 2021 19:42:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626291743;
-        bh=iRElQWIILeugblawQSDDQbAchKvJk/TUYMTfKJcVqqw=;
+        s=k20201202; t=1626291749;
+        bh=D+Vn7BHciUU72abRGv2PgNL21V8jbuLfrDPCzZQpGEU=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=IHozlRMRrQ3Gai8qB6O6n5rj90czTyOdMVp2im9+FGtSum8u3rt9jaOK5Jxo/C0ll
-         n7eweB7VXC0+vd/bhbcRRjWopuqsC0U4drc97EkjaSReFH599SrYkXcg6AX/sDLwms
-         5SjdF3ANdsfRtDfYy0++nT9RCzOew2USQCo/SIjkfnuOrqxlvanxrM3oNFEg7HnPUo
-         DEkBvhgHKO8ZcgEwhw0aPEPTI3efqQ3lgOu4Ee4/hV+Piu2w98kcTLXcCEUrcMAjbx
-         r3y96isG45QHiYpfgKJhC6ir2oI/4/fAJJngN/4K1eLAr8GNfUMk32EdTBRijiDhLu
-         V6lxKBgDynkgQ==
+        b=gyy5zYtjjqp+h3Duf1Gb6ulNQ7rdFz6ILTE3Rvc17UuLmwWxmxnxcCTz5obV/to/j
+         nwXKgJ7haoLaEgoc/gNdpuaEpvsbiqiDAifm/eprab8kHOkgv8BASK4pa6jBNP8Qla
+         pMvbVSb1Gk8+MZzxse/rh/ba7Hb3bKQ4AMud+pM8RWJI85j4/KS1Akgy9TiiiQOx6S
+         q2WQWjlS+quE2BboZHG/s3Rlk1c9jxms8yg2X6egmJVgfIPyS9TnHF8VOCq8svrQ9U
+         5Y7TzLSyLwvwPDyv4G6hQ1Fpu1iP2vgA4IcH1TWGx4wDRFkH1D2ICV4IQPYnDDjs1y
+         Enti/7KmNAnhw==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
+Cc:     Punit Agrawal <punitagrawal@gmail.com>,
+        Alexandru Elisei <alexandru.elisei@arm.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Heiko Stuebner <heiko@sntech.de>,
         Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.12 075/102] ARM: dts: stm32: fix stpmic node for stm32mp1 boards
-Date:   Wed, 14 Jul 2021 15:40:08 -0400
-Message-Id: <20210714194036.53141-75-sashal@kernel.org>
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.12 079/102] arm64: dts: rockchip: Update RK3399 PCI host bridge window to 32-bit address memory
+Date:   Wed, 14 Jul 2021 15:40:12 -0400
+Message-Id: <20210714194036.53141-79-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210714194036.53141-1-sashal@kernel.org>
 References: <20210714194036.53141-1-sashal@kernel.org>
@@ -43,160 +46,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alexandre Torgue <alexandre.torgue@foss.st.com>
+From: Punit Agrawal <punitagrawal@gmail.com>
 
-[ Upstream commit 4bf4abe19089245b7b12f35e5cafb5477b3e2c48 ]
+[ Upstream commit 8efe01b4386ab38a36b99cfdc1dc02c38a8898c3 ]
 
-On some STM32 MP15 boards, stpmic node is not correct which generates
-warnings running "make dtbs_check W=1" command. Issues are:
+The PCIe host bridge on RK3399 advertises a single 64-bit memory
+address range even though it lies entirely below 4GB.
 
--"regulator-active-discharge" is not a boolean but an uint32.
--"regulator-over-current-protection" is not a valid entry for vref_ddr.
--LDO4 has a fixed voltage (3v3) so min/max entries are not allowed.
+Previously the OF PCI range parser treated 64-bit ranges more
+leniently (i.e., as 32-bit), but since commit 9d57e61bf723 ("of/pci:
+Add IORESOURCE_MEM_64 to resource flags for 64-bit memory addresses")
+the code takes a stricter view and treats the ranges as advertised in
+the device tree (i.e, as 64-bit).
 
-Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
+The change in behaviour causes failure when allocating bus addresses
+to devices connected behind a PCI-to-PCI bridge that require
+non-prefetchable memory ranges. The allocation failure was observed
+for certain Samsung NVMe drives connected to RockPro64 boards.
+
+Update the host bridge window attributes to treat it as 32-bit address
+memory. This fixes the allocation failure observed since commit
+9d57e61bf723.
+
+Reported-by: Alexandru Elisei <alexandru.elisei@arm.com>
+Link: https://lore.kernel.org/r/7a1e2ebc-f7d8-8431-d844-41a9c36a8911@arm.com
+Suggested-by: Robin Murphy <robin.murphy@arm.com>
+Signed-off-by: Punit Agrawal <punitagrawal@gmail.com>
+Tested-by: Alexandru Elisei <alexandru.elisei@arm.com>
+Link: https://lore.kernel.org/r/20210607112856.3499682-5-punitagrawal@gmail.com
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/stm32mp157a-stinger96.dtsi   | 7 ++-----
- arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi | 5 +----
- arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi   | 5 +----
- arch/arm/boot/dts/stm32mp15xx-osd32.dtsi       | 7 ++-----
- 4 files changed, 6 insertions(+), 18 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi b/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
-index 113c48b2ef93..a4b14ef3caee 100644
---- a/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
-+++ b/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
-@@ -184,8 +184,6 @@ vtt_ddr: ldo3 {
- 
- 			vdd_usb: ldo4 {
- 				regulator-name = "vdd_usb";
--				regulator-min-microvolt = <3300000>;
--				regulator-max-microvolt = <3300000>;
- 				interrupts = <IT_CURLIM_LDO4 0>;
- 			};
- 
-@@ -208,7 +206,6 @@ v1v8: ldo6 {
- 			vref_ddr: vref_ddr {
- 				regulator-name = "vref_ddr";
- 				regulator-always-on;
--				regulator-over-current-protection;
- 			};
- 
- 			bst_out: boost {
-@@ -219,13 +216,13 @@ bst_out: boost {
- 			vbus_otg: pwr_sw1 {
- 				regulator-name = "vbus_otg";
- 				interrupts = <IT_OCP_OTG 0>;
--				regulator-active-discharge;
-+				regulator-active-discharge = <1>;
- 			};
- 
- 			vbus_sw: pwr_sw2 {
- 				regulator-name = "vbus_sw";
- 				interrupts = <IT_OCP_SWOUT 0>;
--				regulator-active-discharge;
-+				regulator-active-discharge = <1>;
- 			};
- 		};
- 
-diff --git a/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi b/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi
-index b5601d270c8f..2d9461006810 100644
---- a/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi
-+++ b/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi
-@@ -173,8 +173,6 @@ vtt_ddr: ldo3 {
- 
- 			vdd_usb: ldo4 {
- 				regulator-name = "vdd_usb";
--				regulator-min-microvolt = <3300000>;
--				regulator-max-microvolt = <3300000>;
- 				interrupts = <IT_CURLIM_LDO4 0>;
- 			};
- 
-@@ -197,7 +195,6 @@ v1v2_hdmi: ldo6 {
- 			vref_ddr: vref_ddr {
- 				regulator-name = "vref_ddr";
- 				regulator-always-on;
--				regulator-over-current-protection;
- 			};
- 
- 			 bst_out: boost {
-@@ -213,7 +210,7 @@ vbus_otg: pwr_sw1 {
- 			 vbus_sw: pwr_sw2 {
- 				regulator-name = "vbus_sw";
- 				interrupts = <IT_OCP_SWOUT 0>;
--				regulator-active-discharge;
-+				regulator-active-discharge = <1>;
- 			 };
- 		};
- 
-diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi b/arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi
-index 6c8930fc1632..b5a594c8f831 100644
---- a/arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi
-+++ b/arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi
-@@ -263,8 +263,6 @@ vtt_ddr: ldo3 {
- 
- 			vdd_usb: ldo4 {
- 				regulator-name = "vdd_usb";
--				regulator-min-microvolt = <3300000>;
--				regulator-max-microvolt = <3300000>;
- 				interrupts = <IT_CURLIM_LDO4 0>;
- 			};
- 
-@@ -286,7 +284,6 @@ v1v8: ldo6 {
- 			vref_ddr: vref_ddr {
- 				regulator-name = "vref_ddr";
- 				regulator-always-on;
--				regulator-over-current-protection;
- 			};
- 
- 			bst_out: boost {
-@@ -302,7 +299,7 @@ vbus_otg: pwr_sw1 {
- 			vbus_sw: pwr_sw2 {
- 				regulator-name = "vbus_sw";
- 				interrupts = <IT_OCP_SWOUT 0>;
--				regulator-active-discharge;
-+				regulator-active-discharge = <1>;
- 			};
- 		};
- 
-diff --git a/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi b/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi
-index 713485a95795..6706d8311a66 100644
---- a/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi
-+++ b/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi
-@@ -146,8 +146,6 @@ vtt_ddr: ldo3 {
- 
- 			vdd_usb: ldo4 {
- 				regulator-name = "vdd_usb";
--				regulator-min-microvolt = <3300000>;
--				regulator-max-microvolt = <3300000>;
- 				interrupts = <IT_CURLIM_LDO4 0>;
- 			};
- 
-@@ -171,7 +169,6 @@ v1v2_hdmi: ldo6 {
- 			vref_ddr: vref_ddr {
- 				regulator-name = "vref_ddr";
- 				regulator-always-on;
--				regulator-over-current-protection;
- 			};
- 
- 			bst_out: boost {
-@@ -182,13 +179,13 @@ bst_out: boost {
- 			vbus_otg: pwr_sw1 {
- 				regulator-name = "vbus_otg";
- 				interrupts = <IT_OCP_OTG 0>;
--				regulator-active-discharge;
-+				regulator-active-discharge = <1>;
- 			};
- 
- 			vbus_sw: pwr_sw2 {
- 				regulator-name = "vbus_sw";
- 				interrupts = <IT_OCP_SWOUT 0>;
--				regulator-active-discharge;
-+				regulator-active-discharge = <1>;
- 			};
- 		};
- 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+index b265cc1b558d..62846464a885 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+@@ -230,7 +230,7 @@ pcie0: pcie@f8000000 {
+ 		       <&pcie_phy 2>, <&pcie_phy 3>;
+ 		phy-names = "pcie-phy-0", "pcie-phy-1",
+ 			    "pcie-phy-2", "pcie-phy-3";
+-		ranges = <0x83000000 0x0 0xfa000000 0x0 0xfa000000 0x0 0x1e00000>,
++		ranges = <0x82000000 0x0 0xfa000000 0x0 0xfa000000 0x0 0x1e00000>,
+ 			 <0x81000000 0x0 0xfbe00000 0x0 0xfbe00000 0x0 0x100000>;
+ 		resets = <&cru SRST_PCIE_CORE>, <&cru SRST_PCIE_MGMT>,
+ 			 <&cru SRST_PCIE_MGMT_STICKY>, <&cru SRST_PCIE_PIPE>,
 -- 
 2.30.2
 
