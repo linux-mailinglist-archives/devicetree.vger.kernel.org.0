@@ -2,118 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B03753C7B3E
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 03:58:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 139C53C7B88
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 04:13:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237374AbhGNCBp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Jul 2021 22:01:45 -0400
-Received: from mail-io1-f45.google.com ([209.85.166.45]:35616 "EHLO
-        mail-io1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237371AbhGNCBo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 22:01:44 -0400
-Received: by mail-io1-f45.google.com with SMTP id d9so141680ioo.2;
-        Tue, 13 Jul 2021 18:58:54 -0700 (PDT)
+        id S237370AbhGNCQn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Jul 2021 22:16:43 -0400
+Received: from mail-io1-f48.google.com ([209.85.166.48]:39567 "EHLO
+        mail-io1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237349AbhGNCQn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Jul 2021 22:16:43 -0400
+Received: by mail-io1-f48.google.com with SMTP id h6so159884iok.6;
+        Tue, 13 Jul 2021 19:13:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=uOqifUzkRaN6450fZqsUf49bx6RwvzQf56ULmH/5myE=;
-        b=YtiwivXmMbHBdnuJMfDV5rbcChzYBxr3zNvM2qFuUwQ86Ff7ceTwCi9MaSf4MKuyFF
-         xmUyglnrfJuK2RQh46FDHhcp46uN6+uv0eT3F0FMbrgoXSahbLqYtdYFOldsBESVtIlt
-         4c9z+0W9/7v4wBz8eZgcsSk12OUuNymV8AbPvVWXYWL+aKydOXhN5MfSmNaOMDnihGRf
-         uHlM79njxk77c+shJsysaZBnXeX932BIlTMZkXrNiu8qv9K+63EFFxN2VUZgQ6huJlJ8
-         1GRNu6ipTUN4iKbpiQ4V6d3oxlo4WTNGOPTRpKSDxuBQqSYDUK7nTalI8UhbBsFPP1g1
-         QZNA==
-X-Gm-Message-State: AOAM533Np/aWeEAWpKanDUvAOQSjxQSIPmszZ4mRSw1pxDrcbqD+5ZVy
-        duULHgOUbUK6pP+RoHN5YA==
-X-Google-Smtp-Source: ABdhPJyT8TYsSlaL+L00/kHbPjyHO8V/A9ECsVjD8XtNKMYIt96lMs9INqqlpooOnhrZOVYrOX4MKA==
-X-Received: by 2002:a05:6602:25da:: with SMTP id d26mr5426788iop.106.1626227933715;
-        Tue, 13 Jul 2021 18:58:53 -0700 (PDT)
+        bh=/Z/tZKf0aO1xZoDSmm5DT5QLfVwlo8xPEjAU//SkRvw=;
+        b=ohJxfK1yBHVjiovH634DdI2n/C72NjvhTB/yblm1tNW8Cm25xo+QF8/ETm/OVFCf0I
+         1jbz5d2bq4vf8OL8aGp1Oz/jCTpwcs+uxJIxhwwW+eGDZMJou9R7ixZHQIJkDJfBsv8i
+         Z2+PerNJED3CA8IIXAshNULGY80iUzzbdtnkcfILD6WQHwGOuWbkkDrJd9qnKNfTJI7x
+         kPjW56KgaSNaO4ZUqe+7jOEZjY/7F6rihQyZdGP4Www/lZ1YsT0FoGXPui2qXf/55d96
+         pchznHihC6wzLa9r1wg+qpnABDrBbzLHA67j9PD84jDWFAoEDxMX3VzjspHrjPzKIbeI
+         ae/Q==
+X-Gm-Message-State: AOAM531k0Nz+88lGmavFQohc8IGNSZ+/zPn0u+xIvRwlc2+DmH/TLa2q
+        7PAG4lJbY6kK2NQv4aAHjA==
+X-Google-Smtp-Source: ABdhPJyGycRTbO/9c2EWLHRjrDhvSrVs9AADZSCbP1Zmc+vSCeJI8j7lLZxtqwcsyaMkFhpNIMVurQ==
+X-Received: by 2002:a5e:a816:: with SMTP id c22mr5597258ioa.94.1626228831107;
+        Tue, 13 Jul 2021 19:13:51 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id r6sm443341ilh.35.2021.07.13.18.58.51
+        by smtp.gmail.com with ESMTPSA id w1sm424335ilv.59.2021.07.13.19.13.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jul 2021 18:58:53 -0700 (PDT)
-Received: (nullmailer pid 1286017 invoked by uid 1000);
-        Wed, 14 Jul 2021 01:58:49 -0000
-Date:   Tue, 13 Jul 2021 19:58:49 -0600
+        Tue, 13 Jul 2021 19:13:50 -0700 (PDT)
+Received: (nullmailer pid 1309349 invoked by uid 1000);
+        Wed, 14 Jul 2021 02:13:48 -0000
+Date:   Tue, 13 Jul 2021 20:13:48 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Christine Zhu <Christine.Zhu@mediatek.com>
-Cc:     wim@linux-watchdog.org, linux@roeck-us.net, matthias.bgg@gmail.com,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        seiya.wang@mediatek.com
-Subject: Re: [v5,2/3] dt-bindings: reset: mt8195: add toprgu reset-controller
- head file
-Message-ID: <20210714015849.GA1283155@robh.at.kernel.org>
-References: <20210628113730.26107-1-Christine.Zhu@mediatek.com>
- <20210628113730.26107-3-Christine.Zhu@mediatek.com>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     kishon@ti.com, lorenzo.pieralisi@arm.com, bhelgaas@google.com,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        hemantk@codeaurora.org, smohanad@codeaurora.org,
+        bjorn.andersson@linaro.org, sallenki@codeaurora.org,
+        skananth@codeaurora.org, vpernami@codeaurora.org,
+        vbadigan@codeaurora.org
+Subject: Re: [PATCH v5 1/3] dt-bindings: pci: Add devicetree binding for
+ Qualcomm PCIe EP controller
+Message-ID: <20210714021348.GA1302552@robh.at.kernel.org>
+References: <20210630034653.10260-1-manivannan.sadhasivam@linaro.org>
+ <20210630034653.10260-2-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210628113730.26107-3-Christine.Zhu@mediatek.com>
+In-Reply-To: <20210630034653.10260-2-manivannan.sadhasivam@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 28, 2021 at 07:37:30PM +0800, Christine Zhu wrote:
-> From: "Christine Zhu" <Christine.Zhu@mediatek.com>
+On Wed, Jun 30, 2021 at 09:16:51AM +0530, Manivannan Sadhasivam wrote:
+> Add devicetree binding for Qualcomm PCIe EP controller used in platforms
+> like SDX55. The EP controller is based on the Designware core with
+> Qualcomm specific wrappers.
 > 
-> Add toprgu reset-controller head file for MT8195 platform.
-
-s/head/header/
-
-And the subject too.
-
-> 
-> Signed-off-by: Christine Zhu <Christine.Zhu@mediatek.com>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
->  .../reset-controller/mt8195-resets.h          | 29 +++++++++++++++++++
->  1 file changed, 29 insertions(+)
->  create mode 100644 include/dt-bindings/reset-controller/mt8195-resets.h
+>  .../devicetree/bindings/pci/qcom,pcie-ep.yaml | 160 ++++++++++++++++++
+>  1 file changed, 160 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
 > 
-> diff --git a/include/dt-bindings/reset-controller/mt8195-resets.h b/include/dt-bindings/reset-controller/mt8195-resets.h
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
 > new file mode 100644
-> index 000000000000..7ec27a64afc7
+> index 000000000000..9110d33809cd
 > --- /dev/null
-> +++ b/include/dt-bindings/reset-controller/mt8195-resets.h
-> @@ -0,0 +1,29 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-
-Dual license please.
-
-> +/*
-> + * Copyright (c) 2021 MediaTek Inc.
-> + * Author: Crystal Guo <crystal.guo@mediatek.com>
-
-According to the S-o-b and patch author, you are the author.
-
-> + */
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+> @@ -0,0 +1,160 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pci/qcom,pcie-ep.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +#ifndef _DT_BINDINGS_RESET_CONTROLLER_MT8195
-> +#define _DT_BINDINGS_RESET_CONTROLLER_MT8195
+> +title: Qualcomm PCIe Endpoint Controller binding
 > +
-> +#define MT8195_TOPRGU_CONN_MCU_SW_RST          0
-> +#define MT8195_TOPRGU_INFRA_GRST_SW_RST        1
-> +#define MT8195_TOPRGU_APU_SW_RST               2
-> +#define MT8195_TOPRGU_INFRA_AO_GRST_SW_RST     6
-> +#define MT8195_TOPRGU_MMSYS_SW_RST             7
-> +#define MT8195_TOPRGU_MFG_SW_RST               8
-> +#define MT8195_TOPRGU_VENC_SW_RST              9
-> +#define MT8195_TOPRGU_VDEC_SW_RST              10
-> +#define MT8195_TOPRGU_IMG_SW_RST               11
-> +#define MT8195_TOPRGU_APMIXEDSYS_SW_RST        13
-> +#define MT8195_TOPRGU_AUDIO_SW_RST             14
-> +#define MT8195_TOPRGU_CAMSYS_SW_RST            15
-> +#define MT8195_TOPRGU_EDPTX_SW_RST             16
-> +#define MT8195_TOPRGU_ADSPSYS_SW_RST           21
-> +#define MT8195_TOPRGU_DPTX_SW_RST              22
-> +#define MT8195_TOPRGU_SPMI_MST_SW_RST          23
+> +maintainers:
+> +  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > +
-> +#define MT8195_TOPRGU_SW_RST_NUM               16
+> +allOf:
+> +  - $ref: "pci-ep.yaml#"
 > +
-> +#endif  /* _DT_BINDINGS_RESET_CONTROLLER_MT8195 */
-> -- 
-> 2.18.0
-> 
-> 
+> +properties:
+> +  compatible:
+> +    const: qcom,sdx55-pcie-ep
+> +
+> +  reg:
+> +    items:
+> +      - description: Qualcomm specific PARF configuration registers
+> +      - description: Designware PCIe registers
+> +      - description: External local bus interface registers
+> +      - description: Address Translation Unit (ATU) registers
+> +      - description: Memory region used to map remote RC address space
+> +      - description: BAR memory region
+> +
+> +  reg-names:
+> +    items:
+> +      - const: parf
+> +      - const: dbi
+> +      - const: elbi
+> +      - const: atu
+> +      - const: addr_space
+> +      - const: mmio
+> +
+> +  clocks:
+> +    items:
+> +      - description: PCIe Auxiliary clock
+> +      - description: PCIe CFG AHB clock
+> +      - description: PCIe Master AXI clock
+> +      - description: PCIe Slave AXI clock
+> +      - description: PCIe Slave Q2A AXI clock
+> +      - description: PCIe Sleep clock
+> +      - description: PCIe Reference clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: aux
+> +      - const: cfg
+> +      - const: bus_master
+> +      - const: bus_slave
+> +      - const: slave_q2a
+> +      - const: sleep
+> +      - const: ref
+> +
+> +  qcom,perst-regs:
+> +    description: Reference to a syscon representing TCSR followed by the two
+> +                 offsets within syscon for Perst enable and Perst separation
+> +                 enable registers
+> +    $ref: "/schemas/types.yaml#/definitions/phandle-array"
+> +    items:
+> +      minItems: 3
+> +      maxItems: 3
+> +
+> +  interrupts:
+> +    items:
+> +      - description: PCIe Global interrupt
+> +      - description: PCIe Doorbell interrupt
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: global
+> +      - const: doorbell
+> +
+> +  reset-gpios:
+> +    description: GPIO that is being used as PERST# input signal
+> +    maxItems: 1
+> +
+> +  wake-gpios:
+> +    description: GPIO that is being used as WAKE# output signal
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    const: core
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  phys:
+> +    maxItems: 1
+> +
+> +  phy-names:
+> +    const: pciephy
+> +
+> +  num-lanes:
+> +    default: 2
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - clocks
+> +  - clock-names
+> +  - qcom,perst-regs
+> +  - interrupts
+> +  - interrupt-names
+> +  - reset-gpios
+> +  - resets
+> +  - reset-names
+> +  - power-domains
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/qcom,gcc-sdx55.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    pcie_ep: pcie-ep@40000000 {
+> +        compatible = "qcom,sdx55-pcie-ep";
+> +        reg = <0x01c00000 0x3000>,
+> +              <0x40000000 0xf1d>,
+> +              <0x40000f20 0xc8>,
+> +              <0x40001000 0x1000>,
+> +              <0x40002000 0x1000>,
+> +              <0x01c03000 0x3000>;
+> +        reg-names = "parf", "dbi", "elbi", "atu", "addr_space",
+> +                    "mmio";
+> +
+> +        clocks = <&gcc GCC_PCIE_AUX_CLK>,
+> +             <&gcc GCC_PCIE_CFG_AHB_CLK>,
+> +             <&gcc GCC_PCIE_MSTR_AXI_CLK>,
+> +             <&gcc GCC_PCIE_SLV_AXI_CLK>,
+> +             <&gcc GCC_PCIE_SLV_Q2A_AXI_CLK>,
+> +             <&gcc GCC_PCIE_SLEEP_CLK>,
+> +             <&gcc GCC_PCIE_0_CLKREF_CLK>;
+> +        clock-names = "aux", "cfg", "bus_master", "bus_slave",
+> +                      "slave_q2a", "sleep", "ref";
+> +
+> +        qcom,perst-regs = <&tcsr 0xb258 0xb270>;
+> +
+> +        interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>,
+> +        	     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>;
+> +        interrupt-names = "global", "doorbell";
+> +        reset-gpios = <&tlmm 57 GPIO_ACTIVE_HIGH>;
+> +        wake-gpios = <&tlmm 53 GPIO_ACTIVE_LOW>;
+> +        resets = <&gcc GCC_PCIE_BCR>;
+> +        reset-names = "core";
+> +        power-domains = <&gcc PCIE_GDSC>;
+> +        phys = <&pcie0_lane>;
+> +        phy-names = "pciephy";
+> +        max-link-speed = <3>;
+> +        num-lanes = <2>;
+> +
+> +        status = "disabled";
+
+Why are you disabling the example? Drop status.
+
+With that,
+
+Reviewed-by: Rob Herring <robh@kernel.org>
