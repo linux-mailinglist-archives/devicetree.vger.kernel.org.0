@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 57A523C8F3C
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:56:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 863CB3C8F3F
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:56:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241332AbhGNTwJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 15:52:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45102 "EHLO mail.kernel.org"
+        id S239727AbhGNTwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 15:52:10 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45484 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240004AbhGNTt3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Jul 2021 15:49:29 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5318961421;
-        Wed, 14 Jul 2021 19:44:41 +0000 (UTC)
+        id S240183AbhGNTte (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Jul 2021 15:49:34 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 650E461428;
+        Wed, 14 Jul 2021 19:44:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626291882;
-        bh=aj3HxPOJKM4Ei30vxcMcaN/Vk5UphhfB5L2vh7AnYhA=;
+        s=k20201202; t=1626291887;
+        bh=7CRownILOEHraGQb/+o7G60263aYdP+BP0g8NUMrV/o=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=M4wKT/Vy8XTbfQvJBEpJILGs8BJbmmAy8dnVG0Of9bWKUN1BjqDGM41xfzuqpRCQw
-         ixNiHYagAQtMsbkhzOBHhVzrDYhXJCH+kAE82XQ1jmfeW1wmcMgoHf43RkdhQUPPaq
-         MNyKOkAZPcaFzvLFxm3NHYF1kC/t33sPdPmBw6t3zT/u5BAWgFpp7jRf7JpE1Ac1zw
-         uV/c5rDaJUObwaj3wziSGguGEckyr95WCP2XN+LHucbxLWrJrwef7IDJwns8ldQR5C
-         t4TrSuSzduIXtfIHyB+nEajz6A24pShyrLmy79hBjdPrM2yvpfAmiQ8sP2OX/7qE7d
-         d8braLjWeyPHA==
+        b=kuAZ5W8aqlYIlzpBum0jSoZ2g4fqx2Jh9Qd3G3Oz33inR2WCZko5B4slpsJrnEeWA
+         ZtspyKWClVIE7Zw/3IYi8XJdAfWS/BemjLE3f2KboDFZE8IriLYo2Smmld6grxRrZh
+         jtN8w147b/O2BeqEsxplJ18kq1of18oKfARwpVaqAi1g4VnvwmGlfWyaM5Xlhz8Aic
+         9VoTmTISkTDFxUV6HgAtT9ofMan82uJ3gjlwjOoC6AX7D6e0ctSNXEs44CWUPVcbjp
+         u8yZxDkFnKKDL0yN3/scQ3jy1RGoKZh9m7da2pWkQ3FtG4HIqviFM8+XRsSSGFekyN
+         uE0hs0JMbJ+/Q==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.10 65/88] ARM: dts: stm32: fix stpmic node for stm32mp1 boards
-Date:   Wed, 14 Jul 2021 15:42:40 -0400
-Message-Id: <20210714194303.54028-65-sashal@kernel.org>
+Cc:     Mian Yousaf Kaukab <ykaukab@suse.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sasha Levin <sashal@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.10 69/88] arm64: dts: ls208xa: remove bus-num from dspi node
+Date:   Wed, 14 Jul 2021 15:42:44 -0400
+Message-Id: <20210714194303.54028-69-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210714194303.54028-1-sashal@kernel.org>
 References: <20210714194303.54028-1-sashal@kernel.org>
@@ -43,160 +43,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alexandre Torgue <alexandre.torgue@foss.st.com>
+From: Mian Yousaf Kaukab <ykaukab@suse.de>
 
-[ Upstream commit 4bf4abe19089245b7b12f35e5cafb5477b3e2c48 ]
+[ Upstream commit 8240c972c1798ea013cbb407722295fc826b3584 ]
 
-On some STM32 MP15 boards, stpmic node is not correct which generates
-warnings running "make dtbs_check W=1" command. Issues are:
+On LS2088A-RDB board, if the spi-fsl-dspi driver is built as module
+then its probe fails with the following warning:
 
--"regulator-active-discharge" is not a boolean but an uint32.
--"regulator-over-current-protection" is not a valid entry for vref_ddr.
--LDO4 has a fixed voltage (3v3) so min/max entries are not allowed.
+[   10.471363] couldn't get idr
+[   10.471381] WARNING: CPU: 4 PID: 488 at drivers/spi/spi.c:2689 spi_register_controller+0x73c/0x8d0
+...
+[   10.471651] fsl-dspi 2100000.spi: Problem registering DSPI ctlr
+[   10.471708] fsl-dspi: probe of 2100000.spi failed with error -16
 
-Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
+Reason for the failure is that bus-num property is set for dspi node.
+However, bus-num property is not set for the qspi node. If probe for
+spi-fsl-qspi happens first then id 0 is dynamically allocated to it.
+Call to spi_register_controller() from spi-fsl-dspi driver then fails.
+Since commit 29d2daf2c33c ("spi: spi-fsl-dspi: Make bus-num property
+optional") bus-num property is optional. Remove bus-num property from
+dspi node to fix the issue.
+
+Signed-off-by: Mian Yousaf Kaukab <ykaukab@suse.de>
+Signed-off-by: Shawn Guo <shawnguo@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/stm32mp157a-stinger96.dtsi   | 7 ++-----
- arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi | 5 +----
- arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi   | 5 +----
- arch/arm/boot/dts/stm32mp15xx-osd32.dtsi       | 7 ++-----
- 4 files changed, 6 insertions(+), 18 deletions(-)
+ arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi b/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
-index 58275bcf9e26..4dd138d691c7 100644
---- a/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
-+++ b/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
-@@ -184,8 +184,6 @@ vtt_ddr: ldo3 {
- 
- 			vdd_usb: ldo4 {
- 				regulator-name = "vdd_usb";
--				regulator-min-microvolt = <3300000>;
--				regulator-max-microvolt = <3300000>;
- 				interrupts = <IT_CURLIM_LDO4 0>;
- 			};
- 
-@@ -208,7 +206,6 @@ v1v8: ldo6 {
- 			vref_ddr: vref_ddr {
- 				regulator-name = "vref_ddr";
- 				regulator-always-on;
--				regulator-over-current-protection;
- 			};
- 
- 			bst_out: boost {
-@@ -219,13 +216,13 @@ bst_out: boost {
- 			vbus_otg: pwr_sw1 {
- 				regulator-name = "vbus_otg";
- 				interrupts = <IT_OCP_OTG 0>;
--				regulator-active-discharge;
-+				regulator-active-discharge = <1>;
- 			};
- 
- 			vbus_sw: pwr_sw2 {
- 				regulator-name = "vbus_sw";
- 				interrupts = <IT_OCP_SWOUT 0>;
--				regulator-active-discharge;
-+				regulator-active-discharge = <1>;
- 			};
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+index e7abb74bd816..4d34d82b898a 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+@@ -625,7 +625,6 @@ dspi: spi@2100000 {
+ 			clocks = <&clockgen 4 3>;
+ 			clock-names = "dspi";
+ 			spi-num-chipselects = <5>;
+-			bus-num = <0>;
  		};
  
-diff --git a/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi b/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi
-index b5601d270c8f..2d9461006810 100644
---- a/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi
-+++ b/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi
-@@ -173,8 +173,6 @@ vtt_ddr: ldo3 {
- 
- 			vdd_usb: ldo4 {
- 				regulator-name = "vdd_usb";
--				regulator-min-microvolt = <3300000>;
--				regulator-max-microvolt = <3300000>;
- 				interrupts = <IT_CURLIM_LDO4 0>;
- 			};
- 
-@@ -197,7 +195,6 @@ v1v2_hdmi: ldo6 {
- 			vref_ddr: vref_ddr {
- 				regulator-name = "vref_ddr";
- 				regulator-always-on;
--				regulator-over-current-protection;
- 			};
- 
- 			 bst_out: boost {
-@@ -213,7 +210,7 @@ vbus_otg: pwr_sw1 {
- 			 vbus_sw: pwr_sw2 {
- 				regulator-name = "vbus_sw";
- 				interrupts = <IT_OCP_SWOUT 0>;
--				regulator-active-discharge;
-+				regulator-active-discharge = <1>;
- 			 };
- 		};
- 
-diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi b/arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi
-index f496bbfa0be6..998ea30ae024 100644
---- a/arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi
-+++ b/arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi
-@@ -226,8 +226,6 @@ vtt_ddr: ldo3 {
- 
- 			vdd_usb: ldo4 {
- 				regulator-name = "vdd_usb";
--				regulator-min-microvolt = <3300000>;
--				regulator-max-microvolt = <3300000>;
- 				interrupts = <IT_CURLIM_LDO4 0>;
- 			};
- 
-@@ -249,7 +247,6 @@ v1v8: ldo6 {
- 			vref_ddr: vref_ddr {
- 				regulator-name = "vref_ddr";
- 				regulator-always-on;
--				regulator-over-current-protection;
- 			};
- 
- 			bst_out: boost {
-@@ -265,7 +262,7 @@ vbus_otg: pwr_sw1 {
- 			vbus_sw: pwr_sw2 {
- 				regulator-name = "vbus_sw";
- 				interrupts = <IT_OCP_SWOUT 0>;
--				regulator-active-discharge;
-+				regulator-active-discharge = <1>;
- 			};
- 		};
- 
-diff --git a/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi b/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi
-index 713485a95795..6706d8311a66 100644
---- a/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi
-+++ b/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi
-@@ -146,8 +146,6 @@ vtt_ddr: ldo3 {
- 
- 			vdd_usb: ldo4 {
- 				regulator-name = "vdd_usb";
--				regulator-min-microvolt = <3300000>;
--				regulator-max-microvolt = <3300000>;
- 				interrupts = <IT_CURLIM_LDO4 0>;
- 			};
- 
-@@ -171,7 +169,6 @@ v1v2_hdmi: ldo6 {
- 			vref_ddr: vref_ddr {
- 				regulator-name = "vref_ddr";
- 				regulator-always-on;
--				regulator-over-current-protection;
- 			};
- 
- 			bst_out: boost {
-@@ -182,13 +179,13 @@ bst_out: boost {
- 			vbus_otg: pwr_sw1 {
- 				regulator-name = "vbus_otg";
- 				interrupts = <IT_OCP_OTG 0>;
--				regulator-active-discharge;
-+				regulator-active-discharge = <1>;
- 			};
- 
- 			vbus_sw: pwr_sw2 {
- 				regulator-name = "vbus_sw";
- 				interrupts = <IT_OCP_SWOUT 0>;
--				regulator-active-discharge;
-+				regulator-active-discharge = <1>;
- 			};
- 		};
- 
+ 		esdhc: esdhc@2140000 {
 -- 
 2.30.2
 
