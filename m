@@ -2,37 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF07F3C8D0D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:40:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B8F33C8D1C
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:41:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235318AbhGNTnf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 15:43:35 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38756 "EHLO mail.kernel.org"
+        id S235751AbhGNTno (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 15:43:44 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38106 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229902AbhGNTnA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Jul 2021 15:43:00 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5F6DD613D8;
-        Wed, 14 Jul 2021 19:40:07 +0000 (UTC)
+        id S235761AbhGNTnJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Jul 2021 15:43:09 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 41D5A613E4;
+        Wed, 14 Jul 2021 19:40:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626291608;
-        bh=Qscmt7Nun27TYaNstMnTrXFhdZ+CUTGL/F3JW5XARhU=;
+        s=k20201202; t=1626291615;
+        bh=VS0/Le/ItSlZUoCnxW7/1qeWmT4X2KmBRrxaW+zvDuA=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=d8FdUAEoUJJbg2WF3a1+mjUEvSOpVlzXUNxpbeEpKqcvcr1DaSPU4GT5mw4+12a2a
-         GxVWkYYJaH0x36NqScOp3Zf2tcUF0JoZme1J/4BEltIO7OsRKuPiTd8A5kmfXM+QoG
-         wPrgRukGh13sVz/Oc5TSkxA2TLbBqlvr1mx2Uhldkz6uXarvh0hdV2fVO/KWd0GEVg
-         Bte847Ko26jEW6xE+mwVjmQceWN8+b80coAidmKg8G5+4DblQFy+f16kuR/1FvuwI+
-         ZUnWpeRYAabbCkWDh4ahkWGUv+BLks9xIgEBMHV9lt5opVUpP/j66tpocxU33MYzk9
-         cO0mwYIBKaHBw==
+        b=nIEIOjLByrAZ7RMmTqRCIZpTUeG7PMYmng3D0tZTh0Q+rHCAXpw5aAJDJvbSPPJmz
+         P+qPXlD24m7YIePkmcAYmPMshiTlyusSst0A4r7G3yM3PW+3Sze10GjiXs6zGF2u9J
+         bPSl7OqbDvZ+lLEINo0xjHD1EXZwIHvnD+xEHXGBhNWbZBZwQu3as6gzd3SdCRuvOE
+         sWqLjpn9czsKed6cG9WNqzGz2IpjmxzwqGC73+Ht63vjVMWEm4baMLD66Fb6LsFX+q
+         VIO3xuf4upzGw5LN6Z1tr/deAGIks6mDUpP98gdJZ60kyJFxeTHgFVDbiOgZL9pSwu
+         4IqPGv+MAMZXA==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Dong Aisheng <aisheng.dong@nxp.com>, Abel Vesa <abel.vesa@nxp.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.13 088/108] arm64: dts: imx8: conn: fix enet clock setting
-Date:   Wed, 14 Jul 2021 15:37:40 -0400
-Message-Id: <20210714193800.52097-88-sashal@kernel.org>
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sasha Levin <sashal@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.13 093/108] arm64: dts: qcom: sm8250: Fix pcie2_lane unit address
+Date:   Wed, 14 Jul 2021 15:37:45 -0400
+Message-Id: <20210714193800.52097-93-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210714193800.52097-1-sashal@kernel.org>
 References: <20210714193800.52097-1-sashal@kernel.org>
@@ -44,111 +43,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Dong Aisheng <aisheng.dong@nxp.com>
+From: Konrad Dybcio <konrad.dybcio@somainline.org>
 
-[ Upstream commit dfda1fd16aa71c839e4002109b0cd15f61105ebb ]
+[ Upstream commit dc2f86369b157dfe4dccd31497d2e3c541e7239d ]
 
-enet_clk_ref actually is sourced from internal gpr clocks
-which needs a default rate. Also update enet lpcg clock
-output names to be more straightforward.
+The previous one was likely a mistaken copy from pcie1_lane.
 
-Cc: Abel Vesa <abel.vesa@nxp.com>
-Cc: Stephen Boyd <sboyd@kernel.org>
-Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+Link: https://lore.kernel.org/r/20210613185334.306225-1-konrad.dybcio@somainline.org
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- .../boot/dts/freescale/imx8-ss-conn.dtsi      | 50 ++++++++++++-------
- 1 file changed, 32 insertions(+), 18 deletions(-)
+ arch/arm64/boot/dts/qcom/sm8250.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi
-index e1e81ca0ca69..a79f42a9618e 100644
---- a/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi
-@@ -77,9 +77,12 @@ fec1: ethernet@5b040000 {
- 			     <GIC_SPI 259 IRQ_TYPE_LEVEL_HIGH>;
- 		clocks = <&enet0_lpcg IMX_LPCG_CLK_4>,
- 			 <&enet0_lpcg IMX_LPCG_CLK_2>,
--			 <&enet0_lpcg IMX_LPCG_CLK_1>,
-+			 <&enet0_lpcg IMX_LPCG_CLK_3>,
- 			 <&enet0_lpcg IMX_LPCG_CLK_0>;
- 		clock-names = "ipg", "ahb", "enet_clk_ref", "ptp";
-+		assigned-clocks = <&clk IMX_SC_R_ENET_0 IMX_SC_PM_CLK_PER>,
-+				  <&clk IMX_SC_R_ENET_0 IMX_SC_C_CLKDIV>;
-+		assigned-clock-rates = <250000000>, <125000000>;
- 		fsl,num-tx-queues=<3>;
- 		fsl,num-rx-queues=<3>;
- 		power-domains = <&pd IMX_SC_R_ENET_0>;
-@@ -94,9 +97,12 @@ fec2: ethernet@5b050000 {
- 				<GIC_SPI 263 IRQ_TYPE_LEVEL_HIGH>;
- 		clocks = <&enet1_lpcg IMX_LPCG_CLK_4>,
- 			 <&enet1_lpcg IMX_LPCG_CLK_2>,
--			 <&enet1_lpcg IMX_LPCG_CLK_1>,
-+			 <&enet1_lpcg IMX_LPCG_CLK_3>,
- 			 <&enet1_lpcg IMX_LPCG_CLK_0>;
- 		clock-names = "ipg", "ahb", "enet_clk_ref", "ptp";
-+		assigned-clocks = <&clk IMX_SC_R_ENET_1 IMX_SC_PM_CLK_PER>,
-+				  <&clk IMX_SC_R_ENET_1 IMX_SC_C_CLKDIV>;
-+		assigned-clock-rates = <250000000>, <125000000>;
- 		fsl,num-tx-queues=<3>;
- 		fsl,num-rx-queues=<3>;
- 		power-domains = <&pd IMX_SC_R_ENET_1>;
-@@ -152,15 +158,19 @@ enet0_lpcg: clock-controller@5b230000 {
- 		#clock-cells = <1>;
- 		clocks = <&clk IMX_SC_R_ENET_0 IMX_SC_PM_CLK_PER>,
- 			 <&clk IMX_SC_R_ENET_0 IMX_SC_PM_CLK_PER>,
--			 <&conn_axi_clk>, <&conn_ipg_clk>, <&conn_ipg_clk>;
-+			 <&conn_axi_clk>,
-+			 <&clk IMX_SC_R_ENET_0 IMX_SC_C_TXCLK>,
-+			 <&conn_ipg_clk>,
-+			 <&conn_ipg_clk>;
- 		clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_1>,
--				<IMX_LPCG_CLK_2>, <IMX_LPCG_CLK_4>,
--				<IMX_LPCG_CLK_5>;
--		clock-output-names = "enet0_ipg_root_clk",
--				     "enet0_tx_clk",
--				     "enet0_ahb_clk",
--				     "enet0_ipg_clk",
--				     "enet0_ipg_s_clk";
-+				<IMX_LPCG_CLK_2>, <IMX_LPCG_CLK_3>,
-+				<IMX_LPCG_CLK_4>, <IMX_LPCG_CLK_5>;
-+		clock-output-names = "enet0_lpcg_timer_clk",
-+				     "enet0_lpcg_txc_sampling_clk",
-+				     "enet0_lpcg_ahb_clk",
-+				     "enet0_lpcg_rgmii_txc_clk",
-+				     "enet0_lpcg_ipg_clk",
-+				     "enet0_lpcg_ipg_s_clk";
- 		power-domains = <&pd IMX_SC_R_ENET_0>;
- 	};
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index 75f9476109e6..09b552396557 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -1470,7 +1470,7 @@ pcie2_phy: phy@1c16000 {
  
-@@ -170,15 +180,19 @@ enet1_lpcg: clock-controller@5b240000 {
- 		#clock-cells = <1>;
- 		clocks = <&clk IMX_SC_R_ENET_1 IMX_SC_PM_CLK_PER>,
- 			 <&clk IMX_SC_R_ENET_1 IMX_SC_PM_CLK_PER>,
--			 <&conn_axi_clk>, <&conn_ipg_clk>, <&conn_ipg_clk>;
-+			 <&conn_axi_clk>,
-+			 <&clk IMX_SC_R_ENET_1 IMX_SC_C_TXCLK>,
-+			 <&conn_ipg_clk>,
-+			 <&conn_ipg_clk>;
- 		clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_1>,
--				<IMX_LPCG_CLK_2>, <IMX_LPCG_CLK_4>,
--				<IMX_LPCG_CLK_5>;
--		clock-output-names = "enet1_ipg_root_clk",
--				     "enet1_tx_clk",
--				     "enet1_ahb_clk",
--				     "enet1_ipg_clk",
--				     "enet1_ipg_s_clk";
-+				<IMX_LPCG_CLK_2>, <IMX_LPCG_CLK_3>,
-+				<IMX_LPCG_CLK_4>, <IMX_LPCG_CLK_5>;
-+		clock-output-names = "enet1_lpcg_timer_clk",
-+				     "enet1_lpcg_txc_sampling_clk",
-+				     "enet1_lpcg_ahb_clk",
-+				     "enet1_lpcg_rgmii_txc_clk",
-+				     "enet1_lpcg_ipg_clk",
-+				     "enet1_lpcg_ipg_s_clk";
- 		power-domains = <&pd IMX_SC_R_ENET_1>;
- 	};
- };
+ 			status = "disabled";
+ 
+-			pcie2_lane: lanes@1c0e200 {
++			pcie2_lane: lanes@1c16200 {
+ 				reg = <0 0x1c16200 0 0x170>, /* tx0 */
+ 				      <0 0x1c16400 0 0x200>, /* rx0 */
+ 				      <0 0x1c16a00 0 0x1f0>, /* pcs */
 -- 
 2.30.2
 
