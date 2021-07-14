@@ -2,66 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1994D3C9449
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 01:15:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 291643C944A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 01:16:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229928AbhGNXSo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 19:18:44 -0400
-Received: from mail-il1-f178.google.com ([209.85.166.178]:42741 "EHLO
-        mail-il1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230478AbhGNXSn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 19:18:43 -0400
-Received: by mail-il1-f178.google.com with SMTP id h3so3239596ilc.9;
-        Wed, 14 Jul 2021 16:15:51 -0700 (PDT)
+        id S235838AbhGNXTP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 19:19:15 -0400
+Received: from mail-io1-f43.google.com ([209.85.166.43]:43829 "EHLO
+        mail-io1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230242AbhGNXTK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 19:19:10 -0400
+Received: by mail-io1-f43.google.com with SMTP id k16so4195444ios.10;
+        Wed, 14 Jul 2021 16:16:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=BYSXQ7n1DwSUA9CRKZRWNODD9r+oXjD7cGdzNttzqVY=;
-        b=nIAm+sZaK+GBzbLWgtJRdvFsdnnviexQTonsvh7HYU3Hu2wGH495QO40V9/zJ6vpWd
-         5S/B92ld/UVxSJlLJ4S48pQWs26JtvWRTYiEcdM1W6KoANvFX1/l39Tx76uebce+lLTf
-         LdJxQSd2iat2GuYt8eU0SDMovZHqM2/6Fjf+yiJmv7dr4d/A8a/ETbroyeZXScYSmso9
-         iTPtptHgxi8itm3AUPZ3cn+wMwX65VAcP00KF7e0rs5ykQIxdGgryFnO8/lIlLCrFM+d
-         p1VzEBRPkqNoddlHEMg4HP62owGPw6/qakaRDLlRvdfly+MAnFk5P8ed7rRM0pXJkClM
-         oM6w==
-X-Gm-Message-State: AOAM532VEcSIMpzIUL89LAiXAAFX5m7F/GslTGJ2Wtfomkyn4rmNJvod
-        gv2e8IW0xaVV8kQ2396yNw==
-X-Google-Smtp-Source: ABdhPJx6n1nDiSad8U3YCLxAlY/YvVr/2Z7+rB7oSFNpxeQts/I2soiVH8fs9zFpcSBH994TpPr/tQ==
-X-Received: by 2002:a92:b50d:: with SMTP id f13mr120590ile.253.1626304551426;
-        Wed, 14 Jul 2021 16:15:51 -0700 (PDT)
+        bh=uOGySO5B775xqBKJyV7FjQ7diOPsFl6eDHJ1rU7rF6g=;
+        b=UUTOcQZ1nwBa7dFEhXoj3uo4cnZUwqkfDexJjj+pFrif11IS+Ike3DmJl90p37uoJ7
+         Z/bxUDSX71TMFPrJsW1QXJVrJOQIGpMa31AkNu7PxVo70xriTgm+T6fTX/GXTzJdZWuI
+         OqhXANGb6AI88UnnqWy0wx/ZHSEww1w9P8fd7+lmRfbAn+Dm9N7RsfWCeoLrB6dpRLRo
+         WCnB/Zf1Ob9DyeZd6VeaeW5/FQA2XHq3IAR/bjK+Jz9lx5kJJzaO4EPfsDDEL+fH1g5H
+         CO04Qy+AnlLKLN/PvCJj5n89DG/eczPqpCoREh2jV34W+Me4SSQYB8Y+NX5DnRunJmR+
+         n0BQ==
+X-Gm-Message-State: AOAM5317eDeynDpzGduxafVR1H9jMSv9nTiFvxg9bwhj5lGYuVaXvu75
+        pQf4PHre9H8l7eAJohL3Ww==
+X-Google-Smtp-Source: ABdhPJxpLMV2kkl1j27F3b5jtqtuy1/rscEVt9YI++ng8OF52WRC44YMZOzjVkH91U/Jr9tzCzfR9A==
+X-Received: by 2002:a5d:9396:: with SMTP id c22mr433920iol.204.1626304577478;
+        Wed, 14 Jul 2021 16:16:17 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id q186sm2153093ioq.1.2021.07.14.16.15.49
+        by smtp.gmail.com with ESMTPSA id c4sm1968039ilq.70.2021.07.14.16.16.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jul 2021 16:15:50 -0700 (PDT)
-Received: (nullmailer pid 3723139 invoked by uid 1000);
-        Wed, 14 Jul 2021 23:15:48 -0000
-Date:   Wed, 14 Jul 2021 17:15:48 -0600
+        Wed, 14 Jul 2021 16:16:16 -0700 (PDT)
+Received: (nullmailer pid 3723842 invoked by uid 1000);
+        Wed, 14 Jul 2021 23:16:12 -0000
+Date:   Wed, 14 Jul 2021 17:16:12 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Mathew McBride <matt@traverse.com.au>
-Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] dt-bindings: rtc: add Epson RX-8025 and RX-8035
-Message-ID: <20210714231548.GA3723080@robh.at.kernel.org>
-References: <20210709044518.28769-1-matt@traverse.com.au>
- <20210709044518.28769-3-matt@traverse.com.au>
+To:     djw@t-chip.com.cn
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        David Bauer <mail@david-bauer.net>,
+        Tianling Shen <cnsztl@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Liang Chen <cl@rock-chips.com>,
+        linux-rockchip@lists.infradead.org,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <uwe@kleine-koenig.org>,
+        devicetree@vger.kernel.org, Wayne Chou <zxf@t-chip.com.cn>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v0 1/2] dt-bindings: add doc for Firefly ROC-RK3328-PC
+Message-ID: <20210714231612.GA3723790@robh.at.kernel.org>
+References: <20210709080126.17045-1-djw@t-chip.com.cn>
+ <20210709080126.17045-2-djw@t-chip.com.cn>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210709044518.28769-3-matt@traverse.com.au>
+In-Reply-To: <20210709080126.17045-2-djw@t-chip.com.cn>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 09 Jul 2021 04:45:18 +0000, Mathew McBride wrote:
-> These are supported by the rtc-rx8025 module. RX-8025
-> also has support in ds1307 due to compatible time registers.
+On Fri, 09 Jul 2021 16:01:25 +0800, djw@t-chip.com.cn wrote:
+> From: Levin Du <djw@t-chip.com.cn>
 > 
-> Signed-off-by: Mathew McBride <matt@traverse.com.au>
+> Add devicetree binding documentation for the Firefly ROC-RK3328-PC.
+> 
+> Signed-off-by: Levin Du <djw@t-chip.com.cn>
 > ---
->  Documentation/devicetree/bindings/rtc/trivial-rtc.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+> 
+>  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
