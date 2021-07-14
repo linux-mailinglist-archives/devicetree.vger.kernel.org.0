@@ -2,88 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 418A13C945B
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 01:19:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C020D3C9477
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 01:23:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237053AbhGNXWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 19:22:33 -0400
-Received: from mail-il1-f169.google.com ([209.85.166.169]:41770 "EHLO
-        mail-il1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229909AbhGNXWd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 19:22:33 -0400
-Received: by mail-il1-f169.google.com with SMTP id p3so3260225ilg.8;
-        Wed, 14 Jul 2021 16:19:40 -0700 (PDT)
+        id S235144AbhGNXZ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 19:25:59 -0400
+Received: from mail-io1-f45.google.com ([209.85.166.45]:34589 "EHLO
+        mail-io1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229782AbhGNXZ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 19:25:59 -0400
+Received: by mail-io1-f45.google.com with SMTP id g22so4251340iom.1;
+        Wed, 14 Jul 2021 16:23:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=TdiVnL9TCdV9D90wyycXpqb6/XoNPPRyQNze/q/HwxQ=;
-        b=cMjpjAo4w51CMuO7tZaA27M/imXEmgp1Tar9ial6P32KhyZPaGy/3sCvnhG6sQ4aGC
-         1DkEyTumkmNQ7T78zvEec5zxs0RYEAQyw9ymjFdqUH1UHA06ETwIE4UMzklRGc4N6PbA
-         OlsyzXr45De/RBNgirb699mWe/KuYkU8OFliQ7u3c4L+litfTGeBKsEUm72e++vpkef5
-         zra9Ah2mTQZvpshQjVyeNd+6S8YX6oxRn2R3lA7B3xNgfByz+UxTsy8Lnq/RGyDSn3mE
-         SFeP/KORP5wtthb5c54Nl5XaR97J3Tt8GOpRdbgd0DPNA7dQTXyOTC444C8uUk3alE1w
-         abWA==
-X-Gm-Message-State: AOAM5332SwdUePqnzijavXmwRhQYiKNWEgYUvtCrBVSFKpIbMs8ojeRi
-        r5rjQAdC97LxXDc7lnnMEg==
-X-Google-Smtp-Source: ABdhPJy8135iVbf+1sCQN0Ze0x/1KSuu7VpqGJi9LWy/q1N7Mh9sLN19a2m1kusfK+SNbbf2ECYgKg==
-X-Received: by 2002:a05:6e02:1d8d:: with SMTP id h13mr219264ila.40.1626304780647;
-        Wed, 14 Jul 2021 16:19:40 -0700 (PDT)
+        bh=ToZ6NY20pj8+1z2HLFxJgFpOq59/gnhKty7JQKi5xcg=;
+        b=dgcUZJIRGzUB1nRAqhLsaJl6tC0geliNkf7rZ58UZMZR8eCrGN6MxuELT3r9CyAn6Z
+         EG6B/zIs4nE1dWlTQc2DheO2GqCdLGPhEFSBgytccR2MDahlWbIwF5DtNTbcVMcIATW1
+         170+yNoD2IMyinn0WFDzzHndrUt1a+DsZf/65c7QhzcnUdlSEHPpwpSCOHKd4VNWdtx3
+         wL+JY/hmh/3Hx9JJqUSIlkoWT2dgXIWaBUgWa35Om7kPshW278xOmDR7dhM96n732EAN
+         p+PDNPuSbk3J4XFtl2BP2EIQdrOr+WVmg8LbcqD0M+OrzK+3CQ50KXQz/4BNRK28L25G
+         FEsg==
+X-Gm-Message-State: AOAM532+RfatINyAUWal/Os7wjSDRjfeV057P1iqd3nc1H9qHrkPbAfR
+        dP7YDrq0qcCvMPzXo71pRw==
+X-Google-Smtp-Source: ABdhPJxfw9SHxbrbwickx7w/F5na0i6rWNyFm1PDKfzfrJ/f/+TLM8pzZ5E1dknUASd44A4KH9STUw==
+X-Received: by 2002:a05:6602:134f:: with SMTP id i15mr421616iov.143.1626304986652;
+        Wed, 14 Jul 2021 16:23:06 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id l5sm1799552ilv.38.2021.07.14.16.19.38
+        by smtp.gmail.com with ESMTPSA id f7sm2125738ilk.64.2021.07.14.16.23.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jul 2021 16:19:40 -0700 (PDT)
-Received: (nullmailer pid 3729159 invoked by uid 1000);
-        Wed, 14 Jul 2021 23:19:37 -0000
-Date:   Wed, 14 Jul 2021 17:19:37 -0600
+        Wed, 14 Jul 2021 16:23:05 -0700 (PDT)
+Received: (nullmailer pid 3734548 invoked by uid 1000);
+        Wed, 14 Jul 2021 23:23:03 -0000
+Date:   Wed, 14 Jul 2021 17:23:03 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Joakim Zhang <qiangqing.zhang@nxp.com>
-Cc:     davem@davemloft.net, kuba@kernel.org, andrew@lunn.ch,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com
-Subject: Re: [PATCH V1 net-next 2/5] dt-bindings: fec: add RGMII delayed
- clock property
-Message-ID: <20210714231937.GC3723991@robh.at.kernel.org>
-References: <20210709081823.18696-1-qiangqing.zhang@nxp.com>
- <20210709081823.18696-3-qiangqing.zhang@nxp.com>
+To:     Viktor Prutyanov <viktor.prutyanov@phystech.edu>
+Cc:     sean@mess.org, mchehab@kernel.org, khilman@baylibre.com,
+        narmstrong@baylibre.com, jbrunet@baylibre.com,
+        martin.blumenstingl@googlemail.com, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, rockosov@gmail.com
+Subject: Re: [PATCH v3 1/2] media: rc: meson-irblaster: document device tree
+ bindings
+Message-ID: <20210714232303.GA3730974@robh.at.kernel.org>
+References: <20210709165753.29353-1-viktor.prutyanov@phystech.edu>
+ <20210709165753.29353-2-viktor.prutyanov@phystech.edu>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210709081823.18696-3-qiangqing.zhang@nxp.com>
+In-Reply-To: <20210709165753.29353-2-viktor.prutyanov@phystech.edu>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 09, 2021 at 04:18:20PM +0800, Joakim Zhang wrote:
-> From: Fugang Duan <fugang.duan@nxp.com>
+On Fri, Jul 09, 2021 at 07:57:52PM +0300, Viktor Prutyanov wrote:
+> This patch adds binding documentation for the IR transmitter
+> available in Amlogic Meson SoCs.
 > 
-> Add property for RGMII delayed clock.
-> 
-> Signed-off-by: Fugang Duan <fugang.duan@nxp.com>
-> Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
+> Signed-off-by: Viktor Prutyanov <viktor.prutyanov@phystech.edu>
 > ---
->  Documentation/devicetree/bindings/net/fsl-fec.txt | 4 ++++
->  1 file changed, 4 insertions(+)
+>  changes in v2:
+>    - compatible = "amlogic,meson-g12a-irblaster" added
+>    - clocks, clock-names and mod-clock updated
+>  changes in v3:
+>    - mod-clock removed
+>    - max-fifo-level added
 > 
-> diff --git a/Documentation/devicetree/bindings/net/fsl-fec.txt b/Documentation/devicetree/bindings/net/fsl-fec.txt
-> index 6754be1b91c4..f93b9552cfc5 100644
-> --- a/Documentation/devicetree/bindings/net/fsl-fec.txt
-> +++ b/Documentation/devicetree/bindings/net/fsl-fec.txt
-> @@ -50,6 +50,10 @@ Optional properties:
->      SOC internal PLL.
->    - "enet_out"(option), output clock for external device, like supply clock
->      for PHY. The clock is required if PHY clock source from SOC.
-> +  - "enet_2x_txclk"(option), for RGMII sampleing clock which fixed at 250Mhz.
-> +    The clock is required if SOC RGMII enable clock delay.
-> +- fsl,rgmii_txc_dly: add RGMII TXC delayed clock from MAC.
-> +- fsl,rgmii_rxc_dly: add RGMII RXC delayed clock from MAC.
+>  .../media/amlogic,meson-irblaster.yaml        | 65 +++++++++++++++++++
+>  1 file changed, 65 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/amlogic,meson-irblaster.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/amlogic,meson-irblaster.yaml b/Documentation/devicetree/bindings/media/amlogic,meson-irblaster.yaml
+> new file mode 100644
+> index 000000000000..1e10aa0d3a94
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/amlogic,meson-irblaster.yaml
+> @@ -0,0 +1,65 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/media/amlogic,meson-irblaster.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Amlogic Meson IR blaster
+> +
+> +maintainers:
+> +  - Viktor Prutyanov <viktor.prutyanov@phystech.edu>
+> +
+> +description: |
+> +  Some Amlogic SoCs such as A311D and T950D4 have IR transmitter
+> +  (blaster) controller onboard. It is capable of sending IR signals
+> +  with arbitrary carrier frequency and duty cycle.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: amlogic,meson-irblaster
+> +      - items:
+> +          - const: amlogic,meson-g12a-irblaster
+> +          - const: amlogic,meson-irblaster
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    items:
+> +      - const: sysclk
+> +      - const: xtal
+> +
+> +  max-fifo-level:
+> +    maxItems: 1
 
-Don't we have standard properties for this?
+An array?
 
->  
->  Optional subnodes:
->  - mdio : specifies the mdio bus in the FEC, used as a container for phy nodes
+Needs a vendor prefix, type reference and constraints on allowed values.
+
+> +    description:
+> +      Maximum IR blaster FIFO fill level
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/clock/g12a-clkc.h>
+> +
+> +    irblaster@ff80014c {
+> +      compatible = "amlogic,meson-g12a-irblaster", "amlogic,meson-irblaster";
+> +      reg = <0xff80014c 0x10>;
+> +      interrupts = <0 198 IRQ_TYPE_EDGE_RISING>;
+> +      clocks = <&clkc CLKID_CLK81>, <&xtal>;
+> +      clock-names = "sysclk", "xtal";
+> +    };
 > -- 
-> 2.17.1
+> 2.21.0
 > 
 > 
