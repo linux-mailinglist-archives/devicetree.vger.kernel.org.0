@@ -2,93 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E0093C87E4
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 17:44:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3143E3C87EF
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 17:47:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239651AbhGNPrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 11:47:03 -0400
-Received: from mail-io1-f54.google.com ([209.85.166.54]:38820 "EHLO
-        mail-io1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232318AbhGNPrD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 11:47:03 -0400
-Received: by mail-io1-f54.google.com with SMTP id k11so2663611ioa.5;
-        Wed, 14 Jul 2021 08:44:11 -0700 (PDT)
+        id S239674AbhGNPuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 11:50:46 -0400
+Received: from mail-il1-f181.google.com ([209.85.166.181]:35718 "EHLO
+        mail-il1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232318AbhGNPuq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 11:50:46 -0400
+Received: by mail-il1-f181.google.com with SMTP id a11so2061267ilf.2;
+        Wed, 14 Jul 2021 08:47:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=5YB4Tq0do2Mv/Zmb1piIDXwZsU75wE5dE6JnJKDMhms=;
-        b=QfA5odVldPPLNVItksVYirXp060cc7eyjpma3VRLvfJQdHQl1CONNBsFj+dDTNq7so
-         ZjwYAlfAVUEV7zUf7sfGen1eZD0zUBwjD1Xv59hdcXO8hDyVLxMqhyUr1dlh+9BzmDCU
-         SG4RHMLtA72brIUo+B+SjKecakWDS+DhHJ1JTsRlYTpNxXLTfyUiqN8UwCEYdxHTMzxq
-         FRP+Liq1sEjnaRtxqKLWx+8FcUKgAneuiPrJ//XEO48q43zPsp+6tSgmWbPyE5HGWovs
-         CS9AqCWfYqgusfq/jF779XX0At2TUFQ7xP8OZ/xdfb25XtRfq2hakwxBb7EIrIYXSLOd
-         c7PQ==
-X-Gm-Message-State: AOAM5300equMUXDCPNesPgm+c/eGc68qd7QJg8MVcTWLzYYLW5RLxBei
-        DFfsbUAhUI7ohAF1LTuQVA==
-X-Google-Smtp-Source: ABdhPJyPjXPKcfWDptVloc+ivSzKnBM195jJHUB2Jb10U6MBNPl9P9Vn45YvwEeB2LpgUYCJHEW7Yw==
-X-Received: by 2002:a02:90cb:: with SMTP id c11mr9574373jag.53.1626277451015;
-        Wed, 14 Jul 2021 08:44:11 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=sR0t2+c6Dwhb8bFvG4vyou+fHYcdXM7gxmXBgVkYtr0=;
+        b=Uxo4SZK9qnQK7L5rGSCdwDQ6ZtGSsCzJf3dpZAYnTLCzUbA07OyvT+f9FpoMPbAN3x
+         qPNgDY89fC+xqRvr3vabqeGv3eYvPzUskltRiScOmtLaGjaw/7FAs+4tiTBfD4fZVS/n
+         0SSAnVEtgsf3PLDD2ycyL2EJRxfRs+yaQbdKJLWpuhoDWZ+320rbNZqrhskwHQb6v8P1
+         lmsEx1LyGBqH8uWxmYnQSpt7XRgJ4wXMe1a8Mcor7UxLa5p3d5e9pb/xmLVez3WlG0t9
+         B66sQNgyJvTltHlFTUhFhEj+imuIQOGdnt8eaMV9+uPx+yid51zTweYfOwIC9Os4mrC7
+         qY9w==
+X-Gm-Message-State: AOAM533BDvQkWCJ8OabfR92yOUjJgvyHE2DVzdNx2ba6+jgrEX2xXZmz
+        0L9Hgv+K2Vuyxz3ln+M8YA09HHoQ6w==
+X-Google-Smtp-Source: ABdhPJy3NhGyKKGahaIaf0Q7iePgPaRsX7TBvrkcY9MyS6ZiEOuVNk5khOJi7bUZXLs2g+c8YbBaYw==
+X-Received: by 2002:a92:8707:: with SMTP id m7mr7175288ild.177.1626277674594;
+        Wed, 14 Jul 2021 08:47:54 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id t15sm1377991ile.28.2021.07.14.08.44.07
+        by smtp.gmail.com with ESMTPSA id m184sm1399141ioa.17.2021.07.14.08.47.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jul 2021 08:44:09 -0700 (PDT)
-Received: (nullmailer pid 2630511 invoked by uid 1000);
-        Wed, 14 Jul 2021 15:44:06 -0000
+        Wed, 14 Jul 2021 08:47:53 -0700 (PDT)
+Received: (nullmailer pid 2636816 invoked by uid 1000);
+        Wed, 14 Jul 2021 15:47:51 -0000
+Date:   Wed, 14 Jul 2021 09:47:51 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     linux-media@vger.kernel.org, mchehab@kernel.org,
-        phone-devel@vger.kernel.org, linux-imx@nxp.com,
-        linux-staging@lists.linux.dev, kernel@pengutronix.de,
-        m.felsch@pengutronix.de, linux-arm-kernel@lists.infradead.org,
-        krzk@kernel.org, shawnguo@kernel.org, kernel@puri.sm,
-        slongerbeam@gmail.com, festevam@gmail.com,
-        laurent.pinchart@ideasonboard.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <20210714111931.324485-2-martin.kepplinger@puri.sm>
-References: <20210714111931.324485-1-martin.kepplinger@puri.sm> <20210714111931.324485-2-martin.kepplinger@puri.sm>
-Subject: Re: [PATCH v6 1/3] dt-bindings: media: document the nxp,imx8mq-mipi-csi2 receiver phy and controller
-Date:   Wed, 14 Jul 2021 09:44:06 -0600
-Message-Id: <1626277446.705587.2630510.nullmailer@robh.at.kernel.org>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>
+Subject: Re: [PATCH 01/15] dt-bindings: iio: dac: adi,ad5421: Add missing
+ binding document.
+Message-ID: <20210714154751.GA2636782@robh.at.kernel.org>
+References: <20210627163244.1090296-1-jic23@kernel.org>
+ <20210627163244.1090296-2-jic23@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210627163244.1090296-2-jic23@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Jul 2021 13:19:29 +0200, Martin Kepplinger wrote:
-> The i.MX8MQ SoC integrates a different MIPI CSI receiver as the i.MX8MM so
-> describe the DT bindings for it.
+On Sun, 27 Jun 2021 17:32:30 +0100, Jonathan Cameron wrote:
+> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 > 
-> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> This is documented what is currently the case.  There are a number
+> of things that could be added, but I don't feel the binding elements
+> are obvious enough to document without a driver implementation to
+> verify they are good choices.
+> 
+> These include
+> * Range
+> * Regulators, both input and potentially output (if the loop being
+>   driven is ever described).
+> 
+> I've listed Lars and myself as maintainers of the binding, but if
+> anyone else wants to be added they would be most welcome!
+> 
+> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Cc: Lars-Peter Clausen <lars@metafoo.de>
 > ---
->  .../bindings/media/nxp,imx8mq-mipi-csi2.yaml  | 173 ++++++++++++++++++
->  1 file changed, 173 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
+>  .../bindings/iio/dac/adi,ad5421.yaml          | 51 +++++++++++++++++++
+>  1 file changed, 51 insertions(+)
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.example.dts:37.28-29 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1418: dt_binding_check] Error 2
-\ndoc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1505152
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Reviewed-by: Rob Herring <robh@kernel.org>
