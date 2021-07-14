@@ -2,185 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61A463C802F
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 10:32:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEF5F3C803E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 10:33:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238588AbhGNIfb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 04:35:31 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:49752 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238589AbhGNIf3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 04:35:29 -0400
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id EF960CC;
-        Wed, 14 Jul 2021 10:32:35 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1626251556;
-        bh=jKDxdCR/47jG5iunXdfBy5N82ZjyM5+IZvoSipRRYFQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MPwRm6krENd5glAHM+t2YcpCx17rA11v9T9jJBX0LtPAeALZMivtNOUYAnT1Pk0Qv
-         j88ETcxfAbZ4gBvsmbOPh1tIma46LxIt8CAAFrx6lWEfrlsr2zgGA6+IxV3IpEg7S8
-         exLHrb8bHdW05GPVPTC4gWiKsNxE/bGFLoFIk7tE=
-Date:   Wed, 14 Jul 2021 11:32:35 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Xin Ji <xji@analogixsemi.com>
-Cc:     Robert Foss <robert.foss@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Ricardo =?utf-8?Q?Ca=C3=B1uelo?= <ricardo.canuelo@collabora.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Bernie Liang <bliang@analogixsemi.com>,
-        Sheng Pan <span@analogixsemi.com>,
-        Zhen Li <zhenli@analogixsemi.com>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v9 1/4] dt-bindings:drm/bridge:anx7625:add vendor define
- flags
-Message-ID: <YO6hIzlOuMsDXztW@pendragon.ideasonboard.com>
-References: <cover.1624349479.git.xji@analogixsemi.com>
- <308427448195e2db37a32997c6d32905c96ca876.1624349480.git.xji@analogixsemi.com>
- <CAG3jFys6D=-L-Aez4aWuE4nM7qJCtn4wPws3TKxbkRzcAoFR0A@mail.gmail.com>
- <20210707073051.GA936385@anxtwsw-Precision-3640-Tower>
+        id S238432AbhGNIg2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 04:36:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35412 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238623AbhGNIg0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 04:36:26 -0400
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A4BAC061764
+        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 01:33:35 -0700 (PDT)
+Received: by mail-pg1-x52b.google.com with SMTP id d12so1636074pgd.9
+        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 01:33:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8H/NjbSTYCmJ9koYtNuq8BZ7OvXAlUKZqFY+qWvHhMM=;
+        b=yr3HTmFP8ucDPkLujaUvJXMdTiQdMdqyLhKe7FifM76X+Q00JmXCzgurrkVL1u3O6p
+         m+ZcaQYKDjYF5wUobduzgIvinTq3c9NXzGGG4jXwdojjFxuli+vpxFt2ypJyNX781vli
+         EG5IWpqZNgjd6Gd3M0SW/WeFpJdwVRExSKVad01BrmCMavAvZSvRLnylv1TmlTW4RpDl
+         3YVvtywQZfGVJZ65mGax45WQR1K8+KpbMiF+5p+sD3sH5a2QmJ37DhuNk8r/j9MxD5yy
+         UcpJegtQ+xuLukUUGOYZw0ZJLKP2pMtO3pObUsIIR5qXtYMVG28AyJ09Li5RK0IA/n3M
+         Yvfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8H/NjbSTYCmJ9koYtNuq8BZ7OvXAlUKZqFY+qWvHhMM=;
+        b=TcxhgVFn4WXaezyl96sNQ5VW8Sf7jEIEq5B3eXpuSPSceSGMr7SFO0rof5DW/joKCf
+         whWP5hM5qisC9OqsRKkygyTeh5ihCwupTUfbC3AUoJff6S0BrL5uJEs7R/fwMdd7GehS
+         BiB5w+utUl7x1tn07DRPeHXG9RKT1Vvb790/LI69Ni9zhI53C7daAYmhYjqQ4hBGXbFM
+         lex/6jsepLusc8NPKSHDOBTFZfXNnYpuVGInjFE1lPsBaqxuHzDmp4TjAjOI1UkEPbKr
+         tB3yhK7A/QDjntp6QLJOr3Dc7ioGSRrMcA/YXIuSBm5cqkicWcM66vSE4NnT2VjeZKUy
+         irjQ==
+X-Gm-Message-State: AOAM530iPlgzXmhQdeihECPf6Xw+wOs6QiIr95i48wXlSuP5kbJzNChK
+        80rqgeqX0nq/xzCVdyGyKyzK
+X-Google-Smtp-Source: ABdhPJxmZWsKUT+rPK6U75ajqELjtKUAAdrawjsGz2vibQhnQosg5YkobFoAZTCEycUwE42/cU+4aA==
+X-Received: by 2002:a65:528d:: with SMTP id y13mr8570829pgp.276.1626251614838;
+        Wed, 14 Jul 2021 01:33:34 -0700 (PDT)
+Received: from localhost.localdomain ([120.138.13.241])
+        by smtp.gmail.com with ESMTPSA id p40sm1774446pfw.79.2021.07.14.01.33.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jul 2021 01:33:34 -0700 (PDT)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     kishon@ti.com, lorenzo.pieralisi@arm.com, bhelgaas@google.com,
+        robh@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        hemantk@codeaurora.org, smohanad@codeaurora.org,
+        bjorn.andersson@linaro.org, sallenki@codeaurora.org,
+        skananth@codeaurora.org, vpernami@codeaurora.org,
+        vbadigan@codeaurora.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v6 0/3] Add Qualcomm PCIe Endpoint driver support
+Date:   Wed, 14 Jul 2021 14:03:13 +0530
+Message-Id: <20210714083316.7835-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210707073051.GA936385@anxtwsw-Precision-3640-Tower>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Xin,
+Hello,
 
-On Wed, Jul 07, 2021 at 03:30:51PM +0800, Xin Ji wrote:
-> On Thu, Jun 24, 2021 at 01:57:22PM +0200, Robert Foss wrote:
-> > Hey Xin,
-> > 
-> > I would like to merge this series now, but this patch needs a review
-> > first. Maybe Laurent/Rob Herring are good candidates.
->
-> Hi Rob, I get Laurent/Rob comments before, and explained why we needs
-> these DT properties, so far, I didn't get any response.
-> 
-> Hi Rob Herring and Laurent, for the DT property lane0/1-swing, Google
-> engineer has strong demond for them, they don't want to move DP swing
-> adjusting to kernel, thus may cause change the driver code in each
-> project, so config them in DT is a best option.
+This series adds support for Qualcomm PCIe Endpoint controller found
+in platforms like SDX55. The Endpoint controller is based on the designware
+core with additional Qualcomm wrappers around the core.
 
-Hardcoding it in the driver is certainly not a good option, but
-hardcoding it in DT isn't either unless you can explain how the value
-should be computed. "Contact the vendor" isn't good enough.
+The driver is added separately unlike other Designware based drivers that
+combine RC and EP in a single driver. This is done to avoid complexity and
+to maintain this driver autonomously.
 
-> > On Tue, 22 Jun 2021 at 14:31, Xin Ji <xji@analogixsemi.com> wrote:
-> > >
-> > > Add 'bus-type' and 'data-lanes' define for port0. Define DP tx lane0,
-> > > lane1 swing register array define, and audio enable flag.
-> > >
-> > > Signed-off-by: Xin Ji <xji@analogixsemi.com>
-> > > ---
-> > >  .../display/bridge/analogix,anx7625.yaml      | 57 ++++++++++++++++++-
-> > >  1 file changed, 56 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > > index ab48ab2f4240..9e604d19a3d5 100644
-> > > --- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > > +++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > > @@ -43,6 +43,26 @@ properties:
-> > >    vdd33-supply:
-> > >      description: Regulator that provides the supply 3.3V power.
-> > >
-> > > +  analogix,lane0-swing:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > > +    minItems: 1
-> > > +    maxItems: 20
-> > > +    description:
-> > > +      an array of swing register setting for DP tx lane0 PHY, please don't
-> > > +      add this property, or contact vendor.
-> > > +
-> > > +  analogix,lane1-swing:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > > +    minItems: 1
-> > > +    maxItems: 20
-> > > +    description:
-> > > +      an array of swing register setting for DP tx lane1 PHY, please don't
-> > > +      add this property, or contact vendor.
-> > > +
-> > > +  analogix,audio-enable:
-> > > +    type: boolean
-> > > +    description: let the driver enable audio HDMI codec function or not.
-> > > +
-> > >    ports:
-> > >      $ref: /schemas/graph.yaml#/properties/ports
-> > >
-> > > @@ -50,13 +70,43 @@ properties:
-> > >        port@0:
-> > >          $ref: /schemas/graph.yaml#/properties/port
-> > >          description:
-> > > -          Video port for MIPI DSI input.
-> > > +          MIPI DSI/DPI input.
-> > > +
-> > > +        properties:
-> > > +          endpoint:
-> > > +            $ref: /schemas/media/video-interfaces.yaml#
-> > > +            type: object
-> > > +            additionalProperties: false
-> > > +
-> > > +            properties:
-> > > +              remote-endpoint: true
-> > > +              bus-type: true
-> > > +              data-lanes: true
-> > > +
-> > > +            required:
-> > > +              - remote-endpoint
-> > > +
-> > > +        required:
-> > > +          - endpoint
-> > > +
-> > >
-> > >        port@1:
-> > >          $ref: /schemas/graph.yaml#/properties/port
-> > >          description:
-> > >            Video port for panel or connector.
-> > >
-> > > +        properties:
-> > > +          endpoint:
-> > > +            $ref: /schemas/media/video-interfaces.yaml#
-> > > +            type: object
-> > > +            additionalProperties: false
-> > > +
-> > > +            properties:
-> > > +              remote-endpoint: true
-> > > +
-> > > +            required:
-> > > +              - remote-endpoint
-> > > +
-> > >      required:
-> > >        - port@0
-> > >        - port@1
-> > > @@ -87,6 +137,9 @@ examples:
-> > >              vdd10-supply = <&pp1000_mipibrdg>;
-> > >              vdd18-supply = <&pp1800_mipibrdg>;
-> > >              vdd33-supply = <&pp3300_mipibrdg>;
-> > > +            analogix,audio-enable;
-> > > +            analogix,lane0-swing = <0x14 0x54 0x64 0x74 0x29 0x7b 0x77 0x5b>;
-> > > +            analogix,lane1-swing = <0x14 0x54 0x64 0x74 0x29 0x7b 0x77 0x5b>;
-> > >
-> > >              ports {
-> > >                  #address-cells = <1>;
-> > > @@ -96,6 +149,8 @@ examples:
-> > >                      reg = <0>;
-> > >                      anx7625_in: endpoint {
-> > >                          remote-endpoint = <&mipi_dsi>;
-> > > +                        bus-type = <5>;
-> > > +                        data-lanes = <0 1 2 3>;
-> > >                      };
-> > >                  };
-> > >
+The driver has been validated with an out of tree MHI function driver on
+SDX55 based Telit FN980 EVB connected to x86 host machine over PCIe.
+
+Thanks,
+Mani
+
+Changes in v6:
+
+* Removed status property in DT and added reviewed tag from Rob
+* Switched to _relaxed variants as suggested by Rob
+
+Changes in v5:
+
+* Removed the DBI register settings that are not needed
+* Used the standard definitions available in pci_regs.h
+* Added defines for all the register fields
+* Removed the left over code from previous iteration
+
+Changes in v4:
+
+* Removed the active_config settings needed for IPA integration
+* Switched to writel for couple of relaxed versions that sneaked in
+
+Changes in v3:
+
+* Lot of minor cleanups to the driver patch based on review from Bjorn and Stan.
+* Noticeable changes are:
+  - Got rid of _relaxed calls and used readl/writel
+  - Got rid of separate TCSR memory region and used syscon for getting the
+    register offsets for Perst registers
+  - Changed the wake gpio handling logic
+  - Added remove() callback and removed "suppress_bind_attrs"
+  - stop_link() callback now just disables PERST IRQ
+* Added MMIO region and doorbell interrupt to the binding
+* Added logic to write MMIO physicall address to MHI base address as it is
+  for the function driver to work
+
+Changes in v2:
+
+* Addressed the comments from Rob on bindings patch
+* Modified the driver as per binding change
+* Fixed the warnings reported by Kbuild bot
+* Removed the PERST# "enable_irq" call from probe()
+
+Manivannan Sadhasivam (3):
+  dt-bindings: pci: Add devicetree binding for Qualcomm PCIe EP
+    controller
+  PCI: dwc: Add Qualcomm PCIe Endpoint controller driver
+  MAINTAINERS: Add entry for Qualcomm PCIe Endpoint driver and binding
+
+ .../devicetree/bindings/pci/qcom,pcie-ep.yaml | 158 ++++
+ MAINTAINERS                                   |  10 +-
+ drivers/pci/controller/dwc/Kconfig            |  10 +
+ drivers/pci/controller/dwc/Makefile           |   1 +
+ drivers/pci/controller/dwc/pcie-qcom-ep.c     | 742 ++++++++++++++++++
+ 5 files changed, 920 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-qcom-ep.c
 
 -- 
-Regards,
+2.25.1
 
-Laurent Pinchart
