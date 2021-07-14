@@ -2,41 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 817993C8812
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 17:56:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F7FF3C8819
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 17:56:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239584AbhGNP6v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 11:58:51 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41830 "EHLO mail.kernel.org"
+        id S232409AbhGNP7C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 11:59:02 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42078 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232318AbhGNP6v (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Jul 2021 11:58:51 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id CA1B2613CB;
-        Wed, 14 Jul 2021 15:55:58 +0000 (UTC)
+        id S239775AbhGNP7B (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Jul 2021 11:59:01 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 279F2613CF;
+        Wed, 14 Jul 2021 15:56:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626278159;
-        bh=TT8B40G4FziVL0f4va1Rbl5gfyVf7JeFYXNQYLowgX0=;
+        s=k20201202; t=1626278169;
+        bh=E0sbg0M0ocyf6VkUrKaPVCDLNkU0SdHrK7wgF4xeYjw=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=fgW43q6f6rqrahLliz8Usrk8sJV2IO1Nm1HQdeV/Q91udmukL55QXWw7HvDeeYJhv
-         Y8vnTY0VjbJ4gOqg2QSn/V/zxwkmY78832Re3Hm8BEWj1ODjopgRSCcjmiKWQROco5
-         gKa1Ed2//EvYSoAX6DlzGLAsYUruDaqxLftjYETX0Jyp+3ST6wlyEACUD0Ol+vV+XU
-         xe36uEpo9wTDi0bzjlkc+FBvvPyidjYvQ65QLYOJ3GVJgs07PXcPzD798QkEv2+TLq
-         df+XTBk5fiZVdJl+c3yG35lK0M6lz4w3clxyHP6DxdRQrxGxptZg8LDqu1WA1pN+7c
-         Om3bwAzK5yP0w==
+        b=jzxaodBUycHnj95sPiOWFeTjCo2njjf9wo+VzDaj0R0ryDe3CzMJwYJw9s10rMB2K
+         qt9MLFEm7OHhpzjK5whAqo8CcJBiPLcSqjs3M3xrvqBxF0vwWrCthGNxonfqqPTmJt
+         DABDL4zVrSWGx93ocmY4Qj20JJgs5Xmd6rMs8rEwDv8X/aiH6r8qTXvEquN5OoZiay
+         SqsO1Xr4u8u16bbbiywfEkE0DtH8JsTcSKb3UgQrspMgOx/M/7qyZ1zCvm6c1isuZM
+         pn5/e3Az/PJH8En3RPK8OJY0CzXbOqGlHJVQGIUV17mooeQm/o7p9CtwH7DDq8D5hW
+         +153+IW4PEdlw==
 From:   Mark Brown <broonie@kernel.org>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-Cc:     Mark Brown <broonie@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: spi: omap-spi: Convert to json-schema
-Date:   Wed, 14 Jul 2021 16:55:13 +0100
-Message-Id: <162627784666.55213.15958004001064972749.b4-ty@kernel.org>
+To:     cy_huang <u0084500@gmail.com>, robh+dt@kernel.org
+Cc:     Mark Brown <broonie@kernel.org>, lgirdwood@gmail.com,
+        cy_huang@richtek.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] regulator: rtq6752: Refine binding document
+Date:   Wed, 14 Jul 2021 16:55:17 +0100
+Message-Id: <162627768618.55091.3455363305744240999.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210621092900.951-1-a-govindraju@ti.com>
-References: <20210621092900.951-1-a-govindraju@ti.com>
+In-Reply-To: <1626229532-13037-1-git-send-email-u0084500@gmail.com>
+References: <1626229532-13037-1-git-send-email-u0084500@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -44,17 +41,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 21 Jun 2021 14:58:58 +0530, Aswath Govindraju wrote:
-> Convert omap-spi dt-binding documentation from txt to yaml format.
+On Wed, 14 Jul 2021 10:25:32 +0800, cy_huang wrote:
+> Drop regulators property reference and remove the status in example dts.
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
 Thanks!
 
-[1/1] dt-bindings: spi: omap-spi: Convert to json-schema
-      commit: 014861c2fb3d7b38b8de32baa953082bb9dabaf4
+[1/1] regulator: rtq6752: Refine binding document
+      commit: e98fb032170bfa2e671a01e356a7ee86a2038312
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
