@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D367A3C8F40
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:56:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68AFE3C8F43
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:56:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239710AbhGNTwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 15:52:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47012 "EHLO mail.kernel.org"
+        id S241276AbhGNTwM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 15:52:12 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47276 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240194AbhGNTte (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Jul 2021 15:49:34 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B4A42613EA;
-        Wed, 14 Jul 2021 19:44:47 +0000 (UTC)
+        id S240248AbhGNTth (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Jul 2021 15:49:37 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id BA587613F2;
+        Wed, 14 Jul 2021 19:44:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626291888;
-        bh=WKRIXs+cuh2xcK/HLvBxZGE4X15v3mXLH7teDP4mdzw=;
+        s=k20201202; t=1626291896;
+        bh=Xe1YxtBwK5MDibkRq5gzYlM4QXbTY8HByV5XQO5CWhM=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ToWjEh0ahJF9EK1eX3X8JhOBh9MbtQu9jkZ3GGBNZkHXP5zIqt+wiEZA+BgsgL7u+
-         Fc0LCBhlrS9+ItE7SaIdDUa/iMp1BU9HeGNj6xD5i+B31aGoLzrt/r4uG0T16DVIOK
-         LmQ5muUSSQJDW1TTKEwAc2wJf/iaOkaB62o49UaxrfNuvgp1dYZjvyuhohInZS35XT
-         HCaWViHhqSnjFogQvNdiAL3Ag80RQHuMP6IRd6QYQ2bUktudwUx3bQH9FIySFqM6hC
-         xlupwg3id/7860Hy81yvK1ZzV05pfhCRETY28v7jq0/rbgFc91NlFegDnQlamwXCeJ
-         K7NL2rrO0/pUQ==
+        b=gSjibXeQL1AAuTY6AhdtggvNtxoWW0fdJi/7GKbxN8qIL/TgqcUMk8rHvHDE02FJe
+         Dk/AvXVlnUA3Mm1q3jityxnD8HD7l37dNkxBDat02VDkSEmnn2emJEoq9JbwhzBPhG
+         UKoZOvnJ2SDor9LFhQhl5PguNQr+ffU+6TtYTGynDB8EVEjPFJdiicLTwqNAz6DyiK
+         8fMv9vudmKuppkMfGNgZCqOVPoqCaH/PDaquyjwbdw3YBdLU9HluWcxQzCjwPVf2vx
+         Ll7PAdunf3BrCbALSLkPtyMp1lQHG/HBVj5lRH9WNizoIdOOOGfSao37BzCwgqwT1s
+         +unWct8GFdkRQ==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Lucas Stach <l.stach@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.10 70/88] arm64: dts: imx8mq: assign PCIe clocks
-Date:   Wed, 14 Jul 2021 15:42:45 -0400
-Message-Id: <20210714194303.54028-70-sashal@kernel.org>
+Cc:     Konstantin Porotchkin <kostap@marvell.com>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Sasha Levin <sashal@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.10 76/88] arch/arm64/boot/dts/marvell: fix NAND partitioning scheme
+Date:   Wed, 14 Jul 2021 15:42:51 -0400
+Message-Id: <20210714194303.54028-76-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210714194303.54028-1-sashal@kernel.org>
 References: <20210714194303.54028-1-sashal@kernel.org>
@@ -43,65 +43,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Lucas Stach <l.stach@pengutronix.de>
+From: Konstantin Porotchkin <kostap@marvell.com>
 
-[ Upstream commit 15a5261e4d052bf85c7fba24dbe0e9a7c8c05925 ]
+[ Upstream commit e3850467bf8c82de4a052619136839fe8054b774 ]
 
-This fixes multiple issues with the current non-existent PCIe clock setup:
+Eliminate 1MB gap between Linux and filesystem partitions.
 
-The controller can run at up to 250MHz, so use a parent that provides this
-clock.
-
-The PHY needs an exact 100MHz reference clock to function if the PCIe
-refclock is not fed in via the refclock pads. While this mode is not
-supported (yet) in the driver it doesn't hurt to make sure we are
-providing a clock with the right rate.
-
-The AUX clock is specified to have a maximum clock rate of 10MHz. So
-the current setup, which drives it straight from the 25MHz oscillator is
-actually overclocking the AUX input.
-
-Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+Signed-off-by: Konstantin Porotchkin <kostap@marvell.com>
+Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/freescale/imx8mq.dtsi | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ arch/arm64/boot/dts/marvell/cn9130-db.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index 5e0e7d0f1bc4..c86cf786f406 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -1258,6 +1258,14 @@ pcie0: pcie@33800000 {
- 			         <&src IMX8MQ_RESET_PCIE_CTRL_APPS_EN>,
- 			         <&src IMX8MQ_RESET_PCIE_CTRL_APPS_TURNOFF>;
- 			reset-names = "pciephy", "apps", "turnoff";
-+			assigned-clocks = <&clk IMX8MQ_CLK_PCIE1_CTRL>,
-+			                  <&clk IMX8MQ_CLK_PCIE1_PHY>,
-+			                  <&clk IMX8MQ_CLK_PCIE1_AUX>;
-+			assigned-clock-parents = <&clk IMX8MQ_SYS2_PLL_250M>,
-+			                         <&clk IMX8MQ_SYS2_PLL_100M>,
-+			                         <&clk IMX8MQ_SYS1_PLL_80M>;
-+			assigned-clock-rates = <250000000>, <100000000>,
-+			                       <10000000>;
- 			status = "disabled";
- 		};
- 
-@@ -1287,6 +1295,14 @@ pcie1: pcie@33c00000 {
- 			         <&src IMX8MQ_RESET_PCIE2_CTRL_APPS_EN>,
- 			         <&src IMX8MQ_RESET_PCIE2_CTRL_APPS_TURNOFF>;
- 			reset-names = "pciephy", "apps", "turnoff";
-+			assigned-clocks = <&clk IMX8MQ_CLK_PCIE2_CTRL>,
-+			                  <&clk IMX8MQ_CLK_PCIE2_PHY>,
-+			                  <&clk IMX8MQ_CLK_PCIE2_AUX>;
-+			assigned-clock-parents = <&clk IMX8MQ_SYS2_PLL_250M>,
-+			                         <&clk IMX8MQ_SYS2_PLL_100M>,
-+			                         <&clk IMX8MQ_SYS1_PLL_80M>;
-+			assigned-clock-rates = <250000000>, <100000000>,
-+			                       <10000000>;
- 			status = "disabled";
- 		};
- 
+diff --git a/arch/arm64/boot/dts/marvell/cn9130-db.dts b/arch/arm64/boot/dts/marvell/cn9130-db.dts
+index ce49a70d88a0..d24294888400 100644
+--- a/arch/arm64/boot/dts/marvell/cn9130-db.dts
++++ b/arch/arm64/boot/dts/marvell/cn9130-db.dts
+@@ -258,7 +258,7 @@ partition@0 {
+ 			};
+ 			partition@200000 {
+ 				label = "Linux";
+-				reg = <0x200000 0xd00000>;
++				reg = <0x200000 0xe00000>;
+ 			};
+ 			partition@1000000 {
+ 				label = "Filesystem";
 -- 
 2.30.2
 
