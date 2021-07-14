@@ -2,42 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B7933C8181
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 11:24:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91B403C81E3
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 11:42:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238571AbhGNJ05 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 05:26:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47560 "EHLO
+        id S238904AbhGNJpL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 05:45:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238487AbhGNJ04 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 05:26:56 -0400
-Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C97AC061762
-        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 02:24:05 -0700 (PDT)
+        with ESMTP id S238911AbhGNJpK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 05:45:10 -0400
+Received: from laurent.telenet-ops.be (laurent.telenet-ops.be [IPv6:2a02:1800:110:4::f00:19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F33A0C061764
+        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 02:42:17 -0700 (PDT)
 Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed10:39cc:190a:2775:cfe7])
-        by albert.telenet-ops.be with bizsmtp
-        id UxQ02500h1ccfby06xQ0WW; Wed, 14 Jul 2021 11:24:03 +0200
+        by laurent.telenet-ops.be with bizsmtp
+        id UxiF2500Q1ccfby01xiFKs; Wed, 14 Jul 2021 11:42:15 +0200
 Received: from rox.of.borg ([192.168.97.57])
         by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.93)
         (envelope-from <geert@linux-m68k.org>)
-        id 1m3b7Y-0015NQ-Di; Wed, 14 Jul 2021 11:24:00 +0200
+        id 1m3bPD-0015cg-0F; Wed, 14 Jul 2021 11:42:15 +0200
 Received: from geert by rox.of.borg with local (Exim 4.93)
         (envelope-from <geert@linux-m68k.org>)
-        id 1m3b7X-00A35F-PB; Wed, 14 Jul 2021 11:23:59 +0200
+        id 1m3bPC-00A3QK-Ca; Wed, 14 Jul 2021 11:42:14 +0200
 From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [GIT PULL] Renesas fixes for v5.14
-Date:   Wed, 14 Jul 2021 11:23:50 +0200
-Message-Id: <cover.1626253929.git.geert+renesas@glider.be>
+        Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
+Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v2] dt-bindings: phy: Rename Intel Keem Bay USB PHY bindings
+Date:   Wed, 14 Jul 2021 11:42:13 +0200
+Message-Id: <91235a64185f7446fc58e638d77691078d3114d1.1626255556.git.geert+renesas@glider.be>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -45,65 +44,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-	Hi soc folks,
+This is the only file not using the "intel,keembay-*" pattern.
+Fortunately the actual compatible value is already following the
+standard scheme.
 
-The following changes since commit e73f0f0ee7541171d89f2e2491130c7771ba58d3:
+Fixes: 4086afa2a1627939 ("dt-bindings: phy: Add Intel Keem Bay USB PHY bindings")
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+v2:
+  - Add Acked-by.
+---
+ .../{intel,phy-keembay-usb.yaml => intel,keembay-phy-usb.yaml}  | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ rename Documentation/devicetree/bindings/phy/{intel,phy-keembay-usb.yaml => intel,keembay-phy-usb.yaml} (93%)
 
-  Linux 5.14-rc1 (2021-07-11 15:07:40 -0700)
+diff --git a/Documentation/devicetree/bindings/phy/intel,phy-keembay-usb.yaml b/Documentation/devicetree/bindings/phy/intel,keembay-phy-usb.yaml
+similarity index 93%
+rename from Documentation/devicetree/bindings/phy/intel,phy-keembay-usb.yaml
+rename to Documentation/devicetree/bindings/phy/intel,keembay-phy-usb.yaml
+index a217bb8ac5bc0887..52815b6c2b88d019 100644
+--- a/Documentation/devicetree/bindings/phy/intel,phy-keembay-usb.yaml
++++ b/Documentation/devicetree/bindings/phy/intel,keembay-phy-usb.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/phy/intel,phy-keembay-usb.yaml#
++$id: http://devicetree.org/schemas/phy/intel,keembay-phy-usb.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Intel Keem Bay USB PHY bindings
+-- 
+2.25.1
 
-are available in the Git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git tags/renesas-fixes-for-v5.14-tag1
-
-for you to fetch changes up to 432b52eea3dcf48083bafa4b2b6ef5b054ead609:
-
-  ARM: shmobile: defconfig: Restore graphical consoles (2021-07-13 09:45:51 +0200)
-
-----------------------------------------------------------------
-Renesas fixes for v5.14
-
-  - Fix a clock/reset handling design issue on the new RZ/G2L SoC,
-    requiring an atomic change to DT binding definitions, clock driver,
-    and DTS,
-  - Restore graphical consoles in the shmobile_defconfig.
-
-Background for the first part: after queuing the initial support for the
-new Renesas RZ/G2{L,LC} SoCs for v5.14, we discovered an issue with the
-way how clocks and resets are handled for modules more complex than
-serial ports and i2c controllers.  Fixing that required a redesign of
-the DT binding definitions, which are a hard dependency for both the
-clock/reset driver and DTS.
-As all future changes to the RZ/G2L clock driver and DTS files depend on
-this, it would be good if this would make it for v5.14-rc2.
-
-Sorry for the mess, and thanks for pulling!
-
-----------------------------------------------------------------
-Biju Das (5):
-      clk: renesas: rzg2l: Add multi clock PM support
-      clk: renesas: r9a07g044: Rename divider table
-      clk: renesas: r9a07g044: Fix P1 Clock
-      clk: renesas: r9a07g044: Add P2 Clock support
-      dt-bindings: clock: r9a07g044-cpg: Update clock/reset definitions
-
-Geert Uytterhoeven (1):
-      ARM: shmobile: defconfig: Restore graphical consoles
-
- arch/arm/configs/shmobile_defconfig        |   1 +
- arch/arm64/boot/dts/renesas/r9a07g044.dtsi |   4 +-
- drivers/clk/renesas/r9a07g044-cpg.c        |  79 ++++++----
- drivers/clk/renesas/renesas-rzg2l-cpg.c    | 110 +++++++-------
- drivers/clk/renesas/renesas-rzg2l-cpg.h    |  37 +++--
- include/dt-bindings/clock/r9a07g044-cpg.h  | 236 ++++++++++++++++++++++-------
- 6 files changed, 320 insertions(+), 147 deletions(-)
-
-Gr{oetje,eeting}s,
-
-						Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-							    -- Linus Torvalds
