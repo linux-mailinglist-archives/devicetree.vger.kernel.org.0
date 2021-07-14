@@ -2,69 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A7EB83C9217
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 22:30:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 300BF3C9220
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 22:32:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230004AbhGNUdW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 16:33:22 -0400
-Received: from mail-il1-f182.google.com ([209.85.166.182]:42997 "EHLO
-        mail-il1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234160AbhGNUdW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 16:33:22 -0400
-Received: by mail-il1-f182.google.com with SMTP id h3so2862756ilc.9;
-        Wed, 14 Jul 2021 13:30:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=yeqH3519s9TR7u8H68VDtMcnBoL+fYSZSk2mtTvRFuU=;
-        b=YqrKTZKIJWPGdf4UJqQo9+mUkQ0exFSpFT5lzlPTh0YvDaAMrmDvl14l0eiFGsFehB
-         +Pf7JRLekoPIWFIlHmAwdc95ekMGiLYXTt96bKZsitLkcphDhmMkpIQu+7HHnZgW4uVE
-         sz3UtIZ3XotsblcyFm1bpGNU/y5SO8fokQuO648EHfvNH6Hd7eVNyRWeWKWHk+6cVJ6o
-         ZsO5L3fprlz55ZMZTK1PuwsrTVt7dtOLOLdVEHayS9+jeitH2J4KTRxglEXF6LZPcoFp
-         xQO4sCl05ppNq3ONIFJyfhFFf4fzQfoAj2TpAY/epsCnf/3sgi4G6BhRIqfzyE1bBXEB
-         fKkw==
-X-Gm-Message-State: AOAM530Xv2YQsfNIzr2InWkvANL4opQI28pTTWG+PrgyXuSfAOHgYEqv
-        WtoviWf/dekR0vXfaop9lA==
-X-Google-Smtp-Source: ABdhPJytuNpDn/33kY2kMBoOHeFD1ZZbC1vgPUMTXoRZDQ11PyuZ3uK32kK5pVfUKHhpW1D05/SOZQ==
-X-Received: by 2002:a05:6e02:1a28:: with SMTP id g8mr1031391ile.128.1626294629908;
-        Wed, 14 Jul 2021 13:30:29 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id m1sm1883001iok.33.2021.07.14.13.30.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jul 2021 13:30:29 -0700 (PDT)
-Received: (nullmailer pid 3466710 invoked by uid 1000);
-        Wed, 14 Jul 2021 20:30:27 -0000
-Date:   Wed, 14 Jul 2021 14:30:27 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     linux-kernel@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        Christophe Branchereau <cbranchereau@gmail.com>,
-        list@opendingux.net, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: display/panel: Add Innolux EJ030NA
-Message-ID: <20210714203027.GA3466681@robh.at.kernel.org>
-References: <20210625121045.81711-1-paul@crapouillou.net>
+        id S231628AbhGNUfZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 16:35:25 -0400
+Received: from mx4.securetransport.de ([178.254.6.145]:46468 "EHLO
+        mx4.securetransport.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231428AbhGNUfY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 16:35:24 -0400
+X-Greylist: delayed 388 seconds by postgrey-1.27 at vger.kernel.org; Wed, 14 Jul 2021 16:35:24 EDT
+Received: from mail.dh-electronics.com (business-24-134-97-169.pool2.vodafone-ip.de [24.134.97.169])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mx4.securetransport.de (Postfix) with ESMTPSA id 00E5072085C;
+        Wed, 14 Jul 2021 22:25:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dh-electronics.com;
+        s=dhelectronicscom; t=1626294344;
+        bh=1ydmi6FFj4AhAPhPs81r+ILQytchAfOzwLRI5g41Z9s=;
+        h=From:To:CC:Subject:Date:From;
+        b=pEI0ezBw2CLNZH9E6W3Ojn5lnnsM87ZwgfuMIWxee2keHWtibQnD81N+lvbLAc+qe
+         PhpZOJcVyqPOIGAVo+1w4g8c2X4L/+CQyT2Cda9cg4ssSymrjXm1TMeUIFbEp9O/CO
+         3/gfVhPleVIVYgyde5iGMAO3ptMdJ+quFONKuUCVEvTD/1k6XCwK8PM5cTluYw08gz
+         OUVC8teIxYX4n1+ymiZLwXYGX39NCyRtUU9jLJfEr5J9hKhfN7mFCNrAfNQPYioJjS
+         8uxjIZJ45g0zTugCnKDa6B8+LoKG/lmk05xhqb9VuoOqcd+Stg89QIXJrr7YDZY4yv
+         XktgGdmRR7NXQ==
+Received: from DHPWEX01.DH-ELECTRONICS.ORG (2001:470:76a7:2::30) by
+ DHPWEX01.DH-ELECTRONICS.ORG (2001:470:76a7:2::30) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.858.12; Wed, 14 Jul 2021 22:25:32 +0200
+Received: from localhost.localdomain (172.16.51.7) by
+ DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.12
+ via Frontend Transport; Wed, 14 Jul 2021 22:25:32 +0200
+From:   Christoph Niedermaier <cniedermaier@dh-electronics.com>
+To:     <devicetree@vger.kernel.org>
+CC:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, <kernel@dh-electronics.com>,
+        Fabio Estevam <festevam@denx.de>
+Subject: [PATCH V3] dt-bindings: arm: fsl: Add DHCOM PicoITX and DHCOM DRC02 boards
+Date:   Wed, 14 Jul 2021 22:22:52 +0200
+Message-ID: <20210714202252.5898-1-cniedermaier@dh-electronics.com>
+X-Mailer: git-send-email 2.11.0
+X-klartext: yes
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210625121045.81711-1-paul@crapouillou.net>
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 25 Jun 2021 13:10:44 +0100, Paul Cercueil wrote:
-> Add binding for the Innolux EJ030NA panel, which is a 320x480 3.0" 4:3
-> 24-bit TFT LCD panel with non-square pixels and a delta-RGB 8-bit
-> interface.
-> 
-> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-> ---
->  .../display/panel/innolux,ej030na.yaml        | 62 +++++++++++++++++++
->  1 file changed, 62 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/innolux,ej030na.yaml
-> 
+Add DH electronics DHCOM PicoITX and DHCOM DRC02 boards. The DHCOM DRC02
+device can only house a SOM with iMX6S and not with iMX6DL, due to some
+thermal design consideration. But for compatible fsl,imx6dl is chosen,
+because fsl,imx6s isn't available, the iMX6S is basically a iMX6DL with
+one CPU core disabled and therefore the kernel discerns the iMX6S/iMX6DL
+automatically.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+Cc: robh+dt@kernel.org
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: kernel@dh-electronics.com
+Cc: Fabio Estevam <festevam@denx.de>
+To: devicetree@vger.kernel.org
+---
+V2: - Remove line with fsl,imx6s on the DRC02 Board
+V3: - Rework of the commit message
+    - Add Fabio Estevam to the CC list
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 1c827c1954dc..6eff9e35f9a9 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -418,6 +418,12 @@ properties:
+           - const: dfi,fs700e-m60
+           - const: fsl,imx6dl
+ 
++      - description: i.MX6DL DHCOM PicoITX Board
++        items:
++          - const: dh,imx6dl-dhcom-picoitx
++          - const: dh,imx6dl-dhcom-som
++          - const: fsl,imx6dl
++
+       - description: i.MX6DL Gateworks Ventana Boards
+         items:
+           - enum:
+@@ -469,6 +475,12 @@ properties:
+           - const: toradex,colibri_imx6dl          # Colibri iMX6 Module
+           - const: fsl,imx6dl
+ 
++      - description: i.MX6S DHCOM DRC02 Board
++        items:
++          - const: dh,imx6s-dhcom-drc02
++          - const: dh,imx6s-dhcom-som
++          - const: fsl,imx6dl
++
+       - description: i.MX6SL based Boards
+         items:
+           - enum:
+-- 
+2.11.0
+
