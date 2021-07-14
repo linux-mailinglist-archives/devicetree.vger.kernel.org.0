@@ -2,112 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A7F4B3C84D6
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 14:55:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 231533C84BD
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 14:51:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231472AbhGNM6B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 08:58:01 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:47070 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231384AbhGNM6B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 08:58:01 -0400
-X-Greylist: delayed 416 seconds by postgrey-1.27 at vger.kernel.org; Wed, 14 Jul 2021 08:58:00 EDT
-Date:   Wed, 14 Jul 2021 15:48:07 +0300
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     John Stultz <john.stultz@linaro.org>
-CC:     Serge Semin <fancer.lancer@gmail.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Amit Pundir <amit.pundir@linaro.org>
-Subject: Re: [PATCH 29/29] arm64: dts: qcom: Harmonize DWC USB3 DT nodes name
-Message-ID: <20210714124807.o22mottsrg3tv6nt@mobilestation>
-References: <20201020115959.2658-1-Sergey.Semin@baikalelectronics.ru>
- <20201020115959.2658-30-Sergey.Semin@baikalelectronics.ru>
- <CALAqxLX_FNvFndEDWtGbFPjSzuAbfqxQE07diBJFZtftwEJX5A@mail.gmail.com>
+        id S239434AbhGNMxp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 08:53:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38500 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239192AbhGNMxm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 08:53:42 -0400
+Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [IPv6:2a02:1800:120:4::f00:13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02F29C061765
+        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 05:50:50 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed10:39cc:190a:2775:cfe7])
+        by baptiste.telenet-ops.be with bizsmtp
+        id V0qW250061ccfby010qWMr; Wed, 14 Jul 2021 14:50:49 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1m3eLO-0018dL-En; Wed, 14 Jul 2021 14:50:30 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1m3eLN-00AaDl-Lw; Wed, 14 Jul 2021 14:50:29 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Nicolas Pitre <nico@fluxnic.net>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Dave Young <dyoung@redhat.com>, Mike Rapoport <rppt@kernel.org>
+Cc:     Baoquan He <bhe@redhat.com>, Vivek Goyal <vgoyal@redhat.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-riscv@lists.infradead.org, kexec@lists.infradead.org,
+        linux-mm@kvack.org, linux-renesas-soc@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH v4 00/10] Add generic support for kdump DT properties
+Date:   Wed, 14 Jul 2021 14:50:10 +0200
+Message-Id: <cover.1626266516.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <CALAqxLX_FNvFndEDWtGbFPjSzuAbfqxQE07diBJFZtftwEJX5A@mail.gmail.com>
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello John,
+	Hi all,
 
-On Tue, Jul 13, 2021 at 05:07:00PM -0700, John Stultz wrote:
-> On Tue, Oct 20, 2020 at 5:10 AM Serge Semin
-> <Sergey.Semin@baikalelectronics.ru> wrote:
-> >
-> > In accordance with the DWC USB3 bindings the corresponding node
-> > name is suppose to comply with the Generic USB HCD DT schema, which
-> > requires the USB nodes to have the name acceptable by the regexp:
-> > "^usb(@.*)?" . Make sure the "snps,dwc3"-compatible nodes are correctly
-> > named.
-> >
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> 
+This patch series adds generic support for parsing DT properties related
+to crash dump kernels ("linux,elfcorehdr" and "linux,elfcorehdr" under
+the "/chosen" node), makes use of it on arm64, arm32, and (partially)
+riscv, and performs a few cleanups.  It is an evolution of the
+combination of [1] and [2].
 
-> I know folks like to ignore this, but this patch breaks AOSP on db845c. :(
+The series consists of 5 parts:
+  1. Patches 1-2 prepare (the visibility of) variables used to hold
+     information retrieved from the DT properties.
+  2. Patches 3-5 add support to the FDT core for parsing the properties.
+     This can co-exist safely with architecture-specific parsing, until
+     the latter has been removed.
+  3. Patch 6 removes the non-standard handling of "linux,elfcorehdr" on
+     riscv.
+     I think this can be applied independently, as the non-standard
+     handling is in v5.13, but upstream riscv kdump support is still
+     incomplete.
+  4. Patches 7-9 convert arm64 to use the generic handling instead of
+     its own implementation.
+  5. Patch 10 adds support for kdump properties to arm32.
+     The corresponding patch for kexec-tools is "[PATCH] arm: kdump: Add
+     DT properties to crash dump kernel's DTB"[3], which is still valid.
 
-Sorry to hear that. Alas there is no much can be done about it.
-DT-nodes name is a subject of DT-schema convention and as we've finally
-unified USB-controller nodes it shouldn't be reverted back. You can
-find the final USB-controller bindings in:
-Documentation/devicetree/bindings/usb/usb.yaml
-It strictly defines to have USB-nodes with names like "usb(@.*)".
-Reverting this patch will cause the DT-bindings check procedure
-failure. You can also find the naming convention defined in the
-latest DT spec:
-https://github.com/devicetree-org/devicetree-specification/releases/tag/v0.3
+Changes compared to the previous versions:
+  - Make elfcorehdr_{addr,size} always visible,
+  - Add variables for usable memory limitation,
+  - Use IS_ENABLED() instead of #ifdef (incl. initrd and arm64),
+  - Clarify what architecture-specific code is still responsible for,
+  - Add generic support for parsing linux,usable-memory-range,
+  - Remove custom linux,usable-memory-range parsing on arm64,
+  - Use generic handling on ARM.
+  
+This has been tested on arm32 and arm64, and compile-tested on riscv64.
 
-See also device-tree bindings requirements listed in the file:
-Documentation/devicetree/bindings/writing-bindings.rst
-It says: "DO use node names matching the class of the device. Many
-standard names are defined in the DT Spec. If there isn't one,
-consider adding it."
+Thanks for your comments!
 
-> 
-> In the exact same way an earlier patch broke HiKey960:
->   https://lore.kernel.org/lkml/CALAqxLWGujgR7p8Vb5S_RimRVYxwm5XF-c4NkKgMH-43wEBaWg@mail.gmail.com/
-> 
-> (which I still have to carry a revert for).
-> 
-> I get that this change is useful so more dynamic userland can find
-> devices using consistent naming with future kernels (but doesn't the
-> dynamic userland have to handle the case for older kernels as well?)
-> But for userland that uses static configs, its painful as updating
-> userland to use the new node ids then causes older kernels to fail.
-> 
-> I'm looking into how we might be able to probe and set the property
-> dynamically, but AOSP's init system is far more aligned to static
-> configs.
-> 
+[1] "[PATCH v3] ARM: Parse kdump DT properties"
+    https://lore.kernel.org/r/20210317113130.2554368-1-geert+renesas@glider.be/
+[2] "[PATCH 0/3] Add generic-support for linux,elfcorehdr and fix riscv"
+    https://lore.kernel.org/r/cover.1623780059.git.geert+renesas@glider.be/
+[3] "[PATCH] arm: kdump: Add DT properties to crash dump kernel's DTB"
+    https://lore.kernel.org/linux-arm-kernel/20200902154129.6358-1-geert+renesas@glider.be/
 
-As Krzysztof said in
-https://lore.kernel.org/lkml/20201221210423.GA2504@kozik-lap/
-and Bjorn noted in his response to your email, the only way to solve
-the problem is to fix the user-land app so one would be able to deal
-with both old and new DT-nodes name. Alternatively you can just
-replace the dts with older one, where the name still have
-the "dwc3"-prefix.
 
--Sergey
+Geert Uytterhoeven (10):
+  crash_dump: Make elfcorehdr_{addr,size} always visible
+  memblock: Add variables for usable memory limitation
+  of: fdt: Add generic support for parsing elf core headers property
+  of: fdt: Add generic support for parsing usable memory range property
+  of: fdt: Use IS_ENABLED(CONFIG_BLK_DEV_INITRD) instead of #ifdef
+  riscv: Remove non-standard linux,elfcorehdr handling
+  arm64: kdump: Remove custom linux,elfcorehdr parsing
+  arm64: kdump: Remove custom linux,usable-memory-range parsing
+  arm64: kdump: Use IS_ENABLED(CONFIG_CRASH_DUMP) instead of #ifdef
+  ARM: Parse kdump DT properties
 
-> This will probably be ignored again, but it would be nice if we could
-> have a release where DTS changes don't break userland for one of my
-> boards. As it feels like its been awhile.
-> 
-> thanks
-> -john
+ Documentation/devicetree/bindings/chosen.txt  | 12 ++--
+ .../arm/boot/compressed/fdt_check_mem_start.c | 48 ++++++++++++--
+ arch/arm/mm/init.c                            | 30 +++++++++
+ arch/arm64/mm/init.c                          | 63 +------------------
+ arch/riscv/mm/init.c                          | 20 ------
+ drivers/of/fdt.c                              | 63 ++++++++++++++++---
+ include/linux/crash_dump.h                    |  7 ++-
+ include/linux/memblock.h                      |  6 ++
+ mm/memblock.c                                 |  2 +
+ 9 files changed, 148 insertions(+), 103 deletions(-)
+
+-- 
+2.25.1
+
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
