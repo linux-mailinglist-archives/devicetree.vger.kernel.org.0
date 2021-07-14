@@ -2,192 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 82BB83C84CF
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 14:53:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FA713C84FC
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 15:08:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239364AbhGNM4R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 08:56:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39196 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239344AbhGNM4R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 08:56:17 -0400
-Received: from andre.telenet-ops.be (andre.telenet-ops.be [IPv6:2a02:1800:120:4::f00:15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72A95C061760
-        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 05:53:25 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed10:39cc:190a:2775:cfe7])
-        by andre.telenet-ops.be with bizsmtp
-        id V0tP2500K1ccfby010tPVP; Wed, 14 Jul 2021 14:53:23 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1m3eOB-0018jI-K7; Wed, 14 Jul 2021 14:53:23 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1m3eOB-00AaR3-8A; Wed, 14 Jul 2021 14:53:23 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
+        id S231485AbhGNNLY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 09:11:24 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33358 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231338AbhGNNLX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Jul 2021 09:11:23 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C2646613B9;
+        Wed, 14 Jul 2021 13:08:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1626268111;
+        bh=KIO73uVOgAHUJ2tW1iAFvOKar4Y4IkrEUHdCZSKRr8U=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=myoJUPUnh11X57SjfqOXaxapv3wGdGj0ms5k3evtuw+sLNhV9XrpRNwamVPSclPfS
+         fw8+ArVTk6ff9xN+xeR+Weg4RReQQE8q/vAbBPEv+OX2nT81FSlqkdM5kE3yu4UHLQ
+         cF1q6yEG3mCdhZ8WBVp7PWZIp4NNK3P2tYer/09Y=
+Date:   Wed, 14 Jul 2021 15:08:28 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Rob Herring <robh@kernel.org>
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v2] of: kexec: Remove FDT_PROP_* definitions
-Date:   Wed, 14 Jul 2021 14:53:22 +0200
-Message-Id: <af415c86cd2ba9c8a6bb2eaaf56c3198a24b23d3.1626267092.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        Stephen Boyd <sboyd@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>,
+        Brian Norris <computersforpeace@gmail.com>,
+        Kamal Dasu <kdasu.kdev@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Sebastian Siewior <bigeasy@linutronix.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-clk@vger.kernel.org, iommu@lists.linux-foundation.org,
+        linux-mtd@lists.infradead.org, linux-rtc@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: More dropping redundant minItems/maxItems
+Message-ID: <YO7hzMnIlCdE/z8K@kroah.com>
+References: <20210713193453.690290-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210713193453.690290-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The FDT_PROP_* definitions make it harder to follow the code.
-Remove them, and use the actual string literals instead.
+On Tue, Jul 13, 2021 at 01:34:53PM -0600, Rob Herring wrote:
+> Another round of removing redundant minItems/maxItems from new schema in
+> the recent merge window.
+> 
+> If a property has an 'items' list, then a 'minItems' or 'maxItems' with the
+> same size as the list is redundant and can be dropped. Note that is DT
+> schema specific behavior and not standard json-schema behavior. The tooling
+> will fixup the final schema adding any unspecified minItems/maxItems.
+> 
+> This condition is partially checked with the meta-schema already, but
+> only if both 'minItems' and 'maxItems' are equal to the 'items' length.
+> An improved meta-schema is pending.
+> 
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: Joerg Roedel <joro@8bytes.org>
+> Cc: Will Deacon <will@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Cc: Miquel Raynal <miquel.raynal@bootlin.com>
+> Cc: Richard Weinberger <richard@nod.at>
+> Cc: Vignesh Raghavendra <vigneshr@ti.com>
+> Cc: Alessandro Zummo <a.zummo@towertech.it>
+> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>
+> Cc: Brian Norris <computersforpeace@gmail.com>
+> Cc: Kamal Dasu <kdasu.kdev@gmail.com>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Sebastian Siewior <bigeasy@linutronix.de>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: linux-clk@vger.kernel.org
+> Cc: iommu@lists.linux-foundation.org
+> Cc: linux-mtd@lists.infradead.org
+> Cc: linux-rtc@vger.kernel.org
+> Cc: linux-usb@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-This is v2 of "of: kexec: Always use FDT_PROP_INITRD_START and
-FDT_PROP_INITRD_END".
-https://lore.kernel.org/r/a4e07a0c1efea913ce5a61136162b5b720b96b48.1623835273.git.geert+renesas@glider.be/
-
-v2:
-  - Invert direction, as requested by Rob.
----
- drivers/of/kexec.c | 40 +++++++++++++++-------------------------
- 1 file changed, 15 insertions(+), 25 deletions(-)
-
-diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
-index f335d941a716e841..761fd870d1db277f 100644
---- a/drivers/of/kexec.c
-+++ b/drivers/of/kexec.c
-@@ -18,14 +18,6 @@
- #include <linux/random.h>
- #include <linux/types.h>
- 
--/* relevant device tree properties */
--#define FDT_PROP_KEXEC_ELFHDR	"linux,elfcorehdr"
--#define FDT_PROP_MEM_RANGE	"linux,usable-memory-range"
--#define FDT_PROP_INITRD_START	"linux,initrd-start"
--#define FDT_PROP_INITRD_END	"linux,initrd-end"
--#define FDT_PROP_BOOTARGS	"bootargs"
--#define FDT_PROP_KASLR_SEED	"kaslr-seed"
--#define FDT_PROP_RNG_SEED	"rng-seed"
- #define RNG_SEED_SIZE		128
- 
- /*
-@@ -310,10 +302,10 @@ void *of_kexec_alloc_and_setup_fdt(const struct kimage *image,
- 		goto out;
- 	}
- 
--	ret = fdt_delprop(fdt, chosen_node, FDT_PROP_KEXEC_ELFHDR);
-+	ret = fdt_delprop(fdt, chosen_node, "linux,elfcorehdr");
- 	if (ret && ret != -FDT_ERR_NOTFOUND)
- 		goto out;
--	ret = fdt_delprop(fdt, chosen_node, FDT_PROP_MEM_RANGE);
-+	ret = fdt_delprop(fdt, chosen_node, "linux,usable-memory-range");
- 	if (ret && ret != -FDT_ERR_NOTFOUND)
- 		goto out;
- 
-@@ -347,12 +339,12 @@ void *of_kexec_alloc_and_setup_fdt(const struct kimage *image,
- 
- 	/* add initrd-* */
- 	if (initrd_load_addr) {
--		ret = fdt_setprop_u64(fdt, chosen_node, FDT_PROP_INITRD_START,
-+		ret = fdt_setprop_u64(fdt, chosen_node, "linux,initrd-start",
- 				      initrd_load_addr);
- 		if (ret)
- 			goto out;
- 
--		ret = fdt_setprop_u64(fdt, chosen_node, FDT_PROP_INITRD_END,
-+		ret = fdt_setprop_u64(fdt, chosen_node, "linux,initrd-end",
- 				      initrd_load_addr + initrd_len);
- 		if (ret)
- 			goto out;
-@@ -362,11 +354,11 @@ void *of_kexec_alloc_and_setup_fdt(const struct kimage *image,
- 			goto out;
- 
- 	} else {
--		ret = fdt_delprop(fdt, chosen_node, FDT_PROP_INITRD_START);
-+		ret = fdt_delprop(fdt, chosen_node, "linux,initrd-start");
- 		if (ret && (ret != -FDT_ERR_NOTFOUND))
- 			goto out;
- 
--		ret = fdt_delprop(fdt, chosen_node, FDT_PROP_INITRD_END);
-+		ret = fdt_delprop(fdt, chosen_node, "linux,initrd-end");
- 		if (ret && (ret != -FDT_ERR_NOTFOUND))
- 			goto out;
- 	}
-@@ -374,8 +366,7 @@ void *of_kexec_alloc_and_setup_fdt(const struct kimage *image,
- 	if (image->type == KEXEC_TYPE_CRASH) {
- 		/* add linux,elfcorehdr */
- 		ret = fdt_appendprop_addrrange(fdt, 0, chosen_node,
--				FDT_PROP_KEXEC_ELFHDR,
--				image->elf_load_addr,
-+				"linux,elfcorehdr", image->elf_load_addr,
- 				image->elf_headers_sz);
- 		if (ret)
- 			goto out;
-@@ -391,8 +382,7 @@ void *of_kexec_alloc_and_setup_fdt(const struct kimage *image,
- 
- 		/* add linux,usable-memory-range */
- 		ret = fdt_appendprop_addrrange(fdt, 0, chosen_node,
--				FDT_PROP_MEM_RANGE,
--				crashk_res.start,
-+				"linux,usable-memory-range", crashk_res.start,
- 				crashk_res.end - crashk_res.start + 1);
- 		if (ret)
- 			goto out;
-@@ -400,17 +390,17 @@ void *of_kexec_alloc_and_setup_fdt(const struct kimage *image,
- 
- 	/* add bootargs */
- 	if (cmdline) {
--		ret = fdt_setprop_string(fdt, chosen_node, FDT_PROP_BOOTARGS, cmdline);
-+		ret = fdt_setprop_string(fdt, chosen_node, "bootargs", cmdline);
- 		if (ret)
- 			goto out;
- 	} else {
--		ret = fdt_delprop(fdt, chosen_node, FDT_PROP_BOOTARGS);
-+		ret = fdt_delprop(fdt, chosen_node, "bootargs");
- 		if (ret && (ret != -FDT_ERR_NOTFOUND))
- 			goto out;
- 	}
- 
- 	/* add kaslr-seed */
--	ret = fdt_delprop(fdt, chosen_node, FDT_PROP_KASLR_SEED);
-+	ret = fdt_delprop(fdt, chosen_node, "kaslr-seed");
- 	if (ret == -FDT_ERR_NOTFOUND)
- 		ret = 0;
- 	else if (ret)
-@@ -419,26 +409,26 @@ void *of_kexec_alloc_and_setup_fdt(const struct kimage *image,
- 	if (rng_is_initialized()) {
- 		u64 seed = get_random_u64();
- 
--		ret = fdt_setprop_u64(fdt, chosen_node, FDT_PROP_KASLR_SEED, seed);
-+		ret = fdt_setprop_u64(fdt, chosen_node, "kaslr-seed", seed);
- 		if (ret)
- 			goto out;
- 	} else {
- 		pr_notice("RNG is not initialised: omitting \"%s\" property\n",
--				FDT_PROP_KASLR_SEED);
-+			  "kaslr-seed");
- 	}
- 
- 	/* add rng-seed */
- 	if (rng_is_initialized()) {
- 		void *rng_seed;
- 
--		ret = fdt_setprop_placeholder(fdt, chosen_node, FDT_PROP_RNG_SEED,
-+		ret = fdt_setprop_placeholder(fdt, chosen_node, "rng-seed",
- 				RNG_SEED_SIZE, &rng_seed);
- 		if (ret)
- 			goto out;
- 		get_random_bytes(rng_seed, RNG_SEED_SIZE);
- 	} else {
- 		pr_notice("RNG is not initialised: omitting \"%s\" property\n",
--				FDT_PROP_RNG_SEED);
-+			  "rng-seed");
- 	}
- 
- 	ret = fdt_setprop(fdt, chosen_node, "linux,booted-from-kexec", NULL, 0);
--- 
-2.25.1
-
+Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
