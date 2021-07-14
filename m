@@ -2,122 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D7B73C7E02
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 07:40:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 894E03C7E8F
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 08:33:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237945AbhGNFne (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 01:43:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52922 "EHLO
+        id S238064AbhGNGgP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 02:36:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237939AbhGNFnd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 01:43:33 -0400
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA830C0613E9
-        for <devicetree@vger.kernel.org>; Tue, 13 Jul 2021 22:40:41 -0700 (PDT)
-Received: by mail-oi1-x236.google.com with SMTP id m18so1019382oie.9
-        for <devicetree@vger.kernel.org>; Tue, 13 Jul 2021 22:40:41 -0700 (PDT)
+        with ESMTP id S238003AbhGNGgP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 02:36:15 -0400
+Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com [IPv6:2607:f8b0:4864:20::d30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DCF8C061574
+        for <devicetree@vger.kernel.org>; Tue, 13 Jul 2021 23:33:23 -0700 (PDT)
+Received: by mail-io1-xd30.google.com with SMTP id d9so736950ioo.2
+        for <devicetree@vger.kernel.org>; Tue, 13 Jul 2021 23:33:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=QBnwuBKRxZeDSW4QGiqymAuzRo+K3Iyzls75/osdlvc=;
-        b=asxkx/1UsDSGw3MeY3llVFdUkBuaw0FyNXL84TfALrLohJ4zBrLh6yRm9A54xlu5SQ
-         q5QlJ1hxVW/15s4nMKF5PEv0UyFINaFZE9dq2apkxdS2L8odPuuN3MGJnioIbfjlbAs5
-         OzHzjn05QFKxsrevQbCcdpgShJS724oVd57iz6C7d3X3PCLwOPyRliBnYLPIA6AtU52g
-         TvG2GzY4WK0VQii9Il68TaJYLCx02IXOvwNmgKP6P/+zBV0R7l8X4R8wk0QXEcltkJ4+
-         Bv/Tgb0pfNkNApWhc2CnVxoWHSamSuExPwccYmOJQ30iI0IktYI3vzy8lf36jBLgUmh8
-         BwYQ==
+        bh=fF0A3SNyCoLJ9V4Mf6IFTlcVxCvyAcihWUy7P8dtXJI=;
+        b=DN/o78lFqAKsgN5uUZevIfvTthvAaqLUS7o/z4AqRbGBER//DxjodEcfhITop+1Sbi
+         5xnPBW4khvCZ9s+B1EueYDKprlSNK7aHd7gD0NOPaVX7FC2k2vU+jDakW2TtboEyTibR
+         qoWxRSuHKBrIIysihP1UKdBy4Awi8uwDvRoP4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=QBnwuBKRxZeDSW4QGiqymAuzRo+K3Iyzls75/osdlvc=;
-        b=OyTPxxK6RIVAwVbjO8qOYC2KN1x8WPj6I+anuTG4nVikj0qq/Ad1tL0Ng5wdrxuoAC
-         DaptBqh0BeGc1vifMBoXyjdMaEACjkHtC62z0mQgcR9/TqKHLrxiPVfIramhwQRkhgOt
-         wCuQ3+PcL4IL6/qFxCTZr4f9eF0p11g6mJBX4Gfj8AiLLFM0UWz6JZNyTegbBNTN96oI
-         WVDE+qFK2l7jE0fWHIUrAxrrGp0FbHorr/UkExIqw5JAVgdvKUUZPXQX88BlqBKuAem8
-         UWMfVkwQ13LyPMrSSM3BFd078de8//fjwf9lXf++phRbV37T2x4y1cHmEvPvbwFECfD/
-         vNcg==
-X-Gm-Message-State: AOAM533d2KSj69200FLtwnFvjAx9n0mynPiW5OuX52+DipV8jO6Mp5oq
-        LDZx3auxGgfGrHNCXqKq37q7Qm4EoDVnWdNsfZBL2w==
-X-Google-Smtp-Source: ABdhPJxMyKbaHPYLjI1W+Bc5q6MCpGy1B2M+e5JeRhMGebMYNwGIEAKA1DRB4YKkchRFoIAr0IY5gyoMjxELKQxwRNI=
-X-Received: by 2002:aca:5e06:: with SMTP id s6mr4518903oib.40.1626241241058;
- Tue, 13 Jul 2021 22:40:41 -0700 (PDT)
+        bh=fF0A3SNyCoLJ9V4Mf6IFTlcVxCvyAcihWUy7P8dtXJI=;
+        b=W1WCwdDym8tHhvNAnCztd6FYjic4toZ/p5D68rRd3LBnOwHCyoK1Cv6uZIOPyV7ooM
+         CjcLP/UJ7XeJnYMoD4HKUTb3WsjyfQK0kBpl6EMyTGkFmWvWT+R3Gnx6sMnsyC8Kuics
+         0+QSlykfLpVjJKJ3LIMgZqrrW7aVwNYQqpThrHpyKAoxEvOz/qLFRHErxozdM4D5JMRH
+         bI6BCtDFilfOKHfMCRv8sU8J64TQf8v2M7L/xyrRpWW+ZrnoVBw5ozK6eZWHwjM7r8OL
+         QU/aAdEPjucluSrJQ7Rls7mlHCGvRy8U+ryIWqmLHubjvO8KpaImBmnT/fCC3jcD4a2Y
+         O5yw==
+X-Gm-Message-State: AOAM533uJvhxkyDJgmZ8vP3xnI1XcNJDCH8SvOuRNC2ZRn1vpPmu9VOP
+        e2P2HE3vQGS5mw+DholPbRu3GWokead6tIES+N62+g==
+X-Google-Smtp-Source: ABdhPJziJytxeQ51ecTdT3CtD4o86bg7Q+pPkL3Gi50sJ3vzYsr9bjOhfcALk+Ji1bGlr/PbCYsHfE4mxG+wawo0Vso=
+X-Received: by 2002:a02:cce6:: with SMTP id l6mr7474610jaq.114.1626244402499;
+ Tue, 13 Jul 2021 23:33:22 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210629123407.82561-1-bhupesh.sharma@linaro.org>
-In-Reply-To: <20210629123407.82561-1-bhupesh.sharma@linaro.org>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Wed, 14 Jul 2021 11:10:30 +0530
-Message-ID: <CAH=2Nty-Zi4g0wmNZ7mKNKz8CZu9X9jLqxeFDVJaXKnkOqsASA@mail.gmail.com>
-Subject: Re: [PATCH v4 0/4] pinctrl: qcom/pinctrl-spmi-gpio: Add support for
- pmic-gpio on SA8155p-adp
-To:     MSM <linux-arm-msm@vger.kernel.org>
-Cc:     bhupesh.linux@gmail.com,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
+References: <20210705053429.4380-1-jason-jh.lin@mediatek.com> <20210705053429.4380-6-jason-jh.lin@mediatek.com>
+In-Reply-To: <20210705053429.4380-6-jason-jh.lin@mediatek.com>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Wed, 14 Jul 2021 14:32:56 +0800
+Message-ID: <CAJMQK-g-3-WeLMH57cJBWVt1=i7SuxwGG2Ae253igEEX9oywKA@mail.gmail.com>
+Subject: Re: [PATCH v2 5/5] mailbox: cmdq: fix GCE can not receive hardward event
+To:     "jason-jh.lin" <jason-jh.lin@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Hsin-Yi Wang <hsinyi@google.com>, nancy.lin@mediatek.com,
+        singo.chang@mediatek.com
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+On Mon, Jul 5, 2021 at 1:35 PM jason-jh.lin <jason-jh.lin@mediatek.com> wrote:
+>
+> For the design of GCE hardware event signal transportation,
+> evnet rx will send the event signal to all GCE event merges
+> after receiving the event signal from the other hardware.
+>
+> Because GCE event merges need to response to event rx, their
+> clocks must be enabled at that time.
+>
+> To make sure all the gce clock is enabled while receiving the
+> hardware event, each cmdq mailbox should enable or disable
+> the others gce clk at the same time.
+>
+> Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
+> ---
+>  drivers/mailbox/mtk-cmdq-mailbox.c | 102 +++++++++++++++++++++++------
+>  1 file changed, 83 insertions(+), 19 deletions(-)
+>
+> diff --git a/drivers/mailbox/mtk-cmdq-mailbox.c b/drivers/mailbox/mtk-cmdq-mailbox.c
+> index fc67888a677c..44a3cf252fd5 100644
+> --- a/drivers/mailbox/mtk-cmdq-mailbox.c
+> +++ b/drivers/mailbox/mtk-cmdq-mailbox.c
+> @@ -19,6 +19,7 @@
+>
+>  #define CMDQ_OP_CODE_MASK              (0xff << CMDQ_OP_CODE_SHIFT)
+>  #define CMDQ_NUM_CMD(t)                        (t->cmd_buf_size / CMDQ_INST_SIZE)
+> +#define CMDQ_GCE_NUM_MAX               (2)
+>
+>  #define CMDQ_CURR_IRQ_STATUS           0x10
+>  #define CMDQ_SYNC_TOKEN_UPDATE         0x68
+> @@ -73,14 +74,16 @@ struct cmdq {
+>         u32                     thread_nr;
+>         u32                     irq_mask;
+>         struct cmdq_thread      *thread;
+> -       struct clk              *clock;
+> +       struct clk              *clock[CMDQ_GCE_NUM_MAX];
+>         bool                    suspended;
+>         u8                      shift_pa;
+> +       u32                     gce_num;
+>  };
+>
+>  struct gce_plat {
+>         u32 thread_nr;
+>         u8 shift;
+> +       u32 gce_num;
+>  };
+>
+>  u8 cmdq_get_shift_pa(struct mbox_chan *chan)
+> @@ -120,11 +123,15 @@ static void cmdq_init(struct cmdq *cmdq)
+>  {
+>         int i;
+>
+> -       WARN_ON(clk_enable(cmdq->clock) < 0);
+> +       for (i = 0; i < cmdq->gce_num; i++)
+> +               WARN_ON(clk_enable(cmdq->clock[i]) < 0);
+> +
+You can use clk_bulk_enable instead of looping. Same for clk_bulk_disable.
 
-On Tue, 29 Jun 2021 at 18:04, Bhupesh Sharma <bhupesh.sharma@linaro.org> wrote:
->
-> Changes since v3:
-> -----------------
-> - v3 series can be found here: https://lore.kernel.org/linux-arm-msm/20210617053432.350486-1-bhupesh.sharma@linaro.org/T/#m2b1bf2d32dfdde3196dc5342722e356ee1f87456
-> - Rebased patchset on pinctrl/devel branch.
-> - Added Reviewed-by from Bjorn for patches 1 to 4 and Ack from Rob for
->   patches 1 and 2.
->
-> Changes since v2:
-> -----------------
-> - v2 series can be found here: https://lore.kernel.org/linux-arm-msm/20210615074543.26700-1-bhupesh.sharma@linaro.org/T/#m8303d27d561b30133992da88198abb78ea833e21
-> - Addressed review comments from Bjorn and Mark.
-> - As per suggestion from Bjorn, separated the patches in different
->   patchsets (specific to each subsystem) to ease review and patch application.
->
-> Changes since v1:
-> -----------------
-> - v1 series can be found here: https://lore.kernel.org/linux-arm-msm/20210607113840.15435-1-bhupesh.sharma@linaro.org/T/#mc524fe82798d4c4fb75dd0333318955e0406ad18
-> - Addressed review comments from Bjorn and Vinod received on the v1
->   series.
->
-> This series adds the pmic-gpio support code for SA8155p-adp board
-> which is based on Qualcomm snapdragon sa8155p SoC which in turn is
-> simiar to the sm8150 SoC.
->
-> This board supports a new PMIC -> PMM8155AU.
->
-> While at it, also make some cosmetic changes to the qcom pinctrl-spmi-gpio
-> driver and dt-bindings to make sure the compatibles are
-> in alphabetical order.
->
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
->
-> Bhupesh Sharma (4):
->   dt-bindings: pinctrl: qcom,pmic-gpio: Arrange compatibles
->     alphabetically
->   dt-bindings: pinctrl: qcom,pmic-gpio: Add compatible for SA8155p-adp
->   pinctrl: qcom/pinctrl-spmi-gpio: Arrange compatibles alphabetically
->   pinctrl: qcom/pinctrl-spmi-gpio: Add compatible for pmic-gpio on
->     SA8155p-adp
->
->  .../bindings/pinctrl/qcom,pmic-gpio.txt       | 64 ++++++++++---------
->  drivers/pinctrl/qcom/pinctrl-spmi-gpio.c      | 35 +++++-----
->  2 files changed, 51 insertions(+), 48 deletions(-)
->
-> --
-> 2.31.1
-
-Ping. Any comments on this version?
-
-Thanks,
-Bhupesh
+<snip>
