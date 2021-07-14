@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E1F03C901B
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 22:00:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E84193C9025
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 22:00:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240731AbhGNTxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 15:53:52 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48672 "EHLO mail.kernel.org"
+        id S240928AbhGNTx5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 15:53:57 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48760 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240177AbhGNTvm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Jul 2021 15:51:42 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B32DB6140A;
-        Wed, 14 Jul 2021 19:48:37 +0000 (UTC)
+        id S240668AbhGNTvx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Jul 2021 15:51:53 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 829AE613CA;
+        Wed, 14 Jul 2021 19:48:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626292118;
-        bh=hRStqOhJWgYpIjFEJtEhNcYMko5A1w5uLh9Twk9835M=;
+        s=k20201202; t=1626292121;
+        bh=kiyWt/XSpbR/SwgM/55hAj0b1QbeGJ+DpLx16WM+Dd0=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=XtcVl95LidT7oRXl6aUdiJ4U8Y1+ptxcxsRD7P4l8MQkFYb9tii3SYk2sFdmfklz3
-         d6Ob/B/xOJDasKm++B3zEdcgUDIaj99EIEDyti4uRDXtXxAnQ525LJpw3VNpfb9w8m
-         YKmcejFjuQXkTMk+kKdlTY5l4Na7/YQK26ov8o19bazdET/JwDf52MEUb2Ea0bcjEu
-         j98hlUweJOQ9gXmXA1wcJpz3nEjm6vc2AlsHjy+zYPpqFqWCwtuzKc3pOdmM0myzZ9
-         xfOAMZVgWbFBNQkhPnaUkWiQJ0H1IcalFHXBcFDVviCcLp2WRhuUUxNG6Udt9BeT9J
-         QdsOTXBq/b9rA==
+        b=MafOPxo8VrONqTY52874baPRZ/YDRAKQU5YDBt6TOfWIu+0l2NS5foo7/ksmEUtSZ
+         YyTsh4AeLxCZfco2Tz7P1QopcF2emifpp/z53xaNtzcOyG0sZmcg9DPR1VC6tcT9Fy
+         frHT9nPE7fKBmnL1oMmjL1N+hK1pOTmUaFcP9yGddOJH4G3KuKoa9JmxmVLm2ejuSD
+         s2zgopJDK40wDO7p6ISUVS/rYCfdY6UqD8eSIszHHdmHXgAVmKShFCP/xkRrqTvST4
+         DbSZF9jomz1p8hYQ0WBY0o7xQVm+aw0GSa3BeuMPynrlCf8OP3nmw0/z2axLigh9Yn
+         DozK/RyaecVSg==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Primoz Fiser <primoz.fiser@norik.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.4 03/10] ARM: dts: imx6: phyFLEX: Fix UART hardware flow control
-Date:   Wed, 14 Jul 2021 15:48:26 -0400
-Message-Id: <20210714194833.56197-3-sashal@kernel.org>
+Cc:     Grygorii Strashko <grygorii.strashko@ti.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Sasha Levin <sashal@kernel.org>, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.4 05/10] ARM: dts: am437x: align gpio hog names with dt-schema
+Date:   Wed, 14 Jul 2021 15:48:28 -0400
+Message-Id: <20210714194833.56197-5-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210714194833.56197-1-sashal@kernel.org>
 References: <20210714194833.56197-1-sashal@kernel.org>
@@ -43,47 +43,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Primoz Fiser <primoz.fiser@norik.com>
+From: Grygorii Strashko <grygorii.strashko@ti.com>
 
-[ Upstream commit 14cdc1f243d79e0b46be150502b7dba9c5a6bdfd ]
+[ Upstream commit bd551acdde3ad40da1a97391abd6e0db7852bf66 ]
 
-Serial interface uart3 on phyFLEX board is capable of 5-wire connection
-including signals RTS and CTS for hardware flow control.
+The GPIO Hog dt-schema node naming convention expect GPIO hogs node names
+to end with a 'hog' suffix.
 
-Fix signals UART3_CTS_B and UART3_RTS_B padmux assignments and add
-missing property "uart-has-rtscts" to allow serial interface to be
-configured and used with the hardware flow control.
-
-Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/am437x-gp-evm.dts  | 4 ++--
+ arch/arm/boot/dts/am43x-epos-evm.dts | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi b/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
-index cae04e806036..e3e3a7a08d08 100644
---- a/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
-@@ -307,8 +307,8 @@ pinctrl_uart3: uart3grp {
- 			fsl,pins = <
- 				MX6QDL_PAD_EIM_D24__UART3_TX_DATA	0x1b0b1
- 				MX6QDL_PAD_EIM_D25__UART3_RX_DATA	0x1b0b1
--				MX6QDL_PAD_EIM_D30__UART3_RTS_B		0x1b0b1
--				MX6QDL_PAD_EIM_D31__UART3_CTS_B		0x1b0b1
-+				MX6QDL_PAD_EIM_D31__UART3_RTS_B		0x1b0b1
-+				MX6QDL_PAD_EIM_D30__UART3_CTS_B		0x1b0b1
- 			>;
- 		};
+diff --git a/arch/arm/boot/dts/am437x-gp-evm.dts b/arch/arm/boot/dts/am437x-gp-evm.dts
+index 3293484028ad..b5863cc13cfd 100644
+--- a/arch/arm/boot/dts/am437x-gp-evm.dts
++++ b/arch/arm/boot/dts/am437x-gp-evm.dts
+@@ -660,7 +660,7 @@ &gpio0 {
+ 	pinctrl-0 = <&gpio0_pins>;
+ 	status = "okay";
  
-@@ -383,6 +383,7 @@ &pcie {
- &uart3 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_uart3>;
-+	uart-has-rtscts;
- 	status = "disabled";
- };
+-	p23 {
++	sel-emmc-nand-hog {
+ 		gpio-hog;
+ 		gpios = <23 GPIO_ACTIVE_HIGH>;
+ 		/* SelEMMCorNAND selects between eMMC and NAND:
+@@ -693,7 +693,7 @@ &gpio5 {
+ 	status = "okay";
+ 	ti,no-reset-on-init;
  
+-	p8 {
++	sel-lcd-hdmi-hog {
+ 		/*
+ 		 * SelLCDorHDMI selects between display and audio paths:
+ 		 * Low: HDMI display with audio via HDMI
+diff --git a/arch/arm/boot/dts/am43x-epos-evm.dts b/arch/arm/boot/dts/am43x-epos-evm.dts
+index a74b09f17a1a..b61feb994526 100644
+--- a/arch/arm/boot/dts/am43x-epos-evm.dts
++++ b/arch/arm/boot/dts/am43x-epos-evm.dts
+@@ -536,7 +536,7 @@ &gpio2 {
+ 	pinctrl-0 = <&display_mux_pins>;
+ 	status = "okay";
+ 
+-	p1 {
++	sel-lcd-hdmi-hog {
+ 		/*
+ 		 * SelLCDorHDMI selects between display and audio paths:
+ 		 * Low: HDMI display with audio via HDMI
 -- 
 2.30.2
 
