@@ -2,72 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F7FF3C8819
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 17:56:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 554D43C880E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 17:55:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232409AbhGNP7C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 11:59:02 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42078 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239775AbhGNP7B (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Jul 2021 11:59:01 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 279F2613CF;
-        Wed, 14 Jul 2021 15:56:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626278169;
-        bh=E0sbg0M0ocyf6VkUrKaPVCDLNkU0SdHrK7wgF4xeYjw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=jzxaodBUycHnj95sPiOWFeTjCo2njjf9wo+VzDaj0R0ryDe3CzMJwYJw9s10rMB2K
-         qt9MLFEm7OHhpzjK5whAqo8CcJBiPLcSqjs3M3xrvqBxF0vwWrCthGNxonfqqPTmJt
-         DABDL4zVrSWGx93ocmY4Qj20JJgs5Xmd6rMs8rEwDv8X/aiH6r8qTXvEquN5OoZiay
-         SqsO1Xr4u8u16bbbiywfEkE0DtH8JsTcSKb3UgQrspMgOx/M/7qyZ1zCvm6c1isuZM
-         pn5/e3Az/PJH8En3RPK8OJY0CzXbOqGlHJVQGIUV17mooeQm/o7p9CtwH7DDq8D5hW
-         +153+IW4PEdlw==
-From:   Mark Brown <broonie@kernel.org>
-To:     cy_huang <u0084500@gmail.com>, robh+dt@kernel.org
-Cc:     Mark Brown <broonie@kernel.org>, lgirdwood@gmail.com,
-        cy_huang@richtek.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] regulator: rtq6752: Refine binding document
-Date:   Wed, 14 Jul 2021 16:55:17 +0100
-Message-Id: <162627768618.55091.3455363305744240999.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <1626229532-13037-1-git-send-email-u0084500@gmail.com>
-References: <1626229532-13037-1-git-send-email-u0084500@gmail.com>
+        id S232409AbhGNP6T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 11:58:19 -0400
+Received: from mail-io1-f44.google.com ([209.85.166.44]:35535 "EHLO
+        mail-io1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232318AbhGNP6T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 11:58:19 -0400
+Received: by mail-io1-f44.google.com with SMTP id d9so2721464ioo.2;
+        Wed, 14 Jul 2021 08:55:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=7nxXW1i4WQyXMmsZCHbddFNUdKPkUyTw9t25kn4JLEw=;
+        b=GDadw/UZJ4L/O7Kl8ads5gYhey1P2WR9Mabz0o+bd86cIqWGGomnaJbHKETlp8emdP
+         qIPZEzr08HK59nvfiCnjPUrpqeDZy0L6I1CWsWl3VwY2LbOdepoc5ModqOvZZApUIjc6
+         6sb7cJ2exGyKdyCLZWdl/wP0ZP5tMOummUTy60BH4nUucsEGd2c/VeeuYoCcRXUvnYX6
+         BiOMxkk1edVbl3RYkz1Nr7hT9Mos5VXakFZ6Djhk2qQo+76sXBgISdL9iDf/Sxa4S7Jw
+         r9Ggnc0RbnmeaQbQ6yaGitwsqncvSvfZvF+fRoKyFMjJMd3FQ2kaBJy1RKOUCnPNRixF
+         pErQ==
+X-Gm-Message-State: AOAM533n3LWGgIEE10NgYudjvt9ZrBbqagjPBP5kIiRgCOraktS0ykeo
+        h75A3zL6GOiwEh2fjpfDug==
+X-Google-Smtp-Source: ABdhPJwM2ZY8gTdRQCs9mZy1cHeRCXK11txvf4jNgPBZFJin9/wLLb8//5UvX8ZqjApegYngnzr9Bg==
+X-Received: by 2002:a05:6638:3291:: with SMTP id f17mr9523408jav.143.1626278127488;
+        Wed, 14 Jul 2021 08:55:27 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id t24sm1439184ioh.24.2021.07.14.08.55.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Jul 2021 08:55:26 -0700 (PDT)
+Received: (nullmailer pid 2648868 invoked by uid 1000);
+        Wed, 14 Jul 2021 15:55:24 -0000
+Date:   Wed, 14 Jul 2021 09:55:24 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
+Subject: Re: [PATCH 06/15] dt-bindings: iio: dac: ad5449: Add missing binding
+ document.
+Message-ID: <20210714155524.GA2648786@robh.at.kernel.org>
+References: <20210627163244.1090296-1-jic23@kernel.org>
+ <20210627163244.1090296-7-jic23@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210627163244.1090296-7-jic23@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Jul 2021 10:25:32 +0800, cy_huang wrote:
-> Drop regulators property reference and remove the status in example dts.
+On Sun, 27 Jun 2021 17:32:35 +0100, Jonathan Cameron wrote:
+> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> 
+> Documenting existing binding, so little flexibility available.
+> 2 channel devices that require separate reference voltages.
+> 
+> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Cc: Lars-Peter Clausen <lars@metafoo.de>
+> ---
+>  .../bindings/iio/dac/adi,ad5449.yaml          | 97 +++++++++++++++++++
+>  1 file changed, 97 insertions(+)
+> 
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
-
-Thanks!
-
-[1/1] regulator: rtq6752: Refine binding document
-      commit: e98fb032170bfa2e671a01e356a7ee86a2038312
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Reviewed-by: Rob Herring <robh@kernel.org>
