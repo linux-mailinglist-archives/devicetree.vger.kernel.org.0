@@ -2,37 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2534E3C8CC0
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:40:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 367703C8CCC
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:40:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235260AbhGNTmn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 15:42:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37648 "EHLO mail.kernel.org"
+        id S234914AbhGNTmt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 15:42:49 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37098 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234188AbhGNTmX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Jul 2021 15:42:23 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D094C613E9;
-        Wed, 14 Jul 2021 19:39:29 +0000 (UTC)
+        id S229779AbhGNTma (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Jul 2021 15:42:30 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8C258613CF;
+        Wed, 14 Jul 2021 19:39:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626291570;
-        bh=3pK9CHN9eOMA5FY995eRPwXmbTB47QUZ9Zfs19L9J2Y=;
+        s=k20201202; t=1626291576;
+        bh=lrWpKwP8nOxGEVR6JMOZyNEM335MQz25AnAVPJiYWSc=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=gOWPhPYY1/XoCHrbobX7kECYGNwYpNYuMsIJEktTtXcMFrXs/4Z/6yan9fv4NWwYe
-         RpxuofIDWfgZi+lekgPMwB7S3VJWXQFx9fKXV8L2nLwdqZ2cN5vDViq3xZA+dll/p7
-         y7ETxdwdvxALi/rBRNnFBl6X+hwqI4wZVWM4ZvvmijpW0AI+/9xtOaWsy0cR7zyAGv
-         63tmiCqa9GojlNKTkGVZ4l7uxhQb/RkIlIs8/jw8V/gydwN36CLV1AKRhwOd57rRoU
-         O3HO2V8sGc3726Jmf4O3mur3TWRgpHCXUoIE6m4Cqj+d5DUhg8pGHmisGfgfFe8aET
-         WbSNzdXA0ByxQ==
+        b=izee9JHdmy1AQHb9EXeCdHmwHVAMAvNHZngaxN0lHXsxTnT6w//4FM8GHZZSr3wAk
+         beYMDvyuzmdE4xj7m1+q9b/eojczJ0BtMdc4pEPAgYJkCKVawqvZnhf+r5JE8Mr4B2
+         mSaCPtwEqFUzQ0kPjbxczAQoRCL2NKnLvxjxBPtYV/+B00lpn5DSlA5j3GUIQnsDEg
+         Y2NASC5HjAQF1sr+IlOZMnIMw0d3L+o1aioE5vMNmnUO619LWKpiEtvsYqoAZssWac
+         m4he3KeR2kV5k6i/At5mNbo/+Ld+CFe/H6l9jszCr7VQt5wOzLLJ1LhibcU0+LC65B
+         epjq8f470ab8Q==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.13 062/108] ARM: dts: stm32: fix timer nodes on STM32 MCU to prevent warnings
-Date:   Wed, 14 Jul 2021 15:37:14 -0400
-Message-Id: <20210714193800.52097-62-sashal@kernel.org>
+Cc:     Santosh Puranik <santosh.puranik@in.ibm.com>,
+        Eddie James <eajames@linux.ibm.com>,
+        Joel Stanley <joel@jms.id.au>, Sasha Levin <sashal@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org
+Subject: [PATCH AUTOSEL 5.13 066/108] ARM: dts: aspeed: Everest: Fix cable card PCA chips
+Date:   Wed, 14 Jul 2021 15:37:18 -0400
+Message-Id: <20210714193800.52097-66-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210714193800.52097-1-sashal@kernel.org>
 References: <20210714193800.52097-1-sashal@kernel.org>
@@ -44,126 +44,220 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alexandre Torgue <alexandre.torgue@foss.st.com>
+From: Santosh Puranik <santosh.puranik@in.ibm.com>
 
-[ Upstream commit 2388f14d8747f8304e26ee870790e188c9431efd ]
+[ Upstream commit 010da3daf9278ed03d38b7dcb0422f1a7df1bdd3 ]
 
-Prevent warning seen with "make dtbs_check W=1" command:
+Correct two PCA chips which were placed on the wrong I2C bus and
+address.
 
-Warning (avoid_unnecessary_addr_size): /soc/timers@40001c00: unnecessary
-address-cells/size-cells without "ranges" or child "reg" property
-
-Reviewed-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
+Signed-off-by: Eddie James <eajames@linux.ibm.com>
+Signed-off-by: Santosh Puranik <santosh.puranik@in.ibm.com>
+Signed-off-by: Joel Stanley <joel@jms.id.au>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/stm32f429.dtsi | 8 --------
- arch/arm/boot/dts/stm32f746.dtsi | 8 --------
- arch/arm/boot/dts/stm32h743.dtsi | 4 ----
- 3 files changed, 20 deletions(-)
+ arch/arm/boot/dts/aspeed-bmc-ibm-everest.dts | 168 +++++++++----------
+ 1 file changed, 83 insertions(+), 85 deletions(-)
 
-diff --git a/arch/arm/boot/dts/stm32f429.dtsi b/arch/arm/boot/dts/stm32f429.dtsi
-index 41e0087bdbf9..8748d5850298 100644
---- a/arch/arm/boot/dts/stm32f429.dtsi
-+++ b/arch/arm/boot/dts/stm32f429.dtsi
-@@ -283,8 +283,6 @@ timer@11 {
- 		};
+diff --git a/arch/arm/boot/dts/aspeed-bmc-ibm-everest.dts b/arch/arm/boot/dts/aspeed-bmc-ibm-everest.dts
+index 3295c8c7c05c..27af28c8847d 100644
+--- a/arch/arm/boot/dts/aspeed-bmc-ibm-everest.dts
++++ b/arch/arm/boot/dts/aspeed-bmc-ibm-everest.dts
+@@ -353,10 +353,47 @@ gpio@15 {
  
- 		timers13: timers@40001c00 {
+ &i2c1 {
+ 	status = "okay";
++};
++
++&i2c2 {
++	status = "okay";
++};
+ 
+-	pca2: pca9552@61 {
++&i2c3 {
++	status = "okay";
++
++	eeprom@54 {
++		compatible = "atmel,24c128";
++		reg = <0x54>;
++	};
++
++	power-supply@68 {
++		compatible = "ibm,cffps";
++		reg = <0x68>;
++	};
++
++	power-supply@69 {
++		compatible = "ibm,cffps";
++		reg = <0x69>;
++	};
++
++	power-supply@6a {
++		compatible = "ibm,cffps";
++		reg = <0x6a>;
++	};
++
++	power-supply@6b {
++		compatible = "ibm,cffps";
++		reg = <0x6b>;
++	};
++};
++
++&i2c4 {
++	status = "okay";
++
++	pca2: pca9552@65 {
+ 		compatible = "nxp,pca9552";
+-		reg = <0x61>;
++		reg = <0x65>;
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 
+@@ -424,12 +461,54 @@ gpio@9 {
+ 			reg = <9>;
+ 			type = <PCA955X_TYPE_GPIO>;
+ 		};
++	};
+ 
++	i2c-switch@70 {
++		compatible = "nxp,pca9546";
++		reg = <0x70>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++		status = "okay";
++		i2c-mux-idle-disconnect;
++
++		i2c4mux0chn0: i2c@0 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0>;
++			eeprom@52 {
++				compatible = "atmel,24c64";
++				reg = <0x52>;
++			};
++		};
++
++		i2c4mux0chn1: i2c@1 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <1>;
++			eeprom@50 {
++				compatible = "atmel,24c64";
++				reg = <0x50>;
++			};
++		};
++
++		i2c4mux0chn2: i2c@2 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <2>;
++			eeprom@51 {
++				compatible = "atmel,24c64";
++				reg = <0x51>;
++			};
++		};
+ 	};
++};
+ 
+-	pca3: pca9552@62 {
++&i2c5 {
++	status = "okay";
++
++	pca3: pca9552@66 {
+ 		compatible = "nxp,pca9552";
+-		reg = <0x62>;
++		reg = <0x66>;
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 
+@@ -512,87 +591,6 @@ gpio@11 {
+ 
+ 	};
+ 
+-};
+-
+-&i2c2 {
+-	status = "okay";
+-};
+-
+-&i2c3 {
+-	status = "okay";
+-
+-	eeprom@54 {
+-		compatible = "atmel,24c128";
+-		reg = <0x54>;
+-	};
+-
+-	power-supply@68 {
+-		compatible = "ibm,cffps";
+-		reg = <0x68>;
+-	};
+-
+-	power-supply@69 {
+-		compatible = "ibm,cffps";
+-		reg = <0x69>;
+-	};
+-
+-	power-supply@6a {
+-		compatible = "ibm,cffps";
+-		reg = <0x6a>;
+-	};
+-
+-	power-supply@6b {
+-		compatible = "ibm,cffps";
+-		reg = <0x6b>;
+-	};
+-};
+-
+-&i2c4 {
+-	status = "okay";
+-
+-	i2c-switch@70 {
+-		compatible = "nxp,pca9546";
+-		reg = <0x70>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		status = "okay";
+-		i2c-mux-idle-disconnect;
+-
+-		i2c4mux0chn0: i2c@0 {
 -			#address-cells = <1>;
 -			#size-cells = <0>;
- 			compatible = "st,stm32-timers";
- 			reg = <0x40001C00 0x400>;
- 			clocks = <&rcc 0 STM32F4_APB1_CLOCK(TIM13)>;
-@@ -299,8 +297,6 @@ pwm {
- 		};
- 
- 		timers14: timers@40002000 {
+-			reg = <0>;
+-			eeprom@52 {
+-				compatible = "atmel,24c64";
+-				reg = <0x52>;
+-			};
+-		};
+-
+-		i2c4mux0chn1: i2c@1 {
 -			#address-cells = <1>;
 -			#size-cells = <0>;
- 			compatible = "st,stm32-timers";
- 			reg = <0x40002000 0x400>;
- 			clocks = <&rcc 0 STM32F4_APB1_CLOCK(TIM14)>;
-@@ -633,8 +629,6 @@ timer@8 {
- 		};
- 
- 		timers10: timers@40014400 {
+-			reg = <1>;
+-			eeprom@50 {
+-				compatible = "atmel,24c64";
+-				reg = <0x50>;
+-			};
+-		};
+-
+-		i2c4mux0chn2: i2c@2 {
 -			#address-cells = <1>;
 -			#size-cells = <0>;
- 			compatible = "st,stm32-timers";
- 			reg = <0x40014400 0x400>;
- 			clocks = <&rcc 0 STM32F4_APB2_CLOCK(TIM10)>;
-@@ -649,8 +643,6 @@ pwm {
- 		};
- 
- 		timers11: timers@40014800 {
--			#address-cells = <1>;
--			#size-cells = <0>;
- 			compatible = "st,stm32-timers";
- 			reg = <0x40014800 0x400>;
- 			clocks = <&rcc 0 STM32F4_APB2_CLOCK(TIM11)>;
-diff --git a/arch/arm/boot/dts/stm32f746.dtsi b/arch/arm/boot/dts/stm32f746.dtsi
-index e1df603fc981..72c1b76684b6 100644
---- a/arch/arm/boot/dts/stm32f746.dtsi
-+++ b/arch/arm/boot/dts/stm32f746.dtsi
-@@ -265,8 +265,6 @@ timer@11 {
- 		};
- 
- 		timers13: timers@40001c00 {
--			#address-cells = <1>;
--			#size-cells = <0>;
- 			compatible = "st,stm32-timers";
- 			reg = <0x40001C00 0x400>;
- 			clocks = <&rcc 0 STM32F7_APB1_CLOCK(TIM13)>;
-@@ -281,8 +279,6 @@ pwm {
- 		};
- 
- 		timers14: timers@40002000 {
--			#address-cells = <1>;
--			#size-cells = <0>;
- 			compatible = "st,stm32-timers";
- 			reg = <0x40002000 0x400>;
- 			clocks = <&rcc 0 STM32F7_APB1_CLOCK(TIM14)>;
-@@ -531,8 +527,6 @@ timer@8 {
- 		};
- 
- 		timers10: timers@40014400 {
--			#address-cells = <1>;
--			#size-cells = <0>;
- 			compatible = "st,stm32-timers";
- 			reg = <0x40014400 0x400>;
- 			clocks = <&rcc 0 STM32F7_APB2_CLOCK(TIM10)>;
-@@ -547,8 +541,6 @@ pwm {
- 		};
- 
- 		timers11: timers@40014800 {
--			#address-cells = <1>;
--			#size-cells = <0>;
- 			compatible = "st,stm32-timers";
- 			reg = <0x40014800 0x400>;
- 			clocks = <&rcc 0 STM32F7_APB2_CLOCK(TIM11)>;
-diff --git a/arch/arm/boot/dts/stm32h743.dtsi b/arch/arm/boot/dts/stm32h743.dtsi
-index 05ecdf9ff03a..6e42ca2dada2 100644
---- a/arch/arm/boot/dts/stm32h743.dtsi
-+++ b/arch/arm/boot/dts/stm32h743.dtsi
-@@ -485,8 +485,6 @@ trigger@2 {
- 		};
- 
- 		lptimer4: timer@58002c00 {
--			#address-cells = <1>;
--			#size-cells = <0>;
- 			compatible = "st,stm32-lptimer";
- 			reg = <0x58002c00 0x400>;
- 			clocks = <&rcc LPTIM4_CK>;
-@@ -501,8 +499,6 @@ pwm {
- 		};
- 
- 		lptimer5: timer@58003000 {
--			#address-cells = <1>;
--			#size-cells = <0>;
- 			compatible = "st,stm32-lptimer";
- 			reg = <0x58003000 0x400>;
- 			clocks = <&rcc LPTIM5_CK>;
+-			reg = <2>;
+-			eeprom@51 {
+-				compatible = "atmel,24c64";
+-				reg = <0x51>;
+-			};
+-		};
+-	};
+-};
+-
+-&i2c5 {
+-	status = "okay";
+-
+ 	i2c-switch@70 {
+ 		compatible = "nxp,pca9546";
+ 		reg = <0x70>;
 -- 
 2.30.2
 
