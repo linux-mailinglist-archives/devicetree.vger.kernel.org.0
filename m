@@ -2,102 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BA5F3C92D9
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 23:12:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0D683C92E3
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 23:15:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233858AbhGNVO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 17:14:59 -0400
-Received: from mail-io1-f51.google.com ([209.85.166.51]:38488 "EHLO
-        mail-io1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232008AbhGNVO7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 17:14:59 -0400
-Received: by mail-io1-f51.google.com with SMTP id k11so3871320ioa.5;
-        Wed, 14 Jul 2021 14:12:06 -0700 (PDT)
+        id S234101AbhGNVR4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 17:17:56 -0400
+Received: from mail-il1-f171.google.com ([209.85.166.171]:41576 "EHLO
+        mail-il1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230308AbhGNVR4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 17:17:56 -0400
+Received: by mail-il1-f171.google.com with SMTP id p3so2993516ilg.8;
+        Wed, 14 Jul 2021 14:15:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=u0T8yxk3ADHwBjHH2WxpSHI7hYdlroWexCd530t9WFM=;
-        b=rH6uHuI2pyKcQA/h4Id22nXayLZVCCkS9I8JUbfmm4MoEuxswSCbh7VbQGk0RnEcIZ
-         tRZ+Ckb/eGrForELzXGf9dc7s28QkCxpVnuPFTenVGl3nLKEQ3TLIfNABRLXDcXVuqcp
-         i8h0CihazEnOgIfCskh+7nAFdq6ULgRg55UB+187FSXiNKP77uRfy38NmU5ZkQt6A/Wz
-         k2qD2CqyVvPfsOSh9EOt0TdbDrgrb1gyaSO4H6mQA17R3GX7m4qrXA4pQxmrmqKV1fmU
-         Lr3Hx0J5JZkcLNV8e1hRgmrP1Txs8KWfx4JcL1WLec7qepOaUinJGwJjOhYpMLANx+x/
-         tpHA==
-X-Gm-Message-State: AOAM53172UEkjRwT6cd2Qq0JlfEvr5kEG9k2l7zpx7B+i0Bs7Zy0o1Gz
-        4QDe1jq2sWoW40BxhIecVw==
-X-Google-Smtp-Source: ABdhPJwZWyyb2dpNruY5IFtlfTSV040Z1vLqwIxyzwYdK/m+mJL5npLfz6lMrc/RXg+/pntDInkeoQ==
-X-Received: by 2002:a05:6638:218:: with SMTP id e24mr227669jaq.38.1626297126510;
-        Wed, 14 Jul 2021 14:12:06 -0700 (PDT)
+        bh=syAXapfi/1thpY4jHBRfGcWzIDr/Y3HxhpyKckHASlE=;
+        b=qRbWsreTT+YhXJVzBVo8dv1/IwxXl7KJwCD/s0JluSuRoXY8cQBuYai1CjPs0qMOoR
+         T+/RqJL+prlvUU2ltonFrh+GoOkfOTKJ3zqd2iPNk2X+iZTnbwM3DBfn75w7v1j2DoZ+
+         yYGU7Iga/yIXfvSRMqaMfzn3nkN93wNab62P/6xsndBjaKjbJ5+kP4Rf1ceO3+QuTxTp
+         DWPgEAcAgBlGhZ94YA5hMAdTjHlzGFCUqgYfMiRg1lVUvVBsvGk8A/m9rPzdiRlb3oBc
+         swOS6gNDMhizGvwyOuyuxiZZZohLAh81Hu79Bt5E0kEHaGwzytaJUiv+NKnBIdll8knF
+         Q67g==
+X-Gm-Message-State: AOAM532cHUjCyuBoiTGdJ3WBHP1urjDjkYjMTW837XXUvqcm8yZyXC57
+        b+6QviE/tXnef2ADg48V+g==
+X-Google-Smtp-Source: ABdhPJyMeqk2FAY7bitNJyippP/0WZgYEXD6g1bDCjmESNtNzj4EVp5q3IV9YBKg+MrxY8yXpakmdw==
+X-Received: by 2002:a92:d8c5:: with SMTP id l5mr7989064ilo.79.1626297303292;
+        Wed, 14 Jul 2021 14:15:03 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id w8sm1732316ill.50.2021.07.14.14.11.38
+        by smtp.gmail.com with ESMTPSA id x9sm1692459iov.45.2021.07.14.14.14.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jul 2021 14:11:44 -0700 (PDT)
-Received: (nullmailer pid 3531794 invoked by uid 1000);
-        Wed, 14 Jul 2021 21:11:38 -0000
-Date:   Wed, 14 Jul 2021 15:11:38 -0600
+        Wed, 14 Jul 2021 14:14:49 -0700 (PDT)
+Received: (nullmailer pid 3536623 invoked by uid 1000);
+        Wed, 14 Jul 2021 21:14:44 -0000
+Date:   Wed, 14 Jul 2021 15:14:44 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Yong Wu <yong.wu@mediatek.com>
-Cc:     devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
-        Robin Murphy <robin.murphy@arm.com>,
-        Evan Green <evgreen@chromium.org>,
-        linux-mediatek@lists.infradead.org, anan.sun@mediatek.com,
-        Joerg Roedel <joro@8bytes.org>,
-        iommu@lists.linux-foundation.org,
+Cc:     Joerg Roedel <joro@8bytes.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>, youlin.pei@mediatek.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Evan Green <evgreen@chromium.org>,
+        Tomasz Figa <tfiga@google.com>,
         Tomasz Figa <tfiga@chromium.org>,
-        Nicolas Boichat <drinkcat@chromium.org>, chao.hao@mediatek.com,
-        Tomasz Figa <tfiga@google.com>
-Subject: Re: [PATCH 01/24] dt-bindings: mediatek: mt8195: Add binding for MM
- IOMMU
-Message-ID: <20210714211138.GA3531732@robh.at.kernel.org>
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        Nicolas Boichat <drinkcat@chromium.org>, anan.sun@mediatek.com,
+        chao.hao@mediatek.com
+Subject: Re: [PATCH 02/24] dt-bindings: mediatek: mt8195: Add binding for
+ infra IOMMU
+Message-ID: <20210714211444.GA3531980@robh.at.kernel.org>
 References: <20210630023504.18177-1-yong.wu@mediatek.com>
- <20210630023504.18177-2-yong.wu@mediatek.com>
+ <20210630023504.18177-3-yong.wu@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210630023504.18177-2-yong.wu@mediatek.com>
+In-Reply-To: <20210630023504.18177-3-yong.wu@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 30 Jun 2021 10:34:41 +0800, Yong Wu wrote:
-> This patch adds descriptions for mt8195 IOMMU which also use ARM
-> Short-Descriptor translation table format.
+On Wed, Jun 30, 2021 at 10:34:42AM +0800, Yong Wu wrote:
+> In mt8195, we have a new IOMMU that is for INFRA IOMMU. its masters
+> mainly are PCIe and USB. Different with MM IOMMU, all these masters
+> connect with IOMMU directly, there is no mediatek,larbs property for
+> infra IOMMU.
 > 
-> In mt8195, there are two smi-common HW and IOMMU, one is for vdo(video
-> output), the other is for vpp(video processing pipe). They connects
-> with different smi-larbs, then some setting(larbid_remap) is different.
-> Differentiate them with the compatible string.
-> 
-> Something like this:
-> 
->     IOMMU(VDO)          IOMMU(VPP)
->        |                   |
->   SMI_COMMON_VDO      SMI_COMMON_VPP
->   ---------------     ----------------
->   |      |   ...      |      |     ...
-> larb0 larb2  ...    larb1 larb3    ...
-> 
-> Another change is that we have a new IOMMU that is for infra master like
-> PCIe and USB. The infra master don't have the larb and ports, thus we
-> rename the port header file to mt8195-memory-port.h rather than
-> mt8195-larb-port.h.
-> 
-> Also, the IOMMU is not only for MM, thus, we don't call it "m4u" which
-> means "MultiMedia Memory Management UNIT". thus, use the "iommu" as the
-> compatiable string.
+> Another thing is about PCIe ports. currently the function
+> "of_iommu_configure_dev_id" only support the id number is 1, But our
+> PCIe have two ports, one is for reading and the other is for writing.
+> see more about the PCIe patch in this patchset. Thus, I only list
+> the reading id here and add the other id in our driver.
 > 
 > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
 > ---
->  .../bindings/iommu/mediatek,iommu.yaml        |   7 +
->  .../dt-bindings/memory/mt8195-memory-port.h   | 390 ++++++++++++++++++
->  2 files changed, 397 insertions(+)
->  create mode 100644 include/dt-bindings/memory/mt8195-memory-port.h
+>  .../bindings/iommu/mediatek,iommu.yaml         | 14 +++++++++++++-
+>  .../dt-bindings/memory/mt8195-memory-port.h    | 18 ++++++++++++++++++
+>  include/dt-bindings/memory/mtk-memory-port.h   |  2 ++
+>  3 files changed, 33 insertions(+), 1 deletion(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
+> index 9b04630158c8..6f3ff631c06b 100644
+> --- a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
+> +++ b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
+> @@ -79,6 +79,7 @@ properties:
+>            - mediatek,mt8192-m4u  # generation two
+>            - mediatek,mt8195-iommu-vdo        # generation two
+>            - mediatek,mt8195-iommu-vpp        # generation two
+> +          - mediatek,mt8195-iommu-infra      # generation two
+>  
+>        - description: mt7623 generation one
+>          items:
+> @@ -129,7 +130,6 @@ required:
+>    - compatible
+>    - reg
+>    - interrupts
+> -  - mediatek,larbs
+>    - '#iommu-cells'
+>  
+>  allOf:
+> @@ -161,6 +161,18 @@ allOf:
+>        required:
+>          - power-domains
+>  
+> +  - if:
+> +      not:
+> +        properties:
+> +          compatible:
+> +            items:
+> +              enum:
+> +                - mediatek,mt8195-iommu-infra
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+This is saying all items are 'mediatek,mt8195-iommu-infra'. Other 
+schemas prevent that, but really this should be:
+
+compatible:
+  contains:
+    const: mediatek,mt8195-iommu-infra
+
+> +
+> +    then:
+> +      required:
+> +        - mediatek,larbs
+> +
+>  additionalProperties: false
+>  
+>  examples:
+> diff --git a/include/dt-bindings/memory/mt8195-memory-port.h b/include/dt-bindings/memory/mt8195-memory-port.h
+> index 783bcae8cdea..67afad848725 100644
+> --- a/include/dt-bindings/memory/mt8195-memory-port.h
+> +++ b/include/dt-bindings/memory/mt8195-memory-port.h
+> @@ -387,4 +387,22 @@
+>  #define M4U_PORT_L28_CAM_DRZS4NO_R1		MTK_M4U_ID(28, 5)
+>  #define M4U_PORT_L28_CAM_TNCSO_R1		MTK_M4U_ID(28, 6)
+>  
+> +/* infra iommu ports */
+> +/* PCIe1: read: BIT16; write BIT17. */
+> +#define M4U_PORT_INFRA_PCIE1			MTK_IFAIOMMU_PERI_ID(16)
+> +/* PCIe0: read: BIT18; write BIT19. */
+> +#define M4U_PORT_INFRA_PCIE0			MTK_IFAIOMMU_PERI_ID(18)
+> +#define M4U_PORT_INFRA_SSUSB_P3_R		MTK_IFAIOMMU_PERI_ID(20)
+> +#define M4U_PORT_INFRA_SSUSB_P3_W		MTK_IFAIOMMU_PERI_ID(21)
+> +#define M4U_PORT_INFRA_SSUSB_P2_R		MTK_IFAIOMMU_PERI_ID(22)
+> +#define M4U_PORT_INFRA_SSUSB_P2_W		MTK_IFAIOMMU_PERI_ID(23)
+> +#define M4U_PORT_INFRA_SSUSB_P1_1_R		MTK_IFAIOMMU_PERI_ID(24)
+> +#define M4U_PORT_INFRA_SSUSB_P1_1_W		MTK_IFAIOMMU_PERI_ID(25)
+> +#define M4U_PORT_INFRA_SSUSB_P1_0_R		MTK_IFAIOMMU_PERI_ID(26)
+> +#define M4U_PORT_INFRA_SSUSB_P1_0_W		MTK_IFAIOMMU_PERI_ID(27)
+> +#define M4U_PORT_INFRA_SSUSB2_R			MTK_IFAIOMMU_PERI_ID(28)
+> +#define M4U_PORT_INFRA_SSUSB2_W			MTK_IFAIOMMU_PERI_ID(29)
+> +#define M4U_PORT_INFRA_SSUSB_R			MTK_IFAIOMMU_PERI_ID(30)
+> +#define M4U_PORT_INFRA_SSUSB_W			MTK_IFAIOMMU_PERI_ID(31)
+> +
+>  #endif
+> diff --git a/include/dt-bindings/memory/mtk-memory-port.h b/include/dt-bindings/memory/mtk-memory-port.h
+> index 7d64103209af..2f68a0511a25 100644
+> --- a/include/dt-bindings/memory/mtk-memory-port.h
+> +++ b/include/dt-bindings/memory/mtk-memory-port.h
+> @@ -12,4 +12,6 @@
+>  #define MTK_M4U_TO_LARB(id)		(((id) >> 5) & 0x1f)
+>  #define MTK_M4U_TO_PORT(id)		((id) & 0x1f)
+>  
+> +#define MTK_IFAIOMMU_PERI_ID(port)	MTK_M4U_ID(0, port)
+> +
+>  #endif
+> -- 
+> 2.18.0
+> 
+> 
