@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58AC73C8F06
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:56:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA8B23C8F09
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:56:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238979AbhGNTv3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 15:51:29 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45586 "EHLO mail.kernel.org"
+        id S240403AbhGNTvc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 15:51:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45690 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237060AbhGNTsj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Jul 2021 15:48:39 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 00D7D61418;
-        Wed, 14 Jul 2021 19:43:51 +0000 (UTC)
+        id S238832AbhGNTso (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Jul 2021 15:48:44 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 89A51613F9;
+        Wed, 14 Jul 2021 19:43:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626291832;
-        bh=4jJxQpK8a8LGH2UbeYOIlzUtavGr17vbOG1gx8v4JS8=;
+        s=k20201202; t=1626291835;
+        bh=JHMHx19zVrV434m+crZ6x4tmXsd9HIpWzGS7dA8vWes=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=M/uYLPZbWZwkW+hNCv9c+A3JH2I36q614Y/sxQNlN+vvACguwezm8Xf0HGGM7UFvc
-         QoKtlgmQFgbf1UDokfazF4akgaJHbu3ipBmr69mavHjIwP8gEADJwLoIwU7rU2bLxE
-         jWx14BgSxahVUGlSVnYKLx+y9ggXGWikGCg1PNSNVk1ZEWcW1KJkQJCHpMjYUz/+qz
-         tEawcL5FOtkr+fG87dkZkmtO1CFhgFSgQ2X5ct3FV1tdf52i9yiZ7BoG8wuZ6P7ya8
-         vBH2Qw7/ZUXNxPIzEW3TD4baQ7KE4hr84PTpTTmC5wAsDsb5q3dBnho2rWEceIy18i
-         6OyGtCugLGXyg==
+        b=Atjx74+LatxUQXzre0hvUBuXuJTDRNZT6P87ELlsLhmGZY0ScV2IM3L2rPjllQsNd
+         Kyh/p/GpuyfLopx/5xANKIgAhjep4vr1bTUu9MVuciy5g15QFFwI1ax/VvRyeHyvz6
+         Evvi1Kec2UaNnWujEUBU8cWdI0c3o/7cSmMHszGdwCUVM10+Vol30IP3HGFf3LkvpX
+         NwgRyUDMIv4kXP21MZrGtSymE8Ji01l45bpkEyFCVHq7YeX/arn+jDpiKZJijrHKuv
+         50RIflcHp5bcEBOQtEzZNQxfCvhl4ySxzV0gNmjs6nDBAdQ2UAnIFgroilaZKzEerG
+         W3VGv3Pl+B8QQ==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Adam Ford <aford173@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Sasha Levin <sashal@kernel.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.10 31/88] arm64: dts: renesas: beacon: Fix USB ref clock references
-Date:   Wed, 14 Jul 2021 15:42:06 -0400
-Message-Id: <20210714194303.54028-31-sashal@kernel.org>
+Cc:     Grygorii Strashko <grygorii.strashko@ti.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Sasha Levin <sashal@kernel.org>, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.10 33/88] ARM: dts: am335x: align GPIO hog names with dt-schema
+Date:   Wed, 14 Jul 2021 15:42:08 -0400
+Message-Id: <20210714194303.54028-33-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210714194303.54028-1-sashal@kernel.org>
 References: <20210714194303.54028-1-sashal@kernel.org>
@@ -43,48 +43,131 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Adam Ford <aford173@gmail.com>
+From: Grygorii Strashko <grygorii.strashko@ti.com>
 
-[ Upstream commit ebc666f39ff67a01e748c34d670ddf05a9e45220 ]
+[ Upstream commit fb97f63106f3174992a22fe5e42dda96a0810750 ]
 
-The RZ/G2 boards expect there to be an external clock reference for
-USB2 EHCI controllers.  For the Beacon boards, this reference clock
-is controlled by a programmable versaclock.  Because the RZ/G2
-family has a special clock driver when using an external clock,
-the third clock reference in the EHCI node needs to point to this
-special clock, called usb2_clksel.
+The GPIO Hog dt-schema node naming convention expect GPIO hogs node names
+to end with a 'hog' suffix.
 
-Since the usb2_clksel does not keep the usb_extal clock enabled,
-the 4th clock entry for the EHCI nodes needs to reference it to
-keep the clock running and make USB functional.
-
-Signed-off-by: Adam Ford <aford173@gmail.com>
-Link: https://lore.kernel.org/r/20210513114617.30191-2-aford173@gmail.com
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/am335x-boneblack-wireless.dts | 2 +-
+ arch/arm/boot/dts/am335x-boneblue.dts           | 2 +-
+ arch/arm/boot/dts/am335x-bonegreen-wireless.dts | 4 ++--
+ arch/arm/boot/dts/am335x-icev2.dts              | 4 ++--
+ arch/arm/boot/dts/am335x-shc.dts                | 8 ++++----
+ 5 files changed, 10 insertions(+), 10 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi b/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
-index 597388f87127..bc4bb5dd8bae 100644
---- a/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
-+++ b/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
-@@ -271,12 +271,12 @@ &du_out_rgb {
- &ehci0 {
- 	dr_mode = "otg";
- 	status = "okay";
--	clocks = <&cpg CPG_MOD 703>, <&cpg CPG_MOD 704>;
-+	clocks = <&cpg CPG_MOD 703>, <&cpg CPG_MOD 704>, <&usb2_clksel>, <&versaclock5 3>;
+diff --git a/arch/arm/boot/dts/am335x-boneblack-wireless.dts b/arch/arm/boot/dts/am335x-boneblack-wireless.dts
+index 86cad9912906..80116646a3fe 100644
+--- a/arch/arm/boot/dts/am335x-boneblack-wireless.dts
++++ b/arch/arm/boot/dts/am335x-boneblack-wireless.dts
+@@ -101,7 +101,7 @@ bluetooth {
  };
  
- &ehci1 {
- 	status = "okay";
--	clocks = <&cpg CPG_MOD 703>, <&cpg CPG_MOD 704>;
-+	clocks = <&cpg CPG_MOD 703>, <&cpg CPG_MOD 704>, <&usb2_clksel>, <&versaclock5 3>;
+ &gpio3 {
+-	ls_buf_en {
++	ls-buf-en-hog {
+ 		gpio-hog;
+ 		gpios = <10 GPIO_ACTIVE_HIGH>;
+ 		output-high;
+diff --git a/arch/arm/boot/dts/am335x-boneblue.dts b/arch/arm/boot/dts/am335x-boneblue.dts
+index c696d57cf364..239b32a04eb4 100644
+--- a/arch/arm/boot/dts/am335x-boneblue.dts
++++ b/arch/arm/boot/dts/am335x-boneblue.dts
+@@ -412,7 +412,7 @@ &dcan1 {
  };
  
- &hdmi0 {
+ &gpio3 {
+-	ls_buf_en {
++	ls-buf-en-hog {
+ 		gpio-hog;
+ 		gpios = <10 GPIO_ACTIVE_HIGH>;
+ 		output-high;
+diff --git a/arch/arm/boot/dts/am335x-bonegreen-wireless.dts b/arch/arm/boot/dts/am335x-bonegreen-wireless.dts
+index 7615327d906a..74db0fc39397 100644
+--- a/arch/arm/boot/dts/am335x-bonegreen-wireless.dts
++++ b/arch/arm/boot/dts/am335x-bonegreen-wireless.dts
+@@ -101,7 +101,7 @@ bluetooth {
+ };
+ 
+ &gpio1 {
+-	ls_buf_en {
++	ls-buf-en-hog {
+ 		gpio-hog;
+ 		gpios = <29 GPIO_ACTIVE_HIGH>;
+ 		output-high;
+@@ -118,7 +118,7 @@ ls_buf_en {
+ /* an external pulldown on U21 pin 4.                                  */
+ 
+ &gpio3 {
+-	bt_aud_in {
++	bt-aud-in-hog {
+ 		gpio-hog;
+ 		gpios = <16 GPIO_ACTIVE_HIGH>;
+ 		output-low;
+diff --git a/arch/arm/boot/dts/am335x-icev2.dts b/arch/arm/boot/dts/am335x-icev2.dts
+index b958ab56a412..ed45079a68ff 100644
+--- a/arch/arm/boot/dts/am335x-icev2.dts
++++ b/arch/arm/boot/dts/am335x-icev2.dts
+@@ -458,14 +458,14 @@ &uart3 {
+ };
+ 
+ &gpio3 {
+-	p4 {
++	pr1-mii-ctl-hog {
+ 		gpio-hog;
+ 		gpios = <4 GPIO_ACTIVE_HIGH>;
+ 		output-high;
+ 		line-name = "PR1_MII_CTRL";
+ 	};
+ 
+-	p10 {
++	mux-mii-hog {
+ 		gpio-hog;
+ 		gpios = <10 GPIO_ACTIVE_HIGH>;
+ 		/* ETH1 mux: Low for MII-PRU, high for RMII-CPSW */
+diff --git a/arch/arm/boot/dts/am335x-shc.dts b/arch/arm/boot/dts/am335x-shc.dts
+index 1eaa26533466..2bfe60d32783 100644
+--- a/arch/arm/boot/dts/am335x-shc.dts
++++ b/arch/arm/boot/dts/am335x-shc.dts
+@@ -140,14 +140,14 @@ ehrpwm1: pwm@200 {
+ };
+ 
+ &gpio1 {
+-	hmtc_rst {
++	hmtc-rst-hog {
+ 		gpio-hog;
+ 		gpios = <24 GPIO_ACTIVE_LOW>;
+ 		output-high;
+ 		line-name = "homematic_reset";
+ 	};
+ 
+-	hmtc_prog {
++	hmtc-prog-hog {
+ 		gpio-hog;
+ 		gpios = <27 GPIO_ACTIVE_LOW>;
+ 		output-high;
+@@ -156,14 +156,14 @@ hmtc_prog {
+ };
+ 
+ &gpio3 {
+-	zgb_rst {
++	zgb-rst-hog {
+ 		gpio-hog;
+ 		gpios = <18 GPIO_ACTIVE_LOW>;
+ 		output-low;
+ 		line-name = "zigbee_reset";
+ 	};
+ 
+-	zgb_boot {
++	zgb-boot-hog {
+ 		gpio-hog;
+ 		gpios = <19 GPIO_ACTIVE_HIGH>;
+ 		output-high;
 -- 
 2.30.2
 
