@@ -2,228 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CAA1B3C8BCC
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:35:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FA0E3C8BFD
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:38:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229755AbhGNThy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 15:37:54 -0400
-Received: from mail-io1-f45.google.com ([209.85.166.45]:38649 "EHLO
-        mail-io1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229735AbhGNThy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 15:37:54 -0400
-Received: by mail-io1-f45.google.com with SMTP id k11so3557875ioa.5;
-        Wed, 14 Jul 2021 12:35:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=I9cbY2zLQFzzSMRYvij/HrHruhuv2+3LhPqCX5tEvf8=;
-        b=lrbbwD6HBXdgagHCUvUv4/0QvjkDG9Lvek9202qOLUWEhCZiO4GyMgNEAQRgzOOEMI
-         mB1QJOVf1VPf18UBJoS67RlYj6R6n/mczSTBmCQQzM1uPQ5j8x+SQ6PHEgbqBVFjXcZK
-         LXm+W0ldeRsEnrZ90OffJS/P2kHH8LYJvbbyhCFcNTQPaYL86s4rzPd/vDzkI1CAwmsM
-         qMFESMQoZjr54uXHz7BX9+KxuHI0ncQVa2oASjK1PS7GVeMOhl+q6J7SMiXzVLAw7095
-         +EWVKaB7N+CS3w6aXHAQqmo/Hh5qadUlmhcFnq7Ga1fwuwX18rGIFMOcPvruJe3QLxBr
-         ft9Q==
-X-Gm-Message-State: AOAM533DGhr+LyV6uPhpMPeNMQc5Bm89LodKJeh0VDsBKYb42SiJsrfv
-        GwMzvSwtuFPD9RxKSAahPg==
-X-Google-Smtp-Source: ABdhPJyWnnBrYi+ysmr1HNE1YFp9NVtkig0vOQZRaegvvQgtileSC2STDqokiGX34V4lb/bBU5VNkQ==
-X-Received: by 2002:a05:6638:144e:: with SMTP id l14mr9269698jad.69.1626291300895;
-        Wed, 14 Jul 2021 12:35:00 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id c4sm1697467ilq.70.2021.07.14.12.34.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jul 2021 12:34:59 -0700 (PDT)
-Received: (nullmailer pid 3145390 invoked by uid 1000);
-        Wed, 14 Jul 2021 19:34:57 -0000
-Date:   Wed, 14 Jul 2021 13:34:57 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Sibi Sankar <sibis@codeaurora.org>
-Cc:     bjorn.andersson@linaro.org, swboyd@chromium.org,
-        ulf.hansson@linaro.org, rjw@rjwysocki.net, agross@kernel.org,
-        ohad@wizery.com, mathieu.poirier@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dianders@chromium.org, rishabhb@codeaurora.org,
-        sidgup@codeaurora.org
-Subject: Re: [PATCH v3 02/13] dt-bindings: remoteproc: qcom: pas: Add QMP
- bindings
-Message-ID: <20210714193457.GA3135088@robh.at.kernel.org>
-References: <1624560727-6870-1-git-send-email-sibis@codeaurora.org>
- <1624560727-6870-3-git-send-email-sibis@codeaurora.org>
+        id S229650AbhGNTkz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 15:40:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34988 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229531AbhGNTkz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Jul 2021 15:40:55 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6339F61370;
+        Wed, 14 Jul 2021 19:38:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1626291483;
+        bh=b2myPu/aXK9mAritJxN5S2+erPrjZkldEn9CKCLPE84=;
+        h=From:To:Cc:Subject:Date:From;
+        b=qzsF9VxihgyLlQz7GfOEFjGsVoFUPTNLS3/nQHzAp27iQf+M33fzVx7do5IbOlEht
+         NggNypLspQc5SsEHf32Un98oxk59Y80y1puOlzYiizSjZqQx5b1M6MUW+q/3yVTn/t
+         BHjNBYR/KBImcPxLPXLefXI2SqpLAhWMpaDKv/6fyG9n/I5UxfkF31AsxS96IoAsFN
+         7c4YECoVNj/1LWaiW0Gkr1zp8e2Sf6VCtZc+BuYzfBR8IQ7rpvir987AWEj1JaHp8I
+         /rvui/Jd9hRSj9Ue37CCj871O3i9tliX/lqOgN3aH0/vZVk+7Uv/IPOZStWcpi8nKe
+         w73uMHGA7SABg==
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Corentin Labbe <clabbe@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.13 001/108] ARM: dts: gemini: rename mdio to the right name
+Date:   Wed, 14 Jul 2021 15:36:13 -0400
+Message-Id: <20210714193800.52097-1-sashal@kernel.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1624560727-6870-3-git-send-email-sibis@codeaurora.org>
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 25, 2021 at 12:21:56AM +0530, Sibi Sankar wrote:
-> Add Qualcomm Mailbox Protocol (QMP) binding to replace the power domains
-> exposed by the AOSS QMP node.
+From: Corentin Labbe <clabbe@baylibre.com>
 
-Not a compatible change. Explain why that's okay for all 
-platforms/users.
+[ Upstream commit fc5b59b945b546e27977e99a5ca6fe61179ff0d2 ]
 
-> 
-> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
-> ---
-> 
-> v3:
->  * Misc. documentation fixes:
->   - Reduce power-domain maxItems due to load_state pd removal
->   - Combine compatibles where possible with the load_state pd removal
->   - Fixup the qcom,qmp ref to phandle type
-> 
->  .../devicetree/bindings/remoteproc/qcom,adsp.yaml  | 62 +++++++++++-----------
->  1 file changed, 30 insertions(+), 32 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-> index 9ea05e608bc1..ad85617b43fa 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-> @@ -75,11 +75,11 @@ properties:
->  
->    power-domains:
->      minItems: 1
-> -    maxItems: 3
-> +    maxItems: 2
->  
->    power-domain-names:
->      minItems: 1
-> -    maxItems: 3
-> +    maxItems: 2
->  
->    firmware-name:
->      $ref: /schemas/types.yaml#/definitions/string
-> @@ -89,6 +89,10 @@ properties:
->      maxItems: 1
->      description: Reference to the reserved-memory for the Hexagon core
->  
-> +  qcom,qmp:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: Reference to the AOSS side-channel message RAM.
-> +
->    qcom,smem-states:
->      $ref: /schemas/types.yaml#/definitions/phandle-array
->      description: States used by the AP to signal the Hexagon core
-> @@ -359,13 +363,11 @@ allOf:
->        properties:
->          power-domains:
->            items:
-> -            - description: Load State power domain
->              - description: CX power domain
->              - description: MX power domain
->              - description: MSS power domain
->          power-domain-names:
->            items:
-> -            - const: load_state
->              - const: cx
->              - const: mx
->              - const: mss
-> @@ -381,43 +383,20 @@ allOf:
->        properties:
->          power-domains:
->            items:
-> -            - description: Load State power domain
->              - description: CX power domain
-> -        power-domain-names:
-> -          items:
-> -            - const: load_state
-> -            - const: cx
->  
->    - if:
->        properties:
->          compatible:
->            contains:
->              enum:
-> +              - qcom,sdx55-mpss-pas
->                - qcom,sm8150-mpss-pas
->                - qcom,sm8350-mpss-pas
->      then:
->        properties:
->          power-domains:
->            items:
-> -            - description: Load State power domain
-> -            - description: CX power domain
-> -            - description: MSS power domain
-> -        power-domain-names:
-> -          items:
-> -            - const: load_state
-> -            - const: cx
-> -            - const: mss
-> -
-> -  - if:
-> -      properties:
-> -        compatible:
-> -          contains:
-> -            enum:
-> -              - qcom,sdx55-mpss-pas
-> -    then:
-> -      properties:
-> -        power-domains:
-> -          items:
->              - description: CX power domain
->              - description: MSS power domain
->          power-domain-names:
-> @@ -439,12 +418,10 @@ allOf:
->        properties:
->          power-domains:
->            items:
-> -            - description: Load State power domain
->              - description: LCX power domain
->              - description: LMX power domain
->          power-domain-names:
->            items:
-> -            - const: load_state
->              - const: lcx
->              - const: lmx
->  
-> @@ -458,12 +435,10 @@ allOf:
->        properties:
->          power-domains:
->            items:
-> -            - description: Load State power domain
->              - description: CX power domain
->              - description: MXC power domain
->          power-domain-names:
->            items:
-> -            - const: load_state
->              - const: cx
->              - const: mxc
->  
-> @@ -499,6 +474,29 @@ allOf:
->              - const: mss_restart
->              - const: pdc_reset
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sc7180-mpss-pas
-> +              - qcom,sm8150-adsp-pas
-> +              - qcom,sm8150-cdsp-pas
-> +              - qcom,sm8150-mpss-pas
-> +              - qcom,sm8150-slpi-pas
-> +              - qcom,sm8250-adsp-pas
-> +              - qcom,sm8250-cdsp-pas
-> +              - qcom,sm8250-slpi-pas
-> +              - qcom,sm8350-adsp-pas
-> +              - qcom,sm8350-cdsp-pas
-> +              - qcom,sm8350-mpss-pas
-> +              - qcom,sm8350-slpi-pas
-> +    then:
-> +      properties:
-> +        qcom,qmp:
-> +          items:
-> +            - description: Reference to the AOSS side-channel message RAM.
-> +
->  examples:
->    - |
->      #include <dt-bindings/clock/qcom,rpmcc.h>
-> -- 
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
-> 
-> 
+ethernet-phy is not the right name for mdio, fix it.
+
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm/boot/dts/gemini-dlink-dns-313.dts | 2 +-
+ arch/arm/boot/dts/gemini-nas4220b.dts      | 2 +-
+ arch/arm/boot/dts/gemini-rut1xx.dts        | 2 +-
+ arch/arm/boot/dts/gemini-wbd111.dts        | 2 +-
+ arch/arm/boot/dts/gemini-wbd222.dts        | 2 +-
+ 5 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/arch/arm/boot/dts/gemini-dlink-dns-313.dts b/arch/arm/boot/dts/gemini-dlink-dns-313.dts
+index c6f3d90e3e90..b8acc6eaaa6d 100644
+--- a/arch/arm/boot/dts/gemini-dlink-dns-313.dts
++++ b/arch/arm/boot/dts/gemini-dlink-dns-313.dts
+@@ -140,7 +140,7 @@ map1 {
+ 		};
+ 	};
+ 
+-	mdio0: ethernet-phy {
++	mdio0: mdio {
+ 		compatible = "virtual,mdio-gpio";
+ 		/* Uses MDC and MDIO */
+ 		gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>, /* MDC */
+diff --git a/arch/arm/boot/dts/gemini-nas4220b.dts b/arch/arm/boot/dts/gemini-nas4220b.dts
+index 43c45f7e1e0a..13112a8a5dd8 100644
+--- a/arch/arm/boot/dts/gemini-nas4220b.dts
++++ b/arch/arm/boot/dts/gemini-nas4220b.dts
+@@ -62,7 +62,7 @@ led-green-os {
+ 		};
+ 	};
+ 
+-	mdio0: ethernet-phy {
++	mdio0: mdio {
+ 		compatible = "virtual,mdio-gpio";
+ 		gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>, /* MDC */
+ 			<&gpio0 21 GPIO_ACTIVE_HIGH>; /* MDIO */
+diff --git a/arch/arm/boot/dts/gemini-rut1xx.dts b/arch/arm/boot/dts/gemini-rut1xx.dts
+index 9611ddf06792..79f17988884f 100644
+--- a/arch/arm/boot/dts/gemini-rut1xx.dts
++++ b/arch/arm/boot/dts/gemini-rut1xx.dts
+@@ -56,7 +56,7 @@ led-power {
+ 		};
+ 	};
+ 
+-	mdio0: ethernet-phy {
++	mdio0: mdio {
+ 		compatible = "virtual,mdio-gpio";
+ 		gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>, /* MDC */
+ 			<&gpio0 21 GPIO_ACTIVE_HIGH>; /* MDIO */
+diff --git a/arch/arm/boot/dts/gemini-wbd111.dts b/arch/arm/boot/dts/gemini-wbd111.dts
+index 3a2761dd460f..5602ba8f30f2 100644
+--- a/arch/arm/boot/dts/gemini-wbd111.dts
++++ b/arch/arm/boot/dts/gemini-wbd111.dts
+@@ -68,7 +68,7 @@ led-greeb-l3 {
+ 		};
+ 	};
+ 
+-	mdio0: ethernet-phy {
++	mdio0: mdio {
+ 		compatible = "virtual,mdio-gpio";
+ 		gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>, /* MDC */
+ 			<&gpio0 21 GPIO_ACTIVE_HIGH>; /* MDIO */
+diff --git a/arch/arm/boot/dts/gemini-wbd222.dts b/arch/arm/boot/dts/gemini-wbd222.dts
+index 52b4dbc0c072..a4a260c36d75 100644
+--- a/arch/arm/boot/dts/gemini-wbd222.dts
++++ b/arch/arm/boot/dts/gemini-wbd222.dts
+@@ -67,7 +67,7 @@ led-green-l3 {
+ 		};
+ 	};
+ 
+-	mdio0: ethernet-phy {
++	mdio0: mdio {
+ 		compatible = "virtual,mdio-gpio";
+ 		gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>, /* MDC */
+ 			<&gpio0 21 GPIO_ACTIVE_HIGH>; /* MDIO */
+-- 
+2.30.2
+
