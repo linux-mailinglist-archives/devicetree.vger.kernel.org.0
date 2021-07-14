@@ -2,72 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0B5B3C8BF7
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:37:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E496B3C8D01
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:40:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229721AbhGNTkc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 15:40:32 -0400
-Received: from mail-io1-f50.google.com ([209.85.166.50]:41600 "EHLO
-        mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229650AbhGNTkc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 15:40:32 -0400
-Received: by mail-io1-f50.google.com with SMTP id z9so3506892iob.8;
-        Wed, 14 Jul 2021 12:37:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=yFXysK5QOV9gybtnN9RhupuFfhn+ypkE022RTON7Xkk=;
-        b=AcZ8sdh/89HX5AimgEGcvQmxF/vpbwnwjEfn3TOZj2lLoVjckGd59FdQnXbmqUpzSe
-         VL4palhUUOe5zVQ7jquna9RmAae+BG/98EXdG88R4LDsIwEBqzdhhIof1gscS5wjTkTJ
-         OmgwFlhGQu5Gt5y2RTiWBHrBdMhqOVSzkwd2dyeyHOaZ+BOh+Jy3Tdd6IBlik4aCPaNN
-         yyXLVYAo9gVoXXsslf3scUWr2+Tn1zEbmy0A68KYJB1hs3pnYag/D8ACtbME974ShHZH
-         YS1fUFoaouwhOFRDeLjQxmONxU8aJ5n0hcuMjGvm9+W4s3Fwz09M5RSfDj5lbdAC5O/c
-         pmkQ==
-X-Gm-Message-State: AOAM5305RaoTzO0MWTs5M8FgyZB4PR1MftNHTgo+Z73gtB2IM+3PK3Qn
-        4IoTCZDCKq5HSRQGAS/Qjg==
-X-Google-Smtp-Source: ABdhPJzTVnCksi6USt4jMQ9BBc0xI6zwCtruKYr1fN/ZmcDbgZJEaOWxQ8Hm+smUBRc21truH7dzyA==
-X-Received: by 2002:a5d:858b:: with SMTP id f11mr8297275ioj.156.1626291459021;
-        Wed, 14 Jul 2021 12:37:39 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id t2sm1758841ilq.27.2021.07.14.12.37.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jul 2021 12:37:38 -0700 (PDT)
-Received: (nullmailer pid 3160062 invoked by uid 1000);
-        Wed, 14 Jul 2021 19:37:34 -0000
-Date:   Wed, 14 Jul 2021 13:37:34 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Sibi Sankar <sibis@codeaurora.org>
-Cc:     evgreen@chromium.org, ohad@wizery.com,
-        saiprakash.ranjan@codeaurora.org, devicetree@vger.kernel.org,
-        swboyd@chromium.org, joro@8bytes.org,
-        linux-remoteproc@vger.kernel.org, agross@kernel.org,
-        mathieu.poirier@linaro.org, bjorn.andersson@linaro.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        will@kernel.org, linux-arm-msm@vger.kernel.org, robh+dt@kernel.org,
-        robin.murphy@arm.com, dianders@chromium.org, p.zabel@pengutronix.de
-Subject: Re: [PATCH 3/9] dt-bindings: remoteproc: qcom: Add Q6V5 Modem PIL
- binding
-Message-ID: <20210714193734.GA3159989@robh.at.kernel.org>
-References: <1624564058-24095-1-git-send-email-sibis@codeaurora.org>
- <1624564058-24095-4-git-send-email-sibis@codeaurora.org>
+        id S236069AbhGNTn0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 15:43:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38626 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234001AbhGNTmz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Jul 2021 15:42:55 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CBD8F613D2;
+        Wed, 14 Jul 2021 19:40:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1626291602;
+        bh=0GHUhYtQEQPhgCBRMWQ3a48DdpMVw3MIkHFYkZAA91E=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=FQmio5WSNbsLTHI0BkEh8Ph96nwz8VRnV27NZszVSnZoi6Pdno1UO0xhDRhv547RW
+         /xR/yJ8rp8TDOA7WEqAfw0OnW8coZ/fRiP2yWO549bov0AU7ZwyycXdUtGCYmSahbw
+         FkKw9ukDx9On3NRABaRKpVUre3XgHerAiH3u6g494FJMU3jYUCfMo8rj24FKxhB1t+
+         G7kO/5zu3xXUg5nE26TNUwiFIjmIwHuqxsmidSHQaI13xDpLYgWNLFHC/5R5u0lg9o
+         r8/HQHBqN4MKHa/vDo+/v8F/rGzzK3B9PLCe+kpnFJbEuYMC7UR6Rxq6wEjfacniNy
+         T6d02vff8Efsw==
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Punit Agrawal <punitagrawal@gmail.com>,
+        Alexandru Elisei <alexandru.elisei@arm.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.13 084/108] arm64: dts: rockchip: Update RK3399 PCI host bridge window to 32-bit address memory
+Date:   Wed, 14 Jul 2021 15:37:36 -0400
+Message-Id: <20210714193800.52097-84-sashal@kernel.org>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210714193800.52097-1-sashal@kernel.org>
+References: <20210714193800.52097-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1624564058-24095-4-git-send-email-sibis@codeaurora.org>
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 25 Jun 2021 01:17:32 +0530, Sibi Sankar wrote:
-> Add a new modem compatible string for QTI SC7280 SoCs and introduce the
-> "qcom,ext-regs" and "qcom,qaccept-regs" bindings needed by the modem
-> sub-system running on SC7280 SoCs.
-> 
-> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
-> ---
->  .../devicetree/bindings/remoteproc/qcom,q6v5.txt   | 32 ++++++++++++++++++++--
->  1 file changed, 30 insertions(+), 2 deletions(-)
-> 
+From: Punit Agrawal <punitagrawal@gmail.com>
 
-Acked-by: Rob Herring <robh@kernel.org>
+[ Upstream commit 8efe01b4386ab38a36b99cfdc1dc02c38a8898c3 ]
+
+The PCIe host bridge on RK3399 advertises a single 64-bit memory
+address range even though it lies entirely below 4GB.
+
+Previously the OF PCI range parser treated 64-bit ranges more
+leniently (i.e., as 32-bit), but since commit 9d57e61bf723 ("of/pci:
+Add IORESOURCE_MEM_64 to resource flags for 64-bit memory addresses")
+the code takes a stricter view and treats the ranges as advertised in
+the device tree (i.e, as 64-bit).
+
+The change in behaviour causes failure when allocating bus addresses
+to devices connected behind a PCI-to-PCI bridge that require
+non-prefetchable memory ranges. The allocation failure was observed
+for certain Samsung NVMe drives connected to RockPro64 boards.
+
+Update the host bridge window attributes to treat it as 32-bit address
+memory. This fixes the allocation failure observed since commit
+9d57e61bf723.
+
+Reported-by: Alexandru Elisei <alexandru.elisei@arm.com>
+Link: https://lore.kernel.org/r/7a1e2ebc-f7d8-8431-d844-41a9c36a8911@arm.com
+Suggested-by: Robin Murphy <robin.murphy@arm.com>
+Signed-off-by: Punit Agrawal <punitagrawal@gmail.com>
+Tested-by: Alexandru Elisei <alexandru.elisei@arm.com>
+Link: https://lore.kernel.org/r/20210607112856.3499682-5-punitagrawal@gmail.com
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+index 1703817c7354..7f8081f9e30e 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+@@ -227,7 +227,7 @@ pcie0: pcie@f8000000 {
+ 		       <&pcie_phy 2>, <&pcie_phy 3>;
+ 		phy-names = "pcie-phy-0", "pcie-phy-1",
+ 			    "pcie-phy-2", "pcie-phy-3";
+-		ranges = <0x83000000 0x0 0xfa000000 0x0 0xfa000000 0x0 0x1e00000>,
++		ranges = <0x82000000 0x0 0xfa000000 0x0 0xfa000000 0x0 0x1e00000>,
+ 			 <0x81000000 0x0 0xfbe00000 0x0 0xfbe00000 0x0 0x100000>;
+ 		resets = <&cru SRST_PCIE_CORE>, <&cru SRST_PCIE_MGMT>,
+ 			 <&cru SRST_PCIE_MGMT_STICKY>, <&cru SRST_PCIE_PIPE>,
+-- 
+2.30.2
+
