@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB4AB3C8F6D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:58:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 186F53C8F70
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:58:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236591AbhGNTwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 15:52:33 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46536 "EHLO mail.kernel.org"
+        id S233701AbhGNTwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 15:52:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47012 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240585AbhGNTty (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Jul 2021 15:49:54 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8FE3D61434;
-        Wed, 14 Jul 2021 19:45:40 +0000 (UTC)
+        id S240651AbhGNTt7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Jul 2021 15:49:59 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D2D236143D;
+        Wed, 14 Jul 2021 19:45:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626291941;
-        bh=rv1Jq7gSeH/D7qK7OR/7LIsNvqRJl3kZI8/nznX9llE=;
+        s=k20201202; t=1626291946;
+        bh=Zk6TdY4OBTNzN3hkr90jIgLtff7IykMudgWbaa+DDkE=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=mIsMq6suz05OpPTEC/bY8vXLSLgdQFKh1m8tNeAYtmBnrs9iKqHgjCIwn64QMvXiS
-         irqXuEtc0l/WweA/8RfNZtUSmkMQfUzsFAT0nd4QtlqIbyYWW6ZyqoBHNcGvBY3YyM
-         AcKvsPmyxbycdJ11E1uIScV4SdgXnddB3HO/zwrVBGLZEEmWjCtWuSan/kychfTddK
-         oWZjK1eh81AvzNaH63zgUJeKKfmbirQNQWoGHPsdFoWgerrSJARQgf/qinLO6vHoCK
-         wcrH7gUIL794BIELGnzDhueXXTt05RiN1jtS67yFjtgiKK/q6CgCB9exjREl+AZMsb
-         oeeFM26Owx9qg==
+        b=JcNvLrW5YFJ40JMqzKIz09LvUg6zYtZGG0pMqomjkWz7s/eTwLddC4ld9X75UgP15
+         FJb1Dl7nY9PyeeN+1m45fzlheOv+3C2lsE/LvSUlguKYuYqcyJjQAhP9CycSNXWg1I
+         xNOZw9IuN6+CWSRUtxH3X7jVNZloIr3EqpkmKGIBnRlIIQAw2ySf8wXm6FLgvAVH6k
+         xekddJjrChLgK+UHC97eAj6YH/4tX/ec3amN66cjaVOX56eLWMBeikoPSDsBYoi5LX
+         Zj85yxsxVhvjN2RKaIrr/ZY07kboqSVzgFIGpjpTv08/d+AjJaf9W0KqDLGAsjPBx+
+         cxc3DM2ERxmWg==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Primoz Fiser <primoz.fiser@norik.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.4 19/51] ARM: dts: imx6: phyFLEX: Fix UART hardware flow control
-Date:   Wed, 14 Jul 2021 15:44:41 -0400
-Message-Id: <20210714194513.54827-19-sashal@kernel.org>
+Cc:     Grygorii Strashko <grygorii.strashko@ti.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Sasha Levin <sashal@kernel.org>, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.4 23/51] ARM: dts: am335x: align GPIO hog names with dt-schema
+Date:   Wed, 14 Jul 2021 15:44:45 -0400
+Message-Id: <20210714194513.54827-23-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210714194513.54827-1-sashal@kernel.org>
 References: <20210714194513.54827-1-sashal@kernel.org>
@@ -43,47 +43,131 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Primoz Fiser <primoz.fiser@norik.com>
+From: Grygorii Strashko <grygorii.strashko@ti.com>
 
-[ Upstream commit 14cdc1f243d79e0b46be150502b7dba9c5a6bdfd ]
+[ Upstream commit fb97f63106f3174992a22fe5e42dda96a0810750 ]
 
-Serial interface uart3 on phyFLEX board is capable of 5-wire connection
-including signals RTS and CTS for hardware flow control.
+The GPIO Hog dt-schema node naming convention expect GPIO hogs node names
+to end with a 'hog' suffix.
 
-Fix signals UART3_CTS_B and UART3_RTS_B padmux assignments and add
-missing property "uart-has-rtscts" to allow serial interface to be
-configured and used with the hardware flow control.
-
-Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/am335x-boneblack-wireless.dts | 2 +-
+ arch/arm/boot/dts/am335x-boneblue.dts           | 2 +-
+ arch/arm/boot/dts/am335x-bonegreen-wireless.dts | 4 ++--
+ arch/arm/boot/dts/am335x-icev2.dts              | 4 ++--
+ arch/arm/boot/dts/am335x-shc.dts                | 8 ++++----
+ 5 files changed, 10 insertions(+), 10 deletions(-)
 
-diff --git a/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi b/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
-index 6678b97b1007..3617089dbe36 100644
---- a/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
-@@ -315,8 +315,8 @@ pinctrl_uart3: uart3grp {
- 			fsl,pins = <
- 				MX6QDL_PAD_EIM_D24__UART3_TX_DATA	0x1b0b1
- 				MX6QDL_PAD_EIM_D25__UART3_RX_DATA	0x1b0b1
--				MX6QDL_PAD_EIM_D30__UART3_RTS_B		0x1b0b1
--				MX6QDL_PAD_EIM_D31__UART3_CTS_B		0x1b0b1
-+				MX6QDL_PAD_EIM_D31__UART3_RTS_B		0x1b0b1
-+				MX6QDL_PAD_EIM_D30__UART3_CTS_B		0x1b0b1
- 			>;
- 		};
- 
-@@ -403,6 +403,7 @@ &reg_soc {
- &uart3 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_uart3>;
-+	uart-has-rtscts;
- 	status = "disabled";
+diff --git a/arch/arm/boot/dts/am335x-boneblack-wireless.dts b/arch/arm/boot/dts/am335x-boneblack-wireless.dts
+index 3124d94c0b3c..3056c3e3e312 100644
+--- a/arch/arm/boot/dts/am335x-boneblack-wireless.dts
++++ b/arch/arm/boot/dts/am335x-boneblack-wireless.dts
+@@ -102,7 +102,7 @@ bluetooth {
  };
  
+ &gpio3 {
+-	ls_buf_en {
++	ls-buf-en-hog {
+ 		gpio-hog;
+ 		gpios = <10 GPIO_ACTIVE_HIGH>;
+ 		output-high;
+diff --git a/arch/arm/boot/dts/am335x-boneblue.dts b/arch/arm/boot/dts/am335x-boneblue.dts
+index 2f6652ef9a15..8b98aa2d9588 100644
+--- a/arch/arm/boot/dts/am335x-boneblue.dts
++++ b/arch/arm/boot/dts/am335x-boneblue.dts
+@@ -435,7 +435,7 @@ &dcan1 {
+ };
+ 
+ &gpio3 {
+-	ls_buf_en {
++	ls-buf-en-hog {
+ 		gpio-hog;
+ 		gpios = <10 GPIO_ACTIVE_HIGH>;
+ 		output-high;
+diff --git a/arch/arm/boot/dts/am335x-bonegreen-wireless.dts b/arch/arm/boot/dts/am335x-bonegreen-wireless.dts
+index 4092cd193b8a..8d85c6a851c3 100644
+--- a/arch/arm/boot/dts/am335x-bonegreen-wireless.dts
++++ b/arch/arm/boot/dts/am335x-bonegreen-wireless.dts
+@@ -102,7 +102,7 @@ bluetooth {
+ };
+ 
+ &gpio1 {
+-	ls_buf_en {
++	ls-buf-en-hog {
+ 		gpio-hog;
+ 		gpios = <29 GPIO_ACTIVE_HIGH>;
+ 		output-high;
+@@ -119,7 +119,7 @@ ls_buf_en {
+ /* an external pulldown on U21 pin 4.                                  */
+ 
+ &gpio3 {
+-	bt_aud_in {
++	bt-aud-in-hog {
+ 		gpio-hog;
+ 		gpios = <16 GPIO_ACTIVE_HIGH>;
+ 		output-low;
+diff --git a/arch/arm/boot/dts/am335x-icev2.dts b/arch/arm/boot/dts/am335x-icev2.dts
+index 204bccfcc110..1e52dfe4f2d3 100644
+--- a/arch/arm/boot/dts/am335x-icev2.dts
++++ b/arch/arm/boot/dts/am335x-icev2.dts
+@@ -445,14 +445,14 @@ &uart3 {
+ };
+ 
+ &gpio3 {
+-	p4 {
++	pr1-mii-ctl-hog {
+ 		gpio-hog;
+ 		gpios = <4 GPIO_ACTIVE_HIGH>;
+ 		output-high;
+ 		line-name = "PR1_MII_CTRL";
+ 	};
+ 
+-	p10 {
++	mux-mii-hog {
+ 		gpio-hog;
+ 		gpios = <10 GPIO_ACTIVE_HIGH>;
+ 		/* ETH1 mux: Low for MII-PRU, high for RMII-CPSW */
+diff --git a/arch/arm/boot/dts/am335x-shc.dts b/arch/arm/boot/dts/am335x-shc.dts
+index 5b0368504015..852cf61478e6 100644
+--- a/arch/arm/boot/dts/am335x-shc.dts
++++ b/arch/arm/boot/dts/am335x-shc.dts
+@@ -144,14 +144,14 @@ ehrpwm1: pwm@200 {
+ };
+ 
+ &gpio1 {
+-	hmtc_rst {
++	hmtc-rst-hog {
+ 		gpio-hog;
+ 		gpios = <24 GPIO_ACTIVE_LOW>;
+ 		output-high;
+ 		line-name = "homematic_reset";
+ 	};
+ 
+-	hmtc_prog {
++	hmtc-prog-hog {
+ 		gpio-hog;
+ 		gpios = <27 GPIO_ACTIVE_LOW>;
+ 		output-high;
+@@ -160,14 +160,14 @@ hmtc_prog {
+ };
+ 
+ &gpio3 {
+-	zgb_rst {
++	zgb-rst-hog {
+ 		gpio-hog;
+ 		gpios = <18 GPIO_ACTIVE_LOW>;
+ 		output-low;
+ 		line-name = "zigbee_reset";
+ 	};
+ 
+-	zgb_boot {
++	zgb-boot-hog {
+ 		gpio-hog;
+ 		gpios = <19 GPIO_ACTIVE_HIGH>;
+ 		output-high;
 -- 
 2.30.2
 
