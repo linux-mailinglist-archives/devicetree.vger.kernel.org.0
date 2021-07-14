@@ -2,110 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 300BF3C9220
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 22:32:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 639643C922D
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 22:36:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231628AbhGNUfZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 16:35:25 -0400
-Received: from mx4.securetransport.de ([178.254.6.145]:46468 "EHLO
-        mx4.securetransport.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231428AbhGNUfY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 16:35:24 -0400
-X-Greylist: delayed 388 seconds by postgrey-1.27 at vger.kernel.org; Wed, 14 Jul 2021 16:35:24 EDT
-Received: from mail.dh-electronics.com (business-24-134-97-169.pool2.vodafone-ip.de [24.134.97.169])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx4.securetransport.de (Postfix) with ESMTPSA id 00E5072085C;
-        Wed, 14 Jul 2021 22:25:42 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dh-electronics.com;
-        s=dhelectronicscom; t=1626294344;
-        bh=1ydmi6FFj4AhAPhPs81r+ILQytchAfOzwLRI5g41Z9s=;
-        h=From:To:CC:Subject:Date:From;
-        b=pEI0ezBw2CLNZH9E6W3Ojn5lnnsM87ZwgfuMIWxee2keHWtibQnD81N+lvbLAc+qe
-         PhpZOJcVyqPOIGAVo+1w4g8c2X4L/+CQyT2Cda9cg4ssSymrjXm1TMeUIFbEp9O/CO
-         3/gfVhPleVIVYgyde5iGMAO3ptMdJ+quFONKuUCVEvTD/1k6XCwK8PM5cTluYw08gz
-         OUVC8teIxYX4n1+ymiZLwXYGX39NCyRtUU9jLJfEr5J9hKhfN7mFCNrAfNQPYioJjS
-         8uxjIZJ45g0zTugCnKDa6B8+LoKG/lmk05xhqb9VuoOqcd+Stg89QIXJrr7YDZY4yv
-         XktgGdmRR7NXQ==
-Received: from DHPWEX01.DH-ELECTRONICS.ORG (2001:470:76a7:2::30) by
- DHPWEX01.DH-ELECTRONICS.ORG (2001:470:76a7:2::30) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.858.12; Wed, 14 Jul 2021 22:25:32 +0200
-Received: from localhost.localdomain (172.16.51.7) by
- DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.12
- via Frontend Transport; Wed, 14 Jul 2021 22:25:32 +0200
-From:   Christoph Niedermaier <cniedermaier@dh-electronics.com>
-To:     <devicetree@vger.kernel.org>
-CC:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, <kernel@dh-electronics.com>,
-        Fabio Estevam <festevam@denx.de>
-Subject: [PATCH V3] dt-bindings: arm: fsl: Add DHCOM PicoITX and DHCOM DRC02 boards
-Date:   Wed, 14 Jul 2021 22:22:52 +0200
-Message-ID: <20210714202252.5898-1-cniedermaier@dh-electronics.com>
-X-Mailer: git-send-email 2.11.0
-X-klartext: yes
+        id S229535AbhGNUjR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 16:39:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34286 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229870AbhGNUjR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 16:39:17 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3F55C06175F
+        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 13:36:24 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1m3lcB-0007Hc-J7; Wed, 14 Jul 2021 22:36:19 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1m3lcA-0007cN-W8; Wed, 14 Jul 2021 22:36:18 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1m3lcA-0005Zc-VE; Wed, 14 Jul 2021 22:36:18 +0200
+Date:   Wed, 14 Jul 2021 22:35:50 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Sasha Levin <sashal@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH AUTOSEL 5.13 024/108] ARM: dts: imx25-pinfunc: Fix gpio
+ function name for pads GPIO_[A-F]
+Message-ID: <20210714203550.zlbvfh6rfnah6iir@pengutronix.de>
+References: <20210714193800.52097-1-sashal@kernel.org>
+ <20210714193800.52097-24-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="k3zb7i65xmj5fean"
+Content-Disposition: inline
+In-Reply-To: <20210714193800.52097-24-sashal@kernel.org>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DH electronics DHCOM PicoITX and DHCOM DRC02 boards. The DHCOM DRC02
-device can only house a SOM with iMX6S and not with iMX6DL, due to some
-thermal design consideration. But for compatible fsl,imx6dl is chosen,
-because fsl,imx6s isn't available, the iMX6S is basically a iMX6DL with
-one CPU core disabled and therefore the kernel discerns the iMX6S/iMX6DL
-automatically.
 
-Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org
-Cc: robh+dt@kernel.org
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: kernel@dh-electronics.com
-Cc: Fabio Estevam <festevam@denx.de>
-To: devicetree@vger.kernel.org
----
-V2: - Remove line with fsl,imx6s on the DRC02 Board
-V3: - Rework of the commit message
-    - Add Fabio Estevam to the CC list
----
- Documentation/devicetree/bindings/arm/fsl.yaml | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+--k3zb7i65xmj5fean
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index 1c827c1954dc..6eff9e35f9a9 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -418,6 +418,12 @@ properties:
-           - const: dfi,fs700e-m60
-           - const: fsl,imx6dl
- 
-+      - description: i.MX6DL DHCOM PicoITX Board
-+        items:
-+          - const: dh,imx6dl-dhcom-picoitx
-+          - const: dh,imx6dl-dhcom-som
-+          - const: fsl,imx6dl
-+
-       - description: i.MX6DL Gateworks Ventana Boards
-         items:
-           - enum:
-@@ -469,6 +475,12 @@ properties:
-           - const: toradex,colibri_imx6dl          # Colibri iMX6 Module
-           - const: fsl,imx6dl
- 
-+      - description: i.MX6S DHCOM DRC02 Board
-+        items:
-+          - const: dh,imx6s-dhcom-drc02
-+          - const: dh,imx6s-dhcom-som
-+          - const: fsl,imx6dl
-+
-       - description: i.MX6SL based Boards
-         items:
-           - enum:
--- 
-2.11.0
+On Wed, Jul 14, 2021 at 03:36:36PM -0400, Sasha Levin wrote:
+> From: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+>=20
+> [ Upstream commit e0cdd26af8eb9001689a4cde4f72c61c1c4b06be ]
+>=20
+> The pinfunc definitions used GPIO_A as function instead of GPIO_1_0 as
+> done for all the other pins with GPIO functionality. Fix for consistency.
+>=20
+> There are no mainline users that needs adaption.
+>=20
+> Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+> Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+> Signed-off-by: Sasha Levin <sashal@kernel.org>
 
+I'm not convinced it's a good idea to take this patch for stable.
+in-tree users are unaffected and the only effect this can have on
+out-of-tree users is to break them. So the gain of having this is not
+positive.
+
+Am I missing something?
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--k3zb7i65xmj5fean
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmDvSqMACgkQwfwUeK3K
+7AnZuQf+NV8hcDo2RjWPLrtLPXe2b1g/CaaokgXh2p8Q/LvRQ6BsTgjRG0bqGx/V
+333ywJeLqwfb1xA8xLcM8vz10fcf9/JeeBE1j2QT+RoKKtqmeaRqVplNzq4KCxKL
+/84XA28SfDdqvPBjuuIABMEwJ6rxUmnE15gslXTivz9qg7Cp8480eDTQbzBU3Iww
+qXg2KVJUED1CnCOnL6D6o8hsMmENZHAJ1E5Y4NcvgA/DHx5PZHn4aOYIe7jTBHgH
+FKOPlu61k+Sw0YpnNBxIB4mHtNMcLucUZEBT6qTUe2ueCweLV8uqaRn3wV20jXHr
+x1enkacTlJjdJdt14hhqeerWMn9wyw==
+=G5Oc
+-----END PGP SIGNATURE-----
+
+--k3zb7i65xmj5fean--
