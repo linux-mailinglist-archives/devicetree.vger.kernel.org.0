@@ -2,133 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EB143C8B9D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:24:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC3223C8BA6
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 21:27:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240064AbhGNT1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 15:27:42 -0400
-Received: from mail-il1-f182.google.com ([209.85.166.182]:38804 "EHLO
-        mail-il1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230209AbhGNT1l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 15:27:41 -0400
-Received: by mail-il1-f182.google.com with SMTP id e2so2712739ilu.5;
-        Wed, 14 Jul 2021 12:24:49 -0700 (PDT)
+        id S229735AbhGNTaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 15:30:03 -0400
+Received: from mail-il1-f175.google.com ([209.85.166.175]:33624 "EHLO
+        mail-il1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229650AbhGNTaC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 15:30:02 -0400
+Received: by mail-il1-f175.google.com with SMTP id z1so2751599ils.0;
+        Wed, 14 Jul 2021 12:27:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=YMCl4enjhuB3fuRr8/IBxvkVXV7SxWxUKUby5uTH5Xc=;
-        b=uJUp4I6eiT6J1qnjXsluToirt02QL3Rt2sL2oLylLdpbBTPS8pVSvwDx4yKbl/7fD1
-         t7mOGQW2TOGP8C7/bwuY/tcK5dX+ZfhVSB/26OwnHo3tMS+trnBnbmg6+pHwGRMQZRey
-         zbmrU9ztWnVB2QWgHxQkufpIw27HpfmqU7NnQ+LAWOM0KQMBUEY9zpOMFTIDbzJuemdE
-         uLeRax561kYBkiTsVsILNxI3txlIEHLP11zFvR9vFW6g1BF7ZG4gdHYU/Ir8b2Tarrkk
-         2l49eH53HBthwIOThJPSYVDrJFkwnpo7Ucc/3OOQLm15uDT/7AdrryDk2FWJNCmvoZQ4
-         qfMw==
-X-Gm-Message-State: AOAM531vLQWutqlpuTSysgNVQlUm6lY4J3ErnO49E1bm3Su8v3PVOIM1
-        /AAP2/Q5sNfftNqoYyPXvg==
-X-Google-Smtp-Source: ABdhPJxx/lWHdgSnhYaFflo1SOn/Jir7KsTvgQNUtgzciyIUUp9cSdIFeuhiCCHNZzE033cBZRE0EQ==
-X-Received: by 2002:a05:6e02:12a4:: with SMTP id f4mr7753336ilr.102.1626290689492;
-        Wed, 14 Jul 2021 12:24:49 -0700 (PDT)
+        bh=RzPhtbgpbxnOvk9KnY8WTPdMhffL639krC2aO6F+axU=;
+        b=Uq6PsLoR/abnq414Rswh511c+OAbWqH2D+YaJuzTeFSffYUhiqn9rzEn5kA6xn9aB1
+         jZkZ3GGvuIZBbpJnHKq3rET2/nKZtIt9WqWYQNWRTCJxDGyMxTPdEnRCbK+MNRhZMbrm
+         TspJMcBuY1jE4phNt2seqNNnxYwKX0OMAvsgfFtnKjZYKfmqFke0de9ZznXr12PJlluy
+         XIkfcwx/FHap0nzkTLOQXlB/9BrKDvFOEx8dQoKgOrgJJQQyaTitfxINhngiJdz7Ct1u
+         z37thi14bPiq2d76Kj667xa+oNCdrvRmO2rAgnde9nQsz62fFt7Kdv31bjVrqFJ3xBCU
+         97rg==
+X-Gm-Message-State: AOAM533PC0u2JbAP09eYfgCayuikEGQwOeB6rOu7i7TyLTnphR7czZoB
+        JQxVPVmoIAxm2MAnK3EEv7WZaD0Bfw==
+X-Google-Smtp-Source: ABdhPJym1dGtLhVjJOsI52JP8TEA6Em+rrrz6Bg6Vyph2weEybKYkuer9VVBZkwLRLrDFITR1rJA+g==
+X-Received: by 2002:a05:6e02:5ad:: with SMTP id k13mr7656353ils.284.1626290830593;
+        Wed, 14 Jul 2021 12:27:10 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id r1sm1281833ilt.37.2021.07.14.12.24.47
+        by smtp.gmail.com with ESMTPSA id f4sm1722768ile.8.2021.07.14.12.27.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Jul 2021 12:24:48 -0700 (PDT)
-Received: (nullmailer pid 3065460 invoked by uid 1000);
-        Wed, 14 Jul 2021 19:24:47 -0000
-Date:   Wed, 14 Jul 2021 13:24:47 -0600
+        Wed, 14 Jul 2021 12:27:09 -0700 (PDT)
+Received: (nullmailer pid 3078602 invoked by uid 1000);
+        Wed, 14 Jul 2021 19:27:05 -0000
+Date:   Wed, 14 Jul 2021 13:27:05 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, punit1.agrawal@toshiba.co.jp,
-        yuji2.ishikawa@toshiba.co.jp, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/4] dt-bindings: clock: Add DT bindings for SMU of
- Toshiba Visconti TMPV770x SoC
-Message-ID: <20210714192447.GA3059664@robh.at.kernel.org>
-References: <20210624034337.282386-1-nobuhiro1.iwamatsu@toshiba.co.jp>
- <20210624034337.282386-4-nobuhiro1.iwamatsu@toshiba.co.jp>
+To:     Amelie Delaunay <amelie.delaunay@foss.st.com>
+Cc:     Pierre-Yves Mordret <pierre-yves.mordret@foss.st.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, dmaengine@vger.kernel.org,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] dt-bindings: dma: add alternative REQ/ACK protocol
+ selection in stm32-dma
+Message-ID: <20210714192705.GA3078178@robh.at.kernel.org>
+References: <20210624093959.142265-1-amelie.delaunay@foss.st.com>
+ <20210624093959.142265-2-amelie.delaunay@foss.st.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210624034337.282386-4-nobuhiro1.iwamatsu@toshiba.co.jp>
+In-Reply-To: <20210624093959.142265-2-amelie.delaunay@foss.st.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 24, 2021 at 12:43:36PM +0900, Nobuhiro Iwamatsu wrote:
-> Add device tree bindings for SMU (System Management Unit) controller of
-> Toshiba Visconti TMPV770x SoC series.
+On Thu, 24 Jun 2021 11:39:58 +0200, Amelie Delaunay wrote:
+> Default REQ/ACK protocol consists in maintaining ACK signal up to the
+> removal of REQuest and the transfer completion.
+> In case of alternative REQ/ACK protocol, ACK de-assertion does not wait the
+> removal of the REQuest, but only the transfer completion.
+> Due to a possible DMA stream lock when transferring data to/from STM32
+> USART/UART, this new bindings allow to select this alternative protocol in
+> device tree, especially for STM32 USART/UART nodes.
 > 
-> Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
 > ---
->  .../clock/toshiba,tmpv770x-pismu.yaml         | 50 +++++++++++++++++++
->  1 file changed, 50 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pismu.yaml
+>  Documentation/devicetree/bindings/dma/st,stm32-dma.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pismu.yaml b/Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pismu.yaml
-> new file mode 100644
-> index 000000000000..18fdf4f2831b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pismu.yaml
-> @@ -0,0 +1,50 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/toshiba,tmpv770x-pismu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Toshiba Visconti5 TMPV770x SMU controller Device Tree Bindings
-> +
-> +maintainers:
-> +  - Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> +
-> +description:
-> +  Toshia Visconti5 SMU (System Management Unit) which supports the clock
-> +  and resets on TMPV770x.
-> +
-> +properties:
-> +  compatible:
-> +    const: toshiba,tmpv7708-pismu
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +  '#reset-cells':
-> +    const: 1
 
-Is there a connection to the PLLs? What are the clock inputs?
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#clock-cells"
-> +  - "#reset-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        pismu: pismu@24200000 {
-
-clock-controller@...
-
-> +            compatible = "toshiba,tmpv7708-pismu";
-> +            reg = <0 0x24200000 0 0x2140>;
-> +            #clock-cells = <1>;
-> +            #reset-cells = <1>;
-> +        };
-> +    };
-> +...
-> -- 
-> 2.32.0
-> 
-> 
+Acked-by: Rob Herring <robh@kernel.org>
