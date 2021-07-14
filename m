@@ -2,112 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 397F13C82F1
-	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 12:30:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21D5C3C8389
+	for <lists+devicetree@lfdr.de>; Wed, 14 Jul 2021 13:15:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237703AbhGNKdD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Jul 2021 06:33:03 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:57456 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S239084AbhGNKdD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Jul 2021 06:33:03 -0400
-X-UUID: 11ce90c742ac4fcc87812fa62567ad2a-20210714
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=aMvi45gbpJSoRaiIcIqBkq7M/xz+yG1kS/cPkMPAaJA=;
-        b=eHXtz8DBbyuUZWQWH+qo31Gf1BSf+nCcjclfx1fyYJJGD5oMxQoYTtOenoM3z0R+N4B+q6Q3KsfT6lnVmtE52NlXaHcj6NY7YfmZH/82EcFR2/4PjfVp9JIo/+q8hZZXav1KSH0QFgfbck8kKXzrgUcHbKSm7IIsY9ARwzozxqA=;
-X-UUID: 11ce90c742ac4fcc87812fa62567ad2a-20210714
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <chuanjia.liu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1769286616; Wed, 14 Jul 2021 18:30:09 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 14 Jul 2021 18:30:08 +0800
-Received: from [10.17.3.153] (10.17.3.153) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 14 Jul 2021 18:30:07 +0800
-Message-ID: <1626258607.13880.9.camel@mhfsdcap03>
-Subject: Re: [PATCH v10 2/4] PCI: mediatek: Add new method to get shared
- pcie-cfg base address and parse node
-From:   Chuanjia Liu <chuanjia.liu@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <lorenzo.pieralisi@arm.com>, <robh+dt@kernel.org>,
-        <bhelgaas@google.com>, <ryder.lee@mediatek.com>,
-        <jianjun.wang@mediatek.com>, <yong.wu@mediatek.com>,
-        <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Frank Wunderlich <frank-w@public-files.de>
-Date:   Wed, 14 Jul 2021 18:30:07 +0800
-In-Reply-To: <e462d9f0-2fa3-6106-f060-9753dc604b9f@gmail.com>
-References: <20210611060902.12418-1-chuanjia.liu@mediatek.com>
-         <20210611060902.12418-3-chuanjia.liu@mediatek.com>
-         <e462d9f0-2fa3-6106-f060-9753dc604b9f@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S239092AbhGNLSV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Jul 2021 07:18:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44048 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239078AbhGNLSV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Jul 2021 07:18:21 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A72A8613B2;
+        Wed, 14 Jul 2021 11:15:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1626261330;
+        bh=gln4o9RYzRUbHOmzZqjlvV9yan+8+ZdEpUYMAg5gL/o=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=oKMWmnZStjX2CGk2zjgDWd8X8ttujb7VrM/P4zovZfZH35IfrCIvb91yoG84Wx2aW
+         MgKYD8aBlwy0J/5fxgNEQqLUSC/McZ265/AOgb64FzufAe1o6PeeawnZFcI+cIVzyY
+         saubQqi4nY2uFzaCX3mrKcbrFYYMOKIkYFkORC+hvXhmHhf/FvpqAHNlB60tBsjat5
+         8KpvKz8V/B0TAUPxFDcg667k9h5U5EZO6OOtOUxiqSr4iCjJO6SkKO1EWfVu7EO9Q0
+         hRj2eie/pM4Zc28xgIlhj6Fda21Dep2ZcCfRv4xCjdPsL/cojUselnyrXbXK7eC5UT
+         KDG1DMBkciKOQ==
+Date:   Wed, 14 Jul 2021 12:14:53 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Saravanan Sekar <sravanhome@gmail.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Troy Kisky <troy.kisky@boundarydevices.com>,
+        linux-hwmon@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-spi@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: Move fixed string 'patternProperties' to
+ 'properties'
+Message-ID: <20210714111453.GA4719@sirena.org.uk>
+References: <20210713193514.690894-1-robh@kernel.org>
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="Kj7319i9nmIyA2yE"
+Content-Disposition: inline
+In-Reply-To: <20210713193514.690894-1-robh@kernel.org>
+X-Cookie: C for yourself.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDIxLTA3LTEzIGF0IDEzOjMyICswMjAwLCBNYXR0aGlhcyBCcnVnZ2VyIHdyb3Rl
-Og0KPiANCj4gT24gMTEvMDYvMjAyMSAwODowOSwgQ2h1YW5qaWEgTGl1IHdyb3RlOg0KPiA+IEZv
-ciB0aGUgbmV3IGR0cyBmb3JtYXQsIGFkZCBhIG5ldyBtZXRob2QgdG8gZ2V0DQo+ID4gc2hhcmVk
-IHBjaWUtY2ZnIGJhc2UgYWRkcmVzcyBhbmQgcGFyc2Ugbm9kZS4NCj4gPiANCj4gPiBTaWduZWQt
-b2ZmLWJ5OiBDaHVhbmppYSBMaXUgPGNodWFuamlhLmxpdUBtZWRpYXRlay5jb20+DQo+ID4gQWNr
-ZWQtYnk6IFJ5ZGVyIExlZSA8cnlkZXIubGVlQG1lZGlhdGVrLmNvbT4NCj4gDQo+IFlvdSBtaXNz
-ZWQgdGhlDQo+IFJldmlld2VkLWJ5OiBSb2IgSGVycmluZyA8cm9iaEBrZXJuZWwub3JnPg0KPiBn
-aXZlbiBpbiB2OC4gT3Igd2VyZSB0aGVyZSBhbnkgc3Vic3RhbnRpYWwgY2hhbmdlcyBpbiB0aGlz
-IHBhdGNoPw0KPiANClRoYW5rcyBmb3IgeW91ciByZXZpZXchDQoNCk9ubHkgYSBzbWFsbCBjaGFu
-Z2XvvIxhcyBzaG93biBiZWxvdw0KDQogCQlpZiAoZXJyKQ0KLQkJCWdvdG8gZXJyb3JfcHV0X25v
-ZGU7DQorCQkJcmV0dXJuIGVycjsNCiAJfQ0KSSBoYXZlIGEgZGVzY3JpcHRpb24gaW4gdGhlIFY5
-IHZlcnNpb246DQpmaXgga2VybmVsLWNpIGJvdCB3YXJuaW5n77yMSW4gdGhlIHNjZW5lIG9mIHVz
-aW5nIG5ldyBkdHMgZm9ybWF0LA0Kd2hlbiBtdGtfcGNpZV9wYXJzZV9wb3J0IGZhaWxzLCBvZl9u
-b2RlX3B1dCBkb24ndCBuZWVkIHRvIGJlIGNhbGxlZC4NCg0KU28gSSBkaWRuJ3QgYWRkIHJldmll
-d2VkLWJ5IHJvYiBiZWNhdXNlIEkgY2hhbmdlZCB0aGUgcGF0Y2jjgIINCj4gPiAtLS0NCj4gPiAg
-ZHJpdmVycy9wY2kvY29udHJvbGxlci9wY2llLW1lZGlhdGVrLmMgfCA1MiArKysrKysrKysrKysr
-KysrKysrLS0tLS0tLQ0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgMzkgaW5zZXJ0aW9ucygrKSwgMTMg
-ZGVsZXRpb25zKC0pDQo+ID4gDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvcGNpL2NvbnRyb2xs
-ZXIvcGNpZS1tZWRpYXRlay5jIGIvZHJpdmVycy9wY2kvY29udHJvbGxlci9wY2llLW1lZGlhdGVr
-LmMNCj4gPiBpbmRleCA2MmEwNDJlNzVkOWEuLjk1MGY1NzdhMmY0NCAxMDA2NDQNCj4gPiAtLS0g
-YS9kcml2ZXJzL3BjaS9jb250cm9sbGVyL3BjaWUtbWVkaWF0ZWsuYw0KPiA+ICsrKyBiL2RyaXZl
-cnMvcGNpL2NvbnRyb2xsZXIvcGNpZS1tZWRpYXRlay5jDQo+ID4gQEAgLTE0LDYgKzE0LDcgQEAN
-Cj4gPiAgI2luY2x1ZGUgPGxpbnV4L2lycWNoaXAvY2hhaW5lZF9pcnEuaD4NCj4gPiAgI2luY2x1
-ZGUgPGxpbnV4L2lycWRvbWFpbi5oPg0KPiA+ICAjaW5jbHVkZSA8bGludXgva2VybmVsLmg+DQo+
-ID4gKyNpbmNsdWRlIDxsaW51eC9tZmQvc3lzY29uLmg+DQo+ID4gICNpbmNsdWRlIDxsaW51eC9t
-c2kuaD4NCj4gPiAgI2luY2x1ZGUgPGxpbnV4L21vZHVsZS5oPg0KPiA+ICAjaW5jbHVkZSA8bGlu
-dXgvb2ZfYWRkcmVzcy5oPg0KPiA+IEBAIC0yMyw2ICsyNCw3IEBADQo+ID4gICNpbmNsdWRlIDxs
-aW51eC9waHkvcGh5Lmg+DQo+ID4gICNpbmNsdWRlIDxsaW51eC9wbGF0Zm9ybV9kZXZpY2UuaD4N
-Cj4gPiAgI2luY2x1ZGUgPGxpbnV4L3BtX3J1bnRpbWUuaD4NCj4gPiArI2luY2x1ZGUgPGxpbnV4
-L3JlZ21hcC5oPg0KPiA+ICAjaW5jbHVkZSA8bGludXgvcmVzZXQuaD4NCj4gPiAgDQo+ID4gICNp
-bmNsdWRlICIuLi9wY2kuaCINCj4gPiBAQCAtMjA3LDYgKzIwOSw3IEBAIHN0cnVjdCBtdGtfcGNp
-ZV9wb3J0IHsNCj4gPiAgICogc3RydWN0IG10a19wY2llIC0gUENJZSBob3N0IGluZm9ybWF0aW9u
-DQo+ID4gICAqIEBkZXY6IHBvaW50ZXIgdG8gUENJZSBkZXZpY2UNCj4gPiAgICogQGJhc2U6IElP
-IG1hcHBlZCByZWdpc3RlciBiYXNlDQo+ID4gKyAqIEBjZmc6IElPIG1hcHBlZCByZWdpc3RlciBt
-YXAgZm9yIFBDSWUgY29uZmlnDQo+ID4gICAqIEBmcmVlX2NrOiBmcmVlLXJ1biByZWZlcmVuY2Ug
-Y2xvY2sNCj4gPiAgICogQG1lbTogbm9uLXByZWZldGNoYWJsZSBtZW1vcnkgcmVzb3VyY2UNCj4g
-PiAgICogQHBvcnRzOiBwb2ludGVyIHRvIFBDSWUgcG9ydCBpbmZvcm1hdGlvbg0KPiA+IEBAIC0y
-MTUsNiArMjE4LDcgQEAgc3RydWN0IG10a19wY2llX3BvcnQgew0KPiA+ICBzdHJ1Y3QgbXRrX3Bj
-aWUgew0KPiA+ICAJc3RydWN0IGRldmljZSAqZGV2Ow0KPiA+ICAJdm9pZCBfX2lvbWVtICpiYXNl
-Ow0KPiA+ICsJc3RydWN0IHJlZ21hcCAqY2ZnOw0KPiA+ICAJc3RydWN0IGNsayAqZnJlZV9jazsN
-Cj4gPiAgDQo+ID4gIAlzdHJ1Y3QgbGlzdF9oZWFkIHBvcnRzOw0KPiA+IEBAIC02NTAsNyArNjU0
-LDExIEBAIHN0YXRpYyBpbnQgbXRrX3BjaWVfc2V0dXBfaXJxKHN0cnVjdCBtdGtfcGNpZV9wb3J0
-ICpwb3J0LA0KPiA+ICAJCXJldHVybiBlcnI7DQo+ID4gIAl9DQo+ID4gIA0KPiA+IC0JcG9ydC0+
-aXJxID0gcGxhdGZvcm1fZ2V0X2lycShwZGV2LCBwb3J0LT5zbG90KTsNCj4gPiArCWlmIChvZl9m
-aW5kX3Byb3BlcnR5KGRldi0+b2Zfbm9kZSwgImludGVycnVwdC1uYW1lcyIsIE5VTEwpKQ0KPiA+
-ICsJCXBvcnQtPmlycSA9IHBsYXRmb3JtX2dldF9pcnFfYnluYW1lKHBkZXYsICJwY2llX2lycSIp
-Ow0KPiA+ICsJZWxzZQ0KPiA+ICsJCXBvcnQtPmlycSA9IHBsYXRmb3JtX2dldF9pcnEocGRldiwg
-cG9ydC0+c2xvdCk7DQo+ID4gKw0KPiANCj4gRG8gSSB1bmRlcnN0YW5kIHRoYXQgdGhpcyBpcyB1
-c2VkIGZvciBiYWNrd2FyZHMgY29tcGF0aWJpbGl0eSB3aXRoIG9sZGVyIERUUz8gSQ0KPiBqdXN0
-IHdvbmRlciB3aHkgd2UgZG9uJ3QgbmVlZCB0byBtYW5kYXRlDQo+IGludGVycnVwdC1uYW1lcyA9
-ICJwY2llX2lycSINCj4gaW4gdGhlIGJpbmRpbmcgZGVzY3JpcHRpb24uDQpZZXPvvIx0aGlzIGlz
-IHVzZWQgZm9yIGJhY2t3YXJkcyBjb21wYXRpYmlsaXR5IHdpdGggb2xkZXIgRFRT44CCDQpJZiBu
-ZWNlc3NhcnksIEkgd2lsbCBhZGQgdGhlIGZvbGxvd2luZyBpbiBiaW5kaW5nIGRlc2NyaXB0aW9u
-Lg0KLSBpbnRlcnJ1cHQtbmFtZXPvvJpNdXN0IGluY2x1ZGUgdGhlIGZvbGxvd2luZyBlbnRyaWVz
-77yaDQogICAgLSAicGNpZV9pcnEi77yaIFRoZSBpbnRlcnJ1cHQgdGhhdCBpcyBhc3NlcnRlZCB3
-aGVuIGFuIE1TSS9JTlRYIGlzDQpyZWNlaXZlZA0KDQpCZXN0IHJlZ2FyZHMNCkNodWFuamlhDQo+
-IA0KPiBSZWdhcmRzLA0KPiBNYXR0aGlhcw0KDQo=
 
+--Kj7319i9nmIyA2yE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Tue, Jul 13, 2021 at 01:35:14PM -0600, Rob Herring wrote:
+> There's no need for fixed strings to be under 'patternProperties', so move
+> them under 'properties' instead.
+
+Acked-by: Mark Brown <broonie@kernel.org>
+
+--Kj7319i9nmIyA2yE
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmDuxywACgkQJNaLcl1U
+h9Bc7wf/VFIPyyWWMsNINwBGSVPcM1hXRLA6fZcXy+7sLbycWy8SufjBoG59RLn/
+C4HNt7T8YDEdRgHUu7T0wfXxdfObm8W2RleX8FPEZ7IjD1e7/tY1+cNBBOQNdTdT
+T4s9TLh4c0aVjTXwB6TGAANL9kk7kS/bNwpxtnpb1P1rHAvcGyk/vkYNPs9m97MO
+KKkpVAzJoJpX9nQxUq+u/xdXkLawzGwA4lv+2Y2XPC0DwWLVGNB6al6tiU/sPlry
+pJ+ndFbDfT0lFWG8ZQbnpNW7aDy+ez12Lz6Fksi6s1eEKTCkmNd8FElGbJyAwiIR
+m6LUlCuJM3gflOnm28ExPSQjRXv9Qg==
+=583K
+-----END PGP SIGNATURE-----
+
+--Kj7319i9nmIyA2yE--
