@@ -2,90 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39EFD3CA1AE
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 17:51:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D3143CA20A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 18:13:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232343AbhGOPyR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jul 2021 11:54:17 -0400
-Received: from mail-io1-f41.google.com ([209.85.166.41]:40633 "EHLO
-        mail-io1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231956AbhGOPyP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jul 2021 11:54:15 -0400
-Received: by mail-io1-f41.google.com with SMTP id l5so7020868iok.7;
-        Thu, 15 Jul 2021 08:51:21 -0700 (PDT)
+        id S229620AbhGOQQG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jul 2021 12:16:06 -0400
+Received: from mail-il1-f169.google.com ([209.85.166.169]:43940 "EHLO
+        mail-il1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229516AbhGOQQG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jul 2021 12:16:06 -0400
+Received: by mail-il1-f169.google.com with SMTP id w1so5458483ilg.10;
+        Thu, 15 Jul 2021 09:13:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=JpZLiCBQnZ2+MHl1nUW2ILJ6GK8TQMEgnso1fyfpgW4=;
-        b=HOnJayphy1geKWltBulmDz/ZiUN0Ya71BwhgIt/PWlJhMFFAAyXcivj7rrzO3UTuEi
-         AlOVljyS6lNKQW/F1STsXVVH8YlG9P9lxGMN5eshRW1yleelrAhleBOUJ1y4HEn4MqHZ
-         iWf7cI9W48DHHZijmqFxois64lcWYFHYKy9H2QcE78dAFM59nUpGIcGBC7NyiD57A2A5
-         xlXlIS27S7hgUoiUpvZ2jgNSkJ1DmgJ1OGh5kqSSnoqZR/nd1Yv/WrPXapUmZAcw26+o
-         +ABK6cDdy3YLtAPi7TGmueyOMrYu2smkmoUEK8CytNjnRtVDZGB8SwJy2l0LyozapSCv
-         403A==
-X-Gm-Message-State: AOAM533JWPKoeuOmy7q5q7BPTYNTuw2Lf1IZRYUhqsGrmo44dkWHL32Q
-        2eLoJ05p8eCKVkM1nYdV0zcu74GtxA==
-X-Google-Smtp-Source: ABdhPJyfy6RNCVwpCt8/P77LlZHhH+LauiplhwP3w//gzu1aeDj+fIQWDdVj7YoLFnX7maRUNnZD0g==
-X-Received: by 2002:a05:6638:13ca:: with SMTP id i10mr952178jaj.90.1626364280999;
-        Thu, 15 Jul 2021 08:51:20 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=INqydYVqBnEozqGm9V1u8oUYFOYwO8CFRCdoptgUzv8=;
+        b=L6hSUrsU9QfY4YadNhTzsjwC6NdSZnwnLzlzh793xKx2S/dlq9BAxdSuVqCDcTQ0rN
+         JuvfXzdBhvIoLbW8UXAziDA2PmmXVd2RZUgLOkmxhY1xhVbI/pKW4kCLKOBrlMPqm9zf
+         +tvjDGrQuOpsmCJk1DrdxeDU4H+dEuV3zp7LYvk/1tsGYPLlVZBjGcSLKuqHw9siesG7
+         sCNIp5Qx66NJEmdgw5UipAJflaZ6feGm4c7b9nmupFILEMzpmtsAH2OZ3N4MSpqK1AQs
+         4CodZEkGGisfCuxHA+NKQQQiBy6d7LeIfaOW0/whPUExrs1lZMaLXb8b73m+t49Xre9S
+         IduA==
+X-Gm-Message-State: AOAM532intFE3jjqjPOGWuxhkrqQoLuDLItVRvCK2ifXD2jV7EpVbDhS
+        NZJ6Ir+ETpP1z3EYObInrQ==
+X-Google-Smtp-Source: ABdhPJyM8wIs0dlQi7v3/BdJc9ArZh2RqFdkIyWotDVluHG+DyKTsTkEBu7lmr86PJOuuRRWPh9eXg==
+X-Received: by 2002:a92:a005:: with SMTP id e5mr3129206ili.22.1626365592974;
+        Thu, 15 Jul 2021 09:13:12 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id k10sm3374997ion.38.2021.07.15.08.51.18
+        by smtp.gmail.com with ESMTPSA id t11sm3124669ilj.63.2021.07.15.09.13.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Jul 2021 08:51:19 -0700 (PDT)
-Received: (nullmailer pid 1138776 invoked by uid 1000);
-        Thu, 15 Jul 2021 15:51:17 -0000
+        Thu, 15 Jul 2021 09:13:12 -0700 (PDT)
+Received: (nullmailer pid 1172210 invoked by uid 1000);
+        Thu, 15 Jul 2021 16:13:10 -0000
+Date:   Thu, 15 Jul 2021 10:13:10 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Daniel Baluta <daniel.baluta@oss.nxp.com>
-Cc:     devicetree@vger.kernel.org, ranjani.sridharan@linux.intel.com,
-        robh+dt@kernel.org, perex@perex.cz, lgirdwood@gmail.com,
-        pierre-louis.bossart@linux.intel.com, kai.vehmanen@linux.intel.com,
-        alsa-devel@alsa-project.org, broonie@kernel.org,
-        linux-kernel@vger.kernel.org,
-        Daniel Baluta <daniel.baluta@nxp.com>, daniel.baluta@gmail.com,
-        tiwai@suse.com
-In-Reply-To: <20210715141802.880911-4-daniel.baluta@oss.nxp.com>
-References: <20210715141802.880911-1-daniel.baluta@oss.nxp.com> <20210715141802.880911-4-daniel.baluta@oss.nxp.com>
-Subject: Re: [PATCH 3/3] dt-bindings: dsp: fsl: Document newly introduced fsl,properties
-Date:   Thu, 15 Jul 2021 09:51:17 -0600
-Message-Id: <1626364277.745081.1138775.nullmailer@robh.at.kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Sibi S <sibis@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: soc: qcom: aoss: Add SC8180X and
+ generic compatible
+Message-ID: <20210715161310.GA1160636@robh.at.kernel.org>
+References: <20210709174142.1274554-1-bjorn.andersson@linaro.org>
+ <20210709174142.1274554-2-bjorn.andersson@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210709174142.1274554-2-bjorn.andersson@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 15 Jul 2021 17:18:02 +0300, Daniel Baluta wrote:
-> From: Daniel Baluta <daniel.baluta@nxp.com>
+On Fri, Jul 09, 2021 at 10:41:40AM -0700, Bjorn Andersson wrote:
+> Add a generic compatible for all versions of the AOSS QMP to the
+> binding, in order to allow a single implementation for them and then add
+> a specific compatible for the Qualcomm SC8180x platform.
 > 
-> Document firmware-name, tplg-name and machine-drv-name properties.
-> 
-> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 > ---
->  .../devicetree/bindings/dsp/fsl,dsp.yaml      | 20 +++++++++++++++++++
->  1 file changed, 20 insertions(+)
 > 
+> Changes since v1:
+> - Mention the generic compatible in $subject and message.
+> 
+>  Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.txt | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.txt b/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.txt
+> index 783dc81b0f26..3747032311a4 100644
+> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.txt
+> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.txt
+> @@ -18,10 +18,13 @@ power-domains.
+>  	Definition: must be one of:
+>  		    "qcom,sc7180-aoss-qmp"
+>  		    "qcom,sc7280-aoss-qmp"
+> +		    "qcom,sc8180x-aoss-qmp"
+>  		    "qcom,sdm845-aoss-qmp"
+>  		    "qcom,sm8150-aoss-qmp"
+>  		    "qcom,sm8250-aoss-qmp"
+>  		    "qcom,sm8350-aoss-qmp"
+> +		    and:
+> +		    "qcom,aoss-qmp"
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Are you going to update all the dts files to add this?
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/arm,mhuv2.example.dt.yaml: dsp@596e8000: 'tplg-name' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/arm,mhuv2.example.dt.yaml: dsp@596e8000: 'machine-drv-name' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-\ndoc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1505740
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Rob
