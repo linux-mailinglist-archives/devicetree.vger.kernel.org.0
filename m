@@ -2,222 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AAFD23C98BE
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 08:21:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D58F83C98D6
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 08:37:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240175AbhGOGYh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jul 2021 02:24:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54354 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234361AbhGOGYh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jul 2021 02:24:37 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC817C06175F
-        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 23:21:44 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id b26so7910130lfo.4
-        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 23:21:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=eDnZkWk4wGXBAneUQ2pO6M6fPGzr2/erew54duA0y+g=;
-        b=FQeFZgGIC5DZPxcbpv+PigdW3L94WikM7o2HBJFUZLcGIvndO8tCWrqIim+CESB1uQ
-         XlBda0IORHzSfIvirbM4bYZ+GL0v+pc94axE72Cq8CZgI765dpj+XaJQgCsf4riK2vmu
-         9E5P+YVkM5GKGUn6nFfoojCn6v47o5K8qI9Fc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=eDnZkWk4wGXBAneUQ2pO6M6fPGzr2/erew54duA0y+g=;
-        b=t0IMdOwP5K+IDq43nIsvZX7l8ZJk08ygN2KM2vCmpXTejyzxgfN+mui+5eUDFsCs6k
-         jCYJzbE6IT5OE4/X87RI13I/IfneiVrHlVaxqpuedGnk+WqvRtJzsfSpHVXHZVICbD/r
-         2wCt/cO1zDXAD6emmoe5lY/fym+0gHGrtlARlnObfurfH8zNxLNEo/QnAvXEt2pG2TRb
-         XtKcX1tgnvnSk/7rlGq2w9zp1A4gtghxjaAUV5y3f2h5srCQ0GdYQXA5WvT8aQNFTRJI
-         g5euFYyR9Lzr/Q2Yu+yijBRxwOUvZnGw+tOqmmLoihH8Q0+tzdwIeUcJ47MoXb2XS6+/
-         pVUQ==
-X-Gm-Message-State: AOAM531NRNf6YRVH3C0htUrU1o70DwVNxd08UpIjVRcvvqzq11XK8idB
-        QNyOFuf7W5bYqxDjIVprWw7gYXoyq1zf/xPYENp1CA==
-X-Google-Smtp-Source: ABdhPJzgSd49Fp4x/b7JoIZ4W4zF8u2EyzMr1QKyp1dccSFuXtyCO+7c2sDP+12iNgZW1LhYzoFhxQLddT1EKSUMVrM=
-X-Received: by 2002:a19:858b:: with SMTP id h133mr2083722lfd.656.1626330102820;
- Wed, 14 Jul 2021 23:21:42 -0700 (PDT)
+        id S231430AbhGOGkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jul 2021 02:40:07 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55306 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231149AbhGOGkH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Jul 2021 02:40:07 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3239561260;
+        Thu, 15 Jul 2021 06:37:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1626331034;
+        bh=aGEHrV/rpUEWOWqAEiPjKe1RFXbQnO8o1vEWbtoEo2k=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=oNw/G78O5xC1KuhLj+qCVJEpH+CFRpYOdthOg0zjDVlekWBXddUuaiQj8WOpr7Esr
+         snM3V6EsInLhXStQPK8Tuj+4dw0LaYKpXRNpZ7UKrcvTV/kq5itm+goOeZ+AxWmucz
+         uGG9tay/iSlRRedM4j+FtZfjZwGuZzBXGQF+4K5+PSHHm9pux24kjVrMs8C81S6/mI
+         rTB9MQXjXYqFt8r1aH7gSSB9R0WEdHZHNtNhvvB33+PKIoJfJzM4SuNuYQNfw+cD54
+         WR7AqcZ4bkqJ0zct6z8fgH9rOnNmbkrauOEsemP+eVkHHmektR+YHy9PlixaYeHtjd
+         pQf3myhfIJjRg==
+Date:   Thu, 15 Jul 2021 08:37:09 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Manivannan Sadhasivam <mani@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>, Bjorn Helgaas <helgaas@kernel.org>,
+        linuxarm@huawei.com, mauro.chehab@huawei.com,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH v5 2/8] dt-bindings: phy: Add bindings for HiKey 970
+ PCIe PHY
+Message-ID: <20210715083709.35dade89@coco.lan>
+In-Reply-To: <20210714174225.GA8988@workstation>
+References: <cover.1626157454.git.mchehab+huawei@kernel.org>
+        <baa7e71e13953b28a11fffdcef35195099feb7fd.1626157454.git.mchehab+huawei@kernel.org>
+        <20210714022649.GA1324196@robh.at.kernel.org>
+        <20210714091435.322d68b1@coco.lan>
+        <20210714174225.GA8988@workstation>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-References: <1626316157-24935-1-git-send-email-kewei.xu@mediatek.com> <1626316157-24935-3-git-send-email-kewei.xu@mediatek.com>
-In-Reply-To: <1626316157-24935-3-git-send-email-kewei.xu@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Thu, 15 Jul 2021 14:21:31 +0800
-Message-ID: <CAGXv+5HjVaiaC5DhETNCV880aKjgfwxuVq9Rd=VhVrRNjDPOOQ@mail.gmail.com>
-Subject: Re: [PATCH 2/8] i2c: mediatek: Dump i2c/dma register when a timeout occurs
-To:     Kewei Xu <kewei.xu@mediatek.com>
-Cc:     wsa@the-dreams.de, Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        leilk.liu@mediatek.com, qii.wang@mediatek.com,
-        qiangming.xia@mediatek.com, ot_daolong.zhu@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Mani,
 
-On Thu, Jul 15, 2021 at 10:31 AM Kewei Xu <kewei.xu@mediatek.com> wrote:
->
-> When a timeout error occurs in i2c transter, it is usually related
-> to the i2c/dma IP hardware configuration. Therefore, the purpose of
-> this patch is to dump the key register values of i2c/dma when a
-> timeout occurs in i2c for debugging.
->
-> Signed-off-by: Kewei Xu <kewei.xu@mediatek.com>
-> ---
->  drivers/i2c/busses/i2c-mt65xx.c | 95 ++++++++++++++++++++++++++++++++++++++++-
->  1 file changed, 94 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/i2c/busses/i2c-mt65xx.c b/drivers/i2c/busses/i2c-mt65xx.c
-> index 5ddfa4e..64acd96 100644
-> --- a/drivers/i2c/busses/i2c-mt65xx.c
-> +++ b/drivers/i2c/busses/i2c-mt65xx.c
-> @@ -125,6 +125,7 @@ enum I2C_REGS_OFFSET {
->         OFFSET_HS,
->         OFFSET_SOFTRESET,
->         OFFSET_DCM_EN,
-> +       OFFSET_MULTI_DMA,
->         OFFSET_PATH_DIR,
->         OFFSET_DEBUGSTAT,
->         OFFSET_DEBUGCTRL,
-> @@ -192,6 +193,7 @@ enum I2C_REGS_OFFSET {
->         [OFFSET_TRANSFER_LEN_AUX] = 0x44,
->         [OFFSET_CLOCK_DIV] = 0x48,
->         [OFFSET_SOFTRESET] = 0x50,
-> +       [OFFSET_MULTI_DMA] = 0x84,
+Em Wed, 14 Jul 2021 23:12:25 +0530
+Manivannan Sadhasivam <mani@kernel.org> escreveu:
 
-On the datasheets I have, MULTI_DMA is 0x8c, while 0x84 is CHANNEL_SEC on
-MT8192, and not defined on MT8183 nor MT8195.
+> Hi Mauro,
+> 
+> On Wed, Jul 14, 2021 at 09:14:35AM +0200, Mauro Carvalho Chehab wrote:
+> > Em Tue, 13 Jul 2021 20:26:49 -0600
+> > Rob Herring <robh@kernel.org> escreveu:
+> >   
+> > > On Tue, Jul 13, 2021 at 08:28:35AM +0200, Mauro Carvalho Chehab wrote:  
+> >   
+> > > > +  reset-gpios:
+> > > > +    description: PCI PERST reset GPIOs
+> > > > +    maxItems: 4    
+> > > 
+> > > Hiding the 4 ports in the phy?  
+> > 
+> > Rob,
+> > 
+> > I'm not trying to hide anything.
+> > 
+> > There are several differences with regards to how PERST# is handled between
+> > HiKey 960 and HiKey 970.
+> > 
+> > From hardware perspective, you can see the schematics of both boards:
+> > 
+> > 	https://github.com/96boards/documentation/raw/master/consumer/hikey/hikey960/hardware-docs/HiKey960_SoC_Reference_Manual.pdf
+> > 	https://www.96boards.org/documentation/consumer/hikey/hikey970/hardware-docs/files/hikey970-schematics.pdf
+> > 
+> > The 960 PHY has the SoC directly connected to a PCIE M.2 slot 
+> > (model 10130616) without any external bridge chipset. It uses a single 
+> > GPIO (GPIO 089) for the PERST# signal, connected via a voltage converter
+> > (from 1.8V to 3.3V).
+> > 
+> > 	$ lspci
+> > 	00:00.0 PCI bridge: Huawei Technologies Co., Ltd. Device 3660 (rev 01)
+> > 
+> > The 970 PHY has an external PCI bridge chipset (PLX Technology PEX 8606).
+> > Besides the bridge, the hardware comes with an Ethernet PCI adapter, a
+> > M.2 slot and a mini-PCIe connector. Each one with its own PERST# signal,
+> > mapped to different GPIO pins, and each one using its own voltage
+> > converter.
+> > 
+> > 	$ lspci
+> > 	00:00.0 PCI bridge: Huawei Technologies Co., Ltd. Device 3670 (rev 01)
+> > 	01:00.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+> > 	02:01.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+> > 	02:04.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+> > 	02:05.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+> > 	02:07.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+> > 	02:09.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+> > 	06:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller (rev 07)
+> > 
+> > On other words, there are 4 GPIOs mapped to different PERST# pins in
+> > the hardware:
+> > 
+> > - GPIO 56 is connected to the PERST# pin at PEX 8606;
+> > - GPIO 25 is connected to the PERST# pin at the M.2 slot;
+> > - GPIO 220 is connected to the PERST# pin at the PCIe mini slot;
+> > - GPIO 203 is connected to the PERST# pin at the Ethernet chipset.
+> > 
+> > Maybe due to different electrical requirements, the hardware design
+> > use different GPIOs instead of feeding them altogether.
+> > 
+> > Anyway, the fact is that the PHY on 970 has 4 different GPIOs that are
+> > need in order for the hardware to work. and this is specific to this
+> > particular PHY.
+> >   
+> 
+> I'm not sure about this. That fact that the PCIe device's PERST# signal
+> wired to different GPIOs doesn't mean that those GPIOs belong to the PHY.
+> Those GPIOs should be independent of the PCIe core controlled manually
+> by the driver.
+> 
+> I think this issue is somewhat similar to the one we are dealing on the
+> Qcom platforms [1] where each PCIe device uses a different GPIO and voltage
+> config to operate. And those need to be active for the link training to
+> succeed.
+> 
+> So perhaps we should aim for a common solution? The GPIO and voltage
+> layout should be described in DT for each port exposed by the SoC/board.
 
->         [OFFSET_SCL_MIS_COMP_POINT] = 0x90,
->         [OFFSET_DEBUGSTAT] = 0xe0,
->         [OFFSET_DEBUGCTRL] = 0xe8,
-> @@ -828,6 +830,96 @@ static int mtk_i2c_set_speed(struct mtk_i2c *i2c, unsigned int parent_clk)
->         return 0;
->  }
->
-> +static void i2c_dump_register(struct mtk_i2c *i2c)
-> +{
-> +       dev_err(i2c->dev, "SLAVE_ADDR[0x%x]: 0x%x, INTR_MASK[0x%x]: 0x%x\n",
-> +               OFFSET_SLAVE_ADDR,
-> +               (mtk_i2c_readw(i2c, OFFSET_SLAVE_ADDR)),
+It doesn't seem to be the same case. In the case of Hikey 970[1], it uses
+one pullup for each GPIO to convert from 1V8 to the voltage needed by
+each chipset. There's no regulators envolved: the output voltage is
+fixed. From the diagram, it seems that PEX8606 uses 2V5 (via U2602), while 
+the other 3 GPIOs (M.2, PCIe mini and Ethernet) use 3V3. Interesting
+enough, the layout uses a separate gate chip for Ethernet (U3107),
+while both M.2 and PCIe mini use two ports at the same gate chip (U2801).
 
-Drop the extra outer parentheses. Same goes for all the other invocations.
+[1] https://www.96boards.org/documentation/consumer/hikey/hikey970/hardware-docs/files/hikey970-schematics.pdf
 
-> +               OFFSET_INTR_MASK,
-> +               (mtk_i2c_readw(i2c, OFFSET_INTR_MASK)));
-> +       dev_err(i2c->dev, "INTR_STAT[0x%x]: 0x%x, CONTROL[0x%x]: 0x%x\n",
-> +               OFFSET_INTR_STAT,
-> +               (mtk_i2c_readw(i2c, OFFSET_INTR_STAT)),
-> +               OFFSET_CONTROL,
-> +               (mtk_i2c_readw(i2c, OFFSET_CONTROL)));
-> +       dev_err(i2c->dev, "TRANSFER_LEN[0x%x]: 0x%x, TRANSAC_LEN[0x%x]: 0x%x\n",
-> +               OFFSET_TRANSFER_LEN,
-> +               (mtk_i2c_readw(i2c, OFFSET_TRANSFER_LEN)),
-> +               OFFSET_TRANSAC_LEN,
-> +               (mtk_i2c_readw(i2c, OFFSET_TRANSAC_LEN)));
-> +       dev_err(i2c->dev, "DELAY_LEN[0x%x]: 0x%x, HTIMING[0x%x]: 0x%x\n",
-> +               OFFSET_DELAY_LEN,
-> +               (mtk_i2c_readw(i2c, OFFSET_DELAY_LEN)),
-> +               OFFSET_TIMING,
-> +               (mtk_i2c_readw(i2c, OFFSET_TIMING)));
-> +       dev_err(i2c->dev, "OFFSET_START[0x%x]: 0x%x\n",
-> +               OFFSET_START,
-> +               mtk_i2c_readw(i2c, OFFSET_START));
-> +       dev_err(i2c->dev, "OFFSET_EXT_CONF[0x%x]: 0x%x\n",
-> +               OFFSET_EXT_CONF,
-> +               mtk_i2c_readw(i2c, OFFSET_EXT_CONF));
-> +       dev_err(i2c->dev, "OFFSET_HS[0x%x]: 0x%x\n",
-> +               OFFSET_HS,
-> +               mtk_i2c_readw(i2c, OFFSET_HS));
-> +       dev_err(i2c->dev, "OFFSET_IO_CONFIG[0x%x]: 0x%x\n",
-> +               OFFSET_IO_CONFIG,
-> +               mtk_i2c_readw(i2c, OFFSET_IO_CONFIG));
-> +       dev_err(i2c->dev, "OFFSET_FIFO_ADDR_CLR[0x%x]: 0x%x\n",
-> +               OFFSET_FIFO_ADDR_CLR,
-> +               mtk_i2c_readw(i2c, OFFSET_FIFO_ADDR_CLR));
-> +       dev_err(i2c->dev, "TRANSFER_LEN_AUX[0x%x]: 0x%x\n",
-> +               OFFSET_TRANSFER_LEN_AUX,
-> +               mtk_i2c_readw(i2c, OFFSET_TRANSFER_LEN_AUX));
-> +       dev_err(i2c->dev, "CLOCK_DIV[0x%x]: 0x%x\n",
-> +               OFFSET_CLOCK_DIV,
-> +               mtk_i2c_readw(i2c, OFFSET_CLOCK_DIV));
-> +       dev_err(i2c->dev, "FIFO_STAT[0x%x]: 0x%x, FIFO_THRESH[0x%x]: 0x%x\n",
-> +               OFFSET_FIFO_STAT,
-> +               mtk_i2c_readw(i2c, OFFSET_FIFO_STAT),
-> +               OFFSET_FIFO_THRESH,
-> +               mtk_i2c_readw(i2c, OFFSET_FIFO_THRESH));
-> +       dev_err(i2c->dev, "DCM_EN[0x%x] 0x%x\n",
-> +               OFFSET_DCM_EN,
-> +               mtk_i2c_readw(i2c, OFFSET_DCM_EN));
-> +       dev_err(i2c->dev, "DEBUGSTAT[0x%x]: 0x%x, DEBUGCTRL[0x%x]: 0x%x\n",
+I can think on a couple of reasons why the hardware designers opted to
+use 4 different GPIOs:
 
-Nit: Why do some have two registers per line, and some only have one?
+- the PCIe external bridge required a lower voltage;
+- the current drained by each output port could be different;
+- the chips used by the pullup could have some sort of protection to
+  minimize the risk of damaging the hardware due to a bad contact
+  and/or short circuit (for M.2 and PCIe mini connectors).
 
-ChenYu
+In any case, from DT perspective, the only thing that makes sense to
+expose are the 4 GPIOs used by the PERST# signal, as the output voltages
+and max currents are fixed.
 
+Conceptually, IMO, such pullup logic can be considered as part of 
+the physical layer, but, as Rob pointed, all PCIe devices need to
+have PERST#. So, they could be just mapped as gpio-resets at the
+PCIe OF node.
 
-> +               OFFSET_DEBUGSTAT,
-> +               (mtk_i2c_readw(i2c, OFFSET_DEBUGSTAT)),
-> +               OFFSET_DEBUGCTRL,
-> +               (mtk_i2c_readw(i2c, OFFSET_DEBUGCTRL)));
-> +
-> +       if (i2c->dev_comp->regs == mt_i2c_regs_v2) {
-> +               dev_err(i2c->dev, "OFFSET_LTIMING[0x%x]: 0x%x\n",
-> +                       OFFSET_LTIMING,
-> +                       mtk_i2c_readw(i2c, OFFSET_LTIMING));
-> +               dev_err(i2c->dev, "MULTI_DMA[0x%x]: 0x%x\n",
-> +                       OFFSET_MULTI_DMA,
-> +                       (mtk_i2c_readw(i2c, OFFSET_MULTI_DMA)));
-> +       }
-> +
-> +       dev_err(i2c->dev, "OFFSET_INT_FLAG = 0x%x\n",
-> +               readl(i2c->pdmabase + OFFSET_INT_FLAG));
-> +       dev_err(i2c->dev, "OFFSET_INT_EN = 0x%x\n",
-> +               readl(i2c->pdmabase + OFFSET_INT_EN));
-> +       dev_err(i2c->dev, "OFFSET_EN = 0x%x\n",
-> +               readl(i2c->pdmabase + OFFSET_EN));
-> +       dev_err(i2c->dev, "OFFSET_RST = 0x%x\n",
-> +               readl(i2c->pdmabase + OFFSET_RST));
-> +       dev_err(i2c->dev, "OFFSET_CON = 0x%x\n",
-> +               readl(i2c->pdmabase + OFFSET_CON));
-> +       dev_err(i2c->dev, "OFFSET_TX_MEM_ADDR = 0x%x\n",
-> +               readl(i2c->pdmabase + OFFSET_TX_MEM_ADDR));
-> +       dev_err(i2c->dev, "OFFSET_RX_MEM_ADDR = 0x%x\n",
-> +               readl(i2c->pdmabase + OFFSET_RX_MEM_ADDR));
-> +       dev_err(i2c->dev, "OFFSET_TX_LEN = 0x%x\n",
-> +               readl(i2c->pdmabase + OFFSET_TX_LEN));
-> +       dev_err(i2c->dev, "OFFSET_RX_LEN = 0x%x\n",
-> +               readl(i2c->pdmabase + OFFSET_RX_LEN));
-> +       dev_err(i2c->dev, "OFFSET_TX_4G_MODE = 0x%x\n",
-> +               readl(i2c->pdmabase + OFFSET_TX_4G_MODE));
-> +       dev_err(i2c->dev, "OFFSET_RX_4G_MODE = 0x%x\n",
-> +               readl(i2c->pdmabase + OFFSET_RX_4G_MODE));
-> +}
-> +
->  static int mtk_i2c_do_transfer(struct mtk_i2c *i2c, struct i2c_msg *msgs,
->                                int num, int left_num)
->  {
-> @@ -1034,7 +1126,8 @@ static int mtk_i2c_do_transfer(struct mtk_i2c *i2c, struct i2c_msg *msgs,
->         }
->
->         if (ret == 0) {
-> -               dev_dbg(i2c->dev, "addr: %x, transfer timeout\n", msgs->addr);
-> +               dev_err(i2c->dev, "addr: %x, transfer timeout\n", msgs->addr);
-> +               i2c_dump_register(i2c);
->                 mtk_i2c_init_hw(i2c);
->                 return -ETIMEDOUT;
->         }
-> --
-> 1.9.1
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+In summary, IMO, mapping those 4 GPIOs via DT can be done by
+either:
+
+1. Place all of them at the PCIe OF node;
+2. Place all of them at the PHY OF node;
+3. Place one of them at the PCIe, and the other three at PHY.
+
+IMO, (3) is messier. So, I would go either for (1) or (2). Between them,
+I don't have any preferences, as both would work.
+
+Right now, pci-bus.yaml doesn't allow (1), as it limits reset-gpios
+to a maximum of 1 item, but this is easily fixable, but it requires
+a patch against https://github.com/devicetree-org/dt-schema to raise
+MaxItems to at least 4.
+
+Rob,
+
+Among the above alternatives, what do you prefer?
+
+Thanks,
+Mauro
