@@ -2,126 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EA4D3CA125
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 17:06:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AD473CA151
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 17:17:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235419AbhGOPJP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jul 2021 11:09:15 -0400
-Received: from mail-vs1-f49.google.com ([209.85.217.49]:45660 "EHLO
-        mail-vs1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231771AbhGOPJP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jul 2021 11:09:15 -0400
-Received: by mail-vs1-f49.google.com with SMTP id h5so3135091vsg.12;
-        Thu, 15 Jul 2021 08:06:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=spa2fSuHOZDVb4Y0JrFsA4UPYD9gWGf/Hi9IWPMD4tk=;
-        b=hBcQsUpqwfYeocR43lIxMlJRgjv6lwn7Iv8hna3S+Ht4sR+800y2QqG36zMI1LxuGP
-         QslVsVxixu1RAi4NgoFFUyIemfsGYKhCEI18Ky6SUVWtdLy7VNnMJ087gi+l7Z8c20tK
-         iAqqVFrDCpt3W712wMgJaNz1k5C7ErELBVHfaZwAQkYmbJVf3gOvySym1/f7EorWLFt6
-         6x4f0LwuYTUqZj0J0DmFMyt5i9uW4DRdiVhkd3gSFsDN6lZQIYZDU+ylMJPnYbYFvLQx
-         xRy/SRqw5IyVJTLa0an0Bdwb8r+TgbelfERIu1mpVqOk5/WQ3cjpxUgx5szpgB/svWt7
-         wXZQ==
-X-Gm-Message-State: AOAM531NrCTC5kxhod0uevch2UnryzF//VmdVlOHbheMGUivGs+UWg+5
-        6ZNKOSzCaTqyFCvjhod8AQegbmb3zYUK4gV1waI=
-X-Google-Smtp-Source: ABdhPJwze3CW9x6omBam+iWIlxtLg4VtbCu7QGTvnSyaZy1RtqC8SgJGYFhjgfWFrRzVi3MyWPub2E2al6aDXxxLQmw=
-X-Received: by 2002:a67:3c2:: with SMTP id 185mr7082017vsd.42.1626361581240;
- Thu, 15 Jul 2021 08:06:21 -0700 (PDT)
+        id S238656AbhGOPUF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jul 2021 11:20:05 -0400
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:51766 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232994AbhGOPUF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Jul 2021 11:20:05 -0400
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 16FFCAr2025316;
+        Thu, 15 Jul 2021 17:17:02 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=6AuPIvPC0e4Jj6MaY2nbVdaznRVtBzyFnECY1u8Uo40=;
+ b=i4vi2MHt7MEUOlYT/yLTfYf8/eNpnqujEbk7OIShASyW3UPqBWFFlkq4KeOBDFc01Jy7
+ 4+983uBaf+L1wRnReOouKw4OnAnoyFPim+CC0AmMh88u597HstRGQIp6FZpHfqxtZJ8D
+ 9mcaBmBok4Y8tZXMy4dqP0RxI2NU5QJ76SKubMTo45dG3VMap4qSoL/xJlATye64z+of
+ iz6rT3er60l9tdSvcT6YlGAZFnh+d7NIn+XD4k+RkJqRzhfJFOqmRLDPZz8O8SpAlhtr
+ nB2JDgVHtQ2LXHkovynHo5A2yt1lGspmcUvRTEUMMUNMMoo+9yCgY9P6qRA0mlf2EI74 DQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 39tac3v6au-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 15 Jul 2021 17:17:02 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 8023A10002A;
+        Thu, 15 Jul 2021 17:17:01 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6C2A02291D7;
+        Thu, 15 Jul 2021 17:17:01 +0200 (CEST)
+Received: from lmecxl0912.lme.st.com (10.75.127.46) by SFHDAG2NODE3.st.com
+ (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 15 Jul
+ 2021 17:16:35 +0200
+Subject: Re: [PATCH 0/2] Add new IPCC mailbox to support the coprocessor
+ detach on some stm32mp15x boards
+To:     Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+        Rob Herring <robh@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20210614164940.27153-1-arnaud.pouliquen@foss.st.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Message-ID: <40d3f649-f56e-15bd-f7ef-59c62028c317@foss.st.com>
+Date:   Thu, 15 Jul 2021 17:16:35 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <20210625125902.1162428-1-geert@linux-m68k.org>
- <20210625125902.1162428-3-geert@linux-m68k.org> <20210714203624.GA3466861@robh.at.kernel.org>
- <CAMuHMdVso6wpX-u6oG+i1B3=4NFO4tyZgQmQW-nG5MQH27t9BA@mail.gmail.com> <CAL_JsqLbxkbyK0c0mUadxu0OQtQxezY4DNSLkBZWpETwuG_70w@mail.gmail.com>
-In-Reply-To: <CAL_JsqLbxkbyK0c0mUadxu0OQtQxezY4DNSLkBZWpETwuG_70w@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 15 Jul 2021 17:06:10 +0200
-Message-ID: <CAMuHMdWSLWspT==+f4Sm085u+3whuhq5_9jnLjG9kb0+pSWaZw@mail.gmail.com>
-Subject: Re: [PATCH v2 02/18] dt-bindings: auxdisplay: ht16k33: Document
- Adafruit segment displays
-To:     Rob Herring <robh@kernel.org>
-Cc:     Robin van der Gracht <robin@protonic.nl>,
-        Miguel Ojeda <ojeda@kernel.org>,
-        Paul Burton <paulburton@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-leds <linux-leds@vger.kernel.org>,
-        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210614164940.27153-1-arnaud.pouliquen@foss.st.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.46]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
+ definitions=2021-07-15_10:2021-07-14,2021-07-15 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Arnaud
 
-On Thu, Jul 15, 2021 at 4:32 PM Rob Herring <robh@kernel.org> wrote:
-> On Thu, Jul 15, 2021 at 1:12 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > On Wed, Jul 14, 2021 at 10:36 PM Rob Herring <robh@kernel.org> wrote:
-> > > On Fri, Jun 25, 2021 at 02:58:46PM +0200, Geert Uytterhoeven wrote:
-> > > > The Holtek HT16K33 LED controller is not only used for driving
-> > > > dot-matrix displays, but also for driving segment displays.
-> > > >
-> > > > Document compatible values for the Adafruit 7-segment[1] and
-> > > > 14-segment[2] FeatherWing expansion boards with red displays.  According
-> > > > to the schematics, all other Adafruit 7-segment and 14-segment display
-> > > > backpack and FeatherWing expansion boards (including bare boards and
-> > > > boards fitted with displays) are compatible with these two boards.
-> > > > Add a "color" property to support the different color variants.
-> > > >
-> > > > [1] https://www.adafruit.com/product/3108
-> > > > [2] https://www.adafruit.com/product/3130
-> > > >
-> > > > Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> >
-> > > > --- a/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
-> > > > +++ b/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
-> > > > @@ -14,14 +14,23 @@ allOf:
-> > > >
-> > > >  properties:
-> > > >    compatible:
-> > > > -    const: holtek,ht16k33
-> > > > +    oneOf:
-> > > > +      - items:
-> > > > +          - const: adafruit,3108  # 0.56" 4-Digit 7-Segment FeatherWing Display (Red)
-> > > > +          - const: holtek,ht16k33
-> > > > +
-> > > > +      - items:
-> > > > +          - const: adafruit,3130  # 0.54" Quad Alphanumeric FeatherWing Display (Red)
-> > > > +          - const: holtek,ht16k33
-> > >
-> > > These 2 entries can be combined.
-> >
-> > Right.  This split dates back from when I considered adding all
-> > possible compatible values.  It can indeed be simplified to:
-> >
-> >           - enum:
-> >               - adafruit,3108  # 0.56" 4-Digit 7-Segment FeatherWing
-> > Display (Red)
-> >               - adafruit,3130  # 0.54" Quad Alphanumeric FeatherWing
-> > Display (Red)
-> >           - const: holtek,ht16k33
-> >
-> > > Or make the comment a 'description'.
-> >
-> > What do you mean?
->
-> Adding this:
->
-> description: '0.54" Quad Alphanumeric FeatherWing Display (Red)'
+On 6/14/21 6:49 PM, Arnaud Pouliquen wrote:
+> Purpose:
+>    Add the IPCC channel 4 as "detach" mailbox to support the remoteproc the feature added in [1].
+> 
+>    The enable of this feature is a design choice. As consequence, the new mbox is declared
+>    only for stm32mp157c-ed1 & stm32mp15x-dkx boards maintained by ST Microelectronics.
+> 
+> Aim:
+>    Allow to send to the remote processor a HW signal on IPCC channel 4 when user space requests
+>    to detach the main processor from the remote processor (e.g. a reboot of the  Linux processor
+>    on a crash).
+> 
+> [1] https://patchwork.ozlabs.org/project/devicetree-bindings/cover/20210331073347.8293-1-arnaud.pouliquen@foss.st.com/
+> 
+> Arnaud Pouliquen (2):
+>    ARM: dts: stm32: Add coprocessor detach mbox on stm32mp157c-ed1 board
+>    ARM: dts: stm32: Add coprocessor detach mbox on stm32mp15x-dkx boards
+> 
+>   arch/arm/boot/dts/stm32mp157c-ed1.dts  | 4 ++--
+>   arch/arm/boot/dts/stm32mp15xx-dkx.dtsi | 4 ++--
+>   2 files changed, 4 insertions(+), 4 deletions(-)
+> 
 
-Sorry, I still don't get it.
-Note that there are two different adafruit,NNNN compatible values.
+Series Applied on stm32-next;
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+thanks
+Alex
