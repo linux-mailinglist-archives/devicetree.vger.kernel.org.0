@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D37263C9C41
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 11:56:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 958183C9C55
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 12:02:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240716AbhGOJ7l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jul 2021 05:59:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46948 "EHLO
+        id S232043AbhGOKFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jul 2021 06:05:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231668AbhGOJ7k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jul 2021 05:59:40 -0400
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03DCAC06175F
-        for <devicetree@vger.kernel.org>; Thu, 15 Jul 2021 02:56:48 -0700 (PDT)
-Received: by mail-pf1-x42b.google.com with SMTP id p22so4685186pfh.8
-        for <devicetree@vger.kernel.org>; Thu, 15 Jul 2021 02:56:47 -0700 (PDT)
+        with ESMTP id S240890AbhGOKFe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jul 2021 06:05:34 -0400
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14D23C061760
+        for <devicetree@vger.kernel.org>; Thu, 15 Jul 2021 03:02:40 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id p17so2945756plf.12
+        for <devicetree@vger.kernel.org>; Thu, 15 Jul 2021 03:02:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=nigauri-org.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=pAbGfmGIN7oGE7b33dBXT52a/I1Bp6/dyLoRt/OWcj0=;
-        b=tTo1TsVkAEv4rRqKE9ive3ECR2+1oNoArkYcuQAMp/kYkBA5qGGL3X8aZF4aZc2wcK
-         1jNkwqdj8FZtiyRH5jFm6eRYexnIkUeQ2pFRp7jfrz5rIRfcYT5FOzTVNaG+cjteCNib
-         pEgHeoZMBm8kZJASIgGXSRA/A0MWQYMBvZiNfFGQw6+3qirYmhKZrY9U8ker+v4zet0P
-         /B/kW0a4appRkUVz3j0Y65CVqqWQSMIk4EF5efSNZHJl0Owm+4RDBySqQr+5/kBGfXas
-         vMsn0DEvm1e+LoH3giTujAHTz8puFrUH01Cn3Q46Wt1HXkF2MjI8+r4lDpO7WgMo3/tA
-         bwrQ==
+        bh=t0TwHbiKa4jLrlaR4uupjt1Nvt6BBHkFS2kGDMtNo4U=;
+        b=HcMXqSaXb9gxcUOng+pdaNIC6T39etk+CGwXxJfakwtDxMCQP/Ub9AVO20E22Iky90
+         bzsGzt63onQLH7vuDrGBnXHvTGHrTN3sxtA1mnUf/UVsUOSmhSQ7t5vN87zALFKmDagd
+         XLNlHOISy7LHvgtJRmutkj0fs/6S+5Yaw1QW26HAWfREqBk5zaLoUV5CXIvgqc3J+FLg
+         4g4fZWnCRpYYKOwZjF6rcK0VyMifuMFIiNKWWX51Ub3xgjPaJ7ZzHvmd8UbKfJ10kJYK
+         hUxjDv95E6DWLC88fc8WV6JErE4G5GF/dtWvpsCA1frH7/pCHGADEoL6vxQDW3M9Laiv
+         bIJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=pAbGfmGIN7oGE7b33dBXT52a/I1Bp6/dyLoRt/OWcj0=;
-        b=swNGWXPXea71bsRAukZXZ5FAd+lSJPUMpzvG+77BiRaD3/Vk693T/PiXZMrU3RCxHy
-         ygS2XmF2DjXHXbYD9JdxvUqIzSZnrMhQjfl1auna0uVPEjeGXCkEIHepM227cPFp3op9
-         2FJzRuk0c3RfDJL2tHa9gL+6ouja1DuaGk4RlAO56jbabr1k/8hCpARUu7ndd1FrP9hX
-         czhKagxMfkSYlBMSqODYLaxo1CcbtXoVLKVN8+fGHnhHIcIHWkRVOmUrlqnEoDiClV7g
-         bw/BZOoaAKfIVrkCSKj65lHLZ3ORATHpqTxwh9IOm4SFjNaKya0OcRdETG8kqdb0Zo/z
-         I4rA==
-X-Gm-Message-State: AOAM532v+z5iOKyj7mfHilYGiYvmLIvLwLFfT+S7DNKzceVZDFYYJGs9
-        JvA+5+Gs8Zuww3gowGH6drRa
-X-Google-Smtp-Source: ABdhPJxmoDfagR1oLYfii3pKQM3+qP53LIHABt0awxdsRdZLy6bY+e9CyUoxphzb0oSa7OzYEn5MoA==
-X-Received: by 2002:a63:d213:: with SMTP id a19mr3772584pgg.28.1626343007458;
-        Thu, 15 Jul 2021 02:56:47 -0700 (PDT)
+        bh=t0TwHbiKa4jLrlaR4uupjt1Nvt6BBHkFS2kGDMtNo4U=;
+        b=ff6PieJNKQdVQTjPxzBB8OgZlqn1V+L82PgcmuHVn1uW1AIkcuWroUh5biq9n/cH/X
+         tDh9C1giizlUOryFoXYfUBUIpgyoqQTLJDq228eoJufEkTbgACQgS0ni4KdOr8lSfeCM
+         vJ4YX9WXc8JLc/gcTEuwb/o3mgAPqOYZxRYrz3NJhsPFbFCWH/vlBZyB2/yHMaM9LQPE
+         0O0OXK2sg80rIxbGPzBilULExUucu23k4yH52yqvHJx9ajXrWJp9Kz0qaZJYzzyCnv1l
+         ZTHbwwXKdXrlZd2UAFMEZNZcYT/Pz9yyeyYMOeOw8uymCv+a+wHlk9/eC74BBxoCciCZ
+         VG+Q==
+X-Gm-Message-State: AOAM530AhvxX7XWjkQ5tlnx5Vr54UwlB2NM9rj15qMRQQq7tKAl/jJNG
+        jtFdvB0u6rgRLNwdeqO5P8YN
+X-Google-Smtp-Source: ABdhPJxCFuHiksDVSuB6pWpOnNml95yP2UdSGoIo3HnPkTK/Cr7ozZlySqDVCqwRyJdXKhmXeXhiAw==
+X-Received: by 2002:a17:90a:d80f:: with SMTP id a15mr3705242pjv.174.1626343359575;
+        Thu, 15 Jul 2021 03:02:39 -0700 (PDT)
 Received: from localhost ([2405:6581:5360:1800:7285:c2ff:fec2:8f97])
-        by smtp.gmail.com with ESMTPSA id m34sm6764256pgb.85.2021.07.15.02.56.46
+        by smtp.gmail.com with ESMTPSA id 21sm5727017pfh.103.2021.07.15.03.02.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Jul 2021 02:56:47 -0700 (PDT)
+        Thu, 15 Jul 2021 03:02:38 -0700 (PDT)
 From:   Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-To:     robh+dt@kernel.org, gregkh@linuxfoundation.org,
-        michal.simek@xilinx.com
+To:     robh+dt@kernel.org, michal.simek@xilinx.com, mdf@kernel.org,
+        trix@redhat.com
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, rajan.vaja@xilinx.com,
-        jolly.shah@xilinx.com, Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-Subject: [PATCH] dt-bindings: power: reset: convert Xilinx Zynq MPSoC bindings to YAML
-Date:   Thu, 15 Jul 2021 18:56:27 +0900
-Message-Id: <20210715095627.228176-1-iwamatsu@nigauri.org>
+        linux-kernel@vger.kernel.org, linux-fpga@vger.kernel.org,
+        Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+Subject: [PATCH] dt-bindings: fpga: convert Xilinx Zynq MPSoC bindings to YAML
+Date:   Thu, 15 Jul 2021 19:02:36 +0900
+Message-Id: <20210715100236.228531-1-iwamatsu@nigauri.org>
 X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -63,169 +63,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert power managemnet for Xilinx Zynq MPSoC bindings documentation to
+Convert FPGA Manager for Xilinx Zynq MPSoC bindings documentation to
 YAML.
 
 Signed-off-by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
 ---
- .../power/reset/xlnx,zynqmp-power.txt         | 61 --------------
- .../power/reset/xlnx,zynqmp-power.yaml        | 83 +++++++++++++++++++
- 2 files changed, 83 insertions(+), 61 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/power/reset/xlnx,zynqmp-power.txt
- create mode 100644 Documentation/devicetree/bindings/power/reset/xlnx,zynqmp-power.yaml
+ .../bindings/fpga/xlnx,zynqmp-pcap-fpga.txt   | 25 -------------
+ .../bindings/fpga/xlnx,zynqmp-pcap-fpga.yaml  | 36 +++++++++++++++++++
+ 2 files changed, 36 insertions(+), 25 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.txt
+ create mode 100644 Documentation/devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.yaml
 
-diff --git a/Documentation/devicetree/bindings/power/reset/xlnx,zynqmp-power.txt b/Documentation/devicetree/bindings/power/reset/xlnx,zynqmp-power.txt
+diff --git a/Documentation/devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.txt b/Documentation/devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.txt
 deleted file mode 100644
-index bb529ecf8a5768..00000000000000
---- a/Documentation/devicetree/bindings/power/reset/xlnx,zynqmp-power.txt
+index 3052bf619dd547..00000000000000
+--- a/Documentation/devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.txt
 +++ /dev/null
-@@ -1,61 +0,0 @@
----------------------------------------------------------------------
--Device Tree Bindings for the Xilinx Zynq MPSoC Power Management
----------------------------------------------------------------------
--The zynqmp-power node describes the power management configurations.
--It will control remote suspend/shutdown interfaces.
+@@ -1,25 +0,0 @@
+-Devicetree bindings for Zynq Ultrascale MPSoC FPGA Manager.
+-The ZynqMP SoC uses the PCAP (Processor configuration Port) to configure the
+-Programmable Logic (PL). The configuration uses  the firmware interface.
 -
 -Required properties:
-- - compatible:		Must contain:	"xlnx,zynqmp-power"
-- - interrupts:		Interrupt specifier
+-- compatible: should contain "xlnx,zynqmp-pcap-fpga"
 -
--Optional properties:
-- - mbox-names	: Name given to channels seen in the 'mboxes' property.
--		  "tx" - Mailbox corresponding to transmit path
--		  "rx" - Mailbox corresponding to receive path
-- - mboxes	: Standard property to specify a Mailbox. Each value of
--		  the mboxes property should contain a phandle to the
--		  mailbox controller device node and an args specifier
--		  that will be the phandle to the intended sub-mailbox
--		  child node to be used for communication. See
--		  Documentation/devicetree/bindings/mailbox/mailbox.txt
--		  for more details about the generic mailbox controller
--		  and client driver bindings. Also see
--		  Documentation/devicetree/bindings/mailbox/ \
--		  xlnx,zynqmp-ipi-mailbox.txt for typical controller that
--		  is used to communicate with this System controllers.
+-Example for full FPGA configuration:
 -
----------
--Examples
----------
+-	fpga-region0 {
+-		compatible = "fpga-region";
+-		fpga-mgr = <&zynqmp_pcap>;
+-		#address-cells = <0x1>;
+-		#size-cells = <0x1>;
+-	};
 -
--Example with interrupt method:
--
--firmware {
--	zynqmp_firmware: zynqmp-firmware {
--		compatible = "xlnx,zynqmp-firmware";
--		method = "smc";
--
--		zynqmp_power: zynqmp-power {
--			compatible = "xlnx,zynqmp-power";
--			interrupts = <0 35 4>;
+-	firmware {
+-		zynqmp_firmware: zynqmp-firmware {
+-			compatible = "xlnx,zynqmp-firmware";
+-			method = "smc";
+-			zynqmp_pcap: pcap {
+-				compatible = "xlnx,zynqmp-pcap-fpga";
+-			};
 -		};
 -	};
--};
--
--Example with IPI mailbox method:
--
--firmware {
--	zynqmp_firmware: zynqmp-firmware {
--		compatible = "xlnx,zynqmp-firmware";
--		method = "smc";
--
--		zynqmp_power: zynqmp-power {
--			compatible = "xlnx,zynqmp-power";
--			interrupt-parent = <&gic>;
--			interrupts = <0 35 4>;
--			mboxes = <&ipi_mailbox_pmu0 0>,
--				 <&ipi_mailbox_pmu0 1>;
--			mbox-names = "tx", "rx";
--		};
--	};
--};
-diff --git a/Documentation/devicetree/bindings/power/reset/xlnx,zynqmp-power.yaml b/Documentation/devicetree/bindings/power/reset/xlnx,zynqmp-power.yaml
+diff --git a/Documentation/devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.yaml b/Documentation/devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.yaml
 new file mode 100644
-index 00000000000000..68d7c14a716388
+index 00000000000000..565b835b7fbac0
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/power/reset/xlnx,zynqmp-power.yaml
-@@ -0,0 +1,83 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++++ b/Documentation/devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.yaml
+@@ -0,0 +1,36 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/power/reset/xlnx,zynqmp-power.yaml#
++$id: http://devicetree.org/schemas/fpga/xlnx,zynqmp-pcap-fpga.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Xilinx Zynq MPSoC Power Management Device Tree Bindings
++title: Xilinx Zynq Ultrascale MPSoC FPGA Manager Device Tree Bindings
 +
 +maintainers:
 +  - Michal Simek <michal.simek@xilinx.com>
 +
 +description: |
-+  The zynqmp-power node describes the power management configurations.
-+  It will control remote suspend/shutdown interfaces.
++  Device Tree Bindings for Zynq Ultrascale MPSoC FPGA Manager.
++  The ZynqMP SoC uses the PCAP (Processor configuration Port) to
++  configure the Programmable Logic (PL). The configuration uses the
++  firmware interface.
 +
 +properties:
 +  compatible:
-+    const: "xlnx,zynqmp-power"
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  mboxes:
-+    description: |
-+      Standard property to specify a Mailbox. Each value of
-+      the mboxes property should contain a phandle to the
-+      mailbox controller device node and an args specifier
-+      that will be the phandle to the intended sub-mailbox
-+      child node to be used for communication. See
-+      Documentation/devicetree/bindings/mailbox/mailbox.txt
-+      for more details about the generic mailbox controller
-+      and client driver bindings. Also see
-+      Documentation/devicetree/bindings/mailbox/ \
-+      xlnx,zynqmp-ipi-mailbox.txt for typical controller that
-+      is used to communicate with this System controllers.
-+    items:
-+      - description: tx channel
-+      - description: rx channel
-+
-+  mbox-names:
-+    description:
-+      Name given to channels seen in the 'mboxes' property.
-+    items:
-+      - const: tx
-+      - const: rx
++    const: xlnx,zynqmp-pcap-fpga
 +
 +required:
 +  - compatible
-+  - interrupts
 +
 +additionalProperties: false
 +
 +examples:
-+  - |+
-+
-+    // Example with interrupt method:
-+
++  - |
 +    firmware {
-+      zynqmp-firmware {
-+        zynqmp-power {
-+          compatible = "xlnx,zynqmp-power";
-+          interrupts = <0 35 4>;
-+        };
-+      };
-+    };
-+
-+  - |+
-+
-+    // Example with IPI mailbox method:
-+
-+    firmware {
-+      zynqmp-firmware {
-+        zynqmp-power {
-+          compatible = "xlnx,zynqmp-power";
-+          interrupt-parent = <&gic>;
-+          interrupts = <0 35 4>;
-+          mboxes = <&ipi_mailbox_pmu1 0>,
-+                   <&ipi_mailbox_pmu1 1>;
-+          mbox-names = "tx", "rx";
++      zynqmp_firmware: zynqmp-firmware {
++        zynqmp_pcap: pcap {
++          compatible = "xlnx,zynqmp-pcap-fpga";
 +        };
 +      };
 +    };
