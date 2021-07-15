@@ -2,138 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A5BB3CA0BD
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 16:32:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB4E13CA0D5
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 16:39:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231905AbhGOOfP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jul 2021 10:35:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36360 "EHLO mail.kernel.org"
+        id S237385AbhGOOmi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jul 2021 10:42:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37788 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229624AbhGOOfO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Jul 2021 10:35:14 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9B113613C0;
-        Thu, 15 Jul 2021 14:32:21 +0000 (UTC)
+        id S237344AbhGOOmh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Jul 2021 10:42:37 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2C0C46120A;
+        Thu, 15 Jul 2021 14:39:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626359541;
-        bh=R3efdEjsMpY5Hq5zkWmKeAeoEBEB0eDYeuw17Vmbi6A=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=nRAJjiNAqDP6ZRCTV5130jd4rL8aDAy1FqT5Jqc6Yj2vyAdUT/0fs+ox2prXjAFw5
-         fWBioBpj83QgySIK985ErnLi0Rd8Hg333sm2V4SmWfqXG7rRqZed1XMTolKITkz4Lg
-         86C+LMvv0VmzmLiWz2FE+35MLWvCStxYGs9sCyxZC+9bDpOcsR3kD8iO/Rbm2WtS3x
-         f8Ai/DtdXH3EP1kewvb0DxxIHv2Zutfz3LGMuxCy5RNGcyCSX+zvlA1M+Hi1P04uoQ
-         cYTOE1oCzmVVLS0/BcL8txSY+tg+POLuWgB9ZQusDYwb4xCkdvA5icIv3CveoGzh0n
-         PiUoi9gEAi3mg==
-Received: by mail-ej1-f48.google.com with SMTP id hd33so9630865ejc.9;
-        Thu, 15 Jul 2021 07:32:21 -0700 (PDT)
-X-Gm-Message-State: AOAM533SopwulzQNq/IL1PdHbZIfgL0DRvMk0F037C4g34byhissKx6b
-        eZ1/eO5LjvuJ7E5rVDG0QMRyaurt7wszQ55XnA==
-X-Google-Smtp-Source: ABdhPJx1t6Uzr2sHA0qgrW54gYSMtuVGSlS0OXbNMC3pr7PmGz1sE39QtW3v9yRJB0imLAfnPk5jZ74+lYR5gdzkTkc=
-X-Received: by 2002:a17:906:5fc1:: with SMTP id k1mr5833452ejv.360.1626359540289;
- Thu, 15 Jul 2021 07:32:20 -0700 (PDT)
+        s=k20201202; t=1626359984;
+        bh=6akoi+UJGcbUN77Z7m34HFx3H3/898DwcnDi5HQu9ls=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cQZo14/g4bjGzV1e9ydnfwm1XkNE6JXNRMd3FFVbhiFENrMTsq8zLTkovG25lAXOZ
+         QyencD0xWzkxmEhYsGEwlDcrJ7kTOYQIG8P7x7VSVE2GZ5fO3rLmWqyK1K65eKLOig
+         SyPSXLpdcY/yjISfbihek6DdqQihr8dpDW1BKEa70BcWZgPgchwWixphKMur6xA3+j
+         CXHzG4EivWAURbB2WRI7Hd3CJXs+QGk9ETcRQlQ5ymtxvUt+PzvALlUXpXbFK0jUQi
+         HWV28zMHIsFs+He7haB8jhCpXH5rIEDpEmD4PAz0mj+5rdwuyfzEuMinSNn4FdErqs
+         d5cROUgxlihGA==
+Date:   Thu, 15 Jul 2021 15:39:06 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Daniel Baluta <daniel.baluta@oss.nxp.com>
+Cc:     alsa-devel@alsa-project.org, pierre-louis.bossart@linux.intel.com,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
+        ranjani.sridharan@linux.intel.com, kai.vehmanen@linux.intel.com,
+        perex@perex.cz, tiwai@suse.com, daniel.baluta@gmail.com,
+        Daniel Baluta <daniel.baluta@nxp.com>
+Subject: Re: [PATCH 1/3] ASoC: SOF: Parse fw/tplg filename from DT
+Message-ID: <20210715143906.GD4590@sirena.org.uk>
+References: <20210715141802.880911-1-daniel.baluta@oss.nxp.com>
+ <20210715141802.880911-2-daniel.baluta@oss.nxp.com>
 MIME-Version: 1.0
-References: <20210625125902.1162428-1-geert@linux-m68k.org>
- <20210625125902.1162428-3-geert@linux-m68k.org> <20210714203624.GA3466861@robh.at.kernel.org>
- <CAMuHMdVso6wpX-u6oG+i1B3=4NFO4tyZgQmQW-nG5MQH27t9BA@mail.gmail.com>
-In-Reply-To: <CAMuHMdVso6wpX-u6oG+i1B3=4NFO4tyZgQmQW-nG5MQH27t9BA@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 15 Jul 2021 08:32:07 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLbxkbyK0c0mUadxu0OQtQxezY4DNSLkBZWpETwuG_70w@mail.gmail.com>
-Message-ID: <CAL_JsqLbxkbyK0c0mUadxu0OQtQxezY4DNSLkBZWpETwuG_70w@mail.gmail.com>
-Subject: Re: [PATCH v2 02/18] dt-bindings: auxdisplay: ht16k33: Document
- Adafruit segment displays
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Robin van der Gracht <robin@protonic.nl>,
-        Miguel Ojeda <ojeda@kernel.org>,
-        Paul Burton <paulburton@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-leds <linux-leds@vger.kernel.org>,
-        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="M38YqGLZlgb6RLPS"
+Content-Disposition: inline
+In-Reply-To: <20210715141802.880911-2-daniel.baluta@oss.nxp.com>
+X-Cookie: You look tired.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 15, 2021 at 1:12 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Rob,
->
-> Note that you commented on v2, while I posted v3 yesterday.
->
-> On Wed, Jul 14, 2021 at 10:36 PM Rob Herring <robh@kernel.org> wrote:
-> > On Fri, Jun 25, 2021 at 02:58:46PM +0200, Geert Uytterhoeven wrote:
-> > > The Holtek HT16K33 LED controller is not only used for driving
-> > > dot-matrix displays, but also for driving segment displays.
-> > >
-> > > Document compatible values for the Adafruit 7-segment[1] and
-> > > 14-segment[2] FeatherWing expansion boards with red displays.  According
-> > > to the schematics, all other Adafruit 7-segment and 14-segment display
-> > > backpack and FeatherWing expansion boards (including bare boards and
-> > > boards fitted with displays) are compatible with these two boards.
-> > > Add a "color" property to support the different color variants.
-> > >
-> > > [1] https://www.adafruit.com/product/3108
-> > > [2] https://www.adafruit.com/product/3130
-> > >
-> > > Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
->
-> > > --- a/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
-> > > +++ b/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
-> > > @@ -14,14 +14,23 @@ allOf:
-> > >
-> > >  properties:
-> > >    compatible:
-> > > -    const: holtek,ht16k33
-> > > +    oneOf:
-> > > +      - items:
-> > > +          - const: adafruit,3108  # 0.56" 4-Digit 7-Segment FeatherWing Display (Red)
-> > > +          - const: holtek,ht16k33
-> > > +
-> > > +      - items:
-> > > +          - const: adafruit,3130  # 0.54" Quad Alphanumeric FeatherWing Display (Red)
-> > > +          - const: holtek,ht16k33
-> >
-> > These 2 entries can be combined.
->
-> Right.  This split dates back from when I considered adding all
-> possible compatible values.  It can indeed be simplified to:
->
->           - enum:
->               - adafruit,3108  # 0.56" 4-Digit 7-Segment FeatherWing
-> Display (Red)
->               - adafruit,3130  # 0.54" Quad Alphanumeric FeatherWing
-> Display (Red)
->           - const: holtek,ht16k33
->
-> > Or make the comment a 'description'.
->
-> What do you mean?
 
-Adding this:
+--M38YqGLZlgb6RLPS
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-description: '0.54" Quad Alphanumeric FeatherWing Display (Red)'
+On Thu, Jul 15, 2021 at 05:18:00PM +0300, Daniel Baluta wrote:
 
+> Introduce two DT properties in dsp node:
+> 	* fw-filename, optional property giving the firmware filename
+> 	(if this is missing fw filename is read from board description)
+> 	* tplg-filename, mandatory giving the topology filename.
 
-> > > +
-> > > +      - const: holtek,ht16k33     # Generic 16*8 LED controller with dot-matrix display
->
-> > >  required:
-> > >    - compatible
-> > >    - reg
-> > > -  - refresh-rate-hz
-> > > +
-> > > +if:
-> > > +  properties:
-> > > +    compatible:
-> > > +      const: holtek,ht16k33
-> >
-> > Isn't this always true?
->
-> It is false if there is more than one compatible value.
+These sound entirely like operating system configuration which I'd
+expect to be inferred from the machine identification.  What happens if
+a system has multiple options for firmware files, or if the OS ships the
+topology and firmware bundled up in a single image to avoid them getting
+out of sync?  What's the benefit of putting them in the DT?
 
-Ah, yes.
+--M38YqGLZlgb6RLPS
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Rob
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmDwSIkACgkQJNaLcl1U
+h9DkVQgAgXVsnrjYjHZv6DFTtjzttDEGUumT8BnNgP9bXTZrpIO/TVCEoHpZM7Xo
+KWysYdzD9T4ORCegCUnRzYk6oa/jo1lXstVKrbKS+MwoOMJwKCmvOjCR6HGCt3KH
+De9cA5mDbj34gMitq/qf+EA0etGkqu6hM6/luOtF1r0Lp/xhSMr7xSzawHqreGzZ
+xUuijk+KIJ9ft1TnPfZOx+5xxSGcuLetzkbd8k2eHNDrXJK7pXTa/szi38GbGXJv
+8QNZfGSechBpl1NvhMQ+GE/jfUFHb2IfjYJRLChkMnemGNFGf+6/g7MUy1JNYANg
+XEf4GhN05GgRYC4y9Dt/kz4gcqccuw==
+=XWt7
+-----END PGP SIGNATURE-----
+
+--M38YqGLZlgb6RLPS--
