@@ -2,77 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5331D3CA223
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 18:18:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16EC53CA22F
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 18:21:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230381AbhGOQVK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jul 2021 12:21:10 -0400
-Received: from mail-il1-f182.google.com ([209.85.166.182]:45596 "EHLO
-        mail-il1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229518AbhGOQVK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jul 2021 12:21:10 -0400
-Received: by mail-il1-f182.google.com with SMTP id b6so5478807iln.12;
-        Thu, 15 Jul 2021 09:18:17 -0700 (PDT)
+        id S230189AbhGOQY3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jul 2021 12:24:29 -0400
+Received: from mail-io1-f54.google.com ([209.85.166.54]:39519 "EHLO
+        mail-io1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229518AbhGOQY2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jul 2021 12:24:28 -0400
+Received: by mail-io1-f54.google.com with SMTP id h6so1108821iok.6;
+        Thu, 15 Jul 2021 09:21:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=RRUPLOLj8bV7cCtORPQ6IMltdHs8hBKhq3BjsT9zV+k=;
-        b=BoZ4OnN/FkLVEnNrc85QxFvuWSwBYtAc9Bz3sZNPrjdgLuKjT15Cw2/XyHhSaMNcbC
-         L3ARXljd2366A/C0CBtcuEPQQp30wAJ/STI+O3LpwUj3O1JszBIFsW7ERwT6TFFG+6Ge
-         CdSqftXIsAYChq2bR5nDzkh/pbCv5EpUZkFuWy0DTt2lRrXNus4CEChDgsLDWnEsO4Sl
-         CLWwZ755v1aj3bGoU3WW+QcqGiB2zVwIEmfKsiJt84575/e/Mo1WlCYxulWawCS+tNrt
-         teqtN2gcFn/JEtza7NSFSNf9lSFYXpldNcwWOrPlYfNgSuoYHwrDICcOEjqVpAZhZ7Bg
-         ATgw==
-X-Gm-Message-State: AOAM531hbuNdNEBucc7qoqoEtOKPlm9OqZ60LuR1oen9jz4s1xEGqbGT
-        /os73ledfgpj9W5vq/7MkA==
-X-Google-Smtp-Source: ABdhPJwIwTM19EP/DwAWM3MnwcDVy9Ok3pJjQ6Ma4W83fJ1lk2elXaCssiJf0zFQNdQjHUvGDw3BFg==
-X-Received: by 2002:a92:7d08:: with SMTP id y8mr3025493ilc.43.1626365896782;
-        Thu, 15 Jul 2021 09:18:16 -0700 (PDT)
+        bh=MORG+AZYmoVSmP90T7xMju1rDj3gu22dvginYkF/pWk=;
+        b=rPEIJz4Zh//GWdBlqdraxa3MevS2v4t2O50k+om6rWVgDdALSXyKmH7+Kur0Hjkmah
+         7IMbpKs3kA85eSg5izrIAV9V5mHu8qx8jv/91JNGOdca/YlwFdCdulF6p9gwKz/QyBnp
+         IJ8zUe+kDonqvjcQhs8VH4U+DhPzAVMWe/1FM40GfApLN+chWkGL1BNCMGkO5VT3415Z
+         qkfTBccWmlqM2cgalPkfi3SpRuektysWdZFn7uKxgwORF6BPYFzo1ju06gQKFlHjkO2n
+         GGRnSDBnf1pA+pxht3QvTefE4N8IpSpszmikJ1XjvV/itdGUfvv9jVxaS3PpUCB8jnRD
+         QGzw==
+X-Gm-Message-State: AOAM533YD2/QbCqK7+eN+UNgQK/nIY73Eaovc5mFjXR3Lv2l8Gly0sfd
+        xmaAoF219RR+yxuoYGHxOw==
+X-Google-Smtp-Source: ABdhPJwZst+LtOnZztCRCAZJqe2310rBglhVaTzN0Q6Xqk3BEjd+Sd1wzFIvwvZvqbvTAAcJMXSxjg==
+X-Received: by 2002:a5e:930e:: with SMTP id k14mr3782237iom.136.1626366094388;
+        Thu, 15 Jul 2021 09:21:34 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id w11sm3324926ioj.47.2021.07.15.09.18.14
+        by smtp.gmail.com with ESMTPSA id t11sm3134538ilj.63.2021.07.15.09.21.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Jul 2021 09:18:15 -0700 (PDT)
-Received: (nullmailer pid 1179769 invoked by uid 1000);
-        Thu, 15 Jul 2021 16:18:13 -0000
-Date:   Thu, 15 Jul 2021 10:18:13 -0600
+        Thu, 15 Jul 2021 09:21:33 -0700 (PDT)
+Received: (nullmailer pid 1184602 invoked by uid 1000);
+        Thu, 15 Jul 2021 16:21:31 -0000
+Date:   Thu, 15 Jul 2021 10:21:31 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        linux-clk@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Marek <jonathan@marek.ca>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH v4 2/6] dt-bindings: clock: qcom,videocc: add mmcx power
- domain
-Message-ID: <20210715161813.GA1179714@robh.at.kernel.org>
-References: <20210710013253.1134341-1-dmitry.baryshkov@linaro.org>
- <20210710013253.1134341-3-dmitry.baryshkov@linaro.org>
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Liang Chen <cl@rock-chips.com>, devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH 4/4] arm64: dts: rockchip: add basic dts for Pine64
+ Quartz64-A
+Message-ID: <20210715162131.GA1184545@robh.at.kernel.org>
+References: <20210710151034.32857-1-pgwipeout@gmail.com>
+ <20210710151034.32857-5-pgwipeout@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210710013253.1134341-3-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20210710151034.32857-5-pgwipeout@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 10 Jul 2021 04:32:49 +0300, Dmitry Baryshkov wrote:
-> On sm8250 videocc requires MMCX power domain to be powered up before
-> clock controller's registers become available. For now sm8250 was using
-> external regulator driven by the power domain to describe this
-> relationship. Switch into specifying power-domain and required opp-state
-> directly.
+On Sat, 10 Jul 2021 11:10:34 -0400, Peter Geis wrote:
+> Add a basic dts for the Pine64 Quartz64 Model A Single Board Computer.
+> This board outputs on uart2 for debug.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
 > ---
->  Documentation/devicetree/bindings/clock/qcom,videocc.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+>  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>  .../boot/dts/rockchip/rk3566-quartz64-a.dts   | 321 ++++++++++++++++++
+>  3 files changed, 327 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
