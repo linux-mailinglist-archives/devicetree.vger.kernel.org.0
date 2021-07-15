@@ -2,182 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D58F83C98D6
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 08:37:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E6073C98DB
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 08:40:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231430AbhGOGkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jul 2021 02:40:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55306 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231149AbhGOGkH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Jul 2021 02:40:07 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3239561260;
-        Thu, 15 Jul 2021 06:37:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626331034;
-        bh=aGEHrV/rpUEWOWqAEiPjKe1RFXbQnO8o1vEWbtoEo2k=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=oNw/G78O5xC1KuhLj+qCVJEpH+CFRpYOdthOg0zjDVlekWBXddUuaiQj8WOpr7Esr
-         snM3V6EsInLhXStQPK8Tuj+4dw0LaYKpXRNpZ7UKrcvTV/kq5itm+goOeZ+AxWmucz
-         uGG9tay/iSlRRedM4j+FtZfjZwGuZzBXGQF+4K5+PSHHm9pux24kjVrMs8C81S6/mI
-         rTB9MQXjXYqFt8r1aH7gSSB9R0WEdHZHNtNhvvB33+PKIoJfJzM4SuNuYQNfw+cD54
-         WR7AqcZ4bkqJ0zct6z8fgH9rOnNmbkrauOEsemP+eVkHHmektR+YHy9PlixaYeHtjd
-         pQf3myhfIJjRg==
-Date:   Thu, 15 Jul 2021 08:37:09 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Manivannan Sadhasivam <mani@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>, Bjorn Helgaas <helgaas@kernel.org>,
-        linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
-Subject: Re: [PATCH v5 2/8] dt-bindings: phy: Add bindings for HiKey 970
- PCIe PHY
-Message-ID: <20210715083709.35dade89@coco.lan>
-In-Reply-To: <20210714174225.GA8988@workstation>
-References: <cover.1626157454.git.mchehab+huawei@kernel.org>
-        <baa7e71e13953b28a11fffdcef35195099feb7fd.1626157454.git.mchehab+huawei@kernel.org>
-        <20210714022649.GA1324196@robh.at.kernel.org>
-        <20210714091435.322d68b1@coco.lan>
-        <20210714174225.GA8988@workstation>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-redhat-linux-gnu)
+        id S231251AbhGOGn1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jul 2021 02:43:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58496 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231149AbhGOGn0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jul 2021 02:43:26 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E789C061760
+        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 23:40:34 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id y42so8000567lfa.3
+        for <devicetree@vger.kernel.org>; Wed, 14 Jul 2021 23:40:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=unaBiWnJarMH1gL7KYAkXbKz3od/E6fqsCgI629LIGM=;
+        b=etu1S8miUnZsNSpg3HW7x38uMVbiLPD1tNvKTPEnOlRvEcWJzm7exG7BPJaod1ka0w
+         CDa1vvopBYQX351vd75gYooym69T9Nf/RaGcFiYe3LjhfDCFhimGra+WB9snRBMOwYDS
+         EPTfEacpnlvH9TbmEuvaYVdzOLBjl4lRLI9Wg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=unaBiWnJarMH1gL7KYAkXbKz3od/E6fqsCgI629LIGM=;
+        b=dYg+C/AJmiaIsfZlvKSqfSCKzbancbJN1dDfFYcVBqzBu4pGCSp8oB1WTfP+gCcHD6
+         xH6Ky+4CXoBRmAtApAIxEbPC9tRniJ3L/JXaIXZR2DPO8FGv5ZIGPW82rGeyuOP6o+cf
+         OCeLRUiT+NNmwBXPmgP4Kkceetwak1gAp0NhRUP/oGqglBQQa6o4veIMfZzRtf9X5VRB
+         8dZQoQh2NolGadggvKeCd2cIW9KIP01cr3t3xZyPKV81k8SI3a2mlTQdCMq9IWNbh8Ay
+         Is6laOsqaRKcRbyYHQ1ZdhPESOOfviHoHW6zyDRL2dpMFgFCM0k1sPL9SxaTaZlVzzHW
+         JKLw==
+X-Gm-Message-State: AOAM532JbRnjbNRxlzHSmDG8tfivA2+Ll/R/TjBrLzdppj04kL5hALbS
+        0FSMQj4jmaExX7U9p9KITdUiN4JW0vyCc4qLWBAiOw==
+X-Google-Smtp-Source: ABdhPJy9IXnVib4DwY4g5a0dAWpWJk7dTChMptWv36qjycMCr9phL4RvEij4IZ7zX1gWMYsr8+0hSgzSXnmOIVcsi3U=
+X-Received: by 2002:ac2:48b8:: with SMTP id u24mr2049392lfg.587.1626331232261;
+ Wed, 14 Jul 2021 23:40:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20210705054111.4473-1-chun-jie.chen@mediatek.com> <20210705054111.4473-6-chun-jie.chen@mediatek.com>
+In-Reply-To: <20210705054111.4473-6-chun-jie.chen@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Thu, 15 Jul 2021 14:40:21 +0800
+Message-ID: <CAGXv+5ETE=qSPyKL6AjDtSHCDvu3Ua-rrLZWOECjZXrcNZ-9Tw@mail.gmail.com>
+Subject: Re: [v3 5/5] soc: mediatek: pm-domains: Remove unused macro
+To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>
+Cc:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        LKML <linux-kernel@vger.kernel.org>, devicetree@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mani,
+On Mon, Jul 5, 2021 at 1:48 PM Chun-Jie Chen <chun-jie.chen@mediatek.com> wrote:
+>
+> Due to clk resource data will be allocated dynamically by
+> searching parent count of clk in power domain node, so remove
+> the unused marco MAX_SUBSYS_CLKS for static allocation.
+>
+> Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+> Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+> ---
+>  drivers/soc/mediatek/mtk-pm-domains.h | 2 --
+>  1 file changed, 2 deletions(-)
+>
+> diff --git a/drivers/soc/mediatek/mtk-pm-domains.h b/drivers/soc/mediatek/mtk-pm-domains.h
+> index caaa38100093..1b8967b9829e 100644
+> --- a/drivers/soc/mediatek/mtk-pm-domains.h
+> +++ b/drivers/soc/mediatek/mtk-pm-domains.h
+> @@ -72,8 +72,6 @@ struct scpsys_bus_prot_data {
+>         bool ignore_clr_ack;
+>  };
+>
+> -#define MAX_SUBSYS_CLKS 10
+> -
 
-Em Wed, 14 Jul 2021 23:12:25 +0530
-Manivannan Sadhasivam <mani@kernel.org> escreveu:
+Future advice: cleanups like this and other fixes should be put in the
+front of the series, before any patches that introduce support for new
+features or hardware. That way if the new code still needs work,
+maintainers can optionally apply the fixes so you don't have to carry
+a large patch series forward.
 
-> Hi Mauro,
-> 
-> On Wed, Jul 14, 2021 at 09:14:35AM +0200, Mauro Carvalho Chehab wrote:
-> > Em Tue, 13 Jul 2021 20:26:49 -0600
-> > Rob Herring <robh@kernel.org> escreveu:
-> >   
-> > > On Tue, Jul 13, 2021 at 08:28:35AM +0200, Mauro Carvalho Chehab wrote:  
-> >   
-> > > > +  reset-gpios:
-> > > > +    description: PCI PERST reset GPIOs
-> > > > +    maxItems: 4    
-> > > 
-> > > Hiding the 4 ports in the phy?  
-> > 
-> > Rob,
-> > 
-> > I'm not trying to hide anything.
-> > 
-> > There are several differences with regards to how PERST# is handled between
-> > HiKey 960 and HiKey 970.
-> > 
-> > From hardware perspective, you can see the schematics of both boards:
-> > 
-> > 	https://github.com/96boards/documentation/raw/master/consumer/hikey/hikey960/hardware-docs/HiKey960_SoC_Reference_Manual.pdf
-> > 	https://www.96boards.org/documentation/consumer/hikey/hikey970/hardware-docs/files/hikey970-schematics.pdf
-> > 
-> > The 960 PHY has the SoC directly connected to a PCIE M.2 slot 
-> > (model 10130616) without any external bridge chipset. It uses a single 
-> > GPIO (GPIO 089) for the PERST# signal, connected via a voltage converter
-> > (from 1.8V to 3.3V).
-> > 
-> > 	$ lspci
-> > 	00:00.0 PCI bridge: Huawei Technologies Co., Ltd. Device 3660 (rev 01)
-> > 
-> > The 970 PHY has an external PCI bridge chipset (PLX Technology PEX 8606).
-> > Besides the bridge, the hardware comes with an Ethernet PCI adapter, a
-> > M.2 slot and a mini-PCIe connector. Each one with its own PERST# signal,
-> > mapped to different GPIO pins, and each one using its own voltage
-> > converter.
-> > 
-> > 	$ lspci
-> > 	00:00.0 PCI bridge: Huawei Technologies Co., Ltd. Device 3670 (rev 01)
-> > 	01:00.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
-> > 	02:01.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
-> > 	02:04.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
-> > 	02:05.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
-> > 	02:07.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
-> > 	02:09.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
-> > 	06:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller (rev 07)
-> > 
-> > On other words, there are 4 GPIOs mapped to different PERST# pins in
-> > the hardware:
-> > 
-> > - GPIO 56 is connected to the PERST# pin at PEX 8606;
-> > - GPIO 25 is connected to the PERST# pin at the M.2 slot;
-> > - GPIO 220 is connected to the PERST# pin at the PCIe mini slot;
-> > - GPIO 203 is connected to the PERST# pin at the Ethernet chipset.
-> > 
-> > Maybe due to different electrical requirements, the hardware design
-> > use different GPIOs instead of feeding them altogether.
-> > 
-> > Anyway, the fact is that the PHY on 970 has 4 different GPIOs that are
-> > need in order for the hardware to work. and this is specific to this
-> > particular PHY.
-> >   
-> 
-> I'm not sure about this. That fact that the PCIe device's PERST# signal
-> wired to different GPIOs doesn't mean that those GPIOs belong to the PHY.
-> Those GPIOs should be independent of the PCIe core controlled manually
-> by the driver.
-> 
-> I think this issue is somewhat similar to the one we are dealing on the
-> Qcom platforms [1] where each PCIe device uses a different GPIO and voltage
-> config to operate. And those need to be active for the link training to
-> succeed.
-> 
-> So perhaps we should aim for a common solution? The GPIO and voltage
-> layout should be described in DT for each port exposed by the SoC/board.
+ChenYu
 
-It doesn't seem to be the same case. In the case of Hikey 970[1], it uses
-one pullup for each GPIO to convert from 1V8 to the voltage needed by
-each chipset. There's no regulators envolved: the output voltage is
-fixed. From the diagram, it seems that PEX8606 uses 2V5 (via U2602), while 
-the other 3 GPIOs (M.2, PCIe mini and Ethernet) use 3V3. Interesting
-enough, the layout uses a separate gate chip for Ethernet (U3107),
-while both M.2 and PCIe mini use two ports at the same gate chip (U2801).
-
-[1] https://www.96boards.org/documentation/consumer/hikey/hikey970/hardware-docs/files/hikey970-schematics.pdf
-
-I can think on a couple of reasons why the hardware designers opted to
-use 4 different GPIOs:
-
-- the PCIe external bridge required a lower voltage;
-- the current drained by each output port could be different;
-- the chips used by the pullup could have some sort of protection to
-  minimize the risk of damaging the hardware due to a bad contact
-  and/or short circuit (for M.2 and PCIe mini connectors).
-
-In any case, from DT perspective, the only thing that makes sense to
-expose are the 4 GPIOs used by the PERST# signal, as the output voltages
-and max currents are fixed.
-
-Conceptually, IMO, such pullup logic can be considered as part of 
-the physical layer, but, as Rob pointed, all PCIe devices need to
-have PERST#. So, they could be just mapped as gpio-resets at the
-PCIe OF node.
-
-In summary, IMO, mapping those 4 GPIOs via DT can be done by
-either:
-
-1. Place all of them at the PCIe OF node;
-2. Place all of them at the PHY OF node;
-3. Place one of them at the PCIe, and the other three at PHY.
-
-IMO, (3) is messier. So, I would go either for (1) or (2). Between them,
-I don't have any preferences, as both would work.
-
-Right now, pci-bus.yaml doesn't allow (1), as it limits reset-gpios
-to a maximum of 1 item, but this is easily fixable, but it requires
-a patch against https://github.com/devicetree-org/dt-schema to raise
-MaxItems to at least 4.
-
-Rob,
-
-Among the above alternatives, what do you prefer?
-
-Thanks,
-Mauro
+>  /**
+>   * struct scpsys_domain_data - scp domain data for power on/off flow
+>   * @name: The name of the power domain.
+> --
+> 2.18.0
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
