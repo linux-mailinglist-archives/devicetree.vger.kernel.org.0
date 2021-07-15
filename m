@@ -2,113 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7333E3C9D7A
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 13:07:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9E103C9D80
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 13:09:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241764AbhGOLKP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jul 2021 07:10:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34876 "EHLO
+        id S241749AbhGOLMs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jul 2021 07:12:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241766AbhGOLKP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jul 2021 07:10:15 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BB6EC06175F
-        for <devicetree@vger.kernel.org>; Thu, 15 Jul 2021 04:07:22 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1m3zCu-0001Du-Op; Thu, 15 Jul 2021 13:07:08 +0200
-Received: from pengutronix.de (unknown [IPv6:2a03:f580:87bc:d400:968e:ea40:4726:28f1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 167AC64FE88;
-        Thu, 15 Jul 2021 11:07:07 +0000 (UTC)
-Date:   Thu, 15 Jul 2021 13:07:06 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Joakim Zhang <qiangqing.zhang@nxp.com>
-Cc:     Dong Aisheng <dongas86@gmail.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        "linux-can@vger.kernel.org" <linux-can@vger.kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>
-Subject: Re: [PATCH 1/7] dt-bindings: can: flexcan: fix imx8mp compatbile
-Message-ID: <20210715110706.ysktvpzzaqaiimpl@pengutronix.de>
-References: <20210715082536.1882077-1-aisheng.dong@nxp.com>
- <20210715082536.1882077-2-aisheng.dong@nxp.com>
- <20210715091207.gkd73vh3w67ccm4q@pengutronix.de>
- <CAA+hA=QDJhf_LnBZCiKE-FbUNciX4bmgmrvft8Y-vkB9Lguj=w@mail.gmail.com>
- <DB8PR04MB6795ACFCCB64354C8E810EE8E6129@DB8PR04MB6795.eurprd04.prod.outlook.com>
+        with ESMTP id S241741AbhGOLMs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jul 2021 07:12:48 -0400
+Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0DB5C06175F;
+        Thu, 15 Jul 2021 04:09:55 -0700 (PDT)
+Received: by mail-ot1-x32b.google.com with SMTP id 7-20020a9d0d070000b0290439abcef697so5762000oti.2;
+        Thu, 15 Jul 2021 04:09:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=VnIvSXzuiLKWuvgulqfarspmLG2dOzwb7htWyTzwsjw=;
+        b=jZSvmaYSy8ADTgcCb9b7ny+VGlsNNLLNOYJdU7McebyVX4mq0pGAcstpYcMq1Aiv6S
+         XOo3xy1FWet7MXd7e7bhh9ULV6oDNaPZwU83/HY/YN+avkBCc7WRn8rrw01zsWV94kqD
+         zveDrhVhYXZNw9+xQg2SBfo7OMbtziipz+BPTRr2nVTwTX5Zbj3LNmo5gqPZla4YgjUr
+         CMVnzDdH9YVyJCAxYWCz6i0n7jvRINXJv0bLBQO52VA4L5QduTy2cR8drOamqk/LOftw
+         kysUkWgyiG6dY9FlEfnonTf57JurQjQ+0MQUH4y/eduUeozIhN6rWYTFT2mAUx+bFtCa
+         eVcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=VnIvSXzuiLKWuvgulqfarspmLG2dOzwb7htWyTzwsjw=;
+        b=KwRU5pI0eHmpWdNwfAceggBerHHJ9bFpPowu0ElVx1W1nxvvBvJ9zwsey8z71fo3Ld
+         i/jN6Q0lyx9r+zbZhEY52/dUaLpFt+xxrJjK/3y2hYUyFP5A0YOUZZQ+VQKojSAPnXuS
+         WZK4RHwotDPxvyIeZpUMQQNwIIjiXtjpEfD1sG0IiJQq/bFwmlQoDREWMisrTPpYar50
+         XOLgewSCbLJmd2WhVM1JU2YE4Yjt/gcq7o340q4JsTfzYGlKYp5haFJXeIP6c4588ppa
+         fQ0tAULFaQvhQRAN/1EN7QaprqTCrKPLa5CqAzBSicBMfp/i3JgHUopckO16h2RtZmT8
+         nw1g==
+X-Gm-Message-State: AOAM531JvcsbwM0E7xji2ylkmg3QglrtLq+TwTswEdu7FtAJgtW3zBn7
+        l53ci6DSF0yW5uceJL+v1fvBEyYXfNEwlkB7wPY=
+X-Google-Smtp-Source: ABdhPJyE6O2CsuPYvTE0fEvIRod8YkMOcqSCGJb0RhRrpq/XyumDEFhAFhjuy8zGn19Bma0gQJuRs9BuxAPgAU8c3Mw=
+X-Received: by 2002:a05:6830:19cd:: with SMTP id p13mr2307456otp.362.1626347395013;
+ Thu, 15 Jul 2021 04:09:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="vmvpctoj2hry3h5w"
-Content-Disposition: inline
-In-Reply-To: <DB8PR04MB6795ACFCCB64354C8E810EE8E6129@DB8PR04MB6795.eurprd04.prod.outlook.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20210624105517.3886963-1-hsinyi@chromium.org> <20210624105517.3886963-2-hsinyi@chromium.org>
+In-Reply-To: <20210624105517.3886963-2-hsinyi@chromium.org>
+From:   Enric Balletbo Serra <eballetbo@gmail.com>
+Date:   Thu, 15 Jul 2021 13:09:43 +0200
+Message-ID: <CAFqH_51zDMC6N-1DBiSfARTM-SG0SH9VAXOX=G1W6yHJaVBL3A@mail.gmail.com>
+Subject: Re: [PATCH v6 RESEND 2/3] drm/mediatek: init panel orientation property
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        intel-gfx@lists.freedesktop.org,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Paul <sean@poorly.run>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Hsin-Yi,
 
---vmvpctoj2hry3h5w
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thank you for your patch.
 
-On 15.07.2021 11:00:07, Joakim Zhang wrote:
-> > I checked with Joakim that the flexcan on MX8MP is derived from MX6Q wi=
-th
-> > extra ECC added. Maybe we should still keep it from HW point of view?
->=20
-> Sorry, Aisheng, I double check the history, and get the below results:
->=20
-> 8MP reuses 8QXP(8QM), except ECC_EN
-> (ipv_flexcan3_syn_006/D_IP_FlexCAN3_SYN_057 which corresponds to
-> version d_ip_flexcan3_syn.03.00.17.01)
+Missatge de Hsin-Yi Wang <hsinyi@chromium.org> del dia dj., 24 de juny
+2021 a les 12:55:
+>
+> Init panel orientation property after connector is initialized. Let the
+> panel driver decides the orientation value later.
+>
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> Acked-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
 
-Also see commit message of:
+Tested-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
 
-https://lore.kernel.org/linux-can/20200929211557.14153-2-qiangqing.zhang@nx=
-p.com/
+As together with the other two patches works and I don't see any
+problem on the Lenovo IdeaPad Duet, and the panel has the proper
+orientation
 
-> I prefer to change the dtsi as Mac suggested if possible, shall I send
-> a fix patch?
 
-Make it so!
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---vmvpctoj2hry3h5w
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAmDwFtcACgkQqclaivrt
-76lQKggAj2Bmlhy4dp286A84lAbdUdEc6Orxejlc/BNFaJlqDmgTbKwrhcq4zoaw
-k1dGc3kP0fjKzFcRM7lLz6QwxhsToo2f70/NBGN5/O+7RZr7EokSlcWBLA6D+zzP
-qEfvMcRqmMoTupOnuBpYMyTfZVRqyE+U3tGPTgYWdAiNcteSKwPc18/hJQORtU2q
-S8VNbCfjBTwvyRpiVbpLhyYyUGFh/uOKMZjpJXiSVCsFYdTsAakK9REgRdO4f331
-OlAJQJrvxZQJ/IAUSIqrNfHbpNVGqYD4eWRitRurr6GqK7ZRyR5NZbhOka7NsbS/
-QaOulnJx58Ay5Ybhh6W0KqasmMkvIA==
-=bhZi
------END PGP SIGNATURE-----
-
---vmvpctoj2hry3h5w--
+> ---
+>  drivers/gpu/drm/mediatek/mtk_dsi.c | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
+> index ae403c67cbd92..9da1fd6491319 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
+> @@ -964,6 +964,13 @@ static int mtk_dsi_encoder_init(struct drm_device *drm, struct mtk_dsi *dsi)
+>                 ret = PTR_ERR(dsi->connector);
+>                 goto err_cleanup_encoder;
+>         }
+> +
+> +       ret = drm_connector_init_panel_orientation_property(dsi->connector);
+> +       if (ret) {
+> +               DRM_ERROR("Unable to init panel orientation\n");
+> +               goto err_cleanup_encoder;
+> +       }
+> +
+>         drm_connector_attach_encoder(dsi->connector, &dsi->encoder);
+>
+>         return 0;
+> --
+> 2.32.0.288.g62a8d224e6-goog
+>
