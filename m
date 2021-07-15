@@ -2,169 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A6A03C9E01
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 13:51:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33FF23C9DFE
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 13:49:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229472AbhGOLyg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jul 2021 07:54:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44934 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230106AbhGOLyg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jul 2021 07:54:36 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2752CC06175F;
-        Thu, 15 Jul 2021 04:51:43 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id c197so6194334oib.11;
-        Thu, 15 Jul 2021 04:51:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=TxXJgw71KmdSk4k4SH+Pctzu46vlSWe9kQ50HddNuBA=;
-        b=W+OqtshGeUZfjD2+yimgIobozHeI6SjfyupTahQITqEO7vZfhDcycBxTlqha6L+KM8
-         lpt5/kgqVVqTjiAtRwEhZKXLAKBYDJHTrW0gUt1BNALdfkQz3POxhgAZBxT1DULUR3/e
-         m2lOf9ntVL+HmePXbxTC7O8p5FT4y+26eI8IBRK9e1YHKpbzrr+5Ky68BTwGtdZfQjBA
-         NRdkWKgC7EeJ9hIuGZP5qDFIGDUjyune463m8KtdGY25Snc6DgzSWQbbBiEYxprewc1H
-         bEZXSjNfRWlJqk572Mea0hd53mpNoUi5/fsJeJIjpSiQU+jaDZC69EK6+4RbVzcFnh85
-         pHhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=TxXJgw71KmdSk4k4SH+Pctzu46vlSWe9kQ50HddNuBA=;
-        b=CjI3GaUg/BOIj4/nvn/tFN3eSENKlyZvPmqqwCLWnYFAfqqz77wVv6/+SLy/X7TpZH
-         b1iW4HfkkeWpkbo4+/Qc2QyBLLdFMiMNHRBZRiSiwUPEWiYRg4ohN05JWG4gVPBv2TFm
-         vAQOIyer9f7Lpb9dpJzdO7Yg2+AV5Qu/GzVcKZUf+uq1U/SZv5py4k0aiW/duWn86otM
-         4wsFPteC3gZvrds49ItdVeRgFu961PBFs3ZRDcLD1AiJgBcU6ogJU5tuiRy9WlN1mbhD
-         HVJNGK4p93CrdNe9vCBxM366GpuOItvlmNjkiH2oWUahFWgwOwnTXZdGOcSI4zhyTh2r
-         muiQ==
-X-Gm-Message-State: AOAM530mTIavhQ6hbZ91WcUF76HyHPv66P0flL1DaWQz+e9uAGOABPP6
-        fcGdqX1+pWi+GI13OBzZL/WsDxMtke56XNnGtSGoaMPWWkI=
-X-Google-Smtp-Source: ABdhPJx+XxaHOHMvL65rp/B5mM0H7gzKmsf+YNd0VEUT1Z0RCchD7AlI7juYcEKO6SXkYV5swQ1fs+C+p8xAakA2gIk=
-X-Received: by 2002:a05:6808:1153:: with SMTP id u19mr7741443oiu.20.1626349902535;
- Thu, 15 Jul 2021 04:51:42 -0700 (PDT)
+        id S229710AbhGOLwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jul 2021 07:52:34 -0400
+Received: from mail-eopbgr20085.outbound.protection.outlook.com ([40.107.2.85]:43746
+        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229742AbhGOLwd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Jul 2021 07:52:33 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DO5I9vFEqpSZr8BRZHzEtqFwWRhiUmpFN2Y9xj+rtyw1kxeK4Ki7NBPUMfHzwm8JtyB+2sCta7F8/0RGWNjydc+Z+BI3v6FCXP4zPIsPBsbGvcIUDEgkwyNa0PEyup1KiiAuZauaYvKLU3Ts0X+aY9shaNwZvnf4kj9Tjt5wdOpn0EEQVDqb3OnwYlAf1uABAd4FEfiBA7v5t2PnQbNrafuTQhj5wORRQ7+lKGdSs+Fdm7HpF32bFe6DtKAD5zHXDtAEtv1GGyewfB1910zmQNS6Z3zZntzA0e2DmWh8bHXQ5mBjA+8k9Olane9i+YsBqw+lDuHHfvCpyEg3LPovgg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+ooOB5Or2vKME2OSMsbLS7qixpilBWTZxtNVHonj2oQ=;
+ b=P+S01JpRbymzPmaIF/Q9tmI0P/2KxvM/I0Lvt8Oo3iG3TZ1rvtfS0WZ4MhOLbXrF6yfSsqq9VKS2RZCdbol+ZsNpwZEVpGuko/65CdYiUchYCwy/xDuG1gOZHa1u96TeWs2qGitZr9zYS6y+TLoDjkzw2cs6mPxNyq2RUc8YZ1B7d9/5lWuC+yqPwjwdRg7hRYwIlLlbxqhTtx94tEHDpe/U8YiI6xG8pdfHAx3yxF7NgtYu+2ljJCEyW0KphtJQSc05od8lKc3dIMqwZqaVAt93oX+d2OhrISxwweIz84g/T9sXcpAChf86VwnemfFGM9+kn1fEgxKmE5jxZ3AfJw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+ooOB5Or2vKME2OSMsbLS7qixpilBWTZxtNVHonj2oQ=;
+ b=D0Nf8ksgjpvoB2RX/Yuh08/MqzYyBpf0WUEhV8AKgvOIQ2VPbWwdCs9SPJnIXPu2xMBoRc8V0Ne6u3FPA3+EozaqEyIl+yTNSAtiFICGbwgacmTsYcmkM2dbU5mfipmwmnimFz78Fnhwelwa9qUwSF9Kb7wIoCV6a/kzURg9/UE=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
+ by DB7PR04MB4107.eurprd04.prod.outlook.com (2603:10a6:5:1e::30) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.21; Thu, 15 Jul
+ 2021 11:49:38 +0000
+Received: from DB8PR04MB6795.eurprd04.prod.outlook.com
+ ([fe80::9c70:fd2f:f676:4802]) by DB8PR04MB6795.eurprd04.prod.outlook.com
+ ([fe80::9c70:fd2f:f676:4802%9]) with mapi id 15.20.4331.021; Thu, 15 Jul 2021
+ 11:49:38 +0000
+From:   Joakim Zhang <qiangqing.zhang@nxp.com>
+To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        mkl@pengutronix.de
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, aisheng.dong@nxp.com
+Subject: [PATCH] arm64: dts: imx8mp: remove fallback compatible string for FlexCAN
+Date:   Thu, 15 Jul 2021 19:49:53 +0800
+Message-Id: <20210715114953.24393-1-qiangqing.zhang@nxp.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR0601CA0018.apcprd06.prod.outlook.com (2603:1096:3::28)
+ To DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
 MIME-Version: 1.0
-References: <20210715082536.1882077-1-aisheng.dong@nxp.com>
- <20210715082536.1882077-2-aisheng.dong@nxp.com> <20210715091207.gkd73vh3w67ccm4q@pengutronix.de>
- <CAA+hA=QDJhf_LnBZCiKE-FbUNciX4bmgmrvft8Y-vkB9Lguj=w@mail.gmail.com>
- <DB8PR04MB6795ACFCCB64354C8E810EE8E6129@DB8PR04MB6795.eurprd04.prod.outlook.com>
- <20210715110706.ysktvpzzaqaiimpl@pengutronix.de> <CAA+hA=RBysrM5qXC=gve5n8-Rm7w_Nvsf+qurYJTkWQWPmGobw@mail.gmail.com>
- <DB8PR04MB679513E50585817AF8E2C7E7E6129@DB8PR04MB6795.eurprd04.prod.outlook.com>
-In-Reply-To: <DB8PR04MB679513E50585817AF8E2C7E7E6129@DB8PR04MB6795.eurprd04.prod.outlook.com>
-From:   Dong Aisheng <dongas86@gmail.com>
-Date:   Thu, 15 Jul 2021 19:49:42 +0800
-Message-ID: <CAA+hA=R8XsZn3FDkywHpww7=4mvXrYzzXgsoKNF_-1M2McVTwA@mail.gmail.com>
-Subject: Re: [PATCH 1/7] dt-bindings: can: flexcan: fix imx8mp compatbile
-To:     Joakim Zhang <qiangqing.zhang@nxp.com>
-Cc:     Marc Kleine-Budde <mkl@pengutronix.de>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        "linux-can@vger.kernel.org" <linux-can@vger.kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.71) by SG2PR0601CA0018.apcprd06.prod.outlook.com (2603:1096:3::28) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.23 via Frontend Transport; Thu, 15 Jul 2021 11:49:35 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 3d360ed9-18e7-46dc-43fa-08d947869ff6
+X-MS-TrafficTypeDiagnostic: DB7PR04MB4107:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DB7PR04MB4107AE5DF3A33AF3DF5976C4E6129@DB7PR04MB4107.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:913;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: /Ycgs3zQIMB9c7i2CZQJrqloVH9FQprzOc3HJExC+PZXDLNPxDhhfvFH5eorF6RZKzSZmdYKyskO0Af+282tCBuJMADoqiqT7OoNSdgUtIIQ7K9WRw7zemO227B6rR8h+GjS+27lyxXNG2wToyWrwCmnNhc5bo1V/fzUTaDNNFNyTPe69w8CGV7ei5qGvpmiaNg1x/WIHUfzmVLLRQoSvNOvUdfMrQgP36MdIN3i16g3UV6FyMdUiVvpwWSyDnCOgmA/wXESrf1FI4kAZNjDSgqXGolEsZMfYtkEUg7Y7hLVxouEPrxIKcvuTsm4kIf+zx4ImUFRn0BbqZgemeMBb6a5okfvEHygDqFqKyUNeN9AYlKwFeyV144um/EAVLvuVnejpwOnEbBmDIApgmOLau3cTJw35bWVeA1L1vqwS7TkdHQJ89pr5skQR3z4oU2yjhUCm28vjbl2EOWoX0MAJsbLCA1osQNvvLEJZ2A7oP8Bthn2OySDTSvxgSRmJ/2DibvBtqYXNdCl0SFD29vVIum85qM3c/wmizMcL9W2GpQvrOeAddB1OV1uJDmk6/RODLvig3g1Qjqlt/AFeO9vtyXMvXqaRlOI/uAXYIjOyfiO81jirme2yDSdnezY0AlknlvvOTftteud8TttD2cKdVRDK8ZFvUF0HYZv5WfIvdfHd+1VUW5elVJoG2TrhxZDaTv+FidJNZ/lch9HJyhXs/auXUyYVSvsqllBfrew7V8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6795.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(39850400004)(346002)(366004)(136003)(376002)(83380400001)(478600001)(66476007)(52116002)(66946007)(956004)(2616005)(316002)(66556008)(6666004)(36756003)(38350700002)(38100700002)(2906002)(8676002)(5660300002)(6506007)(6512007)(1076003)(186003)(4326008)(6486002)(86362001)(26005)(8936002)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?dozH20s9UnbZTfVvaaRVfpr7AvPAtqXho7d5XYjGlrgNJwRX3BXLtDD6+b2n?=
+ =?us-ascii?Q?7tGb7n3uT9n1cPnfScuZtZW8zxhVVh2r/Q03TKGSjVtSI3WniVqrz86vwxzo?=
+ =?us-ascii?Q?RdUcxn3Yf8GRIA6M269Zrv/o/Qb6KcibeNUeJVc+Yk89/HXh3vTV1MOoGumF?=
+ =?us-ascii?Q?3TGD3Fj3m5a+tFPeR2aV5OGe+XPlvdg+GkQQ4jVJTrxxV3H8vkXd6mQg31iE?=
+ =?us-ascii?Q?QYwQfMbwmLqCxRMD9JfycViVeHHDllAO1Ig+Hvw7wVfeKUCrZduFIm+pMM+o?=
+ =?us-ascii?Q?wEeqg2YcLnOlX4Uv8+7DTzWPE0Ci2fXWZsiPQI+Mcp1Q1N4frCS8LwwQVbi5?=
+ =?us-ascii?Q?3RCaPSlNLdmX0KxZ015ZbyVBUr6N6vKB4tPN/GW/Njcs5U81XTM/3EZV5a3Q?=
+ =?us-ascii?Q?F4Fkl6kUcKgPsf2oYSYrop/uitdREdAS7npD1KQpmQ4tJbdUJXfHvLpcM0Fh?=
+ =?us-ascii?Q?5QP6I99rxegCEsjhdLB82pNfZ5XSd4tm8bJz+/ud4xM6jqb8QBeVutpz6fbU?=
+ =?us-ascii?Q?u6fZMlMUkbhMdfxqsjluQL4vZY8zkDb6FCx1SHna9ohvM9Owe0UusI4x/SE5?=
+ =?us-ascii?Q?c2+Wh59v4hmUpenyAg2JvwcrWg7i7PlZdArCtwX5c9tETgIbpK+Yp7XcKrNH?=
+ =?us-ascii?Q?rRhF+85tQ3PP6qQPvsfBcqW39KzhYb5pQTSGlRRptO6JNomQCmi8zcR7zlxo?=
+ =?us-ascii?Q?ion+gAdLuTt9zMWCr6bHdfYSWUSjplQRoLIMvyMncf0Z3CIO0aYX7Cib9x5Z?=
+ =?us-ascii?Q?FeLBg8MvjD9tg1WT/nd+i3OuPy0Woc75pWhEuy+w71I37wuXm/jg7wgMolhl?=
+ =?us-ascii?Q?ThB7f0Y4aKqCVkwHFgT1fbUXMyYMWVuTuA6xC5OlbyvS7D/c7O0N6GQkDzYV?=
+ =?us-ascii?Q?2OsmcTuV1atFz3EtoubdbTku/CzzAwzQcYzxXTsovGJQBO3J3Z8Taxg6N1G3?=
+ =?us-ascii?Q?LiRyBt+m3z9K/mrTw5Voda6nR2UF7ZyCjeq1k7y1lAXcFCpWTrYiXmpY84nU?=
+ =?us-ascii?Q?G8wSVNWvxcBIXjOrMpfj+QNRSY+CKkoxbHsGiogzJZHaMEY8OhhpODXEIhJx?=
+ =?us-ascii?Q?HKEXTC4sFokFu6wyx6r6whGEDNhwgkoFF7CFhhxTUchQ/ZQtydJE2zjZLrdL?=
+ =?us-ascii?Q?u96dp8cg4fMpfrGQF0blEe1cJh29GyrqcDbEGJJwGc4WuoAWiQ9UbxkCSBMM?=
+ =?us-ascii?Q?tzc97jIcEMN4bnFfG++ILEvMfb9BXDgmyxu3tmhQPwOpuGZCPEPbsedFTfQA?=
+ =?us-ascii?Q?QyHP3s3FZndSluwEUPbnwD29DkgcG/GfVGpFNF/UgQ2ByGpSayJslq7od5Mq?=
+ =?us-ascii?Q?7LwIL6w4/GnQms9Mcuoab5RJ?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3d360ed9-18e7-46dc-43fa-08d947869ff6
+X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB6795.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2021 11:49:38.7339
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: zR9OibmT6oWzqJxkf4LWSm78copWoFSRdXRar+fhp/yUR+uWl0cr46ERPZMgAH5mYYaoBa+3kDTFhR7Y2HG4wQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB4107
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 15, 2021 at 7:44 PM Joakim Zhang <qiangqing.zhang@nxp.com> wrot=
-e:
->
->
-> > -----Original Message-----
-> > From: Dong Aisheng <dongas86@gmail.com>
-> > Sent: 2021=E5=B9=B47=E6=9C=8815=E6=97=A5 19:36
-> > To: Marc Kleine-Budde <mkl@pengutronix.de>
-> > Cc: Joakim Zhang <qiangqing.zhang@nxp.com>; Aisheng Dong
-> > <aisheng.dong@nxp.com>; devicetree <devicetree@vger.kernel.org>;
-> > moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE
-> > <linux-arm-kernel@lists.infradead.org>; dl-linux-imx <linux-imx@nxp.com=
->;
-> > Sascha Hauer <kernel@pengutronix.de>; Rob Herring <robh+dt@kernel.org>;
-> > Shawn Guo <shawnguo@kernel.org>; linux-can@vger.kernel.org;
-> > netdev@vger.kernel.org
-> > Subject: Re: [PATCH 1/7] dt-bindings: can: flexcan: fix imx8mp compatbi=
-le
-> >
-> > On Thu, Jul 15, 2021 at 7:07 PM Marc Kleine-Budde <mkl@pengutronix.de>
-> > wrote:
-> > >
-> > > On 15.07.2021 11:00:07, Joakim Zhang wrote:
-> > > > > I checked with Joakim that the flexcan on MX8MP is derived from
-> > > > > MX6Q with extra ECC added. Maybe we should still keep it from HW =
-point
-> > of view?
-> > > >
-> > > > Sorry, Aisheng, I double check the history, and get the below resul=
-ts:
-> > > >
-> > > > 8MP reuses 8QXP(8QM), except ECC_EN
-> > > > (ipv_flexcan3_syn_006/D_IP_FlexCAN3_SYN_057 which corresponds to
-> > > > version d_ip_flexcan3_syn.03.00.17.01)
-> > >
-> > > Also see commit message of:
-> > >
-> > > https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fl=
-ore
-> > > .kernel.org%2Flinux-can%2F20200929211557.14153-2-qiangqing.zhang%40n
-> > xp
-> > > .com%2F&amp;data=3D04%7C01%7Cqiangqing.zhang%40nxp.com%7Cf5cd871
-> > e13b34e9
-> > >
-> > 5817b08d9478504af%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C1%7C
-> > 6376194
-> > >
-> > 58893680146%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIj
-> > oiV2luMz
-> > >
-> > IiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=3DYwH3vD%2FtIol5
-> > OXPHPM
-> > > VbiVCLTC7gowOdIP3Ih1lBHh0%3D&amp;reserved=3D0
-> > >
-> > > > I prefer to change the dtsi as Mac suggested if possible, shall I
-> > > > send a fix patch?
-> > >
-> > > Make it so!
-> >
-> > Then should it be "fsl,imx8mp-flexcan", "fsl,imx8qxp-flexcan" rather th=
-an only
-> > drop "fsl,imx6q-flexcan"?
->
-> No, I will only use " fsl,imx8mp-flexcan" to avoid ECC impact.
->
+FlexCAN on i.MX8MP is not derived from i.MX6Q, instead resues from
+i.MX8QM with extra ECC added. With "fsl,imx6q-flexcan" compatible string,
+i.MX8MP FlexCAN would not work, so remove this fallback compatible string.
 
-Is ECC issue SW or HW compatibility issue?
-If SW, then we should keep the backward compatible string as DT is
-describing HW.
+Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Regards
-Aisheng
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+index 9f7c7f587d38..1bfb359dba4a 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+@@ -579,7 +579,7 @@
+ 			};
+ 
+ 			flexcan1: can@308c0000 {
+-				compatible = "fsl,imx8mp-flexcan", "fsl,imx6q-flexcan";
++				compatible = "fsl,imx8mp-flexcan";
+ 				reg = <0x308c0000 0x10000>;
+ 				interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&clk IMX8MP_CLK_IPG_ROOT>,
+@@ -594,7 +594,7 @@
+ 			};
+ 
+ 			flexcan2: can@308d0000 {
+-				compatible = "fsl,imx8mp-flexcan", "fsl,imx6q-flexcan";
++				compatible = "fsl,imx8mp-flexcan";
+ 				reg = <0x308d0000 0x10000>;
+ 				interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&clk IMX8MP_CLK_IPG_ROOT>,
+-- 
+2.17.1
 
-> Best Regards,
-> Joakim Zhang
-> > Regards
-> > Aisheng
-> >
-> > >
-> > > regards,
-> > > Marc
-> > >
-> > > --
-> > > Pengutronix e.K.                 | Marc Kleine-Budde           |
-> > > Embedded Linux                   |
-> > https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fwww=
-.p
-> > engutronix.de%2F&amp;data=3D04%7C01%7Cqiangqing.zhang%40nxp.com%7Cf
-> > 5cd871e13b34e95817b08d9478504af%7C686ea1d3bc2b4c6fa92cd99c5c30163
-> > 5%7C0%7C1%7C637619458893680146%7CUnknown%7CTWFpbGZsb3d8eyJWI
-> > joiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3
-> > 000&amp;sdata=3DsoLd53hGDcxtF42AjJ7u5k9TT%2FsZt6TG%2Bljw4rvtdy4%3D&
-> > amp;reserved=3D0  |
-> > > Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-> > > Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
