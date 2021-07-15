@@ -2,196 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D3903CA3E8
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 19:23:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAD593CA411
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 19:25:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234219AbhGOR0e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jul 2021 13:26:34 -0400
-Received: from mail-io1-f46.google.com ([209.85.166.46]:35641 "EHLO
-        mail-io1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229786AbhGOR0d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jul 2021 13:26:33 -0400
-Received: by mail-io1-f46.google.com with SMTP id d9so7356552ioo.2;
-        Thu, 15 Jul 2021 10:23:40 -0700 (PDT)
+        id S234995AbhGOR2E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jul 2021 13:28:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37220 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233944AbhGOR2D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jul 2021 13:28:03 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5507EC061760
+        for <devicetree@vger.kernel.org>; Thu, 15 Jul 2021 10:25:10 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id 8so11185155lfp.9
+        for <devicetree@vger.kernel.org>; Thu, 15 Jul 2021 10:25:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=Ibb5KNEw1DKqJEg9n4gJy5KnzVasBofn6QaWYsu9UCQ=;
+        b=t9W6ZUbHNRJ0qNSUPxxJ7rwyS6/T47LB8+GEvcGcZS2vgBILYApln75Pntcxn5fpNm
+         CtF83dHhK1sI0unp5//UIaTiWHKSRWhdzbLUXmwOWE0siga3uT7o6KbbqJLCuXISRJEQ
+         al8pRwAY03/IaxE3qXnt42v0CTRaHD2tppbU0LS/FZIzL8IxPeIaPJ1YZkyHqWZX3beM
+         4+xYQxqDDYwD9dyjX1Mc60oWXcAcZdalOCke9n3oDr1w+I8lJlufH05RbTPxRhFGiMAD
+         BpEH+2hcDtItf0cKj4UhyaFm0jsA0qnOxoGC5g15c9fNdeV0dFm2Efrq/yuK05wZR73f
+         O6jw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Kf1evJp0mMw4X9FefVnWN29DSwILfIRDegyhezWiKMs=;
-        b=erq8rXDY78o7xlo4SIHYyxi/8yoLbu7bZCNWQl9XVbQegcQ7UdzZgQuYQ54qXO+h8j
-         sPHTLw6U10g+aeOGtwTnSNqNRhAY2Mndj6zYVUXqcEgUOTVG2m/ZbU7obMlgRGVYkmV2
-         hYPzHJ9Q7ZVHV0lFy4XexCc2xNR7XUIWzw2t/XeTmL+DFadinTzdTGShDJuVHFE3juie
-         shDTO4QAzvcj8HUgrtvRYRTOxdx2de33VbOf3MnaDtKfHFkuvoj7EGQ+7397Ii1ZpuPu
-         nnnqnBrggj+9UlZihuTK9EraxhhyPQXQ6OktsoXr3YKb2uIo8jDO8DCtVJQa7ZhCMhud
-         divA==
-X-Gm-Message-State: AOAM530NwF2RTKFvSumTgLSfooRzzkb21ZFu/EeXXTNpcQR+Oji9LxSv
-        ekAQBfkfXl5leOffyZ2noQ==
-X-Google-Smtp-Source: ABdhPJxD+9lkUaw6EjbkEA9Dvv2T2gjP6OqfRxwcyBfzlcv8uV672bm/jA+nXHywZqBhpFtSa3btiA==
-X-Received: by 2002:a02:9f8e:: with SMTP id a14mr4958548jam.55.1626369820252;
-        Thu, 15 Jul 2021 10:23:40 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id i5sm3490419ilc.16.2021.07.15.10.23.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Jul 2021 10:23:39 -0700 (PDT)
-Received: (nullmailer pid 1277979 invoked by uid 1000);
-        Thu, 15 Jul 2021 17:23:37 -0000
-Date:   Thu, 15 Jul 2021 11:23:37 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Jingoo Han <jingoohan1@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
-Subject: Re: [PATCH v4 1/5] dt-bindings: PCI: add snps,dw-pcie.yaml
-Message-ID: <20210715172337.GA1263164@robh.at.kernel.org>
-References: <cover.1626174242.git.mchehab+huawei@kernel.org>
- <0454d09414d74d9789213f5e7779002bcc024537.1626174242.git.mchehab+huawei@kernel.org>
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=Ibb5KNEw1DKqJEg9n4gJy5KnzVasBofn6QaWYsu9UCQ=;
+        b=pAE1XtMolwPVE5ieodF1dVykayQ1UgZeWgYiMUhN8iPO0xf/qkTMN3W4qLCNLfJKd2
+         9qeZwPZXNO7iCPC73Ou6HfdPIBkGZ7kfPM+Usrovu5Sm0rQzByINNl7Ol5UALxYvjHPX
+         9/4fQ1ETBkKan9J7A0zns+qUyiRMUat91bmddF4KoMF7dgEio7ivO+VS0+sySmgqwrcU
+         pDD3gdmBQ6QkFABfkcBeXEy9uiGiWcpYLn1C39Er3mcEhm4v4e6vzZ4dAZY/Bw0aYPjt
+         VkqzRy5vLnmfqPhmJOCFnbd95txArh8WJeuvsDkg6sa6oC0EenPIvCoXFpHJVjHVgAtv
+         RzMA==
+X-Gm-Message-State: AOAM533Et91GVaEF91WZflctEgIvilPxwoY9ULlDiZxjv/B+2iw10lwm
+        EIDaTRy1QrllOiJuyRv8uxYCv8MNqQ9jY1ABfdvVGiI1Y9wwKA==
+X-Google-Smtp-Source: ABdhPJyxueRlfHltyUCESR67vWAXcLtdouVP7pOna84WJs+57H00WkQ1yY0EfL0teWyNwd8lnwpCvuhD/ZS2cFmHFwA=
+X-Received: by 2002:a50:9faf:: with SMTP id c44mr8582001edf.197.1626369898073;
+ Thu, 15 Jul 2021 10:24:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0454d09414d74d9789213f5e7779002bcc024537.1626174242.git.mchehab+huawei@kernel.org>
+Received: by 2002:a54:2dcd:0:0:0:0:0 with HTTP; Thu, 15 Jul 2021 10:24:57
+ -0700 (PDT)
+Reply-To: faty.muhamad@gmail.com
+From:   Fatima Muhammad <matinscott.chambers@gmail.com>
+Date:   Thu, 15 Jul 2021 17:24:57 +0000
+Message-ID: <CAG26VvVWiHB2u8iO1e8bETcuSekW3UnVoiXKLwNZ2yh0MOiBWw@mail.gmail.com>
+Subject: Hello Dear
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 13, 2021 at 01:17:51PM +0200, Mauro Carvalho Chehab wrote:
-> Currently, the designware schema is defined on a text file:
-> 	designware-pcie.txt
-> 
-> Convert the pci-bus part into a schema.
-> 
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> ---
->  .../devicetree/bindings/pci/snps,dw-pcie.yaml | 96 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 97 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> new file mode 100644
-> index 000000000000..fd372d715ab4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> @@ -0,0 +1,96 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/snps,dw-pcie.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Synopsys DesignWare PCIe interface
-> +
-> +maintainers:
-> +  - Jingoo Han <jingoohan1@gmail.com>
-> +  - Gustavo Pimentel <gustavo.pimentel@synopsys.com>
-> +
-> +description: |
-> +  Synopsys DesignWare PCIe host controller
-> +
-> +allOf:
-> +  - $ref: /schemas/pci/pci-bus.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    anyOf:
-> +      - {}
-> +      - const: snps,dw-pcie
-> +
-> +  reg:
-> +    description: |
-> +      It should contain Data Bus Interface (dbi) and config registers for all
-> +      versions.
-> +      For designware core version >= 4.80, it may contain ATU address space.
-> +    minItems: 2
-> +    maxItems: 4
-> +
-> +  reg-names:
-> +    minItems: 2
-> +    maxItems: 4
-> +    items:
-> +      enum: [dbi, dbi2, config, atu, addr_space, app, elbi, mgmt]
+Hello Dear,
 
-Isn't 'config' only for host and 'addr_space' only for endpoint?
+My name is Ms.Fatima Muhammad., Please forgive me for stressing you
+with my predicaments and I sorry to approach you through this media
+because is serves the fastest means of  my communication right now,
 
-> +
-> +  num-lanes:
-> +    $ref: '/schemas/types.yaml#/definitions/uint32'
-> +    description: |
-> +      number of lanes to use (this property should be specified unless
-> +      the link is brought already up in BIOS)
-> +    maximum: 16
-> +
-> +  reset-gpio:
-> +    description: GPIO pin number of PERST# signal
-> +    maxItems: 1
-> +    deprecated: true
-> +
-> +  reset-gpios:
-> +    description: GPIO controlled connection to PERST# signal
-> +    maxItems: 1
-> +
-> +  snps,enable-cdm-check:
-> +    type: boolean
-> +    description: |
-> +      This is a boolean property and if present enables
-> +      automatic checking of CDM (Configuration Dependent Module) registers
-> +      for data corruption. CDM registers include standard PCIe configuration
-> +      space registers, Port Logic registers, DMA and iATU (internal Address
-> +      Translation Unit) registers.
-> +
-> +  num-viewport:
-> +    description: |
-> +      number of view ports configured in hardware. If a platform
-> +      does not specify it, the driver autodetects it.
-> +    deprecated: true
-> +
-> +unevaluatedProperties: false
-> +
-> +required:
-> +  - reg
-> +  - reg-names
-> +  - compatible
-> +
-> +examples:
-> +  - |
-> +    bus {
-> +      #address-cells = <1>;
-> +      #size-cells = <1>;
-> +      pcie@dfc00000 {
-> +        device_type = "pci";
-> +        compatible = "snps,dw-pcie";
-> +        reg = <0xdfc00000 0x0001000>, /* IP registers */
-> +              <0xd0000000 0x0002000>; /* Configuration space */
-> +        reg-names = "dbi", "config";
-> +        #address-cells = <3>;
-> +        #size-cells = <2>;
-> +        ranges = <0x81000000 0 0x00000000 0xde000000 0 0x00010000>,
-> +                 <0x82000000 0 0xd0400000 0xd0400000 0 0x0d000000>;
-> +        interrupts = <25>, <24>;
+I came across your Email from my personal search and I decided to
+contact you believing you will be honest to fulfill my business
+proposal which I believe that will be a very good opportunity for both
+of us. Please it is my pleasure to contact you today for a business
+partnership investments projects worth $4.6 million USD which I intend
+to establish in your country..
 
-Not documented.
+Pls If this business proposal offends your moral and ethic values do
+accept my apology. therefore kindly contact me immediately if you are
+interested for more details.
 
-> +        #interrupt-cells = <1>;
-
-Not documented.
-
-> +        num-lanes = <1>;
-> +      };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 4529cf5ed430..f0115c590731 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -14283,6 +14283,7 @@ M:	Gustavo Pimentel <gustavo.pimentel@synopsys.com>
->  L:	linux-pci@vger.kernel.org
->  S:	Maintained
->  F:	Documentation/devicetree/bindings/pci/designware-pcie.txt
-> +F:	Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
->  F:	drivers/pci/controller/dwc/*designware*
->  
->  PCI DRIVER FOR TI DRA7XX/J721E
-> -- 
-> 2.31.1
-> 
-> 
+Thank you for your wiliness to help me
+Yours Sincerely Fatima Muhammad
