@@ -2,143 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AAAE3C996F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 09:12:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CBAE3C997E
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 09:17:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239367AbhGOHPq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jul 2021 03:15:46 -0400
-Received: from mail-vs1-f41.google.com ([209.85.217.41]:46043 "EHLO
-        mail-vs1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239259AbhGOHPq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jul 2021 03:15:46 -0400
-Received: by mail-vs1-f41.google.com with SMTP id h5so2435161vsg.12;
-        Thu, 15 Jul 2021 00:12:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=r7Wm2VmRQG0S2YATdr39DjvrwdEWRiViM0Z14vn9XxA=;
-        b=gDYtdN3TQRLThXUNHY7HhW3Fa0z/0/ZWoZ3tu6a2kr01vFYKXrgDOfQ9DtT+SPevUW
-         +U3UiiDAG0Jd9fKtgzLKeiqJXaVjYbWTFvhhvLZKBqiwccnGFDq8pAmcIqdNB3lRFFsD
-         p/uVRmqvxz44AiPIUCiVLKE0mYSYM639Jij2Xi8MI4oXW43/Cu9zjYIGQYL8rWUTWqLq
-         ELeWQTQ0iUhEyjItmtVsn4PSKt3KHKpA5/VkmD/oo1LBmNOwh224eBOeaS3Z3DIj/e1i
-         ElkGGuEoiVDvct36c5VXsB/+aFtl/SzFil2EOM+yNNNVfzS8Fz2emhAUsjKYHCaXtRdX
-         5Wjg==
-X-Gm-Message-State: AOAM532evuS8QLPMAdcJK+EfFDRC2o+SBjjMW3InScct2QLW4/44FVOk
-        YnQqzSDz+diGQjAunHqYrTr4KocoNF0m3GAHnDMbbH+qLai55w==
-X-Google-Smtp-Source: ABdhPJzRni57+mECuuBP2Gv0ZHJyw60s3RqhaO1HEhS2XaiHmrzkqi/2inwoECg+MGxuieUBIAKWhF0tZ5lF8m5w2FI=
-X-Received: by 2002:a67:1542:: with SMTP id 63mr4611663vsv.40.1626333171886;
- Thu, 15 Jul 2021 00:12:51 -0700 (PDT)
+        id S240287AbhGOHUC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jul 2021 03:20:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38710 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240291AbhGOHUB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jul 2021 03:20:01 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1BDAC06175F
+        for <devicetree@vger.kernel.org>; Thu, 15 Jul 2021 00:17:08 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1m3vcE-00052b-0e; Thu, 15 Jul 2021 09:17:02 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1m3vcD-0007wJ-Cc; Thu, 15 Jul 2021 09:17:01 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1m3vcD-0006U3-BJ; Thu, 15 Jul 2021 09:17:01 +0200
+Date:   Thu, 15 Jul 2021 09:16:58 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Sasha Levin <sashal@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH AUTOSEL 5.13 024/108] ARM: dts: imx25-pinfunc: Fix gpio
+ function name for pads GPIO_[A-F]
+Message-ID: <20210715071658.mwcve4wghdoalspk@pengutronix.de>
+References: <20210714193800.52097-1-sashal@kernel.org>
+ <20210714193800.52097-24-sashal@kernel.org>
+ <20210714203550.zlbvfh6rfnah6iir@pengutronix.de>
+ <YO9QKRUOT0Kg0jZ9@sashalap>
 MIME-Version: 1.0
-References: <20210625125902.1162428-1-geert@linux-m68k.org>
- <20210625125902.1162428-3-geert@linux-m68k.org> <20210714203624.GA3466861@robh.at.kernel.org>
-In-Reply-To: <20210714203624.GA3466861@robh.at.kernel.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 15 Jul 2021 09:12:40 +0200
-Message-ID: <CAMuHMdVso6wpX-u6oG+i1B3=4NFO4tyZgQmQW-nG5MQH27t9BA@mail.gmail.com>
-Subject: Re: [PATCH v2 02/18] dt-bindings: auxdisplay: ht16k33: Document
- Adafruit segment displays
-To:     Rob Herring <robh@kernel.org>
-Cc:     Robin van der Gracht <robin@protonic.nl>,
-        Miguel Ojeda <ojeda@kernel.org>,
-        Paul Burton <paulburton@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-leds <linux-leds@vger.kernel.org>,
-        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="yqkwbe5xcciyc3ar"
+Content-Disposition: inline
+In-Reply-To: <YO9QKRUOT0Kg0jZ9@sashalap>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
 
-Note that you commented on v2, while I posted v3 yesterday.
+--yqkwbe5xcciyc3ar
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jul 14, 2021 at 10:36 PM Rob Herring <robh@kernel.org> wrote:
-> On Fri, Jun 25, 2021 at 02:58:46PM +0200, Geert Uytterhoeven wrote:
-> > The Holtek HT16K33 LED controller is not only used for driving
-> > dot-matrix displays, but also for driving segment displays.
-> >
-> > Document compatible values for the Adafruit 7-segment[1] and
-> > 14-segment[2] FeatherWing expansion boards with red displays.  According
-> > to the schematics, all other Adafruit 7-segment and 14-segment display
-> > backpack and FeatherWing expansion boards (including bare boards and
-> > boards fitted with displays) are compatible with these two boards.
-> > Add a "color" property to support the different color variants.
-> >
-> > [1] https://www.adafruit.com/product/3108
-> > [2] https://www.adafruit.com/product/3130
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+On Wed, Jul 14, 2021 at 04:59:21PM -0400, Sasha Levin wrote:
+> On Wed, Jul 14, 2021 at 10:35:50PM +0200, Uwe Kleine-K=F6nig wrote:
+> > On Wed, Jul 14, 2021 at 03:36:36PM -0400, Sasha Levin wrote:
+> > > From: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+> > >=20
+> > > [ Upstream commit e0cdd26af8eb9001689a4cde4f72c61c1c4b06be ]
+> > >=20
+> > > The pinfunc definitions used GPIO_A as function instead of GPIO_1_0 as
+> > > done for all the other pins with GPIO functionality. Fix for consiste=
+ncy.
+> > >=20
+> > > There are no mainline users that needs adaption.
+> > >=20
+> > > Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+> > > Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+> > > Signed-off-by: Sasha Levin <sashal@kernel.org>
+> >=20
+> > I'm not convinced it's a good idea to take this patch for stable.
+> > in-tree users are unaffected and the only effect this can have on
+> > out-of-tree users is to break them. So the gain of having this is not
+> > positive.
+> >=20
+> > Am I missing something?
+>=20
+> Hm, if those definitions don't have an in-tree users, why are they still
+> around to begin with?
 
-> > --- a/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
-> > +++ b/Documentation/devicetree/bindings/auxdisplay/holtek,ht16k33.yaml
-> > @@ -14,14 +14,23 @@ allOf:
-> >
-> >  properties:
-> >    compatible:
-> > -    const: holtek,ht16k33
-> > +    oneOf:
-> > +      - items:
-> > +          - const: adafruit,3108  # 0.56" 4-Digit 7-Segment FeatherWing Display (Red)
-> > +          - const: holtek,ht16k33
-> > +
-> > +      - items:
-> > +          - const: adafruit,3130  # 0.54" Quad Alphanumeric FeatherWing Display (Red)
-> > +          - const: holtek,ht16k33
->
-> These 2 entries can be combined.
+It's hardware description and out-of-tree dts might make use of it. Even
+if no in-tree user benefits, it's IMO better to have this included, but
+I admit you could judge differently here.
 
-Right.  This split dates back from when I considered adding all
-possible compatible values.  It can indeed be simplified to:
+Best regards
+Uwe
 
-          - enum:
-              - adafruit,3108  # 0.56" 4-Digit 7-Segment FeatherWing
-Display (Red)
-              - adafruit,3130  # 0.54" Quad Alphanumeric FeatherWing
-Display (Red)
-          - const: holtek,ht16k33
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
-> Or make the comment a 'description'.
+--yqkwbe5xcciyc3ar
+Content-Type: application/pgp-signature; name="signature.asc"
 
-What do you mean?
+-----BEGIN PGP SIGNATURE-----
 
->
-> > +
-> > +      - const: holtek,ht16k33     # Generic 16*8 LED controller with dot-matrix display
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmDv4OcACgkQwfwUeK3K
+7An2Fgf/ddo/to5QAC9EOSvn7Cfd5AFD82Soed00daFgBCoCP3tGH3gbYVV3kzh3
+ChYWoYMQCN1e6GZ8qYIC3vNm0iSuJSbrosMcIqJnowjOwitM8eTyykGLSXlqrArI
+qOnQMgqc1pEma07mjoJDaMTEWSHssncYLcbAEe+I+ygXDrcb4r/ApV6+Ag3502iW
+kA7YEJRZPaGCzN2+pCtoYF3ZyCC7zytQewW0gWV5eSKvwFlEks6UunzY7koQGfGL
+XTjKypKN5u/dqgmk+RSFYNYMZTv2Sr01skvf1V5RkIpTs/UsQSopZPCMJbIHgZH+
+Th37WM7QEP+1Qg7qKZA7lDtHdGujXg==
+=moso
+-----END PGP SIGNATURE-----
 
-> >  required:
-> >    - compatible
-> >    - reg
-> > -  - refresh-rate-hz
-> > +
-> > +if:
-> > +  properties:
-> > +    compatible:
-> > +      const: holtek,ht16k33
->
-> Isn't this always true?
-
-It is false if there is more than one compatible value.
-
->
-> > +then:
-> > +  required:
-> > +    - refresh-rate-hz
-> >
-> >  additionalProperties: false
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+--yqkwbe5xcciyc3ar--
