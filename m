@@ -2,92 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 855DB3C9B2F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 11:12:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DB443C9B58
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 11:23:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231593AbhGOJPN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jul 2021 05:15:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36552 "EHLO
+        id S229620AbhGOJ0m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jul 2021 05:26:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229620AbhGOJPM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jul 2021 05:15:12 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6856C061760
-        for <devicetree@vger.kernel.org>; Thu, 15 Jul 2021 02:12:19 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1m3xPe-0002vP-4a; Thu, 15 Jul 2021 11:12:10 +0200
-Received: from pengutronix.de (unknown [IPv6:2a03:f580:87bc:d400:968e:ea40:4726:28f1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 14EBA64FD1A;
-        Thu, 15 Jul 2021 09:12:08 +0000 (UTC)
-Date:   Thu, 15 Jul 2021 11:12:07 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Dong Aisheng <aisheng.dong@nxp.com>
+        with ESMTP id S240106AbhGOJ0m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jul 2021 05:26:42 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C8EBC061760
+        for <devicetree@vger.kernel.org>; Thu, 15 Jul 2021 02:23:48 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id q10so4603786pfj.12
+        for <devicetree@vger.kernel.org>; Thu, 15 Jul 2021 02:23:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nigauri-org.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8tGxs+ledb1QN4h36o9TBKNkqwYbwPt1Wseu2AbjCrI=;
+        b=xgR65XM8/M3g9Zqj7xaqRQnhswuu1Z76iXjfUDZynZ0GS4tz8L9cgKpkL1U8DuwUE4
+         7VOaeCOwVVH0ZXi3U6GOqsHKpduCxBXYzkYkXtp09u5PLbuKXkSC9A4Ozc7k34H+7wKU
+         raaRIyy7bGhKIDr1KotUohQgu7rWcYnO8ljkkbZMilciT6KZmyRiL+hfEF/PIM5bs/1g
+         PyXnJ1GkuLYhLDJisULz+7mJ67spIpQyT2JlNRvijudzGCurIhXBep8qEI9VF5weEl8r
+         eP3ubc0RpE2dxVov3JlMz+8Tz+4NTCt1dXPy7yOm8r9sK5QuJ0UKsmRg6b82ZsiYPCDe
+         61Ig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8tGxs+ledb1QN4h36o9TBKNkqwYbwPt1Wseu2AbjCrI=;
+        b=d7y49aw+wmstpq+2+pYeI9hx/8YXPuPYnAUfkBOHZ6yO5bX7t12Nfd9/HtyJ4kOFli
+         pNS3ICBYAyhKaViKZirT/r9TpqP92PZHkBJa3dHxaBEQkZlUVIy/UkpNqnmfFjpvzcUv
+         ELnImNCycDCpYq6FnBabFW0Niaks052D4c8TmKZ4i8tmz/X1xscjimhfwImw89XjhjFp
+         4HphDP70ga6C37JIzEQUIcOshcBPM9W3xof2MlesoYfZ0gVnh2hJw6a0Yo6eGF4y44mr
+         YNYzskH1ojS7fSL+cjdWF501Wl1VdtPbQA6KIrWRm9DrgFrgWi1AcnYU08Dr6vbONNKF
+         EKjw==
+X-Gm-Message-State: AOAM532GDYog0/B9avPCqJIBkds7sWFeqzImYaunX51ZbA4P4X8UwRcL
+        7VRYh0OqQFtA9624yjSuEAPj
+X-Google-Smtp-Source: ABdhPJx4F1nuZubI9ezz8OqE0sdgK+YOulDXehCFHx24pniSxpNbY0ka3i68k7ATg0f+fUfw0ThspQ==
+X-Received: by 2002:a63:5117:: with SMTP id f23mr3605556pgb.200.1626341028027;
+        Thu, 15 Jul 2021 02:23:48 -0700 (PDT)
+Received: from localhost ([2405:6581:5360:1800:7285:c2ff:fec2:8f97])
+        by smtp.gmail.com with ESMTPSA id w18sm5298816pjg.50.2021.07.15.02.23.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Jul 2021 02:23:47 -0700 (PDT)
+From:   Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+To:     robh+dt@kernel.org, gregkh@linuxfoundation.org,
+        michal.simek@xilinx.com
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-imx@nxp.com, kernel@pengutronix.de, dongas86@gmail.com,
-        robh+dt@kernel.org, shawnguo@kernel.org,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH 1/7] dt-bindings: can: flexcan: fix imx8mp compatbile
-Message-ID: <20210715091207.gkd73vh3w67ccm4q@pengutronix.de>
-References: <20210715082536.1882077-1-aisheng.dong@nxp.com>
- <20210715082536.1882077-2-aisheng.dong@nxp.com>
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        navam@xilinx.com, peter.crosthwaite@xilinx.com,
+        shubhrajyoti.datta@xilinx.com, soren.brinkmann@xilinx.com,
+        Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+Subject: [PATCH v2] dt-bindings: serial: convert Cadence UART bindings to YAML
+Date:   Thu, 15 Jul 2021 18:22:52 +0900
+Message-Id: <20210715092252.225740-1-iwamatsu@nigauri.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="wmxjb5ivzs2k5a7d"
-Content-Disposition: inline
-In-Reply-To: <20210715082536.1882077-2-aisheng.dong@nxp.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert serial for Cadence UART bindings documentation to YAML.
 
---wmxjb5ivzs2k5a7d
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
 
-On 15.07.2021 16:25:30, Dong Aisheng wrote:
-> This patch fixes the following errors during make dtbs_check:
-> arch/arm64/boot/dts/freescale/imx8mp-evk.dt.yaml: can@308c0000: compatibl=
-e: 'oneOf' conditional failed, one must be fixed:
-> 	['fsl,imx8mp-flexcan', 'fsl,imx6q-flexcan'] is too long
+---
+v2:
+  - Fix enum of compatible
+  - Change from additionalProperties: false to unevaluatedProperties: false
+  - Update compatible string in examples.
 
-IIRC the fsl,imx6q-flexcan binding doesn't work on the imx8mp. Maybe
-better change the dtsi?
+ .../devicetree/bindings/serial/cdns,uart.txt  | 27 --------
+ .../devicetree/bindings/serial/cdns,uart.yaml | 66 +++++++++++++++++++
+ 2 files changed, 66 insertions(+), 27 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/serial/cdns,uart.txt
+ create mode 100644 Documentation/devicetree/bindings/serial/cdns,uart.yaml
 
-regards,
-Marc
+diff --git a/Documentation/devicetree/bindings/serial/cdns,uart.txt b/Documentation/devicetree/bindings/serial/cdns,uart.txt
+deleted file mode 100644
+index 4efc560f90abbd..00000000000000
+--- a/Documentation/devicetree/bindings/serial/cdns,uart.txt
++++ /dev/null
+@@ -1,27 +0,0 @@
+-Binding for Cadence UART Controller
+-
+-Required properties:
+-- compatible :
+-  Use "xlnx,xuartps","cdns,uart-r1p8" for Zynq-7xxx SoC.
+-  Use "xlnx,zynqmp-uart","cdns,uart-r1p12" for Zynq Ultrascale+ MPSoC.
+-- reg: Should contain UART controller registers location and length.
+-- interrupts: Should contain UART controller interrupts.
+-- clocks: Must contain phandles to the UART clocks
+-  See ../clocks/clock-bindings.txt for details.
+-- clock-names: Tuple to identify input clocks, must contain "uart_clk" and "pclk"
+-  See ../clocks/clock-bindings.txt for details.
+-
+-
+-Optional properties:
+-- cts-override : Override the CTS modem status signal. This signal will
+-  always be reported as active instead of being obtained from the modem status
+-  register. Define this if your serial port does not use this pin
+-
+-Example:
+-	uart@e0000000 {
+-		compatible = "cdns,uart-r1p8";
+-		clocks = <&clkc 23>, <&clkc 40>;
+-		clock-names = "uart_clk", "pclk";
+-		reg = <0xE0000000 0x1000>;
+-		interrupts = <0 27 4>;
+-	};
+diff --git a/Documentation/devicetree/bindings/serial/cdns,uart.yaml b/Documentation/devicetree/bindings/serial/cdns,uart.yaml
+new file mode 100644
+index 00000000000000..fcdbe6f87e9808
+--- /dev/null
++++ b/Documentation/devicetree/bindings/serial/cdns,uart.yaml
+@@ -0,0 +1,66 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/serial/cdns,uart.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Cadence UART Controller Device Tree Bindings
++
++maintainers:
++  - Michal Simek <michal.simek@xilinx.com>
++
++allOf:
++  - $ref: /schemas/serial.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - description: UART controller for Zynq-7xxx SoC
++        items:
++          - const: xlnx,xuartps
++          - const: cdns,uart-r1p8
++      - description: UART controller for Zynq Ultrascale+ MPSoC
++        items:
++          - const: xlnx,zynqmp-uart
++          - const: cdns,uart-r1p12
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 2
++
++  clock-names:
++    items:
++      - const: uart_clk
++      - const: pclk
++
++  cts-override:
++    description: |
++      Override the CTS modem status signal. This signal will
++      always be reported as active instead of being obtained
++      from the modem status register. Define this if your serial
++      port does not use this pin.
++    type: boolean
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    uart0: serial@e0000000 {
++      compatible = "xlnx,xuartps", "cdns,uart-r1p8";
++      clocks = <&clkc 23>, <&clkc 40>;
++      clock-names = "uart_clk", "pclk";
++      reg = <0xE0000000 0x1000>;
++      interrupts = <0 27 4>;
++    };
+-- 
+2.32.0
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---wmxjb5ivzs2k5a7d
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAmDv++QACgkQqclaivrt
-76lkpAf+NgsqEVY19xmRYoc424kQpm//J2pvhFCtpyRwHSzPGX6rrq2Betpq5yqb
-EWpxnE0qP7Lr1nLJu+WUN4GJUA94UU+F83QpqQUMxSaWcqTZHyewqEqG5KJpJeCf
-n+O+D3DIv4bnAC0A372LVSd2q+nfhMaL+zMphkmwlxlZPDxrHsauwWu3OTWWmU5E
-dhApUvrBSGnp2eQZzqj6NAs4U54aDENzdusLLQdLuJDkI7ap2d2BgKaBMv6HF55g
-uPodBPiIo2zRmvM4VlTP3gh2M7NkPMMyz2D90H6y6utYQQuc83F/sbjlj6v2a+1B
-tW6uIdmxHoNw3EjpsPi5feFH/wDuOA==
-=R46E
------END PGP SIGNATURE-----
-
---wmxjb5ivzs2k5a7d--
