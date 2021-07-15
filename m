@@ -2,181 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CAD13CA27C
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 18:33:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 275DD3CA290
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 18:41:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231633AbhGOQgs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jul 2021 12:36:48 -0400
-Received: from mail-io1-f47.google.com ([209.85.166.47]:38590 "EHLO
-        mail-io1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229990AbhGOQgs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jul 2021 12:36:48 -0400
-Received: by mail-io1-f47.google.com with SMTP id k11so7186664ioa.5;
-        Thu, 15 Jul 2021 09:33:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Y6bIe4Hr1YorCPfBGvzQ6LpfYt1mUHZ0WYD1UKQ11fI=;
-        b=OddwE8C60Dd27dV54u5M1RJKaYtymzqwYRMPD7bgAmQK3SvIsfXUT0kLiTsNxKbbAg
-         /relrKhwAdeHMhsjM9K4Qez5v2C8zYtmoNqKx/1bL4d2i96mPMqbp5f4gTeFxST3yxbA
-         Taah/w/JX4gfngi144B3kbQLe5O9fprZexAwerFIJccVrRTwwnT3cnFf6KOAItJTFOLz
-         AuypePdbGeZKh/2KwvPjMb3a/WbKMZQYNde9Gn9+mNgbbFt/Epi84aBWJ8AiBkogmdC4
-         SJ7ySCEkxlL2x15q7+igCDHhHqabaEzNhYx72p/yuj03WauJ9/815Dzpj71D30AXR4F6
-         vA2A==
-X-Gm-Message-State: AOAM532DenXw5O5ru+DseSs52MoJ8Rg9Dyx766eS3XIOp0tk+4vf0V0e
-        xww+yW8xIrZoDH/G10xpgA==
-X-Google-Smtp-Source: ABdhPJwjABnFg4T6xJSJ0P5H8lKstHXlXYapvPvsNoHN3wsp0lAAJVLxEKy3tFw/NsOsULzmDiFcUg==
-X-Received: by 2002:a5d:8d16:: with SMTP id p22mr3786404ioj.90.1626366834397;
-        Thu, 15 Jul 2021 09:33:54 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id f16sm3263591ilc.53.2021.07.15.09.33.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Jul 2021 09:33:53 -0700 (PDT)
-Received: (nullmailer pid 1202003 invoked by uid 1000);
-        Thu, 15 Jul 2021 16:33:50 -0000
-Date:   Thu, 15 Jul 2021 10:33:50 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Liam Beguin <liambeguin@gmail.com>
-Cc:     lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
-        charles-antoine.couret@essensium.com, Nuno.Sa@analog.com,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 4/4] dt-bindings: iio: adc: ad7949: add per channel
- reference
-Message-ID: <20210715163350.GA1196436@robh.at.kernel.org>
-References: <20210713043425.3321230-1-liambeguin@gmail.com>
- <20210713043425.3321230-5-liambeguin@gmail.com>
+        id S231964AbhGOQoS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jul 2021 12:44:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45110 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231552AbhGOQoR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Jul 2021 12:44:17 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D71EB6128D;
+        Thu, 15 Jul 2021 16:41:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1626367284;
+        bh=uyg8T9TNPb3ezXODwBGeW2rhMyNTLnpO4b7LmIATlXo=;
+        h=From:To:Cc:Subject:Date:From;
+        b=WZWj9S+0r0s5f8KR65OVvi2f/czleiyx7mCnQgjV7WqZI6sgLmbuWxvhAKiqqOTQS
+         aMVLWUrias2HMFeqT6vj4biVRCDC/HT9zpHzz+TtJg9nzvQRn3Gc8lySV4nObm4T0R
+         wSC7KEW4gtUFYYIR8P9qUNGhIgVah0HbXUt1qOQhhg4UQ38HY0mOJv8ocL2xbnPc42
+         schfN58MgVU/9owMT1mcf7ESoJHU99cDl10XDc1HrGT2QrLk3zQgkZH3vb1NlyhIFj
+         NiqIMmJYgXL99IsBVcdIzO6NACbUdBlBYlQHVI8JrMV/1vNe35zGSV9GNi+605HG5E
+         ioGLxNKG1CuwQ==
+From:   matthias.bgg@kernel.org
+To:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc:     Matthias Brugger <mbrugger@suse.com>, devicetree@vger.kernel.org,
+        Simon South <simon@simonsouth.net>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        Guillaume Gardet <guillaume.gardet@arm.com>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: Disable CDN DP on Pinebook Pro
+Date:   Thu, 15 Jul 2021 18:41:01 +0200
+Message-Id: <20210715164101.11486-1-matthias.bgg@kernel.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210713043425.3321230-5-liambeguin@gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 13, 2021 at 12:34:25AM -0400, Liam Beguin wrote:
-> From: Liam Beguin <lvb@xiphos.com>
-> 
-> Add bindings documentation describing per channel reference voltage
-> selection.
-> This adds the adi,internal-ref-mv property, and child nodes for each
-> channel. This is required to properly configure the ADC sample request
-> based on which reference source should be used for the calculation.
-> 
-> Signed-off-by: Liam Beguin <lvb@xiphos.com>
-> ---
->  .../bindings/iio/adc/adi,ad7949.yaml          | 71 +++++++++++++++++--
->  1 file changed, 67 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7949.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7949.yaml
-> index 9b56bd4d5510..18abba3b0b4d 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7949.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7949.yaml
-> @@ -26,19 +26,65 @@ properties:
->    reg:
->      maxItems: 1
->  
-> +  vrefin-supply:
-> +    description:
-> +      Buffered ADC reference voltage supply.
-> +
->    vref-supply:
->      description:
-> -      ADC reference voltage supply
-> +      Unbuffered ADC reference voltage supply.
->  
->    spi-max-frequency: true
->  
-> -  "#io-channel-cells":
-> +  '#io-channel-cells':
->      const: 1
->  
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +
+From: Matthias Brugger <mbrugger@suse.com>
 
-extra blank line.
+The CDN DP needs a PHY and a extcon to work correctly. But no extcon is
+provided by the device-tree, which leads to an error:
+cdn-dp fec00000.dp: [drm:cdn_dp_probe [rockchipdrm]] *ERROR* missing extcon or phy
+cdn-dp: probe of fec00000.dp failed with error -22
 
->  required:
->    - compatible
->    - reg
-> -  - vref-supply
-> +
-> +patternProperties:
-> +  '^channel@([0-7])$':
-> +    type: object
-> +    description: |
-> +      Represents the external channels which are connected to the ADC.
-> +
-> +    properties:
-> +      reg:
-> +        description: |
-> +          The channel number.
-> +          Up to 4 channels, numbered from 0 to 3 for adi,ad7682.
-> +          Up to 8 channels, numbered from 0 to 7 for adi,ad7689 and adi,ad7949.
-> +        items:
-> +          minimum: 0
-> +          maximum: 7
-> +
-> +      adi,internal-ref-mv:
+Disable the CDN DP to make graphic work on the Pinebook Pro.
 
-Use standard unit suffix name. Then you can drop the type $ref.
+Reported-by: Guillaume Gardet <guillaume.gardet@arm.com>
+Signed-off-by: Matthias Brugger <mbrugger@suse.com>
 
-> +        description: |
-> +          Internal reference voltage selection in millivolts.
-> +
-> +          If no internal reference is specified, the channel will default to the
-> +          external reference defined by vrefin-supply (or vref-supply).
-> +          vrefin-supply will take precedence over vref-supply if both are defined.
-> +
-> +          If no supplies are defined, the reference selection will default to
-> +          4096mV internal reference.
-> +
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        enum: [2500, 4096]
-> +        default: 4096
-> +
-> +    required:
-> +      - reg
-> +
-> +    additionalProperties: false
->  
->  additionalProperties: false
->  
-> @@ -49,9 +95,26 @@ examples:
->          #size-cells = <0>;
->  
->          adc@0 {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
->              compatible = "adi,ad7949";
->              reg = <0>;
-> -            vref-supply = <&vdd_supply>;
-> +            vrefin-supply = <&vdd_supply>;
-> +
-> +            channel@0 {
-> +                adi,internal-ref-mv = <4096>;
-> +                reg = <0>;
-> +            };
-> +
-> +            channel@1 {
-> +                adi,internal-ref-mv = <2500>;
-> +                reg = <1>;
-> +            };
-> +
-> +            channel@2 {
-> +                reg = <2>;
-> +            };
->          };
->      };
->  ...
-> -- 
-> 2.30.1.489.g328c10930387
-> 
-> 
+---
+
+ arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts | 4 ----
+ 1 file changed, 4 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
+index 2b5f001ff4a6..9e5d07f5712e 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
+@@ -385,10 +385,6 @@ mains_charger: dc-charger {
+ 	};
+ };
+ 
+-&cdn_dp {
+-	status = "okay";
+-};
+-
+ &cpu_b0 {
+ 	cpu-supply = <&vdd_cpu_b>;
+ };
+-- 
+2.31.1
+
