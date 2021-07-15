@@ -2,225 +2,462 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 13A143C9980
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 09:18:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 285593C99B7
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 09:37:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240295AbhGOHVF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jul 2021 03:21:05 -0400
-Received: from mail-eopbgr1400100.outbound.protection.outlook.com ([40.107.140.100]:6122
-        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S231718AbhGOHVE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Jul 2021 03:21:04 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=i7ZOYU4fhcFvQI4pNDZVScy9rSbFODvKmG8IUK3YxZomsoQ1NAVT9iCU4mM1kgFTbyq+z9W1o433Y4lJqwNcNC9ZRCdMgDnVPpBHeRsAWXk4Wkx0Mt5cZdRppICZwm9t8GV/DmgGH1h0ww/O/HumFBA0N8+L8yqLg/AoHRIkIU3Dd662cMrS1VJi99RjS+/kiqsXgOCsE5G8jtoeQVSTlNMQ+ShsAbqIN1aytMf4iUktwFfAs6Pk/Rrk78BIPBSglef8DB/OUa+tSDsyl1vm52UERpEa0QTjtwZBFYvkb6V4lGX9TuW/F6UF65NWReT4fO2ZylxHDZUVOKNaiH9rlw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Te+uxIYv6YxDz2QcXwR9j0f2rAX7baxtWyTf9zbDDVI=;
- b=PgdSmkKZFS5pq8GNODvijHQrajhi/1sXF6qAdtEC6JPfgsY+TzenkDltVo9CI1CZuesHSy3Ks8uNqOrnYU7Vv1Jk22mROyM7N7OPYUtcxsjF5wmIJwBQ9ATTuKqDsjOupLCoeA81j0hNVL0QufCbUKnvant4JFaKwJIyIIrCaAURh0A3oGxdzPKDXbQpnE8DVCvwrYZ4r2s62Oz7VA9f/wP+em7Ut1Bco1UUwVrBqJdSMnRVYpEruwGeP3POMvic5+1V/ni5MxsR9kqVPUn8ZBrC3m0olLDVgaycuGb18iYFxQOTjptVkCUwJvxe4TTK6mCLcYkE7iJNoFno64gr6w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Te+uxIYv6YxDz2QcXwR9j0f2rAX7baxtWyTf9zbDDVI=;
- b=IE78IPEhw39WYLdZNvJMY3Qta5PVWQ71ArWE0RF5ApruWP5fBrD/0mTq0JySUQhMd0Eka9k2evD2v3paCItIj9Lwv7Sj+AeBMrPeZ803KAF6qnlZ7be2Gfm5v5PFJB3//k17m2XJgIDpuXDqUHxEUth51SMZ8H3nrZ0p+ZSHbzE=
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
- by OSZPR01MB7018.jpnprd01.prod.outlook.com (2603:1096:604:13a::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.22; Thu, 15 Jul
- 2021 07:18:07 +0000
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::c6f:e31f:eaa9:60fe]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::c6f:e31f:eaa9:60fe%9]) with mapi id 15.20.4331.021; Thu, 15 Jul 2021
- 07:18:07 +0000
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v3 09/11] dt-bindings: usb: renesas,usbhs: Document RZ/G2L
- bindings
-Thread-Topic: [PATCH v3 09/11] dt-bindings: usb: renesas,usbhs: Document
- RZ/G2L bindings
-Thread-Index: AQHXbYHkt93XbUeRM0SktUqX5oBbb6tDEl2AgACfx3A=
-Date:   Thu, 15 Jul 2021 07:18:07 +0000
-Message-ID: <OS0PR01MB5922F18129DC9427144AA3AC86129@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <20210630073013.22415-1-biju.das.jz@bp.renesas.com>
- <20210630073013.22415-10-biju.das.jz@bp.renesas.com>
- <20210714212455.GA3547570@robh.at.kernel.org>
-In-Reply-To: <20210714212455.GA3547570@robh.at.kernel.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 48732e0f-ab61-45bc-5bbf-08d94760b204
-x-ms-traffictypediagnostic: OSZPR01MB7018:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <OSZPR01MB7018B53308A3CE343E5A6C7786129@OSZPR01MB7018.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6790;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: kc9qWN1CV3QGGi/yowyoTWqdFkmTgw3n/qL29l7SOH42VJxVsJTiD7sUGUen8tSKQLcC1HD/butdCtHZ90pEu1ynmScCqcfvfDRgpb0RgdIT+4Q3NplJXRU37JBqbwzovxkmzMvFvMYab0ipu96vLIkpQBMNz5j1EKJyCZ4gjF2MzHzqxCIBQjKEixQnT0NWHte/+bbboKQ/qN9ehDBWlqPpxSjvZQtf741/KhTSuQPrqqOGE2b3r14f8H0tGkuW0f2XlP/DtKrZOzlToV38I6DuH379M6PH/ZPEFIBwetUKVk8oIkgR+DcuitOBUmL4m0BpSRyZaGpJ9F1UthBsndrYi2/4un0X5/roJnCNxKap0B5j42bb06eBP9eNAdeMVzLH4kTJ4wRnLMRCs7TTLPpgkVH2LzHmhnW4tkpzRrX8RDjooamhVwdqQ4Y9QDf86ZYNJ1psndwK8gSAJlolJ7W3VmlkmaCT+9u1dpgoBikPrTAk/6mrJ0y5N3XoR67Sa+R/TlT/JTET1fCZwJxM9RaGR1lYbDU5Y9t/Af3dSm097xlrDm/r/kF8CAHEi73C3UnbhxxN1DZO9MfUePvyEexRC6yUn50RoKe7F4PxDrye12brTtJVMtp5at2SXnGhxtHnj7WTnyikE4t38A59zHlboVg7fCFGE8Mk60aZmz3kLtgEOU1YDMvV/E0CdlbTm13hJIgUawt5j6WuQfBJTw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(8676002)(9686003)(4326008)(52536014)(86362001)(2906002)(66476007)(8936002)(55016002)(33656002)(5660300002)(83380400001)(6916009)(71200400001)(26005)(122000001)(38100700002)(54906003)(478600001)(66446008)(66556008)(316002)(6506007)(76116006)(64756008)(66946007)(7696005)(186003)(38070700004);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?qZRsdIqNFm/5IJpdpZBF5L5v36fPdkhPrLUbLL81RljDptKsFEm71Eqb/UGd?=
- =?us-ascii?Q?h0TkGHQ664Ki7hbGJMKDu7TY0YWaquljr6dPsk2fkYH9FSg6beSJGcG7lAjZ?=
- =?us-ascii?Q?m1YDTOExs5C59rjOWt0qcJ4V44hxLV5Oq1tlyFBtlxn6R/6SYdd5/552rksX?=
- =?us-ascii?Q?+EdhKjnJ1l30d15Lq3wx2/kSKBG5n0Cfjs4NbIjeFVze7M9LdXo2xdgHoUEA?=
- =?us-ascii?Q?i6U2L5CS5IoZHq/txOEsSq/RauNgZGoRYPJLIUf2wFhdLYteALBQVyEyVGcA?=
- =?us-ascii?Q?eOi5lJR1Lbf2LwrV25kjJyOYxskjsTlr2gItF6v1wr21vRtBBhtSFxe3uEYe?=
- =?us-ascii?Q?wsWYLB1d2SXTq/X3D9RWAvCxzEUiJITd5gqo+2n2zIyst3t2tMDrCjTLSm7W?=
- =?us-ascii?Q?vFWSv0XhDhqmx7dBR0AEsFjOK1fJCabSHxAzKetULFNLJDJyaZIJa0JPYkdB?=
- =?us-ascii?Q?s0zcyHMeaLe0MUPJAF7q4bx0SfK53eBvp6c+8sHjK61VS9A5mSngMFYfDw3C?=
- =?us-ascii?Q?sLFcpW1l5NLzQDuh0AmwMVNE+HvTNF7KF474psn/kMroFsk6jd3ZtVVpGPDO?=
- =?us-ascii?Q?atrQ5IGALg4VVB/twrjE/jy9cUgZnM6mKghIjCxigCes0zf2HedJFrkRQ+zS?=
- =?us-ascii?Q?yVU1/ILVVqSxm2iRn1VgQiWjPdmkEF6zLAKOuLdZ1hOxqgxM9/Sl2hSRbq1/?=
- =?us-ascii?Q?zHjbVgbjWcSwAid+1/vxXMbCwSNK3cIQLhWOD/KBK4mGPHENbesiR0ay0+Cn?=
- =?us-ascii?Q?oL025589t0kOFUZYHWipyj9+q2EQLQMTwpEmWWs2GghswLdKRl8EV1+QSFjX?=
- =?us-ascii?Q?3ZZAuFImOCwQp1PNK6NpxNe6vy9LBdy8M1KX3UILD/F/mpwgPdBxnSeReUiX?=
- =?us-ascii?Q?weR7CbP285ecMlFUs2evGWUW8ZyaXaQKwE6rfs8KR5KJXSUfx7Ykmb6jHHuP?=
- =?us-ascii?Q?1J9YGJH0/VljsSAbShfeyxx4RQPOICs602/NVjtitUc01GWtGJjrPjIweTqp?=
- =?us-ascii?Q?tl5wtUZ61rFiFjxgoURekIA7kiPkJrGDxjyY9AFg5XwFeBtlrjt9SJ/VD95S?=
- =?us-ascii?Q?rpmjKVi5ZHwrHZgJpkw9ipSf0Fw2NEWn2ktkRLnV5kGuWtnfj8h/DBm1uXbX?=
- =?us-ascii?Q?ipMRPv/O//IRXpA1IvTsrCdi+I4J6KsqoI8nsyaVP35oVVdm7Zq6FpR4GWb5?=
- =?us-ascii?Q?EldU6HuoSX1Dm7Rr5CM98s8kJpM8nVsAjNXuvMpC2XvvIqQXwWZ+by7GGbPE?=
- =?us-ascii?Q?ZjvlzRVWn14qCHGehKhZpsZ+e+wjlHeeEHYKW/aAQPpO3Ymj9n/0GdAcuaHj?=
- =?us-ascii?Q?FVKaKWTFSQUhXs7xm1uoUXi0?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 48732e0f-ab61-45bc-5bbf-08d94760b204
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jul 2021 07:18:07.7005
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: zU1CKsZ0b226SuQ3GCm0HByvzGlWKLJzQjLaHcdSHaD+V2DfEqLBrWT3b3T9fDIltGRQ7cRZ2DvlFJkrK8qBkNoUgq4HUgeBo0ChYCh+ouo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSZPR01MB7018
+        id S240382AbhGOHk0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jul 2021 03:40:26 -0400
+Received: from comms.puri.sm ([159.203.221.185]:36506 "EHLO comms.puri.sm"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229620AbhGOHkZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Jul 2021 03:40:25 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id 2DEF5DFAD4;
+        Thu, 15 Jul 2021 00:37:32 -0700 (PDT)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 0Ympdg_EmsdR; Thu, 15 Jul 2021 00:37:29 -0700 (PDT)
+Message-ID: <ce71a71a358247eca3b72ddcddd703206c90f284.camel@puri.sm>
+Subject: Re: [PATCH v6 2/3] media: imx: add a driver for i.MX8MQ mipi csi rx
+ phy and controller
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     festevam@gmail.com, krzk@kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, kernel@puri.sm,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-staging@lists.linux.dev, m.felsch@pengutronix.de,
+        mchehab@kernel.org, phone-devel@vger.kernel.org, robh@kernel.org,
+        shawnguo@kernel.org, slongerbeam@gmail.com
+Date:   Thu, 15 Jul 2021 09:37:24 +0200
+In-Reply-To: <YO8r6pZAduu1ZMK4@pendragon.ideasonboard.com>
+References: <20210714111931.324485-1-martin.kepplinger@puri.sm>
+         <20210714111931.324485-3-martin.kepplinger@puri.sm>
+         <YO8r6pZAduu1ZMK4@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.3-1 
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-Thanks for the feedback.
-
-> Subject: Re: [PATCH v3 09/11] dt-bindings: usb: renesas,usbhs: Document
-> RZ/G2L bindings
->=20
-> On Wed, Jun 30, 2021 at 08:30:11AM +0100, Biju Das wrote:
-> > Document RZ/G2L (R9A07G044L) SoC bindings.
-> >
-> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Am Mittwoch, dem 14.07.2021 um 21:24 +0300 schrieb Laurent Pinchart:
+> Hi Martin,
+> 
+> Thank you for the patch.
+> 
+> On Wed, Jul 14, 2021 at 01:19:30PM +0200, Martin Kepplinger wrote:
+> > Add a driver to support the i.MX8MQ MIPI CSI receiver. The hardware
+> > side
+> > is based on
+> > https://source.codeaurora.org/external/imx/linux-imx/tree/drivers/media/platform/imx8/mxc-mipi-csi2_yav.c?h=imx_5.4.70_2.3.0
+> > 
+> > It's built as part of VIDEO_IMX7_CSI because that's documented to
+> > support
+> > i.MX8M platforms. This driver adds i.MX8MQ support where currently
+> > only the
+> > i.MX8MM platform has been supported.
+> > 
+> > Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
 > > ---
-> > v3:
-> >  * Updated the bindings as per the USBPHY control IP.
-> > ---
-> >  .../bindings/usb/renesas,usbhs.yaml           | 21 +++++++++++++++++--
-> >  1 file changed, 19 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/usb/renesas,usbhs.yaml
-> > b/Documentation/devicetree/bindings/usb/renesas,usbhs.yaml
-> > index ad73339ffe1d..5562839bef8d 100644
-> > --- a/Documentation/devicetree/bindings/usb/renesas,usbhs.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/renesas,usbhs.yaml
-> > @@ -17,7 +17,9 @@ properties:
-> >            - const: renesas,rza1-usbhs
-> >
-> >        - items:
-> > -          - const: renesas,usbhs-r7s9210 # RZ/A2
-> > +          - enum:
-> > +              - renesas,usbhs-r7s9210   # RZ/A2
-> > +              - renesas,usbhs-r9a07g044 # RZ/G2{L,LC}
-> >            - const: renesas,rza2-usbhs
-> >
-> >        - items:
-> > @@ -59,7 +61,7 @@ properties:
-> >        - description: USB 2.0 clock selector
-> >
-> >    interrupts:
-> > -    maxItems: 1
-> > +    minItems: 1
->=20
-> maxItems: 4
-
-OK.
-
->=20
-> >
-> >    renesas,buswait:
-> >      $ref: /schemas/types.yaml#/definitions/uint32
-> > @@ -108,6 +110,21 @@ required:
-> >    - clocks
-> >    - interrupts
-> >
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: renesas,usbhs-r9a07g044
-> > +    then:
-> > +      properties:
-> > +        interrupts:
-> > +          items:
-> > +            - description: U2P_IXL_INT
-> > +            - description: U2P_INT_DMA[0]
-> > +            - description: U2P_INT_DMA[1]
-> > +            - description: U2P_INT_DMAERR
->=20
-> If the first interrupt is the same on all devices, then this items list
-> should be moved to the top level and just have a 'minItems: 4'
-> here.
-
-From the hardware point, it is same "HSUSB interrupt"
-
-But HW manual is  representing  it differently
-
-R-Car Gen2, RZ/G1:-USB2.0_597 (OTG)
-R-Car Gen3, RZ/G2:- EHCI/OHCI OTG.ch0
-RZ/G2L: U2P_IXL_INT
-
-Other devices ??.
-
-So it make sense to leave as it is. Please let me know if you think other w=
-ise.
-
-Regards,
-Biju
-
-
->=20
->=20
-> else:
->   properties:
->     interrupts:
->       maxItems: 1
->=20
->=20
+> >  drivers/staging/media/imx/Makefile           |   1 +
+> >  drivers/staging/media/imx/imx8mq-mipi-csi2.c | 949
+> > +++++++++++++++++++
+> >  2 files changed, 950 insertions(+)
+> >  create mode 100644 drivers/staging/media/imx/imx8mq-mipi-csi2.c
+> > 
+> > diff --git a/drivers/staging/media/imx/Makefile
+> > b/drivers/staging/media/imx/Makefile
+> > index 6ac33275cc97..19c2fc54d424 100644
+> > --- a/drivers/staging/media/imx/Makefile
+> > +++ b/drivers/staging/media/imx/Makefile
+> > @@ -16,3 +16,4 @@ obj-$(CONFIG_VIDEO_IMX_CSI) += imx6-mipi-csi2.o
+> >  
+> >  obj-$(CONFIG_VIDEO_IMX7_CSI) += imx7-media-csi.o
+> >  obj-$(CONFIG_VIDEO_IMX7_CSI) += imx7-mipi-csis.o
+> > +obj-$(CONFIG_VIDEO_IMX7_CSI) += imx8mq-mipi-csi2.o
+> > diff --git a/drivers/staging/media/imx/imx8mq-mipi-csi2.c
+> > b/drivers/staging/media/imx/imx8mq-mipi-csi2.c
+> > new file mode 100644
+> > index 000000000000..949b3ef7a20a
+> > --- /dev/null
+> > +++ b/drivers/staging/media/imx/imx8mq-mipi-csi2.c
+> > @@ -0,0 +1,949 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Freescale i.MX8MQ SoC series MIPI-CSI2 receiver driver
+> 
+> Maybe they should be called NXP these days :-)
+> 
+> > + *
+> > + * Copyright (C) 2021 Purism SPC
+> > + */
 > > +
-> >  additionalProperties: false
-> >
-> >  examples:
-> > --
-> > 2.17.1
-> >
-> >
+> > +#include <linux/clk.h>
+> > +#include <linux/delay.h>
+> > +#include <linux/errno.h>
+> > +#include <linux/interconnect.h>
+> > +#include <linux/interrupt.h>
+> > +#include <linux/io.h>
+> > +#include <linux/kernel.h>
+> > +#include <linux/mfd/syscon.h>
+> > +#include <linux/module.h>
+> > +#include <linux/mutex.h>
+> > +#include <linux/of.h>
+> > +#include <linux/of_device.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/pm_runtime.h>
+> > +#include <linux/regmap.h>
+> > +#include <linux/regulator/consumer.h>
+> > +#include <linux/reset.h>
+> > +#include <linux/spinlock.h>
+> > +
+> > +#include <media/v4l2-common.h>
+> > +#include <media/v4l2-device.h>
+> > +#include <media/v4l2-fwnode.h>
+> > +#include <media/v4l2-mc.h>
+> > +#include <media/v4l2-subdev.h>
+> > +
+> > +#define MIPI_CSI2_DRIVER_NAME                  "imx8mq-mipi-csi2"
+> > +#define
+> > MIPI_CSI2_SUBDEV_NAME                  MIPI_CSI2_DRIVER_NAME
+> > +
+> > +#define MIPI_CSI2_PAD_SINK                     0
+> > +#define MIPI_CSI2_PAD_SOURCE                   1
+> > +#define MIPI_CSI2_PADS_NUM                     2
+> > +
+> > +#define MIPI_CSI2_DEF_PIX_WIDTH                        640
+> > +#define MIPI_CSI2_DEF_PIX_HEIGHT               480
+> > +
+> > +/* Register map definition */
+> > +
+> > +/* i.MX8MQ CSI-2 controller CSR */
+> > +#define CSI2RX_CFG_NUM_LANES                   0x100
+> > +#define CSI2RX_CFG_DISABLE_DATA_LANES          0x104
+> > +#define CSI2RX_BIT_ERR                         0x108
+> > +#define CSI2RX_IRQ_STATUS                      0x10c
+> > +#define CSI2RX_IRQ_MASK                                0x110
+> > +#define CSI2RX_IRQ_MASK_ALL                    0x1ff
+> > +#define CSI2RX_IRQ_MASK_ULPS_STATUS_CHANGE     0x8
+> > +#define CSI2RX_ULPS_STATUS                     0x114
+> > +#define CSI2RX_PPI_ERRSOT_HS                   0x118
+> > +#define CSI2RX_PPI_ERRSOTSYNC_HS               0x11c
+> > +#define CSI2RX_PPI_ERRESC                      0x120
+> > +#define CSI2RX_PPI_ERRSYNCESC                  0x124
+> > +#define CSI2RX_PPI_ERRCONTROL                  0x128
+> > +#define CSI2RX_CFG_DISABLE_PAYLOAD_0           0x12c
+> > +#define CSI2RX_CFG_VID_P_FIFO_SEND_LEVEL       0x188
+> > +#define CSI2RX_CFG_DISABLE_PAYLOAD_1           0x130
+> > +
+> > +enum {
+> > +       ST_POWERED      = 1,
+> > +       ST_STREAMING    = 2,
+> > +       ST_SUSPENDED    = 4,
+> > +};
+> > +
+> > +static const char * const imx8mq_mipi_csi_clk_id[] = {
+> > +       "core",
+> > +       "esc",
+> > +       "ui",
+> > +};
+> > +
+> > +#define CSI2_NUM_CLKS  ARRAY_SIZE(imx8mq_mipi_csi_clk_id)
+> > +
+> > +#define        GPR_CSI2_1_RX_ENABLE            BIT(13)
+> > +#define        GPR_CSI2_1_VID_INTFC_ENB        BIT(12)
+> > +#define        GPR_CSI2_1_HSEL                 BIT(10)
+> > +#define        GPR_CSI2_1_CONT_CLK_MODE        BIT(8)
+> > +#define        GPR_CSI2_1_S_PRG_RXHS_SETTLE(x) (((x) & 0x3f) << 2)
+> > +
+> > +/*
+> > + * The send level configures the number of entries that must
+> > accumulate in
+> > + * the Pixel FIFO before the data will be transferred to the video
+> > output.
+> > + * See 
+> > https://community.nxp.com/t5/i-MX-Processors/IMX8M-MIPI-CSI-Host-Controller-send-level/m-p/864005/highlight/true#M131704
+> > + */
+> > +#define CSI2RX_SEND_LEVEL                      64
+> > +
+> > +struct csi_state {
+> > +       struct device *dev;
+> > +       void __iomem *regs;
+> > +       struct clk_bulk_data clks[CSI2_NUM_CLKS];
+> > +       struct reset_control *rst;
+> > +       struct regulator *mipi_phy_regulator;
+> > +
+> > +       struct v4l2_subdev sd;
+> > +       struct media_pad pads[MIPI_CSI2_PADS_NUM];
+> > +       struct v4l2_async_notifier notifier;
+> > +       struct v4l2_subdev *src_sd;
+> > +
+> > +       struct v4l2_fwnode_bus_mipi_csi2 bus;
+> > +
+> > +       struct mutex lock; /* Protect csi2_fmt, format_mbus, state,
+> > hs_settle*/
+> 
+> Missing space before */
+> 
+> > +       const struct csi2_pix_format *csi2_fmt;
+> > +       struct v4l2_mbus_framefmt format_mbus[MIPI_CSI2_PADS_NUM];
+> > +       u32 state;
+> > +       u32 hs_settle;
+> > +
+> > +       struct regmap *phy_gpr;
+> > +       u8 phy_gpr_reg;
+> > +
+> > +       struct icc_path                 *icc_path;
+> > +       s32                             icc_path_bw;
+> > +};
+> > +
+> > +/* ---------------------------------------------------------------
+> > --------------
+> > + * Format helpers
+> > + */
+> > +
+> > +struct csi2_pix_format {
+> > +       u32 code;
+> > +       u8 width;
+> > +};
+> > +
+> > +static const struct csi2_pix_format imx8mq_mipi_csi_formats[] = {
+> > +       /* RAW (Bayer and greyscale) formats. */
+> > +       {
+> > +               .code = MEDIA_BUS_FMT_SBGGR8_1X8,
+> > +               .width = 8,
+> > +       }, {
+> > +               .code = MEDIA_BUS_FMT_SGBRG8_1X8,
+> > +               .width = 8,
+> > +       }, {
+> > +               .code = MEDIA_BUS_FMT_SGRBG8_1X8,
+> > +               .width = 8,
+> > +       }, {
+> > +               .code = MEDIA_BUS_FMT_SRGGB8_1X8,
+> > +               .width = 8,
+> > +       }, {
+> > +               .code = MEDIA_BUS_FMT_Y8_1X8,
+> > +               .width = 8,
+> > +       }, {
+> > +               .code = MEDIA_BUS_FMT_SBGGR10_1X10,
+> > +               .width = 10,
+> > +       }, {
+> > +               .code = MEDIA_BUS_FMT_SGBRG10_1X10,
+> > +               .width = 10,
+> > +       }, {
+> > +               .code = MEDIA_BUS_FMT_SGRBG10_1X10,
+> > +               .width = 10,
+> > +       }, {
+> > +               .code = MEDIA_BUS_FMT_SRGGB10_1X10,
+> > +               .width = 10,
+> > +       }, {
+> > +               .code = MEDIA_BUS_FMT_Y10_1X10,
+> > +               .width = 10,
+> > +       }, {
+> > +               .code = MEDIA_BUS_FMT_SBGGR12_1X12,
+> > +               .width = 12,
+> > +       }, {
+> > +               .code = MEDIA_BUS_FMT_SGBRG12_1X12,
+> > +               .width = 12,
+> > +       }, {
+> > +               .code = MEDIA_BUS_FMT_SGRBG12_1X12,
+> > +               .width = 12,
+> > +       }, {
+> > +               .code = MEDIA_BUS_FMT_SRGGB12_1X12,
+> > +               .width = 12,
+> > +       }, {
+> > +               .code = MEDIA_BUS_FMT_Y12_1X12,
+> > +               .width = 12,
+> > +       }, {
+> > +               .code = MEDIA_BUS_FMT_SBGGR14_1X14,
+> > +               .width = 14,
+> > +       }, {
+> > +               .code = MEDIA_BUS_FMT_SGBRG14_1X14,
+> > +               .width = 14,
+> > +       }, {
+> > +               .code = MEDIA_BUS_FMT_SGRBG14_1X14,
+> > +               .width = 14,
+> > +       }, {
+> > +               .code = MEDIA_BUS_FMT_SRGGB14_1X14,
+> > +               .width = 14,
+> > +       }, {
+> > +       /* YUV formats */
+> > +               .code = MEDIA_BUS_FMT_YUYV8_2X8,
+> > +               .width = 16,
+> > +       }, {
+> > +               .code = MEDIA_BUS_FMT_YUYV8_1X16,
+> > +               .width = 16,
+> > +       }
+> > +};
+> > +
+> > +static const struct csi2_pix_format *find_csi2_format(u32 code)
+> > +{
+> > +       unsigned int i;
+> > +
+> > +       for (i = 0; i < ARRAY_SIZE(imx8mq_mipi_csi_formats); i++)
+> > +               if (code == imx8mq_mipi_csi_formats[i].code)
+> > +                       return &imx8mq_mipi_csi_formats[i];
+> > +       return NULL;
+> > +}
+> > +
+> > +/* ---------------------------------------------------------------
+> > --------------
+> > + * Hardware configuration
+> > + */
+> > +
+> > +static inline void imx8mq_mipi_csi_write(struct csi_state *state,
+> > u32 reg, u32 val)
+> > +{
+> > +       writel(val, state->regs + reg);
+> > +}
+> > +
+> > +static int imx8mq_mipi_csi_sw_reset(struct csi_state *state)
+> > +{
+> > +       int ret;
+> > +
+> > +       ret = reset_control_assert(state->rst);
+> 
+> That's peculiar, is there no need to deassert reset ?
+> 
+> > +       if (ret < 0) {
+> > +               dev_err(state->dev, "Failed to assert resets:
+> > %d\n", ret);
+> > +               return ret;
+> > +       }
+> > +
+> > +       return 0;
+> > +}
+> > +
+> > +static void imx8mq_mipi_csi_system_enable(struct csi_state *state,
+> > int on)
+> > +{
+> > +       if (!on) {
+> > +               imx8mq_mipi_csi_write(state,
+> > CSI2RX_CFG_DISABLE_DATA_LANES, 0xf);
+> > +               return;
+> > +       }
+> > +
+> > +       regmap_update_bits(state->phy_gpr,
+> > +                          state->phy_gpr_reg,
+> > +                          0x3fff,
+> > +                          GPR_CSI2_1_RX_ENABLE |
+> > +                          GPR_CSI2_1_VID_INTFC_ENB |
+> > +                          GPR_CSI2_1_HSEL |
+> > +                          GPR_CSI2_1_CONT_CLK_MODE |
+> > +                          GPR_CSI2_1_S_PRG_RXHS_SETTLE(state-
+> > >hs_settle));
+> > +}
+> > +
+> > +static void imx8mq_mipi_csi_set_params(struct csi_state *state)
+> > +{
+> > +       int lanes = state->bus.num_data_lanes;
+> > +
+> > +       imx8mq_mipi_csi_write(state, CSI2RX_CFG_NUM_LANES, lanes -
+> > 1);
+> > +       imx8mq_mipi_csi_write(state, CSI2RX_CFG_DISABLE_DATA_LANES,
+> > +                             (0xf << lanes) & 0xf);
+> > +       imx8mq_mipi_csi_write(state, CSI2RX_IRQ_MASK,
+> > CSI2RX_IRQ_MASK_ALL);
+> > +       imx8mq_mipi_csi_write(state, 0x180, 1);
+> > +       /* vid_vc */
+> > +       imx8mq_mipi_csi_write(state, 0x184, 1);
+> > +       imx8mq_mipi_csi_write(state, 0x188, CSI2RX_SEND_LEVEL);
+> > +}
+> > +
+> > +static int imx8mq_mipi_csi_clk_enable(struct csi_state *state)
+> > +{
+> > +       return clk_bulk_prepare_enable(CSI2_NUM_CLKS, state->clks);
+> > +}
+> > +
+> > +static void imx8mq_mipi_csi_clk_disable(struct csi_state *state)
+> > +{
+> > +       clk_bulk_disable_unprepare(CSI2_NUM_CLKS, state->clks);
+> > +}
+> > +
+> > +static int imx8mq_mipi_csi_clk_get(struct csi_state *state)
+> > +{
+> > +       unsigned int i;
+> > +
+> > +       for (i = 0; i < CSI2_NUM_CLKS; i++)
+> > +               state->clks[i].id = imx8mq_mipi_csi_clk_id[i];
+> > +
+> > +       return devm_clk_bulk_get(state->dev, CSI2_NUM_CLKS, state-
+> > >clks);
+> > +}
+> > +
+> > +static int imx8mq_mipi_csi_calc_hs_settle(struct csi_state *state)
+> > +{
+> > +       u32 width = state->format_mbus[MIPI_CSI2_PAD_SINK].width;
+> > +       u32 height = state->format_mbus[MIPI_CSI2_PAD_SINK].height;
+> > +       s64 link_freq;
+> > +       u32 lane_rate;
+> > +
+> > +       /* Calculate the line rate from the pixel rate. */
+> > +       link_freq = v4l2_get_link_freq(state->src_sd->ctrl_handler,
+> > +                                      state->csi2_fmt->width,
+> > +                                      state->bus.num_data_lanes *
+> > 2);
+> > +       if (link_freq < 0) {
+> > +               dev_err(state->dev, "Unable to obtain link
+> > frequency: %d\n",
+> > +                       (int)link_freq);
+> > +               return link_freq;
+> > +       }
+> > +
+> > +       lane_rate = link_freq * 2;
+> > +       if (lane_rate < 80000000 || lane_rate > 1500000000) {
+> > +               dev_dbg(state->dev, "Out-of-bound lane rate %u\n",
+> > lane_rate);
+> > +               return -EINVAL;
+> > +       }
+> > +
+> > +       /* 
+> > https://community.nxp.com/t5/i-MX-Processors/Explenation-for-HS-SETTLE-parameter-in-MIPI-CSI-D-PHY-registers/m-p/764275/highlight/true#M118744
+> >  */
+> > +       if (lane_rate < 250000000)
+> > +               state->hs_settle = 0xb;
+> > +       else if (lane_rate < 500000000)
+> > +               state->hs_settle = 0x8;
+> > +       else
+> > +               state->hs_settle = 0x6;
+> 
+> We could possibly compute this value based on the formula from the
+> table
+> in that page, but maybe that's overkill ? If you want to give it a
+> try,
+> it would be along those lines.
+> 
+>         /*
+>          * The D-PHY specification requires Ths-settle to be in the
+> range
+>          * 85ns + 6*UI to 140ns + 10*UI, with the unit interval UI
+> being half
+>          * the clock period.
+>          *
+>          * The Ths-settle value is expressed in the hardware as a
+> multiple of
+>          * the Esc clock period:
+>          *
+>          * Ths-settle = (PRG_RXHS_SETTLE + 1) * Tperiod of RxClkInEsc
+>          *
+>          * Due to the one cycle inaccuracy introduced by rounding,
+> the
+>          * documentation recommends picking a value away from the
+> boundaries.
+>          * Let's pick the average.
+>          */
+>         esc_clk_rate = clk_get_rate(...);
+> 
+>         min_ths_settle = 85 + 6 * 1000000 / (lane_rate / 1000);
+>         max_ths_settle = 140 + 10 * 1000000 / (lane_rate / 1000);
+>         ths_settle = (min_ths_settle + max_ths_settle) / 2;
+> 
+>         state->hs_settle = ths_settle * esc_clk_rate / 1000000000 -
+> 1;
+> 
+
+I experimented a bit but would like to leave this as a task for later
+if that's ok. it's correct and simple now. also, using clks[i].clk
+based on the name string would feel better to submit seperately later.
+
+> 
+
