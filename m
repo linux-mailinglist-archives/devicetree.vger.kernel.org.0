@@ -2,91 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 45B933C9C60
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 12:05:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4D113C9C6D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 12:09:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241159AbhGOKHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jul 2021 06:07:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48824 "EHLO
+        id S241200AbhGOKL7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jul 2021 06:11:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234227AbhGOKHz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jul 2021 06:07:55 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AAF0C06175F;
-        Thu, 15 Jul 2021 03:05:01 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id k4so6965782wrc.8;
-        Thu, 15 Jul 2021 03:05:01 -0700 (PDT)
+        with ESMTP id S231442AbhGOKL7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jul 2021 06:11:59 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 545C7C06175F;
+        Thu, 15 Jul 2021 03:09:05 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id l6so3391069wmq.0;
+        Thu, 15 Jul 2021 03:09:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=jxbJukyaJl2CP1RcQXxy+hbiTq406qGg8r0G19v6yDo=;
-        b=K4cDQkmIdqFZ8v9qCJuh7KU47GsTec/P9QRzLZRVMMp0upPXY5tfPCf+tAruqlBscY
-         zEL7XW3DyKssLQUWd+rt/wUlWYVWNa0GqjCFRFCTnfv6Nuqx+8f+qzxy4HKiF3b3r4PZ
-         D6cunaocYG+kGCVW3UOpgQzJL/sTfK2YCqnpioQeSBzmgjxnd7GeWpuYWdahDXRe6iLb
-         Xbc5fEMN9hcwSmECXtbV/ciA2OQXfOV+m8CD35REXq9bpIzpCxXluYy+v8fx4Ysi3zZ2
-         8NV97ZEKTkoa3xpeHwYlH3aRnC6eykxuou+F2RmPI9hubtdMXfSt0JDargzPOFzHM0kL
-         NVew==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=ArNEv92wpJjOpuiUUnJ9dc8Ev4Ao9K4Yo2lmqmDUjAY=;
+        b=j7OZ1YQjiJjTCMP21/AxjrTnskBbm7hsQ3yvCd0/LEj1Cc5onE5Eh368sab0XG3NUu
+         CykLYPZ0s9VUtYXhpn2RZ4i6cywg9Uz+BCHNQwr9zQdLHnwY6q3g6JzfNLKbkw2eHUDn
+         gfOsp58ueKxUDKe+XsCUAiBo1mJUFbkFFXsVgHx7oNGHv5hXcXNHkRSlRnKYoNQIr+//
+         XqcvUfOWJIdcUkiMMsywfm+k0Ay2IuCTzJA610C9F9PvVikoZOfR61BcbNN5Sgyfn0Ds
+         KVKitKu57nirupubueY52ouVsgB/HL6bNOfKquGJTU+D67MX/INcQfqfVtOBJTyHpzXc
+         io+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=jxbJukyaJl2CP1RcQXxy+hbiTq406qGg8r0G19v6yDo=;
-        b=aTeIVzof0NdRF6roK5pyrJoDLRg+0k+UCHSzNWTqFaz8FB+KoqKFq26SuCKyN5UqdN
-         3hcfk+h9ZAiBZ9lNYnBVAMxKsV//AsBVl3u7UsAX+lx2Y9OWOJg4S4SlclI+9G23DyPp
-         aylVH/jX4rJJ9h9dR23slWBiD/KtFcSKo4IdgdoFWAXeswoaAiC242u/0TB1lBuQQd8f
-         8G2yLUhiahKDpSZ6qNE8py3IfVPEqyJkTmA4iIXEoqij7JpT1JmKNb5/QfdtihaLHCwK
-         wrZD/r2nRALLObdqEmhhFJQcqLPTVqvMx+Cj8eLovAoSMG4T+FqO7BBa9RUc336C58ue
-         1w7g==
-X-Gm-Message-State: AOAM533zqJUfUciPL3rby/aiGxbpbgde0hELNS8d9if6nQsFo8zhf4WF
-        4OR7xN/JZjEOU56EmKszymY=
-X-Google-Smtp-Source: ABdhPJxDwubbC8qf7n+m2es9YTplZsWy1G3eyK2GMWpRPsGQbx/1Oj4eNlRRYMShKrftYF4MYJ5+wQ==
-X-Received: by 2002:a5d:65cb:: with SMTP id e11mr4659422wrw.105.1626343499841;
-        Thu, 15 Jul 2021 03:04:59 -0700 (PDT)
-Received: from skbuf ([82.76.66.29])
-        by smtp.gmail.com with ESMTPSA id b15sm6915537wrr.27.2021.07.15.03.04.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Jul 2021 03:04:59 -0700 (PDT)
-Date:   Thu, 15 Jul 2021 13:04:57 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Dong Aisheng <aisheng.dong@nxp.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-imx@nxp.com, kernel@pengutronix.de, dongas86@gmail.com,
-        robh+dt@kernel.org, shawnguo@kernel.org,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org
-Subject: Re: [PATCH 3/7] dt-bindings: net: dsa: sja1105: fix wrong indentation
-Message-ID: <20210715100457.ut7ji2mizog4qghe@skbuf>
-References: <20210715082536.1882077-1-aisheng.dong@nxp.com>
- <20210715082536.1882077-4-aisheng.dong@nxp.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=ArNEv92wpJjOpuiUUnJ9dc8Ev4Ao9K4Yo2lmqmDUjAY=;
+        b=SSvgKq2EzF9rztZnZUhOWrAA2E1cRWTVVypjqsrHiGia3sg4hgGw4zpIANR4CUtLEc
+         FlOIzbJSMWSDHnOmWVtJ4nv/zkW2XZlnVCqCQsDTlD/k9+Kgzf4Tx+hIDJEOZbBrQ6CH
+         PmccqYpyv1l3qc2KPzARFVjMNHyW+rebfjE/lIErJwX1o56cBRMTdqP8l/PWpjebfoFj
+         PwldjC01YYoKShJNTlVi5IOb+b0luMmCcx9cKIhUtih3u81k6aaQk3swf++YALC/nMPH
+         qOvngdQEQNW42AjPGmWwTN7I9TiEw+kPPi6LZ9sr5+O9RTvfu5hSuvZxSjAJcowE+hi1
+         CZcQ==
+X-Gm-Message-State: AOAM531KD9Dae7dd/XC5NmTwssVPAAP7RqSsCeO5Xc61MpFVxmeoBDLo
+        DknYFNCFDaXE0VsKaiiMrRrfF3xJQQd9
+X-Google-Smtp-Source: ABdhPJwT7o32oTBrDj4gfyVWGLagOuRNpwm0RwfDe+dcYpvv5/uMZcCjwzaQFh08dDMVzYdn0pCU8w==
+X-Received: by 2002:a05:600c:2290:: with SMTP id 16mr3726091wmf.32.1626343743811;
+        Thu, 15 Jul 2021 03:09:03 -0700 (PDT)
+Received: from [192.168.200.247] (ip5b429fd6.dynamic.kabel-deutschland.de. [91.66.159.214])
+        by smtp.gmail.com with ESMTPSA id j12sm6102550wrq.83.2021.07.15.03.09.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Jul 2021 03:09:03 -0700 (PDT)
+Subject: Re: [PATCH v2 01/12] dt-bindings: mfd: syscon: add Rockchip
+ RK3036/RK3228 qos compatibles
+To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        Lee Jones <lee.jones@linaro.org>
+Cc:     Ezequiel Garcia <ezequiel@collabora.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20210525152225.154302-1-knaerzche@gmail.com>
+ <20210527154455.358869-2-knaerzche@gmail.com> <20210601154651.GE2159518@dell>
+ <3527273.z0yIoBN5P9@diego>
+From:   Alex Bee <knaerzche@gmail.com>
+Message-ID: <78b492b8-55c4-dfbd-cda6-f78c4b8557b0@gmail.com>
+Date:   Thu, 15 Jul 2021 12:09:01 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210715082536.1882077-4-aisheng.dong@nxp.com>
+In-Reply-To: <3527273.z0yIoBN5P9@diego>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Aisheng,
+Hi Lee, Heiko,
 
-On Thu, Jul 15, 2021 at 04:25:32PM +0800, Dong Aisheng wrote:
-> This patch fixes the following error:
-> Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml:70:17: [warning] wrong indentation: expected 18 but found 16 (indentation)
-> 
-> Cc: Andrew Lunn <andrew@lunn.ch>
-> Cc: Vivien Didelot <vivien.didelot@gmail.com>
-> Cc: Florian Fainelli <f.fainelli@gmail.com>
-> Cc: Vladimir Oltean <olteanv@gmail.com>
-> Cc: "David S. Miller" <davem@davemloft.net>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: netdev@vger.kernel.org
-> Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
-> ---
+Am 11.07.21 um 13:55 schrieb Heiko Stübner:
+> Hi Lee,
+>
+> Am Dienstag, 1. Juni 2021, 17:46:51 CEST schrieb Lee Jones:
+>> On Thu, 27 May 2021, Alex Bee wrote:
+>>
+>>> Document Rockchip RK3036/RK3228 qos compatibles
+>>>
+>>> Signed-off-by: Alex Bee <knaerzche@gmail.com>
+>>> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+>>> ---
+>>>
+>>>   Changes in v2:
+>>>   - collect Reviewed tag
+>>>
+>>>   Documentation/devicetree/bindings/mfd/syscon.yaml | 2 ++
+>>>   1 file changed, 2 insertions(+)
+>> Applied, thanks.
+> not sure if I'm missing something, but this patch wasn't part of your 5.14?
+> And I also don't see it in your for-mfd-next branch. Did it get lost somewhere?
 
-Thank you for preparing and sending the patch.
-It looks like Rob already applied another version of this change
-yesterday:
-https://lore.kernel.org/netdev/20210622113327.3613595-1-thierry.reding@gmail.com/
-I wasn't copied on that patch, I noticed it rather by coincidence.
+I can't find this patch in neihter the mentioned trees nor in 5.14-rc1.
+
+Lee, could you queue it for rc2, please?
+
+Thanks,
+
+Alex
+
+> Thanks
+> Heiko
+>
+>
