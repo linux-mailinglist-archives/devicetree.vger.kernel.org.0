@@ -2,75 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4269C3C9EC7
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 14:37:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8F8B3C9ED3
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 14:40:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230293AbhGOMkn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jul 2021 08:40:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37684 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229635AbhGOMkn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Jul 2021 08:40:43 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E549161374;
-        Thu, 15 Jul 2021 12:37:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626352670;
-        bh=eygR12Zdi4ElhBZVM5qdhbNeXAWJEMurkn3VmUfmNMo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=S89AydWSeZpSkU1HLhdBBZGD1m9n7VH/3oaCFnnKvhd8FoLUQKhx5Vfuot0LWzyth
-         SLpW7OElZ6nWTa5rUrMqBq6tc7Bs+6U8r1Big7lW2qwH48nnkfS8djUSCkfmRf6t5h
-         do2+XPFKaGKgOL0Ov4Dk3PhaCgq/x3JSqeAUuY3sTcvveYDl7FGM4xBdbrwLLQd0M+
-         DaTofYWjNQEsD5/aqT+h/uzG6qTp03if+4n+WOGrCNb5fm2KdLkDMoejj8HJk35juI
-         om561lWxHxCdCT1FS/b+ySrWZwyJ9WH4Jvj8OPcV6itnGDPcWRH3wCRM5YPluBxDay
-         2i2R5VdejQWoQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Liam Girdwood <lgirdwood@gmail.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: regulator: Convert UniPhier regulator to json-schema
-Date:   Thu, 15 Jul 2021 13:37:13 +0100
-Message-Id: <162635247078.14929.7474046739493187418.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <1624413137-17453-1-git-send-email-hayashi.kunihiko@socionext.com>
-References: <1624413137-17453-1-git-send-email-hayashi.kunihiko@socionext.com>
+        id S233694AbhGOMnV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jul 2021 08:43:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56358 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231977AbhGOMnV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jul 2021 08:43:21 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10016C06175F
+        for <devicetree@vger.kernel.org>; Thu, 15 Jul 2021 05:40:28 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id y42so9612451lfa.3
+        for <devicetree@vger.kernel.org>; Thu, 15 Jul 2021 05:40:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ebyuOnT1hdZDjeeW61EvSOeBAtKF8juas+fsejp2e3s=;
+        b=ILtc7ZblBmo6JLnKkK6Ynw4Ry6ekmXcHOAWIbkJ/XYCVULkqUDbacUfTlst5LYLOZa
+         NmCGzpp/Dp4A5pUiGGHT16Ck5rd5PufLAfBUMdTUKzQp5+GB2khxBHu3Qlw7k3wYaRi5
+         Okcrs8VQPVSlBoxD6lJdwehTHlVbFN+JvBn5kYpHS+2dFcnmIrXDRf+TcCWHAOG5Ky+Z
+         atnzYAT5SCMzHnML1Z8xODIhFtcq2udycJLg/Hjn06uXFiYNfMf/T2FUzNJjaoYFIvDb
+         Y4LcG+/daYIKbLkUPE45H9H1A+IWdOnzYK5HCiiWjTIGoB1s1/uSdnXCyvnAisiXlHmv
+         posw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ebyuOnT1hdZDjeeW61EvSOeBAtKF8juas+fsejp2e3s=;
+        b=mxMUrmutyxn5tDm44JoCcMjjWBaicCVoQyaU1C7vZzFslxxx5SU+vNaeontFjJiq1P
+         688Dnc9dx6TZ1UY7Pj0Gw3F0zCI9IeQuOcEuaR8p2rIbCkuXyJVccZr2LcIVxBdMX56k
+         8aGISumXhs+ay0w3tmIRwZ6I5m0dNHJW3XPckRBn1XydeLW+22Q6YmtJh3vZ6/REyltC
+         Zw0Xs0oDyLaVn0ukKRvQgL2uNt2mVbnM8qX9/moEAbOQ/9feQumna6+Otq87hlisAZTC
+         6Oy3GmeES+BrLWMwGXmRQhexzXQA8L/LkVQHhGvLEDS67l9G0JmIaMjYVZOztgoGJbaU
+         46YA==
+X-Gm-Message-State: AOAM533ORaWGah3R/SqqImbJqEFoS/9VMbve3UWta3lFW0WqXOvU0u72
+        i018AnVgBT1d+eOhmKmEHrN9AroLitDcsvkrzLM=
+X-Google-Smtp-Source: ABdhPJzzW904vyzRE5u9N0K5GNfRBYyzvByXV2d3EdWBWJkr0sDF8yk3UlxZdPsCkR52k01CrtpDfpS2y1p8eedDD6Y=
+X-Received: by 2002:a19:6d06:: with SMTP id i6mr3449187lfc.295.1626352826387;
+ Thu, 15 Jul 2021 05:40:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20210715114953.24393-1-qiangqing.zhang@nxp.com>
+ <CAOMZO5Dz1J01Auv5MXc+WajT4AaxHWKStw6RxX3_+LY+9wiimg@mail.gmail.com> <20210715121516.pjhbjhf6htds6n65@pengutronix.de>
+In-Reply-To: <20210715121516.pjhbjhf6htds6n65@pengutronix.de>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Thu, 15 Jul 2021 09:40:15 -0300
+Message-ID: <CAOMZO5DJgC7LTgoYKaMxvFpg8fm89iivQbFfe3VUA0T5Hhqy=A@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8mp: remove fallback compatible string for FlexCAN
+To:     Marc Kleine-Budde <mkl@pengutronix.de>
+Cc:     Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Dong Aisheng <aisheng.dong@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 23 Jun 2021 10:52:17 +0900, Kunihiko Hayashi wrote:
-> Convert the UniPhier regulator binding to DT schema format.
+Hi Marc,
 
-Applied to
+On Thu, Jul 15, 2021 at 9:33 AM Marc Kleine-Budde <mkl@pengutronix.de> wrote:
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+> > Why?
+>
+> Don't remember exactly why It doesn't work. I think it was a missing
+> quirk that the imx6 doesn't need.
+>
+> > "fsl,imx8mp-flexcan" is passed as the more specific compatible string
+> > and it should match against it first.
+>
+> ACK - but why specify the imx6 in the compatible list if the flexcan IP
+> core isn't compatible with the one of the imx6?
 
-Thanks!
+Correct. The change in this patch looks good.
 
-[1/1] dt-bindings: regulator: Convert UniPhier regulator to json-schema
-      commit: 442a9d105e61591b36b653ba1ee0c02b0482b639
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+The commit log needs improvement though.
