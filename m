@@ -2,151 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 958183C9C55
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 12:02:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45B933C9C60
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 12:05:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232043AbhGOKFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jul 2021 06:05:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48294 "EHLO
+        id S241159AbhGOKHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jul 2021 06:07:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240890AbhGOKFe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jul 2021 06:05:34 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14D23C061760
-        for <devicetree@vger.kernel.org>; Thu, 15 Jul 2021 03:02:40 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id p17so2945756plf.12
-        for <devicetree@vger.kernel.org>; Thu, 15 Jul 2021 03:02:40 -0700 (PDT)
+        with ESMTP id S234227AbhGOKHz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jul 2021 06:07:55 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AAF0C06175F;
+        Thu, 15 Jul 2021 03:05:01 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id k4so6965782wrc.8;
+        Thu, 15 Jul 2021 03:05:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nigauri-org.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=t0TwHbiKa4jLrlaR4uupjt1Nvt6BBHkFS2kGDMtNo4U=;
-        b=HcMXqSaXb9gxcUOng+pdaNIC6T39etk+CGwXxJfakwtDxMCQP/Ub9AVO20E22Iky90
-         bzsGzt63onQLH7vuDrGBnXHvTGHrTN3sxtA1mnUf/UVsUOSmhSQ7t5vN87zALFKmDagd
-         XLNlHOISy7LHvgtJRmutkj0fs/6S+5Yaw1QW26HAWfREqBk5zaLoUV5CXIvgqc3J+FLg
-         4g4fZWnCRpYYKOwZjF6rcK0VyMifuMFIiNKWWX51Ub3xgjPaJ7ZzHvmd8UbKfJ10kJYK
-         hUxjDv95E6DWLC88fc8WV6JErE4G5GF/dtWvpsCA1frH7/pCHGADEoL6vxQDW3M9Laiv
-         bIJA==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=jxbJukyaJl2CP1RcQXxy+hbiTq406qGg8r0G19v6yDo=;
+        b=K4cDQkmIdqFZ8v9qCJuh7KU47GsTec/P9QRzLZRVMMp0upPXY5tfPCf+tAruqlBscY
+         zEL7XW3DyKssLQUWd+rt/wUlWYVWNa0GqjCFRFCTnfv6Nuqx+8f+qzxy4HKiF3b3r4PZ
+         D6cunaocYG+kGCVW3UOpgQzJL/sTfK2YCqnpioQeSBzmgjxnd7GeWpuYWdahDXRe6iLb
+         Xbc5fEMN9hcwSmECXtbV/ciA2OQXfOV+m8CD35REXq9bpIzpCxXluYy+v8fx4Ysi3zZ2
+         8NV97ZEKTkoa3xpeHwYlH3aRnC6eykxuou+F2RmPI9hubtdMXfSt0JDargzPOFzHM0kL
+         NVew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=t0TwHbiKa4jLrlaR4uupjt1Nvt6BBHkFS2kGDMtNo4U=;
-        b=ff6PieJNKQdVQTjPxzBB8OgZlqn1V+L82PgcmuHVn1uW1AIkcuWroUh5biq9n/cH/X
-         tDh9C1giizlUOryFoXYfUBUIpgyoqQTLJDq228eoJufEkTbgACQgS0ni4KdOr8lSfeCM
-         vJ4YX9WXc8JLc/gcTEuwb/o3mgAPqOYZxRYrz3NJhsPFbFCWH/vlBZyB2/yHMaM9LQPE
-         0O0OXK2sg80rIxbGPzBilULExUucu23k4yH52yqvHJx9ajXrWJp9Kz0qaZJYzzyCnv1l
-         ZTHbwwXKdXrlZd2UAFMEZNZcYT/Pz9yyeyYMOeOw8uymCv+a+wHlk9/eC74BBxoCciCZ
-         VG+Q==
-X-Gm-Message-State: AOAM530AhvxX7XWjkQ5tlnx5Vr54UwlB2NM9rj15qMRQQq7tKAl/jJNG
-        jtFdvB0u6rgRLNwdeqO5P8YN
-X-Google-Smtp-Source: ABdhPJxCFuHiksDVSuB6pWpOnNml95yP2UdSGoIo3HnPkTK/Cr7ozZlySqDVCqwRyJdXKhmXeXhiAw==
-X-Received: by 2002:a17:90a:d80f:: with SMTP id a15mr3705242pjv.174.1626343359575;
-        Thu, 15 Jul 2021 03:02:39 -0700 (PDT)
-Received: from localhost ([2405:6581:5360:1800:7285:c2ff:fec2:8f97])
-        by smtp.gmail.com with ESMTPSA id 21sm5727017pfh.103.2021.07.15.03.02.38
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=jxbJukyaJl2CP1RcQXxy+hbiTq406qGg8r0G19v6yDo=;
+        b=aTeIVzof0NdRF6roK5pyrJoDLRg+0k+UCHSzNWTqFaz8FB+KoqKFq26SuCKyN5UqdN
+         3hcfk+h9ZAiBZ9lNYnBVAMxKsV//AsBVl3u7UsAX+lx2Y9OWOJg4S4SlclI+9G23DyPp
+         aylVH/jX4rJJ9h9dR23slWBiD/KtFcSKo4IdgdoFWAXeswoaAiC242u/0TB1lBuQQd8f
+         8G2yLUhiahKDpSZ6qNE8py3IfVPEqyJkTmA4iIXEoqij7JpT1JmKNb5/QfdtihaLHCwK
+         wrZD/r2nRALLObdqEmhhFJQcqLPTVqvMx+Cj8eLovAoSMG4T+FqO7BBa9RUc336C58ue
+         1w7g==
+X-Gm-Message-State: AOAM533zqJUfUciPL3rby/aiGxbpbgde0hELNS8d9if6nQsFo8zhf4WF
+        4OR7xN/JZjEOU56EmKszymY=
+X-Google-Smtp-Source: ABdhPJxDwubbC8qf7n+m2es9YTplZsWy1G3eyK2GMWpRPsGQbx/1Oj4eNlRRYMShKrftYF4MYJ5+wQ==
+X-Received: by 2002:a5d:65cb:: with SMTP id e11mr4659422wrw.105.1626343499841;
+        Thu, 15 Jul 2021 03:04:59 -0700 (PDT)
+Received: from skbuf ([82.76.66.29])
+        by smtp.gmail.com with ESMTPSA id b15sm6915537wrr.27.2021.07.15.03.04.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Jul 2021 03:02:38 -0700 (PDT)
-From:   Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-To:     robh+dt@kernel.org, michal.simek@xilinx.com, mdf@kernel.org,
-        trix@redhat.com
+        Thu, 15 Jul 2021 03:04:59 -0700 (PDT)
+Date:   Thu, 15 Jul 2021 13:04:57 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Dong Aisheng <aisheng.dong@nxp.com>
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-fpga@vger.kernel.org,
-        Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-Subject: [PATCH] dt-bindings: fpga: convert Xilinx Zynq MPSoC bindings to YAML
-Date:   Thu, 15 Jul 2021 19:02:36 +0900
-Message-Id: <20210715100236.228531-1-iwamatsu@nigauri.org>
-X-Mailer: git-send-email 2.32.0
+        linux-imx@nxp.com, kernel@pengutronix.de, dongas86@gmail.com,
+        robh+dt@kernel.org, shawnguo@kernel.org,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org
+Subject: Re: [PATCH 3/7] dt-bindings: net: dsa: sja1105: fix wrong indentation
+Message-ID: <20210715100457.ut7ji2mizog4qghe@skbuf>
+References: <20210715082536.1882077-1-aisheng.dong@nxp.com>
+ <20210715082536.1882077-4-aisheng.dong@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210715082536.1882077-4-aisheng.dong@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert FPGA Manager for Xilinx Zynq MPSoC bindings documentation to
-YAML.
+Hi Aisheng,
 
-Signed-off-by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
----
- .../bindings/fpga/xlnx,zynqmp-pcap-fpga.txt   | 25 -------------
- .../bindings/fpga/xlnx,zynqmp-pcap-fpga.yaml  | 36 +++++++++++++++++++
- 2 files changed, 36 insertions(+), 25 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.txt
- create mode 100644 Documentation/devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.yaml
+On Thu, Jul 15, 2021 at 04:25:32PM +0800, Dong Aisheng wrote:
+> This patch fixes the following error:
+> Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml:70:17: [warning] wrong indentation: expected 18 but found 16 (indentation)
+> 
+> Cc: Andrew Lunn <andrew@lunn.ch>
+> Cc: Vivien Didelot <vivien.didelot@gmail.com>
+> Cc: Florian Fainelli <f.fainelli@gmail.com>
+> Cc: Vladimir Oltean <olteanv@gmail.com>
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: netdev@vger.kernel.org
+> Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
+> ---
 
-diff --git a/Documentation/devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.txt b/Documentation/devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.txt
-deleted file mode 100644
-index 3052bf619dd547..00000000000000
---- a/Documentation/devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.txt
-+++ /dev/null
-@@ -1,25 +0,0 @@
--Devicetree bindings for Zynq Ultrascale MPSoC FPGA Manager.
--The ZynqMP SoC uses the PCAP (Processor configuration Port) to configure the
--Programmable Logic (PL). The configuration uses  the firmware interface.
--
--Required properties:
--- compatible: should contain "xlnx,zynqmp-pcap-fpga"
--
--Example for full FPGA configuration:
--
--	fpga-region0 {
--		compatible = "fpga-region";
--		fpga-mgr = <&zynqmp_pcap>;
--		#address-cells = <0x1>;
--		#size-cells = <0x1>;
--	};
--
--	firmware {
--		zynqmp_firmware: zynqmp-firmware {
--			compatible = "xlnx,zynqmp-firmware";
--			method = "smc";
--			zynqmp_pcap: pcap {
--				compatible = "xlnx,zynqmp-pcap-fpga";
--			};
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.yaml b/Documentation/devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.yaml
-new file mode 100644
-index 00000000000000..565b835b7fbac0
---- /dev/null
-+++ b/Documentation/devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.yaml
-@@ -0,0 +1,36 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/fpga/xlnx,zynqmp-pcap-fpga.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Xilinx Zynq Ultrascale MPSoC FPGA Manager Device Tree Bindings
-+
-+maintainers:
-+  - Michal Simek <michal.simek@xilinx.com>
-+
-+description: |
-+  Device Tree Bindings for Zynq Ultrascale MPSoC FPGA Manager.
-+  The ZynqMP SoC uses the PCAP (Processor configuration Port) to
-+  configure the Programmable Logic (PL). The configuration uses the
-+  firmware interface.
-+
-+properties:
-+  compatible:
-+    const: xlnx,zynqmp-pcap-fpga
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    firmware {
-+      zynqmp_firmware: zynqmp-firmware {
-+        zynqmp_pcap: pcap {
-+          compatible = "xlnx,zynqmp-pcap-fpga";
-+        };
-+      };
-+    };
-+...
--- 
-2.32.0
-
+Thank you for preparing and sending the patch.
+It looks like Rob already applied another version of this change
+yesterday:
+https://lore.kernel.org/netdev/20210622113327.3613595-1-thierry.reding@gmail.com/
+I wasn't copied on that patch, I noticed it rather by coincidence.
