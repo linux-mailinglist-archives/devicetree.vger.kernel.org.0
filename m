@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 96FA53C9A8F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 10:26:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A92F3C9A92
+	for <lists+devicetree@lfdr.de>; Thu, 15 Jul 2021 10:26:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239041AbhGOI32 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jul 2021 04:29:28 -0400
-Received: from mail-eopbgr10072.outbound.protection.outlook.com ([40.107.1.72]:12478
+        id S239233AbhGOI3b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Jul 2021 04:29:31 -0400
+Received: from mail-eopbgr10045.outbound.protection.outlook.com ([40.107.1.45]:50144
         "EHLO EUR02-HE1-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230310AbhGOI31 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Jul 2021 04:29:27 -0400
+        id S230310AbhGOI3b (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Jul 2021 04:29:31 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Kte3QX1yvXEe+x6l/ASiPOq6DJCTfHiJn5CjMiAiQaCyZ74lg9eJvk6+XZ3+4zoSxk6vhSjBH6dgvsnz5YDxtqF3/P/m6tE0mBo5it7kVx+vvjSP5CqH/+PLalNyggRFzYWdhCvUSGD42U8SRsXwikmvRpJZaMEI1/YKaR15yEMcvAY4r7OIpR4idl9L7uuyIVRqrqjdFlb+LbiBZ7jTPtVEQZLfrK6Ri9cMD0c7m46f0IMkasQN9xS4/TuvJqKflV63fhOS6TtoJ66XEs73tYy92+bO6soZII3UaJnvboUSssrExBzYii3V2/w9Nv7T7LjNhI8c0qMboGIK0ldCWg==
+ b=YPHzaKtiApogPvMq5DJP+A8TymVoyO4AFeQ7MfEsrMCKqSHmNpa9DjH47qGTMa2o+HeODHLK4g7gkWphlc3QGla6lcEzNQEingYM6Zvqn4dhUbdPLj1deU5HSQuFiiGeaPc8o/aEAnfaUyZFhJjV3sQkKqW+0GTIMrzeTBizr2yIYt/Bz6J6ldNwt6B0G1LIp3IBYVEeubrdgvX2uG89l0SmbYPaoQJl4Ejx2T1hLCZqmx7TyRyamEpKXpv/ztfuzHHR7ccV+HjtkRDXXkSlRHkheu0B+SnJregOy9RMlCGFMU9/LuxWlmNrctFtVvdVNlfx0izrfKu55NN8sUIIXA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qgrx0tpDSkjW5NldaxEIFiHlzAVwxQLwVKpyNW31RRo=;
- b=RX3cSgTc16zKro5LGaCVPkZ0ggUejhdingAluxEAeqeSLcAJF0vZMACreSQFAYjw6W5PoBO/TTyMnKzz7lm75WFky+I17ZABu6jrDyEyj8D0gb1fydGSOReadiutgrU+T4IsO5oUYobZdrsREp+Keu6QpQRccvBfBlGL8TKi1LW9BZIar7aNMFjmgPhdOqrDLzuS/R8VapBiPXXBWNgTKh3xg7SWMV2qZNJS/QgWP5L9EnThfVtSv0xdUNXav+P1Y/6xMUWp7WVi8KLG4lkzS2uRC2BuJF0ZRxR9gl7Jdzn/DTD85M8R5YbHUkwMbk3tEhGyjj0+veva7xWJphoK2A==
+ bh=G3lpX/RWIy5F5UJ6qX8uNxAj4FWBw9yGLlvE13rIhew=;
+ b=XkRhH57gAEgc7uMB3wJFBwm2XXG4f4O7bk/uoqSgbDWn9bn9MAb2rdbTxKae6qclNti1tXtZwycHQQAdyiIMhdHYP8nEFDkbgtvsFuyhV+vaKXoO3ZHl0ZxOT1fdCIf44+bu+KDMSiCzO2vpxwvboeu/WOSS009jH3VXC8rEgRKPLKQDVZllXn+Qj6uNSDmwejV0aAT8K9ExS5sfQMBU6YALCY6dJIhWRJNoBcTJ+1v35Ho8qvWSbVbD7nCHTAOLIfyWFOGvtHOPTViXC0lzG6xLbl4aG9I4W6WiCMaiOubbYBfmx3rUh3V915qjPkanoTLYPEYDyDNSyDIC2fNfHA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qgrx0tpDSkjW5NldaxEIFiHlzAVwxQLwVKpyNW31RRo=;
- b=FBZvkRJ1r3mc6YB4Na7tlz4O2Tl1xw2l7Ci7+sf+CBg8kqIGnYZ0QMqVZkwLrgS0uESDyMQ89lg0Duodz2YgYMNAf8Pe+vljKJyxOTvyxxBg4XzONPts1kXNbIG2B8bpvUvfFhbd4XVfAu8BKlMqPDOXHEKDk/cfbQ8qd3uC3qE=
+ bh=G3lpX/RWIy5F5UJ6qX8uNxAj4FWBw9yGLlvE13rIhew=;
+ b=TLD7HafHi2A/pbJsmDqFopU60yI3qZbnSgVtu2eWbY8V3dAjjrDB1DRK09kandiCySps5REJt0lfA99IdTllACL53IaXa5IId3QbBZ2jKJMhd3NL4iodbvX5zhpHxGrEHloxSh1ItQMFv+BU4F1PTydQTxlLYmFxk78uIER0onk=
 Authentication-Results: vger.kernel.org; dkim=none (message not signed)
  header.d=none;vger.kernel.org; dmarc=none action=none header.from=nxp.com;
 Received: from DB9PR04MB8477.eurprd04.prod.outlook.com (2603:10a6:10:2c3::11)
  by DU2PR04MB8680.eurprd04.prod.outlook.com (2603:10a6:10:2df::7) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4308.23; Thu, 15 Jul
- 2021 08:26:32 +0000
+ 2021 08:26:36 +0000
 Received: from DB9PR04MB8477.eurprd04.prod.outlook.com
  ([fe80::9daa:ab21:f749:36d2]) by DB9PR04MB8477.eurprd04.prod.outlook.com
  ([fe80::9daa:ab21:f749:36d2%9]) with mapi id 15.20.4308.027; Thu, 15 Jul 2021
- 08:26:32 +0000
+ 08:26:36 +0000
 From:   Dong Aisheng <aisheng.dong@nxp.com>
 To:     devicetree@vger.kernel.org
 Cc:     linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
         kernel@pengutronix.de, aisheng.dong@nxp.com, dongas86@gmail.com,
         robh+dt@kernel.org, shawnguo@kernel.org,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org
-Subject: [PATCH 1/7] dt-bindings: can: flexcan: fix imx8mp compatbile
-Date:   Thu, 15 Jul 2021 16:25:30 +0800
-Message-Id: <20210715082536.1882077-2-aisheng.dong@nxp.com>
+        Ashish Kumar <ashish.kumar@nxp.com>,
+        Yogesh Gaur <yogeshgaur.83@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org
+Subject: [PATCH 2/7] dt-bindings: spi: flexspi: convert to json schema
+Date:   Thu, 15 Jul 2021 16:25:31 +0800
+Message-Id: <20210715082536.1882077-3-aisheng.dong@nxp.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210715082536.1882077-1-aisheng.dong@nxp.com>
 References: <20210715082536.1882077-1-aisheng.dong@nxp.com>
@@ -58,96 +58,217 @@ X-ClientProxiedBy: SG2PR02CA0083.apcprd02.prod.outlook.com
  (2603:10a6:10:2c3::11)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (119.31.174.66) by SG2PR02CA0083.apcprd02.prod.outlook.com (2603:1096:4:90::23) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.22 via Frontend Transport; Thu, 15 Jul 2021 08:26:28 +0000
+Received: from localhost.localdomain (119.31.174.66) by SG2PR02CA0083.apcprd02.prod.outlook.com (2603:1096:4:90::23) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.22 via Frontend Transport; Thu, 15 Jul 2021 08:26:32 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8cb14f39-3fe3-4374-e019-08d9476a403f
+X-MS-Office365-Filtering-Correlation-Id: 85b05327-02b8-4192-d5a4-08d9476a4289
 X-MS-TrafficTypeDiagnostic: DU2PR04MB8680:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DU2PR04MB86807AE2217D0A557D6642E480129@DU2PR04MB8680.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:826;
+X-Microsoft-Antispam-PRVS: <DU2PR04MB8680D7CF2D4F1FCE2D581AE180129@DU2PR04MB8680.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5516;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: vLUYMROXA4+GtLcFVaxWPq6iewt2Azxl/1OBwuOxr0CUJ94qmJZzneBnIkT2f6siZKB8jj3uSbG11KO9dEw9onjjjwpVzU15P7AVuHxiQpv5EtC7Lp+ys3IvYhgKq+xhemcFRGotl4KSGyNr2sHXg7h9SgvMF0yozKVc0VfK2y401ApMZQfXF4N4U5e9MLsPck+zG/dD75a3fyQ9Yj8DNzJJPuCQmKvgbDDO42JGOeSyQeAnyKqdMa9sOS5CcKJMvJWmqoaA7OQ3cLraaccBadMOfo1IzCpKIaPin/nzR5diz6jKFOFTo/Ccp4GeeKR7it/Ijqzm9xIW5hrEuHskLN5vKvzU8PGxAuUXH15MnGWQixNpkm0fLhhZ9zY+ywAQF0Zm8cFTsNHCFflGRpug7nQQ1ejnh9y/fAS46botZzaeX/c8TGXhGxoi8x+qCH3gI8EPWxjz4CzamoKvnjp3miwLKRB/GCTiueEfBw65PDicv5VHLKIOsUykI7Lx6BNXkYWpCPfvrSHSjcuIAiAiBxC0HwVEnqRu+hjP38pVDUzbTj7hvXbC04+c5akANJ+VM/LvjRamNpfSL5FZcra7ZCn6oll8c/VnBABCU8+lWAjeJub0W+DVUXugL6ryAWcmNjxAjm024niJMEEyTvHi2p/N7KKoFsu/+/5He1x2JNJ5modASpT9HOw/8FKWm53nTzXeyHvBfichNbKlrCaQjwzg5SO1vgLxx6tNUkcAzEw=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB8477.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(136003)(39860400002)(376002)(366004)(396003)(6506007)(2906002)(52116002)(186003)(5660300002)(6916009)(4326008)(6512007)(8936002)(1076003)(36756003)(8676002)(38350700002)(478600001)(2616005)(6666004)(6486002)(956004)(26005)(38100700002)(54906003)(316002)(66476007)(86362001)(83380400001)(66556008)(66946007)(32563001);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam-Message-Info: zO7wTOaWqW9BzmBFeGq0pTysN5ha5bqgzgY16ON+d36Xf2GQBScTJF4UkmXM7VReV9+sdgaBmosi/1PMUEyOQ+cOTmeGflCtummTwDJMPPEdQB8CjqqFG8VU79LsjN2RDkyDJxjf+OpKCtsHoaoufQKbIaObrihD9L13TIhqXGnd8p8UyWTpBHcBwtFZMS0RC3IDC8PpXzDXEuy8T3MV4+XFERH/+5870BfFDgDrHViedADSOp2oXTWtDxMJF3tTZt8loK6GC5NsUTcNVaHDrG2M0g4npHBYzeTnDbuhigji485qhb6hZ0FEiHr3dcR9s1/ZeG7ZJDI899wYGEOUO0oP14tgz7tZuyffYDxaG9n/pgkWwDdC1uzAJBsyz7YIcRy1yq9vaDG502rTERqf6c/GyA7a73Ba4VpAmMX57iIS9MUCogowFByAt3VXuQ0reighHsbEyGB9+RnNIitWjYr9ZivtaQoCTW8GEuSyImEeAw8z0dneb+zQzHSLlArc1I+eOhMwN1mjYAh1MEiSk8DTsu+vcINFr6VqeYmH6yrvKXzG0bP2oRtZ5aNhET0hyjjGA/PkHGkdydm42KMhW5WM3kXL96XZ1x2wnjwXrUgxW1ye+t0UqsBjWjnt6v6NcxIQAC37HGqrFzYVshrJ9ZAXkMLxjc+L9mDJQE9fDl5oIto4sgsaT+egN139GyXCsozq242P8o9Q3nmTW4vgtusCD/ANc/Dq7un/UTqh+Ezy1BIIXHYI5VFiAbkFG9XQSv2lEg2BPG3t2BuvHmDStArQME4plCXlW3Zheg/mMWblUO51BD1QilAbl6SL3uM9
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB8477.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(136003)(39860400002)(376002)(366004)(396003)(6506007)(2906002)(52116002)(186003)(5660300002)(6916009)(4326008)(6512007)(8936002)(1076003)(36756003)(8676002)(38350700002)(478600001)(2616005)(6486002)(966005)(956004)(26005)(38100700002)(54906003)(316002)(66476007)(86362001)(83380400001)(66556008)(66946007);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?utY0hZTweyp7kF92anHXrP8vxL4K5yxrjtdVhUCLuy3dl9E2XDcqNJ3J0AOZ?=
- =?us-ascii?Q?Yi7wkgtwNUej38kEyPRbzqdSFZS5Ne0K0sY2vLrGP4bmP2TbxM27Jdlt02bH?=
- =?us-ascii?Q?UKWwp3fZl5p1LaXPD0B4vAvRJN/mB1QsjhdAbX+8t8FAnJO9nGP7gwSZveAJ?=
- =?us-ascii?Q?72R/oTfUqEaYkd+cQx4c0z4yVEjPc+78qXk2/GwIGyUg/khRVxzY1N2REAS6?=
- =?us-ascii?Q?dFBJHwIlVxiBpjOCvX3XBPlYvVziygk2rwbG1rLR8Hu2/4Tw2AMFPhgVZOrP?=
- =?us-ascii?Q?+wxeSv2a8H1ZBn3EqBVSw9yMhzJ94ui8hrruvKHEnlRuiMRa6gmWIYf9dmtC?=
- =?us-ascii?Q?pE0jzSCAxBEeIG5kNo5T+2nENIaiCY5mCbKkxffG8jWI3E604+GZ4PQn/5fE?=
- =?us-ascii?Q?56nUBNRQtlS/Q2CCBo/vGlS2rQEs9wHSWG9otpqEWEZWbZf5n1/pVSsqk6a6?=
- =?us-ascii?Q?GrlD9njeor+0eGHLd7PHKi1i/UXc08MrK6OBzwdqQzXI4vVWj1+rXavDuFje?=
- =?us-ascii?Q?6jyzfOCjto/S4qQECqKm+eRTO8DdJiX8AfnKVlYC4lY71dKlQUmu73HBH9Dp?=
- =?us-ascii?Q?jlCdRQ05AzW0RcEHRJKxaYyhWCwzbLsGeS2fubuFqGlVBfNjN2OsP/T5KuXZ?=
- =?us-ascii?Q?WSWbFPdpcZ/W1htf7I6mEJKo804Ep3JeoEJM1w3XUylhtZNZJwiaNL9ivch1?=
- =?us-ascii?Q?CNTUc1yOkJDQqNqt50fyosY2gVMTRJTCdFzkpIbZX8RWjfcPTJ/insuApOgn?=
- =?us-ascii?Q?xTf/cW25mrS2x/3n7SM34X0Y+PFMmIH9rKFHposloklmtvTETzccdWNsXHYO?=
- =?us-ascii?Q?Z3uVQzWBFlom4YCBF+/bNJyVhY2GoOLkmoeNhn1m0Q/K7Sgj2xv7iOTq+z3a?=
- =?us-ascii?Q?QWKYvJuuFgo0AGtTJp/Wa6tW84QZh+BehmY+Yy1M6JHibZrdvlPVgyRNDR3J?=
- =?us-ascii?Q?o/kTZQEowskwSiLr5B60vB13cr4Ab2mE7QtAjdRXw1+I8Qj7pLbNST/IZlK1?=
- =?us-ascii?Q?HJ37nwGaQ1r1LVO3a04YxX618UhaU35f2aYxlMzLLvjoSkiDiACbLj8RLu7w?=
- =?us-ascii?Q?nsu9K2aixp7VHeAQuSq2FAYa3Y51riIVZX2L5kXP9ReNeQBL4muGej0yyJ2V?=
- =?us-ascii?Q?vgLS2NUW6niaogg6ylbpZk2qAkevpPECz6q8tgBVAwkJl603dassU4JDJqfj?=
- =?us-ascii?Q?QnGnwi+o6vewyP/hrrZjd588heo05EZJbKQeiR66QFpza/PY4zpA2BVv43y+?=
- =?us-ascii?Q?Hzwb7ztnUpE8UVvcfJ52HJhnG5bufeca+26jmkZcDx2ZBdnywCqbbNwNa56T?=
- =?us-ascii?Q?NWMW+wIRBjDLm2VqEPHOIqnG?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?IFuVmS+FntrGu600t5oiZ+NPKhgI4mxGFf0gVH3BTPr/irDzs00ByaCbd4bt?=
+ =?us-ascii?Q?zUsU3iTqheVwL+DbnvZqcFfJwyevtIYp01trd2rYO6JE0gFCROBdoLVbFBAm?=
+ =?us-ascii?Q?YtuedDTP20ifLV5k18lkbsZHq6OaOeVrclSZUvHupDlZk3OqDocDj5SmdoFX?=
+ =?us-ascii?Q?55SBv2MF2PJ413AuUKfF+rCTks3KYmGnpTfsEukIhlHzuYCpN1WKhC4bc3f4?=
+ =?us-ascii?Q?idhE9FvASvWdF/A6wCwFI+Ko6qv0g12X3NcmibiNFFm+XMZdAdpDUpcFK9dB?=
+ =?us-ascii?Q?ZTS2wlIhS51uhkH+yFCFlODLcOUrRtN73Fr/uJIxRMW4Q4npK3bdXGa1DfRG?=
+ =?us-ascii?Q?roWsa2jx4Y/h61ll0p1PLOJs5IB7cInhpj3+6RG6409dzpZRB311xfwD95pc?=
+ =?us-ascii?Q?SKbD39Jk7TO8W7IjmPWh795Sj9kqlWDLBGVBPpc3L0Chtds0VzgKueSnK3iG?=
+ =?us-ascii?Q?WmzxMdqTIgBqEns/TN504+l+nDYPLQ9YQUuZ3yUwsr6HYTIhr+BtnomkFnLW?=
+ =?us-ascii?Q?6dasoyjYyL20TI/sCPqs5N+ztklOSMOF/V4HPuuJ4u3ePs5Y/w1bV9DFr5sf?=
+ =?us-ascii?Q?EF9b99bB3WrHeOGwnswd7j9MatbfnAIh3cWSUbmvBRvr3HSRenZkE+pjByzB?=
+ =?us-ascii?Q?y9LI/bpn9+ZGoZXA3D2ZYZdbzMl2tDARNNI8Jeksr91Ylb+Q0nqvogB5h4Vi?=
+ =?us-ascii?Q?d3ypECYuMdpearGSCXFpsbae2nVg0kzJyhQzxlsqi8CUulFHyHKkXVFv+2N9?=
+ =?us-ascii?Q?cYhB550n2T3D56Q/Tq09B4LLShhtD6wkNWfcujLeeiRmtVTbbfNdnXlQLYUh?=
+ =?us-ascii?Q?qyWdQMock6KRfNlkZzwgR3FQVyFvy+ZkmCqElc3O3bWZ7M7yf3qHrlNpNcKe?=
+ =?us-ascii?Q?/rq74JCwfGXlXcUBWnDJY7nUPRVQnmA8ZNSFoqsjSPrSFXt/Yi4X+T5nznI4?=
+ =?us-ascii?Q?+bumemeWIS56MUSrx7ReXT8sasgHDCGIgrATJSbMDpVwl8nU2/HKSkeoDqt0?=
+ =?us-ascii?Q?DgTcgpET79GZqkjMUQBJUQ20KCzAPlVQBQbahDpqTA09FcLNpBf/xCB0oYFr?=
+ =?us-ascii?Q?1xprwFlTcQpVuhz49UicmfI8j13C5HwjRfOgEiIDftLBDHwhAmOHnqPzvN+r?=
+ =?us-ascii?Q?rHSL9bS9i8doMp9f4L8iM33/a9StptDu0YBduqeXknWecXWcSgnKyNNvuhfI?=
+ =?us-ascii?Q?FuHENIM/zXkg0RnY2SMv3Td02IfoeowVlY48VdLtxKflYxnVVaDdUg1zwphG?=
+ =?us-ascii?Q?U0i5CJ7QNxEdlUT0IWVMZUJdMTnMjRyokEpKuNXrLOddSeb+xLjziXyShijq?=
+ =?us-ascii?Q?0HTck5sV2J3P5cTm/ae+rSFv?=
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8cb14f39-3fe3-4374-e019-08d9476a403f
+X-MS-Exchange-CrossTenant-Network-Message-Id: 85b05327-02b8-4192-d5a4-08d9476a4289
 X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB8477.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2021 08:26:32.2317
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2021 08:26:35.9852
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mtcK9AFr1i6WuHj8suMlxmkGv0e6njzINw7W8YGCZ1o0A3XPQyM2ezkhBHYhOqZykYvOvX3Sa8D3lcm3Gs1X5w==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0tH+vBsWdCEtgRZhJjnd1n1vckbd9VW/Gq/jhLVMEPRz0YCGTjGw3TvWOJOJLhqHIGv5zwWxaUQqKDOjpyJsVA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8680
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch fixes the following errors during make dtbs_check:
-arch/arm64/boot/dts/freescale/imx8mp-evk.dt.yaml: can@308c0000: compatible: 'oneOf' conditional failed, one must be fixed:
-	['fsl,imx8mp-flexcan', 'fsl,imx6q-flexcan'] is too long
-	Additional items are not allowed ('fsl,imx6q-flexcan' was unexpected)
-	'fsl,imx8mp-flexcan' is not one of ['fsl,imx53-flexcan', 'fsl,imx35-flexcan']
-	'fsl,imx8mp-flexcan' is not one of ['fsl,imx7d-flexcan', 'fsl,imx6ul-flexcan', 'fsl,imx6sx-flexcan']
-	'fsl,imx8mp-flexcan' is not one of ['fsl,ls1028ar1-flexcan']
-	'fsl,imx25-flexcan' was expected
-	'fsl,lx2160ar1-flexcan' was expected
+Besides the conversion work, also added the missing clock property
+in the original binding doc according to the current dts and driver
+implementation. Otherwise, make dtbs_check will fail.
+Also fixed example according to new jason schema.
 
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>
-Cc: Joakim Zhang <qiangqing.zhang@nxp.com>
+Cc: Ashish Kumar <ashish.kumar@nxp.com>
+Cc: Yogesh Gaur <yogeshgaur.83@gmail.com>
+Cc: Mark Brown <broonie@kernel.org>
 Cc: Rob Herring <robh+dt@kernel.org>
-Cc: linux-can@vger.kernel.org
-Cc: netdev@vger.kernel.org
+Cc: linux-spi@vger.kernel.org
 Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
 ---
- Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../devicetree/bindings/spi/spi-nxp-fspi.txt  | 44 ----------
+ .../devicetree/bindings/spi/spi-nxp-fspi.yaml | 87 +++++++++++++++++++
+ 2 files changed, 87 insertions(+), 44 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt
+ create mode 100644 Documentation/devicetree/bindings/spi/spi-nxp-fspi.yaml
 
-diff --git a/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml b/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
-index 55bff1586b6f..ca9caac68777 100644
---- a/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
-+++ b/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
-@@ -18,7 +18,6 @@ properties:
-     oneOf:
-       - enum:
-           - fsl,imx8qm-flexcan
--          - fsl,imx8mp-flexcan
-           - fsl,imx6q-flexcan
-           - fsl,imx28-flexcan
-           - fsl,imx25-flexcan
-@@ -33,6 +32,7 @@ properties:
-           - const: fsl,imx25-flexcan
-       - items:
-           - enum:
-+              - fsl,imx8mp-flexcan
-               - fsl,imx7d-flexcan
-               - fsl,imx6ul-flexcan
-               - fsl,imx6sx-flexcan
+diff --git a/Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt b/Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt
+deleted file mode 100644
+index 8f34a7c7d8b8..000000000000
+--- a/Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt
++++ /dev/null
+@@ -1,44 +0,0 @@
+-* NXP Flex Serial Peripheral Interface (FSPI)
+-
+-Required properties:
+-  - compatible : Should be "nxp,lx2160a-fspi"
+-			    "nxp,imx8qxp-fspi"
+-			    "nxp,imx8mm-fspi"
+-			    "nxp,imx8mp-fspi"
+-			    "nxp,imx8dxl-fspi"
+-
+-  - reg :        First contains the register location and length,
+-                 Second contains the memory mapping address and length
+-  - reg-names :  Should contain the resource reg names:
+-	         - fspi_base: configuration register address space
+-                 - fspi_mmap: memory mapped address space
+-  - interrupts : Should contain the interrupt for the device
+-
+-Required SPI slave node properties:
+-  - reg :        There are two buses (A and B) with two chip selects each.
+-                 This encodes to which bus and CS the flash is connected:
+-                 - <0>: Bus A, CS 0
+-                 - <1>: Bus A, CS 1
+-                 - <2>: Bus B, CS 0
+-                 - <3>: Bus B, CS 1
+-
+-Example showing the usage of two SPI NOR slave devices on bus A:
+-
+-fspi0: spi@20c0000 {
+-	compatible = "nxp,lx2160a-fspi";
+-	reg = <0x0 0x20c0000 0x0 0x10000>, <0x0 0x20000000 0x0 0x10000000>;
+-	reg-names = "fspi_base", "fspi_mmap";
+-	interrupts = <0 25 0x4>; /* Level high type */
+-	clocks = <&clockgen 4 3>, <&clockgen 4 3>;
+-	clock-names = "fspi_en", "fspi";
+-
+-	mt35xu512aba0: flash@0 {
+-		reg = <0>;
+-		....
+-	};
+-
+-	mt35xu512aba1: flash@1 {
+-		reg = <1>;
+-		....
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/spi/spi-nxp-fspi.yaml b/Documentation/devicetree/bindings/spi/spi-nxp-fspi.yaml
+new file mode 100644
+index 000000000000..ca43583947ea
+--- /dev/null
++++ b/Documentation/devicetree/bindings/spi/spi-nxp-fspi.yaml
+@@ -0,0 +1,87 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/spi/spi-nxp-fspi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP Flex Serial Peripheral Interface (FSPI)
++
++maintainers:
++  - Ashish Kumar <ashish.kumar@nxp.com>
++
++allOf:
++  - $ref: "/schemas/spi/spi-controller.yaml#"
++
++properties:
++  compatible:
++    enum:
++      - nxp,lx2160a-fspi
++      - nxp,imx8mm-fspi
++      - nxp,imx8mp-fspi
++      - nxp,imx8qxp-fspi
++      - nxp,imx8dxl-fspi
++
++  reg:
++    items:
++      - description: register location and length
++      - description: memory mapping address and length
++
++  reg-names:
++    items:
++      - const: fspi_base
++      - const: fspi_mmap
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: SPI Bus clock
++      - description: SPI Serial clock
++
++  clock-names:
++    items:
++      - const: fspi_en
++      - const: fspi
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - interrupts
++  - clocks
++  - clock-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/clock/fsl,qoriq-clockgen.h>
++
++    soc {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        fspi0: spi@20c0000 {
++            compatible = "nxp,lx2160a-fspi";
++            reg = <0x0 0x20c0000 0x0 0x10000>,
++                  <0x0 0x20000000 0x0 0x10000000>;
++            reg-names = "fspi_base", "fspi_mmap";
++            interrupts = <0 25 0x4>; /* Level high type */
++            clocks = <&clockgen 4 3>, <&clockgen 4 3>;
++            clock-names = "fspi_en", "fspi";
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            mt35xu512aba0: flash@0 {
++                compatible = "jedec,spi-nor";
++                reg = <0>;
++            };
++
++            mt35xu512aba1: flash@1 {
++                compatible = "jedec,spi-nor";
++                reg = <1>;
++            };
++        };
++    };
 -- 
 2.25.1
 
