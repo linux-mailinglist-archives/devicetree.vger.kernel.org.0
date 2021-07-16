@@ -2,100 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 633C83CB80F
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 15:48:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDC4B3CB83C
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 15:59:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232888AbhGPNvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 09:51:41 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:34754 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232808AbhGPNvl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 09:51:41 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: sre)
-        with ESMTPSA id 5F3BA1F42328
-Received: by earth.universe (Postfix, from userid 1000)
-        id 1B33C3C0C97; Fri, 16 Jul 2021 15:48:43 +0200 (CEST)
-Date:   Fri, 16 Jul 2021 15:48:43 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Gene Chen <gene.chen.richtek@gmail.com>
-Cc:     "Vaittinen, Matti" <matti.vaittinen@fi.rohmeurope.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>, inux-pm@vger.kernel.org,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
-        shufan_lee@richtek.com, ChiYuan Huang <cy_huang@richtek.com>,
-        benjamin.chao@mediatek.com
-Subject: Re: [PATCH v5 3/3] power: supply: mt6360_charger: add MT6360 charger
- support
-Message-ID: <20210716134843.w7cl7ekkm3dm6pu5@earth.universe>
-References: <20210528081300.64759-1-gene.chen.richtek@gmail.com>
- <20210528081300.64759-4-gene.chen.richtek@gmail.com>
- <62cdd2d18839e16686f35f0cf08080e2cb3b1768.camel@fi.rohmeurope.com>
- <CAE+NS36WuNkQYn8_UvsZaU5Equ9YH+Ya=c_j3cLNhuFnHT_J-g@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="pohkpagvdzmtywuv"
-Content-Disposition: inline
-In-Reply-To: <CAE+NS36WuNkQYn8_UvsZaU5Equ9YH+Ya=c_j3cLNhuFnHT_J-g@mail.gmail.com>
+        id S232808AbhGPOCJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 10:02:09 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:25303 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233151AbhGPOCJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Jul 2021 10:02:09 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1626443954; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=4OELohummFgsgQ1RQE8GgRV7LW3V8m2pafVToNQMbiY=; b=mxsDaHrJnwAi+v8FgdBI6Ik/1ORtgkWEb2HaDkz3ppXF0rYNgMFy1dhwep3Z02wWiBkk+vIJ
+ aSYWie/Evhgxn8Byve+TiS2g/SKFnx7zkTzKUqJ6GGozZvakcwWCXHMwV2xhrXDnGeUuPfae
+ olh2pYFE8kSuPsi2OAsU1dCizVA=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
+ 60f190a617c2b4047dcb6eb9 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 16 Jul 2021 13:59:02
+ GMT
+Sender: pmaliset=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id A09E2C4338A; Fri, 16 Jul 2021 13:59:01 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from pmaliset-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: pmaliset)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4D6E9C433F1;
+        Fri, 16 Jul 2021 13:58:55 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 4D6E9C433F1
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=pmaliset@codeaurora.org
+From:   Prasad Malisetty <pmaliset@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, bhelgaas@google.com,
+        robh+dt@kernel.org, swboyd@chromium.org, lorenzo.pieralisi@arm.com,
+        svarbanov@mm-sol.com
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dianders@chromium.org, mka@chromium.org, vbadigan@codeaurora.org,
+        sallenki@codeaurora.org, Prasad Malisetty <pmaliset@codeaurora.org>
+Subject: [PATCH v4 0/4] Add DT bindings and DT nodes for PCIe and PHY in SC7280
+Date:   Fri, 16 Jul 2021 19:28:43 +0530
+Message-Id: <1626443927-32028-1-git-send-email-pmaliset@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Changes in v4 as suggested by Bjorn:
 
---pohkpagvdzmtywuv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+	* Changed pipe clk mux name as gcc_pcie_1_pipe_clk_src.
+	* Changed pipe_ext_src as phy_pipe_clk.
+	* Updated commit message for [PATCH v4 4/4]. 
+		
 
-Hi,
+Changes in v3:
+	* Changed pipe clock names in dt bindings as pipe_mux and phy_pipe.
+	* Moved reset and NVMe GPIO pin configs into board specific file.
+	* Updated pipe clk mux commit message.
+	
+Changes in v2:
+	* Moved pcie pin control settings into IDP file.
+	* Replaced pipe_clk_src with pipe_clk_mux in pcie driver 
+	* Included pipe clk mux setting change set in this series
 
-On Mon, May 31, 2021 at 11:39:50AM +0800, Gene Chen wrote:
-> > > +static int mt6360_charger_remove(struct platform_device *pdev)
-> > > +{
-> > > +     struct mt6360_chg_info *mci =3D platform_get_drvdata(pdev);
-> > > +
-> > > +     cancel_work_sync(&mci->chrdet_work);
-> > > +
-> > > +     return 0;
-> > > +}
-> >
-> > Just as a note, devm_work_autocancel() should hopefully be included at
-> > next cycle. Then you might be able to drop the .remove().
->=20
-> ACK, I will replace it, thanks.
+Prasad Malisetty (4):
+  dt-bindings: pci: qcom: Document PCIe bindings for SC720
+  arm64: dts: qcom: sc7280: Add PCIe and PHY related nodes
+  arm64: dts: qcom: sc7280: Add PCIe nodes for IDP board
+  PCIe: qcom: Add support to control pipe clk src
 
-> > FWIW:
-> > Reviewed-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+ .../devicetree/bindings/pci/qcom,pcie.txt          |  17 +++
+ arch/arm64/boot/dts/qcom/sc7280-idp.dts            |  38 +++++++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               | 125 +++++++++++++++++++++
+ drivers/pci/controller/dwc/pcie-qcom.c             |  22 ++++
+ 4 files changed, 202 insertions(+)
 
-Did I miss a newer revision?
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
--- Sebastian
-
---pohkpagvdzmtywuv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmDxjjMACgkQ2O7X88g7
-+ppTGQ/+KQXLPxlOLzYDzYM0l9Zir5lSyErWq9qNFYx2jYwWoF9CmsimzVIE79rV
-N/PpiJrNBHYkuarViJpXEE6pYB3HQmZG9WptsZjO41/LZKUZzHHhc/rKLOb3qY2B
-3KuNMq81o2aPQaxtH6xwEfNN/Y/3HSk7s6XJOckHAsr9Cot501tgyj8PKnQDGsmd
-Gd5rfg/q5o6Sgd/f5pUQNt2SwOq9EdVEYNp+C5/v7wboyMK5dFy88Sr9KiU633Jo
-x/7gSnDhAhSl4/izOgx9ESRC6sUnuAoBHDuiLm8QZq3nVRLOFhLZgsp2gpDuARBo
-l1gGM2wIDa1mKEC6r5YRikaG3eJMqI01ds2i8r9b73X6gH5zhXo7qN/QJWlTeVdg
-2LRkmzb/smxpDZczoDPEKZRkk976waecF9b3v1F1fOs7dMXSdP7cOdYUHIJXk7LB
-TfbQ6nJL/I9pgOtP/E70N9aQ7vBUyiboy+B3h8GuIHMFkTYvrPeqwxSBvTYoNQI3
-DIRmYOtzPELVvbfzNNCLXdpij24aVk2duDWYdhhgNp277gnJKoLLu3Ft07ptpyKT
-RatfO50uBCy8+I5VJ624nQ+8WTBAYWquXaTUHu238/hgpXDnDhb5303qtCPtONq4
-ZpZ+5hR3ZurhDjee/blJYsxpw1Ts4oMzx9PwodEaa+QAGroHudI=
-=RwZv
------END PGP SIGNATURE-----
-
---pohkpagvdzmtywuv--
