@@ -2,75 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D6A423CBCBF
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 21:39:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 745903CBCC9
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 21:40:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232861AbhGPTmM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 15:42:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56458 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232746AbhGPTmM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 15:42:12 -0400
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45B3CC061762
-        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 12:39:17 -0700 (PDT)
-Received: by mail-oi1-x231.google.com with SMTP id t143so12162997oie.8
-        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 12:39:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=fv7DMd/gditUGd89KsZv6kzGs+OqmSKrVvU2f7TJ2+4=;
-        b=Mpr02/1AW3f18Bb7yv3Nx1eLLmiLG8qlYaDWjqSEtb94u3VXNqZpJIFPZF5AZAYrv4
-         euboawnbYOrMxF3OPRs0jHyxBRjazEdcT3+6u/3TkizPZagpBwGvU/SFpzT/UwWPaIg7
-         C7Tsk1W2jc5M2wXUoEfxlsxOCYO4QqPm0KNzw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=fv7DMd/gditUGd89KsZv6kzGs+OqmSKrVvU2f7TJ2+4=;
-        b=V3tSq7nNATcm2QEmPw6gyOYWSnuOLJ2SBye76GrjXwUK8N0gQyVoiL8qPSTCKwE+Ev
-         dg6fXWxlOuzQOQ4jlxwcj6tt8R+D0N6Mih1kVv/rWFiGAuBbKXR4iT42IJgfc8PMaQ0h
-         +hb/BQbxrs8czgAKjrgPx0T5zOH7qlX3nLpjzAoG+BCy8wc71XUEdyElHMCV8BQLJBgs
-         E7bCo63wTpR6gpMGWrXKog74QRrkzs+EMPuICH36UkVwNUo7Q3GyqzUU1vSUi3vIZeej
-         FUVO2u2zTSns4k5C3O/cCveY0mpDPjrgSeNeslBFn4Pdcg3Ni9IOaIRRj1nhK3G5T1WT
-         6arw==
-X-Gm-Message-State: AOAM532Ip7MKvetSawtbOq71SQRcqUwiABvdxGJJC2UnV5xbBsIImZoG
-        1AHs7XpfAJS6fvYHjVtd8KZCuCKJQQuSweLfKwS8cg==
-X-Google-Smtp-Source: ABdhPJycyfU2OpnyY8fwekR9OEhg1REuKFzJyJ9WFoqtk/B5zwwVo35Tvga6/Erqr4MKZV48CnYi9IgxHuWqdIpFqW0=
-X-Received: by 2002:aca:7545:: with SMTP id q66mr9245579oic.19.1626464356697;
- Fri, 16 Jul 2021 12:39:16 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 16 Jul 2021 21:39:16 +0200
+        id S231335AbhGPTn0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 15:43:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39820 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231266AbhGPTnZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Jul 2021 15:43:25 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPS id 835BA613EB;
+        Fri, 16 Jul 2021 19:40:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1626464430;
+        bh=yy3lgzUv8c1hezgnRSueqAhnq8qdRsPvZZMExvBL9ds=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=VsvM5esBWErc9ifFp1rySZVY0gQbEdYGS80SSJlbqxl1Eh8pdzz+jlaiXTYb4Ky/G
+         RakiafNe52KhwlxaqZCjHNAF7Cwnt4ZRGjTUOlhXpw+/sE8/r/8AaVS3TgSkxWWLGp
+         72elzNi15WIqqWjhBr5tXO6mwBn//0HnR2RHO6hpu+qNOoB4ErcxmTLmGq6/w7u18E
+         faQCa+Te7mrs/nrOUyF9pCgXYCi2Rtd7cUjZJK5gACyl5pIQmihork4t9KPYBVG/u+
+         FtgkFdaB1vQQpl5DszQG6UABKLJR8gAenDmQ6gE/FooDW25+R07/FjM3q129ruXGVV
+         xSCuSs15DRMPw==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 77744609EF;
+        Fri, 16 Jul 2021 19:40:30 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <1626429658-18961-3-git-send-email-rnayak@codeaurora.org>
-References: <1626429658-18961-1-git-send-email-rnayak@codeaurora.org> <1626429658-18961-3-git-send-email-rnayak@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Fri, 16 Jul 2021 21:39:16 +0200
-Message-ID: <CAE-0n51y2JEy-singr5i9gFFO4uGJ_UVDFChNPUwnTEBO=5kQg@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] arm64: dts: sc7180: Add required-opps for i2c
-To:     Rajendra Nayak <rnayak@codeaurora.org>, bjorn.andersson@linaro.org,
-        ulf.hansson@linaro.org, viresh.kumar@linaro.org
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        rojay@codeaurora.org, stephan@gerhold.net
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH V1 0/3] dt-bindings: net: fec: convert fsl,*fec bindings to
+ yaml
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <162646443048.11536.12063272896536154628.git-patchwork-notify@kernel.org>
+Date:   Fri, 16 Jul 2021 19:40:30 +0000
+References: <20210716102911.23694-1-qiangqing.zhang@nxp.com>
+In-Reply-To: <20210716102911.23694-1-qiangqing.zhang@nxp.com>
+To:     Joakim Zhang <qiangqing.zhang@nxp.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, bruno.thomsen@gmail.com, linux-imx@nxp.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Rajendra Nayak (2021-07-16 03:00:58)
-> qup-i2c devices on sc7180 are clocked with a fixed clock (19.2 MHz)
-> Though qup-i2c does not support DVFS, it still needs to vote for a
-> performance state on 'CX' to satisfy the 19.2 Mhz clock frequency
-> requirement.
->
-> Use 'required-opps' to pass this information from
-> device tree, and also add the power-domains property to specify
-> the CX power-domain.
->
-> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
-> ---
+Hello:
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+This series was applied to netdev/net-next.git (refs/heads/master):
+
+On Fri, 16 Jul 2021 18:29:08 +0800 you wrote:
+> This patch set intends to convert fec binding into scheme, and fixes
+> when do dtbs_check on ARCH arm.
+> 
+> One notice is that there are below logs for some dts when do dtbs_check:
+> 	ethernet@2188000: More than one condition true in oneOf schema:
+> We found that fec node in these dts all have "interrupts-extended"
+> property, and schema default is:
+>          'oneOf': [{'required': ['interrupts']},
+>                    {'required': ['interrupts-extended']}],
+> so we don't know if it is a common issue or need be fixed in specific
+> bindings.
+> 
+> [...]
+
+Here is the summary with links:
+  - [V1,1/3] dt-bindings: net: fec: convert fsl,*fec bindings to yaml
+    https://git.kernel.org/netdev/net-next/c/96e4781b3d93
+  - [V1,2/3] ARM: dts: imx35: correct node name for FEC
+    https://git.kernel.org/netdev/net-next/c/95740a9a3ad9
+  - [V1,3/3] ARM: dts: imx7-mba7: remove un-used "phy-reset-delay" property
+    https://git.kernel.org/netdev/net-next/c/86a176f485b5
+
+You are awesome, thank you!
+--
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
