@@ -2,22 +2,22 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D4363CBFB7
+	by mail.lfdr.de (Postfix) with ESMTP id A5C5B3CBFB9
 	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 01:29:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238173AbhGPXcY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S230104AbhGPXcY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 16 Jul 2021 19:32:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51820 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230104AbhGPXcX (ORCPT
+        with ESMTP id S237326AbhGPXcX (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 19:32:23 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 664BEC06175F
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66B1DC061760
         for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 16:29:28 -0700 (PDT)
 Received: from dude03.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::39])
         by metis.ext.pengutronix.de with esmtp (Exim 4.92)
         (envelope-from <l.stach@pengutronix.de>)
-        id 1m4XGj-0002Kr-D4; Sat, 17 Jul 2021 01:29:21 +0200
+        id 1m4XGk-0002Kr-0W; Sat, 17 Jul 2021 01:29:22 +0200
 From:   Lucas Stach <l.stach@pengutronix.de>
 To:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>
 Cc:     NXP Linux Team <linux-imx@nxp.com>, Adam Ford <aford173@gmail.com>,
@@ -25,9 +25,9 @@ Cc:     NXP Linux Team <linux-imx@nxp.com>, Adam Ford <aford173@gmail.com>,
         Peng Fan <peng.fan@nxp.com>, Marek Vasut <marex@denx.de>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         kernel@pengutronix.de, patchwork-lst@pengutronix.de
-Subject: [PATCH 04/17] soc: imx: gpcv2: add lockdep annotation
-Date:   Sat, 17 Jul 2021 01:29:03 +0200
-Message-Id: <20210716232916.3572966-5-l.stach@pengutronix.de>
+Subject: [PATCH 05/17] soc: imx: gpcv2: add domain option to keep domain clocks enabled
+Date:   Sat, 17 Jul 2021 01:29:04 +0200
+Message-Id: <20210716232916.3572966-6-l.stach@pengutronix.de>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210716232916.3572966-1-l.stach@pengutronix.de>
 References: <20210716232916.3572966-1-l.stach@pengutronix.de>
@@ -41,33 +41,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some of the GPCv2 power domains are nested inside each other without
-visibility to lockdep at the genpd level, as they are in separate
-driver instances and don't have a parent/child power-domain relationship.
-
-Add a subclass annotation to the nested domains to let lockdep know that
-it is okay to take the genpd lock in a nested fashion.
+Some of the MIX domains are using clocks to drive the bus bridges. Those
+must be enabled at all times, as long as the domain is powered up and
+they don't have any other consumer than the power domain. Add an option
+to keep the clocks attached to a domain enabled as long as the domain
+is power up and only disable them after the domain is powered down.
 
 Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
 ---
- drivers/soc/imx/gpcv2.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/soc/imx/gpcv2.c | 14 +++++++++-----
+ 1 file changed, 9 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
-index 2c43e74db0be..35f26f57d1ac 100644
+index 35f26f57d1ac..c3b1d2580963 100644
 --- a/drivers/soc/imx/gpcv2.c
 +++ b/drivers/soc/imx/gpcv2.c
-@@ -898,6 +898,10 @@ static int imx_pgc_domain_probe(struct platform_device *pdev)
- 		goto out_domain_unmap;
+@@ -202,6 +202,7 @@ struct imx_pgc_domain {
+ 	} bits;
+ 
+ 	const int voltage;
++	const bool keep_clocks;
+ 	struct device *dev;
+ };
+ 
+@@ -295,7 +296,8 @@ static int imx_pgc_power_up(struct generic_pm_domain *genpd)
  	}
  
-+	if (IS_ENABLED(CONFIG_LOCKDEP) &&
-+	    of_property_read_bool(domain->dev->of_node, "power-domains"))
-+		lockdep_set_subclass(&domain->genpd.mlock, 1);
-+
- 	ret = of_genpd_add_provider_simple(domain->dev->of_node,
- 					   &domain->genpd);
- 	if (ret) {
+ 	/* Disable reset clocks for all devices in the domain */
+-	clk_bulk_disable_unprepare(domain->num_clks, domain->clks);
++	if (!domain->keep_clocks)
++		clk_bulk_disable_unprepare(domain->num_clks, domain->clks);
+ 
+ 	return 0;
+ 
+@@ -317,10 +319,12 @@ static int imx_pgc_power_down(struct generic_pm_domain *genpd)
+ 	int ret;
+ 
+ 	/* Enable reset clocks for all devices in the domain */
+-	ret = clk_bulk_prepare_enable(domain->num_clks, domain->clks);
+-	if (ret) {
+-		dev_err(domain->dev, "failed to enable reset clocks\n");
+-		return ret;
++	if (!domain->keep_clocks) {
++		ret = clk_bulk_prepare_enable(domain->num_clks, domain->clks);
++		if (ret) {
++			dev_err(domain->dev, "failed to enable reset clocks\n");
++			return ret;
++		}
+ 	}
+ 
+ 	/* request the ADB400 to power down */
 -- 
 2.30.2
 
