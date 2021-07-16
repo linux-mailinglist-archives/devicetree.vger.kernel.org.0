@@ -2,107 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 291F03CB8B6
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 16:31:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 151693CB8F7
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 16:41:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239894AbhGPOef (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 10:34:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42898 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239803AbhGPOee (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 10:34:34 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5D40C06175F;
-        Fri, 16 Jul 2021 07:31:38 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id k4so12316996wrc.8;
-        Fri, 16 Jul 2021 07:31:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=HfyxvApAZ/QZvHM+p5Z7vY05jWEPB2D5W608SFXmszc=;
-        b=BiNw4S/nNGbPkUa1crFEo2Y0/F8w8G9auWNhNskkQ7COnYo5wnECAN/07YJpoA15yp
-         y1j9atMh+9ZcfZvkqJHZZOVVfWp3KAck8GXvy2t4Cg8JgCV1qh9XHgPSMAAce6YDMMex
-         zdX5hA4MXqMe2/4AATppa3CQUBcLOfDByMDaXEOxz3LVoQ7oodrpxekThqZg1gfGXnVT
-         MwlYcN5MFT1Wix931dlrsHnYz1bSjLs5wnni+fYiOoBnStHh5zm16QQZqBeizLfQq9xh
-         BDPNNDT4b7isNLQ4nHiFOVmdSb3o6bE4XTxgspU+fsXx4J2tKfYpVM0NgMhxfU7avYK9
-         vsDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=HfyxvApAZ/QZvHM+p5Z7vY05jWEPB2D5W608SFXmszc=;
-        b=VBfFuN9L8nAHgZTyhMsNNfRKtUBdrMkyAYTa0hxsND3JILMYhXxDfwvkaOn8mS45zM
-         02aYEiWIFZ2Q7XN4v3iAI+W+lK8MC5gX/wKyrLamxYgKQnFBUx2cYIUGsSpB+C+zgMCA
-         na2DI9w2pQI5yIR2jsLJis7RxezqhBSA+U9iz4N0v1n1LAYl8BYx5njt+rXvAGDmzCw+
-         fgsUwi/Ksgc6wfQBtU8r3BE5Bq8q+0FLE/ulWFNpLoH3hkdobxFobVVFwyOfgL5C+UIe
-         elWDQGwr0OFWL4eQfkEr+OX8Ditqtn+Q8zbll2kJzmnohwuDzUD19EbD3siUjnO0GyIm
-         ZYnA==
-X-Gm-Message-State: AOAM532d4A8STElkw1piAem1Uh11b9P1N279U+JPI0HscUzOihaXazJN
-        FKgc9qTKVCH3CWs9NI/8KETupMkoBxukmSb3DHI=
-X-Google-Smtp-Source: ABdhPJzNsznePTaYmquFe11N5cDdMdqdLLKPdxNodbRML7ppVKehpfYQUESzJxYsB3WikgGIRh1AkH3Y73mC/3yvNEY=
-X-Received: by 2002:a5d:6481:: with SMTP id o1mr13127552wri.164.1626445897440;
- Fri, 16 Jul 2021 07:31:37 -0700 (PDT)
+        id S240458AbhGPOoi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 10:44:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37294 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S240454AbhGPOoi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Jul 2021 10:44:38 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7C22F613FD;
+        Fri, 16 Jul 2021 14:41:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1626446503;
+        bh=Gg3Ke0wyfoprEaQsLgh/4ChP1BGmBVSkJ5TkIjXTauk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=NVNSiK17IZjvwxQwUyBbXALG1OEfj/EPl2TPfwfVV2SEmLVoOjr8/JfNGY/aaVnE7
+         MBfOD7nHttfeYeex7PtN6rz/vf+yKwTYMH1j5Qj8jc31viyzaPJgbFDX7MQ/OVYpMG
+         Zn/YXvDOBP4atQd5Igte4jDFrMfeP8eHnhfYYll+sRylJ0NgfCPskA/xDlMmkUCI64
+         0c7tJxUu1wL3Tw2iHsoRNhecQq2SO8VOhN6JQCfluFX18iRvaWMRxvyRv2vVqjdCjD
+         YYVZO5etRr2K6DuF3T55f5ZpE7Wpl+NCXA4jS/feOK83aMKBsfr8YVRsK3SBlSSJFR
+         YyPg86ZUtRL9g==
+Received: by mail-ed1-f50.google.com with SMTP id l1so13219995edr.11;
+        Fri, 16 Jul 2021 07:41:43 -0700 (PDT)
+X-Gm-Message-State: AOAM5317PduytVt6McC7vm4pFPzAn/0YhL2ad+GGFxJ/ImAJbf55Hcc/
+        seC3OR8RsATbIo1J8SdgIMWFY/vNv7I3o1L7Fw==
+X-Google-Smtp-Source: ABdhPJytXw32jFRKV/IdOZxQT/8gJgcEca+5S6hsSEebSUX+rUCDRaxZJRXWlatA7XKj4j5GTedS5nJA2LZGGpnQGiw=
+X-Received: by 2002:aa7:da4b:: with SMTP id w11mr13827478eds.258.1626446502075;
+ Fri, 16 Jul 2021 07:41:42 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210715141802.880911-1-daniel.baluta@oss.nxp.com>
- <20210715141802.880911-2-daniel.baluta@oss.nxp.com> <20210715143906.GD4590@sirena.org.uk>
-In-Reply-To: <20210715143906.GD4590@sirena.org.uk>
-From:   Daniel Baluta <daniel.baluta@gmail.com>
-Date:   Fri, 16 Jul 2021 17:31:25 +0300
-Message-ID: <CAEnQRZCdSLoaLVZ7-jtufgZCG6QshMwdfyJy_4oE6cXRbA5H8A@mail.gmail.com>
-Subject: Re: [PATCH 1/3] ASoC: SOF: Parse fw/tplg filename from DT
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Daniel Baluta <daniel.baluta@oss.nxp.com>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
-        Kai Vehmanen <kai.vehmanen@linux.intel.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>
+References: <20210423163234.3651547-1-thierry.reding@gmail.com>
+ <20210423163234.3651547-3-thierry.reding@gmail.com> <bdc42077-d1f3-f561-2e4d-647b5fceb7b6@gmail.com>
+In-Reply-To: <bdc42077-d1f3-f561-2e4d-647b5fceb7b6@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 16 Jul 2021 08:41:28 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+jSY-OLau3gLPsDL02AYaE_TySOGrd9-tNLFaYvLHZ6A@mail.gmail.com>
+Message-ID: <CAL_Jsq+jSY-OLau3gLPsDL02AYaE_TySOGrd9-tNLFaYvLHZ6A@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] iommu: Implement of_iommu_get_resv_regions()
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Nicolin Chen <nicolinc@nvidia.com>,
+        Krishna Reddy <vdumpa@nvidia.com>, devicetree@vger.kernel.org,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 15, 2021 at 5:39 PM Mark Brown <broonie@kernel.org> wrote:
+On Fri, Jul 2, 2021 at 8:05 AM Dmitry Osipenko <digetx@gmail.com> wrote:
 >
-> On Thu, Jul 15, 2021 at 05:18:00PM +0300, Daniel Baluta wrote:
+> 23.04.2021 19:32, Thierry Reding =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+> > +void of_iommu_get_resv_regions(struct device *dev, struct list_head *l=
+ist)
+> > +{
+> > +     struct of_phandle_iterator it;
+> > +     int err;
+> > +
+> > +     of_for_each_phandle(&it, err, dev->of_node, "memory-region", "#me=
+mory-region-cells", 0) {
+> > +             struct iommu_resv_region *region;
+> > +             struct of_phandle_args args;
+> > +             struct resource res;
+> > +
+> > +             args.args_count =3D of_phandle_iterator_args(&it, args.ar=
+gs, MAX_PHANDLE_ARGS);
+> > +
+> > +             err =3D of_address_to_resource(it.node, 0, &res);
+> > +             if (err < 0) {
+> > +                     dev_err(dev, "failed to parse memory region %pOF:=
+ %d\n",
+> > +                             it.node, err);
+> > +                     continue;
+> > +             }
+> > +
+> > +             if (args.args_count > 0) {
+> > +                     /*
+> > +                      * Active memory regions are expected to be acces=
+sed by hardware during
+> > +                      * boot and must therefore have an identity mappi=
+ng created prior to the
+> > +                      * driver taking control of the hardware. This en=
+sures that non-quiescent
+> > +                      * hardware doesn't cause IOMMU faults during boo=
+t.
+> > +                      */
+> > +                     if (args.args[0] & MEMORY_REGION_IDENTITY_MAPPING=
+) {
+> > +                             region =3D iommu_alloc_resv_region(res.st=
+art, resource_size(&res),
+> > +                                                              IOMMU_RE=
+AD | IOMMU_WRITE,
+> > +                                                              IOMMU_RE=
+SV_DIRECT_RELAXABLE);
+> > +                             if (!region)
+> > +                                     continue;
+> > +
+> > +                             list_add_tail(&region->list, list);
+> > +                     }
+> > +             }
+> > +     }
+> > +}
+> > +EXPORT_SYMBOL(of_iommu_get_resv_regions);
 >
-> > Introduce two DT properties in dsp node:
-> >       * fw-filename, optional property giving the firmware filename
-> >       (if this is missing fw filename is read from board description)
-> >       * tplg-filename, mandatory giving the topology filename.
->
-> These sound entirely like operating system configuration which I'd
-> expect to be inferred from the machine identification.  What happens if
-> a system has multiple options for firmware files, or if the OS ships the
-> topology and firmware bundled up in a single image to avoid them getting
-> out of sync?  What's the benefit of putting them in the DT?
+> Any reason why this is not EXPORT_SYMBOL_GPL? I'm curious what is the
+> logic behind the OF symbols in general since it looks like half of them
+> are GPL.
 
-We thought that if a system has multiple options for firmware files
-we could use different Device Tree files. But indeed this doesn't scale.
+Generally, new ones are _GPL. Old ones probably predate _GPL.
 
-It would be awkward to create a new dts just to change the firmware name.
+This one is up to the IOMMU maintainers.
 
-Similarly for topology files. We might have:
-
-- different audio scenarios (e.g different audio pipeline with
-different components, e.g Post Processing Components, etc)
-- different hardware attached to a board (e.g i.MX8 can have a
-baseboard attached which brings in more codecs).
-
-I think the best way to specify the audio firmware is via the board
-description structure which is already
-used to provide a default value for firmware file name.
-
-Then for the topology used we could make that as a module parameter.
-
-For us it is important to be able to use different topologies without
-recompiling the kernel. So, far we just
-used a simbolic link to the default topology file and change the
-symbolic link to the desired topology and then reboot.
+Rob
