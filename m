@@ -2,101 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB0C93CB2E7
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 08:58:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76B923CB2EC
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 09:03:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235441AbhGPHBY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 03:01:24 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:41824 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S235006AbhGPHBX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 03:01:23 -0400
-X-UUID: af6493dfd4774539861903ba29ad2fec-20210716
-X-UUID: af6493dfd4774539861903ba29ad2fec-20210716
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <yongqiang.niu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1260778623; Fri, 16 Jul 2021 14:58:26 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 16 Jul 2021 14:58:24 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 16 Jul 2021 14:58:23 +0800
-From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>
-Subject: [PATCH v1] mailbox: cmdq: add instruction time-out interrupt support
-Date:   Fri, 16 Jul 2021 14:58:21 +0800
-Message-ID: <1626418701-28467-2-git-send-email-yongqiang.niu@mediatek.com>
-X-Mailer: git-send-email 1.8.1.1.dirty
-In-Reply-To: <1626418701-28467-1-git-send-email-yongqiang.niu@mediatek.com>
-References: <1626418701-28467-1-git-send-email-yongqiang.niu@mediatek.com>
+        id S235110AbhGPHGg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 03:06:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52942 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235006AbhGPHGf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 03:06:35 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25D51C06175F
+        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 00:03:41 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1m4Hsk-0004iG-5F; Fri, 16 Jul 2021 09:03:34 +0200
+Received: from pengutronix.de (unknown [IPv6:2a03:f580:87bc:d400:df95:c0e5:d620:3bac])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 84FE4650776;
+        Fri, 16 Jul 2021 07:03:32 +0000 (UTC)
+Date:   Fri, 16 Jul 2021 09:03:31 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Joakim Zhang <qiangqing.zhang@nxp.com>
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Aisheng Dong <aisheng.dong@nxp.com>
+Subject: Re: [PATCH] arm64: dts: imx8mp: remove fallback compatible string
+ for FlexCAN
+Message-ID: <20210716070331.tqkqmxl6jqz2mxnj@pengutronix.de>
+References: <20210715114953.24393-1-qiangqing.zhang@nxp.com>
+ <CAOMZO5Dz1J01Auv5MXc+WajT4AaxHWKStw6RxX3_+LY+9wiimg@mail.gmail.com>
+ <20210715121516.pjhbjhf6htds6n65@pengutronix.de>
+ <DB8PR04MB679527BB056BC918FE6D2E53E6119@DB8PR04MB6795.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="5ccb4n3zhmp4w52e"
+Content-Disposition: inline
+In-Reply-To: <DB8PR04MB679527BB056BC918FE6D2E53E6119@DB8PR04MB6795.eurprd04.prod.outlook.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add time-out cycle setting to make sure time-out interrupt irq
-will happened when instruction time-out for wait and poll
 
-Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
----
- drivers/mailbox/mtk-cmdq-mailbox.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+--5ccb4n3zhmp4w52e
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/mailbox/mtk-cmdq-mailbox.c b/drivers/mailbox/mtk-cmdq-mailbox.c
-index de4793e..9a76bcd 100644
---- a/drivers/mailbox/mtk-cmdq-mailbox.c
-+++ b/drivers/mailbox/mtk-cmdq-mailbox.c
-@@ -35,6 +35,7 @@
- #define CMDQ_THR_END_ADDR		0x24
- #define CMDQ_THR_WAIT_TOKEN		0x30
- #define CMDQ_THR_PRIORITY		0x40
-+#define CMDQ_THR_INSTN_TIMEOUT_CYCLES	0x50
- 
- #define GCE_GCTL_VALUE			0x48
- 
-@@ -53,6 +54,15 @@
- #define CMDQ_JUMP_BY_OFFSET		0x10000000
- #define CMDQ_JUMP_BY_PA			0x10000001
- 
-+/*
-+ * instruction time-out
-+ * cycles to issue instruction time-out interrupt for wait and poll instructions
-+ * GCE axi_clock 156MHz
-+ * 1 cycle = 6.41ns
-+ * instruction time out 2^22*2*6.41ns = 53ms
-+ */
-+#define CMDQ_INSTN_TIMEOUT_CYCLES	22
-+
- struct cmdq_thread {
- 	struct mbox_chan	*chan;
- 	void __iomem		*base;
-@@ -368,6 +378,7 @@ static int cmdq_mbox_send_data(struct mbox_chan *chan, void *data)
- 		writel((task->pa_base + pkt->cmd_buf_size) >> cmdq->shift_pa,
- 		       thread->base + CMDQ_THR_END_ADDR);
- 
-+		writel(CMDQ_INSTN_TIMEOUT_CYCLES, thread->base + CMDQ_THR_INSTN_TIMEOUT_CYCLES);
- 		writel(thread->priority, thread->base + CMDQ_THR_PRIORITY);
- 		writel(CMDQ_THR_IRQ_EN, thread->base + CMDQ_THR_IRQ_ENABLE);
- 		writel(CMDQ_THR_ENABLED, thread->base + CMDQ_THR_ENABLE_TASK);
--- 
-1.8.1.1.dirty
+On 16.07.2021 02:03:44, Joakim Zhang wrote:
+>>> "With "fsl,imx6q-flexcan" compatible string, i.MX8MP FlexCAN would
+>>> not work"
+>>
+>> Why?
 
+> I could explain more if I remember correctly, i.MX8MP with ECC added
+> and default is enabled, without FLEXCAN_QUIRK_DISABLE_MECR quirk,
+> FlexCAN doesn't work, it will put device in freeze mode. However, as
+> Mac described, i.MX6Q doesn't need it.
+
+The bits that are used in the FLEXCAN_QUIRK_DISABLE_MECR are marked as
+reserved on the imx6's flexcan IP core.
+
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+--5ccb4n3zhmp4w52e
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAmDxLz8ACgkQqclaivrt
+76mNDQf+M0GyyDRyIavcEXKQdyqWcThvoV1bgiGFCqD8BWfEmQ+12C5P3UxLbm9g
+JwZRcQkgqQsTwZsrqLL35APMsc3TbM5oWbts8JpPzwq0dxM+H6t+oAvFe/pEZHJZ
+INjftbf2DBMeyKhxxn2KI8bH9/qsU4UtJvAcLtqUeRQO0RJmTBxfYbJedD8wniVT
+R2/BqPb6EyRFurmI7Kqcc81dYjP3Kzen4PC1HlcaB8+h2nsFbhM6t0GkC502P3bA
+kR0JN50pZ46QO2uSOsKMG9dPjezwwrYRCQMMo0eOb/odr7DtHL2a1+6L2tGAaqau
+7Qpl6q/8JUJglLg+u4H4eg53yeLqpA==
+=wQ8R
+-----END PGP SIGNATURE-----
+
+--5ccb4n3zhmp4w52e--
