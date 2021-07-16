@@ -2,98 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1495A3CBB45
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 19:34:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 460C13CBB54
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 19:42:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231506AbhGPRhp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 13:37:45 -0400
-Received: from mail-il1-f176.google.com ([209.85.166.176]:45807 "EHLO
-        mail-il1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231485AbhGPRho (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 13:37:44 -0400
-Received: by mail-il1-f176.google.com with SMTP id b6so8966382iln.12;
-        Fri, 16 Jul 2021 10:34:49 -0700 (PDT)
+        id S229462AbhGPRpm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 13:45:42 -0400
+Received: from mail-io1-f50.google.com ([209.85.166.50]:41879 "EHLO
+        mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229534AbhGPRpk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 13:45:40 -0400
+Received: by mail-io1-f50.google.com with SMTP id z9so11468761iob.8;
+        Fri, 16 Jul 2021 10:42:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=iPb7ckziK4kV9zNM6d9iK4b7roci6qqd+Gv92I6XJVU=;
-        b=tbgB/gC3RvWJ50XEdAA9hml3skG0957cBgZybHREB4YZJ2GKKGdna5KQdhvgb9jXi9
-         DzP37qkyWMIPvHTlatMcibFcg4Ky2FEm//RYsnLRaTMX5jhT/JKW0HiuzT/FsA+5lstq
-         s2lSqWmxBcfSvGvo6uXHhLVDCSfthy1akfNt96B/QVcoJvnMWt6VS+Z/gIDp1fIn2BQT
-         6eXWyK15KuDsr86/wApAXTIX+37gSk0lvCdIVb3YCPLEpRZ/62lt7YJw4arJGG85A7Ur
-         CIiji1FGN5M4UtPjDYPlEOmMagQzmMBvXTkfoAmGxzspMkRNzdULINEn4pwnJqHV5T3f
-         zbEA==
-X-Gm-Message-State: AOAM531C9xp3VmOso4yru1dhtIf4F/zi3HkxZkGtSJMLdJvL+t1EX/j7
-        GGpJm9NAHlF5ZbdTWrUay4LjWkqw0g==
-X-Google-Smtp-Source: ABdhPJyKVjf0100xt5UQ7F9dhFRP/lQhHl+nq9gAbSXPcH5nkSAeXz19sGCDD/0YQ2ZJLRqjQla1Qw==
-X-Received: by 2002:a92:c504:: with SMTP id r4mr7106583ilg.131.1626456888668;
-        Fri, 16 Jul 2021 10:34:48 -0700 (PDT)
+        bh=abtEqAV33M3DgIPEkfoggh1NvUGRVPw0OXOjuerHpE4=;
+        b=OeyCyFzXuAOVd8iFJ15NnSt9LcsvqtKrnuQh+tVh0BJBa9g+GTeCvVBvfouWw+eEqu
+         Gsg4CngcO7WCSrW0CHmCAAtXY+6QFF0Iew58s13YWiCxrupKQRe/CY6XuefNhnjoI4o/
+         3RrLeF+Xsi9GkgdpwrPsWtvW6Tziz/nlE0f+ZcAxmmQhodFBbyaUM3gMwpJ8TN36iSpB
+         LzCToaMNNfzSXc0fRGBsc0GYLxp4yLdQlueeUPqfeIQyfrRDMj2GplzMdIa1tNiRst4t
+         tZsv0v4sLLTW/Zo9UBUvgWGE94SRZ1mIU9wHlJWVF4gILNPsMD1Pw7HhQOjWUwA3U0wk
+         PKEA==
+X-Gm-Message-State: AOAM5323BckTXOkQXUprT8dDXdQtZ02yV04JqBpww1K0bHjzriMvEOB/
+        5n028I4MjoJnBwpREWEKpg==
+X-Google-Smtp-Source: ABdhPJxypwi9lv1+Z3SgmiNgIEr2wremF6jY0WjJ2dthFUCmeqyOmoP5mv6TuceqQs07W1yvN2zhzQ==
+X-Received: by 2002:a5e:9309:: with SMTP id k9mr8023167iom.207.1626457365621;
+        Fri, 16 Jul 2021 10:42:45 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id a11sm5100043ilf.79.2021.07.16.10.34.44
+        by smtp.gmail.com with ESMTPSA id h11sm5338497ilc.1.2021.07.16.10.42.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Jul 2021 10:34:47 -0700 (PDT)
-Received: (nullmailer pid 3643640 invoked by uid 1000);
-        Fri, 16 Jul 2021 17:34:43 -0000
-Date:   Fri, 16 Jul 2021 11:34:43 -0600
+        Fri, 16 Jul 2021 10:42:44 -0700 (PDT)
+Received: (nullmailer pid 3655729 invoked by uid 1000);
+        Fri, 16 Jul 2021 17:42:42 -0000
+Date:   Fri, 16 Jul 2021 11:42:42 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Quan Nguyen <quan@os.amperecomputing.com>
-Cc:     Jean Delvare <jdelvare@suse.com>, linux-kernel@vger.kernel.org,
-        Guenter Roeck <linux@roeck-us.net>,
-        Joel Stanley <joel@jms.id.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Open Source Submission <patches@amperecomputing.com>,
-        "Thang Q . Nguyen" <thang@os.amperecomputing.com>,
-        openbmc@lists.ozlabs.org, linux-hwmon@vger.kernel.org,
-        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
-        Phong Vo <phong@os.amperecomputing.com>,
-        linux-doc@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-        Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH v5 1/4] dt-bindings: mfd: Add bindings for Ampere Altra
- SMPro MFD driver
-Message-ID: <20210716173443.GA3643583@robh.at.kernel.org>
-References: <20210713060031.31568-1-quan@os.amperecomputing.com>
- <20210713060031.31568-2-quan@os.amperecomputing.com>
+To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Cc:     linux-kernel@vger.kernel.org, chunkuang.hu@kernel.org,
+        hsinyi@chromium.org, kernel@collabora.com, drinkcat@chromium.org,
+        eizan@chromium.org, linux-mediatek@lists.infradead.org,
+        matthias.bgg@gmail.com, jitao.shi@mediatek.com,
+        Fabien Parent <fparent@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/7] dt-bindings: mediatek: Add #reset-cells to mmsys
+ system controller
+Message-ID: <20210716174242.GA3643756@robh.at.kernel.org>
+References: <20210714101141.2089082-1-enric.balletbo@collabora.com>
+ <20210714121116.v2.2.I3f7f1c9a8e46be07d1757ddf4e0097535f3a7d41@changeid>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210713060031.31568-2-quan@os.amperecomputing.com>
+In-Reply-To: <20210714121116.v2.2.I3f7f1c9a8e46be07d1757ddf4e0097535f3a7d41@changeid>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 13 Jul 2021 13:00:28 +0700, Quan Nguyen wrote:
-> Adds device tree bindings for SMPro MFD driver found on the Mt.Jade
-> hardware reference platform with Ampere's Altra Processor family.
+On Wed, Jul 14, 2021 at 12:11:36PM +0200, Enric Balletbo i Serra wrote:
+> The mmsys system controller exposes a set of memory client resets and
+> needs to specify the #reset-cells property in order to advertise the
+> number of cells needed to describe each of the resets.
 > 
-> The SMpro co-processor on Ampere Altra processor family is to monitor
-> and report various data included hwmon-related info, RAS errors, and
-> other miscellaneous information.
-> 
-> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
+> Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
 > ---
-> Changes in v5:
->   + Dropped ../bindings/hwmon/ampere,ac01-hwmon.yaml file [Quan]
->   + Removed patternProperties section and child DT nodes in example
->   section [Quan]
->   + Revised commit message [Quan]
 > 
-> Changes in v4:
->   + Revised the commit message to clarify how the specific info will
->     be handled commented by Rob.
+> (no changes since v1)
 > 
-> Changes in v3:
->   + Supported list of compatible string [Rob]
->   + Introduced reg property in DT to specify reg offset [Rob]
->   + Updated description and other minor changes in yaml file [Rob]
-> 
-> Changes in v2:
->   + Changed "ampere,ac01-smpro" to "ampere,smpro" [Quan]
-> 
->  .../devicetree/bindings/mfd/ampere,smpro.yaml | 52 +++++++++++++++++++
->  1 file changed, 52 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/ampere,smpro.yaml
-> 
+>  .../devicetree/bindings/arm/mediatek/mediatek,mmsys.txt         | 2 ++
+>  1 file changed, 2 insertions(+)
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+This will conflict. There's already multiple patches converting this to 
+schema[1][2].
+
+Rob
+
+[1] https://lore.kernel.org/lkml/20210519161847.3747352-1-fparent@baylibre.com/
+[2] https://lore.kernel.org/lkml/CAC=S1nhi0rLpQznvUP1FVNtEDzdffFG_aMO7j-w4fHBY8ceJnw@mail.gmail.com/
