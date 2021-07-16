@@ -2,122 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B2BC3CB84D
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 15:59:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 641D33CB8A5
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 16:25:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240309AbhGPOCh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 10:02:37 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:25303 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240318AbhGPOCg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Jul 2021 10:02:36 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1626443982; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=E+JAovpazw21Z4l1pMciAU/aFnAS7UmrbLIMJs0lwzI=; b=ahdwYha0QoHXqRwUO/RjZwOe5lplYKhDQfmF4jnw79+QZd5ocTnT1A12sb6dKXTF3FuUhYCp
- XpUT+5QfiLTh8TNj98YVTygb3PgTzUiIPVLPSTAI12bdf/ILXGol0TgzRdD0jfTD+5KHRxxT
- flEDm8pPRGm3tKqGCkAJ5nHYkHM=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
- 60f190bed0100c7cf917cb3a (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 16 Jul 2021 13:59:26
- GMT
-Sender: pmaliset=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 0EE8EC43145; Fri, 16 Jul 2021 13:59:26 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from pmaliset-linux.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: pmaliset)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 3F2A7C433D3;
-        Fri, 16 Jul 2021 13:59:19 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 3F2A7C433D3
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=pmaliset@codeaurora.org
-From:   Prasad Malisetty <pmaliset@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, bhelgaas@google.com,
-        robh+dt@kernel.org, swboyd@chromium.org, lorenzo.pieralisi@arm.com,
-        svarbanov@mm-sol.com
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dianders@chromium.org, mka@chromium.org, vbadigan@codeaurora.org,
-        sallenki@codeaurora.org, Prasad Malisetty <pmaliset@codeaurora.org>
-Subject: [PATCH v4 4/4] PCIe: qcom: Add support to control pipe clk src
-Date:   Fri, 16 Jul 2021 19:28:47 +0530
-Message-Id: <1626443927-32028-5-git-send-email-pmaliset@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1626443927-32028-1-git-send-email-pmaliset@codeaurora.org>
-References: <1626443927-32028-1-git-send-email-pmaliset@codeaurora.org>
+        id S232988AbhGPO2k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 10:28:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41570 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232958AbhGPO2k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 10:28:40 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D71FC06175F;
+        Fri, 16 Jul 2021 07:25:44 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id r11so12310628wro.9;
+        Fri, 16 Jul 2021 07:25:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=WVnjG/+uXUwA1TsIYDH7nvmxJ4xBCgnrB5THQ+2D+qg=;
+        b=nmniNX+atXPU7ho+t8GwMmFltwGS6Ihpv2UTWVKOtddmqzb7KVIOt0xTam4FS1XSMM
+         4coBRSmzO0gVWrjsCvLDeWpNbLD+COBo/f6MxkgpftEk8OiPodreZ1Svpt6lMpMFN84n
+         5ll8HRM+lvOZoZ4XfwXh51iPVNR/ygA3IkAR/NxaJ6qIZij3JaMoxGmw5iy4HNC0ViO9
+         NILUBLNTOywJ0uaak0kAhzmp99UOk10AvZ1ICAx5rxBvafEIvNVW9Ba+x3b15QRlsi1/
+         b+joNyvYxUdx+Gi0zanLEoY10tuefxGXb7vpCdTHBLIi+V0e7q+sLaH4Ul3N2wa8SZDQ
+         BimA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WVnjG/+uXUwA1TsIYDH7nvmxJ4xBCgnrB5THQ+2D+qg=;
+        b=Zz298QfvpMxHJK5Dh69G6QmlIjVNMb6BRdCzP1HCrXmJwqf+HwMAjv72/q37T3yGIA
+         3SeLhO+YfXU4XsCFE69e0/yGtmXUc2yYQ5UfHH/O0VTbZKhJPi++f52tCyH0kAmB1tjZ
+         2h8t99Yr0GiLt3isJRxWnCEo2Ufe4msn28NvOxBQGioO3dTQ2W0FfMBosatFP0g/KV+E
+         R1cnseZmXJPWs0YGBn6NS84xCEm7UF3MsFz/IxWOQX6EgX0PAi38Ik/yuqbQQk+eB6Bl
+         mzfB1/QpGjsA8ERlUFQ3Xrp74Mw5l7pvV+NuNf2OP07eUsxqCowPTEgNhY+0UA5vdcHJ
+         +FEw==
+X-Gm-Message-State: AOAM531NmekTHaAYEDWtwTWZZXdZ2d/puHrrw+yWmlwhYHMS8/k7XgWV
+        Z6b/RIrz05r2X62+eEIM6/GeW7kzPzisjU3nM7A=
+X-Google-Smtp-Source: ABdhPJygEwGSx9s3w6+u2tEOsbZsFudYTpHorAQs8Gk+4jNB+JVE/ct8b5iIt+4v78W81rYNoXL/E0IMnrB342JNBR4=
+X-Received: by 2002:adf:ce83:: with SMTP id r3mr12829270wrn.204.1626445543092;
+ Fri, 16 Jul 2021 07:25:43 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210715141802.880911-1-daniel.baluta@oss.nxp.com>
+ <20210715141802.880911-4-daniel.baluta@oss.nxp.com> <CAL_Jsq+r0Tw46=iW8etyR9H=V7M+sE=dguqsEMm3R4B=Xg=qSA@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+r0Tw46=iW8etyR9H=V7M+sE=dguqsEMm3R4B=Xg=qSA@mail.gmail.com>
+From:   Daniel Baluta <daniel.baluta@gmail.com>
+Date:   Fri, 16 Jul 2021 17:25:31 +0300
+Message-ID: <CAEnQRZCLMSKJfDVP0U4Wdy6+9ZfhRBschG5RyiPHWMcUpbut_w@mail.gmail.com>
+Subject: Re: [PATCH 3/3] dt-bindings: dsp: fsl: Document newly introduced fsl,properties
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Daniel Baluta <daniel.baluta@oss.nxp.com>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Mark Brown <broonie@kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
+        Kai Vehmanen <kai.vehmanen@linux.intel.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is a new requirement for sc7280 SoC.
-To enable gdsc gcc_pcie_1_pipe_clk_src should be TCXO.
-after PHY initialization gcc_pcie_1_pipe_clk_src needs
-to switch from TCXO to gcc_pcie_1_pipe_clk.
+On Thu, Jul 15, 2021 at 5:59 PM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Thu, Jul 15, 2021 at 8:18 AM Daniel Baluta <daniel.baluta@oss.nxp.com> wrote:
+> >
+> > From: Daniel Baluta <daniel.baluta@nxp.com>
+> >
+> > Document firmware-name, tplg-name and machine-drv-name properties.
+>
+> That's obvious from the diff.
+>
+> Why do you need these?
+>
+> >
+> > Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
+> > ---
+> >  .../devicetree/bindings/dsp/fsl,dsp.yaml      | 20 +++++++++++++++++++
+> >  1 file changed, 20 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+> > index 7afc9f2be13a..8095aa178e7c 100644
+> > --- a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+> > +++ b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+> > @@ -60,6 +60,22 @@ properties:
+> >        used by DSP (see bindings/reserved-memory/reserved-memory.txt)
+> >      maxItems: 1
+> >
+> > +  firmware-name:
+> > +    $ref: /schemas/types.yaml#/definitions/string
+> > +    description:
+> > +      If present, name of the file within the firmware search path containing
+> > +      the DSP firmware loaded by SOF at DSP boot time.
+> > +
+> > +  tplg-name:
+> > +    $ref: /schemas/types.yaml#/definitions/string
+> > +    description:
+> > +      Should contain the audio topology file name loaded by SOF driver.
+>
+> Is this some format the DSP requires? Why do we need a separate file?
+> This is defined by the board or user config?
 
-Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
----
- drivers/pci/controller/dwc/pcie-qcom.c | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+This is not specific to DSP but to ALSA (See ALSA topology [1]).
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index 8a7a300..9e0e4ab 100644
---- a/drivers/pci/controller/dwc/pcie-qcom.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -166,6 +166,9 @@ struct qcom_pcie_resources_2_7_0 {
- 	struct regulator_bulk_data supplies[2];
- 	struct reset_control *pci_reset;
- 	struct clk *pipe_clk;
-+	struct clk *gcc_pcie_1_pipe_clk_src;
-+	struct clk *phy_pipe_clk;
-+	struct clk *ref_clk_src;
- };
- 
- union qcom_pcie_resources {
-@@ -1167,6 +1170,20 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
- 	if (ret < 0)
- 		return ret;
- 
-+	if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280")) {
-+		res->gcc_pcie_1_pipe_clk_src = devm_clk_get(dev, "pipe_mux");
-+		if (IS_ERR(res->gcc_pcie_1_pipe_clk_src))
-+			return PTR_ERR(res->gcc_pcie_1_pipe_clk_src);
-+
-+		res->phy_pipe_clk = devm_clk_get(dev, "phy_pipe");
-+		if (IS_ERR(res->phy_pipe_clk))
-+			return PTR_ERR(res->phy_pipe_clk);
-+
-+		res->ref_clk_src = devm_clk_get(dev, "ref");
-+		if (IS_ERR(res->ref_clk_src))
-+			return PTR_ERR(res->ref_clk_src);
-+	}
-+
- 	res->pipe_clk = devm_clk_get(dev, "pipe");
- 	return PTR_ERR_OR_ZERO(res->pipe_clk);
- }
-@@ -1255,6 +1272,11 @@ static void qcom_pcie_deinit_2_7_0(struct qcom_pcie *pcie)
- static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
- {
- 	struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
-+	struct dw_pcie *pci = pcie->pci;
-+	struct device *dev = pci->dev;
-+
-+	if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280"))
-+		clk_set_parent(res->gcc_pcie_1_pipe_clk_src, res->phy_pipe_clk);
- 
- 	return clk_prepare_enable(res->pipe_clk);
- }
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+We need the .tplg file in order to describe the support Audio scenario
+by our board.
 
+This could be defined both by:
+
+board:
+- e.g our CPU board can have a baseboard attached (so the audio
+scenario changes).
+user config:
+- e.g user wants to enable post processing or any audio component.
+
+I couldnt find a good way to specify this except via DTS. Intel folks
+derive this information from ACPI tables.
+
+[1] https://www.alsa-project.org/wiki/ALSA_topology
