@@ -2,127 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 641D33CB8A5
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 16:25:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA1393CB8AB
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 16:29:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232988AbhGPO2k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 10:28:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41570 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232958AbhGPO2k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 10:28:40 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D71FC06175F;
-        Fri, 16 Jul 2021 07:25:44 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id r11so12310628wro.9;
-        Fri, 16 Jul 2021 07:25:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=WVnjG/+uXUwA1TsIYDH7nvmxJ4xBCgnrB5THQ+2D+qg=;
-        b=nmniNX+atXPU7ho+t8GwMmFltwGS6Ihpv2UTWVKOtddmqzb7KVIOt0xTam4FS1XSMM
-         4coBRSmzO0gVWrjsCvLDeWpNbLD+COBo/f6MxkgpftEk8OiPodreZ1Svpt6lMpMFN84n
-         5ll8HRM+lvOZoZ4XfwXh51iPVNR/ygA3IkAR/NxaJ6qIZij3JaMoxGmw5iy4HNC0ViO9
-         NILUBLNTOywJ0uaak0kAhzmp99UOk10AvZ1ICAx5rxBvafEIvNVW9Ba+x3b15QRlsi1/
-         b+joNyvYxUdx+Gi0zanLEoY10tuefxGXb7vpCdTHBLIi+V0e7q+sLaH4Ul3N2wa8SZDQ
-         BimA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=WVnjG/+uXUwA1TsIYDH7nvmxJ4xBCgnrB5THQ+2D+qg=;
-        b=Zz298QfvpMxHJK5Dh69G6QmlIjVNMb6BRdCzP1HCrXmJwqf+HwMAjv72/q37T3yGIA
-         3SeLhO+YfXU4XsCFE69e0/yGtmXUc2yYQ5UfHH/O0VTbZKhJPi++f52tCyH0kAmB1tjZ
-         2h8t99Yr0GiLt3isJRxWnCEo2Ufe4msn28NvOxBQGioO3dTQ2W0FfMBosatFP0g/KV+E
-         R1cnseZmXJPWs0YGBn6NS84xCEm7UF3MsFz/IxWOQX6EgX0PAi38Ik/yuqbQQk+eB6Bl
-         mzfB1/QpGjsA8ERlUFQ3Xrp74Mw5l7pvV+NuNf2OP07eUsxqCowPTEgNhY+0UA5vdcHJ
-         +FEw==
-X-Gm-Message-State: AOAM531NmekTHaAYEDWtwTWZZXdZ2d/puHrrw+yWmlwhYHMS8/k7XgWV
-        Z6b/RIrz05r2X62+eEIM6/GeW7kzPzisjU3nM7A=
-X-Google-Smtp-Source: ABdhPJygEwGSx9s3w6+u2tEOsbZsFudYTpHorAQs8Gk+4jNB+JVE/ct8b5iIt+4v78W81rYNoXL/E0IMnrB342JNBR4=
-X-Received: by 2002:adf:ce83:: with SMTP id r3mr12829270wrn.204.1626445543092;
- Fri, 16 Jul 2021 07:25:43 -0700 (PDT)
+        id S233032AbhGPOcp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 10:32:45 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60058 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232988AbhGPOco (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Jul 2021 10:32:44 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 92222608FE;
+        Fri, 16 Jul 2021 14:29:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1626445789;
+        bh=VPwtDfFzlw2mMjhZCIjf8rYJAIRLSJ0qqv+tfTiMLqQ=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=L+iju3E9TjfAX40sCXr1w6l/1yhGm39A5FS/30uSaeW+Lsq2rZnATy/faAaI4Kg8X
+         xAkgX1Y1p0mPS9uEfa/w7+9kHyEoJYSSOtJXGRdEZVF9UnUSkq18TmtGQAkrBEWvqg
+         86Vmyc2ZYHn99ZraEakry6E1C95TOLwCVv41apVGUg+0qq46jQL1haF7ewlajB6Mzx
+         HtOjG8VbLvrXkR9n9nZeoKW/LuqYXA0mbInPJj9uKB3xFoyOhkrv2+8i89jST2NyBX
+         P49d4jE8pbMzeA/lM2o0mIyKrxwXoeIXlfaQo9GEYTt40Juxw3CnF3AMiVom58ksud
+         4SF1jo27uR/2g==
+Date:   Fri, 16 Jul 2021 09:29:48 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Prasad Malisetty <pmaliset@codeaurora.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, bhelgaas@google.com,
+        robh+dt@kernel.org, swboyd@chromium.org, lorenzo.pieralisi@arm.com,
+        svarbanov@mm-sol.com, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dianders@chromium.org,
+        mka@chromium.org, vbadigan@codeaurora.org, sallenki@codeaurora.org,
+        linux-pci@vger.kernel.org
+Subject: Re: [PATCH v4 0/4] Add DT bindings and DT nodes for PCIe and PHY in
+ SC7280
+Message-ID: <20210716142948.GA2098168@bjorn-Precision-5520>
 MIME-Version: 1.0
-References: <20210715141802.880911-1-daniel.baluta@oss.nxp.com>
- <20210715141802.880911-4-daniel.baluta@oss.nxp.com> <CAL_Jsq+r0Tw46=iW8etyR9H=V7M+sE=dguqsEMm3R4B=Xg=qSA@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+r0Tw46=iW8etyR9H=V7M+sE=dguqsEMm3R4B=Xg=qSA@mail.gmail.com>
-From:   Daniel Baluta <daniel.baluta@gmail.com>
-Date:   Fri, 16 Jul 2021 17:25:31 +0300
-Message-ID: <CAEnQRZCLMSKJfDVP0U4Wdy6+9ZfhRBschG5RyiPHWMcUpbut_w@mail.gmail.com>
-Subject: Re: [PATCH 3/3] dt-bindings: dsp: fsl: Document newly introduced fsl,properties
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Daniel Baluta <daniel.baluta@oss.nxp.com>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Mark Brown <broonie@kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
-        Kai Vehmanen <kai.vehmanen@linux.intel.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1626443927-32028-1-git-send-email-pmaliset@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 15, 2021 at 5:59 PM Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Thu, Jul 15, 2021 at 8:18 AM Daniel Baluta <daniel.baluta@oss.nxp.com> wrote:
-> >
-> > From: Daniel Baluta <daniel.baluta@nxp.com>
-> >
-> > Document firmware-name, tplg-name and machine-drv-name properties.
->
-> That's obvious from the diff.
->
-> Why do you need these?
->
-> >
-> > Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
-> > ---
-> >  .../devicetree/bindings/dsp/fsl,dsp.yaml      | 20 +++++++++++++++++++
-> >  1 file changed, 20 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-> > index 7afc9f2be13a..8095aa178e7c 100644
-> > --- a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-> > +++ b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-> > @@ -60,6 +60,22 @@ properties:
-> >        used by DSP (see bindings/reserved-memory/reserved-memory.txt)
-> >      maxItems: 1
-> >
-> > +  firmware-name:
-> > +    $ref: /schemas/types.yaml#/definitions/string
-> > +    description:
-> > +      If present, name of the file within the firmware search path containing
-> > +      the DSP firmware loaded by SOF at DSP boot time.
-> > +
-> > +  tplg-name:
-> > +    $ref: /schemas/types.yaml#/definitions/string
-> > +    description:
-> > +      Should contain the audio topology file name loaded by SOF driver.
->
-> Is this some format the DSP requires? Why do we need a separate file?
-> This is defined by the board or user config?
+[+cc linux-pci]
 
-This is not specific to DSP but to ALSA (See ALSA topology [1]).
+On Fri, Jul 16, 2021 at 07:28:43PM +0530, Prasad Malisetty wrote:
+> Changes in v4 as suggested by Bjorn:
+> 
+> 	* Changed pipe clk mux name as gcc_pcie_1_pipe_clk_src.
+> 	* Changed pipe_ext_src as phy_pipe_clk.
+> 	* Updated commit message for [PATCH v4 4/4]. 
+> 		
+> 
+> Changes in v3:
+> 	* Changed pipe clock names in dt bindings as pipe_mux and phy_pipe.
+> 	* Moved reset and NVMe GPIO pin configs into board specific file.
+> 	* Updated pipe clk mux commit message.
+> 	
+> Changes in v2:
+> 	* Moved pcie pin control settings into IDP file.
+> 	* Replaced pipe_clk_src with pipe_clk_mux in pcie driver 
+> 	* Included pipe clk mux setting change set in this series
+> 
+> Prasad Malisetty (4):
+>   dt-bindings: pci: qcom: Document PCIe bindings for SC720
+>   arm64: dts: qcom: sc7280: Add PCIe and PHY related nodes
+>   arm64: dts: qcom: sc7280: Add PCIe nodes for IDP board
+>   PCIe: qcom: Add support to control pipe clk src
+> 
+>  .../devicetree/bindings/pci/qcom,pcie.txt          |  17 +++
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dts            |  38 +++++++
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi               | 125 +++++++++++++++++++++
+>  drivers/pci/controller/dwc/pcie-qcom.c             |  22 ++++
 
-We need the .tplg file in order to describe the support Audio scenario
-by our board.
+  $ ./scripts/get_maintainer.pl -f drivers/pci/controller/dwc/pcie-qcom.c
 
-This could be defined both by:
-
-board:
-- e.g our CPU board can have a baseboard attached (so the audio
-scenario changes).
-user config:
-- e.g user wants to enable post processing or any audio component.
-
-I couldnt find a good way to specify this except via DTS. Intel folks
-derive this information from ACPI tables.
-
-[1] https://www.alsa-project.org/wiki/ALSA_topology
+tells you that linux-pci should be included.  One reason that's
+important is because patchwork watches linux-pci for incoming patches,
+and I use patchwork as my to-do list.  
