@@ -2,119 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 538033CB2F6
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 09:10:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 669EE3CB357
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 09:38:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231376AbhGPHMx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 03:12:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54352 "EHLO
+        id S232052AbhGPHk1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 03:40:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229930AbhGPHMx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 03:12:53 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9CE5C061760
-        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 00:09:58 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1m4Hyp-0005Ie-Qt; Fri, 16 Jul 2021 09:09:51 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1m4Hyj-0000Av-Nv; Fri, 16 Jul 2021 09:09:45 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1m4Hyj-0000CV-Mi; Fri, 16 Jul 2021 09:09:45 +0200
-Date:   Fri, 16 Jul 2021 09:09:43 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Billy Tsai <billy_tsai@aspeedtech.com>
-Cc:     "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        BMC-SW <BMC-SW@aspeedtech.com>
-Subject: Re: [v9 2/2] pwm: Add Aspeed ast2600 PWM support
-Message-ID: <20210716070943.ayxkz2irkwhgincz@pengutronix.de>
-References: <20210709065217.6153-1-billy_tsai@aspeedtech.com>
- <20210709065217.6153-3-billy_tsai@aspeedtech.com>
- <20210715150533.vppkw5oiomkxmfrn@pengutronix.de>
- <BD5B012C-B377-45E2-B04E-61D12B086670@aspeedtech.com>
+        with ESMTP id S232012AbhGPHk0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 03:40:26 -0400
+Received: from mail-il1-x130.google.com (mail-il1-x130.google.com [IPv6:2607:f8b0:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 694A1C06175F
+        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 00:37:32 -0700 (PDT)
+Received: by mail-il1-x130.google.com with SMTP id e13so7459417ilc.1
+        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 00:37:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ANiQyDq/folOxbicLwy3YOWgSYI5J0bEHqTHjcfWpeE=;
+        b=NZ/hguWCrTo//AU1Q0svGXlehzVRhlRy/nSls8iodhXXHgSEeCwbBTZ/daP8ru1+2y
+         BxRBJiEgjMWnZOPOkNow345Owj7290E/vXITWK+0+xpPLDyrmWtEgAaLi1EYLiW0H96w
+         NuqSZvzGC2Z4C51n2jOptN+DVowI83OLjjCDE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ANiQyDq/folOxbicLwy3YOWgSYI5J0bEHqTHjcfWpeE=;
+        b=k0x97fn8lPzyJQVrU4855AhqV18nHsFhi5lkeotxfb4o9PZhjvJG8ZWdBD6s8y3P6W
+         pAdC6cHO6NSBDOx1pXdJNu5kQ6DUWKY/3lnDyag7K5ZIyrqc811e5xasP9NRX9Z5/iku
+         YKEfhNsdYS5NaVhQCevgrcHEJye+klnn5cC2DiNo5RgZHkeyJ6bxktYyE/64XYQT14/c
+         q7qcN1lNAfiyQnwa2u2tVu1K7hOVvicyzD8HZVdnb83KvD8C79BfJS/bTwRXPEFdOnW1
+         tfVvKGzKshy9QzU2kHOjkGlpxKZXgqCVR1qFN4iEZjDNgQ25UrTWnWOskEGpsUC8vCtm
+         og9w==
+X-Gm-Message-State: AOAM531sfIyd9L8d/uTK7ApOPjn/+aWw6ZraCw0w0HhrXx9rBtKpgmwZ
+        USNXrwR9YeAwLKQZHSWIuCTn9WmG2/OAOunu+zeRew==
+X-Google-Smtp-Source: ABdhPJyT8V6x97LXNxXCsukgUCvYDKNceqkLDBqaokboRJb34I4xEcF3g0U8Zw6BQAhoQ5hGaStIUlO4jTjCi2i7VqY=
+X-Received: by 2002:a92:d305:: with SMTP id x5mr5796115ila.150.1626421051833;
+ Fri, 16 Jul 2021 00:37:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="2f4lehdpjydeehv6"
-Content-Disposition: inline
-In-Reply-To: <BD5B012C-B377-45E2-B04E-61D12B086670@aspeedtech.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <1626418701-28467-1-git-send-email-yongqiang.niu@mediatek.com> <1626418701-28467-2-git-send-email-yongqiang.niu@mediatek.com>
+In-Reply-To: <1626418701-28467-2-git-send-email-yongqiang.niu@mediatek.com>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Fri, 16 Jul 2021 15:37:05 +0800
+Message-ID: <CAJMQK-ghGCR3L89NzBx-6X6rJK-4VQYZT18DqdKM780r2bLvpA@mail.gmail.com>
+Subject: Re: [PATCH v1] mailbox: cmdq: add instruction time-out interrupt support
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jul 16, 2021 at 2:58 PM Yongqiang Niu
+<yongqiang.niu@mediatek.com> wrote:
+>
+> add time-out cycle setting to make sure time-out interrupt irq
+> will happened when instruction time-out for wait and poll
+>
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
 
---2f4lehdpjydeehv6
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi, it seems that this series is based on
+https://patchwork.kernel.org/project/linux-mediatek/patch/1624440623-4585-4-git-send-email-yongqiang.niu@mediatek.com/?
 
-Hello Billy,
+Please state it if it's not based on linux-next, thanks!
 
-On Fri, Jul 16, 2021 at 01:48:20AM +0000, Billy Tsai wrote:
-> On 2021/7/15, 11:06 PM, "Uwe Kleine-K=F6nig" <u.kleine-koenig@pengutronix=
-=2Ede>> wrote:
->     > Another is: The PWM doesn't support duty_cycle 0, on such a request=
- the
->     > PWM is disabled which results in a constant inactive level.
->=20
->     > (This is correct, is it? Or does it yield a constant 0 level?)
->=20
-> Our pwm can support duty_cycle 0 by unset CLK_ENABLE.
-
-This has a slightly different semantic though. Some consumer might
-expect that the following sequence:
-
-	pwm_apply(mypwm, { .period =3D 10000, .duty_cycle =3D 10000, .enabled =3D =
-true })
-	pwm_apply(mypwm, { .period =3D 10000, .duty_cycle =3D 0, .enabled =3D true=
- })
-	pwm_apply(mypwm, { .period =3D 10000, .duty_cycle =3D 10000, .enabled =3D =
-true })
-
-results in the output being low for an integer multiple of 10 =B5s. This
-isn't given with setting CLK_ENABLE to zero, is it? (I didn't recheck,
-if the PWM doesn't complete periods on reconfiguration this doesn't
-matter much though.)
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---2f4lehdpjydeehv6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmDxMLQACgkQwfwUeK3K
-7AmSUgf+KelGjfPXAW5sfbfcgNm/W3eNleFAUKPGThM4qsl47Gw8QytStuxO8Gsu
-POxq+PE8GfmzMNBWUqlIQnuadgbmLFQhOa2AY2E8xEeENDtZfAsiH8S18TvupZlF
-S/kxrlhoZ5zjpq+TkjVO0YIzK82a43quBj+WDAginCyqSKI/IE0HQdqScIdJFz6x
-3bk23sSfI3EB91+dyFESGUVQ+5X9LVkeV+R8Wk1ytLh3hnUSN5X3nzSYECcH5qGr
-AMpjrqivGCGuIE6BBxPP2ZRP5b4iVFGTKm26cJ4uxIlEas2ZQndr3XKbRREjATuG
-C1vvl77dngONECSQqM5M6NyjVwzMGQ==
-=w9wF
------END PGP SIGNATURE-----
-
---2f4lehdpjydeehv6--
+> ---
+>  drivers/mailbox/mtk-cmdq-mailbox.c | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+>
+> diff --git a/drivers/mailbox/mtk-cmdq-mailbox.c b/drivers/mailbox/mtk-cmdq-mailbox.c
+> index de4793e..9a76bcd 100644
+> --- a/drivers/mailbox/mtk-cmdq-mailbox.c
+> +++ b/drivers/mailbox/mtk-cmdq-mailbox.c
+> @@ -35,6 +35,7 @@
+>  #define CMDQ_THR_END_ADDR              0x24
+>  #define CMDQ_THR_WAIT_TOKEN            0x30
+>  #define CMDQ_THR_PRIORITY              0x40
+> +#define CMDQ_THR_INSTN_TIMEOUT_CYCLES  0x50
+>
+>  #define GCE_GCTL_VALUE                 0x48
+>
+> @@ -53,6 +54,15 @@
+>  #define CMDQ_JUMP_BY_OFFSET            0x10000000
+>  #define CMDQ_JUMP_BY_PA                        0x10000001
+>
+> +/*
+> + * instruction time-out
+> + * cycles to issue instruction time-out interrupt for wait and poll instructions
+> + * GCE axi_clock 156MHz
+> + * 1 cycle = 6.41ns
+> + * instruction time out 2^22*2*6.41ns = 53ms
+> + */
+> +#define CMDQ_INSTN_TIMEOUT_CYCLES      22
+> +
+>  struct cmdq_thread {
+>         struct mbox_chan        *chan;
+>         void __iomem            *base;
+> @@ -368,6 +378,7 @@ static int cmdq_mbox_send_data(struct mbox_chan *chan, void *data)
+>                 writel((task->pa_base + pkt->cmd_buf_size) >> cmdq->shift_pa,
+>                        thread->base + CMDQ_THR_END_ADDR);
+>
+> +               writel(CMDQ_INSTN_TIMEOUT_CYCLES, thread->base + CMDQ_THR_INSTN_TIMEOUT_CYCLES);
+>                 writel(thread->priority, thread->base + CMDQ_THR_PRIORITY);
+>                 writel(CMDQ_THR_IRQ_EN, thread->base + CMDQ_THR_IRQ_ENABLE);
+>                 writel(CMDQ_THR_ENABLED, thread->base + CMDQ_THR_ENABLE_TASK);
+> --
+> 1.8.1.1.dirty
+>
