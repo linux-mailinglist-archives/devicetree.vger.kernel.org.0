@@ -2,151 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09F4F3CBC45
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 21:18:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C5E13CBC4B
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 21:19:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231828AbhGPTVc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 15:21:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51558 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229981AbhGPTVb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 15:21:31 -0400
-Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 290D2C06175F;
-        Fri, 16 Jul 2021 12:18:36 -0700 (PDT)
-Received: by mail-qk1-x72b.google.com with SMTP id m3so9739986qkm.10;
-        Fri, 16 Jul 2021 12:18:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
-         :from:to:references:in-reply-to;
-        bh=1r09uS1rxtOnlc1hkLX7O1w4u27LN+vnvyQRmy2lAkc=;
-        b=WJP8YiJqBTwNfuiSM6T3BtIXFKUhUj8Mi3NRsfKuidYFfya1GF7d0BsGVl4vkeonzX
-         ek/1jYxqudLe5cotv6gbYJLH0UUeHr+ur0kedfUncWAjgdxSwUgO6z+wI26Kz6c/aGBF
-         0ZnufqlmCjGx7R8DJ2XEe8TW3nxiHYl0iFg8LXqaFqQe9uALNO+9Zmqfhiy/7vkpEqS4
-         iYWlexEYMRfLh/5elCXGXijLOkq6sod60XZJ1aHyYqyff3LSE/M9pxiHpr/pDWzoE/R3
-         4a5/yNjQN/+1QBDyJovqo5B6gQeDnTj0OmjQu2rPQIaI+Kq+z+hVDK3qilZOCkOgjkPX
-         cnmg==
+        id S232642AbhGPTWC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 15:22:02 -0400
+Received: from mail-io1-f50.google.com ([209.85.166.50]:42673 "EHLO
+        mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229981AbhGPTWB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 15:22:01 -0400
+Received: by mail-io1-f50.google.com with SMTP id x10so11840604ion.9;
+        Fri, 16 Jul 2021 12:19:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding:date
-         :message-id:cc:subject:from:to:references:in-reply-to;
-        bh=1r09uS1rxtOnlc1hkLX7O1w4u27LN+vnvyQRmy2lAkc=;
-        b=YGwzVkPm5Myw6Yfmf6d4R1BCr02oWhcsnTcYSMlykxY1Gwwedo7/MjkaUiGtNY9jl9
-         aJMuqgH3lyatewm2NJUK5nvSnM/SqhMJQXyOHb0GidvrdG3KZt56rrjiwqc2LzT+tT9Y
-         v53FRCpcOrIjhiaivHg/7A9acpe3s0exb2Q/Ne5I9/qXfC7kBgka2EVMKY38YrEc5yZ3
-         sAXoxfbrJsE0bnqrEo7gCZVrzX4OzFSpvQMVD/kiXAbgU9BV9WofnyNkfA5/wRJGxlCA
-         EIzNypwsjZm1N/qIHFU5lvzhWSW3jE03K9081rChg98UfzlhQad9SpFZ4LLX5tE3SDmm
-         Shkw==
-X-Gm-Message-State: AOAM531LKV9yujNG0pUklNL9JnmA9uyeAJvsJns73EZKfbg5B6fmwPLM
-        dgCixrHi+bmYLqT35krh/a4=
-X-Google-Smtp-Source: ABdhPJx/1NDB3gesF4KpNANLA/3X4H8zBQvNdKbJmelf+kkEW8hYLzBlcX2sBukqg12tf4Zre1AEzw==
-X-Received: by 2002:a37:5d46:: with SMTP id r67mr11492788qkb.12.1626463115264;
-        Fri, 16 Jul 2021 12:18:35 -0700 (PDT)
-Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
-        by smtp.gmail.com with ESMTPSA id h68sm4342737qkf.126.2021.07.16.12.18.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Jul 2021 12:18:34 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Fri, 16 Jul 2021 15:18:33 -0400
-Message-Id: <CCUT1ZDDWS1J.3CGKX5J1MNFOX@shaak>
-Cc:     <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
-Subject: Re: [PATCH v5 05/10] iio: afe: rescale: add INT_PLUS_{MICRO,NANO}
- support
-From:   "Liam Beguin" <liambeguin@gmail.com>
-To:     "Peter Rosin" <peda@axentia.se>, <jic23@kernel.org>,
-        <lars@metafoo.de>, <pmeerw@pmeerw.net>
-References: <20210715031215.1534938-1-liambeguin@gmail.com>
- <20210715031215.1534938-6-liambeguin@gmail.com>
- <8417f698-eef2-3311-625a-1ceb17d3e5b2@axentia.se>
-In-Reply-To: <8417f698-eef2-3311-625a-1ceb17d3e5b2@axentia.se>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=cZppq04pKYoyNWSBls8YBBh4TnlFI5KRVdOjVEiwNMo=;
+        b=DVw4MTYkbEYN6nPGNd2wYmK5QNrvp5nMqsDW6RaVQdlR0hlw7LUITGZ/XW27Vid3CA
+         T++1zjoeaIvil3JjzzbSZA7ZaPKkOdvl5G5gCw39IXnAPYJJ+PB82B6WhlxHx/LdybvB
+         tLu+9m4xo3KJMnnt5pWRBVVEtNrFE2NFwbB+3VQZ3ygysmCdOvNp0c0vYR9s0I+Z6AHW
+         lTTW3UlP1VjwIu0WjAIEiUTpY6rfPYpnNkbbL6Qqo6IqbpMHsVp3hO5Mi7gb4wD1YRd1
+         pgUyKVuBC4nWfJWaIEXfdRXFR2QyH6L5XRVLKrZn9OpvUiO9O77ZwJdzS3VwpkQJliqC
+         0GAQ==
+X-Gm-Message-State: AOAM530y5O4CytLwW8AL0KSqCBR/rsnTkjSmWA5iFAIB8U4L/R5mVVX9
+        xsu66AzdDLvKY+vZwNbGMw==
+X-Google-Smtp-Source: ABdhPJx9T6ucNolLXF96aCzQG6B2OaC0CNfdafjW9ORigo9gn8TkffNYI8ymy/xfEzhNi+DmmJbhTQ==
+X-Received: by 2002:a5d:80da:: with SMTP id h26mr8596495ior.206.1626463146487;
+        Fri, 16 Jul 2021 12:19:06 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id k2sm1901354ioq.1.2021.07.16.12.19.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Jul 2021 12:19:05 -0700 (PDT)
+Received: (nullmailer pid 3829420 invoked by uid 1000);
+        Fri, 16 Jul 2021 19:19:04 -0000
+Date:   Fri, 16 Jul 2021 13:19:04 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] of: kexec: Remove FDT_PROP_* definitions
+Message-ID: <20210716191904.GA3829390@robh.at.kernel.org>
+References: <af415c86cd2ba9c8a6bb2eaaf56c3198a24b23d3.1626267092.git.geert+renesas@glider.be>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <af415c86cd2ba9c8a6bb2eaaf56c3198a24b23d3.1626267092.git.geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu Jul 15, 2021 at 5:48 AM EDT, Peter Rosin wrote:
->
-> On 2021-07-15 05:12, Liam Beguin wrote:
-> > From: Liam Beguin <lvb@xiphos.com>
-> >=20
-> > Some ADCs use IIO_VAL_INT_PLUS_{NANO,MICRO} scale types.
-> > Add support for these to allow using the iio-rescaler with them.
-> >=20
-> > Signed-off-by: Liam Beguin <lvb@xiphos.com>
-> > ---
-> >  drivers/iio/afe/iio-rescale.c | 15 +++++++++++++++
-> >  1 file changed, 15 insertions(+)
-> >=20
-> > diff --git a/drivers/iio/afe/iio-rescale.c b/drivers/iio/afe/iio-rescal=
-e.c
-> > index 4c3cfd4d5181..a2b220b5ba86 100644
-> > --- a/drivers/iio/afe/iio-rescale.c
-> > +++ b/drivers/iio/afe/iio-rescale.c
-> > @@ -92,7 +92,22 @@ static int rescale_read_raw(struct iio_dev *indio_de=
-v,
-> >  			do_div(tmp, 1000000000LL);
-> >  			*val =3D tmp;
-> >  			return ret;
-> > +		case IIO_VAL_INT_PLUS_NANO:
-> > +			tmp =3D ((s64)*val * 1000000000LL + *val2) * rescale->numerator;
-> > +			do_div(tmp, rescale->denominator);
-> > +
-> > +			*val =3D div_s64(tmp, 1000000000LL);
-> > +			*val2 =3D tmp - *val * 1000000000LL;
-> > +			return ret;
->
-> This is too simplistic and prone to overflow. We need something like
-> this
-> (untested)
->
-> tmp =3D (s64)*val * rescale->numerator;
-> rem =3D do_div(tmp, rescale->denominator);
-> *val =3D tmp;
-> tmp =3D ((s64)rem * 1000000000LL + (s64)*val2) * rescale->numerator;
-> do_div(tmp, rescale->denominator);
-> *val2 =3D tmp;
->
-> Still not very safe with numerator and denominator both "large", but
-> much
-> better. And then we need normalizing the fraction part after the above,
-> of
-> course.
->
+On Wed, 14 Jul 2021 14:53:22 +0200, Geert Uytterhoeven wrote:
+> The FDT_PROP_* definitions make it harder to follow the code.
+> Remove them, and use the actual string literals instead.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> This is v2 of "of: kexec: Always use FDT_PROP_INITRD_START and
+> FDT_PROP_INITRD_END".
+> https://lore.kernel.org/r/a4e07a0c1efea913ce5a61136162b5b720b96b48.1623835273.git.geert+renesas@glider.be/
+> 
+> v2:
+>   - Invert direction, as requested by Rob.
+> ---
+>  drivers/of/kexec.c | 40 +++++++++++++++-------------------------
+>  1 file changed, 15 insertions(+), 25 deletions(-)
+> 
 
-Understood, I'll test that.
-
-> And, of course, I'm not sure what *val =3D=3D -1 and *val2 =3D=3D 5000000=
-00
-> really
-> means. Is that -1.5 or -0.5? The above may very well need adjusting for
-> negative values...
->
-
-I would've assumed the correct answer is -1 + 500000000e-9 =3D -0.5
-but adding a test case to iio-test-format.c seems to return -1.5...
-
-I believe that's a bug but we can work around if for now by moving the
-integer part of *val2 to *val.
-
-Liam
-
-> Cheers,
-> Peter
->
-> > +		case IIO_VAL_INT_PLUS_MICRO:
-> > +			tmp =3D ((s64)*val * 1000000LL + *val2) * rescale->numerator;
-> > +			do_div(tmp, rescale->denominator);
-> > +
-> > +			*val =3D div_s64(tmp, 1000000LL);
-> > +			*val2 =3D tmp - *val * 1000000LL;
-> > +			return ret;
-> >  		default:
-> > +			dev_err(&indio_dev->dev, "unsupported type %d\n", ret);
-> >  			return -EOPNOTSUPP;
-> >  		}
-> >  	default:
-> >=20
-
+Applied, thanks!
