@@ -2,95 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A9F63CBBEA
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 20:37:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39F553CBC24
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 20:58:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231858AbhGPSk3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 14:40:29 -0400
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:46396 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229462AbhGPSk3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Jul 2021 14:40:29 -0400
-Received: from pps.filterd (m0098404.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 16GIbH6D165233;
-        Fri, 16 Jul 2021 14:37:29 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : subject :
- from : to : cc : date : in-reply-to : references : content-type :
- mime-version : content-transfer-encoding; s=pp1;
- bh=7tyfq1wQ5MtvqKTDdde+7cQd7ahohQH+0eK0ivktzt0=;
- b=P0ov+RaF4asrEqtHx+LK0kSQyB/lbsxOt58Kdh2hVBjuMbsmRotj/P18JpbNelc5LveS
- g7p/OqMeb95a7fktLD0ihJWVNe7vf7l9pR18agcq6UK/5p8arD/v8imiIGEWC6wekZqI
- 0gm9brMh1o6ZM/fOJHVNrWhgyKnCKRyEOllPKnRIa6BbSI3US8HF5+3zicaV+fqk7qZ0
- lazCNhL2QHNoLggcY1+Glkn4VAzFOgNrKGi9SIufVRqY0RfbWw4Xa6CoN8/MYeeabTD8
- iz8ozczwzpl9iZayfszj9uHB7HvLHRuodxchjKBtez8hbm5UsljfDDgC0/JSvFGiQhuY gw== 
-Received: from ppma04dal.us.ibm.com (7a.29.35a9.ip4.static.sl-reverse.com [169.53.41.122])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 39udw6jn23-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 16 Jul 2021 14:37:28 -0400
-Received: from pps.filterd (ppma04dal.us.ibm.com [127.0.0.1])
-        by ppma04dal.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 16GIGlcf024783;
-        Fri, 16 Jul 2021 18:34:41 GMT
-Received: from b01cxnp23032.gho.pok.ibm.com (b01cxnp23032.gho.pok.ibm.com [9.57.198.27])
-        by ppma04dal.us.ibm.com with ESMTP id 39q36fqbhw-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 16 Jul 2021 18:34:41 +0000
-Received: from b01ledav005.gho.pok.ibm.com (b01ledav005.gho.pok.ibm.com [9.57.199.110])
-        by b01cxnp23032.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 16GIYf4s53543206
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Fri, 16 Jul 2021 18:34:41 GMT
-Received: from b01ledav005.gho.pok.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 14440AE05F;
-        Fri, 16 Jul 2021 18:34:41 +0000 (GMT)
-Received: from b01ledav005.gho.pok.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 5D514AE063;
-        Fri, 16 Jul 2021 18:34:39 +0000 (GMT)
-Received: from v0005c16 (unknown [9.211.92.96])
-        by b01ledav005.gho.pok.ibm.com (Postfix) with ESMTP;
-        Fri, 16 Jul 2021 18:34:39 +0000 (GMT)
-Message-ID: <81a40f8690d297ebfb6697dbea63279bcf2f24fa.camel@linux.ibm.com>
-Subject: Re: [PATCH 1/2] spi: fsi: Reduce max transfer size to 8 bytes
-From:   Eddie James <eajames@linux.ibm.com>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        robh+dt@kernel.org
-Date:   Fri, 16 Jul 2021 13:34:38 -0500
-In-Reply-To: <20210716171936.GB4137@sirena.org.uk>
-References: <20210716133915.14697-1-eajames@linux.ibm.com>
-         <20210716133915.14697-2-eajames@linux.ibm.com>
-         <20210716171936.GB4137@sirena.org.uk>
-Organization: IBM
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5 (3.28.5-16.el8) 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: 13Nj9UHN-n_4bSFB_bWzSidggUk0HrnQ
-X-Proofpoint-ORIG-GUID: 13Nj9UHN-n_4bSFB_bWzSidggUk0HrnQ
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
- definitions=2021-07-16_06:2021-07-16,2021-07-16 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=904
- spamscore=0 priorityscore=1501 suspectscore=0 clxscore=1015 malwarescore=0
- bulkscore=0 phishscore=0 impostorscore=0 lowpriorityscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2104190000
- definitions=main-2107160113
+        id S230211AbhGPTB3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 15:01:29 -0400
+Received: from mail-il1-f179.google.com ([209.85.166.179]:33650 "EHLO
+        mail-il1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230018AbhGPTB2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 15:01:28 -0400
+Received: by mail-il1-f179.google.com with SMTP id z1so9255372ils.0;
+        Fri, 16 Jul 2021 11:58:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition;
+        bh=JaHBZHQkUG9nkOZjub36ylaekqJrFIALCWzr0fx4JWc=;
+        b=sKSgu+Ok5qYStzj+ksn9SITOS500BZ8hkxzcSAkw8QVGc/PZ/XHsOz7T/Io9dwP2o8
+         IcAPKJDVQpcXWLDdQcj3fWsQblVmVRyRb0CHZoZi+nzQbixPWnz7YhhcyI1VbI6TYpEk
+         a2J13qGNTCrV2LTdoD3zkgchsn7mijlhBc0uTjKfw7bx65+pLA0JADV0m/kBmUJaq6yB
+         Svy0RnulXGZxgizkJ/RUz4MqRkOiUU6HzjBsOlCMa17JBzltAA+NvItvD8u0LG35hEuW
+         mZvpEBx6gt0LLmdb1SgPv2uzpNTIrHD4N4IpCKaBTq5VL9YgoZD40NTayzxmozZ0qSLk
+         8MXA==
+X-Gm-Message-State: AOAM532Iyzd52VLTrIz6QNFjGfO5V87MH9Rg9RDw482PEyJMgfj6yJ1/
+        Fh/GqQPIZ9awSWA99nzMACOQajBQKg==
+X-Google-Smtp-Source: ABdhPJxcCfSiJYlaSJg7zp99bZboAlcPkcE0opIjiH4rYWrGZsAPR7Zx1/1wpHwJcYdNAneih3pasA==
+X-Received: by 2002:a05:6e02:1d0f:: with SMTP id i15mr6859976ila.199.1626461913286;
+        Fri, 16 Jul 2021 11:58:33 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id t8sm5467464iog.21.2021.07.16.11.58.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Jul 2021 11:58:32 -0700 (PDT)
+Received: (nullmailer pid 3772587 invoked by uid 1000);
+        Fri, 16 Jul 2021 18:58:30 -0000
+Date:   Fri, 16 Jul 2021 12:58:30 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: [GIT PULL] Devicetree fixes for v5.14, take 1
+Message-ID: <20210716185830.GA3769653@robh.at.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2021-07-16 at 18:19 +0100, Mark Brown wrote:
-> On Fri, Jul 16, 2021 at 08:39:14AM -0500, Eddie James wrote:
-> > Security changes have forced the SPI controllers to be limited to
-> > 8 byte reads. Refactor the sequencing to just handle 8 bytes at a
-> > time.
+Linus,
 
-Security changes in the SPI controller - in the device microcode. I can
-reword the commit if you like.
+Please pull a couple of DT fixes for 5.14.
 
-Thanks,
-Eddie
+Rob
 
-> 
-> Which security changes where - somewhere else in Linux?
 
+The following changes since commit e73f0f0ee7541171d89f2e2491130c7771ba58d3:
+
+  Linux 5.14-rc1 (2021-07-11 15:07:40 -0700)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.14-1
+
+for you to fetch changes up to 50d8d7e19c4398da74d028f367754e73547b078b:
+
+  dt-bindings: display: renesas,du: Make resets optional on R-Car H1 (2021-07-16 12:03:27 -0600)
+
+----------------------------------------------------------------
+Devicetree fixes for v5.14, take 1:
+
+- Drop 'resets' as required on renesas,du
+
+- Moving of fixed string patterns for 'properties' instead of
+  'patternProperties'
+
+- Drop more redundant minItems/maxItems that we merged in the merge
+  window
+
+- Indentation warning fix for sja1105
+
+----------------------------------------------------------------
+Geert Uytterhoeven (1):
+      dt-bindings: display: renesas,du: Make resets optional on R-Car H1
+
+Rob Herring (2):
+      dt-bindings: More dropping redundant minItems/maxItems
+      dt-bindings: Move fixed string 'patternProperties' to 'properties'
+
+Thierry Reding (1):
+      dt-bindings: net: dsa: sja1105: Fix indentation warnings
+
+ .../bindings/clock/brcm,iproc-clocks.yaml          |  1 -
+ .../devicetree/bindings/display/renesas,du.yaml    |  1 -
+ .../devicetree/bindings/hwmon/adt7475.yaml         | 22 ++++-----
+ .../devicetree/bindings/iommu/rockchip,iommu.yaml  |  2 -
+ .../bindings/memory-controllers/arm,pl353-smc.yaml |  1 -
+ .../devicetree/bindings/mtd/brcm,brcmnand.yaml     |  8 ----
+ .../devicetree/bindings/net/dsa/nxp,sja1105.yaml   |  4 +-
+ .../devicetree/bindings/phy/ti,phy-j721e-wiz.yaml  | 56 +++++++++++-----------
+ .../devicetree/bindings/regulator/mps,mpq7920.yaml |  6 +--
+ .../bindings/regulator/nxp,pf8x00-regulator.yaml   |  3 +-
+ .../devicetree/bindings/rtc/faraday,ftrtc010.yaml  |  1 -
+ .../devicetree/bindings/spi/spi-controller.yaml    | 32 ++++++-------
+ .../devicetree/bindings/usb/nxp,isp1760.yaml       |  2 -
+ 13 files changed, 62 insertions(+), 77 deletions(-)
