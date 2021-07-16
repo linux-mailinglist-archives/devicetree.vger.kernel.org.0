@@ -2,145 +2,354 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A4AA3CB5A9
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 12:03:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAF723CB5C5
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 12:10:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236495AbhGPKGu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 06:06:50 -0400
-Received: from mail-eopbgr60080.outbound.protection.outlook.com ([40.107.6.80]:14266
-        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S236342AbhGPKGt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Jul 2021 06:06:49 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=k6RnJfKbth/VkSckoyp+KvHO12f9wKq9udvDrVlyttdO9n59WAJE2HAED/M169TIYM+sNSQ5g1XwpNbYGPf/zZSuqmUioRXW5TyqJ4PJR0ljG/N8aOOmPLXF9qxgScONcotW2oHCv1kM5t68nZyg90GcMvJ2haMKKlpsLkjld3N9ktowYgImI96/EWShPEI5cXYItLMZ6Nd7x+YAPGWt6Ig0FeC12Z7+JIcuIZkDVIZK50duj077WUIwq9jx031h5JJ8vdOVYB6o139pMt/PHjnfl7DXvPeFB+4p1uRY4Gsq/wT/zfvPqaRzU2Dq0936lY8Sdn4HylbklgHgyPi5tQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=arkoSoQUQxCCKyEsvWJn5+cBK0qyPJ8Z7M9Nu5WvFZw=;
- b=WLWz682DpIpunhw19mq/jbKLLfSTpOsfCm8nWl4BS2k87LWECV+wtDm7RG7YTsc1TAkkIVZR/N15nLiaY2P0l2cXC83k3R0v5h9ZRQtAIxSe2x0vD0YAsXVupoMtJgs/LuxjgDtVuGUFcTp5rmshnNL61SW8Wnu399dkzwhGjLKoW5ubCl+Eo1gj1bQknZeIpph5exnc+2/jeg/5spfK/Y/Nec7hwVECprikEprQ8e4SH1+SzWwQ1h/PSLVzcLmbwLkt9SDlJLVsF9piZsDwft4R1vxFY85ZaW5o8NZp00pLfEkhEZyUTohcaGv3DG4k+zdovsZ8mQvJ2UG40WDfQA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=arkoSoQUQxCCKyEsvWJn5+cBK0qyPJ8Z7M9Nu5WvFZw=;
- b=XP7pGyiO0+nsqL6rKKi++b88K2SGRE6wAfoLT9tTwlxo7Ds52Gx2fpGZV1a+HcuPQWBMyMT3S87BpZ7TPdi2tz+RsJxE+sGug7z1aeQu1oCNChEUvTSLwfohAmyWCTolraq0Y48QWPUtN4T6cO24/Xm/7fAqVFghVkyZOgD+qhc=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-Received: from DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
- by DB7PR04MB3962.eurprd04.prod.outlook.com (2603:10a6:5:1a::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.26; Fri, 16 Jul
- 2021 10:03:53 +0000
-Received: from DB8PR04MB6795.eurprd04.prod.outlook.com
- ([fe80::9c70:fd2f:f676:4802]) by DB8PR04MB6795.eurprd04.prod.outlook.com
- ([fe80::9c70:fd2f:f676:4802%9]) with mapi id 15.20.4331.021; Fri, 16 Jul 2021
- 10:03:53 +0000
-From:   Joakim Zhang <qiangqing.zhang@nxp.com>
-To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        mkl@pengutronix.de
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, aisheng.dong@nxp.com
-Subject: [PATCH V2] arm64: dts: imx8mp: remove fallback compatible string for FlexCAN
-Date:   Fri, 16 Jul 2021 18:04:14 +0800
-Message-Id: <20210716100414.12840-1-qiangqing.zhang@nxp.com>
-X-Mailer: git-send-email 2.17.1
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR01CA0162.apcprd01.prod.exchangelabs.com
- (2603:1096:4:28::18) To DB8PR04MB6795.eurprd04.prod.outlook.com
- (2603:10a6:10:fa::15)
+        id S237339AbhGPKNN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 06:13:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40456 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236625AbhGPKNM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 06:13:12 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 457FDC06175F
+        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 03:10:18 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1m4KnG-0000gC-OV; Fri, 16 Jul 2021 12:10:06 +0200
+Received: from pengutronix.de (unknown [IPv6:2a03:f580:87bc:d400:df95:c0e5:d620:3bac])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id A198765091A;
+        Fri, 16 Jul 2021 10:10:02 +0000 (UTC)
+Date:   Fri, 16 Jul 2021 12:10:01 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH 2/6] can: rcar_canfd: Add support for RZ/G2L family
+Message-ID: <20210716101001.m5sgit3l354mljai@pengutronix.de>
+References: <20210715182123.23372-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20210715182123.23372-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (119.31.174.71) by SG2PR01CA0162.apcprd01.prod.exchangelabs.com (2603:1096:4:28::18) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.21 via Frontend Transport; Fri, 16 Jul 2021 10:03:50 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0d5f2c94-8d37-4823-c7fe-08d948410471
-X-MS-TrafficTypeDiagnostic: DB7PR04MB3962:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DB7PR04MB3962C75D194F6E9CD9AE0A6BE6119@DB7PR04MB3962.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2276;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: uglEuMncOX8HuK/pbnTJvZ7uenEWiVQpgJeUCEz/00yrfcRSyieM5EzgbjVjMtOHs+DDU+MiNGZdZMeLBY9IA7Bjk41j7Kym5sayQhVxEqY3bmmxClletmrAZYMSdW30UUaf8wYNMRTtF6B5+DYh26C0RQhBXfTTP37bmUbxy5/NcgnnCvwVrtuUuO2ucu1JUwoicv9azvYHJSC91kXV2W8H6zj62jZzXVlwnPOQB7ZQvuWIbIcUiaUiJ59V4XISaSM808qG2pxM/X0R6zlpywaFKpwyuaIQzAthtr+brxRtsiYAiR+L9htRsF2KuVMxZeEBgFm2wt/DBDe/WWGxbAuYGqw0S/OMj52z+mWMUr6LuFJmS9OHDRGnboL+8ylwDzcgFKKcOCJLqXm/alsU7WtfQJSZ0oSDz5Xu5oojWHc5Flc4nzlJr0CGzuFOlHiq+D0rdRb7y1ST9Ke6gWVIx147SnomfXBUQKX53H+11BgwQX9Sm1wyK6y2+/fzI3iyjQSPOLsRCOcsr5lncgSSk7kglYOpeD/ZVYwovyy7QHaU5WmVcxvb55YgR8/kS1Ci3y87aj/V9lZJbdpOwVyrMogxyRLO2L472HrhTV9X/UZ9/KLY6fYTqT34MLCPdXQpp6iyjt/c19h0pQ3Yprxcxz/qgIpNKLl/16LB9NtZpIfq/xYIhf0E6I2U182N1BAIaZb3ifKILZKK4d9FPwyj0VkbA4gJAQWyk8iWTye+ngA=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6795.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(186003)(26005)(86362001)(6506007)(316002)(4326008)(6486002)(2906002)(5660300002)(36756003)(8676002)(8936002)(83380400001)(66556008)(66946007)(66476007)(52116002)(6666004)(6512007)(1076003)(38350700002)(956004)(38100700002)(478600001)(2616005)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?zUWKa5ydI9bKptzDsKRe2XGla8wTEtELI7X9in6zcQtYUDS4ayCG2EP3K8rN?=
- =?us-ascii?Q?z7FaM8BtnWSFD2OyyCs8fCXfsKFk5Z1ukYmFhrQiJTY575hWc+Q4bWK9LTjD?=
- =?us-ascii?Q?UWlxkbz4vBjFSxdYbmOUaCyJtMIkdelIixqF0kZrrLzFAuxJXmWSRORTZ1sM?=
- =?us-ascii?Q?pAaBLJTLNFjgdE0k+dMIh8ew1zD9o/ote48zUwBGJWjQZXrcT9OtMasaHVF+?=
- =?us-ascii?Q?ov8auHYmRxpUO067c+A5QjJcWIVH/1dGu+MVvrZAkLf/ERFs1iVF/iC4+U/2?=
- =?us-ascii?Q?H4E2T0VSYxsyou2X0+mE7EWs0xua5JWjGCtfLjaYpb7BDbq/JDIXKjeIHnXh?=
- =?us-ascii?Q?eKXN5R0D7JjdoMccR4A6OFWm5f7DqA4bqvBPO1GTzt+DX1/V3+CP4LFCvvmL?=
- =?us-ascii?Q?0w3MRe2xZGLg/TxccqIkd48NFQn3X6Ym/C8dyhXCZ+JonYvyjHHRtoM8LU37?=
- =?us-ascii?Q?y5eGfE1UFiF7YWusFONjciHEpTynAbcIm3RfhqACM2JU93M8HUEXg87xRQJ5?=
- =?us-ascii?Q?YkrraHPumSD7ALeHpzlnkzJk7L2UZnpwhiv/poT0n7K7Ef2LdbSh7RmvXegT?=
- =?us-ascii?Q?lSoCYOa8nyqPSlDvc3ggGJzUZy2IJ1Snm3i2zTbFm8HeozNkvNfZLv4cU73j?=
- =?us-ascii?Q?DUEzgRzb+u+qWFluhPhtUQMBfG81TBg0KyUQuLfQhM4apy6mOC6SgNwfrVpf?=
- =?us-ascii?Q?msS9fN4pIlpV2GLnSlVYJNhwkbk/fpe3rmSxfQXZ3okVvYAKvhMNLJavMRoF?=
- =?us-ascii?Q?OZquWNkLz0SQQHL3tw8OKmkXJgbOCSy0geT3/2d2q/0+b+PEbVKoGlZTusLA?=
- =?us-ascii?Q?rnGQfT4uNxk/T1YhbnNIqLaTE7Y3Q6NfbHDMF1DlLqbUd62xDelR3nqkWAIl?=
- =?us-ascii?Q?ziHAGM5V7OkNyF2hQZ3UKI5BPNIafjvyOR4eJmkjFrFC00WrxBhIRy0bzVOT?=
- =?us-ascii?Q?dEgkxCVXfcZHGF0RW9seqT+dkjUR90ZTt0nuBDdhESZHraY8WjK0k81/mDQX?=
- =?us-ascii?Q?zh37ob5TQlkLC1XyQ2hWt5Zso8N+1oTtW9gZaUU0JW6DHaeTgHCwKhNwWTaG?=
- =?us-ascii?Q?aKplvWOQKdprgkQHsFfiogV2DRemgcFf2pfbtaelmxVTZwSrqk5UIbdXJhaN?=
- =?us-ascii?Q?hnDWIniv2Mz8BoJLKNJepaaijS27mUxQaOUqu1+y3cySGy8oDaN577V544Mt?=
- =?us-ascii?Q?kboignj7rHfJg8wkPMCpNqyL2dX6LdXcE9mKlZpdb5iSbgm1E0Xam31aADlU?=
- =?us-ascii?Q?hXKU+BC37NzP4vvAHOfztdtZFIKhAqd+Gusn4pTkyciNY9vFPIFtFSwCAWVz?=
- =?us-ascii?Q?Uxh1EJM3svl2+y+ySNPzG16Y?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0d5f2c94-8d37-4823-c7fe-08d948410471
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB6795.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jul 2021 10:03:53.7252
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: PqpejfaF16rtD7WuMegjOnxUPVkXPELtUmiMM2jyYwEPBc1mAUMDgtK2eL9ocKq+3JlLFpi37PUE8x/CdiFm5Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB3962
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="wuc7izo7bgfbohrr"
+Content-Disposition: inline
+In-Reply-To: <20210715182123.23372-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-FlexCAN on i.MX8MP is not derived from i.MX6Q, instead resues from
-i.MX8QM with extra ECC added and default is enabled, so that the FlexCAN
-would be put into freeze mode without FLEXCAN_QUIRK_DISABLE_MECR quirk.
 
-This patch removes "fsl,imx6q-flexcan" fallback compatible string since
-it's not compatible with the i.MX6Q.
+--wuc7izo7bgfbohrr
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
----
-ChangeLogs:
-V1->V2:
-	* improve commit message a bit.
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+On 15.07.2021 19:21:19, Lad Prabhakar wrote:
+> CANFD block on RZ/G2L SoC is almost identical to one found on
+> R-Car Gen3 SoC's.
+>=20
+> On RZ/G2L SoC interrupt sources for each channel are split into
+> different sources, irq handlers for the same are added.
+>=20
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 9f7c7f587d38..1bfb359dba4a 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -579,7 +579,7 @@
- 			};
- 
- 			flexcan1: can@308c0000 {
--				compatible = "fsl,imx8mp-flexcan", "fsl,imx6q-flexcan";
-+				compatible = "fsl,imx8mp-flexcan";
- 				reg = <0x308c0000 0x10000>;
- 				interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clk IMX8MP_CLK_IPG_ROOT>,
-@@ -594,7 +594,7 @@
- 			};
- 
- 			flexcan2: can@308d0000 {
--				compatible = "fsl,imx8mp-flexcan", "fsl,imx6q-flexcan";
-+				compatible = "fsl,imx8mp-flexcan";
- 				reg = <0x308d0000 0x10000>;
- 				interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clk IMX8MP_CLK_IPG_ROOT>,
--- 
-2.17.1
+Thanks for the patch! Some nitpicks inline, Geert already commented to
+use the same IRQ handler for all interrutps.
 
+> ---
+>  drivers/net/can/rcar/rcar_canfd.c | 275 ++++++++++++++++++++++++++----
+>  1 file changed, 244 insertions(+), 31 deletions(-)
+>=20
+> diff --git a/drivers/net/can/rcar/rcar_canfd.c b/drivers/net/can/rcar/rca=
+r_canfd.c
+> index 311e6ca3bdc4..5dfbc5fa2d81 100644
+> --- a/drivers/net/can/rcar/rcar_canfd.c
+> +++ b/drivers/net/can/rcar/rcar_canfd.c
+> @@ -37,9 +37,13 @@
+>  #include <linux/bitmap.h>
+>  #include <linux/bitops.h>
+>  #include <linux/iopoll.h>
+> +#include <linux/reset.h>
+> =20
+>  #define RCANFD_DRV_NAME			"rcar_canfd"
+> =20
+> +#define RENESAS_RCAR_GEN3	0
+> +#define RENESAS_RZG2L		1
+> +
+
+Please make this an enum.
+
+>  /* Global register bits */
+> =20
+>  /* RSCFDnCFDGRMCFG */
+> @@ -513,6 +517,9 @@ struct rcar_canfd_global {
+>  	enum rcar_canfd_fcanclk fcan;	/* CANFD or Ext clock */
+>  	unsigned long channels_mask;	/* Enabled channels mask */
+>  	bool fdmode;			/* CAN FD or Classical CAN only mode */
+> +	struct reset_control *rstc1;     /* Pointer to reset source1 */
+> +	struct reset_control *rstc2;     /* Pointer to reset source2 */
+> +	unsigned int chip_id;
+
+enum here, too
+
+>  };
+> =20
+>  /* CAN FD mode nominal rate constants */
+> @@ -1070,6 +1077,56 @@ static void rcar_canfd_tx_done(struct net_device *=
+ndev)
+>  	can_led_event(ndev, CAN_LED_EVENT_TX);
+>  }
+> =20
+[...]
+
+> @@ -1635,8 +1784,11 @@ static int rcar_canfd_probe(struct platform_device=
+ *pdev)
+>  	struct rcar_canfd_global *gpriv;
+>  	struct device_node *of_child;
+>  	unsigned long channels_mask =3D 0;
+> -	int err, ch_irq, g_irq;
+> +	int err, ch_irq, g_irq, g_rx_irq;
+>  	bool fdmode =3D true;			/* CAN FD only mode - default */
+> +	unsigned int chip_id;
+> +
+> +	chip_id =3D (uintptr_t)of_device_get_match_data(&pdev->dev);
+
+The cast looks wrong.
+
+> =20
+>  	if (of_property_read_bool(pdev->dev.of_node, "renesas,no-can-fd"))
+>  		fdmode =3D false;			/* Classical CAN only mode */
+> @@ -1649,27 +1801,56 @@ static int rcar_canfd_probe(struct platform_devic=
+e *pdev)
+>  	if (of_child && of_device_is_available(of_child))
+>  		channels_mask |=3D BIT(1);	/* Channel 1 */
+> =20
+> -	ch_irq =3D platform_get_irq(pdev, 0);
+> -	if (ch_irq < 0) {
+> -		err =3D ch_irq;
+> -		goto fail_dev;
+> -	}
+> +	if (chip_id =3D=3D RENESAS_RCAR_GEN3) {
+> +		ch_irq =3D platform_get_irq(pdev, 0);
+> +		if (ch_irq < 0)
+> +			return ch_irq;
+> =20
+> -	g_irq =3D platform_get_irq(pdev, 1);
+> -	if (g_irq < 0) {
+> -		err =3D g_irq;
+> -		goto fail_dev;
+> +		g_irq =3D platform_get_irq(pdev, 1);
+> +		if (g_irq < 0)
+> +			return g_irq;
+> +	} else {
+> +		g_irq =3D platform_get_irq(pdev, 0);
+> +		if (g_irq < 0)
+> +			return g_irq;
+> +
+> +		g_rx_irq =3D platform_get_irq(pdev, 1);
+> +		if (g_rx_irq < 0)
+> +			return g_rx_irq;
+>  	}
+> =20
+>  	/* Global controller context */
+>  	gpriv =3D devm_kzalloc(&pdev->dev, sizeof(*gpriv), GFP_KERNEL);
+> -	if (!gpriv) {
+> -		err =3D -ENOMEM;
+> -		goto fail_dev;
+> -	}
+> +	if (!gpriv)
+> +		return -ENOMEM;
+> +
+>  	gpriv->pdev =3D pdev;
+>  	gpriv->channels_mask =3D channels_mask;
+>  	gpriv->fdmode =3D fdmode;
+> +	gpriv->chip_id =3D chip_id;
+> +
+> +	if (gpriv->chip_id =3D=3D RENESAS_RZG2L) {
+> +		gpriv->rstc1 =3D devm_reset_control_get_exclusive_by_index(&pdev->dev,=
+ 0);
+> +		if (IS_ERR(gpriv->rstc1)) {
+> +			dev_err(&pdev->dev, "failed to get reset index 0\n");
+> +			return PTR_ERR(gpriv->rstc1);
+> +		}
+> +
+> +		err =3D reset_control_reset(gpriv->rstc1);
+> +		if (err)
+> +			return err;
+> +
+> +		gpriv->rstc2 =3D devm_reset_control_get_exclusive_by_index(&pdev->dev,=
+ 1);
+> +		if (IS_ERR(gpriv->rstc2)) {
+> +			dev_err(&pdev->dev, "failed to get reset index 1\n");
+> +			return PTR_ERR(gpriv->rstc2);
+> +		}
+> +		err =3D reset_control_reset(gpriv->rstc2);
+> +		if (err) {
+> +			reset_control_assert(gpriv->rstc1);
+> +			return err;
+> +		}
+> +	}
+> =20
+>  	/* Peripheral clock */
+>  	gpriv->clkp =3D devm_clk_get(&pdev->dev, "fck");
+> @@ -1699,7 +1880,7 @@ static int rcar_canfd_probe(struct platform_device =
+*pdev)
+>  	}
+>  	fcan_freq =3D clk_get_rate(gpriv->can_clk);
+> =20
+> -	if (gpriv->fcan =3D=3D RCANFD_CANFDCLK)
+> +	if (gpriv->fcan =3D=3D RCANFD_CANFDCLK && gpriv->chip_id =3D=3D RENESAS=
+_RCAR_GEN3)
+>  		/* CANFD clock is further divided by (1/2) within the IP */
+>  		fcan_freq /=3D 2;
+> =20
+> @@ -1711,21 +1892,43 @@ static int rcar_canfd_probe(struct platform_devic=
+e *pdev)
+>  	gpriv->base =3D addr;
+> =20
+>  	/* Request IRQ that's common for both channels */
+> -	err =3D devm_request_irq(&pdev->dev, ch_irq,
+> -			       rcar_canfd_channel_interrupt, 0,
+> -			       "canfd.chn", gpriv);
+> -	if (err) {
+> -		dev_err(&pdev->dev, "devm_request_irq(%d) failed, error %d\n",
+> -			ch_irq, err);
+> -		goto fail_dev;
+> -	}
+> -	err =3D devm_request_irq(&pdev->dev, g_irq,
+> -			       rcar_canfd_global_interrupt, 0,
+> -			       "canfd.gbl", gpriv);
+> -	if (err) {
+> -		dev_err(&pdev->dev, "devm_request_irq(%d) failed, error %d\n",
+> -			g_irq, err);
+> -		goto fail_dev;
+> +	if (gpriv->chip_id =3D=3D RENESAS_RCAR_GEN3) {
+> +		err =3D devm_request_irq(&pdev->dev, ch_irq,
+> +				       rcar_canfd_channel_interrupt, 0,
+> +				       "canfd.chn", gpriv);
+> +		if (err) {
+> +			dev_err(&pdev->dev, "devm_request_irq(%d) failed, error %d\n",
+> +				ch_irq, err);
+> +			goto fail_dev;
+> +		}
+> +
+> +		err =3D devm_request_irq(&pdev->dev, g_irq,
+> +				       rcar_canfd_global_interrupt, 0,
+> +				       "canfd.gbl", gpriv);
+> +		if (err) {
+> +			dev_err(&pdev->dev, "devm_request_irq(%d) failed, error %d\n",
+> +				g_irq, err);
+> +			goto fail_dev;
+> +		}
+> +	} else {
+> +		err =3D devm_request_irq(&pdev->dev, g_rx_irq,
+> +				       rcar_canfd_global_recieve_fifo_interrupt, 0,
+> +				       "canfd.gblrx", gpriv);
+> +
+> +		if (err) {
+> +			dev_err(&pdev->dev, "devm_request_irq(%d) failed, error %d\n",
+> +				g_rx_irq, err);
+> +			goto fail_dev;
+> +		}
+> +
+> +		err =3D devm_request_irq(&pdev->dev, g_irq,
+> +				       rcar_canfd_global_err_interrupt, 0,
+> +				       "canfd.gblerr", gpriv);
+> +		if (err) {
+> +			dev_err(&pdev->dev, "devm_request_irq(%d) failed, error %d\n",
+> +				g_irq, err);
+> +			goto fail_dev;
+> +		}
+>  	}
+> =20
+>  	/* Enable peripheral clock for register access */
+> @@ -1791,6 +1994,10 @@ static int rcar_canfd_probe(struct platform_device=
+ *pdev)
+>  fail_clk:
+>  	clk_disable_unprepare(gpriv->clkp);
+>  fail_dev:
+> +	if (gpriv->chip_id =3D=3D RENESAS_RZG2L) {
+> +		reset_control_assert(gpriv->rstc1);
+> +		reset_control_assert(gpriv->rstc2);
+
+reset_control_assert() can handle NULL pointers
+
+> +	}
+>  	return err;
+>  }
+> =20
+> @@ -1810,6 +2017,11 @@ static int rcar_canfd_remove(struct platform_devic=
+e *pdev)
+>  	/* Enter global sleep mode */
+>  	rcar_canfd_set_bit(gpriv->base, RCANFD_GCTR, RCANFD_GCTR_GSLPR);
+>  	clk_disable_unprepare(gpriv->clkp);
+> +	if (gpriv->chip_id =3D=3D RENESAS_RZG2L) {
+> +		reset_control_assert(gpriv->rstc1);
+> +		reset_control_assert(gpriv->rstc2);
+> +	}
+
+same here
+
+> +
+>  	return 0;
+>  }
+> =20
+> @@ -1827,7 +2039,8 @@ static SIMPLE_DEV_PM_OPS(rcar_canfd_pm_ops, rcar_ca=
+nfd_suspend,
+>  			 rcar_canfd_resume);
+> =20
+>  static const struct of_device_id rcar_canfd_of_table[] =3D {
+> -	{ .compatible =3D "renesas,rcar-gen3-canfd" },
+> +	{ .compatible =3D "renesas,rcar-gen3-canfd", .data =3D (void *)RENESAS_=
+RCAR_GEN3 },
+> +	{ .compatible =3D "renesas,rzg2l-canfd", .data =3D (void *)RENESAS_RZG2=
+L },
+>  	{ }
+>  };
+
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+--wuc7izo7bgfbohrr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAmDxWvcACgkQqclaivrt
+76nzsAf/VLZM8WaYPkGkszH1Cmetc3SSNU9ISL9bHW7zuKnD5sJKuYzDlQFksPmD
+W4E6hTf1yDfTeVbPONWLkSYwwt/ervNH6vbb3bgMwKlcGGDjdWWgz5v+vwluFo12
+6p6QQWxlsGf59mMrr/UfXCVXBjHXkm+UXAycI33hvlWcvV1NvtfWiR7uDCXwkDj4
+kJhr1pSOzgwFQTT/CvJ4o3Xrtg/Fd+E4abSmwjJqL52Rs2aJlcR62aECxQfP83P0
+yAP7M4hMsoNvG0++nm+4JcMIYJtKt5EmWnrvpd3R0d/jbMf3A97g6d4vSMGocRLg
+ooPbMKvVMumA8xB2ye0K9MSKNW9qIw==
+=OGo6
+-----END PGP SIGNATURE-----
+
+--wuc7izo7bgfbohrr--
