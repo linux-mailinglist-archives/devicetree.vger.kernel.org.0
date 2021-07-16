@@ -2,188 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28FC23CB4B3
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 10:50:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4F383CB4F0
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 11:01:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237667AbhGPIus (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 04:50:48 -0400
-Received: from comms.puri.sm ([159.203.221.185]:45452 "EHLO comms.puri.sm"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229895AbhGPIur (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Jul 2021 04:50:47 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id E961DDFBFB;
-        Fri, 16 Jul 2021 01:47:22 -0700 (PDT)
-Received: from comms.puri.sm ([127.0.0.1])
-        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id yUenwAsEOUc3; Fri, 16 Jul 2021 01:47:21 -0700 (PDT)
-Message-ID: <e88d99abbdcbd6a1b2c27849f08721e79f237adc.camel@puri.sm>
-Subject: Re: [PATCH v6 2/3] media: imx: add a driver for i.MX8MQ mipi csi rx
- phy and controller
-From:   Martin Kepplinger <martin.kepplinger@puri.sm>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     festevam@gmail.com, krzk@kernel.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, kernel@puri.sm,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-staging@lists.linux.dev, m.felsch@pengutronix.de,
-        mchehab@kernel.org, phone-devel@vger.kernel.org, robh@kernel.org,
-        shawnguo@kernel.org, slongerbeam@gmail.com
-Date:   Fri, 16 Jul 2021 10:47:14 +0200
-In-Reply-To: <YPCuFA+utjudv11H@pendragon.ideasonboard.com>
-References: <20210714111931.324485-1-martin.kepplinger@puri.sm>
-         <20210714111931.324485-3-martin.kepplinger@puri.sm>
-         <YO8r6pZAduu1ZMK4@pendragon.ideasonboard.com>
-         <ce71a71a358247eca3b72ddcddd703206c90f284.camel@puri.sm>
-         <YPCuFA+utjudv11H@pendragon.ideasonboard.com>
+        id S238671AbhGPJAp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 05:00:45 -0400
+Received: from mail-vs1-f52.google.com ([209.85.217.52]:44703 "EHLO
+        mail-vs1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239301AbhGPI73 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 04:59:29 -0400
+Received: by mail-vs1-f52.google.com with SMTP id f4so4571480vsh.11;
+        Fri, 16 Jul 2021 01:56:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=7tHhki3aphTw+T8sH9x98BuGFR0iW2Ee/zuAbvNRS7M=;
+        b=txdR+80+jda/XYaoG4jvUqDWRbhrXRJohcFZnwU294zf0Go7Pt2UrSeNVyubDvX0eu
+         AK2IdzEyIZoj0qnyy99eJm3RHz2XLO0sYM/BXpCJSdRZRTNICZDL9fkF3OHWkYYmdWAK
+         pvkWx51v9551ryyNtczDYMmNcLSGkXI6rfNUbfIWF8Lp+0eN4kjEocpMyz/u9gWtAH5v
+         59a0kdOoMuYob2LRhWc6I+/zPFKiud5TO9H9jb5wKL69DMhRKaVmDvRa4HGIy3l4XCNl
+         lVcynssYq96PHwWXz7/196faKnlc70xWMv9P+84URboSaSr3bIGvtiFbAVTJpvt+iyi4
+         fQ6Q==
+X-Gm-Message-State: AOAM532A4jUXrwJipby2eOR24pm+f+QhN7luGUUgS03RykxoehyruMUj
+        hwCFM3Aktd8SZjJ0EC8UTLXbyuyttQKSoLnMeWI=
+X-Google-Smtp-Source: ABdhPJzEW1+qMwqxtRATj9Y2pkaijw208kCbHNU65ponKqlood1qioSfjhb9EegcS3SsBrTT8JCYmAIgpF+zayfmhQE=
+X-Received: by 2002:a67:1542:: with SMTP id 63mr11596800vsv.40.1626425794458;
+ Fri, 16 Jul 2021 01:56:34 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210715182123.23372-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20210715182123.23372-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdV3JkV5D5_PsngoLiLPA_B1VBvRKsCz7j2tXKYVE_Bx9A@mail.gmail.com> <CA+V-a8v5m-F-n4E9HpwLe1C9gHWepTc0rCVk5oh5RCJ7oTXe2A@mail.gmail.com>
+In-Reply-To: <CA+V-a8v5m-F-n4E9HpwLe1C9gHWepTc0rCVk5oh5RCJ7oTXe2A@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 16 Jul 2021 10:56:23 +0200
+Message-ID: <CAMuHMdWBqLcCGWkP9JoALuiXT1m9a1rRwR8ExShUQmJ1HCikZA@mail.gmail.com>
+Subject: Re: [PATCH 3/6] dt-bindings: clk: r9a07g044-cpg: Add entry for
+ P0_DIV2 core clock
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-can@vger.kernel.org, netdev <netdev@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.3-1 
-Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Freitag, dem 16.07.2021 um 00:52 +0300 schrieb Laurent Pinchart:
-> Hi Martin,
-> 
-> On Thu, Jul 15, 2021 at 09:37:24AM +0200, Martin Kepplinger wrote:
-> > Am Mittwoch, dem 14.07.2021 um 21:24 +0300 schrieb Laurent
-> > Pinchart:
-> > > On Wed, Jul 14, 2021 at 01:19:30PM +0200, Martin Kepplinger
-> > > wrote:
-> > > > Add a driver to support the i.MX8MQ MIPI CSI receiver. The
-> > > > hardware side
-> > > > is based on
-> > > > https://source.codeaurora.org/external/imx/linux-imx/tree/drivers/media/platform/imx8/mxc-mipi-csi2_yav.c?h=imx_5.4.70_2.3.0
-> > > > 
-> > > > It's built as part of VIDEO_IMX7_CSI because that's documented
-> > > > to support
-> > > > i.MX8M platforms. This driver adds i.MX8MQ support where
-> > > > currently only the
-> > > > i.MX8MM platform has been supported.
-> > > > 
-> > > > Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
-> > > > ---
-> > > >  drivers/staging/media/imx/Makefile           |   1 +
-> > > >  drivers/staging/media/imx/imx8mq-mipi-csi2.c | 949
-> > > > +++++++++++++++++++
-> > > >  2 files changed, 950 insertions(+)
-> > > >  create mode 100644 drivers/staging/media/imx/imx8mq-mipi-
-> > > > csi2.c
-> > > > 
-> > > > diff --git a/drivers/staging/media/imx/Makefile
-> > > > b/drivers/staging/media/imx/Makefile
-> > > > index 6ac33275cc97..19c2fc54d424 100644
-> > > > --- a/drivers/staging/media/imx/Makefile
-> > > > +++ b/drivers/staging/media/imx/Makefile
-> > > > @@ -16,3 +16,4 @@ obj-$(CONFIG_VIDEO_IMX_CSI) += imx6-mipi-
-> > > > csi2.o
-> 
-> [snip]
-> 
-> > > > +static int imx8mq_mipi_csi_calc_hs_settle(struct csi_state
-> > > > *state)
-> > > > +{
-> > > > +       u32 width = state-
-> > > > >format_mbus[MIPI_CSI2_PAD_SINK].width;
-> > > > +       u32 height = state-
-> > > > >format_mbus[MIPI_CSI2_PAD_SINK].height;
-> > > > +       s64 link_freq;
-> > > > +       u32 lane_rate;
-> > > > +
-> > > > +       /* Calculate the line rate from the pixel rate. */
-> > > > +       link_freq = v4l2_get_link_freq(state->src_sd-
-> > > > >ctrl_handler,
-> > > > +                                      state->csi2_fmt->width,
-> > > > +                                      state-
-> > > > >bus.num_data_lanes * 2);
-> > > > +       if (link_freq < 0) {
-> > > > +               dev_err(state->dev, "Unable to obtain link
-> > > > frequency: %d\n",
-> > > > +                       (int)link_freq);
-> > > > +               return link_freq;
-> > > > +       }
-> > > > +
-> > > > +       lane_rate = link_freq * 2;
-> > > > +       if (lane_rate < 80000000 || lane_rate > 1500000000) {
-> > > > +               dev_dbg(state->dev, "Out-of-bound lane rate
-> > > > %u\n", lane_rate);
-> > > > +               return -EINVAL;
-> > > > +       }
-> > > > +
-> > > > +       /*
-> > > > https://community.nxp.com/t5/i-MX-Processors/Explenation-for-HS-SETTLE-parameter-in-MIPI-CSI-D-PHY-registers/m-p/764275/highlight/true#M118744
-> > > >  */
-> > > > +       if (lane_rate < 250000000)
-> > > > +               state->hs_settle = 0xb;
-> > > > +       else if (lane_rate < 500000000)
-> > > > +               state->hs_settle = 0x8;
-> > > > +       else
-> > > > +               state->hs_settle = 0x6;
-> > > 
-> > > We could possibly compute this value based on the formula from
-> > > the table
-> > > in that page, but maybe that's overkill ? If you want to give it
-> > > a try,
-> > > it would be along those lines.
-> > > 
-> > >         /*
-> > >          * The D-PHY specification requires Ths-settle to be in
-> > > the range
-> > >          * 85ns + 6*UI to 140ns + 10*UI, with the unit interval
-> > > UI being half
-> > >          * the clock period.
-> > >          *
-> > >          * The Ths-settle value is expressed in the hardware as a
-> > > multiple of
-> > >          * the Esc clock period:
-> > >          *
-> > >          * Ths-settle = (PRG_RXHS_SETTLE + 1) * Tperiod of
-> > > RxClkInEsc
-> > >          *
-> > >          * Due to the one cycle inaccuracy introduced by
-> > > rounding, the
-> > >          * documentation recommends picking a value away from the
-> > > boundaries.
-> > >          * Let's pick the average.
-> > >          */
-> > >         esc_clk_rate = clk_get_rate(...);
-> > > 
-> > >         min_ths_settle = 85 + 6 * 1000000 / (lane_rate / 1000);
-> > >         max_ths_settle = 140 + 10 * 1000000 / (lane_rate / 1000);
-> > >         ths_settle = (min_ths_settle + max_ths_settle) / 2;
-> > > 
-> > >         state->hs_settle = ths_settle * esc_clk_rate / 1000000000
-> > > - 1;
-> > 
-> > I experimented a bit but would like to leave this as a task for
-> > later
-> > if that's ok. it's correct and simple now. also, using clks[i].clk
-> > based on the name string would feel better to submit seperately
-> > later.
-> 
-> That's OK with me, but I may then submit a patch on top fairly soon
-> :-)
-> Have you been able to test if this code works on your device ? The
-> main
-> reason why I think it's better is that it doesn't hardcode a specific
-> escape clock frequency assumption, so it should be able to
-> accommodate a
-> wider range of use cases. If we change it later, there's always a
-> risk
-> of regressions, while if we do this from the start, we'll figure out
-> quickly if it doesn't work in some cases.
-> 
+Hi Prabhakar,
 
-taking your code basically as-is doesn't yet work, but it helps a bit.
-tbh I don't even know how to correctly read that table / calculation:
-what is the exact relation of the calculated Ths_settle time inverval
-to the hs_settle register bits?
+On Fri, Jul 16, 2021 at 10:45 AM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
+> On Fri, Jul 16, 2021 at 9:08 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > On Thu, Jul 15, 2021 at 8:21 PM Lad Prabhakar
+> > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > > Add P0_DIV2 core clock required for CANFD module. CANFD core clock is
+> > > sourced from P0_DIV2 referenced from HW manual Rev.0.50.
+> >
+> > OK.
+> >
+> > > Also add R9A07G044_LAST_CORE_CLK entry to avoid changes in
+> > > r9a07g044-cpg.c file.
+> >
+> > I'm not so fond of adding this.  Unlike the other definitions, it is
+> > not really part of the bindings, but merely a convenience definition
+> > for the driver.  Furthermore it has to change when a new definition
+> > is ever added.
+> >
+> Agreed will drop this.
+>
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > ---
+> > >  include/dt-bindings/clock/r9a07g044-cpg.h | 2 ++
+> > >  1 file changed, 2 insertions(+)
+> > >
+> > > diff --git a/include/dt-bindings/clock/r9a07g044-cpg.h b/include/dt-bindings/clock/r9a07g044-cpg.h
+> > > index 0728ad07ff7a..2fd20db0b2f4 100644
+> > > --- a/include/dt-bindings/clock/r9a07g044-cpg.h
+> > > +++ b/include/dt-bindings/clock/r9a07g044-cpg.h
+> > > @@ -30,6 +30,8 @@
+> > >  #define R9A07G044_CLK_P2               19
+> > >  #define R9A07G044_CLK_AT               20
+> > >  #define R9A07G044_OSCCLK               21
+> > > +#define R9A07G044_CLK_P0_DIV2          22
+> > > +#define R9A07G044_LAST_CORE_CLK                23
+> >
+> > Third issue: off-by-one error, it should be 22 ;-)
+> >
+> 23 was intentionally as these numbers aren't used for core clock count
+> we use r9a07g044_core_clks[] instead.
 
-if the 2 of us can't quickly figure it out I can ask NXP via that
-community forum issue and I created
-https://source.puri.sm/Librem5/linux-next/-/issues/340 so I won't
-forget about it.
+It ends up as an off-by-one bug in the range check in
+rzg2l_cpg_clk_src_twocell_get().
 
-thanks!
+> Said that I'll drop this.
 
+OK.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
