@@ -2,138 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 99FDD3CBEEC
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 00:04:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2D7D3CBF0B
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 00:11:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237350AbhGPWGl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 18:06:41 -0400
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:22378 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S237111AbhGPWGj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Jul 2021 18:06:39 -0400
-Received: from pps.filterd (m0098394.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 16GLahfY054129;
-        Fri, 16 Jul 2021 18:03:40 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding; s=pp1;
- bh=Dar/qzeXVLlj4sPzqVyzEDrvQNCwdGWIFsIMhA+myRY=;
- b=MPPwGFUeeyq0Jcd5j9FVMPFBpg2oAvq87RTf7IbNYzoNHEfzl3LDN4wKxu5AgTWrQN0x
- ZqVShMeoiyoCNK3nMYDD34scBSJD6F2+pC4a5Ux+loqU0xszSSltRITnU8B0lgXVXz4k
- yZQV/Mg/geNOv9tfVQvLw9tQIZQtB5gS7MY6M9loKZzhV9IEea3TeQrQ7V0SOhYEyGNe
- ofQGtH2XpzIkB2/p4uMUuDB7sgvlCJEAuX2mdAJ4TFXZVIIFxxXwe+JuYA4WR6k+uwW0
- XWGldKLGzaKoHEJeQOfg9u8I1dXYVepeRioAXPWYXWLCC9SZhhxY5SUO168k7GbKDLOz 4g== 
-Received: from ppma03dal.us.ibm.com (b.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.11])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 39tw4q1qq4-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 16 Jul 2021 18:03:39 -0400
-Received: from pps.filterd (ppma03dal.us.ibm.com [127.0.0.1])
-        by ppma03dal.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 16GLw2Xp014417;
-        Fri, 16 Jul 2021 22:03:39 GMT
-Received: from b03cxnp08026.gho.boulder.ibm.com (b03cxnp08026.gho.boulder.ibm.com [9.17.130.18])
-        by ppma03dal.us.ibm.com with ESMTP id 39rkgyca71-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 16 Jul 2021 22:03:38 +0000
-Received: from b03ledav006.gho.boulder.ibm.com (b03ledav006.gho.boulder.ibm.com [9.17.130.237])
-        by b03cxnp08026.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 16GM3bp331326704
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Fri, 16 Jul 2021 22:03:37 GMT
-Received: from b03ledav006.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id B886CC605A;
-        Fri, 16 Jul 2021 22:03:37 +0000 (GMT)
-Received: from b03ledav006.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 764E7C6055;
-        Fri, 16 Jul 2021 22:03:37 +0000 (GMT)
-Received: from v0005c16.aus.stglabs.ibm.com (unknown [9.211.92.96])
-        by b03ledav006.gho.boulder.ibm.com (Postfix) with ESMTP;
-        Fri, 16 Jul 2021 22:03:37 +0000 (GMT)
-From:   Eddie James <eajames@linux.ibm.com>
-To:     linux-leds@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, pavel@ucw.cz,
-        Eddie James <eajames@linux.ibm.com>
-Subject: [PATCH v2 7/7] leds: pca955x: Switch to i2c probe_new
-Date:   Fri, 16 Jul 2021 17:03:31 -0500
-Message-Id: <20210716220331.49303-8-eajames@linux.ibm.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210716220331.49303-1-eajames@linux.ibm.com>
-References: <20210716220331.49303-1-eajames@linux.ibm.com>
+        id S236862AbhGPWO1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 18:14:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34664 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236106AbhGPWO0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 18:14:26 -0400
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2851DC06175F
+        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 15:11:30 -0700 (PDT)
+Received: by mail-ot1-x32a.google.com with SMTP id e1-20020a9d63c10000b02904b8b87ecc43so11429933otl.4
+        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 15:11:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=GsypGQCg9S/GisxcDVlWXCBawzzEOc/grzW2bvmRMAg=;
+        b=gVx/ZHrIC70vmVOCXTr5TS+1Jruf64sqkyxZ3UrGgiV9XuXtxC2XqLJ7mJExhp4mM0
+         KBQbw8boqaMx05zqTEMZhJ9kHBIa+UbhgxjdD9lfnx26rqskUupU666RDLet7noW+R1t
+         aurTICKChGvUPOXRPGC/Rn2T3wlWxwz49jWSAgSiM4hBTew/zOtn0SFMeuoVm9x3Z9xg
+         mRRG+s4KML/diC5yfsyM0KPHWbspq9A3dPbTW6ZcB1dlLiA/guSR/TXIBXZZHhG8A+ja
+         bSQ0fcPF9WhxPjmtXlaJEB5SZz+ZEV1haGrLR8OuDqGqMjgnyUKndrCyt/iQgwoV1qYQ
+         diEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=GsypGQCg9S/GisxcDVlWXCBawzzEOc/grzW2bvmRMAg=;
+        b=MazOitdoYU9gkDwzdWm3iBOJEBmpeHltBJfYb0sbow+ydHejxCJLAxN0MlYNiLpyso
+         Ei5Yu+H5Afl0iooCgfmdLmGtiwvHJlWQpJRpLYbsS+xsMe+TypK8SJSXYWO4K30WOQUY
+         IF+E6RGgwkZpo6zVc+bgj2Nz86+od44gKR74cV3b1rlZYXmPSdfR1ur6gyVZX2p8k00W
+         puBvuEq0tVB4wXs4gLGS0SmKhnmnY7IrBUX1QX2dzvM4mBT9j8zAmaejoGzYjnXZHpXx
+         yg/UhyMqylsfLwO2mNnebOSBuV/AFshh3RWEIsMqr8HAB3n74Szqly3RSHZnioRePqoC
+         fHQQ==
+X-Gm-Message-State: AOAM531vuTDZ3Cj9R+mWVX1/W7HhpZJqHmd7cGhvZ9+J5uv6p3Fw8Vrf
+        Zszba2bbEYhbr8fmZPmZ2L9HEQ==
+X-Google-Smtp-Source: ABdhPJwBsE83jLbN160zVaPWxMbMbgpOEWRAqn74ZxPAZqv8WZM743HqtDM41JWWiSUBuY6Bb+j3ng==
+X-Received: by 2002:a9d:4f09:: with SMTP id d9mr9585414otl.265.1626473489414;
+        Fri, 16 Jul 2021 15:11:29 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id b10sm2365497oiy.4.2021.07.16.15.11.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Jul 2021 15:11:28 -0700 (PDT)
+Date:   Fri, 16 Jul 2021 17:11:26 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Prasad Malisetty <pmaliset@codeaurora.org>, agross@kernel.org,
+        bhelgaas@google.com, lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
+        svarbanov@mm-sol.com, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dianders@chromium.org,
+        mka@chromium.org, vbadigan@codeaurora.org, sallenki@codeaurora.org
+Subject: Re: [PATCH v4 4/4] PCIe: qcom: Add support to control pipe clk src
+Message-ID: <YPIEDhIEPo+Gwibq@yoga>
+References: <1626443927-32028-1-git-send-email-pmaliset@codeaurora.org>
+ <1626443927-32028-5-git-send-email-pmaliset@codeaurora.org>
+ <CAE-0n538LKQpeY_NKQF-VM3nHVxEE0B_pN4aN=sQ8iQzK+Yyxw@mail.gmail.com>
+ <YPHsu+QLWRYpYRCz@yoga>
+ <CAE-0n53k9Pn0LMe2xiNN_iTsv-z_rrGSthJVHeLdafDhPuBK=A@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: uU0o8tTZXt1Ap1ZldDvnPg7_9rsuAgtV
-X-Proofpoint-GUID: uU0o8tTZXt1Ap1ZldDvnPg7_9rsuAgtV
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
- definitions=2021-07-16_10:2021-07-16,2021-07-16 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
- lowpriorityscore=0 spamscore=0 priorityscore=1501 bulkscore=0
- mlxlogscore=999 clxscore=1015 impostorscore=0 mlxscore=0 suspectscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2104190000 definitions=main-2107160136
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAE-0n53k9Pn0LMe2xiNN_iTsv-z_rrGSthJVHeLdafDhPuBK=A@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The deprecated i2c probe functionality doesn't work with OF
-compatible strings, as it only checks for the i2c device id. Switch
-to the new way of probing and grab the match data to select the
-chip type.
+On Fri 16 Jul 16:39 CDT 2021, Stephen Boyd wrote:
 
-Signed-off-by: Eddie James <eajames@linux.ibm.com>
----
- drivers/leds/leds-pca955x.c | 23 +++++++++++++++++++----
- 1 file changed, 19 insertions(+), 4 deletions(-)
+> Quoting Bjorn Andersson (2021-07-16 13:31:55)
+> > On Fri 16 Jul 14:37 CDT 2021, Stephen Boyd wrote:
+> >
+> > > Quoting Prasad Malisetty (2021-07-16 06:58:47)
+> > > > This is a new requirement for sc7280 SoC.
+> > > > To enable gdsc gcc_pcie_1_pipe_clk_src should be TCXO.
+> > >
+> > > Why? Can you add that detail here? Presumably it's something like the
+> > > GDSC needs a running clk to send a reset through the flops or something
+> > > like that.
+> > >
+> >
+> > Which presumably means that we need to "park" gcc_pcie_N_pipe_clk_src
+> > whenever the PHY pipe is paused due to a suspend or runtime suspend.
+> >
+> > I find this part of the commit message to primarily describing the next
+> > patch (that is yet to be posted).
+> 
+> Ah I see. So there will be another patch to do the park and unpark over
+> suspend/resume?
+> 
 
-diff --git a/drivers/leds/leds-pca955x.c b/drivers/leds/leds-pca955x.c
-index a6aa4b9abde8..a6b5699aeae4 100644
---- a/drivers/leds/leds-pca955x.c
-+++ b/drivers/leds/leds-pca955x.c
-@@ -479,8 +479,7 @@ static const struct of_device_id of_pca955x_match[] = {
- };
- MODULE_DEVICE_TABLE(of, of_pca955x_match);
- 
--static int pca955x_probe(struct i2c_client *client,
--			 const struct i2c_device_id *id)
-+static int pca955x_probe(struct i2c_client *client)
- {
- 	struct pca955x *pca955x;
- 	struct pca955x_led *pca955x_led;
-@@ -494,8 +493,24 @@ static int pca955x_probe(struct i2c_client *client,
- 	bool set_default_label = false;
- 	bool keep_pwm = false;
- 	char default_label[8];
-+	enum pca955x_type chip_type;
-+	const void *md = device_get_match_data(&client->dev);
- 
--	chip = &pca955x_chipdefs[id->driver_data];
-+	if (md) {
-+		chip_type = (enum pca955x_type)md;
-+	} else {
-+		const struct i2c_device_id *id = i2c_match_id(pca955x_id,
-+							      client);
-+
-+		if (id) {
-+			chip_type = (enum pca955x_type)id->driver_data;
-+		} else {
-+			dev_err(&client->dev, "unknown chip\n");
-+			return -ENODEV;
-+		}
-+	}
-+
-+	chip = &pca955x_chipdefs[chip_type];
- 	adapter = client->adapter;
- 	pdata = dev_get_platdata(&client->dev);
- 	if (!pdata) {
-@@ -670,7 +685,7 @@ static struct i2c_driver pca955x_driver = {
- 		.name	= "leds-pca955x",
- 		.of_match_table = of_pca955x_match,
- 	},
--	.probe	= pca955x_probe,
-+	.probe_new = pca955x_probe,
- 	.id_table = pca955x_id,
- };
- 
--- 
-2.27.0
+That's my understanding.
 
+> >
+> > > > after PHY initialization gcc_pcie_1_pipe_clk_src needs
+> > > > to switch from TCXO to gcc_pcie_1_pipe_clk.
+> > > >
+> > > > Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
+> > > > ---
+> > > >  drivers/pci/controller/dwc/pcie-qcom.c | 22 ++++++++++++++++++++++
+> > > >  1 file changed, 22 insertions(+)
+> > > >
+> > > > diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> > > > index 8a7a300..9e0e4ab 100644
+> > > > --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> > > > +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> > > > @@ -1167,6 +1170,20 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
+> > > >         if (ret < 0)
+> > > >                 return ret;
+> > > >
+> > > > +       if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280")) {
+> > > > +               res->gcc_pcie_1_pipe_clk_src = devm_clk_get(dev, "pipe_mux");
+> > > > +               if (IS_ERR(res->gcc_pcie_1_pipe_clk_src))
+> > > > +                       return PTR_ERR(res->gcc_pcie_1_pipe_clk_src);
+> > > > +
+> > > > +               res->phy_pipe_clk = devm_clk_get(dev, "phy_pipe");
+> > > > +               if (IS_ERR(res->phy_pipe_clk))
+> > > > +                       return PTR_ERR(res->phy_pipe_clk);
+> > > > +
+> > > > +               res->ref_clk_src = devm_clk_get(dev, "ref");
+> > > > +               if (IS_ERR(res->ref_clk_src))
+> > > > +                       return PTR_ERR(res->ref_clk_src);
+> > > > +       }
+> > > > +
+> > > >         res->pipe_clk = devm_clk_get(dev, "pipe");
+> > > >         return PTR_ERR_OR_ZERO(res->pipe_clk);
+> > > >  }
+> > > > @@ -1255,6 +1272,11 @@ static void qcom_pcie_deinit_2_7_0(struct qcom_pcie *pcie)
+> > > >  static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
+> > > >  {
+> > > >         struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
+> > > > +       struct dw_pcie *pci = pcie->pci;
+> > > > +       struct device *dev = pci->dev;
+> > > > +
+> > > > +       if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280"))
+> > > > +               clk_set_parent(res->gcc_pcie_1_pipe_clk_src, res->phy_pipe_clk);
+> > >
+> > > Is anything wrong if we call clk_set_parent() here when this driver is
+> > > running on previous SoCs where the parent is assigned via DT?
+> >
+> > We don't assign the parent on previous platforms, we apparently just
+> > rely on the reset value (afaict).
+> 
+> Oh sheesh. I thought that was being done already. It looks like at least
+> on sdm845 that there is only one parent for this clk so we don't need to
+> call clk_set_parent to set it there.
+> 
+
+I'll have to check the documentation on that...
+
+> >
+> > So I think it makes sense for all platforms to explicitly mux
+> > pipe_clk_src to phy::pipe_clk, one the PHY is up and running.
+> 
+> Sure, except some platforms don't have a mux?
+> 
+> >
+> > But I was under the impression that we have the BRANCH_HALT_SKIP on the
+> > pipe_clk because there was some sort of feedback loop to the PHY's
+> > calibration... What this patch indicates is that we should park
+> > pipe_clk_src onto XO at boot time, then after the PHY starts ticking we
+> > should enable and reparent the clk_src - at which point I don't see why
+> > we need the HALT_SKIP.
+> 
+> I recall that qcom folks kept saying they needed to enable the
+> pipe_clk_src clk branch in GCC before enabling the phy. So they required
+> the halt skip flag so that the clk_prepare_enable() call would
+> effectively set the enable bit in GCC and move on without caring. Then
+> they could enable the upstream clk source in the phy without having to
+> stop halfway through to enable the branch in GCC. The whole design here
+> is pretty insane.
+> 
+> In fact, I think we discussed this whole topic in late 2019[1] and we
+> concluded that we could just slam the clk on forever and deal with the
+> clk_set_parent() when the clk became a mux+gate instead of a pure gate.
+> 
+
+That's exactly what I asked Prasad about, because per the description
+and content of this patch the parent pipe_clk_src will remain XO until
+the PHY is initialized. So either the PHY no longer need gcc in the loop
+to calibrate the pipe clock or it used to, but no longer does.
+
+
+Thanks for the link, we definitely should clean that up, but I think at
+this point it might be worth waiting a little bit longer to see what
+actually going to happen in the suspend/resume (system and runtime)
+paths...
+
+> >
+> > > Also, shouldn't we make sure the parent is XO at driver probe time so
+> > > that powering on the GDSC works properly?
+> > >
+> > > It all feels like a kludge though given that the GDSC is the one that
+> > > requires the clock to be running at XO and we're working around that in
+> > > the pcie driver instead of sticking that logic into the GDSC. What do we
+> > > do if the GDSC is already enabled out of boot instead of being the power
+> > > on reset (POR) configuration?
+> > >
+> >
+> > What happens if we boot the device out of NVME...
+> 
+> I guess it's fine? The GDSC will be on and the parent clk will already
+> be set so things are a no-op.
+> 
+
+Yes, if the pipe_clk_src is parked nicely in late initcall, so that when the
+pd late init cuts the GDSC things will end up in a clean state.
+
+Regards,
+Bjorn
+
+> >
+> >
+> > PS. Are we certain that it's the PCIe driver and not the PHY that should
+> > do this dance? I really would like to see the continuation of this patch
+> > to see the full picture...
+> >
+> 
+> [1] https://lore.kernel.org/linux-clk/eba920f5-f5a2-53d5-2227-529b5ea99d32@codeaurora.org/
