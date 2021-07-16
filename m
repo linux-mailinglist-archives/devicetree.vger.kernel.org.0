@@ -2,116 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 989D03CBB9A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 20:03:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7D8E3CBB9D
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 20:03:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231828AbhGPSFw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 14:05:52 -0400
-Received: from mail-io1-f43.google.com ([209.85.166.43]:43602 "EHLO
-        mail-io1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231664AbhGPSFv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 14:05:51 -0400
-Received: by mail-io1-f43.google.com with SMTP id k16so11584314ios.10;
-        Fri, 16 Jul 2021 11:02:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=o8ZKFwDkRHkveLaudUDVhxvrMvahOTC+Q27T5GsqDWc=;
-        b=AHYxJL5iPqVs2dwYwP7G3iMWZoJFF7chUZeFJveV39g/ZsXnNhEAmu0UiO8gDk/maA
-         /G6clO+Td98dcoB7G0JJMPaaSS2b+elidsYQVI0rgq3NR8+6eq8DjbW2Mgi9BwDcsICI
-         /XzhXpdo/VKmgQWb2MkEWCiiBwHk7fhLyHAuHNDlCXU6OpPYqHd+GJTIKWihqnuaPk9r
-         x5xofzZO5wXDQQ/gFnVp2yFJxK2C9hVXTTheHOgsgbG9ZEOHUXRG+fdR/gRh6ldTfjyR
-         PlQ8XVABkdmBJ/ggvrsgakUqJvRybyWtYxlRKsabxX5NYtkSjyAEmJve79JcYzOe5/cy
-         sYYA==
-X-Gm-Message-State: AOAM531py0ExmivzH84WIM6SZ7G8Vw7zj3aYyXgSD2/rRlTo8XMj5o+r
-        0EtCEfmJ2VYh0vGmEDvysw==
-X-Google-Smtp-Source: ABdhPJxh7jTPpNQyp+Byi/egf6lVzgVhWXlz6KVf1X2/P0wH39CqS6+wkKXzdyM7NVt0sfMNR6fLKA==
-X-Received: by 2002:a02:c9c2:: with SMTP id c2mr9890706jap.98.1626458576094;
-        Fri, 16 Jul 2021 11:02:56 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id o12sm5104314ilg.10.2021.07.16.11.02.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Jul 2021 11:02:55 -0700 (PDT)
-Received: (nullmailer pid 3687147 invoked by uid 1000);
-        Fri, 16 Jul 2021 18:02:53 -0000
-Date:   Fri, 16 Jul 2021 12:02:53 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: memory: renesas,rpc-if: Miscellaneous
- improvements
-Message-ID: <20210716180253.GA3684196@robh.at.kernel.org>
-References: <d430f9c06d6691fe8a98f923cdb7ca13772834b1.1626262043.git.geert+renesas@glider.be>
+        id S229611AbhGPSGC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 14:06:02 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:52019 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232024AbhGPSGB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 14:06:01 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1626458586; x=1657994586;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=y2RHDnQpUZRnEA3WWO5Lc9cWPwpygTvm/jq2Nuugnok=;
+  b=v5o3+zCnPlxKFwLIzLMppZZoH9bPVvrC0IQ3ffDJLzVBt3FbmI7ApFVY
+   DA2S11kdr+SrOqwN3ioJj8S3A9nUrrqhcdsDvPvUPcvIUYN+iC57pGAEm
+   GVNMPqSJqeJRw0hcwPi3j0gv2/GHZa5f/psxYIC2AlgZf1EVKtHqQJZv4
+   ZySkH4XBtRJO2f23cITeNPaEuVWUNXLTdlHR1fgpIHmcK0EG6xD4Vxgks
+   lcMbDAdvPFFcmaId7XxAw00hjBAHMFXTnxX0jWjsMTlWy4QLyBpXZ7HNS
+   rAalp+rp9ZNsy/qdaGQmikVacIj6JLP/opyqaK4fQaVN29hCXbCv5dMKS
+   w==;
+IronPort-SDR: rtvun+ctdUILoyIcLhCjTjsOK9+bFBK6zn9xGfNRoy+O3kKkxmjlYzQCFln1FAeNVOd6nJee2P
+ v+Zx97su2SxuvWUqAOA6+oBZOJBGV17szslERe6RV/sL6DPIiT4g7vjA9cZb3t/9xm87gxH02c
+ 4vVB/rNKkY1ANDXBHSOEuwApzVwNALSXGBgITVlea+NsO0n/WLjc5twVoilotaiRJyWeTJmJ5h
+ tQqmLyKd8ggm9uZpwOgW6ck3K7rPDV4dR5Tlqo+8aVM/m6rvExr3C0JvgsDWYHPKUq75VoBy/L
+ X7Fj+/39GzQvPXEu9mKD0qfy
+X-IronPort-AV: E=Sophos;i="5.84,245,1620716400"; 
+   d="scan'208";a="136210915"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Jul 2021 11:03:06 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Fri, 16 Jul 2021 11:03:05 -0700
+Received: from [10.12.72.255] (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
+ Transport; Fri, 16 Jul 2021 11:03:04 -0700
+Subject: Re: [PATCH v3 00/24] ARM: at91: pm: add support for sama7g5
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>,
+        <robh+dt@kernel.org>, <linux@armlinux.org.uk>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20210415105010.569620-1-claudiu.beznea@microchip.com>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+Message-ID: <d4de57d1-aafe-9040-50e3-1e3f587c3eae@microchip.com>
+Date:   Fri, 16 Jul 2021 20:03:03 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d430f9c06d6691fe8a98f923cdb7ca13772834b1.1626262043.git.geert+renesas@glider.be>
+In-Reply-To: <20210415105010.569620-1-claudiu.beznea@microchip.com>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 14, 2021 at 01:30:13PM +0200, Geert Uytterhoeven wrote:
->   - Add missing "#{address,size}-cells",
->   - Fix rejection of legitimate flash subnodes containing multiple
->     compatible values,
->   - Add missing list of required properties.
+On 15/04/2021 at 12:49, Claudiu Beznea wrote:
+> Hi,
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  .../memory-controllers/renesas,rpc-if.yaml    | 23 ++++++++++++++++---
->  1 file changed, 20 insertions(+), 3 deletions(-)
+> This series adds PM support for SAMA7G5. The standby, ulp0, ulp1, and
+> backup modes are supported.
 > 
-> diff --git a/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml b/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml
-> index 990489fdd2ac33fe..c0d899a2305361b1 100644
-> --- a/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml
-> +++ b/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml
-> @@ -56,17 +56,34 @@ properties:
->    resets:
->      maxItems: 1
->  
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
+> Thank you,
+> Claudiu Beznea
+> 
+> Changes in v3:
+> - drop: status = "okay" in patch 16/24
+> 
+> Changes in v2:
+> - keep only the generic sama7_dt in patch 22/24 and adapt patch 23/24
+> - collected tags
+> 
+> Claudiu Beznea (23):
+>    ARM: at91: pm: move pm_bu to soc_pm data structure
+>    ARM: at91: pm: move the setup of soc_pm.bu->suspended
+>    ARM: at91: pm: document at91_soc_pm structure
+>    ARM: at91: pm: check for different controllers in at91_pm_modes_init()
+>    ARM: at91: pm: do not initialize pdev
+>    ARM: at91: pm: use r7 instead of tmp1
+>    ARM: at91: pm: avoid push and pop on stack while memory is in
+>      self-refersh
+>    ARM: at91: pm: s/CONFIG_SOC_SAM9X60/CONFIG_HAVE_AT91_SAM9X60_PLL/g
+>    ARM: at91: pm: add support for waiting MCK1..4
+>    ARM: at91: sfrbu: add sfrbu registers definitions for sama7g5
+>    ARM: at91: ddr: add registers definitions for sama7g5's ddr
+>    ARM: at91: pm: add self-refresh support for sama7g5
+>    ARM: at91: pm: add support for MCK1..4 save/restore for ulp modes
+>    ARM: at91: pm: add support for 2.5V LDO regulator control
+>    ARM: at91: pm: wait for ddr power mode off
+>    dt-bindings: atmel-sysreg: add bindings for sama7g5
+>    ARM: at91: pm: add sama7g5 ddr controller
+>    ARM: at91: pm: add sama7g5 ddr phy controller
+>    ARM: at91: pm: save ddr phy calibration data to securam
+>    ARM: at91: pm: add backup mode support for SAMA7G5
+>    ARM: at91: pm: add sama7g5's pmc
+>    ARM: at91: pm: add pm support for SAMA7G5
+>    ARM: at91: pm: add sama7g5 shdwc
+> 
+> Eugen Hristev (1):
+>    ARM: at91: sama7: introduce sama7 SoC family
 
-spi-controller.yaml already defines this.
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+For the whole series. Thanks Claudiu and Eugen.
 
->  patternProperties:
->    "flash@[0-9a-f]+$":
->      type: object
->      properties:
->        compatible:
-> -        enum:
-> -          - cfi-flash
-> -          - jedec,spi-nor
-> +        contains:
-> +          enum:
-> +            - cfi-flash
-> +            - jedec,spi-nor
->  
->  unevaluatedProperties: false
->  
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - clocks
-> +  - power-domains
-> +  - resets
-> +  - '#address-cells'
-> +  - '#size-cells'
-> +
->  examples:
->    - |
->      #include <dt-bindings/clock/renesas-cpg-mssr.h>
-> -- 
-> 2.25.1
+Best regards,
+   Nicolas
+
+
 > 
+>   .../devicetree/bindings/arm/atmel-sysregs.txt |  14 +-
+>   arch/arm/mach-at91/Makefile                   |   1 +
+>   arch/arm/mach-at91/generic.h                  |   2 +
+>   arch/arm/mach-at91/pm.c                       | 343 ++++++--
+>   arch/arm/mach-at91/pm.h                       |   3 +
+>   arch/arm/mach-at91/pm_data-offsets.c          |   2 +
+>   arch/arm/mach-at91/pm_suspend.S               | 827 +++++++++++++-----
+>   arch/arm/mach-at91/sama7.c                    |  33 +
+>   include/soc/at91/sama7-ddr.h                  |  80 ++
+>   include/soc/at91/sama7-sfrbu.h                |  34 +
+>   10 files changed, 1049 insertions(+), 290 deletions(-)
+>   create mode 100644 arch/arm/mach-at91/sama7.c
+>   create mode 100644 include/soc/at91/sama7-ddr.h
+>   create mode 100644 include/soc/at91/sama7-sfrbu.h
 > 
+
+
+-- 
+Nicolas Ferre
