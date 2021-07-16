@@ -2,94 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 041033CBF2B
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 00:17:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89F733CBF83
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 00:55:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237618AbhGPWUu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 18:20:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36092 "EHLO
+        id S230227AbhGPW6U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 18:58:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237577AbhGPWUs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 18:20:48 -0400
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E0A7C06175F
-        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 15:17:52 -0700 (PDT)
-Received: by mail-ed1-x542.google.com with SMTP id l1so14807739edr.11
-        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 15:17:52 -0700 (PDT)
+        with ESMTP id S229879AbhGPW6T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 18:58:19 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03288C061760
+        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 15:55:23 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id s18so16105421ljg.7
+        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 15:55:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=dm6ejJdRZDZlW/WyYTU8xmsjcdEmtRJOpLiC3zeIiIw=;
-        b=FAy2r80ZKuhx/oEbG8GQJGgjsdA8xD4521tzi//j53N2HFzgcbewEq8378tlfULuG2
-         /Y1SNhkg5i073oRr2H74aFCMMQ7eQQvDUV5gvNTcKnEXIu11sOrF7I8Fhzns3bIDXBac
-         565WxfqItqBoKO7rbPhkuKo+SVs64e0OFIiA/hP+xAmIiO5ucPO1wdMzJNVUYzyk8mnP
-         3QdFSOWQqK2zRL0Pru4kNRA7hSvg1qKa3E8GqrsO47RF/qxqXGO3dPPjX/jUMExJBaO3
-         l+mO0cFCoTU0awv2klx6QHFdq2QbgfKoZ+OQmWvia4f+6GllYatuqsVJGBcf18L6KPsW
-         Q7GA==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=NzFZx7BjonyE5OA8jgKf/uBGn05pZovkKHpoMsBKMNQ=;
+        b=gjVHRBBZk7KgDEfyUyY9zZcFkWzFGyiJnJ9DhAKstZittZZ3OfkCiaFUtQf39dPpXZ
+         +SrblgSrFwyPn4RGWEWCdUWaLS8FSJXMQPSMpYL6OrwwdwVGhUOnS2AjNPTuvxEQK17H
+         eOoPwPXexVrUqeBheNEL2pQAy5r1+Hw7hDD7DoavLtZPGsx3JpeVamrmp1LYraIiPflF
+         6FRJd5maRd6WbCiy4G+EfAqYHv8GxTib3hINQzZpfNBraYOrLlqHyOZYzW6i4UV7gkzd
+         wqsN4gjY/A53myCaH7IUgybczXz8qtFlJniBPRbSnjTVV7tTYoKoP+/mpcGVP4JGrCfk
+         IEUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=dm6ejJdRZDZlW/WyYTU8xmsjcdEmtRJOpLiC3zeIiIw=;
-        b=o+FqGIMvBY3lSitHBftcITsqDSvplaUzstCAbbdbYy5/uD0P9w3OPaT79su+5eMBoh
-         tGNVv7ftVsy+CwJc6jP62Bnrm7jt0xqIIh9lhkp83tL6FFjYEsxjm5wl2k6eSNWREqt/
-         uGpYJMCEmZbm2eLaDu+kBmOj7xFSKjQcEoV3dYgmywRSobselLep0K/XnZt8E4+GPVwx
-         pqNiJmh/kmKH8GTxi4uMKGPSo0h+rggyYZHW3Tmq7NQRYgzCOM6bHsTinErifTOHjjce
-         RHs+nWe0hsFdAQiB12UprbLKyzGoUDKScbS/S6uSoS7RpYbU4DjhmUEuwNGIdedBsfRV
-         2MLA==
-X-Gm-Message-State: AOAM530ksP9xQGCg6i1sDHFthC0Vd8+4u/vo9y5PmOq+0/Iqp8B1JpUl
-        aTBl7REB/Eoi37AjCJW/OsEHbg==
-X-Google-Smtp-Source: ABdhPJwpH0+MNHgerJ9Bnms1z6WdDO8V2eqxQq+GOk5dbXtaTHI9VcRbfawAfJ3Po/FR8jnTVJmm4w==
-X-Received: by 2002:aa7:d991:: with SMTP id u17mr17380344eds.240.1626473871216;
-        Fri, 16 Jul 2021 15:17:51 -0700 (PDT)
-Received: from localhost.localdomain (dh207-98-239.xnet.hr. [88.207.98.239])
-        by smtp.googlemail.com with ESMTPSA id f22sm4242634edr.16.2021.07.16.15.17.50
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=NzFZx7BjonyE5OA8jgKf/uBGn05pZovkKHpoMsBKMNQ=;
+        b=KesKUP/+frB/qLPq+EyDiIGCl5VQbJASLo+69Kj4XcV9OdWKxYveNALL7rdOU/azE6
+         T0ILp8QUqVwDTOyOeyZ/d3Zf4i3DZ/2GXr7EqiNDVtpH8crmFkPUTnG/JQwjJrr4FItC
+         KcNEI2hqZ7UH5SYS3pHsO3meLt5pz5l/Ga2qCCZG+pGwdoITMX/hgtgInA14RFsWtImz
+         ttFk+7fy5Hbw9ECYY4h8UFy8Ak7EHTbOAYmEhPXO5E/lbFI3Vh47Fvr2Ndze1ZGJRbm4
+         dVQ1iL1pwdEQQGKt+sIu6JIERk2scUf/FWZo8s+uja1tKZsAjyERBtLkSVn0YR//9yaR
+         zYMQ==
+X-Gm-Message-State: AOAM532z4sGzCV4hsBcghMyOaMzl0m+IgIYRNChE1VX0hG4y81RmRPEZ
+        dOp/PYUGvAPoes5qmGgBmExj3Q==
+X-Google-Smtp-Source: ABdhPJxHFsQEvvmOMxDUSMQwcWDUKlgq9Mj/1HKuDjfV0f3+VNfRfeV+vS4FbXIb7hMC96T6rDwiAA==
+X-Received: by 2002:a05:651c:488:: with SMTP id s8mr10820962ljc.328.1626476121798;
+        Fri, 16 Jul 2021 15:55:21 -0700 (PDT)
+Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
+        by smtp.gmail.com with ESMTPSA id t81sm741677lff.296.2021.07.16.15.55.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Jul 2021 15:17:50 -0700 (PDT)
-From:   Robert Marko <robert.marko@sartura.hr>
-To:     linus.walleij@linaro.org, bgolaszewski@baylibre.com,
-        robh+dt@kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     luka.perkov@sartura.hr, Robert Marko <robert.marko@sartura.hr>
-Subject: [PATCH 2/2] dt-bindings: gpio: tn48m: document TN4810M support
-Date:   Sat, 17 Jul 2021 00:17:44 +0200
-Message-Id: <20210716221744.5445-2-robert.marko@sartura.hr>
+        Fri, 16 Jul 2021 15:55:21 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     linux-serial@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Marc Zyngier <maz@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: serial: 8250: Add Exar compatibles
+Date:   Sat, 17 Jul 2021 00:53:19 +0200
+Message-Id: <20210716225319.1282704-1-linus.walleij@linaro.org>
 X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210716221744.5445-1-robert.marko@sartura.hr>
-References: <20210716221744.5445-1-robert.marko@sartura.hr>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Delta TN4810M expands the existing TN48M drivers, so lets
-document the new compatibles.
+The Intel IXP425 Vulcan board has an Exar XR16L2551 8250-compatible.
+It works like an 8250 but it is always good to specify exactly which
+component we are using. This allows us to specify:
 
-Note that this patch depends on the following series:
-https://patchwork.ozlabs.org/project/linux-gpio/list/?series=247538
+compatible = "exar,xr16l2551", "ns8250";
 
-Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+Put in some sibling Exar serial compatibles while we're at it.
+
+Cc: Marc Zyngier <maz@kernel.org>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+ Documentation/devicetree/bindings/serial/8250.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml b/Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml
-index aca646aecb12..d729c5dbed65 100644
---- a/Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml
-+++ b/Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml
-@@ -24,6 +24,10 @@ properties:
-       - delta,tn48m-gpio-sfp-tx-disable
-       - delta,tn48m-gpio-sfp-present
-       - delta,tn48m-gpio-sfp-los
-+      - delta,tn4810m-gpio-sfp-tx-disable
-+      - delta,tn4810m-gpio-sfp-tx-fault
-+      - delta,tn4810m-gpio-sfp-present
-+      - delta,tn4810m-gpio-sfp-los
- 
-   reg:
-     maxItems: 1
+diff --git a/Documentation/devicetree/bindings/serial/8250.yaml b/Documentation/devicetree/bindings/serial/8250.yaml
+index a0bf061b80fe..fa767440f281 100644
+--- a/Documentation/devicetree/bindings/serial/8250.yaml
++++ b/Documentation/devicetree/bindings/serial/8250.yaml
+@@ -64,6 +64,12 @@ properties:
+       - const: nuvoton,npcm750-uart
+       - const: nvidia,tegra20-uart
+       - const: nxp,lpc3220-uart
++      - items:
++          - enum:
++              - exar,xr16l2552
++              - exar,xr16l2551
++              - exar,xr16l2550
++          - const: ns8250
+       - items:
+           - enum:
+               - altr,16550-FIFO32
 -- 
 2.31.1
 
