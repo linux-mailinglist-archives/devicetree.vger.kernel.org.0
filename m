@@ -2,611 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A1C963CBA3B
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 18:01:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4444C3CBA4D
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 18:07:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240982AbhGPQEf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 12:04:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35290 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240973AbhGPQEe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 12:04:34 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B53AEC061762
-        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 09:01:39 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id q4so14635692ljp.13
-        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 09:01:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=phystech-edu.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:in-reply-to:references
-         :organization:mime-version:content-transfer-encoding;
-        bh=bYaT/RDaFfieQUcoGMeR1YzIfc1ryRICkvAWLZOPjIc=;
-        b=clQcCOqk5s8kQ71JQ4ieCcpsuitIMdhPbMc3DUBPSOxkvQ0G4ZoZea1fCWNDfTgvuF
-         6qz7l7+ntlyRAU6Eac/uuGZKwDi0bSImeCrxIgNjcwpjkgH3ffCFV5tXvKQ9WH5EUTF8
-         gtNgzIM/fCIwwWIe00vAgpXXhkNuemnBFZ25b3WTJFDEC497A80V0GfUfxhQVM+NHCy7
-         jH+4o4Xig3VbAi6dQ34AH5NhAtoA0rwa4MNcwTEQgNMIXTcnWyR0jyazdqp/R0hvcpbD
-         vPjp8j+4f1M1YP6ePaPXMN180tXrbb6OTajrEGrTNdpI2qCARqdRBjl30B1GEBrJjfR3
-         Gb5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
-         :references:organization:mime-version:content-transfer-encoding;
-        bh=bYaT/RDaFfieQUcoGMeR1YzIfc1ryRICkvAWLZOPjIc=;
-        b=NW1sJI9VAqf3nF2oeLEDbrPnHcxbn2JhUMrIdyPTzBN5n4TNMu3w/Fm3dyvd9+/nMF
-         pHmEGg4oJzYzvv7jnSUHtanLKqbjoDKrwG05KeobBlyiSBr3Rf1V5/fLgsvHIkF1nLj8
-         G4SFguaCIqK2GXDFRlk04ysW4eFC0spI5iw5V5KDdZ8Q/t0KRBZmc/s0kpeyetIB+4EV
-         PofVaUuER4ZGZyQ/zsQ6iLH0ir2v4kBEOq/j7/zi8mVINqXWMAUOeetMWeCipOT/3V3A
-         pJd2ABA7kQP0jhzQF1tMp0aW7ltEESmClpoHTDOwo2rihA3XaPTpjmv6E/KmIfmywRDy
-         h63Q==
-X-Gm-Message-State: AOAM533mvlqWG62Q1fhX91Wuhg+6m1lCeP167UrYkX7HkzaItmo294HH
-        9kejdIRwv+1wC1UQZTpg42CexA==
-X-Google-Smtp-Source: ABdhPJzcNJAElT9xP2tpYxtaTb/YA3HQzDKGsaoyU+ExJsYIzlnK++Cyd3+OWLtETLPx/gNxzMduEg==
-X-Received: by 2002:a2e:85d9:: with SMTP id h25mr9765107ljj.216.1626451297793;
-        Fri, 16 Jul 2021 09:01:37 -0700 (PDT)
-Received: from 192.168.1.3 ([2a00:1370:810e:abfe:9c62:44e3:b0ab:76fd])
-        by smtp.gmail.com with ESMTPSA id u14sm679557lfn.47.2021.07.16.09.01.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Jul 2021 09:01:37 -0700 (PDT)
-Date:   Fri, 16 Jul 2021 19:01:33 +0300
-From:   Viktor Prutyanov <viktor.prutyanov@phystech.edu>
-To:     Sean Young <sean@mess.org>
-Cc:     mchehab@kernel.org, robh+dt@kernel.org, khilman@baylibre.com,
-        narmstrong@baylibre.com, jbrunet@baylibre.com,
-        martin.blumenstingl@googlemail.com, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, rockosov@gmail.com
-Subject: Re: [PATCH v6 2/2] media: rc: introduce Meson IR TX driver
-Message-ID: <20210716190133.261a50b4@192.168.1.3>
-In-Reply-To: <20210716153426.GA6907@gofer.mess.org>
-References: <20210716144508.6058-1-viktor.prutyanov@phystech.edu>
-        <20210716144508.6058-3-viktor.prutyanov@phystech.edu>
-        <20210716153426.GA6907@gofer.mess.org>
-Organization: MIPT
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+        id S236246AbhGPQKL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 12:10:11 -0400
+Received: from mail-eopbgr50072.outbound.protection.outlook.com ([40.107.5.72]:21888
+        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231739AbhGPQKL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Jul 2021 12:10:11 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EFBdQb53kjGD+Eoq2WrkbfqzjznnqlkYI5SoIrT0F2EZoTi5WB95bAWIPmCNUMkeuOKnu/IGKAUJ6sbpTZQmdVy7gDJxGhWlUOD98Pmnj36cXlxNvUPgMqP8zLm1tau9wX3p/dpILBG1OIn9JcqehKr8jg67z32F6FhGRP3lV4hcvVpiz8M3m6EM8RlT64L883eAEmaBVo9nSHwz9Edrrpq3oCscQBFttL7XU73JxcWOhOqOD6KR83PG74NoyAJ9tYyehvplSDzGQKWG1tAnhRLmBUJgU6nxHoYB9Td6OB4jMT0qY39wz7lZwl0Cqld0gdf48YAsyzV04JT6M6EWBw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NKbRHk1AHzduk3tsPLKN9exgeelL3ehMjtzVM4qv/0g=;
+ b=mjRPZO8Olr5UdWkQIPc9z8Ckq3SKh6F7EB3KfKy9QqJDAQAYL8zLJCna8v6Mj62yCFH7mhpZ0xD3y8tsUm5N+U9PZZNyaXrHCad2uVyyvlQq2/TlFMRu6B+IG59t7IM1Qq6p5c76w7QYTnJhdJcFw0bTrYKDOQoER9pEyyyZhRowMghrILDVDWJ0QAcyS5VLP8WtEToPqcy+VL+EoYOnysbYWdzBBp3IZWayny9j2hZnUsFHgoBqHOrQot4YYuchH/50XCLuD30B5E/S5ItNWd8IR3Xy2vlijkzp/LfjRWf8E8/6qAklmfpY5wr/N91Dd7hSP/sAUOD9h1+nKEzvsQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NKbRHk1AHzduk3tsPLKN9exgeelL3ehMjtzVM4qv/0g=;
+ b=ioTvDDe7ibhkhqRK06A5q9zBKNxzop9EkIBffk7akDRhuB6U52fPNwSlZ1IGd2U+yvTkNNdfJb1/cSwdbTxT+skepFBWldW5NEbJga+w2to0yB2ha4BFh3aWkRCS2gr6qPFMonWI3eAKHshkJkVbVF67oTjWqCYHnKUU69C4bpA=
+Authentication-Results: nxp.com; dkim=none (message not signed)
+ header.d=none;nxp.com; dmarc=none action=none header.from=nxp.com;
+Received: from VE1PR04MB7327.eurprd04.prod.outlook.com (2603:10a6:800:1ac::15)
+ by VI1PR04MB5293.eurprd04.prod.outlook.com (2603:10a6:803:5f::30) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4308.26; Fri, 16 Jul
+ 2021 16:07:12 +0000
+Received: from VE1PR04MB7327.eurprd04.prod.outlook.com
+ ([fe80::dc6e:3840:cd62:ff3]) by VE1PR04MB7327.eurprd04.prod.outlook.com
+ ([fe80::dc6e:3840:cd62:ff3%7]) with mapi id 15.20.4308.027; Fri, 16 Jul 2021
+ 16:07:11 +0000
+Subject: Re: [PATCH v2] arm64: dts: imx8mp: Add dsp node
+To:     Daniel Baluta <daniel.baluta@oss.nxp.com>, robh+dt@kernel.org,
+        shawnguo@kernel.org
+Cc:     s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, qiangqing.zhang@nxp.com, ping.bai@nxp.com,
+        alice.guo@nxp.com, jun.li@nxp.com, peng.fan@nxp.com,
+        thunder.leizhen@huawei.com, yibin.gong@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Daniel Baluta <daniel.baluta@nxp.com>
+References: <20210716124719.926483-1-daniel.baluta@oss.nxp.com>
+From:   Iuliana Prodan <iuliana.prodan@nxp.com>
+Message-ID: <6f57dc56-d31a-1475-7db1-55ac6aa7b10c@nxp.com>
+Date:   Fri, 16 Jul 2021 19:07:07 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+In-Reply-To: <20210716124719.926483-1-daniel.baluta@oss.nxp.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AM0PR02CA0192.eurprd02.prod.outlook.com
+ (2603:10a6:20b:28e::29) To VE1PR04MB7327.eurprd04.prod.outlook.com
+ (2603:10a6:800:1ac::15)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.1.7] (188.25.202.88) by AM0PR02CA0192.eurprd02.prod.outlook.com (2603:10a6:20b:28e::29) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.21 via Frontend Transport; Fri, 16 Jul 2021 16:07:09 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: cf930cc0-b84b-41be-bc0f-08d94873c51b
+X-MS-TrafficTypeDiagnostic: VI1PR04MB5293:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VI1PR04MB529306D08A940F133CB2BE668C119@VI1PR04MB5293.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2733;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 8j0m4dSeC8hiXl/yBu7znFTqrkDgYnyf1EBUidZG2DzqtpG2EpHyEmz7GGHIUEWtKCS1wd0eclSc1/GcRgTelTyEtie27NPFaKE8t5+5djmyRO2VQUiEpvanWEb9YiPGBAvAmNW3Sk2AJ7aHk5YU3klQ6iuquLoPZmeCMHGEK/w1NntcMmadMZFx0YrSSVNT3RqCPAfLLoCVzITz4OCCb5y3hiNsMMO4zge3l3kW7CFdMlyPtUrFbLtNSJQ0rd8StwPmNeaAHqfWjPtiX8aeQdFcwvfgtLLVIvaPxMYld2TU1TXdAAM0dkq51RgHpnPFYtZ2SjfWH/uFZnvLw1DphB2MMetLaY3BjW4JA5PPGH7CElo8ogtYq3ciGQSHAJ/8gQgFhcZ+v6y3CT+ODJKa13yCb2yVrej53HtkReXZo0A32+BVHIc2RLTZPOojhEkpOnYKJYUgHSbTkD5Lm0Vk2upNHQ2UAl8eLLv1mGqK0oqMstFSynnUpYrY0TOG9Q3esIdYObZmXIW4mRRzVU3YlnhRqrB7Dt73IDwhBokW7XF08VchnlWY9AgO20MFCTNtf+myVipXsxQ07QNbi0cdC8cH8mbsK2cDlmv1gIAzhjt7P8jlQaSSlzuSsF/SvQaEXBPecWQgfnRegjXwXjPk8iCtnma662LtGw5TMiIZERdN306Xp4HGg0mhT2SdG4r+WVALvZvh/nB4SaFFRS7MK+zRM74tf+ouEXJgj9qnJh9ZHvcCzz9seOqOA+T3pWdGtPr8hIoJQXvEIGC1DJz09b2oeFGkuG/CYWPIdqFCO86UGfGfgq8psEmlDadF0MkIARLVH6pQNuUvSgq6VcQDTuoCGlGJ9/MTn3CA22SJQt8zfNGDjV5huIUNMig0UsTD
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB7327.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(346002)(396003)(39840400004)(376002)(136003)(186003)(16576012)(316002)(31686004)(2616005)(53546011)(83380400001)(36756003)(956004)(26005)(52116002)(86362001)(5660300002)(2906002)(8676002)(38100700002)(66476007)(6486002)(66946007)(31696002)(44832011)(8936002)(38350700002)(66556008)(966005)(478600001)(4326008)(32563001)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cjBrcWxsNzd3cUY0eEpURHB5TVJialRsVGoyQnZ3bXpFMXYzcGJoZmVhOG9t?=
+ =?utf-8?B?VXRNZzdFaDVaL01LZlF2MGpzUDdpekNubk5ua0trSW1ZNCt0UnZ6ZVRVRHpD?=
+ =?utf-8?B?dHpoczdoblZYU21NWk4yVHZ5eEpGTUdvZEdLb0pSTkJSSlV2bTE5cGtDWXRE?=
+ =?utf-8?B?blV1aCtQdUZjd3JZdU9ZazFMNFhqK0s1eUROMy9VMmNUaDRHb0ltYklycW5n?=
+ =?utf-8?B?OUFoUE54U2JkbHhDWmVscnExcVVDK0ZhUklOeWNCUFp3V3IvN1RpQU04TWR0?=
+ =?utf-8?B?QjFiMWJ6SzkvQW9yaVQzTDZmNHFvTVVJY1hycW5HRmM2VDlJb0dvYks1VWlP?=
+ =?utf-8?B?SEZXK1gzUEMxaDFxc0YvT2Z1c0NhU3h5cnUra2NqWjZrQU1lOUw4Z2JFK2o4?=
+ =?utf-8?B?cUlweFo1MHpadUxPdkpsRUhvYVlzbTdhNW1XekVIZk5ZcmpKeEJDamJ6OWMx?=
+ =?utf-8?B?akN5MjB6SVNOR2xWL3RSVDFxcjlXNXBKR0VBTE5ZZVB5UTdPYjhUMVBxa0dD?=
+ =?utf-8?B?VmkzUFkyb3ZnRktVdHR0L3lxamJQUHlhUTMrdnR4TnFyWkVzS25leno5b1Vw?=
+ =?utf-8?B?aDZFZGc3L0xEUkJFaThKaGc3TVBOVGREYytSRWpxTzYvek0wTzRIZ3JKK0V0?=
+ =?utf-8?B?KzdhN3dHT2syV245ekdXZHJWUnhBd1RCNWFKMTk1SkhRQjJPdkNrdWhYa0xP?=
+ =?utf-8?B?eXhmd3pLY2VXM0RVVENpSTA3ZDkwbEF3K2FENTFHZDV4L3hKTllLNytUMzBN?=
+ =?utf-8?B?NTdhTmRKeGhUNmt6NC9EVGtZeGNXNzh0d2Z1NDJjRVNpbUh1ZllUbXJySTUx?=
+ =?utf-8?B?VE5WUDhHeUtlc0xQdy9Da3BaVE9ONDBpdDI3UWVzZnA4VWpDTlFFcnRwUFhC?=
+ =?utf-8?B?Vk5FblJiN24xR0VBcFpuUmQrUUZ5ajdJWXJNM2c1SnFZSllWc3BaOG5VV09G?=
+ =?utf-8?B?cjRFNkJLWXc2ejUxaFBIaUFTbHhUc2ZWQ3FPbzAwUUJReUw2RUxENlRXMDBn?=
+ =?utf-8?B?Nmt5RHREblZPTkNieGwyKytVNDg0RGY4VlNXcE0xRlZZMEtOZlE4MEh0eWJT?=
+ =?utf-8?B?Mi9DRWhNVkdEZG4vd0ZycExNVWVsbWhmaXFLMXFMZS9oUDNsWmEwMUFCUXFY?=
+ =?utf-8?B?M2pHUnBzVjF3WjAyek1MV29xeGJEM0trU0R1VkhKaUxqMTNSRmF1c2VEV2RX?=
+ =?utf-8?B?cFJndDA1NHoxODJMM3pCUjMzZWdKeUNQQ2wwbTNGcnVRUnVOS0JFcEltaWRi?=
+ =?utf-8?B?cmFBaXE3VTJMdkpIQVhYaFZHYVdzdWtNcFl5aVBwNFlicXRCSzdhYUJHZjNV?=
+ =?utf-8?B?dWZrRVdVQnZkZW5wSXI1Yjl0WG5meHVqYUQzRHJBcU9CWnlaR1d1R3pxTVhO?=
+ =?utf-8?B?a1BPdFY3Mkh1VFdGOUp5dG9Pckt0bkJSZFY2SkdqZUdoVWRRNjlVajc3Zk1E?=
+ =?utf-8?B?dk42OS9KZ0pWdDdqd3hZTXREQUxTREFnaXo3UDlsUnVBb3pJSDlQNGtTZmNx?=
+ =?utf-8?B?VWFkVk1SZm41TUtqRmpFckp1KzIrbkovVGJZZ2ZCNXRWTFp4ZjMrQUxpTU5Y?=
+ =?utf-8?B?SUZTZVgyTE5hVG5nbmFUWklNZU5CMXo5V2dnYU8xc0RZNXN1SkJNUllncEFi?=
+ =?utf-8?B?aFFhdi93azFaMmlmS0JmU1V6RjZWOUduOCtiSisyN3RnUDN6UFEzV3A0YjRj?=
+ =?utf-8?B?NU5sLy92YTBhWjZ6SlhtWU15MEZCRTlwRjhScnV4dE83eTlOV21BRmlabHBY?=
+ =?utf-8?Q?ERgkzrjFXk9ccR9lPDKG7PZIPVX3BsHbJycR6er?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cf930cc0-b84b-41be-bc0f-08d94873c51b
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB7327.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jul 2021 16:07:11.8857
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: FwzemNfWQkrrkpdxUdP3dkGpxWqc89Ba99wJSyHKFGDH3wUtb+3+4ASrC4ZEtGIvyuEE89GORDTTttxNPcYXYA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5293
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sean,
 
-On Fri, 16 Jul 2021 16:34:26 +0100
-Sean Young <sean@mess.org> wrote:
+On 7/16/2021 3:47 PM, Daniel Baluta wrote:
+> From: Daniel Baluta <daniel.baluta@nxp.com>
+> 
+> i.MX8 MPlus SoC integrates Cadence HIFI4 DSP. This core runs either a
+> custom firmware or the open source SOF firmware [1]
+> 
+> DSP device is handled by SOF OF driver found in
+> sound/soc/sof/sof-of-dev.c
+> 
+> Notice that the DSP node makes use of:
+> 	- dsp_reserved, a reserved memory region for various Audio
+> 	  resources (e.g firmware loading, audio buffers, etc).
+> 	- Messaging Unit (mu2) for passing notifications betweem ARM
+> 	  core and DSP.
+> 
+> [1] https://thesofproject.github.io/latest/platforms/index.html
+> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
 
-> On Fri, Jul 16, 2021 at 05:45:08PM +0300, Viktor Prutyanov wrote:
-> > This patch adds the driver for Amlogic Meson IR transmitter.
-> > 
-> > Some Amlogic SoCs such as A311D and T950D4 have IR transmitter
-> > (also called blaster) controller onboard. It is capable of sending
-> > IR signals with arbitrary carrier frequency and duty cycle.
-> > 
-> > The driver supports 2 modulation clock sources:
-> >  - xtal3 clock (xtal divided by 3)
-> >  - 1us clock
-> > 
-> > Signed-off-by: Viktor Prutyanov <viktor.prutyanov@phystech.edu>
-> > ---
-> >  changes in v2:
-> >    - threaded IRQ removed, all stuff done in IRQ handler
-> >    - DIV_ROUND_CLOSEST_ULL replaced with DIV_ROUND_CLOSEST
-> >    - compatible changed to "amlogic,meson-g12a-irblaster"
-> >    - 'debug' parameter removed
-> >    - dprintk() replaced with dev_dbg()/dev_info()
-> >    - carrier frequency checked against 0
-> >    - device_name added
-> >  changes in v3:
-> >    - license header fixed
-> >    - 'max_fifo_level' parameter removed
-> >    - irq and clk_nr deleted from irblaster_dev struct
-> >    - some divisions replaced with DIV_ROUND_CLOSEST
-> >    - irb_send inlined
-> >    - fixed early completion in IRQ handler
-> >    - spin lock added before kfree
-> >  changes in v4:
-> >    - irblaster -> ir-tx renaming
-> >    - spin lock added before buffer allocation
-> >  changes in v5:
-> >    - spinlocks rework made in meson_irtx_transmit
-> >    - max_fifo_level replaced with fifo_threshold (max_fifo_level +
-> >      fifo_threshold == IRB_FIFO_LEN == 128)
-> >    - max-fifo-level -> amlogic,fifo-threshold
-> >  changes in v6:
-> >    - interruptible wait replaced with uninterruptible with timeout
-> >    - completion done check added to IRQ handler
-> > 
-> >  drivers/media/rc/Kconfig       |  10 +
-> >  drivers/media/rc/Makefile      |   1 +
-> >  drivers/media/rc/meson-ir-tx.c | 415
-> > +++++++++++++++++++++++++++++++++ 3 files changed, 426 insertions(+)
-> >  create mode 100644 drivers/media/rc/meson-ir-tx.c
-> > 
-> > diff --git a/drivers/media/rc/Kconfig b/drivers/media/rc/Kconfig
-> > index d0a8326b75c2..fd5a7a058714 100644
-> > --- a/drivers/media/rc/Kconfig
-> > +++ b/drivers/media/rc/Kconfig
-> > @@ -246,6 +246,16 @@ config IR_MESON
-> >  	   To compile this driver as a module, choose M here: the
-> >  	   module will be called meson-ir.
-> >  
-> > +config IR_MESON_TX
-> > +	tristate "Amlogic Meson IR TX"
-> > +	depends on ARCH_MESON || COMPILE_TEST
-> > +	help
-> > +	   Say Y if you want to use the IR transmitter available on
-> > +	   Amlogic Meson SoCs.
-> > +
-> > +	   To compile this driver as a module, choose M here: the
-> > +	   module will be called meson-ir-tx.
-> > +
-> >  config IR_MTK
-> >  	tristate "Mediatek IR remote receiver"
-> >  	depends on ARCH_MEDIATEK || COMPILE_TEST
-> > diff --git a/drivers/media/rc/Makefile b/drivers/media/rc/Makefile
-> > index 692e9b6b203f..0db51fad27d6 100644
-> > --- a/drivers/media/rc/Makefile
-> > +++ b/drivers/media/rc/Makefile
-> > @@ -28,6 +28,7 @@ obj-$(CONFIG_IR_ITE_CIR) += ite-cir.o
-> >  obj-$(CONFIG_IR_MCEUSB) += mceusb.o
-> >  obj-$(CONFIG_IR_FINTEK) += fintek-cir.o
-> >  obj-$(CONFIG_IR_MESON) += meson-ir.o
-> > +obj-$(CONFIG_IR_MESON_TX) += meson-ir-tx.o
-> >  obj-$(CONFIG_IR_NUVOTON) += nuvoton-cir.o
-> >  obj-$(CONFIG_IR_ENE) += ene_ir.o
-> >  obj-$(CONFIG_IR_REDRAT3) += redrat3.o
-> > diff --git a/drivers/media/rc/meson-ir-tx.c
-> > b/drivers/media/rc/meson-ir-tx.c new file mode 100644
-> > index 000000000000..77e276e3dbe8
-> > --- /dev/null
-> > +++ b/drivers/media/rc/meson-ir-tx.c
-> > @@ -0,0 +1,415 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/**
-> > + * meson-ir-tx.c - Amlogic Meson IR TX driver
-> > + *
-> > + * Copyright (c) 2021, SberDevices. All Rights Reserved.
-> > + *
-> > + * Author: Viktor Prutyanov <viktor.prutyanov@phystech.edu>
-> > + */
-> > +
-> > +#include <linux/device.h>
-> > +#include <linux/module.h>
-> > +#include <linux/sched.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/of.h>
-> > +#include <linux/interrupt.h>
-> > +#include <linux/spinlock.h>
-> > +#include <linux/of_irq.h>
-> > +#include <linux/clk.h>
-> > +#include <linux/slab.h>
-> > +#include <media/rc-core.h>
-> > +
-> > +#define DEVICE_NAME	"Meson IR TX"
-> > +#define DRIVER_NAME	"meson-ir-tx"
-> > +
-> > +#define MIRTX_DEFAULT_CARRIER		38000
-> > +#define MIRTX_DEFAULT_DUTY_CYCLE	50
-> > +#define MIRTX_DEFAULT_FIFO_THD		32
-> > +#define MIRTX_TIMEOUT_US		(IR_MAX_DURATION /
-> > NSEC_PER_USEC)  
-> 
-> IR_MAX_DURATION is already in microseconds, see commit 528222d853f9.
-> Now the wait_for_completion_timeout() gets 500us as the timeout. Has
-> this been tested?
->
-Thanks for noticing this issue. I usually test each patch version on
-two versions of the kernel, but now I forgot to check on a new one, I
-will fix it.
- 
-> Looks good otherwise
-> 
-> Thanks
-> Sean
-> 
-> > +
-> > +#define IRB_MOD_1US_CLK_RATE	1000000
-> > +
-> > +#define IRB_FIFO_LEN	128
-> > +
-> > +#define IRB_ADDR0	0x0
-> > +#define IRB_ADDR1	0x4
-> > +#define IRB_ADDR2	0x8
-> > +#define IRB_ADDR3	0xc
-> > +
-> > +#define IRB_MAX_DELAY	(1 << 10)
-> > +#define IRB_DELAY_MASK	(IRB_MAX_DELAY - 1)
-> > +
-> > +/* IRCTRL_IR_BLASTER_ADDR0 */
-> > +#define IRB_MOD_CLK(x)		((x) << 12)
-> > +#define IRB_MOD_SYS_CLK		0
-> > +#define IRB_MOD_XTAL3_CLK	1
-> > +#define IRB_MOD_1US_CLK		2
-> > +#define IRB_MOD_10US_CLK	3
-> > +#define IRB_INIT_HIGH		BIT(2)
-> > +#define IRB_ENABLE		BIT(0)
-> > +
-> > +/* IRCTRL_IR_BLASTER_ADDR2 */
-> > +#define IRB_MOD_COUNT(lo, hi)	((((lo) - 1) << 16) | ((hi) -
-> > 1)) +
-> > +/* IRCTRL_IR_BLASTER_ADDR2 */
-> > +#define IRB_WRITE_FIFO	BIT(16)
-> > +#define IRB_MOD_ENABLE	BIT(12)
-> > +#define IRB_TB_1US	(0x0 << 10)
-> > +#define IRB_TB_10US	(0x1 << 10)
-> > +#define IRB_TB_100US	(0x2 << 10)
-> > +#define IRB_TB_MOD_CLK	(0x3 << 10)
-> > +
-> > +/* IRCTRL_IR_BLASTER_ADDR3 */
-> > +#define IRB_FIFO_THD_PENDING	BIT(16)
-> > +#define IRB_FIFO_IRQ_ENABLE	BIT(8)
-> > +
-> > +struct meson_irtx {
-> > +	struct device *dev;
-> > +	void __iomem *reg_base;
-> > +	u32 *buf;
-> > +	unsigned int buf_len;
-> > +	unsigned int buf_head;
-> > +	unsigned int carrier;
-> > +	unsigned int duty_cycle;
-> > +	spinlock_t lock;
-> > +	struct completion completion;
-> > +	unsigned int fifo_threshold;
-> > +	unsigned long clk_rate;
-> > +};
-> > +
-> > +static void meson_irtx_set_mod(struct meson_irtx *ir)
-> > +{
-> > +	unsigned int cnt = DIV_ROUND_CLOSEST(ir->clk_rate,
-> > ir->carrier);
-> > +	unsigned int pulse_cnt = DIV_ROUND_CLOSEST(cnt *
-> > ir->duty_cycle, 100);
-> > +	unsigned int space_cnt = cnt - pulse_cnt;
-> > +
-> > +	dev_dbg(ir->dev, "F_mod = %uHz, T_mod = %luns, duty_cycle
-> > = %u%%\n",
-> > +		ir->carrier, NSEC_PER_SEC / ir->clk_rate * cnt,
-> > +		100 * pulse_cnt / cnt);
-> > +
-> > +	writel(IRB_MOD_COUNT(pulse_cnt, space_cnt),
-> > +	       ir->reg_base + IRB_ADDR1);
-> > +}
-> > +
-> > +static void meson_irtx_setup(struct meson_irtx *ir, unsigned int
-> > clk_nr) +{
-> > +	/*
-> > +	 * Disable the TX, set modulator clock tick and set
-> > initialize
-> > +	 * output to be high. Set up carrier frequency and duty
-> > cycle. Then
-> > +	 * unset initialize output. Enable FIFO interrupt, set
-> > FIFO interrupt
-> > +	 * threshold. Finally, enable the transmitter back.
-> > +	 */
-> > +	writel(~IRB_ENABLE & (IRB_MOD_CLK(clk_nr) | IRB_INIT_HIGH),
-> > +	       ir->reg_base + IRB_ADDR0);
-> > +	meson_irtx_set_mod(ir);
-> > +	writel(readl(ir->reg_base + IRB_ADDR0) & ~IRB_INIT_HIGH,
-> > +	       ir->reg_base + IRB_ADDR0);
-> > +	writel(IRB_FIFO_IRQ_ENABLE | ir->fifo_threshold,
-> > +	       ir->reg_base + IRB_ADDR3);
-> > +	writel(readl(ir->reg_base + IRB_ADDR0) | IRB_ENABLE,
-> > +	       ir->reg_base + IRB_ADDR0);
-> > +}
-> > +
-> > +static u32 meson_irtx_prepare_pulse(struct meson_irtx *ir,
-> > unsigned int time) +{
-> > +	unsigned int delay;
-> > +	unsigned int tb = IRB_TB_MOD_CLK;
-> > +	unsigned int tb_us = DIV_ROUND_CLOSEST(USEC_PER_SEC,
-> > ir->carrier); +
-> > +	delay = (DIV_ROUND_CLOSEST(time, tb_us) - 1) &
-> > IRB_DELAY_MASK; +
-> > +	return ((IRB_WRITE_FIFO | IRB_MOD_ENABLE) | tb | delay);
-> > +}
-> > +
-> > +static u32 meson_irtx_prepare_space(struct meson_irtx *ir,
-> > unsigned int time) +{
-> > +	unsigned int delay;
-> > +	unsigned int tb = IRB_TB_100US;
-> > +	unsigned int tb_us = 100;
-> > +
-> > +	if (time <= IRB_MAX_DELAY) {
-> > +		tb = IRB_TB_1US;
-> > +		tb_us = 1;
-> > +	} else if (time <= 10 * IRB_MAX_DELAY) {
-> > +		tb = IRB_TB_10US;
-> > +		tb_us = 10;
-> > +	} else if (time <= 100 * IRB_MAX_DELAY) {
-> > +		tb = IRB_TB_100US;
-> > +		tb_us = 100;
-> > +	}
-> > +
-> > +	delay = (DIV_ROUND_CLOSEST(time, tb_us) - 1) &
-> > IRB_DELAY_MASK; +
-> > +	return ((IRB_WRITE_FIFO & ~IRB_MOD_ENABLE) | tb | delay);
-> > +}
-> > +
-> > +static void meson_irtx_send_buffer(struct meson_irtx *ir)
-> > +{
-> > +	unsigned int nr = 0;
-> > +	unsigned int max_fifo_level = IRB_FIFO_LEN -
-> > ir->fifo_threshold; +
-> > +	while (ir->buf_head < ir->buf_len && nr < max_fifo_level) {
-> > +		writel(ir->buf[ir->buf_head], ir->reg_base +
-> > IRB_ADDR2); +
-> > +		ir->buf_head++;
-> > +		nr++;
-> > +	}
-> > +}
-> > +
-> > +static bool meson_irtx_check_buf(struct meson_irtx *ir,
-> > +			  unsigned int *buf, unsigned int len)
-> > +{
-> > +	unsigned int i;
-> > +
-> > +	for (i = 0; i < len; i++) {
-> > +		unsigned int max_tb_us;
-> > +		/*
-> > +		 * Max space timebase is 100 us.
-> > +		 * Pulse timebase equals to carrier period.
-> > +		 */
-> > +		if (i % 2 == 0)
-> > +			max_tb_us = USEC_PER_SEC / ir->carrier;
-> > +		else
-> > +			max_tb_us = 100;
-> > +
-> > +		if (buf[i] >= max_tb_us * IRB_MAX_DELAY)
-> > +			return false;
-> > +	}
-> > +
-> > +	return true;
-> > +}
-> > +
-> > +static void meson_irtx_fill_buf(struct meson_irtx *ir, u32
-> > *dst_buf,
-> > +				unsigned int *src_buf, unsigned
-> > int len) +{
-> > +	unsigned int i;
-> > +
-> > +	for (i = 0; i < len; i++) {
-> > +		if (i % 2 == 0)
-> > +			dst_buf[i] = meson_irtx_prepare_pulse(ir,
-> > src_buf[i]);
-> > +		else
-> > +			dst_buf[i] = meson_irtx_prepare_space(ir,
-> > src_buf[i]);
-> > +	}
-> > +}
-> > +
-> > +static irqreturn_t meson_irtx_irqhandler(int irq, void *data)
-> > +{
-> > +	unsigned long flags;
-> > +	struct meson_irtx *ir = data;
-> > +
-> > +	writel(readl(ir->reg_base + IRB_ADDR3) &
-> > ~IRB_FIFO_THD_PENDING,
-> > +	       ir->reg_base + IRB_ADDR3);
-> > +
-> > +	if (completion_done(&ir->completion))
-> > +		return IRQ_HANDLED;
-> > +
-> > +	spin_lock_irqsave(&ir->lock, flags);
-> > +	if (ir->buf_head < ir->buf_len)
-> > +		meson_irtx_send_buffer(ir);
-> > +	else
-> > +		complete(&ir->completion);
-> > +	spin_unlock_irqrestore(&ir->lock, flags);
-> > +
-> > +	return IRQ_HANDLED;
-> > +}
-> > +
-> > +static int meson_irtx_set_carrier(struct rc_dev *rc, u32 carrier)
-> > +{
-> > +	struct meson_irtx *ir = rc->priv;
-> > +
-> > +	if (carrier == 0)
-> > +		return -EINVAL;
-> > +
-> > +	ir->carrier = carrier;
-> > +	meson_irtx_set_mod(ir);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int meson_irtx_set_duty_cycle(struct rc_dev *rc, u32
-> > duty_cycle) +{
-> > +	struct meson_irtx *ir = rc->priv;
-> > +
-> > +	ir->duty_cycle = duty_cycle;
-> > +	meson_irtx_set_mod(ir);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static void meson_irtx_update_buf(struct meson_irtx *ir, u32 *buf,
-> > +				  unsigned int len, unsigned int
-> > head) +{
-> > +	ir->buf = buf;
-> > +	ir->buf_len = len;
-> > +	ir->buf_head = head;
-> > +}
-> > +
-> > +static int meson_irtx_transmit(struct rc_dev *rc, unsigned int
-> > *buf,
-> > +			       unsigned int len)
-> > +{
-> > +	unsigned long flags;
-> > +	struct meson_irtx *ir = rc->priv;
-> > +	u32 *tx_buf;
-> > +	int ret = len;
-> > +
-> > +	if (!meson_irtx_check_buf(ir, buf, len))
-> > +		return -EINVAL;
-> > +
-> > +	tx_buf = kmalloc_array(len, sizeof(u32), GFP_KERNEL);
-> > +	if (!tx_buf)
-> > +		return -ENOMEM;
-> > +
-> > +	meson_irtx_fill_buf(ir, tx_buf, buf, len);
-> > +	dev_dbg(ir->dev, "TX buffer filled, length = %u\n", len);
-> > +
-> > +	spin_lock_irqsave(&ir->lock, flags);
-> > +	meson_irtx_update_buf(ir, tx_buf, len, 0);
-> > +	reinit_completion(&ir->completion);
-> > +	meson_irtx_send_buffer(ir);
-> > +	spin_unlock_irqrestore(&ir->lock, flags);
-> > +
-> > +	if (!wait_for_completion_timeout(&ir->completion,
-> > +
-> > usecs_to_jiffies(MIRTX_TIMEOUT_US)))
-> > +		ret = -ETIMEDOUT;
-> > +
-> > +	spin_lock_irqsave(&ir->lock, flags);
-> > +	kfree(ir->buf);
-> > +	meson_irtx_update_buf(ir, NULL, 0, 0);
-> > +	spin_unlock_irqrestore(&ir->lock, flags);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static int meson_irtx_mod_clock_probe(struct meson_irtx *ir,
-> > +				      unsigned int *clk_nr)
-> > +{
-> > +	struct device_node *np = ir->dev->of_node;
-> > +	struct clk *clock;
-> > +
-> > +	if (!np)
-> > +		return -ENODEV;
-> > +
-> > +	clock = devm_clk_get(ir->dev, "xtal");
-> > +	if (IS_ERR(clock) || clk_prepare_enable(clock))
-> > +		return -ENODEV;
-> > +
-> > +	*clk_nr = IRB_MOD_XTAL3_CLK;
-> > +	ir->clk_rate = clk_get_rate(clock) / 3;
-> > +
-> > +	if (ir->clk_rate < IRB_MOD_1US_CLK_RATE) {
-> > +		*clk_nr = IRB_MOD_1US_CLK;
-> > +		ir->clk_rate = IRB_MOD_1US_CLK_RATE;
-> > +	}
-> > +
-> > +	dev_info(ir->dev, "F_clk = %luHz\n", ir->clk_rate);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int __init meson_irtx_probe(struct platform_device *pdev)
-> > +{
-> > +	struct device *dev = &pdev->dev;
-> > +	struct meson_irtx *ir;
-> > +	struct rc_dev *rc;
-> > +	int irq;
-> > +	unsigned int clk_nr;
-> > +	int ret;
-> > +
-> > +	ir = devm_kzalloc(dev, sizeof(*ir), GFP_KERNEL);
-> > +	if (!ir)
-> > +		return -ENOMEM;
-> > +
-> > +	ir->reg_base = devm_platform_ioremap_resource(pdev, 0);
-> > +	if (IS_ERR(ir->reg_base))
-> > +		return PTR_ERR(ir->reg_base);
-> > +
-> > +	irq = platform_get_irq(pdev, 0);
-> > +	if (irq < 0) {
-> > +		dev_err(dev, "no irq resource found\n");
-> > +		return -ENODEV;
-> > +	}
-> > +
-> > +	if (of_property_read_u32(dev->of_node,
-> > "amlogic,fifo-threshold",
-> > +				 &ir->fifo_threshold))
-> > +		ir->fifo_threshold = MIRTX_DEFAULT_FIFO_THD;
-> > +	else if (ir->fifo_threshold >= IRB_FIFO_LEN)
-> > +		ir->fifo_threshold = MIRTX_DEFAULT_FIFO_THD;
-> > +	dev_dbg(dev, "FIFO threshold set to %u\n",
-> > ir->fifo_threshold); +
-> > +	ir->dev = dev;
-> > +	ir->carrier = MIRTX_DEFAULT_CARRIER;
-> > +	ir->duty_cycle = MIRTX_DEFAULT_DUTY_CYCLE;
-> > +	init_completion(&ir->completion);
-> > +	spin_lock_init(&ir->lock);
-> > +
-> > +	ret = meson_irtx_mod_clock_probe(ir, &clk_nr);
-> > +	if (ret) {
-> > +		dev_err(dev, "modulator clock setup failed\n");
-> > +		return ret;
-> > +	}
-> > +	meson_irtx_setup(ir, clk_nr);
-> > +
-> > +	ret = devm_request_irq(dev, irq,
-> > +			       meson_irtx_irqhandler,
-> > +			       IRQF_TRIGGER_RISING,
-> > +			       DRIVER_NAME, ir);
-> > +	if (ret) {
-> > +		dev_err(dev, "irq request failed\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	rc = rc_allocate_device(RC_DRIVER_IR_RAW_TX);
-> > +	if (!rc)
-> > +		return -ENOMEM;
-> > +
-> > +	rc->driver_name = DRIVER_NAME;
-> > +	rc->device_name = DEVICE_NAME;
-> > +	rc->priv = ir;
-> > +
-> > +	rc->tx_ir = meson_irtx_transmit;
-> > +	rc->s_tx_carrier = meson_irtx_set_carrier;
-> > +	rc->s_tx_duty_cycle = meson_irtx_set_duty_cycle;
-> > +
-> > +	ret = rc_register_device(rc);
-> > +	if (ret < 0) {
-> > +		dev_err(dev, "rc_dev registration failed\n");
-> > +		rc_free_device(rc);
-> > +		return ret;
-> > +	}
-> > +
-> > +	platform_set_drvdata(pdev, rc);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int meson_irtx_remove(struct platform_device *pdev)
-> > +{
-> > +	struct rc_dev *rc = platform_get_drvdata(pdev);
-> > +
-> > +	rc_unregister_device(rc);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct of_device_id meson_irtx_dt_match[] = {
-> > +	{
-> > +		.compatible = "amlogic,meson-g12a-ir-tx",
-> > +	},
-> > +	{},
-> > +};
-> > +MODULE_DEVICE_TABLE(of, meson_irtx_dt_match);
-> > +
-> > +static struct platform_driver meson_irtx_pd = {
-> > +	.remove = meson_irtx_remove,
-> > +	.driver = {
-> > +		.name = DRIVER_NAME,
-> > +		.owner  = THIS_MODULE,
-> > +		.of_match_table = meson_irtx_dt_match,
-> > +	},
-> > +};
-> > +
-> > +module_platform_driver_probe(meson_irtx_pd, meson_irtx_probe);
-> > +
-> > +MODULE_DESCRIPTION("Meson IR TX driver");
-> > +MODULE_AUTHOR("Viktor Prutyanov <viktor.prutyanov@phystech.edu>");
-> > +MODULE_LICENSE("GPL");
-> > -- 
-> > 2.21.0  
+Reviewed-by: Iuliana Prodan <iuliana.prodan@nxp.com>
 
-Best regards,
-Viktor
+Thanks,
+Iulia
+> ---
+> Changes since v1:
+> 	* mark MU2 node as disabled, because mu2 clock support is not yet upstream.
+> 
+>   arch/arm64/boot/dts/freescale/imx8mp.dtsi | 29 +++++++++++++++++++++++
+>   1 file changed, 29 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> index 9f7c7f587d38..fb0ac85c8473 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> @@ -135,6 +135,17 @@ clk_ext4: clock-ext4 {
+>   		clock-output-names = "clk_ext4";
+>   	};
+>   
+> +	reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		dsp_reserved: dsp@92400000 {
+> +			reg = <0 0x92400000 0 0x2000000>;
+> +			no-map;
+> +		};
+> +	};
+> +
+>   	pmu {
+>   		compatible = "arm,cortex-a53-pmu";
+>   		interrupts = <GIC_PPI 7
+> @@ -698,6 +709,14 @@ mu: mailbox@30aa0000 {
+>   				#mbox-cells = <2>;
+>   			};
+>   
+> +			mu2: mailbox@30e60000 {
+> +				compatible = "fsl,imx8mp-mu", "fsl,imx6sx-mu";
+> +				reg = <0x30e60000 0x10000>;
+> +				interrupts = <GIC_SPI 136 IRQ_TYPE_LEVEL_HIGH>;
+> +				#mbox-cells = <2>;
+> +				status = "disabled";
+> +			};
+> +
+>   			i2c5: i2c@30ad0000 {
+>   				compatible = "fsl,imx8mp-i2c", "fsl,imx21-i2c";
+>   				#address-cells = <1>;
+> @@ -938,5 +957,15 @@ usb_dwc3_1: usb@38200000 {
+>   				snps,dis-u2-freeclk-exists-quirk;
+>   			};
+>   		};
+> +		dsp: dsp@3b6e8000 {
+> +			compatible = "fsl,imx8mp-dsp";
+> +			reg = <0x3b6e8000 0x88000>;
+> +			mbox-names = "txdb0", "txdb1",
+> +				"rxdb0", "rxdb1";
+> +			mboxes = <&mu2 2 0>, <&mu2 2 1>,
+> +				<&mu2 3 0>, <&mu2 3 1>;
+> +			memory-region = <&dsp_reserved>;
+> +			status = "disabled";
+> +		};
+>   	};
+>   };
+> 
