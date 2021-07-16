@@ -2,186 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EAC113CBAB7
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 18:46:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6070B3CBAE3
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 19:02:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229928AbhGPQtX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 12:49:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45292 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229462AbhGPQtW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 12:49:22 -0400
-Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D3ADC06175F;
-        Fri, 16 Jul 2021 09:46:27 -0700 (PDT)
-Received: by mail-qv1-xf2f.google.com with SMTP id gh6so4864859qvb.3;
-        Fri, 16 Jul 2021 09:46:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
-         :from:to:references:in-reply-to;
-        bh=HP1IVoWcUpu03pWKu0gr3nGbUe2QQvaIWAyGYYu+z1w=;
-        b=mqJCK1pNCVfRQuUhhlmEroh0rRPLLlGVvX/WjOBWhGD68OuP+GV1nToJawuBzPDvSe
-         AWrjkAdX8xFsSb+unxnsYfN5R/IX+pK0KMu2+NmfufPLz+ye5Qtsh4Qz/v/m2/fab+EX
-         2VUJFZia/PsjBKmpKfjdRArdTsvH7rviYuH5C8A2LuCYFK0Z4sgfRpppR3jtxvSus+PD
-         SMzsNww5SL3vZp6qsYBOaUHY/HK3eN8PgRYT9M1a3ViBsid45BIPCwoM/9u93UueG7Zw
-         SJFw93DFUBXYOiRTkNY8KkgEpKZw2e3ZnoNNcXk92x7HgiJYu3Ie3LBl0Ev1e2eZfZ8X
-         yi9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding:date
-         :message-id:cc:subject:from:to:references:in-reply-to;
-        bh=HP1IVoWcUpu03pWKu0gr3nGbUe2QQvaIWAyGYYu+z1w=;
-        b=eMwpUl89j6BV+/T4CktCbWDAKhgP57wW+VMUGjHkXOIHYIqWjWAiJN1KfyGHhT0Z7+
-         HtpWFIWJ0Fei8gnPr4owxma3bT750r43E61MrEV/wd+1to7Wl7ysWxoe7Pnubl0hERJy
-         92sS6rKQwhngH6WYljIXuRa7ChfBowQ8/d8uBJvPSjF4KbtTxq0W104Bia/ZKXa9sF0X
-         Goh4t5mMBJXvmTg8Uc05xGiogv/d1w/bXiy96BiLuyvrEuYCTyPAsixpea/N0JqMfw3U
-         PPXuAnGx+UkXMpxzoHm81cwDqM7O/5TSf5k4HkPHxhe/0lhsAR5s5cOxqgdgXXg7O98c
-         N8cA==
-X-Gm-Message-State: AOAM530IUHeEhXMC4BEPXDqxlrbFURv+ZQag47kdtKvIK6slhzmsA9YC
-        xqbQQP30xOh33PerrP7domk=
-X-Google-Smtp-Source: ABdhPJzaxFYkpff91JN66s0Lj90ASfGjvlnrk5Eh1Ear4i5wXDTDvhYM4qFtfaBA5ck/E3PzfXm4Yg==
-X-Received: by 2002:a05:6214:230c:: with SMTP id gc12mr2759813qvb.42.1626453986228;
-        Fri, 16 Jul 2021 09:46:26 -0700 (PDT)
-Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
-        by smtp.gmail.com with ESMTPSA id o18sm4276568qko.63.2021.07.16.09.46.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Jul 2021 09:46:25 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Fri, 16 Jul 2021 12:46:24 -0400
-Message-Id: <CCUPTHKOCEWC.3NLHJ5ACINRYN@shaak>
-Cc:     <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
-Subject: Re: [PATCH v5 04/10] iio: afe: rescale: reduce risk of integer
- overflow
-From:   "Liam Beguin" <liambeguin@gmail.com>
-To:     "Peter Rosin" <peda@axentia.se>, <jic23@kernel.org>,
-        <lars@metafoo.de>, <pmeerw@pmeerw.net>
-References: <20210715031215.1534938-1-liambeguin@gmail.com>
- <20210715031215.1534938-5-liambeguin@gmail.com>
- <e83ee306-2421-c327-7627-18ae2a7928a8@axentia.se>
-In-Reply-To: <e83ee306-2421-c327-7627-18ae2a7928a8@axentia.se>
+        id S230315AbhGPRFE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 13:05:04 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:39195 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230287AbhGPRFD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 13:05:03 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1626454928; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=mEEK8vn8jUWHmrafJI5v9opupcLU0cBJfG6/Je3wKtE=; b=VpHb8NvJCj7BnWt4zq3ggIa8v9iC8ZFnLcnAPn9aJMSgBJd2TEwXiOg1uDkp59rW5t7/xjqa
+ mPDnXK3ZCe8t55Y+KzM779t7+NybU554A8NtoGft3hFBPAb0LMTnxdW/yVKqG/EeYLXRI6h/
+ J/4n6UmInzvtGJBGImW36bQ1E9M=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
+ 60f1bb611d1afe585ebda6f6 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 16 Jul 2021 17:01:21
+ GMT
+Sender: sibis=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 9E573C43460; Fri, 16 Jul 2021 17:01:21 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [10.79.43.230] (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 81BA3C433F1;
+        Fri, 16 Jul 2021 17:01:18 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 81BA3C433F1
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=sibis@codeaurora.org
+Subject: Re: [PATCH v2 3/3] soc: qcom: aoss: Add generic compatible
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210709174142.1274554-1-bjorn.andersson@linaro.org>
+ <20210709174142.1274554-4-bjorn.andersson@linaro.org>
+From:   Sibi Sankar <sibis@codeaurora.org>
+Message-ID: <c3976c8d-c1ba-71b6-12ca-4de5649d9157@codeaurora.org>
+Date:   Fri, 16 Jul 2021 22:31:08 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <20210709174142.1274554-4-bjorn.andersson@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu Jul 15, 2021 at 6:23 AM EDT, Peter Rosin wrote:
-> On 2021-07-15 05:12, Liam Beguin wrote:
-> > From: Liam Beguin <lvb@xiphos.com>
-> >=20
-> > Reduce the risk of integer overflow by doing the scale calculation with
-> > 64bit integers and looking for a Greatest Common Divider for both parts
-> > of the fractional value when required.
-> >=20
-> > Signed-off-by: Liam Beguin <lvb@xiphos.com>
-> > ---
-> >  drivers/iio/afe/iio-rescale.c | 15 ++++++++++++---
-> >  1 file changed, 12 insertions(+), 3 deletions(-)
-> >=20
-> > diff --git a/drivers/iio/afe/iio-rescale.c b/drivers/iio/afe/iio-rescal=
-e.c
-> > index 774eb3044edd..4c3cfd4d5181 100644
-> > --- a/drivers/iio/afe/iio-rescale.c
-> > +++ b/drivers/iio/afe/iio-rescale.c
-> > @@ -39,7 +39,8 @@ static int rescale_read_raw(struct iio_dev *indio_dev=
-,
-> >  			    int *val, int *val2, long mask)
-> >  {
-> >  	struct rescale *rescale =3D iio_priv(indio_dev);
-> > -	unsigned long long tmp;
-> > +	s64 tmp, tmp2;
-> > +	u32 factor;
-> >  	int ret;
-> > =20
-> >  	switch (mask) {
-> > @@ -67,8 +68,16 @@ static int rescale_read_raw(struct iio_dev *indio_de=
-v,
-> >  		}
-> >  		switch (ret) {
-> >  		case IIO_VAL_FRACTIONAL:
-> > -			*val *=3D rescale->numerator;
-> > -			*val2 *=3D rescale->denominator;
-> > +			tmp =3D (s64)*val * rescale->numerator;
-> > +			tmp2 =3D (s64)*val2 * rescale->denominator;
-> > +			if (check_mul_overflow(*val, rescale->numerator, (s32 *)&tmp) ||
-> > +			check_mul_overflow(*val2, rescale->denominator, (s32 *)&tmp2)) {
 
-Hi Peter,
+On 7/9/21 11:11 PM, Bjorn Andersson wrote:
+> It seems we don't need platform specific implementation for the AOSS
+> QMP, so let's introduce a generic compatible to avoid having to update
+> the driver for each platform.
+> 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
->
-> The white space should be like this, methinks.
->
-> if (check_mul_overflow(*val, rescale->numerator, (s32 *)&tmp) ||
-> check_mul_overflow(*val2, rescale->denominator, (s32 *)&tmp2))
-> {
->
+Reviewed-by: Sibi Sankar <sibis@codeaurora.org>
+Tested-by: Sibi Sankar <sibis@codeaurora.org>
 
-Sorry about that... Like I said in the cover letter, I'm working on
-getting kunit tests running for the iio-rescale. At the moment it still
-requires copying part of the code over and sure enough I forgot to copy
-some of it back. My apologies for the noise...
+> ---
+> 
+> Changes since v1:
+> - None
+> 
+>   drivers/soc/qcom/qcom_aoss.c | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/soc/qcom/qcom_aoss.c b/drivers/soc/qcom/qcom_aoss.c
+> index 934fcc4d2b05..92a1af70a649 100644
+> --- a/drivers/soc/qcom/qcom_aoss.c
+> +++ b/drivers/soc/qcom/qcom_aoss.c
+> @@ -602,6 +602,7 @@ static const struct of_device_id qmp_dt_match[] = {
+>   	{ .compatible = "qcom,sm8150-aoss-qmp", },
+>   	{ .compatible = "qcom,sm8250-aoss-qmp", },
+>   	{ .compatible = "qcom,sm8350-aoss-qmp", },
+> +	{ .compatible = "qcom,aoss-qmp", },
+>   	{}
+>   };
+>   MODULE_DEVICE_TABLE(of, qmp_dt_match);
+> 
 
-This is what I meant to send:
-
-case IIO_VAL_FRACTIONAL:
-	if (check_mul_overflow(*val, rescale->numerator, (s32 *)&tmp) ||
-	    check_mul_overflow(*val2, rescale->denominator, (s32 *)&tmp2)) {
-		tmp =3D (s64)*val * rescale->numerator;
-		tmp2 =3D (s64)*val2 * rescale->denominator;
-		factor =3D gcd(tmp, tmp2);
-		do_div(tmp, factor);
-		do_div(tmp2, factor);
-	}
-
-	*val =3D tmp;
-	*val2 =3D tmp2;
-	return ret;
-
-I'll also move the opening bracket on a new line if you prefer.
-
-> > +				factor =3D gcd(tmp, tmp2);
->
-> And I just realized, gcd() works on unsigned values which is a bit safer
-> for the
-> scale factor. But here, for the actual values, more care is needed.
->
-
-I added negative test cases to take this into account. I'll update and
-resend. I'm going to find a way to get the test cases ready for the next
-revision.
-
-> > +				do_div(tmp, factor);
-> > +				do_div(tmp2, factor);
-> > +			}
-> > +			*val =3D tmp;
-> > +			*val2 =3D tmp2;
->
-> And beside the above points, the whole mechanism seems broken. The
-> returned value
-> in the third argument to check_mul_overflow isn't useful if there is an
-> overflow.
-> Yet, the code continues to use tmp and tmp2 in case of overflow. And why
-> do you
-> first multiply tmp and tmp2 without checks, only to then do the same mul
-> again
-> but with checks? Or have I completely misunderstood how
-> check_mul_overflow
-> works?
->
-
-Again, my apologies for this. It's not what I meant to send.
-Hopefully the snippet above makes more sense.
-
-Thanks for your time,
-Liam
-
-> Cheers,
-> Peter
->
-> >  			return ret;
-> >  		case IIO_VAL_INT:
-> >  			*val *=3D rescale->numerator;
-> >=20
-
+-- 
+Qualcomm Innovation Center, Inc.
+Qualcomm Innovation Center, Inc, is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project
