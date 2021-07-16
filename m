@@ -2,139 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF00E3CB5CC
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 12:13:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 146243CB5E5
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 12:21:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236053AbhGPKQJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 06:16:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41132 "EHLO
+        id S238173AbhGPKXo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 06:23:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235965AbhGPKQI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 06:16:08 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D667EC06175F
-        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 03:13:13 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1m4KqA-0001KF-3V; Fri, 16 Jul 2021 12:13:06 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1m4Kq5-0000E2-I2; Fri, 16 Jul 2021 12:13:01 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1m4Kq5-0000Wa-GI; Fri, 16 Jul 2021 12:13:01 +0200
-Date:   Fri, 16 Jul 2021 12:13:01 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Billy Tsai <billy_tsai@aspeedtech.com>
-Cc:     "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        BMC-SW <BMC-SW@aspeedtech.com>
-Subject: Re: [v9 2/2] pwm: Add Aspeed ast2600 PWM support
-Message-ID: <20210716101301.l563tdwt5xuq5iq6@pengutronix.de>
-References: <20210709065217.6153-1-billy_tsai@aspeedtech.com>
- <20210709065217.6153-3-billy_tsai@aspeedtech.com>
- <20210715150533.vppkw5oiomkxmfrn@pengutronix.de>
- <BD5B012C-B377-45E2-B04E-61D12B086670@aspeedtech.com>
- <20210716070943.ayxkz2irkwhgincz@pengutronix.de>
- <DD5590B4-11BC-411B-95BF-03AC26C078E4@aspeedtech.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="o6m277jeq5onsbp7"
-Content-Disposition: inline
-In-Reply-To: <DD5590B4-11BC-411B-95BF-03AC26C078E4@aspeedtech.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        with ESMTP id S231720AbhGPKXn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 06:23:43 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F7F0C06175F;
+        Fri, 16 Jul 2021 03:20:49 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id 21so8552827pfp.3;
+        Fri, 16 Jul 2021 03:20:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=YCyNWjhO4V+grwdhX/Rkj6AZtgSXulvvHbE6SHCabhc=;
+        b=NvMTrO9AvBHK5PXr7Tq2AEdo5sCNQniw/lPvn4rNiQnQfO8GutVkkVt9Wn8swq8XVu
+         jPQgA/zwLuuTlLLFo1vf4D65idV8ehQ1yinIrwaow8COmr8iyVERNdEA/JHs9irRRAq1
+         aIvWu1iD2PLOnJ5B2kwFfOrD3qAJW+3h/2XEY/xWGwygw60BZxKbZCHSZNujuo6vkup4
+         Gbmdb/gIo8GQv38AVpguvhSdtK3o8QodmbUuSkJDEtMg14zaDqGf8rWZ9oNaklO8RRp/
+         Iy7QBq52gWiuIYXvfpw/cz6yJDO+I14mqy5ss8IvSUY9jICLRaAwKgC+kVtKkF+nl1G2
+         YLHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=YCyNWjhO4V+grwdhX/Rkj6AZtgSXulvvHbE6SHCabhc=;
+        b=ZkoPp/r7pP4IaIS9IQno0lyhwqWx3pQLzYYhbTGMDc0+qIyUS8cZnZ5y3KHjXKbRFE
+         4eAfJDtcwAaK842AoAboVLsos2Ezxz/IxmxozaCnaW+w599q0QvcXkJmzsaIo11OEihr
+         PXuEInItUuxudVOx3pkxtbFcibEP2kdgY6uT9HGI7kJlLhxjgz2f4IdVW/Rkr8H3j2Ru
+         UJDkAGm+qIVwcwyQ6RKeSSsI6worIhdZBAZqBHMbvfHAyGpPEnZ2qJYMHTMwTutdT39Q
+         /pbdZ3XR3DFOvpHND56DX461pC5DJGQuDbqBobF1ed4F9c0Cg37oZrutyNHlOIlYbLE6
+         8g6A==
+X-Gm-Message-State: AOAM531PXyZGf4b+qVUiEseDcfvyjM5b9x3r5hj9n+uZuT1DW8rFF40/
+        wjFCCaaw3VKValwq7Z5vzfA=
+X-Google-Smtp-Source: ABdhPJyV/WkPZ7cH7PDgBqZ26JunVbj8zu2wDGcXqX9ALU+XHA62RewLfxASyZnmk4Pi7OI6tBvAOg==
+X-Received: by 2002:a62:3344:0:b029:28c:6f0f:cb90 with SMTP id z65-20020a6233440000b029028c6f0fcb90mr9497355pfz.58.1626430848877;
+        Fri, 16 Jul 2021 03:20:48 -0700 (PDT)
+Received: from fmin-OptiPlex-7060.nreal.work ([137.59.103.165])
+        by smtp.gmail.com with ESMTPSA id f3sm8051285pjt.19.2021.07.16.03.20.45
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 16 Jul 2021 03:20:48 -0700 (PDT)
+From:   dillon.minfei@gmail.com
+To:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
+        daniel@ffwll.ch, robh+dt@kernel.org, linus.walleij@linaro.org
+Cc:     noralf@tronnes.org, dianders@chromium.org,
+        alexandre.torgue@foss.st.com, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Dillon Min <dillon.minfei@gmail.com>
+Subject: [PATCH 0/2] Add ilitek ili9341 panel driver
+Date:   Fri, 16 Jul 2021 18:20:41 +0800
+Message-Id: <1626430843-23823-1-git-send-email-dillon.minfei@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Dillon Min <dillon.minfei@gmail.com>
 
---o6m277jeq5onsbp7
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Since the st,sf-tc240t-9370-t dts binding already exist in stm32f429-disco.dts
+but, the panel driver didn't get accepted from mainline. it's time to submit
+patch fot it.
 
-Hello Billy,
+This driver can support two different interface by different dts bindings:
+- spi+dpi, use spi to configure register, dpi for graphic data.
+  st,sf-tc240t-9370-t
+- only spi, just like tiny/ili9341.c (actually, this part is copy from tiny)
+  adafruit,yx240qv29
 
-On Fri, Jul 16, 2021 at 09:22:22AM +0000, Billy Tsai wrote:
-> On 2021/7/16, 3:10 PM, "Uwe Kleine-K=F6nig" <u.kleine-koenig@pengutronix.=
-de> wrote:
->=20
->     On Fri, Jul 16, 2021 at 01:48:20AM +0000, Billy Tsai wrote:
->     >> On 2021/7/15, 11:06 PM, "Uwe Kleine-K=F6nig" <u.kleine-koenig@peng=
-utronix.de>> wrote:
->     >>     > Another is: The PWM doesn't support duty_cycle 0, on such a =
-request the
->     >>     > PWM is disabled which results in a constant inactive level.
->     >>=20
->     >>     > (This is correct, is it? Or does it yield a constant 0 level=
-?)
->     >>=20
->     >> Our pwm can support duty_cycle 0 by unset CLK_ENABLE.
->=20
->     > This has a slightly different semantic though. Some consumer might
->     > expect that the following sequence:
->=20
->     >	pwm_apply(mypwm, { .period =3D 10000, .duty_cycle =3D 10000, .enabl=
-ed =3D true })
->     >	pwm_apply(mypwm, { .period =3D 10000, .duty_cycle =3D 0, .enabled =
-=3D true })
->     >	pwm_apply(mypwm, { .period =3D 10000, .duty_cycle =3D 10000, .enabl=
-ed =3D true })
->=20
->     > results in the output being low for an integer multiple of 10 =B5s.=
- This
->     > isn't given with setting CLK_ENABLE to zero, is it? (I didn't reche=
-ck,
->     > if the PWM doesn't complete periods on reconfiguration this doesn't
->     > matter much though.)
-> Thanks for the explanation.
-> Our hardware actually can only support duty from 1/256 to 256/256.
-> For this situation I can do possible solution:
-> We can though change polarity to meet this requirement. Inverse the pin a=
-nd use
-> duty_cycle 100.=20
-> But I think this is not a good solution for this problem right?
+I submited the first patch last year, you can find it at [1].
+this patch has one major difference from that one, which is replace the low
+level communication way, from spi_sync() to mipi_dbi_{command,
+command_stackbuf}() interface, referred from Linus's patch [2].
 
-If this doesn't result in more glitches that would be fine for me.
-(Assuming it is documented good enough in the code to be
-understandable.)
+both the two dpi/dbi interface was tested on stm32f429-disco board, if anyone
+want to verify this patch, you need apply the clk patch for this board first,
+you can get it from [3]
 
-Best regards
-Uwe
+[1] "drm/panel: Add ilitek ili9341 panel driver"
+https://lore.kernel.org/lkml/1590378348-8115-7-git-send-email-dillon.minfei@gmail.com/
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+[2] "drm/panel: s6e63m0: Switch to DBI abstraction for SPI"
+https://lore.kernel.org/dri-devel/20210611214243.669892-1-linus.walleij@linaro.org/
 
---o6m277jeq5onsbp7
-Content-Type: application/pgp-signature; name="signature.asc"
+[3]
+https://lore.kernel.org/lkml/1590378348-8115-6-git-send-email-dillon.minfei@gmail.com/
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmDxW6kACgkQwfwUeK3K
-7AnuOQf/cdtxnx5ap7eAcXsCJxd1wMM4sHbrRR3Kx2nE9MwAuU44x7P3khR9XSzv
-3S2xsnfWdrdxNQY/DOAfuSuCTgZ92BwzHt22OV8tPACYJOKgatgJtupBIBge0Bmh
-16uJgAJa8UYl5xYgXwWumLgKR7btLaZRGTg63nyvXfYYyQPo4n5Hej7fE+o2cjBE
-jpDMoOQCu4dYgaBZXqhhLZDMv7jtfeHeHn71lggEr5PB+xhNBMRKXIcQFqODAnIQ
-U6u0zGwi696702Zh5iavfwOCTO+NfMUmNBKqNoYn9pDmcclvXh84PDCHHKIj9KII
-ZlB10IqeSbWdPwhTSWbzqrtcafFLuQ==
-=Nk6o
------END PGP SIGNATURE-----
+Dillon Min (2):
+  dt-bindings: display: panel: Add ilitek ili9341 panel bindings
+  drm/panel: Add ilitek ili9341 panel driver
 
---o6m277jeq5onsbp7--
+ .../bindings/display/panel/ilitek,ili9341.yaml     |  69 ++
+ drivers/gpu/drm/panel/Kconfig                      |  12 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-ilitek-ili9341.c       | 778 +++++++++++++++++++++
+ 4 files changed, 860 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-ilitek-ili9341.c
+
+-- 
+2.7.4
+
