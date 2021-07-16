@@ -2,108 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58CCB3CB630
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 12:38:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D8B93CB651
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 12:47:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238646AbhGPKli (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 06:41:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47060 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237344AbhGPKlh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 06:41:37 -0400
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D72EEC06175F;
-        Fri, 16 Jul 2021 03:38:41 -0700 (PDT)
-Received: by mail-pg1-x52a.google.com with SMTP id h4so9544860pgp.5;
-        Fri, 16 Jul 2021 03:38:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=w3d3QBhIUG9rULiQkPjmvB3VFugYPgFTgKGsQs/0OIs=;
-        b=edMHLZZ9Joy3kORNlbb3fA7Oip6TpGrlESLPRoP4j3s+sAQLT1SlBoA6nDewPTbeVZ
-         adOYB6al4mrObEuWESAJ8eKqdNEMX2eOcU/YxWBmqhLKf3xbN45sNRIeZKrAtBqyiz9f
-         nX3dORJt+ID97uW4aq30eSU7zpLvGnWqQQDutpcN7gU5/m6ZvhDGcnZwvjjaNnqkhHWH
-         TaAulTOhfwFITR/T+aDhl6mwTAAaYhoKE8723LObUi/eM/LbPvenJ3bIctfUxk92bowR
-         BJ6DACx3dWU2weZVjdGuyk0HaB1noOWHalBTdjC8xkh7RLFCqkc388tyQMAjAHw2k4PS
-         KfJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=w3d3QBhIUG9rULiQkPjmvB3VFugYPgFTgKGsQs/0OIs=;
-        b=OLVm83A9+OQsMCEHdXVkBmJIBLJLQQeqDFdJVxkJwrPk9ic8T8fdKk6GhfDIpyB0g+
-         dQKnWABHzh33RyBdsFi3vGd7CmLHqGYL7KsUSCm7B1gJ8+Cui09vDRH3bBgZPyaAjPN7
-         i14lzqiPU2WEKtADmEIXNPLJJzwsy0+dKQ1iJ3Qq2XRLLe3/q33jIoOqy3Ccb4tq6ug8
-         3GtYHbp4SELIk7gf+tfkwdkdEbTJvRFMmigiQLaGEPfVkYeasC5Jipt1EfpwTFj9wGsK
-         E4T6JIYyKDEXfMldqozymZkeZGOqnc7TZc9FZL9NHxTTzLai30Jt62TyhjfBZQloLHdk
-         NeZg==
-X-Gm-Message-State: AOAM532A9xsgA9eRBXbkLU5Xs6pdUfPFqiY93VcRAnebjydoLO6dkbIy
-        iZ5q3hyHeKVnra+6CVkMzIM=
-X-Google-Smtp-Source: ABdhPJzRs9l6a/USkfsyP9AF6K5QWyN3b48FxjpiD1pQ49VAVuin34TLdB+q2UIjut4p6GMWd5n0vw==
-X-Received: by 2002:aa7:97bd:0:b029:32c:56cc:8fa9 with SMTP id d29-20020aa797bd0000b029032c56cc8fa9mr9677013pfq.65.1626431921511;
-        Fri, 16 Jul 2021 03:38:41 -0700 (PDT)
-Received: from archl-c2lm.. ([103.51.72.31])
-        by smtp.gmail.com with ESMTPSA id d29sm10070111pfq.193.2021.07.16.03.38.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Jul 2021 03:38:41 -0700 (PDT)
-From:   Anand Moon <linux.amoon@gmail.com>
-To:     linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Anand Moon <linux.amoon@gmail.com>,
-        Matt Corallo <oc2udbzfd@mattcorallo.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Emiliano Ingrassia <ingrassia@epigenesys.com>,
-        Brian Kim <brian.kim@hardkernel.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCHv2 4/4] phy: amlogic: meson8b-usb2: don't log an error on -EPROBE_DEFER
-Date:   Fri, 16 Jul 2021 10:36:36 +0000
-Message-Id: <20210716103651.1455-5-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210716103651.1455-1-linux.amoon@gmail.com>
-References: <20210716103651.1455-1-linux.amoon@gmail.com>
+        id S239169AbhGPKu3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 06:50:29 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:43100 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232622AbhGPKu2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 06:50:28 -0400
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 38F5C3F0;
+        Fri, 16 Jul 2021 12:47:32 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1626432452;
+        bh=2tjLHZKhFqJxgwfQBVt4w49XJ5K8O2XiNKVyDLxSTgU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=sR3rprPSuZDws4TWW+RjKCth2sIwIz1jbmkohQrnb8hRz7y3P0LVnqqwBuST/pI+c
+         aiQlx3VNH816uipUgHsdIL9upoDEV1K5knzeaA2+7EaJ/NEmRV7QbCdARzgDrlf/Vk
+         rvTl0lcNoN7RGsDYB5/Akt33oVeTvk2phe9/Xu78=
+Date:   Fri, 16 Jul 2021 13:47:30 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>
+Cc:     festevam@gmail.com, krzk@kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, kernel@puri.sm,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-staging@lists.linux.dev, m.felsch@pengutronix.de,
+        mchehab@kernel.org, phone-devel@vger.kernel.org, robh@kernel.org,
+        shawnguo@kernel.org, slongerbeam@gmail.com
+Subject: Re: [PATCH v6 2/3] media: imx: add a driver for i.MX8MQ mipi csi rx
+ phy and controller
+Message-ID: <YPFjwvjSCuvC1915@pendragon.ideasonboard.com>
+References: <20210714111931.324485-1-martin.kepplinger@puri.sm>
+ <20210714111931.324485-3-martin.kepplinger@puri.sm>
+ <YO8r6pZAduu1ZMK4@pendragon.ideasonboard.com>
+ <ce71a71a358247eca3b72ddcddd703206c90f284.camel@puri.sm>
+ <YPCuFA+utjudv11H@pendragon.ideasonboard.com>
+ <e88d99abbdcbd6a1b2c27849f08721e79f237adc.camel@puri.sm>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <e88d99abbdcbd6a1b2c27849f08721e79f237adc.camel@puri.sm>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-devm_phy_create can return -EPROBE_DEFER if the phy-supply is not ready
-yet. Silence this warning as the driver framework will re-attempt
-registering the PHY. Use dev_err_probe() for phy resources to indicate
-the deferral reason when waiting for the resource to come up.
+Hi Martin,
 
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
-None:
----
- drivers/phy/amlogic/phy-meson8b-usb2.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+On Fri, Jul 16, 2021 at 10:47:14AM +0200, Martin Kepplinger wrote:
+> Am Freitag, dem 16.07.2021 um 00:52 +0300 schrieb Laurent Pinchart:
+> > On Thu, Jul 15, 2021 at 09:37:24AM +0200, Martin Kepplinger wrote:
+> > > Am Mittwoch, dem 14.07.2021 um 21:24 +0300 schrieb Laurent Pinchart:
+> > > > On Wed, Jul 14, 2021 at 01:19:30PM +0200, Martin Kepplinger wrote:
+> > > > > Add a driver to support the i.MX8MQ MIPI CSI receiver. The hardware side
+> > > > > is based on
+> > > > > https://source.codeaurora.org/external/imx/linux-imx/tree/drivers/media/platform/imx8/mxc-mipi-csi2_yav.c?h=imx_5.4.70_2.3.0
+> > > > > 
+> > > > > It's built as part of VIDEO_IMX7_CSI because that's documented to support
+> > > > > i.MX8M platforms. This driver adds i.MX8MQ support where currently only the
+> > > > > i.MX8MM platform has been supported.
+> > > > > 
+> > > > > Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> > > > > ---
+> > > > >  drivers/staging/media/imx/Makefile           |   1 +
+> > > > >  drivers/staging/media/imx/imx8mq-mipi-csi2.c | 949 +++++++++++++++++++
+> > > > >  2 files changed, 950 insertions(+)
+> > > > >  create mode 100644 drivers/staging/media/imx/imx8mq-mipi-csi2.c
+> > > > > 
+> > > > > diff --git a/drivers/staging/media/imx/Makefile b/drivers/staging/media/imx/Makefile
+> > > > > index 6ac33275cc97..19c2fc54d424 100644
+> > > > > --- a/drivers/staging/media/imx/Makefile
+> > > > > +++ b/drivers/staging/media/imx/Makefile
+> > > > > @@ -16,3 +16,4 @@ obj-$(CONFIG_VIDEO_IMX_CSI) += imx6-mipi-csi2.o
+> > 
+> > [snip]
+> > 
+> > > > > +static int imx8mq_mipi_csi_calc_hs_settle(struct csi_state *state)
+> > > > > +{
+> > > > > +       u32 width = state->format_mbus[MIPI_CSI2_PAD_SINK].width;
+> > > > > +       u32 height = state->format_mbus[MIPI_CSI2_PAD_SINK].height;
+> > > > > +       s64 link_freq;
+> > > > > +       u32 lane_rate;
+> > > > > +
+> > > > > +       /* Calculate the line rate from the pixel rate. */
+> > > > > +       link_freq = v4l2_get_link_freq(state->src_sd->ctrl_handler,
+> > > > > +                                      state->csi2_fmt->width,
+> > > > > +                                      state->bus.num_data_lanes * 2);
+> > > > > +       if (link_freq < 0) {
+> > > > > +               dev_err(state->dev, "Unable to obtain link frequency: %d\n",
+> > > > > +                       (int)link_freq);
+> > > > > +               return link_freq;
+> > > > > +       }
+> > > > > +
+> > > > > +       lane_rate = link_freq * 2;
+> > > > > +       if (lane_rate < 80000000 || lane_rate > 1500000000) {
+> > > > > +               dev_dbg(state->dev, "Out-of-bound lane rate %u\n", lane_rate);
+> > > > > +               return -EINVAL;
+> > > > > +       }
+> > > > > +
+> > > > > +       /* https://community.nxp.com/t5/i-MX-Processors/Explenation-for-HS-SETTLE-parameter-in-MIPI-CSI-D-PHY-registers/m-p/764275/highlight/true#M118744 */
+> > > > > +       if (lane_rate < 250000000)
+> > > > > +               state->hs_settle = 0xb;
+> > > > > +       else if (lane_rate < 500000000)
+> > > > > +               state->hs_settle = 0x8;
+> > > > > +       else
+> > > > > +               state->hs_settle = 0x6;
+> > > > 
+> > > > We could possibly compute this value based on the formula from the table
+> > > > in that page, but maybe that's overkill ? If you want to give it a try,
+> > > > it would be along those lines.
+> > > > 
+> > > >         /*
+> > > >          * The D-PHY specification requires Ths-settle to be in the range
+> > > >          * 85ns + 6*UI to 140ns + 10*UI, with the unit interval UI being half
+> > > >          * the clock period.
+> > > >          *
+> > > >          * The Ths-settle value is expressed in the hardware as a multiple of
+> > > >          * the Esc clock period:
+> > > >          *
+> > > >          * Ths-settle = (PRG_RXHS_SETTLE + 1) * Tperiod of RxClkInEsc
+> > > >          *
+> > > >          * Due to the one cycle inaccuracy introduced by rounding, the
+> > > >          * documentation recommends picking a value away from the boundaries.
+> > > >          * Let's pick the average.
+> > > >          */
+> > > >         esc_clk_rate = clk_get_rate(...);
+> > > > 
+> > > >         min_ths_settle = 85 + 6 * 1000000 / (lane_rate / 1000);
+> > > >         max_ths_settle = 140 + 10 * 1000000 / (lane_rate / 1000);
+> > > >         ths_settle = (min_ths_settle + max_ths_settle) / 2;
+> > > > 
+> > > >         state->hs_settle = ths_settle * esc_clk_rate / 1000000000 - 1;
+> > > 
+> > > I experimented a bit but would like to leave this as a task for later
+> > > if that's ok. it's correct and simple now. also, using clks[i].clk
+> > > based on the name string would feel better to submit seperately
+> > > later.
+> > 
+> > That's OK with me, but I may then submit a patch on top fairly soon :-)
+> > Have you been able to test if this code works on your device ? The main
+> > reason why I think it's better is that it doesn't hardcode a specific
+> > escape clock frequency assumption, so it should be able to accommodate a
+> > wider range of use cases. If we change it later, there's always a risk
+> > of regressions, while if we do this from the start, we'll figure out
+> > quickly if it doesn't work in some cases.
+> 
+> taking your code basically as-is doesn't yet work, but it helps a bit.
 
-diff --git a/drivers/phy/amlogic/phy-meson8b-usb2.c b/drivers/phy/amlogic/phy-meson8b-usb2.c
-index 2aad45c55494..cf10bed40528 100644
---- a/drivers/phy/amlogic/phy-meson8b-usb2.c
-+++ b/drivers/phy/amlogic/phy-meson8b-usb2.c
-@@ -277,8 +277,8 @@ static int phy_meson8b_usb2_probe(struct platform_device *pdev)
- 
- 	phy = devm_phy_create(&pdev->dev, NULL, &phy_meson8b_usb2_ops);
- 	if (IS_ERR(phy)) {
--		dev_err(&pdev->dev, "failed to create PHY\n");
--		return PTR_ERR(phy);
-+		return dev_err_probe(&pdev->dev, PTR_ERR(phy),
-+				     "failed to create PHY\n");
- 	}
- 
- 	phy_set_drvdata(phy, priv);
+Thanks for testing.
+
+> tbh I don't even know how to correctly read that table / calculation:
+> what is the exact relation of the calculated Ths_settle time inverval
+> to the hs_settle register bits?
+
+The PRG_RXHS_SETTLE field stores a number of timer ticks to cover the
+Ths-settle internal. The D-PHY arms the timer when it detects the
+transition to LP-00, and ignores transitions on the lane until the timer
+expires. The timer is clocked by the escape clock.
+
+What hs_settle value do you currently use, and what value does my code
+produce ?
+
+> if the 2 of us can't quickly figure it out I can ask NXP via that
+> community forum issue and I created
+> https://source.puri.sm/Librem5/linux-next/-/issues/340 so I won't
+> forget about it.
+
 -- 
-2.32.0
+Regards,
 
+Laurent Pinchart
