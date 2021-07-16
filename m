@@ -2,158 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1313A3CB536
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 11:30:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07B763CB547
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 11:30:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231266AbhGPJZZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 05:25:25 -0400
-Received: from mail-eopbgr1310130.outbound.protection.outlook.com ([40.107.131.130]:3582
-        "EHLO APC01-SG2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230168AbhGPJZY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Jul 2021 05:25:24 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kqzGUsk/tFHlAU4QuG6uJNgq+1QPSzak+4AX2UG9VFX9YThYIWnBiQUq5PHJafeHJsCGYxoVKxFgvE23vTgknwSHxIlA1Cw2HdtoyqAs6qk1bImQci0BVvx1fcEYhv2fasD9BGaWOH7/7mDhRIOeGqx5pPpurFuJm1zHsyPBLLFvAaM5eymjINM01XDX2KQuz6yAcaV5jzmDAyXRMmql8r31cPjeSr1f1s/uI43Z4lajFWxIvBKR6zghp41YGs/rgLfeWq0MYQF8xgh6uGKTFHDS3dW1JUM1lQCxzkZCqmP2/Tjqz8s8s4/2KoCMH4HUXrpqghYcMQyO2IJ5mydtew==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VDrY1aXgKCGVjDpux6rMgUk6fXjnb/Tej6xw7N0cE6c=;
- b=Z6ZmpwvCFsTZDIzwrOek7oZGFNsgvdxFPHm+y+mqxTyyb+n/QEX7Hp3pt/w7W1B0HoLy861U9wO1GhFCjIEwaruHOkiak5NHnBFrqpnyK6+OXVWUBNXe4Ml1ISL9m54eHKxSrQ2wOVhcCrb5H3k16Q0h7KimIuDXoKuejUtTNifXLzsR8/lARDc0PNTEE7aINZX1Cj2pkbBgi/qceDIExC77v4jVse9rYP2UtruKVARG8Ngu7Q3XmhXlVKbcY025zIBgMVUAOVv9dNGGEBHf0v1vJ0ROZzCNgZQsQDkR2NoAW2wSz9KUuzzwQ4CIVvAG6+RP2zTfI31BlUrCGVg3ng==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VDrY1aXgKCGVjDpux6rMgUk6fXjnb/Tej6xw7N0cE6c=;
- b=WHDKiavtIpxVUDNHzeO6pJHIEHS5e6wQmQdpFoS1Gjq50FQMDamiwcUJn/6sqeuZXa0Z+KZo8CEgI9Iijk01YIE4pVuJ3CzVBFCCl/z4+Vdq0+vk/oalvBN4wCBmexd441u9SJJo6JiLespz9QiwxC3tOzD4TyxO08OPz54lqX851Lkv+g0Cp2kwBESzVwPpCwFEG8VhoeTDhwzDwwVLngLRuEykWU7ohKRB+dOqEmvazYecS3syRJUR4+vyWBm+me6Plj3kUaJQxvrQvrBf4OdX0NhhtvIjf6E7JPuOxf2hrFnQPxnk9v8MWGR3Y/hh1GfbOcZfQwhibtWL94WGFQ==
-Received: from HK0PR06MB3362.apcprd06.prod.outlook.com (2603:1096:203:8b::10)
- by HK0PR06MB3089.apcprd06.prod.outlook.com (2603:1096:203:8c::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.24; Fri, 16 Jul
- 2021 09:22:22 +0000
-Received: from HK0PR06MB3362.apcprd06.prod.outlook.com
- ([fe80::a529:f5b3:b9d6:5e27]) by HK0PR06MB3362.apcprd06.prod.outlook.com
- ([fe80::a529:f5b3:b9d6:5e27%4]) with mapi id 15.20.4331.025; Fri, 16 Jul 2021
- 09:22:23 +0000
-From:   Billy Tsai <billy_tsai@aspeedtech.com>
-To:     =?utf-8?B?VXdlIEtsZWluZS1Lw7ZuaWc=?= 
-        <u.kleine-koenig@pengutronix.de>
-CC:     "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        BMC-SW <BMC-SW@aspeedtech.com>
-Subject: Re: [v9 2/2] pwm: Add Aspeed ast2600 PWM support
-Thread-Topic: [v9 2/2] pwm: Add Aspeed ast2600 PWM support
-Thread-Index: AQHXdI70LATZWzg1kUKYrs9wZPLHOKtELJmAgAE5s4D//9OwgIAAqykA
-Date:   Fri, 16 Jul 2021 09:22:22 +0000
-Message-ID: <DD5590B4-11BC-411B-95BF-03AC26C078E4@aspeedtech.com>
-References: <20210709065217.6153-1-billy_tsai@aspeedtech.com>
- <20210709065217.6153-3-billy_tsai@aspeedtech.com>
- <20210715150533.vppkw5oiomkxmfrn@pengutronix.de>
- <BD5B012C-B377-45E2-B04E-61D12B086670@aspeedtech.com>
- <20210716070943.ayxkz2irkwhgincz@pengutronix.de>
-In-Reply-To: <20210716070943.ayxkz2irkwhgincz@pengutronix.de>
-Accept-Language: zh-TW, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: pengutronix.de; dkim=none (message not signed)
- header.d=none;pengutronix.de; dmarc=none action=none
- header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: ddc9b86f-fd43-4854-8e65-08d9483b3810
-x-ms-traffictypediagnostic: HK0PR06MB3089:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <HK0PR06MB30895ACB58773A90DBE57FB48B119@HK0PR06MB3089.apcprd06.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6108;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: hqJicoy4wRoz0X17/SvKc7CLczadXvVeuJkIDracZmxhoojiX2jDRIk2hY+CRPLrwIWg5XQjtFuO8w+2fIsWYGQftGltNVsZ9uG/ocl5gF+15qh9PeBSGoi8oGdLZkKtHSZV1reC9TepsH6w51uK/vg0nEf7qn6Klr1mMctNdcsFmPSPiguXgKn+yJ9FgpG1fp8sKT/9veiW71gFhypPxpaFP9/dHPrb9RvqYzuGdAd1ZqHNnL5G9zPDnEp/ohwoJXBwJi28PJ43w4bThbPKq/DdEIPted7vy3OBiodnipltuvwcQG46pvovbC0HP3dqhf2toBOUPM4ByMnBIL28ByHMLKK2Brpi2DU0gGUBVUp3rlNfcLfkfLFODNdHvrifi0QsVN4qB4L4b6c2PwvvHWYGVf4f5EzAP9lUlu+IKy9KrctAB26JcwHFXBBBJGuzdTgW4yFLq99WUxEJkxoht8AptsUmAyce0AJd6Q0YQKHZ/OhwOFbLIxCq5TsAGIlBlCbcvBs+uUZq+TnIb2mw+39Ja1KNMMJnSE/ygKaT+FQKMmzjHP+yG+ttpNQuSI20+lHuHNpaX5scKIaTao7tVXUw8XeNoUsOhiOUkdZq378cqf9swiZz7OxdbT2rlnHVVsMNNYxyi19Drtw1PozczVNqgxT5J4gHiPqR+HAYtBDyLuAp9N75UYNrSzNt05WtgJ9K9I+SMPKCfr+BHiyTrQQ/Qj/gdMCvFY1EjjSSleI=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR06MB3362.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(396003)(366004)(346002)(376002)(136003)(39850400004)(55236004)(6916009)(66446008)(64756008)(86362001)(26005)(53546011)(6506007)(83380400001)(66574015)(4326008)(66946007)(76116006)(186003)(71200400001)(33656002)(66476007)(66556008)(6512007)(107886003)(8676002)(6486002)(54906003)(478600001)(316002)(2616005)(36756003)(7416002)(122000001)(8936002)(2906002)(5660300002)(38100700002)(45980500001)(38070700004);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?eVhvbHZqdXRmajhZS2JncC81WkRNU2wrOCtTNThWTjRyRE5nZ09IaTlyeWY4?=
- =?utf-8?B?bnpiYWsyUVdtVWNwM2p4R1hRbitQS29MKzV6OXhabUFEWFJFdStPRFhMOHVE?=
- =?utf-8?B?ZzlGcUt0RDhNNXByUFM0czc0SldsRnNjeDR2dXBuMEI2bThHKy9UM1BOOGZt?=
- =?utf-8?B?ZjAvL1Z3ZDhZWDNUeW1VSzdhb1VKbm9XRE1od3M0bk9ZSUJadUxHV0pyeC9Z?=
- =?utf-8?B?WklUVTIzVll6N0UwRUs0SGNpOHE4eUxtY2ErNVVvYUlMS2R5dHAwN0ZUdVFq?=
- =?utf-8?B?S0VETWxidDBpeGVSTFhCRGd4VjJxVkN0OWZ3MW5xQ3Y2V2xmYXBRSExZc2gx?=
- =?utf-8?B?dkZ0NTRqdCtvYkdhSUIzdjVabmNLZFM2M0VwSDlLeXVVd1RzMWFMK2U5T0V3?=
- =?utf-8?B?UndBZWtDZ0VhdkkzV2tVeW5DZ2RmUTNIU1ErTnFXYjFFSnFPRGxvOWdDRk51?=
- =?utf-8?B?MWhia2xYZXZlQmJNWDJZL3RBY1haekdDZlhXamJkNzdVMmx1TzVycnBXeUZY?=
- =?utf-8?B?My9CMmIxdkxlOEVZTmRHOTl5bVBqNEQ2NFZlK3ptZnBDMXd0RkcvWVFnWXdp?=
- =?utf-8?B?Z1VyQ3RZanRTYTZENVBYbzFkOGV3ME5YU1B6MUdrYmdwUG1JSFB5ODVZWUxu?=
- =?utf-8?B?ZTRSWlpuckdZOTlsV0UwY2dXT3poSzdicllZTjZRendWbnFTVWpLODFpWEdy?=
- =?utf-8?B?empqQzFmaDg2SFlza3JVMlVSMWhHbFJyczVDdTBad3pvb2RQQi9KUlBaQVdN?=
- =?utf-8?B?VXNMajBaVmZ1Mkp3MysvT0ZUSkpBeTdGZUlsdC94enFjd0RCRVpoUE41VWFW?=
- =?utf-8?B?VWlCSldFL1lOWFZlc1JZTlFISmQxeWJUTmJUMld6L1Q1VmJ0QzJSZ0Q1Qmlr?=
- =?utf-8?B?VCtFN0R5SFNRbzdFTmU5cGZrRkZoMEg1NDRLMHc2aDVMd2oxbCtML3Urdmhu?=
- =?utf-8?B?ZDcyM3ozNzhzTFVRcWdnbUxhbTkwMzdtbDl4UHROQjdtTTZVNzM3aFlIcXZL?=
- =?utf-8?B?YUdxVGhJM2JBaXBDaHBpa1pQamF6c21JQnM0TjhxWGJIVG1HSWJibTB4VjY4?=
- =?utf-8?B?Tko0L0RyZEtkaURXbXN3dkFzMGNja2RtV3Uwb0RWTlFNZTN1bGFoTW8xVi9l?=
- =?utf-8?B?YlM4Z1NCZ2NvYUM5QlBwUXNZckYzM1BlUGtGc3U5SkxxSHYycUduM2tCTHJ0?=
- =?utf-8?B?NHdHRkg4d2tVSENocEp2NmxOU2JZSG5Ib1JHaE5IczNEOVdjNjArY1FseDVl?=
- =?utf-8?B?R3FQanlITGp6Q2Y5N1hRakZCZ1FzQjRaZ0R3SjhjY0owSkpSS0NxTm1JSDgx?=
- =?utf-8?B?REN0d0pva29hNFRFS0ZqWEFOc0dQVFVjRXUwa3ZzakRBeVNGVUl2enJTNVJ2?=
- =?utf-8?B?bkl0cXRDSmZpQThibUF5TjBYanNLcjFVQnByaWhoOVZmZ0Y0dFhOQlpHcDZ5?=
- =?utf-8?B?YjdiMk5mTHAvOW4yWGw2c3ZUalBINFZPMzVSQ1AvVG9xb05pc1dwTjhWdEY3?=
- =?utf-8?B?dEtYT3JtTjVNUnZFREdLMVg3UnIveFdFeEJleXFrS21mZGdHbnJBVzRUdWpU?=
- =?utf-8?B?d0hWSmdNY21La2dFZThuZWNnYjZxZG1QZkJPSXhydU9XK2daTmJIb0xycFRv?=
- =?utf-8?B?cVk0MDNoTUV2ZThJbmJVdW9kYzBwaHhMR2hWNVNQR283YWZ6R1p5R0tsSHN0?=
- =?utf-8?B?cXlOWUlJWlIzS0ZacElIWjNWSFNySzI2aFNHQlowZkYxSWZBZ0FsZXc0djFZ?=
- =?utf-8?Q?/bvXh5C1rLT1gMHqm4vYw55nbKAqMDutaarRTvJ?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <77E3E0C8EA6044459C73553865D85AEE@apcprd06.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        id S233818AbhGPJdE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 05:33:04 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:49403 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233763AbhGPJdA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Jul 2021 05:33:00 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1626427805; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=QfX1cy6BRq8atEmaeOQYNQ5ZME2FA2z59j0zFsixeDI=; b=NnZu2hw7JchNjluXKqJGgcIusEzYCrMh4N7UUVUhRRV+4/hcGfuvuOoJ+LV7dr9d8kiWhVjx
+ NL5oiNi9eKwDAy8iONORmJOR8iTt0jRhlo9au8MvqME7zisEwTq0nslfKdsp1mZzF2cjf2eQ
+ DK6roMF4RRpGkCTLnUtePLsFkMM=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
+ 60f1519c4815712f3a982b45 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 16 Jul 2021 09:30:04
+ GMT
+Sender: rnayak=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 18BCBC43460; Fri, 16 Jul 2021 09:30:04 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [10.50.2.235] (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rnayak)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 2947CC433D3;
+        Fri, 16 Jul 2021 09:29:59 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 2947CC433D3
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
+Subject: Re: [PATCH v3 1/2] PM / Domains: Add support for 'required-opps' to
+ set default perf state
+To:     ulf.hansson@linaro.org, bjorn.andersson@linaro.org,
+        viresh.kumar@linaro.org
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        swboyd@chromium.org, rojay@codeaurora.org, stephan@gerhold.net
+References: <1626412425-30715-1-git-send-email-rnayak@codeaurora.org>
+ <1626412425-30715-2-git-send-email-rnayak@codeaurora.org>
+From:   Rajendra Nayak <rnayak@codeaurora.org>
+Message-ID: <60c91d5b-21d3-fed8-853d-c89bc08160d2@codeaurora.org>
+Date:   Fri, 16 Jul 2021 14:59:57 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: HK0PR06MB3362.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ddc9b86f-fd43-4854-8e65-08d9483b3810
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jul 2021 09:22:22.9106
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: phM2r48H9Of8AZyIpiqGGvHtQSCsFJK6SXzipyiDTpPTS83eHsxVd0Vu2MT90gsuZMzpZgRJRD0BImKMq2JA6KwJap1awPRpA0tX9RuBJW4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK0PR06MB3089
+In-Reply-To: <1626412425-30715-2-git-send-email-rnayak@codeaurora.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGVsbG8gVXdlLA0KDQpPbiAyMDIxLzcvMTYsIDM6MTAgUE0sICJVd2UgS2xlaW5lLUvDtm5pZyIg
-PHUua2xlaW5lLWtvZW5pZ0BwZW5ndXRyb25peC5kZT4gd3JvdGU6DQoNCiAgICBIZWxsbyBCaWxs
-eSwNCg0KICAgIE9uIEZyaSwgSnVsIDE2LCAyMDIxIGF0IDAxOjQ4OjIwQU0gKzAwMDAsIEJpbGx5
-IFRzYWkgd3JvdGU6DQogICAgPj4gT24gMjAyMS83LzE1LCAxMTowNiBQTSwgIlV3ZSBLbGVpbmUt
-S8O2bmlnIiA8dS5rbGVpbmUta29lbmlnQHBlbmd1dHJvbml4LmRlPj4gd3JvdGU6DQogICAgPj4g
-ICAgID4gQW5vdGhlciBpczogVGhlIFBXTSBkb2Vzbid0IHN1cHBvcnQgZHV0eV9jeWNsZSAwLCBv
-biBzdWNoIGEgcmVxdWVzdCB0aGUNCiAgICA+PiAgICAgPiBQV00gaXMgZGlzYWJsZWQgd2hpY2gg
-cmVzdWx0cyBpbiBhIGNvbnN0YW50IGluYWN0aXZlIGxldmVsLg0KICAgID4+IA0KICAgID4+ICAg
-ICA+IChUaGlzIGlzIGNvcnJlY3QsIGlzIGl0PyBPciBkb2VzIGl0IHlpZWxkIGEgY29uc3RhbnQg
-MCBsZXZlbD8pDQogICAgPj4gDQogICAgPj4gT3VyIHB3bSBjYW4gc3VwcG9ydCBkdXR5X2N5Y2xl
-IDAgYnkgdW5zZXQgQ0xLX0VOQUJMRS4NCg0KICAgID4gVGhpcyBoYXMgYSBzbGlnaHRseSBkaWZm
-ZXJlbnQgc2VtYW50aWMgdGhvdWdoLiBTb21lIGNvbnN1bWVyIG1pZ2h0DQogICAgPiBleHBlY3Qg
-dGhhdCB0aGUgZm9sbG93aW5nIHNlcXVlbmNlOg0KDQogICAgPglwd21fYXBwbHkobXlwd20sIHsg
-LnBlcmlvZCA9IDEwMDAwLCAuZHV0eV9jeWNsZSA9IDEwMDAwLCAuZW5hYmxlZCA9IHRydWUgfSkN
-CiAgICA+CXB3bV9hcHBseShteXB3bSwgeyAucGVyaW9kID0gMTAwMDAsIC5kdXR5X2N5Y2xlID0g
-MCwgLmVuYWJsZWQgPSB0cnVlIH0pDQogICAgPglwd21fYXBwbHkobXlwd20sIHsgLnBlcmlvZCA9
-IDEwMDAwLCAuZHV0eV9jeWNsZSA9IDEwMDAwLCAuZW5hYmxlZCA9IHRydWUgfSkNCg0KICAgID4g
-cmVzdWx0cyBpbiB0aGUgb3V0cHV0IGJlaW5nIGxvdyBmb3IgYW4gaW50ZWdlciBtdWx0aXBsZSBv
-ZiAxMCDCtXMuIFRoaXMNCiAgICA+IGlzbid0IGdpdmVuIHdpdGggc2V0dGluZyBDTEtfRU5BQkxF
-IHRvIHplcm8sIGlzIGl0PyAoSSBkaWRuJ3QgcmVjaGVjaywNCiAgICA+IGlmIHRoZSBQV00gZG9l
-c24ndCBjb21wbGV0ZSBwZXJpb2RzIG9uIHJlY29uZmlndXJhdGlvbiB0aGlzIGRvZXNuJ3QNCiAg
-ICA+IG1hdHRlciBtdWNoIHRob3VnaC4pDQpUaGFua3MgZm9yIHRoZSBleHBsYW5hdGlvbi4NCk91
-ciBoYXJkd2FyZSBhY3R1YWxseSBjYW4gb25seSBzdXBwb3J0IGR1dHkgZnJvbSAxLzI1NiB0byAy
-NTYvMjU2Lg0KRm9yIHRoaXMgc2l0dWF0aW9uIEkgY2FuIGRvIHBvc3NpYmxlIHNvbHV0aW9uOg0K
-V2UgY2FuIHRob3VnaCBjaGFuZ2UgcG9sYXJpdHkgdG8gbWVldCB0aGlzIHJlcXVpcmVtZW50LiBJ
-bnZlcnNlIHRoZSBwaW4gYW5kIHVzZQ0KZHV0eV9jeWNsZSAxMDAuIA0KQnV0IEkgdGhpbmsgdGhp
-cyBpcyBub3QgYSBnb29kIHNvbHV0aW9uIGZvciB0aGlzIHByb2JsZW0gcmlnaHQ/DQoNCg==
+
+On 7/16/2021 10:43 AM, Rajendra Nayak wrote:
+> Some devics within power domains with performance states do not
+> support DVFS, but still need to vote on a default/static state
+> while they are active. They can express this using the 'required-opps'
+> property in device tree, which points to the phandle of the OPP
+> supported by the corresponding power-domains.
+> 
+> Add support to parse this information from DT and then set the
+> specified performance state during attach and drop it on detach.
+> Also drop/set as part of runtime suspend/resume callbacks.
+> 
+> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
+> ---
+>   drivers/base/power/domain.c | 29 ++++++++++++++++++++++++++++-
+>   include/linux/pm_domain.h   |  1 +
+>   2 files changed, 29 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/base/power/domain.c b/drivers/base/power/domain.c
+> index a934c67..eef5507 100644
+> --- a/drivers/base/power/domain.c
+> +++ b/drivers/base/power/domain.c
+> @@ -917,6 +917,10 @@ static int genpd_runtime_suspend(struct device *dev)
+>   	if (irq_safe_dev_in_no_sleep_domain(dev, genpd))
+>   		return 0;
+>   
+> +	/* Drop the default performance state */
+> +	if (dev_gpd_data(dev)->default_pstate)
+> +		dev_pm_genpd_set_performance_state(dev, 0);
+> +
+>   	genpd_lock(genpd);
+>   	gpd_data->rpm_pstate = genpd_drop_performance_state(dev);
+>   	genpd_power_off(genpd, true, 0);
+> @@ -937,6 +941,7 @@ static int genpd_runtime_resume(struct device *dev)
+>   {
+>   	struct generic_pm_domain *genpd;
+>   	struct generic_pm_domain_data *gpd_data = dev_gpd_data(dev);
+> +	unsigned int default_pstate = gpd_data->default_pstate;
+>   	struct gpd_timing_data *td = &gpd_data->td;
+>   	bool runtime_pm = pm_runtime_enabled(dev);
+>   	ktime_t time_start;
+> @@ -968,6 +973,9 @@ static int genpd_runtime_resume(struct device *dev)
+>   	if (ret)
+>   		return ret;
+>   
+> +	/* Set the default performance state */
+> +	if (default_pstate)
+> +		dev_pm_genpd_set_performance_state(dev, default_pstate);
+>    out:
+>   	/* Measure resume latency. */
+>   	time_start = 0;
+> @@ -1000,6 +1008,8 @@ static int genpd_runtime_resume(struct device *dev)
+>   	genpd_stop_dev(genpd, dev);
+>   err_poweroff:
+>   	if (!pm_runtime_is_irq_safe(dev) || genpd_is_irq_safe(genpd)) {
+> +		if (default_pstate)
+> +			dev_pm_genpd_set_performance_state(dev, 0);
+>   		genpd_lock(genpd);
+>   		gpd_data->rpm_pstate = genpd_drop_performance_state(dev);
+>   		genpd_power_off(genpd, true, 0);
+> @@ -2598,6 +2608,12 @@ static void genpd_dev_pm_detach(struct device *dev, bool power_off)
+>   
+>   	dev_dbg(dev, "removing from PM domain %s\n", pd->name);
+>   
+> +	/* Drop the default performance state */
+> +	if (dev_gpd_data(dev)->default_pstate) {
+> +		dev_pm_genpd_set_performance_state(dev, 0);
+> +		dev_gpd_data(dev)->default_pstate = 0;
+> +	}
+> +
+>   	for (i = 1; i < GENPD_RETRY_MAX_MS; i <<= 1) {
+>   		ret = genpd_remove_device(pd, dev);
+>   		if (ret != -EAGAIN)
+> @@ -2635,9 +2651,10 @@ static void genpd_dev_pm_sync(struct device *dev)
+>   static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
+>   				 unsigned int index, bool power_on)
+>   {
+> +	struct device_node *np;
+>   	struct of_phandle_args pd_args;
+>   	struct generic_pm_domain *pd;
+> -	int ret;
+> +	int ret, pstate;
+>   
+>   	ret = of_parse_phandle_with_args(dev->of_node, "power-domains",
+>   				"#power-domain-cells", index, &pd_args);
+> @@ -2678,6 +2695,16 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
+>   	if (ret)
+>   		genpd_remove_device(pd, dev);
+>   
+> +	/* Set the default performance state */
+> +	np = base_dev->of_node;
+> +	if (of_parse_phandle(np, "required-opps", index)) {
+> +		pstate = of_get_required_opp_performance_state(np, index);
+> +		if (pstate > 0) {
+> +			dev_pm_genpd_set_performance_state(dev, pstate);
+> +			dev_gpd_data(dev)->default_pstate = pstate;
+> +		}
+> +	}
+
+I realized this needs better error handling after I sent it out,
+I'll fix and respin.
+
+> +
+>   	return ret ? -EPROBE_DEFER : 1;
+>   }
+>   
+> diff --git a/include/linux/pm_domain.h b/include/linux/pm_domain.h
+> index 21a0577..67017c9 100644
+> --- a/include/linux/pm_domain.h
+> +++ b/include/linux/pm_domain.h
+> @@ -198,6 +198,7 @@ struct generic_pm_domain_data {
+>   	struct notifier_block *power_nb;
+>   	int cpu;
+>   	unsigned int performance_state;
+> +	unsigned int default_pstate;
+>   	unsigned int rpm_pstate;
+>   	ktime_t	next_wakeup;
+>   	void *data;
+> 
+
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
