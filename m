@@ -2,137 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 430DA3CB620
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 12:34:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4CA13CB625
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 12:37:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237344AbhGPKhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 06:37:23 -0400
-Received: from mx.socionext.com ([202.248.49.38]:24038 "EHLO mx.socionext.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230287AbhGPKhW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Jul 2021 06:37:22 -0400
-Received: from unknown (HELO kinkan2-ex.css.socionext.com) ([172.31.9.52])
-  by mx.socionext.com with ESMTP; 16 Jul 2021 19:34:27 +0900
-Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
-        by kinkan2-ex.css.socionext.com (Postfix) with ESMTP id 555CE208E6F5;
-        Fri, 16 Jul 2021 19:34:27 +0900 (JST)
-Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Fri, 16 Jul 2021 19:34:27 +0900
-Received: from yuzu2.css.socionext.com (yuzu2 [172.31.9.57])
-        by kinkan2.css.socionext.com (Postfix) with ESMTP id 0966EB631E;
-        Fri, 16 Jul 2021 19:34:27 +0900 (JST)
-Received: from [10.212.246.227] (unknown [10.212.246.227])
-        by yuzu2.css.socionext.com (Postfix) with ESMTP id D6BD7B1D52;
-        Fri, 16 Jul 2021 19:34:21 +0900 (JST)
-Subject: Re: [PATCH] dt-bindings: nvmem: Convert UniPhier eFuse bindings to
- json-schema
-To:     Rob Herring <robh@kernel.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Keiji Hayashibara <hayashibara.keiji@socionext.com>
-References: <1624413058-17338-1-git-send-email-hayashi.kunihiko@socionext.com>
- <20210714185922.GA2857803@robh.at.kernel.org>
-From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Message-ID: <f6b8adf4-b3bc-61e6-612e-2d662746afbf@socionext.com>
-Date:   Fri, 16 Jul 2021 19:34:16 +0900
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S238243AbhGPKkM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 06:40:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46696 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237344AbhGPKkM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 06:40:12 -0400
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC234C06175F;
+        Fri, 16 Jul 2021 03:37:16 -0700 (PDT)
+Received: by mail-pj1-x1033.google.com with SMTP id g24so6209204pji.4;
+        Fri, 16 Jul 2021 03:37:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8G+M3Pw6x7gYnZSkh4aaoUmFg7SaF7iRIrkpxTHDQbs=;
+        b=VNwmVnNALzHJttybOSu9O4QJ6IvIeATmuH7H39D4n0I7+wLVes021heN6eS+xJHtUl
+         YhfMIQN7Y7nrtpnD++hkvPBxt+ahBh8bbFJ8SnBKR4BAZQpBjsK+3yd50Ltw4KKp74kw
+         D/+bzUVvpQ+nr6KE+zVBG6c3kNBSYRwTe9biArR0KcKuT5A/tLdEPgs7BKBa//r1uAfR
+         47ISCzQgVruYpRcNDvrB39+Jg/dw6njT4gk/hjjKDLROY6YECMASaDYzmv4SQZnIHWSP
+         BNTE03w1Dnc6rdKYLeqjDOFCV6vNdm0RCqKp7Sk0YBf0K6EGyAJdmc7Y5Q4MaVoX+6Fb
+         R8cw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8G+M3Pw6x7gYnZSkh4aaoUmFg7SaF7iRIrkpxTHDQbs=;
+        b=pShsV/woEbJCLduQGNPR6Rm7bNDaYT0mb+ZMmEcggMlR/g7/Dfm8wI9CBaQ//m1v02
+         PIoUv+vhxdp1QhtMcq98wV40YtwkUexQCl88bp9NuZyEDjuI7L6fyb3S/zTkYUTfflbM
+         oX1e4JlXV/eKQLnod+P9WpgDJZAPo4HeIGSaDDliJ1+lLCFscfbTTzX+WHv0jC2OCfK0
+         v1IcG1CgjvBtZVwIwSGsi+fVQOW6vwlJOkmB9LMZ+D8an+1znq6ZjIru+HhlP88bg5aw
+         r7R+h+vTqEvU6d9Uuli2cF4QY1SLheEMzzaIOHuSTthrMtQFHNL8b8wdr/rg+KMJnqGK
+         5OIA==
+X-Gm-Message-State: AOAM532YP4c9FIxunskNsG+yek+Mzj95hqiGWHNZaWUZ3oTr2YwI3qq8
+        NQGyFfJzBX6zGDdZNlMAwzs=
+X-Google-Smtp-Source: ABdhPJzAO3AEXflzapXSJAOdvXJDpcbPoXXSMAFsuA1F9e87YTfPkmufyOz0AGRqHTGlQSf3SyjVHg==
+X-Received: by 2002:a17:90a:f698:: with SMTP id cl24mr14779412pjb.79.1626431836205;
+        Fri, 16 Jul 2021 03:37:16 -0700 (PDT)
+Received: from archl-c2lm.. ([103.51.72.31])
+        by smtp.gmail.com with ESMTPSA id d29sm10070111pfq.193.2021.07.16.03.37.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Jul 2021 03:37:15 -0700 (PDT)
+From:   Anand Moon <linux.amoon@gmail.com>
+To:     linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Anand Moon <linux.amoon@gmail.com>,
+        Matt Corallo <oc2udbzfd@mattcorallo.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Emiliano Ingrassia <ingrassia@epigenesys.com>,
+        Brian Kim <brian.kim@hardkernel.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCHv2 0/4] Meson-8b and Meson-gxbb Fix some missing code
+Date:   Fri, 16 Jul 2021 10:36:32 +0000
+Message-Id: <20210716103651.1455-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-In-Reply-To: <20210714185922.GA2857803@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-Thank you for checking.
+On Odroid C1+ and Odroid C2 USB feature is broken
 
-On 2021/07/15 3:59, Rob Herring wrote:
-> On Wed, Jun 23, 2021 at 10:50:58AM +0900, Kunihiko Hayashi wrote:
->> Convert the UniPhier eFuse binding to DT schema format.
->>
->> Cc: Keiji Hayashibara <hayashibara.keiji@socionext.com>
->> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
->> ---
->>   .../bindings/nvmem/socionext,uniphier-efuse.yaml   | 109 +++++++++++++++++++++
->>   .../devicetree/bindings/nvmem/uniphier-efuse.txt   |  49 ---------
->>   2 files changed, 109 insertions(+), 49 deletions(-)
->>   create mode 100644 Documentation/devicetree/bindings/nvmem/socionext,uniphier-efuse.yaml
->>   delete mode 100644 Documentation/devicetree/bindings/nvmem/uniphier-efuse.txt
->>
->> diff --git a/Documentation/devicetree/bindings/nvmem/socionext,uniphier-efuse.yaml b/Documentation/devicetree/bindings/nvmem/socionext,uniphier-efuse.yaml
->> new file mode 100644
->> index 0000000..e03c1ed
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/nvmem/socionext,uniphier-efuse.yaml
->> @@ -0,0 +1,109 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/nvmem/socionext,uniphier-efuse.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Socionext UniPhier eFuse bindings
->> +
->> +maintainers:
->> +  - Keiji Hayashibara <hayashibara.keiji@socionext.com>
->> +  - Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
->> +
->> +allOf:
->> +  - $ref: "nvmem.yaml#"
->> +
->> +properties:
->> +  "#address-cells": true
->> +  "#size-cells": true
->> +
->> +  compatible:
->> +    const: socionext,uniphier-efuse
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +patternProperties:
->> +  "^.*@[0-9a-f]+,[0-9]+$":
-> 
-> nvmem.yaml has a different definition. Though it doesn't handle
-> overlapping addresses. You should extend nvmem.yaml like you have here.
-> The last part should be optional though.
+It's being observed the after initiation of USB phy
+the USB port goes in to suspend state, If we pass usbcore.autosuspend=-1
+via command line USB hotplug seen to be working.
 
-I understand. I'll try to expand the optional pattern to nvmem.yaml.
+Another issue I observed is increase of USB interrupts event
+even if there is not much activity on USB ports.
 
->> +    type: object
->> +
->> +    properties:
->> +      reg:
->> +        maxItems: 1
->> +
->> +      bits:
->> +        maxItems: 1
->> +
->> +    required:
->> +      - reg
-> 
-> All this is already defined in nvmem.yaml.
+$ cat /proc/interrupts | grep usb
+ 35:   26462800          0          0          0     GIC-0  63 Level
+			c90c0000.usb, dwc2_hsotg:usb1
 
-I see. I'll remove them.
+Changes added power node to usb phy and small code cleanup
+in usb phy.
 
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +additionalProperties: false
-> 
-> Use 'unevaluatedProperties: false' and then you don't need to redefine
-> anything common here.
+Previous version RFC.
+[0] https://patchwork.kernel.org/project/linux-amlogic/cover/20210617194154.2397-1-linux.amoon@gmail.com/
+Dopped the reoder of code changes as of now.
 
-Okay, I'll use this keyword for that.
+V1 > changes Fixed the GPIO input signal on Odroid C1+/C2
+     New patch added to fix Odroid C2.
 
-Thank you,
+Thanks
+-Anand
 
----
-Best Regards
-Kunihiko Hayashi
+Anand Moon (4):
+  ARM: dts: meson8b: odroidc1: Add usb phy power node
+  arm64: dts: amlogic: odroidc2: Fix the chip enable signal for usb
+    power
+  phy: amlogic: meson8b-usb2: Power off the PHY by putting it into reset
+    mode
+  phy: amlogic: meson8b-usb2: don't log an error on -EPROBE_DEFER
+
+ arch/arm/boot/dts/meson8b-odroidc1.dts        | 19 +++++++++++++++++++
+ .../boot/dts/amlogic/meson-gxbb-odroidc2.dts  |  7 +++----
+ drivers/phy/amlogic/phy-meson8b-usb2.c        |  8 ++++++--
+ 3 files changed, 28 insertions(+), 6 deletions(-)
+
+-- 
+2.32.0
+
