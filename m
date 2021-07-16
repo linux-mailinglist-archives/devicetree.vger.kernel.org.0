@@ -2,85 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 406F43CBB5F
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 19:48:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6410D3CBB70
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 19:55:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231249AbhGPRuz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 13:50:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59136 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231137AbhGPRuw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 13:50:52 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84FAAC06175F
-        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 10:47:57 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1m4RwH-0003Mj-BO; Fri, 16 Jul 2021 19:47:53 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1m4RwG-0000Tf-EO; Fri, 16 Jul 2021 19:47:52 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1m4RwG-0001bb-DU; Fri, 16 Jul 2021 19:47:52 +0200
-Date:   Fri, 16 Jul 2021 19:47:52 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Joakim Zhang <qiangqing.zhang@nxp.com>
-Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        mkl@pengutronix.de, aisheng.dong@nxp.com,
-        devicetree@vger.kernel.org, festevam@gmail.com, linux-imx@nxp.com,
-        kernel@pengutronix.de
-Subject: Re: [PATCH V2] arm64: dts: imx8mp: remove fallback compatible string
- for FlexCAN
-Message-ID: <20210716174752.tcjjqghoxfxqqp2f@pengutronix.de>
-References: <20210716100414.12840-1-qiangqing.zhang@nxp.com>
+        id S229803AbhGPR6j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 13:58:39 -0400
+Received: from mail-io1-f48.google.com ([209.85.166.48]:39860 "EHLO
+        mail-io1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229462AbhGPR6j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 13:58:39 -0400
+Received: by mail-io1-f48.google.com with SMTP id w22so3424476ioc.6;
+        Fri, 16 Jul 2021 10:55:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=tFOHzg/8OboexPm/0pSsjz82hnih9yZe/xW9+Qml0Fo=;
+        b=JI6v9+B1A/1O5SIicqwRhvXlTsI/TCb0DE/XTY+3zATN4YN9DlrGTIUT4nKfwseKYb
+         8ZfoePOc+v+QhxQVmU92pYbV3FACu1Ex+AsSQNdaKrqkJnFcItFSxVuIrgXHAsPInmjr
+         7QyQJZY3Xm9HYXHpwCQ1stGmaDo3xDPRw91YmXz0GjAU0SzI6JxbSe3AuAFqSdAV86eQ
+         1eNE/55gLn+3pdZ/jZ2cYwqd+W+p96qmSriT2vwlPF62XvOAKOAmYqfgVZdxYG7cxZdJ
+         lR+Yqqypy3uigk0p5sn0dGfQoAnH5Rd2DbuqKqCVcyZk2FqupjIYkJ74JMOZCO1PpT6k
+         PK+w==
+X-Gm-Message-State: AOAM532SjaKYzRV6KCSEluFtObpH2Dbib0/mXS3mJp0LJiLxb9boJ9HJ
+        wMaVyQ2cd3j8Q2HsKR+Ldg==
+X-Google-Smtp-Source: ABdhPJyB1gQr5+xRZl+gIVic1+l9kv06PAA28WzTGwCgfyv07tnL8aVGaFiMGmLDAVDhxYYSy9tskA==
+X-Received: by 2002:a02:bb12:: with SMTP id y18mr9776068jan.66.1626458142771;
+        Fri, 16 Jul 2021 10:55:42 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id m26sm5481404ioo.23.2021.07.16.10.55.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Jul 2021 10:55:41 -0700 (PDT)
+Received: (nullmailer pid 3675453 invoked by uid 1000);
+        Fri, 16 Jul 2021 17:55:38 -0000
+Date:   Fri, 16 Jul 2021 11:55:38 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Cc:     David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
+        Daniel Vetter <daniel@ffwll.ch>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, chunkuang.hu@kernel.org,
+        devicetree@vger.kernel.org, kernel@collabora.com,
+        drinkcat@chromium.org, matthias.bgg@gmail.com,
+        jitao.shi@mediatek.com, Rob Herring <robh+dt@kernel.org>,
+        hsinyi@chromium.org, linux-kernel@vger.kernel.org,
+        eizan@chromium.org, Philipp Zabel <p.zabel@pengutronix.de>
+Subject: Re: [PATCH v2 3/7] dt-bindings: display: mediatek: add dsi reset
+ optional property
+Message-ID: <20210716175538.GA3675419@robh.at.kernel.org>
+References: <20210714101141.2089082-1-enric.balletbo@collabora.com>
+ <20210714121116.v2.3.Ifec72a83f224b62f24cfc967edfe78c5d276b2e3@changeid>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="26xo7frbnim5zmqr"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210716100414.12840-1-qiangqing.zhang@nxp.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20210714121116.v2.3.Ifec72a83f224b62f24cfc967edfe78c5d276b2e3@changeid>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 14 Jul 2021 12:11:37 +0200, Enric Balletbo i Serra wrote:
+> Update device tree binding documentation for the dsi to add the optional
+> property to reset the dsi controller.
+> 
+> Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+> ---
+> 
+> Changes in v2:
+> - Added a new patch to describe the dsi reset optional property.
+> 
+>  .../devicetree/bindings/display/mediatek/mediatek,dsi.txt   | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
 
---26xo7frbnim5zmqr
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Jul 16, 2021 at 06:04:14PM +0800, Joakim Zhang wrote:
-> FlexCAN on i.MX8MP is not derived from i.MX6Q, instead resues from
-
-s/resues/reuses/ I guess
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---26xo7frbnim5zmqr
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmDxxkUACgkQwfwUeK3K
-7AkTrAf6AoD1Aac2Cjhnue+J+YTa/aufLrdehhlfJLfun7chcqXdEp5Hix7DVq+p
-AXIUPGOIU/hTR+WIKWPdGilioVMC11W9lG49uL2nEuRYv/++kEQuECKmFUeR5pWG
-rYwNIigF3Xpysk8AReHUpaqlB91DFpQ0p++loQ9KB+Xitz/i85CYzWM4SdVh/9Rc
-wNU6KLbJP16HWmwCGnyocfpwuLSzH8WAqwHwJeLkGRQPJ2X8LBqq1gSMpNhXazBl
-ndp5ENucIkUPy/oECx3lFBR+bEkujuG6s5ZCc8Tpqr54puLJw8L2GGuZexUqspxf
-pxNiCvSwlu6h5cQNYTwiu9LOjObHeA==
-=P7d9
------END PGP SIGNATURE-----
-
---26xo7frbnim5zmqr--
+Acked-by: Rob Herring <robh@kernel.org>
