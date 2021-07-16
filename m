@@ -2,122 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E60B3CB927
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 16:54:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F0A73CB94B
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 17:03:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240717AbhGPO45 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 10:56:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48042 "EHLO
+        id S240205AbhGPPGt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 11:06:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240459AbhGPO44 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 10:56:56 -0400
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C2E5C06175F;
-        Fri, 16 Jul 2021 07:54:02 -0700 (PDT)
-Received: by mail-pg1-x535.google.com with SMTP id o4so5577736pgs.6;
-        Fri, 16 Jul 2021 07:54:02 -0700 (PDT)
+        with ESMTP id S233094AbhGPPGs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 11:06:48 -0400
+Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3937C06175F;
+        Fri, 16 Jul 2021 08:03:52 -0700 (PDT)
+Received: by mail-oi1-x22c.google.com with SMTP id t25so11170505oiw.13;
+        Fri, 16 Jul 2021 08:03:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=cDFHDauT3RJ9MLsKNJdQMhfJiWSb2KAxAbOMS927HhU=;
-        b=KpBBrYJ3ymii565DyMrXFfKsQTCqKhgJ+ot1+aN4qxdxBK1RgZcyUNeEKf5HYAq/gM
-         7ckGW5Le4rwCAqb9JS/DyU3laIhdKGc8RpRopxtxsEx1QRr3Q60nKFyRmtBKZJzuOsK7
-         ZZ/EBmSEdAo9YiXW33WGXCJWp83mN/BCwOZsHK9E0ZIwIXTu+XpymmS8+6tkpwmGn3SR
-         /Rk4gCDCHw4hdQdTZCF4KXc9JfzUPEpdH7u5YzGlYocJ3Jmx1B5466LEmMl1UTgLqRWK
-         s3J2Z16zq4PqMAPv5aOjj7cpGfsog+c5BHrZWUihbAk8Ai37KdJ6ZAfysU5AkWCbQCSc
-         5HVQ==
+        h=sender:to:cc:references:from:subject:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=i3KfiPtO0D3+NC1eT2ingGYsCONu0cw8923pwjmhYSQ=;
+        b=u451MZ2w1rN0BBPzCDk0boPfHl0L5+K3zNMzLxmpZUEk2VLbW9jiV5doUQ09oV3H+N
+         tfbE5dso8hBZ/yQ97EkZzp0P2xgGdJTPpVz9OtrLSt8tDXqSutH9iP0SZ0NJKhxxkS1K
+         WJ7NqXADoU2h9eOJoGHdn9VSOKBbgoVVTVHTNf0pl7NfjIgQPQHz0S5S30f0MgQdgfPk
+         WfF1yCIz0Jaa4eEWK9m7VkoHINKF4xVNTbj5oe50TLSIOuEsL7eP3YX46VViEW1j6g2Q
+         m/BJpHMq9beKUsDoo9S8ypFk1Aev8/o6RkySatnvZ6higOngqBfNJsU05ZAjInlVQZdT
+         pTyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=cDFHDauT3RJ9MLsKNJdQMhfJiWSb2KAxAbOMS927HhU=;
-        b=mxmMu4OyymU4hE0NOaEXh6YqmVBt8+y2hFcqucxBMD6KT4nNrpUGXWpJjYtHlmZ0BP
-         2j6Lhegrtzr+nP4jAmvPQxVPDUr7d8SzY6rto9NZ/FDPlKLsXM+LtwVJ4e++ju7FLO7d
-         vRCWeIYenQvmjQwG3OUMA/KDwMAU9txIarijXs91/QRKIth9rKwHI6AbwL0xM/SzfwXy
-         /IVwWpNTLf1qC83KhjeNU3oOPMqgLYMw8sUWxyJCUrE+xIb/zJ4tqOcS8ErH9pzwnpJZ
-         yOoMpP6eBVAnOdnt5BevLQTc/IIB5pw+6dHSGM5/nqX0BRfcUJwq7y2sDvSFkXRUjqjF
-         EuNw==
-X-Gm-Message-State: AOAM530HOpiiV6+0n5wA/OYPysGxsaJVrBuZ8ArrRZPT9YS26OcINrJu
-        sRIqnnuKZ0CWHu4KCQEXBFyJ/fvj/ClIZnFveUo=
-X-Google-Smtp-Source: ABdhPJwrnQLDM3CmbO7oL7frLjtutRJ3EBFjW/GxP0M9L+KriSV2r931SlxV2mYrZkeBvx+vwLNZJ/TaszKF41ugmNs=
-X-Received: by 2002:a65:434a:: with SMTP id k10mr10456163pgq.4.1626447241433;
- Fri, 16 Jul 2021 07:54:01 -0700 (PDT)
+        h=x-gm-message-state:sender:to:cc:references:from:subject:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=i3KfiPtO0D3+NC1eT2ingGYsCONu0cw8923pwjmhYSQ=;
+        b=tn+Ap9LERvxlwluSqmvY9Z5iWkHFEJtEbqtQTBPx36z3ONy/zZBkuxJWHCGDt1vx62
+         9QRwV2TJrRmTqKtpYWZupUL8CsBOj6tpzPvsAmspjsQfZQUKP2UVyvYV5c0VJfOipz7C
+         tgdnCmYhVFBAnwQS9upWr9U/x747fqhf/pIzhK5Y1Gchf1wO5/IpQXIk3G2SsBreQhSB
+         lrWz8XMaKDsfabMK0gc1lIgu/UOWpsgvLllLa9EsAnjl51lsED8IWvecFO9QhZ5/9JWh
+         9tXdILFbUuxkw4vcL7nMHpsMhieMU1nNHiR7xLXMak/qshAhY62b8tw9s7kJ3xHRbcNm
+         E1ow==
+X-Gm-Message-State: AOAM531l6+ZDgdK4SC0bxU9KdH1cJxB2Ig5XXGwml0C3X3sC1Q3aofrc
+        PQD8ks7jUiEpbCcU9W0VpVPMeG5i/eQ=
+X-Google-Smtp-Source: ABdhPJwecearIW6I2rzBiXgSYYFG80tvHnkIHUCY7FQPgN2JmoF9av1QqpKjCNrVv+iZ0ggn0U4gkQ==
+X-Received: by 2002:aca:1112:: with SMTP id 18mr3902062oir.168.1626447832075;
+        Fri, 16 Jul 2021 08:03:52 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id z7sm2081846oih.31.2021.07.16.08.03.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Jul 2021 08:03:51 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+To:     "Sa, Nuno" <Nuno.Sa@analog.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Jean Delvare <jdelvare@suse.com>
+References: <20210708120111.519444-1-nuno.sa@analog.com>
+ <20210708120111.519444-4-nuno.sa@analog.com>
+ <20210712172656.GA2142233@robh.at.kernel.org>
+ <PH0PR03MB63668564A9A7B8F5D6E5F8D499129@PH0PR03MB6366.namprd03.prod.outlook.com>
+ <20210715203937.GA3182741@roeck-us.net>
+ <PH0PR03MB636641D09289D1F696A64C9299119@PH0PR03MB6366.namprd03.prod.outlook.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [RFC PATCH 3/6] dt-bindings: axi-fan-control: add tacho
+ properties
+Message-ID: <f6d415a7-e113-1dda-727e-0d645c8114cb@roeck-us.net>
+Date:   Fri, 16 Jul 2021 08:03:49 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <20210716114210.141560-1-antoniu.miclaus@analog.com>
-In-Reply-To: <20210716114210.141560-1-antoniu.miclaus@analog.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 16 Jul 2021 17:53:22 +0300
-Message-ID: <CAHp75VcNhJrp4YGZQu1ZB2J4ARtuT2T2p-72H1qn4F+KtZDVoQ@mail.gmail.com>
-Subject: Re: [PATCH v6 1/2] iio: frequency: adrf6780: add support for ADRF6780
-To:     Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc:     linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        jic23@kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <PH0PR03MB636641D09289D1F696A64C9299119@PH0PR03MB6366.namprd03.prod.outlook.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 16, 2021 at 2:43 PM Antoniu Miclaus
-<antoniu.miclaus@analog.com> wrote:
->
-> The ADRF6780 is a silicon germanium (SiGe) design, wideband,
-> microwave upconverter optimized for point to point microwave
-> radio designs operating in the 5.9 GHz to 23.6 GHz frequency
-> range.
+On 7/16/21 12:44 AM, Sa, Nuno wrote:
+[ ... ]
+>>
+>> Are you sure you can ever get this stable ? Each fan has its own
+>> properties
+>> and tolerances. If you replace a fan in a given system, you might get
+>> different RPM numbers. The RPM will differ widely from system to
+>> system
+>> and from fan to fan. Anything that assumes a specific RPM in
+>> devicetree
+>> data seems to be quite vulnerable to failures. I have experienced that
+>> recently with a different chip which also tries to correlate RPM and
+>> PWM
+>> and fails quite miserably.
+>>
+>> In my experience, anything other than minimum fan speed is really a
+>> recipe
+>> for instability and sporadic false failures. Even setting a minimum fan
+>> speed
+>> is tricky because it depends a lot on the fan.
+> 
+> I see what you mean. So, I had to go through this process when testing
+> this changes because the fan I'm using is different from the default one
+> used to develop and stablish the default values in the IP core. The core
 
-> Datasheet:
-> https://www.analog.com/media/en/technical-documentation/data-sheets/ADRF6780.pdf
+Exactly my point.
 
-Is it one line? If not, please put on one line and drop below the
-blank line so it will go as a tag.
+> provides you with a register which contains the tacho measurements in
+> clock cycles. You can read that for all the PWM points of interest
+> (with devmem2 for example) and make your own "calibration". I assume
+> that people have to go through this process before putting some values
+> in the devicetree. I'm aware this is not the neatest process but I guess it's
+> acceptable...
+> 
 
->
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Do you really expect everyone using a system with this chip to go through
+this process and update its devicetree configuration, and then repeat it
+whenever a fan is changed ? Given how dynamic this is, I really wonder
+if that information should be in devicetree in the first place.
 
-First question is why not to use the regmap API (I have heard it has
-gained support of 17 bit)?
-
-...
-
-> +        depends on COMMON_CLK
-
-Is it mandatory for any function inside the device?
-
-...
-
-> +static int adrf6780_spi_read(struct adrf6780_dev *dev, unsigned int reg,
-> +                             unsigned int *val)
-> +{
-> +       int ret;
-> +       struct spi_transfer t = {0};
-
-> +       dev->data[0] = 0x80 | (reg << 1);
-
-This 0x80 I guess is pretty much standard and regmap SPI supports it.
-
-> +       dev->data[1] = 0x0;
-> +       dev->data[2] = 0x0;
-> +
-> +       t.rx_buf = &dev->data[0];
-> +       t.tx_buf = &dev->data[0];
-> +       t.len = 3;
-> +
-> +       ret = spi_sync_transfer(dev->spi, &t, 1);
-> +       if (ret)
-> +               return ret;
-> +
-> +       *val = (get_unaligned_be24(&dev->data[0]) >> 1) & GENMASK(15, 0);
-> +
-> +       return ret;
-> +}
-
-...
-
-> +       usleep_range(200, 250);
-
-Needs a comment.
-
--- 
-With Best Regards,
-Andy Shevchenko
+Guenter
