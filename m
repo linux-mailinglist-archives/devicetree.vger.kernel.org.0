@@ -2,144 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30D703CB124
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 05:30:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F12C3CB1D8
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 07:14:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233818AbhGPDda (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Jul 2021 23:33:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34106 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231230AbhGPDd3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Jul 2021 23:33:29 -0400
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2A04C06175F
-        for <devicetree@vger.kernel.org>; Thu, 15 Jul 2021 20:30:34 -0700 (PDT)
-Received: by mail-oi1-x22f.google.com with SMTP id w188so9288023oif.10
-        for <devicetree@vger.kernel.org>; Thu, 15 Jul 2021 20:30:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=C5ZpnIISOrgQPHb15dzDQUziq6RdWWF09/GhJ/pLK9Q=;
-        b=DlB5Ax6RTB+64Wl4Bhd0D9P3BMd5uvgbmCw59vWih+On0xy/aX/diGhYukLbpqZH9X
-         cWEA/2fQHrEoV6FJUeOV5MHG9yS3qeahzmIcvLkrU3dDWxSMCzjUSEdIPs5cCLgaoi/G
-         AfiaLjnKLc8YryY1mV8ZlK8Aj304yhJFLtiQoYU9MfCzRRseA+PgECV8I6HeoJQzXAiN
-         8ieYiujy+eNNb7XZdS1dwoLrLCXklK8GLe5R4pM2gFK0xFIv7/AOKNhOcE6Se2MHPH/L
-         wE1rOm8IO1VZaM7U684WKWr21ZunNbYUoTPBtsznsjLX5VZUXeQDU1tNgHLtgUEXcxto
-         kmFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=C5ZpnIISOrgQPHb15dzDQUziq6RdWWF09/GhJ/pLK9Q=;
-        b=P67zQxIAEGMCqtNBY0uZAHLOUrj8gEL3Q++XKtSdmWCqLDmdC4WXs0HCSPZRQ56Lvo
-         jXPXMBmj0lO+1spUS4RJ88Fy5vxITmZ7WAm3RAHKd1IuSI1M9txFXUuJ8cd37gbS0Ny5
-         SczWDqEbZ27YeNQp63xUfG/s6ksMORa/smJkDgJHVAJ/K2kODHhFJRR2SShi3WtL86Af
-         0Lr53sQl2AwBQFJpJCjZRgik4BfO/+KyiYJUxoad5ZJQoNCIYCmU3pDx9IlmOdODJE3t
-         Ribr5Kpy/WgatsHvieeIVEchsybp1FNWgL82huQMx2OvAlAHMGhN15FrdmIPCXirFjoU
-         43Ow==
-X-Gm-Message-State: AOAM5308CiZ+H1YkqoksX72rTMhr9B/1SRFcO+syCa/D8tXs0ceQ2MQm
-        Sh2BdWC9zqhs4nH9/awdlyN6C4SAhfF4g3A+gRs=
-X-Google-Smtp-Source: ABdhPJxLHBcOSDdV5XEyAFbfELdpkq05Z1e3SPTz31uVpyqwT+H67JT2FrjStoW8LsAP05XllqfrtkFWWaeymOf8omg=
-X-Received: by 2002:a05:6808:1153:: with SMTP id u19mr10692961oiu.20.1626406234308;
- Thu, 15 Jul 2021 20:30:34 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210715082536.1882077-1-aisheng.dong@nxp.com>
- <20210715082536.1882077-7-aisheng.dong@nxp.com> <1626357250.406964.968555.nullmailer@robh.at.kernel.org>
-In-Reply-To: <1626357250.406964.968555.nullmailer@robh.at.kernel.org>
-From:   Dong Aisheng <dongas86@gmail.com>
-Date:   Fri, 16 Jul 2021 11:28:33 +0800
-Message-ID: <CAA+hA=TsEfz9Zo3wfsf6ZXnYHtfv5AbGNqVQEMn0q0bh1TOQDQ@mail.gmail.com>
-Subject: Re: [PATCH 6/7] dt-bindings: soc: imx: add missing iomuxc gpr binding
-To:     Rob Herring <robh@kernel.org>
-Cc:     Dong Aisheng <aisheng.dong@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S234086AbhGPFRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 01:17:24 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:17126 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234038AbhGPFRT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Jul 2021 01:17:19 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1626412465; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=I70l+8gMqxdcJWfj49GFWkomNHZ5b0g+xdm+8kx2ybA=; b=czMDQwPB9c8zuEu3uCpkTaukClmvGB86wBwDAGtLiaQjGUEwXmM48AShcIrKrSkTCpqbFcLN
+ mLRly+yXkonbb51/FSz49cpzY3DiqPGHfh5Z5vVhiAAscSzhxw4wamTyj0N48KdzFF538yYF
+ Voay/rwLfeJmfHJf3YIg8BkVFhA=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
+ 60f11599d0100c7cf9b167db (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 16 Jul 2021 05:14:01
+ GMT
+Sender: rnayak=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 5E3BCC4338A; Fri, 16 Jul 2021 05:14:01 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from blr-ubuntu-173.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rnayak)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id A3F5AC433D3;
+        Fri, 16 Jul 2021 05:13:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org A3F5AC433D3
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
+From:   Rajendra Nayak <rnayak@codeaurora.org>
+To:     ulf.hansson@linaro.org, bjorn.andersson@linaro.org,
+        viresh.kumar@linaro.org
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        swboyd@chromium.org, rojay@codeaurora.org, stephan@gerhold.net,
+        Rajendra Nayak <rnayak@codeaurora.org>
+Subject: [PATCH v3 0/2] PM / Domains: Add support for 'required-opps' to set default perf state
+Date:   Fri, 16 Jul 2021 10:43:43 +0530
+Message-Id: <1626412425-30715-1-git-send-email-rnayak@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+This is a re-spin of the series [1] which was adding support for a new
+DT binding (assigned-performance-state) and based on the discussions on
+that thread [2] it was concluded that we could achieve the same with the
+existing 'required-opps' binding instead.
 
-On Thu, Jul 15, 2021 at 9:54 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, 15 Jul 2021 16:25:35 +0800, Dong Aisheng wrote:
-> > The General Purpose Registers IOMUXC_GPR are used to select operating
-> > modes for general features in the SoC, usually not related to the IOMUX
-> > itself.
-> >
-> > This binding doc is generated based on the exist usage in dts
-> > in order to fix dt schema check failures.
-> >
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Shawn Guo <shawnguo@kernel.org>
-> > Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
-> > ---
-> >  .../devicetree/bindings/soc/imx/fsl,gpr.yaml  | 69 +++++++++++++++++++
-> >  1 file changed, 69 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,gpr.yaml
-> >
->
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->
-> yamllint warnings/errors:
->
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/syscon.example.dt.yaml: iomuxc-gpr@20e0000: compatible: 'oneOf' conditional failed, one must be fixed:
->         ['fsl,imx6q-iomuxc-gpr', 'syscon'] is too short
->         'fsl,imx53-iomuxc-gpr' was expected
->         'fsl,imx6q-iomuxc-gpr' is not one of ['fsl,imx6sl-iomuxc-gpr', 'fsl,imx6sll-iomuxc-gpr', 'fsl,imx6sx-iomuxc-gpr', 'fsl,imx6ul-iomuxc-gpr', 'fsl,imx7d-iomuxc-gpr']
->         'fsl,imx7d-iomuxc-gpr' was expected
->         'fsl,imx8mq-iomuxc-gpr' was expected
->         'fsl,imx6q-iomuxc-gpr' is not one of ['fsl,imx8mm-iomuxc-gpr', 'fsl,imx8mn-iomuxc-gpr', 'fsl,imx8mp-iomuxc-gpr']
->         'fsl,imx6q-iomuxc-gpr' was expected
->         From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/imx/fsl,gpr.yaml
-> \ndoc reference errors (make refcheckdocs):
-> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt
-> MAINTAINERS: Documentation/devicetree/bindings/spi/spi-nxp-fspi.txt
+So this series, just drops the new binding and uses required-opps to achieve
+the default perf state setting thats needed by some devices.
 
-The example in syscon.yaml is invalid and needs change as follows.
-However, should I do it in a separate patch cause they're changes for
-two irrelevant binding
-files or merge into this one ?
+---
+Some devics within power-domains with performance states do not
+support DVFS, but still need to vote on a default/static state
+while they are active. Add support for this using the 'required-opps'
+property in device tree.
 
-diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml
-b/Documentation/devicetree/bindings/mfd/syscon.yaml
-index f14ae6da0068..11eae4c5848e 100644
---- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-+++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-@@ -90,7 +90,7 @@ examples:
+[1] https://lore.kernel.org/patchwork/project/lkml/list/?series=501336&state=%2A&archive=both
+[2] https://lore.kernel.org/patchwork/patch/1436886/
 
-   - |
-     gpr: iomuxc-gpr@20e0000 {
--        compatible = "fsl,imx6q-iomuxc-gpr", "syscon";
-+        compatible = "fsl,imx6q-iomuxc-gpr", "syscon", "mfd";
-         reg = <0x020e0000 0x38>;
-         hwlocks = <&hwlock1 1>;
-     };
+Rajendra Nayak (2):
+  PM / Domains: Add support for 'required-opps' to set default perf
+    state
+  arm64: dts: sc7180: Add required-opps for i2c
 
-Regards
-Aisheng
+ arch/arm64/boot/dts/qcom/sc7180.dtsi | 24 ++++++++++++++++++++++++
+ drivers/base/power/domain.c          | 27 +++++++++++++++++++++++++++
+ include/linux/pm_domain.h            |  1 +
+ 3 files changed, 52 insertions(+)
 
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
 
->
-> See https://patchwork.ozlabs.org/patch/1505583
->
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
->
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->
-> pip3 install dtschema --upgrade
->
-> Please check and re-submit.
->
