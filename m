@@ -2,78 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 072D53CBB79
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 19:57:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 912F53CBB8D
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 20:01:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229534AbhGPSAn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 14:00:43 -0400
-Received: from mail-il1-f174.google.com ([209.85.166.174]:33338 "EHLO
-        mail-il1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231462AbhGPSAj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 14:00:39 -0400
-Received: by mail-il1-f174.google.com with SMTP id z1so9087131ils.0;
-        Fri, 16 Jul 2021 10:57:43 -0700 (PDT)
+        id S231689AbhGPSDy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 14:03:54 -0400
+Received: from mail-io1-f51.google.com ([209.85.166.51]:37656 "EHLO
+        mail-io1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231673AbhGPSDx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 14:03:53 -0400
+Received: by mail-io1-f51.google.com with SMTP id r18so471873iot.4;
+        Fri, 16 Jul 2021 11:00:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=w8fuSGIRi3aXlEM3SVAucMj5af3dyv+P+T2En9XIJ/Q=;
-        b=R6NobiGckv8lef92q/PaJZEwUaX0VW/qhK/DjTIV2dUbUfiRO67RNJd34fJoN35LMh
-         kAE+TTkphtNpQMxgCXzlmdtqz2hPhNSVivGVCcd758FWCNfMT53sVHD6OYwKDPXVu75m
-         t4JODPbxkzHtHZhXPeoUA3CnBTwlodTCkR4LQK6ZKnDQv9fO1cWLuw+YIZxjX2flcT3e
-         YLJo4xdGYVWtCfex448qwy4ite+U3OgvnUaUCBiYCwYcDnIxlDRqP6mxvC67gQUJyoaJ
-         zFpRQuYth+QOXa/gmfhcVf05AS9i+dVk1/b4FF2MKYOx1yvZTqYcsdhWYcKxnbxSIfyL
-         4o+A==
-X-Gm-Message-State: AOAM531/LTbZAoL9mslB9WnLxzoW6hwH4hT5bcKBUmsRmbWc3vxGRfiH
-        yM2EmUYGnZO7HtpU20bkAg==
-X-Google-Smtp-Source: ABdhPJyQIdi20njTUKaiJxZnh7giOjOgLu/NhcLv5arRjHxmE92fv5pbzvwQDvh+bspS2OoNhKaUVA==
-X-Received: by 2002:a92:2805:: with SMTP id l5mr7276380ilf.242.1626458263554;
-        Fri, 16 Jul 2021 10:57:43 -0700 (PDT)
+        bh=BQfg6bk1Rki9URomuLmaOYZJZmzHHE0q6T5kl0dqKzc=;
+        b=OZtfiyD0XOHIZ1P/KnKDwRWTPnQzVsF0KnHsCnKUS1pohsqebNNRk+Pf+9lmB3mIm0
+         itXSsk4aGw2fJNSqguGroi+mPyLTVITkaqnvJ/oSCAtCaU+ZT6hhEUXzHSWTpLJUSdQ7
+         p3yQ8DRNLHJW5BQquhIdCupSeCa4gwrLWQJBSjH6R1ejoALYUrux0ynp/aquSGfddyw8
+         AZNXkWoNWkxQcbQINKAmBgSv+Sxp6UPGAMD7dhIUU36ILNhGpNv3IsPyTkvFJubn1vov
+         bN6nImV5oVlMP2gDmmecQQSzT/vbksMI+7XJCYlyLvUW7ii+6/5lnVBsMY0FRhUD0Ws/
+         7FRQ==
+X-Gm-Message-State: AOAM530nf1dvVi40T1bQPfJcn0fE68gST+H1xX8kfvhyx8Ci8Hl6sDHZ
+        dU3Zc0gxGf5h6TSIxFHbnQ==
+X-Google-Smtp-Source: ABdhPJxa2Fz8IfViDN38tLukY0ZzwaZsIaURYqO0PCSn2LSrQ1SuNn5oEzbxXaNpvO7fXpXb4YHFzQ==
+X-Received: by 2002:a5e:a908:: with SMTP id c8mr8269101iod.116.1626458458501;
+        Fri, 16 Jul 2021 11:00:58 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id i3sm5220090ilr.56.2021.07.16.10.57.41
+        by smtp.gmail.com with ESMTPSA id 204sm5475213ioc.50.2021.07.16.11.00.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Jul 2021 10:57:42 -0700 (PDT)
-Received: (nullmailer pid 3678871 invoked by uid 1000);
-        Fri, 16 Jul 2021 17:57:41 -0000
-Date:   Fri, 16 Jul 2021 11:57:41 -0600
+        Fri, 16 Jul 2021 11:00:57 -0700 (PDT)
+Received: (nullmailer pid 3684041 invoked by uid 1000);
+        Fri, 16 Jul 2021 18:00:54 -0000
+Date:   Fri, 16 Jul 2021 12:00:54 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Cc:     hsinyi@chromium.org, drinkcat@chromium.org,
-        linux-kernel@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, eizan@chromium.org,
-        linux-mediatek@lists.infradead.org, jitao.shi@mediatek.com,
-        chunkuang.hu@kernel.org, devicetree@vger.kernel.org,
-        matthias.bgg@gmail.com, kernel@collabora.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 5/7] arm64: dts: mt8183: Add the mmsys reset bit to
- reset the dsi0
-Message-ID: <20210716175741.GA3678812@robh.at.kernel.org>
-References: <20210714101141.2089082-1-enric.balletbo@collabora.com>
- <20210714121116.v2.5.I933f1532d7a1b2910843a9644c86a7d94a4b44e1@changeid>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     linux-renesas-soc@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        David Airlie <airlied@linux.ie>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Subject: Re: [PATCH v2] dt-bindings: display: renesas,du: Make resets
+ optional on R-Car H1
+Message-ID: <20210716180054.GA3683980@robh.at.kernel.org>
+References: <98575791b154d80347d5b78132c1d53f5315ee62.1626257936.git.geert+renesas@glider.be>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210714121116.v2.5.I933f1532d7a1b2910843a9644c86a7d94a4b44e1@changeid>
+In-Reply-To: <98575791b154d80347d5b78132c1d53f5315ee62.1626257936.git.geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Jul 2021 12:11:39 +0200, Enric Balletbo i Serra wrote:
-> Reset the DSI hardware is needed to prevent different settings between
-> the bootloader and the kernel.
+On Wed, 14 Jul 2021 12:19:36 +0200, Geert Uytterhoeven wrote:
+> The "resets" property is not present on R-Car Gen1 SoCs.
+> Supporting it would require migrating from renesas,cpg-clocks to
+> renesas,cpg-mssr.
 > 
-> While here, also remove the undocumented and also not used
-> 'mediatek,syscon-dsi' property.
+> Reflect this in the DT bindings by removing the global "required:
+> resets".  All SoCs that do have "resets" properties already have
+> SoC-specific rules making it required.
 > 
-> Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+> Fixes: 99d66127fad25ebb ("dt-bindings: display: renesas,du: Convert binding to YAML")
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > ---
-> 
-> (no changes since v1)
-> 
->  arch/arm64/boot/dts/mediatek/mt8183.dtsi  | 3 ++-
->  include/dt-bindings/reset/mt8183-resets.h | 3 +++
->  2 files changed, 5 insertions(+), 1 deletion(-)
+> v2:
+>   - Add Reviewed-by.
+> ---
+>  Documentation/devicetree/bindings/display/renesas,du.yaml | 1 -
+>  1 file changed, 1 deletion(-)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Applied, thanks!
