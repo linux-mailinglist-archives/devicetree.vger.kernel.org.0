@@ -2,78 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 460C13CBB54
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 19:42:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 406F43CBB5F
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 19:48:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229462AbhGPRpm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 13:45:42 -0400
-Received: from mail-io1-f50.google.com ([209.85.166.50]:41879 "EHLO
-        mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229534AbhGPRpk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 13:45:40 -0400
-Received: by mail-io1-f50.google.com with SMTP id z9so11468761iob.8;
-        Fri, 16 Jul 2021 10:42:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=abtEqAV33M3DgIPEkfoggh1NvUGRVPw0OXOjuerHpE4=;
-        b=OeyCyFzXuAOVd8iFJ15NnSt9LcsvqtKrnuQh+tVh0BJBa9g+GTeCvVBvfouWw+eEqu
-         Gsg4CngcO7WCSrW0CHmCAAtXY+6QFF0Iew58s13YWiCxrupKQRe/CY6XuefNhnjoI4o/
-         3RrLeF+Xsi9GkgdpwrPsWtvW6Tziz/nlE0f+ZcAxmmQhodFBbyaUM3gMwpJ8TN36iSpB
-         LzCToaMNNfzSXc0fRGBsc0GYLxp4yLdQlueeUPqfeIQyfrRDMj2GplzMdIa1tNiRst4t
-         tZsv0v4sLLTW/Zo9UBUvgWGE94SRZ1mIU9wHlJWVF4gILNPsMD1Pw7HhQOjWUwA3U0wk
-         PKEA==
-X-Gm-Message-State: AOAM5323BckTXOkQXUprT8dDXdQtZ02yV04JqBpww1K0bHjzriMvEOB/
-        5n028I4MjoJnBwpREWEKpg==
-X-Google-Smtp-Source: ABdhPJxypwi9lv1+Z3SgmiNgIEr2wremF6jY0WjJ2dthFUCmeqyOmoP5mv6TuceqQs07W1yvN2zhzQ==
-X-Received: by 2002:a5e:9309:: with SMTP id k9mr8023167iom.207.1626457365621;
-        Fri, 16 Jul 2021 10:42:45 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id h11sm5338497ilc.1.2021.07.16.10.42.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Jul 2021 10:42:44 -0700 (PDT)
-Received: (nullmailer pid 3655729 invoked by uid 1000);
-        Fri, 16 Jul 2021 17:42:42 -0000
-Date:   Fri, 16 Jul 2021 11:42:42 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Cc:     linux-kernel@vger.kernel.org, chunkuang.hu@kernel.org,
-        hsinyi@chromium.org, kernel@collabora.com, drinkcat@chromium.org,
-        eizan@chromium.org, linux-mediatek@lists.infradead.org,
-        matthias.bgg@gmail.com, jitao.shi@mediatek.com,
-        Fabien Parent <fparent@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/7] dt-bindings: mediatek: Add #reset-cells to mmsys
- system controller
-Message-ID: <20210716174242.GA3643756@robh.at.kernel.org>
-References: <20210714101141.2089082-1-enric.balletbo@collabora.com>
- <20210714121116.v2.2.I3f7f1c9a8e46be07d1757ddf4e0097535f3a7d41@changeid>
+        id S231249AbhGPRuz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 13:50:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59136 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231137AbhGPRuw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 13:50:52 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84FAAC06175F
+        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 10:47:57 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1m4RwH-0003Mj-BO; Fri, 16 Jul 2021 19:47:53 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1m4RwG-0000Tf-EO; Fri, 16 Jul 2021 19:47:52 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1m4RwG-0001bb-DU; Fri, 16 Jul 2021 19:47:52 +0200
+Date:   Fri, 16 Jul 2021 19:47:52 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Joakim Zhang <qiangqing.zhang@nxp.com>
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        mkl@pengutronix.de, aisheng.dong@nxp.com,
+        devicetree@vger.kernel.org, festevam@gmail.com, linux-imx@nxp.com,
+        kernel@pengutronix.de
+Subject: Re: [PATCH V2] arm64: dts: imx8mp: remove fallback compatible string
+ for FlexCAN
+Message-ID: <20210716174752.tcjjqghoxfxqqp2f@pengutronix.de>
+References: <20210716100414.12840-1-qiangqing.zhang@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="26xo7frbnim5zmqr"
 Content-Disposition: inline
-In-Reply-To: <20210714121116.v2.2.I3f7f1c9a8e46be07d1757ddf4e0097535f3a7d41@changeid>
+In-Reply-To: <20210716100414.12840-1-qiangqing.zhang@nxp.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 14, 2021 at 12:11:36PM +0200, Enric Balletbo i Serra wrote:
-> The mmsys system controller exposes a set of memory client resets and
-> needs to specify the #reset-cells property in order to advertise the
-> number of cells needed to describe each of the resets.
-> 
-> Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-> ---
-> 
-> (no changes since v1)
-> 
->  .../devicetree/bindings/arm/mediatek/mediatek,mmsys.txt         | 2 ++
->  1 file changed, 2 insertions(+)
 
-This will conflict. There's already multiple patches converting this to 
-schema[1][2].
+--26xo7frbnim5zmqr
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Rob
+On Fri, Jul 16, 2021 at 06:04:14PM +0800, Joakim Zhang wrote:
+> FlexCAN on i.MX8MP is not derived from i.MX6Q, instead resues from
 
-[1] https://lore.kernel.org/lkml/20210519161847.3747352-1-fparent@baylibre.com/
-[2] https://lore.kernel.org/lkml/CAC=S1nhi0rLpQznvUP1FVNtEDzdffFG_aMO7j-w4fHBY8ceJnw@mail.gmail.com/
+s/resues/reuses/ I guess
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--26xo7frbnim5zmqr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmDxxkUACgkQwfwUeK3K
+7AkTrAf6AoD1Aac2Cjhnue+J+YTa/aufLrdehhlfJLfun7chcqXdEp5Hix7DVq+p
+AXIUPGOIU/hTR+WIKWPdGilioVMC11W9lG49uL2nEuRYv/++kEQuECKmFUeR5pWG
+rYwNIigF3Xpysk8AReHUpaqlB91DFpQ0p++loQ9KB+Xitz/i85CYzWM4SdVh/9Rc
+wNU6KLbJP16HWmwCGnyocfpwuLSzH8WAqwHwJeLkGRQPJ2X8LBqq1gSMpNhXazBl
+ndp5ENucIkUPy/oECx3lFBR+bEkujuG6s5ZCc8Tpqr54puLJw8L2GGuZexUqspxf
+pxNiCvSwlu6h5cQNYTwiu9LOjObHeA==
+=P7d9
+-----END PGP SIGNATURE-----
+
+--26xo7frbnim5zmqr--
