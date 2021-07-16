@@ -2,77 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A3053CB57D
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 11:54:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A119E3CB596
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 12:02:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235568AbhGPJ5A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 05:57:00 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:12000 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230360AbhGPJ5A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 05:57:00 -0400
-X-UUID: 55162037efd240dcbc606e145f7512df-20210716
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=phqCD4LJR0pNpBe3FK03xbs4bsxYpn9hSfS9hoyXs+k=;
-        b=YTvmwYpHJUgH8Gjq3kCIA2uZD3b3ML+6Wwyu2kyXUAXulPxEZWEMPOXTKN2XIMBgFfQxMGfwgiLdE3Lu1hWEB7T5fxkZHjOIgBIi7Is4eVPMA1Y/6kgNr/zWftzXvfUqV4aNhPgV7AAjf4H+qLDRHhCjPj8K13mIfBFKpYLkxYk=;
-X-UUID: 55162037efd240dcbc606e145f7512df-20210716
-Received: from mtkmrs31.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <kewei.xu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1896142837; Fri, 16 Jul 2021 17:54:00 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS32N1.mediatek.inc
- (172.27.4.71) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 16 Jul
- 2021 17:53:57 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 16 Jul 2021 17:53:57 +0800
-Message-ID: <1626429237.29703.16.camel@mhfsdcap03>
-Subject: Re: [PATCH 8/8] i2c: mediatek: modify bus speed calculation formula
-From:   Kewei Xu <kewei.xu@mediatek.com>
-To:     Tzung-Bi Shih <tzungbi@google.com>
-CC:     <wsa@the-dreams.de>, <matthias.bgg@gmail.com>,
-        <robh+dt@kernel.org>, <linux-i2c@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
-        <qii.wang@mediatek.com>, <qiangming.xia@mediatek.com>,
-        <ot_daolong.zhu@mediatek.com>
-Date:   Fri, 16 Jul 2021 17:53:57 +0800
-In-Reply-To: <CA+Px+wWNcSkxvsEoUrgBN73+jhq8qjFJodYjQnY1zW2d0a5yRA@mail.gmail.com>
-References: <1626316157-24935-1-git-send-email-kewei.xu@mediatek.com>
-         <1626316157-24935-9-git-send-email-kewei.xu@mediatek.com>
-         <CA+Px+wWNcSkxvsEoUrgBN73+jhq8qjFJodYjQnY1zW2d0a5yRA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
-MIME-Version: 1.0
-X-TM-SNTS-SMTP: 6F46C422B3AC89BA8EF99B33069B7310E2E578E2D00ADFD2BE96F0D5623221F82000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+        id S237395AbhGPKEx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 06:04:53 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:40673 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237451AbhGPKEw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Jul 2021 06:04:52 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1626429718; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=VNxcuQsQChA9jzEUn2z9+r0eq/x+E61iqYliGmnZeL8=; b=WYeS6RnweXk1ZxnAOY/GLXyLpCKh6ttYHhxByrPz7na3YBOngoP5Q6yPR84kG1neiBG7nJ6m
+ ZnDJ8y14sgpYsw5INEjTQetQ5Ifx+pDAeehNJL/FVMLtMgW49tNTJgP8voDlJMHbhR1YzEqh
+ fr/ww6cBCD4GPGjfzUSlROuW6bQ=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
+ 60f158ecb653fbdadd94f760 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 16 Jul 2021 10:01:16
+ GMT
+Sender: rnayak=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id EAF5BC43217; Fri, 16 Jul 2021 10:01:15 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from blr-ubuntu-173.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rnayak)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 21BFCC433D3;
+        Fri, 16 Jul 2021 10:01:11 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 21BFCC433D3
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
+From:   Rajendra Nayak <rnayak@codeaurora.org>
+To:     ulf.hansson@linaro.org, bjorn.andersson@linaro.org,
+        viresh.kumar@linaro.org
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        swboyd@chromium.org, rojay@codeaurora.org, stephan@gerhold.net,
+        Rajendra Nayak <rnayak@codeaurora.org>
+Subject: [PATCH v4 0/2] PM / Domains: Add support for 'required-opps' to set default perf state
+Date:   Fri, 16 Jul 2021 15:30:56 +0530
+Message-Id: <1626429658-18961-1-git-send-email-rnayak@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVGh1LCAyMDIxLTA3LTE1IGF0IDE1OjA5ICswODAwLCBUenVuZy1CaSBTaGloIHdyb3RlOg0K
-PiBPbiBUaHUsIEp1bCAxNSwgMjAyMSBhdCAxMDozMiBBTSBLZXdlaSBYdSA8a2V3ZWkueHVAbWVk
-aWF0ZWsuY29tPiB3cm90ZToNCj4gPiBXaGVuIGNsb2NrLWRpdiBpcyAwIG9yIGdyZWF0ZXIgdGhh
-biAxLCB0aGUgYnVzIHNwZWVkDQo+ID4gY2FsY3VsYXRlZCBieSB0aGUgb2xkIHNwZWVkIGNhbGN1
-bGF0aW9uIGZvcm11bGEgd2lsbCBiZQ0KPiA+IGxhcmdlciB0aGFuIHRoZSB0YXJnZXQgc3BlZWQu
-IFNvIHdlIHVwZGF0ZSB0aGUgZm9ybXVsYS4NCj4gVGhlIHBhdGNoIHNvdW5kcyBsaWtlIGEgZml4
-IHVwLiAgTmVlZCBhICJGaXhlcyIgdGFnLg0KPiANCj4gPiAgICAgICAgIGZvciAoY2xrX2RpdiA9
-IDE7IGNsa19kaXYgPD0gbWF4X2Nsa19kaXY7IGNsa19kaXYrKykgew0KPiA+ICAgICAgICAgICAg
-ICAgICBjbGtfc3JjID0gcGFyZW50X2NsayAvIGNsa19kaXY7DQo+ID4gKyAgICAgICAgICAgICAg
-IGkyYy0+YWNfdGltaW5nLmludGVyX2Nsa19kaXYgPSBjbGtfZGl2IC0gMTsNCj4gVXNpbmcgdGhl
-IHdheSB0byBwYXNzIHRoZSBwYXJhbWV0ZXIgImludGVyX2Nsa19kaXYiIHRvDQo+IG10a19pMmNf
-Y2FsY3VsYXRlX3NwZWVkKCkgbG9va3MgbGlrZSBhIGhhY2suICBpbnRlcl9jbGtfZGl2IGlzIHNl
-dA0KPiBhZ2FpblsxXSBuZXh0IHRvIHRoZSBmb3IgbG9vcC4NCj4gDQo+IFsxXTogaHR0cHM6Ly9l
-bGl4aXIuYm9vdGxpbi5jb20vbGludXgvdjUuMTQtcmMxL3NvdXJjZS9kcml2ZXJzL2kyYy9idXNz
-ZXMvaTJjLW10NjV4eC5jI0w4MzENCj4gDQo+IA0KPiANCj4gSSBoYXZlIG5vIGRvbWFpbiBrbm93
-bGVkZ2Ugb2Ygd2hhdC9ob3cgdGhlIHBhdGNoIGZpeGVzLiAgQnV0IGlmIHRoaXMNCj4gaXMgYSBz
-dGFuZGFsb25lIGZpeHVwIHBhdGNoLCBzdWdnZXN0IHNlcGFyYXRpbmcgdG8gYW4gaW5kZXBlbmRl
-bnQNCj4gcGF0Y2guDQoNCkhpIFR6dW5nLUJpLA0KDQoxLiBUaGlzIFBhdGNoIGlzIG5vdCBmb3Ig
-Zml4aW5nIHByZXZpb3VzIGNvbW1pdCxpdCBpcyBqdXN0IGZvciB0aGUgYmFkDQpzcGVlZCBmb3Jt
-dWxhLg0KDQoyLiBJIHdpbGwgZml4IHRoaXMgcHJvYmxlbSBhY2NvcmRpbmcgdG8geW91ciBzdWdn
-ZXN0aW9uIGluIHRoZSBuZXh0DQpwYXRjaC4NCg0KVGhhbmtzDQpLZXdlaQ0K
+v4: Fixed error handling in __genpd_dev_pm_attach()
+
+This is a re-spin of the series [1] which was adding support for a new
+DT binding (assigned-performance-state) and based on the discussions on
+that thread [2] it was concluded that we could achieve the same with the
+existing 'required-opps' binding instead.
+
+So this series, just drops the new binding and uses required-opps to achieve
+the default perf state setting thats needed by some devices.
+
+---
+Some devics within power-domains with performance states do not
+support DVFS, but still need to vote on a default/static state
+while they are active. Add support for this using the 'required-opps'
+property in device tree.
+
+[1] https://lore.kernel.org/patchwork/project/lkml/list/?series=501336&state=%2A&archive=both
+[2] https://lore.kernel.org/patchwork/patch/1436886/
+
+Rajendra Nayak (2):
+  PM / Domains: Add support for 'required-opps' to set default perf
+    state
+  arm64: dts: sc7180: Add required-opps for i2c
+
+ arch/arm64/boot/dts/qcom/sc7180.dtsi | 24 +++++++++++++++++++++++
+ drivers/base/power/domain.c          | 37 +++++++++++++++++++++++++++++++++---
+ include/linux/pm_domain.h            |  1 +
+ 3 files changed, 59 insertions(+), 3 deletions(-)
+
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
 
