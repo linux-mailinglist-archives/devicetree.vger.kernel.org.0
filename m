@@ -2,119 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 151693CB8F7
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 16:41:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A970C3CB8FE
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 16:45:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240458AbhGPOoi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 10:44:38 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37294 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240454AbhGPOoi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Jul 2021 10:44:38 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7C22F613FD;
-        Fri, 16 Jul 2021 14:41:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626446503;
-        bh=Gg3Ke0wyfoprEaQsLgh/4ChP1BGmBVSkJ5TkIjXTauk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=NVNSiK17IZjvwxQwUyBbXALG1OEfj/EPl2TPfwfVV2SEmLVoOjr8/JfNGY/aaVnE7
-         MBfOD7nHttfeYeex7PtN6rz/vf+yKwTYMH1j5Qj8jc31viyzaPJgbFDX7MQ/OVYpMG
-         Zn/YXvDOBP4atQd5Igte4jDFrMfeP8eHnhfYYll+sRylJ0NgfCPskA/xDlMmkUCI64
-         0c7tJxUu1wL3Tw2iHsoRNhecQq2SO8VOhN6JQCfluFX18iRvaWMRxvyRv2vVqjdCjD
-         YYVZO5etRr2K6DuF3T55f5ZpE7Wpl+NCXA4jS/feOK83aMKBsfr8YVRsK3SBlSSJFR
-         YyPg86ZUtRL9g==
-Received: by mail-ed1-f50.google.com with SMTP id l1so13219995edr.11;
-        Fri, 16 Jul 2021 07:41:43 -0700 (PDT)
-X-Gm-Message-State: AOAM5317PduytVt6McC7vm4pFPzAn/0YhL2ad+GGFxJ/ImAJbf55Hcc/
-        seC3OR8RsATbIo1J8SdgIMWFY/vNv7I3o1L7Fw==
-X-Google-Smtp-Source: ABdhPJytXw32jFRKV/IdOZxQT/8gJgcEca+5S6hsSEebSUX+rUCDRaxZJRXWlatA7XKj4j5GTedS5nJA2LZGGpnQGiw=
-X-Received: by 2002:aa7:da4b:: with SMTP id w11mr13827478eds.258.1626446502075;
- Fri, 16 Jul 2021 07:41:42 -0700 (PDT)
+        id S240377AbhGPOsM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 10:48:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45940 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240361AbhGPOsM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 10:48:12 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBCE9C061762
+        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 07:45:16 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id x19so5586411ljc.4
+        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 07:45:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=phystech-edu.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VewEt9Sal2E694kwqU/1zQiu0e9L1vNSWqLI289mobQ=;
+        b=GkNk0fsCcdTMKo5D6LBy/xNq2Wnz9hXULvjrUWYo2Dw4dB7jE1SqZzZEGKsaAfLpaO
+         5WiLZmeFr1kLQ/lhl+GwIJZ7UG8sUT1Py+w6Bxf8mM1CfKNGYXcCX9iPqyHpdpk57uf/
+         YirL+S4f9IR6w6c+Dr2DSVrDz7Kz6ywObNMiVN13FXO/iZoXsa8Ay8pnQKigio+HEUKq
+         5hYq4kr8jR/k7jrdGfWBaHjK2XdazjwwhHK5rRjG4Umz5iULOuKIkeB6wkD9+zj2+KC9
+         dMmU9CaciDfGxQcVXjjtj05DmIq4QJMANVKhpjKbQZQtIyTLoB6QE6XYM1IdfieBcSVb
+         qmQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VewEt9Sal2E694kwqU/1zQiu0e9L1vNSWqLI289mobQ=;
+        b=j4WJ1Q0idcF7I+V3pAqKU1FAff5nf1tJFxabh1+xkp3gCueWF8kSMWIWUSywd8Voxh
+         JX24P4vM7l+FoaWai6IuzhpsUjYD4AF7vRtrkDx/16KPBh+gcVkf+tQeocAeuu6XvKiq
+         vfYmX6JDhMvfiqQ46KEBC2afANVecTivUv5t83Q0i5oV11iMsi3ALVOU9Q6d5cZzS+mD
+         etHPVQDdpoIHfrA3VEmRYT8kb2BzrkEDTky7WvRe0GGjoxQUCsIp02gwOsRYJavJjdvY
+         GYfY37rZaGp02FzTMIYXA8PsW3LpMjiX0grEAps4bAPkTNAD5n4NNRCnyrkikjKaGib+
+         g4nQ==
+X-Gm-Message-State: AOAM531OTP7zJDj6s5glxW50DEIknmroOSWkeTANaJSatyyPR+RzmmRJ
+        FQXUGOlTItrLjEn7MvOghfvzgA==
+X-Google-Smtp-Source: ABdhPJwy/jnKpQb7gQ4wl9610QlKRrHy9FWD9SWd1F4D+5MmjA+SijzOnrs5gXqreZh/gl6SLs9Mmg==
+X-Received: by 2002:a2e:8887:: with SMTP id k7mr9194849lji.226.1626446715159;
+        Fri, 16 Jul 2021 07:45:15 -0700 (PDT)
+Received: from 192.168.1.3 ([2a00:1370:810e:abfe:9c62:44e3:b0ab:76fd])
+        by smtp.gmail.com with ESMTPSA id b6sm992327ljf.59.2021.07.16.07.45.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Jul 2021 07:45:14 -0700 (PDT)
+From:   Viktor Prutyanov <viktor.prutyanov@phystech.edu>
+To:     sean@mess.org, mchehab@kernel.org, robh+dt@kernel.org,
+        khilman@baylibre.com, narmstrong@baylibre.com
+Cc:     jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, rockosov@gmail.com,
+        Viktor Prutyanov <viktor.prutyanov@phystech.edu>
+Subject: [PATCH v6 0/2] media: rc: add support for Amlogic Meson IR blaster
+Date:   Fri, 16 Jul 2021 17:45:06 +0300
+Message-Id: <20210716144508.6058-1-viktor.prutyanov@phystech.edu>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-References: <20210423163234.3651547-1-thierry.reding@gmail.com>
- <20210423163234.3651547-3-thierry.reding@gmail.com> <bdc42077-d1f3-f561-2e4d-647b5fceb7b6@gmail.com>
-In-Reply-To: <bdc42077-d1f3-f561-2e4d-647b5fceb7b6@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 16 Jul 2021 08:41:28 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+jSY-OLau3gLPsDL02AYaE_TySOGrd9-tNLFaYvLHZ6A@mail.gmail.com>
-Message-ID: <CAL_Jsq+jSY-OLau3gLPsDL02AYaE_TySOGrd9-tNLFaYvLHZ6A@mail.gmail.com>
-Subject: Re: [PATCH v2 2/5] iommu: Implement of_iommu_get_resv_regions()
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Nicolin Chen <nicolinc@nvidia.com>,
-        Krishna Reddy <vdumpa@nvidia.com>, devicetree@vger.kernel.org,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 2, 2021 at 8:05 AM Dmitry Osipenko <digetx@gmail.com> wrote:
->
-> 23.04.2021 19:32, Thierry Reding =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
-> > +void of_iommu_get_resv_regions(struct device *dev, struct list_head *l=
-ist)
-> > +{
-> > +     struct of_phandle_iterator it;
-> > +     int err;
-> > +
-> > +     of_for_each_phandle(&it, err, dev->of_node, "memory-region", "#me=
-mory-region-cells", 0) {
-> > +             struct iommu_resv_region *region;
-> > +             struct of_phandle_args args;
-> > +             struct resource res;
-> > +
-> > +             args.args_count =3D of_phandle_iterator_args(&it, args.ar=
-gs, MAX_PHANDLE_ARGS);
-> > +
-> > +             err =3D of_address_to_resource(it.node, 0, &res);
-> > +             if (err < 0) {
-> > +                     dev_err(dev, "failed to parse memory region %pOF:=
- %d\n",
-> > +                             it.node, err);
-> > +                     continue;
-> > +             }
-> > +
-> > +             if (args.args_count > 0) {
-> > +                     /*
-> > +                      * Active memory regions are expected to be acces=
-sed by hardware during
-> > +                      * boot and must therefore have an identity mappi=
-ng created prior to the
-> > +                      * driver taking control of the hardware. This en=
-sures that non-quiescent
-> > +                      * hardware doesn't cause IOMMU faults during boo=
-t.
-> > +                      */
-> > +                     if (args.args[0] & MEMORY_REGION_IDENTITY_MAPPING=
-) {
-> > +                             region =3D iommu_alloc_resv_region(res.st=
-art, resource_size(&res),
-> > +                                                              IOMMU_RE=
-AD | IOMMU_WRITE,
-> > +                                                              IOMMU_RE=
-SV_DIRECT_RELAXABLE);
-> > +                             if (!region)
-> > +                                     continue;
-> > +
-> > +                             list_add_tail(&region->list, list);
-> > +                     }
-> > +             }
-> > +     }
-> > +}
-> > +EXPORT_SYMBOL(of_iommu_get_resv_regions);
->
-> Any reason why this is not EXPORT_SYMBOL_GPL? I'm curious what is the
-> logic behind the OF symbols in general since it looks like half of them
-> are GPL.
+Hi,
 
-Generally, new ones are _GPL. Old ones probably predate _GPL.
+this is a driver for the IR transmitter (also called IR blaster)
+available in some Amlogic Meson SoCs.
 
-This one is up to the IOMMU maintainers.
+Viktor Prutyanov (2):
+  media: rc: meson-ir-tx: document device tree bindings
+  media: rc: introduce Meson IR TX driver
 
-Rob
+ .../bindings/media/amlogic,meson-ir-tx.yaml   |  67 +++
+ drivers/media/rc/Kconfig                      |  10 +
+ drivers/media/rc/Makefile                     |   1 +
+ drivers/media/rc/meson-ir-tx.c                | 415 ++++++++++++++++++
+ 4 files changed, 493 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/amlogic,meson-ir-tx.yaml
+ create mode 100644 drivers/media/rc/meson-ir-tx.c
+
+-- 
+2.21.0
+
