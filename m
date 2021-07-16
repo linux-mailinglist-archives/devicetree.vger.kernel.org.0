@@ -2,84 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D67C3CBDA8
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 22:21:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56F993CBDD5
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 22:32:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233181AbhGPUYa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 16:24:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37738 "EHLO
+        id S233966AbhGPUe4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 16:34:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234039AbhGPUYU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 16:24:20 -0400
+        with ESMTP id S233181AbhGPUez (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 16:34:55 -0400
 Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38257C061762
-        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 13:21:11 -0700 (PDT)
-Received: by mail-oi1-x231.google.com with SMTP id t25so12273720oiw.13
-        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 13:21:11 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07DA8C061764
+        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 13:31:59 -0700 (PDT)
+Received: by mail-oi1-x231.google.com with SMTP id e11so9319463oii.9
+        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 13:31:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=g7XJc1DeK5RWLC2lwkpTVSEYbVo2aCJXOnkX5WvjkxQ=;
-        b=X1ci68RUJiUzWjCTVEYL2rfpiWUTIDEiuEAdFprxYxCbNXbL0xlI835nzhNf9V8B/a
-         vOnst8QCa8IsA/iNtd69ejQWQJEq/dV7DNrpWRP6qbjhXitYy83acrW8qyvrMt74sDlb
-         C8ltdkIKsuitRqgJCvUPojfAXZXFGoLDWPDNY=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=skur1GUOLazLI9sGw0mejIHq2wA0Qk680cR6nWMO0gg=;
+        b=LwwcqbgFHQkMbqk1jYcxEcYdIkZvuwGRMhi5jbFla+CtGB+Hewhiw/2KUAe7icFwAf
+         m4jub9zvG0KPDG/uOUhbbZ4cMi7YmBaL4ly31rmpmk96M6wlZpkcECO2+O4rY9bTh8K+
+         f0KnZTQfPF2QV3yjHHQOK3lFt6s2qgzADMaijUdYuWS4b+mPRCTG7K3LT1KXL1Uyl43X
+         8NQhA2YBYvkZWhN/pKrSdeOnPprxqNeno0XtwE+zc6LT3VLQfrHou3dQlGMRVpe2JU0y
+         r+m5szqGyXeI2UjF31//tUMgl3ouerRlNMexxMVR9V8XHhcGO8NydNIT+cmfyiBnvBFc
+         rknA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=g7XJc1DeK5RWLC2lwkpTVSEYbVo2aCJXOnkX5WvjkxQ=;
-        b=c93BbBHnk6qa/NRtfL6+U91v+AZVXkFkcgiMrBWdZwTLmkqKi8tZL13EIGkLUBaFNj
-         99o/DoLiE8Y8NolrObD9OagxYechMXMF30C75rZ+UjOGghKdAkxywQxGvgZSS5dy1VOG
-         EIm26DKmr/XrbTPxHgQ8lEjpjuBjldsH817D9W3NfQ8T2zw6IYk6T/Wq8dWBydJPIdSn
-         rwOMszoYbNhZuyIl1sxkmXtRwaPPwxrvjY/Q9V4JhD6wqcCqKuV3NjbVvNrIOgBxFmSV
-         mrl9GXfqPia4G5QfSE52QBR261d9bb4YEarSPJxmIJztyOQSGiyBa0fmFcNqMq0rVKIt
-         w9VQ==
-X-Gm-Message-State: AOAM5300rALD+hOYv4PvdJtzWqvpUCXprL595k3YPeChr7R/VH7FmKoe
-        Mf/SFcQhL0+yJWjS97E589MWIENbAmMVCSGjpEXd0Q==
-X-Google-Smtp-Source: ABdhPJyK/jDp1Y5/AHnP6IVkZ7SwhZYlMNmFNUjxPUBlIgUz+nYo5ou6AL7km0hPj2UzUHV2sG6WvLOkEzWqNVmPO+o=
-X-Received: by 2002:aca:7545:: with SMTP id q66mr9370162oic.19.1626466870695;
- Fri, 16 Jul 2021 13:21:10 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 16 Jul 2021 22:21:09 +0200
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=skur1GUOLazLI9sGw0mejIHq2wA0Qk680cR6nWMO0gg=;
+        b=bLOfnIbDQx30D+LFg6vPYBKHwkaUMTmIpGexF1DZygd6iAWeKJL9e0TJpW07PWyBwq
+         D/FLgQxQ79Avuj21tfFC0mxs6rEPakb3umwXg/K4HvoQzX5LSvFRLiTjX8Iwbz7BTn8c
+         o9czDQNfz5Mp38HheRR4bUHqILLc9qoLUt9TcyF1FjCJvPIyyAZEPQOmX2brQyUR3ZX0
+         Vle5Z7Dr5aThC96ojKT5wT+svtkbQeQgsY07xPQrsNSLtzsKQGWbvqwrxq708EkN2zUM
+         qrQsb5wji13L7nK6OYTfmw4KSW2bY5P0V+yhvCaYAWGTgSEZBXb5ixYXqFGk+MUAtrpU
+         7w+Q==
+X-Gm-Message-State: AOAM531Q9M4uc0I7vVhvxro4dlhRMpVk709NdWFdJb/QPujlTMoYUX2L
+        eUS2teNpMPvKQU3D4vUjY19e5Q==
+X-Google-Smtp-Source: ABdhPJxs3RU6KbEjxZ/8AJyPjwqCKUMC6jqq/YEpxrH8KZ+P+JJmCUyzDX79WSngCiWDogB29ttcuw==
+X-Received: by 2002:a05:6808:192:: with SMTP id w18mr14135102oic.61.1626467518434;
+        Fri, 16 Jul 2021 13:31:58 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id r16sm1208092otu.26.2021.07.16.13.31.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Jul 2021 13:31:57 -0700 (PDT)
+Date:   Fri, 16 Jul 2021 15:31:55 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Prasad Malisetty <pmaliset@codeaurora.org>, agross@kernel.org,
+        bhelgaas@google.com, lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
+        svarbanov@mm-sol.com, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dianders@chromium.org,
+        mka@chromium.org, vbadigan@codeaurora.org, sallenki@codeaurora.org
+Subject: Re: [PATCH v4 4/4] PCIe: qcom: Add support to control pipe clk src
+Message-ID: <YPHsu+QLWRYpYRCz@yoga>
+References: <1626443927-32028-1-git-send-email-pmaliset@codeaurora.org>
+ <1626443927-32028-5-git-send-email-pmaliset@codeaurora.org>
+ <CAE-0n538LKQpeY_NKQF-VM3nHVxEE0B_pN4aN=sQ8iQzK+Yyxw@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <YPHpsO5LlQRQxj9y@yoga>
-References: <1626429658-18961-1-git-send-email-rnayak@codeaurora.org>
- <1626429658-18961-3-git-send-email-rnayak@codeaurora.org> <YPHpsO5LlQRQxj9y@yoga>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Fri, 16 Jul 2021 22:21:06 +0200
-Message-ID: <CAE-0n53CHD8c7C4ETWRgzmZmFSCcBw46wSs4pKbYMRjA_tD3yg@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] arm64: dts: sc7180: Add required-opps for i2c
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>
-Cc:     ulf.hansson@linaro.org, viresh.kumar@linaro.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        rojay@codeaurora.org, stephan@gerhold.net
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAE-0n538LKQpeY_NKQF-VM3nHVxEE0B_pN4aN=sQ8iQzK+Yyxw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Bjorn Andersson (2021-07-16 13:18:56)
-> On Fri 16 Jul 05:00 CDT 2021, Rajendra Nayak wrote:
->
-> > qup-i2c devices on sc7180 are clocked with a fixed clock (19.2 MHz)
-> > Though qup-i2c does not support DVFS, it still needs to vote for a
-> > performance state on 'CX' to satisfy the 19.2 Mhz clock frequency
-> > requirement.
-> >
->
-> Sounds good, but...
->
-> > Use 'required-opps' to pass this information from
-> > device tree, and also add the power-domains property to specify
-> > the CX power-domain.
-> >
->
-> ..is the required-opps really needed with my rpmhpd patch in place?
->
+On Fri 16 Jul 14:37 CDT 2021, Stephen Boyd wrote:
 
-Yes? Because rpmhpd_opp_low_svs is not the lowest performance state for
-CX.
+> Quoting Prasad Malisetty (2021-07-16 06:58:47)
+> > This is a new requirement for sc7280 SoC.
+> > To enable gdsc gcc_pcie_1_pipe_clk_src should be TCXO.
+> 
+> Why? Can you add that detail here? Presumably it's something like the
+> GDSC needs a running clk to send a reset through the flops or something
+> like that.
+> 
+
+Which presumably means that we need to "park" gcc_pcie_N_pipe_clk_src
+whenever the PHY pipe is paused due to a suspend or runtime suspend.
+
+I find this part of the commit message to primarily describing the next
+patch (that is yet to be posted).
+
+> > after PHY initialization gcc_pcie_1_pipe_clk_src needs
+> > to switch from TCXO to gcc_pcie_1_pipe_clk.
+> >
+> > Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
+> > ---
+> >  drivers/pci/controller/dwc/pcie-qcom.c | 22 ++++++++++++++++++++++
+> >  1 file changed, 22 insertions(+)
+> >
+> > diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> > index 8a7a300..9e0e4ab 100644
+> > --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> > +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> > @@ -1167,6 +1170,20 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
+> >         if (ret < 0)
+> >                 return ret;
+> >
+> > +       if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280")) {
+> > +               res->gcc_pcie_1_pipe_clk_src = devm_clk_get(dev, "pipe_mux");
+> > +               if (IS_ERR(res->gcc_pcie_1_pipe_clk_src))
+> > +                       return PTR_ERR(res->gcc_pcie_1_pipe_clk_src);
+> > +
+> > +               res->phy_pipe_clk = devm_clk_get(dev, "phy_pipe");
+> > +               if (IS_ERR(res->phy_pipe_clk))
+> > +                       return PTR_ERR(res->phy_pipe_clk);
+> > +
+> > +               res->ref_clk_src = devm_clk_get(dev, "ref");
+> > +               if (IS_ERR(res->ref_clk_src))
+> > +                       return PTR_ERR(res->ref_clk_src);
+> > +       }
+> > +
+> >         res->pipe_clk = devm_clk_get(dev, "pipe");
+> >         return PTR_ERR_OR_ZERO(res->pipe_clk);
+> >  }
+> > @@ -1255,6 +1272,11 @@ static void qcom_pcie_deinit_2_7_0(struct qcom_pcie *pcie)
+> >  static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
+> >  {
+> >         struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
+> > +       struct dw_pcie *pci = pcie->pci;
+> > +       struct device *dev = pci->dev;
+> > +
+> > +       if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280"))
+> > +               clk_set_parent(res->gcc_pcie_1_pipe_clk_src, res->phy_pipe_clk);
+> 
+> Is anything wrong if we call clk_set_parent() here when this driver is
+> running on previous SoCs where the parent is assigned via DT?
+
+We don't assign the parent on previous platforms, we apparently just
+rely on the reset value (afaict).
+
+So I think it makes sense for all platforms to explicitly mux
+pipe_clk_src to phy::pipe_clk, one the PHY is up and running.
+
+But I was under the impression that we have the BRANCH_HALT_SKIP on the
+pipe_clk because there was some sort of feedback loop to the PHY's
+calibration... What this patch indicates is that we should park
+pipe_clk_src onto XO at boot time, then after the PHY starts ticking we
+should enable and reparent the clk_src - at which point I don't see why
+we need the HALT_SKIP.
+
+> Also, shouldn't we make sure the parent is XO at driver probe time so
+> that powering on the GDSC works properly?
+> 
+> It all feels like a kludge though given that the GDSC is the one that
+> requires the clock to be running at XO and we're working around that in
+> the pcie driver instead of sticking that logic into the GDSC. What do we
+> do if the GDSC is already enabled out of boot instead of being the power
+> on reset (POR) configuration?
+> 
+
+What happens if we boot the device out of NVME...
+
+
+PS. Are we certain that it's the PCIe driver and not the PHY that should
+do this dance? I really would like to see the continuation of this patch
+to see the full picture...
+
+Regards,
+Bjorn
+
+> >
+> >         return clk_prepare_enable(res->pipe_clk);
+> >  }
