@@ -2,127 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 669EE3CB357
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 09:38:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D1673CB35F
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 09:39:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232052AbhGPHk1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 03:40:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60648 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232012AbhGPHk0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 03:40:26 -0400
-Received: from mail-il1-x130.google.com (mail-il1-x130.google.com [IPv6:2607:f8b0:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 694A1C06175F
-        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 00:37:32 -0700 (PDT)
-Received: by mail-il1-x130.google.com with SMTP id e13so7459417ilc.1
-        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 00:37:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ANiQyDq/folOxbicLwy3YOWgSYI5J0bEHqTHjcfWpeE=;
-        b=NZ/hguWCrTo//AU1Q0svGXlehzVRhlRy/nSls8iodhXXHgSEeCwbBTZ/daP8ru1+2y
-         BxRBJiEgjMWnZOPOkNow345Owj7290E/vXITWK+0+xpPLDyrmWtEgAaLi1EYLiW0H96w
-         NuqSZvzGC2Z4C51n2jOptN+DVowI83OLjjCDE=
+        id S232052AbhGPHle (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 03:41:34 -0400
+Received: from mail-vs1-f45.google.com ([209.85.217.45]:42681 "EHLO
+        mail-vs1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231966AbhGPHld (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 03:41:33 -0400
+Received: by mail-vs1-f45.google.com with SMTP id u7so4479122vst.9;
+        Fri, 16 Jul 2021 00:38:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=ANiQyDq/folOxbicLwy3YOWgSYI5J0bEHqTHjcfWpeE=;
-        b=k0x97fn8lPzyJQVrU4855AhqV18nHsFhi5lkeotxfb4o9PZhjvJG8ZWdBD6s8y3P6W
-         pAdC6cHO6NSBDOx1pXdJNu5kQ6DUWKY/3lnDyag7K5ZIyrqc811e5xasP9NRX9Z5/iku
-         YKEfhNsdYS5NaVhQCevgrcHEJye+klnn5cC2DiNo5RgZHkeyJ6bxktYyE/64XYQT14/c
-         q7qcN1lNAfiyQnwa2u2tVu1K7hOVvicyzD8HZVdnb83KvD8C79BfJS/bTwRXPEFdOnW1
-         tfVvKGzKshy9QzU2kHOjkGlpxKZXgqCVR1qFN4iEZjDNgQ25UrTWnWOskEGpsUC8vCtm
-         og9w==
-X-Gm-Message-State: AOAM531sfIyd9L8d/uTK7ApOPjn/+aWw6ZraCw0w0HhrXx9rBtKpgmwZ
-        USNXrwR9YeAwLKQZHSWIuCTn9WmG2/OAOunu+zeRew==
-X-Google-Smtp-Source: ABdhPJyT8V6x97LXNxXCsukgUCvYDKNceqkLDBqaokboRJb34I4xEcF3g0U8Zw6BQAhoQ5hGaStIUlO4jTjCi2i7VqY=
-X-Received: by 2002:a92:d305:: with SMTP id x5mr5796115ila.150.1626421051833;
- Fri, 16 Jul 2021 00:37:31 -0700 (PDT)
+        bh=/8xw8kA+i02VusdPbd0JDRclj3jeC0DgBPnvEpMrBZo=;
+        b=eXRKIlFJb5txJErZQlr54C0z65DSs1meTzz1poPWBkumvap6WBGWeDyCuXCxufOP3y
+         jr0xhuE14rkhTTLkOhpcZSCXaGm8R/aRS9SQ5MRBz7SbxGafX8sPKbBhUFFfn0w4ELVG
+         Hf2glLV09ggm/u2f5Ymt/S9YiLYFFPg6i8+2wdFNW4NO3uj8sus/1HQqJZ+0gzvVzuGx
+         rufNsds94vKYXEb0kTB3GtCyra84Lx0Vjjno/6xK6Eq+FgG24RG9aD8zznYghPNZzQIN
+         ddBgxyymAKAUAzjHyw8cFWpPtOrRq2iEvgBYPes7UgKLCoAhH3i/9E6UMTXpO7pZDFGY
+         4wHA==
+X-Gm-Message-State: AOAM531YEjpLT8Aurm8SG/omQUrJF9S55cVdcIpi449HrAQ1vqC7ABaT
+        Vvi4py5yMvcrPsPxU81Jncez7m52AL9jy2xlGbY=
+X-Google-Smtp-Source: ABdhPJzATlxh7v3TPVScN/pNQlX1LkPyBHWHSVXqQh9KOM24RerTxuY4NXa4lzjc15K3hgij1fF57C1RZ44OvNYZ4wQ=
+X-Received: by 2002:a05:6102:2828:: with SMTP id ba8mr11030321vsb.18.1626421118272;
+ Fri, 16 Jul 2021 00:38:38 -0700 (PDT)
 MIME-Version: 1.0
-References: <1626418701-28467-1-git-send-email-yongqiang.niu@mediatek.com> <1626418701-28467-2-git-send-email-yongqiang.niu@mediatek.com>
-In-Reply-To: <1626418701-28467-2-git-send-email-yongqiang.niu@mediatek.com>
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Fri, 16 Jul 2021 15:37:05 +0800
-Message-ID: <CAJMQK-ghGCR3L89NzBx-6X6rJK-4VQYZT18DqdKM780r2bLvpA@mail.gmail.com>
-Subject: Re: [PATCH v1] mailbox: cmdq: add instruction time-out interrupt support
-To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+References: <20210715182123.23372-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210715182123.23372-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20210715182123.23372-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 16 Jul 2021 09:38:27 +0200
+Message-ID: <CAMuHMdU7zKFL_qio3vdTUgxPkQjxOW6K1TjPzDQja8ioYXYZNQ@mail.gmail.com>
+Subject: Re: [PATCH 1/6] dt-bindings: net: can: renesas,rcar-canfd: Document
+ RZ/G2L SoC
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
+        linux-can@vger.kernel.org, netdev <netdev@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 16, 2021 at 2:58 PM Yongqiang Niu
-<yongqiang.niu@mediatek.com> wrote:
->
-> add time-out cycle setting to make sure time-out interrupt irq
-> will happened when instruction time-out for wait and poll
->
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+Hi Prabhakar,
 
-Hi, it seems that this series is based on
-https://patchwork.kernel.org/project/linux-mediatek/patch/1624440623-4585-4-git-send-email-yongqiang.niu@mediatek.com/?
+On Thu, Jul 15, 2021 at 8:21 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> Add CANFD binding documentation for Renesas RZ/G2L SoC.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Please state it if it's not based on linux-next, thanks!
+Thanks for your patch!
 
-> ---
->  drivers/mailbox/mtk-cmdq-mailbox.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+> --- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+> +++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+
+> @@ -78,6 +79,38 @@ patternProperties:
+>        node.  Each child node supports the "status" property only, which
+>        is used to enable/disable the respective channel.
 >
-> diff --git a/drivers/mailbox/mtk-cmdq-mailbox.c b/drivers/mailbox/mtk-cmdq-mailbox.c
-> index de4793e..9a76bcd 100644
-> --- a/drivers/mailbox/mtk-cmdq-mailbox.c
-> +++ b/drivers/mailbox/mtk-cmdq-mailbox.c
-> @@ -35,6 +35,7 @@
->  #define CMDQ_THR_END_ADDR              0x24
->  #define CMDQ_THR_WAIT_TOKEN            0x30
->  #define CMDQ_THR_PRIORITY              0x40
-> +#define CMDQ_THR_INSTN_TIMEOUT_CYCLES  0x50
->
->  #define GCE_GCTL_VALUE                 0x48
->
-> @@ -53,6 +54,15 @@
->  #define CMDQ_JUMP_BY_OFFSET            0x10000000
->  #define CMDQ_JUMP_BY_PA                        0x10000001
->
-> +/*
-> + * instruction time-out
-> + * cycles to issue instruction time-out interrupt for wait and poll instructions
-> + * GCE axi_clock 156MHz
-> + * 1 cycle = 6.41ns
-> + * instruction time out 2^22*2*6.41ns = 53ms
-> + */
-> +#define CMDQ_INSTN_TIMEOUT_CYCLES      22
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - renesas,rzg2l-canfd
+> +then:
+> +  properties:
+> +    interrupts:
+> +      items:
+> +        - description: CAN global error interrupt
+> +        - description: CAN receive FIFO interrupt
+> +        - description: CAN0 error interrupt
+> +        - description: CAN0 transmit interrupt
+> +        - description: CAN0 transmit/receive FIFO receive completion interrupt
+> +        - description: CAN1 error interrupt
+> +        - description: CAN1 transmit interrupt
+> +        - description: CAN1 transmit/receive FIFO receive completion interrupt
+
+Does it make sense to add interrupt-names?
+
 > +
->  struct cmdq_thread {
->         struct mbox_chan        *chan;
->         void __iomem            *base;
-> @@ -368,6 +378,7 @@ static int cmdq_mbox_send_data(struct mbox_chan *chan, void *data)
->                 writel((task->pa_base + pkt->cmd_buf_size) >> cmdq->shift_pa,
->                        thread->base + CMDQ_THR_END_ADDR);
->
-> +               writel(CMDQ_INSTN_TIMEOUT_CYCLES, thread->base + CMDQ_THR_INSTN_TIMEOUT_CYCLES);
->                 writel(thread->priority, thread->base + CMDQ_THR_PRIORITY);
->                 writel(CMDQ_THR_IRQ_EN, thread->base + CMDQ_THR_IRQ_ENABLE);
->                 writel(CMDQ_THR_ENABLED, thread->base + CMDQ_THR_ENABLE_TASK);
-> --
-> 1.8.1.1.dirty
->
+> +    resets:
+> +      maxItems: 2
+
+Same here, for reset-names?
+Or a list of descriptions, so we know which reset serves what purpose.
+
+> +
+> +else:
+> +  properties:
+> +    interrupts:
+> +      items:
+> +        - description: Channel interrupt
+> +        - description: Global interrupt
+> +
+> +    resets:
+> +      maxItems: 1
+> +
+>  required:
+>    - compatible
+>    - reg
+
+The rest looks good to me.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
