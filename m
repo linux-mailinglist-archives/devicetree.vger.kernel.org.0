@@ -2,132 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F2813CBAA6
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 18:42:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAC113CBAB7
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 18:46:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229895AbhGPQpv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 12:45:51 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46936 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229498AbhGPQpv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Jul 2021 12:45:51 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 20E71613EE;
-        Fri, 16 Jul 2021 16:42:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626453776;
-        bh=iyvboBbJB24fM/KsyAy5OW3yngHgd2gk9Z7P8CwT2uQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=BqWFxgtf2F90LRIp3skiNIGRSj9fbCyS/B5EneSGMlCDMjZzXsA3K4x3sYhcZKduJ
-         0Y1Je2sxlFdrU7lgi2JhXQ61+2LPmn/B9Pi+k+iK57R+3qzlnDzyPbBW0K4it149Hi
-         xLOK7Bng3RL9dyJtTbKwMq0onxIFdHwuQZpW4+OyghyT+eT9dvPYV9qTMZyBfAOO1+
-         C27QrYhbrCiuxuJ3sa7PFS7iRwifeGGzGUDFFv+r2pYvlfWIoONcc2OraRS4l2QVW/
-         aheSxDUJ4Zwx58GZmR/p+mSKqNw2P2Stgy2F0/NQhyETJsz5v8VYoz2cYRAIfxvhWI
-         lbf2D/XbMnaTQ==
-Received: by mail-ed1-f49.google.com with SMTP id w14so13723920edc.8;
-        Fri, 16 Jul 2021 09:42:56 -0700 (PDT)
-X-Gm-Message-State: AOAM530BbHhTVyilZ9NrVJJ/GWtOlUfnGBR2m5pwik+RHL0s0+BB3HJ6
-        tV76lUDcYgKZM97OWtt79krVyutdEYh58FRN5A==
-X-Google-Smtp-Source: ABdhPJxTUG7dBNjzKlgl2NjPeLK61EE68JCSroh9Re1GaEepDQbfq2+PN9sWPI3SzPvcfAVEylqryt0r4BYXQEWqlYc=
-X-Received: by 2002:aa7:da06:: with SMTP id r6mr16153573eds.38.1626453774729;
- Fri, 16 Jul 2021 09:42:54 -0700 (PDT)
-MIME-Version: 1.0
-References: <1626418701-28467-1-git-send-email-yongqiang.niu@mediatek.com> <1626418701-28467-2-git-send-email-yongqiang.niu@mediatek.com>
-In-Reply-To: <1626418701-28467-2-git-send-email-yongqiang.niu@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Sat, 17 Jul 2021 00:42:43 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_8eoz=TaXxT8hbyyEWow2CO1bv9ceEHmY5J5oAwDTtrUg@mail.gmail.com>
-Message-ID: <CAAOTY_8eoz=TaXxT8hbyyEWow2CO1bv9ceEHmY5J5oAwDTtrUg@mail.gmail.com>
-Subject: Re: [PATCH v1] mailbox: cmdq: add instruction time-out interrupt support
-To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Hsin-Yi Wang <hsinyi@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S229928AbhGPQtX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 12:49:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45292 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229462AbhGPQtW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 12:49:22 -0400
+Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D3ADC06175F;
+        Fri, 16 Jul 2021 09:46:27 -0700 (PDT)
+Received: by mail-qv1-xf2f.google.com with SMTP id gh6so4864859qvb.3;
+        Fri, 16 Jul 2021 09:46:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
+         :from:to:references:in-reply-to;
+        bh=HP1IVoWcUpu03pWKu0gr3nGbUe2QQvaIWAyGYYu+z1w=;
+        b=mqJCK1pNCVfRQuUhhlmEroh0rRPLLlGVvX/WjOBWhGD68OuP+GV1nToJawuBzPDvSe
+         AWrjkAdX8xFsSb+unxnsYfN5R/IX+pK0KMu2+NmfufPLz+ye5Qtsh4Qz/v/m2/fab+EX
+         2VUJFZia/PsjBKmpKfjdRArdTsvH7rviYuH5C8A2LuCYFK0Z4sgfRpppR3jtxvSus+PD
+         SMzsNww5SL3vZp6qsYBOaUHY/HK3eN8PgRYT9M1a3ViBsid45BIPCwoM/9u93UueG7Zw
+         SJFw93DFUBXYOiRTkNY8KkgEpKZw2e3ZnoNNcXk92x7HgiJYu3Ie3LBl0Ev1e2eZfZ8X
+         yi9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:cc:subject:from:to:references:in-reply-to;
+        bh=HP1IVoWcUpu03pWKu0gr3nGbUe2QQvaIWAyGYYu+z1w=;
+        b=eMwpUl89j6BV+/T4CktCbWDAKhgP57wW+VMUGjHkXOIHYIqWjWAiJN1KfyGHhT0Z7+
+         HtpWFIWJ0Fei8gnPr4owxma3bT750r43E61MrEV/wd+1to7Wl7ysWxoe7Pnubl0hERJy
+         92sS6rKQwhngH6WYljIXuRa7ChfBowQ8/d8uBJvPSjF4KbtTxq0W104Bia/ZKXa9sF0X
+         Goh4t5mMBJXvmTg8Uc05xGiogv/d1w/bXiy96BiLuyvrEuYCTyPAsixpea/N0JqMfw3U
+         PPXuAnGx+UkXMpxzoHm81cwDqM7O/5TSf5k4HkPHxhe/0lhsAR5s5cOxqgdgXXg7O98c
+         N8cA==
+X-Gm-Message-State: AOAM530IUHeEhXMC4BEPXDqxlrbFURv+ZQag47kdtKvIK6slhzmsA9YC
+        xqbQQP30xOh33PerrP7domk=
+X-Google-Smtp-Source: ABdhPJzaxFYkpff91JN66s0Lj90ASfGjvlnrk5Eh1Ear4i5wXDTDvhYM4qFtfaBA5ck/E3PzfXm4Yg==
+X-Received: by 2002:a05:6214:230c:: with SMTP id gc12mr2759813qvb.42.1626453986228;
+        Fri, 16 Jul 2021 09:46:26 -0700 (PDT)
+Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
+        by smtp.gmail.com with ESMTPSA id o18sm4276568qko.63.2021.07.16.09.46.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Jul 2021 09:46:25 -0700 (PDT)
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Fri, 16 Jul 2021 12:46:24 -0400
+Message-Id: <CCUPTHKOCEWC.3NLHJ5ACINRYN@shaak>
+Cc:     <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
+Subject: Re: [PATCH v5 04/10] iio: afe: rescale: reduce risk of integer
+ overflow
+From:   "Liam Beguin" <liambeguin@gmail.com>
+To:     "Peter Rosin" <peda@axentia.se>, <jic23@kernel.org>,
+        <lars@metafoo.de>, <pmeerw@pmeerw.net>
+References: <20210715031215.1534938-1-liambeguin@gmail.com>
+ <20210715031215.1534938-5-liambeguin@gmail.com>
+ <e83ee306-2421-c327-7627-18ae2a7928a8@axentia.se>
+In-Reply-To: <e83ee306-2421-c327-7627-18ae2a7928a8@axentia.se>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Yongqiang:
+On Thu Jul 15, 2021 at 6:23 AM EDT, Peter Rosin wrote:
+> On 2021-07-15 05:12, Liam Beguin wrote:
+> > From: Liam Beguin <lvb@xiphos.com>
+> >=20
+> > Reduce the risk of integer overflow by doing the scale calculation with
+> > 64bit integers and looking for a Greatest Common Divider for both parts
+> > of the fractional value when required.
+> >=20
+> > Signed-off-by: Liam Beguin <lvb@xiphos.com>
+> > ---
+> >  drivers/iio/afe/iio-rescale.c | 15 ++++++++++++---
+> >  1 file changed, 12 insertions(+), 3 deletions(-)
+> >=20
+> > diff --git a/drivers/iio/afe/iio-rescale.c b/drivers/iio/afe/iio-rescal=
+e.c
+> > index 774eb3044edd..4c3cfd4d5181 100644
+> > --- a/drivers/iio/afe/iio-rescale.c
+> > +++ b/drivers/iio/afe/iio-rescale.c
+> > @@ -39,7 +39,8 @@ static int rescale_read_raw(struct iio_dev *indio_dev=
+,
+> >  			    int *val, int *val2, long mask)
+> >  {
+> >  	struct rescale *rescale =3D iio_priv(indio_dev);
+> > -	unsigned long long tmp;
+> > +	s64 tmp, tmp2;
+> > +	u32 factor;
+> >  	int ret;
+> > =20
+> >  	switch (mask) {
+> > @@ -67,8 +68,16 @@ static int rescale_read_raw(struct iio_dev *indio_de=
+v,
+> >  		}
+> >  		switch (ret) {
+> >  		case IIO_VAL_FRACTIONAL:
+> > -			*val *=3D rescale->numerator;
+> > -			*val2 *=3D rescale->denominator;
+> > +			tmp =3D (s64)*val * rescale->numerator;
+> > +			tmp2 =3D (s64)*val2 * rescale->denominator;
+> > +			if (check_mul_overflow(*val, rescale->numerator, (s32 *)&tmp) ||
+> > +			check_mul_overflow(*val2, rescale->denominator, (s32 *)&tmp2)) {
 
-Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2021=E5=B9=B47=E6=9C=
-=8816=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=882:58=E5=AF=AB=E9=81=93=
-=EF=BC=9A
->
-> add time-out cycle setting to make sure time-out interrupt irq
-> will happened when instruction time-out for wait and poll
->
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> ---
->  drivers/mailbox/mtk-cmdq-mailbox.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
->
-> diff --git a/drivers/mailbox/mtk-cmdq-mailbox.c b/drivers/mailbox/mtk-cmd=
-q-mailbox.c
-> index de4793e..9a76bcd 100644
-> --- a/drivers/mailbox/mtk-cmdq-mailbox.c
-> +++ b/drivers/mailbox/mtk-cmdq-mailbox.c
-> @@ -35,6 +35,7 @@
->  #define CMDQ_THR_END_ADDR              0x24
->  #define CMDQ_THR_WAIT_TOKEN            0x30
->  #define CMDQ_THR_PRIORITY              0x40
-> +#define CMDQ_THR_INSTN_TIMEOUT_CYCLES  0x50
->
->  #define GCE_GCTL_VALUE                 0x48
->
-> @@ -53,6 +54,15 @@
->  #define CMDQ_JUMP_BY_OFFSET            0x10000000
->  #define CMDQ_JUMP_BY_PA                        0x10000001
->
-> +/*
-> + * instruction time-out
-> + * cycles to issue instruction time-out interrupt for wait and poll inst=
-ructions
-> + * GCE axi_clock 156MHz
-> + * 1 cycle =3D 6.41ns
-> + * instruction time out 2^22*2*6.41ns =3D 53ms
+Hi Peter,
 
-I think every client has different timeout value, so it's not a good
-idea to have a unique timeout value in mailbox controller. Client
-could use timer or something similar to detect timeout.
-
-Regards,
-Chun-Kuang.
-
-> + */
-> +#define CMDQ_INSTN_TIMEOUT_CYCLES      22
-> +
->  struct cmdq_thread {
->         struct mbox_chan        *chan;
->         void __iomem            *base;
-> @@ -368,6 +378,7 @@ static int cmdq_mbox_send_data(struct mbox_chan *chan=
-, void *data)
->                 writel((task->pa_base + pkt->cmd_buf_size) >> cmdq->shift=
-_pa,
->                        thread->base + CMDQ_THR_END_ADDR);
 >
-> +               writel(CMDQ_INSTN_TIMEOUT_CYCLES, thread->base + CMDQ_THR=
-_INSTN_TIMEOUT_CYCLES);
->                 writel(thread->priority, thread->base + CMDQ_THR_PRIORITY=
-);
->                 writel(CMDQ_THR_IRQ_EN, thread->base + CMDQ_THR_IRQ_ENABL=
-E);
->                 writel(CMDQ_THR_ENABLED, thread->base + CMDQ_THR_ENABLE_T=
-ASK);
-> --
-> 1.8.1.1.dirty
+> The white space should be like this, methinks.
 >
+> if (check_mul_overflow(*val, rescale->numerator, (s32 *)&tmp) ||
+> check_mul_overflow(*val2, rescale->denominator, (s32 *)&tmp2))
+> {
+>
+
+Sorry about that... Like I said in the cover letter, I'm working on
+getting kunit tests running for the iio-rescale. At the moment it still
+requires copying part of the code over and sure enough I forgot to copy
+some of it back. My apologies for the noise...
+
+This is what I meant to send:
+
+case IIO_VAL_FRACTIONAL:
+	if (check_mul_overflow(*val, rescale->numerator, (s32 *)&tmp) ||
+	    check_mul_overflow(*val2, rescale->denominator, (s32 *)&tmp2)) {
+		tmp =3D (s64)*val * rescale->numerator;
+		tmp2 =3D (s64)*val2 * rescale->denominator;
+		factor =3D gcd(tmp, tmp2);
+		do_div(tmp, factor);
+		do_div(tmp2, factor);
+	}
+
+	*val =3D tmp;
+	*val2 =3D tmp2;
+	return ret;
+
+I'll also move the opening bracket on a new line if you prefer.
+
+> > +				factor =3D gcd(tmp, tmp2);
+>
+> And I just realized, gcd() works on unsigned values which is a bit safer
+> for the
+> scale factor. But here, for the actual values, more care is needed.
+>
+
+I added negative test cases to take this into account. I'll update and
+resend. I'm going to find a way to get the test cases ready for the next
+revision.
+
+> > +				do_div(tmp, factor);
+> > +				do_div(tmp2, factor);
+> > +			}
+> > +			*val =3D tmp;
+> > +			*val2 =3D tmp2;
+>
+> And beside the above points, the whole mechanism seems broken. The
+> returned value
+> in the third argument to check_mul_overflow isn't useful if there is an
+> overflow.
+> Yet, the code continues to use tmp and tmp2 in case of overflow. And why
+> do you
+> first multiply tmp and tmp2 without checks, only to then do the same mul
+> again
+> but with checks? Or have I completely misunderstood how
+> check_mul_overflow
+> works?
+>
+
+Again, my apologies for this. It's not what I meant to send.
+Hopefully the snippet above makes more sense.
+
+Thanks for your time,
+Liam
+
+> Cheers,
+> Peter
+>
+> >  			return ret;
+> >  		case IIO_VAL_INT:
+> >  			*val *=3D rescale->numerator;
+> >=20
+
