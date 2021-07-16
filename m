@@ -2,156 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C65A3CBE7C
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 23:26:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF3A63CBEA6
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 23:39:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234231AbhGPV32 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 17:29:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52672 "EHLO
+        id S234231AbhGPVl6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 17:41:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235125AbhGPV31 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 17:29:27 -0400
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4171DC061762
-        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 14:26:32 -0700 (PDT)
-Received: by mail-pg1-x531.google.com with SMTP id h4so11211332pgp.5
-        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 14:26:32 -0700 (PDT)
+        with ESMTP id S235482AbhGPVl5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 17:41:57 -0400
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E3E1C061764
+        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 14:39:01 -0700 (PDT)
+Received: by mail-oi1-x22d.google.com with SMTP id e11so9524610oii.9
+        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 14:39:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nigauri-org.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=wCqUTi8QcukAsDM3Vsuvdl4VskaTFVpSG5W8yb85NDw=;
-        b=tIqcqbTFITCM7wJXjOAAfgB4xlmdCnJmxoVkI9m8fH2UI2C/njH7XUVOMm7m/bD2Fm
-         VFaXN1AZJiZaZfUQFJdXMWRzMyk3AAkiYR/5L/WMUic7Vv5/F398pJK0n9qKVP84UDp9
-         RlJc9ZyfnrgRqRBxf7npytUw5RzIfOtHuRqL3VZZIbtNKsGNyJhfjuPbikpzOF6u7dGk
-         ixaylMqdSR7yMv4rsFVV4V7f8OrsuUAeZzkY6aLpHTKKQGXwYGU9TGQoEtO732teYolq
-         /LENmIH6OS2eTd8i/QAVHgc8SoeA7nvL02R0SkeXpwC7IjG8kniVby9lATUFxcvIK1Zy
-         e3AA==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=DJUmmGWanKO2Kc2lJb4r4AqUuRlfqVFicUMQJabxH2I=;
+        b=a1b4VUlP+SBehYC2KNr0RA6XHEdwYZC1UJSJvAOlMXI7z0YSB4aoNbwrJ8tsoeMxk9
+         o5ewozJwZnIiB8JBJ8u28V1C9QtxUi/7k4H0191/LZSRrNMelmnf0UuQRLnhDmoBQzMH
+         pZ91UofbIJBzcU3z1U19CnAqABufK2a85QUvQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=wCqUTi8QcukAsDM3Vsuvdl4VskaTFVpSG5W8yb85NDw=;
-        b=Qosa6OoZICK9PYBIVAqRvBYy4BJmQ5ZslLp4Rx+l5bkE6Uo8VHi3gxZJ5c9MYuWBtl
-         EgtlPaeAgvlEquGBpkmtedc6A1ujqpBwoOv86ib5PiN7heBRp1SQU2FzIcF8FK/2nAwY
-         MRV+8t4BvCXpOzBVELghyzQfrUcMF3jOmqNUVdvnjViAmH7teLeU/S0bHXJqVrugmcnv
-         iyZikZY4rBXSbF6rYEpt/WEVdwBwzQf0SOMlUiusgEM+2DYEgG+X8wZU9+67Jx1cIcHM
-         22Ej7xB4jXZs0poVnkzISTe9SYA4n7iQcnEwzUEKleNZyaLmTvgfJ9bGWGD+HFUYCq69
-         3Edw==
-X-Gm-Message-State: AOAM531Q5SRZXxo074NS7LBbuxzhiRi26NY6Xe/uBPlBQ4Mn+oTbwHHn
-        3FNK2n3izqSe8Q73y9+NpvC2ipufnYCGJFI=
-X-Google-Smtp-Source: ABdhPJx9xtvMcX3jBpgIvGlxFveWMRzxMi++Dl5S+qGFQNrUZgmXfTJQaWh9yftp4BaiAPH5ugukug==
-X-Received: by 2002:a65:5c89:: with SMTP id a9mr11856102pgt.207.1626470791710;
-        Fri, 16 Jul 2021 14:26:31 -0700 (PDT)
-Received: from localhost ([2405:6581:5360:1800:7285:c2ff:fec2:8f97])
-        by smtp.gmail.com with ESMTPSA id k10sm10772475pfc.169.2021.07.16.14.26.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Jul 2021 14:26:31 -0700 (PDT)
-From:   Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-To:     robh+dt@kernel.org, michal.simek@xilinx.com, mdf@kernel.org,
-        trix@redhat.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-fpga@vger.kernel.org,
-        navam@xilinx.com, Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-Subject: [PATCH v2] dt-bindings: fpga: convert Xilinx Zynq MPSoC bindings to YAML
-Date:   Sat, 17 Jul 2021 06:26:21 +0900
-Message-Id: <20210716212621.286806-1-iwamatsu@nigauri.org>
-X-Mailer: git-send-email 2.32.0
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=DJUmmGWanKO2Kc2lJb4r4AqUuRlfqVFicUMQJabxH2I=;
+        b=R9mkxBORkaCwaiv7L8lN6SwfrMIdbO+HtapnaiHUpR+zyiWBkPpapLbIKVLJhaFpCX
+         13gwxHePIfzOPHdOY6lhwuKZ/fGKZC3HDsTQhR9zYyN5UEQn5OjcCh6yFzZUurlhbO/T
+         cmDzfjX/TE8OqM5aHLLyYSsRx3zwpnYd/jNwxmIf30TlE9L6TVJN7S17RCj3TwDsEbF5
+         2P31fMG4ZgsyhUwT8IL1CGTJpkjOTeXMY3+Y7RJoKBKGkoEmKTwD3+jQZJyc56Rs+D1v
+         gSCHvd9wIc5MU4vjjKXzxreO7644ZbcKLotn/dRO5hTmfbGikiwpRktUG8o0VvYf7SK0
+         /63Q==
+X-Gm-Message-State: AOAM530n5r5sJU8ZHoGGEDmBqZ91Ld6gA6og8GkSMkYtehXlbShvy+cc
+        pdre5YO8v/wTwK+EVn5q/h0W9uJwLsAB4XhCrXGFuA==
+X-Google-Smtp-Source: ABdhPJy8ESmm35FiG9eVwSCULP7aZWRcaoghukrt/IjV6yztctNN60HxaKtQcXbjRTHOeOA0F3YBmvgit6bjbVs2wCM=
+X-Received: by 2002:a05:6808:a83:: with SMTP id q3mr13795158oij.125.1626471540770;
+ Fri, 16 Jul 2021 14:39:00 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 16 Jul 2021 23:39:00 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <YPHsu+QLWRYpYRCz@yoga>
+References: <1626443927-32028-1-git-send-email-pmaliset@codeaurora.org>
+ <1626443927-32028-5-git-send-email-pmaliset@codeaurora.org>
+ <CAE-0n538LKQpeY_NKQF-VM3nHVxEE0B_pN4aN=sQ8iQzK+Yyxw@mail.gmail.com> <YPHsu+QLWRYpYRCz@yoga>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Fri, 16 Jul 2021 23:39:00 +0200
+Message-ID: <CAE-0n53k9Pn0LMe2xiNN_iTsv-z_rrGSthJVHeLdafDhPuBK=A@mail.gmail.com>
+Subject: Re: [PATCH v4 4/4] PCIe: qcom: Add support to control pipe clk src
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Prasad Malisetty <pmaliset@codeaurora.org>, agross@kernel.org,
+        bhelgaas@google.com, lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
+        svarbanov@mm-sol.com, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dianders@chromium.org,
+        mka@chromium.org, vbadigan@codeaurora.org, sallenki@codeaurora.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert FPGA Manager for Xilinx Zynq MPSoC bindings documentation to
-YAML.
+Quoting Bjorn Andersson (2021-07-16 13:31:55)
+> On Fri 16 Jul 14:37 CDT 2021, Stephen Boyd wrote:
+>
+> > Quoting Prasad Malisetty (2021-07-16 06:58:47)
+> > > This is a new requirement for sc7280 SoC.
+> > > To enable gdsc gcc_pcie_1_pipe_clk_src should be TCXO.
+> >
+> > Why? Can you add that detail here? Presumably it's something like the
+> > GDSC needs a running clk to send a reset through the flops or something
+> > like that.
+> >
+>
+> Which presumably means that we need to "park" gcc_pcie_N_pipe_clk_src
+> whenever the PHY pipe is paused due to a suspend or runtime suspend.
+>
+> I find this part of the commit message to primarily describing the next
+> patch (that is yet to be posted).
 
-Signed-off-by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+Ah I see. So there will be another patch to do the park and unpark over
+suspend/resume?
 
----
-v2:
-  - Fix to the correct maintainer 'Nava kishore Manne <navam@xilinx.com>'.
-  - Update the word from configuration to Configuration.
+>
+> > > after PHY initialization gcc_pcie_1_pipe_clk_src needs
+> > > to switch from TCXO to gcc_pcie_1_pipe_clk.
+> > >
+> > > Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
+> > > ---
+> > >  drivers/pci/controller/dwc/pcie-qcom.c | 22 ++++++++++++++++++++++
+> > >  1 file changed, 22 insertions(+)
+> > >
+> > > diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> > > index 8a7a300..9e0e4ab 100644
+> > > --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> > > +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> > > @@ -1167,6 +1170,20 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
+> > >         if (ret < 0)
+> > >                 return ret;
+> > >
+> > > +       if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280")) {
+> > > +               res->gcc_pcie_1_pipe_clk_src = devm_clk_get(dev, "pipe_mux");
+> > > +               if (IS_ERR(res->gcc_pcie_1_pipe_clk_src))
+> > > +                       return PTR_ERR(res->gcc_pcie_1_pipe_clk_src);
+> > > +
+> > > +               res->phy_pipe_clk = devm_clk_get(dev, "phy_pipe");
+> > > +               if (IS_ERR(res->phy_pipe_clk))
+> > > +                       return PTR_ERR(res->phy_pipe_clk);
+> > > +
+> > > +               res->ref_clk_src = devm_clk_get(dev, "ref");
+> > > +               if (IS_ERR(res->ref_clk_src))
+> > > +                       return PTR_ERR(res->ref_clk_src);
+> > > +       }
+> > > +
+> > >         res->pipe_clk = devm_clk_get(dev, "pipe");
+> > >         return PTR_ERR_OR_ZERO(res->pipe_clk);
+> > >  }
+> > > @@ -1255,6 +1272,11 @@ static void qcom_pcie_deinit_2_7_0(struct qcom_pcie *pcie)
+> > >  static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
+> > >  {
+> > >         struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
+> > > +       struct dw_pcie *pci = pcie->pci;
+> > > +       struct device *dev = pci->dev;
+> > > +
+> > > +       if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280"))
+> > > +               clk_set_parent(res->gcc_pcie_1_pipe_clk_src, res->phy_pipe_clk);
+> >
+> > Is anything wrong if we call clk_set_parent() here when this driver is
+> > running on previous SoCs where the parent is assigned via DT?
+>
+> We don't assign the parent on previous platforms, we apparently just
+> rely on the reset value (afaict).
 
- .../bindings/fpga/xlnx,zynqmp-pcap-fpga.txt   | 25 -------------
- .../bindings/fpga/xlnx,zynqmp-pcap-fpga.yaml  | 36 +++++++++++++++++++
- 2 files changed, 36 insertions(+), 25 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.txt
- create mode 100644 Documentation/devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.yaml
+Oh sheesh. I thought that was being done already. It looks like at least
+on sdm845 that there is only one parent for this clk so we don't need to
+call clk_set_parent to set it there.
 
-diff --git a/Documentation/devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.txt b/Documentation/devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.txt
-deleted file mode 100644
-index 3052bf619dd547..00000000000000
---- a/Documentation/devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.txt
-+++ /dev/null
-@@ -1,25 +0,0 @@
--Devicetree bindings for Zynq Ultrascale MPSoC FPGA Manager.
--The ZynqMP SoC uses the PCAP (Processor configuration Port) to configure the
--Programmable Logic (PL). The configuration uses  the firmware interface.
--
--Required properties:
--- compatible: should contain "xlnx,zynqmp-pcap-fpga"
--
--Example for full FPGA configuration:
--
--	fpga-region0 {
--		compatible = "fpga-region";
--		fpga-mgr = <&zynqmp_pcap>;
--		#address-cells = <0x1>;
--		#size-cells = <0x1>;
--	};
--
--	firmware {
--		zynqmp_firmware: zynqmp-firmware {
--			compatible = "xlnx,zynqmp-firmware";
--			method = "smc";
--			zynqmp_pcap: pcap {
--				compatible = "xlnx,zynqmp-pcap-fpga";
--			};
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.yaml b/Documentation/devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.yaml
-new file mode 100644
-index 00000000000000..6cd2bdc06b5fef
---- /dev/null
-+++ b/Documentation/devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.yaml
-@@ -0,0 +1,36 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/fpga/xlnx,zynqmp-pcap-fpga.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Xilinx Zynq Ultrascale MPSoC FPGA Manager Device Tree Bindings
-+
-+maintainers:
-+  - Nava kishore Manne <navam@xilinx.com>
-+
-+description: |
-+  Device Tree Bindings for Zynq Ultrascale MPSoC FPGA Manager.
-+  The ZynqMP SoC uses the PCAP (Processor Configuration Port) to
-+  configure the Programmable Logic (PL). The configuration uses the
-+  firmware interface.
-+
-+properties:
-+  compatible:
-+    const: xlnx,zynqmp-pcap-fpga
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    firmware {
-+      zynqmp_firmware: zynqmp-firmware {
-+        zynqmp_pcap: pcap {
-+          compatible = "xlnx,zynqmp-pcap-fpga";
-+        };
-+      };
-+    };
-+...
--- 
-2.32.0
+>
+> So I think it makes sense for all platforms to explicitly mux
+> pipe_clk_src to phy::pipe_clk, one the PHY is up and running.
 
+Sure, except some platforms don't have a mux?
+
+>
+> But I was under the impression that we have the BRANCH_HALT_SKIP on the
+> pipe_clk because there was some sort of feedback loop to the PHY's
+> calibration... What this patch indicates is that we should park
+> pipe_clk_src onto XO at boot time, then after the PHY starts ticking we
+> should enable and reparent the clk_src - at which point I don't see why
+> we need the HALT_SKIP.
+
+I recall that qcom folks kept saying they needed to enable the
+pipe_clk_src clk branch in GCC before enabling the phy. So they required
+the halt skip flag so that the clk_prepare_enable() call would
+effectively set the enable bit in GCC and move on without caring. Then
+they could enable the upstream clk source in the phy without having to
+stop halfway through to enable the branch in GCC. The whole design here
+is pretty insane.
+
+In fact, I think we discussed this whole topic in late 2019[1] and we
+concluded that we could just slam the clk on forever and deal with the
+clk_set_parent() when the clk became a mux+gate instead of a pure gate.
+
+>
+> > Also, shouldn't we make sure the parent is XO at driver probe time so
+> > that powering on the GDSC works properly?
+> >
+> > It all feels like a kludge though given that the GDSC is the one that
+> > requires the clock to be running at XO and we're working around that in
+> > the pcie driver instead of sticking that logic into the GDSC. What do we
+> > do if the GDSC is already enabled out of boot instead of being the power
+> > on reset (POR) configuration?
+> >
+>
+> What happens if we boot the device out of NVME...
+
+I guess it's fine? The GDSC will be on and the parent clk will already
+be set so things are a no-op.
+
+>
+>
+> PS. Are we certain that it's the PCIe driver and not the PHY that should
+> do this dance? I really would like to see the continuation of this patch
+> to see the full picture...
+>
+
+[1] https://lore.kernel.org/linux-clk/eba920f5-f5a2-53d5-2227-529b5ea99d32@codeaurora.org/
