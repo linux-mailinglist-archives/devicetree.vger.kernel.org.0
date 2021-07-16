@@ -2,118 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F0A73CB94B
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 17:03:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19D473CB963
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 17:06:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240205AbhGPPGt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 11:06:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50262 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233094AbhGPPGs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 11:06:48 -0400
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3937C06175F;
-        Fri, 16 Jul 2021 08:03:52 -0700 (PDT)
-Received: by mail-oi1-x22c.google.com with SMTP id t25so11170505oiw.13;
-        Fri, 16 Jul 2021 08:03:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:to:cc:references:from:subject:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=i3KfiPtO0D3+NC1eT2ingGYsCONu0cw8923pwjmhYSQ=;
-        b=u451MZ2w1rN0BBPzCDk0boPfHl0L5+K3zNMzLxmpZUEk2VLbW9jiV5doUQ09oV3H+N
-         tfbE5dso8hBZ/yQ97EkZzp0P2xgGdJTPpVz9OtrLSt8tDXqSutH9iP0SZ0NJKhxxkS1K
-         WJ7NqXADoU2h9eOJoGHdn9VSOKBbgoVVTVHTNf0pl7NfjIgQPQHz0S5S30f0MgQdgfPk
-         WfF1yCIz0Jaa4eEWK9m7VkoHINKF4xVNTbj5oe50TLSIOuEsL7eP3YX46VViEW1j6g2Q
-         m/BJpHMq9beKUsDoo9S8ypFk1Aev8/o6RkySatnvZ6higOngqBfNJsU05ZAjInlVQZdT
-         pTyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:to:cc:references:from:subject:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=i3KfiPtO0D3+NC1eT2ingGYsCONu0cw8923pwjmhYSQ=;
-        b=tn+Ap9LERvxlwluSqmvY9Z5iWkHFEJtEbqtQTBPx36z3ONy/zZBkuxJWHCGDt1vx62
-         9QRwV2TJrRmTqKtpYWZupUL8CsBOj6tpzPvsAmspjsQfZQUKP2UVyvYV5c0VJfOipz7C
-         tgdnCmYhVFBAnwQS9upWr9U/x747fqhf/pIzhK5Y1Gchf1wO5/IpQXIk3G2SsBreQhSB
-         lrWz8XMaKDsfabMK0gc1lIgu/UOWpsgvLllLa9EsAnjl51lsED8IWvecFO9QhZ5/9JWh
-         9tXdILFbUuxkw4vcL7nMHpsMhieMU1nNHiR7xLXMak/qshAhY62b8tw9s7kJ3xHRbcNm
-         E1ow==
-X-Gm-Message-State: AOAM531l6+ZDgdK4SC0bxU9KdH1cJxB2Ig5XXGwml0C3X3sC1Q3aofrc
-        PQD8ks7jUiEpbCcU9W0VpVPMeG5i/eQ=
-X-Google-Smtp-Source: ABdhPJwecearIW6I2rzBiXgSYYFG80tvHnkIHUCY7FQPgN2JmoF9av1QqpKjCNrVv+iZ0ggn0U4gkQ==
-X-Received: by 2002:aca:1112:: with SMTP id 18mr3902062oir.168.1626447832075;
-        Fri, 16 Jul 2021 08:03:52 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id z7sm2081846oih.31.2021.07.16.08.03.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Jul 2021 08:03:51 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-To:     "Sa, Nuno" <Nuno.Sa@analog.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Jean Delvare <jdelvare@suse.com>
-References: <20210708120111.519444-1-nuno.sa@analog.com>
- <20210708120111.519444-4-nuno.sa@analog.com>
- <20210712172656.GA2142233@robh.at.kernel.org>
- <PH0PR03MB63668564A9A7B8F5D6E5F8D499129@PH0PR03MB6366.namprd03.prod.outlook.com>
- <20210715203937.GA3182741@roeck-us.net>
- <PH0PR03MB636641D09289D1F696A64C9299119@PH0PR03MB6366.namprd03.prod.outlook.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [RFC PATCH 3/6] dt-bindings: axi-fan-control: add tacho
- properties
-Message-ID: <f6d415a7-e113-1dda-727e-0d645c8114cb@roeck-us.net>
-Date:   Fri, 16 Jul 2021 08:03:49 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S240742AbhGPPJn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 11:09:43 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47566 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S240662AbhGPPJm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Jul 2021 11:09:42 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 94E0E613CF;
+        Fri, 16 Jul 2021 15:06:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1626448007;
+        bh=JzWPW35335QIwmM3xBK4Cw2sjgXHcx4/lh7YkVBiYxQ=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=NoFIpHbfGl2knocCnlE5XBaMliHj15VAx5uOkGdww3jszoiFDHIhFMV4TIb9wQ7rT
+         qJ2LrtMk1L+75j3wKzo0u3n8xjVOVz/c23fhf9dhY0usXaFoPkCl0AV2m5U26F71OR
+         cg5QOpd47dZUlglCXhzEC+mJJIWbuO4QS/hstStC4dn7vSsI7/jpfBqGyV3Wvl5wMh
+         67Jm5g+vHGSMdgZZS5UlLJ7fUwpI3vCiXdFTmos/dFlKoEENYTF0GtTzAOL0mZrPgE
+         pTpt2C8rSl98l+8jLO2CBUz78/tmN3tsHZ8EVfPrBqLKtosIqXfw0h/qi46R7ma925
+         lsIYmb8llgnIg==
+Date:   Fri, 16 Jul 2021 10:06:46 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Prasad Malisetty <pmaliset@codeaurora.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, bhelgaas@google.com,
+        robh+dt@kernel.org, swboyd@chromium.org, lorenzo.pieralisi@arm.com,
+        svarbanov@mm-sol.com, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dianders@chromium.org,
+        mka@chromium.org, vbadigan@codeaurora.org, sallenki@codeaurora.org
+Subject: Re: [PATCH v4 4/4] PCIe: qcom: Add support to control pipe clk src
+Message-ID: <20210716150646.GA2098485@bjorn-Precision-5520>
 MIME-Version: 1.0
-In-Reply-To: <PH0PR03MB636641D09289D1F696A64C9299119@PH0PR03MB6366.namprd03.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1626443927-32028-5-git-send-email-pmaliset@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/16/21 12:44 AM, Sa, Nuno wrote:
-[ ... ]
->>
->> Are you sure you can ever get this stable ? Each fan has its own
->> properties
->> and tolerances. If you replace a fan in a given system, you might get
->> different RPM numbers. The RPM will differ widely from system to
->> system
->> and from fan to fan. Anything that assumes a specific RPM in
->> devicetree
->> data seems to be quite vulnerable to failures. I have experienced that
->> recently with a different chip which also tries to correlate RPM and
->> PWM
->> and fails quite miserably.
->>
->> In my experience, anything other than minimum fan speed is really a
->> recipe
->> for instability and sporadic false failures. Even setting a minimum fan
->> speed
->> is tricky because it depends a lot on the fan.
+Run this:
+
+  $ git log --oneline drivers/pci/controller/dwc/pcie-qcom.c
+
+and make your subject match the style and structure (in particular,
+s/PCIe/PCI/).  In this case, maybe something like this?
+
+  PCI: qcom: Switch sc7280 gcc_pcie_1_pipe_clk_src after PHY init
+
+On Fri, Jul 16, 2021 at 07:28:47PM +0530, Prasad Malisetty wrote:
+> This is a new requirement for sc7280 SoC.
+> To enable gdsc gcc_pcie_1_pipe_clk_src should be TCXO.
+> after PHY initialization gcc_pcie_1_pipe_clk_src needs
+> to switch from TCXO to gcc_pcie_1_pipe_clk.
+
+This says what *needs* to happen, but it doesn't actually say what
+this patch *does*.  I think it's something like:
+
+  On the sc7280 SoC, the clock source for pcie_1_pipe must be the TCXO
+  while gdsc is enabled.  But after the PHY is initialized, the clock
+  source must be switched to gcc_pcie_1_pipe_clk.
+
+  On sc7280, switch gcc_pcie_1_pipe_clk_src from TCXO to
+  gcc_pcie_1_pipe_clk after the PHY has been initialized.
+
+Nits: Rewrap to fill 75 columns or so.  Add blank lines between
+paragraphs.  Start sentences with capital letter.
+
+> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
+> ---
+>  drivers/pci/controller/dwc/pcie-qcom.c | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
 > 
-> I see what you mean. So, I had to go through this process when testing
-> this changes because the fan I'm using is different from the default one
-> used to develop and stablish the default values in the IP core. The core
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index 8a7a300..9e0e4ab 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -166,6 +166,9 @@ struct qcom_pcie_resources_2_7_0 {
+>  	struct regulator_bulk_data supplies[2];
+>  	struct reset_control *pci_reset;
+>  	struct clk *pipe_clk;
+> +	struct clk *gcc_pcie_1_pipe_clk_src;
+> +	struct clk *phy_pipe_clk;
+> +	struct clk *ref_clk_src;
+>  };
+>  
+>  union qcom_pcie_resources {
+> @@ -1167,6 +1170,20 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
+>  	if (ret < 0)
+>  		return ret;
+>  
+> +	if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280")) {
+> +		res->gcc_pcie_1_pipe_clk_src = devm_clk_get(dev, "pipe_mux");
+> +		if (IS_ERR(res->gcc_pcie_1_pipe_clk_src))
+> +			return PTR_ERR(res->gcc_pcie_1_pipe_clk_src);
+> +
+> +		res->phy_pipe_clk = devm_clk_get(dev, "phy_pipe");
+> +		if (IS_ERR(res->phy_pipe_clk))
+> +			return PTR_ERR(res->phy_pipe_clk);
+> +
+> +		res->ref_clk_src = devm_clk_get(dev, "ref");
+> +		if (IS_ERR(res->ref_clk_src))
+> +			return PTR_ERR(res->ref_clk_src);
 
-Exactly my point.
+Not clear why ref_clk_src is here, since it's not used anywhere.  If
+it's not necessary here, drop it and add it in a future patch that
+uses it.
 
-> provides you with a register which contains the tacho measurements in
-> clock cycles. You can read that for all the PWM points of interest
-> (with devmem2 for example) and make your own "calibration". I assume
-> that people have to go through this process before putting some values
-> in the devicetree. I'm aware this is not the neatest process but I guess it's
-> acceptable...
+> +	}
+> +
+>  	res->pipe_clk = devm_clk_get(dev, "pipe");
+>  	return PTR_ERR_OR_ZERO(res->pipe_clk);
+>  }
+> @@ -1255,6 +1272,11 @@ static void qcom_pcie_deinit_2_7_0(struct qcom_pcie *pcie)
+>  static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
+>  {
+>  	struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
+> +	struct dw_pcie *pci = pcie->pci;
+> +	struct device *dev = pci->dev;
+> +
+> +	if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280"))
+
+Using of_device_is_compatible() follows existing style in the driver,
+which is good.  But I'm not sure that's good style in general because
+it's a little repetitious and wasteful.
+
+qcom_pcie_probe() already calls of_device_get_match_data(), which does
+basically the same thing as of_device_is_compatible(), so I think we
+could take better advantage of that by augmenting struct qcom_pcie_ops
+with these device-specific details.
+
+Some drivers that use this strategy:
+
+  drivers/pci/controller/cadence/pci-j721e.c
+  drivers/pci/controller/dwc/pci-imx6.c
+  drivers/pci/controller/dwc/pci-layerscape.c
+  drivers/pci/controller/dwc/pci-layerscape-ep.c
+  drivers/pci/controller/dwc/pcie-tegra194.c
+  drivers/pci/controller/pci-ftpci100.c
+  drivers/pci/controller/pcie-brcmstb.c
+  drivers/pci/controller/pcie-mediatek.c
+
+> +		clk_set_parent(res->gcc_pcie_1_pipe_clk_src, res->phy_pipe_clk);
+>  
+>  	return clk_prepare_enable(res->pipe_clk);
+>  }
+> -- 
+> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+> a Linux Foundation Collaborative Project
 > 
-
-Do you really expect everyone using a system with this chip to go through
-this process and update its devicetree configuration, and then repeat it
-whenever a fan is changed ? Given how dynamic this is, I really wonder
-if that information should be in devicetree in the first place.
-
-Guenter
