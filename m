@@ -2,68 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C7C043CB279
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 08:25:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D76033CB2A5
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 08:32:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234606AbhGPG2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 02:28:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44530 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231778AbhGPG2p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 02:28:45 -0400
-Received: from casper.infradead.org (casper.infradead.org [IPv6:2001:8b0:10b:1236::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34D6FC06175F;
-        Thu, 15 Jul 2021 23:25:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description;
-        bh=nUjvHWwQzpb8v3JLLhXC0gHnxeaBdGyJCLTEJYo+tDU=; b=huSKh0okN6XoYJ0y+dNAPgyNBm
-        F7FXsLDRcvDHuySrVPIHVbyStwyItZ/mdSW3L/fqeJJ47c6kBdo/N6Poo2g0iLZB8JaYtHz8Pz2FR
-        aF0dgTJomsYvCIKwL6zIjvxUHCQZVJ8bhRZeAG44PSQ4CKcVEXxGf6aM4lt8rptgyJLFsw3ryiGSE
-        231k4bokw+Cu6nOyqGfOabFJNNlO6dr/gzmeQIwo5Yqcsx4WM/Nj2H1DHuNNlJVHayhmrjC+8KUyb
-        dstirsS0SKabaihWxuTE6mv8KdQ0UMLkuM7hdYgi4xIsWblap+VguVBQB6wwRahw5mGKn3GUSlZeH
-        07nz0j9w==;
-Received: from hch by casper.infradead.org with local (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1m4HGV-004DCm-CL; Fri, 16 Jul 2021 06:24:28 +0000
-Date:   Fri, 16 Jul 2021 07:24:03 +0100
-From:   Christoph Hellwig <hch@infradead.org>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Sven Peter <sven@svenpeter.dev>, Will Deacon <will@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>,
-        Arnd Bergmann <arnd@kernel.org>, devicetree@vger.kernel.org,
-        Hector Martin <marcan@marcan.st>, linux-kernel@vger.kernel.org,
-        Marc Zyngier <maz@kernel.org>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        iommu@lists.linux-foundation.org, Alexander Graf <graf@amazon.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Rob Herring <robh+dt@kernel.org>, r.czerwinski@pengutronix.de,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-media@vger.kernel.org
-Subject: Re: [PATCH v4 0/3] Apple M1 DART IOMMU driver
-Message-ID: <YPEmA0rdXHiGtHSx@infradead.org>
-References: <20210627143405.77298-1-sven@svenpeter.dev>
- <7261df01-34a9-4e53-37cd-ae1aa15b1fb4@arm.com>
+        id S235130AbhGPGfc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 02:35:32 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:33064 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230088AbhGPGf2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 02:35:28 -0400
+X-UUID: 70b33d81283f4b4cbc426b167f3e57b6-20210716
+X-UUID: 70b33d81283f4b4cbc426b167f3e57b6-20210716
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <yongqiang.niu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 966662236; Fri, 16 Jul 2021 14:32:28 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 16 Jul 2021 14:32:26 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 16 Jul 2021 14:32:25 +0800
+From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>
+Subject: [PATCH v3, 0/3] drm/mediatek: Separate aal module
+Date:   Fri, 16 Jul 2021 14:32:20 +0800
+Message-ID: <1626417143-8015-1-git-send-email-yongqiang.niu@mediatek.com>
+X-Mailer: git-send-email 1.8.1.1.dirty
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7261df01-34a9-4e53-37cd-ae1aa15b1fb4@arm.com>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by casper.infradead.org. See http://www.infradead.org/rpr.html
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 14, 2021 at 07:19:50PM +0100, Robin Murphy wrote:
-> Even at the DMA API level you could hide *some* of it (at the cost of
-> effectively only having 1/4 of the usable address space), but there are
-> still cases like where v4l2 has a hard requirement that a page-aligned
-> scatterlist can be mapped into a contiguous region of DMA addresses.
+Change since v2:
+- skip aal in mtk_ddp_comp_init
 
-Where does v4l2 make that broken assumption?  Plenty of dma mapping
-implementations including dma-direct do not support that.
+Yongqiang Niu (3):
+  drm/mediatek: Separate aal module
+  drm/mediatek: add mt8183 aal support
+  arm64: dts: mt8183: refine aal compatible name
 
-Drivers need to call dma_get_merge_boundary() to check for that kind of
-behavior.
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi    |   3 +-
+ drivers/gpu/drm/mediatek/Makefile           |   3 +-
+ drivers/gpu/drm/mediatek/mtk_disp_aal.c     | 167 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/mediatek/mtk_disp_drv.h     |   9 ++
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c |  42 +------
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c      |   8 +-
+ drivers/gpu/drm/mediatek/mtk_drm_drv.h      |   1 +
+ 7 files changed, 190 insertions(+), 43 deletions(-)
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_aal.c
+
+-- 
+1.8.1.1.dirty
+
