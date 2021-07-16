@@ -2,133 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55A4E3CB4AD
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 10:50:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28FC23CB4B3
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 10:50:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238342AbhGPItp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 04:49:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48888 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229895AbhGPItp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 04:49:45 -0400
-Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7009C06175F;
-        Fri, 16 Jul 2021 01:46:49 -0700 (PDT)
-Received: by mail-yb1-xb31.google.com with SMTP id r132so13664595yba.5;
-        Fri, 16 Jul 2021 01:46:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=mEkDurH6BuGEH4gDwLaFvBfzHto5jjTCNrq+0Yx2I5Y=;
-        b=AOQ1b2YZ2Y6qApxpfsoLFQ2Y5ZeVPOJyew2YyXjt3iz996WQIbZcXWFzgyqERYIUsv
-         6woAI+vav3GHatj0VDNQWZ6hppZmQu5o0j6gYhM4NOQChdbkkdh3zCYcc0EHJUtIrF2F
-         TbJ362K19pzeV/vyKWKw7g+LLKWS862GMK2s2g5y26lTBNhbnpBIQs9FbI2e19GkTyB5
-         uOQsfG6pubrCzurrJa+oRcU1LAjynQ8MLxempdVnsQqhBeJCnZXzNDNSN2NpPIaVTwlg
-         UDcT2L/H7loUkr1gSshSfu96TpXGrEEu8WzL6c41+dGsat0UE68fOJY9pPgq9+ia3sI+
-         j9Zg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=mEkDurH6BuGEH4gDwLaFvBfzHto5jjTCNrq+0Yx2I5Y=;
-        b=hk+J9LcDzoSGYwX1HOnVBZEQ29AegjS53ziP4OOzAWuNSWvPYjEzVM7vdsBK/j/9+v
-         jBv8q9j29qj8WIEgdIIa4hvAAo4aJwKc35ar1zW3sAwaK7RW0CdhAU8l6B0Yof812KFj
-         rJiMDJb8jtbkoQm9FGngV1Ba9Cd8BDUpV6xv9MlsO2IjIoia1gsT5pYXzM97Gdsi0UAo
-         nTlWFev50V0agmXyjaFenEFhv8mvyb+tfUui4hXItAiHpfHywi7zh214WKYl1DOatcqw
-         2PMBak60AyToST0fia4TNkk5vTrp8vUJyiWntX0SUYQEfvK4eOkMyg245yUyZHvIwL4W
-         nm3w==
-X-Gm-Message-State: AOAM531lawMV06OSAa3T3Fd0hEvpwciwlKDnUDLhTZCAJtac7lVF7bIR
-        YjRvtvm4ThpYEpSZlVosf9Wt5tgF+qrVc4a8I/s=
-X-Google-Smtp-Source: ABdhPJwEwBc5l1454QguN3MLGOEdfBsfoKJW2Mu3HRNqW5pslfSVZKQ//QhrJvF0EX1e7HbxaYcojI0eYjHoip5G3uQ=
-X-Received: by 2002:a25:cc52:: with SMTP id l79mr11280859ybf.476.1626425209092;
- Fri, 16 Jul 2021 01:46:49 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210715182123.23372-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20210715182123.23372-5-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdXYfAxvdRyn0FaqYSyD4qD2P=Et4-d3bPan9oy_YJ7tfg@mail.gmail.com>
-In-Reply-To: <CAMuHMdXYfAxvdRyn0FaqYSyD4qD2P=Et4-d3bPan9oy_YJ7tfg@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Fri, 16 Jul 2021 09:46:23 +0100
-Message-ID: <CA+V-a8vdFLee5fLYvOkLfzNJojDBO31TN9bjHYnjFf5t63YyOA@mail.gmail.com>
-Subject: Re: [PATCH 4/6] clk: renesas: r9a07g044-cpg: Add entry for fixed
- clock P0_DIV2
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-can@vger.kernel.org, netdev <netdev@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
+        id S237667AbhGPIus (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 04:50:48 -0400
+Received: from comms.puri.sm ([159.203.221.185]:45452 "EHLO comms.puri.sm"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229895AbhGPIur (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Jul 2021 04:50:47 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id E961DDFBFB;
+        Fri, 16 Jul 2021 01:47:22 -0700 (PDT)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id yUenwAsEOUc3; Fri, 16 Jul 2021 01:47:21 -0700 (PDT)
+Message-ID: <e88d99abbdcbd6a1b2c27849f08721e79f237adc.camel@puri.sm>
+Subject: Re: [PATCH v6 2/3] media: imx: add a driver for i.MX8MQ mipi csi rx
+ phy and controller
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     festevam@gmail.com, krzk@kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, kernel@puri.sm,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-staging@lists.linux.dev, m.felsch@pengutronix.de,
+        mchehab@kernel.org, phone-devel@vger.kernel.org, robh@kernel.org,
+        shawnguo@kernel.org, slongerbeam@gmail.com
+Date:   Fri, 16 Jul 2021 10:47:14 +0200
+In-Reply-To: <YPCuFA+utjudv11H@pendragon.ideasonboard.com>
+References: <20210714111931.324485-1-martin.kepplinger@puri.sm>
+         <20210714111931.324485-3-martin.kepplinger@puri.sm>
+         <YO8r6pZAduu1ZMK4@pendragon.ideasonboard.com>
+         <ce71a71a358247eca3b72ddcddd703206c90f284.camel@puri.sm>
+         <YPCuFA+utjudv11H@pendragon.ideasonboard.com>
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.3-1 
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+Am Freitag, dem 16.07.2021 um 00:52 +0300 schrieb Laurent Pinchart:
+> Hi Martin,
+> 
+> On Thu, Jul 15, 2021 at 09:37:24AM +0200, Martin Kepplinger wrote:
+> > Am Mittwoch, dem 14.07.2021 um 21:24 +0300 schrieb Laurent
+> > Pinchart:
+> > > On Wed, Jul 14, 2021 at 01:19:30PM +0200, Martin Kepplinger
+> > > wrote:
+> > > > Add a driver to support the i.MX8MQ MIPI CSI receiver. The
+> > > > hardware side
+> > > > is based on
+> > > > https://source.codeaurora.org/external/imx/linux-imx/tree/drivers/media/platform/imx8/mxc-mipi-csi2_yav.c?h=imx_5.4.70_2.3.0
+> > > > 
+> > > > It's built as part of VIDEO_IMX7_CSI because that's documented
+> > > > to support
+> > > > i.MX8M platforms. This driver adds i.MX8MQ support where
+> > > > currently only the
+> > > > i.MX8MM platform has been supported.
+> > > > 
+> > > > Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> > > > ---
+> > > >  drivers/staging/media/imx/Makefile           |   1 +
+> > > >  drivers/staging/media/imx/imx8mq-mipi-csi2.c | 949
+> > > > +++++++++++++++++++
+> > > >  2 files changed, 950 insertions(+)
+> > > >  create mode 100644 drivers/staging/media/imx/imx8mq-mipi-
+> > > > csi2.c
+> > > > 
+> > > > diff --git a/drivers/staging/media/imx/Makefile
+> > > > b/drivers/staging/media/imx/Makefile
+> > > > index 6ac33275cc97..19c2fc54d424 100644
+> > > > --- a/drivers/staging/media/imx/Makefile
+> > > > +++ b/drivers/staging/media/imx/Makefile
+> > > > @@ -16,3 +16,4 @@ obj-$(CONFIG_VIDEO_IMX_CSI) += imx6-mipi-
+> > > > csi2.o
+> 
+> [snip]
+> 
+> > > > +static int imx8mq_mipi_csi_calc_hs_settle(struct csi_state
+> > > > *state)
+> > > > +{
+> > > > +       u32 width = state-
+> > > > >format_mbus[MIPI_CSI2_PAD_SINK].width;
+> > > > +       u32 height = state-
+> > > > >format_mbus[MIPI_CSI2_PAD_SINK].height;
+> > > > +       s64 link_freq;
+> > > > +       u32 lane_rate;
+> > > > +
+> > > > +       /* Calculate the line rate from the pixel rate. */
+> > > > +       link_freq = v4l2_get_link_freq(state->src_sd-
+> > > > >ctrl_handler,
+> > > > +                                      state->csi2_fmt->width,
+> > > > +                                      state-
+> > > > >bus.num_data_lanes * 2);
+> > > > +       if (link_freq < 0) {
+> > > > +               dev_err(state->dev, "Unable to obtain link
+> > > > frequency: %d\n",
+> > > > +                       (int)link_freq);
+> > > > +               return link_freq;
+> > > > +       }
+> > > > +
+> > > > +       lane_rate = link_freq * 2;
+> > > > +       if (lane_rate < 80000000 || lane_rate > 1500000000) {
+> > > > +               dev_dbg(state->dev, "Out-of-bound lane rate
+> > > > %u\n", lane_rate);
+> > > > +               return -EINVAL;
+> > > > +       }
+> > > > +
+> > > > +       /*
+> > > > https://community.nxp.com/t5/i-MX-Processors/Explenation-for-HS-SETTLE-parameter-in-MIPI-CSI-D-PHY-registers/m-p/764275/highlight/true#M118744
+> > > >  */
+> > > > +       if (lane_rate < 250000000)
+> > > > +               state->hs_settle = 0xb;
+> > > > +       else if (lane_rate < 500000000)
+> > > > +               state->hs_settle = 0x8;
+> > > > +       else
+> > > > +               state->hs_settle = 0x6;
+> > > 
+> > > We could possibly compute this value based on the formula from
+> > > the table
+> > > in that page, but maybe that's overkill ? If you want to give it
+> > > a try,
+> > > it would be along those lines.
+> > > 
+> > >         /*
+> > >          * The D-PHY specification requires Ths-settle to be in
+> > > the range
+> > >          * 85ns + 6*UI to 140ns + 10*UI, with the unit interval
+> > > UI being half
+> > >          * the clock period.
+> > >          *
+> > >          * The Ths-settle value is expressed in the hardware as a
+> > > multiple of
+> > >          * the Esc clock period:
+> > >          *
+> > >          * Ths-settle = (PRG_RXHS_SETTLE + 1) * Tperiod of
+> > > RxClkInEsc
+> > >          *
+> > >          * Due to the one cycle inaccuracy introduced by
+> > > rounding, the
+> > >          * documentation recommends picking a value away from the
+> > > boundaries.
+> > >          * Let's pick the average.
+> > >          */
+> > >         esc_clk_rate = clk_get_rate(...);
+> > > 
+> > >         min_ths_settle = 85 + 6 * 1000000 / (lane_rate / 1000);
+> > >         max_ths_settle = 140 + 10 * 1000000 / (lane_rate / 1000);
+> > >         ths_settle = (min_ths_settle + max_ths_settle) / 2;
+> > > 
+> > >         state->hs_settle = ths_settle * esc_clk_rate / 1000000000
+> > > - 1;
+> > 
+> > I experimented a bit but would like to leave this as a task for
+> > later
+> > if that's ok. it's correct and simple now. also, using clks[i].clk
+> > based on the name string would feel better to submit seperately
+> > later.
+> 
+> That's OK with me, but I may then submit a patch on top fairly soon
+> :-)
+> Have you been able to test if this code works on your device ? The
+> main
+> reason why I think it's better is that it doesn't hardcode a specific
+> escape clock frequency assumption, so it should be able to
+> accommodate a
+> wider range of use cases. If we change it later, there's always a
+> risk
+> of regressions, while if we do this from the start, we'll figure out
+> quickly if it doesn't work in some cases.
+> 
 
-Thank you for the review.
+taking your code basically as-is doesn't yet work, but it helps a bit.
+tbh I don't even know how to correctly read that table / calculation:
+what is the exact relation of the calculated Ths_settle time inverval
+to the hs_settle register bits?
 
-On Fri, Jul 16, 2021 at 9:09 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Thu, Jul 15, 2021 at 8:21 PM Lad Prabhakar
-> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > Add entry for fixed core clock P0_DIV2 and assign LAST_DT_CORE_CLK
-> > to R9A07G044_LAST_CORE_CLK.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
->
-> Thanks for your patch!
->
-> > --- a/drivers/clk/renesas/r9a07g044-cpg.c
-> > +++ b/drivers/clk/renesas/r9a07g044-cpg.c
-> > @@ -16,7 +16,7 @@
-> >
-> >  enum clk_ids {
-> >         /* Core Clock Outputs exported to DT */
-> > -       LAST_DT_CORE_CLK = R9A07G044_OSCCLK,
-> > +       LAST_DT_CORE_CLK = R9A07G044_LAST_CORE_CLK,
->
-> Please use R9A07G044_CLK_P0_DIV2 instead.
->
-Ok, I will update it.
+if the 2 of us can't quickly figure it out I can ask NXP via that
+community forum issue and I created
+https://source.puri.sm/Librem5/linux-next/-/issues/340 so I won't
+forget about it.
 
-Cheers,
-Prabhakar
+thanks!
 
-> >
-> >         /* External Input Clocks */
-> >         CLK_EXTAL,
-> > @@ -77,6 +77,7 @@ static const struct cpg_core_clk r9a07g044_core_clks[] __initconst = {
-> >         DEF_FIXED("I", R9A07G044_CLK_I, CLK_PLL1, 1, 1),
-> >         DEF_DIV("P0", R9A07G044_CLK_P0, CLK_PLL2_DIV16, DIVPL2A,
-> >                 dtable_1_32, CLK_DIVIDER_HIWORD_MASK),
-> > +       DEF_FIXED("P0_DIV2", R9A07G044_CLK_P0_DIV2, R9A07G044_CLK_P0, 1, 2),
-> >         DEF_FIXED("TSU", R9A07G044_CLK_TSU, CLK_PLL2_DIV20, 1, 1),
-> >         DEF_DIV("P1", R9A07G044_CLK_P1, CLK_PLL3_DIV2_4,
-> >                 DIVPL3B, dtable_1_32, CLK_DIVIDER_HIWORD_MASK),
->
-> The rest looks good to me.
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
