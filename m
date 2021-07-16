@@ -2,80 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 745903CBCC9
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 21:40:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D80E63CBD9E
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 22:19:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231335AbhGPTn0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 15:43:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39820 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231266AbhGPTnZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Jul 2021 15:43:25 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPS id 835BA613EB;
-        Fri, 16 Jul 2021 19:40:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626464430;
-        bh=yy3lgzUv8c1hezgnRSueqAhnq8qdRsPvZZMExvBL9ds=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=VsvM5esBWErc9ifFp1rySZVY0gQbEdYGS80SSJlbqxl1Eh8pdzz+jlaiXTYb4Ky/G
-         RakiafNe52KhwlxaqZCjHNAF7Cwnt4ZRGjTUOlhXpw+/sE8/r/8AaVS3TgSkxWWLGp
-         72elzNi15WIqqWjhBr5tXO6mwBn//0HnR2RHO6hpu+qNOoB4ErcxmTLmGq6/w7u18E
-         faQCa+Te7mrs/nrOUyF9pCgXYCi2Rtd7cUjZJK5gACyl5pIQmihork4t9KPYBVG/u+
-         FtgkFdaB1vQQpl5DszQG6UABKLJR8gAenDmQ6gE/FooDW25+R07/FjM3q129ruXGVV
-         xSCuSs15DRMPw==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 77744609EF;
-        Fri, 16 Jul 2021 19:40:30 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        id S233726AbhGPUV7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 16:21:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37206 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233529AbhGPUV4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 16:21:56 -0400
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 332D6C061760
+        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 13:19:00 -0700 (PDT)
+Received: by mail-oi1-x22f.google.com with SMTP id p67so12333250oig.2
+        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 13:19:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=763nLM9hOG1xzTfiRC2C+QIzwsAiunJSWdOJQ5k5fPs=;
+        b=U+WJbIw+QbtFWTk7uPEAZRY73FbUf/tDRQRuXsIo1cPylkyO9zzhyU7pDwxd+yTJ85
+         zpiR45QHSGo73POsvAUjPQ/l/iQI5fZlw/MyleuuGAD/oeAX6/x9NXOtqKG1i/9XQuie
+         hw293qk7qpj2PJYW3rlJEjalQYHJ7s5xPgEbiJ+0+LqHdKAM0ly4PWB3aTYa9Mek1CuF
+         AbK6EkBhFF4KMNpm/5riMYQ0dmjw+AxczWK1qsj9RebPQoMogqXRkiNReHSDDZ9Irb2F
+         A12DOSe1qm7aN+5Y9osoDmM4W2DZHqBvIj9ID25oIKXMv/uoVezS7p6pfZq8+D4OhqfJ
+         kFqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=763nLM9hOG1xzTfiRC2C+QIzwsAiunJSWdOJQ5k5fPs=;
+        b=knHVv3BYdNUf2JMHKmptIZTi9tiOkp2AeyO1xB3F8Jd4Q6hUL9PFJ4dAyr3ufzyqUH
+         dgt0jkzfJMNJquxhhPvq2GyAQyax14S4dxDe0ZatQx5L0gFOjGziPJqVYSe6/W8YWTGf
+         uGiyzMfkOzb+LTwrelq5KlNGFDnRAyrvBh8AjoLqzuU4If8YtyVxoFfjtqjI7BWHoXLa
+         2+v+PPojjt39d7DJpHheY03Q1YHBDuH1ysG8GOzTFIsLYJdL8NBbCjFjTyD2UruQ4VGi
+         pLPtCI2muhYZUqQj/JREeV6DM4GJaO6AOlzC33YOe6q4hkryFrYNWRzKm4+To5zWbmBC
+         dRUA==
+X-Gm-Message-State: AOAM531bFnpgQbufWX4wSFy3WeOfrmCO+OXDIbRYryVVXuy49WlCA+eQ
+        qBYDKmWrDJaF60XWBMDlXcX45g==
+X-Google-Smtp-Source: ABdhPJyhjp4YjBkTEJEbAorL7JPZfDyaZTF/3+0OklBw8xqW343rmBB9mWANS3uGMTklxuxtDX5/1w==
+X-Received: by 2002:a54:448a:: with SMTP id v10mr2428740oiv.44.1626466739501;
+        Fri, 16 Jul 2021 13:18:59 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id q63sm404390ooq.4.2021.07.16.13.18.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Jul 2021 13:18:59 -0700 (PDT)
+Date:   Fri, 16 Jul 2021 15:18:56 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Rajendra Nayak <rnayak@codeaurora.org>
+Cc:     ulf.hansson@linaro.org, viresh.kumar@linaro.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        swboyd@chromium.org, rojay@codeaurora.org, stephan@gerhold.net
+Subject: Re: [PATCH v4 2/2] arm64: dts: sc7180: Add required-opps for i2c
+Message-ID: <YPHpsO5LlQRQxj9y@yoga>
+References: <1626429658-18961-1-git-send-email-rnayak@codeaurora.org>
+ <1626429658-18961-3-git-send-email-rnayak@codeaurora.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH V1 0/3] dt-bindings: net: fec: convert fsl,*fec bindings to
- yaml
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <162646443048.11536.12063272896536154628.git-patchwork-notify@kernel.org>
-Date:   Fri, 16 Jul 2021 19:40:30 +0000
-References: <20210716102911.23694-1-qiangqing.zhang@nxp.com>
-In-Reply-To: <20210716102911.23694-1-qiangqing.zhang@nxp.com>
-To:     Joakim Zhang <qiangqing.zhang@nxp.com>
-Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, bruno.thomsen@gmail.com, linux-imx@nxp.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1626429658-18961-3-git-send-email-rnayak@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+On Fri 16 Jul 05:00 CDT 2021, Rajendra Nayak wrote:
 
-This series was applied to netdev/net-next.git (refs/heads/master):
-
-On Fri, 16 Jul 2021 18:29:08 +0800 you wrote:
-> This patch set intends to convert fec binding into scheme, and fixes
-> when do dtbs_check on ARCH arm.
+> qup-i2c devices on sc7180 are clocked with a fixed clock (19.2 MHz)
+> Though qup-i2c does not support DVFS, it still needs to vote for a
+> performance state on 'CX' to satisfy the 19.2 Mhz clock frequency
+> requirement.
 > 
-> One notice is that there are below logs for some dts when do dtbs_check:
-> 	ethernet@2188000: More than one condition true in oneOf schema:
-> We found that fec node in these dts all have "interrupts-extended"
-> property, and schema default is:
->          'oneOf': [{'required': ['interrupts']},
->                    {'required': ['interrupts-extended']}],
-> so we don't know if it is a common issue or need be fixed in specific
-> bindings.
+
+Sounds good, but...
+
+> Use 'required-opps' to pass this information from
+> device tree, and also add the power-domains property to specify
+> the CX power-domain.
 > 
-> [...]
 
-Here is the summary with links:
-  - [V1,1/3] dt-bindings: net: fec: convert fsl,*fec bindings to yaml
-    https://git.kernel.org/netdev/net-next/c/96e4781b3d93
-  - [V1,2/3] ARM: dts: imx35: correct node name for FEC
-    https://git.kernel.org/netdev/net-next/c/95740a9a3ad9
-  - [V1,3/3] ARM: dts: imx7-mba7: remove un-used "phy-reset-delay" property
-    https://git.kernel.org/netdev/net-next/c/86a176f485b5
+..is the required-opps really needed with my rpmhpd patch in place?
 
-You are awesome, thank you!
---
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+Regards,
+Bjorn
 
-
+> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi | 24 ++++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> index a5d58eb..cd30185 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> @@ -785,8 +785,10 @@
+>  						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>,
+>  						<&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
+>  				interconnect-names = "qup-core", "qup-config",
+>  							"qup-memory";
+> +				power-domains = <&rpmhpd SC7180_CX>;
+> +				required-opps = <&rpmhpd_opp_low_svs>;
+>  				status = "disabled";
+>  			};
+>  
+>  			spi0: spi@880000 {
+> @@ -837,8 +839,10 @@
+>  						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>,
+>  						<&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
+>  				interconnect-names = "qup-core", "qup-config",
+>  							"qup-memory";
+> +				power-domains = <&rpmhpd SC7180_CX>;
+> +				required-opps = <&rpmhpd_opp_low_svs>;
+>  				status = "disabled";
+>  			};
+>  
+>  			spi1: spi@884000 {
+> @@ -889,8 +893,10 @@
+>  						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>,
+>  						<&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
+>  				interconnect-names = "qup-core", "qup-config",
+>  							"qup-memory";
+> +				power-domains = <&rpmhpd SC7180_CX>;
+> +				required-opps = <&rpmhpd_opp_low_svs>;
+>  				status = "disabled";
+>  			};
+>  
+>  			uart2: serial@888000 {
+> @@ -923,8 +929,10 @@
+>  						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>,
+>  						<&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
+>  				interconnect-names = "qup-core", "qup-config",
+>  							"qup-memory";
+> +				power-domains = <&rpmhpd SC7180_CX>;
+> +				required-opps = <&rpmhpd_opp_low_svs>;
+>  				status = "disabled";
+>  			};
+>  
+>  			spi3: spi@88c000 {
+> @@ -975,8 +983,10 @@
+>  						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>,
+>  						<&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
+>  				interconnect-names = "qup-core", "qup-config",
+>  							"qup-memory";
+> +				power-domains = <&rpmhpd SC7180_CX>;
+> +				required-opps = <&rpmhpd_opp_low_svs>;
+>  				status = "disabled";
+>  			};
+>  
+>  			uart4: serial@890000 {
+> @@ -1009,8 +1019,10 @@
+>  						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>,
+>  						<&aggre1_noc MASTER_QUP_0 0 &mc_virt SLAVE_EBI1 0>;
+>  				interconnect-names = "qup-core", "qup-config",
+>  							"qup-memory";
+> +				power-domains = <&rpmhpd SC7180_CX>;
+> +				required-opps = <&rpmhpd_opp_low_svs>;
+>  				status = "disabled";
+>  			};
+>  
+>  			spi5: spi@894000 {
+> @@ -1074,8 +1086,10 @@
+>  						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>,
+>  						<&aggre2_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI1 0>;
+>  				interconnect-names = "qup-core", "qup-config",
+>  							"qup-memory";
+> +				power-domains = <&rpmhpd SC7180_CX>;
+> +				required-opps = <&rpmhpd_opp_low_svs>;
+>  				status = "disabled";
+>  			};
+>  
+>  			spi6: spi@a80000 {
+> @@ -1126,8 +1140,10 @@
+>  						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>,
+>  						<&aggre2_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI1 0>;
+>  				interconnect-names = "qup-core", "qup-config",
+>  							"qup-memory";
+> +				power-domains = <&rpmhpd SC7180_CX>;
+> +				required-opps = <&rpmhpd_opp_low_svs>;
+>  				status = "disabled";
+>  			};
+>  
+>  			uart7: serial@a84000 {
+> @@ -1160,8 +1176,10 @@
+>  						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>,
+>  						<&aggre2_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI1 0>;
+>  				interconnect-names = "qup-core", "qup-config",
+>  							"qup-memory";
+> +				power-domains = <&rpmhpd SC7180_CX>;
+> +				required-opps = <&rpmhpd_opp_low_svs>;
+>  				status = "disabled";
+>  			};
+>  
+>  			spi8: spi@a88000 {
+> @@ -1212,8 +1230,10 @@
+>  						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>,
+>  						<&aggre2_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI1 0>;
+>  				interconnect-names = "qup-core", "qup-config",
+>  							"qup-memory";
+> +				power-domains = <&rpmhpd SC7180_CX>;
+> +				required-opps = <&rpmhpd_opp_low_svs>;
+>  				status = "disabled";
+>  			};
+>  
+>  			uart9: serial@a8c000 {
+> @@ -1246,8 +1266,10 @@
+>  						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>,
+>  						<&aggre2_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI1 0>;
+>  				interconnect-names = "qup-core", "qup-config",
+>  							"qup-memory";
+> +				power-domains = <&rpmhpd SC7180_CX>;
+> +				required-opps = <&rpmhpd_opp_low_svs>;
+>  				status = "disabled";
+>  			};
+>  
+>  			spi10: spi@a90000 {
+> @@ -1298,8 +1320,10 @@
+>  						<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_1 0>,
+>  						<&aggre2_noc MASTER_QUP_1 0 &mc_virt SLAVE_EBI1 0>;
+>  				interconnect-names = "qup-core", "qup-config",
+>  							"qup-memory";
+> +				power-domains = <&rpmhpd SC7180_CX>;
+> +				required-opps = <&rpmhpd_opp_low_svs>;
+>  				status = "disabled";
+>  			};
+>  
+>  			spi11: spi@a94000 {
+> -- 
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+> of Code Aurora Forum, hosted by The Linux Foundation
+> 
