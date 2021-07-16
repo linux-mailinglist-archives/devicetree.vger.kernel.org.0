@@ -2,107 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39F553CBC24
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 20:58:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C48B13CBC36
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 21:10:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230211AbhGPTB3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 15:01:29 -0400
-Received: from mail-il1-f179.google.com ([209.85.166.179]:33650 "EHLO
-        mail-il1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230018AbhGPTB2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 15:01:28 -0400
-Received: by mail-il1-f179.google.com with SMTP id z1so9255372ils.0;
-        Fri, 16 Jul 2021 11:58:33 -0700 (PDT)
+        id S229611AbhGPTMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 15:12:55 -0400
+Received: from mail-vs1-f42.google.com ([209.85.217.42]:37826 "EHLO
+        mail-vs1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229534AbhGPTMy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 15:12:54 -0400
+Received: by mail-vs1-f42.google.com with SMTP id r18so5630049vsa.4;
+        Fri, 16 Jul 2021 12:09:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
-         :content-disposition;
-        bh=JaHBZHQkUG9nkOZjub36ylaekqJrFIALCWzr0fx4JWc=;
-        b=sKSgu+Ok5qYStzj+ksn9SITOS500BZ8hkxzcSAkw8QVGc/PZ/XHsOz7T/Io9dwP2o8
-         IcAPKJDVQpcXWLDdQcj3fWsQblVmVRyRb0CHZoZi+nzQbixPWnz7YhhcyI1VbI6TYpEk
-         a2J13qGNTCrV2LTdoD3zkgchsn7mijlhBc0uTjKfw7bx65+pLA0JADV0m/kBmUJaq6yB
-         Svy0RnulXGZxgizkJ/RUz4MqRkOiUU6HzjBsOlCMa17JBzltAA+NvItvD8u0LG35hEuW
-         mZvpEBx6gt0LLmdb1SgPv2uzpNTIrHD4N4IpCKaBTq5VL9YgoZD40NTayzxmozZ0qSLk
-         8MXA==
-X-Gm-Message-State: AOAM532Iyzd52VLTrIz6QNFjGfO5V87MH9Rg9RDw482PEyJMgfj6yJ1/
-        Fh/GqQPIZ9awSWA99nzMACOQajBQKg==
-X-Google-Smtp-Source: ABdhPJxcCfSiJYlaSJg7zp99bZboAlcPkcE0opIjiH4rYWrGZsAPR7Zx1/1wpHwJcYdNAneih3pasA==
-X-Received: by 2002:a05:6e02:1d0f:: with SMTP id i15mr6859976ila.199.1626461913286;
-        Fri, 16 Jul 2021 11:58:33 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id t8sm5467464iog.21.2021.07.16.11.58.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Jul 2021 11:58:32 -0700 (PDT)
-Received: (nullmailer pid 3772587 invoked by uid 1000);
-        Fri, 16 Jul 2021 18:58:30 -0000
-Date:   Fri, 16 Jul 2021 12:58:30 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Torvalds <torvalds@linux-foundation.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: [GIT PULL] Devicetree fixes for v5.14, take 1
-Message-ID: <20210716185830.GA3769653@robh.at.kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ehJwWdmJnEqOFrEyqslwmNH6+ZDemUpg9Q/4BttkqCY=;
+        b=AeookFuB5y6q7aP9LN+j7zbod4jXbumMxlFTdeCJc/C260j50Ls3bUioU/2mGD2LI/
+         ks0hRUGeheU7ie3RPeh0FQbFZcP4F75cDv2qsvjjzMozuFJZrommkgau532OcYOKHyjU
+         92kLYcbJL0ok6nF+TCzqQ3b3s0+wUiIP2WvHju/ir8hBKmitHvgju69WZO2PBYMkgDfK
+         crhpUBIuEOzvrkBOhla75j1aEt6GhcWVGSHAc1WGyDV6lEbfL3rd5ZnwCXERRARpbuni
+         mmHKC0ccg32ReGm8XLDwbaqIk5cSEBp/P5FVDsUE+8gZLE0jYNhWDHoxCN156jayB0wU
+         1tfA==
+X-Gm-Message-State: AOAM533B4IVVVioEMHBAndJJwhxmAhOWDaJUA/bdDJk8V4eT7l6+SqqK
+        fUFNWqvqiTcFgQijOhPmbQYJ1xSIDRTGlmqyUUE=
+X-Google-Smtp-Source: ABdhPJxZ3GQdFZsnwGr4ysExj1rkCNjJYj/LMNp5Bwoi5+JuhzOdItSjtD8zznsMplgRv8d3nnp0PfgcVGSLfl6UM94=
+X-Received: by 2002:a67:3c2:: with SMTP id 185mr14494278vsd.42.1626462598688;
+ Fri, 16 Jul 2021 12:09:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <d430f9c06d6691fe8a98f923cdb7ca13772834b1.1626262043.git.geert+renesas@glider.be>
+ <20210716180253.GA3684196@robh.at.kernel.org>
+In-Reply-To: <20210716180253.GA3684196@robh.at.kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 16 Jul 2021 21:09:47 +0200
+Message-ID: <CAMuHMdWXCJd0NzH4km+oXBziBct31DCb53fmk3RhAk-+29Zkew@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: memory: renesas,rpc-if: Miscellaneous improvements
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        MTD Maling List <linux-mtd@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Linus,
+Hi Rob,
 
-Please pull a couple of DT fixes for 5.14.
+On Fri, Jul 16, 2021 at 8:02 PM Rob Herring <robh@kernel.org> wrote:
+> On Wed, Jul 14, 2021 at 01:30:13PM +0200, Geert Uytterhoeven wrote:
+> >   - Add missing "#{address,size}-cells",
+> >   - Fix rejection of legitimate flash subnodes containing multiple
+> >     compatible values,
+> >   - Add missing list of required properties.
+> >
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > ---
+> >  .../memory-controllers/renesas,rpc-if.yaml    | 23 ++++++++++++++++---
+> >  1 file changed, 20 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml b/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml
+> > index 990489fdd2ac33fe..c0d899a2305361b1 100644
+> > --- a/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml
+> > +++ b/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml
+> > @@ -56,17 +56,34 @@ properties:
+> >    resets:
+> >      maxItems: 1
+> >
+> > +  '#address-cells':
+> > +    const: 1
+> > +
+> > +  '#size-cells':
+> > +    const: 0
+> > +
+>
+> spi-controller.yaml already defines this.
 
-Rob
+spi-controller.yaml says '#address-cells' must be 0 or 1.  As RPC-IF does
+SPI master only, it should be 1.
 
+Don't remember why I added the '#size-cells' too. Perhaps for symmetry?
 
-The following changes since commit e73f0f0ee7541171d89f2e2491130c7771ba58d3:
+Gr{oetje,eeting}s,
 
-  Linux 5.14-rc1 (2021-07-11 15:07:40 -0700)
+                        Geert
 
-are available in the Git repository at:
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.14-1
-
-for you to fetch changes up to 50d8d7e19c4398da74d028f367754e73547b078b:
-
-  dt-bindings: display: renesas,du: Make resets optional on R-Car H1 (2021-07-16 12:03:27 -0600)
-
-----------------------------------------------------------------
-Devicetree fixes for v5.14, take 1:
-
-- Drop 'resets' as required on renesas,du
-
-- Moving of fixed string patterns for 'properties' instead of
-  'patternProperties'
-
-- Drop more redundant minItems/maxItems that we merged in the merge
-  window
-
-- Indentation warning fix for sja1105
-
-----------------------------------------------------------------
-Geert Uytterhoeven (1):
-      dt-bindings: display: renesas,du: Make resets optional on R-Car H1
-
-Rob Herring (2):
-      dt-bindings: More dropping redundant minItems/maxItems
-      dt-bindings: Move fixed string 'patternProperties' to 'properties'
-
-Thierry Reding (1):
-      dt-bindings: net: dsa: sja1105: Fix indentation warnings
-
- .../bindings/clock/brcm,iproc-clocks.yaml          |  1 -
- .../devicetree/bindings/display/renesas,du.yaml    |  1 -
- .../devicetree/bindings/hwmon/adt7475.yaml         | 22 ++++-----
- .../devicetree/bindings/iommu/rockchip,iommu.yaml  |  2 -
- .../bindings/memory-controllers/arm,pl353-smc.yaml |  1 -
- .../devicetree/bindings/mtd/brcm,brcmnand.yaml     |  8 ----
- .../devicetree/bindings/net/dsa/nxp,sja1105.yaml   |  4 +-
- .../devicetree/bindings/phy/ti,phy-j721e-wiz.yaml  | 56 +++++++++++-----------
- .../devicetree/bindings/regulator/mps,mpq7920.yaml |  6 +--
- .../bindings/regulator/nxp,pf8x00-regulator.yaml   |  3 +-
- .../devicetree/bindings/rtc/faraday,ftrtc010.yaml  |  1 -
- .../devicetree/bindings/spi/spi-controller.yaml    | 32 ++++++-------
- .../devicetree/bindings/usb/nxp,isp1760.yaml       |  2 -
- 13 files changed, 62 insertions(+), 77 deletions(-)
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
