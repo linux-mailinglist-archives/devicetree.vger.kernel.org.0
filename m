@@ -2,113 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BA343CB782
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 14:49:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35D1C3CB7F5
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jul 2021 15:39:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238357AbhGPMwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 08:52:47 -0400
-Received: from mail-vs1-f53.google.com ([209.85.217.53]:46632 "EHLO
-        mail-vs1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234357AbhGPMwr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jul 2021 08:52:47 -0400
-Received: by mail-vs1-f53.google.com with SMTP id e9so4898135vsk.13;
-        Fri, 16 Jul 2021 05:49:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=QPzYoNGuofUoO3zXko6ZHL58ZO0oCjn9vuEYCFE9//o=;
-        b=dfJHByVDwm+P8v3dTB0FPwaan59bPSOFEl3WkaCadXkIzKFRNXL9cmJIPkhBistcMD
-         3fNkLIpSr5eXV/CwIFtFUSP79RZDRT1zWZDWeDFsUoy1jL76lDUFeKDuWDHtMtjMK6CX
-         jQfsGwbkdj6jBZrMt8jERoWTLTmdmgieMbCXLWEP7Yer9W1/k/ZfGVW28uZo5bvUQFRT
-         IuOZfvPUPkeJDgKci10EtnKImzCGxTLqpGR1vzMUT5cOA5ESAuD5IWKGoMt5Guack7gf
-         rJyefJd4/UOIIks6EayHkzuOJSeGVx5LgKGDaBzmC1iwbbfh+F1TJisvn3HEq3px+arb
-         NXRw==
-X-Gm-Message-State: AOAM533JG9x6y/WtCYNGSqj+vk/mfPZeZ0pLfwgckT7QPWdQYSL8F0Xo
-        vo9Yj+mEprEM/iuu6UPIQNYbEFK0npKPBZrKo9I=
-X-Google-Smtp-Source: ABdhPJwIse8RhEmkKEyZTYSOZAvcDB1SPGaj0VAhHhLN3bATCm1G9lUEhBmRL33PiglvWeQ1iiyT6GwNThVzmxmb9Ow=
-X-Received: by 2002:a05:6102:321c:: with SMTP id r28mr12049640vsf.40.1626439790812;
- Fri, 16 Jul 2021 05:49:50 -0700 (PDT)
+        id S232856AbhGPNmZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jul 2021 09:42:25 -0400
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:39762 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232839AbhGPNmZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Jul 2021 09:42:25 -0400
+Received: from pps.filterd (m0098404.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 16GDXT5d169632;
+        Fri, 16 Jul 2021 09:39:24 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-transfer-encoding; s=pp1;
+ bh=G7xR0UkTlt4DxDG1uLnHNASS4R8Bl3dF6j6aZ38n9vo=;
+ b=VkYJB2m2lCM5k34wsfNR00uVr0X1Yy7ByD2ks25PzRMKndjEePYirRplwV+EEqcEbyYs
+ p3zwGKL37mlLTQUpxlNhb6WLD5V5cDOrK4ZYrXioRK17KSFEG22TfyySCaErUj2wFcBl
+ pTSco8UvF+B+WjMzseRJsMbLMOVSMlVVIPPysgDTfQ6oiVFAoeb5x59kKOwP8sFkYSXU
+ 705eHeoq5D1qtDEX/i4XMGkkmVyU7SRpHmRyQV7F06FF0fqoeq8sfArOu+pDl6kYJNak
+ bQoI6fJem7cHVbBe3XVbgdVp+uBQdNz/jfnpstoXqBsbpCmSCUVE8Lr34N+hTVxV6WUq qg== 
+Received: from ppma05wdc.us.ibm.com (1b.90.2fa9.ip4.static.sl-reverse.com [169.47.144.27])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 39u8bvwe9v-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 16 Jul 2021 09:39:24 -0400
+Received: from pps.filterd (ppma05wdc.us.ibm.com [127.0.0.1])
+        by ppma05wdc.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 16GDXgIl015997;
+        Fri, 16 Jul 2021 13:39:22 GMT
+Received: from b03cxnp07028.gho.boulder.ibm.com (b03cxnp07028.gho.boulder.ibm.com [9.17.130.15])
+        by ppma05wdc.us.ibm.com with ESMTP id 39q36f49yd-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 16 Jul 2021 13:39:22 +0000
+Received: from b03ledav001.gho.boulder.ibm.com (b03ledav001.gho.boulder.ibm.com [9.17.130.232])
+        by b03cxnp07028.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 16GDdL8850004384
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Fri, 16 Jul 2021 13:39:21 GMT
+Received: from b03ledav001.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id A6C266E053;
+        Fri, 16 Jul 2021 13:39:21 +0000 (GMT)
+Received: from b03ledav001.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 465CD6E04E;
+        Fri, 16 Jul 2021 13:39:21 +0000 (GMT)
+Received: from v0005c16.aus.stglabs.ibm.com (unknown [9.211.92.96])
+        by b03ledav001.gho.boulder.ibm.com (Postfix) with ESMTP;
+        Fri, 16 Jul 2021 13:39:21 +0000 (GMT)
+From:   Eddie James <eajames@linux.ibm.com>
+To:     linux-spi@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, broonie@kernel.org, openbmc@lists.ozlabs.org,
+        joel@jms.id.au, Eddie James <eajames@linux.ibm.com>
+Subject: [PATCH 0/2] spi: fsi: Reduce max transfer size to 8 bytes
+Date:   Fri, 16 Jul 2021 08:39:13 -0500
+Message-Id: <20210716133915.14697-1-eajames@linux.ibm.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <1607403341-57214-1-git-send-email-yash.shah@sifive.com> <1607403341-57214-8-git-send-email-yash.shah@sifive.com>
-In-Reply-To: <1607403341-57214-8-git-send-email-yash.shah@sifive.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 16 Jul 2021 14:49:39 +0200
-Message-ID: <CAMuHMdW74DsiqyLCYyWSosZmwVEqPiAWNV2i6m4LWzz0868fbg@mail.gmail.com>
-Subject: Re: [PATCH v2 7/9] riscv: dts: add initial support for the SiFive
- FU740-C000 SoC
-To:     Yash Shah <yash.shah@sifive.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: 0I2MU2yPyw5_GN2utrm0UNo4jKhHkX90
+X-Proofpoint-ORIG-GUID: 0I2MU2yPyw5_GN2utrm0UNo4jKhHkX90
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
+ definitions=2021-07-16_04:2021-07-16,2021-07-16 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ malwarescore=0 clxscore=1011 mlxscore=0 spamscore=0 phishscore=0
+ adultscore=0 mlxlogscore=723 bulkscore=0 priorityscore=1501 suspectscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2104190000 definitions=main-2107160082
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yash,
+The security restrictions on the FSI-attached SPI controllers have
+been applied universally to all controllers, so the controller can no
+longer transfer more than 8 bytes for one transfer. Refactor the driver
+to remove the looping and support for larger transfers, and remove the
+"restricted" compatible string, as all the controllers are now
+considered restricted.
 
-On Tue, Dec 8, 2020 at 5:57 AM Yash Shah <yash.shah@sifive.com> wrote:
-> Add initial support for the SiFive FU540-C000 SoC. FU740-C000 is built
-> around the SiFIve U7 Core Complex and a TileLink interconnect.
->
-> This file is expected to grow as more device drivers are added to the
-> kernel.
->
-> Signed-off-by: Yash Shah <yash.shah@sifive.com>
+Eddie James (2):
+  spi: fsi: Reduce max transfer size to 8 bytes
+  dt-bindings: fsi: Remove ibm,fsi2spi-restricted compatible
 
-Thanks for your patch, which became commit 57985788158a5a6b ("riscv:
-dts: add initial support for the SiFive FU740-C000 SoC").
+ .../devicetree/bindings/fsi/ibm,fsi2spi.yaml  |   1 -
+ drivers/spi/spi-fsi.c                         | 125 +++---------------
+ 2 files changed, 22 insertions(+), 104 deletions(-)
 
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
-> @@ -0,0 +1,293 @@
+-- 
+2.27.0
 
-> +       cpus {
-> +               #address-cells = <1>;
-> +               #size-cells = <0>;
-> +               cpu0: cpu@0 {
-> +                       compatible = "sifive,bullet0", "riscv";
-
-I'm wondering why you're using
-
-    compatible = "sifive,bullet0", "riscv";
-
-According to your own commit 75e6d7248efccc2b ("dt-bindings: riscv:
-Update DT binding docs to support SiFive FU740 SoC"), it should be
-
-    compatible = "sifive,u74-mc", "riscv";
-
-instead.
-
-Likewise, the older arch/riscv/boot/dts/sifive/fu540-c000.dtsi is using
-
-    compatible = "sifive,e51", "sifive,rocket0", "riscv";
-
-and
-
-    compatible = "sifive,u54-mc", "sifive,rocket0", "riscv";
-
-but according to the DT bindings the rocket part should not be present.
-
-Is there any specific reason for that?
-Should the DT bindings and/or the DTS files be fixed?
-
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
