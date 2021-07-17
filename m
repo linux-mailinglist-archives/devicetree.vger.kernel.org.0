@@ -2,123 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 26B5C3CC665
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 22:55:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63C003CC676
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 23:26:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233666AbhGQU6D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jul 2021 16:58:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49118 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233787AbhGQU6C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jul 2021 16:58:02 -0400
-Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE6CFC061766
-        for <devicetree@vger.kernel.org>; Sat, 17 Jul 2021 13:55:05 -0700 (PDT)
-Received: by mail-pg1-x534.google.com with SMTP id s18so14362922pgg.8
-        for <devicetree@vger.kernel.org>; Sat, 17 Jul 2021 13:55:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=intel-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=AzejeF7pARl9nvNZ/SKXjtBr8tSI+wQVjunUNUziOkA=;
-        b=yG/94pT++KysRkRR7Ee9X/reRZojfKEcZDLOovFdsOCIl6tMAHuE4febS8dZjRq5on
-         KakPilolQePL2d3aMUyd0sD2TpYRm3tFxj9hcX+iuHw+lTBEHfYq8POysMd5FJbVILZq
-         b8CQb+EfVh6yJZzKi3jm+4bSd90uJQgsJBmJLGe3ZJSJIYCLeIkEdLUyG4qCERiR/D3Y
-         CLFZxGYQ2TrtobRV/SdNOcMAnBKcFjZrQJtjrVYq7LWy4xElrWV7FvFTn060p8a4rY4U
-         adR8o5Jt47WSv1Zror7vG7WmZ4dkwESOOo1I1AuekVMbzXvKduiajK3Zbz5E0/tyNsPV
-         XgfA==
+        id S232077AbhGQV3e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jul 2021 17:29:34 -0400
+Received: from mail-vk1-f173.google.com ([209.85.221.173]:35534 "EHLO
+        mail-vk1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231542AbhGQV3d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jul 2021 17:29:33 -0400
+Received: by mail-vk1-f173.google.com with SMTP id d7so2969850vkf.2;
+        Sat, 17 Jul 2021 14:26:35 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=AzejeF7pARl9nvNZ/SKXjtBr8tSI+wQVjunUNUziOkA=;
-        b=BPOqDP0vM2zr6A2mv+vbRl2vFHM83HYa3PBWqUh+v2RT9oWPgsGGcGIK836f3cUTbK
-         3JY0t/PtOyRC/zBw0kjiLBpPPl0yuB184Gn/t1PoRdU45NaI8SmcfUluTJy2ADXSPHT6
-         B1OgTU6x/k92lGO4G7BTkgDoVZ+l3l370G5ek5bc//lf0M/LVGiM35jG2BQy/5Wdkg/w
-         YI0DhdCWbK7Ppms9EOubDYL96a9+RNEx95ShgrqaD5SfrhW7CDLswz156X1OgdgMYQBM
-         PEpiB/samXA8ZIT/S0A5gvwm1ONdh7s/NeDzIYd1Me5KLAklKTUnN8Z30Yil1deOS/70
-         +FPw==
-X-Gm-Message-State: AOAM532CBNAHS6WVHu3716KF1LrFcBpz3uJoseAmfZ/LVYrMpqNkfdpy
-        Cg8HUkuzqv4tPRrHhIisI2pqWrxD3ghuQ4nnAJmJnA==
-X-Google-Smtp-Source: ABdhPJwegUQnpKKeNNS0aeS1tIibmSwIVu8h0HW57Wt8a6q24xYnmH9VFR5v+d9CeKf0ktP85MKfdE2UMTwvnwW1EYI=
-X-Received: by 2002:a65:6248:: with SMTP id q8mr16976866pgv.279.1626555305105;
- Sat, 17 Jul 2021 13:55:05 -0700 (PDT)
+        bh=5XAK7+Gzh6ieUWzhfnNuMlvI9N6Gdn2a7QuEsKGdrmI=;
+        b=WOhJ54ThX1910pZdfOoOLLltmo4c2ABqT73CgoA0dJ2bzOf6G5nQVecaJwzXnb2WdC
+         eQ99IX6ZWhHHxEhda18VjUD4gNgx6jFugS9Bt2AUOj1mrjXiKVMTQbAcgvogqCWrsxCv
+         2uMURxKoKnNF8FUu+aQPCeybWTXUkV9AgwFNxdNwHqZQwv9MIRqO8g4janiG9YKroa+J
+         GQUl52T/mC/JmvAyTs5L+yilGjcSt8AkRP5X1lo4jPJvK0uLjQBojXOljFvsNFLpBHHT
+         e1uawz3n/zEnC+pKcEBmKj0GG4o/IphI9vgGjWT3yOzRHb4uClFZBMRie4OXflA8I1Ms
+         jdTA==
+X-Gm-Message-State: AOAM531Me8zXKY1Ab469L1D8O3dPr4kj466c4kEpRRQ4gMUCHw9NyeMd
+        jYsL+8C5upXPkRGaWLKisHZKsx955Y5YFs0hLb8=
+X-Google-Smtp-Source: ABdhPJxKtXqo7qX7mahoa3XiRLqE8QXZHw2p1elWbvQVbW2yxP2VBcyH4F+ae1VpHCI1QWGOlvgIFuopgxhAvZh4mhc=
+X-Received: by 2002:a05:6122:a12:: with SMTP id 18mr18049497vkn.1.1626557195307;
+ Sat, 17 Jul 2021 14:26:35 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210712220447.957418-1-iwona.winiarska@intel.com>
- <20210712220447.957418-7-iwona.winiarska@intel.com> <59428599ef7efb2521bd62c49a3bc55c710f29de.camel@intel.com>
- <6807a14deb52956ad2fe390b1811dd98901a642a.camel@intel.com>
- <CAPcyv4ifjCZSUuk5H5qw6sjt5vdAkTfNzd+4imu+9e_iOt74gQ@mail.gmail.com> <YPJ05JUiOggKajIx@kroah.com>
-In-Reply-To: <YPJ05JUiOggKajIx@kroah.com>
-From:   Dan Williams <dan.j.williams@intel.com>
-Date:   Sat, 17 Jul 2021 13:54:54 -0700
-Message-ID: <CAPcyv4iuP=uSEWyd+N65FpasQidtN82tW8q-dvf_qT7_FMiTsw@mail.gmail.com>
-Subject: Re: [PATCH 06/14] peci: Add core infrastructure
-To:     "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>
-Cc:     "Winiarska, Iwona" <iwona.winiarska@intel.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-        "corbet@lwn.net" <corbet@lwn.net>,
-        "jason.m.bills@linux.intel.com" <jason.m.bills@linux.intel.com>,
-        "Lutomirski, Andy" <luto@kernel.org>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "Luck, Tony" <tony.luck@intel.com>,
-        "jae.hyun.yoo@linux.intel.com" <jae.hyun.yoo@linux.intel.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "jdelvare@suse.com" <jdelvare@suse.com>,
-        "mingo@redhat.com" <mingo@redhat.com>,
-        "bp@alien8.de" <bp@alien8.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "yazen.ghannam@amd.com" <yazen.ghannam@amd.com>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "andriy.shevchenko@linux.intel.com" 
-        <andriy.shevchenko@linux.intel.com>,
-        "x86@kernel.org" <x86@kernel.org>,
-        "pierre-louis.bossart@linux.intel.com" 
-        <pierre-louis.bossart@linux.intel.com>
+References: <20201210200315.2965567-1-robh@kernel.org> <20201210200315.2965567-5-robh@kernel.org>
+In-Reply-To: <20201210200315.2965567-5-robh@kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Sat, 17 Jul 2021 23:26:24 +0200
+Message-ID: <CAMuHMdU7f_zhHfnSNmY03bfBN5Kd2mO2N=yi5XTYwDNsd2XBFA@mail.gmail.com>
+Subject: Re: [PATCH 4/4] dt-bindings: Remove PicoXcell bindings
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jamie Iles <jamie@jamieiles.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>, arm-soc <soc@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 16, 2021 at 11:13 PM gregkh@linuxfoundation.org
-<gregkh@linuxfoundation.org> wrote:
->
-> On Fri, Jul 16, 2021 at 02:50:04PM -0700, Dan Williams wrote:
-> > On Fri, Jul 16, 2021 at 2:08 PM Winiarska, Iwona
-> > > > > +}
-> > > > > +EXPORT_SYMBOL_NS_GPL(peci_controller_add, PECI);
-> > > >
-> > > > I think it's cleaner to declare symbol namespaces in the Makefile. In
-> > > > this case, add:
-> > > >
-> > > > cflags-y += -DDEFAULT_SYMBOL_NAMESPACE=PECI
-> > > >
-> > > > ...and just use EXPORT_SYMBOL_GPL as normal in the C file.
-> > > >
-> > >
-> > > I kind of prefer the more verbose EXPORT_SYMBOL_NS_GPL - it also
-> > > doesn't "hide" the fact that we're using namespaces (everything is in
-> > > the C file rather than mixed into Makefile), but it's not a strong
-> > > opinion, so sure - I can change this.
-> > >
-> >
-> > Perhaps as a tie breaker, the maintainer you are submitting this to,
-> > Greg, uses the -DDEFAULT_SYMBOL_NAMESPACE scheme in his subsystem,
-> > drivers/usb/.
->
-> We did that because namespaces were added _after_ the kernel code was
-> already there.  For new code like this, the original use of
-> EXPORT_SYMBOL_NS_GPL() is best as it is explicit and obvious.  No need
-> to dig around in a Makefile to find out the namespace name.
+Hi Rob,
 
-Fair enough.
+(replying to an old patch that was applied a while ago)
 
-/me goes to update drivers/cxl/
+On Thu, Dec 10, 2020 at 9:06 PM Rob Herring <robh@kernel.org> wrote:
+> PicoXcell has had nothing but treewide cleanups for at least the last 8
+> years and no signs of activity. The most recent activity is a yocto vendor
+> kernel based on v3.0 in 2015.
+>
+> Cc: Jamie Iles <jamie@jamieiles.com>
+> Cc: linux-crypto@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+
+> --- a/Documentation/devicetree/bindings/net/macb.txt
+> +++ b/Documentation/devicetree/bindings/net/macb.txt
+> @@ -7,8 +7,6 @@ Required properties:
+>    Use "cdns,sam9x60-macb" for Microchip sam9x60 SoC.
+>    Use "cdns,np4-macb" for NP4 SoC devices.
+>    Use "cdns,at32ap7000-macb" for other 10/100 usage or use the generic form: "cdns,macb".
+> -  Use "cdns,pc302-gem" for Picochip picoXcell pc302 and later devices based on
+> -  the Cadence GEM, or the generic form: "cdns,gem".
+
+Note that (a) the generic form is still used as the sole compatible
+value in arch/arm64/boot/dts/lg/lg131[23].dtsi, and the Linux driver
+matches against it, and (b) arch/arm/boot/dts/zynq-7000.dtsi uses
+the generic form as a secondary compatible value.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
