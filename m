@@ -2,283 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A3A73CC67C
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 23:39:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 698623CC686
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 23:52:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233787AbhGQVlk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jul 2021 17:41:40 -0400
-Received: from mail-40131.protonmail.ch ([185.70.40.131]:38015 "EHLO
-        mail-40131.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233739AbhGQVlk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jul 2021 17:41:40 -0400
-Date:   Sat, 17 Jul 2021 21:38:31 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
-        s=protonmail; t=1626557921;
-        bh=LCLMKFnO7TvI6Bx3wiF64fZ45WT+b2LT5S9wOpPgDac=;
-        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
-        b=bxU2nGMqY/sv3aFzrw92jHVnGa1ELjGQJrVmZdMf+cqTN+0zGgfe+jC505pdmZ2ad
-         USF53FQgEiSdwIprHGn47f6RhHk1LWFBWfyDJxs60QhJxU44arjjLX6JztSZsgJKpj
-         5cS35qRrJ+5Q0Hkr1J/8f1eESw7KW1/Wtno3qlXM=
-To:     Rob Herring <robh@kernel.org>
-From:   Caleb Connolly <caleb@connolly.tech>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, jami.kettunen@somainline.org,
-        jo@jsfamily.in, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Reply-To: Caleb Connolly <caleb@connolly.tech>
-Subject: Re: [RESEND PATCH v2 1/6] dt-bindings: input: add Qualcomm SPMI haptics driver
-Message-ID: <25d5bce7-401f-f1d5-207f-784e0780c5e0@connolly.tech>
-In-Reply-To: <20210622155837.GA3746854@robh.at.kernel.org>
-References: <20210618175041.323495-1-caleb@connolly.tech> <20210618175041.323495-2-caleb@connolly.tech> <20210622155837.GA3746854@robh.at.kernel.org>
+        id S231558AbhGQVzM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jul 2021 17:55:12 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:35866 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231528AbhGQVzM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 17 Jul 2021 17:55:12 -0400
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1m4sEI-0006yf-7X; Sat, 17 Jul 2021 23:52:14 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Rob Herring <robh+dt@kernel.org>, Alex Bee <knaerzche@gmail.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        Johan Jonker <jbx6244@gmail.com>
+Subject: Re: [PATCH v2 0/5] Updates for Radxa ROCK Pi 4
+Date:   Sat, 17 Jul 2021 23:52:10 +0200
+Message-Id: <162655869103.853863.7477122882144074913.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210618181256.27992-1-knaerzche@gmail.com>
+References: <20210618181256.27992-1-knaerzche@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Fri, 18 Jun 2021 20:12:51 +0200, Alex Bee wrote:
+> This series adds support for 2 new revisions of Radxa's ROCK Pi 4,
+> namely ROCK Pi 4A+ and ROCK Pi 4B+. While most things are in common
+> with the previous 4A and 4B revisions, they have OP1 revision of
+> the SoC and eMMC soldered on board.
+> Patch 4 and 5 add SPDIF and anlog Codec to the common device tree,
+> since they are in place in previous revisions as well.
+> It superseeds
+> https://lore.kernel.org/linux-rockchip/d4e4e06e-6ddd-4707-232d-b829c1d646e6@gmail.com/
+> 
+> [...]
 
-Thanks a lot for your feedback.
+Applied, thanks!
 
-I'm still struggling a little to get my head around schema, would you
-mind clarifying a few things?
+[1/5] dt-bindings: Add doc for ROCK Pi 4 A+ and B+
+      commit: 0a777f84fd94aba8bd7282d9616e9160ac8ba757
+[2/5] arm64: dts: rockchip: Add RK3399 ROCK Pi 4A+ board
+      commit: 7ce2bc0f8295afd794264e503a4c8cabd09e8b38
+[3/5] arm64: dts: rockchip: Add RK3399 ROCK Pi 4B+ board
+      commit: fb094a9957b4500b6988b0927ef408636bff966b
+[4/5] arm64: dts: rockchip: add ES8316 codec for ROCK Pi 4
+      commit: 9e595375ddf8c71bdd23df2a6769518116dbc6bf
+[5/5] arm64: dts: rockchip: add SPDIF node for ROCK Pi 4
+      commit: 30910d85c20d929ee1e618bfd86e0fc2f510739f
 
-On 22/06/2021 16:58, Rob Herring wrote:
-> On Fri, Jun 18, 2021 at 05:51:03PM +0000, Caleb Connolly wrote:
->> Add bindings for qcom PMIC SPMI haptics driver.
->>
->> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
->> ---
->>   .../bindings/input/qcom,spmi-haptics.yaml     | 128 ++++++++++++++++++
->>   include/dt-bindings/input/qcom,spmi-haptics.h |  32 +++++
->>   2 files changed, 160 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/input/qcom,spmi-h=
-aptics.yaml
->>   create mode 100644 include/dt-bindings/input/qcom,spmi-haptics.h
->>
->> diff --git a/Documentation/devicetree/bindings/input/qcom,spmi-haptics.y=
-aml b/Documentation/devicetree/bindings/input/qcom,spmi-haptics.yaml
->> new file mode 100644
->> index 000000000000..8ef9b4ec3a07
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/input/qcom,spmi-haptics.yaml
->> @@ -0,0 +1,128 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +# Copyright 2020 Unisoc Inc.
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/input/qcom,spmi-haptics.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm Technologies Inc PMI8998 spmi haptics
->> +
->> +maintainers:
->> +  - Caleb Connolly <caleb@connolly.tech>
->> +
->> +description: |
->> +  Qualcomm SPMI haptics is a peripheral on some QTI PMICs. It supports =
-linear resonant
->> +  actuators and eccentric rotating mass type haptics commonly found in =
-mobile devices.
->> +  It supports multiple sources of wave data such as an internal buffer,=
- direct play
->> +  (from kernel or userspace) as well as an audio output mode.
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - enum:
->> +        - qcom,pmi8998-haptics
->> +        - qcom,pmi8996-haptics
->> +        - qcom,pmi8941-haptics
->> +      - const: qcom,spmi-haptics
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    items:
->> +      - description: short circuit interrupt
->> +      - description: play interrupt
->> +
->> +  interrupt-names:
->> +    items:
->> +      - const: short
->> +      - const: play
->> +
->> +  qcom,actuator-type:
->> +    description: |
->> +      The type of actuator attached to the hardware.
->> +      Allowed values are,
->> +        0 - HAP_TYPE_LRA
->> +        1 - HAP_TYPE_ERM
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    enum: [ 0, 1 ]
->> +    default: 0
->> +
->> +  qcom,wave-shape:
->> +    description: |
->> +      Selects the wave shape to use.
->> +      Allowed values are,
->> +        0 - HAP_WAVE_SINE
->> +        1 - HAP_WAVE_SQUARE
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    enum: [ 0, 1 ]
->> +    default: 0
->> +
->> +  qcom,play-mode:
->> +    description: |
->> +      Selects the play mode to use.
->> +      Allowed values are,
->> +        0 - HAP_PLAY_DIRECT
->> +        1 - HAP_PLAY_BUFFER
->> +        2 - HAP_PLAY_AUDIO
->> +        3 - HAP_PLAY_PWM
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    enum: [ 0, 1, 2, 3 ]
->> +    default: 2
->> +
->> +  qcom,wave-play-rate-us:
->> +    description: |
->> +      Wave sample durection in microseconds, 1/f where f
->> +      is the resonant frequency of the actuator.
->> +    $ref: /schemas/types.yaml#/definitions/uint32
-> Don't need a type for standard units.
->
->> +    minimum: 0
->> +    maximum: 20475
->> +
->> +  qcom,brake-pattern:
->> +    minItems: 4
->> +    maxItems: 4
->> +    description: |
->> +      The brake pattern are the strengths of the pattern
->> +      used to brake the haptics. Allowed values are,
->> +        0 - 0V
->> +        1 - Vmax/4
->> +        2 - Vmax/2
->> +        3 - Vmax
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->> +    default: [0x3, 0x3, 0x2, 0x1]
-> To express the constraints on all items:
->
-> items:
->    enum: [ 0, 1, 2, 3 ]
->
-> (items is a schema here rather than a list)
-
-Ah, that's exactly what I was looking for! Should I replace one of the
-other properties with this?
-
-Or should I just add it to the list?
-
->
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +  - qcom,wave-play-rate-us
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/spmi/spmi.h>
->> +    #include <dt-bindings/interrupt-controller/irq.h>
->> +    #include <dt-bindings/input/qcom,spmi-haptics.h>
->> +
->> +    pmi8998_lsid1: pmic@3 {
-> Drop unused labels.
->
->> +      compatible =3D "qcom,pmi8998", "qcom,spmi-pmic";
-> Really, this needs to be converted to schema first so we're not adding
-> warnings.
-
-Hmm, is it ok to leave this here? I had a look at converting the spmi-pmic
-
-bindings to schema but it's a bit beyond me in all honestly.
-
->
->> +      reg =3D <0x3 SPMI_USID>;
->> +      #address-cells =3D <1>;
->> +      #size-cells =3D <0>;
->> +
->> +      pmi8998_haptics: haptics@c000 {
->> +        compatible =3D "qcom,pmi8998-haptics", "qcom,spmi-haptics";
->> +        reg =3D <0xc000>;
->> +
->> +        interrupts =3D <0x3 0xc0 0x0 IRQ_TYPE_EDGE_BOTH>,
->> +                     <0x3 0xc0 0x1 IRQ_TYPE_EDGE_BOTH>;
->> +        interrupt-names =3D "short", "play";
->> +
->> +        qcom,wave-shape =3D <HAP_WAVE_SINE>;
->> +        qcom,play-mode =3D <HAP_PLAY_BUFFER>;
->> +        qcom,brake-pattern =3D <0x3 0x3 0x2 0x1>;
->> +
->> +        status =3D "disabled";
-> Don't show status in examples.
->
->> +      };
->> +    };
->> diff --git a/include/dt-bindings/input/qcom,spmi-haptics.h b/include/dt-=
-bindings/input/qcom,spmi-haptics.h
->> new file mode 100644
->> index 000000000000..14a7e7d1471e
->> --- /dev/null
->> +++ b/include/dt-bindings/input/qcom,spmi-haptics.h
->> @@ -0,0 +1,32 @@
->> +/* SPDX-License-Identifier: GPL-2.0-only */
-> Dual license please. DT files are used elsewhere.
-Will do.
->
->> +/*
->> + * This header provides constants for pmi8998 SPMI haptics options.
->> + */
->> +
->> +#ifndef _DT_BINDINGS_QCOM_PMIC_SPMI_HAPTICS_
->> +#define _DT_BINDINGS_QCOM_PMIC_SPMI_HAPTICS_
->> +
->> +// Actuator types
->> +#define HAP_TYPE_LRA=09=090
->> +#define HAP_TYPE_ERM=09=091
->> +
->> +// LRA Wave type
->> +#define HAP_WAVE_SINE=09=090
->> +#define HAP_WAVE_SQUARE=09=091
->> +
->> +// Play modes
->> +#define HAP_PLAY_DIRECT=09=090
->> +#define HAP_PLAY_BUFFER=09=091
->> +#define HAP_PLAY_AUDIO=09=092
->> +#define HAP_PLAY_PWM=09=093
->> +
->> +#define HAP_PLAY_MAX=09=09HAP_PLAY_PWM
->> +
->> +// Auto resonance type
->> +#define HAP_AUTO_RES_NONE=090
->> +#define HAP_AUTO_RES_ZXD=091
->> +#define HAP_AUTO_RES_QWD=092
->> +#define HAP_AUTO_RES_MAX_QWD=093
->> +#define HAP_AUTO_RES_ZXD_EOP=094
->> +
->> +#endif /* _DT_BINDINGS_QCOM_PMIC_SPMI_HAPTICS_ */
->> --
->> 2.31.1
->>
->>
->>
-Kind Regards,
-
-Caleb
-
-
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
