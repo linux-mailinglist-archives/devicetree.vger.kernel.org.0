@@ -2,115 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DAA483CC4C7
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 19:22:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6A9C3CC4C4
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 19:21:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232601AbhGQRZt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jul 2021 13:25:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59220 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232010AbhGQRZt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jul 2021 13:25:49 -0400
-Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B890BC06175F;
-        Sat, 17 Jul 2021 10:22:52 -0700 (PDT)
-Received: by mail-qk1-x72f.google.com with SMTP id z9so12151124qkg.5;
-        Sat, 17 Jul 2021 10:22:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=mOKHiePdlVhlno5ie5pDrbQHEPlO/eC6Zv3NO6pPid8=;
-        b=r4UYKwGNMHhgua40EJgtsOLzEnsg1x0ToSS83IVrmt9apIOd1+U5/3fq0aNO52CTGf
-         osoIpXn0gYir001we15F6BSDlpKuEhUALuTVIDgpvfmgro+m9+8VVhhPclz4ZcGHsjVQ
-         yQ92fkGxhJ2jFZ73skuxqJxrr1ovk8NSpbvYp/pybUB1Kegn8AfAGmTgIk5klRE7VQbJ
-         R8iQqGetJQ16n+GfImmqr5qiLtoRFBoh+5dTH0Yo+wyBZKTfIJ9vTa9vRsGDBK0j6HE9
-         QxeN3qd5GJJQR42LSC9+LhHEAu2abSG1b75t/D/xwndcL+CNzbs7nEHrMpXWd9di1ujo
-         v9IQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition
-         :content-transfer-encoding:in-reply-to;
-        bh=mOKHiePdlVhlno5ie5pDrbQHEPlO/eC6Zv3NO6pPid8=;
-        b=azCOvHcjnKXfNCEWK3W3qxD8xeMgkUc4Aku4GB+R5e/o0ab5yrFbX3hRgc1kvtzKh5
-         hRyAm1Yw4RSEpUjE8qdRufPtkeigJX6ytQhoXEjCosPf4T3x3jO0c/zjr4zFVu81aaLN
-         pNtuGqAIt0QtOqpPQtwLU8ggXFYn4r9if2fmXOl4XV8fJbQs7/OZq7ICs0+wX0ifcjzc
-         R7HdMH1MR6Uy5dFUzfq4VQfbS2yXfTlNdTo2j6B5i995s5KTbfMAtZaFIOYCSBNOcXJ+
-         a5eDY6m0JWVoDaYCFknlBVEo+QkcunKgZ6xEFexGm2EdQBBYLvKkZg5F4V9NG6LMrjrB
-         wGzA==
-X-Gm-Message-State: AOAM5314gWmuRU1KBno9JvajSq6Kq7ZhOv4qozR80Em7kuo0kmeZps7H
-        0wuK3Nph7SIh9VK+jqZ5nr4=
-X-Google-Smtp-Source: ABdhPJwp4j8Tfd/udYmz9WV4R+JNEj4Lg19Ewgy7AwiS2umeezwwhGcGb/T7ochucA+gAvCTryaXBQ==
-X-Received: by 2002:ae9:ddc2:: with SMTP id r185mr16084413qkf.107.1626542571924;
-        Sat, 17 Jul 2021 10:22:51 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d4sm1703970qty.15.2021.07.17.10.22.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 Jul 2021 10:22:51 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Sat, 17 Jul 2021 10:22:49 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Jean Delvare <jdelvare@suse.com>
-Subject: Re: [RFC PATCH 6/6] hwmon: axi-fan-control: support temperature vs
- pwm points
-Message-ID: <20210717172249.GA158182@roeck-us.net>
-References: <20210708120111.519444-1-nuno.sa@analog.com>
- <20210708120111.519444-7-nuno.sa@analog.com>
+        id S232601AbhGQRYI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jul 2021 13:24:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54648 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232010AbhGQRYC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 17 Jul 2021 13:24:02 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id DD96D6115A;
+        Sat, 17 Jul 2021 17:21:02 +0000 (UTC)
+Date:   Sat, 17 Jul 2021 18:23:26 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Liam Beguin <liambeguin@gmail.com>
+Cc:     lars@metafoo.de, Michael.Hennerich@analog.com,
+        charles-antoine.couret@essensium.com, Nuno.Sa@analog.com,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH v3 2/4] iio: adc: ad7949: fix spi messages on non 14-bit
+ controllers
+Message-ID: <20210717182326.487709af@jic23-huawei>
+In-Reply-To: <20210713043425.3321230-3-liambeguin@gmail.com>
+References: <20210713043425.3321230-1-liambeguin@gmail.com>
+        <20210713043425.3321230-3-liambeguin@gmail.com>
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210708120111.519444-7-nuno.sa@analog.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 08, 2021 at 02:01:11PM +0200, Nuno Sá wrote:
-> The HW has some predefined points where it will associate a PWM value.
-> However some users might want to better set these points to their
-> usecases. This patch exposes these points as pwm auto_points:
+On Tue, 13 Jul 2021 00:34:23 -0400
+Liam Beguin <liambeguin@gmail.com> wrote:
+
+> From: Liam Beguin <lvb@xiphos.com>
 > 
->  * pwm1_auto_point1_temp: temperature threshold below which PWM should be
->    0%;
->  * pwm1_auto_point2_temp: temperature threshold above which PWM should be
->    25%;
->  * pwm1_auto_point3_temp: temperature threshold below which PWM should be
->    25%;
->  * pwm1_auto_point4_temp: temperature threshold above which PWM should be
->    50%;
->  * pwm1_auto_point5_temp: temperature threshold below which PWM should be
->    50%;
->  * pwm1_auto_point6_temp: temperature threshold above which PWM should be
->    75%;
->  * pwm1_auto_point7_temp: temperature threshold below which PWM should be
->    75%;
->  * pwm1_auto_point8_temp: temperature threshold above which PWM should be
->    100%;
+> This driver supports devices with 14-bit and 16-bit sample sizes.
+> This is not always handled properly by spi controllers and can fail. To
+> work around this limitation, pad samples to 16-bit and split the sample
+> into two 8-bit messages in the event that only 8-bit messages are
+> supported by the controller.
 > 
+> Signed-off-by: Liam Beguin <lvb@xiphos.com>
 
-If I understand those correctly, half of those are really hysteresis points.
-I think it would be better to express this with
-	pwm1_auto_pointX_temp
-	pwm1_auto_pointX_temp_hyst
+A small tidy up below that will make this even neater...
 
-where the hysteresis point is the temperature where the previous pwm value
-is activated. In other words, change attribute names as follows:
-    for 25%:
-	pwm1_auto_point1_temp -> pwm1_auto_point1_temp_hyst
-	pwm1_auto_point2_temp -> pwm1_auto_point1_temp
-    for 50%:
-	pwm1_auto_point3_temp -> pwm1_auto_point2_temp_hyst
-	pwm1_auto_point4_temp -> pwm1_auto_point2_temp
-    for 75%:
-	pwm1_auto_point5_temp -> pwm1_auto_point3_temp_hyst
-	pwm1_auto_point6_temp -> pwm1_auto_point3_temp
-    for 100%:
-	pwm1_auto_point7_temp -> pwm1_auto_point4_temp_hyst
-	pwm1_auto_point8_temp -> pwm1_auto_point4_temp
+> ---
+>  drivers/iio/adc/ad7949.c | 68 +++++++++++++++++++++++++++++++++++-----
+>  1 file changed, 60 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/ad7949.c b/drivers/iio/adc/ad7949.c
+> index 0b549b8bd7a9..65f78751225b 100644
+> --- a/drivers/iio/adc/ad7949.c
+> +++ b/drivers/iio/adc/ad7949.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/regulator/consumer.h>
+>  #include <linux/spi/spi.h>
+>  #include <linux/bitfield.h>
+> +#include <asm/unaligned.h>
+>  
+>  #define AD7949_MASK_TOTAL		GENMASK(13, 0)
+>  
+> @@ -67,6 +68,7 @@ static const struct ad7949_adc_spec ad7949_adc_spec[] = {
+>   * @indio_dev: reference to iio structure
+>   * @spi: reference to spi structure
+>   * @resolution: resolution of the chip
+> + * @bits_per_word: number of bits per SPI word
+>   * @cfg: copy of the configuration register
+>   * @current_channel: current channel in use
+>   * @buffer: buffer to send / receive data to / from device
+> @@ -77,6 +79,7 @@ struct ad7949_adc_chip {
+>  	struct iio_dev *indio_dev;
+>  	struct spi_device *spi;
+>  	u8 resolution;
+> +	u8 bits_per_word;
+>  	u16 cfg;
+>  	unsigned int current_channel;
+>  	u16 buffer ____cacheline_aligned;
+> @@ -86,19 +89,37 @@ static int ad7949_spi_write_cfg(struct ad7949_adc_chip *ad7949_adc, u16 val,
+>  				u16 mask)
+>  {
+>  	int ret;
+> -	int bits_per_word = ad7949_adc->resolution;
+> -	int shift = bits_per_word - AD7949_CFG_REG_SIZE_BITS;
+> +	u8 buf8[2];
+>  	struct spi_message msg;
+>  	struct spi_transfer tx[] = {
+>  		{
+>  			.tx_buf = &ad7949_adc->buffer,
+>  			.len = 2,
+> -			.bits_per_word = bits_per_word,
+> +			.bits_per_word = ad7949_adc->bits_per_word,
+>  		},
+>  	};
+>  
+> +	ad7949_adc->buffer = 0;
+>  	ad7949_adc->cfg = (val & mask) | (ad7949_adc->cfg & ~mask);
+> -	ad7949_adc->buffer = ad7949_adc->cfg << shift;
+> +
+> +	switch (ad7949_adc->bits_per_word) {
+> +	case 16:
+> +		ad7949_adc->buffer = ad7949_adc->cfg << 2;
+> +		break;
+> +	case 14:
+> +		ad7949_adc->buffer = ad7949_adc->cfg;
+> +		break;
+> +	case 8:
+> +		/* Pack 14-bit value into 2 bytes, MSB first */
+> +		buf8[0] = FIELD_GET(GENMASK(13, 6), ad7949_adc->cfg);
+> +		buf8[1] = FIELD_GET(GENMASK(5, 0), ad7949_adc->cfg) << 2;
+> +		memcpy(&ad7949_adc->buffer, buf8, 2);
 
-Thanks,
-Guenter
+Can probably tidy this up given the form - all we actually need to do is ensure the
+value ends up big endian.
+
+		/* Type is only big endian for this case as must be done as two transfers */
+		ad7949_adc->buffer = (u16)cpu_to_be16(ad7959_adc->cfg << 2);
+
+> +		break;
+> +	default:
+> +		dev_err(&ad7949_adc->indio_dev->dev, "unsupported BPW\n");
+> +		return -EINVAL;
+> +	}
+> +
+>  	spi_message_init_with_transfers(&msg, tx, 1);
+>  	ret = spi_sync(ad7949_adc->spi, &msg);
+>  
+> @@ -115,14 +136,13 @@ static int ad7949_spi_read_channel(struct ad7949_adc_chip *ad7949_adc, int *val,
+>  {
+>  	int ret;
+>  	int i;
+> -	int bits_per_word = ad7949_adc->resolution;
+> -	int mask = GENMASK(ad7949_adc->resolution - 1, 0);
+> +	u8 buf8[2];
+
+As below, not needed that I can see.
+
+>  	struct spi_message msg;
+>  	struct spi_transfer tx[] = {
+>  		{
+>  			.rx_buf = &ad7949_adc->buffer,
+>  			.len = 2,
+> -			.bits_per_word = bits_per_word,
+> +			.bits_per_word = ad7949_adc->bits_per_word,
+>  		},
+>  	};
+>  
+> @@ -157,7 +177,26 @@ static int ad7949_spi_read_channel(struct ad7949_adc_chip *ad7949_adc, int *val,
+>  
+>  	ad7949_adc->current_channel = channel;
+>  
+> -	*val = ad7949_adc->buffer & mask;
+> +	switch (ad7949_adc->bits_per_word) {
+> +	case 16:
+> +		*val = ad7949_adc->buffer;
+> +		/* Shift-out padding bits */
+> +		*val >>= 16 - ad7949_adc->resolution;
+> +		break;
+> +	case 14:
+> +		*val = ad7949_adc->buffer & GENMASK(13, 0);
+> +		break;
+> +	case 8:
+> +		memcpy(buf8, &ad7949_adc->buffer, 2);
+> +		/* Convert byte array to u16, MSB first */
+> +		*val = get_unaligned_be16(buf8);
+
+Why the local copy first?
+
+		*val = get_unaligned_be16(ad7949_adc->buffer);
+
+should get what you want, it doesn't care about the type.
+Even better, that buffer is aligned, so we can do
+be16_to_cpu() safely I think...
+
+> +		/* Shift-out padding bits */
+> +		*val >>= 16 - ad7949_adc->resolution;
+> +		break;
+> +	default:
+> +		dev_err(&ad7949_adc->indio_dev->dev, "unsupported BPW\n");
+> +		return -EINVAL;
+> +	}
+>  
+>  	return 0;
+>  }
+> @@ -265,6 +304,7 @@ static int ad7949_spi_init(struct ad7949_adc_chip *ad7949_adc)
+>  
+>  static int ad7949_spi_probe(struct spi_device *spi)
+>  {
+> +	u32 spi_ctrl_mask = spi->controller->bits_per_word_mask;
+>  	struct device *dev = &spi->dev;
+>  	const struct ad7949_adc_spec *spec;
+>  	struct ad7949_adc_chip *ad7949_adc;
+> @@ -291,6 +331,18 @@ static int ad7949_spi_probe(struct spi_device *spi)
+>  	indio_dev->num_channels = spec->num_channels;
+>  	ad7949_adc->resolution = spec->resolution;
+>  
+> +	/* Set SPI bits per word */
+> +	if (spi_ctrl_mask & SPI_BPW_MASK(ad7949_adc->resolution)) {
+> +		ad7949_adc->bits_per_word = ad7949_adc->resolution;
+> +	} else if (spi_ctrl_mask == SPI_BPW_MASK(16)) {
+> +		ad7949_adc->bits_per_word = 16;
+> +	} else if (spi_ctrl_mask == SPI_BPW_MASK(8)) {
+> +		ad7949_adc->bits_per_word = 8;
+> +	} else {
+> +		dev_err(dev, "unable to find common BPW with spi controller\n");
+> +		return -EINVAL;
+> +	}
+> +
+>  	ad7949_adc->vref = devm_regulator_get(dev, "vref");
+>  	if (IS_ERR(ad7949_adc->vref)) {
+>  		dev_err(dev, "fail to request regulator\n");
+
