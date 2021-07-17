@@ -2,135 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA1713CC553
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 20:23:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 978A73CC5EE
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 21:46:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235609AbhGQS0R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jul 2021 14:26:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44288 "EHLO
+        id S234719AbhGQTtP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jul 2021 15:49:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235444AbhGQS0L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jul 2021 14:26:11 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E23A4C061766;
-        Sat, 17 Jul 2021 11:23:12 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id g22so9691536lfu.0;
-        Sat, 17 Jul 2021 11:23:12 -0700 (PDT)
+        with ESMTP id S234296AbhGQTtP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jul 2021 15:49:15 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DEA5C061762;
+        Sat, 17 Jul 2021 12:46:17 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id v1so17477965edt.6;
+        Sat, 17 Jul 2021 12:46:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=y7SaHURNXyUBjsQfPYlKAP5ckfuIlCfIy3J3ukz+tBo=;
-        b=SaXxFTfEqC7NQlicWHSd03MNyG0RY/znqNOu4rKxPWPMT0ZQh8EUVnKZA1kpZw7MYo
-         gMmTSBmrOtbO70/O/pRvEBTehOafvb1TYOzBqqVvsfLUir6/g4T+ZhcHrnYqeVILHoU3
-         kUqy8YrgPCwFY+AhW3jjdRmJStzEabxuBOJxG9S/qOTY0JW+VZxyeWmg9x+mlgrbVLgb
-         A2ci7JvQXzeac1GoEq1MgO84reNM6bIURlghKdyH8cKX9I7kVktxW5p6wV+wP96TH49H
-         nYjY5CrNc94G0uT2C8ibJc72V3BnwVZItcTepsUIE84a4FJfjFZRRtMSTNAKiePjd7vM
-         7T2g==
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Uf9ovgwZadCx9qH0j7ni/tLHBwLpSqqtIpLKHpJ2A5k=;
+        b=amz7jyI6NWsc3UfcTGAZpqkYN7ZZ39sstx2gCWuQeDsnK4T5Ds0rAbwzj59MV3qOXS
+         qVBOaKZ2v2IvqGnmHG45Qz/VtbUPE17qbDEoAlnZq3s2G8uVUJfgtKR9iPtmnIe5ysn5
+         BLzMd6KEt5ugFv4yzpBAFSmWGCLCkxJb/Q/7C65uhvWIGqhce9y0rC+ugflM0C6mC0Xg
+         +fBx+8vWN4IsZzoKP9raOuZ3QwjDUK5navpcxbsZCn3GpNR+6F/5EdOrvXWsr+Wq5R+9
+         Q//P+eGDC4wTeAwLxtTeytA1HziCt4zF+/uqs4ulnlwH0QRKMQQdvwUymuTTlWDryeiZ
+         oPew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=y7SaHURNXyUBjsQfPYlKAP5ckfuIlCfIy3J3ukz+tBo=;
-        b=C71Y+UavVW+qJIRegTWGIgVC7FxUUfRvtcQc9rFiEaRLW2gQDfJIE6UXRhwsIulYLV
-         dvtjnHpoCGVSzA8CH6ySOiAIg+IpYmBuoRQKNYNPuLO7RuZmY84sTNcHe2w+3K2u38No
-         VvBVzPoOdbf0icVmkZe2Oi8UJalJYDQoZ+JE2RToZa+MR7tjvW5JXHt1qhv2t18uLqNs
-         OxiqW4oTRozE9/v2wSmtIWc4LiT80hzNsFB70dtoU+cgRzF1r9qT3p+wMRbS5ghins9e
-         cxm4RWSC1KogNl4tvpToGakodc+YTtu5TTdbFovyRmTPp8TFeMIzG7fEGGTp/sNPrIy/
-         lpDA==
-X-Gm-Message-State: AOAM533HabSKwygI4zEUluc5O7qdfxwHuJEZ5s2YqoSmehyLSwNngg/O
-        d60D5nq+wNlZb4M7jq66O0k=
-X-Google-Smtp-Source: ABdhPJx6kt3p/8AdTmBN/YG3dBRZZZ/0Uc//D7ucLTcZ1BioGC5bY11m6kaP7JckoOWhwxwWmO47CA==
-X-Received: by 2002:a05:6512:16a6:: with SMTP id bu38mr12308203lfb.92.1626546191314;
-        Sat, 17 Jul 2021 11:23:11 -0700 (PDT)
-Received: from localhost.localdomain (46-138-17-250.dynamic.spd-mgts.ru. [46.138.17.250])
-        by smtp.gmail.com with ESMTPSA id z20sm1409532ljk.123.2021.07.17.11.23.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 Jul 2021 11:23:11 -0700 (PDT)
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Thierry Reding <treding@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        David Heidelberg <david@ixit.cz>
-Cc:     devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: [PATCH v5 12/12] arm64: tegra132: Add new properties to USB PHY device-tree node
-Date:   Sat, 17 Jul 2021 21:21:34 +0300
-Message-Id: <20210717182134.30262-13-digetx@gmail.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210717182134.30262-1-digetx@gmail.com>
-References: <20210717182134.30262-1-digetx@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Uf9ovgwZadCx9qH0j7ni/tLHBwLpSqqtIpLKHpJ2A5k=;
+        b=I4rEj4nCss2uMgV9ihp9H7BTRVv5Ba4r1k0ISrLcRfGLysLlQN03Mig4guzBbhFRxQ
+         jD4e8dmAYrbsBz827QZcxr0fscd1Lcy/aT9tPPozsFrzOUWQrKbugIqcK6RhZwkcpjBZ
+         N+wrJwFsWYt8zpX7dYZ+ZnDiDGrMjsB1ABzU4qvl9kTShNl6kvDUmXedj/emBoRe5G4z
+         N/yLsXse/GhoOVIffLuMYjQnOTwsgOBeGfFl1iW1HcieWhto4UcTHOcFPtt+v7s8cfIc
+         xniFaEwBH3d4P80A61paCVcFmXUIiFlBJdjbYXGxFOa7rp0gegw/KTw8Eih8vBbr5zEc
+         ch3Q==
+X-Gm-Message-State: AOAM530qsbw0c0TtyjCaMUiE3FDJnl6msfD/9RjaXyE6WDS2H64PjW86
+        alFwU8Yyx4E2vpQ/dXji5nBoylgatWqEYLXrnqw=
+X-Google-Smtp-Source: ABdhPJwdhDJeG3UUdeAYHhaU+cyLC7AqaAQpYGsHZwnBCdZoSn/tUwKYj1BghaowLSKgddaJsiwEdUkYfnDBaoQm8q8=
+X-Received: by 2002:aa7:c550:: with SMTP id s16mr23560320edr.130.1626551174723;
+ Sat, 17 Jul 2021 12:46:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210716103651.1455-1-linux.amoon@gmail.com> <20210716103651.1455-2-linux.amoon@gmail.com>
+In-Reply-To: <20210716103651.1455-2-linux.amoon@gmail.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Sat, 17 Jul 2021 21:46:04 +0200
+Message-ID: <CAFBinCDeqauw_V-Vn9cat9HaCXj6HEMz6G+G+VbqCNtGEFGYzg@mail.gmail.com>
+Subject: Re: [PATCHv2 1/4] ARM: dts: meson8b: odroidc1: Add usb phy power node
+To:     Anand Moon <linux.amoon@gmail.com>
+Cc:     linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Matt Corallo <oc2udbzfd@mattcorallo.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Emiliano Ingrassia <ingrassia@epigenesys.com>,
+        Brian Kim <brian.kim@hardkernel.com>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add new properties to USB PHYs needed for enabling USB OTG mode.
+Hi Anand,
 
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
----
- arch/arm64/boot/dts/nvidia/tegra132.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+On Fri, Jul 16, 2021 at 12:37 PM Anand Moon <linux.amoon@gmail.com> wrote:
+>
+> Add missing usb phy power node for phy mode fix below warning.
+> P5V0 regulator suppy input voltage range to USB host controller.
+low prio - typo: suppy -> supply
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra132.dtsi b/arch/arm64/boot/dts/nvidia/tegra132.dtsi
-index 9928a87f593a..f79a66226457 100644
---- a/arch/arm64/boot/dts/nvidia/tegra132.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra132.dtsi
-@@ -1123,6 +1123,7 @@ phy1: usb-phy@7d000000 {
- 		compatible = "nvidia,tegra124-usb-phy", "nvidia,tegra30-usb-phy";
- 		reg = <0x0 0x7d000000 0x0 0x4000>,
- 		      <0x0 0x7d000000 0x0 0x4000>;
-+		interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
- 		phy_type = "utmi";
- 		clocks = <&tegra_car TEGRA124_CLK_USBD>,
- 			 <&tegra_car TEGRA124_CLK_PLL_U>,
-@@ -1142,6 +1143,7 @@ phy1: usb-phy@7d000000 {
- 		nvidia,hsdiscon-level = <5>;
- 		nvidia,xcvr-hsslew = <12>;
- 		nvidia,has-utmi-pad-registers;
-+		nvidia,pmc = <&tegra_pmc 0>;
- 		status = "disabled";
- 	};
- 
-@@ -1162,6 +1164,7 @@ phy2: usb-phy@7d004000 {
- 		compatible = "nvidia,tegra124-usb-phy", "nvidia,tegra30-usb-phy";
- 		reg = <0x0 0x7d004000 0x0 0x4000>,
- 		      <0x0 0x7d000000 0x0 0x4000>;
-+		interrupts = <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>;
- 		phy_type = "utmi";
- 		clocks = <&tegra_car TEGRA124_CLK_USB2>,
- 			 <&tegra_car TEGRA124_CLK_PLL_U>,
-@@ -1180,6 +1183,7 @@ phy2: usb-phy@7d004000 {
- 		nvidia,hssquelch-level = <2>;
- 		nvidia,hsdiscon-level = <5>;
- 		nvidia,xcvr-hsslew = <12>;
-+		nvidia,pmc = <&tegra_pmc 1>;
- 		status = "disabled";
- 	};
- 
-@@ -1200,6 +1204,7 @@ phy3: usb-phy@7d008000 {
- 		compatible = "nvidia,tegra124-usb-phy", "nvidia,tegra30-usb-phy";
- 		reg = <0x0 0x7d008000 0x0 0x4000>,
- 		      <0x0 0x7d000000 0x0 0x4000>;
-+		interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
- 		phy_type = "utmi";
- 		clocks = <&tegra_car TEGRA124_CLK_USB3>,
- 			 <&tegra_car TEGRA124_CLK_PLL_U>,
-@@ -1218,6 +1223,7 @@ phy3: usb-phy@7d008000 {
- 		nvidia,hssquelch-level = <2>;
- 		nvidia,hsdiscon-level = <5>;
- 		nvidia,xcvr-hsslew = <12>;
-+		nvidia,pmc = <&tegra_pmc 2>;
- 		status = "disabled";
- 	};
- 
--- 
-2.32.0
+> As descriped in the C1+ schematics, GPIO GPIOAO_5 is used to
+low prio - typo: descriped -> described
 
+> enable input power to USB ports, set it to Active Low.
+>
+> [    1.253149] phy phy-c1108820.phy.0: Looking up phy-supply from device tree
+> [    1.253166] phy phy-c1108820.phy.0: Looking up phy-supply property
+>                 in node /soc/cbus@c1100000/phy@8820 failed
+high prio:
+Can you please describe how I can test this patch?
+My concern is that previously I have tested your patch with ACTIVE_LOW
+and ACTIVE_HIGH polarity.
+In both cases USB is working and I cannot observe any change (apart
+from this debug message being gone).
+
+In the Odroid-C1 schematics (page 1) GPIOAO.BIT5 is connected to USB_OTG *only*.
+I cannot give my Acked-/Reviewed-/Tested-by without a description of
+how I can actually test the GPIO potion of this patch.
+
+[...]
+> +               /*
+> +                * signal name from schematics: PWREN - GPIOAO.BIT5
+> +                */
+> +               gpios = <&gpio_ao GPIOAO_5 GPIO_ACTIVE_HIGH>;
+low prio:
+Even though it's strictly not necessary I think this is confusing to read.
+Since there's no "enable-active-high" property the GPIO will be
+considered as "active low".
+My suggestion is to change GPIO_ACTIVE_HIGH to GPIO_ACTIVE_LOW
+
+Also if you have any extra information since you last pinged me on IRC
+then it would be great if you could document it.
+I am referring to these IRC message, where you are stating that the
+correct polarity should be "active high":
+<armoon> xdarklight I have a question on USB GPIO Polarity on Odroid C1+
+<armoon> As per the
+https://dn.odroid.com/S805/Schematics/odroid-c1+_rev0.4_20160226.pdf
+<armoon> MP62551DGT-LF IC controls the power for the USB PORTS
+<armoon> https://www.mouser.com/datasheet/2/277/MP62550-1384050.pdf is
+MP62551DGT datasheet
+<armoon> As per the data sheet in section ORDERING INFORMATION  Active
+enable signal is set below MP62551DGT Active High
+
+[...]
+>  &usb1_phy {
+>         status = "okay";
+> +       phy-supply = <&usb_pwr_en>;
+medium priority:
+I have raised the following concern in one of my previous emails on this topic:
+> The mistake I made before is considering USB VBUS as PHY power supply.
+> I believe the USB PHY is actually powered by the AVDD18_USB_ADC and
+> USB33_VDDIOH signals. See the S905 datasheet [0], page 25
+> These are 1.8V and 3.3V signals while you are adding a 5V regulator.
+you replied with:
+> OK, thanks.
+so I don't understand what "OK, thanks" means.
+If it means "Martin, you are wrong" then please provide a description
+so I can also learn something!
+
+
+Best regards,
+Martin
