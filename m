@@ -2,253 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3942B3CC251
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 11:58:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FE293CC279
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 12:18:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233189AbhGQKBa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jul 2021 06:01:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36592 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233019AbhGQKBU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 17 Jul 2021 06:01:20 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id DC1E4613F0;
-        Sat, 17 Jul 2021 09:58:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626515904;
-        bh=z12ohAzjRBP3E8089FPH94RrqDgdT25W23fpakluff8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=gSLgnodZb+ym7++RuV6WSVPR/cq8ltINhWkQJMOfzUyoIDBaG7rj3r6oEjJ+5/7Jq
-         l9H/mYGHuk3SCvx+yv9IYu+C6baEjiHingVKwBxpKNp10hQeS4C8CzuWnm20fNroHg
-         MRffszISiVdCc9ngeoWQLqVcocd1nBBN5s39gZR231fsVF8YjKPjJHFeom4IBegi+V
-         2PCY8v50O9+JojwND8qwlg7ZqNewVhjNr9yJanax6UpibbMM3s7qQPgkaIUm/IE2Mr
-         zr8CHeZE4kLsACt/qyp4QczA3oK30U3snzNMFGAnsI0Z8yUAj0T54b+/rmRzgLzLdw
-         9DvKJjEqxHIDw==
-Received: by mail.kernel.org with local (Exim 4.94.2)
-        (envelope-from <mchehab@kernel.org>)
-        id 1m4h5S-0007KY-6h; Sat, 17 Jul 2021 11:58:22 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v14 9/9] dts: hisilicon: add support for USB3 on Hikey 970
-Date:   Sat, 17 Jul 2021 11:58:20 +0200
-Message-Id: <684bf6a1a621dd0fdc983da7fc0e49ecc4bc3858.1626515863.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1626515862.git.mchehab+huawei@kernel.org>
-References: <cover.1626515862.git.mchehab+huawei@kernel.org>
+        id S233288AbhGQKVI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jul 2021 06:21:08 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:50494 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S233252AbhGQKVE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jul 2021 06:21:04 -0400
+X-UUID: 46a4e1a5780f4cc98c40c152ce3e15cc-20210717
+X-UUID: 46a4e1a5780f4cc98c40c152ce3e15cc-20210717
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
+        (envelope-from <kewei.xu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 69300753; Sat, 17 Jul 2021 18:18:04 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Sat, 17 Jul 2021 18:18:02 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sat, 17 Jul 2021 18:18:02 +0800
+From:   Kewei Xu <kewei.xu@mediatek.com>
+To:     <wsa@the-dreams.de>
+CC:     <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
+        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
+        <qii.wang@mediatek.com>, <yuhan.wei@mediatek.com>,
+        <kewei.xu@mediatek.com>, <ot_daolong.zhu@mediatek.com>,
+        <liguo.zhang@mediatek.com>
+Subject: [PATCH V4 0/8] Introduce an attribute to choose timing setting
+Date:   Sat, 17 Jul 2021 18:17:51 +0800
+Message-ID: <1626517079-9057-1-git-send-email-kewei.xu@mediatek.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the USB3 bindings for Kirin 970 phy and Hikey 970 board.
+v4:
+1. Remove the repeated assignment of the inter_clk_div parameter
+2. Modify the wrong assignment of OFFSET_MULTI_DMA
+3. Unify the log print format of the i2c_dump_register() and drop the extra outer parentheses
+4. Place the fixes at the very least
+5. Add fixed tags 25708278f810 ("i2c: mediatek: Add i2c support for MediaTek MT8183")
+6. Add "i2c: mediatek: modify bus speed calculation formula"
+7. Fix single line characters exceeding 80 characters
+8. Combine two different series of patches.
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- .../boot/dts/hisilicon/hi3670-hikey970.dts    | 107 ++++++++++++++++++
- arch/arm64/boot/dts/hisilicon/hi3670.dtsi     |  56 +++++++++
- 2 files changed, 163 insertions(+)
+v3:
+1. Fix code errors caused by v2 modification
 
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-index 7c32f5fd5cc5..16f81f86e3fa 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-+++ b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-@@ -53,6 +53,30 @@ wlan_en: wlan-en-1-8v {
- 		startup-delay-us = <70000>;
- 		enable-active-high;
- 	};
-+
-+	hikey_usbhub: hikey_usbhub {
-+		compatible = "hisilicon,kirin970_hikey_usbhub";
-+
-+		typec-vbus-gpios = <&gpio26 1 0>;
-+		otg-switch-gpios = <&gpio4 2 0>;
-+		hub_reset_en_gpio = <&gpio0 3 0>;
-+		hub-vdd-supply = <&ldo17>;
-+		usb-role-switch;
-+
-+		port {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			hikey_usb_ep0: endpoint@0 {
-+				reg = <0>;
-+				remote-endpoint = <&dwc3_role_switch>;
-+			};
-+			hikey_usb_ep1: endpoint@1 {
-+				reg = <1>;
-+				remote-endpoint = <&rt1711h_ep>;
-+			};
-+		};
-+	};
- };
- 
- /*
-@@ -430,3 +454,86 @@ &uart6 {
- 	label = "LS-UART1";
- 	status = "okay";
- };
-+
-+&usb_phy {
-+	phy-supply = <&ldo17>;
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+
-+	rt1711h: rt1711h@4e {
-+		compatible = "richtek,rt1711h";
-+		reg = <0x4e>;
-+		status = "okay";
-+		interrupt-parent = <&gpio27>;
-+		interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usb_cfg_func>;
-+
-+		usb_con: connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			data-role = "dual";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			source-pdos = <PDO_FIXED(5000, 500, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 500, PDO_FIXED_USB_COMM)
-+				PDO_VAR(5000, 5000, 1000)>;
-+			op-sink-microwatt = <10000000>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				port@1 {
-+					reg = <1>;
-+					usb_con_ss: endpoint {
-+						remote-endpoint = <&dwc3_ss>;
-+					};
-+				};
-+			};
-+		};
-+		port {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			rt1711h_ep: endpoint@0 {
-+				reg = <0>;
-+				remote-endpoint = <&hikey_usb_ep1>;
-+			};
-+		};
-+	};
-+};
-+
-+&i2c2 {
-+	/* USB HUB is on this bus at address 0x44 */
-+	status = "okay";
-+};
-+
-+&dwc3 { /* USB */
-+	dr_mode = "otg";
-+	maximum-speed = "super-speed";
-+	phy_type = "utmi";
-+	snps,dis-del-phy-power-chg-quirk;
-+	snps,dis_u2_susphy_quirk;
-+	snps,dis_u3_susphy_quirk;
-+	snps,tx_de_emphasis_quirk;
-+	snps,tx_de_emphasis = <1>;
-+	snps,dis-split-quirk;
-+	snps,gctl-reset-quirk;
-+	usb-role-switch;
-+	role-switch-default-mode = "host";
-+	port {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		dwc3_role_switch: endpoint@0 {
-+			reg = <0>;
-+			remote-endpoint = <&hikey_usb_ep0>;
-+		};
-+
-+		dwc3_ss: endpoint@1 {
-+			reg = <1>;
-+			remote-endpoint = <&usb_con_ss>;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-index 20698cfd0637..1f228612192c 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-@@ -8,6 +8,7 @@
- 
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/hi3670-clock.h>
-+#include <dt-bindings/usb/pd.h>
- 
- / {
- 	compatible = "hisilicon,hi3670";
-@@ -785,5 +786,60 @@ i2c4: i2c@fdf0d000 {
- 			pinctrl-0 = <&i2c4_pmx_func &i2c4_cfg_func>;
- 			status = "disabled";
- 		};
-+
-+		usb3_otg_bc: usb3_otg_bc@ff200000 {
-+			compatible = "syscon", "simple-mfd";
-+			reg = <0x0 0xff200000 0x0 0x1000>;
-+
-+			usb_phy: usbphy {
-+				compatible = "hisilicon,hi3670-usb-phy";
-+				#phy-cells = <0>;
-+				hisilicon,pericrg-syscon = <&crg_ctrl>;
-+				hisilicon,pctrl-syscon = <&pctrl>;
-+				hisilicon,sctrl-syscon = <&sctrl>;
-+				hisilicon,eye-diagram-param = <0xFDFEE4>;
-+				hisilicon,tx-vboost-lvl = <0x5>;
-+			};
-+		};
-+
-+		usb31_misc_rst: usb31_misc_rst_controller {
-+			compatible = "hisilicon,hi3660-reset";
-+			#reset-cells = <2>;
-+			hisi,rst-syscon = <&usb3_otg_bc>;
-+		};
-+
-+		usb3: hisi_dwc3 {
-+			compatible = "hisilicon,hi3670-dwc3";
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+
-+			clocks = <&crg_ctrl HI3670_CLK_GATE_ABB_USB>,
-+				  <&crg_ctrl HI3670_HCLK_GATE_USB3OTG>,
-+				  <&crg_ctrl HI3670_CLK_GATE_USB3OTG_REF>,
-+				  <&crg_ctrl HI3670_ACLK_GATE_USB3DVFS>;
-+			clock-names = "clk_gate_abb_usb",
-+				      "hclk_gate_usb3otg",
-+				      "clk_gate_usb3otg_ref",
-+				      "aclk_gate_usb3dvfs";
-+
-+			assigned-clocks = <&crg_ctrl HI3670_ACLK_GATE_USB3DVFS>;
-+			assigned-clock-rates = <238000000>;
-+			resets = <&crg_rst 0x90 6>,
-+				 <&crg_rst 0x90 7>,
-+				 <&usb31_misc_rst 0xA0 8>,
-+				 <&usb31_misc_rst 0xA0 9>;
-+
-+			dwc3: usb@ff100000 {
-+				compatible = "snps,dwc3";
-+				reg = <0x0 0xff100000 0x0 0x100000>;
-+
-+				interrupts = <0 159 IRQ_TYPE_LEVEL_HIGH>,
-+					    <0 161 IRQ_TYPE_LEVEL_HIGH>;
-+
-+				phys = <&usb_phy>;
-+				phy-names = "usb3-phy";
-+			};
-+		};
- 	};
- };
+v2:
+1. Add "dt-bindings: i2c: add attribute default-timing-adjust"
+2. Split the fix into sepatate patch.
+
+Kewei Xu (8):
+  i2c: mediatek: fixing the incorrect register offset
+  dt-bindings: i2c: update bindings for MT8195 SoC
+  i2c: mediatek: Reset the handshake signal between i2c and dma
+  i2c: mediatek: Dump i2c/dma register when a timeout occurs
+  dt-bindings: i2c: add attribute default-timing-adjust
+  i2c: mediatek: Add OFFSET_EXT_CONF setting back
+  i2c: mediatek: Isolate speed setting via dts for special devices
+  i2c: mediatek: modify bus speed calculation formula
+
+ .../devicetree/bindings/i2c/i2c-mt65xx.txt    |   3 +
+ drivers/i2c/busses/i2c-mt65xx.c               | 194 ++++++++++++++++--
+ 2 files changed, 180 insertions(+), 17 deletions(-)
+
 -- 
-2.31.1
+2.18.0
 
