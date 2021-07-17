@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2E243CC136
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 06:57:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AAF43CC139
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 06:57:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231788AbhGQFAE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jul 2021 01:00:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37828 "EHLO
+        id S231881AbhGQFAF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jul 2021 01:00:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231203AbhGQE7u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jul 2021 00:59:50 -0400
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ECB1C061762
-        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 21:56:54 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id b5-20020a17090a9905b029016fc06f6c5bso8246820pjp.5
-        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 21:56:54 -0700 (PDT)
+        with ESMTP id S231311AbhGQE7x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jul 2021 00:59:53 -0400
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE132C061762
+        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 21:56:56 -0700 (PDT)
+Received: by mail-pf1-x42b.google.com with SMTP id c1so6784366pfc.13
+        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 21:56:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=0x0f.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=+99X6tDDuJ/XktfbyFhmKZGyLFxw8e69PtMLfb60Jwk=;
-        b=nx0dOqNc1L+tIbRTHbQkMSV2014cdIVo8H/lvQberVUn4cI+XevZ9dCVXN5aOLOiHX
-         4YaNWo+HBXs89M5jks4zav8jJB2syiB66tMR6UcJcaaMO55B0fPpohWRTkAHN0Fgohzn
-         /KLQTp0ZrJMlToyvUoUuScaiYEE/96V5wKrwo=
+        bh=CW8+X4ven8LE6a628SvByr7Eb90cm9U9YeyKIDh8Q0I=;
+        b=vxfNy/AVZ2+QtClGwq8aphvCDom0KQ6+D54xbcCEyp10nVFZuz4ofBkxLr2Xx+GH9T
+         QterhwEbaVV7GJtHyyLELiZuvkXDkmmrLVCUTZ+vPddBKWzz5C7DDT0FLkNmJJLxpLnM
+         EhS1rQ/fqr6rmqWzb/71ghhzoe1U9S1ZyVCls=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=+99X6tDDuJ/XktfbyFhmKZGyLFxw8e69PtMLfb60Jwk=;
-        b=gouY1dZntjRaHd+JKjWDF1Pt+UDeSdSCMzPQnhEgwl/disQ1J78EqNoF8wJbM+NpdC
-         LZae3uDFDiqiKP25/8ldut0ouNKuUuarLmouI2h6OADcFnfkuseowT3hJDhlNDmAplqH
-         8sVCaMXL0z+5KTZezEfVZTefnPvW7uUFrzSIrBqLZIaxFDQKkog4fU0lifH0NBZy+jOy
-         1T3q5VxDRZGbhBnL/GzKegT5wDZILBMWyUf8xjPQ8UagWawtZPRoh4F2CkDMfS94WrIi
-         6yfQTKYrQ7I/F29iBWjI0a9a/Iqhe2O0OMrS69Nq35zw6fwkgxjyIwze/svcw8BamEzB
-         dByw==
-X-Gm-Message-State: AOAM533RFclPLiObdWOdC3BiP8oyAHKaPy59mFI5KRM6zBm9F70em8Qc
-        qtb6nymtu9qzoFt/BgFrBYn/SdcjTeXULA==
-X-Google-Smtp-Source: ABdhPJyQzZHeaw/dbUZRfEWWOtOv3kUyMj1TQQA3beExPEf0SUosVfBZyHlIhMXCZ4guT4+66ErGZw==
-X-Received: by 2002:a17:902:e2d3:b029:129:70aa:990 with SMTP id l19-20020a170902e2d3b029012970aa0990mr10524774plc.34.1626497813793;
-        Fri, 16 Jul 2021 21:56:53 -0700 (PDT)
+        bh=CW8+X4ven8LE6a628SvByr7Eb90cm9U9YeyKIDh8Q0I=;
+        b=Z0MgsR9+NCBrn7GpZyT2ArwrxYcnqYO7Xb4n04qsFepuqU34KmA6AletqVQvSIcgVX
+         vXSHfjiNT+ofEr9XTnLRKX0ltYtn7kAeZ5UK7bnc6VfE+GSHsrMydk1AOIsvqB8xd6BP
+         rdU26DTWr/+R6XljCet3tGAmr1XR8PaziCVd/rxPWWkmcnyHLKLFR4j7VFFWMxsSTc28
+         42vsgx7bEjqZjVrh9cu6V3ye+goZJSTliZFP2oD55ueK7krKC3XLHryJjX8xAZ4/q7Lg
+         DAIqYlcMyKQtmzIE+6fEtVl6KwWJLx590gMMtOGOwpunSo/0rbUAT/tjTvGm4Ey9L0Pn
+         58jA==
+X-Gm-Message-State: AOAM530JJAZ0jCckPlNYmEqYUk2bhEF9e3Jh0sRl7JQT6SS0R0dQ0qB6
+        8T/URf73xtQJbSOZP884ME64elOf//GPyQ==
+X-Google-Smtp-Source: ABdhPJzgkcSKDtEoe0QjGr6QO+9bk6MMOGNJF814v3oQIO5dHPK0v+De5Ul7P+A78cES5+y0x51sIA==
+X-Received: by 2002:a63:471b:: with SMTP id u27mr13626075pga.301.1626497816200;
+        Fri, 16 Jul 2021 21:56:56 -0700 (PDT)
 Received: from shiro.work (p866038-ipngn200510sizuokaden.shizuoka.ocn.ne.jp. [180.9.60.38])
-        by smtp.googlemail.com with ESMTPSA id w2sm12522885pjf.2.2021.07.16.21.56.51
+        by smtp.googlemail.com with ESMTPSA id w2sm12522885pjf.2.2021.07.16.21.56.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Jul 2021 21:56:53 -0700 (PDT)
+        Fri, 16 Jul 2021 21:56:55 -0700 (PDT)
 From:   Daniel Palmer <daniel@0x0f.com>
 To:     devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
 Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         linus.walleij@linaro.org, robh@kernel.org, romain.perier@gmail.com,
         Daniel Palmer <daniel@0x0f.com>
-Subject: [PATCH 05/10] ARM: dts: mstar: Set gpio compatible for ssd20xd
-Date:   Sat, 17 Jul 2021 13:56:22 +0900
-Message-Id: <20210717045627.1739959-6-daniel@0x0f.com>
+Subject: [PATCH 06/10] ARM: dts: mstar: unitv2: Wire up LEDs
+Date:   Sat, 17 Jul 2021 13:56:23 +0900
+Message-Id: <20210717045627.1739959-7-daniel@0x0f.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20210717045627.1739959-1-daniel@0x0f.com>
 References: <20210717045627.1739959-1-daniel@0x0f.com>
@@ -61,29 +61,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now there is gpio support for ssd20xd set the right compatible in the gpio node.
+Add the red and white leds present on the unitv2.
 
 Signed-off-by: Daniel Palmer <daniel@0x0f.com>
 ---
- arch/arm/boot/dts/mstar-infinity2m-ssd20xd.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+ .../boot/dts/mstar-infinity2m-ssd202d-unitv2.dts   | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/arch/arm/boot/dts/mstar-infinity2m-ssd20xd.dtsi b/arch/arm/boot/dts/mstar-infinity2m-ssd20xd.dtsi
-index 7a5e28b33f96..6f067da61ba3 100644
---- a/arch/arm/boot/dts/mstar-infinity2m-ssd20xd.dtsi
-+++ b/arch/arm/boot/dts/mstar-infinity2m-ssd20xd.dtsi
-@@ -6,6 +6,11 @@
+diff --git a/arch/arm/boot/dts/mstar-infinity2m-ssd202d-unitv2.dts b/arch/arm/boot/dts/mstar-infinity2m-ssd202d-unitv2.dts
+index a81684002e45..eb35ce00ae50 100644
+--- a/arch/arm/boot/dts/mstar-infinity2m-ssd202d-unitv2.dts
++++ b/arch/arm/boot/dts/mstar-infinity2m-ssd202d-unitv2.dts
+@@ -7,6 +7,8 @@
+ /dts-v1/;
+ #include "mstar-infinity2m-ssd202d.dtsi"
  
- #include "mstar-infinity2m.dtsi"
- 
-+&gpio {
-+	compatible = "sstar,ssd20xd-gpio";
-+	status = "okay";
-+};
++#include <dt-bindings/gpio/gpio.h>
 +
- &smpctrl {
- 	compatible = "sstar,ssd201-smpctrl", "mstar,smpctrl";
- 	status = "okay";
+ / {
+ 	model = "UnitV2";
+ 	compatible = "m5stack,unitv2", "mstar,infinity2m";
+@@ -18,6 +20,18 @@ aliases {
+ 	chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
++
++	leds {
++		compatible = "gpio-leds";
++		white {
++			gpios = <&gpio SSD20XD_GPIO_GPIO0 GPIO_ACTIVE_LOW>;
++			linux,default-trigger = "activity";
++		};
++		red {
++			gpios = <&gpio SSD20XD_GPIO_GPIO1 GPIO_ACTIVE_LOW>;
++			linux,default-trigger = "heartbeat";
++		};
++	};
+ };
+ 
+ &pm_uart {
 -- 
 2.32.0
 
