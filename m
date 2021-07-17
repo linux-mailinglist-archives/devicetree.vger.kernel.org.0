@@ -2,34 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 942BB3CC4AA
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 19:01:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EB4F3CC4B2
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 19:08:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231767AbhGQREs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jul 2021 13:04:48 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47600 "EHLO mail.kernel.org"
+        id S232601AbhGQRLE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jul 2021 13:11:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50552 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229581AbhGQREr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 17 Jul 2021 13:04:47 -0400
+        id S232307AbhGQRLD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 17 Jul 2021 13:11:03 -0400
 Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 132B9610F9;
-        Sat, 17 Jul 2021 17:01:47 +0000 (UTC)
-Date:   Sat, 17 Jul 2021 18:04:11 +0100
+        by mail.kernel.org (Postfix) with ESMTPSA id 91D2A601FA;
+        Sat, 17 Jul 2021 17:08:03 +0000 (UTC)
+Date:   Sat, 17 Jul 2021 18:10:26 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Simon Xue <xxm@rock-chips.com>
-Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, Johan Jonker <jbx6244@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-iio@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: rockchip-saradc: add
- description for rk3568
-Message-ID: <20210717180411.452ee61f@jic23-huawei>
-In-Reply-To: <20210712014437.97427-1-xxm@rock-chips.com>
-References: <20210712014437.97427-1-xxm@rock-chips.com>
+To:     Liam Beguin <liambeguin@gmail.com>
+Cc:     lars@metafoo.de, Michael.Hennerich@analog.com,
+        charles-antoine.couret@essensium.com, Nuno.Sa@analog.com,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH v3 1/4] iio: adc: ad7949: define and use bitfield names
+Message-ID: <20210717181026.16232db1@jic23-huawei>
+In-Reply-To: <20210713043425.3321230-2-liambeguin@gmail.com>
+References: <20210713043425.3321230-1-liambeguin@gmail.com>
+        <20210713043425.3321230-2-liambeguin@gmail.com>
 X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -38,33 +36,104 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 12 Jul 2021 09:44:37 +0800
-Simon Xue <xxm@rock-chips.com> wrote:
+On Tue, 13 Jul 2021 00:34:22 -0400
+Liam Beguin <liambeguin@gmail.com> wrote:
 
-> Add description for rk3568 saradc.
+> From: Liam Beguin <lvb@xiphos.com>
 > 
-> Signed-off-by: Simon Xue <xxm@rock-chips.com>
-Series applied to the togreg branch of iio.git and pushed out as testing
-to see if 0-day can find anything we missed.
+> Replace raw configuration register values by using FIELD_PREP and
+> defines to improve readability.
+> 
+> Signed-off-by: Liam Beguin <lvb@xiphos.com>
+
+Nice. This looks good to me.  Will pick up when the rest of the
+series is ready to go.
 
 Thanks,
 
 Jonathan
 
 > ---
->  Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  drivers/iio/adc/ad7949.c | 50 +++++++++++++++++++++++++++++++++-------
+>  1 file changed, 42 insertions(+), 8 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
-> index 1bb76197787b..e512a14e41b4 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
-> @@ -20,6 +20,7 @@ properties:
->                - rockchip,px30-saradc
->                - rockchip,rk3308-saradc
->                - rockchip,rk3328-saradc
-> +              - rockchip,rk3568-saradc
->                - rockchip,rv1108-saradc
->            - const: rockchip,rk3399-saradc
+> diff --git a/drivers/iio/adc/ad7949.c b/drivers/iio/adc/ad7949.c
+> index 1b4b3203e428..0b549b8bd7a9 100644
+> --- a/drivers/iio/adc/ad7949.c
+> +++ b/drivers/iio/adc/ad7949.c
+> @@ -11,12 +11,37 @@
+>  #include <linux/module.h>
+>  #include <linux/regulator/consumer.h>
+>  #include <linux/spi/spi.h>
+> +#include <linux/bitfield.h>
 >  
+> -#define AD7949_MASK_CHANNEL_SEL		GENMASK(9, 7)
+>  #define AD7949_MASK_TOTAL		GENMASK(13, 0)
+> -#define AD7949_OFFSET_CHANNEL_SEL	7
+> -#define AD7949_CFG_READ_BACK		0x1
+> -#define AD7949_CFG_REG_SIZE_BITS	14
+> +
+> +/* CFG: Configuration Update */
+> +#define AD7949_CFG_BIT_OVERWRITE	BIT(13)
+> +
+> +/* INCC: Input Channel Configuration */
+> +#define AD7949_CFG_BIT_INCC		GENMASK(12, 10)
+> +#define AD7949_CFG_VAL_INCC_UNIPOLAR_GND	7
+> +#define AD7949_CFG_VAL_INCC_UNIPOLAR_COMM	6
+> +#define AD7949_CFG_VAL_INCC_UNIPOLAR_DIFF	4
+> +#define AD7949_CFG_VAL_INCC_TEMP		3
+> +#define AD7949_CFG_VAL_INCC_BIPOLAR		2
+> +#define AD7949_CFG_VAL_INCC_BIPOLAR_DIFF	0
+> +
+> +/* INX: Input channel Selection in a binary fashion */
+> +#define AD7949_CFG_BIT_INX		GENMASK(9, 7)
+> +
+> +/* BW: select bandwidth for low-pass filter. Full or Quarter */
+> +#define AD7949_CFG_BIT_BW_FULL			BIT(6)
+> +
+> +/* REF: reference/buffer selection */
+> +#define AD7949_CFG_BIT_REF		GENMASK(5, 3)
+> +#define AD7949_CFG_VAL_REF_EXT_BUF		7
+> +
+> +/* SEQ: channel sequencer. Allows for scanning channels */
+> +#define AD7949_CFG_BIT_SEQ		GENMASK(2, 1)
+> +
+> +/* RB: Read back the CFG register */
+> +#define AD7949_CFG_BIT_RBN		BIT(0)
+>  
+>  enum {
+>  	ID_AD7949 = 0,
+> @@ -109,8 +134,8 @@ static int ad7949_spi_read_channel(struct ad7949_adc_chip *ad7949_adc, int *val,
+>  	 */
+>  	for (i = 0; i < 2; i++) {
+>  		ret = ad7949_spi_write_cfg(ad7949_adc,
+> -					   channel << AD7949_OFFSET_CHANNEL_SEL,
+> -					   AD7949_MASK_CHANNEL_SEL);
+> +					   FIELD_PREP(AD7949_CFG_BIT_INX, channel),
+> +					   AD7949_CFG_BIT_INX);
+>  		if (ret)
+>  			return ret;
+>  		if (channel == ad7949_adc->current_channel)
+> @@ -214,10 +239,19 @@ static int ad7949_spi_init(struct ad7949_adc_chip *ad7949_adc)
+>  {
+>  	int ret;
+>  	int val;
+> +	u16 cfg;
+>  
+> -	/* Sequencer disabled, CFG readback disabled, IN0 as default channel */
+>  	ad7949_adc->current_channel = 0;
+> -	ret = ad7949_spi_write_cfg(ad7949_adc, 0x3C79, AD7949_MASK_TOTAL);
+> +
+> +	cfg = FIELD_PREP(AD7949_CFG_BIT_OVERWRITE, 1) |
+> +		FIELD_PREP(AD7949_CFG_BIT_INCC, AD7949_CFG_VAL_INCC_UNIPOLAR_GND) |
+> +		FIELD_PREP(AD7949_CFG_BIT_INX, ad7949_adc->current_channel) |
+> +		FIELD_PREP(AD7949_CFG_BIT_BW_FULL, 1) |
+> +		FIELD_PREP(AD7949_CFG_BIT_REF, AD7949_CFG_VAL_REF_EXT_BUF) |
+> +		FIELD_PREP(AD7949_CFG_BIT_SEQ, 0x0) |
+> +		FIELD_PREP(AD7949_CFG_BIT_RBN, 1);
+> +
+> +	ret = ad7949_spi_write_cfg(ad7949_adc, cfg, AD7949_MASK_TOTAL);
+>  
+>  	/*
+>  	 * Do two dummy conversions to apply the first configuration setting.
 
