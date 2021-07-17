@@ -2,35 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB6883CC49E
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 18:53:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 942BB3CC4AA
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 19:01:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232277AbhGQQ42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jul 2021 12:56:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38126 "EHLO mail.kernel.org"
+        id S231767AbhGQREs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jul 2021 13:04:48 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47600 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231346AbhGQQ42 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 17 Jul 2021 12:56:28 -0400
+        id S229581AbhGQREr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 17 Jul 2021 13:04:47 -0400
 Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E1FA26109E;
-        Sat, 17 Jul 2021 16:53:28 +0000 (UTC)
-Date:   Sat, 17 Jul 2021 17:55:51 +0100
+        by mail.kernel.org (Postfix) with ESMTPSA id 132B9610F9;
+        Sat, 17 Jul 2021 17:01:47 +0000 (UTC)
+Date:   Sat, 17 Jul 2021 18:04:11 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     "Liam Beguin" <liambeguin@gmail.com>
-Cc:     "Peter Rosin" <peda@axentia.se>, <lars@metafoo.de>,
-        <pmeerw@pmeerw.net>, <linux-kernel@vger.kernel.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <robh+dt@kernel.org>
-Subject: Re: [PATCH v5 05/10] iio: afe: rescale: add INT_PLUS_{MICRO,NANO}
- support
-Message-ID: <20210717175551.20265ac4@jic23-huawei>
-In-Reply-To: <CCUT1ZDDWS1J.3CGKX5J1MNFOX@shaak>
-References: <20210715031215.1534938-1-liambeguin@gmail.com>
-        <20210715031215.1534938-6-liambeguin@gmail.com>
-        <8417f698-eef2-3311-625a-1ceb17d3e5b2@axentia.se>
-        <CCUT1ZDDWS1J.3CGKX5J1MNFOX@shaak>
+To:     Simon Xue <xxm@rock-chips.com>
+Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, Johan Jonker <jbx6244@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-iio@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: rockchip-saradc: add
+ description for rk3568
+Message-ID: <20210717180411.452ee61f@jic23-huawei>
+In-Reply-To: <20210712014437.97427-1-xxm@rock-chips.com>
+References: <20210712014437.97427-1-xxm@rock-chips.com>
 X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -39,109 +38,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 16 Jul 2021 15:18:33 -0400
-"Liam Beguin" <liambeguin@gmail.com> wrote:
+On Mon, 12 Jul 2021 09:44:37 +0800
+Simon Xue <xxm@rock-chips.com> wrote:
 
-> On Thu Jul 15, 2021 at 5:48 AM EDT, Peter Rosin wrote:
-> >
-> > On 2021-07-15 05:12, Liam Beguin wrote:  
-> > > From: Liam Beguin <lvb@xiphos.com>
-> > > 
-> > > Some ADCs use IIO_VAL_INT_PLUS_{NANO,MICRO} scale types.
-> > > Add support for these to allow using the iio-rescaler with them.
-> > > 
-> > > Signed-off-by: Liam Beguin <lvb@xiphos.com>
-> > > ---
-> > >  drivers/iio/afe/iio-rescale.c | 15 +++++++++++++++
-> > >  1 file changed, 15 insertions(+)
-> > > 
-> > > diff --git a/drivers/iio/afe/iio-rescale.c b/drivers/iio/afe/iio-rescale.c
-> > > index 4c3cfd4d5181..a2b220b5ba86 100644
-> > > --- a/drivers/iio/afe/iio-rescale.c
-> > > +++ b/drivers/iio/afe/iio-rescale.c
-> > > @@ -92,7 +92,22 @@ static int rescale_read_raw(struct iio_dev *indio_dev,
-> > >  			do_div(tmp, 1000000000LL);
-> > >  			*val = tmp;
-> > >  			return ret;
-> > > +		case IIO_VAL_INT_PLUS_NANO:
-> > > +			tmp = ((s64)*val * 1000000000LL + *val2) * rescale->numerator;
-> > > +			do_div(tmp, rescale->denominator);
-> > > +
-> > > +			*val = div_s64(tmp, 1000000000LL);
-> > > +			*val2 = tmp - *val * 1000000000LL;
-> > > +			return ret;  
-> >
-> > This is too simplistic and prone to overflow. We need something like
-> > this
-> > (untested)
-> >
-> > tmp = (s64)*val * rescale->numerator;
-> > rem = do_div(tmp, rescale->denominator);
-> > *val = tmp;
-> > tmp = ((s64)rem * 1000000000LL + (s64)*val2) * rescale->numerator;
-> > do_div(tmp, rescale->denominator);
-> > *val2 = tmp;
-> >
-> > Still not very safe with numerator and denominator both "large", but
-> > much
-> > better. And then we need normalizing the fraction part after the above,
-> > of
-> > course.
-> >  
+> Add description for rk3568 saradc.
 > 
-> Understood, I'll test that.
-> 
-> > And, of course, I'm not sure what *val == -1 and *val2 == 500000000
-> > really
-> > means. Is that -1.5 or -0.5? The above may very well need adjusting for
-> > negative values...
-> >  
-> 
-> I would've assumed the correct answer is -1 + 500000000e-9 = -0.5
-> but adding a test case to iio-test-format.c seems to return -1.5...
+> Signed-off-by: Simon Xue <xxm@rock-chips.com>
+Series applied to the togreg branch of iio.git and pushed out as testing
+to see if 0-day can find anything we missed.
 
-No. -1.5 is as intended, though the IIO_VAL_PLUS_MICRO is rather confusing
-naming :( We should perhaps add more documentation for that.  Signs were
-always a bit of a pain with this two integer scheme for fixed point.
-
-The intent is to have moderately readable look up tables with the problem that
-we don't have a signed 0 available.  Meh, maybe this decision a long time
-back wasn't a the right one, but it may be a pain to change now as too many
-drivers to check!
-
-1, 0000000  == 1
-0, 5000000  == 0.5
-0, 0000000  == 0
-0, -5000000 == -0.5
--1, 5000000 == -1.5
-
-
-> 
-> I believe that's a bug but we can work around if for now by moving the
-> integer part of *val2 to *val.
-
-Yup.  Fiddly corner cases..
+Thanks,
 
 Jonathan
 
+> ---
+>  Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> Liam
-> 
-> > Cheers,
-> > Peter
-> >  
-> > > +		case IIO_VAL_INT_PLUS_MICRO:
-> > > +			tmp = ((s64)*val * 1000000LL + *val2) * rescale->numerator;
-> > > +			do_div(tmp, rescale->denominator);
-> > > +
-> > > +			*val = div_s64(tmp, 1000000LL);
-> > > +			*val2 = tmp - *val * 1000000LL;
-> > > +			return ret;
-> > >  		default:
-> > > +			dev_err(&indio_dev->dev, "unsupported type %d\n", ret);
-> > >  			return -EOPNOTSUPP;
-> > >  		}
-> > >  	default:
-> > >   
-> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
+> index 1bb76197787b..e512a14e41b4 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
+> @@ -20,6 +20,7 @@ properties:
+>                - rockchip,px30-saradc
+>                - rockchip,rk3308-saradc
+>                - rockchip,rk3328-saradc
+> +              - rockchip,rk3568-saradc
+>                - rockchip,rv1108-saradc
+>            - const: rockchip,rk3399-saradc
+>  
 
