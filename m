@@ -2,148 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 633143CC468
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 18:20:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A90133CC482
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 18:42:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229581AbhGQQXI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jul 2021 12:23:08 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:47196 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229462AbhGQQXH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jul 2021 12:23:07 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: sre)
-        with ESMTPSA id 890A01F43463
-Received: by earth.universe (Postfix, from userid 1000)
-        id 03D273C0C97; Sat, 17 Jul 2021 18:20:07 +0200 (CEST)
-Date:   Sat, 17 Jul 2021 18:20:06 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <treding@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        David Heidelberg <david@ixit.cz>, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v4 08/12] power: supply: smb347-charger: Remove caching
- of charger state
-Message-ID: <20210717162006.66cqkbw2mertd6tr@earth.universe>
-References: <20210717121112.3248-1-digetx@gmail.com>
- <20210717121112.3248-9-digetx@gmail.com>
+        id S231603AbhGQQpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jul 2021 12:45:12 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59764 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231346AbhGQQpL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 17 Jul 2021 12:45:11 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 18D1E61159;
+        Sat, 17 Jul 2021 16:42:08 +0000 (UTC)
+Date:   Sat, 17 Jul 2021 17:44:32 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Hui Liu <hui.liu@mediatek.com>
+Cc:     <robh+dt@kernel.org>, <knaack.h@gmx.de>, <lars@metafoo.de>,
+        <pmeerw@pmeerw.net>, <srv_heupstream@mediatek.com>,
+        <zhiyong.tao@mediatek.com>, <chun-hung.wu@mediatek.com>,
+        <yingjoe.chen@mediatek.com>, <seiya.wang@mediatek.com>,
+        <matthias.bgg@gmail.com>, <s.hauer@pengutronix.de>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-iio@vger.kernel.org>, <linux-mediatek@lists.infradead.org>
+Subject: Re: [PATCH] iio: mtk-auxadc: add mutex_destroy
+Message-ID: <20210717174432.7e69e4e9@jic23-huawei>
+In-Reply-To: <20210715093523.29844-2-hui.liu@mediatek.com>
+References: <20210715093523.29844-1-hui.liu@mediatek.com>
+        <20210715093523.29844-2-hui.liu@mediatek.com>
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="dgyf46uz57z2zrjo"
-Content-Disposition: inline
-In-Reply-To: <20210717121112.3248-9-digetx@gmail.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 15 Jul 2021 17:35:23 +0800
+Hui Liu <hui.liu@mediatek.com> wrote:
 
---dgyf46uz57z2zrjo
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> Add mutex_destroy when probe fail and remove device.
+> 
+> Signed-off-by: Hui Liu <hui.liu@mediatek.com>
+Hi Hui Liu,
 
-Hi,
+We very very rarely bother to call mutex_destroy().  The reason is
+that it is only a non noop in when mutex debugging is enabled and
+that is only useful if there is a plausible route in which it could
+be used after the mutex_destroy.   Given these are both at the ends
+of removal paths, I don't think this is useful.  That's why you will
+rarely find mutex_destroy() being called.
 
-On Sat, Jul 17, 2021 at 03:11:08PM +0300, Dmitry Osipenko wrote:
-> Regmap already provides us with the caching, so remove caching of charger
-> state to make code cleaner.
+Thanks,
 
-cache_type is not initialized in smb347's regmap config and thus
-set to 0 =3D REGCACHE_NONE:
+Jonathan
 
-static const struct regmap_config smb347_regmap =3D {
-	.reg_bits	=3D 8,
-	.val_bits	=3D 8,
-	.max_register	=3D SMB347_MAX_REGISTER,
-	.volatile_reg	=3D smb347_volatile_reg,
-	.readable_reg	=3D smb347_readable_reg,
-};
-
--- Sebastian
-
-
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
 > ---
->  drivers/power/supply/smb347-charger.c | 14 ++------------
->  1 file changed, 2 insertions(+), 12 deletions(-)
->=20
-> diff --git a/drivers/power/supply/smb347-charger.c b/drivers/power/supply=
-/smb347-charger.c
-> index db1378b41f80..f81c60c679a0 100644
-> --- a/drivers/power/supply/smb347-charger.c
-> +++ b/drivers/power/supply/smb347-charger.c
-> @@ -135,7 +135,6 @@
->   * @id: SMB charger ID
->   * @mains_online: is AC/DC input connected
->   * @usb_online: is USB input connected
-> - * @charging_enabled: is charging enabled
->   * @irq_unsupported: is interrupt unsupported by SMB hardware
->   * @max_charge_current: maximum current (in uA) the battery can be charg=
-ed
->   * @max_charge_voltage: maximum voltage (in uV) the battery can be charg=
-ed
-> @@ -192,7 +191,6 @@ struct smb347_charger {
->  	unsigned int		id;
->  	bool			mains_online;
->  	bool			usb_online;
-> -	bool			charging_enabled;
->  	bool			irq_unsupported;
-> =20
->  	unsigned int		max_charge_current;
-> @@ -358,21 +356,13 @@ static int smb347_charging_status(struct smb347_cha=
-rger *smb)
-> =20
->  static int smb347_charging_set(struct smb347_charger *smb, bool enable)
->  {
-> -	int ret =3D 0;
-> -
->  	if (smb->enable_control !=3D SMB3XX_CHG_ENABLE_SW) {
->  		dev_dbg(smb->dev, "charging enable/disable in SW disabled\n");
->  		return 0;
+>  drivers/iio/adc/mt6577_auxadc.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/iio/adc/mt6577_auxadc.c b/drivers/iio/adc/mt6577_auxadc.c
+> index 79c1dd68b909..d57243037ad6 100644
+> --- a/drivers/iio/adc/mt6577_auxadc.c
+> +++ b/drivers/iio/adc/mt6577_auxadc.c
+> @@ -289,6 +289,7 @@ static int mt6577_auxadc_probe(struct platform_device *pdev)
+>  	ret = iio_device_register(indio_dev);
+>  	if (ret < 0) {
+>  		dev_err(&pdev->dev, "failed to register iio device\n");
+> +		mutex_destroy(&adc_dev->lock);
+>  		goto err_power_off;
 >  	}
-> =20
-> -	if (smb->charging_enabled !=3D enable) {
-> -		ret =3D regmap_update_bits(smb->regmap, CMD_A, CMD_A_CHG_ENABLED,
-> -					 enable ? CMD_A_CHG_ENABLED : 0);
-> -		if (!ret)
-> -			smb->charging_enabled =3D enable;
-> -	}
-> -
-> -	return ret;
-> +	return regmap_update_bits(smb->regmap, CMD_A, CMD_A_CHG_ENABLED,
-> +				  enable ? CMD_A_CHG_ENABLED : 0);
+>  
+> @@ -313,6 +314,7 @@ static int mt6577_auxadc_remove(struct platform_device *pdev)
+>  			      0, MT6577_AUXADC_PDN_EN);
+>  
+>  	clk_disable_unprepare(adc_dev->adc_clk);
+> +	mutex_destroy(&adc_dev->lock);
+>  
+>  	return 0;
 >  }
-> =20
->  static inline int smb347_charging_enable(struct smb347_charger *smb)
-> --=20
-> 2.32.0
->=20
 
---dgyf46uz57z2zrjo
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmDzAzIACgkQ2O7X88g7
-+pquQw//T9rvYylRZXTm+X6TbARMLX/jnUii6FLPGAAb5Xs/ROMpqOqzUuK5v9JL
-iOs1r2DNcK1OzdDEPLwh2OA5FHoihxx+K/ZMLm0aAJZNXmTbmysa0UcdFWrRgtrV
-CZ41kuCa3VOJWBexZt+MZ1vXjIOi1T4CGfbhoGnFggv+jEHF/k6+XncDSFCw/HDn
-PiZm5TklYUEQPkcJPhGBxQra1UNjTGOg6XQ4rIfgKQG/TyTdEv2/MAPsHLk9KC5N
-6NgGxBRcvDgb+BLmJ4d5j4FLebnSIJaRaRSN5rojjdIIG72mwtSbeyq/URs5ucKU
-ejDWI/nag9xwPPU+l+LFc7sYiUuEnWameuuzbex1kpa4/uWDX9QRvnPZpZWhTAfC
-8Ki+Sg4BkVIxvyosRmKUBccAfPNrs6TPPfpjgbiHjvrYkk2ZS5aJ1/vZeW94vDuw
-rph+KJQ5yHIjwdXnbx6i+zjjwAphdqOUpFqc+KeOyrGp8Q0Re4RVRs+wxd6pEdCo
-+FapgItIggnp8FGvfOwSIqEC2Hhz/wOFLKlKudhbKdESeAqXf/VxqP6Tf1mESP9Y
-vQDYcglbuiU5bAiWO6bmEPOvPa4IYYBf5oAxhDe/fR9fGM/JrZenFpavcsVHAQV7
-bRiHd5YeHAmORHxxvb3iB/U0jKwFdKnYE+PJOrfbcWtViktV4gY=
-=9ZX5
------END PGP SIGNATURE-----
-
---dgyf46uz57z2zrjo--
