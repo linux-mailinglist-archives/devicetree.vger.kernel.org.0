@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AAF43CC139
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 06:57:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B95FC3CC143
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 06:58:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231881AbhGQFAF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jul 2021 01:00:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37844 "EHLO
+        id S232195AbhGQFAG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jul 2021 01:00:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231311AbhGQE7x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jul 2021 00:59:53 -0400
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE132C061762
-        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 21:56:56 -0700 (PDT)
-Received: by mail-pf1-x42b.google.com with SMTP id c1so6784366pfc.13
-        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 21:56:56 -0700 (PDT)
+        with ESMTP id S231387AbhGQE74 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jul 2021 00:59:56 -0400
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3285CC061762
+        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 21:56:59 -0700 (PDT)
+Received: by mail-pg1-x52f.google.com with SMTP id t9so12053436pgn.4
+        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 21:56:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=0x0f.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=CW8+X4ven8LE6a628SvByr7Eb90cm9U9YeyKIDh8Q0I=;
-        b=vxfNy/AVZ2+QtClGwq8aphvCDom0KQ6+D54xbcCEyp10nVFZuz4ofBkxLr2Xx+GH9T
-         QterhwEbaVV7GJtHyyLELiZuvkXDkmmrLVCUTZ+vPddBKWzz5C7DDT0FLkNmJJLxpLnM
-         EhS1rQ/fqr6rmqWzb/71ghhzoe1U9S1ZyVCls=
+        bh=SIrdVgz9P1mE1bbJ+kfNCJNaaulCoo7DUfLJr8XjKBo=;
+        b=HO/58JAdAa1iyc4hzq0WIwFcfnVHoRaUS0npx45UKuwfov7YLlcPLPag0Xb11NS/km
+         0M5/p1WMbr/uIyQtXX5ZOadMgh7jQvoXASYUuuIzzQx6K9m9YXQ24dG0abMQtvZti+Dt
+         11WbQpOMhxzCjVkEpKR8wTuh6eeiGDaDeIYlc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=CW8+X4ven8LE6a628SvByr7Eb90cm9U9YeyKIDh8Q0I=;
-        b=Z0MgsR9+NCBrn7GpZyT2ArwrxYcnqYO7Xb4n04qsFepuqU34KmA6AletqVQvSIcgVX
-         vXSHfjiNT+ofEr9XTnLRKX0ltYtn7kAeZ5UK7bnc6VfE+GSHsrMydk1AOIsvqB8xd6BP
-         rdU26DTWr/+R6XljCet3tGAmr1XR8PaziCVd/rxPWWkmcnyHLKLFR4j7VFFWMxsSTc28
-         42vsgx7bEjqZjVrh9cu6V3ye+goZJSTliZFP2oD55ueK7krKC3XLHryJjX8xAZ4/q7Lg
-         DAIqYlcMyKQtmzIE+6fEtVl6KwWJLx590gMMtOGOwpunSo/0rbUAT/tjTvGm4Ey9L0Pn
-         58jA==
-X-Gm-Message-State: AOAM530JJAZ0jCckPlNYmEqYUk2bhEF9e3Jh0sRl7JQT6SS0R0dQ0qB6
-        8T/URf73xtQJbSOZP884ME64elOf//GPyQ==
-X-Google-Smtp-Source: ABdhPJzgkcSKDtEoe0QjGr6QO+9bk6MMOGNJF814v3oQIO5dHPK0v+De5Ul7P+A78cES5+y0x51sIA==
-X-Received: by 2002:a63:471b:: with SMTP id u27mr13626075pga.301.1626497816200;
-        Fri, 16 Jul 2021 21:56:56 -0700 (PDT)
+        bh=SIrdVgz9P1mE1bbJ+kfNCJNaaulCoo7DUfLJr8XjKBo=;
+        b=Px41eRNSsa64f/NGu3UVs0mqjMMCEUaEqp9JclUfs31MsBywMGAvE+5D31qiu4mgUZ
+         ro1EZbvQA07+/WXisqpbUdhW+uhH9ICiLq4h0GDX434YTbJ8ekb8D/Qpo5IZTVqX7Kuz
+         WGaDuH+DtDq0db30zDeubUhJFSw3i7e+0mZpuNjUrc21vdsWQbHYHZBpLrtr0O04NgES
+         ehpsTc6w2vPsPp01FMfZkPMWz/AGFP+gpRG9jMzr+0fKGXSAB1uHdzuCylHxNw0zUUle
+         aCZD/ekkBu2Efi5ia9TwMgvq51H/5L+eltQe113yfi8ec2MU2H8kjmgQS+xRroE4D1fH
+         Gp8g==
+X-Gm-Message-State: AOAM530J6FhITC23hvAKwFOho4fU3Jl5Q6orGbk/YSzrHzBeVrh+VqAy
+        8R+YZtgbNsn6fiFkJHSJp9csP/vUzLDXNA==
+X-Google-Smtp-Source: ABdhPJwhoL+9Laz0mhJCLoufLpGxSrkIU6xn/FGH+LSJ2Pqm0A1vzWuWygoUi/8F02eZrG8kex0E0Q==
+X-Received: by 2002:a65:6909:: with SMTP id s9mr7074493pgq.321.1626497818629;
+        Fri, 16 Jul 2021 21:56:58 -0700 (PDT)
 Received: from shiro.work (p866038-ipngn200510sizuokaden.shizuoka.ocn.ne.jp. [180.9.60.38])
-        by smtp.googlemail.com with ESMTPSA id w2sm12522885pjf.2.2021.07.16.21.56.54
+        by smtp.googlemail.com with ESMTPSA id w2sm12522885pjf.2.2021.07.16.21.56.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Jul 2021 21:56:55 -0700 (PDT)
+        Fri, 16 Jul 2021 21:56:58 -0700 (PDT)
 From:   Daniel Palmer <daniel@0x0f.com>
 To:     devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
 Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         linus.walleij@linaro.org, robh@kernel.org, romain.perier@gmail.com,
         Daniel Palmer <daniel@0x0f.com>
-Subject: [PATCH 06/10] ARM: dts: mstar: unitv2: Wire up LEDs
-Date:   Sat, 17 Jul 2021 13:56:23 +0900
-Message-Id: <20210717045627.1739959-7-daniel@0x0f.com>
+Subject: [PATCH 07/10] ARM: dts: mstar: unitv2: Add core regulator
+Date:   Sat, 17 Jul 2021 13:56:24 +0900
+Message-Id: <20210717045627.1739959-8-daniel@0x0f.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20210717045627.1739959-1-daniel@0x0f.com>
 References: <20210717045627.1739959-1-daniel@0x0f.com>
@@ -61,41 +61,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the red and white leds present on the unitv2.
+Add a fixed regulator for the "core" (mainly CPU) voltage.
 
 Signed-off-by: Daniel Palmer <daniel@0x0f.com>
 ---
- .../boot/dts/mstar-infinity2m-ssd202d-unitv2.dts   | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ arch/arm/boot/dts/mstar-infinity2m-ssd202d-unitv2.dts | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
 diff --git a/arch/arm/boot/dts/mstar-infinity2m-ssd202d-unitv2.dts b/arch/arm/boot/dts/mstar-infinity2m-ssd202d-unitv2.dts
-index a81684002e45..eb35ce00ae50 100644
+index eb35ce00ae50..4a22b82afbfd 100644
 --- a/arch/arm/boot/dts/mstar-infinity2m-ssd202d-unitv2.dts
 +++ b/arch/arm/boot/dts/mstar-infinity2m-ssd202d-unitv2.dts
-@@ -7,6 +7,8 @@
- /dts-v1/;
- #include "mstar-infinity2m-ssd202d.dtsi"
- 
-+#include <dt-bindings/gpio/gpio.h>
-+
- / {
- 	model = "UnitV2";
- 	compatible = "m5stack,unitv2", "mstar,infinity2m";
-@@ -18,6 +20,18 @@ aliases {
- 	chosen {
- 		stdout-path = "serial0:115200n8";
+@@ -32,6 +32,14 @@ red {
+ 			linux,default-trigger = "heartbeat";
+ 		};
  	};
 +
-+	leds {
-+		compatible = "gpio-leds";
-+		white {
-+			gpios = <&gpio SSD20XD_GPIO_GPIO0 GPIO_ACTIVE_LOW>;
-+			linux,default-trigger = "activity";
-+		};
-+		red {
-+			gpios = <&gpio SSD20XD_GPIO_GPIO1 GPIO_ACTIVE_LOW>;
-+			linux,default-trigger = "heartbeat";
-+		};
++	vcc_core: regulator@0 {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc_core";
++		regulator-min-microvolt = <900000>;
++		regulator-max-microvolt = <900000>;
++		regulator-boot-on;
 +	};
  };
  
