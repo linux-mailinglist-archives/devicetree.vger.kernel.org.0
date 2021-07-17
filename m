@@ -2,60 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 003F53CC0B4
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 04:12:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DB7D3CC12D
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 06:57:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232184AbhGQCP1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jul 2021 22:15:27 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53038 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232640AbhGQCPZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Jul 2021 22:15:25 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPS id 0148B613F1;
-        Sat, 17 Jul 2021 02:12:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626487950;
-        bh=7ZquTdPxZ3oCrMAEx3W7RDzHN/JQqnrKWtmPbL/LX34=;
-        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
-        b=GnPZylmXRj8hT+cMakDn3SXi4QVtEI/F7lk1QlulwlG000j/O9ZIrWpCgdir74Jd5
-         usNTDpEP6JlTfwmKGkDfqUj9oGoMX/x85h9mLDUCAFmu0LJD4kLA0yAwDG1iMOlEyM
-         3A7mogtTIaXX5N+ZnSY4uiy/jbzki+UAzJqIxDjQ2/vpJkX4PT7wG1ha+ZLuspKnAW
-         rv4bxQMe8nYtA0JU81HbzlVGQHrJnM/DW5NZlZjykAQJG4awZDhiz4in48CcH+UehJ
-         Hzc4QDms3P+gbJRy7FFMDM7JB/TEbBcBPJ8e7IwIw+9xrt4glvaMOPEF0p/zYrgVeO
-         H7Ifld76j9+bA==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id EE80A60A23;
-        Sat, 17 Jul 2021 02:12:29 +0000 (UTC)
-Subject: Re: [GIT PULL] Devicetree fixes for v5.14, take 1
-From:   pr-tracker-bot@kernel.org
-In-Reply-To: <20210716185830.GA3769653@robh.at.kernel.org>
-References: <20210716185830.GA3769653@robh.at.kernel.org>
-X-PR-Tracked-List-Id: <devicetree.vger.kernel.org>
-X-PR-Tracked-Message-Id: <20210716185830.GA3769653@robh.at.kernel.org>
-X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.14-1
-X-PR-Tracked-Commit-Id: 50d8d7e19c4398da74d028f367754e73547b078b
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: d980cc0620ae77ab2572235a1300bf22519f2e86
-Message-Id: <162648794997.32541.17093775779890557494.pr-tracker-bot@kernel.org>
-Date:   Sat, 17 Jul 2021 02:12:29 +0000
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>
+        id S229932AbhGQE7j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jul 2021 00:59:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37756 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229778AbhGQE7i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jul 2021 00:59:38 -0400
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE2D0C061762
+        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 21:56:41 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id h1so6318254plf.6
+        for <devicetree@vger.kernel.org>; Fri, 16 Jul 2021 21:56:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=0x0f.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ziJ5YcGkSYbFL2uIt1IxWQA6HzWtHmBZYzfxdUp5I6c=;
+        b=K7+Rv0oJRgRDFEpvFX6Ft5pXHMgu/hm0jwFUyb08BgQRjeav1m4xGAQtEa9jO33cq+
+         n3OH/Dqx4ovhxBoTCdgoaxHsL9AX7PavBXWhlvufUoYp56h39PxBzdjBW6mV4MyYn0Rz
+         +yse2idj2uxvPSI25vBIRJrddVfydfjvMv7Lc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ziJ5YcGkSYbFL2uIt1IxWQA6HzWtHmBZYzfxdUp5I6c=;
+        b=aR3+FoLx3eNTPVysrN0BmQjgc9lLtoUoZp2lFyn6mnD/f63a5f5AwtV51gXs4MEBJg
+         ED5BFE6x0Hl+lDYMqIcE3gQNu5WJ6OIoj5XCakF3TEeinYzH6kX+DDr+dGxFIiOnq4ys
+         2uPr4J+skcsv09kzRD9mA4C+OeRdUxwvHTFNWVgQiqaCuJ+BeDwmCcgexz4fVm6WUEuX
+         huW0AfFcs6Y4A5SqFWAAemOnEm1Pioqf29VTVgKgvljGQ2znOGYWjdMsysbw7ED0hBra
+         PyxvJzOgFqBe2OplLKp26nTWLrHiBuoeNWeNLR7CIikImo8SAb7Q2On1Bjhko3qq6Z5p
+         7n4Q==
+X-Gm-Message-State: AOAM533+7ymTqqL/KXgoc/pJf0iFdOmwC8tvT+Q2Zwxug5D/PcEJkAdD
+        jDZEjIndPfFRep6qxLRHOtcRmttdCGBcmA==
+X-Google-Smtp-Source: ABdhPJzgzeOYl4W876FC7nvH5fuQ1vgG4J02K3X92aZRMt4lEiA6u7OIuKU1IKl/46HEBWnaEBURgQ==
+X-Received: by 2002:a17:90a:e54d:: with SMTP id ei13mr18752850pjb.187.1626497801110;
+        Fri, 16 Jul 2021 21:56:41 -0700 (PDT)
+Received: from shiro.work (p866038-ipngn200510sizuokaden.shizuoka.ocn.ne.jp. [180.9.60.38])
+        by smtp.googlemail.com with ESMTPSA id w2sm12522885pjf.2.2021.07.16.21.56.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Jul 2021 21:56:40 -0700 (PDT)
+From:   Daniel Palmer <daniel@0x0f.com>
+To:     devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linus.walleij@linaro.org, robh@kernel.org, romain.perier@gmail.com,
+        Daniel Palmer <daniel@0x0f.com>
+Subject: [PATCH 00/10] gpio: msc313: Add gpio support for ssd20xd
+Date:   Sat, 17 Jul 2021 13:56:17 +0900
+Message-Id: <20210717045627.1739959-1-daniel@0x0f.com>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pull request you sent on Fri, 16 Jul 2021 12:58:30 -0600:
+This is a little series to add a compatible string for the Sigmastar
+SSD201 and SSD202D to the msc313 gpio driver, add the specific offsets
+for the pins on these chips, and then a bunch of DT wiring stuff so
+that the LEDs on the M5 stack unitv2 work and it can control the
+power switch for the USB connected.
 
-> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.14-1
+Daniel Palmer (10):
+  dt-bindings: gpio: msc313: Add compatible for ssd20xd
+  dt-bindings: gpio: msc313: Add offsets for ssd20xd
+  gpio: msc313: Code clean ups
+  gpio: msc313: Add support for SSD201 and SSD202D
+  ARM: dts: mstar: Set gpio compatible for ssd20xd
+  ARM: dts: mstar: unitv2: Wire up LEDs
+  ARM: dts: mstar: unitv2: Add core regulator
+  ARM: dts: mstar: unitv2: Add io regulator
+  ARM: dts: mstar: unitv2: Add DRAM regulator
+  ARM: dts: mstar: unitv2: Add wifi switch
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/d980cc0620ae77ab2572235a1300bf22519f2e86
-
-Thank you!
+ .../bindings/gpio/mstar,msc313-gpio.yaml      |   4 +-
+ .../dts/mstar-infinity2m-ssd202d-unitv2.dts   |  46 +++
+ .../boot/dts/mstar-infinity2m-ssd20xd.dtsi    |   5 +
+ drivers/gpio/gpio-msc313.c                    | 266 +++++++++++++++++-
+ include/dt-bindings/gpio/msc313-gpio.h        |  71 +++++
+ 5 files changed, 387 insertions(+), 5 deletions(-)
 
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+2.32.0
+
