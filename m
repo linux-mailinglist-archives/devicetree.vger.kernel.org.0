@@ -2,94 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC1F03CC601
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 21:59:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26B5C3CC665
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 22:55:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235304AbhGQUCs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jul 2021 16:02:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37014 "EHLO
+        id S233666AbhGQU6D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jul 2021 16:58:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234719AbhGQUCr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jul 2021 16:02:47 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44F14C061762;
-        Sat, 17 Jul 2021 12:59:50 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id h2so17563530edt.3;
-        Sat, 17 Jul 2021 12:59:50 -0700 (PDT)
+        with ESMTP id S233787AbhGQU6C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jul 2021 16:58:02 -0400
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE6CFC061766
+        for <devicetree@vger.kernel.org>; Sat, 17 Jul 2021 13:55:05 -0700 (PDT)
+Received: by mail-pg1-x534.google.com with SMTP id s18so14362922pgg.8
+        for <devicetree@vger.kernel.org>; Sat, 17 Jul 2021 13:55:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
+        d=intel-com.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=762AIHyaLIJRd5Chx9MkMYblmaxMzIP64XnDWe7yge4=;
-        b=u2tl/92J8+a0AKu87KFYHYdNR5lpZ8vZAHWOlKtueq89OKWj+bbJcIGQ7iJx/9o1sH
-         KBioWFQnyXd3r8KLDBldMzMmvNCokvnJ95EQaO/TATi81MWP3KBRIeF80W7M3ohJl4Uj
-         UomWQV7Ra3hWKJvOka3YWsXUolw6nNMZ17NERsm9cxCA8U7Qv65hjsA0X7LmBX7P3UdN
-         Uy9m6I34b1LKbR8blkN1Zt8PyV3jRDB8Dudm7oZVs6f3KN/ZLLTlz0E/yIoe6Y/F0lbS
-         e0TE9C48ydpIKPVyoyseLHfWkHeE6Ynpd6bqBFx1aEWtHv1eNxhifyc/Yv2P5XRZZHEE
-         oQmA==
+        bh=AzejeF7pARl9nvNZ/SKXjtBr8tSI+wQVjunUNUziOkA=;
+        b=yG/94pT++KysRkRR7Ee9X/reRZojfKEcZDLOovFdsOCIl6tMAHuE4febS8dZjRq5on
+         KakPilolQePL2d3aMUyd0sD2TpYRm3tFxj9hcX+iuHw+lTBEHfYq8POysMd5FJbVILZq
+         b8CQb+EfVh6yJZzKi3jm+4bSd90uJQgsJBmJLGe3ZJSJIYCLeIkEdLUyG4qCERiR/D3Y
+         CLFZxGYQ2TrtobRV/SdNOcMAnBKcFjZrQJtjrVYq7LWy4xElrWV7FvFTn060p8a4rY4U
+         adR8o5Jt47WSv1Zror7vG7WmZ4dkwESOOo1I1AuekVMbzXvKduiajK3Zbz5E0/tyNsPV
+         XgfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=762AIHyaLIJRd5Chx9MkMYblmaxMzIP64XnDWe7yge4=;
-        b=JAsW2O6z0ozl55JR6Epn5EYWYHYSvcX47Q5Ca4x2OKuBwknkdRXnx1gUCZhqL2Fk54
-         STw3HRM9AhoJUiuycyBWjeAMGXOdfT6GxAMHa02HPfBW3cXjgUKcL8drpQPekWDWCM5M
-         b06wPSFxKJ2dozXT8WawdtV2Lu4+2HSU8vsr0O1Ot8aHHCkDdrqSD7k3D2BAMOI0dNej
-         STRqjYUK2nbu4CAG/qo7KIJ1PNZHjUbcEuBHT7C8D3zmEDhtHRKUFlXgXkdXSf4BwPbH
-         e8VEBjh/9ek2YYf/dznrzMzacEnQkHHKG76T5TlilF85KbELbNgqyLKe2Rx+7HNoUaXm
-         UYUw==
-X-Gm-Message-State: AOAM530LYWkGPs16dT46RRPu07TI/XgKOxh+R7C3oA5DBdZpUMEFfHFE
-        vcuVoOCRrH4dz14iVmaj0I5ljVwic1Ht/gdM03M=
-X-Google-Smtp-Source: ABdhPJwHt7US2HSby+xCEyO/61wsFoFE3bqY4zs8JfLejU0Lk/xtsoJy92vCwGGJyDmPJm+AzWDwDPgFi7thK92igoA=
-X-Received: by 2002:aa7:c550:: with SMTP id s16mr23614280edr.130.1626551988810;
- Sat, 17 Jul 2021 12:59:48 -0700 (PDT)
+        bh=AzejeF7pARl9nvNZ/SKXjtBr8tSI+wQVjunUNUziOkA=;
+        b=BPOqDP0vM2zr6A2mv+vbRl2vFHM83HYa3PBWqUh+v2RT9oWPgsGGcGIK836f3cUTbK
+         3JY0t/PtOyRC/zBw0kjiLBpPPl0yuB184Gn/t1PoRdU45NaI8SmcfUluTJy2ADXSPHT6
+         B1OgTU6x/k92lGO4G7BTkgDoVZ+l3l370G5ek5bc//lf0M/LVGiM35jG2BQy/5Wdkg/w
+         YI0DhdCWbK7Ppms9EOubDYL96a9+RNEx95ShgrqaD5SfrhW7CDLswz156X1OgdgMYQBM
+         PEpiB/samXA8ZIT/S0A5gvwm1ONdh7s/NeDzIYd1Me5KLAklKTUnN8Z30Yil1deOS/70
+         +FPw==
+X-Gm-Message-State: AOAM532CBNAHS6WVHu3716KF1LrFcBpz3uJoseAmfZ/LVYrMpqNkfdpy
+        Cg8HUkuzqv4tPRrHhIisI2pqWrxD3ghuQ4nnAJmJnA==
+X-Google-Smtp-Source: ABdhPJwegUQnpKKeNNS0aeS1tIibmSwIVu8h0HW57Wt8a6q24xYnmH9VFR5v+d9CeKf0ktP85MKfdE2UMTwvnwW1EYI=
+X-Received: by 2002:a65:6248:: with SMTP id q8mr16976866pgv.279.1626555305105;
+ Sat, 17 Jul 2021 13:55:05 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210716103651.1455-1-linux.amoon@gmail.com> <20210716103651.1455-3-linux.amoon@gmail.com>
-In-Reply-To: <20210716103651.1455-3-linux.amoon@gmail.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Sat, 17 Jul 2021 21:59:37 +0200
-Message-ID: <CAFBinCAPNomGxO6Z57qPrmwv_iP4yGo4gpOR8o=mi3n+hq3dJA@mail.gmail.com>
-Subject: Re: [PATCHv2 2/4] arm64: dts: amlogic: odroidc2: Fix the chip enable
- signal for usb power
-To:     Anand Moon <linux.amoon@gmail.com>
-Cc:     linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Matt Corallo <oc2udbzfd@mattcorallo.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Emiliano Ingrassia <ingrassia@epigenesys.com>,
-        Brian Kim <brian.kim@hardkernel.com>,
-        devicetree@vger.kernel.org
+References: <20210712220447.957418-1-iwona.winiarska@intel.com>
+ <20210712220447.957418-7-iwona.winiarska@intel.com> <59428599ef7efb2521bd62c49a3bc55c710f29de.camel@intel.com>
+ <6807a14deb52956ad2fe390b1811dd98901a642a.camel@intel.com>
+ <CAPcyv4ifjCZSUuk5H5qw6sjt5vdAkTfNzd+4imu+9e_iOt74gQ@mail.gmail.com> <YPJ05JUiOggKajIx@kroah.com>
+In-Reply-To: <YPJ05JUiOggKajIx@kroah.com>
+From:   Dan Williams <dan.j.williams@intel.com>
+Date:   Sat, 17 Jul 2021 13:54:54 -0700
+Message-ID: <CAPcyv4iuP=uSEWyd+N65FpasQidtN82tW8q-dvf_qT7_FMiTsw@mail.gmail.com>
+Subject: Re: [PATCH 06/14] peci: Add core infrastructure
+To:     "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>
+Cc:     "Winiarska, Iwona" <iwona.winiarska@intel.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        "corbet@lwn.net" <corbet@lwn.net>,
+        "jason.m.bills@linux.intel.com" <jason.m.bills@linux.intel.com>,
+        "Lutomirski, Andy" <luto@kernel.org>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "Luck, Tony" <tony.luck@intel.com>,
+        "jae.hyun.yoo@linux.intel.com" <jae.hyun.yoo@linux.intel.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "mingo@redhat.com" <mingo@redhat.com>,
+        "bp@alien8.de" <bp@alien8.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "yazen.ghannam@amd.com" <yazen.ghannam@amd.com>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "x86@kernel.org" <x86@kernel.org>,
+        "pierre-louis.bossart@linux.intel.com" 
+        <pierre-louis.bossart@linux.intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Anand,
-
-On Fri, Jul 16, 2021 at 12:38 PM Anand Moon <linux.amoon@gmail.com> wrote:
+On Fri, Jul 16, 2021 at 11:13 PM gregkh@linuxfoundation.org
+<gregkh@linuxfoundation.org> wrote:
 >
-> Fix the chip enable signal changing from Active High to Active Low
-> to enable input power to USB power. Also updated signal name as per
-> the shematics.
-typo: shematics -> schematics
-
+> On Fri, Jul 16, 2021 at 02:50:04PM -0700, Dan Williams wrote:
+> > On Fri, Jul 16, 2021 at 2:08 PM Winiarska, Iwona
+> > > > > +}
+> > > > > +EXPORT_SYMBOL_NS_GPL(peci_controller_add, PECI);
+> > > >
+> > > > I think it's cleaner to declare symbol namespaces in the Makefile. In
+> > > > this case, add:
+> > > >
+> > > > cflags-y += -DDEFAULT_SYMBOL_NAMESPACE=PECI
+> > > >
+> > > > ...and just use EXPORT_SYMBOL_GPL as normal in the C file.
+> > > >
+> > >
+> > > I kind of prefer the more verbose EXPORT_SYMBOL_NS_GPL - it also
+> > > doesn't "hide" the fact that we're using namespaces (everything is in
+> > > the C file rather than mixed into Makefile), but it's not a strong
+> > > opinion, so sure - I can change this.
+> > >
+> >
+> > Perhaps as a tie breaker, the maintainer you are submitting this to,
+> > Greg, uses the -DDEFAULT_SYMBOL_NAMESPACE scheme in his subsystem,
+> > drivers/usb/.
 >
-> Fixes: 5a0803bd5ae2 ("ARM64: dts: meson-gxbb-odroidc2: Enable USB Nodes")
->
-> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-I don't have an Odroid-C2 so I will not be able to review this as well
-as the Odroid-C1 patch.
-My suggestion is that we discuss the Odroid-C1 patch first as that's
-some hardware that we both have.
-Once I understand how the Odroid-C1 patch works I can at least give my
-Acked-by on the Odroid-C2 change.
+> We did that because namespaces were added _after_ the kernel code was
+> already there.  For new code like this, the original use of
+> EXPORT_SYMBOL_NS_GPL() is best as it is explicit and obvious.  No need
+> to dig around in a Makefile to find out the namespace name.
 
+Fair enough.
 
-Best regards,
-Martin
+/me goes to update drivers/cxl/
