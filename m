@@ -2,147 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 716933CC288
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 12:18:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 994D73CC2BA
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jul 2021 13:10:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233656AbhGQKVT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jul 2021 06:21:19 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:50678 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S233398AbhGQKVM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jul 2021 06:21:12 -0400
-X-UUID: 82f131d2cffa4d79873e75fd5610d4a9-20210717
-X-UUID: 82f131d2cffa4d79873e75fd5610d4a9-20210717
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <kewei.xu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1275498462; Sat, 17 Jul 2021 18:18:12 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Sat, 17 Jul 2021 18:18:10 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sat, 17 Jul 2021 18:18:09 +0800
-From:   Kewei Xu <kewei.xu@mediatek.com>
-To:     <wsa@the-dreams.de>
-CC:     <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
-        <qii.wang@mediatek.com>, <yuhan.wei@mediatek.com>,
-        <kewei.xu@mediatek.com>, <ot_daolong.zhu@mediatek.com>,
-        <liguo.zhang@mediatek.com>
-Subject: [PATCH v4 8/8] i2c: mediatek: modify bus speed calculation formula
-Date:   Sat, 17 Jul 2021 18:17:59 +0800
-Message-ID: <1626517079-9057-9-git-send-email-kewei.xu@mediatek.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1626517079-9057-1-git-send-email-kewei.xu@mediatek.com>
-References: <1626517079-9057-1-git-send-email-kewei.xu@mediatek.com>
+        id S230309AbhGQLKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jul 2021 07:10:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33498 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229471AbhGQLKP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jul 2021 07:10:15 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 714E4C06175F;
+        Sat, 17 Jul 2021 04:07:15 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id a12so20420309lfb.7;
+        Sat, 17 Jul 2021 04:07:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=qMrX7WvYGhD3GqZFeNbtHDq067pHxr3zLsoCTOyMBjM=;
+        b=dsijzo4vEj8KZtdurdc114VSsLZXXsuRpxBH/77DKFEgr/0Z0oGC9T3wrbLdgSVVzd
+         N0xMxrQHPTgo4YgqNjcmN6CA9NsIVx+zmuDMhE/omHYRa2i4renzGAZUQW0asqFFB2hn
+         DzPa3ZJA8HPdcaoxC9NRXJir2+hr0oRBa/hgsCXoIt6ZZ+hszLr7osVGVQLT1PJYBaF0
+         v/l9vxMYMHbqW6enlLa5MEG5MfIy8BqJ0//zv6hQHSH/DwG79bCYesgOd1MmRjux3XEO
+         eaE4NAMa7yLM8tmFELXnIaTR5QklMLZP82MLcgmQJDvEM5Ysl/DcMspkB0DIfi5MON+2
+         xwwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=qMrX7WvYGhD3GqZFeNbtHDq067pHxr3zLsoCTOyMBjM=;
+        b=lO/hWSyaRwPjz2ERDDvjgyKrYvy5SxWpuvZhFZNXY/8KJCsXQSwnwYCXHWjioUaPpv
+         iO6lbTxvVVFyCS0sRakDB4XXWuMTG2NPT5qF6xBZCiGtKnMZVqd5cZNZ2lmU33olUEdV
+         uYF0Jkd1D8wAk9gxPr7S5ijFPoI1+eI402X2dSbLlQ2x7tMiK2rJg2piAJx5LhBtokWK
+         kadL2y3XFWJPZJ58CphyuZE0VWquX/5hwB16e8yqtYt3B9svvAfp5hV7WcWgXh2U4gQ8
+         IHS/w1b20sLS0pkeaTvE9cHJ374jXAWnZiOO+Kb7kszqXl5KbxcAROla2hzeBNpdXlX2
+         Tegg==
+X-Gm-Message-State: AOAM530qISzOW5CzKPp7+AGN69gvSTT/WMHSYlvxxfWGEw2x0160tlhw
+        JFYhRaOzhjF2G3/sz7Vas+k=
+X-Google-Smtp-Source: ABdhPJwJP3MZ4dXQV76Rrrje6RXF9KzFJnHPoRcHmpFN8/3gCS4H618y8JDLvB2jlNlyu1FGtCl11g==
+X-Received: by 2002:ac2:483b:: with SMTP id 27mr10954908lft.397.1626520033755;
+        Sat, 17 Jul 2021 04:07:13 -0700 (PDT)
+Received: from [192.168.2.145] (46-138-17-250.dynamic.spd-mgts.ru. [46.138.17.250])
+        by smtp.googlemail.com with ESMTPSA id n23sm1224010ljc.23.2021.07.17.04.07.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 17 Jul 2021 04:07:12 -0700 (PDT)
+Subject: Re: [PATCH v2 2/5] iommu: Implement of_iommu_get_resv_regions()
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Nicolin Chen <nicolinc@nvidia.com>,
+        Krishna Reddy <vdumpa@nvidia.com>, devicetree@vger.kernel.org,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+References: <20210423163234.3651547-1-thierry.reding@gmail.com>
+ <20210423163234.3651547-3-thierry.reding@gmail.com>
+ <bdc42077-d1f3-f561-2e4d-647b5fceb7b6@gmail.com>
+ <CAL_Jsq+jSY-OLau3gLPsDL02AYaE_TySOGrd9-tNLFaYvLHZ6A@mail.gmail.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <7f5c8094-6e4f-5a94-2257-1003a78ba92f@gmail.com>
+Date:   Sat, 17 Jul 2021 14:07:12 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+In-Reply-To: <CAL_Jsq+jSY-OLau3gLPsDL02AYaE_TySOGrd9-tNLFaYvLHZ6A@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When clock-div is 0 or greater than 1, the bus speed
-calculated by the old speed calculation formula will be
-larger than the target speed. So we update the formula.
+16.07.2021 17:41, Rob Herring пишет:
+> On Fri, Jul 2, 2021 at 8:05 AM Dmitry Osipenko <digetx@gmail.com> wrote:
+>>
+>> 23.04.2021 19:32, Thierry Reding пишет:
+>>> +void of_iommu_get_resv_regions(struct device *dev, struct list_head *list)
+>>> +{
+>>> +     struct of_phandle_iterator it;
+>>> +     int err;
+>>> +
+>>> +     of_for_each_phandle(&it, err, dev->of_node, "memory-region", "#memory-region-cells", 0) {
+>>> +             struct iommu_resv_region *region;
+>>> +             struct of_phandle_args args;
+>>> +             struct resource res;
+>>> +
+>>> +             args.args_count = of_phandle_iterator_args(&it, args.args, MAX_PHANDLE_ARGS);
+>>> +
+>>> +             err = of_address_to_resource(it.node, 0, &res);
+>>> +             if (err < 0) {
+>>> +                     dev_err(dev, "failed to parse memory region %pOF: %d\n",
+>>> +                             it.node, err);
+>>> +                     continue;
+>>> +             }
+>>> +
+>>> +             if (args.args_count > 0) {
+>>> +                     /*
+>>> +                      * Active memory regions are expected to be accessed by hardware during
+>>> +                      * boot and must therefore have an identity mapping created prior to the
+>>> +                      * driver taking control of the hardware. This ensures that non-quiescent
+>>> +                      * hardware doesn't cause IOMMU faults during boot.
+>>> +                      */
+>>> +                     if (args.args[0] & MEMORY_REGION_IDENTITY_MAPPING) {
+>>> +                             region = iommu_alloc_resv_region(res.start, resource_size(&res),
+>>> +                                                              IOMMU_READ | IOMMU_WRITE,
+>>> +                                                              IOMMU_RESV_DIRECT_RELAXABLE);
+>>> +                             if (!region)
+>>> +                                     continue;
+>>> +
+>>> +                             list_add_tail(&region->list, list);
+>>> +                     }
+>>> +             }
+>>> +     }
+>>> +}
+>>> +EXPORT_SYMBOL(of_iommu_get_resv_regions);
+>>
+>> Any reason why this is not EXPORT_SYMBOL_GPL? I'm curious what is the
+>> logic behind the OF symbols in general since it looks like half of them
+>> are GPL.
+> 
+> Generally, new ones are _GPL. Old ones probably predate _GPL.
+> 
+> This one is up to the IOMMU maintainers.
 
-Signed-off-by: Kewei Xu <kewei.xu@mediatek.com>
----
- drivers/i2c/busses/i2c-mt65xx.c | 35 +++++++++++++++++++++++----------
- 1 file changed, 25 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/i2c/busses/i2c-mt65xx.c b/drivers/i2c/busses/i2c-mt65xx.c
-index 061775489380..45939f919085 100644
---- a/drivers/i2c/busses/i2c-mt65xx.c
-+++ b/drivers/i2c/busses/i2c-mt65xx.c
-@@ -68,11 +68,12 @@
- #define I2C_DEFAULT_CLK_DIV		5
- #define MAX_SAMPLE_CNT_DIV		8
- #define MAX_STEP_CNT_DIV		64
--#define MAX_CLOCK_DIV			256
-+#define MAX_CLOCK_DIV_8BITS		256
-+#define MAX_CLOCK_DIV_5BITS		32
- #define MAX_HS_STEP_CNT_DIV		8
--#define I2C_STANDARD_MODE_BUFFER	(1000 / 2)
--#define I2C_FAST_MODE_BUFFER		(300 / 2)
--#define I2C_FAST_MODE_PLUS_BUFFER	(20 / 2)
-+#define I2C_STANDARD_MODE_BUFFER	(1000 / 3)
-+#define I2C_FAST_MODE_BUFFER		(300 / 3)
-+#define I2C_FAST_MODE_PLUS_BUFFER	(20 / 3)
- 
- #define I2C_CONTROL_RS                  (0x1 << 1)
- #define I2C_CONTROL_DMA_EN              (0x1 << 2)
-@@ -719,14 +720,26 @@ static int mtk_i2c_calculate_speed(struct mtk_i2c *i2c, unsigned int clk_src,
- 	unsigned int best_mul;
- 	unsigned int cnt_mul;
- 	int ret = -EINVAL;
-+	int clock_div_constraint = 0;
- 
- 	if (target_speed > I2C_MAX_HIGH_SPEED_MODE_FREQ)
- 		target_speed = I2C_MAX_HIGH_SPEED_MODE_FREQ;
- 
-+	if (i2c->default_timing_adjust) {
-+		clock_div_constraint = 0;
-+	} else if (i2c->dev_comp->ltiming_adjust &&
-+		   i2c->ac_timing.inter_clk_div > 1) {
-+		clock_div_constraint = 1;
-+	} else if (i2c->dev_comp->ltiming_adjust &&
-+		   i2c->ac_timing.inter_clk_div == 0) {
-+		clock_div_constraint = -1;
-+	}
-+
- 	max_step_cnt = mtk_i2c_max_step_cnt(target_speed);
- 	base_step_cnt = max_step_cnt;
- 	/* Find the best combination */
--	opt_div = DIV_ROUND_UP(clk_src >> 1, target_speed);
-+	opt_div = DIV_ROUND_UP(clk_src >> 1, target_speed) +
-+		  clock_div_constraint;
- 	best_mul = MAX_SAMPLE_CNT_DIV * max_step_cnt;
- 
- 	/* Search for the best pair (sample_cnt, step_cnt) with
-@@ -761,7 +774,8 @@ static int mtk_i2c_calculate_speed(struct mtk_i2c *i2c, unsigned int clk_src,
- 	sample_cnt = base_sample_cnt;
- 	step_cnt = base_step_cnt;
- 
--	if ((clk_src / (2 * sample_cnt * step_cnt)) > target_speed) {
-+	if ((clk_src / (2 * (sample_cnt * step_cnt - clock_div_constraint))) >
-+		 target_speed) {
- 		/* In this case, hardware can't support such
- 		 * low i2c_bus_freq
- 		 */
-@@ -848,13 +862,16 @@ static int mtk_i2c_set_speed_adjust_timing(struct mtk_i2c *i2c,
- 	target_speed = i2c->speed_hz;
- 	parent_clk /= i2c->clk_src_div;
- 
--	if (i2c->dev_comp->timing_adjust)
--		max_clk_div = MAX_CLOCK_DIV;
-+	if (i2c->dev_comp->timing_adjust && i2c->dev_comp->ltiming_adjust)
-+		max_clk_div = MAX_CLOCK_DIV_5BITS;
-+	else if (i2c->dev_comp->timing_adjust)
-+		max_clk_div = MAX_CLOCK_DIV_8BITS;
- 	else
- 		max_clk_div = 1;
- 
- 	for (clk_div = 1; clk_div <= max_clk_div; clk_div++) {
- 		clk_src = parent_clk / clk_div;
-+		i2c->ac_timing.inter_clk_div = clk_div - 1;
- 
- 		if (target_speed > I2C_MAX_FAST_MODE_PLUS_FREQ) {
- 			/* Set master code speed register */
-@@ -901,8 +918,6 @@ static int mtk_i2c_set_speed_adjust_timing(struct mtk_i2c *i2c,
- 		break;
- 	}
- 
--	i2c->ac_timing.inter_clk_div = clk_div - 1;
--
- 	return 0;
- }
- 
--- 
-2.18.0
+Thank you.
 
