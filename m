@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3A383CC702
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jul 2021 02:17:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50AC43CC70A
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jul 2021 02:32:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231840AbhGRAUF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jul 2021 20:20:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36234 "EHLO
+        id S230318AbhGRAe6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jul 2021 20:34:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230502AbhGRAUE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jul 2021 20:20:04 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A225C061762
-        for <devicetree@vger.kernel.org>; Sat, 17 Jul 2021 17:17:06 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id s17so8981244ljo.12
-        for <devicetree@vger.kernel.org>; Sat, 17 Jul 2021 17:17:05 -0700 (PDT)
+        with ESMTP id S230259AbhGRAe6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jul 2021 20:34:58 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBD48C061762
+        for <devicetree@vger.kernel.org>; Sat, 17 Jul 2021 17:32:00 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id g8so16716516lfh.8
+        for <devicetree@vger.kernel.org>; Sat, 17 Jul 2021 17:32:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=X1WDN9LkkfTLodn/7AZmvdlWK3elCwMaUY4+s15zcjs=;
-        b=lr/rWTTelnW7nH05zdzy9FmUTLjtt9x/tUlCN50zyyz+UyWy1fPUrp4MBwEazKLI1X
-         2tI09g2FvGKVdBNeR3iA0kePNjlxn4uF99kvRlbRpGmJBtM2bXfqPCvnMsV4fZEDXgOB
-         cfwfCTZpRJpP8XCfwPBB5HLe6EFbcUx+r6SV3aYbkgX+R7j54g2UEufmNHwppKl+Dy60
-         eOF4MHP2iIoOLUblsBzMt0mEgLB7yhdJNOCfiHkbgnmudCLvzyCDPAW4uBSYjhD/V0iB
-         QzT5UmxJpzVt0uhk/TARoTkXEq7y4rI/1NwAj9vsXfO4oc8lvVdfu0NPKzeKeoGF+Sjn
-         KtGw==
+        bh=GiOcA9fDhX332QQkbECnDAuU57MnDvjKhHt74brAsd4=;
+        b=QqbnQgsv/ajdlgCbOM0gq0g7FZNs0AbFigA/0ipXJiEXJGly+tlK9erNMERE8PA2rQ
+         fV/gVY5xNUty2kHdSElmFKDGFoS+yMK3mf7CiRP6LrqKaFPtW5EDm9I4uFh2ZtZh4s3m
+         z4bMO4lo51Dd3Qwhrc++2IKRxPSBmqwPAiUYFMlSPYHp9flltp5ibXqvq61dJlPGJTaQ
+         0okiiInLKbfmBTEFnH1VyZdD2Ug8K3mh4o2jS+fAxh6J1K14jl3StwsfqWVPhzPYeRRp
+         H45cRIUF/dYngweD8xQ0drMSaJrVAdN3Yn8w3t1wXnRcgfvCknH9ovNC64WK2NC7ho+i
+         WMBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=X1WDN9LkkfTLodn/7AZmvdlWK3elCwMaUY4+s15zcjs=;
-        b=fuBpCTOSUdi4RILomfEPh7nb4M7TRgAWAOoZwZy7mpdS2oHOymJ0RWUBA790xPFym1
-         tXg+kvK825F96569hjfNbn9AlijPTC/+iqWQUkJAg47zCMdoFDbABzi2CTV5YH0qxFv4
-         V1ZJ6oM64WtQlBRe31+F9oWGKLXYdy4gv9QDXy1w4SaTyOUMDgXbtm0HNlq1yHAsyuPK
-         DpZdV15l+c7Q/RVY89dTwxodHU6PfRJKpnINzwiue6X9Q7K47stfaEVKHP482ds28urz
-         rbmmhECnptjVxG8UUP2u0IRtSH46NTrWbV63sfXDQN5EPh2H4ZP+tMGeI+gptxhLwfux
-         V6RQ==
-X-Gm-Message-State: AOAM531deycuUeCQxirZSShPweHNPee/r78L7RscAxCTuIhE9WAxraee
-        ssYDAf1fBwoVB0WArqzG0503Q0LvkrdMI/C42Bd0Gg==
-X-Google-Smtp-Source: ABdhPJyH8Es5S0fiHP/hznaMowGfa4CiQ/5DqH3eELfDWrap1a8f9HW2gm8T83Kn6nYavVuv3RpCOGtt2aCb7jKivCo=
-X-Received: by 2002:a05:651c:160e:: with SMTP id f14mr7064711ljq.273.1626567424296;
- Sat, 17 Jul 2021 17:17:04 -0700 (PDT)
+        bh=GiOcA9fDhX332QQkbECnDAuU57MnDvjKhHt74brAsd4=;
+        b=uXOS/N7AO5mmUF8PvNgCU+IJPIDezJ6AmD2ybiQkETbBWrJCJBEbQjnl+YPZg9ogog
+         K3NfdZq1qXA9I7BYj0CKQuhMzjO2wI/2o1BWPj6U4sfFif/xo4TTaEJxlEXyDnp7Yjpe
+         VOXhOvm+rtT6Cr7T7+pH6zMQHlMune9dl1DnTte912Xkb0D6m1SciEHDTX5PtsHmflUH
+         7Zwk69MbmMph0q63BvX1nJ9h4TkG01fo92OFce0kcJEPZGF2ZGQ+KBzJlnKCeBCk0hhD
+         bN7QIIEZHEAWCvGkudV20/YzcsdSmc+fRzn/++pwtuxGXody3Gl1gmzdrDH3aBlzIpJC
+         NMUg==
+X-Gm-Message-State: AOAM530XZ6ThxYZ2nrKq1PjB/ltMgjjXu+0kUbsJEb2aOjL3ppadsXHG
+        bP7SLzlR3dj3LWXpC69yk8aqYwbrBgw/ttpqWQ9dbg==
+X-Google-Smtp-Source: ABdhPJzUE4mwcMvftXDt9OelhGDF5Xj2/T270B5egWGsaIKWTNtuSaIt9NhYbKXb4xTog5SSevqmX/HoABHDg7tXXbs=
+X-Received: by 2002:a05:6512:3f1f:: with SMTP id y31mr6296371lfa.29.1626568319143;
+ Sat, 17 Jul 2021 17:31:59 -0700 (PDT)
 MIME-Version: 1.0
-References: <1626430843-23823-1-git-send-email-dillon.minfei@gmail.com> <1626430843-23823-2-git-send-email-dillon.minfei@gmail.com>
-In-Reply-To: <1626430843-23823-2-git-send-email-dillon.minfei@gmail.com>
+References: <1626430843-23823-1-git-send-email-dillon.minfei@gmail.com> <1626430843-23823-3-git-send-email-dillon.minfei@gmail.com>
+In-Reply-To: <1626430843-23823-3-git-send-email-dillon.minfei@gmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 18 Jul 2021 02:16:53 +0200
-Message-ID: <CACRpkdbkOY08THPsPHfOOMeToHGXZvN2DBoKG9+WHeke9jypzQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Add ilitek ili9341 panel bindings
+Date:   Sun, 18 Jul 2021 02:31:48 +0200
+Message-ID: <CACRpkdZZyN_8ND52+piHYaksujwwwTMigkv6eL0fih_2dYZ4Lg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] drm/panel: Add ilitek ili9341 panel driver
 To:     dillon min <dillon.minfei@gmail.com>
 Cc:     "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
         Sam Ravnborg <sam@ravnborg.org>,
@@ -76,40 +76,50 @@ On Fri, Jul 16, 2021 at 12:20 PM <dillon.minfei@gmail.com> wrote:
 
 > From: Dillon Min <dillon.minfei@gmail.com>
 >
-> Add documentation for "ilitek,ili9341" panel.
+> This driver combine tiny/ili9341.c mipi_dbi_interface driver
+> with mipi_dpi_interface driver, can support ili9341 with serial
+> mode or parallel rgb interface mode by register configuration.
 >
 > Signed-off-by: Dillon Min <dillon.minfei@gmail.com>
 
-> +  dc-gpios:
-> +    maxItems: 1
-> +    description: Display data/command selection (D/CX)
+Nice!
 
-This is a DBI feature so mention in the description that this is a
-DBI panel.
+> +config DRM_PANEL_ILITEK_ILI9341
+> +       tristate "Ilitek ILI9341 240x320 QVGA panels"
+> +       depends on OF && SPI
+> +       depends on DRM_KMS_HELPER
+> +       depends on DRM_KMS_CMA_HELPER
+(...)
+> +#include <drm/drm_gem_framebuffer_helper.h>
+> +#include <drm/drm_gem_cma_helper.h>
+> +#include <drm/drm_fb_helper.h>
+> +#include <drm/drm_gem_atomic_helper.h>
+> +#include <drm/drm_atomic_helper.h>
 
-> +  spi-3wire: true
-> +
-> +  spi-max-frequency:
-> +    const: 10000000
-> +
-> +  port: true
-> +
-> +additionalProperties: false
+Hm now there is a (partial) KMS driver in the panel driver, kinda, sorta.
+Is this the right split? I'm not the best with DRM infrastructure,
+just asking.
 
-Please add regulator supplies for the power lines, it's fine
-not to implement code handling them in the driver but they
-should be in the bindings.
+> +struct ili9341_config {
+> +       u32 max_spi_speed;
+> +       /** @mode: the drm display mode */
+> +       const struct drm_display_mode mode;
+> +       /* @ca: TODO: need comments for this register */
+> +       u8 ca[ILI9341_CA_LEN];
 
-For the ili9341 it should be
+These are all in the datasheet but I guess you plan to add these
+TODOs later. (It's fine I suppose, the driver is already very nice.)
 
-  vci-supply:
-    description: Analog voltage supply (2.5 .. 3.3V)
+> +       struct regulator *vcc;
 
-  vddi-supply:
-    description: Voltage supply for interface logic (1.65 .. 3.3 V)
+Use the right name of the pin for the regulator. I guess this is actually
+vci. I would implement all three regulators and get them as bulk.
+See e.g. drivers/gpu/drm/panel/panel-samsung-s6e3ha2.c
+for an example on how to get and enable several regulators
+using bulk.
 
-  vddi-led-supply:
-    description: Voltage supply for the LED driver (1.65 .. 3.3 V)
+The regulator framework will provide dummy regulators if you
+didn't define some of them so it is fine to just provide one or two.
 
 Yours,
 Linus Walleij
