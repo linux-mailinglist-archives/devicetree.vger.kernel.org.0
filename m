@@ -2,236 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FC643CCB8C
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 01:22:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A09F3CCB9B
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 01:44:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233530AbhGRXZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Jul 2021 19:25:55 -0400
-Received: from mail.kernel.org ([198.145.29.99]:32890 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231846AbhGRXZz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 18 Jul 2021 19:25:55 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A7A7061166;
-        Sun, 18 Jul 2021 23:22:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626650576;
-        bh=+cIz9IsxTWX0flU1vqzo73L/SPqQutS6FLX3yWrvH3A=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=byKOgNCkjolptKZ8o4CD5FZBcRQ66Zn6YY6qX6/BlieuaheftSXku3KUimj07pzTB
-         SLqyZ4X/+BGySRyq/eQfKJ4SqH5zlC23/VZQJQ3fVM7Jwv9imG53OIhZeTn0ubpFNc
-         1utIgSgZ2Xf+yaSC5uCFz2t2K96DR5cvDP/nBWkp6cx8zVEm/00vl47M7j5d4wnDR3
-         vOExrMrFKqfnKtqOStC9N/6uQ9dYPIBLOLssRuX+YJaYXH2yXlLnpj+773iajx0gNd
-         dlYIqv2R8RXkiVtzueGVwC7MJZS2G+iX4Jt0b5KZcimPGnV/CsxFUeFa3XvWVaVLdb
-         Jtt5mFre8vCmg==
-Received: by mail-ed1-f52.google.com with SMTP id v1so21243941edt.6;
-        Sun, 18 Jul 2021 16:22:56 -0700 (PDT)
-X-Gm-Message-State: AOAM532X6lIBOVR7MNbP2LFUhWcSkG5q3TihJ85cbmulF2YoDcb7Ip8N
-        fUyCS8KUYplvsRspm+pIHPc/1IrhF+jSUID3UA==
-X-Google-Smtp-Source: ABdhPJyLbPQ/bSD5SySNlFUyRdfpkbfYqeHvj8he8EYh2p/ltsGUUyHfnDaoFoD6KhiI5AJDHucNK93+SxE1G7YueM4=
-X-Received: by 2002:aa7:d353:: with SMTP id m19mr31865120edr.162.1626650575251;
- Sun, 18 Jul 2021 16:22:55 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210717090408.28283-1-nancy.lin@mediatek.com> <20210717090408.28283-2-nancy.lin@mediatek.com>
-In-Reply-To: <20210717090408.28283-2-nancy.lin@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Mon, 19 Jul 2021 07:22:43 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_9h9wHNKfd0X3pbdEs6nfHm2cwQJrh3isAi0_etf9JD5w@mail.gmail.com>
-Message-ID: <CAAOTY_9h9wHNKfd0X3pbdEs6nfHm2cwQJrh3isAi0_etf9JD5w@mail.gmail.com>
-Subject: Re: [PATCH v1 01/10] dt-bindings: mediatek: add pseudo-ovl definition
- for mt8195
-To:     "Nancy.Lin" <nancy.lin@mediatek.com>
-Cc:     CK Hu <ck.hu@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        singo.chang@mediatek.com,
-        srv_heupstream <srv_heupstream@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S232895AbhGRXrN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Jul 2021 19:47:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59026 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232601AbhGRXrM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jul 2021 19:47:12 -0400
+Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66E16C061762;
+        Sun, 18 Jul 2021 16:44:13 -0700 (PDT)
+Received: by mail-qv1-xf31.google.com with SMTP id c15so7514036qvw.6;
+        Sun, 18 Jul 2021 16:44:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
+         :from:to:references:in-reply-to;
+        bh=svpjNqOkfJIQZQ1rk3lE2BdsUxTlWwUiTxu51bKxU00=;
+        b=hgz8FS4QJf9RjLEyIBkcKMIfFxyZZHBZQKHwydjPYJUqa/SllD5T/gSi+XVk1/+ych
+         y6JzLyYFjnrAw5lgs4gTQk+Mou8PbzcK7+YKw2O6TLEoiuu3pK4j9TNjjQApX2zfM/jF
+         Rw6DPVejQpmbJ+I/p6VJkZHvFhK4qe/gsUB5nsm9J0cFPXof9jF6Yn9yoDOyuIggUgx6
+         USIuyt9XU2F5rvE9i7/83mDYzrj7gSFj1+X0cbDA3YPWrwoILUFpn1eR0S4YQ5IvV0A1
+         08uAMwMqYgtj6otKb2akq5gaNWlxZQC3KZMP0bX0IUM6ZCnQYkQqvVYx59GUcbc9SN+R
+         TU7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:cc:subject:from:to:references:in-reply-to;
+        bh=svpjNqOkfJIQZQ1rk3lE2BdsUxTlWwUiTxu51bKxU00=;
+        b=TdT9YxgLYs/2YhVIGBH8vVB9ipP2Qu5PR5esW9COwPvstybWAMdEhnGMRtaaMsfWxk
+         B3xASPKOB+SbfDhRNd87Ept/gl1hAwQMpusC5TxAWW05nMBy4ejbZwkMwh8EdwdZrfmM
+         PSQCne5hvkYeR7qGAmSwqQcUXcIa+FuTME/Sz4viIG2cNCQmQEo042gPOH1Sjz4QX+Nv
+         p+uwhm8/KEt6fuhpya8VVosNo4djDHg+hQU9EnnzKFT4IVs6Xjbbvx1VYMxcwtbw9mgm
+         sqJpc1v5rRoS50e6is3v6UbcGK924hX+3R/HU4OA4OrlVcIIqX/fPYJQ+tTexGqr/OBm
+         xuJA==
+X-Gm-Message-State: AOAM530lqqPblohHvl8uhY7T4jM0uXBP9xHrqENAkxgUrnCnzF1745Eq
+        NWRDQO0L4w1YCJFt+SQ+VCk=
+X-Google-Smtp-Source: ABdhPJz8RB6oYos+iSFqC1MPav8BuN6Q69Nk/j5NM+OxmrwJ2xVssNoJUb3Mscox1HaBfPbUiJiINg==
+X-Received: by 2002:ad4:56e4:: with SMTP id cr4mr22156376qvb.54.1626651852442;
+        Sun, 18 Jul 2021 16:44:12 -0700 (PDT)
+Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
+        by smtp.gmail.com with ESMTPSA id d8sm7225123qkk.119.2021.07.18.16.44.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 18 Jul 2021 16:44:11 -0700 (PDT)
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Sun, 18 Jul 2021 19:44:10 -0400
+Message-Id: <CCWNYFYK095U.B3ZVEH0JYVLA@shaak>
+Cc:     "Peter Rosin" <peda@axentia.se>, <lars@metafoo.de>,
+        <pmeerw@pmeerw.net>, <linux-kernel@vger.kernel.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <robh+dt@kernel.org>
+Subject: Re: [PATCH v5 05/10] iio: afe: rescale: add INT_PLUS_{MICRO,NANO}
+ support
+From:   "Liam Beguin" <liambeguin@gmail.com>
+To:     "Jonathan Cameron" <jic23@kernel.org>
+References: <20210715031215.1534938-1-liambeguin@gmail.com>
+ <20210715031215.1534938-6-liambeguin@gmail.com>
+ <8417f698-eef2-3311-625a-1ceb17d3e5b2@axentia.se>
+ <CCUT1ZDDWS1J.3CGKX5J1MNFOX@shaak> <20210717175551.20265ac4@jic23-huawei>
+In-Reply-To: <20210717175551.20265ac4@jic23-huawei>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Nancy:
+On Sat Jul 17, 2021 at 12:55 PM EDT, Jonathan Cameron wrote:
+> On Fri, 16 Jul 2021 15:18:33 -0400
+> "Liam Beguin" <liambeguin@gmail.com> wrote:
+>
+> > On Thu Jul 15, 2021 at 5:48 AM EDT, Peter Rosin wrote:
+> > >
+> > > On 2021-07-15 05:12, Liam Beguin wrote: =20
+> > > > From: Liam Beguin <lvb@xiphos.com>
+> > > >=20
+> > > > Some ADCs use IIO_VAL_INT_PLUS_{NANO,MICRO} scale types.
+> > > > Add support for these to allow using the iio-rescaler with them.
+> > > >=20
+> > > > Signed-off-by: Liam Beguin <lvb@xiphos.com>
+> > > > ---
+> > > >  drivers/iio/afe/iio-rescale.c | 15 +++++++++++++++
+> > > >  1 file changed, 15 insertions(+)
+> > > >=20
+> > > > diff --git a/drivers/iio/afe/iio-rescale.c b/drivers/iio/afe/iio-re=
+scale.c
+> > > > index 4c3cfd4d5181..a2b220b5ba86 100644
+> > > > --- a/drivers/iio/afe/iio-rescale.c
+> > > > +++ b/drivers/iio/afe/iio-rescale.c
+> > > > @@ -92,7 +92,22 @@ static int rescale_read_raw(struct iio_dev *indi=
+o_dev,
+> > > >  			do_div(tmp, 1000000000LL);
+> > > >  			*val =3D tmp;
+> > > >  			return ret;
+> > > > +		case IIO_VAL_INT_PLUS_NANO:
+> > > > +			tmp =3D ((s64)*val * 1000000000LL + *val2) * rescale->numerator=
+;
+> > > > +			do_div(tmp, rescale->denominator);
+> > > > +
+> > > > +			*val =3D div_s64(tmp, 1000000000LL);
+> > > > +			*val2 =3D tmp - *val * 1000000000LL;
+> > > > +			return ret; =20
+> > >
+> > > This is too simplistic and prone to overflow. We need something like
+> > > this
+> > > (untested)
+> > >
+> > > tmp =3D (s64)*val * rescale->numerator;
+> > > rem =3D do_div(tmp, rescale->denominator);
+> > > *val =3D tmp;
+> > > tmp =3D ((s64)rem * 1000000000LL + (s64)*val2) * rescale->numerator;
+> > > do_div(tmp, rescale->denominator);
+> > > *val2 =3D tmp;
+> > >
+> > > Still not very safe with numerator and denominator both "large", but
+> > > much
+> > > better. And then we need normalizing the fraction part after the abov=
+e,
+> > > of
+> > > course.
+> > > =20
+> >=20
+> > Understood, I'll test that.
+> >=20
+> > > And, of course, I'm not sure what *val =3D=3D -1 and *val2 =3D=3D 500=
+000000
+> > > really
+> > > means. Is that -1.5 or -0.5? The above may very well need adjusting f=
+or
+> > > negative values...
+> > > =20
+> >=20
+> > I would've assumed the correct answer is -1 + 500000000e-9 =3D -0.5
+> > but adding a test case to iio-test-format.c seems to return -1.5...
+>
 
-Nancy.Lin <nancy.lin@mediatek.com> =E6=96=BC 2021=E5=B9=B47=E6=9C=8817=E6=
-=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8B=E5=8D=885:04=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> 1. Add pseudo-ovl definition file for mt8195 display.
-> 2. Add mediatek,pseudo-ovl.yaml to decribe pseudo-ovl module in details.
->
-> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
-> ---
->  .../display/mediatek/mediatek,disp.yaml       |   5 +
->  .../display/mediatek/mediatek,pseudo-ovl.yaml | 105 ++++++++++++++++++
->  2 files changed, 110 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/me=
-diatek,pseudo-ovl.yaml
->
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
-disp.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dis=
-p.yaml
-> index aac1796e3f6b..bb6d28572b48 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.ya=
-ml
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.ya=
-ml
-> @@ -230,6 +230,11 @@ properties:
->        - items:
->            - const: mediatek,mt8173-disp-od
->
-> +      # PSEUDO-OVL: see Documentation/devicetree/bindings/display/mediat=
-ek/mediatek,pseudo-ovl.yaml
-> +      # for details.
-> +      - items:
-> +          - const: mediatek,mt8195-disp-pseudo-ovl
-> +
->    reg:
->      description: Physical base address and length of the function block =
-register space.
->
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
-pseudo-ovl.yaml b/Documentation/devicetree/bindings/display/mediatek/mediat=
-ek,pseudo-ovl.yaml
-> new file mode 100644
-> index 000000000000..9059d96ce70e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,pseudo-=
-ovl.yaml
-> @@ -0,0 +1,105 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/mediatek/mediatek,pseudo-ovl.=
-yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: mediatek pseudo ovl Device Tree Bindings
-> +
-> +maintainers:
-> +  - CK Hu <ck.hu@mediatek.com>
-> +  - Nancy.Lin <nancy.lin@mediatek.com>
-> +
-> +description: |
-> +  The Mediatek pseudo ovl function block is composed of eight RDMA and
-> +  four MERGE devices. It's encapsulated as an overlay device, which supp=
-orts
-> +  4 layers.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      # pseudo ovl controller
-> +      - items:
-> +          - const: mediatek,mt8195-disp-pseudo-ovl
-> +      # RDMA: read DMA
-> +      - items:
-> +          - const: mediatek,mt8195-vdo1-rdma
-> +      # MERGE: merge streams from two RDMA sources
-> +      - items:
-> +          - const: mediatek,mt8195-vdo1-merge
-> +  reg:
-> +    maxItems: 1
-> +  interrupts:
-> +    maxItems: 1
-> +  iommus:
-> +    description: The compatible property is DMA function blocks.
-> +      Should point to the respective IOMMU block with master port as arg=
-ument,
-> +      see Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml fo=
-r
-> +      details.
-> +    maxItems: 1
-> +  clocks:
-> +    maxItems: 2
-> +  clock-names:
-> +    maxItems: 2
-> +  power-domains:
-> +    maxItems: 1
-> +  mediatek,gce-client-reg:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description: The register of display function block to be set by gce=
-.
-> +      There are 4 arguments in this property, gce node, subsys id, offse=
-t and
-> +      register size. The subsys id is defined in the gce header of each =
-chips
-> +      include/include/dt-bindings/gce/<chip>-gce.h, mapping to the regis=
-ter of
-> +      display function block.
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const:
-> +              - mediatek,mt8195-vdo1-merge
-> +
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: merge clock
-> +            - description: merge async clock
-> +        clock-names:
-> +          items:
-> +            - const: merge
-> +            - const: merge_async
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +
-> +    vdo1_rdma@1c104000 {
-> +            compatible =3D "mediatek,mt8195-vdo1-rdma",
-> +                         "mediatek,mt8195-disp-pseudo-ovl";
+Hi Jonathan,
 
-Do not create pseudo or virtual device, so just leave the
-"mediatek,mt8195-vdo1-rdma".
-
-Regards,
-Chun-Kuang.
-
-> +            reg =3D <0 0x1c104000 0 0x1000>;
-> +            interrupts =3D <GIC_SPI 495 IRQ_TYPE_LEVEL_HIGH 0>;
-> +            clocks =3D <&vdosys1 CLK_VDO1_MDP_RDMA0>;
-> +            power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSYS1>;
-> +            iommus =3D <&iommu_vdo M4U_PORT_L2_MDP_RDMA0>;
-> +            mediatek,gce-client-reg =3D <&gce1 SUBSYS_1c10XXXX 0x4000 0x=
-1000>;
-> +    };
-> +
-> +    disp_vpp_merge@1c10c000 {
-> +            compatible =3D "mediatek,mt8195-vdo1-merge";
-> +            reg =3D <0 0x1c10c000 0 0x1000>;
-> +            interrupts =3D <GIC_SPI 503 IRQ_TYPE_LEVEL_HIGH 0>;
-> +            clocks =3D <&vdosys1 CLK_VDO1_VPP_MERGE0>,
-> +                     <&vdosys1 CLK_VDO1_MERGE0_DL_ASYNC>;
-> +            clock-names =3D "merge","merge_async";
-> +            power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSYS1>;
-> +            mediatek,gce-client-reg =3D <&gce1 SUBSYS_1c10XXXX 0xc000 0x=
-1000>;
-> +    };
-> +
-> +...
-> --
-> 2.18.0
+> No. -1.5 is as intended, though the IIO_VAL_PLUS_MICRO is rather
+> confusing
+> naming :( We should perhaps add more documentation for that. Signs were
+> always a bit of a pain with this two integer scheme for fixed point.
 >
+> The intent is to have moderately readable look up tables with the
+> problem that
+> we don't have a signed 0 available. Meh, maybe this decision a long time
+> back wasn't a the right one, but it may be a pain to change now as too
+> many
+> drivers to check!
+>
+> 1, 0000000 =3D=3D 1
+> 0, 5000000 =3D=3D 0.5
+> 0, 0000000 =3D=3D 0
+> 0, -5000000 =3D=3D -0.5
+> -1, 5000000 =3D=3D -1.5
+>
+
+Understood, thanks for clearing that out.
+
+Liam
+
+>
+> >=20
+> > I believe that's a bug but we can work around if for now by moving the
+> > integer part of *val2 to *val.
+>
+> Yup. Fiddly corner cases..
+>
+> Jonathan
+>
+> >=20
+> > Liam
+> >=20
+> > > Cheers,
+> > > Peter
+> > > =20
+> > > > +		case IIO_VAL_INT_PLUS_MICRO:
+> > > > +			tmp =3D ((s64)*val * 1000000LL + *val2) * rescale->numerator;
+> > > > +			do_div(tmp, rescale->denominator);
+> > > > +
+> > > > +			*val =3D div_s64(tmp, 1000000LL);
+> > > > +			*val2 =3D tmp - *val * 1000000LL;
+> > > > +			return ret;
+> > > >  		default:
+> > > > +			dev_err(&indio_dev->dev, "unsupported type %d\n", ret);
+> > > >  			return -EOPNOTSUPP;
+> > > >  		}
+> > > >  	default:
+> > > >  =20
+> >=20
+
