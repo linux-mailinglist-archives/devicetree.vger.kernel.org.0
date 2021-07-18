@@ -2,326 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1711E3CC847
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jul 2021 11:15:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B4843CC853
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jul 2021 11:31:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231202AbhGRJSt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Jul 2021 05:18:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39526 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230461AbhGRJSs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jul 2021 05:18:48 -0400
-Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3CD6C061762
-        for <devicetree@vger.kernel.org>; Sun, 18 Jul 2021 02:15:49 -0700 (PDT)
-Received: by mail-io1-xd33.google.com with SMTP id x10so16162549ion.9
-        for <devicetree@vger.kernel.org>; Sun, 18 Jul 2021 02:15:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=UY/uuimcwG2QGP6zR2h/qQpbp8YhinG01JRSs5/gTjE=;
-        b=gOEVPphpi1VzCpTsAIyxKVFkGHSyEUfzBM3ZTa534U3l+mA5NM5es8Sk+A8Agai92x
-         CDP7GTIHQ6Eoj3PifZ2Hieye99sQxBslvMQTo+NGu7GofmhIIqnDHwJp3cyuGEFY2hcO
-         m/9mVXK+nx7jO1z5qzWEHzNPKdcTcZjG1uitgmp29t1dFxfea20bq4J+zLIB/EKWfqlf
-         o31eb7Ary3+dpu8u+WCE6qARXS3gAU+kBS3kFQFBg2fruszR0XCxFnJLdE884X2eSkZI
-         jFBY4PT+MG7RqI7c3u7R7Ns5DOxQczPJ+ybkWE3JMrkkmoPLU8f9T7DIu11UvNDfXnU+
-         gJVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=UY/uuimcwG2QGP6zR2h/qQpbp8YhinG01JRSs5/gTjE=;
-        b=OTr463dRgrZJiQXDACN1IusM7cA8EEOU6wL9PfIY7J5PUEUziZvHvwIT2zXqQtV0/u
-         fE19MK9O19MEfGPUoH9uQWzAIBXlJLcZrJbmec67K0qmCZekwggFj7VFqhrgE/l+uGxH
-         KEKQqSRU0/LTqzpnnhL3fiE4sc6wTMm+i/mlXn+QVcdQzZ8EIeaP7x6+vHzl9C3qbBgW
-         US6dzLVFWNmmWgySfDLj9VVFGdvg8UjsVHlpt3II5yyDjHL5/4LpXvNKhcmmermXLgxh
-         1hOL/tjjkrMA63DoUXi3448Pk/e7P+Day6E6Q7q8z1FgLMR4t8dsxM2bKI1z0Eis2Dfm
-         w75A==
-X-Gm-Message-State: AOAM531wSzYqFXNj2KozxLUa+nWdd0JHvCUJG0KlB0EK4j934p0KCqY5
-        SalZCnLHSH1UI0IV3VJVE8oQ6YSboDCPseDOQPRR1g==
-X-Google-Smtp-Source: ABdhPJxsDlY/mNXq4LhEUBA3aOHiO7SXmodQRqqXcqzbpqtwExP67gls3WehwZ1+DLVas2tPH9/Mi37mr3vRZHMLbqA=
-X-Received: by 2002:a6b:1406:: with SMTP id 6mr14481233iou.25.1626599749201;
- Sun, 18 Jul 2021 02:15:49 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210607123317.3242031-1-robert.marko@sartura.hr>
- <20210607123317.3242031-5-robert.marko@sartura.hr> <CA+HBbNH7wcpfQOX2=vZmW78GoWy_WL3Pz-dMKe0N0ebZDp+oUw@mail.gmail.com>
- <20210713222528.GA952399@robh.at.kernel.org>
-In-Reply-To: <20210713222528.GA952399@robh.at.kernel.org>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Sun, 18 Jul 2021 11:15:38 +0200
-Message-ID: <CA+HBbNFj5+6sLKxmL8XtsZQ48ch8OjTbJ1bwkDC8dfRiOyWY1Q@mail.gmail.com>
-Subject: Re: [PATCH v6 5/6] dt-bindings: mfd: Add Delta TN48M CPLD drivers bindings
+        id S231788AbhGRJec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Jul 2021 05:34:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45544 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229863AbhGRJeb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 18 Jul 2021 05:34:31 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 34BC960C3F;
+        Sun, 18 Jul 2021 09:31:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1626600693;
+        bh=+rDFm9FsoZ08b6sGG01ofP3oHAAfan2l2sSh1XQwSR0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=aAJYxQFsJbdGWKQX5mdFOrV/4Mbkl/qDKVE1yIy9pxZq4HHu+AWBm7dAXBHiriHrG
+         M6m8IZZlz8muKxk60d6kD7Ci0+jfD6udeh8+tb/Wjp4ehaNbxOk+whVAujiNEkYQKS
+         PHKvYjq3fNIu4UVm+Z7v4s1fZPkunITPVAf1yELADkVpf4vJWy/8lOCgPU6CkkrMob
+         G2A2DWUH3/st5jP+5I66EBcTvI628tSgsh/H2qXMbgg5RGPD0p0Qgg9hCd2BSvFR0S
+         Mooq4W/uqRwgTonQqFVILswVYaEe6mhHurnQ/7N9BoQJY/gSkg9c01sBSpCcowA3bv
+         jBJiC2NBzPWPw==
+Date:   Sun, 18 Jul 2021 12:31:21 +0300
+From:   Mike Rapoport <rppt@kernel.org>
 To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Luka Perkov <luka.perkov@sartura.hr>, jmp@epiphyte.org,
-        Paul Menzel <pmenzel@molgen.mpg.de>,
-        Donald Buczek <buczek@molgen.mpg.de>
-Content-Type: text/plain; charset="UTF-8"
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Russell King <linux@armlinux.org.uk>,
+        Nicolas Pitre <nico@fluxnic.net>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Dave Young <dyoung@redhat.com>, Baoquan He <bhe@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-riscv@lists.infradead.org, kexec@lists.infradead.org,
+        linux-mm@kvack.org, linux-renesas-soc@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 02/10] memblock: Add variables for usable memory
+ limitation
+Message-ID: <YPP06QG7hfypZgYg@kernel.org>
+References: <cover.1626266516.git.geert+renesas@glider.be>
+ <04c4d231fb03a3810d72a45c8a5bc2272c5975f3.1626266516.git.geert+renesas@glider.be>
+ <20210714135101.GB2441138@robh.at.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210714135101.GB2441138@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 14, 2021 at 12:25 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Fri, Jun 25, 2021 at 01:46:08PM +0200, Robert Marko wrote:
-> > On Mon, Jun 7, 2021 at 2:33 PM Robert Marko <robert.marko@sartura.hr> wrote:
-> > >
-> > > Add binding documents for the Delta TN48M CPLD drivers.
-> > >
-> > > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> > > ---
-> > > Changes in v3:
-> > > * Include bindings for reset driver
-> > >
-> > > Changes in v2:
-> > > * Implement MFD as a simple I2C MFD
-> > > * Add GPIO bindings as separate
-> > >
-> > >  .../bindings/gpio/delta,tn48m-gpio.yaml       | 42 +++++++++
-> > >  .../bindings/mfd/delta,tn48m-cpld.yaml        | 90 +++++++++++++++++++
-> > >  .../bindings/reset/delta,tn48m-reset.yaml     | 35 ++++++++
-> > >  3 files changed, 167 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml
-> > >  create mode 100644 Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml
-> > >  create mode 100644 Documentation/devicetree/bindings/reset/delta,tn48m-reset.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml b/Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml
-> > > new file mode 100644
-> > > index 000000000000..aca646aecb12
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml
-> > > @@ -0,0 +1,42 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/gpio/delta,tn48m-gpio.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Delta Networks TN48M CPLD GPIO controller
-> > > +
-> > > +maintainers:
-> > > +  - Robert Marko <robert.marko@sartura.hr>
-> > > +
-> > > +description: |
-> > > +  This module is part of the Delta TN48M multi-function device. For more
-> > > +  details see ../mfd/delta,tn48m-cpld.yaml.
-> > > +
-> > > +  GPIO controller module provides GPIO-s for the SFP slots.
-> > > +  It is split into 3 controllers, one output only for the SFP TX disable
-> > > +  pins, one input only for the SFP present pins and one input only for
-> > > +  the SFP LOS pins.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - delta,tn48m-gpio-sfp-tx-disable
-> > > +      - delta,tn48m-gpio-sfp-present
-> > > +      - delta,tn48m-gpio-sfp-los
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  "#gpio-cells":
-> > > +    const: 2
-> > > +
-> > > +  gpio-controller: true
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - "#gpio-cells"
-> > > +  - gpio-controller
-> > > +
-> > > +additionalProperties: false
-> > > diff --git a/Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml b/Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml
-> > > new file mode 100644
-> > > index 000000000000..2c6e2adf73ca
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml
-> > > @@ -0,0 +1,90 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/mfd/delta,tn48m-cpld.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Delta Networks TN48M CPLD controller
-> > > +
-> > > +maintainers:
-> > > +  - Robert Marko <robert.marko@sartura.hr>
-> > > +
-> > > +description: |
-> > > +  Lattice CPLD onboard the TN48M switches is used for system
-> > > +  management.
-> > > +
-> > > +  It provides information about the hardware model, revision,
-> > > +  PSU status etc.
-> > > +
-> > > +  It is also being used as a GPIO expander for the SFP slots and
-> > > +  reset controller for the switch MAC-s and other peripherals.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: delta,tn48m-cpld
-> > > +
-> > > +  reg:
-> > > +    description:
-> > > +      I2C device address.
-> > > +    maxItems: 1
-> > > +
-> > > +  "#address-cells":
-> > > +    const: 1
-> > > +
-> > > +  "#size-cells":
-> > > +    const: 0
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - "#address-cells"
-> > > +  - "#size-cells"
-> > > +
-> > > +patternProperties:
-> > > +  "^gpio(@[0-9a-f]+)?$":
-> > > +    $ref: ../gpio/delta,tn48m-gpio.yaml
-> > > +
-> > > +  "^reset-controller?$":
-> > > +    $ref: ../reset/delta,tn48m-reset.yaml
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    i2c {
-> > > +        #address-cells = <1>;
-> > > +        #size-cells = <0>;
-> > > +
-> > > +        cpld@41 {
-> > > +            compatible = "delta,tn48m-cpld";
-> > > +            reg = <0x41>;
-> > > +            #address-cells = <1>;
-> > > +            #size-cells = <0>;
-> > > +
-> > > +            gpio@31 {
-> > > +                compatible = "delta,tn48m-gpio-sfp-tx-disable";
-> > > +                reg = <0x31>;
-> > > +                gpio-controller;
-> > > +                #gpio-cells = <2>;
-> > > +            };
-> > > +
-> > > +            gpio@3a {
-> > > +                compatible = "delta,tn48m-gpio-sfp-present";
-> > > +                reg = <0x3a>;
-> > > +                gpio-controller;
-> > > +                #gpio-cells = <2>;
-> > > +            };
-> > > +
-> > > +            gpio@40 {
-> > > +                compatible = "delta,tn48m-gpio-sfp-los";
-> > > +                reg = <0x40>;
-> > > +                gpio-controller;
-> > > +                #gpio-cells = <2>;
-> > > +            };
-> > > +
-> > > +            reset-controller {
-> > > +              compatible = "delta,tn48m-reset";
-> > > +              #reset-cells = <1>;
-> > > +            };
-> > > +        };
-> > > +    };
-> > > diff --git a/Documentation/devicetree/bindings/reset/delta,tn48m-reset.yaml b/Documentation/devicetree/bindings/reset/delta,tn48m-reset.yaml
-> > > new file mode 100644
-> > > index 000000000000..0e5ee8decc0d
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/reset/delta,tn48m-reset.yaml
-> > > @@ -0,0 +1,35 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/reset/delta,tn48m-reset.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Delta Networks TN48M CPLD reset controller
-> > > +
-> > > +maintainers:
-> > > +  - Robert Marko <robert.marko@sartura.hr>
-> > > +
-> > > +description: |
-> > > +  This module is part of the Delta TN48M multi-function device. For more
-> > > +  details see ../mfd/delta,tn48m-cpld.yaml.
-> > > +
-> > > +  Reset controller modules provides resets for the following:
-> > > +  * 88F7040 SoC
-> > > +  * 88F6820 SoC
-> > > +  * 98DX3265 switch MAC-s
-> > > +  * 88E1680 PHY-s
-> > > +  * 88E1512 PHY
-> > > +  * PoE PSE controller
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: delta,tn48m-reset
-> > > +
-> > > +  "#reset-cells":
-> > > +    const: 1
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - "#reset-cells"
-> > > +
-> > > +additionalProperties: false
-> > > --
-> > > 2.31.1
-> > >
-> >
-> > Are there any issues with the bindings?
->
-> Yes. Primarily the GPIO function being part of the compatible. I'm
-> surprised Linus W is okay with that.
+Hi,
 
-I think I already explained this before, having a single compatible
-won't work here.
-Then there would not be anything to know whether its input or output
-only as the pins
-have specific purpose.
-And knowing the capabilites is a requirment of the GPIO regmap driver
-and the GPIO
-core itself as it exposes that information in a generic manner and
-driver like for the
-SFP bus use that.
+On Wed, Jul 14, 2021 at 07:51:01AM -0600, Rob Herring wrote:
+> On Wed, Jul 14, 2021 at 02:50:12PM +0200, Geert Uytterhoeven wrote:
+> > Add two global variables (cap_mem_addr and cap_mem_size) for storing a
+> > base address and size, describing a limited region in which memory may
+> > be considered available for use by the kernel.  If enabled, memory
+> > outside of this range is not available for use.
+> > 
+> > These variables can by filled by firmware-specific code, and used in
+> > calls to memblock_cap_memory_range() by architecture-specific code.
+> > An example user is the parser of the "linux,usable-memory-range"
+> > property in the DT "/chosen" node.
+> > 
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > ---
+> > This is similar to how the initial ramdisk (phys_initrd_{start,size})
+> > and ELF core headers (elfcorehdr_{addr,size})) are handled.
+> > 
+> > Does there exist a suitable place in the common memblock code to call
+> > "memblock_cap_memory_range(cap_mem_addr, cap_mem_size)", or does this
+> > have to be done in architecture-specific code?
+> 
+> Can't you just call it from early_init_dt_scan_usablemem? If the 
+> property is present, you want to call it. If the property is not 
+> present, nothing happens.
 
-Maybe Linus W can chime in here as well.
+For memblock_cap_memory_range() to work properly it should be called after
+memory is detected and added to memblock with memblock_add[_node]()
 
->
-> > The patch series is depending on this as the rest has been reviewed.
->
-> The bindings have been reviewed too, you just didn't like my comments...
+I'm not huge fan of adding more globals to memblock so if such ordering can
+be implemented on the DT side it would be great.
 
-Sorry, I did not pick that up as after my replies there was no further
-discussion.
-
-I am really hoping that we can find a middle ground here and get this
-merged as the driver code itself has been revied and ACK-ed.
-
-Regards,
-Robert
->
+I don't see a way to actually enforce this ordering, so maybe we'd want to
+add warning in memblock_cap_memory_range() if memblock.memory is empty.
+ 
 > Rob
 
-
-
 -- 
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+Sincerely yours,
+Mike.
