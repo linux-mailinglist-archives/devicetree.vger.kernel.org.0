@@ -2,205 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 181643CC749
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jul 2021 05:38:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A2653CC82B
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jul 2021 10:29:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233368AbhGRDlh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jul 2021 23:41:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51430 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230102AbhGRDlh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jul 2021 23:41:37 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B037C061762;
-        Sat, 17 Jul 2021 20:38:39 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id l26so18466571eda.10;
-        Sat, 17 Jul 2021 20:38:39 -0700 (PDT)
+        id S229842AbhGRIcE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Jul 2021 04:32:04 -0400
+Received: from mail-eopbgr1400095.outbound.protection.outlook.com ([40.107.140.95]:59069
+        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229578AbhGRIcE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 18 Jul 2021 04:32:04 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EkOdKVTokM4NOjusAi7Fw0EC/bXcmlEN9wcuyX1CR8Q3g1CB6SjRD+dZJ79rHVqc+mixQ9bAIHvGQEkC5mtZ6W4ZNbL+TkWzdabQREz/WTSqdkcQPiEqt9+j5jsH3FxycPsUSKH9OiK0ftgrIgN+yhVz4kQlxZF2apFltBbnp/KlvXdLwKAT+aHcIILTMl0/+xFmZNu2eqXC7kTZFRk35w8aa5usJ1Fp2hPxXpeqj5A040YaQoWXgasHhB6Cfm7Zvdy6B1Ys44iv7iAOIogj4wI6HG16W3eH8k/oI+5Cq6thu20MT7Scg//WRec4IiiWTJQlnjCV28jVX8UVsrHeEQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DzbfzjplJ0RYVfEZ7CX8r/zs75spZ5bDIaYAGHgFxYE=;
+ b=S1ow0G7lzLRRRx1icUful6oJNfk9Xxokpl1Z/5m9lg33aT6oKgBQqPKl92DHKA9/85KBx5lacY454VJEbEXjJJ8Fegj/TID1WeRRY8l155plG36EgzKzpsWSM+xPC4uBpNP6HGnEDqeNj2h+X54XQPwU+128UqO/Nr5iysgMdpjvj4m3y86gYTTLIRQcRZKeNw5NBMrsLAnK6QftRmSs96iUcUh5UKPIdYblqEd/T7MrFImcLoDM30hmdcHxFtru3yMXzJNxZy2ve5GjWRPWmLH3lbdfxK64urc3e6plu8GaUDU8IY+WuWxYQ4Ogv2IFabyo4f3xJaunLDbS7DyJWA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=LIlzqY37/ApwF5j7PXVX2Gcn6RoFS6mgR/Cwi+L/v2E=;
-        b=Jb6ROQWd5jMjvTPpWafimOYgQ0d4hBWyXVXH3MHDcL0If5wBBIAjcT3NWkmsDz69IK
-         QLw7gleWCs7hpilMT54gT1L2UYa7ifs18BNVMAmVxkI/9EWMV1hZWE7ujnhEpZfXUU2m
-         vQnzo9rfCbxGmvB1ln8WcDk6yBvRpoo5z61ROgymq3ARCJRRim8XRulvAas20ffSAofp
-         pfQLojOlPrnyV+5n9EOw4LTur9NdLpCMeZkEIBe/6htPd6Tcf4F7zRM3QcLSjciyHkvK
-         bm2JMJq1sRzzRSfOa4Y0DESU1G+pvGOOhWZSC4EmKa1zjIKEUsXVwf7wqZhAVrUmH/rL
-         MbUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LIlzqY37/ApwF5j7PXVX2Gcn6RoFS6mgR/Cwi+L/v2E=;
-        b=cW7ZLlEW9fzlLWip/Qrxw23nqkrCdjuKfyUMF+wr4JD3i2tso4yq7b+yj5xkveYsNJ
-         I4iPrPR3131gQMgNd5NIdqnW5oc0dUNs5bq1jG0teInPYi9aPFvJ02QTppEcoVvWFBhN
-         e9PPJQHrMMh6hFqgeAJd6/FiwCB7E6HyVv6g6IOoVPT8LcgsyZJ28XUlysCIs7aGBUBg
-         m+LVcFiWCZ4TntlY4qsdACwV+3Vipafb9b/UN8NFUsfOWKJxIn3UxgYJ6rtqAyC9a1pk
-         O3sJvF4QqfE9d6m+jLvQbleyxuc+V4in6cR7A8cPY26EkK3m5Vtqr0EC7/d2L+OyYf2m
-         YxzA==
-X-Gm-Message-State: AOAM533SCEy9tH2af+g43YWX75egyurttox3u30rUB8NK8f4FFJ+0G3U
-        5GXhPEoEy5hc3w5iccguD9atBAPmpeXlkZLipMw=
-X-Google-Smtp-Source: ABdhPJy+xX/itKKz5o91fjWk6bMjvkzO6a0D0U3UXljnVdJNK9vkNcWGEWkjMlPG/iCTUG9wAw/pzrx5tlWLQH0x2tU=
-X-Received: by 2002:a05:6402:1218:: with SMTP id c24mr25333898edw.59.1626579517304;
- Sat, 17 Jul 2021 20:38:37 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210716103651.1455-1-linux.amoon@gmail.com> <20210716103651.1455-2-linux.amoon@gmail.com>
- <CAFBinCDeqauw_V-Vn9cat9HaCXj6HEMz6G+G+VbqCNtGEFGYzg@mail.gmail.com>
-In-Reply-To: <CAFBinCDeqauw_V-Vn9cat9HaCXj6HEMz6G+G+VbqCNtGEFGYzg@mail.gmail.com>
-From:   Anand Moon <linux.amoon@gmail.com>
-Date:   Sun, 18 Jul 2021 09:08:26 +0530
-Message-ID: <CANAwSgQ5PDGUWMH-jxnz5wwutUVniTn7RAe=4J=8-jbmqxYRRg@mail.gmail.com>
-Subject: Re: [PATCHv2 1/4] ARM: dts: meson8b: odroidc1: Add usb phy power node
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     linux-phy@lists.infradead.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        Matt Corallo <oc2udbzfd@mattcorallo.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DzbfzjplJ0RYVfEZ7CX8r/zs75spZ5bDIaYAGHgFxYE=;
+ b=WPWERbHQHXc2OFS1fQ0nysJC/BqudMQz6jPudLIg8dlf87nIAqhhmGU67+ID025RifMBpc01q0Md8hbUTna/9BZ6gEJKuLsTdpvZ/VlPBaA6iSS+AFdATy67xanl5EHzG047BBUqGgmqXBQfwfwss1Yyc572BulnPgTPgSrtUCY=
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
+ by OSAPR01MB2530.jpnprd01.prod.outlook.com (2603:1096:604:3::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.21; Sun, 18 Jul
+ 2021 08:29:02 +0000
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::c6f:e31f:eaa9:60fe]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::c6f:e31f:eaa9:60fe%9]) with mapi id 15.20.4331.031; Sun, 18 Jul 2021
+ 08:29:02 +0000
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Rob Herring <robh@kernel.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>
+CC:     Kishon Vijay Abraham I <kishon@ti.com>,
         Vinod Koul <vkoul@kernel.org>,
-        Emiliano Ingrassia <ingrassia@epigenesys.com>,
-        Brian Kim <brian.kim@hardkernel.com>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH v3 07/11] dt-bindings: phy: renesas,usb2-phy: Document
+ RZ/G2L phy bindings
+Thread-Topic: [PATCH v3 07/11] dt-bindings: phy: renesas,usb2-phy: Document
+ RZ/G2L phy bindings
+Thread-Index: AQHXbYHhglWpoTGXsUeqWuHX3BdNeassSd4AgBbHkICABXCBgA==
+Date:   Sun, 18 Jul 2021 08:29:01 +0000
+Message-ID: <OS0PR01MB592257F7A3D1460D0DD2123A86E09@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+References: <20210630073013.22415-1-biju.das.jz@bp.renesas.com>
+ <20210630073013.22415-8-biju.das.jz@bp.renesas.com>
+ <CAMuHMdWbhY9i+WvV77LVNYhLBLQBVCojgEwM93A-pvFf9Eab1g@mail.gmail.com>
+ <20210714212135.GA3539572@robh.at.kernel.org>
+In-Reply-To: <20210714212135.GA3539572@robh.at.kernel.org>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 41961b29-0ca4-4759-627a-08d949c61932
+x-ms-traffictypediagnostic: OSAPR01MB2530:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <OSAPR01MB25305E7D7DEDF44ACBF746DC86E09@OSAPR01MB2530.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: eLRPNDiPcK9Zq+su0CwB8XdMDyLzz3PGeomrZtA/H3seootITwLEDwLt2i3uBSlYd9+z3sn/DiPpK9alKnpYxKJMVUiOvJnLtIf38tYWcz/zs8LzohihYl8PejOlm3dck/ZuqPDKqQoXnEZ5idipaktzBUO0MyXqhFMxBJ7fnp4PlJP/ofiPe1M3bfk0aiJqwq0JiOeBDt0PJX44P91mU4k9PzbuGGTF2emnr95qSBafKUHm+m/96pt6G8lTGBuyyMgxQcrItz9RDs5/xpf2EkU3HZQ2IxI5+wNozWKTetOKx9QIWRsv+Z2L22oGdup+yq72DlliooW6+ERaRAz1Ej7NIny7xSD8fQjxpfM21jS+hf2HjIBmU9IX4nC0AtCrFuL8a7xxRlJuWqou6QlLG8Ay33b3KsaCt0+E3GwgTatv9mD3Ayq77PF0pMoSc4fUxNCYk2/P1WPiRt5R0+enZ/2vEWE1hT5X87bYRSEkQWYzU5i7MBGlqUiGmhY/+ZR3jkCRa3FBsr8ucHNiEVXl32bJNrHSt3Xdni5vqZLVdkArgzpB08sKX5fOzZKfnDIWeB5gNGEwouLepI/OC5nTAU+VXVuSTv/b0Sb2kYR4hwBM+QLXn+8q7tJcrGQpzrUa39GukDyAnd4zLKT9otgdJqNPnvoqHwCIdMiMMC83fvDsTq7u7S1R9v7HD5odZcFp1mT3m8XOf9YWIqqZqvA5Dw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(64756008)(2906002)(66446008)(66556008)(66476007)(7696005)(33656002)(4326008)(508600001)(6506007)(53546011)(54906003)(71200400001)(186003)(122000001)(38100700002)(9686003)(55016002)(5660300002)(110136005)(316002)(86362001)(52536014)(8676002)(83380400001)(26005)(8936002)(76116006)(66946007)(38070700004);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?olWlebEyV5kHrvy4LMtC2bPfB75gIWlADsVoW/HYVV4ldeNCxNyMi0AUL1Hp?=
+ =?us-ascii?Q?x/f/UBVgDCQxhTGPEsWy3yIj8X+NUc5qRjuoVbI7htLCizebOomxCkv8mgNt?=
+ =?us-ascii?Q?cUmzRgQnxTIGFFzFc7YRNyd+yYh7xeGA7ZhOkSrG6Qt4AOLowXurw13iyLlG?=
+ =?us-ascii?Q?RgNS/CIRrFhCyr8LtsMZChwiOwaaoJULSveVoBoAn+SlLbh9SK/nEzwTS6dA?=
+ =?us-ascii?Q?2NeB9zSQ7aD/qjPtzn6LPrDjC4IlyHzfoetNBxEhIoq8GKZ19QaEEqXvIFq+?=
+ =?us-ascii?Q?3aNNmsr3mKlMOSnFjMucHiN4SWtsGlC0pvDYR4PMUSYjndRIOMsGiaPRPt/E?=
+ =?us-ascii?Q?gHYAKGK0EJYEXd0QksW6YmUPuJk01gxULqjnBqtb1S7y6pGHAkRXARU4kGnW?=
+ =?us-ascii?Q?LFUjRfjbYzfI7eUYJlrKv2H64RFNsxZfMsP2xPyelTN5qf6THqTqjHEq/gsG?=
+ =?us-ascii?Q?Bpy5FydLDwCfYmFexzyzGG9mYfZzOs0hblI8H4PQmBR7x1MHTk+3+lh84La/?=
+ =?us-ascii?Q?TbIH5PkNFvQQ2lf0LC3T9NhUheuHTloxnhclh9TRezKpgssX5qOGG9zmSuNW?=
+ =?us-ascii?Q?vNGNYAXsELMrsWNd4aee6oKiem754JTAghTP2gDEjtj2msUJOBegdrPFx0QD?=
+ =?us-ascii?Q?/TlM5B58yoJYwpn3vEMoDLsr6fIMkwFYb9LbmcFHtzWgOvuBf1dI0nREcIZT?=
+ =?us-ascii?Q?Akx/5BqSolOfmulq0qzKwBwzPcXwy0L0Sd+7zL2JCS+wx0dceMpkm4kGagqU?=
+ =?us-ascii?Q?6hP/+Ufd8cW6YLtGhZt2UFZGFSiwm80awxHVHAYEJirrWXVM2YnHv/mmHBXD?=
+ =?us-ascii?Q?d+CwPQrxlMM4mhHkngawIr8uHtkzbm5hW6vyV4es78UZXsDt0mzK6gUSoy6f?=
+ =?us-ascii?Q?+klyKUNML8kdbyrhX8C2iH0AzT1G4jgCXVp/oTX82GYImrAIfIg3k79l84NM?=
+ =?us-ascii?Q?A8Nh3Nk2yUrgOMJySnvsAjOsuIvd2JANgXa+jcBpQCpw8EwdTmaMHI4jwzCn?=
+ =?us-ascii?Q?9lzNciFKACWSa47CKLk3swiXKO3N9a02cBroQcsMXorKagR1XB2qH2H2/IlD?=
+ =?us-ascii?Q?bWI9n8um/YwvBEcM8r5kscK7aCfCSwTSbtd8oF9gDciDMlI8S9uzLfUjs0f7?=
+ =?us-ascii?Q?eUG//qP40wSWmiBvnri8yyVHGr4iTEbB59OQD6R76DiNXHMPPkIzEQq99OWT?=
+ =?us-ascii?Q?HsAtQFo/JJVa7Kj9nHnYVchXZxzbcrGvzQD6/hD7rn7lWW1A8D7vnTZh9GE4?=
+ =?us-ascii?Q?0I5PrdWTvWiw/PB1+v4wf3oY7M9so7+w29JHV+3HT+Z78g0yPVr7KTNohZ3L?=
+ =?us-ascii?Q?3he5bKWl+Y/qBR/HYLzhXUeL?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 41961b29-0ca4-4759-627a-08d949c61932
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Jul 2021 08:29:02.0060
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: LTqOtMIsiY4k4EuQwrx9+3of84DAmQhLigxZ92x2C2/nv/xiG12qDtAT0Mwo0jrzQuGU3NJBZkPwyVXVRIJXrrN2BGQAMzzqKhQCZYfxN6M=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSAPR01MB2530
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
+Hi Rob,
 
-Thanks for the review comments.
-
-On Sun, 18 Jul 2021 at 01:16, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> Hi Anand,
->
-> On Fri, Jul 16, 2021 at 12:37 PM Anand Moon <linux.amoon@gmail.com> wrote:
+> -----Original Message-----
+> Subject: Re: [PATCH v3 07/11] dt-bindings: phy: renesas,usb2-phy: Documen=
+t
+> RZ/G2L phy bindings
+>=20
+> On Wed, Jun 30, 2021 at 11:29:36AM +0200, Geert Uytterhoeven wrote:
+> > Hi Biju,
 > >
-> > Add missing usb phy power node for phy mode fix below warning.
-> > P5V0 regulator suppy input voltage range to USB host controller.
-> low prio - typo: suppy -> supply
->
-> > As descriped in the C1+ schematics, GPIO GPIOAO_5 is used to
-> low prio - typo: descriped -> described
->
-I definitely run checkpatch with the spellcheck option but I need to
-improve on this aspect.
-
-> > enable input power to USB ports, set it to Active Low.
+> > Thanks for your patch!
 > >
-> > [    1.253149] phy phy-c1108820.phy.0: Looking up phy-supply from device tree
-> > [    1.253166] phy phy-c1108820.phy.0: Looking up phy-supply property
-> >                 in node /soc/cbus@c1100000/phy@8820 failed
-> high prio:
-> Can you please describe how I can test this patch?
-> My concern is that previously I have tested your patch with ACTIVE_LOW
-> and ACTIVE_HIGH polarity.
-> In both cases USB is working and I cannot observe any change (apart
-> from this debug message being gone).
->
-> In the Odroid-C1 schematics (page 1) GPIOAO.BIT5 is connected to USB_OTG *only*.
-> I cannot give my Acked-/Reviewed-/Tested-by without a description of
-> how I can actually test the GPIO potion of this patch.
->
-> [...]
-> > +               /*
-> > +                * signal name from schematics: PWREN - GPIOAO.BIT5
-> > +                */
-> > +               gpios = <&gpio_ao GPIOAO_5 GPIO_ACTIVE_HIGH>;
-> low prio:
-> Even though it's strictly not necessary I think this is confusing to read.
-> Since there's no "enable-active-high" property the GPIO will be
-> considered as "active low".
-> My suggestion is to change GPIO_ACTIVE_HIGH to GPIO_ACTIVE_LOW
->
-My apologies, I might have sent the wrong set of patches its
-GPIO_ACTIVE_LOW I meant
-I have formatted with and in the course of testing and verifying It
-might have got SKIPPED.
-I didn't do this intentionally it happen with a mistake with my two
-repositories.
-I don't intend to repeat my mistake, again and again, *sorry for the trouble*.
+> > On Wed, Jun 30, 2021 at 9:31 AM Biju Das <biju.das.jz@bp.renesas.com>
+> wrote:
+> > > Document USB phy bindings for RZ/G2L SoC.
+> > >
+> > > RZ/G2L USB2.0 phy uses line ctrl register for OTG_ID pin changes.
+> > > Apart from this it uses a different OTG-BC interrupt bit for device
+> recognition.
+> >
+> > Nothing about resets? But see below...
+> >
+> > >
+> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > ---
+> > > v2->v3
+> > >  * Created a new compatible for RZ/G2L as per Geert's suggestion.
+> > >  * Added resets required properties for RZ/G2L SoC.
+> > > ---
+> > >  .../bindings/phy/renesas,usb2-phy.yaml         | 18
+> ++++++++++++++++++
+> > >  1 file changed, 18 insertions(+)
+> > >
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
+> > > b/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
+> > > index d5dc5a3cdceb..a7e585ff28dc 100644
+> > > --- a/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
+> > > +++ b/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
+> > > @@ -30,6 +30,9 @@ properties:
+> > >                - renesas,usb2-phy-r8a77995 # R-Car D3
+> > >            - const: renesas,rcar-gen3-usb2-phy
+> > >
+> > > +      - items:
+> > > +          - const: renesas,usb2-phy-r9a07g044 # RZ/G2{L,LC}
+> > > +
+> > >    reg:
+> > >      maxItems: 1
+> > >
+> > > @@ -91,6 +94,21 @@ required:
+> > >    - clocks
+> > >    - '#phy-cells'
+> > >
+> > > +allOf:
+> > > +  - if:
+> > > +      properties:
+> > > +        compatible:
+> > > +          contains:
+> > > +            const: renesas,usb2-phy-r9a07g044
+> > > +    then:
+> > > +      properties:
+> > > +        resets:
+> > > +          items:
+> > > +            - description: USB phy reset
+> > > +            - description: reset of USB 2.0 host side
+> >
+> > Do you need the second reset?
+> > Looking at your .dtsi patch, the second reset is shared with
+> > ehci/ohci, so perhaps it makes sense to drop it from the phy node?
+>=20
+> The existing binding has the host reset (and peripheral, but no phy
+> reset). Was that a mistake too? Smells like collecting resources the
+> driver happens to want, not what the h/w connections are.
 
-> Also if you have any extra information since you last pinged me on IRC
-> then it would be great if you could document it.
-> I am referring to these IRC message, where you are stating that the
-> correct polarity should be "active high":
-> <armoon> xdarklight I have a question on USB GPIO Polarity on Odroid C1+
- > <armoon> As per the
-> https://dn.odroid.com/S805/Schematics/odroid-c1+_rev0.4_20160226.pdf
-> <armoon> MP62551DGT-LF IC controls the power for the USB PORTS
-> <armoon> https://www.mouser.com/datasheet/2/277/MP62550-1384050.pdf is
-> MP62551DGT datasheet
-> <armoon> As per the data sheet in section ORDERING INFORMATION  Active
-> enable signal is set below MP62551DGT Active High
->
+On that SoC's there is no USBPHY control IP to control the reset. But PHY
+is part of either host block or peripheral block. On RZ/G2L as well PHY is
+part of Host block but we have dedicated IP to control the reset.
 
-[1] https://www.mouser.com/datasheet/2/277/MP62550-1384050.pdf
+Regards,
+Biju
 
-I have read the datasheets MP62551DGT EN*  pin its Enable input. Active Low:
-       *EN I Enable input. Active Low: (MP62550), Active High: (MP62551).*
-
-I have tested with ACTIVE_LOW and followed all the steps invalidating
- this with debugfs output.
-
-Last login: Tue Jul 13 00:02:49 2021 from 10.0.0.14
-[alarm@archl-c1e ~]$ sudo cat /sys/kernel/debug/gpio | grep usb
- gpio-1953 (USB_HUB_RST_N       |usb-hub-reset       ) out hi
- gpio-1954 (USB_OTG_PWREN       |regulator-usb-pwr-en) out lo ACTIVE LOW
-
-> [...]
-> >  &usb1_phy {
-> >         status = "okay";
-> > +       phy-supply = <&usb_pwr_en>;
-> medium priority:
-> I have raised the following concern in one of my previous emails on this topic:
-> > The mistake I made before is considering USB VBUS as PHY power supply.
-> > I believe the USB PHY is actually powered by the AVDD18_USB_ADC and
-> > USB33_VDDIOH signals. See the S905 datasheet [0], page 25
-> > These are 1.8V and 3.3V signals while you are adding a 5V regulator.
-> you replied with:
-> > OK, thanks.
-> so I don't understand what "OK, thanks" means.
-> If it means "Martin, you are wrong" then please provide a description
-> so I can also learn something!
-
-Yes, I understood your inputs. But from the logs below is seen to
-looking for phy-supply
-This is the reason I went ahead with phy-supply as the core phy node
-needs this property.
-
-Please check below commit
-e841ec956e53 ("ARM64: dts: meson-gxbb-odroidc2: fix usb1 power supply")
-
-[    1.253149] phy phy-c1108820.phy.0: Looking up phy-supply from device tree
-[    1.253166] phy phy-c1108820.phy.0: Looking up phy-supply property
-in node /soc/cbus@c1100000/phy@8820 failed
-[    1.255031] pwm-regulator regulator-vcck: Failed to get PWM, deferring probe
-[    1.256730] pwm-regulator regulator-vddee: Failed to get PWM, deferring probe
-[    1.260300] dwc2 c90c0000.usb: mapped PA c90c0000 to VA (ptrval)
-[    1.260446] dwc2 c90c0000.usb: Looking up vusb_d-supply from device tree
-[    1.260460] dwc2 c90c0000.usb: Looking up vusb_d-supply property in
-node /soc/usb@c90c0000 failed
-[    1.260490] dwc2 c90c0000.usb: supply vusb_d not found, using dummy regulator
-[    1.260606] dwc2 c90c0000.usb: Looking up vusb_a-supply from device tree
-[    1.260620] dwc2 c90c0000.usb: Looking up vusb_a-supply property in
-node /soc/usb@c90c0000 failed
-[    1.260641] dwc2 c90c0000.usb: supply vusb_a not found, using dummy regulator
-[    1.260717] dwc2 c90c0000.usb: registering common handler for irq35
-[    1.260772] dwc2 c90c0000.usb: Looking up vbus-supply from device tree
-[    1.260784] dwc2 c90c0000.usb: Looking up vbus-supply property in
-node /soc/usb@c90c0000 failed
-[    1.261949] dwc2 c90c0000.usb: Core Release: 3.10a (snpsid=4f54310a)
-
->
->
-> Best regards,
-> Martin
-
--Anand
