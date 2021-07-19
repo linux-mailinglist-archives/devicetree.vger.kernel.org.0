@@ -2,625 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D1003CD414
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 13:45:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12ABD3CD421
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 13:50:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236076AbhGSLFC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jul 2021 07:05:02 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42462 "EHLO mail.kernel.org"
+        id S236543AbhGSLKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jul 2021 07:10:16 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:12887 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230493AbhGSLFC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Jul 2021 07:05:02 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C458960FEA;
-        Mon, 19 Jul 2021 11:45:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626695142;
-        bh=S8+v1EflFeObe21Jv7ugFHoCI+f6RQZQJ9Qn2ifRGRQ=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=BIKSc1YSuHsMx2jePR5Yhu2C571/bBbzJJ1oZ0djIqwhFiBZLgp6uylB+DoVXva+T
-         ePwETH7RpoKczr4P113UY+YP8ay7J1/L9cJkhGpnR+fvCa0BZ8mzoLEAlKfGQSIB/n
-         kIeMLKnOpbJPJ5hyim/+keqKG9SWbNi/FLbxqVZRUPWGWBbyOicyFnABycGFtd2c3d
-         zZnuqHxQly/6dJ8uo6tSokfcWZ7M9YzHh/eOZQUTXoSo2Lc8ScV57AgS2wIXOdcUD7
-         IKieO8BHVV2t2+SeZJHh1YcyphskENHxGewqGKhnbJ8FMknZZFeuw8jmEHFMSBfQfy
-         PKkGmBlaThDkA==
-Date:   Mon, 19 Jul 2021 13:45:37 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev
-Subject: Re: [PATCH v14 7/9] mfd: hi6421-spmi-pmic: move driver from staging
-Message-ID: <20210719134537.0cab0827@coco.lan>
-In-Reply-To: <YPVaCCu498lNY9a2@google.com>
-References: <cover.1626515862.git.mchehab+huawei@kernel.org>
-        <6c64fa6abae6c9fa78ace1bf240b33b47eccae52.1626515862.git.mchehab+huawei@kernel.org>
-        <YPVaCCu498lNY9a2@google.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-redhat-linux-gnu)
+        id S236323AbhGSLKQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Jul 2021 07:10:16 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1626695456; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=cuNYcuoxuLNPM9zRI3jedhlC+1gr//ok0e0lHbfvDqg=; b=weLvoX15VS3PrtnueKVNTgg+BpRtO/snJ4PTGtkXw7aStBgXVZVYHKeUYUAdpIhvUihjbgbr
+ rbzCL86Za4/XxJVqBtAr6MZxXIDQQsVhjaxANlSqEPGeDFpRtfjzPOMEqw062+CxB2mDRlCe
+ UxN/Z2MahGmRG5aVM3SMSsK8UqE=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 60f5671fd0100c7cf9fbf4c4 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 19 Jul 2021 11:50:55
+ GMT
+Sender: rnayak=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id B9902C43217; Mon, 19 Jul 2021 11:50:55 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
+Received: from [10.50.42.221] (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rnayak)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id E0AD9C433D3;
+        Mon, 19 Jul 2021 11:50:51 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org E0AD9C433D3
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
+Subject: Re: [PATCH v4 1/2] PM / Domains: Add support for 'required-opps' to
+ set default perf state
+To:     Stephen Boyd <swboyd@chromium.org>, bjorn.andersson@linaro.org,
+        ulf.hansson@linaro.org, viresh.kumar@linaro.org
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        rojay@codeaurora.org, stephan@gerhold.net
+References: <1626429658-18961-1-git-send-email-rnayak@codeaurora.org>
+ <1626429658-18961-2-git-send-email-rnayak@codeaurora.org>
+ <CAE-0n52AkJWAL0ptFgZOrD_BXrrMte5EbZUksf5UYzBxYisCBQ@mail.gmail.com>
+From:   Rajendra Nayak <rnayak@codeaurora.org>
+Message-ID: <43c77084-cfea-ef7f-8454-6f0dbc3b6577@codeaurora.org>
+Date:   Mon, 19 Jul 2021 17:20:49 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <CAE-0n52AkJWAL0ptFgZOrD_BXrrMte5EbZUksf5UYzBxYisCBQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Em Mon, 19 Jul 2021 11:55:04 +0100
-Lee Jones <lee.jones@linaro.org> escreveu:
 
-> On Sat, 17 Jul 2021, Mauro Carvalho Chehab wrote:
+On 7/17/2021 1:49 AM, Stephen Boyd wrote:
+> Quoting Rajendra Nayak (2021-07-16 03:00:57)
+>> Some devics within power domains with performance states do not
 > 
-> > This driver is ready for mainstream. So, move it out of staging.
-> > 
-> > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> > ---
-> >  .../mfd}/hisilicon,hi6421-spmi-pmic.yaml      |  0
-> >  MAINTAINERS                                   |  7 +++++++
-> >  drivers/mfd/Kconfig                           | 16 ++++++++++++++++
-> >  drivers/mfd/Makefile                          |  1 +
-> >  .../hikey9xx => mfd}/hi6421-spmi-pmic.c       |  0  
+> devices
 > 
-> I *still* can't review this without firstly seeing it.
+>> support DVFS, but still need to vote on a default/static state
+>> while they are active. They can express this using the 'required-opps'
+>> property in device tree, which points to the phandle of the OPP
+>> supported by the corresponding power-domains.
+>>
+>> Add support to parse this information from DT and then set the
+>> specified performance state during attach and drop it on detach.
+>> Also drop/set as part of runtime suspend/resume callbacks.
+>>
+>> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
+>> ---
+>>   drivers/base/power/domain.c | 37 ++++++++++++++++++++++++++++++++++---
+>>   include/linux/pm_domain.h   |  1 +
+>>   2 files changed, 35 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/base/power/domain.c b/drivers/base/power/domain.c
+>> index a934c67..dcc0b71 100644
+>> --- a/drivers/base/power/domain.c
+>> +++ b/drivers/base/power/domain.c
+>> @@ -1000,6 +1008,8 @@ static int genpd_runtime_resume(struct device *dev)
+>>          genpd_stop_dev(genpd, dev);
+>>   err_poweroff:
+>>          if (!pm_runtime_is_irq_safe(dev) || genpd_is_irq_safe(genpd)) {
+>> +               if (default_pstate)
+>> +                       dev_pm_genpd_set_performance_state(dev, 0);
+>>                  genpd_lock(genpd);
+>>                  gpd_data->rpm_pstate = genpd_drop_performance_state(dev);
+> 
+> Maybe this should be
+> 
+> 		  prev_state = genpd_drop_performance_state(dev);
+> 		  if (!default_pstate)
+> 		  	gdp_data->rpm_pstate = prev_state;
+> 
+> so we don't call dev_pm_genpd_set_performance_state() effectively twice?
+> Also it would make sure we call dev_pm_genpd_set_performance_state()
+> underneath the genpd_lock() if that is important. Similarly do that on
+> suspend path.
 
-Thanks,
-Mauro
+looking through this more, I think I can completely drop any special
+handling for default_pstate in runtime suspend and resume. The existing
+drop/restore login Ulf has added should take care of it.
+I'll test and respin soon.
 
-[PATCH v14 7/9] mfd: hi6421-spmi-pmic: move driver from staging
+> 
+>>                  genpd_power_off(genpd, true, 0);
+>> @@ -2598,6 +2608,12 @@ static void genpd_dev_pm_detach(struct device *dev, bool power_off)
+>>
+>>          dev_dbg(dev, "removing from PM domain %s\n", pd->name);
+>>
+>> +       /* Drop the default performance state */
+>> +       if (dev_gpd_data(dev)->default_pstate) {
+>> +               dev_pm_genpd_set_performance_state(dev, 0);
+>> +               dev_gpd_data(dev)->default_pstate = 0;
+>> +       }
+>> +
+>>          for (i = 1; i < GENPD_RETRY_MAX_MS; i <<= 1) {
+>>                  ret = genpd_remove_device(pd, dev);
+>>                  if (ret != -EAGAIN)
+>> @@ -2675,10 +2692,24 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
+>>                  genpd_unlock(pd);
+>>          }
+>>
+>> -       if (ret)
+>> +       if (ret) {
+>>                  genpd_remove_device(pd, dev);
+>> +               return -EPROBE_DEFER;
+>> +       }
+>> +
+>> +       /* Set the default performance state */
+>> +       np = base_dev->of_node;
+>> +       if (of_parse_phandle(np, "required-opps", index)) {
+>> +               pstate = of_get_required_opp_performance_state(np, index);
+>> +               if (pstate < 0) {
+>> +                       dev_err(dev, "failed to set pstate:%d", pstate);
+> 
+> Missing newline on printk. Also can we spell out pstate as "failed to
+> set required performance state %d for power-domain %d"?
 
-This driver is ready for mainstream. So, move it out of staging.
+thanks, will fix when I respin.
+Thanks for the review.
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> 
+>> +                       ret = pstate;
+>> +               }
+>> +               dev_pm_genpd_set_performance_state(dev, pstate);
+>> +               dev_gpd_data(dev)->default_pstate = pstate;
+>> +       }
+>>
+>> -       return ret ? -EPROBE_DEFER : 1;
+>> +       return ret ? ret : 1;
+>>   }
+>>
+>>   /**
 
-diff --git a/Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml b/Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
-new file mode 100644
-index 000000000000..b06131504d75
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
-@@ -0,0 +1,138 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/hisilicon,hi6421-spmi-pmic.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: HiSilicon 6421v600 SPMI PMIC
-+
-+maintainers:
-+  - Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-+
-+description: |
-+  HiSilicon 6421v600 should be connected inside a MIPI System Power Management
-+  (SPMI) bus. It provides interrupts and power supply.
-+
-+  The GPIO and interrupt settings are represented as part of the top-level PMIC
-+  node.
-+
-+  The SPMI controller part is provided by
-+  Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
-+
-+properties:
-+  $nodename:
-+    pattern: "pmic@[0-9a-f]"
-+
-+  compatible:
-+    const: hisilicon,hi6421v600-spmi
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#interrupt-cells':
-+    const: 2
-+
-+  interrupt-controller: true
-+
-+  interrupts:
-+    maxItems: 1
-+    description: GPIO used for IRQs
-+
-+  regulators:
-+    type: object
-+
-+    additionalProperties: false
-+
-+    properties:
-+      '#address-cells':
-+        const: 1
-+
-+      '#size-cells':
-+        const: 0
-+
-+    patternProperties:
-+      '^(ldo|LDO)[0-9]+$':
-+        type: object
-+
-+        $ref: "/schemas/regulator/regulator.yaml#"
-+
-+        unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - regulators
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    /* pmic properties */
-+
-+    pmic: pmic@0 {
-+      compatible = "hisilicon,hi6421v600-spmi";
-+      reg = <0 0>;
-+
-+      #interrupt-cells = <2>;
-+      interrupt-controller;
-+      interrupts = <&gpio28 0 0>;
-+
-+      regulators {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        ldo3: LDO3 {
-+          regulator-name = "ldo3";
-+          regulator-min-microvolt = <1500000>;
-+          regulator-max-microvolt = <2000000>;
-+          regulator-boot-on;
-+        };
-+
-+        ldo4: LDO4 {
-+          regulator-name = "ldo4";
-+          regulator-min-microvolt = <1725000>;
-+          regulator-max-microvolt = <1900000>;
-+          regulator-boot-on;
-+        };
-+
-+        ldo9: LDO9 {
-+          regulator-name = "ldo9";
-+          regulator-min-microvolt = <1750000>;
-+          regulator-max-microvolt = <3300000>;
-+          regulator-boot-on;
-+        };
-+
-+        ldo15: LDO15 {
-+          regulator-name = "ldo15";
-+          regulator-min-microvolt = <1800000>;
-+          regulator-max-microvolt = <3000000>;
-+          regulator-always-on;
-+        };
-+
-+        ldo16: LDO16 {
-+          regulator-name = "ldo16";
-+          regulator-min-microvolt = <1800000>;
-+          regulator-max-microvolt = <3000000>;
-+          regulator-boot-on;
-+        };
-+
-+        ldo17: LDO17 {
-+          regulator-name = "ldo17";
-+          regulator-min-microvolt = <2500000>;
-+          regulator-max-microvolt = <3300000>;
-+        };
-+
-+        ldo33: LDO33 {
-+          regulator-name = "ldo33";
-+          regulator-min-microvolt = <2500000>;
-+          regulator-max-microvolt = <3300000>;
-+          regulator-boot-on;
-+        };
-+
-+        ldo34: LDO34 {
-+          regulator-name = "ldo34";
-+          regulator-min-microvolt = <2600000>;
-+          regulator-max-microvolt = <3300000>;
-+        };
-+      };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a61f4f3b78a9..4529cf5ed430 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8432,6 +8432,13 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/spmi/hisilicon,hisi-spmi-controller.yaml
- F:	drivers/spmi/hisi-spmi-controller.c
- 
-+HISILICON SPMI PMIC DRIVER FOR HIKEY 6421v600
-+M:	Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-+L:	linux-kernel@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
-+F:	drivers/mfd/hi6421-spmi-pmic.c
-+
- HISILICON STAGING DRIVERS FOR HIKEY 960/970
- M:	Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
- S:	Maintained
-diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-index 6a3fd2d75f96..01bb42f0ca0b 100644
---- a/drivers/mfd/Kconfig
-+++ b/drivers/mfd/Kconfig
-@@ -510,6 +510,22 @@ config MFD_HI6421_PMIC
- 	  menus in order to enable them.
- 	  We communicate with the Hi6421 via memory-mapped I/O.
- 
-+config MFD_HI6421_SPMI
-+	tristate "HiSilicon Hi6421v600 SPMI PMU/Codec IC"
-+	depends on OF
-+	depends on SPMI
-+	select MFD_CORE
-+	select REGMAP_SPMI
-+	help
-+	  Add support for HiSilicon Hi6421v600 SPMI PMIC. Hi6421 includes
-+	  multi-functions, such as regulators, RTC, codec, Coulomb counter,
-+	  etc.
-+
-+	  This driver includes core APIs _only_. You have to select
-+	  individual components like voltage regulators under corresponding
-+	  menus in order to enable them.
-+	  We communicate with the Hi6421v600 via a SPMI bus.
-+
- config MFD_HI655X_PMIC
- 	tristate "HiSilicon Hi655X series PMU/Codec IC"
- 	depends on ARCH_HISI || COMPILE_TEST
-diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-index 8116c19d5fd4..570b9ffb34d0 100644
---- a/drivers/mfd/Makefile
-+++ b/drivers/mfd/Makefile
-@@ -231,6 +231,7 @@ obj-$(CONFIG_MFD_IPAQ_MICRO)	+= ipaq-micro.o
- obj-$(CONFIG_MFD_IQS62X)	+= iqs62x.o
- obj-$(CONFIG_MFD_MENF21BMC)	+= menf21bmc.o
- obj-$(CONFIG_MFD_HI6421_PMIC)	+= hi6421-pmic-core.o
-+obj-$(CONFIG_MFD_HI6421_SPMI)	+= hi6421-spmi-pmic.o
- obj-$(CONFIG_MFD_HI655X_PMIC)   += hi655x-pmic.o
- obj-$(CONFIG_MFD_DLN2)		+= dln2.o
- obj-$(CONFIG_MFD_RT4831)	+= rt4831.o
-diff --git a/drivers/mfd/hi6421-spmi-pmic.c b/drivers/mfd/hi6421-spmi-pmic.c
-new file mode 100644
-index 000000000000..c9c0c3d7011f
---- /dev/null
-+++ b/drivers/mfd/hi6421-spmi-pmic.c
-@@ -0,0 +1,66 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Device driver for regulators in HISI PMIC IC
-+ *
-+ * Copyright (c) 2013 Linaro Ltd.
-+ * Copyright (c) 2011 Hisilicon.
-+ * Copyright (c) 2020-2021 Huawei Technologies Co., Ltd.
-+ */
-+
-+#include <linux/mfd/core.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/slab.h>
-+#include <linux/spmi.h>
-+
-+static const struct mfd_cell hi6421v600_devs[] = {
-+	{ .name = "hi6421v600-irq", },
-+	{ .name = "hi6421v600-regulator", },
-+};
-+
-+static const struct regmap_config regmap_config = {
-+	.reg_bits	= 16,
-+	.val_bits	= BITS_PER_BYTE,
-+	.max_register	= 0xffff,
-+	.fast_io	= true
-+};
-+
-+static int hi6421_spmi_pmic_probe(struct spmi_device *sdev)
-+{
-+	struct device *dev = &sdev->dev;
-+	struct regmap *regmap;
-+	int ret;
-+
-+	regmap = devm_regmap_init_spmi_ext(sdev, &regmap_config);
-+	if (IS_ERR(regmap))
-+		return PTR_ERR(regmap);
-+
-+	dev_set_drvdata(&sdev->dev, regmap);
-+
-+	ret = devm_mfd_add_devices(&sdev->dev, PLATFORM_DEVID_NONE,
-+				   hi6421v600_devs, ARRAY_SIZE(hi6421v600_devs),
-+				   NULL, 0, NULL);
-+	if (ret < 0)
-+		dev_err(dev, "Failed to add child devices: %d\n", ret);
-+
-+	return ret;
-+}
-+
-+static const struct of_device_id pmic_spmi_id_table[] = {
-+	{ .compatible = "hisilicon,hi6421-spmi" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, pmic_spmi_id_table);
-+
-+static struct spmi_driver hi6421_spmi_pmic_driver = {
-+	.driver = {
-+		.name	= "hi6421-spmi-pmic",
-+		.of_match_table = pmic_spmi_id_table,
-+	},
-+	.probe	= hi6421_spmi_pmic_probe,
-+};
-+module_spmi_driver(hi6421_spmi_pmic_driver);
-+
-+MODULE_DESCRIPTION("HiSilicon Hi6421v600 SPMI PMIC driver");
-+MODULE_LICENSE("GPL v2");
-diff --git a/drivers/staging/Kconfig b/drivers/staging/Kconfig
-index c8eaae6412bb..03ee99d98945 100644
---- a/drivers/staging/Kconfig
-+++ b/drivers/staging/Kconfig
-@@ -102,6 +102,4 @@ source "drivers/staging/qlge/Kconfig"
- 
- source "drivers/staging/wfx/Kconfig"
- 
--source "drivers/staging/hikey9xx/Kconfig"
--
- endif # STAGING
-diff --git a/drivers/staging/Makefile b/drivers/staging/Makefile
-index 818b6f964369..9a4c0e6f34d5 100644
---- a/drivers/staging/Makefile
-+++ b/drivers/staging/Makefile
-@@ -41,4 +41,3 @@ obj-$(CONFIG_XIL_AXIS_FIFO)	+= axis-fifo/
- obj-$(CONFIG_FIELDBUS_DEV)     += fieldbus/
- obj-$(CONFIG_QLGE)		+= qlge/
- obj-$(CONFIG_WFX)		+= wfx/
--obj-y				+= hikey9xx/
-diff --git a/drivers/staging/hikey9xx/Kconfig b/drivers/staging/hikey9xx/Kconfig
-deleted file mode 100644
-index 9f53df9068fe..000000000000
---- a/drivers/staging/hikey9xx/Kconfig
-+++ /dev/null
-@@ -1,19 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0
--
--# to be placed at drivers/mfd
--config MFD_HI6421_SPMI
--	tristate "HiSilicon Hi6421v600 SPMI PMU/Codec IC"
--	depends on HAS_IOMEM
--	depends on OF
--	depends on SPMI
--	select MFD_CORE
--	select REGMAP_SPMI
--	help
--	  Add support for HiSilicon Hi6421v600 SPMI PMIC. Hi6421 includes
--	  multi-functions, such as regulators, RTC, codec, Coulomb counter,
--	  etc.
--
--	  This driver includes core APIs _only_. You have to select
--	  individual components like voltage regulators under corresponding
--	  menus in order to enable them.
--	  We communicate with the Hi6421v600 via a SPMI bus.
-diff --git a/drivers/staging/hikey9xx/Makefile b/drivers/staging/hikey9xx/Makefile
-deleted file mode 100644
-index e3108d7dd849..000000000000
---- a/drivers/staging/hikey9xx/Makefile
-+++ /dev/null
-@@ -1,3 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0
--
--obj-$(CONFIG_MFD_HI6421_SPMI)		+= hi6421-spmi-pmic.o
-diff --git a/drivers/staging/hikey9xx/TODO b/drivers/staging/hikey9xx/TODO
-deleted file mode 100644
-index 65e7996a3066..000000000000
---- a/drivers/staging/hikey9xx/TODO
-+++ /dev/null
-@@ -1,5 +0,0 @@
--ToDo list:
--
--- Port other drivers needed by Hikey 960/970;
--- Test drivers on Hikey 960;
--- Validate device tree bindings.
-diff --git a/drivers/staging/hikey9xx/hi6421-spmi-pmic.c b/drivers/staging/hikey9xx/hi6421-spmi-pmic.c
-deleted file mode 100644
-index c9c0c3d7011f..000000000000
---- a/drivers/staging/hikey9xx/hi6421-spmi-pmic.c
-+++ /dev/null
-@@ -1,66 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0
--/*
-- * Device driver for regulators in HISI PMIC IC
-- *
-- * Copyright (c) 2013 Linaro Ltd.
-- * Copyright (c) 2011 Hisilicon.
-- * Copyright (c) 2020-2021 Huawei Technologies Co., Ltd.
-- */
--
--#include <linux/mfd/core.h>
--#include <linux/module.h>
--#include <linux/platform_device.h>
--#include <linux/regmap.h>
--#include <linux/slab.h>
--#include <linux/spmi.h>
--
--static const struct mfd_cell hi6421v600_devs[] = {
--	{ .name = "hi6421v600-irq", },
--	{ .name = "hi6421v600-regulator", },
--};
--
--static const struct regmap_config regmap_config = {
--	.reg_bits	= 16,
--	.val_bits	= BITS_PER_BYTE,
--	.max_register	= 0xffff,
--	.fast_io	= true
--};
--
--static int hi6421_spmi_pmic_probe(struct spmi_device *sdev)
--{
--	struct device *dev = &sdev->dev;
--	struct regmap *regmap;
--	int ret;
--
--	regmap = devm_regmap_init_spmi_ext(sdev, &regmap_config);
--	if (IS_ERR(regmap))
--		return PTR_ERR(regmap);
--
--	dev_set_drvdata(&sdev->dev, regmap);
--
--	ret = devm_mfd_add_devices(&sdev->dev, PLATFORM_DEVID_NONE,
--				   hi6421v600_devs, ARRAY_SIZE(hi6421v600_devs),
--				   NULL, 0, NULL);
--	if (ret < 0)
--		dev_err(dev, "Failed to add child devices: %d\n", ret);
--
--	return ret;
--}
--
--static const struct of_device_id pmic_spmi_id_table[] = {
--	{ .compatible = "hisilicon,hi6421-spmi" },
--	{ }
--};
--MODULE_DEVICE_TABLE(of, pmic_spmi_id_table);
--
--static struct spmi_driver hi6421_spmi_pmic_driver = {
--	.driver = {
--		.name	= "hi6421-spmi-pmic",
--		.of_match_table = pmic_spmi_id_table,
--	},
--	.probe	= hi6421_spmi_pmic_probe,
--};
--module_spmi_driver(hi6421_spmi_pmic_driver);
--
--MODULE_DESCRIPTION("HiSilicon Hi6421v600 SPMI PMIC driver");
--MODULE_LICENSE("GPL v2");
-diff --git a/drivers/staging/hikey9xx/hisilicon,hi6421-spmi-pmic.yaml b/drivers/staging/hikey9xx/hisilicon,hi6421-spmi-pmic.yaml
-deleted file mode 100644
-index b06131504d75..000000000000
---- a/drivers/staging/hikey9xx/hisilicon,hi6421-spmi-pmic.yaml
-+++ /dev/null
-@@ -1,138 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0
--%YAML 1.2
-----
--$id: http://devicetree.org/schemas/mfd/hisilicon,hi6421-spmi-pmic.yaml#
--$schema: http://devicetree.org/meta-schemas/core.yaml#
--
--title: HiSilicon 6421v600 SPMI PMIC
--
--maintainers:
--  - Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
--
--description: |
--  HiSilicon 6421v600 should be connected inside a MIPI System Power Management
--  (SPMI) bus. It provides interrupts and power supply.
--
--  The GPIO and interrupt settings are represented as part of the top-level PMIC
--  node.
--
--  The SPMI controller part is provided by
--  Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
--
--properties:
--  $nodename:
--    pattern: "pmic@[0-9a-f]"
--
--  compatible:
--    const: hisilicon,hi6421v600-spmi
--
--  reg:
--    maxItems: 1
--
--  '#interrupt-cells':
--    const: 2
--
--  interrupt-controller: true
--
--  interrupts:
--    maxItems: 1
--    description: GPIO used for IRQs
--
--  regulators:
--    type: object
--
--    additionalProperties: false
--
--    properties:
--      '#address-cells':
--        const: 1
--
--      '#size-cells':
--        const: 0
--
--    patternProperties:
--      '^(ldo|LDO)[0-9]+$':
--        type: object
--
--        $ref: "/schemas/regulator/regulator.yaml#"
--
--        unevaluatedProperties: false
--
--required:
--  - compatible
--  - reg
--  - regulators
--
--additionalProperties: false
--
--examples:
--  - |
--    /* pmic properties */
--
--    pmic: pmic@0 {
--      compatible = "hisilicon,hi6421v600-spmi";
--      reg = <0 0>;
--
--      #interrupt-cells = <2>;
--      interrupt-controller;
--      interrupts = <&gpio28 0 0>;
--
--      regulators {
--        #address-cells = <1>;
--        #size-cells = <0>;
--
--        ldo3: LDO3 {
--          regulator-name = "ldo3";
--          regulator-min-microvolt = <1500000>;
--          regulator-max-microvolt = <2000000>;
--          regulator-boot-on;
--        };
--
--        ldo4: LDO4 {
--          regulator-name = "ldo4";
--          regulator-min-microvolt = <1725000>;
--          regulator-max-microvolt = <1900000>;
--          regulator-boot-on;
--        };
--
--        ldo9: LDO9 {
--          regulator-name = "ldo9";
--          regulator-min-microvolt = <1750000>;
--          regulator-max-microvolt = <3300000>;
--          regulator-boot-on;
--        };
--
--        ldo15: LDO15 {
--          regulator-name = "ldo15";
--          regulator-min-microvolt = <1800000>;
--          regulator-max-microvolt = <3000000>;
--          regulator-always-on;
--        };
--
--        ldo16: LDO16 {
--          regulator-name = "ldo16";
--          regulator-min-microvolt = <1800000>;
--          regulator-max-microvolt = <3000000>;
--          regulator-boot-on;
--        };
--
--        ldo17: LDO17 {
--          regulator-name = "ldo17";
--          regulator-min-microvolt = <2500000>;
--          regulator-max-microvolt = <3300000>;
--        };
--
--        ldo33: LDO33 {
--          regulator-name = "ldo33";
--          regulator-min-microvolt = <2500000>;
--          regulator-max-microvolt = <3300000>;
--          regulator-boot-on;
--        };
--
--        ldo34: LDO34 {
--          regulator-name = "ldo34";
--          regulator-min-microvolt = <2600000>;
--          regulator-max-microvolt = <3300000>;
--        };
--      };
--    };
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
