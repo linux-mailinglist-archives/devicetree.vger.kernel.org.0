@@ -2,195 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C953A3CEC4E
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 22:18:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36E803CED29
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 22:29:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355977AbhGSRbN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jul 2021 13:31:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48082 "EHLO
+        id S1347884AbhGSRrg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jul 2021 13:47:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380066AbhGSR1g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 13:27:36 -0400
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 844B5C0613B8;
-        Mon, 19 Jul 2021 10:50:57 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id x13-20020a17090a46cdb0290175cf22899cso509358pjg.2;
-        Mon, 19 Jul 2021 11:06:29 -0700 (PDT)
+        with ESMTP id S1382410AbhGSRjU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 13:39:20 -0400
+Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34B39C014B35
+        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 10:59:37 -0700 (PDT)
+Received: by mail-qv1-xf2f.google.com with SMTP id ay16so8810720qvb.12
+        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 11:14:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=UFXqr9SBbhGLc4gzBlPZyX7QfeDsbpHVJ8qn3lIpRcI=;
-        b=hDJb7GZOq8GJ3QesKXcm8D4HGjcYRUSccp+zOnu3stSWzoSbwWdFUcF4oeTdnjJD+7
-         pyWO92788icz6+Ex4H6Jms+06bdPPprmtu0FbcbXGBQYCgK+AgQ/eJpwsEFoZRQ7nDB9
-         OPLBofOxyDkp2Ycu1HtaTfh4auhT8fx+uMlr/OVJaLCSrKYtEhHw/lmIhc654izW0Yug
-         m7C5vGKrj6TnmkCrwDdhP0VN5bPmUit/nPbaPyvmw2e423JaJv9H95Fcf5yHShRcV9yl
-         NJ+Fu4DQkkFsKCZ6EVQGvPXdHp47cHm27wmQpzMdwQGPBYm4juSHnECXSquqZl/d+q3m
-         shSg==
+        bh=lH1/eUIRJBS9qo5uiyGnwLYn2LP8i1GLm+MXIIPdtFA=;
+        b=MMywfy/BjMCfuhOHJWVkR2S7MSpXQaD30pO0J48pVARLFONKSLegXecUraLMETriO6
+         gbQzmBf42qO8Wk7GiQ0MQVadTMbn7lAFxheoEkJlR/VLviydY5NEVr+nuhP1sf+7Uq92
+         lXlz42fSV5nmP5zspiturG6yOealg7ndxHdXU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=UFXqr9SBbhGLc4gzBlPZyX7QfeDsbpHVJ8qn3lIpRcI=;
-        b=rMqwSNworjiUBWZ6T+q1zQ4dtuPbK4ST2e5MscWhlkUj7W6s+sjh7G/xV+tjQjKl8A
-         iWD3JEIwDyCL82uTCiJMeJmBHdujBCtPsHgrBLj1/R9UPA2T5pj0/CkrO5mnJfEoeCh6
-         PyBT5+TZY9HHJFP4txUTSs9Jpwr5s2TxFpDBzTKQC1eBM3raRD3AA8xt/JtL3KAXahWN
-         l23X/w0/9QYBOCSg1kOF+9FKhxyRJK8VR9E5+QmRqzT4kHXwCfKQdX3w7FBoKR4CJwAM
-         XYyDyWblmgu4ueqQTMWK8iAZmh2ZaoxkHFrxarbA6Z0EpMcFSof2tSasyZ24hil2jFOy
-         rQXw==
-X-Gm-Message-State: AOAM531LWR345cxnlDXdCv/zU4IfKPdM+mLhGhrB3cs6k1jtEshMvUrM
-        aRFRlFCOmhvHBgAid/8c3e2z0SI5rXi8wSpITb8=
-X-Google-Smtp-Source: ABdhPJxdRRZh/m5iXvd5TO5QnKWMWgOX5NaVwlpP7S1iqPREf00DXgRNc7A8x7iF0YDnkfYH8TbSPQmZ4UPHAJ3L5LY=
-X-Received: by 2002:a17:90b:3647:: with SMTP id nh7mr26035146pjb.228.1626717988829;
- Mon, 19 Jul 2021 11:06:28 -0700 (PDT)
+        bh=lH1/eUIRJBS9qo5uiyGnwLYn2LP8i1GLm+MXIIPdtFA=;
+        b=ZlnlmYcY+2wTFZIokQqD2dg6ol/QnQ4b+axlsy3Q3zln0sImqAvQDj0iAUJPZXY6t7
+         RjlhU816wfcQP1VUbXv6fgvVK4AyePEEbOO+sTiy6bAN6LMggTxbs70JXwlzPGKMHAdp
+         AgwewIorxk7G+9jp7V/C28HB3S4xvw8x82i++d64oHc8BvOpNGnxfKwG8syN3jq50oNh
+         0SDRihjvuh2EAexbLUwoYQmFNBs9BXWcfzltO3fU0InxQvmw414kqhXYGQOhmJnELxdD
+         gS1hx7mVUJfcrvGQCKOfD83zisGijg5/4KutugdMM0EsX+NL07SsFJF2NfWJ/RW6BNs5
+         +LUQ==
+X-Gm-Message-State: AOAM531A/Gq1j/NpszL+zO+Xprw3JI9yQNb4S6Rr9qgx8XAMYEWZHYOT
+        cfconMS1HXjhObu8BSw8AOmcxEyFJZNTQg==
+X-Google-Smtp-Source: ABdhPJylzYFeU13uN/a3Rptl4v+Hbxxq9cbW8PM9QeECEmy/doDhJhu0bkapqSeJkKzXmAQFa6okVg==
+X-Received: by 2002:a0c:fb03:: with SMTP id c3mr26378798qvp.19.1626718468287;
+        Mon, 19 Jul 2021 11:14:28 -0700 (PDT)
+Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com. [209.85.219.53])
+        by smtp.gmail.com with ESMTPSA id y24sm9072222qkj.4.2021.07.19.11.14.28
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Jul 2021 11:14:28 -0700 (PDT)
+Received: by mail-qv1-f53.google.com with SMTP id ay16so8810703qvb.12
+        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 11:14:28 -0700 (PDT)
+X-Received: by 2002:a05:6102:144:: with SMTP id a4mr24577620vsr.29.1626718055423;
+ Mon, 19 Jul 2021 11:07:35 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210719112156.27087-1-stephan@gerhold.net> <20210719112156.27087-4-stephan@gerhold.net>
- <CACRpkdYNqi0EDrtC3j=cu5cp17sEJ6_nf2KRn-hxCxgbTGhgXw@mail.gmail.com>
- <CAHp75VcsVFO2Oizpyeh53MNt2v9yD81vXp1xKCVX-U4zb-KTdg@mail.gmail.com>
- <YPWV537oN3gDpAQS@gerhold.net> <CAHp75Vdjotgi9RrmKQC4J_QQSYdRWwp+-8aHGkChx6VFLPDh-Q@mail.gmail.com>
- <YPW1xGtLyLNGKqjJ@gerhold.net>
-In-Reply-To: <YPW1xGtLyLNGKqjJ@gerhold.net>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Mon, 19 Jul 2021 21:05:48 +0300
-Message-ID: <CAHp75VcZDSL5u2bP_ZFySmk7cPkHRycyA-+gMqSVWCpgFXhn7Q@mail.gmail.com>
-Subject: Re: [PATCH 3/4] iio: accel: bmc150: Make it possible to configure
- INT2 instead of INT1
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+References: <20210623184124.3504047-1-mka@chromium.org> <20210623114025.v13.4.Id45138610b749ff775186ac10b3d01c504ddf4f3@changeid>
+ <YPWhIX06NxpjAfoH@google.com>
+In-Reply-To: <YPWhIX06NxpjAfoH@google.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 19 Jul 2021 11:07:23 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=VgAZqQ=MqUeJuozwakRMR8_iS=3kdi-AoB_6VbarhtBw@mail.gmail.com>
+Message-ID: <CAD=FV=VgAZqQ=MqUeJuozwakRMR8_iS=3kdi-AoB_6VbarhtBw@mail.gmail.com>
+Subject: Re: [PATCH v13 4/7] arm64: defconfig: Explicitly enable USB_XHCI_PLATFORM
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>, Will Deacon <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Linux USB List <linux-usb@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
-        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>, Andy
-        Shevchenko <andy.shevchenko@gmail.com>," 
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        Nikita Travkin <nikita@trvn.ru>
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Peter Chen <peter.chen@kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Michael Walle <michael@walle.cc>, Nishanth Menon <nm@ti.com>,
+        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 19, 2021 at 8:29 PM Stephan Gerhold <stephan@gerhold.net> wrote:
+Hi,
+
+On Mon, Jul 19, 2021 at 8:58 AM Matthias Kaehlcke <mka@chromium.org> wrote:
 >
-> On Mon, Jul 19, 2021 at 07:19:05PM +0300, Andy Shevchenko wrote:
-> > On Mon, Jul 19, 2021 at 6:11 PM Stephan Gerhold <stephan@gerhold.net> wrote:
-> > > On Mon, Jul 19, 2021 at 06:01:01PM +0300, Andy Shevchenko wrote:
-> > > > On Mon, Jul 19, 2021 at 5:07 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-> > > > > On Mon, Jul 19, 2021 at 1:26 PM Stephan Gerhold <stephan@gerhold.net> wrote:
-
-...
-
-> > > > > >  #include <linux/acpi.h>
-> > > > > > +#include <linux/of_irq.h>
-> > > > > (...)
-> > > > > > +       irq_info = bmc150_accel_interrupts_int1;
-> > > > > > +       if (irq == of_irq_get_byname(dev->of_node, "INT2"))
-> > > > > > +               irq_info = bmc150_accel_interrupts_int2;
-> > > > >
-> > > > > This looks a bit DT-specific, but I don't see that ACPI has
-> > > > > named IRQs so I don't know what to do about it either.
-> > > >
-> > > > Yeah, we only have so far the (de facto) established way of naming
-> > > > GPIO based IRQs, and not IOxAPIC ones.
-> > > >
-> > > > > What does platform_get_irq_byname() do on ACPI systems?
-> > > >
-> > > > See above.
-> > > >
-> > > > > If there is no obvious fix I would leave it like this until the
-> > > > > first ACPI used needing this comes along, but I think maybe
-> > > > > Andy has suggestions.
-> > > >
-> > > > The platform_get_irq_byname() should do something similar that has
-> > > > been done in platform_get_irq() WRT ACPI.
-> > > > Here for sure the platform_get_irq_byname() or its optional variant
-> > > > should be used.
-> > >
-> > > I don't think there is a platform device here, we only have the
-> > > i2c_client or spi_device. That's why I didn't use
-> > > platform_get_irq_byname(). :)
-> > >
-> > > Is there something equivalent for I2C/SPI drivers?
-> >
-> > Not yet. You probably need to supply some code there to allow
-> > multi-IRQ devices (in resource provider agnostic way).
-> >
-> > You need to provide fwnode_get_irq_byname() to be similar with
-> > https://elixir.bootlin.com/linux/latest/source/drivers/base/property.c#L1010
-> >
-> > Then use it in the drivers.
-> >
-> > And/or integrate into frameworks somehow (something in between the
-> > lines: https://elixir.bootlin.com/linux/latest/source/drivers/i2c/i2c-core-base.c#L461).
-> >
+> Will/Catalin,
 >
-> Well, I don't think anyone has an ACPI use case for this right now so
-> it's probably better if this is done by someone who actually needs this
-> and can test it somewhere. :)
+> does this change looks good to you and could get an Acked-by?
 >
-> I actually just "copied" this approach from some other IIO drivers where
-> this is done similarly (and additionally checked the source code to make
-> sure this won't break anything for ACPI platforms).
+> If so: would it be ok to land it through the USB tree with the
+> rest of the series? It seems a conflict would be relatively
+> unlikely.
 
-I see in today's Linux Next snapshot:
+Officially I don't think you really need an Ack for most changes to
+this file. So says Will [1]:
 
-drivers/iio/accel/fxls8962af-core.c:774:        irq =
-of_irq_get_byname(of_node, "INT2");
-drivers/iio/accel/mma8452.c:1616:               irq2 =
-of_irq_get_byname(client->dev.of_node, "INT2");
-drivers/iio/gyro/fxas21002c_core.c:834: irq1 = of_irq_get_byname(np, "INT1");
-drivers/iio/imu/adis16480.c:1265:               irq =
-of_irq_get_byname(of_node, adis16480_int_pin_names[i]);
-drivers/iio/imu/bmi160/bmi160_core.c:655:       irq =
-of_irq_get_byname(of_node, "INT1");
-drivers/iio/imu/bmi160/bmi160_core.c:661:       irq =
-of_irq_get_byname(of_node, "INT2");
+> although there are a few things I really care about
+> in defconfig (e.g. things like page size!), generally speaking we don't
+> need to Ack everything that changes in there.
 
-I believe we may stop distributing this and actually start using a
-common API. I don't want this to be spread again over all IIO. Btw, I
-have LSM9DS0, which supports two INT pins for IMU and currently it
-uses hard coded pin mapping.
+In case it helps, you can stick my Reviewed-by on there...
 
-Side note to Jonathan, I believe the below may be (lazily) converted
-to fwnode / device properties APIs.
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
 
-drivers/iio/adc/ab8500-gpadc.c:1041:    nchans =
-of_get_available_child_count(np);
-drivers/iio/adc/ad7124.c:747:   st->num_channels =
-of_get_available_child_count(np);
-drivers/iio/adc/berlin2-adc.c:287:      struct device_node *parent_np
-= of_get_parent(pdev->dev.of_node);
-drivers/iio/adc/qcom-pm8xxx-xoadc.c:830:        adc->nchans =
-of_get_available_child_count(np);
-drivers/iio/adc/qcom-spmi-adc5.c:650:   channel_name = of_get_property(node,
-drivers/iio/adc/qcom-spmi-adc5.c:813:   adc->nchannels =
-of_get_available_child_count(node);
-drivers/iio/adc/qcom-spmi-vadc.c:743:   vadc->nchannels =
-of_get_available_child_count(node);
-drivers/iio/adc/stm32-adc.c:1630:static int
-stm32_adc_of_get_resolution(struct iio_dev *indio_dev)
-drivers/iio/adc/stm32-adc.c:1935:       ret =
-stm32_adc_of_get_resolution(indio_dev);
-drivers/iio/adc/xilinx-xadc-core.c:1248:        chan_node =
-of_get_child_by_name(np, "xlnx,channels");
-drivers/iio/imu/adis16480.c:1293:static int
-adis16480_of_get_ext_clk_pin(struct adis16480 *st,
-drivers/iio/imu/adis16480.c:1328:       pin =
-adis16480_of_get_ext_clk_pin(st, of_node);
-drivers/iio/imu/inv_mpu6050/inv_mpu_i2c.c:68:           mux_node =
-of_get_child_by_name(dev->of_node, "i2c-gate")
-;
-drivers/iio/industrialio-core.c:1877:   label =
-of_get_property(indio_dev->dev.of_node, "label", NULL);
-drivers/iio/inkern.c:228:               if (np && !of_get_property(np,
-"io-channel-ranges", NULL))
-drivers/iio/temperature/ltc2983.c:1275: st->num_channels =
-of_get_available_child_count(dev->of_node);
-
-
--- 
-With Best Regards,
-Andy Shevchenko
+[1] https://lore.kernel.org/r/20201208160029.GA6461@willie-the-truck
