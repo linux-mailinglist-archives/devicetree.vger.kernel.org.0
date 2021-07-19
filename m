@@ -2,114 +2,354 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 36E803CED29
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 22:29:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E17F93CED28
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 22:29:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347884AbhGSRrg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jul 2021 13:47:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51368 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1382410AbhGSRjU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 13:39:20 -0400
-Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34B39C014B35
-        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 10:59:37 -0700 (PDT)
-Received: by mail-qv1-xf2f.google.com with SMTP id ay16so8810720qvb.12
-        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 11:14:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lH1/eUIRJBS9qo5uiyGnwLYn2LP8i1GLm+MXIIPdtFA=;
-        b=MMywfy/BjMCfuhOHJWVkR2S7MSpXQaD30pO0J48pVARLFONKSLegXecUraLMETriO6
-         gbQzmBf42qO8Wk7GiQ0MQVadTMbn7lAFxheoEkJlR/VLviydY5NEVr+nuhP1sf+7Uq92
-         lXlz42fSV5nmP5zspiturG6yOealg7ndxHdXU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lH1/eUIRJBS9qo5uiyGnwLYn2LP8i1GLm+MXIIPdtFA=;
-        b=ZlnlmYcY+2wTFZIokQqD2dg6ol/QnQ4b+axlsy3Q3zln0sImqAvQDj0iAUJPZXY6t7
-         RjlhU816wfcQP1VUbXv6fgvVK4AyePEEbOO+sTiy6bAN6LMggTxbs70JXwlzPGKMHAdp
-         AgwewIorxk7G+9jp7V/C28HB3S4xvw8x82i++d64oHc8BvOpNGnxfKwG8syN3jq50oNh
-         0SDRihjvuh2EAexbLUwoYQmFNBs9BXWcfzltO3fU0InxQvmw414kqhXYGQOhmJnELxdD
-         gS1hx7mVUJfcrvGQCKOfD83zisGijg5/4KutugdMM0EsX+NL07SsFJF2NfWJ/RW6BNs5
-         +LUQ==
-X-Gm-Message-State: AOAM531A/Gq1j/NpszL+zO+Xprw3JI9yQNb4S6Rr9qgx8XAMYEWZHYOT
-        cfconMS1HXjhObu8BSw8AOmcxEyFJZNTQg==
-X-Google-Smtp-Source: ABdhPJylzYFeU13uN/a3Rptl4v+Hbxxq9cbW8PM9QeECEmy/doDhJhu0bkapqSeJkKzXmAQFa6okVg==
-X-Received: by 2002:a0c:fb03:: with SMTP id c3mr26378798qvp.19.1626718468287;
-        Mon, 19 Jul 2021 11:14:28 -0700 (PDT)
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com. [209.85.219.53])
-        by smtp.gmail.com with ESMTPSA id y24sm9072222qkj.4.2021.07.19.11.14.28
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jul 2021 11:14:28 -0700 (PDT)
-Received: by mail-qv1-f53.google.com with SMTP id ay16so8810703qvb.12
-        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 11:14:28 -0700 (PDT)
-X-Received: by 2002:a05:6102:144:: with SMTP id a4mr24577620vsr.29.1626718055423;
- Mon, 19 Jul 2021 11:07:35 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210623184124.3504047-1-mka@chromium.org> <20210623114025.v13.4.Id45138610b749ff775186ac10b3d01c504ddf4f3@changeid>
- <YPWhIX06NxpjAfoH@google.com>
-In-Reply-To: <YPWhIX06NxpjAfoH@google.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 19 Jul 2021 11:07:23 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VgAZqQ=MqUeJuozwakRMR8_iS=3kdi-AoB_6VbarhtBw@mail.gmail.com>
-Message-ID: <CAD=FV=VgAZqQ=MqUeJuozwakRMR8_iS=3kdi-AoB_6VbarhtBw@mail.gmail.com>
-Subject: Re: [PATCH v13 4/7] arm64: defconfig: Explicitly enable USB_XHCI_PLATFORM
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
+        id S1347544AbhGSRrc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jul 2021 13:47:32 -0400
+Received: from foss.arm.com ([217.140.110.172]:40272 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1356947AbhGSRec (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Jul 2021 13:34:32 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D0C1C6D;
+        Mon, 19 Jul 2021 11:15:09 -0700 (PDT)
+Received: from [10.57.36.146] (unknown [10.57.36.146])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 525573F73D;
+        Mon, 19 Jul 2021 11:15:07 -0700 (PDT)
+Subject: Re: [PATCH v4 3/3] iommu: dart: Add DART iommu driver
+To:     Sven Peter <sven@svenpeter.dev>, Will Deacon <will@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>
+Cc:     Arnd Bergmann <arnd@kernel.org>,
+        Rouven Czerwinski <r.czerwinski@pengutronix.de>,
+        devicetree@vger.kernel.org, Marc Zyngier <maz@kernel.org>,
+        Hector Martin <marcan@marcan.st>, linux-kernel@vger.kernel.org,
+        Petr Mladek via iommu <iommu@lists.linux-foundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>, Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Michael Walle <michael@walle.cc>, Nishanth Menon <nm@ti.com>,
-        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+        Alexander Graf <graf@amazon.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        linux-arm-kernel@lists.infradead.org,
+        Stan Skowronek <stan@corellium.com>
+References: <20210627143405.77298-1-sven@svenpeter.dev>
+ <20210627143405.77298-4-sven@svenpeter.dev>
+ <f3574c75-db2d-47fc-bda5-0f0f627fb524@arm.com>
+ <30b00cf1-6366-4075-be8a-992fb1778306@www.fastmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <69259ab4-0da9-ddc7-97b0-9ef1e33a39ec@arm.com>
+Date:   Mon, 19 Jul 2021 19:15:01 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
+MIME-Version: 1.0
+In-Reply-To: <30b00cf1-6366-4075-be8a-992fb1778306@www.fastmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 2021-07-15 17:41, Sven Peter via iommu wrote:
+[...]
+>>> +	u64 sw_bypass_cpu_start;
+>>> +	u64 sw_bypass_dma_start;
+>>> +	u64 sw_bypass_len;
+>>> +
+>>> +	struct list_head streams;
+>>
+>> I'm staring to think this could just be a bitmap, in a u16 even.
+> 
+> The problem is that these streams may come from two different
+> DART instances. That is required for e.g. the dwc3 controller which
+> has a weird quirk where DMA transactions go through two separate
+> DARTs with no clear pattern (e.g. some xhci control structures use the
+> first dart while other structures use the second one).
 
-On Mon, Jul 19, 2021 at 8:58 AM Matthias Kaehlcke <mka@chromium.org> wrote:
->
-> Will/Catalin,
->
-> does this change looks good to you and could get an Acked-by?
->
-> If so: would it be ok to land it through the USB tree with the
-> rest of the series? It seems a conflict would be relatively
-> unlikely.
+Ah right, I do remember discussing that situation, but I think I 
+misinterpreted dart_domain->dart representing "the DART instance" here 
+to mean we weren't trying to accommodate that just yet.
 
-Officially I don't think you really need an Ack for most changes to
-this file. So says Will [1]:
+> Both of them need to point to the same pagetable.
+> In the device tree the node will have an entry like this:
+> 
+> dwc3_0: usb@382280000{
+>     ...
+>     iommus = <&dwc3_0_dart_0 0>, <&dwc3_0_dart_1 1>;
+> };
+> 
+> There's no need for a linked list though once I do this properly with
+> groups. I can just use an array allocated when the first device is
+> attached, which just contains apple_dart* and streamid values.
+> 
+> 
+>>
+>>> +
+>>> +	spinlock_t lock;
+>>> +
+>>> +	struct iommu_domain domain;
+>>> +};
+>>> +
+>>> +/*
+>>> + * This structure is attached to devices with dev_iommu_priv_set() on of_xlate
+>>> + * and contains a list of streams bound to this device as defined in the
+>>> + * device tree. Multiple DART instances can be attached to a single device
+>>> + * and each stream is identified by its stream id.
+>>> + * It's usually reference by a pointer called *cfg.
+>>> + *
+>>> + * A dynamic array instead of a linked list is used here since in almost
+>>> + * all cases a device will just be attached to a single stream and streams
+>>> + * are never removed after they have been added.
+>>> + *
+>>> + * @num_streams: number of streams attached
+>>> + * @streams: array of structs to identify attached streams and the device link
+>>> + *           to the iommu
+>>> + */
+>>> +struct apple_dart_master_cfg {
+>>> +	int num_streams;
+>>> +	struct {
+>>> +		struct apple_dart *dart;
+>>> +		u32 sid;
+>>
+>> Can't you use the fwspec for this?
+> 
+> 
+> I'd be happy to use the fwspec code if that's somehow possible.
+> I'm not sure how though since I need to store both the reference to the DART
+> _and_ to the stream id. As far as I can tell the fwspec code would only allow
+> to store the stream ids.
+> (see also the previous comment regarding the dwc3 node which requires stream
+> ids from two separate DART instances)
 
-> although there are a few things I really care about
-> in defconfig (e.g. things like page size!), generally speaking we don't
-> need to Ack everything that changes in there.
+Hmm, yes, as above I was overlooking that, although there are still 
+various ideas that come to mind; the question becomes whether they're 
+actually worthwhile or just too-clever-for-their-own-good hacks. The 
+exact format of fwspec->ids is not fixed (other than the ACPI IORT code 
+having a common understanding with the Arm SMMU drivers) so in principle 
+you could munge some sort of DART instance index or indeed anything, but 
+if it remains cleaner to manage your own data internally then by all 
+means keep doing that.
 
-In case it helps, you can stick my Reviewed-by on there...
+>>> +		struct device_link *link;
+>>
+>> Is it necessary to use stateless links, or could you use
+>> DL_FLAG_AUTOREMOVE_SUPPLIER and not have to keep track of them manually?
+> 
+> I'll just use DL_FLAG_AUTOREMOVE_SUPPLIER. No idea why I went for stateless links.
+> 
+>>
+> [...]
+>>> +	/* restore stream identity map */
+>>> +	writel(0x03020100, dart->regs + DART_STREAM_REMAP);
+>>> +	writel(0x07060504, dart->regs + DART_STREAM_REMAP + 4);
+>>> +	writel(0x0b0a0908, dart->regs + DART_STREAM_REMAP + 8);
+>>> +	writel(0x0f0e0d0c, dart->regs + DART_STREAM_REMAP + 12);
+>>
+>> Any hint of what the magic numbers mean?
+> 
+> Yes, it's just 0,1,2,3...,0xe,0xf but I can't do 8bit writes to the bus
+> and 32 bit writes then require these slightly awkward "swapped" numbers.
+> I'll add a comment since it's not obvious at first glance.
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Sure, I guessed that much from "identity map" - it was more a question 
+of why that means 0x03020100... rather than, say, 0x0c0d0e0f... or 
+0x76543210..., and perhaps the reason for "restoring" it in the first place.
 
-[1] https://lore.kernel.org/r/20201208160029.GA6461@willie-the-truck
+[...]
+>>> +	/*
+>>> +	 * we can't mix and match DARTs that support bypass mode with those who don't
+>>> +	 * because the iova space in fake bypass mode generally has an offset
+>>> +	 */
+>>
+>> Erm, something doesn't sound right there... IOMMU_DOMAIN_IDENTITY should
+>> be exactly what it says, regardless of how it's implemented. If you
+>> can't provide a true identity mapping then you're probably better off
+>> not pretending to support them in the first place.
+> 
+> Some background: the PCIe DART only supports a 32bit VA space but RAM
+> on these machines starts at 0x8_0000_0000. I have something like
+>    dma-ranges = <0x42000000 0 0 0x8 0 0 0xffff0000>;
+> in the pcie nodes to add that offset to dma addresses.
+> 
+> What I want to do here then is to setup an identity mapping with respect
+> to the DMA layer understanding of addresses encoded in bus_dma_region.
+> Now this will always just be a constant offset of 0x8_0000_0000 for
+> all M1s but I didn't want to hardcode that.
+> The code here is just there to guard against a situation where someone
+> somehow manages to attach two devices with different offsets to the same
+> domain.
+
+Urgh, *now* I think I get it - the addressing limitation WRT the 
+physical memory map layout had also slipped my mind. So you describe the 
+RC *as if* it had a physical bus offset, rely on iommu-dma ignoring it 
+when active (which is more by luck than design - we don't expect to ever 
+see a device with a real hard-wired offset upstream of an IOMMU, 
+although I did initially try to support it back in the very early days), 
+and otherwise statically program a translation such that anyone else who 
+*does* respect bus_dma_regions finds things work as expected.
+
+That actually seems like an even stronger argument for having the 
+fake-bypass table belong to the DART rather than the domain, and at that 
+point you shouldn't even need the mismatch restriction, since as long as 
+you haven't described the fake offset for any devices who *can* achieve 
+real bypass, then "attach to an identity domain" simply comes down to 
+doing the appropriate thing for each individual stream, regardless of 
+whether it's the same nominal identity domain that another device is 
+using or a distinct one (it's highly unlikely that two groups would ever 
+get attached to one identity domain rather than simply having their own 
+anyway, but it is technically possible).
+
+> If that's not how the abstraction is supposed to work and/or too big of a hack
+> I'll just remove the software bypass mode altogether.
+> PCIe won't work on 4k kernels then but the only people using this so far
+> build their own kernels with patches either way and won't complain.
+> And by the time Linux will actually be useful for "normal" setups
+> the dma-iommu layer can hopefully just handle a larger page granularity.
+
+It's certainly... "creative", and TBH I don't hate it (in a "play the 
+hand you've been given" kind of way), but the one significant downside 
+is that if the DART driver isn't loaded for any reason, PCI DMA will 
+look like it should be usable but then just silently (or not so 
+silently) fail.
+
+FWIW if you do want to keep the option open, I'd be inclined to have the 
+DT just give an "honest" description of just the 32-bit limitation, then 
+have the DART driver's .probe_device sneakily modify the bus_dma_region 
+to match the relevant fake-bypass table as appropriate. It's possible 
+other folks might hate that even more though :D
+
+>>> +	if (WARN_ON(domain->type == IOMMU_DOMAIN_IDENTITY &&
+>>> +		    (domain->dart->supports_bypass != dart->supports_bypass)))
+>>> +		return -EINVAL;
+>>> +
+>>> +	list_for_each_entry(stream, &domain->streams, stream_head) {
+>>> +		if (stream->dart == dart && stream->sid == sid) {
+>>> +			stream->num_devices++;
+>>> +			return 0;
+>>> +		}
+>>> +	}
+>>> +
+>>> +	spin_lock_irqsave(&dart->lock, flags);
+>>> +
+>>> +	if (WARN_ON(dart->used_sids & BIT(sid))) {
+>>> +		ret = -EINVAL;
+>>> +		goto error;
+>>> +	}
+>>> +
+>>> +	stream = kzalloc(sizeof(*stream), GFP_ATOMIC);
+>>> +	if (!stream) {
+>>> +		ret = -ENOMEM;
+>>> +		goto error;
+>>> +	}
+>>
+>> Couldn't you do this outside the lock? (If, calling back to other
+>> comments, it can't get refactored out of existence anyway)
+> 
+> Probably, but I'll first see if I can just refactor it away.
+
+Actually I missed that we're already under dart_domain->lock at this 
+point anyway, so it's not going to make much difference, but it does 
+mean that the spin_lock_irqsave() above could just be spin_lock(), 
+unless it's possible to relax the domain locking a bit such that we 
+don't have to do the whole domain init with IRQs masked.
+
+[...]
+>>> +static struct iommu_domain *apple_dart_domain_alloc(unsigned int type)
+>>> +{
+>>> +	struct apple_dart_domain *dart_domain;
+>>> +
+>>> +	if (type != IOMMU_DOMAIN_DMA && type != IOMMU_DOMAIN_UNMANAGED &&
+>>> +	    type != IOMMU_DOMAIN_IDENTITY && type != IOMMU_DOMAIN_BLOCKED)
+>>> +		return NULL;
+>>
+>> I want to say there's not much point in that, but then I realise I've
+>> spent the last couple of days writing patches to add a new domain type :)
+> 
+> Hah! Just because I'm curious: What is that new domain type going to be? :)
+
+Splitting IOMMU_DOMAIN_DMA into two to replace iommu_dma_strict being an 
+orthogonal thing.
+
+[...]
+>>> +static int apple_dart_of_xlate(struct device *dev, struct of_phandle_args *args)
+>>> +{
+>>> +	struct platform_device *iommu_pdev = of_find_device_by_node(args->np);
+>>> +	struct apple_dart_master_cfg *cfg = dev_iommu_priv_get(dev);
+>>> +	unsigned int num_streams = cfg ? cfg->num_streams : 0;
+>>> +	struct apple_dart_master_cfg *cfg_new;
+>>> +	struct apple_dart *dart = platform_get_drvdata(iommu_pdev);
+>>> +
+>>> +	if (args->args_count != 1)
+>>> +		return -EINVAL;
+>>> +
+>>> +	cfg_new = krealloc(cfg, struct_size(cfg, streams, num_streams + 1),
+>>> +			   GFP_KERNEL);
+>>> +	if (!cfg_new)
+>>> +		return -ENOMEM;
+>>> +
+>>> +	cfg = cfg_new;
+>>> +	dev_iommu_priv_set(dev, cfg);
+>>> +
+>>> +	cfg->num_streams = num_streams;
+>>> +	cfg->streams[cfg->num_streams].dart = dart;
+>>> +	cfg->streams[cfg->num_streams].sid = args->args[0];
+>>> +	cfg->num_streams++;
+>>
+>> Yeah, this is way too reminiscent of the fwspec code for comfort. Even
+>> if you can't use autoremove links for some reason, an array of 16
+>> device_link pointers hung off apple_dart still wins over these little
+>> pointer-heavy structures if you need more than a few of them.
+> 
+> I can get rid of the links, but I'll still need some way to store
+> both the apple_dart and the sid here. Like mentioned above, I'll
+> be happy to reuse the fwspec code but I don't see how yet.
+
+As before, if you can fit in some kind of DART instance identifier which 
+isn't impractical to unpack than it makes sense to use the fwspec since 
+it's already there. However if you still need to allocate something 
+per-device rather than just stashing an existing pointer in iommu_priv, 
+then you may as well keep everything together there. If the worst known 
+case could still fit in just two DART pointers and two 64-bit bitmaps, 
+I'd be inclined to just have that as a fixed structure and save all the 
+extra bother - you're not cross-architecture like the fwspec code, and 
+arm64's minimum kmalloc granularity has just gone back up to 128 bytes 
+(but even at 64 bytes you'd have had plenty of room).
+
+[...]
+>>> +static int apple_dart_remove(struct platform_device *pdev)
+>>> +{
+>>> +	struct apple_dart *dart = platform_get_drvdata(pdev);
+>>> +
+>>> +	devm_free_irq(dart->dev, dart->irq, dart);
+>>> +
+>>> +	iommu_device_unregister(&dart->iommu);
+>>> +	iommu_device_sysfs_remove(&dart->iommu);
+>>> +
+>>> +	clk_bulk_disable(dart->num_clks, dart->clks);
+>>> +	clk_bulk_unprepare(dart->num_clks, dart->clks);
+>>
+>> Ditto.
+>>
+>> And again the bus ops are still installed - that'll get really fun if
+>> this is a module unload...
+> 
+> Ugh, yeah. I'll fix that as well. I'll have to see how to make this work
+> correctly with multiple DART instances. I guess I should only remove the
+> bus ops once the last one is removed. Now that I think about it, this
+> could also get tricky in the cleanup paths of apple_dart_probe.
+> 
+> Maybe just add a module_init that sets up the bus ops when it finds at
+> least one DART node and module_exit to tear them down again?
+
+Actually by this point it was late and I wasn't thinking as clearly as I 
+could have been, apologies ;)
+
+I believe a module unload is in fact the *only* time you should expect 
+to see .remove called - you want to set .suppress_bind_attrs in your 
+driver data because there's basically no way to prevent manual unbinding 
+from blowing up - so it should be fine to unconditionally clear the ops 
+at this point (being removed means you must have successfully probed, so 
+any ops must be yours).
+
+Cheers,
+Robin.
