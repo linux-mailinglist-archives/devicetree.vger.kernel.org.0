@@ -2,55 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BA203CD64D
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 16:07:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 287563CD64F
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 16:08:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240628AbhGSN04 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jul 2021 09:26:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47100 "EHLO
+        id S240817AbhGSN1w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jul 2021 09:27:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237189AbhGSN04 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 09:26:56 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DFFBC061574
-        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 06:32:09 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id x25so30336083lfu.13
-        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 07:07:35 -0700 (PDT)
+        with ESMTP id S240743AbhGSN1w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 09:27:52 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F4EBC061766
+        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 06:33:10 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id i5so30415520lfe.2
+        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 07:08:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=25cuJaEBEKHPxKW9Wmn/DayWwdlSxOuvv4yKkUjXcs8=;
-        b=e2FLHrOdToHUJfZlKL3B999htauSQadk3NqZcZbfoeqC9ZdNN15B8KfldSQPMKoI90
-         reNm5xvYU1C2DsIbD3dkNabpkAKuqFLn3srRP3LDyOikUhGR6m8Nv6NhpFr2XXSR5myi
-         fWNSzb2pEH75wNxzSktBzyBFOYzemi4c2tai8EbJji+ld1iWDR7gWT3BDw73NnXkLztG
-         icV2mFpNmzvOThZ4e+TuK4d5hxmQNieuN4VGAFxOqffoNeZG1IgzrJuZyjActMm8Cgym
-         rEaGw13mSnfjbktRW+H+lxgnjjz5Ta0Q5k7uJFQb1kNVsq7IRrJT9GC9eEEmX2/05DwB
-         wCWA==
+        bh=UXE01vhA2YBNs8+cOvqUgyYLYA05sje+2Hk/GGiPjNA=;
+        b=l7DREebwW+zshErZMc4slc258/+LuiXEe4p05Iq5JE6Qu8rzzCM26qPQfHTY38o+H0
+         g/4+yDreaIvLSKbKn7RqD94g1cktDMZ5ERW6G4PukAWTbnkv6xXOkvt/+lEdBlEjh3h/
+         UVJwlGqnfvk84UkE6iNV0LtviTLcDj7ACY6zsUNKGCx+0CU++qg13utFaERdsmx1wvsR
+         KzBmVYXkCuRqXeDG2zqIEMy3BtkHbrqilrnSDgp/vmb9Z/iI4cdFEH61RyD6SRnQS6kx
+         KdepNYWb7N9ZZbo5x5wD2992W+jYFtScJiOsEeP3Z05nhzBB/+uwTNiSYe+beJiCTcvb
+         PO5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=25cuJaEBEKHPxKW9Wmn/DayWwdlSxOuvv4yKkUjXcs8=;
-        b=t5HAfaF+8Ea/9IFeWopsbX4W5+qwQpXjsyHk6pOm84Oh4PY6u+JxBwhFZnKi1Tg9Wl
-         R+ueOTRLekvz8huSZZsVXGIqGF9hYrceB9/NN5jZXnbIhLNbsTZQ3kT/GMeORq1+ODST
-         Ex2UoOdaq95TRnQDy6npyLbYOHNz0heMjLiYbvbdSCUk0x0F8eWyYvsaTjrWE9IFAEVn
-         7+SaJvN233aO1qshJAimWKGXfbnqZ/yKH66OPpDL8ES/tRz2VX/xneyi4T1nGIVyAaAI
-         bJA/dAYPWNx9m6HRlN2aBWW4X1fu3JZuNI7+2q+BpDxjTphDCYnnJsONshNnFEWu4jE8
-         MP1Q==
-X-Gm-Message-State: AOAM530++maGlRwd5/4xokcXZ520O9rWPEa2CScH7vYLA7P6v6WanjTx
-        RJp3EaJKJofnWIQPuD7ptfiZ5I9/OuVPe5UlpyJvCQ==
-X-Google-Smtp-Source: ABdhPJzdo7jRp560SrBmxJS3LSZeaaMDmvJXBtJtl4EfPDLfqpxiIj0MLt6MVLQuVcWgpgL2vzU667KZ0+AmvfLC9SM=
-X-Received: by 2002:a05:6512:1508:: with SMTP id bq8mr18756713lfb.529.1626703654078;
- Mon, 19 Jul 2021 07:07:34 -0700 (PDT)
+        bh=UXE01vhA2YBNs8+cOvqUgyYLYA05sje+2Hk/GGiPjNA=;
+        b=Z9GMCu54h2rGqEvdJy1B4udozQ1ekhYeYuae1+65QgigWtp05Ufuv3yocDsoZBFYdV
+         f/lFIFfBehcO9XB3XQqJjisXPiqPEbUlezcXbsPw0qd7/6VDdMvjms+a+nBScC3Yh0DV
+         +ZdhMnpiKla7fuxsE+IvetYlOXbk5slnjFjk6CVfZ3R2ANsj2F0iAmRhGGqc4mAkZomv
+         RPj3BE8d/pWyydlCADPp80SVWvl1T49zPEiz7iJRW7KCDEt6MVobh9zb7uCNpcFurUHN
+         SA1u/F8io+8Cd1mAcm0qB78s8ivYlEJKSGmb9PoabQGLf7NyyhCUDdy5g7S1QZemk77p
+         64Vg==
+X-Gm-Message-State: AOAM531xGIezYS468U1kT/1tYcEIdwVMKlfTaW6m1g/qfITueYSYSSSn
+        +wi3Ml0G+tyr6V4mSL3Oi1ptmK7FASJHpqQlzeuSEQ==
+X-Google-Smtp-Source: ABdhPJwCM0b4lokV59vxYMH/WVbo+JhrOqIuCVlyKIET6X5hBzAhV0cnXcVcE+SU5OYTZroYFNq7mzps99u8E7UDMdc=
+X-Received: by 2002:a05:6512:b1d:: with SMTP id w29mr18313704lfu.291.1626703710159;
+ Mon, 19 Jul 2021 07:08:30 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210719112156.27087-1-stephan@gerhold.net> <20210719112156.27087-4-stephan@gerhold.net>
-In-Reply-To: <20210719112156.27087-4-stephan@gerhold.net>
+References: <20210719112156.27087-1-stephan@gerhold.net> <20210719112156.27087-5-stephan@gerhold.net>
+In-Reply-To: <20210719112156.27087-5-stephan@gerhold.net>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 19 Jul 2021 16:07:23 +0200
-Message-ID: <CACRpkdYNqi0EDrtC3j=cu5cp17sEJ6_nf2KRn-hxCxgbTGhgXw@mail.gmail.com>
-Subject: Re: [PATCH 3/4] iio: accel: bmc150: Make it possible to configure
- INT2 instead of INT1
+Date:   Mon, 19 Jul 2021 16:08:19 +0200
+Message-ID: <CACRpkdYaR=oyMuZjxDrmikB=1B3dZuy1rno_5SA9LfW3M_67dA@mail.gmail.com>
+Subject: Re: [PATCH 4/4] iio: accel: bmc150: Add support for BMC156
 To:     Stephan Gerhold <stephan@gerhold.net>
 Cc:     Jonathan Cameron <jic23@kernel.org>,
         Lars-Peter Clausen <lars@metafoo.de>,
@@ -71,36 +70,26 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Mon, Jul 19, 2021 at 1:26 PM Stephan Gerhold <stephan@gerhold.net> wrote:
 
-> Some Bosch accelerometers have two interrupt pins (INT1 and INT2).
-> At the moment, the driver uses only the first one, which is fine for
-> most situations. However, some boards might only have INT2 connected
-> for some reason.
+> BMC156 is another accelerometer that works just fine with the bmc150-accel
+> driver. It's very similar to BMC150 (also a accelerometer+magnetometer
+> combo) but with only one accelerometer interrupt pin. It would make sense
+> if only INT1 was exposed but someone at Bosch was crazy and decided to only
+> have an INT2 pin.
 >
-> Add the necessary bits and configuration to set up INT2. Then try
-> to detect this situation at least for device tree setups by checking
-> if the first interrupt (the one picked by the I2C/SPI core) is actually
-> named "INT2" using the interrupt-names property.
+> Try to deal with this by making use of the INT2 support introduced
+> in the previous commit and force using INT2 for BMC156. To detect
+> that we need to bring up a simplified version of the previous type IDs.
 >
-> of_irq_get_byname() returns either 0 or some error code in case
-> the driver probed without device tree, so in all other cases we fall
-> back to configuring INT1 as before.
+> Note that unlike the type IDs removed in commit c06a6aba6835
+> ("iio: accel: bmc150: Drop misleading/duplicate chip identifiers")
+> here I only add one for the special case of BMC156. Everything else
+> still happens by reading the CHIP_ID register since the chip type
+> information often is not accurate in ACPI tables.
 >
+> Tested-by: Nikita Travkin <nikita@trvn.ru> # BMC156
 > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 
->  #include <linux/acpi.h>
-> +#include <linux/of_irq.h>
-(...)
-> +       irq_info = bmc150_accel_interrupts_int1;
-> +       if (irq == of_irq_get_byname(dev->of_node, "INT2"))
-> +               irq_info = bmc150_accel_interrupts_int2;
-
-This looks a bit DT-specific, but I don't see that ACPI has
-named IRQs so I don't know what to do about it either.
-What does platform_get_irq_byname() do on ACPI systems?
-
-If there is no obvious fix I would leave it like this until the
-first ACPI used needing this comes along, but I think maybe
-Andy has suggestions.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
 Linus Walleij
