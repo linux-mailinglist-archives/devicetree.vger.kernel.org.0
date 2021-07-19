@@ -2,122 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D92973CDC30
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 17:32:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78B583CDF01
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 17:50:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242600AbhGSOvh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jul 2021 10:51:37 -0400
-Received: from mail-io1-f51.google.com ([209.85.166.51]:40841 "EHLO
-        mail-io1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245560AbhGSOry (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 10:47:54 -0400
-Received: by mail-io1-f51.google.com with SMTP id l5so20427626iok.7;
-        Mon, 19 Jul 2021 08:28:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=IosNWJDIFYVHvcY5CJfC2XiWhHfG0Sj3FdGBaUCDHHY=;
-        b=PnH27gLN7uckgiLrWUAHscWTsvDoQdrXKFKNDy5EHuwsihZWtU3NmrZDFLKMLlPnYZ
-         vbb4ufO52Q+IKZUgXFB/4fErz1MKwuGfnbSt87fl2ru4PyUcNqUepRQAvTpTBcPJdIi0
-         61MPiB47o7ujk6dAg+eEwKIQmdSDrVzS5BU7Oo6MqgX4VuI93IcBNKPwP3HmByAmDSX3
-         YCWphLJWg980GC1iww3aQHcMoKpMZwzjYqvYAZ+SJ5DdhTKX/HGd806qWoGm9/0qCkd9
-         xSGxJwolX4Um8uSSvTwGUCXfgMnQQZh3kYQnspBIt9bC6GJVU/mPYkgnskWXiM4FxR7C
-         A2nQ==
-X-Gm-Message-State: AOAM530vwfLgmKXyh/jMDsnQpMJC99UCvx2X53jpm7Oq7It5AzYufaSY
-        EFKyqXlXYfNexrQYZ/jU6g==
-X-Google-Smtp-Source: ABdhPJzUYml1EzjuWcIHNIjVXKUGRR/w3ocJdsVTxcX8xIoPgtg5b79mUrh/8Dfn0Zn0MpUFraDkiw==
-X-Received: by 2002:a6b:7619:: with SMTP id g25mr18914482iom.151.1626708481552;
-        Mon, 19 Jul 2021 08:28:01 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id r8sm10821214iov.39.2021.07.19.08.28.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Jul 2021 08:28:00 -0700 (PDT)
-Received: (nullmailer pid 1967262 invoked by uid 1000);
-        Mon, 19 Jul 2021 15:27:59 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     satya priya <skakit@codeaurora.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        kgunda@codeaurora.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <1626692855-10194-2-git-send-email-skakit@codeaurora.org>
-References: <1626692855-10194-1-git-send-email-skakit@codeaurora.org> <1626692855-10194-2-git-send-email-skakit@codeaurora.org>
-Subject: Re: [PATCH V6 1/2] dt-bindings: pinctrl: qcom-pmic-gpio: Convert qcom pmic gpio bindings to YAML
-Date:   Mon, 19 Jul 2021 09:27:59 -0600
-Message-Id: <1626708479.383201.1967261.nullmailer@robh.at.kernel.org>
+        id S1343501AbhGSPHS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jul 2021 11:07:18 -0400
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:53248 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1344111AbhGSPGC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Jul 2021 11:06:02 -0400
+Received: from pps.filterd (m0098416.ppops.net [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 16JFX6eE140285;
+        Mon, 19 Jul 2021 11:46:36 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : subject :
+ from : to : cc : date : in-reply-to : references : content-type :
+ mime-version : content-transfer-encoding; s=pp1;
+ bh=b7GcSyx+mkLk0QqQx8iWY/Hf5eNz+mncffcWuGSnLeQ=;
+ b=gaeh+ex1+QDorrp0XCx7QJTwJHQIao3Lrif1L32w7AH2QhVCXzHA51mkeJxMY0UcDIXZ
+ yk9gGaU2R9MEEI6wl+I7z8EMKQ85bqqA344GMn50zWaYWSn+p6C+rGhE1Gl17De+15I4
+ x0xple5M7EqL+vc7SrGMRTPRS04zQqqJMd08PYHo2+qFQO6Dli6zHWSgpeyQP2eLn1QT
+ 0nKuI2Nt5ePHd4Uwcz9NMOv5l77UIJ/qsIXxE0gB6CwvG55+aJ8kaoDy3FvGqComXksz
+ WLoT3T3ujJDfSVO72HsUteDsXZjgJdpZUpC0RRinJq/MY8TOJM6MEQ2jiFFKC0J0T9XZ Ow== 
+Received: from ppma04dal.us.ibm.com (7a.29.35a9.ip4.static.sl-reverse.com [169.53.41.122])
+        by mx0b-001b2d01.pphosted.com with ESMTP id 39wayn3sd2-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 19 Jul 2021 11:46:36 -0400
+Received: from pps.filterd (ppma04dal.us.ibm.com [127.0.0.1])
+        by ppma04dal.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 16JFkEpf031979;
+        Mon, 19 Jul 2021 15:46:35 GMT
+Received: from b01cxnp23034.gho.pok.ibm.com (b01cxnp23034.gho.pok.ibm.com [9.57.198.29])
+        by ppma04dal.us.ibm.com with ESMTP id 39upub0juh-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 19 Jul 2021 15:46:35 +0000
+Received: from b01ledav003.gho.pok.ibm.com (b01ledav003.gho.pok.ibm.com [9.57.199.108])
+        by b01cxnp23034.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 16JFkYO832178618
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Mon, 19 Jul 2021 15:46:34 GMT
+Received: from b01ledav003.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id AE426B206C;
+        Mon, 19 Jul 2021 15:46:34 +0000 (GMT)
+Received: from b01ledav003.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 10F02B2066;
+        Mon, 19 Jul 2021 15:46:34 +0000 (GMT)
+Received: from v0005c16 (unknown [9.211.34.96])
+        by b01ledav003.gho.pok.ibm.com (Postfix) with ESMTP;
+        Mon, 19 Jul 2021 15:46:33 +0000 (GMT)
+Message-ID: <d2e07f0beda57ffeaa31e8cf5bf28edfbd982e58.camel@linux.ibm.com>
+Subject: Re: [PATCH 1/2] spi: fsi: Reduce max transfer size to 8 bytes
+From:   Eddie James <eajames@linux.ibm.com>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        linux-spi@vger.kernel.org
+Date:   Mon, 19 Jul 2021 10:46:33 -0500
+In-Reply-To: <20210719152010.GB4174@sirena.org.uk>
+References: <20210716133915.14697-1-eajames@linux.ibm.com>
+         <20210716133915.14697-2-eajames@linux.ibm.com>
+         <20210716171936.GB4137@sirena.org.uk>
+         <81a40f8690d297ebfb6697dbea63279bcf2f24fa.camel@linux.ibm.com>
+         <20210719152010.GB4174@sirena.org.uk>
+Organization: IBM
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5 (3.28.5-16.el8) 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: 8a_ogKh5vzZr6OAO2KFAxPy0NjoIFn5Z
+X-Proofpoint-ORIG-GUID: 8a_ogKh5vzZr6OAO2KFAxPy0NjoIFn5Z
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
+ definitions=2021-07-19_05:2021-07-19,2021-07-19 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ priorityscore=1501 suspectscore=0 malwarescore=0 clxscore=1015 spamscore=0
+ impostorscore=0 phishscore=0 bulkscore=0 mlxscore=0 mlxlogscore=855
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2104190000 definitions=main-2107190090
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 19 Jul 2021 16:37:34 +0530, satya priya wrote:
-> Convert Qualcomm PMIC GPIO bindings from .txt to .yaml format.
+On Mon, 2021-07-19 at 16:20 +0100, Mark Brown wrote:
+> On Fri, Jul 16, 2021 at 01:34:38PM -0500, Eddie James wrote:
 > 
-> Signed-off-by: satya priya <skakit@codeaurora.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
-> Changes in V2:
->  - As per Rob's comments fixed bot erros.
->  - Moved this patch to end of the series so that other patches are not
->    blocked on this.
+> > Security changes in the SPI controller - in the device microcode. I
+> > can
+> > reword the commit if you like.
 > 
-> Changes in V3:
->  - As per Rob's comments, added maxItems for reg and interrupts.
->    Added reference of "pinmux-node.yaml" and "pincfg-node.yaml".
->    Made 'additionalProperties' as false.
-> 
-> Changes in V4:
->  - As per Rob's comments, added description for interrupts, defined
->    constraints for "qcom,drive-strength", dropped description for function
->    property.
-> 
-> Changes in RESEND V4:
->  - Rebased on linux-next and sent.
-> 
-> Changes in V5:
->  - Fixed Bjorn's comments on [1]
-> 
->  [1] https://lore.kernel.org/patchwork/patch/1434144/
-> 
-> Changes in V6:
->  - As per Bjorn's comments, removed formatting for description, changed
->    node name to be more specific to qcom pmic, and fixed few other minor
->    things as suggested here [2].
-> 
->  [2] https://lore.kernel.org/patchwork/patch/1452812/#1654560
-> 
->  .../devicetree/bindings/pinctrl/qcom,pmic-gpio.txt | 288 ---------------------
->  .../bindings/pinctrl/qcom,pmic-gpio.yaml           | 259 ++++++++++++++++++
->  2 files changed, 259 insertions(+), 288 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-> 
+> How will people end up running this device microcode?  Is this a bug
+> fix, or is this going to needlessly reduce performance for people
+> with
+> existing hardware?
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+The hardware is still in development. As part of the development, the
+device microcode was changed to restrict transfers. The reason for this
+restriction was "security concerns". This restriction disallows the
+loop (or branch-if-not-equal-and-increment) sequencer command. It also
+does not allow the read (or shift in if you prefer) command to specify
+the number of bytes in the command itself. Rather, the number of bits
+to shift in must be specified in a separate control register. This
+effectively means that the controller cannot transfer more than 8 bytes
+at a time.
+Therefore I suppose this is effectively a bug fix. There will be no 
+hardware available without these restrictions, so it is not a needless
+reduction in performance. Every system that can run this driver will
+run the more restrictive device microcode.
 
-yamllint warnings/errors:
+Thanks,
+Eddie
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/qcom,pm8008.example.dt.yaml: gpio@c000: compatible: ['qcom,pm8008-gpio'] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/qcom,pm8008.example.dt.yaml: gpio@c000: 'gpio-ranges' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-\ndoc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1506906
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
 
