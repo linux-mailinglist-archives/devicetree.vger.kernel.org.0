@@ -2,118 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E5163CD36D
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 13:13:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D41333CD3D6
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 13:28:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236436AbhGSK1d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jul 2021 06:27:33 -0400
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:19006 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236373AbhGSK1c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 06:27:32 -0400
-Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
-  by alexa-out.qualcomm.com with ESMTP; 19 Jul 2021 04:08:12 -0700
-X-QCInternal: smtphost
-Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
-  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 19 Jul 2021 04:08:10 -0700
-X-QCInternal: smtphost
-Received: from c-skakit-linux.ap.qualcomm.com (HELO c-skakit-linux.qualcomm.com) ([10.242.51.242])
-  by ironmsg01-blr.qualcomm.com with ESMTP; 19 Jul 2021 16:37:38 +0530
-Received: by c-skakit-linux.qualcomm.com (Postfix, from userid 2344709)
-        id 975543818; Mon, 19 Jul 2021 16:37:37 +0530 (IST)
-From:   satya priya <skakit@codeaurora.org>
-To:     Linus Walleij <linus.walleij@linaro.org>,
+        id S236314AbhGSKqS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jul 2021 06:46:18 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([81.169.146.165]:17124 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235440AbhGSKqQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 06:46:16 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1626694003;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=gOVW74tbyAb3gpoCUimfW1muG7xDS0xi+AzomYVOF2s=;
+    b=Q1R90xzwYBmb3xnp4XhNuRwakSdHofCGEOs+dBKqlGSwg4G6P/D/rkOB3dbw5+y3MG
+    FqQ2rMUCnnEGhKUdvxJEfhzxDLomkzC52XyL05udaH1Qnmym7zlCCsYlSiipLxrgaFGr
+    3oTQP+1D7GqzIisXCDiRt/1wYo/U6D+VdyJ+OXfCFC+xoWSqpSPxqhZ+HpeZ4TatAyWW
+    x+JPEnVsmNjyOla0e3UBmC+2iCyFjq2wMkLg/z2Q7PfEHT28NNOrHwJOHiekYLssY4bi
+    TgiVOipd9j/ut8G0Qga+t3J2GXS1h8tUEBTI7YtPHfaIDE557bP7bOQWJWHb4knxnIh9
+    Orcw==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXS7IYBkLahKxB4m6O43/v"
+X-RZG-CLASS-ID: mo00
+Received: from droid..
+    by smtp.strato.de (RZmta 47.28.1 DYNA|AUTH)
+    with ESMTPSA id g02a44x6JBQg27Z
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Mon, 19 Jul 2021 13:26:42 +0200 (CEST)
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     kgunda@codeaurora.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, satya priya <skakit@codeaurora.org>
-Subject: [PATCH V6 2/2] dt-bindings: pinctrl: qcom-pmic-gpio: Remove the interrupts property
-Date:   Mon, 19 Jul 2021 16:37:35 +0530
-Message-Id: <1626692855-10194-3-git-send-email-skakit@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1626692855-10194-1-git-send-email-skakit@codeaurora.org>
-References: <1626692855-10194-1-git-send-email-skakit@codeaurora.org>
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Hans de Goede <hdegoede@redhat.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Nikita Travkin <nikita@trvn.ru>,
+        Stephan Gerhold <stephan@gerhold.net>
+Subject: [PATCH 0/4] iio: accel: bmc150: Add support for INT2 and BMC156
+Date:   Mon, 19 Jul 2021 13:21:52 +0200
+Message-Id: <20210719112156.27087-1-stephan@gerhold.net>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove the interrupts property as we no longer specify it.
+This series makes it possible to set up interrupts with the BMC150 driver
+on boards where only the INT2 pin is connected (and not INT1). This is
+particularly always the case for BMC156 since for some reason it only
+has the INT2 pin and not the INT1 pin.
 
-Signed-off-by: satya priya <skakit@codeaurora.org>
-Acked-by: Rob Herring <robh@kernel.org>
----
-Changes in V5:
- - This is newly added in V5.As per Bjorn's comments on [1]
-   removed the interrupts property as it is no longer used.
+These changes were already partially discussed here:
+https://lore.kernel.org/linux-iio/YMOphuXSoODIVX06@gerhold.net/
 
- [1] https://lore.kernel.org/patchwork/patch/1434144/
+Stephan Gerhold (4):
+  dt-bindings: iio: accel: bma255: Add interrupt-names
+  dt-bindings: iio: accel: bma255: Add bosch,bmc156_accel
+  iio: accel: bmc150: Make it possible to configure INT2 instead of INT1
+  iio: accel: bmc150: Add support for BMC156
 
-Changes in V6:
- - No changes.
+ .../bindings/iio/accel/bosch,bma255.yaml      | 27 +++++++
+ drivers/iio/accel/Kconfig                     |  5 +-
+ drivers/iio/accel/bmc150-accel-core.c         | 77 +++++++++++++++----
+ drivers/iio/accel/bmc150-accel-i2c.c          | 10 ++-
+ drivers/iio/accel/bmc150-accel-spi.c          | 10 ++-
+ drivers/iio/accel/bmc150-accel.h              |  9 ++-
+ 6 files changed, 118 insertions(+), 20 deletions(-)
 
- .../bindings/pinctrl/qcom,pmic-gpio.yaml           | 28 ++++------------------
- 1 file changed, 4 insertions(+), 24 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-index 7a0d2d8..9bd01db 100644
---- a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-@@ -56,18 +56,11 @@ properties:
-   reg:
-     maxItems: 1
- 
--  interrupts:
--    minItems: 1
--    maxItems: 44
--    description:
--      Must contain an array of encoded interrupt specifiers for
--      each available GPIO
-+  interrupt-controller: true
- 
-   '#interrupt-cells':
-     const: 2
- 
--  interrupt-controller: true
--
-   gpio-controller: true
- 
-   gpio-ranges:
-@@ -87,6 +80,7 @@ required:
-   - gpio-controller
-   - '#gpio-cells'
-   - gpio-ranges
-+  - interrupt-controller
- 
- patternProperties:
-   '-state$':
-@@ -223,22 +217,8 @@ examples:
-     pm8921_gpio: gpio@150 {
-       compatible = "qcom,pm8921-gpio", "qcom,ssbi-gpio";
-       reg = <0x150 0x160>;
--      interrupts = <192 1>, <193 1>, <194 1>,
--                   <195 1>, <196 1>, <197 1>,
--                   <198 1>, <199 1>, <200 1>,
--                   <201 1>, <202 1>, <203 1>,
--                   <204 1>, <205 1>, <206 1>,
--                   <207 1>, <208 1>, <209 1>,
--                   <210 1>, <211 1>, <212 1>,
--                   <213 1>, <214 1>, <215 1>,
--                   <216 1>, <217 1>, <218 1>,
--                   <219 1>, <220 1>, <221 1>,
--                   <222 1>, <223 1>, <224 1>,
--                   <225 1>, <226 1>, <227 1>,
--                   <228 1>, <229 1>, <230 1>,
--                   <231 1>, <232 1>, <233 1>,
--                   <234 1>, <235 1>;
--
-+      interrupt-controller;
-+      #interrupt-cells = <2>;
-       gpio-controller;
-       gpio-ranges = <&pm8921_gpio 0 0 44>;
-       #gpio-cells = <2>;
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
-of Code Aurora Forum, hosted by The Linux Foundation
+2.32.0
 
