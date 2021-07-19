@@ -2,484 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 00B843CE63D
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 18:45:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 127633CE63E
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 18:45:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345746AbhGSQCt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jul 2021 12:02:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55748 "EHLO
+        id S1344267AbhGSQCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jul 2021 12:02:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352258AbhGSQB2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 12:01:28 -0400
-Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EC48C053393
-        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 08:51:51 -0700 (PDT)
-Received: by mail-oi1-x235.google.com with SMTP id y66so11867328oie.7
-        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 09:16:32 -0700 (PDT)
+        with ESMTP id S1352310AbhGSQBa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 12:01:30 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1F4CC07675C;
+        Mon, 19 Jul 2021 08:55:19 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id i16-20020a17090acf90b02901736d9d2218so319994pju.1;
+        Mon, 19 Jul 2021 09:19:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=wBautdayPzjxkhQkXV1Tl8Zugd/Ahos1Qnuyju/h69c=;
-        b=Bns8ZOHnaTzlrg/Zs/t/lb5q1qCPBTsFcWajNDpYjFGQQyTRWofX5MpX9c2D+ThE+U
-         Wt4vbOOiTZveHvPcEYByYGXAX2Gc1e5g1aglv4xVpdpWDFiMtmj+rFKT+GFIvCXqKPEz
-         KVygaWb4QB1X3RPK/YZjqZ/wiwxMlDNyLDml4L/aqNDoXxO5WpsJ4tPX7zq8Jk/EDHWJ
-         mcnVhF1l/oUmxZfz/MEzKf0WV+ZeQx7x6JlbdphRVZ0sq3OU1DRcJ0HLUUickjQer4wN
-         ueq0CrBdQjw/4rmg3+7WaNMa0M+dpZJgAvrZQKM5SCxVOWH75FCJkRruZoVVVuaWNyuO
-         zxtg==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=4rHu41TCHgBj1G4qSAlJzzJb66I8zmrgC/P0rmdS+rE=;
+        b=qgPf32jDVVzRY3bExBRt3yOOjBJHa8ezmS2QcV9IQPBfsDgEF69oU4vNYwi2GfhV/8
+         o9daDmcO6Gp1d2ha28KleSV+DKQsFmK2IoJfWb6gLZnkK/2FPzIA0hsP6EKU60uSAdVA
+         y6lyy562AMkbc1le5Qpl+IAiulnj+XggqXFduIc+nUZmcsbUO0HFbymgPOS5VBW7Ybhg
+         0MWnGfRGwk01ayGlm6CNpsYxtOr5RxVsYLNjgsymBohKTpya3CqWENhg2zJr+o+e8CIo
+         e6SMp1PgN3kh2tvbaqAV+X6samHn4TdtastpirtaJp0JA2pwgPVJP7dcQekcLOLrEyEI
+         a6gA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=wBautdayPzjxkhQkXV1Tl8Zugd/Ahos1Qnuyju/h69c=;
-        b=sn6Q3UVlejqMx8MdKrxGWosneO/SkrG3274VOl+DdpCAJhLdyn5ZjPGJXuQu+ai49E
-         /G0cE5dQhcWUq52uz26qYqIgNMVgcoCZWTdLUwplUM2mJ6p0CB9ZB90NSOqOC83WTpue
-         yCDbXDsK3A8utB11XL3q3mUhh7esR3lrp1e5ezIBhqODKDGib6PTR5DXC3Ac1gR62bcJ
-         F09fr+jizrl/brpK6aw0z9fEfE+Tgb54Xn4VBj2S1FOk/M759yIwsGDvnrnFPgEksu8p
-         ZQYPpUsTVwxQNiCPb0I4yJePIuSDPgCGjdQpZJCjS2QmtUhcGog+k9zCgydQGmGyqfDt
-         ElBQ==
-X-Gm-Message-State: AOAM530B+P3KAPABDsa/RkJguAOAts/6JeQV+eCTS1f9riqjzIeccMWt
-        Rn+8yhSCvbAVi5jFDXTfeLbQYA==
-X-Google-Smtp-Source: ABdhPJwh/cv/iQPiAuoNX2hk+psE6r95RLP+31RVooBg/LMR9U3ZtgG9+cKTmEDx1Dhi35BN4L67LA==
-X-Received: by 2002:aca:aacd:: with SMTP id t196mr17565345oie.12.1626711392206;
-        Mon, 19 Jul 2021 09:16:32 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id r5sm141552oti.5.2021.07.19.09.16.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Jul 2021 09:16:31 -0700 (PDT)
-Date:   Mon, 19 Jul 2021 11:16:29 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Thara Gopinath <thara.gopinath@linaro.org>
-Cc:     agross@kernel.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: boot: dts: qcom: sm8150: Add CPU opp tables
-Message-ID: <YPWlXRDsU59LZsVb@yoga>
-References: <20210714182610.92972-1-thara.gopinath@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4rHu41TCHgBj1G4qSAlJzzJb66I8zmrgC/P0rmdS+rE=;
+        b=eqIIHqRQWr1p1AmMxDl/5X/weqNJbLg/wY0fMN/WnjgURO2QtsRk0htjpcETOH5FMa
+         pqdxTbFvNxoygxjCbNjk1j9N5veIr+RSVQ27hgey/SPlx6L1WkLM6lE3wAd+kKYa/uo8
+         mDc+n/fKlIzjG+jqj5TyhOvaOf19npRm9C/uZD+9M5uGrLJxfqC0rEf9Jr8CyolcUJRZ
+         PK6/htt9yaP8JHj4N2PnoLZAJA0ndEenQRWTJIXYTSEqGUA82Rv6CFN6tfvmdyggTrhG
+         /vqlYz6diXCL0ccKPiiBQFVoFImxPgcZp3yIPgEhHGuPvMQmlxKgCS5BBruQAk7ov+Qt
+         IT0g==
+X-Gm-Message-State: AOAM532ZKukMBVUMwTcTdoaTVKRYfpBxqkhkxPG7BU7fQype4IypQcLo
+        1aLHsQOHjfL52QGhGblyXVla9FcE9NQ+ql10+1Y=
+X-Google-Smtp-Source: ABdhPJw/0MLtej1TbBAyye/eiO8r2Eoj38PSFkBhUxuAXDBS5QfgtRlNZQO654JGjKBo9e+N1YJHWLbGu3Xur64GgYE=
+X-Received: by 2002:a17:90a:af90:: with SMTP id w16mr31502676pjq.129.1626711584809;
+ Mon, 19 Jul 2021 09:19:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210714182610.92972-1-thara.gopinath@linaro.org>
+References: <20210719112156.27087-1-stephan@gerhold.net> <20210719112156.27087-4-stephan@gerhold.net>
+ <CACRpkdYNqi0EDrtC3j=cu5cp17sEJ6_nf2KRn-hxCxgbTGhgXw@mail.gmail.com>
+ <CAHp75VcsVFO2Oizpyeh53MNt2v9yD81vXp1xKCVX-U4zb-KTdg@mail.gmail.com> <YPWV537oN3gDpAQS@gerhold.net>
+In-Reply-To: <YPWV537oN3gDpAQS@gerhold.net>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 19 Jul 2021 19:19:05 +0300
+Message-ID: <CAHp75Vdjotgi9RrmKQC4J_QQSYdRWwp+-8aHGkChx6VFLPDh-Q@mail.gmail.com>
+Subject: Re: [PATCH 3/4] iio: accel: bmc150: Make it possible to configure
+ INT2 instead of INT1
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
+        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>, Andy
+        Shevchenko <andy.shevchenko@gmail.com>," 
+        <~postmarketos/upstreaming@lists.sr.ht>,
+        Nikita Travkin <nikita@trvn.ru>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 14 Jul 13:26 CDT 2021, Thara Gopinath wrote:
+On Mon, Jul 19, 2021 at 6:11 PM Stephan Gerhold <stephan@gerhold.net> wrote:
+> On Mon, Jul 19, 2021 at 06:01:01PM +0300, Andy Shevchenko wrote:
+> > On Mon, Jul 19, 2021 at 5:07 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+> > > On Mon, Jul 19, 2021 at 1:26 PM Stephan Gerhold <stephan@gerhold.net> wrote:
 
-> Add OPP tables to scale DDR and L3 with CPUs for SM8150 SoCs.
-> This gives a significant performance boost for cpu-ddr loads.
-> Below is the results for mbw benchmark with and without the opp tables.
-> 
-> /mbw 1500
-> 		Without l3/ddr scaling		With l3 ddr/scaling
-> MEMCPY(MiB/s)		3574				10448
-> DUMB(MiB/s)		3500				11721
-> MCBLOCK(MiB/s)		8976				23595
-> 
+...
 
-Nice!
+> > > >  #include <linux/acpi.h>
+> > > > +#include <linux/of_irq.h>
+> > > (...)
+> > > > +       irq_info = bmc150_accel_interrupts_int1;
+> > > > +       if (irq == of_irq_get_byname(dev->of_node, "INT2"))
+> > > > +               irq_info = bmc150_accel_interrupts_int2;
+> > >
+> > > This looks a bit DT-specific, but I don't see that ACPI has
+> > > named IRQs so I don't know what to do about it either.
+> >
+> > Yeah, we only have so far the (de facto) established way of naming
+> > GPIO based IRQs, and not IOxAPIC ones.
+> >
+> > > What does platform_get_irq_byname() do on ACPI systems?
+> >
+> > See above.
+> >
+> > > If there is no obvious fix I would leave it like this until the
+> > > first ACPI used needing this comes along, but I think maybe
+> > > Andy has suggestions.
+> >
+> > The platform_get_irq_byname() should do something similar that has
+> > been done in platform_get_irq() WRT ACPI.
+> > Here for sure the platform_get_irq_byname() or its optional variant
+> > should be used.
+>
+> I don't think there is a platform device here, we only have the
+> i2c_client or spi_device. That's why I didn't use
+> platform_get_irq_byname(). :)
+>
+> Is there something equivalent for I2C/SPI drivers?
 
+Not yet. You probably need to supply some code there to allow
+multi-IRQ devices (in resource provider agnostic way).
 
-Took the liberty of dropping "boot: " from $subject before applying the
-patch.
+You need to provide fwnode_get_irq_byname() to be similar with
+https://elixir.bootlin.com/linux/latest/source/drivers/base/property.c#L1010
 
-Thanks,
-Bjorn
+Then use it in the drivers.
 
-> Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm8150.dtsi | 315 +++++++++++++++++++++++++++
->  1 file changed, 315 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> index 51235a9521c2..298984423356 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> @@ -12,6 +12,7 @@
->  #include <dt-bindings/clock/qcom,gcc-sm8150.h>
->  #include <dt-bindings/clock/qcom,gpucc-sm8150.h>
->  #include <dt-bindings/interconnect/qcom,osm-l3.h>
-> +#include <dt-bindings/interconnect/qcom,sm8150.h>
->  #include <dt-bindings/thermal/thermal.h>
->  
->  / {
-> @@ -51,6 +52,9 @@ CPU0: cpu@0 {
->  			dynamic-power-coefficient = <232>;
->  			next-level-cache = <&L2_0>;
->  			qcom,freq-domain = <&cpufreq_hw 0>;
-> +			operating-points-v2 = <&cpu0_opp_table>;
-> +			interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt SLAVE_EBI_CH0>,
-> +					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
->  			power-domains = <&CPU_PD0>;
->  			power-domain-names = "psci";
->  			#cooling-cells = <2>;
-> @@ -72,6 +76,9 @@ CPU1: cpu@100 {
->  			dynamic-power-coefficient = <232>;
->  			next-level-cache = <&L2_100>;
->  			qcom,freq-domain = <&cpufreq_hw 0>;
-> +			operating-points-v2 = <&cpu0_opp_table>;
-> +			interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt SLAVE_EBI_CH0>,
-> +					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
->  			power-domains = <&CPU_PD1>;
->  			power-domain-names = "psci";
->  			#cooling-cells = <2>;
-> @@ -91,6 +98,9 @@ CPU2: cpu@200 {
->  			dynamic-power-coefficient = <232>;
->  			next-level-cache = <&L2_200>;
->  			qcom,freq-domain = <&cpufreq_hw 0>;
-> +			operating-points-v2 = <&cpu0_opp_table>;
-> +			interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt SLAVE_EBI_CH0>,
-> +					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
->  			power-domains = <&CPU_PD2>;
->  			power-domain-names = "psci";
->  			#cooling-cells = <2>;
-> @@ -109,6 +119,9 @@ CPU3: cpu@300 {
->  			dynamic-power-coefficient = <232>;
->  			next-level-cache = <&L2_300>;
->  			qcom,freq-domain = <&cpufreq_hw 0>;
-> +			operating-points-v2 = <&cpu0_opp_table>;
-> +			interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt SLAVE_EBI_CH0>,
-> +					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
->  			power-domains = <&CPU_PD3>;
->  			power-domain-names = "psci";
->  			#cooling-cells = <2>;
-> @@ -127,6 +140,9 @@ CPU4: cpu@400 {
->  			dynamic-power-coefficient = <369>;
->  			next-level-cache = <&L2_400>;
->  			qcom,freq-domain = <&cpufreq_hw 1>;
-> +			operating-points-v2 = <&cpu4_opp_table>;
-> +			interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt SLAVE_EBI_CH0>,
-> +					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
->  			power-domains = <&CPU_PD4>;
->  			power-domain-names = "psci";
->  			#cooling-cells = <2>;
-> @@ -145,6 +161,9 @@ CPU5: cpu@500 {
->  			dynamic-power-coefficient = <369>;
->  			next-level-cache = <&L2_500>;
->  			qcom,freq-domain = <&cpufreq_hw 1>;
-> +			operating-points-v2 = <&cpu4_opp_table>;
-> +			interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt SLAVE_EBI_CH0>,
-> +					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
->  			power-domains = <&CPU_PD5>;
->  			power-domain-names = "psci";
->  			#cooling-cells = <2>;
-> @@ -163,6 +182,9 @@ CPU6: cpu@600 {
->  			dynamic-power-coefficient = <369>;
->  			next-level-cache = <&L2_600>;
->  			qcom,freq-domain = <&cpufreq_hw 1>;
-> +			operating-points-v2 = <&cpu4_opp_table>;
-> +			interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt SLAVE_EBI_CH0>,
-> +					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
->  			power-domains = <&CPU_PD6>;
->  			power-domain-names = "psci";
->  			#cooling-cells = <2>;
-> @@ -181,6 +203,9 @@ CPU7: cpu@700 {
->  			dynamic-power-coefficient = <421>;
->  			next-level-cache = <&L2_700>;
->  			qcom,freq-domain = <&cpufreq_hw 2>;
-> +			operating-points-v2 = <&cpu7_opp_table>;
-> +			interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt SLAVE_EBI_CH0>,
-> +					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
->  			power-domains = <&CPU_PD7>;
->  			power-domain-names = "psci";
->  			#cooling-cells = <2>;
-> @@ -263,6 +288,296 @@ CLUSTER_SLEEP_0: cluster-sleep-0 {
->  		};
->  	};
->  
-> +	cpu0_opp_table: cpu0_opp_table {
-> +		compatible = "operating-points-v2";
-> +		opp-shared;
-> +
-> +		cpu0_opp1: opp-300000000 {
-> +			opp-hz = /bits/ 64 <300000000>;
-> +			opp-peak-kBps = <800000 9600000>;
-> +		};
-> +
-> +		cpu0_opp2: opp-403200000 {
-> +			opp-hz = /bits/ 64 <403200000>;
-> +			opp-peak-kBps = <800000 9600000>;
-> +		};
-> +
-> +		cpu0_opp3: opp-499200000 {
-> +			opp-hz = /bits/ 64 <499200000>;
-> +			opp-peak-kBps = <800000 12902400>;
-> +		};
-> +
-> +		cpu0_opp4: opp-576000000 {
-> +			opp-hz = /bits/ 64 <576000000>;
-> +			opp-peak-kBps = <800000 12902400>;
-> +		};
-> +
-> +		cpu0_opp5: opp-672000000 {
-> +			opp-hz = /bits/ 64 <672000000>;
-> +			opp-peak-kBps = <800000 15974400>;
-> +		};
-> +
-> +		cpu0_opp6: opp-768000000 {
-> +			opp-hz = /bits/ 64 <576000000>;
-> +			opp-peak-kBps = <1804000 19660800>;
-> +		};
-> +
-> +		cpu0_opp7: opp-844800000 {
-> +			opp-hz = /bits/ 64 <844800000>;
-> +			opp-peak-kBps = <1804000 19660800>;
-> +		};
-> +
-> +		cpu0_opp8: opp-940800000 {
-> +			opp-hz = /bits/ 64 <940800000>;
-> +			opp-peak-kBps = <1804000 22732800>;
-> +		};
-> +
-> +		cpu0_opp9: opp-1036800000 {
-> +			opp-hz = /bits/ 64 <1036800000>;
-> +			opp-peak-kBps = <1804000 22732800>;
-> +		};
-> +
-> +		cpu0_opp10: opp-1113600000 {
-> +			opp-hz = /bits/ 64 <1113600000>;
-> +			opp-peak-kBps = <2188000 25804800>;
-> +		};
-> +
-> +		cpu0_opp11: opp-1209600000 {
-> +			opp-hz = /bits/ 64 <1209600000>;
-> +			opp-peak-kBps = <2188000 31948800>;
-> +		};
-> +
-> +		cpu0_opp12: opp-1305600000 {
-> +			opp-hz = /bits/ 64 <1305600000>;
-> +			opp-peak-kBps = <3072000 31948800>;
-> +		};
-> +
-> +		cpu0_opp13: opp-1382400000 {
-> +			opp-hz = /bits/ 64 <1382400000>;
-> +			opp-peak-kBps = <3072000 31948800>;
-> +		};
-> +
-> +		cpu0_opp14: opp-1478400000 {
-> +			opp-hz = /bits/ 64 <1478400000>;
-> +			opp-peak-kBps = <3072000 31948800>;
-> +		};
-> +
-> +		cpu0_opp15: opp-1555200000 {
-> +			opp-hz = /bits/ 64 <1555200000>;
-> +			opp-peak-kBps = <3072000 40550400>;
-> +		};
-> +
-> +		cpu0_opp16: opp-1632000000 {
-> +			opp-hz = /bits/ 64 <1632000000>;
-> +			opp-peak-kBps = <3072000 40550400>;
-> +		};
-> +
-> +		cpu0_opp17: opp-1708800000 {
-> +			opp-hz = /bits/ 64 <1708800000>;
-> +			opp-peak-kBps = <3072000 43008000>;
-> +		};
-> +
-> +		cpu0_opp18: opp-1785600000 {
-> +			opp-hz = /bits/ 64 <1785600000>;
-> +			opp-peak-kBps = <3072000 43008000>;
-> +		};
-> +	};
-> +
-> +	cpu4_opp_table: cpu4_opp_table {
-> +		compatible = "operating-points-v2";
-> +		opp-shared;
-> +
-> +		cpu4_opp1: opp-710400000 {
-> +			opp-hz = /bits/ 64 <710400000>;
-> +			opp-peak-kBps = <1804000 15974400>;
-> +		};
-> +
-> +		cpu4_opp2: opp-825600000 {
-> +			opp-hz = /bits/ 64 <825600000>;
-> +			opp-peak-kBps = <2188000 19660800>;
-> +		};
-> +
-> +		cpu4_opp3: opp-940800000 {
-> +			opp-hz = /bits/ 64 <940800000>;
-> +			opp-peak-kBps = <2188000 22732800>;
-> +		};
-> +
-> +		cpu4_opp4: opp-1056000000 {
-> +			opp-hz = /bits/ 64 <1056000000>;
-> +			opp-peak-kBps = <3072000 25804800>;
-> +		};
-> +
-> +		cpu4_opp5: opp-1171200000 {
-> +			opp-hz = /bits/ 64 <1171200000>;
-> +			opp-peak-kBps = <3072000 31948800>;
-> +		};
-> +
-> +		cpu4_opp6: opp-1286400000 {
-> +			opp-hz = /bits/ 64 <1286400000>;
-> +			opp-peak-kBps = <4068000 31948800>;
-> +		};
-> +
-> +		cpu4_opp7: opp-1401600000 {
-> +			opp-hz = /bits/ 64 <1401600000>;
-> +			opp-peak-kBps = <4068000 31948800>;
-> +		};
-> +
-> +		cpu4_opp8: opp-1497600000 {
-> +			opp-hz = /bits/ 64 <1497600000>;
-> +			opp-peak-kBps = <4068000 40550400>;
-> +		};
-> +
-> +		cpu4_opp9: opp-1612800000 {
-> +			opp-hz = /bits/ 64 <1612800000>;
-> +			opp-peak-kBps = <4068000 40550400>;
-> +		};
-> +
-> +		cpu4_opp10: opp-1708800000 {
-> +			opp-hz = /bits/ 64 <1708800000>;
-> +			opp-peak-kBps = <4068000 43008000>;
-> +		};
-> +
-> +		cpu4_opp11: opp-1804800000 {
-> +			opp-hz = /bits/ 64 <1804800000>;
-> +			opp-peak-kBps = <6220000 43008000>;
-> +		};
-> +
-> +		cpu4_opp12: opp-1920000000 {
-> +			opp-hz = /bits/ 64 <1920000000>;
-> +			opp-peak-kBps = <6220000 49152000>;
-> +		};
-> +
-> +		cpu4_opp13: opp-2016000000 {
-> +			opp-hz = /bits/ 64 <2016000000>;
-> +			opp-peak-kBps = <7216000 49152000>;
-> +		};
-> +
-> +		cpu4_opp14: opp-2131200000 {
-> +			opp-hz = /bits/ 64 <2131200000>;
-> +			opp-peak-kBps = <8368000 49152000>;
-> +		};
-> +
-> +		cpu4_opp15: opp-2227200000 {
-> +			opp-hz = /bits/ 64 <2227200000>;
-> +			opp-peak-kBps = <8368000 51609600>;
-> +		};
-> +
-> +		cpu4_opp16: opp-2323200000 {
-> +			opp-hz = /bits/ 64 <2323200000>;
-> +			opp-peak-kBps = <8368000 51609600>;
-> +		};
-> +
-> +		cpu4_opp17: opp-2419200000 {
-> +			opp-hz = /bits/ 64 <2419200000>;
-> +			opp-peak-kBps = <8368000 51609600>;
-> +		};
-> +	};
-> +
-> +	cpu7_opp_table: cpu7_opp_table {
-> +		compatible = "operating-points-v2";
-> +		opp-shared;
-> +
-> +		cpu7_opp1: opp-825600000 {
-> +			opp-hz = /bits/ 64 <825600000>;
-> +			opp-peak-kBps = <2188000 19660800>;
-> +		};
-> +
-> +		cpu7_opp2: opp-940800000 {
-> +			opp-hz = /bits/ 64 <940800000>;
-> +			opp-peak-kBps = <2188000 22732800>;
-> +		};
-> +
-> +		cpu7_opp3: opp-1056000000 {
-> +			opp-hz = /bits/ 64 <1056000000>;
-> +			opp-peak-kBps = <3072000 25804800>;
-> +		};
-> +
-> +		cpu7_opp4: opp-1171200000 {
-> +			opp-hz = /bits/ 64 <1171200000>;
-> +			opp-peak-kBps = <3072000 31948800>;
-> +		};
-> +
-> +		cpu7_opp5: opp-1286400000 {
-> +			opp-hz = /bits/ 64 <1286400000>;
-> +			opp-peak-kBps = <4068000 31948800>;
-> +		};
-> +
-> +		cpu7_opp6: opp-1401600000 {
-> +			opp-hz = /bits/ 64 <1401600000>;
-> +			opp-peak-kBps = <4068000 31948800>;
-> +		};
-> +
-> +		cpu7_opp7: opp-1497600000 {
-> +			opp-hz = /bits/ 64 <1497600000>;
-> +			opp-peak-kBps = <4068000 40550400>;
-> +		};
-> +
-> +		cpu7_opp8: opp-1612800000 {
-> +			opp-hz = /bits/ 64 <1612800000>;
-> +			opp-peak-kBps = <4068000 40550400>;
-> +		};
-> +
-> +		cpu7_opp9: opp-1708800000 {
-> +			opp-hz = /bits/ 64 <1708800000>;
-> +			opp-peak-kBps = <4068000 43008000>;
-> +		};
-> +
-> +		cpu7_opp10: opp-1804800000 {
-> +			opp-hz = /bits/ 64 <1804800000>;
-> +			opp-peak-kBps = <6220000 43008000>;
-> +		};
-> +
-> +		cpu7_opp11: opp-1920000000 {
-> +			opp-hz = /bits/ 64 <1920000000>;
-> +			opp-peak-kBps = <6220000 49152000>;
-> +		};
-> +
-> +		cpu7_opp12: opp-2016000000 {
-> +			opp-hz = /bits/ 64 <2016000000>;
-> +			opp-peak-kBps = <7216000 49152000>;
-> +		};
-> +
-> +		cpu7_opp13: opp-2131200000 {
-> +			opp-hz = /bits/ 64 <2131200000>;
-> +			opp-peak-kBps = <8368000 49152000>;
-> +		};
-> +
-> +		cpu7_opp14: opp-2227200000 {
-> +			opp-hz = /bits/ 64 <2227200000>;
-> +			opp-peak-kBps = <8368000 51609600>;
-> +		};
-> +
-> +		cpu7_opp15: opp-2323200000 {
-> +			opp-hz = /bits/ 64 <2323200000>;
-> +			opp-peak-kBps = <8368000 51609600>;
-> +		};
-> +
-> +		cpu7_opp16: opp-2419200000 {
-> +			opp-hz = /bits/ 64 <2419200000>;
-> +			opp-peak-kBps = <8368000 51609600>;
-> +		};
-> +
-> +		cpu7_opp17: opp-2534400000 {
-> +			opp-hz = /bits/ 64 <2534400000>;
-> +			opp-peak-kBps = <8368000 51609600>;
-> +		};
-> +
-> +		cpu7_opp18: opp-2649600000 {
-> +			opp-hz = /bits/ 64 <2649600000>;
-> +			opp-peak-kBps = <8368000 51609600>;
-> +		};
-> +
-> +		cpu7_opp19: opp-2745600000 {
-> +			opp-hz = /bits/ 64 <2745600000>;
-> +			opp-peak-kBps = <8368000 51609600>;
-> +		};
-> +
-> +		cpu7_opp20: opp-2841600000 {
-> +			opp-hz = /bits/ 64 <2841600000>;
-> +			opp-peak-kBps = <8368000 51609600>;
-> +		};
-> +	};
-> +
->  	firmware {
->  		scm: scm {
->  			compatible = "qcom,scm-sm8150", "qcom,scm";
-> -- 
-> 2.25.1
-> 
+And/or integrate into frameworks somehow (something in between the
+lines: https://elixir.bootlin.com/linux/latest/source/drivers/i2c/i2c-core-base.c#L461).
+
+-- 
+With Best Regards,
+Andy Shevchenko
