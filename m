@@ -2,142 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 38C3A3CCE12
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 08:45:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57CC03CCE29
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 08:59:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233689AbhGSGsL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jul 2021 02:48:11 -0400
-Received: from mickerik.phytec.de ([195.145.39.210]:59040 "EHLO
-        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233048AbhGSGsL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 02:48:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-        q=dns/txt; i=@phytec.de; t=1626677106; x=1629269106;
-        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=Qdnm9CA66sUlla6KwhVagioTfxHwplLRXTTYhiGp6ic=;
-        b=MS+bgrY1YVFEfVIxswp0jb1eMvV4X57EDaPGFX/uREMgOQi1t/fVkx3tbnyBIg20
-        /gTKdXTlfPFZc++8wJKRo5htRpHOhfTgc68CIq2dckFcRNVADn6VMpFc1N2AzAFX
-        P9qYNpkj9uuLYLbaqapa16a5SkHjXPcIxFEMIv7XY6A=;
-X-AuditID: c39127d2-1e4f970000001daf-6a-60f51f722ba2
-Received: from florix.phytec.de (florix.phytec.de [172.16.0.118])
-        (using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (Client did not present a certificate)
-        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id C7.D7.07599.27F15F06; Mon, 19 Jul 2021 08:45:06 +0200 (CEST)
-Received: from Berlix.phytec.de (172.16.0.117) by Florix.phytec.de
- (172.16.0.118) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.8; Mon, 19 Jul
- 2021 08:45:05 +0200
-Received: from Berlix.phytec.de ([fe80::c131:350d:c471:aafd]) by
- berlix.phytec.de ([fe80::c131:350d:c471:aafd%3]) with mapi id 15.01.2308.008;
- Mon, 19 Jul 2021 08:45:05 +0200
-From:   =?utf-8?B?U3RlZmFuIFJpZWRtw7xsbGVy?= <S.Riedmueller@phytec.de>
-To:     "robh@kernel.org" <robh@kernel.org>
-CC:     "mchehab@kernel.org" <mchehab@kernel.org>,
-        "laurent.pinchart@ideasonboard.com" 
-        <laurent.pinchart@ideasonboard.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v6 5/6] media: dt-bindings: mt9p031: Convert bindings to
- yaml
-Thread-Topic: [PATCH v6 5/6] media: dt-bindings: mt9p031: Convert bindings to
- yaml
-Thread-Index: AQHXeLWU6C/OxK+q4UyOA3aaOZzcg6tF3S2AgAPjF4A=
-Date:   Mon, 19 Jul 2021 06:45:05 +0000
-Message-ID: <cd9a55608d1609da4c11dff392decc52fc143d72.camel@phytec.de>
-References: <20210714133849.1041619-1-s.riedmueller@phytec.de>
-         <20210714133849.1041619-6-s.riedmueller@phytec.de>
-         <20210716192331.GA3831920@robh.at.kernel.org>
-In-Reply-To: <20210716192331.GA3831920@robh.at.kernel.org>
-Accept-Language: en-US, de-DE
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.0.116]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <7E7CE49117A92148A41E338323C2F4D7@phytec.de>
-Content-Transfer-Encoding: base64
+        id S234553AbhGSHCQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jul 2021 03:02:16 -0400
+Received: from mail-vs1-f42.google.com ([209.85.217.42]:36781 "EHLO
+        mail-vs1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233689AbhGSHCP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 03:02:15 -0400
+Received: by mail-vs1-f42.google.com with SMTP id o19so6590054vsn.3;
+        Sun, 18 Jul 2021 23:59:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5NCNcBqTO22l3X4al8acu9AJJxnhiYKAu5aMxQckPxk=;
+        b=esA7f/1eOryitydOtRRS2BR2NntUeAYOildsJ++BtaV2UgFY/PHnBdvTAwWx1tooj0
+         aVU0i9faVWu5HTcdmu5cCFk+I95yrKdLCepWeDBRX9zWmUW6YOUmUXts6VkcngduORQm
+         q392loYQcBcBvoatdfPz7OMjqTnlOJhPq6Fij5skcdi1opoNWY4/2YhHS5Br9U5ZjmFL
+         5v3tHRa9+I8DmzmKB5/ggXW5+jxQS9KM/yqh3caTwAUwV1RkqdQNXRhU2ewUVL4VnzIj
+         MileSrc5+XgSG58dE1L7JlD0qpEJ4VZD70Dw8Fz/UkFLIPQaM0hX/v6HKmdYqGAKPqgY
+         jHLQ==
+X-Gm-Message-State: AOAM533buOuzs17GPI1hr9h/ZAKOezUsx3Nmn+HkLLRGnBhnp321A+XP
+        /J6tNmbhqeE2xtdRzsUEgrv9YZZQu8hmm8Pm554=
+X-Google-Smtp-Source: ABdhPJy9IdyG2rKF5NzGOGN5xKqJm9bCibQ2pE0G8Vx99QZGQQJXSZ4tsUqw9Paisv+zNMq8pJZfaQ8xGb9dpSkzbrs=
+X-Received: by 2002:a67:1542:: with SMTP id 63mr23590649vsv.40.1626677954982;
+ Sun, 18 Jul 2021 23:59:14 -0700 (PDT)
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrAIsWRmVeSWpSXmKPExsWyRoChTLdI/muCQU87m8X8I+dYLTonLmG3
-        uLxrDptFz4atrBbLNv1hsvi/Zwe7xact35gc2D1md8xk9di0qpPNY97JQI/Pm+QCWKK4bFJS
-        czLLUov07RK4Mm7fzSj4pFqxu38SawPjF5UuRk4OCQETid3/VjB3MXJxCAksZ5Lo2rkRynnI
-        KLH7TAc7hLOJUaJ/YQsTSAubgIvE57ZvbCC2iIC6xMLVD8E6mAW+MUlc6LoB5HBwCAsES7w8
-        aw9REyKxdckmRgjbSuLg4sOsIDaLgKrEt2nv2EFsXgE3iYVPdkEtW8oocePQCrAGTqCGe3vP
-        ghUxCshKdDa8AzuCWUBcYtOz76wQPwhILNlznhnCFpV4+fgfVFxBoq2nkwnkHmYBTYn1u/Qh
-        Wi0krr47zQJhK0pM6X4IdYOgxMmZT1gmMIrPQrJhFkL3LCTds5B0z0LSvYCRdRWjUG5mcnZq
-        UWa2XkFGZUlqsl5K6iZGYKwenqh+aQdj3xyPQ4xMHIyHGCU4mJVEeL/VfEwQ4k1JrKxKLcqP
-        LyrNSS0+xCjNwaIkzruBtyRMSCA9sSQ1OzW1ILUIJsvEwSnVwFi5Rbu7zeELM2vVucrSZZt0
-        vH+aJz6U/X26JS7XP40/7sHne/Krd3ff+8Lyz7tnXky73kTxk0qbfPn74+W/7tSd23tS72V/
-        gqPitq/dO3T9vK0+8b/9HOgjfmy+ceNXX5FPbNeL17QUyp+cX6/yRjUmyeiUepuRZPsPhtMv
-        ivq71gl/b2a0VmIpzkg01GIuKk4EAMceJEzDAgAA
+References: <cover.1626266516.git.geert+renesas@glider.be> <04c4d231fb03a3810d72a45c8a5bc2272c5975f3.1626266516.git.geert+renesas@glider.be>
+ <20210714135101.GB2441138@robh.at.kernel.org> <YPP06QG7hfypZgYg@kernel.org>
+In-Reply-To: <YPP06QG7hfypZgYg@kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 19 Jul 2021 08:59:03 +0200
+Message-ID: <CAMuHMdXfFhzm48U2Hvjz8yrjPsQbagW4aC_L-QE_Q6yx1Lo=tA@mail.gmail.com>
+Subject: Re: [PATCH v4 02/10] memblock: Add variables for usable memory limitation
+To:     Mike Rapoport <rppt@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Nicolas Pitre <nico@fluxnic.net>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Dave Young <dyoung@redhat.com>, Baoquan He <bhe@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        kexec@lists.infradead.org, Linux MM <linux-mm@kvack.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgUm9iLA0KDQpPbiBGcmksIDIwMjEtMDctMTYgYXQgMTM6MjMgLTA2MDAsIFJvYiBIZXJyaW5n
-IHdyb3RlOg0KPiBPbiBXZWQsIEp1bCAxNCwgMjAyMSBhdCAwMzozODo0OFBNICswMjAwLCBTdGVm
-YW4gUmllZG11ZWxsZXIgd3JvdGU6DQo+ID4gQ29udmVydCBtdDlwMDMxIHNlbnNvciBiaW5kaW5n
-cyB0byB5YW1sIHNjaGVtYS4gQWxzbyB1cGRhdGUgdGhlDQo+ID4gTUFJTlRBSU5FUlMgZW50cnku
-DQo+ID4gDQo+ID4gQWx0aG91Z2ggaW5wdXQtY2xvY2stZnJlcXVlbmN5IGFuZCBwaXhlbC1jbG9j
-ay1mcmVxdWVuY3kgaGF2ZSBub3QgYmVlbg0KPiA+IGRlZmluZGVkIGFzIGVuZHBvaW50IHByb3Bp
-ZXJ0aWVzIGluIHRoZSB0ZXh0dWFsIGJpbmRpbmdzLCB0aGUgc2Vuc29yDQo+ID4gZG9lcyBwYXJz
-ZSB0aGVtIGZyb20gdGhlIGVuZHBvaW50LiBUaHVzIG1vdmUgdGhlc2UgcHJvcGVydGllcyB0byB0
-aGUNCj4gPiBlbmRwb2ludCBpbiB0aGUgbmV3IHlhbWwgYmluZGluZ3MuDQo+ID4gDQo+ID4gU2ln
-bmVkLW9mZi1ieTogU3RlZmFuIFJpZWRtdWVsbGVyIDxzLnJpZWRtdWVsbGVyQHBoeXRlYy5kZT4N
-Cj4gPiAtLS0NCj4gPiAgLi4uL2JpbmRpbmdzL21lZGlhL2kyYy9hcHRpbmEsbXQ5cDAzMS55YW1s
-ICAgIHwgOTIgKysrKysrKysrKysrKysrKysrKw0KPiA+ICAuLi4vZGV2aWNldHJlZS9iaW5kaW5n
-cy9tZWRpYS9pMmMvbXQ5cDAzMS50eHQgfCA0MCAtLS0tLS0tLQ0KPiA+ICBNQUlOVEFJTkVSUyAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgMSArDQo+ID4gIDMgZmlsZXMgY2hh
-bmdlZCwgOTMgaW5zZXJ0aW9ucygrKSwgNDAgZGVsZXRpb25zKC0pDQo+ID4gIGNyZWF0ZSBtb2Rl
-IDEwMDY0NA0KPiA+IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZWRpYS9pMmMv
-YXB0aW5hLG10OXAwMzEueWFtbA0KPiA+ICBkZWxldGUgbW9kZSAxMDA2NDQNCj4gPiBEb2N1bWVu
-dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWVkaWEvaTJjL210OXAwMzEudHh0DQo+ID4gDQo+
-ID4gZGlmZiAtLWdpdA0KPiA+IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21l
-ZGlhL2kyYy9hcHRpbmEsbXQ5cDAzMS55YW1sDQo+ID4gYi9Eb2N1bWVudGF0aW9uL2RldmljZXRy
-ZWUvYmluZGluZ3MvbWVkaWEvaTJjL2FwdGluYSxtdDlwMDMxLnlhbWwNCj4gPiBuZXcgZmlsZSBt
-b2RlIDEwMDY0NA0KPiA+IGluZGV4IDAwMDAwMDAwMDAwMC4uMTUzMWVjZDFlZDk1DQo+ID4gLS0t
-IC9kZXYvbnVsbA0KPiA+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9t
-ZWRpYS9pMmMvYXB0aW5hLG10OXAwMzEueWFtbA0KPiA+IEBAIC0wLDAgKzEsOTIgQEANCj4gPiAr
-IyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogKEdQTC0yLjAtb25seSBPUiBCU0QtMi1DbGF1c2Up
-DQo+ID4gKyVZQU1MIDEuMg0KPiA+ICstLS0NCj4gPiArJGlkOiBodHRwOi8vZGV2aWNldHJlZS5v
-cmcvc2NoZW1hcy9tZWRpYS9pMmMvYXB0aW5hLG10OXAwMzEueWFtbCMNCj4gPiArJHNjaGVtYTog
-aHR0cDovL2RldmljZXRyZWUub3JnL21ldGEtc2NoZW1hcy9jb3JlLnlhbWwjDQo+ID4gKw0KPiA+
-ICt0aXRsZTogQXB0aW5hIDEvMi41LUluY2ggNU1wIENNT1MgRGlnaXRhbCBJbWFnZSBTZW5zb3IN
-Cj4gPiArDQo+ID4gK21haW50YWluZXJzOg0KPiA+ICsgIC0gTGF1cmVudCBQaW5jaGFydCA8bGF1
-cmVudC5waW5jaGFydEBpZGVhc29uYm9hcmQuY29tPg0KPiA+ICsNCj4gPiArZGVzY3JpcHRpb246
-IHwNCj4gPiArICBUaGUgQXB0aW5hIE1UOVAwMzEgaXMgYSAxLzIuNS1pbmNoIENNT1MgYWN0aXZl
-IHBpeGVsIGRpZ2l0YWwgaW1hZ2UNCj4gPiBzZW5zb3INCj4gPiArICB3aXRoIGFuIGFjdGl2ZSBh
-cnJheSBzaXplIG9mIDI1OTJIIHggMTk0NFYuIEl0IGlzIHByb2dyYW1tYWJsZSB0aHJvdWdoDQo+
-ID4gYQ0KPiA+ICsgIHNpbXBsZSB0d28td2lyZSBzZXJpYWwgaW50ZXJmYWNlLg0KPiA+ICsNCj4g
-PiArcHJvcGVydGllczoNCj4gPiArICBjb21wYXRpYmxlOg0KPiA+ICsgICAgZW51bToNCj4gPiAr
-ICAgICAgLSBhcHRpbmEsbXQ5cDAzMQ0KPiA+ICsgICAgICAtIGFwdGluYSxtdDlwMDMxbQ0KPiA+
-ICsNCj4gPiArICByZWc6DQo+ID4gKyAgICBkZXNjcmlwdGlvbjogSTJDIGRldmljZSBhZGRyZXNz
-DQo+ID4gKyAgICBtYXhJdGVtczogMQ0KPiA+ICsNCj4gPiArICByZXNldC1ncGlvczoNCj4gPiAr
-ICAgIG1heEl0ZW1zOiAxDQo+ID4gKyAgICBkZXNjcmlwdGlvbjogQ2hpcCByZXNldCBHUElPDQo+
-ID4gKw0KPiA+ICsgIHBvcnQ6DQo+ID4gKyAgICAkcmVmOiAvc2NoZW1hcy9ncmFwaC55YW1sIy8k
-ZGVmcy9wb3J0LWJhc2UNCj4gPiArICAgIGFkZGl0aW9uYWxQcm9wZXJ0aWVzOiBmYWxzZQ0KPiA+
-ICsNCj4gPiArICAgIHByb3BlcnRpZXM6DQo+ID4gKyAgICAgIGVuZHBvaW50Og0KPiA+ICsgICAg
-ICAgICRyZWY6IC9zY2hlbWFzL21lZGlhL3ZpZGVvLWludGVyZmFjZXMueWFtbCMNCj4gPiArICAg
-ICAgICB1bmV2YWx1YXRlZFByb3BlcnRpZXM6IGZhbHNlDQo+ID4gKw0KPiA+ICsgICAgICAgIHBy
-b3BlcnRpZXM6DQo+ID4gKyAgICAgICAgICBpbnB1dC1jbG9jay1mcmVxdWVuY3k6DQo+ID4gKyAg
-ICAgICAgICAgICRyZWY6IC9zY2hlbWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25zL3VpbnQzMg0K
-PiA+ICsgICAgICAgICAgICBtaW5pbXVtOiA2MDAwMDAwDQo+ID4gKyAgICAgICAgICAgIG1heGlt
-dW06IDk2MDAwMDAwDQo+ID4gKyAgICAgICAgICAgIGRlc2NyaXB0aW9uOiBJbnB1dCBjbG9jayBm
-cmVxdWVuY3kNCj4gPiArDQo+ID4gKyAgICAgICAgICBwaXhlbC1jbG9jay1mcmVxdWVuY3k6DQo+
-ID4gKyAgICAgICAgICAgICRyZWY6IC9zY2hlbWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25zL3Vp
-bnQzMg0KPiA+ICsgICAgICAgICAgICBtYXhpbXVtOiA5NjAwMDAwMA0KPiA+ICsgICAgICAgICAg
-ICBkZXNjcmlwdGlvbjogVGFyZ2V0IHBpeGVsIGNsb2NrIGZyZXF1ZW5jeQ0KPiA+ICsNCj4gPiAr
-ICAgICAgICAgIGJ1cy10eXBlOg0KPiA+ICsgICAgICAgICAgICBjb25zdDogNQ0KPiA+ICsNCj4g
-PiArICAgICAgICAgIGJ1cy13aWR0aDoNCj4gPiArICAgICAgICAgICAgY29uc3Q6IDEyDQo+IA0K
-PiBJZiB0aGVyZSdzIG9ubHkgMSBwb3NzaWJsZSBzZXR0aW5nIGZvciBib3RoIG9mIHRoZXNlLCB3
-aHkgZG8gdGhleSBuZWVkIA0KPiB0byBiZSBpbiBEVD8NCg0KTXkgaWRlYSB3YXMgdG8gaGF2ZSB0
-aGVtIGhlcmUgYXMgY29uc3RyYWludHMgaW4gY2FzZSBzb21lb25lIHdhbnRzIHRvIGFkZCB0aGVt
-DQp0byBhbHRob3VnaCB0aGVyZSBpcyBubyBhY3R1YWwgbmVlZCB0by4gVGhhdCdzIHdoeSBJIGFk
-ZGVkIHRoZW0gb3B0aW9uYWwuIEJ1dA0KdG8gYmUgaG9uZXN0LCBJIHdhc24ndCBzdXJlIGlmIHRo
-YXQncyB0aGUgY29ycmVjdCBhcHByb2FjaCwgc28gaWYgeW91J2QgcHJlZmVyDQp0byBkcm9wIHRo
-ZW0gdGhlbiBpdCdzIGZpbmUgd2l0aCBtZS4NCg0KUmVnYXJkcywNClN0ZWZhbg0KDQoNCg0KPiAN
-Cj4gUm9iDQo=
+Hi Mike,
+
+On Sun, Jul 18, 2021 at 11:31 AM Mike Rapoport <rppt@kernel.org> wrote:
+> On Wed, Jul 14, 2021 at 07:51:01AM -0600, Rob Herring wrote:
+> > On Wed, Jul 14, 2021 at 02:50:12PM +0200, Geert Uytterhoeven wrote:
+> > > Add two global variables (cap_mem_addr and cap_mem_size) for storing a
+> > > base address and size, describing a limited region in which memory may
+> > > be considered available for use by the kernel.  If enabled, memory
+> > > outside of this range is not available for use.
+> > >
+> > > These variables can by filled by firmware-specific code, and used in
+> > > calls to memblock_cap_memory_range() by architecture-specific code.
+> > > An example user is the parser of the "linux,usable-memory-range"
+> > > property in the DT "/chosen" node.
+> > >
+> > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > ---
+> > > This is similar to how the initial ramdisk (phys_initrd_{start,size})
+> > > and ELF core headers (elfcorehdr_{addr,size})) are handled.
+> > >
+> > > Does there exist a suitable place in the common memblock code to call
+> > > "memblock_cap_memory_range(cap_mem_addr, cap_mem_size)", or does this
+> > > have to be done in architecture-specific code?
+> >
+> > Can't you just call it from early_init_dt_scan_usablemem? If the
+> > property is present, you want to call it. If the property is not
+> > present, nothing happens.
+
+I will have a look...
+
+> For memblock_cap_memory_range() to work properly it should be called after
+> memory is detected and added to memblock with memblock_add[_node]()
+>
+> I'm not huge fan of adding more globals to memblock so if such ordering can
+> be implemented on the DT side it would be great.
+
+Me neither ;-)
+
+> I don't see a way to actually enforce this ordering, so maybe we'd want to
+> add warning in memblock_cap_memory_range() if memblock.memory is empty.
+
+"linux,usable-memory-range" is optional, and typically used only in
+crashdump kernels, so it would be a bad idea to add such a warning.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
