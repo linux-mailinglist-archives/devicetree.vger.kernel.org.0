@@ -2,142 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 44ECB3CCE39
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 09:07:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D6E13CCE5B
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 09:18:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234710AbhGSHJq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jul 2021 03:09:46 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:60836 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234441AbhGSHJo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 03:09:44 -0400
-Received: from [IPv6:2a02:810a:880:f54:121:b44d:bc4b:65bc] (unknown [IPv6:2a02:810a:880:f54:121:b44d:bc4b:65bc])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: dafna)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id E4B571F422EC;
-        Mon, 19 Jul 2021 08:06:43 +0100 (BST)
-Subject: Re: [PATCH v2, 01/14] media: mtk-vcodec: Get numbers of register
- bases from DT
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Collabora Kernel ML <kernel@collabora.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>
-References: <20210717081233.7809-1-yunfei.dong@mediatek.com>
- <20210717081233.7809-2-yunfei.dong@mediatek.com>
-From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-Message-ID: <77ec9eec-0b93-102c-4e6e-a1a491d0ae7a@collabora.com>
-Date:   Mon, 19 Jul 2021 09:06:41 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S234810AbhGSHVf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jul 2021 03:21:35 -0400
+Received: from mail-eopbgr60056.outbound.protection.outlook.com ([40.107.6.56]:19204
+        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S234441AbhGSHVf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Jul 2021 03:21:35 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=F+6lpT/lIkDlKuxT5bRpQDu5m0IK3ikAn5kdN+XQxidWWUuGAchXrhomLkECVbZ11Z72TkFRmvYUprWtoIfFgIva/0V9DcPJ6/o3RcLUjiSOEcTlqIa1yq/xJfNeOny6+yv8u3g3RQWJFr9A/762sOcJZPkhCfEihKrRVXlF2pWoVPd4t2dA+4ef3CS+wknuyPHK7jUlj08sJNpLCMPEA92c+F+2m9XpMrIRB9ZP/bRMvGe7pKwFeW+aw/Vrjqqc/butVpUQiNlkZCTonawyW0xl+BpCp71HbWxDxdQUM1d/r3nv4I/MYKxg7ClCXXL17Sw+3ZzpR6Q5+aUfs802VQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=S0iZJcfdw1IR1Sf2QMekcgGlnsZNfJiOwrK7i4xp+S4=;
+ b=R3CA3cIB/M3U4aFIZRY2HklJEtuWmE4D64/GUNOSl3PzXximW0FxWACOBiwr6Tv90+SV+NKm0MyTMnpSKd0MCnaSrMFvrlVuO8DAG4FQVfQlPcZXeZGnM/P/eSKuEqrxWKTVw1vPwylTFy2HbA8bSc24GBZNFtjtnGCg1TgdysY8XfNhw4ne1c3+5GJ2LfjtaqbjAHrvQEMuLVYfpgasiQcgTjjxoPIgh5WXDdjVHp8wbX/cQaoa4bubbYR29ML+yMorCTUA7uRiicqWDnOXY7+EyGq8aj8cZAIupu7rZfynVR3uDbdUXf9Kj+0w8ktdyQuPmtVv2XhzUlgJpjS5CQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=S0iZJcfdw1IR1Sf2QMekcgGlnsZNfJiOwrK7i4xp+S4=;
+ b=dfUImDhpV1omubw6TNo0jdQiBdEU1pVoiw9NGdgLyFdZymjrNe1/DNCmAE+WBXa1b43o7Jb3bMm72MhOvlt9OGNIKc7HKoxBThdB65ufGXZew+sfCV2vIdz+XWBMRr1hSIRHiqOYeYNY+JZs3vkeJAVlN3U7/1DceUCbAAkxKpI=
+Authentication-Results: davemloft.net; dkim=none (message not signed)
+ header.d=none;davemloft.net; dmarc=none action=none header.from=nxp.com;
+Received: from DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
+ by DB8PR04MB7100.eurprd04.prod.outlook.com (2603:10a6:10:127::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.21; Mon, 19 Jul
+ 2021 07:18:34 +0000
+Received: from DB8PR04MB6795.eurprd04.prod.outlook.com
+ ([fe80::9c70:fd2f:f676:4802]) by DB8PR04MB6795.eurprd04.prod.outlook.com
+ ([fe80::9c70:fd2f:f676:4802%9]) with mapi id 15.20.4331.032; Mon, 19 Jul 2021
+ 07:18:34 +0000
+From:   Joakim Zhang <qiangqing.zhang@nxp.com>
+To:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com
+Cc:     kernel@pengutronix.de, linux-imx@nxp.com, peppe.cavallaro@st.com,
+        joabreu@synopsys.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH net-next V1 0/3] dt-bindings: net: dwmac-imx: convert
+Date:   Mon, 19 Jul 2021 15:18:18 +0800
+Message-Id: <20210719071821.31583-1-qiangqing.zhang@nxp.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR02CA0067.apcprd02.prod.outlook.com
+ (2603:1096:4:54::31) To DB8PR04MB6795.eurprd04.prod.outlook.com
+ (2603:10a6:10:fa::15)
 MIME-Version: 1.0
-In-Reply-To: <20210717081233.7809-2-yunfei.dong@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.71) by SG2PR02CA0067.apcprd02.prod.outlook.com (2603:1096:4:54::31) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.22 via Frontend Transport; Mon, 19 Jul 2021 07:18:30 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: c0d0c6a4-75f9-4efb-593e-08d94a856b79
+X-MS-TrafficTypeDiagnostic: DB8PR04MB7100:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DB8PR04MB7100CFD5D42DD97FB48B8734E6E19@DB8PR04MB7100.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2399;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: HD0I6tNDr2AoFQ7a6tjqTUi4v54/yeJ2D6Py8VSj4qtn/mG4SgdRekzRBe4yl0ohDo+fuyrqNz8OrWqDcfuwsgQxaDCblEdHLXzT9S/wg8cllbKctz+uE6fmpt6qhMf/NA60fhu68s64CU0ifnRsh6T5ov/OUEXu8wovafLAOkUYSzQ+oLkw49CrnJvYN2duaGAkE2Cks1ESGgYL00f+WUvFKI5SkvAaoiVv0aD+6nqNqHptw1YIfjJfzsKsAB3ltwVKgPMXk8a6WP6YGQANVPXW/+WnVq60kbXsY3eO5rghTEoTGph97WWq7hqs1GsfgTdxI+/KGREXCQvCllCfEu8HB+QcUlkcVFDY98eGqiEWJNwSEmr3mJP2o35iY0nGYfXfXdgxlvUW8zXzR+7eB++BLGGn04BT1UhGwIEMuhKzL7rePo8cWbSEj/lsqgBNShB2h1mtkOnzDpZAwLLY/UUBLPnnUufhwc+6NGgk3k/FHrVc1HBKZhOXTJyZuR6Hm+KWS+wAsqgKjzlm0BS+3JTVqoCz9LbDl2GhL2UzrH9krepZmQZFggjr58yzkn86q5fxCUHya5P60qRgMQa8N4DtWRTiBa/e2A+FFWAqZiS3dMMloy92PEH/FhMCRiHT6S2A++LcITuBjQpZ9uhgG6klmldH26xMQjWmMhJ6FHlQ9WT9/M5EPwMN/oVYbeXu6J/iuxwe0jX4BarSQ2w2lg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6795.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(316002)(52116002)(1076003)(5660300002)(956004)(2616005)(6512007)(4326008)(4744005)(7416002)(66476007)(38350700002)(38100700002)(6666004)(26005)(8676002)(66556008)(8936002)(36756003)(6486002)(66946007)(83380400001)(508600001)(186003)(2906002)(86362001)(6506007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?5t9J+qOqXhyXRglFAgjHia+u3u4TovX5MdjrLg3io3JI98zKkI6HXkywvOYR?=
+ =?us-ascii?Q?ItbosZTG8UgZCZcAOqU5h4CT57D4QwGcopCIQLJlQ8cNfgeWF02spet3M5uY?=
+ =?us-ascii?Q?v7j38P0E4YTU46sH1CfV9K/2wA4OJlmhw3fhSoGEb06rc9n3h8JyBeoFtnji?=
+ =?us-ascii?Q?UrzmpZ6yx3/yHfLnyLA8sR5khqtArZicR9bOwrz6h6GWmxvT+f1dEjUMlpAk?=
+ =?us-ascii?Q?EQtiKjNig3dz1VWN/vZZcBSUsAaU2+5TvppuEE9S+0V8p+ROmzzR55ph4Uet?=
+ =?us-ascii?Q?zqhA3iwZYbOc2fwvQMsPu+d1a3Bw9zEmK7AAJdjeCTq4IcdK4urbmVcrW8hO?=
+ =?us-ascii?Q?Nc16rkMILtb8anSVTA0ioDZRK6kn8mxSXlK7/L4ixVDqWCzSduqrcnInqb27?=
+ =?us-ascii?Q?Fto/5XOVPxUCa8ACabg7d99dLSUlE1Zx8BHQo1OM0fwcpPNd3+Ymhpk0ZUk7?=
+ =?us-ascii?Q?quC1GnZrEDkoF2qpWzsH56jxkdDLn21iKm95T1x/3Ad+2upcblGUyrbFgEqr?=
+ =?us-ascii?Q?5CsillIyHwE/BuMsxsXC/d2VKBS6n5i5dkXuGCFyh6Wn5JLFWvsVGnTahb/X?=
+ =?us-ascii?Q?wtakzTijlBU50mjv9DRJX/t64YoS4vt9RzxULexKccP6ghlLQhdxkgNl94FW?=
+ =?us-ascii?Q?+MG0iMnhQSG4qkMMMEJLU+x8/4bvpgs/DdP8ZjDekT/CFAn1S/rzj/L4ZiQr?=
+ =?us-ascii?Q?J1W3c3Kz46plTAc6zh/DQakJK35O1NDLCsRy/KoIOoqxyiC9mXOY//7ZTIGE?=
+ =?us-ascii?Q?qAZvdmLIQJEceHaZMNDsFhQeP6u4DgFmcR/LmNDaATN/VhWgKdSVu2YfqLu6?=
+ =?us-ascii?Q?39WeBNApy/n4TDbtflTQ+o3RpEKJfH6Y7HoWdHa1a1BR4eOQItznGo9jAxc/?=
+ =?us-ascii?Q?ERiOgPK0mPuYPZINgkPzUHbr+0K6TbdcWABpNezQCqFVeHQ4+3bNoX9eNAZp?=
+ =?us-ascii?Q?VRw7WVxLoN4CR8Si4ac5ZxWIj+BqCUS88U/NlymDIZshofJVXgk/IWdV0D9N?=
+ =?us-ascii?Q?ymhDyL27Umtvqv4oYo34FF9P+DRGK9RgTcdTOJEMWGiMdFp02MJmKSBfZhjp?=
+ =?us-ascii?Q?qztWhki4C/cq4FNETNt2Rec6eAJvvILbP7vr9Lzl07pUHYPusEVQS8rR37JW?=
+ =?us-ascii?Q?WdcHXBcnSFMcjeSc06MF59xqHViJqBUqJBi6sBweTbUAs4JXyIax3JhqbHXG?=
+ =?us-ascii?Q?KXtkNnu7CbnKqzw702iuNXzp6yIhPCToxq/P+fcC8z0U9XZ5GoCyRy1Y84Rg?=
+ =?us-ascii?Q?QQEyWGIzyzaYruUiKbTnB1nj6ppcnOZ21RekJrKsywPZZcmdeeaxeUtQ+QOX?=
+ =?us-ascii?Q?c560p2rX6DFRXRV/MYkmyIbu?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c0d0c6a4-75f9-4efb-593e-08d94a856b79
+X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB6795.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jul 2021 07:18:34.6922
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: m9MXQ2j+myrCPZ4WJjtlTZYXYDg4mDmmNObE2u3i6XOpa/aqTIe0xLZufyNsW2G3Z3SmQVxA7ag6OAWj6ySckQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB7100
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch set intends to convert imx dwmac binding to schema, and fixes
+found by dt_binding_check and dtbs_check.
 
+Joakim Zhang (3):
+  dt-bindings: net: snps,dwmac: add missing DWMAC IP version
+  dt-bindings: net: imx-dwmac: convert imx-dwmac bindings to yaml
+  arm64: dts: imx8mp: change interrupt order per dt-binding
 
-On 17.07.21 10:12, Yunfei Dong wrote:
-> Different platform may has different numbers of register bases. Gets the
-> numbers of register bases from DT (sizeof(u32) * 4 bytes for each).
-> 
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> ---
-> v2: no changes
-> ---
->   .../platform/mtk-vcodec/mtk_vcodec_dec_drv.c  | 38 ++++++++++++++-----
->   1 file changed, 29 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c
-> index 55ae198dbcf9..d3f34cd04759 100644
-> --- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c
-> +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c
-> @@ -78,6 +78,31 @@ static irqreturn_t mtk_vcodec_dec_irq_handler(int irq, void *priv)
->   	return IRQ_HANDLED;
->   }
->   
-> +static int mtk_vcodec_get_reg_bases(struct mtk_vcodec_dev *dev)
-> +{
-> +	struct platform_device *pdev = dev->plat_dev;
-> +	int reg_num, i, ret = 0;
-> +
-> +	/* Sizeof(u32) * 4 bytes for each register base. */
-> +	reg_num = of_property_count_elems_of_size(pdev->dev.of_node, "reg",
-> +		sizeof(u32) * 4);
+ .../devicetree/bindings/net/imx-dwmac.txt     | 56 -----------
+ .../bindings/net/nxp,dwmac-imx.yaml           | 93 +++++++++++++++++++
+ .../devicetree/bindings/net/snps,dwmac.yaml   |  3 +
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi     |  6 +-
+ 4 files changed, 99 insertions(+), 59 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/net/imx-dwmac.txt
+ create mode 100644 Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml
 
-'reg_num' can also be negative if the 'of_..' function fails. So this case should
-also be checked
+-- 
+2.17.1
 
-> +	if (!reg_num || reg_num > NUM_MAX_VDEC_REG_BASE) {
-> +		dev_err(&pdev->dev, "Invalid register property size: %d\n", reg_num);
-> +		return -EINVAL;
-> +	}
-> +
-> +	for (i = 0; i < reg_num; i++) {
-> +		dev->reg_base[i] = devm_platform_ioremap_resource(pdev, i);
-> +		if (IS_ERR((__force void *)dev->reg_base[i])) {
-> +			ret = PTR_ERR((__force void *)dev->reg_base[i]);
-> +			break;
-
-you can replace this two lines with "return PTR_ERR((__force void *)dev->reg_base[i]);"
-
-thanks,
-Dafna
-
-> +		}
-> +		mtk_v4l2_debug(2, "reg[%d] base=%p", i, dev->reg_base[i]);
-> +	}
-> +
-> +	return ret;
-> +}
-> +
->   static int fops_vcodec_open(struct file *file)
->   {
->   	struct mtk_vcodec_dev *dev = video_drvdata(file);
-> @@ -206,7 +231,7 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
->   	struct resource *res;
->   	phandle rproc_phandle;
->   	enum mtk_vcodec_fw_type fw_type;
-> -	int i, ret;
-> +	int ret;
->   
->   	dev = devm_kzalloc(&pdev->dev, sizeof(*dev), GFP_KERNEL);
->   	if (!dev)
-> @@ -238,14 +263,9 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
->   		goto err_dec_pm;
->   	}
->   
-> -	for (i = 0; i < NUM_MAX_VDEC_REG_BASE; i++) {
-> -		dev->reg_base[i] = devm_platform_ioremap_resource(pdev, i);
-> -		if (IS_ERR((__force void *)dev->reg_base[i])) {
-> -			ret = PTR_ERR((__force void *)dev->reg_base[i]);
-> -			goto err_res;
-> -		}
-> -		mtk_v4l2_debug(2, "reg[%d] base=%p", i, dev->reg_base[i]);
-> -	}
-> +	ret = mtk_vcodec_get_reg_bases(dev);
-> +	if (ret)
-> +		goto err_res;
->   
->   	res = platform_get_resource(pdev, IORESOURCE_IRQ, 0);
->   	if (res == NULL) {
-> 
