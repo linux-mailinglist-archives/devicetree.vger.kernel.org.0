@@ -2,118 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 969493CD6EC
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 16:40:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22D7C3CD834
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 17:02:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241257AbhGSN71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jul 2021 09:59:27 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:58472 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S241233AbhGSN7Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Jul 2021 09:59:25 -0400
-X-IronPort-AV: E=Sophos;i="5.84,252,1620658800"; 
-   d="scan'208";a="88086604"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 19 Jul 2021 23:40:04 +0900
-Received: from localhost.localdomain (unknown [10.226.36.204])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id A06854003EAE;
-        Mon, 19 Jul 2021 23:40:00 +0900 (JST)
-From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        id S242649AbhGSOVK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jul 2021 10:21:10 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.52]:11923 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242638AbhGSOUP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 10:20:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1626706842;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=5asqN0lZNo3xHl1CBAymxXSuEQ1yqbDJbz4DcdRrSLk=;
+    b=J9E+jk/CxpvlIzVoB/gE8iHadnpWEZV9qry2QxLZXyEkGS7q4EgvuV9EjmJIRSVpem
+    KeFT3hGVQ6Tj9uCV5zEIE4TqdyV1AFUiM1Hry1Fof7HFo6pNjNOKae5EmecnZ5+DHFRR
+    ayD0gafOmrrg9Tl82I/2xmSaciITVipVQU0LdlBaii+/6w2b6rTJhsuWVkp0VzmKK7rG
+    dTJed3H6EXEJof3peozzJWgjGwHDCJzXg4ijsslOKUowXCcsU+33yb0ApAwQvyh3ituP
+    mZAduTazt+061IzKtbWUOfzTOpzboSLhVsM4fQ9uDmPy2jSNB0JIeCcoNojLHFrxacBP
+    Fy9g==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXS7IYBkLahKxB4m6O43/v"
+X-RZG-CLASS-ID: mo00
+Received: from droid..
+    by smtp.strato.de (RZmta 47.28.1 DYNA|AUTH)
+    with ESMTPSA id g02a44x6JF0c42H
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Mon, 19 Jul 2021 17:00:38 +0200 (CEST)
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>
+Cc:     Loic Poulain <loic.poulain@linaro.org>,
+        Sergey Ryazanov <ryazanov.s.a@gmail.com>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2 5/5] arm64: dts: renesas: r9a07g044: Add CANFD node
-Date:   Mon, 19 Jul 2021 15:38:11 +0100
-Message-Id: <20210719143811.2135-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210719143811.2135-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20210719143811.2135-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Aleksander Morgado <aleksander@aleksander.es>,
+        netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        Stephan Gerhold <stephan@gerhold.net>
+Subject: [RFC PATCH net-next 0/4] net: wwan: Add Qualcomm BAM-DMUX WWAN network driver
+Date:   Mon, 19 Jul 2021 16:53:13 +0200
+Message-Id: <20210719145317.79692-1-stephan@gerhold.net>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add CANFD node to R9A07G044 (RZ/G2L) SoC DTSI.
+The BAM Data Multiplexer provides access to the network data channels
+of modems integrated into many older Qualcomm SoCs, e.g. Qualcomm MSM8916
+or MSM8974. This series adds a driver that allows using it.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 42 ++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
+For more information about BAM-DMUX, see PATCH 4/4.
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-index 28aafa34d583..24032f38e3a1 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-@@ -13,6 +13,13 @@
- 	#address-cells = <2>;
- 	#size-cells = <2>;
- 
-+	/* External CAN clock - to be overridden by boards that provide it */
-+	can_clk: can {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <0>;
-+	};
-+
- 	/* clock can be either from exclk or crystal oscillator (XIN/XOUT) */
- 	extal_clk: extal {
- 		compatible = "fixed-clock";
-@@ -89,6 +96,41 @@
- 			status = "disabled";
- 		};
- 
-+		canfd: can@10050000 {
-+			compatible = "renesas,r9a07g044-canfd", "renesas,rzg2l-canfd";
-+			reg = <0 0x10050000 0 0x8000>;
-+			interrupts = <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 427 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 428 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 429 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "g_error", "g_rx_fifo",
-+					  "can0_error", "can0_tx",
-+					  "can0_tx_rx_fifo_receive_completion",
-+					  "can1_error", "can1_tx",
-+					  "can1_tx_rx_fifo_receive_completion";
-+			clocks = <&cpg CPG_MOD R9A07G044_CANFD_PCLK>,
-+				 <&cpg CPG_CORE R9A07G044_CLK_P0_DIV2>,
-+				 <&can_clk>;
-+			clock-names = "fck", "canfd", "can_clk";
-+			assigned-clocks = <&cpg CPG_CORE R9A07G044_CLK_P0_DIV2>;
-+			assigned-clock-rates = <50000000>;
-+			resets = <&cpg R9A07G044_CANFD_RSTP_N>,
-+				 <&cpg R9A07G044_CANFD_RSTC_N>;
-+			power-domains = <&cpg>;
-+			status = "disabled";
-+
-+			channel0 {
-+				status = "disabled";
-+			};
-+			channel1 {
-+				status = "disabled";
-+			};
-+		};
-+
- 		i2c0: i2c@10058000 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
+Shortly said, BAM-DMUX is built using a simple protocol layer on top of
+a DMA engine (Qualcomm BAM DMA). For BAM-DMUX, the BAM DMA engine runs in
+a quite strange mode that I call "remote power collapse", where the
+modem/remote side is responsible for powering on the BAM when needed but we
+are responsible to initialize it. The BAM is power-collapsed when unneeded
+by coordinating power control via bidirectional interrupts from the
+BAM-DMUX driver.
+
+The series first adds one possible solution for handling this "remote power
+collapse" mode in the bam_dma driver, then it adds the BAM-DMUX driver to
+the WWAN subsystem. Note that the BAM-DMUX driver does not actually make
+use of the WWAN subsystem yet, since I'm not sure how to fit it in there
+yet (see PATCH 4/4).
+
+Please note that all of the changes in this patch series are based on
+a fairly complicated driver from Qualcomm [1].
+I do not have access to any documentation about "BAM-DMUX". :(
+
+The driver has been used in postmarketOS [2] on various smartphones/tablets
+based on Qualcomm MSM8916 and MSM8974 for a year now with no reported
+problems.
+
+At runtime (but not compile-time), the following two patches are needed
+additionally for full functionality:
+  - https://lore.kernel.org/linux-arm-msm/20210712135703.324748-1-stephan@gerhold.net/
+  - https://lore.kernel.org/linux-arm-msm/20210712135703.324748-2-stephan@gerhold.net/
+
+[1]: https://source.codeaurora.org/quic/la/kernel/msm-3.10/tree/drivers/soc/qcom/bam_dmux.c?h=LA.BR.1.2.9.1-02310-8x16.0
+[2]: https://postmarketos.org/
+
+Stephan Gerhold (4):
+  dt-bindings: dmaengine: bam_dma: Add remote power collapse mode
+  dmaengine: qcom: bam_dma: Add remote power collapse mode
+  dt-bindings: net: Add schema for Qualcomm BAM-DMUX
+  net: wwan: Add Qualcomm BAM-DMUX WWAN network driver
+
+ .../devicetree/bindings/dma/qcom_bam_dma.txt  |   2 +
+ .../bindings/net/qcom,bam-dmux.yaml           |  87 ++
+ MAINTAINERS                                   |   8 +
+ drivers/dma/qcom/bam_dma.c                    |  88 +-
+ drivers/net/wwan/Kconfig                      |  13 +
+ drivers/net/wwan/Makefile                     |   1 +
+ drivers/net/wwan/qcom_bam_dmux.c              | 907 ++++++++++++++++++
+ 7 files changed, 1074 insertions(+), 32 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/qcom,bam-dmux.yaml
+ create mode 100644 drivers/net/wwan/qcom_bam_dmux.c
+
 -- 
-2.17.1
+2.32.0
 
