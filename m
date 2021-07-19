@@ -2,285 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A72C3CD1BC
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 12:18:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41FA53CD1DB
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 12:28:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236236AbhGSJf3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jul 2021 05:35:29 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:27067 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236215AbhGSJf0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Jul 2021 05:35:26 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1626689766; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=hPHHoneMDulXJqs+lPrFDQONVnYTG8TuwzUDsbTUqNw=;
- b=k8Vly8XU9BcGdtHuFsjytf2oR4MXDBBBdfQPJmd0Jo+DAe1Gkd2+y/chfQdhZn+9Ho1AsE6J
- SjeT3DJ7zpvB5hSHrKnPYVe4kBtRZwSnHqPqgPL3Hu+iyAHUljAvpOIhogkSgrjLi4RSx9YO
- 6kDkD1FA0VynSmVIFne+mTKbN7A=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
- 60f550ccc923fb7e0943bcf6 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 19 Jul 2021 10:15:40
- GMT
-Sender: skakit=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id A60FBC43460; Mon, 19 Jul 2021 10:15:39 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        id S236101AbhGSJp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jul 2021 05:45:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49092 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235172AbhGSJp6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 05:45:58 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DF82C061574;
+        Mon, 19 Jul 2021 02:32:47 -0700 (PDT)
+Received: from [IPv6:2a02:810a:880:f54:121:b44d:bc4b:65bc] (unknown [IPv6:2a02:810a:880:f54:121:b44d:bc4b:65bc])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        (Authenticated sender: skakit)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id C6C30C433F1;
-        Mon, 19 Jul 2021 10:15:38 +0000 (UTC)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 19 Jul 2021 15:45:38 +0530
-From:   skakit@codeaurora.org
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        (Authenticated sender: dafna)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 239FD1F42572;
+        Mon, 19 Jul 2021 11:26:36 +0100 (BST)
+Subject: Re: [PATCH v2, 14/14] media: mtk-vcodec: Use codec type to separate
+ different hardware
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>, kgunda@codeaurora.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH V5 1/2] dt-bindings: pinctrl: qcom-pmic-gpio: Convert qcom
- pmic gpio bindings to YAML
-In-Reply-To: <YO5QErHuGaPhU41k@yoga>
-References: <1625032241-3458-1-git-send-email-skakit@codeaurora.org>
- <1625032241-3458-2-git-send-email-skakit@codeaurora.org>
- <YO5QErHuGaPhU41k@yoga>
-Message-ID: <1007ff398382189c10474ca7178a3b0a@codeaurora.org>
-X-Sender: skakit@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Collabora Kernel ML <kernel@collabora.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>
+References: <20210717081233.7809-1-yunfei.dong@mediatek.com>
+ <20210717081233.7809-15-yunfei.dong@mediatek.com>
+From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+Message-ID: <7d2a7f79-850a-bdc7-bbda-ae36c5a5ab4b@collabora.com>
+Date:   Mon, 19 Jul 2021 12:26:32 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+MIME-Version: 1.0
+In-Reply-To: <20210717081233.7809-15-yunfei.dong@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-07-14 08:16, Bjorn Andersson wrote:
-> On Wed 30 Jun 00:50 CDT 2021, satya priya wrote:
-> 
->> Convert Qualcomm PMIC GPIO bindings from .txt to .yaml format.
->> 
-> 
-> Thanks for updating this Satya, this is looking quite good now. Just 
-> got
-> one issue with the definition of the state child node.
-> 
-[..]
->> +
->> +  interrupts:
->> +    minItems: 1
->> +    maxItems: 44
->> +    description: |
->> +        Must contain an array of encoded interrupt specifiers for
->> +        each available GPIO
->> +
->> +  '#interrupt-cells':
->> +    const: 2
->> +
->> +  interrupt-controller: true
->> +
->> +  gpio-controller: true
->> +
->> +  gpio-ranges:
->> +    maxItems: 1
->> +
->> +  '#gpio-cells':
->> +    const: 2
->> +    description: |
-> 
-> Not need for the '|', as the formatting isn't significant.
-> 
 
-Okay.
 
->> +        The first cell will be used to define gpio number and the
->> +        second denotes the flags for this gpio
->> +
->> +additionalProperties: false
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - gpio-controller
->> +  - '#gpio-cells'
->> +  - gpio-ranges
->> +
->> +patternProperties:
->> +  '.*':
+On 17.07.21 10:12, Yunfei Dong wrote:
+> There are just one core thread, in order to separeate different
+> hardware, using codec type to separeate it in scp driver.
 > 
-> I would prefer this match to follow tlmm and go '-state$'
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> ---
+> v2: no changes
+> ---
+>   .../media/platform/mtk-vcodec/vdec_ipi_msg.h  | 12 ++++---
+>   .../media/platform/mtk-vcodec/vdec_vpu_if.c   | 34 ++++++++++++++++---
+>   .../media/platform/mtk-vcodec/vdec_vpu_if.h   |  4 +++
+>   3 files changed, 41 insertions(+), 9 deletions(-)
 > 
+> diff --git a/drivers/media/platform/mtk-vcodec/vdec_ipi_msg.h b/drivers/media/platform/mtk-vcodec/vdec_ipi_msg.h
+> index 9d8079c4f976..c488f0c40190 100644
+> --- a/drivers/media/platform/mtk-vcodec/vdec_ipi_msg.h
+> +++ b/drivers/media/platform/mtk-vcodec/vdec_ipi_msg.h
+> @@ -35,6 +35,8 @@ enum vdec_ipi_msgid {
+>    * @msg_id	: vdec_ipi_msgid
+>    * @vpu_inst_addr : VPU decoder instance address. Used if ABI version < 2.
+>    * @inst_id     : instance ID. Used if the ABI version >= 2.
+> + * @codec_type	: Codec fourcc
+> + * @reserved	: reserved param
+>    */
+>   struct vdec_ap_ipi_cmd {
+>   	uint32_t msg_id;
+> @@ -42,6 +44,8 @@ struct vdec_ap_ipi_cmd {
+>   		uint32_t vpu_inst_addr;
+>   		uint32_t inst_id;
+>   	};
+> +	uint32_t codec_type;
+> +	uint32_t reserved;
+>   };
+>   
+>   /**
+> @@ -59,12 +63,12 @@ struct vdec_vpu_ipi_ack {
+>   /**
+>    * struct vdec_ap_ipi_init - for AP_IPIMSG_DEC_INIT
+>    * @msg_id	: AP_IPIMSG_DEC_INIT
+> - * @reserved	: Reserved field
+> + * @codec_type	: Codec fourcc
+>    * @ap_inst_addr	: AP video decoder instance address
+>    */
+>   struct vdec_ap_ipi_init {
+>   	uint32_t msg_id;
+> -	uint32_t reserved;
+> +	uint32_t codec_type;
+>   	uint64_t ap_inst_addr;
+>   };
+>   
+> @@ -77,7 +81,7 @@ struct vdec_ap_ipi_init {
+>    *	H264 decoder [0]:buf_sz [1]:nal_start
+>    *	VP8 decoder  [0]:width/height
+>    *	VP9 decoder  [0]:profile, [1][2] width/height
+> - * @reserved	: Reserved field
+> + * @codec_type	: Codec fourcc
+>    */
+>   struct vdec_ap_ipi_dec_start {
+>   	uint32_t msg_id;
+> @@ -86,7 +90,7 @@ struct vdec_ap_ipi_dec_start {
+>   		uint32_t inst_id;
+>   	};
+>   	uint32_t data[3];
+> -	uint32_t reserved;
+> +	uint32_t codec_type;
+>   };
+>   
+>   /**
+> diff --git a/drivers/media/platform/mtk-vcodec/vdec_vpu_if.c b/drivers/media/platform/mtk-vcodec/vdec_vpu_if.c
+> index bfd8e87dceff..c84fac52fe26 100644
+> --- a/drivers/media/platform/mtk-vcodec/vdec_vpu_if.c
+> +++ b/drivers/media/platform/mtk-vcodec/vdec_vpu_if.c
+> @@ -100,18 +100,29 @@ static void vpu_dec_ipi_handler(void *data, unsigned int len, void *priv)
+>   
+>   static int vcodec_vpu_send_msg(struct vdec_vpu_inst *vpu, void *msg, int len)
+>   {
+> -	int err;
+> +	int err, id, msgid;
+>   
+> -	mtk_vcodec_debug(vpu, "id=%X", *(uint32_t *)msg);
+> +	msgid = *(uint32_t *)msg;
+> +	mtk_vcodec_debug(vpu, "id=%X", msgid);
+>   
+>   	vpu->failure = 0;
+>   	vpu->signaled = 0;
+>   
+> -	err = mtk_vcodec_fw_ipi_send(vpu->ctx->dev->fw_handler, vpu->id, msg,
+> +	if (vpu->ctx->dev->vdec_pdata->hw_arch == MTK_VDEC_LAT_SINGLE_CORE) {
+> +		if (msgid == AP_IPIMSG_DEC_CORE ||
+> +			msgid == AP_IPIMSG_DEC_CORE_END)
+> +			id = vpu->core_id;
+> +		else
+> +			id = vpu->id;
+> +	} else {
+> +		id = vpu->id;
+> +	}
+> +
+> +	err = mtk_vcodec_fw_ipi_send(vpu->ctx->dev->fw_handler, id, msg,
+>   				     len, 2000);
+>   	if (err) {
+>   		mtk_vcodec_err(vpu, "send fail vpu_id=%d msg_id=%X status=%d",
+> -			       vpu->id, *(uint32_t *)msg, err);
+> +			       id, msgid, err);
+>   		return err;
+>   	}
+>   
+> @@ -131,6 +142,7 @@ static int vcodec_send_ap_ipi(struct vdec_vpu_inst *vpu, unsigned int msg_id)
+>   		msg.vpu_inst_addr = vpu->inst_addr;
+>   	else
+>   		msg.inst_id = vpu->inst_id;
+> +	msg.codec_type = vpu->codec_type;
+>   
+>   	err = vcodec_vpu_send_msg(vpu, &msg, sizeof(msg));
+>   	mtk_vcodec_debug(vpu, "- id=%X ret=%d", msg_id, err);
+> @@ -149,14 +161,25 @@ int vpu_dec_init(struct vdec_vpu_inst *vpu)
+>   
+>   	err = mtk_vcodec_fw_ipi_register(vpu->ctx->dev->fw_handler, vpu->id,
+>   					 vpu->handler, "vdec", NULL);
+> -	if (err != 0) {
+> +	if (err) {
+>   		mtk_vcodec_err(vpu, "vpu_ipi_register fail status=%d", err);
+>   		return err;
+>   	}
+>   
+> +	if (vpu->ctx->dev->vdec_pdata->hw_arch == MTK_VDEC_LAT_SINGLE_CORE) {
+> +		err = mtk_vcodec_fw_ipi_register(vpu->ctx->dev->fw_handler,
+> +					 vpu->core_id, vpu->handler,
+> +					 "vdec", NULL);
 
-okay.
-
->> +    anyOf:
-> 
-> Either we want the immediate child node to match gpio-pinctrl-state
-> or we want one of more children matching gpio-pinctrl-state, but not
-> both. So "oneOf".
-> 
-
-Okay.
-
->> +      - $ref: "pinmux-node.yaml"
->> +      - $ref: "pincfg-node.yaml"
-> 
-> The generic definition is not sufficient, you want this to be
-> 
-> 	- $ref: "#/$defs/gpio-pinctrl-state"
-> 
-
-Okay, I will add this ref and remove generic ones as we are already 
-referring them in 'qcom-pmic-gpio-state' definition.
-
->> +      - patternProperties:
->> +          ".*":
-> 
-> The subnodes of the state can be named whatever, so this (the .*) is
-> good.
-> 
->> +            $ref: "#/$defs/gpio-pinctrl-state"
->> +
->> +$defs:
->> +  gpio-pinctrl-state:
-> 
-> This is too generic, how about qcom-pmic-gpio-state?
-> 
-
-ok.
-
->> +    type: object
->> +    anyOf:
-> 
-> I have this as "allOf" in the TLMM binding, not entirely sure what the
-> implications of anyOf here would be though...
-> 
-
-Sure, will change it to allOf.
-
->> +      - $ref: "pinmux-node.yaml"
->> +      - $ref: "pincfg-node.yaml"
->> +    properties:
->> +      pins:
->> +        description: |
->> +            List of gpio pins affected by the properties specified in
->> +            this subnode.  Valid pins are
->> +                 - gpio1-gpio10 for pm6150
->> +                 - gpio1-gpio12 for pm6150l
->> +                 - gpio1-gpio10 for pm7325
->> +                 - gpio1-gpio4 for pm8005
->> +                 - gpio1-gpio2 for pm8008
->> +                 - gpio1-gpio6 for pm8018
->> +                 - gpio1-gpio12 for pm8038
->> +                 - gpio1-gpio40 for pm8058
->> +                 - gpio1-gpio10 for pm8150 (holes on gpio2, gpio5,
->> +                                            gpio7 and gpio8)
->> +                 - gpio1-gpio12 for pm8150b (holes on gpio3, gpio4
->> +                                             and gpio7)
->> +                 - gpio1-gpio12 for pm8150l (hole on gpio7)
->> +                 - gpio1-gpio4 for pm8916
->> +                 - gpio1-gpio10 for pm8350
->> +                 - gpio1-gpio8 for pm8350b
->> +                 - gpio1-gpio9 for pm8350c
->> +                 - gpio1-gpio38 for pm8917
->> +                 - gpio1-gpio44 for pm8921
->> +                 - gpio1-gpio36 for pm8941
->> +                 - gpio1-gpio8 for pm8950 (hole on gpio3)
->> +                 - gpio1-gpio22 for pm8994
->> +                 - gpio1-gpio26 for pm8998
->> +                 - gpio1-gpio22 for pma8084
->> +                 - gpio1-gpio2 for pmi8950
->> +                 - gpio1-gpio10 for pmi8994
->> +                 - gpio1-gpio4 for pmk8350
->> +                 - gpio1-gpio4 for pmr735a
->> +                 - gpio1-gpio4 for pmr735b
->> +                 - gpio1-gpio12 for pms405 (holes on gpio1, gpio9
->> +                                            and gpio10)
->> +                 - gpio1-gpio11 for pmx55 (holes on gpio3, gpio7, 
->> gpio10
->> +                                            and gpio11)
->> +
->> +        items:
->> +          pattern: "^gpio([0-9]+)$"
->> +
->> +      function:
->> +        items:
->> +          - enum:
->> +              - normal
->> +              - paired
->> +              - func1
->> +              - func2
->> +              - dtest1
->> +              - dtest2
->> +              - dtest3
->> +              - dtest4
->> +              - func3  # supported by LV/MV GPIO subtypes
->> +              - func4  # supported by LV/MV GPIO subtypes
->> +
->> +      bias-disable: true
->> +      bias-pull-down: true
->> +      bias-pull-up: true
->> +
->> +      qcom,pull-up-strength:
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +        description: |
->> +            Specifies the strength to use for pull up, if selected.
->> +            Valid values are defined in
->> +            <dt-bindings/pinctrl/qcom,pmic-gpio.h>
->> +            If this property is omitted 30uA strength will be used
->> +            if pull up is selected
-> 
-> 
-> enum: [0, 1, 2, 3]
-> 
-okay.
->> +
->> +      bias-high-impedance: true
-
->> +
->> +      gpio-controller;
->> +      gpio-ranges = <&pm8921_gpio 0 0 44>;
->> +      #gpio-cells = <2>;
->> +
->> +      pm8921_gpio_keys: gpio-keys {
-> 
-> Per my above request of changing the pattern, this would have to be
-> "gpio-keys-state" instead.
-> 
-
-okay.
+where is vpu->core_id initialized?
 
 Thanks,
-Satya Priya
+Dafna
 
-> Regards,
-> bjorn
+> +		if (err) {
+> +			mtk_vcodec_err(vpu, "vpu_ipi_register core fail status=%d", err);
+> +			return err;
+> +		}
+> +	}
+> +
+>   	memset(&msg, 0, sizeof(msg));
+>   	msg.msg_id = AP_IPIMSG_DEC_INIT;
+>   	msg.ap_inst_addr = (unsigned long)vpu;
+> +	msg.codec_type = vpu->codec_type;
+>   
+>   	mtk_vcodec_debug(vpu, "vdec_inst=%p", vpu);
+>   
+> @@ -187,6 +210,7 @@ int vpu_dec_start(struct vdec_vpu_inst *vpu, uint32_t *data, unsigned int len)
+>   
+>   	for (i = 0; i < len; i++)
+>   		msg.data[i] = data[i];
+> +	msg.codec_type = vpu->codec_type;
+>   
+>   	err = vcodec_vpu_send_msg(vpu, (void *)&msg, sizeof(msg));
+>   	mtk_vcodec_debug(vpu, "- ret=%d", err);
+> diff --git a/drivers/media/platform/mtk-vcodec/vdec_vpu_if.h b/drivers/media/platform/mtk-vcodec/vdec_vpu_if.h
+> index ae24b75d1649..802660770a87 100644
+> --- a/drivers/media/platform/mtk-vcodec/vdec_vpu_if.h
+> +++ b/drivers/media/platform/mtk-vcodec/vdec_vpu_if.h
+> @@ -14,6 +14,7 @@ struct mtk_vcodec_ctx;
+>   /**
+>    * struct vdec_vpu_inst - VPU instance for video codec
+>    * @id          : ipi msg id for each decoder
+> + * @core_id     : core id used to separate different hardware
+>    * @vsi         : driver structure allocated by VPU side and shared to AP side
+>    *                for control and info share
+>    * @failure     : VPU execution result status, 0: success, others: fail
+> @@ -26,9 +27,11 @@ struct mtk_vcodec_ctx;
+>    * @dev		: platform device of VPU
+>    * @wq          : wait queue to wait VPU message ack
+>    * @handler     : ipi handler for each decoder
+> + * @codec_type     : used codec type to separate different codecs
+>    */
+>   struct vdec_vpu_inst {
+>   	int id;
+> +	int core_id;
+>   	void *vsi;
+>   	int32_t failure;
+>   	uint32_t inst_addr;
+> @@ -38,6 +41,7 @@ struct vdec_vpu_inst {
+>   	struct mtk_vcodec_ctx *ctx;
+>   	wait_queue_head_t wq;
+>   	mtk_vcodec_ipi_handler handler;
+> +	unsigned int codec_type;
+>   };
+>   
+>   /**
 > 
->> +        volume-keys {
->> +          pins = "gpio20", "gpio21";
->> +          function = "normal";
->> +
->> +          input-enable;
->> +          bias-pull-up;
->> +          drive-push-pull;
->> +          qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
->> +          power-source = <PM8921_GPIO_S4>;
->> +        };
->> +      };
->> +    };
->> +...
->> --
->> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
->> member
->> of Code Aurora Forum, hosted by The Linux Foundation
->> 
