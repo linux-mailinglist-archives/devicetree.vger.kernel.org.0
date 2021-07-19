@@ -2,242 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DFE03CEEB0
+	by mail.lfdr.de (Postfix) with ESMTP id A71C63CEEB1
 	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 00:00:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242937AbhGSVNL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jul 2021 17:13:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44118 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1385709AbhGSTHw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 15:07:52 -0400
-Received: from mail-oo1-xc2b.google.com (mail-oo1-xc2b.google.com [IPv6:2607:f8b0:4864:20::c2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15D2CC0613EF
-        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 12:37:41 -0700 (PDT)
-Received: by mail-oo1-xc2b.google.com with SMTP id o3-20020a4a84c30000b0290251d599f19bso4744427oog.8
-        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 12:45:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=mQSEq7q+wxePH17WHb+2Y12YcuWTNetJZSsUU2m7H7E=;
-        b=N2B5cVOSFDnDhk7ZJikp57cYFtbff3OoOQABXLEuxfHd9w5r4YaazAcc8eRncMl+i9
-         CdTXPuNSjfJ+fAwAqjqmLVQTUKmjxMrLtxadKzernVCPQvvZtMHw+PfN2YcVoFRpOJVn
-         DO7kJXAMKW3uaCY8zg26hm+6/JN4SP0jKVMmYMwDnfqyuQw5+bpDBrJjC73C4be2Mazz
-         ZrwERWVVJ3yvNk51DT0mBrWPRKdhmtqxpBsxxlEcsISSz7PLLV4MeZgq2wir9Dcz6etg
-         xwTHQtPTxQMtjxgV1F5iZMxsUfm1ZThAV94QSeui+YSjZ+jd1hHx9N5U8/JBdGTb6QBW
-         jvRw==
+        id S242989AbhGSVNN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jul 2021 17:13:13 -0400
+Received: from mail-il1-f171.google.com ([209.85.166.171]:36523 "EHLO
+        mail-il1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1385732AbhGSTIa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 15:08:30 -0400
+Received: by mail-il1-f171.google.com with SMTP id j5so17112595ilk.3;
+        Mon, 19 Jul 2021 12:48:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=mQSEq7q+wxePH17WHb+2Y12YcuWTNetJZSsUU2m7H7E=;
-        b=Ab7f5ImpwqkF0BmncvZ6HGRYthI9Pd7r95pfgAk4yl0WkTqGLB1pOrO+AfEv7CARt8
-         7QFVMn9aSxijsCmDkmpf+bcUGhBrYJEsA0nQoJA/9Dioz+qJoAVBlMzEyXvSNgZHFokM
-         Pu5bRoT1EvSHHrMsgGmwdx4gO6iLV2yqWd3TmfLqo5Z/1LJ2d0WeC2Gx45dx3IMSiB8/
-         fA+hBTMutXDYqSf8q0+UAYRMreI4j1pEVj13DqjDHt6dy9MuUL3XVa5kVeFwScLfjlmH
-         4a7zHI1sEb+M9Ymz66TRkVdnrO553OgH3aNeGLxKAP0bwbge9BUlaM6CFJGubNwDgLPQ
-         YL5g==
-X-Gm-Message-State: AOAM531pWezcZwNEcXlvuFsloPEifUQIMmxnK/7ganp+ogyRNgx8TJ3E
-        j9tEBmthsE3sQUiUO3kAqOgrIA==
-X-Google-Smtp-Source: ABdhPJyEgmEJXTA8pZhCE4A7kaDgxCC+tSYYlL5iU+L2BArlNQdV1CQLgfGgR5PaI1xtBZvOvuEvbQ==
-X-Received: by 2002:a4a:e14f:: with SMTP id p15mr1215289oot.42.1626723899832;
-        Mon, 19 Jul 2021 12:44:59 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id v5sm1855606oor.33.2021.07.19.12.44.58
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GDUH5kKZnOHRCAbBYePTCiIA1/WaZH91n3x0Dno6HFQ=;
+        b=pOBPpmIUxOFi9+EDBocKHUAb6m+mJ/KxYcJ63V9wxvHyP4BwmzWmz7B0bZ3Y4KYuQK
+         ocf78dq0hez9lXKVRKEAZLSGqFA5n+OleUYZCk/2ZdRR5S6Ti9CqAicgdO0YZ0WX5cc8
+         JxnhGe99DKIj1LywuwAQEy7YA9Of4lZsRU5i9aI1VSOUdiMfrqBOcMeOPuN7fKklvAxM
+         xOlvwoTiZOShIiQwHLi7N3vhLrA1lbzuvY8BeWOsz8yipDAJcb4er1uRmtXqc/2LLiY8
+         6kiz8+PGhKvXykZAyFSNFZ94sjP5caS5kFlK6DY2fYA8UOJTbTZRbUfjtJuEs0FoGexK
+         TZcA==
+X-Gm-Message-State: AOAM532glg2WgmxKxiUHyH8iOEWTZrXM9rxQvbDRaDtvd2ZJnXrBOvfy
+        cSjjTrlhNtcVFbnIWSKD+A==
+X-Google-Smtp-Source: ABdhPJxne2/ZNMI2QOulVi9xVIAfp9pBxOds/kvhM1c+nWxPLBJeFq+sM2PJlMNuUEgGjrxakSXCEw==
+X-Received: by 2002:a92:d5cb:: with SMTP id d11mr17647954ilq.133.1626724133543;
+        Mon, 19 Jul 2021 12:48:53 -0700 (PDT)
+Received: from xps15.herring.priv ([64.188.179.248])
+        by smtp.googlemail.com with ESMTPSA id h10sm11306196ioe.43.2021.07.19.12.48.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Jul 2021 12:44:59 -0700 (PDT)
-Date:   Mon, 19 Jul 2021 14:44:57 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Sibi Sankar <sibis@codeaurora.org>
-Cc:     robh+dt@kernel.org, swboyd@chromium.org, ulf.hansson@linaro.org,
-        rjw@rjwysocki.net, agross@kernel.org, ohad@wizery.com,
-        mathieu.poirier@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dianders@chromium.org,
-        rishabhb@codeaurora.org, sidgup@codeaurora.org
-Subject: Re: [PATCH v3 02/13] dt-bindings: remoteproc: qcom: pas: Add QMP
- bindings
-Message-ID: <YPXWOeq++TdwH1r4@yoga>
-References: <1624560727-6870-1-git-send-email-sibis@codeaurora.org>
- <1624560727-6870-3-git-send-email-sibis@codeaurora.org>
+        Mon, 19 Jul 2021 12:48:52 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Eugen Hristev <eugen.hristev@microchip.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Ramesh Shanmugasundaram <rashanmu@gmail.com>,
+        linux-media@vger.kernel.org
+Subject: [PATCH] dt-bindings: media: Fix graph 'unevaluatedProperties' related warnings
+Date:   Mon, 19 Jul 2021 13:48:50 -0600
+Message-Id: <20210719194850.2410511-1-robh@kernel.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1624560727-6870-3-git-send-email-sibis@codeaurora.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 24 Jun 13:51 CDT 2021, Sibi Sankar wrote:
+The graph schema doesn't allow custom properties on endpoint nodes for
+'#/properties/port' and '#/$defs/port-base' should be used instead. This
+doesn't matter until 'unevaluatedProperties' support is implemented.
 
-> Add Qualcomm Mailbox Protocol (QMP) binding to replace the power domains
-> exposed by the AOSS QMP node.
-> 
+Cc: Eugen Hristev <eugen.hristev@microchip.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: Nicolas Ferre <nicolas.ferre@microchip.com>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: Ludovic Desroches <ludovic.desroches@microchip.com>
+Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc: Ramesh Shanmugasundaram <rashanmu@gmail.com>
+Cc: linux-media@vger.kernel.org
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/media/atmel,isc.yaml      | 3 ++-
+ Documentation/devicetree/bindings/media/microchip,xisc.yaml | 2 +-
+ Documentation/devicetree/bindings/media/renesas,drif.yaml   | 2 +-
+ 3 files changed, 4 insertions(+), 3 deletions(-)
 
-I think this would be a good opportunity to describe why you need to
-make this change to the binding.
+diff --git a/Documentation/devicetree/bindings/media/atmel,isc.yaml b/Documentation/devicetree/bindings/media/atmel,isc.yaml
+index 3e4bb8892d94..cd6d7af0c768 100644
+--- a/Documentation/devicetree/bindings/media/atmel,isc.yaml
++++ b/Documentation/devicetree/bindings/media/atmel,isc.yaml
+@@ -44,7 +44,8 @@ properties:
+     const: isc-mck
+ 
+   port:
+-    $ref: /schemas/graph.yaml#/properties/port
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    unevaluatedProperties: false
+     description:
+       Input port node, single endpoint describing the input pad.
+ 
+diff --git a/Documentation/devicetree/bindings/media/microchip,xisc.yaml b/Documentation/devicetree/bindings/media/microchip,xisc.yaml
+index 41afe2e5f133..086e1430af4f 100644
+--- a/Documentation/devicetree/bindings/media/microchip,xisc.yaml
++++ b/Documentation/devicetree/bindings/media/microchip,xisc.yaml
+@@ -52,7 +52,7 @@ properties:
+       of the data and clock lines.
+ 
+   port:
+-    $ref: /schemas/graph.yaml#/properties/port
++    $ref: /schemas/graph.yaml#/$defs/port-base
+     description:
+       Input port node, single endpoint describing the input pad.
+ 
+diff --git a/Documentation/devicetree/bindings/media/renesas,drif.yaml b/Documentation/devicetree/bindings/media/renesas,drif.yaml
+index 817a6d566738..2867d11fe156 100644
+--- a/Documentation/devicetree/bindings/media/renesas,drif.yaml
++++ b/Documentation/devicetree/bindings/media/renesas,drif.yaml
+@@ -96,7 +96,7 @@ properties:
+       Indicates that the channel acts as primary among the bonded channels.
+ 
+   port:
+-    $ref: /schemas/graph.yaml#/properties/port
++    $ref: /schemas/graph.yaml#/$defs/port-base
+     unevaluatedProperties: false
+     description:
+       Child port node corresponding to the data input. The port node must
+-- 
+2.27.0
 
-Regards,
-Bjorn
-
-> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
-> ---
-> 
-> v3:
->  * Misc. documentation fixes:
->   - Reduce power-domain maxItems due to load_state pd removal
->   - Combine compatibles where possible with the load_state pd removal
->   - Fixup the qcom,qmp ref to phandle type
-> 
->  .../devicetree/bindings/remoteproc/qcom,adsp.yaml  | 62 +++++++++++-----------
->  1 file changed, 30 insertions(+), 32 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-> index 9ea05e608bc1..ad85617b43fa 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-> @@ -75,11 +75,11 @@ properties:
->  
->    power-domains:
->      minItems: 1
-> -    maxItems: 3
-> +    maxItems: 2
->  
->    power-domain-names:
->      minItems: 1
-> -    maxItems: 3
-> +    maxItems: 2
->  
->    firmware-name:
->      $ref: /schemas/types.yaml#/definitions/string
-> @@ -89,6 +89,10 @@ properties:
->      maxItems: 1
->      description: Reference to the reserved-memory for the Hexagon core
->  
-> +  qcom,qmp:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: Reference to the AOSS side-channel message RAM.
-> +
->    qcom,smem-states:
->      $ref: /schemas/types.yaml#/definitions/phandle-array
->      description: States used by the AP to signal the Hexagon core
-> @@ -359,13 +363,11 @@ allOf:
->        properties:
->          power-domains:
->            items:
-> -            - description: Load State power domain
->              - description: CX power domain
->              - description: MX power domain
->              - description: MSS power domain
->          power-domain-names:
->            items:
-> -            - const: load_state
->              - const: cx
->              - const: mx
->              - const: mss
-> @@ -381,43 +383,20 @@ allOf:
->        properties:
->          power-domains:
->            items:
-> -            - description: Load State power domain
->              - description: CX power domain
-> -        power-domain-names:
-> -          items:
-> -            - const: load_state
-> -            - const: cx
->  
->    - if:
->        properties:
->          compatible:
->            contains:
->              enum:
-> +              - qcom,sdx55-mpss-pas
->                - qcom,sm8150-mpss-pas
->                - qcom,sm8350-mpss-pas
->      then:
->        properties:
->          power-domains:
->            items:
-> -            - description: Load State power domain
-> -            - description: CX power domain
-> -            - description: MSS power domain
-> -        power-domain-names:
-> -          items:
-> -            - const: load_state
-> -            - const: cx
-> -            - const: mss
-> -
-> -  - if:
-> -      properties:
-> -        compatible:
-> -          contains:
-> -            enum:
-> -              - qcom,sdx55-mpss-pas
-> -    then:
-> -      properties:
-> -        power-domains:
-> -          items:
->              - description: CX power domain
->              - description: MSS power domain
->          power-domain-names:
-> @@ -439,12 +418,10 @@ allOf:
->        properties:
->          power-domains:
->            items:
-> -            - description: Load State power domain
->              - description: LCX power domain
->              - description: LMX power domain
->          power-domain-names:
->            items:
-> -            - const: load_state
->              - const: lcx
->              - const: lmx
->  
-> @@ -458,12 +435,10 @@ allOf:
->        properties:
->          power-domains:
->            items:
-> -            - description: Load State power domain
->              - description: CX power domain
->              - description: MXC power domain
->          power-domain-names:
->            items:
-> -            - const: load_state
->              - const: cx
->              - const: mxc
->  
-> @@ -499,6 +474,29 @@ allOf:
->              - const: mss_restart
->              - const: pdc_reset
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sc7180-mpss-pas
-> +              - qcom,sm8150-adsp-pas
-> +              - qcom,sm8150-cdsp-pas
-> +              - qcom,sm8150-mpss-pas
-> +              - qcom,sm8150-slpi-pas
-> +              - qcom,sm8250-adsp-pas
-> +              - qcom,sm8250-cdsp-pas
-> +              - qcom,sm8250-slpi-pas
-> +              - qcom,sm8350-adsp-pas
-> +              - qcom,sm8350-cdsp-pas
-> +              - qcom,sm8350-mpss-pas
-> +              - qcom,sm8350-slpi-pas
-> +    then:
-> +      properties:
-> +        qcom,qmp:
-> +          items:
-> +            - description: Reference to the AOSS side-channel message RAM.
-> +
->  examples:
->    - |
->      #include <dt-bindings/clock/qcom,rpmcc.h>
-> -- 
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
-> 
