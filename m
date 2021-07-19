@@ -2,1494 +2,664 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AAF353CEEB9
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 00:00:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 913153CEEBC
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 00:00:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357321AbhGSVOM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jul 2021 17:14:12 -0400
-Received: from mail-io1-f49.google.com ([209.85.166.49]:46807 "EHLO
-        mail-io1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344877AbhGSTrC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 15:47:02 -0400
-Received: by mail-io1-f49.google.com with SMTP id p186so21499044iod.13;
-        Mon, 19 Jul 2021 13:27:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=5/i387wzZOzEquTg4UjOa+DIn+wPVfpVr5ofXJ+h3uY=;
-        b=doPqNAfPBZDjFndx8SH+gAhSY6wfNQembQsiElLcp0SRtQszj0GOWW6bPHpChWiLWr
-         AD8LhQNy03xP/W434E0BRxY7lKMdoVn85LJ2GRAUTTh1JYFNSzh23G+ywCZfuCeJ32MV
-         ztZJXsxHJTc0RjDerhAiULqfP6bQD88iJlGEGR5nw7tuYsqjIBG4gwxDCFuRQ5U6/r3W
-         izHGhawrXULLXlALb/wtHJEpRwijjb17tQuwQbnZpBdFb2xK5QZIpp58XsiGVaXF9fkN
-         xOpZPFL3ciUBLUCknzJx6kqXdY6YCWLwjvqVvhkLIw4EC0rwpmIxkNrptQteYPSRUs/I
-         5YqA==
-X-Gm-Message-State: AOAM531hlH2FxVqvF+X4VDd207eE3IqOCWGikmomtSZxe14xKDRPL+Qk
-        iHBX0CKfKxpLW1O2be14Lg==
-X-Google-Smtp-Source: ABdhPJyJ/+bVaPpCVbHTIJVImgxLLMWp7XMe/PBixsr1D7G7qgq1zD17AK1TzCmctFKjKLvXDhMJIg==
-X-Received: by 2002:a02:8783:: with SMTP id t3mr23188417jai.45.1626726456440;
-        Mon, 19 Jul 2021 13:27:36 -0700 (PDT)
-Received: from xps15.herring.priv ([64.188.179.248])
-        by smtp.googlemail.com with ESMTPSA id g15sm8745969ild.29.2021.07.19.13.27.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Jul 2021 13:27:35 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Yangtao Li <tiny.windzz@gmail.com>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, linux-pm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2] dt-bindings: opp: Convert to DT schema
-Date:   Mon, 19 Jul 2021 14:27:32 -0600
-Message-Id: <20210719202732.2490287-1-robh@kernel.org>
-X-Mailer: git-send-email 2.27.0
+        id S1358526AbhGSVOf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jul 2021 17:14:35 -0400
+Received: from mga18.intel.com ([134.134.136.126]:24293 "EHLO mga18.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1387241AbhGST5X (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Jul 2021 15:57:23 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10050"; a="198398354"
+X-IronPort-AV: E=Sophos;i="5.84,253,1620716400"; 
+   d="scan'208";a="198398354"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jul 2021 13:31:21 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,253,1620716400"; 
+   d="scan'208";a="414971574"
+Received: from orsmsx605.amr.corp.intel.com ([10.22.229.18])
+  by orsmga003.jf.intel.com with ESMTP; 19 Jul 2021 13:31:21 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.4; Mon, 19 Jul 2021 13:31:20 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10 via Frontend Transport; Mon, 19 Jul 2021 13:31:17 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.177)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2242.10; Mon, 19 Jul 2021 13:31:17 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=UHXSa/OdiQ/w3d/cH+SbfCti0iZu/9weA3/8cmE8BUvh4C6ePVi4/5mkV1bednWQUqMB0eOWk48JrJEPxVA9QBTecu5OLJsFb8giy6GPQguH59x+kezXofv3fZuOPZisqijxxAoFYQvv37XLhC4DF54vCRvKF2Z3RytMpQ7itEc0twYJ2DHR6XOdbwdR5fs3sA5ySW0B2ilmGLeYRmf9NkC2hYbIVA2uj6R7V28iju7Vo88sYZy+8cS29gDChCTeA1hBe+ayeP8NUzwnGJaIXcX/ulzsA1g3HapjBg251iwfhaGLFxU8/m6sDUUoP7vW0dsd3+QXNtbKNFtTdOpllA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WcN6mII2A0ofHI4yc2NlzV0GJ3gp9wySjdfZ2gUHcn8=;
+ b=oQHzyiBrJ5qY4F0X4wm0krxnkFkkjeNvt62QKuS9OnwspSsbHOEZFrVSUK2aEOkPEFAZLXzsbxmlXmW7YwRjZwVPx5MTp2UmCXxbMubgPe81c6XIxNLzVtB4FpajxcqHNgRaVY1Ld1iqgSvGm9Zc5ArhU3aRr2rxDsZKsZjqXmDm7UlZcEVOBl6ctyOgFpvCLdkRrNfPySDfvdE8iKYj+wf20CIR8t/MdOp51GVEVtsgLoamkSfF1CaCDqZ7YvisDZROJkEVEJqLaCjEj4S9rLEzxAcxFtyKYL9wI/ab59B8ROLb4xVTVe0SbzL8lEhh1hd+7vJsuXfHOMA02FZ5sQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WcN6mII2A0ofHI4yc2NlzV0GJ3gp9wySjdfZ2gUHcn8=;
+ b=A0Ijzyc0ivFpvfy6qagpeIMRFwKbpOlSfAqhOq7D2Lt5IH+aPNE3DoFUUEtAHjiRDj77zwP6DOOUZdVUSgaCdYdv73EXqJ7A7GOWl+QwQM4SFWLcM4xJ2/Co8AyMouITC0vJO93XHCF3+BX2knC2Nr4oKQ2NAPRetcNZCX43l4Y=
+Received: from SN6PR11MB2589.namprd11.prod.outlook.com (2603:10b6:805:53::12)
+ by SA2PR11MB5098.namprd11.prod.outlook.com (2603:10b6:806:11c::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.24; Mon, 19 Jul
+ 2021 20:31:14 +0000
+Received: from SN6PR11MB2589.namprd11.prod.outlook.com
+ ([fe80::357a:ba5:ee4f:d5f1]) by SN6PR11MB2589.namprd11.prod.outlook.com
+ ([fe80::357a:ba5:ee4f:d5f1%7]) with mapi id 15.20.4331.033; Mon, 19 Jul 2021
+ 20:31:14 +0000
+From:   "Winiarska, Iwona" <iwona.winiarska@intel.com>
+To:     "linux@roeck-us.net" <linux@roeck-us.net>
+CC:     "corbet@lwn.net" <corbet@lwn.net>,
+        "jae.hyun.yoo@linux.intel.com" <jae.hyun.yoo@linux.intel.com>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "Lutomirski, Andy" <luto@kernel.org>,
+        "Luck, Tony" <tony.luck@intel.com>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "mingo@redhat.com" <mingo@redhat.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        "yazen.ghannam@amd.com" <yazen.ghannam@amd.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "pierre-louis.bossart@linux.intel.com" 
+        <pierre-louis.bossart@linux.intel.com>,
+        "x86@kernel.org" <x86@kernel.org>, "bp@alien8.de" <bp@alien8.de>
+Subject: Re: [PATCH 12/14] hwmon: peci: Add dimmtemp driver
+Thread-Topic: [PATCH 12/14] hwmon: peci: Add dimmtemp driver
+Thread-Index: AQHXd2roAwHn3HBvykGuO8fflmxoaqtEVoMAgAZ0r4A=
+Date:   Mon, 19 Jul 2021 20:31:14 +0000
+Message-ID: <282c092ec55034bde13c23b90516c2d543f0400d.camel@intel.com>
+References: <20210712220447.957418-1-iwona.winiarska@intel.com>
+         <20210712220447.957418-13-iwona.winiarska@intel.com>
+         <20210715175602.GA3043224@roeck-us.net>
+In-Reply-To: <20210715175602.GA3043224@roeck-us.net>
+Accept-Language: en-US, pl-PL
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.38.4 (3.38.4-1.fc33) 
+authentication-results: roeck-us.net; dkim=none (message not signed)
+ header.d=none;roeck-us.net; dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: b6b1dd9a-eac8-482e-b5ae-08d94af4279f
+x-ms-traffictypediagnostic: SA2PR11MB5098:
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <SA2PR11MB50984AF8361D5459E31FB2BFECE19@SA2PR11MB5098.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4941;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: CK4GK55949BbP7jI3AhC8xOLfTkYW3wT/pfLgTldbpwvopYhkoeuGLB0P9bHatXa+X6hpRgEmUWr/Lj8OKXvdRJ2uysucujtutfCoDl7krPMNzLrcd9OYa5O/+CaaYLNBIn5gsVCv2/uMXgD+SmFNjO6IIFkrlBNI8/W8lMpccyPFJ7tf2bUmtcXGmxGcm3LujfFps6DdOsrYsabuWoaRRbm+WBBjGq8Gp7kUhekHfztufqYO0EDDo7XJlNwpeyO0I63xT7jL/Y5uVKq9K5WURyURpMkWS0e+91ClqiHE1bzGIPvPB88FRb5DYTCrmpzCUPM0K7wALQnjVWazMYIq7dg2bdH1tCV9XOcgqw0xbrHnI3Fy4abPXyeoWcraZNjC9EdG8UIVDZnCLX/TwVwigJ4XwavCj3lOgkuxtMkuUGVoD7AW6M82Qe5rG1TBAArWpTA/VZdfZwKJPOkgqCO8xn1Z4nXOOVikj+RV2JeRwpposdqJPYMIiwXm7g/FSG9yth6xy7IwMQZW8xVVMjLzhAXEAsiSu6dD5kGN/1fpyxUEUyNIg+6u26mc4S5jU9xi/CwZp8GKn14n8xHSKVF3Z3RAbW9ELfTV9LKy//TOMVsB3bNPFXxZCiM1rp3zoc5oeRc9YDUq4HX2M3AuxtRy80yFbj5qDbd8xaBD96WWNML8irqS6eG08im4THcd8G4xVBSYAYCIsXt5wXCFE96sA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR11MB2589.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(376002)(396003)(39860400002)(346002)(136003)(38100700002)(7416002)(122000001)(86362001)(91956017)(36756003)(2616005)(66556008)(71200400001)(30864003)(2906002)(83380400001)(5660300002)(66946007)(66476007)(76116006)(8676002)(316002)(6916009)(186003)(6512007)(6506007)(26005)(54906003)(8936002)(478600001)(66446008)(4326008)(64756008)(6486002)(38070700004)(579004);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?T2VDWG1RdTBuZDdsTnRmNkVvMkgvMjI5WW4yUGp2UG5CRzJKZ2V1N1hzSklM?=
+ =?utf-8?B?MEFSZDFacE9XWjI0RThwSUttc1NkZXJ3TWdEdVdERkpsWmQzd08rcFR3YVZr?=
+ =?utf-8?B?S2hheFh3OW4vMHVZd2JXcGFNS2VraTZtQy9BTXNaV3htaHRIdVM3VE53VzZP?=
+ =?utf-8?B?NVRjWllVclExYS9XS1JybkVCbDMyTGFabm01cHJEMUVMdkJDMHFwV3owZkxV?=
+ =?utf-8?B?emRhM0VRejFnbnV2Y2szNkRqL2dXNkgyalhYYjBnQk5xWDduSmJzTEtKN0Ir?=
+ =?utf-8?B?ajhMbG5jeXA1clM3bVVxVDFkQWV1U05meG12b0VGeWFoZGZ3Z1ZndFE3SmZh?=
+ =?utf-8?B?a3JHWVhhN0VIalpxaDFXWmx3TE1INmJ5WVBkYlZGZlZkdWljQzgwVjNYUEFy?=
+ =?utf-8?B?VFNuVXdId1NSK2ppUXcrSm5KOFV3NmVWSzl1S3NrMUVtRkQrZndjb2RTVTdS?=
+ =?utf-8?B?dmtyamFxU0p5WEZ4dlc2dkZMdXAxaHR5amZaa0h3Tk5xM09oY0V0c3RlTloz?=
+ =?utf-8?B?UVJSdlZMM29rSnFzTXdYdS9ZS2IrWUF0aGRvYno5dmJSdkxobzUxeVpZQ1pt?=
+ =?utf-8?B?MXlOSERuOERLaEpBM2lsSzc1NWhtNzNxeDBiY2hEOUdPZHYxd0dqYkdWMGU3?=
+ =?utf-8?B?Q1FsdTFOY2s5UjNLRUtTRUtreE5WK3VTZHVXS1MvMTlkUW1JcklDKzVuY2RF?=
+ =?utf-8?B?ZWVZOXlKRlNsSHFuUVpUd3BKMHdCTlMrYzF6ZTlGNG9GWlJIZW0wQ005b29Y?=
+ =?utf-8?B?V1BGRHhsVDI4SkcxUkFZY2JvM2RSckdBRjN1WFkxaHdqNitJSCswUE41d2Uv?=
+ =?utf-8?B?aDVGQjhMdExBVTdscnY5TFd0K0dzWlBlRWxmSjZHQmhoQTA5TWxkK2U4NGN6?=
+ =?utf-8?B?YVg4QjhvWkZ5TE10Z2JyNG1jSTFPalhDRXRkbkdwM3ZMYlZycWNJQ3VoY0lS?=
+ =?utf-8?B?WDBEQ2Z2STh3NU8rWi9vUjAzbmNrT2VBdWRMSVMrQWlNQXFFL0IyazJOcFY0?=
+ =?utf-8?B?S0UvY0JLS3ZWemZ2QkhLMXl0Wi9ZTHZsUFUwemhQclVKbm8zeWFWNE9NcklH?=
+ =?utf-8?B?WVVna0tvY2ZOdG5Kc2FySFdhVUN5MkU4ZEwzQy9wYlpQYVZFN0NjSHp0SXhE?=
+ =?utf-8?B?L2o1VVF4aitCRktlT0V5Z0g2bVZTYlYzUDFlMkt3Vm1IbXR4bkkrRDJ0azUz?=
+ =?utf-8?B?Z2ZvaCtEODhRa3BYdmhvQndJdTBXa3FYRXdaWTRCa1doSU4vL1E2TGFEZVU3?=
+ =?utf-8?B?M2R6S1hsWWEyMWtlSklsRVYzL0pjVmVIcEpIdG8vbTdUNWMwbXhwYkdGYjV1?=
+ =?utf-8?B?VWl5c1ZXSlFHamtCUU1WaGdKdTlYU0syV0hFTS9tRGd1YzRMWnVGVTBLaUhq?=
+ =?utf-8?B?V0RJUVZNRmJMZlRHYXRETWVoN0pFSnBjZ3VveDZPMkhzQmJ2WDF2dGVlTXBP?=
+ =?utf-8?B?ZC8zdGszMDl3Qytyd0pLM3lMdExzSzhRcTZ6K2M2RGhpQUE2K1F5dWdmcGxv?=
+ =?utf-8?B?WEZRbVNQV09JTmEySmErayszVlRDcGV0YkdscFYzUjhZc3BkeHVaRHVyaGdM?=
+ =?utf-8?B?cWY0ZnQ3bENJVXJSYkhHOWxySy9QYTcyU3NWR2FLRmN1T2hqOVdrUzZNbHNE?=
+ =?utf-8?B?MHBaVHMvTHNCWVdEak4zTTF3Y2wyS3VRMnZJWUJvdTQrRVRHQm1hd0JiMUJz?=
+ =?utf-8?B?aHUrVyt2U1BZc2kxNU9XZkJRVkFrR0sxcDNJbGlEZ3ZBeWpuK2ZIT0w1c2pN?=
+ =?utf-8?B?T2F6dnlkOVhNMVdXVE51dFErd3VUYW5DUE5WdDFjK0hRVisyK0VvYWp2WElh?=
+ =?utf-8?B?b3pFN2ZUWXdUSmRuSjdyZz09?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <BA8747F1153413448547A8E689A00FE1@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR11MB2589.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b6b1dd9a-eac8-482e-b5ae-08d94af4279f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jul 2021 20:31:14.6060
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: YPxckoyyu1eO0zkKPCs3AHLOgJUffL50SbpzJmRrU49jedhGeaajStg0UGCyq6D/umJU6RCMjllzXI7NSpDRexHsrW9Pj7o557l7deYzZoY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5098
+X-OriginatorOrg: intel.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the OPP v1 and v2 bindings to DT schema format. As the OPPv2 binding
-can be extended by vendors, we need to split the common part out from the
-"operating-points-v2" conforming compatible.
-
-Cc: Yangtao Li <tiny.windzz@gmail.com>
-Cc: Nishanth Menon <nm@ti.com>
-Cc: Stephen Boyd <sboyd@kernel.org>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Chen-Yu Tsai <wens@csie.org>
-Cc: linux-pm@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-v2:
-- move opp-peak-kBps next to opp-avg-kBps. Also add a dependency schema.
-- Correct the opp-microamp schemas. It's always a single value for each
-  regulator.
-- Add missing type for '^opp-microamp-'
----
- .../allwinner,sun50i-h6-operating-points.yaml |   4 +
- .../devicetree/bindings/opp/opp-v1.yaml       |  51 ++
- .../devicetree/bindings/opp/opp-v2-base.yaml  | 214 ++++++
- .../devicetree/bindings/opp/opp-v2.yaml       | 475 +++++++++++++
- Documentation/devicetree/bindings/opp/opp.txt | 622 ------------------
- 5 files changed, 744 insertions(+), 622 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/opp/opp-v1.yaml
- create mode 100644 Documentation/devicetree/bindings/opp/opp-v2-base.yaml
- create mode 100644 Documentation/devicetree/bindings/opp/opp-v2.yaml
- delete mode 100644 Documentation/devicetree/bindings/opp/opp.txt
-
-diff --git a/Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-operating-points.yaml b/Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-operating-points.yaml
-index aeff2bd774dd..729ae97b63d9 100644
---- a/Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-operating-points.yaml
-+++ b/Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-operating-points.yaml
-@@ -18,6 +18,9 @@ description: |
-   sun50i-cpufreq-nvmem driver reads the efuse value from the SoC to
-   provide the OPP framework with required information.
- 
-+allOf:
-+  - $ref: opp-v2-base.yaml#
-+
- properties:
-   compatible:
-     const: allwinner,sun50i-h6-operating-points
-@@ -43,6 +46,7 @@ patternProperties:
- 
-     properties:
-       opp-hz: true
-+      clock-latency-ns: true
- 
-     patternProperties:
-       "opp-microvolt-.*": true
-diff --git a/Documentation/devicetree/bindings/opp/opp-v1.yaml b/Documentation/devicetree/bindings/opp/opp-v1.yaml
-new file mode 100644
-index 000000000000..d585d536a3fb
---- /dev/null
-+++ b/Documentation/devicetree/bindings/opp/opp-v1.yaml
-@@ -0,0 +1,51 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/opp/opp-v1.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Generic OPP (Operating Performance Points) v1 Bindings
-+
-+maintainers:
-+  - Viresh Kumar <viresh.kumar@linaro.org>
-+
-+description: |+
-+  Devices work at voltage-current-frequency combinations and some implementations
-+  have the liberty of choosing these. These combinations are called Operating
-+  Performance Points aka OPPs. This document defines bindings for these OPPs
-+  applicable across wide range of devices. For illustration purpose, this document
-+  uses CPU as a device.
-+
-+  This binding only supports voltage-frequency pairs.
-+
-+select: true
-+
-+properties:
-+  operating-points:
-+    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-+    items:
-+      items:
-+        - description: Frequency in kHz
-+        - description: Voltage for OPP in uV
-+
-+
-+additionalProperties: true
-+examples:
-+  - |
-+    cpus {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        cpu@0 {
-+            compatible = "arm,cortex-a9";
-+            device_type = "cpu";
-+            reg = <0>;
-+            next-level-cache = <&L2>;
-+            operating-points =
-+                /* kHz    uV */
-+                <792000 1100000>,
-+                <396000 950000>,
-+                <198000 850000>;
-+        };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-new file mode 100644
-index 000000000000..ae3ae4d39843
---- /dev/null
-+++ b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-@@ -0,0 +1,214 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/opp/opp-v2-base.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Generic OPP (Operating Performance Points) Common Binding
-+
-+maintainers:
-+  - Viresh Kumar <viresh.kumar@linaro.org>
-+
-+description: |
-+  Devices work at voltage-current-frequency combinations and some implementations
-+  have the liberty of choosing these. These combinations are called Operating
-+  Performance Points aka OPPs. This document defines bindings for these OPPs
-+  applicable across wide range of devices. For illustration purpose, this document
-+  uses CPU as a device.
-+
-+  This describes the OPPs belonging to a device.
-+
-+select: false
-+
-+properties:
-+  $nodename:
-+    pattern: '^opp-table(-[a-z0-9]+)?$'
-+
-+  opp-shared:
-+    description:
-+      Indicates that device nodes using this OPP Table Node's phandle switch
-+      their DVFS state together, i.e. they share clock/voltage/current lines.
-+      Missing property means devices have independent clock/voltage/current
-+      lines, but they share OPP tables.
-+    type: boolean
-+
-+patternProperties:
-+  '^opp-?[0-9]+$':
-+    type: object
-+    description:
-+      One or more OPP nodes describing voltage-current-frequency combinations.
-+      Their name isn't significant but their phandle can be used to reference an
-+      OPP. These are mandatory except for the case where the OPP table is
-+      present only to indicate dependency between devices using the opp-shared
-+      property.
-+
-+    properties:
-+      opp-hz:
-+        description:
-+          Frequency in Hz, expressed as a 64-bit big-endian integer. This is a
-+          required property for all device nodes, unless another "required"
-+          property to uniquely identify the OPP nodes exists. Devices like power
-+          domains must have another (implementation dependent) property.
-+
-+      opp-microvolt:
-+        description: |
-+          Voltage for the OPP
-+
-+          A single regulator's voltage is specified with an array of size one or three.
-+          Single entry is for target voltage and three entries are for <target min max>
-+          voltages.
-+
-+          Entries for multiple regulators shall be provided in the same field separated
-+          by angular brackets <>. The OPP binding doesn't provide any provisions to
-+          relate the values to their power supplies or the order in which the supplies
-+          need to be configured and that is left for the implementation specific
-+          binding.
-+
-+          Entries for all regulators shall be of the same size, i.e. either all use a
-+          single value or triplets.
-+        minItems: 1
-+        maxItems: 8   # Should be enough regulators
-+        items:
-+          minItems: 1
-+          maxItems: 3
-+
-+      opp-microamp:
-+        description: |
-+          The maximum current drawn by the device in microamperes considering
-+          system specific parameters (such as transients, process, aging,
-+          maximum operating temperature range etc.) as necessary. This may be
-+          used to set the most efficient regulator operating mode.
-+
-+          Should only be set if opp-microvolt or opp-microvolt-<name> is set for
-+          the OPP.
-+
-+          Entries for multiple regulators shall be provided in the same field
-+          separated by angular brackets <>. If current values aren't required
-+          for a regulator, then it shall be filled with 0. If current values
-+          aren't required for any of the regulators, then this field is not
-+          required. The OPP binding doesn't provide any provisions to relate the
-+          values to their power supplies or the order in which the supplies need
-+          to be configured and that is left for the implementation specific
-+          binding.
-+        minItems: 1
-+        maxItems: 8   # Should be enough regulators
-+
-+      opp-level:
-+        description:
-+          A value representing the performance level of the device.
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+
-+      opp-peak-kBps:
-+        description:
-+          Peak bandwidth in kilobytes per second, expressed as an array of
-+          32-bit big-endian integers. Each element of the array represents the
-+          peak bandwidth value of each interconnect path. The number of elements
-+          should match the number of interconnect paths.
-+        minItems: 1
-+        maxItems: 32  # Should be enough
-+
-+      opp-avg-kBps:
-+        description:
-+          Average bandwidth in kilobytes per second, expressed as an array
-+          of 32-bit big-endian integers. Each element of the array represents the
-+          average bandwidth value of each interconnect path. The number of elements
-+          should match the number of interconnect paths. This property is only
-+          meaningful in OPP tables where opp-peak-kBps is present.
-+        minItems: 1
-+        maxItems: 32  # Should be enough
-+
-+      clock-latency-ns:
-+        description:
-+          Specifies the maximum possible transition latency (in nanoseconds) for
-+          switching to this OPP from any other OPP.
-+
-+      turbo-mode:
-+        description:
-+          Marks the OPP to be used only for turbo modes. Turbo mode is available
-+          on some platforms, where the device can run over its operating
-+          frequency for a short duration of time limited by the device's power,
-+          current and thermal limits.
-+        type: boolean
-+
-+      opp-suspend:
-+        description:
-+          Marks the OPP to be used during device suspend. If multiple OPPs in
-+          the table have this, the OPP with highest opp-hz will be used.
-+        type: boolean
-+
-+      opp-supported-hw:
-+        description: |
-+          This property allows a platform to enable only a subset of the OPPs
-+          from the larger set present in the OPP table, based on the current
-+          version of the hardware (already known to the operating system).
-+
-+          Each block present in the array of blocks in this property, represents
-+          a sub-group of hardware versions supported by the OPP. i.e. <sub-group
-+          A>, <sub-group B>, etc. The OPP will be enabled if _any_ of these
-+          sub-groups match the hardware's version.
-+
-+          Each sub-group is a platform defined array representing the hierarchy
-+          of hardware versions supported by the platform. For a platform with
-+          three hierarchical levels of version (X.Y.Z), this field shall look
-+          like
-+
-+          opp-supported-hw = <X1 Y1 Z1>, <X2 Y2 Z2>, <X3 Y3 Z3>.
-+
-+          Each level (eg. X1) in version hierarchy is represented by a 32 bit
-+          value, one bit per version and so there can be maximum 32 versions per
-+          level. Logical AND (&) operation is performed for each level with the
-+          hardware's level version and a non-zero output for _all_ the levels in
-+          a sub-group means the OPP is supported by hardware. A value of
-+          0xFFFFFFFF for each level in the sub-group will enable the OPP for all
-+          versions for the hardware.
-+        $ref: /schemas/types.yaml#/definitions/uint32-matrix
-+        maxItems: 32
-+        items:
-+          minItems: 1
-+          maxItems: 4
-+
-+      required-opps:
-+        description:
-+          This contains phandle to an OPP node in another device's OPP table. It
-+          may contain an array of phandles, where each phandle points to an OPP
-+          of a different device. It should not contain multiple phandles to the
-+          OPP nodes in the same OPP table. This specifies the minimum required
-+          OPP of the device(s), whose OPP's phandle is present in this property,
-+          for the functioning of the current device at the current OPP (where
-+          this property is present).
-+        $ref: /schemas/types.yaml#/definitions/phandle-array
-+
-+    patternProperties:
-+      '^opp-microvolt-':
-+        description:
-+          Named opp-microvolt property. This is exactly similar to the above
-+          opp-microvolt property, but allows multiple voltage ranges to be
-+          provided for the same OPP. At runtime, the platform can pick a <name>
-+          and matching opp-microvolt-<name> property will be enabled for all
-+          OPPs. If the platform doesn't pick a specific <name> or the <name>
-+          doesn't match with any opp-microvolt-<name> properties, then
-+          opp-microvolt property shall be used, if present.
-+        $ref: /schemas/types.yaml#/definitions/uint32-matrix
-+        minItems: 1
-+        maxItems: 8   # Should be enough regulators
-+        items:
-+          minItems: 1
-+          maxItems: 3
-+
-+      '^opp-microamp-':
-+        description:
-+          Named opp-microamp property. Similar to opp-microvolt-<name> property,
-+          but for microamp instead.
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+        minItems: 1
-+        maxItems: 8   # Should be enough regulators
-+
-+    dependencies:
-+      opp-avg-kBps: [ opp-peak-kBps ]
-+
-+required:
-+  - compatible
-+
-+additionalProperties: true
-+
-+...
-diff --git a/Documentation/devicetree/bindings/opp/opp-v2.yaml b/Documentation/devicetree/bindings/opp/opp-v2.yaml
-new file mode 100644
-index 000000000000..609f68db9610
---- /dev/null
-+++ b/Documentation/devicetree/bindings/opp/opp-v2.yaml
-@@ -0,0 +1,475 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/opp/opp-v2.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Generic OPP (Operating Performance Points) Bindings
-+
-+maintainers:
-+  - Viresh Kumar <viresh.kumar@linaro.org>
-+
-+allOf:
-+  - $ref: opp-v2-base.yaml#
-+
-+properties:
-+  compatible:
-+    const: operating-points-v2
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    /*
-+     * Example 1: Single cluster Dual-core ARM cortex A9, switch DVFS states
-+     * together.
-+     */
-+    cpus {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        cpu@0 {
-+            compatible = "arm,cortex-a9";
-+            device_type = "cpu";
-+            reg = <0>;
-+            next-level-cache = <&L2>;
-+            clocks = <&clk_controller 0>;
-+            clock-names = "cpu";
-+            cpu-supply = <&cpu_supply0>;
-+            operating-points-v2 = <&cpu0_opp_table0>;
-+        };
-+
-+        cpu@1 {
-+            compatible = "arm,cortex-a9";
-+            device_type = "cpu";
-+            reg = <1>;
-+            next-level-cache = <&L2>;
-+            clocks = <&clk_controller 0>;
-+            clock-names = "cpu";
-+            cpu-supply = <&cpu_supply0>;
-+            operating-points-v2 = <&cpu0_opp_table0>;
-+        };
-+    };
-+
-+    cpu0_opp_table0: opp-table {
-+        compatible = "operating-points-v2";
-+        opp-shared;
-+
-+        opp-1000000000 {
-+            opp-hz = /bits/ 64 <1000000000>;
-+            opp-microvolt = <975000 970000 985000>;
-+            opp-microamp = <70000>;
-+            clock-latency-ns = <300000>;
-+            opp-suspend;
-+        };
-+        opp-1100000000 {
-+            opp-hz = /bits/ 64 <1100000000>;
-+            opp-microvolt = <1000000 980000 1010000>;
-+            opp-microamp = <80000>;
-+            clock-latency-ns = <310000>;
-+        };
-+        opp-1200000000 {
-+            opp-hz = /bits/ 64 <1200000000>;
-+            opp-microvolt = <1025000>;
-+            clock-latency-ns = <290000>;
-+            turbo-mode;
-+        };
-+    };
-+
-+  - |
-+    /*
-+     * Example 2: Single cluster, Quad-core Qualcom-krait, switches DVFS states
-+     * independently.
-+     */
-+    cpus {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        cpu@0 {
-+            compatible = "qcom,krait";
-+            device_type = "cpu";
-+            reg = <0>;
-+            next-level-cache = <&L2>;
-+            clocks = <&clk_controller 0>;
-+            clock-names = "cpu";
-+            cpu-supply = <&cpu_supply0>;
-+            operating-points-v2 = <&cpu_opp_table>;
-+        };
-+
-+        cpu@1 {
-+            compatible = "qcom,krait";
-+            device_type = "cpu";
-+            reg = <1>;
-+            next-level-cache = <&L2>;
-+            clocks = <&clk_controller 1>;
-+            clock-names = "cpu";
-+            cpu-supply = <&cpu_supply1>;
-+            operating-points-v2 = <&cpu_opp_table>;
-+        };
-+
-+        cpu@2 {
-+            compatible = "qcom,krait";
-+            device_type = "cpu";
-+            reg = <2>;
-+            next-level-cache = <&L2>;
-+            clocks = <&clk_controller 2>;
-+            clock-names = "cpu";
-+            cpu-supply = <&cpu_supply2>;
-+            operating-points-v2 = <&cpu_opp_table>;
-+        };
-+
-+        cpu@3 {
-+            compatible = "qcom,krait";
-+            device_type = "cpu";
-+            reg = <3>;
-+            next-level-cache = <&L2>;
-+            clocks = <&clk_controller 3>;
-+            clock-names = "cpu";
-+            cpu-supply = <&cpu_supply3>;
-+            operating-points-v2 = <&cpu_opp_table>;
-+        };
-+    };
-+
-+    cpu_opp_table: opp-table {
-+        compatible = "operating-points-v2";
-+
-+        /*
-+         * Missing opp-shared property means CPUs switch DVFS states
-+         * independently.
-+         */
-+
-+        opp-1000000000 {
-+            opp-hz = /bits/ 64 <1000000000>;
-+            opp-microvolt = <975000 970000 985000>;
-+            opp-microamp = <70000>;
-+            clock-latency-ns = <300000>;
-+            opp-suspend;
-+        };
-+        opp-1100000000 {
-+            opp-hz = /bits/ 64 <1100000000>;
-+            opp-microvolt = <1000000 980000 1010000>;
-+            opp-microamp = <80000>;
-+            clock-latency-ns = <310000>;
-+        };
-+        opp-1200000000 {
-+            opp-hz = /bits/ 64 <1200000000>;
-+            opp-microvolt = <1025000>;
-+            opp-microamp = <90000>;
-+            lock-latency-ns = <290000>;
-+            turbo-mode;
-+        };
-+    };
-+
-+  - |
-+    /*
-+     * Example 3: Dual-cluster, Dual-core per cluster. CPUs within a cluster switch
-+     * DVFS state together.
-+     */
-+    cpus {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        cpu@0 {
-+            compatible = "arm,cortex-a7";
-+            device_type = "cpu";
-+            reg = <0>;
-+            next-level-cache = <&L2>;
-+            clocks = <&clk_controller 0>;
-+            clock-names = "cpu";
-+            cpu-supply = <&cpu_supply0>;
-+            operating-points-v2 = <&cluster0_opp>;
-+        };
-+
-+        cpu@1 {
-+            compatible = "arm,cortex-a7";
-+            device_type = "cpu";
-+            reg = <1>;
-+            next-level-cache = <&L2>;
-+            clocks = <&clk_controller 0>;
-+            clock-names = "cpu";
-+            cpu-supply = <&cpu_supply0>;
-+            operating-points-v2 = <&cluster0_opp>;
-+        };
-+
-+        cpu@100 {
-+            compatible = "arm,cortex-a15";
-+            device_type = "cpu";
-+            reg = <100>;
-+            next-level-cache = <&L2>;
-+            clocks = <&clk_controller 1>;
-+            clock-names = "cpu";
-+            cpu-supply = <&cpu_supply1>;
-+            operating-points-v2 = <&cluster1_opp>;
-+        };
-+
-+        cpu@101 {
-+            compatible = "arm,cortex-a15";
-+            device_type = "cpu";
-+            reg = <101>;
-+            next-level-cache = <&L2>;
-+            clocks = <&clk_controller 1>;
-+            clock-names = "cpu";
-+            cpu-supply = <&cpu_supply1>;
-+            operating-points-v2 = <&cluster1_opp>;
-+        };
-+    };
-+
-+    cluster0_opp: opp-table-0 {
-+        compatible = "operating-points-v2";
-+        opp-shared;
-+
-+        opp-1000000000 {
-+            opp-hz = /bits/ 64 <1000000000>;
-+            opp-microvolt = <975000 970000 985000>;
-+            opp-microamp = <70000>;
-+            clock-latency-ns = <300000>;
-+            opp-suspend;
-+        };
-+        opp-1100000000 {
-+            opp-hz = /bits/ 64 <1100000000>;
-+            opp-microvolt = <1000000 980000 1010000>;
-+            opp-microamp = <80000>;
-+            clock-latency-ns = <310000>;
-+        };
-+        opp-1200000000 {
-+            opp-hz = /bits/ 64 <1200000000>;
-+            opp-microvolt = <1025000>;
-+            opp-microamp = <90000>;
-+            clock-latency-ns = <290000>;
-+            turbo-mode;
-+        };
-+    };
-+
-+    cluster1_opp: opp-table-1 {
-+        compatible = "operating-points-v2";
-+        opp-shared;
-+
-+        opp-1300000000 {
-+            opp-hz = /bits/ 64 <1300000000>;
-+            opp-microvolt = <1050000 1045000 1055000>;
-+            opp-microamp = <95000>;
-+            clock-latency-ns = <400000>;
-+            opp-suspend;
-+        };
-+        opp-1400000000 {
-+            opp-hz = /bits/ 64 <1400000000>;
-+            opp-microvolt = <1075000>;
-+            opp-microamp = <100000>;
-+            clock-latency-ns = <400000>;
-+        };
-+        opp-1500000000 {
-+            opp-hz = /bits/ 64 <1500000000>;
-+            opp-microvolt = <1100000 1010000 1110000>;
-+            opp-microamp = <95000>;
-+            clock-latency-ns = <400000>;
-+            turbo-mode;
-+        };
-+    };
-+
-+  - |
-+    /* Example 4: Handling multiple regulators */
-+    cpus {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        cpu@0 {
-+            compatible = "vendor,cpu-type";
-+            device_type = "cpu";
-+            reg = <0>;
-+
-+            vcc0-supply = <&cpu_supply0>;
-+            vcc1-supply = <&cpu_supply1>;
-+            vcc2-supply = <&cpu_supply2>;
-+            operating-points-v2 = <&cpu0_opp_table4>;
-+        };
-+    };
-+
-+    cpu0_opp_table4: opp-table-0 {
-+        compatible = "operating-points-v2";
-+        opp-shared;
-+
-+        opp-1000000000 {
-+            opp-hz = /bits/ 64 <1000000000>;
-+            opp-microvolt = <970000>, /* Supply 0 */
-+                            <960000>, /* Supply 1 */
-+                            <960000>; /* Supply 2 */
-+            opp-microamp =  <70000>,  /* Supply 0 */
-+                            <70000>,  /* Supply 1 */
-+                            <70000>;  /* Supply 2 */
-+            clock-latency-ns = <300000>;
-+        };
-+
-+        /* OR */
-+
-+        opp-1000000001 {
-+            opp-hz = /bits/ 64 <1000000001>;
-+            opp-microvolt = <975000 970000 985000>, /* Supply 0 */
-+                            <965000 960000 975000>, /* Supply 1 */
-+                            <965000 960000 975000>; /* Supply 2 */
-+            opp-microamp =  <70000>,    /* Supply 0 */
-+                <70000>,    /* Supply 1 */
-+                <70000>;    /* Supply 2 */
-+            clock-latency-ns = <300000>;
-+        };
-+
-+        /* OR */
-+
-+        opp-1000000002 {
-+            opp-hz = /bits/ 64 <1000000002>;
-+            opp-microvolt = <975000 970000 985000>, /* Supply 0 */
-+                <965000 960000 975000>, /* Supply 1 */
-+                <965000 960000 975000>; /* Supply 2 */
-+            opp-microamp =  <70000>,    /* Supply 0 */
-+                <0>,      /* Supply 1 doesn't need this */
-+                <70000>;    /* Supply 2 */
-+            clock-latency-ns = <300000>;
-+        };
-+    };
-+
-+  - |
-+    /*
-+     * Example 5: opp-supported-hw
-+     * (example: three level hierarchy of versions: cuts, substrate and process)
-+     */
-+    cpus {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        cpu@0 {
-+            compatible = "arm,cortex-a7";
-+            device_type = "cpu";
-+            reg = <0>;
-+            cpu-supply = <&cpu_supply>;
-+            operating-points-v2 = <&cpu0_opp_table_slow>;
-+        };
-+    };
-+
-+    cpu0_opp_table_slow: opp-table {
-+        compatible = "operating-points-v2";
-+        opp-shared;
-+
-+        opp-600000000 {
-+            /*
-+             * Supports all substrate and process versions for 0xF
-+             * cuts, i.e. only first four cuts.
-+             */
-+            opp-supported-hw = <0xF 0xFFFFFFFF 0xFFFFFFFF>;
-+            opp-hz = /bits/ 64 <600000000>;
-+        };
-+
-+        opp-800000000 {
-+            /*
-+             * Supports:
-+             * - cuts: only one, 6th cut (represented by 6th bit).
-+             * - substrate: supports 16 different substrate versions
-+             * - process: supports 9 different process versions
-+             */
-+            opp-supported-hw = <0x20 0xff0000ff 0x0000f4f0>;
-+            opp-hz = /bits/ 64 <800000000>;
-+        };
-+
-+        opp-900000000 {
-+            /*
-+             * Supports:
-+             * - All cuts and substrate where process version is 0x2.
-+             * - All cuts and process where substrate version is 0x2.
-+             */
-+            opp-supported-hw = <0xFFFFFFFF 0xFFFFFFFF 0x02>,
-+                               <0xFFFFFFFF 0x01 0xFFFFFFFF>;
-+            opp-hz = /bits/ 64 <900000000>;
-+        };
-+    };
-+
-+  - |
-+    /*
-+     * Example 6: opp-microvolt-<name>, opp-microamp-<name>:
-+     * (example: device with two possible microvolt ranges: slow and fast)
-+     */
-+    cpus {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        cpu@0 {
-+            compatible = "arm,cortex-a7";
-+            device_type = "cpu";
-+            reg = <0>;
-+            operating-points-v2 = <&cpu0_opp_table6>;
-+        };
-+    };
-+
-+    cpu0_opp_table6: opp-table-0 {
-+        compatible = "operating-points-v2";
-+        opp-shared;
-+
-+        opp-1000000000 {
-+            opp-hz = /bits/ 64 <1000000000>;
-+            opp-microvolt-slow = <915000 900000 925000>;
-+            opp-microvolt-fast = <975000 970000 985000>;
-+            opp-microamp-slow =  <70000>;
-+            opp-microamp-fast =  <71000>;
-+        };
-+
-+        opp-1200000000 {
-+            opp-hz = /bits/ 64 <1200000000>;
-+            opp-microvolt-slow = <915000 900000 925000>, /* Supply vcc0 */
-+                                 <925000 910000 935000>; /* Supply vcc1 */
-+            opp-microvolt-fast = <975000 970000 985000>, /* Supply vcc0 */
-+                                 <965000 960000 975000>; /* Supply vcc1 */
-+            opp-microamp =  <70000>; /* Will be used for both slow/fast */
-+        };
-+    };
-+
-+  - |
-+    /*
-+     * Example 7: Single cluster Quad-core ARM cortex A53, OPP points from firmware,
-+     * distinct clock controls but two sets of clock/voltage/current lines.
-+     */
-+    cpus {
-+        #address-cells = <2>;
-+        #size-cells = <0>;
-+
-+        cpu@0 {
-+            compatible = "arm,cortex-a53";
-+            device_type = "cpu";
-+            reg = <0x0 0x100>;
-+            next-level-cache = <&A53_L2>;
-+            clocks = <&dvfs_controller 0>;
-+            operating-points-v2 = <&cpu_opp0_table>;
-+        };
-+        cpu@1 {
-+            compatible = "arm,cortex-a53";
-+            device_type = "cpu";
-+            reg = <0x0 0x101>;
-+            next-level-cache = <&A53_L2>;
-+            clocks = <&dvfs_controller 1>;
-+            operating-points-v2 = <&cpu_opp0_table>;
-+        };
-+        cpu@2 {
-+            compatible = "arm,cortex-a53";
-+            device_type = "cpu";
-+            reg = <0x0 0x102>;
-+            next-level-cache = <&A53_L2>;
-+            clocks = <&dvfs_controller 2>;
-+            operating-points-v2 = <&cpu_opp1_table>;
-+        };
-+        cpu@3 {
-+            compatible = "arm,cortex-a53";
-+            device_type = "cpu";
-+            reg = <0x0 0x103>;
-+            next-level-cache = <&A53_L2>;
-+            clocks = <&dvfs_controller 3>;
-+            operating-points-v2 = <&cpu_opp1_table>;
-+        };
-+
-+    };
-+
-+    cpu_opp0_table: opp-table-0 {
-+        compatible = "operating-points-v2";
-+        opp-shared;
-+    };
-+
-+    cpu_opp1_table: opp-table-1 {
-+        compatible = "operating-points-v2";
-+        opp-shared;
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/opp/opp.txt b/Documentation/devicetree/bindings/opp/opp.txt
-deleted file mode 100644
-index 08b3da4736cf..000000000000
---- a/Documentation/devicetree/bindings/opp/opp.txt
-+++ /dev/null
-@@ -1,622 +0,0 @@
--Generic OPP (Operating Performance Points) Bindings
------------------------------------------------------
--
--Devices work at voltage-current-frequency combinations and some implementations
--have the liberty of choosing these. These combinations are called Operating
--Performance Points aka OPPs. This document defines bindings for these OPPs
--applicable across wide range of devices. For illustration purpose, this document
--uses CPU as a device.
--
--This document contain multiple versions of OPP binding and only one of them
--should be used per device.
--
--Binding 1: operating-points
--============================
--
--This binding only supports voltage-frequency pairs.
--
--Properties:
--- operating-points: An array of 2-tuples items, and each item consists
--  of frequency and voltage like <freq-kHz vol-uV>.
--	freq: clock frequency in kHz
--	vol: voltage in microvolt
--
--Examples:
--
--cpu@0 {
--	compatible = "arm,cortex-a9";
--	reg = <0>;
--	next-level-cache = <&L2>;
--	operating-points = <
--		/* kHz    uV */
--		792000  1100000
--		396000  950000
--		198000  850000
--	>;
--};
--
--
--Binding 2: operating-points-v2
--============================
--
--* Property: operating-points-v2
--
--Devices supporting OPPs must set their "operating-points-v2" property with
--phandle to a OPP table in their DT node. The OPP core will use this phandle to
--find the operating points for the device.
--
--This can contain more than one phandle for power domain providers that provide
--multiple power domains. That is, one phandle for each power domain. If only one
--phandle is available, then the same OPP table will be used for all power domains
--provided by the power domain provider.
--
--If required, this can be extended for SoC vendor specific bindings. Such bindings
--should be documented as Documentation/devicetree/bindings/power/<vendor>-opp.txt
--and should have a compatible description like: "operating-points-v2-<vendor>".
--
--* OPP Table Node
--
--This describes the OPPs belonging to a device. This node can have following
--properties:
--
--Required properties:
--- compatible: Allow OPPs to express their compatibility. It should be:
--  "operating-points-v2".
--
--- OPP nodes: One or more OPP nodes describing voltage-current-frequency
--  combinations. Their name isn't significant but their phandle can be used to
--  reference an OPP. These are mandatory except for the case where the OPP table
--  is present only to indicate dependency between devices using the opp-shared
--  property.
--
--Optional properties:
--- opp-shared: Indicates that device nodes using this OPP Table Node's phandle
--  switch their DVFS state together, i.e. they share clock/voltage/current lines.
--  Missing property means devices have independent clock/voltage/current lines,
--  but they share OPP tables.
--
--- status: Marks the OPP table enabled/disabled.
--
--
--* OPP Node
--
--This defines voltage-current-frequency combinations along with other related
--properties.
--
--Required properties:
--- opp-hz: Frequency in Hz, expressed as a 64-bit big-endian integer. This is a
--  required property for all device nodes, unless another "required" property to
--  uniquely identify the OPP nodes exists. Devices like power domains must have
--  another (implementation dependent) property.
--
--- opp-peak-kBps: Peak bandwidth in kilobytes per second, expressed as an array
--  of 32-bit big-endian integers. Each element of the array represents the
--  peak bandwidth value of each interconnect path. The number of elements should
--  match the number of interconnect paths.
--
--Optional properties:
--- opp-microvolt: voltage in micro Volts.
--
--  A single regulator's voltage is specified with an array of size one or three.
--  Single entry is for target voltage and three entries are for <target min max>
--  voltages.
--
--  Entries for multiple regulators shall be provided in the same field separated
--  by angular brackets <>. The OPP binding doesn't provide any provisions to
--  relate the values to their power supplies or the order in which the supplies
--  need to be configured and that is left for the implementation specific
--  binding.
--
--  Entries for all regulators shall be of the same size, i.e. either all use a
--  single value or triplets.
--
--- opp-microvolt-<name>: Named opp-microvolt property. This is exactly similar to
--  the above opp-microvolt property, but allows multiple voltage ranges to be
--  provided for the same OPP. At runtime, the platform can pick a <name> and
--  matching opp-microvolt-<name> property will be enabled for all OPPs. If the
--  platform doesn't pick a specific <name> or the <name> doesn't match with any
--  opp-microvolt-<name> properties, then opp-microvolt property shall be used, if
--  present.
--
--- opp-microamp: The maximum current drawn by the device in microamperes
--  considering system specific parameters (such as transients, process, aging,
--  maximum operating temperature range etc.) as necessary. This may be used to
--  set the most efficient regulator operating mode.
--
--  Should only be set if opp-microvolt is set for the OPP.
--
--  Entries for multiple regulators shall be provided in the same field separated
--  by angular brackets <>. If current values aren't required for a regulator,
--  then it shall be filled with 0. If current values aren't required for any of
--  the regulators, then this field is not required. The OPP binding doesn't
--  provide any provisions to relate the values to their power supplies or the
--  order in which the supplies need to be configured and that is left for the
--  implementation specific binding.
--
--- opp-microamp-<name>: Named opp-microamp property. Similar to
--  opp-microvolt-<name> property, but for microamp instead.
--
--- opp-level: A value representing the performance level of the device,
--  expressed as a 32-bit integer.
--
--- opp-avg-kBps: Average bandwidth in kilobytes per second, expressed as an array
--  of 32-bit big-endian integers. Each element of the array represents the
--  average bandwidth value of each interconnect path. The number of elements
--  should match the number of interconnect paths. This property is only
--  meaningful in OPP tables where opp-peak-kBps is present.
--
--- clock-latency-ns: Specifies the maximum possible transition latency (in
--  nanoseconds) for switching to this OPP from any other OPP.
--
--- turbo-mode: Marks the OPP to be used only for turbo modes. Turbo mode is
--  available on some platforms, where the device can run over its operating
--  frequency for a short duration of time limited by the device's power, current
--  and thermal limits.
--
--- opp-suspend: Marks the OPP to be used during device suspend. If multiple OPPs
--  in the table have this, the OPP with highest opp-hz will be used.
--
--- opp-supported-hw: This property allows a platform to enable only a subset of
--  the OPPs from the larger set present in the OPP table, based on the current
--  version of the hardware (already known to the operating system).
--
--  Each block present in the array of blocks in this property, represents a
--  sub-group of hardware versions supported by the OPP. i.e. <sub-group A>,
--  <sub-group B>, etc. The OPP will be enabled if _any_ of these sub-groups match
--  the hardware's version.
--
--  Each sub-group is a platform defined array representing the hierarchy of
--  hardware versions supported by the platform. For a platform with three
--  hierarchical levels of version (X.Y.Z), this field shall look like
--
--  opp-supported-hw = <X1 Y1 Z1>, <X2 Y2 Z2>, <X3 Y3 Z3>.
--
--  Each level (eg. X1) in version hierarchy is represented by a 32 bit value, one
--  bit per version and so there can be maximum 32 versions per level. Logical AND
--  (&) operation is performed for each level with the hardware's level version
--  and a non-zero output for _all_ the levels in a sub-group means the OPP is
--  supported by hardware. A value of 0xFFFFFFFF for each level in the sub-group
--  will enable the OPP for all versions for the hardware.
--
--- status: Marks the node enabled/disabled.
--
--- required-opps: This contains phandle to an OPP node in another device's OPP
--  table. It may contain an array of phandles, where each phandle points to an
--  OPP of a different device. It should not contain multiple phandles to the OPP
--  nodes in the same OPP table. This specifies the minimum required OPP of the
--  device(s), whose OPP's phandle is present in this property, for the
--  functioning of the current device at the current OPP (where this property is
--  present).
--
--Example 1: Single cluster Dual-core ARM cortex A9, switch DVFS states together.
--
--/ {
--	cpus {
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		cpu@0 {
--			compatible = "arm,cortex-a9";
--			reg = <0>;
--			next-level-cache = <&L2>;
--			clocks = <&clk_controller 0>;
--			clock-names = "cpu";
--			cpu-supply = <&cpu_supply0>;
--			operating-points-v2 = <&cpu0_opp_table>;
--		};
--
--		cpu@1 {
--			compatible = "arm,cortex-a9";
--			reg = <1>;
--			next-level-cache = <&L2>;
--			clocks = <&clk_controller 0>;
--			clock-names = "cpu";
--			cpu-supply = <&cpu_supply0>;
--			operating-points-v2 = <&cpu0_opp_table>;
--		};
--	};
--
--	cpu0_opp_table: opp_table0 {
--		compatible = "operating-points-v2";
--		opp-shared;
--
--		opp-1000000000 {
--			opp-hz = /bits/ 64 <1000000000>;
--			opp-microvolt = <975000 970000 985000>;
--			opp-microamp = <70000>;
--			clock-latency-ns = <300000>;
--			opp-suspend;
--		};
--		opp-1100000000 {
--			opp-hz = /bits/ 64 <1100000000>;
--			opp-microvolt = <1000000 980000 1010000>;
--			opp-microamp = <80000>;
--			clock-latency-ns = <310000>;
--		};
--		opp-1200000000 {
--			opp-hz = /bits/ 64 <1200000000>;
--			opp-microvolt = <1025000>;
--			clock-latency-ns = <290000>;
--			turbo-mode;
--		};
--	};
--};
--
--Example 2: Single cluster, Quad-core Qualcom-krait, switches DVFS states
--independently.
--
--/ {
--	cpus {
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		cpu@0 {
--			compatible = "qcom,krait";
--			reg = <0>;
--			next-level-cache = <&L2>;
--			clocks = <&clk_controller 0>;
--			clock-names = "cpu";
--			cpu-supply = <&cpu_supply0>;
--			operating-points-v2 = <&cpu_opp_table>;
--		};
--
--		cpu@1 {
--			compatible = "qcom,krait";
--			reg = <1>;
--			next-level-cache = <&L2>;
--			clocks = <&clk_controller 1>;
--			clock-names = "cpu";
--			cpu-supply = <&cpu_supply1>;
--			operating-points-v2 = <&cpu_opp_table>;
--		};
--
--		cpu@2 {
--			compatible = "qcom,krait";
--			reg = <2>;
--			next-level-cache = <&L2>;
--			clocks = <&clk_controller 2>;
--			clock-names = "cpu";
--			cpu-supply = <&cpu_supply2>;
--			operating-points-v2 = <&cpu_opp_table>;
--		};
--
--		cpu@3 {
--			compatible = "qcom,krait";
--			reg = <3>;
--			next-level-cache = <&L2>;
--			clocks = <&clk_controller 3>;
--			clock-names = "cpu";
--			cpu-supply = <&cpu_supply3>;
--			operating-points-v2 = <&cpu_opp_table>;
--		};
--	};
--
--	cpu_opp_table: opp_table {
--		compatible = "operating-points-v2";
--
--		/*
--		 * Missing opp-shared property means CPUs switch DVFS states
--		 * independently.
--		 */
--
--		opp-1000000000 {
--			opp-hz = /bits/ 64 <1000000000>;
--			opp-microvolt = <975000 970000 985000>;
--			opp-microamp = <70000>;
--			clock-latency-ns = <300000>;
--			opp-suspend;
--		};
--		opp-1100000000 {
--			opp-hz = /bits/ 64 <1100000000>;
--			opp-microvolt = <1000000 980000 1010000>;
--			opp-microamp = <80000>;
--			clock-latency-ns = <310000>;
--		};
--		opp-1200000000 {
--			opp-hz = /bits/ 64 <1200000000>;
--			opp-microvolt = <1025000>;
--			opp-microamp = <90000;
--			lock-latency-ns = <290000>;
--			turbo-mode;
--		};
--	};
--};
--
--Example 3: Dual-cluster, Dual-core per cluster. CPUs within a cluster switch
--DVFS state together.
--
--/ {
--	cpus {
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		cpu@0 {
--			compatible = "arm,cortex-a7";
--			reg = <0>;
--			next-level-cache = <&L2>;
--			clocks = <&clk_controller 0>;
--			clock-names = "cpu";
--			cpu-supply = <&cpu_supply0>;
--			operating-points-v2 = <&cluster0_opp>;
--		};
--
--		cpu@1 {
--			compatible = "arm,cortex-a7";
--			reg = <1>;
--			next-level-cache = <&L2>;
--			clocks = <&clk_controller 0>;
--			clock-names = "cpu";
--			cpu-supply = <&cpu_supply0>;
--			operating-points-v2 = <&cluster0_opp>;
--		};
--
--		cpu@100 {
--			compatible = "arm,cortex-a15";
--			reg = <100>;
--			next-level-cache = <&L2>;
--			clocks = <&clk_controller 1>;
--			clock-names = "cpu";
--			cpu-supply = <&cpu_supply1>;
--			operating-points-v2 = <&cluster1_opp>;
--		};
--
--		cpu@101 {
--			compatible = "arm,cortex-a15";
--			reg = <101>;
--			next-level-cache = <&L2>;
--			clocks = <&clk_controller 1>;
--			clock-names = "cpu";
--			cpu-supply = <&cpu_supply1>;
--			operating-points-v2 = <&cluster1_opp>;
--		};
--	};
--
--	cluster0_opp: opp_table0 {
--		compatible = "operating-points-v2";
--		opp-shared;
--
--		opp-1000000000 {
--			opp-hz = /bits/ 64 <1000000000>;
--			opp-microvolt = <975000 970000 985000>;
--			opp-microamp = <70000>;
--			clock-latency-ns = <300000>;
--			opp-suspend;
--		};
--		opp-1100000000 {
--			opp-hz = /bits/ 64 <1100000000>;
--			opp-microvolt = <1000000 980000 1010000>;
--			opp-microamp = <80000>;
--			clock-latency-ns = <310000>;
--		};
--		opp-1200000000 {
--			opp-hz = /bits/ 64 <1200000000>;
--			opp-microvolt = <1025000>;
--			opp-microamp = <90000>;
--			clock-latency-ns = <290000>;
--			turbo-mode;
--		};
--	};
--
--	cluster1_opp: opp_table1 {
--		compatible = "operating-points-v2";
--		opp-shared;
--
--		opp-1300000000 {
--			opp-hz = /bits/ 64 <1300000000>;
--			opp-microvolt = <1050000 1045000 1055000>;
--			opp-microamp = <95000>;
--			clock-latency-ns = <400000>;
--			opp-suspend;
--		};
--		opp-1400000000 {
--			opp-hz = /bits/ 64 <1400000000>;
--			opp-microvolt = <1075000>;
--			opp-microamp = <100000>;
--			clock-latency-ns = <400000>;
--		};
--		opp-1500000000 {
--			opp-hz = /bits/ 64 <1500000000>;
--			opp-microvolt = <1100000 1010000 1110000>;
--			opp-microamp = <95000>;
--			clock-latency-ns = <400000>;
--			turbo-mode;
--		};
--	};
--};
--
--Example 4: Handling multiple regulators
--
--/ {
--	cpus {
--		cpu@0 {
--			compatible = "vendor,cpu-type";
--			...
--
--			vcc0-supply = <&cpu_supply0>;
--			vcc1-supply = <&cpu_supply1>;
--			vcc2-supply = <&cpu_supply2>;
--			operating-points-v2 = <&cpu0_opp_table>;
--		};
--	};
--
--	cpu0_opp_table: opp_table0 {
--		compatible = "operating-points-v2";
--		opp-shared;
--
--		opp-1000000000 {
--			opp-hz = /bits/ 64 <1000000000>;
--			opp-microvolt = <970000>, /* Supply 0 */
--					<960000>, /* Supply 1 */
--					<960000>; /* Supply 2 */
--			opp-microamp =  <70000>,  /* Supply 0 */
--					<70000>,  /* Supply 1 */
--					<70000>;  /* Supply 2 */
--			clock-latency-ns = <300000>;
--		};
--
--		/* OR */
--
--		opp-1000000000 {
--			opp-hz = /bits/ 64 <1000000000>;
--			opp-microvolt = <975000 970000 985000>, /* Supply 0 */
--					<965000 960000 975000>, /* Supply 1 */
--					<965000 960000 975000>; /* Supply 2 */
--			opp-microamp =  <70000>,		/* Supply 0 */
--					<70000>,		/* Supply 1 */
--					<70000>;		/* Supply 2 */
--			clock-latency-ns = <300000>;
--		};
--
--		/* OR */
--
--		opp-1000000000 {
--			opp-hz = /bits/ 64 <1000000000>;
--			opp-microvolt = <975000 970000 985000>, /* Supply 0 */
--					<965000 960000 975000>, /* Supply 1 */
--					<965000 960000 975000>; /* Supply 2 */
--			opp-microamp =  <70000>,		/* Supply 0 */
--					<0>,			/* Supply 1 doesn't need this */
--					<70000>;		/* Supply 2 */
--			clock-latency-ns = <300000>;
--		};
--	};
--};
--
--Example 5: opp-supported-hw
--(example: three level hierarchy of versions: cuts, substrate and process)
--
--/ {
--	cpus {
--		cpu@0 {
--			compatible = "arm,cortex-a7";
--			...
--
--			cpu-supply = <&cpu_supply>
--			operating-points-v2 = <&cpu0_opp_table_slow>;
--		};
--	};
--
--	opp_table {
--		compatible = "operating-points-v2";
--		opp-shared;
--
--		opp-600000000 {
--			/*
--			 * Supports all substrate and process versions for 0xF
--			 * cuts, i.e. only first four cuts.
--			 */
--			opp-supported-hw = <0xF 0xFFFFFFFF 0xFFFFFFFF>
--			opp-hz = /bits/ 64 <600000000>;
--			...
--		};
--
--		opp-800000000 {
--			/*
--			 * Supports:
--			 * - cuts: only one, 6th cut (represented by 6th bit).
--			 * - substrate: supports 16 different substrate versions
--			 * - process: supports 9 different process versions
--			 */
--			opp-supported-hw = <0x20 0xff0000ff 0x0000f4f0>
--			opp-hz = /bits/ 64 <800000000>;
--			...
--		};
--
--		opp-900000000 {
--			/*
--			 * Supports:
--			 * - All cuts and substrate where process version is 0x2.
--			 * - All cuts and process where substrate version is 0x2.
--			 */
--			opp-supported-hw = <0xFFFFFFFF 0xFFFFFFFF 0x02>, <0xFFFFFFFF 0x01 0xFFFFFFFF>
--			opp-hz = /bits/ 64 <900000000>;
--			...
--		};
--	};
--};
--
--Example 6: opp-microvolt-<name>, opp-microamp-<name>:
--(example: device with two possible microvolt ranges: slow and fast)
--
--/ {
--	cpus {
--		cpu@0 {
--			compatible = "arm,cortex-a7";
--			...
--
--			operating-points-v2 = <&cpu0_opp_table>;
--		};
--	};
--
--	cpu0_opp_table: opp_table0 {
--		compatible = "operating-points-v2";
--		opp-shared;
--
--		opp-1000000000 {
--			opp-hz = /bits/ 64 <1000000000>;
--			opp-microvolt-slow = <915000 900000 925000>;
--			opp-microvolt-fast = <975000 970000 985000>;
--			opp-microamp-slow =  <70000>;
--			opp-microamp-fast =  <71000>;
--		};
--
--		opp-1200000000 {
--			opp-hz = /bits/ 64 <1200000000>;
--			opp-microvolt-slow = <915000 900000 925000>, /* Supply vcc0 */
--					      <925000 910000 935000>; /* Supply vcc1 */
--			opp-microvolt-fast = <975000 970000 985000>, /* Supply vcc0 */
--					     <965000 960000 975000>; /* Supply vcc1 */
--			opp-microamp =  <70000>; /* Will be used for both slow/fast */
--		};
--	};
--};
--
--Example 7: Single cluster Quad-core ARM cortex A53, OPP points from firmware,
--distinct clock controls but two sets of clock/voltage/current lines.
--
--/ {
--	cpus {
--		#address-cells = <2>;
--		#size-cells = <0>;
--
--		cpu@0 {
--			compatible = "arm,cortex-a53";
--			reg = <0x0 0x100>;
--			next-level-cache = <&A53_L2>;
--			clocks = <&dvfs_controller 0>;
--			operating-points-v2 = <&cpu_opp0_table>;
--		};
--		cpu@1 {
--			compatible = "arm,cortex-a53";
--			reg = <0x0 0x101>;
--			next-level-cache = <&A53_L2>;
--			clocks = <&dvfs_controller 1>;
--			operating-points-v2 = <&cpu_opp0_table>;
--		};
--		cpu@2 {
--			compatible = "arm,cortex-a53";
--			reg = <0x0 0x102>;
--			next-level-cache = <&A53_L2>;
--			clocks = <&dvfs_controller 2>;
--			operating-points-v2 = <&cpu_opp1_table>;
--		};
--		cpu@3 {
--			compatible = "arm,cortex-a53";
--			reg = <0x0 0x103>;
--			next-level-cache = <&A53_L2>;
--			clocks = <&dvfs_controller 3>;
--			operating-points-v2 = <&cpu_opp1_table>;
--		};
--
--	};
--
--	cpu_opp0_table: opp0_table {
--		compatible = "operating-points-v2";
--		opp-shared;
--	};
--
--	cpu_opp1_table: opp1_table {
--		compatible = "operating-points-v2";
--		opp-shared;
--	};
--};
--- 
-2.27.0
-
+T24gVGh1LCAyMDIxLTA3LTE1IGF0IDEwOjU2IC0wNzAwLCBHdWVudGVyIFJvZWNrIHdyb3RlOg0K
+PiBPbiBUdWUsIEp1bCAxMywgMjAyMSBhdCAxMjowNDo0NUFNICswMjAwLCBJd29uYSBXaW5pYXJz
+a2Egd3JvdGU6DQo+ID4gQWRkIHBlY2ktZGltbXRlbXAgZHJpdmVyIGZvciBEaWdpdGFsIFRoZXJt
+YWwgU2Vuc29yIChEVFMpIHRoZXJtYWwNCj4gPiByZWFkaW5ncyBvZiBESU1NcyB0aGF0IGFyZSBh
+Y2Nlc3NpYmxlIHZpYSB0aGUgcHJvY2Vzc29yIFBFQ0kgaW50ZXJmYWNlLg0KPiA+IA0KPiA+IFRo
+ZSBtYWluIHVzZSBjYXNlIGZvciB0aGUgZHJpdmVyIChhbmQgUEVDSSBpbnRlcmZhY2UpIGlzIG91
+dC1vZi1iYW5kDQo+ID4gbWFuYWdlbWVudCwgd2hlcmUgd2UncmUgYWJsZSB0byBvYnRhaW4gdGhl
+IERUUyByZWFkaW5ncyBmcm9tIGFuIGV4dGVybmFsDQo+ID4gZW50aXR5IGNvbm5lY3RlZCB3aXRo
+IFBFQ0ksIGUuZy4gQk1DIG9uIHNlcnZlciBwbGF0Zm9ybXMuDQo+ID4gDQo+ID4gQ28tZGV2ZWxv
+cGVkLWJ5OiBKYWUgSHl1biBZb28gPGphZS5oeXVuLnlvb0BsaW51eC5pbnRlbC5jb20+DQo+ID4g
+U2lnbmVkLW9mZi1ieTogSmFlIEh5dW4gWW9vIDxqYWUuaHl1bi55b29AbGludXguaW50ZWwuY29t
+Pg0KPiA+IFNpZ25lZC1vZmYtYnk6IEl3b25hIFdpbmlhcnNrYSA8aXdvbmEud2luaWFyc2thQGlu
+dGVsLmNvbT4NCj4gPiBSZXZpZXdlZC1ieTogUGllcnJlLUxvdWlzIEJvc3NhcnQgPHBpZXJyZS1s
+b3Vpcy5ib3NzYXJ0QGxpbnV4LmludGVsLmNvbT4NCj4gPiAtLS0NCj4gPiDCoGRyaXZlcnMvaHdt
+b24vcGVjaS9LY29uZmlnwqDCoMKgIHzCoCAxMyArDQo+ID4gwqBkcml2ZXJzL2h3bW9uL3BlY2kv
+TWFrZWZpbGXCoMKgIHzCoMKgIDIgKw0KPiA+IMKgZHJpdmVycy9od21vbi9wZWNpL2RpbW10ZW1w
+LmMgfCA1MDggKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKw0KPiA+IMKgMyBmaWxl
+cyBjaGFuZ2VkLCA1MjMgaW5zZXJ0aW9ucygrKQ0KPiA+IMKgY3JlYXRlIG1vZGUgMTAwNjQ0IGRy
+aXZlcnMvaHdtb24vcGVjaS9kaW1tdGVtcC5jDQo+ID4gDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZl
+cnMvaHdtb24vcGVjaS9LY29uZmlnIGIvZHJpdmVycy9od21vbi9wZWNpL0tjb25maWcNCj4gPiBp
+bmRleCBlMTBlZWQ2OGQ3MGEuLmYyZDU3ZWZhNTA4YiAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJz
+L2h3bW9uL3BlY2kvS2NvbmZpZw0KPiA+ICsrKyBiL2RyaXZlcnMvaHdtb24vcGVjaS9LY29uZmln
+DQo+ID4gQEAgLTE0LDUgKzE0LDE4IEBAIGNvbmZpZyBTRU5TT1JTX1BFQ0lfQ1BVVEVNUA0KPiA+
+IMKgwqDCoMKgwqDCoMKgwqDCoCBUaGlzIGRyaXZlciBjYW4gYWxzbyBiZSBidWlsdCBhcyBhIG1v
+ZHVsZS4gSWYgc28sIHRoZSBtb2R1bGUNCj4gPiDCoMKgwqDCoMKgwqDCoMKgwqAgd2lsbCBiZSBj
+YWxsZWQgcGVjaS1jcHV0ZW1wLg0KPiA+IMKgDQo+ID4gK2NvbmZpZyBTRU5TT1JTX1BFQ0lfRElN
+TVRFTVANCj4gPiArwqDCoMKgwqDCoMKgwqB0cmlzdGF0ZSAiUEVDSSBESU1NIHRlbXBlcmF0dXJl
+IG1vbml0b3JpbmcgY2xpZW50Ig0KPiA+ICvCoMKgwqDCoMKgwqDCoGRlcGVuZHMgb24gUEVDSQ0K
+PiA+ICvCoMKgwqDCoMKgwqDCoHNlbGVjdCBTRU5TT1JTX1BFQ0kNCj4gPiArwqDCoMKgwqDCoMKg
+wqBzZWxlY3QgUEVDSV9DUFUNCj4gPiArwqDCoMKgwqDCoMKgwqBoZWxwDQo+ID4gK8KgwqDCoMKg
+wqDCoMKgwqAgSWYgeW91IHNheSB5ZXMgaGVyZSB5b3UgZ2V0IHN1cHBvcnQgZm9yIHRoZSBnZW5l
+cmljIEludGVsIFBFQ0kgaHdtb24NCj4gPiArwqDCoMKgwqDCoMKgwqDCoCBkcml2ZXIgd2hpY2gg
+cHJvdmlkZXMgRGlnaXRhbCBUaGVybWFsIFNlbnNvciAoRFRTKSB0aGVybWFsIHJlYWRpbmdzDQo+
+ID4gb2YNCj4gPiArwqDCoMKgwqDCoMKgwqDCoCBESU1NIGNvbXBvbmVudHMgdGhhdCBhcmUgYWNj
+ZXNzaWJsZSB2aWEgdGhlIHByb2Nlc3NvciBQRUNJDQo+ID4gaW50ZXJmYWNlLg0KPiA+ICsNCj4g
+PiArwqDCoMKgwqDCoMKgwqDCoCBUaGlzIGRyaXZlciBjYW4gYWxzbyBiZSBidWlsdCBhcyBhIG1v
+ZHVsZS4gSWYgc28sIHRoZSBtb2R1bGUNCj4gPiArwqDCoMKgwqDCoMKgwqDCoCB3aWxsIGJlIGNh
+bGxlZCBwZWNpLWRpbW10ZW1wLg0KPiA+ICsNCj4gPiDCoGNvbmZpZyBTRU5TT1JTX1BFQ0kNCj4g
+PiDCoMKgwqDCoMKgwqDCoMKgdHJpc3RhdGUNCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9od21v
+bi9wZWNpL01ha2VmaWxlIGIvZHJpdmVycy9od21vbi9wZWNpL01ha2VmaWxlDQo+ID4gaW5kZXgg
+ZThhMGFkYTVhYjFmLi4xOTFjZmEwMjI3ZjMgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9od21v
+bi9wZWNpL01ha2VmaWxlDQo+ID4gKysrIGIvZHJpdmVycy9od21vbi9wZWNpL01ha2VmaWxlDQo+
+ID4gQEAgLTEsNSArMSw3IEBADQo+ID4gwqAjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwt
+Mi4wLW9ubHkNCj4gPiDCoA0KPiA+IMKgcGVjaS1jcHV0ZW1wLXkgOj0gY3B1dGVtcC5vDQo+ID4g
+K3BlY2ktZGltbXRlbXAteSA6PSBkaW1tdGVtcC5vDQo+ID4gwqANCj4gPiDCoG9iai0kKENPTkZJ
+R19TRU5TT1JTX1BFQ0lfQ1BVVEVNUCnCoMKgwqDCoMKgKz0gcGVjaS1jcHV0ZW1wLm8NCj4gPiAr
+b2JqLSQoQ09ORklHX1NFTlNPUlNfUEVDSV9ESU1NVEVNUCnCoMKgwqDCoCs9IHBlY2ktZGltbXRl
+bXAubw0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2h3bW9uL3BlY2kvZGltbXRlbXAuYyBiL2Ry
+aXZlcnMvaHdtb24vcGVjaS9kaW1tdGVtcC5jDQo+ID4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4g
+PiBpbmRleCAwMDAwMDAwMDAwMDAuLjJmY2I4NjA3MTM3YQ0KPiA+IC0tLSAvZGV2L251bGwNCj4g
+PiArKysgYi9kcml2ZXJzL2h3bW9uL3BlY2kvZGltbXRlbXAuYw0KPiA+IEBAIC0wLDAgKzEsNTA4
+IEBADQo+ID4gKy8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wLW9ubHkNCj4gPiAr
+Ly8gQ29weXJpZ2h0IChjKSAyMDE4LTIwMjEgSW50ZWwgQ29ycG9yYXRpb24NCj4gPiArDQo+ID4g
+KyNpbmNsdWRlIDxsaW51eC9hdXhpbGlhcnlfYnVzLmg+DQo+ID4gKyNpbmNsdWRlIDxsaW51eC9i
+aXRmaWVsZC5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgvYml0b3BzLmg+DQo+ID4gKyNpbmNsdWRl
+IDxsaW51eC9od21vbi5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgvamlmZmllcy5oPg0KPiA+ICsj
+aW5jbHVkZSA8bGludXgvbW9kdWxlLmg+DQo+ID4gKyNpbmNsdWRlIDxsaW51eC9wZWNpLmg+DQo+
+ID4gKyNpbmNsdWRlIDxsaW51eC9wZWNpLWNwdS5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgvdW5p
+dHMuaD4NCj4gPiArI2luY2x1ZGUgPGxpbnV4L3dvcmtxdWV1ZS5oPg0KPiA+ICsjaW5jbHVkZSA8
+bGludXgveDg2L2ludGVsLWZhbWlseS5oPg0KPiA+ICsNCj4gPiArI2luY2x1ZGUgImNvbW1vbi5o
+Ig0KPiA+ICsNCj4gPiArI2RlZmluZSBESU1NX01BU0tfQ0hFQ0tfREVMQVlfSklGRklFU8KgwqBt
+c2Vjc190b19qaWZmaWVzKDUwMDApDQo+ID4gKyNkZWZpbmUgRElNTV9NQVNLX0NIRUNLX1JFVFJZ
+X01BWMKgwqDCoMKgwqDCoDYwIC8qIDYwIHggNSBzZWNzID0gNSBtaW51dGVzICovDQo+ID4gKw0K
+PiA+ICsvKiBNYXggbnVtYmVyIG9mIGNoYW5uZWwgcmFua3MgYW5kIERJTU0gaW5kZXggcGVyIGNo
+YW5uZWwgKi8NCj4gPiArI2RlZmluZSBDSEFOX1JBTktfTUFYX09OX0hTWMKgwqDCoDgNCj4gPiAr
+I2RlZmluZSBESU1NX0lEWF9NQVhfT05fSFNYwqDCoMKgwqAzDQo+ID4gKyNkZWZpbmUgQ0hBTl9S
+QU5LX01BWF9PTl9CRFjCoMKgwqA0DQo+ID4gKyNkZWZpbmUgRElNTV9JRFhfTUFYX09OX0JEWMKg
+wqDCoMKgMw0KPiA+ICsjZGVmaW5lIENIQU5fUkFOS19NQVhfT05fQkRYRMKgwqAyDQo+ID4gKyNk
+ZWZpbmUgRElNTV9JRFhfTUFYX09OX0JEWETCoMKgwqAyDQo+ID4gKyNkZWZpbmUgQ0hBTl9SQU5L
+X01BWF9PTl9TS1jCoMKgwqA2DQo+ID4gKyNkZWZpbmUgRElNTV9JRFhfTUFYX09OX1NLWMKgwqDC
+oMKgMg0KPiA+ICsjZGVmaW5lIENIQU5fUkFOS19NQVhfT05fSUNYwqDCoMKgOA0KPiA+ICsjZGVm
+aW5lIERJTU1fSURYX01BWF9PTl9JQ1jCoMKgwqDCoDINCj4gPiArI2RlZmluZSBDSEFOX1JBTktf
+TUFYX09OX0lDWETCoMKgNA0KPiA+ICsjZGVmaW5lIERJTU1fSURYX01BWF9PTl9JQ1hEwqDCoMKg
+Mg0KPiA+ICsNCj4gPiArI2RlZmluZSBDSEFOX1JBTktfTUFYwqDCoMKgwqDCoMKgwqDCoMKgwqBD
+SEFOX1JBTktfTUFYX09OX0hTWA0KPiA+ICsjZGVmaW5lIERJTU1fSURYX01BWMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqBESU1NX0lEWF9NQVhfT05fSFNYDQo+ID4gKyNkZWZpbmUgRElNTV9OVU1TX01B
+WMKgwqDCoMKgwqDCoMKgwqDCoMKgKENIQU5fUkFOS19NQVggKiBESU1NX0lEWF9NQVgpDQo+ID4g
+Kw0KPiA+ICsjZGVmaW5lIENQVV9TRUdfTUFTS8KgwqDCoMKgwqDCoMKgwqDCoMKgwqBHRU5NQVNL
+KDIzLCAxNikNCj4gPiArI2RlZmluZSBHRVRfQ1BVX1NFRyh4KcKgwqDCoMKgwqDCoMKgwqDCoCgo
+KHgpICYgQ1BVX1NFR19NQVNLKSA+PiAxNikNCj4gPiArI2RlZmluZSBDUFVfQlVTX01BU0vCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgR0VOTUFTSyg3LCAwKQ0KPiA+ICsjZGVmaW5lIEdFVF9DUFVfQlVT
+KHgpwqDCoMKgwqDCoMKgwqDCoMKgKCh4KSAmIENQVV9CVVNfTUFTSykNCj4gPiArDQo+ID4gKyNk
+ZWZpbmUgRElNTV9URU1QX01BWMKgwqDCoMKgwqDCoMKgwqDCoMKgR0VOTUFTSygxNSwgOCkNCj4g
+PiArI2RlZmluZSBESU1NX1RFTVBfQ1JJVMKgwqDCoMKgwqDCoMKgwqDCoEdFTk1BU0soMjMsIDE2
+KQ0KPiA+ICsjZGVmaW5lIEdFVF9URU1QX01BWCh4KcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgKCgoeCkgJiBESU1NX1RFTVBfTUFYKSA+PiA4KQ0KPiA+ICsjZGVmaW5lIEdFVF9URU1Q
+X0NSSVQoeCnCoMKgwqDCoMKgwqDCoCgoKHgpICYgRElNTV9URU1QX0NSSVQpID4+IDE2KQ0KPiA+
+ICsNCj4gPiArc3RydWN0IGRpbW1faW5mbyB7DQo+ID4gK8KgwqDCoMKgwqDCoMKgaW50IGNoYW5f
+cmFua19tYXg7DQo+ID4gK8KgwqDCoMKgwqDCoMKgaW50IGRpbW1faWR4X21heDsNCj4gPiArwqDC
+oMKgwqDCoMKgwqB1OCBtaW5fcGVjaV9yZXZpc2lvbjsNCj4gPiArfTsNCj4gPiArDQo+ID4gK3N0
+cnVjdCBwZWNpX2RpbW10ZW1wIHsNCj4gPiArwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgcGVjaV9kZXZp
+Y2UgKnBlY2lfZGV2Ow0KPiA+ICvCoMKgwqDCoMKgwqDCoHN0cnVjdCBkZXZpY2UgKmRldjsNCj4g
+PiArwqDCoMKgwqDCoMKgwqBjb25zdCBjaGFyICpuYW1lOw0KPiA+ICvCoMKgwqDCoMKgwqDCoGNv
+bnN0IHN0cnVjdCBkaW1tX2luZm8gKmdlbl9pbmZvOw0KPiA+ICvCoMKgwqDCoMKgwqDCoHN0cnVj
+dCBkZWxheWVkX3dvcmsgZGV0ZWN0X3dvcms7DQo+ID4gK8KgwqDCoMKgwqDCoMKgc3RydWN0IHBl
+Y2lfc2Vuc29yX2RhdGEgdGVtcFtESU1NX05VTVNfTUFYXTsNCj4gPiArwqDCoMKgwqDCoMKgwqBs
+b25nIHRlbXBfbWF4W0RJTU1fTlVNU19NQVhdOw0KPiA+ICvCoMKgwqDCoMKgwqDCoGxvbmcgdGVt
+cF9jcml0W0RJTU1fTlVNU19NQVhdOw0KPiA+ICvCoMKgwqDCoMKgwqDCoGludCByZXRyeV9jb3Vu
+dDsNCj4gPiArwqDCoMKgwqDCoMKgwqBjaGFyICoqZGltbXRlbXBfbGFiZWw7DQo+ID4gK8KgwqDC
+oMKgwqDCoMKgREVDTEFSRV9CSVRNQVAoZGltbV9tYXNrLCBESU1NX05VTVNfTUFYKTsNCj4gPiAr
+fTsNCj4gPiArDQo+ID4gK3N0YXRpYyB1OCBfX2RpbW1fdGVtcCh1MzIgcmVnLCBpbnQgZGltbV9v
+cmRlcikNCj4gPiArew0KPiA+ICvCoMKgwqDCoMKgwqDCoHJldHVybiAocmVnID4+IChkaW1tX29y
+ZGVyICogOCkpICYgMHhmZjsNCj4gPiArfQ0KPiA+ICsNCj4gPiArc3RhdGljIGludCBnZXRfZGlt
+bV90ZW1wKHN0cnVjdCBwZWNpX2RpbW10ZW1wICpwcml2LCBpbnQgZGltbV9ubykNCj4gPiArew0K
+PiA+ICvCoMKgwqDCoMKgwqDCoGludCBkaW1tX29yZGVyID0gZGltbV9ubyAlIHByaXYtPmdlbl9p
+bmZvLT5kaW1tX2lkeF9tYXg7DQo+ID4gK8KgwqDCoMKgwqDCoMKgaW50IGNoYW5fcmFuayA9IGRp
+bW1fbm8gLyBwcml2LT5nZW5faW5mby0+ZGltbV9pZHhfbWF4Ow0KPiA+ICvCoMKgwqDCoMKgwqDC
+oHN0cnVjdCBwZWNpX2RldmljZSAqcGVjaV9kZXYgPSBwcml2LT5wZWNpX2RldjsNCj4gPiArwqDC
+oMKgwqDCoMKgwqB1OCBjcHVfc2VnLCBjcHVfYnVzLCBkZXYsIGZ1bmM7DQo+ID4gK8KgwqDCoMKg
+wqDCoMKgdTY0IG9mZnNldDsNCj4gPiArwqDCoMKgwqDCoMKgwqB1MzIgZGF0YTsNCj4gPiArwqDC
+oMKgwqDCoMKgwqB1MTYgcmVnOw0KPiA+ICvCoMKgwqDCoMKgwqDCoGludCByZXQ7DQo+ID4gKw0K
+PiA+ICvCoMKgwqDCoMKgwqDCoGlmICghcGVjaV9zZW5zb3JfbmVlZF91cGRhdGUoJnByaXYtPnRl
+bXBbZGltbV9ub10pKQ0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4g
+MDsNCj4gPiArDQo+ID4gK8KgwqDCoMKgwqDCoMKgcmV0ID0gcGVjaV9wY3NfcmVhZChwZWNpX2Rl
+diwgUEVDSV9QQ1NfRERSX0RJTU1fVEVNUCwgY2hhbl9yYW5rLA0KPiA+ICZkYXRhKTsNCj4gPiAr
+wqDCoMKgwqDCoMKgwqBpZiAocmV0KQ0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqByZXR1cm4gcmV0Ow0KPiA+ICsNCj4gDQo+IFNpbWlsYXIgdG8gdGhlIGNwdSBkcml2ZXIsIHRo
+ZSBsYWNrIG9mIG11dGV4IHByb3RlY3Rpb24gbmVlZHMgdG8gYmUgZXhwbGFpbmVkLg0KPiANCg0K
+U3VyZSwgaXQgd2lsbCBiZSBjb25zaXN0ZW50IGZvciB0aGUgdHdvIGRyaXZlcnMuDQoNCj4gPiAr
+wqDCoMKgwqDCoMKgwqBwcml2LT50ZW1wW2RpbW1fbm9dLnZhbHVlID0gX19kaW1tX3RlbXAoZGF0
+YSwgZGltbV9vcmRlcikgKg0KPiA+IE1JTExJREVHUkVFX1BFUl9ERUdSRUU7DQo+ID4gKw0KPiA+
+ICvCoMKgwqDCoMKgwqDCoHN3aXRjaCAocGVjaV9kZXYtPmluZm8ubW9kZWwpIHsNCj4gPiArwqDC
+oMKgwqDCoMKgwqBjYXNlIElOVEVMX0ZBTTZfSUNFTEFLRV9YOg0KPiA+ICvCoMKgwqDCoMKgwqDC
+oGNhc2UgSU5URUxfRkFNNl9JQ0VMQUtFX0Q6DQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoHJldCA9IHBlY2lfZXBfcGNpX2xvY2FsX3JlYWQocGVjaV9kZXYsIDAsIDEzLCAwLCAy
+LCAweGQ0LA0KPiA+ICZkYXRhKTsNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+aWYgKHJldCB8fCAhKGRhdGEgJiBCSVQoMzEpKSkNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGJyZWFrOyAvKiBVc2UgZGVmYXVsdCBvciBwcmV2aW91
+cyB2YWx1ZSAqLw0KPiA+ICsNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0
+ID0gcGVjaV9lcF9wY2lfbG9jYWxfcmVhZChwZWNpX2RldiwgMCwgMTMsIDAsIDIsIDB4ZDAsDQo+
+ID4gJmRhdGEpOw0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpZiAocmV0KQ0K
+PiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgYnJlYWs7
+IC8qIFVzZSBkZWZhdWx0IG9yIHByZXZpb3VzIHZhbHVlICovDQo+ID4gKw0KPiA+ICvCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjcHVfc2VnID0gR0VUX0NQVV9TRUcoZGF0YSk7DQo+ID4g
+K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNwdV9idXMgPSBHRVRfQ1BVX0JVUyhkYXRh
+KTsNCj4gPiArDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoC8qDQo+ID4gK8Kg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAqIERldmljZSAyNiwgT2Zmc2V0IDIyNGUwOiBJ
+TUMgMCBjaGFubmVsIDAgLT4gcmFuayAwDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCAqIERldmljZSAyNiwgT2Zmc2V0IDI2NGUwOiBJTUMgMCBjaGFubmVsIDEgLT4gcmFuayAx
+DQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAqIERldmljZSAyNywgT2Zmc2V0
+IDIyNGUwOiBJTUMgMSBjaGFubmVsIDAgLT4gcmFuayAyDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoCAqIERldmljZSAyNywgT2Zmc2V0IDI2NGUwOiBJTUMgMSBjaGFubmVsIDEg
+LT4gcmFuayAzDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAqIERldmljZSAy
+OCwgT2Zmc2V0IDIyNGUwOiBJTUMgMiBjaGFubmVsIDAgLT4gcmFuayA0DQo+ID4gK8KgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAqIERldmljZSAyOCwgT2Zmc2V0IDI2NGUwOiBJTUMgMiBj
+aGFubmVsIDEgLT4gcmFuayA1DQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAq
+IERldmljZSAyOSwgT2Zmc2V0IDIyNGUwOiBJTUMgMyBjaGFubmVsIDAgLT4gcmFuayA2DQo+ID4g
+K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAqIERldmljZSAyOSwgT2Zmc2V0IDI2NGUw
+OiBJTUMgMyBjaGFubmVsIDEgLT4gcmFuayA3DQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoCAqLw0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBkZXYgPSAweDFh
+ICsgY2hhbl9yYW5rIC8gMjsNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgb2Zm
+c2V0ID0gMHgyMjRlMCArIGRpbW1fb3JkZXIgKiA0Ow0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqBpZiAoY2hhbl9yYW5rICUgMikNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoG9mZnNldCArPSAweDQwMDA7DQo+ID4gKw0KPiA+ICvC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXQgPSBwZWNpX21taW9fcmVhZChwZWNpX2Rl
+diwgMCwgY3B1X3NlZywgY3B1X2J1cywgZGV2LCAwLA0KPiA+IG9mZnNldCwgJmRhdGEpOw0KPiA+
+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpZiAocmV0KQ0KPiA+ICvCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIHJldDsNCj4gPiArDQo+
+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHByaXYtPnRlbXBfbWF4W2RpbW1fbm9d
+ID0gR0VUX1RFTVBfTUFYKGRhdGEpICoNCj4gPiBNSUxMSURFR1JFRV9QRVJfREVHUkVFOw0KPiA+
+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBwcml2LT50ZW1wX2NyaXRbZGltbV9ub10g
+PSBHRVRfVEVNUF9DUklUKGRhdGEpICoNCj4gPiBNSUxMSURFR1JFRV9QRVJfREVHUkVFOw0KPiA+
+ICsNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgYnJlYWs7DQo+ID4gK8KgwqDC
+oMKgwqDCoMKgY2FzZSBJTlRFTF9GQU02X1NLWUxBS0VfWDoNCj4gPiArwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgLyoNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICog
+RGV2aWNlIDEwLCBGdW5jdGlvbiAyOiBJTUMgMCBjaGFubmVsIDAgLT4gcmFuayAwDQo+ID4gK8Kg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAqIERldmljZSAxMCwgRnVuY3Rpb24gNjogSU1D
+IDAgY2hhbm5lbCAxIC0+IHJhbmsgMQ0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgKiBEZXZpY2UgMTEsIEZ1bmN0aW9uIDI6IElNQyAwIGNoYW5uZWwgMiAtPiByYW5rIDINCj4g
+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICogRGV2aWNlIDEyLCBGdW5jdGlvbiAy
+OiBJTUMgMSBjaGFubmVsIDAgLT4gcmFuayAzDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoCAqIERldmljZSAxMiwgRnVuY3Rpb24gNjogSU1DIDEgY2hhbm5lbCAxIC0+IHJhbmsg
+NA0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKiBEZXZpY2UgMTMsIEZ1bmN0
+aW9uIDI6IElNQyAxIGNoYW5uZWwgMiAtPiByYW5rIDUNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgICovDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGRldiA9
+IDEwICsgY2hhbl9yYW5rIC8gMyAqIDIgKyAoY2hhbl9yYW5rICUgMyA9PSAyID8gMSA6IDApOw0K
+PiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBmdW5jID0gY2hhbl9yYW5rICUgMyA9
+PSAxID8gNiA6IDI7DQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZyA9IDB4
+MTIwICsgZGltbV9vcmRlciAqIDQ7DQo+ID4gKw0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqByZXQgPSBwZWNpX3BjaV9sb2NhbF9yZWFkKHBlY2lfZGV2LCAyLCBkZXYsIGZ1bmMs
+IHJlZywgJmRhdGEpOw0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpZiAocmV0
+KQ0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0
+dXJuIHJldDsNCj4gPiArDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHByaXYt
+PnRlbXBfbWF4W2RpbW1fbm9dID0gR0VUX1RFTVBfTUFYKGRhdGEpICoNCj4gPiBNSUxMSURFR1JF
+RV9QRVJfREVHUkVFOw0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBwcml2LT50
+ZW1wX2NyaXRbZGltbV9ub10gPSBHRVRfVEVNUF9DUklUKGRhdGEpICoNCj4gPiBNSUxMSURFR1JF
+RV9QRVJfREVHUkVFOw0KPiA+ICsNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+YnJlYWs7DQo+ID4gK8KgwqDCoMKgwqDCoMKgY2FzZSBJTlRFTF9GQU02X0JST0FEV0VMTF9EOg0K
+PiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAvKg0KPiA+ICvCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgKiBEZXZpY2UgMTAsIEZ1bmN0aW9uIDI6IElNQyAwIGNoYW5uZWwg
+MCAtPiByYW5rIDANCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICogRGV2aWNl
+IDEwLCBGdW5jdGlvbiA2OiBJTUMgMCBjaGFubmVsIDEgLT4gcmFuayAxDQo+ID4gK8KgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAqIERldmljZSAxMiwgRnVuY3Rpb24gMjogSU1DIDEgY2hh
+bm5lbCAwIC0+IHJhbmsgMg0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKiBE
+ZXZpY2UgMTIsIEZ1bmN0aW9uIDY6IElNQyAxIGNoYW5uZWwgMSAtPiByYW5rIDMNCj4gPiArwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICovDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoGRldiA9IDEwICsgY2hhbl9yYW5rIC8gMiAqIDI7DQo+ID4gK8KgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoGZ1bmMgPSAoY2hhbl9yYW5rICUgMikgPyA2IDogMjsNCj4gPiAr
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmVnID0gMHgxMjAgKyBkaW1tX29yZGVyICog
+NDsNCj4gPiArDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJldCA9IHBlY2lf
+cGNpX2xvY2FsX3JlYWQocGVjaV9kZXYsIDIsIGRldiwgZnVuYywgcmVnLCAmZGF0YSk7DQo+ID4g
+K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGlmIChyZXQpDQo+ID4gK8KgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gcmV0Ow0KPiA+ICsNCj4g
+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcHJpdi0+dGVtcF9tYXhbZGltbV9ub10g
+PSBHRVRfVEVNUF9NQVgoZGF0YSkgKg0KPiA+IE1JTExJREVHUkVFX1BFUl9ERUdSRUU7DQo+ID4g
+K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHByaXYtPnRlbXBfY3JpdFtkaW1tX25vXSA9
+IEdFVF9URU1QX0NSSVQoZGF0YSkgKg0KPiA+IE1JTExJREVHUkVFX1BFUl9ERUdSRUU7DQo+ID4g
+Kw0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBicmVhazsNCj4gPiArwqDCoMKg
+wqDCoMKgwqBjYXNlIElOVEVMX0ZBTTZfSEFTV0VMTF9YOg0KPiA+ICvCoMKgwqDCoMKgwqDCoGNh
+c2UgSU5URUxfRkFNNl9CUk9BRFdFTExfWDoNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgLyoNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICogRGV2aWNlIDIw
+LCBGdW5jdGlvbiAwOiBJTUMgMCBjaGFubmVsIDAgLT4gcmFuayAwDQo+ID4gK8KgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCAqIERldmljZSAyMCwgRnVuY3Rpb24gMTogSU1DIDAgY2hhbm5l
+bCAxIC0+IHJhbmsgMQ0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKiBEZXZp
+Y2UgMjEsIEZ1bmN0aW9uIDA6IElNQyAwIGNoYW5uZWwgMiAtPiByYW5rIDINCj4gPiArwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICogRGV2aWNlIDIxLCBGdW5jdGlvbiAxOiBJTUMgMCBj
+aGFubmVsIDMgLT4gcmFuayAzDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAq
+IERldmljZSAyMywgRnVuY3Rpb24gMDogSU1DIDEgY2hhbm5lbCAwIC0+IHJhbmsgNA0KPiA+ICvC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKiBEZXZpY2UgMjMsIEZ1bmN0aW9uIDE6IElN
+QyAxIGNoYW5uZWwgMSAtPiByYW5rIDUNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgICogRGV2aWNlIDI0LCBGdW5jdGlvbiAwOiBJTUMgMSBjaGFubmVsIDIgLT4gcmFuayA2DQo+
+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAqIERldmljZSAyNCwgRnVuY3Rpb24g
+MTogSU1DIDEgY2hhbm5lbCAzIC0+IHJhbmsgNw0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqAgKi8NCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZGV2ID0gMjAg
+KyBjaGFuX3JhbmsgLyAyICsgY2hhbl9yYW5rIC8gNDsNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgZnVuYyA9IGNoYW5fcmFuayAlIDI7DQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoHJlZyA9IDB4MTIwICsgZGltbV9vcmRlciAqIDQ7DQo+ID4gKw0KPiA+ICvC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXQgPSBwZWNpX3BjaV9sb2NhbF9yZWFkKHBl
+Y2lfZGV2LCAxLCBkZXYsIGZ1bmMsIHJlZywgJmRhdGEpOw0KPiA+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqBpZiAocmV0KQ0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIHJldDsNCj4gPiArDQo+ID4gK8KgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoHByaXYtPnRlbXBfbWF4W2RpbW1fbm9dID0gR0VUX1RFTVBfTUFYKGRh
+dGEpICoNCj4gPiBNSUxMSURFR1JFRV9QRVJfREVHUkVFOw0KPiA+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqBwcml2LT50ZW1wX2NyaXRbZGltbV9ub10gPSBHRVRfVEVNUF9DUklUKGRh
+dGEpICoNCj4gPiBNSUxMSURFR1JFRV9QRVJfREVHUkVFOw0KPiA+ICsNCj4gPiArwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgYnJlYWs7DQo+ID4gK8KgwqDCoMKgwqDCoMKgZGVmYXVsdDoN
+Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIC1FT1BOT1RTVVBQOw0K
+PiA+ICvCoMKgwqDCoMKgwqDCoH0NCj4gPiArDQo+ID4gK8KgwqDCoMKgwqDCoMKgcGVjaV9zZW5z
+b3JfbWFya191cGRhdGVkKCZwcml2LT50ZW1wW2RpbW1fbm9dKTsNCj4gPiArDQo+ID4gK8KgwqDC
+oMKgwqDCoMKgcmV0dXJuIDA7DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyBpbnQgZGltbXRl
+bXBfcmVhZF9zdHJpbmcoc3RydWN0IGRldmljZSAqZGV2LA0KPiA+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGVudW0gaHdtb25f
+c2Vuc29yX3R5cGVzIHR5cGUsDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgdTMyIGF0dHIsIGludCBjaGFubmVsLCBjb25z
+dCBjaGFyICoqc3RyKQ0KPiA+ICt7DQo+ID4gK8KgwqDCoMKgwqDCoMKgc3RydWN0IHBlY2lfZGlt
+bXRlbXAgKnByaXYgPSBkZXZfZ2V0X2RydmRhdGEoZGV2KTsNCj4gPiArDQo+ID4gK8KgwqDCoMKg
+wqDCoMKgaWYgKGF0dHIgIT0gaHdtb25fdGVtcF9sYWJlbCkNCj4gPiArwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgcmV0dXJuIC1FT1BOT1RTVVBQOw0KPiA+ICsNCj4gPiArwqDCoMKgwqDC
+oMKgwqAqc3RyID0gKGNvbnN0IGNoYXIgKilwcml2LT5kaW1tdGVtcF9sYWJlbFtjaGFubmVsXTsN
+Cj4gPiArDQo+ID4gK8KgwqDCoMKgwqDCoMKgcmV0dXJuIDA7DQo+ID4gK30NCj4gPiArDQo+ID4g
+K3N0YXRpYyBpbnQgZGltbXRlbXBfcmVhZChzdHJ1Y3QgZGV2aWNlICpkZXYsIGVudW0gaHdtb25f
+c2Vuc29yX3R5cGVzIHR5cGUsDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAgdTMyIGF0dHIsIGludCBjaGFubmVsLCBsb25nICp2YWwpDQo+ID4gK3sN
+Cj4gPiArwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgcGVjaV9kaW1tdGVtcCAqcHJpdiA9IGRldl9nZXRf
+ZHJ2ZGF0YShkZXYpOw0KPiA+ICvCoMKgwqDCoMKgwqDCoGludCByZXQ7DQo+ID4gKw0KPiA+ICvC
+oMKgwqDCoMKgwqDCoHJldCA9IGdldF9kaW1tX3RlbXAocHJpdiwgY2hhbm5lbCk7DQo+ID4gK8Kg
+wqDCoMKgwqDCoMKgaWYgKHJldCkNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+cmV0dXJuIHJldDsNCj4gPiArDQo+ID4gK8KgwqDCoMKgwqDCoMKgc3dpdGNoIChhdHRyKSB7DQo+
+ID4gK8KgwqDCoMKgwqDCoMKgY2FzZSBod21vbl90ZW1wX2lucHV0Og0KPiA+ICvCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAqdmFsID0gcHJpdi0+dGVtcFtjaGFubmVsXS52YWx1ZTsNCj4g
+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgYnJlYWs7DQo+ID4gK8KgwqDCoMKgwqDC
+oMKgY2FzZSBod21vbl90ZW1wX21heDoNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgKnZhbCA9IHByaXYtPnRlbXBfbWF4W2NoYW5uZWxdOw0KPiA+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqBicmVhazsNCj4gPiArwqDCoMKgwqDCoMKgwqBjYXNlIGh3bW9uX3RlbXBf
+Y3JpdDoNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgKnZhbCA9IHByaXYtPnRl
+bXBfY3JpdFtjaGFubmVsXTsNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgYnJl
+YWs7DQo+ID4gK8KgwqDCoMKgwqDCoMKgZGVmYXVsdDoNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgcmV0dXJuIC1FT1BOT1RTVVBQOw0KPiA+ICvCoMKgwqDCoMKgwqDCoH0NCj4g
+PiArDQo+ID4gK8KgwqDCoMKgwqDCoMKgcmV0dXJuIDA7DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0
+YXRpYyB1bW9kZV90IGRpbW10ZW1wX2lzX3Zpc2libGUoY29uc3Qgdm9pZCAqZGF0YSwgZW51bSBo
+d21vbl9zZW5zb3JfdHlwZXMNCj4gPiB0eXBlLA0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgdTMyIGF0dHIsIGlu
+dCBjaGFubmVsKQ0KPiA+ICt7DQo+ID4gK8KgwqDCoMKgwqDCoMKgY29uc3Qgc3RydWN0IHBlY2lf
+ZGltbXRlbXAgKnByaXYgPSBkYXRhOw0KPiA+ICsNCj4gPiArwqDCoMKgwqDCoMKgwqBpZiAodGVz
+dF9iaXQoY2hhbm5lbCwgcHJpdi0+ZGltbV9tYXNrKSkNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgcmV0dXJuIDA0NDQ7DQo+ID4gKw0KPiA+ICvCoMKgwqDCoMKgwqDCoHJldHVy
+biAwOw0KPiA+ICt9DQo+ID4gKw0KPiA+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGh3bW9uX29wcyBw
+ZWNpX2RpbW10ZW1wX29wcyA9IHsNCj4gPiArwqDCoMKgwqDCoMKgwqAuaXNfdmlzaWJsZSA9IGRp
+bW10ZW1wX2lzX3Zpc2libGUsDQo+ID4gK8KgwqDCoMKgwqDCoMKgLnJlYWRfc3RyaW5nID0gZGlt
+bXRlbXBfcmVhZF9zdHJpbmcsDQo+ID4gK8KgwqDCoMKgwqDCoMKgLnJlYWQgPSBkaW1tdGVtcF9y
+ZWFkLA0KPiA+ICt9Ow0KPiA+ICsNCj4gPiArc3RhdGljIGludCBjaGVja19wb3B1bGF0ZWRfZGlt
+bXMoc3RydWN0IHBlY2lfZGltbXRlbXAgKnByaXYpDQo+ID4gK3sNCj4gPiArwqDCoMKgwqDCoMKg
+wqBpbnQgY2hhbl9yYW5rX21heCA9IHByaXYtPmdlbl9pbmZvLT5jaGFuX3JhbmtfbWF4Ow0KPiA+
+ICvCoMKgwqDCoMKgwqDCoGludCBkaW1tX2lkeF9tYXggPSBwcml2LT5nZW5faW5mby0+ZGltbV9p
+ZHhfbWF4Ow0KPiA+ICvCoMKgwqDCoMKgwqDCoGludCBjaGFuX3JhbmssIGRpbW1faWR4LCByZXQ7
+DQo+ID4gK8KgwqDCoMKgwqDCoMKgdTY0IGRpbW1fbWFzayA9IDA7DQo+ID4gK8KgwqDCoMKgwqDC
+oMKgdTMyIHBjczsNCj4gPiArDQo+ID4gK8KgwqDCoMKgwqDCoMKgZm9yIChjaGFuX3JhbmsgPSAw
+OyBjaGFuX3JhbmsgPCBjaGFuX3JhbmtfbWF4OyBjaGFuX3JhbmsrKykgew0KPiA+ICvCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXQgPSBwZWNpX3Bjc19yZWFkKHByaXYtPnBlY2lfZGV2
+LCBQRUNJX1BDU19ERFJfRElNTV9URU1QLA0KPiA+IGNoYW5fcmFuaywgJnBjcyk7DQo+ID4gK8Kg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGlmIChyZXQpIHsNCj4gPiArwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoC8qDQo+ID4gK8KgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKiBPdmVyYWxsLCB3ZSBleHBlY3QgZWl0
+aGVyIHN1Y2Nlc3Mgb3IgLUVJTlZBTCBpbg0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgICogb3JkZXIgdG8gZGV0ZXJtaW5lIHdoZXRoZXIgRElNTSBp
+cyBwb3B1bGF0ZWQgb3INCj4gPiBub3QuDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgKiBGb3IgYW55dGhpbmcgZWxzZSAtIHdlIGZhbGwgYmFjayB0
+byBkZWZlcmluZyB0aGUNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoCAqIGRldGVjdGlvbiB0byBiZSBwZXJmb3JtZWQgYXQgYSBsYXRlciBwb2ludCBp
+biB0aW1lLg0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgICovDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqBpZiAocmV0ID09IC1FSU5WQUwpDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgY29udGludWU7DQo+ID4gK8KgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBlbHNlDQo+IA0KPiBlbHNlIGFm
+dGVyIGNvbnRpbnVlIGlzIHVubmVjZXNzYXJ5Lg0KPiANCg0KT2suDQoNCj4gPiArwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1
+cm4gLUVBR0FJTjsNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgfQ0KPiA+ICsN
+Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZm9yIChkaW1tX2lkeCA9IDA7IGRp
+bW1faWR4IDwgZGltbV9pZHhfbWF4OyBkaW1tX2lkeCsrKQ0KPiA+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaWYgKF9fZGltbV90ZW1wKHBjcywgZGltbV9p
+ZHgpKQ0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoGRpbW1fbWFzayB8PSBCSVQoY2hhbl9yYW5rICogZGltbV9pZHhfbWF4
+ICsNCj4gPiBkaW1tX2lkeCk7DQo+ID4gK8KgwqDCoMKgwqDCoMKgfQ0KPiA+ICvCoMKgwqDCoMKg
+wqDCoC8qDQo+ID4gK8KgwqDCoMKgwqDCoMKgICogSXQncyBwb3NzaWJsZSB0aGF0IG1lbW9yeSB0
+cmFpbmluZyBpcyBub3QgZG9uZSB5ZXQuIEluIHRoaXMgY2FzZSB3ZQ0KPiA+ICvCoMKgwqDCoMKg
+wqDCoCAqIGRlZmVyIHRoZSBkZXRlY3Rpb24gdG8gYmUgcGVyZm9ybWVkIGF0IGEgbGF0ZXIgcG9p
+bnQgaW4gdGltZS4NCj4gPiArwqDCoMKgwqDCoMKgwqAgKi8NCj4gPiArwqDCoMKgwqDCoMKgwqBp
+ZiAoIWRpbW1fbWFzaykNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJu
+IC1FQUdBSU47DQo+ID4gKw0KPiA+ICvCoMKgwqDCoMKgwqDCoGRldl9kYmcocHJpdi0+ZGV2LCAi
+U2Nhbm5lZCBwb3B1bGF0ZWQgRElNTXM6ICUjbGx4XG4iLCBkaW1tX21hc2spOw0KPiA+ICsNCj4g
+PiArwqDCoMKgwqDCoMKgwqBiaXRtYXBfZnJvbV91NjQocHJpdi0+ZGltbV9tYXNrLCBkaW1tX21h
+c2spOw0KPiA+ICsNCj4gPiArwqDCoMKgwqDCoMKgwqByZXR1cm4gMDsNCj4gPiArfQ0KPiA+ICsN
+Cj4gPiArc3RhdGljIGludCBjcmVhdGVfZGltbV90ZW1wX2xhYmVsKHN0cnVjdCBwZWNpX2RpbW10
+ZW1wICpwcml2LCBpbnQgY2hhbikNCj4gPiArew0KPiA+ICvCoMKgwqDCoMKgwqDCoGludCByYW5r
+ID0gY2hhbiAvIHByaXYtPmdlbl9pbmZvLT5kaW1tX2lkeF9tYXg7DQo+ID4gK8KgwqDCoMKgwqDC
+oMKgaW50IGlkeCA9IGNoYW4gJSBwcml2LT5nZW5faW5mby0+ZGltbV9pZHhfbWF4Ow0KPiA+ICsN
+Cj4gPiArwqDCoMKgwqDCoMKgwqBwcml2LT5kaW1tdGVtcF9sYWJlbFtjaGFuXSA9IGRldm1fa2Fz
+cHJpbnRmKHByaXYtPmRldiwgR0ZQX0tFUk5FTCwNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiRElNTSAlYyVkIiwgJ0EnICsgcmFuaywNCj4gPiArwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpZHggKyAxKTsNCj4gPiAr
+wqDCoMKgwqDCoMKgwqBpZiAoIXByaXYtPmRpbW10ZW1wX2xhYmVsW2NoYW5dKQ0KPiA+ICvCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gLUVOT01FTTsNCj4gPiArDQo+ID4gK8Kg
+wqDCoMKgwqDCoMKgcmV0dXJuIDA7DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyBjb25zdCB1
+MzIgcGVjaV9kaW1tdGVtcF90ZW1wX2NoYW5uZWxfY29uZmlnW10gPSB7DQo+ID4gK8KgwqDCoMKg
+wqDCoMKgWzAgLi4uIERJTU1fTlVNU19NQVggLSAxXSA9IEhXTU9OX1RfTEFCRUwgfCBIV01PTl9U
+X0lOUFVUIHwNCj4gPiBIV01PTl9UX01BWCB8IEhXTU9OX1RfQ1JJVCwNCj4gPiArwqDCoMKgwqDC
+oMKgwqAwDQo+ID4gK307DQo+ID4gKw0KPiA+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGh3bW9uX2No
+YW5uZWxfaW5mbyBwZWNpX2RpbW10ZW1wX3RlbXBfY2hhbm5lbCA9IHsNCj4gPiArwqDCoMKgwqDC
+oMKgwqAudHlwZSA9IGh3bW9uX3RlbXAsDQo+ID4gK8KgwqDCoMKgwqDCoMKgLmNvbmZpZyA9IHBl
+Y2lfZGltbXRlbXBfdGVtcF9jaGFubmVsX2NvbmZpZywNCj4gPiArfTsNCj4gPiArDQo+ID4gK3N0
+YXRpYyBjb25zdCBzdHJ1Y3QgaHdtb25fY2hhbm5lbF9pbmZvICpwZWNpX2RpbW10ZW1wX3RlbXBf
+aW5mb1tdID0gew0KPiA+ICvCoMKgwqDCoMKgwqDCoCZwZWNpX2RpbW10ZW1wX3RlbXBfY2hhbm5l
+bCwNCj4gPiArwqDCoMKgwqDCoMKgwqBOVUxMDQo+ID4gK307DQo+ID4gKw0KPiA+ICtzdGF0aWMg
+Y29uc3Qgc3RydWN0IGh3bW9uX2NoaXBfaW5mbyBwZWNpX2RpbW10ZW1wX2NoaXBfaW5mbyA9IHsN
+Cj4gPiArwqDCoMKgwqDCoMKgwqAub3BzID0gJnBlY2lfZGltbXRlbXBfb3BzLA0KPiA+ICvCoMKg
+wqDCoMKgwqDCoC5pbmZvID0gcGVjaV9kaW1tdGVtcF90ZW1wX2luZm8sDQo+ID4gK307DQo+ID4g
+Kw0KPiA+ICtzdGF0aWMgaW50IGNyZWF0ZV9kaW1tX3RlbXBfaW5mbyhzdHJ1Y3QgcGVjaV9kaW1t
+dGVtcCAqcHJpdikNCj4gPiArew0KPiA+ICvCoMKgwqDCoMKgwqDCoGludCByZXQsIGksIGNoYW5u
+ZWxzOw0KPiA+ICvCoMKgwqDCoMKgwqDCoHN0cnVjdCBkZXZpY2UgKmRldjsNCj4gPiArDQo+ID4g
+K8KgwqDCoMKgwqDCoMKgcmV0ID0gY2hlY2tfcG9wdWxhdGVkX2RpbW1zKHByaXYpOw0KPiA+ICvC
+oMKgwqDCoMKgwqDCoGlmIChyZXQgPT0gLUVBR0FJTikgew0KPiANCj4gVGhlIG9ubHkgZXJyb3Ig
+cmV0dXJuZWQgYnkgY2hlY2tfcG9wdWxhdGVkX2RpbW1zKCkgaXMgLUVBR0FJTi4gQ2hlY2tpbmcg
+Zm9yDQo+IHNwZWNpZmljYWxseSB0aGlzIGVycm9yIGhlcmUgc3VnZ2VzdHMgdGhhdCB0aGVyZSBt
+YXkgYmUgb3RoZXIgKGlnbm9yZWQpDQo+IGVycm9ycy4gVGhlIHJlYWRlciBoYXMgdG8gZXhhbWlu
+ZSBjaGVja19wb3B1bGF0ZWRfZGltbXMoKSB0byBmaW5kIG91dA0KPiB0aGF0IC1FQUdBSU4gaXMg
+aW5kZWVkIHRoZSBvbmx5IHBvc3NpYmxlIGVycm9yLiBUbyBhdm9pZCBjb25mdXNpb24sIHBsZWFz
+ZQ0KPiBvbmx5IGNoZWNrIGZvciByZXQgaGVyZS4NCj4gDQoNCk1ha2VzIHNlbnNlLg0KDQo+ID4g
+K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGlmIChwcml2LT5yZXRyeV9jb3VudCA8IERJ
+TU1fTUFTS19DSEVDS19SRVRSWV9NQVgpIHsNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoHNjaGVkdWxlX2RlbGF5ZWRfd29yaygmcHJpdi0+ZGV0ZWN0
+X3dvcmssDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgRElNTV9NQVNLX0NI
+RUNLX0RFTEFZX0pJRkZJRVMpOw0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgcHJpdi0+cmV0cnlfY291bnQrKzsNCj4gPiArwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGRldl9kYmcocHJpdi0+ZGV2LCAiRGVmZXJy
+ZWQgcG9wdWxhdGluZyBESU1NIHRlbXANCj4gPiBpbmZvXG4iKTsNCj4gPiArwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJldHVybiByZXQ7DQo+ID4gK8KgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoH0NCj4gPiArDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoGRldl9pbmZvKHByaXYtPmRldiwgIlRpbWVvdXQgcG9wdWxhdGluZyBESU1N
+IHRlbXAgaW5mb1xuIik7DQo+IA0KPiBJZiB0aGlzIHJldHVybnMgYW4gZXJyb3IsIHRoZSBtZXNz
+YWdlIG5lZWRzIHRvIGJlIGRldl9lcnIoKS4NCj4gDQoNCldlIG5lZWQgdG8gY2hlY2sgZWFjaCBD
+UFUsIGJ1dCBpdCdzIGNvbXBsZXRlbHkgbGVnYWwgdGhhdCBvbmx5IG9uZSBwcm9jZXNzb3IgaW4N
+CnRoZSBzeXN0ZW1zIGhhcyBwb3B1bGF0ZWQgRElNTXMuDQpJJ2QgcHJlZmVyIHRvIGtlZXAgZGV2
+X2luZm8oKSBvciBtYXliZSBldmVuIGRvd25ncmFkZSBpdCB0byBkZXZfZGJnKCkuDQoNClRoYW5r
+IHlvdQ0KLUl3b25hDQoNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJu
+IC1FVElNRURPVVQ7DQo+ID4gK8KgwqDCoMKgwqDCoMKgfQ0KPiA+ICsNCj4gPiArwqDCoMKgwqDC
+oMKgwqBjaGFubmVscyA9IHByaXYtPmdlbl9pbmZvLT5jaGFuX3JhbmtfbWF4ICogcHJpdi0+Z2Vu
+X2luZm8tDQo+ID4gPmRpbW1faWR4X21heDsNCj4gPiArDQo+ID4gK8KgwqDCoMKgwqDCoMKgcHJp
+di0+ZGltbXRlbXBfbGFiZWwgPSBkZXZtX2t6YWxsb2MocHJpdi0+ZGV2LCBjaGFubmVscyAqIHNp
+emVvZihjaGFyDQo+ID4gKiksIEdGUF9LRVJORUwpOw0KPiA+ICvCoMKgwqDCoMKgwqDCoGlmICgh
+cHJpdi0+ZGltbXRlbXBfbGFiZWwpDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oHJldHVybiAtRU5PTUVNOw0KPiA+ICsNCj4gPiArwqDCoMKgwqDCoMKgwqBmb3JfZWFjaF9zZXRf
+Yml0KGksIHByaXYtPmRpbW1fbWFzaywgRElNTV9OVU1TX01BWCkgew0KPiA+ICvCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqByZXQgPSBjcmVhdGVfZGltbV90ZW1wX2xhYmVsKHByaXYsIGkp
+Ow0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpZiAocmV0KQ0KPiA+ICvCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIHJldDsNCj4g
+PiArwqDCoMKgwqDCoMKgwqB9DQo+ID4gKw0KPiA+ICvCoMKgwqDCoMKgwqDCoGRldiA9IGRldm1f
+aHdtb25fZGV2aWNlX3JlZ2lzdGVyX3dpdGhfaW5mbyhwcml2LT5kZXYsIHByaXYtPm5hbWUsDQo+
+ID4gcHJpdiwNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
+JnBlY2lfZGltbXRlbXBfY2hpcF9pbmZvLA0KPiA+IE5VTEwpOw0KPiA+ICvCoMKgwqDCoMKgwqDC
+oGlmIChJU19FUlIoZGV2KSkgew0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBk
+ZXZfZXJyKHByaXYtPmRldiwgIkZhaWxlZCB0byByZWdpc3RlciBod21vbiBkZXZpY2VcbiIpOw0K
+PiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gUFRSX0VSUihkZXYpOw0K
+PiA+ICvCoMKgwqDCoMKgwqDCoH0NCj4gPiArDQo+ID4gK8KgwqDCoMKgwqDCoMKgZGV2X2RiZyhw
+cml2LT5kZXYsICIlczogc2Vuc29yICclcydcbiIsIGRldl9uYW1lKGRldiksIHByaXYtPm5hbWUp
+Ow0KPiA+ICsNCj4gPiArwqDCoMKgwqDCoMKgwqByZXR1cm4gMDsNCj4gPiArfQ0KPiA+ICsNCj4g
+PiArc3RhdGljIHZvaWQgY3JlYXRlX2RpbW1fdGVtcF9pbmZvX2RlbGF5ZWQoc3RydWN0IHdvcmtf
+c3RydWN0ICp3b3JrKQ0KPiA+ICt7DQo+ID4gK8KgwqDCoMKgwqDCoMKgc3RydWN0IHBlY2lfZGlt
+bXRlbXAgKnByaXYgPSBjb250YWluZXJfb2YodG9fZGVsYXllZF93b3JrKHdvcmspLA0KPiA+ICvC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgc3RydWN0IHBlY2lfZGltbXRl
+bXAsDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBkZXRlY3Rf
+d29yayk7DQo+ID4gK8KgwqDCoMKgwqDCoMKgaW50IHJldDsNCj4gPiArDQo+ID4gK8KgwqDCoMKg
+wqDCoMKgcmV0ID0gY3JlYXRlX2RpbW1fdGVtcF9pbmZvKHByaXYpOw0KPiA+ICvCoMKgwqDCoMKg
+wqDCoGlmIChyZXQgJiYgcmV0ICE9IC1FQUdBSU4pDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoGRldl9kYmcocHJpdi0+ZGV2LCAiRmFpbGVkIHRvIHBvcHVsYXRlIERJTU0gdGVt
+cCBpbmZvXG4iKTsNCj4gPiArfQ0KPiA+ICsNCj4gPiArc3RhdGljIGludCBwZWNpX2RpbW10ZW1w
+X3Byb2JlKHN0cnVjdCBhdXhpbGlhcnlfZGV2aWNlICphZGV2LCBjb25zdCBzdHJ1Y3QNCj4gPiBh
+dXhpbGlhcnlfZGV2aWNlX2lkICppZCkNCj4gPiArew0KPiA+ICvCoMKgwqDCoMKgwqDCoHN0cnVj
+dCBkZXZpY2UgKmRldiA9ICZhZGV2LT5kZXY7DQo+ID4gK8KgwqDCoMKgwqDCoMKgc3RydWN0IHBl
+Y2lfZGV2aWNlICpwZWNpX2RldiA9IHRvX3BlY2lfZGV2aWNlKGRldi0+cGFyZW50KTsNCj4gPiAr
+wqDCoMKgwqDCoMKgwqBzdHJ1Y3QgcGVjaV9kaW1tdGVtcCAqcHJpdjsNCj4gPiArwqDCoMKgwqDC
+oMKgwqBpbnQgcmV0Ow0KPiA+ICsNCj4gPiArwqDCoMKgwqDCoMKgwqBwcml2ID0gZGV2bV9remFs
+bG9jKGRldiwgc2l6ZW9mKCpwcml2KSwgR0ZQX0tFUk5FTCk7DQo+ID4gK8KgwqDCoMKgwqDCoMKg
+aWYgKCFwcml2KQ0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gLUVO
+T01FTTsNCj4gPiArDQo+ID4gK8KgwqDCoMKgwqDCoMKgcHJpdi0+bmFtZSA9IGRldm1fa2FzcHJp
+bnRmKGRldiwgR0ZQX0tFUk5FTCwgInBlY2lfZGltbXRlbXAuY3B1JWQiLA0KPiA+ICvCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCBwZWNpX2Rldi0+aW5mby5zb2NrZXRfaWQpOw0KPiA+ICvCoMKgwqDCoMKgwqDCoGlmICgh
+cHJpdi0+bmFtZSkNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIC1F
+Tk9NRU07DQo+ID4gKw0KPiA+ICvCoMKgwqDCoMKgwqDCoGRldl9zZXRfZHJ2ZGF0YShkZXYsIHBy
+aXYpOw0KPiA+ICvCoMKgwqDCoMKgwqDCoHByaXYtPmRldiA9IGRldjsNCj4gPiArwqDCoMKgwqDC
+oMKgwqBwcml2LT5wZWNpX2RldiA9IHBlY2lfZGV2Ow0KPiA+ICvCoMKgwqDCoMKgwqDCoHByaXYt
+Pmdlbl9pbmZvID0gKGNvbnN0IHN0cnVjdCBkaW1tX2luZm8gKilpZC0+ZHJpdmVyX2RhdGE7DQo+
+ID4gKw0KPiA+ICvCoMKgwqDCoMKgwqDCoElOSVRfREVMQVlFRF9XT1JLKCZwcml2LT5kZXRlY3Rf
+d29yaywgY3JlYXRlX2RpbW1fdGVtcF9pbmZvX2RlbGF5ZWQpOw0KPiA+ICsNCj4gPiArwqDCoMKg
+wqDCoMKgwqByZXQgPSBjcmVhdGVfZGltbV90ZW1wX2luZm8ocHJpdik7DQo+ID4gK8KgwqDCoMKg
+wqDCoMKgaWYgKHJldCAmJiByZXQgIT0gLUVBR0FJTikgew0KPiA+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqBkZXZfZGJnKGRldiwgIkZhaWxlZCB0byBwb3B1bGF0ZSBESU1NIHRlbXAg
+aW5mb1xuIik7DQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJldHVybiByZXQ7
+DQo+ID4gK8KgwqDCoMKgwqDCoMKgfQ0KPiA+ICsNCj4gPiArwqDCoMKgwqDCoMKgwqByZXR1cm4g
+MDsNCj4gPiArfQ0KPiA+ICsNCj4gPiArc3RhdGljIHZvaWQgcGVjaV9kaW1tdGVtcF9yZW1vdmUo
+c3RydWN0IGF1eGlsaWFyeV9kZXZpY2UgKmFkZXYpDQo+ID4gK3sNCj4gPiArwqDCoMKgwqDCoMKg
+wqBzdHJ1Y3QgcGVjaV9kaW1tdGVtcCAqcHJpdiA9IGRldl9nZXRfZHJ2ZGF0YSgmYWRldi0+ZGV2
+KTsNCj4gPiArDQo+ID4gK8KgwqDCoMKgwqDCoMKgY2FuY2VsX2RlbGF5ZWRfd29ya19zeW5jKCZw
+cml2LT5kZXRlY3Rfd29yayk7DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyBjb25zdCBzdHJ1
+Y3QgZGltbV9pbmZvIGRpbW1faHN4ID0gew0KPiA+ICvCoMKgwqDCoMKgwqDCoC5jaGFuX3Jhbmtf
+bWF4wqDCoD0gQ0hBTl9SQU5LX01BWF9PTl9IU1gsDQo+ID4gK8KgwqDCoMKgwqDCoMKgLmRpbW1f
+aWR4X21heMKgwqDCoD0gRElNTV9JRFhfTUFYX09OX0hTWCwNCj4gPiArwqDCoMKgwqDCoMKgwqAu
+bWluX3BlY2lfcmV2aXNpb24gPSAweDMwLA0KPiA+ICt9Ow0KPiA+ICsNCj4gPiArc3RhdGljIGNv
+bnN0IHN0cnVjdCBkaW1tX2luZm8gZGltbV9iZHggPSB7DQo+ID4gK8KgwqDCoMKgwqDCoMKgLmNo
+YW5fcmFua19tYXjCoMKgPSBDSEFOX1JBTktfTUFYX09OX0JEWCwNCj4gPiArwqDCoMKgwqDCoMKg
+wqAuZGltbV9pZHhfbWF4wqDCoMKgPSBESU1NX0lEWF9NQVhfT05fQkRYLA0KPiA+ICvCoMKgwqDC
+oMKgwqDCoC5taW5fcGVjaV9yZXZpc2lvbiA9IDB4MzAsDQo+ID4gK307DQo+ID4gKw0KPiA+ICtz
+dGF0aWMgY29uc3Qgc3RydWN0IGRpbW1faW5mbyBkaW1tX2JkeGQgPSB7DQo+ID4gK8KgwqDCoMKg
+wqDCoMKgLmNoYW5fcmFua19tYXjCoMKgPSBDSEFOX1JBTktfTUFYX09OX0JEWEQsDQo+ID4gK8Kg
+wqDCoMKgwqDCoMKgLmRpbW1faWR4X21heMKgwqDCoD0gRElNTV9JRFhfTUFYX09OX0JEWEQsDQo+
+ID4gK8KgwqDCoMKgwqDCoMKgLm1pbl9wZWNpX3JldmlzaW9uID0gMHgzMCwNCj4gPiArfTsNCj4g
+PiArDQo+ID4gK3N0YXRpYyBjb25zdCBzdHJ1Y3QgZGltbV9pbmZvIGRpbW1fc2t4ID0gew0KPiA+
+ICvCoMKgwqDCoMKgwqDCoC5jaGFuX3JhbmtfbWF4wqDCoD0gQ0hBTl9SQU5LX01BWF9PTl9TS1gs
+DQo+ID4gK8KgwqDCoMKgwqDCoMKgLmRpbW1faWR4X21heMKgwqDCoD0gRElNTV9JRFhfTUFYX09O
+X1NLWCwNCj4gPiArwqDCoMKgwqDCoMKgwqAubWluX3BlY2lfcmV2aXNpb24gPSAweDMwLA0KPiA+
+ICt9Ow0KPiA+ICsNCj4gPiArc3RhdGljIGNvbnN0IHN0cnVjdCBkaW1tX2luZm8gZGltbV9pY3gg
+PSB7DQo+ID4gK8KgwqDCoMKgwqDCoMKgLmNoYW5fcmFua19tYXjCoMKgPSBDSEFOX1JBTktfTUFY
+X09OX0lDWCwNCj4gPiArwqDCoMKgwqDCoMKgwqAuZGltbV9pZHhfbWF4wqDCoMKgPSBESU1NX0lE
+WF9NQVhfT05fSUNYLA0KPiA+ICvCoMKgwqDCoMKgwqDCoC5taW5fcGVjaV9yZXZpc2lvbiA9IDB4
+NDAsDQo+ID4gK307DQo+ID4gKw0KPiA+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGRpbW1faW5mbyBk
+aW1tX2ljeGQgPSB7DQo+ID4gK8KgwqDCoMKgwqDCoMKgLmNoYW5fcmFua19tYXjCoMKgPSBDSEFO
+X1JBTktfTUFYX09OX0lDWEQsDQo+ID4gK8KgwqDCoMKgwqDCoMKgLmRpbW1faWR4X21heMKgwqDC
+oD0gRElNTV9JRFhfTUFYX09OX0lDWEQsDQo+ID4gK8KgwqDCoMKgwqDCoMKgLm1pbl9wZWNpX3Jl
+dmlzaW9uID0gMHg0MCwNCj4gPiArfTsNCj4gPiArDQo+ID4gK3N0YXRpYyBjb25zdCBzdHJ1Y3Qg
+YXV4aWxpYXJ5X2RldmljZV9pZCBwZWNpX2RpbW10ZW1wX2lkc1tdID0gew0KPiA+ICvCoMKgwqDC
+oMKgwqDCoHsNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgLm5hbWUgPSAicGVj
+aV9jcHUuZGltbXRlbXAuaHN4IiwNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+LmRyaXZlcl9kYXRhID0gKGtlcm5lbF91bG9uZ190KSZkaW1tX2hzeCwNCj4gPiArwqDCoMKgwqDC
+oMKgwqB9LA0KPiA+ICvCoMKgwqDCoMKgwqDCoHsNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgLm5hbWUgPSAicGVjaV9jcHUuZGltbXRlbXAuYmR4IiwNCj4gPiArwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgLmRyaXZlcl9kYXRhID0gKGtlcm5lbF91bG9uZ190KSZkaW1t
+X2JkeCwNCj4gPiArwqDCoMKgwqDCoMKgwqB9LA0KPiA+ICvCoMKgwqDCoMKgwqDCoHsNCj4gPiAr
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgLm5hbWUgPSAicGVjaV9jcHUuZGltbXRlbXAu
+YmR4ZCIsDQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoC5kcml2ZXJfZGF0YSA9
+IChrZXJuZWxfdWxvbmdfdCkmZGltbV9iZHhkLA0KPiA+ICvCoMKgwqDCoMKgwqDCoH0sDQo+ID4g
+K8KgwqDCoMKgwqDCoMKgew0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAubmFt
+ZSA9ICJwZWNpX2NwdS5kaW1tdGVtcC5za3giLA0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqAuZHJpdmVyX2RhdGEgPSAoa2VybmVsX3Vsb25nX3QpJmRpbW1fc2t4LA0KPiA+ICvC
+oMKgwqDCoMKgwqDCoH0sDQo+ID4gK8KgwqDCoMKgwqDCoMKgew0KPiA+ICvCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAubmFtZSA9ICJwZWNpX2NwdS5kaW1tdGVtcC5pY3giLA0KPiA+ICvC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAuZHJpdmVyX2RhdGEgPSAoa2VybmVsX3Vsb25n
+X3QpJmRpbW1faWN4LA0KPiA+ICvCoMKgwqDCoMKgwqDCoH0sDQo+ID4gK8KgwqDCoMKgwqDCoMKg
+ew0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAubmFtZSA9ICJwZWNpX2NwdS5k
+aW1tdGVtcC5pY3hkIiwNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgLmRyaXZl
+cl9kYXRhID0gKGtlcm5lbF91bG9uZ190KSZkaW1tX2ljeGQsDQo+ID4gK8KgwqDCoMKgwqDCoMKg
+fSwNCj4gPiArwqDCoMKgwqDCoMKgwqB7IH0NCj4gPiArfTsNCj4gPiArTU9EVUxFX0RFVklDRV9U
+QUJMRShhdXhpbGlhcnksIHBlY2lfZGltbXRlbXBfaWRzKTsNCj4gPiArDQo+ID4gK3N0YXRpYyBz
+dHJ1Y3QgYXV4aWxpYXJ5X2RyaXZlciBwZWNpX2RpbW10ZW1wX2RyaXZlciA9IHsNCj4gPiArwqDC
+oMKgwqDCoMKgwqAucHJvYmXCoMKgwqDCoMKgwqDCoMKgwqDCoD0gcGVjaV9kaW1tdGVtcF9wcm9i
+ZSwNCj4gPiArwqDCoMKgwqDCoMKgwqAucmVtb3ZlwqDCoMKgwqDCoMKgwqDCoMKgPSBwZWNpX2Rp
+bW10ZW1wX3JlbW92ZSwNCj4gPiArwqDCoMKgwqDCoMKgwqAuaWRfdGFibGXCoMKgwqDCoMKgwqDC
+oD0gcGVjaV9kaW1tdGVtcF9pZHMsDQo+ID4gK307DQo+ID4gKw0KPiA+ICttb2R1bGVfYXV4aWxp
+YXJ5X2RyaXZlcihwZWNpX2RpbW10ZW1wX2RyaXZlcik7DQo+ID4gKw0KPiA+ICtNT0RVTEVfQVVU
+SE9SKCJKYWUgSHl1biBZb28gPGphZS5oeXVuLnlvb0BsaW51eC5pbnRlbC5jb20+Iik7DQo+ID4g
+K01PRFVMRV9BVVRIT1IoIkl3b25hIFdpbmlhcnNrYSA8aXdvbmEud2luaWFyc2thQGludGVsLmNv
+bT4iKTsNCj4gPiArTU9EVUxFX0RFU0NSSVBUSU9OKCJQRUNJIGRpbW10ZW1wIGRyaXZlciIpOw0K
+PiA+ICtNT0RVTEVfTElDRU5TRSgiR1BMIik7DQo+ID4gK01PRFVMRV9JTVBPUlRfTlMoUEVDSV9D
+UFUpOw0KDQo=
