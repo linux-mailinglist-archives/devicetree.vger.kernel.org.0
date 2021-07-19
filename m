@@ -2,71 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F214E3CD608
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 15:47:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11EED3CD60B
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 15:49:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240470AbhGSNG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jul 2021 09:06:59 -0400
-Received: from mail-io1-f52.google.com ([209.85.166.52]:46874 "EHLO
-        mail-io1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240506AbhGSNG7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 09:06:59 -0400
-Received: by mail-io1-f52.google.com with SMTP id p186so19973899iod.13;
-        Mon, 19 Jul 2021 06:47:39 -0700 (PDT)
+        id S240556AbhGSNHJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jul 2021 09:07:09 -0400
+Received: from mail-io1-f54.google.com ([209.85.166.54]:37702 "EHLO
+        mail-io1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240575AbhGSNHC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 09:07:02 -0400
+Received: by mail-io1-f54.google.com with SMTP id r18so8866610iot.4
+        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 06:47:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=oFd3MlNUQRlX4N33x8e/4VBraKu1g4Ilixv0NOLhWz0=;
-        b=tWUKd6xysrGDBy2dKII1YaVf29RmEOJb53e/cUw/mGfcwHdx+4ueF6Z2t/alz4l/mO
-         nSxO66EH+cQa1tLXFUXzcaT83fgnctA9pqZQhQmQbnUEiSGzpTWpqbfp2MmSwlAzB+Xj
-         F9d9BiZ607cDGdqE9hL3RLpwM52SZGz6gVDvLvLFs5yFGcymEU5r24h+rkqRLH6EWvhK
-         pI+UbQPsHWWeMoZKFc7f7q7fDp9/C65dubuDyWtfGwirp9cyvXc5dhUWPSmAZWosNSB5
-         Kde+zlPgP1xZlpb0Ro0yQM96W4HYq6do9vShD+c3sh7rEelRnfM6yX9xDKHAFyDz8Sva
-         Gjpw==
-X-Gm-Message-State: AOAM530hcJW1fDQOkNRHM5uWgQaknvy6A7iFw3kP6zB2IuHK0YIreAWd
-        sWDMFyiKkUTOFFPWo0sJiw==
-X-Google-Smtp-Source: ABdhPJzPtqUoDpGjzuH0PNyDyTfPsZwsMzRCiGIw7vDzjRgE9t1FpcLTpQP+rirn7ZBjJymyYAfRgg==
-X-Received: by 2002:a5d:87d0:: with SMTP id q16mr19030655ios.109.1626702458777;
-        Mon, 19 Jul 2021 06:47:38 -0700 (PDT)
+        bh=mwZJ51kvoahmhHajsozg1/bCh/fa3VUH5vZFB7730Cc=;
+        b=NZiHSB+Nroj8DrGFr6Pd5U/ytHi/+qBqGzGmZcxvQuIaVapNThXUYvMxK5P0SzE8nf
+         Y1nJksq1Fc2t4x9CfqxfhzbY814wf7C1le7bqpEtXVQc5FFYeDxMY7VUIFIe+aZoX1H5
+         flK6vrTKTRN6su9u0uAoW9A+A7XtSbykq4a3BpyBzWKALrrNcwEh6Y52Gr4q/+GdVzkm
+         N1zivlrFgkw9xGWGmAP4PR6GfgqyofyeTbaW63JLNs6fkeATIl1302Fu15OqzY/iYOvs
+         7bpCuhtOsvOhcMrDd6TyCsvsWOzxm6HXYtnHS6otztbRdrUaiQo/HLqaNROZ9g+kSGvy
+         qqCw==
+X-Gm-Message-State: AOAM530MauEkKEbGeCARcpink7eo+O6t/Kaw5oTzZETblMnCQm7sqQ1C
+        AZAORwbf90I4GSCVP6ar7A==
+X-Google-Smtp-Source: ABdhPJw10xzk5aqgM4JOl9ivG4Cf2xwpi0J/xIuCOBHib/harSRZSRR68y1XByYXGZn6PVSndroQyg==
+X-Received: by 2002:a5e:8619:: with SMTP id z25mr6424819ioj.13.1626702461836;
+        Mon, 19 Jul 2021 06:47:41 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id l9sm1974883ilv.31.2021.07.19.06.47.36
+        by smtp.gmail.com with ESMTPSA id d9sm2196833ilv.62.2021.07.19.06.47.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Jul 2021 06:47:38 -0700 (PDT)
-Received: (nullmailer pid 1811206 invoked by uid 1000);
+        Mon, 19 Jul 2021 06:47:41 -0700 (PDT)
+Received: (nullmailer pid 1811200 invoked by uid 1000);
         Mon, 19 Jul 2021 13:47:28 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-clk@vger.kernel.org, Prabhakar <prabhakar.csengg@gmail.com>,
-        devicetree@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>, linux-iio@vger.kernel.org,
-        Alexandru Ardelean <aardelean@deviqon.com>
-In-Reply-To: <20210719085840.21842-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20210719085840.21842-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210719085840.21842-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: iio: adc: Add binding documentation for Renesas RZ/G2L A/D converter
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Imre Kaloz <kaloz@openwrt.org>, devicetree@vger.kernel.org,
+        Marc Zyngier <maz@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Halasa <khalasa@piap.pl>
+In-Reply-To: <20210717001638.1292554-1-linus.walleij@linaro.org>
+References: <20210717001638.1292554-1-linus.walleij@linaro.org>
+Subject: Re: [PATCH 1/2] bus: ixp4xx: Add DT bindings for the IXP4xx expansion bus
 Date:   Mon, 19 Jul 2021 07:47:28 -0600
-Message-Id: <1626702448.448880.1811205.nullmailer@robh.at.kernel.org>
+Message-Id: <1626702448.416596.1811199.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 19 Jul 2021 09:58:37 +0100, Lad Prabhakar wrote:
-> Add binding documentation for Renesas RZ/G2L A/D converter block.
+On Sat, 17 Jul 2021 02:16:37 +0200, Linus Walleij wrote:
+> This adds device tree bindings for the IXP4xx expansion bus controller.
 > 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Cc: Marc Zyngier <maz@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
->  .../bindings/iio/adc/renesas,rzg2l-adc.yaml   | 134 ++++++++++++++++++
->  1 file changed, 134 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
+>  ...intel,ixp4xx-expansion-bus-controller.yaml | 151 ++++++++++++++++++
+>  1 file changed, 151 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/bus/intel,ixp4xx-expansion-bus-controller.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -75,14 +68,37 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.example.dts:26.28-29 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1418: dt_binding_check] Error 2
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/intel,ixp4xx-expansion-bus-controller.example.dt.yaml: serial@1,0: compatible: 'oneOf' conditional failed, one must be fixed:
+	['exar,xr16l2551', 'ns8250'] is too long
+	Additional items are not allowed ('ns8250' was unexpected)
+	['exar,xr16l2551', 'ns8250'] is too short
+	'ns8250' was expected
+	'ns16450' was expected
+	'ns16550' was expected
+	'ns16550a' was expected
+	'ns16850' was expected
+	'aspeed,ast2400-vuart' was expected
+	'aspeed,ast2500-vuart' was expected
+	'intel,xscale-uart' was expected
+	'mrvl,pxa-uart' was expected
+	'nuvoton,wpcm450-uart' was expected
+	'nuvoton,npcm750-uart' was expected
+	'nvidia,tegra20-uart' was expected
+	'nxp,lpc3220-uart' was expected
+	'exar,xr16l2551' is not one of ['altr,16550-FIFO32', 'altr,16550-FIFO64', 'altr,16550-FIFO128', 'fsl,16550-FIFO64', 'fsl,ns16550', 'andestech,uart16550', 'nxp,lpc1850-uart', 'opencores,uart16550-rtlsvn105', 'ti,da830-uart']
+	'exar,xr16l2551' is not one of ['ns16750', 'cavium,octeon-3860-uart', 'xlnx,xps-uart16550-2.00.b', 'ralink,rt2880-uart']
+	'exar,xr16l2551' is not one of ['ralink,mt7620a-uart', 'ralink,rt3052-uart', 'ralink,rt3883-uart']
+	'exar,xr16l2551' is not one of ['mediatek,mt7622-btif', 'mediatek,mt7623-btif']
+	'mrvl,mmp-uart' was expected
+	'exar,xr16l2551' is not one of ['nvidia,tegra30-uart', 'nvidia,tegra114-uart', 'nvidia,tegra124-uart', 'nvidia,tegra186-uart', 'nvidia,tegra194-uart', 'nvidia,tegra210-uart']
+	'ns8250' is not one of ['ns16550', 'ns16550a']
+	'ralink,rt2880-uart' was expected
+	'mediatek,mtk-btif' was expected
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/serial/8250.yaml
+Documentation/devicetree/bindings/bus/intel,ixp4xx-expansion-bus-controller.example.dt.yaml:0:0: /example-0/bus@50000000/serial@1,0: failed to match any schema with compatible: ['exar,xr16l2551', 'ns8250']
 \ndoc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1506856
+See https://patchwork.ozlabs.org/patch/1506323
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
