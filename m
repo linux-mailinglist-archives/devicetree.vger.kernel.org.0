@@ -2,50 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A71C63CEEB1
+	by mail.lfdr.de (Postfix) with ESMTP id EF6E93CEEB2
 	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 00:00:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242989AbhGSVNN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jul 2021 17:13:13 -0400
-Received: from mail-il1-f171.google.com ([209.85.166.171]:36523 "EHLO
-        mail-il1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1385732AbhGSTIa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 15:08:30 -0400
-Received: by mail-il1-f171.google.com with SMTP id j5so17112595ilk.3;
-        Mon, 19 Jul 2021 12:48:53 -0700 (PDT)
+        id S242997AbhGSVNO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jul 2021 17:13:14 -0400
+Received: from mail-io1-f45.google.com ([209.85.166.45]:37415 "EHLO
+        mail-io1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1385781AbhGSTJ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 15:09:27 -0400
+Received: by mail-io1-f45.google.com with SMTP id r18so10265201iot.4;
+        Mon, 19 Jul 2021 12:50:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=GDUH5kKZnOHRCAbBYePTCiIA1/WaZH91n3x0Dno6HFQ=;
-        b=pOBPpmIUxOFi9+EDBocKHUAb6m+mJ/KxYcJ63V9wxvHyP4BwmzWmz7B0bZ3Y4KYuQK
-         ocf78dq0hez9lXKVRKEAZLSGqFA5n+OleUYZCk/2ZdRR5S6Ti9CqAicgdO0YZ0WX5cc8
-         JxnhGe99DKIj1LywuwAQEy7YA9Of4lZsRU5i9aI1VSOUdiMfrqBOcMeOPuN7fKklvAxM
-         xOlvwoTiZOShIiQwHLi7N3vhLrA1lbzuvY8BeWOsz8yipDAJcb4er1uRmtXqc/2LLiY8
-         6kiz8+PGhKvXykZAyFSNFZ94sjP5caS5kFlK6DY2fYA8UOJTbTZRbUfjtJuEs0FoGexK
-         TZcA==
-X-Gm-Message-State: AOAM532glg2WgmxKxiUHyH8iOEWTZrXM9rxQvbDRaDtvd2ZJnXrBOvfy
-        cSjjTrlhNtcVFbnIWSKD+A==
-X-Google-Smtp-Source: ABdhPJxne2/ZNMI2QOulVi9xVIAfp9pBxOds/kvhM1c+nWxPLBJeFq+sM2PJlMNuUEgGjrxakSXCEw==
-X-Received: by 2002:a92:d5cb:: with SMTP id d11mr17647954ilq.133.1626724133543;
-        Mon, 19 Jul 2021 12:48:53 -0700 (PDT)
+        bh=aG3jRlbPN2vUwxCTM7m5lg6AuY6gMHA+0U8gF5Ougek=;
+        b=k7d20Gc19RjMDalMSpw9xY6w3shoKMmuV/hehrScftjL0wk8OxRtVKR8f/MRX0LoDO
+         t9EMw+GwXDGkSl6wWdlhndFkzdb5BsF8CnUZ9ebBliq0KgbjIQnaHiggC9ljhMvekt4z
+         H60Q58sgHEbeL6gwwSl33KfyxcOX0uACKq6klsFDO9lB9yhfzwe3Inz+FQOfhCgnh/l5
+         xAsVT24+hClY5wh2NO/xF9kZaq+5zfdSOsxjVrt1UqREKe+Ha1PJ/czOkqhE1rTkRRj2
+         RjXYrJVV+Wpipcirgls6tno7FZck1MmA1HEhbOVmmnQVC21Fmm6eloARR8Gdlkfi/PIT
+         1kVA==
+X-Gm-Message-State: AOAM533phOFaHSSRX28gfR5BXQbaklCBVKbk6PafXrcR2tXs71poAwtI
+        JwI3kgEtftzVrI36BU6ObzVEiVbB+w==
+X-Google-Smtp-Source: ABdhPJzYjU7X6oo+Ckis+hbPzMu6oq0X2BoiJ+rZT/hptX49jmi/YaKeQBNle+ttKv8qObNGowKU8g==
+X-Received: by 2002:a05:6602:59d:: with SMTP id v29mr9469036iox.132.1626724205186;
+        Mon, 19 Jul 2021 12:50:05 -0700 (PDT)
 Received: from xps15.herring.priv ([64.188.179.248])
-        by smtp.googlemail.com with ESMTPSA id h10sm11306196ioe.43.2021.07.19.12.48.51
+        by smtp.googlemail.com with ESMTPSA id g22sm10898287ion.10.2021.07.19.12.50.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Jul 2021 12:48:52 -0700 (PDT)
+        Mon, 19 Jul 2021 12:50:04 -0700 (PDT)
 From:   Rob Herring <robh@kernel.org>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Eugen Hristev <eugen.hristev@microchip.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Ramesh Shanmugasundaram <rashanmu@gmail.com>,
-        linux-media@vger.kernel.org
-Subject: [PATCH] dt-bindings: media: Fix graph 'unevaluatedProperties' related warnings
-Date:   Mon, 19 Jul 2021 13:48:50 -0600
-Message-Id: <20210719194850.2410511-1-robh@kernel.org>
+To:     devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Marek Vasut <marex@denx.de>,
+        Krishna Manikandan <mkrishn@codeaurora.org>,
+        dri-devel@lists.freedesktop.org
+Subject: [PATCH] dt-bindings: display: Fix graph 'unevaluatedProperties' related warnings
+Date:   Mon, 19 Jul 2021 13:50:01 -0600
+Message-Id: <20210719195001.2412345-1-robh@kernel.org>
 X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -57,61 +55,67 @@ The graph schema doesn't allow custom properties on endpoint nodes for
 '#/properties/port' and '#/$defs/port-base' should be used instead. This
 doesn't matter until 'unevaluatedProperties' support is implemented.
 
-Cc: Eugen Hristev <eugen.hristev@microchip.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: Nicolas Ferre <nicolas.ferre@microchip.com>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: Ludovic Desroches <ludovic.desroches@microchip.com>
-Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc: Ramesh Shanmugasundaram <rashanmu@gmail.com>
-Cc: linux-media@vger.kernel.org
+Cc: David Airlie <airlied@linux.ie>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: Rob Clark <robdclark@gmail.com>
+Cc: Sean Paul <sean@poorly.run>
+Cc: Marek Vasut <marex@denx.de>
+Cc: Krishna Manikandan <mkrishn@codeaurora.org>
+Cc: dri-devel@lists.freedesktop.org
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- Documentation/devicetree/bindings/media/atmel,isc.yaml      | 3 ++-
- Documentation/devicetree/bindings/media/microchip,xisc.yaml | 2 +-
- Documentation/devicetree/bindings/media/renesas,drif.yaml   | 2 +-
- 3 files changed, 4 insertions(+), 3 deletions(-)
+ .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml    | 6 ++++--
+ .../bindings/display/msm/dsi-controller-main.yaml           | 6 ++++--
+ 2 files changed, 8 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/media/atmel,isc.yaml b/Documentation/devicetree/bindings/media/atmel,isc.yaml
-index 3e4bb8892d94..cd6d7af0c768 100644
---- a/Documentation/devicetree/bindings/media/atmel,isc.yaml
-+++ b/Documentation/devicetree/bindings/media/atmel,isc.yaml
-@@ -44,7 +44,8 @@ properties:
-     const: isc-mck
+diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+index d101233ae17f..07b20383cbca 100644
+--- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+@@ -37,7 +37,8 @@ properties:
  
-   port:
--    $ref: /schemas/graph.yaml#/properties/port
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    unevaluatedProperties: false
-     description:
-       Input port node, single endpoint describing the input pad.
+     properties:
+       port@0:
+-        $ref: /schemas/graph.yaml#/properties/port
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
+         description: Video port for MIPI DSI Channel-A input
  
-diff --git a/Documentation/devicetree/bindings/media/microchip,xisc.yaml b/Documentation/devicetree/bindings/media/microchip,xisc.yaml
-index 41afe2e5f133..086e1430af4f 100644
---- a/Documentation/devicetree/bindings/media/microchip,xisc.yaml
-+++ b/Documentation/devicetree/bindings/media/microchip,xisc.yaml
-@@ -52,7 +52,7 @@ properties:
-       of the data and clock lines.
+         properties:
+@@ -57,7 +58,8 @@ properties:
+                   - const: 4
  
-   port:
--    $ref: /schemas/graph.yaml#/properties/port
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-     description:
-       Input port node, single endpoint describing the input pad.
+       port@1:
+-        $ref: /schemas/graph.yaml#/properties/port
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
+         description: Video port for MIPI DSI Channel-B input
  
-diff --git a/Documentation/devicetree/bindings/media/renesas,drif.yaml b/Documentation/devicetree/bindings/media/renesas,drif.yaml
-index 817a6d566738..2867d11fe156 100644
---- a/Documentation/devicetree/bindings/media/renesas,drif.yaml
-+++ b/Documentation/devicetree/bindings/media/renesas,drif.yaml
-@@ -96,7 +96,7 @@ properties:
-       Indicates that the channel acts as primary among the bonded channels.
+         properties:
+diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+index 76348b71f736..de23cab9b5f1 100644
+--- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
++++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+@@ -77,7 +77,8 @@ properties:
  
-   port:
--    $ref: /schemas/graph.yaml#/properties/port
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-     unevaluatedProperties: false
-     description:
-       Child port node corresponding to the data input. The port node must
+     properties:
+       port@0:
+-        $ref: "/schemas/graph.yaml#/properties/port"
++        $ref: "/schemas/graph.yaml#/$defs/port-base"
++        unevaluatedProperties: false
+         description: |
+           Input endpoints of the controller.
+         properties:
+@@ -92,7 +93,8 @@ properties:
+                   enum: [ 0, 1, 2, 3 ]
+ 
+       port@1:
+-        $ref: "/schemas/graph.yaml#/properties/port"
++        $ref: "/schemas/graph.yaml#/$defs/port-base"
++        unevaluatedProperties: false
+         description: |
+           Output endpoints of the controller.
+         properties:
 -- 
 2.27.0
 
