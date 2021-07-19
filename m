@@ -2,94 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 287563CD64F
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 16:08:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E194C3CD652
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 16:10:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240817AbhGSN1w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jul 2021 09:27:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47330 "EHLO
+        id S240743AbhGSN3m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jul 2021 09:29:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240743AbhGSN1w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 09:27:52 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F4EBC061766
-        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 06:33:10 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id i5so30415520lfe.2
-        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 07:08:31 -0700 (PDT)
+        with ESMTP id S240733AbhGSN3m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 09:29:42 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D75DC061574
+        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 06:35:09 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id i5so30426113lfe.2
+        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 07:10:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=UXE01vhA2YBNs8+cOvqUgyYLYA05sje+2Hk/GGiPjNA=;
-        b=l7DREebwW+zshErZMc4slc258/+LuiXEe4p05Iq5JE6Qu8rzzCM26qPQfHTY38o+H0
-         g/4+yDreaIvLSKbKn7RqD94g1cktDMZ5ERW6G4PukAWTbnkv6xXOkvt/+lEdBlEjh3h/
-         UVJwlGqnfvk84UkE6iNV0LtviTLcDj7ACY6zsUNKGCx+0CU++qg13utFaERdsmx1wvsR
-         KzBmVYXkCuRqXeDG2zqIEMy3BtkHbrqilrnSDgp/vmb9Z/iI4cdFEH61RyD6SRnQS6kx
-         KdepNYWb7N9ZZbo5x5wD2992W+jYFtScJiOsEeP3Z05nhzBB/+uwTNiSYe+beJiCTcvb
-         PO5A==
+        bh=2FTzlNaMCD3AmNUJH2yEEkaHs7MO07UhN4O/oRsXVWs=;
+        b=yHFlJAhv+eSL/vMjKL3izWbfVWVlBmv87iAQi3iuBreHMZ9zK5RnKEFh6CpS41tzKg
+         MM5oQXKJ0EWMNgEdD1vMLmvuk0TO0u7bdUpktXw35DPmsYBMHBSbgn3Xs0huM7hx+aqZ
+         QHJ4DHOfvJK8FhfEZoEIeWyVPgrq6nUS0IIz2lJwiZJhWAg/hcPWKMHj7KiPKYrm+fLR
+         n0fqw75Dbr4SZ/SkGc9VouvTRUKqA5Qp02R1Cb7TvVFgWCR45913+7+8i6tXB8H/3Pbc
+         Wk7uJpN8W4/jAMYFX/1D9cZzIST0Xs4tagdWkZkeo1iCy2r3/I+BRSWAIa64BoHZhVxN
+         15iA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=UXE01vhA2YBNs8+cOvqUgyYLYA05sje+2Hk/GGiPjNA=;
-        b=Z9GMCu54h2rGqEvdJy1B4udozQ1ekhYeYuae1+65QgigWtp05Ufuv3yocDsoZBFYdV
-         f/lFIFfBehcO9XB3XQqJjisXPiqPEbUlezcXbsPw0qd7/6VDdMvjms+a+nBScC3Yh0DV
-         +ZdhMnpiKla7fuxsE+IvetYlOXbk5slnjFjk6CVfZ3R2ANsj2F0iAmRhGGqc4mAkZomv
-         RPj3BE8d/pWyydlCADPp80SVWvl1T49zPEiz7iJRW7KCDEt6MVobh9zb7uCNpcFurUHN
-         SA1u/F8io+8Cd1mAcm0qB78s8ivYlEJKSGmb9PoabQGLf7NyyhCUDdy5g7S1QZemk77p
-         64Vg==
-X-Gm-Message-State: AOAM531xGIezYS468U1kT/1tYcEIdwVMKlfTaW6m1g/qfITueYSYSSSn
-        +wi3Ml0G+tyr6V4mSL3Oi1ptmK7FASJHpqQlzeuSEQ==
-X-Google-Smtp-Source: ABdhPJwCM0b4lokV59vxYMH/WVbo+JhrOqIuCVlyKIET6X5hBzAhV0cnXcVcE+SU5OYTZroYFNq7mzps99u8E7UDMdc=
-X-Received: by 2002:a05:6512:b1d:: with SMTP id w29mr18313704lfu.291.1626703710159;
- Mon, 19 Jul 2021 07:08:30 -0700 (PDT)
+        bh=2FTzlNaMCD3AmNUJH2yEEkaHs7MO07UhN4O/oRsXVWs=;
+        b=BjReAKvux4LjzZnGgBXVvY3gyBihN+Tqmo0LDwG8ifx42Sy46fa0uv4iFTl4cONVfY
+         eV4cITTsUljfNgqsk0g78Ims6SYYhYL/izCcUq3UfBUaSlcRbOd7YFaoNxS5JYcKO2ka
+         aGFYcRn+O+q924TleZ74kt2/pWiNKjh7jLc7DDZFEFabWJWAfb7B2k6K1fI8w1lKnYsH
+         bxTTu3bBzsIAbqr3vWYZ8J9eIpmMKTPQydHpfq1PpCDhF7ECxMtgSNilNA1bmvzl1Teu
+         4ylmVjDsV9X97GbXQU9rDe9QVwlupHFQDDvi8/4Nvfb/6KNucpaTpM1m/HJTATk98xoy
+         Bxng==
+X-Gm-Message-State: AOAM531G4EuNHs6FrsBvv0e2ccWXV0BGf4n5rzTgAFBGJBxBTB3PEGsj
+        dhOn1/ezzSOmnlVY+8dbpNdVk5GApM/X1IqlTjhteg==
+X-Google-Smtp-Source: ABdhPJzepYP9oohkYUdsSQFJjb4jKgiFpd4uuzvy3TycH5AjFXTH1qmUDZclYE/7by7kzG/JBd9sdPjHyIKFG/z/kRY=
+X-Received: by 2002:ac2:5e71:: with SMTP id a17mr17828519lfr.465.1626703820337;
+ Mon, 19 Jul 2021 07:10:20 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210719112156.27087-1-stephan@gerhold.net> <20210719112156.27087-5-stephan@gerhold.net>
-In-Reply-To: <20210719112156.27087-5-stephan@gerhold.net>
+References: <20210717001638.1292554-1-linus.walleij@linaro.org> <1626702448.416596.1811199.nullmailer@robh.at.kernel.org>
+In-Reply-To: <1626702448.416596.1811199.nullmailer@robh.at.kernel.org>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 19 Jul 2021 16:08:19 +0200
-Message-ID: <CACRpkdYaR=oyMuZjxDrmikB=1B3dZuy1rno_5SA9LfW3M_67dA@mail.gmail.com>
-Subject: Re: [PATCH 4/4] iio: accel: bmc150: Add support for BMC156
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
+Date:   Mon, 19 Jul 2021 16:10:09 +0200
+Message-ID: <CACRpkdaR+E6xkHYgZ5m8ibWPOxuGWMOFWiUCaO4S_BZZb58PFQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] bus: ixp4xx: Add DT bindings for the IXP4xx expansion bus
+To:     Rob Herring <robh@kernel.org>
+Cc:     Imre Kaloz <kaloz@openwrt.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
-        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>, Andy
-        Shevchenko <andy.shevchenko@gmail.com>," 
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        Nikita Travkin <nikita@trvn.ru>
+        <devicetree@vger.kernel.org>, Marc Zyngier <maz@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Krzysztof Halasa <khalasa@piap.pl>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 19, 2021 at 1:26 PM Stephan Gerhold <stephan@gerhold.net> wrote:
+On Mon, Jul 19, 2021 at 3:47 PM Rob Herring <robh@kernel.org> wrote:
 
-> BMC156 is another accelerometer that works just fine with the bmc150-accel
-> driver. It's very similar to BMC150 (also a accelerometer+magnetometer
-> combo) but with only one accelerometer interrupt pin. It would make sense
-> if only INT1 was exposed but someone at Bosch was crazy and decided to only
-> have an INT2 pin.
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
 >
-> Try to deal with this by making use of the INT2 support introduced
-> in the previous commit and force using INT2 for BMC156. To detect
-> that we need to bring up a simplified version of the previous type IDs.
+> yamllint warnings/errors:
 >
-> Note that unlike the type IDs removed in commit c06a6aba6835
-> ("iio: accel: bmc150: Drop misleading/duplicate chip identifiers")
-> here I only add one for the special case of BMC156. Everything else
-> still happens by reading the CHIP_ID register since the chip type
-> information often is not accurate in ACPI tables.
->
-> Tested-by: Nikita Travkin <nikita@trvn.ru> # BMC156
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/intel,ixp4xx-expansion-bus-controller.example.dt.yaml: serial@1,0: compatible: 'oneOf' conditional failed, one must be fixed:
+>         ['exar,xr16l2551', 'ns8250'] is too long
+>         Additional items are not allowed ('ns8250' was unexpected)
+>         ['exar,xr16l2551', 'ns8250'] is too short
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+This is because the patch adding these compatibles was sent separately
+so it can be merged into the tty subsystem.
+
+So pretty much false alarm, but the bot can't know everything.
 
 Yours,
 Linus Walleij
