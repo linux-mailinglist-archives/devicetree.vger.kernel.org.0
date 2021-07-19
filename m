@@ -2,160 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 061E33CED2E
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 22:29:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D9ED3CEE9D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 00:00:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348419AbhGSRrp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jul 2021 13:47:45 -0400
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.80]:16127 "EHLO
+        id S236880AbhGSVGX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jul 2021 17:06:23 -0400
+Received: from mo4-p02-ob.smtp.rzone.de ([81.169.146.171]:14767 "EHLO
         mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1382878AbhGSRnN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 13:43:13 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1626719024;
+        with ESMTP id S1383548AbhGSR5E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 13:57:04 -0400
+X-Greylist: delayed 25816 seconds by postgrey-1.27 at vger.kernel.org; Mon, 19 Jul 2021 13:56:52 EDT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1626719817;
     s=strato-dkim-0002; d=gerhold.net;
     h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
     From:Subject:Sender;
-    bh=ClQ4hFI2ri15r2D64MGjX/QT1jx5PAs/tCwhga7iJjs=;
-    b=IfpoGtfUWZUgkhl31pCMfcSD7eSFez5Y9J2OP18mqcnZ+K4xFCDoYUKFoDtTEQOAJi
-    HEb7AUfp8DPUGnRlp3vK0FVstqXbr1glWCDgOqCvwonCed08bZ1jI72793zE4jmHQwdD
-    IvYWx164Lc7O/uPNlcCcyC3hB+hC8GKh9SyGkAmov0gNqNp3LuryV4+Ew45zqZozjzXT
-    NCS2MuSgZUkxcxCP9uUw/lJsaTiNLuc4bpOM+rSo2PLdOk2mw1fMj+hwRW6I5YudkdeW
-    ijqilUc/SEQQTzoFWvaLU9eT40pDSvPXEyQ6/viWpCd68j/Y5weTOnnNX+BRsxhBauMI
-    tGjw==
+    bh=f0gx+hbPGHoJTeefnShjVBvl/0tmGDqiZQWxHwnZwpE=;
+    b=pDkiuvAyWPPi0eMORswRqUx88I3TLpQRnGV0HsDL3gbAAlciOZW1+gXEeCCSYNIp2X
+    zn9U/S05tyTlcItOWvvliU8qIhGpCMmYenSJeZrXLhLpTJI2TL0FHzPx83hDK+wPtq72
+    nAnyl2OhdaQFgMbOqxkWEIjWOqc6jwDuVKVWYvoOAg/qTqFgE/LiHj3L6w5wqQWR61XC
+    KabeY/O+CpPWtt+kO060nkEfj4IxtHh4FQxfqQZiB7WZUbkHks7uJjBPPSaLXlaBFvvS
+    d2d+7JsjOSc22i6vjfja2Ec1YjAnIqbIqORonz2L2w0SuO0xHw5N4iTF4pCvwN945WpZ
+    j5Ow==
 Authentication-Results: strato.com;
     dkim=none
 X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j4Icup"
 X-RZG-CLASS-ID: mo00
 Received: from gerhold.net
     by smtp.strato.de (RZmta 47.28.1 DYNA|AUTH)
-    with ESMTPSA id g02a44x6JINg63q
+    with ESMTPSA id g02a44x6JIav66d
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
         (Client did not present a certificate);
-    Mon, 19 Jul 2021 20:23:42 +0200 (CEST)
-Date:   Mon, 19 Jul 2021 20:23:29 +0200
+    Mon, 19 Jul 2021 20:36:57 +0200 (CEST)
+Date:   Mon, 19 Jul 2021 20:36:51 +0200
 From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Sergey Ryazanov <ryazanov.s.a@gmail.com>,
-        Johannes Berg <johannes@sipsolutions.net>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Aleksander Morgado <aleksander@aleksander.es>,
-        "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
-        MSM <linux-arm-msm@vger.kernel.org>, dmaengine@vger.kernel.org,
-        DTML <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [RFC PATCH net-next 0/4] net: wwan: Add Qualcomm BAM-DMUX WWAN
- network driver
-Message-ID: <YPXC7PDCUopdCdTV@gerhold.net>
-References: <20210719145317.79692-1-stephan@gerhold.net>
- <CAOCk7NonuOKWrpr-MwdjAwF1F4jviEMf=c04vVBxQ-OmfY2b-g@mail.gmail.com>
+        linux-iio <linux-iio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
+        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>, Andy
+        Shevchenko <andy.shevchenko@gmail.com>," 
+        <~postmarketos/upstreaming@lists.sr.ht>,
+        Nikita Travkin <nikita@trvn.ru>
+Subject: Re: [PATCH 3/4] iio: accel: bmc150: Make it possible to configure
+ INT2 instead of INT1
+Message-ID: <YPXGQxPPID1SHOUO@gerhold.net>
+References: <20210719112156.27087-1-stephan@gerhold.net>
+ <20210719112156.27087-4-stephan@gerhold.net>
+ <CACRpkdYNqi0EDrtC3j=cu5cp17sEJ6_nf2KRn-hxCxgbTGhgXw@mail.gmail.com>
+ <CAHp75VcsVFO2Oizpyeh53MNt2v9yD81vXp1xKCVX-U4zb-KTdg@mail.gmail.com>
+ <YPWV537oN3gDpAQS@gerhold.net>
+ <CAHp75Vdjotgi9RrmKQC4J_QQSYdRWwp+-8aHGkChx6VFLPDh-Q@mail.gmail.com>
+ <YPW1xGtLyLNGKqjJ@gerhold.net>
+ <CAHp75VcZDSL5u2bP_ZFySmk7cPkHRycyA-+gMqSVWCpgFXhn7Q@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAOCk7NonuOKWrpr-MwdjAwF1F4jviEMf=c04vVBxQ-OmfY2b-g@mail.gmail.com>
+In-Reply-To: <CAHp75VcZDSL5u2bP_ZFySmk7cPkHRycyA-+gMqSVWCpgFXhn7Q@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 19, 2021 at 09:43:27AM -0600, Jeffrey Hugo wrote:
-> On Mon, Jul 19, 2021 at 9:01 AM Stephan Gerhold <stephan@gerhold.net> wrote:
+On Mon, Jul 19, 2021 at 09:05:48PM +0300, Andy Shevchenko wrote:
+> On Mon, Jul 19, 2021 at 8:29 PM Stephan Gerhold <stephan@gerhold.net> wrote:
 > >
-> > The BAM Data Multiplexer provides access to the network data channels
-> > of modems integrated into many older Qualcomm SoCs, e.g. Qualcomm MSM8916
-> > or MSM8974. This series adds a driver that allows using it.
-> >
-> > For more information about BAM-DMUX, see PATCH 4/4.
-> >
-> > Shortly said, BAM-DMUX is built using a simple protocol layer on top of
-> > a DMA engine (Qualcomm BAM DMA). For BAM-DMUX, the BAM DMA engine runs in
-> > a quite strange mode that I call "remote power collapse", where the
-> > modem/remote side is responsible for powering on the BAM when needed but we
-> > are responsible to initialize it. The BAM is power-collapsed when unneeded
-> > by coordinating power control via bidirectional interrupts from the
-> > BAM-DMUX driver.
+> > On Mon, Jul 19, 2021 at 07:19:05PM +0300, Andy Shevchenko wrote:
+> > > On Mon, Jul 19, 2021 at 6:11 PM Stephan Gerhold <stephan@gerhold.net> wrote:
+> > > > On Mon, Jul 19, 2021 at 06:01:01PM +0300, Andy Shevchenko wrote:
+> > > > > On Mon, Jul 19, 2021 at 5:07 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+> > > > > > On Mon, Jul 19, 2021 at 1:26 PM Stephan Gerhold <stephan@gerhold.net> wrote:
 > 
-> The hardware is physically located on the modem, and tied to the modem
-> regulators, etc.  The modem has the ultimate "off" switch.  However,
-> due to the BAM architecture (which is complicated), configuration uses
-> cooperation on both ends.
+> ...
 > 
-
-What I find strange is that it wasn't done similarly to e.g. Slimbus
-which has a fairly similar setup. (I used that driver as inspiration for
-how to use the mainline qcom_bam driver instead of the "SPS" from
-downstream.)
-
-Slimbus uses qcom,controlled-remotely together with the LPASS
-remoteproc, so it looks like there LPASS does both power-collapse
-and initialization of the BAM. Whereas here the modem does the
-power-collapse but we're supposed to do the initialization.
-
+> > > > > > >  #include <linux/acpi.h>
+> > > > > > > +#include <linux/of_irq.h>
+> > > > > > (...)
+> > > > > > > +       irq_info = bmc150_accel_interrupts_int1;
+> > > > > > > +       if (irq == of_irq_get_byname(dev->of_node, "INT2"))
+> > > > > > > +               irq_info = bmc150_accel_interrupts_int2;
+> > > > > >
+> > > > > > This looks a bit DT-specific, but I don't see that ACPI has
+> > > > > > named IRQs so I don't know what to do about it either.
+> > > > >
+> > > > > Yeah, we only have so far the (de facto) established way of naming
+> > > > > GPIO based IRQs, and not IOxAPIC ones.
+> > > > >
+> > > > > > What does platform_get_irq_byname() do on ACPI systems?
+> > > > >
+> > > > > See above.
+> > > > >
+> > > > > > If there is no obvious fix I would leave it like this until the
+> > > > > > first ACPI used needing this comes along, but I think maybe
+> > > > > > Andy has suggestions.
+> > > > >
+> > > > > The platform_get_irq_byname() should do something similar that has
+> > > > > been done in platform_get_irq() WRT ACPI.
+> > > > > Here for sure the platform_get_irq_byname() or its optional variant
+> > > > > should be used.
+> > > >
+> > > > I don't think there is a platform device here, we only have the
+> > > > i2c_client or spi_device. That's why I didn't use
+> > > > platform_get_irq_byname(). :)
+> > > >
+> > > > Is there something equivalent for I2C/SPI drivers?
+> > >
+> > > Not yet. You probably need to supply some code there to allow
+> > > multi-IRQ devices (in resource provider agnostic way).
+> > >
+> > > You need to provide fwnode_get_irq_byname() to be similar with
+> > > https://elixir.bootlin.com/linux/latest/source/drivers/base/property.c#L1010
+> > >
+> > > Then use it in the drivers.
+> > >
+> > > And/or integrate into frameworks somehow (something in between the
+> > > lines: https://elixir.bootlin.com/linux/latest/source/drivers/i2c/i2c-core-base.c#L461).
+> > >
 > >
-> > The series first adds one possible solution for handling this "remote power
-> > collapse" mode in the bam_dma driver, then it adds the BAM-DMUX driver to
-> > the WWAN subsystem. Note that the BAM-DMUX driver does not actually make
-> > use of the WWAN subsystem yet, since I'm not sure how to fit it in there
-> > yet (see PATCH 4/4).
+> > Well, I don't think anyone has an ACPI use case for this right now so
+> > it's probably better if this is done by someone who actually needs this
+> > and can test it somewhere. :)
 > >
-> > Please note that all of the changes in this patch series are based on
-> > a fairly complicated driver from Qualcomm [1].
-> > I do not have access to any documentation about "BAM-DMUX". :(
+> > I actually just "copied" this approach from some other IIO drivers where
+> > this is done similarly (and additionally checked the source code to make
+> > sure this won't break anything for ACPI platforms).
 > 
-> I'm pretty sure I still have the internal docs.
+> I see in today's Linux Next snapshot:
 > 
-> Are there specific things you want to know?
+> drivers/iio/accel/fxls8962af-core.c:774:        irq =
+> of_irq_get_byname(of_node, "INT2");
+> drivers/iio/accel/mma8452.c:1616:               irq2 =
+> of_irq_get_byname(client->dev.of_node, "INT2");
+> drivers/iio/gyro/fxas21002c_core.c:834: irq1 = of_irq_get_byname(np, "INT1");
+> drivers/iio/imu/adis16480.c:1265:               irq =
+> of_irq_get_byname(of_node, adis16480_int_pin_names[i]);
+> drivers/iio/imu/bmi160/bmi160_core.c:655:       irq =
+> of_irq_get_byname(of_node, "INT1");
+> drivers/iio/imu/bmi160/bmi160_core.c:661:       irq =
+> of_irq_get_byname(of_node, "INT2");
+> 
+> I believe we may stop distributing this and actually start using a
+> common API. I don't want this to be spread again over all IIO. Btw, I
+> have LSM9DS0, which supports two INT pins for IMU and currently it
+> uses hard coded pin mapping.
+> 
 
-Oh, thanks a lot for asking! I mainly mentioned this here to avoid
-in-depth questions about the hardware (since I can't answer those).
+Hm, I'm not quite sure how to implement this. Could you prepare a patch
+that would implement such a common API? I would be happy to test it for
+the device tree and make use of it in this patch.
 
-I can probably think of many, many questions, but I'll try to limit
-myself to the two I'm most confused about. :-)
+To be honest, I mainly implemented support for the interrupt-names
+because Jonathan mentioned this would be nice to have [1] and it kind of
+fit well together with the BMC156 patch that needs the INT2 support.
+I actually just use the if (data->type == BOSCH_BMC156) part from
+PATCH 4/4 which does not depend on of_irq_get_byname().
 
-
-It's somewhat unrelated to this initial patch set since I'm not using
-QMAP at the moment, but I'm quite confused about the "MTU negotiation
-feature" that you added support for in [1]. (I *think* that is you,
-right?) :)
-
-The part that I somewhat understand is the "signal" sent in the "OPEN"
-command from the modem. It tells us the maximum buffer size the modem
-is willing to accept for TX packets ("ul_mtu" in that commit).
-
-Similarly, if we send "OPEN" to the modem we make the modem aware
-of our maximum RX buffer size plus the number of RX buffers.
-(create_open_signal() function).
-
-The part that is confusing me is the way the "dynamic MTU" is
-enabled/disabled based on the "signal" in "DATA" commands as well.
-(process_dynamic_mtu() function). When would that happen? The code
-suggests that the modem might just suddenly announce that the large
-MTU should be used from now on. But the "buffer_size" is only changed
-for newly queued RX buffers so I'm not even sure how the modem knows
-that it can now send more data at once.
-
-Any chance you could clarify how this should work exactly?
-
-
-And a second question if you don't mind: What kind of hardware block
-am I actually talking to here? I say "modem" above but I just know about
-the BAM and the DMUX protocol layer. I have also seen assertion failures
-of the modem DSP firmware if I implement something incorrectly.
-
-Is the DMUX protocol just some firmware concept or actually something
-understood by some hardware block? I've also often seen mentions of some
-"A2" hardware block but I have no idea what that actually is. What's
-even worse, in a really old kernel A2/BAM-DMUX also appears as part of
-the IPA driver [2], and I thought IPA is the new thing after BAM-DMUX...
-
-Not sure how much you can reveal about this. :)
-
-Thanks a lot!
+Thanks,
 Stephan
 
-[1]: https://source.codeaurora.org/quic/la/kernel/msm-3.10/commit/?h=LA.BR.1.2.9.1-02310-8x16.0&id=c7001b82388129ee02ac9ae1a1ef9993eafbcb26
-[2]: https://source.codeaurora.org/quic/la/kernel/msm/tree/drivers/platform/msm/ipa/a2_service.c?h=LA.BF.1.1.3-01610-8x74.0
+[1]: https://lore.kernel.org/linux-iio/20210611185941.3487efc6@jic23-huawei/
