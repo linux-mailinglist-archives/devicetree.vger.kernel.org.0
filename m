@@ -2,248 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 41FA53CD1DB
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 12:28:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C1273CD1FF
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 12:37:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236101AbhGSJp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jul 2021 05:45:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49092 "EHLO
+        id S236185AbhGSJxA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jul 2021 05:53:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235172AbhGSJp6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 05:45:58 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DF82C061574;
-        Mon, 19 Jul 2021 02:32:47 -0700 (PDT)
-Received: from [IPv6:2a02:810a:880:f54:121:b44d:bc4b:65bc] (unknown [IPv6:2a02:810a:880:f54:121:b44d:bc4b:65bc])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: dafna)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 239FD1F42572;
-        Mon, 19 Jul 2021 11:26:36 +0100 (BST)
-Subject: Re: [PATCH v2, 14/14] media: mtk-vcodec: Use codec type to separate
- different hardware
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Collabora Kernel ML <kernel@collabora.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>
-References: <20210717081233.7809-1-yunfei.dong@mediatek.com>
- <20210717081233.7809-15-yunfei.dong@mediatek.com>
-From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-Message-ID: <7d2a7f79-850a-bdc7-bbda-ae36c5a5ab4b@collabora.com>
-Date:   Mon, 19 Jul 2021 12:26:32 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        with ESMTP id S236171AbhGSJxA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 05:53:00 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67501C061762
+        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 02:40:24 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id p14-20020a17090ad30eb02901731c776526so13859813pju.4
+        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 03:33:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=K40Jyf6F4VypIX0uQQ58aazesoLZiATF2ozlOf/u82E=;
+        b=tm6QKxQaVJ1rfx4hcKqkfQh+kNZs1qfo7yu8WQJ/aS2+N/K/j3hAC7EJoGOLcI7mki
+         RbXLpX3EUAsaeCKfy7dK+lsB9pV6bpejySCGNZ0YrrUbjtL9cXrDtvYSaEOtKyH8Yl2h
+         pQwq59Y80QoFdRlHXZ8BxNEhIWPeZUnsy31tQXJKRws0GQIqiqzGSSdf27UDzkXZs8WU
+         e1QslQq68CgzpzJ9WZD1zQIK/3f5QCVmqRqT17KzPkbNDIEwoysrIasghiLrG6lc43/K
+         0V/1IrT6lyVKAbt3+yYq/dWQNyTPcSMQk5oAmymYYQz6722hEl9bSCG0440pYjIpbs0r
+         hcZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=K40Jyf6F4VypIX0uQQ58aazesoLZiATF2ozlOf/u82E=;
+        b=Wauyx4cjbQFYGOIYyO9zWaagT26kfKPEdWPoTxMwOlxCLyV5nKjmSpxp8Pw1JK58Uk
+         cYEayhJZMdE/vzWfAYNEGTQUcq/vAn63Ew6SpZY243fuQXcy0BWMfgsme++05Ol7O0jg
+         tNmkgvZyZDoUYmAvdM/D1Nl/t7RUT/GoT7oGIueLMOB8G+0dJnEvIiaHBzniAHWYw6zU
+         pYfWXULfLd0N81AmxszsWIs9YboNawWJQR80vtBzVvAVIk2R7vouqwyz97r8x6jeqSm/
+         LtAW1PmVpYvOwqGh0KBwiMRYvxjrm3HcTbLu0T03NIGuR3HAueg0SLvjFjyQTQlvI3Ou
+         7LBA==
+X-Gm-Message-State: AOAM533HIXlG1DiZAR54PlhhKKY3yv0dMwx0IJ+kKd9LASSw5NQnyxQV
+        KuxOqKaHwAl6tq94cw9AK1x4Pg==
+X-Google-Smtp-Source: ABdhPJwl4MXidm+h6UyC6mKBdXmjy/5RSub0SZcKsJot16gWN5QT/b3nRghByFFqbqrk8t4XWLYxlA==
+X-Received: by 2002:a17:90a:b284:: with SMTP id c4mr24363136pjr.213.1626690819793;
+        Mon, 19 Jul 2021 03:33:39 -0700 (PDT)
+Received: from localhost ([106.201.108.2])
+        by smtp.gmail.com with ESMTPSA id w5sm19850101pfq.130.2021.07.19.03.33.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Jul 2021 03:33:38 -0700 (PDT)
+Date:   Mon, 19 Jul 2021 16:03:36 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Arnd Bergmann <arnd@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Jason Wang <jasowang@redhat.com>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>,
+        Alex =?utf-8?Q?Benn=C3=A9e?= <alex.bennee@linaro.org>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        Jie Deng <jie.deng@intel.com>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE" 
+        <virtualization@lists.linux-foundation.org>
+Subject: Re: [PATCH 1/5] dt-bindings: virtio: mmio: Add support for device
+ subnode
+Message-ID: <20210719103336.oyz6dppd5jf65w4m@vireshk-i7>
+References: <cover.1626173013.git.viresh.kumar@linaro.org>
+ <aa4bf68fdd13b885a6dc1b98f88834916d51d97d.1626173013.git.viresh.kumar@linaro.org>
+ <CAL_Jsq+SiE+ciZfASHKUfLU1YMPfB43YmSciT_+gQHvL99_wUA@mail.gmail.com>
+ <20210713151917.zouwfckidnjxvohn@vireshk-i7>
+ <CAL_JsqL9255n5RT=Gq_uru7rEP0bSVcyfXEPRY4F0M4S2HPvTA@mail.gmail.com>
+ <CAK8P3a3Gve=M9GF-E+2OJED1Hd1qngxOkVSO15wB0jVWK8D0_Q@mail.gmail.com>
+ <CAL_JsqKLjFx9AOcMiyxdQvDU7V8Sak8YPyrJm2TuSE-TTqvREw@mail.gmail.com>
+ <CAK8P3a2mS3GoW9MXdDNK7-EbnRH-9Kn4_k_TgnGSCycSez8Xow@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210717081233.7809-15-yunfei.dong@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAK8P3a2mS3GoW9MXdDNK7-EbnRH-9Kn4_k_TgnGSCycSez8Xow@mail.gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 17.07.21 10:12, Yunfei Dong wrote:
-> There are just one core thread, in order to separeate different
-> hardware, using codec type to separeate it in scp driver.
+On 14-07-21, 23:07, Arnd Bergmann wrote:
+> On Wed, Jul 14, 2021 at 5:43 PM Rob Herring <robh+dt@kernel.org> wrote:
+> > I guess it comes down to is 'virtio,mmio' providing a bus or is it
+> > just a device? I guess a bus (so 2 nodes) does make sense here.
+> > 'virtio,mmio' defines how you access/discover the virtio queues (the
+> > bus) and the functional device (i2c, gpio, iommu, etc.) is accessed
+> > via the virtio queues.
 > 
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> ---
-> v2: no changes
-> ---
->   .../media/platform/mtk-vcodec/vdec_ipi_msg.h  | 12 ++++---
->   .../media/platform/mtk-vcodec/vdec_vpu_if.c   | 34 ++++++++++++++++---
->   .../media/platform/mtk-vcodec/vdec_vpu_if.h   |  4 +++
->   3 files changed, 41 insertions(+), 9 deletions(-)
+> It's not really a bus since there is only ever one device behind it.
+> A better analogy would be your 'serdev' framework: You could
+> have a 8250 or a pl011 uart, and behind that have a mouse, GPS
+> receiver or bluetooth dongle.
 > 
-> diff --git a/drivers/media/platform/mtk-vcodec/vdec_ipi_msg.h b/drivers/media/platform/mtk-vcodec/vdec_ipi_msg.h
-> index 9d8079c4f976..c488f0c40190 100644
-> --- a/drivers/media/platform/mtk-vcodec/vdec_ipi_msg.h
-> +++ b/drivers/media/platform/mtk-vcodec/vdec_ipi_msg.h
-> @@ -35,6 +35,8 @@ enum vdec_ipi_msgid {
->    * @msg_id	: vdec_ipi_msgid
->    * @vpu_inst_addr : VPU decoder instance address. Used if ABI version < 2.
->    * @inst_id     : instance ID. Used if the ABI version >= 2.
-> + * @codec_type	: Codec fourcc
-> + * @reserved	: reserved param
->    */
->   struct vdec_ap_ipi_cmd {
->   	uint32_t msg_id;
-> @@ -42,6 +44,8 @@ struct vdec_ap_ipi_cmd {
->   		uint32_t vpu_inst_addr;
->   		uint32_t inst_id;
->   	};
-> +	uint32_t codec_type;
-> +	uint32_t reserved;
->   };
->   
->   /**
-> @@ -59,12 +63,12 @@ struct vdec_vpu_ipi_ack {
->   /**
->    * struct vdec_ap_ipi_init - for AP_IPIMSG_DEC_INIT
->    * @msg_id	: AP_IPIMSG_DEC_INIT
-> - * @reserved	: Reserved field
-> + * @codec_type	: Codec fourcc
->    * @ap_inst_addr	: AP video decoder instance address
->    */
->   struct vdec_ap_ipi_init {
->   	uint32_t msg_id;
-> -	uint32_t reserved;
-> +	uint32_t codec_type;
->   	uint64_t ap_inst_addr;
->   };
->   
-> @@ -77,7 +81,7 @@ struct vdec_ap_ipi_init {
->    *	H264 decoder [0]:buf_sz [1]:nal_start
->    *	VP8 decoder  [0]:width/height
->    *	VP9 decoder  [0]:profile, [1][2] width/height
-> - * @reserved	: Reserved field
-> + * @codec_type	: Codec fourcc
->    */
->   struct vdec_ap_ipi_dec_start {
->   	uint32_t msg_id;
-> @@ -86,7 +90,7 @@ struct vdec_ap_ipi_dec_start {
->   		uint32_t inst_id;
->   	};
->   	uint32_t data[3];
-> -	uint32_t reserved;
-> +	uint32_t codec_type;
->   };
->   
->   /**
-> diff --git a/drivers/media/platform/mtk-vcodec/vdec_vpu_if.c b/drivers/media/platform/mtk-vcodec/vdec_vpu_if.c
-> index bfd8e87dceff..c84fac52fe26 100644
-> --- a/drivers/media/platform/mtk-vcodec/vdec_vpu_if.c
-> +++ b/drivers/media/platform/mtk-vcodec/vdec_vpu_if.c
-> @@ -100,18 +100,29 @@ static void vpu_dec_ipi_handler(void *data, unsigned int len, void *priv)
->   
->   static int vcodec_vpu_send_msg(struct vdec_vpu_inst *vpu, void *msg, int len)
->   {
-> -	int err;
-> +	int err, id, msgid;
->   
-> -	mtk_vcodec_debug(vpu, "id=%X", *(uint32_t *)msg);
-> +	msgid = *(uint32_t *)msg;
-> +	mtk_vcodec_debug(vpu, "id=%X", msgid);
->   
->   	vpu->failure = 0;
->   	vpu->signaled = 0;
->   
-> -	err = mtk_vcodec_fw_ipi_send(vpu->ctx->dev->fw_handler, vpu->id, msg,
-> +	if (vpu->ctx->dev->vdec_pdata->hw_arch == MTK_VDEC_LAT_SINGLE_CORE) {
-> +		if (msgid == AP_IPIMSG_DEC_CORE ||
-> +			msgid == AP_IPIMSG_DEC_CORE_END)
-> +			id = vpu->core_id;
-> +		else
-> +			id = vpu->id;
-> +	} else {
-> +		id = vpu->id;
-> +	}
-> +
-> +	err = mtk_vcodec_fw_ipi_send(vpu->ctx->dev->fw_handler, id, msg,
->   				     len, 2000);
->   	if (err) {
->   		mtk_vcodec_err(vpu, "send fail vpu_id=%d msg_id=%X status=%d",
-> -			       vpu->id, *(uint32_t *)msg, err);
-> +			       id, msgid, err);
->   		return err;
->   	}
->   
-> @@ -131,6 +142,7 @@ static int vcodec_send_ap_ipi(struct vdec_vpu_inst *vpu, unsigned int msg_id)
->   		msg.vpu_inst_addr = vpu->inst_addr;
->   	else
->   		msg.inst_id = vpu->inst_id;
-> +	msg.codec_type = vpu->codec_type;
->   
->   	err = vcodec_vpu_send_msg(vpu, &msg, sizeof(msg));
->   	mtk_vcodec_debug(vpu, "- id=%X ret=%d", msg_id, err);
-> @@ -149,14 +161,25 @@ int vpu_dec_init(struct vdec_vpu_inst *vpu)
->   
->   	err = mtk_vcodec_fw_ipi_register(vpu->ctx->dev->fw_handler, vpu->id,
->   					 vpu->handler, "vdec", NULL);
-> -	if (err != 0) {
-> +	if (err) {
->   		mtk_vcodec_err(vpu, "vpu_ipi_register fail status=%d", err);
->   		return err;
->   	}
->   
-> +	if (vpu->ctx->dev->vdec_pdata->hw_arch == MTK_VDEC_LAT_SINGLE_CORE) {
-> +		err = mtk_vcodec_fw_ipi_register(vpu->ctx->dev->fw_handler,
-> +					 vpu->core_id, vpu->handler,
-> +					 "vdec", NULL);
+> In Documentation/devicetree/bindings/serial/serial.yaml, you also
+> have two nodes for a single device, so we could follow that
+> example.
 
-where is vpu->core_id initialized?
+So two device nodes is final then ? Pretty much like how this patchset did it
+already ? I need to get rid of reg thing and use "virtio,DID" though.
 
-Thanks,
-Dafna
-
-> +		if (err) {
-> +			mtk_vcodec_err(vpu, "vpu_ipi_register core fail status=%d", err);
-> +			return err;
-> +		}
-> +	}
-> +
->   	memset(&msg, 0, sizeof(msg));
->   	msg.msg_id = AP_IPIMSG_DEC_INIT;
->   	msg.ap_inst_addr = (unsigned long)vpu;
-> +	msg.codec_type = vpu->codec_type;
->   
->   	mtk_vcodec_debug(vpu, "vdec_inst=%p", vpu);
->   
-> @@ -187,6 +210,7 @@ int vpu_dec_start(struct vdec_vpu_inst *vpu, uint32_t *data, unsigned int len)
->   
->   	for (i = 0; i < len; i++)
->   		msg.data[i] = data[i];
-> +	msg.codec_type = vpu->codec_type;
->   
->   	err = vcodec_vpu_send_msg(vpu, (void *)&msg, sizeof(msg));
->   	mtk_vcodec_debug(vpu, "- ret=%d", err);
-> diff --git a/drivers/media/platform/mtk-vcodec/vdec_vpu_if.h b/drivers/media/platform/mtk-vcodec/vdec_vpu_if.h
-> index ae24b75d1649..802660770a87 100644
-> --- a/drivers/media/platform/mtk-vcodec/vdec_vpu_if.h
-> +++ b/drivers/media/platform/mtk-vcodec/vdec_vpu_if.h
-> @@ -14,6 +14,7 @@ struct mtk_vcodec_ctx;
->   /**
->    * struct vdec_vpu_inst - VPU instance for video codec
->    * @id          : ipi msg id for each decoder
-> + * @core_id     : core id used to separate different hardware
->    * @vsi         : driver structure allocated by VPU side and shared to AP side
->    *                for control and info share
->    * @failure     : VPU execution result status, 0: success, others: fail
-> @@ -26,9 +27,11 @@ struct mtk_vcodec_ctx;
->    * @dev		: platform device of VPU
->    * @wq          : wait queue to wait VPU message ack
->    * @handler     : ipi handler for each decoder
-> + * @codec_type     : used codec type to separate different codecs
->    */
->   struct vdec_vpu_inst {
->   	int id;
-> +	int core_id;
->   	void *vsi;
->   	int32_t failure;
->   	uint32_t inst_addr;
-> @@ -38,6 +41,7 @@ struct vdec_vpu_inst {
->   	struct mtk_vcodec_ctx *ctx;
->   	wait_queue_head_t wq;
->   	mtk_vcodec_ipi_handler handler;
-> +	unsigned int codec_type;
->   };
->   
->   /**
-> 
+-- 
+viresh
