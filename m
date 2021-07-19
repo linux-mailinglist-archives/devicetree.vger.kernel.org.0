@@ -2,165 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D9ED3CEE9D
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 00:00:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 188D53CEEA7
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 00:00:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236880AbhGSVGX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jul 2021 17:06:23 -0400
-Received: from mo4-p02-ob.smtp.rzone.de ([81.169.146.171]:14767 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1383548AbhGSR5E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 13:57:04 -0400
-X-Greylist: delayed 25816 seconds by postgrey-1.27 at vger.kernel.org; Mon, 19 Jul 2021 13:56:52 EDT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1626719817;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=f0gx+hbPGHoJTeefnShjVBvl/0tmGDqiZQWxHwnZwpE=;
-    b=pDkiuvAyWPPi0eMORswRqUx88I3TLpQRnGV0HsDL3gbAAlciOZW1+gXEeCCSYNIp2X
-    zn9U/S05tyTlcItOWvvliU8qIhGpCMmYenSJeZrXLhLpTJI2TL0FHzPx83hDK+wPtq72
-    nAnyl2OhdaQFgMbOqxkWEIjWOqc6jwDuVKVWYvoOAg/qTqFgE/LiHj3L6w5wqQWR61XC
-    KabeY/O+CpPWtt+kO060nkEfj4IxtHh4FQxfqQZiB7WZUbkHks7uJjBPPSaLXlaBFvvS
-    d2d+7JsjOSc22i6vjfja2Ec1YjAnIqbIqORonz2L2w0SuO0xHw5N4iTF4pCvwN945WpZ
-    j5Ow==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j4Icup"
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.28.1 DYNA|AUTH)
-    with ESMTPSA id g02a44x6JIav66d
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Mon, 19 Jul 2021 20:36:57 +0200 (CEST)
-Date:   Mon, 19 Jul 2021 20:36:51 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
-        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>, Andy
-        Shevchenko <andy.shevchenko@gmail.com>," 
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        Nikita Travkin <nikita@trvn.ru>
-Subject: Re: [PATCH 3/4] iio: accel: bmc150: Make it possible to configure
- INT2 instead of INT1
-Message-ID: <YPXGQxPPID1SHOUO@gerhold.net>
-References: <20210719112156.27087-1-stephan@gerhold.net>
- <20210719112156.27087-4-stephan@gerhold.net>
- <CACRpkdYNqi0EDrtC3j=cu5cp17sEJ6_nf2KRn-hxCxgbTGhgXw@mail.gmail.com>
- <CAHp75VcsVFO2Oizpyeh53MNt2v9yD81vXp1xKCVX-U4zb-KTdg@mail.gmail.com>
- <YPWV537oN3gDpAQS@gerhold.net>
- <CAHp75Vdjotgi9RrmKQC4J_QQSYdRWwp+-8aHGkChx6VFLPDh-Q@mail.gmail.com>
- <YPW1xGtLyLNGKqjJ@gerhold.net>
- <CAHp75VcZDSL5u2bP_ZFySmk7cPkHRycyA-+gMqSVWCpgFXhn7Q@mail.gmail.com>
+        id S239641AbhGSVLm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jul 2021 17:11:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37680 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1384874AbhGSSip (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 14:38:45 -0400
+Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60562C061767
+        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 12:09:52 -0700 (PDT)
+Received: by mail-oi1-x229.google.com with SMTP id c197so21870386oib.11
+        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 12:19:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=SudKCvvWg+Me2mbMwVYeRd31oZcZoO+nm1Zj7MU/9gg=;
+        b=RiQJfGKTOT2Bj8qhCAPRxVkQZzJtvEnwyjwbYTcQHA7FdW/IjgqG6dCtax0iF7wZ2+
+         lJ6ZILsNV8Tn+kJ2osIhKWO6+BYMHQI7C/oeokRCZr7kbIZ9PDfpGDj6xejngosaZkBZ
+         oCJrxu77q+CrhX7GrjH62ULOIcf9vv5fDwSHFuFTPv610ALry6kWkpWYGm6dqV1qDiNE
+         6Y7ZBjkIVDgOmfXIB+pHLaipkkBmRVcxCvzPdgk1NqM9goQtPQTPgackMCv17gTIPF+g
+         bkoXpPN2pU4AF8ohL6w1DOwmqNc9S+eHMr+XQZhn3oolQIgtEw86MbbiTrly+ksKWlb1
+         QITA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=SudKCvvWg+Me2mbMwVYeRd31oZcZoO+nm1Zj7MU/9gg=;
+        b=JqEUsUOb5dEfzefxZ1WAsA77PPw35fxt04S5xTrpnYV7bLtph3Odj3tidTk38Kntdv
+         oJwadjmHnLmhtxsgGsQcRe6SX6YKiANn+7SwfoGoSjsrsJ/RQXyMrddQ57knJYnzlhGG
+         3f9kjR/plo6YYZJIDjtHJzoGBkEXiio8y341nUfoeLXO41g2QEoVf0eNfYbYD2CmM61Q
+         hgJ3J9lXnc0nmz08h7uqePQtVauqQeMZESC7IF8SgNgcpxNbneCftaNJ/XQ4KwKqERHd
+         f22+gSS+TZx3+4wqU1VSajkPXJzjU6LG43JUZ8UYqfro2G5OOVIA7+DMb8vFU5AFLZCm
+         5Egg==
+X-Gm-Message-State: AOAM533TV+X1A2+QbRu/ZOcsuUEoQt5SqTlPw6+720PGWil/r/0NvoH8
+        dxEndBEYi3W9QowrPn/IsF4tEQ==
+X-Google-Smtp-Source: ABdhPJwO37v6aowZTTyjCfO4cfR2vcCGGaC3PxOZL4mHx6+hfxl3wT4+ud5JxCI5Zjr3L+1noEk9zA==
+X-Received: by 2002:a05:6808:a83:: with SMTP id q3mr22994769oij.125.1626722359359;
+        Mon, 19 Jul 2021 12:19:19 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id d81sm2738922oob.13.2021.07.19.12.19.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Jul 2021 12:19:18 -0700 (PDT)
+Date:   Mon, 19 Jul 2021 14:19:16 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Rajendra Nayak <rnayak@codeaurora.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>, ulf.hansson@linaro.org,
+        viresh.kumar@linaro.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, rojay@codeaurora.org,
+        stephan@gerhold.net
+Subject: Re: [PATCH v4 2/2] arm64: dts: sc7180: Add required-opps for i2c
+Message-ID: <YPXQNFYKfH/xZxFY@yoga>
+References: <1626429658-18961-1-git-send-email-rnayak@codeaurora.org>
+ <1626429658-18961-3-git-send-email-rnayak@codeaurora.org>
+ <YPHpsO5LlQRQxj9y@yoga>
+ <CAE-0n53CHD8c7C4ETWRgzmZmFSCcBw46wSs4pKbYMRjA_tD3yg@mail.gmail.com>
+ <YPHxfHPC/faq/y+J@yoga>
+ <CAE-0n50qx80cMFPJ1x9rc+EMR1L+j2CUMyDjWAbnE9mPHjf-TQ@mail.gmail.com>
+ <YPIBK/NJgBNZVI8Y@yoga>
+ <12711a61-e16c-d2bc-6e04-ab94c7551abe@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAHp75VcZDSL5u2bP_ZFySmk7cPkHRycyA-+gMqSVWCpgFXhn7Q@mail.gmail.com>
+In-Reply-To: <12711a61-e16c-d2bc-6e04-ab94c7551abe@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 19, 2021 at 09:05:48PM +0300, Andy Shevchenko wrote:
-> On Mon, Jul 19, 2021 at 8:29 PM Stephan Gerhold <stephan@gerhold.net> wrote:
-> >
-> > On Mon, Jul 19, 2021 at 07:19:05PM +0300, Andy Shevchenko wrote:
-> > > On Mon, Jul 19, 2021 at 6:11 PM Stephan Gerhold <stephan@gerhold.net> wrote:
-> > > > On Mon, Jul 19, 2021 at 06:01:01PM +0300, Andy Shevchenko wrote:
-> > > > > On Mon, Jul 19, 2021 at 5:07 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-> > > > > > On Mon, Jul 19, 2021 at 1:26 PM Stephan Gerhold <stephan@gerhold.net> wrote:
+On Mon 19 Jul 04:37 CDT 2021, Rajendra Nayak wrote:
+
 > 
-> ...
 > 
-> > > > > > >  #include <linux/acpi.h>
-> > > > > > > +#include <linux/of_irq.h>
-> > > > > > (...)
-> > > > > > > +       irq_info = bmc150_accel_interrupts_int1;
-> > > > > > > +       if (irq == of_irq_get_byname(dev->of_node, "INT2"))
-> > > > > > > +               irq_info = bmc150_accel_interrupts_int2;
-> > > > > >
-> > > > > > This looks a bit DT-specific, but I don't see that ACPI has
-> > > > > > named IRQs so I don't know what to do about it either.
-> > > > >
-> > > > > Yeah, we only have so far the (de facto) established way of naming
-> > > > > GPIO based IRQs, and not IOxAPIC ones.
-> > > > >
-> > > > > > What does platform_get_irq_byname() do on ACPI systems?
-> > > > >
-> > > > > See above.
-> > > > >
-> > > > > > If there is no obvious fix I would leave it like this until the
-> > > > > > first ACPI used needing this comes along, but I think maybe
-> > > > > > Andy has suggestions.
-> > > > >
-> > > > > The platform_get_irq_byname() should do something similar that has
-> > > > > been done in platform_get_irq() WRT ACPI.
-> > > > > Here for sure the platform_get_irq_byname() or its optional variant
-> > > > > should be used.
-> > > >
-> > > > I don't think there is a platform device here, we only have the
-> > > > i2c_client or spi_device. That's why I didn't use
-> > > > platform_get_irq_byname(). :)
-> > > >
-> > > > Is there something equivalent for I2C/SPI drivers?
-> > >
-> > > Not yet. You probably need to supply some code there to allow
-> > > multi-IRQ devices (in resource provider agnostic way).
-> > >
-> > > You need to provide fwnode_get_irq_byname() to be similar with
-> > > https://elixir.bootlin.com/linux/latest/source/drivers/base/property.c#L1010
-> > >
-> > > Then use it in the drivers.
-> > >
-> > > And/or integrate into frameworks somehow (something in between the
-> > > lines: https://elixir.bootlin.com/linux/latest/source/drivers/i2c/i2c-core-base.c#L461).
-> > >
-> >
-> > Well, I don't think anyone has an ACPI use case for this right now so
-> > it's probably better if this is done by someone who actually needs this
-> > and can test it somewhere. :)
-> >
-> > I actually just "copied" this approach from some other IIO drivers where
-> > this is done similarly (and additionally checked the source code to make
-> > sure this won't break anything for ACPI platforms).
+> On 7/17/2021 3:29 AM, Bjorn Andersson wrote:
+> > On Fri 16 Jul 16:49 CDT 2021, Stephen Boyd wrote:
+> > 
+> > > Quoting Bjorn Andersson (2021-07-16 13:52:12)
+> > > > On Fri 16 Jul 15:21 CDT 2021, Stephen Boyd wrote:
+> > > > 
+> > > > > Quoting Bjorn Andersson (2021-07-16 13:18:56)
+> > > > > > On Fri 16 Jul 05:00 CDT 2021, Rajendra Nayak wrote:
+> > > > > > 
+> > > > > > > qup-i2c devices on sc7180 are clocked with a fixed clock (19.2 MHz)
+> > > > > > > Though qup-i2c does not support DVFS, it still needs to vote for a
+> > > > > > > performance state on 'CX' to satisfy the 19.2 Mhz clock frequency
+> > > > > > > requirement.
+> > > > > > > 
+> > > > > > 
+> > > > > > Sounds good, but...
+> > > > > > 
+> > > > > > > Use 'required-opps' to pass this information from
+> > > > > > > device tree, and also add the power-domains property to specify
+> > > > > > > the CX power-domain.
+> > > > > > > 
+> > > > > > 
+> > > > > > ..is the required-opps really needed with my rpmhpd patch in place?
+> > > > > > 
+> > > > > 
+> > > > > Yes? Because rpmhpd_opp_low_svs is not the lowest performance state for
+> > > > > CX.
+> > > > 
+> > > > On e.g. sm8250 the first available non-zero corner presented in cmd-db
+> > > > is low_svs.
 > 
-> I see in today's Linux Next snapshot:
-> 
-> drivers/iio/accel/fxls8962af-core.c:774:        irq =
-> of_irq_get_byname(of_node, "INT2");
-> drivers/iio/accel/mma8452.c:1616:               irq2 =
-> of_irq_get_byname(client->dev.of_node, "INT2");
-> drivers/iio/gyro/fxas21002c_core.c:834: irq1 = of_irq_get_byname(np, "INT1");
-> drivers/iio/imu/adis16480.c:1265:               irq =
-> of_irq_get_byname(of_node, adis16480_int_pin_names[i]);
-> drivers/iio/imu/bmi160/bmi160_core.c:655:       irq =
-> of_irq_get_byname(of_node, "INT1");
-> drivers/iio/imu/bmi160/bmi160_core.c:661:       irq =
-> of_irq_get_byname(of_node, "INT2");
-> 
-> I believe we may stop distributing this and actually start using a
-> common API. I don't want this to be spread again over all IIO. Btw, I
-> have LSM9DS0, which supports two INT pins for IMU and currently it
-> uses hard coded pin mapping.
+> what rail is this? the mmcx? Perhaps it does not support RET.
+> cx usually supports both collapse state and RET.
 > 
 
-Hm, I'm not quite sure how to implement this. Could you prepare a patch
-that would implement such a common API? I would be happy to test it for
-the device tree and make use of it in this patch.
+That was the one I was specifically looking at for the MDSS_GDSC->MMCX
+issue, so it's likely I didn't look elsewhere.
 
-To be honest, I mainly implemented support for the interrupt-names
-because Jonathan mentioned this would be nice to have [1] and it kind of
-fit well together with the BMC156 patch that needs the INT2 support.
-I actually just use the if (data->type == BOSCH_BMC156) part from
-PATCH 4/4 which does not depend on of_irq_get_byname().
+> > > 
+> > > Indeed. On sc7180 it's not the first non-zero corner. I suppose
+> > > retention for CX isn't actually used when the SoC is awake so your
+> > > rpmhpd patch is putting in a vote for something that doesn't do anything
+> > > at runtime for CX? I imagine that rpmh only sets the aggregate corner to
+> > > retention when the whole SoC is suspended/sleeping, otherwise things
+> > > wouldn't go very well. Similarly, min_svs may be VDD minimization? If
+> > > so, those first two states are basically states that shouldn't be used
+> > > at runtime, almost like sleep states.
+> > > 
+> > 
+> > But if that's the case, I don't think it's appropriate for the "enabled
+> > state" of the domain to use any of those corners.
+> 
+> I rechecked the downstream kernels where all this voting happens from within
+> the clock drivers, and I do see votes to min_svs for some clocks, but Stephen is
+> right that RET is not something that's voted on while in active state.
+> 
+> But always going with something just above the ret level while active will also
+> not work for all devices, for instance for i2c on 7180, it needs a cx vote of
+> low svs while the rail (cx) does support something lower than that which is min svs.
+> (why can't it just work with min svs?, I don't know, these values and recommendations
+> come in from the voltage plans published by HW teams for every SoC and we just end up
+> using them in SW, perhaps something to dig further and understand which I will try and
+> do but these are the values in voltage plans and downstream kernels which work for now)
+> 
 
-Thanks,
-Stephan
+So to some degree this invalidates my argumentation about the
+enabled_corner in rpmhpd, given that "enabled" means a different corner
+for each rail - not just the one with lowest non-zero value.
 
-[1]: https://lore.kernel.org/linux-iio/20210611185941.3487efc6@jic23-huawei/
+So perhaps instead of introducing the enabled_corner we need to
+introduce your patch and slap a WARN_ON(corner == 0) in
+rpmhpd_power_on() - to ensure that all clients that uses a rpmhpd domain
+actually do vote for a high enough corner?
+
+Regards,
+Bjorn
+
+> > 
+> > As this means that anyone who needs any of the rpmhpd domains active
+> > also needs to specify required-opps, which wouldn't be needed for any
+> > other power domain provider.
+> > 
+> > And more importantly it means that a device sitting in a GDSC, which
+> > would be parented by a rpmhpd domain has no way to specify the GDSC and
+> > trickle the minimum-vote up to the rpmhpd domain. (And I know that we
+> > don't describe the parentship of the GDSCs today, but this patch
+> > tells me that it's around the corner - for more than MMCX)
+> > 
+> > Regards,
+> > Bjorn
+> > 
+> > > > 
+> > > > And if this (which?) clock requires a higher corner than the lowest
+> > > > possible in order to tick at this "lowest" frequency, I'm certainly
+> > > > interested in some more details.
+> > > > 
+> 
+> -- 
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+> of Code Aurora Forum, hosted by The Linux Foundation
