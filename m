@@ -2,172 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12ABD3CD421
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 13:50:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47DA13CD448
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 14:04:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236543AbhGSLKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jul 2021 07:10:16 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:12887 "EHLO m43-7.mailgun.net"
+        id S236402AbhGSLXq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jul 2021 07:23:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54666 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236323AbhGSLKQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Jul 2021 07:10:16 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1626695456; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=cuNYcuoxuLNPM9zRI3jedhlC+1gr//ok0e0lHbfvDqg=; b=weLvoX15VS3PrtnueKVNTgg+BpRtO/snJ4PTGtkXw7aStBgXVZVYHKeUYUAdpIhvUihjbgbr
- rbzCL86Za4/XxJVqBtAr6MZxXIDQQsVhjaxANlSqEPGeDFpRtfjzPOMEqw062+CxB2mDRlCe
- UxN/Z2MahGmRG5aVM3SMSsK8UqE=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
- 60f5671fd0100c7cf9fbf4c4 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 19 Jul 2021 11:50:55
- GMT
-Sender: rnayak=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id B9902C43217; Mon, 19 Jul 2021 11:50:55 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
-Received: from [10.50.42.221] (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: rnayak)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id E0AD9C433D3;
-        Mon, 19 Jul 2021 11:50:51 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org E0AD9C433D3
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
-Subject: Re: [PATCH v4 1/2] PM / Domains: Add support for 'required-opps' to
- set default perf state
-To:     Stephen Boyd <swboyd@chromium.org>, bjorn.andersson@linaro.org,
-        ulf.hansson@linaro.org, viresh.kumar@linaro.org
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        rojay@codeaurora.org, stephan@gerhold.net
-References: <1626429658-18961-1-git-send-email-rnayak@codeaurora.org>
- <1626429658-18961-2-git-send-email-rnayak@codeaurora.org>
- <CAE-0n52AkJWAL0ptFgZOrD_BXrrMte5EbZUksf5UYzBxYisCBQ@mail.gmail.com>
-From:   Rajendra Nayak <rnayak@codeaurora.org>
-Message-ID: <43c77084-cfea-ef7f-8454-6f0dbc3b6577@codeaurora.org>
-Date:   Mon, 19 Jul 2021 17:20:49 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S236332AbhGSLXq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Jul 2021 07:23:46 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 1C0636113C;
+        Mon, 19 Jul 2021 12:04:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1626696266;
+        bh=r7MtcETmmwaxyZEhNTXDUCs5QkEaZXwKjSSDkYAiMLw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=W5Xy8un6pjJrHiVOsd8DmDafSsjlJWAInL+v0gJIEmIxrXRc7R0xXJVF4v+4fNiQp
+         TehCmkISibsQJbqqNWYP2AziPXEl7cyVVZGTH6+Xh9ONmwC8SQGlDqARlw5tGrPQkk
+         kli8lASv66H2za4ziO3KzyNe/FGNAGi3kOcU5fmzhg/mu1b2ZNbKYr5TVeyiXwHJfh
+         0B6cZZsjmoRNnyzgPSJxs8n52GNO6Mv1R/7GqPfMlTlT6XSvoZoWd/wNWmnnf98eWy
+         PJbVvrTOhtm2REBU0HlAMarUMyATtwZbpJGeT4LSj2K22F3KKyB3UaHlJ5M66mfRrg
+         ufapHNtQUYXbw==
+Received: by mail-wm1-f43.google.com with SMTP id l18-20020a1ced120000b029014c1adff1edso12675026wmh.4;
+        Mon, 19 Jul 2021 05:04:25 -0700 (PDT)
+X-Gm-Message-State: AOAM532jEN6E4efbNQgXnuOeoUu/jTvFedzcqu29+MAxf8k5+7aTJ3CN
+        6H1m520FBy9adaTRyLYUl1Pw1PV971TCwcgniIs=
+X-Google-Smtp-Source: ABdhPJyTLcL//uJgze/98z6NMZhekHRl1kr2RmyhG5NvFls6ynDEOwrdcVOH94odcgnCHsoc3BpRobMSS124oOCE/rw=
+X-Received: by 2002:a7b:c2fa:: with SMTP id e26mr31950216wmk.84.1626696264701;
+ Mon, 19 Jul 2021 05:04:24 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAE-0n52AkJWAL0ptFgZOrD_BXrrMte5EbZUksf5UYzBxYisCBQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <cover.1626173013.git.viresh.kumar@linaro.org> <aa4bf68fdd13b885a6dc1b98f88834916d51d97d.1626173013.git.viresh.kumar@linaro.org>
+ <CAL_Jsq+SiE+ciZfASHKUfLU1YMPfB43YmSciT_+gQHvL99_wUA@mail.gmail.com>
+ <20210713151917.zouwfckidnjxvohn@vireshk-i7> <CAL_JsqL9255n5RT=Gq_uru7rEP0bSVcyfXEPRY4F0M4S2HPvTA@mail.gmail.com>
+ <CAK8P3a3Gve=M9GF-E+2OJED1Hd1qngxOkVSO15wB0jVWK8D0_Q@mail.gmail.com>
+ <CAL_JsqKLjFx9AOcMiyxdQvDU7V8Sak8YPyrJm2TuSE-TTqvREw@mail.gmail.com>
+ <CAK8P3a2mS3GoW9MXdDNK7-EbnRH-9Kn4_k_TgnGSCycSez8Xow@mail.gmail.com> <20210719103336.oyz6dppd5jf65w4m@vireshk-i7>
+In-Reply-To: <20210719103336.oyz6dppd5jf65w4m@vireshk-i7>
+From:   Arnd Bergmann <arnd@kernel.org>
+Date:   Mon, 19 Jul 2021 14:04:08 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a0udKQk_LLxUD0k2pWk=WSt=9AcaHsCEboYJX=Xj-7mwQ@mail.gmail.com>
+Message-ID: <CAK8P3a0udKQk_LLxUD0k2pWk=WSt=9AcaHsCEboYJX=Xj-7mwQ@mail.gmail.com>
+Subject: Re: [PATCH 1/5] dt-bindings: virtio: mmio: Add support for device subnode
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Jason Wang <jasowang@redhat.com>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>,
+        =?UTF-8?B?QWxleCBCZW5uw6ll?= <alex.bennee@linaro.org>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        Jie Deng <jie.deng@intel.com>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE" 
+        <virtualization@lists.linux-foundation.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Jul 19, 2021 at 12:34 PM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+> On 14-07-21, 23:07, Arnd Bergmann wrote:
+> > On Wed, Jul 14, 2021 at 5:43 PM Rob Herring <robh+dt@kernel.org> wrote:
+> > > I guess it comes down to is 'virtio,mmio' providing a bus or is it
+> > > just a device? I guess a bus (so 2 nodes) does make sense here.
+> > > 'virtio,mmio' defines how you access/discover the virtio queues (the
+> > > bus) and the functional device (i2c, gpio, iommu, etc.) is accessed
+> > > via the virtio queues.
+> >
+> > It's not really a bus since there is only ever one device behind it.
+> > A better analogy would be your 'serdev' framework: You could
+> > have a 8250 or a pl011 uart, and behind that have a mouse, GPS
+> > receiver or bluetooth dongle.
+> >
+> > In Documentation/devicetree/bindings/serial/serial.yaml, you also
+> > have two nodes for a single device, so we could follow that
+> > example.
+>
+> So two device nodes is final then ? Pretty much like how this patchset did it
+> already ? I need to get rid of reg thing and use "virtio,DID" though.
 
-On 7/17/2021 1:49 AM, Stephen Boyd wrote:
-> Quoting Rajendra Nayak (2021-07-16 03:00:57)
->> Some devics within power domains with performance states do not
-> 
-> devices
-> 
->> support DVFS, but still need to vote on a default/static state
->> while they are active. They can express this using the 'required-opps'
->> property in device tree, which points to the phandle of the OPP
->> supported by the corresponding power-domains.
->>
->> Add support to parse this information from DT and then set the
->> specified performance state during attach and drop it on detach.
->> Also drop/set as part of runtime suspend/resume callbacks.
->>
->> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
->> ---
->>   drivers/base/power/domain.c | 37 ++++++++++++++++++++++++++++++++++---
->>   include/linux/pm_domain.h   |  1 +
->>   2 files changed, 35 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/base/power/domain.c b/drivers/base/power/domain.c
->> index a934c67..dcc0b71 100644
->> --- a/drivers/base/power/domain.c
->> +++ b/drivers/base/power/domain.c
->> @@ -1000,6 +1008,8 @@ static int genpd_runtime_resume(struct device *dev)
->>          genpd_stop_dev(genpd, dev);
->>   err_poweroff:
->>          if (!pm_runtime_is_irq_safe(dev) || genpd_is_irq_safe(genpd)) {
->> +               if (default_pstate)
->> +                       dev_pm_genpd_set_performance_state(dev, 0);
->>                  genpd_lock(genpd);
->>                  gpd_data->rpm_pstate = genpd_drop_performance_state(dev);
-> 
-> Maybe this should be
-> 
-> 		  prev_state = genpd_drop_performance_state(dev);
-> 		  if (!default_pstate)
-> 		  	gdp_data->rpm_pstate = prev_state;
-> 
-> so we don't call dev_pm_genpd_set_performance_state() effectively twice?
-> Also it would make sure we call dev_pm_genpd_set_performance_state()
-> underneath the genpd_lock() if that is important. Similarly do that on
-> suspend path.
+Let's give Rob another day to reply here. I think two nodes is easier
+to get working than one node, even when we continue supporting the
+current iommu binding that relies on a single node, but we could make
+it work either way if necessary.
 
-looking through this more, I think I can completely drop any special
-handling for default_pstate in runtime suspend and resume. The existing
-drop/restore login Ulf has added should take care of it.
-I'll test and respin soon.
-
-> 
->>                  genpd_power_off(genpd, true, 0);
->> @@ -2598,6 +2608,12 @@ static void genpd_dev_pm_detach(struct device *dev, bool power_off)
->>
->>          dev_dbg(dev, "removing from PM domain %s\n", pd->name);
->>
->> +       /* Drop the default performance state */
->> +       if (dev_gpd_data(dev)->default_pstate) {
->> +               dev_pm_genpd_set_performance_state(dev, 0);
->> +               dev_gpd_data(dev)->default_pstate = 0;
->> +       }
->> +
->>          for (i = 1; i < GENPD_RETRY_MAX_MS; i <<= 1) {
->>                  ret = genpd_remove_device(pd, dev);
->>                  if (ret != -EAGAIN)
->> @@ -2675,10 +2692,24 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
->>                  genpd_unlock(pd);
->>          }
->>
->> -       if (ret)
->> +       if (ret) {
->>                  genpd_remove_device(pd, dev);
->> +               return -EPROBE_DEFER;
->> +       }
->> +
->> +       /* Set the default performance state */
->> +       np = base_dev->of_node;
->> +       if (of_parse_phandle(np, "required-opps", index)) {
->> +               pstate = of_get_required_opp_performance_state(np, index);
->> +               if (pstate < 0) {
->> +                       dev_err(dev, "failed to set pstate:%d", pstate);
-> 
-> Missing newline on printk. Also can we spell out pstate as "failed to
-> set required performance state %d for power-domain %d"?
-
-thanks, will fix when I respin.
-Thanks for the review.
-
-> 
->> +                       ret = pstate;
->> +               }
->> +               dev_pm_genpd_set_performance_state(dev, pstate);
->> +               dev_gpd_data(dev)->default_pstate = pstate;
->> +       }
->>
->> -       return ret ? -EPROBE_DEFER : 1;
->> +       return ret ? ret : 1;
->>   }
->>
->>   /**
-
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+       Arnd
