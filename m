@@ -2,85 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2D373CD4A2
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 14:20:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A982E3CD4CE
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 14:33:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231290AbhGSLjb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jul 2021 07:39:31 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:41338 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S236758AbhGSLjb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Jul 2021 07:39:31 -0400
-X-IronPort-AV: E=Sophos;i="5.84,252,1620658800"; 
-   d="scan'208";a="88077970"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 19 Jul 2021 21:20:10 +0900
-Received: from localhost.localdomain (unknown [10.226.92.6])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 5749E40061A1;
-        Mon, 19 Jul 2021 21:20:08 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v4 10/10] arm64: dts: renesas: r9a07g044: Add USB2.0 device support
-Date:   Mon, 19 Jul 2021 13:19:38 +0100
-Message-Id: <20210719121938.6532-11-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210719121938.6532-1-biju.das.jz@bp.renesas.com>
-References: <20210719121938.6532-1-biju.das.jz@bp.renesas.com>
+        id S236592AbhGSLxD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jul 2021 07:53:03 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:34086 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236571AbhGSLxD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 07:53:03 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 16J8s7hL130070;
+        Mon, 19 Jul 2021 03:54:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1626684847;
+        bh=n3sfBOvf77OpFyulNksMC+n1Rc/gP2a9CY/yRohildo=;
+        h=From:To:CC:Subject:Date;
+        b=YrIXMPbGYx3fHJsQ39vfu9F7w+ISQGsQ9FTRmTLUiewpF38fuf2danHOmWaMjaJZq
+         rRlOfCPyEXXzni4jjCvOrs4fQzfsMifH8VyRKUD8w9bOVNMxBmlrJEF3UJtNRHuPyc
+         EcBnNcLuFqeXbRaOFGv82wa+Z1h6PGhhApnoA7nU=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 16J8s6XW120617
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 19 Jul 2021 03:54:07 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 19
+ Jul 2021 03:54:06 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Mon, 19 Jul 2021 03:54:06 -0500
+Received: from uda0131933.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 16J8s3hB047822;
+        Mon, 19 Jul 2021 03:54:04 -0500
+From:   Lokesh Vutla <lokeshvutla@ti.com>
+To:     Nishanth Menon <nm@ti.com>, <kristo@kernel.org>
+CC:     Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Lokesh Vutla <lokeshvutla@ti.com>
+Subject: [PATCH 0/4] arm64: dts: ti: k3-am64: Add PWM nodes
+Date:   Mon, 19 Jul 2021 14:23:58 +0530
+Message-ID: <20210719085402.28569-1-lokeshvutla@ti.com>
+X-Mailer: git-send-email 2.30.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add USB2.0 device support to RZ/G2L SoC DT.
+Add epwm and ecap nodes for AM64 boards.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-v3->v4:
- * No change.
- V3:
-  * Updated reset entries.
----
- arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+Lokesh Vutla (4):
+  arm64: dts: ti: k3-am64-main: Add epwm nodes
+  arm64: dts: ti: k3-am64-main: Add ecap pwm nodes
+  arm64: dts: ti: k3-am642-sk: Add ecap0 node
+  arm64: dts: ti: k3-am642-evm: Add ecap0 node
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-index 24910ecc683c..d846469ded7f 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-@@ -330,6 +330,25 @@
- 			power-domains = <&cpg>;
- 			status = "disabled";
- 		};
-+
-+		hsusb: usb@11c60000 {
-+			compatible = "renesas,usbhs-r9a07g044",
-+				     "renesas,rza2-usbhs";
-+			reg = <0 0x11c60000 0 0x10000>;
-+			interrupts = <GIC_SPI 100 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A07G044_USB_PCLK>,
-+				 <&cpg CPG_MOD R9A07G044_USB_U2P_EXR_CPUCLK>;
-+			resets = <&phyrst 0>,
-+				 <&cpg R9A07G044_USB_U2P_EXL_SYSRST>;
-+			renesas,buswait = <7>;
-+			phys = <&usb2_phy0 3>;
-+			phy-names = "usb";
-+			power-domains = <&cpg>;
-+			status = "disabled";
-+		};
- 	};
- 
- 	timer {
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 114 +++++++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts  |  12 +++
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts   |  12 +++
+ 3 files changed, 138 insertions(+)
+
 -- 
-2.17.1
+2.30.0
 
