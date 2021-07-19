@@ -2,173 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BE993CE7AB
+	by mail.lfdr.de (Postfix) with ESMTP id D3BA83CE7AC
 	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 19:14:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349327AbhGSQak (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jul 2021 12:30:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33888 "EHLO
+        id S1346391AbhGSQal (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jul 2021 12:30:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346391AbhGSQ1A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 12:27:00 -0400
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26D00C078820
-        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 09:30:19 -0700 (PDT)
-Received: by mail-ot1-x335.google.com with SMTP id h24-20020a9d64180000b029036edcf8f9a6so18848012otl.3
-        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 09:52:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Cy4iVbzufWhZCm436CcvP6lCnhJGscRGC54iYRVwmoo=;
-        b=hbfbYh82IVBorFGJBYfFg7s0s+R2hWKPmXttDt6CVLsSLfZLF98PDtcbYYMSjlJK0a
-         gqigxBkXyLt3nKL1xZPicYQCjsfXE2aJEZ5l/5l7ebEhwztVHrioy3Z0dCjOKg6ndmRi
-         RfLRUiiv7DVzYXo6+g+QebRL3FUtMp56mvCPfBFSe9MO/cmIA/+ofQWc8TVNLYsypRkJ
-         FJBxI13oAjee1XI4mTNhCILdJDaasWVZuEcRm51TNcK0j8reeH7H+AfZyJI2vNNBoln3
-         BQSLKEL+MliU+4Yj2aZZPc2eZt9XScS3PEYYXKcWqlPLX42iHpfQ+fY/koifIviBpqDt
-         D6Vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Cy4iVbzufWhZCm436CcvP6lCnhJGscRGC54iYRVwmoo=;
-        b=t4qCVvVd5FTaoCM4ngbDuN0Vex6D3ncPFEUSvt8SRZbr7Hez0W6Ff3RhlYu4w3++cF
-         RaTH4gjhd1s0ivhqCqn3+TUsbjdCvTlOP5ZyV+DGMjhQMM1898DqkWFS8+VLxXmpCPIx
-         YY2igUTG89npWb1glI13ChyXiX+A1U4JusZQfsqlO50VTCIvFbY6+aZYSBue2ne/KfIY
-         5csxK85S4V/8+T3a/cfCSl4m42QNDLmtKZqWdC8Udg/LvrItyrpp8tVnJnGc8OBd8S1s
-         2LakktzStnzANgCkqrM22XrbSqBEMnxd3ZXLc+mF/IUOR2jfJ1K7YEqW0tUJJvQJ7G5K
-         6J0A==
-X-Gm-Message-State: AOAM5334x1wRcevmS6zO22YsbKXbpG1n8u6Q1K+/UV44EAypcr1Th/Xu
-        wsWBYAE42Q456ZVBi21PxopgRQ==
-X-Google-Smtp-Source: ABdhPJx3sDQ0mQzT1Ak+Tz9xwpnqNz8n4Z/jQM063iCfZPKDAyZDLp9h62NqEIDf5Wftb1H8RWUQ+w==
-X-Received: by 2002:a9d:1ec:: with SMTP id e99mr13761129ote.367.1626713522660;
-        Mon, 19 Jul 2021 09:52:02 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id j22sm3728031otl.46.2021.07.19.09.52.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Jul 2021 09:52:02 -0700 (PDT)
-Date:   Mon, 19 Jul 2021 11:52:00 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, bhupesh.linux@gmail.com,
-        balbi@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org, agross@kernel.org
-Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: Use correct naming for dwc3 usb
- nodes in dts files
-Message-ID: <YPWtsPbxTLsInOGv@yoga>
-References: <20210627114616.717101-1-bhupesh.sharma@linaro.org>
- <20210627114616.717101-2-bhupesh.sharma@linaro.org>
+        with ESMTP id S1347349AbhGSQ1T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 12:27:19 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06D36C061766
+        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 09:35:15 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1m5WZC-0008Bs-Ny; Mon, 19 Jul 2021 18:56:30 +0200
+Message-ID: <74d097cc384572ddd2128f9abb7ea1b6ecf3327e.camel@pengutronix.de>
+Subject: Re: [PATCH 00/17] i.MX8MM GPC improvements and BLK_CTRL driver
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Peng Fan <peng.fan@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     dl-linux-imx <linux-imx@nxp.com>, Adam Ford <aford173@gmail.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Marek Vasut <marex@denx.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "patchwork-lst@pengutronix.de" <patchwork-lst@pengutronix.de>
+Date:   Mon, 19 Jul 2021 18:56:29 +0200
+In-Reply-To: <DB6PR0402MB27606BA0D35BD1EDA022AE2188E19@DB6PR0402MB2760.eurprd04.prod.outlook.com>
+References: <20210716232916.3572966-1-l.stach@pengutronix.de>
+         <DB6PR0402MB27606BA0D35BD1EDA022AE2188E19@DB6PR0402MB2760.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.3 (3.40.3-1.fc34) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210627114616.717101-2-bhupesh.sharma@linaro.org>
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun 27 Jun 06:46 CDT 2021, Bhupesh Sharma wrote:
+Hi Peng,
 
-> The dwc3 usb nodes in several arm64 qcom dts are currently named
-> differently, somewhere as 'usb@<addr>' and somewhere as 'dwc3@<addr>',
-> leading to some confusion when one sees the entries in sysfs or
-> dmesg:
-> [    1.943482] dwc3 a600000.usb: Adding to iommu group 1
-> [    2.266127] dwc3 a800000.dwc3: Adding to iommu group 2
+Am Montag, dem 19.07.2021 um 12:53 +0000 schrieb Peng Fan:
+> Hi Lucas,
 > 
-> Name the usb nodes as 'usb@<addr>' for consistency, which is
-> the correct convention as per the 'snps,dwc3' dt-binding as
-> well (see [1]).
+> > Subject: [PATCH 00/17] i.MX8MM GPC improvements and BLK_CTRL driver
 > 
-> [1]. Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> Thanks for your work on this. I'll give a look and test tomorrow.
 > 
+> > 
+> > Hi all,
+> > 
+> > over the last few days I've taken on the job to give the blk-ctrl driver initially
+> > worked on by Peng Fan another spin. What I've come up with now looks quite
+> > a bit different, as the power sequencing shared between the blk-ctrls and the
+> > GPC is not really feasible to model with a strict hierarchy of power domains.
+> > In my design the blk-ctrl driver is the instance driving the sequence for those
+> > power domains where a blk-ctrl is part of the picture.
+> > 
+> > For those that aren't familiar with the power domain architecture on the
+> > i.MX8M*, here's a short overview, to hopefully make it easier to review this
+> > series. The i.MX8M* reuses the GPCv2 (General Power Controller)IP block,
+> > already known from the i.MX7. On the i.MX7 all power domains were
+> > independent and all the reset and bus isolation sequencing was handled in
+> > hardware by the GPC. Software only needed to request power up/down for
+> > the domain and things mostly happened behind the scenes. On i.MX8M*
+> > things got more complex, as there are now nested power domains and
+> > coupling of the data busses is handled by AMBA domain bridges (ADB), which
+> > aren't sequenced by the GPC hardware, but have handshake requests/acks
+> > wired up to a register in the GPC that needs to be handled by software. Due
+> > to hardware issues some of the reset sequencing also needs to be handled by
+> > software, as the GPC isn't always able to properly trigger the SRC reset for the
+> > peripherals inside the power domains.
+> > 
+> > Generally with all those nested domains there exists a outer *MIX (e.g.
+> > VPUMIX, DISPMIX) domain that contains the ADB and the BLK_CTRL.
+> > Handshake with the ADB can only happen after the *MIX domain is powered
+> > up and some domain specific initialization in the BLK_CTRL is done. The ADB
+> > is connected to a bus clock from CCM that needs to be enabled for the ADB to
+> > work. Also there might be additional resets and clock gates for the ADB in the
+> > BLK_CTRL MMIO region, which is also only accessible after the *MIX domain
+> > is powered up.
+> > Some peripherals are directly located in the *MIX domain, but others are
+> > placed in inner domains located in the *MIX domain. In order to power up
+> > those nested domains the *MIX domain must already be powered up and the
+> > ADB handshake must be finished. Reset is handled via the BLK_CTRL, instead
+> > of the SRC, which contains resets and clock gates for the peripherals.
+> > The general flow for those inner domains is:
+> > 1. Assert reset and ungate clocks in BLK_CTRL to allow reset to propagate 2.
+> > Request power up at the GPC 3. Deassert reset
+> > 
+> > Failing to meet the ADB handshake and/or reset sequencing requirements will
+> > generally lead to system hangs (not necessarily at the point where the
+> > sequence is violated). The blk-ctrl driver as implemented hides this behind
+> > virtual power domains. Peripherals don't need to care whether they are
+> > located directly inside the *MIX domain or in a nested domain, they all just
+> > use the power domains exposed by the BLK_CTRL driver, which handles the
+> > sequencing requiments internally.
+> > 
+> > Currently this series implements both the VPU and DISP blk-ctrls for the
+> > i.MX8MM SoC, but I'm quite confident that the design is sound and can be
+> > trivially extended for the other i.MX8M* SoCs. On my personal TODO list is
+> > the conversion of the i.MX8MQ VPU blk-ctrl to the new model, which should
+> > finally allow us to drive the G1 and G2 VPUs independently. After that I'm
+> > going to look at the i.MX8MP, 
+> 
+> Would you take 8MP before 8MQ? 8MP is more popular.
+> If you not mind, I could post my local 8MP GPC part based on your patchset.
+> Anyway my local 8MP blk-ctl will be dropped.
 
-I thought we had more of the platforms sorted out already, thanks for
-fixing this Bhupesh.
+The 8MQ VPU conversion should be pretty trivial, now that I've worked
+out the overall structure of the blk-ctrl driver. I'm also aware of
+multiple people in the community waiting for this part to land, as it's
+blocking Hantro G2 support on i.MX8MQ upstream, so I'm going to stick
+to this order. While there is a lot interest in 8MP, there aren't that
+many people that even have the hardware yet, while the 8MQ is in pretty
+widespread use.
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+I also have some 8MP GPC work bitrotting in a branch, which I planned
+to revive. If you already have something ready, I'm happy to skip that
+and review your patches instead.
+
+> 
+> as this is a current focus of my work and has
+> > even more blk-ctrl instances. But before moving on to those, I would like to
+> > gather some feedback and testing on this series.
+> > 
+> > I will also provide a branch with those patches and the WIP VPU and display
+> > patches I used to test this. But that will have to wait for next week, as it's
+> > getting pretty late here.
+> 
+> Do you have a public branch now?
+
+This series (with fixes for the reported issues already squashed in)
+can be found here:
+https://git.pengutronix.de/cgit/lst/linux/log/?h=imx8m-power-domains
+
+Additional patches to enable MIPI DSI display and one VPU can be found
+here:
+https://git.pengutronix.de/cgit/lst/linux/log/?h=imx8m-power-domains-testing
+
+Please note that the display patches do not reflect the current status
+of the upstream discussions, it's just my known-good stack at the
+moment. I'm providing those patches just for contextual reference and
+to allow people to see my test setup. I've worked on a custom i.MX8MM
+board, so the bits to hook this up for the EVK board are missing. I am
+not seeking feedback on any of the display/vpu patches at the moment.
 
 Regards,
-Bjorn
+Lucas
 
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/msm8994.dtsi | 2 +-
->  arch/arm64/boot/dts/qcom/sm8150.dtsi  | 2 +-
->  arch/arm64/boot/dts/qcom/sm8250.dtsi  | 4 ++--
->  arch/arm64/boot/dts/qcom/sm8350.dtsi  | 4 ++--
->  4 files changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8994.dtsi b/arch/arm64/boot/dts/qcom/msm8994.dtsi
-> index f9f0b5aa6a26..662f2f246b9b 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8994.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8994.dtsi
-> @@ -430,7 +430,7 @@ usb3: usb@f92f8800 {
->  			power-domains = <&gcc USB30_GDSC>;
->  			qcom,select-utmi-as-pipe-clk;
->  
-> -			dwc3@f9200000 {
-> +			usb@f9200000 {
->  				compatible = "snps,dwc3";
->  				reg = <0xf9200000 0xcc00>;
->  				interrupts = <0 131 IRQ_TYPE_LEVEL_HIGH>;
-> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> index 612dda0fef43..9c931beeb614 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> @@ -2389,7 +2389,7 @@ usb_2: usb@a8f8800 {
->  
->  			resets = <&gcc GCC_USB30_SEC_BCR>;
->  
-> -			usb_2_dwc3: dwc3@a800000 {
-> +			usb_2_dwc3: usb@a800000 {
->  				compatible = "snps,dwc3";
->  				reg = <0 0x0a800000 0 0xcd00>;
->  				interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> index 4798368b02ef..9c1462cc9dad 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> @@ -2321,7 +2321,7 @@ usb_1: usb@a6f8800 {
->  
->  			resets = <&gcc GCC_USB30_PRIM_BCR>;
->  
-> -			usb_1_dwc3: dwc3@a600000 {
-> +			usb_1_dwc3: usb@a600000 {
->  				compatible = "snps,dwc3";
->  				reg = <0 0x0a600000 0 0xcd00>;
->  				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
-> @@ -2372,7 +2372,7 @@ usb_2: usb@a8f8800 {
->  
->  			resets = <&gcc GCC_USB30_SEC_BCR>;
->  
-> -			usb_2_dwc3: dwc3@a800000 {
-> +			usb_2_dwc3: usb@a800000 {
->  				compatible = "snps,dwc3";
->  				reg = <0 0x0a800000 0 0xcd00>;
->  				interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
-> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> index 0d16392bb976..a631d58166b1 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> @@ -1273,7 +1273,7 @@ usb_1: usb@a6f8800 {
->  
->  			resets = <&gcc GCC_USB30_PRIM_BCR>;
->  
-> -			usb_1_dwc3: dwc3@a600000 {
-> +			usb_1_dwc3: usb@a600000 {
->  				compatible = "snps,dwc3";
->  				reg = <0 0x0a600000 0 0xcd00>;
->  				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
-> @@ -1317,7 +1317,7 @@ usb_2: usb@a8f8800 {
->  
->  			resets = <&gcc GCC_USB30_SEC_BCR>;
->  
-> -			usb_2_dwc3: dwc3@a800000 {
-> +			usb_2_dwc3: usb@a800000 {
->  				compatible = "snps,dwc3";
->  				reg = <0 0x0a800000 0 0xcd00>;
->  				interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
-> -- 
-> 2.31.1
-> 
+
