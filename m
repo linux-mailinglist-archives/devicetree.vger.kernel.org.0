@@ -2,194 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A09F3CCB9B
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 01:44:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B8C03CCBAE
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 02:17:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232895AbhGRXrN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Jul 2021 19:47:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59026 "EHLO
+        id S233569AbhGSAUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Jul 2021 20:20:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232601AbhGRXrM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jul 2021 19:47:12 -0400
-Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66E16C061762;
-        Sun, 18 Jul 2021 16:44:13 -0700 (PDT)
-Received: by mail-qv1-xf31.google.com with SMTP id c15so7514036qvw.6;
-        Sun, 18 Jul 2021 16:44:13 -0700 (PDT)
+        with ESMTP id S233530AbhGSAUf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jul 2021 20:20:35 -0400
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DAF9C061762;
+        Sun, 18 Jul 2021 17:17:37 -0700 (PDT)
+Received: by mail-pg1-x530.google.com with SMTP id 37so17361158pgq.0;
+        Sun, 18 Jul 2021 17:17:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
-         :from:to:references:in-reply-to;
-        bh=svpjNqOkfJIQZQ1rk3lE2BdsUxTlWwUiTxu51bKxU00=;
-        b=hgz8FS4QJf9RjLEyIBkcKMIfFxyZZHBZQKHwydjPYJUqa/SllD5T/gSi+XVk1/+ych
-         y6JzLyYFjnrAw5lgs4gTQk+Mou8PbzcK7+YKw2O6TLEoiuu3pK4j9TNjjQApX2zfM/jF
-         Rw6DPVejQpmbJ+I/p6VJkZHvFhK4qe/gsUB5nsm9J0cFPXof9jF6Yn9yoDOyuIggUgx6
-         USIuyt9XU2F5rvE9i7/83mDYzrj7gSFj1+X0cbDA3YPWrwoILUFpn1eR0S4YQ5IvV0A1
-         08uAMwMqYgtj6otKb2akq5gaNWlxZQC3KZMP0bX0IUM6ZCnQYkQqvVYx59GUcbc9SN+R
-         TU7A==
+        h=from:to:cc:subject:date:message-id;
+        bh=xKHTc9yNHDPtjYjnEVTpSB6WymMSFLcHaJXp0d+G5KU=;
+        b=CyclXjJXwPzCrFFtbc1DGmLC10POQbDDlwBpwKsixBTkQoAXHydB4Lw+LL1IcY2RrC
+         xLYhQ0td895wTInaV0x9Q3BVitpNfK2z9vM8eEvT7Q2APYni0DYwAcDpvZhGLe2281W5
+         Liq5SNEj8JYJTlU/KY4eyrcq7fhWuJTsjwdITBsempO3McTvzx82+RJ0AGNBdSu4Vmb8
+         GXDFhV477R8uiMLMFOOzra7jxKtr8wm35FBsm299/Fi2od7YQ091DQJ9G+3b7YbJGFET
+         S0Dtsnf3v+JAFPv2eKID5DMfUB3mburKKAWr3fOUusylIGrb1XvUK1YoQgwhMmy6Utww
+         cNPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding:date
-         :message-id:cc:subject:from:to:references:in-reply-to;
-        bh=svpjNqOkfJIQZQ1rk3lE2BdsUxTlWwUiTxu51bKxU00=;
-        b=TdT9YxgLYs/2YhVIGBH8vVB9ipP2Qu5PR5esW9COwPvstybWAMdEhnGMRtaaMsfWxk
-         B3xASPKOB+SbfDhRNd87Ept/gl1hAwQMpusC5TxAWW05nMBy4ejbZwkMwh8EdwdZrfmM
-         PSQCne5hvkYeR7qGAmSwqQcUXcIa+FuTME/Sz4viIG2cNCQmQEo042gPOH1Sjz4QX+Nv
-         p+uwhm8/KEt6fuhpya8VVosNo4djDHg+hQU9EnnzKFT4IVs6Xjbbvx1VYMxcwtbw9mgm
-         sqJpc1v5rRoS50e6is3v6UbcGK924hX+3R/HU4OA4OrlVcIIqX/fPYJQ+tTexGqr/OBm
-         xuJA==
-X-Gm-Message-State: AOAM530lqqPblohHvl8uhY7T4jM0uXBP9xHrqENAkxgUrnCnzF1745Eq
-        NWRDQO0L4w1YCJFt+SQ+VCk=
-X-Google-Smtp-Source: ABdhPJz8RB6oYos+iSFqC1MPav8BuN6Q69Nk/j5NM+OxmrwJ2xVssNoJUb3Mscox1HaBfPbUiJiINg==
-X-Received: by 2002:ad4:56e4:: with SMTP id cr4mr22156376qvb.54.1626651852442;
-        Sun, 18 Jul 2021 16:44:12 -0700 (PDT)
-Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
-        by smtp.gmail.com with ESMTPSA id d8sm7225123qkk.119.2021.07.18.16.44.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Jul 2021 16:44:11 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Sun, 18 Jul 2021 19:44:10 -0400
-Message-Id: <CCWNYFYK095U.B3ZVEH0JYVLA@shaak>
-Cc:     "Peter Rosin" <peda@axentia.se>, <lars@metafoo.de>,
-        <pmeerw@pmeerw.net>, <linux-kernel@vger.kernel.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <robh+dt@kernel.org>
-Subject: Re: [PATCH v5 05/10] iio: afe: rescale: add INT_PLUS_{MICRO,NANO}
- support
-From:   "Liam Beguin" <liambeguin@gmail.com>
-To:     "Jonathan Cameron" <jic23@kernel.org>
-References: <20210715031215.1534938-1-liambeguin@gmail.com>
- <20210715031215.1534938-6-liambeguin@gmail.com>
- <8417f698-eef2-3311-625a-1ceb17d3e5b2@axentia.se>
- <CCUT1ZDDWS1J.3CGKX5J1MNFOX@shaak> <20210717175551.20265ac4@jic23-huawei>
-In-Reply-To: <20210717175551.20265ac4@jic23-huawei>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=xKHTc9yNHDPtjYjnEVTpSB6WymMSFLcHaJXp0d+G5KU=;
+        b=YCCqyQAE365QjBfQNMhY4KKsgO5UDt4LbLtKnK78+X+sdWkDxarGB828vKQEOLaSR0
+         YLF08xOoz9A05vOKppz8AEftXZSiPpnl5ALDcwlPvEz6bRpUWwPFYzDsKpfYXE1qTmBz
+         Y4cDBvgrd/axLTPCCm6rp0Y2sCdtq02SJkeOzh9cUqppmmuS6kukfFtTMgiLv1417S1k
+         LlYjzGKNLczMM4N4iAU+HDcxW4jlj2YJVel4z5gN5YfT5VYNl/d9JVkwWbrJKA/1VZ3t
+         mDdMAQerbOM0TTp2COQ+EBM0CbFfqalheXrc5T5Gt4EHPFgU9EZHneH1yh5G758rATmh
+         wJMA==
+X-Gm-Message-State: AOAM533oNo4j5JwvfF+DuHZRELjJnh+zRKGDVeB4zQeA90M2o29yHN3P
+        46BKUuOIE7F1djAzqvaO7AY=
+X-Google-Smtp-Source: ABdhPJxQfE0nSyd9L3tgN+7nCE4/1nAhzcu/nYonExJ4G9xGVWcU8m5Amt9zOIdLlOtncSsh5nexVw==
+X-Received: by 2002:a63:190b:: with SMTP id z11mr22290718pgl.320.1626653856452;
+        Sun, 18 Jul 2021 17:17:36 -0700 (PDT)
+Received: from taoren-ubuntu-R90MNF91.thefacebook.com (c-73-252-146-110.hsd1.ca.comcast.net. [73.252.146.110])
+        by smtp.gmail.com with ESMTPSA id x7sm1059847pfn.70.2021.07.18.17.17.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 18 Jul 2021 17:17:35 -0700 (PDT)
+From:   rentao.bupt@gmail.com
+To:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        openbmc@lists.ozlabs.org, taoren@fb.com
+Cc:     Tao Ren <rentao.bupt@gmail.com>
+Subject: [PATCH 0/4] ARM: dts: aspeed: Enable ADC for wedge100 BMC
+Date:   Sun, 18 Jul 2021 17:17:20 -0700
+Message-Id: <20210719001724.6410-1-rentao.bupt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat Jul 17, 2021 at 12:55 PM EDT, Jonathan Cameron wrote:
-> On Fri, 16 Jul 2021 15:18:33 -0400
-> "Liam Beguin" <liambeguin@gmail.com> wrote:
->
-> > On Thu Jul 15, 2021 at 5:48 AM EDT, Peter Rosin wrote:
-> > >
-> > > On 2021-07-15 05:12, Liam Beguin wrote: =20
-> > > > From: Liam Beguin <lvb@xiphos.com>
-> > > >=20
-> > > > Some ADCs use IIO_VAL_INT_PLUS_{NANO,MICRO} scale types.
-> > > > Add support for these to allow using the iio-rescaler with them.
-> > > >=20
-> > > > Signed-off-by: Liam Beguin <lvb@xiphos.com>
-> > > > ---
-> > > >  drivers/iio/afe/iio-rescale.c | 15 +++++++++++++++
-> > > >  1 file changed, 15 insertions(+)
-> > > >=20
-> > > > diff --git a/drivers/iio/afe/iio-rescale.c b/drivers/iio/afe/iio-re=
-scale.c
-> > > > index 4c3cfd4d5181..a2b220b5ba86 100644
-> > > > --- a/drivers/iio/afe/iio-rescale.c
-> > > > +++ b/drivers/iio/afe/iio-rescale.c
-> > > > @@ -92,7 +92,22 @@ static int rescale_read_raw(struct iio_dev *indi=
-o_dev,
-> > > >  			do_div(tmp, 1000000000LL);
-> > > >  			*val =3D tmp;
-> > > >  			return ret;
-> > > > +		case IIO_VAL_INT_PLUS_NANO:
-> > > > +			tmp =3D ((s64)*val * 1000000000LL + *val2) * rescale->numerator=
-;
-> > > > +			do_div(tmp, rescale->denominator);
-> > > > +
-> > > > +			*val =3D div_s64(tmp, 1000000000LL);
-> > > > +			*val2 =3D tmp - *val * 1000000000LL;
-> > > > +			return ret; =20
-> > >
-> > > This is too simplistic and prone to overflow. We need something like
-> > > this
-> > > (untested)
-> > >
-> > > tmp =3D (s64)*val * rescale->numerator;
-> > > rem =3D do_div(tmp, rescale->denominator);
-> > > *val =3D tmp;
-> > > tmp =3D ((s64)rem * 1000000000LL + (s64)*val2) * rescale->numerator;
-> > > do_div(tmp, rescale->denominator);
-> > > *val2 =3D tmp;
-> > >
-> > > Still not very safe with numerator and denominator both "large", but
-> > > much
-> > > better. And then we need normalizing the fraction part after the abov=
-e,
-> > > of
-> > > course.
-> > > =20
-> >=20
-> > Understood, I'll test that.
-> >=20
-> > > And, of course, I'm not sure what *val =3D=3D -1 and *val2 =3D=3D 500=
-000000
-> > > really
-> > > means. Is that -1.5 or -0.5? The above may very well need adjusting f=
-or
-> > > negative values...
-> > > =20
-> >=20
-> > I would've assumed the correct answer is -1 + 500000000e-9 =3D -0.5
-> > but adding a test case to iio-test-format.c seems to return -1.5...
->
+From: Tao Ren <rentao.bupt@gmail.com>
 
-Hi Jonathan,
+The patch series enables ADC for Facebook Wedge100 BMC platform.
 
-> No. -1.5 is as intended, though the IIO_VAL_PLUS_MICRO is rather
-> confusing
-> naming :( We should perhaps add more documentation for that. Signs were
-> always a bit of a pain with this two integer scheme for fixed point.
->
-> The intent is to have moderately readable look up tables with the
-> problem that
-> we don't have a signed 0 available. Meh, maybe this decision a long time
-> back wasn't a the right one, but it may be a pain to change now as too
-> many
-> drivers to check!
->
-> 1, 0000000 =3D=3D 1
-> 0, 5000000 =3D=3D 0.5
-> 0, 0000000 =3D=3D 0
-> 0, -5000000 =3D=3D -0.5
-> -1, 5000000 =3D=3D -1.5
->
+Patch #1 enables ADC in Facebook AST2400 common dtsi because ADC is used
+on all the Facebook AST2400 Network BMC platforms.
 
-Understood, thanks for clearing that out.
+Patch #2 removes the redundant ADC entry from Wedge40 dts.
 
-Liam
+Patch #3 removes the redundant ADC entry from Galaxy100 dts.
 
->
-> >=20
-> > I believe that's a bug but we can work around if for now by moving the
-> > integer part of *val2 to *val.
->
-> Yup. Fiddly corner cases..
->
-> Jonathan
->
-> >=20
-> > Liam
-> >=20
-> > > Cheers,
-> > > Peter
-> > > =20
-> > > > +		case IIO_VAL_INT_PLUS_MICRO:
-> > > > +			tmp =3D ((s64)*val * 1000000LL + *val2) * rescale->numerator;
-> > > > +			do_div(tmp, rescale->denominator);
-> > > > +
-> > > > +			*val =3D div_s64(tmp, 1000000LL);
-> > > > +			*val2 =3D tmp - *val * 1000000LL;
-> > > > +			return ret;
-> > > >  		default:
-> > > > +			dev_err(&indio_dev->dev, "unsupported type %d\n", ret);
-> > > >  			return -EOPNOTSUPP;
-> > > >  		}
-> > > >  	default:
-> > > >  =20
-> >=20
+Patch #4 enables the ADC voltage sensoring channels in Wedge100 dts.
+
+Tao Ren (4):
+  ARM: dts: aspeed: Enable ADC in Facebook AST2400 common dtsi
+  ARM: dts: aspeed: wedge40: Remove redundant ADC device
+  ARM: dts: aspeed: galaxy100: Remove redundant ADC device
+  ARM: dts: aspeed: wedge100: Enable ADC channels
+
+ arch/arm/boot/dts/aspeed-bmc-facebook-galaxy100.dts   | 4 ----
+ arch/arm/boot/dts/aspeed-bmc-facebook-wedge100.dts    | 5 +++++
+ arch/arm/boot/dts/aspeed-bmc-facebook-wedge40.dts     | 4 ----
+ arch/arm/boot/dts/ast2400-facebook-netbmc-common.dtsi | 4 ++++
+ 4 files changed, 9 insertions(+), 8 deletions(-)
+
+-- 
+2.17.1
 
