@@ -2,354 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E17F93CED28
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 22:29:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 805063CED2A
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 22:29:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347544AbhGSRrc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jul 2021 13:47:32 -0400
-Received: from foss.arm.com ([217.140.110.172]:40272 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1356947AbhGSRec (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Jul 2021 13:34:32 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D0C1C6D;
-        Mon, 19 Jul 2021 11:15:09 -0700 (PDT)
-Received: from [10.57.36.146] (unknown [10.57.36.146])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 525573F73D;
-        Mon, 19 Jul 2021 11:15:07 -0700 (PDT)
-Subject: Re: [PATCH v4 3/3] iommu: dart: Add DART iommu driver
-To:     Sven Peter <sven@svenpeter.dev>, Will Deacon <will@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>
-Cc:     Arnd Bergmann <arnd@kernel.org>,
-        Rouven Czerwinski <r.czerwinski@pengutronix.de>,
-        devicetree@vger.kernel.org, Marc Zyngier <maz@kernel.org>,
-        Hector Martin <marcan@marcan.st>, linux-kernel@vger.kernel.org,
-        Petr Mladek via iommu <iommu@lists.linux-foundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alexander Graf <graf@amazon.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        linux-arm-kernel@lists.infradead.org,
-        Stan Skowronek <stan@corellium.com>
-References: <20210627143405.77298-1-sven@svenpeter.dev>
- <20210627143405.77298-4-sven@svenpeter.dev>
- <f3574c75-db2d-47fc-bda5-0f0f627fb524@arm.com>
- <30b00cf1-6366-4075-be8a-992fb1778306@www.fastmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <69259ab4-0da9-ddc7-97b0-9ef1e33a39ec@arm.com>
-Date:   Mon, 19 Jul 2021 19:15:01 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+        id S1348146AbhGSRrh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jul 2021 13:47:37 -0400
+Received: from mail-eopbgr1400134.outbound.protection.outlook.com ([40.107.140.134]:37952
+        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1376678AbhGSRjt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Jul 2021 13:39:49 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CU4iBPtk1HNxO6PgeF7gLfMOTdl5ljDm7ya6/IP2Z7hD42sC6oyK0+ZNqPNT5fS4qK2iw/tnZbTjQKCHlNBKCX+o+42RaBvmulzUp5jsqIxBj4Dj8ZGsi5xVwNhraHW2SuqGmMAE1OKwsR71LjeNUArESyFxvo4qBYdB3PmU302F1dJBL+kLx9yxbbsJsxzx7QitvMA9o1SCdctLN4VR2vuEzVUiLn/ft71eYzRw+Ey+nXPKVopRSCDr1E9NNOxk9QJ2Pe+iz/MfAizEuTf/gDQx4HNM3Q+7q20NpKSUR7TkLdmyL+TGt+JCOJPQXSoRrnNqQwFu5v5lxr7mfWa6qg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Me9oMWmGcaun1i346nwVq/88PuvanUnfMtF+tPJzzTk=;
+ b=EFMQWDP9+RYlkTSH4FaFo87J08RMmmMeNKypJExVkbWLE9ywlitIJAyLa14Gf4X+la3sbkPXZ+rmLNzN05FFkb7M4xp15ga0molaxfadP5XR3bOMhI136i7mLM/IM7gQZwh4k7zaH8tI08W+nUPgZLGkyuIT24aDZqrWsrcRElTnL4V7ZLWAUIr7rewPSGGHrgcGBxyIqYb5EfYhc2FGXHN/bAVOiSxZzTWz46OdH6X53impH0LTTieIf+CYGl6X4olJ65u8iNvLi2mjDYReg7iRCoZ1Nr4Xe7Gcr+Dowqh7OAWOmbxKei85Yu0R+1vSfN7UUFF+4Fi/OUc6MQX7Uw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Me9oMWmGcaun1i346nwVq/88PuvanUnfMtF+tPJzzTk=;
+ b=iZvm2YOcjOL2JOim5BHrRLpJyGwuVAAHEjRSEmOfHI+emKFyoNozv5NpZsJbODbw+bSYOwhGB1Q/1gIWfUZB8BknAxZyE4TLx4h6wDAZAZCHQ5r1cVe/aDnoIoFU817oO5CkRC4j/KzyIbgQuzxtwQP87XNQOW7oGmp5Auxk2po=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none
+ header.from=renesas.com;
+Received: from OSAPR01MB3892.jpnprd01.prod.outlook.com (2603:1096:604:5b::23)
+ by OS0PR01MB5409.jpnprd01.prod.outlook.com (2603:1096:604:ab::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.21; Mon, 19 Jul
+ 2021 18:20:25 +0000
+Received: from OSAPR01MB3892.jpnprd01.prod.outlook.com
+ ([fe80::e1ee:a98a:2ba3:aee4]) by OSAPR01MB3892.jpnprd01.prod.outlook.com
+ ([fe80::e1ee:a98a:2ba3:aee4%7]) with mapi id 15.20.4331.033; Mon, 19 Jul 2021
+ 18:20:25 +0000
+From:   Alex Helms <alexander.helms.jy@renesas.com>
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Cc:     robh+dt@kernel.org, sboyd@kernel.org, mturquette@baylibre.com,
+        geert+renesas@glider.be, alexander.helms.jy@renesas.com,
+        david.cater.jc@renesas.com, michal.simek@xilinx.com
+Subject: [PATCH v5 0/2] Renesas 8T49N241 device driver
+Date:   Mon, 19 Jul 2021 11:19:59 -0700
+Message-Id: <20210719182001.1573-1-alexander.helms.jy@renesas.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BYAPR21CA0020.namprd21.prod.outlook.com
+ (2603:10b6:a03:114::30) To OSAPR01MB3892.jpnprd01.prod.outlook.com
+ (2603:1096:604:5b::23)
 MIME-Version: 1.0
-In-Reply-To: <30b00cf1-6366-4075-be8a-992fb1778306@www.fastmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from az-ahelms.na.ads.idt.com (68.225.135.226) by BYAPR21CA0020.namprd21.prod.outlook.com (2603:10b6:a03:114::30) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4308.17 via Frontend Transport; Mon, 19 Jul 2021 18:20:22 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 81c78c6d-53f6-4530-90e7-08d94ae1e0d3
+X-MS-TrafficTypeDiagnostic: OS0PR01MB5409:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <OS0PR01MB540937E4A5250B0A37B0EB69C8E19@OS0PR01MB5409.jpnprd01.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:873;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: OZ5q9BC4mZLPEn2sAThtxN+hGB7sOZeuOZaXvYqJvW/ViZZdlB2/dXdIWhMvaGjGHRC9QsHJvLYOX+N4kjro14xEXkk//jOzzWyyqt/UCF7I5YsDTqxsvjGXXbrT70SSDPFIWcbB68FAXH4/AQk6GtPS0KKSmL26+m6z+QUB4gCaIyWsIPGtUHWPwkfLe6gamXIH9Xq3f4xCvL8e5Xp9r+BdXgNx1WUdd3JlfZ514FrcJJ9KuYscJQh1MkQ6xwkNRYVPkvY2deVIAc7895GBXFZ6Sn5pegDimnFz/Y6xA+u2WI8HCTbI7kdDNHP0qYE53KANs/teVh/wKGqUsKK6OOpOAhC9Ia+kE4Z/+pmhE9JK8weZT5kdx6A41bwTbbCfps7GvSZps7/xf4pQ2PM1AOAgYdqnlBH5hsThiTpUyH6m3xxF3tQVR4vgTisk/leUJ1gv8YJJB0hi80lVuTalf6ypO+CCZVWtGvHj528x65Sfa99ZWc3+BZo7lEeKPqqWjSSQ7KXhgm7/uDO9N348Aq4tLiL5I+VR7ltxBs8NQXfhUbHqoQpwIlilOLFxQPVV+xik83SZuquaa1XhKBs4Z5kKARfXT93NSsMO9JbLe4+PdY0f9ZeQ/keIZVViz67O5HlXLjRGYEC+YQ+zHm44LivjoQP3c4NavpEEmu5YB6nFEd0/CoNRf9UScc7Vx0EkTbOMD0h/kZEYLGObXlP0/Q==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSAPR01MB3892.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(346002)(396003)(136003)(366004)(39840400004)(5660300002)(26005)(66946007)(478600001)(6666004)(186003)(66556008)(66476007)(956004)(6486002)(2616005)(4326008)(83380400001)(8676002)(6506007)(316002)(36756003)(8936002)(52116002)(38350700002)(38100700002)(1076003)(6512007)(86362001)(103116003)(2906002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?LvkmS0M6Md4ubhBdtpvRkp9+OvncE7bY1J/ZNkX0tmBL+79CQK0TcYyFNZ1Y?=
+ =?us-ascii?Q?5g6bHxW1r1Za8hPxL+l9HZjTP6KF5PsZDLuDeTOAqG202ImHf0Um+l/Kjksi?=
+ =?us-ascii?Q?ianYD4vWXR4iGlpPhWqpQb4WODViV0j3aD3C4cZ6W5WrEVtWxYThbotlaLqN?=
+ =?us-ascii?Q?NdtsbNxzo7hUzWYHQ6T4Ntbtt9obDeBsF7LyHb57pMxDhgpIq1V3SGwvAt9I?=
+ =?us-ascii?Q?QJ+kXYetAbJIt1vmWrgOnNqgxPcqQjULe2x1CkYjaERowzpzFKgNVf0ZGhgO?=
+ =?us-ascii?Q?7J3x7Kv1ejsFAEnpVTH+/SBbVJAJOk7Tu49bAlbpB3sk2Tth6QUkm9oxpfdb?=
+ =?us-ascii?Q?1LoSm/uho9UpSps5ZgRp1piAv6VoKNS8rGaDVQ7UXOQxygY/3NUCEqsvBM+j?=
+ =?us-ascii?Q?JwI+BeXl43wzvsb3xH9ywv6s8r7tR8QwsLvChWUH8EKcfXtiPZAqxp61GRM7?=
+ =?us-ascii?Q?yZXKlxAss76neRfLCqvA0bqaiCC1xHoglwR16+7+nNDKgseIzs8aP5Aufe+M?=
+ =?us-ascii?Q?ayVkXwv9doCxVw9xP+u2zotBvxgTtIFhOt5PZxD0OXKblNXqxbH9khyQrarg?=
+ =?us-ascii?Q?NR1XeJZ5jAHQOIaASjrzU/hp1VhxvpbrRIA3J5OBUaQVmGtL/x9fONQlND6N?=
+ =?us-ascii?Q?ZqfT4Y5ZV2MmEVewyO/GsM0ZhQUWuYYprgeBfEg6YJHmp8bf5HUfQIaNRXyq?=
+ =?us-ascii?Q?PAdhqoSzmIu0w/cloOvGp240FecmkyUwpLOTWVeFhcmUK/bj062NI9DqJgvT?=
+ =?us-ascii?Q?mbObgi7OABwZOGBuTogls9Dzv6OJUHuCChhnNHYwVKp1MJkTFGnzqiqGImxE?=
+ =?us-ascii?Q?+5O3gBxjHngdKPotmoPYKrdJw5wcbXpfNnh8VaQ3OL22RBnwDG0+jm/0EEcw?=
+ =?us-ascii?Q?4BTZgz6rAO0yWTRB8mU7MEdl3pR1Vb96amUK7Pw/3eJ/+g70WkKqKXJ6I0RZ?=
+ =?us-ascii?Q?/V1jDcjwErM9cZ2I0gHdA75fa5Ioh5dxMYN+SQEJBa8wrT+g3Voa8ysTwE+s?=
+ =?us-ascii?Q?tBnFykJxM8+SgrzXOnF56l3jVTpHJGWIzOy94EM1oWY8mVXx9CMzfb6irUEw?=
+ =?us-ascii?Q?MPY3QXWreR+wELkXC8F3gTtW2BCBK9tbjLiRYuOwTpHds7nX1Fts5hH3s8sN?=
+ =?us-ascii?Q?8b6yxfKVXE7pLLIpRwXzgnMNCzBJMrz7NxkgQbjQgmfEDIkRBDcUYi8PCp3u?=
+ =?us-ascii?Q?LsAE6QX3z3pVRxHcfUvbDtRt45Bl8H4Dugaoq262CFLN9rKF8OcYnx986f3F?=
+ =?us-ascii?Q?nyXs5ZeWuXaWbTe4L3FMuUFTLdGXy8fojkE3Wii3XGS2hR35RW4zQ2vRhqyn?=
+ =?us-ascii?Q?gF7Rz7M3anCV/svltqz5y6Sf?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 81c78c6d-53f6-4530-90e7-08d94ae1e0d3
+X-MS-Exchange-CrossTenant-AuthSource: OSAPR01MB3892.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jul 2021 18:20:25.1733
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: VGScm6Ju8YS+ilINHs9ZYNKOlE0KNZQMXAhomnUszo44pNgI43M9gQZiJYRo2Hff1kLCpf952kMUqVy8+khI9p/CF2VvGE+jMcC1FqEGBR0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS0PR01MB5409
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-07-15 17:41, Sven Peter via iommu wrote:
-[...]
->>> +	u64 sw_bypass_cpu_start;
->>> +	u64 sw_bypass_dma_start;
->>> +	u64 sw_bypass_len;
->>> +
->>> +	struct list_head streams;
->>
->> I'm staring to think this could just be a bitmap, in a u16 even.
-> 
-> The problem is that these streams may come from two different
-> DART instances. That is required for e.g. the dwc3 controller which
-> has a weird quirk where DMA transactions go through two separate
-> DARTs with no clear pattern (e.g. some xhci control structures use the
-> first dart while other structures use the second one).
+A common clock framework device driver for the Renesas 8T49N241 universal
+frequency translator.
 
-Ah right, I do remember discussing that situation, but I think I 
-misinterpreted dart_domain->dart representing "the DART instance" here 
-to mean we weren't trying to accommodate that just yet.
+Changes in v5:
+ * Rebase on v5.14-rc2
+ * Move driver files from clk/renesas to clk
+Changes in v4:
+ * Add vendor prefix to dt binding compatible property
+ * Remove clock-names description in dt binding
+ * Remove redundant 'input-' prefix on clock names
+ * Clarify the settings property in dt binding, add data type
+ * Fix define spacing
+Changes in v3:
+ * Clarify settings property in device tree bindings schema is optional
+Changes in v2:
+ * Correct missing semicolon in 8t49n24x-core.c
 
-> Both of them need to point to the same pagetable.
-> In the device tree the node will have an entry like this:
-> 
-> dwc3_0: usb@382280000{
->     ...
->     iommus = <&dwc3_0_dart_0 0>, <&dwc3_0_dart_1 1>;
-> };
-> 
-> There's no need for a linked list though once I do this properly with
-> groups. I can just use an array allocated when the first device is
-> attached, which just contains apple_dart* and streamid values.
-> 
-> 
->>
->>> +
->>> +	spinlock_t lock;
->>> +
->>> +	struct iommu_domain domain;
->>> +};
->>> +
->>> +/*
->>> + * This structure is attached to devices with dev_iommu_priv_set() on of_xlate
->>> + * and contains a list of streams bound to this device as defined in the
->>> + * device tree. Multiple DART instances can be attached to a single device
->>> + * and each stream is identified by its stream id.
->>> + * It's usually reference by a pointer called *cfg.
->>> + *
->>> + * A dynamic array instead of a linked list is used here since in almost
->>> + * all cases a device will just be attached to a single stream and streams
->>> + * are never removed after they have been added.
->>> + *
->>> + * @num_streams: number of streams attached
->>> + * @streams: array of structs to identify attached streams and the device link
->>> + *           to the iommu
->>> + */
->>> +struct apple_dart_master_cfg {
->>> +	int num_streams;
->>> +	struct {
->>> +		struct apple_dart *dart;
->>> +		u32 sid;
->>
->> Can't you use the fwspec for this?
-> 
-> 
-> I'd be happy to use the fwspec code if that's somehow possible.
-> I'm not sure how though since I need to store both the reference to the DART
-> _and_ to the stream id. As far as I can tell the fwspec code would only allow
-> to store the stream ids.
-> (see also the previous comment regarding the dwc3 node which requires stream
-> ids from two separate DART instances)
+Alex Helms (2):
+  dt-bindings: Add binding for Renesas 8T49N241
+  clk: Add ccf driver for Renesas 8T49N241
 
-Hmm, yes, as above I was overlooking that, although there are still 
-various ideas that come to mind; the question becomes whether they're 
-actually worthwhile or just too-clever-for-their-own-good hacks. The 
-exact format of fwspec->ids is not fixed (other than the ACPI IORT code 
-having a common understanding with the Arm SMMU drivers) so in principle 
-you could munge some sort of DART instance index or indeed anything, but 
-if it remains cleaner to manage your own data internally then by all 
-means keep doing that.
+ .../bindings/clock/renesas,8t49n241.yaml      | 190 ++++
+ MAINTAINERS                                   |   7 +
+ drivers/clk/8t49n24x-core.c                   | 836 ++++++++++++++++++
+ drivers/clk/8t49n24x-core.h                   | 250 ++++++
+ drivers/clk/8t49n24x.c                        | 572 ++++++++++++
+ drivers/clk/Kconfig                           |  21 +
+ drivers/clk/Makefile                          |   2 +
+ 7 files changed, 1878 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/renesas,8t49n241.yaml
+ create mode 100644 drivers/clk/8t49n24x-core.c
+ create mode 100644 drivers/clk/8t49n24x-core.h
+ create mode 100644 drivers/clk/8t49n24x.c
 
->>> +		struct device_link *link;
->>
->> Is it necessary to use stateless links, or could you use
->> DL_FLAG_AUTOREMOVE_SUPPLIER and not have to keep track of them manually?
-> 
-> I'll just use DL_FLAG_AUTOREMOVE_SUPPLIER. No idea why I went for stateless links.
-> 
->>
-> [...]
->>> +	/* restore stream identity map */
->>> +	writel(0x03020100, dart->regs + DART_STREAM_REMAP);
->>> +	writel(0x07060504, dart->regs + DART_STREAM_REMAP + 4);
->>> +	writel(0x0b0a0908, dart->regs + DART_STREAM_REMAP + 8);
->>> +	writel(0x0f0e0d0c, dart->regs + DART_STREAM_REMAP + 12);
->>
->> Any hint of what the magic numbers mean?
-> 
-> Yes, it's just 0,1,2,3...,0xe,0xf but I can't do 8bit writes to the bus
-> and 32 bit writes then require these slightly awkward "swapped" numbers.
-> I'll add a comment since it's not obvious at first glance.
 
-Sure, I guessed that much from "identity map" - it was more a question 
-of why that means 0x03020100... rather than, say, 0x0c0d0e0f... or 
-0x76543210..., and perhaps the reason for "restoring" it in the first place.
+base-commit: 2734d6c1b1a089fb593ef6a23d4b70903526fe0c
+-- 
+2.30.2
 
-[...]
->>> +	/*
->>> +	 * we can't mix and match DARTs that support bypass mode with those who don't
->>> +	 * because the iova space in fake bypass mode generally has an offset
->>> +	 */
->>
->> Erm, something doesn't sound right there... IOMMU_DOMAIN_IDENTITY should
->> be exactly what it says, regardless of how it's implemented. If you
->> can't provide a true identity mapping then you're probably better off
->> not pretending to support them in the first place.
-> 
-> Some background: the PCIe DART only supports a 32bit VA space but RAM
-> on these machines starts at 0x8_0000_0000. I have something like
->    dma-ranges = <0x42000000 0 0 0x8 0 0 0xffff0000>;
-> in the pcie nodes to add that offset to dma addresses.
-> 
-> What I want to do here then is to setup an identity mapping with respect
-> to the DMA layer understanding of addresses encoded in bus_dma_region.
-> Now this will always just be a constant offset of 0x8_0000_0000 for
-> all M1s but I didn't want to hardcode that.
-> The code here is just there to guard against a situation where someone
-> somehow manages to attach two devices with different offsets to the same
-> domain.
-
-Urgh, *now* I think I get it - the addressing limitation WRT the 
-physical memory map layout had also slipped my mind. So you describe the 
-RC *as if* it had a physical bus offset, rely on iommu-dma ignoring it 
-when active (which is more by luck than design - we don't expect to ever 
-see a device with a real hard-wired offset upstream of an IOMMU, 
-although I did initially try to support it back in the very early days), 
-and otherwise statically program a translation such that anyone else who 
-*does* respect bus_dma_regions finds things work as expected.
-
-That actually seems like an even stronger argument for having the 
-fake-bypass table belong to the DART rather than the domain, and at that 
-point you shouldn't even need the mismatch restriction, since as long as 
-you haven't described the fake offset for any devices who *can* achieve 
-real bypass, then "attach to an identity domain" simply comes down to 
-doing the appropriate thing for each individual stream, regardless of 
-whether it's the same nominal identity domain that another device is 
-using or a distinct one (it's highly unlikely that two groups would ever 
-get attached to one identity domain rather than simply having their own 
-anyway, but it is technically possible).
-
-> If that's not how the abstraction is supposed to work and/or too big of a hack
-> I'll just remove the software bypass mode altogether.
-> PCIe won't work on 4k kernels then but the only people using this so far
-> build their own kernels with patches either way and won't complain.
-> And by the time Linux will actually be useful for "normal" setups
-> the dma-iommu layer can hopefully just handle a larger page granularity.
-
-It's certainly... "creative", and TBH I don't hate it (in a "play the 
-hand you've been given" kind of way), but the one significant downside 
-is that if the DART driver isn't loaded for any reason, PCI DMA will 
-look like it should be usable but then just silently (or not so 
-silently) fail.
-
-FWIW if you do want to keep the option open, I'd be inclined to have the 
-DT just give an "honest" description of just the 32-bit limitation, then 
-have the DART driver's .probe_device sneakily modify the bus_dma_region 
-to match the relevant fake-bypass table as appropriate. It's possible 
-other folks might hate that even more though :D
-
->>> +	if (WARN_ON(domain->type == IOMMU_DOMAIN_IDENTITY &&
->>> +		    (domain->dart->supports_bypass != dart->supports_bypass)))
->>> +		return -EINVAL;
->>> +
->>> +	list_for_each_entry(stream, &domain->streams, stream_head) {
->>> +		if (stream->dart == dart && stream->sid == sid) {
->>> +			stream->num_devices++;
->>> +			return 0;
->>> +		}
->>> +	}
->>> +
->>> +	spin_lock_irqsave(&dart->lock, flags);
->>> +
->>> +	if (WARN_ON(dart->used_sids & BIT(sid))) {
->>> +		ret = -EINVAL;
->>> +		goto error;
->>> +	}
->>> +
->>> +	stream = kzalloc(sizeof(*stream), GFP_ATOMIC);
->>> +	if (!stream) {
->>> +		ret = -ENOMEM;
->>> +		goto error;
->>> +	}
->>
->> Couldn't you do this outside the lock? (If, calling back to other
->> comments, it can't get refactored out of existence anyway)
-> 
-> Probably, but I'll first see if I can just refactor it away.
-
-Actually I missed that we're already under dart_domain->lock at this 
-point anyway, so it's not going to make much difference, but it does 
-mean that the spin_lock_irqsave() above could just be spin_lock(), 
-unless it's possible to relax the domain locking a bit such that we 
-don't have to do the whole domain init with IRQs masked.
-
-[...]
->>> +static struct iommu_domain *apple_dart_domain_alloc(unsigned int type)
->>> +{
->>> +	struct apple_dart_domain *dart_domain;
->>> +
->>> +	if (type != IOMMU_DOMAIN_DMA && type != IOMMU_DOMAIN_UNMANAGED &&
->>> +	    type != IOMMU_DOMAIN_IDENTITY && type != IOMMU_DOMAIN_BLOCKED)
->>> +		return NULL;
->>
->> I want to say there's not much point in that, but then I realise I've
->> spent the last couple of days writing patches to add a new domain type :)
-> 
-> Hah! Just because I'm curious: What is that new domain type going to be? :)
-
-Splitting IOMMU_DOMAIN_DMA into two to replace iommu_dma_strict being an 
-orthogonal thing.
-
-[...]
->>> +static int apple_dart_of_xlate(struct device *dev, struct of_phandle_args *args)
->>> +{
->>> +	struct platform_device *iommu_pdev = of_find_device_by_node(args->np);
->>> +	struct apple_dart_master_cfg *cfg = dev_iommu_priv_get(dev);
->>> +	unsigned int num_streams = cfg ? cfg->num_streams : 0;
->>> +	struct apple_dart_master_cfg *cfg_new;
->>> +	struct apple_dart *dart = platform_get_drvdata(iommu_pdev);
->>> +
->>> +	if (args->args_count != 1)
->>> +		return -EINVAL;
->>> +
->>> +	cfg_new = krealloc(cfg, struct_size(cfg, streams, num_streams + 1),
->>> +			   GFP_KERNEL);
->>> +	if (!cfg_new)
->>> +		return -ENOMEM;
->>> +
->>> +	cfg = cfg_new;
->>> +	dev_iommu_priv_set(dev, cfg);
->>> +
->>> +	cfg->num_streams = num_streams;
->>> +	cfg->streams[cfg->num_streams].dart = dart;
->>> +	cfg->streams[cfg->num_streams].sid = args->args[0];
->>> +	cfg->num_streams++;
->>
->> Yeah, this is way too reminiscent of the fwspec code for comfort. Even
->> if you can't use autoremove links for some reason, an array of 16
->> device_link pointers hung off apple_dart still wins over these little
->> pointer-heavy structures if you need more than a few of them.
-> 
-> I can get rid of the links, but I'll still need some way to store
-> both the apple_dart and the sid here. Like mentioned above, I'll
-> be happy to reuse the fwspec code but I don't see how yet.
-
-As before, if you can fit in some kind of DART instance identifier which 
-isn't impractical to unpack than it makes sense to use the fwspec since 
-it's already there. However if you still need to allocate something 
-per-device rather than just stashing an existing pointer in iommu_priv, 
-then you may as well keep everything together there. If the worst known 
-case could still fit in just two DART pointers and two 64-bit bitmaps, 
-I'd be inclined to just have that as a fixed structure and save all the 
-extra bother - you're not cross-architecture like the fwspec code, and 
-arm64's minimum kmalloc granularity has just gone back up to 128 bytes 
-(but even at 64 bytes you'd have had plenty of room).
-
-[...]
->>> +static int apple_dart_remove(struct platform_device *pdev)
->>> +{
->>> +	struct apple_dart *dart = platform_get_drvdata(pdev);
->>> +
->>> +	devm_free_irq(dart->dev, dart->irq, dart);
->>> +
->>> +	iommu_device_unregister(&dart->iommu);
->>> +	iommu_device_sysfs_remove(&dart->iommu);
->>> +
->>> +	clk_bulk_disable(dart->num_clks, dart->clks);
->>> +	clk_bulk_unprepare(dart->num_clks, dart->clks);
->>
->> Ditto.
->>
->> And again the bus ops are still installed - that'll get really fun if
->> this is a module unload...
-> 
-> Ugh, yeah. I'll fix that as well. I'll have to see how to make this work
-> correctly with multiple DART instances. I guess I should only remove the
-> bus ops once the last one is removed. Now that I think about it, this
-> could also get tricky in the cleanup paths of apple_dart_probe.
-> 
-> Maybe just add a module_init that sets up the bus ops when it finds at
-> least one DART node and module_exit to tear them down again?
-
-Actually by this point it was late and I wasn't thinking as clearly as I 
-could have been, apologies ;)
-
-I believe a module unload is in fact the *only* time you should expect 
-to see .remove called - you want to set .suppress_bind_attrs in your 
-driver data because there's basically no way to prevent manual unbinding 
-from blowing up - so it should be fine to unconditionally clear the ops 
-at this point (being removed means you must have successfully probed, so 
-any ops must be yours).
-
-Cheers,
-Robin.
