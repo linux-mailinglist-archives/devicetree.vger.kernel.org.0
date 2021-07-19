@@ -2,96 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF7473CCEE4
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 09:52:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 021DE3CCF10
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 10:06:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234903AbhGSHzP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jul 2021 03:55:15 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:46486 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S235071AbhGSHzO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 03:55:14 -0400
-X-UUID: 4c3ecf37000447c2b17e0d2ce9640b75-20210719
-X-UUID: 4c3ecf37000447c2b17e0d2ce9640b75-20210719
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
-        (envelope-from <yongqiang.niu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1834079245; Mon, 19 Jul 2021 15:52:11 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 19 Jul 2021 15:52:09 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 19 Jul 2021 15:52:08 +0800
-From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        <devicetree@vger.kernel.org>,
+        id S235201AbhGSII6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jul 2021 04:08:58 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:38292 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235115AbhGSII6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 04:08:58 -0400
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 16J7nQBf015319;
+        Mon, 19 Jul 2021 15:49:26 +0800 (GMT-8)
+        (envelope-from billy_tsai@aspeedtech.com)
+Received: from BillyTsai-pc.aspeed.com (192.168.2.149) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 19 Jul
+ 2021 16:05:47 +0800
+From:   Billy Tsai <billy_tsai@aspeedtech.com>
+To:     <jic23@kernel.org>, <lars@metafoo.de>, <pmeerw@pmeerw.net>,
+        <robh+dt@kernel.org>, <joel@jms.id.au>, <andrew@aj.id.au>,
+        <p.zabel@pengutronix.de>, <billy_tsai@aspeedtech.com>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>
-Subject: [PATCH v1] drm/mediatek: add dither 6 setting
-Date:   Mon, 19 Jul 2021 15:52:06 +0800
-Message-ID: <1626681126-29270-2-git-send-email-yongqiang.niu@mediatek.com>
-X-Mailer: git-send-email 1.8.1.1.dirty
-In-Reply-To: <1626681126-29270-1-git-send-email-yongqiang.niu@mediatek.com>
-References: <1626681126-29270-1-git-send-email-yongqiang.niu@mediatek.com>
+        <linux-aspeed@lists.ozlabs.org>, <raltherr@google.com>
+CC:     <BMC-SW@aspeedtech.com>
+Subject: [v1 0/7] Add support for ast2600 ADC
+Date:   Mon, 19 Jul 2021 16:06:00 +0800
+Message-ID: <20210719080607.28712-1-billy_tsai@aspeedtech.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [192.168.2.149]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 16J7nQBf015319
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-in the first version dither patch
-https://patchwork.kernel.org/project/linux-mediatek/patch/1553667561-25447-13-git-send-email-yongqiang.niu@mediatek.com/
-dither 6 setting is included in that patch
-bit 1 is lfsr_en( "Enables LFSR-type dithering"), need enable
-bit 2 is rdither_en(Enables running order dithering), need disable
-in this issue
-https://partnerissuetracker.corp.google.com/issues/190643544
+This patch serials make aspeed_adc.c can support ast2600.
+In additional,
+patch #6 is used to improve the adc accurate and 
+patch #7 is used to fix the clock issue in the original code.
 
-dither 6 setting missed in set dither common patch
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c?h=next-20210430&id=a6b7c98afdcad0f149010ae028b24f2d0dc24cdb
+Billy Tsai (7):
+  dt-bindings: iio: adc: rename the aspeed adc yaml
+  dt-bindings: iio: adc: Binding ast2600 adc.
+  iio: adc: aspeed: completes the bitfield declare.
+  iio: adc: aspeed: Allow driver to support ast2600
+  iio: adc: aspeed: Add func to set sampling rate.
+  iio: adc: aspeed: Add compensation phase.
+  iio: adc: aspeed: Fix the calculate error of clock.
 
-Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
----
- drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 2 ++
- 1 file changed, 2 insertions(+)
- mode change 100644 => 100755 drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+ ...speed,ast2400-adc.yaml => aspeed,adc.yaml} |  23 +-
+ drivers/iio/adc/aspeed_adc.c                  | 313 ++++++++++++++----
+ 2 files changed, 266 insertions(+), 70 deletions(-)
+ rename Documentation/devicetree/bindings/iio/adc/{aspeed,ast2400-adc.yaml => aspeed,adc.yaml} (53%)
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-old mode 100644
-new mode 100755
-index 99cbf44..7dd8e05
---- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-+++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-@@ -26,6 +26,7 @@
- #define DISP_OD_CFG				0x0020
- #define DISP_OD_SIZE				0x0030
- #define DISP_DITHER_5				0x0114
-+#define DISP_DITHER_6				0x0118
- #define DISP_DITHER_7				0x011c
- #define DISP_DITHER_15				0x013c
- #define DISP_DITHER_16				0x0140
-@@ -135,6 +136,7 @@ void mtk_dither_set_common(void __iomem *regs, struct cmdq_client_reg *cmdq_reg,
- 
- 	if (bpc >= MTK_MIN_BPC) {
- 		mtk_ddp_write(cmdq_pkt, 0, cmdq_reg, regs, DISP_DITHER_5);
-+		mtk_ddp_write(cmdq_pkt, 0x3002, cmdq_reg, regs, DISP_DITHER_6);
- 		mtk_ddp_write(cmdq_pkt, 0, cmdq_reg, regs, DISP_DITHER_7);
- 		mtk_ddp_write(cmdq_pkt,
- 			      DITHER_LSB_ERR_SHIFT_R(MTK_MAX_BPC - bpc) |
 -- 
-1.8.1.1.dirty
+2.25.1
 
