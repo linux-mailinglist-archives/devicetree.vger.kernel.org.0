@@ -2,105 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B7C33CD5A9
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 15:26:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B6203CD5DB
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 15:40:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237790AbhGSMpl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jul 2021 08:45:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36956 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237784AbhGSMpl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 08:45:41 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DACBC061762
-        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 05:47:28 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id l7so22022391wrv.7
-        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 06:26:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=3L2qOwfDPDPficyOPSVrr5/aBYeZ+EOYlXkatvhjE3Y=;
-        b=LC6U6FSxiXkRjCjGQGyv2SxbG2oywh0SlI6mQB1kOJ5HT5+AQdTzZWxJrglkPJ5EU5
-         9MeECtrm+KbyrTK4u4Z4359uPzkab+fMOHxVB4q+b5erLOZOL1HuS1SkEHb6g3htIOlV
-         PJ8XFo0a3PKB0TxVG9DHvCU6Naod8fyXOLcezr3WDhaoL8LYZOBd/vzixR7pVxaMeTCg
-         O1jVzv7RPxbKL9w/aPacwlO+e8NbXvsJZp0V5UQaykC9vcnBCyM1DerYuF0G28kHthJL
-         MwGpwlDsKgkf6PKakfrE6a5FGBX/c/50MQsU/r1gugTRMZgHdI3G6li7bnJGuyU8tPuK
-         JDBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=3L2qOwfDPDPficyOPSVrr5/aBYeZ+EOYlXkatvhjE3Y=;
-        b=EANiut/IU4Y25sRZG73ixCZ2VapPImq8V6k7FsuQHAPTJfrK550MfbWQDgVwOMViAs
-         VEMRrLpSOVUKpmtxay0ugkj/5oVBNuZ9+Syg6J4RChkbPV+Yui/OlvNTZpg5jw/PW3LO
-         bZxkU/hxTWCmAfCDnimq+16b2q+3AAvwlT6EM+EpGU49/oKxCoRoiBEonvW8jtWuxjQg
-         plA0ZBPkVTqD4qh3WoUJxef5+xpE04tCXqivRzsOR0gMU0fOYINngtjjlTkzerBY4yVX
-         d/SgKFRW7DpvuOGKIG2xpwRbHvLg1zv1BVMY03NhqsP5b49JdHrt1luMfyIqVsi6mmBI
-         KbTw==
-X-Gm-Message-State: AOAM533061gCYCPpNgWkd7T4caUmy5emKVn1BcK1K44sYgTlyfAdjTeR
-        /5/lLit3udblHuzYYeFouWvynQ==
-X-Google-Smtp-Source: ABdhPJy2QV7gxdjcSzGLI/i8ubjGI7JF6q11jcJ8k/Da3LTjSIYSUsMqWnzt1wJh7UB/IRS3FAywfQ==
-X-Received: by 2002:a05:6000:1844:: with SMTP id c4mr29984208wri.38.1626701179131;
-        Mon, 19 Jul 2021 06:26:19 -0700 (PDT)
-Received: from google.com ([31.124.24.141])
-        by smtp.gmail.com with ESMTPSA id l18sm21961507wme.29.2021.07.19.06.26.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Jul 2021 06:26:18 -0700 (PDT)
-Date:   Mon, 19 Jul 2021 14:26:16 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev
-Subject: Re: [PATCH v14 7/9] mfd: hi6421-spmi-pmic: move driver from staging
-Message-ID: <YPV9eAOrruDdRMvn@google.com>
-References: <cover.1626515862.git.mchehab+huawei@kernel.org>
- <6c64fa6abae6c9fa78ace1bf240b33b47eccae52.1626515862.git.mchehab+huawei@kernel.org>
- <YPVaCCu498lNY9a2@google.com>
- <20210719134537.0cab0827@coco.lan>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210719134537.0cab0827@coco.lan>
+        id S239279AbhGSNAO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jul 2021 09:00:14 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:32998 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S239258AbhGSNAM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Jul 2021 09:00:12 -0400
+X-IronPort-AV: E=Sophos;i="5.84,252,1620658800"; 
+   d="scan'208";a="88135498"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 19 Jul 2021 22:40:47 +0900
+Received: from localhost.localdomain (unknown [10.226.92.148])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 0388F425839B;
+        Mon, 19 Jul 2021 22:40:42 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v2 0/8] Add RZ/G2L Sound support
+Date:   Mon, 19 Jul 2021 14:40:32 +0100
+Message-Id: <20210719134040.7964-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 19 Jul 2021, Mauro Carvalho Chehab wrote:
+This patch series aims to add ASoC support on RZ/G2L SoC's.
 
-> Em Mon, 19 Jul 2021 11:55:04 +0100
-> Lee Jones <lee.jones@linaro.org> escreveu:
-> 
-> > On Sat, 17 Jul 2021, Mauro Carvalho Chehab wrote:
-> > 
-> > > This driver is ready for mainstream. So, move it out of staging.
-> > > 
-> > > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> > > ---
-> > >  .../mfd}/hisilicon,hi6421-spmi-pmic.yaml      |  0
+It is based on the work done by Chris Brandt for RZ/A ASoC driver.
 
-Ideally Rob would give this the once over.
+Biju Das (8):
+  ASoC: dt-bindings: Document RZ/G2L bindings
+  sound: soc: sh: Add RZ/G2L SSIF-2 driver
+  arm64: dts: renesas: r9a07g044: Add external audio clock nodes
+  arm64: dts: renesas: r9a07g044: Add SSI support
+  arm64: defconfig: Enable ASoC sound support for RZ/G2L SoC
+  ASoC: dt-bindings: sound: renesas,rz-ssi: Document DMA support
+  sound: sh: rz-ssi: Add SSI DMAC support
+  arm64: dts: renesas: r9a07g044: Add SSI DMA support
 
-If he's reviewed this before and there haven't been any significant
-changes, perhaps you can bring his Ack over with the file.
-
-> > >  MAINTAINERS                                   |  7 +++++++
-> > >  drivers/mfd/Kconfig                           | 16 ++++++++++++++++
-> > >  drivers/mfd/Makefile                          |  1 +
-> > >  .../hikey9xx => mfd}/hi6421-spmi-pmic.c       |  0  
-
-Looks good to me now, thanks.
-
-For my own reference (apply this as-is to your sign-off block):
-
-  Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+ .../bindings/sound/renesas,rz-ssi.yaml        |  100 ++
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi    |  105 ++
+ arch/arm64/configs/defconfig                  |    1 +
+ sound/soc/sh/Kconfig                          |   10 +
+ sound/soc/sh/Makefile                         |    4 +
+ sound/soc/sh/rz-ssi.c                         | 1078 +++++++++++++++++
+ 6 files changed, 1298 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml
+ create mode 100644 sound/soc/sh/rz-ssi.c
 
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.17.1
+
