@@ -2,144 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A4543CE884
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 19:28:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A37843CE8C6
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jul 2021 19:29:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351083AbhGSQmZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jul 2021 12:42:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37466 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356826AbhGSQl3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 12:41:29 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A71CC005F26;
-        Mon, 19 Jul 2021 09:53:16 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id g8so25578871lfh.8;
-        Mon, 19 Jul 2021 10:13:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8dlreiD3y0FAWWt5AwOtsV8l36/rdSofslQ0of0y/lQ=;
-        b=XRbyBWGsdZCS2L6gOZl9l+VDDZ9yWUpInAe9LM08ApS9nbNSGT5QR/fPF6+wTQEuGH
-         y/LiUCk4t3wgjsBolsvgQ21MZ9TfDHumwa32TgCZgDIIhpqjXFnM8V3j1c+Q/NzrGUH6
-         +eYRhrqQg4FTU24EDoyiRcmZyMaWD9mR/Mp3Hwo8u5cTv/t8JN4xD7rWDk2dGq7eZZel
-         P3euVjlZjRdO/NF3qQes8zrIU33LXM+3X9+1ic8q/ZaxFD8Iefy7m6g+0H93kbPnlgeG
-         nb2BmiPsO8+3XwHWNgsj4o3tr1Yddx6girWNA78kCrms0A7f6sOK615SDf8uYILH7J7k
-         uSQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8dlreiD3y0FAWWt5AwOtsV8l36/rdSofslQ0of0y/lQ=;
-        b=k9mdZhK22xqKJL2TZSlAatCTBeJxz/x938bB/Jy9GJRfzlQomKOGP9KiuJWN5X12tQ
-         C1hMNAoxME5aLju288GRucVphkwY6UMuQpPYxE0/4V0D2vzt2LjcxsrapQIUeWu6xdlp
-         Yn3aoCQqJIkB7IbhpVU89YdcCVll9L/hGE5NbDpltmwbJEY1Nc9BYTJeV3/L5525vaiw
-         LOvm09yy78d1h/Vi73zHfO40SKi7EZuwtY8Ey/EjCrcP5yIBvylORl+49D1i+4+n3Ebi
-         J2Rt5iz3I7A9ZyecZl/7EDXk4IJPvcq1W/5BHjV3pmYbOknOZ/DKNkP+0djG4KGFUVnI
-         /JOA==
-X-Gm-Message-State: AOAM532QvYqxRT2ZrpBa8pNYvyRCeXjjGBE9UI2FtAEq+2V1LkXM9PIQ
-        cRoW/gXe8kLhjwL3IFKld/g28N5IVJOjsXOp1TQ=
-X-Google-Smtp-Source: ABdhPJzpgx9uN5/6xXR2djonVwm0YGIUSndku6RB0m4t7rOTmele/+5bGntahfqx4YeJb3+/ly6SRQ+MLmeNW7FFiMM=
-X-Received: by 2002:a05:6512:3e0c:: with SMTP id i12mr18458374lfv.122.1626714793061;
- Mon, 19 Jul 2021 10:13:13 -0700 (PDT)
-MIME-Version: 1.0
-References: <1607403341-57214-1-git-send-email-yash.shah@sifive.com>
- <1607403341-57214-8-git-send-email-yash.shah@sifive.com> <CAMuHMdW74DsiqyLCYyWSosZmwVEqPiAWNV2i6m4LWzz0868fbg@mail.gmail.com>
-In-Reply-To: <CAMuHMdW74DsiqyLCYyWSosZmwVEqPiAWNV2i6m4LWzz0868fbg@mail.gmail.com>
-From:   David Abdurachmanov <david.abdurachmanov@gmail.com>
-Date:   Mon, 19 Jul 2021 20:12:37 +0300
-Message-ID: <CAEn-LTqq8+B4HRV_1aHSrrRRwd9Xvpd3mBg0fUixtHb_4-4u6w@mail.gmail.com>
-Subject: Re: [PATCH v2 7/9] riscv: dts: add initial support for the SiFive
- FU740-C000 SoC
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Yash Shah <yash.shah@sifive.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
+        id S1349485AbhGSQsS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jul 2021 12:48:18 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.53]:34755 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1349697AbhGSQqH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 12:46:07 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1626715597;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=JSDTqVTfXpY/nkps/4WQBQ4jmhTTXlWkA4xD144AOWs=;
+    b=VzhonegltXxBQblRm+I2i3+wdNeJ59FCjpOXH5aNtm7V6tWkDT6Vowdxs0RcETQYkH
+    qKJ7dQxHR5dsi+lxnxYSN1K7ftAe+QbWn0/HqXyqrw+9lZAInuyhR4CcMJbuDG0+VJsf
+    /9tHo5sLO2WhF1L1lkOeov9AXODw7nkDeM0N9P6E4hN+S/Xth/nP4QX1Ba+N2voPYbmQ
+    ez4JlhBXGTvvjeVYAjhfwMzLEgZy2JzdzyAgky+cQLY2ji+9aG7oBXedr2QXJsk5qI9J
+    OXwx1P/oYAp3sTG9bWmN/fVaUDYgBvU+KISM70Xe743zKauK/IU1LpdyiODbkhRAhC0B
+    t88Q==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j4IczAa4o="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.28.1 DYNA|AUTH)
+    with ESMTPSA id g02a44x6JHQa5o9
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Mon, 19 Jul 2021 19:26:36 +0200 (CEST)
+Date:   Mon, 19 Jul 2021 19:26:28 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>
-Content-Type: text/plain; charset="UTF-8"
+        linux-iio <linux-iio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
+        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>, Andy
+        Shevchenko <andy.shevchenko@gmail.com>," 
+        <~postmarketos/upstreaming@lists.sr.ht>,
+        Nikita Travkin <nikita@trvn.ru>
+Subject: Re: [PATCH 3/4] iio: accel: bmc150: Make it possible to configure
+ INT2 instead of INT1
+Message-ID: <YPW1xGtLyLNGKqjJ@gerhold.net>
+References: <20210719112156.27087-1-stephan@gerhold.net>
+ <20210719112156.27087-4-stephan@gerhold.net>
+ <CACRpkdYNqi0EDrtC3j=cu5cp17sEJ6_nf2KRn-hxCxgbTGhgXw@mail.gmail.com>
+ <CAHp75VcsVFO2Oizpyeh53MNt2v9yD81vXp1xKCVX-U4zb-KTdg@mail.gmail.com>
+ <YPWV537oN3gDpAQS@gerhold.net>
+ <CAHp75Vdjotgi9RrmKQC4J_QQSYdRWwp+-8aHGkChx6VFLPDh-Q@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHp75Vdjotgi9RrmKQC4J_QQSYdRWwp+-8aHGkChx6VFLPDh-Q@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 16, 2021 at 3:51 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Yash,
->
-> On Tue, Dec 8, 2020 at 5:57 AM Yash Shah <yash.shah@sifive.com> wrote:
-> > Add initial support for the SiFive FU540-C000 SoC. FU740-C000 is built
-> > around the SiFIve U7 Core Complex and a TileLink interconnect.
+On Mon, Jul 19, 2021 at 07:19:05PM +0300, Andy Shevchenko wrote:
+> On Mon, Jul 19, 2021 at 6:11 PM Stephan Gerhold <stephan@gerhold.net> wrote:
+> > On Mon, Jul 19, 2021 at 06:01:01PM +0300, Andy Shevchenko wrote:
+> > > On Mon, Jul 19, 2021 at 5:07 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+> > > > On Mon, Jul 19, 2021 at 1:26 PM Stephan Gerhold <stephan@gerhold.net> wrote:
+> 
+> ...
+> 
+> > > > >  #include <linux/acpi.h>
+> > > > > +#include <linux/of_irq.h>
+> > > > (...)
+> > > > > +       irq_info = bmc150_accel_interrupts_int1;
+> > > > > +       if (irq == of_irq_get_byname(dev->of_node, "INT2"))
+> > > > > +               irq_info = bmc150_accel_interrupts_int2;
+> > > >
+> > > > This looks a bit DT-specific, but I don't see that ACPI has
+> > > > named IRQs so I don't know what to do about it either.
+> > >
+> > > Yeah, we only have so far the (de facto) established way of naming
+> > > GPIO based IRQs, and not IOxAPIC ones.
+> > >
+> > > > What does platform_get_irq_byname() do on ACPI systems?
+> > >
+> > > See above.
+> > >
+> > > > If there is no obvious fix I would leave it like this until the
+> > > > first ACPI used needing this comes along, but I think maybe
+> > > > Andy has suggestions.
+> > >
+> > > The platform_get_irq_byname() should do something similar that has
+> > > been done in platform_get_irq() WRT ACPI.
+> > > Here for sure the platform_get_irq_byname() or its optional variant
+> > > should be used.
 > >
-> > This file is expected to grow as more device drivers are added to the
-> > kernel.
+> > I don't think there is a platform device here, we only have the
+> > i2c_client or spi_device. That's why I didn't use
+> > platform_get_irq_byname(). :)
 > >
-> > Signed-off-by: Yash Shah <yash.shah@sifive.com>
->
-> Thanks for your patch, which became commit 57985788158a5a6b ("riscv:
-> dts: add initial support for the SiFive FU740-C000 SoC").
->
-> > --- /dev/null
-> > +++ b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
-> > @@ -0,0 +1,293 @@
->
-> > +       cpus {
-> > +               #address-cells = <1>;
-> > +               #size-cells = <0>;
-> > +               cpu0: cpu@0 {
-> > +                       compatible = "sifive,bullet0", "riscv";
->
-> I'm wondering why you're using
->
->     compatible = "sifive,bullet0", "riscv";
->
-> According to your own commit 75e6d7248efccc2b ("dt-bindings: riscv:
-> Update DT binding docs to support SiFive FU740 SoC"), it should be
->
->     compatible = "sifive,u74-mc", "riscv";
->
-> instead.
+> > Is there something equivalent for I2C/SPI drivers?
+> 
+> Not yet. You probably need to supply some code there to allow
+> multi-IRQ devices (in resource provider agnostic way).
+> 
+> You need to provide fwnode_get_irq_byname() to be similar with
+> https://elixir.bootlin.com/linux/latest/source/drivers/base/property.c#L1010
+> 
+> Then use it in the drivers.
+> 
+> And/or integrate into frameworks somehow (something in between the
+> lines: https://elixir.bootlin.com/linux/latest/source/drivers/i2c/i2c-core-base.c#L461).
+> 
 
-I plan to send out new DT for the Rev3A and Rev3B (the final board
-customers can buy) boards.
-This is already fixed in meta-sifive.
+Well, I don't think anyone has an ACPI use case for this right now so
+it's probably better if this is done by someone who actually needs this
+and can test it somewhere. :)
 
-In general bullet here is micro architecture, but it's less
-descriptive in /proc/cpuinfo.
+I actually just "copied" this approach from some other IIO drivers where
+this is done similarly (and additionally checked the source code to make
+sure this won't break anything for ACPI platforms).
 
->
-> Likewise, the older arch/riscv/boot/dts/sifive/fu540-c000.dtsi is using
->
->     compatible = "sifive,e51", "sifive,rocket0", "riscv";
->
-> and
->
->     compatible = "sifive,u54-mc", "sifive,rocket0", "riscv";
->
-> but according to the DT bindings the rocket part should not be present.
->
-> Is there any specific reason for that?
-> Should the DT bindings and/or the DTS files be fixed?
->
-> Thanks!
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Stephan
