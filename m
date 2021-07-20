@@ -2,140 +2,463 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B4EC93CFF7F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 18:32:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7301B3CFF87
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 18:34:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233945AbhGTPvg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 11:51:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41522 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232465AbhGTPsc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 11:48:32 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CD75C0613E1
-        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 09:29:09 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id l7so26653093wrv.7
-        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 09:29:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=vn2uIa7Zt9UomSnJ+gKoPcustWGjsNtQ+/zZFEcCcuY=;
-        b=ZjWYI0lOGX1Cr21JssHiP5nKV/UA+47iP6VqFCeH1HP45mcYwQlbmNDXneNPtYbl9K
-         X0qsfLdizgtTQV3JMUiLLN+xuSOSxr4pGw36TgZ6OQOW+bJkWHiVlMGvrcS6lHvDV7ZI
-         qWMXoI+JgYCqJopT+mEVU2pgocralvBP2+kYDCXKYauMfDVMie+b2U7CPrAsbkunLedK
-         DCEtoJuVOYQMQFDPxMN6QKBl38kb8QJ/3jynXERBpVWEB8CuPNzGulmEtJxN5/7L7VtX
-         DIGgTaLYI6INti0mS1sA2kAYXbjssJolQ+3tAWAtqkB/EkdD2cIE0ntUm4z3FTe6gWtm
-         Ln4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=vn2uIa7Zt9UomSnJ+gKoPcustWGjsNtQ+/zZFEcCcuY=;
-        b=KlGE8hIffcYHGLS32L1OoaikxrNOwRCtK5MYX0R/udQEfTD+nNFAnfrGkjzKLiYjiO
-         ujiL72gNJm/CbKG7CFGn3KTr/bM5cZXPKbC6tqQJ2Oa8u8LbeCR0aVAkN0CqcP2aemAZ
-         lSodyH1HjCEWhx5RdrWd5sMIfJLCI/A2ovGUJPj8l36jaxsljwhZdkrCY+Kc8uB/Gfbk
-         bLT22oPrcPnS2MMDT7kbMwXK1w+NOIyHbIw4Y1ShXwQrRmMvbg85c6R8GekOxK1nV6QX
-         L+DlueOv1J3fesBTMZFiMZdewDCXPsrZq742x1fkZzw7yL/x+h3PysoOMWU5GSZy4A2P
-         +2/Q==
-X-Gm-Message-State: AOAM530Io5qiZGNtYsGZ89w1Qn02vgxJWbZk+YudlKb0okhpaJlQzVAb
-        xfiX9BwOdxCivHvHUb5XzuQqpA==
-X-Google-Smtp-Source: ABdhPJwuloW7Uo7jNSoW7NXw/K3ixr1UiM6ErT6zSqbLTdOQIePWZ8kmheCXBp+bK75AmJ6Qk9Jwnw==
-X-Received: by 2002:adf:f109:: with SMTP id r9mr18561723wro.370.1626798548154;
-        Tue, 20 Jul 2021 09:29:08 -0700 (PDT)
-Received: from google.com ([31.124.24.141])
-        by smtp.gmail.com with ESMTPSA id 129sm20519093wmz.26.2021.07.20.09.29.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jul 2021 09:29:07 -0700 (PDT)
-Date:   Tue, 20 Jul 2021 17:29:05 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Emil Renner Berthing <kernel@esmil.dk>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 2/3] mfd: tps65086: Make interrupt line optional
-Message-ID: <YPb50VHKYrnmDkyK@google.com>
-References: <20210625224744.1020108-1-kernel@esmil.dk>
- <20210625224744.1020108-3-kernel@esmil.dk>
- <YPbmmqfOuE5w6EgW@google.com>
- <CANBLGcy_28q23vRJk9=UZR_Feeqod-ETET=v4Ub=35edySH7SA@mail.gmail.com>
- <YPbsodxMk+VvU/3D@google.com>
- <CANBLGcx08XajR8khJmKARBjy7bQ5ebbgO+RRqRu=bvyMx7LuKA@mail.gmail.com>
- <YPb0spKPvEvuuMWc@google.com>
- <CANBLGcx2R4xuyoLHJUNbqiJeRrqTD1oL7X1K0RKzOPD_9xnMdw@mail.gmail.com>
+        id S230478AbhGTPxT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 11:53:19 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44232 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231201AbhGTPvx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Jul 2021 11:51:53 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7613561029;
+        Tue, 20 Jul 2021 16:32:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1626798751;
+        bh=ypdOVSXde9mSqNuEOYJo1JsPFR9n/cYlE3gaMft6WwQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=YAt9DZvmhhkENoU2GW2xwfIA4L29UqoEO1U+6Q0GkVfmQmehZfOhbWj3TgPdJNL+u
+         M8u2DpOUx0kDEqsFsdAP9nY+WVNSj0reMexIzquzm8CDU4Nk0FmLHXPmKmpnv710/f
+         wvEZi9Q0au0T5VjVU4DdCDUGv7h213+fxzhwtNfLvhk2JFawezq7LBvAgtgD4Lnail
+         2RhttnmI17ps+pRzbP21hqRDLJDXsmbyaYEAV2rq9GVp1LBf5Cuc6vpJUhVx2BJxAt
+         TfhM+pHK3fbvNBxXSXBK3uQW2n/GtocgJcImGZU+Qe4Dyz6CfuJ7ExyzzYp1tTn3jv
+         B3ZgbvnK+yvhA==
+Received: by mail-ed1-f49.google.com with SMTP id ee25so29173786edb.5;
+        Tue, 20 Jul 2021 09:32:31 -0700 (PDT)
+X-Gm-Message-State: AOAM530XP84Sd34kzWUDI3AQ+QhNo820toRtNd8zciH589AwDZ1No6lc
+        xloImDmJRWO6+PQg6PhAEakH2Ur72UDXibtS1g==
+X-Google-Smtp-Source: ABdhPJzkh3fmHHxZ43PsduTEYBj6eKlrwTJQC9me/kiO9JLvFkAJRrNaivP/bcGcf6ZhRZ9e5v9w/XkQn2xSn7p0K+w=
+X-Received: by 2002:aa7:df12:: with SMTP id c18mr41966112edy.62.1626798750012;
+ Tue, 20 Jul 2021 09:32:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CANBLGcx2R4xuyoLHJUNbqiJeRrqTD1oL7X1K0RKzOPD_9xnMdw@mail.gmail.com>
+References: <20210716102911.23694-1-qiangqing.zhang@nxp.com>
+ <20210716102911.23694-2-qiangqing.zhang@nxp.com> <20210719224507.GA2740161@robh.at.kernel.org>
+ <DB8PR04MB67950DD860AEB00CEDA9020FE6E29@DB8PR04MB6795.eurprd04.prod.outlook.com>
+In-Reply-To: <DB8PR04MB67950DD860AEB00CEDA9020FE6E29@DB8PR04MB6795.eurprd04.prod.outlook.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 20 Jul 2021 10:32:18 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKzONKSooUFDKZOiAGg7fP3=wxALz=kxs9jGb9BF2XBjw@mail.gmail.com>
+Message-ID: <CAL_JsqKzONKSooUFDKZOiAGg7fP3=wxALz=kxs9jGb9BF2XBjw@mail.gmail.com>
+Subject: Re: [PATCH V1 1/3] dt-bindings: net: fec: convert fsl,*fec bindings
+ to yaml
+To:     Joakim Zhang <qiangqing.zhang@nxp.com>
+Cc:     "davem@davemloft.net" <davem@davemloft.net>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "bruno.thomsen@gmail.com" <bruno.thomsen@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 20 Jul 2021, Emil Renner Berthing wrote:
-
-> On Tue, 20 Jul 2021 at 18:07, Lee Jones <lee.jones@linaro.org> wrote:
-> > On Tue, 20 Jul 2021, Emil Renner Berthing wrote:
-> > > On Tue, 20 Jul 2021 at 17:32, Lee Jones <lee.jones@linaro.org> wrote:
-> > > > On Tue, 20 Jul 2021, Emil Renner Berthing wrote:
-> > > > > On Tue, 20 Jul 2021 at 17:07, Lee Jones <lee.jones@linaro.org> wrote:
-> > > > > > On Sat, 26 Jun 2021, Emil Renner Berthing wrote:
-> > > > > > > The BeagleV Starlight v0.9 board[1] doesn't have the IRQB line routed to
-> > > > > > > the SoC, but it is still useful to be able to reach the PMIC over I2C
-> > > > > > > for the other functionality it provides.
-> > > > > > >
-> > > > > > > [1] https://github.com/beagleboard/beaglev-starlight
-> > > > > > >
-> > > > > > > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> > > > > > > ---
-> > > > > > >  .../devicetree/bindings/mfd/ti,tps65086.yaml  |  3 ---
-> > > > > >
-> > > > > > This is not present in my current tree.
-> > > > > >
-> > > > > > Looks like it's still *.txt.
-> > > > > >
-> > > > > > Am I missing a patch?
-> > > > >
-> > > > > Yes, the first patch in the series converts that to yaml. I'm quite
-> > > > > sure I had the same list of recipients on all 4 mails in the series,
-> > > > > so don't know why that should be missing.
-> > > >
-> > > > Oh, it's not marked as 'important' because it has open review comments
-> > > > on it.
-> > > >
-> > > > Just have this for now then:
-> > > >
-> > > > For my own reference (apply this as-is to your sign-off block):
-> > > >
-> > > >   Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
-> > >
-> > > Thanks! Do you want to have a look at 3/3 or should I just send a v2
-> > > to fix the yaml conversion now?
+On Tue, Jul 20, 2021 at 3:58 AM Joakim Zhang <qiangqing.zhang@nxp.com> wrot=
+e:
+>
+>
+> Hi Rob,
+>
+> > -----Original Message-----
+> > From: Rob Herring <robh@kernel.org>
+> > Sent: 2021=E5=B9=B47=E6=9C=8820=E6=97=A5 6:45
+> > To: Joakim Zhang <qiangqing.zhang@nxp.com>
+> > Cc: davem@davemloft.net; kuba@kernel.org; shawnguo@kernel.org;
+> > s.hauer@pengutronix.de; kernel@pengutronix.de; festevam@gmail.com;
+> > bruno.thomsen@gmail.com; dl-linux-imx <linux-imx@nxp.com>;
+> > netdev@vger.kernel.org; devicetree@vger.kernel.org;
+> > linux-kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org
+> > Subject: Re: [PATCH V1 1/3] dt-bindings: net: fec: convert fsl,*fec bin=
+dings to
+> > yaml
 > >
-> > Patch 3 should be split.
-> 
-> Oh, how split? Split off the series or split into adding the "driver"
-> and then add the cell to the parent?
+> > On Fri, Jul 16, 2021 at 06:29:09PM +0800, Joakim Zhang wrote:
+> > > In order to automate the verification of DT nodes convert fsl-fec.txt
+> > > to fsl,fec.yaml, and pass binding check with below command.
+> > >
+> > > $ make ARCH=3Darm CROSS_COMPILE=3Darm-linux-gnueabihf- dt_binding_che=
+ck
+> > DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/net/fsl,fec.yaml
+> > >   DTEX    Documentation/devicetree/bindings/net/fsl,fec.example.dts
+> > >   DTC
+> > Documentation/devicetree/bindings/net/fsl,fec.example.dt.yaml
+> > >   CHECK
+> > Documentation/devicetree/bindings/net/fsl,fec.example.dt.yaml
+> > >
+> > > Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
+> > > ---
+> > >  .../devicetree/bindings/net/fsl,fec.yaml      | 213 ++++++++++++++++=
+++
+> > >  .../devicetree/bindings/net/fsl-fec.txt       |  95 --------
+> > >  2 files changed, 213 insertions(+), 95 deletions(-)  create mode
+> > > 100644 Documentation/devicetree/bindings/net/fsl,fec.yaml
+> > >  delete mode 100644 Documentation/devicetree/bindings/net/fsl-fec.txt
+> >
+> > Since the networking maintainers can't wait for actual binding reviews,=
+ you get
+> > to send a follow-up patch...
+> OK.
+>
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/net/fsl,fec.yaml
+> > > b/Documentation/devicetree/bindings/net/fsl,fec.yaml
+> > > new file mode 100644
+> > > index 000000000000..7fa11f6622b1
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/net/fsl,fec.yaml
+> > > @@ -0,0 +1,213 @@
+> > > +# SPDX-License-Identifier: GPL-2.0
+> > > +%YAML 1.2
+> > > +---
+> > > +$id:
+> > > +https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fd=
+evi
+> > >
+> > +cetree.org%2Fschemas%2Fnet%2Ffsl%2Cfec.yaml%23&amp;data=3D04%7C01
+> > %7Cqia
+> > >
+> > +ngqing.zhang%40nxp.com%7Cf54454be267b426e60d008d94b06dfc7%7C686
+> > ea1d3b
+> > >
+> > +c2b4c6fa92cd99c5c301635%7C0%7C0%7C637623315180063755%7CUnknow
+> > n%7CTWFp
+> > >
+> > +bGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVC
+> > I6M
+> > >
+> > +n0%3D%7C1000&amp;sdata=3DMG%2F9aKVQ8quuLiYxtC%2F7zqZTY7mIHur4G
+> > D7tsPtfq%
+> > > +2Bg%3D&amp;reserved=3D0
+> > > +$schema:
+> > > +https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fd=
+evi
+> > >
+> > +cetree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=3D04%7C01%7Cqia
+> > ngqing
+> > >
+> > +.zhang%40nxp.com%7Cf54454be267b426e60d008d94b06dfc7%7C686ea1d3b
+> > c2b4c6
+> > >
+> > +fa92cd99c5c301635%7C0%7C0%7C637623315180063755%7CUnknown%7CT
+> > WFpbGZsb3
+> > >
+> > +d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0
+> > %3D%
+> > >
+> > +7C1000&amp;sdata=3D7vf8UYQ7c%2BlaJxzAzhzvkPPvbaX3UWVowCtDtPNO9p
+> > Q%3D&amp
+> > > +;reserved=3D0
+> > > +
+> > > +title: Freescale Fast Ethernet Controller (FEC)
+> > > +
+> > > +maintainers:
+> > > +  - Joakim Zhang <qiangqing.zhang@nxp.com>
+> > > +
+> > > +allOf:
+> > > +  - $ref: ethernet-controller.yaml#
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    oneOf:
+> > > +      - enum:
+> > > +          - fsl,imx25-fec
+> > > +          - fsl,imx27-fec
+> > > +          - fsl,imx28-fec
+> > > +          - fsl,imx6q-fec
+> > > +          - fsl,mvf600-fec
+> > > +      - items:
+> > > +          - enum:
+> > > +              - fsl,imx53-fec
+> > > +              - fsl,imx6sl-fec
+> > > +          - const: fsl,imx25-fec
+> > > +      - items:
+> > > +          - enum:
+> > > +              - fsl,imx35-fec
+> > > +              - fsl,imx51-fec
+> > > +          - const: fsl,imx27-fec
+> > > +      - items:
+> > > +          - enum:
+> > > +              - fsl,imx6ul-fec
+> > > +              - fsl,imx6sx-fec
+> > > +          - const: fsl,imx6q-fec
+> > > +      - items:
+> > > +          - enum:
+> > > +              - fsl,imx7d-fec
+> > > +          - const: fsl,imx6sx-fec
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  interrupts:
+> > > +    minItems: 1
+> > > +    maxItems: 4
+> > > +
+> > > +  interrupt-names:
+> > > +    description:
+> > > +      Names of the interrupts listed in interrupts property in the s=
+ame
+> > order.
+> > > +      The defaults if not specified are
+> > > +      __Number of interrupts__   __Default__
+> > > +            1                       "int0"
+> > > +            2                       "int0", "pps"
+> > > +            3                       "int0", "int1", "int2"
+> > > +            4                       "int0", "int1", "int2", "pps"
+> > > +      The order may be changed as long as they correspond to the
+> > interrupts
+> > > +      property.
+> >
+> > Why? None of the existing dts files do that and there is no reason to s=
+upport
+> > random order. You can do this:
+> >
+> > oneOf:
+> >   - minItems: 1
+> >     items:
+> >       - const: int0
+> >       - const: pps
+> >   - minItems: 3
+> >     items:
+> >       - const: int0
+> >       - const: int1
+> >       - const: int2
+> >       - const: pps
+>
+> How about below?
+>     oneOf:
+>       - items:
+>           - const: int0
+>       - items:
+>           - const: int0
+>           - const: pps
+>       - items:
+>           - const: int0
+>           - const: int1
+>           - const: int2
+>       - items:
+>           - const: int0
+>           - const: int1
+>           - const: int2
+>           - const: pps
 
-I'm not overly concerned about the ordering.
+What I wrote for you is the same thing, just more concise.
 
-Just split out the patch per-subsystem.
+> >
+> >
+> > > Currently, only i.mx7 uses "int1" and "int2". They correspond to
+> >
+> > Sounds like another constraint under an if/then schema.
+> >
+> > > +      tx/rx queues 1 and 2. "int0" will be used for queue 0 and ENET=
+_MII
+> > interrupts.
+> > > +      For imx6sx, "int0" handles all 3 queues and ENET_MII. "pps" is=
+ for
+> > the pulse
+> > > +      per second interrupt associated with 1588 precision time
+> > protocol(PTP).
+> > > +
+> > > +  clocks:
+> > > +    minItems: 2
+> > > +    maxItems: 5
+> > > +    description:
+> > > +      The "ipg", for MAC ipg_clk_s, ipg_clk_mac_s that are for regis=
+ter
+> > accessing.
+> > > +      The "ahb", for MAC ipg_clk, ipg_clk_mac that are bus clock.
+> > > +      The "ptp"(option), for IEEE1588 timer clock that requires the =
+clock.
+> > > +      The "enet_clk_ref"(option), for MAC transmit/receiver referenc=
+e
+> > clock like
+> > > +      RGMII TXC clock or RMII reference clock. It depends on board
+> > design,
+> > > +      the clock is required if RGMII TXC and RMII reference clock so=
+urce
+> > from
+> > > +      SOC internal PLL.
+> > > +      The "enet_out"(option), output clock for external device, like=
+ supply
+> > clock
+> > > +      for PHY. The clock is required if PHY clock source from SOC.
+> > > +
+> > > +  clock-names:
+> > > +    minItems: 2
+> > > +    maxItems: 5
+> > > +    contains:
+> > > +      enum:
+> > > +      - ipg
+> > > +      - ahb
+> > > +      - ptp
+> > > +      - enet_clk_ref
+> > > +      - enet_out
+> >
+> > This means clock-names contains one of these strings and then anything =
+else is
+> > valid.
+> >
+> > s/contains/items/
+> OK.
+>
+> >
+> > > +
+> > > +  phy-mode: true
+> > > +
+> > > +  phy-handle: true
+> > > +
+> > > +  fixed-link: true
+> > > +
+> > > +  local-mac-address: true
+> > > +
+> > > +  mac-address: true
+> > > +
+> > > +  phy-supply:
+> > > +    description:
+> > > +      Regulator that powers the Ethernet PHY.
+> > > +
+> > > +  fsl,num-tx-queues:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    description:
+> > > +      The property is valid for enet-avb IP, which supports hw multi
+> > queues.
+> > > +      Should specify the tx queue number, otherwise set tx queue num=
+ber
+> > to 1.
+> >
+> > constraints? 2^32 queues are valid?
+> Yes, the value should be limited to 1, 2, 3. Will add:
+> default: 1
+> minimum: 1
+> maximum: 3
 
-> > I think it should also s/restart/reset/.
-> 
-> Oh right yes. You mean the cell name needs to be .name =
-> "tps65086-reset", right?
+Personally, I'd do 'enum: [ 1, 2, 3 ]' instead.
 
-Right.
+>
+> >
+> > > +
+> > > +  fsl,num-rx-queues:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    description:
+> > > +      The property is valid for enet-avb IP, which supports hw multi
+> > queues.
+> > > +      Should specify the rx queue number, otherwise set rx queue num=
+ber
+> > to 1.
+> >
+> > constraints?
+> Will add.
+>
+> >
+> > > +
+> > > +  fsl,magic-packet:
+> > > +    $ref: /schemas/types.yaml#/definitions/flag
+> > > +    description:
+> > > +      If present, indicates that the hardware supports waking up via=
+ magic
+> > packet.
+> > > +
+> > > +  fsl,err006687-workaround-present:
+> > > +    $ref: /schemas/types.yaml#/definitions/flag
+> > > +    description:
+> > > +      If present indicates that the system has the hardware workarou=
+nd
+> > for
+> > > +      ERR006687 applied and does not need a software workaround.
+> > > +
+> > > +  fsl,stop-mode:
+> > > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > > +    description:
+> > > +      Register bits of stop mode control, the format is <&gpr req_gp=
+r
+> > req_bit>.
+> >
+> > So, maxItems: 3
+> Why? I think maxItems: 1
+>
+> >
+> > > +      gpr is the phandle to general purpose register node.
+> > > +      req_gpr is the gpr register offset for ENET stop request.
+> > > +      req_bit is the gpr bit offset for ENET stop request.
+> > > +
+> > > +  mdio:
+> > > +    type: object
+> > > +    description:
+> > > +      Specifies the mdio bus in the FEC, used as a container for phy=
+ nodes.
+> > > +
+> > > +  # Deprecated optional properties:
+> > > +  # To avoid these, create a phy node according to ethernet-phy.yaml
+> > > + in the same  # directory, and point the FEC's "phy-handle" property
+> > > + to it. Then use  # the phy's reset binding, again described by
+> > ethernet-phy.yaml.
+> > > +
+> > > +  phy-reset-gpios:
+> > > +    deprecated: true
+> > > +    description:
+> > > +      Should specify the gpio for phy reset.
+> > > +
+> > > +  phy-reset-duration:
+> > > +    deprecated: true
+> > > +    description:
+> > > +      Reset duration in milliseconds.  Should present only if proper=
+ty
+> > > +      "phy-reset-gpios" is available.  Missing the property will hav=
+e the
+> > > +      duration be 1 millisecond.  Numbers greater than 1000 are inva=
+lid
+> > > +      and 1 millisecond will be used instead.
+> > > +
+> > > +  phy-reset-active-high:
+> > > +    deprecated: true
+> > > +    description:
+> > > +      If present then the reset sequence using the GPIO specified in=
+ the
+> > > +      "phy-reset-gpios" property is reversed (H=3Dreset state, L=3Do=
+peration
+> > state).
+> > > +
+> > > +  phy-reset-post-delay:
+> > > +    deprecated: true
+> > > +    description:
+> > > +      Post reset delay in milliseconds. If present then a delay of
+> > phy-reset-post-delay
+> > > +      milliseconds will be observed after the phy-reset-gpios has be=
+en
+> > toggled.
+> > > +      Can be omitted thus no delay is observed. Delay is in range of=
+ 1ms to
+> > 1000ms.
+> > > +      Other delays are invalid.
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - interrupts
+> > > +
+> > > +# FIXME: We had better set additionalProperties to false to avoid
+> > > +invalid or at # least undocumented properties. However, PHY may have
+> > > +a deprecated option to # place PHY OF properties in the MAC node,
+> > > +such as Micrel PHY, and we can find # these boards which is based on
+> > i.MX6QDL.
+> > > +additionalProperties: true
+> >
+> > Why can't the dts files be updated? Can you point me to an example .dts=
+?
+>
+> Below dtsi under fec device node:
+> arch/arm/boot/dts/imx6qdl-sabrelite.dtsi
+> arch/arm/boot/dts/imx6qdl-nitrogen6_max.dtsi
+> arch/arm/boot/dts/imx6qdl-aristainetos2.dtsi
 
-> I'll fix that anyway.
+You either need to document all those deprecated properties or update
+the dts files. I'd prefer the latter.
 
-Ta.
-
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Rob
