@@ -2,86 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D5C553CF41C
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 07:51:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58B973CF44E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 08:13:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235347AbhGTFLI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 01:11:08 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:53838 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S236413AbhGTFKw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 01:10:52 -0400
-X-UUID: 602f117abfb342b0b1afcd043fe3ba5a-20210720
-X-UUID: 602f117abfb342b0b1afcd043fe3ba5a-20210720
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <yongqiang.niu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1274704372; Tue, 20 Jul 2021 13:51:22 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 20 Jul 2021 13:51:20 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 20 Jul 2021 13:51:20 +0800
-From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>
-Subject: [PATCH v3] Fixes: a6b7c98afdca(drm/mediatek: add mtk_dither_set_common() function)
-Date:   Tue, 20 Jul 2021 13:51:17 +0800
-Message-ID: <1626760277-5733-2-git-send-email-yongqiang.niu@mediatek.com>
-X-Mailer: git-send-email 1.8.1.1.dirty
-In-Reply-To: <1626760277-5733-1-git-send-email-yongqiang.niu@mediatek.com>
-References: <1626760277-5733-1-git-send-email-yongqiang.niu@mediatek.com>
+        id S238703AbhGTFcO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 01:32:14 -0400
+Received: from mga02.intel.com ([134.134.136.20]:40633 "EHLO mga02.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238336AbhGTFcH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Jul 2021 01:32:07 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10050"; a="198385648"
+X-IronPort-AV: E=Sophos;i="5.84,254,1620716400"; 
+   d="scan'208";a="198385648"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jul 2021 23:12:33 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,254,1620716400"; 
+   d="scan'208";a="414569029"
+Received: from lkp-server02.sh.intel.com (HELO 1b5a72ed9419) ([10.239.97.151])
+  by orsmga006.jf.intel.com with ESMTP; 19 Jul 2021 23:12:30 -0700
+Received: from kbuild by 1b5a72ed9419 with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1m5izV-00004j-Ln; Tue, 20 Jul 2021 06:12:29 +0000
+Date:   Tue, 20 Jul 2021 13:32:34 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     dillon.minfei@gmail.com, thierry.reding@gmail.com,
+        sam@ravnborg.org, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, linus.walleij@linaro.org
+Cc:     kbuild-all@lists.01.org, devicetree@vger.kernel.org,
+        alexandre.torgue@foss.st.com, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Add ilitek ili9341
+ panel bindings
+Message-ID: <202107201305.FPUQWvWk-lkp@intel.com>
+References: <1626430843-23823-2-git-send-email-dillon.minfei@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1626430843-23823-2-git-send-email-dillon.minfei@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-dither 6 setting is missed in a6b7c98afdca
-bit 1 is lfsr_en( "Enables LFSR-type dithering"), need enable
-bit 2 is rdither_en(Enables running order dithering), need disable
+Hi,
 
-Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+Thank you for the patch! Perhaps something to improve:
+
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master v5.14-rc2 next-20210719]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/0day-ci/linux/commits/dillon-minfei-gmail-com/Add-ilitek-ili9341-panel-driver/20210718-103113
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+compiler: arm-linux-gnueabi-gcc (GCC) 10.3.0
+reproduce: make ARCH=arm dtbs_check
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+
+dtcheck warnings: (new ones prefixed by >>)
+   arch/arm/boot/dts/stm32f429-disco.dt.yaml:0:0: /interrupt-controller@e000e100: failed to match any schema with compatible: ['arm,armv7m-nvic']
+   arch/arm/boot/dts/stm32f429-disco.dt.yaml:0:0: /timer@e000e010: failed to match any schema with compatible: ['arm,armv7m-systick']
+   arch/arm/boot/dts/stm32f429-disco.dt.yaml:0:0: /soc/i2c@40005c00/stmpe811@41: failed to match any schema with compatible: ['st,stmpe811']
+   arch/arm/boot/dts/stm32f429-disco.dt.yaml:0:0: /soc/i2c@40005c00/stmpe811@41/stmpe_touchscreen: failed to match any schema with compatible: ['st,stmpe-ts']
+   arch/arm/boot/dts/stm32f429-disco.dt.yaml: l3gd20@0: 'spi-max-frequency' does not match any of the regexes: 'pinctrl-[0-9]+'
+   	From schema: Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+>> arch/arm/boot/dts/stm32f429-disco.dt.yaml: display@1: compatible: ['st,sf-tc240t-9370-t'] is too short
+   	From schema: Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
+   arch/arm/boot/dts/stm32f429-disco.dt.yaml:0:0: /soc/crc@40023000: failed to match any schema with compatible: ['st,stm32f4-crc']
+   arch/arm/boot/dts/stm32f429-disco.dt.yaml:0:0: /soc/rcc@40023800: failed to match any schema with compatible: ['st,stm32f42xx-rcc', 'st,stm32-rcc']
+   arch/arm/boot/dts/stm32f429-disco.dt.yaml:0:0: /soc/rcc@40023800: failed to match any schema with compatible: ['st,stm32f42xx-rcc', 'st,stm32-rcc']
+
 ---
- drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-index 99cbf44..7dd8e05 100644
---- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-+++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-@@ -26,6 +26,7 @@
- #define DISP_OD_CFG				0x0020
- #define DISP_OD_SIZE				0x0030
- #define DISP_DITHER_5				0x0114
-+#define DISP_DITHER_6				0x0118
- #define DISP_DITHER_7				0x011c
- #define DISP_DITHER_15				0x013c
- #define DISP_DITHER_16				0x0140
-@@ -135,6 +136,7 @@ void mtk_dither_set_common(void __iomem *regs, struct cmdq_client_reg *cmdq_reg,
- 
- 	if (bpc >= MTK_MIN_BPC) {
- 		mtk_ddp_write(cmdq_pkt, 0, cmdq_reg, regs, DISP_DITHER_5);
-+		mtk_ddp_write(cmdq_pkt, 0x3002, cmdq_reg, regs, DISP_DITHER_6);
- 		mtk_ddp_write(cmdq_pkt, 0, cmdq_reg, regs, DISP_DITHER_7);
- 		mtk_ddp_write(cmdq_pkt,
- 			      DITHER_LSB_ERR_SHIFT_R(MTK_MAX_BPC - bpc) |
--- 
-1.8.1.1.dirty
-
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
