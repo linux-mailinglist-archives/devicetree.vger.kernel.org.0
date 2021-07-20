@@ -2,177 +2,262 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A9BF3CF61C
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 10:27:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97CFC3CF639
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 10:38:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234806AbhGTHpA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 03:45:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53440 "EHLO mail.kernel.org"
+        id S233756AbhGTH42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 03:56:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59934 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234735AbhGTHob (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Jul 2021 03:44:31 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id BD68F6008E;
-        Tue, 20 Jul 2021 08:25:07 +0000 (UTC)
+        id S234547AbhGTH4Z (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Jul 2021 03:56:25 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A3A80611F2;
+        Tue, 20 Jul 2021 08:37:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626769508;
-        bh=xNvEaXqFW14H8RBDhf771zNDkgO7uk2qNeLqt/b76bo=;
+        s=k20201202; t=1626770223;
+        bh=tk64h37rbGdmfMscy8QNd//U3myF1pAkJYpkjcnjgFQ=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=i99fyqCgc970Z7fp1w2JrrwtiVur7fQ/p1DlxwcdmUc1CkfAVB0JFJUlm3EhPQyGU
-         9CXBd2+XJnv/1Pjvl6WOHJXX/DYU8s0YPvWPu6E/7h20lUjSfWomYdHBb3Jyi8Wo5M
-         j1NdIEa6yvyzY1gCcvVLranp9pgb6vyPeaM7wG+MqFjDGLx+InlvHvMZmggyoMMaqT
-         jKZdy0xvnOx10sxeFZzH8Ktne8y7bfWe9W/klAhoYgAENXP5Fk0me4L+nc1spAEN+t
-         HHjpSQ1mrmLaUBVKDT3EMzI80FJ23+Mt9YH9keJhP9wGvoCCwKmeZ5QLYjAA3YBnqT
-         ERYr2Gd0jGAPg==
-Date:   Tue, 20 Jul 2021 13:55:04 +0530
+        b=VGKBr2qu0vtaAN2BSckVMjpj6meSNJepAAzLgh/vVSQOrnNAnf6Cla7PVqUq/E8/P
+         LVk7IItDSLURiLi7F1a8ZmOJ0IHixeIx7UgpEu5/iQ+IegrQjAHEFqnkF0GbjAXFPP
+         lyEnGfBUmdj3vpG1YQoGxDyHY7ZRBVllEVSGNnQwzoXgW3Bpx8AlScYZinqcvo5OTC
+         j1kGEYXtdF1TwVUdT4jwyrpVRnlnCq/X0h9sGIj1okvnsJk3sZfChKPct3NKtQlPO8
+         BJxBhbUgFPgCcPMVYSNAtP7gWmfsnj8ybbdrF3vZITmper0cd5wtC3WKbgns//+UdW
+         qFhE7HiVoxSfw==
+Date:   Tue, 20 Jul 2021 14:06:59 +0530
 From:   Vinod Koul <vkoul@kernel.org>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Eddie Hung <eddie.hung@mediatek.com>
-Subject: Re: [PATCH v3 3/3] phy: phy-mtk-tphy: add support mt8195
-Message-ID: <YPaIYI70823rK68w@matsya>
-References: <1626331702-27825-1-git-send-email-chunfeng.yun@mediatek.com>
- <1626331702-27825-3-git-send-email-chunfeng.yun@mediatek.com>
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     robh+dt@kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        kishon@ti.com, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] phy: amlogic: Add a new driver for the HDMI TX
+ PHY on Meson8/8b/8m2
+Message-ID: <YPaLKwEKcDLWwztM@matsya>
+References: <20210629182047.893415-1-martin.blumenstingl@googlemail.com>
+ <20210629182047.893415-3-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1626331702-27825-3-git-send-email-chunfeng.yun@mediatek.com>
+In-Reply-To: <20210629182047.893415-3-martin.blumenstingl@googlemail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15-07-21, 14:48, Chunfeng Yun wrote:
-> The controller is designed to use use PLL integer mode, but
-> in fact used fractional mode for some ones on mt8195, this
-> causes signal degradation (e.g. eye diagram test fail), fix
-> it by switching PLL to 26Mhz from default 48Mhz to improve
-> signal quality.
+On 29-06-21, 20:20, Martin Blumenstingl wrote:
+> Amlogic Meson8/8b/8m2 have a built-in HDMI PHY in the HHI register
+> region. Unfortunately only few register bits are documented. For
+> HHI_HDMI_PHY_CNTL0 the magic numbers are taken from the 3.10 vendor
+> kernel.
 > 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
-> v2~3: no changes
-> ---
->  drivers/phy/mediatek/phy-mtk-tphy.c | 52 +++++++++++++++++++++++++++++
->  1 file changed, 52 insertions(+)
+>  drivers/phy/amlogic/Kconfig              |  10 ++
+>  drivers/phy/amlogic/Makefile             |   1 +
+>  drivers/phy/amlogic/phy-meson8-hdmi-tx.c | 162 +++++++++++++++++++++++
+>  3 files changed, 173 insertions(+)
+>  create mode 100644 drivers/phy/amlogic/phy-meson8-hdmi-tx.c
 > 
-> diff --git a/drivers/phy/mediatek/phy-mtk-tphy.c b/drivers/phy/mediatek/phy-mtk-tphy.c
-> index 42a1174da6cc..c3dc1763a7eb 100644
-> --- a/drivers/phy/mediatek/phy-mtk-tphy.c
-> +++ b/drivers/phy/mediatek/phy-mtk-tphy.c
-> @@ -41,6 +41,8 @@
->  
->  #define U3P_USBPHYACR0		0x000
->  #define PA0_RG_U2PLL_FORCE_ON		BIT(15)
-> +#define PA0_USB20_PLL_PREDIV		GENMASK(7, 6)
-> +#define PA0_USB20_PLL_PREDIV_VAL(x)	((0x3 & (x)) << 6)
->  #define PA0_RG_USB20_INTR_EN		BIT(5)
->  
->  #define U3P_USBPHYACR1		0x004
-> @@ -52,6 +54,8 @@
->  #define PA1_RG_TERM_SEL_VAL(x)	((0x7 & (x)) << 8)
->  
->  #define U3P_USBPHYACR2		0x008
-> +#define PA2_RG_U2PLL_BW			GENMASK(21, 19)
-> +#define PA2_RG_U2PLL_BW_VAL(x)		((0x7 & (x)) << 19)
->  #define PA2_RG_SIF_U2PLL_FORCE_EN	BIT(18)
->  
->  #define U3P_USBPHYACR5		0x014
-> @@ -73,6 +77,14 @@
->  #define P2C_USB20_GPIO_MODE		BIT(8)
->  #define P2C_U2_GPIO_CTR_MSK	(P2C_RG_USB20_GPIO_CTL | P2C_USB20_GPIO_MODE)
->  
-> +#define U3P_U2PHYA_RESV		0x030
-> +#define P2R_RG_U2PLL_FBDIV_26M		0x1bb13b
-> +#define P2R_RG_U2PLL_FBDIV_48M		0x3c0000
+> diff --git a/drivers/phy/amlogic/Kconfig b/drivers/phy/amlogic/Kconfig
+> index db5d0cd757e3..486ca23aba32 100644
+> --- a/drivers/phy/amlogic/Kconfig
+> +++ b/drivers/phy/amlogic/Kconfig
+> @@ -2,6 +2,16 @@
+>  #
+>  # Phy drivers for Amlogic platforms
+>  #
+> +config PHY_MESON8_HDMI_TX
+> +	tristate "Meson8, Meson8b and Meson8m2 HDMI TX PHY driver"
+> +	depends on (ARCH_MESON && ARM) || COMPILE_TEST
+> +	depends on OF
+> +	select MFD_SYSCON
+> +	help
+> +	  Enable this to support the HDMI TX PHYs found in Meson8,
+> +	  Meson8b and Meson8m2 SoCs.
+> +	  If unsure, say N.
 > +
-> +#define U3P_U2PHYA_RESV1	0x044
-> +#define P2R_RG_U2PLL_REFCLK_SEL	BIT(5)
-> +#define P2R_RG_U2PLL_FRA_EN		BIT(3)
+>  config PHY_MESON8B_USB2
+>  	tristate "Meson8, Meson8b, Meson8m2 and GXBB USB2 PHY driver"
+>  	default ARCH_MESON
+> diff --git a/drivers/phy/amlogic/Makefile b/drivers/phy/amlogic/Makefile
+> index 8fa07fbd0d92..c0886c850bb0 100644
+> --- a/drivers/phy/amlogic/Makefile
+> +++ b/drivers/phy/amlogic/Makefile
+> @@ -1,4 +1,5 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+> +obj-$(CONFIG_PHY_MESON8_HDMI_TX)		+= phy-meson8-hdmi-tx.o
+>  obj-$(CONFIG_PHY_MESON8B_USB2)			+= phy-meson8b-usb2.o
+>  obj-$(CONFIG_PHY_MESON_GXL_USB2)		+= phy-meson-gxl-usb2.o
+>  obj-$(CONFIG_PHY_MESON_G12A_USB2)		+= phy-meson-g12a-usb2.o
+> diff --git a/drivers/phy/amlogic/phy-meson8-hdmi-tx.c b/drivers/phy/amlogic/phy-meson8-hdmi-tx.c
+> new file mode 100644
+> index 000000000000..ba5a4de54811
+> --- /dev/null
+> +++ b/drivers/phy/amlogic/phy-meson8-hdmi-tx.c
+> @@ -0,0 +1,162 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Meson8, Meson8b and Meson8m2 HDMI TX PHY.
+> + *
+> + * Copyright (C) 2021 Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> + */
 > +
->  #define U3D_U2PHYDCR0		0x060
->  #define P2C_RG_SIF_U2PLL_FORCE_ON	BIT(24)
->  
-> @@ -277,6 +289,12 @@ enum mtk_phy_version {
->  struct mtk_phy_pdata {
->  	/* avoid RX sensitivity level degradation only for mt8173 */
->  	bool avoid_rx_sen_degradation;
-> +	/*
-> +	 * u2phy should use integer mode instead of fractional mode of
-> +	 * 48M PLL, fix it by switching PLL to 26M from default 48M
-> +	 * for mt8195
-> +	 */
-> +	bool sw_pll_48m_to_26m;
->  	enum mtk_phy_version version;
->  };
->  
-> @@ -456,6 +474,33 @@ static void u3_phy_instance_init(struct mtk_tphy *tphy,
->  	dev_dbg(tphy->dev, "%s(%d)\n", __func__, instance->index);
->  }
->  
-> +static void u2_phy_pll_26m_set(struct mtk_tphy *tphy,
-> +	struct mtk_phy_instance *instance)
-> +{
-> +	struct u2phy_banks *u2_banks = &instance->u2_banks;
-> +	void __iomem *com = u2_banks->com;
-> +	u32 tmp;
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+> +#include <linux/clk.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/phy/phy.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/property.h>
+> +#include <linux/regmap.h>
 > +
-> +	if (!tphy->pdata->sw_pll_48m_to_26m)
-> +		return;
+> +#define HHI_HDMI_PHY_CNTL0				0x0
+> +	#define HHI_HDMI_PHY_CNTL0_HDMI_CTL1		GENMASK(31, 16)
+> +	#define HHI_HDMI_PHY_CNTL0_HDMI_CTL0		GENMASK(15, 0)
 > +
-> +	tmp = readl(com + U3P_USBPHYACR0);
-> +	tmp &= ~PA0_USB20_PLL_PREDIV;
-> +	tmp |= PA0_USB20_PLL_PREDIV_VAL(0);
-> +	writel(tmp, com + U3P_USBPHYACR0);
+> +#define HHI_HDMI_PHY_CNTL1				0x4
+> +	#define HHI_HDMI_PHY_CNTL1_CLOCK_ENABLE		BIT(1)
+> +	#define HHI_HDMI_PHY_CNTL1_SOFT_RESET		BIT(0)
 > +
-> +	tmp = readl(com + U3P_USBPHYACR2);
-> +	tmp &= ~PA2_RG_U2PLL_BW;
-> +	tmp |= PA2_RG_U2PLL_BW_VAL(3);
-> +	writel(tmp, com + U3P_USBPHYACR2);
+> +#define HHI_HDMI_PHY_CNTL2				0x8
 > +
-> +	writel(P2R_RG_U2PLL_FBDIV_26M, com + U3P_U2PHYA_RESV);
-> +
-> +	tmp = readl(com + U3P_U2PHYA_RESV1);
-> +	tmp |= P2R_RG_U2PLL_FRA_EN | P2R_RG_U2PLL_REFCLK_SEL;
-> +	writel(tmp, com + U3P_U2PHYA_RESV1);
-> +}
-> +
->  static void u2_phy_instance_init(struct mtk_tphy *tphy,
->  	struct mtk_phy_instance *instance)
->  {
-> @@ -941,6 +986,7 @@ static int mtk_phy_init(struct phy *phy)
->  
->  	switch (instance->type) {
->  	case PHY_TYPE_USB2:
-> +		u2_phy_pll_26m_set(tphy, instance);
-
-should this not be set only for MTK_PHY_V3?
-
->  		u2_phy_instance_init(tphy, instance);
->  		u2_phy_props_set(tphy, instance);
->  		break;
-> @@ -1094,10 +1140,16 @@ static const struct mtk_phy_pdata mt8173_pdata = {
->  	.version = MTK_PHY_V1,
->  };
->  
-> +static const struct mtk_phy_pdata mt8195_pdata = {
-> +	.sw_pll_48m_to_26m = true,
-> +	.version = MTK_PHY_V3,
+> +struct phy_meson8_hdmi_tx_priv {
+> +	struct regmap		*hhi;
+> +	struct clk		*tmds_clk;
+> +	unsigned int		reg_offset;
 > +};
 > +
->  static const struct of_device_id mtk_tphy_id_table[] = {
->  	{ .compatible = "mediatek,mt2701-u3phy", .data = &tphy_v1_pdata },
->  	{ .compatible = "mediatek,mt2712-u3phy", .data = &tphy_v2_pdata },
->  	{ .compatible = "mediatek,mt8173-u3phy", .data = &mt8173_pdata },
-> +	{ .compatible = "mediatek,mt8195-tphy", .data = &mt8195_pdata },
->  	{ .compatible = "mediatek,generic-tphy-v1", .data = &tphy_v1_pdata },
->  	{ .compatible = "mediatek,generic-tphy-v2", .data = &tphy_v2_pdata },
->  	{ .compatible = "mediatek,generic-tphy-v3", .data = &tphy_v3_pdata },
-> -- 
-> 2.18.0
+> +static int phy_meson8_hdmi_tx_init(struct phy *phy)
+> +{
+> +	struct phy_meson8_hdmi_tx_priv *priv = phy_get_drvdata(phy);
+> +
+> +	return clk_prepare_enable(priv->tmds_clk);
+> +}
+> +
+> +static int phy_meson8_hdmi_tx_exit(struct phy *phy)
+> +{
+> +	struct phy_meson8_hdmi_tx_priv *priv = phy_get_drvdata(phy);
+> +
+> +	clk_disable_unprepare(priv->tmds_clk);
+> +
+> +	return 0;
+> +}
+> +
+> +static int phy_meson8_hdmi_tx_power_on(struct phy *phy)
+> +{
+> +	struct phy_meson8_hdmi_tx_priv *priv = phy_get_drvdata(phy);
+> +	unsigned int i;
+> +	u16 hdmi_ctl0;
+> +
+> +	if (clk_get_rate(priv->tmds_clk) >= 2970UL * 1000 * 1000)
+> +		hdmi_ctl0 = 0x1e8b;
+> +	else
+> +		hdmi_ctl0 = 0x4d0b;
+
+magic numbers..? I guess these are register offsets, would be better to
+define..
+
+> +
+> +	regmap_write(priv->hhi, priv->reg_offset + HHI_HDMI_PHY_CNTL0,
+> +		     FIELD_PREP(HHI_HDMI_PHY_CNTL0_HDMI_CTL1, 0x08c3) |
+> +		     FIELD_PREP(HHI_HDMI_PHY_CNTL0_HDMI_CTL0, hdmi_ctl0));
+> +
+> +	regmap_write(priv->hhi, priv->reg_offset + HHI_HDMI_PHY_CNTL1, 0x0);
+> +
+> +	/* Reset three times, just like the vendor driver does */
+> +	for (i = 0; i < 3; i++) {
+> +		regmap_write(priv->hhi, priv->reg_offset + HHI_HDMI_PHY_CNTL1,
+> +			     HHI_HDMI_PHY_CNTL1_CLOCK_ENABLE |
+> +			     HHI_HDMI_PHY_CNTL1_SOFT_RESET);
+> +		usleep_range(1000, 2000);
+> +
+> +		regmap_write(priv->hhi, priv->reg_offset + HHI_HDMI_PHY_CNTL1,
+> +			     HHI_HDMI_PHY_CNTL1_CLOCK_ENABLE);
+> +		usleep_range(1000, 2000);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int phy_meson8_hdmi_tx_power_off(struct phy *phy)
+> +{
+> +	struct phy_meson8_hdmi_tx_priv *priv = phy_get_drvdata(phy);
+> +
+> +	regmap_write(priv->hhi, priv->reg_offset + HHI_HDMI_PHY_CNTL0,
+> +		     FIELD_PREP(HHI_HDMI_PHY_CNTL0_HDMI_CTL1, 0x0841) |
+> +		     FIELD_PREP(HHI_HDMI_PHY_CNTL0_HDMI_CTL0, 0x8d00));
+
+more magic..
+
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct phy_ops phy_meson8_hdmi_tx_ops = {
+> +	.init		= phy_meson8_hdmi_tx_init,
+> +	.exit		= phy_meson8_hdmi_tx_exit,
+> +	.power_on	= phy_meson8_hdmi_tx_power_on,
+> +	.power_off	= phy_meson8_hdmi_tx_power_off,
+> +	.owner		= THIS_MODULE,
+> +};
+> +
+> +static int phy_meson8_hdmi_tx_probe(struct platform_device *pdev)
+> +{
+> +	struct device_node *np = pdev->dev.of_node;
+> +	struct phy_meson8_hdmi_tx_priv *priv;
+> +	struct phy_provider *phy_provider;
+> +	struct phy *phy;
+> +	u32 reg[2];
+> +	int ret;
+> +
+> +	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	ret = device_property_read_u32_array(&pdev->dev, "reg", reg,
+> +					     ARRAY_SIZE(reg));
+
+we have reg as single property, why array with 2 entries here?
+
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret,
+> +				     "Failed to parse the 'reg' property\n");
+> +
+> +	priv->reg_offset = reg[0];
+
+and mystery deepens, no use of reg[1],  leftover artifacts?
+
+> +
+> +	priv->hhi = syscon_node_to_regmap(np->parent);
+> +	if (IS_ERR(priv->hhi))
+> +		return PTR_ERR(priv->hhi);
+> +
+> +	priv->tmds_clk = devm_clk_get(&pdev->dev, NULL);
+> +	if (IS_ERR(priv->tmds_clk))
+> +		return PTR_ERR(priv->tmds_clk);
+> +
+> +	phy = devm_phy_create(&pdev->dev, np, &phy_meson8_hdmi_tx_ops);
+> +	if (IS_ERR(phy))
+> +		return PTR_ERR(phy);
+> +
+> +	phy_set_drvdata(phy, priv);
+> +
+> +	phy_provider = devm_of_phy_provider_register(&pdev->dev,
+> +						     of_phy_simple_xlate);
+> +
+> +	return PTR_ERR_OR_ZERO(phy_provider);
+> +}
+> +
+> +static const struct of_device_id phy_meson8_hdmi_tx_of_match[] = {
+> +	{ .compatible = "amlogic,meson8-hdmi-tx-phy" },
+> +	{ .compatible = "amlogic,meson8b-hdmi-tx-phy" },
+> +	{ .compatible = "amlogic,meson8m2-hdmi-tx-phy" },
+> +	{ /* sentinel */ }
+
+I see that all three are handled similarly, no difference!
+
+Maybe also add a amlogic,meson8-hdmi compatible and use that?
 
 -- 
 ~Vinod
