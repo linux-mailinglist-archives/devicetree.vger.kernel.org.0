@@ -2,97 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F276B3CFBBB
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 16:13:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22EE13CFBBE
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 16:13:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238548AbhGTNcp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 09:32:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37952 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239333AbhGTN2A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 09:28:00 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72DB2C061574;
-        Tue, 20 Jul 2021 07:08:13 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id n11so11484423plc.2;
-        Tue, 20 Jul 2021 07:08:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=PkAUSa8iO+7WteRWzJzZbVWHxdXWutFxMQnYCPT03FA=;
-        b=CXXbqsq/+4Uai+DmJMRIR7PpNVY4/MeKGB04RdhVWil0uMU607jC2kcpJbANpSHaGj
-         32ciUW4H9ieKAG5jczZ0Eu/Ls36kDRJCFsuUhLJzagBoQXak7j/fkyvn7JzrtpNlLGRn
-         QFuBtS/wu/2xbu8OoDoaWx+aKazVvuojOMQOCCimIy3qWAPDXLSNn8rjjt+HX3/80DcZ
-         0uRP85MisKdG0p2GRorbt5vwoE9DiE1rmYow/FTczt1nWJItWJB61iiLXxguWbPhbBCD
-         3BcC4Dlwqk2IJTe9Up7Fkon5b+CYG+J1Ukab7utwSZb3kGibyzI91m/05DGdgaYQFMZV
-         IIkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=PkAUSa8iO+7WteRWzJzZbVWHxdXWutFxMQnYCPT03FA=;
-        b=t0TQMQLmMcKrCmGFGpdGVXSFQ7CkoGuWNxktltwfiYrMcCGt37PfjqX8nAw2Gzvd7k
-         LmRRSfxK9N9bi5WIaiEfSePbMR8pBuzEizRo38VZrvjRa0I348N2AhGPY846j8xiNZ7S
-         R0g0SaX+NsmMOFDe4v89XR+r36h+sb0uVu+pvZirNLmJIwxuMwS3TZr4g0ew4t80bee7
-         43vXtLpSzhLAsZXkFanP9a5HyLmNFKFUOOS2NauWGIGUVByhsEgp70dRMAV6KAoUTXiY
-         tQ3SVgmq4pdEH48tERmEMstt2NoYHvFfZnnd0cesFeEgsMUw+GIbubVgcCHCBo8d7LqA
-         jtew==
-X-Gm-Message-State: AOAM533K/mb5e0HwQTu4Nle/F/ZcZJOXzJj+fhGKZXqYKbop/ozphpnO
-        jtf2S7PKQC8E/l3n0rHcOT251etZxOzq+Hy1pwA=
-X-Google-Smtp-Source: ABdhPJwNJvdBAkDBLZMGoPuyB5XVo2FQOgd2tik+AdOrm0UcV9m1VW/T03iaej4iyooKEh45AWMbXBcjnIWeG/UYZao=
-X-Received: by 2002:a17:902:b198:b029:11b:2246:e374 with SMTP id
- s24-20020a170902b198b029011b2246e374mr23684180plr.17.1626790092873; Tue, 20
- Jul 2021 07:08:12 -0700 (PDT)
+        id S239153AbhGTNct (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 09:32:49 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38288 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239095AbhGTN31 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Jul 2021 09:29:27 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPS id AA08261208;
+        Tue, 20 Jul 2021 14:10:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1626790205;
+        bh=p9VCVXxxIVemrVvV6868AGK9xupsroH0mbRQk2tNnFQ=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=o6gAjeMtGnIMoqaGU/0R5uw7Oa75JJpFdX6Zd3zCCrTLk+NKaSmleQpf7ygrUGxP5
+         VWr0SBYy6EIpGYsyOnk6f7THj65ypVow7yBV7V+GkgaZ+Nz+Z99E7x64s3uv8ujCrR
+         s5kcZHKnDMwm7SdxrQFMucqeGOMoJwaK1TFoWtnUILjY9xo5a4+SdSN6EiJr0z6Vis
+         g5MmkZtIoY6t7EJmYMfrijGlbUeE6KjtmowISC8VkMmPhLYYh8KbPFm70WeJILvxPw
+         xhdSyyuh1Pvu6l7zgHRbQIT/j6C1AEs0cslSDal3XuhahX+qFHQDtcrV9q5mMAgLiS
+         thrJHBfiv3vKA==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id A045460CD3;
+        Tue, 20 Jul 2021 14:10:05 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20210716114210.141560-1-antoniu.miclaus@analog.com>
- <CAHp75VcNhJrp4YGZQu1ZB2J4ARtuT2T2p-72H1qn4F+KtZDVoQ@mail.gmail.com> <CY4PR03MB3399083DDE3A03C55D3153FE9BE29@CY4PR03MB3399.namprd03.prod.outlook.com>
-In-Reply-To: <CY4PR03MB3399083DDE3A03C55D3153FE9BE29@CY4PR03MB3399.namprd03.prod.outlook.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Tue, 20 Jul 2021 17:07:31 +0300
-Message-ID: <CAHp75VcN2fjVDMfkpgyE2tqu=21ku4KBowNDKJxvpbKzwuEPew@mail.gmail.com>
-Subject: Re: [PATCH v6 1/2] iio: frequency: adrf6780: add support for ADRF6780
-To:     "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>
-Cc:     "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next] dt-bindings: net: fec: Fix indentation
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <162679020565.11280.13360005639657691235.git-patchwork-notify@kernel.org>
+Date:   Tue, 20 Jul 2021 14:10:05 +0000
+References: <20210719232639.3812285-1-festevam@gmail.com>
+In-Reply-To: <20210719232639.3812285-1-festevam@gmail.com>
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     davem@davemloft.net, qiangqing.zhang@nxp.com, robh+dt@kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 20, 2021 at 4:17 PM Miclaus, Antoniu
-<Antoniu.Miclaus@analog.com> wrote:
-> > From: Andy Shevchenko <andy.shevchenko@gmail.com>
-> > Sent: Friday, July 16, 2021 5:53 PM
-> > On Fri, Jul 16, 2021 at 2:43 PM Antoniu Miclaus
-> > <antoniu.miclaus@analog.com> wrote:
+Hello:
 
-...
+This patch was applied to netdev/net-next.git (refs/heads/master):
 
-> > First question is why not to use the regmap API (I have heard it has
-> > gained support of 17 bit)?
->
-> Initially that was the plan, but after this patch:
-> https://github.com/torvalds/linux/commit/4191f19792bf91267835eb090d970e9cd6277a65
-> the custom write formats for regmap allow the read only via cached registers.
->
-> Therefore, I preferred using spi transfers for write/read to/from the device.
+On Mon, 19 Jul 2021 20:26:39 -0300 you wrote:
+> The following warning is observed when running 'make dtbs_check':
+> Documentation/devicetree/bindings/net/fsl,fec.yaml:85:7: [warning] wrong indentation: expected 8 but found 6 (indentation)
+> 
+> Fix the indentation accordingly.
+> 
+> Signed-off-by: Fabio Estevam <festevam@gmail.com>
+> 
+> [...]
 
-Not sure I follow you. That patch is upstream. Does it prevent you
-from switching to regmap SPI API?
+Here is the summary with links:
+  - [net-next] dt-bindings: net: fec: Fix indentation
+    https://git.kernel.org/netdev/net-next/c/a38c02ef48a1
 
-...
-
-> > > +        depends on COMMON_CLK
-> >
-> > Is it mandatory for any function inside the device?
->
-> Yes. It will serve as LO input to the device.
-
-But can the device work without it (with limited functionality)?
-
+You are awesome, thank you!
 --
-With Best Regards,
-Andy Shevchenko
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
