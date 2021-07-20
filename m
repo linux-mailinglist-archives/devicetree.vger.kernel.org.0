@@ -2,197 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A2C13CFCC3
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 16:58:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C39EC3CFCC4
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 16:58:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237325AbhGTORZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 10:17:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44596 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239541AbhGTN5V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 09:57:21 -0400
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E66FC061574;
-        Tue, 20 Jul 2021 07:37:46 -0700 (PDT)
-Received: by mail-yb1-xb2a.google.com with SMTP id v189so33052668ybg.3;
-        Tue, 20 Jul 2021 07:37:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=twAcJwRNZdn+hWF5eUUfRv0NDfKoXSW2Ryat6Jwflqo=;
-        b=sfbDpPPNijKyZ6UiRIh5zgydDChl1eYmSO177LQ0yoCG6RUj36kmUTPJo+RIz+wFnq
-         zp/s6taOtwOiSasGeavhSCYtFQ864wSdmGwUbs9tKPPqHyWGc72LysIzT1pzskxE4QR0
-         pAXwrdRllNJ8YTQkbwiPT3J8BFMXSPxJ4STzyDjhm1x+lMdncyosKw+ZU3MTtcMPBpqt
-         2KtxPeKnmyjR9vWroZ2zo+8MX9la4ndE7gDmTK+4C+6i/Uyu7fEcKhbtEdwcDFUDKD1x
-         QpqirVBkaAolKP3ls5aMwrakG5GcvxcSisq87W0XMiiHhvOsFyEgbu2phzdlFMZbb1yT
-         RBjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=twAcJwRNZdn+hWF5eUUfRv0NDfKoXSW2Ryat6Jwflqo=;
-        b=XTfHCE04ZHXxdbAHZdNMrIVpJAvoGf2Wg2GAwOEoLPvMHVazJapiVAmhhjtVP4KMpl
-         l2hB3JnoE0E+kTOlzWwxT3K1/TYnBsN7cREL/WuJZpjT4foO5/ZaWTUnG7rjqAP2idOv
-         AJRBsGUj+fALaEYVZN1euF9kSl5l5FyVnqCI+RteTmlC1TQxxf2oLCRHvqqFeMJ/XlRr
-         iNQ6m4B4M1G0Fpb9k9xl/ZGDTgmlqaAfiptdTntqwosvgGA2eCsFLjcwXPX73dS+whjO
-         n6qEoXn7yYwV5JOw/CNs10RzSuS17Bg1YGYkGg7llje0ETde1/wGmKOXfrKp3qGDaePd
-         H8Lw==
-X-Gm-Message-State: AOAM530n2VB1ctg9vh01ITtDpmH9iwar2gzxqsnk7VQ4PcPjD9Xi3icT
-        HeXwvrGbaViVVoUn97tI0AHSrmJnB9eLL9jJOMYAJPyJs3k=
-X-Google-Smtp-Source: ABdhPJyAcO8dYvfHnYTMIJBpgaNLQrfDXOatIRgq5EcoKOshwfU5hDRIuaNZ9zCFEILzu6oKVT0xeH75bB2s95FlkyE=
-X-Received: by 2002:a25:d491:: with SMTP id m139mr38146443ybf.156.1626791865876;
- Tue, 20 Jul 2021 07:37:45 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210719143811.2135-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20210719143811.2135-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdV1cLZkvyocVrAo6n6Y73QZBGOUMeJKqjk533gqk_RVLg@mail.gmail.com>
-In-Reply-To: <CAMuHMdV1cLZkvyocVrAo6n6Y73QZBGOUMeJKqjk533gqk_RVLg@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Tue, 20 Jul 2021 15:37:20 +0100
-Message-ID: <CA+V-a8s8gO5M_+2XBWoknxDL0nnY9PNtPr0PYfqYgv_SeRd7Sg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/5] dt-bindings: net: can: renesas,rcar-canfd:
- Document RZ/G2L SoC
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        id S239165AbhGTORe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 10:17:34 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:45480 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239936AbhGTN71 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 09:59:27 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 16KEdx0k026826;
+        Tue, 20 Jul 2021 09:39:59 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1626791999;
+        bh=i3NPMi50XC/qqwmVNCcZfA3t4NBmpTGhaYXkRuvsQ/8=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=XuXP+64foJoUCQ8dw4uYnUGI67zar/QPuyLrTu7QZ3CHJK6Zsd9KAUznebozZYUqk
+         hqpMw05rbGTvX1J75Uzmq2QNDSD2Ka1/YQx90C8IawozGB3ww17oZLGpv9Qrk3+miq
+         Wp3yH7koCqYfrr+Pjjgl5aAnBcrwBBzrVAkJnkVs=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 16KEdxYl115748
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 20 Jul 2021 09:39:59 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 20
+ Jul 2021 09:39:59 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 20 Jul 2021 09:39:59 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 16KEdxNj117037;
+        Tue, 20 Jul 2021 09:39:59 -0500
+Date:   Tue, 20 Jul 2021 09:39:59 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Aswath Govindraju <a-govindraju@ti.com>
+CC:     Marc Kleine-Budde <mkl@pengutronix.de>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-can@vger.kernel.org, netdev <netdev@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        Lokesh Vutla <lokeshvutla@ti.com>
+Subject: Re: [PATCH 1/6] arm64: dts: ti: k3-am65-mcu: Add Support for MCAN
+Message-ID: <20210720143959.6zmfo6pmrkpzkpse@repaint>
+References: <20210720141642.24999-1-a-govindraju@ti.com>
+ <20210720141642.24999-2-a-govindraju@ti.com>
+ <20210720142047.mfqssyj4lwh3yi2k@pengutronix.de>
+ <f3560ac8-8ffe-87d6-a21f-87f6251f1750@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <f3560ac8-8ffe-87d6-a21f-87f6251f1750@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+On 20:00-20210720, Aswath Govindraju wrote:
+> Hi Marc,
+> 
+> On 20/07/21 7:50 pm, Marc Kleine-Budde wrote:
+> > On 20.07.2021 19:46:37, Aswath Govindraju wrote:
+> >> From: Faiz Abbas <faiz_abbas@ti.com>
+> >>
+> >> Add Support for two MCAN controllers present on the am65x SOC. Both support
+> >> classic CAN messages as well as CAN-FD.
+> > 
+> > Thanks for the patch!
+> > 
+> > Why don't you disable the CAN cores by default in the dtsi?
+> 
+> As far as I know, in the dtsi file we mention all the subsystems or
+> periherals present in the SoC and in the specific board dts file we
+> enable or disable the DT nodes depending on whether the  pins are
+> brought out.
 
-Thank you for the review.
 
-On Tue, Jul 20, 2021 at 11:21 AM Geert Uytterhoeven
-<geert@linux-m68k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Mon, Jul 19, 2021 at 4:39 PM Lad Prabhakar
-> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > Add CANFD binding documentation for Renesas RZ/G2L SoC.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
->
-> Thanks for your patch!
->
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Just some bikeshedding on the exact naming below ;-)
->
-> > --- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-> > +++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-> > @@ -91,6 +92,59 @@ required:
-> >    - channel0
-> >    - channel1
-> >
-> > +if:
-> > +  properties:
-> > +    compatible:
-> > +      contains:
-> > +        enum:
-> > +          - renesas,rzg2l-canfd
-> > +then:
-> > +  properties:
-> > +    interrupts:
-> > +      items:
-> > +        - description: CAN global error interrupt
-> > +        - description: CAN receive FIFO interrupt
-> > +        - description: CAN0 error interrupt
-> > +        - description: CAN0 transmit interrupt
-> > +        - description: CAN0 transmit/receive FIFO receive completion interrupt
-> > +        - description: CAN1 error interrupt
-> > +        - description: CAN1 transmit interrupt
-> > +        - description: CAN1 transmit/receive FIFO receive completion interrupt
-> > +
-> > +    interrupt-names:
-> > +      items:
-> > +        - const: g_error
-> > +        - const: g_rx_fifo
-> > +        - const: can0_error
->
-> s/error/err/?
->
-> > +        - const: can0_tx
-> > +        - const: can0_tx_rx_fifo_receive_completion
-> > +        - const: can1_error
-> > +        - const: can1_tx
-> > +        - const: can1_tx_rx_fifo_receive_completion
->
-> s/receive/rx/?
->
-> Some are also a bit long to type.
-> Perhaps use naming closer to the User's Manual?
->
-> INTRCANGERR => g_err
-> INTRCANGRECC => g_recc
-> INTRCAN0ERR => ch0_err
-> INTRCAN0REC => ch0_rec
-> INTRCAN0TRX => ch0_trx
-> INTRCAN1ERR => ch1_err
-> INTRCAN1REC => ch1_rec
-> INTRCAN1TRX => ch1_trx
->
-> These do not have "_int" suffixes...
->
-Agreed thanks for the input.
+There is a long history on this. You should be able to look the
+discussion up in lore archives. The nutshell is the dtsi files should
+maintain DT standard which is "default, status if not explicitly
+provided is enabled" and the board dts files will explicitly disable
+OR reserve the nodes that are not pinned out / used / reserved (due to
+firmware usage) etc. There is the entire string parsing, size arguments
+that run around this topic, but, anyways.
 
-> > +
-> > +    resets:
-> > +      items:
-> > +        - description: CANFD_RSTP_N
-> > +        - description: CANFD_RSTC_N
-> > +
-> > +  required:
-> > +    - interrupt-names
-> > +else:
-> > +  properties:
-> > +    interrupts:
-> > +      items:
-> > +        - description: Channel interrupt
-> > +        - description: Global interrupt
-> > +
-> > +    interrupt-names:
-> > +      items:
-> > +        - const: ch_int
-> > +        - const: g_int
->
-> ... and these do have "_int" suffixes.
->
-indeed
-
-Cheers,
-Prabhakar
-> > +
-> > +    resets:
-> > +      items:
-> > +        - description: CANFD reset
-> > +
-> >  unevaluatedProperties: false
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
