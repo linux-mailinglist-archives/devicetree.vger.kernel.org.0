@@ -2,247 +2,472 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B87CB3CF64A
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 10:41:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D1693CF65F
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 10:53:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229675AbhGTIA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 04:00:59 -0400
-Received: from mail-eopbgr110129.outbound.protection.outlook.com ([40.107.11.129]:19456
-        "EHLO GBR01-CWL-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229588AbhGTIA6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Jul 2021 04:00:58 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bP4MaUmTnC5O5cv5JY9ydJIYI27c6uLI2+MUyg5PJbYlNEW/HPkJvgkkqcOzo5mSvzFaBEJsLCIv4gtCAJaiOTky74danu5bBQJOCjTm5qkuIyk9FfUZVjjVAllxkryEVkcGk7d25dgN4R6OhRJMFPgxTQrb0hRy9oAgCuWKj/5VFKxg1ShmV/4Qnqqk/v7gXNQN061zrn0kSGRZL+WfYe8XX/221X6P5C/ffkntRmmjWkGaqljrCDRiiN/7Wn974JiFac13VDFcpBeYbEFo1WZAey4MKpbTWEUsqTDl5YuWhBHeyMveWZY+edoTRPVzKMcfJKZ2VmmjG/7ohMo+9A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=f9tj66jO5dVWtaH0rERbTckq74257x1LIQ7/yjA7t3E=;
- b=X61yyvzWOFceDGcFajYvefW4LpQwftivFy32f82aSuXdTZfjDBK/DQvJJtoTB7hWBrStBVGReIDNx7OhwYuvaJO2qnswaOTn6sn+MloA0fy4dgH8qmtHCMQXear7sRq3zbmXyR9ioc9NVHNR/zzU0OGIJNn9GSrBFkI25BQ8vWICmxq4FEr/sqdZbyl5X8IQnmIqKMNe8+ALFATGGlIQ7QMfY5gdKqKpiw91BMBVhL14EJtOueqyk8uRoOiQRJzqugNfRbZfHgrodKIEJn+b7+E38N+sI9FGezKOSj2nfDqwIBF9yF7u/dIradIcx3O1VcMjZBBULvOkGaNVAq/tQg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=sancloud.com; dmarc=pass action=none header.from=sancloud.com;
- dkim=pass header.d=sancloud.com; arc=none
+        id S231944AbhGTIMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 04:12:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49360 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234366AbhGTIGd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 04:06:33 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94763C061768
+        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 01:46:08 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id y21-20020a7bc1950000b02902161fccabf1so1014912wmi.2
+        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 01:46:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sancloud.onmicrosoft.com; s=selector2-sancloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=f9tj66jO5dVWtaH0rERbTckq74257x1LIQ7/yjA7t3E=;
- b=J+W3+GKojH+QmiHgtD3T98zWTqZNB1mlsKbb0XWMajBtAq8a1pvtxegIkLf/qKLj9cVGVMSPukLDAapgrWjAL8hc1KoQqRNVo7t/xK5mtQ8/MSgBikQCEYlHUFo5aFcGSj5Ve626N5qkDUw45G7g97/t/qq7PU0WgQ0/Mf+n9G4=
-Authentication-Results: baylibre.com; dkim=none (message not signed)
- header.d=none;baylibre.com; dmarc=none action=none header.from=sancloud.com;
-Received: from CWLP123MB2241.GBRP123.PROD.OUTLOOK.COM (2603:10a6:401:61::19)
- by CWLP123MB3764.GBRP123.PROD.OUTLOOK.COM (2603:10a6:400:94::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.21; Tue, 20 Jul
- 2021 08:41:35 +0000
-Received: from CWLP123MB2241.GBRP123.PROD.OUTLOOK.COM
- ([fe80::dc2:e929:76be:a8b0]) by CWLP123MB2241.GBRP123.PROD.OUTLOOK.COM
- ([fe80::dc2:e929:76be:a8b0%7]) with mapi id 15.20.4331.034; Tue, 20 Jul 2021
- 08:41:35 +0000
-Date:   Tue, 20 Jul 2021 09:41:33 +0100
-From:   Paul Barker <paul.barker@sancloud.com>
-Cc:     =?UTF-8?B?QmVub8OudA==?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        linux-omap <linux-omap@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Marc Murphy <marc.murphy@sancloud.com>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>
-Subject: Re: [PATCH 3/4] ARM: dts: am335x-sancloud-bbe-lite: New devicetree
-Message-ID: <20210720094133.10006323.paul.barker@sancloud.com>
-In-Reply-To: <20210629141034.2f9a2fea.paul.barker@sancloud.com>
-References: <20210617093330.9179-1-paul.barker@sancloud.com>
-        <20210617093330.9179-4-paul.barker@sancloud.com>
-        <CAOCHtYjEn+F+_chyMQ0cppA0y=ZeHrme3c66A2Z5U6pJf9a8_w@mail.gmail.com>
-        <20210629141034.2f9a2fea.paul.barker@sancloud.com>
-Organization: SanCloud Ltd
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; x86_64-suse-linux-gnu)
-Content-Type: multipart/signed; boundary="Sig_/MFaT197QZpTt50mFfIrjMfc";
- protocol="application/pgp-signature"; micalg=pgp-sha256
-X-ClientProxiedBy: LO2P265CA0205.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:9e::25) To CWLP123MB2241.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:401:61::19)
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=sfnB6pEXfoigvkI+81/RrVPdT9Ty3Lcn3N9ErXDBwX0=;
+        b=RGuET55vDuE2nzwz1lXE4fGZZb8Pcy27Ybk+IR1rLdiQX5ghY1CU9nVJRsikmW3RIT
+         RXc7NPXx9mx/JrJMj2PUjBVNw4X1SXi8a6ybZ7GqMZp3amfgTCFB0eo6pC1E56H+iFLp
+         eyDdCrmLYJd2nzpyTuon3zLzzAByZokdin4zWZHrQBF8Hgyq4cSbLXm4gDUfvBqDfdy5
+         bhmr9//nwCI8h4vMD/M35gIkTQ4VdxnvsZ89q5WA1W76UOnRLwNgXOT8jGwxyKPleKDd
+         eLKbJ6TpDGNMu1pENi3/+JVaYvfTZvKl+oxUkjLbDq8idm6WERtRR4m9lLXD+dAIo3Cg
+         L30w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=sfnB6pEXfoigvkI+81/RrVPdT9Ty3Lcn3N9ErXDBwX0=;
+        b=or0dTw4IKFbojozLo862+WXab/SIXkavcytYB7+jfecChpWOqSvtivS/UbDinMbnTL
+         GmuMxEiP7v54uF3gbH+zS9EKo1Yq1ZR41MDTkC2psLZjnXTTersdyfhkIbmlRwfZykVV
+         msOiPU67xyIScwRfr37t26DEJB0MYCNY2Z4XFGqCmRlpS2lLs2Uh3iXeFc0ShdIk5E9u
+         P1c9ZeTHT9NMCDddNyRWrwy14pasxgkgBCcKYSMK9zHO0HmSSKhxlTVIdT3wkSzFWBqG
+         FDwSjN32dJEkU9BFlKtq/2iLc9K6ysqlZIelwkNvY8NwHgfFSM4nKQRpAbM0Uw/gMedf
+         FVmw==
+X-Gm-Message-State: AOAM531rK1TCn83f9/HNVXEBEwQzqxirb6qnatjT+gL4vTgbHSBCe8/Z
+        YC6EIyS+nNw8zw4iefzTVDNAFQ==
+X-Google-Smtp-Source: ABdhPJwIYw5ttbPqKjD+YOlc7V1LBRa4PNSFy7pfGuMZWU+YqytnaSW5a5r3TbwdGhLLEk9Sh+JhRw==
+X-Received: by 2002:a05:600c:214a:: with SMTP id v10mr34897190wml.17.1626770767138;
+        Tue, 20 Jul 2021 01:46:07 -0700 (PDT)
+Received: from [10.1.4.104] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id g18sm18851572wmk.37.2021.07.20.01.46.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Jul 2021 01:46:06 -0700 (PDT)
+Subject: Re: [PATCH v2 2/4] remoteproc: Add a remoteproc driver for the
+ MT8183's APU
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc:     ohad@wizery.com, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        matthias.bgg@gmail.com, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        stephane.leprovost@mediatek.com, gpain@baylibre.com
+References: <20200910130148.8734-1-abailon@baylibre.com>
+ <20200910130148.8734-3-abailon@baylibre.com> <20200929175214.GB124290@xps15>
+From:   Alexandre Bailon <abailon@baylibre.com>
+Message-ID: <59553610-3d88-7982-2a10-dec27d9c3fce@baylibre.com>
+Date:   Tue, 20 Jul 2021 10:47:33 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from owl.home.b5net.uk (80.7.160.81) by LO2P265CA0205.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:9e::25) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.21 via Frontend Transport; Tue, 20 Jul 2021 08:41:34 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d5519320-9a3e-40e4-9129-08d94b5a2e90
-X-MS-TrafficTypeDiagnostic: CWLP123MB3764:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CWLP123MB376467268E811B39E858DD5493E29@CWLP123MB3764.GBRP123.PROD.OUTLOOK.COM>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Lh5hOCQr4Cu5iFAzrpSAqOyC/B8EAqpy7fKDN+vnn+x+FfDAWEM5/QL6yiCk0rLJdiwHoUhizJp42htoxyc0/3OQ36aOyZh7d7GCGCY9lTcIKBFfLWmE20yBGXSxSf/cSoOmASjpVul2WCazcIE55zQxzVO1ed76DVLWWJ/Q30YP+7JB30qobwNLYrYwmLEczi7i9r/yyPjGLZGDSssvVTmCQNuojY/WabQANRgZ6EYFqKNQ1OVRJ+BKgioH7wd+ETE4r3jtb1Gn1mg8oL1adPYnEaJMPp/FqhP/+rVZbanYlPMV7Jc/76UB8d7iD08hEe6DDR0uYxCFfm8Jng+GS2hfFTgaO2+soi3itV2s1VCsrxkEzyRxO3yXCo3eW+YS6SFfJREf67zrsZYcxgpwjVBN7RrQS6FQAQrsBpBrunKWJMWQxDtSqVjTEz/yE0yRlwQ5gfoVkRTsxXGxAwcX6d6dn2grPBtlD7O1SZKo++NBcvzzGYt33FYGch2W53bbtNTm0b6RUHWDQsQSC+00hCIgAnVYK63Dn7+ouvHzqMIqxDkZ8X0TypTex5BKF1uoVANO5gErDUEs0o47bCBxU/95PNf6L79Dird4TnjNSP2cE9J0j8A+orm23p+o+jwiJjZYgltS6rozXaI51FDulkudh31YQeXxfv2dWbCjLV+fn0E59jmt/xOvzEnkNDWDuBpPn3FWBE64i15RbbigJ4sHzI3twR1EkxpUh2v8qGwVzCCGWtT7+xZRxFaXGWLKjtB8EA8TjioCDgSWcJcLPSIHNRSZI7EwXt9yxLY0f+8=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CWLP123MB2241.GBRP123.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(346002)(366004)(376002)(136003)(396003)(39830400003)(66946007)(6486002)(26005)(8676002)(54906003)(38350700002)(38100700002)(186003)(8936002)(83380400001)(4326008)(316002)(66556008)(66476007)(6512007)(53546011)(2616005)(5660300002)(36756003)(966005)(52116002)(956004)(478600001)(36916002)(6506007)(44832011)(109986005)(1076003)(86362001)(2906002)(103116003)(14296002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?tWQg3JnTZJVgj1pZOJIKEYReQ3RxFqhlOPzXaeuE2aTxiFV4+PS+Q0wzyeqj?=
- =?us-ascii?Q?D6CUWSgMqhp1XSi1F1ABmkKW/VMKTVFXaFcmRxIdoY3WZwQxiookR55zfP+T?=
- =?us-ascii?Q?o/DXIahcaAqjEom/vrhrzWCcbFZioL9pmRKaYzTcBtaRCWXPX65v7FXSGqYg?=
- =?us-ascii?Q?39cu8b1nvPs6MixSo+Dx4uOG5c4S0gEKKw3Me6s8VMPjkvWiur7CcftFvuzL?=
- =?us-ascii?Q?XPN7Ba63PUmioXp6H8gRirOprZ/nGOnbGrywUhnWVX74U2+rLySRBhQstbX4?=
- =?us-ascii?Q?sMKwDI/GzIv7eraGyq2d1FhLlmnbE1PntBYwCd2v+3l+IrqH/qhGO0C8itrf?=
- =?us-ascii?Q?tdsbCi9e2HT8YQuA6lBSTgcOY8yZrZ0E3hdDnQw8Sw7DBw+3qp4k7ObVx5FG?=
- =?us-ascii?Q?WZdyeJ1XORTgxSmaqO3wlpuT1O3RQXz+WEh3jgvw4tbecNdbUqzEks4WA0pr?=
- =?us-ascii?Q?R4LNAw3VpU3LRPx6QnmUrtmV7GRU2VtgnJZMYm+bfMVO9mx9erbe1Zd9XsnV?=
- =?us-ascii?Q?rzixy44S4O8UJ8F+OWKjkCJUcJyYrAxOU7g9crCswfIy07lcIFWUTiNU20ce?=
- =?us-ascii?Q?4YTSX1jDwb33rFtrCicmcxEfJRczndfVRWVNMpz4TLElaEjyxvpIvZzZUvFZ?=
- =?us-ascii?Q?P3Ou7ATZY1WS5KRX+dsPa2uszaTfZw4gZ7k6/zhqSepmRGXHXHXX+vlLJaX2?=
- =?us-ascii?Q?prpfs3gMf02e1ER9MYwP3yt7AzfYUNKxFdbZFYkjmHYtna5e3JUNORTCGdfh?=
- =?us-ascii?Q?fmNs8V+eoornVoZOrhznhAdeZPoj0pzy89hlu5PCyECmqhYze9qWih86NcRX?=
- =?us-ascii?Q?FZlKuna6wdJ/ute2rGzTDGjzwJv6iAbZHkA6qONsEUhUaO5R+PZSuVosnoMS?=
- =?us-ascii?Q?MJHQG3KHgwWBYArt2TM2u7i2+RST2zLbOR4NxXNXCURDoF/9q7KMUVsk1RSD?=
- =?us-ascii?Q?mh5IStkK8sMrgdvnNiluys4H28um7kGwPj7MxGV4mg/ESJ29UbcgRV2YomGB?=
- =?us-ascii?Q?0FSdF/bEm9pjI6cdyJEPd9cmj8vWTVVG+S/dGi+ssriPVjeCZm1tEX0fDkdW?=
- =?us-ascii?Q?Y+QNutvP2sNCgSyih3rVX8tibbWYLplskPMf5wGwqmW9YtwbT8nSbHdxxodk?=
- =?us-ascii?Q?g1+xMDFUhtwZgZRonFMqoxSdO6Gg3+6v+AcPPF4V02MwVd1SI9a5EOfn/4qD?=
- =?us-ascii?Q?gFY/7zapsVQGBgWf0O2GalcvMyPB1oOQeq/EA+0ALhKpwhN/7IjELlh8VVqJ?=
- =?us-ascii?Q?mQTa1pvWSGaFx19sGM7RLY9T984voOIamzQzDY35rdrz09pox3415JqNV/D3?=
- =?us-ascii?Q?+DyjkfBL95y+RK/JnuUxYMGr?=
-X-OriginatorOrg: sancloud.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d5519320-9a3e-40e4-9129-08d94b5a2e90
-X-MS-Exchange-CrossTenant-AuthSource: CWLP123MB2241.GBRP123.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jul 2021 08:41:35.0911
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 840be37c-244a-450e-9bcc-2064862de1f4
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dmxEZ5JCYSwzEGsGs7TyCPXI86b5Zk9Om5eQlhxF56Z1Eman8aV1E1FmU0B0LDXxvT9uMW0gAvN01++UG/aeP5ILlqgbBjaE9sgnIcvSl0Y=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWLP123MB3764
-To:     unlisted-recipients:; (no To-header on input)
+In-Reply-To: <20200929175214.GB124290@xps15>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---Sig_/MFaT197QZpTt50mFfIrjMfc
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Hi Mathieu,
+> Hi Alexandre,
+>
+> On Thu, Sep 10, 2020 at 03:01:46PM +0200, Alexandre Bailon wrote:
+>> This adds a driver to control the APU present in the MT8183.
+>> This loads the firmware and start the DSP.
+>>
+>> Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
+>> ---
+>>   drivers/remoteproc/Kconfig   |  10 ++
+>>   drivers/remoteproc/Makefile  |   1 +
+>>   drivers/remoteproc/mtk_apu.c | 288 +++++++++++++++++++++++++++++++++++
+>>   3 files changed, 299 insertions(+)
+>>   create mode 100644 drivers/remoteproc/mtk_apu.c
+>>
+>> diff --git a/drivers/remoteproc/Kconfig b/drivers/remoteproc/Kconfig
+>> index c6659dfea7c7..4ebea57bf4c8 100644
+>> --- a/drivers/remoteproc/Kconfig
+>> +++ b/drivers/remoteproc/Kconfig
+>> @@ -51,6 +51,16 @@ config MTK_SCP
+>>   
+>>   	  It's safe to say N here.
+>>   
+>> +config MTK_APU
+>> +	tristate "Mediatek APU remoteproc support"
+>> +	depends on ARCH_MEDIATEK
+>> +	depends on MTK_IOMMU
+>> +	help
+>> +	  Say y to support the Mediatek's Accelerated Processing Unit (APU) via
+>> +	  the remote processor framework.
+>> +
+>> +	  It's safe to say N here.
+>> +
+>>   config OMAP_REMOTEPROC
+>>   	tristate "OMAP remoteproc support"
+>>   	depends on ARCH_OMAP4 || SOC_OMAP5 || SOC_DRA7XX
+>> diff --git a/drivers/remoteproc/Makefile b/drivers/remoteproc/Makefile
+>> index 3dfa28e6c701..174644f38fda 100644
+>> --- a/drivers/remoteproc/Makefile
+>> +++ b/drivers/remoteproc/Makefile
+>> @@ -14,6 +14,7 @@ obj-$(CONFIG_REMOTEPROC_CDEV)		+= remoteproc_cdev.o
+>>   obj-$(CONFIG_IMX_REMOTEPROC)		+= imx_rproc.o
+>>   obj-$(CONFIG_INGENIC_VPU_RPROC)		+= ingenic_rproc.o
+>>   obj-$(CONFIG_MTK_SCP)			+= mtk_scp.o mtk_scp_ipi.o
+>> +obj-$(CONFIG_MTK_APU)			+= mtk_apu.o
+>>   obj-$(CONFIG_OMAP_REMOTEPROC)		+= omap_remoteproc.o
+>>   obj-$(CONFIG_WKUP_M3_RPROC)		+= wkup_m3_rproc.o
+>>   obj-$(CONFIG_DA8XX_REMOTEPROC)		+= da8xx_remoteproc.o
+>> diff --git a/drivers/remoteproc/mtk_apu.c b/drivers/remoteproc/mtk_apu.c
+>> new file mode 100644
+>> index 000000000000..6d2f577cfde5
+>> --- /dev/null
+>> +++ b/drivers/remoteproc/mtk_apu.c
+>> @@ -0,0 +1,288 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Copyright (C) 2020 BayLibre SAS
+>> + */
+>> +
+>> +#include <linux/bitops.h>
+>> +#include <linux/clk.h>
+>> +#include <linux/delay.h>
+>> +#include <linux/highmem.h>
+> Not sure what this is for
+>
+>> +#include <linux/interrupt.h>
+>> +#include <linux/io.h>
+>> +#include <linux/iommu.h>
+>> +#include <linux/irq.h>
+>> +#include <linux/kernel.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of_reserved_mem.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/remoteproc.h>
+>> +
+>> +#include "remoteproc_internal.h"
+>> +
+>> +/* From MT8183 4.5 Vision Processor Unit (VPU).pdf datasheet */
+>> +#define SW_RST					(0x0000000C)
+>> +#define SW_RST_OCD_HALT_ON_RST			BIT(12)
+>> +#define SW_RST_IPU_D_RST			BIT(8)
+>> +#define SW_RST_IPU_B_RST			BIT(4)
+>> +#define CORE_CTRL				(0x00000110)
+>> +#define CORE_CTRL_PDEBUG_ENABLE			BIT(31)
+>> +#define CORE_CTRL_SRAM_64K_iMEM			(0x00 << 27)
+>> +#define CORE_CTRL_SRAM_96K_iMEM			(0x01 << 27)
+>> +#define CORE_CTRL_SRAM_128K_iMEM		(0x02 << 27)
+>> +#define CORE_CTRL_SRAM_192K_iMEM		(0x03 << 27)
+>> +#define CORE_CTRL_SRAM_256K_iMEM		(0x04 << 27)
+>> +#define CORE_CTRL_PBCLK_ENABLE			BIT(26)
+>> +#define CORE_CTRL_RUN_STALL			BIT(23)
+>> +#define CORE_CTRL_STATE_VECTOR_SELECT		BIT(19)
+>> +#define CORE_CTRL_PIF_GATED			BIT(17)
+>> +#define CORE_CTRL_NMI				BIT(0)
+>> +#define CORE_XTENSA_INT				(0x00000114)
+>> +#define CORE_CTL_XTENSA_INT			(0x00000118)
+>> +#define CORE_DEFAULT0				(0x0000013C)
+>> +#define CORE_DEFAULT0_QOS_SWAP_0		(0x00 << 28)
+>> +#define CORE_DEFAULT0_QOS_SWAP_1		(0x01 << 28)
+>> +#define CORE_DEFAULT0_QOS_SWAP_2		(0x02 << 28)
+>> +#define CORE_DEFAULT0_QOS_SWAP_3		(0x03 << 28)
+>> +#define CORE_DEFAULT0_ARUSER_USE_IOMMU		(0x10 << 23)
+>> +#define CORE_DEFAULT0_AWUSER_USE_IOMMU		(0x10 << 18)
+>> +#define CORE_DEFAULT1				(0x00000140)
+>> +#define CORE_DEFAULT0_ARUSER_IDMA_USE_IOMMU	(0x10 << 0)
+>> +#define CORE_DEFAULT0_AWUSER_IDMA_USE_IOMMU	(0x10 << 5)
+>> +#define CORE_XTENSA_ALTRESETVEC			(0x000001F8)
+>> +
+>> +struct mtk_apu_rproc {
+>> +	struct device *dev;
+>> +	struct rproc *rproc;
+> As far as I can tell @rproc is only used in apu_jtag_probe(), but it could just
+> as easily be given as a parameter to the function instead of bloating the
+> structure.
+>
+>> +
+> Extra line
+>
+>> +	void __iomem *base;
+>> +	int irq;
+>> +	struct clk_bulk_data clks[3];
+>> +};
+>> +
+>> +static int mtk_apu_rproc_prepare(struct rproc *rproc)
+>> +{
+>> +	struct mtk_apu_rproc *apu_rproc = rproc->priv;
+>> +	int ret;
+>> +
+>> +	ret = clk_bulk_prepare_enable(ARRAY_SIZE(apu_rproc->clks),
+>> +				      apu_rproc->clks);
+>> +	if (ret)
+>> +		dev_err(apu_rproc->dev, "Failed to enable clocks\n");
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static int mtk_apu_rproc_unprepare(struct rproc *rproc)
+>> +{
+>> +	struct mtk_apu_rproc *apu_rproc = rproc->priv;
+>> +
+>> +	clk_bulk_disable_unprepare(ARRAY_SIZE(apu_rproc->clks),
+>> +				   apu_rproc->clks);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int mtk_apu_rproc_start(struct rproc *rproc)
+>> +{
+>> +	struct mtk_apu_rproc *apu_rproc = rproc->priv;
+>> +	u32 core_ctrl;
+>> +
+>> +	/* Set reset vector of APU firmware boot address */
+>> +	writel(rproc->bootaddr, apu_rproc->base + CORE_XTENSA_ALTRESETVEC);
+>> +
+>> +	/* Turn on the clocks and stall the APU */
+>> +	core_ctrl = readl(apu_rproc->base + CORE_CTRL);
+>> +	core_ctrl |= CORE_CTRL_PDEBUG_ENABLE | CORE_CTRL_PBCLK_ENABLE |
+>> +		     CORE_CTRL_STATE_VECTOR_SELECT | CORE_CTRL_RUN_STALL |
+>> +		     CORE_CTRL_PIF_GATED;
+>> +	writel(core_ctrl, apu_rproc->base + CORE_CTRL);
+>> +
+>> +	/* Reset the APU */
+>> +	writel(SW_RST_OCD_HALT_ON_RST | SW_RST_IPU_B_RST | SW_RST_IPU_D_RST,
+>> +		apu_rproc->base + SW_RST);
+>> +	ndelay(27);
+> What is this for and why 27 nanosecond precicely?  Is this a board specific
+> setting?  Are we sure it is the same value on all platform with a MT8183?
+>
+> Matthias, what is your take on this?
+I have got the response recently from the HW team and this 27 nanosecond 
+delay
+is the minimum delay required to reset the APU, and that should work at 
+any frequency.
+This delay is supposed to work for the mt8183 but also for the other 
+platform
+including an APU.
 
-On Tue, 29 Jun 2021 14:10:33 +0100
-Paul Barker <paul.barker@sancloud.com> wrote:
+The HW also confirmed that there are no way to know if the reset has 
+been completed
+or not so we must way that delay.
 
-> On Fri, 18 Jun 2021 11:02:12 -0500
-> Robert Nelson <robertcnelson@gmail.com> wrote:
->=20
-> > Hi Paul,
-> >=20
-> > On Thu, Jun 17, 2021 at 4:35 AM Paul Barker
-> > <paul.barker@sancloud.com> wrote: =20
-> > >
-> > > This adds support for the Sancloud BBE Lite which shares a common
-> > > hardware base with the non-Lite version of the BBE.
-> > >
-> > > Signed-off-by: Paul Barker <paul.barker@sancloud.com>
-> > > ---
-> > >  arch/arm/boot/dts/Makefile                    |  1 +
-> > >  .../arm/boot/dts/am335x-sancloud-bbe-lite.dts | 51
-> > > +++++++++++++++++++ 2 files changed, 52 insertions(+)
-> > >  create mode 100644 arch/arm/boot/dts/am335x-sancloud-bbe-lite.dts
-> > >
-> > > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> > > index f8f09c5066e7..8629c941f573 100644
-> > > --- a/arch/arm/boot/dts/Makefile
-> > > +++ b/arch/arm/boot/dts/Makefile
-> > > @@ -834,6 +834,7 @@ dtb-$(CONFIG_SOC_AM33XX) +=3D \
-> > >         am335x-pocketbeagle.dtb \
-> > >         am335x-regor-rdk.dtb \
-> > >         am335x-sancloud-bbe.dtb \
-> > > +       am335x-sancloud-bbe-lite.dtb \
-> > >         am335x-shc.dtb \
-> > >         am335x-sbc-t335.dtb \
-> > >         am335x-sl50.dtb \
-> > > diff --git a/arch/arm/boot/dts/am335x-sancloud-bbe-lite.dts
-> > > b/arch/arm/boot/dts/am335x-sancloud-bbe-lite.dts new file mode
-> > > 100644 index 000000000000..9c311bd106f6
-> > > --- /dev/null
-> > > +++ b/arch/arm/boot/dts/am335x-sancloud-bbe-lite.dts
-> > > @@ -0,0 +1,51 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > +/*
-> > > + * Copyright (C) 2012 Texas Instruments Incorporated -
-> > > http://www.ti.com/
-> > > + * Copyright (C) 2021 SanCloud Ltd
-> > > + */
-> > > +/dts-v1/;
-> > > +
-> > > +#include "am33xx.dtsi"
-> > > +#include "am335x-bone-common.dtsi"
-> > > +#include "am335x-boneblack-common.dtsi"
-> > > +#include "am335x-sancloud-bbe-common.dtsi"
-> > > +
-> > > +/ {
-> > > +       model =3D "SanCloud BeagleBone Enhanced Lite";
-> > > +       compatible =3D "sancloud,am335x-boneenhanced",
-> > > +                    "ti,am335x-bone-black",
-> > > +                    "ti,am335x-bone",
-> > > +                    "ti,am33xx";
-> > > +};
-> > > +
-> > > +&am33xx_pinmux {
-> > > +       bb_spi0_pins: pinmux_bb_spi0_pins {
-> > > +               pinctrl-single,pins =3D <
-> > > +                       AM33XX_PADCONF(AM335X_PIN_SPI0_SCLK,
-> > > PIN_INPUT, MUX_MODE0)
-> > > +                       AM33XX_PADCONF(AM335X_PIN_SPI0_D0,
-> > > PIN_INPUT, MUX_MODE0)
-> > > +                       AM33XX_PADCONF(AM335X_PIN_SPI0_D1,
-> > > PIN_INPUT, MUX_MODE0)
-> > > +                       AM33XX_PADCONF(AM335X_PIN_SPI0_CS0,
-> > > PIN_INPUT, MUX_MODE0)
-> > > +               >;
-> > > +       };
-> > > +};
-> > > +
-> > > +&spi0 {
-> > > +       #address-cells =3D <1>;
-> > > +       #size-cells =3D <0>;
-> > > +
-> > > +       status =3D "okay";
-> > > +       pinctrl-names =3D "default";
-> > > +       pinctrl-0 =3D <&bb_spi0_pins>;
-> > > +
-> > > +       channel@0 {
-> > > +               #address-cells =3D <1>;
-> > > +               #size-cells =3D <0>;
-> > > +
-> > > +               compatible =3D "micron,spi-authenta";
-> > > +               symlink =3D "spi/0.0";   =20
-> >=20
-> > Sorry, this "symlink" is an undocumented "feature" of the
-> > BeagleBoard.org tree.. We use it to help "identity" spi/usart/i2c
-> > nodes names when they dynamically change node numbers based on kernel
-> > versions or even 'drivers'....
-> >=20
-> > https://github.com/beagleboard/customizations/blob/master/etc/udev/rule=
-s.d/10-of-symlink.rules
-> >=20
-> > For 'mainline' we need to remove it.. =20
->=20
-> Ok, that's a straightforward change. I'll send an updated patch series
-> later in the week.
->=20
-> Thanks,
->=20
+Maybe I should create a define instead of using directly 27 here, and 
+also add some documentation
+to explain why we need this delay.
 
-Sorry folks, v2 got delayed due to illness. I've sent it today.
+What do you think about it ?
+>
+>> +	writel(0, apu_rproc->base + SW_RST);
+>> +
+>> +	core_ctrl &= ~CORE_CTRL_PIF_GATED;
+>> +	writel(core_ctrl, apu_rproc->base + CORE_CTRL);
+>> +
+>> +	/* Configure memory accesses to go through the IOMMU */
+>> +	writel(CORE_DEFAULT0_AWUSER_USE_IOMMU | CORE_DEFAULT0_ARUSER_USE_IOMMU |
+>> +	      CORE_DEFAULT0_QOS_SWAP_1, apu_rproc->base + CORE_DEFAULT0);
+>> +	writel(CORE_DEFAULT0_AWUSER_IDMA_USE_IOMMU |
+>> +		CORE_DEFAULT0_ARUSER_IDMA_USE_IOMMU,
+>> +		apu_rproc->base + CORE_DEFAULT1);
+>> +
+>> +	/* Release the APU */
+>> +	core_ctrl &= ~CORE_CTRL_RUN_STALL;
+>> +	writel(core_ctrl, apu_rproc->base + CORE_CTRL);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int mtk_apu_rproc_stop(struct rproc *rproc)
+>> +{
+>> +	struct mtk_apu_rproc *apu_rproc = rproc->priv;
+>> +	u32 core_ctrl;
+>> +
+>> +	core_ctrl = readl(apu_rproc->base + CORE_CTRL);
+>> +	writel(core_ctrl | CORE_CTRL_RUN_STALL, apu_rproc->base + CORE_CTRL);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void mtk_apu_rproc_kick(struct rproc *rproc, int vqid)
+>> +{
+>> +	struct mtk_apu_rproc *apu_rproc = rproc->priv;
+>> +
+>> +	writel(1 << vqid, apu_rproc->base + CORE_CTL_XTENSA_INT);
+>> +}
+>> +
+>> +static const struct rproc_ops mtk_apu_rproc_ops = {
+>> +	.prepare	= mtk_apu_rproc_prepare,
+>> +	.unprepare	= mtk_apu_rproc_unprepare,
+>> +	.start		= mtk_apu_rproc_start,
+>> +	.stop		= mtk_apu_rproc_stop,
+>> +	.kick		= mtk_apu_rproc_kick,
+>> +};
+>> +
+>> +static irqreturn_t mtk_apu_rproc_callback(int irq, void *data)
+>> +{
+>> +	struct rproc *rproc = data;
+>> +	struct mtk_apu_rproc *apu_rproc = (struct mtk_apu_rproc *)rproc->priv;
+>> +
+>> +	writel(1, apu_rproc->base + CORE_XTENSA_INT);
+>> +
+>> +	return IRQ_WAKE_THREAD;
+>> +}
+>> +
+>> +static irqreturn_t handle_event(int irq, void *data)
+>> +{
+>> +	struct rproc *rproc = data;
+>> +
+>> +	rproc_vq_interrupt(rproc, 0);
+>> +	rproc_vq_interrupt(rproc, 1);
+>> +
+>> +	return IRQ_HANDLED;
+>> +}
+>> +
+>> +static int mtk_apu_rproc_probe(struct platform_device *pdev)
+>> +{
+>> +	struct device *dev = &pdev->dev;
+>> +	struct mtk_apu_rproc *apu_rproc;
+>> +	struct rproc *rproc;
+>> +	struct resource *res;
+>> +	int ret;
+>> +
+>> +	rproc = rproc_alloc(dev, dev_name(dev), &mtk_apu_rproc_ops, NULL,
+>> +			    sizeof(*apu_rproc));
+>> +	if (!rproc)
+>> +		return -ENOMEM;
+>> +
+>> +	rproc->recovery_disabled = true;
+>> +	rproc->has_iommu = false;
+>> +
+>> +	apu_rproc = rproc->priv;
+>> +	apu_rproc->rproc = rproc;
+>> +	apu_rproc->dev = dev;
+>> +
+>> +	platform_set_drvdata(pdev, rproc);
+>> +
+>> +	rproc->domain = iommu_get_domain_for_dev(dev);
+> Any reason why iommu_get_domain_for_dev() is explicitly called rather than
+> setting ->has_iommu to true and let the remoteproc core get the domain for
+> you?
 
-Thanks,
+If I set ->has_iommu to true, the remoteproc framework will try to get a 
+unmanaged domain
+which is actually not supported by the iommu driver.
+I don't like that solution but when I sent this patch, it was the only 
+solution I had to make it work.
 
---=20
-Paul Barker
-Principal Software Engineer
-SanCloud Ltd
+Now, I have to options:
+- I update the iommu driver to support unmanaged domain
+   (I made a PoC and this works but I am not sure that I made it correctly)
+- I don't let the remoteproc framework manage the iommu 
+(has_iommu=false, and domain=NULL)
+   and I manage the iommu in this driver.
+I have chosen the second options the v3 because this also make easier to 
+manage some hardware
+constraint.
 
---Sig_/MFaT197QZpTt50mFfIrjMfc
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+Best Regards,
+Alexandre
 
------BEGIN PGP SIGNATURE-----
-
-iHUEARYIAB0WIQS7m7rT1+CktY3YG1PYN3IfEvob6gUCYPaMPQAKCRDYN3IfEvob
-6vjkAQD/vuTFcL1DLcoP9GdstvMp7jHfpoH4EAb1oFun00/vwgD/Ze7IDVKfBfUx
-jY3hgS5FWuKQ+iN/MyPowe7L+s9pCwo=
-=VHkX
------END PGP SIGNATURE-----
-
---Sig_/MFaT197QZpTt50mFfIrjMfc--
+>
+>> +	if (!rproc->domain) {
+>> +		dev_err(dev, "Failed to get the IOMMU domain\n");
+>> +		ret = -EINVAL;
+>> +		goto free_rproc;
+>> +	}
+>> +
+>> +
+>> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>> +	apu_rproc->base = devm_ioremap_resource(dev, res);
+>> +	if (IS_ERR(apu_rproc->base)) {
+>> +		dev_err(dev, "Failed to map mmio\n");
+>> +		ret = PTR_ERR(apu_rproc->base);
+>> +		goto free_rproc;
+>> +	}
+>> +
+>> +	apu_rproc->irq = platform_get_irq(pdev, 0);
+>> +	if (apu_rproc->irq < 0) {
+>> +		ret = apu_rproc->irq;
+>> +		goto free_rproc;
+>> +	}
+>> +
+>> +	ret = devm_request_threaded_irq(dev, apu_rproc->irq,
+>> +					mtk_apu_rproc_callback, handle_event,
+>> +					IRQF_SHARED | IRQF_ONESHOT,
+>> +					NULL, rproc);
+>> +	if (ret) {
+>> +		dev_err(dev, "devm_request_threaded_irq error: %d\n", ret);
+>> +		goto free_rproc;
+>> +	}
+>> +
+>> +	apu_rproc->clks[0].id = "ipu";
+>> +	apu_rproc->clks[1].id = "axi";
+>> +	apu_rproc->clks[1].id = "jtag";
+>> +
+>> +	ret = devm_clk_bulk_get(dev, ARRAY_SIZE(apu_rproc->clks),
+>> +				apu_rproc->clks);
+>> +	if (ret) {
+>> +		dev_err(dev, "Failed to get clocks\n");
+>> +		goto free_rproc;
+>> +	}
+>> +
+>> +	ret = of_reserved_mem_device_init(dev);
+>> +	if (ret) {
+>> +		dev_err(dev, "device does not have specific CMA pool\n");
+>> +		goto free_rproc;
+>> +	}
+>> +
+>> +	ret = rproc_add(rproc);
+>> +	if (ret) {
+>> +		dev_err(dev, "rproc_add failed: %d\n", ret);
+>> +		goto free_mem;
+>> +	}
+>> +
+>> +	return 0;
+>> +
+>> +free_mem:
+>> +	of_reserved_mem_device_release(dev);
+>> +free_rproc:
+>> +	rproc_free(rproc);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static int mtk_apu_rproc_remove(struct platform_device *pdev)
+>> +{
+>> +	struct rproc *rproc = platform_get_drvdata(pdev);
+>> +	struct mtk_apu_rproc *apu_rproc = (struct mtk_apu_rproc *)rproc->priv;
+>> +	struct device *dev = &pdev->dev;
+>> +
+>> +	disable_irq(apu_rproc->irq);
+>> +
+>> +	rproc_del(rproc);
+>> +	of_reserved_mem_device_release(dev);
+>> +	rproc_free(rproc);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct of_device_id mtk_apu_rproc_of_match[] = {
+>> +	{ .compatible = "mediatek,mt8183-apu", },
+>> +	{ /* sentinel */ },
+>> +};
+>> +MODULE_DEVICE_TABLE(of, mtk_apu_rproc_of_match);
+>> +
+>> +static struct platform_driver mtk_apu_rproc_driver = {
+>> +	.probe = mtk_apu_rproc_probe,
+>> +	.remove = mtk_apu_rproc_remove,
+>> +	.driver = {
+>> +		.name = "mtk_apu-rproc",
+>> +		.of_match_table = of_match_ptr(mtk_apu_rproc_of_match),
+>> +	},
+>> +};
+>> +module_platform_driver(mtk_apu_rproc_driver);
+>> +
+>> +MODULE_LICENSE("GPL v2");
+>> +MODULE_AUTHOR("Alexandre Bailon");
+>> +MODULE_DESCRIPTION("MTK APU Remote Processor control driver");
+>> -- 
+>> 2.26.2
+>>
