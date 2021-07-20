@@ -2,472 +2,285 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D1693CF65F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 10:53:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 242F03CF660
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 10:53:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231944AbhGTIMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 04:12:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49360 "EHLO
+        id S232795AbhGTINB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 04:13:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234366AbhGTIGd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 04:06:33 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94763C061768
-        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 01:46:08 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id y21-20020a7bc1950000b02902161fccabf1so1014912wmi.2
-        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 01:46:08 -0700 (PDT)
+        with ESMTP id S234890AbhGTILU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 04:11:20 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A9EFC061767
+        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 01:51:59 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id j1so1229463ljo.10
+        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 01:51:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=sfnB6pEXfoigvkI+81/RrVPdT9Ty3Lcn3N9ErXDBwX0=;
-        b=RGuET55vDuE2nzwz1lXE4fGZZb8Pcy27Ybk+IR1rLdiQX5ghY1CU9nVJRsikmW3RIT
-         RXc7NPXx9mx/JrJMj2PUjBVNw4X1SXi8a6ybZ7GqMZp3amfgTCFB0eo6pC1E56H+iFLp
-         eyDdCrmLYJd2nzpyTuon3zLzzAByZokdin4zWZHrQBF8Hgyq4cSbLXm4gDUfvBqDfdy5
-         bhmr9//nwCI8h4vMD/M35gIkTQ4VdxnvsZ89q5WA1W76UOnRLwNgXOT8jGwxyKPleKDd
-         eLKbJ6TpDGNMu1pENi3/+JVaYvfTZvKl+oxUkjLbDq8idm6WERtRR4m9lLXD+dAIo3Cg
-         L30w==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=PsUh+Xo3UXeUh/L/SglgEjg4n0VzVvkirFWNfTZ+k28=;
+        b=iZu2AmkoDGQEAQHgqERSRwIb479YZ1JgKsIpPVQt0pv29/TLl+ORmGB6OMq3UdUaWz
+         0ip/wLx7rqgekjPDk35o4nkqDZsmZvU6xtuttUCylXinxK2ysdopomXyL064QfC1T9Ba
+         j4+QGdKxLbbCchEAMqVIqLFRcaygJc8azc2Y8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=sfnB6pEXfoigvkI+81/RrVPdT9Ty3Lcn3N9ErXDBwX0=;
-        b=or0dTw4IKFbojozLo862+WXab/SIXkavcytYB7+jfecChpWOqSvtivS/UbDinMbnTL
-         GmuMxEiP7v54uF3gbH+zS9EKo1Yq1ZR41MDTkC2psLZjnXTTersdyfhkIbmlRwfZykVV
-         msOiPU67xyIScwRfr37t26DEJB0MYCNY2Z4XFGqCmRlpS2lLs2Uh3iXeFc0ShdIk5E9u
-         P1c9ZeTHT9NMCDddNyRWrwy14pasxgkgBCcKYSMK9zHO0HmSSKhxlTVIdT3wkSzFWBqG
-         FDwSjN32dJEkU9BFlKtq/2iLc9K6ysqlZIelwkNvY8NwHgfFSM4nKQRpAbM0Uw/gMedf
-         FVmw==
-X-Gm-Message-State: AOAM531rK1TCn83f9/HNVXEBEwQzqxirb6qnatjT+gL4vTgbHSBCe8/Z
-        YC6EIyS+nNw8zw4iefzTVDNAFQ==
-X-Google-Smtp-Source: ABdhPJwIYw5ttbPqKjD+YOlc7V1LBRa4PNSFy7pfGuMZWU+YqytnaSW5a5r3TbwdGhLLEk9Sh+JhRw==
-X-Received: by 2002:a05:600c:214a:: with SMTP id v10mr34897190wml.17.1626770767138;
-        Tue, 20 Jul 2021 01:46:07 -0700 (PDT)
-Received: from [10.1.4.104] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id g18sm18851572wmk.37.2021.07.20.01.46.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Jul 2021 01:46:06 -0700 (PDT)
-Subject: Re: [PATCH v2 2/4] remoteproc: Add a remoteproc driver for the
- MT8183's APU
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc:     ohad@wizery.com, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        matthias.bgg@gmail.com, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        stephane.leprovost@mediatek.com, gpain@baylibre.com
-References: <20200910130148.8734-1-abailon@baylibre.com>
- <20200910130148.8734-3-abailon@baylibre.com> <20200929175214.GB124290@xps15>
-From:   Alexandre Bailon <abailon@baylibre.com>
-Message-ID: <59553610-3d88-7982-2a10-dec27d9c3fce@baylibre.com>
-Date:   Tue, 20 Jul 2021 10:47:33 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=PsUh+Xo3UXeUh/L/SglgEjg4n0VzVvkirFWNfTZ+k28=;
+        b=eaXcRN6kxeg/iW5cTn3cwzBSYszOWupqTFI5P6h0RvqMIVA9CHWV1C3jqbtKYVv60R
+         2raAYtRcMjML9NiaafbDQaeQCfT8NQLLuhuwno4PAFbI9EyY59Qe4/RW3iG/jJJZCEcf
+         o4PSPyPMioSvJkF9qI9rNKW/BJI2Zq/uIp60NQn3OzKBrvXie+PToOrRUVBF0xHqNArN
+         +/ZnE2nV2xRZzYZUX5wmIS2XAGlqF5WsIjRyIsxj+LYwmYtc7+tOsH7Okwjn9aOSLHKH
+         Nz2YloNpC7iUNe7T8Klv0eL4nB59NjDutHAuc8EH6tyJRF7pmmVP14euhmrul0i3sdel
+         ntlw==
+X-Gm-Message-State: AOAM532RM+G7xygCnFqeF7R4rNIygboUGwqMrU0ViBXMcCK98ApBE6Lh
+        hNIcQvLmxaycug2lFR8ZhlwVbTWELZt2rA1uZDdtzg==
+X-Google-Smtp-Source: ABdhPJwWi+2x1iPbMUfnDYAyLrvt9O7AEvGDWG0YXC8JmRvcncgtLF7dWsZSFrZzPAF32XZ/8RuxDaifIqIlF77xnCY=
+X-Received: by 2002:a2e:5c42:: with SMTP id q63mr25163421ljb.23.1626771116910;
+ Tue, 20 Jul 2021 01:51:56 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200929175214.GB124290@xps15>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+References: <20210705054111.4473-1-chun-jie.chen@mediatek.com> <20210705054111.4473-4-chun-jie.chen@mediatek.com>
+In-Reply-To: <20210705054111.4473-4-chun-jie.chen@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Tue, 20 Jul 2021 16:51:45 +0800
+Message-ID: <CAGXv+5EG00P4EzNjm=7nRNwYwEF9aXorhELsmbxtrYM20SW0KQ@mail.gmail.com>
+Subject: Re: [v3 3/5] soc: mediatek: pm-domains: Add support for mt8195
+To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>
+Cc:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        LKML <linux-kernel@vger.kernel.org>, devicetree@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mathieu,
-> Hi Alexandre,
+Hi,
+On Mon, Jul 5, 2021 at 1:42 PM Chun-Jie Chen <chun-jie.chen@mediatek.com> wrote:
 >
-> On Thu, Sep 10, 2020 at 03:01:46PM +0200, Alexandre Bailon wrote:
->> This adds a driver to control the APU present in the MT8183.
->> This loads the firmware and start the DSP.
->>
->> Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
->> ---
->>   drivers/remoteproc/Kconfig   |  10 ++
->>   drivers/remoteproc/Makefile  |   1 +
->>   drivers/remoteproc/mtk_apu.c | 288 +++++++++++++++++++++++++++++++++++
->>   3 files changed, 299 insertions(+)
->>   create mode 100644 drivers/remoteproc/mtk_apu.c
->>
->> diff --git a/drivers/remoteproc/Kconfig b/drivers/remoteproc/Kconfig
->> index c6659dfea7c7..4ebea57bf4c8 100644
->> --- a/drivers/remoteproc/Kconfig
->> +++ b/drivers/remoteproc/Kconfig
->> @@ -51,6 +51,16 @@ config MTK_SCP
->>   
->>   	  It's safe to say N here.
->>   
->> +config MTK_APU
->> +	tristate "Mediatek APU remoteproc support"
->> +	depends on ARCH_MEDIATEK
->> +	depends on MTK_IOMMU
->> +	help
->> +	  Say y to support the Mediatek's Accelerated Processing Unit (APU) via
->> +	  the remote processor framework.
->> +
->> +	  It's safe to say N here.
->> +
->>   config OMAP_REMOTEPROC
->>   	tristate "OMAP remoteproc support"
->>   	depends on ARCH_OMAP4 || SOC_OMAP5 || SOC_DRA7XX
->> diff --git a/drivers/remoteproc/Makefile b/drivers/remoteproc/Makefile
->> index 3dfa28e6c701..174644f38fda 100644
->> --- a/drivers/remoteproc/Makefile
->> +++ b/drivers/remoteproc/Makefile
->> @@ -14,6 +14,7 @@ obj-$(CONFIG_REMOTEPROC_CDEV)		+= remoteproc_cdev.o
->>   obj-$(CONFIG_IMX_REMOTEPROC)		+= imx_rproc.o
->>   obj-$(CONFIG_INGENIC_VPU_RPROC)		+= ingenic_rproc.o
->>   obj-$(CONFIG_MTK_SCP)			+= mtk_scp.o mtk_scp_ipi.o
->> +obj-$(CONFIG_MTK_APU)			+= mtk_apu.o
->>   obj-$(CONFIG_OMAP_REMOTEPROC)		+= omap_remoteproc.o
->>   obj-$(CONFIG_WKUP_M3_RPROC)		+= wkup_m3_rproc.o
->>   obj-$(CONFIG_DA8XX_REMOTEPROC)		+= da8xx_remoteproc.o
->> diff --git a/drivers/remoteproc/mtk_apu.c b/drivers/remoteproc/mtk_apu.c
->> new file mode 100644
->> index 000000000000..6d2f577cfde5
->> --- /dev/null
->> +++ b/drivers/remoteproc/mtk_apu.c
->> @@ -0,0 +1,288 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Copyright (C) 2020 BayLibre SAS
->> + */
->> +
->> +#include <linux/bitops.h>
->> +#include <linux/clk.h>
->> +#include <linux/delay.h>
->> +#include <linux/highmem.h>
-> Not sure what this is for
+> Add domain control data including bus protection data size
+> change due to more protection steps in mt8195.
 >
->> +#include <linux/interrupt.h>
->> +#include <linux/io.h>
->> +#include <linux/iommu.h>
->> +#include <linux/irq.h>
->> +#include <linux/kernel.h>
->> +#include <linux/module.h>
->> +#include <linux/of_reserved_mem.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/remoteproc.h>
->> +
->> +#include "remoteproc_internal.h"
->> +
->> +/* From MT8183 4.5 Vision Processor Unit (VPU).pdf datasheet */
->> +#define SW_RST					(0x0000000C)
->> +#define SW_RST_OCD_HALT_ON_RST			BIT(12)
->> +#define SW_RST_IPU_D_RST			BIT(8)
->> +#define SW_RST_IPU_B_RST			BIT(4)
->> +#define CORE_CTRL				(0x00000110)
->> +#define CORE_CTRL_PDEBUG_ENABLE			BIT(31)
->> +#define CORE_CTRL_SRAM_64K_iMEM			(0x00 << 27)
->> +#define CORE_CTRL_SRAM_96K_iMEM			(0x01 << 27)
->> +#define CORE_CTRL_SRAM_128K_iMEM		(0x02 << 27)
->> +#define CORE_CTRL_SRAM_192K_iMEM		(0x03 << 27)
->> +#define CORE_CTRL_SRAM_256K_iMEM		(0x04 << 27)
->> +#define CORE_CTRL_PBCLK_ENABLE			BIT(26)
->> +#define CORE_CTRL_RUN_STALL			BIT(23)
->> +#define CORE_CTRL_STATE_VECTOR_SELECT		BIT(19)
->> +#define CORE_CTRL_PIF_GATED			BIT(17)
->> +#define CORE_CTRL_NMI				BIT(0)
->> +#define CORE_XTENSA_INT				(0x00000114)
->> +#define CORE_CTL_XTENSA_INT			(0x00000118)
->> +#define CORE_DEFAULT0				(0x0000013C)
->> +#define CORE_DEFAULT0_QOS_SWAP_0		(0x00 << 28)
->> +#define CORE_DEFAULT0_QOS_SWAP_1		(0x01 << 28)
->> +#define CORE_DEFAULT0_QOS_SWAP_2		(0x02 << 28)
->> +#define CORE_DEFAULT0_QOS_SWAP_3		(0x03 << 28)
->> +#define CORE_DEFAULT0_ARUSER_USE_IOMMU		(0x10 << 23)
->> +#define CORE_DEFAULT0_AWUSER_USE_IOMMU		(0x10 << 18)
->> +#define CORE_DEFAULT1				(0x00000140)
->> +#define CORE_DEFAULT0_ARUSER_IDMA_USE_IOMMU	(0x10 << 0)
->> +#define CORE_DEFAULT0_AWUSER_IDMA_USE_IOMMU	(0x10 << 5)
->> +#define CORE_XTENSA_ALTRESETVEC			(0x000001F8)
->> +
->> +struct mtk_apu_rproc {
->> +	struct device *dev;
->> +	struct rproc *rproc;
-> As far as I can tell @rproc is only used in apu_jtag_probe(), but it could just
-> as easily be given as a parameter to the function instead of bloating the
-> structure.
+> Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+> ---
+>  drivers/soc/mediatek/mt8195-pm-domains.h | 738 +++++++++++++++++++++++
+>  drivers/soc/mediatek/mtk-pm-domains.c    |   5 +
+>  drivers/soc/mediatek/mtk-pm-domains.h    |   2 +-
+>  include/linux/soc/mediatek/infracfg.h    | 103 ++++
+>  4 files changed, 847 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/soc/mediatek/mt8195-pm-domains.h
 >
->> +
-> Extra line
+> diff --git a/drivers/soc/mediatek/mt8195-pm-domains.h b/drivers/soc/mediatek/mt8195-pm-domains.h
+> new file mode 100644
+> index 000000000000..54bb7af8e9a3
+> --- /dev/null
+> +++ b/drivers/soc/mediatek/mt8195-pm-domains.h
+> @@ -0,0 +1,738 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (c) 2021 MediaTek Inc.
+> + * Author: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+> + */
+> +
+> +#ifndef __SOC_MEDIATEK_MT8195_PM_DOMAINS_H
+> +#define __SOC_MEDIATEK_MT8195_PM_DOMAINS_H
+> +
+> +#include "mtk-pm-domains.h"
+> +#include <dt-bindings/power/mt8195-power.h>
+> +
+> +/*
+> + * MT8195 power domain support
+> + */
+> +
+> +static const struct scpsys_domain_data scpsys_domain_data_mt8195[] = {
+
+The SCPSYS block is not documented in the datasheets available. However
+I did look at all the register and bit offsets and confirmed nothing
+overlapped.
+
+> diff --git a/drivers/soc/mediatek/mtk-pm-domains.c b/drivers/soc/mediatek/mtk-pm-domains.c
+> index 2689f02d7a41..12552c9996ac 100644
+> --- a/drivers/soc/mediatek/mtk-pm-domains.c
+> +++ b/drivers/soc/mediatek/mtk-pm-domains.c
+> @@ -20,6 +20,7 @@
+>  #include "mt8173-pm-domains.h"
+>  #include "mt8183-pm-domains.h"
+>  #include "mt8192-pm-domains.h"
+> +#include "mt8195-pm-domains.h"
 >
->> +	void __iomem *base;
->> +	int irq;
->> +	struct clk_bulk_data clks[3];
->> +};
->> +
->> +static int mtk_apu_rproc_prepare(struct rproc *rproc)
->> +{
->> +	struct mtk_apu_rproc *apu_rproc = rproc->priv;
->> +	int ret;
->> +
->> +	ret = clk_bulk_prepare_enable(ARRAY_SIZE(apu_rproc->clks),
->> +				      apu_rproc->clks);
->> +	if (ret)
->> +		dev_err(apu_rproc->dev, "Failed to enable clocks\n");
->> +
->> +	return ret;
->> +}
->> +
->> +static int mtk_apu_rproc_unprepare(struct rproc *rproc)
->> +{
->> +	struct mtk_apu_rproc *apu_rproc = rproc->priv;
->> +
->> +	clk_bulk_disable_unprepare(ARRAY_SIZE(apu_rproc->clks),
->> +				   apu_rproc->clks);
->> +
->> +	return 0;
->> +}
->> +
->> +static int mtk_apu_rproc_start(struct rproc *rproc)
->> +{
->> +	struct mtk_apu_rproc *apu_rproc = rproc->priv;
->> +	u32 core_ctrl;
->> +
->> +	/* Set reset vector of APU firmware boot address */
->> +	writel(rproc->bootaddr, apu_rproc->base + CORE_XTENSA_ALTRESETVEC);
->> +
->> +	/* Turn on the clocks and stall the APU */
->> +	core_ctrl = readl(apu_rproc->base + CORE_CTRL);
->> +	core_ctrl |= CORE_CTRL_PDEBUG_ENABLE | CORE_CTRL_PBCLK_ENABLE |
->> +		     CORE_CTRL_STATE_VECTOR_SELECT | CORE_CTRL_RUN_STALL |
->> +		     CORE_CTRL_PIF_GATED;
->> +	writel(core_ctrl, apu_rproc->base + CORE_CTRL);
->> +
->> +	/* Reset the APU */
->> +	writel(SW_RST_OCD_HALT_ON_RST | SW_RST_IPU_B_RST | SW_RST_IPU_D_RST,
->> +		apu_rproc->base + SW_RST);
->> +	ndelay(27);
-> What is this for and why 27 nanosecond precicely?  Is this a board specific
-> setting?  Are we sure it is the same value on all platform with a MT8183?
+>  #define MTK_POLL_DELAY_US              10
+>  #define MTK_POLL_TIMEOUT               USEC_PER_SEC
+> @@ -576,6 +577,10 @@ static const struct of_device_id scpsys_of_match[] = {
+>                 .compatible = "mediatek,mt8192-power-controller",
+>                 .data = &mt8192_scpsys_data,
+>         },
+> +       {
+> +               .compatible = "mediatek,mt8195-power-controller",
+> +               .data = &mt8195_scpsys_data,
+> +       },
+>         { }
+>  };
 >
-> Matthias, what is your take on this?
-I have got the response recently from the HW team and this 27 nanosecond 
-delay
-is the minimum delay required to reset the APU, and that should work at 
-any frequency.
-This delay is supposed to work for the mt8183 but also for the other 
-platform
-including an APU.
-
-The HW also confirmed that there are no way to know if the reset has 
-been completed
-or not so we must way that delay.
-
-Maybe I should create a define instead of using directly 27 here, and 
-also add some documentation
-to explain why we need this delay.
-
-What do you think about it ?
+> diff --git a/drivers/soc/mediatek/mtk-pm-domains.h b/drivers/soc/mediatek/mtk-pm-domains.h
+> index 8b86ed22ca56..caaa38100093 100644
+> --- a/drivers/soc/mediatek/mtk-pm-domains.h
+> +++ b/drivers/soc/mediatek/mtk-pm-domains.h
+> @@ -37,7 +37,7 @@
+>  #define PWR_STATUS_AUDIO               BIT(24)
+>  #define PWR_STATUS_USB                 BIT(25)
 >
->> +	writel(0, apu_rproc->base + SW_RST);
->> +
->> +	core_ctrl &= ~CORE_CTRL_PIF_GATED;
->> +	writel(core_ctrl, apu_rproc->base + CORE_CTRL);
->> +
->> +	/* Configure memory accesses to go through the IOMMU */
->> +	writel(CORE_DEFAULT0_AWUSER_USE_IOMMU | CORE_DEFAULT0_ARUSER_USE_IOMMU |
->> +	      CORE_DEFAULT0_QOS_SWAP_1, apu_rproc->base + CORE_DEFAULT0);
->> +	writel(CORE_DEFAULT0_AWUSER_IDMA_USE_IOMMU |
->> +		CORE_DEFAULT0_ARUSER_IDMA_USE_IOMMU,
->> +		apu_rproc->base + CORE_DEFAULT1);
->> +
->> +	/* Release the APU */
->> +	core_ctrl &= ~CORE_CTRL_RUN_STALL;
->> +	writel(core_ctrl, apu_rproc->base + CORE_CTRL);
->> +
->> +	return 0;
->> +}
->> +
->> +static int mtk_apu_rproc_stop(struct rproc *rproc)
->> +{
->> +	struct mtk_apu_rproc *apu_rproc = rproc->priv;
->> +	u32 core_ctrl;
->> +
->> +	core_ctrl = readl(apu_rproc->base + CORE_CTRL);
->> +	writel(core_ctrl | CORE_CTRL_RUN_STALL, apu_rproc->base + CORE_CTRL);
->> +
->> +	return 0;
->> +}
->> +
->> +static void mtk_apu_rproc_kick(struct rproc *rproc, int vqid)
->> +{
->> +	struct mtk_apu_rproc *apu_rproc = rproc->priv;
->> +
->> +	writel(1 << vqid, apu_rproc->base + CORE_CTL_XTENSA_INT);
->> +}
->> +
->> +static const struct rproc_ops mtk_apu_rproc_ops = {
->> +	.prepare	= mtk_apu_rproc_prepare,
->> +	.unprepare	= mtk_apu_rproc_unprepare,
->> +	.start		= mtk_apu_rproc_start,
->> +	.stop		= mtk_apu_rproc_stop,
->> +	.kick		= mtk_apu_rproc_kick,
->> +};
->> +
->> +static irqreturn_t mtk_apu_rproc_callback(int irq, void *data)
->> +{
->> +	struct rproc *rproc = data;
->> +	struct mtk_apu_rproc *apu_rproc = (struct mtk_apu_rproc *)rproc->priv;
->> +
->> +	writel(1, apu_rproc->base + CORE_XTENSA_INT);
->> +
->> +	return IRQ_WAKE_THREAD;
->> +}
->> +
->> +static irqreturn_t handle_event(int irq, void *data)
->> +{
->> +	struct rproc *rproc = data;
->> +
->> +	rproc_vq_interrupt(rproc, 0);
->> +	rproc_vq_interrupt(rproc, 1);
->> +
->> +	return IRQ_HANDLED;
->> +}
->> +
->> +static int mtk_apu_rproc_probe(struct platform_device *pdev)
->> +{
->> +	struct device *dev = &pdev->dev;
->> +	struct mtk_apu_rproc *apu_rproc;
->> +	struct rproc *rproc;
->> +	struct resource *res;
->> +	int ret;
->> +
->> +	rproc = rproc_alloc(dev, dev_name(dev), &mtk_apu_rproc_ops, NULL,
->> +			    sizeof(*apu_rproc));
->> +	if (!rproc)
->> +		return -ENOMEM;
->> +
->> +	rproc->recovery_disabled = true;
->> +	rproc->has_iommu = false;
->> +
->> +	apu_rproc = rproc->priv;
->> +	apu_rproc->rproc = rproc;
->> +	apu_rproc->dev = dev;
->> +
->> +	platform_set_drvdata(pdev, rproc);
->> +
->> +	rproc->domain = iommu_get_domain_for_dev(dev);
-> Any reason why iommu_get_domain_for_dev() is explicitly called rather than
-> setting ->has_iommu to true and let the remoteproc core get the domain for
-> you?
-
-If I set ->has_iommu to true, the remoteproc framework will try to get a 
-unmanaged domain
-which is actually not supported by the iommu driver.
-I don't like that solution but when I sent this patch, it was the only 
-solution I had to make it work.
-
-Now, I have to options:
-- I update the iommu driver to support unmanaged domain
-   (I made a PoC and this works but I am not sure that I made it correctly)
-- I don't let the remoteproc framework manage the iommu 
-(has_iommu=false, and domain=NULL)
-   and I manage the iommu in this driver.
-I have chosen the second options the v3 because this also make easier to 
-manage some hardware
-constraint.
-
-Best Regards,
-Alexandre
-
+> -#define SPM_MAX_BUS_PROT_DATA          5
+> +#define SPM_MAX_BUS_PROT_DATA          6
 >
->> +	if (!rproc->domain) {
->> +		dev_err(dev, "Failed to get the IOMMU domain\n");
->> +		ret = -EINVAL;
->> +		goto free_rproc;
->> +	}
->> +
->> +
->> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->> +	apu_rproc->base = devm_ioremap_resource(dev, res);
->> +	if (IS_ERR(apu_rproc->base)) {
->> +		dev_err(dev, "Failed to map mmio\n");
->> +		ret = PTR_ERR(apu_rproc->base);
->> +		goto free_rproc;
->> +	}
->> +
->> +	apu_rproc->irq = platform_get_irq(pdev, 0);
->> +	if (apu_rproc->irq < 0) {
->> +		ret = apu_rproc->irq;
->> +		goto free_rproc;
->> +	}
->> +
->> +	ret = devm_request_threaded_irq(dev, apu_rproc->irq,
->> +					mtk_apu_rproc_callback, handle_event,
->> +					IRQF_SHARED | IRQF_ONESHOT,
->> +					NULL, rproc);
->> +	if (ret) {
->> +		dev_err(dev, "devm_request_threaded_irq error: %d\n", ret);
->> +		goto free_rproc;
->> +	}
->> +
->> +	apu_rproc->clks[0].id = "ipu";
->> +	apu_rproc->clks[1].id = "axi";
->> +	apu_rproc->clks[1].id = "jtag";
->> +
->> +	ret = devm_clk_bulk_get(dev, ARRAY_SIZE(apu_rproc->clks),
->> +				apu_rproc->clks);
->> +	if (ret) {
->> +		dev_err(dev, "Failed to get clocks\n");
->> +		goto free_rproc;
->> +	}
->> +
->> +	ret = of_reserved_mem_device_init(dev);
->> +	if (ret) {
->> +		dev_err(dev, "device does not have specific CMA pool\n");
->> +		goto free_rproc;
->> +	}
->> +
->> +	ret = rproc_add(rproc);
->> +	if (ret) {
->> +		dev_err(dev, "rproc_add failed: %d\n", ret);
->> +		goto free_mem;
->> +	}
->> +
->> +	return 0;
->> +
->> +free_mem:
->> +	of_reserved_mem_device_release(dev);
->> +free_rproc:
->> +	rproc_free(rproc);
->> +
->> +	return ret;
->> +}
->> +
->> +static int mtk_apu_rproc_remove(struct platform_device *pdev)
->> +{
->> +	struct rproc *rproc = platform_get_drvdata(pdev);
->> +	struct mtk_apu_rproc *apu_rproc = (struct mtk_apu_rproc *)rproc->priv;
->> +	struct device *dev = &pdev->dev;
->> +
->> +	disable_irq(apu_rproc->irq);
->> +
->> +	rproc_del(rproc);
->> +	of_reserved_mem_device_release(dev);
->> +	rproc_free(rproc);
->> +
->> +	return 0;
->> +}
->> +
->> +static const struct of_device_id mtk_apu_rproc_of_match[] = {
->> +	{ .compatible = "mediatek,mt8183-apu", },
->> +	{ /* sentinel */ },
->> +};
->> +MODULE_DEVICE_TABLE(of, mtk_apu_rproc_of_match);
->> +
->> +static struct platform_driver mtk_apu_rproc_driver = {
->> +	.probe = mtk_apu_rproc_probe,
->> +	.remove = mtk_apu_rproc_remove,
->> +	.driver = {
->> +		.name = "mtk_apu-rproc",
->> +		.of_match_table = of_match_ptr(mtk_apu_rproc_of_match),
->> +	},
->> +};
->> +module_platform_driver(mtk_apu_rproc_driver);
->> +
->> +MODULE_LICENSE("GPL v2");
->> +MODULE_AUTHOR("Alexandre Bailon");
->> +MODULE_DESCRIPTION("MTK APU Remote Processor control driver");
->> -- 
->> 2.26.2
->>
+>  #define _BUS_PROT(_mask, _set, _clr, _sta, _update, _ignore) { \
+>                 .bus_prot_mask = (_mask),                       \
+> diff --git a/include/linux/soc/mediatek/infracfg.h b/include/linux/soc/mediatek/infracfg.h
+> index 4615a228da51..3e90fb9b926a 100644
+> --- a/include/linux/soc/mediatek/infracfg.h
+> +++ b/include/linux/soc/mediatek/infracfg.h
+> @@ -2,6 +2,109 @@
+>  #ifndef __SOC_MEDIATEK_INFRACFG_H
+>  #define __SOC_MEDIATEK_INFRACFG_H
+>
+> +#define MT8195_TOP_AXI_PROT_EN_STA1                     0x228
+> +#define MT8195_TOP_AXI_PROT_EN_1_STA1                   0x258
+> +#define MT8195_TOP_AXI_PROT_EN_SET                     0x2a0
+> +#define MT8195_TOP_AXI_PROT_EN_CLR                      0x2a4
+> +#define MT8195_TOP_AXI_PROT_EN_1_SET                    0x2a8
+> +#define MT8195_TOP_AXI_PROT_EN_1_CLR                    0x2ac
+> +#define MT8195_TOP_AXI_PROT_EN_MM_SET                   0x2d4
+> +#define MT8195_TOP_AXI_PROT_EN_MM_CLR                   0x2d8
+> +#define MT8195_TOP_AXI_PROT_EN_MM_STA1                  0x2ec
+> +#define MT8195_TOP_AXI_PROT_EN_2_SET                    0x714
+> +#define MT8195_TOP_AXI_PROT_EN_2_CLR                    0x718
+> +#define MT8195_TOP_AXI_PROT_EN_2_STA1                   0x724
+> +#define MT8195_TOP_AXI_PROT_EN_VDNR_SET                 0xb84
+> +#define MT8195_TOP_AXI_PROT_EN_VDNR_CLR                 0xb88
+> +#define MT8195_TOP_AXI_PROT_EN_VDNR_STA1                0xb90
+> +#define MT8195_TOP_AXI_PROT_EN_VDNR_1_SET               0xba4
+> +#define MT8195_TOP_AXI_PROT_EN_VDNR_1_CLR               0xba8
+> +#define MT8195_TOP_AXI_PROT_EN_VDNR_1_STA1              0xbb0
+> +#define MT8195_TOP_AXI_PROT_EN_VDNR_2_SET               0xbb8
+> +#define MT8195_TOP_AXI_PROT_EN_VDNR_2_CLR               0xbbc
+> +#define MT8195_TOP_AXI_PROT_EN_VDNR_2_STA1              0xbc4
+> +#define MT8195_TOP_AXI_PROT_EN_SUB_INFRA_VDNR_SET       0xbcc
+> +#define MT8195_TOP_AXI_PROT_EN_SUB_INFRA_VDNR_CLR       0xbd0
+> +#define MT8195_TOP_AXI_PROT_EN_SUB_INFRA_VDNR_STA1      0xbd8
+> +#define MT8195_TOP_AXI_PROT_EN_MM_2_SET                 0xdcc
+> +#define MT8195_TOP_AXI_PROT_EN_MM_2_CLR                 0xdd0
+> +#define MT8195_TOP_AXI_PROT_EN_MM_2_STA1                0xdd8
+
+These all look correct.
+
+> +#define MT8195_TOP_AXI_PROT_EN_NNA0                    BIT(1)
+> +#define MT8195_TOP_AXI_PROT_EN_NNA1                    BIT(2)
+> +#define MT8195_TOP_AXI_PROT_EN_NNA                     GENMASK(2, 1)
+> +#define MT8195_TOP_AXI_PROT_EN_VDOSYS0                 BIT(6)
+> +#define MT8195_TOP_AXI_PROT_EN_VPPSYS0                 BIT(10)
+> +#define MT8195_TOP_AXI_PROT_EN_MFG1                    BIT(11)
+> +#define MT8195_TOP_AXI_PROT_EN_MFG1_2ND                        GENMASK(22, 21)
+> +#define MT8195_TOP_AXI_PROT_EN_VPPSYS0_2ND             BIT(23)
+> +#define MT8195_TOP_AXI_PROT_EN_1_MFG1                  GENMASK(20, 19)
+> +#define MT8195_TOP_AXI_PROT_EN_1_CAM                   BIT(22)
+> +#define MT8195_TOP_AXI_PROT_EN_2_CAM                   BIT(0)
+> +#define MT8195_TOP_AXI_PROT_EN_2_MFG1_2ND              GENMASK(6, 5)
+> +#define MT8195_TOP_AXI_PROT_EN_2_MFG1                  BIT(7)
+> +#define MT8195_TOP_AXI_PROT_EN_2_AUDIO_ASRC            (BIT(8) | BIT(17))
+> +#define MT8195_TOP_AXI_PROT_EN_2_AUDIO                 (BIT(9) | BIT(11))
+> +#define MT8195_TOP_AXI_PROT_EN_2_ADSP                  (BIT(12) | GENMASK(16, 14))
+> +#define MT8195_TOP_AXI_PROT_EN_2_NNA0_2ND              BIT(19)
+> +#define MT8195_TOP_AXI_PROT_EN_2_NNA1_2ND              BIT(20)
+> +#define MT8195_TOP_AXI_PROT_EN_2_NNA_2ND               GENMASK(20, 19)
+> +#define MT8195_TOP_AXI_PROT_EN_2_NNA0                  BIT(21)
+> +#define MT8195_TOP_AXI_PROT_EN_2_NNA1                  BIT(22)
+> +#define MT8195_TOP_AXI_PROT_EN_2_NNA                   GENMASK(22, 21)
+
+> +#define MT8195_TOP_AXI_PROT_EN_MM_CAM                  (BIT(0) | BIT(2) | BIT(4))
+> +#define MT8195_TOP_AXI_PROT_EN_MM_IPE                  BIT(1)
+> +#define MT8195_TOP_AXI_PROT_EN_MM_IMG                  (BIT(1) | BIT(3))
+> +#define MT8195_TOP_AXI_PROT_EN_MM_VPPSYS0              (GENMASK(2, 0) | GENMASK(8, 6) |        \
+> +                                                       GENMASK(12, 10) | GENMASK(21, 19) |     \
+> +                                                       BIT(31))
+> +#define MT8195_TOP_AXI_PROT_EN_MM_VDOSYS0              (GENMASK(5, 3) | BIT(9) |       \
+> +                                                       GENMASK(14, 13) | GENMASK(21, 17) |     \
+> +                                                       BIT(30))
+> +#define MT8195_TOP_AXI_PROT_EN_MM_VPPSYS1              GENMASK(8, 5)
+> +#define MT8195_TOP_AXI_PROT_EN_MM_VENC                 (BIT(9) | BIT(11))
+> +#define MT8195_TOP_AXI_PROT_EN_MM_VENC_CORE1           (BIT(10) | BIT(12))
+> +#define MT8195_TOP_AXI_PROT_EN_MM_VDEC0                        BIT(13)
+> +#define MT8195_TOP_AXI_PROT_EN_MM_VDEC1                        BIT(14)
+> +#define MT8195_TOP_AXI_PROT_EN_MM_VDOSYS1_2ND          BIT(22)
+> +#define MT8195_TOP_AXI_PROT_EN_MM_VPPSYS1_2ND          BIT(23)
+> +#define MT8195_TOP_AXI_PROT_EN_MM_CAM_2ND              BIT(24)
+> +#define MT8195_TOP_AXI_PROT_EN_MM_IMG_2ND              BIT(25)
+> +#define MT8195_TOP_AXI_PROT_EN_MM_VENC_2ND             BIT(26)
+> +#define MT8195_TOP_AXI_PROT_EN_MM_WPESYS               BIT(27)
+> +#define MT8195_TOP_AXI_PROT_EN_MM_VDEC0_2ND            BIT(28)
+> +#define MT8195_TOP_AXI_PROT_EN_MM_VDEC1_2ND            BIT(29)
+> +#define MT8195_TOP_AXI_PROT_EN_MM_VDOSYS0_2ND          GENMASK(29, 22)
+> +#define MT8195_TOP_AXI_PROT_EN_MM_VDOSYS1              GENMASK(31, 30)
+
+There's significant overlap within this block. This means when the base
+VDOSYS0 power domain is on, all the overlapped protection bits get turned
+off. I'm not sure that's correct.
+
+Same goes for IMG, which overlaps with IPE.
+
+> +#define MT8195_TOP_AXI_PROT_EN_MM_2_VPPSYS0_2ND                (GENMASK(7, 0) | GENMASK(18, 11))
+> +#define MT8195_TOP_AXI_PROT_EN_MM_2_VENC               BIT(2)
+> +#define MT8195_TOP_AXI_PROT_EN_MM_2_VENC_CORE1         (BIT(3) | BIT(15))
+> +#define MT8195_TOP_AXI_PROT_EN_MM_2_CAM                        (BIT(5) | BIT(17))
+> +#define MT8195_TOP_AXI_PROT_EN_MM_2_VPPSYS1            (GENMASK(7, 6) | BIT(18))
+> +#define MT8195_TOP_AXI_PROT_EN_MM_2_VPPSYS0            (GENMASK(9, 8) | GENMASK(22, 21) | BIT(24))
+> +#define MT8195_TOP_AXI_PROT_EN_MM_2_VDOSYS1            BIT(10)
+> +#define MT8195_TOP_AXI_PROT_EN_MM_2_VDEC2_2ND          BIT(12)
+> +#define MT8195_TOP_AXI_PROT_EN_MM_2_VDEC0_2ND          BIT(13)
+> +#define MT8195_TOP_AXI_PROT_EN_MM_2_WPESYS_2ND         BIT(14)
+> +#define MT8195_TOP_AXI_PROT_EN_MM_2_IMG                        BIT(16)
+> +#define MT8195_TOP_AXI_PROT_EN_MM_2_IPE                        BIT(16)
+
+And here, IMG and IPE are the same.
+
+> +#define MT8195_TOP_AXI_PROT_EN_MM_2_VDEC2              BIT(21)
+> +#define MT8195_TOP_AXI_PROT_EN_MM_2_VDEC0              BIT(22)
+> +#define MT8195_TOP_AXI_PROT_EN_MM_2_VDOSYS0            BIT(23)
+> +#define MT8195_TOP_AXI_PROT_EN_MM_2_WPESYS             GENMASK(24, 23)
+> +#define MT8195_TOP_AXI_PROT_EN_VDNR_1_EPD_TX           BIT(1)
+> +#define MT8195_TOP_AXI_PROT_EN_VDNR_1_DP_TX            BIT(2)
+> +#define MT8195_TOP_AXI_PROT_EN_VDNR_PCIE_MAC_P0                (BIT(11) | BIT(28))
+> +#define MT8195_TOP_AXI_PROT_EN_VDNR_PCIE_MAC_P1                (BIT(12) | BIT(29))
+> +#define MT8195_TOP_AXI_PROT_EN_VDNR_1_PCIE_MAC_P0      BIT(13)
+> +#define MT8195_TOP_AXI_PROT_EN_VDNR_1_PCIE_MAC_P1      BIT(14)
+> +#define MT8195_TOP_AXI_PROT_EN_SUB_INFRA_VDNR_MFG1     (BIT(17) | BIT(19))
+> +#define MT8195_TOP_AXI_PROT_EN_SUB_INFRA_VDNR_VPPSYS0  BIT(20)
+> +#define MT8195_TOP_AXI_PROT_EN_SUB_INFRA_VDNR_VDOSYS0  BIT(21)
+> +#define MT8195_TOP_AXI_PROT_EN_VDNR_2_NNA0             BIT(25)
+> +#define MT8195_TOP_AXI_PROT_EN_VDNR_2_NNA1             BIT(26)
+> +#define MT8195_TOP_AXI_PROT_EN_VDNR_2_NNA              GENMASK(26, 25)
+> +
+
+All these MT8195_TOP_AXI_PROT_EN_* bit offsets aren't documented. Besides
+the huge overlap above, it seems NNA also includes NNA0 and NNA1.
+
+
+Regards
+ChenYu
+
+
+>  #define MT8192_TOP_AXI_PROT_EN_STA1                    0x228
+>  #define MT8192_TOP_AXI_PROT_EN_1_STA1                  0x258
+>  #define MT8192_TOP_AXI_PROT_EN_SET                     0x2a0
+> --
+> 2.18.0
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
