@@ -2,85 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62B3A3CFF50
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 18:26:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 147F93CFF53
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 18:26:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235590AbhGTPpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 11:45:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38922 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236611AbhGTPjq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 11:39:46 -0400
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18800C061794;
-        Tue, 20 Jul 2021 09:19:53 -0700 (PDT)
-Received: by mail-yb1-xb2b.google.com with SMTP id y38so33522909ybi.1;
-        Tue, 20 Jul 2021 09:19:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=nMW7QBUIc/uDC2jb5O45C3Qll6tdxJ+z7OX5wmkMw7g=;
-        b=Q4UxPB6017TkNDUlu96WZV4WEHOBpzJ+89Eh0JNRitvJD5X/GX4ogW1MJeJzjCkhMY
-         AxOQU3HVBdXTXwtF61lcXnNkOASFi0o/30oFMWe8rPjhqC6wahIMZfjpaK5IPpjSLDWC
-         FtmLW7obp3B4wYCxHVd98Q9xZrjbCxkHkVORCynQ1SKG2vlef3GTIIqGcI+i/5lO5151
-         wManlFm/TAlP26oGaJbmNjCY77j3uKob9yi0cRllFsDOAX9/HdDDkwk57ePNBjSjx7Ek
-         TPS/Y92Cn3TPvO19KM3RjN9MhOTbdLW+52xR/e/cvPcdybALLF2B9ZQHqIxKwwLnI++e
-         umCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=nMW7QBUIc/uDC2jb5O45C3Qll6tdxJ+z7OX5wmkMw7g=;
-        b=fNh04oaEmycJF6u7/bdigN8NQePBruz+bsZ+Ix4Teoawtj99/c2gHZjIach9RMr+po
-         y7J15kDVkc9wL3UIRRy3WeAgCunMpzrR4c+LmlULQH/a3A3F9s+MXYeLd2QaSIYomWv0
-         JYPMfXEEKEWXqumNTwoujf4HmmSVjmGtmu7lHlSHRedeaHElsNcv33EyPuSVx3XsBRyf
-         nSxmnTGBB8VH9Jfo5EoRYlorL0bpRiTYBuY1Z6B2v38d9AAfi/QQEy0fkDnQrUlPL6+R
-         xyvN0eeILVB9IM2dIf71ZPJ2pyFYSdKG+ISUGd57K7sJh0fb5GI16gttOgAiWonqRpyo
-         6F2A==
-X-Gm-Message-State: AOAM533xUVFIFepwZyhABRaJ+nUwiaiZGqs3SwSiSzcDHEIVtBQ69AcT
-        W/IdlwOuQpFa4S18hJT7m+7dCgkqldTrdQC+K5o=
-X-Google-Smtp-Source: ABdhPJzR4XdNVwzV7TKxaqvAxwEUOvvE4adIQZkFpm5PJxC9fP7zQf5S1/gxJJQ58sE09rAZMdpjjLkcd6uA7x4DPEk=
-X-Received: by 2002:a25:b706:: with SMTP id t6mr40461892ybj.174.1626797992258;
- Tue, 20 Jul 2021 09:19:52 -0700 (PDT)
+        id S236292AbhGTPpl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 11:45:41 -0400
+Received: from mail-40136.protonmail.ch ([185.70.40.136]:33280 "EHLO
+        mail-40136.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234905AbhGTPn4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 11:43:56 -0400
+Date:   Tue, 20 Jul 2021 16:24:15 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
+        s=protonmail; t=1626798264;
+        bh=EJeCWsJFzfOWox+RhkqrrCD1XyOpMKF4vdKS1xlR9C0=;
+        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
+        b=JY4/nOPz8dQWccoc9cuSmC+6ccS6qN9dRA2cighFFdUVYnlBjM860OTcmC9EBNZdl
+         6csT6YER8UnTjIEGXRTTCPimX9yUQBv4tvht/35KLnRSo1+oN2b+ezbdw5boC2mPSV
+         DWJZL61pvnZVA9o99Crn/Tyb+MgAS/q0Qvdyw1NA=
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+From:   Caleb Connolly <caleb@connolly.tech>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Reply-To: Caleb Connolly <caleb@connolly.tech>
+Subject: Re: [PATCH 3/5] drm/panel/samsung-sofef00: make gpio optional
+Message-ID: <8922066a-dbae-68ad-3708-2b2cf4d4d22a@connolly.tech>
+In-Reply-To: <YPbztxBh4cCJF8p3@yoga>
+References: <20210720153125.43389-1-caleb@connolly.tech> <20210720153125.43389-4-caleb@connolly.tech> <YPbztxBh4cCJF8p3@yoga>
 MIME-Version: 1.0
-References: <20210710151034.32857-1-pgwipeout@gmail.com> <20210710151034.32857-5-pgwipeout@gmail.com>
- <20210715162131.GA1184545@robh.at.kernel.org>
-In-Reply-To: <20210715162131.GA1184545@robh.at.kernel.org>
-From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Tue, 20 Jul 2021 12:19:39 -0400
-Message-ID: <CAMdYzYpXNdmHKBOOgC6DL-_7qrZyifnDPB=WuU0vAY8qPj1_ww@mail.gmail.com>
-Subject: Re: [RFC PATCH 4/4] arm64: dts: rockchip: add basic dts for Pine64 Quartz64-A
-To:     Rob Herring <robh@kernel.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
-        Liang Chen <cl@rock-chips.com>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 15, 2021 at 12:21 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Sat, 10 Jul 2021 11:10:34 -0400, Peter Geis wrote:
-> > Add a basic dts for the Pine64 Quartz64 Model A Single Board Computer.
-> > This board outputs on uart2 for debug.
-> >
-> > Signed-off-by: Peter Geis <pgwipeout@gmail.com>
-> > ---
-> >  .../devicetree/bindings/arm/rockchip.yaml     |   5 +
-> >  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
-> >  .../boot/dts/rockchip/rk3566-quartz64-a.dts   | 321 ++++++++++++++++++
-> >  3 files changed, 327 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-> >
->
-> Acked-by: Rob Herring <robh@kernel.org>
+Hi Bjorn,
 
-Thank you!
-I need to split the dt-bindings out into a separate patch, and the
-quartz64-a dts has some mild changes.
-Are you okay with me using your ack still?
+On 20/07/2021 17:03, Bjorn Andersson wrote:
+> On Tue 20 Jul 10:33 CDT 2021, Caleb Connolly wrote:
+>
+>> The OnePlus 6T panel fails to initialise if it has been reset,
+>> workaround this by allowing panels to not specify a reset GPIO.
+>>
+>> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+>> ---
+>>   drivers/gpu/drm/panel/panel-samsung-sofef00.c | 7 +++++--
+>>   1 file changed, 5 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/panel/panel-samsung-sofef00.c b/drivers/gpu=
+/drm/panel/panel-samsung-sofef00.c
+>> index 8cb1853574bb..a20a5af14653 100644
+>> --- a/drivers/gpu/drm/panel/panel-samsung-sofef00.c
+>> +++ b/drivers/gpu/drm/panel/panel-samsung-sofef00.c
+>> @@ -44,6 +44,8 @@ struct sofef00_panel *to_sofef00_panel(struct drm_pane=
+l *panel)
+>>
+>>   static void sofef00_panel_reset(struct sofef00_panel *ctx)
+>>   {
+>> +=09if (!ctx->reset_gpio)
+> gpiod_set_value_cansleep(NULL, 1) is a perfectly valid nop, so I don't
+> think you need to make this conditional.
+Ah thanks, will revise.
+>
+> That said, don't you need this to get the panel out of reset once you
+> apply power after it being powered off?
+
+It seems like the panel is out of reset by default, my best guess for
+this whole issue is that the bootloader does some initialisation
+
+of the panel which we aren't able to reproduce, as the panel is left
+initialised (for cont splash) we're able to just make use of it as is.
+
+With these patches supplied the OnePlus 6T is able to boot and function
+as expected, in the future it would be good to find a way to
+
+properly set up the panel so that we aren't dependent on the bootloader...
+
+>
+>> +=09=09return;
+>>   =09gpiod_set_value_cansleep(ctx->reset_gpio, 0);
+>>   =09usleep_range(5000, 6000);
+>>   =09gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+>> @@ -137,7 +139,8 @@ static int sofef00_panel_prepare(struct drm_panel *p=
+anel)
+>>   =09ret =3D sofef00_panel_on(ctx);
+>>   =09if (ret < 0) {
+>>   =09=09dev_err(dev, "Failed to initialize panel: %d\n", ret);
+>> -=09=09gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+>> +=09=09if (ctx->reset_gpio)
+> Ditto.
+>
+>
+> Regards,
+> Bjorn
+>
+>> +=09=09=09gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+>>   =09=09return ret;
+>>   =09}
+>>
+>> @@ -276,7 +279,7 @@ static int sofef00_panel_probe(struct mipi_dsi_devic=
+e *dsi)
+>>   =09=09return ret;
+>>   =09}
+>>
+>> -=09ctx->reset_gpio =3D devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+>> +=09ctx->reset_gpio =3D devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_=
+HIGH);
+>>   =09if (IS_ERR(ctx->reset_gpio)) {
+>>   =09=09ret =3D PTR_ERR(ctx->reset_gpio);
+>>   =09=09dev_warn(dev, "Failed to get reset-gpios: %d\n", ret);
+>> --
+>> 2.32.0
+>>
+>>
+Kind Regards,
+
+Caleb
+
+
