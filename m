@@ -2,117 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63A733CFEF6
+	by mail.lfdr.de (Postfix) with ESMTP id 63A043CFEF5
 	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 18:13:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231315AbhGTPcr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 11:32:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36450 "EHLO
+        id S231951AbhGTPcs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 11:32:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234494AbhGTP1j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 11:27:39 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29BA5C0613E8
-        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 09:07:18 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id u5-20020a7bc0450000b02901480e40338bso1796968wmc.1
-        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 09:07:18 -0700 (PDT)
+        with ESMTP id S234295AbhGTP22 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 11:28:28 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73912C061762
+        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 09:09:06 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id l7so26585632wrv.7
+        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 09:09:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=Gj6/MjwS+J4keCNnFYk1TQ+l4VVmRSXxrXDi5n5Ny3A=;
-        b=gRT05Pn+DjxRaYaQ3SNjK87ik5viYwcI+vEQBGYCJKXp+85XrKT1fQplwtyoDLjGg2
-         6Qm1OYymAU0bFf7C3NOz5mLcuRMvVUreToOlOhkwBKzwWP5gor6/M/h5rfroSNCyLdFv
-         PdyTRd9/r9cNphQ/KVfSF6jMtjyOt9/P2R+lpJqsSZz4BSdR4Hpl5xase7lCGIH5fmTD
-         ZUkiTdNmOeyUmvJ8y+l6qXiIuj+wgfJC7MoxsFp8ZrF2vJL9bdWgREeDXCjzUD3KgT79
-         DDXJU0Krj1Oz9JiTidP6+M5sFyX3FKllpYMs/4nxZEIK7f5i9q6u2eCFN1v3fEojfJXx
-         Odcg==
+        bh=pVCv+JmIPRuD56E6LjWFf8ij0FQMIIJAhgyKZFkghdo=;
+        b=KDpF/QuyH2EEa4BxevRhhQRc3tL81pg7UjwtIzvYVL5SLu8YVOJrJ9pS9/7kTefrcU
+         u1e+/YKV6+TzGoOi77/Pc96ewWe86kIvh9NLH9csdUUuVKG3vR+N8dYoMMNQkxq7aRtz
+         ETSXIp3GvVbfdPbRpafp1gXsMp86+41dnN5bI1HmJZqLepvzGWX52EQVP+bDehb9GVs+
+         gpxnKY7qFSkIJBwbSMun3krCYFY3yCImcKBVRmkoISIENvPECjvK+asWRIfXiNI+dS7P
+         pjKhCguoDdH51b6rCn0onhpZBgiDq/PMw8EiUI8Hlq4A88Oa5lkETUWcmtlwI/EJhqmA
+         3W/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=Gj6/MjwS+J4keCNnFYk1TQ+l4VVmRSXxrXDi5n5Ny3A=;
-        b=RBKf8AAc0+njxwEg/W6kY13rFMkftxkNUCLET5qEUy/4gqi+9XMjTUhvSuZVV0CXtu
-         8kxM8pvsufKAY6cckjlSOmRSD6tt0LbybZIeoWFaBJKNoTmupJZpEDF2ImdYlWtXukrC
-         YVXjyXR5+kVnLKGcoqqgWfMLXiovEpWiJY5wqYLJ5zUyA+MVhbvJ+zWL0BOT0lJMjAnS
-         1I5AW6QL6rknOVK07K/uUQR1kvhVVUGqJrIrUECt/nMGV7SV4hBJP5QiRP/WMHb40xuT
-         SmWln5yrAlWKsL8njJzm0pRYfT4xPNgz0pYtAr37DDARdqaT1rlSxJMQReia0fcue3ks
-         U1pw==
-X-Gm-Message-State: AOAM5334Ueqjh4WvEHkZBdx5GhmskaoZWy4MiPor99T0S9LzqGG9289x
-        Bm+jAoN63Grn9Ttt/jqU4nU4rw==
-X-Google-Smtp-Source: ABdhPJwkPXNxyIOEI1iwTxTrl+7ksvGsjQ9ocmdf90SP7jwdElbWhOPHa6fxSUo60olZC1ffA0K8nw==
-X-Received: by 2002:a05:600c:47c4:: with SMTP id l4mr3865020wmo.125.1626797236726;
-        Tue, 20 Jul 2021 09:07:16 -0700 (PDT)
+        bh=pVCv+JmIPRuD56E6LjWFf8ij0FQMIIJAhgyKZFkghdo=;
+        b=diyLVjSe3VvKBpB1PcXGj4STEJNriH9xciw5o1X1U7qrFuGdh++h/mfdOfXzf7wQjC
+         +p/fpKS3UYEX9cRPOVY+AfZJBQQx1CDFkjVjKMwPDOkUgF0Jg2Fn0fPB58bakYnWDzVL
+         0X5o24LkJa6FKdguCYLWFjw51kGH6LRZfhOaIzFki8X3UfZz6kb3HHcopJxcEin4qIp3
+         GlII8okDKHtNnpXje6LiNNMQ+j/lwJLIibOtbmVa56uTRZh/bz0XudUEkYNgtG2MfIAm
+         qpxx4LiT/lVN4hrrywk1pPLdHYIXi+k88/daZPPd1UhplebqaW1htE2oc4OXzr96TLXq
+         PROw==
+X-Gm-Message-State: AOAM5339GbyMaxPfoAsJG81NxlyJFpggqv8kYJCoAO6Dqh1zukUpQ8qH
+        E4vgBMFPbwBTSnBxKzJ6+41y2A==
+X-Google-Smtp-Source: ABdhPJwuHu/m1lthS5BccZ3wR2hL1mhKs6xxC4mTNdlgsglE1LyhxOZuQpDBSRcSffjjBOtWVsERbg==
+X-Received: by 2002:adf:eb4c:: with SMTP id u12mr38140595wrn.111.1626797345081;
+        Tue, 20 Jul 2021 09:09:05 -0700 (PDT)
 Received: from google.com ([31.124.24.141])
-        by smtp.gmail.com with ESMTPSA id w18sm26022717wrg.68.2021.07.20.09.07.15
+        by smtp.gmail.com with ESMTPSA id q19sm2676239wmq.38.2021.07.20.09.09.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jul 2021 09:07:16 -0700 (PDT)
-Date:   Tue, 20 Jul 2021 17:07:14 +0100
+        Tue, 20 Jul 2021 09:09:04 -0700 (PDT)
+Date:   Tue, 20 Jul 2021 17:09:02 +0100
 From:   Lee Jones <lee.jones@linaro.org>
-To:     Emil Renner Berthing <kernel@esmil.dk>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 2/3] mfd: tps65086: Make interrupt line optional
-Message-ID: <YPb0spKPvEvuuMWc@google.com>
-References: <20210625224744.1020108-1-kernel@esmil.dk>
- <20210625224744.1020108-3-kernel@esmil.dk>
- <YPbmmqfOuE5w6EgW@google.com>
- <CANBLGcy_28q23vRJk9=UZR_Feeqod-ETET=v4Ub=35edySH7SA@mail.gmail.com>
- <YPbsodxMk+VvU/3D@google.com>
- <CANBLGcx08XajR8khJmKARBjy7bQ5ebbgO+RRqRu=bvyMx7LuKA@mail.gmail.com>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Alistair Francis <alistair@alistair23.me>, robh+dt@kernel.org,
+        lgirdwood@gmail.com, linux-imx@nxp.com, kernel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        alistair23@gmail.com
+Subject: Re: [PATCH v7 1/6] mfd: sy7636a: Initial commit
+Message-ID: <YPb1Hs0EoZ1MikuX@google.com>
+References: <20210708115804.212-1-alistair@alistair23.me>
+ <YPbjZdu7T9wFcvNz@google.com>
+ <20210720152351.GC5042@sirena.org.uk>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CANBLGcx08XajR8khJmKARBjy7bQ5ebbgO+RRqRu=bvyMx7LuKA@mail.gmail.com>
+In-Reply-To: <20210720152351.GC5042@sirena.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 20 Jul 2021, Emil Renner Berthing wrote:
+On Tue, 20 Jul 2021, Mark Brown wrote:
 
-> On Tue, 20 Jul 2021 at 17:32, Lee Jones <lee.jones@linaro.org> wrote:
-> > On Tue, 20 Jul 2021, Emil Renner Berthing wrote:
-> > > On Tue, 20 Jul 2021 at 17:07, Lee Jones <lee.jones@linaro.org> wrote:
-> > > > On Sat, 26 Jun 2021, Emil Renner Berthing wrote:
-> > > > > The BeagleV Starlight v0.9 board[1] doesn't have the IRQB line routed to
-> > > > > the SoC, but it is still useful to be able to reach the PMIC over I2C
-> > > > > for the other functionality it provides.
-> > > > >
-> > > > > [1] https://github.com/beagleboard/beaglev-starlight
-> > > > >
-> > > > > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> > > > > ---
-> > > > >  .../devicetree/bindings/mfd/ti,tps65086.yaml  |  3 ---
-> > > >
-> > > > This is not present in my current tree.
-> > > >
-> > > > Looks like it's still *.txt.
-> > > >
-> > > > Am I missing a patch?
-> > >
-> > > Yes, the first patch in the series converts that to yaml. I'm quite
-> > > sure I had the same list of recipients on all 4 mails in the series,
-> > > so don't know why that should be missing.
-> >
-> > Oh, it's not marked as 'important' because it has open review comments
-> > on it.
-> >
-> > Just have this for now then:
-> >
-> > For my own reference (apply this as-is to your sign-off block):
-> >
-> >   Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+> On Tue, Jul 20, 2021 at 03:53:25PM +0100, Lee Jones wrote:
+> > On Thu, 08 Jul 2021, Alistair Francis wrote:
 > 
-> Thanks! Do you want to have a look at 3/3 or should I just send a v2
-> to fix the yaml conversion now?
+> > > +static const struct mfd_cell sy7636a_cells[] = {
+> > > +	{ .name = "sy7636a-regulator", },
+> > > +	{ .name = "sy7636a-temperature", },
+> > > +	{ .name = "sy7636a-thermal", },
+> > > +};
+> 
+> > If you put these in the Device Tree, you can use "simple-mfd-i2c"
+> 
+> At least the regulator probably shouldn't be - this is just a Linux
+> specific grouping of devices, it's not really directly a block in the
+> hardware in a way that's platform independent.
 
-Patch 3 should be split.
+I've seen (and authored) regulator support in DT before.
 
-I think it should also s/restart/reset/.
+What's changed?  They're controlled by registers, right?
+
+Is the problem that the registers are usually split?
 
 -- 
 Lee Jones [李琼斯]
