@@ -2,97 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFF5A3D0324
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 22:46:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0B553D0397
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 23:06:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233926AbhGTUAZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 16:00:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35804 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237642AbhGTTwi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Jul 2021 15:52:38 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id CA00A60FF2;
-        Tue, 20 Jul 2021 20:33:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626813196;
-        bh=eAL8QwelZEjqkrY6xpSxtA3PODMbnmYsssC4KoVZiOc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JJpAfKhnABUmpxOg9U/fYhIdK676lUC7zxdZO4Ov+XkzsTN1uNQpBFvYrirDfIakZ
-         byh9JWGpUaePwdP9P8a5i5BEvhoOUPFLDQF/TDfF6Dt16A3BeRLHI/9/G2uzjph8jw
-         MevIZGtIuySKTu1ntOZrkKNQFaWrdWeYOaJyeJpxUnq3KG8ahCOJyb+BlK+zntCxgx
-         Ed4I0eXobO8J3Ubp6zPV5nmDpkVivVrUweH+mzg1CoHXf/MLoxDBrQyTc2c5HwIyLh
-         QY1nFaI0Gwrfw7HTmsQ+TalbuwunzUd9K0sOoGUuoML7Km3jvcukKSLHc3yF+IDiUt
-         vtHRTxUbK9qGQ==
-Date:   Tue, 20 Jul 2021 21:33:12 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Rui Miguel Silva <rmfrfs@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Ramesh Shanmugasundaram <rashanmu@gmail.com>,
-        "G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Oleksij Rempel <o.rempel@pengutronix.de>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Dilip Kota <eswara.kota@linux.intel.com>,
-        Karol Gugala <kgugala@antmicro.com>,
-        Mateusz Holenko <mholenko@antmicro.com>,
-        Olivier Moysan <olivier.moysan@st.com>,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
-        netdev@vger.kernel.org, linux-rtc@vger.kernel.org,
-        alsa-devel@alsa-project.org
-Subject: Re: [PATCH] dt-bindings: Remove "status" from schema examples
-Message-ID: <20210720203312.GG5042@sirena.org.uk>
-References: <20210720172025.363238-1-robh@kernel.org>
+        id S229706AbhGTUZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 16:25:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45008 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234712AbhGTUNk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 16:13:40 -0400
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92112C061762
+        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 13:54:13 -0700 (PDT)
+Received: by mail-oi1-x22d.google.com with SMTP id u11so651201oiv.1
+        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 13:54:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zTZZLjUdyFEqjaWHt/tewDnsUMyMzDCTcPb3etZIKoA=;
+        b=lxufml5UsQxSyJM3+U5G3ly0oIpM8okLujJYTBxzEc757KP5AiDsQOl/dQuq3wZmEU
+         Ojq7NJlTx9V7ukdbydzweZ5H7sw3a2eBTufzIrXAgLZWAOl5wylVjEs5taP6BGgqG0/X
+         q8htvm0YYJnQFZ4ch65OMhDcnDurpttq5F8aN1AOqMqvACwyHU+Ya+n6ymIlq6P7kbFX
+         FZbpMO31NHzwcjhHBY2TAXqidE8vx4IzimeILXjo0SJ59LvxpslDDnnRXTvGKGyJ6ISb
+         S0yytaDqWuctUjqmwkSUfalmf17oQf2azNVpDiR8gc+iIl0ieJBvtKyCGQfivlkLH4nL
+         Plag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zTZZLjUdyFEqjaWHt/tewDnsUMyMzDCTcPb3etZIKoA=;
+        b=NdLNNp2NKG+etCbc9ST+9aQk2qE33uV5iNcEmzVVBFg1jwUgOXKtTmB4XPMQRTPR1t
+         jHg+UkEJ5aKgCw0+1+/9yZy39v6oYgCnFJCQQ05NYSt7jXKRWytVukI6uYh7BNQ9ff2f
+         BNAZOYDuc9WZNtEmYzcRtcV9kMO1IYzbjMbZi48FVpV5JT8lf73KL7Jtt9Q0W58UkHGS
+         rsjtUVMZmuqLDXPpPuCOd+ytRpPeOio8mcQOX5T0OVUFL4R9//PBONMYLT9X4JgT+2SX
+         GuL2rnL7lKTg4MNu17tBrlpJ6JoyKWA+vDJQ6nNESXh2PN1dlIK1RDFTPoN3duoF7z9A
+         RWZQ==
+X-Gm-Message-State: AOAM53201zulyHmsf88tweg3YZJnwIPkFvUrvJQrIVN1AKhnkKwp2qwd
+        dnUYF2eTS0/L5X2cpxfoIZGWYMfBS5o=
+X-Google-Smtp-Source: ABdhPJyxc7S7uhEYeOxBRv2Mffwu4iNkDj6Bhgz+KqOvyvnGy/IvgkvetEfkRxWJJFrXzYZizbLZkw==
+X-Received: by 2002:aca:61d5:: with SMTP id v204mr270952oib.138.1626814452626;
+        Tue, 20 Jul 2021 13:54:12 -0700 (PDT)
+Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
+        by smtp.gmail.com with ESMTPSA id s6sm3329094otd.6.2021.07.20.13.54.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Jul 2021 13:54:11 -0700 (PDT)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     robh+dt@kernel.org, heiko@sntech.de, maccraft123mc@gmail.com,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH v2] arm64: dts: rockchip: Correct regulator for USB host
+Date:   Tue, 20 Jul 2021 15:54:01 -0500
+Message-Id: <20210720205401.26311-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="kadn00tgSopKmJ1H"
-Content-Disposition: inline
-In-Reply-To: <20210720172025.363238-1-robh@kernel.org>
-X-Cookie: Revenge is a meal best served cold.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Chris Morgan <macromorgan@hotmail.com>
 
---kadn00tgSopKmJ1H
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+When writing a battery driver, I noticed that the USB voltage was ~3.7V
+while running off of battery on a mainline kernel. After consulting the
+schematics for the Odroid Go Advance, it appears that the BOOST
+regulator is involved in the process of powering the USB host. Power
+for the USB host goes from the vccsys regulator into the PMIC, then out
+from the PMIC BOOST regulator into the FC9516A (which is controlled by
+GPIO), which then feeds power into the USB host. I named the regulator
+usb_midu because on the datasheet the pin is described as "MIDU/BOOST -
+middle point of USB power supply / boost output". Making these changes
+solved the USB power issue on battery and I'm now reading approximately
+5V. Note that as a result of this you will receive a warning on dmesg
+of " reg-fixed-voltage vcc_host: Failed to register regulator: -517".
+This is because the supplying regulator for the fixed regulator is not
+available until later.
 
-On Tue, Jul 20, 2021 at 11:20:25AM -0600, Rob Herring wrote:
-> There's no reason to have "status" properties in examples. "okay" is the
-> default, and "disabled" turns off some schema checks ('required'
-> specifically).
+Changes since v1:
+ - Removed phy-supply, as this generated a warning in dmesg.
 
-Acked-by: Mark Brown <broonie@kernel.org>
+Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
---kadn00tgSopKmJ1H
-Content-Type: application/pgp-signature; name="signature.asc"
+diff --git a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
+index 7fc674a99a6c..79d2f86ab46d 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
+@@ -207,7 +207,7 @@ vcc_host: vcc_host {
+ 		gpio = <&gpio0 RK_PB7 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
+ 		regulator-always-on;
+-		vin-supply = <&vccsys>;
++		vin-supply = <&usb_midu>;
+ 	};
+ };
+ 
+@@ -311,6 +311,7 @@ rk817: pmic@20 {
+ 		vcc5-supply = <&vccsys>;
+ 		vcc6-supply = <&vccsys>;
+ 		vcc7-supply = <&vccsys>;
++		vcc8-supply = <&vccsys>;
+ 
+ 		regulators {
+ 			vdd_logic: DCDC_REG1 {
+@@ -460,6 +461,14 @@ regulator-state-mem {
+ 					regulator-suspend-microvolt = <3000000>;
+ 				};
+ 			};
++
++			usb_midu: BOOST {
++				regulator-name = "usb_midu";
++				regulator-min-microvolt = <5000000>;
++				regulator-max-microvolt = <5400000>;
++				regulator-always-on;
++				regulator-boot-on;
++			};
+ 		};
+ 
+ 		rk817_codec: codec {
+ 
+-- 
+2.25.1
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmD3MwcACgkQJNaLcl1U
-h9Bjsgf8DIiqqQ26ZTa4jvNqa3wI4t/EHPC0PLaGmxZWA2e7eTEGVrmipVIkUz2m
-dX2Rrsl6xOoU39mzMuCNQwVu9iqiJUoxt6xQsFG13raVCQhBTxxgkkVV2qU6BWh0
-TEuDrDM4Uh5EIU/PxpwbywfyPELaMCBkFvkd9D8O/0ek7OPcVuw5Au7es/ZG+NS/
-nQBA4oFRFdrIVSQmZ+Tn3/VjiivJhZ4H8MZ3oSKcFrMpQjG6ppG31dZGHpKtJNwE
-bUqasYXWrqKz1seky+xKbpbMnSjok627Byj0cGtNir3l8MpB2bV+Ae2OE/tc3nyZ
-aRZ/bNwgS/oYZ+vrKSOeJcgAasfyYw==
-=3Ukn
------END PGP SIGNATURE-----
-
---kadn00tgSopKmJ1H--
