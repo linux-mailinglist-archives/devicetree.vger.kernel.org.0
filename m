@@ -2,94 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7875A3CFC03
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 16:25:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BFF93CFC6A
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 16:39:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239241AbhGTNoW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 09:44:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40562 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238522AbhGTNlB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 09:41:01 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5138AC0613E5
-        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 07:21:00 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1m5qc5-0000zJ-57; Tue, 20 Jul 2021 16:20:49 +0200
-Received: from pengutronix.de (unknown [IPv6:2a03:f580:87bc:d400:3120:e42a:5796:3403])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 080B9653070;
-        Tue, 20 Jul 2021 14:20:47 +0000 (UTC)
-Date:   Tue, 20 Jul 2021 16:20:47 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Nishanth Menon <nm@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+        id S234411AbhGTN53 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 09:57:29 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:43290 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239910AbhGTNuF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 09:50:05 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 16KEUb0g022980;
+        Tue, 20 Jul 2021 09:30:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1626791437;
+        bh=xqLs4uPBmopprys6+rZE0nVDkXI9dp1oo6bfI2FiNyk=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=fZk122/CtJawBzCPjnk7EIheu92Lm+RR0+cgBP2I3Bj2pUiSN0csjPHLzPE+oQouZ
+         wbR0rkPPpyf8V9HP3tP83GgSAYd6pnKcGeCcb6oz3cT1K+Pcr4hASyBCnEbNbHRU5E
+         HS5qlcM6YJDY4jGgWAJCb8GaeTw8+K/fY/bP5Jzo=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 16KEUbgu119593
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 20 Jul 2021 09:30:37 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 20
+ Jul 2021 09:30:37 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 20 Jul 2021 09:30:36 -0500
+Received: from [10.250.235.117] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 16KEUX4X130354;
+        Tue, 20 Jul 2021 09:30:34 -0500
+Subject: Re: [PATCH 1/6] arm64: dts: ti: k3-am65-mcu: Add Support for MCAN
+To:     Marc Kleine-Budde <mkl@pengutronix.de>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Lokesh Vutla <lokeshvutla@ti.com>
-Subject: Re: [PATCH 1/6] arm64: dts: ti: k3-am65-mcu: Add Support for MCAN
-Message-ID: <20210720142047.mfqssyj4lwh3yi2k@pengutronix.de>
 References: <20210720141642.24999-1-a-govindraju@ti.com>
  <20210720141642.24999-2-a-govindraju@ti.com>
+ <20210720142047.mfqssyj4lwh3yi2k@pengutronix.de>
+From:   Aswath Govindraju <a-govindraju@ti.com>
+Message-ID: <f3560ac8-8ffe-87d6-a21f-87f6251f1750@ti.com>
+Date:   Tue, 20 Jul 2021 20:00:32 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="lno6xybtxkozywqs"
-Content-Disposition: inline
-In-Reply-To: <20210720141642.24999-2-a-govindraju@ti.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20210720142047.mfqssyj4lwh3yi2k@pengutronix.de>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Marc,
 
---lno6xybtxkozywqs
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 20/07/21 7:50 pm, Marc Kleine-Budde wrote:
+> On 20.07.2021 19:46:37, Aswath Govindraju wrote:
+>> From: Faiz Abbas <faiz_abbas@ti.com>
+>>
+>> Add Support for two MCAN controllers present on the am65x SOC. Both support
+>> classic CAN messages as well as CAN-FD.
+> 
+> Thanks for the patch!
+> 
+> Why don't you disable the CAN cores by default in the dtsi?
 
-On 20.07.2021 19:46:37, Aswath Govindraju wrote:
-> From: Faiz Abbas <faiz_abbas@ti.com>
->=20
-> Add Support for two MCAN controllers present on the am65x SOC. Both suppo=
-rt
-> classic CAN messages as well as CAN-FD.
+As far as I know, in the dtsi file we mention all the subsystems or
+periherals present in the SoC and in the specific board dts file we
+enable or disable the DT nodes depending on whether the  pins are
+brought out.
 
-Thanks for the patch!
+Thanks,
+Aswath
 
-Why don't you disable the CAN cores by default in the dtsi?
+> 
+> regards,
+> Marc
+> 
 
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---lno6xybtxkozywqs
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAmD227wACgkQqclaivrt
-76lfTAf8CuSBH1I3YSqAKp6bbdBKrNfa1K2i3yyNHZ1vmZUT6iHjLpBVt1426uz8
-7zJ8cEBKcdypSEgZgu4oCSpP2VFXHEdPVmmX8ze4MlJPmlww6jw1CY8BCKEU+P8X
-FPjqwgTgXGdoYu7F/jR9K22XZ5aUpAVh02IQHs2XFYbNnJ2y7QB2JpDHBFzMiJnS
-pCQHVLeBt0j/SsnNHY7qTGzRZNk9Jl+IGd9sVJoApAk7EMLup19JjFuhzznrdvGh
-E90sAU6/hq7XanlcWMd5gnKXoMI4xkin01on1vxP0O4j+shFoXTrkJsJZMjb0Hhm
-kbxssqxS4MkHLulkPTzxQ13RAYQz5Q==
-=rgf8
------END PGP SIGNATURE-----
-
---lno6xybtxkozywqs--
