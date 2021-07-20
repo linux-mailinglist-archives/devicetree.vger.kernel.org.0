@@ -2,177 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A7C83CF4BA
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 08:46:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D803D3CF4D6
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 08:55:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243041AbhGTGFq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 02:05:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50322 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243017AbhGTGFo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 02:05:44 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCCA8C0613E0
-        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 23:46:11 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id m2so24799005wrq.2
-        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 23:46:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6u28mRni0Cw47J0u2SXQYWYKsgAtL/6Mpg3s/eEUc94=;
-        b=dwCxrpfI0MjLGWlnVBbScEpe6jcNStpztoWFiqh2qNaJ2ZM2mhtG+OQS2jEWjaUr5X
-         ITRIAQDof81SzgMuYxeuEw58Ax7SJELveVJKnEEiIy2mW+/AqJwin/bCy2U8vMA0lTpf
-         8IOVxm5Oxd+ZscW+5G5440FrYCpo3symiMEIIvhFtVrNzGRTFovHP7gNRKIgGRXDreCH
-         gxoIwEts1w1mL3U/Cn6ms42SuDrGsVW7NyxOYocZRLAQwRftVRYXblBooGwvXwN3Yd+E
-         kOyOlcVB9imxpIXyitYPJU+62GuXqflhcSKC0WxK1h3f/iM543h8FJ5PCvDRD651IuMH
-         k28g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6u28mRni0Cw47J0u2SXQYWYKsgAtL/6Mpg3s/eEUc94=;
-        b=CCQG2oBhAg+qf0dcHEOnUyauWJbfWqXMMNVtJWUD4cOLpbx98llMKnaq8i+138l5tp
-         Pt3Jw0CRqOBfNbTdYIhrNVjSljMQbFWzSrpHu1qd5MIYmqsgt+ex1/fBpQZ67TOK5n2t
-         mcrFq/KB72uJRHStZm+FlLubJBvTK+LZYEcHZwAo1Wdn1FC9F6Vou6uy8gCQv/6Mt0Bl
-         N87jjQec7jhlmAIzpzpYLv72SdjmVb5L4uKdH+/8TiBTANiAFsqgthME0AmAN8JWmV/T
-         uE0xHbLr9N/KScCD5UEA/ZpBf6eYIZ3Ht4vfWM/5gOLLCljB7erlAkH9WpcrzAHq7Pwy
-         Avzg==
-X-Gm-Message-State: AOAM530Zv1s5O5Fe983ma9ST9W6JQB77++I0ejP0LtIL0R3yGO/BYEF5
-        5USx8fQS8nrM6Hp/oalINGSTQFXaMYVf66fh0QrmGg==
-X-Google-Smtp-Source: ABdhPJwPiAPlC93OgR4lOuh8FuuiBLj7GUwKqoSbM86RZH460ccjkPoNQuk7YEaMcKSISOg8HGKDTZ0TcH3X2Jn0Lco=
-X-Received: by 2002:a05:6000:178a:: with SMTP id e10mr34140578wrg.141.1626763570276;
- Mon, 19 Jul 2021 23:46:10 -0700 (PDT)
+        id S239368AbhGTGO3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 02:14:29 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:30478 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239594AbhGTGOV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 02:14:21 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1626764099; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=8FhdUAwmy3EliSln/k+/LZb2PVAFhEXySDuWBjnF1ro=;
+ b=bWIEzp9tufwARsEFQw9Jl/Y+DRIVIzmDV/QJa8xe3CPc4hn12bxroIq4BJna6/vT4q39upY4
+ tbx3aq4XzMA7z1pzV9gmyV56LPCnlYu6cc8Y/mc8d4m75GRv7aiHJwp+OUiY6WtYaFACqYMc
+ 2u7spVLPWf7jkBkZmrMCp9YdVj4=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 60f67330fcf9fe7b782366a9 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 20 Jul 2021 06:54:40
+ GMT
+Sender: pmaliset=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 28F98C43217; Tue, 20 Jul 2021 06:54:40 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: pmaliset)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 8782EC433F1;
+        Tue, 20 Jul 2021 06:54:39 +0000 (UTC)
 MIME-Version: 1.0
-References: <PAXPR10MB4687E737261282B78600272DFD189@PAXPR10MB4687.EURPRD10.PROD.OUTLOOK.COM>
- <20210713111143.g6ztdakegs6ck25s@bogus>
-In-Reply-To: <20210713111143.g6ztdakegs6ck25s@bogus>
-From:   Jens Wiklander <jens.wiklander@linaro.org>
-Date:   Tue, 20 Jul 2021 08:45:59 +0200
-Message-ID: <CAHUa44G2xLn9td88H-n9E3yJ6JUnyGL4vZNj0rwisu2ArngYAw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/7] Asynchronous notifications from secure world
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Etienne CARRIERE <etienne.carriere@st.com>,
-        Sumit Garg <sumit.garg@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        OP-TEE TrustedFirmware <op-tee@lists.trustedfirmware.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Jerome Forissier <jerome@forissier.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Etienne Carriere <etienne.carriere@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 20 Jul 2021 12:24:39 +0530
+From:   Prasad Malisetty <pmaliset@codeaurora.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     agross@kernel.org, bhelgaas@google.com, bjorn.andersson@linaro.org,
+        lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
+        svarbanov@mm-sol.com, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dianders@chromium.org,
+        mka@chromium.org, vbadigan@codeaurora.org, sallenki@codeaurora.org
+Subject: Re: [PATCH v4 2/4] arm64: dts: qcom: sc7280: Add PCIe and PHY related
+ nodes
+In-Reply-To: <CAE-0n506Phfr=HBYgg+KDHaDAN7+GqmJSeviv7mpY=x973yd5A@mail.gmail.com>
+References: <1626443927-32028-1-git-send-email-pmaliset@codeaurora.org>
+ <1626443927-32028-3-git-send-email-pmaliset@codeaurora.org>
+ <CAE-0n506Phfr=HBYgg+KDHaDAN7+GqmJSeviv7mpY=x973yd5A@mail.gmail.com>
+Message-ID: <40f735b0f43873f1a68c53eaab0e1590@codeaurora.org>
+X-Sender: pmaliset@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 13, 2021 at 1:12 PM Sudeep Holla <sudeep.holla@arm.com> wrote:
->
-> On Fri, Jul 09, 2021 at 08:05:57AM +0000, Etienne CARRIERE wrote:
-> > Hello Sudeep and all,
-> >
-> > On Wed, 7 Jul 2021 at 19:52, Sudeep Holla <sudeep.holla@arm.com> wrote:
-> > >
-> > > Hi Sumit,
-> > >
-> > > I was holding off you reply as I didn't have all the background on this.
-> > > Achin did mention that this is preparatory work for FFA notifications.
-> > > I did mention to him that this is more than that, it is custom extension
-> > > to address what FF-A notification is trying to in standard way.
-
-Are you suggesting that we should use a hybrid implementation with
-FF-A for notifications and keep the rest as is for armv7-a?
-
-> > >
-> > > I share same opinion as Marc Z.
-
-From what I've read in this thread this has mainly been about using
-SGI notification and not whether asynchronous notification from OP-TEE
-on non-FF-A systems is good or bad. I assume Sumit was asking about
-SGI to find out why that wasn't used. This patch set uses SPI.
-
-> > >
-> > > On Wed, Jul 07, 2021 at 11:22:23AM +0530, Sumit Garg wrote:
-> > > > On Tue, 6 Jul 2021 at 18:16, Marc Zyngier <maz@kernel.org> wrote:
-> > >
-> > > [...]
-> > >
-> > > > >
-> > > > > I don't care about OP-TEE. If you are proposing a contract between S
-> > > > > and NS, it has to be TEE and OS independent. That's how the
-> > > > > architecture works.
-> > > > >
-> > > >
-> > > > Agree, here we are not proposing a common contract among the S and NS
-> > > > world that every TEE (based on Arm TrustZone) will use to communicate
-> > > > with REE (Linux in our case) but rather an OP-TEE specific
-> > > > notifications feature that is built on top of OP-TEE specific ABIs.
-> > > >
-> > > > And I can see your arguments coming from an FFA perspective but there
-> > > > are platforms like the ones based on Armv7 which don't support FFA
-> > > > ABI. Maybe Jens can elaborate how this feature will fit in when FFA
-> > > > comes into picture?
-> > > >
-> > >
-> > > I can understand that but won't those platforms add the support both in
-> > > the kernel(current series) and secure world to address notifications.
-> > > While you could argue that it is small extension to what is already present
-> > > but I prefer they support FF-A is they need such a support instead of adding
-> > > custom mechanisms. It is hard to maintain and each vendor will deviate
-> > > from this custom mechanism and soon we will have bunch of them to handle.
-
-Regarding deviation, are we still talking about the OP-TEE driver? So
-far I haven't seen any vendor extensions at all in that driver.
-
-> >
-> > There exist armv7-a platforms that expect OP-TEE notification support and
-> > will not move the FF-A, like the stm32mp15. This platform won't move to FF-A
-> > mainly due to the memory cost of the added SPM layer and the device physical
-> > constraints.
->
-> Fair enough on the use-case and the analysis for not being able to use FF-A.
-> As you may already know it doesn't simply this problem. This has been
-> discussed for years and FF-A was assumed to be the solution when FF-A
-> spec work started.
->
-> > We have a usecase for OP-TEE notification. We're working on the integration
-> > of an SCMI server in OP-TEE. SCMI notification is a feature needed is this
-> > scope and it requires OP-TEE async notification means as those proposed
-> > here.
-> >
->
-> I am aware of this use-case, I understand. But I can only share rants
-> which I know doesn't help much.
->
-> > This OP-TEE async notif also brings a lot of value in OP-TEE as it allows a
-> > OP-TEE secure thread (i.e. executing a trusted application service) to
-> > gently wait on a secure interrupt (as a slow bus transaction completion or
-> > many other usecase) with the CPU relaxed. This support is provided by the
-> > proposed series. I believe existing device should be able to leverage this
-> > OP-TEE feature without needing their OP-TEE to move to the new FF-A
-> > interface.
-> >
->
-> While I agree these are nice to have in OPTEE, the timing is just odd.
->
-> We are trying hard to push FF-A as standard solution to address all such
-> issues that couldn't be solved with OPTEE + DT, now we are back to address
-> the same in parallel to FF-A.
-
-It's not exactly the same since the primary target here is armv7-a
-where introducing FF-A isn't an obvious choice in all cases. For
-OP-TEE armv7-a is special in the way that all secure world processing
-is handled by OP-TEE. The internal secure monitor already takes care
-of what's implemented in TF-A at EL3 for armv8-a.
-
-This isn't meant to compete with FF-A, it's to make sure that the
-OP-TEE armv7-a user base isn't left behind. This doesn't rule out FF-A
-support for armv7-a for those prepared to take that step.
-
-Cheers,
-Jens
+On 2021-07-17 01:01, Stephen Boyd wrote:
+> Quoting Prasad Malisetty (2021-07-16 06:58:45)
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi 
+>> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> index a8c274a..06baf88 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> @@ -15,6 +15,7 @@
+>>  #include <dt-bindings/reset/qcom,sdm845-pdc.h>
+>>  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
+>>  #include <dt-bindings/thermal/thermal.h>
+>> +#include <dt-bindings/gpio/gpio.h>
+>> 
+>>  / {
+>>         interrupt-parent = <&intc>;
+>> @@ -546,6 +547,118 @@
+>>                         #power-domain-cells = <1>;
+> 
+> Is this the gpucc node? At address 3d90000? Please sort the nodes based
+> on their address, so this would be 1c08000 which comes before gpucc and
+> some others in this file.
+> 
+sure, I will move it accordingly.
+>>                 };
+>> 
+>> +               pcie1: pci@1c08000 {
+>> +                       compatible = "qcom,pcie-sc7280", 
+>> "qcom,pcie-sm8250", "snps,dw-pcie";
+>> +                       reg = <0 0x01c08000 0 0x3000>,
+>> +                             <0 0x40000000 0 0xf1d>,
+>> +                             <0 0x40000f20 0 0xa8>,
+>> +                             <0 0x40001000 0 0x1000>,
+>> +                             <0 0x40100000 0 0x100000>;
+>> +
