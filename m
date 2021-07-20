@@ -2,84 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FE043CF534
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 09:20:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC5853CF543
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 09:23:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230154AbhGTGit (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 02:38:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35368 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229588AbhGTGh7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Jul 2021 02:37:59 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 354D961164;
-        Tue, 20 Jul 2021 07:18:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626765515;
-        bh=yTva8fpd7rAmHf9rcie+nXbZnL+Lm0tokbn/ORpXNZM=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=OG2W8xzKkYVH6IlTNVty7c8Hlnh8gVCx1RvYZJcYBYmI4ThJBTgLcbYdNvLQJOFL+
-         ilRhUJrvvuHZr1LTdJ55n8XU/m5jw0nw1qMHPCgIJhf85yMGy2g9sBQ+MRyT4DDlFH
-         QkzmCN7crVn1EVh1n2SCu8BSBKTVBMAPo0ZjW88FuZ/8Se/nGc20muGk4aNwYur8uD
-         7+XILJElOSrIc89D/JBBSunCFi75yqycHwQnFVJb36664DxCbERLT2Lwh1emnEZDLl
-         7n0g2wJhp4/xl+XRoQiwECVT6m1ADmhx0YnQjPdLwQaLo6ViGr7UOsuw1iCf0yLeRh
-         pnSLongroKgWg==
-From:   Felipe Balbi <balbi@kernel.org>
-To:     Rajendra Nayak <rnayak@codeaurora.org>, ulf.hansson@linaro.org,
-        bjorn.andersson@linaro.org, viresh.kumar@linaro.org
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        swboyd@chromium.org, rojay@codeaurora.org, stephan@gerhold.net,
-        Rajendra Nayak <rnayak@codeaurora.org>
-Subject: Re: [PATCH v5 1/2] PM / Domains: Add support for 'required-opps' to
- set default perf state
-In-Reply-To: <1626764876-10229-2-git-send-email-rnayak@codeaurora.org>
-References: <1626764876-10229-1-git-send-email-rnayak@codeaurora.org>
- <1626764876-10229-2-git-send-email-rnayak@codeaurora.org>
-Date:   Tue, 20 Jul 2021 10:18:24 +0300
-Message-ID: <871r7tzc5b.fsf@kernel.org>
+        id S234884AbhGTGnP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 02:43:15 -0400
+Received: from mail-vk1-f182.google.com ([209.85.221.182]:35575 "EHLO
+        mail-vk1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229588AbhGTGnO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 02:43:14 -0400
+Received: by mail-vk1-f182.google.com with SMTP id d7so4377241vkf.2;
+        Tue, 20 Jul 2021 00:23:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=oHPiE5WIZuBAQynBajx7q1K/yloXb10bOcX9t96Cp50=;
+        b=KnFXXyfWOahRC/OPkdwWTGas9fNO6PJ9ZCFixbTCh5msK592/viR30M8sGZSFV/wu9
+         0z8hmqGYOGwgAvhpSMCUb7fopBmWPQ10DqkSWrbxJP2MnI7dqP+2x4+6HvmW135e0kaK
+         xy3ISfha37xEV5RAMpx1qSzVbtWnlZ80DIcV+jYCnvKSqtdCTlm6AUhBw0BRGL4fhcvZ
+         SBAxovkyilntokkenMjYq6aq+3i7Gui3U7x238ERdrXawdviPnVcKD4JTCDcJNs8L7FJ
+         EyQ1Y8yik1AKO1zxjAe9hoHpSOzfw+d8mtGvFTwcBlPa11YMGSQ45T1hnnpvt8qiuDd/
+         vU+g==
+X-Gm-Message-State: AOAM531IqGzpA795PgZEesE8hh3dOVywbl8wTvVoVzBWaD3UyuKuREJz
+        tcmQPRJ/046JYDOHQo7d/uOe/iUd+pkq+tt6mf0=
+X-Google-Smtp-Source: ABdhPJxf33tE/UC6sAZ53pbsOTH+XynQf1vrWzPcAah8VYz4w/NMs8y9Z6qAKLx4GP83D3FxP9bWIDXUegsSRZB+qCI=
+X-Received: by 2002:a1f:2746:: with SMTP id n67mr24782587vkn.5.1626765832884;
+ Tue, 20 Jul 2021 00:23:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha256; protocol="application/pgp-signature"
+References: <cover.1626266516.git.geert+renesas@glider.be> <04c4d231fb03a3810d72a45c8a5bc2272c5975f3.1626266516.git.geert+renesas@glider.be>
+ <20210714135101.GB2441138@robh.at.kernel.org> <YPP06QG7hfypZgYg@kernel.org>
+ <CAMuHMdXfFhzm48U2Hvjz8yrjPsQbagW4aC_L-QE_Q6yx1Lo=tA@mail.gmail.com> <YPZh/IawtmwaYccQ@kernel.org>
+In-Reply-To: <YPZh/IawtmwaYccQ@kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 20 Jul 2021 09:23:41 +0200
+Message-ID: <CAMuHMdXO2nYY252s-tOWANF4x2ch+adDx=GO5gwV6Jfw28drgA@mail.gmail.com>
+Subject: Re: [PATCH v4 02/10] memblock: Add variables for usable memory limitation
+To:     Mike Rapoport <rppt@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Nicolas Pitre <nico@fluxnic.net>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Dave Young <dyoung@redhat.com>, Baoquan He <bhe@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        kexec@lists.infradead.org, Linux MM <linux-mm@kvack.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
+Hi Mike,
 
+On Tue, Jul 20, 2021 at 7:41 AM Mike Rapoport <rppt@kernel.org> wrote:
+> On Mon, Jul 19, 2021 at 08:59:03AM +0200, Geert Uytterhoeven wrote:
+> > On Sun, Jul 18, 2021 at 11:31 AM Mike Rapoport <rppt@kernel.org> wrote:
+> > > On Wed, Jul 14, 2021 at 07:51:01AM -0600, Rob Herring wrote:
+> > > > On Wed, Jul 14, 2021 at 02:50:12PM +0200, Geert Uytterhoeven wrote:
+> > > > > Add two global variables (cap_mem_addr and cap_mem_size) for storing a
+> > > > > base address and size, describing a limited region in which memory may
+> > > > > be considered available for use by the kernel.  If enabled, memory
+> > > > > outside of this range is not available for use.
+> > > > >
+> > > > > These variables can by filled by firmware-specific code, and used in
+> > > > > calls to memblock_cap_memory_range() by architecture-specific code.
+> > > > > An example user is the parser of the "linux,usable-memory-range"
+> > > > > property in the DT "/chosen" node.
+> > > > >
+> > > > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > > > ---
+> > > > > This is similar to how the initial ramdisk (phys_initrd_{start,size})
+> > > > > and ELF core headers (elfcorehdr_{addr,size})) are handled.
+> > > > >
+> > > > > Does there exist a suitable place in the common memblock code to call
+> > > > > "memblock_cap_memory_range(cap_mem_addr, cap_mem_size)", or does this
+> > > > > have to be done in architecture-specific code?
+> > > >
+> > > > Can't you just call it from early_init_dt_scan_usablemem? If the
+> > > > property is present, you want to call it. If the property is not
+> > > > present, nothing happens.
+> >
+> > I will have a look...
+> >
+> > > For memblock_cap_memory_range() to work properly it should be called after
+> > > memory is detected and added to memblock with memblock_add[_node]()
+> > >
+> > > I'm not huge fan of adding more globals to memblock so if such ordering can
+> > > be implemented on the DT side it would be great.
+> >
+> > Me neither ;-)
+> >
+> > > I don't see a way to actually enforce this ordering, so maybe we'd want to
+> > > add warning in memblock_cap_memory_range() if memblock.memory is empty.
 
-Hi,
+Sorry, I misread "if memblock.memory is empty" as "if capmem is empty".
 
-Rajendra Nayak <rnayak@codeaurora.org> writes:
-> @@ -2635,9 +2641,10 @@ static void genpd_dev_pm_sync(struct device *dev)
->  static int __genpd_dev_pm_attach(struct device *dev, struct device *base=
-_dev,
->  				 unsigned int index, bool power_on)
->  {
-> +	struct device_node *np;
->  	struct of_phandle_args pd_args;
->  	struct generic_pm_domain *pd;
-> -	int ret;
-> +	int ret, pstate;
+> > "linux,usable-memory-range" is optional, and typically used only in
+> > crashdump kernels, so it would be a bad idea to add such a warning.
+>
+> If I remember correctly, memblock_cap_memory_range() was added to support
+> "linux,usable-memory-range" for crasdump kernels on arm64 and if it would
+> be called before memory is registered we may silently corrupt the memory
+> because the crash kernel will see all the memory as available.
+>"
+> So while WARN() maybe too much a pr_warn() seems to me quite appropriate.
 
-nit: might want to keep one variable declaration per line here.
+Yes, makes perfect sense now.
 
-=2D-=20
-balbi
+Gr{oetje,eeting}s,
 
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
+                        Geert
 
------BEGIN PGP SIGNATURE-----
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-iQFFBAEBCAAvFiEE9DumQ60WEZ09LIErzlfNM9wDzUgFAmD2eMARHGJhbGJpQGtl
-cm5lbC5vcmcACgkQzlfNM9wDzUhYAggAqmGtV8s1jMt1CfWKeCnD+OEjfKviaLc+
-5KkpCz/6/TshWjSYR3dBa1qaPX8VGUHl66p3oiGhY1vV73XmqTbLfqeG10jz2Wrx
-kjqGUoWeG2xXg/S3yefDljL3mR5sxJA/SdxAKr1Fv6hza55D1huvakPuridjq//Y
-atulXP6MDgwdSc71bwDVjN1Dk7IA9qMx6ZvqkcJEL+AOIO++1yMbLk6YA2yaDrhO
-SGEJ2NP73ytOv8d1AJrRDvurJdeNRhdM4gibSlDQx0nrspucdv74kUBwCqhMQdl6
-C8MzGEL/w7rogRqCoXh0d1ER2yt20yjga2qBq+D6BnEdBd+XJDXwyg==
-=r4IL
------END PGP SIGNATURE-----
---=-=-=--
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
