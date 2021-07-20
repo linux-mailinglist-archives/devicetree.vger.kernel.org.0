@@ -2,193 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA13E3CFBEF
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 16:23:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FBA13CFBFE
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 16:25:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238551AbhGTNmR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 09:42:17 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:40254 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239498AbhGTNgz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 09:36:55 -0400
+        id S232729AbhGTNoA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 09:44:00 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:56268 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239045AbhGTNhE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 09:37:04 -0400
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 16KEG4Sl017139;
-        Tue, 20 Jul 2021 09:16:04 -0500
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 16KEGlV4090762;
+        Tue, 20 Jul 2021 09:16:47 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1626790564;
-        bh=1izAijwknd3Czt/bcb4ykqs+qHn6qPns0G130qgqFXA=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=PBLrDRvzn6uPsvvc+Z4pNLKr/glTXYbMRhClUC4If7NjKHKR+axy4VK4ImpwcIRKe
-         iBaL79vTCZOQ5v2rvOQl4myYQjKT9YIf4GV9nF/5G4T1KtPSKIVOSLNdj/9cc2oc7D
-         ixScLfosdIEv9xtU6CBGSM5JaUztpi8+cw5ZiiFA=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 16KEG4r3123199
+        s=ti-com-17Q1; t=1626790607;
+        bh=thqzJcdX6ltfUkesVt2398viD1I8OA9Nepj2zCtUqw4=;
+        h=From:To:CC:Subject:Date;
+        b=w04km/0wRPgT4QvCpU9QqqmF8SRGOKDd5Ow/CqEShsP2dtXCmbXuw1dZG+8QAb/Fm
+         GAGZF0jdQlLv/49sqU0KlJ23FRyeOr9+Y9EHDUqVkM5e9EWPOmAOXzlc1hfhUYkiFG
+         LITR4rj0koWoTmX4KhgoPG61me4V+/ICv5Us8sOY=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 16KEGlik123834
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 20 Jul 2021 09:16:04 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+        Tue, 20 Jul 2021 09:16:47 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 20
- Jul 2021 09:16:03 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ Jul 2021 09:16:47 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Tue, 20 Jul 2021 09:16:03 -0500
-Received: from [10.250.234.142] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 16KEFxev072402;
-        Tue, 20 Jul 2021 09:16:00 -0500
-Subject: Re: [PATCH] dt-bindings: mtd: spi-nand: Convert to DT schema format
-To:     Rob Herring <robh@kernel.org>
-CC:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Pratyush Yadav <p.yadav@ti.com>,
-        Michael Walle <michael@walle.cc>
-References: <20210718004125.733-1-a-nandan@ti.com>
- <20210719152413.GA1953551@robh.at.kernel.org>
-From:   "Nandan, Apurva" <a-nandan@ti.com>
-Message-ID: <8f51f347-54d9-d509-303c-d858b3d1896e@ti.com>
-Date:   Tue, 20 Jul 2021 19:45:59 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+ Frontend Transport; Tue, 20 Jul 2021 09:16:47 -0500
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 16KEGh4n044909;
+        Tue, 20 Jul 2021 09:16:44 -0500
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>
+Subject: [PATCH 0/6] CAN: Add support for CAN in AM65,J721e and AM64
+Date:   Tue, 20 Jul 2021 19:46:36 +0530
+Message-ID: <20210720141642.24999-1-a-govindraju@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20210719152413.GA1953551@robh.at.kernel.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The following series of patches add support for CAN in SoC's AM65, J721e
+and AM64.
 
+This patch series is dependent on [1] and I have requested for a immutable
+tag from the Marc Kleine-Budde(maintainer of net tree).
 
-On 19-Jul-21 8:54 PM, Rob Herring wrote:
-> On Sun, Jul 18, 2021 at 12:41:25AM +0000, Apurva Nandan wrote:
->> Convert spi-nand.txt binding to YAML format with an added example.
->>
->> Signed-off-by: Apurva Nandan <a-nandan@ti.com>
->> ---
->>  .../devicetree/bindings/mtd/spi-nand.txt      |  5 --
->>  .../devicetree/bindings/mtd/spi-nand.yaml     | 74 +++++++++++++++++++
->>  2 files changed, 74 insertions(+), 5 deletions(-)
->>  delete mode 100644 Documentation/devicetree/bindings/mtd/spi-nand.txt
->>  create mode 100644 Documentation/devicetree/bindings/mtd/spi-nand.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/mtd/spi-nand.txt b/Documentation/devicetree/bindings/mtd/spi-nand.txt
->> deleted file mode 100644
->> index 8b51f3b6d55c..000000000000
->> --- a/Documentation/devicetree/bindings/mtd/spi-nand.txt
->> +++ /dev/null
->> @@ -1,5 +0,0 @@
->> -SPI NAND flash
->> -
->> -Required properties:
->> -- compatible: should be "spi-nand"
->> -- reg: should encode the chip-select line used to access the NAND chip
->> diff --git a/Documentation/devicetree/bindings/mtd/spi-nand.yaml b/Documentation/devicetree/bindings/mtd/spi-nand.yaml
->> new file mode 100644
->> index 000000000000..366b86e1b19c
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mtd/spi-nand.yaml
->> @@ -0,0 +1,74 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/mtd/spi-nand.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: SPI NAND flash
->> +
->> +maintainers:
->> +  - Apurva Nandan <a-nandan@ti.com>
->> +
->> +allOf:
->> +  - $ref: "mtd.yaml#"
->> +
->> +properties:
->> +  compatible:
->> +    oneOf:
->> +      - const: spi-nand
-> 
-> Drop 'oneOf' as there is only one.
-> 
->> +
->> +  reg:
->> +    items:
->> +      description:
->> +        should encode the chip-select line used to access the NAND chip
-> 
-> Just:
-> 
-> reg:
->   maxItems: 1
-> 
->> +
->> +  spi-max-frequency: true
->> +  spi-rx-bus-width: true
->> +  spi-tx-bus-width: true
->> +
->> +  partitions:
->> +    type: object
->> +
->> +  '#address-cells': true
->> +  '#size-cells': true
->> +
->> +patternProperties:
->> +  # Note: use 'partitions' node for new users
->> +  '^partition@':
->> +    type: object
->> +
->> +  "^otp(-[0-9]+)?$":
->> +    type: object
->> +
->> +additionalProperties: false
-> 
-> Just do:
-> 
-> additionalProperties:
->   type: object
-> 
-> and then drop partitions, partition@, and ^otp(-[0-9]+)?$.
-> 
->> +
->> +examples:
->> +  - |
->> +    spi {
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +
->> +        flash@6 {
->> +            #address-cells = <1>;
->> +            #size-cells = <1>;
->> +            compatible = "spi-nand";
->> +            reg = <0x6>;
->> +            spi-max-frequency = <42000000>;
->> +
->> +            partitions {
->> +                compatible = "fixed-partitions";
->> +                #address-cells = <1>;
->> +                #size-cells = <1>;
->> +
->> +                partition@0 {
->> +                    label = "boot";
->> +                    reg = <0 0x200000>;
->> +                };
->> +
->> +                partition@200000 {
->> +                    label = "rootfs";
->> +                    reg = <0x200000 0xce0000>;
->> +                };
->> +            };
->> +        };
->> +    };
->> -- 
->> 2.17.1
->>
->>
+[1] - https://lore.kernel.org/patchwork/project/lkml/list/?series=498360&state=%2A&archive=both
 
-Agree with all the suggestions made, will correct and send v2.
+Aswath Govindraju (3):
+  arm64: dts: ti: am654-base-board: Disable mcan nodes
+  arm64: dts: ti: k3-am64-main: Add support for MCAN
+  arm64: dts: ti: k3-am642-evm/sk: Add support for main domain mcan
+    nodes in EVM and disable them on SK
 
-Thanks,
-Apurva Nandan
+Faiz Abbas (3):
+  arm64: dts: ti: k3-am65-mcu: Add Support for MCAN
+  arm64: dts: ti: k3-j721e: Add support for MCAN nodes
+  arm64: dts: ti: k3-j721e-common-proc-board: Add support for mcu_mcan
+    nodes
+
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi      |  28 +++
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts       |  40 ++++
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts        |   8 +
+ arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi       |  30 +++
+ .../arm64/boot/dts/ti/k3-am654-base-board.dts |   8 +
+ .../dts/ti/k3-j721e-common-proc-board.dts     | 116 +++++++++++
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 196 ++++++++++++++++++
+ .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      |  28 +++
+ 8 files changed, 454 insertions(+)
+
+-- 
+2.17.1
+
