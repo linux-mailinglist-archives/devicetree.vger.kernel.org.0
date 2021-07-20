@@ -2,123 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17E583CF951
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 14:05:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FBF13CF97E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 14:23:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237034AbhGTLYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 07:24:39 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:47976 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237065AbhGTLYj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 07:24:39 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 16KC5ASX033557;
-        Tue, 20 Jul 2021 07:05:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1626782710;
-        bh=vGcbRp6Et5F1/Ir8my4y8ecXi3l/Hj6jaPl/8mqqhaM=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=Q/t8EJVZBsHTmZ7FrDm4VSwk5H0CSOHWRG68UwJhhKttvQnuR2ZgFd54KvWTxii1z
-         8hSveajZt1AbTmk267rPdbVxeKtzHoWkzqZnRZ244hZ4712sm6nxR1uqGTTGmyhDoD
-         YUebhf2uyooHYp80L8PpuOSX/IZ0sTgoVF1wO+hQ=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 16KC5AjK077089
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 20 Jul 2021 07:05:10 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 20
- Jul 2021 07:05:10 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Tue, 20 Jul 2021 07:05:09 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 16KC591D068071;
-        Tue, 20 Jul 2021 07:05:09 -0500
-Date:   Tue, 20 Jul 2021 07:05:09 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Lokesh Vutla <lokeshvutla@ti.com>
-CC:     <kristo@kernel.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 3/4] arm64: dts: ti: k3-am642-sk: Add ecap0 node
-Message-ID: <20210720120509.66igh3goqoopkinv@extinct>
-References: <20210719085402.28569-1-lokeshvutla@ti.com>
- <20210719085402.28569-4-lokeshvutla@ti.com>
- <20210719152326.op7ii76nvk5sve2a@fringe>
- <d5d614f4-339b-59a1-bd29-6c78d09f2d89@ti.com>
+        id S237255AbhGTLms (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 07:42:48 -0400
+Received: from mail.kernel.org ([198.145.29.99]:32938 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235407AbhGTLmH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Jul 2021 07:42:07 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 9668861164;
+        Tue, 20 Jul 2021 12:22:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1626783765;
+        bh=YRLjcBlqPGxnu3xGSqaltTSQ92aKXDwWqXW2BW/djd8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NPZ4cfCH2/QnEkLnTe8nyWmaJD9PRK01bggfFSdcQBzmdqrKZEkJs84HG06yA+Qwd
+         epd5Q81sv2+8nfQ9/P5i4cQ/bBWC3FLNbfQbR7Fo1KrAxojWJJoXDZh0L3ElTxDZVh
+         aa5nNQ+9uzOCULt8kH4XhVBQXyNJyy+Rvtvo5KT5FJtfPD5MU3ygCZgau6i7WNY0OY
+         U3zWyFLnzawiOAflK1CGrptof3SA1JPp+HLDML80ZxG5r/sXGbKHjp3NznQRW5qglh
+         ReVpCNq8ETRcQVJVaYAPUrOyCY/RZMZM3Jzxg1zTsAXyhn+oc5T5fDs3u3ok9GETtW
+         m6kTbN5xFADeQ==
+Date:   Tue, 20 Jul 2021 17:52:41 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     Robin Gong <yibin.gong@nxp.com>, broonie@kernel.org,
+        shawnguo@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-imx@nxp.com, kernel@pengutronix.de,
+        dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        mark.rutland@arm.com, robh+dt@kernel.org, catalin.marinas@arm.com,
+        will.deacon@arm.com, festevam@gmail.com, s.hauer@pengutronix.de,
+        martin.fuzzey@flowbird.group, u.kleine-koenig@pengutronix.de,
+        dan.j.williams@intel.com, matthias.schiffer@ew.tq-group.com,
+        frieder.schrempf@kontron.de, m.felsch@pengutronix.de,
+        xiaoning.wang@nxp.com
+Subject: Re: [PATCH v16 00/12] add ecspi ERR009165 for i.mx6/7 soc family
+Message-ID: <YPbAEbcOzBrK2KfB@matsya>
+References: <1626258052-22198-1-git-send-email-yibin.gong@nxp.com>
+ <8f8a307a2dc99ca3beab2767ac3188b4ba1a394f.camel@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <d5d614f4-339b-59a1-bd29-6c78d09f2d89@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <8f8a307a2dc99ca3beab2767ac3188b4ba1a394f.camel@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10:46-20210720, Lokesh Vutla wrote:
+On 14-07-21, 11:05, Lucas Stach wrote:
+> Hi Vinod, Mark, Shawn,
 > 
+> with this revision I think this series is ready to be picked up, at
+> least I couldn't spot any blockers anymore.
 > 
-> On 19/07/21 8:53 pm, Nishanth Menon wrote:
-> > On 14:24-20210719, Lokesh Vutla wrote:
-> >> ecap0 can be configured to use pad ECAP0_IN_APWM_OUT (D18) which has a
-> >> signal connected to Pin 1 of J3. Add support for adding this pinmux so
-> >> that pwm can be observed on pin 1 of Header J3
-> >>
-> >> Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
-> >> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-> >> ---
-> >>  arch/arm64/boot/dts/ti/k3-am642-sk.dts | 12 ++++++++++++
-> >>  1 file changed, 12 insertions(+)
-> >>
-> >> diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-> >> index d3aa2901e6fd..eb0d10e6e787 100644
-> >> --- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-> >> +++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-> >> @@ -210,6 +210,12 @@ AM64X_IOPAD(0x0028, PIN_INPUT, 0) /* (M17) OSPI0_D7 */
-> >>  			AM64X_IOPAD(0x0008, PIN_INPUT, 0) /* (N19) OSPI0_DQS */
-> >>  		>;
-> >>  	};
-> >> +
-> >> +	main_ecap0_pins_default: main-ecap0-pins-default {
-> >> +		pinctrl-single,pins = <
-> >> +			AM64X_IOPAD(0x0270, PIN_INPUT, 0) /* (D18) ECAP0_IN_APWM_OUT */
-> >> +		>;
-> >> +	};
-> >>  };
-> >>  
-> >>  &mcu_uart0 {
-> >> @@ -453,3 +459,9 @@ &pcie0_rc {
-> >>  &pcie0_ep {
-> >>  	status = "disabled";
-> >>  };
-> >> +
-> >> +&ecap0 {
-> >> +	/* PWM is available on Pin 1 of header J3 */
-> >> +	pinctrl-names = "default";
-> >> +	pinctrl-0 = <&main_ecap0_pins_default>;
-> >> +};
-> >> -- 
-> >> 2.30.0
-> >>
-> > 
-> > 
-> > Do the other ecap and pwm nodes need to be disabled since they may not
-> > be pinned out?
-> 
-> Sure, Ill mark other ecap and epwm nodes as disabled. After looking at
-> schematics, epwm4 and 5 is pinned out on RPI header. But the header will most
-> likely be used for other use-cases. Shall I mark epwm4 and epwm5 disabled as
-> well with a comment with this information?
+> How would you like to deal with this? While the complete series is
+> needed to fix the issues and restore proper DMA functionality on
+> unaffected SoCs, there are no dependencies between the patches
+> targeting different subsystems.
+> Do you prefer to pick dma/spi/dt patches from this series in your
+> respective trees, or do you want the whole series to go through the imx
+> tree? AFAICS all dma and spi patches are already acked, so taking them
+> through one tree would be possible, I think.
 
-
-Yes, please. Thanks.
+Sure, since you have acks, feel free to merge thru imx6 tree
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+~Vinod
