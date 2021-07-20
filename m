@@ -2,262 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 97CFC3CF639
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 10:38:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF4E73CF641
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 10:40:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233756AbhGTH42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 03:56:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59934 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234547AbhGTH4Z (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Jul 2021 03:56:25 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A3A80611F2;
-        Tue, 20 Jul 2021 08:37:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626770223;
-        bh=tk64h37rbGdmfMscy8QNd//U3myF1pAkJYpkjcnjgFQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VGKBr2qu0vtaAN2BSckVMjpj6meSNJepAAzLgh/vVSQOrnNAnf6Cla7PVqUq/E8/P
-         LVk7IItDSLURiLi7F1a8ZmOJ0IHixeIx7UgpEu5/iQ+IegrQjAHEFqnkF0GbjAXFPP
-         lyEnGfBUmdj3vpG1YQoGxDyHY7ZRBVllEVSGNnQwzoXgW3Bpx8AlScYZinqcvo5OTC
-         j1kGEYXtdF1TwVUdT4jwyrpVRnlnCq/X0h9sGIj1okvnsJk3sZfChKPct3NKtQlPO8
-         BJxBhbUgFPgCcPMVYSNAtP7gWmfsnj8ybbdrF3vZITmper0cd5wtC3WKbgns//+UdW
-         qFhE7HiVoxSfw==
-Date:   Tue, 20 Jul 2021 14:06:59 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     robh+dt@kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        kishon@ti.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] phy: amlogic: Add a new driver for the HDMI TX
- PHY on Meson8/8b/8m2
-Message-ID: <YPaLKwEKcDLWwztM@matsya>
-References: <20210629182047.893415-1-martin.blumenstingl@googlemail.com>
- <20210629182047.893415-3-martin.blumenstingl@googlemail.com>
+        id S232431AbhGTH7L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 03:59:11 -0400
+Received: from mail-eopbgr100098.outbound.protection.outlook.com ([40.107.10.98]:10959
+        "EHLO GBR01-LO2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231665AbhGTH7I (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Jul 2021 03:59:08 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DSQQzhdWFGSYt/wyxs93GL+XiiRvUnKfMLrlnkfJmNNUdJJIsOQ0y+4kTGZ4CoOMAKUpdHxhFng66dGjOwEFugkV2UhEPyF+F3wU0xvkFfMGRGklwDq0RXpL2I2pKExyNnVIC4ZwUsXVhAi8a51ANQPxV5SFTcci6b50JELxetqoP5B7j/IvsHYO8iP83wyHjKYKgkyct1IYqHkiviBLr5DTT+uCsY/i33XoYwGCzq6KK9jqGPb4QVBQ4QFsL8/3T2xKVLiQeFlT1vMNDKrwxddvaKY/gR2PU6y8589mVnPtLoD3QINu0ZkgT1i0VgbgnM/G87VopdtPBACxyqTyvQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WFFJEu4OVvT5fDHHJSlHUC5QZC7PxFWggNaj+3hOmaU=;
+ b=CUMWAS9sXsgOr2127gVFbiLJRzb5JqCg1o6sGmQpc3qWWS0hjQlgfR2rd70+KVaJu8Bq7nN3sJAJwMZtmecLsEyHvkTnVzFsoMDnA1Qr0ITOO3MgN/9p38IPy8EWmX877YQTlJbzXzB46KvHJo0lWEkWUkfol8i6RDfUefGSHpI+cbWtbOEQHZPekkSy1KkFLwdWt76jyod+qZ5tAOVp7RGExPhrBa/enTk4die5X6GaQM9JN1AIAQ6FHgdtqQEPUTAiiGEZBMLpEpgiuZ2jDFPWH0E6xueRKpxT7TIskRXZ8oHZVrpl/g01de1jPX045BGjAd2+mGpipQsSR5YF4Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=sancloud.com; dmarc=pass action=none header.from=sancloud.com;
+ dkim=pass header.d=sancloud.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=sancloud.onmicrosoft.com; s=selector2-sancloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WFFJEu4OVvT5fDHHJSlHUC5QZC7PxFWggNaj+3hOmaU=;
+ b=DcfgBUcXpilObG3hewcJFa3qwJwA1plTPlme+9Pb4/tM0rgQ3rytN1WyarDGaYRmkcF2Lyl4BbXJO85foGtwTZOvEi7TtanRu7bXhEE/ENjzG14/u1JBqFbm7HbiC6kw4jT4Z3IJgPSio1HSp7Nh7AwynkdvNzF4GL5GTS4ot0A=
+Authentication-Results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=sancloud.com;
+Received: from CWLP123MB2241.GBRP123.PROD.OUTLOOK.COM (2603:10a6:401:61::19)
+ by CWLP123MB3923.GBRP123.PROD.OUTLOOK.COM (2603:10a6:400:a9::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.26; Tue, 20 Jul
+ 2021 08:39:45 +0000
+Received: from CWLP123MB2241.GBRP123.PROD.OUTLOOK.COM
+ ([fe80::dc2:e929:76be:a8b0]) by CWLP123MB2241.GBRP123.PROD.OUTLOOK.COM
+ ([fe80::dc2:e929:76be:a8b0%7]) with mapi id 15.20.4331.034; Tue, 20 Jul 2021
+ 08:39:45 +0000
+From:   Paul Barker <paul.barker@sancloud.com>
+To:     Robert Nelson <robertcnelson@gmail.com>,
+        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>, linux-omap@vger.kernel.org
+Cc:     Paul Barker <paul.barker@sancloud.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 0/4] Add support for the SanCloud BBE Lite
+Date:   Tue, 20 Jul 2021 09:39:24 +0100
+Message-Id: <20210720083928.10404-1-paul.barker@sancloud.com>
+X-Mailer: git-send-email 2.26.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2243; h=from:subject; bh=1YeaBD3D5MKMUtR2QyDDhsHKkhEnC94VvyQRtyaGHjc=; b=owGbwMvMwCF2w7xIXuiX9CvG02pJDAnfujcEfs24kKT18tm7a2Y3vTfcSVmRZb6C+5CZavSWE56d Z/m2dJSyMIhxMMiKKbLsnr3r8vUHS7b23pAOhpnDygQyhIGLUwAmcsOJ4Z/tutI2zfwC94dCJv/mX4 7/xex2MnPSrPJ/OmstRdOYzfcx/JXcbvRzmmqzm8bPGwu8C0ylCmZwVB9ZEnz2SP+k/Ct2bVwA
+X-Developer-Key: i=paul.barker@sancloud.com; a=openpgp; fpr=D2DDFDAE30017AF4CB62AA96A67255DFCCE62ECD
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: LO4P123CA0219.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:1a6::8) To CWLP123MB2241.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:401:61::19)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210629182047.893415-3-martin.blumenstingl@googlemail.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from owl.home.b5net.uk (80.7.160.81) by LO4P123CA0219.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:1a6::8) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.26 via Frontend Transport; Tue, 20 Jul 2021 08:39:45 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 59f164e5-50ce-4ec5-3e22-08d94b59ed19
+X-MS-TrafficTypeDiagnostic: CWLP123MB3923:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <CWLP123MB3923D0B253B1743BBBC4AE7893E29@CWLP123MB3923.GBRP123.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: mjmr9VsuxW+v1CmqIROxx8T3fh1UtT9Hrvh9A2J1TeJq+yIavQGten+8Ok0XkFSwF3CutvPNzangHXiWwBCLAsCqV5dn0zLjUp8p8WBMOLdTNfMJEsCBfOHnbFsr1TqyCMuIJIiyO+rqCSsjcqkh9rmt3SMVY3JV9AHH9vLvrenChCVORlxxZ+KdRIDbMQwl8TQjqYteRw/JaJdP4GP1juMNo2f2g3VEit9eEen4LGXJsTgmD5s6WsdrMf53/8MTUY+Kr830RZvmIBk+PDKaqpRRZTft3hI5qqEywQzic/0bHDa9HXnm2TwmWaCYi4W+M9qZxJ3bQhOr5EwrgWrm2Rf6OsguOUJlxqJS2ds9daCaAx8cwU/WXhz1th6JNHeQ9IYSTmuT3QMq05pYifkrvgyrvhIAsMRo4yrVcYUE/p7Cv/XLyWNZyxSC5TfQPMcW6ofrWPO7H4yvZdvc/F59nkkjaLXcYlFETOAjLlTnCBH5wfqRqcCP3yCvssrs47fsrA44mvGV4n/gMXxQtRkf2UUbRjR0InR1X3rmtTkFYO5EeeBZyVvTLl1zm/1ms047ErcxHgMtX/w8PLbslFVARUcSuvhYCgMfBZplF1dudfXjk59D5MUXdgC+UnF3s64AtGB8ZX/4xbSLhKunEXTyTOUCVDGUiZK+clOrKN4EJEneXDTyCAEOG4/W16zeWN9yuXqm+1/EQr4aSbgIfIK0SQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CWLP123MB2241.GBRP123.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(376002)(346002)(396003)(136003)(366004)(39830400003)(478600001)(2906002)(38350700002)(26005)(44832011)(5660300002)(36756003)(66476007)(186003)(83380400001)(110136005)(66556008)(38100700002)(8676002)(2616005)(956004)(4326008)(86362001)(1076003)(52116002)(66946007)(316002)(6486002)(6666004)(8936002)(6512007)(6506007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?dUPXq1scPHFvYo9/aJxGsdr8K17Pqi1gJNnws6XaRC7GgWjmPbq4HWlgaaW8?=
+ =?us-ascii?Q?L26H/PsqsSkrpgUzmDTfY0xARQRqjKy8EnISx/vTSl4krSqkDqwWQyKfE3fz?=
+ =?us-ascii?Q?Hzk4ZBNsVzHcSMGdBxYCWSrRwnqRsEeQgxvl6ReDrwrRO2CIETWHpywy4Xz8?=
+ =?us-ascii?Q?lKdcQIjjBEqkXfesszo78rBnCc6Oon4xAmDdd2P6/FcMOmGqI7p7zfG87aBR?=
+ =?us-ascii?Q?7j8lzt8stiwqaYzjV2CISxnB5XmZA1qCYddfhVo/MACSV5wvjMypA/qDZQLq?=
+ =?us-ascii?Q?coyzcpOyV2zV+4WDZgRzPbUmkSjLkVaZKLhfxouWwCsbQ59c4nEUiRQwneoZ?=
+ =?us-ascii?Q?snWMqOi8pUyX0tuPNMazsdqtV5VOsiG/MNwm1bvpuowuMqlPXDoENnhQ238E?=
+ =?us-ascii?Q?1THm4SXos3xRsfg1xlgTEOlS6hOXSABO7hswuaccFoxRSlo6JhA/IMVcGa//?=
+ =?us-ascii?Q?jJvthqVEZJD/U7Gg8mUFJuUiiZntXa2PrTYon2j3I/vNLHTjNH9X5WTdOBRb?=
+ =?us-ascii?Q?uvedE6RxtRB81Eesoc66tHgjh74kZSmidxhgXDkVeIMcCHpf+o/WzlD20Gru?=
+ =?us-ascii?Q?I66n8ueIw4JEzr1PTaKb06xSX6QnpDNqBTJFcFtjgZ3vn390mH2d007YCTT6?=
+ =?us-ascii?Q?eh+LiCwPwUyU82WZqu8IZrAQRb6sMg+wtgp0+PfpSOILbp9WPBLI+IHDKWJk?=
+ =?us-ascii?Q?PBmBTYfujL+QIwZgCJt71v5LPm3NMbED41yDvhodMGLpUURLaYm4oKw1b+LA?=
+ =?us-ascii?Q?dm7o0BQtPg1RCTq9an2nmgKUgAWNt08jt2C500lQFahNQDMvv6xOLzXd7ZGH?=
+ =?us-ascii?Q?zY8q9dg8+hAyIczd9Dw5mGxwW61VDunBDr+P0jo0fQ2m/SfY5mjxahSW26KP?=
+ =?us-ascii?Q?8/wACqOTRPyOzYoO4lCCBRXBcS8NKfIMUPcP7rzEkXHaQqd6zANJCh9VPXWt?=
+ =?us-ascii?Q?jpKpUClTlwW76aUeB7Ueyi2A4mjHjXsRlgx8Z1XS0z5SSdrfdjYF8pw+DcNI?=
+ =?us-ascii?Q?0iQ2eW6I8tcSWtHINmEAyoF2Wn/gKe2acUk7kdUxAodlHe2w5L/1cyW+OzKL?=
+ =?us-ascii?Q?qU/wktKm9ckHZfSI+n4dPxAxXorKB1APlFwCTe+N/kupr92ZK5IwT00QFWFc?=
+ =?us-ascii?Q?AvN8ZrAZ1xVFsG3CTnwsDeSFxlimH82rFwQSThTkIaueWi+8rOWKCRCYh+H0?=
+ =?us-ascii?Q?J304PTqOpioDjHW8ORLEXcy3yvdg7SXXFgAj+R4KxwaFm2cE+J3Xfdd8HSXb?=
+ =?us-ascii?Q?vIMP1Se4UqYsrP6iJgxRrIQFe+JCFVKmWSWoaz7abur5Nq++c207JN1uV2nI?=
+ =?us-ascii?Q?Bmyl4C0NcX2ZFuL7LZckbRvL?=
+X-OriginatorOrg: sancloud.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 59f164e5-50ce-4ec5-3e22-08d94b59ed19
+X-MS-Exchange-CrossTenant-AuthSource: CWLP123MB2241.GBRP123.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jul 2021 08:39:45.2582
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 840be37c-244a-450e-9bcc-2064862de1f4
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: NvrINMXTvQEJ6ZK+Ey+6+Zw/x52eDTTAJq7vDiWbnxzacZ/HzakhQaD0JMKGvIVym4huI7kju7KeSJeEJBkYRzdLkwAGR+um5xFnyG9xdWA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWLP123MB3923
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29-06-21, 20:20, Martin Blumenstingl wrote:
-> Amlogic Meson8/8b/8m2 have a built-in HDMI PHY in the HHI register
-> region. Unfortunately only few register bits are documented. For
-> HHI_HDMI_PHY_CNTL0 the magic numbers are taken from the 3.10 vendor
-> kernel.
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  drivers/phy/amlogic/Kconfig              |  10 ++
->  drivers/phy/amlogic/Makefile             |   1 +
->  drivers/phy/amlogic/phy-meson8-hdmi-tx.c | 162 +++++++++++++++++++++++
->  3 files changed, 173 insertions(+)
->  create mode 100644 drivers/phy/amlogic/phy-meson8-hdmi-tx.c
-> 
-> diff --git a/drivers/phy/amlogic/Kconfig b/drivers/phy/amlogic/Kconfig
-> index db5d0cd757e3..486ca23aba32 100644
-> --- a/drivers/phy/amlogic/Kconfig
-> +++ b/drivers/phy/amlogic/Kconfig
-> @@ -2,6 +2,16 @@
->  #
->  # Phy drivers for Amlogic platforms
->  #
-> +config PHY_MESON8_HDMI_TX
-> +	tristate "Meson8, Meson8b and Meson8m2 HDMI TX PHY driver"
-> +	depends on (ARCH_MESON && ARM) || COMPILE_TEST
-> +	depends on OF
-> +	select MFD_SYSCON
-> +	help
-> +	  Enable this to support the HDMI TX PHYs found in Meson8,
-> +	  Meson8b and Meson8m2 SoCs.
-> +	  If unsure, say N.
-> +
->  config PHY_MESON8B_USB2
->  	tristate "Meson8, Meson8b, Meson8m2 and GXBB USB2 PHY driver"
->  	default ARCH_MESON
-> diff --git a/drivers/phy/amlogic/Makefile b/drivers/phy/amlogic/Makefile
-> index 8fa07fbd0d92..c0886c850bb0 100644
-> --- a/drivers/phy/amlogic/Makefile
-> +++ b/drivers/phy/amlogic/Makefile
-> @@ -1,4 +1,5 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> +obj-$(CONFIG_PHY_MESON8_HDMI_TX)		+= phy-meson8-hdmi-tx.o
->  obj-$(CONFIG_PHY_MESON8B_USB2)			+= phy-meson8b-usb2.o
->  obj-$(CONFIG_PHY_MESON_GXL_USB2)		+= phy-meson-gxl-usb2.o
->  obj-$(CONFIG_PHY_MESON_G12A_USB2)		+= phy-meson-g12a-usb2.o
-> diff --git a/drivers/phy/amlogic/phy-meson8-hdmi-tx.c b/drivers/phy/amlogic/phy-meson8-hdmi-tx.c
-> new file mode 100644
-> index 000000000000..ba5a4de54811
-> --- /dev/null
-> +++ b/drivers/phy/amlogic/phy-meson8-hdmi-tx.c
-> @@ -0,0 +1,162 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Meson8, Meson8b and Meson8m2 HDMI TX PHY.
-> + *
-> + * Copyright (C) 2021 Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/bits.h>
-> +#include <linux/clk.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/phy/phy.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/property.h>
-> +#include <linux/regmap.h>
-> +
-> +#define HHI_HDMI_PHY_CNTL0				0x0
-> +	#define HHI_HDMI_PHY_CNTL0_HDMI_CTL1		GENMASK(31, 16)
-> +	#define HHI_HDMI_PHY_CNTL0_HDMI_CTL0		GENMASK(15, 0)
-> +
-> +#define HHI_HDMI_PHY_CNTL1				0x4
-> +	#define HHI_HDMI_PHY_CNTL1_CLOCK_ENABLE		BIT(1)
-> +	#define HHI_HDMI_PHY_CNTL1_SOFT_RESET		BIT(0)
-> +
-> +#define HHI_HDMI_PHY_CNTL2				0x8
-> +
-> +struct phy_meson8_hdmi_tx_priv {
-> +	struct regmap		*hhi;
-> +	struct clk		*tmds_clk;
-> +	unsigned int		reg_offset;
-> +};
-> +
-> +static int phy_meson8_hdmi_tx_init(struct phy *phy)
-> +{
-> +	struct phy_meson8_hdmi_tx_priv *priv = phy_get_drvdata(phy);
-> +
-> +	return clk_prepare_enable(priv->tmds_clk);
-> +}
-> +
-> +static int phy_meson8_hdmi_tx_exit(struct phy *phy)
-> +{
-> +	struct phy_meson8_hdmi_tx_priv *priv = phy_get_drvdata(phy);
-> +
-> +	clk_disable_unprepare(priv->tmds_clk);
-> +
-> +	return 0;
-> +}
-> +
-> +static int phy_meson8_hdmi_tx_power_on(struct phy *phy)
-> +{
-> +	struct phy_meson8_hdmi_tx_priv *priv = phy_get_drvdata(phy);
-> +	unsigned int i;
-> +	u16 hdmi_ctl0;
-> +
-> +	if (clk_get_rate(priv->tmds_clk) >= 2970UL * 1000 * 1000)
-> +		hdmi_ctl0 = 0x1e8b;
-> +	else
-> +		hdmi_ctl0 = 0x4d0b;
+The Lite variant of the SanCloud BeagleBone Enhanced (BBE) removes the
+HDMI encoder, barometer and accelerometer chips and adds a Micron
+Authenta SPI flash chip.
 
-magic numbers..? I guess these are register offsets, would be better to
-define..
+The device tree entries shared with the original BBE and the BegleBone
+Black are refactored to avoid unnecessary duplication and avoid having
+to override the status of nodes to "disabled" in any of the dts files.
 
-> +
-> +	regmap_write(priv->hhi, priv->reg_offset + HHI_HDMI_PHY_CNTL0,
-> +		     FIELD_PREP(HHI_HDMI_PHY_CNTL0_HDMI_CTL1, 0x08c3) |
-> +		     FIELD_PREP(HHI_HDMI_PHY_CNTL0_HDMI_CTL0, hdmi_ctl0));
-> +
-> +	regmap_write(priv->hhi, priv->reg_offset + HHI_HDMI_PHY_CNTL1, 0x0);
-> +
-> +	/* Reset three times, just like the vendor driver does */
-> +	for (i = 0; i < 3; i++) {
-> +		regmap_write(priv->hhi, priv->reg_offset + HHI_HDMI_PHY_CNTL1,
-> +			     HHI_HDMI_PHY_CNTL1_CLOCK_ENABLE |
-> +			     HHI_HDMI_PHY_CNTL1_SOFT_RESET);
-> +		usleep_range(1000, 2000);
-> +
-> +		regmap_write(priv->hhi, priv->reg_offset + HHI_HDMI_PHY_CNTL1,
-> +			     HHI_HDMI_PHY_CNTL1_CLOCK_ENABLE);
-> +		usleep_range(1000, 2000);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int phy_meson8_hdmi_tx_power_off(struct phy *phy)
-> +{
-> +	struct phy_meson8_hdmi_tx_priv *priv = phy_get_drvdata(phy);
-> +
-> +	regmap_write(priv->hhi, priv->reg_offset + HHI_HDMI_PHY_CNTL0,
-> +		     FIELD_PREP(HHI_HDMI_PHY_CNTL0_HDMI_CTL1, 0x0841) |
-> +		     FIELD_PREP(HHI_HDMI_PHY_CNTL0_HDMI_CTL0, 0x8d00));
+The final patch in this series adds myself and Marc from Sancloud as
+maintainers for the device trees for SanCloud hardware. We're happy to
+review any future patches to these files so that the SanCloud boards
+work well with the mainline kernel. We expect the patch volume to be
+pretty low and we expect that patches to these files will flow upstream
+via the existing OMAP device tree maintainers and linux-omap mailing
+list. If there's anything else we need to do to adopt these dts files as
+supported please let us know.
 
-more magic..
+Changes from v1:
+  * Dropped symlink property from the spi channel node, this isn't needed
+    outside of the BeagleBoard.org tree as pointed out by Robert Nelson.
 
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct phy_ops phy_meson8_hdmi_tx_ops = {
-> +	.init		= phy_meson8_hdmi_tx_init,
-> +	.exit		= phy_meson8_hdmi_tx_exit,
-> +	.power_on	= phy_meson8_hdmi_tx_power_on,
-> +	.power_off	= phy_meson8_hdmi_tx_power_off,
-> +	.owner		= THIS_MODULE,
-> +};
-> +
-> +static int phy_meson8_hdmi_tx_probe(struct platform_device *pdev)
-> +{
-> +	struct device_node *np = pdev->dev.of_node;
-> +	struct phy_meson8_hdmi_tx_priv *priv;
-> +	struct phy_provider *phy_provider;
-> +	struct phy *phy;
-> +	u32 reg[2];
-> +	int ret;
-> +
-> +	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	ret = device_property_read_u32_array(&pdev->dev, "reg", reg,
-> +					     ARRAY_SIZE(reg));
+Paul Barker (4):
+  ARM: dts: am335x-boneblack: Extract HDMI config
+  ARM: dts: am335x-sancloud-bbe: Extract common code
+  ARM: dts: am335x-sancloud-bbe-lite: New devicetree
+  MAINTAINERS: Adopt SanCloud dts files as supported
 
-we have reg as single property, why array with 2 entries here?
+ MAINTAINERS                                   |   6 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../arm/boot/dts/am335x-boneblack-common.dtsi | 135 ------------------
+ ...common.dtsi => am335x-boneblack-hdmi.dtsi} |  28 ----
+ .../boot/dts/am335x-boneblack-wireless.dts    |   1 +
+ arch/arm/boot/dts/am335x-boneblack.dts        |   1 +
+ ...be.dts => am335x-sancloud-bbe-common.dtsi} |  41 ------
+ .../arm/boot/dts/am335x-sancloud-bbe-lite.dts |  50 +++++++
+ arch/arm/boot/dts/am335x-sancloud-bbe.dts     |  92 +-----------
+ 9 files changed, 61 insertions(+), 294 deletions(-)
+ copy arch/arm/boot/dts/{am335x-boneblack-common.dtsi => am335x-boneblack-hdmi.dtsi} (90%)
+ copy arch/arm/boot/dts/{am335x-sancloud-bbe.dts => am335x-sancloud-bbe-common.dtsi} (77%)
+ create mode 100644 arch/arm/boot/dts/am335x-sancloud-bbe-lite.dts
 
-> +	if (ret)
-> +		return dev_err_probe(&pdev->dev, ret,
-> +				     "Failed to parse the 'reg' property\n");
-> +
-> +	priv->reg_offset = reg[0];
 
-and mystery deepens, no use of reg[1],  leftover artifacts?
-
-> +
-> +	priv->hhi = syscon_node_to_regmap(np->parent);
-> +	if (IS_ERR(priv->hhi))
-> +		return PTR_ERR(priv->hhi);
-> +
-> +	priv->tmds_clk = devm_clk_get(&pdev->dev, NULL);
-> +	if (IS_ERR(priv->tmds_clk))
-> +		return PTR_ERR(priv->tmds_clk);
-> +
-> +	phy = devm_phy_create(&pdev->dev, np, &phy_meson8_hdmi_tx_ops);
-> +	if (IS_ERR(phy))
-> +		return PTR_ERR(phy);
-> +
-> +	phy_set_drvdata(phy, priv);
-> +
-> +	phy_provider = devm_of_phy_provider_register(&pdev->dev,
-> +						     of_phy_simple_xlate);
-> +
-> +	return PTR_ERR_OR_ZERO(phy_provider);
-> +}
-> +
-> +static const struct of_device_id phy_meson8_hdmi_tx_of_match[] = {
-> +	{ .compatible = "amlogic,meson8-hdmi-tx-phy" },
-> +	{ .compatible = "amlogic,meson8b-hdmi-tx-phy" },
-> +	{ .compatible = "amlogic,meson8m2-hdmi-tx-phy" },
-> +	{ /* sentinel */ }
-
-I see that all three are handled similarly, no difference!
-
-Maybe also add a amlogic,meson8-hdmi compatible and use that?
-
+base-commit: 2734d6c1b1a089fb593ef6a23d4b70903526fe0c
 -- 
-~Vinod
+2.26.2
+
