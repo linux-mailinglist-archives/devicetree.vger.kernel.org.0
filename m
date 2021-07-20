@@ -2,77 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D88C83CFC01
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 16:25:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7875A3CFC03
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 16:25:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239146AbhGTNoR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 09:44:17 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41642 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239976AbhGTNj1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Jul 2021 09:39:27 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPS id 450AD611F2;
-        Tue, 20 Jul 2021 14:20:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626790805;
-        bh=p+br29W5ktmzN2KC833uxKVEE2/+qI9VEz23Jm+x70Q=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=EtaGiMmrLJqeBbbKF2gWpWBFVYX7Rra+LOrgyhoqmyXi+tHuxQBEy7DJmabvMgdR6
-         iy1nmQdpla8x4eJdd+utDxNZPYWrivFPo0FwUxsUN4ZZpa5zMqcLleqzv2ZraCfD9E
-         IGmDu91WjqaimoAygxsfUs6buZ4lrfbgkjOhjxSS2BMm09qer9G4pXrFOFTKNSHxr/
-         y7O2n9oQSxmuzIX6qTRbGed9Az3nRc+IjxRT11g2hZxOUPwyfVcHNAdJqLuTOeCcAx
-         PV2a5PTM9I2dLNIUHJFCIxkt+EDaLcBJyCZfwETa7rJWnLd3osw+zEev4cPQHcCvOX
-         ejPeCFQIG1TmA==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 3DF4560CCF;
-        Tue, 20 Jul 2021 14:20:05 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        id S239241AbhGTNoW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 09:44:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40562 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238522AbhGTNlB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 09:41:01 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5138AC0613E5
+        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 07:21:00 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1m5qc5-0000zJ-57; Tue, 20 Jul 2021 16:20:49 +0200
+Received: from pengutronix.de (unknown [IPv6:2a03:f580:87bc:d400:3120:e42a:5796:3403])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 080B9653070;
+        Tue, 20 Jul 2021 14:20:47 +0000 (UTC)
+Date:   Tue, 20 Jul 2021 16:20:47 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Aswath Govindraju <a-govindraju@ti.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Nishanth Menon <nm@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+Subject: Re: [PATCH 1/6] arm64: dts: ti: k3-am65-mcu: Add Support for MCAN
+Message-ID: <20210720142047.mfqssyj4lwh3yi2k@pengutronix.de>
+References: <20210720141642.24999-1-a-govindraju@ti.com>
+ <20210720141642.24999-2-a-govindraju@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next 0/3] arm64: dts: qcom: DTS updates
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <162679080524.18101.16626774349145809936.git-patchwork-notify@kernel.org>
-Date:   Tue, 20 Jul 2021 14:20:05 +0000
-References: <20210719212456.3176086-1-elder@linaro.org>
-In-Reply-To: <20210719212456.3176086-1-elder@linaro.org>
-To:     Alex Elder <elder@linaro.org>
-Cc:     bjorn.andersson@linaro.org, agross@kernel.org, robh+dt@kernel.org,
-        davem@davemloft.net, kuba@kernel.org, evgreen@chromium.org,
-        cpratapa@codeaurora.org, subashab@codeaurora.org, elder@kernel.org,
-        linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="lno6xybtxkozywqs"
+Content-Disposition: inline
+In-Reply-To: <20210720141642.24999-2-a-govindraju@ti.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
 
-This series was applied to netdev/net-next.git (refs/heads/master):
+--lno6xybtxkozywqs
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 19 Jul 2021 16:24:53 -0500 you wrote:
-> This series updates some IPA-related DT nodes.
-> 
-> Newer versions of IPA do not require an interconnect between IPA
-> and SoC internal memory.  The first patch updates the DT binding
-> to reflect this.
-> 
-> The second patch adds IPA information to "sc7280.dtsi", using only
-> two interconnects.  It includes the definition of the reserved
-> memory area used to hold IPA firmware.
-> 
-> [...]
+On 20.07.2021 19:46:37, Aswath Govindraju wrote:
+> From: Faiz Abbas <faiz_abbas@ti.com>
+>=20
+> Add Support for two MCAN controllers present on the am65x SOC. Both suppo=
+rt
+> classic CAN messages as well as CAN-FD.
 
-Here is the summary with links:
-  - [net-next,1/3] dt-bindings: net: qcom,ipa: make imem interconnect optional
-    https://git.kernel.org/netdev/net-next/c/6a0eb6c9d934
-  - [net-next,2/3] arm64: dts: qcom: sc7280: add IPA information
-    https://git.kernel.org/netdev/net-next/c/f8bd3c82bf7d
-  - [net-next,3/3] arm64: dts: qcom: sc7180: define ipa_fw_mem node
-    https://git.kernel.org/netdev/net-next/c/fd0f72c34bd9
+Thanks for the patch!
 
-You are awesome, thank you!
---
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+Why don't you disable the CAN cores by default in the dtsi?
 
+regards,
+Marc
 
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+--lno6xybtxkozywqs
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAmD227wACgkQqclaivrt
+76lfTAf8CuSBH1I3YSqAKp6bbdBKrNfa1K2i3yyNHZ1vmZUT6iHjLpBVt1426uz8
+7zJ8cEBKcdypSEgZgu4oCSpP2VFXHEdPVmmX8ze4MlJPmlww6jw1CY8BCKEU+P8X
+FPjqwgTgXGdoYu7F/jR9K22XZ5aUpAVh02IQHs2XFYbNnJ2y7QB2JpDHBFzMiJnS
+pCQHVLeBt0j/SsnNHY7qTGzRZNk9Jl+IGd9sVJoApAk7EMLup19JjFuhzznrdvGh
+E90sAU6/hq7XanlcWMd5gnKXoMI4xkin01on1vxP0O4j+shFoXTrkJsJZMjb0Hhm
+kbxssqxS4MkHLulkPTzxQ13RAYQz5Q==
+=rgf8
+-----END PGP SIGNATURE-----
+
+--lno6xybtxkozywqs--
