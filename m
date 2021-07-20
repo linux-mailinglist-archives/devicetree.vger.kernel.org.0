@@ -2,125 +2,350 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EACBF3D0501
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 01:14:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A805F3D053F
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 01:28:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231670AbhGTW3g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 18:29:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47254 "EHLO
+        id S230126AbhGTWlz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 18:41:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231906AbhGTW3c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 18:29:32 -0400
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A893DC061574
-        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 16:10:09 -0700 (PDT)
-Received: by mail-pg1-x535.google.com with SMTP id u14so126309pga.11
-        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 16:10:09 -0700 (PDT)
+        with ESMTP id S234895AbhGTWkG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 18:40:06 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64CA9C061762
+        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 16:20:43 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id t20so574963ljd.2
+        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 16:20:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=HmZtI1xpEI+ek1YEEmTrQH173EtPkZuQKAG16jfYelI=;
-        b=WWsHNFpumMchKKqPUZYeL3Q0MRwuhZGf1N5qizIbIoaqwSqsI0GRnaLgjtlY1VxNid
-         JskTU9X0Ts4uhfdYP1vrKcn9yRMbvUZXKCpzJ9wL+wUzJntjupv2qYxPwjCUS1MD9U5o
-         XjkDCRYBRTor9KRM7GkV/2bKjF3vPkwL8/YnI=
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=sKq1woBTUyULYPDu7yo7zlVbx4XofN3OKAwIuh07hbI=;
+        b=yOvXGX/+kPpR57fSC5dXG7cTRmbk13QUAI5/ooZ/TjW9AlfybvVrlVBCX+WqRLc5ct
+         WV5HzGGjrZDrJImi87VeCUDZ4NPvc0ueJCVZxbGLF2SC8KlPiWKVxDyyQED7vREUzaD1
+         CItf66UYVe70OZSB10zfoTbv6XqghgIlmJVzRIzBS7BOc9xvi1dObpV/C5Aq0Wacu8xt
+         mhU+cL7vhyfVVw1GQrWiJtdmo8wzCZinCxNkSI+DsBkOoOq8p1zwHSurIl8eKXzqJ3Su
+         qSLK+tJvsdpHXqsI/7ZOmPmFwcUzqQ+53zYZadrGEJS0AYCk+++7NAcfBgsAgYW4ZLMM
+         Pg3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=HmZtI1xpEI+ek1YEEmTrQH173EtPkZuQKAG16jfYelI=;
-        b=WCMwYGa2ovdr0QWYX30+UinKoEnQDFTqiYFpCkUbd4omkmgavzHXQeewnsAPvRwSYY
-         Zpzfj32HMYX70nssfySu56mX0QnAOjM0YzOyPwO5kvLOwEff1n9fMNDxar5xwIvaA5Wp
-         QOu7aenbAhj8i3VQ5Fh+ei4zjUWJZKhLKNj/2+b2BwcNbVYWZDc/gJB8h3/lk6wK+Msh
-         t12XdJXo7mihhjqrS3GBpmnYlPBdkba+CG5VUOZszv++KbJN9cqLsGIJxLzT7vQB7em2
-         lvl8rRrI90P4W+l54L3u2+neSqrpmNN2zXy6oPxo2QPma5VYTGZYcL8f31JUc7/cYYyf
-         Vq2g==
-X-Gm-Message-State: AOAM533/q8H2xnXgkD5pzhTNNZ4MblYls5IL2JRjo1WnTCkNDnwWjo2x
-        Q+sLHuzvE76/OQh5vlFCcSEYdA==
-X-Google-Smtp-Source: ABdhPJxXibVoBqbItv1ED8m4kpKScTx/Sran0ivRFpDT+e0xLPrsaQZe1F9x4oWRAU2XI0LZzmyyUg==
-X-Received: by 2002:a63:1f0e:: with SMTP id f14mr28618978pgf.65.1626822609238;
-        Tue, 20 Jul 2021 16:10:09 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:c9c3:db46:7281:8e32])
-        by smtp.gmail.com with UTF8SMTPSA id u24sm26397365pfm.141.2021.07.20.16.10.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Jul 2021 16:10:08 -0700 (PDT)
-Date:   Tue, 20 Jul 2021 16:10:07 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Sibi Sankar <sibis@codeaurora.org>
-Cc:     swboyd@chromium.org, bjorn.andersson@linaro.org,
-        robh+dt@kernel.org, ulf.hansson@linaro.org, rjw@rjwysocki.net,
-        agross@kernel.org, ohad@wizery.com, mathieu.poirier@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dianders@chromium.org, rishabhb@codeaurora.org,
-        sidgup@codeaurora.org
-Subject: Re: [PATCH v4 02/13] dt-bindings: remoteproc: qcom: pas: Add QMP
- property
-Message-ID: <YPdXz1T89GcIYmJO@google.com>
-References: <1626755807-11865-1-git-send-email-sibis@codeaurora.org>
- <1626755807-11865-3-git-send-email-sibis@codeaurora.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=sKq1woBTUyULYPDu7yo7zlVbx4XofN3OKAwIuh07hbI=;
+        b=eiIEs8RnvGGV8L38B8yIR+5mzwZCwYH8emgvAbWNpmNN7CErsROPW7xWo7a/SoSLQT
+         jdiEm7RgXlW3s0hgWGZXSu3EMOcNXHtGtY7UmKPp0nKmxhtjNwFzjwoZjP9/8lDCdvD5
+         YcFWCABKcG9ITTCANccEEnxx3qkhq4KGwpQ1TbmVXRn3aMhwjtKsb3ZjxKQRiUgoC5WF
+         w4/M0qNlMOU1NEFUZOEkiJXYC7ow9RuEHDDdNtmiIoTFuq6vm6OuYXSMWHnKC+wOk2ee
+         uzb7pWHGOOKIJByaIpaFHL2Fu1rdd7rdkQ1rZka078BZbZDP12K7mNIap7Xp9AvitF/1
+         YJTw==
+X-Gm-Message-State: AOAM533Cm15i8rVyOXT0PeJv8ugA09obaU/OgRgvraitYLEdQPsV9rNK
+        E1cICMfEyqDXozcyPuKzSltIxA==
+X-Google-Smtp-Source: ABdhPJxXa3OZwe3CXl6qZbv2KZ9W0Lqb7/X9ZET9+A8JKO+bhz1LHyPmOZdC/QK+MN1R2K+nDGfqMw==
+X-Received: by 2002:a2e:3508:: with SMTP id z8mr28548265ljz.7.1626823241733;
+        Tue, 20 Jul 2021 16:20:41 -0700 (PDT)
+Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
+        by smtp.gmail.com with ESMTPSA id t19sm654901lfr.204.2021.07.20.16.20.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Jul 2021 16:20:41 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-clk@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>
+Subject: [PATCH 1/2 v2] dt-bindings: clock: u8500: Rewrite in YAML and extend
+Date:   Wed, 21 Jul 2021 01:18:36 +0200
+Message-Id: <20210720231837.1576130-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1626755807-11865-3-git-send-email-sibis@codeaurora.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 20, 2021 at 10:06:36AM +0530, Sibi Sankar wrote:
-> The load state power-domain, used by the co-processors to notify the
-> Always on Subsystem (AOSS) that a particular co-processor is up/down,
-> suffers from the side-effect of changing states during suspend/resume.
-> However the co-processors enter low-power modes independent to that of
-> the application processor and their states are expected to remain
-> unaltered across system suspend/resume cycles. To achieve this behavior
-> let's drop the load state power-domain and replace them with the qmp
-> property for all SoCs supporting low power mode signalling.
-> 
-> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
-> ---
-> 
-> v4:
->  * Commit message change and sc8180x co-processor addition. [Rob/Bjorn]
-> 
->  .../devicetree/bindings/remoteproc/qcom,adsp.yaml  | 65 +++++++++++-----------
->  1 file changed, 33 insertions(+), 32 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-> index c597ccced623..1182afb5f593 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-> @@ -78,11 +78,11 @@ properties:
->  
->    power-domains:
->      minItems: 1
-> -    maxItems: 3
-> +    maxItems: 2
->  
->    power-domain-names:
->      minItems: 1
-> -    maxItems: 3
-> +    maxItems: 2
+This rewrites the ux500/u8500 clock bindings in YAML schema and extends them
+with the PRCC reset controller.
 
-It seems maxItems should have been 4 in the first place and should remain
-unchanged after removing the load state power domain. With this patch:
+The bindings are a bit idiomatic but it just reflects their age, the ux500
+platform was used as guinea pig for early device tree conversion of platforms
+in 2015. The new subnode for the reset controller follows the pattern of the
+old bindings and adds a node with reset-cells for this.
 
-  - if:
-      properties:
-        compatible:
-          contains:
-            enum:
-              - qcom,sc7180-mpss-pas
-    then:
-      properties:
-        power-domains:
-          items:
-            - description: CX power domain
-            - description: MX power domain
-            - description: MSS power domain
-        power-domain-names:
-          items:
-            - const: cx
-            - const: mx
-            - const: mss
+Cc: devicetree@vger.kernel.org
+Cc: Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ChangeLog v1->v2:
+- Use an enum for compatible.
+- Mark the reset controller as object (node)
+- Mandate 2 #reset-cells on the reset controller.
+- Small blurb that PRCC 4 does not exist.
+- Rebase on v5.14-rc1
+- Cc Philipp Zabel
+---
+ .../bindings/clock/stericsson,u8500-clks.yaml | 121 ++++++++++++++++++
+ .../devicetree/bindings/clock/ux500.txt       |  64 ---------
+ .../reset/stericsson,db8500-prcc-reset.h      |  51 ++++++++
+ 3 files changed, 172 insertions(+), 64 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml
+ delete mode 100644 Documentation/devicetree/bindings/clock/ux500.txt
+ create mode 100644 include/dt-bindings/reset/stericsson,db8500-prcc-reset.h
+
+diff --git a/Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml b/Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml
+new file mode 100644
+index 000000000000..9bc95a308477
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml
+@@ -0,0 +1,121 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/stericsson,u8500-clks.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ST-Ericsson DB8500 (U8500) clocks
++
++maintainers:
++  - Ulf Hansson <ulf.hansson@linaro.org>
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description: While named "U8500 clocks" these clocks are inside the
++  DB8500 digital baseband system-on-chip and its siblings such as
++  DB8520. These bindings consider the clocks present in the SoC
++  itself, not off-chip clocks. There are four different on-chip
++  clocks - RTC (32 kHz), CPU clock (SMP TWD), PRCMU (power reset and
++  control management unit) clocks and PRCC (peripheral reset and
++  clock controller) clocks. For some reason PRCC 4 does not exist so
++  the itemization can be a bit unintuitive.
++
++properties:
++  compatible:
++    enum:
++      - stericsson,u8500-clks
++      - stericsson,u8540-clks
++      - stericsson,u9540-clks
++
++  reg:
++    items:
++      - description: PRCC 1 register area
++      - description: PRCC 2 register area
++      - description: PRCC 3 register area
++      - description: PRCC 5 register area
++      - description: PRCC 6 register area
++
++  prcmu-clock:
++    description: A subnode with one clock cell for PRCMU (power, reset, control
++      management unit) clocks. The cell indicates which PRCMU clock in the
++      prcmu-clock node the consumer wants to use.
++    type: object
++
++    properties:
++      '#clock-cells':
++        const: 1
++
++    additionalProperties: false
++
++  prcc-periph-clock:
++    description: A subnode with two clock cells for PRCC (peripheral
++      reset and clock controller) peripheral clocks. The first cell indicates
++      which PRCC block the consumer wants to use, possible values are 1, 2, 3,
++      5, 6. The second cell indicates which clock inside the PRCC block it
++      wants, possible values are 0 thru 31.
++    type: object
++
++    properties:
++      '#clock-cells':
++        const: 2
++
++    additionalProperties: false
++
++  prcc-kernel-clock:
++    description: A subnode with two clock cells for PRCC (peripheral reset
++      and clock controller) kernel clocks. The first cell indicates which PRCC
++      block the consumer wants to use, possible values are 1, 2, 3, 5, 6. The
++      second cell indicates which clock inside the PRCC block it wants, possible
++      values are 0 thru 31.
++    type: object
++
++    properties:
++      '#clock-cells':
++        const: 2
++
++    additionalProperties: false
++
++  prcc-reset-controller:
++    description: A subnode with two reset cells for the reset portions of the
++      PRCC (peripheral reset and clock controller). The first cell indicates
++      which PRCC block the consumer wants to use, possible values are 1, 2, 3
++      5 and 6. The second cell indicates which reset line inside the PRCC block
++      it wants to control, possible values are 0 thru 31.
++    type: object
++
++    properties:
++      '#reset-cells':
++        const: 2
++
++    additionalProperties: false
++
++  rtc32k-clock:
++    description: A subnode with zero clock cells for the 32kHz RTC clock.
++    type: object
++
++    properties:
++      '#clock-cells':
++        const: 0
++
++    additionalProperties: false
++
++  smp-twd-clock:
++    description: A subnode for the ARM SMP Timer Watchdog cluster with zero
++      clock cells.
++    type: object
++
++    properties:
++      '#clock-cells':
++        const: 0
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - prcmu-clock
++  - prcc-periph-clock
++  - prcc-kernel-clock
++  - rtc32k-clock
++  - smp-twd-clock
++
++additionalProperties: false
+diff --git a/Documentation/devicetree/bindings/clock/ux500.txt b/Documentation/devicetree/bindings/clock/ux500.txt
+deleted file mode 100644
+index e52bd4b72348..000000000000
+--- a/Documentation/devicetree/bindings/clock/ux500.txt
++++ /dev/null
+@@ -1,64 +0,0 @@
+-Clock bindings for ST-Ericsson Ux500 clocks
+-
+-Required properties :
+-- compatible : shall contain only one of the following:
+-  "stericsson,u8500-clks"
+-  "stericsson,u8540-clks"
+-  "stericsson,u9540-clks"
+-- reg : shall contain base register location and length for
+-  CLKRST1, 2, 3, 5, and 6 in an array. Note the absence of
+-  CLKRST4, which does not exist.
+-
+-Required subnodes:
+-- prcmu-clock: a subnode with one clock cell for PRCMU (power,
+-  reset, control unit) clocks. The cell indicates which PRCMU
+-  clock in the prcmu-clock node the consumer wants to use.
+-- prcc-periph-clock: a subnode with two clock cells for
+-  PRCC (programmable reset- and clock controller) peripheral clocks.
+-  The first cell indicates which PRCC block the consumer
+-  wants to use, possible values are 1, 2, 3, 5, 6. The second
+-  cell indicates which clock inside the PRCC block it wants,
+-  possible values are 0 thru 31.
+-- prcc-kernel-clock: a subnode with two clock cells for
+-  PRCC (programmable reset- and clock controller) kernel clocks
+-  The first cell indicates which PRCC block the consumer
+-  wants to use, possible values are 1, 2, 3, 5, 6. The second
+-  cell indicates which clock inside the PRCC block it wants,
+-  possible values are 0 thru 31.
+-- rtc32k-clock: a subnode with zero clock cells for the 32kHz
+-  RTC clock.
+-- smp-twd-clock: a subnode for the ARM SMP Timer Watchdog cluster
+-  with zero clock cells.
+-
+-Example:
+-
+-clocks {
+-	compatible = "stericsson,u8500-clks";
+-	/*
+-	 * Registers for the CLKRST block on peripheral
+-	 * groups 1, 2, 3, 5, 6,
+-	 */
+-	reg = <0x8012f000 0x1000>, <0x8011f000 0x1000>,
+-	    <0x8000f000 0x1000>, <0xa03ff000 0x1000>,
+-	    <0xa03cf000 0x1000>;
+-
+-	prcmu_clk: prcmu-clock {
+-		#clock-cells = <1>;
+-	};
+-
+-	prcc_pclk: prcc-periph-clock {
+-		#clock-cells = <2>;
+-	};
+-
+-	prcc_kclk: prcc-kernel-clock {
+-		#clock-cells = <2>;
+-	};
+-
+-	rtc_clk: rtc32k-clock {
+-		#clock-cells = <0>;
+-	};
+-
+-	smp_twd_clk: smp-twd-clock {
+-		#clock-cells = <0>;
+-	};
+-};
+diff --git a/include/dt-bindings/reset/stericsson,db8500-prcc-reset.h b/include/dt-bindings/reset/stericsson,db8500-prcc-reset.h
+new file mode 100644
+index 000000000000..ea906896c70f
+--- /dev/null
++++ b/include/dt-bindings/reset/stericsson,db8500-prcc-reset.h
+@@ -0,0 +1,51 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++
++#ifndef _DT_BINDINGS_STE_PRCC_RESET
++#define _DT_BINDINGS_STE_PRCC_RESET
++
++#define DB8500_PRCC_1				1
++#define DB8500_PRCC_2				2
++#define DB8500_PRCC_3				3
++#define DB8500_PRCC_6				6
++
++/* Reset lines on PRCC 1 */
++#define DB8500_PRCC_1_RESET_UART0		0
++#define DB8500_PRCC_1_RESET_UART1		1
++#define DB8500_PRCC_1_RESET_I2C1		2
++#define DB8500_PRCC_1_RESET_MSP0		3
++#define DB8500_PRCC_1_RESET_MSP1		4
++#define DB8500_PRCC_1_RESET_SDI0		5
++#define DB8500_PRCC_1_RESET_I2C2		6
++#define DB8500_PRCC_1_RESET_SPI3		7
++#define DB8500_PRCC_1_RESET_SLIMBUS0		8
++#define DB8500_PRCC_1_RESET_I2C4		9
++#define DB8500_PRCC_1_RESET_MSP3		10
++#define DB8500_PRCC_1_RESET_PER_MSP3		11
++#define DB8500_PRCC_1_RESET_PER_MSP1		12
++#define DB8500_PRCC_1_RESET_PER_MSP0		13
++#define DB8500_PRCC_1_RESET_PER_SLIMBUS		14
++
++/* Reset lines on PRCC 2 */
++#define DB8500_PRCC_2_RESET_I2C3		0
++#define DB8500_PRCC_2_RESET_PWL			1
++#define DB8500_PRCC_2_RESET_SDI4		2
++#define DB8500_PRCC_2_RESET_MSP2		3
++#define DB8500_PRCC_2_RESET_SDI1		4
++#define DB8500_PRCC_2_RESET_SDI3		5
++#define DB8500_PRCC_2_RESET_HSIRX		6
++#define DB8500_PRCC_2_RESET_HSITX		7
++#define DB8500_PRCC_1_RESET_PER_MSP2		8
++
++/* Reset lines on PRCC 3 */
++#define DB8500_PRCC_3_RESET_SSP0		1
++#define DB8500_PRCC_3_RESET_SSP1		2
++#define DB8500_PRCC_3_RESET_I2C0		3
++#define DB8500_PRCC_3_RESET_SDI2		4
++#define DB8500_PRCC_3_RESET_SKE			5
++#define DB8500_PRCC_3_RESET_UART2		6
++#define DB8500_PRCC_3_RESET_SDI5		7
++
++/* Reset lines on PRCC 6 */
++#define DB8500_PRCC_3_RESET_RNG			0
++
++#endif
+-- 
+2.31.1
 
