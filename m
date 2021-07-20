@@ -2,85 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E504C3CFAC5
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 15:37:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02B9B3CFAFB
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 15:45:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236833AbhGTMzn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 08:55:43 -0400
-Received: from mail-il1-f175.google.com ([209.85.166.175]:43647 "EHLO
-        mail-il1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239141AbhGTMyT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 08:54:19 -0400
-Received: by mail-il1-f175.google.com with SMTP id w1so19107303ilg.10;
-        Tue, 20 Jul 2021 06:34:57 -0700 (PDT)
+        id S237377AbhGTNE7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 09:04:59 -0400
+Received: from mail-ua1-f43.google.com ([209.85.222.43]:33375 "EHLO
+        mail-ua1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238724AbhGTNDQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 09:03:16 -0400
+Received: by mail-ua1-f43.google.com with SMTP id d2so8096365uan.0;
+        Tue, 20 Jul 2021 06:42:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=iXVXQCvX+rDxAmIhcemQIg3BD3R+OAgKkEeUeDAOaWU=;
-        b=a+pAn7LxrDq+B3+ZhUOwd596Hs4hVs3kg19YlM2D/E0dz4O/MZwITyz/5ZsF6hnoL8
-         KHS69rxuWzwwMQvwHFsZ7cXmAqnII0TlJmpqIzk+P1xvsKp5Y+6uw2Pj+KbXmJm1Z7Po
-         +Ap0g3AGKYjHeN0+V0KWE+JXlz5E9o/s48UBv7EaXNvStfGvctRCVopAF6RlUspVHccv
-         m271FV/cNrjfs9zwHtEaHcXZWp4b8kWnxMrCOEL869WdNSxE8bcS6g62xZ0MJjNoZZxS
-         SQ5/PaE8V+rY57p6m2OoAvvqeofK/E/i28lEMn525cV/xeKksowbNjnxqbY0kh5YI3M8
-         1EFg==
-X-Gm-Message-State: AOAM5315wOdkCR6pksfdxihat4bHEVfICbW38MkdN5DG/Toqe14LrTmj
-        fG0Xav//U6NoZrqLa5B67w==
-X-Google-Smtp-Source: ABdhPJynuTGR01DW0qDQzAyJlxt9B4QibZ2YJFfotEtHfK6UrcGS8SIQSUwEVcONxP5BN2KDaz1dQg==
-X-Received: by 2002:a92:ad04:: with SMTP id w4mr20381626ilh.221.1626788097223;
-        Tue, 20 Jul 2021 06:34:57 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id 10sm2014932iln.39.2021.07.20.06.34.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jul 2021 06:34:56 -0700 (PDT)
-Received: (nullmailer pid 4157543 invoked by uid 1000);
-        Tue, 20 Jul 2021 13:34:54 -0000
-Date:   Tue, 20 Jul 2021 07:34:54 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Yangtao Li <tiny.windzz@gmail.com>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, linux-pm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2] dt-bindings: opp: Convert to DT schema
-Message-ID: <20210720133454.GA4147058@robh.at.kernel.org>
-References: <20210719202732.2490287-1-robh@kernel.org>
- <20210720043108.bmoydy3a2r3gqhnq@vireshk-i7>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=E38sRFpfg4Nl0TXtXxQVL6c3M9xpf/OZLQC/AmFnhX0=;
+        b=dqQPL7GHgGkeYBs26JfHFUN+3BqbjRqvvbC4ldBJCMhMMBGpKeXw+NSDKoGAhVNGQ6
+         JpJSKPCQyDi+qL81hIl8GQ2mGBSQOOxzNsVd6T3z5jbbmNHzbf/vT8uWKj/C6p9/mGyV
+         /Ers3PdKcpedqzS5aoCY29saSiyDjrJ/Bz26r3xplfHdkr0WGhGeUEGh9wz3F9g5553E
+         stoTRwBTfiulgIDggbG4BkuBl7j8IUYnjHVGTT0AGCuoCvBFwHxXZoaWB/SMO/TOCVV3
+         izOz9BwF+i9XbzuzSJjFfkslZquHfWPjiN2N786O6Kynl9/qjtaYMiKkMIYMZmiXMv18
+         hHAA==
+X-Gm-Message-State: AOAM531W3ocV5OJdFAYhrSvkm3DDbduozXM9xa/glRx0sE0+LDirx3T9
+        Kb/mPYvLDoRElLDI4qxyEoN6CISt0xuUk41aIEI=
+X-Google-Smtp-Source: ABdhPJwCPd8kUzwD4M0vusPzxjBGVt7Tt8dDccfy425PNDwzZ7QrhhWXBCo5/qJmiDl2wf2MHdf6UYSUh7yINyuR0AM=
+X-Received: by 2002:ab0:5a2e:: with SMTP id l43mr31027655uad.4.1626788572878;
+ Tue, 20 Jul 2021 06:42:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210720043108.bmoydy3a2r3gqhnq@vireshk-i7>
+References: <20210712194422.12405-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210712194422.12405-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20210712194422.12405-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 20 Jul 2021 15:42:41 +0200
+Message-ID: <CAMuHMdVGN+6AiEtkAiHso5=FVsQYSbd0xD3LULsdbMPsXPkc+Q@mail.gmail.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: pinctrl: renesas,rzg2l-pinctrl: Add
+ DT bindings for RZ/G2L pinctrl
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 20, 2021 at 10:01:08AM +0530, Viresh Kumar wrote:
-> On 19-07-21, 14:27, Rob Herring wrote:
-> > Convert the OPP v1 and v2 bindings to DT schema format. As the OPPv2 binding
-> > can be extended by vendors, we need to split the common part out from the
-> > "operating-points-v2" conforming compatible.
-> > 
-> > Cc: Yangtao Li <tiny.windzz@gmail.com>
-> > Cc: Nishanth Menon <nm@ti.com>
-> > Cc: Stephen Boyd <sboyd@kernel.org>
-> > Cc: Maxime Ripard <mripard@kernel.org>
-> > Cc: Chen-Yu Tsai <wens@csie.org>
-> > Cc: linux-pm@vger.kernel.org
-> > Cc: linux-arm-kernel@lists.infradead.org
-> > Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> > v2:
-> > - move opp-peak-kBps next to opp-avg-kBps. Also add a dependency schema.
-> > - Correct the opp-microamp schemas. It's always a single value for each
-> >   regulator.
-> > - Add missing type for '^opp-microamp-'
-> 
-> Applied. Thanks.
+Hi Prabhakar,
 
-I found some issues with it, can you drop it? 
+On Mon, Jul 12, 2021 at 9:44 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> Add device tree binding documentation and header file for Renesas
+> RZ/G2L pinctrl.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Rob
+Thanks for your patch!
 
+> --- /dev/null
+> +++ b/include/dt-bindings/pinctrl/rzg2l-pinctrl.h
+> @@ -0,0 +1,23 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +/*
+> + * This header provides constants for Renesas RZ/G2L family pinctrl bindings.
+> + *
+> + * Copyright (C) 2021 Renesas Electronics Corp.
+> + *
+> + */
+> +
+> +#ifndef __DT_BINDINGS_RZG2L_PINCTRL_H
+> +#define __DT_BINDINGS_RZG2L_PINCTRL_H
+> +
+> +#define RZG2L_PINS_PER_PORT    8
+> +
+> +/*
+> + * Create the pin index from its bank and position numbers and store in
+> + * the upper 16 bits the alternate function identifier
+> + */
+> +#define RZG2L_PORT_PINMUX(b, p, f)     ((b) * RZG2L_PINS_PER_PORT + (p) | ((f) << 16))
+> +
+> +/* Convert a port and pin label to its global pin index */
+> + #define RZG2L_GPIO(port, pin) ((port) * RZG2L_PINS_PER_PORT + (pin))
+
+I know this was copied from RZ/A2, but some consistency in the naming
+(b or bank vs. port, p vs. pin) would be nice to have.
+
+> +
+> +#endif /* __DT_BINDINGS_RZG2L_PINCTRL_H */
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
