@@ -2,69 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FBF13CF97E
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 14:23:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D815B3CFA16
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 15:07:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237255AbhGTLms (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 07:42:48 -0400
-Received: from mail.kernel.org ([198.145.29.99]:32938 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235407AbhGTLmH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Jul 2021 07:42:07 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9668861164;
-        Tue, 20 Jul 2021 12:22:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626783765;
-        bh=YRLjcBlqPGxnu3xGSqaltTSQ92aKXDwWqXW2BW/djd8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=NPZ4cfCH2/QnEkLnTe8nyWmaJD9PRK01bggfFSdcQBzmdqrKZEkJs84HG06yA+Qwd
-         epd5Q81sv2+8nfQ9/P5i4cQ/bBWC3FLNbfQbR7Fo1KrAxojWJJoXDZh0L3ElTxDZVh
-         aa5nNQ+9uzOCULt8kH4XhVBQXyNJyy+Rvtvo5KT5FJtfPD5MU3ygCZgau6i7WNY0OY
-         U3zWyFLnzawiOAflK1CGrptof3SA1JPp+HLDML80ZxG5r/sXGbKHjp3NznQRW5qglh
-         ReVpCNq8ETRcQVJVaYAPUrOyCY/RZMZM3Jzxg1zTsAXyhn+oc5T5fDs3u3ok9GETtW
-         m6kTbN5xFADeQ==
-Date:   Tue, 20 Jul 2021 17:52:41 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Robin Gong <yibin.gong@nxp.com>, broonie@kernel.org,
-        shawnguo@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-imx@nxp.com, kernel@pengutronix.de,
-        dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        mark.rutland@arm.com, robh+dt@kernel.org, catalin.marinas@arm.com,
-        will.deacon@arm.com, festevam@gmail.com, s.hauer@pengutronix.de,
-        martin.fuzzey@flowbird.group, u.kleine-koenig@pengutronix.de,
-        dan.j.williams@intel.com, matthias.schiffer@ew.tq-group.com,
-        frieder.schrempf@kontron.de, m.felsch@pengutronix.de,
-        xiaoning.wang@nxp.com
-Subject: Re: [PATCH v16 00/12] add ecspi ERR009165 for i.mx6/7 soc family
-Message-ID: <YPbAEbcOzBrK2KfB@matsya>
-References: <1626258052-22198-1-git-send-email-yibin.gong@nxp.com>
- <8f8a307a2dc99ca3beab2767ac3188b4ba1a394f.camel@pengutronix.de>
+        id S232187AbhGTM0B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 08:26:01 -0400
+Received: from eu-smtp-delivery-151.mimecast.com ([185.58.85.151]:51959 "EHLO
+        eu-smtp-delivery-151.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232324AbhGTMYU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Jul 2021 08:24:20 -0400
+Received: from AcuMS.aculab.com (156.67.243.121 [156.67.243.121]) (Using
+ TLS) by relay.mimecast.com with ESMTP id
+ uk-mta-142-ZznYomwVPdSR4LXY_KNiYA-1; Tue, 20 Jul 2021 14:04:39 +0100
+X-MC-Unique: ZznYomwVPdSR4LXY_KNiYA-1
+Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) by
+ AcuMS.aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) with Microsoft SMTP
+ Server (TLS) id 15.0.1497.23; Tue, 20 Jul 2021 14:04:39 +0100
+Received: from AcuMS.Aculab.com ([fe80::994c:f5c2:35d6:9b65]) by
+ AcuMS.aculab.com ([fe80::994c:f5c2:35d6:9b65%12]) with mapi id
+ 15.00.1497.023; Tue, 20 Jul 2021 14:04:39 +0100
+From:   David Laight <David.Laight@ACULAB.COM>
+To:     'Eddie James' <eajames@linux.ibm.com>,
+        Mark Brown <broonie@kernel.org>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>
+Subject: RE: [PATCH 1/2] spi: fsi: Reduce max transfer size to 8 bytes
+Thread-Topic: [PATCH 1/2] spi: fsi: Reduce max transfer size to 8 bytes
+Thread-Index: AQHXfL3Ikg6avb1lOkyp/qlhiL4746tL1OlQ
+Date:   Tue, 20 Jul 2021 13:04:38 +0000
+Message-ID: <0a637d7704df4303abe783215080578d@AcuMS.aculab.com>
+References: <20210716133915.14697-1-eajames@linux.ibm.com>
+         <20210716133915.14697-2-eajames@linux.ibm.com>
+         <20210716171936.GB4137@sirena.org.uk>
+         <81a40f8690d297ebfb6697dbea63279bcf2f24fa.camel@linux.ibm.com>
+         <20210719152010.GB4174@sirena.org.uk>
+ <d2e07f0beda57ffeaa31e8cf5bf28edfbd982e58.camel@linux.ibm.com>
+In-Reply-To: <d2e07f0beda57ffeaa31e8cf5bf28edfbd982e58.camel@linux.ibm.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.202.205.107]
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8f8a307a2dc99ca3beab2767ac3188b4ba1a394f.camel@pengutronix.de>
+Authentication-Results: relay.mimecast.com;
+        auth=pass smtp.auth=C51A453 smtp.mailfrom=david.laight@aculab.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: aculab.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14-07-21, 11:05, Lucas Stach wrote:
-> Hi Vinod, Mark, Shawn,
-> 
-> with this revision I think this series is ready to be picked up, at
-> least I couldn't spot any blockers anymore.
-> 
-> How would you like to deal with this? While the complete series is
-> needed to fix the issues and restore proper DMA functionality on
-> unaffected SoCs, there are no dependencies between the patches
-> targeting different subsystems.
-> Do you prefer to pick dma/spi/dt patches from this series in your
-> respective trees, or do you want the whole series to go through the imx
-> tree? AFAICS all dma and spi patches are already acked, so taking them
-> through one tree would be possible, I think.
+RnJvbTogRWRkaWUgSmFtZXMgPGVhamFtZXNAbGludXguaWJtLmNvbT4NCj4gU2VudDogMTkgSnVs
+eSAyMDIxIDE2OjQ3DQo+IFRvOiBNYXJrIEJyb3duIDxicm9vbmllQGtlcm5lbC5vcmc+DQo+IENj
+OiBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgb3BlbmJtY0BsaXN0cy5vemxhYnMub3JnOyBy
+b2JoK2R0QGtlcm5lbC5vcmc7IGxpbnV4LQ0KPiBrZXJuZWxAdmdlci5rZXJuZWwub3JnOyBsaW51
+eC1zcGlAdmdlci5rZXJuZWwub3JnDQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggMS8yXSBzcGk6IGZz
+aTogUmVkdWNlIG1heCB0cmFuc2ZlciBzaXplIHRvIDggYnl0ZXMNCj4gDQo+IE9uIE1vbiwgMjAy
+MS0wNy0xOSBhdCAxNjoyMCArMDEwMCwgTWFyayBCcm93biB3cm90ZToNCj4gPiBPbiBGcmksIEp1
+bCAxNiwgMjAyMSBhdCAwMTozNDozOFBNIC0wNTAwLCBFZGRpZSBKYW1lcyB3cm90ZToNCj4gPg0K
+PiA+ID4gU2VjdXJpdHkgY2hhbmdlcyBpbiB0aGUgU1BJIGNvbnRyb2xsZXIgLSBpbiB0aGUgZGV2
+aWNlIG1pY3JvY29kZS4gSQ0KPiA+ID4gY2FuDQo+ID4gPiByZXdvcmQgdGhlIGNvbW1pdCBpZiB5
+b3UgbGlrZS4NCj4gPg0KPiA+IEhvdyB3aWxsIHBlb3BsZSBlbmQgdXAgcnVubmluZyB0aGlzIGRl
+dmljZSBtaWNyb2NvZGU/ICBJcyB0aGlzIGEgYnVnDQo+ID4gZml4LCBvciBpcyB0aGlzIGdvaW5n
+IHRvIG5lZWRsZXNzbHkgcmVkdWNlIHBlcmZvcm1hbmNlIGZvciBwZW9wbGUNCj4gPiB3aXRoDQo+
+ID4gZXhpc3RpbmcgaGFyZHdhcmU/DQo+IA0KPiBUaGUgaGFyZHdhcmUgaXMgc3RpbGwgaW4gZGV2
+ZWxvcG1lbnQuIEFzIHBhcnQgb2YgdGhlIGRldmVsb3BtZW50LCB0aGUNCj4gZGV2aWNlIG1pY3Jv
+Y29kZSB3YXMgY2hhbmdlZCB0byByZXN0cmljdCB0cmFuc2ZlcnMuIFRoZSByZWFzb24gZm9yIHRo
+aXMNCj4gcmVzdHJpY3Rpb24gd2FzICJzZWN1cml0eSBjb25jZXJucyIuIFRoaXMgcmVzdHJpY3Rp
+b24gZGlzYWxsb3dzIHRoZQ0KPiBsb29wIChvciBicmFuY2gtaWYtbm90LWVxdWFsLWFuZC1pbmNy
+ZW1lbnQpIHNlcXVlbmNlciBjb21tYW5kLiBJdCBhbHNvDQo+IGRvZXMgbm90IGFsbG93IHRoZSBy
+ZWFkIChvciBzaGlmdCBpbiBpZiB5b3UgcHJlZmVyKSBjb21tYW5kIHRvIHNwZWNpZnkNCj4gdGhl
+IG51bWJlciBvZiBieXRlcyBpbiB0aGUgY29tbWFuZCBpdHNlbGYuIFJhdGhlciwgdGhlIG51bWJl
+ciBvZiBiaXRzDQo+IHRvIHNoaWZ0IGluIG11c3QgYmUgc3BlY2lmaWVkIGluIGEgc2VwYXJhdGUg
+Y29udHJvbCByZWdpc3Rlci4gVGhpcw0KPiBlZmZlY3RpdmVseSBtZWFucyB0aGF0IHRoZSBjb250
+cm9sbGVyIGNhbm5vdCB0cmFuc2ZlciBtb3JlIHRoYW4gOCBieXRlcw0KPiBhdCBhIHRpbWUuDQo+
+IFRoZXJlZm9yZSBJIHN1cHBvc2UgdGhpcyBpcyBlZmZlY3RpdmVseSBhIGJ1ZyBmaXguIFRoZXJl
+IHdpbGwgYmUgbm8NCj4gaGFyZHdhcmUgYXZhaWxhYmxlIHdpdGhvdXQgdGhlc2UgcmVzdHJpY3Rp
+b25zLCBzbyBpdCBpcyBub3QgYSBuZWVkbGVzcw0KPiByZWR1Y3Rpb24gaW4gcGVyZm9ybWFuY2Uu
+IEV2ZXJ5IHN5c3RlbSB0aGF0IGNhbiBydW4gdGhpcyBkcml2ZXIgd2lsbA0KPiBydW4gdGhlIG1v
+cmUgcmVzdHJpY3RpdmUgZGV2aWNlIG1pY3JvY29kZS4NCg0KU28ganVzdCBzYXkgdGhhdCByZWxl
+YXNlIHZlcnNpb25zIG9mIHRoZSBoYXJkd2FyZSB3b24ndCBzdXBwb3J0DQptb3JlIHRoYW4gOCBi
+eXRlIHRyYW5zZmVycy4NCg0KSGF2aW5nIHNhaWQgdGhhdCwgeW91IG1pZ2h0IHdhbnQgYSBsb29w
+IGluIHRoZSBkcml2ZXIgc28gdGhhdA0KYXBwbGljYXRpb24gcmVxdWVzdHMgZm9yIGxvbmdlciB0
+cmFuc2ZlcnMgYXJlIGltcGxlbWVudGVkDQp3aXRoIG11bHRpcGxlIGhhcmR3YXJlIHJlcXVlc3Rz
+Lg0KDQpJIGRvIGFsc28gd29uZGVyIHdoeSB0aGVyZSBpcyBzdXBwb3J0IGluIHRoZSBtYWluIGtl
+cm5lbCBzb3VyY2VzDQpmb3IgaGFyZHdhcmUgdGhhdCBkb2Vzbid0IGFjdHVhbGx5IGV4aXN0Lg0K
+DQoJRGF2aWQNCg0KLQ0KUmVnaXN0ZXJlZCBBZGRyZXNzIExha2VzaWRlLCBCcmFtbGV5IFJvYWQs
+IE1vdW50IEZhcm0sIE1pbHRvbiBLZXluZXMsIE1LMSAxUFQsIFVLDQpSZWdpc3RyYXRpb24gTm86
+IDEzOTczODYgKFdhbGVzKQ0K
 
-Sure, since you have acks, feel free to merge thru imx6 tree
-
--- 
-~Vinod
