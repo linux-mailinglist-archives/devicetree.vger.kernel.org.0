@@ -2,128 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB0543CFA32
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 15:12:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C1FC3CFA45
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 15:13:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234240AbhGTMbz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 08:31:55 -0400
-Received: from mail-io1-f54.google.com ([209.85.166.54]:37477 "EHLO
-        mail-io1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234942AbhGTMb3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 08:31:29 -0400
-Received: by mail-io1-f54.google.com with SMTP id r18so12756553iot.4;
-        Tue, 20 Jul 2021 06:12:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=3uaiIA266oYzcSw5ViiNhUOcSHy5KGVbduxtAyiJ2M4=;
-        b=l1tWZ6ch5T16FJKcP2NGOCubyZTcfKqqfdJDGVnBsyotEw90fIynBrJ9xn5fzxbOpA
-         yWRWtmpL5SwD6k2CdiD6m9mttkJ8kQUDa0cgKIKA1Gky3gRGFR2V0/lAt1RNotzPAFfn
-         /LI7C2OAxH3BRipPJ8lh1j0tfHGx3B1Gy8T6ssQs4A1JtsDz5EWClX59sUxhpJSOCDzZ
-         p98rRykAT+4Neqe+Ig8YFUAAvNWkStsHXO6cMFMY0d4C+cDch1pO6/FPeC4eBUiPSrby
-         l15leE+jz0rr4MTou9E9+OH4IOm5JXCvPX+s7yjCGu+1TsCJbprExfg6dCsTzW0oB17K
-         rVcA==
-X-Gm-Message-State: AOAM532k4YaPYlcaJhwmwt4cb0oZHrMc7gLn95Dao1B8BfA8P5ph7JYd
-        OHfOTYad8jbUIuBLuleUQQ==
-X-Google-Smtp-Source: ABdhPJx3i7k89YrlM+ySkipECLjV8CBmT6J7j7w9kGYMYmrse6KfxDaHEo/SSOE0vZW49na1EM3A6A==
-X-Received: by 2002:a02:2382:: with SMTP id u124mr26150014jau.138.1626786720858;
-        Tue, 20 Jul 2021 06:12:00 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id h6sm11993036iop.40.2021.07.20.06.11.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jul 2021 06:12:00 -0700 (PDT)
-Received: (nullmailer pid 4121601 invoked by uid 1000);
-        Tue, 20 Jul 2021 13:11:58 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Alvaro Gamez <alvaro.gamez@hazent.com>,
-        linux-kernel@vger.kernel.org,
-        =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        devicetree@vger.kernel.org, michal.simek@xilinx.com,
-        linux-pwm@vger.kernel.org
-In-Reply-To: <20210719221322.3723009-1-sean.anderson@seco.com>
-References: <20210719221322.3723009-1-sean.anderson@seco.com>
-Subject: Re: [PATCH v5 1/3] dt-bindings: pwm: Add Xilinx AXI Timer
-Date:   Tue, 20 Jul 2021 07:11:58 -0600
-Message-Id: <1626786718.716987.4121600.nullmailer@robh.at.kernel.org>
+        id S237878AbhGTMdG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 08:33:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51538 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238415AbhGTMcf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Jul 2021 08:32:35 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 66AFB61106;
+        Tue, 20 Jul 2021 13:13:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1626786787;
+        bh=al7tI0KVVLdEI4uEKfWFTCtxVhUgyhsr1HgYUh500/8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Dlu6Q+ySyWZD/KOuzvnza5z39lV+sx/aVol9fNomcLzbau6nuEWQ4LKJ8WvHxRgFM
+         iAfLf4SxCoqV2s7L19ynzMrcOk4oPJzPfAK9bNwIEPMaotlhMhcqt9EyA4phEjyoA4
+         g5s1Qtgj9z53VBqvMQVhCRoQ6TmP7anJTwRknLd7W0o34WL4x5E3Aoa/Kv+PwkKXZz
+         hGW5yFzBGaDaAt48sLWTDNdN4hOwbJtfcHay+2TbXIKgMLJU4McVc2ddm4VvL1Nq2p
+         xSZSInGNJkpO77wcCmuWjyTqBeAdZUqVrenD8uEXl/dEIHR0q1Pn4wnd6JuFTjX6nx
+         gc2SAuESGV84g==
+Date:   Tue, 20 Jul 2021 14:13:03 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     David Laight <David.Laight@ACULAB.COM>
+Cc:     'Eddie James' <eajames@linux.ibm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>
+Subject: Re: [PATCH 1/2] spi: fsi: Reduce max transfer size to 8 bytes
+Message-ID: <20210720131303.GB5042@sirena.org.uk>
+References: <20210716133915.14697-1-eajames@linux.ibm.com>
+ <20210716133915.14697-2-eajames@linux.ibm.com>
+ <20210716171936.GB4137@sirena.org.uk>
+ <81a40f8690d297ebfb6697dbea63279bcf2f24fa.camel@linux.ibm.com>
+ <20210719152010.GB4174@sirena.org.uk>
+ <d2e07f0beda57ffeaa31e8cf5bf28edfbd982e58.camel@linux.ibm.com>
+ <0a637d7704df4303abe783215080578d@AcuMS.aculab.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="aM3YZ0Iwxop3KEKx"
+Content-Disposition: inline
+In-Reply-To: <0a637d7704df4303abe783215080578d@AcuMS.aculab.com>
+X-Cookie: Revenge is a meal best served cold.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 19 Jul 2021 18:13:20 -0400, Sean Anderson wrote:
-> This adds a binding for the Xilinx LogiCORE IP AXI Timer. This device is a
-> "soft" block, so it has some parameters which would not be configurable in
-> most hardware. This binding is usually automatically generated by Xilinx's
-> tools, so the names and values of some properties should be kept as they
-> are, if possible. In addition, this binding is already in the kernel at
-> arch/microblaze/boot/dts/system.dts, and in user software such as QEMU.
-> 
-> The existing driver uses the clock-frequency property, or alternatively the
-> /cpus/timebase-frequency property as its frequency input. Because these
-> properties are deprecated, they have not been included with this schema.
-> All new bindings should use the clocks/clock-names properties to specify
-> the parent clock.
-> 
-> Because we need to init timer devices so early in boot, we determine if we
-> should use the PWM driver or the clocksource/clockevent driver by the
-> presence/absence, respectively, of #pwm-cells. Because both counters are
-> used by the PWM, there is no need for a separate property specifying which
-> counters are to be used for the PWM.
-> 
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-> ---
-> 
-> Changes in v5:
-> - Update commit message to reflect revisions
-> - Fix indentation lint
-> - Add example for timer binding
-> - Remove xlnx,axi-timer-2.0 compatible string
-> - Move schema into the timer directory
-> 
-> Changes in v4:
-> - Remove references to generate polarity so this can get merged
-> - Predicate PWM driver on the presence of #pwm-cells
-> - Make some properties optional for clocksource drivers
-> 
-> Changes in v3:
-> - Mark all boolean-as-int properties as deprecated
-> - Add xlnx,pwm and xlnx,gen?-active-low properties.
-> - Make newer replacement properties mutually-exclusive with what they
->   replace
-> - Add an example with non-deprecated properties only.
-> 
-> Changes in v2:
-> - Use 32-bit addresses for example binding
-> 
->  .../bindings/timer/xlnx,xps-timer.yaml        | 91 +++++++++++++++++++
->  1 file changed, 91 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/timer/xlnx,xps-timer.yaml
-> 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+--aM3YZ0Iwxop3KEKx
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-yamllint warnings/errors:
+On Tue, Jul 20, 2021 at 01:04:38PM +0000, David Laight wrote:
 
-dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/timer/xlnx,xps-timer.yaml: $id: relative path/filename doesn't match actual path or filename
-	expected: http://devicetree.org/schemas/timer/xlnx,xps-timer.yaml#
-\ndoc reference errors (make refcheckdocs):
+> Having said that, you might want a loop in the driver so that
+> application requests for longer transfers are implemented
+> with multiple hardware requests.
 
-See https://patchwork.ozlabs.org/patch/1507329
+No, that's something that should be and indeed is done in the core -
+this isn't the only hardware out there with some kind of restriction on
+length.
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+> I do also wonder why there is support in the main kernel sources
+> for hardware that doesn't actually exist.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+We encourage vendors to get support for their devices upstream prior to
+hardware availability so that users are able to run upstream when they
+get access to hardware, this means users aren't forced to run out of
+tree code needlessly and greatly eases deployment.
 
-pip3 install dtschema --upgrade
+--aM3YZ0Iwxop3KEKx
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Please check and re-submit.
+-----BEGIN PGP SIGNATURE-----
 
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmD2y94ACgkQJNaLcl1U
+h9CU5wf/TxYsQY9aTbblj5w4EVv8uLKbvy6PBj1SnrM4wfytzyTYihrRE6uCLTAS
+Nn9FkI1moqB5RREdDHk4HKQOiZQ2SD5FZn9jM5VV74hMRgyU70vk6DcgobQVYS2h
+YE23Evtq4wcxvTHbPHhZcYYj8NcoUbsbabuGB8smW5DU0qP8uVe8T1bTPcnBWE6g
+fXVdzjeRDykoTPTariCs1V02ZdqORUtSJF1TXJPaI2tLTqPEoBNPJzx2fgocdB7D
+jK1YKiTQV/TI+GED/c9cbvs+QW/uhBcJ7WVvqHrDcg8JnpRwVPp0K/x61vX0VeLq
+AN8yydmcf/WWsUCHBc1fwemQYA4WBQ==
+=Dkpn
+-----END PGP SIGNATURE-----
+
+--aM3YZ0Iwxop3KEKx--
