@@ -2,232 +2,255 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DA903CFD64
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 17:23:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55A633CFE4B
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 17:55:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241039AbhGTOj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 10:39:58 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36208 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240756AbhGTOcF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Jul 2021 10:32:05 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4FBA160BBB
-        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 15:12:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626793953;
-        bh=7Of/XASfV6JyTMQYMzRYn1mvngOifV1AXb6ezqkyor8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=j4uySCYy21EidCHJIQ/anyBkgVVjngERxQ949+Y9dVPKGn922Ym/A0+zZMRotNIjw
-         Bjh9uqMVeX3/Myj77ohANg8jX8pE9Z1dvob3UhttV2zl8FFwU1ENhvK9tpKkiRlGUe
-         ppyzjPUXgSHqJq3L+NiTwFhxB3o+8JsQCOnBZyfBSm2hpWpNh6HjWFay8mfZClCeoM
-         7X7/yGX6/AOyVrM16+LaKVDNh/9bKpsbIKClXhDzEs5+qsF50HoP+hyHczo/bGjFR4
-         OpWjYsxUPKew/ARJm2qFyvZUB49PUhtAyf+6HJvADTEiVKY1ZEVot1zlMJUdJ1GoAG
-         0p9A4l9nlgBvQ==
-Received: by mail-ej1-f42.google.com with SMTP id go30so34846274ejc.8
-        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 08:12:33 -0700 (PDT)
-X-Gm-Message-State: AOAM533iab5wC8heCyYQhYPT5H2w3nGr7dGA440I0gbdOGwXEd2bWz3M
-        yg4tH4DLVuiUR66y7Oh+gE18TH43YxnkAAByXg==
-X-Google-Smtp-Source: ABdhPJz3lY82HONm0CljkbjIZWS9P+XaB+Ev6J3KmlNTrH2k5doctsf/q9Po2052mW5Vp5nhPaAOK3cg5lN/FXBFPrs=
-X-Received: by 2002:a17:906:5fc1:: with SMTP id k1mr32355361ejv.360.1626793951888;
- Tue, 20 Jul 2021 08:12:31 -0700 (PDT)
+        id S231363AbhGTPOz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 11:14:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52908 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240274AbhGTOgR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 10:36:17 -0400
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A009DC0613DC;
+        Tue, 20 Jul 2021 08:15:47 -0700 (PDT)
+Received: by mail-yb1-xb29.google.com with SMTP id x192so33191424ybe.6;
+        Tue, 20 Jul 2021 08:15:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=uaQPvq47KAC0e0Q736uuzY+FVBhHAhcKYYINkLHiZoE=;
+        b=Laz9/tp/dfCS4fjQUvlySWLHp2fuAlDtKgSMAcFKKKb8+DpPixU9AEdUXne9EThj0A
+         ZiyIRRE+Alp/kRfvHEav6GAAko5+aH1bgU26xPz9p0IUIjUszfRZLJWJQvsXsnDYYlF/
+         taEody36IDV5p3bdhiNAbRMv/66gz5w9DeRHDKEce3XWssHURxwVNpgXSbXxQ9CSE+up
+         Exl7Ofo3MN3xSTAeCenV+mCVhsKEf2OgUb8mOfvGuaNJCRx+ynCNGqra3fxQ78p22Z1I
+         oXzOSTkdg1+NZRkqWZW9hXnGqc3PwcAIoLReL/k/dfpaCk5iF2Cfk15JvDCGcTiVpu0v
+         h0iA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=uaQPvq47KAC0e0Q736uuzY+FVBhHAhcKYYINkLHiZoE=;
+        b=DZsDGMvLh4/wiJqvvaU5Rakzj3TSGfLdqx/C7XGLKxRp0qzm123yOlSJ0jsXy9J2e1
+         wVvOnfMUERM+wV4t8xsHKA9qkyY7hYb1wyyl89HRL+/LYW5BPBClIHD9CGPSRJSEMK56
+         0pJ+KNbXlQEcNtTymQSkbSmntUc5/tqkBAnNcnShIjs6mIzfMPH5uysli1uE0vNvUFKa
+         /WMkQx6GhVWgavTvAyerL0vTKr2NS7SAjbKNstYDApaUax28hTHbF0RqvJnjLNQXE24Z
+         Lap0MKW469dqzchlfw/d05kjz9FN9E/c4c4Ws/iQe7Ud6ST7EKlBXjKiOehr4JJIap13
+         eRwg==
+X-Gm-Message-State: AOAM533KxdyCIf04FLqtnInsDVcKI/gB9RA4Mzh9mbSx5GXWykYkKeDC
+        8ekR9R15G6Xd9d0Z4Fs6HaDRg/aRYPxPo6mo/J8=
+X-Google-Smtp-Source: ABdhPJyqufuskgWhbDx46oleIszFO/ZGvE4lcJf5djJEzqyAwn5fBvWyIl414WGgBeXzfRiRxYYlQ2QcBAtWdZzNk+I=
+X-Received: by 2002:a5b:94d:: with SMTP id x13mr36125505ybq.47.1626794145500;
+ Tue, 20 Jul 2021 08:15:45 -0700 (PDT)
 MIME-Version: 1.0
-References: <87a6mhwyqn.wl-kuninori.morimoto.gx@renesas.com> <87wnplvk2a.wl-kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <87wnplvk2a.wl-kuninori.morimoto.gx@renesas.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 20 Jul 2021 09:12:20 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJKZ-sjbnihAkdXDk4tW8xVmyhwkHLHWouZg6da0cc99g@mail.gmail.com>
-Message-ID: <CAL_JsqJKZ-sjbnihAkdXDk4tW8xVmyhwkHLHWouZg6da0cc99g@mail.gmail.com>
-Subject: Re: [PATCH v2 09/14] ASoC: audio-graph-card2: add Yaml Document
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree@vger.kernel.org
+References: <20210719143811.2135-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20210719143811.2135-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdXkPDaaRZZTCyn-Mwfakuzui69GWuiKUWYEOyhQmuFB=w@mail.gmail.com>
+In-Reply-To: <CAMuHMdXkPDaaRZZTCyn-Mwfakuzui69GWuiKUWYEOyhQmuFB=w@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Tue, 20 Jul 2021 16:15:19 +0100
+Message-ID: <CA+V-a8uge1Bn5BeuUjLR2+UkWN88uW99x92Ym3sgguiinbx=Ng@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] can: rcar_canfd: Add support for RZ/G2L family
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-can@vger.kernel.org, netdev <netdev@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 19, 2021 at 7:48 PM Kuninori Morimoto
-<kuninori.morimoto.gx@renesas.com> wrote:
->
->
-> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
->
-> This patch adds Audio Graph Card2 Yaml bindings.
-> It is similar to Audio Graph Card, but different.
->
->         - audio-graph-card  used "dais"  to indicate DAI-links,
->           audio-graph-card2 uses "links" to it.
->
->         - audio-graph-card  used "phandle" to indicate bitclock/frame-master,
->           audio-graph-card2 uses flag to it.
->
->         - audio-graph-card  used "format" to indicate DAI format,
->           audio-graph-card2 assumes CPU/Codec drivers have .get_fmt support.
+Hi Geert,
 
-Why do we need these changes? I'm not wild about a new generic binding
-replacing an existing one which only has 2 or 3 users IIRC. Plus
-there's already the Renesas variant. (On the flip side, only a few
-users, easier to deprecate the old binding.)
+Thank you for the review.
 
-I also would like to see the graph card replace the simple card
-binding. Surely it can handle the 'simple' case too.
-
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> ---
->  .../sound/audio-graph-card2-items.yaml        | 80 +++++++++++++++++++
->  .../bindings/sound/audio-graph-card2.yaml     | 51 ++++++++++++
->  2 files changed, 131 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/audio-graph-card2-items.yaml
->  create mode 100644 Documentation/devicetree/bindings/sound/audio-graph-card2.yaml
+On Tue, Jul 20, 2021 at 11:31 AM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
 >
-> diff --git a/Documentation/devicetree/bindings/sound/audio-graph-card2-items.yaml b/Documentation/devicetree/bindings/sound/audio-graph-card2-items.yaml
-> new file mode 100644
-> index 000000000000..ec94cad6b939
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/audio-graph-card2-items.yaml
-> @@ -0,0 +1,80 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/audio-graph-card2-items.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Audio Graph Card2 Items Bindings
-> +
-> +maintainers:
-> +  - Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - audio-graph-card2-dsp
-> +      - audio-graph-card2-multi
-> +      - audio-graph-card2-codec2codec
+> Hi Prabhakar,
+>
+> On Mon, Jul 19, 2021 at 4:39 PM Lad Prabhakar
+> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > CANFD block on RZ/G2L SoC is almost identical to one found on
+> > R-Car Gen3 SoC's. On RZ/G2L SoC interrupt sources for each channel
+> > are split into different sources and the IP doesn't divide (1/2)
+> > CANFD clock within the IP.
+> >
+> > This patch adds compatible string for RZ/G2L family and registers
+> > the irq handlers required for CANFD operation. IRQ numbers are now
+> > fetched based on names instead of indices. For backward compatibility
+> > on non RZ/G2L SoC's we fallback reading based on indices.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+>
+> Thanks for your patch!
+>
+> > --- a/drivers/net/can/rcar/rcar_canfd.c
+> > +++ b/drivers/net/can/rcar/rcar_canfd.c
+> > @@ -37,9 +37,15 @@
+> >  #include <linux/bitmap.h>
+> >  #include <linux/bitops.h>
+> >  #include <linux/iopoll.h>
+> > +#include <linux/reset.h>
+> >
+> >  #define RCANFD_DRV_NAME                        "rcar_canfd"
+> >
+> > +enum rcanfd_chip_id {
+> > +       RENESAS_RCAR_GEN3 = 0,
+> > +       RENESAS_RZG2L,
+> > +};
+> > +
+> >  /* Global register bits */
+> >
+> >  /* RSCFDnCFDGRMCFG */
+> > @@ -513,6 +519,9 @@ struct rcar_canfd_global {
+> >         enum rcar_canfd_fcanclk fcan;   /* CANFD or Ext clock */
+> >         unsigned long channels_mask;    /* Enabled channels mask */
+> >         bool fdmode;                    /* CAN FD or Classical CAN only mode */
+> > +       struct reset_control *rstc1;     /* Pointer to reset source1 */
+> > +       struct reset_control *rstc2;     /* Pointer to reset source2 */
+>
+> Are these comments helpful? IMHO they're stating the obvious.
+>
+No :D will drop those.
 
-This appears to be a significant change. Why do we need to encode this
-info into the compatible? Can't walking the graph tell us this info?
+> > +       enum rcanfd_chip_id chip_id;
+> >  };
+> >
+> >  /* CAN FD mode nominal rate constants */
+> > @@ -1577,6 +1586,45 @@ static int rcar_canfd_channel_probe(struct rcar_canfd_global *gpriv, u32 ch,
+> >         priv->can.clock.freq = fcan_freq;
+> >         dev_info(&pdev->dev, "can_clk rate is %u\n", priv->can.clock.freq);
+> >
+> > +       if (gpriv->chip_id == RENESAS_RZG2L) {
+> > +               char *irq_name;
+> > +               int err_irq;
+> > +               int tx_irq;
+> > +
+> > +               err_irq = platform_get_irq_byname(pdev, ch == 0 ? "can0_error" : "can1_error");
+> > +               if (err_irq < 0) {
+> > +                       err = err_irq;
+> > +                       goto fail;
+> > +               }
+> > +
+> > +               tx_irq = platform_get_irq_byname(pdev, ch == 0 ? "can0_tx" : "can1_tx");
+> > +               if (tx_irq < 0) {
+> > +                       err = tx_irq;
+> > +                       goto fail;
+> > +               }
+> > +
+> > +               irq_name = devm_kasprintf(&pdev->dev, GFP_KERNEL,
+> > +                                         "canfd.chnerr%d", ch);
+>
+> if (!irq_name) {
+>     ret = -ENOMEM;
+>     goto fail;
+> }
+>
+> > +               err = devm_request_irq(&pdev->dev, err_irq,
+> > +                                      rcar_canfd_channel_interrupt, 0,
+> > +                                      irq_name, gpriv);
+> > +               if (err) {
+> > +                       dev_err(&pdev->dev, "devm_request_irq CH Err(%d) failed, error %d\n",
+> > +                               err_irq, err);
+> > +                       goto fail;
+> > +               }
+> > +               irq_name = devm_kasprintf(&pdev->dev, GFP_KERNEL,
+> > +                                         "canfd.chntx%d", ch);
+>
+> Likewise.
+>
+> > +               err = devm_request_irq(&pdev->dev, tx_irq,
+> > +                                      rcar_canfd_channel_interrupt, 0,
+> > +                                      irq_name, gpriv);
+> > +               if (err) {
+> > +                       dev_err(&pdev->dev, "devm_request_irq Tx (%d) failed, error %d\n",
+> > +                               tx_irq, err);
+> > +                       goto fail;
+> > +               }
+> > +       }
+> > +
+> >         if (gpriv->fdmode) {
+> >                 priv->can.bittiming_const = &rcar_canfd_nom_bittiming_const;
+> >                 priv->can.data_bittiming_const =
+>
+> > @@ -1649,27 +1700,64 @@ static int rcar_canfd_probe(struct platform_device *pdev)
+> >         if (of_child && of_device_is_available(of_child))
+> >                 channels_mask |= BIT(1);        /* Channel 1 */
+> >
+> > -       ch_irq = platform_get_irq(pdev, 0);
+> > -       if (ch_irq < 0) {
+> > -               err = ch_irq;
+> > -               goto fail_dev;
+> > -       }
+> > +       if (chip_id == RENESAS_RCAR_GEN3) {
+> > +               ch_irq = platform_get_irq_byname(pdev, "ch_int");
+>
+> platform_get_irq_byname_optional()?
+> Unless you want to urge people to update their DTB.
+>
+Good point will change it to platform_get_irq_byname_optional().
 
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +patternProperties:
-> +  "^ports(@[0-1])?$":
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +    properties:
-> +      port(@[0-9a-f]+)?:
-> +        $ref: audio-graph-port.yaml#
-> +        unevaluatedProperties: false
-> +    additionalProperties: true
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: true
-> +
-> +examples:
-> +  - |
-> +    mix {
-> +        compatible = "audio-graph-card2-dsp";
-> +
-> +        /* sample ports
-> +        ports@0 {
-> +            port@0 { mix_fe0_ep: endpoint { remote-endpoint = <&cpu0_ep>; }; };
-> +            port@1 { mix_fe1_ep: endpoint { remote-endpoint = <&cpu1_ep>; }; };
-> +        };
-> +        ports@1 {
-> +            port@0 { mix_be0_ep: endpoint { remote-endpoint = <&codec0_ep>; }; };
-> +        };
-> +        */
-> +    };
-> +
-> +    multi {
-> +        compatible = "audio-graph-card2-multi";
-> +
-> +        /* sample ports
-> +        ports@0 {
-> +            port@0 { multi_00_ep: endpoint { remote-endpoint = <&cpu2_ep>; }; };
-> +            port@1 { multi_01_ep: endpoint { remote-endpoint = <&cpu3_ep>; }; };
-> +        };
-> +        ports@1 {
-> +            port@0 { multi_10_ep: endpoint { remote-endpoint = <&codec1_ep>; }; };
-> +            port@1 { multi_11_ep: endpoint { remote-endpoint = <&codec2_ep>; }; };
-> +        };
-> +        */
-> +    };
-> +
-> +    codec2codec {
-> +        compatible = "audio-graph-card2-codec2codec";
-> +
-> +        /* sample ports
-> +        rate = <48000>;
-> +        ports {
-> +            port@0 { c2c_0_ep: endpoint { remote-endpoint = <&codec3_ep>; }; };
-> +            port@1 { c2c_1_ep: endpoint { remote-endpoint = <&codec4_ep>; }; };
-> +        };
-> +        */
-> +    };
-> diff --git a/Documentation/devicetree/bindings/sound/audio-graph-card2.yaml b/Documentation/devicetree/bindings/sound/audio-graph-card2.yaml
-> new file mode 100644
-> index 000000000000..4975f88de025
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/audio-graph-card2.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/audio-graph-card2.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Audio Graph Card2 Device Tree Bindings
-> +
-> +maintainers:
-> +  - Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - audio-graph-card2
-> +  links:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +  label:
-> +    maxItems: 1
-> +  routing:
-> +    description: |
-> +      A list of the connections between audio components.
-> +      Each entry is a pair of strings, the first being the
-> +      connection's sink, the second being the connection's source.
-> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> +
-> +required:
-> +  - compatible
-> +  - links
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    sound {
-> +        compatible = "audio-graph-card2";
-> +
-> +        links = <&cpu_port>;
-> +    };
-> +
-> +    cpu {
-> +        compatible = "cpu-driver";
-> +
-> +        cpu_port: port { cpu_ep: endpoint { remote-endpoint = <&codec_ep>; }; };
-> +    };
-> +
-> +    codec {
-> +        compatible = "codec-driver";
-> +
-> +        port { codec_ep: endpoint { remote-endpoint = <&cpu_ep>; }; };
-> +    };
+> > +               if (ch_irq < 0) {
+> > +                       /* For backward compatibility get irq by index */
+> > +                       ch_irq = platform_get_irq(pdev, 0);
+> > +                       if (ch_irq < 0)
+> > +                               return ch_irq;
+> > +               }
+> >
+> > -       g_irq = platform_get_irq(pdev, 1);
+> > -       if (g_irq < 0) {
+> > -               err = g_irq;
+> > -               goto fail_dev;
+> > +               g_irq = platform_get_irq_byname(pdev, "g_int");
+>
+> Likewise,
+>
+agreed
+
+Cheers,
+Prabhakar
+
+> > +               if (g_irq < 0) {
+> > +                       /* For backward compatibility get irq by index */
+> > +                       g_irq = platform_get_irq(pdev, 1);
+> > +                       if (g_irq < 0)
+> > +                               return g_irq;
+> > +               }
+> > +       } else {
+> > +               g_irq = platform_get_irq_byname(pdev, "g_error");
+> > +               if (g_irq < 0)
+> > +                       return g_irq;
+> > +
+> > +               g_rx_irq = platform_get_irq_byname(pdev, "g_rx_fifo");
+> > +               if (g_rx_irq < 0)
+> > +                       return g_rx_irq;
+> >         }
+> >
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
 > --
-> 2.25.1
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 >
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
