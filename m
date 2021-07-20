@@ -2,97 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 986983CF07E
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 02:08:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 935F43CF0E8
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 02:47:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349267AbhGSXYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jul 2021 19:24:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37826 "EHLO
+        id S237832AbhGTADX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jul 2021 20:03:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346532AbhGSWqP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 18:46:15 -0400
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2202C061766;
-        Mon, 19 Jul 2021 16:26:54 -0700 (PDT)
-Received: by mail-pg1-x533.google.com with SMTP id 70so17477226pgh.2;
-        Mon, 19 Jul 2021 16:26:54 -0700 (PDT)
+        with ESMTP id S1378473AbhGSXtn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 19:49:43 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98B41C061574;
+        Mon, 19 Jul 2021 17:27:17 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id b12so10594831plh.10;
+        Mon, 19 Jul 2021 17:27:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=/XJHkcr+rNFoEtXHW41Ygg434e9wX6lX+q5T+gvNKXE=;
-        b=Gk8ElqWebRrlCfuWtTh5YC1pKkVX8v3x8cCTvGprFOC+kAdYO+VhlI9TTfvJ6KksHN
-         2LLJotCCbEHCj6e8CrKcvTY9D4dMnJZdK1RCg48BMXARiXiSPZ6fPu5KQxCszHqfwQYQ
-         xm0P1fNQMhmM+nS3GUMe1g+tlr0NLZCwfyobOs1F3II1DnSjGiZ5MKR7pxaXCExqhg0w
-         Hv+A1eIKdfLbbc1bbraapp4ckoNM57erydZ4//c6qpAjnH8q3HPFD/4CiZbaqw5Abw+w
-         MFXJjJAFCD1PQIXxTw1Kgv4xVvp/1qxLj0qFcKBiYYQEEVCmX5uOw6Y+JNOlrF5Twp7N
-         OGXg==
+        h=from:to:cc:subject:date:message-id;
+        bh=3paEF6uTPtJuVzcwEbmMICexqBa0ixV58zFe59FrapY=;
+        b=ktfbQ//Eqk+xDPMBGC1lTN2dtljdcf913wD8dC1G5WKjaoXy7LOb98VnRAAatZoOK6
+         39evXxJhZb+WrBgC9zww25iuAy0k6XgY5Q8e2msG844n2c3eEuEXS/bIR/S1vUbFj4st
+         kmmMrXedAdfoBk3LO/uBh7dw8I48PI/XXE4V+xCPa4qBV8hqRQXI6L1O2ddTdmJYuSQw
+         NQ9ULnb6qseP4jkZjIAWzGYxw/Mv90VnKOm2bJ/oQka4GDmDLobqFJ5p5WElTvKleBba
+         hjuJMIDNnDK1wk5rye8fmmCXCMZAcQJzDO7d3mzIwoBv+cwk7aStIzPxD1+ZAqCTduO5
+         hfWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=/XJHkcr+rNFoEtXHW41Ygg434e9wX6lX+q5T+gvNKXE=;
-        b=papAMlHHqtHNxUU+8MnAcCc7O1WX4I3qB+lLNkz9v7rLpI8ckv9CULtMzEoW4h79N4
-         HLkEPZbEVcYnW6ZouJIsXqAgR7k/W/AO73vCRytsiv0XMN9y2fO9H3x/dj6UT6DjpEJd
-         0yiTDUKMTkOdH6p+YtCLg08ykLdd+I94C6apWNI7mlrPPVWbBp/d2/KOVvsDMCZNBTix
-         YZLj2Px0aUk3FD+95ev0LPm0BzC/9DdVhPh40vECPoZv/lcAMlDGG41JvbWSRqLRg0Mp
-         /+IIeZjH0O66PtQsrC0tfRNjtbMhWYCafp2+vYGsWpCS3Y9KyDmwrOWisGWF9eaAoeX4
-         y0gw==
-X-Gm-Message-State: AOAM533mBCWRIYjHmMLCVcFmYJseceSbhcCPcnLxEC+jvDQFGH+/peeQ
-        aGXqQKi6var7D0PkW9LfIMk=
-X-Google-Smtp-Source: ABdhPJywl27Hln3EMxWKNk36+5YOQfqY+tYWe8lSq7ANEVVntXWt04GtDQ07qdbyYEGlZFr4WaJumA==
-X-Received: by 2002:a05:6a00:1895:b029:32c:b091:ebc with SMTP id x21-20020a056a001895b029032cb0910ebcmr29158271pfh.4.1626737214099;
-        Mon, 19 Jul 2021 16:26:54 -0700 (PDT)
-Received: from localhost.localdomain ([2804:14c:485:504a:4236:c95f:1569:e13d])
-        by smtp.gmail.com with ESMTPSA id j16sm21974127pfi.165.2021.07.19.16.26.51
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=3paEF6uTPtJuVzcwEbmMICexqBa0ixV58zFe59FrapY=;
+        b=EvAnsaw1NnBkA08Dm2hka4v1IdfMg1tWJZ5P6UQhWItw7/D/rkHav4zFZ5NaCjlj0r
+         2KOZGqFcW+okTk7Xn9HhG4F1w15RJxroM/rxvjpub/aB9pBE8+sIch9xqbE6nuDSEGvm
+         PIdOiTt2S7O+nGWNwls9FWhYigQH40sTGWh4c6S1FeCSbXZjda1Hqeum5ItPgKnNDITS
+         co6Lz9tcxm/bHH1bzpRSh9VCj4bB0OqkJ/oeGDb88uRxkV+wdNWucawikzQjhxN013XP
+         96e4ss3ICY1TkvMVFm9FdKZgzN+M2QS+P1jEzz0t3bE6ywOleHy2mVGB++qQi4kOZr+g
+         i/yA==
+X-Gm-Message-State: AOAM530JPUmiHknTzEbAZp6tFTeeJO62G6uqdfcDV33cOvxSOOX/2UVS
+        E6Q6fWIGqrUBDZf47SCNFvI=
+X-Google-Smtp-Source: ABdhPJwjzsszQsBR/i6spF9ryPzXGmISj7B/mjK51ISfM0a2Zus/cLUb79kBXN2eQdHys5ZDUgXwqg==
+X-Received: by 2002:a17:903:1c1:b029:12b:1eef:fedc with SMTP id e1-20020a17090301c1b029012b1eeffedcmr21371916plh.17.1626740836970;
+        Mon, 19 Jul 2021 17:27:16 -0700 (PDT)
+Received: from taoren-ubuntu-R90MNF91.thefacebook.com (c-73-252-146-110.hsd1.ca.comcast.net. [73.252.146.110])
+        by smtp.gmail.com with ESMTPSA id x7sm11941831pfu.158.2021.07.19.17.27.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Jul 2021 16:26:53 -0700 (PDT)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     davem@davemloft.net
-Cc:     qiangqing.zhang@nxp.com, robh+dt@kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH net-next] dt-bindings: net: fec: Fix indentation
-Date:   Mon, 19 Jul 2021 20:26:39 -0300
-Message-Id: <20210719232639.3812285-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Mon, 19 Jul 2021 17:27:16 -0700 (PDT)
+From:   rentao.bupt@gmail.com
+To:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        openbmc@lists.ozlabs.org, taoren@fb.com
+Cc:     Tao Ren <rentao.bupt@gmail.com>
+Subject: [PATCH] ARM: dts: aspeed: minipack: Update flash partition table
+Date:   Mon, 19 Jul 2021 17:27:04 -0700
+Message-Id: <20210720002704.7390-1-rentao.bupt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The following warning is observed when running 'make dtbs_check':
-Documentation/devicetree/bindings/net/fsl,fec.yaml:85:7: [warning] wrong indentation: expected 8 but found 6 (indentation)
+From: Tao Ren <rentao.bupt@gmail.com>
 
-Fix the indentation accordingly.
+Update firmware flash "data0" partition size from 4MB to 8MB for larger
+persistent storage on minipack BMC.
 
-Signed-off-by: Fabio Estevam <festevam@gmail.com>
+Signed-off-by: Tao Ren <rentao.bupt@gmail.com>
 ---
- Documentation/devicetree/bindings/net/fsl,fec.yaml | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ arch/arm/boot/dts/aspeed-bmc-facebook-minipack.dts | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/net/fsl,fec.yaml b/Documentation/devicetree/bindings/net/fsl,fec.yaml
-index 7fa11f6622b1..0f8ca4e574c6 100644
---- a/Documentation/devicetree/bindings/net/fsl,fec.yaml
-+++ b/Documentation/devicetree/bindings/net/fsl,fec.yaml
-@@ -82,11 +82,11 @@ properties:
-     maxItems: 5
-     contains:
-       enum:
--      - ipg
--      - ahb
--      - ptp
--      - enet_clk_ref
--      - enet_out
-+        - ipg
-+        - ahb
-+        - ptp
-+        - enet_clk_ref
-+        - enet_out
+diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-minipack.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-minipack.dts
+index 9eb23e874f19..230d16cd9967 100644
+--- a/arch/arm/boot/dts/aspeed-bmc-facebook-minipack.dts
++++ b/arch/arm/boot/dts/aspeed-bmc-facebook-minipack.dts
+@@ -265,19 +265,19 @@
+ 		};
  
-   phy-mode: true
+ 		/*
+-		 * FIT image: 59.5 MB.
++		 * FIT image: 55.5 MB.
+ 		 */
+ 		fit@80000 {
+-			reg = <0x80000 0x3b80000>;
++			reg = <0x80000 0x3780000>;
+ 			label = "fit";
+ 		};
+ 
+ 		/*
+-		 * "data0" partition (4MB) is reserved for persistent
++		 * "data0" partition (8MB) is reserved for persistent
+ 		 * data store.
+ 		 */
+ 		data0@3800000 {
+-			reg = <0x3c00000 0x400000>;
++			reg = <0x3800000 0x800000>;
+ 			label = "data0";
+ 		};
  
 -- 
-2.25.1
+2.17.1
 
