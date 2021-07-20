@@ -2,86 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C18553CFE64
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 17:57:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8353A3CFE67
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 17:57:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237534AbhGTPRB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 11:17:01 -0400
-Received: from mail-yb1-f179.google.com ([209.85.219.179]:38495 "EHLO
-        mail-yb1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241907AbhGTO5p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 10:57:45 -0400
-Received: by mail-yb1-f179.google.com with SMTP id r132so33328201yba.5;
-        Tue, 20 Jul 2021 08:36:54 -0700 (PDT)
+        id S238075AbhGTPRH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 11:17:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59272 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242517AbhGTPDM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 11:03:12 -0400
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE1D6C061574
+        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 08:43:44 -0700 (PDT)
+Received: by mail-pg1-x52d.google.com with SMTP id a6so15576772pgw.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 08:43:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dabbelt-com.20150623.gappssmtp.com; s=20150623;
+        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
+         :content-transfer-encoding;
+        bh=pdh068ptiINg7vYsNON6+uw4KqAOssVbDMcwvukOGd0=;
+        b=dpe3XWqRXAgtIdDhfs39lSEhRtVR0xEzpdUzBAQqbnUbtk19yaGCwYaYYPltQcIhaA
+         WglRCqfVMuxfAI0AdKQeV45lkBvTHMiRUKOgjbca0BIWZkeQaCZ3uEn6yvotq6gP/XUL
+         9ODIV7iymwfcJrCvfuJiLLu6Q4xzQEVATdFRYO3GyWm4REbYYHOsOMBQqrvIR+tWGmEA
+         76vMqkk3IT48ZKlvOGfAYLNSKI+IEfwPTimCwG9xZSjh76iVONtsRdWg8tagak9hxFVT
+         RxE8iIgabG5Y+MfvGU/fANMRupaTYx2BbKiJvYj58kGG7idGGRJdUi7Y2qLOd46xi5tM
+         vcRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=COwTYiLL/Nx8F1AI3lOoGhFRrrZD91NxoeSpMZuBXrg=;
-        b=H4zOicbvFkM2rohDBievmQVZqI3o/59XxluP6b3yusjynFolL31q/804lplY5WVd8+
-         qWFuent0xENHgm7IlB3359BBg8hAcczkLPStR8sTSJfDiXjEF7Tmczma8MRRV0tA/VHA
-         cUml5qZ5h9Al8XqbMv/mCZFt7D5xVF4VU0/qvlM2ouL5hjz1qSju5p9SGdLxK0f9VsEf
-         XupE4YzxP21mMtYyYganpZKDvJ42kOZRZEtLUFMuesMrq6K7OqCiEUsjhYjb7vr9GXyI
-         BYUrgxgVT7mirrMTeV/X7FIWIZcYEaIvMkCeiNZF+hmgT3nUHDX7Wz39yos80cSx0z7T
-         97Nw==
-X-Gm-Message-State: AOAM533CeHX1U9hxc3RJjjUEpRJCbzIlsuKJD4DopXLU4od5i/KdvUjS
-        4gE8+MHHcuk9o7yVOpbGuAupyK92HYV0Q+yZmwMWhhe60Rc=
-X-Google-Smtp-Source: ABdhPJzfMm/Kodpa+wHLDsU7yc57tAwz4pYAxpiQFqzsIDZ96UoGllNps1Womhv+mPkwJSw9LuuGB3QjEZQfHgpwsLI=
-X-Received: by 2002:a25:b093:: with SMTP id f19mr39835829ybj.90.1626795414077;
- Tue, 20 Jul 2021 08:36:54 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210625224744.1020108-1-kernel@esmil.dk> <20210625224744.1020108-3-kernel@esmil.dk>
- <YPbmmqfOuE5w6EgW@google.com> <CANBLGcy_28q23vRJk9=UZR_Feeqod-ETET=v4Ub=35edySH7SA@mail.gmail.com>
- <YPbsodxMk+VvU/3D@google.com>
-In-Reply-To: <YPbsodxMk+VvU/3D@google.com>
-From:   Emil Renner Berthing <kernel@esmil.dk>
-Date:   Tue, 20 Jul 2021 17:36:43 +0200
-Message-ID: <CANBLGcx08XajR8khJmKARBjy7bQ5ebbgO+RRqRu=bvyMx7LuKA@mail.gmail.com>
-Subject: Re: [PATCH v1 2/3] mfd: tps65086: Make interrupt line optional
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=pdh068ptiINg7vYsNON6+uw4KqAOssVbDMcwvukOGd0=;
+        b=js80kB7fQMUvMNtyfUWX02i5+G3gOiZt2AMysflYEuugUXKVKb7tmPl2f/PdhFVaea
+         YsPMaehsNhukGSPCXZwgFYmwbQXGDNnYJGFhF19BrGj5A1bITIiDrJnVIN2Qlr2vTOCw
+         QkIW479YqCbhZAREVfuQQsoWTjLgUI07yHlrUfBxZjyW+Rdae2CgALZSyKRxbaDsYtrr
+         UwiKJw/h0YtQaGwJq9M0mDSGNIbaJ0F0IWzCyJijOAiB1kKmuQGpowbnwX1piMrUPHgH
+         PltFy+bEGeyTh/mhVsFcqcfD5gzyDUbR+/f99zoKxTrQ7D5fd6yt/GfdZLiNP9nHkdWh
+         s1Xw==
+X-Gm-Message-State: AOAM533/HxF64zW9yyEMLRuaCIAkfWsndR9SrXEHFQTTU/7sbEuYUmDP
+        nojY16+VgnYac51+fZmDImrSQA==
+X-Google-Smtp-Source: ABdhPJwpGFV02DMIWb+tUmJStYOn7WgezVWEgx5CxO0+ooG8jBYIGIW/L25sLQ9lISd1D9b0VLjeYQ==
+X-Received: by 2002:aa7:9ae4:0:b029:32e:b1:78e8 with SMTP id y4-20020aa79ae40000b029032e00b178e8mr31996254pfp.46.1626795824423;
+        Tue, 20 Jul 2021 08:43:44 -0700 (PDT)
+Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
+        by smtp.gmail.com with ESMTPSA id b7sm23833755pfl.195.2021.07.20.08.43.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Jul 2021 08:43:43 -0700 (PDT)
+Date:   Tue, 20 Jul 2021 08:43:43 -0700 (PDT)
+X-Google-Original-Date: Tue, 20 Jul 2021 08:43:39 PDT (-0700)
+Subject:     Re: [PATCH v4 06/10] riscv: Remove non-standard linux,elfcorehdr handling
+In-Reply-To: <170e7daa55aced148b8e57827f7c8fc65a0a8c7a.1626266516.git.geert+renesas@glider.be>
+CC:     robh+dt@kernel.org, linux@armlinux.org.uk, nico@fluxnic.net,
+        ardb@kernel.org, linus.walleij@linaro.org, catalin.marinas@arm.com,
+        will@kernel.org, mick@ics.forth.gr,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        aou@eecs.berkeley.edu, frowand.list@gmail.com, dyoung@redhat.com,
+        rppt@kernel.org, bhe@redhat.com, vgoyal@redhat.com,
+        akpm@linux-foundation.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-riscv@lists.infradead.org, kexec@lists.infradead.org,
+        linux-mm@kvack.org, linux-renesas-soc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, geert+renesas@glider.be
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     geert+renesas@glider.be
+Message-ID: <mhng-8deebbc6-f8aa-40e3-9e00-e99f12eaac92@palmerdabbelt-glaptop>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 20 Jul 2021 at 17:32, Lee Jones <lee.jones@linaro.org> wrote:
-> On Tue, 20 Jul 2021, Emil Renner Berthing wrote:
-> > On Tue, 20 Jul 2021 at 17:07, Lee Jones <lee.jones@linaro.org> wrote:
-> > > On Sat, 26 Jun 2021, Emil Renner Berthing wrote:
-> > > > The BeagleV Starlight v0.9 board[1] doesn't have the IRQB line routed to
-> > > > the SoC, but it is still useful to be able to reach the PMIC over I2C
-> > > > for the other functionality it provides.
-> > > >
-> > > > [1] https://github.com/beagleboard/beaglev-starlight
-> > > >
-> > > > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> > > > ---
-> > > >  .../devicetree/bindings/mfd/ti,tps65086.yaml  |  3 ---
-> > >
-> > > This is not present in my current tree.
-> > >
-> > > Looks like it's still *.txt.
-> > >
-> > > Am I missing a patch?
-> >
-> > Yes, the first patch in the series converts that to yaml. I'm quite
-> > sure I had the same list of recipients on all 4 mails in the series,
-> > so don't know why that should be missing.
+On Wed, 14 Jul 2021 05:50:16 PDT (-0700), geert+renesas@glider.be wrote:
+> RISC-V uses platform-specific code to locate the elf core header in
+> memory.  However, this does not conform to the standard
+> "linux,elfcorehdr" DT bindings, as it relies on a reserved memory node
+> with the "linux,elfcorehdr" compatible value, instead of on a
+> "linux,elfcorehdr" property under the "/chosen" node.
 >
-> Oh, it's not marked as 'important' because it has open review comments
-> on it.
+> The non-compliant code can just be removed, as the standard behavior is
+> already implemented by platform-agnostic handling in the FDT core code.
 >
-> Just have this for now then:
+> Fixes: 5640975003d0234d ("RISC-V: Add crash kernel support")
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> v4:
+>   - No changes.
+> ---
+>  arch/riscv/mm/init.c | 20 --------------------
+>  1 file changed, 20 deletions(-)
 >
-> For my own reference (apply this as-is to your sign-off block):
+> diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
+> index 269fc648ef3d84b2..4aa4b6a034086df6 100644
+> --- a/arch/riscv/mm/init.c
+> +++ b/arch/riscv/mm/init.c
+> @@ -829,26 +829,6 @@ static void __init reserve_crashkernel(void)
+>  }
+>  #endif /* CONFIG_KEXEC_CORE */
 >
->   Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+> -#ifdef CONFIG_CRASH_DUMP
+> -/*
+> - * We keep track of the ELF core header of the crashed
+> - * kernel with a reserved-memory region with compatible
+> - * string "linux,elfcorehdr". Here we register a callback
+> - * to populate elfcorehdr_addr/size when this region is
+> - * present. Note that this region will be marked as
+> - * reserved once we call early_init_fdt_scan_reserved_mem()
+> - * later on.
+> - */
+> -static int __init elfcore_hdr_setup(struct reserved_mem *rmem)
+> -{
+> -	elfcorehdr_addr = rmem->base;
+> -	elfcorehdr_size = rmem->size;
+> -	return 0;
+> -}
+> -
+> -RESERVEDMEM_OF_DECLARE(elfcorehdr, "linux,elfcorehdr", elfcore_hdr_setup);
+> -#endif
+> -
+>  void __init paging_init(void)
+>  {
+>  	setup_bootmem();
 
-Thanks! Do you want to have a look at 3/3 or should I just send a v2
-to fix the yaml conversion now?
+Reviewed-by: Palmer Dabbelt <palmerdabbelt@google.com>
+Acked-by: Palmer Dabbelt <palmerdabbelt@google.com>
 
-/Emil
+LMK if you wanted me to take this series, otherwise I'm going to assume 
+it's going in via some other tree.
