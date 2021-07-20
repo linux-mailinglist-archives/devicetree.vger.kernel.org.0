@@ -2,123 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 41E723CF3D0
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 07:02:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CDAD93CF3DE
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 07:17:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242337AbhGTEVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 00:21:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55330 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244621AbhGTEUm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 00:20:42 -0400
-Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0816FC061766
-        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 22:01:14 -0700 (PDT)
-Received: by mail-il1-x12b.google.com with SMTP id y6so18085032ilj.13
-        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 22:01:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=sdFmRaMOmgHuGWvIA23Uxlb55xudqfFv81rs6+IjDL8=;
-        b=ev1KPypUlq3y0Q4/dy0N6VoE6A7j4QNY+od7m8kBCzEroX+XGVjvgM4EjjxV9Tse0k
-         tYpASYDiB4O80BGdwAp9NKlwF1WBPnoLL5GIw4wqt6OimddHmlmr/PD4S03FNEeHnsDq
-         ns9+32yAu01J8lLJKvy5Tt42o2zvu2IMmYY/0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=sdFmRaMOmgHuGWvIA23Uxlb55xudqfFv81rs6+IjDL8=;
-        b=kQ6VOUaXbbeWItZezWBIY9OE2R24E+U8NyNuu57eiLjLb2KZTolMFOQ9rrJVEsvHeT
-         12eo6XTx0Fa4GOZoogNcWRG3+8aYK4lep/ZY4m8rJLt1VCOM4it16uMgpoFRK3T313jY
-         5ExsVv1e7FP8pJjoNGiqkP0etqPGsHIRdpAMHb8nzn0zysoycPAW/RQYwfXUE6+YDpY/
-         cUzqVLLUklFQ7e9h5EWPkXL+axhv51iube1bBB0MJ+nR3Bgfk7xn9RR6a7lIQsbdpMma
-         ODomtc3PJTQoHtK/ZcUFEgaARXVU6q8tbANCr97DqRL3T+To9ZiMnhr8tF5BOEbyBULP
-         doSg==
-X-Gm-Message-State: AOAM533rLZiIWRa5hryL8V7iCwq2Pjc04yhSNU7S+OKs43cu/ceA8oth
-        zP78gStTS5gDB7YDSBparoClmWKKQ4MyjHMRHT6rRg==
-X-Google-Smtp-Source: ABdhPJxvZdJx3bv0pe2kdZh0PN0L4BVAX2MZFdn/Gb2Ux/JNOFo8roz4c1a5MLWVtRCFH1YMiTt1HHEqW3KZXcnUX08=
-X-Received: by 2002:a92:d305:: with SMTP id x5mr20065108ila.150.1626757274018;
- Mon, 19 Jul 2021 22:01:14 -0700 (PDT)
-MIME-Version: 1.0
-References: <1626683082-29570-1-git-send-email-yongqiang.niu@mediatek.com> <1626683082-29570-2-git-send-email-yongqiang.niu@mediatek.com>
-In-Reply-To: <1626683082-29570-2-git-send-email-yongqiang.niu@mediatek.com>
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Tue, 20 Jul 2021 13:00:48 +0800
-Message-ID: <CAJMQK-jsbudDCj2TjS13_z--5j+2heUgLYsCTQ23Xd7T4wUZYQ@mail.gmail.com>
-Subject: Re: [PATCH v2] drm/mediatek: add dither 6 setting
-To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        id S238381AbhGTEgP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 00:36:15 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:47904 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232389AbhGTEgJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 00:36:09 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 16K5GhDX016679;
+        Tue, 20 Jul 2021 00:16:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1626758203;
+        bh=UplAe3t8SLLOOhAg9JAaaBmoK8p03dxzvhQatg+1xZE=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=FcQUnV/JItYL16BZGJteMfBNbuCiytcNfGR59xUbIwcB7B5FtuItw+lcsUmKHbcJ6
+         toxlS3j/r1oQDGJzL+r+RR7EXk0eMRYRbLlYXViRBw4MWhw4kQrv7x0OomzqqtD7JB
+         wSFtOeT/s4+fMpfUSu31az3pOY/ZOPzLVgil9pJ4=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 16K5GhDD065983
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 20 Jul 2021 00:16:43 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 20
+ Jul 2021 00:16:43 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 20 Jul 2021 00:16:43 -0500
+Received: from [10.24.69.20] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 16K5GeGk048116;
+        Tue, 20 Jul 2021 00:16:41 -0500
+Subject: Re: [PATCH 3/4] arm64: dts: ti: k3-am642-sk: Add ecap0 node
+To:     Nishanth Menon <nm@ti.com>
+CC:     <kristo@kernel.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20210719085402.28569-1-lokeshvutla@ti.com>
+ <20210719085402.28569-4-lokeshvutla@ti.com>
+ <20210719152326.op7ii76nvk5sve2a@fringe>
+From:   Lokesh Vutla <lokeshvutla@ti.com>
+Message-ID: <d5d614f4-339b-59a1-bd29-6c78d09f2d89@ti.com>
+Date:   Tue, 20 Jul 2021 10:46:40 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <20210719152326.op7ii76nvk5sve2a@fringe>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 19, 2021 at 4:24 PM Yongqiang Niu
-<yongqiang.niu@mediatek.com> wrote:
->
-> in the first version dither patch
-> https://patchwork.kernel.org/project/linux-mediatek/patch/1553667561-25447-13-git-send-email-yongqiang.niu@mediatek.com/
-> dither 6 setting is included in that patch
-I think you don't need to link the first version here.
-
-> bit 1 is lfsr_en( "Enables LFSR-type dithering"), need enable
-> bit 2 is rdither_en(Enables running order dithering), need disable
-> in this issue
-> https://partnerissuetracker.corp.google.com/issues/190643544
-Can you describe the issue in text instead of pasting a link that is
-not accessible to everyone?
-
->
-> dither 6 setting missed in set dither common patch
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c?h=next-20210430&id=a6b7c98afdcad0f149010ae028b24f2d0dc24cdb
-
-If this is fixing a previous patch, please add Fixes: tag instead of
-pasting a link here.
 
 
->
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-> index 99cbf44..7dd8e05 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-> @@ -26,6 +26,7 @@
->  #define DISP_OD_CFG                            0x0020
->  #define DISP_OD_SIZE                           0x0030
->  #define DISP_DITHER_5                          0x0114
-> +#define DISP_DITHER_6                          0x0118
->  #define DISP_DITHER_7                          0x011c
->  #define DISP_DITHER_15                         0x013c
->  #define DISP_DITHER_16                         0x0140
-> @@ -135,6 +136,7 @@ void mtk_dither_set_common(void __iomem *regs, struct cmdq_client_reg *cmdq_reg,
->
->         if (bpc >= MTK_MIN_BPC) {
->                 mtk_ddp_write(cmdq_pkt, 0, cmdq_reg, regs, DISP_DITHER_5);
-> +               mtk_ddp_write(cmdq_pkt, 0x3002, cmdq_reg, regs, DISP_DITHER_6);
->                 mtk_ddp_write(cmdq_pkt, 0, cmdq_reg, regs, DISP_DITHER_7);
->                 mtk_ddp_write(cmdq_pkt,
->                               DITHER_LSB_ERR_SHIFT_R(MTK_MAX_BPC - bpc) |
-> --
-> 1.8.1.1.dirty
->
+On 19/07/21 8:53 pm, Nishanth Menon wrote:
+> On 14:24-20210719, Lokesh Vutla wrote:
+>> ecap0 can be configured to use pad ECAP0_IN_APWM_OUT (D18) which has a
+>> signal connected to Pin 1 of J3. Add support for adding this pinmux so
+>> that pwm can be observed on pin 1 of Header J3
+>>
+>> Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
+>> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+>> ---
+>>  arch/arm64/boot/dts/ti/k3-am642-sk.dts | 12 ++++++++++++
+>>  1 file changed, 12 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
+>> index d3aa2901e6fd..eb0d10e6e787 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
+>> +++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
+>> @@ -210,6 +210,12 @@ AM64X_IOPAD(0x0028, PIN_INPUT, 0) /* (M17) OSPI0_D7 */
+>>  			AM64X_IOPAD(0x0008, PIN_INPUT, 0) /* (N19) OSPI0_DQS */
+>>  		>;
+>>  	};
+>> +
+>> +	main_ecap0_pins_default: main-ecap0-pins-default {
+>> +		pinctrl-single,pins = <
+>> +			AM64X_IOPAD(0x0270, PIN_INPUT, 0) /* (D18) ECAP0_IN_APWM_OUT */
+>> +		>;
+>> +	};
+>>  };
+>>  
+>>  &mcu_uart0 {
+>> @@ -453,3 +459,9 @@ &pcie0_rc {
+>>  &pcie0_ep {
+>>  	status = "disabled";
+>>  };
+>> +
+>> +&ecap0 {
+>> +	/* PWM is available on Pin 1 of header J3 */
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&main_ecap0_pins_default>;
+>> +};
+>> -- 
+>> 2.30.0
+>>
+> 
+> 
+> Do the other ecap and pwm nodes need to be disabled since they may not
+> be pinned out?
+
+Sure, Ill mark other ecap and epwm nodes as disabled. After looking at
+schematics, epwm4 and 5 is pinned out on RPI header. But the header will most
+likely be used for other use-cases. Shall I mark epwm4 and epwm5 disabled as
+well with a comment with this information?
+
+Thanks and regards,
+Lokesh
+
+> 
