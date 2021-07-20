@@ -2,92 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3E8D3D0048
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 19:32:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15D8F3D00E8
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 19:52:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230200AbhGTQvm convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 20 Jul 2021 12:51:42 -0400
-Received: from eu-smtp-delivery-151.mimecast.com ([185.58.85.151]:33290 "EHLO
-        eu-smtp-delivery-151.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229661AbhGTQvk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Jul 2021 12:51:40 -0400
-Received: from AcuMS.aculab.com (156.67.243.121 [156.67.243.121]) (Using
- TLS) by relay.mimecast.com with ESMTP id
- uk-mta-206-GSzzkNyhNdi0mB4cT-gXiQ-1; Tue, 20 Jul 2021 18:32:15 +0100
-X-MC-Unique: GSzzkNyhNdi0mB4cT-gXiQ-1
-Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) by
- AcuMS.aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) with Microsoft SMTP
- Server (TLS) id 15.0.1497.23; Tue, 20 Jul 2021 18:32:14 +0100
-Received: from AcuMS.Aculab.com ([fe80::994c:f5c2:35d6:9b65]) by
- AcuMS.aculab.com ([fe80::994c:f5c2:35d6:9b65%12]) with mapi id
- 15.00.1497.023; Tue, 20 Jul 2021 18:32:14 +0100
-From:   David Laight <David.Laight@ACULAB.COM>
-To:     'Mark Brown' <broonie@kernel.org>
-CC:     'Eddie James' <eajames@linux.ibm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>
-Subject: RE: [PATCH 1/2] spi: fsi: Reduce max transfer size to 8 bytes
-Thread-Topic: [PATCH 1/2] spi: fsi: Reduce max transfer size to 8 bytes
-Thread-Index: AQHXfL3Ikg6avb1lOkyp/qlhiL4746tL1OlQ///yyICAAFhm4A==
-Date:   Tue, 20 Jul 2021 17:32:13 +0000
-Message-ID: <018ee235eabd420bb32f6acf57dfe121@AcuMS.aculab.com>
-References: <20210716133915.14697-1-eajames@linux.ibm.com>
- <20210716133915.14697-2-eajames@linux.ibm.com>
- <20210716171936.GB4137@sirena.org.uk>
- <81a40f8690d297ebfb6697dbea63279bcf2f24fa.camel@linux.ibm.com>
- <20210719152010.GB4174@sirena.org.uk>
- <d2e07f0beda57ffeaa31e8cf5bf28edfbd982e58.camel@linux.ibm.com>
- <0a637d7704df4303abe783215080578d@AcuMS.aculab.com>
- <20210720131303.GB5042@sirena.org.uk>
-In-Reply-To: <20210720131303.GB5042@sirena.org.uk>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.202.205.107]
+        id S231245AbhGTRJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 13:09:00 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36658 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229536AbhGTRIt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Jul 2021 13:08:49 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E6C8361004;
+        Tue, 20 Jul 2021 17:49:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1626803367;
+        bh=rr5DyOF74U0H7iKb0m9zjXCsuqsP8q1pI+d5NX2axk8=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=VEsgFDZvIXjcoaGpPEoA0Lu9YRxM0Dj90aWqsnbErQ2UUMNfFjiL3KKy2ihSuQKA8
+         DpJfkpmYcVJtchYg4JZ0xVl4g2Mg2o7fCdXq98nn/PAwMTFoWJ250/salXXOhJJg55
+         abW/iC3f5GUZpAEMSlUl/XMmPNxf0dbMFp9c17FIFUFh6aPXTQv17aO0FFf2m4m8ho
+         FzpeQH9QYcsgshAwYqEOKnzQKiefkbesH4vObWgtP6wKthPFfdBb/jqahxbI+okmue
+         fOLCT92FxMSaj5N+ZOIj1PAxbFu2Oagsxe6Rc6uhcjBjL97r/vUbkyUju8PW712k3f
+         K0QVogmSx6JEw==
+Date:   Tue, 20 Jul 2021 19:49:17 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Rui Miguel Silva <rmfrfs@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Ramesh Shanmugasundaram <rashanmu@gmail.com>,
+        "G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Oleksij Rempel <o.rempel@pengutronix.de>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Wei Xu <xuwei5@hisilicon.com>,
+        Dilip Kota <eswara.kota@linux.intel.com>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mateusz Holenko <mholenko@antmicro.com>,
+        Olivier Moysan <olivier.moysan@st.com>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
+        netdev@vger.kernel.org, linux-rtc@vger.kernel.org,
+        alsa-devel@alsa-project.org
+Subject: Re: [PATCH] dt-bindings: Remove "status" from schema examples
+Message-ID: <20210720194917.576b7d70@coco.lan>
+In-Reply-To: <20210720172025.363238-1-robh@kernel.org>
+References: <20210720172025.363238-1-robh@kernel.org>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
-        auth=pass smtp.auth=C51A453 smtp.mailfrom=david.laight@aculab.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: aculab.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Mark Brown
-> Sent: 20 July 2021 14:13
+Em Tue, 20 Jul 2021 11:20:25 -0600
+Rob Herring <robh@kernel.org> escreveu:
+
+> There's no reason to have "status" properties in examples. "okay" is the
+> default, and "disabled" turns off some schema checks ('required'
+> specifically).
 > 
-> On Tue, Jul 20, 2021 at 01:04:38PM +0000, David Laight wrote:
+> Enabling qca,ar71xx causes a warning, so let's fix the node names:
 > 
-> > Having said that, you might want a loop in the driver so that
-> > application requests for longer transfers are implemented
-> > with multiple hardware requests.
+> Documentation/devicetree/bindings/net/qca,ar71xx.example.dt.yaml: phy@3: '#phy-cells' is a required property
+>         From schema: schemas/phy/phy-provider.yaml
 > 
-> No, that's something that should be and indeed is done in the core -
-> this isn't the only hardware out there with some kind of restriction on
-> length.
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Chen-Yu Tsai <wens@csie.org>
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Rui Miguel Silva <rmfrfs@gmail.com>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Jakub Kicinski <kuba@kernel.org>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Robert Marko <robert.marko@sartura.hr>
+> Cc: Philipp Zabel <p.zabel@pengutronix.de>
+> Cc: Alessandro Zummo <a.zummo@towertech.it>
+> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> Cc: Ramesh Shanmugasundaram <rashanmu@gmail.com>
+> Cc: "G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Oleksij Rempel <o.rempel@pengutronix.de>
+> Cc: ChiYuan Huang <cy_huang@richtek.com>
+> Cc: Wei Xu <xuwei5@hisilicon.com>
+> Cc: Dilip Kota <eswara.kota@linux.intel.com>
+> Cc: Karol Gugala <kgugala@antmicro.com>
+> Cc: Mateusz Holenko <mholenko@antmicro.com>
+> Cc: Olivier Moysan <olivier.moysan@st.com>
+> Cc: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-media@vger.kernel.org
+> Cc: netdev@vger.kernel.org
+> Cc: linux-rtc@vger.kernel.org
+> Cc: alsa-devel@alsa-project.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../display/allwinner,sun8i-a83t-dw-hdmi.yaml |  2 --
+>  .../display/panel/boe,tv101wum-nl6.yaml       |  1 -
 
-Ah, ok, there is another loop before any 'users'.
-> > I do also wonder why there is support in the main kernel sources
-> > for hardware that doesn't actually exist.
-> 
-> We encourage vendors to get support for their devices upstream prior to
-> hardware availability so that users are able to run upstream when they
-> get access to hardware, this means users aren't forced to run out of
-> tree code needlessly and greatly eases deployment.
+>  .../bindings/media/nxp,imx7-mipi-csi2.yaml    |  2 --
+>  .../bindings/media/renesas,drif.yaml          |  1 -
 
-This one just seemed a bit premature.
+Reviewed-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org> # For media
 
-	David
 
--
-Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1PT, UK
-Registration No: 1397386 (Wales)
-
+Thanks,
+Mauro
