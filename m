@@ -2,129 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4451F3CFEC4
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 18:08:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63A733CFEF6
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 18:13:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232035AbhGTP16 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 11:27:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35848 "EHLO
+        id S231315AbhGTPcr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 11:32:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240574AbhGTPYR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 11:24:17 -0400
-Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77585C061787
-        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 09:03:06 -0700 (PDT)
-Received: by mail-ot1-x330.google.com with SMTP id f12-20020a056830204cb029048bcf4c6bd9so21950341otp.8
-        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 09:03:06 -0700 (PDT)
+        with ESMTP id S234494AbhGTP1j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 11:27:39 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29BA5C0613E8
+        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 09:07:18 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id u5-20020a7bc0450000b02901480e40338bso1796968wmc.1
+        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 09:07:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=/vkJe7iPu6rsdTrj/rwJVM+Dly5WduuMAkiM0NoVcRs=;
-        b=tkehq4kLm6OU0/ZCklwHz62NOXlObQgW8EWUpyNQ2S0Q8YbPGeFrp+aL64AyMwAsP0
-         TYKEoAxG+iBDEJGeN1+SgfEd6i/MUh3ZH8ch22GfXoK/Sq9ndDX0RmX47cNdYgSoUQmA
-         RILjD04PqiwU/I8D67WsqbocBFHTNomMApzp1TwKLtWQbhpOb9yWuNNvBjFkaTt9rPbf
-         Nt7OWfj9GmQX/4mG1aDIopaQTy2GBwiaTppNHwBRckuPh1it6uhGvBJ4AP8drg/ltygL
-         i3scYALFfjB0bxl8bSrU8M09UiqaSaV/4EVsCgJrHVbIrtWsF/Us1eSa7qUzZ2N4FFOz
-         N2Zw==
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=Gj6/MjwS+J4keCNnFYk1TQ+l4VVmRSXxrXDi5n5Ny3A=;
+        b=gRT05Pn+DjxRaYaQ3SNjK87ik5viYwcI+vEQBGYCJKXp+85XrKT1fQplwtyoDLjGg2
+         6Qm1OYymAU0bFf7C3NOz5mLcuRMvVUreToOlOhkwBKzwWP5gor6/M/h5rfroSNCyLdFv
+         PdyTRd9/r9cNphQ/KVfSF6jMtjyOt9/P2R+lpJqsSZz4BSdR4Hpl5xase7lCGIH5fmTD
+         ZUkiTdNmOeyUmvJ8y+l6qXiIuj+wgfJC7MoxsFp8ZrF2vJL9bdWgREeDXCjzUD3KgT79
+         DDXJU0Krj1Oz9JiTidP6+M5sFyX3FKllpYMs/4nxZEIK7f5i9q6u2eCFN1v3fEojfJXx
+         Odcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=/vkJe7iPu6rsdTrj/rwJVM+Dly5WduuMAkiM0NoVcRs=;
-        b=QmbLByGCcNsLAnp79pJPcEIF5hFdft5fl3TSJjjrPal6T8yCDUGDp6+CvQYm2m4vrr
-         d7THFXfMXSeL40rrMu2hXX/UehAy9CjEJSOIfOrlrbXU/6aOa2ME6vySiCM4PqfrClpo
-         LHvpUitA8OYI7AZHCRvm+SAM+tqP3siOp4PV3bVETl1UeNchUWRAqP0qNhhLw7rn/HSx
-         Fjay/NU/B2ybSrT2Ozuq8ec9I6e30tvKo6pMg2/W0UD46SmfyJhKRXAu4ILo3+Q9dM4O
-         zAOrSgjR3QPQ85UgSas2oKClhAokABjrt4FQCEmeR3KCSA7IWxmWeDhXyiUEFwsXAhLB
-         ZDyQ==
-X-Gm-Message-State: AOAM533OAVEhOJcKsfqRDMCARuCiHbgjUb0uV47F/UVstj9FuGH2XW27
-        ukrKjRO3AKiJm1EKNNJ2nRHBnQ==
-X-Google-Smtp-Source: ABdhPJyrqDKwsECRQVkzMXTYg0ATE6Lh1vcU0X1FvoL4VMrd25wJ7w3JR+MmjJ1WsmmDQCPVUhGS3A==
-X-Received: by 2002:a9d:6c1:: with SMTP id 59mr14779236otx.318.1626796985486;
-        Tue, 20 Jul 2021 09:03:05 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 12sm1228504oij.40.2021.07.20.09.03.04
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=Gj6/MjwS+J4keCNnFYk1TQ+l4VVmRSXxrXDi5n5Ny3A=;
+        b=RBKf8AAc0+njxwEg/W6kY13rFMkftxkNUCLET5qEUy/4gqi+9XMjTUhvSuZVV0CXtu
+         8kxM8pvsufKAY6cckjlSOmRSD6tt0LbybZIeoWFaBJKNoTmupJZpEDF2ImdYlWtXukrC
+         YVXjyXR5+kVnLKGcoqqgWfMLXiovEpWiJY5wqYLJ5zUyA+MVhbvJ+zWL0BOT0lJMjAnS
+         1I5AW6QL6rknOVK07K/uUQR1kvhVVUGqJrIrUECt/nMGV7SV4hBJP5QiRP/WMHb40xuT
+         SmWln5yrAlWKsL8njJzm0pRYfT4xPNgz0pYtAr37DDARdqaT1rlSxJMQReia0fcue3ks
+         U1pw==
+X-Gm-Message-State: AOAM5334Ueqjh4WvEHkZBdx5GhmskaoZWy4MiPor99T0S9LzqGG9289x
+        Bm+jAoN63Grn9Ttt/jqU4nU4rw==
+X-Google-Smtp-Source: ABdhPJwkPXNxyIOEI1iwTxTrl+7ksvGsjQ9ocmdf90SP7jwdElbWhOPHa6fxSUo60olZC1ffA0K8nw==
+X-Received: by 2002:a05:600c:47c4:: with SMTP id l4mr3865020wmo.125.1626797236726;
+        Tue, 20 Jul 2021 09:07:16 -0700 (PDT)
+Received: from google.com ([31.124.24.141])
+        by smtp.gmail.com with ESMTPSA id w18sm26022717wrg.68.2021.07.20.09.07.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jul 2021 09:03:05 -0700 (PDT)
-Date:   Tue, 20 Jul 2021 11:03:03 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Caleb Connolly <caleb@connolly.tech>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 3/5] drm/panel/samsung-sofef00: make gpio optional
-Message-ID: <YPbztxBh4cCJF8p3@yoga>
-References: <20210720153125.43389-1-caleb@connolly.tech>
- <20210720153125.43389-4-caleb@connolly.tech>
+        Tue, 20 Jul 2021 09:07:16 -0700 (PDT)
+Date:   Tue, 20 Jul 2021 17:07:14 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Emil Renner Berthing <kernel@esmil.dk>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 2/3] mfd: tps65086: Make interrupt line optional
+Message-ID: <YPb0spKPvEvuuMWc@google.com>
+References: <20210625224744.1020108-1-kernel@esmil.dk>
+ <20210625224744.1020108-3-kernel@esmil.dk>
+ <YPbmmqfOuE5w6EgW@google.com>
+ <CANBLGcy_28q23vRJk9=UZR_Feeqod-ETET=v4Ub=35edySH7SA@mail.gmail.com>
+ <YPbsodxMk+VvU/3D@google.com>
+ <CANBLGcx08XajR8khJmKARBjy7bQ5ebbgO+RRqRu=bvyMx7LuKA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210720153125.43389-4-caleb@connolly.tech>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CANBLGcx08XajR8khJmKARBjy7bQ5ebbgO+RRqRu=bvyMx7LuKA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 20 Jul 10:33 CDT 2021, Caleb Connolly wrote:
+On Tue, 20 Jul 2021, Emil Renner Berthing wrote:
 
-> The OnePlus 6T panel fails to initialise if it has been reset,
-> workaround this by allowing panels to not specify a reset GPIO.
+> On Tue, 20 Jul 2021 at 17:32, Lee Jones <lee.jones@linaro.org> wrote:
+> > On Tue, 20 Jul 2021, Emil Renner Berthing wrote:
+> > > On Tue, 20 Jul 2021 at 17:07, Lee Jones <lee.jones@linaro.org> wrote:
+> > > > On Sat, 26 Jun 2021, Emil Renner Berthing wrote:
+> > > > > The BeagleV Starlight v0.9 board[1] doesn't have the IRQB line routed to
+> > > > > the SoC, but it is still useful to be able to reach the PMIC over I2C
+> > > > > for the other functionality it provides.
+> > > > >
+> > > > > [1] https://github.com/beagleboard/beaglev-starlight
+> > > > >
+> > > > > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> > > > > ---
+> > > > >  .../devicetree/bindings/mfd/ti,tps65086.yaml  |  3 ---
+> > > >
+> > > > This is not present in my current tree.
+> > > >
+> > > > Looks like it's still *.txt.
+> > > >
+> > > > Am I missing a patch?
+> > >
+> > > Yes, the first patch in the series converts that to yaml. I'm quite
+> > > sure I had the same list of recipients on all 4 mails in the series,
+> > > so don't know why that should be missing.
+> >
+> > Oh, it's not marked as 'important' because it has open review comments
+> > on it.
+> >
+> > Just have this for now then:
+> >
+> > For my own reference (apply this as-is to your sign-off block):
+> >
+> >   Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
 > 
-> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
-> ---
->  drivers/gpu/drm/panel/panel-samsung-sofef00.c | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/panel/panel-samsung-sofef00.c b/drivers/gpu/drm/panel/panel-samsung-sofef00.c
-> index 8cb1853574bb..a20a5af14653 100644
-> --- a/drivers/gpu/drm/panel/panel-samsung-sofef00.c
-> +++ b/drivers/gpu/drm/panel/panel-samsung-sofef00.c
-> @@ -44,6 +44,8 @@ struct sofef00_panel *to_sofef00_panel(struct drm_panel *panel)
-> 
->  static void sofef00_panel_reset(struct sofef00_panel *ctx)
->  {
-> +	if (!ctx->reset_gpio)
+> Thanks! Do you want to have a look at 3/3 or should I just send a v2
+> to fix the yaml conversion now?
 
-gpiod_set_value_cansleep(NULL, 1) is a perfectly valid nop, so I don't
-think you need to make this conditional.
+Patch 3 should be split.
 
-That said, don't you need this to get the panel out of reset once you
-apply power after it being powered off?
+I think it should also s/restart/reset/.
 
-> +		return;
->  	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
->  	usleep_range(5000, 6000);
->  	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-> @@ -137,7 +139,8 @@ static int sofef00_panel_prepare(struct drm_panel *panel)
->  	ret = sofef00_panel_on(ctx);
->  	if (ret < 0) {
->  		dev_err(dev, "Failed to initialize panel: %d\n", ret);
-> -		gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-> +		if (ctx->reset_gpio)
-
-Ditto.
-
-
-Regards,
-Bjorn
-
-> +			gpiod_set_value_cansleep(ctx->reset_gpio, 1);
->  		return ret;
->  	}
-> 
-> @@ -276,7 +279,7 @@ static int sofef00_panel_probe(struct mipi_dsi_device *dsi)
->  		return ret;
->  	}
-> 
-> -	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-> +	ctx->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
->  	if (IS_ERR(ctx->reset_gpio)) {
->  		ret = PTR_ERR(ctx->reset_gpio);
->  		dev_warn(dev, "Failed to get reset-gpios: %d\n", ret);
-> --
-> 2.32.0
-> 
-> 
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
