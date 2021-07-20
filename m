@@ -2,218 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D5683CF8D1
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 13:28:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F9CC3CF8D5
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 13:29:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237679AbhGTKrZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 06:47:25 -0400
-Received: from mail-eopbgr1410122.outbound.protection.outlook.com ([40.107.141.122]:19456
-        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S237388AbhGTKrP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Jul 2021 06:47:15 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cyAUyzd6jBlzcBa7s0L2bJdtRPZS1Q7pRmIq71ocRPVaG4IfROyt3HIzvQbgwo+6mr9JJXwGE0EqnfYmL2iZqbbvvzUAHDiV7OnlhH+JnD8yNJ5TemvPqUIfroLQ1pQO3t3sFN8EGpTqDlc9YLWUgot9NFtAftSMJWpMO0R9AyCw2Vtqu5xTtv1iwpXtq7WAbhKey9ii2gmLnS5gW1Kiq5PvHAMF8dKcnG7EavnCX3GKHxVpSw63XDK0fH954xY2mNPh/s6HckszyVk/SoGcS3lEK2ObesYLQXhu0Zc78Vg4Iuk1kBAgLJj9WYQoF8JcBfYKriuzbZ37yf8X6aDWEg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ScIXK1VYBt04gybucgJWUmNWQUAf+wyc1OIiWcLZqI4=;
- b=WodeMMRHej+nNxtF9HKcnqXUhJTeo6olHfK+x206LWnVcNruLfJoAYzXel8+t4A7z5Sjln+NMZU5fR4qW/Yi3wS9Tz0EzPa5bAHu8r8os4VFs1xBC3HQBlWPEkjAxpYiJpgZlKtuJav9MbUh6/uUHh4wl/JtVsNtAo+r4j6lM5/4nvpbbVKoWI7+zb//2jKZMoLHrg+06UpWtxXM9mZTrnOmqcfyI1ycVkkDuQCPYDDX2xM0xp39LOhZP9T3xymp4GDjmOhjOO0jHaMj7jvfQ0dIATfmgyStN+twhtvMJYWOB/VMc42PLLaQ0/4WrniLqdMWlZLKkSbDs/BdvI7JOg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ScIXK1VYBt04gybucgJWUmNWQUAf+wyc1OIiWcLZqI4=;
- b=SXB9BsKlII2JehmPtr9os2O4wIwJBTFgJenyVe0k6naiB5+JefRfGE5pJxXjuzh8FQxjsvGXgExaZ5eCy8Sl2kHduryiFkqTH6y7HuswZso30EfOb8uudvQ/WGyAjVEION7eT8H1QgWgNXtN8jShkvejyIL4TXJGRcckkJFGPGU=
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
- by OSBPR01MB3478.jpnprd01.prod.outlook.com (2603:1096:604:46::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.28; Tue, 20 Jul
- 2021 11:27:51 +0000
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::c6f:e31f:eaa9:60fe]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::c6f:e31f:eaa9:60fe%9]) with mapi id 15.20.4331.034; Tue, 20 Jul 2021
- 11:27:51 +0000
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Chris Brandt <Chris.Brandt@renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v4 1/4] dt-bindings: dma: Document RZ/G2L bindings
-Thread-Topic: [PATCH v4 1/4] dt-bindings: dma: Document RZ/G2L bindings
-Thread-Index: AQHXfIB7fKy+DpCHFU6OwcVXg6WT86tKUDgAgAFrHWA=
-Date:   Tue, 20 Jul 2021 11:27:50 +0000
-Message-ID: <OS0PR01MB5922E54D778E51022D6A5B9286E29@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <20210719092842.4686-1-biju.das.jz@bp.renesas.com>
- <1626702448.459307.1811207.nullmailer@robh.at.kernel.org>
-In-Reply-To: <1626702448.459307.1811207.nullmailer@robh.at.kernel.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 2d477d05-2285-4f89-5940-08d94b7168cf
-x-ms-traffictypediagnostic: OSBPR01MB3478:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <OSBPR01MB3478A201A417A7B3B7FAD7EB86E29@OSBPR01MB3478.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: VsgXF0cJJTt1n+rAE2xVP5kEy4FySVZpNijK1VolSOQbjev+hhLPx2UGlYmr3DyPiQLzeDf3E9RhovqfZjYumb5kQJ5fSG209cj02YMKVwCX+Yy1YtmQuWsXgwJCH0l5CiCAWkHbTSEB9N6GHXTEa/8+fNRIe3hF/80sMReg7D6P/3qXARptbO7TAZzmCYtYgv3dK/mBFw/vkb/CJIxTpirTigdv1wNDImQ63/YPYKYISlqJpfstdtxs0jHWpKLtBqGcq5xAcyoheUcK2pOTw5Z0NpeIdf7Zkq8De+yga+y+yJOauuok3leYWUexeafCYJu7o+jMT6micFkOmVnM1jEp+VVXllrzyfzxUmLXpJQ9YxYkaRmjTBZG+2LPxVOd2kf/17Hux+mojtEBmoG5eSjxJkUwekOsAwbfQnNhHgMfz76Chmv1Rjw8vcG6vfV3uOwqcY4jJuco+qkTZAGrG3g54U8BvWbIq8+DlAhwSWGMr7/EuiKltFMU0gjRURKJaxA54MTVw3mzoD6uMGFAsknte2Ur0h9llQvMy+oyEMvRR75JQnJsF8JgUq+3OVDTlNzOrGu7N7SwvLbNhUYWIkbUUr7ywbI2jX1x4rT8LX4jHrG6luOkWyA7416Otqd4oJZKoehMwfmgInq6zVSUVkI934AuKMPkuXafsjoBtkP/GW7kq/PGdaqDl9cyiH40p0Vn06PROCTP+nfCdXVLarzLoZOJDuw7x1ioGPfmcim2ZDM05m3NrcjQBqDBJk4wG8brQqEQ5IuOd6/zV8LPM0sQRKIVN8mR5RXNGyVgIAQXMS02CZ28/6nDG0HD9NM8Tj8E2oeKSYcMmauAeSS12A==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(376002)(136003)(366004)(396003)(39860400002)(966005)(66946007)(122000001)(66556008)(64756008)(66476007)(316002)(5660300002)(76116006)(53546011)(38100700002)(9686003)(6506007)(66446008)(52536014)(2906002)(83380400001)(478600001)(45080400002)(6916009)(8936002)(54906003)(86362001)(71200400001)(8676002)(33656002)(7696005)(26005)(4326008)(186003)(55016002)(38070700004);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?e7SxQFeOhkobdmQgvjUjIQrCxvg+ignKitB1HeAFfxsPSyGSCeaIdfZqAspn?=
- =?us-ascii?Q?rImuckICUBK9wA5Hveeq29icxeTX7k85ySBSCN+09fJx2G39BIV6cyYBqUoq?=
- =?us-ascii?Q?nkGgeTCoSSGaOwsUACbcdA3slENbY0lHIcWLUN8WZD9XME8wD2D/TpinBYsG?=
- =?us-ascii?Q?AZ2qQgFpdrHAR+NpMpdf2Z/5vSzOfplkSPM4QcJ7EUCF5kMVtd2vytPsXLm3?=
- =?us-ascii?Q?J17kwJtN3jOn3tWVjYnNNXMOKxBjRYh28rLzT5B0AGKjXi/JmchpHTwIEksV?=
- =?us-ascii?Q?/vP9l8G8VrA2+1FVa5jXlUR37l2ITEWDvoMP8IEyyNRKdU7AYfrblKZVDdHf?=
- =?us-ascii?Q?Cl0w7r8Me9HynTlhhl+mvW9tF6uwZtia8CtRhGU4M2UYzrjUsQpU/DJxurJC?=
- =?us-ascii?Q?zG+2/2dSFlz/Tfp8THcstKH0TgcF5QS3Yh+IDYBGPrJXc39UdADiv9qsV0qs?=
- =?us-ascii?Q?ZPSE2u+BTZ3UaeW23v+FOkypiBOuWaOVIB3Z3VWiedx4Pt64Ep+yOt0VAnJB?=
- =?us-ascii?Q?w7yNlXOXCbBqtSivCQC8VT6HAzRJ1leIZvlAp5r4lySR3zguSvDRbTcOiHtW?=
- =?us-ascii?Q?9lDgD0hbt93jdod5+NMyYObw6eQ1hoICQqnmSN30pqjnuU6PW57s4ePY/m2H?=
- =?us-ascii?Q?A+4gYrRtBZSbdZCwofP6Hx8WIak7+jIGxEt54YbVFf0hHv/Rxr7ZBReVzwNe?=
- =?us-ascii?Q?NdmWlsnaxai1oRlTCb2zORbn21xh+/w7mo7uF+mMX8Ay6x1z86o/oJCz0VZa?=
- =?us-ascii?Q?gGJav+nZCzaTLjoUxeLUpiSijhV8osrSdoeGXG5hSOHcOQal1ixUeeH9ISS+?=
- =?us-ascii?Q?Dt4KUBjWSjB7uBiLPyMCxvQ5hUimw5KUMd9Lm1GmjxxjF5GnAwLskfrqyV1V?=
- =?us-ascii?Q?uzaBsdMasnA+L5rFIexobuhd3Dxz8GDgvQSbOc7wF9Lc3+BnNMQE5+YlLexx?=
- =?us-ascii?Q?mNSG0CPJwlYo3mSRVsMRJJbuHSNF14zujSwIA7KaDnO+UtllBumm1y9J+MR2?=
- =?us-ascii?Q?35dvzsm1bDx8KVvGI3E8UJSZxldbdK3jmVMW6Lf/YaX+B1Hm+Jy0II4aFcTo?=
- =?us-ascii?Q?4YGeMVgD23Nwi8wLTfXbIFm0cXlFTrvWHI1vmtntx0oTv4p17M9TVNmpyozN?=
- =?us-ascii?Q?zgj7pxoTgXRxw9WUlmg/5QuQGNCMkuYLfBr6dHKZ7MJfAbJ2ixmmfHb/xwYP?=
- =?us-ascii?Q?8TXLXjlhFT69mFf/r0qYObJPMbpanTB6ocplleMuZB0/MdAZHXcHWEX6/guT?=
- =?us-ascii?Q?owL4iEHG4lVZnh6yj+vNxzUukMjISFapb95UQ2qRzAMz2eViv/hdp8Q5WXwX?=
- =?us-ascii?Q?XVBdA7XtWL+bEi+l6HG34RZZ?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S237659AbhGTKsZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 06:48:25 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:60407 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236701AbhGTKsO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 06:48:14 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1626780532; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=4qeavdXtXyl2WU+HnaSqzbijV0jvPvZSQil59/8Hj3g=;
+ b=wXEqyNRpu08HPNfVTDsQFvOguSICSprzJxGWRfi2cadtdIXfAe24ZwimMIBpDaClEo3ueV5c
+ Dwo6z8lj1UmsW/rCZgYPURm5QaZz2DTK72NVzeApF6y7JqcDHh9S0kFJFQJ11abSW5KF8UUo
+ gKhs7mZZ0bL3om9lKfXUoawjZpk=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
+ 60f6b36ac923fb7e09eb73fe (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 20 Jul 2021 11:28:42
+ GMT
+Sender: pmaliset=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id ABF49C4323A; Tue, 20 Jul 2021 11:28:41 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: pmaliset)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7117EC433D3;
+        Tue, 20 Jul 2021 11:28:39 +0000 (UTC)
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2d477d05-2285-4f89-5940-08d94b7168cf
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jul 2021 11:27:51.0018
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: JqXC3PTWcvPgOKMSZtrZ1c9XwjffhK3I7P2itCubF8WXNo1IR9x9cs44dxA4N2I9/9qyAx7fVomgmrRGzJm/BMPztFFt8/Rzff2y1v5+hnI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSBPR01MB3478
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 20 Jul 2021 16:58:39 +0530
+From:   Prasad Malisetty <pmaliset@codeaurora.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Bjorn Helgaas <helgaas@kernel.org>, agross@kernel.org,
+        bhelgaas@google.com, robh+dt@kernel.org, swboyd@chromium.org,
+        lorenzo.pieralisi@arm.com, svarbanov@mm-sol.com,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dianders@chromium.org, mka@chromium.org, vbadigan@codeaurora.org,
+        sallenki@codeaurora.org
+Subject: Re: [PATCH v4 4/4] PCIe: qcom: Add support to control pipe clk src
+In-Reply-To: <YPHuWudai/FO6SMN@yoga>
+References: <1626443927-32028-5-git-send-email-pmaliset@codeaurora.org>
+ <20210716150646.GA2098485@bjorn-Precision-5520> <YPHuWudai/FO6SMN@yoga>
+Message-ID: <f5defd3c9f710d3b52d51657467367ac@codeaurora.org>
+X-Sender: pmaliset@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On 2021-07-17 02:08, Bjorn Andersson wrote:
+> On Fri 16 Jul 10:06 CDT 2021, Bjorn Helgaas wrote:
+> 
+>> Run this:
+>> 
+>>   $ git log --oneline drivers/pci/controller/dwc/pcie-qcom.c
+>> 
+>> and make your subject match the style and structure (in particular,
+>> s/PCIe/PCI/).  In this case, maybe something like this?
+>> 
+>>   PCI: qcom: Switch sc7280 gcc_pcie_1_pipe_clk_src after PHY init
+>> 
+>> On Fri, Jul 16, 2021 at 07:28:47PM +0530, Prasad Malisetty wrote:
+>> > This is a new requirement for sc7280 SoC.
+>> > To enable gdsc gcc_pcie_1_pipe_clk_src should be TCXO.
+>> > after PHY initialization gcc_pcie_1_pipe_clk_src needs
+>> > to switch from TCXO to gcc_pcie_1_pipe_clk.
+>> 
+>> This says what *needs* to happen, but it doesn't actually say what
+>> this patch *does*.  I think it's something like:
+>> 
+>>   On the sc7280 SoC, the clock source for pcie_1_pipe must be the TCXO
+>>   while gdsc is enabled.  But after the PHY is initialized, the clock
+>>   source must be switched to gcc_pcie_1_pipe_clk.
+>> 
+>>   On sc7280, switch gcc_pcie_1_pipe_clk_src from TCXO to
+>>   gcc_pcie_1_pipe_clk after the PHY has been initialized.
+>> 
+>> Nits: Rewrap to fill 75 columns or so.  Add blank lines between
+>> paragraphs.  Start sentences with capital letter.
+>> 
+Agree, looks good. will add more details and update the commit message 
+in next version.
 
-> -----Original Message-----
-> From: Rob Herring <robh@kernel.org>
-> Sent: 19 July 2021 14:47
-> To: Biju Das <biju.das.jz@bp.renesas.com>
-> Cc: Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>;
-> dmaengine@vger.kernel.org; devicetree@vger.kernel.org; Vinod Koul
-> <vkoul@kernel.org>; Chris Brandt <Chris.Brandt@renesas.com>; Geert
-> Uytterhoeven <geert+renesas@glider.be>; Rob Herring <robh+dt@kernel.org>;
-> Chris Paterson <Chris.Paterson2@renesas.com>; linux-renesas-
-> soc@vger.kernel.org
-> Subject: Re: [PATCH v4 1/4] dt-bindings: dma: Document RZ/G2L bindings
->=20
-> On Mon, 19 Jul 2021 10:28:42 +0100, Biju Das wrote:
-> > Document RZ/G2L DMAC bindings.
-> >
-> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > ---
-> > v4->v5:
-> >   * Added Rob's Rb tag
-> > v3->v4:
-> >   * Described clocks and reset properties
-> > v2->v3:
-> >   * Added error interrupt first.
-> >   * Updated clock and reset maxitems.
-> >   * Added Geert's Rb tag.
-> > v1->v2:
-> >   * Made interrupt names in defined order
-> >   * Removed src address and channel configuration from dma-cells.
-> >   * Changed the compatibele string to "renesas,r9a07g044-dmac".
-> > v1:-
-> >   *
-> > https://jpn01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fpat=
-c
-> > hwork.kernel.org%2Fproject%2Flinux-renesas-soc%2Fpatch%2F2021061111364
-> > 2.18457-2-biju.das.jz%40bp.renesas.com%2F&amp;data=3D04%7C01%7Cbiju.das=
-.
-> > jz%40bp.renesas.com%7C0cbeffaf1b184c1b000108d94abbcd00%7C53d82571da194
-> > 7e49cb4625a166a4a2a%7C0%7C0%7C637622992718168475%7CUnknown%7CTWFpbGZsb
-> > 3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%
-> > 7C1000&amp;sdata=3DmHxgj1z7gJVNfLw5QiY85Cj6PztxEcIlSpDPrKZdxQU%3D&amp;r=
-e
-> > served=3D0
-> > ---
-> >  .../bindings/dma/renesas,rz-dmac.yaml         | 124 ++++++++++++++++++
-> >  1 file changed, 124 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
-> >
->=20
-> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->=20
-> yamllint warnings/errors:
->=20
-> dtschema/dtc warnings/errors:
-> Error: Documentation/devicetree/bindings/dma/renesas,rz-
-> dmac.example.dts:49.30-31 syntax error FATAL ERROR: Unable to parse input
-> tree
-> make[1]: *** [scripts/Makefile.lib:380:
-> Documentation/devicetree/bindings/dma/renesas,rz-dmac.example.dt.yaml]
-> Error 1
-> make[1]: *** Waiting for unfinished jobs....
-> make: *** [Makefile:1418: dt_binding_check] Error 2 \ndoc reference error=
-s
-> (make refcheckdocs):
->=20
-> See
-> https://jpn01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fpatch=
-wor
-> k.ozlabs.org%2Fpatch%2F1506873&amp;data=3D04%7C01%7Cbiju.das.jz%40bp.rene=
-sas
-> .com%7C0cbeffaf1b184c1b000108d94abbcd00%7C53d82571da1947e49cb4625a166a4a2=
-a
-> %7C0%7C0%7C637622992718168475%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDA=
-i
-> LCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3DrQTzshu=
-8s9
-> UJughkXAwZKv2TPHU%2FKQ2ea1UI%2FW6P20s%3D&amp;reserved=3D0
->=20
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
+>> > Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
+>> > ---
+>> >  drivers/pci/controller/dwc/pcie-qcom.c | 22 ++++++++++++++++++++++
+>> >  1 file changed, 22 insertions(+)
+>> >
+>> > diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+>> > index 8a7a300..9e0e4ab 100644
+>> > --- a/drivers/pci/controller/dwc/pcie-qcom.c
+>> > +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+>> > @@ -166,6 +166,9 @@ struct qcom_pcie_resources_2_7_0 {
+>> >  	struct regulator_bulk_data supplies[2];
+>> >  	struct reset_control *pci_reset;
+>> >  	struct clk *pipe_clk;
+>> > +	struct clk *gcc_pcie_1_pipe_clk_src;
+>> > +	struct clk *phy_pipe_clk;
+>> > +	struct clk *ref_clk_src;
+>> >  };
+>> >
+>> >  union qcom_pcie_resources {
+>> > @@ -1167,6 +1170,20 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
+>> >  	if (ret < 0)
+>> >  		return ret;
+>> >
+>> > +	if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280")) {
+>> > +		res->gcc_pcie_1_pipe_clk_src = devm_clk_get(dev, "pipe_mux");
+>> > +		if (IS_ERR(res->gcc_pcie_1_pipe_clk_src))
+>> > +			return PTR_ERR(res->gcc_pcie_1_pipe_clk_src);
+>> > +
+>> > +		res->phy_pipe_clk = devm_clk_get(dev, "phy_pipe");
+>> > +		if (IS_ERR(res->phy_pipe_clk))
+>> > +			return PTR_ERR(res->phy_pipe_clk);
+>> > +
+>> > +		res->ref_clk_src = devm_clk_get(dev, "ref");
+>> > +		if (IS_ERR(res->ref_clk_src))
+>> > +			return PTR_ERR(res->ref_clk_src);
+>> 
+>> Not clear why ref_clk_src is here, since it's not used anywhere.  If
+>> it's not necessary here, drop it and add it in a future patch that
+>> uses it.
+>> 
+Its more useful in suspend /resume patch set. as of now we will move to 
+suspend/resume patch set.
+>> > +	}
+>> > +
+>> >  	res->pipe_clk = devm_clk_get(dev, "pipe");
+>> >  	return PTR_ERR_OR_ZERO(res->pipe_clk);
+>> >  }
+>> > @@ -1255,6 +1272,11 @@ static void qcom_pcie_deinit_2_7_0(struct qcom_pcie *pcie)
+>> >  static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
+>> >  {
+>> >  	struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
+>> > +	struct dw_pcie *pci = pcie->pci;
+>> > +	struct device *dev = pci->dev;
+>> > +
+>> > +	if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280"))
+>> 
+>> Using of_device_is_compatible() follows existing style in the driver,
+>> which is good.  But I'm not sure that's good style in general because
+>> it's a little repetitious and wasteful.
+>> 
+> 
+> Following the style is good, but up until the recent sm8250 addition it
+> was just a hack to deal with legacy platforms that we don't know the
+> exact details about.
+> 
+> But, all platforms I know of has the pipe_clk from the PHY fed into the
+> pipe_clk_src mux in the gcc block and then ends up in the PCIe
+> controller. As such, I suspect that the pipe_clk handling should be 
+> moved
+> to the common code path of the driver and there's definitely no harm in
+> making sure that the pipe_clk_src mux is explicitly configured on
+> existing platforms (at least all 2.7.0 based ones).
+> 
+>> qcom_pcie_probe() already calls of_device_get_match_data(), which does
+>> basically the same thing as of_device_is_compatible(), so I think we
+>> could take better advantage of that by augmenting struct qcom_pcie_ops
+>> with these device-specific details.
+>> 
+> 
+> I agree.
+> 
+> Regards,
+> Bjorn
+> 
+>> Some drivers that use this strategy:
+>> 
+>>   drivers/pci/controller/cadence/pci-j721e.c
+>>   drivers/pci/controller/dwc/pci-imx6.c
+>>   drivers/pci/controller/dwc/pci-layerscape.c
+>>   drivers/pci/controller/dwc/pci-layerscape-ep.c
+>>   drivers/pci/controller/dwc/pcie-tegra194.c
+>>   drivers/pci/controller/pci-ftpci100.c
+>>   drivers/pci/controller/pcie-brcmstb.c
+>>   drivers/pci/controller/pcie-mediatek.c
+>> 
+>> > +		clk_set_parent(res->gcc_pcie_1_pipe_clk_src, res->phy_pipe_clk);
+>> >
+>> >  	return clk_prepare_enable(res->pipe_clk);
+>> >  }
 
-The dependency patch for the bot error is present on 5.14-rc2 but not on 5.=
-14-rc1.
+Sure, we will make use of struct qcom_pcie_ops and add a new callback to 
+configure pipe clk src.
+In coming platforms, if the platform doesn't need to configure pipe clk 
+src, it will return as callback not defined.
 
-Regards,
-Biju
+We will incorporate the changes in next release.
 
->=20
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->=20
-> pip3 install dtschema --upgrade
->=20
-> Please check and re-submit.
-
+>> > --
+>> > The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+>> > a Linux Foundation Collaborative Project
+>> >
