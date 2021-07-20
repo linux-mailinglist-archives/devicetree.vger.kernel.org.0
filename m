@@ -2,97 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 297CD3D0026
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 19:24:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1ED813D003C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 19:29:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231954AbhGTQnK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 12:43:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54058 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229921AbhGTQms (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 12:42:48 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09E85C0613E2;
-        Tue, 20 Jul 2021 10:23:15 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id m2so26869719wrq.2;
-        Tue, 20 Jul 2021 10:23:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Irrd4jtOn6498HfdXqzrUQsx/bjOrWlV0M76X3ljkdk=;
-        b=D33o0g2qylPxHB47L2iv+w0ysH8u0oV58QeQwMHn2/cJTtBCBqLondU6e4pixdyoFh
-         33Or13AQG6UDV/Wyu0Mn4tPp2pLh4UvJ4hbCaLnyiTfcNfwHJvk0MqKSlEqamVYIVeNZ
-         RlkkH8GGKFqzcnKJRRjtvrIBalJgmmkZrUB76Okhe5SnwbYCd3FHf+deqGBx1vDuIFxO
-         /mTTFtDqHG/1/GzNC0eFWcpyeGD9wsMGaqPUfeepwzXjRlT+Wxve4M/YTv6AUrx/cAM4
-         ht+QgV65sOXjgu4PFMJ8F9Bn16Oxj/SopcNUJvvR/bhBVjdeJz9bri9asDaND9wtkhVg
-         7HVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Irrd4jtOn6498HfdXqzrUQsx/bjOrWlV0M76X3ljkdk=;
-        b=oxbWbv5C53V7sPtIxxU1DGxuy1Ci40znD4A6+gLru8U8eEgf6owahUJwFFdimLt28w
-         g2ilvqX+bpq6nAym12EQPMU8Mcr/Qv0FRONbDn35L5gJkHW8HEb9P8wX38yBXYKQK531
-         E23CJtrx6tFTGwM1NmI4Rs60llI6lu6tVt1kNNI5mulH1ohV9/EtGqbbK1go1GqGXeSb
-         yYor7R1nRe4bAkuEr2+hjBw5AIuJIsddIRlwRShFOXHOhxSlchmFN0FwBsoR8LP2zc5a
-         oT4Iktzn18Z+3503QjFbpo70nYybJRVSDhwW9cKnPbgxUVDYSEm43didRDyEH9NzfEWU
-         jvtg==
-X-Gm-Message-State: AOAM531TojI/UAtidRnR1yDegiO/jT1n1//kdNeOUvyqXHaHUr8/7iTY
-        oY0xuXQHh0qqLHc/e55NpXk=
-X-Google-Smtp-Source: ABdhPJyrV+RcBAPf8vQpCa1Q1/zmv44/OHcaeK45lwFAPyy6HcdPLZqpRZHO37iwQ1EF5NKvPkOA+Q==
-X-Received: by 2002:adf:dfc9:: with SMTP id q9mr36749999wrn.117.1626801793589;
-        Tue, 20 Jul 2021 10:23:13 -0700 (PDT)
-Received: from debby (176-141-241-253.abo.bbox.fr. [176.141.241.253])
-        by smtp.gmail.com with ESMTPSA id a7sm13899964wru.67.2021.07.20.10.23.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jul 2021 10:23:13 -0700 (PDT)
-From:   Romain Perier <romain.perier@gmail.com>
-To:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Daniel Palmer <daniel@0x0f.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 3/3] ARM: dts: mstar: Add rtc device node
-Date:   Tue, 20 Jul 2021 19:22:51 +0200
-Message-Id: <20210720172251.4504-4-romain.perier@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210720172251.4504-1-romain.perier@gmail.com>
-References: <20210720172251.4504-1-romain.perier@gmail.com>
+        id S230169AbhGTQtM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 12:49:12 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60416 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229627AbhGTQtI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Jul 2021 12:49:08 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 1B198600D4;
+        Tue, 20 Jul 2021 17:29:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1626802186;
+        bh=dQ6r/chbOgykjGAd23iEH80jHjtf0Qtrm8TBrM0+oPg=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=h//eQ0MpXU8d/CgDmQfQz/MYnx0cKNqQTcfCM8ar22itSA1O5Xihy6N9/8lEShRGV
+         CJTjqen/MKr8ItMYdZLvn+ywUQE/0hecv0cnC7u6aTluj0N6Q/Y2N30/oxrADheGfa
+         xwhwh3iFezb/QgtPLJO2GM4yFhwyrmtIHX3JrIKpLN2ixAyeEbPyGgJ6X5Urg7gCyl
+         3j5nu0QbePUvMid8Rx//IkaxcXURUs+D8omSdzFTtDuZzDdBFG3G2Pc926Z67e8R00
+         ih+1mMj/HyMGlrBg7d3tKVlOe+1nHqGwKtEM5SWpbEgeJC7WvN7bbs4vwwzsVmV6Qp
+         5UTMzx0/Ymt3A==
+Subject: Re: [PATCH v3 2/3] dt-bindings: Clean-up OPP binding node names in
+ examples
+To:     Rob Herring <robh@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Tony Lindgren <tony@atomide.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
+        linux-omap@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org
+References: <20210720144121.66713-1-robh@kernel.org>
+ <20210720144121.66713-2-robh@kernel.org>
+From:   Georgi Djakov <djakov@kernel.org>
+Message-ID: <b30f82df-86f3-51b7-df78-607d4f83f1ab@kernel.org>
+Date:   Tue, 20 Jul 2021 20:29:40 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210720144121.66713-2-robh@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds the definition of the rtc device node. The RTC being able to
-work with the oscillator at 12Mhz for now, it shares the same xtal than
-the watchdog.
+On 20.07.21 17:41, Rob Herring wrote:
+> In preparation to convert OPP bindings to DT schema, clean-up a few OPP
+> binding node names in the binding examples.
+> 
+> Cc: Georgi Djakov <djakov@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Leonard Crestez <leonard.crestez@nxp.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-pm@vger.kernel.org
+> Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Signed-off-by: Romain Perier <romain.perier@gmail.com>
----
- arch/arm/boot/dts/mstar-v7.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+Acked-by: Georgi Djakov <djakov@kernel.org>
 
-diff --git a/arch/arm/boot/dts/mstar-v7.dtsi b/arch/arm/boot/dts/mstar-v7.dtsi
-index 982dba9d28eb..1d4419aee67d 100644
---- a/arch/arm/boot/dts/mstar-v7.dtsi
-+++ b/arch/arm/boot/dts/mstar-v7.dtsi
-@@ -116,6 +116,13 @@ watchdog@6000 {
- 				clocks = <&xtal_div2>;
- 			};
- 
-+			rtc@2400 {
-+				compatible = "mstar,msc313-rtc";
-+				reg = <0x2400 0x40>;
-+				clocks = <&xtal_div2>;
-+				interrupts-extended = <&intc_irq GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
-+			};
-+
- 			intc_fiq: interrupt-controller@201310 {
- 				compatible = "mstar,mst-intc";
- 				reg = <0x201310 0x40>;
--- 
-2.30.2
+> ---
+>   Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml   | 2 +-
+>   Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml   | 2 +-
+>   .../devicetree/bindings/interconnect/fsl,imx8m-noc.yaml       | 4 ++--
+>   3 files changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+> index 0f73f436bea7..4bea51d1e7ea 100644
+> --- a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+> +++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+> @@ -136,7 +136,7 @@ examples:
+>         resets = <&reset 0>, <&reset 1>;
+>       };
+>   
+> -    gpu_opp_table: opp_table0 {
+> +    gpu_opp_table: opp-table {
+>         compatible = "operating-points-v2";
+>   
+>         opp-533000000 {
+> diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml
+> index 696c17aedbbe..d209f272625d 100644
+> --- a/Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml
+> +++ b/Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml
+> @@ -160,7 +160,7 @@ examples:
+>         #cooling-cells = <2>;
+>       };
+>   
+> -    gpu_opp_table: opp_table0 {
+> +    gpu_opp_table: opp-table {
+>         compatible = "operating-points-v2";
+>   
+>         opp-533000000 {
+> diff --git a/Documentation/devicetree/bindings/interconnect/fsl,imx8m-noc.yaml b/Documentation/devicetree/bindings/interconnect/fsl,imx8m-noc.yaml
+> index a8873739d61a..b8204ed22dd5 100644
+> --- a/Documentation/devicetree/bindings/interconnect/fsl,imx8m-noc.yaml
+> +++ b/Documentation/devicetree/bindings/interconnect/fsl,imx8m-noc.yaml
+> @@ -81,10 +81,10 @@ examples:
+>           noc_opp_table: opp-table {
+>               compatible = "operating-points-v2";
+>   
+> -            opp-133M {
+> +            opp-133333333 {
+>                   opp-hz = /bits/ 64 <133333333>;
+>               };
+> -            opp-800M {
+> +            opp-800000000 {
+>                   opp-hz = /bits/ 64 <800000000>;
+>               };
+>           };
+> 
 
