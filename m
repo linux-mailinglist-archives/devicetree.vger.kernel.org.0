@@ -2,186 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BE4F3CF590
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 09:53:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11C2D3CF5C4
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 10:10:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230092AbhGTHMN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 03:12:13 -0400
-Received: from foss.arm.com ([217.140.110.172]:52580 "EHLO foss.arm.com"
+        id S231922AbhGTH3y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 03:29:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49052 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230387AbhGTHLI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Jul 2021 03:11:08 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AEB601FB;
-        Tue, 20 Jul 2021 00:51:39 -0700 (PDT)
-Received: from bogus (unknown [10.57.79.213])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 48C533F73D;
-        Tue, 20 Jul 2021 00:51:36 -0700 (PDT)
-Date:   Tue, 20 Jul 2021 08:50:36 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Jens Wiklander <jens.wiklander@linaro.org>
-Cc:     Etienne CARRIERE <etienne.carriere@st.com>,
-        Sumit Garg <sumit.garg@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        OP-TEE TrustedFirmware <op-tee@lists.trustedfirmware.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Jerome Forissier <jerome@forissier.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
+        id S233052AbhGTH2l (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Jul 2021 03:28:41 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6DEC5611C1;
+        Tue, 20 Jul 2021 08:09:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1626768559;
+        bh=e+Xul9N8c1v7gB2wnRvFCrDRd+DUo3Ljiy1Wx5Ar1dw=;
+        h=From:To:Cc:Subject:Date:From;
+        b=aVKd51/c6UC5DyduiyZkuD/hdQuCxpT2zD2ieQiEldob48gs90cJniL7n6aPzkJBS
+         6EsNKqTOs3tSOnbFUCBZVCzIeI4uEKAHR0nS5E2gQRENTMl3apRHXe8OGrBBvMAhbu
+         Qjmf56PDdGaqAr60xQnDN+kLCWdCcJqscE422ueRAi3/g/iOhqxr0Bg5IRRJE1MxiY
+         l6pGP5mwRzqXf1vKm243FMkxYh3ZMI57HzvXVEWxUqOofZXXDr8tisRvaA+T27WXJe
+         XTSu2cuOx6n55vhWW8ASiTU34Wn4pOofT51Dl5dTdADocrhxdHa77fBoJwqZnXL916
+         On5eF4K1UKKhQ==
+Received: by mail.kernel.org with local (Exim 4.94.2)
+        (envelope-from <mchehab@kernel.org>)
+        id 1m5koX-000eT8-Bf; Tue, 20 Jul 2021 10:09:17 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Bjorn Helgaas <helgaas@kernel.org>, Rob Herring <robh@kernel.org>
+Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Binghui Wang <wangbinghui@hisilicon.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Etienne Carriere <etienne.carriere@linaro.org>
-Subject: Re: [PATCH v2 0/7] Asynchronous notifications from secure world
-Message-ID: <20210720075036.z2a5lcguu3xp3wqi@bogus>
-References: <PAXPR10MB4687E737261282B78600272DFD189@PAXPR10MB4687.EURPRD10.PROD.OUTLOOK.COM>
- <20210713111143.g6ztdakegs6ck25s@bogus>
- <CAHUa44G2xLn9td88H-n9E3yJ6JUnyGL4vZNj0rwisu2ArngYAw@mail.gmail.com>
+        Xiaowei Song <songxiaowei@hisilicon.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-phy@lists.infradead.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: [PATCH v6 0/9]  Add support for Hikey 970 PCIe
+Date:   Tue, 20 Jul 2021 10:09:02 +0200
+Message-Id: <cover.1626768323.git.mchehab+huawei@kernel.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAHUa44G2xLn9td88H-n9E3yJ6JUnyGL4vZNj0rwisu2ArngYAw@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 20, 2021 at 08:45:59AM +0200, Jens Wiklander wrote:
-> On Tue, Jul 13, 2021 at 1:12 PM Sudeep Holla <sudeep.holla@arm.com> wrote:
-> >
-> > On Fri, Jul 09, 2021 at 08:05:57AM +0000, Etienne CARRIERE wrote:
-> > > Hello Sudeep and all,
-> > >
-> > > On Wed, 7 Jul 2021 at 19:52, Sudeep Holla <sudeep.holla@arm.com> wrote:
-> > > >
-> > > > Hi Sumit,
-> > > >
-> > > > I was holding off you reply as I didn't have all the background on this.
-> > > > Achin did mention that this is preparatory work for FFA notifications.
-> > > > I did mention to him that this is more than that, it is custom extension
-> > > > to address what FF-A notification is trying to in standard way.
->
-> Are you suggesting that we should use a hybrid implementation with
-> FF-A for notifications and keep the rest as is for armv7-a?
->
+This series depends on this one:
+	https://lore.kernel.org/lkml/cover.1626515862.git.mchehab+huawei@kernel.org/
 
-No I was just mentioning that this patch series addresses notifications from
-secure world(optee in this case) which is very similar to what FF-A is trying
-to address too.
+It is available, with its patch dependencies against v5.14-rc1 at:
+	https://github.com/mchehab/linux/commits/pcie-alternate
 
-Anyways, you brought up interesting idea of hybrid model, it would be good if
-that is possible and the specification allows for that. I don't think it does
-in the current form, may need some amendments to allow that I think.
+This series add support at the pcie-kirin dirver for it to use a separate PHY driver.
 
-> > > >
-> > > > I share same opinion as Marc Z.
->
-> From what I've read in this thread this has mainly been about using
-> SGI notification and not whether asynchronous notification from OP-TEE
-> on non-FF-A systems is good or bad. I assume Sumit was asking about
-> SGI to find out why that wasn't used. This patch set uses SPI.
->
+Yet, in order to preserve the existing DT schema for Kirin 960, it keeps the
+Kirin 960 PHY inside the pci driver. I tried to find a way to split it while keeping
+the DT schema backward-compatible, but currently the PHY core doesn't allow
+that, as it relies on a "phy" property at the pcie node in order to recognize the
+PHY driver.
 
-I understand. I was trying(ineffectively) to tell why it is not so trivial
-to use SGI and how FF-A is enabling that.
+Once the pci-kiring is modified to support an external PHY driver, add a
+Kirin 970 PHY and add the needed properties for the HiKey 970 board to
+detect the PCIe.
 
-On SPI, so it is expected that platform has SPI available for this ?
+It should be noticed that the HiKey 970 design uses 4 different GPIO pins, one 
+for each PERST# signal for each PCIe bus device:
 
-> > > >
-> > > > On Wed, Jul 07, 2021 at 11:22:23AM +0530, Sumit Garg wrote:
-> > > > > On Tue, 6 Jul 2021 at 18:16, Marc Zyngier <maz@kernel.org> wrote:
-> > > >
-> > > > [...]
-> > > >
-> > > > > >
-> > > > > > I don't care about OP-TEE. If you are proposing a contract between S
-> > > > > > and NS, it has to be TEE and OS independent. That's how the
-> > > > > > architecture works.
-> > > > > >
-> > > > >
-> > > > > Agree, here we are not proposing a common contract among the S and NS
-> > > > > world that every TEE (based on Arm TrustZone) will use to communicate
-> > > > > with REE (Linux in our case) but rather an OP-TEE specific
-> > > > > notifications feature that is built on top of OP-TEE specific ABIs.
-> > > > >
-> > > > > And I can see your arguments coming from an FFA perspective but there
-> > > > > are platforms like the ones based on Armv7 which don't support FFA
-> > > > > ABI. Maybe Jens can elaborate how this feature will fit in when FFA
-> > > > > comes into picture?
-> > > > >
-> > > >
-> > > > I can understand that but won't those platforms add the support both in
-> > > > the kernel(current series) and secure world to address notifications.
-> > > > While you could argue that it is small extension to what is already present
-> > > > but I prefer they support FF-A is they need such a support instead of adding
-> > > > custom mechanisms. It is hard to maintain and each vendor will deviate
-> > > > from this custom mechanism and soon we will have bunch of them to handle.
->
-> Regarding deviation, are we still talking about the OP-TEE driver? So
-> far I haven't seen any vendor extensions at all in that driver.
->
+    - GPIO 56 has a pullup logic from 1V8 to 2V5
+      connected to a PCIe bridge chip (PEX 8606);
+    - GPIO 25 has a pullup logic from 1V8 to 3V3
+      connected to the PERST# pin at the M.2 slot;
+    - GPIO 220 has a pullup logic from 1V8 to 3V3
+      connected to the PERST# pin at the PCIe mini slot;
+    - GPIO 203 has a pullup logic from 1V8 to 3V3
+      connected to the PERST# pin at the Ethernet chipset.
 
-Yes, I was referring to addition of notification support in both worlds.
-I was trying to emphasize that both OPTEE and FF-A needs changes in the
-secure world. OPTEE changes could be small compared to starting with FF-A
-but it may result in deviation in notification hadling(in both worlds).
+At the first versions, those were mapped as part of the pci-bus, but the
+pci-bus.yaml schema only allows a single PERST# GPIO. So, on v5, those
+were moved to the PHY DT schema. However, as Rob complained, on this
+version, I opted to add a separate patch (the last one) that moves those
+back to the PCIe of-node. 
 
-> > >
-> > > There exist armv7-a platforms that expect OP-TEE notification support and
-> > > will not move the FF-A, like the stm32mp15. This platform won't move to FF-A
-> > > mainly due to the memory cost of the added SPM layer and the device physical
-> > > constraints.
-> >
-> > Fair enough on the use-case and the analysis for not being able to use FF-A.
-> > As you may already know it doesn't simply this problem. This has been
-> > discussed for years and FF-A was assumed to be the solution when FF-A
-> > spec work started.
-> >
-> > > We have a usecase for OP-TEE notification. We're working on the integration
-> > > of an SCMI server in OP-TEE. SCMI notification is a feature needed is this
-> > > scope and it requires OP-TEE async notification means as those proposed
-> > > here.
-> > >
-> >
-> > I am aware of this use-case, I understand. But I can only share rants
-> > which I know doesn't help much.
-> >
-> > > This OP-TEE async notif also brings a lot of value in OP-TEE as it allows a
-> > > OP-TEE secure thread (i.e. executing a trusted application service) to
-> > > gently wait on a secure interrupt (as a slow bus transaction completion or
-> > > many other usecase) with the CPU relaxed. This support is provided by the
-> > > proposed series. I believe existing device should be able to leverage this
-> > > OP-TEE feature without needing their OP-TEE to move to the new FF-A
-> > > interface.
-> > >
-> >
-> > While I agree these are nice to have in OPTEE, the timing is just odd.
-> >
-> > We are trying hard to push FF-A as standard solution to address all such
-> > issues that couldn't be solved with OPTEE + DT, now we are back to address
-> > the same in parallel to FF-A.
->
-> It's not exactly the same since the primary target here is armv7-a
-> where introducing FF-A isn't an obvious choice in all cases. For
-> OP-TEE armv7-a is special in the way that all secure world processing
-> is handled by OP-TEE. The internal secure monitor already takes care
-> of what's implemented in TF-A at EL3 for armv8-a.
->
+If such patch 09/09 is accepted, then this patch for the DT schema should 
+also be accepted:
 
-Fair enough.
+   https://github.com/devicetree-org/dt-schema/pull/56
 
-> This isn't meant to compete with FF-A, it's to make sure that the
-> OP-TEE armv7-a user base isn't left behind. This doesn't rule out FF-A
-> support for armv7-a for those prepared to take that step.
->
+Tested on Hikey970:
 
-Sure, as long as that is conveyed to the adopters of this, it should be
-fine. Do you have plans to disable this feature for armv8-a ? I see that
-as safe approach to avoid any kind of conflicts.
+  $ lspci
+  00:00.0 PCI bridge: Huawei Technologies Co., Ltd. Device 3670 (rev 01)
+  01:00.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+  02:01.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+  02:04.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+  02:05.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+  02:07.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+  02:09.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
+  06:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller (rev 07)
 
-I just don't want similar arguments used as excuse on armv8-a.
+  $ ethtool enp6s0
+  Settings for enp6s0:
+	Supported ports: [ TP	 MII ]
+	Supported link modes:   10baseT/Half 10baseT/Full
+	                        100baseT/Half 100baseT/Full
+	                        1000baseT/Half 1000baseT/Full
+	Supported pause frame use: Symmetric Receive-only
+	Supports auto-negotiation: Yes
+	Supported FEC modes: Not reported
+	Advertised link modes:  10baseT/Half 10baseT/Full
+	                        100baseT/Half 100baseT/Full
+	                        1000baseT/Half 1000baseT/Full
+	Advertised pause frame use: Symmetric Receive-only
+	Advertised auto-negotiation: Yes
+	Advertised FEC modes: Not reported
+	Link partner advertised link modes:  10baseT/Half 10baseT/Full
+	                                     100baseT/Half 100baseT/Full
+	Link partner advertised pause frame use: Symmetric Receive-only
+	Link partner advertised auto-negotiation: Yes
+	Link partner advertised FEC modes: Not reported
+	Speed: 100Mb/s
+	Duplex: Full
+	Auto-negotiation: on
+	master-slave cfg: preferred slave
+	master-slave status: slave
+	Port: Twisted Pair
+	PHYAD: 0
+	Transceiver: external
+	MDI-X: Unknown
+  netlink error: Operation not permitted
+	Link detected: yes
 
---
-Regards,
-Sudeep
+Also tested  that Hikey 960 keeps being supported:
+
+  $ lspci
+  00:00.0 PCI bridge: Huawei Technologies Co., Ltd. Device 3660 (rev 01)
+
+---
+
+v6:
+- Use an alternative approach, in order to keep the Kirin 960 PHY internal to 
+  the driver, in order to not break the DT schema. The PHY-specific code
+  were made self-contained at pcie-kirin, in order to make easier to split
+  it in the future, if needed.
+
+v5:
+- added "static" to hi3670_pcie_get_eyeparam() declaration on patch 6/8
+
+v4:
+
+- dropped the DTS patch, as it depends on a PMIC-related patch series;
+- minor changes at the patch description;
+- HiKey and HiSilicon are now using the preferred CamelCase format.
+
+Manivannan Sadhasivam (1):
+  arm64: dts: HiSilicon: Add support for HiKey 970 PCIe controller
+    hardware
+
+Mauro Carvalho Chehab (8):
+  PCI: kirin: Reorganize the PHY logic inside the driver
+  PCI: kirin: add support for a PHY layer
+  PCI: kirin: Use regmap for APB registers
+  dt-bindings: PCI: kirin: Fix compatible string
+  dt-bindings: phy: Add bindings for HiKey 970 PCIe PHY
+  phy: HiSilicon: Add driver for Kirin 970 PCIe PHY
+  dt-bindings: PCI: kirin-pcie.txt: Convert it to yaml
+  phy-hi3670-pcie: move reset-gpios to the PCIe DT schema
+
+ .../bindings/pci/hisilicon,kirin-pcie.yaml    |  87 ++
+ .../devicetree/bindings/pci/kirin-pcie.txt    |  50 -
+ .../devicetree/bindings/pci/snps,dw-pcie.yaml |   2 +-
+ .../phy/hisilicon,phy-hi3670-pcie.yaml        |  94 ++
+ MAINTAINERS                                   |   2 +-
+ arch/arm64/boot/dts/hisilicon/hi3670.dtsi     |  70 ++
+ .../boot/dts/hisilicon/hikey970-pmic.dtsi     |   1 -
+ drivers/pci/controller/dwc/pcie-kirin.c       | 408 +++++---
+ drivers/phy/hisilicon/Kconfig                 |  10 +
+ drivers/phy/hisilicon/Makefile                |   1 +
+ drivers/phy/hisilicon/phy-hi3670-pcie.c       | 896 ++++++++++++++++++
+ 11 files changed, 1424 insertions(+), 197 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pci/kirin-pcie.txt
+ create mode 100644 Documentation/devicetree/bindings/phy/hisilicon,phy-hi3670-pcie.yaml
+ create mode 100644 drivers/phy/hisilicon/phy-hi3670-pcie.c
+
+-- 
+2.31.1
+
+
