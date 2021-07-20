@@ -2,350 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A805F3D053F
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 01:28:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B2AA3D05B1
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 01:42:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230126AbhGTWlz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 18:41:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49684 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234895AbhGTWkG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 18:40:06 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64CA9C061762
-        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 16:20:43 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id t20so574963ljd.2
-        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 16:20:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=sKq1woBTUyULYPDu7yo7zlVbx4XofN3OKAwIuh07hbI=;
-        b=yOvXGX/+kPpR57fSC5dXG7cTRmbk13QUAI5/ooZ/TjW9AlfybvVrlVBCX+WqRLc5ct
-         WV5HzGGjrZDrJImi87VeCUDZ4NPvc0ueJCVZxbGLF2SC8KlPiWKVxDyyQED7vREUzaD1
-         CItf66UYVe70OZSB10zfoTbv6XqghgIlmJVzRIzBS7BOc9xvi1dObpV/C5Aq0Wacu8xt
-         mhU+cL7vhyfVVw1GQrWiJtdmo8wzCZinCxNkSI+DsBkOoOq8p1zwHSurIl8eKXzqJ3Su
-         qSLK+tJvsdpHXqsI/7ZOmPmFwcUzqQ+53zYZadrGEJS0AYCk+++7NAcfBgsAgYW4ZLMM
-         Pg3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=sKq1woBTUyULYPDu7yo7zlVbx4XofN3OKAwIuh07hbI=;
-        b=eiIEs8RnvGGV8L38B8yIR+5mzwZCwYH8emgvAbWNpmNN7CErsROPW7xWo7a/SoSLQT
-         jdiEm7RgXlW3s0hgWGZXSu3EMOcNXHtGtY7UmKPp0nKmxhtjNwFzjwoZjP9/8lDCdvD5
-         YcFWCABKcG9ITTCANccEEnxx3qkhq4KGwpQ1TbmVXRn3aMhwjtKsb3ZjxKQRiUgoC5WF
-         w4/M0qNlMOU1NEFUZOEkiJXYC7ow9RuEHDDdNtmiIoTFuq6vm6OuYXSMWHnKC+wOk2ee
-         uzb7pWHGOOKIJByaIpaFHL2Fu1rdd7rdkQ1rZka078BZbZDP12K7mNIap7Xp9AvitF/1
-         YJTw==
-X-Gm-Message-State: AOAM533Cm15i8rVyOXT0PeJv8ugA09obaU/OgRgvraitYLEdQPsV9rNK
-        E1cICMfEyqDXozcyPuKzSltIxA==
-X-Google-Smtp-Source: ABdhPJxXa3OZwe3CXl6qZbv2KZ9W0Lqb7/X9ZET9+A8JKO+bhz1LHyPmOZdC/QK+MN1R2K+nDGfqMw==
-X-Received: by 2002:a2e:3508:: with SMTP id z8mr28548265ljz.7.1626823241733;
-        Tue, 20 Jul 2021 16:20:41 -0700 (PDT)
-Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
-        by smtp.gmail.com with ESMTPSA id t19sm654901lfr.204.2021.07.20.16.20.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jul 2021 16:20:41 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-clk@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>
-Subject: [PATCH 1/2 v2] dt-bindings: clock: u8500: Rewrite in YAML and extend
-Date:   Wed, 21 Jul 2021 01:18:36 +0200
-Message-Id: <20210720231837.1576130-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.31.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S235485AbhGTWxc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 18:53:32 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:2474 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S236189AbhGTWvg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Jul 2021 18:51:36 -0400
+Date:   21 Jul 2021 08:32:07 +0900
+X-IronPort-AV: E=Sophos;i="5.84,256,1620658800"; 
+   d="scan'208";a="88292147"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 21 Jul 2021 08:32:07 +0900
+Received: from mercury.renesas.com (unknown [10.166.252.133])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id C47BF41221A2;
+        Wed, 21 Jul 2021 08:32:07 +0900 (JST)
+Message-ID: <87lf60v9xk.wl-kuninori.morimoto.gx@renesas.com>
+From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 09/14] ASoC: audio-graph-card2: add Yaml Document
+In-Reply-To: <CAL_JsqJKZ-sjbnihAkdXDk4tW8xVmyhwkHLHWouZg6da0cc99g@mail.gmail.com>
+References: <87a6mhwyqn.wl-kuninori.morimoto.gx@renesas.com>
+        <87wnplvk2a.wl-kuninori.morimoto.gx@renesas.com>
+        <CAL_JsqJKZ-sjbnihAkdXDk4tW8xVmyhwkHLHWouZg6da0cc99g@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 Emacs/26.3 Mule/6.0
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This rewrites the ux500/u8500 clock bindings in YAML schema and extends them
-with the PRCC reset controller.
 
-The bindings are a bit idiomatic but it just reflects their age, the ux500
-platform was used as guinea pig for early device tree conversion of platforms
-in 2015. The new subnode for the reset controller follows the pattern of the
-old bindings and adds a node with reset-cells for this.
+Hi Rob
 
-Cc: devicetree@vger.kernel.org
-Cc: Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> Why do we need these changes? I'm not wild about a new generic binding
+> replacing an existing one which only has 2 or 3 users IIRC. Plus
+> there's already the Renesas variant. (On the flip side, only a few
+> users, easier to deprecate the old binding.)
+
+Sorry I don't understand
+	- Who is "2 or 3 users" ?
+	- What is "Renesas variant" ?
+
+audio-graph-card2 is based on audio-graph-card,
+but different driver not minor variant.
+Becase these are different, it can't keep compatibility.
+This is the reason why we need audio-graph-card2 instead of expanding
+audio-graph-card.
+
+> I also would like to see the graph card replace the simple card
+> binding. Surely it can handle the 'simple' case too.
+
+Do you mean you want to merge audio-graph-card and simple-card DT binding ??
+audio-graph-card and simple-card are different drivers.
+
+Thank you for your help !!
+
+Best regards
 ---
-ChangeLog v1->v2:
-- Use an enum for compatible.
-- Mark the reset controller as object (node)
-- Mandate 2 #reset-cells on the reset controller.
-- Small blurb that PRCC 4 does not exist.
-- Rebase on v5.14-rc1
-- Cc Philipp Zabel
----
- .../bindings/clock/stericsson,u8500-clks.yaml | 121 ++++++++++++++++++
- .../devicetree/bindings/clock/ux500.txt       |  64 ---------
- .../reset/stericsson,db8500-prcc-reset.h      |  51 ++++++++
- 3 files changed, 172 insertions(+), 64 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml
- delete mode 100644 Documentation/devicetree/bindings/clock/ux500.txt
- create mode 100644 include/dt-bindings/reset/stericsson,db8500-prcc-reset.h
-
-diff --git a/Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml b/Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml
-new file mode 100644
-index 000000000000..9bc95a308477
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml
-@@ -0,0 +1,121 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/stericsson,u8500-clks.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ST-Ericsson DB8500 (U8500) clocks
-+
-+maintainers:
-+  - Ulf Hansson <ulf.hansson@linaro.org>
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description: While named "U8500 clocks" these clocks are inside the
-+  DB8500 digital baseband system-on-chip and its siblings such as
-+  DB8520. These bindings consider the clocks present in the SoC
-+  itself, not off-chip clocks. There are four different on-chip
-+  clocks - RTC (32 kHz), CPU clock (SMP TWD), PRCMU (power reset and
-+  control management unit) clocks and PRCC (peripheral reset and
-+  clock controller) clocks. For some reason PRCC 4 does not exist so
-+  the itemization can be a bit unintuitive.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - stericsson,u8500-clks
-+      - stericsson,u8540-clks
-+      - stericsson,u9540-clks
-+
-+  reg:
-+    items:
-+      - description: PRCC 1 register area
-+      - description: PRCC 2 register area
-+      - description: PRCC 3 register area
-+      - description: PRCC 5 register area
-+      - description: PRCC 6 register area
-+
-+  prcmu-clock:
-+    description: A subnode with one clock cell for PRCMU (power, reset, control
-+      management unit) clocks. The cell indicates which PRCMU clock in the
-+      prcmu-clock node the consumer wants to use.
-+    type: object
-+
-+    properties:
-+      '#clock-cells':
-+        const: 1
-+
-+    additionalProperties: false
-+
-+  prcc-periph-clock:
-+    description: A subnode with two clock cells for PRCC (peripheral
-+      reset and clock controller) peripheral clocks. The first cell indicates
-+      which PRCC block the consumer wants to use, possible values are 1, 2, 3,
-+      5, 6. The second cell indicates which clock inside the PRCC block it
-+      wants, possible values are 0 thru 31.
-+    type: object
-+
-+    properties:
-+      '#clock-cells':
-+        const: 2
-+
-+    additionalProperties: false
-+
-+  prcc-kernel-clock:
-+    description: A subnode with two clock cells for PRCC (peripheral reset
-+      and clock controller) kernel clocks. The first cell indicates which PRCC
-+      block the consumer wants to use, possible values are 1, 2, 3, 5, 6. The
-+      second cell indicates which clock inside the PRCC block it wants, possible
-+      values are 0 thru 31.
-+    type: object
-+
-+    properties:
-+      '#clock-cells':
-+        const: 2
-+
-+    additionalProperties: false
-+
-+  prcc-reset-controller:
-+    description: A subnode with two reset cells for the reset portions of the
-+      PRCC (peripheral reset and clock controller). The first cell indicates
-+      which PRCC block the consumer wants to use, possible values are 1, 2, 3
-+      5 and 6. The second cell indicates which reset line inside the PRCC block
-+      it wants to control, possible values are 0 thru 31.
-+    type: object
-+
-+    properties:
-+      '#reset-cells':
-+        const: 2
-+
-+    additionalProperties: false
-+
-+  rtc32k-clock:
-+    description: A subnode with zero clock cells for the 32kHz RTC clock.
-+    type: object
-+
-+    properties:
-+      '#clock-cells':
-+        const: 0
-+
-+    additionalProperties: false
-+
-+  smp-twd-clock:
-+    description: A subnode for the ARM SMP Timer Watchdog cluster with zero
-+      clock cells.
-+    type: object
-+
-+    properties:
-+      '#clock-cells':
-+        const: 0
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - prcmu-clock
-+  - prcc-periph-clock
-+  - prcc-kernel-clock
-+  - rtc32k-clock
-+  - smp-twd-clock
-+
-+additionalProperties: false
-diff --git a/Documentation/devicetree/bindings/clock/ux500.txt b/Documentation/devicetree/bindings/clock/ux500.txt
-deleted file mode 100644
-index e52bd4b72348..000000000000
---- a/Documentation/devicetree/bindings/clock/ux500.txt
-+++ /dev/null
-@@ -1,64 +0,0 @@
--Clock bindings for ST-Ericsson Ux500 clocks
--
--Required properties :
--- compatible : shall contain only one of the following:
--  "stericsson,u8500-clks"
--  "stericsson,u8540-clks"
--  "stericsson,u9540-clks"
--- reg : shall contain base register location and length for
--  CLKRST1, 2, 3, 5, and 6 in an array. Note the absence of
--  CLKRST4, which does not exist.
--
--Required subnodes:
--- prcmu-clock: a subnode with one clock cell for PRCMU (power,
--  reset, control unit) clocks. The cell indicates which PRCMU
--  clock in the prcmu-clock node the consumer wants to use.
--- prcc-periph-clock: a subnode with two clock cells for
--  PRCC (programmable reset- and clock controller) peripheral clocks.
--  The first cell indicates which PRCC block the consumer
--  wants to use, possible values are 1, 2, 3, 5, 6. The second
--  cell indicates which clock inside the PRCC block it wants,
--  possible values are 0 thru 31.
--- prcc-kernel-clock: a subnode with two clock cells for
--  PRCC (programmable reset- and clock controller) kernel clocks
--  The first cell indicates which PRCC block the consumer
--  wants to use, possible values are 1, 2, 3, 5, 6. The second
--  cell indicates which clock inside the PRCC block it wants,
--  possible values are 0 thru 31.
--- rtc32k-clock: a subnode with zero clock cells for the 32kHz
--  RTC clock.
--- smp-twd-clock: a subnode for the ARM SMP Timer Watchdog cluster
--  with zero clock cells.
--
--Example:
--
--clocks {
--	compatible = "stericsson,u8500-clks";
--	/*
--	 * Registers for the CLKRST block on peripheral
--	 * groups 1, 2, 3, 5, 6,
--	 */
--	reg = <0x8012f000 0x1000>, <0x8011f000 0x1000>,
--	    <0x8000f000 0x1000>, <0xa03ff000 0x1000>,
--	    <0xa03cf000 0x1000>;
--
--	prcmu_clk: prcmu-clock {
--		#clock-cells = <1>;
--	};
--
--	prcc_pclk: prcc-periph-clock {
--		#clock-cells = <2>;
--	};
--
--	prcc_kclk: prcc-kernel-clock {
--		#clock-cells = <2>;
--	};
--
--	rtc_clk: rtc32k-clock {
--		#clock-cells = <0>;
--	};
--
--	smp_twd_clk: smp-twd-clock {
--		#clock-cells = <0>;
--	};
--};
-diff --git a/include/dt-bindings/reset/stericsson,db8500-prcc-reset.h b/include/dt-bindings/reset/stericsson,db8500-prcc-reset.h
-new file mode 100644
-index 000000000000..ea906896c70f
---- /dev/null
-+++ b/include/dt-bindings/reset/stericsson,db8500-prcc-reset.h
-@@ -0,0 +1,51 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+
-+#ifndef _DT_BINDINGS_STE_PRCC_RESET
-+#define _DT_BINDINGS_STE_PRCC_RESET
-+
-+#define DB8500_PRCC_1				1
-+#define DB8500_PRCC_2				2
-+#define DB8500_PRCC_3				3
-+#define DB8500_PRCC_6				6
-+
-+/* Reset lines on PRCC 1 */
-+#define DB8500_PRCC_1_RESET_UART0		0
-+#define DB8500_PRCC_1_RESET_UART1		1
-+#define DB8500_PRCC_1_RESET_I2C1		2
-+#define DB8500_PRCC_1_RESET_MSP0		3
-+#define DB8500_PRCC_1_RESET_MSP1		4
-+#define DB8500_PRCC_1_RESET_SDI0		5
-+#define DB8500_PRCC_1_RESET_I2C2		6
-+#define DB8500_PRCC_1_RESET_SPI3		7
-+#define DB8500_PRCC_1_RESET_SLIMBUS0		8
-+#define DB8500_PRCC_1_RESET_I2C4		9
-+#define DB8500_PRCC_1_RESET_MSP3		10
-+#define DB8500_PRCC_1_RESET_PER_MSP3		11
-+#define DB8500_PRCC_1_RESET_PER_MSP1		12
-+#define DB8500_PRCC_1_RESET_PER_MSP0		13
-+#define DB8500_PRCC_1_RESET_PER_SLIMBUS		14
-+
-+/* Reset lines on PRCC 2 */
-+#define DB8500_PRCC_2_RESET_I2C3		0
-+#define DB8500_PRCC_2_RESET_PWL			1
-+#define DB8500_PRCC_2_RESET_SDI4		2
-+#define DB8500_PRCC_2_RESET_MSP2		3
-+#define DB8500_PRCC_2_RESET_SDI1		4
-+#define DB8500_PRCC_2_RESET_SDI3		5
-+#define DB8500_PRCC_2_RESET_HSIRX		6
-+#define DB8500_PRCC_2_RESET_HSITX		7
-+#define DB8500_PRCC_1_RESET_PER_MSP2		8
-+
-+/* Reset lines on PRCC 3 */
-+#define DB8500_PRCC_3_RESET_SSP0		1
-+#define DB8500_PRCC_3_RESET_SSP1		2
-+#define DB8500_PRCC_3_RESET_I2C0		3
-+#define DB8500_PRCC_3_RESET_SDI2		4
-+#define DB8500_PRCC_3_RESET_SKE			5
-+#define DB8500_PRCC_3_RESET_UART2		6
-+#define DB8500_PRCC_3_RESET_SDI5		7
-+
-+/* Reset lines on PRCC 6 */
-+#define DB8500_PRCC_3_RESET_RNG			0
-+
-+#endif
--- 
-2.31.1
-
+Kuninori Morimoto
