@@ -2,259 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 884EB3D0275
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 22:02:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 067353D0322
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 22:46:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229841AbhGTTVL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 15:21:11 -0400
-Received: from relay1-d.mail.gandi.net ([217.70.183.193]:37877 "EHLO
-        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230366AbhGTTVC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 15:21:02 -0400
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id D0275240007;
-        Tue, 20 Jul 2021 20:01:37 +0000 (UTC)
-Date:   Tue, 20 Jul 2021 22:01:37 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Romain Perier <romain.perier@gmail.com>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Daniel Palmer <daniel@0x0f.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/3] rtc: Add support for the MSTAR MSC313 RTC
-Message-ID: <YPcroRmHYEV9BWaJ@piout.net>
-References: <20210720172251.4504-1-romain.perier@gmail.com>
- <20210720172251.4504-3-romain.perier@gmail.com>
+        id S230462AbhGTT7m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 15:59:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38328 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236534AbhGTTne (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 15:43:34 -0400
+Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 352D0C061574
+        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 13:24:09 -0700 (PDT)
+Received: by mail-oi1-x233.google.com with SMTP id w194so533779oie.5
+        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 13:24:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Eq/uiZDuvdJ/Xw4zS+t5ljdYkTNbxJWlm0+PiRx6ysk=;
+        b=PitbgXY23zjfZsNjnv37vYkjSj1Kr2jR3jhnJp3VJ6O2dk8n/+zXfDedz0kJZTiDXc
+         MkpLUmeFLBwTFwq6TYwtwmoXAWjAAMrIarPNZSDXf3rLQt/cgO8E5FqL6iBb40iL8qBx
+         zuus4A5uJfdoLQD/DHMGhGGhhJJHfVXhm702fLQL4fD4lGMb24huIinyLiVmGTP1HSE/
+         J4jEmvxjPkFxbfTPBGQrz0/JPr6CxLrQbOdDa5mSXubt1Gm35dEaq6CNMln4vP+JiO09
+         Ajh87TANIGgRy13Ohf+tVhc/rNrhM32Q1mXskAtsGNHEzOQ4aJqVekvqDAQMA3Vr4ukU
+         YhxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Eq/uiZDuvdJ/Xw4zS+t5ljdYkTNbxJWlm0+PiRx6ysk=;
+        b=H3ZKxRRw0Rrh8zdA3Nsk9mkCWXv9uYIzlAx3378RK+U+mHIEniAN75wsfAW3nlS8c0
+         WEI4H4B2cuhmhhkF//kKo6jldBtNxoRtiz/DC28QAwOKlY4JohN6Ez/UGUMlmZSECnFW
+         L+aMKl52aW2WwHhFdm0fBBlBlSsWxknl8l4Bk1m2mxFqeA17XrG5vuw4A8YHO5uaRVUO
+         xG8EeTecHq64vZ5T1oSypEsq3GVrIMktkDq0wtCZRJmLwRjgT9lL5ALC2R4bAUdiKQby
+         86aHCg0bunbPlS0+PKAyk3W0vdtpU3l/cIVOjq48/esGYddS7MdwiWqZjwOjVt4VajcO
+         5boQ==
+X-Gm-Message-State: AOAM530tH6K+tpgKBCwlFvTGM8rfz8QMd1us41PjClS3lU4xJevlFxqa
+        u8CzO/NvYJbFV3hY5Yiv71+JV5MzVd4=
+X-Google-Smtp-Source: ABdhPJxXpyzamO2OP/05X7FkjFdLp7jDw+Uo6hoh0iDxvU5CkKRAY8LSWEP7YhfeRCMx1q5O1bnSEg==
+X-Received: by 2002:aca:4dc6:: with SMTP id a189mr174778oib.166.1626812648136;
+        Tue, 20 Jul 2021 13:24:08 -0700 (PDT)
+Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
+        by smtp.gmail.com with ESMTPSA id v7sm4148162ooj.46.2021.07.20.13.24.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Jul 2021 13:24:07 -0700 (PDT)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     robh+dt@kernel.org, heiko@sntech.de, maccraft123mc@gmail.com,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH] arm64: dts: rockchip: Correct regulator for USB host
+Date:   Tue, 20 Jul 2021 15:23:54 -0500
+Message-Id: <20210720202354.5179-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210720172251.4504-3-romain.perier@gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Romain,
+From: Chris Morgan <macromorgan@hotmail.com>
 
-On 20/07/2021 19:22:50+0200, Romain Perier wrote:
-> From: Daniel Palmer <daniel@0x0f.com>
-> 
-> This adds support for the RTC block on the Mstar MSC313e SoCs and newer.
-> 
-> Signed-off-by: Daniel Palmer <daniel@0x0f.com>
-> Co-developed-by: Romain Perier <romain.perier@gmail.com>
-> Signed-off-by: Romain Perier <romain.perier@gmail.com>
-> ---
->  MAINTAINERS              |   1 +
->  drivers/rtc/Kconfig      |  10 ++
->  drivers/rtc/Makefile     |   1 +
->  drivers/rtc/rtc-msc313.c | 246 +++++++++++++++++++++++++++++++++++++++
->  4 files changed, 258 insertions(+)
->  create mode 100644 drivers/rtc/rtc-msc313.c
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 6c8be735cc91..7e8d1a375e0d 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -2220,6 +2220,7 @@ F:	arch/arm/boot/dts/mstar-*
->  F:	arch/arm/mach-mstar/
->  F:	drivers/clk/mstar/
->  F:	drivers/gpio/gpio-msc313.c
-> +F:	drivers/rtc/rtc-msc313.c
->  F:	drivers/watchdog/msc313e_wdt.c
->  F:	include/dt-bindings/clock/mstar-*
->  F:	include/dt-bindings/gpio/msc313-gpio.h
-> diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
-> index 12153d5801ce..67870b422bc5 100644
-> --- a/drivers/rtc/Kconfig
-> +++ b/drivers/rtc/Kconfig
-> @@ -1925,4 +1925,14 @@ config RTC_DRV_WILCO_EC
->  	  This can also be built as a module. If so, the module will
->  	  be named "rtc_wilco_ec".
->  
-> +config RTC_DRV_MSC313
-> +	tristate "MStar MSC313 RTC"
-> +        depends on ARCH_MSTARV7
+When writing a battery driver, I noticed that the USB voltage was ~3.7V
+while running off of battery on a mainline kernel. After consulting the
+schematics for the Odroid Go Advance, it appears that the BOOST
+regulator is involved in the process of powering the USB host. Power
+for the USB host goes from the vccsys regulator into the PMIC, then out
+from the PMIC BOOST regulator into the FC9516A (which is controlled by
+GPIO), which then feeds power into the USB host. I also added the
+vcc_host regulator as the phy-supply for the host USB port, which
+accurately describes the hardware. I named the regulator usb_midu
+because on the datasheet the pin is described as "MIDU/BOOST - middle
+point of USB power supply / boost output". Making these changes solved
+the USB power issue on battery and I'm now reading approximately 5V.
 
-|| COMPILE_TEST maybe ?
+Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
 
-> +	help
-> +	  If you say yes here you get support for the Mstar MSC313e On-Chip
-> +	  Real Time Clock.
-> +
-> +	  This driver can also be built as a module, if so, the module
-> +	  will be called "rtc-msc313".
-> +
->  endif # RTC_CLASS
-
-
-> +static int msc313_rtc_read_time(struct device *dev, struct rtc_time *tm)
-> +{
-> +	struct msc313_rtc *priv = dev_get_drvdata(dev);
-> +	u32 seconds;
-> +	u16 reg;
-> +
-> +	reg = readw(priv->rtc_base + REG_RTC_CTRL);
-> +	writew(reg | READ_EN_BIT, priv->rtc_base + REG_RTC_CTRL);
-> +
-> +	/* Wait for HW latch done */
-> +	while (readw(priv->rtc_base + REG_RTC_CTRL) & READ_EN_BIT)
-> +		udelay(1);
-> +
-> +	seconds = readw(priv->rtc_base + REG_RTC_CNT_VAL_L)
-> +			| (readw(priv->rtc_base + REG_RTC_CNT_VAL_H) << 16);
-> +
-> +	rtc_time64_to_tm(seconds, tm);
-> +
-> +	return rtc_valid_tm(tm);
-
-This is not necessary, tm is valid at that point (and the core will
-check anyway).
-
-> +}
-> +
-> +static int msc313_rtc_set_time(struct device *dev, struct rtc_time *tm)
-> +{
-> +	struct msc313_rtc *priv = dev_get_drvdata(dev);
-> +	unsigned long seconds;
-> +	u16 reg;
-> +
-> +	seconds = rtc_tm_to_time64(tm);
-> +	writew(seconds & 0xFFFF, priv->rtc_base + REG_RTC_LOAD_VAL_L);
-> +	writew((seconds >> 16) & 0xFFFF, priv->rtc_base + REG_RTC_LOAD_VAL_H);
-> +	reg = readw(priv->rtc_base + REG_RTC_CTRL);
-> +	writew(reg | LOAD_EN_BIT, priv->rtc_base + REG_RTC_CTRL);
-> +
-> +	/* need to check carefully if we want to clear REG_RTC_LOAD_VAL_H for customer*/
-> +	while (readw(priv->rtc_base + REG_RTC_CTRL) & LOAD_EN_BIT)
-> +		udelay(1);
-> +	writew(0, priv->rtc_base + REG_RTC_LOAD_VAL_H);
-
-Why is that necessary? The comment is not super useful here.
-
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct rtc_class_ops msc313_rtc_ops = {
-> +	.read_time = msc313_rtc_read_time,
-> +	.set_time = msc313_rtc_set_time,
-> +	.read_alarm = msc313_rtc_read_alarm,
-> +	.set_alarm = msc313_rtc_set_alarm,
-> +	.alarm_irq_enable = msc313_rtc_alarm_irq_enable,
-> +};
-> +
-> +static irqreturn_t msc313_rtc_interrupt(s32 irq, void *dev_id)
-> +{
-> +	struct msc313_rtc *priv = dev_get_drvdata(dev_id);
-> +	u16 reg;
-> +
-> +	reg = readw_relaxed(priv->rtc_base + REG_RTC_CTRL);
-> +	reg |= INT_CLEAR_BIT;
-> +	reg &= ~INT_FORCE_BIT;
-> +	writew_relaxed(reg, priv->rtc_base + REG_RTC_CTRL);
-> +
-
-I'm not convinced the _relaxed functions are doing the right thing here.
-Also, shouldn't you check the alarm actually fired?
-
-> +	rtc_update_irq(priv->rtc_dev, 1, RTC_IRQF | RTC_AF);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static int msc313_rtc_remove(struct platform_device *pdev)
-> +{
-> +	struct msc313_rtc *priv = platform_get_drvdata(pdev);
-> +
-> +	clk_disable_unprepare(priv->clk);
-
-With a nice devm_add_action_or_reset() in the probe, you can remove the
-need for msc313_rtc_remove().
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int msc313_rtc_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct msc313_rtc *priv;
-> +	int ret;
-> +	int irq;
-> +	unsigned long rate;
-> +	u16 reg;
-> +
-> +	priv = devm_kzalloc(&pdev->dev, sizeof(struct msc313_rtc), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->rtc_base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(priv->rtc_base))
-> +		return PTR_ERR(priv->rtc_base);
-> +
-> +	irq = platform_get_irq(pdev, 0);
-> +	if (irq < 0)
-> +		return -EINVAL;
-> +
-> +	ret = devm_request_irq(dev, irq, msc313_rtc_interrupt, IRQF_SHARED,
-> +			       dev_name(&pdev->dev), &pdev->dev);
-> +	if (ret) {
-> +		dev_err(dev, "Unable to request irq\n");
-> +		return ret;
-> +	}
-> +
-> +	priv->clk = devm_clk_get(dev, NULL);
-> +	if (IS_ERR(priv->clk)) {
-> +		dev_err(dev, "No input reference clock\n");
-> +		return PTR_ERR(priv->clk);
-> +	}
-> +
-> +	ret = clk_prepare_enable(priv->clk);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to enable the reference clock, %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	rate = clk_get_rate(priv->clk);
-> +
-> +	reg = readw(priv->rtc_base + REG_RTC_CTRL);
-> +	if (!(reg & SOFT_RSTZ_BIT)) {
-> +		reg |= SOFT_RSTZ_BIT;
-> +		writew(reg, priv->rtc_base + REG_RTC_CTRL);
-> +	}
-
-What is the meaning of this bit? I would think it is better to use that
-to know whether the RTC holds the correct time instead of killing the
-info here.
-
-> +
-> +	writew(rate & 0xFFFF, priv->rtc_base + REG_RTC_FREQ_CW_L);
-> +	writew((rate >> 16) & 0xFFFF, priv->rtc_base + REG_RTC_FREQ_CW_H);
-> +
-> +	reg |= CNT_EN_BIT;
-> +	writew(reg, priv->rtc_base + REG_RTC_CTRL);
-> +
-> +	platform_set_drvdata(pdev, priv);
-> +
-> +	priv->rtc_dev = devm_rtc_device_register(dev, dev_name(dev), &msc313_rtc_ops, THIS_MODULE);
-> +	if (IS_ERR(priv->rtc_dev)) {
-> +		dev_err(dev, "Failed to register rtc device\n");
-> +		return PTR_ERR(priv->rtc_dev);
-> +	}
-
-Please switch to devm_rtc_allocate_device and devm_rtc_register_device.
-Also drop the error message, it is not necessary.
-
-You must also set the RTC range. To help you, you can use:
-https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/rtc-tools.git/tree/rtc-range.c
-then you must update the DT bindings as the RTC will support the
-start-year property
-
-You must also run rtctest and should include the results.
-
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
+index 7fc674a99a6c..79d2f86ab46d 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
+@@ -207,7 +207,7 @@ vcc_host: vcc_host {
+ 		gpio = <&gpio0 RK_PB7 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
+ 		regulator-always-on;
+-		vin-supply = <&vccsys>;
++		vin-supply = <&usb_midu>;
+ 	};
+ };
+ 
+@@ -311,6 +311,7 @@ rk817: pmic@20 {
+ 		vcc5-supply = <&vccsys>;
+ 		vcc6-supply = <&vccsys>;
+ 		vcc7-supply = <&vccsys>;
++		vcc8-supply = <&vccsys>;
+ 
+ 		regulators {
+ 			vdd_logic: DCDC_REG1 {
+@@ -460,6 +461,14 @@ regulator-state-mem {
+ 					regulator-suspend-microvolt = <3000000>;
+ 				};
+ 			};
++
++			usb_midu: BOOST {
++				regulator-name = "usb_midu";
++				regulator-min-microvolt = <5000000>;
++				regulator-max-microvolt = <5400000>;
++				regulator-always-on;
++				regulator-boot-on;
++			};
+ 		};
+ 
+ 		rk817_codec: codec {
+@@ -525,6 +534,7 @@ &u2phy {
+ 	status = "okay";
+ 
+ 	u2phy_host: host-port {
++		phy-supply = <&vcc_host>;
+ 		status = "okay";
+ 	};
+ 
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.25.1
+
