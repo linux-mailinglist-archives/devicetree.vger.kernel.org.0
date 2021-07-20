@@ -2,134 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F4BB3CF791
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 12:15:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D070B3CF7BC
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 12:23:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236346AbhGTJeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 05:34:50 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:17034 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236159AbhGTJdx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Jul 2021 05:33:53 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1626776068; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=iaqWHZmgS8Lu3MlAqmI7Z55aQR1Dhk3as4p++438MG0=; b=G4vCOpERZYBhLq0kX6nQPbNRDIw1mw3rTNI9zClIOfZsOnYrGbFVIaNNIwVlN5TYlKKsMjXO
- oLtPTM6ju5Ayxwen4MWgt44jR3boujpqWJANs2Q+W2SDuOBbJ+8URKSBFAdhqff+y2nWP/lS
- DBoV8jMDLiJgKKGsc5hqEWs8vqk=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
- 60f6a2001d1afe585eee94be (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 20 Jul 2021 10:14:24
- GMT
-Sender: sibis=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 8BDFFC43460; Tue, 20 Jul 2021 10:14:24 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from blr-ubuntu-87.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: sibis)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 9DBCEC4360C;
-        Tue, 20 Jul 2021 10:14:18 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 9DBCEC4360C
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=sibis@codeaurora.org
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     bjorn.andersson@linaro.org, robh+dt@kernel.org, will@kernel.org,
-        saiprakash.ranjan@codeaurora.org, mka@chromium.org
-Cc:     ohad@wizery.com, agross@kernel.org, mathieu.poirier@linaro.org,
-        robin.murphy@arm.com, joro@8bytes.org, p.zabel@pengutronix.de,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, evgreen@chromium.org,
-        dianders@chromium.org, swboyd@chromium.org,
-        Sibi Sankar <sibis@codeaurora.org>
-Subject: [PATCH v2 10/10] arm64: dts: qcom: sc7280: Update Q6V5 MSS node
-Date:   Tue, 20 Jul 2021 15:43:00 +0530
-Message-Id: <1626775980-28637-11-git-send-email-sibis@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1626775980-28637-1-git-send-email-sibis@codeaurora.org>
-References: <1626775980-28637-1-git-send-email-sibis@codeaurora.org>
+        id S236846AbhGTJlH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 05:41:07 -0400
+Received: from mail-vk1-f175.google.com ([209.85.221.175]:35390 "EHLO
+        mail-vk1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236430AbhGTJk1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 05:40:27 -0400
+Received: by mail-vk1-f175.google.com with SMTP id d7so4457431vkf.2;
+        Tue, 20 Jul 2021 03:21:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=t3ZjcsKyMCs8EAu6vLk3qNYhP9FzOKu10cixbnS0WFM=;
+        b=AnXhBPICi8rm1xs6EGPMwaWX4F69FqPJYh1Sd4F15v7LfaoMS70xV+xzeLNFRCeK8m
+         g80Fc5fHtrovjDV3DJ+VrlgD1+N+zZoTrHQKyM8bpa1SOojJYS7mRKV88EAtvyHQEtSn
+         7l8hOdA1qVom41ch03q6k6pEu56lKZtdYMKMZ3Eyf4RbFR90o0UqkgerZAjslsKKf2aT
+         f8Yvi6NXyJGSp/9mT8NLrGZZlddMuyJjKKt7ZQiDSmrqW0F1m+SxKjnbEgXe0XwW4sbC
+         RngCLdW/DIBeDH8lhkEgvfXkP4jTxJFQDyKFDmNqW8vsTS9kqx8N2OnErlPLElg+Yet9
+         VVSg==
+X-Gm-Message-State: AOAM532H2JeV2RsNJnTVPiB0+OxM1q6As5nviXUDloHEKliW6+b5uH5h
+        GiPOq7NE7vp/v/bDlmUEFWYYC84Nabo8Ww4u68S2UqhgLak=
+X-Google-Smtp-Source: ABdhPJzwKBBMCHAKd1HCgWQzlIm99pF6UYc3GUznLjiSmkL+xSsHOJZ2HsElwYwl6AdrLpRDjH62WLjjBgovo33fffo=
+X-Received: by 2002:a1f:2746:: with SMTP id n67mr25101438vkn.5.1626776464175;
+ Tue, 20 Jul 2021 03:21:04 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210719143811.2135-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210719143811.2135-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20210719143811.2135-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 20 Jul 2021 12:20:53 +0200
+Message-ID: <CAMuHMdV1cLZkvyocVrAo6n6Y73QZBGOUMeJKqjk533gqk_RVLg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: net: can: renesas,rcar-canfd:
+ Document RZ/G2L SoC
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-can@vger.kernel.org, netdev <netdev@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update MSS node to support MSA based modem boot on SC7280 SoCs.
+Hi Prabhakar,
 
-Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/sc7280-idp.dts |  7 +++++++
- arch/arm64/boot/dts/qcom/sc7280.dtsi    | 19 ++++++++++++++++---
- 2 files changed, 23 insertions(+), 3 deletions(-)
+On Mon, Jul 19, 2021 at 4:39 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> Add CANFD binding documentation for Renesas RZ/G2L SoC.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-index 191e8a92d153..d66e3ca42ad5 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-@@ -343,3 +343,10 @@
- 		bias-pull-up;
- 	};
- };
-+
-+&remoteproc_mpss {
-+	status = "okay";
-+	compatible = "qcom,sc7280-mss-pil";
-+	iommus = <&apps_smmu 0x124 0x0>, <&apps_smmu 0x488 0x7>;
-+	memory-region = <&mba_mem &mpss_mem>;
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 56ea172f641f..6d3687744440 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -586,7 +586,8 @@
- 
- 		remoteproc_mpss: remoteproc@4080000 {
- 			compatible = "qcom,sc7280-mpss-pas";
--			reg = <0 0x04080000 0 0x10000>;
-+			reg = <0 0x04080000 0 0x10000>, <0 0x04180000 0 0x48>;
-+			reg-names = "qdsp6", "rmb";
- 
- 			interrupts-extended = <&intc GIC_SPI 264 IRQ_TYPE_EDGE_RISING>,
- 					      <&modem_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
-@@ -597,8 +598,11 @@
- 			interrupt-names = "wdog", "fatal", "ready", "handover",
- 					  "stop-ack", "shutdown-ack";
- 
--			clocks = <&rpmhcc RPMH_CXO_CLK>;
--			clock-names = "xo";
-+			clocks = <&gcc GCC_MSS_CFG_AHB_CLK>,
-+				 <&gcc GCC_MSS_OFFLINE_AXI_CLK>,
-+				 <&gcc GCC_MSS_SNOC_AXI_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK>;
-+			clock-names = "iface", "offline", "snoc_axi", "xo";
- 
- 			power-domains = <&rpmhpd SC7280_CX>,
- 					<&rpmhpd SC7280_MSS>;
-@@ -611,6 +615,15 @@
- 			qcom,smem-states = <&modem_smp2p_out 0>;
- 			qcom,smem-state-names = "stop";
- 
-+			resets = <&aoss_reset AOSS_CC_MSS_RESTART>,
-+				 <&pdc_reset PDC_MODEM_SYNC_RESET>;
-+			reset-names = "mss_restart", "pdc_reset";
-+
-+			qcom,halt-regs = <&tcsr_mutex 0x23000 0x25000 0x28000 0x33000>;
-+			qcom,ext-regs = <&tcsr_regs 0x10000 0x10004
-+					 &tcsr_mutex 0x26004 0x26008>;
-+			qcom,qaccept-regs = <&tcsr_mutex 0x23030 0x23040 0x23020>;
-+
- 			status = "disabled";
- 
- 			glink-edge {
+Thanks for your patch!
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Just some bikeshedding on the exact naming below ;-)
+
+> --- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+> +++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
+> @@ -91,6 +92,59 @@ required:
+>    - channel0
+>    - channel1
+>
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - renesas,rzg2l-canfd
+> +then:
+> +  properties:
+> +    interrupts:
+> +      items:
+> +        - description: CAN global error interrupt
+> +        - description: CAN receive FIFO interrupt
+> +        - description: CAN0 error interrupt
+> +        - description: CAN0 transmit interrupt
+> +        - description: CAN0 transmit/receive FIFO receive completion interrupt
+> +        - description: CAN1 error interrupt
+> +        - description: CAN1 transmit interrupt
+> +        - description: CAN1 transmit/receive FIFO receive completion interrupt
+> +
+> +    interrupt-names:
+> +      items:
+> +        - const: g_error
+> +        - const: g_rx_fifo
+> +        - const: can0_error
+
+s/error/err/?
+
+> +        - const: can0_tx
+> +        - const: can0_tx_rx_fifo_receive_completion
+> +        - const: can1_error
+> +        - const: can1_tx
+> +        - const: can1_tx_rx_fifo_receive_completion
+
+s/receive/rx/?
+
+Some are also a bit long to type.
+Perhaps use naming closer to the User's Manual?
+
+INTRCANGERR => g_err
+INTRCANGRECC => g_recc
+INTRCAN0ERR => ch0_err
+INTRCAN0REC => ch0_rec
+INTRCAN0TRX => ch0_trx
+INTRCAN1ERR => ch1_err
+INTRCAN1REC => ch1_rec
+INTRCAN1TRX => ch1_trx
+
+These do not have "_int" suffixes...
+
+> +
+> +    resets:
+> +      items:
+> +        - description: CANFD_RSTP_N
+> +        - description: CANFD_RSTC_N
+> +
+> +  required:
+> +    - interrupt-names
+> +else:
+> +  properties:
+> +    interrupts:
+> +      items:
+> +        - description: Channel interrupt
+> +        - description: Global interrupt
+> +
+> +    interrupt-names:
+> +      items:
+> +        - const: ch_int
+> +        - const: g_int
+
+... and these do have "_int" suffixes.
+
+> +
+> +    resets:
+> +      items:
+> +        - description: CANFD reset
+> +
+>  unevaluatedProperties: false
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
