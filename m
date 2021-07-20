@@ -2,81 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58B973CF44E
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 08:13:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AECC3CF438
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 08:03:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238703AbhGTFcO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 01:32:14 -0400
-Received: from mga02.intel.com ([134.134.136.20]:40633 "EHLO mga02.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238336AbhGTFcH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Jul 2021 01:32:07 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10050"; a="198385648"
-X-IronPort-AV: E=Sophos;i="5.84,254,1620716400"; 
-   d="scan'208";a="198385648"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jul 2021 23:12:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,254,1620716400"; 
-   d="scan'208";a="414569029"
-Received: from lkp-server02.sh.intel.com (HELO 1b5a72ed9419) ([10.239.97.151])
-  by orsmga006.jf.intel.com with ESMTP; 19 Jul 2021 23:12:30 -0700
-Received: from kbuild by 1b5a72ed9419 with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1m5izV-00004j-Ln; Tue, 20 Jul 2021 06:12:29 +0000
-Date:   Tue, 20 Jul 2021 13:32:34 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     dillon.minfei@gmail.com, thierry.reding@gmail.com,
-        sam@ravnborg.org, airlied@linux.ie, daniel@ffwll.ch,
-        robh+dt@kernel.org, linus.walleij@linaro.org
-Cc:     kbuild-all@lists.01.org, devicetree@vger.kernel.org,
-        alexandre.torgue@foss.st.com, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Add ilitek ili9341
- panel bindings
-Message-ID: <202107201305.FPUQWvWk-lkp@intel.com>
-References: <1626430843-23823-2-git-send-email-dillon.minfei@gmail.com>
+        id S236189AbhGTFWh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 01:22:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40610 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235161AbhGTFWb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 01:22:31 -0400
+Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com [IPv6:2607:f8b0:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 298B9C061574
+        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 23:03:10 -0700 (PDT)
+Received: by mail-il1-x12c.google.com with SMTP id e13so18200958ilc.1
+        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 23:03:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=86QVHJVxOCndQaXxHRwaOxxcq7eMK28HT05PxvcoBYI=;
+        b=bu4dAUXhDfU3dlbFBsoThBblvvUC91XDro9V2evK/M12RqO1wW4gp88UdAm/F2rtFC
+         Q/1ToZcP/0N8Nvxc65pfwLiL5UsrZuJIsOZIglgaGTuSjDq2XEYJy8yhmbnivp59FXrO
+         5dgDFoUDO3t/Gm2bavuKXttbdx1eZLMxFrMqY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=86QVHJVxOCndQaXxHRwaOxxcq7eMK28HT05PxvcoBYI=;
+        b=TMtowtlceR+sMo2Tut49CK7RTaIPt2Z5fEiBGvjzEyxzD4CSxWsJItHUAsS8XfLVIe
+         XmSUcEFreL7OVyPtolij5Y2C6eFcvp7YXc9Q/5l7f16x2bEDUeVgBNfHiniDZTDgW3wC
+         Dna23zxDrXjOWfRKxIe8Xf2nrIebtTbJnmWc7VLcP+S84nPzeWvBpwcvDj13X1Fp6zME
+         l/OfWleEjzlpX5pOyseyUU4WpDnyeGFFOjjy4HStvL1bLryrBAKwBsjpeq9Y3v5PE2XP
+         /mmUPY+oYSP/cgiZIOe9UmJgA6Sxy34+kpwvmg1AW5vP0VHG2tgAQsH1qtsMu6eB+EQR
+         I57w==
+X-Gm-Message-State: AOAM530rqKmgPM8pwseVRK4nyE5nSMTekMaGauoiUl00D/C2zt+pOXVr
+        t/FjeFc8dZCaSePkZQcBH/XZAJsk9R7HzV1YDRc9sg==
+X-Google-Smtp-Source: ABdhPJwFk6YVkmc9gpzvQzRgdkNx/5Ot14DkNuPE+cqjEdJYOOoLrPx04nhKCCVAgpn8DccUvt9FPHZ2ECPmqkXRtQk=
+X-Received: by 2002:a92:d305:: with SMTP id x5mr20209347ila.150.1626760989584;
+ Mon, 19 Jul 2021 23:03:09 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1626430843-23823-2-git-send-email-dillon.minfei@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <1626760277-5733-1-git-send-email-yongqiang.niu@mediatek.com> <1626760277-5733-2-git-send-email-yongqiang.niu@mediatek.com>
+In-Reply-To: <1626760277-5733-2-git-send-email-yongqiang.niu@mediatek.com>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Tue, 20 Jul 2021 14:02:43 +0800
+Message-ID: <CAJMQK-jK0WRgU47YZ8+Jdt50y2CnkUjHKT2C+xfTvgst9bTmTg@mail.gmail.com>
+Subject: Re: [PATCH v3] Fixes: a6b7c98afdca(drm/mediatek: add
+ mtk_dither_set_common() function)
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Tue, Jul 20, 2021 at 1:51 PM Yongqiang Niu
+<yongqiang.niu@mediatek.com> wrote:
+>
+> dither 6 setting is missed in a6b7c98afdca
+> bit 1 is lfsr_en( "Enables LFSR-type dithering"), need enable
+> bit 2 is rdither_en(Enables running order dithering), need disable
+>
 
-Thank you for the patch! Perhaps something to improve:
+Fixes tag should be here, and the title of this patch should be the
+same as v2: drm/mediatek: add dither 6 setting
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v5.14-rc2 next-20210719]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/dillon-minfei-gmail-com/Add-ilitek-ili9341-panel-driver/20210718-103113
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-compiler: arm-linux-gnueabi-gcc (GCC) 10.3.0
-reproduce: make ARCH=arm dtbs_check
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-
-dtcheck warnings: (new ones prefixed by >>)
-   arch/arm/boot/dts/stm32f429-disco.dt.yaml:0:0: /interrupt-controller@e000e100: failed to match any schema with compatible: ['arm,armv7m-nvic']
-   arch/arm/boot/dts/stm32f429-disco.dt.yaml:0:0: /timer@e000e010: failed to match any schema with compatible: ['arm,armv7m-systick']
-   arch/arm/boot/dts/stm32f429-disco.dt.yaml:0:0: /soc/i2c@40005c00/stmpe811@41: failed to match any schema with compatible: ['st,stmpe811']
-   arch/arm/boot/dts/stm32f429-disco.dt.yaml:0:0: /soc/i2c@40005c00/stmpe811@41/stmpe_touchscreen: failed to match any schema with compatible: ['st,stmpe-ts']
-   arch/arm/boot/dts/stm32f429-disco.dt.yaml: l3gd20@0: 'spi-max-frequency' does not match any of the regexes: 'pinctrl-[0-9]+'
-   	From schema: Documentation/devicetree/bindings/iio/st,st-sensors.yaml
->> arch/arm/boot/dts/stm32f429-disco.dt.yaml: display@1: compatible: ['st,sf-tc240t-9370-t'] is too short
-   	From schema: Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
-   arch/arm/boot/dts/stm32f429-disco.dt.yaml:0:0: /soc/crc@40023000: failed to match any schema with compatible: ['st,stm32f4-crc']
-   arch/arm/boot/dts/stm32f429-disco.dt.yaml:0:0: /soc/rcc@40023800: failed to match any schema with compatible: ['st,stm32f42xx-rcc', 'st,stm32-rcc']
-   arch/arm/boot/dts/stm32f429-disco.dt.yaml:0:0: /soc/rcc@40023800: failed to match any schema with compatible: ['st,stm32f42xx-rcc', 'st,stm32-rcc']
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> index 99cbf44..7dd8e05 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> @@ -26,6 +26,7 @@
+>  #define DISP_OD_CFG                            0x0020
+>  #define DISP_OD_SIZE                           0x0030
+>  #define DISP_DITHER_5                          0x0114
+> +#define DISP_DITHER_6                          0x0118
+>  #define DISP_DITHER_7                          0x011c
+>  #define DISP_DITHER_15                         0x013c
+>  #define DISP_DITHER_16                         0x0140
+> @@ -135,6 +136,7 @@ void mtk_dither_set_common(void __iomem *regs, struct cmdq_client_reg *cmdq_reg,
+>
+>         if (bpc >= MTK_MIN_BPC) {
+>                 mtk_ddp_write(cmdq_pkt, 0, cmdq_reg, regs, DISP_DITHER_5);
+> +               mtk_ddp_write(cmdq_pkt, 0x3002, cmdq_reg, regs, DISP_DITHER_6);
+>                 mtk_ddp_write(cmdq_pkt, 0, cmdq_reg, regs, DISP_DITHER_7);
+>                 mtk_ddp_write(cmdq_pkt,
+>                               DITHER_LSB_ERR_SHIFT_R(MTK_MAX_BPC - bpc) |
+> --
+> 1.8.1.1.dirty
+>
