@@ -2,120 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD49E3CFFA1
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 18:38:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E92E3CFFAD
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 18:40:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234365AbhGTP6P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 11:58:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46754 "EHLO mail.kernel.org"
+        id S229643AbhGTQAG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 12:00:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47290 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231237AbhGTP4U (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Jul 2021 11:56:20 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 71A6F60FF2;
-        Tue, 20 Jul 2021 16:36:58 +0000 (UTC)
+        id S234655AbhGTP6l (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Jul 2021 11:58:41 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 79F6D6120F
+        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 16:39:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626799018;
-        bh=IhE15OCsZZL4VIDdohm7Hf2FnjxTKG9XEwbEiYaAZcg=;
+        s=k20201202; t=1626799159;
+        bh=gTXKuYWTIurzIQqTGR7d+wnzFvtpIuOkmCH1n2NqvKY=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=eOl+ZoYsnu1HdOHKz68BDtopcnRYoKGN3rI+atFZfeRIwWcw1/grpDlLY6AZw2H5i
-         Amt1EQ8ZMVJ3JiPwUz9j6diMQnehPPOI53BqCVojlCR9xJQ2NcWLEMknO0Fk48mO/6
-         q5wEKTpXM5xUO/jbAipFFBEGjvKwJtsDuhy28scP9NBkfBZQYkiF70Tu/35hUoln4U
-         8wWrpcyeotp1lt85VgiD2V2yEUiNR8HgG08iXOBYi91kfKpeSXcPZIdyUDHGkAE6Gg
-         yG1MFbtyxVu1jnJEhS5eN8k9wboqhuAcXyDpddhuepASjjg1sUXbrKxZlaqQh5THVi
-         VjU5wL7q1fxvQ==
-Received: by mail-ed1-f46.google.com with SMTP id l26so29204300eda.10;
-        Tue, 20 Jul 2021 09:36:58 -0700 (PDT)
-X-Gm-Message-State: AOAM533a2lLKwDNwQvgQWPQP0tbqM6ee2Iumm0iHd6RTmg0fCI2Ul6ni
-        TWGrzV0BlnwbyGZodBg7JOsv9khX9ZGNL3N8pQ==
-X-Google-Smtp-Source: ABdhPJy8d09Q9NrycMU9Q826ITKi5kxOzUS11WCgwyOBHJFREiJj8GS1Dp8lXeHgAev7AEtvoW5pATtKwvPRScm9fDM=
-X-Received: by 2002:aa7:ca54:: with SMTP id j20mr42161769edt.137.1626799017059;
- Tue, 20 Jul 2021 09:36:57 -0700 (PDT)
+        b=MmoN+9sYQiL3qcy5sZyXFc4A8b8O4mIYQSyLDMyCtlwiG35UQVJ3LnLKsMAufh1y0
+         HGyjnLsU9W7VngA/TFAMQA5b5KJouhPadTvp614+RrzYDv6/3/17GEzrQmNEgwkmM3
+         g87X80HUAGOyS5UBqFUlqIJacccQXyFHeQExRQzFimVuJUzA4GGfTjHYdNzRXcm1lC
+         zWgHnAOwnAmHIe7zO3p2m+VhBgPEtiVX1gg01sa4/0SEg6XCix/6qS7u9IHOdG4lXm
+         B4YCvLjftxn15kK7vJO0sIxZFRtKR6RUuzfBQidEcEW68N5aevFFJ7ZheLYHM4kCAQ
+         3ODa4HeDdJXCA==
+Received: by mail-ed1-f54.google.com with SMTP id l1so29181816edr.11
+        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 09:39:19 -0700 (PDT)
+X-Gm-Message-State: AOAM5325P6oHYYHwUdZdsV0atMtwoFs59xXxeGaGN/DxGDKjHeLXymLd
+        0KcykoGyHMGmzGvhO1UgCZN4pMiCXFIUDRDvyQ==
+X-Google-Smtp-Source: ABdhPJwIBcifE6NzK9FRUpGlqdwlYOSBR3Y10xUH7ncpjDZp6AuBiG/kFIh1H6beccYBKuapdkbMZFeUVE5P8eWzI9Q=
+X-Received: by 2002:aa7:cb19:: with SMTP id s25mr42400625edt.194.1626799158051;
+ Tue, 20 Jul 2021 09:39:18 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210719121938.6532-1-biju.das.jz@bp.renesas.com>
- <20210719121938.6532-4-biju.das.jz@bp.renesas.com> <1626708479.397199.1967264.nullmailer@robh.at.kernel.org>
- <OS0PR01MB5922E245F143076435A9000186E29@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-In-Reply-To: <OS0PR01MB5922E245F143076435A9000186E29@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+References: <20210717001638.1292554-1-linus.walleij@linaro.org>
+ <20210719151833.GA1908766@robh.at.kernel.org> <CACRpkdbmdd9TuVD-Lanme77-0XKg0up3jrXeisYNR4p9EL=9kQ@mail.gmail.com>
+In-Reply-To: <CACRpkdbmdd9TuVD-Lanme77-0XKg0up3jrXeisYNR4p9EL=9kQ@mail.gmail.com>
 From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 20 Jul 2021 10:36:44 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKPA5XUhWHBTtNEmA_aqHOyUt_woEB79WKgiFWRn7CT7g@mail.gmail.com>
-Message-ID: <CAL_JsqKPA5XUhWHBTtNEmA_aqHOyUt_woEB79WKgiFWRn7CT7g@mail.gmail.com>
-Subject: Re: [PATCH v4 03/10] dt-bindings: reset: Document RZ/G2L USBPHY
- Control bindings
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Date:   Tue, 20 Jul 2021 10:39:05 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLrw6Y+aMYRFF87E=X2tvyF_OUn7OkzLVUS7WvGAbehvA@mail.gmail.com>
+Message-ID: <CAL_JsqLrw6Y+aMYRFF87E=X2tvyF_OUn7OkzLVUS7WvGAbehvA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] bus: ixp4xx: Add DT bindings for the IXP4xx expansion bus
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Imre Kaloz <kaloz@openwrt.org>,
+        Krzysztof Halasa <khalasa@piap.pl>,
+        Marc Zyngier <maz@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 20, 2021 at 5:26 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+On Mon, Jul 19, 2021 at 4:49 PM Linus Walleij <linus.walleij@linaro.org> wrote:
 >
-> Hi Rob,
+> On Mon, Jul 19, 2021 at 5:18 PM Rob Herring <robh@kernel.org> wrote:
 >
-> > Subject: Re: [PATCH v4 03/10] dt-bindings: reset: Document RZ/G2L USBPHY
-> > Control bindings
-> >
-> > On Mon, 19 Jul 2021 13:19:31 +0100, Biju Das wrote:
-> > > Add device tree binding document for RZ/G2L USBPHY Control Device.
-> > > It mainly controls reset and power down of the USB/PHY.
-> > >
-> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > ---
-> > > v3->v4:
-> > >   * Dropped reset reference.
-> > >   * Added Rb-tag from Rob.
-> > >  v3:
-> > >   * New patch.
-> > >   * Modelled USBPHY control from phy bindings to reset bindings, since
-> > the
-> > >     IP mainly contols the reset of USB PHY.
-> > > ---
-> > >  .../reset/renesas,rzg2l-usbphy-ctrl.yaml      | 65 +++++++++++++++++++
-> > >  1 file changed, 65 insertions(+)
-> > >  create mode 100644
-> > > Documentation/devicetree/bindings/reset/renesas,rzg2l-usbphy-ctrl.yaml
-> > >
-> >
-> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> >
-> > yamllint warnings/errors:
-> >
-> > dtschema/dtc warnings/errors:
-> > Error: Documentation/devicetree/bindings/reset/renesas,rzg2l-usbphy-
-> > ctrl.example.dts:25.30-31 syntax error FATAL ERROR: Unable to parse input
-> > tree
-> > make[1]: *** [scripts/Makefile.lib:380:
-> > Documentation/devicetree/bindings/reset/renesas,rzg2l-usbphy-
-> > ctrl.example.dt.yaml] Error 1
-> > make[1]: *** Waiting for unfinished jobs....
-> > make: *** [Makefile:1418: dt_binding_check] Error 2 \ndoc reference errors
-> > (make refcheckdocs):
-> >
-> > See
-> > https://jpn01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fpatchwor
-> > k.ozlabs.org%2Fpatch%2F1506961&amp;data=04%7C01%7Cbiju.das.jz%40bp.renesas
-> > .com%7Cb02057306f9b4db2426008d94ac9ce37%7C53d82571da1947e49cb4625a166a4a2a
-> > %7C0%7C0%7C637623052878040806%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAi
-> > LCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=N4%2F9GofL
-> > NWbtPDddI38ActeGRqtfxdNANC4T241Or1M%3D&amp;reserved=0
-> >
-> > This check can fail if there are any dependencies. The base for a patch
-> > series is generally the most recent rc1.
+> > > +patternProperties:
+> > > +  "^.*@[0-7],[0-9a-f]+$":
+> > > +    description: Devices attached to chip selects are represented as
+> > > +      subnodes.
+> > > +    type: object
+> > > +
+> > > +    properties:
+> > > +      intel,ixp4xx-eb-t1:
+> > > +        description: Address timing, extend address phase with n cycles.
+> > > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > > +        maximum: 3
 >
-> The dependency patch for the bot error is present on 5.14-rc2 but not on 5.14-rc1.
+> (...)
+>
+> > > +    unevaluatedProperties: false
+> >
+> > This will cause failures when implemented. The problem is this won't
+> > allow any other child node properties as this schema and the device
+> > schema are evaluated independently. The only way I see to solve this is
+> > the child node schemas have to include some 'bus properties' schema
+> > which includes all possible bus controller properties. There's been a
+> > recent patch set doing this for SPI. At least here, I think the number
+> > of different child devices on parallel expansion buses are limited.
+> >
+> > So spliting this to 2 schema files would be the first step. Minimally,
+> > just drop unevaluatedProperties.
+>
+> SPI upstream simply uses
+>
+> additionalProperties: true
+>
+> is that acceptable for now?
 
-Ok, I've updated the base to rc2. Please note a dependency like that
-(anything that's not the last rc1) next time.
+Yes. (That is the default)
 
 Rob
