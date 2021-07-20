@@ -2,242 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CF7B3CFD5C
+	by mail.lfdr.de (Postfix) with ESMTP id E5ACE3CFD5D
 	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 17:22:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240893AbhGTOjf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S240905AbhGTOjf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 20 Jul 2021 10:39:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49734 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239565AbhGTOYT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 10:24:19 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42D11C0613E9
-        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 08:02:29 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id o30-20020a05600c511eb029022e0571d1a0so2227699wms.5
-        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 08:02:29 -0700 (PDT)
+        with ESMTP id S240355AbhGTOZh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 10:25:37 -0400
+Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66297C0613DB;
+        Tue, 20 Jul 2021 08:05:03 -0700 (PDT)
+Received: by mail-pg1-x52c.google.com with SMTP id 70so19394904pgh.2;
+        Tue, 20 Jul 2021 08:05:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=gVmaCt5/XbrZO/QfODNESpk+UsX8YFkJnEb84924lkg=;
-        b=I4nSicJtKaoaaiPT1FLXnOCg9BUDBBpHQKjhbTlCq5TblXDiPIl0VjL9RLrYxHcVwG
-         0IAVM9gdEKAvlZR5pkTzKasJC3MM28VxWneaoqr9iZcjhthdqBXUnDKnZa4xMhN0p28M
-         SkksAZnIgF0lk9f+y/PG1Ve60C0x/pQOYzusERALXFFrUvN5QHa3k0Kx4zIDG5/gBloe
-         ZGogolZtKt+/q0G5/tZ7/0i1E5AEwrMlPcCpDUnwikql1pLsUCNnWoNhFhz8HzNhe4yh
-         jD80wYlZttYpysCG5UWNbm8X0rkrGgZQJT+rGIHHMn/08yq/PXO0cVFc1ZPTYcH6Syyf
-         sHRA==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=zTofV/w1u1zqupSScBuDhwvPxpe9jLm+00fbYmuCH3I=;
+        b=GsFhBOqy9i4opw8UehrI3XO5G0++mxG4jRYDN213tAqPDMsuYvPxBTePL0iVdWHfmj
+         uD9n4nJxap58kYBy/foqqlQOf5Tz+6z4y9Tj7YsZe2q0lfro5dmCgjmbbd7pIWJFX3WX
+         EYGdpBfxZ2ztwDpx93YbF10KhIEAGeRFxhUJ/IJ7NqDlG2Y2//xnNcXwAtUMqkgB5Aml
+         h0rbJxDJppi4NEIfckMcm06PsJucuyaHNbZGm5KSk980ouGNrerRPX8/x0iMR9Ry+084
+         95BK5pyI7GqlUjxMTzAhNSBPCqLAvNzPrnNV8DhW+eJ5/2fBuNesrx8PoCa2fL+ohiA7
+         XFWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=gVmaCt5/XbrZO/QfODNESpk+UsX8YFkJnEb84924lkg=;
-        b=SEr+CAw3ljJYVR93Iggttpjb4Rqm6x1eqvtGZtfi/iwcIYPzNQzOi2jPwRzNS0lWU3
-         Xi7SVdufvMCxtMWFmEGDMMMqaAUL9EwehehBtj7vQU6XpKEYPOVJEyphSzmPdnSlwYrx
-         U22S+9cyr7d+C5sY40ufIpwihsRnGDpUpUNAEY6C6Q/2l07mFiiz8nTvaOZ8zEKmG9vv
-         cAcUFu7LFH0aNZJ6DpM89cl9bDs6s6q//S8beKGBwDex1ZL6cNncZC/yMGELqkoHna6V
-         uJErak18tXn8sqVBmlN+lkK2eUwHfRLAerHENCWZe8dzjlJ8e/wl4r/ltLv33kreyDQX
-         ZAiQ==
-X-Gm-Message-State: AOAM530l06cqMTLdFwMEMuxY8ypiGw9XxEY+1NC0qolvfaRaO4QYGyz9
-        9QyNGUk6jZd6qMr+VmyBK4eKVg==
-X-Google-Smtp-Source: ABdhPJxEtv60iiBR7xE5LcVjTXGD4B289FnwDkjnK4ukW5CgdvPOubv8wIaixzyVt192iWPHQMBrIA==
-X-Received: by 2002:a05:600c:224a:: with SMTP id a10mr38881932wmm.7.1626793347746;
-        Tue, 20 Jul 2021 08:02:27 -0700 (PDT)
-Received: from google.com ([31.124.24.141])
-        by smtp.gmail.com with ESMTPSA id l39sm2121998wms.1.2021.07.20.08.02.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jul 2021 08:02:27 -0700 (PDT)
-Date:   Tue, 20 Jul 2021 16:02:25 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Alistair Francis <alistair@alistair23.me>
-Cc:     robh+dt@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-        linux-imx@nxp.com, kernel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alistair23@gmail.com,
-        Lars Ivar Miljeteig <lars.ivar.miljeteig@remarkable.no>
-Subject: Re: [PATCH v7 2/6] thermal: sy7636a: Add thermal driver for sy7636a
-Message-ID: <YPblgabAObekmVZs@google.com>
-References: <20210708115804.212-1-alistair@alistair23.me>
- <20210708115804.212-2-alistair@alistair23.me>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=zTofV/w1u1zqupSScBuDhwvPxpe9jLm+00fbYmuCH3I=;
+        b=QAtSXwuhrQ/L+BGy5c7LvL3cnPslO+2arHIKGWdc1Wyk+M6z1EdMkXXQauM/6UF2sT
+         vCthcMf8wZIU5Kq/GDWU3Z/0WiKzduv0d7G2cvwPIZBcClqNaxq+DV4SK8TEPVmLgau+
+         lVDmy7MChvJl0FsTJ16jQi/ef22fyk2U/42agoQVBX5ndk49gA7jn5nENOxfFvSPzRC0
+         SNLuBMyAlsXjNEZdaCpG2DqGBGSb2T0ljC5n60ebQkRYqBhsrmoa1cW7xpJ9biRB1IFR
+         6iTHlP3VyBBKDbOZX9DYjkF5Y4aDlkIsQbX5HLaRSWUI7ud9+4VP4YrYAGdqEwDm4OED
+         3HgQ==
+X-Gm-Message-State: AOAM533zEZs8b3+1PIlxi+mW8splOLr8dzwVJw+fZK6IEbnaqmbDrCyU
+        KNjuUcgzvPEWzrjrnX3B1cRQtHq20B6wFTEeYqE=
+X-Google-Smtp-Source: ABdhPJz4qPpoabdtDqQ1TSajcom54g6DSdMpm36JCONeSFjYE34GJyBTw0onY4q4xSWU60EhLjXJOfnYvTHz9/AvsoM=
+X-Received: by 2002:aa7:800b:0:b029:330:455f:57a8 with SMTP id
+ j11-20020aa7800b0000b0290330455f57a8mr31307813pfi.7.1626793502828; Tue, 20
+ Jul 2021 08:05:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210708115804.212-2-alistair@alistair23.me>
+References: <20210719112156.27087-1-stephan@gerhold.net> <20210719112156.27087-4-stephan@gerhold.net>
+ <CACRpkdYNqi0EDrtC3j=cu5cp17sEJ6_nf2KRn-hxCxgbTGhgXw@mail.gmail.com>
+ <CAHp75VcsVFO2Oizpyeh53MNt2v9yD81vXp1xKCVX-U4zb-KTdg@mail.gmail.com>
+ <YPWV537oN3gDpAQS@gerhold.net> <CAHp75Vdjotgi9RrmKQC4J_QQSYdRWwp+-8aHGkChx6VFLPDh-Q@mail.gmail.com>
+ <YPW1xGtLyLNGKqjJ@gerhold.net> <CAHp75VcZDSL5u2bP_ZFySmk7cPkHRycyA-+gMqSVWCpgFXhn7Q@mail.gmail.com>
+ <YPXGQxPPID1SHOUO@gerhold.net>
+In-Reply-To: <YPXGQxPPID1SHOUO@gerhold.net>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 20 Jul 2021 18:04:22 +0300
+Message-ID: <CAHp75Vf56+HpeGcdet61eeQyQfwFKx8x7vEc_G9NXStYy5Gsyw@mail.gmail.com>
+Subject: Re: [PATCH 3/4] iio: accel: bmc150: Make it possible to configure
+ INT2 instead of INT1
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
+        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>, Andy
+        Shevchenko <andy.shevchenko@gmail.com>," 
+        <~postmarketos/upstreaming@lists.sr.ht>,
+        Nikita Travkin <nikita@trvn.ru>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 08 Jul 2021, Alistair Francis wrote:
+On Mon, Jul 19, 2021 at 9:37 PM Stephan Gerhold <stephan@gerhold.net> wrote:
+> On Mon, Jul 19, 2021 at 09:05:48PM +0300, Andy Shevchenko wrote:
+> > On Mon, Jul 19, 2021 at 8:29 PM Stephan Gerhold <stephan@gerhold.net> wrote:
+> > > On Mon, Jul 19, 2021 at 07:19:05PM +0300, Andy Shevchenko wrote:
+> > > > On Mon, Jul 19, 2021 at 6:11 PM Stephan Gerhold <stephan@gerhold.net> wrote:
+> > > > > On Mon, Jul 19, 2021 at 06:01:01PM +0300, Andy Shevchenko wrote:
+> > > > > > On Mon, Jul 19, 2021 at 5:07 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+> > > > > > > On Mon, Jul 19, 2021 at 1:26 PM Stephan Gerhold <stephan@gerhold.net> wrote:
 
-> From: Lars Ivar Miljeteig <lars.ivar.miljeteig@remarkable.no>
-> 
-> Add thermal driver to enable kernel based polling
-> and shutdown of device for temperatures out of spec
-> 
-> Signed-off-by: Alistair Francis <alistair@alistair23.me>
-> ---
->  drivers/thermal/Kconfig           |   7 ++
->  drivers/thermal/Makefile          |   1 +
->  drivers/thermal/sy7636a_thermal.c | 107 ++++++++++++++++++++++++++++++
->  3 files changed, 115 insertions(+)
->  create mode 100644 drivers/thermal/sy7636a_thermal.c
-> 
-> diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
-> index d7f44deab5b1..7112c63d9021 100644
-> --- a/drivers/thermal/Kconfig
-> +++ b/drivers/thermal/Kconfig
-> @@ -450,6 +450,13 @@ depends on (ARCH_STI || ARCH_STM32) && OF
->  source "drivers/thermal/st/Kconfig"
->  endmenu
->  
-> +config SY7636A_THERMAL
-> +	tristate "SY7636A thermal management"
-> +	depends on MFD_SY7636A
-> +	help
-> +	  Enable the sy7636a thermal driver, which supports the
-> +	  temperature sensor embedded in Silabs SY7636A chip.
-> +
->  source "drivers/thermal/tegra/Kconfig"
->  
->  config GENERIC_ADC_THERMAL
-> diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
-> index 82fc3e616e54..2e1aca8a0a09 100644
-> --- a/drivers/thermal/Makefile
-> +++ b/drivers/thermal/Makefile
-> @@ -51,6 +51,7 @@ obj-$(CONFIG_DA9062_THERMAL)	+= da9062-thermal.o
->  obj-y				+= intel/
->  obj-$(CONFIG_TI_SOC_THERMAL)	+= ti-soc-thermal/
->  obj-y				+= st/
-> +obj-$(CONFIG_SY7636A_THERMAL)	+= sy7636a_thermal.o
->  obj-$(CONFIG_QCOM_TSENS)	+= qcom/
->  obj-y				+= tegra/
->  obj-$(CONFIG_HISI_THERMAL)     += hisi_thermal.o
-> diff --git a/drivers/thermal/sy7636a_thermal.c b/drivers/thermal/sy7636a_thermal.c
-> new file mode 100644
-> index 000000000000..705a16fb1045
-> --- /dev/null
-> +++ b/drivers/thermal/sy7636a_thermal.c
-> @@ -0,0 +1,107 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +//
-> +// Functions to access SY3686A power management chip temperature
-> +//
-> +// Copyright (C) 2019 reMarkable AS - http://www.remarkable.com/
-> +//
-> +// Authors: Lars Ivar Miljeteig <lars.ivar.miljeteig@remarkable.com>
-> +//          Alistair Francis <alistair@alistair23.me>
-> +
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/thermal.h>
-> +
-> +#include <linux/mfd/sy7636a.h>
-> +
-> +struct sy7636a_data {
-> +	struct sy7636a *sy7636a;
-> +	struct thermal_zone_device *thermal_zone_dev;
-> +};
-> +
-> +static int sy7636a_get_temp(void *arg, int *res)
-> +{
-> +	unsigned int reg_val, mode_ctr;
-> +	int ret;
-> +	struct sy7636a_data *data = arg;
-> +	bool isVoltageActive;
-> +
-> +	ret = regmap_read(data->sy7636a->regmap,
-> +			SY7636A_REG_OPERATION_MODE_CRL, &mode_ctr);
-> +	if (ret)
-> +		return ret;
-> +
-> +	isVoltageActive = mode_ctr & SY7636A_OPERATION_MODE_CRL_ONOFF;
-> +
-> +	if (!isVoltageActive) {
-> +		ret = regmap_write(data->sy7636a->regmap,
-> +				SY7636A_REG_OPERATION_MODE_CRL,
-> +				mode_ctr | SY7636A_OPERATION_MODE_CRL_ONOFF);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	ret = regmap_read(data->sy7636a->regmap,
-> +			SY7636A_REG_TERMISTOR_READOUT, &reg_val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (!isVoltageActive) {
-> +		ret = regmap_write(data->sy7636a->regmap,
-> +				SY7636A_REG_OPERATION_MODE_CRL,
-> +				mode_ctr);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	*res = *((signed char*)&reg_val);
-> +	*res *= 1000;
-> +
-> +	return ret;
-> +}
-> +
-> +static const struct thermal_zone_of_device_ops ops = {
-> +	.get_temp	= sy7636a_get_temp,
-> +};
-> +
-> +static int sy7636a_thermal_probe(struct platform_device *pdev)
-> +{
-> +	struct sy7636a *sy7636a = dev_get_drvdata(pdev->dev.parent);
-> +	struct sy7636a_data *data;
-> +
-> +	if (!sy7636a)
-> +		return -EPROBE_DEFER;
+...
 
-How is this possible?
+> > > > > > > > +       irq_info = bmc150_accel_interrupts_int1;
+> > > > > > > > +       if (irq == of_irq_get_byname(dev->of_node, "INT2"))
+> > > > > > > > +               irq_info = bmc150_accel_interrupts_int2;
+> > > > > > >
+> > > > > > > This looks a bit DT-specific, but I don't see that ACPI has
+> > > > > > > named IRQs so I don't know what to do about it either.
+> > > > > >
+> > > > > > Yeah, we only have so far the (de facto) established way of naming
+> > > > > > GPIO based IRQs, and not IOxAPIC ones.
+> > > > > >
+> > > > > > > What does platform_get_irq_byname() do on ACPI systems?
+> > > > > >
+> > > > > > See above.
+> > > > > >
+> > > > > > > If there is no obvious fix I would leave it like this until the
+> > > > > > > first ACPI used needing this comes along, but I think maybe
+> > > > > > > Andy has suggestions.
+> > > > > >
+> > > > > > The platform_get_irq_byname() should do something similar that has
+> > > > > > been done in platform_get_irq() WRT ACPI.
+> > > > > > Here for sure the platform_get_irq_byname() or its optional variant
+> > > > > > should be used.
+> > > > >
+> > > > > I don't think there is a platform device here, we only have the
+> > > > > i2c_client or spi_device. That's why I didn't use
+> > > > > platform_get_irq_byname(). :)
+> > > > >
+> > > > > Is there something equivalent for I2C/SPI drivers?
+> > > >
+> > > > Not yet. You probably need to supply some code there to allow
+> > > > multi-IRQ devices (in resource provider agnostic way).
+> > > >
+> > > > You need to provide fwnode_get_irq_byname() to be similar with
+> > > > https://elixir.bootlin.com/linux/latest/source/drivers/base/property.c#L1010
+> > > >
+> > > > Then use it in the drivers.
+> > > >
+> > > > And/or integrate into frameworks somehow (something in between the
+> > > > lines: https://elixir.bootlin.com/linux/latest/source/drivers/i2c/i2c-core-base.c#L461).
+> > > >
+> > >
+> > > Well, I don't think anyone has an ACPI use case for this right now so
+> > > it's probably better if this is done by someone who actually needs this
+> > > and can test it somewhere. :)
+> > >
+> > > I actually just "copied" this approach from some other IIO drivers where
+> > > this is done similarly (and additionally checked the source code to make
+> > > sure this won't break anything for ACPI platforms).
+> >
+> > I see in today's Linux Next snapshot:
+> >
+> > drivers/iio/accel/fxls8962af-core.c:774:        irq =
+> > of_irq_get_byname(of_node, "INT2");
+> > drivers/iio/accel/mma8452.c:1616:               irq2 =
+> > of_irq_get_byname(client->dev.of_node, "INT2");
+> > drivers/iio/gyro/fxas21002c_core.c:834: irq1 = of_irq_get_byname(np, "INT1");
+> > drivers/iio/imu/adis16480.c:1265:               irq =
+> > of_irq_get_byname(of_node, adis16480_int_pin_names[i]);
+> > drivers/iio/imu/bmi160/bmi160_core.c:655:       irq =
+> > of_irq_get_byname(of_node, "INT1");
+> > drivers/iio/imu/bmi160/bmi160_core.c:661:       irq =
+> > of_irq_get_byname(of_node, "INT2");
+> >
+> > I believe we may stop distributing this and actually start using a
+> > common API. I don't want this to be spread again over all IIO. Btw, I
+> > have LSM9DS0, which supports two INT pins for IMU and currently it
+> > uses hard coded pin mapping.
+> >
+>
+> Hm, I'm not quite sure how to implement this. Could you prepare a patch
+> that would implement such a common API? I would be happy to test it for
+> the device tree and make use of it in this patch.
 
-> +	data = devm_kzalloc(&pdev->dev, sizeof(struct sy7636a_data), GFP_KERNEL);
+Unfortunately I have no time to fulfil the required process. The idea
+in general is like this:
 
-sizeof(*data)
+if (is_of_node(...))
+  return of_irq_get_byname(...);
+if (is_acpi_node(...))
+  return acpi_gpio_irq_get_byname(...);
 
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, data);
-> +
-> +	data->sy7636a = sy7636a;
-> +	data->thermal_zone_dev = devm_thermal_zone_of_sensor_register(
-> +			pdev->dev.parent,
-> +			0,
-> +			data,
+Everything else is quite similar to fwnode_irq_get().
 
-Why don't you just pass in your initial ddata?
+> To be honest, I mainly implemented support for the interrupt-names
+> because Jonathan mentioned this would be nice to have [1] and it kind of
+> fit well together with the BMC156 patch that needs the INT2 support.
+> I actually just use the if (data->type == BOSCH_BMC156) part from
+> PATCH 4/4 which does not depend on of_irq_get_byname().
 
-> +			&ops);
-> +
-> +	return PTR_ERR_OR_ZERO(data->thermal_zone_dev);
-> +}
-> +
-> +static const struct platform_device_id sy7636a_thermal_id_table[] = {
-> +	{ "sy7636a-thermal", },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(platform, sy7636a_thermal_id_table);
-> +
-> +static struct platform_driver sy7636a_thermal_driver = {
-> +	.driver = {
-> +		.name = "sy7636a-thermal",
-> +	},
-> +	.probe = sy7636a_thermal_probe,
-> +	.id_table = sy7636a_thermal_id_table,
-> +};
-> +module_platform_driver(sy7636a_thermal_driver);
-> +
-> +MODULE_AUTHOR("Lars Ivar Miljeteig <lars.ivar.miljeteig@remarkable.com>");
-> +MODULE_DESCRIPTION("SY7636A thermal driver");
-> +MODULE_LICENSE("GPL v2");
+Then I leave it to Jonathan and other maintainers.
+
+> [1]: https://lore.kernel.org/linux-iio/20210611185941.3487efc6@jic23-huawei/
 
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+With Best Regards,
+Andy Shevchenko
