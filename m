@@ -2,122 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 15D8F3D00E8
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 19:52:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAFF43D00F1
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 19:52:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231245AbhGTRJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 13:09:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36658 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229536AbhGTRIt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Jul 2021 13:08:49 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E6C8361004;
-        Tue, 20 Jul 2021 17:49:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626803367;
-        bh=rr5DyOF74U0H7iKb0m9zjXCsuqsP8q1pI+d5NX2axk8=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=VEsgFDZvIXjcoaGpPEoA0Lu9YRxM0Dj90aWqsnbErQ2UUMNfFjiL3KKy2ihSuQKA8
-         DpJfkpmYcVJtchYg4JZ0xVl4g2Mg2o7fCdXq98nn/PAwMTFoWJ250/salXXOhJJg55
-         abW/iC3f5GUZpAEMSlUl/XMmPNxf0dbMFp9c17FIFUFh6aPXTQv17aO0FFf2m4m8ho
-         FzpeQH9QYcsgshAwYqEOKnzQKiefkbesH4vObWgtP6wKthPFfdBb/jqahxbI+okmue
-         fOLCT92FxMSaj5N+ZOIj1PAxbFu2Oagsxe6Rc6uhcjBjL97r/vUbkyUju8PW712k3f
-         K0QVogmSx6JEw==
-Date:   Tue, 20 Jul 2021 19:49:17 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Rui Miguel Silva <rmfrfs@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Ramesh Shanmugasundaram <rashanmu@gmail.com>,
-        "G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Oleksij Rempel <o.rempel@pengutronix.de>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Dilip Kota <eswara.kota@linux.intel.com>,
-        Karol Gugala <kgugala@antmicro.com>,
-        Mateusz Holenko <mholenko@antmicro.com>,
-        Olivier Moysan <olivier.moysan@st.com>,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
-        netdev@vger.kernel.org, linux-rtc@vger.kernel.org,
-        alsa-devel@alsa-project.org
-Subject: Re: [PATCH] dt-bindings: Remove "status" from schema examples
-Message-ID: <20210720194917.576b7d70@coco.lan>
-In-Reply-To: <20210720172025.363238-1-robh@kernel.org>
-References: <20210720172025.363238-1-robh@kernel.org>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-redhat-linux-gnu)
+        id S230441AbhGTRLP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 13:11:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60366 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232345AbhGTRJ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 13:09:56 -0400
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1496C061766
+        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 10:50:33 -0700 (PDT)
+Received: by mail-pg1-x530.google.com with SMTP id y17so23172392pgf.12
+        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 10:50:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=bVpGcCJNxzJz4xn8B9EL3oLPPEWacI7v/ruWv61Q000=;
+        b=Y7yJNDAFs6xZpBBXdJ+56blM+/eQeYeXvl3vCk27oQKpwXjLGQFEex3+MqziTV6Vnm
+         tl7NccrMvXMiBGQJsXgEHwOM/ulY1UcrE3JhwUI6MS6X64+cZ49wJM30wPAMobI4ixp0
+         XnSx8G0Jo/6dmBGnCj0wFAKIKTa/DS35E7vlg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=bVpGcCJNxzJz4xn8B9EL3oLPPEWacI7v/ruWv61Q000=;
+        b=GHYv+4ggMUMdHXBFbKj4aRjQEvDzpLAHsXYA0DIsWxMcZvk4PoHyeHSWOocf4XtJuv
+         jN4Wb9UnaPMOYEU/USC48RLFNwp6UsizNoXkJp7pWT9YqwvBCO2w2O3NduMV/nwpOJkF
+         air/qTZp0S+BNMNUESc3yajNrRuzE2iGhrNLtNpCGOkuLRg9THnJOcDDj+ibAvYT9kD2
+         YgBXK5t+sOVJKeB/b+KDc3KuReW0f/TNbCWlYVfUj2oPV3JxyH63Pv8mHUJL+4d60+Ku
+         4i4XcvLa2bq1SXARwJyBJqBuBIKhgKzcCpUSWJwCpofD4kCAq3crkB1J2nBC/UI6nIqt
+         htsg==
+X-Gm-Message-State: AOAM531QfD3pLMdxGEBSP326RWbXJRbj3XdTAmTdDcOoBB8ZwgtN/rFD
+        ih/kfzhRgXlMezUxZUISDfXvuw==
+X-Google-Smtp-Source: ABdhPJw+3aILAs44wxCIgv56bChOz7Y3d9mZXQ9GF5TniuDGef+oZzkVcX6tuZc4Va86+BDDWA3x6A==
+X-Received: by 2002:a63:d757:: with SMTP id w23mr5870300pgi.434.1626803433510;
+        Tue, 20 Jul 2021 10:50:33 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:4d0:bf5f:b8cd:2d67])
+        by smtp.gmail.com with UTF8SMTPSA id d191sm28036023pga.27.2021.07.20.10.50.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Jul 2021 10:50:33 -0700 (PDT)
+Date:   Tue, 20 Jul 2021 10:50:31 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Sibi Sankar <sibis@codeaurora.org>
+Cc:     bjorn.andersson@linaro.org, tdas@codeaurora.org, agross@kernel.org,
+        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        stable@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Fixup cpufreq domain info for
+ cpu7
+Message-ID: <YPcM5w60c5s+mZ4Y@google.com>
+References: <1626800953-613-1-git-send-email-sibis@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1626800953-613-1-git-send-email-sibis@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Em Tue, 20 Jul 2021 11:20:25 -0600
-Rob Herring <robh@kernel.org> escreveu:
-
-> There's no reason to have "status" properties in examples. "okay" is the
-> default, and "disabled" turns off some schema checks ('required'
-> specifically).
+On Tue, Jul 20, 2021 at 10:39:13PM +0530, Sibi Sankar wrote:
+> The SC7280 SoC supports a 4-Silver/3-Gold/1-Gold+ configuration and hence
+> the cpu7 node should point to cpufreq domain 2 instead.
 > 
-> Enabling qca,ar71xx causes a warning, so let's fix the node names:
-> 
-> Documentation/devicetree/bindings/net/qca,ar71xx.example.dt.yaml: phy@3: '#phy-cells' is a required property
->         From schema: schemas/phy/phy-provider.yaml
-> 
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Chen-Yu Tsai <wens@csie.org>
-> Cc: Thierry Reding <thierry.reding@gmail.com>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Rui Miguel Silva <rmfrfs@gmail.com>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: "David S. Miller" <davem@davemloft.net>
-> Cc: Jakub Kicinski <kuba@kernel.org>
-> Cc: Mark Brown <broonie@kernel.org>
-> Cc: Robert Marko <robert.marko@sartura.hr>
-> Cc: Philipp Zabel <p.zabel@pengutronix.de>
-> Cc: Alessandro Zummo <a.zummo@towertech.it>
-> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> Cc: Ramesh Shanmugasundaram <rashanmu@gmail.com>
-> Cc: "G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Oleksij Rempel <o.rempel@pengutronix.de>
-> Cc: ChiYuan Huang <cy_huang@richtek.com>
-> Cc: Wei Xu <xuwei5@hisilicon.com>
-> Cc: Dilip Kota <eswara.kota@linux.intel.com>
-> Cc: Karol Gugala <kgugala@antmicro.com>
-> Cc: Mateusz Holenko <mholenko@antmicro.com>
-> Cc: Olivier Moysan <olivier.moysan@st.com>
-> Cc: Peter Ujfalusi <peter.ujfalusi@ti.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-media@vger.kernel.org
-> Cc: netdev@vger.kernel.org
-> Cc: linux-rtc@vger.kernel.org
-> Cc: alsa-devel@alsa-project.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Fixes: 7dbd121a2c58 ("arm64: dts: qcom: sc7280: Add cpufreq hw node")
+> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+> Cc: stable@vger.kernel.org
 > ---
->  .../display/allwinner,sun8i-a83t-dw-hdmi.yaml |  2 --
->  .../display/panel/boe,tv101wum-nl6.yaml       |  1 -
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index a8c274ad74c4..188c5768a55a 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -200,7 +200,7 @@
+>  					   &BIG_CPU_SLEEP_1
+>  					   &CLUSTER_SLEEP_0>;
+>  			next-level-cache = <&L2_700>;
+> -			qcom,freq-domain = <&cpufreq_hw 1>;
+> +			qcom,freq-domain = <&cpufreq_hw 2>;
+>  			#cooling-cells = <2>;
+>  			L2_700: l2-cache {
+>  				compatible = "cache";
 
->  .../bindings/media/nxp,imx7-mipi-csi2.yaml    |  2 --
->  .../bindings/media/renesas,drif.yaml          |  1 -
-
-Reviewed-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org> # For media
-
-
-Thanks,
-Mauro
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
