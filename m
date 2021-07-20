@@ -2,94 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 64C363CF355
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 06:31:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBDC63CF36D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 06:42:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242245AbhGTDum (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jul 2021 23:50:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48510 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242110AbhGTDuh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jul 2021 23:50:37 -0400
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75071C0613DB
-        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 21:31:11 -0700 (PDT)
-Received: by mail-pg1-x52f.google.com with SMTP id i16so3831625pgi.9
-        for <devicetree@vger.kernel.org>; Mon, 19 Jul 2021 21:31:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=mcvcTNKU/F2RKt/RmkG+At3l4CoJejuKhB7w1RypCN8=;
-        b=Sx/gJA9HcbmCmuQGmp62XskYmYz4CywjWF19PpEZRNKyEOrQ6iJT87aEwyPwXz0LfX
-         w04jtUsW2BaHdzi8gwh1XgIqD79qOWo0OrR9c1VCNwH4Ew74CB+bPlVenFjPxAnbLbO4
-         Mdwg+4wq686xdcHmOSY4y59ZFDvX6Ig5cAQscZuNarTLdRqpMQQOKKsBXb4O3gmflAhZ
-         zdkum0rWN+uP8cMKejWLjQ1D88NfmhuYBMBVNb0dMJt12z/xEHp0qvH9D+AJ4znZErsc
-         bYApMy2mo0TVnSKh6rwdqcZT9SJ4zusfB0Los1xsdgkLmEWL4qhRt0fDNluSnpc6cZ3b
-         LH3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=mcvcTNKU/F2RKt/RmkG+At3l4CoJejuKhB7w1RypCN8=;
-        b=MHUMecMALE9dz9jKUs95mPWwCfRkJw1TFBVUludRFWqgOvmvsYoutzJeg4WbBb8ilv
-         OsUS4wqBKMCB4WjxBBd0wCCtQ9LGWep6ziTm9UpBA0ZWQBOZbB4LWdpFzTDkqRB7dG19
-         zh0XBWE2fSLfDyPKdKIqZbP/28JS/kQtHpnQdTvNooZq/XK/uB9G+14T9XK/r1YXBJTs
-         A8C4g9H/CZ26xTyEQJ2K3UXqwh9zaO2co0/zGB6aEc8rVJgNkjSrshI41bW4i0x01zWG
-         knN1aGNBGEyYgDSs50DNQBvfwn1lN7fywCjecUfvmbQgYtrY5+oyE64LKEXqhXgmrl8U
-         rsvQ==
-X-Gm-Message-State: AOAM533MJKx1tEiWyDCZAKSDQAg5LQUEvMrD6yPjr3VwoGQpeMQEbUhh
-        myvGnLluhWZ5618J293DZsfn8g==
-X-Google-Smtp-Source: ABdhPJysz1iW7BlxcGrZOzQHEEHs+B6gk0BAxURN9YRsRRV3t6/jJRke+sTMnGh3PxII2EGDluQHDw==
-X-Received: by 2002:a65:62da:: with SMTP id m26mr28616661pgv.370.1626755470972;
-        Mon, 19 Jul 2021 21:31:10 -0700 (PDT)
-Received: from localhost ([106.201.108.2])
-        by smtp.gmail.com with ESMTPSA id g18sm21192639pfi.199.2021.07.19.21.31.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Jul 2021 21:31:10 -0700 (PDT)
-Date:   Tue, 20 Jul 2021 10:01:08 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Yangtao Li <tiny.windzz@gmail.com>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, linux-pm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2] dt-bindings: opp: Convert to DT schema
-Message-ID: <20210720043108.bmoydy3a2r3gqhnq@vireshk-i7>
-References: <20210719202732.2490287-1-robh@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210719202732.2490287-1-robh@kernel.org>
-User-Agent: NeoMutt/20180716-391-311a52
+        id S1347330AbhGTD5Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jul 2021 23:57:16 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:40181 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1346923AbhGTD47 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Jul 2021 23:56:59 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1626755858; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=ZGzo7qtd5RMmOHJdMfl1iSfPpBIFAZ1rPzgtyoO52QI=; b=GnaWq7kMwOV8a8mhr7ycRaAGFtu5KyobihWMwoswe5t+JwXOJ8rxmlMGzo4SnObZrs4Au0mF
+ JH/LRA6oe7pzOR36AHqQzKUYoFWO0F/Yv7cJG5EjCUOpzwU5gzgPTYQfijV3YGCcOr+RecwH
+ cfoQjvezbVv1oCNxGpVVrotmymU=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
+ 60f652fe56871ded7737fb8e (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 20 Jul 2021 04:37:18
+ GMT
+Sender: sibis=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id A3C68C4360C; Tue, 20 Jul 2021 04:37:17 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from blr-ubuntu-87.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7E106C433D3;
+        Tue, 20 Jul 2021 04:37:09 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 7E106C433D3
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=sibis@codeaurora.org
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     mka@chromium.org, swboyd@chromium.org, bjorn.andersson@linaro.org,
+        robh+dt@kernel.org
+Cc:     ulf.hansson@linaro.org, rjw@rjwysocki.net, agross@kernel.org,
+        ohad@wizery.com, mathieu.poirier@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dianders@chromium.org, rishabhb@codeaurora.org,
+        sidgup@codeaurora.org, Sibi Sankar <sibis@codeaurora.org>
+Subject: [PATCH v4 00/13] Use qmp_send to update co-processor load state
+Date:   Tue, 20 Jul 2021 10:06:34 +0530
+Message-Id: <1626755807-11865-1-git-send-email-sibis@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19-07-21, 14:27, Rob Herring wrote:
-> Convert the OPP v1 and v2 bindings to DT schema format. As the OPPv2 binding
-> can be extended by vendors, we need to split the common part out from the
-> "operating-points-v2" conforming compatible.
-> 
-> Cc: Yangtao Li <tiny.windzz@gmail.com>
-> Cc: Nishanth Menon <nm@ti.com>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Chen-Yu Tsai <wens@csie.org>
-> Cc: linux-pm@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> v2:
-> - move opp-peak-kBps next to opp-avg-kBps. Also add a dependency schema.
-> - Correct the opp-microamp schemas. It's always a single value for each
->   regulator.
-> - Add missing type for '^opp-microamp-'
+The power domains exposed by the AOSS QMP driver control the load state
+resources linked to modem, adsp, cdsp remoteprocs. These are used to
+notify the Always on Subsystem (AOSS) that a particular co-processor is
+up/down. AOSS uses this information to wait for the co-processors to
+suspend before starting its sleep sequence. These co-processors enter
+low-power modes independent to that of the application processor and
+the load state resources linked to them are expected to remain unaltered
+across system suspend/resume cycles. To achieve this behavior let's stop
+modeling them as power-domains and replace them with generic qmp_send
+interface instead.
 
-Applied. Thanks.
+https://lore.kernel.org/lkml/20200913034603.GV3715@yoga/
+Previous discussion on dropping power-domain support from AOSS QMP driver
+
+Depends on:
+aoss yaml: https://patchwork.kernel.org/project/linux-arm-msm/cover/20210709174142.1274554-1-bjorn.andersson@linaro.org/
+qmp_send: https://patchwork.kernel.org/project/linux-arm-msm/cover/1623237532-20829-1-git-send-email-sibis@codeaurora.org/
+
+V4:
+ * Rebase patch 1 due to the aoss-qmp yaml conversion (Dropping Rb).
+ * Commit message change and sc8180x co-processor addition
+   to patch 2. [Rob/Bjorn]
+ * Drop unused pdev and kfree the load state string in q6v5_deinit
+   /probe path for patch 4. [Matthias]
+ * Replaced "binding" with "property" across the series. [Matthias]
+ * Commit message change and drop incorrect cleanup on cooling
+   device probe failures. [Matthias]
+
+V3:
+ * Misc. documentation fixes [patch 2]:
+  - Reduce power-domain maxItems due to load_state pd removal
+  - Combine compatibles where possible with the load_state pd removal
+  - Fixup the qcom,qmp ref to phandle type
+
+V2:
+ * load_state is currently broken on mainline so be safely dropped
+   without side-effects.
+ * Rebased on top of qmp_send v3 series.
+ * Dropped R-b from Stephen and Rob on patch 3 due to the yaml
+   conversion.
+ * New patch [12] to drop unused aoss-qmp header.
+ * Commit message update [patch 1] [Rob]
+ * Reorder the series [Stephen]
+
+Sibi Sankar (13):
+  dt-bindings: soc: qcom: aoss: Drop the load state power-domain
+  dt-bindings: remoteproc: qcom: pas: Add QMP property
+  dt-bindings: remoteproc: qcom: Add QMP property
+  remoteproc: qcom: q6v5: Use qmp_send to update co-processor load state
+  arm64: dts: qcom: sc7180: Use QMP property to control load state
+  arm64: dts: qcom: sc7280: Use QMP property to control load state
+  arm64: dts: qcom: sdm845: Use QMP property to control load state
+  arm64: dts: qcom: sm8150: Use QMP property to control load state
+  arm64: dts: qcom: sm8250: Use QMP property to control load state
+  arm64: dts: qcom: sm8350: Use QMP property to control load state
+  soc: qcom: aoss: Drop power domain support
+  dt-bindings: msm/dp: Remove aoss-qmp header
+  dt-bindings: soc: qcom: aoss: Delete unused power-domain definitions
+
+ .../bindings/display/msm/dp-controller.yaml        |   1 -
+ .../devicetree/bindings/remoteproc/qcom,adsp.yaml  |  65 +++++++------
+ .../devicetree/bindings/remoteproc/qcom,q6v5.txt   |   7 +-
+ .../bindings/soc/qcom/qcom,aoss-qmp.yaml           |  11 +--
+ arch/arm64/boot/dts/qcom/sc7180.dtsi               |   9 +-
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               |   2 -
+ arch/arm64/boot/dts/qcom/sdm845.dtsi               |   8 +-
+ arch/arm64/boot/dts/qcom/sm8150.dtsi               |  28 +++---
+ arch/arm64/boot/dts/qcom/sm8250.dtsi               |  22 ++---
+ arch/arm64/boot/dts/qcom/sm8350.dtsi               |  30 +++---
+ drivers/remoteproc/qcom_q6v5.c                     |  57 ++++++++++-
+ drivers/remoteproc/qcom_q6v5.h                     |   7 +-
+ drivers/remoteproc/qcom_q6v5_adsp.c                |   7 +-
+ drivers/remoteproc/qcom_q6v5_mss.c                 |  44 ++-------
+ drivers/remoteproc/qcom_q6v5_pas.c                 |  85 ++++------------
+ drivers/remoteproc/qcom_q6v5_wcss.c                |   4 +-
+ drivers/soc/qcom/qcom_aoss.c                       | 107 ---------------------
+ include/dt-bindings/power/qcom-aoss-qmp.h          |  14 ---
+ 18 files changed, 185 insertions(+), 323 deletions(-)
+ delete mode 100644 include/dt-bindings/power/qcom-aoss-qmp.h
 
 -- 
-viresh
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
+
