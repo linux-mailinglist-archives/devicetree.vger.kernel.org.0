@@ -2,92 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E92E3CFFAD
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 18:40:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D70D3CFFB7
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jul 2021 18:44:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229643AbhGTQAG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 12:00:06 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47290 "EHLO mail.kernel.org"
+        id S229793AbhGTQDW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jul 2021 12:03:22 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49360 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234655AbhGTP6l (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Jul 2021 11:58:41 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 79F6D6120F
-        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 16:39:19 +0000 (UTC)
+        id S231367AbhGTQC0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Jul 2021 12:02:26 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 25B24610A0;
+        Tue, 20 Jul 2021 16:43:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626799159;
-        bh=gTXKuYWTIurzIQqTGR7d+wnzFvtpIuOkmCH1n2NqvKY=;
+        s=k20201202; t=1626799382;
+        bh=j4BCtPKXcQCOjyfWn0WZbL/kVl1xrM5LvBy4FoGz/40=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=MmoN+9sYQiL3qcy5sZyXFc4A8b8O4mIYQSyLDMyCtlwiG35UQVJ3LnLKsMAufh1y0
-         HGyjnLsU9W7VngA/TFAMQA5b5KJouhPadTvp614+RrzYDv6/3/17GEzrQmNEgwkmM3
-         g87X80HUAGOyS5UBqFUlqIJacccQXyFHeQExRQzFimVuJUzA4GGfTjHYdNzRXcm1lC
-         zWgHnAOwnAmHIe7zO3p2m+VhBgPEtiVX1gg01sa4/0SEg6XCix/6qS7u9IHOdG4lXm
-         B4YCvLjftxn15kK7vJO0sIxZFRtKR6RUuzfBQidEcEW68N5aevFFJ7ZheLYHM4kCAQ
-         3ODa4HeDdJXCA==
-Received: by mail-ed1-f54.google.com with SMTP id l1so29181816edr.11
-        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 09:39:19 -0700 (PDT)
-X-Gm-Message-State: AOAM5325P6oHYYHwUdZdsV0atMtwoFs59xXxeGaGN/DxGDKjHeLXymLd
-        0KcykoGyHMGmzGvhO1UgCZN4pMiCXFIUDRDvyQ==
-X-Google-Smtp-Source: ABdhPJwIBcifE6NzK9FRUpGlqdwlYOSBR3Y10xUH7ncpjDZp6AuBiG/kFIh1H6beccYBKuapdkbMZFeUVE5P8eWzI9Q=
-X-Received: by 2002:aa7:cb19:: with SMTP id s25mr42400625edt.194.1626799158051;
- Tue, 20 Jul 2021 09:39:18 -0700 (PDT)
+        b=moeWhsB7eX73mM0W6ABzmaXgPWmHBdPBBw0qgkPsPA2+RAyIvoLAhI77BCqCW79Sp
+         xydZMGobvFHByG2gqrbEmfVOm9tRnN/+nakSkGmStRcuhw8E1ItFimXZguAHYjrs1T
+         7XT+jJ2jZWsfEkw1MnRll4enlJqzZZnIZ78Ot+PNv/UHfVdUuKR5Sw+N2CfhR0iyPc
+         bUjMPPuhppzFGO28GPlNkRUnafuD+onsug1tYPdLatbW9g3kgoEmnXGlQN6ZbzUVKn
+         DAVZYj0agPkdfE00h/jrQzL2PRO+H+juX1clU5Y9oE+sc7wLmW9PfYbRoz+EapA+9x
+         biYG5J5j3zUCw==
+Received: by mail-ej1-f44.google.com with SMTP id gb6so35257109ejc.5;
+        Tue, 20 Jul 2021 09:43:02 -0700 (PDT)
+X-Gm-Message-State: AOAM531UJYUaGfEczqr+mxswQxsIFd7VCWAFSj5X4axtuytm+66xcMC0
+        Mhc4UBzXKUnavKMrAOWGGjapJysR/4DjqT/nng==
+X-Google-Smtp-Source: ABdhPJxjI2GVsp30gFxyft0HwUf/jh/jdIG8vJGlj+RqnG3vOkfXtdpanD4o0pxB3n9fg2NzozRw2Nvbs11EVTCG5Kw=
+X-Received: by 2002:a17:906:5fc1:: with SMTP id k1mr32794046ejv.360.1626799380758;
+ Tue, 20 Jul 2021 09:43:00 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210717001638.1292554-1-linus.walleij@linaro.org>
- <20210719151833.GA1908766@robh.at.kernel.org> <CACRpkdbmdd9TuVD-Lanme77-0XKg0up3jrXeisYNR4p9EL=9kQ@mail.gmail.com>
-In-Reply-To: <CACRpkdbmdd9TuVD-Lanme77-0XKg0up3jrXeisYNR4p9EL=9kQ@mail.gmail.com>
+References: <d430f9c06d6691fe8a98f923cdb7ca13772834b1.1626262043.git.geert+renesas@glider.be>
+ <20210716180253.GA3684196@robh.at.kernel.org> <CAMuHMdWXCJd0NzH4km+oXBziBct31DCb53fmk3RhAk-+29Zkew@mail.gmail.com>
+In-Reply-To: <CAMuHMdWXCJd0NzH4km+oXBziBct31DCb53fmk3RhAk-+29Zkew@mail.gmail.com>
 From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 20 Jul 2021 10:39:05 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLrw6Y+aMYRFF87E=X2tvyF_OUn7OkzLVUS7WvGAbehvA@mail.gmail.com>
-Message-ID: <CAL_JsqLrw6Y+aMYRFF87E=X2tvyF_OUn7OkzLVUS7WvGAbehvA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] bus: ixp4xx: Add DT bindings for the IXP4xx expansion bus
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Imre Kaloz <kaloz@openwrt.org>,
-        Krzysztof Halasa <khalasa@piap.pl>,
-        Marc Zyngier <maz@kernel.org>,
+Date:   Tue, 20 Jul 2021 10:42:49 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+anYwYVssARuymvB=HKK13=p22e65OiYbvYKSwPCtsVg@mail.gmail.com>
+Message-ID: <CAL_Jsq+anYwYVssARuymvB=HKK13=p22e65OiYbvYKSwPCtsVg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: memory: renesas,rpc-if: Miscellaneous improvements
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        MTD Maling List <linux-mtd@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 19, 2021 at 4:49 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+On Fri, Jul 16, 2021 at 1:10 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 >
-> On Mon, Jul 19, 2021 at 5:18 PM Rob Herring <robh@kernel.org> wrote:
+> Hi Rob,
 >
-> > > +patternProperties:
-> > > +  "^.*@[0-7],[0-9a-f]+$":
-> > > +    description: Devices attached to chip selects are represented as
-> > > +      subnodes.
-> > > +    type: object
+> On Fri, Jul 16, 2021 at 8:02 PM Rob Herring <robh@kernel.org> wrote:
+> > On Wed, Jul 14, 2021 at 01:30:13PM +0200, Geert Uytterhoeven wrote:
+> > >   - Add missing "#{address,size}-cells",
+> > >   - Fix rejection of legitimate flash subnodes containing multiple
+> > >     compatible values,
+> > >   - Add missing list of required properties.
+> > >
+> > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > ---
+> > >  .../memory-controllers/renesas,rpc-if.yaml    | 23 ++++++++++++++++---
+> > >  1 file changed, 20 insertions(+), 3 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml b/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml
+> > > index 990489fdd2ac33fe..c0d899a2305361b1 100644
+> > > --- a/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml
+> > > +++ b/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml
+> > > @@ -56,17 +56,34 @@ properties:
+> > >    resets:
+> > >      maxItems: 1
+> > >
+> > > +  '#address-cells':
+> > > +    const: 1
 > > > +
-> > > +    properties:
-> > > +      intel,ixp4xx-eb-t1:
-> > > +        description: Address timing, extend address phase with n cycles.
-> > > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > > +        maximum: 3
->
-> (...)
->
-> > > +    unevaluatedProperties: false
+> > > +  '#size-cells':
+> > > +    const: 0
+> > > +
 > >
-> > This will cause failures when implemented. The problem is this won't
-> > allow any other child node properties as this schema and the device
-> > schema are evaluated independently. The only way I see to solve this is
-> > the child node schemas have to include some 'bus properties' schema
-> > which includes all possible bus controller properties. There's been a
-> > recent patch set doing this for SPI. At least here, I think the number
-> > of different child devices on parallel expansion buses are limited.
-> >
-> > So spliting this to 2 schema files would be the first step. Minimally,
-> > just drop unevaluatedProperties.
+> > spi-controller.yaml already defines this.
 >
-> SPI upstream simply uses
->
-> additionalProperties: true
->
-> is that acceptable for now?
+> spi-controller.yaml says '#address-cells' must be 0 or 1.  As RPC-IF does
+> SPI master only, it should be 1.
 
-Yes. (That is the default)
+Yes, but then it says:
+
+allOf:
+  - if:
+      not:
+        required:
+          - spi-slave
+    then:
+      properties:
+        "#address-cells":
+          const: 1
+    else:
+      properties:
+        "#address-cells":
+          const: 0
 
 Rob
