@@ -2,105 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D62D33D0D30
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 13:12:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A5713D0D17
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 13:10:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236060AbhGUK2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 06:28:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58690 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239487AbhGUKFd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Jul 2021 06:05:33 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 851FC60238;
-        Wed, 21 Jul 2021 10:46:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1626864369;
-        bh=lekz1x8Vr+mtj6/j1CLlcAW/8TwIhmgKM8+wU/jnTd4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=I3WtQXqEESn30zVXhTZ7Rf7axCV+VRasQnprlkR/u7LSKrlVylGYfkUewLhoVp/fD
-         IJedpcadAQ0QHFTl0SxxRdlu3rgGAekSV4pzAQKudjBQLW1i2XbfTFGXtpKAp6cjKL
-         fgNulM80bhGQechPnYIiFF3/dCAs0n+WaEjdVWuE=
-Date:   Wed, 21 Jul 2021 12:46:06 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Zhiyong Tao <zhiyong.tao@mediatek.com>
-Cc:     timur@kernel.org, linux@armlinux.org.uk, alcooperx@gmail.com,
-        tklauser@distanz.ch, sean.wang@kernel.org,
-        srv_heupstream@mediatek.com, hui.liu@mediatek.com,
-        yuchen.huang@mediatek.com, huihui.wang@mediatek.com,
-        eddie.huang@mediatek.com, sean.wang@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-serial@vger.kernel.org
-Subject: Re: [PATCH] uart: mediatek: fix memory corruption issue
-Message-ID: <YPf67gw2KJCk/Ucs@kroah.com>
-References: <20210710090103.2643-1-zhiyong.tao@mediatek.com>
- <20210710090103.2643-2-zhiyong.tao@mediatek.com>
+        id S238692AbhGUK3T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 06:29:19 -0400
+Received: from relay05.th.seeweb.it ([5.144.164.166]:39717 "EHLO
+        relay05.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239981AbhGUKIc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 06:08:32 -0400
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 283833F74F;
+        Wed, 21 Jul 2021 12:48:25 +0200 (CEST)
+Subject: Re: [PATCH v6 8/9] dt-bindings: cpufreq: qcom-hw: Add bindings for
+ 8998
+To:     Rob Herring <robh@kernel.org>
+Cc:     bjorn.andersson@linaro.org, viresh.kumar@linaro.org,
+        agross@kernel.org, rjw@rjwysocki.net, devicetree@vger.kernel.org,
+        amit.kucheria@linaro.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, jami.kettunen@somainline.org,
+        paul.bouchara@somainline.org,
+        ~postmarketos/upstreaming@lists.sr.ht, jeffrey.l.hugo@gmail.com
+References: <20210701105730.322718-1-angelogioacchino.delregno@somainline.org>
+ <20210701105730.322718-9-angelogioacchino.delregno@somainline.org>
+ <20210714213946.GA3568065@robh.at.kernel.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Message-ID: <7d012e8c-4570-9d60-32c3-fb271ce636b8@somainline.org>
+Date:   Wed, 21 Jul 2021 12:48:24 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210710090103.2643-2-zhiyong.tao@mediatek.com>
+In-Reply-To: <20210714213946.GA3568065@robh.at.kernel.org>
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 10, 2021 at 05:01:03PM +0800, Zhiyong Tao wrote:
-> This patch is used to fix memory corruption issue when rx power off.
-> 1. add spin lock in mtk8250_dma_rx_complete function in APDMA mode.
-
-What does a lock protect from?  Please be explicit and detailed.
-
-> 2. add processing mechanism which count value is 0
-
-What does this do?  And why is it needed?
-
+Il 14/07/21 23:39, Rob Herring ha scritto:
+> On Thu, Jul 01, 2021 at 12:57:29PM +0200, AngeloGioacchino Del Regno wrote:
+>> The OSM programming addition has been done under the
+>> qcom,cpufreq-hw-8998 compatible name: specify the requirement
+>> of two additional register spaces for this functionality.
+>> This implementation, with the same compatible, has been
+>> tested on MSM8998 and SDM630.
 > 
-> Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
-
-What commit does this fix?  Does this need to go to stable kernel trees?
-If so, how far back?
-
-> ---
->  drivers/tty/serial/8250/8250_mtk.c | 15 +++++++++++----
->  1 file changed, 11 insertions(+), 4 deletions(-)
+> Certainly we should be using the new binding for any new SoCs.
 > 
-> diff --git a/drivers/tty/serial/8250/8250_mtk.c b/drivers/tty/serial/8250/8250_mtk.c
-> index f7d3023f860f..09f7d2166315 100644
-> --- a/drivers/tty/serial/8250/8250_mtk.c
-> +++ b/drivers/tty/serial/8250/8250_mtk.c
-> @@ -91,12 +91,15 @@ static void mtk8250_dma_rx_complete(void *param)
->  	struct mtk8250_data *data = up->port.private_data;
->  	struct tty_port *tty_port = &up->port.state->port;
->  	struct dma_tx_state state;
-> -	int copied, total, cnt;
-> +	unsigned int copied, total, cnt;
->  	unsigned char *ptr;
-> +	unsigned long flags;
->  
->  	if (data->rx_status == DMA_RX_SHUTDOWN)
->  		return;
->  
-> +	spin_lock_irqsave(&up->port.lock, flags);
-> +
->  	dmaengine_tx_status(dma->rxchan, dma->rx_cookie, &state);
->  	total = dma->rx_size - state.residue;
->  	cnt = total;
-> @@ -104,9 +107,11 @@ static void mtk8250_dma_rx_complete(void *param)
->  	if ((data->rx_pos + cnt) > dma->rx_size)
->  		cnt = dma->rx_size - data->rx_pos;
->  
-> -	ptr = (unsigned char *)(data->rx_pos + dma->rx_buf);
-> -	copied = tty_insert_flip_string(tty_port, ptr, cnt);
-> -	data->rx_pos += cnt;
-> +	if (cnt != 0) {
 
-Why does cnt matter here?  If cnt is 0, the code above should not do
-anything at all, right?
+Yes that's totally true, I should've probably added the new bindings directly
+instead of making it implicit that the 8998 model is valid for the others.
+Adding more bindings will explicitly clarify that the support is extended to
+630/660 so yeah, I agree.
 
-Or if it does, should we change tty_insert_flip_string() to always check
-for cnt != 0 before it does the first loop?  Hm, it looks like it will
-abort if cnt is 0, so what is this change really doing?  Why do you need
-it?  What is it "fixing"?
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+>> ---
+>>   .../bindings/cpufreq/cpufreq-qcom-hw.yaml     | 67 ++++++++++++++-----
+>>   1 file changed, 52 insertions(+), 15 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+>> index bc81b6203e27..29b663321a0b 100644
+>> --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+>> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+>> @@ -18,6 +18,10 @@ description: |
+>>   properties:
+>>     compatible:
+>>       oneOf:
+>> +      - description: Non-secure v1 of CPUFREQ HW
+>> +        items:
+>> +          - const: qcom,cpufreq-hw-8998
+>> +
+>>         - description: v1 of CPUFREQ HW
+>>           items:
+>>             - const: qcom,cpufreq-hw
+>> @@ -28,21 +32,9 @@ properties:
+>>                 - qcom,sm8250-cpufreq-epss
+>>             - const: qcom,cpufreq-epss
+>>   
+>> -  reg:
+>> -    minItems: 2
+>> -    maxItems: 3
+>> -    items:
+>> -      - description: Frequency domain 0 register region
+>> -      - description: Frequency domain 1 register region
+>> -      - description: Frequency domain 2 register region
+>> +  reg: {}
+>>   
+>> -  reg-names:
+>> -    minItems: 2
+>> -    maxItems: 3
+>> -    items:
+>> -      - const: freq-domain0
+>> -      - const: freq-domain1
+>> -      - const: freq-domain2
+>> +  reg-names: {}
+>>   
+>>     clocks:
+>>       items:
+>> @@ -57,10 +49,55 @@ properties:
+>>     '#freq-domain-cells':
+>>       const: 1
+>>   
+>> +if:
+>> +  properties:
+>> +    compatible:
+>> +      contains:
+>> +        const: qcom,cpufreq-hw-8998
+>> +then:
+>> +  properties:
+>> +    reg:
+>> +      minItems: 2
+>> +      maxItems: 6
+>> +      items:
+>> +        - description: Frequency domain 0 register region
+>> +        - description: Operating State Manager domain 0 register region
+>> +        - description: Frequency domain 1 register region
+>> +        - description: Operating State Manager domain 1 register region
+>> +        - description: PLL ACD domain 0 register region (if ACD programming required)
+>> +        - description: PLL ACD domain 1 register region (if ACD programming required)
+>> +
+>> +    reg-names:
+>> +      minItems: 2
+>> +      maxItems: 6
+>> +      items:
+>> +        - const: "osm-domain0"
+>> +        - const: "freq-domain0"
+>> +        - const: "osm-domain1"
+>> +        - const: "freq-domain1"
+>> +        - const: "osm-acd0"
+>> +        - const: "osm-acd1"
+> 
+> This is different enough and there's not much else to this bindings, so
+> I think you should do a separate schema doc.
+> 
+> BTW, Don't need quotes here.
+> 
 
-thanks,
+If you think that this would be appropriate, then I guess it's trivial to
+do that and I will... though, I am 99% sure that these bindings will never
+get updated, as Qualcomm has shifted to do the programming in TZ and there
+surely will never be any new SoC requiring this kind of thing.
 
-greg k-h
+The ones that do require this should be around 6, if my memory isn't failing...
+
+>> +
+>> +else:
+>> +  properties:
+>> +    reg:
+>> +      minItems: 2
+>> +      maxItems: 3
+>> +      items:
+>> +        - description: Frequency domain 0 register region
+>> +        - description: Frequency domain 1 register region
+>> +        - description: Frequency domain 2 register region
+>> +    reg-names:
+>> +      minItems: 2
+>> +      maxItems: 3
+>> +      items:
+>> +        - const: "freq-domain0"
+>> +        - const: "freq-domain1"
+>> +        - const: "freq-domain2"
+>> +
+>>   required:
+>>     - compatible
+>>     - reg
+>> -  - reg-names
+>>     - clocks
+>>     - clock-names
+>>     - '#freq-domain-cells'
+>> -- 
+>> 2.32.0
+>>
+>>
+
