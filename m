@@ -2,103 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2ED1E3D0F81
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 15:28:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81D8B3D0FB9
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 15:40:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237842AbhGUMrq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 08:47:46 -0400
-Received: from mga09.intel.com ([134.134.136.24]:59252 "EHLO mga09.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232672AbhGUMrp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Jul 2021 08:47:45 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10051"; a="211432735"
-X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; 
-   d="scan'208";a="211432735"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jul 2021 06:28:21 -0700
-X-IronPort-AV: E=Sophos;i="5.84,258,1620716400"; 
-   d="scan'208";a="662114672"
-Received: from tamoore1-mobl3.amr.corp.intel.com (HELO [10.209.131.176]) ([10.209.131.176])
-  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jul 2021 06:28:20 -0700
-Subject: Re: [PATCH 1/3] ASoC: SOF: Parse fw/tplg filename from DT
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Devicetree List <devicetree@vger.kernel.org>,
-        Daniel Baluta <daniel.baluta@gmail.com>,
-        Kai Vehmanen <kai.vehmanen@linux.intel.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Daniel Baluta <daniel.baluta@oss.nxp.com>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
-        Takashi Iwai <tiwai@suse.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>
-References: <20210715141802.880911-1-daniel.baluta@oss.nxp.com>
- <20210715141802.880911-2-daniel.baluta@oss.nxp.com>
- <20210715143906.GD4590@sirena.org.uk>
- <CAEnQRZCdSLoaLVZ7-jtufgZCG6QshMwdfyJy_4oE6cXRbA5H8A@mail.gmail.com>
- <CAEnQRZCiC5aGK6AsD0TN5fzN6AxFn6=f8hCrd2B9fhCYfCFOSg@mail.gmail.com>
- <bd85ea7c-e9b5-de67-07ce-7104a1e19805@linux.intel.com>
- <20210721125912.GE4259@sirena.org.uk>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Message-ID: <eb98c10a-cc04-dbcf-b5cf-511703dc22fb@linux.intel.com>
-Date:   Wed, 21 Jul 2021 08:28:17 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.11.0
+        id S238479AbhGUNAF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 09:00:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44182 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238533AbhGUM76 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 08:59:58 -0400
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4448C00EE53
+        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 06:40:29 -0700 (PDT)
+Received: by mail-pl1-x62e.google.com with SMTP id x16so972707plg.3
+        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 06:40:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=2zLU7xCdFtfu9+Bw/8ezSHg3AfeYZUFk7U4CAtgzsSk=;
+        b=DLHpRRbO2RjAuMVpphDwHJoRmp8oEEm2MATAeF6UdAuJwx6eZbHLhj/xa1KIBmUapU
+         vvrK/O8gHWiQUba4dp6grGuRxiZInd+ONetpTm56l+rBFizt/z7Dy9AYvs9HhYvLMNfQ
+         OprQNoqgEfTNr0CZ8TwU+aR/v2mVhyzcaf6M8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=2zLU7xCdFtfu9+Bw/8ezSHg3AfeYZUFk7U4CAtgzsSk=;
+        b=qbWF4jM/ZeqpegkdpzJqhXDo1NobIOv9bkmYmQQtB76cBQsAh5xYflof2TBdMtEcGu
+         2svFqw+iUZ8xshI0z1Z0e93Lno+j37qAp9k8n4Kx80agmWgg7WqcZOVZW3esVX3vk11b
+         77OgZDV6Rt+01t4uP0AlGJDTiB5sM0NwrgwR5NpkkQjVHLx8pZFuZZvU85u4SoXpwavv
+         glF6annDPo5UDOxidNgv8W8BiCXIfOf1KK6xJAKZDA3UkegCP6ZZO58HlOEGM6yWBj/s
+         gOOr2bHWQaZ1//kBBILaSQTWkIbMQFt6mDWJqerMOSWgvyRY8y2QwFullei/bSgURqhF
+         LKUg==
+X-Gm-Message-State: AOAM533Znh0L1Zj0K5Qc26dXSvvBmZPuM0+8XlWMIk2IICFLH+0RjXGQ
+        AW2T+VZTNT1PBnHF6e8mGlzJKzPwhGg8zfQnHYfygg==
+X-Google-Smtp-Source: ABdhPJx22xhPEIxOvOdw0zD9THkPvLXa3uzUD5hc6KKSjL7/wue/Gk1Ox9vE25uU+NrX5EvLd6pJ/RDET8kRqJVOJzU=
+X-Received: by 2002:a17:90a:4f02:: with SMTP id p2mr3750645pjh.112.1626874829285;
+ Wed, 21 Jul 2021 06:40:29 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210721125912.GE4259@sirena.org.uk>
-Content-Type: text/plain; charset=windows-1252
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210715121209.31024-1-yong.wu@mediatek.com> <20210715121209.31024-12-yong.wu@mediatek.com>
+In-Reply-To: <20210715121209.31024-12-yong.wu@mediatek.com>
+From:   Ikjoon Jang <ikjn@chromium.org>
+Date:   Wed, 21 Jul 2021 21:40:18 +0800
+Message-ID: <CAATdQgAfo9oNR5=ogEottHajODngi1ahvKUnEOUczzjreYpPcQ@mail.gmail.com>
+Subject: Re: [PATCH v2 11/11] memory: mtk-smi: mt8195: Add initial setting for smi-larb
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        anan.sun@mediatek.com, ming-fan.chen@mediatek.com,
+        yi.kuo@mediatek.com, anthony.huang@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jul 15, 2021 at 8:23 PM Yong Wu <yong.wu@mediatek.com> wrote:
+>
+> To improve the performance, We add some initial setting for smi larbs.
+> there are two part:
+> 1), Each port has the special ostd(outstanding) value in each larb.
+> 2), Two general setting for each larb.
+>
+> In some SoC, this setting maybe changed dynamically for some special case
+> like 4K, and this initial setting is enough in mt8195.
+>
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> ---
+>  drivers/memory/mtk-smi.c | 74 +++++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 73 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
+> index c52bf02458ff..1d9e67520433 100644
+> --- a/drivers/memory/mtk-smi.c
+> +++ b/drivers/memory/mtk-smi.c
+> @@ -32,6 +32,14 @@
+>  #define SMI_DUMMY                      0x444
+>
+>  /* SMI LARB */
+> +#define SMI_LARB_CMD_THRT_CON          0x24
+> +#define SMI_LARB_THRT_EN               0x370256
+> +
+> +#define SMI_LARB_SW_FLAG               0x40
+> +#define SMI_LARB_SW_FLAG_1             0x1
+> +
+> +#define SMI_LARB_OSTDL_PORT            0x200
+> +#define SMI_LARB_OSTDL_PORTx(id)       (SMI_LARB_OSTDL_PORT + (((id) & 0x1f) << 2))
+>
+>  /* Below are about mmu enable registers, they are different in SoCs */
+>  /* mt2701 */
+> @@ -67,6 +75,11 @@
+>  })
+>
+>  #define SMI_COMMON_INIT_REGS_NR                6
+> +#define SMI_LARB_PORT_NR_MAX           32
+> +
+> +#define MTK_SMI_FLAG_LARB_THRT_EN      BIT(0)
+> +#define MTK_SMI_FLAG_LARB_SW_FLAG      BIT(1)
+> +#define MTK_SMI_CAPS(flags, _x)                (!!((flags) & (_x)))
+>
+>  struct mtk_smi_reg_pair {
+>         unsigned int            offset;
+> @@ -97,6 +110,8 @@ struct mtk_smi_larb_gen {
+>         int port_in_larb[MTK_LARB_NR_MAX + 1];
+>         void (*config_port)(struct device *dev);
+>         unsigned int                    larb_direct_to_common_mask;
+> +       unsigned int                    flags_general;
+> +       const u8                        (*ostd)[SMI_LARB_PORT_NR_MAX];
+>  };
+>
+>  struct mtk_smi {
+> @@ -213,12 +228,22 @@ static void mtk_smi_larb_config_port_mt8173(struct device *dev)
+>  static void mtk_smi_larb_config_port_gen2_general(struct device *dev)
+>  {
+>         struct mtk_smi_larb *larb = dev_get_drvdata(dev);
+> -       u32 reg;
+> +       u32 reg, flags_general = larb->larb_gen->flags_general;
+> +       const u8 *larbostd = larb->larb_gen->ostd[larb->larbid];
+>         int i;
+>
+>         if (BIT(larb->larbid) & larb->larb_gen->larb_direct_to_common_mask)
+>                 return;
+>
+> +       if (MTK_SMI_CAPS(flags_general, MTK_SMI_FLAG_LARB_THRT_EN))
+> +               writel_relaxed(SMI_LARB_THRT_EN, larb->base + SMI_LARB_CMD_THRT_CON);
+> +
+> +       if (MTK_SMI_CAPS(flags_general, MTK_SMI_FLAG_LARB_SW_FLAG))
+> +               writel_relaxed(SMI_LARB_SW_FLAG_1, larb->base + SMI_LARB_SW_FLAG);
+> +
+> +       for (i = 0; i < SMI_LARB_PORT_NR_MAX && larbostd && !!larbostd[i]; i++)
+> +               writel_relaxed(larbostd[i], larb->base + SMI_LARB_OSTDL_PORTx(i));
 
-> Please fix your mail client to word wrap within paragraphs at something
-> substantially less than 80 columns.  Doing this makes your messages much
-> easier to read and reply to.
+All other mtk platform's larbs have the same format for SMI_LARB_OSTDL_PORTx()
+registers at the same offset? or is this unique feature for mt8195?
 
-Oops.
-
->> - we currently don't support 'shipping the topology and firmware
->> bundled up in a single image to avoid them getting out of sync'. No
->> idea how that might work.
-> 
-> Seems like it'd be trivial to arrange in the kernel, or with userspace
-> firmware loading the loader could do the unpacking.
-
-I think we can bundle the firmware inside of the kernel image itself,
-but we've never tried so it doesn't work by default.
-I don't know what userspace loading means, we rely on request_firmware
-and don't assume any specific support from userspace.
-
->> - if the machine driver is specified in DeviceTree, then the topology
->> used is *required* to be aligned with the machine driver. The rules
->> are that a topology may not make references to a BE dailink exposed in
->> the machine driver, but conversely if the topology makes a reference
->> to a BE dailink that is not exposed in the machine driver the topology
->> parsing will fail. It's one of the current weaknesses of
->> topology-based solutions, we have non-configurable hardware-related
->> things that are described in topology but should really be described
->> in platform firmware, be it ACPI or DT, and provided to the topology.
-> 
-> That seems like an orthogonal issue here?  The requirement for a
-> firmware that's joined up with the hardware (and system description)
-> that it's being used with exists regardless of how we rename things.
-
-It's not completely orthogonal. The topology currently defines e.g. the
-I2S interface index, Mclk, bclk, fsync, etc, and my point is that these
-bits of information are completely related to the hardware and should
-probably come from platform firmware/ACPI.
-
-The topology framework currently provides too much freedom to
-developers, it's fine to add new pipelines, PCM devices and new
-processing, but when it comes to the hardware interfaces the topology is
-completely constrained. I've been arguing for a while now that the
-dailink descriptions and configurations should be treated as an input to
-the topology, not something that the topology can configure. I don't
-know how many issues we had to deal with because the topology settings
-were not supported by the hardware, or mismatches between topology and
-machine drivers (missing dailinks, bad dailink index, etc).
-
+> +
+>         for_each_set_bit(i, (unsigned long *)larb->mmu, 32) {
+>                 reg = readl_relaxed(larb->base + SMI_LARB_NONSEC_CON(i));
+>                 reg |= F_MMU_EN;
+> @@ -227,6 +252,51 @@ static void mtk_smi_larb_config_port_gen2_general(struct device *dev)
+>         }
+>  }
+>
+> +static const u8 mtk_smi_larb_mt8195_ostd[][SMI_LARB_PORT_NR_MAX] = {
+> +       [0] = {0x0a, 0xc, 0x22, 0x22, 0x01, 0x0a,}, /* larb0 */
+> +       [1] = {0x0a, 0xc, 0x22, 0x22, 0x01, 0x0a,}, /* larb1 */
+> +       [2] = {0x12, 0x12, 0x12, 0x12, 0x0a,},      /* ... */
+> +       [3] = {0x12, 0x12, 0x12, 0x12, 0x28, 0x28, 0x0a,},
+> +       [4] = {0x06, 0x01, 0x17, 0x06, 0x0a,},
+> +       [5] = {0x06, 0x01, 0x17, 0x06, 0x06, 0x01, 0x06, 0x0a,},
+> +       [6] = {0x06, 0x01, 0x06, 0x0a,},
+> +       [7] = {0x0c, 0x0c, 0x12,},
+> +       [8] = {0x0c, 0x0c, 0x12,},
+> +       [9] = {0x0a, 0x08, 0x04, 0x06, 0x01, 0x01, 0x10, 0x18, 0x11, 0x0a,
+> +               0x08, 0x04, 0x11, 0x06, 0x02, 0x06, 0x01, 0x11, 0x11, 0x06,},
+> +       [10] = {0x18, 0x08, 0x01, 0x01, 0x20, 0x12, 0x18, 0x06, 0x05, 0x10,
+> +               0x08, 0x08, 0x10, 0x08, 0x08, 0x18, 0x0c, 0x09, 0x0b, 0x0d,
+> +               0x0d, 0x06, 0x10, 0x10,},
+> +       [11] = {0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x0e, 0x01, 0x01, 0x01, 0x01,},
+> +       [12] = {0x09, 0x09, 0x05, 0x05, 0x0c, 0x18, 0x02, 0x02, 0x04, 0x02,},
+> +       [13] = {0x02, 0x02, 0x12, 0x12, 0x02, 0x02, 0x02, 0x02, 0x08, 0x01,},
+> +       [14] = {0x12, 0x12, 0x02, 0x02, 0x02, 0x02, 0x16, 0x01, 0x16, 0x01,
+> +               0x01, 0x02, 0x02, 0x08, 0x02,},
+> +       [15] = {},
+> +       [16] = {0x28, 0x02, 0x02, 0x12, 0x02, 0x12, 0x10, 0x02, 0x02, 0x0a,
+> +               0x12, 0x02, 0x0a, 0x16, 0x02, 0x04,},
+> +       [17] = {0x1a, 0x0e, 0x0a, 0x0a, 0x0c, 0x0e, 0x10,},
+> +       [18] = {0x12, 0x06, 0x12, 0x06,},
+> +       [19] = {0x01, 0x04, 0x01, 0x01, 0x01, 0x01, 0x01, 0x04, 0x04, 0x01,
+> +               0x01, 0x01, 0x04, 0x0a, 0x06, 0x01, 0x01, 0x01, 0x0a, 0x06,
+> +               0x01, 0x01, 0x05, 0x03, 0x03, 0x04, 0x01,},
+> +       [20] = {0x01, 0x04, 0x01, 0x01, 0x01, 0x01, 0x01, 0x04, 0x04, 0x01,
+> +               0x01, 0x01, 0x04, 0x0a, 0x06, 0x01, 0x01, 0x01, 0x0a, 0x06,
+> +               0x01, 0x01, 0x05, 0x03, 0x03, 0x04, 0x01,},
+> +       [21] = {0x28, 0x19, 0x0c, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x04,},
+> +       [22] = {0x28, 0x19, 0x0c, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x04,},
+> +       [23] = {0x18, 0x01,},
+> +       [24] = {0x01, 0x01, 0x04, 0x01, 0x01, 0x01, 0x01, 0x01, 0x04, 0x01,
+> +               0x01, 0x01,},
+> +       [25] = {0x02, 0x02, 0x02, 0x28, 0x16, 0x02, 0x02, 0x02, 0x12, 0x16,
+> +               0x02, 0x01,},
+> +       [26] = {0x02, 0x02, 0x02, 0x28, 0x16, 0x02, 0x02, 0x02, 0x12, 0x16,
+> +               0x02, 0x01,},
+> +       [27] = {0x02, 0x02, 0x02, 0x28, 0x16, 0x02, 0x02, 0x02, 0x12, 0x16,
+> +               0x02, 0x01,},
+> +       [28] = {0x1a, 0x0e, 0x0a, 0x0a, 0x0c, 0x0e, 0x10,},
+> +};
+> +
+>  static const struct mtk_smi_larb_gen mtk_smi_larb_mt2701 = {
+>         .port_in_larb = {
+>                 LARB0_PORT_OFFSET, LARB1_PORT_OFFSET,
+> @@ -269,6 +339,8 @@ static const struct mtk_smi_larb_gen mtk_smi_larb_mt8192 = {
+>
+>  static const struct mtk_smi_larb_gen mtk_smi_larb_mt8195 = {
+>         .config_port                = mtk_smi_larb_config_port_gen2_general,
+> +       .flags_general              = MTK_SMI_FLAG_LARB_THRT_EN | MTK_SMI_FLAG_LARB_SW_FLAG,
+> +       .ostd                       = mtk_smi_larb_mt8195_ostd,
+>  };
+>
+>  static const struct of_device_id mtk_smi_larb_of_ids[] = {
+> --
+> 2.18.0
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
