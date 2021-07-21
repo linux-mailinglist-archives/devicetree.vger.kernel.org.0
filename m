@@ -2,120 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07F373D0A4B
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 10:08:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9D133D0A5A
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 10:18:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234484AbhGUH1V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 03:27:21 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:32189 "EHLO m43-7.mailgun.net"
+        id S235835AbhGUH1d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 03:27:33 -0400
+Received: from ni.piap.pl ([195.187.100.5]:59800 "EHLO ni.piap.pl"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235576AbhGUH0V (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Jul 2021 03:26:21 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1626854801; h=Content-Transfer-Encoding: MIME-Version:
- References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=q0KpZYT1es/gzQrLxHYNUttthRrhNMAwcXeE7+pQsSw=; b=DGFHECg2DO2CEsgFgk0zHkySzDRZQCrmuEN6izZuI7gMuF1mgVF9OSNJVkChZwrf9XpNk9tl
- k/Z00NXHfD8XLKNJVarW/xTGnjbqnqwucDf+t3s1fLbLtoAxxtHLtZc+y2R6CLCn58SFIefR
- mzawn3l8l6Ap+Xh8pRW/Nr/u/xw=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
- 60f7d578b653fbdaddecc2d5 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 21 Jul 2021 08:06:16
- GMT
-Sender: srivasam=qti.qualcomm.com@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 72476C433D3; Wed, 21 Jul 2021 08:06:15 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id F28C1C43217;
-        Wed, 21 Jul 2021 08:06:10 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org F28C1C43217
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=fail (p=none dis=none) header.from=qti.qualcomm.com
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@qti.qualcomm.com
-From:   Srinivasa Rao Mandadapu <srivasam@qti.qualcomm.com>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, rohitkr@codeaurora.org,
-        srinivas.kandagatla@linaro.org, dianders@chromium.org,
-        swboyd@chromium.org, judyhsiao@chromium.org
-Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>,
-        Srinivasa Rao Mandadapu <srivasam@qti.qualcomm.com>
-Subject: [PATCH v4 2/2] arm64: dts: qcom: sc7180-trogdor: Add lpass dai link for HDMI
-Date:   Wed, 21 Jul 2021 13:35:49 +0530
-Message-Id: <20210721080549.28822-3-srivasam@qti.qualcomm.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20210721080549.28822-1-srivasam@qti.qualcomm.com>
-References: <20210721080549.28822-1-srivasam@qti.qualcomm.com>
+        id S234280AbhGUH0g (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Jul 2021 03:26:36 -0400
+Received: from t19.piap.pl (OSB1819.piap.pl [10.0.9.19])
+        by ni.piap.pl (Postfix) with ESMTPSA id 6B88DC3F3EE1;
+        Wed, 21 Jul 2021 10:06:34 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 ni.piap.pl 6B88DC3F3EE1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=piap.pl; s=mail;
+        t=1626854794; bh=kAOVbBosXZA2dqheAUUBZ2v3aVMqXiDlCLAVPrva5bQ=;
+        h=From:To:Cc:Subject:Date:From;
+        b=jZMMYu/MZ6qFn/YxxjjvTmpnCU8IJfQ1+sS0ANxFDReYzEdSHjPTdQGOB/SP65qhZ
+         iofrSG4GkceQH3QAIkn3w46HMJUWkWdWOwxCON5UjNUv80hc7xIQoIsNJr1gORGLVw
+         SN/c8RYwaRT00K2/Uo7v4v3Srs0TJ4Y+Lx6t/Sik=
+From:   Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>
+To:     devicetree@vger.kernel.org
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: [RFC v3] dt-binding: media: document ON Semi AR0521 sensor bindings
+Date:   Wed, 21 Jul 2021 10:06:34 +0200
+Message-ID: <m37dhkdrat.fsf@t19.piap.pl>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-KLMS-Rule-ID: 1
+X-KLMS-Message-Action: clean
+X-KLMS-AntiSpam-Lua-Profiles: 165154 [Jul 21 2021]
+X-KLMS-AntiSpam-Version: 5.9.20.0
+X-KLMS-AntiSpam-Envelope-From: khalasa@piap.pl
+X-KLMS-AntiSpam-Rate: 0
+X-KLMS-AntiSpam-Status: not_detected
+X-KLMS-AntiSpam-Method: none
+X-KLMS-AntiSpam-Auth: dkim=pass header.d=piap.pl
+X-KLMS-AntiSpam-Info: LuaCore: 448 448 71fb1b37213ce9a885768d4012c46ac449c77b17, {Tracking_from_exist}, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, piap.pl:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;t19.piap.pl:7.1.1;devicetree.org:7.1.1
+X-MS-Exchange-Organization-SCL: -1
+X-KLMS-AntiSpam-Interceptor-Info: scan successful
+X-KLMS-AntiPhishing: Clean, bases: 2021/07/21 05:08:00
+X-KLMS-AntiVirus: Kaspersky Security for Linux Mail Server, version 8.0.3.30, bases: 2021/07/21 00:56:00 #16933345
+X-KLMS-AntiVirus-Status: Clean, skipped
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+This file documents DT bindings for the AR0521 camera sensor driver.
 
-Add dai link in sc7180-trogdor.dtsi for supporting audio over DP
-
-Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-Signed-off-by: Srinivasa Rao Mandadapu <srivasam@qti.qualcomm.com>
-Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Signed-off-by: Krzysztof Ha=C5=82asa <khalasa@piap.pl>
 ---
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+Changes from v2:
+- changed "xclk" to "extclk"
+- power regulator names etc.
+- video output port properties
+- cosmetics
+- UTF-8 experiments :-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index 31bf7c698b8f..a4cb9ee567ff 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -288,6 +288,7 @@ sound: sound {
- 			"Headphone Jack", "HPOL",
- 			"Headphone Jack", "HPOR";
- 
-+		#sound-dai-cells = <0>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 
-@@ -314,6 +315,18 @@ sound_multimedia1_codec: codec {
- 				sound-dai = <&max98357a>;
- 			};
- 		};
+diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,ar0521.yaml b=
+/Documentation/devicetree/bindings/media/i2c/onnn,ar0521.yaml
+new file mode 100644
+index 000000000000..785bae61bb5e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/onnn,ar0521.yaml
+@@ -0,0 +1,108 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/onnn,ar0521.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+		dai-link@2 {
-+			link-name = "MultiMedia2";
-+			reg = <2>;
-+			cpu {
-+				sound-dai = <&lpass_cpu 2>;
-+			};
++title: ON Semiconductor AR0521 MIPI CSI-2 sensor
 +
-+			codec {
-+				sound-dai = <&mdss_dp>;
-+			};
-+		};
- 	};
- };
- 
-@@ -768,6 +781,10 @@ secondary_mi2s: mi2s@1 {
- 		reg = <MI2S_SECONDARY>;
- 		qcom,playback-sd-lines = <0>;
- 	};
++maintainers:
++  - Krzysztof Ha=C5=82asa <khalasa@piap.pl>
 +
-+	hdmi-primary@0 {
-+		reg = <LPASS_DP_RX>;
-+	};
- };
- 
- &mdp {
--- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
++description: |-
++  The AR0521 is a raw CMOS image sensor with MIPI CSI-2 and
++  I2C-compatible control interface.
++
++properties:
++  compatible:
++    const: onnn,ar0521
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    const: extclk
++
++  vaa-supply:
++    description:
++      Definition of the regulator used as analog (2.7 V) voltage supply.
++
++  vdd-supply:
++    description:
++      Definition of the regulator used as digital core (1.2 V) voltage sup=
+ply.
++
++  vdd_io-supply:
++    description:
++      Definition of the regulator used as digital I/O (1.8 V) voltage supp=
+ly.
++
++  reset-gpios:
++    description: reset GPIO, usually active low
++    maxItems: 1
++
++  port:
++    $ref: /schemas/graph.yaml#/properties/port
++    description: |
++      Video output port.
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++
++        properties:
++          data-lanes:
++            anyOf:
++              - items:
++                  - const: 1
++              - items:
++                  - const: 1
++                  - const: 2
++              - items:
++                  - const: 1
++                  - const: 2
++                  - const: 3
++                  - const: 4
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - vaa-supply
++  - vdd-supply
++  - vdd_io-supply
++  - port
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/clock/imx6qdl-clock.h>
++
++    i2c {
++            #address-cells =3D <1>;
++            #size-cells =3D <0>;
++
++            ar0521: camera-sensor@36 {
++                    compatible =3D "onnn,ar0521";
++                    reg =3D <0x36>;
++                    pinctrl-names =3D "default";
++                    pinctrl-0 =3D <&pinctrl_mipi_camera>;
++                    clocks =3D <&clks IMX6QDL_CLK_CKO>;
++                    clock-names =3D "extclk";
++                    reset-gpios =3D <&gpio1 7 GPIO_ACTIVE_LOW>;
++                    vaa-supply =3D <&reg_2p7v>;
++                    vdd-supply =3D <&reg_1p2v>;
++                    vdd_io-supply =3D <&reg_1p8v>;
++
++                    port {
++                           mipi_camera_to_mipi_csi2: endpoint {
++                                    remote-endpoint =3D <&mipi_csi2_in>;
++                                    data-lanes =3D <1 2 3 4>;
++                            };
++                    };
++            };
++    };
 
+--=20
+Krzysztof "Chris" Ha=C5=82asa
+
+Sie=C4=87 Badawcza =C5=81ukasiewicz
+Przemys=C5=82owy Instytut Automatyki i Pomiar=C3=B3w PIAP
+Al. Jerozolimskie 202, 02-486 Warszawa
