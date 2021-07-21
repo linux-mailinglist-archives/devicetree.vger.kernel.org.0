@@ -2,108 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E00D63D1663
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 20:30:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AA5A3D16E6
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 21:16:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239129AbhGURsB convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 21 Jul 2021 13:48:01 -0400
-Received: from aposti.net ([89.234.176.197]:49002 "EHLO aposti.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239078AbhGURsA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Jul 2021 13:48:00 -0400
-Date:   Wed, 21 Jul 2021 19:28:18 +0100
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH 5/6] iio/adc: ingenic: modify
-To:     citral23 <cbranchereau@gmail.com>
-Cc:     jic23@kernel.org, lars@metafoo.de, linux-mips@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org, linux@roeck-us.net,
-        contact@artur-rojek.eu
-Message-Id: <6ZXLWQ.5R931M3PVWBF2@crapouillou.net>
-In-Reply-To: <20210721105317.36742-6-cbranchereau@gmail.com>
-References: <20210721105317.36742-1-cbranchereau@gmail.com>
-        <20210721105317.36742-6-cbranchereau@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: 8BIT
+        id S231640AbhGUSfe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 14:35:34 -0400
+Received: from relmlor2.renesas.com ([210.160.252.172]:11112 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S231633AbhGUSfe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Jul 2021 14:35:34 -0400
+X-IronPort-AV: E=Sophos;i="5.84,258,1620658800"; 
+   d="scan'208";a="88348859"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 22 Jul 2021 04:16:09 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 17339400854C;
+        Thu, 22 Jul 2021 04:16:06 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v3 0/4] pin and gpio controller driver for Renesas RZ/G2L
+Date:   Wed, 21 Jul 2021 20:15:54 +0100
+Message-Id: <20210721191558.22484-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Christophe,
+Hi All,
 
-Le mer., juil. 21 2021 at 12:53:16 +0200, citral23 
-<cbranchereau@gmail.com> a écrit :
-> The current code does not allow to set MD to 0 to sample AUX0, fix it 
-> for the JZ4760(B).
+This patch series adds pin and gpio controller driver for Renesas RZ/G2L
+SoC. RZ/G2L has a simple pin and GPIO controller combined similar to RZ/A2.
 
-Well, then this should be merged with patch 3, because that means 
-JZ4760 support does not work without it.
-
-Also, concise commit messages are good, but "modify" is a bit too 
-concise ;)
+This patch series applies on top of Linux 5.14-rc2
 
 Cheers,
--Paul
+Prabhakar
 
-> Signed-off-by: citral23 <cbranchereau@gmail.com>
-> ---
->  drivers/iio/adc/ingenic-adc.c | 20 ++++++++++++++++----
->  1 file changed, 16 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/ingenic-adc.c 
-> b/drivers/iio/adc/ingenic-adc.c
-> index 618150475421..1edaae439a32 100644
-> --- a/drivers/iio/adc/ingenic-adc.c
-> +++ b/drivers/iio/adc/ingenic-adc.c
-> @@ -632,7 +632,7 @@ static int ingenic_adc_read_chan_info_raw(struct 
-> iio_dev *iio_dev,
->  					  struct iio_chan_spec const *chan,
->  					  int *val)
->  {
-> -	int bit, ret, engine = (chan->channel == INGENIC_ADC_BATTERY);
-> +	int cmd, ret, engine = (chan->channel == INGENIC_ADC_BATTERY);
->  	struct ingenic_adc *adc = iio_priv(iio_dev);
-> 
->  	ret = clk_enable(adc->clk);
-> @@ -642,11 +642,22 @@ static int 
-> ingenic_adc_read_chan_info_raw(struct iio_dev *iio_dev,
->  		return ret;
->  	}
-> 
-> -	/* We cannot sample AUX/AUX2 in parallel. */
-> +	/* We cannot sample the aux channels in parallel. */
->  	mutex_lock(&adc->aux_lock);
->  	if (adc->soc_data->has_aux_md && engine == 0) {
-> -		bit = BIT(chan->channel == INGENIC_ADC_AUX2);
-> -		ingenic_adc_set_config(adc, JZ_ADC_REG_CFG_AUX_MD, bit);
-> +		switch (chan->channel) {
-> +		case INGENIC_ADC_AUX0:
-> +			cmd = 0;
-> +			break;
-> +		case INGENIC_ADC_AUX:
-> +			cmd = 1;
-> +			break;
-> +		case INGENIC_ADC_AUX2:
-> +			cmd = 2;
-> +			break;
-> +		}
-> +
-> +		ingenic_adc_set_config(adc, JZ_ADC_REG_CFG_AUX_MD, cmd);
->  	}
-> 
->  	ret = ingenic_adc_capture(adc, engine);
-> @@ -654,6 +665,7 @@ static int ingenic_adc_read_chan_info_raw(struct 
-> iio_dev *iio_dev,
->  		goto out;
-> 
->  	switch (chan->channel) {
-> +	case INGENIC_ADC_AUX0:
->  	case INGENIC_ADC_AUX:
->  	case INGENIC_ADC_AUX2:
->  		*val = readw(adc->base + JZ_ADC_REG_ADSDAT);
-> --
-> 2.30.2
-> 
+Changes for v3:
+* Dropped clock patch from the series (its queued up already in
+  renesas-clk-for-v5.15)
+* Included ACK form Geert for binding patch
+* Fixed review comments pointed by Geert
+* Fixed s/property/properties for patch 4/4 pointed by Sergei
 
+Changes for v2:
+* Added support for per pin pinmux support
+* Added support for pins to set configs
+* Dropped pfc-r9a07g044.c/h
+* Fixed review comments pointed by Geert
+* Included clock/reset changes
+* Included DTS/I changes
+
+Lad Prabhakar (4):
+  dt-bindings: pinctrl: renesas,rzg2l-pinctrl: Add DT bindings for
+    RZ/G2L pinctrl
+  pinctrl: renesas: Add RZ/G2L pin and gpio controller driver
+  arm64: dts: renesas: r9a07g044: Add pinctrl node
+  arm64: dts: renesas: rzg2l-smarc: Add scif0 pins
+
+ .../pinctrl/renesas,rzg2l-pinctrl.yaml        |  155 +++
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi    |   13 +
+ arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi  |   10 +
+ drivers/pinctrl/renesas/Kconfig               |   11 +
+ drivers/pinctrl/renesas/Makefile              |    1 +
+ drivers/pinctrl/renesas/pinctrl-rzg2l.c       | 1163 +++++++++++++++++
+ include/dt-bindings/pinctrl/rzg2l-pinctrl.h   |   23 +
+ 7 files changed, 1376 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/renesas/pinctrl-rzg2l.c
+ create mode 100644 include/dt-bindings/pinctrl/rzg2l-pinctrl.h
+
+
+base-commit: 2734d6c1b1a089fb593ef6a23d4b70903526fe0c
+-- 
+2.17.1
 
