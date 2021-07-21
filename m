@@ -2,64 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F0083D15E1
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 20:06:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B9903D15E5
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 20:08:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237582AbhGUR0C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 13:26:02 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:26276 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S230253AbhGUR0C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Jul 2021 13:26:02 -0400
-X-IronPort-AV: E=Sophos;i="5.84,258,1620658800"; 
-   d="scan'208";a="88395580"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 22 Jul 2021 03:06:37 +0900
-Received: from localhost.localdomain (unknown [10.226.92.105])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 0740740104D0;
-        Thu, 22 Jul 2021 03:06:34 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH] arm64: dts: renesas: rzg2: Add internal rx delay
-Date:   Wed, 21 Jul 2021 19:06:32 +0100
-Message-Id: <20210721180632.15080-1-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
+        id S230444AbhGUR1t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 13:27:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50560 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231124AbhGUR1p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 13:27:45 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B137C0613CF
+        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 11:08:21 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id y25so3337356ljy.13
+        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 11:08:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=gtIf04Z37gx9XqNiwrsxPZO7oSThLTlbi0RPsWdfaFM=;
+        b=UGfV3dnRrxXZDPaaemsemZl5AWjKR+fUL80TbIDXhqu2qF770NP1zJ4FWA7smAOsBj
+         +DTEb1bn7VR5OD7KSSObN2is3t9s51LebBvBA+eV0QEDRC3TZZ8M8m6U9xGxVum9ljJ0
+         VKQq2uVXNUptfjfbw4frYhB44+zw9VvSmYkCPQGMZj9wTazF9LCaeBKzLdJzbAMgrRcc
+         U+rxvhfNeaG/uUuf3s2bB2juZWWx0x7MCbEkOJyH8F118hqDbt9KovoLgVgQmfj+IWMm
+         Ete3RO0RWdpj0xJ9uIZznY5JzOl7+iZwcoqmKIQ+mwrfoBjKRKt/qN9eaC9PHxWIzGDi
+         fVxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=gtIf04Z37gx9XqNiwrsxPZO7oSThLTlbi0RPsWdfaFM=;
+        b=DrMbwJ/PoQhbybdhyAS3vU+G6zN0F+9WIwEzqRunh8ZTCi4QEVh4IlfUPOD6DfJX37
+         cmgt69BoyNPZmINf9EtfgmQYK1ko39CtH/6ZaX1KNvBj8aTSVKn9y26Q664LfLvb+pxD
+         VV496pXp69Qzsvd7jUcXtpN557SIRta+k0/7JNIFb8uG4XiJ26ly1nSwJhi5SpwF5DRl
+         XxXLj9ReUt5pRVAzzT+liNstlallmumZeChEoivBh8j55m6ph1vtWGEkQPBlxdFAPqfH
+         8hPumcXbCvyjfiLh1wjpbYkQURqyxzgd517cSCFH0NfZEIW0yxXzyzRcdmdL6wJOtZQC
+         F5xA==
+X-Gm-Message-State: AOAM532Iz5AkZd0Ivqh+fROfMx/Armtzp7ZFrgbPc12LXxiFm1rsO36H
+        AyPVXRudVDlEMO9HH+BvPc3ePMSaRyN+G6ykRihKYA==
+X-Google-Smtp-Source: ABdhPJxrq4futLBsxaQ59VtkjdmJQuQy/S66dDex7M2vFe5dYW/PA5zDw9jXVCNnWGkgJlk7EVVXeHwG+WpaJFd4aok=
+X-Received: by 2002:a2e:720f:: with SMTP id n15mr28248753ljc.333.1626890899442;
+ Wed, 21 Jul 2021 11:08:19 -0700 (PDT)
+MIME-Version: 1.0
+References: <20201020115959.2658-1-Sergey.Semin@baikalelectronics.ru>
+ <20201020115959.2658-30-Sergey.Semin@baikalelectronics.ru>
+ <CALAqxLX_FNvFndEDWtGbFPjSzuAbfqxQE07diBJFZtftwEJX5A@mail.gmail.com>
+ <20210714124807.o22mottsrg3tv6nt@mobilestation> <YPfPDqJhfzbvDLvB@kroah.com>
+ <20210721100220.ddfxwugivsndsedv@mobilestation> <YPf29+ewbrYgHxRP@kroah.com>
+ <0064cb2c-5ca6-e693-2e89-8f045c8f7502@kernel.org> <YPf+shNM6cXb3mfe@kroah.com>
+ <d853df77-8d36-30b0-dd26-da1bfcb068e0@kernel.org> <20210721112531.xvu6ni5ksaehsrjh@mobilestation>
+In-Reply-To: <20210721112531.xvu6ni5ksaehsrjh@mobilestation>
+From:   John Stultz <john.stultz@linaro.org>
+Date:   Wed, 21 Jul 2021 11:08:08 -0700
+Message-ID: <CALAqxLViEqSO17P3JGRGYJh-wDoHaJiQQV48zeoRgnar4Xd5Bg@mail.gmail.com>
+Subject: Re: [PATCH 29/29] arm64: dts: qcom: Harmonize DWC USB3 DT nodes name
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Rob Herring <robh+dt@kernel.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Amit Pundir <amit.pundir@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hihope boards use Realtek PHY. From the very beginning it use only
-tx delays. However the phy driver commit bbc4d71d63549bcd003
-("net: phy: realtek: fix rtl8211e rx/tx delay config") introduced
-NFS mount failure. Now it needs rx delay inaddition to tx delay
-for NFS mount to work. This patch fixes NFS mount failure issue
-by adding MAC internal rx delay.
+On Wed, Jul 21, 2021 at 4:25 AM Serge Semin <fancer.lancer@gmail.com> wrote:
+> On Wed, Jul 21, 2021 at 01:10:19PM +0200, Krzysztof Kozlowski wrote:
+> > It's not good example. The configfs entries (file names) are
+> > user-visible however the USB gadget exposes specific value for specific
+> > one device. It encodes device specific DT node name and HW address and
+> > gives it to user-space. It is valid only on this one HW, all other
+> > devices will have different values.
+> >
+> > User-space has hard-coded this value (DT node name and hardware
+> > address). This value was never part of configfs ABI, maybe except of its
+> > format "[a-z]+\.[0-9a-f]+". Format is not broken. Just the value changes
+> > for a specific device/hardware.
+> >
+> > It's like you depend that lsusb will always report:
+> >   Bus 003 Device 008: ID 046d:c52b Logitech, Inc. Unifying Receiver
+> > and then probing order changed and this Logitech ends as Device 009.
+> > Then AOSP guys come, wait, we hard-coded that Logitech on our device
+> > will be always Device 008, not 009. Please revert it, we depend on
+> > specific value of Device number. It must be always 009...
+> >
+> > For the record - the change discussed here it's nothing like USB VID/PID. :)
+>
+> Right I was wrong referring to the configfs names in this context.
+> That must have mislead Greg.
+>
+> Getting back to the topic AFAICS from what John said in here
+> https://lore.kernel.org/lkml/CALAqxLWGujgR7p8Vb5S_RimRVYxwm5XF-c4NkKgMH-43wEBaWg@mail.gmail.com/
+>
+> AOSP developers somehow hardcoded a USB-controller UDC name in the
+> internal property called "sys.usb.controller" with a value
+> "ff100000.dwc3". That value is generated by the kernel based on the
+> corresponding DT-node name. The property is then used to
+> pre-initialize the system like it's done here:
+> https://android.googlesource.com/platform/system/core/+/master/rootdir/init.usb.configfs.rc
+>
+> Since we changed the DT-node name in the recent kernel, we thus changed the
+> UDC controller name so AOSP init procedure now fails to bring up the Linux
+> USB-gadget using on the older UDC name. UDC is supposed to be ff100000.usb now
+> (after this patch has been merged in).
+>
+> What problems I see here:
+> 1) the AOSP developers shouldn't have hard-coded the value but read
+> from the /sys/class/udc/* directory and then decided which controller
+> to use. As it's described for instance here:
+> https://www.kernel.org/doc/Documentation/usb/gadget_configfs.txt
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+The problem with this is there may be multiple USB controllers on a
+system (not all exposed outside the case - and also the dummy
+controller is often present). How can we configure the system to know
+which controller is which?
 
-diff --git a/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi b/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
-index 202c4fc88bd5..dde3a07bc417 100644
---- a/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
-+++ b/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
-@@ -20,6 +20,7 @@
- 	pinctrl-names = "default";
- 	phy-handle = <&phy0>;
- 	tx-internal-delay-ps = <2000>;
-+	rx-internal-delay-ps = <1800>;
- 	status = "okay";
- 
- 	phy0: ethernet-phy@0 {
--- 
-2.17.1
+The only name we have for distinguishing the controllers is the DTS
+node. So it seems inherent that changes to that name will break the
+config.
 
+That said, this issue reminded me of the /dev/hda -> /dev/sda device
+name or the eth0 -> enp3s0 switch which both also had the potential to
+break configurations or scripts.  I get that having a standard naming
+scheme is important (I'm very sympathetic to this point)! I can
+imagine UI trying to show possible controllers for a user to select
+needs a simple way to determine if a device is a usb controller - but
+again this just shows that the node names are an ABI.
+
+So I'm not the one to judge if this change is useful enough to push
+through the pain, but it did seem to be done a bit casually.
+
+> 2) even if they hard-coded the value, then they should have used an
+> older dts file for their platform, since DTS is more
+> platform-specific, but not the kernel one. Even if a dts-file is
+> supplied in the kernel it isn't supposed to have the node names
+> unchanged from release to release.
+
+DTS changes are a constant source of regressions in my experience. We
+mostly just have to roll with it, but it feels never ending. :)  I'd
+personally rather folks in general be more thoughtful about what DTS
+changes they make and accept, understanding that they do have impact
+on userland.  And I'd imagine If updates to linux-firmware broke the
+most recent LTS kernel, that would be seen as a regression too, and
+folks wouldn't be told to just keep the old firmware.  But all the
+same, I'd also be happy for suggestions to remove any such
+dependencies userland has on specific dts naming, where possible, to
+make the constant pain go away. :)
+
+thanks
+-john
