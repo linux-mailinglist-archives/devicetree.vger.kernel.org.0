@@ -2,22 +2,22 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B25FF3D1853
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 22:47:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C52C3D1854
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 22:47:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231849AbhGUUGk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S232079AbhGUUGk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 21 Jul 2021 16:06:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58742 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232058AbhGUUGj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 16:06:39 -0400
+        with ESMTP id S232117AbhGUUGk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 16:06:40 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D7CAC0613C1
-        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 13:47:15 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AEFEC061575
+        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 13:47:16 -0700 (PDT)
 Received: from dude03.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::39])
         by metis.ext.pengutronix.de with esmtp (Exim 4.92)
         (envelope-from <l.stach@pengutronix.de>)
-        id 1m6J7V-0004jk-Tp; Wed, 21 Jul 2021 22:47:10 +0200
+        id 1m6J7W-0004jk-Hl; Wed, 21 Jul 2021 22:47:10 +0200
 From:   Lucas Stach <l.stach@pengutronix.de>
 To:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>
 Cc:     NXP Linux Team <linux-imx@nxp.com>, Adam Ford <aford173@gmail.com>,
@@ -25,9 +25,9 @@ Cc:     NXP Linux Team <linux-imx@nxp.com>, Adam Ford <aford173@gmail.com>,
         Peng Fan <peng.fan@nxp.com>, Marek Vasut <marex@denx.de>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         kernel@pengutronix.de, patchwork-lst@pengutronix.de
-Subject: [PATCH v2 07/18] soc: imx: gpcv2: support system suspend/resume
-Date:   Wed, 21 Jul 2021 22:46:52 +0200
-Message-Id: <20210721204703.1424034-8-l.stach@pengutronix.de>
+Subject: [PATCH v2 08/18] dt-bindings: soc: add binding for i.MX8MM VPU blk-ctrl
+Date:   Wed, 21 Jul 2021 22:46:53 +0200
+Message-Id: <20210721204703.1424034-9-l.stach@pengutronix.de>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210721204703.1424034-1-l.stach@pengutronix.de>
 References: <20210716232916.3572966-1-l.stach@pengutronix.de>
@@ -42,71 +42,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Our usage of runtime PM to control the hierarchy of power domains is
-slightly unusual and means that powering up a domain may fail in early
-system resume, as runtime PM is still disallowed at this stage.
-
-However the system suspend/resume path takes care of powering down/up
-the power domains in the order defined by the device parent/child and
-power-domain provider/consumer hierarachy. So we can just runtime
-resume all our power-domain devices to allow the power-up to work
-properly in the resume path. System suspend will still disable all
-domains as intended.
+This adds the DT binding for the i.MX8MM VPU blk-ctrl.
 
 Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
 ---
- drivers/soc/imx/gpcv2.c | 31 +++++++++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+ .../soc/imx/fsl,imx8mm-vpu-blk-ctrl.yaml      | 76 +++++++++++++++++++
+ 1 file changed, 76 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-vpu-blk-ctrl.yaml
 
-diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
-index c48f37f203ab..57ed0a6bfb13 100644
---- a/drivers/soc/imx/gpcv2.c
-+++ b/drivers/soc/imx/gpcv2.c
-@@ -947,6 +947,36 @@ static int imx_pgc_domain_remove(struct platform_device *pdev)
- 	return 0;
- }
- 
-+#ifdef CONFIG_PM_SLEEP
-+static int imx_pgc_domain_suspend(struct device *dev)
-+{
-+	int ret;
+diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-vpu-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-vpu-blk-ctrl.yaml
+new file mode 100644
+index 000000000000..3ea99e3d2b94
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-vpu-blk-ctrl.yaml
+@@ -0,0 +1,76 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/soc/imx/fsl,imx8mm-vpu-blk-ctrl.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	/*
-+	 * This may look strange, but is done so the generic PM_SLEEP code
-+	 * can power down our domain and more importantly power it up again
-+	 * after resume, without tripping over our usage of runtime PM to
-+	 * power up/down the nested domains.
-+	 */
-+	ret = pm_runtime_get_sync(dev);
-+	if (ret < 0) {
-+		pm_runtime_put_noidle(dev);
-+		return ret;
-+	}
++title: NXP i.MX8MM VPU blk-ctrl
 +
-+	return 0;
-+}
++maintainers:
++  - Lucas Stach <l.stach@pengutronix.de>
 +
-+static int imx_pgc_domain_resume(struct device *dev)
-+{
-+	return pm_runtime_put(dev);
-+}
-+#endif
++description:
++  The i.MX8MM VPU blk-ctrl is a top-level peripheral providing access to
++  the NoC and ensuring proper power sequencing of the VPU peripherals
++  located in the VPU domain of the SoC.
 +
-+static const struct dev_pm_ops imx_pgc_domain_pm_ops = {
-+	SET_SYSTEM_SLEEP_PM_OPS(imx_pgc_domain_suspend, imx_pgc_domain_resume)
-+};
++properties:
++  compatible:
++    items:
++      - const: fsl,imx8mm-vpu-blk-ctrl
++      - const: syscon
 +
- static const struct platform_device_id imx_pgc_domain_id[] = {
- 	{ "imx-pgc-domain", },
- 	{ },
-@@ -955,6 +985,7 @@ static const struct platform_device_id imx_pgc_domain_id[] = {
- static struct platform_driver imx_pgc_domain_driver = {
- 	.driver = {
- 		.name = "imx-pgc",
-+		.pm = &imx_pgc_domain_pm_ops,
- 	},
- 	.probe    = imx_pgc_domain_probe,
- 	.remove   = imx_pgc_domain_remove,
++  reg:
++    maxItems: 1
++
++  '#power-domains-cells':
++    const: 1
++
++  power-domains:
++    minItems: 4
++    maxItems: 4
++
++  power-domain-names:
++    items:
++      - const: bus
++      - const: g1
++      - const: g2
++      - const: h1
++
++  clocks:
++    minItems: 3
++    maxItems: 3
++
++  clock-names:
++    items:
++      - const: g1
++      - const: g2
++      - const: h1
++
++required:
++  - compatible
++  - reg
++  - power-domains
++  - power-domain-names
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/imx8mm-clock.h>
++    #include <dt-bindings/power/imx8mm-power.h>
++
++    vpu_blk_ctrl: blk-ctrl@38330000 {
++      compatible = "fsl,imx8mm-vpu-blk-ctrl", "syscon";
++      reg = <0x38330000 0x100>;
++      power-domains = <&pgc_vpumix>, <&pgc_vpu_g1>,
++                      <&pgc_vpu_g2>, <&pgc_vpu_h1>;
++      power-domain-names = "bus", "g1", "g2", "h1";
++      clocks = <&clk IMX8MM_CLK_VPU_G1_ROOT>,
++               <&clk IMX8MM_CLK_VPU_G2_ROOT>,
++               <&clk IMX8MM_CLK_VPU_H1_ROOT>;
++      clock-names = "g1", "g2", "h1";
++      #power-domain-cells = <1>;
++    };
 -- 
 2.30.2
 
