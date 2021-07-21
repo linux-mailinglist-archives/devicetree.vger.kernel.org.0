@@ -2,71 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 722E83D19F3
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 00:51:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F2F03D19FA
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 00:54:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230281AbhGUWKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 18:10:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58768 "EHLO
+        id S230306AbhGUWMo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 18:12:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229868AbhGUWKI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 18:10:08 -0400
-Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C649C0613C1
-        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 15:50:43 -0700 (PDT)
-Received: by mail-ot1-x32d.google.com with SMTP id a17-20020a9d3e110000b02904ce97efee36so1616880otd.7
-        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 15:50:43 -0700 (PDT)
+        with ESMTP id S230222AbhGUWMn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 18:12:43 -0400
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 864B8C0613C1
+        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 15:53:18 -0700 (PDT)
+Received: by mail-oi1-x22a.google.com with SMTP id t6so4679265oic.0
+        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 15:53:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=5xM5LC3DBMWzVTMMqFAn/LJTjsxukGbXpBFfvyuIhlU=;
-        b=dDf0YyKO/nEbuOsDRdxBOgatG10uRUjazTXhhknIx+mEF54w5XR/oqiAGZY9QXe6Kc
-         7pbPMihun6D3VLm+R6e1yBYymeNrfZaZJlIY7AshNgyIqht1A+4ZDKFI/vDLdTxF14rW
-         Y2zWkYvnXzfmMi67JpO7ziqtZT7qz1Aq0qTx0=
+        bh=oCKEd1eI7lqzSHK9yaavlpSmIIydu9UzKpE8HGQM2SE=;
+        b=PbkHC3LYJgY3qQZv8q2gWel042lTPUj1HBzY544pXIla5BJkUbECdmQkthsyLfqtcw
+         es196ZVx11s5Wb5qEoOVbUfylOvVqaqxvOO3N7D75HUzslf2/CIAy/sHF7yQ5uLVzrHm
+         L5N1CFe8HtcSHhQ/dE+jCWR3BHIQP7TOseU2Y=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=5xM5LC3DBMWzVTMMqFAn/LJTjsxukGbXpBFfvyuIhlU=;
-        b=SAs94EJ2tp0a1u+EnlO7Se5o8rrjYLg7Fiy1oTuaSDxcCyl3eRsNzhyRrfqKb3pIte
-         YqA6o1nifeNm8DJ8P0AownVtaJr6fPKeDAOpQghs98pIzQ1XrXGeaQBBrmmiPuLesc7f
-         GrNFYPMst4/OMmS7PdO7X319hcBt3OYvoseSNAEqFae8O4NL6sEooRwNFrMB8rXNbAmz
-         bOOliWBJ6fL0dzenEiVKyfg2lebSM73CfiKNss3pLz8uAOOHCmU/pCDz2ZKpDEJ5Frre
-         yUB4QmJF6lp+iviG7YaIdnrKGNzF0cvn40Uat3egelRuIXWMpSkYu+9KYgIa5GsIeAgI
-         2qCQ==
-X-Gm-Message-State: AOAM530HVaJXBv8rOu7XxoLjfrKhIKsanZEtbn6w4MitzjCGDiGUeh1Z
-        gZ44uR7Pww8lXv/6LWzA8qlYzBqOYPM5C6dtOVtNQw==
-X-Google-Smtp-Source: ABdhPJzVfIaBfEdnFWZgfS1UtIImHipxZJcc5EzVSfrdE7wsv99QD/sxbtvoCTbEdGJYQhN7Qq2zjvGW92OrsMAltzI=
-X-Received: by 2002:a9d:1b6e:: with SMTP id l101mr12625333otl.34.1626907842775;
- Wed, 21 Jul 2021 15:50:42 -0700 (PDT)
+        bh=oCKEd1eI7lqzSHK9yaavlpSmIIydu9UzKpE8HGQM2SE=;
+        b=ueJEx07mLL/7YAJBrmDvX3oDWVre0tSlsPVwCCIWN51FOjM7MpgoZTfQ3/d8uxpxY/
+         q+tMGJmfStps9s5tq0S3xey/5VN3AA2kWko/zEKpNpkPBoYN56IaJdmFlv0ud2AtlJPJ
+         iWVfI8Y9XLlStvyXxHoCmyWC84PdQj3UGSYXI0+sX5lhvle7OM6uqUJWCajqD1Q2v68c
+         PJqr1yWbug2DKXPM+Llq0f7HgSskDGzsxQDGQAUQTh8RyWqLiUddfD6GNSkCn0zux07R
+         aEvO08Zp1rvZRL3Mq9xP641RKNPIZF9WXcYd7wZx1aPfIWPcClDpgrlH27gpwEEpnZp+
+         3HHg==
+X-Gm-Message-State: AOAM5302JVBT4xGflioX4I1yrl7Q59RbrDxF+KaczH2PpUEMb0R6cmOp
+        PDjCOelaZ6lhh7T6/6fWa0+IQnnEd7Q8LHs8D3JXHA==
+X-Google-Smtp-Source: ABdhPJzbPKDtNdlxW4NvKFlQyTPoSfnQchlbW6O2jPFaB32eqHy0IHSsaftEDVwjcUKJSsAbo7fxVLlq0+U2qYPV7cI=
+X-Received: by 2002:a05:6808:a83:: with SMTP id q3mr4032552oij.125.1626907997947;
+ Wed, 21 Jul 2021 15:53:17 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 21 Jul 2021 22:50:42 +0000
+ HTTPREST; Wed, 21 Jul 2021 22:53:17 +0000
 MIME-Version: 1.0
-In-Reply-To: <1626800953-613-1-git-send-email-sibis@codeaurora.org>
-References: <1626800953-613-1-git-send-email-sibis@codeaurora.org>
+In-Reply-To: <a021012616af266905099e0563d0fff5@codeaurora.org>
+References: <1626775980-28637-1-git-send-email-sibis@codeaurora.org>
+ <1626775980-28637-11-git-send-email-sibis@codeaurora.org> <CAE-0n53bRGouiycpcukPYB_+Gyz_Dr=rCAnb2MH64=+Q899aOA@mail.gmail.com>
+ <a021012616af266905099e0563d0fff5@codeaurora.org>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.9.1
-Date:   Wed, 21 Jul 2021 22:50:42 +0000
-Message-ID: <CAE-0n50jTvX1vVkv-UqNaX7O9AFj9J-qAiKkz7pKLf=wPcT9PA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Fixup cpufreq domain info for cpu7
-To:     Sibi Sankar <sibis@codeaurora.org>, bjorn.andersson@linaro.org,
-        mka@chromium.org, tdas@codeaurora.org
-Cc:     agross@kernel.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Date:   Wed, 21 Jul 2021 22:53:17 +0000
+Message-ID: <CAE-0n51UbfpM94aOkdnSH9ZAvz-+V1X-hsOSMbkHJQDkYyD22w@mail.gmail.com>
+Subject: Re: [PATCH v2 10/10] arm64: dts: qcom: sc7280: Update Q6V5 MSS node
+To:     Sibi Sankar <sibis@codeaurora.org>
+Cc:     bjorn.andersson@linaro.org, mka@chromium.org, robh+dt@kernel.org,
+        saiprakash.ranjan@codeaurora.org, will@kernel.org, ohad@wizery.com,
+        agross@kernel.org, mathieu.poirier@linaro.org,
+        robin.murphy@arm.com, joro@8bytes.org, p.zabel@pengutronix.de,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, evgreen@chromium.org,
+        dianders@chromium.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Sibi Sankar (2021-07-20 10:09:13)
-> The SC7280 SoC supports a 4-Silver/3-Gold/1-Gold+ configuration and hence
-> the cpu7 node should point to cpufreq domain 2 instead.
+Quoting Sibi Sankar (2021-07-21 10:16:14)
+> On 2021-07-21 11:17, Stephen Boyd wrote:
+> > Quoting Sibi Sankar (2021-07-20 03:13:00)
+> >
+> >> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> >> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> >> index 56ea172f641f..6d3687744440 100644
+> >> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> >> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> >> @@ -586,7 +586,8 @@
+> >>
+> >>                 remoteproc_mpss: remoteproc@4080000 {
+> >>                         compatible = "qcom,sc7280-mpss-pas";
+> >> -                       reg = <0 0x04080000 0 0x10000>;
+> >> +                       reg = <0 0x04080000 0 0x10000>, <0 0x04180000
+> >> 0 0x48>;
+> >> +                       reg-names = "qdsp6", "rmb";
+> >>
+> >>                         interrupts-extended = <&intc GIC_SPI 264
+> >> IRQ_TYPE_EDGE_RISING>,
+> >>                                               <&modem_smp2p_in 0
+> >> IRQ_TYPE_EDGE_RISING>,
+> >> @@ -597,8 +598,11 @@
+> >>                         interrupt-names = "wdog", "fatal", "ready",
+> >> "handover",
+> >>                                           "stop-ack", "shutdown-ack";
+> >>
+> >> -                       clocks = <&rpmhcc RPMH_CXO_CLK>;
+> >> -                       clock-names = "xo";
+> >> +                       clocks = <&gcc GCC_MSS_CFG_AHB_CLK>,
+> >> +                                <&gcc GCC_MSS_OFFLINE_AXI_CLK>,
+> >> +                                <&gcc GCC_MSS_SNOC_AXI_CLK>,
+> >> +                                <&rpmhcc RPMH_CXO_CLK>;
+> >> +                       clock-names = "iface", "offline", "snoc_axi",
+> >> "xo";
+> >>
+> >>                         power-domains = <&rpmhpd SC7280_CX>,
+> >>                                         <&rpmhpd SC7280_MSS>;
+> >> @@ -611,6 +615,15 @@
+> >>                         qcom,smem-states = <&modem_smp2p_out 0>;
+> >>                         qcom,smem-state-names = "stop";
+> >>
+> >> +                       resets = <&aoss_reset AOSS_CC_MSS_RESTART>,
+> >> +                                <&pdc_reset PDC_MODEM_SYNC_RESET>;
+> >> +                       reset-names = "mss_restart", "pdc_reset";
+> >> +
+> >> +                       qcom,halt-regs = <&tcsr_mutex 0x23000 0x25000
+> >> 0x28000 0x33000>;
+> >> +                       qcom,ext-regs = <&tcsr_regs 0x10000 0x10004
+> >> +                                        &tcsr_mutex 0x26004 0x26008>;
+> >> +                       qcom,qaccept-regs = <&tcsr_mutex 0x23030
+> >> 0x23040 0x23020>;
+> >> +
+> >>                         status = "disabled";
+> >>
+> >>                         glink-edge {
+> >
+> > Any reason to not combine this stuff with the previous patch?
 >
-> Fixes: 7dbd121a2c58 ("arm64: dts: qcom: sc7280: Add cpufreq hw node")
-> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
-> Cc: stable@vger.kernel.org
-> ---
+> I split it into two separate
+> patches just to show that sc7280
+> supports two ways of bringing
+> modem out of reset and method
+> used is determined by the platform.
+>
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Ok. But if there are two methods do they work with the same node in
+sc7280.dtsi? Because I was expecting to see the node introduced in the
+SoC dtsi file in the final form instead of the half form and then be
+amended in this patch.
