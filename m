@@ -2,103 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD3AB3D07DC
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 06:45:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD3803D0828
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 07:16:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229582AbhGUEE1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 00:04:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36064 "EHLO
+        id S232512AbhGUEfc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 00:35:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229601AbhGUEEB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 00:04:01 -0400
-Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77A66C061762
-        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 21:44:10 -0700 (PDT)
-Received: by mail-ot1-x330.google.com with SMTP id j1-20020a0568302701b02904d1f8b9db81so935357otu.12
-        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 21:44:10 -0700 (PDT)
+        with ESMTP id S232934AbhGUEfb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 00:35:31 -0400
+Received: from mail-oo1-xc33.google.com (mail-oo1-xc33.google.com [IPv6:2607:f8b0:4864:20::c33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CF54C061767
+        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 22:16:07 -0700 (PDT)
+Received: by mail-oo1-xc33.google.com with SMTP id m14-20020a4a240e0000b029025e4d9b0a3dso306037oof.6
+        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 22:16:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=BfXWWTIMOmQTzPgis5xFp0H4x6lMPAPeV1tP+oyedqc=;
-        b=CcW6EzZRdtG0O1WjwIj+Cykmwt+KwmhaIQTKpaucBBNgxnOVSP/BRN7Zk7Xt8rfNMP
-         IAtJgHI8pc/+2TJjyWTnaBqiA5mF5TqKotEbXZ2jt38L6gxvdElK8FThDNYspDXMz6l3
-         VALP8V5tC1xdpko8EoFhDUfOf2/iZHzoFNsKI=
+        bh=V2Y9FK8B3XEt2CBNMnOBB1fSQfFtt/UMwPYA85/KD5s=;
+        b=CKOk08I09kVqDyHTWl5Jm7LtpyXb0tS8INMXUBNAXqEuQVASWYEkI6ceQIVAd6KUU8
+         VgOdlEmqvEWIHiSGa+JdsJioQNcICJ5QYAuX5Ouqgri/KnpBnYQkwjO6AC8P9Vn1h9SY
+         2wonFd9Q6YFZIfn3RE51prrouC+J188ZTEPOA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=BfXWWTIMOmQTzPgis5xFp0H4x6lMPAPeV1tP+oyedqc=;
-        b=M3/7HC30N0CsHeAvWQKczfpep+rJl9BBc/iN6+6takgvb5B2t7ecuM6rPx9xzQtDVS
-         4zjaf+IpP+gl3/V96MDGhLcLRlFrnqYF5ySmH/JGYmjp8X1Zd1zCCEwmNuFZgo6WWoxR
-         wTHn/KA/pQPwM1cWb8Ixufr0xY7lpuDN7LRh1a2HHE3afvisTGgXq53PClixrbiEGiUv
-         Gr6V9ZPVX4oiSQMWRHgx4nBHT+Gcn7Yd6N0BWPhtHXeQ0D7YoU6kn/ex9QeM2wvvws4w
-         OPDLNhYTxAb585pTBMspUAxggMLDw45R5KgByw3bpEP5Hxwe/PMclgelDnMmqMrCEmQU
-         ivrA==
-X-Gm-Message-State: AOAM531kG2Gh/ycRiwnzrGXBGxi75dfdwqf4hVVR9LKj+xLSv5EIQvRS
-        38bm0pMofXCb4GC7a774vtG1m4Xp57pLCmnYDCT2WA==
-X-Google-Smtp-Source: ABdhPJzR0xoikXdoN5v4m795dYznxelFcJLueVWs3AhpcIznH0aRODcF2DfsA1T59fd8iC1L4ioYPfkhFRCtHUhXNPU=
-X-Received: by 2002:a9d:1b6e:: with SMTP id l101mr9927059otl.34.1626842649804;
- Tue, 20 Jul 2021 21:44:09 -0700 (PDT)
+        bh=V2Y9FK8B3XEt2CBNMnOBB1fSQfFtt/UMwPYA85/KD5s=;
+        b=SuAZiznx1epBy+hclLRmhMzXM1aHg1Sax0iaYqL5elVDxa8BoWrYsO6fmVrDMmfe24
+         5iDg3W+28NIaFbPMpRwdORlyhz7jKnldQSLl0O1tnS5TSID3PpZwwn9o2Y3gEqRDL6LY
+         xwlw3XMOH+jOq6h/eaQtNtDwLFO4+nMvuYgeqGLvrAHypdGuflfHDv+GTr0iqypiH2TA
+         W77zzO3rVyexJvwN1DTlYLaAPsT44aPHL+jXmEn1V7ISjpoUDFmbUB5ca+6V+fMGl4bK
+         y1Jge6/xaW/c/9QkvCFJOiYHrZvVPDAbBlpByOHa3dYYKPyP+QVmQwAK+ObAXDLrjr++
+         /xHQ==
+X-Gm-Message-State: AOAM532nC5TdmY3r7WEezUv2iFlzbiPNk8lVC0t8dqpgxco66qR7xBci
+        i7ngRMXzfFPHEY07X/tD2ZsAnBsvcAojtSWFa3Z22w==
+X-Google-Smtp-Source: ABdhPJxCJYRZlniT0E2L1KJRisYCloErmXTq0V6N+52uVLiOm2L3iNt58JcJnkGTkkaUDS8usl2FRAroypRGXiSiFxs=
+X-Received: by 2002:a4a:e206:: with SMTP id b6mr23323098oot.16.1626844566901;
+ Tue, 20 Jul 2021 22:16:06 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 21 Jul 2021 04:44:09 +0000
+ HTTPREST; Wed, 21 Jul 2021 05:16:06 +0000
 MIME-Version: 1.0
-In-Reply-To: <1601448168-18396-3-git-send-email-srivasam@codeaurora.org>
-References: <1601448168-18396-1-git-send-email-srivasam@codeaurora.org> <1601448168-18396-3-git-send-email-srivasam@codeaurora.org>
+In-Reply-To: <1626755807-11865-13-git-send-email-sibis@codeaurora.org>
+References: <1626755807-11865-1-git-send-email-sibis@codeaurora.org> <1626755807-11865-13-git-send-email-sibis@codeaurora.org>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.9.1
-Date:   Wed, 21 Jul 2021 04:44:09 +0000
-Message-ID: <CAE-0n51LVG1zZvuT4Cv-3nCRhPtC46OQCSeBmncwaH_3TXk8=w@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: sc7180-trogdor: Add lpass dai
- link for HDMI
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org
-Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+Date:   Wed, 21 Jul 2021 05:16:06 +0000
+Message-ID: <CAE-0n51BCqrbRx7g8vPHp-C_5L3owD-c720aiKqxoOVM9UyqkA@mail.gmail.com>
+Subject: Re: [PATCH v4 12/13] dt-bindings: msm/dp: Remove aoss-qmp header
+To:     Sibi Sankar <sibis@codeaurora.org>, bjorn.andersson@linaro.org,
+        mka@chromium.org, robh+dt@kernel.org
+Cc:     ulf.hansson@linaro.org, rjw@rjwysocki.net, agross@kernel.org,
+        ohad@wizery.com, mathieu.poirier@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dianders@chromium.org, rishabhb@codeaurora.org,
+        sidgup@codeaurora.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2020-09-29 23:42:48)
-> From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+Quoting Sibi Sankar (2021-07-19 21:36:46)
+> Remove the unused aoss-qmp header from the list of includes.
 >
-> Add dai link in sc7180-trogdor.dtsi for supporting audio over DP
->
-> Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+> Acked-by: Rob Herring <robh@kernel.org>
 > ---
->  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> index 5724982..850b43e 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> @@ -231,6 +231,7 @@
->
->                 audio-jack = <&alc5682>;
->
-> +               #sound-dai-cells = <0>;
->                 #address-cells = <1>;
->                 #size-cells = <0>;
->
-> @@ -257,6 +258,17 @@
->                                 sound-dai = <&max98357a>;
->                         };
->                 };
-> +               dai-link@2 {
-> +                       link-name = "MultiMedia2";
-> +                       reg = <2>;
-> +                       cpu {
-> +                               sound-dai = <&lpass_cpu 2>;
-> +                       };
-> +
-> +                       codec {
-> +                               sound-dai = <&msm_dp>;
 
-I see qcom maintainers have picked up the dp node now. Can you resend?
-This would need to change to mdss_dp. Also incorporate my comments from
-January this year please.
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
