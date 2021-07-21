@@ -2,99 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 267763D1353
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 18:09:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A1D23D1394
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 18:13:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230462AbhGUP3V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 11:29:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51260 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230343AbhGUP3U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 11:29:20 -0400
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 280CFC0613C1
-        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 09:09:57 -0700 (PDT)
-Received: by mail-oi1-x22f.google.com with SMTP id w188so3353716oif.10
-        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 09:09:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=t8Achvc6gmB1IWFt2cs1pac8ko7r2FFuKn3p9oKG0ZA=;
-        b=vldT/QIXxzEVQWBpeHYUQ8go9Rx1UYSImPxvO2W9NJhxPGqn6ivTFhNgLUs7y7iM4g
-         NVC07/ThKIrgvIBibR9sbhncliXK3/ap+NF1BM/zvd+bVxAi8unQHjv7ZJqxSGR8NDAN
-         g0WBrObMBEURDEUnKqMinKOu4tUR9ffE2a4DZVinD3ttGahCc/S/QDpzYJr7LN+5vqAc
-         /etYwOE/4KpHKThw3Ka4ByYdph5ps7iaTthCYZF9dNmlfA1i10hkmoNc9czLLmZA/Zmj
-         7sEyBWllPRPe2+Ht87X1j2iGapKs1V2yavLemz9bHL1bzgzDKDNSoSUuPqgVCX0npChL
-         ixPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=t8Achvc6gmB1IWFt2cs1pac8ko7r2FFuKn3p9oKG0ZA=;
-        b=buVE3HRQDBAW9gV2aqHqHNqs/+VJLyKVlmLTOXeD5mmTNwDS3c6wXdlZBPOxchIwuq
-         EL0JST6k/tnvBVZ3R1Wz28ZUXlu+ADPaJyOmvhDnPMT3Spad8re2DopC5Nm9lyeaU0Lv
-         zstVXYETS/VRaW1cArHj4i7s4n/Sl9QJ0nIxqi5QuOTn6j2MzaJ/o/3o55Kg4NsHMqzT
-         p9+X3ya9Bgr44WsnoLDAEMjsRCQRkFYtmhB6rUyRS1qli4aA7pUPuxGYCIUC+bwpzuoZ
-         AroQL4qUu3an+Pa1kEORMas1RgCU/Mi7OCHxFCQD043PJ/GYzAeehLRlqxKa0iwTRNja
-         3zoQ==
-X-Gm-Message-State: AOAM530SyCW07yevg20eapQSYV8XX4GU54IvemruRKLqckH6ivNq1D7x
-        rY67XRyhXooM027Ff9iAJXuJng==
-X-Google-Smtp-Source: ABdhPJzdOEuVZLYICEThb9Za6LmhYAChm6ivQ+jgYvvsv3HW2ePqU61sM8dXW3d/9SGDareQr4yVVw==
-X-Received: by 2002:aca:2319:: with SMTP id e25mr24650201oie.27.1626883796492;
-        Wed, 21 Jul 2021 09:09:56 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id r5sm1214451oti.5.2021.07.21.09.09.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jul 2021 09:09:56 -0700 (PDT)
-Date:   Wed, 21 Jul 2021 11:09:53 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Dylan Reid <dgreid@chromium.org>,
-        Jimmy Cheng-Yi Chiang <cychiang@google.com>,
-        Judy Hsiao <judyhsiao@google.com>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Judy Hsiao <judyhsiao@chromium.org>
-Subject: Re: [PATCH] arm64: dts: qcom: sc7180: trogdor: Update audio codec to
- Max98360A
-Message-ID: <YPhG0eiE7ie/WDRz@yoga>
-References: <20210625045010.2914289-1-judyhsiao@chromium.org>
- <CAD=FV=VXULSZXqt-wjMWC4YqehGJsoeC0G=Kuut0xPPKo9AEWQ@mail.gmail.com>
+        id S231371AbhGUPdL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 11:33:11 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56210 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232058AbhGUPdK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Jul 2021 11:33:10 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 75650608FC;
+        Wed, 21 Jul 2021 16:13:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1626884027;
+        bh=BfWv9+DmC2M4MaAgj5Yu9VvVrTvFWwy5GGEmFJQqh+k=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cZr1sX5/jpk5/qW5wZhLE1iyThehwYf6o03oa7byMHTOXPH+PTCc4uNMTRzJatV2M
+         kSAOEefH9FmhzbIwiZsE7o3a3cXvlWG8nHLkWbDnMI6R0pcZLxE+vbotJzbJ0rzd4K
+         f2Q82XrMj6hFkCf5xTSt3hSayIOsOj3MltIqmU8Y=
+Date:   Wed, 21 Jul 2021 18:13:44 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, Ian Ray <ian.ray@ge.com>,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCHv7 3/3] misc: gehc-achc: new driver
+Message-ID: <YPhHuNkDPS5EH7s9@kroah.com>
+References: <20210713163528.119185-1-sebastian.reichel@collabora.com>
+ <20210713163528.119185-4-sebastian.reichel@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAD=FV=VXULSZXqt-wjMWC4YqehGJsoeC0G=Kuut0xPPKo9AEWQ@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210713163528.119185-4-sebastian.reichel@collabora.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 21 Jul 10:27 CDT 2021, Doug Anderson wrote:
-
-> Hi Bjorn,
+On Tue, Jul 13, 2021 at 06:35:28PM +0200, Sebastian Reichel wrote:
+> General Electric Healthcare's PPD has a secondary processor from
+> NXP's Kinetis K20 series. That device has two SPI chip selects:
 > 
-> On Thu, Jun 24, 2021 at 9:50 PM Judy Hsiao <judyhsiao@chromium.org> wrote:
-> >
-> > Use max98360a dts node to correctly describe the hardware.
-> >
-> > Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 6 +++---
-> >  1 file changed, 3 insertions(+), 3 deletions(-)
+> The main interface's behaviour depends on the loaded firmware
+> and is currently unused.
 > 
-> I noticed that you landed several dts changes recently (thanks!) but I
-> didn't see this one. Was there a problem with it, or did it just slip
-> through the cracks?
+> The secondary interface can be used to update the firmware using
+> EzPort protocol. This is implemented by this driver using the
+> kernel's firmware API. The firmware is being flashed into
+> non-volatile flash memory, so it is enough to flash it once
+> and not on every boot. Flashing will wear the flash memory
+> (it has a life time of at least 10k programming cycles) and
+> takes 3 minutes with the microcontroller being unusable. At
+> the same time only occasional FW updates are expected (like e.g.
+> a BIOS update). Thus the firmware update is triggered via sysfs
+> instead of doing it in the driver's probe routine like many
+> other drivers.
 > 
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
+>  .../ABI/testing/sysfs-driver-ge-achc          |  14 +
+>  drivers/misc/Kconfig                          |  11 +
+>  drivers/misc/Makefile                         |   1 +
+>  drivers/misc/gehc-achc.c                      | 542 ++++++++++++++++++
+>  drivers/spi/spidev.c                          |   1 -
+>  5 files changed, 568 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/ABI/testing/sysfs-driver-ge-achc
+>  create mode 100644 drivers/misc/gehc-achc.c
 
-No problem, it just sat there nicely waiting in the backlog. It's now
-applied and pushed out.
+This patch gives me build warnings:
 
-Thanks,
-Bjorn
+drivers/misc/gehc-achc.c: In function ‘ezport_firmware_compare_data’:
+./include/linux/minmax.h:20:35: warning: comparison of distinct pointer types lacks a cast
+   20 |         (!!(sizeof((typeof(x) *)1 == (typeof(y) *)1)))
+      |                                   ^~
+./include/linux/minmax.h:26:18: note: in expansion of macro ‘__typecheck’
+   26 |                 (__typecheck(x, y) && __no_side_effects(x, y))
+      |                  ^~~~~~~~~~~
+./include/linux/minmax.h:36:31: note: in expansion of macro ‘__safe_cmp’
+   36 |         __builtin_choose_expr(__safe_cmp(x, y), \
+      |                               ^~~~~~~~~~
+./include/linux/minmax.h:45:25: note: in expansion of macro ‘__careful_cmp’
+   45 | #define min(x, y)       __careful_cmp(x, y, <)
+      |                         ^~~~~~~~~~~~~
+drivers/misc/gehc-achc.c:305:33: note: in expansion of macro ‘min’
+  305 |                 transfer_size = min((u32) EZPORT_TRANSFER_SIZE, size - address);
+      |                                 ^~~
+drivers/misc/gehc-achc.c: In function ‘ezport_firmware_flash_data’:
+./include/linux/minmax.h:20:35: warning: comparison of distinct pointer types lacks a cast
+   20 |         (!!(sizeof((typeof(x) *)1 == (typeof(y) *)1)))
+      |                                   ^~
+./include/linux/minmax.h:26:18: note: in expansion of macro ‘__typecheck’
+   26 |                 (__typecheck(x, y) && __no_side_effects(x, y))
+      |                  ^~~~~~~~~~~
+./include/linux/minmax.h:36:31: note: in expansion of macro ‘__safe_cmp’
+   36 |         __builtin_choose_expr(__safe_cmp(x, y), \
+      |                               ^~~~~~~~~~
+./include/linux/minmax.h:45:25: note: in expansion of macro ‘__careful_cmp’
+   45 | #define min(x, y)       __careful_cmp(x, y, <)
+      |                         ^~~~~~~~~~~~~
+drivers/misc/gehc-achc.c:347:33: note: in expansion of macro ‘min’
+  347 |                 transfer_size = min((u32) EZPORT_TRANSFER_SIZE, size - address);
+      |                                 ^~~
+
+
+How did you test build this?
+
+thanks,
+
+greg k-h
