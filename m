@@ -2,105 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 88B673D1225
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 17:18:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A46793D1273
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 17:33:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239386AbhGUOiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 10:38:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33338 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238083AbhGUOiJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Jul 2021 10:38:09 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id EB96F61246;
-        Wed, 21 Jul 2021 15:18:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626880726;
-        bh=rHewC8c5p0knxx95PKPppJx1ZIfzczey+Q7nqFGbe1g=;
-        h=From:To:Cc:Subject:Date:From;
-        b=biu8xVWJdFQe9hPe1MR00MmTDZLvkdzJrXLSyc44H3ao7+QlvaF2qavXQqnwvznps
-         +ZiKWdt6IAid+59oKGhrSqbnXZCEhQA68Ujpi/zVaEF8Qe6scucrjVw2ScLSu23fDs
-         UGuh8jHTm0tWFqOc/3bxfMQIPhhpUjIib1gms4e3WkWl5hnd9EtlMDlXfaCZDjATrC
-         Qfi7IWDPof+2XLJT96RQhpLpr4B72j0qIJswSVNpGjsSTebX7Njj5ZS2dHJAnUOGbm
-         DooGKftfv1YwvTCXz4iTnBhHfG2/owHkaGiG1Y6uuxJQYikPKgRkxezcVvwuInngO+
-         JWjlkmeAcPzOg==
-From:   Arnd Bergmann <arnd@kernel.org>
-To:     Thomas Zimmermann <tzimmermann@suse.de>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>,
-        Maxime Ripard <maxime@cerno.tech>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org
-Subject: [PATCH] fbdev: simplefb: fix Kconfig dependencies
-Date:   Wed, 21 Jul 2021 17:17:46 +0200
-Message-Id: <20210721151839.2484245-1-arnd@kernel.org>
-X-Mailer: git-send-email 2.29.2
+        id S239319AbhGUOwg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 10:52:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42518 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238585AbhGUOwf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 10:52:35 -0400
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14FC4C061575
+        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 08:33:12 -0700 (PDT)
+Received: by mail-oi1-x231.google.com with SMTP id y66so3251943oie.7
+        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 08:33:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Z+G3Vv4B1XazSc4gX4wiFgRgrHQ34F/awuea1pT1nKk=;
+        b=FTb1NMduBfSAFMwVExJiFCVoQxRqCQcCQW6kpI0C7rpfB/MokLphIaTraL/H+IG1Pu
+         0983bvNl5MZU6WHpzdrOGHl2rGyZf7kerto33svOS8jHphkEFisuAiUNgFyp4DwF7wCh
+         r5d4XsJPVY8bkYvgYUxbmfLrVIMQNQwDYCc1U=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Z+G3Vv4B1XazSc4gX4wiFgRgrHQ34F/awuea1pT1nKk=;
+        b=F7FdV4kyAQUfjyU0eOAZLHHJ/YaC6/5hCgeoyaRfGuoI7JtDjESX8r5vRuwQo+jY/R
+         K0yeoKCbOFDKaSQld8vsaFIdheRVMZPFEK56Kg98xTOY6/hcq9k5nb0MsOpi/aFbETco
+         9dr1S3BuV+oNuh+Jw7UHh8CBc6nZc49gwAZmY8SB4Bff7lb0Q0ocNJEVd2EbzjAFLKLa
+         Mmhyyshvse8YTJXyobWsQDZRfQKmxWFppBTaSyzFv1qdqzo12DjHxjMxyvtkTpaza+x9
+         K57xb2YbqZKOoUZcBli440JURRGkySeKfXSJCQwSv8kOKLdD2Eoi/KCVel87KNGpWO5b
+         kF1A==
+X-Gm-Message-State: AOAM531Dukq1ckLnOSRJCVp78BiAEmzgTwyQfC1gTeZaVA8l0Ckj/apj
+        Crc2B1inz1zcEbsOOdQbQa0UKJ7UBvJTgA==
+X-Google-Smtp-Source: ABdhPJzp3GPcA790kGecLQ3WuIf6a7fL/iwhcoqf/7AeHJsc58lybp98AoU2QA0ELcQlS6eSVCSIyg==
+X-Received: by 2002:aca:d907:: with SMTP id q7mr3025985oig.79.1626881591297;
+        Wed, 21 Jul 2021 08:33:11 -0700 (PDT)
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com. [209.85.210.52])
+        by smtp.gmail.com with ESMTPSA id p4sm4460374ooa.35.2021.07.21.08.33.11
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Jul 2021 08:33:11 -0700 (PDT)
+Received: by mail-ot1-f52.google.com with SMTP id s2-20020a0568301e02b02904ce2c1a843eso2380247otr.13
+        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 08:33:11 -0700 (PDT)
+X-Received: by 2002:ab0:c07:: with SMTP id a7mr37239648uak.120.1626881232268;
+ Wed, 21 Jul 2021 08:27:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210625045010.2914289-1-judyhsiao@chromium.org>
+In-Reply-To: <20210625045010.2914289-1-judyhsiao@chromium.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 21 Jul 2021 08:27:00 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=VXULSZXqt-wjMWC4YqehGJsoeC0G=Kuut0xPPKo9AEWQ@mail.gmail.com>
+Message-ID: <CAD=FV=VXULSZXqt-wjMWC4YqehGJsoeC0G=Kuut0xPPKo9AEWQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180: trogdor: Update audio codec to Max98360A
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Dylan Reid <dgreid@chromium.org>,
+        Jimmy Cheng-Yi Chiang <cychiang@google.com>,
+        Judy Hsiao <judyhsiao@google.com>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Judy Hsiao <judyhsiao@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Arnd Bergmann <arnd@arndb.de>
+Hi Bjorn,
 
-Configurations with both CONFIG_FB_SIMPLE=y and CONFIG_DRM_SIMPLEDRM=m
-are allowed by Kconfig because the 'depends on !DRM_SIMPLEDRM' dependency
-does not disallow FB_SIMPLE as long as SIMPLEDRM is not built-in. This
-can however result in a build failure when cfb_fillrect() etc are then
-also in loadable modules:
+On Thu, Jun 24, 2021 at 9:50 PM Judy Hsiao <judyhsiao@chromium.org> wrote:
+>
+> Use max98360a dts node to correctly describe the hardware.
+>
+> Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 
-x86_64-linux-ld: drivers/video/fbdev/simplefb.o:(.rodata+0x1f8): undefined reference to `cfb_fillrect'
-x86_64-linux-ld: drivers/video/fbdev/simplefb.o:(.rodata+0x200): undefined reference to `cfb_copyarea'
-x86_64-linux-ld: drivers/video/fbdev/simplefb.o:(.rodata+0x208): undefined reference to `cfb_imageblit'
+I noticed that you landed several dts changes recently (thanks!) but I
+didn't see this one. Was there a problem with it, or did it just slip
+through the cracks?
 
-To work around this, change FB_SIMPLE to be a 'tristate' symbol,
-which still allows both to be =m together, but not one of them to
-be =y if the other one is =m. If a distro kernel picks this
-configuration, it can be determined by local policy which of
-the two modules gets loaded. The 'of_chosen' export is needed
-as this is the first loadable module referencing it.
+Thanks!
 
-Alternatively, the Kconfig dependency could be changed to
-'depends on DRM_SIMPLEDRM=n', which would forbid the configuration
-with both drivers.
-
-Fixes: 11e8f5fd223b ("drm: Add simpledrm driver")
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
----
- drivers/of/base.c           | 1 +
- drivers/video/fbdev/Kconfig | 5 +++--
- 2 files changed, 4 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/of/base.c b/drivers/of/base.c
-index 48e941f99558..073ea7cd007b 100644
---- a/drivers/of/base.c
-+++ b/drivers/of/base.c
-@@ -36,6 +36,7 @@ LIST_HEAD(aliases_lookup);
- struct device_node *of_root;
- EXPORT_SYMBOL(of_root);
- struct device_node *of_chosen;
-+EXPORT_SYMBOL(of_chosen);
- struct device_node *of_aliases;
- struct device_node *of_stdout;
- static const char *of_stdout_options;
-diff --git a/drivers/video/fbdev/Kconfig b/drivers/video/fbdev/Kconfig
-index 8a98539ec490..5fbcb3cc2e8e 100644
---- a/drivers/video/fbdev/Kconfig
-+++ b/drivers/video/fbdev/Kconfig
-@@ -2207,8 +2207,9 @@ config FB_HYPERV
- 	  This framebuffer driver supports Microsoft Hyper-V Synthetic Video.
- 
- config FB_SIMPLE
--	bool "Simple framebuffer support"
--	depends on (FB = y) && !DRM_SIMPLEDRM
-+	tristate "Simple framebuffer support"
-+	depends on FB
-+	depends on !DRM_SIMPLEDRM
- 	select FB_CFB_FILLRECT
- 	select FB_CFB_COPYAREA
- 	select FB_CFB_IMAGEBLIT
--- 
-2.29.2
-
+-Doug
