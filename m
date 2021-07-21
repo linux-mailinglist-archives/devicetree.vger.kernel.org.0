@@ -2,268 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBF703D115D
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 16:30:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C03B3D11AB
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 16:53:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238083AbhGUNuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 09:50:21 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48742 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238063AbhGUNuU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Jul 2021 09:50:20 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 221506120C;
-        Wed, 21 Jul 2021 14:30:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626877857;
-        bh=ItoMV2w0siUwl28cOzY8vDd1juPLnJDPTjp4OHicjsY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ClvtVxu6OzSCTr6zmptraNDY5OLNM624UREm7ezvDoU7BW5bC7r8V6ZGzAZy4bz+s
-         sJmW+LWR+x+z38wxw+FmxcRcR3VpAili1h7VPCl3/irV2M+zsa6ltHGlpNRW3joXxb
-         qiGO227LA3oUUwE+OoUR5Fu8ZX+U03rbDw2VN5xN/OfXGUj4oZJLRs7BhcNb9PHRHa
-         lMOv2MfIHgkGFQInTs+9K/XPN8JjjdnzcYx83pg5Go6wg10Pw7FlgESAqmTDqVrVDX
-         vXdI0cnQYmzHSoBs+o0R54zCBZ3MKEfh4VhiWFx5NPNp2fXiHaImlqF/qOEP0ti2ob
-         j+9LQ+FyekYLw==
-Received: by mail-ej1-f43.google.com with SMTP id hd33so3544376ejc.9;
-        Wed, 21 Jul 2021 07:30:57 -0700 (PDT)
-X-Gm-Message-State: AOAM531NnvOJ/dMT93jE55LZVgvyMiGgapWVbcbmfbXWSDvQ1QETH6KW
-        BlLcsH8rfK+0x1WO69wrDd8/XQGfNzf+rHbUpA==
-X-Google-Smtp-Source: ABdhPJxRy4QTRGTzS/mvAFQhcw860lxwIiR+bbQYhncMtCZggceYaOOm1hj37+GvvSrLHiI7dlywoxUv3mfvXB62HXQ=
-X-Received: by 2002:a17:907:5096:: with SMTP id fv22mr37457462ejc.525.1626877855685;
- Wed, 21 Jul 2021 07:30:55 -0700 (PDT)
+        id S239259AbhGUONU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 10:13:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33402 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239254AbhGUONU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 10:13:20 -0400
+Received: from mail-il1-x12f.google.com (mail-il1-x12f.google.com [IPv6:2607:f8b0:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3863C061575;
+        Wed, 21 Jul 2021 07:53:55 -0700 (PDT)
+Received: by mail-il1-x12f.google.com with SMTP id r16so2499897ilt.11;
+        Wed, 21 Jul 2021 07:53:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=39/icZ4895+m49O8ui8jK8s2YjESquae62yWMw3Ir4c=;
+        b=Guo73mZ6yKHiZEmwWSRxAODeMC+83TtcsfX8BJAhI48v2UJRUUcF4upLXHb4Lrdb0L
+         po+YJuoSUpi2NwBBE3sZFLrMxQriAhcPhsuh1k9Gq5omgHSlp66KafL9ziJNC79uDngy
+         ZyKAutlVy3QInJurrVKEbXqCfox2pN99kwZFSqRzCSAwszGcpPsEZKaUNFZUE3srjo8j
+         Cwh2xWPhdGSluOIWtQgDV4HpSDaDWW2Au3wN/ro0nsCwaGZAl+YgkP8afmA+HuRWIrC7
+         7Kcnq1gSYbXqBKU4TQ0RG+YwrVrrhlGdWAtXigdm3hiyQiB7dCoyWF6bXUJDxrx0lHwZ
+         efhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=39/icZ4895+m49O8ui8jK8s2YjESquae62yWMw3Ir4c=;
+        b=Gs2ipof5Y/ry6vahZcd27E7rXePJh1SeV0o+U+o3GcNdK+hB8JuLHZuQ9MsqpPTzxl
+         jGV0cCiHDyCd6+5FHWne0sILUPFl6t4EClWbEdfBR0lh00hMNS3D/yv4FWKV6ICPbB1+
+         3V0wCLulnCy85XsyT0WBY6kvx2q/KxvMnbbpYZL3EovmxPbVrpvP7xIDEbaVZv2N3t0h
+         94EYwzkt6c/js99U/iRzFKqdJdZ3u0O4JqHIk73ov7mRxSIyw7qeWba86x5nFiuhMPQ0
+         5CRszDHCT0az6U3aa2HAKbCdi/7s+b+0a/OyrQU81jHHefJbSwehRTFt2Uohnfso/Abx
+         ezqw==
+X-Gm-Message-State: AOAM531OFfesRdUTqVUPcYpcR01TOVC7Gq83BBHdXSNvdrAylBfzdbKG
+        Lt38fyPI/Hfca9FPFRFTEZrKwTE7i8Knrg2SoiU=
+X-Google-Smtp-Source: ABdhPJw1i62IODwqJG85RIGShGbX/nNmMKibJ4lq9B3eoCKP4Zhoh2+aEP3HFa6R+ujOCRWL8PdWXsy8PnQESunRSag=
+X-Received: by 2002:a05:6e02:e82:: with SMTP id t2mr24437728ilj.218.1626879235022;
+ Wed, 21 Jul 2021 07:53:55 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210721140424.725744-1-maxime@cerno.tech> <20210721140424.725744-6-maxime@cerno.tech>
-In-Reply-To: <20210721140424.725744-6-maxime@cerno.tech>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 21 Jul 2021 08:30:43 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKAZLBK2UDDUNrO4aaYr886oODB_N_yF70X44gPXs=k5Q@mail.gmail.com>
-Message-ID: <CAL_JsqKAZLBK2UDDUNrO4aaYr886oODB_N_yF70X44gPXs=k5Q@mail.gmail.com>
-Subject: Re: [PATCH 05/54] dt-bindings: Convert Reserved Memory binding to a schema
-To:     Maxime Ripard <maxime@cerno.tech>,
-        Grant Likely <grant.likely@arm.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-sunxi@googlegroups.com,
-        Mailing List <devicetree-spec@vger.kernel.org>
+References: <1626853288-31223-1-git-send-email-dillon.minfei@gmail.com> <1626853288-31223-3-git-send-email-dillon.minfei@gmail.com>
+In-Reply-To: <1626853288-31223-3-git-send-email-dillon.minfei@gmail.com>
+From:   Dillon Min <dillon.minfei@gmail.com>
+Date:   Wed, 21 Jul 2021 22:53:19 +0800
+Message-ID: <CAL9mu0J=Z5je9GJP8karYL=aaeMyQF5pCP7pU-c4QAr7eApUmg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] ARM: dts: stm32: fix dtbs_check warning on ili9341
+ dts binding
+To:     thierry.reding@gmail.com, Sam Ravnborg <sam@ravnborg.org>,
+        Dave Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+Cc:     =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>,
+        Doug Anderson <dianders@chromium.org>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 21, 2021 at 8:04 AM Maxime Ripard <maxime@cerno.tech> wrote:
->
-> The Reserved Memory mechanism is supported by Linux thanks to its device
-> tree binding.
->
-> Now that we have the DT validation in place, let's convert the device
-> tree bindings for that driver over to a YAML schema.
+Hi Alex,
 
-Thanks for this!
+I suppose you will going to review this patch,
+I forgot to add the Fixes tag in v2, just add it.
+I will submit v3 to add this tag in case necessary.
 
+Thanks, Best Regards.
+Dillon
+
+On Wed, 21 Jul 2021 at 15:41, <dillon.minfei@gmail.com> wrote:
 >
-> Cc: Mailing List <devicetree-spec@vger.kernel.org>
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> From: Dillon Min <dillon.minfei@gmail.com>
+>
+> Since the compatible string defined from ilitek,ili9341.yaml is
+> "st,sf-tc240t-9370-t", "ilitek,ili9341"
+>
+> so, append "ilitek,ili9341" to avoid below dtbs_check warning.
+>
+> arch/arm/boot/dts/stm32f429-disco.dt.yaml: display@1: compatible:
+> ['st,sf-tc240t-9370-t'] is too short
+>
+
+It's should be a Fixes tag here.
+
+Fixes: a726e2f000ec ("ARM: dts: stm32: enable ltdc binding with
+ili9341, gyro l3gd20 on stm32429-disco board")
+
+> Signed-off-by: Dillon Min <dillon.minfei@gmail.com>
+> Reported-by: kernel test robot <lkp@intel.com>
 > ---
->  .../reserved-memory/reserved-memory.txt       | 141 ---------------
->  .../reserved-memory/reserved-memory.yaml      | 167 ++++++++++++++++++
->  2 files changed, 167 insertions(+), 141 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
->  create mode 100644 Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
-
-> diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
-> new file mode 100644
-> index 000000000000..b61527f11953
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
-> @@ -0,0 +1,167 @@
-> +# SPDX-License-Identifier: GPL-2.0
-
-I think this is okay to dual license. Grant (Linaro) is the original
-author and there's only a few lines from other authors.
-
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/reserved-memory/reserved-memory.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: /reserved-memory Node
-> +
-> +maintainers:
-> +  - Devicetree Specification Mailing List <devicetree-spec@vger.kernel.org>
-> +
-> +description: >
-> +  Reserved memory is specified as a node under the /reserved-memory node. The
-> +  operating system shall exclude reserved memory from normal usage one can
-> +  create child nodes describing particular reserved (excluded from normal use)
-> +  memory regions. Such memory regions are usually designed for the special
-> +  usage by various device drivers.
-> +
-> +properties:
-> +  $nodename:
-> +    const: reserved-memory
-> +
-> +  "#address-cells": true
-> +  "#size-cells": true
-> +  ranges: true
-> +
-> +patternProperties:
-> +  "^(?!(ranges))[a-z,-]*(@[0-9]+)?$":
-
-Note that you could drop this and put under 'additionalProperties'.
-You would lose some node name checking, but there's really little
-standard on these nodes.
-
-> +    type: object
-> +
-> +    description: >
-> +      Each child of the reserved-memory node specifies one or more regions of
-> +      reserved memory. Each child node may either use a 'reg' property to
-> +      specify a specific range of reserved memory, or a 'size' property with
-> +      optional constraints to request a dynamically allocated block of memory.
-> +
-> +      Following the generic-names recommended practice, node names should
-> +      reflect the purpose of the node (ie. "framebuffer" or "dma-pool"). Unit
-> +      address (@<address>) should be appended to the name if the node is a
-> +      static allocation.
-> +
-> +    properties:
-> +      reg: true
-> +
-> +      size:
-> +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> +        description: >
-> +          Length based on parent's \#size-cells. Size in bytes of memory to
-> +          reserve.
-> +
-> +      alignment:
-> +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> +        description: >
-> +          Length based on parent's \#size-cells. Address boundary for
-> +          alignment of allocation.
-> +
-> +      alloc-ranges:
-> +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> +        description: >
-> +          Address and Length pairs. Specifies regions of memory that are
-> +          acceptable to allocate from.
-> +
-> +      compatible:
-> +        oneOf:
-> +          - const: shared-dma-pool
-> +            description: >
-> +              This indicates a region of memory meant to be used as a shared
-> +              pool of DMA buffers for a set of devices. It can be used by an
-> +              operating system to instantiate the necessary pool management
-> +              subsystem if necessary.
-> +
-> +          # Vendor-specific compatibles in the form <vendor>,[<device>-]<usage>
-> +          - const: mediatek,trustzone-bootinfo
-
-I think these should be separate schema files. At least, we're going
-to need to support separate files because I don't think we want ones
-adding custom properties here. This would fail unless we add every
-compatible here. We could also be a bit more exact as to which
-properties below apply (e.g. linux,.*-default is only valid for
-shared-dma-pool).
-
-> +
-> +      no-map:
-> +        type: boolean
-> +        description: >
-> +          Indicates the operating system must not create a virtual mapping of
-> +          the region as part of its standard mapping of system memory, nor
-> +          permit speculative access to it under any circumstances other than
-> +          under the control of the device driver using the region.
-> +
-> +      reusable:
-> +        type: boolean
-> +        description: >
-> +          The operating system can use the memory in this region with the
-> +          limitation that the device driver(s) owning the region need to be
-> +          able to reclaim it back. Typically that means that the operating
-> +          system can use that region to store volatile or cached data that
-> +          can be otherwise regenerated or migrated elsewhere.
-> +
-> +      linux,cma-default:
-> +        type: boolean
-> +        description: >
-> +          If this property is present, then Linux will use the region for the
-> +          default pool of the contiguous memory allocator.
-> +
-> +      linux,dma-default:
-> +        type: boolean
-> +        description: >
-> +          If this property is present, then Linux will use the region for the
-> +          default pool of the consistent DMA allocator.
-> +
-> +    allOf:
-> +      - if:
-> +          required:
-> +            - no-map
-> +
-> +        then:
-> +          not:
-> +            required:
-> +              - reusable
-> +
-> +      - if:
-> +          required:
-> +            - reusable
-> +
-> +        then:
-> +          not:
-> +            required:
-> +              - no-map
-> +
-> +    oneOf:
-> +      - required:
-> +          - reg
-> +
-> +      - required:
-> +          - size
-> +
-> +    additionalProperties: true
-> +
-> +additionalProperties: true
-
-This should be false, right?
-
-> +
-> +examples:
-> +  - |
-> +      / {
-> +          #address-cells = <1>;
-> +          #size-cells = <1>;
-> +          model = "MediaTek MT2701 evaluation board";
-> +          compatible = "mediatek,mt2701-evb", "mediatek,mt2701";
-> +
-> +          reserved-memory {
-> +              #address-cells = <1>;
-> +              #size-cells = <1>;
-> +              ranges;
-> +
-> +              /* global autoconfigured region for contiguous allocations */
-> +              linux,cma {
-> +                  compatible = "shared-dma-pool";
-> +                  reusable;
-> +                  size = <0x4000000>;
-> +                  alignment = <0x2000>;
-> +                  linux,cma-default;
-> +              };
-> +
-> +              display_reserved: framebuffer@78000000 {
-> +                  reg = <0x78000000 0x800000>;
-> +              };
-> +
-> +              trustzone-bootinfo@80002000 {
-> +                  compatible = "mediatek,trustzone-bootinfo";
-> +                  reg = <0x80002000 0x1000>;
-> +              };
-> +          };
-> +      };
-> +
-> +...
+>  arch/arm/boot/dts/stm32f429-disco.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm/boot/dts/stm32f429-disco.dts b/arch/arm/boot/dts/stm32f429-disco.dts
+> index 075ac57d0bf4..6435e099c632 100644
+> --- a/arch/arm/boot/dts/stm32f429-disco.dts
+> +++ b/arch/arm/boot/dts/stm32f429-disco.dts
+> @@ -192,7 +192,7 @@
+>
+>         display: display@1{
+>                 /* Connect panel-ilitek-9341 to ltdc */
+> -               compatible = "st,sf-tc240t-9370-t";
+> +               compatible = "st,sf-tc240t-9370-t", "ilitek,ili9341";
+>                 reg = <1>;
+>                 spi-3wire;
+>                 spi-max-frequency = <10000000>;
 > --
-> 2.31.1
+> 2.7.4
 >
