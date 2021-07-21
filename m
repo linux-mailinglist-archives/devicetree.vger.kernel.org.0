@@ -2,69 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E7AC3D1560
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 19:47:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F0083D15E1
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 20:06:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236625AbhGURGY convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 21 Jul 2021 13:06:24 -0400
-Received: from aposti.net ([89.234.176.197]:46158 "EHLO aposti.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236596AbhGURGY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Jul 2021 13:06:24 -0400
-Date:   Wed, 21 Jul 2021 18:46:49 +0100
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH 2/6] dt-bindings: iio/adc: add an INGENIC_ADC_AUX0 entry
-To:     citral23 <cbranchereau@gmail.com>
-Cc:     jic23@kernel.org, lars@metafoo.de, linux-mips@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org, linux@roeck-us.net,
-        contact@artur-rojek.eu
-Message-Id: <12WLWQ.Q7OL1MQHTXI52@crapouillou.net>
-In-Reply-To: <20210721105317.36742-3-cbranchereau@gmail.com>
-References: <20210721105317.36742-1-cbranchereau@gmail.com>
-        <20210721105317.36742-3-cbranchereau@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: 8BIT
+        id S237582AbhGUR0C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 13:26:02 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:26276 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S230253AbhGUR0C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Jul 2021 13:26:02 -0400
+X-IronPort-AV: E=Sophos;i="5.84,258,1620658800"; 
+   d="scan'208";a="88395580"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 22 Jul 2021 03:06:37 +0900
+Received: from localhost.localdomain (unknown [10.226.92.105])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 0740740104D0;
+        Thu, 22 Jul 2021 03:06:34 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH] arm64: dts: renesas: rzg2: Add internal rx delay
+Date:   Wed, 21 Jul 2021 19:06:32 +0100
+Message-Id: <20210721180632.15080-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Christophe,
+Hihope boards use Realtek PHY. From the very beginning it use only
+tx delays. However the phy driver commit bbc4d71d63549bcd003
+("net: phy: realtek: fix rtl8211e rx/tx delay config") introduced
+NFS mount failure. Now it needs rx delay inaddition to tx delay
+for NFS mount to work. This patch fixes NFS mount failure issue
+by adding MAC internal rx delay.
 
-Le mer., juil. 21 2021 at 12:53:13 +0200, citral23 
-<cbranchereau@gmail.com> a écrit :
-> The JZ4760(B) socs have 3 AUX inputs, add an entry to prepare 
-> including the one named AUX in the sadc driver.
-> Leaving the rest untouched as it's ABI.
-> 
-> Signed-off-by: citral23 <cbranchereau@gmail.com>
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+---
+ arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-Please use your real name when you sign a commit.
-
-Reviewed-by: Paul Cercueil <paul@crapouillou.net>
-
-Cheers,
--Paul
-
-> ---
->  include/dt-bindings/iio/adc/ingenic,adc.h | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/include/dt-bindings/iio/adc/ingenic,adc.h 
-> b/include/dt-bindings/iio/adc/ingenic,adc.h
-> index 4627a00e369e..a6ccc031635b 100644
-> --- a/include/dt-bindings/iio/adc/ingenic,adc.h
-> +++ b/include/dt-bindings/iio/adc/ingenic,adc.h
-> @@ -13,5 +13,6 @@
->  #define INGENIC_ADC_TOUCH_YN	6
->  #define INGENIC_ADC_TOUCH_XD	7
->  #define INGENIC_ADC_TOUCH_YD	8
-> +#define INGENIC_ADC_AUX0	9
-> 
->  #endif
-> --
-> 2.30.2
-> 
-
+diff --git a/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi b/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
+index 202c4fc88bd5..dde3a07bc417 100644
+--- a/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
++++ b/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
+@@ -20,6 +20,7 @@
+ 	pinctrl-names = "default";
+ 	phy-handle = <&phy0>;
+ 	tx-internal-delay-ps = <2000>;
++	rx-internal-delay-ps = <1800>;
+ 	status = "okay";
+ 
+ 	phy0: ethernet-phy@0 {
+-- 
+2.17.1
 
