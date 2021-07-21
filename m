@@ -2,140 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEA2E3D074C
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 05:17:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD3AB3D07DC
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 06:45:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231395AbhGUChR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jul 2021 22:37:17 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:45092 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230338AbhGUChQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jul 2021 22:37:16 -0400
-X-UUID: c117cace960f4552bcb0052495e7eed6-20210721
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=zmxQjGdFqyA3uAn2rxS3iv5n86oQfg1uYDVx+P9Idkw=;
-        b=dCrK3PEuV/ySoCzadrRvVWS8ZzeqDGMbyiU+yI2yPC5/wuneOvT/lD6TctsTrLWbOpkUG1jeU3b/P/MTfDHtmvb+Y0E1uyhD1nk9KxqBLkw/ymxurTFK8FM6b/jts4aj8FnbC7LWkqDTCpfdnunh0H8JAVwaKbpBuGZHSx6w0Ds=;
-X-UUID: c117cace960f4552bcb0052495e7eed6-20210721
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 468878292; Wed, 21 Jul 2021 11:17:51 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by mtkmbs06n1.mediatek.inc
- (172.21.101.129) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 21 Jul
- 2021 11:17:49 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 21 Jul 2021 11:17:48 +0800
-Message-ID: <1626837468.4247.3.camel@mhfsdcap03>
-Subject: Re: [PATCH v3 3/3] phy: phy-mtk-tphy: add support mt8195
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Vinod Koul <vkoul@kernel.org>
-CC:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Eddie Hung <eddie.hung@mediatek.com>
-Date:   Wed, 21 Jul 2021 11:17:48 +0800
-In-Reply-To: <YPaIYI70823rK68w@matsya>
-References: <1626331702-27825-1-git-send-email-chunfeng.yun@mediatek.com>
-         <1626331702-27825-3-git-send-email-chunfeng.yun@mediatek.com>
-         <YPaIYI70823rK68w@matsya>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S229582AbhGUEE1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 00:04:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36064 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229601AbhGUEEB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 00:04:01 -0400
+Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77A66C061762
+        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 21:44:10 -0700 (PDT)
+Received: by mail-ot1-x330.google.com with SMTP id j1-20020a0568302701b02904d1f8b9db81so935357otu.12
+        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 21:44:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=BfXWWTIMOmQTzPgis5xFp0H4x6lMPAPeV1tP+oyedqc=;
+        b=CcW6EzZRdtG0O1WjwIj+Cykmwt+KwmhaIQTKpaucBBNgxnOVSP/BRN7Zk7Xt8rfNMP
+         IAtJgHI8pc/+2TJjyWTnaBqiA5mF5TqKotEbXZ2jt38L6gxvdElK8FThDNYspDXMz6l3
+         VALP8V5tC1xdpko8EoFhDUfOf2/iZHzoFNsKI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=BfXWWTIMOmQTzPgis5xFp0H4x6lMPAPeV1tP+oyedqc=;
+        b=M3/7HC30N0CsHeAvWQKczfpep+rJl9BBc/iN6+6takgvb5B2t7ecuM6rPx9xzQtDVS
+         4zjaf+IpP+gl3/V96MDGhLcLRlFrnqYF5ySmH/JGYmjp8X1Zd1zCCEwmNuFZgo6WWoxR
+         wTHn/KA/pQPwM1cWb8Ixufr0xY7lpuDN7LRh1a2HHE3afvisTGgXq53PClixrbiEGiUv
+         Gr6V9ZPVX4oiSQMWRHgx4nBHT+Gcn7Yd6N0BWPhtHXeQ0D7YoU6kn/ex9QeM2wvvws4w
+         OPDLNhYTxAb585pTBMspUAxggMLDw45R5KgByw3bpEP5Hxwe/PMclgelDnMmqMrCEmQU
+         ivrA==
+X-Gm-Message-State: AOAM531kG2Gh/ycRiwnzrGXBGxi75dfdwqf4hVVR9LKj+xLSv5EIQvRS
+        38bm0pMofXCb4GC7a774vtG1m4Xp57pLCmnYDCT2WA==
+X-Google-Smtp-Source: ABdhPJzR0xoikXdoN5v4m795dYznxelFcJLueVWs3AhpcIznH0aRODcF2DfsA1T59fd8iC1L4ioYPfkhFRCtHUhXNPU=
+X-Received: by 2002:a9d:1b6e:: with SMTP id l101mr9927059otl.34.1626842649804;
+ Tue, 20 Jul 2021 21:44:09 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 21 Jul 2021 04:44:09 +0000
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <1601448168-18396-3-git-send-email-srivasam@codeaurora.org>
+References: <1601448168-18396-1-git-send-email-srivasam@codeaurora.org> <1601448168-18396-3-git-send-email-srivasam@codeaurora.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Wed, 21 Jul 2021 04:44:09 +0000
+Message-ID: <CAE-0n51LVG1zZvuT4Cv-3nCRhPtC46OQCSeBmncwaH_3TXk8=w@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: sc7180-trogdor: Add lpass dai
+ link for HDMI
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        agross@kernel.org, bjorn.andersson@linaro.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org
+Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDIxLTA3LTIwIGF0IDEzOjU1ICswNTMwLCBWaW5vZCBLb3VsIHdyb3RlOg0KPiBP
-biAxNS0wNy0yMSwgMTQ6NDgsIENodW5mZW5nIFl1biB3cm90ZToNCj4gPiBUaGUgY29udHJvbGxl
-ciBpcyBkZXNpZ25lZCB0byB1c2UgdXNlIFBMTCBpbnRlZ2VyIG1vZGUsIGJ1dA0KPiA+IGluIGZh
-Y3QgdXNlZCBmcmFjdGlvbmFsIG1vZGUgZm9yIHNvbWUgb25lcyBvbiBtdDgxOTUsIHRoaXMNCj4g
-PiBjYXVzZXMgc2lnbmFsIGRlZ3JhZGF0aW9uIChlLmcuIGV5ZSBkaWFncmFtIHRlc3QgZmFpbCks
-IGZpeA0KPiA+IGl0IGJ5IHN3aXRjaGluZyBQTEwgdG8gMjZNaHogZnJvbSBkZWZhdWx0IDQ4TWh6
-IHRvIGltcHJvdmUNCj4gPiBzaWduYWwgcXVhbGl0eS4NCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5
-OiBDaHVuZmVuZyBZdW4gPGNodW5mZW5nLnl1bkBtZWRpYXRlay5jb20+DQo+ID4gLS0tDQo+ID4g
-djJ+Mzogbm8gY2hhbmdlcw0KPiA+IC0tLQ0KPiA+ICBkcml2ZXJzL3BoeS9tZWRpYXRlay9waHkt
-bXRrLXRwaHkuYyB8IDUyICsrKysrKysrKysrKysrKysrKysrKysrKysrKysrDQo+ID4gIDEgZmls
-ZSBjaGFuZ2VkLCA1MiBpbnNlcnRpb25zKCspDQo+ID4gDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvcGh5L21lZGlhdGVrL3BoeS1tdGstdHBoeS5jIGIvZHJpdmVycy9waHkvbWVkaWF0ZWsvcGh5
-LW10ay10cGh5LmMNCj4gPiBpbmRleCA0MmExMTc0ZGE2Y2MuLmMzZGMxNzYzYTdlYiAxMDA2NDQN
-Cj4gPiAtLS0gYS9kcml2ZXJzL3BoeS9tZWRpYXRlay9waHktbXRrLXRwaHkuYw0KPiA+ICsrKyBi
-L2RyaXZlcnMvcGh5L21lZGlhdGVrL3BoeS1tdGstdHBoeS5jDQo+ID4gQEAgLTQxLDYgKzQxLDgg
-QEANCj4gPiAgDQo+ID4gICNkZWZpbmUgVTNQX1VTQlBIWUFDUjAJCTB4MDAwDQo+ID4gICNkZWZp
-bmUgUEEwX1JHX1UyUExMX0ZPUkNFX09OCQlCSVQoMTUpDQo+ID4gKyNkZWZpbmUgUEEwX1VTQjIw
-X1BMTF9QUkVESVYJCUdFTk1BU0soNywgNikNCj4gPiArI2RlZmluZSBQQTBfVVNCMjBfUExMX1BS
-RURJVl9WQUwoeCkJKCgweDMgJiAoeCkpIDw8IDYpDQo+ID4gICNkZWZpbmUgUEEwX1JHX1VTQjIw
-X0lOVFJfRU4JCUJJVCg1KQ0KPiA+ICANCj4gPiAgI2RlZmluZSBVM1BfVVNCUEhZQUNSMQkJMHgw
-MDQNCj4gPiBAQCAtNTIsNiArNTQsOCBAQA0KPiA+ICAjZGVmaW5lIFBBMV9SR19URVJNX1NFTF9W
-QUwoeCkJKCgweDcgJiAoeCkpIDw8IDgpDQo+ID4gIA0KPiA+ICAjZGVmaW5lIFUzUF9VU0JQSFlB
-Q1IyCQkweDAwOA0KPiA+ICsjZGVmaW5lIFBBMl9SR19VMlBMTF9CVwkJCUdFTk1BU0soMjEsIDE5
-KQ0KPiA+ICsjZGVmaW5lIFBBMl9SR19VMlBMTF9CV19WQUwoeCkJCSgoMHg3ICYgKHgpKSA8PCAx
-OSkNCj4gPiAgI2RlZmluZSBQQTJfUkdfU0lGX1UyUExMX0ZPUkNFX0VOCUJJVCgxOCkNCj4gPiAg
-DQo+ID4gICNkZWZpbmUgVTNQX1VTQlBIWUFDUjUJCTB4MDE0DQo+ID4gQEAgLTczLDYgKzc3LDE0
-IEBADQo+ID4gICNkZWZpbmUgUDJDX1VTQjIwX0dQSU9fTU9ERQkJQklUKDgpDQo+ID4gICNkZWZp
-bmUgUDJDX1UyX0dQSU9fQ1RSX01TSwkoUDJDX1JHX1VTQjIwX0dQSU9fQ1RMIHwgUDJDX1VTQjIw
-X0dQSU9fTU9ERSkNCj4gPiAgDQo+ID4gKyNkZWZpbmUgVTNQX1UyUEhZQV9SRVNWCQkweDAzMA0K
-PiA+ICsjZGVmaW5lIFAyUl9SR19VMlBMTF9GQkRJVl8yNk0JCTB4MWJiMTNiDQo+ID4gKyNkZWZp
-bmUgUDJSX1JHX1UyUExMX0ZCRElWXzQ4TQkJMHgzYzAwMDANCj4gPiArDQo+ID4gKyNkZWZpbmUg
-VTNQX1UyUEhZQV9SRVNWMQkweDA0NA0KPiA+ICsjZGVmaW5lIFAyUl9SR19VMlBMTF9SRUZDTEtf
-U0VMCUJJVCg1KQ0KPiA+ICsjZGVmaW5lIFAyUl9SR19VMlBMTF9GUkFfRU4JCUJJVCgzKQ0KPiA+
-ICsNCj4gPiAgI2RlZmluZSBVM0RfVTJQSFlEQ1IwCQkweDA2MA0KPiA+ICAjZGVmaW5lIFAyQ19S
-R19TSUZfVTJQTExfRk9SQ0VfT04JQklUKDI0KQ0KPiA+ICANCj4gPiBAQCAtMjc3LDYgKzI4OSwx
-MiBAQCBlbnVtIG10a19waHlfdmVyc2lvbiB7DQo+ID4gIHN0cnVjdCBtdGtfcGh5X3BkYXRhIHsN
-Cj4gPiAgCS8qIGF2b2lkIFJYIHNlbnNpdGl2aXR5IGxldmVsIGRlZ3JhZGF0aW9uIG9ubHkgZm9y
-IG10ODE3MyAqLw0KPiA+ICAJYm9vbCBhdm9pZF9yeF9zZW5fZGVncmFkYXRpb247DQo+ID4gKwkv
-Kg0KPiA+ICsJICogdTJwaHkgc2hvdWxkIHVzZSBpbnRlZ2VyIG1vZGUgaW5zdGVhZCBvZiBmcmFj
-dGlvbmFsIG1vZGUgb2YNCj4gPiArCSAqIDQ4TSBQTEwsIGZpeCBpdCBieSBzd2l0Y2hpbmcgUExM
-IHRvIDI2TSBmcm9tIGRlZmF1bHQgNDhNDQo+ID4gKwkgKiBmb3IgbXQ4MTk1DQo+ID4gKwkgKi8N
-Cj4gPiArCWJvb2wgc3dfcGxsXzQ4bV90b18yNm07DQo+ID4gIAllbnVtIG10a19waHlfdmVyc2lv
-biB2ZXJzaW9uOw0KPiA+ICB9Ow0KPiA+ICANCj4gPiBAQCAtNDU2LDYgKzQ3NCwzMyBAQCBzdGF0
-aWMgdm9pZCB1M19waHlfaW5zdGFuY2VfaW5pdChzdHJ1Y3QgbXRrX3RwaHkgKnRwaHksDQo+ID4g
-IAlkZXZfZGJnKHRwaHktPmRldiwgIiVzKCVkKVxuIiwgX19mdW5jX18sIGluc3RhbmNlLT5pbmRl
-eCk7DQo+ID4gIH0NCj4gPiAgDQo+ID4gK3N0YXRpYyB2b2lkIHUyX3BoeV9wbGxfMjZtX3NldChz
-dHJ1Y3QgbXRrX3RwaHkgKnRwaHksDQo+ID4gKwlzdHJ1Y3QgbXRrX3BoeV9pbnN0YW5jZSAqaW5z
-dGFuY2UpDQo+ID4gK3sNCj4gPiArCXN0cnVjdCB1MnBoeV9iYW5rcyAqdTJfYmFua3MgPSAmaW5z
-dGFuY2UtPnUyX2JhbmtzOw0KPiA+ICsJdm9pZCBfX2lvbWVtICpjb20gPSB1Ml9iYW5rcy0+Y29t
-Ow0KPiA+ICsJdTMyIHRtcDsNCj4gPiArDQo+ID4gKwlpZiAoIXRwaHktPnBkYXRhLT5zd19wbGxf
-NDhtX3RvXzI2bSkNCj4gPiArCQlyZXR1cm47DQo+ID4gKw0KPiA+ICsJdG1wID0gcmVhZGwoY29t
-ICsgVTNQX1VTQlBIWUFDUjApOw0KPiA+ICsJdG1wICY9IH5QQTBfVVNCMjBfUExMX1BSRURJVjsN
-Cj4gPiArCXRtcCB8PSBQQTBfVVNCMjBfUExMX1BSRURJVl9WQUwoMCk7DQo+ID4gKwl3cml0ZWwo
-dG1wLCBjb20gKyBVM1BfVVNCUEhZQUNSMCk7DQo+ID4gKw0KPiA+ICsJdG1wID0gcmVhZGwoY29t
-ICsgVTNQX1VTQlBIWUFDUjIpOw0KPiA+ICsJdG1wICY9IH5QQTJfUkdfVTJQTExfQlc7DQo+ID4g
-Kwl0bXAgfD0gUEEyX1JHX1UyUExMX0JXX1ZBTCgzKTsNCj4gPiArCXdyaXRlbCh0bXAsIGNvbSAr
-IFUzUF9VU0JQSFlBQ1IyKTsNCj4gPiArDQo+ID4gKwl3cml0ZWwoUDJSX1JHX1UyUExMX0ZCRElW
-XzI2TSwgY29tICsgVTNQX1UyUEhZQV9SRVNWKTsNCj4gPiArDQo+ID4gKwl0bXAgPSByZWFkbChj
-b20gKyBVM1BfVTJQSFlBX1JFU1YxKTsNCj4gPiArCXRtcCB8PSBQMlJfUkdfVTJQTExfRlJBX0VO
-IHwgUDJSX1JHX1UyUExMX1JFRkNMS19TRUw7DQo+ID4gKwl3cml0ZWwodG1wLCBjb20gKyBVM1Bf
-VTJQSFlBX1JFU1YxKTsNCj4gPiArfQ0KPiA+ICsNCj4gPiAgc3RhdGljIHZvaWQgdTJfcGh5X2lu
-c3RhbmNlX2luaXQoc3RydWN0IG10a190cGh5ICp0cGh5LA0KPiA+ICAJc3RydWN0IG10a19waHlf
-aW5zdGFuY2UgKmluc3RhbmNlKQ0KPiA+ICB7DQo+ID4gQEAgLTk0MSw2ICs5ODYsNyBAQCBzdGF0
-aWMgaW50IG10a19waHlfaW5pdChzdHJ1Y3QgcGh5ICpwaHkpDQo+ID4gIA0KPiA+ICAJc3dpdGNo
-IChpbnN0YW5jZS0+dHlwZSkgew0KPiA+ICAJY2FzZSBQSFlfVFlQRV9VU0IyOg0KPiA+ICsJCXUy
-X3BoeV9wbGxfMjZtX3NldCh0cGh5LCBpbnN0YW5jZSk7DQo+IA0KPiBzaG91bGQgdGhpcyBub3Qg
-YmUgc2V0IG9ubHkgZm9yIE1US19QSFlfVjM/DQpXb3JrYXJvdW5kIG9ubHkgZm9yIG10ODE5NSwg
-SFcgd2lsbCBmaXggaXQgZm9yIG90aGVycyAoVjMpDQoNClRoYW5rcw0KDQo+IA0KPiA+ICAJCXUy
-X3BoeV9pbnN0YW5jZV9pbml0KHRwaHksIGluc3RhbmNlKTsNCj4gPiAgCQl1Ml9waHlfcHJvcHNf
-c2V0KHRwaHksIGluc3RhbmNlKTsNCj4gPiAgCQlicmVhazsNCj4gPiBAQCAtMTA5NCwxMCArMTE0
-MCwxNiBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IG10a19waHlfcGRhdGEgbXQ4MTczX3BkYXRhID0g
-ew0KPiA+ICAJLnZlcnNpb24gPSBNVEtfUEhZX1YxLA0KPiA+ICB9Ow0KPiA+ICANCj4gPiArc3Rh
-dGljIGNvbnN0IHN0cnVjdCBtdGtfcGh5X3BkYXRhIG10ODE5NV9wZGF0YSA9IHsNCj4gPiArCS5z
-d19wbGxfNDhtX3RvXzI2bSA9IHRydWUsDQo+ID4gKwkudmVyc2lvbiA9IE1US19QSFlfVjMsDQo+
-ID4gK307DQo+ID4gKw0KPiA+ICBzdGF0aWMgY29uc3Qgc3RydWN0IG9mX2RldmljZV9pZCBtdGtf
-dHBoeV9pZF90YWJsZVtdID0gew0KPiA+ICAJeyAuY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDI3
-MDEtdTNwaHkiLCAuZGF0YSA9ICZ0cGh5X3YxX3BkYXRhIH0sDQo+ID4gIAl7IC5jb21wYXRpYmxl
-ID0gIm1lZGlhdGVrLG10MjcxMi11M3BoeSIsIC5kYXRhID0gJnRwaHlfdjJfcGRhdGEgfSwNCj4g
-PiAgCXsgLmNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTczLXUzcGh5IiwgLmRhdGEgPSAmbXQ4
-MTczX3BkYXRhIH0sDQo+ID4gKwl7IC5jb21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODE5NS10cGh5
-IiwgLmRhdGEgPSAmbXQ4MTk1X3BkYXRhIH0sDQo+ID4gIAl7IC5jb21wYXRpYmxlID0gIm1lZGlh
-dGVrLGdlbmVyaWMtdHBoeS12MSIsIC5kYXRhID0gJnRwaHlfdjFfcGRhdGEgfSwNCj4gPiAgCXsg
-LmNvbXBhdGlibGUgPSAibWVkaWF0ZWssZ2VuZXJpYy10cGh5LXYyIiwgLmRhdGEgPSAmdHBoeV92
-Ml9wZGF0YSB9LA0KPiA+ICAJeyAuY29tcGF0aWJsZSA9ICJtZWRpYXRlayxnZW5lcmljLXRwaHkt
-djMiLCAuZGF0YSA9ICZ0cGh5X3YzX3BkYXRhIH0sDQo+ID4gLS0gDQo+ID4gMi4xOC4wDQo+IA0K
-DQo=
+Quoting Srinivasa Rao Mandadapu (2020-09-29 23:42:48)
+> From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+>
+> Add dai link in sc7180-trogdor.dtsi for supporting audio over DP
+>
+> Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> index 5724982..850b43e 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> @@ -231,6 +231,7 @@
+>
+>                 audio-jack = <&alc5682>;
+>
+> +               #sound-dai-cells = <0>;
+>                 #address-cells = <1>;
+>                 #size-cells = <0>;
+>
+> @@ -257,6 +258,17 @@
+>                                 sound-dai = <&max98357a>;
+>                         };
+>                 };
+> +               dai-link@2 {
+> +                       link-name = "MultiMedia2";
+> +                       reg = <2>;
+> +                       cpu {
+> +                               sound-dai = <&lpass_cpu 2>;
+> +                       };
+> +
+> +                       codec {
+> +                               sound-dai = <&msm_dp>;
 
+I see qcom maintainers have picked up the dp node now. Can you resend?
+This would need to change to mdss_dp. Also incorporate my comments from
+January this year please.
