@@ -2,188 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B9D133D0A5A
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 10:18:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D8DE3D0A62
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 10:18:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235835AbhGUH1d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 03:27:33 -0400
-Received: from ni.piap.pl ([195.187.100.5]:59800 "EHLO ni.piap.pl"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234280AbhGUH0g (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Jul 2021 03:26:36 -0400
-Received: from t19.piap.pl (OSB1819.piap.pl [10.0.9.19])
-        by ni.piap.pl (Postfix) with ESMTPSA id 6B88DC3F3EE1;
-        Wed, 21 Jul 2021 10:06:34 +0200 (CEST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 ni.piap.pl 6B88DC3F3EE1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=piap.pl; s=mail;
-        t=1626854794; bh=kAOVbBosXZA2dqheAUUBZ2v3aVMqXiDlCLAVPrva5bQ=;
-        h=From:To:Cc:Subject:Date:From;
-        b=jZMMYu/MZ6qFn/YxxjjvTmpnCU8IJfQ1+sS0ANxFDReYzEdSHjPTdQGOB/SP65qhZ
-         iofrSG4GkceQH3QAIkn3w46HMJUWkWdWOwxCON5UjNUv80hc7xIQoIsNJr1gORGLVw
-         SN/c8RYwaRT00K2/Uo7v4v3Srs0TJ4Y+Lx6t/Sik=
-From:   Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>
-To:     devicetree@vger.kernel.org
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: [RFC v3] dt-binding: media: document ON Semi AR0521 sensor bindings
-Date:   Wed, 21 Jul 2021 10:06:34 +0200
-Message-ID: <m37dhkdrat.fsf@t19.piap.pl>
+        id S234953AbhGUHch (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 03:32:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54428 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236196AbhGUH2u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 03:28:50 -0400
+Received: from mail-il1-x132.google.com (mail-il1-x132.google.com [IPv6:2607:f8b0:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74BBCC0613E9;
+        Wed, 21 Jul 2021 01:09:15 -0700 (PDT)
+Received: by mail-il1-x132.google.com with SMTP id a7so1580763iln.6;
+        Wed, 21 Jul 2021 01:09:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=nnkwypyGGg2lIAlmn1bPoLA/AT7fY2p5wjrBTzzARl8=;
+        b=hs0y+4913dnb3lcozRBpL/0RyQCg9I7uzJnbJZz8c7BR4+Kuu7lo72IfaB/EYPsjjY
+         KRrkbTYhT7FEFtrqCST79Jw/YG9OU3YTkBlwc02Y1FUqi8U4TpjAFa3haW7PZIftePRE
+         Bg1nPosBLFL/51NONNW0rbSy9UlEkOejEIzAG5jFRnrJD7U/2X1LaW3uU0IlF+qKX8Qq
+         etZ+xF3tCItVfSAxaj8zTDPomWmtqjOWYRDkRy5ig9ekKCTZfhsDDloJ74cBaKhnAPCi
+         DAubd9l7Gi072V5d8XrHy8kBAf7dkteXBci4xUY9VIZzFUNVVbOQjD0bwP8iG3Yjqmqa
+         IDvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=nnkwypyGGg2lIAlmn1bPoLA/AT7fY2p5wjrBTzzARl8=;
+        b=ldh98r2du1wd0MByoh8tHxTTMYVyA0TQdS8B6kZfP30glS63wn47pFex3WEE1uKMp9
+         hZ1ra0g7eM4+LekecHg1voOuDWkR3JSs1TcxzFQb45QVtIq5nHO65waHfw1Glsn3o2Gw
+         uwiq0xGhHgXhuCsXeFEEowbRyRA1M1PaQ/lnPlRBIaC8+6FEcXKvOmX8pDMJFVAoPrkH
+         r7qoip1Pjd6SOYmhaZpePluQTXYZdf6l4aEGLRBgipxJBLb+y4WWd/Ko2ZnoEoO5sA4Y
+         XgrWg8P3H8zsTJAPQ6O+Q09ANVFNif3qnXAwCWWHEAcPOAqdKCNyMIGYkXUrredwZyPn
+         qzYg==
+X-Gm-Message-State: AOAM530DsG/vvKuwAHHWJJcDLNH3bsZKpYuA5wYM4QW6PogbDPa/eh3H
+        DpgPlil0/APIuv2n4KHy1pzZaffPVVmvlJ30kaypg4iY8y/TGw==
+X-Google-Smtp-Source: ABdhPJwnbPqWbPgibT/dnsgnl4iijNPWvfnWGahqwD5gtd8HBLt9g+YmgheZWQDsqArk2YwB1EzTg1LI8+S8cPJGfVg=
+X-Received: by 2002:a05:6e02:12ab:: with SMTP id f11mr2378907ilr.200.1626854954887;
+ Wed, 21 Jul 2021 01:09:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-KLMS-Rule-ID: 1
-X-KLMS-Message-Action: clean
-X-KLMS-AntiSpam-Lua-Profiles: 165154 [Jul 21 2021]
-X-KLMS-AntiSpam-Version: 5.9.20.0
-X-KLMS-AntiSpam-Envelope-From: khalasa@piap.pl
-X-KLMS-AntiSpam-Rate: 0
-X-KLMS-AntiSpam-Status: not_detected
-X-KLMS-AntiSpam-Method: none
-X-KLMS-AntiSpam-Auth: dkim=pass header.d=piap.pl
-X-KLMS-AntiSpam-Info: LuaCore: 448 448 71fb1b37213ce9a885768d4012c46ac449c77b17, {Tracking_from_exist}, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, piap.pl:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;t19.piap.pl:7.1.1;devicetree.org:7.1.1
-X-MS-Exchange-Organization-SCL: -1
-X-KLMS-AntiSpam-Interceptor-Info: scan successful
-X-KLMS-AntiPhishing: Clean, bases: 2021/07/21 05:08:00
-X-KLMS-AntiVirus: Kaspersky Security for Linux Mail Server, version 8.0.3.30, bases: 2021/07/21 00:56:00 #16933345
-X-KLMS-AntiVirus-Status: Clean, skipped
+References: <1626430843-23823-1-git-send-email-dillon.minfei@gmail.com>
+ <1626430843-23823-2-git-send-email-dillon.minfei@gmail.com>
+ <CACRpkdbkOY08THPsPHfOOMeToHGXZvN2DBoKG9+WHeke9jypzQ@mail.gmail.com> <CAL9mu0JufzC_2p+X0PHdEpuYUqCNJ6XoT+f18oEsRa5Wm7wS3g@mail.gmail.com>
+In-Reply-To: <CAL9mu0JufzC_2p+X0PHdEpuYUqCNJ6XoT+f18oEsRa5Wm7wS3g@mail.gmail.com>
+From:   Dillon Min <dillon.minfei@gmail.com>
+Date:   Wed, 21 Jul 2021 16:08:38 +0800
+Message-ID: <CAL9mu0KGndejkS5joUGqTSfCASWCZeAmDpsCawPZhginFCE-Ow@mail.gmail.com>
+Subject: Fwd: [PATCH 1/2] dt-bindings: display: panel: Add ilitek ili9341
+ panel bindings
+To:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This file documents DT bindings for the AR0521 camera sensor driver.
+Hi Linus,
 
-Signed-off-by: Krzysztof Ha=C5=82asa <khalasa@piap.pl>
----
-Changes from v2:
-- changed "xclk" to "extclk"
-- power regulator names etc.
-- video output port properties
-- cosmetics
-- UTF-8 experiments :-)
+Thanks for your detailed reply.
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,ar0521.yaml b=
-/Documentation/devicetree/bindings/media/i2c/onnn,ar0521.yaml
-new file mode 100644
-index 000000000000..785bae61bb5e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/onnn,ar0521.yaml
-@@ -0,0 +1,108 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/onnn,ar0521.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ON Semiconductor AR0521 MIPI CSI-2 sensor
-+
-+maintainers:
-+  - Krzysztof Ha=C5=82asa <khalasa@piap.pl>
-+
-+description: |-
-+  The AR0521 is a raw CMOS image sensor with MIPI CSI-2 and
-+  I2C-compatible control interface.
-+
-+properties:
-+  compatible:
-+    const: onnn,ar0521
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: extclk
-+
-+  vaa-supply:
-+    description:
-+      Definition of the regulator used as analog (2.7 V) voltage supply.
-+
-+  vdd-supply:
-+    description:
-+      Definition of the regulator used as digital core (1.2 V) voltage sup=
-ply.
-+
-+  vdd_io-supply:
-+    description:
-+      Definition of the regulator used as digital I/O (1.8 V) voltage supp=
-ly.
-+
-+  reset-gpios:
-+    description: reset GPIO, usually active low
-+    maxItems: 1
-+
-+  port:
-+    $ref: /schemas/graph.yaml#/properties/port
-+    description: |
-+      Video output port.
-+
-+    properties:
-+      endpoint:
-+        $ref: /schemas/media/video-interfaces.yaml#
-+
-+        properties:
-+          data-lanes:
-+            anyOf:
-+              - items:
-+                  - const: 1
-+              - items:
-+                  - const: 1
-+                  - const: 2
-+              - items:
-+                  - const: 1
-+                  - const: 2
-+                  - const: 3
-+                  - const: 4
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - vaa-supply
-+  - vdd-supply
-+  - vdd_io-supply
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/clock/imx6qdl-clock.h>
-+
-+    i2c {
-+            #address-cells =3D <1>;
-+            #size-cells =3D <0>;
-+
-+            ar0521: camera-sensor@36 {
-+                    compatible =3D "onnn,ar0521";
-+                    reg =3D <0x36>;
-+                    pinctrl-names =3D "default";
-+                    pinctrl-0 =3D <&pinctrl_mipi_camera>;
-+                    clocks =3D <&clks IMX6QDL_CLK_CKO>;
-+                    clock-names =3D "extclk";
-+                    reset-gpios =3D <&gpio1 7 GPIO_ACTIVE_LOW>;
-+                    vaa-supply =3D <&reg_2p7v>;
-+                    vdd-supply =3D <&reg_1p2v>;
-+                    vdd_io-supply =3D <&reg_1p8v>;
-+
-+                    port {
-+                           mipi_camera_to_mipi_csi2: endpoint {
-+                                    remote-endpoint =3D <&mipi_csi2_in>;
-+                                    data-lanes =3D <1 2 3 4>;
-+                            };
-+                    };
-+            };
-+    };
+On Sun, 18 Jul 2021 at 08:17, Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> Hi Dillon,
+>
+> thanks for your patch!
+>
+> On Fri, Jul 16, 2021 at 12:20 PM <dillon.minfei@gmail.com> wrote:
+>
+> > From: Dillon Min <dillon.minfei@gmail.com>
+> >
+> > Add documentation for "ilitek,ili9341" panel.
+> >
+> > Signed-off-by: Dillon Min <dillon.minfei@gmail.com>
+>
+> > +  dc-gpios:
+> > +    maxItems: 1
+> > +    description: Display data/command selection (D/CX)
+>
+> This is a DBI feature so mention in the description that this is a
+> DBI panel.
 
---=20
-Krzysztof "Chris" Ha=C5=82asa
 
-Sie=C4=87 Badawcza =C5=81ukasiewicz
-Przemys=C5=82owy Instytut Automatyki i Pomiar=C3=B3w PIAP
-Al. Jerozolimskie 202, 02-486 Warszawa
+Okay, I will add the DBI panel to v2.
+
+>
+>
+> > +  spi-3wire: true
+> > +
+> > +  spi-max-frequency:
+> > +    const: 10000000
+> > +
+> > +  port: true
+> > +
+> > +additionalProperties: false
+>
+> Please add regulator supplies for the power lines, it's fine
+> not to implement code handling them in the driver but they
+> should be in the bindings.
+>
+> For the ili9341 it should be
+>
+>   vci-supply:
+>     description: Analog voltage supply (2.5 .. 3.3V)
+>
+>   vddi-supply:
+>     description: Voltage supply for interface logic (1.65 .. 3.3 V)
+>
+>   vddi-led-supply:
+>     description: Voltage supply for the LED driver (1.65 .. 3.3 V)
+>
+
+Thanks so much, I will add it to v2.
+
+>
+> Yours,
+> Linus Walleij
