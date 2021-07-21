@@ -2,163 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B9903D15E5
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 20:08:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADA503D1604
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 20:16:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230444AbhGUR1t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 13:27:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50560 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231124AbhGUR1p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 13:27:45 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B137C0613CF
-        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 11:08:21 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id y25so3337356ljy.13
-        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 11:08:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gtIf04Z37gx9XqNiwrsxPZO7oSThLTlbi0RPsWdfaFM=;
-        b=UGfV3dnRrxXZDPaaemsemZl5AWjKR+fUL80TbIDXhqu2qF770NP1zJ4FWA7smAOsBj
-         +DTEb1bn7VR5OD7KSSObN2is3t9s51LebBvBA+eV0QEDRC3TZZ8M8m6U9xGxVum9ljJ0
-         VKQq2uVXNUptfjfbw4frYhB44+zw9VvSmYkCPQGMZj9wTazF9LCaeBKzLdJzbAMgrRcc
-         U+rxvhfNeaG/uUuf3s2bB2juZWWx0x7MCbEkOJyH8F118hqDbt9KovoLgVgQmfj+IWMm
-         Ete3RO0RWdpj0xJ9uIZznY5JzOl7+iZwcoqmKIQ+mwrfoBjKRKt/qN9eaC9PHxWIzGDi
-         fVxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gtIf04Z37gx9XqNiwrsxPZO7oSThLTlbi0RPsWdfaFM=;
-        b=DrMbwJ/PoQhbybdhyAS3vU+G6zN0F+9WIwEzqRunh8ZTCi4QEVh4IlfUPOD6DfJX37
-         cmgt69BoyNPZmINf9EtfgmQYK1ko39CtH/6ZaX1KNvBj8aTSVKn9y26Q664LfLvb+pxD
-         VV496pXp69Qzsvd7jUcXtpN557SIRta+k0/7JNIFb8uG4XiJ26ly1nSwJhi5SpwF5DRl
-         XxXLj9ReUt5pRVAzzT+liNstlallmumZeChEoivBh8j55m6ph1vtWGEkQPBlxdFAPqfH
-         8hPumcXbCvyjfiLh1wjpbYkQURqyxzgd517cSCFH0NfZEIW0yxXzyzRcdmdL6wJOtZQC
-         F5xA==
-X-Gm-Message-State: AOAM532Iz5AkZd0Ivqh+fROfMx/Armtzp7ZFrgbPc12LXxiFm1rsO36H
-        AyPVXRudVDlEMO9HH+BvPc3ePMSaRyN+G6ykRihKYA==
-X-Google-Smtp-Source: ABdhPJxrq4futLBsxaQ59VtkjdmJQuQy/S66dDex7M2vFe5dYW/PA5zDw9jXVCNnWGkgJlk7EVVXeHwG+WpaJFd4aok=
-X-Received: by 2002:a2e:720f:: with SMTP id n15mr28248753ljc.333.1626890899442;
- Wed, 21 Jul 2021 11:08:19 -0700 (PDT)
+        id S238250AbhGURfX convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 21 Jul 2021 13:35:23 -0400
+Received: from aposti.net ([89.234.176.197]:48358 "EHLO aposti.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231158AbhGURfW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Jul 2021 13:35:22 -0400
+Date:   Wed, 21 Jul 2021 19:15:47 +0100
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH 3/6] iio/adc: ingenic: add JZ4760 support to the sadc
+ driver
+To:     citral23 <cbranchereau@gmail.com>
+Cc:     jic23@kernel.org, lars@metafoo.de, linux-mips@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org, linux@roeck-us.net,
+        contact@artur-rojek.eu
+Message-Id: <BEXLWQ.Q6JDGD8HI0S31@crapouillou.net>
+In-Reply-To: <20210721105317.36742-4-cbranchereau@gmail.com>
+References: <20210721105317.36742-1-cbranchereau@gmail.com>
+        <20210721105317.36742-4-cbranchereau@gmail.com>
 MIME-Version: 1.0
-References: <20201020115959.2658-1-Sergey.Semin@baikalelectronics.ru>
- <20201020115959.2658-30-Sergey.Semin@baikalelectronics.ru>
- <CALAqxLX_FNvFndEDWtGbFPjSzuAbfqxQE07diBJFZtftwEJX5A@mail.gmail.com>
- <20210714124807.o22mottsrg3tv6nt@mobilestation> <YPfPDqJhfzbvDLvB@kroah.com>
- <20210721100220.ddfxwugivsndsedv@mobilestation> <YPf29+ewbrYgHxRP@kroah.com>
- <0064cb2c-5ca6-e693-2e89-8f045c8f7502@kernel.org> <YPf+shNM6cXb3mfe@kroah.com>
- <d853df77-8d36-30b0-dd26-da1bfcb068e0@kernel.org> <20210721112531.xvu6ni5ksaehsrjh@mobilestation>
-In-Reply-To: <20210721112531.xvu6ni5ksaehsrjh@mobilestation>
-From:   John Stultz <john.stultz@linaro.org>
-Date:   Wed, 21 Jul 2021 11:08:08 -0700
-Message-ID: <CALAqxLViEqSO17P3JGRGYJh-wDoHaJiQQV48zeoRgnar4Xd5Bg@mail.gmail.com>
-Subject: Re: [PATCH 29/29] arm64: dts: qcom: Harmonize DWC USB3 DT nodes name
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Rob Herring <robh+dt@kernel.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Amit Pundir <amit.pundir@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 21, 2021 at 4:25 AM Serge Semin <fancer.lancer@gmail.com> wrote:
-> On Wed, Jul 21, 2021 at 01:10:19PM +0200, Krzysztof Kozlowski wrote:
-> > It's not good example. The configfs entries (file names) are
-> > user-visible however the USB gadget exposes specific value for specific
-> > one device. It encodes device specific DT node name and HW address and
-> > gives it to user-space. It is valid only on this one HW, all other
-> > devices will have different values.
-> >
-> > User-space has hard-coded this value (DT node name and hardware
-> > address). This value was never part of configfs ABI, maybe except of its
-> > format "[a-z]+\.[0-9a-f]+". Format is not broken. Just the value changes
-> > for a specific device/hardware.
-> >
-> > It's like you depend that lsusb will always report:
-> >   Bus 003 Device 008: ID 046d:c52b Logitech, Inc. Unifying Receiver
-> > and then probing order changed and this Logitech ends as Device 009.
-> > Then AOSP guys come, wait, we hard-coded that Logitech on our device
-> > will be always Device 008, not 009. Please revert it, we depend on
-> > specific value of Device number. It must be always 009...
-> >
-> > For the record - the change discussed here it's nothing like USB VID/PID. :)
->
-> Right I was wrong referring to the configfs names in this context.
-> That must have mislead Greg.
->
-> Getting back to the topic AFAICS from what John said in here
-> https://lore.kernel.org/lkml/CALAqxLWGujgR7p8Vb5S_RimRVYxwm5XF-c4NkKgMH-43wEBaWg@mail.gmail.com/
->
-> AOSP developers somehow hardcoded a USB-controller UDC name in the
-> internal property called "sys.usb.controller" with a value
-> "ff100000.dwc3". That value is generated by the kernel based on the
-> corresponding DT-node name. The property is then used to
-> pre-initialize the system like it's done here:
-> https://android.googlesource.com/platform/system/core/+/master/rootdir/init.usb.configfs.rc
->
-> Since we changed the DT-node name in the recent kernel, we thus changed the
-> UDC controller name so AOSP init procedure now fails to bring up the Linux
-> USB-gadget using on the older UDC name. UDC is supposed to be ff100000.usb now
-> (after this patch has been merged in).
->
-> What problems I see here:
-> 1) the AOSP developers shouldn't have hard-coded the value but read
-> from the /sys/class/udc/* directory and then decided which controller
-> to use. As it's described for instance here:
-> https://www.kernel.org/doc/Documentation/usb/gadget_configfs.txt
+Hi Christophe,
 
-The problem with this is there may be multiple USB controllers on a
-system (not all exposed outside the case - and also the dummy
-controller is often present). How can we configure the system to know
-which controller is which?
+Le mer., juil. 21 2021 at 12:53:14 +0200, citral23 
+<cbranchereau@gmail.com> a écrit :
+> Signed-off-by: citral23 <cbranchereau@gmail.com>
+> ---
+>  drivers/iio/adc/ingenic-adc.c | 64 
+> +++++++++++++++++++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+> 
+> diff --git a/drivers/iio/adc/ingenic-adc.c 
+> b/drivers/iio/adc/ingenic-adc.c
+> index 40f2d8c2cf72..285e7aa8e37a 100644
+> --- a/drivers/iio/adc/ingenic-adc.c
+> +++ b/drivers/iio/adc/ingenic-adc.c
+> @@ -71,6 +71,7 @@
+>  #define JZ4725B_ADC_BATTERY_HIGH_VREF_BITS	10
+>  #define JZ4740_ADC_BATTERY_HIGH_VREF		(7500 * 0.986)
+>  #define JZ4740_ADC_BATTERY_HIGH_VREF_BITS	12
+> +#define JZ4760_ADC_BATTERY_VREF			2500
+>  #define JZ4770_ADC_BATTERY_VREF			1200
+>  #define JZ4770_ADC_BATTERY_VREF_BITS		12
+> 
+> @@ -295,6 +296,10 @@ static const int 
+> jz4740_adc_battery_scale_avail[] = {
+>  	JZ_ADC_BATTERY_LOW_VREF, JZ_ADC_BATTERY_LOW_VREF_BITS,
+>  };
+> 
+> +static const int jz4760_adc_battery_scale_avail[] = {
+> +	JZ4760_ADC_BATTERY_VREF, JZ4770_ADC_BATTERY_VREF_BITS,
+> +};
+> +
+>  static const int jz4770_adc_battery_raw_avail[] = {
+>  	0, 1, (1 << JZ4770_ADC_BATTERY_VREF_BITS) - 1,
+>  };
+> @@ -339,6 +344,8 @@ static int jz4725b_adc_init_clk_div(struct device 
+> *dev, struct ingenic_adc *adc)
+>  	return 0;
+>  }
+> 
+> +
+> +
 
-The only name we have for distinguishing the controllers is the DTS
-node. So it seems inherent that changes to that name will break the
-config.
+Unrelated cosmetic change - remove it.
 
-That said, this issue reminded me of the /dev/hda -> /dev/sda device
-name or the eth0 -> enp3s0 switch which both also had the potential to
-break configurations or scripts.  I get that having a standard naming
-scheme is important (I'm very sympathetic to this point)! I can
-imagine UI trying to show possible controllers for a user to select
-needs a simple way to determine if a device is a usb controller - but
-again this just shows that the node names are an ABI.
+>  static int jz4770_adc_init_clk_div(struct device *dev, struct 
+> ingenic_adc *adc)
+>  {
+>  	struct clk *parent_clk;
+> @@ -400,6 +407,47 @@ static const struct iio_chan_spec 
+> jz4740_channels[] = {
+>  	},
+>  };
+> 
+> +static const struct iio_chan_spec jz4760_channels[] = {
+> +	{
+> +		.extend_name = "aux0",
+> +		.type = IIO_VOLTAGE,
+> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+> +				      BIT(IIO_CHAN_INFO_SCALE),
+> +		.indexed = 1,
+> +		.channel = INGENIC_ADC_AUX0,
+> +		.scan_index = -1,
+> +	},
+> +	{
+> +		.extend_name = "aux",
+> +		.type = IIO_VOLTAGE,
+> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+> +				      BIT(IIO_CHAN_INFO_SCALE),
+> +		.indexed = 1,
+> +		.channel = INGENIC_ADC_AUX,
+> +		.scan_index = -1,
+> +	},
 
-So I'm not the one to judge if this change is useful enough to push
-through the pain, but it did seem to be done a bit casually.
+A couple of things. First, ".extend_name" is deprecated now... But 
+since the driver used it before, I suppose it doesn't make sense to use 
+labels just for this SoC (as we can't remove .extend_name for other 
+SoCs because of ABI). So I suppose it works here, but maybe Jonathan 
+disagrees.
 
-> 2) even if they hard-coded the value, then they should have used an
-> older dts file for their platform, since DTS is more
-> platform-specific, but not the kernel one. Even if a dts-file is
-> supplied in the kernel it isn't supposed to have the node names
-> unchanged from release to release.
+Also, you should probably use "aux1" as the channel's name instead of 
+"aux", independently of the macro name you used in the .channel field.
 
-DTS changes are a constant source of regressions in my experience. We
-mostly just have to roll with it, but it feels never ending. :)  I'd
-personally rather folks in general be more thoughtful about what DTS
-changes they make and accept, understanding that they do have impact
-on userland.  And I'd imagine If updates to linux-firmware broke the
-most recent LTS kernel, that would be seen as a regression too, and
-folks wouldn't be told to just keep the old firmware.  But all the
-same, I'd also be happy for suggestions to remove any such
-dependencies userland has on specific dts naming, where possible, to
-make the constant pain go away. :)
+> +	{
+> +		.extend_name = "battery",
+> +		.type = IIO_VOLTAGE,
+> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+> +				      BIT(IIO_CHAN_INFO_SCALE),
+> +		.info_mask_separate_available = BIT(IIO_CHAN_INFO_RAW) |
+> +						BIT(IIO_CHAN_INFO_SCALE),
+> +		.indexed = 1,
+> +		.channel = INGENIC_ADC_BATTERY,
+> +		.scan_index = -1,
+> +	},
 
-thanks
--john
+Swap the battery channel at the end, no? First the three AUX then the 
+battery channel?
+
+The rest looks pretty good to me.
+
+Cheers,
+-Paul
+
+> +	{
+> +		.extend_name = "aux2",
+> +		.type = IIO_VOLTAGE,
+> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+> +				      BIT(IIO_CHAN_INFO_SCALE),
+> +		.indexed = 1,
+> +		.channel = INGENIC_ADC_AUX2,
+> +		.scan_index = -1,
+> +	},
+> +};
+> +
+>  static const struct iio_chan_spec jz4770_channels[] = {
+>  	{
+>  		.type = IIO_VOLTAGE,
+> @@ -526,6 +574,20 @@ static const struct ingenic_adc_soc_data 
+> jz4740_adc_soc_data = {
+>  	.init_clk_div = NULL, /* no ADCLK register on JZ4740 */
+>  };
+> 
+> +static const struct ingenic_adc_soc_data jz4760_adc_soc_data = {
+> +	.battery_high_vref = JZ4760_ADC_BATTERY_VREF,
+> +	.battery_high_vref_bits = JZ4770_ADC_BATTERY_VREF_BITS,
+> +	.battery_raw_avail = jz4770_adc_battery_raw_avail,
+> +	.battery_raw_avail_size = ARRAY_SIZE(jz4770_adc_battery_raw_avail),
+> +	.battery_scale_avail = jz4760_adc_battery_scale_avail,
+> +	.battery_scale_avail_size = 
+> ARRAY_SIZE(jz4760_adc_battery_scale_avail),
+> +	.battery_vref_mode = false,
+> +	.has_aux_md = true,
+> +	.channels = jz4760_channels,
+> +	.num_channels = ARRAY_SIZE(jz4760_channels),
+> +	.init_clk_div = jz4770_adc_init_clk_div,
+> +};
+> +
+>  static const struct ingenic_adc_soc_data jz4770_adc_soc_data = {
+>  	.battery_high_vref = JZ4770_ADC_BATTERY_VREF,
+>  	.battery_high_vref_bits = JZ4770_ADC_BATTERY_VREF_BITS,
+> @@ -621,6 +683,7 @@ static int ingenic_adc_read_raw(struct iio_dev 
+> *iio_dev,
+>  		return ingenic_adc_read_chan_info_raw(iio_dev, chan, val);
+>  	case IIO_CHAN_INFO_SCALE:
+>  		switch (chan->channel) {
+> +		case INGENIC_ADC_AUX0:
+>  		case INGENIC_ADC_AUX:
+>  		case INGENIC_ADC_AUX2:
+>  			*val = JZ_ADC_AUX_VREF;
+> @@ -832,6 +895,7 @@ static int ingenic_adc_probe(struct 
+> platform_device *pdev)
+>  static const struct of_device_id ingenic_adc_of_match[] = {
+>  	{ .compatible = "ingenic,jz4725b-adc", .data = 
+> &jz4725b_adc_soc_data, },
+>  	{ .compatible = "ingenic,jz4740-adc", .data = &jz4740_adc_soc_data, 
+> },
+> +	{ .compatible = "ingenic,jz4760-adc", .data = &jz4760_adc_soc_data, 
+> },
+>  	{ .compatible = "ingenic,jz4770-adc", .data = &jz4770_adc_soc_data, 
+> },
+>  	{ },
+>  };
+> --
+> 2.30.2
+> 
+
+
