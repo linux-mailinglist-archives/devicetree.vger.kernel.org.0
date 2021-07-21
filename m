@@ -2,70 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2527B3D1089
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 16:04:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 311393D108B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 16:04:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239070AbhGUNYS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 09:24:18 -0400
-Received: from out3-smtp.messagingengine.com ([66.111.4.27]:54617 "EHLO
-        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S239047AbhGUNYS (ORCPT
+        id S239078AbhGUNYU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 09:24:20 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:34107 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S239047AbhGUNYU (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Jul 2021 09:24:18 -0400
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.nyi.internal (Postfix) with ESMTP id BCEAB5C0218;
-        Wed, 21 Jul 2021 10:04:54 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Wed, 21 Jul 2021 10:04:54 -0400
+        Wed, 21 Jul 2021 09:24:20 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id B2A1B580482;
+        Wed, 21 Jul 2021 10:04:56 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Wed, 21 Jul 2021 10:04:56 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm3; bh=yFyu/Rg22jrqa
-        k0+ue6zskvujzzVlhA10m4P5xXkkiA=; b=xslnAzuyqezg5vc9HfyAF2rKJbbF+
-        RoquyjYqn/KCUzUP0oAn2iz8+dgQUffabQcDDy7CwTj2Egt3uKNFFSAWVjwApTQh
-        Lk6giJw0tguyzh0gW4zKzBqhQ/7/oBwu5q7IeZraEBxUCziWEzkgKmy79S+6axcu
-        v3SfowqyNuLArMK7wPQrXFEP7YkTbr3SFecZYeTDecpjSwf9xoEW3CblPp/RUz39
-        +Hxxki3WkeGHHFh00Qb8WMvVOXD3xzbIom+gjP7CusCh24dkFZ6P+tFze+N0juT2
-        12oNGSW7XzTgjQcNDKAGwAI6TViPObbpZbn0n02WJZz6I8r+5B2DhdeMw==
+        :mime-version:content-transfer-encoding; s=fm3; bh=wpczZwFr2oV/h
+        pVBUw2hzMPAB0ad3TvRVbaqRU+T1Tg=; b=qJZBv0xVqf5ccsLlQnyhK9lpmXa14
+        rWexNwmQfLwPKLyDkPzAARmzATwCc/YZDT0tJYj1efbFpyitPCDggzO7jrjSggOF
+        Fk8rFn/a5WtAnxJr/NJRTdCi90VUJzD9MfhQtbsQBeiNMm5zvH8LBW2H945Ftkv+
+        qEg0GQ3QTY7hPT97esz2f1ITvAVsbvw39frLGTz+IUcQM1ZHIM+lX/TW1EgSud1M
+        y5xcWLK/E+1vzrgd9ABYxxXkfkxb0eYih06NDa6Hf/zb6OIVIibcmTcM+149VTAg
+        JzNNXr2QAtnTiHZrJYc3c3hNo4dsYA16AGSbbxqOhsurp6ZPBNCreGYKw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:date:from
         :in-reply-to:message-id:mime-version:references:subject:to
         :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=yFyu/Rg22jrqak0+ue6zskvujzzVlhA10m4P5xXkkiA=; b=j6BTePYL
-        aUWJ1299y4qDc5S2oEToZFmUB/gOQrILrsaTvHVNSolXE1tgu75+uVjCzNPv0PEW
-        8HbG6xydopdcTHUBlwiqI9Q0ZhBE+dvoO0n9wraG4xijocrBrh273ZTwOcktl853
-        17LizD1kGjPwIjnKIuQ3Rauh8opMGVx9xT1nzCVxoTr01BMQ36xrH26n5Y52zFRJ
-        1RE4gnRc3seTNPb6sZTGIoKy2SS5xUyCBiUPwQwjF0HXKUz5bGfcBRoYlCEzEpuU
-        shBUZ4Ge0izqVz0uTR331E/rwZ80GuauP5IMsIT2d3LqdwkspYG4u+P6xnzdZ5Q8
-        +Xehcy1Nsb70lQ==
-X-ME-Sender: <xms:hin4YB4GB9WME7OifU17TDM-hM6h469-ldEuUjib9_MIa0bImx_3vA>
-    <xme:hin4YO6qGvOMaaDZ42MosC5wlmVB3aTmvxdFdCRkHZ0A_cMnNIZmTeCozv6pTlPNj
-    oRZlCCXagoCtzaScGs>
-X-ME-Received: <xmr:hin4YIfztGbzR28hSaxaDo7kpcfjVa2H3PoppuZxDNKK7Sb90WxG1KXXGraIkUKvhP2UTejLF2o0K8XR-yJgNeaQPS4khznWQjTG>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeeggdeiiecutefuodetggdotefrodftvf
+        fm3; bh=wpczZwFr2oV/hpVBUw2hzMPAB0ad3TvRVbaqRU+T1Tg=; b=tCYQTa6v
+        Pz2YdcmdRA7wzGfHiW4xGdAL2gP+Cact1HOt8IuW8U9GM2X/t6dVIBGVp67iEG5k
+        XLbiSpGQHfOqeqnVi1u4I+JiBzukpJJ3to5hl9PN79HGbOtHT08HAaWNUummx8/F
+        O7Y2fjRsvpvXPFez9lauAwykVzszKLiepLPrEI1m6li2KQ+YJOL8glkux+ZusRtl
+        gFT+N61xskpWf41l3ZBRVyIlZuaEbKuPbJNPDw851oumRsrmcb+zjTwK1iQLXR70
+        h7xLjZ6wBEgvH83fMeOkIOEWdCAChSCMooOT6xEo4ZCmQd7o0oWzBUA0fBaHR7+r
+        vqC2tnEb86oACg==
+X-ME-Sender: <xms:iCn4YEiidTMnzMuLf5VHQKlbzeATebhIjdnXQiwG1Xv32RGFG_BKOQ>
+    <xme:iCn4YNDkOOud7SosrW97OfC09h8cm9mWQfPgXydV69oQCZj3GxpPiqqZUGzuGtSJz
+    40y3HyLfTikWL6ILk8>
+X-ME-Received: <xmr:iCn4YMGk7Is3ZmLeYdme91jumgwxMtQ4kxc5E6bM7t7Mm6XPahigJnMEbBTDLoZHdNiIG9pTdkwCdYhl8bgReGLnM0P7WdUpq5Cc>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeeggdeijecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenog
     evohgrshhtrghlqdfhgeduvddqtddvucdludehtddmnecujfgurhephffvufffkffojghf
     ggfgsedtkeertdertddtnecuhfhrohhmpeforgigihhmvgcutfhiphgrrhguuceomhgrgi
     himhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvghrnhepveejieejtdevgfff
     gfejuefggfeutdelteekgeetueeftddutddtgfffhffgueffnecuffhomhgrihhnpeguvg
-    hvihgtvghtrhgvvgdrohhrghenucevlhhushhtvghrufhiiigvpedvnecurfgrrhgrmhep
+    hvihgtvghtrhgvvgdrohhrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhep
     mhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:hin4YKJmLiVPjlZ4-rK79JCI7tzTKGDNbEjiqNmzNojsEKScghGEVQ>
-    <xmx:hin4YFIDk9oK9vvQMYplNFoWQdexjLhd_vGCxA8hKUixLhhoeSJKIA>
-    <xmx:hin4YDyyEtL6jMZfzTUu_6OdU3NFam3qpi9VuvzSOKrrBzTNdGowKA>
-    <xmx:hin4YKrMXJVfhA57LIzPftu98Qm6eusrZ41voltfLNvCFN8d3lwG5g>
+X-ME-Proxy: <xmx:iCn4YFT4lrQbwkkxl4oGpD7lXb1hVhzdIcMNfLzE5ioziph-lM4DWQ>
+    <xmx:iCn4YBz4FonNSdl9s3dCqPe9NP6oT9INTa0mnIjCPh5RS7vrPDfK8Q>
+    <xmx:iCn4YD5oZ4TnZ2bywbwaCyV0uCxz9BD8MXrT17i_ICfkhlD6iBp9ig>
+    <xmx:iCn4YBfWaiui1s93X5VAbAybdZm9E42ni5OhDG4EG2pKUJ2Npnk4JA>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 21 Jul 2021 10:04:54 -0400 (EDT)
+ 21 Jul 2021 10:04:55 -0400 (EDT)
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <maxime@cerno.tech>,
         Jernej Skrabec <jernej.skrabec@siol.net>,
         devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>
 Cc:     linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        Johan Hovold <johan@kernel.org>
-Subject: [PATCH 12/54] dt-bindings: gnss: Convert UBlox Neo-6M binding to a schema
-Date:   Wed, 21 Jul 2021 16:03:42 +0200
-Message-Id: <20210721140424.725744-13-maxime@cerno.tech>
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org
+Subject: [PATCH 13/54] dt-bindings: gpio: Convert X-Powers AXP209 GPIO binding to a schema
+Date:   Wed, 21 Jul 2021 16:03:43 +0200
+Message-Id: <20210721140424.725744-14-maxime@cerno.tech>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210721140424.725744-1-maxime@cerno.tech>
 References: <20210721140424.725744-1-maxime@cerno.tech>
@@ -75,140 +77,195 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The UBlox Neo 6M is supported by Linux thanks to its device tree
-binding.
+The X-Powers AXP PMICs feature a GPIO Controller supported by Linux
+thanks to its device tree binding.
 
 Now that we have the DT validation in place, let's convert the device
 tree bindings for that driver over to a YAML schema.
 
-Cc: Johan Hovold <johan@kernel.org>
+Cc: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Cc: Chen-Yu Tsai <wens@csie.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>
+Cc: linux-gpio@vger.kernel.org
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 ---
- .../bindings/gnss/u-blox,neo-6m.yaml          | 62 +++++++++++++++++++
- .../devicetree/bindings/gnss/u-blox.txt       | 45 --------------
- 2 files changed, 62 insertions(+), 45 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
- delete mode 100644 Documentation/devicetree/bindings/gnss/u-blox.txt
+ .../devicetree/bindings/gpio/gpio-axp209.txt  | 75 -----------------
+ .../bindings/gpio/x-powers,axp209-gpio.yaml   | 84 +++++++++++++++++++
+ 2 files changed, 84 insertions(+), 75 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-axp209.txt
+ create mode 100644 Documentation/devicetree/bindings/gpio/x-powers,axp209-gpio.yaml
 
-diff --git a/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml b/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-axp209.txt b/Documentation/devicetree/bindings/gpio/gpio-axp209.txt
+deleted file mode 100644
+index fc42b2caa06d..000000000000
+--- a/Documentation/devicetree/bindings/gpio/gpio-axp209.txt
++++ /dev/null
+@@ -1,75 +0,0 @@
+-AXP209 GPIO & pinctrl controller
+-
+-This driver follows the usual GPIO bindings found in
+-Documentation/devicetree/bindings/gpio/gpio.txt
+-
+-This driver follows the usual pinctrl bindings found in
+-Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
+-
+-This driver employs the per-pin muxing pattern.
+-
+-Required properties:
+-- compatible: Should be one of:
+-	- "x-powers,axp209-gpio"
+-	- "x-powers,axp813-gpio"
+-- #gpio-cells: Should be two. The first cell is the pin number and the
+-  second is the GPIO flags.
+-- gpio-controller: Marks the device node as a GPIO controller.
+-
+-This node must be a subnode of the axp20x PMIC, documented in
+-Documentation/devicetree/bindings/mfd/axp20x.txt
+-
+-Example:
+-
+-axp209: pmic@34 {
+-	compatible = "x-powers,axp209";
+-	reg = <0x34>;
+-	interrupt-parent = <&nmi_intc>;
+-	interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
+-	interrupt-controller;
+-	#interrupt-cells = <1>;
+-
+-	axp_gpio: gpio {
+-		compatible = "x-powers,axp209-gpio";
+-		gpio-controller;
+-		#gpio-cells = <2>;
+-	};
+-};
+-
+-The GPIOs can be muxed to other functions and therefore, must be a subnode of
+-axp_gpio.
+-
+-Example:
+-
+-&axp_gpio {
+-	gpio0_adc: gpio0-adc {
+-		pins = "GPIO0";
+-		function = "adc";
+-	};
+-};
+-
+-&example_node {
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&gpio0_adc>;
+-};
+-
+-GPIOs and their functions
+--------------------------
+-
+-Each GPIO is independent from the other (i.e. GPIO0 in gpio_in function does
+-not force GPIO1 and GPIO2 to be in gpio_in function as well).
+-
+-axp209
+-------
+-GPIO	|	Functions
+-------------------------
+-GPIO0	|	gpio_in, gpio_out, ldo, adc
+-GPIO1	|	gpio_in, gpio_out, ldo, adc
+-GPIO2	|	gpio_in, gpio_out
+-
+-axp813
+-------
+-GPIO	|	Functions
+-------------------------
+-GPIO0	|	gpio_in, gpio_out, ldo, adc
+-GPIO1	|	gpio_in, gpio_out, ldo
+diff --git a/Documentation/devicetree/bindings/gpio/x-powers,axp209-gpio.yaml b/Documentation/devicetree/bindings/gpio/x-powers,axp209-gpio.yaml
 new file mode 100644
-index 000000000000..45b886ae0f45
+index 000000000000..28337f939d4e
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
-@@ -0,0 +1,62 @@
++++ b/Documentation/devicetree/bindings/gpio/x-powers,axp209-gpio.yaml
+@@ -0,0 +1,84 @@
 +# SPDX-License-Identifier: GPL-2.0
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/gnss/u-blox,neo-6m.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++$id: "http://devicetree.org/schemas/gpio/x-powers,axp209-gpio.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 +
-+title: U-blox GNSS Receiver Device Tree Bindings
++title: X-Powers AXP209 GPIO Device Tree Bindings
 +
 +maintainers:
-+  - Johan Hovold <johan@kernel.org>
-+
-+description: >
-+  The U-blox GNSS receivers can use UART, DDC (I2C), SPI and USB interfaces.
++  - Chen-Yu Tsai <wens@csie.org>
 +
 +properties:
++  "#gpio-cells":
++    const: 2
++    description: >
++      The first cell is the pin number and the second is the GPIO flags.
++
 +  compatible:
-+    enum:
-+      - u-blox,neo-6m
-+      - u-blox,neo-8
-+      - u-blox,neo-m8
++    oneOf:
++      - enum:
++          - x-powers,axp209-gpio
++          - x-powers,axp813-gpio
++      - items:
++          - const: x-powers,axp803-gpio
++          - const: x-powers,axp813-gpio
 +
-+  reg:
-+    description: >
-+      The DDC Slave Address, SPI chip select address, the number of the USB hub
-+      port or the USB host-controller port to wich this device is attached,
-+      depending on the bus used. Required for the DDC, SPI or USB busses.
++  gpio-controller: true
 +
-+  vcc-supply:
-+    description: >
-+      Main voltage regulator
++patternProperties:
++  "^.*-pins?$":
++    $ref: /schemas/pinctrl/pinmux-node.yaml#
 +
-+  timepulse-gpios:
-+    maxItems: 1
-+    description: >
-+      Time pulse GPIO
++    properties:
++      pins:
++        items:
++          enum:
++            - GPIO0
++            - GPIO1
++            - GPIO2
 +
-+  u-blox,extint-gpios:
-+    maxItems: 1
-+    description: >
-+      GPIO connected to the "external interrupt" input pin
-+  
-+  v-bckp-supply:
-+    description: >
-+      Backup voltage regulator
-+
-+  current-speed: true
++      function:
++        enum:
++          - adc
++          - ldo
++          - gpio_in
++          - gpio_out
 +
 +required:
 +  - compatible
-+  - vcc-supply
++  - "#gpio-cells"
++  - gpio-controller
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
-+    uart {
-+        gnss {
-+            compatible = "u-blox,neo-8";
-+            v-bckp-supply = <&gnss_v_bckp_reg>;
-+            vcc-supply = <&gnss_vcc_reg>;
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        pmic@34 {
++            #interrupt-cells = <1>;
++            compatible = "x-powers,axp209";
++            reg = <0x34>;
++            interrupt-parent = <&nmi_intc>;
++            interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
++            interrupt-controller;
++
++            gpio {
++                #gpio-cells = <2>;
++                compatible = "x-powers,axp209-gpio";
++                gpio-controller;
++
++                gpio0-adc-pin {
++                    pins = "GPIO0";
++                    function = "adc";
++                };
++            };
 +        };
 +    };
-diff --git a/Documentation/devicetree/bindings/gnss/u-blox.txt b/Documentation/devicetree/bindings/gnss/u-blox.txt
-deleted file mode 100644
-index 7cdefd058fe0..000000000000
---- a/Documentation/devicetree/bindings/gnss/u-blox.txt
-+++ /dev/null
-@@ -1,45 +0,0 @@
--u-blox GNSS Receiver DT binding
--
--The u-blox GNSS receivers can use UART, DDC (I2C), SPI and USB interfaces.
--
--Please see Documentation/devicetree/bindings/gnss/gnss.txt for generic
--properties.
--
--Required properties:
--
--- compatible	: Must be one of
--
--			"u-blox,neo-6m"
--			"u-blox,neo-8"
--			"u-blox,neo-m8"
--
--- vcc-supply	: Main voltage regulator
--
--Required properties (DDC):
--- reg		: DDC (I2C) slave address
--
--Required properties (SPI):
--- reg		: SPI chip select address
--
--Required properties (USB):
--- reg		: Number of the USB hub port or the USB host-controller port
--                  to which this device is attached
--
--Optional properties:
--
--- timepulse-gpios	: Time pulse GPIO
--- u-blox,extint-gpios	: GPIO connected to the "external interrupt" input pin
--- v-bckp-supply	: Backup voltage regulator
--
--Example:
--
--serial@1234 {
--	compatible = "ns16550a";
--
--	gnss {
--		compatible = "u-blox,neo-8";
--
--		v-bckp-supply = <&gnss_v_bckp_reg>;
--		vcc-supply = <&gnss_vcc_reg>;
--	};
--};
++
++...
 -- 
 2.31.1
 
