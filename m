@@ -2,159 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37ADC3D0D0D
+	by mail.lfdr.de (Postfix) with ESMTP id 870063D0D0E
 	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 13:10:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235462AbhGUK22 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 06:28:28 -0400
-Received: from lb3-smtp-cloud9.xs4all.net ([194.109.24.30]:57447 "EHLO
-        lb3-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S238670AbhGUJ3B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Jul 2021 05:29:01 -0400
-Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
-        by smtp-cloud9.xs4all.net with ESMTPA
-        id 69AOm0z7khqx969APmyaYO; Wed, 21 Jul 2021 12:09:30 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
-        t=1626862170; bh=P3eSTRr/wwYYDeWXMLnHYx2UOIc+mSdyH5PzEnuByEY=;
-        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
-         Subject;
-        b=OkOaoVs/4g8kNSUCw37Tt0XZFmJc1NSd9ubjTJ8iC4J/H3ekTo27b+cpq6u1RoQYF
-         BxVssIEpzTCW8a/Jg0GJn7v/Rfe7ZCfO1OYz6CbqTZXkms5id4YnBKGpZ1WIzGcnxU
-         /Artg1iefLlXNQA1H7VB6YtNnDwfRlS1C6vz1S4sMxjBGIUGpUhdX8I8T6qtnhfKgU
-         22RdGUYMo+avZrRxfyr9uwPI1hGHulKqhgWbOl0323vyNmU9FxxnsOK42sLc+kL2TH
-         qMd+km0BUZ+xf2TJ0J9qfMlPHiDf4geAc0ls/LSxNJd9yBfNnM/K51gwxbviFQ9d1o
-         iBnpoHyvKVShA==
-Subject: Re: [PATCH v4 02/13] media: v4l: add some definition of v4l2
- colorspace/xfer_func/ycbcr_encoding
-To:     Ming Qian <ming.qian@nxp.com>, mchehab@kernel.org,
-        shawnguo@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        aisheng.dong@nxp.com, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <cover.1626743758.git.ming.qian@nxp.com>
- <d63b34381eec0ae47bf39dd2b88d2bc8994c269d.1626743758.git.ming.qian@nxp.com>
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Message-ID: <449dc223-d248-8771-2f5a-46c6bbac401d@xs4all.nl>
-Date:   Wed, 21 Jul 2021 12:09:28 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S238377AbhGUK2a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 06:28:30 -0400
+Received: from mga03.intel.com ([134.134.136.65]:10024 "EHLO mga03.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238710AbhGUJiA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Jul 2021 05:38:00 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10051"; a="211469738"
+X-IronPort-AV: E=Sophos;i="5.84,257,1620716400"; 
+   d="scan'208";a="211469738"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jul 2021 03:18:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,257,1620716400"; 
+   d="scan'208";a="432558915"
+Received: from lkp-server01.sh.intel.com (HELO b8b92b2878b0) ([10.239.97.150])
+  by fmsmga007.fm.intel.com with ESMTP; 21 Jul 2021 03:18:25 -0700
+Received: from kbuild by b8b92b2878b0 with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1m69J2-0000J4-8E; Wed, 21 Jul 2021 10:18:24 +0000
+Date:   Wed, 21 Jul 2021 18:17:25 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Apurva Nandan <a-nandan@ti.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     kbuild-all@lists.01.org, Pratyush Yadav <p.yadav@ti.com>,
+        Michael Walle <michael@walle.cc>,
+        Apurva Nandan <a-nandan@ti.com>
+Subject: Re: [PATCH] dt-bindings: mtd: spi-nand: Convert to DT schema format
+Message-ID: <202107211818.sbizhVdd-lkp@intel.com>
+References: <20210718004125.733-1-a-nandan@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <d63b34381eec0ae47bf39dd2b88d2bc8994c269d.1626743758.git.ming.qian@nxp.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4xfPV0SKw09O60/fU+QSqBVSheTtwmeqte4y+S0hj61q1Dxc5peWOif0typ/U0Hu+/OFSUlfd96wjKqttELUA2rAFV5d+IFLtA+GN3S6OZ8MGSZJtlZojs
- xnlulVR5YyjgMn8aoYJRs5ltgBEcvoBWEqisGTr6s68B2/zuBF6j8IjWXfoLGlOdx4vP1Yi1FSQljNx7ZypPb8+Zm4O07UcOqRAkN6tHv4R7c5UBULyj1Zk+
- fXxqMZzRxuUaLMeRA97Todjr8uhpkzBvbzaHKZvpHlt1Z+rl/3uCJ2pg4dep4lSJfC+74whEJXsnxPAU/zwEEcE+h+PzziC4xNHTj+xZiJM24mdKgwP7TfAp
- AU1NpUcRiiOAv5GX77DhbixopUqtdAzPokRpdloqjv8vKtNUEQtQSbyqN5iH34PGqPrvMHJ9qniyDfgbiZ45eUrYCtiC7EoLUElT6usTAeAmzBp7OJFADDEQ
- nvSSwkIs6DhuhlWxoOTBJ5lsEIsJC4PYC/eMXPcOPudpfXUhiI4okPUKSnqdDECbuSmLipN/p5v7jNd9VxAVZMZRWPeGHbxzmyDAUBGiRiZkyC+LaG6g0a2e
- bGh0+3NtoXEGFlq6kIXyh6sdYmteTXYhFA8PgQ3/sAwkFmYTpKZ6c1zb8zvGd24aECIj2XcTIWF78vSLXqa97PjntEkCgrfwougtm/Kg1PAXWUr58m5iXtJ3
- 8f4WJZM3hPw=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210718004125.733-1-a-nandan@ti.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/07/2021 03:43, Ming Qian wrote:
-> Some definition of colorspace/xfer_func/ycbcr_encoding
-> are defined in ISO, but missed in V4L2,
-> so add some definition according VPU driver's requirement
-> 
-> Signed-off-by: Ming Qian <ming.qian@nxp.com>
-> Signed-off-by: Shijie Qin <shijie.qin@nxp.com>
-> Signed-off-by: Zhou Peng <eagle.zhou@nxp.com>
-> ---
->  include/uapi/linux/videodev2.h | 30 ++++++++++++++++++++++++++++++
->  1 file changed, 30 insertions(+)
-> 
-> diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
-> index 534eaa4d39bc..545f2c329bc9 100644
-> --- a/include/uapi/linux/videodev2.h
-> +++ b/include/uapi/linux/videodev2.h
-> @@ -247,6 +247,12 @@ enum v4l2_colorspace {
->  
->  	/* DCI-P3 colorspace, used by cinema projectors */
->  	V4L2_COLORSPACE_DCI_P3        = 12,
-> +
-> +	/* Generic film (colour filters using Illuminant C) */
-> +	V4L2_COLORSPACE_GENERIC_FILM  = 13,
-> +
-> +	/* SMPTE ST 428-1 */
-> +	V4L2_COLORSPACE_ST428         = 14,
->  };
->  
->  /*
-> @@ -276,6 +282,20 @@ enum v4l2_xfer_func {
->  	 * V4L2_COLORSPACE_RAW: V4L2_XFER_FUNC_NONE
->  	 *
->  	 * V4L2_COLORSPACE_DCI_P3: V4L2_XFER_FUNC_DCI_P3
-> +	 *
-> +	 * V4L2_XFER_FUNC_LINEAR: Linear transfer characteristics
+Hi Apurva,
 
-This exists already: V4L2_XFER_FUNC_NONE
+Thank you for the patch! Perhaps something to improve:
 
-> +	 *
-> +	 * V4L2_XFER_FUNC_GAMMA22: Assumed display gamma 2.2
-> +	 *
-> +	 * V4L2_XFER_FUNC_GAMMA28: Assumed display gamma 2.8
-> +	 *
-> +	 * V4L2_XFER_FUNC_HLG: STD-B67, Rec. ITU-R BT.2100-2 hybrid-log-gamma
-> +	 *
-> +	 * V4L2_XFER_FUNC_XVYCC: IEC 61966-2-4
+[auto build test WARNING on mtd/mtd/next]
+[also build test WARNING on mtd/mtd/fixes robh/for-next v5.14-rc2 next-20210720]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-This exists already, it is signaled through V4L2_YCBCR_ENC_XV709 and
-V4L2_YCBCR_ENC_XV601. It's not actually a different transfer function,
-it's the YCbCr encoding that's different (the transfer function is still
-V4L2_XFER_FUNC_709).
+url:    https://github.com/0day-ci/linux/commits/Apurva-Nandan/dt-bindings-mtd-spi-nand-Convert-to-DT-schema-format/20210718-103130
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/next
+compiler: arm-linux-gnueabi-gcc (GCC) 10.3.0
+reproduce: make ARCH=arm dtbs_check
 
-> +	 *
-> +	 * V4L2_XFER_FUNC_BT1361: Rec. ITU-R BT.1361-0 extended colour gamut
-> +	 *
-> +	 * V4L2_XFER_FUNC_ST428: SMPTE ST 428-1
->  	 */
->  	V4L2_XFER_FUNC_DEFAULT     = 0,
->  	V4L2_XFER_FUNC_709         = 1,
-> @@ -285,6 +305,13 @@ enum v4l2_xfer_func {
->  	V4L2_XFER_FUNC_NONE        = 5,
->  	V4L2_XFER_FUNC_DCI_P3      = 6,
->  	V4L2_XFER_FUNC_SMPTE2084   = 7,
-> +	V4L2_XFER_FUNC_LINEAR      = 8,
-> +	V4L2_XFER_FUNC_GAMMA22     = 9,
-> +	V4L2_XFER_FUNC_GAMMA28     = 10,
-> +	V4L2_XFER_FUNC_HLG         = 11,
-> +	V4L2_XFER_FUNC_XVYCC       = 12,
-> +	V4L2_XFER_FUNC_BT1361      = 13,
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-This appears to be a variant of xvYCC, it should probably be a YCBCR_ENC variant
-since the transfer function defined in bt.1361 is REC709.
 
-> +	V4L2_XFER_FUNC_ST428       = 14,
+dtcheck warnings: (new ones prefixed by >>)
+   	From schema: /usr/local/lib/python3.9/dist-packages/dtschema/schemas/simple-bus.yaml
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dt.yaml: clock-controller@1800000: '#power-domain-cells' is a required property
+   	From schema: Documentation/devicetree/bindings/clock/qcom,gcc.yaml
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dt.yaml:0:0: /soc/rng@22000: failed to match any schema with compatible: ['qcom,prng']
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dt.yaml:0:0: /soc/pinctrl@1000000: failed to match any schema with compatible: ['qcom,ipq4019-pinctrl']
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dt.yaml: usb-power: $nodename:0: 'usb-power' does not match '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$'
+   	From schema: /usr/local/lib/python3.9/dist-packages/dtschema/schemas/gpio/gpio-hog.yaml
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dt.yaml:0:0: /soc/sdhci@7824900: failed to match any schema with compatible: ['qcom,sdhci-msm-v4']
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dt.yaml:0:0: /soc/dma@7884000: failed to match any schema with compatible: ['qcom,bam-v1.7.0']
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dt.yaml:0:0: /soc/spi@78b5000: failed to match any schema with compatible: ['qcom,spi-qup-v2.2.1']
+>> arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dt.yaml: nand@1: $nodename:0: 'nand@1' does not match '^flash(@.*)?$'
+   	From schema: Documentation/devicetree/bindings/mtd/spi-nand.yaml
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dt.yaml:0:0: /soc/spi@78b6000: failed to match any schema with compatible: ['qcom,spi-qup-v2.2.1']
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dt.yaml:0:0: /soc/i2c@78b7000: failed to match any schema with compatible: ['qcom,i2c-qup-v2.2.1']
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dt.yaml:0:0: /soc/i2c@78b8000: failed to match any schema with compatible: ['qcom,i2c-qup-v2.2.1']
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dt.yaml:0:0: /soc/dma@8e04000: failed to match any schema with compatible: ['qcom,bam-v1.7.0']
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dt.yaml:0:0: /soc/crypto@8e3a000: failed to match any schema with compatible: ['qcom,crypto-v5.1']
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dt.yaml:0:0: /soc/clock-controller@b088000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dt.yaml:0:0: /soc/clock-controller@b098000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dt.yaml:0:0: /soc/clock-controller@b0a8000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dt.yaml:0:0: /soc/clock-controller@b0b8000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
+--
+   	From schema: /usr/local/lib/python3.9/dist-packages/dtschema/schemas/simple-bus.yaml
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dt.yaml: clock-controller@1800000: '#power-domain-cells' is a required property
+   	From schema: Documentation/devicetree/bindings/clock/qcom,gcc.yaml
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dt.yaml:0:0: /soc/rng@22000: failed to match any schema with compatible: ['qcom,prng']
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dt.yaml:0:0: /soc/pinctrl@1000000: failed to match any schema with compatible: ['qcom,ipq4019-pinctrl']
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dt.yaml: usb-power: $nodename:0: 'usb-power' does not match '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$'
+   	From schema: /usr/local/lib/python3.9/dist-packages/dtschema/schemas/gpio/gpio-hog.yaml
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dt.yaml:0:0: /soc/sdhci@7824900: failed to match any schema with compatible: ['qcom,sdhci-msm-v4']
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dt.yaml:0:0: /soc/dma@7884000: failed to match any schema with compatible: ['qcom,bam-v1.7.0']
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dt.yaml:0:0: /soc/spi@78b5000: failed to match any schema with compatible: ['qcom,spi-qup-v2.2.1']
+>> arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dt.yaml: nand@1: $nodename:0: 'nand@1' does not match '^flash(@.*)?$'
+   	From schema: Documentation/devicetree/bindings/mtd/spi-nand.yaml
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dt.yaml:0:0: /soc/spi@78b6000: failed to match any schema with compatible: ['qcom,spi-qup-v2.2.1']
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dt.yaml:0:0: /soc/i2c@78b7000: failed to match any schema with compatible: ['qcom,i2c-qup-v2.2.1']
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dt.yaml:0:0: /soc/i2c@78b8000: failed to match any schema with compatible: ['qcom,i2c-qup-v2.2.1']
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dt.yaml:0:0: /soc/dma@8e04000: failed to match any schema with compatible: ['qcom,bam-v1.7.0']
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dt.yaml:0:0: /soc/crypto@8e3a000: failed to match any schema with compatible: ['qcom,crypto-v5.1']
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dt.yaml:0:0: /soc/clock-controller@b088000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dt.yaml:0:0: /soc/clock-controller@b098000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dt.yaml:0:0: /soc/clock-controller@b0a8000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
+   arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dt.yaml:0:0: /soc/clock-controller@b0b8000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
+--
+   	From schema: /usr/local/lib/python3.9/dist-packages/dtschema/schemas/reg.yaml
+   arch/arm/boot/dts/qcom-ipq4018-jalapeno.dt.yaml: soc: pci@40000000:reg:0: [1073741824, 3869, 1073745696, 168, 524288, 8192, 1074790400, 4096] is too long
+   	From schema: /usr/local/lib/python3.9/dist-packages/dtschema/schemas/simple-bus.yaml
+   arch/arm/boot/dts/qcom-ipq4018-jalapeno.dt.yaml: clock-controller@1800000: '#power-domain-cells' is a required property
+   	From schema: Documentation/devicetree/bindings/clock/qcom,gcc.yaml
+   arch/arm/boot/dts/qcom-ipq4018-jalapeno.dt.yaml:0:0: /soc/rng@22000: failed to match any schema with compatible: ['qcom,prng']
+   arch/arm/boot/dts/qcom-ipq4018-jalapeno.dt.yaml:0:0: /soc/pinctrl@1000000: failed to match any schema with compatible: ['qcom,ipq4019-pinctrl']
+   arch/arm/boot/dts/qcom-ipq4018-jalapeno.dt.yaml:0:0: /soc/sdhci@7824900: failed to match any schema with compatible: ['qcom,sdhci-msm-v4']
+   arch/arm/boot/dts/qcom-ipq4018-jalapeno.dt.yaml:0:0: /soc/dma@7884000: failed to match any schema with compatible: ['qcom,bam-v1.7.0']
+   arch/arm/boot/dts/qcom-ipq4018-jalapeno.dt.yaml:0:0: /soc/spi@78b5000: failed to match any schema with compatible: ['qcom,spi-qup-v2.2.1']
+>> arch/arm/boot/dts/qcom-ipq4018-jalapeno.dt.yaml: spi-nand@1: $nodename:0: 'spi-nand@1' does not match '^flash(@.*)?$'
+   	From schema: Documentation/devicetree/bindings/mtd/spi-nand.yaml
+   arch/arm/boot/dts/qcom-ipq4018-jalapeno.dt.yaml:0:0: /soc/spi@78b6000: failed to match any schema with compatible: ['qcom,spi-qup-v2.2.1']
+   arch/arm/boot/dts/qcom-ipq4018-jalapeno.dt.yaml:0:0: /soc/i2c@78b7000: failed to match any schema with compatible: ['qcom,i2c-qup-v2.2.1']
+   arch/arm/boot/dts/qcom-ipq4018-jalapeno.dt.yaml:0:0: /soc/i2c@78b8000: failed to match any schema with compatible: ['qcom,i2c-qup-v2.2.1']
+   arch/arm/boot/dts/qcom-ipq4018-jalapeno.dt.yaml:0:0: /soc/dma@8e04000: failed to match any schema with compatible: ['qcom,bam-v1.7.0']
+   arch/arm/boot/dts/qcom-ipq4018-jalapeno.dt.yaml:0:0: /soc/crypto@8e3a000: failed to match any schema with compatible: ['qcom,crypto-v5.1']
+   arch/arm/boot/dts/qcom-ipq4018-jalapeno.dt.yaml:0:0: /soc/clock-controller@b088000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
+   arch/arm/boot/dts/qcom-ipq4018-jalapeno.dt.yaml:0:0: /soc/clock-controller@b098000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
+   arch/arm/boot/dts/qcom-ipq4018-jalapeno.dt.yaml:0:0: /soc/clock-controller@b0a8000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
+   arch/arm/boot/dts/qcom-ipq4018-jalapeno.dt.yaml:0:0: /soc/clock-controller@b0b8000: failed to match any schema with compatible: ['qcom,kpss-acc-v2']
 
-Not sure what this one is about.
-
->  };
->  
->  /*
-> @@ -345,6 +372,9 @@ enum v4l2_ycbcr_encoding {
->  
->  	/* SMPTE 240M -- Obsolete HDTV */
->  	V4L2_YCBCR_ENC_SMPTE240M      = 8,
-> +
-> +	/* KR=0.30, KB=0.11 or equivalent */
-> +	V4L2_YCBCR_ENC_BT470_6M       = 9,
->  };
->  
->  /*
-> 
-
-I'm not opposed to this, but it has to be documented in
-Documentation/userspace-api/media/v4l/colorspaces-details.rst.
-
-I would recommend for an initial submission to only add those new colorimetries
-that are actually needed, and others can be added later. uAPI additions take a
-lot of time, esp. getting the documentation correct.
-
-Regards,
-
-	Hans
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
