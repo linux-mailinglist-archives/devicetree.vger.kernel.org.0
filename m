@@ -2,165 +2,354 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E5FA13D0D12
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 13:10:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3FDE3D0D31
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 13:12:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238632AbhGUK2q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 06:28:46 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55646 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238301AbhGUJsh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Jul 2021 05:48:37 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5063B6044F;
-        Wed, 21 Jul 2021 10:29:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1626863353;
-        bh=V7djkVVl929sbXP118vb28LnoFtni/31Vo8GPg09wsg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FcUxNN89zmCPrGAKO0cORrnwJIx3mtxA0qyyCfDQ/+vhJ4gPWo8X6FVxJr3QU5BxR
-         DMEW4HmYAFBSqbSlJP5ZZmTDnAa1SJPAifyj8uIvs+iHo1UU00B0/AOMU7951IyzGI
-         Q3Yo8vNTgw6ZcmkDfQNCUnVvBKddbPzOqofb5M2Y=
-Date:   Wed, 21 Jul 2021 12:29:11 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        id S236463AbhGUK2w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 06:28:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60660 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239636AbhGUKGL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 06:06:11 -0400
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39B70C0611A3
+        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 03:43:59 -0700 (PDT)
+Received: by mail-pl1-x630.google.com with SMTP id p17so735261plf.12
+        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 03:43:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=9DVp5cMarKfRblqMp1JqfD1jVMuOznsl/p/4ds1/Lc4=;
+        b=EsHBU3Bqty6jMEJPdASJeQ8I6Qs6swot5cdCUYUMf+P6xEmv1uPyu1BO2Nunm7w9hj
+         BuiMTXC4et7tYFweISnJMrtEoxAd4nKBV/N1uYOShmNp05Z5oTWDyjhq7Nc4zj+n2kUD
+         tgMbtPxMULDMfgLNBuFqzpR2SR37MjcXaDvVI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9DVp5cMarKfRblqMp1JqfD1jVMuOznsl/p/4ds1/Lc4=;
+        b=An38rYY6et6NRWSuwgl4ayLbeySWkt5cU/1KLLcdhDnq/goRa9NdsB55pzqB9g7jNE
+         GDEEsli/AD4ODb7ZqPgtGH4LBPq7a3MekDNpfX6aExy7uuopX1mTVzFfMPok63QWbhyX
+         oBkAr/1BnNUSAfy5G7Z2MZrY6TMZGSyW1VvKBu0M6WDrcd/UzgQB+l88yYYjMpVQo+Sj
+         rZPLCp258HJG43jmp9DJXlGmpCDeGk90eHiSslAniP9RnE4RwYBxnE2L8JsHd7Ck1DxL
+         fCen4o2SIiLD4lAHzqPJeKcvTmn/B6rPi70fnZTXllyFRcWdBxLR+AdUNkY1lRIR+qk2
+         Jpjg==
+X-Gm-Message-State: AOAM531ZZOU4VHwLTDUeSwpV9ZaQjecF3nakQ/8zQy0bBmMmy8NgfpTM
+        XAH9iJQkU1CJl4xyVUZtRRPisD/gwYw/1bsdgU3K4g==
+X-Google-Smtp-Source: ABdhPJzUwLC3PwM/Irpdo1uhb1AZIY9WX9IISXYAAcU+rL4ygkAXYJMDMx/lhZJEj0r/QIe60SZzNua5LdWcPUK8Plo=
+X-Received: by 2002:a17:90a:e284:: with SMTP id d4mr3160085pjz.126.1626864238015;
+ Wed, 21 Jul 2021 03:43:58 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210715121209.31024-1-yong.wu@mediatek.com> <20210715121209.31024-4-yong.wu@mediatek.com>
+In-Reply-To: <20210715121209.31024-4-yong.wu@mediatek.com>
+From:   Ikjoon Jang <ikjn@chromium.org>
+Date:   Wed, 21 Jul 2021 18:43:46 +0800
+Message-ID: <CAATdQgDUwOSAx+tTjQvduwegOd7AM02T4BqHT5YtgjwU=zRSaA@mail.gmail.com>
+Subject: Re: [PATCH v2 03/11] memory: mtk-smi: Use clk_bulk clock ops
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        John Stultz <john.stultz@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        open list <linux-kernel@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Amit Pundir <amit.pundir@linaro.org>
-Subject: Re: [PATCH 29/29] arm64: dts: qcom: Harmonize DWC USB3 DT nodes name
-Message-ID: <YPf29+ewbrYgHxRP@kroah.com>
-References: <20201020115959.2658-1-Sergey.Semin@baikalelectronics.ru>
- <20201020115959.2658-30-Sergey.Semin@baikalelectronics.ru>
- <CALAqxLX_FNvFndEDWtGbFPjSzuAbfqxQE07diBJFZtftwEJX5A@mail.gmail.com>
- <20210714124807.o22mottsrg3tv6nt@mobilestation>
- <YPfPDqJhfzbvDLvB@kroah.com>
- <20210721100220.ddfxwugivsndsedv@mobilestation>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210721100220.ddfxwugivsndsedv@mobilestation>
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        anan.sun@mediatek.com, ming-fan.chen@mediatek.com,
+        yi.kuo@mediatek.com, anthony.huang@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 21, 2021 at 01:02:20PM +0300, Serge Semin wrote:
-> Hi Greg,
-> @Krzysztof, @Rob, please join the discussion so to finally get done
-> with the concerned issue.
-> 
-> On Wed, Jul 21, 2021 at 09:38:54AM +0200, Greg Kroah-Hartman wrote:
-> > On Wed, Jul 14, 2021 at 03:48:07PM +0300, Serge Semin wrote:
-> > > Hello John,
-> > > 
-> > > On Tue, Jul 13, 2021 at 05:07:00PM -0700, John Stultz wrote:
-> > > > On Tue, Oct 20, 2020 at 5:10 AM Serge Semin
-> > > > <Sergey.Semin@baikalelectronics.ru> wrote:
-> > > > >
-> > > > > In accordance with the DWC USB3 bindings the corresponding node
-> > > > > name is suppose to comply with the Generic USB HCD DT schema, which
-> > > > > requires the USB nodes to have the name acceptable by the regexp:
-> > > > > "^usb(@.*)?" . Make sure the "snps,dwc3"-compatible nodes are correctly
-> > > > > named.
-> > > > >
-> > > > > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > > > 
-> > > 
-> > > > I know folks like to ignore this, but this patch breaks AOSP on db845c. :(
-> > > 
-> > > Sorry to hear that. Alas there is no much can be done about it.
-> > 
-> > Yes there is, we can revert the change.  We do not break existing
-> > configurations, sorry.
-> 
-> By reverting this patch we'll get back to the broken dt-bindings
-> since it won't comply to the current USB DT-nodes requirements
-> which at this state well describe the latest DT spec:
-> https://github.com/devicetree-org/devicetree-specification/releases/tag/v0.3
-> Thus the dtbs_check will fail for these nodes.
-> 
-> Originally this whole patchset was connected with finally getting the
-> DT-node names in order to comply with the standard requirement and it
-> was successful mostly except a few patches which still haven't been
-> merged in.
-> 
-> Anyway @Krzysztof has already responded to the complain regarding this
-> issue here:
-> https://lore.kernel.org/lkml/20201221210423.GA2504@kozik-lap/
-> but noone cared to respond on his reasonable questions in order to
-> get to a suitable solution for everyone. Instead we are
-> getting another email with the same request to revert the changes.
-> Here is the quote from the Krzysztof email so we could continue the
-> discussion:
-> 
-> On Mon, 21 Dec 2020 13:04:27 -0800 (PST), Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> > On Mon, Dec 21, 2020 at 12:24:11PM -0800, John Stultz wrote:
-> > > On Sat, Dec 19, 2020 at 3:06 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> > > > ...
-> > > >
-> > > > The node names are not part of an ABI, are they? I expect only
-> > > > compatibles and properties to be stable. If user-space looks for
-> > > > something by name, it's a user-space's mistake.  Not mentioning that you
-> > > > also look for specific address... Imagine remapping of addresses with
-> > > > ranges (for whatever reason) - AOSP also would be broken? Addresses are
-> > > > definitely not an ABI.
-> > > 
-> > > Though that is how it's exported through sysfs.
-> > 
-> > The ABI is the format of sysfs file for example in /sys/devices. However
-> > the ABI is not the exact address or node name of each device.
-> > 
-> > > In AOSP it is then used to setup the configfs gadget by writing that
-> > > value into /config/usb_gadget/g1/UDC.
-> > > 
-> > > Given there may be multiple controllers on a device, or even if its
-> > > just one and the dummy hcd driver is enabled, I'm not sure how folks
-> > > reference the "right" one without the node name?
-> > 
-> > I think it is the same type of problem as for all other subsystems, e.g.
-> > mmc, hwmon/iio.  They usually solve it either with aliases or with
-> > special property with the name/label.
-> > 
-> > > I understand the fuzziness with sysfs ABI, and I get that having
-> > > consistent naming is important, but like the eth0 -> enp3s0 changes,
-> > > it seems like this is going to break things.
-> > 
-> > One could argue whether interface name is or is not ABI. But please tell
-> > me how the address of a device in one's representation (for example DT)
-> > is a part of a stable interface?
-> > 
-> > > Greg? Is there some better way AOSP should be doing this?
-> > 
-> > If you need to find specific device, maybe go through the given bus and
-> > check compatibles?
-> > 
-> > Best regards,
-> > Krzysztof
-> 
-> So the main question is how is the DT-node really connected with ABI
-> and is supposed to be stable in that concern?
-> 
-> As I see it even if it affects the configfs node name, then we may
-> either need to break that connection and somehow deliver DT-node-name
-> independent interface to the user-space or we have no choice but to
-> export the node with an updated name and ask of user-space to deal
-> with it. In both suggested cases the DT-node name will still conform
-> to the USB-node name DT spec. Currently we are at the second one.
+On Thu, Jul 15, 2021 at 8:23 PM Yong Wu <yong.wu@mediatek.com> wrote:
+>
+> Use clk_bulk interface instead of the orginal one to simplify the code.
+>
+> SMI have several clocks: apb/smi/gals, the apb/smi clocks are required
+> for both smi-common and smi-larb while the gals clock are optional.
+> thus, use devm_clk_bulk_get for apb/smi and use
+> devm_clk_bulk_get_optional for gals.
+>
+> For gals clocks, we already use get_optional for it, then the flag
+> "has_gals" is not helpful now, remove it.
+>
+> Also remove clk fail logs since bulk interface already output fail log.
+>
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
 
-I really do not care what you all decide on, but you CAN NOT break
-existing working systems, sorry.  That is why I have reverted this
-change in my tree and will send it to Linus soon.
+Reviewed-by: Ikjoon Jang <ikjn@chromium.org>
 
-thanks,
-
-greg k-h
+> ---
+>  drivers/memory/mtk-smi.c | 138 +++++++++++++--------------------------
+>  1 file changed, 47 insertions(+), 91 deletions(-)
+>
+> diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
+> index c5fb51f73b34..a2213452059d 100644
+> --- a/drivers/memory/mtk-smi.c
+> +++ b/drivers/memory/mtk-smi.c
+> @@ -60,9 +60,15 @@ enum mtk_smi_gen {
+>         MTK_SMI_GEN2
+>  };
+>
+> +#define MTK_SMI_CLK_NR_MAX                     4
+> +
+> +/* Always require apb/smi clocks while gals clocks are optional. */
+> +static const char * const mtk_smi_clks_required[] = {"apb", "smi"};
+> +static const char * const mtk_smi_common_clks_optional[] = {"gals0", "gals1"};
+> +static const char * const mtk_smi_larb_clks_optional[] = {"gals"};
+> +
+>  struct mtk_smi_common_plat {
+>         enum mtk_smi_gen gen;
+> -       bool             has_gals;
+>         u32              bus_sel; /* Balance some larbs to enter mmu0 or mmu1 */
+>  };
+>
+> @@ -70,13 +76,12 @@ struct mtk_smi_larb_gen {
+>         int port_in_larb[MTK_LARB_NR_MAX + 1];
+>         void (*config_port)(struct device *dev);
+>         unsigned int                    larb_direct_to_common_mask;
+> -       bool                            has_gals;
+>  };
+>
+>  struct mtk_smi {
+>         struct device                   *dev;
+> -       struct clk                      *clk_apb, *clk_smi;
+> -       struct clk                      *clk_gals0, *clk_gals1;
+> +       unsigned int                    clk_num;
+> +       struct clk_bulk_data            clks[MTK_SMI_CLK_NR_MAX];
+>         struct clk                      *clk_async; /*only needed by mt2701*/
+>         union {
+>                 void __iomem            *smi_ao_base; /* only for gen1 */
+> @@ -95,45 +100,6 @@ struct mtk_smi_larb { /* larb: local arbiter */
+>         unsigned char                   *bank;
+>  };
+>
+> -static int mtk_smi_clk_enable(const struct mtk_smi *smi)
+> -{
+> -       int ret;
+> -
+> -       ret = clk_prepare_enable(smi->clk_apb);
+> -       if (ret)
+> -               return ret;
+> -
+> -       ret = clk_prepare_enable(smi->clk_smi);
+> -       if (ret)
+> -               goto err_disable_apb;
+> -
+> -       ret = clk_prepare_enable(smi->clk_gals0);
+> -       if (ret)
+> -               goto err_disable_smi;
+> -
+> -       ret = clk_prepare_enable(smi->clk_gals1);
+> -       if (ret)
+> -               goto err_disable_gals0;
+> -
+> -       return 0;
+> -
+> -err_disable_gals0:
+> -       clk_disable_unprepare(smi->clk_gals0);
+> -err_disable_smi:
+> -       clk_disable_unprepare(smi->clk_smi);
+> -err_disable_apb:
+> -       clk_disable_unprepare(smi->clk_apb);
+> -       return ret;
+> -}
+> -
+> -static void mtk_smi_clk_disable(const struct mtk_smi *smi)
+> -{
+> -       clk_disable_unprepare(smi->clk_gals1);
+> -       clk_disable_unprepare(smi->clk_gals0);
+> -       clk_disable_unprepare(smi->clk_smi);
+> -       clk_disable_unprepare(smi->clk_apb);
+> -}
+> -
+>  int mtk_smi_larb_get(struct device *larbdev)
+>  {
+>         int ret = pm_runtime_resume_and_get(larbdev);
+> @@ -270,7 +236,6 @@ static const struct mtk_smi_larb_gen mtk_smi_larb_mt6779 = {
+>  };
+>
+>  static const struct mtk_smi_larb_gen mtk_smi_larb_mt8183 = {
+> -       .has_gals                   = true,
+>         .config_port                = mtk_smi_larb_config_port_gen2_general,
+>         .larb_direct_to_common_mask = BIT(2) | BIT(3) | BIT(7),
+>                                       /* IPU0 | IPU1 | CCU */
+> @@ -312,6 +277,27 @@ static const struct of_device_id mtk_smi_larb_of_ids[] = {
+>         {}
+>  };
+>
+> +static int mtk_smi_dts_clk_init(struct device *dev, struct mtk_smi *smi,
+> +                               unsigned int clk_nr_optional,
+> +                               const char * const clk_optional[])
+> +{
+> +       int i, ret, clk_nr_required;
+> +
+> +       clk_nr_required = ARRAY_SIZE(mtk_smi_clks_required);
+> +       for (i = 0; i < clk_nr_required; i++)
+> +               smi->clks[i].id = mtk_smi_clks_required[i];
+> +       ret = devm_clk_bulk_get(dev, clk_nr_required, smi->clks);
+> +       if (ret)
+> +               return ret;
+> +
+> +       for (i = 0; i < clk_nr_optional; i++)
+> +               smi->clks[i + clk_nr_required].id = clk_optional[i];
+> +       ret = devm_clk_bulk_get_optional(dev, clk_nr_optional,
+> +                                        smi->clks + clk_nr_required);
+> +       smi->clk_num = clk_nr_required + clk_nr_optional;
+> +       return ret;
+> +}
+> +
+>  static int mtk_smi_larb_probe(struct platform_device *pdev)
+>  {
+>         struct mtk_smi_larb *larb;
+> @@ -320,6 +306,7 @@ static int mtk_smi_larb_probe(struct platform_device *pdev)
+>         struct device_node *smi_node;
+>         struct platform_device *smi_pdev;
+>         struct device_link *link;
+> +       int ret;
+>
+>         larb = devm_kzalloc(dev, sizeof(*larb), GFP_KERNEL);
+>         if (!larb)
+> @@ -331,24 +318,13 @@ static int mtk_smi_larb_probe(struct platform_device *pdev)
+>         if (IS_ERR(larb->base))
+>                 return PTR_ERR(larb->base);
+>
+> -       larb->smi.clk_apb = devm_clk_get(dev, "apb");
+> -       if (IS_ERR(larb->smi.clk_apb))
+> -               return PTR_ERR(larb->smi.clk_apb);
+> -
+> -       larb->smi.clk_smi = devm_clk_get(dev, "smi");
+> -       if (IS_ERR(larb->smi.clk_smi))
+> -               return PTR_ERR(larb->smi.clk_smi);
+> -
+> -       if (larb->larb_gen->has_gals) {
+> -               /* The larbs may still haven't gals even if the SoC support.*/
+> -               larb->smi.clk_gals0 = devm_clk_get(dev, "gals");
+> -               if (PTR_ERR(larb->smi.clk_gals0) == -ENOENT)
+> -                       larb->smi.clk_gals0 = NULL;
+> -               else if (IS_ERR(larb->smi.clk_gals0))
+> -                       return PTR_ERR(larb->smi.clk_gals0);
+> -       }
+> -       larb->smi.dev = dev;
+> +       ret = mtk_smi_dts_clk_init(dev, &larb->smi,
+> +                                  ARRAY_SIZE(mtk_smi_larb_clks_optional),
+> +                                  mtk_smi_larb_clks_optional);
+> +       if (ret)
+> +               return ret;
+>
+> +       larb->smi.dev = dev;
+>         smi_node = of_parse_phandle(dev->of_node, "mediatek,smi", 0);
+>         if (!smi_node)
+>                 return -EINVAL;
+> @@ -391,11 +367,9 @@ static int __maybe_unused mtk_smi_larb_resume(struct device *dev)
+>         const struct mtk_smi_larb_gen *larb_gen = larb->larb_gen;
+>         int ret;
+>
+> -       ret = mtk_smi_clk_enable(&larb->smi);
+> -       if (ret < 0) {
+> -               dev_err(dev, "Failed to enable clock(%d).\n", ret);
+> +       ret = clk_bulk_prepare_enable(larb->smi.clk_num, larb->smi.clks);
+> +       if (ret < 0)
+>                 return ret;
+> -       }
+>
+>         /* Configure the basic setting for this larb */
+>         larb_gen->config_port(dev);
+> @@ -407,7 +381,7 @@ static int __maybe_unused mtk_smi_larb_suspend(struct device *dev)
+>  {
+>         struct mtk_smi_larb *larb = dev_get_drvdata(dev);
+>
+> -       mtk_smi_clk_disable(&larb->smi);
+> +       clk_bulk_disable_unprepare(larb->smi.clk_num, larb->smi.clks);
+>         return 0;
+>  }
+>
+> @@ -437,21 +411,18 @@ static const struct mtk_smi_common_plat mtk_smi_common_gen2 = {
+>
+>  static const struct mtk_smi_common_plat mtk_smi_common_mt6779 = {
+>         .gen            = MTK_SMI_GEN2,
+> -       .has_gals       = true,
+>         .bus_sel        = F_MMU1_LARB(1) | F_MMU1_LARB(2) | F_MMU1_LARB(4) |
+>                           F_MMU1_LARB(5) | F_MMU1_LARB(6) | F_MMU1_LARB(7),
+>  };
+>
+>  static const struct mtk_smi_common_plat mtk_smi_common_mt8183 = {
+>         .gen      = MTK_SMI_GEN2,
+> -       .has_gals = true,
+>         .bus_sel  = F_MMU1_LARB(1) | F_MMU1_LARB(2) | F_MMU1_LARB(5) |
+>                     F_MMU1_LARB(7),
+>  };
+>
+>  static const struct mtk_smi_common_plat mtk_smi_common_mt8192 = {
+>         .gen      = MTK_SMI_GEN2,
+> -       .has_gals = true,
+>         .bus_sel  = F_MMU1_LARB(1) | F_MMU1_LARB(2) | F_MMU1_LARB(5) |
+>                     F_MMU1_LARB(6),
+>  };
+> @@ -501,23 +472,10 @@ static int mtk_smi_common_probe(struct platform_device *pdev)
+>         common->dev = dev;
+>         common->plat = of_device_get_match_data(dev);
+>
+> -       common->clk_apb = devm_clk_get(dev, "apb");
+> -       if (IS_ERR(common->clk_apb))
+> -               return PTR_ERR(common->clk_apb);
+> -
+> -       common->clk_smi = devm_clk_get(dev, "smi");
+> -       if (IS_ERR(common->clk_smi))
+> -               return PTR_ERR(common->clk_smi);
+> -
+> -       if (common->plat->has_gals) {
+> -               common->clk_gals0 = devm_clk_get(dev, "gals0");
+> -               if (IS_ERR(common->clk_gals0))
+> -                       return PTR_ERR(common->clk_gals0);
+> -
+> -               common->clk_gals1 = devm_clk_get(dev, "gals1");
+> -               if (IS_ERR(common->clk_gals1))
+> -                       return PTR_ERR(common->clk_gals1);
+> -       }
+> +       ret = mtk_smi_dts_clk_init(dev, common, ARRAY_SIZE(mtk_smi_common_clks_optional),
+> +                                  mtk_smi_common_clks_optional);
+> +       if (ret)
+> +               return ret;
+>
+>         /*
+>          * for mtk smi gen 1, we need to get the ao(always on) base to config
+> @@ -561,11 +519,9 @@ static int __maybe_unused mtk_smi_common_resume(struct device *dev)
+>         u32 bus_sel = common->plat->bus_sel;
+>         int ret;
+>
+> -       ret = mtk_smi_clk_enable(common);
+> -       if (ret) {
+> -               dev_err(common->dev, "Failed to enable clock(%d).\n", ret);
+> +       ret = clk_bulk_prepare_enable(common->clk_num, common->clks);
+> +       if (ret)
+>                 return ret;
+> -       }
+>
+>         if (common->plat->gen == MTK_SMI_GEN2 && bus_sel)
+>                 writel(bus_sel, common->base + SMI_BUS_SEL);
+> @@ -576,7 +532,7 @@ static int __maybe_unused mtk_smi_common_suspend(struct device *dev)
+>  {
+>         struct mtk_smi *common = dev_get_drvdata(dev);
+>
+> -       mtk_smi_clk_disable(common);
+> +       clk_bulk_disable_unprepare(common->clk_num, common->clks);
+>         return 0;
+>  }
+>
+> --
+> 2.18.0
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
