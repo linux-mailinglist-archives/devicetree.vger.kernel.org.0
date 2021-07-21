@@ -2,121 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D8DE3D0A62
+	by mail.lfdr.de (Postfix) with ESMTP id B6E4D3D0A63
 	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 10:18:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234953AbhGUHch (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 03:32:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54428 "EHLO
+        id S235822AbhGUHc4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 03:32:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236196AbhGUH2u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 03:28:50 -0400
-Received: from mail-il1-x132.google.com (mail-il1-x132.google.com [IPv6:2607:f8b0:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74BBCC0613E9;
-        Wed, 21 Jul 2021 01:09:15 -0700 (PDT)
-Received: by mail-il1-x132.google.com with SMTP id a7so1580763iln.6;
-        Wed, 21 Jul 2021 01:09:15 -0700 (PDT)
+        with ESMTP id S236383AbhGUHb3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 03:31:29 -0400
+Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1A3AC061574;
+        Wed, 21 Jul 2021 01:12:03 -0700 (PDT)
+Received: by mail-io1-xd32.google.com with SMTP id z9so1403871iob.8;
+        Wed, 21 Jul 2021 01:12:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=nnkwypyGGg2lIAlmn1bPoLA/AT7fY2p5wjrBTzzARl8=;
-        b=hs0y+4913dnb3lcozRBpL/0RyQCg9I7uzJnbJZz8c7BR4+Kuu7lo72IfaB/EYPsjjY
-         KRrkbTYhT7FEFtrqCST79Jw/YG9OU3YTkBlwc02Y1FUqi8U4TpjAFa3haW7PZIftePRE
-         Bg1nPosBLFL/51NONNW0rbSy9UlEkOejEIzAG5jFRnrJD7U/2X1LaW3uU0IlF+qKX8Qq
-         etZ+xF3tCItVfSAxaj8zTDPomWmtqjOWYRDkRy5ig9ekKCTZfhsDDloJ74cBaKhnAPCi
-         DAubd9l7Gi072V5d8XrHy8kBAf7dkteXBci4xUY9VIZzFUNVVbOQjD0bwP8iG3Yjqmqa
-         IDvA==
+        bh=pL2C9kVjJUNoadYQaAKSPZ98TvYLySVH4tRSkOmd6po=;
+        b=fo/NxuLkx8GcFXYS3VVuLCjl4ki9ob6lizBHGdDSitZ10DmW5vaKYGWAt3LbvoSCwX
+         kVlWdvMTfrkcf/9O7AeyPiUWkAFfJBzeHpc6IOBFNCB1mfUng5/YU61/Jx+LmYgXLeBl
+         iILgVv4K7xVCg3ezgjzA96EwwMZPwX4RPcYlc5bJ8gyIEu5RISlTOSUbF1xNCBmb44LL
+         2LEjwGXSJC3Qbv7diUtmwPuYQrB5xfL0vDoZCn3T6wz5s/rd226RGChmeIi9Eu3utTif
+         tRCXS8XsRIGusF5Ufx3RhGzLTA0i/z30GHjI0Ba20muC3zpXFwodbKo+Y8aYgxeBFPiT
+         hYCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to;
-        bh=nnkwypyGGg2lIAlmn1bPoLA/AT7fY2p5wjrBTzzARl8=;
-        b=ldh98r2du1wd0MByoh8tHxTTMYVyA0TQdS8B6kZfP30glS63wn47pFex3WEE1uKMp9
-         hZ1ra0g7eM4+LekecHg1voOuDWkR3JSs1TcxzFQb45QVtIq5nHO65waHfw1Glsn3o2Gw
-         uwiq0xGhHgXhuCsXeFEEowbRyRA1M1PaQ/lnPlRBIaC8+6FEcXKvOmX8pDMJFVAoPrkH
-         r7qoip1Pjd6SOYmhaZpePluQTXYZdf6l4aEGLRBgipxJBLb+y4WWd/Ko2ZnoEoO5sA4Y
-         XgrWg8P3H8zsTJAPQ6O+Q09ANVFNif3qnXAwCWWHEAcPOAqdKCNyMIGYkXUrredwZyPn
-         qzYg==
-X-Gm-Message-State: AOAM530DsG/vvKuwAHHWJJcDLNH3bsZKpYuA5wYM4QW6PogbDPa/eh3H
-        DpgPlil0/APIuv2n4KHy1pzZaffPVVmvlJ30kaypg4iY8y/TGw==
-X-Google-Smtp-Source: ABdhPJwnbPqWbPgibT/dnsgnl4iijNPWvfnWGahqwD5gtd8HBLt9g+YmgheZWQDsqArk2YwB1EzTg1LI8+S8cPJGfVg=
-X-Received: by 2002:a05:6e02:12ab:: with SMTP id f11mr2378907ilr.200.1626854954887;
- Wed, 21 Jul 2021 01:09:14 -0700 (PDT)
+        bh=pL2C9kVjJUNoadYQaAKSPZ98TvYLySVH4tRSkOmd6po=;
+        b=euo1IhuaI79aP0gl8B2ypy7EFol6ofnQwWvFvtrrK8cmiM4NJ50tpNePzIMelny0Em
+         Lrt6qGw0qjwAwjUzMgWfLmke7V4G17dii5z0SKi3+4Xs3j/cMEl3h3GGzhozbuu5UJ1N
+         5468Q3E6ZPnj9uB7/ipchq/8KH9vCWoP0d+p32u5uQ9rSlIOahvRwejRhUeqchKYe42Y
+         TzZbgBkJE3+LSQ9rhHqIxUCjTfrFMaKDix9vThwbTMTJkiuJa0Vcsc8d+Sinzw+9CrOp
+         Zk0jabSpXH26IxoKpau82LWpHixPZZbQ8HfgbUfvEzZp4uiS1pFXbY5vYLSZRzsJHyZr
+         2Yow==
+X-Gm-Message-State: AOAM530gDLSfb6oUE6ks+fBB0e3id/8ji3INfDQUxVYM83WBA+pmbL48
+        HIYqxG/RsIxeaEhFCxzbgvr/8cIgsGd/cU4eOA+Rvn1cX+qWFA==
+X-Google-Smtp-Source: ABdhPJztKrsz6lAR+YpujrMMSlaT3nT9BUhbavspkBABheJZkliR6NnmksVys2h3dE9SfgBLBlOF8A5LIUzYH69sKh8=
+X-Received: by 2002:a5e:8d16:: with SMTP id m22mr2457103ioj.60.1626855123253;
+ Wed, 21 Jul 2021 01:12:03 -0700 (PDT)
 MIME-Version: 1.0
-References: <1626430843-23823-1-git-send-email-dillon.minfei@gmail.com>
- <1626430843-23823-2-git-send-email-dillon.minfei@gmail.com>
- <CACRpkdbkOY08THPsPHfOOMeToHGXZvN2DBoKG9+WHeke9jypzQ@mail.gmail.com> <CAL9mu0JufzC_2p+X0PHdEpuYUqCNJ6XoT+f18oEsRa5Wm7wS3g@mail.gmail.com>
-In-Reply-To: <CAL9mu0JufzC_2p+X0PHdEpuYUqCNJ6XoT+f18oEsRa5Wm7wS3g@mail.gmail.com>
+References: <1626430843-23823-2-git-send-email-dillon.minfei@gmail.com>
+ <202107201305.FPUQWvWk-lkp@intel.com> <CAL9mu0LVdt1wtKzBa=201AJ-Eb4BdKtVx18hzQfaB0-Ga0jx9g@mail.gmail.com>
+In-Reply-To: <CAL9mu0LVdt1wtKzBa=201AJ-Eb4BdKtVx18hzQfaB0-Ga0jx9g@mail.gmail.com>
 From:   Dillon Min <dillon.minfei@gmail.com>
-Date:   Wed, 21 Jul 2021 16:08:38 +0800
-Message-ID: <CAL9mu0KGndejkS5joUGqTSfCASWCZeAmDpsCawPZhginFCE-Ow@mail.gmail.com>
+Date:   Wed, 21 Jul 2021 16:11:27 +0800
+Message-ID: <CAL9mu0JVA-jvExpQyZVfqC61qtsXJHgFbeo5LBjaxFF-PYzHuQ@mail.gmail.com>
 Subject: Fwd: [PATCH 1/2] dt-bindings: display: panel: Add ilitek ili9341
  panel bindings
-To:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
+To:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+Hi Kernel test robot,
 
-Thanks for your detailed reply.
+Thanks for your time to test my patch.
 
-On Sun, 18 Jul 2021 at 08:17, Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> Hi Dillon,
->
-> thanks for your patch!
->
-> On Fri, Jul 16, 2021 at 12:20 PM <dillon.minfei@gmail.com> wrote:
->
-> > From: Dillon Min <dillon.minfei@gmail.com>
-> >
-> > Add documentation for "ilitek,ili9341" panel.
-> >
-> > Signed-off-by: Dillon Min <dillon.minfei@gmail.com>
->
-> > +  dc-gpios:
-> > +    maxItems: 1
-> > +    description: Display data/command selection (D/CX)
->
-> This is a DBI feature so mention in the description that this is a
-> DBI panel.
+I did the dtbs_check on my side, and got the same warnings.
 
+But I guess these warnings do not come from this submission,
+So, I will not be going to fix it at this time, but will at other submissions
+to fix these, add arm,armv7m-nvic.yaml ... to describe compatibles, etc.
 
-Okay, I will add the DBI panel to v2.
+by the way, i did find a warning from the stm32f429-disco.dts and fixt it
+in "[PATCH v2 2/3] ARM: dts: stm32: fix dtbs_check warning on ili9341
+dts binding",
 
->
->
-> > +  spi-3wire: true
-> > +
-> > +  spi-max-frequency:
-> > +    const: 10000000
-> > +
-> > +  port: true
-> > +
-> > +additionalProperties: false
->
-> Please add regulator supplies for the power lines, it's fine
-> not to implement code handling them in the driver but they
-> should be in the bindings.
->
-> For the ili9341 it should be
->
->   vci-supply:
->     description: Analog voltage supply (2.5 .. 3.3V)
->
->   vddi-supply:
->     description: Voltage supply for interface logic (1.65 .. 3.3 V)
->
->   vddi-led-supply:
->     description: Voltage supply for the LED driver (1.65 .. 3.3 V)
->
+the warning:
+arch/arm/boot/dts/stm32f429-disco.dt.yaml: display@1: compatible:
+['st,sf-tc240t-9370-t'] is too short
 
-Thanks so much, I will add it to v2.
+my make command:
+make ARCH=arm dtbs_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
 
+Best regards
+thanks
+
+Dillon
+
+On Tue, 20 Jul 2021 at 14:12, kernel test robot <lkp@intel.com> wrote:
 >
-> Yours,
-> Linus Walleij
+> Hi,
+>
+> Thank you for the patch! Perhaps something to improve:
+>
+> [auto build test WARNING on robh/for-next]
+> [also build test WARNING on linus/master v5.14-rc2 next-20210719]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch]
+>
+> url:    https://github.com/0day-ci/linux/commits/dillon-minfei-gmail-com/Add-ilitek-ili9341-panel-driver/20210718-103113
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+> compiler: arm-linux-gnueabi-gcc (GCC) 10.3.0
+> reproduce: make ARCH=arm dtbs_check
+>
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kernel test robot <lkp@intel.com>
+>
+>
+> dtcheck warnings: (new ones prefixed by >>)
+>    arch/arm/boot/dts/stm32f429-disco.dt.yaml:0:0: /interrupt-controller@e000e100: failed to match any schema with compatible: ['arm,armv7m-nvic']
+>    arch/arm/boot/dts/stm32f429-disco.dt.yaml:0:0: /timer@e000e010: failed to match any schema with compatible: ['arm,armv7m-systick']
+>    arch/arm/boot/dts/stm32f429-disco.dt.yaml:0:0: /soc/i2c@40005c00/stmpe811@41: failed to match any schema with compatible: ['st,stmpe811']
+>    arch/arm/boot/dts/stm32f429-disco.dt.yaml:0:0: /soc/i2c@40005c00/stmpe811@41/stmpe_touchscreen: failed to match any schema with compatible: ['st,stmpe-ts']
+>    arch/arm/boot/dts/stm32f429-disco.dt.yaml: l3gd20@0: 'spi-max-frequency' does not match any of the regexes: 'pinctrl-[0-9]+'
+>         From schema: Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+> >> arch/arm/boot/dts/stm32f429-disco.dt.yaml: display@1: compatible: ['st,sf-tc240t-9370-t'] is too short
+>         From schema: Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
+>    arch/arm/boot/dts/stm32f429-disco.dt.yaml:0:0: /soc/crc@40023000: failed to match any schema with compatible: ['st,stm32f4-crc']
+>    arch/arm/boot/dts/stm32f429-disco.dt.yaml:0:0: /soc/rcc@40023800: failed to match any schema with compatible: ['st,stm32f42xx-rcc', 'st,stm32-rcc']
+>    arch/arm/boot/dts/stm32f429-disco.dt.yaml:0:0: /soc/rcc@40023800: failed to match any schema with compatible: ['st,stm32f42xx-rcc', 'st,stm32-rcc']
+>
+> ---
+> 0-DAY CI Kernel Test Service, Intel Corporation
+> https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
