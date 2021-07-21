@@ -2,115 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9383A3D1760
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 22:00:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25FBF3D1787
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 22:08:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240351AbhGUTKL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 15:10:11 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:5615 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S239624AbhGUTKJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Jul 2021 15:10:09 -0400
-X-IronPort-AV: E=Sophos;i="5.84,258,1620658800"; 
-   d="scan'208";a="88350330"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 22 Jul 2021 04:50:44 +0900
-Received: from localhost.localdomain (unknown [10.226.36.204])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 837D8400D4D6;
-        Thu, 22 Jul 2021 04:50:41 +0900 (JST)
-From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v3 3/3] arm64: dts: renesas: r9a07g044: Add CANFD node
-Date:   Wed, 21 Jul 2021 20:49:51 +0100
-Message-Id: <20210721194951.30983-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210721194951.30983-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20210721194951.30983-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        id S229528AbhGUT2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 15:28:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49578 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229463AbhGUT2T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 15:28:19 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F898C061575;
+        Wed, 21 Jul 2021 13:08:54 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id n1so3427884wri.10;
+        Wed, 21 Jul 2021 13:08:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=x6EutQE4FqvS74NAlrxQkWcx53oV130UW/bI7WrrBzg=;
+        b=QDPdbsGqpdiDce06xAc2kqd5LqhpF3Wy/f3d69KqaPi1YvEHO2jYlYUWVLsYwNXUbV
+         xN3yA+8BCcVtHz5j9TGJgqLFcd9geuyrv54XcYskHdo2bCfU5i/+ugnig5yrS8VOIssX
+         Lq/AHrNAR6Fjw7S8O9q6dVqk0T5pSjXjAjJ8m1vPDEkKyL1Dzml7vie1E7OhAWcpyvnr
+         NJkCe6uPZa7Tf7UAtLtKuRW6YS0or+8qZCwdf55sdl7wn8+tB3Ossg4VhYiW7ftTYAY/
+         wxzuo92Pg8lZCRoFvKDoX5GX67M1lfP7d4Y6/xLC5LFZ0tWyIYjXcqer6cjSBX4mdoIF
+         xZuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=x6EutQE4FqvS74NAlrxQkWcx53oV130UW/bI7WrrBzg=;
+        b=CmN/SHzX6laSK/VteSd9Nn38fogVlJv4Hg+yI3OTJmbL4aSEbQNDeK2Z5Mm1T7p+W+
+         6OKGkt7DTvYeHg0tWYIzkq5Zhho9JVoowNO+Wy0gm1xfuTaWJlk6gYukrPJJOEQMioZE
+         WPMsiqz7b3wlqBxCEQqCfgnkPEIq7I2nC15nb0tsCEFm1oY6JkTRsXOu1TZIREoHkeam
+         wwrPI/r5tuvZodfjQcsooRLs2Tgy9kD++5TGTGA7WRJNfxGc9cUNQrR9RjqUUr/A7vSM
+         xUUaUWu0wd9TD4jowqNSopMhOrI7YxmZbayp7vWeicWVGDp9AhPSTWVE+BK3LoZwgupH
+         7iMQ==
+X-Gm-Message-State: AOAM531O0JiSs3vrvlFIEJcn4rVdse8PvQrses+wWhp39A2MMT/4aYgz
+        TES6ZgrgOpC1egPc8meAXYA=
+X-Google-Smtp-Source: ABdhPJyXut89uwmrQ6z/K4M5428MQGzr2KL0xdxshah/vl1jN7DmXpmJY+11e6EcMCiTdbPBWgldxg==
+X-Received: by 2002:a5d:4912:: with SMTP id x18mr45935545wrq.310.1626898133125;
+        Wed, 21 Jul 2021 13:08:53 -0700 (PDT)
+Received: from kista.localdomain (cpe-86-58-46-198.static.triera.net. [86.58.46.198])
+        by smtp.gmail.com with ESMTPSA id k24sm28927162wrh.30.2021.07.21.13.08.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Jul 2021 13:08:51 -0700 (PDT)
+From:   Jernej Skrabec <jernej.skrabec@gmail.com>
+To:     mripard@kernel.org, wens@csie.org
+Cc:     robh+dt@kernel.org, jernej.skrabec@gmail.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] arm64: dts: allwinner: h6: tanix-tx6: Enable eMMC
+Date:   Wed, 21 Jul 2021 22:08:30 +0200
+Message-Id: <20210721200832.916644-1-jernej.skrabec@gmail.com>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add CANFD node to R9A07G044 (RZ/G2L) SoC DTSI.
+Tanix TX6 box has a 32 GB eMMC module. With changes in this series, I
+get following figures with hdparm -tT:
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 41 ++++++++++++++++++++++
- 1 file changed, 41 insertions(+)
+/dev/mmcblk2:
+ Timing cached reads:   1638 MB in  2.00 seconds = 818.44 MB/sec
+ Timing buffered disk reads: 376 MB in  3.01 seconds = 124.74 MB/sec
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-index 9a7489dc70d1..51655c09f1f8 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-@@ -13,6 +13,13 @@
- 	#address-cells = <2>;
- 	#size-cells = <2>;
- 
-+	/* External CAN clock - to be overridden by boards that provide it */
-+	can_clk: can {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <0>;
-+	};
-+
- 	/* clock can be either from exclk or crystal oscillator (XIN/XOUT) */
- 	extal_clk: extal {
- 		compatible = "fixed-clock";
-@@ -89,6 +96,40 @@
- 			status = "disabled";
- 		};
- 
-+		canfd: can@10050000 {
-+			compatible = "renesas,r9a07g044-canfd", "renesas,rzg2l-canfd";
-+			reg = <0 0x10050000 0 0x8000>;
-+			interrupts = <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 427 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 428 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 429 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "g_err", "g_recc",
-+					  "ch0_err", "ch0_rec", "ch0_trx",
-+					  "ch1_err", "ch1_rec", "ch1_trx";
-+			clocks = <&cpg CPG_MOD R9A07G044_CANFD_PCLK>,
-+				 <&cpg CPG_CORE R9A07G044_CLK_P0_DIV2>,
-+				 <&can_clk>;
-+			clock-names = "fck", "canfd", "can_clk";
-+			assigned-clocks = <&cpg CPG_CORE R9A07G044_CLK_P0_DIV2>;
-+			assigned-clock-rates = <50000000>;
-+			resets = <&cpg R9A07G044_CANFD_RSTP_N>,
-+				 <&cpg R9A07G044_CANFD_RSTC_N>;
-+			reset-names = "rstp_n", "rstc_n";
-+			power-domains = <&cpg>;
-+			status = "disabled";
-+
-+			channel0 {
-+				status = "disabled";
-+			};
-+			channel1 {
-+				status = "disabled";
-+			};
-+		};
-+
- 		i2c0: i2c@10058000 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
+First patch only sets proper power supplies to GPIO banks and second
+adds eMMC support.
+
+Please take a look.
+
+Best regards,
+Jernej Skrabec
+
+Jernej Skrabec (2):
+  arm64: dts: allwinner: h6: tanix-tx6: Add PIO power supplies
+  arm64: dts: allwinner: h6: tanix-tx6: enable emmc
+
+ .../dts/allwinner/sun50i-h6-tanix-tx6.dts     | 23 +++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+
 -- 
-2.17.1
+2.32.0
 
