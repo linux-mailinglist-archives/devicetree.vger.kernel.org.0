@@ -2,132 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A8603D1865
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 22:51:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04ACF3D19D6
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 00:40:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229506AbhGUULT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 16:11:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59874 "EHLO
+        id S230169AbhGUV7g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 17:59:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229474AbhGUULQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 16:11:16 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFFB7C061575
-        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 13:51:52 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1m6JBx-0006PE-GH; Wed, 21 Jul 2021 22:51:45 +0200
-Message-ID: <689e5fd6c290ebec09d45c5d55354d78f5cea647.camel@pengutronix.de>
-Subject: Re: [PATCH V2 00/13] soc: imx: gpcv2: support i.MX8MM
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Frieder Schrempf <frieder.schrempf@kontron.de>,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        p.zabel@pengutronix.de, krzk@kernel.org, agx@sigxcpu.org,
-        marex@denx.de, andrew.smirnov@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, ping.bai@nxp.com, aford173@gmail.com,
-        abel.vesa@nxp.com, Peng Fan <peng.fan@nxp.com>
-Date:   Wed, 21 Jul 2021 22:51:43 +0200
-In-Reply-To: <89534836-6688-9cbd-1f33-ca78a4db47d4@kontron.de>
-References: <20210506010440.7016-1-peng.fan@oss.nxp.com>
-         <3c5ef283-0895-05ab-7568-0d108b761008@kontron.de>
-         <f7937500-f2bb-aa5c-caa2-1788693895a7@kontron.de>
-         <89534836-6688-9cbd-1f33-ca78a4db47d4@kontron.de>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.3 (3.40.3-1.fc34) 
+        with ESMTP id S229684AbhGUV7g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 17:59:36 -0400
+Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B175C061757
+        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 15:40:12 -0700 (PDT)
+Received: by mail-ot1-x32b.google.com with SMTP id b18-20020a0568303112b02904cf73f54f4bso583249ots.2
+        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 15:40:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=Q4wvBXyV2lJ1aTRox0e1+Ok+AEaw/CVcGBs0YMHYsP0=;
+        b=XqZH1FzW4TAdt+62lo9scgkSGaBidkfe9huO0q1U3Ro1mui8RWXUgDF4qzAHCY6Ru+
+         iZ8zSponbgyYt6LXGU0IodEXLM8IGxpYpjT2JbWrcYJxLuLC7ydskbWTAd4EndoQ0uzM
+         zAZJ+shbHzcPMS1D4t5gFzBXtgmxI7uFF4NFo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=Q4wvBXyV2lJ1aTRox0e1+Ok+AEaw/CVcGBs0YMHYsP0=;
+        b=VS6wAxqBGa7ttsVoVqeCSZoTfhkk5IxN7xgSrjhbPpe5SNjHdKgdTSy1qwgjO9qFqD
+         OcW3XiiqAvGmLmeJliwdv3zn5tEc/PbV8w4KEbZ2gOpXNagYc/EMJG7OfugeRfnHE2I2
+         LS4lVGPKz/nCcpWuRH5Ku4/hioTOKJ9qSgymPEcpvY5YQS9BnvRflrbsmik2hsal/YBu
+         aLjWsz1hjd6eFgUlEiKUF0uAVp4RbNLi5m2tpYRbNqcbQ8Q1hY5Y/USJtpozI9VE7XzF
+         KOBI4UNNzievVi2s8kzEC05wYmN36fPrpYWppi0Tlr+HsdPC5hRNpwCkS3gFOYgIjtpH
+         6WSw==
+X-Gm-Message-State: AOAM532EeIBAc5UhjyIX0uWM6BdZx3iv18/8f9gu3fxLQm5Etftqdq80
+        wDGn/c2acP44lwK98ZOMFVP2VyK9FGy+VvV6KYNGCZ3oY9c=
+X-Google-Smtp-Source: ABdhPJwocIiRhFwFOnsM81FkofvQbBA36K0D5dCAYY3+kDkw8/j6vCVRW/AWV4EzATwWCQE40EPyTZCpO+0f5mG/y5g=
+X-Received: by 2002:a9d:8c7:: with SMTP id 65mr27826933otf.25.1626907211418;
+ Wed, 21 Jul 2021 15:40:11 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 21 Jul 2021 22:40:11 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <1624365748-24224-2-git-send-email-rajeevny@codeaurora.org>
+References: <1624365748-24224-1-git-send-email-rajeevny@codeaurora.org> <1624365748-24224-2-git-send-email-rajeevny@codeaurora.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Wed, 21 Jul 2021 22:40:10 +0000
+Message-ID: <CAE-0n50Km=XxJ93ZJkwcWWJdzvBba_We=bZYzkdYKoB-cwTYkg@mail.gmail.com>
+Subject: Re: [v2 1/3] dt-bindings: msm/dsi: Add sc7280 7nm dsi phy
+To:     Rajeev Nandan <rajeevny@codeaurora.org>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, sean@poorly.run, robdclark@gmail.com,
+        robh+dt@kernel.org, robh@kernel.org, abhinavk@codeaurora.org,
+        kalyan_t@codeaurora.org, mkrishn@codeaurora.org, jonathan@marek.ca,
+        dmitry.baryshkov@linaro.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Frieder,
+Quoting Rajeev Nandan (2021-06-22 05:42:26)
+> The SC7280 SoC uses the 7nm (V4.1) DSI PHY driver.
+>
+> Signed-off-by: Rajeev Nandan <rajeevny@codeaurora.org>
+> ---
 
-Am Donnerstag, dem 20.05.2021 um 17:16 +0200 schrieb Frieder Schrempf:
-> On 19.05.21 18:09, Frieder Schrempf wrote:
-> > On 06.05.21 10:32, Frieder Schrempf wrote:
-> > > On 06.05.21 03:04, Peng Fan (OSS) wrote:
-> > > > From: Peng Fan <peng.fan@nxp.com>
-> > > > 
-> > > > 
-> > > > V2:
-> > > >  - Add R-b/A-b tag
-> > > >  - Merge V1 patch 13 to V2 patch 6
-> > > >  - Drop V1 patch 15
-> > > >  - Merge V1 patch 16 to V2 patch 5 and add comments in patch 5
-> > > > to explain
-> > > >  details
-> > > >  - Add explaination in patch 8 for "why the resets are not
-> > > > defined"
-> > > > 
-> > > > This patchset is a pick up Lucas's gpcv2 work for i.MX8MM and
-> > > > several
-> > > > minor changes from me to make it could work with i.MX BLK-CTL
-> > > > driver.
-> > > > 
-> > > > Thanks for Lucas's work and suggestion, Frieder Schrempf for
-> > > > collecting
-> > > > all the patches, Jacky Bai on help debug issues.
-> > > 
-> > > I tested this series together with the BLK CTL patches by using
-> > > the GPU and the display stack. Everything looks good to me.
-> > > 
-> > > Tested-by: Frieder Schrempf <frieder.schrempf@kontron.de>
-> > 
-> > So after some more testing on different hardware I stumbled upon
-> > the problem that USB autosuspend doesn't work properly anymore.
-> > 
-> > I have an onboard LTE module that is connected to OTG2 on the
-> > i.MX8MM. When using the mainline TF-A (that enables USB power-
-> > domains by default) and removing the power-domain control from the
-> > kernel, the device comes up after a few seconds and is enumerated
-> > on the bus.
-> > 
-> > Now, when I let the kernel control the power-domains, the device
-> > comes up at boot, but isn't enumerated on the USB bus. As soon as I
-> > disable autosuspend for the port, it comes up.
-> > 
-> > Is this something that needs to be fixed on the USB driver side or
-> > is something to be considered for the GPCv2 driver?
-> 
-> So I think this is something that needs to be covered on the USB
-> driver side. I would expect that a device appearing on the bus should
-> resume the autosuspended bus, but I don't really know much about USB
-> so there might be other things I miss. For now I will disable
-> autosuspend in this case.
-> 
-> A different, probably more severe problem is that I was still able to
-> reliably run into lockups with suspend/resume and the GPU. I thought
-> I had tested this before as it was one of the things that already
-> failed with the previous implementation, but I must have missed
-> something as it still fails with kernel v5.12.1 + v2 of the GPC
-> patches.
-> 
-> This is how I run into the lockup:
-> 
-> echo mem > /sys/power/state  # Sleep
->                              # Wake up again
-> glmark2-es2-drm              # Use the GPU
->                              # Device locks up
-> 
-> Peng, is this something you can reproduce?
-
-I could reproduce this issue on my last GPC+BLK_CTRL series. This was
-caused by a bad interaction between our slightly unusual way to control
-the nested power domains via runtime PM and the system suspend/resume
-code, which lead to some of the power domains not properly coming up
-again in the resume path. v2 of my series fixes this issue and the
-above sequence works as expected.
-
-Regards,
-Lucas
-
-
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
