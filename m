@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 856323D107E
+	by mail.lfdr.de (Postfix) with ESMTP id CDE8D3D107F
 	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 16:04:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238980AbhGUNYC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 09:24:02 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:40797 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S238937AbhGUNYB (ORCPT
+        id S238937AbhGUNYE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 09:24:04 -0400
+Received: from out3-smtp.messagingengine.com ([66.111.4.27]:43397 "EHLO
+        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S238996AbhGUNYD (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Jul 2021 09:24:01 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 33761580482;
-        Wed, 21 Jul 2021 10:04:38 -0400 (EDT)
+        Wed, 21 Jul 2021 09:24:03 -0400
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.nyi.internal (Postfix) with ESMTP id F268B5C0161;
+        Wed, 21 Jul 2021 10:04:39 -0400 (EDT)
 Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Wed, 21 Jul 2021 10:04:38 -0400
+  by compute1.internal (MEProxy); Wed, 21 Jul 2021 10:04:39 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm3; bh=yaFAahpcJkLP9
-        c9IO8blHHGww65bHSmpbQ9yOfpm/+s=; b=H+VsCVypLV7c5oEbJ+xaM67kgTtg4
-        cDZkj+SmEO/WPYK+VNnZcCSfmeKCPz/DOVN2HQ/Nn/i/biTFKsFMShlEhHMPPIM1
-        Vz4IUj9QjDdLzkBrpThwiqlGBmCMVLK0QY0sUxtdItq7ZOKRYFtBksXC0LrAsNkk
-        tmHkVV6XQ+KStUyeH4Puag0ETaZ0Unwm9hS1Y7aych7rT6JfrHLOpfPCJHMvfan0
-        Im+DTtJ0rUehJo47v6KnUKta5J/ZwCZREwg1QV3RB5HvhQ0dUsD5YWm8jVHMVi/y
-        9CTYRPuYZA8Mvfp5gDxSdkniwvE9wwsEO6FuWrfTIa36S4A3kW6swgZiw==
+        :mime-version:content-transfer-encoding; s=fm3; bh=XFkN+/JmCK6+N
+        Dkay9r3w197zJLQGybcXcZKRYppA78=; b=qPWV7As+P0wI6oSwaLTwD/jslcaOn
+        A7uYvWHvC00NFLNUqk7zqhhReTK7RecSbfoTwJazB0igc20jLfQ0j/FLiNWFCk9V
+        GogIQTKRsIhJU16dWLbH81wgqtcrptK9XwHuzuDDYF13f2/m1yV2Ql16I3eYKMjS
+        t0DYt15u3bAfxDAtxmR+NVfj9VcSmPjAEe0wIR99MuGhNp712IaDVN6yKuEwWc4Z
+        dZqyJYVbHARMSjk264WZCeiBscNPMTuZ2K74TDqWpBo1pr7AV+Tkkgz4zHtfIHID
+        Yo/r1V2Ohk9JW+4ymLa7Gl4FtQU/lDXQBGJIbUSPK8WDb1d32WAEIvyRw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:date:from
         :in-reply-to:message-id:mime-version:references:subject:to
         :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=yaFAahpcJkLP9c9IO8blHHGww65bHSmpbQ9yOfpm/+s=; b=Z3YkWzlc
-        m71HQf3Q5pXokZVSEWhjF2pvlodE4DVNjWUuUOChtMPu42u4XUG8zvWD4jb7dsmX
-        fery/8HwIRvfaFAqFyhG4e29wj4q2auLbGxzQyraGgGvaxmw2B0IwZD2cO1qd/c7
-        OjqCy688GBFN10Ti4OW4ZNNT41hO88bh8/Fcfh2+6+qWCrJzwtBLiicvbY8rcg7D
-        dHo4eKKlFz56aOSwwQ/3QpKlPWu5RCIigLVeazqA0axANMC5xQmeaHmJQMJAZcn3
-        Ge/XpCNTYjAJKYJOH/8rGiZ3jAvxOEwlXKOZOAi2NtLmu6XY0HNJIuhRsGmpLpUN
-        9CBAKjSseHIABA==
-X-ME-Sender: <xms:dSn4YGtZu5rEs-3fdyGH4G_b_0ffRMpIDAA72JmGeOpYQoKmk2JKhA>
-    <xme:dSn4YLdQtbQIH9VxmnQ96XuQu6QIrf29kH0q9zRymQPErFTW4Scnfnrbi4w5GJ8vA
-    kTWOAQnHadlZCCJVYo>
-X-ME-Received: <xmr:dSn4YBwgzOmTs_DNtJLzo1uvBk_-xbSLu1rOhQ_n7_nusHD7HNKUmYDkc7VwUITscvpaOBuO5JklDR3ikfFwyvwhqJxhbVoePbZV>
+        fm3; bh=XFkN+/JmCK6+NDkay9r3w197zJLQGybcXcZKRYppA78=; b=lBdPa4zQ
+        eYLPJOwskWaFb0MXEYaqAFmcqhJ9Vin9rv5VuDTjeBQW9doqb0SLf+oXskLQ3P45
+        n4xkSmwmmf45ZzWumivnFMPe+Y9f/uONlodc4/HqGIQxrn+2jk6PW93xoHmO6Ib/
+        tx9NcjBftfWvsX8mDqi/ZVd5B+3dMY+lKtOSeW9Toe71wNtLamCX+3Fv3e2dS67z
+        TWOORr5TcO8xWPovN3mwE7/pG0mSrOm8IoxmdzQMD0iq5M341Sc/sqj6Xgncj5Hs
+        3fwCfD0UZOHiP6jbqzVh8J+Le2OY9XasYekCxoWxnwKjg7Gv2QtBCkxkhBYg8Yff
+        j+wous7SQhcUyA==
+X-ME-Sender: <xms:dyn4YPlLGsfLBUC0jpk_XkDcQ-pDwjaEWOY5d38cbyvyTFa6MMWEdw>
+    <xme:dyn4YC0r9qU983qwso2GD2kTTRwodM0qMAAo1wM915y6oFMgunKYpj7JDyZHBqjh9
+    HGAnLP6jiGEOV7kZzU>
+X-ME-Received: <xmr:dyn4YFood5-Mcx6E1qpIGi1kvv02sO5-pDsv9Neq5nFnHrOQYJArP3q5260Chg0uXoTOdMMe0vLgjfM1nOyL-86Yfxl1UVdo-GdD>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeeggdeiiecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenog
@@ -48,26 +48,24 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeeggdeiiecutefuodetggdote
     ggfgsedtkeertdertddtnecuhfhrohhmpeforgigihhmvgcutfhiphgrrhguuceomhgrgi
     himhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvghrnhepveejieejtdevgfff
     gfejuefggfeutdelteekgeetueeftddutddtgfffhffgueffnecuffhomhgrihhnpeguvg
-    hvihgtvghtrhgvvgdrohhrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhep
+    hvihgtvghtrhgvvgdrohhrghenucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhep
     mhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:dSn4YBNAdhcqAgcEupdePIK4Ak8YRqGWE76i_uRaNsYkjZw53IYwKw>
-    <xmx:dSn4YG8esgJCQagoCcjRW-1MPsUnkQpBOLRRQC8zNDjZarsugSphbQ>
-    <xmx:dSn4YJVLaf4D2VDWB_hJR6GQzmUYEtKE-s30RqMovLRmzscQuFgq4g>
-    <xmx:din4YH0qKQ637GspXuj7USX3CiQ4A4Xo-l5nYNbM0nPJ1qRYsNn68A>
+X-ME-Proxy: <xmx:dyn4YHl22Hc3wteCuT4kiqx1l2C8Cn6KD-E5JG6maXuYBW2UhkBZqA>
+    <xmx:dyn4YN3rauNtUvWmvhG_O52d5p0iQ4ztHYs6aKHi5YB4OFu3SH_UHQ>
+    <xmx:dyn4YGuXEXvDWnM1F8wunDeAywVEOqKZzdGQD51vyZi6k6pOLC-D-w>
+    <xmx:dyn4YKnapHL8VmTWPWlnfN6BVg-_81UQOW9zCNSXu9WUVebs9xfIsw>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 21 Jul 2021 10:04:37 -0400 (EDT)
+ 21 Jul 2021 10:04:39 -0400 (EDT)
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <maxime@cerno.tech>,
         Jernej Skrabec <jernej.skrabec@siol.net>,
         devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>
 Cc:     linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        alsa-devel@alsa-project.org, Jerome Brunet <jbrunet@baylibre.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Subject: [PATCH 04/54] ASoC: dt-bindings: Convert Simple Amplifier binding to a schema
-Date:   Wed, 21 Jul 2021 16:03:34 +0200
-Message-Id: <20210721140424.725744-5-maxime@cerno.tech>
+        Mailing List <devicetree-spec@vger.kernel.org>
+Subject: [PATCH 05/54] dt-bindings: Convert Reserved Memory binding to a schema
+Date:   Wed, 21 Jul 2021 16:03:35 +0200
+Message-Id: <20210721140424.725744-6-maxime@cerno.tech>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210721140424.725744-1-maxime@cerno.tech>
 References: <20210721140424.725744-1-maxime@cerno.tech>
@@ -77,96 +75,339 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Simple audio amplifiers are supported by Linux with a matching device
+The Reserved Memory mechanism is supported by Linux thanks to its device
 tree binding.
 
 Now that we have the DT validation in place, let's convert the device
 tree bindings for that driver over to a YAML schema.
 
-Cc: alsa-devel@alsa-project.org
-Cc: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>
-Cc: Mark Brown <broonie@kernel.org>
+Cc: Mailing List <devicetree-spec@vger.kernel.org>
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 ---
- .../bindings/sound/simple-amplifier.txt       | 17 -------
- .../sound/simple-audio-amplifier.yaml         | 45 +++++++++++++++++++
- 2 files changed, 45 insertions(+), 17 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/simple-amplifier.txt
- create mode 100644 Documentation/devicetree/bindings/sound/simple-audio-amplifier.yaml
+ .../reserved-memory/reserved-memory.txt       | 141 ---------------
+ .../reserved-memory/reserved-memory.yaml      | 167 ++++++++++++++++++
+ 2 files changed, 167 insertions(+), 141 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+ create mode 100644 Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
 
-diff --git a/Documentation/devicetree/bindings/sound/simple-amplifier.txt b/Documentation/devicetree/bindings/sound/simple-amplifier.txt
+diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
 deleted file mode 100644
-index b1b097cc9b68..000000000000
---- a/Documentation/devicetree/bindings/sound/simple-amplifier.txt
+index e8d3096d922c..000000000000
+--- a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
 +++ /dev/null
-@@ -1,17 +0,0 @@
--Simple Amplifier Audio Driver
+@@ -1,141 +0,0 @@
+-*** Reserved memory regions ***
 -
--Required properties:
--- compatible : "dioo,dio2125" or "simple-audio-amplifier"
+-Reserved memory is specified as a node under the /reserved-memory node.
+-The operating system shall exclude reserved memory from normal usage
+-one can create child nodes describing particular reserved (excluded from
+-normal use) memory regions. Such memory regions are usually designed for
+-the special usage by various device drivers.
 -
--Optional properties:
--- enable-gpios : the gpio connected to the enable pin of the simple amplifier
--- VCC-supply   : power supply for the device, as covered
--                 in Documentation/devicetree/bindings/regulator/regulator.txt
+-Parameters for each memory region can be encoded into the device tree
+-with the following nodes:
 -
--Example:
+-/reserved-memory node
+----------------------
+-#address-cells, #size-cells (required) - standard definition
+-    - Should use the same values as the root node
+-ranges (required) - standard definition
+-    - Should be empty
 -
--amp: analog-amplifier {
--	compatible = "simple-audio-amplifier";
--	VCC-supply = <&regulator>;
--	enable-gpios = <&gpio GPIOH_3 0>;
+-/reserved-memory/ child nodes
+------------------------------
+-Each child of the reserved-memory node specifies one or more regions of
+-reserved memory. Each child node may either use a 'reg' property to
+-specify a specific range of reserved memory, or a 'size' property with
+-optional constraints to request a dynamically allocated block of memory.
+-
+-Following the generic-names recommended practice, node names should
+-reflect the purpose of the node (ie. "framebuffer" or "dma-pool"). Unit
+-address (@<address>) should be appended to the name if the node is a
+-static allocation.
+-
+-Properties:
+-Requires either a) or b) below.
+-a) static allocation
+-   reg (required) - standard definition
+-b) dynamic allocation
+-   size (required) - length based on parent's #size-cells
+-                   - Size in bytes of memory to reserve.
+-   alignment (optional) - length based on parent's #size-cells
+-                        - Address boundary for alignment of allocation.
+-   alloc-ranges (optional) - prop-encoded-array (address, length pairs).
+-                           - Specifies regions of memory that are
+-                             acceptable to allocate from.
+-
+-If both reg and size are present, then the reg property takes precedence
+-and size is ignored.
+-
+-Additional properties:
+-compatible (optional) - standard definition
+-    - may contain the following strings:
+-        - shared-dma-pool: This indicates a region of memory meant to be
+-          used as a shared pool of DMA buffers for a set of devices. It can
+-          be used by an operating system to instantiate the necessary pool
+-          management subsystem if necessary.
+-        - vendor specific string in the form <vendor>,[<device>-]<usage>
+-no-map (optional) - empty property
+-    - Indicates the operating system must not create a virtual mapping
+-      of the region as part of its standard mapping of system memory,
+-      nor permit speculative access to it under any circumstances other
+-      than under the control of the device driver using the region.
+-reusable (optional) - empty property
+-    - The operating system can use the memory in this region with the
+-      limitation that the device driver(s) owning the region need to be
+-      able to reclaim it back. Typically that means that the operating
+-      system can use that region to store volatile or cached data that
+-      can be otherwise regenerated or migrated elsewhere.
+-
+-A node must not carry both the no-map and the reusable property as these are
+-logically contradictory.
+-
+-Linux implementation note:
+-- If a "linux,cma-default" property is present, then Linux will use the
+-  region for the default pool of the contiguous memory allocator.
+-
+-- If a "linux,dma-default" property is present, then Linux will use the
+-  region for the default pool of the consistent DMA allocator.
+-
+-Device node references to reserved memory
+------------------------------------------
+-Regions in the /reserved-memory node may be referenced by other device
+-nodes by adding a memory-region property to the device node.
+-
+-memory-region (optional) - phandle, specifier pairs to children of /reserved-memory
+-memory-region-names (optional) - a list of names, one for each corresponding
+-  entry in the memory-region property
+-
+-Example
+--------
+-This example defines 3 contiguous regions are defined for Linux kernel:
+-one default of all device drivers (named linux,cma@72000000 and 64MiB in size),
+-one dedicated to the framebuffer device (named framebuffer@78000000, 8MiB), and
+-one for multimedia processing (named multimedia-memory@77000000, 64MiB).
+-
+-/ {
+-	#address-cells = <1>;
+-	#size-cells = <1>;
+-
+-	memory {
+-		reg = <0x40000000 0x40000000>;
+-	};
+-
+-	reserved-memory {
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		ranges;
+-
+-		/* global autoconfigured region for contiguous allocations */
+-		linux,cma {
+-			compatible = "shared-dma-pool";
+-			reusable;
+-			size = <0x4000000>;
+-			alignment = <0x2000>;
+-			linux,cma-default;
+-		};
+-
+-		display_reserved: framebuffer@78000000 {
+-			reg = <0x78000000 0x800000>;
+-		};
+-
+-		multimedia_reserved: multimedia@77000000 {
+-			compatible = "acme,multimedia-memory";
+-			reg = <0x77000000 0x4000000>;
+-		};
+-	};
+-
+-	/* ... */
+-
+-	fb0: video@12300000 {
+-		memory-region = <&display_reserved>;
+-		/* ... */
+-	};
+-
+-	scaler: scaler@12500000 {
+-		memory-region = <&multimedia_reserved>;
+-		/* ... */
+-	};
+-
+-	codec: codec@12600000 {
+-		memory-region = <&multimedia_reserved>;
+-		/* ... */
+-	};
 -};
-diff --git a/Documentation/devicetree/bindings/sound/simple-audio-amplifier.yaml b/Documentation/devicetree/bindings/sound/simple-audio-amplifier.yaml
+diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
 new file mode 100644
-index 000000000000..26379377a7ac
+index 000000000000..b61527f11953
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/simple-audio-amplifier.yaml
-@@ -0,0 +1,45 @@
++++ b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
+@@ -0,0 +1,167 @@
 +# SPDX-License-Identifier: GPL-2.0
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/sound/simple-audio-amplifier.yaml#
++$id: http://devicetree.org/schemas/reserved-memory/reserved-memory.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Simple Audio Amplifier Device Tree Bindings
++title: /reserved-memory Node
 +
 +maintainers:
-+  - Jerome Brunet <jbrunet@baylibre.com>
++  - Devicetree Specification Mailing List <devicetree-spec@vger.kernel.org>
++
++description: >
++  Reserved memory is specified as a node under the /reserved-memory node. The
++  operating system shall exclude reserved memory from normal usage one can
++  create child nodes describing particular reserved (excluded from normal use)
++  memory regions. Such memory regions are usually designed for the special
++  usage by various device drivers.
 +
 +properties:
-+  compatible:
-+    enum:
-+      - dioo,dio2125
-+      - simple-audio-amplifier
++  $nodename:
++    const: reserved-memory
 +
-+  enable-gpios:
-+    maxItems: 1
++  "#address-cells": true
++  "#size-cells": true
++  ranges: true
 +
-+  VCC-supply:
++patternProperties:
++  "^(?!(ranges))[a-z,-]*(@[0-9]+)?$":
++    type: object
++
 +    description: >
-+      power supply for the device
++      Each child of the reserved-memory node specifies one or more regions of
++      reserved memory. Each child node may either use a 'reg' property to
++      specify a specific range of reserved memory, or a 'size' property with
++      optional constraints to request a dynamically allocated block of memory.
 +
-+  sound-name-prefix:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: >
-+      See ./name-prefix.txt
++      Following the generic-names recommended practice, node names should
++      reflect the purpose of the node (ie. "framebuffer" or "dma-pool"). Unit
++      address (@<address>) should be appended to the name if the node is a
++      static allocation.
 +
-+required:
-+  - compatible
++    properties:
++      reg: true
 +
-+additionalProperties: false
++      size:
++        $ref: /schemas/types.yaml#/definitions/uint32-array
++        description: >
++          Length based on parent's \#size-cells. Size in bytes of memory to
++          reserve.
++
++      alignment:
++        $ref: /schemas/types.yaml#/definitions/uint32-array
++        description: >
++          Length based on parent's \#size-cells. Address boundary for
++          alignment of allocation.
++
++      alloc-ranges:
++        $ref: /schemas/types.yaml#/definitions/uint32-array
++        description: >
++          Address and Length pairs. Specifies regions of memory that are
++          acceptable to allocate from.
++
++      compatible:
++        oneOf:
++          - const: shared-dma-pool
++            description: >
++              This indicates a region of memory meant to be used as a shared
++              pool of DMA buffers for a set of devices. It can be used by an
++              operating system to instantiate the necessary pool management
++              subsystem if necessary.
++
++          # Vendor-specific compatibles in the form <vendor>,[<device>-]<usage>
++          - const: mediatek,trustzone-bootinfo
++
++      no-map:
++        type: boolean
++        description: >
++          Indicates the operating system must not create a virtual mapping of
++          the region as part of its standard mapping of system memory, nor
++          permit speculative access to it under any circumstances other than
++          under the control of the device driver using the region.
++
++      reusable:
++        type: boolean
++        description: >
++          The operating system can use the memory in this region with the
++          limitation that the device driver(s) owning the region need to be
++          able to reclaim it back. Typically that means that the operating
++          system can use that region to store volatile or cached data that
++          can be otherwise regenerated or migrated elsewhere.
++
++      linux,cma-default:
++        type: boolean
++        description: >
++          If this property is present, then Linux will use the region for the
++          default pool of the contiguous memory allocator.
++
++      linux,dma-default:
++        type: boolean
++        description: >
++          If this property is present, then Linux will use the region for the
++          default pool of the consistent DMA allocator.
++
++    allOf:
++      - if:
++          required:
++            - no-map
++
++        then:
++          not:
++            required:
++              - reusable
++
++      - if:
++          required:
++            - reusable
++
++        then:
++          not:
++            required:
++              - no-map
++
++    oneOf:
++      - required:
++          - reg
++
++      - required:
++          - size
++
++    additionalProperties: true
++
++additionalProperties: true
 +
 +examples:
 +  - |
-+    #include <dt-bindings/gpio/meson8-gpio.h>
++      / {
++          #address-cells = <1>;
++          #size-cells = <1>;
++          model = "MediaTek MT2701 evaluation board";
++          compatible = "mediatek,mt2701-evb", "mediatek,mt2701";
 +
-+    analog-amplifier {
-+        compatible = "simple-audio-amplifier";
-+        VCC-supply = <&regulator>;
-+        enable-gpios = <&gpio GPIOH_3 0>;
-+    };
++          reserved-memory {
++              #address-cells = <1>;
++              #size-cells = <1>;
++              ranges;
++
++              /* global autoconfigured region for contiguous allocations */
++              linux,cma {
++                  compatible = "shared-dma-pool";
++                  reusable;
++                  size = <0x4000000>;
++                  alignment = <0x2000>;
++                  linux,cma-default;
++              };
++
++              display_reserved: framebuffer@78000000 {
++                  reg = <0x78000000 0x800000>;
++              };
++
++              trustzone-bootinfo@80002000 {
++                  compatible = "mediatek,trustzone-bootinfo";
++                  reg = <0x80002000 0x1000>;
++              };
++          };
++      };
 +
 +...
 -- 
