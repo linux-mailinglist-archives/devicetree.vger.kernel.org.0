@@ -2,96 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C10613D178A
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 22:09:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DF1F3D1796
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 22:10:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239655AbhGUT2V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 15:28:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49588 "EHLO
+        id S240380AbhGUT3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 15:29:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232837AbhGUT2U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 15:28:20 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D53ABC061575;
-        Wed, 21 Jul 2021 13:08:56 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id f10-20020a05600c4e8ab029023e8d74d693so1654766wmq.3;
-        Wed, 21 Jul 2021 13:08:56 -0700 (PDT)
+        with ESMTP id S240344AbhGUT3E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 15:29:04 -0400
+Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E1F0C0613CF
+        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 13:09:40 -0700 (PDT)
+Received: by mail-ot1-x330.google.com with SMTP id 59-20020a9d0ac10000b0290462f0ab0800so3182457otq.11
+        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 13:09:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=2Axto6lQ2+nrph0X1bVranPKMH1bIvsVkx0NZvngC7c=;
-        b=FGd5xGSWm0HOZejRS1CKbRrRfp4f9OHkviymUztPGVbz8lkVywuQ7yhPIRWCEZpgMZ
-         a7Ds/jC9ijZdOXK8sSDPMWNa3mTlb7Qm9XCuszQABm/J1XwZ1f3vjPYYUfYOSTe32Dhi
-         7vIRno6xrQc6v+a0RDvfAm4Qc1hdjD98etLR2K0ydNSAKFVKxUQyQTBj0D9KRWfHDbwm
-         +UFsh+smhf8xmlElCwoQgwchFZV3mgzQ3I+lcUWPoiMsduK240RGJMRHzs8bCPHxX7Ew
-         jVigodWydTAnkGJhcZAM96eMq6QLeonxEl46oInEw6TdJe851er/Ic8848iiDAojuQKR
-         z9yA==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ryhmjqV2eKLpoirk/rnB/jmjc8Sw5eUN/kn6KkHMSG8=;
+        b=f0V8sZc4aqzvTzm9SSyhFzpvTL6ZdbVxPHsnzMtxQXlcraRxoiKzAZYUxg1zQwSw0L
+         0t4aBZCwG3QntHJ9LRlAimJWvfxMAU79KZMV6rNopHZb+wI3BjQxhxb6zZ9MbyMmLz/K
+         5puTHinQ8S3T01ksLF63skMaFBcnizWmH9zM0DUWtkZ/I5qRcjVXZQfuFGP1nr9I4kCk
+         h9l9QMx8FExuaYAHmgnlfrOxarqJ1RNdIjLP01lXcV3Qherns4JHvRqCam3cwqEk5JSf
+         wLuGPWm+XbxRoEEVkPbJb5r0jR6y8KTtPriJAR6NomLoou0BKAiRUdAqCS40y9o7qSwi
+         L2Jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=2Axto6lQ2+nrph0X1bVranPKMH1bIvsVkx0NZvngC7c=;
-        b=n/zBQUsdjjmeSmPxZZwb34PXWTmgDICebmNRdM0YoVqxvJWlRfOH3uP6R3hk/SBEpi
-         vgMaYbSnV9h/AuYB0cims6TbrK/MKtQvfhbfrsl9v4hKCwmCbncGScKqAMe9MtpE9RSq
-         GTYSvofAcI+esg+vZKlCkuu0s/v16vjpsf4L2LlQWVyS8xIhRHxBQs7L6jL6hTCMgd1U
-         Cy+fPFhCidUZB7733SnG5WuSaVFg0nQEMvLFHlhfKmCqZOC3A5H+rN207qv6GpY4cEnc
-         ZYeIuwObecdn9dvkz5TPY4EJDMO+PKqyVgjtL2oioIaqvHEOOj/myuk76FU7L1kvkB34
-         YDig==
-X-Gm-Message-State: AOAM531uRn1rZD35ILqEP+w5Emb7vkTt87v6ecZbv3ORgKVXjuDTUL3y
-        kW2X2R6QtITb8oUqwhF9XUM=
-X-Google-Smtp-Source: ABdhPJxRAR2ME7BbdLUxY5mKNVXe30C/6s/O5OXZ4H9yrWvG9+kuPhZAAzOgl/uqFIZxl0lirjWmtA==
-X-Received: by 2002:a05:600c:b47:: with SMTP id k7mr40127576wmr.155.1626898135054;
-        Wed, 21 Jul 2021 13:08:55 -0700 (PDT)
-Received: from kista.localdomain (cpe-86-58-46-198.static.triera.net. [86.58.46.198])
-        by smtp.gmail.com with ESMTPSA id k24sm28927162wrh.30.2021.07.21.13.08.54
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ryhmjqV2eKLpoirk/rnB/jmjc8Sw5eUN/kn6KkHMSG8=;
+        b=b9XYS3Os8cLBo8qLeC1aId/BsKyyA9R27Y4RfMkKLUACHucMOIC5YTdMzFPqlzKrFK
+         +LVgCVeL2bVyml9lrpBhj2wNvPTrfCcJsMpwLMcAQ5+CkGnly7lqWjcpVsqG2sQScCOH
+         PGd7elQQ70pkD8VLbV8QlQ6FIq6MnezGpZGFo64jCUMWoLhKWSlJZMDtG4VCd5bPbAo9
+         SxM/NTB4LJms0cOKx753TQcxjuYd0wZ+E4uCUVWsjT43fzpvkBfKH8Lo38eY0JtFPoJ3
+         cc/8wLD0JT9GKGLzo6y1emrYfBtDF05+P9biAlOsB1vTnFc0Lq0lNa98uAYK6y7rvwpd
+         cCNA==
+X-Gm-Message-State: AOAM530L6HotLcPS8CwST5S6Ay+B+lyYnnmO1jBnt1ctD3zYF3qn39dP
+        jj1x6cZbYP6CGOfSMsbv3xkD6A==
+X-Google-Smtp-Source: ABdhPJx/FxM5/zumxzNaWfIehVZW2nKUlw7DpxOp2p3sgrCBOL4NDneF4Gn+AdrfqtxLQvtaMfgcJw==
+X-Received: by 2002:a9d:5e15:: with SMTP id d21mr28331811oti.280.1626898179791;
+        Wed, 21 Jul 2021 13:09:39 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id o26sm4900456otk.77.2021.07.21.13.09.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jul 2021 13:08:54 -0700 (PDT)
-From:   Jernej Skrabec <jernej.skrabec@gmail.com>
-To:     mripard@kernel.org, wens@csie.org
-Cc:     robh+dt@kernel.org, jernej.skrabec@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: allwinner: h6: tanix-tx6: enable emmc
-Date:   Wed, 21 Jul 2021 22:08:32 +0200
-Message-Id: <20210721200832.916644-3-jernej.skrabec@gmail.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210721200832.916644-1-jernej.skrabec@gmail.com>
-References: <20210721200832.916644-1-jernej.skrabec@gmail.com>
+        Wed, 21 Jul 2021 13:09:39 -0700 (PDT)
+Date:   Wed, 21 Jul 2021 15:09:37 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        John Stultz <john.stultz@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Amit Pundir <amit.pundir@linaro.org>
+Subject: Re: [PATCH 29/29] arm64: dts: qcom: Harmonize DWC USB3 DT nodes name
+Message-ID: <YPh/AS5svBk+gddY@yoga>
+References: <20201020115959.2658-1-Sergey.Semin@baikalelectronics.ru>
+ <20201020115959.2658-30-Sergey.Semin@baikalelectronics.ru>
+ <CALAqxLX_FNvFndEDWtGbFPjSzuAbfqxQE07diBJFZtftwEJX5A@mail.gmail.com>
+ <20210714124807.o22mottsrg3tv6nt@mobilestation>
+ <YPfPDqJhfzbvDLvB@kroah.com>
+ <20210721100220.ddfxwugivsndsedv@mobilestation>
+ <YPf29+ewbrYgHxRP@kroah.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YPf29+ewbrYgHxRP@kroah.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Tanix TX6 has 32 GiB eMMC. Add a node for it.
+On Wed 21 Jul 05:29 CDT 2021, Greg Kroah-Hartman wrote:
 
-Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
----
- arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+> On Wed, Jul 21, 2021 at 01:02:20PM +0300, Serge Semin wrote:
+> > Hi Greg,
+> > @Krzysztof, @Rob, please join the discussion so to finally get done
+> > with the concerned issue.
+> > 
+> > On Wed, Jul 21, 2021 at 09:38:54AM +0200, Greg Kroah-Hartman wrote:
+> > > On Wed, Jul 14, 2021 at 03:48:07PM +0300, Serge Semin wrote:
+> > > > Hello John,
+> > > > 
+> > > > On Tue, Jul 13, 2021 at 05:07:00PM -0700, John Stultz wrote:
+> > > > > On Tue, Oct 20, 2020 at 5:10 AM Serge Semin
+> > > > > <Sergey.Semin@baikalelectronics.ru> wrote:
+> > > > > >
+> > > > > > In accordance with the DWC USB3 bindings the corresponding node
+> > > > > > name is suppose to comply with the Generic USB HCD DT schema, which
+> > > > > > requires the USB nodes to have the name acceptable by the regexp:
+> > > > > > "^usb(@.*)?" . Make sure the "snps,dwc3"-compatible nodes are correctly
+> > > > > > named.
+> > > > > >
+> > > > > > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > > > > 
+> > > > 
+> > > > > I know folks like to ignore this, but this patch breaks AOSP on db845c. :(
+> > > > 
+> > > > Sorry to hear that. Alas there is no much can be done about it.
+> > > 
+> > > Yes there is, we can revert the change.  We do not break existing
+> > > configurations, sorry.
+> > 
+> > By reverting this patch we'll get back to the broken dt-bindings
+> > since it won't comply to the current USB DT-nodes requirements
+> > which at this state well describe the latest DT spec:
+> > https://github.com/devicetree-org/devicetree-specification/releases/tag/v0.3
+> > Thus the dtbs_check will fail for these nodes.
+> > 
+> > Originally this whole patchset was connected with finally getting the
+> > DT-node names in order to comply with the standard requirement and it
+> > was successful mostly except a few patches which still haven't been
+> > merged in.
+> > 
+> > Anyway @Krzysztof has already responded to the complain regarding this
+> > issue here:
+> > https://lore.kernel.org/lkml/20201221210423.GA2504@kozik-lap/
+> > but noone cared to respond on his reasonable questions in order to
+> > get to a suitable solution for everyone. Instead we are
+> > getting another email with the same request to revert the changes.
+> > Here is the quote from the Krzysztof email so we could continue the
+> > discussion:
+> > 
+> > On Mon, 21 Dec 2020 13:04:27 -0800 (PST), Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > > On Mon, Dec 21, 2020 at 12:24:11PM -0800, John Stultz wrote:
+> > > > On Sat, Dec 19, 2020 at 3:06 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > > > > ...
+> > > > >
+> > > > > The node names are not part of an ABI, are they? I expect only
+> > > > > compatibles and properties to be stable. If user-space looks for
+> > > > > something by name, it's a user-space's mistake.  Not mentioning that you
+> > > > > also look for specific address... Imagine remapping of addresses with
+> > > > > ranges (for whatever reason) - AOSP also would be broken? Addresses are
+> > > > > definitely not an ABI.
+> > > > 
+> > > > Though that is how it's exported through sysfs.
+> > > 
+> > > The ABI is the format of sysfs file for example in /sys/devices. However
+> > > the ABI is not the exact address or node name of each device.
+> > > 
+> > > > In AOSP it is then used to setup the configfs gadget by writing that
+> > > > value into /config/usb_gadget/g1/UDC.
+> > > > 
+> > > > Given there may be multiple controllers on a device, or even if its
+> > > > just one and the dummy hcd driver is enabled, I'm not sure how folks
+> > > > reference the "right" one without the node name?
+> > > 
+> > > I think it is the same type of problem as for all other subsystems, e.g.
+> > > mmc, hwmon/iio.  They usually solve it either with aliases or with
+> > > special property with the name/label.
+> > > 
+> > > > I understand the fuzziness with sysfs ABI, and I get that having
+> > > > consistent naming is important, but like the eth0 -> enp3s0 changes,
+> > > > it seems like this is going to break things.
+> > > 
+> > > One could argue whether interface name is or is not ABI. But please tell
+> > > me how the address of a device in one's representation (for example DT)
+> > > is a part of a stable interface?
+> > > 
+> > > > Greg? Is there some better way AOSP should be doing this?
+> > > 
+> > > If you need to find specific device, maybe go through the given bus and
+> > > check compatibles?
+> > > 
+> > > Best regards,
+> > > Krzysztof
+> > 
+> > So the main question is how is the DT-node really connected with ABI
+> > and is supposed to be stable in that concern?
+> > 
+> > As I see it even if it affects the configfs node name, then we may
+> > either need to break that connection and somehow deliver DT-node-name
+> > independent interface to the user-space or we have no choice but to
+> > export the node with an updated name and ask of user-space to deal
+> > with it. In both suggested cases the DT-node name will still conform
+> > to the USB-node name DT spec. Currently we are at the second one.
+> 
+> I really do not care what you all decide on, but you CAN NOT break
+> existing working systems, sorry.  That is why I have reverted this
+> change in my tree and will send it to Linus soon.
+> 
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
-index a1dd8f472cc8..c23b7c37406b 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
-@@ -98,6 +98,16 @@ &mmc0 {
- 	status = "okay";
- };
- 
-+&mmc2 {
-+	vmmc-supply = <&reg_vcc3v3>;
-+	vqmmc-supply = <&reg_vcc1v8>;
-+	bus-width = <8>;
-+	non-removable;
-+	cap-mmc-hw-reset;
-+	mmc-hs200-1_8v;
-+	status = "okay";
-+};
-+
- &ohci0 {
- 	status = "okay";
- };
--- 
-2.32.0
+Which tree did you revert this in? 5.13.stable?)
 
+I'm onboard with us reverting this, but for any 5.14-rc and 5.15 this
+will conflict badly with the qcom tree, so I much rather take the revert
+in my tree - than have Linus run into this mess down the road.
+
+For stable, I don't mind if you merge something...Perhaps you can point
+me to your revert and I can pick it up in my tree?
+
+Regards,
+Bjorn
