@@ -2,55 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1169A3D0870
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 07:43:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CF6C3D0877
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 07:45:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233003AbhGUFCo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 01:02:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49356 "EHLO
+        id S233072AbhGUFFH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 01:05:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233167AbhGUFCf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 01:02:35 -0400
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACBEFC061767
-        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 22:43:07 -0700 (PDT)
-Received: by mail-oi1-x231.google.com with SMTP id y66so1726487oie.7
-        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 22:43:07 -0700 (PDT)
+        with ESMTP id S233291AbhGUFEY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 01:04:24 -0400
+Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C556C0613DB
+        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 22:44:58 -0700 (PDT)
+Received: by mail-oi1-x229.google.com with SMTP id u11so1769996oiv.1
+        for <devicetree@vger.kernel.org>; Tue, 20 Jul 2021 22:44:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=hf6xnyfDVscdnIm8e7vP+O/z70LiWfZSeXYc2Hpl7+w=;
-        b=E4800xZKn+NlHsQnmsuVG/meEmTucGlq57gF16OMqcSd0n/WDSZI8WYMQlLDYud2c1
-         UksJe1i6LAR0beBLUSWnB5wf6wGMss2ET70L3tJdVp3fy97KNRxmvxLbYrhW15SE21WZ
-         QxMBzZyP0628qUAMQAeGRAXdBPxyvpwEY8rHw=
+        bh=OZ+eKXyM6tJgPfiMyzHLbhC2Gq2GeuohG8n3p1aQmww=;
+        b=a3ltlIFw3PDaPGWCtUL30D2NpHapO5Ew/TlfmUCEZKmzpGNEwGkbUPHe6vnMTnS3T3
+         SRzQtCjriEnnevgAxqb6+5turJkmn7YkBhK9zRjTD10ejpbCW4Giv3aLNrQHV/3PwCQv
+         cjwUI5lGJC+bixz1gLOaXL3vtrin4B8En2Xq8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=hf6xnyfDVscdnIm8e7vP+O/z70LiWfZSeXYc2Hpl7+w=;
-        b=SCh7MDqGNpXNCjtfTAdFlzpVGFnYUauej/7wejI+Zfh12TZVAKkxasdKm87GtKMS4w
-         v5YE61fwU7KOYA5rqRjzFgSBaG6+esYYy8bBQWTjdGlmg19Ltc+I+yGHT6hLcEtTu181
-         zxEOZOwYrYHk5qY4+spDlKrCayNitsdrdWwN+XYP1x7MX2/ke5RtyjMUKr9wAWxlZBa9
-         i7GrgATe0a6lJ+vvomBbhGcWc+8Z7PO89JmKdoCZlATtO/AbyYta0YqbDCc17DFGgC6i
-         +9yZsneB002tl8JptehyZpfJNP17C2xjrqDpFeRuaHGcPUV4gGM9CcJiferZGhdOoXQG
-         klRA==
-X-Gm-Message-State: AOAM530839cJMOb2Rkme8m807RaN9SJH078aiJ9Ap8KeIyg2e2UhSOSt
-        2DrvPvIi4kiNc2mN89p9pUklRFLPencCMRn43zdoOA==
-X-Google-Smtp-Source: ABdhPJyhZM62w2HxLyrWYJERIKW0NCE7R9SVmmZHO4rQTZuOycq38dOFGmHxqXcA6yNvQkyQaqSc8x7Mz3BzfO4EovI=
-X-Received: by 2002:aca:4dc6:: with SMTP id a189mr1525356oib.166.1626846187144;
- Tue, 20 Jul 2021 22:43:07 -0700 (PDT)
+        bh=OZ+eKXyM6tJgPfiMyzHLbhC2Gq2GeuohG8n3p1aQmww=;
+        b=lXyqbQxYr+iQeFctyseuFzd74SRb1XY/Wnfn2FidHQRS6/qxB49W85PrvVssydRAG4
+         UJz7WQ8K4qMx7zlRNeXfX+B+Ol4iKytgskUcKUCZBTKRLA9guF5qPKZMUmITdZvFy/Uy
+         wkp3kBcdfoQGCnEwBHalJkYHX1+jtTRAFLmetkQcJRumArAfGXalUDnMYj+wgGqR+opD
+         zvec4yT9bCqe2QXfBuxsDvWd+mSwhJByz8toVweD1u1fVOWFgxXjr8+ofwCp7Uxfksc5
+         3OJ2bobYdr7VOCCPPFOZgludhD7Vd7bKWSrc5+pmDvxp/gox/vO8wFUurBXmbF04Q/KV
+         oTkA==
+X-Gm-Message-State: AOAM532r8y5jS5PuTDaRG8NKVPrU9/sxEOPi38vGvbexJqNLcB9PJdy4
+        tDA/kOaYbVeXRZyPjMt2nzAfeGGveUK9n3QStzq2fw==
+X-Google-Smtp-Source: ABdhPJyGZbF5q862hBiaxTRq3Av5De0RIunb58CNjCEgt4NMQAmb8EQUvqsGkvMKuQY34ShS7h5O9N404r3ozTEhOl8=
+X-Received: by 2002:a05:6808:114a:: with SMTP id u10mr4804173oiu.19.1626846298050;
+ Tue, 20 Jul 2021 22:44:58 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 21 Jul 2021 05:43:06 +0000
+ HTTPREST; Wed, 21 Jul 2021 05:44:57 +0000
 MIME-Version: 1.0
-In-Reply-To: <1626775980-28637-8-git-send-email-sibis@codeaurora.org>
-References: <1626775980-28637-1-git-send-email-sibis@codeaurora.org> <1626775980-28637-8-git-send-email-sibis@codeaurora.org>
+In-Reply-To: <1626775980-28637-9-git-send-email-sibis@codeaurora.org>
+References: <1626775980-28637-1-git-send-email-sibis@codeaurora.org> <1626775980-28637-9-git-send-email-sibis@codeaurora.org>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.9.1
-Date:   Wed, 21 Jul 2021 05:43:06 +0000
-Message-ID: <CAE-0n53We+CzBFpzdN7pGgrjqeALmJO4dgHVtc0JVQw+Jw+u+g@mail.gmail.com>
-Subject: Re: [PATCH v2 07/10] arm64: dts: qcom: sc7280: Add/Delete/Update
- reserved memory nodes
+Date:   Wed, 21 Jul 2021 05:44:57 +0000
+Message-ID: <CAE-0n50HwmuYWnqs9TYJYEoB=-BV8Bbz+AMUUy5t9dtN1jSsjA@mail.gmail.com>
+Subject: Re: [PATCH v2 08/10] arm64: dts: qcom: sc7280: Add nodes to boot modem
 To:     Sibi Sankar <sibis@codeaurora.org>, bjorn.andersson@linaro.org,
         mka@chromium.org, robh+dt@kernel.org,
         saiprakash.ranjan@codeaurora.org, will@kernel.org
@@ -65,10 +64,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Sibi Sankar (2021-07-20 03:12:57)
-> Add, delete and update platform specific reserved memory nodes.
+Quoting Sibi Sankar (2021-07-20 03:12:58)
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 5ed7a511bfc9..3fb6a6ef39f8 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -1219,6 +1224,21 @@
+>                         };
+>                 };
 >
-> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
-> ---
+> +               imem@146aa000 {
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+is sram a more appropriate node name here? Is imem a generic node name
+in DT spec?
+
+> +                       compatible = "syscon", "simple-mfd";
+> +                       reg = <0 0x146aa000 0 0x2000>;
+> +
+> +                       #address-cells = <2>;
+> +                       #size-cells = <2>;
+> +
+> +                       ranges = <0 0x0 0 0x146aa000 0 0x2000>;
+> +
+> +                       pil-reloc@94c {
+> +                               compatible = "qcom,pil-reloc-info";
+> +                               reg = <0 0x94c 0 0xc8>;
+> +                       };
+> +               };
+> +
