@@ -2,71 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 296823D10BB
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 16:05:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B92993D10BC
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 16:05:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237527AbhGUNZL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 09:25:11 -0400
-Received: from out3-smtp.messagingengine.com ([66.111.4.27]:51767 "EHLO
+        id S238570AbhGUNZN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 09:25:13 -0400
+Received: from out3-smtp.messagingengine.com ([66.111.4.27]:48983 "EHLO
         out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234757AbhGUNZL (ORCPT
+        by vger.kernel.org with ESMTP id S234757AbhGUNZM (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Jul 2021 09:25:11 -0400
+        Wed, 21 Jul 2021 09:25:12 -0400
 Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id 943B25C0140;
-        Wed, 21 Jul 2021 10:05:47 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Wed, 21 Jul 2021 10:05:47 -0400
+        by mailout.nyi.internal (Postfix) with ESMTP id 4CE0F5C021F;
+        Wed, 21 Jul 2021 10:05:49 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Wed, 21 Jul 2021 10:05:49 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm3; bh=XUFy7HGzoNamF
-        DNeqWWt+O726CeLlPdzxeqVacxyPcY=; b=iywCHRDcfZcwHfUHcxF+8fCauL5gy
-        ovHRvaJLyBusHk7CKPkSc/6TtxZ8SyRZAoiMxmfkDCvuPzXzN3EHuxii+++sXz/Z
-        QBdXiLhUoDF7vj32HdC+TYp0ajgEIv6FdYeBG0PkUGur9MCrg/DdaWuCNKN9j/TI
-        j8DJlDnsDrH4w6e4uFh1flCampgcgE5IeE2/rk/wwelYWlpcyTKoyOgtssXdP7HR
-        ROmoVTd2Gq5UwkBlR0pw11MVNxo+MIfQseMMVSFBdawLBA5xYSxwAsQ5QbwH3RSM
-        VkxlAI6AI/oStBYrtmAZWTgdbTYp526xsoyedOlrFOBKblvRLm4LnwSHg==
+        :mime-version:content-transfer-encoding; s=fm3; bh=gpij+AwPaUFES
+        v0M3OmTP46p5qdTmu7eAqWO9NvRP0Q=; b=zwPnwPt8RXIr/9ARtVJvU10LAtC+G
+        oXAu2CBzGSzW/pIqnFAGhKJFytQoOR5SPr69aFewSiz+lMOenOY8BWMJERijIY/1
+        xc+NQI8HRwUNnOxlddW7FIZIJnlM27yGUW7Dfkruvb8JSeA4FRrvAE8I4OatjtP3
+        NmkA4J5Ci5yQazutIMmen5i0IhU6T/U8YBYuMdMLsbFqdWPh0pwQqCPeRuzuMgSo
+        iDsQ8/IGBJ5vCzWxUGWm+05HEXL01Al4sLmTqS4b7utXSq83OIVnC9kjPZLLqu6l
+        XcbRV9g0/RbfUB13/zI08BpkSUm3WgO24tNIC/ovdZJnXwfN3IWZmU5/w==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:date:from
         :in-reply-to:message-id:mime-version:references:subject:to
         :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=XUFy7HGzoNamFDNeqWWt+O726CeLlPdzxeqVacxyPcY=; b=g+42Nr53
-        WRrr93iQfVjc+y/h3x45w2rbBjCFYyPkRalC3rMiJbfvobEej/MB2RM0PfE5IsU7
-        v/3PYuG7FX8OYQpXfvEUuzGkVvefmSh3qL7LKe0xb+5DMwCHdANKKM0cpG+IAg/u
-        Z8qSN60Va4dXHvr6PJLwlnBUHeGZgZ5EgChkj/ksQnTLly1s2Bo7HM/mqx1QFaZV
-        SFi4s5M8/xa9YyRd5CeE05tgxB6QEulxUlq2Wc1RAbmDt3Me857U+AzqadT2QMam
-        1vd1bHkB85GdXBLpabWRurkG68UFDj23/rXj+61nQkaCZEVAMkMwchU1WxL/HOYN
-        AT3fxlAAbauWMw==
-X-ME-Sender: <xms:uin4YA2B-2hz0vVtKRJ3lKFhxPvRjOx3OlqjIR-_g3XxL-3Pyv63kA>
-    <xme:uin4YLG8-S6DZp3k0JgLbGWFeLTnpPqCa_nUiu-JBjhI2PshWqYS1A_yw2njlz7Wa
-    t4KnFEKZ_YeRvZNAIk>
-X-ME-Received: <xmr:uin4YI61aMj4b32IQ_TBdfc-PKtLosX5XTxpIXdJX8A5gDwyxky6Lf95E2VQtruda09EUXELTSo-31PWHC9_Fw5Vd-7pMBq2X_xz>
+        fm3; bh=gpij+AwPaUFESv0M3OmTP46p5qdTmu7eAqWO9NvRP0Q=; b=gAiARBrd
+        1hCA16NoYt63YaV5C6OerLZwzuKnajrAUNWQoDKPBn+VPl1FzvU48nRq51bexDMR
+        md+jOSaavztLayxt4YcvKkKYoCztST2ku8s+jGjfRxvgymka1UQe2mQiPcwwJ5pv
+        6vqFU5ZIuPsbBOwpVW67BL5Dqe3Rk8e8pjE9EnNOqLtwiWqkz9OaQsZ5opJZNWW4
+        HwiFBvuaA291+I+qy9ICIo4AwRJoBA6LeBHKY+MhFqbRhIi3EUmSl/wMGDPCLgKQ
+        cY0J7EnskeQH+4dJLxG2luzv4n4jlsSD5Z3U/Yv/rO0V651zQDBFC3Y8Jk7Pl/pX
+        bcQNZnp2oacCZg==
+X-ME-Sender: <xms:vSn4YLDv1b63eACNezuKyQrF6uOLPg-yIV_4dTMXq5sEXdvO9VDrxQ>
+    <xme:vSn4YBhKpVS2_og-E9RMXc3p2vskMOe8b4MBT9o1cZwqT2eF5rjEdqDa0py1uS1Mr
+    KFtygoMv6IhUg2ZjVg>
+X-ME-Received: <xmr:vSn4YGl0cqB6Dh5oUwqtj4BHbcwxIbjfbR5y9nYJD4ZQJtJzZH65a2e6hqNJJc6kU_Ref8-swvkba-PuRypU8O_2-xTVTNlh0RXf>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeeggdeijecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenog
-    evohgrshhtrghlqdfhgeduvddqtddvucdludehtddmnecujfgurhephffvufffkffojghf
-    ggfgsedtkeertdertddtnecuhfhrohhmpeforgigihhmvgcutfhiphgrrhguuceomhgrgi
-    himhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvghrnhepveejieejtdevgfff
-    gfejuefggfeutdelteekgeetueeftddutddtgfffhffgueffnecuffhomhgrihhnpeguvg
-    hvihgtvghtrhgvvgdrohhrghenucevlhhushhtvghrufhiiigvpeejnecurfgrrhgrmhep
-    mhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:uin4YJ1Nfi9JSwzeEOOC-mey1dCkXkDQ60m9podao8VSDHN3jVoEIw>
-    <xmx:uin4YDHegaEZ0wBKdI8o9QWUtwHVCC_N3qbzlVtHKva_15PLZi6FHw>
-    <xmx:uin4YC89_kUzaxEgJbkXa-Ibu1WOSjWeNQaiwepUiLRsQYFbfi7dDQ>
-    <xmx:uyn4YJYdCHCTsU6cT83tEm-D514fi2-B1hxjzGd-xz3zgLIIa1OwZQ>
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpedvkeelveefffekjefhffeuleetleefudeifeehuddugffghffhffehveevheeh
+    vdenucevlhhushhtvghrufhiiigvpeegnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
+    igihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:vSn4YNxSAcl0cYaAL378KKkPm6N2dFlZZaNWWcj11A0q7-N3TkYVpw>
+    <xmx:vSn4YAS0FS1bH7WElnQVsxO2ettjVWKutjjyN_bk4obcRuuiJvLIjg>
+    <xmx:vSn4YAbaj55TVayw2mqJcR4cL346JoBdNimaZGeDUwwiQHjAw743sw>
+    <xmx:vSn4YPGgXmfe-yGD6I3M5bKsCsu1yUBuwEUjrErwJEzAIBZDl8UpOQ>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 21 Jul 2021 10:05:46 -0400 (EDT)
+ 21 Jul 2021 10:05:48 -0400 (EDT)
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <maxime@cerno.tech>,
         Jernej Skrabec <jernej.skrabec@siol.net>,
         devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        Daniel Mack <zonque@gmail.com>,
-        Evgeniy Polyakov <zbr@ioremap.net>
-Subject: [PATCH 38/54] dt-bindings: w1: Convert 1-Wire GPIO binding to a schema
-Date:   Wed, 21 Jul 2021 16:04:08 +0200
-Message-Id: <20210721140424.725744-39-maxime@cerno.tech>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com
+Subject: [PATCH 39/54] ARM: dts: sunxi: Rename power-supply names
+Date:   Wed, 21 Jul 2021 16:04:09 +0200
+Message-Id: <20210721140424.725744-40-maxime@cerno.tech>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210721140424.725744-1-maxime@cerno.tech>
 References: <20210721140424.725744-1-maxime@cerno.tech>
@@ -76,104 +73,145 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Bitbanged 1-Wire buses are supported by Linux thanks to their device
-tree binding.
+The name of our PMIC power supply names conflict with the generic
+regulator supply check that matches anything called *-supply, including
+the nodes, and then makes sure it's a phandle.
 
-Now that we have the DT validation in place, let's convert the device
-tree bindings for that driver over to a YAML schema.
+A node is obviously not a phandle, so let's change our power supplies
+names to avoid any conflict.
 
-Cc: Daniel Mack <zonque@gmail.com>
-Cc: Evgeniy Polyakov <zbr@ioremap.net>
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 ---
- .../devicetree/bindings/w1/w1-gpio.txt        | 27 ------------
- .../devicetree/bindings/w1/w1-gpio.yaml       | 43 +++++++++++++++++++
- 2 files changed, 43 insertions(+), 27 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/w1/w1-gpio.txt
- create mode 100644 Documentation/devicetree/bindings/w1/w1-gpio.yaml
+ arch/arm/boot/dts/axp209.dtsi             | 6 +++---
+ arch/arm/boot/dts/axp22x.dtsi             | 6 +++---
+ arch/arm/boot/dts/axp81x.dtsi             | 6 +++---
+ arch/arm64/boot/dts/allwinner/axp803.dtsi | 6 +++---
+ 4 files changed, 12 insertions(+), 12 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/w1/w1-gpio.txt b/Documentation/devicetree/bindings/w1/w1-gpio.txt
-deleted file mode 100644
-index 3d6554eac240..000000000000
---- a/Documentation/devicetree/bindings/w1/w1-gpio.txt
-+++ /dev/null
-@@ -1,27 +0,0 @@
--w1-gpio devicetree bindings
--
--Required properties:
--
-- - compatible: "w1-gpio"
-- - gpios: one or two GPIO specs:
--		- the first one is used as data I/O pin
--		- the second one is optional. If specified, it is used as
--		  enable pin for an external pin pullup.
--
--Optional properties:
--
-- - linux,open-drain: if specified, the data pin is considered in
--		     open-drain mode.
--
--Also refer to the generic w1.txt document.
--
--Examples:
--
--	onewire {
--		compatible = "w1-gpio";
--		gpios = <&gpio 0 GPIO_ACTIVE_HIGH>;
--
--		battery {
--			// ...
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/w1/w1-gpio.yaml b/Documentation/devicetree/bindings/w1/w1-gpio.yaml
-new file mode 100644
-index 000000000000..4a780a988718
---- /dev/null
-+++ b/Documentation/devicetree/bindings/w1/w1-gpio.yaml
-@@ -0,0 +1,43 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/w1/w1-gpio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Bitbanged GPIO 1-Wire Bus Device Tree Bindings
-+
-+maintainers:
-+  - Daniel Mack <zonque@gmail.com>
-+
-+properties:
-+  compatible:
-+    const: w1-gpio
-+
-+  gpios:
-+    minItems: 1
-+    maxItems: 2
-+    items:
-+      - description: Data I/O pin
-+      - description: Enable pin for an external pull-up resistor
-+
-+  linux,open-drain:
-+    type: boolean
-+    description: >
-+      If specified, the data pin is considered in open-drain mode.
-+
-+required:
-+  - compatible
-+  - gpios
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    onewire {
-+        compatible = "w1-gpio";
-+        gpios = <&gpio 0 GPIO_ACTIVE_HIGH>;
-+    };
-+
-+...
+diff --git a/arch/arm/boot/dts/axp209.dtsi b/arch/arm/boot/dts/axp209.dtsi
+index 0d9ff12bdf28..ca240cd6f6c3 100644
+--- a/arch/arm/boot/dts/axp209.dtsi
++++ b/arch/arm/boot/dts/axp209.dtsi
+@@ -53,7 +53,7 @@ &axp209 {
+ 	interrupt-controller;
+ 	#interrupt-cells = <1>;
+ 
+-	ac_power_supply: ac-power-supply {
++	ac_power_supply: ac-power {
+ 		compatible = "x-powers,axp202-ac-power-supply";
+ 		status = "disabled";
+ 	};
+@@ -69,7 +69,7 @@ axp_gpio: gpio {
+ 		#gpio-cells = <2>;
+ 	};
+ 
+-	battery_power_supply: battery-power-supply {
++	battery_power_supply: battery-power {
+ 		compatible = "x-powers,axp209-battery-power-supply";
+ 		status = "disabled";
+ 	};
+@@ -112,7 +112,7 @@ reg_ldo5: ldo5 {
+ 		};
+ 	};
+ 
+-	usb_power_supply: usb-power-supply {
++	usb_power_supply: usb-power {
+ 		compatible = "x-powers,axp202-usb-power-supply";
+ 		status = "disabled";
+ 	};
+diff --git a/arch/arm/boot/dts/axp22x.dtsi b/arch/arm/boot/dts/axp22x.dtsi
+index 65a07a67aca9..a020c12b2884 100644
+--- a/arch/arm/boot/dts/axp22x.dtsi
++++ b/arch/arm/boot/dts/axp22x.dtsi
+@@ -52,7 +52,7 @@ &axp22x {
+ 	interrupt-controller;
+ 	#interrupt-cells = <1>;
+ 
+-	ac_power_supply: ac-power-supply {
++	ac_power_supply: ac-power {
+ 		compatible = "x-powers,axp221-ac-power-supply";
+ 		status = "disabled";
+ 	};
+@@ -62,7 +62,7 @@ axp_adc: adc {
+ 		#io-channel-cells = <1>;
+ 	};
+ 
+-	battery_power_supply: battery-power-supply {
++	battery_power_supply: battery-power {
+ 		compatible = "x-powers,axp221-battery-power-supply";
+ 		status = "disabled";
+ 	};
+@@ -163,7 +163,7 @@ reg_drivevbus: drivevbus {
+ 		};
+ 	};
+ 
+-	usb_power_supply: usb_power_supply {
++	usb_power_supply: usb-power {
+ 		compatible = "x-powers,axp221-usb-power-supply";
+ 		status = "disabled";
+ 	};
+diff --git a/arch/arm/boot/dts/axp81x.dtsi b/arch/arm/boot/dts/axp81x.dtsi
+index 1dfeeceabf4c..63fb9811b453 100644
+--- a/arch/arm/boot/dts/axp81x.dtsi
++++ b/arch/arm/boot/dts/axp81x.dtsi
+@@ -48,7 +48,7 @@ &axp81x {
+ 	interrupt-controller;
+ 	#interrupt-cells = <1>;
+ 
+-	ac_power_supply: ac-power-supply {
++	ac_power_supply: ac-power {
+ 		compatible = "x-powers,axp813-ac-power-supply";
+ 		status = "disabled";
+ 	};
+@@ -74,7 +74,7 @@ gpio1_ldo: gpio1-ldo {
+ 		};
+ 	};
+ 
+-	battery_power_supply: battery-power-supply {
++	battery_power_supply: battery-power {
+ 		compatible = "x-powers,axp813-battery-power-supply";
+ 		status = "disabled";
+ 	};
+@@ -172,7 +172,7 @@ reg_drivevbus: drivevbus {
+ 		};
+ 	};
+ 
+-	usb_power_supply: usb-power-supply {
++	usb_power_supply: usb-power {
+ 		compatible = "x-powers,axp813-usb-power-supply";
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/allwinner/axp803.dtsi b/arch/arm64/boot/dts/allwinner/axp803.dtsi
+index 10e9186a76bf..61402057e107 100644
+--- a/arch/arm64/boot/dts/allwinner/axp803.dtsi
++++ b/arch/arm64/boot/dts/allwinner/axp803.dtsi
+@@ -10,7 +10,7 @@ &axp803 {
+ 	interrupt-controller;
+ 	#interrupt-cells = <1>;
+ 
+-	ac_power_supply: ac-power-supply {
++	ac_power_supply: ac-power {
+ 		compatible = "x-powers,axp803-ac-power-supply",
+ 			     "x-powers,axp813-ac-power-supply";
+ 		status = "disabled";
+@@ -37,7 +37,7 @@ gpio1_ldo: gpio1-ldo {
+ 		};
+ 	};
+ 
+-	battery_power_supply: battery-power-supply {
++	battery_power_supply: battery-power {
+ 		compatible = "x-powers,axp803-battery-power-supply",
+ 			     "x-powers,axp813-battery-power-supply";
+ 		status = "disabled";
+@@ -147,7 +147,7 @@ reg_drivevbus: drivevbus {
+ 		};
+ 	};
+ 
+-	usb_power_supply: usb-power-supply {
++	usb_power_supply: usb-power {
+ 		compatible = "x-powers,axp803-usb-power-supply",
+ 			     "x-powers,axp813-usb-power-supply";
+ 		status = "disabled";
 -- 
 2.31.1
 
