@@ -2,103 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0B373D164C
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 20:24:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 022E43D1656
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 20:27:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238700AbhGURoF convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 21 Jul 2021 13:44:05 -0400
-Received: from aposti.net ([89.234.176.197]:48802 "EHLO aposti.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236999AbhGURoE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Jul 2021 13:44:04 -0400
-Date:   Wed, 21 Jul 2021 19:24:29 +0100
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH 4/6] iio/adc: ingenic: add JZ4760B support to the sadc
- driver
-To:     citral23 <cbranchereau@gmail.com>
-Cc:     jic23@kernel.org, lars@metafoo.de, linux-mips@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org, linux@roeck-us.net,
-        contact@artur-rojek.eu
-Message-Id: <TSXLWQ.2A9E0DYPFZ8Q1@crapouillou.net>
-In-Reply-To: <20210721105317.36742-5-cbranchereau@gmail.com>
-References: <20210721105317.36742-1-cbranchereau@gmail.com>
-        <20210721105317.36742-5-cbranchereau@gmail.com>
+        id S235826AbhGURqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 13:46:33 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:44236 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232571AbhGURqc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 13:46:32 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 16LIR3pP095852;
+        Wed, 21 Jul 2021 13:27:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1626892023;
+        bh=pTd7WuZgpOyFfFnwPonM+bTOc0AEZfU6jmzQ6bSKOzI=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=GS2McOYWFCcTyzi9kl5sulqHLX2wjntoNhsEKY0pBSP7tUkulE4ceJEbLSUQZbvWe
+         fV3rYj3dZStXsSIMayQw4LjJ7/0mHXnidJNscQiijvPg3v1CoL/PNtF/HuZZdOWRlI
+         Xp1FETN1fyOSLC812FaB69BwAaKxwtjiTzjsT3oc=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 16LIR2AO109675
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 21 Jul 2021 13:27:03 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 21
+ Jul 2021 13:27:02 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 21 Jul 2021 13:27:02 -0500
+Received: from [10.250.100.73] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 16LIQxMU049956;
+        Wed, 21 Jul 2021 13:27:00 -0500
+Subject: Re: [PATCH v2 1/4] arm64: dts: ti: k3-am64-main: Add epwm nodes
+To:     Lokesh Vutla <lokeshvutla@ti.com>, Nishanth Menon <nm@ti.com>,
+        <kristo@kernel.org>
+CC:     Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Vignesh R <vigneshr@ti.com>
+References: <20210721113625.17299-1-lokeshvutla@ti.com>
+ <20210721113625.17299-2-lokeshvutla@ti.com>
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+Message-ID: <1ab1f9c5-845b-a06b-eaf2-1f38ee3abee2@ti.com>
+Date:   Wed, 21 Jul 2021 21:26:58 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20210721113625.17299-2-lokeshvutla@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Christophe,
 
-Le mer., juil. 21 2021 at 12:53:15 +0200, citral23 
-<cbranchereau@gmail.com> a écrit :
-> The JZ4760B variant differs slightly from the JZ4760, in that it has 
-> a bit called VBAT_SEL
-> in the CFG register. In order to correctly sample the battery voltage 
-> on existing handhelds
-> using this SOC, the bit must be cleared.
+
+On 21/07/2021 14:36, Lokesh Vutla wrote:
+> Add DT nodes for all epwm instances present in AM64 SoC.
 > 
-> We leave the possibility to set the bit, by using the 
-> "ingenic,use-internal-divider" in the devicetree.
-> 
-> Signed-off-by: citral23 <cbranchereau@gmail.com>
+> Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
 > ---
->  drivers/iio/adc/ingenic-adc.c | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/drivers/iio/adc/ingenic-adc.c 
-> b/drivers/iio/adc/ingenic-adc.c
-> index 285e7aa8e37a..618150475421 100644
-> --- a/drivers/iio/adc/ingenic-adc.c
-> +++ b/drivers/iio/adc/ingenic-adc.c
-> @@ -37,6 +37,7 @@
->  #define JZ_ADC_REG_CFG_SAMPLE_NUM(n)	((n) << 10)
->  #define JZ_ADC_REG_CFG_PULL_UP(n)	((n) << 16)
->  #define JZ_ADC_REG_CFG_CMD_SEL		BIT(22)
-> +#define JZ_ADC_REG_CFG_VBAT_SEL		BIT(30)
->  #define JZ_ADC_REG_CFG_TOUCH_OPS_MASK	(BIT(31) | GENMASK(23, 10))
->  #define JZ_ADC_REG_ADCLK_CLKDIV_LSB	0
->  #define JZ4725B_ADC_REG_ADCLK_CLKDIV10US_LSB	16
-> @@ -869,6 +870,10 @@ static int ingenic_adc_probe(struct 
-> platform_device *pdev)
->  	/* Put hardware in a known passive state. */
->  	writeb(0x00, adc->base + JZ_ADC_REG_ENABLE);
->  	writeb(0xff, adc->base + JZ_ADC_REG_CTRL);
-> +
-> +	if (!device_property_present(dev, "ingenic,use-internal-divider")) 
-> /* JZ4760B specific */
-> +		ingenic_adc_set_config(adc, JZ_ADC_REG_CFG_VBAT_SEL, 0);
-
-You miss an "else" part, no? Set the bit if the property is present, 
-clear it if it is missing? You can't really rely on the reset value, 
-since (e.g.) the bootloader could have changed it.
-
-Cheers,
--Paul
-
-> +
->  	usleep_range(2000, 3000); /* Must wait at least 2ms. */
->  	clk_disable(adc->clk);
-> 
-> @@ -896,6 +901,7 @@ static const struct of_device_id 
-> ingenic_adc_of_match[] = {
->  	{ .compatible = "ingenic,jz4725b-adc", .data = 
-> &jz4725b_adc_soc_data, },
->  	{ .compatible = "ingenic,jz4740-adc", .data = &jz4740_adc_soc_data, 
-> },
->  	{ .compatible = "ingenic,jz4760-adc", .data = &jz4760_adc_soc_data, 
-> },
-> +	{ .compatible = "ingenic,jz4760b-adc", .data = 
-> &jz4760_adc_soc_data, },
->  	{ .compatible = "ingenic,jz4770-adc", .data = &jz4770_adc_soc_data, 
-> },
->  	{ },
->  };
-> --
-> 2.30.2
+>   arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 87 ++++++++++++++++++++++++
+>   1 file changed, 87 insertions(+)
 > 
 
+Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
 
+-- 
+Best regards,
+grygorii
