@@ -2,73 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84CCA3D108E
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 16:05:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 320DB3D1091
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 16:05:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239047AbhGUNYW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 09:24:22 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:56163 "EHLO
+        id S239099AbhGUNYY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 09:24:24 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:47865 "EHLO
         new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S239096AbhGUNYW (ORCPT
+        by vger.kernel.org with ESMTP id S239096AbhGUNYY (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Jul 2021 09:24:22 -0400
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 7E34B5809C4;
-        Wed, 21 Jul 2021 10:04:58 -0400 (EDT)
+        Wed, 21 Jul 2021 09:24:24 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 6651B58046C;
+        Wed, 21 Jul 2021 10:05:00 -0400 (EDT)
 Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Wed, 21 Jul 2021 10:04:58 -0400
+  by compute6.internal (MEProxy); Wed, 21 Jul 2021 10:05:00 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm3; bh=hpVY+5wKfdtbk
-        BH7Qw5vZW6MW96kNo48g2kdpxHBygk=; b=aZH6bgE5QrZyg1j9O4HL3x8dHoswV
-        WrsXpQ2Z9is6f16om0s+zhOsKqcgOnP5kE7Ma1ilf3uxhJTuRREV4euovx47r7/U
-        1R0/R7imalxJhbVG1J7ngNn9YiYeKhZAt3KNOmkYfYof3TUgYS9VAx0D7r9Zleke
-        ZD3CYQg1uJ8MM29Yar99VUtEO3uir+lMG5a5CfODCbA7Q4Ck7w5id/fyWuDhoWJT
-        sEmrljS/hhv3WxSYanLo6iuZJm5ooVuabC/W4BJ0Zn3Jx0u1A83NjWD0OMrv0vGL
-        lUm/21X63tZ1qIckJi7LXfZLZmdGqj0oWXXb64HEJDu8NsWUW1EQmfsow==
+        :mime-version:content-transfer-encoding; s=fm3; bh=QeOchd+CZdjeE
+        XdSS0D9yGD63me0JpT1UMDTmCureZ4=; b=BhgMFZfHMh5c8P3JHTp63tKFNX0ZQ
+        mRFbsP5Q7kfXvTMyiwMp1GHlGn2pll7NDVJx8JBTjSdWdsacjgLjTcmjlZPFfZUJ
+        3Q2CPr/qk1vM4mbEiwiCR8MZf5iDBw+RmqvPT6jIJf5h6eS7oIx8vCRFtIaomIes
+        65zQCieGj6oQkaAFRIZmWW39bSOTaahZFkG0+3kFK+nmwEhAo64sfQmNryA09IFx
+        I7uWJW33wZ1ZAYz4QuyrvlmS0espzspyCSk8Nc1dFliPGEInINdKWRFGVQ/8Ipp4
+        1RU6dAY3m3ojNgZLdd9fV+dzlCWAD2k/exBI6xJ64KacTi6Ru3ysI6WHA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:date:from
         :in-reply-to:message-id:mime-version:references:subject:to
         :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=hpVY+5wKfdtbkBH7Qw5vZW6MW96kNo48g2kdpxHBygk=; b=CiNUXNYU
-        Q0W3JaKzkaXhsxNzm/voaNqsbTO1UBy0iuQFoWsWq5hLe+4aNtITjXEommyUdkTX
-        KOjCX54VoHAYQ8KCFrtrDpYuVhiuY7u8I/9x1S6xYHCSQYcLdDQp3yQh3Q8GWHCa
-        R7p6IW2XwlvGLyED8lOjqUdcLsD54KahPhRXBwtBr5SsNLOgzqRNZKgOhDyUb5yh
-        k9pkHTAVmFruax35SRsA7j9IGXg5qlPAxjGkcyeNv6uotlCPdQP7JRd5yQpSbri8
-        hMVjAKxPtI2NAot86S5QCIs9KiHQrShtJz0trg8OnEZtF4FcyfC+9L+ftR5+WQsZ
-        krncDBk93TaCfg==
-X-ME-Sender: <xms:iin4YCOw3lfa7_i3brjLxX9GBe4HUp5BWcDm3_hcDE2JLgT5FK_k0w>
-    <xme:iin4YA-NSn68tSurGmmc4s9LO-rHy_A52FpZEFq9dGTUvnDI5_Bo8UnfL58fP433P
-    6eOb15q3ycRK32NACw>
-X-ME-Received: <xmr:iin4YJThrcPzOe7rsr-Q55PxiNLXl9U2E1SkgoPhScN8eKy4SersOVxGKUA1o608Vr96CTh9N_32i7W6C5BIgjqQtwbDjtB70OMN>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeeggdeiiecutefuodetggdotefrodftvf
+        fm3; bh=QeOchd+CZdjeEXdSS0D9yGD63me0JpT1UMDTmCureZ4=; b=vFP2kFT/
+        d7HnW7M4Cjom+4bvsCOAIuB0NmJBVdV5gXqZmJE3XkWctcJAXTZq5jwyqonD3hV3
+        LO/bRzl7OjLrrEJkADSRciLdnszA10G2VrIIo9JqT03D7nwhe8rr4+qyKFzH67hv
+        QXRjxYvdK8xhJH5o9aC5M5Z4gmV7stZtbJIbUZ+uO2/lkVBWZsvD2TLbMzGqwLLr
+        NFcYC76xvLzSVv74X3FG0q05o2Wp0yNMWkvxdrMp9r63WkEU8/4S+1GjUsnGNepU
+        y+TgTvj/ashm3ZVn3q0yL/PKOddJ1S+LKob6KocGUPAD7Z2hLSEi8OIKTRDUdkC5
+        xJOQr+gV4G844A==
+X-ME-Sender: <xms:jCn4YKIYULJX5CoSEAcQ4yNj2KsARWS3MStSBBf8D7yIs1epTrNAwQ>
+    <xme:jCn4YCIlilvxKeaNptJAjcrhpZVlj9HydEYmmvfCpCkhudiO_kKDZ-bCnU8mbg9dt
+    L0G_7om_fglRSO26EU>
+X-ME-Received: <xmr:jCn4YKuz5sV2cuyFBhUdCqNAH4Z8C-hx1cQ-qcAZopejOVKDGbwXzIQnHjJjzkK89v3A_RbkZgDN9q15eK5EMGEU4jxTDx64UR1H>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeeggdeijecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenog
-    evohgrshhtrghlqdfhgeduvddqtddvucdludehtddmnecujfgurhephffvufffkffojghf
-    ggfgsedtkeertdertddtnecuhfhrohhmpeforgigihhmvgcutfhiphgrrhguuceomhgrgi
-    himhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvghrnhepveejieejtdevgfff
-    gfejuefggfeutdelteekgeetueeftddutddtgfffhffgueffnecuffhomhgrihhnpeguvg
-    hvihgtvghtrhgvvgdrohhrghenucevlhhushhtvghrufhiiigvpedvnecurfgrrhgrmhep
-    mhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:iin4YCtwBxsLkpkrMbwZYo_iNetThEYLWWdK2otQvt3Y3el19gAy0g>
-    <xmx:iin4YKco2R7FaHdGuPzE6sZmGe4BXqVTD5HhkL324j-W6pFPsoh46Q>
-    <xmx:iin4YG311gmda2V_B3J3MKfB8zjJOUdD9LWeoYVj37kjqbyiyVRF6A>
-    <xmx:iin4YLUyhyPNVB7ePfks0TtdpvnpcAdZzOk-SDdDXguLT1YAEo3THQ>
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpedvkeelveefffekjefhffeuleetleefudeifeehuddugffghffhffehveevheeh
+    vdenucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
+    igihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:jCn4YPaNLbmBhp5Um7tvnFp4uDs19SgCXiUKyLkgs1TIhA6bw9LVRA>
+    <xmx:jCn4YBY6_DRGK4P9Hmh1BzNarReGPEX9OJ5I2fY5HQ4N9TeptkMgkQ>
+    <xmx:jCn4YLAbw0wJLNWZ_WDwGe2MPD1rpPZ4MZjDQS0pYTiz3R645sNl9g>
+    <xmx:jCn4YHB6F85aot56X7PVuzxhIjZCXscGFW9pKUQ4I9r5E5bBe6Uieg>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 21 Jul 2021 10:04:57 -0400 (EDT)
+ 21 Jul 2021 10:04:59 -0400 (EDT)
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <maxime@cerno.tech>,
         Jernej Skrabec <jernej.skrabec@siol.net>,
         devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>
 Cc:     linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
+        Denis Ciocca <denis.ciocca@st.com>,
         Jonathan Cameron <jic23@kernel.org>,
-        linux-hwmon@vger.kernel.org
-Subject: [PATCH 14/54] dt-bindings: hwmon: Add IIO HWMON binding
-Date:   Wed, 21 Jul 2021 16:03:44 +0200
-Message-Id: <20210721140424.725744-15-maxime@cerno.tech>
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-iio@vger.kernel.org
+Subject: [PATCH 15/54] dt-bindings: iio: st: Remove wrong items length check
+Date:   Wed, 21 Jul 2021 16:03:45 +0200
+Message-Id: <20210721140424.725744-16-maxime@cerno.tech>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210721140424.725744-1-maxime@cerno.tech>
 References: <20210721140424.725744-1-maxime@cerno.tech>
@@ -78,63 +78,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Even though we had the iio-hwmon driver for some time and a number of
-boards using it already, we never had a binding for it. Let's add it
-based on what the driver expects and the boards are providing.
+The original bindings was listing the length of the interrupts as either
+1 or 2, depending on the setup. This is also what is enforced by the top
+level schema.
 
-Cc: Guenter Roeck <linux@roeck-us.net>
-Cc: Jean Delvare <jdelvare@suse.com>
+However, that is further constrained with an if clause that require
+exactly two interrupts, even though it might not make sense on those
+devices or in some setups.
+
+Let's remove the clause entirely.
+
+Cc: Denis Ciocca <denis.ciocca@st.com>
 Cc: Jonathan Cameron <jic23@kernel.org>
-Cc: linux-hwmon@vger.kernel.org
+Cc: Lars-Peter Clausen <lars@metafoo.de>
+Cc: Linus Walleij <linus.walleij@linaro.org>
+Cc: linux-iio@vger.kernel.org
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 ---
- .../devicetree/bindings/hwmon/iio-hwmon.yaml  | 37 +++++++++++++++++++
- 1 file changed, 37 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/hwmon/iio-hwmon.yaml
+ .../bindings/iio/st,st-sensors.yaml           | 41 -------------------
+ 1 file changed, 41 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/hwmon/iio-hwmon.yaml b/Documentation/devicetree/bindings/hwmon/iio-hwmon.yaml
-new file mode 100644
-index 000000000000..49dd40f663a6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/iio-hwmon.yaml
-@@ -0,0 +1,37 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/hwmon/iio-hwmon.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: ADC-attached Hardware Sensor Device Tree Bindings
-+
-+maintainers:
-+  - Jonathan Cameron <jic23@kernel.org>
-+
-+description: >
-+  Bindings for hardware monitoring devices connected to ADC controllers
-+  supporting the Industrial I/O bindings.
-+
-+properties:
-+  compatible:
-+    const: iio-hwmon
-+
-+  io-channels:
-+    minItems: 1
-+    maxItems: 1024
-+    description: >
-+      List of phandles to ADC channels to read the monitoring values
-+
-+required:
-+  - compatible
-+  - io-channels
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+      iio-hwmon {
-+          compatible = "iio-hwmon";
-+          io-channels = <&adc 1>, <&adc 2>;
-+      };
+diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+index b2a1e42c56fa..71de5631ebae 100644
+--- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
++++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+@@ -152,47 +152,6 @@ allOf:
+           maxItems: 1
+         st,drdy-int-pin: false
+ 
+-  - if:
+-      properties:
+-        compatible:
+-          enum:
+-            # Two intertial interrupts i.e. accelerometer/gyro interrupts
+-            - st,h3lis331dl-accel
+-            - st,l3g4200d-gyro
+-            - st,l3g4is-gyro
+-            - st,l3gd20-gyro
+-            - st,l3gd20h-gyro
+-            - st,lis2de12
+-            - st,lis2dw12
+-            - st,lis2hh12
+-            - st,lis2dh12-accel
+-            - st,lis331dl-accel
+-            - st,lis331dlh-accel
+-            - st,lis3de
+-            - st,lis3dh-accel
+-            - st,lis3dhh
+-            - st,lis3mdl-magn
+-            - st,lng2dm-accel
+-            - st,lps331ap-press
+-            - st,lsm303agr-accel
+-            - st,lsm303dlh-accel
+-            - st,lsm303dlhc-accel
+-            - st,lsm303dlm-accel
+-            - st,lsm330-accel
+-            - st,lsm330-gyro
+-            - st,lsm330d-accel
+-            - st,lsm330d-gyro
+-            - st,lsm330dl-accel
+-            - st,lsm330dl-gyro
+-            - st,lsm330dlc-accel
+-            - st,lsm330dlc-gyro
+-            - st,lsm9ds0-gyro
+-            - st,lsm9ds1-magn
+-    then:
+-      properties:
+-        interrupts:
+-          maxItems: 2
+-
+ required:
+   - compatible
+   - reg
 -- 
 2.31.1
 
