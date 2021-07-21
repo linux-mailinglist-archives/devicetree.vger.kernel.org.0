@@ -2,177 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B799F3D0EB2
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 14:17:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBD383D0EEB
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 14:49:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236464AbhGULgr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 07:36:47 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.51]:15463 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231680AbhGULgr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 07:36:47 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1626869837;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=4CcqRIyqsFHa+Wrw0Xd8JK00I+Bxru7P9shO2wlwNwU=;
-    b=dGicpEYuymH5XiHV1X2jtV6vho0U2eObya9dVNRiN3pM/HV7FpgxOSa5u543RpQDMh
-    hGyTM8ZdlvCiR3veJMxQEyjlZz1XPnXx7H+MikPjsuoSxX+gnH1dGPOf93LixychWWTW
-    ApdUqIJHJJ6CReda6RR+SgboBJX6ctHa3KotJ6JVtf12AcPy+LnVq1k1Zt8PrXOm4hdS
-    n3UupM8cgyapWQyEzMI3hKsJJ2Eu/HoNd+1AVE+Yrs01SohlCCM/veva6y5H2/h/szC0
-    4MsLnlzVre/kSFtBOxMZ6tCUCfs6NP8Rb0xYESNo7p1K4FCgOEuUd8KFltsRvNH6uuEf
-    Gy1A==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA9Z7h"
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.28.1 DYNA|AUTH)
-    with ESMTPSA id g02a44x6LCHFHg9
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Wed, 21 Jul 2021 14:17:15 +0200 (CEST)
-Date:   Wed, 21 Jul 2021 14:17:11 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Sergey Ryazanov <ryazanov.s.a@gmail.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Johannes Berg <johannes@sipsolutions.net>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Aleksander Morgado <aleksander@aleksander.es>,
-        netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        open list <linux-kernel@vger.kernel.org>,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Subject: Re: [RFC PATCH net-next 4/4] net: wwan: Add Qualcomm BAM-DMUX WWAN
- network driver
-Message-ID: <YPgQR/VbNVyxERnb@gerhold.net>
-References: <20210719145317.79692-1-stephan@gerhold.net>
- <20210719145317.79692-5-stephan@gerhold.net>
- <CAHNKnsTVSg5T_ZK3PQ50wuJydHbANFfpJd5NZ-71b1m3B_4dQg@mail.gmail.com>
+        id S234222AbhGUL7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 07:59:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58746 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234304AbhGUL7K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 07:59:10 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F50DC061768
+        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 05:39:42 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id jx7-20020a17090b46c7b02901757deaf2c8so964518pjb.0
+        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 05:39:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=QEkEthW7CKgy/or0VKIC3NeiSwizxj3OuVxfIG0VkUM=;
+        b=HSwP1Zll/dPKdP3vrbbcEcVkhx/jcMPX3H7ajHXoSwKOPW+SuuBbZWuMjK5d0IvNt6
+         bUWR+IarJUShSq8/4Y4ZqPCNqV+Nb9C/YIRUJqW2jpOs8ycmClELT6yzWkawxONQWZYG
+         NDq/jPElYJ19nDgdHBtVsnlcLc+P6LA8juEuE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QEkEthW7CKgy/or0VKIC3NeiSwizxj3OuVxfIG0VkUM=;
+        b=EWvrv/Wl0dCH7ylWpJl6lNe/RVmYWsbSrYzqKZ9zrWkYzLiHCq0ET4lX1ClkY0qAW2
+         gc6ZGwlF4A4gkB2oagL6T8rD2LTxYXUzbOozNJEADqyvGuwitcEhKAxJ74ALGT/kd5CH
+         uhvZjDcbsbcusAagSSkv6YJ4uAPy7OyQDgkZ7Srp2zrQb7Htac60d/H6jBNJc/r6lznW
+         gLCt9GH+Rip7SnKATFzHSkRVr8MhmVUJ4jGRooXM6H3pEIRqALcipSung1HZOrbJ4oe0
+         iLjifJfhya1Z7gTlyupPFzht3twe3gWIrWLalkQmSJqR1s7D7UPDjdoyf/vPJ36TS+AI
+         u+Kw==
+X-Gm-Message-State: AOAM5303FAJskLIkiPsJmdoTF92zkAVbeT4enI2N5Q4OpG9Xn+xKIVEx
+        kQd807ymSCt2izdgwhoH8vdBIKKi0WkEJdBBgydU7w==
+X-Google-Smtp-Source: ABdhPJyTnNfx5pORTNjVkzxDDgtUXvJakKiVASRPKj5kfSEKa5DHdCM0Rau3Ti5Cohe2pje9E1RCRyGbz9nE8qdnWDg=
+X-Received: by 2002:a17:903:22d0:b029:12b:1215:5e73 with SMTP id
+ y16-20020a17090322d0b029012b12155e73mr27536794plg.60.1626871181882; Wed, 21
+ Jul 2021 05:39:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAHNKnsTVSg5T_ZK3PQ50wuJydHbANFfpJd5NZ-71b1m3B_4dQg@mail.gmail.com>
+References: <20210715121209.31024-1-yong.wu@mediatek.com> <20210715121209.31024-10-yong.wu@mediatek.com>
+In-Reply-To: <20210715121209.31024-10-yong.wu@mediatek.com>
+From:   Ikjoon Jang <ikjn@chromium.org>
+Date:   Wed, 21 Jul 2021 20:39:31 +0800
+Message-ID: <CAATdQgCwWDp9D-aFHNGVvOuojJeYH=yAq+tce4vUbQ=kiYa59w@mail.gmail.com>
+Subject: Re: [PATCH v2 09/11] memory: mtk-smi: mt8195: Add smi support
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        anan.sun@mediatek.com, ming-fan.chen@mediatek.com,
+        yi.kuo@mediatek.com, anthony.huang@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sergey,
+On Thu, Jul 15, 2021 at 8:22 PM Yong Wu <yong.wu@mediatek.com> wrote:
+>
+> MT8195 has two smi-common, their IP are the same. Only the larbs that
+> connect with the smi-common are different. thus the bus_sel are different
+> for the two smi-common.
+>
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
 
-On Tue, Jul 20, 2021 at 12:10:42PM +0300, Sergey Ryazanov wrote:
-> On Mon, Jul 19, 2021 at 6:01 PM Stephan Gerhold <stephan@gerhold.net> wrote:
-> > The BAM Data Multiplexer provides access to the network data channels of
-> > modems integrated into many older Qualcomm SoCs, e.g. Qualcomm MSM8916 or
-> > MSM8974. It is built using a simple protocol layer on top of a DMA engine
-> > (Qualcomm BAM) and bidirectional interrupts to coordinate power control.
-> >
-> > The modem announces a fixed set of channels by sending an OPEN command.
-> > The driver exports each channel as separate network interface so that
-> > a connection can be established via QMI from userspace. The network
-> > interface can work either in Ethernet or Raw-IP mode (configurable via
-> > QMI). However, Ethernet mode seems to be broken with most firmwares
-> > (network packets are actually received as Raw-IP), therefore the driver
-> > only supports Raw-IP mode.
-> >
-> > The driver uses runtime PM to coordinate power control with the modem.
-> > TX/RX buffers are put in a kind of "ring queue" and submitted via
-> > the bam_dma driver of the DMAEngine subsystem.
-> >
-> > The basic architecture looks roughly like this:
-> >
-> >                    +------------+                +-------+
-> >          [IPv4/6]  |  BAM-DMUX  |                |       |
-> >          [Data...] |            |                |       |
-> >         ---------->|rmnet0      | [DMUX chan: x] |       |
-> >          [IPv4/6]  | (chan: 0)  | [IPv4/6]       |       |
-> >          [Data...] |            | [Data...]      |       |
-> >         ---------->|rmnet1      |--------------->| Modem |
-> >                    | (chan: 1)  |      BAM       |       |
-> >          [IPv4/6]  | ...        |  (DMA Engine)  |       |
-> >          [Data...] |            |                |       |
-> >         ---------->|rmnet7      |                |       |
-> >                    | (chan: 7)  |                |       |
-> >                    +------------+                +-------+
-> >
-> > However, on newer SoCs/firmware versions Qualcomm began gradually moving
-> > to QMAP (rmnet driver) as backend-independent protocol for multiplexing
-> > and data aggegration. Some firmware versions allow using QMAP on top of
-> > BAM-DMUX (effectively resulting in a second multiplexing layer plus data
-> > aggregation). The architecture with QMAP would look roughly like this:
-> >
-> >            +-------------+           +------------+                  +-------+
-> >  [IPv4/6]  |    RMNET    |           |  BAM-DMUX  |                  |       |
-> >  [Data...] |             |           |            | [DMUX chan: 0]   |       |
-> > ---------->|rmnet_data1  |     ----->|rmnet0      | [QMAP mux-id: x] |       |
-> >            | (mux-id: 1) |     |     | (chan: 0)  | [IPv4/6]         |       |
-> >            |             |     |     |            | [Data...]        |       |
-> >  [IPv4/6]  | ...         |------     |            |----------------->| Modem |
-> >  [Data...] |             |           |            |       BAM        |       |
-> > ---------->|rmnet_data42 | [QMAP: x] |[rmnet1]    |   (DMA Engine)   |       |
-> >            | (mux-id: 42)| [IPv4/6]  |... unused! |                  |       |
-> >            |             | [Data...] |[rmnet7]    |                  |       |
-> >            |             |           |            |                  |       |
-> >            +-------------+           +------------+                  +-------+
-> >
-> > In this case, rmnet1-7 would remain unused. The firmware used on the most
-> > recent SoCs with BAM-DMUX even seems to announce only a single BAM-DMUX
-> > channel (rmnet0), which makes QMAP the only option for multiplexing there.
-> >
-> > So far the driver is mainly tested on various smartphones/tablets based on
-> > Qualcomm MSM8916/MSM8974 without QMAP. It looks like QMAP depends on a MTU
-> > negotiation feature in BAM-DMUX which is not yet supported by the driver.
-> >
-> > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> > ---
-> > Note that this is my first network driver, so I apologize in advance
-> > if I made some obvious mistakes. :)
-> >
-> > I'm not sure how to integrate the driver with the WWAN subsystem yet.
-> > At the moment the driver creates network interfaces for all channels
-> > announced by the modem, it does not make use of the WWAN link management
-> > yet. Unfortunately, this is a bit complicated:
-> >
-> > Both QMAP and the built-in multiplexing layer might be needed at some point.
-> > There are firmware versions that do not support QMAP and the other way around
-> > (the built-in multiplexing was disabled on very recent firmware versions).
-> > Only userspace can check if QMAP is supported in the firmware (via QMI).
-> 
-> I am not very familiar with the Qualcomm protocols and am just curious
-> whether BAM-DMUX has any control (management) channels or only IPv4/v6
-> data channels?
-> 
-> The WWAN subsystem began as a framework for exporting management
-> interfaces (MBIM, AT, etc.) to user space. And then the network
-> interfaces (data channels) management interface was added to
-> facilitate management of devices with multiple data channels. That is
-> why I am curious about the BAM-DMUX device management interface or in
-> other words, how a user space application could control the modem
-> work?
-> 
+Reviewed-by: Ikjoon Jang <ikjn@chromium.org>
 
-Sorry for the confusion! It's briefly mentioned in the Kconfig option
-but I should have made this more clear in the commit message. It was so
-long already that I wasn't sure where to put it. :)
-
-BAM-DMUX does not have any control channels. Instead I use it together
-with the rpmsg_wwan_ctrl driver [1] that I already submitted for 5.14.
-The control/data channels are pretty much separate in this setup and
-don't have much to do with each other.
-
-I also had a short overview of some of the many different modem
-protocols Qualcomm has come up with in a related RFC for that driver,
-see [2] if you are curious.
-
-I hope that clarifies some things, please let me know if I should
-explain something better! :)
-
-Thanks!
-Stephan
-
-[1]: https://lore.kernel.org/netdev/20210618173611.134685-3-stephan@gerhold.net/
-[2]: https://lore.kernel.org/netdev/YLfL9Q+4860uqS8f@gerhold.net/
+> ---
+>  drivers/memory/mtk-smi.c | 23 +++++++++++++++++++++++
+>  1 file changed, 23 insertions(+)
+>
+> diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
+> index e5a34b3952a0..3c288716a378 100644
+> --- a/drivers/memory/mtk-smi.c
+> +++ b/drivers/memory/mtk-smi.c
+> @@ -250,6 +250,10 @@ static const struct mtk_smi_larb_gen mtk_smi_larb_mt8192 = {
+>         .config_port                = mtk_smi_larb_config_port_gen2_general,
+>  };
+>
+> +static const struct mtk_smi_larb_gen mtk_smi_larb_mt8195 = {
+> +       .config_port                = mtk_smi_larb_config_port_gen2_general,
+> +};
+> +
+>  static const struct of_device_id mtk_smi_larb_of_ids[] = {
+>         {.compatible = "mediatek,mt2701-smi-larb", .data = &mtk_smi_larb_mt2701},
+>         {.compatible = "mediatek,mt2712-smi-larb", .data = &mtk_smi_larb_mt2712},
+> @@ -258,6 +262,7 @@ static const struct of_device_id mtk_smi_larb_of_ids[] = {
+>         {.compatible = "mediatek,mt8173-smi-larb", .data = &mtk_smi_larb_mt8173},
+>         {.compatible = "mediatek,mt8183-smi-larb", .data = &mtk_smi_larb_mt8183},
+>         {.compatible = "mediatek,mt8192-smi-larb", .data = &mtk_smi_larb_mt8192},
+> +       {.compatible = "mediatek,mt8195-smi-larb", .data = &mtk_smi_larb_mt8195},
+>         {}
+>  };
+>
+> @@ -430,6 +435,21 @@ static const struct mtk_smi_common_plat mtk_smi_common_mt8192 = {
+>                     F_MMU1_LARB(6),
+>  };
+>
+> +static const struct mtk_smi_common_plat mtk_smi_common_mt8195_vdo = {
+> +       .type     = MTK_SMI_GEN2,
+> +       .bus_sel  = F_MMU1_LARB(1) | F_MMU1_LARB(3) | F_MMU1_LARB(5) |
+> +                   F_MMU1_LARB(7),
+> +};
+> +
+> +static const struct mtk_smi_common_plat mtk_smi_common_mt8195_vpp = {
+> +       .type     = MTK_SMI_GEN2,
+> +       .bus_sel  = F_MMU1_LARB(1) | F_MMU1_LARB(2) | F_MMU1_LARB(7),
+> +};
+> +
+> +static const struct mtk_smi_common_plat mtk_smi_sub_common_mt8195 = {
+> +       .type     = MTK_SMI_GEN2_SUB_COMM,
+> +};
+> +
+>  static const struct of_device_id mtk_smi_common_of_ids[] = {
+>         {.compatible = "mediatek,mt2701-smi-common", .data = &mtk_smi_common_gen1},
+>         {.compatible = "mediatek,mt2712-smi-common", .data = &mtk_smi_common_gen2},
+> @@ -438,6 +458,9 @@ static const struct of_device_id mtk_smi_common_of_ids[] = {
+>         {.compatible = "mediatek,mt8173-smi-common", .data = &mtk_smi_common_gen2},
+>         {.compatible = "mediatek,mt8183-smi-common", .data = &mtk_smi_common_mt8183},
+>         {.compatible = "mediatek,mt8192-smi-common", .data = &mtk_smi_common_mt8192},
+> +       {.compatible = "mediatek,mt8195-smi-common-vdo", .data = &mtk_smi_common_mt8195_vdo},
+> +       {.compatible = "mediatek,mt8195-smi-common-vpp", .data = &mtk_smi_common_mt8195_vpp},
+> +       {.compatible = "mediatek,mt8195-smi-sub-common", .data = &mtk_smi_sub_common_mt8195},
+>         {}
+>  };
+>
+> --
+> 2.18.0
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
