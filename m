@@ -2,114 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A1D23D1394
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 18:13:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58A2C3D13F2
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 18:20:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231371AbhGUPdL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 11:33:11 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56210 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232058AbhGUPdK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Jul 2021 11:33:10 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 75650608FC;
-        Wed, 21 Jul 2021 16:13:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1626884027;
-        bh=BfWv9+DmC2M4MaAgj5Yu9VvVrTvFWwy5GGEmFJQqh+k=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=cZr1sX5/jpk5/qW5wZhLE1iyThehwYf6o03oa7byMHTOXPH+PTCc4uNMTRzJatV2M
-         kSAOEefH9FmhzbIwiZsE7o3a3cXvlWG8nHLkWbDnMI6R0pcZLxE+vbotJzbJ0rzd4K
-         f2Q82XrMj6hFkCf5xTSt3hSayIOsOj3MltIqmU8Y=
-Date:   Wed, 21 Jul 2021 18:13:44 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>, Ian Ray <ian.ray@ge.com>,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCHv7 3/3] misc: gehc-achc: new driver
-Message-ID: <YPhHuNkDPS5EH7s9@kroah.com>
-References: <20210713163528.119185-1-sebastian.reichel@collabora.com>
- <20210713163528.119185-4-sebastian.reichel@collabora.com>
+        id S233471AbhGUPkA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 11:40:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53822 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233643AbhGUPkA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 11:40:00 -0400
+Received: from mail-ua1-x92e.google.com (mail-ua1-x92e.google.com [IPv6:2607:f8b0:4864:20::92e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16975C061757
+        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 09:20:37 -0700 (PDT)
+Received: by mail-ua1-x92e.google.com with SMTP id e22so1024095uaa.8
+        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 09:20:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=051mTyyqTLe5bNxs3xMEB9dCJVVcLYp1lomu2/ziKcg=;
+        b=mBZuY8y7e8p9bUY1ojzWBevvvMvTeIrdLx4L5N2hrw76MKt+CQ8zR8aQd0r0l8+0Ri
+         UCcpj15XA0v3mA5O0DkBjetFm+wvkqr4V/U1eKIkv6x4bTyJ9A2lF5WYQiOSi/1MmEkt
+         ojmFv7HtVf14t2mJ8bjQNIEC+NcaNKyl8ybHo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=051mTyyqTLe5bNxs3xMEB9dCJVVcLYp1lomu2/ziKcg=;
+        b=gmRqOvxOod+CNn3RUn7IkOipMBOC0fMQ5z1LIOKHfa5KYoTQFFrixDKLfXWYmvOAn1
+         7n+Q7X+Pz8UcXuQfMWviSBvdoup3ugGZPcN9dWHKMCrPwoPMDhJhfp4RBzM1AHg28zLR
+         Nrb7xuqlWeO46sS/c1nRHJTg9RNh4ydbNGKl9rvtSEa5vBAa3d+unw+1kI40j8L62Gjf
+         p0Xe7N7I1gGBpeF5AIGxJB/PQae/aJVLzYWTS434eeisyA5F4RVsy0kUpIZX7FeK2W7n
+         MIo+1ijWOSUQFEb3mZATb2TawTfT++mKJhl012/ju8N61gSZrlDC07jOzJ1mLKFGOrNn
+         Mx+w==
+X-Gm-Message-State: AOAM531JRTGsPZTD3fIycdGOzJzvxq3T1DB52arV+4wL+YCELZfUhn9h
+        vHOf8oj0X+6HENRApOoB/DZiPK6u9YI//w==
+X-Google-Smtp-Source: ABdhPJwdxbHbpeyvBYnVaHcpXyetmclRRxrrVusKafrXH+dCFvNBl5ly1BgNrXzxUxPK4YjUVRAwfw==
+X-Received: by 2002:a9f:31a9:: with SMTP id v38mr38257412uad.137.1626884435740;
+        Wed, 21 Jul 2021 09:20:35 -0700 (PDT)
+Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com. [209.85.217.44])
+        by smtp.gmail.com with ESMTPSA id w2sm2857605uao.1.2021.07.21.09.20.34
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Jul 2021 09:20:35 -0700 (PDT)
+Received: by mail-vs1-f44.google.com with SMTP id j8so1766001vsd.0
+        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 09:20:34 -0700 (PDT)
+X-Received: by 2002:a05:6102:144:: with SMTP id a4mr34855801vsr.29.1626884434569;
+ Wed, 21 Jul 2021 09:20:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210713163528.119185-4-sebastian.reichel@collabora.com>
+References: <20210721084126.14035-1-srivasam@codeaurora.org> <20210721084126.14035-3-srivasam@codeaurora.org>
+In-Reply-To: <20210721084126.14035-3-srivasam@codeaurora.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 21 Jul 2021 09:20:23 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=W3X8W90vPdrDAymzTKj-J7QPyn4ukaLSOhEkCme3+r_Q@mail.gmail.com>
+Message-ID: <CAD=FV=W3X8W90vPdrDAymzTKj-J7QPyn4ukaLSOhEkCme3+r_Q@mail.gmail.com>
+Subject: Re: [PATCH v5 2/2] arm64: dts: qcom: sc7180-trogdor: Add lpass dai
+ link for HDMI
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Judy Hsiao <judyhsiao@chromium.org>,
+        V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 13, 2021 at 06:35:28PM +0200, Sebastian Reichel wrote:
-> General Electric Healthcare's PPD has a secondary processor from
-> NXP's Kinetis K20 series. That device has two SPI chip selects:
-> 
-> The main interface's behaviour depends on the loaded firmware
-> and is currently unused.
-> 
-> The secondary interface can be used to update the firmware using
-> EzPort protocol. This is implemented by this driver using the
-> kernel's firmware API. The firmware is being flashed into
-> non-volatile flash memory, so it is enough to flash it once
-> and not on every boot. Flashing will wear the flash memory
-> (it has a life time of at least 10k programming cycles) and
-> takes 3 minutes with the microcontroller being unusable. At
-> the same time only occasional FW updates are expected (like e.g.
-> a BIOS update). Thus the firmware update is triggered via sysfs
-> instead of doing it in the driver's probe routine like many
-> other drivers.
-> 
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+Hi,
+
+On Wed, Jul 21, 2021 at 1:42 AM Srinivasa Rao Mandadapu
+<srivasam@codeaurora.org> wrote:
+>
+> From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+>
+> Add dai link in sc7180-trogdor.dtsi for supporting audio over DP
+>
+> Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 > ---
->  .../ABI/testing/sysfs-driver-ge-achc          |  14 +
->  drivers/misc/Kconfig                          |  11 +
->  drivers/misc/Makefile                         |   1 +
->  drivers/misc/gehc-achc.c                      | 542 ++++++++++++++++++
->  drivers/spi/spidev.c                          |   1 -
->  5 files changed, 568 insertions(+), 1 deletion(-)
->  create mode 100644 Documentation/ABI/testing/sysfs-driver-ge-achc
->  create mode 100644 drivers/misc/gehc-achc.c
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> index 31bf7c698b8f..a4cb9ee567ff 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> @@ -288,6 +288,7 @@ sound: sound {
+>                         "Headphone Jack", "HPOL",
+>                         "Headphone Jack", "HPOR";
+>
+> +               #sound-dai-cells = <0>;
 
-This patch gives me build warnings:
-
-drivers/misc/gehc-achc.c: In function ‘ezport_firmware_compare_data’:
-./include/linux/minmax.h:20:35: warning: comparison of distinct pointer types lacks a cast
-   20 |         (!!(sizeof((typeof(x) *)1 == (typeof(y) *)1)))
-      |                                   ^~
-./include/linux/minmax.h:26:18: note: in expansion of macro ‘__typecheck’
-   26 |                 (__typecheck(x, y) && __no_side_effects(x, y))
-      |                  ^~~~~~~~~~~
-./include/linux/minmax.h:36:31: note: in expansion of macro ‘__safe_cmp’
-   36 |         __builtin_choose_expr(__safe_cmp(x, y), \
-      |                               ^~~~~~~~~~
-./include/linux/minmax.h:45:25: note: in expansion of macro ‘__careful_cmp’
-   45 | #define min(x, y)       __careful_cmp(x, y, <)
-      |                         ^~~~~~~~~~~~~
-drivers/misc/gehc-achc.c:305:33: note: in expansion of macro ‘min’
-  305 |                 transfer_size = min((u32) EZPORT_TRANSFER_SIZE, size - address);
-      |                                 ^~~
-drivers/misc/gehc-achc.c: In function ‘ezport_firmware_flash_data’:
-./include/linux/minmax.h:20:35: warning: comparison of distinct pointer types lacks a cast
-   20 |         (!!(sizeof((typeof(x) *)1 == (typeof(y) *)1)))
-      |                                   ^~
-./include/linux/minmax.h:26:18: note: in expansion of macro ‘__typecheck’
-   26 |                 (__typecheck(x, y) && __no_side_effects(x, y))
-      |                  ^~~~~~~~~~~
-./include/linux/minmax.h:36:31: note: in expansion of macro ‘__safe_cmp’
-   36 |         __builtin_choose_expr(__safe_cmp(x, y), \
-      |                               ^~~~~~~~~~
-./include/linux/minmax.h:45:25: note: in expansion of macro ‘__careful_cmp’
-   45 | #define min(x, y)       __careful_cmp(x, y, <)
-      |                         ^~~~~~~~~~~~~
-drivers/misc/gehc-achc.c:347:33: note: in expansion of macro ‘min’
-  347 |                 transfer_size = min((u32) EZPORT_TRANSFER_SIZE, size - address);
-      |                                 ^~~
+The `#sound-dai-cells` is not in the bindings. The bindings also say
+`additionalProperties: false`. So either your patch is wrong for
+including this or the bindings are wrong for omitting it. Which is it?
+I notice that downstream we don't have this.
 
 
-How did you test build this?
+> @@ -314,6 +315,18 @@ sound_multimedia1_codec: codec {
+>                                 sound-dai = <&max98357a>;
 
-thanks,
+Ideally you'll want to rebase to make context clean since the above
+got changed from `max98357a` to `max98360a`.
 
-greg k-h
+
+>                         };
+>                 };
+> +
+> +               dai-link@2 {
+> +                       link-name = "MultiMedia2";
+> +                       reg = <2>;
+
+I am certainly not an expert, but I notice that downstream we have reg
+as <LPASS_DP_RX>, which makes the node name dai-link@5 instead of @2.
+Does that matter?
+
+
+> @@ -768,6 +781,10 @@ secondary_mi2s: mi2s@1 {
+>                 reg = <MI2S_SECONDARY>;
+>                 qcom,playback-sd-lines = <0>;
+>         };
+> +
+> +       hdmi-primary@0 {
+> +               reg = <LPASS_DP_RX>;
+
+Your node name and `reg` don't match. `LPASS_DP_RX` is 5 so the node
+name should include @5, not @0. I also notice that downstream the node
+name is called `hdmi`, not `hdmi-primary`. The downstream `hdmi` seems
+more parallel to the sibling nodes, like `mi2s@0` and `mi2s@1`.
