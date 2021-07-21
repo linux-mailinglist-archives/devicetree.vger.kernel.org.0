@@ -2,190 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8638E3D0D0A
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 13:10:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37ADC3D0D0D
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 13:10:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237823AbhGUK2I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 06:28:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51654 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237922AbhGUJVw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 05:21:52 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD78BC061574;
-        Wed, 21 Jul 2021 03:02:25 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id s13so2280499lfi.12;
-        Wed, 21 Jul 2021 03:02:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=uq/BDgHzeQirTDEogKe70scOce4C0cOi5x0MYXrCpbY=;
-        b=Ke7nwN3tAtft8VpPMijva70KCg4QgprDjHpK3KURV7Tsib3GmYBjUI6FQAjUWgrhMn
-         C6XaCl0VVvViBXLVZWPfh/7TkdpPei4bF8Z59SpvnyKrTHfXqYVpllMPX8Dz+5v6heAD
-         4oZPzUCmj3xOtoqpCXCgQ0i+H3/HXujIfqghC+aFA3LmMJ/a7rrDfgtR3hCmQKY/LZMD
-         K6Xz1WXQBmNs56GlU+capX+PxgH4zuOFDgJe2Q7MmqrXVDWLOpFELkwbYKQox1fwvZge
-         7YZYtsE/6PX/r9CajyrWlSWs7Ts1nlgIBX5zwPKOsnf5lVUwEIPkAfE+VFKGj1FVKMpQ
-         GRJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=uq/BDgHzeQirTDEogKe70scOce4C0cOi5x0MYXrCpbY=;
-        b=HQbjeQVUxHFgz4wy6POcEyzgWZ3yG1CQFVfTjFjc7bw1GSrQRUHG4ROOa6nnzpLIwt
-         tX5jiYOCycbCRlVopMCe6crQAzslGwpMOrQpXSGjEL3e5THEDGyDDsQ47Ppav8ucubK8
-         g3oMKxQDgmiVls1o7Go3w4lysb6XZ4kK7HDNsQnN8jUfMvApjoFeKD70pBgzLPQTIqD+
-         JXMojHJRWxz/c6rdknYJ4il5HpAXg2kciuVulXHgLC5aY3KjT+VrWZ9Ivz25NAVlX8vh
-         5fL9xuu7+/ZChKWvsWsYbqRUnNs4F35zHPe4B/IjadMCrOmkU50HKu3/lnDljSX7HFst
-         O2ow==
-X-Gm-Message-State: AOAM531KDv0QFzkP4yNxa42lEqfpnA1a4I+U3iRbO54m+VKtH9NYxjcU
-        ItS2ESGw8xGiakVwums4o00=
-X-Google-Smtp-Source: ABdhPJwJ9oOZ8/cOl8mTGgS93guEhW0BZrD42ndG6/7urMIsSHF10NN5cZsYqdECl0IP7vfCOlqiDw==
-X-Received: by 2002:ac2:4107:: with SMTP id b7mr24842540lfi.609.1626861744103;
-        Wed, 21 Jul 2021 03:02:24 -0700 (PDT)
-Received: from mobilestation ([95.79.127.110])
-        by smtp.gmail.com with ESMTPSA id t7sm2138866ljc.81.2021.07.21.03.02.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jul 2021 03:02:22 -0700 (PDT)
-Date:   Wed, 21 Jul 2021 13:02:20 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        John Stultz <john.stultz@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Amit Pundir <amit.pundir@linaro.org>
-Subject: Re: [PATCH 29/29] arm64: dts: qcom: Harmonize DWC USB3 DT nodes name
-Message-ID: <20210721100220.ddfxwugivsndsedv@mobilestation>
-References: <20201020115959.2658-1-Sergey.Semin@baikalelectronics.ru>
- <20201020115959.2658-30-Sergey.Semin@baikalelectronics.ru>
- <CALAqxLX_FNvFndEDWtGbFPjSzuAbfqxQE07diBJFZtftwEJX5A@mail.gmail.com>
- <20210714124807.o22mottsrg3tv6nt@mobilestation>
- <YPfPDqJhfzbvDLvB@kroah.com>
+        id S235462AbhGUK22 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 06:28:28 -0400
+Received: from lb3-smtp-cloud9.xs4all.net ([194.109.24.30]:57447 "EHLO
+        lb3-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S238670AbhGUJ3B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Jul 2021 05:29:01 -0400
+Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
+        by smtp-cloud9.xs4all.net with ESMTPA
+        id 69AOm0z7khqx969APmyaYO; Wed, 21 Jul 2021 12:09:30 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
+        t=1626862170; bh=P3eSTRr/wwYYDeWXMLnHYx2UOIc+mSdyH5PzEnuByEY=;
+        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
+         Subject;
+        b=OkOaoVs/4g8kNSUCw37Tt0XZFmJc1NSd9ubjTJ8iC4J/H3ekTo27b+cpq6u1RoQYF
+         BxVssIEpzTCW8a/Jg0GJn7v/Rfe7ZCfO1OYz6CbqTZXkms5id4YnBKGpZ1WIzGcnxU
+         /Artg1iefLlXNQA1H7VB6YtNnDwfRlS1C6vz1S4sMxjBGIUGpUhdX8I8T6qtnhfKgU
+         22RdGUYMo+avZrRxfyr9uwPI1hGHulKqhgWbOl0323vyNmU9FxxnsOK42sLc+kL2TH
+         qMd+km0BUZ+xf2TJ0J9qfMlPHiDf4geAc0ls/LSxNJd9yBfNnM/K51gwxbviFQ9d1o
+         iBnpoHyvKVShA==
+Subject: Re: [PATCH v4 02/13] media: v4l: add some definition of v4l2
+ colorspace/xfer_func/ycbcr_encoding
+To:     Ming Qian <ming.qian@nxp.com>, mchehab@kernel.org,
+        shawnguo@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        aisheng.dong@nxp.com, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <cover.1626743758.git.ming.qian@nxp.com>
+ <d63b34381eec0ae47bf39dd2b88d2bc8994c269d.1626743758.git.ming.qian@nxp.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Message-ID: <449dc223-d248-8771-2f5a-46c6bbac401d@xs4all.nl>
+Date:   Wed, 21 Jul 2021 12:09:28 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YPfPDqJhfzbvDLvB@kroah.com>
+In-Reply-To: <d63b34381eec0ae47bf39dd2b88d2bc8994c269d.1626743758.git.ming.qian@nxp.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4xfPV0SKw09O60/fU+QSqBVSheTtwmeqte4y+S0hj61q1Dxc5peWOif0typ/U0Hu+/OFSUlfd96wjKqttELUA2rAFV5d+IFLtA+GN3S6OZ8MGSZJtlZojs
+ xnlulVR5YyjgMn8aoYJRs5ltgBEcvoBWEqisGTr6s68B2/zuBF6j8IjWXfoLGlOdx4vP1Yi1FSQljNx7ZypPb8+Zm4O07UcOqRAkN6tHv4R7c5UBULyj1Zk+
+ fXxqMZzRxuUaLMeRA97Todjr8uhpkzBvbzaHKZvpHlt1Z+rl/3uCJ2pg4dep4lSJfC+74whEJXsnxPAU/zwEEcE+h+PzziC4xNHTj+xZiJM24mdKgwP7TfAp
+ AU1NpUcRiiOAv5GX77DhbixopUqtdAzPokRpdloqjv8vKtNUEQtQSbyqN5iH34PGqPrvMHJ9qniyDfgbiZ45eUrYCtiC7EoLUElT6usTAeAmzBp7OJFADDEQ
+ nvSSwkIs6DhuhlWxoOTBJ5lsEIsJC4PYC/eMXPcOPudpfXUhiI4okPUKSnqdDECbuSmLipN/p5v7jNd9VxAVZMZRWPeGHbxzmyDAUBGiRiZkyC+LaG6g0a2e
+ bGh0+3NtoXEGFlq6kIXyh6sdYmteTXYhFA8PgQ3/sAwkFmYTpKZ6c1zb8zvGd24aECIj2XcTIWF78vSLXqa97PjntEkCgrfwougtm/Kg1PAXWUr58m5iXtJ3
+ 8f4WJZM3hPw=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Greg,
-@Krzysztof, @Rob, please join the discussion so to finally get done
-with the concerned issue.
+On 20/07/2021 03:43, Ming Qian wrote:
+> Some definition of colorspace/xfer_func/ycbcr_encoding
+> are defined in ISO, but missed in V4L2,
+> so add some definition according VPU driver's requirement
+> 
+> Signed-off-by: Ming Qian <ming.qian@nxp.com>
+> Signed-off-by: Shijie Qin <shijie.qin@nxp.com>
+> Signed-off-by: Zhou Peng <eagle.zhou@nxp.com>
+> ---
+>  include/uapi/linux/videodev2.h | 30 ++++++++++++++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+> 
+> diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
+> index 534eaa4d39bc..545f2c329bc9 100644
+> --- a/include/uapi/linux/videodev2.h
+> +++ b/include/uapi/linux/videodev2.h
+> @@ -247,6 +247,12 @@ enum v4l2_colorspace {
+>  
+>  	/* DCI-P3 colorspace, used by cinema projectors */
+>  	V4L2_COLORSPACE_DCI_P3        = 12,
+> +
+> +	/* Generic film (colour filters using Illuminant C) */
+> +	V4L2_COLORSPACE_GENERIC_FILM  = 13,
+> +
+> +	/* SMPTE ST 428-1 */
+> +	V4L2_COLORSPACE_ST428         = 14,
+>  };
+>  
+>  /*
+> @@ -276,6 +282,20 @@ enum v4l2_xfer_func {
+>  	 * V4L2_COLORSPACE_RAW: V4L2_XFER_FUNC_NONE
+>  	 *
+>  	 * V4L2_COLORSPACE_DCI_P3: V4L2_XFER_FUNC_DCI_P3
+> +	 *
+> +	 * V4L2_XFER_FUNC_LINEAR: Linear transfer characteristics
 
-On Wed, Jul 21, 2021 at 09:38:54AM +0200, Greg Kroah-Hartman wrote:
-> On Wed, Jul 14, 2021 at 03:48:07PM +0300, Serge Semin wrote:
-> > Hello John,
-> > 
-> > On Tue, Jul 13, 2021 at 05:07:00PM -0700, John Stultz wrote:
-> > > On Tue, Oct 20, 2020 at 5:10 AM Serge Semin
-> > > <Sergey.Semin@baikalelectronics.ru> wrote:
-> > > >
-> > > > In accordance with the DWC USB3 bindings the corresponding node
-> > > > name is suppose to comply with the Generic USB HCD DT schema, which
-> > > > requires the USB nodes to have the name acceptable by the regexp:
-> > > > "^usb(@.*)?" . Make sure the "snps,dwc3"-compatible nodes are correctly
-> > > > named.
-> > > >
-> > > > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > > 
-> > 
-> > > I know folks like to ignore this, but this patch breaks AOSP on db845c. :(
-> > 
-> > Sorry to hear that. Alas there is no much can be done about it.
-> 
-> Yes there is, we can revert the change.  We do not break existing
-> configurations, sorry.
+This exists already: V4L2_XFER_FUNC_NONE
 
-By reverting this patch we'll get back to the broken dt-bindings
-since it won't comply to the current USB DT-nodes requirements
-which at this state well describe the latest DT spec:
-https://github.com/devicetree-org/devicetree-specification/releases/tag/v0.3
-Thus the dtbs_check will fail for these nodes.
+> +	 *
+> +	 * V4L2_XFER_FUNC_GAMMA22: Assumed display gamma 2.2
+> +	 *
+> +	 * V4L2_XFER_FUNC_GAMMA28: Assumed display gamma 2.8
+> +	 *
+> +	 * V4L2_XFER_FUNC_HLG: STD-B67, Rec. ITU-R BT.2100-2 hybrid-log-gamma
+> +	 *
+> +	 * V4L2_XFER_FUNC_XVYCC: IEC 61966-2-4
 
-Originally this whole patchset was connected with finally getting the
-DT-node names in order to comply with the standard requirement and it
-was successful mostly except a few patches which still haven't been
-merged in.
+This exists already, it is signaled through V4L2_YCBCR_ENC_XV709 and
+V4L2_YCBCR_ENC_XV601. It's not actually a different transfer function,
+it's the YCbCr encoding that's different (the transfer function is still
+V4L2_XFER_FUNC_709).
 
-Anyway @Krzysztof has already responded to the complain regarding this
-issue here:
-https://lore.kernel.org/lkml/20201221210423.GA2504@kozik-lap/
-but noone cared to respond on his reasonable questions in order to
-get to a suitable solution for everyone. Instead we are
-getting another email with the same request to revert the changes.
-Here is the quote from the Krzysztof email so we could continue the
-discussion:
+> +	 *
+> +	 * V4L2_XFER_FUNC_BT1361: Rec. ITU-R BT.1361-0 extended colour gamut
+> +	 *
+> +	 * V4L2_XFER_FUNC_ST428: SMPTE ST 428-1
+>  	 */
+>  	V4L2_XFER_FUNC_DEFAULT     = 0,
+>  	V4L2_XFER_FUNC_709         = 1,
+> @@ -285,6 +305,13 @@ enum v4l2_xfer_func {
+>  	V4L2_XFER_FUNC_NONE        = 5,
+>  	V4L2_XFER_FUNC_DCI_P3      = 6,
+>  	V4L2_XFER_FUNC_SMPTE2084   = 7,
+> +	V4L2_XFER_FUNC_LINEAR      = 8,
+> +	V4L2_XFER_FUNC_GAMMA22     = 9,
+> +	V4L2_XFER_FUNC_GAMMA28     = 10,
+> +	V4L2_XFER_FUNC_HLG         = 11,
+> +	V4L2_XFER_FUNC_XVYCC       = 12,
+> +	V4L2_XFER_FUNC_BT1361      = 13,
 
-On Mon, 21 Dec 2020 13:04:27 -0800 (PST), Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> On Mon, Dec 21, 2020 at 12:24:11PM -0800, John Stultz wrote:
-> > On Sat, Dec 19, 2020 at 3:06 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> > > ...
-> > >
-> > > The node names are not part of an ABI, are they? I expect only
-> > > compatibles and properties to be stable. If user-space looks for
-> > > something by name, it's a user-space's mistake.  Not mentioning that you
-> > > also look for specific address... Imagine remapping of addresses with
-> > > ranges (for whatever reason) - AOSP also would be broken? Addresses are
-> > > definitely not an ABI.
-> > 
-> > Though that is how it's exported through sysfs.
-> 
-> The ABI is the format of sysfs file for example in /sys/devices. However
-> the ABI is not the exact address or node name of each device.
-> 
-> > In AOSP it is then used to setup the configfs gadget by writing that
-> > value into /config/usb_gadget/g1/UDC.
-> > 
-> > Given there may be multiple controllers on a device, or even if its
-> > just one and the dummy hcd driver is enabled, I'm not sure how folks
-> > reference the "right" one without the node name?
-> 
-> I think it is the same type of problem as for all other subsystems, e.g.
-> mmc, hwmon/iio.  They usually solve it either with aliases or with
-> special property with the name/label.
-> 
-> > I understand the fuzziness with sysfs ABI, and I get that having
-> > consistent naming is important, but like the eth0 -> enp3s0 changes,
-> > it seems like this is going to break things.
-> 
-> One could argue whether interface name is or is not ABI. But please tell
-> me how the address of a device in one's representation (for example DT)
-> is a part of a stable interface?
-> 
-> > Greg? Is there some better way AOSP should be doing this?
-> 
-> If you need to find specific device, maybe go through the given bus and
-> check compatibles?
-> 
-> Best regards,
-> Krzysztof
+This appears to be a variant of xvYCC, it should probably be a YCBCR_ENC variant
+since the transfer function defined in bt.1361 is REC709.
 
-So the main question is how is the DT-node really connected with ABI
-and is supposed to be stable in that concern?
+> +	V4L2_XFER_FUNC_ST428       = 14,
 
-As I see it even if it affects the configfs node name, then we may
-either need to break that connection and somehow deliver DT-node-name
-independent interface to the user-space or we have no choice but to
-export the node with an updated name and ask of user-space to deal
-with it. In both suggested cases the DT-node name will still conform
-to the USB-node name DT spec. Currently we are at the second one.
+Not sure what this one is about.
+
+>  };
+>  
+>  /*
+> @@ -345,6 +372,9 @@ enum v4l2_ycbcr_encoding {
+>  
+>  	/* SMPTE 240M -- Obsolete HDTV */
+>  	V4L2_YCBCR_ENC_SMPTE240M      = 8,
+> +
+> +	/* KR=0.30, KB=0.11 or equivalent */
+> +	V4L2_YCBCR_ENC_BT470_6M       = 9,
+>  };
+>  
+>  /*
+> 
+
+I'm not opposed to this, but it has to be documented in
+Documentation/userspace-api/media/v4l/colorspaces-details.rst.
+
+I would recommend for an initial submission to only add those new colorimetries
+that are actually needed, and others can be added later. uAPI additions take a
+lot of time, esp. getting the documentation correct.
 
 Regards,
--Sergey
 
-> 
-> thanks,
-> 
-> greg k-h
+	Hans
