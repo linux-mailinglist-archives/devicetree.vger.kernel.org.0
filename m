@@ -2,69 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C4B83D10AF
+	by mail.lfdr.de (Postfix) with ESMTP id E226E3D10B1
 	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 16:05:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237925AbhGUNZB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 09:25:01 -0400
-Received: from out3-smtp.messagingengine.com ([66.111.4.27]:58393 "EHLO
-        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S239113AbhGUNY7 (ORCPT
+        id S239112AbhGUNZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 09:25:02 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:42585 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S239121AbhGUNY7 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
         Wed, 21 Jul 2021 09:24:59 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id 568915C0180;
-        Wed, 21 Jul 2021 10:05:34 -0400 (EDT)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 3AAE558046C;
+        Wed, 21 Jul 2021 10:05:36 -0400 (EDT)
 Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Wed, 21 Jul 2021 10:05:34 -0400
+  by compute4.internal (MEProxy); Wed, 21 Jul 2021 10:05:36 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm3; bh=ek5HS3nQ/RuZh
-        fgQ5+6HJrhdTA+wAC8ee43xik5MWYg=; b=yQIuPsinww8Wu5A5SXdUliGNykwD7
-        HN9issrBaOg9JUty+AOFJVxJ/0t4krJDgY69nSQSoqiJgpnoWm4VwfznL9B/TMn4
-        sw4EeE860/Be4Fe74BTMNfp0YsqSQxlEXqOBd30w39ApwDFZRS+8V2HLzdoHQdmc
-        pjleiWXLhYVPSO1LowlC9Sx5+scLsKZf9MnemAxCdn2XewARFXUzul0OGjugd7WF
-        Y0FWC7jUSR9u44qzmifOuYuqKTc/m6axQ99S5lflos9xpk8TAbEF3ZlKEdZcLSeM
-        5Nmiv9Fi1sf9EAFkTtBJ+h/ZrF/NxRCwkadjmHngP6QIQK55Gh+RzncZQ==
+        :mime-version:content-transfer-encoding; s=fm3; bh=Uq8dukZV0FjfW
+        wNFgyBbCaCvYElCG1N0o/DPMIuV7dc=; b=tiVNMJMBQn/YyRtI+o+265pG1Q2ge
+        L1RlIprX0W+boGYM7O/JPajFwni1v3YeCYxAGNRPXbLJqvr/38IsgCEj1acreHJ1
+        eQPt1Zwqqzs2w5br+EW+IHDjId0hJLGWm+PwYWQbplTWZl3EkrungG1WX/v/Dz/+
+        u4YIBhehlalULWiwMbUmwxhfajkNPy+4fNRo4Zz9ZpVPRKqxfopAH2CoWAn5jRWX
+        biCdVvqEI60y4wXVf3rdm2pHM2ief2Ro1QVoXXf//wFZdnS3Rv2DLdkEXeel2p59
+        wd/vyYOUbpTS0jkaDiCuFUktwvB5H+RYIUJDdrtOFlUEUJoIzygwUpq7A==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:date:from
         :in-reply-to:message-id:mime-version:references:subject:to
         :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=ek5HS3nQ/RuZhfgQ5+6HJrhdTA+wAC8ee43xik5MWYg=; b=k0b/ZQWz
-        klgeFi32hRwz/MKnmpGTIJplXbiGuTSmjXr3nFvy8Qw5F2yBMFU4k6aCVTI2Ob1m
-        SZYqGxLdbtFOp6OXqFGpyuT7Lz0hR1N9lBd4chJKBwY9lWCLkS+J46V7Cao8Hv5U
-        v9ppRgsnqaD25qZT1kCjmY8hxE15maVAvNr/F4erewy56Z/+8xqn3Eu25dy4mMYu
-        Omd4tBxomXpTQLo9VVeJ3BXKy4Dcl179J2EnxpiOHDNsSwwIs4vQILlmbDpGDY5c
-        pL1Pn0wF0c20sOLEtJPxuoqS7sQ4fgQxQ0aRW7IkRh2RwZWtiTM2tfRbaJEBoFJm
-        KvFTSi3oAhAi0A==
-X-ME-Sender: <xms:rin4YDhmvehF3N77qwd8s0BubkYvyY-PuTfHIKAAq89w9c8xkK_J-g>
-    <xme:rin4YADyEFYycCWRRNaijLHjbieM84UF5veSlTpDAx9NTqzdFWBJb-fGnvj5Atowc
-    d708Vy7H-5XTT2Ah70>
-X-ME-Received: <xmr:rin4YDFiA-5e6nQKDvS9XJzm23ebLbykTI6W3YRaa8YfDD3tAiYn6boDRMPOPuZwOKySwxviJgXGzll6l558y-_HAg9-szI9zJZA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeeggdeijecutefuodetggdotefrodftvf
+        fm3; bh=Uq8dukZV0FjfWwNFgyBbCaCvYElCG1N0o/DPMIuV7dc=; b=k395fBlP
+        QQcrTDQ762bdF6QdyyrkPN7yrn36MNfXRlQbRcs3P9JtgQAKJhx1y8iWb30xaJ+Q
+        p0JhFP63+ZsFKHPnx8OW3vvwVkOcjg+Tp7ePFPXdMqLOtNLeoMye47vaI2pn6rUQ
+        F0SEz4MeCVCnjf2oJjqXo6z5Iw95TagsLgxtlXHxNvsU3rrK7OpoHVPfF7kjr5lz
+        vKWlkiBilZG7jtv8y/fhj3dhL48N6aVFoRJ4yLs+OnqxuCOyafJQZ5O/t6rvzBTR
+        5YbMlOipaAPv1rM8OdU3TeIBSi9zYsKqQ+aBwtsKiYA0ILuetBUHmHqVVNh4IOQF
+        xfb863OMI3UsVw==
+X-ME-Sender: <xms:ryn4YKP8kN3CPdm2wYElY7fCVHW6nrbVYvrmPAscEDmmCYxu3QNTiw>
+    <xme:ryn4YI8f8CEqc-mlBNbFV_e07UL1qeWmfqVfzRVKENddSv096fHf0ue1bzaTVnP2b
+    _22Me0i2s9lNKYOldU>
+X-ME-Received: <xmr:ryn4YBRCzEBLw1SRUJVhgBK3p2op000Vv1lGR-RwRUOff-ZszmkyODYITmJkoXJLSk3h3NpDeTs34c-MF5VnQc35UknQ9QipGYRX>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeeggdeiiecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenog
-    evohgrshhtrghlqdfhgeduvddqtddvucdludehtddmnecujfgurhephffvufffkffojghf
-    ggfgsedtkeertdertddtnecuhfhrohhmpeforgigihhmvgcutfhiphgrrhguuceomhgrgi
-    himhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvghrnhepveejieejtdevgfff
-    gfejuefggfeutdelteekgeetueeftddutddtgfffhffgueffnecuffhomhgrihhnpeguvg
-    hvihgtvghtrhgvvgdrohhrghenucevlhhushhtvghrufhiiigvpeehnecurfgrrhgrmhep
-    mhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:rin4YARBuKkTZOjfE7uUq2OIFoEcvJGx0nVkWB2lLVVzv8H5P4zHhA>
-    <xmx:rin4YAwL0XGvHeOgzQrV-DSkRPLGOPFmSD2NGQFBxTsbNT0Qa7XDuw>
-    <xmx:rin4YG4Y5V0lbYXRONrXTgzttQEWBcg6bSg2rfNyPvUSH74nkyUWJQ>
-    <xmx:rin4YHnJsI-Gsyfg9DQlp1mLocixmaNn6TsId5hRCYeuY8rbFICAoA>
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpedvkeelveefffekjefhffeuleetleefudeifeehuddugffghffhffehveevheeh
+    vdenucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
+    igihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:ryn4YKuGqaHsjR5Sk_JaZUWkk2h3vDLvQ_s5aGmRZy1EzpzLUBc1Ow>
+    <xmx:ryn4YCe9E9AdYuwsml3_KED1hu2EyVjHC0InJ8v2vpLPsFhjvHn5_Q>
+    <xmx:ryn4YO0vMwd_k7O2oGBZ7Cn0EZzAz2RBBuygzm_yQnx7UK-u1Ee4Ag>
+    <xmx:sCn4YDXnj-JN9FVhfa2Q_UMFTzWmrmkYIcxn3pk0gah1Li7EMDpM6w>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 21 Jul 2021 10:05:33 -0400 (EDT)
+ 21 Jul 2021 10:05:35 -0400 (EDT)
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <maxime@cerno.tech>,
         Jernej Skrabec <jernej.skrabec@siol.net>,
         devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com
-Subject: [PATCH 32/54] dt-bindings: sunxi: Add Allwinner A80 PRCM Binding
-Date:   Wed, 21 Jul 2021 16:04:02 +0200
-Message-Id: <20210721140424.725744-33-maxime@cerno.tech>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
+        Amit Kucheria <amitk@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        linux-pm@vger.kernel.org, Zhang Rui <rui.zhang@intel.com>
+Subject: [PATCH 33/54] dt-bindings: thermal: Make trips node optional
+Date:   Wed, 21 Jul 2021 16:04:03 +0200
+Message-Id: <20210721140424.725744-34-maxime@cerno.tech>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210721140424.725744-1-maxime@cerno.tech>
 References: <20210721140424.725744-1-maxime@cerno.tech>
@@ -74,55 +76,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Even though we've used the A80 PRCM driver for some time and a number of
-boards using it already, we never had a binding for it. Let's add it
-based on what the driver expects and the boards are providing.
+Even though the previous binding made it a required child node, the
+implementation in Linux never made it mandatory and just ignored thermal
+zones without trip points.
 
+This was even effectively encouraged, since the thermal core wouldn't
+allow a thermal sensor to probe without a thermal zone.
+
+In the case where you had a thermal device that had multiple sensors but
+with enough knowledge to provide trip points for only a few of them,
+this meant that the only way to make that driver probe was to provide a
+thermal zone without the trips node required by the binding.
+
+This obviously led to a fair number of device trees doing exactly that,
+making the initial binding requirement ineffective.
+
+Let's make it clear by dropping that requirement.
+
+Cc: Amit Kucheria <amitk@kernel.org>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: linux-pm@vger.kernel.org
+Cc: Zhang Rui <rui.zhang@intel.com>
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 ---
- .../arm/sunxi/allwinner,sun9i-a80-prcm.yaml   | 33 +++++++++++++++++++
- 1 file changed, 33 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/arm/sunxi/allwinner,sun9i-a80-prcm.yaml
+ Documentation/devicetree/bindings/thermal/thermal-zones.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/sunxi/allwinner,sun9i-a80-prcm.yaml b/Documentation/devicetree/bindings/arm/sunxi/allwinner,sun9i-a80-prcm.yaml
-new file mode 100644
-index 000000000000..668aadbfe4c0
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/sunxi/allwinner,sun9i-a80-prcm.yaml
-@@ -0,0 +1,33 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/sunxi/allwinner,sun9i-a80-prcm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+index 164f71598c59..a07de5ed0ca6 100644
+--- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
++++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+@@ -215,7 +215,7 @@ patternProperties:
+       - polling-delay
+       - polling-delay-passive
+       - thermal-sensors
+-      - trips
 +
-+title: Allwinner A80 PRCM Device Tree Bindings
-+
-+maintainers:
-+  - Chen-Yu Tsai <wens@csie.org>
-+  - Maxime Ripard <mripard@kernel.org>
-+
-+properties:
-+  compatible:
-+    const: allwinner,sun9i-a80-prcm
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+      prcm@8001400 {
-+          compatible = "allwinner,sun9i-a80-prcm";
-+          reg = <0x08001400 0x200>;
-+      };
-+
-+...
+     additionalProperties: false
+ 
+ additionalProperties: false
 -- 
 2.31.1
 
