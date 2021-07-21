@@ -2,46 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE1AB3D10C8
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 16:06:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A36E3D10C9
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 16:06:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239145AbhGUNZf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 09:25:35 -0400
-Received: from out3-smtp.messagingengine.com ([66.111.4.27]:35441 "EHLO
+        id S239151AbhGUNZh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 09:25:37 -0400
+Received: from out3-smtp.messagingengine.com ([66.111.4.27]:37769 "EHLO
         out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S239160AbhGUNZf (ORCPT
+        by vger.kernel.org with ESMTP id S239157AbhGUNZg (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Jul 2021 09:25:35 -0400
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailout.nyi.internal (Postfix) with ESMTP id 4BF305C0003;
-        Wed, 21 Jul 2021 10:06:11 -0400 (EDT)
+        Wed, 21 Jul 2021 09:25:36 -0400
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.nyi.internal (Postfix) with ESMTP id F3DD45C01BB;
+        Wed, 21 Jul 2021 10:06:12 -0400 (EDT)
 Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Wed, 21 Jul 2021 10:06:11 -0400
+  by compute5.internal (MEProxy); Wed, 21 Jul 2021 10:06:12 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm3; bh=UY4GXbLCewh4D
-        KtrIt8fcoRGgLltwC/w1F48If2t4dM=; b=x4Cvz0PQe3JfhndNMSaUFE0w6EE01
-        MUw/lXyXrG1eDBiHuah+9vwrTrOXKsDGyL/ukC7IzWS0t+ZclDkwy9ue2dYuF0h7
-        fuA8Na9prelcP6A9LscXIlrbtZatbmmGWNeC1OgDG5sRvDzxA2BXHribm4q0DQ9Y
-        j0IlAWerS4sAwCR2xDlHFzHyoxDsvou5GETHvVYHGHdNVC8OXtZZx6E51D8WPAfy
-        1xWZR2hQgHduyzwAGRdzbkGqmYOMVVxnNqSS4N63w5VUfD4gOHe1isWlPxxfVSQx
-        qY7T+lyGM7TytvNf7Q/dANgqb1pYhJRHfvFiuFN2N8pLUR064eQNHhd1w==
+        :mime-version:content-transfer-encoding; s=fm3; bh=VA1mIc8yNbTF2
+        OIlHCjDFCpG6avOvBN47GRAdoilK7o=; b=ai/9FeQ3lUsqDKhJgTQMZAFzIVq1O
+        mwc5BRdeUTLK7it6wQzPVgdZXV90ruHTz2wTdOBSVyAziSGzMq8r9YQINjBCdcYr
+        DwXsR4sgKGKaLnuaU5dYuXnjBZvs5XVhw2JPgv90fLk63rrf6K25Z8Y4CUmpR7HW
+        9eu1u3mcpw6QmNax3ip10XpLhZD4aGWljApNbZQGcTvb886/+hK2UeTF/DiI117T
+        8MWSUrG5oYX4NQaZWKUTwOqI9rAHdlvP+h8bnbcSqQGENGmLsX/zXO5i2X2gz8wA
+        FHfitLSMbnQO9RXFG1ix0fGQdgDP7nrqkk7HO6tXHFolOT7jjAhJE+4Aw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:date:from
         :in-reply-to:message-id:mime-version:references:subject:to
         :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=UY4GXbLCewh4DKtrIt8fcoRGgLltwC/w1F48If2t4dM=; b=DZUF2oZn
-        9Zg/124+RrwglVuJXu9Mhroaqpt4q1XPiYHejK7e4pOPTTjrch61Jc84W+12RkPh
-        6saJy8FOG03v91ZkAL0mdqcvvWm6woB+SYEBxQApTSFiJfZgfDsFtWHL7Rri7CYJ
-        v/ArPvNMksf3zRI+npESgMxd5gmfu/a8rGWUkK5HHNIR+aBSNtF2cihlzYjytA8f
-        sEhqK1/251DQmKrzex4mdVXhrMJ7fzrXKNLyEDPflUGkwHw4gatyQngfiGu0IWue
-        dmmkNTjgK5aF0/CZG6Bmyn6hAGQw4Jncz6pzwV+qFAsBYFxqX4lqi2fHqG5iDnwp
-        YYfB5M6IfqwcPg==
-X-ME-Sender: <xms:0Sn4YBSb7BAuit7PU7rq50sVuA3XqvPj6r1mrITtBOTkhm9lMH_0IQ>
-    <xme:0Sn4YKwbeF7bZs3X8cCDyAl79OpjMEDabywmt4IuvJYpfmUWxgfN_i8fRmhBpNRlD
-    93ADTfFNN9_rnIqHfI>
-X-ME-Received: <xmr:0Sn4YG2o8MPxZUpGshzAmLfmupjV6eYDFAC_P6qt2TJCFcW-2eSRcfz8hyu7z3PWhT7tlIlEkTuJY7fT_o6Jez5QRf45eCGyrPLc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeeggdeijecutefuodetggdotefrodftvf
+        fm3; bh=VA1mIc8yNbTF2OIlHCjDFCpG6avOvBN47GRAdoilK7o=; b=Gz998iOw
+        s9GQye0FA5l0t4C0C1aIwy0ksvUzs/x1r1sb6nL4P+2N0hNVoppL07V9DxxKNSNI
+        rEOkGh4xlDXB0105cAWGfINGrIOc2cJzYQWqkhrr1z8zeHWiHuHwHiGSFNxIIpbE
+        apxcEQBHlbOZfXpW8KAWWEedFmDQdLuJUMLlDxjSpcFcrcKcNUawi87aQ6m1rbhI
+        b8zJFNkUIUSc7krt2Ctd9zD8wlfyweZtn4YH6YuSIKj2ukaISs2cv7W5nSlV1ulq
+        s9aLxqCygVpjutY+SOPrOJMw50obBl7kkIclvtocejhM9KiEdS1EYsrSLHOfU63g
+        w+wrwsqn4UzotQ==
+X-ME-Sender: <xms:1Cn4YA5zFf9qOfVFs35WGDyd1D_xcmZgbOBQCz-QwNkGuluCrOadwA>
+    <xme:1Cn4YB6tXl7i7YSoBnR9EiXSYkQ9B5wvHCT8HjNpmSJZrZ5ylo6NEMNCzjyfGvRcT
+    I9NZT79buXsJxpvLyk>
+X-ME-Received: <xmr:1Cn4YPcB4dAxFoQOaIrTrZyg2gUxThrksAn6-QKkxkRtoj9jMXOItAwf2FFxXlQ8LadB_VsLNrKZQ-BSb1IeuqmNEIYR_vT0IcS->
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeeggdeiiecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
     fjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepofgrgihimhgv
@@ -49,21 +49,21 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeeggdeijecutefuodetggdote
     gvrhhnpedvkeelveefffekjefhffeuleetleefudeifeehuddugffghffhffehveevheeh
     vdenucevlhhushhtvghrufhiiigvpedvnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
     igihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:0Sn4YJAQKbSm76DRC9xr9cyAeP4Df-b9FuSJVVONDLKWOWoO2xareQ>
-    <xmx:0Sn4YKgxYfuHCgOwU6cD0Z1jrlB8cqOb13BzoV0tLMG3p2A6KSMMeQ>
-    <xmx:0Sn4YNqwxVLinJuf_Gnuk-68meJ1UIfBZs6fI6s97EovoIqdAYaeLw>
-    <xmx:0yn4YFXtxpWXSFUECtQSKjL_yrfj2b8ZqtIy8svoJM44mc36-24hnA>
+X-ME-Proxy: <xmx:1Cn4YFIsKV6zdTv7FWNFsGcioA6D04EkbU2Fb8XZogKkCSzjGeHLdQ>
+    <xmx:1Cn4YEJPNUkOKBm0Y2jk9Rv8yueJPHOYG2hI0tZ_Atlvxf9-VQuA2g>
+    <xmx:1Cn4YGynpt54nwwnBtHksPYM85nZZ7eJ55iLsWa0JsullyqnjgZ4cg>
+    <xmx:1Cn4YM-3Hf1uXjcmlGRfK7sOzo5adkazp2pORstX4hbp-IxVc4ctMw>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 21 Jul 2021 10:06:08 -0400 (EDT)
+ 21 Jul 2021 10:06:12 -0400 (EDT)
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <maxime@cerno.tech>,
         Jernej Skrabec <jernej.skrabec@siol.net>,
         devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>
 Cc:     linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com
-Subject: [PATCH 50/54] arm64: dts: allwinner: pinetab: Change regulator node name to avoid warning
-Date:   Wed, 21 Jul 2021 16:04:20 +0200
-Message-Id: <20210721140424.725744-51-maxime@cerno.tech>
+Subject: [PATCH 51/54] arm64: dts: allwinner: teres-i: Add missing reg
+Date:   Wed, 21 Jul 2021 16:04:21 +0200
+Message-Id: <20210721140424.725744-52-maxime@cerno.tech>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210721140424.725744-1-maxime@cerno.tech>
 References: <20210721140424.725744-1-maxime@cerno.tech>
@@ -73,28 +73,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The fixed regulator clock name has a unit address, but no reg property,
-which generates a warning in DTC. Change its name to remove its useless
-unit address.
+The anx6345 bridge mandates that the input port is named port@0. Since
+we have a unit-address, this implies that we need a reg property with
+the same value, but it was found to be missing in the Teres-I device
+tree. Make sure it's there.
 
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 ---
- arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts
-index 7ef96f9ff7ae..6a4af14718f5 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts
-@@ -77,7 +77,7 @@ speaker_amp: audio-amplifier {
- 		sound-name-prefix = "Speaker Amp";
- 	};
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
+index 45e1abdf70a0..52e032f7fb68 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
+@@ -139,6 +139,8 @@ ports {
+ 			#size-cells = <0>;
  
--	vdd_bl: regulator@0 {
-+	vdd_bl: regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "bl-3v3";
- 		regulator-min-microvolt = <3300000>;
+ 			port@0 {
++				reg = <0>;
++
+ 				anx6345_in: endpoint {
+ 					remote-endpoint = <&tcon0_out_anx6345>;
+ 				};
 -- 
 2.31.1
 
