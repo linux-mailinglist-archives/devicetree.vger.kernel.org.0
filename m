@@ -2,131 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 05F513D14BB
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 19:00:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65F643D14CB
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 19:05:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229750AbhGUQUM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 12:20:12 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37110 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229561AbhGUQUM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Jul 2021 12:20:12 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 72F3260FF3;
-        Wed, 21 Jul 2021 17:00:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626886849;
-        bh=hroQ6GW2Js8li6Khq4NdbOetcx6pit97/TyltR5nTXQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=R+zARPPfPdd3B1s1Kt37AVrdb8qbI3cm9ChQkvHhfFLMSuqOCn9dd1j+Io3I7/H7p
-         ytCvMLTiKu5IgAePcglp3iq34vfehohjMky3elXA5PV8hjs4i06CEsfzfDS3P3VjcK
-         kLYtrzwcQuY5aDkS9CIBO0i/BfG4qoxYR/eR3NUbnZb2Vo7Pr/X0w9wxbweim/CZer
-         6slhDdDlzzh4Luw1N/35OJboxCcVB14LSIgPo5KesJBbMXSeWXEX52nnA0ZatTZvR0
-         KCGSg4HnqpdgcdV4S8Nnej/asX6AanTo3u3yk7RM8XJp/yoG+L8CQwGnLX496kaCyc
-         +GSERaCsr4oyw==
-Date:   Wed, 21 Jul 2021 18:00:43 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Cc:     Devicetree List <devicetree@vger.kernel.org>,
-        Daniel Baluta <daniel.baluta@gmail.com>,
-        Kai Vehmanen <kai.vehmanen@linux.intel.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Daniel Baluta <daniel.baluta@oss.nxp.com>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
-        Takashi Iwai <tiwai@suse.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>
-Subject: Re: [PATCH 1/3] ASoC: SOF: Parse fw/tplg filename from DT
-Message-ID: <20210721170043.GH4259@sirena.org.uk>
-References: <20210715141802.880911-1-daniel.baluta@oss.nxp.com>
- <20210715141802.880911-2-daniel.baluta@oss.nxp.com>
- <20210715143906.GD4590@sirena.org.uk>
- <CAEnQRZCdSLoaLVZ7-jtufgZCG6QshMwdfyJy_4oE6cXRbA5H8A@mail.gmail.com>
- <CAEnQRZCiC5aGK6AsD0TN5fzN6AxFn6=f8hCrd2B9fhCYfCFOSg@mail.gmail.com>
- <bd85ea7c-e9b5-de67-07ce-7104a1e19805@linux.intel.com>
- <20210721125912.GE4259@sirena.org.uk>
- <eb98c10a-cc04-dbcf-b5cf-511703dc22fb@linux.intel.com>
+        id S229715AbhGUQYc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 12:24:32 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:46544 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229666AbhGUQYa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 12:24:30 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1626887107; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=nB2p2NTeR79nuMtOtOgm6ajzTwXzSQzw8laJhE1thq8=;
+ b=mUa0sj0Foe2EjysnS2n55GQp6fJDRmaRHQw7B2/BX7wO7t0cYqSdPCUm7vTwmrHM8kPpfHKX
+ iUhLri2Z/v3XdoQEVklUXwwojES91+hcG1y6vWyWLQTNGvi7XfCtumM18D2kV9h8fX0samSo
+ u/k2nDRulHStDgSh/YUQtFQ9KtY=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
+ 60f8539a4815712f3aaba7fe (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 21 Jul 2021 17:04:26
+ GMT
+Sender: sibis=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 37B23C43143; Wed, 21 Jul 2021 17:04:25 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 5CC7DC433D3;
+        Wed, 21 Jul 2021 17:04:24 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="xHbokkKX1kTiQeDC"
-Content-Disposition: inline
-In-Reply-To: <eb98c10a-cc04-dbcf-b5cf-511703dc22fb@linux.intel.com>
-X-Cookie: Many pages make a thick book.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 21 Jul 2021 22:34:24 +0530
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     bjorn.andersson@linaro.org, mka@chromium.org, robh+dt@kernel.org,
+        saiprakash.ranjan@codeaurora.org, will@kernel.org, ohad@wizery.com,
+        agross@kernel.org, mathieu.poirier@linaro.org,
+        robin.murphy@arm.com, joro@8bytes.org, p.zabel@pengutronix.de,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, evgreen@chromium.org,
+        dianders@chromium.org
+Subject: Re: [PATCH v2 03/10] dt-bindings: remoteproc: qcom: Update Q6V5 Modem
+ PIL binding
+In-Reply-To: <CAE-0n51ujsHp+S9v2yTWVdFcWJswFyVyme8Bqp5i4w9Qv6GB6g@mail.gmail.com>
+References: <1626775980-28637-1-git-send-email-sibis@codeaurora.org>
+ <1626775980-28637-4-git-send-email-sibis@codeaurora.org>
+ <CAE-0n51ujsHp+S9v2yTWVdFcWJswFyVyme8Bqp5i4w9Qv6GB6g@mail.gmail.com>
+Message-ID: <a5e7af00a468166f3cff790f76c41fd7@codeaurora.org>
+X-Sender: sibis@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hey Stephen,
 
---xHbokkKX1kTiQeDC
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Thanks for taking time to review
+the series.
 
-On Wed, Jul 21, 2021 at 08:28:17AM -0500, Pierre-Louis Bossart wrote:
+On 2021-07-21 11:09, Stephen Boyd wrote:
+> Quoting Sibi Sankar (2021-07-20 03:12:53)
+>> diff --git 
+>> a/Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt 
+>> b/Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt
+>> index 494257010629..bc1394f5d677 100644
+>> --- a/Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt
+>> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt
+>> @@ -198,6 +205,9 @@ For the compatible string below the following 
+>> supplies are required:
+>>         Definition: a phandle reference to a syscon representing TCSR 
+>> followed
+>>                     by the three offsets within syscon for q6, modem 
+>> and nc
+>>                     halt registers.
+>> +                   a phandle reference to a syscon representing TCSR 
+>> followed
+>> +                   by the four offsets within syscon for q6, modem, 
+>> nc and vq6
+>> +                   halt registers on SC7280 SoCs.
+> 
+> This seems to be duplicated? Maybe it should be combined with the
+> previous sentence and sc7280 called out?
 
-> > Seems like it'd be trivial to arrange in the kernel, or with userspace
-> > firmware loading the loader could do the unpacking.
+yeah noticed ^^ but that's the style
+we've maintained till now. This
+would get cleanup up when I do the
+yaml conversion after the series
+lands.
 
-> I think we can bundle the firmware inside of the kernel image itself,
-> but we've never tried so it doesn't work by default.
-> I don't know what userspace loading means, we rely on request_firmware
-> and don't assume any specific support from userspace.
+> 
+>> 
+>>  For the compatible strings below the following phandle references are 
+>> required:
+>>    "qcom,sc7180-mss-pil"
 
-If you have a userspace handler that implements loading firmware into
-the kernel (rather than having the kernel just try with a given path
-prefix) then that program can do anything it likes to get the firmware,
-including unpacking it out of another image.
-
-> > That seems like an orthogonal issue here?  The requirement for a
-> > firmware that's joined up with the hardware (and system description)
-> > that it's being used with exists regardless of how we rename things.
-
-> It's not completely orthogonal. The topology currently defines e.g. the
-> I2S interface index, Mclk, bclk, fsync, etc, and my point is that these
-> bits of information are completely related to the hardware and should
-> probably come from platform firmware/ACPI.
-
-If only ACPI based platforms offered a standard way to do this like DT
-does and didn't rely on all these platform specific hacks!  In any case
-my point is more that use case dependent selection of the firmware is a
-separate issue to having firmware that matches a specific board and
-there seemed to be some conflation of the two.  For having a completely
-board specific firmware we already have system level identification in
-both DT and ACPI which can be used.
-
-> The topology framework currently provides too much freedom to
-> developers, it's fine to add new pipelines, PCM devices and new
-> processing, but when it comes to the hardware interfaces the topology is
-> completely constrained. I've been arguing for a while now that the
-> dailink descriptions and configurations should be treated as an input to
-> the topology, not something that the topology can configure. I don't
-> know how many issues we had to deal with because the topology settings
-> were not supported by the hardware, or mismatches between topology and
-> machine drivers (missing dailinks, bad dailink index, etc).
-
-I think it'd definitely help to at least have some strong diagnostics
-for detecting mismatches between the topology and the hardware and
-machine driver it's being applied to, including what configurations the
-machine driver is willing to have on the links (which could be just a
-single configuration if that's what makes sense for the platform).  I
-can see that the topology might want to select different configurations
-for the various hardware links depending on how it wants to use them in
-a given application, especially in more embedded contexts.
-
---xHbokkKX1kTiQeDC
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmD4UroACgkQJNaLcl1U
-h9COUwf/QBa/hu110FzQzO7qAGIl1ukQEgywEkbjEHhjzU13EXqQKhKY8zUTcOFW
-GItaLI2waPJrI/DjvkKD64gQ5jtkrntoInrRmdNGAGxdo6c0wqyoe8n7+3nG+ap2
-AGD/za07Vd94ssr3ii2UFrIck7HXuC3irbMu8jkbBGbY6TC7xR1XIn0eQ51lNdC8
-hokGE2w6CwxapGkxsE9By9CdEkmn94aV8N5umRD55QEp2++wROH5E10PVL0PXsLt
-PoRxIq9bCx8fGAGivBu2htcE/eIFDy8qu3F5ggZChAT5jeUpeSAO35oMeY62xAlx
-MHPU+q6uS3vHDrlKdsu4YsaLajecHA==
-=5ZbX
------END PGP SIGNATURE-----
-
---xHbokkKX1kTiQeDC--
+-- 
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project.
