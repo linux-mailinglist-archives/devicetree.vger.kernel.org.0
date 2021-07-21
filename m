@@ -2,124 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B6E4D3D0A63
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 10:18:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDBF83D0A93
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 10:32:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235822AbhGUHc4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 03:32:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55150 "EHLO
+        id S235729AbhGUHmh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 03:42:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236383AbhGUHb3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 03:31:29 -0400
-Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1A3AC061574;
-        Wed, 21 Jul 2021 01:12:03 -0700 (PDT)
-Received: by mail-io1-xd32.google.com with SMTP id z9so1403871iob.8;
-        Wed, 21 Jul 2021 01:12:03 -0700 (PDT)
+        with ESMTP id S236260AbhGUHeJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 03:34:09 -0400
+Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39C7DC061766;
+        Wed, 21 Jul 2021 01:14:20 -0700 (PDT)
+Received: by mail-io1-xd2d.google.com with SMTP id d9so1438443ioo.2;
+        Wed, 21 Jul 2021 01:14:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=pL2C9kVjJUNoadYQaAKSPZ98TvYLySVH4tRSkOmd6po=;
-        b=fo/NxuLkx8GcFXYS3VVuLCjl4ki9ob6lizBHGdDSitZ10DmW5vaKYGWAt3LbvoSCwX
-         kVlWdvMTfrkcf/9O7AeyPiUWkAFfJBzeHpc6IOBFNCB1mfUng5/YU61/Jx+LmYgXLeBl
-         iILgVv4K7xVCg3ezgjzA96EwwMZPwX4RPcYlc5bJ8gyIEu5RISlTOSUbF1xNCBmb44LL
-         2LEjwGXSJC3Qbv7diUtmwPuYQrB5xfL0vDoZCn3T6wz5s/rd226RGChmeIi9Eu3utTif
-         tRCXS8XsRIGusF5Ufx3RhGzLTA0i/z30GHjI0Ba20muC3zpXFwodbKo+Y8aYgxeBFPiT
-         hYCg==
+        bh=zvyrqp/UiJLUSpPijKljeCZXxIIqF9RIC0PiIvCr1Pc=;
+        b=YHbAswGhLee0N+Emn5lEa2mnxeWp0JHz22Ld3I9on15E/bPLibsLiCietabGvkQB5a
+         mj1lIzYxotna3vOidXeyj9J8ywUVQ/BAhmR6/+GF7E+6QxygzlZwlVVisr7v/Q9ZrJ8M
+         unBkgAx2JXUvG6YpocgBvVbsRsXkPyWcRBxl9mYqmOf/f8+EcWUCIeNGLFDY/tFOKjT7
+         SKDZcLtB8OnVL6KZs3nHzzUpJ6EBZnN2NB7FVO83wVkCEcSnFhMMgfGkI2h5nhzRQJta
+         Xzd3bu6PV5ieLDatzAhFVfgruPzv1Drt4CfyPdxMLQ4Lv7AE+Bh5EYV0+K2Ve0tpzF09
+         XGiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to;
-        bh=pL2C9kVjJUNoadYQaAKSPZ98TvYLySVH4tRSkOmd6po=;
-        b=euo1IhuaI79aP0gl8B2ypy7EFol6ofnQwWvFvtrrK8cmiM4NJ50tpNePzIMelny0Em
-         Lrt6qGw0qjwAwjUzMgWfLmke7V4G17dii5z0SKi3+4Xs3j/cMEl3h3GGzhozbuu5UJ1N
-         5468Q3E6ZPnj9uB7/ipchq/8KH9vCWoP0d+p32u5uQ9rSlIOahvRwejRhUeqchKYe42Y
-         TzZbgBkJE3+LSQ9rhHqIxUCjTfrFMaKDix9vThwbTMTJkiuJa0Vcsc8d+Sinzw+9CrOp
-         Zk0jabSpXH26IxoKpau82LWpHixPZZbQ8HfgbUfvEzZp4uiS1pFXbY5vYLSZRzsJHyZr
-         2Yow==
-X-Gm-Message-State: AOAM530gDLSfb6oUE6ks+fBB0e3id/8ji3INfDQUxVYM83WBA+pmbL48
-        HIYqxG/RsIxeaEhFCxzbgvr/8cIgsGd/cU4eOA+Rvn1cX+qWFA==
-X-Google-Smtp-Source: ABdhPJztKrsz6lAR+YpujrMMSlaT3nT9BUhbavspkBABheJZkliR6NnmksVys2h3dE9SfgBLBlOF8A5LIUzYH69sKh8=
-X-Received: by 2002:a5e:8d16:: with SMTP id m22mr2457103ioj.60.1626855123253;
- Wed, 21 Jul 2021 01:12:03 -0700 (PDT)
+        bh=zvyrqp/UiJLUSpPijKljeCZXxIIqF9RIC0PiIvCr1Pc=;
+        b=eJl3NIk2XpkehJ92D6JQ0KI5uMY415/3MATRoet4vmdAPJw5sTyITgzMYa1Pt80a88
+         mrzqgXahbBNIr1EiUxfhsQzEsaPGlb5L9FXvGHa9ezJyMHXOujm+PyrrZkFuNnZRFrRI
+         6udGJ6Shknewi0eysoJcVnkXLNXn+3I0W0C1U26erPf+aRbkBu1xd8YJmE/S5oHdtzUq
+         XmthPbUiHCwzqywUZ4Ca60teekKiv2u0Z+1RWta4pYwoe2DQ6sUHF6U3upHjIGNcG6b9
+         MEtgB9bd1Vi2ZyusmWg+vyPhB8T6eIacI86RLuDFDsaBtIe6d1vFhLJa1fcNShXFFuyZ
+         B/DQ==
+X-Gm-Message-State: AOAM531QOZSVx5HrURHj78oPyyJ9v5fraPsMr3eRXrlRp+xKFfRCGkFM
+        +rV951WujGCEjRfuLUsoQqXCS9SbtD/r/ti8w4qrdXRDLg7GHA==
+X-Google-Smtp-Source: ABdhPJyk5M7TapH3hnfm34501XGhBzdpKlPpbfZED0UHT6nRGIi4gJ+W+GBMrZhgP8YMQruHyvgPg9I3AGvKtu6IQXY=
+X-Received: by 2002:a02:774a:: with SMTP id g71mr29784429jac.137.1626855259588;
+ Wed, 21 Jul 2021 01:14:19 -0700 (PDT)
 MIME-Version: 1.0
-References: <1626430843-23823-2-git-send-email-dillon.minfei@gmail.com>
- <202107201305.FPUQWvWk-lkp@intel.com> <CAL9mu0LVdt1wtKzBa=201AJ-Eb4BdKtVx18hzQfaB0-Ga0jx9g@mail.gmail.com>
-In-Reply-To: <CAL9mu0LVdt1wtKzBa=201AJ-Eb4BdKtVx18hzQfaB0-Ga0jx9g@mail.gmail.com>
+References: <1626430843-23823-1-git-send-email-dillon.minfei@gmail.com>
+ <1626430843-23823-3-git-send-email-dillon.minfei@gmail.com>
+ <CACRpkdZZyN_8ND52+piHYaksujwwwTMigkv6eL0fih_2dYZ4Lg@mail.gmail.com> <CAL9mu0+C1p1mMEbw90Z66KCt1Rp2=GV=RcXgZizJRxu8rVaOGw@mail.gmail.com>
+In-Reply-To: <CAL9mu0+C1p1mMEbw90Z66KCt1Rp2=GV=RcXgZizJRxu8rVaOGw@mail.gmail.com>
 From:   Dillon Min <dillon.minfei@gmail.com>
-Date:   Wed, 21 Jul 2021 16:11:27 +0800
-Message-ID: <CAL9mu0JVA-jvExpQyZVfqC61qtsXJHgFbeo5LBjaxFF-PYzHuQ@mail.gmail.com>
-Subject: Fwd: [PATCH 1/2] dt-bindings: display: panel: Add ilitek ili9341
- panel bindings
-To:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Date:   Wed, 21 Jul 2021 16:13:43 +0800
+Message-ID: <CAL9mu0JcL2td_tfeBOe8vCMjOsARL2kxDY4AGcf_S1xchXXMig@mail.gmail.com>
+Subject: Fwd: [PATCH 2/2] drm/panel: Add ilitek ili9341 panel driver
+To:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kernel test robot,
+Hi Linus,
 
-Thanks for your time to test my patch.
+Thanks for your detailed review.
 
-I did the dtbs_check on my side, and got the same warnings.
-
-But I guess these warnings do not come from this submission,
-So, I will not be going to fix it at this time, but will at other submissions
-to fix these, add arm,armv7m-nvic.yaml ... to describe compatibles, etc.
-
-by the way, i did find a warning from the stm32f429-disco.dts and fixt it
-in "[PATCH v2 2/3] ARM: dts: stm32: fix dtbs_check warning on ili9341
-dts binding",
-
-the warning:
-arch/arm/boot/dts/stm32f429-disco.dt.yaml: display@1: compatible:
-['st,sf-tc240t-9370-t'] is too short
-
-my make command:
-make ARCH=arm dtbs_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
-
-Best regards
-thanks
-
-Dillon
-
-On Tue, 20 Jul 2021 at 14:12, kernel test robot <lkp@intel.com> wrote:
+On Sun, 18 Jul 2021 at 08:31, Linus Walleij <linus.walleij@linaro.org> wrote:
 >
-> Hi,
+> Hi Dillon,
 >
-> Thank you for the patch! Perhaps something to improve:
+> thanks for your patch!
 >
-> [auto build test WARNING on robh/for-next]
-> [also build test WARNING on linus/master v5.14-rc2 next-20210719]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch]
+> On Fri, Jul 16, 2021 at 12:20 PM <dillon.minfei@gmail.com> wrote:
 >
-> url:    https://github.com/0day-ci/linux/commits/dillon-minfei-gmail-com/Add-ilitek-ili9341-panel-driver/20210718-103113
-> base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-> compiler: arm-linux-gnueabi-gcc (GCC) 10.3.0
-> reproduce: make ARCH=arm dtbs_check
+> > From: Dillon Min <dillon.minfei@gmail.com>
+> >
+> > This driver combine tiny/ili9341.c mipi_dbi_interface driver
+> > with mipi_dpi_interface driver, can support ili9341 with serial
+> > mode or parallel rgb interface mode by register configuration.
+> >
+> > Signed-off-by: Dillon Min <dillon.minfei@gmail.com>
 >
-> If you fix the issue, kindly add following tag as appropriate
-> Reported-by: kernel test robot <lkp@intel.com>
+> Nice!
 >
+> > +config DRM_PANEL_ILITEK_ILI9341
+> > +       tristate "Ilitek ILI9341 240x320 QVGA panels"
+> > +       depends on OF && SPI
+> > +       depends on DRM_KMS_HELPER
+> > +       depends on DRM_KMS_CMA_HELPER
+> (...)
+> > +#include <drm/drm_gem_framebuffer_helper.h>
+> > +#include <drm/drm_gem_cma_helper.h>
+> > +#include <drm/drm_fb_helper.h>
+> > +#include <drm/drm_gem_atomic_helper.h>
+> > +#include <drm/drm_atomic_helper.h>
 >
-> dtcheck warnings: (new ones prefixed by >>)
->    arch/arm/boot/dts/stm32f429-disco.dt.yaml:0:0: /interrupt-controller@e000e100: failed to match any schema with compatible: ['arm,armv7m-nvic']
->    arch/arm/boot/dts/stm32f429-disco.dt.yaml:0:0: /timer@e000e010: failed to match any schema with compatible: ['arm,armv7m-systick']
->    arch/arm/boot/dts/stm32f429-disco.dt.yaml:0:0: /soc/i2c@40005c00/stmpe811@41: failed to match any schema with compatible: ['st,stmpe811']
->    arch/arm/boot/dts/stm32f429-disco.dt.yaml:0:0: /soc/i2c@40005c00/stmpe811@41/stmpe_touchscreen: failed to match any schema with compatible: ['st,stmpe-ts']
->    arch/arm/boot/dts/stm32f429-disco.dt.yaml: l3gd20@0: 'spi-max-frequency' does not match any of the regexes: 'pinctrl-[0-9]+'
->         From schema: Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-> >> arch/arm/boot/dts/stm32f429-disco.dt.yaml: display@1: compatible: ['st,sf-tc240t-9370-t'] is too short
->         From schema: Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
->    arch/arm/boot/dts/stm32f429-disco.dt.yaml:0:0: /soc/crc@40023000: failed to match any schema with compatible: ['st,stm32f4-crc']
->    arch/arm/boot/dts/stm32f429-disco.dt.yaml:0:0: /soc/rcc@40023800: failed to match any schema with compatible: ['st,stm32f42xx-rcc', 'st,stm32-rcc']
->    arch/arm/boot/dts/stm32f429-disco.dt.yaml:0:0: /soc/rcc@40023800: failed to match any schema with compatible: ['st,stm32f42xx-rcc', 'st,stm32-rcc']
+> Hm now there is a (partial) KMS driver in the panel driver, kinda, sorta.
+> Is this the right split? I'm not the best with DRM infrastructure,
+> just asking.
+
+
+I tried to remove one of these two headers, but got compile errors:
+
+linux/drivers/gpu/drm/panel/panel-ilitek-ili9341.c:719:3: error:
+implicit declaration of function 'drm_atomic_helper_shutdown'
+[-Werror=implicit-function-declaration]
+  719 |   drm_atomic_helper_shutdown(drm);
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~
+or
+
+linux/drivers/gpu/drm/panel/panel-ilitek-ili9341.c:562:16: error:
+'drm_gem_simple_display_pipe_prepare_fb' undeclared here (not in a
+function)
+  562 |  .prepare_fb = drm_gem_simple_display_pipe_prepare_fb,
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Actually, these two headers are merged from tiny/ili9341.c to support
+only-DBI interface, I'm
+not sure whether the maintainers will ask me to remove
+(tiny/ili9341.c) code from this patch.
+If so, I will remove these headers.
+
+But, It's a little strange to support different interfaces from
+different drivers.
+
 >
-> ---
-> 0-DAY CI Kernel Test Service, Intel Corporation
-> https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+> > +struct ili9341_config {
+> > +       u32 max_spi_speed;
+> > +       /** @mode: the drm display mode */
+> > +       const struct drm_display_mode mode;
+> > +       /* @ca: TODO: need comments for this register */
+> > +       u8 ca[ILI9341_CA_LEN];
+>
+> These are all in the datasheet but I guess you plan to add these
+> TODOs later. (It's fine I suppose, the driver is already very nice.)
+
+
+Yes, I didn't get detailed information about these registers from this
+panel datasheet, so leave TODOs here.
+
+>
+> > +       struct regulator *vcc;
+>
+> Use the right name of the pin for the regulator. I guess this is actually
+> vci. I would implement all three regulators and get them as bulk.
+> See e.g. drivers/gpu/drm/panel/panel-samsung-s6e3ha2.c
+> for an example on how to get and enable several regulators
+> using bulk.
+>
+> The regulator framework will provide dummy regulators if you
+> didn't define some of them so it is fine to just provide one or two.
+>
+
+Really appreciate your suggestion, will add to v2.
+
+>
+> Yours,
+> Linus Walleij
