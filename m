@@ -2,253 +2,327 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 11A4A3D14A0
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 18:53:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C14233D14AE
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jul 2021 18:56:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232964AbhGUQM3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 12:12:29 -0400
-Received: from mail-il1-f181.google.com ([209.85.166.181]:39722 "EHLO
-        mail-il1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230378AbhGUQM2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 12:12:28 -0400
-Received: by mail-il1-f181.google.com with SMTP id a7so2870982iln.6;
-        Wed, 21 Jul 2021 09:53:04 -0700 (PDT)
+        id S233815AbhGUQQO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 12:16:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34258 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235545AbhGUQQL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 12:16:11 -0400
+Received: from mail-ua1-x929.google.com (mail-ua1-x929.google.com [IPv6:2607:f8b0:4864:20::929])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B3FDC061575;
+        Wed, 21 Jul 2021 09:56:47 -0700 (PDT)
+Received: by mail-ua1-x929.google.com with SMTP id c9so1080512uat.1;
+        Wed, 21 Jul 2021 09:56:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=soKsTxfp3JlXQfUzAz/2MafI1ftVItRQDjW8DRM/Ruo=;
+        b=V5dapbQqTI9nxBA635LT5YfE4dkOAr52Zh6Tf1AfvcNhGOdTwmOP0amqjKJleXAkJt
+         dKqr5TwQ6z7g9xJbvKw3c1R0VA8mXfJIbTqoPt+HVGAsfv4ukoEk4FSBzSF3Cy/0B8oY
+         bHLKblgfpWa+7zVrSqIYBG8zxj20bskFYVG+XGGSCd0PtyYW+1d/MvoKxBzzB7L+ZbQ3
+         cgnw+9TZz5NHx62ADsjpXY4Bwkyl/qNesldUpNGf5mMFNr0M6vXS6lyp28i/XDVsIbJc
+         DnVxhN+Fv9FqkSXvST+kzSXXz2e42BwgUGBiT/ytcDBs3QI/sb03MCti4jT07mVDDvUk
+         5ATQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=2FlplugSms0lq9vlT6qVeAF/xOXlsmB/xXx4Xh3GmPg=;
-        b=qEYugqIGuohbcrLlpQUA+XEvyBUaxaTs3jqG3qNgzY4O0ITwcTfGsCHNk9A6HkHNYR
-         3XOxiPQAMszyz7Bt4AAvBb4yORX4GqyidwLSY+JJ4O2cIf/+rr0LTsELXLdch/At+wB/
-         HeZoTak2BtNN5401lO7tE1bGD8Cet3L+8u+GrwyCC4oxarcy04EFNjOcqeWxI4ShAxlN
-         4Nnn8kq935+cQ81WhLbLSzgQuis4b6XWFYSGlu3OZ8EZI7vOQ+ibM7RAz+day4QJWGuC
-         /qjD23Q3Q1OOmoTPnONGSD1vhv4Z+JzXoP1G8yhMSNs+tX5NwHkcAlvZpA3Biqgab4Tl
-         Qj2A==
-X-Gm-Message-State: AOAM5324p6nGdDjnZXvjFOdjx+Hi5xkibt3SvyGmY1pKnJFj/wLxI2bS
-        IplbwnCzI8xlI+TS+5uigA==
-X-Google-Smtp-Source: ABdhPJyBGw8BgX6Ut+AjXB1gavWfI+GdQEOaA4ld3jRnJ/IyC+2yOdS5D+jM8xTQoVX/cB9CQhftLw==
-X-Received: by 2002:a92:d112:: with SMTP id a18mr20234016ilb.67.1626886383904;
-        Wed, 21 Jul 2021 09:53:03 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id b25sm14700743ios.36.2021.07.21.09.53.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jul 2021 09:53:03 -0700 (PDT)
-Received: (nullmailer pid 2433823 invoked by uid 1000);
-        Wed, 21 Jul 2021 16:53:00 -0000
-Date:   Wed, 21 Jul 2021 10:53:00 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Joakim Zhang <qiangqing.zhang@nxp.com>
-Cc:     davem@davemloft.net, kuba@kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, festevam@gmail.com, kernel@pengutronix.de,
-        linux-imx@nxp.com, peppe.cavallaro@st.com, joabreu@synopsys.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next V1 2/3] dt-bindings: net: imx-dwmac: convert
- imx-dwmac bindings to yaml
-Message-ID: <20210721165300.GA2430128@robh.at.kernel.org>
-References: <20210719071821.31583-1-qiangqing.zhang@nxp.com>
- <20210719071821.31583-3-qiangqing.zhang@nxp.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=soKsTxfp3JlXQfUzAz/2MafI1ftVItRQDjW8DRM/Ruo=;
+        b=CRXW5jC5v24PSN0gUfEJZX92jBaBU0bU+MWIzWTQxDiGGQqjFD3oIhVeq/kDW7Xzx+
+         8B7VBSJCk7R+ug7FzQA1nh8yyHEEOIlh4Y6RBFh1/rOsjVaQNjzoGGJlbra92fDyaM0u
+         FxmrBuL2mqD1jbfEYuPQbnqAeadpv4vivQ0ThW5KlXD7NCVIZGSAbe4OmNkxPXJUSw6r
+         vEFTb+ZWQCMhG+vC9x6CCMyOIgQlaHHFZnW794rQmuV/b2c6tnVV6U0miXDHc4SEJCmw
+         9J/jIlyw9RdK7w0rcBQFhUOBQtekZh/QgJjn+OgscjpNDm2Rdu4s/Ebl6TnzvJM9Zp96
+         0f/g==
+X-Gm-Message-State: AOAM531r4pwz6R31IQnMDSBpdk4v24O4UAJYsRNHCTtkU/TRC3lRBWzS
+        ePDU9MbaXcsbNjhDd7Cia6gAMczsjnQl3BqXOOU=
+X-Google-Smtp-Source: ABdhPJzAJqh/MT4+UTvyMERbEJLUdK2lAb/jlbXI3N3/Mq9G2nwAtocprZXozt0qP8h6GWGHizbt5VXZo1lgBOE06Hk=
+X-Received: by 2002:ab0:2c0e:: with SMTP id l14mr38088577uar.126.1626886606504;
+ Wed, 21 Jul 2021 09:56:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210719071821.31583-3-qiangqing.zhang@nxp.com>
+References: <20210720172251.4504-1-romain.perier@gmail.com>
+ <20210720172251.4504-3-romain.perier@gmail.com> <YPcroRmHYEV9BWaJ@piout.net>
+In-Reply-To: <YPcroRmHYEV9BWaJ@piout.net>
+From:   Romain Perier <romain.perier@gmail.com>
+Date:   Wed, 21 Jul 2021 18:56:34 +0200
+Message-ID: <CABgxDoJtd6sVuVoEQ5orWDQ5YV18Tno7K_0GaAsgPdPPB_9HEA@mail.gmail.com>
+Subject: Re: [PATCH 2/3] rtc: Add support for the MSTAR MSC313 RTC
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-rtc@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 19, 2021 at 03:18:20PM +0800, Joakim Zhang wrote:
-> In order to automate the verification of DT nodes covert imx-dwmac to
-> nxp,dwmac-imx.yaml, and pass below checking.
-> 
-> $ make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml
-> $ make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml
-> 
-> Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
-> ---
->  .../devicetree/bindings/net/imx-dwmac.txt     | 56 -----------
->  .../bindings/net/nxp,dwmac-imx.yaml           | 93 +++++++++++++++++++
->  2 files changed, 93 insertions(+), 56 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/net/imx-dwmac.txt
->  create mode 100644 Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/imx-dwmac.txt b/Documentation/devicetree/bindings/net/imx-dwmac.txt
-> deleted file mode 100644
-> index 921d522fe8d7..000000000000
-> --- a/Documentation/devicetree/bindings/net/imx-dwmac.txt
-> +++ /dev/null
-> @@ -1,56 +0,0 @@
-> -IMX8 glue layer controller, NXP imx8 families support Synopsys MAC 5.10a IP.
-> -
-> -This file documents platform glue layer for IMX.
-> -Please see stmmac.txt for the other unchanged properties.
-> -
-> -The device node has following properties.
-> -
-> -Required properties:
-> -- compatible:  Should be "nxp,imx8mp-dwmac-eqos" to select glue layer
-> -	       and "snps,dwmac-5.10a" to select IP version.
-> -- clocks: Must contain a phandle for each entry in clock-names.
-> -- clock-names: Should be "stmmaceth" for the host clock.
-> -	       Should be "pclk" for the MAC apb clock.
-> -	       Should be "ptp_ref" for the MAC timer clock.
-> -	       Should be "tx" for the MAC RGMII TX clock:
-> -	       Should be "mem" for EQOS MEM clock.
-> -		- "mem" clock is required for imx8dxl platform.
-> -		- "mem" clock is not required for imx8mp platform.
-> -- interrupt-names: Should contain a list of interrupt names corresponding to
-> -		   the interrupts in the interrupts property, if available.
-> -		   Should be "macirq" for the main MAC IRQ
-> -		   Should be "eth_wake_irq" for the IT which wake up system
-> -- intf_mode: Should be phandle/offset pair. The phandle to the syscon node which
-> -	     encompases the GPR register, and the offset of the GPR register.
-> -		- required for imx8mp platform.
-> -		- is optional for imx8dxl platform.
-> -
-> -Optional properties:
-> -- intf_mode: is optional for imx8dxl platform.
-> -- snps,rmii_refclk_ext: to select RMII reference clock from external.
-> -
-> -Example:
-> -	eqos: ethernet@30bf0000 {
-> -		compatible = "nxp,imx8mp-dwmac-eqos", "snps,dwmac-5.10a";
-> -		reg = <0x30bf0000 0x10000>;
-> -		interrupts = <GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>,
-> -			     <GIC_SPI 135 IRQ_TYPE_LEVEL_HIGH>;
-> -		interrupt-names = "eth_wake_irq", "macirq";
-> -		clocks = <&clk IMX8MP_CLK_ENET_QOS_ROOT>,
-> -			 <&clk IMX8MP_CLK_QOS_ENET_ROOT>,
-> -			 <&clk IMX8MP_CLK_ENET_QOS_TIMER>,
-> -			 <&clk IMX8MP_CLK_ENET_QOS>;
-> -		clock-names = "stmmaceth", "pclk", "ptp_ref", "tx";
-> -		assigned-clocks = <&clk IMX8MP_CLK_ENET_AXI>,
-> -				  <&clk IMX8MP_CLK_ENET_QOS_TIMER>,
-> -				  <&clk IMX8MP_CLK_ENET_QOS>;
-> -		assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_266M>,
-> -					 <&clk IMX8MP_SYS_PLL2_100M>,
-> -					 <&clk IMX8MP_SYS_PLL2_125M>;
-> -		assigned-clock-rates = <0>, <100000000>, <125000000>;
-> -		nvmem-cells = <&eth_mac0>;
-> -		nvmem-cell-names = "mac-address";
-> -		nvmem_macaddr_swap;
-> -		intf_mode = <&gpr 0x4>;
-> -		status = "disabled";
-> -	};
-> diff --git a/Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml b/Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml
-> new file mode 100644
-> index 000000000000..5629b2e4ccf8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/nxp,dwmac-imx.yaml
-> @@ -0,0 +1,93 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/nxp,dwmac-imx.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP i.MX8 DWMAC glue layer Device Tree Bindings
-> +
-> +maintainers:
-> +  - Joakim Zhang <qiangqing.zhang@nxp.com>
-> +
-> +# We need a select here so we don't match all nodes with 'snps,dwmac'
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - nxp,imx8mp-dwmac-eqos
-> +          - nxp,imx8dxl-dwmac-eqos
-> +  required:
-> +    - compatible
-> +
-> +allOf:
-> +  - $ref: "snps,dwmac.yaml#"
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
+Hello Alexandre,
 
-Don't need 'oneOf' as there is only one entry.
+Le mar. 20 juil. 2021 =C3=A0 22:01, Alexandre Belloni
+<alexandre.belloni@bootlin.com> a =C3=A9crit :
+>
+> Hello Romain,
+>
+> On 20/07/2021 19:22:50+0200, Romain Perier wrote:
+> > From: Daniel Palmer <daniel@0x0f.com>
+> >
+> > This adds support for the RTC block on the Mstar MSC313e SoCs and newer=
+.
+> >
+> > Signed-off-by: Daniel Palmer <daniel@0x0f.com>
+> > Co-developed-by: Romain Perier <romain.perier@gmail.com>
+> > Signed-off-by: Romain Perier <romain.perier@gmail.com>
+> > ---
+> >  MAINTAINERS              |   1 +
+> >  drivers/rtc/Kconfig      |  10 ++
+> >  drivers/rtc/Makefile     |   1 +
+> >  drivers/rtc/rtc-msc313.c | 246 +++++++++++++++++++++++++++++++++++++++
+> >  4 files changed, 258 insertions(+)
+> >  create mode 100644 drivers/rtc/rtc-msc313.c
+> >
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 6c8be735cc91..7e8d1a375e0d 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -2220,6 +2220,7 @@ F:      arch/arm/boot/dts/mstar-*
+> >  F:   arch/arm/mach-mstar/
+> >  F:   drivers/clk/mstar/
+> >  F:   drivers/gpio/gpio-msc313.c
+> > +F:   drivers/rtc/rtc-msc313.c
+> >  F:   drivers/watchdog/msc313e_wdt.c
+> >  F:   include/dt-bindings/clock/mstar-*
+> >  F:   include/dt-bindings/gpio/msc313-gpio.h
+> > diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
+> > index 12153d5801ce..67870b422bc5 100644
+> > --- a/drivers/rtc/Kconfig
+> > +++ b/drivers/rtc/Kconfig
+> > @@ -1925,4 +1925,14 @@ config RTC_DRV_WILCO_EC
+> >         This can also be built as a module. If so, the module will
+> >         be named "rtc_wilco_ec".
+> >
+> > +config RTC_DRV_MSC313
+> > +     tristate "MStar MSC313 RTC"
+> > +        depends on ARCH_MSTARV7
+>
+> || COMPILE_TEST maybe ?
 
-> +          - enum:
-> +              - nxp,imx8mp-dwmac-eqos
-> +              - nxp,imx8dxl-dwmac-eqos
-> +          - const: snps,dwmac-5.10a
-> +
-> +  clocks:
-> +    minItems: 3
-> +    maxItems: 5
-> +    items:
-> +      - description: MAC host clock
-> +      - description: MAC apb clock
-> +      - description: MAC timer clock
-> +      - description: MAC RGMII TX clock
-> +      - description: EQOS MEM clock
-> +
-> +  clock-names:
-> +    minItems: 3
-> +    maxItems: 5
-> +    contains:
+Arf, I always forget this option. Ack, I will add it in v2.
 
-s/contains/items/
+>
+> > +     help
+> > +       If you say yes here you get support for the Mstar MSC313e On-Ch=
+ip
+> > +       Real Time Clock.
+> > +
+> > +       This driver can also be built as a module, if so, the module
+> > +       will be called "rtc-msc313".
+> > +
+> >  endif # RTC_CLASS
+>
+>
+> > +static int msc313_rtc_read_time(struct device *dev, struct rtc_time *t=
+m)
+> > +{
+> > +     struct msc313_rtc *priv =3D dev_get_drvdata(dev);
+> > +     u32 seconds;
+> > +     u16 reg;
+> > +
+> > +     reg =3D readw(priv->rtc_base + REG_RTC_CTRL);
+> > +     writew(reg | READ_EN_BIT, priv->rtc_base + REG_RTC_CTRL);
+> > +
+> > +     /* Wait for HW latch done */
+> > +     while (readw(priv->rtc_base + REG_RTC_CTRL) & READ_EN_BIT)
+> > +             udelay(1);
+> > +
+> > +     seconds =3D readw(priv->rtc_base + REG_RTC_CNT_VAL_L)
+> > +                     | (readw(priv->rtc_base + REG_RTC_CNT_VAL_H) << 1=
+6);
+> > +
+> > +     rtc_time64_to_tm(seconds, tm);
+> > +
+> > +     return rtc_valid_tm(tm);
+>
+> This is not necessary, tm is valid at that point (and the core will
+> check anyway).
 
-But really, like the other one, can't you define the order?
+ack.
 
-> +      enum:
-> +        - stmmaceth
-> +        - pclk
-> +        - ptp_ref
-> +        - tx
-> +        - mem
-> +
-> +  intf_mode:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description:
-> +      Should be phandle/offset pair. The phandle to the syscon node which
-> +      encompases the GPR register, and the offset of the GPR register.
+>
+> > +}
+> > +
+> > +static int msc313_rtc_set_time(struct device *dev, struct rtc_time *tm=
+)
+> > +{
+> > +     struct msc313_rtc *priv =3D dev_get_drvdata(dev);
+> > +     unsigned long seconds;
+> > +     u16 reg;
+> > +
+> > +     seconds =3D rtc_tm_to_time64(tm);
+> > +     writew(seconds & 0xFFFF, priv->rtc_base + REG_RTC_LOAD_VAL_L);
+> > +     writew((seconds >> 16) & 0xFFFF, priv->rtc_base + REG_RTC_LOAD_VA=
+L_H);
+> > +     reg =3D readw(priv->rtc_base + REG_RTC_CTRL);
+> > +     writew(reg | LOAD_EN_BIT, priv->rtc_base + REG_RTC_CTRL);
+> > +
+> > +     /* need to check carefully if we want to clear REG_RTC_LOAD_VAL_H=
+ for customer*/
+> > +     while (readw(priv->rtc_base + REG_RTC_CTRL) & LOAD_EN_BIT)
+> > +             udelay(1);
+> > +     writew(0, priv->rtc_base + REG_RTC_LOAD_VAL_H);
+>
+> Why is that necessary? The comment is not super useful here.
+>
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static const struct rtc_class_ops msc313_rtc_ops =3D {
+> > +     .read_time =3D msc313_rtc_read_time,
+> > +     .set_time =3D msc313_rtc_set_time,
+> > +     .read_alarm =3D msc313_rtc_read_alarm,
+> > +     .set_alarm =3D msc313_rtc_set_alarm,
+> > +     .alarm_irq_enable =3D msc313_rtc_alarm_irq_enable,
+> > +};
+> > +
+> > +static irqreturn_t msc313_rtc_interrupt(s32 irq, void *dev_id)
+> > +{
+> > +     struct msc313_rtc *priv =3D dev_get_drvdata(dev_id);
+> > +     u16 reg;
+> > +
+> > +     reg =3D readw_relaxed(priv->rtc_base + REG_RTC_CTRL);
+> > +     reg |=3D INT_CLEAR_BIT;
+> > +     reg &=3D ~INT_FORCE_BIT;
+> > +     writew_relaxed(reg, priv->rtc_base + REG_RTC_CTRL);
+> > +
+>
+> I'm not convinced the _relaxed functions are doing the right thing here.
 
-Sounds like 2 cells:
 
-maxItems: 2
+Good catch for the _relaxed, I did not pay attention during refactoring.
 
-> +
-> +  snps,rmii_refclk_ext:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      To select RMII reference clock from external.
-> +
-> +required:
-> +  - compatible
-> +  - clocks
-> +  - clock-names
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/clock/imx8mp-clock.h>
-> +
-> +    eqos: ethernet@30bf0000 {
-> +            compatible = "nxp,imx8mp-dwmac-eqos","snps,dwmac-5.10a";
-> +            reg = <0x30bf0000 0x10000>;
-> +            interrupts = <GIC_SPI 135 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
-> +            interrupt-names = "macirq", "eth_wake_irq";
-> +            clocks = <&clk IMX8MP_CLK_ENET_QOS_ROOT>,
-> +                     <&clk IMX8MP_CLK_QOS_ENET_ROOT>,
-> +                     <&clk IMX8MP_CLK_ENET_QOS_TIMER>,
-> +                     <&clk IMX8MP_CLK_ENET_QOS>;
-> +            clock-names = "stmmaceth", "pclk", "ptp_ref", "tx";
-> +            phy-mode = "rgmii";
-> +            status = "disabled";
+> Also, shouldn't you check the alarm actually fired?
 
-Why are you disabling your example? Drop.
+You mean before set the flag "RTC_AF" ? This driver is mostly based on
+reverse engineering,
+even if we have some hardware info. I will try to find if it is
+possible (I mean,  from the info
+I have).
 
-> +    };
-> -- 
-> 2.17.1
-> 
-> 
+>
+> > +     rtc_update_irq(priv->rtc_dev, 1, RTC_IRQF | RTC_AF);
+> > +
+> > +     return IRQ_HANDLED;
+> > +}
+> > +
+> > +static int msc313_rtc_remove(struct platform_device *pdev)
+> > +{
+> > +     struct msc313_rtc *priv =3D platform_get_drvdata(pdev);
+> > +
+> > +     clk_disable_unprepare(priv->clk);
+>
+> With a nice devm_add_action_or_reset() in the probe, you can remove the
+> need for msc313_rtc_remove().
+
+devm_add_action_or_reset() you said, interesting I did not know this functi=
+on.
+
+
+>
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int msc313_rtc_probe(struct platform_device *pdev)
+> > +{
+> > +     struct device *dev =3D &pdev->dev;
+> > +     struct msc313_rtc *priv;
+> > +     int ret;
+> > +     int irq;
+> > +     unsigned long rate;
+> > +     u16 reg;
+> > +
+> > +     priv =3D devm_kzalloc(&pdev->dev, sizeof(struct msc313_rtc), GFP_=
+KERNEL);
+> > +     if (!priv)
+> > +             return -ENOMEM;
+> > +
+> > +     priv->rtc_base =3D devm_platform_ioremap_resource(pdev, 0);
+> > +     if (IS_ERR(priv->rtc_base))
+> > +             return PTR_ERR(priv->rtc_base);
+> > +
+> > +     irq =3D platform_get_irq(pdev, 0);
+> > +     if (irq < 0)
+> > +             return -EINVAL;
+> > +
+> > +     ret =3D devm_request_irq(dev, irq, msc313_rtc_interrupt, IRQF_SHA=
+RED,
+> > +                            dev_name(&pdev->dev), &pdev->dev);
+> > +     if (ret) {
+> > +             dev_err(dev, "Unable to request irq\n");
+> > +             return ret;
+> > +     }
+> > +
+> > +     priv->clk =3D devm_clk_get(dev, NULL);
+> > +     if (IS_ERR(priv->clk)) {
+> > +             dev_err(dev, "No input reference clock\n");
+> > +             return PTR_ERR(priv->clk);
+> > +     }
+> > +
+> > +     ret =3D clk_prepare_enable(priv->clk);
+> > +     if (ret) {
+> > +             dev_err(dev, "Failed to enable the reference clock, %d\n"=
+, ret);
+> > +             return ret;
+> > +     }
+> > +
+> > +     rate =3D clk_get_rate(priv->clk);
+> > +
+> > +     reg =3D readw(priv->rtc_base + REG_RTC_CTRL);
+> > +     if (!(reg & SOFT_RSTZ_BIT)) {
+> > +             reg |=3D SOFT_RSTZ_BIT;
+> > +             writew(reg, priv->rtc_base + REG_RTC_CTRL);
+> > +     }
+>
+> What is the meaning of this bit? I would think it is better to use that
+> to know whether the RTC holds the correct time instead of killing the
+> info here.
+>
+> > +
+> > +     writew(rate & 0xFFFF, priv->rtc_base + REG_RTC_FREQ_CW_L);
+> > +     writew((rate >> 16) & 0xFFFF, priv->rtc_base + REG_RTC_FREQ_CW_H)=
+;
+> > +
+> > +     reg |=3D CNT_EN_BIT;
+> > +     writew(reg, priv->rtc_base + REG_RTC_CTRL);
+> > +
+> > +     platform_set_drvdata(pdev, priv);
+> > +
+> > +     priv->rtc_dev =3D devm_rtc_device_register(dev, dev_name(dev), &m=
+sc313_rtc_ops, THIS_MODULE);
+> > +     if (IS_ERR(priv->rtc_dev)) {
+> > +             dev_err(dev, "Failed to register rtc device\n");
+> > +             return PTR_ERR(priv->rtc_dev);
+> > +     }
+>
+> Please switch to devm_rtc_allocate_device and devm_rtc_register_device.
+> Also drop the error message, it is not necessary.
+>
+> You must also set the RTC range. To help you, you can use:
+> https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/rtc-tools.git/tr=
+ee/rtc-range.c
+> then you must update the DT bindings as the RTC will support the
+> start-year property
+>
+> You must also run rtctest and should include the results.
+
+Ack, I will do this in v2.
+
+Thanks!
