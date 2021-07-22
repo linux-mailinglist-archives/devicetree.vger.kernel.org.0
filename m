@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB2543D1D0A
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 06:26:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B8723D1D0B
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 06:26:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230021AbhGVDpq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 23:45:46 -0400
-Received: from out1-smtp.messagingengine.com ([66.111.4.25]:53241 "EHLO
+        id S229955AbhGVDpt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 23:45:49 -0400
+Received: from out1-smtp.messagingengine.com ([66.111.4.25]:33427 "EHLO
         out1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229905AbhGVDpq (ORCPT
+        by vger.kernel.org with ESMTP id S229965AbhGVDpt (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Jul 2021 23:45:46 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id E84DA5C01E3;
-        Thu, 22 Jul 2021 00:26:21 -0400 (EDT)
+        Wed, 21 Jul 2021 23:45:49 -0400
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.nyi.internal (Postfix) with ESMTP id 83A065C0040;
+        Thu, 22 Jul 2021 00:26:24 -0400 (EDT)
 Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Thu, 22 Jul 2021 00:26:21 -0400
+  by compute1.internal (MEProxy); Thu, 22 Jul 2021 00:26:24 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=traverse.com.au;
          h=from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=bvHSmzBLvenTa
-        xgVXhkOtqVZ879wzNNM44pHo8k3y7E=; b=hCN+z0YQJTKFnJzfxpYgHY3W3K8pd
-        31oQQogyyo8l4nZoSSy8p/zCxUvDyGt4wQqRhbDYOCdDFadSEfkALQgOWTy3v8Ip
-        jFl1H+1e1CbJAuUxZaqBfyrSCEP5ddAZ5Mi/wDp0xQZC6OgUOXytRTmzmf9mjTu6
-        GHyOkucFS35sbVG1hQQJ4+fr+fQoEV8WkjbxC8L7XqzoTdhr6gR6ReFiAIAgQF5Q
-        qu56E0LaHKzcxSm5h9Z6rNMcnolHzxPnOsQiRspFFR6Xa390J7c5ZdpffQHBe90u
-        T+zI/07zzNUHtvB4YCbf6rAwgOZnY/dVTPqPcXezv6O6aql20qeXpiyDg==
+        :mime-version:content-transfer-encoding; s=fm1; bh=yXSxWCnrJmIxz
+        MHdpwVteWEvFisATWsodcS3Vk4nhyA=; b=zE9Xfo6nZ6HwUtN5Kvf8xjvIiYU2w
+        OTs+KM9r+0GumpnxG7jHwbojbeooqqZh5Hqp9ynm7cUVVIfUUQQw0KUp1v8KCPtc
+        ryavX0nTfB54nZMl6E7VKcmSlA4MIZJA+x0oeNE3OJ9fYeAxNby/Siq+WTcR4ZL2
+        xPcJGj3DIFfH7FJ38jA9p5/6mvaVraZV+ILcOsrLlP034r1MVhULk5koGloYKumF
+        5Ws5At7cEZna/+83WB52dI4bEa3jvKo1rDPDexvaMMeX3ldAobzak0Bp/IIXSjuK
+        pB+FOhdy6/aCok2iuL95/PEvNvMWpv406ww+L/KZsMXjYni+PI896+sjA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:date:from
         :in-reply-to:message-id:mime-version:references:subject:to
         :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=bvHSmzBLvenTaxgVXhkOtqVZ879wzNNM44pHo8k3y7E=; b=S7JlRNNA
-        QMnXw2dB7qX5odKvfbFsVb9Mm2ftDZy6teejwoScN7YI404EA44wSB1BATlcbdr6
-        YHPIXNyWDov+wsAn1zj/Sbi2QVXfzQ+QbcRvmERJVGgAAoFZp86Jf5Cr94aMKaL+
-        6CoZMZzcTG22nIKEMlXZ1UhzXDOFroC+GYZWA1G6aUbr8ICfBBOPhRQ3eJZ6WnVA
-        e6uXc3Z2p9ftvLGSF6FPP3hi1JLnrfxKzH2iXbbGI2CeuYwHQW4xkkfXZTcRKKOQ
-        T1rSV5RO3sMX1eIG4Mq2nhQJ6K8rvT6kx2LMnZtwr3FB+mmF2b1scbHFxE6ERlzt
-        yYGQemjM/mt2KQ==
-X-ME-Sender: <xms:bfP4YIqgvyAn3oCbLPOVpQm77Jza3ZA9aRBild8ncCCHtsRdZCUjtQ>
-    <xme:bfP4YOpyAQ9rFmfOIqSOs83K2v0w1qzqRYOF_bEVnkzGEUAdc0sI-hSJdyWHLawvd
-    ZhZ3gFPgIXKkNhxOf0>
-X-ME-Received: <xmr:bfP4YNOB9IPuD8XNzSNLuiDt_ueB3A8VvbJZMAyw5AmEfj-3zSoNU7QK_a8K38RC0B_Gk8zJcSR6y9H_nvTXyNDW7L6mfOiqrakzQFRTs9pI1xBwJxlXzfVR1Aa0VeA>
+        fm3; bh=yXSxWCnrJmIxzMHdpwVteWEvFisATWsodcS3Vk4nhyA=; b=HEapQZdo
+        lmIZbgUSo7EP5wCko46SiJIjvq/Mm81YN8zVipa1qyCl7ndVinHB1nxREWbitkPa
+        6Ep97nWz4DB/c7LRTjg+OZ8+VPsqeG246L5UVN2QseVBixUeJL7AO0lDjLzq33F0
+        mMQKV3pcnv6c5HT2Qnn48rkzd6ux9ViP32YTmbduFlG4zC+j5tqmKXMsqE/lKx5H
+        fAtlUYfN2JE2K0JcULjkyDPcw8gJsM4qDMOULl8k9bZkbFy9dzISc/VsMPrMivLK
+        04/hdlcwzoDRqRED7h2aLlXyKDXOvuIZ401QF7vxEuoxR7HoO/qs4v6uHCR85TSc
+        RAUm2zbiFC3UKg==
+X-ME-Sender: <xms:cPP4YHdJ8vd7KqJkHd4baEiVi55jrrRJrAbdAgW2oqKXJURc_iJgwg>
+    <xme:cPP4YNNN1HMYaXGe3WSA1WvEM-kqlZSn2bLDKoTxOBjtjushPtcQczy4YRApVN0q4
+    d8xOYe9NN0GKCiXsgs>
+X-ME-Received: <xmr:cPP4YAgNNb_A8oAn5sztA_9DrX0YG2di95miGa2alz_nrHpvgKYyJ3sntB29uqA-Hi0Z2tziaWibItfEMUzDwKIW9K89Xy0PabG8qSi1cxWvW6R0uBQd7pzocAJLH-M>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeehgdekudcutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
@@ -49,21 +49,21 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeehgdekudcutefuodetggdote
     frrghtthgvrhhnpeekleevteelvdduheetgfdvfeelueekffeggeethedtteeljeeivedv
     gfehjeejheenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
     hmpehmrghtthesthhrrghvvghrshgvrdgtohhmrdgruh
-X-ME-Proxy: <xmx:bfP4YP5EJsmaRsJWDicnYX6LwbV0EZx10ZOJKD55pCteNpMEEw3chw>
-    <xmx:bfP4YH5YsyE8MgdF-42JWWjR6RUlIOUayZsY55cBsuRy_9G44l34MA>
-    <xmx:bfP4YPh97NNQTyxGBWHCzWN0ypOf2q29f8va7AyLAM8pghXHlEivRA>
-    <xmx:bfP4YNQFiTlNwFi-qGKAJQ2DmO2BW5qFLt8n_aN7co5KtvpsyydRrQ>
+X-ME-Proxy: <xmx:cPP4YI8oj0vqAH_-ETtaIYVl27uYB0s5nhD1FbmIYGi9rv3OE9rsAQ>
+    <xmx:cPP4YDuDfGzYO3yjbNTF8xzKQMFDUX0xDOY7MZKP_7d407mAZuJiYg>
+    <xmx:cPP4YHF-NbT9jpFPIRqbXCbjY58jlKvnrNY1ZVX3mZTHMGHn1lFzug>
+    <xmx:cPP4YJVkOuiKnVVMjbFsU9cqjwOkZpKzmKsmM6QV7qCCHmTJqyBQSg>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 22 Jul 2021 00:26:19 -0400 (EDT)
+ 22 Jul 2021 00:26:22 -0400 (EDT)
 From:   Mathew McBride <matt@traverse.com.au>
 To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
         Ioana Ciornei <ioana.ciornei@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
 Cc:     Mathew McBride <matt@traverse.com.au>
-Subject: [PATCH 2/5] arm64: dts: ls1088a: add missing PMU node
-Date:   Thu, 22 Jul 2021 04:24:47 +0000
-Message-Id: <20210722042450.11862-3-matt@traverse.com.au>
+Subject: [PATCH 3/5] dt-bindings: vendor-prefixes: add Traverse Technologies
+Date:   Thu, 22 Jul 2021 04:24:48 +0000
+Message-Id: <20210722042450.11862-4-matt@traverse.com.au>
 X-Mailer: git-send-email 2.30.1
 In-Reply-To: <20210722042450.11862-1-matt@traverse.com.au>
 References: <20210722042450.11862-1-matt@traverse.com.au>
@@ -73,35 +73,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Performance Manager Unit was not described in the DTS
-which meant performance event monitoring was not possible.
-
-This was exposed by a change to the PMU handling in KVM
-in 5.11-rc3 which now prevents a PMU being exposed to a
-guest when the host does not provide one:
-"KVM: arm64: Don't access PMCR_EL0 when no PMU is available"
+Traverse Technologies is a designer and manufacturer
+of networking appliances.
 
 Signed-off-by: Mathew McBride <matt@traverse.com.au>
 ---
- arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-index 79ceadc9dc4a..752c7f41e6b1 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-@@ -189,6 +189,11 @@ timer {
- 			     <1 10 IRQ_TYPE_LEVEL_LOW>;/* Hypervisor PPI */
- 	};
- 
-+	pmu {
-+		compatible = "arm,armv8-pmuv3";
-+		interrupts = <1 7 0x8>; /* PMU PPI, Level low type */
-+	};
-+
- 	psci {
- 		compatible = "arm,psci-0.2";
- 		method = "smc";
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 07fb0d25fc15..eba2029d3ba7 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1184,6 +1184,8 @@ patternProperties:
+     description: TPO
+   "^tq,.*":
+     description: TQ-Systems GmbH
++  "^traverse,.*":
++    description: Traverse Technologies Australia Pty Ltd
+   "^tronfy,.*":
+     description: Tronfy
+   "^tronsmart,.*":
 -- 
 2.30.1
 
