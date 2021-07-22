@@ -2,107 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 042E03D2AF6
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 19:18:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EADF3D2B33
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 19:34:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232234AbhGVQbV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 12:31:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55608 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230434AbhGVQbV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jul 2021 12:31:21 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A30C6C061575;
-        Thu, 22 Jul 2021 10:11:55 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id b16so7003360ljq.9;
-        Thu, 22 Jul 2021 10:11:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=kW0eXva7xVNT5G9+x5mEsNAXW41r17zcwLN4lzd0IxQ=;
-        b=Vm6PLOPVETZO6N0X9Ba7B3KUZ7fxh0X83imeI35Xv/IdXsZIxFBMUHvgjbbLkFn2pC
-         vaD2gg+JavZWm28ryNIAwFRunEiCjdFjenIvEGbkdCjk+mU5UZvPM6omIEEJQnHY3MmR
-         ig1+495y4kS3cxP/D4MnopnK9t6z1PvLy2rjjkoKDIVzE24OIw4DIHhN4coRCEN14Xri
-         5YOleXTNLlWSMhJ+GdKjG+bEXHeOZhLgQ2LOLqdatADW8qfDMA9H/s8DaI3Y+91Ei2gS
-         Prj2NshJJ5AIdW6aqykduhEe7Frlb6ua1BQCiK+O1NlC3DjYEw8a7Rd49UmE/uaBTV4n
-         Xk+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=kW0eXva7xVNT5G9+x5mEsNAXW41r17zcwLN4lzd0IxQ=;
-        b=Mcm9lBx/grEE77Ob9xFCWBWvyJypd7ZGfpIZH9RaDRWLVJ3jt8HdwSWqPaEvOu1myd
-         46/J5sGAhzzVX+TnAKLkn7juWTHe0c20CZPOTUAad6s+kc+kf+8+zlUundAn2azvKrXD
-         6zvyvKQsXfAPL3EIB3ikba+IGzSP1p+5CyjTYAz9kmZgHgCyurgVvqZbINDJosZjxDhB
-         f4diD9L7dNcijkUggiyb2ytY9IV/3An7TRBkXGsfakE3Tm1lbDJ1LLDs+8+7F8K5ZmvW
-         DLSTbDqIi49VWxA9xCwlyF5v9BFZkY7G8wCsezldYuZEcILuVHgCoZOJrBse3q28Blng
-         BryQ==
-X-Gm-Message-State: AOAM532YPhxUA2sVtBzr5rRVn7d3LaEmW7pQ1fwpdJ9lLZvDTGvQO3fx
-        xcMUQ4QvHzDeyH0rxke5mYc=
-X-Google-Smtp-Source: ABdhPJy87VsWPSRFkTl8PqSOtY3yxklXiYjLxBBJDaptvPUR/kvJ/ObPLSC1877ss4SnHSGbKv0WKg==
-X-Received: by 2002:a2e:9794:: with SMTP id y20mr645880lji.417.1626973909136;
-        Thu, 22 Jul 2021 10:11:49 -0700 (PDT)
-Received: from mobilestation ([95.79.127.110])
-        by smtp.gmail.com with ESMTPSA id j26sm1386101lfh.71.2021.07.22.10.11.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Jul 2021 10:11:48 -0700 (PDT)
-Date:   Thu, 22 Jul 2021 20:11:46 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     nandhini.srikandan@intel.com
-Cc:     broonie@kernel.org, robh+dt@kernel.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        mgross@linux.intel.com, kris.pan@intel.com,
-        kenchappa.demakkanavar@intel.com, furong.zhou@intel.com,
-        mallikarjunappa.sangannavar@intel.com, mahesh.r.vaidya@intel.com,
-        rashmi.a@intel.com
-Subject: Re: =?utf-8?B?W+KAnFBBVENI4oCdIDEvMg==?= =?utf-8?Q?=5D?=
- dt-bindings: spi: Add bindings for Intel Thunder Bay SoC
-Message-ID: <20210722171146.fux2nkoz3gz5ck2p@mobilestation>
-References: <20210722053358.29682-1-nandhini.srikandan@intel.com>
- <20210722053358.29682-2-nandhini.srikandan@intel.com>
+        id S229992AbhGVQxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 12:53:48 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:19701 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229456AbhGVQxq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jul 2021 12:53:46 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1626975261; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=cJDgVCs2rvIlKUPXYolN/oe1dY90L5GjxrP/lVY81IQ=;
+ b=ENu++hepYWHLuPlXjVglOG4QtQLRTbsEmtB3+LX8GR720XGnYJF3ZPcGNWK4/QKBN8463GVs
+ lyAVyP/WjxaElMbReCH04+h5s2tXnp9tXtPsKS8nadMuYGgZHn+6zqeRb7Ht5A9o4AxSHOU7
+ 4fLwRC+Y+AdpN7owLWHs1B+v1mk=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
+ 60f9ac0b96a66e66b2f1b17b (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 22 Jul 2021 17:34:03
+ GMT
+Sender: sibis=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id CDE6DC43217; Thu, 22 Jul 2021 17:34:02 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 2129FC4338A;
+        Thu, 22 Jul 2021 17:34:01 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210722053358.29682-2-nandhini.srikandan@intel.com>
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 22 Jul 2021 23:04:01 +0530
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     bjorn.andersson@linaro.org, mka@chromium.org, robh+dt@kernel.org,
+        saiprakash.ranjan@codeaurora.org, will@kernel.org, ohad@wizery.com,
+        agross@kernel.org, mathieu.poirier@linaro.org,
+        robin.murphy@arm.com, joro@8bytes.org, p.zabel@pengutronix.de,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, evgreen@chromium.org,
+        dianders@chromium.org
+Subject: Re: [PATCH v2 10/10] arm64: dts: qcom: sc7280: Update Q6V5 MSS node
+In-Reply-To: <CAE-0n51UbfpM94aOkdnSH9ZAvz-+V1X-hsOSMbkHJQDkYyD22w@mail.gmail.com>
+References: <1626775980-28637-1-git-send-email-sibis@codeaurora.org>
+ <1626775980-28637-11-git-send-email-sibis@codeaurora.org>
+ <CAE-0n53bRGouiycpcukPYB_+Gyz_Dr=rCAnb2MH64=+Q899aOA@mail.gmail.com>
+ <a021012616af266905099e0563d0fff5@codeaurora.org>
+ <CAE-0n51UbfpM94aOkdnSH9ZAvz-+V1X-hsOSMbkHJQDkYyD22w@mail.gmail.com>
+Message-ID: <2be424e6cc16e004ba64c5574cf607b9@codeaurora.org>
+X-Sender: sibis@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 22, 2021 at 01:33:57PM +0800, nandhini.srikandan@intel.com wrote:
-> From: Nandhini Srikandan <nandhini.srikandan@intel.com>
+On 2021-07-22 04:23, Stephen Boyd wrote:
+> Quoting Sibi Sankar (2021-07-21 10:16:14)
+>> On 2021-07-21 11:17, Stephen Boyd wrote:
+>> > Quoting Sibi Sankar (2021-07-20 03:13:00)
+>> >
+>> >> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> >> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> >> index 56ea172f641f..6d3687744440 100644
+>> >> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> >> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> >> @@ -586,7 +586,8 @@
+>> >>
+>> >>                 remoteproc_mpss: remoteproc@4080000 {
+>> >>                         compatible = "qcom,sc7280-mpss-pas";
+>> >> -                       reg = <0 0x04080000 0 0x10000>;
+>> >> +                       reg = <0 0x04080000 0 0x10000>, <0 0x04180000
+>> >> 0 0x48>;
+>> >> +                       reg-names = "qdsp6", "rmb";
+>> >>
+>> >>                         interrupts-extended = <&intc GIC_SPI 264
+>> >> IRQ_TYPE_EDGE_RISING>,
+>> >>                                               <&modem_smp2p_in 0
+>> >> IRQ_TYPE_EDGE_RISING>,
+>> >> @@ -597,8 +598,11 @@
+>> >>                         interrupt-names = "wdog", "fatal", "ready",
+>> >> "handover",
+>> >>                                           "stop-ack", "shutdown-ack";
+>> >>
+>> >> -                       clocks = <&rpmhcc RPMH_CXO_CLK>;
+>> >> -                       clock-names = "xo";
+>> >> +                       clocks = <&gcc GCC_MSS_CFG_AHB_CLK>,
+>> >> +                                <&gcc GCC_MSS_OFFLINE_AXI_CLK>,
+>> >> +                                <&gcc GCC_MSS_SNOC_AXI_CLK>,
+>> >> +                                <&rpmhcc RPMH_CXO_CLK>;
+>> >> +                       clock-names = "iface", "offline", "snoc_axi",
+>> >> "xo";
+>> >>
+>> >>                         power-domains = <&rpmhpd SC7280_CX>,
+>> >>                                         <&rpmhpd SC7280_MSS>;
+>> >> @@ -611,6 +615,15 @@
+>> >>                         qcom,smem-states = <&modem_smp2p_out 0>;
+>> >>                         qcom,smem-state-names = "stop";
+>> >>
+>> >> +                       resets = <&aoss_reset AOSS_CC_MSS_RESTART>,
+>> >> +                                <&pdc_reset PDC_MODEM_SYNC_RESET>;
+>> >> +                       reset-names = "mss_restart", "pdc_reset";
+>> >> +
+>> >> +                       qcom,halt-regs = <&tcsr_mutex 0x23000 0x25000
+>> >> 0x28000 0x33000>;
+>> >> +                       qcom,ext-regs = <&tcsr_regs 0x10000 0x10004
+>> >> +                                        &tcsr_mutex 0x26004 0x26008>;
+>> >> +                       qcom,qaccept-regs = <&tcsr_mutex 0x23030
+>> >> 0x23040 0x23020>;
+>> >> +
+>> >>                         status = "disabled";
+>> >>
+>> >>                         glink-edge {
+>> >
+>> > Any reason to not combine this stuff with the previous patch?
+>> 
+>> I split it into two separate
+>> patches just to show that sc7280
+>> supports two ways of bringing
+>> modem out of reset and method
+>> used is determined by the platform.
+>> 
 > 
+> Ok. But if there are two methods do they work with the same node in
+> sc7280.dtsi? Because I was expecting to see the node introduced in the
+> SoC dtsi file in the final form instead of the half form and then be
+> amended in this patch.
 
-> Add documentation for SPI controller in Intel Thunder Bay SoC.
+Board files enables the mss node
+and overloads the compatible depending
+on the platform it is expected to
+run on. So pretty much the same
+node with just changing the compatible
+and few additional properties support
+both methods. Patch 9 is complete in
+itself i.e. it is compliant with
+the pas yaml, while patch 10 adds
+the bits required to make alternate
+method work.
 
-In the driver-part of the patchset you said that the reset control
-is required for this controller. Then the bindings file needs to be
-accordingly altered. See the way it's done in the "allOf:" block here.
-
-If it isn't required then this part looks ok to me.
-
-Regards,
--Sergey
-
-> 
-> Signed-off-by: Nandhini Srikandan <nandhini.srikandan@intel.com>
-> ---
->  Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> index ca91201a9926..88532bf8ba85 100644
-> --- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> @@ -61,6 +61,8 @@ properties:
->            - const: snps,dw-apb-ssi
->        - description: Intel Keem Bay SPI Controller
->          const: intel,keembay-ssi
-> +      - description: Intel Thunder Bay SPI Controller
-> +        const: intel,thunderbay-ssi
->        - description: Baikal-T1 SPI Controller
->          const: baikal,bt1-ssi
->        - description: Baikal-T1 System Boot SPI Controller
-> -- 
-> 2.17.1
-> 
+-- 
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project.
