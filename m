@@ -2,161 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 485493D2040
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 10:58:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BBAA3D204F
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 11:04:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231296AbhGVISD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 04:18:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58580 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231288AbhGVISC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Jul 2021 04:18:02 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id BADE76138C;
-        Thu, 22 Jul 2021 08:58:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626944317;
-        bh=5+Ds4MASIrWRq99HNYMoMBFeXjK14QuDwTvs3AcKaRQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=HafYTP8ZiVw5V5Hkj03a5d00l6UZsBR8huXdlff2hbxNqNk29wjIL/YTjf3xiM1SJ
-         PfzbZhi9vrxFqH0puM8PbnH/Xt5FZxACyBXPaketVObl2mDlcR0bHW+c3tHthswCC4
-         8RxHOJU3ZME5XKnZ4r0v8iZBDAXYyML5md/eElDnN3jg+Z1Kjmn7wAZBsIp51wXLsG
-         IMMXeU/tEUL+vA9PAhZMfda1SFYKDBdG8S9zAwBstCLKCEVHtJO72dXkHz4x+d4VME
-         L0Ovff6IbIUDQWo0wcwToFzPCShQ85AwWaidGjGhqne2NAGbUwYCaLwRLUu1IufnFx
-         aIf7Ckeq/jvog==
-Date:   Thu, 22 Jul 2021 14:28:33 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Eddie Hung <eddie.hung@mediatek.com>
-Subject: Re: [PATCH v3 3/3] phy: phy-mtk-tphy: add support mt8195
-Message-ID: <YPkzOWY0G4MFk7Nu@matsya>
-References: <1626331702-27825-1-git-send-email-chunfeng.yun@mediatek.com>
- <1626331702-27825-3-git-send-email-chunfeng.yun@mediatek.com>
- <YPaIYI70823rK68w@matsya>
- <1626837468.4247.3.camel@mhfsdcap03>
+        id S230419AbhGVIX7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 04:23:59 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:52273 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230330AbhGVIX6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jul 2021 04:23:58 -0400
+X-UUID: 91421b5c386f4357bc4539c6146e6a42-20210722
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=SUfFUHHeAiy7xHB0h/Imsj6WwwpQ9EOfIzx4JdwN/vE=;
+        b=GsEi1ZINroU+gGMj6dryC39Rbo1RNYLRaqwQwRa0LNApMnhChyl7SeZGuskAbdw1md+HIFRXAHYanlY5Lprlu3hD2eQ5mKZUON8T3H5UvoCi3exy+VRuMLr+3ix9XAc4pNR/a7qfGhdi4bfO6UVuCGykz9NsH2ttTnRLp7qocx4=;
+X-UUID: 91421b5c386f4357bc4539c6146e6a42-20210722
+Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <zhiyong.tao@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1242842288; Thu, 22 Jul 2021 17:04:29 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N2.mediatek.inc
+ (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 22 Jul
+ 2021 17:04:26 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 22 Jul 2021 17:04:25 +0800
+Message-ID: <1626944665.29611.22.camel@mhfsdcap03>
+Subject: Re: [PATCH] uart: mediatek: fix memory corruption issue
+From:   zhiyong tao <zhiyong.tao@mediatek.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+CC:     "timur@kernel.org" <timur@kernel.org>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "alcooperx@gmail.com" <alcooperx@gmail.com>,
+        "tklauser@distanz.ch" <tklauser@distanz.ch>,
+        "sean.wang@kernel.org" <sean.wang@kernel.org>,
+        "srv_heupstream@mediatek.com" <srv_heupstream@mediatek.com>,
+        "hui.liu@mediatek.com" <hui.liu@mediatek.com>,
+        "yuchen.huang@mediatek.com" <yuchen.huang@mediatek.com>,
+        "huihui.wang@mediatek.com" <huihui.wang@mediatek.com>,
+        "eddie.huang@mediatek.com" <eddie.huang@mediatek.com>,
+        "sean.wang@mediatek.com" <sean.wang@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>
+Date:   Thu, 22 Jul 2021 17:04:25 +0800
+In-Reply-To: <CAHp75VeZL53VN0w3O160vMurmRT9ZJzJek6=4X6osqjJDuxD3g@mail.gmail.com>
+References: <20210710090103.2643-1-zhiyong.tao@mediatek.com>
+         <20210710090103.2643-2-zhiyong.tao@mediatek.com>
+         <CAHp75VeZL53VN0w3O160vMurmRT9ZJzJek6=4X6osqjJDuxD3g@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1626837468.4247.3.camel@mhfsdcap03>
+X-TM-SNTS-SMTP: 807C9821DB6278E61EADEB2C44AB602CE8CBB4FB77B86B8C8DCE9240BB9B9AA02000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21-07-21, 11:17, Chunfeng Yun wrote:
-> On Tue, 2021-07-20 at 13:55 +0530, Vinod Koul wrote:
-> > On 15-07-21, 14:48, Chunfeng Yun wrote:
-> > > The controller is designed to use use PLL integer mode, but
-> > > in fact used fractional mode for some ones on mt8195, this
-> > > causes signal degradation (e.g. eye diagram test fail), fix
-> > > it by switching PLL to 26Mhz from default 48Mhz to improve
-> > > signal quality.
-> > > 
-> > > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> > > ---
-> > > v2~3: no changes
-> > > ---
-> > >  drivers/phy/mediatek/phy-mtk-tphy.c | 52 +++++++++++++++++++++++++++++
-> > >  1 file changed, 52 insertions(+)
-> > > 
-> > > diff --git a/drivers/phy/mediatek/phy-mtk-tphy.c b/drivers/phy/mediatek/phy-mtk-tphy.c
-> > > index 42a1174da6cc..c3dc1763a7eb 100644
-> > > --- a/drivers/phy/mediatek/phy-mtk-tphy.c
-> > > +++ b/drivers/phy/mediatek/phy-mtk-tphy.c
-> > > @@ -41,6 +41,8 @@
-> > >  
-> > >  #define U3P_USBPHYACR0		0x000
-> > >  #define PA0_RG_U2PLL_FORCE_ON		BIT(15)
-> > > +#define PA0_USB20_PLL_PREDIV		GENMASK(7, 6)
-> > > +#define PA0_USB20_PLL_PREDIV_VAL(x)	((0x3 & (x)) << 6)
-> > >  #define PA0_RG_USB20_INTR_EN		BIT(5)
-> > >  
-> > >  #define U3P_USBPHYACR1		0x004
-> > > @@ -52,6 +54,8 @@
-> > >  #define PA1_RG_TERM_SEL_VAL(x)	((0x7 & (x)) << 8)
-> > >  
-> > >  #define U3P_USBPHYACR2		0x008
-> > > +#define PA2_RG_U2PLL_BW			GENMASK(21, 19)
-> > > +#define PA2_RG_U2PLL_BW_VAL(x)		((0x7 & (x)) << 19)
-> > >  #define PA2_RG_SIF_U2PLL_FORCE_EN	BIT(18)
-> > >  
-> > >  #define U3P_USBPHYACR5		0x014
-> > > @@ -73,6 +77,14 @@
-> > >  #define P2C_USB20_GPIO_MODE		BIT(8)
-> > >  #define P2C_U2_GPIO_CTR_MSK	(P2C_RG_USB20_GPIO_CTL | P2C_USB20_GPIO_MODE)
-> > >  
-> > > +#define U3P_U2PHYA_RESV		0x030
-> > > +#define P2R_RG_U2PLL_FBDIV_26M		0x1bb13b
-> > > +#define P2R_RG_U2PLL_FBDIV_48M		0x3c0000
-> > > +
-> > > +#define U3P_U2PHYA_RESV1	0x044
-> > > +#define P2R_RG_U2PLL_REFCLK_SEL	BIT(5)
-> > > +#define P2R_RG_U2PLL_FRA_EN		BIT(3)
-> > > +
-> > >  #define U3D_U2PHYDCR0		0x060
-> > >  #define P2C_RG_SIF_U2PLL_FORCE_ON	BIT(24)
-> > >  
-> > > @@ -277,6 +289,12 @@ enum mtk_phy_version {
-> > >  struct mtk_phy_pdata {
-> > >  	/* avoid RX sensitivity level degradation only for mt8173 */
-> > >  	bool avoid_rx_sen_degradation;
-> > > +	/*
-> > > +	 * u2phy should use integer mode instead of fractional mode of
-> > > +	 * 48M PLL, fix it by switching PLL to 26M from default 48M
-> > > +	 * for mt8195
-> > > +	 */
-> > > +	bool sw_pll_48m_to_26m;
-> > >  	enum mtk_phy_version version;
-> > >  };
-> > >  
-> > > @@ -456,6 +474,33 @@ static void u3_phy_instance_init(struct mtk_tphy *tphy,
-> > >  	dev_dbg(tphy->dev, "%s(%d)\n", __func__, instance->index);
-> > >  }
-> > >  
-> > > +static void u2_phy_pll_26m_set(struct mtk_tphy *tphy,
-> > > +	struct mtk_phy_instance *instance)
-> > > +{
-> > > +	struct u2phy_banks *u2_banks = &instance->u2_banks;
-> > > +	void __iomem *com = u2_banks->com;
-> > > +	u32 tmp;
-> > > +
-> > > +	if (!tphy->pdata->sw_pll_48m_to_26m)
-> > > +		return;
-> > > +
-> > > +	tmp = readl(com + U3P_USBPHYACR0);
-> > > +	tmp &= ~PA0_USB20_PLL_PREDIV;
-> > > +	tmp |= PA0_USB20_PLL_PREDIV_VAL(0);
-> > > +	writel(tmp, com + U3P_USBPHYACR0);
-> > > +
-> > > +	tmp = readl(com + U3P_USBPHYACR2);
-> > > +	tmp &= ~PA2_RG_U2PLL_BW;
-> > > +	tmp |= PA2_RG_U2PLL_BW_VAL(3);
-> > > +	writel(tmp, com + U3P_USBPHYACR2);
-> > > +
-> > > +	writel(P2R_RG_U2PLL_FBDIV_26M, com + U3P_U2PHYA_RESV);
-> > > +
-> > > +	tmp = readl(com + U3P_U2PHYA_RESV1);
-> > > +	tmp |= P2R_RG_U2PLL_FRA_EN | P2R_RG_U2PLL_REFCLK_SEL;
-> > > +	writel(tmp, com + U3P_U2PHYA_RESV1);
-> > > +}
-> > > +
-> > >  static void u2_phy_instance_init(struct mtk_tphy *tphy,
-> > >  	struct mtk_phy_instance *instance)
-> > >  {
-> > > @@ -941,6 +986,7 @@ static int mtk_phy_init(struct phy *phy)
-> > >  
-> > >  	switch (instance->type) {
-> > >  	case PHY_TYPE_USB2:
-> > > +		u2_phy_pll_26m_set(tphy, instance);
-> > 
-> > should this not be set only for MTK_PHY_V3?
-> Workaround only for mt8195, HW will fix it for others (V3)
+T24gV2VkLCAyMDIxLTA3LTE0IGF0IDAxOjIwICswMzAwLCBBbmR5IFNoZXZjaGVua28gd3JvdGU6
+DQo+IA0KPiANCj4gT24gU2F0dXJkYXksIEp1bHkgMTAsIDIwMjEsIFpoaXlvbmcgVGFvIDx6aGl5
+b25nLnRhb0BtZWRpYXRlay5jb20+DQo+IHdyb3RlOg0KPiANCj4gDQo+IFBsZWFzZSwgdXNlIOKA
+nHNlcmlhbDogODI2MF9tdGs64oCdIHByZWZpeC4NCg0KPT0+IEhpIEFuZHksDQoNClRoYW5rcyBm
+b3IgeW91ciBzdWdnZXN0aW9uLg0Kd2Ugd2lsbCBjaGFuZ2UgaXQgaW4gdGhlIG5leHQgdmVyc2lv
+bi4NCj4gDQo+ICAgICAgICAgVGhpcyBwYXRjaCBpcyB1c2VkIHRvIGZpeCBtZW1vcnkgDQo+ICAg
+ICAgICAgDQo+IA0KPiANCj4gVGhpcyBpcyBjb21wbGV0ZWx5IGNvbmZ1c2luZyBzdGFydCBvZiB0
+aGUgc2VudGVuY2UuIFRoZSBmb3JtIG9mIOKAnGJlDQo+IHVzZWQgdG/igJ0gc3Ryb25nbHkgc3Vn
+Z2VzdHMgdHdvIHRoaW5nczogMSkgaXQgd2FzIGEgcGF0Y2ggdG8gZml4DQo+IHNvbWV0aGluZzsg
+MikgaXQgaXMgbm90IHVzZWQgYW55bW9yZSBhbmQgbmV2ZXIgY29uc2lkZXJlZCB0byBiZSB1c2Vk
+DQo+IGFnYWluLA0KPiANCj4gDQo+IEJlc2lkZXMgdGhhdCBTdWJtaXR0aW5nIFBhdGNoZXMgZG9j
+dW1lbnQgaGlnaGx5IHJlY29tbWVuZHMgdG8gYXZvaWQNCj4gc2VudGVuY2VzIHRoYXQgc3RhcnRz
+IHdpdGgg4oCcdGhpcyBwYXRjaOKAnS4NCj4gIA0KDQo9PT5XZSB3aWxsIGNoYW5nZSB0aGUgY29t
+bWl0IG1lc3NhZ2UgYXMgIkZpeCB1YXJ0IGNvcnJ1cHRpb24gaXNzdWUgd2hlbg0KcnggcG93ZXIg
+b2ZmICJpbiB0aGUgbmV4dCB2ZXJzaW9uLg0KDQpUaGFua3MuDQo+ICAgICAgICAgDQo+ICAgICAg
+ICAgY29ycnVwdGlvbiBpc3N1ZSB3aGVuIHJ4IHBvd2VyIG9mZi4NCj4gICAgICAgICAxLiBhZGQg
+c3BpbiBsb2NrIGluIG10azgyNTBfZG1hX3J4X2NvbXBsZXRlIGZ1bmN0aW9uIGluIEFQRE1BDQo+
+ICAgICAgICAgbW9kZS4NCj4gICAgICAgICAyLiBhZGQgcHJvY2Vzc2luZyBtZWNoYW5pc20gd2hp
+Y2ggY291bnQgdmFsdWUgaXMgMA0KPiAgICAgICAgIA0KPiAgICAgICAgIFNpZ25lZC1vZmYtYnk6
+IFpoaXlvbmcgVGFvIDx6aGl5b25nLnRhb0BtZWRpYXRlay5jb20+DQo+ICAgICAgICAgLS0tDQo+
+ICAgICAgICAgIGRyaXZlcnMvdHR5L3NlcmlhbC84MjUwLzgyNTBfbXRrLmMgfCAxNSArKysrKysr
+KysrKy0tLS0NCj4gICAgICAgICAgMSBmaWxlIGNoYW5nZWQsIDExIGluc2VydGlvbnMoKyksIDQg
+ZGVsZXRpb25zKC0pDQo+ICAgICAgICAgDQo+ICAgICAgICAgZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+dHR5L3NlcmlhbC84MjUwLzgyNTBfbXRrLmMNCj4gICAgICAgICBiL2RyaXZlcnMvdHR5L3Nlcmlh
+bC84MjUwLzgyNTBfbXRrLmMNCj4gICAgICAgICBpbmRleCBmN2QzMDIzZjg2MGYuLjA5ZjdkMjE2
+NjMxNSAxMDA2NDQNCj4gICAgICAgICAtLS0gYS9kcml2ZXJzL3R0eS9zZXJpYWwvODI1MC84MjUw
+X210ay5jDQo+ICAgICAgICAgKysrIGIvZHJpdmVycy90dHkvc2VyaWFsLzgyNTAvODI1MF9tdGsu
+Yw0KPiAgICAgICAgIEBAIC05MSwxMiArOTEsMTUgQEAgc3RhdGljIHZvaWQgbXRrODI1MF9kbWFf
+cnhfY29tcGxldGUodm9pZA0KPiAgICAgICAgICpwYXJhbSkNCj4gICAgICAgICAgICAgICAgIHN0
+cnVjdCBtdGs4MjUwX2RhdGEgKmRhdGEgPSB1cC0+cG9ydC5wcml2YXRlX2RhdGE7DQo+ICAgICAg
+ICAgICAgICAgICBzdHJ1Y3QgdHR5X3BvcnQgKnR0eV9wb3J0ID0gJnVwLT5wb3J0LnN0YXRlLT5w
+b3J0Ow0KPiAgICAgICAgICAgICAgICAgc3RydWN0IGRtYV90eF9zdGF0ZSBzdGF0ZTsNCj4gICAg
+ICAgICAtICAgICAgIGludCBjb3BpZWQsIHRvdGFsLCBjbnQ7DQo+ICAgICAgICAgKyAgICAgICB1
+bnNpZ25lZCBpbnQgY29waWVkLCB0b3RhbCwgY250Ow0KPiAgICAgICAgICAgICAgICAgdW5zaWdu
+ZWQgY2hhciAqcHRyOw0KPiAgICAgICAgICsgICAgICAgdW5zaWduZWQgbG9uZyBmbGFnczsNCj4g
+ICAgICAgICANCj4gICAgICAgICAgICAgICAgIGlmIChkYXRhLT5yeF9zdGF0dXMgPT0gRE1BX1JY
+X1NIVVRET1dOKQ0KPiAgICAgICAgICAgICAgICAgICAgICAgICByZXR1cm47DQo+ICAgICAgICAg
+DQo+ICAgICAgICAgKyAgICAgICBzcGluX2xvY2tfaXJxc2F2ZSgmdXAtPnBvcnQubG9jaywgZmxh
+Z3MpOw0KPiAgICAgICAgICsNCj4gICAgICAgICAgICAgICAgIGRtYWVuZ2luZV90eF9zdGF0dXMo
+ZG1hLT5yeGNoYW4sIGRtYS0+cnhfY29va2llLA0KPiAgICAgICAgICZzdGF0ZSk7DQo+ICAgICAg
+ICAgICAgICAgICB0b3RhbCA9IGRtYS0+cnhfc2l6ZSAtIHN0YXRlLnJlc2lkdWU7DQo+ICAgICAg
+ICAgICAgICAgICBjbnQgPSB0b3RhbDsNCj4gICAgICAgICBAQCAtMTA0LDkgKzEwNywxMSBAQCBz
+dGF0aWMgdm9pZCBtdGs4MjUwX2RtYV9yeF9jb21wbGV0ZSh2b2lkDQo+ICAgICAgICAgKnBhcmFt
+KQ0KPiAgICAgICAgICAgICAgICAgaWYgKChkYXRhLT5yeF9wb3MgKyBjbnQpID4gZG1hLT5yeF9z
+aXplKQ0KPiAgICAgICAgICAgICAgICAgICAgICAgICBjbnQgPSBkbWEtPnJ4X3NpemUgLSBkYXRh
+LT5yeF9wb3M7DQo+ICAgICAgICAgDQo+ICAgICAgICAgLSAgICAgICBwdHIgPSAodW5zaWduZWQg
+Y2hhciAqKShkYXRhLT5yeF9wb3MgKyBkbWEtPnJ4X2J1Zik7DQo+ICAgICAgICAgLSAgICAgICBj
+b3BpZWQgPSB0dHlfaW5zZXJ0X2ZsaXBfc3RyaW5nKHR0eV9wb3J0LCBwdHIsIGNudCk7DQo+ICAg
+ICAgICAgLSAgICAgICBkYXRhLT5yeF9wb3MgKz0gY250Ow0KPiAgICAgICAgICsgICAgICAgaWYg
+KGNudCAhPSAwKSB7DQo+ICAgICAgICAgKyAgICAgICAgICAgICAgIHB0ciA9ICh1bnNpZ25lZCBj
+aGFyICopKGRhdGEtPnJ4X3BvcyArDQo+ICAgICAgICAgZG1hLT5yeF9idWYpOw0KPiAgICAgICAg
+ICsgICAgICAgICAgICAgICBjb3BpZWQgPSB0dHlfaW5zZXJ0X2ZsaXBfc3RyaW5nKHR0eV9wb3J0
+LCBwdHIsDQo+ICAgICAgICAgY250KTsNCj4gICAgICAgICArICAgICAgICAgICAgICAgZGF0YS0+
+cnhfcG9zICs9IGNudDsNCj4gICAgICAgICArICAgICAgIH0NCj4gICAgICAgICANCj4gICAgICAg
+ICAgICAgICAgIGlmICh0b3RhbCA+IGNudCkgew0KPiAgICAgICAgICAgICAgICAgICAgICAgICBw
+dHIgPSAodW5zaWduZWQgY2hhciAqKShkbWEtPnJ4X2J1Zik7DQo+ICAgICAgICAgQEAgLTEyMCw2
+ICsxMjUsOCBAQCBzdGF0aWMgdm9pZCBtdGs4MjUwX2RtYV9yeF9jb21wbGV0ZSh2b2lkDQo+ICAg
+ICAgICAgKnBhcmFtKQ0KPiAgICAgICAgICAgICAgICAgdHR5X2ZsaXBfYnVmZmVyX3B1c2godHR5
+X3BvcnQpOw0KPiAgICAgICAgIA0KPiAgICAgICAgICAgICAgICAgbXRrODI1MF9yeF9kbWEodXAp
+Ow0KPiAgICAgICAgICsNCj4gICAgICAgICArICAgICAgIHNwaW5fdW5sb2NrX2lycXJlc3RvcmUo
+JnVwLT5wb3J0LmxvY2ssIGZsYWdzKTsNCj4gICAgICAgICAgfQ0KPiAgICAgICAgIA0KPiAgICAg
+ICAgICBzdGF0aWMgdm9pZCBtdGs4MjUwX3J4X2RtYShzdHJ1Y3QgdWFydF84MjUwX3BvcnQgKnVw
+KQ0KPiANCj4gDQo=
 
-Pls document that in comments here
-
--- 
-~Vinod
