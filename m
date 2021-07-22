@@ -2,108 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B76C13D1F5C
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 09:54:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 660173D1F74
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 09:58:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230427AbhGVHOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 03:14:11 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:33297 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229642AbhGVHOL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jul 2021 03:14:11 -0400
-X-UUID: 90015c13878b43a5a91e8a7b548399f9-20210722
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=s5IrH6wDMnuu5SjP/U4zZycyP9tIDwwTmZ6+1/spWp4=;
-        b=C+TcI3toRstt2f3wGjn/WLTHgMjDIYha/xcL0cUl0l9Ra+rmBzSkG1/YPau7FNMQi7443oTPjKkEqUZ6M3a6f3t91rq5y+oXv4fYQvir4RUUvw9QORtMb8M19Q6wZjBSKbfmT61juuZBxCrhTJ4ckIdvwxGSYZOKILpnKVhVd4o=;
-X-UUID: 90015c13878b43a5a91e8a7b548399f9-20210722
-Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <zhiyong.tao@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1145440203; Thu, 22 Jul 2021 15:54:42 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N1.mediatek.inc
- (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 22 Jul
- 2021 15:54:31 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 22 Jul 2021 15:54:31 +0800
-Message-ID: <1626940470.29611.9.camel@mhfsdcap03>
-Subject: Re: [PATCH v10 1/2] dt-bindings: pinctrl: mt8195: add rsel define
-From:   zhiyong tao <zhiyong.tao@mediatek.com>
-To:     Chen-Yu Tsai <wenst@chromium.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        <mark.rutland@arm.com>, Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        <hui.liu@mediatek.com>, Eddie Huang <eddie.huang@mediatek.com>,
-        <light.hsieh@mediatek.com>, <biao.huang@mediatek.com>,
-        <hongzhou.yang@mediatek.com>, <sean.wang@mediatek.com>,
-        <seiya.wang@mediatek.com>, <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-gpio@vger.kernel.org>
-Date:   Thu, 22 Jul 2021 15:54:30 +0800
-In-Reply-To: <CAGXv+5GXg0RuOQkh4vaRmcLpehZiXnEUXBvEaObiatAa1sXvaA@mail.gmail.com>
-References: <20210710081722.1828-1-zhiyong.tao@mediatek.com>
-         <20210710081722.1828-2-zhiyong.tao@mediatek.com>
-         <CAGXv+5GXg0RuOQkh4vaRmcLpehZiXnEUXBvEaObiatAa1sXvaA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S230048AbhGVHRe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 03:17:34 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:59053 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230090AbhGVHRc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Jul 2021 03:17:32 -0400
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 5141A5817AC;
+        Thu, 22 Jul 2021 03:58:06 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute2.internal (MEProxy); Thu, 22 Jul 2021 03:58:06 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:content-transfer-encoding:in-reply-to; s=fm3; bh=k
+        kCGDZ4mp1QSn53GXPFjfkumzgPnIst+r1z4DaNYle4=; b=B+Jms/YWtvM00vl0i
+        OoWuB6C0ciNyzgWCcoNJUtnwcDf5VFK1VBULqZoUANTA27vz85OCuH++4UJHpcZX
+        Yv5+u4Y44uPCcaxFVce8usaw2p7rbjTni2+NhFkdtLZackes5zi1IpLxHG109CoI
+        RRGUDvqnvtkmIsWsI2Iv5qUICnDEPwcGXB9UOe2+cD0zzUh8+b6KMzs3Z6/UtZTx
+        bJAig6IKmnQy8hR9fX+AjZUcvG6JzZf6h2/NrBTJi7jjryJNI0Y5EpREwOxlf3tT
+        jkXp8tWOGgaN+QrOgxUJylKW7XaYCbOOwxHYbQjWdygmdm8BTqU/MJtSSv/ERFp0
+        bHy5w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; bh=kkCGDZ4mp1QSn53GXPFjfkumzgPnIst+r1z4DaNYl
+        e4=; b=Qa8nY2a7JffMOPw2c0BYaZKyr8/OeYJempoB3LGboH6v1yBXBaWe+dyCb
+        iCGFe5jZEifVHPglag1E/KYgbsqazUbXmdtkZ+7zAGG5C7vXe6zJrW7eeOgc7viW
+        anrl3Gn1iAtjrVKVPYBoBGmaItRgcYQ5KePqIHfuN18rIiGW/+upOyOQYGqA22ov
+        MjXnlF+bRh+8QJiUOkZxSeVsggBo084f8mAtGw8NMPHNDnxyF72BbUhGaovgldmA
+        T3sHDxNhz/a+4NrFEYGYknsO7t3bxc1EPpZEMMViQj+JK1RRkNvMXCr8YPGVVz6r
+        x5vBP5D3e3lBM8bdQANGGXFAiHLGg==
+X-ME-Sender: <xms:DSX5YJDEpAmvebqbeILbgCdPpZx8ci5VTrquEzvYiV18lq2MSn_ChQ>
+    <xme:DSX5YHgtd4CEzuGAMozP6H5hNpiXTLAgPLMbSqK7xsMLYBu-KP6ljHPbbzkq7vol6
+    UfyqmsIP9AaQkxzNzQ>
+X-ME-Received: <xmr:DSX5YEmEmLf4SKIX_p3RgpaLSwKgFeNbrJ-KQJ41sReOM5NNiUIEtxpqpoE4JNfhftpVeeu-rQrqgOl2LcYJUb7M5Tv4NW1oXJdD>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeehgdduvdegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtugfgjgesthhqredttddtvdenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+    htthgvrhhnpefgjeettdejgffgffdvteeutdehtdehgeehueetkeefgefhtdetjeekledu
+    gedvudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:DSX5YDxV-biFnyhZ0cdJzMEBe-4L-IBxRZd8a2yfWu_hVRbGBFgS3g>
+    <xmx:DSX5YOT2UJzaKny3oOH3FsR3gkqLh35ZN5eMTgHe0huUYXrF8nl5aQ>
+    <xmx:DSX5YGaTYB9ZzlGPjT_Xzt349DXY5Lkse68Kvc8Bvj1OQMQugjgsEw>
+    <xmx:DiX5YP88PibDkgB6g3y_bHYTNuq3nOhQTuvvnUK4hi-VdNBEZaKYgw>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 22 Jul 2021 03:58:04 -0400 (EDT)
+Date:   Thu, 22 Jul 2021 09:58:03 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
+        alsa-devel@alsa-project.org, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH 02/54] ASoC: dt-bindings: Convert Bluetooth SCO Link
+ binding to a schema
+Message-ID: <20210722075803.42ltzog3sltbeivh@gilmour>
+References: <20210721140424.725744-1-maxime@cerno.tech>
+ <20210721140424.725744-3-maxime@cerno.tech>
+ <e0ba4dab-abe9-9f4b-2795-e85041efa451@sholland.org>
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: FB56F3738648FD7331E8824085C280CA7BCABA8C103A164B942B52B347ACF8C22000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <e0ba4dab-abe9-9f4b-2795-e85041efa451@sholland.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDIxLTA3LTEzIGF0IDE1OjE3ICswODAwLCBDaGVuLVl1IFRzYWkgd3JvdGU6DQo+
-IEhpLA0KPiANCj4gT24gU2F0LCBKdWwgMTAsIDIwMjEgYXQgNDoxNyBQTSBaaGl5b25nIFRhbyA8
-emhpeW9uZy50YW9AbWVkaWF0ZWsuY29tPiB3cm90ZToNCj4gPg0KPiA+IFRoaXMgcGF0Y2ggYWRk
-cyByc2VsIGRlZmluZSBmb3IgbXQ4MTk1Lg0KPiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogWmhpeW9u
-ZyBUYW8gPHpoaXlvbmcudGFvQG1lZGlhdGVrLmNvbT4NCj4gPiAtLS0NCj4gPiAgaW5jbHVkZS9k
-dC1iaW5kaW5ncy9waW5jdHJsL210NjV4eC5oIHwgOSArKysrKysrKysNCj4gPiAgMSBmaWxlIGNo
-YW5nZWQsIDkgaW5zZXJ0aW9ucygrKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL2luY2x1ZGUvZHQt
-YmluZGluZ3MvcGluY3RybC9tdDY1eHguaCBiL2luY2x1ZGUvZHQtYmluZGluZ3MvcGluY3RybC9t
-dDY1eHguaA0KPiA+IGluZGV4IDdlMTZlNThmZTFmNy4uZjU5MzRhYmNkMWJkIDEwMDY0NA0KPiA+
-IC0tLSBhL2luY2x1ZGUvZHQtYmluZGluZ3MvcGluY3RybC9tdDY1eHguaA0KPiA+ICsrKyBiL2lu
-Y2x1ZGUvZHQtYmluZGluZ3MvcGluY3RybC9tdDY1eHguaA0KPiA+IEBAIC0xNiw2ICsxNiwxNSBA
-QA0KPiA+ICAjZGVmaW5lIE1US19QVVBEX1NFVF9SMVIwXzEwIDEwMg0KPiA+ICAjZGVmaW5lIE1U
-S19QVVBEX1NFVF9SMVIwXzExIDEwMw0KPiA+DQo+ID4gKyNkZWZpbmUgTVRLX1BVTExfU0VUX1JT
-RUxfMDAwICAyMDANCj4gPiArI2RlZmluZSBNVEtfUFVMTF9TRVRfUlNFTF8wMDEgIDIwMQ0KPiA+
-ICsjZGVmaW5lIE1US19QVUxMX1NFVF9SU0VMXzAxMCAgMjAyDQo+ID4gKyNkZWZpbmUgTVRLX1BV
-TExfU0VUX1JTRUxfMDExICAyMDMNCj4gPiArI2RlZmluZSBNVEtfUFVMTF9TRVRfUlNFTF8xMDAg
-IDIwNA0KPiA+ICsjZGVmaW5lIE1US19QVUxMX1NFVF9SU0VMXzEwMSAgMjA1DQo+ID4gKyNkZWZp
-bmUgTVRLX1BVTExfU0VUX1JTRUxfMTEwICAyMDYNCj4gPiArI2RlZmluZSBNVEtfUFVMTF9TRVRf
-UlNFTF8xMTEgIDIwNw0KPiA+ICsNCj4gDQo+IEluc3RlYWQgb2YgYWxsIHRoZSBvYnNjdXJlIG1h
-Y3JvcyBhbmQgdGhlIG5ldyBjdXN0b20gInJzZWwiIHByb3BlcnR5LA0KPiB3aGljaCBCVFcgaXMg
-bm90IGluIHRoZSBiaW5kaW5ncywgY2FuJ3Qgd2UganVzdCBsaXN0IHRoZSBhY3R1YWwgYmlhcw0K
-PiByZXNpc3RhbmNlIG9mIGVhY2ggc2V0dGluZz8gV2UgY291bGQgYWxzbyBtaWdyYXRlIGF3YXkg
-ZnJvbSBSMVIwLg0KPiANCj09PkhpIENoZW55dSwNClRoZSByc2VsIGFjdHVhbCBiaWFzIHJlc2lz
-dGFuY2Ugb2YgZWFjaCBzZXR0aW5nOg0KDQpNVEtfUFVMTF9TRVRfUlNFTF8wMDA6NzVLIGluIFBV
-LCA3NWsgaW4gUEQ7DQpNVEtfUFVMTF9TRVRfUlNFTF8wMDE6MTBrIGluIFBVLCA1ayBpbiBQRDsN
-Ck1US19QVUxMX1NFVF9SU0VMXzAxMDo1ayBpbiBQVSwgNzVrIGluIFBEOw0KTVRLX1BVTExfU0VU
-X1JTRUxfMDExOjRrIGluIFBVLCA1SyBpbiBQRDsNCk1US19QVUxMX1NFVF9SU0VMXzEwMDozayBp
-biBQVSwgNzVrIGluIFBEOw0KTVRLX1BVTExfU0VUX1JTRUxfMTAxOjJrIGluIFBVLCA1SyBpbiBQ
-RDsNCk1US19QVUxMX1NFVF9SU0VMXzExMDoxLjVrIGluIFBVLCA3NWsgaW4gUEQ7DQpNVEtfUFVM
-TF9TRVRfUlNFTF8xMTE6MWsgaW4gUFUsIDVrIGluIFBELg0KDQpUaGUgcnNlbCBhY3R1YWwgYmlh
-cyByZXNpc3RhbmNlIGlzIGRpZmZlcmVudCBiZXR3ZWVuIFBVIGFuZCBQRC4NCg0KPiBUaGVuIHdl
-IGNhbiBzcGVjaWZ5IHRoZSBzZXR0aW5nIHdpdGggdGhlIHN0YW5kYXJkIGJpYXMtcHVsbC11cC9k
-b3duDQo+IHByb3BlcnRpZXMgWzFdLg0KPiANCj4gQWxzbywgcGxlYXNlIGFzayBpbnRlcm5hbGx5
-IGlmIE1lZGlhdGVrIGNvdWxkIHJlbGljZW5zZSBhbGwgdGhlIGhlYWRlcg0KPiBmaWxlcyB0aGF0
-IE1lZGlhdGVrIGhhcyBjb250cmlidXRlZCB1bmRlciBpbmNsdWRlL2R0LWJpbmRpbmdzL3BpbmN0
-cmwvIFsyXQ0KPiB0byBHUEwtMi4wIGFuZCBCU0QgZHVhbCBsaWNlbnNlLiBUaGVzZSBmaWxlcyBh
-cmUgcGFydCBvZiB0aGUgRFQgYmluZGluZ3MNCj4gYW5kIHdlIHJlYWxseSB3YW50IHRoZW0gdG8g
-YmUgZHVhbCBsaWNlbnNlZCBhcyB3ZWxsLCBhbmQgbm90IGp1c3QgdGhlDQo+IFlBTUwgZmlsZXMu
-DQo+IA0KDQo9PT4gV2Ugd2lsbCBjb25maXJtIGl0IGludGVybmFsbHkgYW5kIHJlcGx5IGl0IGxh
-dGVyLg0KDQpUaGFua3MuDQo+IA0KPiBSZWdhcmRzDQo+IENoZW5ZdQ0KPiANCj4gDQo+IFsxXSBo
-dHRwczovL2VsaXhpci5ib290bGluLmNvbS9saW51eC9sYXRlc3Qvc291cmNlL0RvY3VtZW50YXRp
-b24vZGV2aWNldHJlZS9iaW5kaW5ncy9waW5jdHJsL3BpbmNmZy1ub2RlLnlhbWwjTDM3DQo+IFsy
-XSBOb3RlIHRoYXQgYSBmZXcgZmlsZXMgd2VyZSBjb250cmlidXRlZCBieSBvdGhlciBwZW9wbGUN
-Cj4gDQo+ID4gICNkZWZpbmUgTVRLX0RSSVZFXzJtQSAgMg0KPiA+ICAjZGVmaW5lIE1US19EUklW
-RV80bUEgIDQNCj4gPiAgI2RlZmluZSBNVEtfRFJJVkVfNm1BICA2DQo+ID4gLS0NCj4gPiAyLjE4
-LjANCj4gPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0K
-PiA+IExpbnV4LW1lZGlhdGVrIG1haWxpbmcgbGlzdA0KPiA+IExpbnV4LW1lZGlhdGVrQGxpc3Rz
-LmluZnJhZGVhZC5vcmcNCj4gPiBodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2xpbnV4LW1lZGlhdGVrDQoNCg==
+Hi Samuel,
 
+On Thu, Jul 22, 2021 at 12:35:33AM -0500, Samuel Holland wrote:
+> On 7/21/21 9:03 AM, Maxime Ripard wrote:
+> > Bluetooth SCO Link are supported by Linux with a matching device tree
+> > binding.
+> >=20
+> > Now that we have the DT validation in place, let's convert the device
+> > tree bindings for that driver over to a YAML schema.
+> >=20
+> > The value expected for #sound-dai-cells wasn't documented though, and
+> > the users were inconsistent. The example didn't list it, and across the
+> > 4 users we have in tree:
+> >   - 1 had a cells value of 1, but using only 0 as argument
+> >   - 1 had a cells value of 0,
+> >   - 2 didn't have this property at all, behaving as if it was 0,
+> >=20
+> > It seems like the consensus seems to be that it should be 0, so let's
+> > enforce it.
+>=20
+> The driver has two DAIs: "bt-sco-pcm" and "bt-sco-pcm-wb". If
+> #sound-dai-cells is 0, only the first DAI can be referenced from a
+> device tree. So to declare support for wideband PCM, or explicitly
+> declare a lack of support for it, #sound-dai-cells must be 1.
+
+Yeah, I knew there was something else to it :)
+
+I'll fix it for the next iteration.
+
+Thanks!
+Maxime
