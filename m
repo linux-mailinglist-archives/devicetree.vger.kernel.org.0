@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 901F33D1D09
+	by mail.lfdr.de (Postfix) with ESMTP id DB2543D1D0A
 	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 06:26:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229934AbhGVDpo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 23:45:44 -0400
-Received: from out1-smtp.messagingengine.com ([66.111.4.25]:39477 "EHLO
+        id S230021AbhGVDpq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 23:45:46 -0400
+Received: from out1-smtp.messagingengine.com ([66.111.4.25]:53241 "EHLO
         out1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229905AbhGVDpn (ORCPT
+        by vger.kernel.org with ESMTP id S229905AbhGVDpq (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Jul 2021 23:45:43 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.nyi.internal (Postfix) with ESMTP id 35F075C01BF;
-        Thu, 22 Jul 2021 00:26:19 -0400 (EDT)
+        Wed, 21 Jul 2021 23:45:46 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id E84DA5C01E3;
+        Thu, 22 Jul 2021 00:26:21 -0400 (EDT)
 Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Thu, 22 Jul 2021 00:26:19 -0400
+  by compute3.internal (MEProxy); Thu, 22 Jul 2021 00:26:21 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=traverse.com.au;
          h=from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=/EG0+NCRYyx4w
-        oijHYcv+3mKLvonagwFjD+AP47/mSQ=; b=BEyfltFcxEnz+sfdwVBmtTUyxOSGq
-        pgEbnlUtulbD/i3iKiQ7FhJbKAfkJWBrrSK9dVwH9di5tn97D07yNMujnGq525Cw
-        VuJtf5Sx44iQxSOFZUCgDylhOGpZWiLaAOWc1cMdwCCjAF6IlbtR5vyZLiBsNTEj
-        u/JnZCFGUPkgRwY6NMYxAiynyCJRqsoumcu0+EWt102sY5u5iJT1ikXqZW6Ijc5C
-        wVCy0n0fW/Gri6uPfv5sp8lZY512FNdCsbexvj9dilZnu2A2LbaxgkO0BVX+hHkh
-        Sz0KCj6uWpst9yJTlFWmciJppVzSkblwN+w/mGvUyYWfvS7ddeUSR1KiA==
+        :mime-version:content-transfer-encoding; s=fm1; bh=bvHSmzBLvenTa
+        xgVXhkOtqVZ879wzNNM44pHo8k3y7E=; b=hCN+z0YQJTKFnJzfxpYgHY3W3K8pd
+        31oQQogyyo8l4nZoSSy8p/zCxUvDyGt4wQqRhbDYOCdDFadSEfkALQgOWTy3v8Ip
+        jFl1H+1e1CbJAuUxZaqBfyrSCEP5ddAZ5Mi/wDp0xQZC6OgUOXytRTmzmf9mjTu6
+        GHyOkucFS35sbVG1hQQJ4+fr+fQoEV8WkjbxC8L7XqzoTdhr6gR6ReFiAIAgQF5Q
+        qu56E0LaHKzcxSm5h9Z6rNMcnolHzxPnOsQiRspFFR6Xa390J7c5ZdpffQHBe90u
+        T+zI/07zzNUHtvB4YCbf6rAwgOZnY/dVTPqPcXezv6O6aql20qeXpiyDg==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:date:from
         :in-reply-to:message-id:mime-version:references:subject:to
         :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=/EG0+NCRYyx4woijHYcv+3mKLvonagwFjD+AP47/mSQ=; b=jqcFuXmU
-        XNo4vu2LqHK2E1XNEb9wBJBv8c8CH2YsQ9x/c9G/UDKcz27x9cGphHkU0qZuQLbp
-        f8qsyFkyIcEeNvuh2tQ3n1yI2QCF5a9wvqukhaDr17f6zKrYwv+g/Fic672hWPWI
-        cTOzZezRXe/6n7W01CsB5UJc2gpntq1Dwj5LR3ESzRsxLRUgPwEqYdZtk+FBT7R6
-        SuZBZSv48bAqhBPHkzrpvLQhIkVuJhjx0OXIONg6ImJMZ+lYfQYDsNE97efN3EJj
-        T9lmKbgb1u0yElRkFFZHfxJhtGHmpfmzLv0P4BxRy0lGqPyHYI0aLM6T5dyuzACh
-        2CIGZX82pgfPiQ==
-X-ME-Sender: <xms:a_P4YOsISCak6EJjy4jgW0Yc2_kXeAd2wsFjyp5-BZx2oQKK1nqK0A>
-    <xme:a_P4YDcKSU8YuwgXBEZUhRzwD6O48GW3Kgf5EkaTBw8RoWNuMww8r2SxSSkipqI4U
-    8d9RTT_bXnfDlhari4>
-X-ME-Received: <xmr:a_P4YJwbW3VSYD4sYS7jflna3PTPwKONm5_WRK6m_7x4vHA5KB9rzyJGXJg9xeqIzKTFdxhenysJWaLpQJ8ykul4s7VmSaL3_lGnsFiupKLAUIjhYgCBCMD9iqBk_9U>
+        fm3; bh=bvHSmzBLvenTaxgVXhkOtqVZ879wzNNM44pHo8k3y7E=; b=S7JlRNNA
+        QMnXw2dB7qX5odKvfbFsVb9Mm2ftDZy6teejwoScN7YI404EA44wSB1BATlcbdr6
+        YHPIXNyWDov+wsAn1zj/Sbi2QVXfzQ+QbcRvmERJVGgAAoFZp86Jf5Cr94aMKaL+
+        6CoZMZzcTG22nIKEMlXZ1UhzXDOFroC+GYZWA1G6aUbr8ICfBBOPhRQ3eJZ6WnVA
+        e6uXc3Z2p9ftvLGSF6FPP3hi1JLnrfxKzH2iXbbGI2CeuYwHQW4xkkfXZTcRKKOQ
+        T1rSV5RO3sMX1eIG4Mq2nhQJ6K8rvT6kx2LMnZtwr3FB+mmF2b1scbHFxE6ERlzt
+        yYGQemjM/mt2KQ==
+X-ME-Sender: <xms:bfP4YIqgvyAn3oCbLPOVpQm77Jza3ZA9aRBild8ncCCHtsRdZCUjtQ>
+    <xme:bfP4YOpyAQ9rFmfOIqSOs83K2v0w1qzqRYOF_bEVnkzGEUAdc0sI-hSJdyWHLawvd
+    ZhZ3gFPgIXKkNhxOf0>
+X-ME-Received: <xmr:bfP4YNOB9IPuD8XNzSNLuiDt_ueB3A8VvbJZMAyw5AmEfj-3zSoNU7QK_a8K38RC0B_Gk8zJcSR6y9H_nvTXyNDW7L6mfOiqrakzQFRTs9pI1xBwJxlXzfVR1Aa0VeA>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeehgdekudcutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
@@ -49,21 +49,21 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeehgdekudcutefuodetggdote
     frrghtthgvrhhnpeekleevteelvdduheetgfdvfeelueekffeggeethedtteeljeeivedv
     gfehjeejheenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
     hmpehmrghtthesthhrrghvvghrshgvrdgtohhmrdgruh
-X-ME-Proxy: <xmx:a_P4YJNVTNMcw20K_Fw2T28OS0Ka8YbOoE_ryhbfZ_bAgayBqk5zQg>
-    <xmx:a_P4YO9FKiYyjBuZXO_u7NhrLV6z4H29Np9nHm11IKC81X3ShivW7Q>
-    <xmx:a_P4YBUdD3ZgVsGQSAcrwrp6G9fLGYQVQ0RKt4kDkbh5OB4qCzTp9A>
-    <xmx:a_P4YFlC41CyhpCJdo5jaV13KiTs0VSpdKXmhgM7ohGcMLuGPgwIPg>
+X-ME-Proxy: <xmx:bfP4YP5EJsmaRsJWDicnYX6LwbV0EZx10ZOJKD55pCteNpMEEw3chw>
+    <xmx:bfP4YH5YsyE8MgdF-42JWWjR6RUlIOUayZsY55cBsuRy_9G44l34MA>
+    <xmx:bfP4YPh97NNQTyxGBWHCzWN0ypOf2q29f8va7AyLAM8pghXHlEivRA>
+    <xmx:bfP4YNQFiTlNwFi-qGKAJQ2DmO2BW5qFLt8n_aN7co5KtvpsyydRrQ>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 22 Jul 2021 00:26:16 -0400 (EDT)
+ 22 Jul 2021 00:26:19 -0400 (EDT)
 From:   Mathew McBride <matt@traverse.com.au>
 To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
         Ioana Ciornei <ioana.ciornei@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
 Cc:     Mathew McBride <matt@traverse.com.au>
-Subject: [PATCH 1/5] arm64: dts: ls1088a: add internal PCS for DPMAC1 node
-Date:   Thu, 22 Jul 2021 04:24:46 +0000
-Message-Id: <20210722042450.11862-2-matt@traverse.com.au>
+Subject: [PATCH 2/5] arm64: dts: ls1088a: add missing PMU node
+Date:   Thu, 22 Jul 2021 04:24:47 +0000
+Message-Id: <20210722042450.11862-3-matt@traverse.com.au>
 X-Mailer: git-send-email 2.30.1
 In-Reply-To: <20210722042450.11862-1-matt@traverse.com.au>
 References: <20210722042450.11862-1-matt@traverse.com.au>
@@ -73,41 +73,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A previous patched added the PCS for DPMAC2 only, as
-used for the AQR PHY on the LS1088ARDB.
+The Performance Manager Unit was not described in the DTS
+which meant performance event monitoring was not possible.
 
-DPMAC1 PCS access is required for PHYLINK SFP support
-on the Traverse Ten64 board.
+This was exposed by a change to the PMU handling in KVM
+in 5.11-rc3 which now prevents a PMU being exposed to a
+guest when the host does not provide one:
+"KVM: arm64: Don't access PMCR_EL0 when no PMU is available"
 
 Signed-off-by: Mathew McBride <matt@traverse.com.au>
 ---
- arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-index 2fa6cfbef01f..79ceadc9dc4a 100644
+index 79ceadc9dc4a..752c7f41e6b1 100644
 --- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
 +++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-@@ -765,6 +765,19 @@ emdio2: mdio@8b97000 {
- 			status = "disabled";
- 		};
+@@ -189,6 +189,11 @@ timer {
+ 			     <1 10 IRQ_TYPE_LEVEL_LOW>;/* Hypervisor PPI */
+ 	};
  
-+		pcs_mdio1: mdio@8c07000 {
-+			compatible = "fsl,fman-memac-mdio";
-+			reg = <0x0 0x8c07000 0x0 0x1000>;
-+			little-endian;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
++	pmu {
++		compatible = "arm,armv8-pmuv3";
++		interrupts = <1 7 0x8>; /* PMU PPI, Level low type */
++	};
 +
-+			pcs1: ethernet-phy@0 {
-+				reg = <0>;
-+			};
-+		};
-+
- 		pcs_mdio2: mdio@8c0b000 {
- 			compatible = "fsl,fman-memac-mdio";
- 			reg = <0x0 0x8c0b000 0x0 0x1000>;
+ 	psci {
+ 		compatible = "arm,psci-0.2";
+ 		method = "smc";
 -- 
 2.30.1
 
