@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B8723D1D0B
+	by mail.lfdr.de (Postfix) with ESMTP id 53E703D1D0C
 	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 06:26:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229955AbhGVDpt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 23:45:49 -0400
-Received: from out1-smtp.messagingengine.com ([66.111.4.25]:33427 "EHLO
+        id S229962AbhGVDpw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 23:45:52 -0400
+Received: from out1-smtp.messagingengine.com ([66.111.4.25]:51919 "EHLO
         out1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229965AbhGVDpt (ORCPT
+        by vger.kernel.org with ESMTP id S229905AbhGVDpv (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Jul 2021 23:45:49 -0400
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.nyi.internal (Postfix) with ESMTP id 83A065C0040;
-        Thu, 22 Jul 2021 00:26:24 -0400 (EDT)
+        Wed, 21 Jul 2021 23:45:51 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id 23AAC5C01E3;
+        Thu, 22 Jul 2021 00:26:27 -0400 (EDT)
 Received: from mailfrontend1 ([10.202.2.162])
-  by compute1.internal (MEProxy); Thu, 22 Jul 2021 00:26:24 -0400
+  by compute6.internal (MEProxy); Thu, 22 Jul 2021 00:26:27 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=traverse.com.au;
          h=from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=yXSxWCnrJmIxz
-        MHdpwVteWEvFisATWsodcS3Vk4nhyA=; b=zE9Xfo6nZ6HwUtN5Kvf8xjvIiYU2w
-        OTs+KM9r+0GumpnxG7jHwbojbeooqqZh5Hqp9ynm7cUVVIfUUQQw0KUp1v8KCPtc
-        ryavX0nTfB54nZMl6E7VKcmSlA4MIZJA+x0oeNE3OJ9fYeAxNby/Siq+WTcR4ZL2
-        xPcJGj3DIFfH7FJ38jA9p5/6mvaVraZV+ILcOsrLlP034r1MVhULk5koGloYKumF
-        5Ws5At7cEZna/+83WB52dI4bEa3jvKo1rDPDexvaMMeX3ldAobzak0Bp/IIXSjuK
-        pB+FOhdy6/aCok2iuL95/PEvNvMWpv406ww+L/KZsMXjYni+PI896+sjA==
+        :mime-version:content-transfer-encoding; s=fm1; bh=9IB5YC/emfzmo
+        8kaHVyvP5nfZ0TMPOR+J27Paj28iVg=; b=WIWAjhm2q8jrPtxlhNg1jg/cbDXC9
+        Oa7EbFkvQYUAdaPhMgFaF3820V/MLmrk+/LftZPihezCAIUZyD6enxVBD6yiiGoJ
+        Z2UGnVXHZpBXgGMGrQMdSroPSHga+hBGFxpFy5PNv4dhGFhkEuHoXtfyMASwAWKF
+        mol0yg04FvDu5rND4iT8N2anmv0c9lFYdwxHDnkHNMj80ofqW3oA8ySQVw1HLLeV
+        3C3LFMid12FlLxA4gfzf1hfR1gJsgG8KlRBqVf7iii3kxpHdKnP/Oxb2XKiWHsEt
+        xCNhP0aVwo5H05iqj9E+8gTg4QAW/RC+RKNCa0Bl8MfZaF5K1uFjpu4Pg==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:date:from
         :in-reply-to:message-id:mime-version:references:subject:to
         :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=yXSxWCnrJmIxzMHdpwVteWEvFisATWsodcS3Vk4nhyA=; b=HEapQZdo
-        lmIZbgUSo7EP5wCko46SiJIjvq/Mm81YN8zVipa1qyCl7ndVinHB1nxREWbitkPa
-        6Ep97nWz4DB/c7LRTjg+OZ8+VPsqeG246L5UVN2QseVBixUeJL7AO0lDjLzq33F0
-        mMQKV3pcnv6c5HT2Qnn48rkzd6ux9ViP32YTmbduFlG4zC+j5tqmKXMsqE/lKx5H
-        fAtlUYfN2JE2K0JcULjkyDPcw8gJsM4qDMOULl8k9bZkbFy9dzISc/VsMPrMivLK
-        04/hdlcwzoDRqRED7h2aLlXyKDXOvuIZ401QF7vxEuoxR7HoO/qs4v6uHCR85TSc
-        RAUm2zbiFC3UKg==
-X-ME-Sender: <xms:cPP4YHdJ8vd7KqJkHd4baEiVi55jrrRJrAbdAgW2oqKXJURc_iJgwg>
-    <xme:cPP4YNNN1HMYaXGe3WSA1WvEM-kqlZSn2bLDKoTxOBjtjushPtcQczy4YRApVN0q4
-    d8xOYe9NN0GKCiXsgs>
-X-ME-Received: <xmr:cPP4YAgNNb_A8oAn5sztA_9DrX0YG2di95miGa2alz_nrHpvgKYyJ3sntB29uqA-Hi0Z2tziaWibItfEMUzDwKIW9K89Xy0PabG8qSi1cxWvW6R0uBQd7pzocAJLH-M>
+        fm3; bh=9IB5YC/emfzmo8kaHVyvP5nfZ0TMPOR+J27Paj28iVg=; b=qs1OkuQ6
+        Y/D7J/X2BSniLVoSF1qJf9MT8ep3bSPQ6InAAVSIakMQZcmI+R/QAO5BxtNdX60O
+        hfu9PL1Lv2ggfAUf2bdROECh0Mm6eNbkzMezZ04xEcLoZsdsLo5k0rn63VJ8o0az
+        EWdCnBAkaM3i8S7oaR5PcAI+8lsJtugOTdYqV2rTYBm6JmS4QRfhP6xP2/n0USmQ
+        4qIK+jbauMKv+9C28UwUuLQc2I7P/8Rc/Gdtw+UONxc+qeWSkzVnLARSNSQb+9JO
+        N/9azsCcQGRV5E2OIcmVrNzj5eBc4yAj0P/DIWw0GB/djfGH39vtOixG16wCr1pO
+        30N/yc7Nnf+CqA==
+X-ME-Sender: <xms:c_P4YIy3z7WbiFlj1PLP0exq6UrdxlUD_Ylzv4gXiQId7coUgs8U7g>
+    <xme:c_P4YMQKX-1zoy4zc93L9hzAQ_xUIZGCG_q9CIsSNOLb2rqGZ1JoSxZfXRY28Rz7X
+    Tb7eArVEDCC_IzeCVU>
+X-ME-Received: <xmr:c_P4YKUFNFGobbrizuyifF2m-5pT2cHrOwtGjXiH9ocPjWOfJsQKacn_heBFa30urHgqOxv-jIy9-mBhl3wDvPuGzHaxFxfJjIVbkyUsOv35o76nX2JPwNoHeWzSSbA>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeehgdekudcutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
@@ -49,21 +49,21 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeehgdekudcutefuodetggdote
     frrghtthgvrhhnpeekleevteelvdduheetgfdvfeelueekffeggeethedtteeljeeivedv
     gfehjeejheenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
     hmpehmrghtthesthhrrghvvghrshgvrdgtohhmrdgruh
-X-ME-Proxy: <xmx:cPP4YI8oj0vqAH_-ETtaIYVl27uYB0s5nhD1FbmIYGi9rv3OE9rsAQ>
-    <xmx:cPP4YDuDfGzYO3yjbNTF8xzKQMFDUX0xDOY7MZKP_7d407mAZuJiYg>
-    <xmx:cPP4YHF-NbT9jpFPIRqbXCbjY58jlKvnrNY1ZVX3mZTHMGHn1lFzug>
-    <xmx:cPP4YJVkOuiKnVVMjbFsU9cqjwOkZpKzmKsmM6QV7qCCHmTJqyBQSg>
+X-ME-Proxy: <xmx:c_P4YGgRON_hyVSi6KxESnE3nWnT90MJ4apqoNHh7bXrJsq8-FWrJQ>
+    <xmx:c_P4YKCdpuLfeUuXsdWobMzyeCDap0wgD0ng_F3sz_ZRsj6ZAk_5zQ>
+    <xmx:c_P4YHJ59cJ1ZD5arjkfGoAMw07B9aPOzpTXwXQgJNPla4V2zGz7Ag>
+    <xmx:c_P4YB5GN9DSZA32Dt3cFeKkOD4tzBzgcsGy9KYorMXCVbG3HmoLBQ>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 22 Jul 2021 00:26:22 -0400 (EDT)
+ 22 Jul 2021 00:26:24 -0400 (EDT)
 From:   Mathew McBride <matt@traverse.com.au>
 To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
         Ioana Ciornei <ioana.ciornei@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
 Cc:     Mathew McBride <matt@traverse.com.au>
-Subject: [PATCH 3/5] dt-bindings: vendor-prefixes: add Traverse Technologies
-Date:   Thu, 22 Jul 2021 04:24:48 +0000
-Message-Id: <20210722042450.11862-4-matt@traverse.com.au>
+Subject: [PATCH 4/5] dt-bindings: arm: fsl: Add Traverse Ten64 (LS1088A) board
+Date:   Thu, 22 Jul 2021 04:24:49 +0000
+Message-Id: <20210722042450.11862-5-matt@traverse.com.au>
 X-Mailer: git-send-email 2.30.1
 In-Reply-To: <20210722042450.11862-1-matt@traverse.com.au>
 References: <20210722042450.11862-1-matt@traverse.com.au>
@@ -73,27 +73,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Traverse Technologies is a designer and manufacturer
-of networking appliances.
+Document the compatible for the Ten64 board which will
+be included as freescale/fsl-ls1088a-ten64.dtb in arm64.
 
 Signed-off-by: Mathew McBride <matt@traverse.com.au>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 07fb0d25fc15..eba2029d3ba7 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1184,6 +1184,8 @@ patternProperties:
-     description: TPO
-   "^tq,.*":
-     description: TQ-Systems GmbH
-+  "^traverse,.*":
-+    description: Traverse Technologies Australia Pty Ltd
-   "^tronfy,.*":
-     description: Tronfy
-   "^tronsmart,.*":
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 1c827c1954dc..f92919a020e3 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -973,6 +973,12 @@ properties:
+               - fsl,s32v234-evb           # S32V234-EVB2 Customer Evaluation Board
+           - const: fsl,s32v234
+ 
++      - description: Traverse LS1088A bassed Boards
++        items:
++          - enum:
++              - traverse,ten64            # Ten64 Networking Appliance / Board
++          - const: fsl,ls1088a
++
+ additionalProperties: true
+ 
+ ...
 -- 
 2.30.1
 
