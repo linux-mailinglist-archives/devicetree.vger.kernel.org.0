@@ -2,161 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56A143D1DD2
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 07:56:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C89743D1E1E
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 08:22:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229931AbhGVFP0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 01:15:26 -0400
-Received: from out3-smtp.messagingengine.com ([66.111.4.27]:38043 "EHLO
-        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230123AbhGVFPV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Jul 2021 01:15:21 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id 547125C00E4;
-        Thu, 22 Jul 2021 01:55:55 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Thu, 22 Jul 2021 01:55:55 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        to:cc:references:from:subject:message-id:date:mime-version
-        :in-reply-to:content-type:content-transfer-encoding; s=fm3; bh=Y
-        xsb6Cpj6x3/3PIpedmDhhJBEggqhxSmE1lISmLlGos=; b=NGFtXMzBMlbWynfyW
-        BKFyuPWHSVCd2rhhmAnwhhSjiwo4IwjtXth7qvJJIJkER6rl7TivMSJEbuNVN1DA
-        CV7KmbMLed/I7WBxsiuL/C8GVxG+sWLaFikb9D1ZoDzucClIFsZYhBPwOcgKd5/y
-        vq0QpgpNvYLGvLymMwe761Rke0qwkWP4Gz89PpwR0QW0eYYuHm1dn27+JkaeEtEW
-        9TrAknnZ/TOyxg1LcycYYaVghvVAVEnRrszOlSZNofw6Ui+3ejgwkUGT4/lBZtY4
-        L9GEIUYVwYYwma33hB7Dam1fNF+z+tjNhZx0tCwQ91A835ScVPzRwnKpoMh3P1g1
-        xG2KA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; bh=Yxsb6Cpj6x3/3PIpedmDhhJBEggqhxSmE1lISmLlG
-        os=; b=Y62Tl10GLGt5WytsqrshL8z6lniP4Js5yK7W3uzQjVwY/qqmPCn4XoEwa
-        k3YbOvq/9TIEVOzXxYIcpZH3wu8AN9R/cvjiOJXqZ6Npra48s1RsKRajjTEqUGZr
-        6QB5s48R9SuJeUGcolxtGG9+0hJ+e93MA4jxGRTd8lKbP1yK+Qa4LG4C+vBiFW/Z
-        XgdEpqr43JYAHfqTSeG+ITM1/g3ZCxD3wxNaJ+/+SIZq/Dt+JEicODA28a9/vLDG
-        0p54UF0sbFnTPrqvaLAmKY5DjXtyZVzrNzX9IO/7UCTlsYFszcg+HlKNQygmT/G8
-        6iD3L1efn3m7rI1lLsIIZen343NMA==
-X-ME-Sender: <xms:agj5YLTrU_mgw_X1Jwt2sNc_azL070DcWtokCBQ0XSc_B-iGTLTH1g>
-    <xme:agj5YMwvZThRrm0mvi8S6L6iAy4cBWfrYlWMdUN1ywppmvpkRh1h-pXK4Qlz_x71E
-    i4S6s-3Vv6-F0aBcw>
-X-ME-Received: <xmr:agj5YA36dttmXq8ZNN_awyQOreQOU596hIdjGNE-HqvS9URl5Wyv5zQILG7QZKxTDr6cYdCLM4DKR6GSLRt7ghpqqaUWyxIUy87o2TWL3b08EQ7SYsPqflXNQQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeehgddutddtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepvfhfhffukffffgggjggtgfesthekredttdefjeenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepvddttdejieduudfgffevteekffegffeguddtgfefkeduvedukeff
-    hedtfeevuedvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
-    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:agj5YLCRL2VHzhC8OfPOG_dB29oVxfDJvO88eDqrijjTCyfxlNwgqA>
-    <xmx:agj5YEjsqPwYkTzkSvSEeeOgJYDhi8DRZHKcjTm3CgtexKxMKGrTig>
-    <xmx:agj5YPrmexu4m92JUt44znyA75KQtkaP7_5AZVVG8t_tyfIYyt3RPw>
-    <xmx:awj5YPWlI-_-WXgalSzUXSO4okVLX_w-5VhV-d8CG7oyUbpS_0e1MQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 22 Jul 2021 01:55:54 -0400 (EDT)
-To:     Maxime Ripard <maxime@cerno.tech>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com
-References: <20210721140424.725744-1-maxime@cerno.tech>
- <20210721140424.725744-53-maxime@cerno.tech>
-From:   Samuel Holland <samuel@sholland.org>
-Subject: Re: [PATCH 52/54] arm64: dts: allwinner: Remove regulator-ramp-delay
-Message-ID: <5469a059-dad1-38d2-9ea4-f1b5fa9ac616@sholland.org>
-Date:   Thu, 22 Jul 2021 00:55:53 -0500
-User-Agent: Mozilla/5.0 (X11; Linux ppc64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.2
+        id S231201AbhGVFlb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 01:41:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46938 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230473AbhGVFlb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jul 2021 01:41:31 -0400
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5CA9C061575;
+        Wed, 21 Jul 2021 23:22:06 -0700 (PDT)
+Received: by mail-pl1-x630.google.com with SMTP id o8so3276132plg.11;
+        Wed, 21 Jul 2021 23:22:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=sRvkkU6/oVz1tSJXGijjAm5FFJObI4hAIi7reVBP/ZM=;
+        b=OdzEhxDsuAv+3rCcQ8CHv27aWsfrY4bp3e6wrBwhUxTwJI8aEDQOgWQ6ZlLxzit1gf
+         upQkXsuXAPauDiD8EgR9YV/CHHmzy43e+X6HFyjeSf+U3I3a08ez3Tdyq5LFVaHh1qOk
+         EPSAG5deURp69mLIrJrFcNf0XDqU0zjFHXUO3AqQYKIoV85Cq/XYia9KBKLUP0Y2HFHk
+         bTbNJgOjETyTXbIGWAp4EGDH9ZYehgW9hfa4HMaCs+eo4WC75z18iF4IVDk8BzxmWDLX
+         CnlDcrqk6ud3eO17oY5Kz0KnMIT1UCuli/zAfT81Muf17KsqhykTxmkTWoRUlHB8Z52i
+         Kbww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=sRvkkU6/oVz1tSJXGijjAm5FFJObI4hAIi7reVBP/ZM=;
+        b=ncNl7MAqSwHmM4iH25VF9Oz1h5iYexWkD6/xn8NTkaGY/hko4cl//DLZ3ds1M7qlsB
+         cRD4Q3edLnhxNpnwUlpASV5pel3F0icNmAuBdWMfWvyzp7pjDgKSmmpCfItHJUs7DmVv
+         jkhNcNssuBY1Qh6bp7+hKySB9Ycb2q4X94MO/6QMZX8XjWmSizG2J3wTQ0c5dDAWL22R
+         V45Ay0TU2zIiInxH5f13XRioxN1ljmfZXvQfI7CZK4DZCx2AepKQYB2keBDTVBixryp7
+         LWrurgyuobLmuS+EO4j2YKC7ZaIWvD6OCdpq+ybNL6YWpAB34CBhLYlFdp0WKX1/jwvN
+         ggbA==
+X-Gm-Message-State: AOAM532QLZXBqc5TcxJwsJe0avs71fhQrBjNHDEo7ifJY4F1YDLRFfOh
+        ivDB2ZwwHE/Ixm8eQUipK4g=
+X-Google-Smtp-Source: ABdhPJxMuCT+BbM8F1YH9694WtHRj0qAi4jL3P5lg6f5wwXNDfENxh3UmHXuZIksTqO1qQZNIYIlpQ==
+X-Received: by 2002:a63:ae48:: with SMTP id e8mr18964800pgp.0.1626934926050;
+        Wed, 21 Jul 2021 23:22:06 -0700 (PDT)
+Received: from localhost.localdomain ([2409:4055:289:a04e:a741:7cf2:c19d:a4])
+        by smtp.googlemail.com with ESMTPSA id g123sm28239326pfb.187.2021.07.21.23.22.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Jul 2021 23:22:05 -0700 (PDT)
+From:   Puranjay Mohan <puranjay12@gmail.com>
+To:     Michael.Hennerich@analog.com, alexandru.ardelean@analog.com,
+        jic23@kernel.org, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        lars@metafoo.de, Dragos.Bogdan@analog.com, Darius.Berghe@analog.com
+Cc:     Puranjay Mohan <puranjay12@gmail.com>
+Subject: [PATCH v2 0/2] iio: accel: add support for ADXL355
+Date:   Thu, 22 Jul 2021 11:51:52 +0530
+Message-Id: <20210722062155.32998-1-puranjay12@gmail.com>
+X-Mailer: git-send-email 2.30.1
 MIME-Version: 1.0
-In-Reply-To: <20210721140424.725744-53-maxime@cerno.tech>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/21/21 9:04 AM, Maxime Ripard wrote:
-> The regulator-ramp-delay property isn't documented in the binding for
-> the AXP806, and it's ignored by the driver. Remove those properties.
+Add the dt-bindings and the driver for ADXL355 3-axis MEMS Accelerometer.
 
-This is a generic regulator property, parsed by
-of_get_regulation_constraints, which is called by
-regulator_of_get_init_data in the regulator core. And it appears in
-bindings/regulator/regulator.yaml. I believe the binding needs to be
-fixed, not the device trees.
+Changes since v1:
+1. Remove the declarations for static regmap structures from adxl355.h.
+This was missed in the v1 and caused errors.
+2. Make switch case statements consistent by directly returning from
+each case rather than saving the return in a variable.
+3. Some coding style changes.
 
-Regards,
-Samuel
+Changes since v0:
+1. Move adxl355_hpf_3db_table to adxl355_data structure. This is done to make
+sure that each device gets its own table.
+2. Make local regmap definitions private to adxl355_core.c.
+3. Other minor coding style changes.
 
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> ---
->  arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts | 2 --
->  arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts  | 2 --
->  arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts    | 2 --
->  3 files changed, 6 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> index 6249e9e02928..a02644eebbe4 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> @@ -256,7 +256,6 @@ reg_dcdca: dcdca {
->  				regulator-always-on;
->  				regulator-min-microvolt = <810000>;
->  				regulator-max-microvolt = <1160000>;
-> -				regulator-ramp-delay = <2500>;
->  				regulator-name = "vdd-cpu";
->  			};
->  
-> @@ -264,7 +263,6 @@ reg_dcdcc: dcdcc {
->  				regulator-enable-ramp-delay = <32000>;
->  				regulator-min-microvolt = <810000>;
->  				regulator-max-microvolt = <1080000>;
-> -				regulator-ramp-delay = <2500>;
->  				regulator-name = "vdd-gpu";
->  			};
->  
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-> index c45d7b7fb39a..69c0293aeb16 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-> @@ -262,7 +262,6 @@ reg_dcdca: dcdca {
->  				regulator-always-on;
->  				regulator-min-microvolt = <800000>;
->  				regulator-max-microvolt = <1160000>;
-> -				regulator-ramp-delay = <2500>;
->  				regulator-name = "vdd-cpu";
->  			};
->  
-> @@ -270,7 +269,6 @@ reg_dcdcc: dcdcc {
->  				regulator-enable-ramp-delay = <32000>;
->  				regulator-min-microvolt = <810000>;
->  				regulator-max-microvolt = <1080000>;
-> -				regulator-ramp-delay = <2500>;
->  				regulator-name = "vdd-gpu";
->  			};
->  
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
-> index 1ffd68f43f87..6a1ee4232675 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
-> @@ -245,7 +245,6 @@ reg_dcdca: dcdca {
->  				regulator-always-on;
->  				regulator-min-microvolt = <810000>;
->  				regulator-max-microvolt = <1160000>;
-> -				regulator-ramp-delay = <2500>;
->  				regulator-name = "vdd-cpu";
->  			};
->  
-> @@ -253,7 +252,6 @@ reg_dcdcc: dcdcc {
->  				regulator-enable-ramp-delay = <32000>;
->  				regulator-min-microvolt = <810000>;
->  				regulator-max-microvolt = <1080000>;
-> -				regulator-ramp-delay = <2500>;
->  				regulator-name = "vdd-gpu";
->  			};
->  
-> 
+Puranjay Mohan (2):
+  dt-bindings: iio: accel: Add ADXL355 in trivial-devices
+  iio: accel: Add driver support for ADXL355
+
+ .../devicetree/bindings/trivial-devices.yaml  |   2 +
+ MAINTAINERS                                   |   7 +
+ drivers/iio/accel/Kconfig                     |  29 +
+ drivers/iio/accel/Makefile                    |   3 +
+ drivers/iio/accel/adxl355.h                   |  79 +++
+ drivers/iio/accel/adxl355_core.c              | 536 ++++++++++++++++++
+ drivers/iio/accel/adxl355_i2c.c               |  63 ++
+ drivers/iio/accel/adxl355_spi.c               |  66 +++
+ 8 files changed, 785 insertions(+)
+ create mode 100644 drivers/iio/accel/adxl355.h
+ create mode 100644 drivers/iio/accel/adxl355_core.c
+ create mode 100644 drivers/iio/accel/adxl355_i2c.c
+ create mode 100644 drivers/iio/accel/adxl355_spi.c
+
+-- 
+2.30.1
 
