@@ -2,125 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72D753D2544
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 16:12:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5B613D2558
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 16:14:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232241AbhGVNcT convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 22 Jul 2021 09:32:19 -0400
-Received: from aposti.net ([89.234.176.197]:54362 "EHLO aposti.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232105AbhGVNcS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Jul 2021 09:32:18 -0400
-Date:   Thu, 22 Jul 2021 15:12:43 +0100
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH 3/3] drm/panel-simple: add Gopher 2b LCD panel
-To:     Artjom Vejsel <akawolf0@gmail.com>
-Cc:     thierry.reding@gmail.com, sam@ravnborg.org,
-        dri-devel@lists.freedesktop.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Message-Id: <7TGNWQ.L2GCQQC1CJ603@crapouillou.net>
-In-Reply-To: <20210722140432.1426173-4-akawolf0@gmail.com>
-References: <20210722140432.1426173-1-akawolf0@gmail.com>
-        <20210722140432.1426173-4-akawolf0@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: 8BIT
+        id S232118AbhGVNeC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 09:34:02 -0400
+Received: from relmlor2.renesas.com ([210.160.252.172]:54735 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S232290AbhGVNdh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Jul 2021 09:33:37 -0400
+X-IronPort-AV: E=Sophos;i="5.84,261,1620658800"; 
+   d="scan'208";a="88414730"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 22 Jul 2021 23:14:03 +0900
+Received: from localhost.localdomain (unknown [10.226.92.164])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 9B922401224A;
+        Thu, 22 Jul 2021 23:13:59 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        netdev@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH net-next 01/18] dt-bindings: net: renesas,etheravb: Document Gigabit Ethernet IP
+Date:   Thu, 22 Jul 2021 15:13:34 +0100
+Message-Id: <20210722141351.13668-2-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210722141351.13668-1-biju.das.jz@bp.renesas.com>
+References: <20210722141351.13668-1-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Artjom,
+Document Gigabit Ethernet IP found on RZ/G2L SoC.
 
-Le jeu., juil. 22 2021 at 17:04:32 +0300, Artjom Vejsel 
-<akawolf0@gmail.com> a écrit :
-> The Gopher 2b LCD panel is used in Gopher 2b handhelds.
-> It's simple panel with NewVision NV3047 driver,
-> but SPI lines are not connected.
-> It has no specific name, since it's unique to that handhelds.
-> lot name at AliExpress: 4.3 inch 40PIN TFT LCD Screen COG
-> NV3047 Drive IC 480(RGB)*272 No Touch 24Bit RGB Interface
-> 
-> Signed-off-by: Artjom Vejsel <akawolf0@gmail.com>
-> ---
->  drivers/gpu/drm/panel/panel-simple.c | 44 
-> ++++++++++++++++++++++++++++
->  1 file changed, 44 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/panel/panel-simple.c 
-> b/drivers/gpu/drm/panel/panel-simple.c
-> index 9b286bd4444f..9cce6b63a147 100644
-> --- a/drivers/gpu/drm/panel/panel-simple.c
-> +++ b/drivers/gpu/drm/panel/panel-simple.c
-> @@ -4306,6 +4306,47 @@ static const struct panel_desc 
-> yes_optoelectronics_ytc700tlag_05_201c = {
->  	.connector_type = DRM_MODE_CONNECTOR_LVDS,
->  };
-> 
-> +static const struct drm_display_mode 
-> qishenglong_gopher2b_lcd_panel_modes[] = {
-> +	{ /* 60 Hz */
-> +		.clock = 10800,
-> +		.hdisplay = 480,
-> +		.hsync_start = 480 + 77,
-> +		.hsync_end = 480 + 77 + 41,
-> +		.htotal = 480 + 77 + 41 + 2,
-> +		.vdisplay = 272,
-> +		.vsync_start = 272 + 16,
-> +		.vsync_end = 272 + 16 + 10,
-> +		.vtotal = 272 + 16 + 10 + 2,
-> +		.flags = DRM_MODE_FLAG_NVSYNC | DRM_MODE_FLAG_NHSYNC,
-> +	},
-> +	{ /* 50 Hz */
-> +		.clock = 10800,
-> +		.hdisplay = 480,
-> +		.hsync_start = 480 + 17,
-> +		.hsync_end = 480 + 17 + 41,
-> +		.htotal = 480 + 17 + 41 + 2,
-> +		.vdisplay = 272,
-> +		.vsync_start = 272 + 116,
-> +		.vsync_end = 272 + 116 + 10,
-> +		.vtotal = 272 + 116 + 10 + 2,
-> +		.flags = DRM_MODE_FLAG_NVSYNC | DRM_MODE_FLAG_NHSYNC,
-> +	},
-> +};
-> +
-> +static const struct panel_desc qishenglong_gopher2b_lcd_panel = {
-> +	.modes = qishenglong_gopher2b_lcd_panel_modes,
-> +	.num_modes = ARRAY_SIZE(qishenglong_gopher2b_lcd_panel_modes),
-> +	.num_modes = 1,
+Gigabit Ethernet Interface includes Ethernet controller (E-MAC),
+Internal TCP/IP Offload Engine (TOE) and Dedicated Direct memory
+access controller (DMAC) for transferring transmitted Ethernet
+frames to and received Ethernet frames from respective storage
+areas in the URAM at high speed.
 
-Thank you for your patch. From a quick look though, you have .num_modes 
-listed twice here. I believe the second line should be removed.
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+---
+ .../bindings/net/renesas,etheravb.yaml        | 57 +++++++++++++++----
+ 1 file changed, 45 insertions(+), 12 deletions(-)
 
-Cheers,
--Paul
-
-> +	.bpc = 8,
-> +	.size = {
-> +		.width = 95,
-> +		.height = 54,
-> +	},
-> +	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
-> +	.bus_flags = DRM_BUS_FLAG_DE_HIGH | 
-> DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE,
-> +	.connector_type = DRM_MODE_CONNECTOR_DPI,
-> +};
-> +
->  static const struct drm_display_mode arm_rtsm_mode[] = {
->  	{
->  		.clock = 65000,
-> @@ -4753,6 +4794,9 @@ static const struct of_device_id 
-> platform_of_match[] = {
->  	}, {
->  		.compatible = "yes-optoelectronics,ytc700tlag-05-201c",
->  		.data = &yes_optoelectronics_ytc700tlag_05_201c,
-> +	}, {
-> +		.compatible = "qishenglong,gopher2b-lcd-panel",
-> +		.data = &qishenglong_gopher2b_lcd_panel,
->  	}, {
->  		/* Must be the last entry */
->  		.compatible = "panel-dpi",
-> --
-> 2.32.0
-
+diff --git a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
+index 005868f703a6..5e12a759004f 100644
+--- a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
++++ b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
+@@ -43,23 +43,20 @@ properties:
+               - renesas,etheravb-r8a779a0     # R-Car V3U
+           - const: renesas,etheravb-rcar-gen3 # R-Car Gen3 and RZ/G2
+ 
++      - items:
++          - enum:
++              - renesas,r9a07g044-gbeth # RZ/G2{L,LC}
++          - const: renesas,rzg2l-gbeth  # RZ/G2L
++
+   reg: true
+ 
+   interrupts: true
+ 
+   interrupt-names: true
+ 
+-  clocks:
+-    minItems: 1
+-    items:
+-      - description: AVB functional clock
+-      - description: Optional TXC reference clock
++  clocks: true
+ 
+-  clock-names:
+-    minItems: 1
+-    items:
+-      - const: fck
+-      - const: refclk
++  clock-names: true
+ 
+   iommus:
+     maxItems: 1
+@@ -145,14 +142,20 @@ allOf:
+       properties:
+         compatible:
+           contains:
+-            const: renesas,etheravb-rcar-gen2
++            enum:
++              - renesas,etheravb-rcar-gen2
++              - renesas,rzg2l-gbeth
+     then:
+       properties:
+         interrupts:
+-          maxItems: 1
++          minItems: 1
++          maxItems: 3
+         interrupt-names:
++          minItems: 1
+           items:
+             - const: mux
++            - const: int_fil_n
++            - const: int_arp_ns_n
+         rx-internal-delay-ps: false
+     else:
+       properties:
+@@ -208,6 +211,36 @@ allOf:
+         tx-internal-delay-ps:
+           const: 2000
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: renesas,rzg2l-gbeth
++    then:
++      properties:
++        clocks:
++          items:
++            - description: Main clock
++            - description: Register access clock
++            - description: Reference clock for RGMII
++        clock-names:
++          items:
++            - const: axi
++            - const: chi
++            - const: refclk
++    else:
++      properties:
++        clocks:
++          minItems: 1
++          items:
++            - description: AVB functional clock
++            - description: Optional TXC reference clock
++        clock-names:
++          minItems: 1
++          items:
++            - const: fck
++            - const: refclk
++
+ additionalProperties: false
+ 
+ examples:
+-- 
+2.17.1
 
