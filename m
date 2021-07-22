@@ -2,172 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 976A83D1FFA
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 10:44:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBC483D1FFF
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 10:45:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231233AbhGVIDp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 04:03:45 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:49570 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230480AbhGVICd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Jul 2021 04:02:33 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 628301A0D2B;
-        Thu, 22 Jul 2021 10:42:56 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 0000D1A0CFF;
-        Thu, 22 Jul 2021 10:42:55 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id A1F90183AC72;
-        Thu, 22 Jul 2021 16:42:54 +0800 (+08)
-From:   Richard Zhu <hongxing.zhu@nxp.com>
-To:     robh@kernel.org, galak@kernel.crashing.org, shawnguo@kernel.org,
-        devicetree@vger.kernel.org
-Cc:     l.stach@pengutronix.de, linux-imx@nxp.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Richard Zhu <hongxing.zhu@nxp.com>
-Subject: [RFC 2/2] dt-bindings: PCI: imx6: remove fsl,imx6q-pcie.txt
-Date:   Thu, 22 Jul 2021 16:22:35 +0800
-Message-Id: <1626942155-9209-3-git-send-email-hongxing.zhu@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1626942155-9209-1-git-send-email-hongxing.zhu@nxp.com>
-References: <1626942155-9209-1-git-send-email-hongxing.zhu@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S230427AbhGVIFG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 04:05:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51198 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231255AbhGVIFF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jul 2021 04:05:05 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AE4CC061575
+        for <devicetree@vger.kernel.org>; Thu, 22 Jul 2021 01:45:40 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id b26so7362564lfo.4
+        for <devicetree@vger.kernel.org>; Thu, 22 Jul 2021 01:45:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vuQ0/pgm85KV53LY6kXw2zQl5zuf6MRSKCFnW8tzMfs=;
+        b=d6WDIb4HqaKCHuqVjF/z+bZQ22IKNhYq4yziMItJelpHJTtJYNOG+xgTFD2dVUEZX1
+         pmfK4RhadbaqPXExp2z/Htdh3L4pwb+piabuOrDQjjurjwtlgTdg6UK8gQXZcR9/i7Np
+         bo4xMz/GUVjGTaeTbDDd/WYxohX1KSFUMkDiZzI+zISzVQcnwo97NYodNoPm3LGBg3ve
+         GqUh3qNp2lcsFw83TpWAmK4rzeP7ZSaVnoSWGXFXik63GAapgl4VDPV6ngBegapNU/W6
+         V4LB/ZQSesX5974KO6ZUT6ZpKH52KIQJUdBS+f8ZOY9F7BNIUn1vhCF34kPVfiZyrb9a
+         +meQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vuQ0/pgm85KV53LY6kXw2zQl5zuf6MRSKCFnW8tzMfs=;
+        b=lXIP3Tsprrpq+DqGwubOuLEQpaxHJ50VvFEYJkUJdhYsneQqGNxlC0NQKytc3B76xm
+         eqfaeCKSJt/cBnXelfogQ4xMSM68RzrlwVtMKmZ5O5iX+XZuq95Da5V5ieJ3Z5bLntsa
+         CpSvwQY/RByj+pQDHhkFcuCeVUV6G4h1J/l/j8rUGlyl13JdahKew9qqLiYqG6Np+dSi
+         bUq8ptaIYKDXZyoDb2pxA9yO3V1ta8eMvVrzLUynBOwbUARxfagiYvb7hNiLN8Kwz2zk
+         dNOl7+36KTTK6y5lNHIUq0F3bWTJLsWDGr33Ro5L/SH7sL8opITlQxoOe5ecvXRNtcAn
+         23kw==
+X-Gm-Message-State: AOAM531xH4+JK2jWTUyXFFfj0tSBb8s4IRuCe5qYQUO/J4f6f8TUvu07
+        2LGzImAQe8tRAqCToUKDyB01nA==
+X-Google-Smtp-Source: ABdhPJyVZX1Z2WeXZzs3fNkQbQfXmP4JLue0PsH366UFzC+Cbj0pkN+MzpceMVzO3fLQK8tBGFFYbw==
+X-Received: by 2002:a19:dc5e:: with SMTP id f30mr28600390lfj.318.1626943538508;
+        Thu, 22 Jul 2021 01:45:38 -0700 (PDT)
+Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
+        by smtp.gmail.com with ESMTPSA id m11sm979804lji.8.2021.07.22.01.45.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Jul 2021 01:45:38 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     linux-arm-kernel@lists.infradead.org,
+        Imre Kaloz <kaloz@openwrt.org>,
+        Krzysztof Halasa <khalasa@piap.pl>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Marc Zyngier <maz@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH 1/2 v2] bus: ixp4xx: Add DT bindings for the IXP4xx expansion bus
+Date:   Thu, 22 Jul 2021 10:43:30 +0200
+Message-Id: <20210722084330.1618239-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.31.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the fsl,imx6q-pcie.txt to yaml. The properties defined
-in fsl,imx6q-pcie.txt were converted to DT schema.
-Remove fsl,imx6q-pcie.txt.
+This adds device tree bindings for the IXP4xx expansion bus controller.
 
-Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+Cc: Marc Zyngier <maz@kernel.org>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- .../bindings/pci/fsl,imx6q-pcie.txt           | 102 ------------------
- MAINTAINERS                                   |   1 -
- 2 files changed, 103 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt
+ChangeLog v1->v2:
+- Drop unevaluatedProperties: false from the node match.
+  additionalProperties: true will be the default.
+---
+ ...intel,ixp4xx-expansion-bus-controller.yaml | 149 ++++++++++++++++++
+ 1 file changed, 149 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/bus/intel,ixp4xx-expansion-bus-controller.yaml
 
-diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt
-deleted file mode 100644
-index 9acd92c1ff5f..000000000000
---- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt
-+++ /dev/null
-@@ -1,102 +0,0 @@
--* Freescale i.MX6 PCIe interface
--
--This PCIe host controller is based on the Synopsys DesignWare PCIe IP
--and thus inherits all the common properties defined in designware-pcie.txt.
--
--Required properties:
--- compatible:
--	- "fsl,imx6q-pcie"
--	- "fsl,imx6sx-pcie",
--	- "fsl,imx6qp-pcie"
--	- "fsl,imx7d-pcie"
--	- "fsl,imx8mq-pcie"
--- reg: base address and length of the PCIe controller
--- interrupts: A list of interrupt outputs of the controller. Must contain an
--  entry for each entry in the interrupt-names property.
--- interrupt-names: Must include the following entries:
--	- "msi": The interrupt that is asserted when an MSI is received
--- clock-names: Must include the following additional entries:
--	- "pcie_phy"
--
--Optional properties:
--- fsl,tx-deemph-gen1: Gen1 De-emphasis value. Default: 0
--- fsl,tx-deemph-gen2-3p5db: Gen2 (3.5db) De-emphasis value. Default: 0
--- fsl,tx-deemph-gen2-6db: Gen2 (6db) De-emphasis value. Default: 20
--- fsl,tx-swing-full: Gen2 TX SWING FULL value. Default: 127
--- fsl,tx-swing-low: TX launch amplitude swing_low value. Default: 127
--- fsl,max-link-speed: Specify PCI gen for link capability. Must be '2' for
--  gen2, otherwise will default to gen1. Note that the IMX6 LVDS clock outputs
--  do not meet gen2 jitter requirements and thus for gen2 capability a gen2
--  compliant clock generator should be used and configured.
--- phys: Phandle of the Generic PHY to the PCIe PHY.
--- phy-names:  MUST be "pcie-phy".
--- reset-gpio: Should specify the GPIO for controlling the PCI bus device reset
--  signal. It's not polarity aware and defaults to active-low reset sequence
--  (L=reset state, H=operation state).
--- reset-gpio-active-high: If present then the reset sequence using the GPIO
--  specified in the "reset-gpio" property is reversed (H=reset state,
--  L=operation state).
--- vpcie-supply: Should specify the regulator in charge of PCIe port power.
--  The regulator will be enabled when initializing the PCIe host and
--  disabled either as part of the init process or when shutting down the
--  host.
--- vph-supply: Should specify the regulator in charge of VPH one of the three
--  PCIe PHY powers. This regulator can be supplied by both 1.8v and 3.3v voltage
--  supplies.
--
--Additional required properties for imx6sx-pcie:
--- clock names: Must include the following additional entries:
--	- "pcie_inbound_axi"
--- power-domains: Must be set to phandles pointing to the DISPLAY and
--  PCIE_PHY power domains
--- power-domain-names: Must be "pcie", "pcie_phy"
--
--Additional required properties for imx7d-pcie and imx8mq-pcie:
--- power-domains: Must be set to a phandle pointing to PCIE_PHY power domain
--- resets: Must contain phandles to PCIe-related reset lines exposed by SRC
--  IP block
--- reset-names: Must contain the following entries:
--	       - "pciephy"
--	       - "apps"
--	       - "turnoff"
--- fsl,imx7d-pcie-phy: A phandle to an fsl,imx7d-pcie-phy node.
--
--Additional required properties for imx8mq-pcie:
--- clock-names: Must include the following additional entries:
--	- "pcie_aux"
--
--Example:
--
--	pcie@01000000 {
--		compatible = "fsl,imx6q-pcie", "snps,dw-pcie";
--		reg = <0x01ffc000 0x04000>,
--		      <0x01f00000 0x80000>;
--		reg-names = "dbi", "config";
--		#address-cells = <3>;
--		#size-cells = <2>;
--		device_type = "pci";
--		ranges = <0x00000800 0 0x01f00000 0x01f00000 0 0x00080000
--			  0x81000000 0 0          0x01f80000 0 0x00010000
--			  0x82000000 0 0x01000000 0x01000000 0 0x00f00000>;
--		num-lanes = <1>;
--		interrupts = <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
--		interrupt-names = "msi";
--		#interrupt-cells = <1>;
--		interrupt-map-mask = <0 0 0 0x7>;
--		interrupt-map = <0 0 0 1 &intc GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
--		                <0 0 0 2 &intc GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>,
--		                <0 0 0 3 &intc GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>,
--		                <0 0 0 4 &intc GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
--		clocks = <&clks 144>, <&clks 206>, <&clks 189>;
--		clock-names = "pcie", "pcie_bus", "pcie_phy";
--	};
--
--* Freescale i.MX7d PCIe PHY
--
--This is the PHY associated with the IMX7d PCIe controller.  It's used by the
--PCI-e controller via the fsl,imx7d-pcie-phy phandle.
--
--Required properties:
--- compatible:
--	- "fsl,imx7d-pcie-phy"
--- reg: base address and length of the PCIe PHY controller
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a616e250d846..3cfa77b7ce6b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14185,7 +14185,6 @@ M:	Lucas Stach <l.stach@pengutronix.de>
- L:	linux-pci@vger.kernel.org
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- S:	Maintained
--F:	Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt
- F:	Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
- F:	drivers/pci/controller/dwc/*imx6*
- 
+diff --git a/Documentation/devicetree/bindings/bus/intel,ixp4xx-expansion-bus-controller.yaml b/Documentation/devicetree/bindings/bus/intel,ixp4xx-expansion-bus-controller.yaml
+new file mode 100644
+index 000000000000..58264b9b2f4e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/bus/intel,ixp4xx-expansion-bus-controller.yaml
+@@ -0,0 +1,149 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/bus/intel,ixp4xx-expansion-bus-controller.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Intel IXP4xx Expansion Bus Controller
++
++description: |
++  The IXP4xx expansion bus controller handles access to devices on the
++  memory-mapped expansion bus on the Intel IXP4xx family of system on chips,
++  including IXP42x, IXP43x, IXP45x and IXP46x.
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++properties:
++  $nodename:
++    pattern: '^bus@[0-9a-f]+$'
++
++  compatible:
++    enum:
++      - intel,ixp42x-expansion-bus-controller
++      - intel,ixp43x-expansion-bus-controller
++      - intel,ixp45x-expansion-bus-controller
++      - intel,ixp46x-expansion-bus-controller
++
++  reg:
++    description: Control registers for the expansion bus, these are not
++      inside the memory range handled by the expansion bus.
++    maxItems: 1
++
++  "#address-cells":
++    description: |
++      The first cell is the chip select numer.
++      The second cell is the address offset within the bank.
++    const: 2
++
++  "#size-cells":
++    const: 1
++
++  ranges: true
++  dma-ranges: true
++
++patternProperties:
++  "^.*@[0-7],[0-9a-f]+$":
++    description: Devices attached to chip selects are represented as
++      subnodes.
++    type: object
++
++    properties:
++      intel,ixp4xx-eb-t1:
++        description: Address timing, extend address phase with n cycles.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        maximum: 3
++
++      intel,ixp4xx-eb-t2:
++        description: Setup chip select timing, extend setup phase with n cycles.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        maximum: 3
++
++      intel,ixp4xx-eb-t3:
++        description: Strobe timing, extend strobe phase with n cycles.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        maximum: 15
++
++      intel,ixp4xx-eb-t4:
++        description: Hold timing, extend hold phase with n cycles.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        maximum: 3
++
++      intel,ixp4xx-eb-t5:
++        description: Recovery timing, extend recovery phase with n cycles.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        maximum: 15
++
++      intel,ixp4xx-eb-cycle-type:
++        description: The type of cycles to use on the expansion bus for this
++          chip select. 0 = Intel cycles, 1 = Motorola cycles, 2 = HPI cycles.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        enum: [0, 1, 2]
++
++      intel,ixp4xx-eb-byte-access-on-halfword:
++        description: Allow byte read access on half word devices.
++        $ref: /schemas/types.yaml#/definitions/flag
++
++      intel,ixp4xx-eb-hpi-hrdy-pol-high:
++        description: Set HPI HRDY polarity to active high when using HPI.
++        $ref: /schemas/types.yaml#/definitions/flag
++
++      intel,ixp4xx-eb-mux-address-and-data:
++        description: Multiplex address and data on the data bus.
++        $ref: /schemas/types.yaml#/definitions/flag
++
++      intel,ixp4xx-eb-ahb-split-transfers:
++        description: Enable AHB split transfers.
++        $ref: /schemas/types.yaml#/definitions/flag
++
++      intel,ixp4xx-eb-write-enable:
++        description: Enable write cycles.
++        $ref: /schemas/types.yaml#/definitions/flag
++
++      intel,ixp4xx-eb-byte-access:
++        description: Expansion bus uses only 8 bits. The default is to use
++          16 bits.
++        $ref: /schemas/types.yaml#/definitions/flag
++
++required:
++  - compatible
++  - reg
++  - "#address-cells"
++  - "#size-cells"
++  - ranges
++  - dma-ranges
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    bus@50000000 {
++        compatible = "intel,ixp42x-expansion-bus-controller";
++        reg = <0xc4000000 0x28>;
++        #address-cells = <2>;
++        #size-cells = <1>;
++        ranges = <0 0x0 0x50000000 0x01000000>,
++                 <1 0x0 0x51000000 0x01000000>;
++        dma-ranges = <0 0x0 0x50000000 0x01000000>,
++                     <1 0x0 0x51000000 0x01000000>;
++        flash@0,0 {
++            compatible = "intel,ixp4xx-flash", "cfi-flash";
++            bank-width = <2>;
++            reg = <0 0x00000000 0x1000000>;
++            intel,ixp4xx-eb-t3 = <3>;
++            intel,ixp4xx-eb-byte-access-on-halfword;
++            intel,ixp4xx-eb-write-enable;
++        };
++        serial@1,0 {
++            compatible = "exar,xr16l2551", "ns8250";
++            reg = <1 0x00000000 0x10>;
++            interrupt-parent = <&gpio0>;
++            interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
++            clock-frequency = <1843200>;
++            intel,ixp4xx-eb-t3 = <3>;
++            intel,ixp4xx-eb-cycle-type = <1>;
++            intel,ixp4xx-eb-write-enable;
++            intel,ixp4xx-eb-byte-access;
++        };
++    };
 -- 
-2.17.1
+2.31.1
 
