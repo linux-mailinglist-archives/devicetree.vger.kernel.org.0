@@ -2,177 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B5113D24B4
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 15:36:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CCC83D2528
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 16:06:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232148AbhGVM4Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 08:56:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33444 "EHLO
+        id S232287AbhGVNZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 09:25:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232181AbhGVM4N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jul 2021 08:56:13 -0400
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1026C0613D5
-        for <devicetree@vger.kernel.org>; Thu, 22 Jul 2021 06:36:34 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id p4-20020a17090a9304b029016f3020d867so5564229pjo.3
-        for <devicetree@vger.kernel.org>; Thu, 22 Jul 2021 06:36:34 -0700 (PDT)
+        with ESMTP id S232198AbhGVNZP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jul 2021 09:25:15 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD6DCC061575;
+        Thu, 22 Jul 2021 07:05:49 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id h4so7491290ljo.6;
+        Thu, 22 Jul 2021 07:05:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=dQRSdqJHeeMJDOz5ZSW1d87/+iZoLjHZ6vait6LUEHk=;
-        b=QqQ7cjyEBhhilwQPaeIKg4zI0iccVErHES/cTqSQUz/6stMBRADT2U5nAtFHuPa71L
-         LppY/2Vx3jWsKXN39pqFYA6nzsDMrfzDxKrI/Hi37lLpLrvs2lYuK+fxHGlShdFvbn4b
-         FPeba056dapTjD/BQCiKyp9yhX6RZpxaFd/ELGzv0Ua9Cb196v2QLHjjXCiA9KBU97It
-         v+ny/N+9RuXLBU2QhAXBjDBBc7JdYyPPVmjHrPRtMLW7ZuwyyYQ7Bw2aaIeMtgM6N5MR
-         fRgmTu6oS+icDWY7eGx2h+6UJ1E3FQQ5yT2XNCm4I4Acem11RHFPATn3Z6JkYEcP6P2n
-         7hRQ==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=I2yvd7CInVO2nkOTfuFibl5KCx2wDyhIqtzEA3PsnKs=;
+        b=iGv9cBbqaurk6QU1wp3PVLgyY0KNSOovMBvrZq6jnnLKkNTjdkt4smesD6pNc5fBo3
+         nt8vqGgNRJ72qlI2xbLjY2u+r63hEG/Crs9n+jQBebrSwDHvRl4Tlp6olb2vMSsr5aLE
+         47+EWwBbwBGUrGW0nB2KI0Mctk+Hpnjrz7pH4oyFidatq2/VV5LNfwmSvUc2HL/ARhoi
+         4cEu2I3yein+jYwXJRdrcxLM+TpFuEbaofT49WhectMycdy6ZKwcgI2+lVUfhPg9Obji
+         b13myBnPFk8YUoSR1TxQ2NIOPFmV8o9jknvK2fJfssxmywDjrc88784MKEL/f04he8ks
+         i3dA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=dQRSdqJHeeMJDOz5ZSW1d87/+iZoLjHZ6vait6LUEHk=;
-        b=qlEZFfnuOhgIcL2s6DwH4TijwqkG3yGSDaEYcIcJ9VB8QAEu9JoBKWYZrv+Ty3/H06
-         WxjF54Izpt3YqSm1FPUr76j0VoDOROR1WhWYKc3dwaRh2k795ag5WX5DWKXcBEdHDxMh
-         KgiBcxILATBtnybJdsf1BCLqygcxbAisgWIo5n8cP2ddTwZePAU2iLRwJnE8Grq3ujUw
-         Al638dAKU+x9g0IJCq2ZPoCVyiTIN+EaLId7tVVfIAZW9NOtJlgylu9uER4fn01Gwfg/
-         ZbqPR/V9cCOUx+y5fNMRpWr2v/YJJnvFxSMzlfWRy/pVbZ6TkBcZCD9/4VoIyM9Oc5dp
-         GHtQ==
-X-Gm-Message-State: AOAM530BTXfhbPYBSosqKRHptOoamh8HO7AhAg7Bn1DQ3xqbhdZrEJwo
-        BbGj2hVMKU3PLODWmgkQL+xj
-X-Google-Smtp-Source: ABdhPJyPTv5G2MEh/0/fFEWI/KXocy6A6idw0FWeAcfor6Y7ixqS1F3Y65v4fdoBAkrzTQHD3PdAvA==
-X-Received: by 2002:a17:90a:d244:: with SMTP id o4mr9278289pjw.71.1626960994386;
-        Thu, 22 Jul 2021 06:36:34 -0700 (PDT)
-Received: from workstation ([120.138.13.30])
-        by smtp.gmail.com with ESMTPSA id p53sm30256597pfw.168.2021.07.22.06.36.29
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 22 Jul 2021 06:36:33 -0700 (PDT)
-Date:   Thu, 22 Jul 2021 19:06:28 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh@kernel.org>, linuxarm@huawei.com,
-        mauro.chehab@huawei.com,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Binghui Wang <wangbinghui@hisilicon.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Xiaowei Song <songxiaowei@hisilicon.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
-Subject: Re: [PATCH v7 08/10] arm64: dts: HiSilicon: Add support for HiKey
- 970 PCIe controller hardware
-Message-ID: <20210722133628.GC4446@workstation>
-References: <cover.1626855713.git.mchehab+huawei@kernel.org>
- <e483ba44ed3d70e1f4ca899bb287fa38ee8a2876.1626855713.git.mchehab+huawei@kernel.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=I2yvd7CInVO2nkOTfuFibl5KCx2wDyhIqtzEA3PsnKs=;
+        b=JDImDIEVNwHz9j43YE1DmUmy3bfmRFWpZj4vrfQA+YVzoNjyRcBjU1/mV0MoOFr8AF
+         fEa/q47H76DcpMBxLi2fP/3qm9enjVB7bTE5ybgjLA6iVyUle7g0C1I6VDusnOAsW6+t
+         5mPSNQCnaYG/zjFgNN2F5Uy5FkcTe7QX63zcSKjxh5AJ0VwWBc4VSdhedf/Mp0YYcp1n
+         odMqopxhPVqSqVAthhCxjbujapi3AbKgK0aWEH5n0c0VoIiPW/ueK/4+5LEO0hYDBJi9
+         50yc+gaBu61aRz+huuQkZTjCGfLq69MI5d8SoWV6dCdYE4YJcmyxqDeJetiLDcLekPbz
+         xyYA==
+X-Gm-Message-State: AOAM532byPdTf9wWoGack3j0pmcFETchjPi8AMOPdVILcRmAnROKa8a3
+        yVljtsuDFVf6QGhJfOLXl28=
+X-Google-Smtp-Source: ABdhPJy2pWZsvjXrjqMiSXpK+xu2P95G6VMKEhFtj21OR8/GzxKnwAtKWHBOZ4sv3SYhQBYUUK0EBA==
+X-Received: by 2002:a2e:a44a:: with SMTP id v10mr94179ljn.497.1626962748142;
+        Thu, 22 Jul 2021 07:05:48 -0700 (PDT)
+Received: from akaWolf-PC.. ([194.79.5.201])
+        by smtp.gmail.com with ESMTPSA id p8sm190584lfu.163.2021.07.22.07.05.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Jul 2021 07:05:47 -0700 (PDT)
+From:   Artjom Vejsel <akawolf0@gmail.com>
+Cc:     thierry.reding@gmail.com, sam@ravnborg.org,
+        dri-devel@lists.freedesktop.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        paul@crapouillou.net, akawolf0@gmail.com
+Subject: [PATCH 0/3] add Gopher 2b LCD panel
+Date:   Thu, 22 Jul 2021 17:04:29 +0300
+Message-Id: <20210722140432.1426173-1-akawolf0@gmail.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e483ba44ed3d70e1f4ca899bb287fa38ee8a2876.1626855713.git.mchehab+huawei@kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 21, 2021 at 10:39:10AM +0200, Mauro Carvalho Chehab wrote:
-> From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> 
-> Add DTS bindings for the HiKey 970 board's PCIe hardware.
-> 
-> Co-developed-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> ---
->  arch/arm64/boot/dts/hisilicon/hi3670.dtsi     | 71 +++++++++++++++++++
->  .../boot/dts/hisilicon/hikey970-pmic.dtsi     |  1 -
->  drivers/pci/controller/dwc/pcie-kirin.c       | 12 ----
->  3 files changed, 71 insertions(+), 13 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> index 1f228612192c..6dfcfcfeedae 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> @@ -177,6 +177,12 @@ sctrl: sctrl@fff0a000 {
->  			#clock-cells = <1>;
->  		};
->  
-> +		pmctrl: pmctrl@fff31000 {
-> +			compatible = "hisilicon,hi3670-pmctrl", "syscon";
-> +			reg = <0x0 0xfff31000 0x0 0x1000>;
-> +			#clock-cells = <1>;
-> +		};
-> +
+The Gopher 2b LCD panel is used in Gopher 2b handhelds.
+It's simple panel with NewVision NV3047 driver,
+but SPI lines are not connected.
+It has no specific name, since it's unique to that handhelds.
+lot name at AliExpress: 4.3 inch 40PIN TFT LCD Screen COG
+NV3047 Drive IC 480(RGB)*272 No Touch 24Bit RGB Interface
 
-Irrelevant change to this patch.
+Artjom Vejsel (3):
+  dt-bindings: Add QiShenglong vendor prefix
+  dt-bindings: Add DT bindings for QiShenglong Gopher 2b panel
+  drm/panel-simple: add Gopher 2b LCD panel
 
->  		iomcu: iomcu@ffd7e000 {
->  			compatible = "hisilicon,hi3670-iomcu", "syscon";
->  			reg = <0x0 0xffd7e000 0x0 0x1000>;
-> @@ -660,6 +666,71 @@ gpio28: gpio@fff1d000 {
->  			clock-names = "apb_pclk";
->  		};
->  
+ .../bindings/display/panel/panel-simple.yaml  |  2 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+ drivers/gpu/drm/panel/panel-simple.c          | 44 +++++++++++++++++++
+ 3 files changed, 48 insertions(+)
 
-[...]
-
-> +			#interrupt-cells = <1>;
-> +			interrupts = <0 283 4>;
-
-Use the DT flag for interrupts instead of hardcoded value
-
-> +			interrupt-names = "msi";
-> +			interrupt-map-mask = <0 0 0 7>;
-> +			interrupt-map = <0x0 0 0 1
-> +					 &gic GIC_SPI 282 IRQ_TYPE_LEVEL_HIGH>,
-> +					<0x0 0 0 2
-> +					 &gic GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>,
-> +					<0x0 0 0 3
-> +					 &gic GIC_SPI 284 IRQ_TYPE_LEVEL_HIGH>,
-> +					<0x0 0 0 4
-> +					 &gic GIC_SPI 285 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-> +
->  		/* UFS */
->  		ufs: ufs@ff3c0000 {
->  			compatible = "hisilicon,hi3670-ufs", "jedec,ufs-2.1";
-> diff --git a/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
-> index 48c739eacba0..03452e627641 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
-> @@ -73,7 +73,6 @@ ldo33: LDO33 { /* PEX8606 */
->  					regulator-name = "ldo33";
->  					regulator-min-microvolt = <2500000>;
->  					regulator-max-microvolt = <3300000>;
-> -					regulator-boot-on;
-
-Again, irrelevant.
-
->  				};
->  
->  				ldo34: LDO34 { /* GPS AUX IN VDD */
-> diff --git a/drivers/pci/controller/dwc/pcie-kirin.c b/drivers/pci/controller/dwc/pcie-kirin.c
-> index bfc0513f7b15..9dad14929538 100644
-> --- a/drivers/pci/controller/dwc/pcie-kirin.c
-> +++ b/drivers/pci/controller/dwc/pcie-kirin.c
-> @@ -347,18 +347,6 @@ static const struct regmap_config pcie_kirin_regmap_conf = {
->  	.reg_stride = 4,
->  };
->  
-> -/* Registers in PCIeCTRL */
-> -static inline void kirin_apb_ctrl_writel(struct kirin_pcie *kirin_pcie,
-> -					 u32 val, u32 reg)
-> -{
-> -	writel(val, kirin_pcie->apb_base + reg);
-> -}
-> -
-> -static inline u32 kirin_apb_ctrl_readl(struct kirin_pcie *kirin_pcie, u32 reg)
-> -{
-> -	return readl(kirin_pcie->apb_base + reg);
-> -}
-> -
-
-Same here...
-
-Thanks,
-Mani
+--
+2.32.0
