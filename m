@@ -2,126 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C0EA3D2066
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 11:08:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B07B3D2074
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 11:12:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231137AbhGVI2V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 04:28:21 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60818 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230491AbhGVI2U (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Jul 2021 04:28:20 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4F5A16124B;
-        Thu, 22 Jul 2021 09:08:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626944936;
-        bh=5vl/tvBRm8U2+bS0nYWt65GcpJ17JVUvMxzOOfaQelU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=N6vj8RcXEityaBeLrN9dCcMrpbv3KCQM13vyJ+fXj1Nu18kUOoe/WHYJmFcIM1ZZ1
-         9Y13djBPuWAC/CVzRf8C7AFC+OvvRyV38PnpV6N6zNnLI0LPC0wRWz7ypiw1x0JDs9
-         LLb4v0c5CtA3XCqgFaLoLN67QB2qWhSgeCF4eTv1vY/+L8D2mEp7n2+kLm0E6y360q
-         nijVU7dYbHm+Js6ZLeT+vVf2qWJ2WZmNwwubLxN24oVflmVVSCEqXDPPxl9sNofASc
-         3TkTZD0F3OvEnFAIYn+hYpEtIbOWVKsHu5LZECH6Tim4UYK3X5jQ67f6VwEoQKmRIM
-         5ogINrgxuaWLA==
-Date:   Thu, 22 Jul 2021 14:38:52 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     robh+dt@kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        kishon@ti.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] phy: amlogic: Add a new driver for the HDMI TX
- PHY on Meson8/8b/8m2
-Message-ID: <YPk1pNi3CyzB2Jf4@matsya>
-References: <20210629182047.893415-1-martin.blumenstingl@googlemail.com>
- <20210629182047.893415-3-martin.blumenstingl@googlemail.com>
- <YPaLKwEKcDLWwztM@matsya>
- <CAFBinCCJ5DjvjkfjYg7SveDB0bvJ-XV6BwcF_yEeUqxRN9awiQ@mail.gmail.com>
+        id S231331AbhGVIbX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 04:31:23 -0400
+Received: from relay12.mail.gandi.net ([217.70.178.232]:34715 "EHLO
+        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231296AbhGVIbX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jul 2021 04:31:23 -0400
+Received: (Authenticated sender: jacopo@jmondi.org)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id B3C0F20000C;
+        Thu, 22 Jul 2021 09:11:55 +0000 (UTC)
+From:   Jacopo Mondi <jacopo+renesas@jmondi.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        linux-renesas-soc@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v6 0/8] arm64: dts: renesas: Enable GMSL on Eagle and Condor
+Date:   Thu, 22 Jul 2021 11:12:31 +0200
+Message-Id: <20210722091239.26451-1-jacopo+renesas@jmondi.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAFBinCCJ5DjvjkfjYg7SveDB0bvJ-XV6BwcF_yEeUqxRN9awiQ@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21-07-21, 00:08, Martin Blumenstingl wrote:
-> Hi Vinod,
-> 
-> On Tue, Jul 20, 2021 at 10:37 AM Vinod Koul <vkoul@kernel.org> wrote:
-> [...]
-> > > +     if (clk_get_rate(priv->tmds_clk) >= 2970UL * 1000 * 1000)
-> > > +             hdmi_ctl0 = 0x1e8b;
-> > > +     else
-> > > +             hdmi_ctl0 = 0x4d0b;
-> >
-> > magic numbers..? I guess these are register offsets, would be better to
-> > define..
-> Unfortunately these are register values, not offsets
-> The only "documentation" I have is:
-> - documentation for the bits/bit-fields in these registers [0]
-> - some reference code with magic values from the vendor BSP: [1]
-> 
-> HDMI_CTL0/HDMI_CTL1 (the names from the datasheet) is not very
-> specific and I could not find any other explanation on what the values
-> mean.
-> That's why I cannot offer more than these magic values (same situation
-> for your finding below).
+Hello,
+   here we go again with the attempt to try enable GMSL for Eagle and this time
+also Condor board.
 
-Ok, Can you add a comment that register documentation not available ...
+v5 highlighted an issue with the integration of RDACM20 which shown failures at
+start streaming time due to conflicts with i2c writes performed by the embedded
+microcontroller. A new patch
+- media: i2c: rdacm20: Re-program chip address earlier
+is aimed to fix the issue by reducing the collision window by re-programming the
+chip address earlier. All capture session I've run seems stable now.
 
+Compared to v5 integration for the Condor board is now included.
 
-> > > +     ret = device_property_read_u32_array(&pdev->dev, "reg", reg,
-> > > +                                          ARRAY_SIZE(reg));
-> >
-> > we have reg as single property, why array with 2 entries here?
-> My thought when Rob requested a "reg" property in the dt-bindings was
-> that I should use offset and size.
-> I am not validating the size here, which would be in reg[1].
-> If it's fine for Rob as well then I'll switch the dt-bindings to just
-> have the offset inside the reg property.
+Condor has 2 GMSL channels, something the current version of the MAX9286 driver
+does not support. However the DTS integration can be upstreamed but a single
+channel can be used at a time.
 
-So the property is reg address and size. Two would imply you are using
-two reg values.
+Support for Condor required a reword of what was called eagle-gmsl.dtsi in v5
+and is now called gmsl-cameras.dtsi to expand support for the secondary GMSL
+channel.
 
-So I would recommend to use:
-        reg_offset = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+Integration of the new "maxim,gpio-poc" property required for Eagle/Condor is
+fully reviewed and can be eventually fast-tracked.
 
-and skip this reg array.
+The series is based on:
+https://patchwork.linuxtv.org/project/linux-media/list/?series=5847
+and has been tested on Eagle V3H board, while only compile tested for Condor.
 
+Thanks
+   j
 
-> 
-> [...]
-> > > +static const struct of_device_id phy_meson8_hdmi_tx_of_match[] = {
-> > > +     { .compatible = "amlogic,meson8-hdmi-tx-phy" },
-> > > +     { .compatible = "amlogic,meson8b-hdmi-tx-phy" },
-> > > +     { .compatible = "amlogic,meson8m2-hdmi-tx-phy" },
-> > > +     { /* sentinel */ }
-> >
-> > I see that all three are handled similarly, no difference!
-> So far this is correct, they're all treated the same.
-> However, it happened to me (multiple times) in the past that later on
-> I would spot a difference hidden in the vendor BSP.
-> One example is commit f004be596c28f9 ("phy: amlogic: meson8b-usb2: Add
-> a compatible string for Meson8m2").
-> I know that other parts of the graphics pipeline are different on
-> Meson8 compared to the other two SoCs (because Meson8b/Meson8m2 have
-> some reset lines which need to be toggled after updating the video
-> clocks. these resets don't exist on Meson8).
-> So I decided to play safe and add compatible strings for every SoC so
-> I can easily handle any differences in the future (in case I find
-> any).
+Jacopo Mondi (5):
+  dt-bindings: media: max9286: Re-indent example
+  dt-bindings: media: max9286: Define 'maxim,gpio-poc'
+  media: i2c: max9286: Use "maxim,gpio-poc" property
+  media: i2c: rdacm20: Re-program chip address earlier
+  arm64: dts: renesas: condor: Enable MAX9286
 
-Correct, that is why you need to *keep* the SoC specific compatible and
-document them. But use a generic one when you don't have any delta
+Kieran Bingham (3):
+  arm64: dts: renesas: eagle: Enable MAX9286
+  arm64: dts: renesas: Add GMSL cameras .dtsi
+  DNI: arm64: dts: renesas: eagle: Include eagle-gmsl
 
-Above would become:
-        { .compatible = "amlogic,meson8-hdmi" },
+ .../bindings/media/i2c/maxim,max9286.yaml     | 275 +++++++++------
+ arch/arm64/boot/dts/renesas/gmsl-cameras.dtsi | 332 ++++++++++++++++++
+ .../arm64/boot/dts/renesas/r8a77970-eagle.dts | 112 ++++++
+ .../boot/dts/renesas/r8a77980-condor.dts      | 193 ++++++++++
+ drivers/media/i2c/max9286.c                   | 125 +++++--
+ drivers/media/i2c/rdacm20.c                   |  10 +-
+ 6 files changed, 906 insertions(+), 141 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/renesas/gmsl-cameras.dtsi
 
-with DTS specifying:
-        compatible = "amlogic,meson8-hdmi-tx-phy", "amlogic,meson8-hdmi";
+--
+2.32.0
 
-That way if required you can always use the specific one
-
--- 
-~Vinod
