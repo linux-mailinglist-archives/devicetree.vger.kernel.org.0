@@ -2,88 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F11C23D2176
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 12:00:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A31133D21A1
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 12:04:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231528AbhGVJTq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 05:19:46 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49284 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231448AbhGVJTp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Jul 2021 05:19:45 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 908B461260;
-        Thu, 22 Jul 2021 10:00:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626948020;
-        bh=rTh9g8+vOJ8HY6y/Q5+gV0OfqKbSG4CGnJLbeNyrTwc=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=QLDr8sdSjrYiBBujC4q7IQ1ro6gWV2dcQvDPJlwdenX+5DX5pHtFHmXFoNINE6Vdt
-         S0c47H2AypTC+QGVgIBihI8YN39VSko7Z8tS3sbYq7Q1uXOMep/WpfHdeHAjvKsny5
-         yhXXLyQMscoEGz85dCtXfo0CCM8w1rT2mqpYvCVf6DKa+YHhCNveq0GpCYPnkkhobe
-         SS3pOjoUgjLTlUIi0U1tilM3utooRuj6bbnd1h4nO3hCK1yIhh+hZPXFQ3FXbyMBom
-         B/adiIh2xRov8xyIiEYAfrGAc8cFOEdFCF3VXMal0+wiVs9yMYF0jdnsYAT80Pps5g
-         yewVcIhW/aS4g==
-Received: by mail.kernel.org with local (Exim 4.94.2)
-        (envelope-from <mchehab@kernel.org>)
-        id 1m6VUz-008mHN-FC; Thu, 22 Jul 2021 12:00:13 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Linux Doc Mailing List <linux-doc@vger.kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        "Jonathan Corbet" <corbet@lwn.net>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
+        id S231598AbhGVJX5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 05:23:57 -0400
+Received: from guitar.tcltek.co.il ([192.115.133.116]:39298 "EHLO
+        mx.tkos.co.il" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231497AbhGVJXa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Jul 2021 05:23:30 -0400
+Received: from tarshish.tkos.co.il (unknown [10.0.8.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mx.tkos.co.il (Postfix) with ESMTPS id 3EDA44407CE;
+        Thu, 22 Jul 2021 13:01:28 +0300 (IDT)
+From:   Baruch Siach <baruch@tkos.co.il>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>
+Cc:     Baruch Siach <baruch@tkos.co.il>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Balaji Prakash J <bjagadee@codeaurora.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mtd@lists.infradead.org
-Subject: [PATCH 01/15] dt-bindings: mtd: update mtd-physmap.yaml reference
-Date:   Thu, 22 Jul 2021 11:59:58 +0200
-Message-Id: <ab2ff9ee66110c37691b467ec8b4679e9d426416.1626947923.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1626947923.git.mchehab+huawei@kernel.org>
-References: <cover.1626947923.git.mchehab+huawei@kernel.org>
+        Robert Marko <robert.marko@sartura.hr>,
+        Kathiravan T <kathirav@codeaurora.org>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v6 1/4] arm64: dts: ipq6018: correct TCSR block area
+Date:   Thu, 22 Jul 2021 13:01:07 +0300
+Message-Id: <889aae1b88f120cb6281919d27164a959fbe69d0.1626948070.git.baruch@tkos.co.il>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Changeset 63f8e9e0ac65 ("dt-bindings: mtd: Convert mtd-physmap to DT schema")
-renamed: Documentation/devicetree/bindings/mtd/mtd-physmap.txt
-to: Documentation/devicetree/bindings/mtd/mtd-physmap.yaml.
+According to Bjorn Andersson[1], &tcsr_q6 base is 0x01937000 with size
+0x21000. Adjust qcom,halt-regs offsets (add 0xe000) to match the new
+syscon base.
 
-Update its cross-reference accordingly.
+Also, rename to just &tcsr as Kathiravan T suggested.
 
-Fixes: 63f8e9e0ac65 ("dt-bindings: mtd: Convert mtd-physmap to DT schema")
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+[1] https://lore.kernel.org/r/YLgO0Aj1d4w9EcPv@yoga
+
+Signed-off-by: Baruch Siach <baruch@tkos.co.il>
 ---
- Documentation/devicetree/bindings/mtd/gpmc-nor.txt | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+v6:
 
-diff --git a/Documentation/devicetree/bindings/mtd/gpmc-nor.txt b/Documentation/devicetree/bindings/mtd/gpmc-nor.txt
-index c8567b40fe13..2133be0d52f2 100644
---- a/Documentation/devicetree/bindings/mtd/gpmc-nor.txt
-+++ b/Documentation/devicetree/bindings/mtd/gpmc-nor.txt
-@@ -10,7 +10,7 @@ Documentation/devicetree/bindings/memory-controllers/omap-gpmc.txt
- Required properties:
- - bank-width: 		Width of NOR flash in bytes. GPMC supports 8-bit and
- 			16-bit devices and so must be either 1 or 2 bytes.
--- compatible:		Documentation/devicetree/bindings/mtd/mtd-physmap.txt
-+- compatible:		Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
- - gpmc,cs-on-ns:		Chip-select assertion time
- - gpmc,cs-rd-off-ns:	Chip-select de-assertion time for reads
- - gpmc,cs-wr-off-ns:	Chip-select de-assertion time for writes
-@@ -21,7 +21,7 @@ Required properties:
- - gpmc,access-ns:	Start cycle to first data capture (read access)
- - gpmc,rd-cycle-ns:	Total read cycle time
- - gpmc,wr-cycle-ns:	Total write cycle time
--- linux,mtd-name:	Documentation/devicetree/bindings/mtd/mtd-physmap.txt
-+- linux,mtd-name:	Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
- - reg:			Chip-select, base address (relative to chip-select)
- 			and size of NOR flash. Note that base address will be
- 			typically 0 as this is the start of the chip-select.
+  Fix offset adjust (Kathiravan T)
+
+  Rename &tcsr_q6 to &tcsr (Kathiravan T)
+
+v5: New patch in this series
+---
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+index 6ee7b99c21ec..6bb262757cd9 100644
+--- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+@@ -270,9 +270,9 @@ tcsr_mutex_regs: syscon@1905000 {
+ 			reg = <0x0 0x01905000 0x0 0x8000>;
+ 		};
+ 
+-		tcsr_q6: syscon@1945000 {
++		tcsr: syscon@1937000 {
+ 			compatible = "syscon";
+-			reg = <0x0 0x01945000 0x0 0xe000>;
++			reg = <0x0 0x01937000 0x0 0x21000>;
+ 		};
+ 
+ 		blsp_dma: dma-controller@7884000 {
+@@ -615,7 +615,7 @@ q6v5_wcss: remoteproc@cd00000 {
+ 			clocks = <&gcc GCC_PRNG_AHB_CLK>;
+ 			clock-names = "prng";
+ 
+-			qcom,halt-regs = <&tcsr_q6 0xa000 0xd000 0x0>;
++			qcom,halt-regs = <&tcsr 0x18000 0x1b000 0xe000>;
+ 
+ 			qcom,smem-states = <&wcss_smp2p_out 0>,
+ 					   <&wcss_smp2p_out 1>;
 -- 
-2.31.1
+2.30.2
 
