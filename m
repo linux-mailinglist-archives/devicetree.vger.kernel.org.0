@@ -2,139 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BCB43D2D2C
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 22:09:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A75EB3D2D33
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 22:09:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230394AbhGVT2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 15:28:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40322 "EHLO
+        id S230462AbhGVT2s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 15:28:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230079AbhGVT2p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jul 2021 15:28:45 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B18AFC061760
-        for <devicetree@vger.kernel.org>; Thu, 22 Jul 2021 13:09:19 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id v6so10358810lfp.6
-        for <devicetree@vger.kernel.org>; Thu, 22 Jul 2021 13:09:19 -0700 (PDT)
+        with ESMTP id S230440AbhGVT2q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jul 2021 15:28:46 -0400
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6978CC061757
+        for <devicetree@vger.kernel.org>; Thu, 22 Jul 2021 13:09:21 -0700 (PDT)
+Received: by mail-oi1-x22b.google.com with SMTP id p67so7913838oig.2
+        for <devicetree@vger.kernel.org>; Thu, 22 Jul 2021 13:09:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=2N0Vh8zfm8OFgF7fX9h4wweWlSshRiJnnbrmkg/bTGo=;
-        b=spfOXrAO3yPOl1SfcSxOSufKzLyBB/nbchfZXMZ1GO33uesBhvpV0CQWlz/KJ0z77S
-         hE+M4WmjyCuHYzu1/U4M3tLtF4oVUUi1PnnTPo6Ql1TvdZuILFYnW2H0toCRGSRzBnW/
-         GbnSboReCVeo1/Hj7TBKRN0BtDj8cn+ybDC/DODa4Pij4v9nb3ssAlUg7zEmWoO4QTn6
-         tQYFlouBoeIu9/X7X4ybiQHIhXy0tYFe9jfGHbAewxUjTtUlIkp22a4osiq1AMnxIp8V
-         sc+WaI/WHkgwDxDcSlYR0GwDPtQhJilhv9OhGd2lqxUwiSvYLGfVezGVz6pZnPk0C2IG
-         sPpw==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=BcJKTAd+SXCAq4+hK48A80n6j+MuUYA2uIh6BPZjR1U=;
+        b=XVta9Wlk5xmpjfpjS6T5NbLjP3uLbxw2D8WZfnnBKiRY+DboAIeHHwVOmWSalHNbyC
+         vaoX7QNxDNK8fhyBBOCLbgeQJn3RlCAo6mhjnI7LFAITkc7tjyfbYjdbe/aGiO0EvPzZ
+         0TpyT9gbFRPBz8jRAUJoZTesVCz2w5sDTfLhg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=2N0Vh8zfm8OFgF7fX9h4wweWlSshRiJnnbrmkg/bTGo=;
-        b=es/hHef7I8k4fxnQ14fDMG06uAMdWW413sRSm23XwMOoHnazEVWJOc+qxX3R1G4F07
-         gQ8amhEmV1RP+xmQ1gd7VHn2uXFT4Jo1dKb3P5EtskaKP2Bwy5w0aA3GrvcJQEfMuPP2
-         PE73N0889+8wVCqbKLJl6TtVO7cwgk5REkzxBzO6Nx4MTAq4e14el27kehZDS7YNf8Uf
-         TmFRECqAFfU6pPhkaR/o9brzGFB9JrQ7aZPP3D01TMpcHJyheTT0H4NikwDwjNdPxuTg
-         a0nvd063AXHfceJKh/jFcVBMgIwMyjIY0SPkeMWAF0sjhyEuEvMA5slbXYyT2N+78wxh
-         lmgA==
-X-Gm-Message-State: AOAM530sG90pCosimv7tzWN3vJwMj2Hi3LpRCBtBB/YEJ+Pe11OrkNZU
-        NfzgqKaM7nmVel1Z9/xwoy2CU4t6at4pwg5F6O5mfA==
-X-Google-Smtp-Source: ABdhPJyubHz666e94LPXPTqdQoqG+S7azHs313MTNWPbWKss8FLGCrVmPBocrKxyRUd8xjNGMizAMWugGNXjAbZtRBo=
-X-Received: by 2002:ac2:4a66:: with SMTP id q6mr713798lfp.204.1626984557883;
- Thu, 22 Jul 2021 13:09:17 -0700 (PDT)
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=BcJKTAd+SXCAq4+hK48A80n6j+MuUYA2uIh6BPZjR1U=;
+        b=cUeIcDBkxgZmzEBFGq5bfJkLWXoywWIt8O6aecA1CmP0p52dXzL0B2FTr9mOLx7YmE
+         JRCTz97gR9M2URK5RLQDLAUfAzfvK3aPcgEVyvIA9YtG0Miy+TGTaLyO9O5wos5b7ZUC
+         etqyLTLyIYrX2g46Qamen15exUJvC2Zt8SV9WlNKEIbwkgI1OpFLO8KJbRaRHqZT2oNa
+         ExPg6soutB2/JQH559YAvl0ho0KfQgdr+ZSM58eqJ5mNYjw0LRYroFEHhILdnNUgtayK
+         46OxU6uqVXhtu9aX5yDL6qPMg0O25/eDl4y9mlRz2tvytNrY5DTu00g8JylvVjqSj1Kd
+         30wA==
+X-Gm-Message-State: AOAM533lAsYnDHjvIEPA+D74S8FPSdTI/3el/0S58+cFyYEPYsQfuyvu
+        8jsc6RzlilPG87a3Zj18ogNWy58Gn0VBSz5jftMa+g==
+X-Google-Smtp-Source: ABdhPJyQAOc9yd5za8sXc+wp9Ht2s4bknqPuzxNR8G6jAhR6yKwtH3h66wVrY3lRyd3R7fQIVIs1wnidXeQUJ7kSPmo=
+X-Received: by 2002:aca:4dc6:: with SMTP id a189mr7098582oib.166.1626984560867;
+ Thu, 22 Jul 2021 13:09:20 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 22 Jul 2021 20:09:20 +0000
 MIME-Version: 1.0
-References: <20210714124807.o22mottsrg3tv6nt@mobilestation>
- <YPfPDqJhfzbvDLvB@kroah.com> <20210721100220.ddfxwugivsndsedv@mobilestation>
- <YPf29+ewbrYgHxRP@kroah.com> <0064cb2c-5ca6-e693-2e89-8f045c8f7502@kernel.org>
- <YPf+shNM6cXb3mfe@kroah.com> <d853df77-8d36-30b0-dd26-da1bfcb068e0@kernel.org>
- <20210721112531.xvu6ni5ksaehsrjh@mobilestation> <CALAqxLViEqSO17P3JGRGYJh-wDoHaJiQQV48zeoRgnar4Xd5Bg@mail.gmail.com>
- <20210722181221.xh3r5kyu7zlcojjx@mobilestation> <YPnEO6NVFZDS1s//@yoga>
-In-Reply-To: <YPnEO6NVFZDS1s//@yoga>
-From:   John Stultz <john.stultz@linaro.org>
-Date:   Thu, 22 Jul 2021 13:09:05 -0700
-Message-ID: <CALAqxLUT0e+mHMVo685oVTxR8y76733cN0yciQ7ePS6GRE+_dg@mail.gmail.com>
-Subject: Re: [PATCH 29/29] arm64: dts: qcom: Harmonize DWC USB3 DT nodes name
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Serge Semin <fancer.lancer@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Amit Pundir <amit.pundir@linaro.org>
+In-Reply-To: <20210722024227.3313096-4-bjorn.andersson@linaro.org>
+References: <20210722024227.3313096-1-bjorn.andersson@linaro.org> <20210722024227.3313096-4-bjorn.andersson@linaro.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Thu, 22 Jul 2021 20:09:20 +0000
+Message-ID: <CAE-0n50_Q7AtxGpU_MrcbFRwJRXAS+SEhZid1jyouh6DceUnVw@mail.gmail.com>
+Subject: Re: [PATCH 3/5] drm/msm/dp: Refactor ioremap wrapper
+To:     Abhinav Kumar <abhinavk@codeaurora.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Rob Clark <robdclark@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Sean Paul <sean@poorly.run>
+Cc:     Kuogee Hsieh <khsieh@codeaurora.org>,
+        Tanmay Shah <tanmay@codeaurora.org>,
+        Chandan Uddaraju <chandanu@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 22, 2021 at 12:17 PM Bjorn Andersson
-<bjorn.andersson@linaro.org> wrote:
-> > On Jul 21, 2021, 1:45 PM +0200, Krzysztof Kozlowski wrote:
-> > > I had impression that kernel defines interfaces which should be used and
-> > > are stable (e.g. syscalls, sysfs and so on). This case is example of
-> > > user-space relying on something not being marked as part of ABI. Instead
-> > > they found something working for them and now it is being used in "we
-> > > cannot break existing systems". Basically, AOSP unilaterally created a
-> > > stable ABI and now kernel has to stick to it.
-> > >
-> > > Really, all normal systems depend on aliases or names and here we have
-> > > dependency on device address. I proposed way how AOSP should be fixed.
-> > > Anything happened? Nope.
-> >
-> > First time he sent a possible solution for the problem:
-> > https://lore.kernel.org/lkml/20201221210423.GA2504@kozik-lap/
-> >
-> > To sum up you could have used one of the more portable approaches
-> > 1. add an udc alias to the controller and use it then to refer to the
-> > corresponding USB controller
+Quoting Bjorn Andersson (2021-07-21 19:42:25)
+> In order to deal with multiple memory ranges in the following commit
+> change the ioremap wrapper to not poke directly into the dss_io_data
+> struct.
 >
-> Is there such a thing as "UDC alias"? Or are you suggesting that we
-> should add such feature?
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+>  drivers/gpu/drm/msm/dp/dp_parser.c | 28 ++++++++++++++--------------
+>  drivers/gpu/drm/msm/dp/dp_parser.h |  2 +-
+>  2 files changed, 15 insertions(+), 15 deletions(-)
 >
-> I think it would be wonderful if we could identify the UDCs on our
-> boards as "USB1" and "USB2", or "the one and only USB-C connector". But
-> unless that will fall back to the existing naming it would break John's
-> _existing_ userspace.
-
-Well, I'd not hold up the existing userspace I'm using as sacrosanct
-(AOSP devices still usually don't have to work cross-kernel versions -
-devboards being the main exception). I'm fine if we can rework
-userland as proposed, so that the issues can be avoided, but I
-honestly don't have enough context to really understand what that
-looks like (no idea what udc aliases are).
-
-And whatever we do, the main constraint is that userland has to be
-able to work with existing LTS kernels and newer kernels.
-
-> > 2. search through DT-nodes looking for a specific compatible/reg
-> > DT-properties.
-> >
+> diff --git a/drivers/gpu/drm/msm/dp/dp_parser.c b/drivers/gpu/drm/msm/dp/dp_parser.c
+> index c064ced78278..e68dacef547c 100644
+> --- a/drivers/gpu/drm/msm/dp/dp_parser.c
+> +++ b/drivers/gpu/drm/msm/dp/dp_parser.c
+> @@ -19,39 +19,39 @@ static const struct dp_regulator_cfg sdm845_dp_reg_cfg = {
+>         },
+>  };
 >
-> We could define that this is the way, but again we didn't yesterday so
-> your proposal is not backwards compatible.
+> -static int msm_dss_ioremap(struct platform_device *pdev,
+> -                               struct dss_io_data *io_data)
+> +static void __iomem *dp_ioremap(struct platform_device *pdev, int idx, size_t *len)
+>  {
+>         struct resource *res = NULL;
 
-It may be backwards compatible, but I'm still not clear exactly how it
-would work.
+Can we drop assignment to NULL too?
 
-I guess if we look through all
-sys/bus/platform/devices/*/of_node/compatbile strings for the desired
-"snps,dwc3", then find which of the directories have the desired
-address in the string? (The suggestion for looking at reg seems
-better, but I don't get a char value out of the dwc3 of_node/reg
-file).
+> +       void __iomem *base;
+>
+> -       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +       res = platform_get_resource(pdev, IORESOURCE_MEM, idx);
+>         if (!res) {
+>                 DRM_ERROR("%pS->%s: msm_dss_get_res failed\n",
+>                         __builtin_return_address(0), __func__);
+> -               return -ENODEV;
+> +               return ERR_PTR(-ENODEV);
+>         }
+>
+> -       io_data->len = (u32)resource_size(res);
+> -       io_data->base = devm_ioremap(&pdev->dev, res->start, io_data->len);
+> -       if (!io_data->base) {
+> +       base = devm_ioremap_resource(&pdev->dev, res);
+> +       if (!base) {
 
-It seems much more straightforward to do an `ls /sys/class/udc/$GADGET_ADDR.*`
+devm_ioremap_resource() returns an ERR_PTR on failure, not NULL.
 
-But again, if folks decide the names can be rearranged to usb.<addr>
-in the future, that would break too.
-
-thanks
--john
+>                 DRM_ERROR("%pS->%s: ioremap failed\n",
+>                         __builtin_return_address(0), __func__);
+> -               return -EIO;
+> +               return ERR_PTR(-EIO);
+>         }
+>
+> -       return 0;
+> +       *len = resource_size(res);
+> +       return base;
+>  }
+>
+>  static int dp_parser_ctrl_res(struct dp_parser *parser)
+>  {
+> -       int rc = 0;
+>         struct platform_device *pdev = parser->pdev;
+>         struct dp_io *io = &parser->io;
+> +       struct dss_io_data *dss = &io->dp_controller;
+>
+> -       rc = msm_dss_ioremap(pdev, &io->dp_controller);
+> -       if (rc) {
+> -               DRM_ERROR("unable to remap dp io resources, rc=%d\n", rc);
+> -               return rc;
+> +       dss->base = dp_ioremap(pdev, 0, &dss->len);
+> +       if (IS_ERR(dss->base)) {
+> +               DRM_ERROR("unable to remap dp io region: %pe\n", dss->base);
+> +               return PTR_ERR(dss->base);
+>         }
+>
+>         io->phy = devm_phy_get(&pdev->dev, "dp");
