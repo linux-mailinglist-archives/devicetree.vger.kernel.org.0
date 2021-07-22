@@ -2,81 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 695DF3D1BFF
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 04:46:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 715A83D1C08
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 04:47:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230161AbhGVCFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 22:05:25 -0400
-Received: from mail-il1-f181.google.com ([209.85.166.181]:41728 "EHLO
-        mail-il1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230146AbhGVCFZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 22:05:25 -0400
-Received: by mail-il1-f181.google.com with SMTP id p3so4091421ilg.8;
-        Wed, 21 Jul 2021 19:46:00 -0700 (PDT)
+        id S230161AbhGVCHF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 22:07:05 -0400
+Received: from mail-io1-f41.google.com ([209.85.166.41]:33379 "EHLO
+        mail-io1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229932AbhGVCHF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 22:07:05 -0400
+Received: by mail-io1-f41.google.com with SMTP id z11so4771216iow.0
+        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 19:47:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=1ixKGpO941ZDKCFs+4cX6wK1iiC57fsrwJDPh4qCXl8=;
-        b=p6LQT0kW42ZVKkfRH+9xLU3XOW+RUujV3Wrs70SKoMjQMrnOdKNuHqqE2ylz5r/WHo
-         sqJmQHx+2HTsXjeety/eArpQGLpr+4F7tcY2NSp71tk7Kp9Ue9Moq2m+gzKz7GRsGgeU
-         4SnLJzYdtb/laFIl4HAKsluZod5gPy2l3ILCkMEv0tQWwQWaFEOEP9AVyuedoQWRtKa/
-         5+NUxYvqcOjeUFiQTu2pod8bcYyRGgxtduXZ4+P24Sn54rR4lGV6exjYaUcoqH0F6bU1
-         qnZGIGC0a+8XguHj2IaYrJRZv88uj0uLf2vRVaqpVWcCiS1wslr94W/2eGofMDZF/BVG
-         EEMg==
-X-Gm-Message-State: AOAM532OTKqRGstuTjyBLnqZPw+3VsvZhAkMSP9qpUyzL2LdkUGLDCRo
-        9Gzj6Fup2QZMOEbsxIS16Q==
-X-Google-Smtp-Source: ABdhPJzPziBeK/sDz4zL0wrDsgghuGYSXq02K/iHmXhW1iZs16Y2sUUdWpbimdZFJB8XBQAaFKul4A==
-X-Received: by 2002:a92:d5cb:: with SMTP id d11mr25239213ilq.133.1626921959811;
-        Wed, 21 Jul 2021 19:45:59 -0700 (PDT)
+        bh=19xXfJQXm0JE6pCPywd8DImQjl4TXD+UhDpduWAAkDA=;
+        b=pRxVX/BAbsWqfkwIvzRJsy28eWTsWHOGhGfile4nNxttdpIUlsUcjO/3200qqJVyy5
+         GKLiqhb08X1+TJy0IooS61pQ4UYWitTT1Kubq/YGz/FySyBEbGgspF/lvE/j5le57FLr
+         GRhH5TJNPlH+Db6EYIerqvvpPoCBHEX2AZmCcakE49KOJORQdbpAjKw+J/PipYLGJJE7
+         tQ3qNNsA7osQk3hfFOzL0c065RxD0DHGRsyiyGG6fFaBGV7FKsJvWADLkrglryWlB0Py
+         KmDtXUyoRIWAnlWc8bJ+P3fv5Z1nYZ1BAemdzFDH3LEHZ0Z+YvMGKDpOOZnyDjXAa4ES
+         Q5WA==
+X-Gm-Message-State: AOAM531ycdwIksRFZb9kAbATvLSU4bMnAwNk1VwghtSIUj1tQ0ELkQVX
+        ZCfDPkcvUCITLhRMW2H1KQ==
+X-Google-Smtp-Source: ABdhPJwp+5JCc4hxmPbsSw+E/7eMbEfIVYY8LIrpFeJLLDPP06nwccmiyPtOr2D7LGewgtLkxR4JdQ==
+X-Received: by 2002:a02:7a50:: with SMTP id z16mr32799050jad.139.1626922059858;
+        Wed, 21 Jul 2021 19:47:39 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id z12sm15480548iom.6.2021.07.21.19.45.57
+        by smtp.gmail.com with ESMTPSA id a1sm6440643ilp.1.2021.07.21.19.47.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jul 2021 19:45:59 -0700 (PDT)
-Received: (nullmailer pid 3196078 invoked by uid 1000);
-        Thu, 22 Jul 2021 02:45:56 -0000
-Date:   Wed, 21 Jul 2021 20:45:56 -0600
+        Wed, 21 Jul 2021 19:47:39 -0700 (PDT)
+Received: (nullmailer pid 3198455 invoked by uid 1000);
+        Thu, 22 Jul 2021 02:47:35 -0000
+Date:   Wed, 21 Jul 2021 20:47:35 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>
-Cc:     Fabio Estevam <festevam@denx.de>, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, kernel@dh-electronics.com,
-        linux-arm-kernel@lists.infradead.org,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH V3] dt-bindings: arm: fsl: Add DHCOM PicoITX and DHCOM
- DRC02 boards
-Message-ID: <20210722024556.GA3196044@robh.at.kernel.org>
-References: <20210714202252.5898-1-cniedermaier@dh-electronics.com>
+To:     Dong Aisheng <aisheng.dong@nxp.com>
+Cc:     Li Jun <jun.li@nxp.com>, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, shawnguo@kernel.org,
+        linux-phy@lists.infradead.org, dongas86@gmail.com,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        Vinod Koul <vkoul@kernel.org>, kernel@pengutronix.de,
+        Kishon Vijay Abraham I <kishon@ti.com>
+Subject: Re: [PATCH 4/7] dt-bindings: phy: imx8mq-usb-phy: convert to json
+ schema
+Message-ID: <20210722024735.GA3198403@robh.at.kernel.org>
+References: <20210715082536.1882077-1-aisheng.dong@nxp.com>
+ <20210715082536.1882077-5-aisheng.dong@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210714202252.5898-1-cniedermaier@dh-electronics.com>
+In-Reply-To: <20210715082536.1882077-5-aisheng.dong@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Jul 2021 22:22:52 +0200, Christoph Niedermaier wrote:
-> Add DH electronics DHCOM PicoITX and DHCOM DRC02 boards. The DHCOM DRC02
-> device can only house a SOM with iMX6S and not with iMX6DL, due to some
-> thermal design consideration. But for compatible fsl,imx6dl is chosen,
-> because fsl,imx6s isn't available, the iMX6S is basically a iMX6DL with
-> one CPU core disabled and therefore the kernel discerns the iMX6S/iMX6DL
-> automatically.
+On Thu, 15 Jul 2021 16:25:33 +0800, Dong Aisheng wrote:
+> Convert to jason schema.
 > 
-> Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: robh+dt@kernel.org
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: kernel@dh-electronics.com
-> Cc: Fabio Estevam <festevam@denx.de>
-> To: devicetree@vger.kernel.org
+> Cc: Kishon Vijay Abraham I <kishon@ti.com>
+> Cc: Vinod Koul <vkoul@kernel.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Li Jun <jun.li@nxp.com>
+> Cc: linux-phy@lists.infradead.org
+> Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
 > ---
-> V2: - Remove line with fsl,imx6s on the DRC02 Board
-> V3: - Rework of the commit message
->     - Add Fabio Estevam to the CC list
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+>  .../bindings/phy/fsl,imx8mq-usb-phy.txt       | 20 -------
+>  .../bindings/phy/fsl,imx8mq-usb-phy.yaml      | 53 +++++++++++++++++++
+>  2 files changed, 53 insertions(+), 20 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.txt
+>  create mode 100644 Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
