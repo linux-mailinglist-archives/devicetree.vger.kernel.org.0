@@ -2,68 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B9EE83D2091
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 11:12:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FEFB3D20C2
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 11:20:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231428AbhGVIby (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 04:31:54 -0400
-Received: from relay12.mail.gandi.net ([217.70.178.232]:50751 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231420AbhGVIbi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jul 2021 04:31:38 -0400
-Received: (Authenticated sender: jacopo@jmondi.org)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id ED93B200017;
-        Thu, 22 Jul 2021 09:12:10 +0000 (UTC)
-From:   Jacopo Mondi <jacopo+renesas@jmondi.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        linux-renesas-soc@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v6 8/8] DNI: arm64: dts: renesas: eagle: Include eagle-gmsl
-Date:   Thu, 22 Jul 2021 11:12:39 +0200
-Message-Id: <20210722091239.26451-9-jacopo+renesas@jmondi.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210722091239.26451-1-jacopo+renesas@jmondi.org>
-References: <20210722091239.26451-1-jacopo+renesas@jmondi.org>
+        id S231282AbhGVIkU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 04:40:20 -0400
+Received: from frasgout.his.huawei.com ([185.176.79.56]:3446 "EHLO
+        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231280AbhGVIkU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jul 2021 04:40:20 -0400
+Received: from fraeml712-chm.china.huawei.com (unknown [172.18.147.207])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4GVmq36qH6z6H7jw;
+        Thu, 22 Jul 2021 17:09:19 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml712-chm.china.huawei.com (10.206.15.61) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Thu, 22 Jul 2021 11:20:53 +0200
+Received: from localhost (10.47.4.50) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Thu, 22 Jul
+ 2021 10:20:52 +0100
+Date:   Thu, 22 Jul 2021 10:20:27 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+CC:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-sunxi@googlegroups.com>, Guenter Roeck <linux@roeck-us.net>,
+        "Jean Delvare" <jdelvare@suse.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        <linux-hwmon@vger.kernel.org>
+Subject: Re: [PATCH 14/54] dt-bindings: hwmon: Add IIO HWMON binding
+Message-ID: <20210722102027.000035a5@Huawei.com>
+In-Reply-To: <20210721140424.725744-15-maxime@cerno.tech>
+References: <20210721140424.725744-1-maxime@cerno.tech>
+        <20210721140424.725744-15-maxime@cerno.tech>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.47.4.50]
+X-ClientProxiedBy: lhreml727-chm.china.huawei.com (10.201.108.78) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kieran Bingham <kieran.bingham@ideasonboard.com>
+On Wed, 21 Jul 2021 16:03:44 +0200
+Maxime Ripard <maxime@cerno.tech> wrote:
 
-Include the eagle-gmsl.dtsi to enable GMSL camera support on the
-Eagle-V3M platform.
+> Even though we had the iio-hwmon driver for some time and a number of
+> boards using it already, we never had a binding for it. Let's add it
+> based on what the driver expects and the boards are providing.
+> 
+> Cc: Guenter Roeck <linux@roeck-us.net>
+> Cc: Jean Delvare <jdelvare@suse.com>
+> Cc: Jonathan Cameron <jic23@kernel.org>
+> Cc: linux-hwmon@vger.kernel.org
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> ---
+>  .../devicetree/bindings/hwmon/iio-hwmon.yaml  | 37 +++++++++++++++++++
+>  1 file changed, 37 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/iio-hwmon.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/iio-hwmon.yaml b/Documentation/devicetree/bindings/hwmon/iio-hwmon.yaml
+> new file mode 100644
+> index 000000000000..49dd40f663a6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/iio-hwmon.yaml
+> @@ -0,0 +1,37 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/hwmon/iio-hwmon.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: ADC-attached Hardware Sensor Device Tree Bindings
+> +
+> +maintainers:
+> +  - Jonathan Cameron <jic23@kernel.org>
 
-Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
-Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
----
- arch/arm64/boot/dts/renesas/r8a77970-eagle.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
+I'd like to share the blame for this one.  Binding was originally added
+by Guenter.
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a77970-eagle.dts b/arch/arm64/boot/dts/renesas/r8a77970-eagle.dts
-index 05e66467bc0a..542797288e9d 100644
---- a/arch/arm64/boot/dts/renesas/r8a77970-eagle.dts
-+++ b/arch/arm64/boot/dts/renesas/r8a77970-eagle.dts
-@@ -376,3 +376,11 @@ &scif0 {
- 
- 	status = "okay";
- };
-+
-+/* FAKRA Overlay */
-+#define GMSL_CAMERA_RDACM20
-+#define GMSL_CAMERA_0
-+#define GMSL_CAMERA_1
-+#define GMSL_CAMERA_2
-+#define GMSL_CAMERA_3
-+#include "gmsl-cameras.dtsi"
--- 
-2.32.0
+https://lore.kernel.org/linux-iio/1359668588-13678-4-git-send-email-linux@roeck-us.net/
+https://lore.kernel.org/linux-iio/1359668588-13678-11-git-send-email-linux@roeck-us.net/
+:)
+
+As bindings go this one has always been controversial because
+it's mapping between linux subsystems rather than really describing
+hardware.  We've had various discussions over the years on how to do
+this differently, but perhaps just documenting the current state is the
+way to go.  That doesn't stop us moving to something better in the
+future.
+
+> +
+> +description: >
+> +  Bindings for hardware monitoring devices connected to ADC controllers
+> +  supporting the Industrial I/O bindings.
+> +
+> +properties:
+> +  compatible:
+> +    const: iio-hwmon
+> +
+> +  io-channels:
+> +    minItems: 1
+> +    maxItems: 1024
+
+Why 1024?
+
+> +    description: >
+> +      List of phandles to ADC channels to read the monitoring values
+> +
+> +required:
+> +  - compatible
+> +  - io-channels
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +      iio-hwmon {
+> +          compatible = "iio-hwmon";
+> +          io-channels = <&adc 1>, <&adc 2>;
+> +      };
 
