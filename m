@@ -2,96 +2,270 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C40A13D2757
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 18:12:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FC143D2ACB
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 19:08:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229615AbhGVPb6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 11:31:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41152 "EHLO
+        id S233231AbhGVQYN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 12:24:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229581AbhGVPb4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jul 2021 11:31:56 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0405DC061575;
-        Thu, 22 Jul 2021 09:12:31 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id f9so6499270wrq.11;
-        Thu, 22 Jul 2021 09:12:30 -0700 (PDT)
+        with ESMTP id S230329AbhGVQYH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jul 2021 12:24:07 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3ADA7C061575;
+        Thu, 22 Jul 2021 10:04:40 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id f30so9553836lfv.10;
+        Thu, 22 Jul 2021 10:04:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=0bqMHX1s5ON0P7G769ywkrdppi3QjEs9pnjlyttXWnc=;
-        b=RXwkYkexQEKkLCXsqRryuyPidSJ+VOWO/PGQdljrghi5ZDOAFYv2W3wQtJH5zpT+AX
-         4QPeETEkT0omWmfD5GAIL4bUm5HPaTtlgJ4vdOZ69mKKiKiBhto9ZDaCNHv31qRuvLCq
-         27g0cGUHOjIfjINu7EfhLPBkegXxlIaBcZoPyGIyJKf4AhFmcI6SlgQ4RXUFOtdMzNJK
-         NcG85ptmXPoQwyQMDBhsgpgId6+LsqlO2IRf9SvocG+QzSPepLBP/RixTDFWD9/8j+4J
-         VqxKO3XAYHPr6OBKnMAnwwsGbsVSo/dKceOilV2R+MisanFecvHKQzqKnfbP3qNmkwkL
-         kjBQ==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=d1fTJqPqwH1w/qQ/4WFyr762/U70g5oYLAiA1f/J100=;
+        b=WWmdWDTTDKA9RdDgn6BAw/g341JGPLRyv3fWqXGg2XdG+tMmqekvdC0X5FahHTUvpv
+         bgU6EBFO5q8AsnMC+/ImvafcXEKbxAHLyeENphheMhzFWmJEWfKkc5cL8gmoaCQsrSSF
+         0iySB0mFlRUL4wXhjMZA5bDefTBUdRNlok5hw8Wo1uqm6xxDi92cfsknTiRusvO7Tt5F
+         rhI5bHvhLEUe06QrsZZrshxlp9Et9i9eYl2vgNCD1qaIpKS4qWmGFaBkhtR4CFCE9QrR
+         baOQCh+UtKloO1QWNFPbYJvkXEzZltJ+4b69yPFWgpJi2MSUVksDrNLeFCPUeF4p6kw8
+         v3Ig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=0bqMHX1s5ON0P7G769ywkrdppi3QjEs9pnjlyttXWnc=;
-        b=EPUUmrekETbMM4A2erCKNg/4rrVXnbXNDZLGZW8LveT/QjlVWT28pnA3ScV1iOMcTD
-         5SI8HcO7SUevj9Hxx4ayfhiq8HWz+X5a2BsrsGYk23Bbvi3lDrbwJJyVF+5KUQ/uKTt8
-         fbU83uyyLiBj9RGu1fqi8uKS4fVw5NLEWNcGdEMXAXdR9qmereAtzUvbnNK74N6APdmy
-         KnAv5CXrLj+mbzbxoZNPnjNYNYeVqibZJbpBprbQ9zmqfwUopWEQs+DeNEwtyRoKDfzY
-         lS6VYkrh56l2dMrNYT2Mbrh7I1/gfldRNxyORRzimC8ao18hbNOZH7M89BwDUMwKieRD
-         mpaw==
-X-Gm-Message-State: AOAM530kIuvi4ZhJZdcK4npBF7Kfxc7VjGEXNGd8LsTgRcVNaLX66iLb
-        W/NJiy2L69OHCARHuOXByXhF/mLlVoiKZKrC
-X-Google-Smtp-Source: ABdhPJzdIlGt7hRUSmmIIGbdzgB8uOb7SBIsZVTfRdyRalx7H7ANG9HEXZMzxgR29SzoxNaiLfp8Yg==
-X-Received: by 2002:a5d:4010:: with SMTP id n16mr768096wrp.142.1626970349607;
-        Thu, 22 Jul 2021 09:12:29 -0700 (PDT)
-Received: from kista.localdomain (cpe-86-58-46-198.static.triera.net. [86.58.46.198])
-        by smtp.gmail.com with ESMTPSA id z6sm3585363wmp.1.2021.07.22.09.12.28
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=d1fTJqPqwH1w/qQ/4WFyr762/U70g5oYLAiA1f/J100=;
+        b=EtdqFY6fL6SfAumB/JolXe5ZgjgMahU91uKuBVBZw+wTXvvZwCJwNnNDDYDxicLMAF
+         oLhYAK8q1OQ/m/xQ8cvg1cglnG2UUswc2E+CRGatUTf+zFAIbvegX1CBrJ8YRtq1OJJP
+         rT84KO3ceqMvVdOJlcIS+DdWIQ8Ck7fNnXOOdcR+PmNoC/RUikPCROvk/O7lELhlbRoh
+         iCUghMJj0jp8IuJGyzfGHx2tHF9OkvItKlSYeO7PkMdOJFMqebHeIZ4ddo8M+w8U6js8
+         696ncauCMC3LaV519JrdBE30QNwQboKIiNvMv71vVZCjWmb8KIbItG7eqfiSVzoHNTbZ
+         ahZQ==
+X-Gm-Message-State: AOAM530YCui5mx1QTKO93Ut4wb4K5qDM0zl+ighpdzwCxgErkHjeu0BA
+        ZB4nHDyA5VT7vsKqLRR5+ds=
+X-Google-Smtp-Source: ABdhPJyZPlZtrPHiB1v+W8vyesAa/N+3DILAUfwsrdOZvy0EvG6y5QiRjti2dRv4oHOVIZc7HaqEJQ==
+X-Received: by 2002:a19:c20c:: with SMTP id l12mr333142lfc.296.1626973478113;
+        Thu, 22 Jul 2021 10:04:38 -0700 (PDT)
+Received: from mobilestation ([95.79.127.110])
+        by smtp.gmail.com with ESMTPSA id o10sm2035236lfi.41.2021.07.22.10.04.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Jul 2021 09:12:29 -0700 (PDT)
-From:   Jernej Skrabec <jernej.skrabec@gmail.com>
-To:     mripard@kernel.org, wens@csie.org
-Cc:     robh+dt@kernel.org, jernej.skrabec@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] arm64: dts: allwinner: h6: tanix-tx6: enable emmc
-Date:   Thu, 22 Jul 2021 18:12:20 +0200
-Message-Id: <20210722161220.51181-4-jernej.skrabec@gmail.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210722161220.51181-1-jernej.skrabec@gmail.com>
-References: <20210722161220.51181-1-jernej.skrabec@gmail.com>
+        Thu, 22 Jul 2021 10:04:37 -0700 (PDT)
+Date:   Thu, 22 Jul 2021 20:04:35 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     nandhini.srikandan@intel.com
+Cc:     broonie@kernel.org, robh+dt@kernel.org, linux-spi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        mgross@linux.intel.com, kris.pan@intel.com,
+        kenchappa.demakkanavar@intel.com, furong.zhou@intel.com,
+        mallikarjunappa.sangannavar@intel.com, mahesh.r.vaidya@intel.com,
+        rashmi.a@intel.com
+Subject: Re: =?utf-8?B?W+KAnFBBVENI?= =?utf-8?B?4oCd?= 2/2] spi: dw: Add
+ support for Intel Thunder Bay SPI
+Message-ID: <20210722170435.y6fla7ixfgzwkje2@mobilestation>
+References: <20210722053358.29682-1-nandhini.srikandan@intel.com>
+ <20210722053358.29682-3-nandhini.srikandan@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210722053358.29682-3-nandhini.srikandan@intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Tanix TX6 has 32 GiB eMMC. Add a node for it.
+On Thu, Jul 22, 2021 at 01:33:58PM +0800, nandhini.srikandan@intel.com wrote:
+> From: Nandhini Srikandan <nandhini.srikandan@intel.com>
+> 
+> Add support for Intel Thunder Bay SPI controller, which uses DesignWare
+> DWC_ssi core.
+> Bit 31 of CTRLR0 register is added for Thunder Bay, to
+> configure the device as a master or as a slave serial peripheral.
 
-Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
----
- arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+> Bit 14(SSTE) of CTRLR0 register should be set(1) for Thunder Bay.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
-index cf9721ca6370..8f2a80f128de 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
-@@ -98,6 +98,16 @@ &mmc0 {
- 	status = "okay";
- };
- 
-+&mmc2 {
-+	vmmc-supply = <&reg_vcc3v3>;
-+	vqmmc-supply = <&reg_vcc1v8>;
-+	bus-width = <8>;
-+	non-removable;
-+	cap-mmc-hw-reset;
-+	mmc-hs200-1_8v;
-+	status = "okay";
-+};
+Could you elaborate what this bit mean?
+
+> Added reset of SPI controller required for Thunder Bay.
+
+If it's really required (is it?) then you were supposed to reflect
+that in the code by returning a negative error if the driver fails to
+retrieve the reset control handler. In accordance with that the
+bindings should have been also updated so the dtbs_check procedure
+would make sure the Thunder Bay SPI DT-node comply to the requirements
+in that matter.
+
+Anyway I've got a few comments regarding this part of your patch.
+Please see them below.
+
+> 
+> Signed-off-by: Nandhini Srikandan <nandhini.srikandan@intel.com>
+> ---
+>  drivers/spi/spi-dw-core.c |  6 ++++++
+>  drivers/spi/spi-dw-mmio.c | 20 ++++++++++++++++++++
+>  drivers/spi/spi-dw.h      | 15 +++++++++++++++
+>  3 files changed, 41 insertions(+)
+> 
+> diff --git a/drivers/spi/spi-dw-core.c b/drivers/spi/spi-dw-core.c
+> index a305074c482e..eecf8dcd0677 100644
+> --- a/drivers/spi/spi-dw-core.c
+> +++ b/drivers/spi/spi-dw-core.c
+> @@ -302,6 +302,12 @@ static u32 dw_spi_prepare_cr0(struct dw_spi *dws, struct spi_device *spi)
+>  
+>  		if (dws->caps & DW_SPI_CAP_KEEMBAY_MST)
+>  			cr0 |= DWC_SSI_CTRLR0_KEEMBAY_MST;
+> +
+
+> +		if (dws->caps & DW_SPI_CAP_THUNDERBAY_MST)
+> +			cr0 |= DWC_SSI_CTRLR0_THUNDERBAY_MST;
+
+I guess that KeemBay and ThunderBay SPI controllers have been
+synthesized based on the same IP-core with a few differences. Is that
+true? Could you tell us what is the difference between them?
+
+Anyway regarding this the Master/Slave part. Is the ThunderBay
+implementation of the Master/Slave capability the same as it was
+embedded in the KeemBay controller? If so then what do you think about
+just renaming DW_SPI_CAP_KEEMBAY_MST to something like
+DW_SPI_CAP_INTEL_MST and using it then for both Keembay and ThunderBay
+versions of the SPI-controllers? (The similar renaming needs to be
+provided for the DWC_SSI_CTRLR0_KEEMBAY_MST macro then.) You can
+implement it as a preparation patch posted before this one in the
+series.
+
+> +
+> +		if (dws->caps & DW_SPI_CAP_THUNDERBAY_SSTE)
+> +			cr0 |= DWC_SSI_CTRLR0_THUNDERBAY_SSTE;
+
+Similar question regarding the SSTE bit. Is it something ThunderBay
+specific only? Was the corresponding functionality embedded into the
+KeemBay or any other Intel version of the DW SPI controller?
+
+>  	}
+>  
+>  	return cr0;
+> diff --git a/drivers/spi/spi-dw-mmio.c b/drivers/spi/spi-dw-mmio.c
+> index 3379720cfcb8..ca9aad078752 100644
+> --- a/drivers/spi/spi-dw-mmio.c
+> +++ b/drivers/spi/spi-dw-mmio.c
+> @@ -222,6 +222,15 @@ static int dw_spi_keembay_init(struct platform_device *pdev,
+>  	return 0;
+>  }
+>  
+> +static int dw_spi_thunderbay_init(struct platform_device *pdev,
+> +				  struct dw_spi_mmio *dwsmmio)
+> +{
+
+> +	dwsmmio->dws.caps = DW_SPI_CAP_THUNDERBAY_MST | DW_SPI_CAP_THUNDERBAY_RST |
+> +			    DW_SPI_CAP_THUNDERBAY_SSTE | DW_SPI_CAP_DWC_SSI;
+> +
+
+Originally the DW_SPI_CAP-functionality was provided to modify the DW
+SPI core driver behavior when it was required. For instance it was
+mostly connected with the platform-specific CR0-register
+configurations. So as I see it the reset part can be successfully
+handled fully in the framework of the MMIO-platform glue-driver.
+Instead of defining a new capability you could have just added the
+next code in the ThunderBay init-method:
+
++	if (!dwsmmio->rstc) {
++		dev_err(&pdev->dev, "Reset control is missing\n");
++		return -EINVAL;
++	}
 +
- &ohci0 {
- 	status = "okay";
- };
--- 
-2.32.0
++	reset_control_assert(dwsmmio->rstc);
++	udelay(2);
++	reset_control_deassert(dwsmmio->rstc);
++
 
+Thus you'd reuse the already implemented reset-controller handler
+defined in the dw_spi_mmio structure with no need of implementing
+a new capability.
+
+> +	return 0;
+> +}
+> +
+>  static int dw_spi_canaan_k210_init(struct platform_device *pdev,
+>  				   struct dw_spi_mmio *dwsmmio)
+>  {
+> @@ -243,6 +252,7 @@ static int dw_spi_mmio_probe(struct platform_device *pdev)
+>  			 struct dw_spi_mmio *dwsmmio);
+>  	struct dw_spi_mmio *dwsmmio;
+>  	struct resource *mem;
+> +	struct reset_control *rst;
+>  	struct dw_spi *dws;
+>  	int ret;
+>  	int num_cs;
+> @@ -309,6 +319,15 @@ static int dw_spi_mmio_probe(struct platform_device *pdev)
+>  			goto out;
+>  	}
+>  
+
+> +	if (dws->caps & DW_SPI_CAP_THUNDERBAY_RST) {
+> +		rst = devm_reset_control_get_exclusive(&pdev->dev, NULL);
+> +		if (!IS_ERR(rst)) {
+> +			reset_control_assert(rst);
+> +			udelay(2);
+> +			reset_control_deassert(rst);
+> +		}
+> +	}
+> +
+
+Please see my comment above. We don't need to have this code here if
+you get to implement what I suggest there.
+
+>  	pm_runtime_enable(&pdev->dev);
+>  
+>  	ret = dw_spi_add_host(&pdev->dev, dws);
+> @@ -349,6 +368,7 @@ static const struct of_device_id dw_spi_mmio_of_match[] = {
+>  	{ .compatible = "renesas,rzn1-spi", .data = dw_spi_dw_apb_init},
+>  	{ .compatible = "snps,dwc-ssi-1.01a", .data = dw_spi_dwc_ssi_init},
+>  	{ .compatible = "intel,keembay-ssi", .data = dw_spi_keembay_init},
+> +	{ .compatible = "intel,thunderbay-ssi", .data = dw_spi_thunderbay_init},
+>  	{ .compatible = "microchip,sparx5-spi", dw_spi_mscc_sparx5_init},
+>  	{ .compatible = "canaan,k210-spi", dw_spi_canaan_k210_init},
+>  	{ /* end of table */}
+> diff --git a/drivers/spi/spi-dw.h b/drivers/spi/spi-dw.h
+> index b665e040862c..bfe1d5edc25a 100644
+> --- a/drivers/spi/spi-dw.h
+> +++ b/drivers/spi/spi-dw.h
+> @@ -82,6 +82,18 @@
+>   */
+>  #define DWC_SSI_CTRLR0_KEEMBAY_MST	BIT(31)
+>  
+
+> +/*
+> + * For Thunder Bay, CTRLR0[14] should be set to 1.
+> + */
+
+Could you provide a bit more details what this bit has been
+implemented for?
+
+> +#define DWC_SSI_CTRLR0_THUNDERBAY_SSTE	BIT(14)
+> +
+
+> +/*
+> + * For Thunder Bay, CTRLR0[31] is used to select controller mode.
+> + * 0: SSI is slave
+> + * 1: SSI is master
+> + */
+> +#define DWC_SSI_CTRLR0_THUNDERBAY_MST	BIT(31)
+
+Please see my suggestion regarding the Master/Slave capability in one
+of the comments above.
+
+Regards
+-Serge
+
+> +
+>  /* Bit fields in CTRLR1 */
+>  #define SPI_NDF_MASK			GENMASK(15, 0)
+>  
+> @@ -125,6 +137,9 @@ enum dw_ssi_type {
+>  #define DW_SPI_CAP_KEEMBAY_MST		BIT(1)
+>  #define DW_SPI_CAP_DWC_SSI		BIT(2)
+>  #define DW_SPI_CAP_DFS32		BIT(3)
+> +#define DW_SPI_CAP_THUNDERBAY_MST	BIT(4)
+> +#define DW_SPI_CAP_THUNDERBAY_RST	BIT(5)
+> +#define DW_SPI_CAP_THUNDERBAY_SSTE	BIT(6)
+>  
+>  /* Slave spi_transfer/spi_mem_op related */
+>  struct dw_spi_cfg {
+> -- 
+> 2.17.1
+> 
