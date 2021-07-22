@@ -2,487 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD0823D1D0D
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 06:26:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACCEB3D1D3C
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 07:09:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229965AbhGVDp5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 23:45:57 -0400
-Received: from out1-smtp.messagingengine.com ([66.111.4.25]:42697 "EHLO
-        out1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230030AbhGVDpy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Jul 2021 23:45:54 -0400
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.nyi.internal (Postfix) with ESMTP id EC6985C0040;
-        Thu, 22 Jul 2021 00:26:29 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute1.internal (MEProxy); Thu, 22 Jul 2021 00:26:29 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=traverse.com.au;
-         h=from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=V0LceXn+j4RX5
-        X56hdJirII7/ZLapxP8QX6XhzAOnwc=; b=kzO1SrMmfl/GCUJqkUn9059Bgc2/z
-        PhKQ9cbBaW28RqOIFOgiCvaES+3Ru6vVmSmfp3zOqDzIUKAnEgDArLTAUSWpd2zG
-        spIIV8Jy5m++SXNrzh0MIzHKCKmtSgT3EosGOp3c6gLABuV5Bsg9DWZn928BpTAx
-        M2SE9YlLWEjDzXs+biU+q3Rbenz3p64QRCDJhBIW71ysyS1tmMariPRfhlGeMLqs
-        527+tTs1V/CoPZRMWXxhbgk37fa4N94HP3ZTkknnOhPsm+GJciw/wUuT1vowSPa9
-        01M0IrasY0XiSXDfbByiVX/xFyN/AJ/0SCnEldg49ukGhSjjFat9Sf2qw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=V0LceXn+j4RX5X56hdJirII7/ZLapxP8QX6XhzAOnwc=; b=snfGY8uE
-        HwENaf95dpJ2yarbyy6a0XrklG47VQHoUVCQTVZmYafZ0uJ6JDmhVsi9yJTZx34f
-        DzH2dzq5TZ9ZLvKONkDDg8Lc2FG3Zfk9ybs9lrKtA5xj+IEFOcn8Z1rMzpA0i9re
-        48QjPEtEpRX2UpSaFENpA2BAjBS3/wi6CuAA/jNcZIdTb6tT1AwijFEFoG8CmfpK
-        gf6gY1vGIVIZE2KyGnZlSN7xkUAQcBEvhf2AEOaq2seV/7j8J9N5JVBreYtgpa6a
-        0dUUdHpLQ9zxnLaNSpNaO4qzqYRUdiwQx3b7mu6vyYzbjoy1PkJC8r1qH3n2S4hA
-        1jtUZf+gaJEI8w==
-X-ME-Sender: <xms:dfP4YHUfYLxgfnRRnlHgYJtao7BxSv0pcVkqOGCGtuPHONQdx4YWcw>
-    <xme:dfP4YPmeAk8cxdQiy8Yjw3M0XP6LWfiGXoIa93qEu1f-ts1y-6t-uIiDC6lKn4Cn0
-    CU2gUaY2e6xnqKgTfY>
-X-ME-Received: <xmr:dfP4YDa-3XFTb1l_RDdOMM648F8C6oGzrFYZe4H58m1wsgtjHs-WZj5WXj-wTf7hhx_wcMqMmxYjYxSrh0j0tlpQwwqv8dRrDG5mh0tzKlmVexq8QZlYGb5gepplo8c>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeehgdekudcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepofgrthhhvgif
-    ucfotgeurhhiuggvuceomhgrthhtsehtrhgrvhgvrhhsvgdrtghomhdrrghuqeenucggtf
-    frrghtthgvrhhnpeektdfhjeelfeeludetueevkedvvdeivdelkeevudegkeejleejvdeg
-    kedtfeetteenucffohhmrghinhepthhrrghvvghrshgvrdgtohhmrdgruhenucevlhhush
-    htvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrghtthesthhrrghv
-    vghrshgvrdgtohhmrdgruh
-X-ME-Proxy: <xmx:dfP4YCXt-Sax4AsXz91SZlsz-7fw5qMOv3NjMg_kNLUYZzmzM8-V_w>
-    <xmx:dfP4YBn72BOCVlSjQ9xngZfOwQaBEkeVNAil2LH3Onaz3RvsSspuVg>
-    <xmx:dfP4YPf77Q5CUwwvlU4Rng-O4xVc4vdKaHxfDjXzeY1Mpat8xy7jNA>
-    <xmx:dfP4YEvlM3i0QDWsDSDQocBmSW65PcyH_upBCA3Dh7TwFNn9AsjqtQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 22 Jul 2021 00:26:27 -0400 (EDT)
-From:   Mathew McBride <matt@traverse.com.au>
-To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Mathew McBride <matt@traverse.com.au>
-Subject: [PATCH 5/5] arm64: dts: add device tree for Traverse Ten64 (LS1088A)
-Date:   Thu, 22 Jul 2021 04:24:50 +0000
-Message-Id: <20210722042450.11862-6-matt@traverse.com.au>
-X-Mailer: git-send-email 2.30.1
-In-Reply-To: <20210722042450.11862-1-matt@traverse.com.au>
-References: <20210722042450.11862-1-matt@traverse.com.au>
+        id S229927AbhGVE26 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 00:28:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58742 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229488AbhGVE26 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jul 2021 00:28:58 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9FA5C061575;
+        Wed, 21 Jul 2021 22:09:32 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id u1so4502153wrs.1;
+        Wed, 21 Jul 2021 22:09:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=IPyvILfcy5g4pOCZ9oUbxLJdS8m8+UwpG2eFIHIG0/c=;
+        b=FnnBUFR9AJANRg5xEoaSmqlxeYelTG4x6mpxOkcibDEhEXqOybGBDAi7uGTasHsJOO
+         eGu4gPmx3Lxvp9bb7yZ2O59yEjuIGxZxmyOvF0LZz5Zoh0vFE28BA4Ffyd2KMQZ+A5UA
+         h7OmQWwFQYXwmSIvL5sz3wCBPvUltzp7vGPT4ktsKtpwRh+/C+ljXzm3dzZbT439vS8F
+         /fN3xQMB4de6a2OKWD6wQboE5xybm+ucA/SdKfKj0Gf1946EuMZow1QUVSwAgrdm0YR/
+         1oIfAV35J1K4eQdpPUC+tWXqJDdnFzmg22+dXhDJIVEMTWZqu2kF1WETTr6mKDigrF2q
+         fsBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=IPyvILfcy5g4pOCZ9oUbxLJdS8m8+UwpG2eFIHIG0/c=;
+        b=rpQXXWNJc0aBzJM1jHPusKKQmlqaLwNQwlP+6OuiSUbBwbGq383iNsZXSERWOvs+g4
+         +zB4tdVAA8IE9VFvixfZjPGqZsaprXMQGSKXoqUCLJLWGw3dESfAi3Zw5zS6o/zCqZup
+         w9BI2ylvzWcAECSiQFano0Wx4t6fgn7Qvl1I8oeuEEpWFgXX6m4eVrJMlOlT6fIn67s2
+         pJQKXEQAN20krZUJytbHCRY/72FNGOu1LuH+oOLF3h2CdkPxcVUP6Tw4w/PsaW6A+jTQ
+         O9TJhIcQ88rFJyRterFsO/CEhVqC/r6YZQnV/aXQEJJacepxkkxTkqOIE2z4T2d4Iagx
+         BQPw==
+X-Gm-Message-State: AOAM5306MiUnhB4AhKsLaT7T1/+7YYWtFK2Uuv4Rfy9KrR63lZZWozkg
+        bceUuRXZGKHEG72inxpn4B6gUV74VLjKc93Nw64=
+X-Google-Smtp-Source: ABdhPJzMYwf7dP/U8+spn9cNNq0w4H62jP6C73Zl9vHKXEXAJh2dJh2O3ouULrH7LLMd0mpVpEbotuFTnJ51RYhloPo=
+X-Received: by 2002:adf:a54b:: with SMTP id j11mr46685838wrb.305.1626930571441;
+ Wed, 21 Jul 2021 22:09:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210721105317.36742-1-cbranchereau@gmail.com>
+ <20210721105317.36742-4-cbranchereau@gmail.com> <BEXLWQ.Q6JDGD8HI0S31@crapouillou.net>
+In-Reply-To: <BEXLWQ.Q6JDGD8HI0S31@crapouillou.net>
+From:   Christophe Branchereau <cbranchereau@gmail.com>
+Date:   Thu, 22 Jul 2021 07:09:19 +0200
+Message-ID: <CAFsFa86rDydfvumcA7Ld5Vx=hJyYb9_soeYfRk_we1ZofFxUgQ@mail.gmail.com>
+Subject: Re: [PATCH 3/6] iio/adc: ingenic: add JZ4760 support to the sadc driver
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     jic23@kernel.org, lars@metafoo.de, linux-mips@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org, linux@roeck-us.net,
+        contact@artur-rojek.eu
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Traverse Technologies Ten64 is a Mini-ITX form factor
-networking board using the NXP LS1088A SoC.
+Hello Paul, thank you for all the feedback, duly noted I will V2,
+there is just one I disagree with:
 
-This device tree only describes features which the mainline
-kernel currently has support for, such as some I2C-connected
-devices that are not described at present.
+On Wed, Jul 21, 2021 at 8:15 PM Paul Cercueil <paul@crapouillou.net> wrote:
+>
+> Hi Christophe,
+>
+> Le mer., juil. 21 2021 at 12:53:14 +0200, citral23
+> <cbranchereau@gmail.com> a =C3=A9crit :
+> > Signed-off-by: citral23 <cbranchereau@gmail.com>
+> > ---
+> >  drivers/iio/adc/ingenic-adc.c | 64
+> > +++++++++++++++++++++++++++++++++++
+> >  1 file changed, 64 insertions(+)
+> >
+> > diff --git a/drivers/iio/adc/ingenic-adc.c
+> > b/drivers/iio/adc/ingenic-adc.c
+> > index 40f2d8c2cf72..285e7aa8e37a 100644
+> > --- a/drivers/iio/adc/ingenic-adc.c
+> > +++ b/drivers/iio/adc/ingenic-adc.c
+> > @@ -71,6 +71,7 @@
+> >  #define JZ4725B_ADC_BATTERY_HIGH_VREF_BITS   10
+> >  #define JZ4740_ADC_BATTERY_HIGH_VREF         (7500 * 0.986)
+> >  #define JZ4740_ADC_BATTERY_HIGH_VREF_BITS    12
+> > +#define JZ4760_ADC_BATTERY_VREF                      2500
+> >  #define JZ4770_ADC_BATTERY_VREF                      1200
+> >  #define JZ4770_ADC_BATTERY_VREF_BITS         12
+> >
+> > @@ -295,6 +296,10 @@ static const int
+> > jz4740_adc_battery_scale_avail[] =3D {
+> >       JZ_ADC_BATTERY_LOW_VREF, JZ_ADC_BATTERY_LOW_VREF_BITS,
+> >  };
+> >
+> > +static const int jz4760_adc_battery_scale_avail[] =3D {
+> > +     JZ4760_ADC_BATTERY_VREF, JZ4770_ADC_BATTERY_VREF_BITS,
+> > +};
+> > +
+> >  static const int jz4770_adc_battery_raw_avail[] =3D {
+> >       0, 1, (1 << JZ4770_ADC_BATTERY_VREF_BITS) - 1,
+> >  };
+> > @@ -339,6 +344,8 @@ static int jz4725b_adc_init_clk_div(struct device
+> > *dev, struct ingenic_adc *adc)
+> >       return 0;
+> >  }
+> >
+> > +
+> > +
+>
+> Unrelated cosmetic change - remove it.
 
-System documentation may be found at ten64doc.traverse.com.au
+This is not cosmetic, but to add a VREF of 2.5V for the jz4760, as per spec=
+s
 
-Signed-off-by: Mathew McBride <matt@traverse.com.au>
----
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../boot/dts/freescale/fsl-ls1088a-ten64.dts  | 375 ++++++++++++++++++
- 2 files changed, 376 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts
-
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 25806c4924cb..2b3ee42e4a2a 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -19,6 +19,7 @@ dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1046a-qds.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1046a-rdb.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1088a-qds.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1088a-rdb.dtb
-+dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1088a-ten64.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls2080a-qds.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls2080a-rdb.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls2080a-simu.dtb
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts b/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts
-new file mode 100644
-index 000000000000..7f1584f378fe
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts
-@@ -0,0 +1,375 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Device Tree file for Travese Ten64 (LS1088) board
-+ * Based on fsl-ls1088a-rdb.dts
-+ * Copyright 2017-2020 NXP
-+ * Copyright 2019-2021 Traverse Technologies
-+ *
-+ * Author: Mathew McBride <matt@traverse.com.au>
-+ */
-+
-+/dts-v1/;
-+
-+#include "fsl-ls1088a.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+
-+/ {
-+	model = "Traverse Ten64";
-+	compatible = "traverse,ten64", "fsl,ls1088a";
-+
-+	aliases {
-+		serial0 = &duart0;
-+		serial1 = &duart1;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	buttons {
-+		compatible = "gpio-keys";
-+		/* Fired by system controller when
-+		 * external power off (e.g ATX Power Button)
-+		 * asserted
-+		 */
-+		powerdn {
-+			label = "External Power Down";
-+			gpios = <&gpio1 17 GPIO_ACTIVE_LOW>;
-+			interrupts = <&gpio1 17 IRQ_TYPE_EDGE_FALLING>;
-+			linux,code = <KEY_POWER>;
-+		};
-+
-+		/* Rear Panel 'ADMIN' button (GPIO_H) */
-+		admin {
-+			label = "ADMIN button";
-+			gpios = <&gpio3 8 GPIO_ACTIVE_HIGH>;
-+			interrupts = <&gpio3 8 IRQ_TYPE_EDGE_RISING>;
-+			linux,code = <KEY_WPS_BUTTON>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		sfp1down {
-+			label = "ten64:green:sfp1:down";
-+			gpios = <&gpio3 11 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		sfp2up {
-+			label = "ten64:green:sfp2:up";
-+			gpios = <&gpio3 12 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		admin {
-+			label = "ten64:admin";
-+			gpios = <&sfpgpio 12 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+
-+	sfp_xg0: dpmac2_sfp {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&sfplower_i2c>;
-+		tx-fault-gpios = <&sfpgpio 0 GPIO_ACTIVE_HIGH>;
-+		tx-disable-gpios = <&sfpgpio 1 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sfpgpio 2 GPIO_ACTIVE_LOW>;
-+		los-gpios = <&sfpgpio 3 GPIO_ACTIVE_HIGH>;
-+		maximum-power-milliwatt = <2000>;
-+	};
-+
-+	sfp_xg1: dpmac1_sfp {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&sfpupper_i2c>;
-+		tx-fault-gpios = <&sfpgpio 4 GPIO_ACTIVE_HIGH>;
-+		tx-disable-gpios = <&sfpgpio 5 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sfpgpio 6 GPIO_ACTIVE_LOW>;
-+		los-gpios = <&sfpgpio 7 GPIO_ACTIVE_HIGH>;
-+		maximum-power-milliwatt = <2000>;
-+	};
-+
-+};
-+
-+/* XG1 - Upper SFP */
-+&dpmac1 {
-+	sfp = <&sfp_xg1>;
-+	pcs-handle = <&pcs1>;
-+	phy-connection-type = "10gbase-r";
-+	managed = "in-band-status";
-+};
-+
-+/* XG0 - Lower SFP */
-+&dpmac2 {
-+	sfp = <&sfp_xg0>;
-+	pcs-handle = <&pcs2>;
-+	phy-connection-type = "10gbase-r";
-+	managed = "in-band-status";
-+};
-+
-+/* DPMAC3..6 is GE4 to GE8 */
-+&dpmac3 {
-+	phy-handle = <&mdio1_phy5>;
-+	phy-connection-type = "qsgmii";
-+	managed = "in-band-status";
-+	pcs-handle = <&pcs3_0>;
-+};
-+
-+&dpmac4 {
-+	phy-handle = <&mdio1_phy6>;
-+	phy-connection-type = "qsgmii";
-+	managed = "in-band-status";
-+	pcs-handle = <&pcs3_1>;
-+};
-+
-+&dpmac5 {
-+	phy-handle = <&mdio1_phy7>;
-+	phy-connection-type = "qsgmii";
-+	managed = "in-band-status";
-+	pcs-handle = <&pcs3_2>;
-+};
-+
-+&dpmac6 {
-+	phy-handle = <&mdio1_phy8>;
-+	phy-connection-type = "qsgmii";
-+	managed = "in-band-status";
-+	pcs-handle = <&pcs3_3>;
-+};
-+
-+/* DPMAC7..10 is GE0 to GE3 */
-+&dpmac7 {
-+	phy-handle = <&mdio1_phy1>;
-+	phy-connection-type = "qsgmii";
-+	managed = "in-band-status";
-+	pcs-handle = <&pcs7_0>;
-+};
-+
-+&dpmac8 {
-+	phy-handle = <&mdio1_phy2>;
-+	phy-connection-type = "qsgmii";
-+	managed = "in-band-status";
-+	pcs-handle = <&pcs7_1>;
-+};
-+
-+&dpmac9 {
-+	phy-handle = <&mdio1_phy3>;
-+	phy-connection-type = "qsgmii";
-+	managed = "in-band-status";
-+	pcs-handle = <&pcs7_2>;
-+};
-+
-+&dpmac10 {
-+	phy-handle = <&mdio1_phy4>;
-+	phy-connection-type = "qsgmii";
-+	managed = "in-band-status";
-+	pcs-handle = <&pcs7_3>;
-+};
-+
-+&emdio1 {
-+	status = "okay";
-+
-+	mdio1_phy5: ethernet-phy@c {
-+		reg = <0xc>;
-+	};
-+
-+	mdio1_phy6: ethernet-phy@d {
-+		reg = <0xd>;
-+	};
-+
-+	mdio1_phy7: ethernet-phy@e {
-+		reg = <0xe>;
-+	};
-+
-+	mdio1_phy8: ethernet-phy@f {
-+		reg = <0xf>;
-+	};
-+
-+	mdio1_phy1: ethernet-phy@1c {
-+		reg = <0x1c>;
-+	};
-+
-+	mdio1_phy2: ethernet-phy@1d {
-+		reg = <0x1d>;
-+	};
-+
-+	mdio1_phy3: ethernet-phy@1e {
-+		reg = <0x1e>;
-+	};
-+
-+	mdio1_phy4: ethernet-phy@1f {
-+		reg = <0x1f>;
-+	};
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+
-+	sfpgpio: gpio@76 {
-+		reg = <0x76>;
-+		compatible = "ti,tca9539";
-+		#gpio-cells = <2>;
-+		gpio-controller;
-+
-+		admin_led_lower {
-+			gpio-hog;
-+			gpios = <13 GPIO_ACTIVE_HIGH>;
-+			output-low;
-+		};
-+	};
-+
-+	tpm: at97sc@29 {
-+		reg = <0x29>;
-+		compatible = "atmel,at97sc3204t";
-+	};
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+
-+	rtc: rx8035@32 {
-+		reg = <0x32>;
-+		compatible = "epson,rx8035";
-+	};
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+
-+	i2c-switch@70 {
-+		compatible = "nxp,pca9540";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <0x70 >;
-+
-+		sfpupper_i2c: i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+		};
-+
-+		sfplower_i2c: i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+		};
-+	};
-+};
-+
-+&duart0 {
-+	status = "okay";
-+};
-+
-+&duart1 {
-+	status = "okay";
-+};
-+
-+&esdhc {
-+	status = "okay";
-+};
-+
-+&pcs_mdio1 {
-+	status = "okay";
-+};
-+
-+&pcs_mdio2 {
-+	status = "okay";
-+};
-+
-+&pcs_mdio3 {
-+	status = "okay";
-+};
-+
-+&pcs_mdio7 {
-+	status = "okay";
-+};
-+
-+&qspi {
-+	status = "okay";
-+
-+	en25s64: flash@0 {
-+		compatible = "jedec,spi-nor";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		spi-max-frequency = <20000000>;
-+		spi-rx-bus-width = <4>;
-+		spi-tx-bus-width = <4>;
-+		reg = <0>;
-+
-+		bl2@0 {
-+			label = "bl2";
-+			reg = <0 0x100000>;
-+		};
-+
-+		bl3@100000 {
-+			label = "bl3";
-+			reg = <0x100000 0x200000>;
-+		};
-+
-+		mcfirmware@300000 {
-+			label = "mcfirmware";
-+			reg = <0x300000 0x200000>;
-+		};
-+
-+		ubootenv@500000 {
-+			label = "ubootenv";
-+			reg = <0x500000 0x80000>;
-+		};
-+		dpl@580000 {
-+			label = "dpl";
-+			reg = <0x580000 0x40000>;
-+		};
-+
-+		dpc@5C0000 {
-+			label = "dpc";
-+			reg = <0x5C0000 0x40000>;
-+		};
-+
-+		devicetree@600000 {
-+			label = "devicetree";
-+			reg = <0x600000 0x40000>;
-+		};
-+	};
-+
-+	nand: flash@1 {
-+		compatible = "spi-nand";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		spi-max-frequency = <20000000>;
-+		reg = <1>;
-+		spi-rx-bus-width = <4>;
-+		spi-tx-bus-width = <4>;
-+
-+		/* reserved for future boot direct from NAND flash
-+		 * (this would use the same layout as the 8MiB NOR flash)
-+		 */
-+		partition@0 {
-+			label = "nand-boot-reserved";
-+			reg = <0 0x800000>;
-+		};
-+
-+		/* recovery / install environment */
-+		partition@800000 {
-+			label = "recovery";
-+			reg = <0x800000 0x2000000>;
-+		};
-+
-+		/* ubia (first OpenWrt) - a/b names to prevent confusion with ubi0/1/etc. */
-+		partition@2800000 {
-+			label = "ubia";
-+			reg = <0x2800000 0x6C00000>;
-+		};
-+		/* ubib (second OpenWrt) */
-+		partition@9400000 {
-+			label = "ubib";
-+			reg = <0x9400000 0x6C00000>;
-+		};
-+	};
-+};
-+
-+&usb0 {
-+	status = "okay";
-+};
-+
-+&usb1 {
-+	status = "okay";
-+};
--- 
-2.30.1
-
+>
+> >  static int jz4770_adc_init_clk_div(struct device *dev, struct
+> > ingenic_adc *adc)
+> >  {
+> >       struct clk *parent_clk;
+> > @@ -400,6 +407,47 @@ static const struct iio_chan_spec
+> > jz4740_channels[] =3D {
+> >       },
+> >  };
+> >
+> > +static const struct iio_chan_spec jz4760_channels[] =3D {
+> > +     {
+> > +             .extend_name =3D "aux0",
+> > +             .type =3D IIO_VOLTAGE,
+> > +             .info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW) |
+> > +                                   BIT(IIO_CHAN_INFO_SCALE),
+> > +             .indexed =3D 1,
+> > +             .channel =3D INGENIC_ADC_AUX0,
+> > +             .scan_index =3D -1,
+> > +     },
+> > +     {
+> > +             .extend_name =3D "aux",
+> > +             .type =3D IIO_VOLTAGE,
+> > +             .info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW) |
+> > +                                   BIT(IIO_CHAN_INFO_SCALE),
+> > +             .indexed =3D 1,
+> > +             .channel =3D INGENIC_ADC_AUX,
+> > +             .scan_index =3D -1,
+> > +     },
+>
+> A couple of things. First, ".extend_name" is deprecated now... But
+> since the driver used it before, I suppose it doesn't make sense to use
+> labels just for this SoC (as we can't remove .extend_name for other
+> SoCs because of ABI). So I suppose it works here, but maybe Jonathan
+> disagrees.
+>
+> Also, you should probably use "aux1" as the channel's name instead of
+> "aux", independently of the macro name you used in the .channel field.
+>
+> > +     {
+> > +             .extend_name =3D "battery",
+> > +             .type =3D IIO_VOLTAGE,
+> > +             .info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW) |
+> > +                                   BIT(IIO_CHAN_INFO_SCALE),
+> > +             .info_mask_separate_available =3D BIT(IIO_CHAN_INFO_RAW) =
+|
+> > +                                             BIT(IIO_CHAN_INFO_SCALE),
+> > +             .indexed =3D 1,
+> > +             .channel =3D INGENIC_ADC_BATTERY,
+> > +             .scan_index =3D -1,
+> > +     },
+>
+> Swap the battery channel at the end, no? First the three AUX then the
+> battery channel?
+>
+> The rest looks pretty good to me.
+>
+> Cheers,
+> -Paul
+>
+> > +     {
+> > +             .extend_name =3D "aux2",
+> > +             .type =3D IIO_VOLTAGE,
+> > +             .info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW) |
+> > +                                   BIT(IIO_CHAN_INFO_SCALE),
+> > +             .indexed =3D 1,
+> > +             .channel =3D INGENIC_ADC_AUX2,
+> > +             .scan_index =3D -1,
+> > +     },
+> > +};
+> > +
+> >  static const struct iio_chan_spec jz4770_channels[] =3D {
+> >       {
+> >               .type =3D IIO_VOLTAGE,
+> > @@ -526,6 +574,20 @@ static const struct ingenic_adc_soc_data
+> > jz4740_adc_soc_data =3D {
+> >       .init_clk_div =3D NULL, /* no ADCLK register on JZ4740 */
+> >  };
+> >
+> > +static const struct ingenic_adc_soc_data jz4760_adc_soc_data =3D {
+> > +     .battery_high_vref =3D JZ4760_ADC_BATTERY_VREF,
+> > +     .battery_high_vref_bits =3D JZ4770_ADC_BATTERY_VREF_BITS,
+> > +     .battery_raw_avail =3D jz4770_adc_battery_raw_avail,
+> > +     .battery_raw_avail_size =3D ARRAY_SIZE(jz4770_adc_battery_raw_ava=
+il),
+> > +     .battery_scale_avail =3D jz4760_adc_battery_scale_avail,
+> > +     .battery_scale_avail_size =3D
+> > ARRAY_SIZE(jz4760_adc_battery_scale_avail),
+> > +     .battery_vref_mode =3D false,
+> > +     .has_aux_md =3D true,
+> > +     .channels =3D jz4760_channels,
+> > +     .num_channels =3D ARRAY_SIZE(jz4760_channels),
+> > +     .init_clk_div =3D jz4770_adc_init_clk_div,
+> > +};
+> > +
+> >  static const struct ingenic_adc_soc_data jz4770_adc_soc_data =3D {
+> >       .battery_high_vref =3D JZ4770_ADC_BATTERY_VREF,
+> >       .battery_high_vref_bits =3D JZ4770_ADC_BATTERY_VREF_BITS,
+> > @@ -621,6 +683,7 @@ static int ingenic_adc_read_raw(struct iio_dev
+> > *iio_dev,
+> >               return ingenic_adc_read_chan_info_raw(iio_dev, chan, val)=
+;
+> >       case IIO_CHAN_INFO_SCALE:
+> >               switch (chan->channel) {
+> > +             case INGENIC_ADC_AUX0:
+> >               case INGENIC_ADC_AUX:
+> >               case INGENIC_ADC_AUX2:
+> >                       *val =3D JZ_ADC_AUX_VREF;
+> > @@ -832,6 +895,7 @@ static int ingenic_adc_probe(struct
+> > platform_device *pdev)
+> >  static const struct of_device_id ingenic_adc_of_match[] =3D {
+> >       { .compatible =3D "ingenic,jz4725b-adc", .data =3D
+> > &jz4725b_adc_soc_data, },
+> >       { .compatible =3D "ingenic,jz4740-adc", .data =3D &jz4740_adc_soc=
+_data,
+> > },
+> > +     { .compatible =3D "ingenic,jz4760-adc", .data =3D &jz4760_adc_soc=
+_data,
+> > },
+> >       { .compatible =3D "ingenic,jz4770-adc", .data =3D &jz4770_adc_soc=
+_data,
+> > },
+> >       { },
+> >  };
+> > --
+> > 2.30.2
+> >
+>
+>
+KR
+CB
