@@ -2,112 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E1EF3D1FB9
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 10:16:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 320C03D1FCD
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 10:22:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230100AbhGVHfr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 03:35:47 -0400
-Received: from out4-smtp.messagingengine.com ([66.111.4.28]:38229 "EHLO
+        id S230427AbhGVHlG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 03:41:06 -0400
+Received: from out4-smtp.messagingengine.com ([66.111.4.28]:34397 "EHLO
         out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230048AbhGVHfp (ORCPT
+        by vger.kernel.org with ESMTP id S230048AbhGVHlF (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Jul 2021 03:35:45 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id C22CA5C0105;
-        Thu, 22 Jul 2021 04:16:20 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Thu, 22 Jul 2021 04:16:20 -0400
+        Thu, 22 Jul 2021 03:41:05 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.nyi.internal (Postfix) with ESMTP id 1C1A65C009F;
+        Thu, 22 Jul 2021 04:21:41 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Thu, 22 Jul 2021 04:21:41 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:content-transfer-encoding:in-reply-to; s=fm3; bh=N
-        zvHG+wziDIDToWXNvoj2lzuPbVVWXasVbsRChNVX7Q=; b=LigxQMRLDo1YSmv6W
-        vhXqg1PIj/89JWybrk/XAvLzFiKKOzMGWNVHqhZS98ldbPDcSGJ1SVrulcxJCuX5
-        Leog4f87Hgy3GPYdwJa/2tMBeOgNbrI2plSB4RBhf1+eqYebc21cNTfJBc+YTVNw
-        cPuwzID1BaP35iTIbyRRHQI4cYx5Kef0TXOKU7/O3Fp1AG0ORJr3ZMO/oew0XuKi
-        0rDNIYvOK9TomvFplIuv2e+BSbpkjJxxgCUJEffA9CuH7v5uYEdaN1+6MU522kq0
-        SAA0BAGGHqbN3JtUm3zA/e0Mz9rb5XR1uTsXJGJanr8Cos4nTTSj1GoNAeCQzk/J
-        I7/3Q==
+        :content-type:content-transfer-encoding:in-reply-to; s=fm3; bh=l
+        wdFUI+YBXEcZ/jDxkta5gm3PsZd7KMxnxVNOAYa4Fw=; b=iiETPZEG7yXJpgJfH
+        2QFCkMgNAFEwkDJB9NWXGwljheR2Kb5jf6BY4Yqo7nyY0LeHLK7t8Kyhnxjbj6jV
+        f3Eq9/fQP5NlOhwSA5LWqCMkvlgX23eCpMs5xOu0LIMaAxfJ+duH8KkaI3bwSIPG
+        Xdm7jahDoejN2I5wrpBl4ms7ws8tMivTBq7SBAqG7RBNlPTv3NrFI/l2YLk+oPvP
+        X4QQNXeXDSburrpgn2zVOIDGuk6PWaMGWSxxL14GLqJcPL3AUTf30teriG039UzY
+        o7+ocQMGALe+KB4gkhngc8mEJ4w7LzKMkYIfQr9jH6RO1LbxJpmdOqIFkC+djHZv
+        KJsGQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:content-type
         :date:from:in-reply-to:message-id:mime-version:references
         :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; bh=NzvHG+wziDIDToWXNvoj2lzuPbVVWXasVbsRChNVX
-        7Q=; b=wjalVnBgJ4Vxf1h383U3p+vPi+eiLXsFP0XJq4JU2EYh8SnrBx+Nxm0fv
-        QNnjR3x3apJquX7x/c02zNJJE7s9nj6lD9x9X/esyOfw6sSCjKboREor/V3O2w8r
-        J6/6Isx/azaDWCIb7Rn0B6q8CD0p6Wzjg5Dd8CzoWHW3yU4wbVpH+8rXx7MRDbOi
-        VO2oAzpwPSwQjsxtXRh01+pfwg6CMOU3aPBvrNP4DZJi+weEPtRW76qsh9Z62J4d
-        hDJa7edihwhNIg2o6PLcqDxSsncf8IkSiBCuWV743emkGmJdEhHbtUnjqPQdnmSw
-        bVnk1slDoPOdqZZANfGusn1QJ80TQ==
-X-ME-Sender: <xms:Uin5YDVoEq9GvSzfLMQjey3LV77WpCR3h3euVMQ8L-SmKv0a9f4Y7Q>
-    <xme:Uin5YLkYSGNSdopbiJ7dFhCeptY-lgxYPp6su1niQb08APDvxqXjAoxAFtVXfls8w
-    zL2E940nQyqMABTnfc>
-X-ME-Received: <xmr:Uin5YPYU1TvbfWmn5GwV6jH9NiulRtsUiHaiz9Sm8vkzgEaBEAj5qxzlzrfsm5uXMXcxN_00oH20_UNSkD2DaJJbRPlZlpNL7rhO>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeeiucetufdoteggodetrfdotffvucfrrh
-    hofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgenuceurghi
-    lhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurh
-    epfffhvffukfhfgggtugfgjgesthhqredttddtvdenucfhrhhomhepofgrgihimhgvucft
-    ihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtthgvrh
-    hnpeevheeuheekkefftdduveevheetfffhudeghfevkeegkeehiefggfdvkeehheeiheen
-    ucffohhmrghinhepsghoohhtlhhinhdrtghomhenucevlhhushhtvghrufhiiigvpedtne
-    curfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:Uin5YOVcOtb3DfLEZHy3C6E6-twOutqD9JeUKncXqvdHoQQBEDvSrw>
-    <xmx:Uin5YNkPrxs3XD_kYucnG-k-X_tdenyg8XnNgMrDMgWWVZkyX_PPZA>
-    <xmx:Uin5YLdRuVzgvMP1F96PB7JPTnD7iCE1AneEYYBop23zvjZksfdBXw>
-    <xmx:VCn5YLZE7lsdUwgg3SE_Y0ZTrnWCCujy_g3w4JdZwozTvoXYvKZPvw>
+        :x-sasl-enc; s=fm3; bh=lwdFUI+YBXEcZ/jDxkta5gm3PsZd7KMxnxVNOAYa4
+        Fw=; b=qPD4KI8gn+Yyr4gcn/D4SMp7b9tFRrTbblJV/Ut7YoV3fIF7zNxMzz1B1
+        8kiL0aacvZqfyEzkZX189LzIPFeDipOt3M6HcALGjSmPXwjk+/xkp6CYoiTGDfRa
+        Z3JnIJNG/TD92CVGgVzC+FL9p+msf37KYh6QZNJzHDK0/Dl/sNbatYc9ZgG4aVCs
+        y380Om/LjlwFy43Vl0SsiP3CKv5wbqiTZlc2pcJWUpF+4L+f5x3cigNo+eUT/dsJ
+        FQT3ugC7tXZVZXOsDZrf8H9rz21+ac4vFvXM58V/Gv0h5At78Hc/nffmeYfibOEq
+        2JlOv8TYSodkJHSa4zM2gKa4lD/4A==
+X-ME-Sender: <xms:lCr5YMeq2N2XE-czgf6pgtD25N_OHPyog1SkAnC_m1k9QTfsOvhp_Q>
+    <xme:lCr5YOOcGWjJSCU-m7FjcoYKnMIHuuV4QAQvcIGPMb5aMsdcl6vjRcTbX0B7anixY
+    m1bFCFmkfouNR-Is5Q>
+X-ME-Received: <xmr:lCr5YNgWgMggrpASd2ALHLqNLiK9O28LqR-5N1jwEHb0Q6L0RV0-dsWfwO8KHebmRIfTJKtsQPuY-u9IMBeHcWlT7iSxQKYsKU9M>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeeigddtudcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggugfgjsehtqhertddttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepgfejtedtjefggfffvdetuedthedtheegheeuteekfeeghfdtteejkeeludeg
+    vddunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
+    grgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:lCr5YB82ExcsNZSvMZUqjgEQmczjin-pEi19o0CW_ZQM4YT2u2HKyw>
+    <xmx:lCr5YIuppRiq1wXyvRPdPs1hvFJ8-nfSwA7mgmNIk_usktH5gJVivQ>
+    <xmx:lCr5YIGu5qumhYRAaHPwIpdsXDeDN3dXsSL1dHcoXUKox2oW80mPGA>
+    <xmx:lSr5YCX9BZ_PNQBzHRwXLd9W83BCtSLp3rk3DaN3cjcXI0uG-hS_7A>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 22 Jul 2021 04:16:18 -0400 (EDT)
-Date:   Thu, 22 Jul 2021 10:16:16 +0200
+ 22 Jul 2021 04:21:39 -0400 (EDT)
+Date:   Thu, 22 Jul 2021 10:21:37 +0200
 From:   Maxime Ripard <maxime@cerno.tech>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH 52/54] arm64: dts: allwinner: Remove regulator-ramp-delay
-Message-ID: <20210722081616.arxwrn5krbaocymf@gilmour>
-References: <20210721140424.725744-1-maxime@cerno.tech>
- <20210721140424.725744-53-maxime@cerno.tech>
- <5469a059-dad1-38d2-9ea4-f1b5fa9ac616@sholland.org>
+To:     Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc:     wens@csie.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: allwinner: h6: tanix-tx6: Add PIO power
+ supplies
+Message-ID: <20210722082137.2kgbirwtayq4bl7x@gilmour>
+References: <20210721200832.916644-1-jernej.skrabec@gmail.com>
+ <20210721200832.916644-2-jernej.skrabec@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <5469a059-dad1-38d2-9ea4-f1b5fa9ac616@sholland.org>
+In-Reply-To: <20210721200832.916644-2-jernej.skrabec@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 22, 2021 at 12:55:53AM -0500, Samuel Holland wrote:
-> On 7/21/21 9:04 AM, Maxime Ripard wrote:
-> > The regulator-ramp-delay property isn't documented in the binding for
-> > the AXP806, and it's ignored by the driver. Remove those properties.
+Hi,
+
+On Wed, Jul 21, 2021 at 10:08:31PM +0200, Jernej Skrabec wrote:
+> While there is no publicly available schematic of this board, it's not
+> hard to determine voltage of GPIO port C, D and G (only ones which can
+> be set).
 >=20
-> This is a generic regulator property, parsed by
-> of_get_regulation_constraints, which is called by
-> regulator_of_get_init_data in the regulator core. And it appears in
-> bindings/regulator/regulator.yaml. I believe the binding needs to be
-> fixed, not the device trees.
+> Port C and G are used for MMC/SDIO communication, so they use 1.8 V
+> power supply. It's not clear if port D is even used, but if it is, it's
+> pretty safe to assume it uses 3.3 V power supply. Value read from PIO
+> Group Withstand Voltage Mode Select register from within pre-installed
+> Android agrees with that assesment.
+>=20
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> ---
+>  .../boot/dts/allwinner/sun50i-h6-tanix-tx6.dts      | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts b/arch=
+/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
+> index be81330db14f..a1dd8f472cc8 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
+> @@ -32,6 +32,13 @@ hdmi_con_in: endpoint {
+>  		};
+>  	};
+> =20
+> +	reg_vcc1v8: vcc1v8 {
+> +		compatible =3D "regulator-fixed";
+> +		regulator-name =3D "vcc1v8";
+> +		regulator-min-microvolt =3D <1800000>;
+> +		regulator-max-microvolt =3D <1800000>;
+> +	};
+> +
 
-It's indeed parsed by the regulator framework, but then it calls into
-the driver if that property is set using set_ramp_delay if it's set.
-
-https://elixir.bootlin.com/linux/latest/source/drivers/regulator/core.c#L13=
-78
-
-We don't set that hook for the AXP806 DCDC-A and DCDC-E regulators (that
-use AXP_DESC_RANGES) at all:
-
-https://elixir.bootlin.com/linux/latest/source/drivers/regulator/axp20x-reg=
-ulator.c#L343
-
-And the only implementation we have (set for AXP_DESC and AXP_DESC_IO)
-works only for the AXP209:
-
-https://elixir.bootlin.com/linux/latest/source/drivers/regulator/axp20x-reg=
-ulator.c#L368
-
-So, it just looks like those properties have never been tested since
-they were just ignored.
+I appreciate that the other 3.3V regulator has the same issue, but the
+node name must reflect the class of the device. Maybe regulator-vcc1v8?
 
 Maxime
