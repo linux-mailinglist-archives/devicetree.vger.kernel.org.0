@@ -2,120 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 91FF63D1BC3
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 04:29:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C4D33D1BEC
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 04:46:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229932AbhGVBtP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 21:49:15 -0400
-Received: from mail-io1-f50.google.com ([209.85.166.50]:35821 "EHLO
-        mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229916AbhGVBtP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 21:49:15 -0400
-Received: by mail-io1-f50.google.com with SMTP id d9so4670056ioo.2
-        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 19:29:51 -0700 (PDT)
+        id S230424AbhGVCDg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 22:03:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54684 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230411AbhGVCDg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 22:03:36 -0400
+Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com [IPv6:2607:f8b0:4864:20::c29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89C01C061757
+        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 19:44:11 -0700 (PDT)
+Received: by mail-oo1-xc29.google.com with SMTP id z6-20020a4ac2060000b029026ada3b6b90so19381oop.0
+        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 19:44:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XOa5JGP/QaB36txylGv/8WA29Kpuziv0aJWiro9yf5M=;
+        b=MdLMOtJG6blCFS9ZTH8S0B80YLCo+rjEFclH0ZS6wgaH36oW9KyEsV2io3pQh229QB
+         Hg4275E0wMP8ec8vDpevFb0ibQgPKNiuYJYuf6cyZmpPJbOi8xP8QKcN2Xhg7fucV2u1
+         XqA3sdsMV8N90YS2v+ZffQzjj59QXMtLT7OxtZ7UoEa0eHYL9UnqsJ4zXdXDfBx2vu4e
+         6EGKV54M1Lpk7UOuR11x51iQ+n4sBYVX8a2nhsXB8ta3/QLWrwDStzmU7IJiHw599gb0
+         KC+gTtmlYTYTvdcjp4jFox22COV4JYsQm9JD+zie7nTBbi3S4BDxbBQjJuyM44GF/hZ1
+         ljzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Vbm9yduWjMJY5Qu5YDirMHSu1+ek7W9mcXgmGCm0CPU=;
-        b=rEuA3tJnHU5f0FsI2tnMVRmFKtDmlpSJDnk7L5xuoZ2Kw6Oby6Een15Nn5+yNgtfn/
-         99CxJj8nwvGlZmghUvMfLjQ1Dchn64obVWyzmba0kweVC/Pr9gGgEg13MxkHrDTuJsTh
-         QyhCHDQi5sq1YbO9P4EWwWtSpHnpcU3rhO7gph+w4medIhxZZ8mglx430X3YXAN53e3n
-         WffsoLTJddR7VY4O6kaHSqQ+RUxBjuD6aeIGIc4eH2QR35k1EtsSutmsmIK7OJjoVPqs
-         SWqHjtjIKBYtcoYuvckZFFXsxysPGGCr0K12KZ8dQLcqWLV7bFZ3ux/aDO3t77Riv42r
-         k7sA==
-X-Gm-Message-State: AOAM530tyE/WBfvKUu1a8sOEbODtTAz+t1uu0RU2lQQLthkG5u6KTr9F
-        tyO5BDkYTWas+/VV9w5DFA==
-X-Google-Smtp-Source: ABdhPJzKaG8Ei8yk6jblQllxcE3R6XvpisIpEnt3aFcCAx4LPObvRjHA51fMIi6L9FSCHTmaPWwQUA==
-X-Received: by 2002:a02:aa15:: with SMTP id r21mr10880858jam.37.1626920990785;
-        Wed, 21 Jul 2021 19:29:50 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id b8sm13978039ilh.74.2021.07.21.19.29.48
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XOa5JGP/QaB36txylGv/8WA29Kpuziv0aJWiro9yf5M=;
+        b=kkVn6wnVYqCPTW9IDo5+MPpX2eIpPjQhMEOI1GQDpavgPZ7XkQtP86KnKzxepy3i9H
+         Oq7O4lXndf+o/sKVIoKOpq+GCp3Nlt2XIK+OE9zuR16f+leb6Hl921007EH5x31OO8vv
+         XCxyJ9jbd6+GYnCkSsA7+0PIV5wqLHZjvdecOhdoOxRhvhTVepAFyTPxOgVe4XI1pywC
+         3zwYh8CgNpxtmTDSxvoNe0nP5iuSkXHkEy86gyfDA53N4iPa6VkB9d2kKguuVNmW9XWJ
+         tfM8ZDa5T/+kaUXTWCK2ltUOffD+P82POQ5d4n1HH6GTRefgo/Jjp8A+2IjXzNbaullc
+         5cfw==
+X-Gm-Message-State: AOAM531xPQGOszvcs1xrbj5d549wa/JgCqMZ+pnKzIMKuv+FKbrXIMH/
+        aMvDMCz06JR5SO0E7j88XY8KOw==
+X-Google-Smtp-Source: ABdhPJz2HYRl1Cim/GV648ggH+HYACL81Wpb3DNsLrReG79jvZfQmMU9JrGlmcKDwyeOs4OG9u2MIg==
+X-Received: by 2002:a4a:4fca:: with SMTP id c193mr25835012oob.33.1626921850910;
+        Wed, 21 Jul 2021 19:44:10 -0700 (PDT)
+Received: from localhost.localdomain (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id u18sm5346519oif.9.2021.07.21.19.44.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jul 2021 19:29:50 -0700 (PDT)
-Received: (nullmailer pid 3172014 invoked by uid 1000);
-        Thu, 22 Jul 2021 02:29:47 -0000
-Date:   Wed, 21 Jul 2021 20:29:47 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        dri-devel@lists.freedesktop.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Subject: Re: [PATCH 10/54] dt-bindings: display: panel-lvds: Document panel
- compatibles
-Message-ID: <20210722022947.GA3168293@robh.at.kernel.org>
-References: <20210721140424.725744-1-maxime@cerno.tech>
- <20210721140424.725744-11-maxime@cerno.tech>
+        Wed, 21 Jul 2021 19:44:10 -0700 (PDT)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Abhinav Kumar <abhinavk@codeaurora.org>
+Cc:     Kuogee Hsieh <khsieh@codeaurora.org>,
+        Tanmay Shah <tanmay@codeaurora.org>,
+        Chandan Uddaraju <chandanu@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/5] drm/msm/dp: Allow variation in register regions
+Date:   Wed, 21 Jul 2021 19:42:22 -0700
+Message-Id: <20210722024227.3313096-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210721140424.725744-11-maxime@cerno.tech>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 21, 2021 at 04:03:40PM +0200, Maxime Ripard wrote:
-> The binding mentions that all the drivers using that driver must use a
-> vendor-specific compatible but never enforces it, nor documents the
-> vendor-specific compatibles.
-> 
-> Let's make we document all of them, and that the binding will create an
-> error if we add one that isn't.
-> 
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Thierry Reding <thierry.reding@gmail.com>
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> ---
->  .../bindings/display/panel/lvds.yaml           | 18 ++++++++++++------
->  1 file changed, 12 insertions(+), 6 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/lvds.yaml b/Documentation/devicetree/bindings/display/panel/lvds.yaml
-> index 49460c9dceea..d1513111eb48 100644
-> --- a/Documentation/devicetree/bindings/display/panel/lvds.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/lvds.yaml
-> @@ -31,12 +31,18 @@ allOf:
->  
->  properties:
->    compatible:
-> -    contains:
-> -      const: panel-lvds
-> -    description:
-> -      Shall contain "panel-lvds" in addition to a mandatory panel-specific
-> -      compatible string defined in individual panel bindings. The "panel-lvds"
-> -      value shall never be used on its own.
-> +    items:
-> +      - enum:
-> +          - advantech,idk-1110wr
+It turns out that sc8180x (among others) doesn't have the same internal layout
+of the 4 subblocks. This series therefor modifies the binding to require all
+four regions to be described individually and then extends the driver to read
+these four regions. The driver will fall back to read the old single-reg format
+and apply the original offsets and sizes.
 
-At least this one is documented elsewhere. You can add 'minItems: 2' if 
-you want to just enforce having 2 compatibles. Or do:
+Bjorn Andersson (5):
+  dt-bindings: msm/dp: Change reg definition
+  drm/msm/dp: Use devres for ioremap()
+  drm/msm/dp: Refactor ioremap wrapper
+  drm/msm/dp: Store each subblock in the io region
+  drm/msm/dp: Allow sub-regions to be specified in DT
 
-items:
-  - {}
-  - const: panel-lvds
+ .../bindings/display/msm/dp-controller.yaml   |  11 +-
+ drivers/gpu/drm/msm/dp/dp_catalog.c           |  64 ++++-------
+ drivers/gpu/drm/msm/dp/dp_parser.c            | 102 +++++++++++-------
+ drivers/gpu/drm/msm/dp/dp_parser.h            |  10 +-
+ 4 files changed, 102 insertions(+), 85 deletions(-)
 
-Which also enforces the order.
+-- 
+2.29.2
 
-> +          - advantech,idk-2121wr
-> +          - auo,b101ew05
-> +          - innolux,ee101ia-01d
-> +          - mitsubishi,aa104xd12
-> +          - mitsubishi,aa121td01
-> +          - sgd,gktw70sdae4se
-> +          - sharp,lq150x1lg11
-> +          - tbs,a711-panel
-> +      - const: panel-lvds
->  
->    data-mapping:
->      enum:
-> -- 
-> 2.31.1
-> 
-> 
