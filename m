@@ -2,156 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E2EE23D21E5
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 12:12:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8EBA3D2210
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 12:27:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230367AbhGVJcE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 05:32:04 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53984 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231534AbhGVJcE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Jul 2021 05:32:04 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A57F261249;
-        Thu, 22 Jul 2021 10:12:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1626948753;
-        bh=PD6+quR50a/B3tEP2haRK97FZm507gd8odCaXmk0NLc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=DfRRN584U0PmEiVYBOsEHqGz4ReyrUHA1JzdrNGIoCVAq044FGIivyFHz5zC1p4ql
-         nZaw16+rJU9MvPrtZ/nb+6OuiX/jpEcJJqHjO1EOKbHv6bQ18H2hjb12Qghw2mftra
-         vfw+r+R/HnxQ2/OJTQyp8YqHmsR3tP8b35CGn8+M=
-Date:   Thu, 22 Jul 2021 12:12:30 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     zhiyong tao <zhiyong.tao@mediatek.com>
-Cc:     timur@kernel.org, linux@armlinux.org.uk, alcooperx@gmail.com,
-        tklauser@distanz.ch, sean.wang@kernel.org,
-        srv_heupstream@mediatek.com, hui.liu@mediatek.com,
-        yuchen.huang@mediatek.com, huihui.wang@mediatek.com,
-        eddie.huang@mediatek.com, sean.wang@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-serial@vger.kernel.org
-Subject: Re: [PATCH] uart: mediatek: fix memory corruption issue
-Message-ID: <YPlEjlKn5Hav/GNH@kroah.com>
-References: <20210710090103.2643-1-zhiyong.tao@mediatek.com>
- <20210710090103.2643-2-zhiyong.tao@mediatek.com>
- <YPf67gw2KJCk/Ucs@kroah.com>
- <1626948212.29611.47.camel@mhfsdcap03>
+        id S231258AbhGVJrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 05:47:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46696 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230410AbhGVJrC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jul 2021 05:47:02 -0400
+Received: from mail-vs1-xe32.google.com (mail-vs1-xe32.google.com [IPv6:2607:f8b0:4864:20::e32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 158CBC061757
+        for <devicetree@vger.kernel.org>; Thu, 22 Jul 2021 03:27:37 -0700 (PDT)
+Received: by mail-vs1-xe32.google.com with SMTP id j2so3033618vsi.6
+        for <devicetree@vger.kernel.org>; Thu, 22 Jul 2021 03:27:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=D6NsNjR1zauQMuXAr/8MkgipURqkWQcL5tWcTpW2GWw=;
+        b=lTl71YmyLm/E8pzCx+pNYFhrr5Gnj2EwPJhWh4eAUUXOY5fHBF1iYEi+Q6u58lKi7O
+         cnenhxnMlEoTdgT947mx2ZMLiwUy1SymwnTFAL/N+oLwD2njh4NgV4wiolv0idmuSFTc
+         /iO/POWIHBcvWh7mn71FoT87QbrciHZCHH0wmNUMv/KtG4lT0LzcHCgY3G14quq/Bs7Y
+         M09ZLlRrkDgh8eFAC80PhYta6V0WM9fZ5FfPd2si1WwGY4KsEZX2ya1R4zkkn6TuKWGC
+         cUIiqd2Wxig5suzFwR/1kwqanE2JVWjNUxzojb7n/lOKMrKlWhhw5LnOeYNMOiWm4pJt
+         mtrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=D6NsNjR1zauQMuXAr/8MkgipURqkWQcL5tWcTpW2GWw=;
+        b=pUYR7FGDlKbUszv0d00FIXDeU0BAs1kAG8ibQs4W+Pbr7qYDmYJFg3jQmlJGWcRC5/
+         uaERvin61853zdbNaHhzm8Agzet6VvrU1j1nlPfTpkSCZNpYWk97QQNts6H+ySu207bs
+         wjdhz/bez9rOLbnZii0vZk516fi7ZFwSuz1eqoFqz82O93Y6PjD7/AuBdVDj1ZGme1Fb
+         0k+48G+K6dq03GeCs79D4uG0OXrLxo39KGlM9O6KO9vQPA6JlrUz2ugx8kfalGo/Uscw
+         XxFTSfme2vmXewX/jXSgzVWvbon/QIiRjrD/u1vDoo5k7RV/HKD1+VIoZ1dwFk38kHSV
+         cwqw==
+X-Gm-Message-State: AOAM530/N37pX89YAg23B1nmOeOFU+VednRd1cyh3bIgTuvHa6UeXXZC
+        ScXhUhewI3W30nI4J/K30PcheqfnpO7Hj1/Hu741RA==
+X-Google-Smtp-Source: ABdhPJzpWkC9FA77SkwYQtOd/pIwnXgFDCAPg1oIGoBUk/5VNZqC5MQDte+YPKv9/8XdXUvLgvPvS0i78BqM57ytKcc=
+X-Received: by 2002:a67:ebd8:: with SMTP id y24mr38617533vso.19.1626949656227;
+ Thu, 22 Jul 2021 03:27:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1626948212.29611.47.camel@mhfsdcap03>
+References: <20210718104901.454843-1-dmitry.baryshkov@linaro.org> <20210718104901.454843-4-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20210718104901.454843-4-dmitry.baryshkov@linaro.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 22 Jul 2021 12:26:59 +0200
+Message-ID: <CAPDyKFqws1iC+PtQ3iRzzFF1NQZ=huRbA3wNBbS2gmyVqgmhxQ@mail.gmail.com>
+Subject: Re: [PATCH v5 3/9] PM: runtime: add devm_pm_runtime_enable helper
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 22, 2021 at 06:03:32PM +0800, zhiyong tao wrote:
-> On Wed, 2021-07-21 at 12:46 +0200, Greg KH wrote:
-> > On Sat, Jul 10, 2021 at 05:01:03PM +0800, Zhiyong Tao wrote:
-> > > This patch is used to fix memory corruption issue when rx power off.
-> > > 1. add spin lock in mtk8250_dma_rx_complete function in APDMA mode.
-> > 
-> > What does a lock protect from?  Please be explicit and detailed.
-> 
-> ==> Hi Gregkh,
-> 
-> when uart is used as a communication port with external device(GPS).
-> when external device(GPS) power off, the power of rx pin is also from
-> 1.8v to 0v. Even if there is not any data in rx. But uart rx pin can
-> capture the data "0".
+On Sun, 18 Jul 2021 at 12:49, Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> Add helper function handling typical driver action: call
+> pm_runtime_enable at the probe() time and disable it during remove().
+>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  drivers/base/power/runtime.c | 17 +++++++++++++++++
+>  include/linux/pm_runtime.h   |  4 ++++
+>  2 files changed, 21 insertions(+)
 
-That sounds like a broken hardware design.
+First, this needs to be sent to the correct maintainers (Rafael) and
+also the mailing list (linux-pm).
 
-> If uart don't receive any data in specified cycle, uart will generates
-> BI(Break interrupt) interrupt.
-> If external device(GPS) power off, we found that BI interrupt appeared
-> continuously and very frequently.
-> When uart interrupt type is BI, uart IRQ handler(8250 framwork
-> API:serial8250_handle_irq) will push data to tty buffer.
-> The code path:
-> https://elixir.bootlin.com/linux/latest/source/drivers/tty/serial/8250/8250_port.c#L1917
-> 
-> mtk8250_dma_rx_complete is a task of mtk_uart_apdma_rx_handler.
-> mtk8250_dma_rx_complete priority is lower than uart irq
-> handler(serial8250_handle_irq).
-> if we are in process of mtk8250_dma_rx_complete, uart appear BI
-> interrupt:1)serial8250_handle_irq will priority execution.2)it may cause
-> write tty buffer conflict in mtk8250_dma_rx_complete.
-> So the spin lock protect the rx receive data process is not break.
+Second, to not stall the series by $subject patch as it will likely
+need to be funneled through Rafael's tree, perhaps it's just better to
+do the "open coding" in the qcom drivers for now.
 
-Then put something like this in the changelog text, as it is, it is not
-descriptive at all.
+Kind regards
+Uffe
 
-> > > 2. add processing mechanism which count value is 0
-> > 
-> > What does this do?  And why is it needed?
-> 
-> ==> when count value is 0, we don't need push data to tty buffer.
-> so we add it.
-
-But that does not actually do anything different from what it does
-today.  And it has nothing to do with the lock, so this should be 2
-different patches, right?
-
-> > > Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
-> > 
-> > What commit does this fix?  Does this need to go to stable kernel trees?
-> > If so, how far back?
-> > 
-> > > ---
-> > >  drivers/tty/serial/8250/8250_mtk.c | 15 +++++++++++----
-> > >  1 file changed, 11 insertions(+), 4 deletions(-)
-> > > 
-> > > diff --git a/drivers/tty/serial/8250/8250_mtk.c b/drivers/tty/serial/8250/8250_mtk.c
-> > > index f7d3023f860f..09f7d2166315 100644
-> > > --- a/drivers/tty/serial/8250/8250_mtk.c
-> > > +++ b/drivers/tty/serial/8250/8250_mtk.c
-> > > @@ -91,12 +91,15 @@ static void mtk8250_dma_rx_complete(void *param)
-> > >  	struct mtk8250_data *data = up->port.private_data;
-> > >  	struct tty_port *tty_port = &up->port.state->port;
-> > >  	struct dma_tx_state state;
-> > > -	int copied, total, cnt;
-> > > +	unsigned int copied, total, cnt;
-> > >  	unsigned char *ptr;
-> > > +	unsigned long flags;
-> > >  
-> > >  	if (data->rx_status == DMA_RX_SHUTDOWN)
-> > >  		return;
-> > >  
-> > > +	spin_lock_irqsave(&up->port.lock, flags);
-> > > +
-> > >  	dmaengine_tx_status(dma->rxchan, dma->rx_cookie, &state);
-> > >  	total = dma->rx_size - state.residue;
-> > >  	cnt = total;
-> > > @@ -104,9 +107,11 @@ static void mtk8250_dma_rx_complete(void *param)
-> > >  	if ((data->rx_pos + cnt) > dma->rx_size)
-> > >  		cnt = dma->rx_size - data->rx_pos;
-> > >  
-> > > -	ptr = (unsigned char *)(data->rx_pos + dma->rx_buf);
-> > > -	copied = tty_insert_flip_string(tty_port, ptr, cnt);
-> > > -	data->rx_pos += cnt;
-> > > +	if (cnt != 0) {
-> > 
-> > Why does cnt matter here?  If cnt is 0, the code above should not do
-> > anything at all, right?
-> 
-> ==> yes, if the counter value is 0, we don't need push data to the tty
-> buffer.
-
-But this does not change the logic as if cnt is 0, nothing gets pushed
-with the current code either, right?
-
-> > Or if it does, should we change tty_insert_flip_string() to always check
-> > for cnt != 0 before it does the first loop?  Hm, it looks like it will
-> > abort if cnt is 0, so what is this change really doing?  Why do you need
-> > it?  What is it "fixing"?
-> > 
-> ==> It is not fix anything, we just think if count value is 0, we don't
-> need do anything.
-
-Then make it a separate patch, independant from the lock patch, and we
-can discuss it there.  Do NOT have patches do multiple things.
-
-thanks,
-
-greg k-h
+>
+> diff --git a/drivers/base/power/runtime.c b/drivers/base/power/runtime.c
+> index 8a66eaf731e4..ec94049442b9 100644
+> --- a/drivers/base/power/runtime.c
+> +++ b/drivers/base/power/runtime.c
+> @@ -1447,6 +1447,23 @@ void pm_runtime_enable(struct device *dev)
+>  }
+>  EXPORT_SYMBOL_GPL(pm_runtime_enable);
+>
+> +static void pm_runtime_disable_action(void *data)
+> +{
+> +       pm_runtime_disable(data);
+> +}
+> +
+> +/**
+> + * devm_pm_runtime_enable - devres-enabled version of pm_runtime_enable.
+> + * @dev: Device to handle.
+> + */
+> +int devm_pm_runtime_enable(struct device *dev)
+> +{
+> +       pm_runtime_enable(dev);
+> +
+> +       return devm_add_action_or_reset(dev, pm_runtime_disable_action, dev);
+> +}
+> +EXPORT_SYMBOL_GPL(devm_pm_runtime_enable);
+> +
+>  /**
+>   * pm_runtime_forbid - Block runtime PM of a device.
+>   * @dev: Device to handle.
+> diff --git a/include/linux/pm_runtime.h b/include/linux/pm_runtime.h
+> index aab8b35e9f8a..222da43b7096 100644
+> --- a/include/linux/pm_runtime.h
+> +++ b/include/linux/pm_runtime.h
+> @@ -59,6 +59,8 @@ extern void pm_runtime_put_suppliers(struct device *dev);
+>  extern void pm_runtime_new_link(struct device *dev);
+>  extern void pm_runtime_drop_link(struct device_link *link);
+>
+> +extern int devm_pm_runtime_enable(struct device *dev);
+> +
+>  /**
+>   * pm_runtime_get_if_in_use - Conditionally bump up runtime PM usage counter.
+>   * @dev: Target device.
+> @@ -253,6 +255,8 @@ static inline void __pm_runtime_disable(struct device *dev, bool c) {}
+>  static inline void pm_runtime_allow(struct device *dev) {}
+>  static inline void pm_runtime_forbid(struct device *dev) {}
+>
+> +static inline int devm_pm_runtime_enable(struct device *dev) { return 0; }
+> +
+>  static inline void pm_suspend_ignore_children(struct device *dev, bool enable) {}
+>  static inline void pm_runtime_get_noresume(struct device *dev) {}
+>  static inline void pm_runtime_put_noidle(struct device *dev) {}
+> --
+> 2.30.2
+>
