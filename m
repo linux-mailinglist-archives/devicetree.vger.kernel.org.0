@@ -2,182 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8F853D1B57
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 03:13:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C71313D1B9D
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 04:07:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230045AbhGVAcQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 20:32:16 -0400
-Received: from relay-us1.mymailcheap.com ([51.81.35.219]:47874 "EHLO
-        relay-us1.mymailcheap.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229818AbhGVAcP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 20:32:15 -0400
-X-Greylist: delayed 541 seconds by postgrey-1.27 at vger.kernel.org; Wed, 21 Jul 2021 20:32:15 EDT
-Received: from relay5.mymailcheap.com (relay5.mymailcheap.com [159.100.241.64])
-        by relay-us1.mymailcheap.com (Postfix) with ESMTPS id 4C6F620F4F;
-        Thu, 22 Jul 2021 01:03:50 +0000 (UTC)
-Received: from relay3.mymailcheap.com (relay3.mymailcheap.com [217.182.66.161])
-        by relay5.mymailcheap.com (Postfix) with ESMTPS id 3FCA020100;
-        Thu, 22 Jul 2021 01:03:47 +0000 (UTC)
-Received: from filter1.mymailcheap.com (filter1.mymailcheap.com [149.56.130.247])
-        by relay3.mymailcheap.com (Postfix) with ESMTPS id 9B2513F1CC;
-        Thu, 22 Jul 2021 03:03:43 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-        by filter1.mymailcheap.com (Postfix) with ESMTP id DB91B2A0C8;
-        Wed, 21 Jul 2021 21:03:42 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mymailcheap.com;
-        s=default; t=1626915822;
-        bh=yDd2oKbRqrkbem8gSLtEdP0ZNN5cwHjZF/28VLiVO1c=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=LP4z8i74x9ARwf819TDIJpJHMFyM0kvG55HQI5uVR6q9LcPp6UqxYH82zLxqn0B6E
-         ItOP341JR915D4jr9YcCSMHrFDl4TfB4DkCvH+BCUg+8DxVk97vucv7ydwQmlK/KTC
-         fJwTd/VdUDYSw7oi604DxPFUnRIrgJYbT9Amxp/g=
-X-Virus-Scanned: Debian amavisd-new at filter1.mymailcheap.com
-Received: from filter1.mymailcheap.com ([127.0.0.1])
-        by localhost (filter1.mymailcheap.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id jHCk167GoQY0; Wed, 21 Jul 2021 21:03:42 -0400 (EDT)
-Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
-        (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by filter1.mymailcheap.com (Postfix) with ESMTPS;
-        Wed, 21 Jul 2021 21:03:41 -0400 (EDT)
-Received: from [213.133.102.83] (ml.mymailcheap.com [213.133.102.83])
-        by mail20.mymailcheap.com (Postfix) with ESMTP id 560CD40CD0;
-        Thu, 22 Jul 2021 01:03:40 +0000 (UTC)
-Authentication-Results: mail20.mymailcheap.com;
-        dkim=pass (1024-bit key; unprotected) header.d=aosc.io header.i=@aosc.io header.b="vhOhl0fc";
-        dkim-atps=neutral
-AI-Spam-Status: Not processed
-Received: from [192.168.0.49] (unknown [14.154.30.9])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail20.mymailcheap.com (Postfix) with ESMTPSA id 3D19640CD0;
-        Thu, 22 Jul 2021 01:03:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aosc.io; s=default;
-        t=1626915809; bh=yDd2oKbRqrkbem8gSLtEdP0ZNN5cwHjZF/28VLiVO1c=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=vhOhl0fckjsIGH1fYlKrhjgywXlH1bqwZz1xhQrlfvzyvMsfWEZ99FdPuk2qQIZ95
-         2jyvCtefM1DfNXbXnCStBZaNalvIaZ+MekKRq9I6YhBCAOeU+CXNKaZUeOGAYgwX2o
-         m1crbdVRm0S4qnZC7QG4vzxpYnQRRprxIbgdxNaw=
-Message-ID: <0a9bda1e91246c7e473fcbb833ac94159d13b084.camel@aosc.io>
-Subject: Re: [PATCH v3 0/6] PWM support for allwinner sun8i R40/T3/V40 SOCs.
-From:   Icenowy Zheng <icenowy@aosc.io>
-To:     Hao Zhang <hao5781286@gmail.com>, robh+dt@kernel.org,
-        mark.rutland@arm.com, maxime.ripard@bootlin.com, wens@csie.org,
-        mturquette@baylibre.com, sboyd@kernel.org, thierry.reding@gmail.com
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-sunxi@googlegroups.com, linux-arm-kernel@lists.infradead.org
-Date:   Thu, 22 Jul 2021 09:03:18 +0800
-In-Reply-To: <20181125161534.GA4481@arx-s1>
-References: <20181125161534.GA4481@arx-s1>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.0 
+        id S230098AbhGVB1V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 21:27:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46696 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229932AbhGVB1U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 21:27:20 -0400
+Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90226C061575;
+        Wed, 21 Jul 2021 19:07:55 -0700 (PDT)
+Received: by mail-il1-x131.google.com with SMTP id o8so4051374ilf.4;
+        Wed, 21 Jul 2021 19:07:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=90T8pVlNu5R4aARTLjIPZ2shWeZ1pN4LEYWIIMIBA/Y=;
+        b=ZrcYlafSzxD0iNHz7hFfuRgsZhERE/FFxN0t89R6+5lbyxC7+FH5iiv/EwOH4RoWLg
+         qvxm3vsrC/5fwcDoUGWRvEBxx+MKGXA6auS8Dr5I8xK1XsiTXuJbW7GKLUlPzTqM4W1C
+         +2CrFCMeknsDB2dF9Ecr6TqMn14CNC88WEKDpWBUxKEp8Ikpmv9jmxS2x+fQIfTgAnlF
+         Z91yHUNCggVbgrcsjthne/UBOvQtsFefHu7S4Vp6UhjPlx2hJH6mbx1YF4xl5AIOlIbm
+         DoklVBDaXv1/Eqh3VxLyksW2y5dGQhnsR1DYubiaFaFPi9btcOoHAJ/xROeJC58fY/6f
+         TCRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=90T8pVlNu5R4aARTLjIPZ2shWeZ1pN4LEYWIIMIBA/Y=;
+        b=EqIcJjNsB/Dsk2wGvvwcJ9OypQDjxRX1uymZ8WMLzHu+fMPkzl+uh0uHJ3GiQl0x4m
+         QfHLJztZZ4NXZMR1pA0k386bR9BKk45QGCg5vEa7Y9LnIXt47yjcqi1O70F0W4Xa+u5H
+         Cp54b43mG9QadieN3PbMV06yf4f//++9+OfhRv9ADLRFxFMTHrV0lf9eSycSLyegJna6
+         DmGojpFS4vPjfp46hcCxfkDXRcieErB0iMn2pDv+EugcRp0Zf8nR2mv+qa5houEoTGxA
+         CPdsRQnEQJFcQYJ0209Jo4b8bMbzGBOmCw8perIJMQCkQ+oZT9Do6Z5i94jvVZq/d5eL
+         YQyw==
+X-Gm-Message-State: AOAM531T1DEjyTGzSub2P1i6tGnriIANU+gLgdlJcJqigoMxihHS3XkB
+        s6K1kbjozbyhndedYvpEXTemLEB26WsgBn/NuNA=
+X-Google-Smtp-Source: ABdhPJxgBytAWSHe5ssnHfJDN1qf7Ebn8LuKIIxs/cyJ1/sfTsYmEVV6WZ09Y2ktwylhbMFQIAmIrxrDCnDM1ssJyPA=
+X-Received: by 2002:a92:c5c5:: with SMTP id s5mr24509368ilt.271.1626919674933;
+ Wed, 21 Jul 2021 19:07:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 560CD40CD0
-X-Rspamd-Server: mail20.mymailcheap.com
-X-Spamd-Result: default: False [1.40 / 10.00];
-         RCVD_VIA_SMTP_AUTH(0.00)[];
-         ARC_NA(0.00)[];
-         R_DKIM_ALLOW(0.00)[aosc.io:s=default];
-         MID_RHS_MATCH_FROM(0.00)[];
-         FROM_HAS_DN(0.00)[];
-         TO_DN_SOME(0.00)[];
-         FREEMAIL_ENVRCPT(0.00)[gmail.com];
-         TO_MATCH_ENVRCPT_ALL(0.00)[];
-         TAGGED_RCPT(0.00)[dt];
-         MIME_GOOD(-0.10)[text/plain];
-         DMARC_NA(0.00)[aosc.io];
-         R_SPF_SOFTFAIL(0.00)[~all];
-         RECEIVED_SPAMHAUS_PBL(0.00)[14.154.30.9:received];
-         ML_SERVERS(-3.10)[213.133.102.83];
-         DKIM_TRACE(0.00)[aosc.io:+];
-         RCPT_COUNT_TWELVE(0.00)[14];
-         FREEMAIL_TO(0.00)[gmail.com,kernel.org,arm.com,bootlin.com,csie.org,baylibre.com];
-         RCVD_NO_TLS_LAST(0.10)[];
-         FROM_EQ_ENVFROM(0.00)[];
-         MIME_TRACE(0.00)[0:+];
-         ASN(0.00)[asn:24940, ipnet:213.133.96.0/19, country:DE];
-         RCVD_COUNT_TWO(0.00)[2];
-         SUSPICIOUS_RECIPS(1.50)[];
-         HFILTER_HELO_BAREIP(3.00)[213.133.102.83,1]
+References: <1626853288-31223-1-git-send-email-dillon.minfei@gmail.com>
+ <1626853288-31223-4-git-send-email-dillon.minfei@gmail.com> <8e091b9c-764d-d410-559e-3c5e25de2a3c@tronnes.org>
+In-Reply-To: <8e091b9c-764d-d410-559e-3c5e25de2a3c@tronnes.org>
+From:   Dillon Min <dillon.minfei@gmail.com>
+Date:   Thu, 22 Jul 2021 10:07:18 +0800
+Message-ID: <CAL9mu0K2yLsG0MXOd4ke8N8zn7311CJ54hL-JcbocJOK+H7W9A@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] drm/panel: Add ilitek ili9341 panel driver
+To:     =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Dave Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Doug Anderson <dianders@chromium.org>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hao,
+Hi Noralf
 
-Would you mind me to continue on this work? Newer Allwinner SoCs have
-PWM controllers similar to the R40 one.
+Thanks for your time to review my patch.
 
-Yours sincerely,
-Icenowy Zheng
+On Thu, 22 Jul 2021 at 01:42, Noralf Tr=C3=B8nnes <noralf@tronnes.org> wrot=
+e:
+>
+>
+>
+> Den 21.07.2021 09.41, skrev dillon.minfei@gmail.com:
+> > From: Dillon Min <dillon.minfei@gmail.com>
+> >
+> > This driver combine tiny/ili9341.c mipi_dbi_interface driver
+> > with mipi_dpi_interface driver, can support ili9341 with serial
+> > mode or parallel rgb interface mode by register configuration.
+> >
+> > Cc: Linus Walleij <linus.walleij@linaro.org>
+> > Signed-off-by: Dillon Min <dillon.minfei@gmail.com>
+> > ---
+>
+> > +static const struct of_device_id ili9341_of_match[] =3D {
+> > +     {
+> > +             .compatible =3D "st,sf-tc240t-9370-t",
+> > +             .data =3D &ili9341_stm32f429_disco_data,
+> > +     },
+> > +     {
+> > +             /* porting from tiny/ili9341.c
+> > +              * for original mipi dbi compitable
+> > +              */
+> > +             .compatible =3D "adafruit,yx240qv29",
+>
+> I don't understand this, now there will be 2 drivers that support the
+> same display?
 
+There is no reason to create two drivers to support the same display.
 
-在 2018-11-26星期一的 00:18 +0800，Hao Zhang写道：
-> PWM support for allwinner sun8i R40/T3/V40 SOCs.
-> 
-> The sun8i R40/T3/V40 PWM has 8 PWM channals and divides to 4 PWM
-> pairs,
-> each PWM pair built-in 1 clock module, 2 timer logic module and 1
-> programmable dead-time generator, it also support waveform capture.
-> It has 2 clock sources OSC24M and APB1, it is different with the
-> sun4i-pwm driver, Therefore add a new driver for it.
-> 
-> Some test method:
-> cd /sys/class/pwm/pwmchip0
-> echo 0 > export
-> cd pwm0
-> echo 1000 > period
-> echo 500 > duty_cycle
-> echo 1 > enable
-> then check the PB2 pin with oscilloscope.
-> 
-> v3 Changes:
-> 1. fix coding format.
-> 2. use 2/ilog2 instead of divide table
-> 3. remove spinlock.
-> 4. remove sun8i_pwm_data structure and use DT to parse pwm-channals  
-> 5. remove inline because complier knows it better.
-> 6. don't hardcode clock source and parse two clock source from dt
-> "mux-0"
->    and "mux-1"
-> 7. remove bypass method.
-> 8. add a method to change clock source when mux-0 is not support the
->    input period it can change to mux-1.
-> 9. add cycle range check.
-> 10. add some variable to make it more readability.
-> 11. add clk_disable_unprepare when some false accur.
-> 
-> v2 Changes:
-> 1. change sun8i-r40 symbol to sun8i.
-> 2. change pwm0_pin, pwm0-pin to pwm_ch0_pin, pwm-ch0-pin.
-> 3. remove clk_disable_unprepare(), check !match and IS_ERR(pwm-
-> >regmap).
-> 
-> Hao Zhang (6):
->   Documentation: ARM: sunxi: pwm: add Allwinner sun8i.
->   ARM: dtsi: add pwm node for sun8i R40.
->   ARM: dts: add PWM for Bananapi M2 Ultrar board.
->   DEV: CLK: add function to check the using clock name of driver.
->   DEV: CLK: sunxi ccu: export clk_apb1 for sun8i-r40 soc pwm.
->   ARM: PWM: add allwinner sun8i R40/T3/V40 PWM support.
-> 
->  .../devicetree/bindings/pwm/pwm-sun8i.txt          |  24 ++
->  arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts  |   6 +
->  arch/arm/boot/dts/sun8i-r40.dtsi                   |  17 +
->  drivers/clk/clk.c                                  |   6 +
->  drivers/clk/sunxi-ng/ccu-sun8i-r40.h               |   4 +-
->  drivers/pwm/Kconfig                                |  12 +-
->  drivers/pwm/Makefile                               |   1 +
->  drivers/pwm/pwm-sun8i.c                            | 418
-> +++++++++++++++++++++
->  include/dt-bindings/clock/sun8i-r40-ccu.h          |   2 +
->  include/linux/clk-provider.h                       |   1 +
->  10 files changed, 489 insertions(+), 2 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-
-> sun8i.txt
->  create mode 100644 drivers/pwm/pwm-sun8i.c
-> 
+To support only-dbi and dbi+dpi panel at drm/panel or drm/tiny both
+fine with me.
 
+>
+> AFAICT drm/tiny/ili9341.c is just copied into this driver, is the plan
+> to remove the tiny/ driver? If so I couldn't see this mentioned anywhere.
+
+Yes, I'd like to merge the code from drm/tiny/ili9341.c to this driver
+(to make a single driver to support different bus).
+
+I have two purpose to extend the feature drm/tiny/ili9341.c
+
+- keep compatible =3D "adafruit,yx240qv29", add bus mode dts bindings (pane=
+l_bus)
+  to define the interface which host wants to use. such as
+panel_bus=3D"dbi" or "rgb"
+  or "i80" for this case, i will add dpi code to drm/tiny/ili9341.c.
+
+- merge tiny/ili9341.c to this driver,remove drm/tiny/ili9341.c, add
+new dts compatible
+  string to support other interfaces. just like what i'm doing now.
+
+I have no idea about your plan on drm/tiny drivers, actually some of
+these panels under
+the diny folder can support both dbi and dbi+dpi (much faster, need
+more pins). no
+doubt the requirement to support dpi is always there.
+
+What is your preference?
+
+Thanks & Regards
+Dillon
+
+>
+> Noralf.
+>
+> > +             .data =3D NULL,
+> > +     },
+> > +};
+> > +MODULE_DEVICE_TABLE(of, ili9341_of_match);
