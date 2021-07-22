@@ -2,69 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 14A693D1C32
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 05:05:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B46163D1C34
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 05:07:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230093AbhGVCY0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 22:24:26 -0400
-Received: from mail-il1-f182.google.com ([209.85.166.182]:46939 "EHLO
-        mail-il1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230329AbhGVCY0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 22:24:26 -0400
-Received: by mail-il1-f182.google.com with SMTP id y6so4084065ilj.13;
-        Wed, 21 Jul 2021 20:05:01 -0700 (PDT)
+        id S229940AbhGVC0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 22:26:48 -0400
+Received: from mail-io1-f54.google.com ([209.85.166.54]:33283 "EHLO
+        mail-io1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230026AbhGVC0r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 22:26:47 -0400
+Received: by mail-io1-f54.google.com with SMTP id z11so4805504iow.0;
+        Wed, 21 Jul 2021 20:07:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=qRC4i9IC5fmogXiHA+XMn95xo6OUhdJon7l31DRv27U=;
-        b=eB6gJ8xiEfkufi6jSD1xUIonYvYmITFc917NovJpvcA1xvQBXEvHPThef8HyymM+XE
-         RVqJ/odn7Xy3lN8rSYBZ8/Te9BSR7Xsn4BPT3iUnQkLyQ+miBhZ4u74wbXAytMc0Hbfd
-         Yxvk1PP95EgISGay4TJT1TBd3UrwpXoE5N5/uMfeM6MYmplFFZ9UF4TMVpfFWAPqKhKI
-         M9XFVoJSMwLu0OWRIcx0gYNFVfWr4b7JkxBml+8cwgbFbDPji82DHYKT1ajyJiQnyni3
-         Gvoai/Bl7Cys6XXK6Kh0IcmGvY8xFLTu67xGT55ascg4Srkg5Lf4vweyci1hDUBfJPab
-         Ng7A==
-X-Gm-Message-State: AOAM533KguOSGhYLkxQvhATdS6r4Jkx1qHlZywnNhD23NyoTGDG6+Nwo
-        m4AnhSELI94tuANAVVU0tQ==
-X-Google-Smtp-Source: ABdhPJwIIBszKvNLzbrWQ9Pc+iqwT5r+K+S0a6LFvfZ8CBjdst/QTKBOi4qyDVad4aeO2nxsamvo2g==
-X-Received: by 2002:a05:6e02:d93:: with SMTP id i19mr13978285ilj.72.1626923101275;
-        Wed, 21 Jul 2021 20:05:01 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=jLr0MYx1P2py+n9nqtuOmPHzhcgUuNPRHsZhrl9n/IY=;
+        b=e0DnHUMd4ak5NKYNK2aCGQ30qKJrxSJWwKd/d1Hv/hyLdai9h7vuegG2u1bhYmB9e2
+         5zxWA/2NKPKBESjBt0z4VSLyR/GeoUHqaQveTHv9RuVQGCCJ7ObjPg6dpfjpnS85fTDL
+         rsw6jxiViUiHW54Q8SUYJCmP6vMGpjUOMyUnKMpBzU190N52SSBkj+x1g7/fYG55G8/q
+         lgepj+DARUSrkBydWtAnTNxk6pbCwlHsr8FsjVqA/c0loj+2qUI4MjM4fgqsC2m4CZBV
+         0w1F4U6Oe7dWhgucMiv87/0+u7UGQ1tEI/oBM2VmuqtXetUCo2WtvcDR2Pm2PzFYAMy8
+         nbog==
+X-Gm-Message-State: AOAM532BeFxGNFD/NapeTlLvvLfLPpFZjxsZDsCTy+lDDw/LWqOdeIEV
+        txByjL4TbITTFI7CH9N3/A==
+X-Google-Smtp-Source: ABdhPJx3naABRYycLDyZaLNc9jATj4nWWFoignmpdwVmsfry6IFxJoHtSVMSLWQM/zmhU9XFh+De3A==
+X-Received: by 2002:a05:6602:2099:: with SMTP id a25mr11108361ioa.143.1626923242523;
+        Wed, 21 Jul 2021 20:07:22 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id p8sm8863092iol.49.2021.07.21.20.04.59
+        by smtp.gmail.com with ESMTPSA id g22sm15255979ion.10.2021.07.21.20.07.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jul 2021 20:05:00 -0700 (PDT)
-Received: (nullmailer pid 3221816 invoked by uid 1000);
-        Thu, 22 Jul 2021 03:04:58 -0000
-Date:   Wed, 21 Jul 2021 21:04:58 -0600
+        Wed, 21 Jul 2021 20:07:21 -0700 (PDT)
+Received: (nullmailer pid 3225181 invoked by uid 1000);
+        Thu, 22 Jul 2021 03:07:19 -0000
+Date:   Wed, 21 Jul 2021 21:07:19 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?5ZGo55Cw5p2wIChaaG91IFlhbmppZSk=?= 
-        <zhouyanjie@wanyeetech.com>
-Cc:     dongsheng.qiu@ingenic.com, jun.jiang@ingenic.com,
-        daniel.lezcano@linaro.org, sihui.liu@ingenic.com,
-        linux-kernel@vger.kernel.org, aric.pzqi@ingenic.com,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        rick.tyliu@ingenic.com, sernia.zhou@foxmail.com
-Subject: Re: [PATCH] dt-bindings: timer: Add ABIs for new Ingenic SoCs.
-Message-ID: <20210722030458.GA3221766@robh.at.kernel.org>
-References: <1626370605-120775-1-git-send-email-zhouyanjie@wanyeetech.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Marc Zyngier <maz@kernel.org>, linux-serial@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: serial: 8250: Add Exar compatibles
+Message-ID: <20210722030719.GA3225127@robh.at.kernel.org>
+References: <20210716225319.1282704-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1626370605-120775-1-git-send-email-zhouyanjie@wanyeetech.com>
+In-Reply-To: <20210716225319.1282704-1-linus.walleij@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 16 Jul 2021 01:36:45 +0800, 周琰杰 (Zhou Yanjie) wrote:
-> 1.Add OST_CLK_EVENT_TIMER for new XBurst®1 SoCs.
-> 2.Add OST_CLK_EVENT_TIMER0 to OST_CLK_EVENT_TIMER15 for new XBurst®2 SoCs.
+On Sat, 17 Jul 2021 00:53:19 +0200, Linus Walleij wrote:
+> The Intel IXP425 Vulcan board has an Exar XR16L2551 8250-compatible.
+> It works like an 8250 but it is always good to specify exactly which
+> component we are using. This allows us to specify:
 > 
-> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
+> compatible = "exar,xr16l2551", "ns8250";
+> 
+> Put in some sibling Exar serial compatibles while we're at it.
+> 
+> Cc: Marc Zyngier <maz@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
->  include/dt-bindings/clock/ingenic,sysost.h | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
+>  Documentation/devicetree/bindings/serial/8250.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
