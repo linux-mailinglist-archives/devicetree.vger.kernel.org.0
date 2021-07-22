@@ -2,182 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D5AC63D1D7A
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 07:35:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56A143D1DD2
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 07:56:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229609AbhGVEzR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 00:55:17 -0400
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:53697 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230262AbhGVEzC (ORCPT
+        id S229931AbhGVFP0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 01:15:26 -0400
+Received: from out3-smtp.messagingengine.com ([66.111.4.27]:38043 "EHLO
+        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230123AbhGVFPV (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Jul 2021 00:55:02 -0400
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailnew.nyi.internal (Postfix) with ESMTP id C7A3F5817C4;
-        Thu, 22 Jul 2021 01:35:35 -0400 (EDT)
+        Thu, 22 Jul 2021 01:15:21 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id 547125C00E4;
+        Thu, 22 Jul 2021 01:55:55 -0400 (EDT)
 Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Thu, 22 Jul 2021 01:35:35 -0400
+  by compute6.internal (MEProxy); Thu, 22 Jul 2021 01:55:55 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        subject:to:cc:references:from:message-id:date:mime-version
-        :in-reply-to:content-type:content-transfer-encoding; s=fm3; bh=V
-        CC4K9x1L+piLdGylx5VSb6j9aBuZqYFN90RmCaQeGo=; b=sEKmNLWAyx48HvAqT
-        Ss0Mb3HT5+R0vNtH4+N9joLnr+3tw7GFRFJHX3290nLC14FPTZ9lL7M8greiY2j+
-        zWh0e6M1kwVPHKLQOZajYKJnHIHxjey7g38+l9DlTJC3t5P4k7Xm+6eh/v4jaaz2
-        9CL+3EFl5l1YJBfFDktIdo4VamYxqKqdMW/q+6ZQy6lq4BAhooF5d0wkyoyahnM0
-        rS5k1Lng7PGN6BYCkMzcszj8sgEP3dU/pEoc6/fw0yrspHsloj+ITc9XrPCOp0V6
-        gHkhfai0evRoVNxFkAZxOtSBcvWByweP3uV8fWsdLzVTL/6yx5qjOFoL82f+OAov
-        K9SBQ==
+        to:cc:references:from:subject:message-id:date:mime-version
+        :in-reply-to:content-type:content-transfer-encoding; s=fm3; bh=Y
+        xsb6Cpj6x3/3PIpedmDhhJBEggqhxSmE1lISmLlGos=; b=NGFtXMzBMlbWynfyW
+        BKFyuPWHSVCd2rhhmAnwhhSjiwo4IwjtXth7qvJJIJkER6rl7TivMSJEbuNVN1DA
+        CV7KmbMLed/I7WBxsiuL/C8GVxG+sWLaFikb9D1ZoDzucClIFsZYhBPwOcgKd5/y
+        vq0QpgpNvYLGvLymMwe761Rke0qwkWP4Gz89PpwR0QW0eYYuHm1dn27+JkaeEtEW
+        9TrAknnZ/TOyxg1LcycYYaVghvVAVEnRrszOlSZNofw6Ui+3ejgwkUGT4/lBZtY4
+        L9GEIUYVwYYwma33hB7Dam1fNF+z+tjNhZx0tCwQ91A835ScVPzRwnKpoMh3P1g1
+        xG2KA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:content-type
         :date:from:in-reply-to:message-id:mime-version:references
         :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; bh=VCC4K9x1L+piLdGylx5VSb6j9aBuZqYFN90RmCaQe
-        Go=; b=A+xZzKOWyCd51gjW6RrbQeLx28tMX3azdF+DZ3+yibbvXmfAwX3mo7Gfl
-        dsam3XDkyEyBFJ5nEOMeJLgmy0lgjWKue4XX6LNwf1lpmZ5rH+67tKCBeTUsq3F0
-        iHhjzAc/yu/NeqSnM/G6AT88pbAY8f5DjQ14uWgsQCdJSOwsYu3oxryOqm/36Y6+
-        jWyohMXSf8khi/iM15lUaZrln070tQfhsGqefYK6XRFrtyTJQHRrHUkOGCkFGHnq
-        5sV2d1tjJcTTojKSH449sFK9HKV0Uqr/Jz/5Rg6IrS7Z+eBdsROToG8CPY6dIiju
-        N2TxMMM7gS6TVl5CFH35jeeQSieZg==
-X-ME-Sender: <xms:pgP5YA_dUkO4RWZOVmqHrnCH-514lOd7oM1w03uZ18OGEFjRGp68Eg>
-    <xme:pgP5YIu1rTCIwgLQOUGhRKwWPhW113XHcGz1ZnJRgTSP32CWCZxDwYVucarsz_cNQ
-    uEDMurb6yHYQSryUw>
-X-ME-Received: <xmr:pgP5YGCGlajFviHI3hsL_lEkP3pn4YFHTFNx5NyJHVDwH9PqklAyCmTnZN44uXjXmCnzM0op0WxohDlkhzpOSSbw10dMjjeXxDX_mvZbeJeYxDI1qNfBB3G6EA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeehgdeliecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefuvfhfhffkffgfgggjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghmuhgv
-    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
-    frrghtthgvrhhnpeffiefgledvgfdtteeludevvefguddtiedutdevtedvhfffjeelhfeh
-    teejtedvleenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecuvehluhhsth
-    gvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhho
-    lhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:pgP5YAfjx4O6wOw1mqlFjlXfEqDOlg4X9uGc1wTpXzxrq2odRHA_BQ>
-    <xmx:pgP5YFO4y0oxmNIt8Uu7WsxLzmoMMq1ar4QOvFjHgkv-dE5Z5iyefg>
-    <xmx:pgP5YKmpwkfgqV83TnoZo8md2caj_T0yi0H_KWAS3NKi5Rni0V9hSg>
-    <xmx:pwP5YIrTx6FJ9su8nN_v0fDTGgc8LadDFL_0Gji8QW3Jdf3TavkoGQ>
+        :x-sasl-enc; s=fm3; bh=Yxsb6Cpj6x3/3PIpedmDhhJBEggqhxSmE1lISmLlG
+        os=; b=Y62Tl10GLGt5WytsqrshL8z6lniP4Js5yK7W3uzQjVwY/qqmPCn4XoEwa
+        k3YbOvq/9TIEVOzXxYIcpZH3wu8AN9R/cvjiOJXqZ6Npra48s1RsKRajjTEqUGZr
+        6QB5s48R9SuJeUGcolxtGG9+0hJ+e93MA4jxGRTd8lKbP1yK+Qa4LG4C+vBiFW/Z
+        XgdEpqr43JYAHfqTSeG+ITM1/g3ZCxD3wxNaJ+/+SIZq/Dt+JEicODA28a9/vLDG
+        0p54UF0sbFnTPrqvaLAmKY5DjXtyZVzrNzX9IO/7UCTlsYFszcg+HlKNQygmT/G8
+        6iD3L1efn3m7rI1lLsIIZen343NMA==
+X-ME-Sender: <xms:agj5YLTrU_mgw_X1Jwt2sNc_azL070DcWtokCBQ0XSc_B-iGTLTH1g>
+    <xme:agj5YMwvZThRrm0mvi8S6L6iAy4cBWfrYlWMdUN1ywppmvpkRh1h-pXK4Qlz_x71E
+    i4S6s-3Vv6-F0aBcw>
+X-ME-Received: <xmr:agj5YA36dttmXq8ZNN_awyQOreQOU596hIdjGNE-HqvS9URl5Wyv5zQILG7QZKxTDr6cYdCLM4DKR6GSLRt7ghpqqaUWyxIUy87o2TWL3b08EQ7SYsPqflXNQQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeehgddutddtucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepvfhfhffukffffgggjggtgfesthekredttdefjeenucfhrhhomhepufgrmhhu
+    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
+    ftrfgrthhtvghrnhepvddttdejieduudfgffevteekffegffeguddtgfefkeduvedukeff
+    hedtfeevuedvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
+    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:agj5YLCRL2VHzhC8OfPOG_dB29oVxfDJvO88eDqrijjTCyfxlNwgqA>
+    <xmx:agj5YEjsqPwYkTzkSvSEeeOgJYDhi8DRZHKcjTm3CgtexKxMKGrTig>
+    <xmx:agj5YPrmexu4m92JUt44znyA75KQtkaP7_5AZVVG8t_tyfIYyt3RPw>
+    <xmx:awj5YPWlI-_-WXgalSzUXSO4okVLX_w-5VhV-d8CG7oyUbpS_0e1MQ>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 22 Jul 2021 01:35:34 -0400 (EDT)
-Subject: Re: [PATCH 02/54] ASoC: dt-bindings: Convert Bluetooth SCO Link
- binding to a schema
+ 22 Jul 2021 01:55:54 -0400 (EDT)
 To:     Maxime Ripard <maxime@cerno.tech>, Chen-Yu Tsai <wens@csie.org>,
         Jernej Skrabec <jernej.skrabec@siol.net>,
         devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        alsa-devel@alsa-project.org, Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com
 References: <20210721140424.725744-1-maxime@cerno.tech>
- <20210721140424.725744-3-maxime@cerno.tech>
+ <20210721140424.725744-53-maxime@cerno.tech>
 From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <e0ba4dab-abe9-9f4b-2795-e85041efa451@sholland.org>
-Date:   Thu, 22 Jul 2021 00:35:33 -0500
+Subject: Re: [PATCH 52/54] arm64: dts: allwinner: Remove regulator-ramp-delay
+Message-ID: <5469a059-dad1-38d2-9ea4-f1b5fa9ac616@sholland.org>
+Date:   Thu, 22 Jul 2021 00:55:53 -0500
 User-Agent: Mozilla/5.0 (X11; Linux ppc64; rv:78.0) Gecko/20100101
  Thunderbird/78.10.2
 MIME-Version: 1.0
-In-Reply-To: <20210721140424.725744-3-maxime@cerno.tech>
+In-Reply-To: <20210721140424.725744-53-maxime@cerno.tech>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/21/21 9:03 AM, Maxime Ripard wrote:
-> Bluetooth SCO Link are supported by Linux with a matching device tree
-> binding.
-> 
-> Now that we have the DT validation in place, let's convert the device
-> tree bindings for that driver over to a YAML schema.
-> 
-> The value expected for #sound-dai-cells wasn't documented though, and
-> the users were inconsistent. The example didn't list it, and across the
-> 4 users we have in tree:
->   - 1 had a cells value of 1, but using only 0 as argument
->   - 1 had a cells value of 0,
->   - 2 didn't have this property at all, behaving as if it was 0,
-> 
-> It seems like the consensus seems to be that it should be 0, so let's
-> enforce it.
+On 7/21/21 9:04 AM, Maxime Ripard wrote:
+> The regulator-ramp-delay property isn't documented in the binding for
+> the AXP806, and it's ignored by the driver. Remove those properties.
 
-The driver has two DAIs: "bt-sco-pcm" and "bt-sco-pcm-wb". If
-#sound-dai-cells is 0, only the first DAI can be referenced from a
-device tree. So to declare support for wideband PCM, or explicitly
-declare a lack of support for it, #sound-dai-cells must be 1.
+This is a generic regulator property, parsed by
+of_get_regulation_constraints, which is called by
+regulator_of_get_init_data in the regulator core. And it appears in
+bindings/regulator/regulator.yaml. I believe the binding needs to be
+fixed, not the device trees.
 
 Regards,
 Samuel
 
-> Cc: alsa-devel@alsa-project.org
-> Cc: devicetree@vger.kernel.org
-> Cc: Liam Girdwood <lgirdwood@gmail.com>
-> Cc: Mark Brown <broonie@kernel.org>
-> Cc: Samuel Holland <samuel@sholland.org>
 > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 > ---
->  .../devicetree/bindings/sound/bt-sco.txt      | 13 -------
->  .../bindings/sound/linux,bt-sco.yaml          | 34 +++++++++++++++++++
->  2 files changed, 34 insertions(+), 13 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/bt-sco.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/linux,bt-sco.yaml
+>  arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts | 2 --
+>  arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts  | 2 --
+>  arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts    | 2 --
+>  3 files changed, 6 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/bt-sco.txt b/Documentation/devicetree/bindings/sound/bt-sco.txt
-> deleted file mode 100644
-> index 641edf75e184..000000000000
-> --- a/Documentation/devicetree/bindings/sound/bt-sco.txt
-> +++ /dev/null
-> @@ -1,13 +0,0 @@
-> -Bluetooth-SCO audio CODEC
-> -
-> -This device support generic Bluetooth SCO link.
-> -
-> -Required properties:
-> -
-> -  - compatible : "delta,dfbmcs320" or "linux,bt-sco"
-> -
-> -Example:
-> -
-> -codec: bt_sco {
-> -	compatible = "delta,dfbmcs320";
-> -};
-> diff --git a/Documentation/devicetree/bindings/sound/linux,bt-sco.yaml b/Documentation/devicetree/bindings/sound/linux,bt-sco.yaml
-> new file mode 100644
-> index 000000000000..334b508205cd
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/linux,bt-sco.yaml
-> @@ -0,0 +1,34 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/linux,bt-sco.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Bluetooth SCO Audio Codec Device Tree Bindings
-> +
-> +maintainers:
-> +  - Mark Brown <broonie@kernel.org>
-> +
-> +properties:
-> +  '#sound-dai-cells':
-> +    const: 0
-> +
-> +  compatible:
-> +    enum:
-> +      - delta,dfbmcs320
-> +      - linux,bt-sco
-> +
-> +required:
-> +  - '#sound-dai-cells'
-> +  - compatible
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    codec {
-> +        #sound-dai-cells = <0>;
-> +        compatible = "linux,bt-sco";
-> +    };
-> +
-> +...
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
+> index 6249e9e02928..a02644eebbe4 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
+> @@ -256,7 +256,6 @@ reg_dcdca: dcdca {
+>  				regulator-always-on;
+>  				regulator-min-microvolt = <810000>;
+>  				regulator-max-microvolt = <1160000>;
+> -				regulator-ramp-delay = <2500>;
+>  				regulator-name = "vdd-cpu";
+>  			};
+>  
+> @@ -264,7 +263,6 @@ reg_dcdcc: dcdcc {
+>  				regulator-enable-ramp-delay = <32000>;
+>  				regulator-min-microvolt = <810000>;
+>  				regulator-max-microvolt = <1080000>;
+> -				regulator-ramp-delay = <2500>;
+>  				regulator-name = "vdd-gpu";
+>  			};
+>  
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
+> index c45d7b7fb39a..69c0293aeb16 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
+> @@ -262,7 +262,6 @@ reg_dcdca: dcdca {
+>  				regulator-always-on;
+>  				regulator-min-microvolt = <800000>;
+>  				regulator-max-microvolt = <1160000>;
+> -				regulator-ramp-delay = <2500>;
+>  				regulator-name = "vdd-cpu";
+>  			};
+>  
+> @@ -270,7 +269,6 @@ reg_dcdcc: dcdcc {
+>  				regulator-enable-ramp-delay = <32000>;
+>  				regulator-min-microvolt = <810000>;
+>  				regulator-max-microvolt = <1080000>;
+> -				regulator-ramp-delay = <2500>;
+>  				regulator-name = "vdd-gpu";
+>  			};
+>  
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
+> index 1ffd68f43f87..6a1ee4232675 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
+> @@ -245,7 +245,6 @@ reg_dcdca: dcdca {
+>  				regulator-always-on;
+>  				regulator-min-microvolt = <810000>;
+>  				regulator-max-microvolt = <1160000>;
+> -				regulator-ramp-delay = <2500>;
+>  				regulator-name = "vdd-cpu";
+>  			};
+>  
+> @@ -253,7 +252,6 @@ reg_dcdcc: dcdcc {
+>  				regulator-enable-ramp-delay = <32000>;
+>  				regulator-min-microvolt = <810000>;
+>  				regulator-max-microvolt = <1080000>;
+> -				regulator-ramp-delay = <2500>;
+>  				regulator-name = "vdd-gpu";
+>  			};
+>  
 > 
 
