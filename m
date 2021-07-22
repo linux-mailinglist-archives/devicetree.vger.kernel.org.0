@@ -2,150 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 97AB43D1C5A
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 05:20:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 511B83D1D08
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 06:26:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230317AbhGVCkV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 22:40:21 -0400
-Received: from mail-pj1-f54.google.com ([209.85.216.54]:39526 "EHLO
-        mail-pj1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230315AbhGVCkV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 22:40:21 -0400
-Received: by mail-pj1-f54.google.com with SMTP id k4-20020a17090a5144b02901731c776526so2245616pjm.4;
-        Wed, 21 Jul 2021 20:20:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=jMf5XsCEjptk62J3Iezw8If6gGn0xT3YdZTgNXYfsio=;
-        b=EJHOK5kUA3PAeVb6QBfLdo71PLQM6w2u8eO/VIKCH6PfpvK8yjwLoK2HiISXCFDtwB
-         Z7htLiCipX5GmZShbQ8lkaABHzqj3Y1VE0AO/YP7j2DITXi6UcuNfaS/pbDaBp3qGDFz
-         +Isr2JC4GS2TEG7kePdQTltl9fwK2vjTRpj3TqF8NcsPWeGFdxx9+ryD8sHK7tUsogXh
-         Jd4S8ea3sX8oEpFPUYzRnYpWF70GsoaKGxCvkmf1+7H0ogP60M4YqLg4XdBdM/94cvv6
-         vpamowyJRryGBw1mEGWUS+8FJA0oraCWiUE+X6h9jlBw9u9acKJV+OOldWG/uZSPUtCs
-         s3Dg==
-X-Gm-Message-State: AOAM533LnvVaD7MnVevKCT514PNgWBRCf/n4kT6Pje1xNX43LJ9mU8hk
-        NcVmVccstKnYT9xxDpTxnnI=
-X-Google-Smtp-Source: ABdhPJwQlUF7Oq4SOHUc4n4oaswNiR7jQYp3JrrwGNzkwp2Hw+Ap0MGqWc1w23QcGF+0daYDxarvtA==
-X-Received: by 2002:a63:2116:: with SMTP id h22mr14046158pgh.410.1626924055530;
-        Wed, 21 Jul 2021 20:20:55 -0700 (PDT)
-Received: from localhost ([2601:647:5b00:6f70:be34:681b:b1e9:776f])
-        by smtp.gmail.com with ESMTPSA id q11sm1236549pjd.30.2021.07.21.20.20.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jul 2021 20:20:54 -0700 (PDT)
-Date:   Wed, 21 Jul 2021 20:20:53 -0700
-From:   Moritz Fischer <mdf@kernel.org>
-To:     Tom Rix <trix@redhat.com>
-Cc:     Lizhi Hou <lizhi.hou@xilinx.com>, linux-kernel@vger.kernel.org,
-        "mdf@kernel.org" <mdf@kernel.org>, linux-fpga@vger.kernel.org,
-        maxz@xilinx.com, sonal.santan@xilinx.com, yliu@xilinx.com,
-        michal.simek@xilinx.com, stefanos@xilinx.com,
-        devicetree@vger.kernel.org, robh@kernel.org
-Subject: Re: [PATCH V8 XRT Alveo 00/14] XRT Alveo driver overview
-Message-ID: <YPjkFYVZuQ7a0unk@epycbox.lan>
-References: <20210719212628.134129-1-lizhi.hou@xilinx.com>
- <73448caa-3282-b12f-c11b-4d41bf654f72@redhat.com>
+        id S229913AbhGVDpm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 23:45:42 -0400
+Received: from out1-smtp.messagingengine.com ([66.111.4.25]:54747 "EHLO
+        out1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229905AbhGVDpl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Jul 2021 23:45:41 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id 768BE5C0040;
+        Thu, 22 Jul 2021 00:26:16 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Thu, 22 Jul 2021 00:26:16 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=traverse.com.au;
+         h=from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm1; bh=Msvw4ctgGZHaR9LWWouoTsrGvh
+        YXDZr1DWJABvxN5zQ=; b=oZDK8cQHjIOW+LQP5ic1cSVlbIE+2M9XEO46n1trtJ
+        Lbahe2hpA7DCmpHM8wqbf5e5hkEQrdzibyrilPsVbD9wseultvLf82XGOYTAkChz
+        Yn3SLFB2TiRdBAG/cwsp4Thd1KbrhgCg8P2AsivNRq2XPIiUMN+rle2ezXCZb+x5
+        gwHQMv8P5QOyhaYEntWQ68ofFubh578ijdi/kcwfIFvoQ7FYBJHoPH/+1vQiEPLj
+        Q81Uei8gSNxjJuce/0OTkXJ/CYEgy3uhjDcfKH6X3qcDEXoQQcqUk+tl39ojTi3a
+        Ww8bJJci3V5cTpMm3t0TRPF2a6306IyeS+8h6QxFnaHg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=Msvw4ctgGZHaR9LWW
+        ouoTsrGvhYXDZr1DWJABvxN5zQ=; b=aVoGtlUHRHTEfxWuCYZThxrwCvxX8cswc
+        kVE1h0wPpIIbG9smaArH/SpfFMltMLdFeV3qcFXd6Z+d33KaHKm6g00TzQU2P6e0
+        Ixyq4Tza53ITIzaibcO+GHBsUHmsqSodH9MwALk7qERZU+MgKqncfZe1lddRTqw6
+        pnTsecAvf4+9nrYbIIpyLsHxanW7XUAqq64++F03mi3oIBEL4uVlnLAfCcOVodLX
+        ZrvfFWkWw7yAK0hw6StS3oEKA9e+ynHbd9er4VZvmBGNTsdRqOfT3bjH+JXJNurc
+        WPi05KyAwnqpW5ohb5n/PD5qU30iQaJ4N3gQQvDx2zXuD5piMFa7Q==
+X-ME-Sender: <xms:Z_P4YGx9XAW-MlPTVmJRpMIqGxArUhSp4M7G0bEzYbtK-wOIWlieDQ>
+    <xme:Z_P4YCSLlvCCLi30uVXjUg-3bDjt-KSAO8lbA_CokZH6oQjRlqfw7UTgDZfy4YPwq
+    rH-loomoO0GVRkxu4c>
+X-ME-Received: <xmr:Z_P4YIXuqyV0U6A5sgLGhFE_EHAonLClRGUNl_kSxix2ABGkbyl_B1XgqSYcS4QgFKi1mGd20ZMNu7u-IgWWHn7GT03DnBAk5wpadhjuuA_dKIJjBH0BWghXq91WWFA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeehgdekudcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomhepofgrthhhvgifucfo
+    tgeurhhiuggvuceomhgrthhtsehtrhgrvhgvrhhsvgdrtghomhdrrghuqeenucggtffrrg
+    htthgvrhhnpedtgedtheevfefhvedvueetveetgeefueekledttdefudehtdegkeevleev
+    kefgieenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivg
+    eptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrthhtsehtrhgrvhgvrhhsvgdrtgho
+    mhdrrghu
+X-ME-Proxy: <xmx:Z_P4YMh4___3E1NG95vPXKtoEX-I73bjV3Yo4uQT56PqyvahWG7sNw>
+    <xmx:Z_P4YIDh7Yq6wzzUSdYq_CIBfixnV6DTDK0CuaKG0LGCZ_kwaRUdKA>
+    <xmx:Z_P4YNKfyELG9sAaM4aF9XrykjaqLujRaMXXTgQNI8MQaJuU2lKZlQ>
+    <xmx:aPP4YH4PYLdcBezXnWBzYWSAzYwmEpluuOcLk_rkrWmFPr6PXBhB_w>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 22 Jul 2021 00:26:13 -0400 (EDT)
+From:   Mathew McBride <matt@traverse.com.au>
+To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Mathew McBride <matt@traverse.com.au>
+Subject: [PATCH 0/5] Add Traverse Technologies Ten64 board DTS
+Date:   Thu, 22 Jul 2021 04:24:45 +0000
+Message-Id: <20210722042450.11862-1-matt@traverse.com.au>
+X-Mailer: git-send-email 2.30.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <73448caa-3282-b12f-c11b-4d41bf654f72@redhat.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all,
+The Traverse Technologies Ten64 board is a networking-oriented
+Mini-ITX form factor appliance using the NXP LS1088A SoC.
 
-On Tue, Jul 20, 2021 at 12:01:34PM -0700, Tom Rix wrote:
-> 
-> On 7/19/21 2:26 PM, Lizhi Hou wrote:
-> > Hello,
-> > 
-> > This is V8 of patch series which adds management physical function driver
-> > for Xilinx Alveo PCIe accelerator cards.
-> >      https://www.xilinx.com/products/boards-and-kits/alveo.html
-> > 
-> > This driver is part of Xilinx Runtime (XRT) open source stack.
-> > 
-> > XILINX ALVEO PLATFORM ARCHITECTURE
-> > 
-> > Alveo PCIe FPGA based platforms have a static *shell* partition and a
-> > partial re-configurable *user* partition. The shell partition is
-> > automatically loaded from flash when host is booted and PCIe is enumerated
-> > by BIOS. Shell cannot be changed till the next cold reboot. The shell
-> > exposes two PCIe physical functions:
-> > 
-> > 1. management physical function
-> > 2. user physical function
-> > 
-> > The patch series includes Documentation/xrt.rst which describes Alveo
-> > platform, XRT driver architecture and deployment model in more detail.
-> > 
-> > Users compile their high level design in C/C++/OpenCL or RTL into FPGA
-> > image using Vitis tools.
-> >      https://www.xilinx.com/products/design-tools/vitis/vitis-platform.html
-> > 
-> > The compiled image is packaged as xclbin which contains partial bitstream
-> > for the user partition and necessary metadata. Users can dynamically swap
-> > the image running on the user partition in order to switch between
-> > different workloads by loading different xclbins.
-> > 
-> > XRT DRIVERS FOR XILINX ALVEO
-> > 
-> > XRT Linux kernel driver *xrt-mgmt* binds to management physical function of
-> > Alveo platform. The modular driver framework is organized into several
-> > platform drivers which primarily handle the following functionality:
-> > 
-> > 1.  Loading firmware container also called xsabin at driver attach time
-> > 2.  Loading of user compiled xclbin with FPGA Manager integration
-> > 3.  Clock scaling of image running on user partition
-> > 4.  In-band sensors: temp, voltage, power, etc.
-> > 5.  Device reset and rescan
-> > 
-> > The platform drivers are packaged into *xrt-lib* helper module with well
-> > defined interfaces. The module provides a pseudo-bus implementation for the
-> > platform drivers. More details on the driver model can be found in
-> > Documentation/xrt.rst.
-> > 
-> > User physical function driver is not included in this patch series.
-> > 
-> > LIBFDT REQUIREMENT
-> > 
-> > XRT driver infrastructure uses Device Tree as a metadata format to discover
-> > HW subsystems in the Alveo PCIe device. The Device Tree schema used by XRT
-> > is documented in Documentation/xrt.rst.
-> > 
-> > TESTING AND VALIDATION
-> > 
-> > xrt-mgmt driver can be tested with full XRT open source stack which
-> > includes user space libraries, board utilities and (out of tree) first
-> > generation user physical function driver xocl. XRT open source runtime
-> > stack is available at https://github.com/Xilinx/XRT
-> > 
-> > Complete documentation for XRT open source stack including sections on
-> > Alveo/XRT security and platform architecture can be found here:
-> > 
-> > https://xilinx.github.io/XRT/master/html/index.html
-> > https://xilinx.github.io/XRT/master/html/security.html
-> > https://xilinx.github.io/XRT/master/html/platforms_partitions.html
-> > 
-> > Changes since v7:
-> > - Followed review comment to remove non fpga subdevices:
-> >     clock, clkfrq, ucs, ddr_calibaration, devctl and vsec
-> > - Collapsed include/uapi/linux/xrt/*.h into include/uapi/linux/fpga-xrt.h
-> > - Cleaned up comments in fpga-xrt.h
-> > - Fixed spelling errors in xrt.rst
-> 
-> Lizhi,
-> 
-> Thanks, the changes look good.
-> 
-> Moritz,
-> 
-> I have no outstanding issues and I do not believe there are any from anyone
-> else.
-> 
-> Can this set be included in fpga-next ?
+This patch series adds a basic device tree (fsl-ls1088a-ten64.dts)
+for the board. At the moment only hardware features supported
+(or soon to be supported) by mainline kernels are described.
 
-I'll get to it this weekend, apologies for the delay guys.
+In the course of verifying the DTS on recent kernels, it
+was found that some LS1088A features were not described
+in fsl-ls1088a.dtsi. The first two patches add them.
 
-- Moritz
+The device tree includes a reference to the Epson RX-8035
+RTC which depends on this patch series:
+"rtc: Implement support for EPSON RX-8035", reviewed but
+not yet in the Linus tree.
+https://lore.kernel.org/linux-rtc/20210709044518.28769-1-matt@traverse.com.au/T/#t
+
+Mathew McBride (5):
+  arm64: dts: ls1088a: add internal PCS for DPMAC1 node
+  arm64: dts: ls1088a: add missing PMU node
+  dt-bindings: vendor-prefixes: add Traverse Technologies
+  dt-bindings: arm: fsl: Add Traverse Ten64 (LS1088A) board
+  arm64: dts: add device tree for Traverse Ten64 (LS1088A)
+
+ .../devicetree/bindings/arm/fsl.yaml          |   6 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../boot/dts/freescale/fsl-ls1088a-ten64.dts  | 374 ++++++++++++++++++
+ .../arm64/boot/dts/freescale/fsl-ls1088a.dtsi |  18 +
+ 5 files changed, 401 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts
+
+-- 
+2.30.1
+
