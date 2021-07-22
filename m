@@ -2,59 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C6723D1BA2
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 04:10:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25FD63D1BAD
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 04:10:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230084AbhGVB3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 21:29:24 -0400
-Received: from mail-io1-f51.google.com ([209.85.166.51]:35332 "EHLO
+        id S230045AbhGVB3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 21:29:45 -0400
+Received: from mail-io1-f51.google.com ([209.85.166.51]:41621 "EHLO
         mail-io1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229932AbhGVB3X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 21:29:23 -0400
-Received: by mail-io1-f51.google.com with SMTP id d9so4633179ioo.2;
-        Wed, 21 Jul 2021 19:09:59 -0700 (PDT)
+        with ESMTP id S230342AbhGVB3n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 21:29:43 -0400
+Received: by mail-io1-f51.google.com with SMTP id z9so4620021iob.8
+        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 19:10:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=XI6tuL7/pBray3N0tX9rszM1IBJlHOCQO5uHh9acEo4=;
-        b=FCL10oc4gQvZrtepYM6PCht54qbxGMIHiVA2FezPdQBbHZznDvszBfYztg1Z1N23Az
-         k8SYG9Pxfjl3HTkk74qDZzc4vYvIW2vziIcCSvcRQSRbwJciaynpI2cZyPQy0aGo944K
-         KzV+L05wm9eZJZPYgu2/ahtu73ab5N3ZUMD97yVRpDI7Q2wxxY5qwYSVF8hbBilm3t0A
-         Kfx0ejaWQQvJKMzshP+AK64Z788HqQicbzVJThEMOgDXuqnIJGZbw/mVf9vhErk8DiLb
-         J2dh7Jr8J3aF19+061GI70TofvvMTXcvTulW+/TmKvFtXhz/im1MD4Eg77/jYf3DCEMv
-         6YqA==
-X-Gm-Message-State: AOAM533//9HzZS6gLq+pt2LM/59K4R/GhA/+ACCm2s1y2wulEfLszkIZ
-        C2Y9uyaYpHLEXbzUFGO4QQ==
-X-Google-Smtp-Source: ABdhPJwXoy7EEZp6Wh13QVY0SHOwBaW96b1k1tbwI0rV34cnGkXvWAGvtONpzuXfoWM82+w6jJOlqQ==
-X-Received: by 2002:a05:6638:3a12:: with SMTP id j18mr34051615jaj.75.1626919799407;
-        Wed, 21 Jul 2021 19:09:59 -0700 (PDT)
+        bh=1h7nVXxoJSB+Pcoc85nN01lGYZB7CrZ0pIvE9KNoMP8=;
+        b=VNRq9uTo+Lxiu6N6eVR/aygH14bPy03y7wZzsAlPc87SmcAdJ47qu8Rv617CK+iBSy
+         tPLCi4ESiTnh93smidXW6oy4zuqy7kI/iL2VZIcJasaFGobKLuajZ0B/m77/6Z5UR/Sd
+         I4wPWMti43KyolCd4QTp8xptIgA++7nQ/+EZsemQaVVcZ8KKsUmk4GJ/hKI4jKB+CIzq
+         Jn5fHSwaB7Aodwdr2DkRKznTkiNu+S8Vn1ZSuxW6hZ13kL6XoDtRoLqI9zwP/fITgpjU
+         +G5NHnfC+jznfWL6O2LTr2FLHgRg9r+VqBCkLOWTTz/Pka4cnmuC9eS/wHZKFC/tOgLz
+         vcsg==
+X-Gm-Message-State: AOAM531rWPD/CUFV+GHFM0Qxo1EK/43c5+9jIt5z7MA01gmaS+tPWAKV
+        5R4ubVZilmUhqRuwdMGvEA==
+X-Google-Smtp-Source: ABdhPJzyaKKg9KKqI9c05xlv7+ivpgS396FNMXPqM8les6dQioJYYNLXQofloFEqlIRod2Zl6pJcKQ==
+X-Received: by 2002:a05:6638:538:: with SMTP id j24mr24005522jar.59.1626919817881;
+        Wed, 21 Jul 2021 19:10:17 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id c7sm13492038ile.69.2021.07.21.19.09.57
+        by smtp.gmail.com with ESMTPSA id w1sm13429405ilv.59.2021.07.21.19.10.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jul 2021 19:09:58 -0700 (PDT)
-Received: (nullmailer pid 3145318 invoked by uid 1000);
+        Wed, 21 Jul 2021 19:10:17 -0700 (PDT)
+Received: (nullmailer pid 3145323 invoked by uid 1000);
         Thu, 22 Jul 2021 02:09:56 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     citral23 <cbranchereau@gmail.com>
-Cc:     lars@metafoo.de, contact@artur-rojek.eu,
-        linux-mips@vger.kernel.org, paul@crapouillou.net, jic23@kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org, linux@roeck-us.net,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20210721105317.36742-7-cbranchereau@gmail.com>
-References: <20210721105317.36742-1-cbranchereau@gmail.com> <20210721105317.36742-7-cbranchereau@gmail.com>
-Subject: Re: [PATCH 6/6] dt-bindings: iio/adc: ingenic: add the JZ4760(B) socs to the sadc Documentation
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        devicetree@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+In-Reply-To: <20210721140424.725744-7-maxime@cerno.tech>
+References: <20210721140424.725744-1-maxime@cerno.tech> <20210721140424.725744-7-maxime@cerno.tech>
+Subject: Re: [PATCH 06/54] dt-bindings: arm: Convert ARM CCI-400 binding to a schema
 Date:   Wed, 21 Jul 2021 20:09:56 -0600
-Message-Id: <1626919796.931159.3145317.nullmailer@robh.at.kernel.org>
+Message-Id: <1626919796.949365.3145322.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 21 Jul 2021 12:53:17 +0200, citral23 wrote:
-> Signed-off-by: citral23 <cbranchereau@gmail.com>
+On Wed, 21 Jul 2021 16:03:36 +0200, Maxime Ripard wrote:
+> The ARM CCI-400 Interconnect is supported by Linux thanks to its device
+> tree binding.
+> 
+> Now that we have the DT validation in place, let's convert the device
+> tree bindings for that driver over to a YAML schema.
+> 
+> Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 > ---
->  .../devicetree/bindings/iio/adc/ingenic,adc.yaml         | 9 +++++++++
->  1 file changed, 9 insertions(+)
+>  .../devicetree/bindings/arm/arm,cci-400.yaml  | 216 +++++++++++++++++
+>  .../bindings/arm/cci-control-port.yaml        |  38 +++
+>  Documentation/devicetree/bindings/arm/cci.txt | 224 ------------------
+>  3 files changed, 254 insertions(+), 224 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/arm/arm,cci-400.yaml
+>  create mode 100644 Documentation/devicetree/bindings/arm/cci-control-port.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/arm/cci.txt
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -63,27 +77,10 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/ingenic,adc.yaml: properties:ingenic,use-internal-divider: 'oneOf' conditional failed, one must be fixed:
-	'type' is a required property
-		hint: A vendor boolean property can use "type: boolean"
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/ingenic,adc.yaml: properties:ingenic,use-internal-divider: 'oneOf' conditional failed, one must be fixed:
-		'enum' is a required property
-		'const' is a required property
-		hint: A vendor string property with exact values has an implicit type
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/ingenic,adc.yaml: properties:ingenic,use-internal-divider: 'oneOf' conditional failed, one must be fixed:
-		'$ref' is a required property
-		'allOf' is a required property
-		hint: A vendor property needs a $ref to types.yaml
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/ingenic,adc.yaml: ignoring, error in schema: properties: ingenic,use-internal-divider
-warning: no schema found in file: ./Documentation/devicetree/bindings/iio/adc/ingenic,adc.yaml
-Documentation/devicetree/bindings/iio/adc/ingenic,adc.example.dt.yaml:0:0: /example-0/adc@10070000: failed to match any schema with compatible: ['ingenic,jz4740-adc']
+Documentation/devicetree/bindings/arm/arm,cci-400.example.dt.yaml:0:0: /dma@3000000: failed to match any schema with compatible: ['arm,pl330', 'arm,primecell']
 \ndoc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1508137
+See https://patchwork.ozlabs.org/patch/1508250
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
