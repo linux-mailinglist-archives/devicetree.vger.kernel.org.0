@@ -2,940 +2,1327 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C98E3D1EAD
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 09:10:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 853E23D1F36
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 09:44:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231325AbhGVGaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 02:30:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57894 "EHLO
+        id S230125AbhGVHDz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 03:03:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229875AbhGVGaJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jul 2021 02:30:09 -0400
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36803C061575;
-        Thu, 22 Jul 2021 00:10:45 -0700 (PDT)
-Received: by mail-pl1-x636.google.com with SMTP id q13so2506576plx.7;
-        Thu, 22 Jul 2021 00:10:45 -0700 (PDT)
+        with ESMTP id S229547AbhGVHDy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jul 2021 03:03:54 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2439EC061757
+        for <devicetree@vger.kernel.org>; Thu, 22 Jul 2021 00:44:29 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 8so7083985lfp.9
+        for <devicetree@vger.kernel.org>; Thu, 22 Jul 2021 00:44:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=r16uA1a95o2F66FIAuJH/PRK3tRAbKMDHPyAE2a03SE=;
-        b=ljmRmL0AbM1jj2L5mvjJj8605KPzydYCitUNmPE8OqORUk1bQSOwdDT0fgBxqP7g1H
-         M7BsJhCxWrozA23HNMnAgpLPLaDmMRgqS97DyXctU+5RitmPQ28vxYX0kp9Vt65LeMG+
-         314RKt3EZ8t8n4dxhJwCUvaJHywHAk1V2oqZyLfUhDT8IzfSuxBQlDBgx/YrtiDveF6U
-         8IdPxHGePj86iPkxRzENZxVSCzONIMZtslFib2L4xPQWAUUO/IFNovb3aWyvGOc4+gCN
-         EcKY085ownVgk70v/a9i6ajbbepXcRgbU01DvyKAN1K6xiAA74ywoyqwOM5lT1gVisfy
-         7sLA==
+        bh=1/BZs8YtQNf6CcZ2xOd1z/rpvz1CIBbwt7bmK+VhdAc=;
+        b=X8FNgxatxA80XAcxqAfdT9J94v7dNHIHr0D7uXUYiyB0eJ+EE6b4pFADXADtft1tHh
+         WkCDgAj7CrmOPnE/17pI7ukVtGlBcosOOe06dlurIfjIuEgPx5Bo6YqZDvnX/QKMQcWi
+         nRscWA0Z94AMuisfWXptx4Jnj/CoQCsZBRVVo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=r16uA1a95o2F66FIAuJH/PRK3tRAbKMDHPyAE2a03SE=;
-        b=uRBgBCH+nWz5P4L/P5OLpuGAkEHv8xNBEFRZKrWlBulPK8iUpA5xWrzIBayFx68s5G
-         GOr5Ku8xMWJJcx6QHQ9AIDNHb99O6gcymROL/O7oUnPShTXzR6kLdaXDwO1Sva1ENgBd
-         CjSsDWyDLIBXfys7BNa7qkeEtmT+6pbwrwPcLi42DDUoCrNTAiysQf7Ou9rKK68B8rnU
-         aJ5DtR1Ez0fsCXZtKNyLrpfkAblVvVZZ4GmybNJ+3IFbD+jxpPfe8Ow/KDXHOGCXG0B9
-         Hbnv+6lkpGqobs5Gd/TE/p6Ub6eUJj6iiSbY4shiBqmpixNwGHsXr+ga3wH3WrKaUrMC
-         62Gg==
-X-Gm-Message-State: AOAM533RCaQh1ADIej2XG3iufP4eJPcoMq+78kuV+WbLvZURVbPWHtmT
-        6bSiS0rqyJfxmqChOWNDICe2UOTy9SSimCF5sHo=
-X-Google-Smtp-Source: ABdhPJw007NtFwSQOUXe1wmwnKmKzmiJIRO/XAwnENJlfghUDLgjdluYX+3BFC/Wc5DgI7j2WYmVHiZN2HewgWZSBo8=
-X-Received: by 2002:a17:902:e00e:b029:ef:5f1c:18a8 with SMTP id
- o14-20020a170902e00eb02900ef5f1c18a8mr31125358plo.38.1626937844699; Thu, 22
- Jul 2021 00:10:44 -0700 (PDT)
+        bh=1/BZs8YtQNf6CcZ2xOd1z/rpvz1CIBbwt7bmK+VhdAc=;
+        b=Qn3nunPfL3GA4ROCf5X3MNcvFfaM1YrL8Apeph4PrJXnXg+3zDPHehdExNkyU3Mq17
+         6E1Njk6T2e9ca3ER3GcFrxQCKyQemCGxCQc4TbxuTC7p9ctFAoGGJV1De9/nhV1H5kHW
+         w9vMTtzGzA2ijrPE8BIHgBKJll+tmS5vfRsMoeJhMmyo2jNM0qbL0xH3nb9OUPSLlZef
+         9ZLqMrwVJS/r3yKj1W7Nq4XTcv/oGA1+hux2ABzFyJZz1o5sF4sgI/YN8IdGA53s9YjG
+         r77+WPfM1/IqTJFvtuHiQpaYzcqCDr8RJkmdb74spFgt9GUBMJHpAZ8vLm6ebYht/mXg
+         ab5w==
+X-Gm-Message-State: AOAM533irzpHnZSdEuqk/oPVEi6tVyUBXIzsCVY0Ncom2ydeM82RG8Y6
+        2YfoZ3dggnrYAO0JboDfri5DdbHCI/vC2ThwfTvf8Q==
+X-Google-Smtp-Source: ABdhPJyf7JkYACTkRxZUmSuRHBwZlHyZGVYDehTpTsv4Mh2a9ICcqw5pX0PixZuEBAjdms7V0iDiwcu3qU/7JigrXT0=
+X-Received: by 2002:a05:6512:3f13:: with SMTP id y19mr28118495lfa.444.1626939867184;
+ Thu, 22 Jul 2021 00:44:27 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210722062155.32998-1-puranjay12@gmail.com> <20210722062155.32998-3-puranjay12@gmail.com>
-In-Reply-To: <20210722062155.32998-3-puranjay12@gmail.com>
-From:   Alexandru Ardelean <ardeleanalex@gmail.com>
-Date:   Thu, 22 Jul 2021 10:10:33 +0300
-Message-ID: <CA+U=DsqgNUh5Yek=uUstLLoP3eDYC8uCfjcQ09oW33nhu7SQCQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] iio: accel: Add driver support for ADXL355
-To:     Puranjay Mohan <puranjay12@gmail.com>
-Cc:     "Hennerich, Michael" <Michael.Hennerich@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        "Bogdan, Dragos" <Dragos.Bogdan@analog.com>,
-        "Berghe, Darius" <Darius.Berghe@analog.com>
+References: <20210616224743.5109-1-chun-jie.chen@mediatek.com>
+ <20210616224743.5109-5-chun-jie.chen@mediatek.com> <CAGXv+5ELvHXE-r-5Y1mugL=y85_oBGXvO4hXG0K9zgaPt_JDZg@mail.gmail.com>
+ <1626913060.1546.4.camel@mtksdaap41>
+In-Reply-To: <1626913060.1546.4.camel@mtksdaap41>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Thu, 22 Jul 2021 15:44:15 +0800
+Message-ID: <CAGXv+5ETdg+SfLDtbjmSwvjxdAr3+0eWmyPR9+ev=05XdoU7wQ@mail.gmail.com>
+Subject: Re: [PATCH 04/22] clk: mediatek: Add MT8195 basic clocks support
+To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 22, 2021 at 9:23 AM Puranjay Mohan <puranjay12@gmail.com> wrote:
->
-> ADXL355 is 3-axis MEMS Accelerometer. It offers low noise density,
-> low 0g offset drift, low power with selectable measurement ranges.
-> It also features programmable high-pass and low-pass filters.
->
+Hi,
 
-At a later point, someone else could integrate the ADXL354 support
-into this driver.
-The current code looks like it could do that without much hassle.
-But that also requires testing on an ADXL354 chip.
+It seems your reply included HTML, which means that it never reached
+the mailing lists. Please always use plaintext only.
 
-Reviewed-by: Alexandru Ardelean <ardeleanalex@gmail.com>
+On Thu, Jul 22, 2021 at 08:17:40AM +0800, Chun-Jie Chen wrote:
+> On Fri, 2021-07-02 at 19:44 +0800, Chen-Yu Tsai wrote:
+> > > On Thu, Jun 17, 2021 at 7:05 AM Chun-Jie Chen
+> > > <chun-jie.chen@mediatek.com> wrote:
+> >
+> > > > >
+> > >
+> > > > > Add MT8195 basic clock providers, include topckgen, apmixedsys,
+> > > > > infracfg_ao and pericfg_ao.
+> > > > >
+> > >
+> > > > > Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+> > > > > ---
+> > > > >  drivers/clk/mediatek/Kconfig      |    8 +
+> > > > >  drivers/clk/mediatek/Makefile     |    1 +
+> > > > >  drivers/clk/mediatek/clk-mt8195.c | 1958
+> > > > > +++++++++++++++++++++++++++++
+> > > > >  3 files changed, 1967 insertions(+)
+> > > > >  create mode 100644 drivers/clk/mediatek/clk-mt8195.c
+> > > > >
+> > >
+> > > > > diff --git a/drivers/clk/mediatek/Kconfig
+> > > > > b/drivers/clk/mediatek/Kconfig
+> > > > > index 576babd86f98..6707aba3d500 100644
+> > > > > --- a/drivers/clk/mediatek/Kconfig
+> > > > > +++ b/drivers/clk/mediatek/Kconfig
+> > > > > @@ -580,6 +580,14 @@ config COMMON_CLK_MT8192_VENCSYS
+> > > > >         help
+> > > > >           This driver supports MediaTek MT8192 vencsys clocks.
+> > > > >
+> > >
+> > > > > +config COMMON_CLK_MT8195
+> > > > > +       bool "Clock driver for MediaTek MT8195"
+> > > > > +       depends on ARM64 || COMPILE_TEST
+> > > > > +       select COMMON_CLK_MEDIATEK
+> > > > > +       default ARM64
+> > > > > +       help
+> > > > > +         This driver supports MediaTek MT8195 basic clocks.
+> > > > > +
+> > > > >  config COMMON_CLK_MT8516
+> > > > >         bool "Clock driver for MediaTek MT8516"
+> > > > >         depends on ARCH_MEDIATEK || COMPILE_TEST
+> > > > > diff --git a/drivers/clk/mediatek/Makefile
+> > > > > b/drivers/clk/mediatek/Makefile
+> > > > > index 15bc045f0b71..f8002d8966e1 100644
+> > > > > --- a/drivers/clk/mediatek/Makefile
+> > > > > +++ b/drivers/clk/mediatek/Makefile
+> > > > > @@ -80,5 +80,6 @@ obj-$(CONFIG_COMMON_CLK_MT8192_MSDC) += clk-
+> > > > > mt8192-msdc.o
+> > > > >  obj-$(CONFIG_COMMON_CLK_MT8192_SCP_ADSP) +=
+> > > clk-mt8192-scp_adsp.o
+> > > > >  obj-$(CONFIG_COMMON_CLK_MT8192_VDECSYS) += clk-mt8192-vdec.o
+> > > > >  obj-$(CONFIG_COMMON_CLK_MT8192_VENCSYS) += clk-mt8192-venc.o
+> > > > > +obj-$(CONFIG_COMMON_CLK_MT8195) += clk-mt8195.o
+> > > > >  obj-$(CONFIG_COMMON_CLK_MT8516) += clk-mt8516.o
+> > > > >  obj-$(CONFIG_COMMON_CLK_MT8516_AUDSYS) += clk-mt8516-aud.o
+> > > > > diff --git a/drivers/clk/mediatek/clk-mt8195.c
+> > > > > b/drivers/clk/mediatek/clk-mt8195.c
+> > > > > new file mode 100644
+> > > > > index 000000000000..aea9ebe4c051
+> > > > > --- /dev/null
+> > > > > +++ b/drivers/clk/mediatek/clk-mt8195.c
+> > > > > @@ -0,0 +1,1958 @@
+> > > > > +// SPDX-License-Identifier: GPL-2.0-only
+> > > > > +//
+> > > > > +// Copyright (c) 2021 MediaTek Inc.
+> > > > > +// Author: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+> > > > > +
+> > > > > +#include <linux/clk.h>
+> > > > > +#include <linux/delay.h>
+> > > > > +#include <linux/mfd/syscon.h>
+> > > > > +#include <linux/of.h>
+> > > > > +#include <linux/of_address.h>
+> > > > > +#include <linux/of_device.h>
+> > > > > +#include <linux/platform_device.h>
+> > > > > +#include <linux/slab.h>
+> > > > > +
+> > > > > +#include "clk-mtk.h"
+> > > > > +#include "clk-mux.h"
+> > > > > +#include "clk-gate.h"
+> > > > > +
+> > > > > +#include <dt-bindings/clock/mt8195-clk.h>
+> > > > > +
+> > > > > +static DEFINE_SPINLOCK(mt8195_clk_lock);
+> > > > > +
+> > > > > +static const struct mtk_fixed_clk top_fixed_clks[] = {
+> > > > > +       FIXED_CLK(CLK_TOP_IN_DGI, "in_dgi", NULL, 165000000),
+> > > > > +       FIXED_CLK(CLK_TOP_ULPOSC, "ulposc", NULL, 248000000),
+> > > > > +       FIXED_CLK(CLK_TOP_ULPOSC2, "ulposc2", NULL, 326000000),
+> > > > > +       FIXED_CLK(CLK_TOP_MEM_466M, "mem_466m", NULL,
+> > > 533000000),
+> > > > > +       FIXED_CLK(CLK_TOP_MPHONE_SLAVE_B, "mphone_slave_b",
+> > > NULL,
+> > > > > 49152000),
+> > > > > +       FIXED_CLK(CLK_TOP_PEXTP_PIPE, "pextp_pipe", NULL,
+> > > > > 250000000),
+> > > > > +       FIXED_CLK(CLK_TOP_UFS_RX_SYMBOL, "ufs_rx_symbol", NULL,
+> > > > > 166000000),
+> > > > > +       FIXED_CLK(CLK_TOP_UFS_TX_SYMBOL, "ufs_tx_symbol", NULL,
+> > > > > 166000000),
+> > > > > +       FIXED_CLK(CLK_TOP_SSUSB_U3PHY_P1_P_P0,
+> > > > > "ssusb_u3phy_p1_p_p0", NULL, 131000000),
+> > > > > +       FIXED_CLK(CLK_TOP_UFS_RX_SYMBOL1, "ufs_rx_symbol1",
+> > > NULL,
+> > > > > 166000000),
+> > > > > +       FIXED_CLK(CLK_TOP_FPC, "fpc", NULL, 50000000),
+> > > > > +       FIXED_CLK(CLK_TOP_HDMIRX_P, "hdmirx_p", NULL,
+> > > 594000000),
+> >
+> > >
+> >
+> > > I assume these are fixed PLLs? They should have inputs (parents).
+> > >
+> >
+> > > Moreover, at least ULPOSC and ULPOSC2 look like they are in
+> > > APMIXEDSYS
+> > >
+> >
+>
+> The clock in top_fixed_clks is special clock that generated from the
+> specific hardware block, not PLLs in APMIXEDSYS. ULPOSC and ULPOSC2 has
+> configuration register in APMIXEDSYS, but their clock source are not
+> "clk26m" (other plls in APMIXEDSYS in is generated from "clk26m")
+
+I see. Surely they have some input though. It would be nice to be able
+to have them described.
+
+> > > > > +};T
+> > > > > +
+> > > > > +static const struct mtk_fixed_factor top_early_divs[] = {
+> > > > > +       FACTOR(CLK_TOP_CLK26M_D2, "clk26m_d2", "clk26m", 1, 2),
+> > > > > +};
+> > > > > +
+> > > > > +static const struct mtk_fixed_factor top_divs[] = {
+> > > > > +       FACTOR(CLK_TOP_CLK26M_D52, "clk26m_d52", "clk26m", 1,
+> > > 52),
+> > > > > +       FACTOR(CLK_TOP_IN_DGI_D2, "in_dgi_d2", "in_dgi", 1, 2),
+> > > > > +       FACTOR(CLK_TOP_IN_DGI_D4, "in_dgi_d4", "in_dgi", 1, 4),
+> > > > > +       FACTOR(CLK_TOP_IN_DGI_D6, "in_dgi_d6", "in_dgi", 1, 6),
+> > > > > +       FACTOR(CLK_TOP_IN_DGI_D8, "in_dgi_d8", "in_dgi", 1, 8),
+> > > > > +       FACTOR(CLK_TOP_MFGPLL_OPP, "mfgpll_opp", "mfgpll", 1,
+> > > 1),
+> > > > > +       FACTOR(CLK_TOP_MAINPLL, "mainpll_ck", "mainpll", 1, 1),
+> >
+> > >
+> >
+> > > Why are this and other 1:1 factor clks needed? They look like
+> > > placeholders.
+> > > Please remove them.
+>
+>
+>
+> These 1:1 factors make more readable between dividers. For example,
+> CLK_APMIXED_MAINPLL and CLK_TOP_MAINPLL_D3 is not easy to see the
+> relation, but CLK_TOP_MAINPLL and CLK_TOP_MAINPLL_D3 is more clear to
+> see the relation.
+
+If the clocks are named appropriately, it should be clear that "mainpll_dX"
+is derived from "mainpll". We really don't need an extra "mainpll_ck" in
+between.
+
+The only thing gained here is having the parent clock in the same driver.
+But that is only a problem because we are directly using global clock names
+for parent names. This isn't the preferred way for clock parenting.
+
+For proper parenting, the driver should be using `struct clk_parent_data`
+if possible, or using of_clk_get_parent_name() or of_clk_get_hw() manually
+to get the parent's global name or a reference to it. This is something
+the clk drivers should slowly be converted to doing.
+
+I'm not saying we should do everything now, but we can start by getting
+rid of some of the excess baggage.
+
+[...]
+
+> > > > > +static const char * const dsp7_parents[] = {
+> > > > > +       "clk26m",
+> > > > > +       "univpll_d6_d2",
+> > > > > +       "univpll_d4_d2",
+> > > > > +       "univpll_d5",
+> > > > > +       "univpll_d4",
+> > > > > +       "mmpll_d4",
+> > > > > +       "mainpll_d3",
+> > > > > +       "univpll_d3"
+> > > > > +};
+> >
+> > >
+> >
+> > > If dsp~dsp7_parents are all the same, please merge them and share
+> > one
+> > > instance. And since they are located a bit far from the clock
+> > > definitions
+> > > in this file, please add comments describing which clocks share the
+> > > same
+> > > set of parents.
+> > >
+> >
+>
+> I will merge it if they can share the same parent source data (include
+> you mention below), thanks for your comment.
+
+Great!
+
+[...]
+
+Tip: You can trim out portions of the original email from your reply, like
+what I did here, so that the emails are shorter. Keeping just the bits that
+are relevant to the discussion is better for the reader. In cases here a
+lot of it are related cases, you could keep just the one nearest to your
+reply.
+
+> > > > > +static const char * const spinor_parents[] = {
+> > > > > +       "clk26m",
+> >
+> > >
+> >
+> > > Datasheet says first parent is "univpll_d5_d8". Please check with
+> > > hardware
+> > > engineers. If the datasheet is wrong please add a comment saying so.
+> > >
+> >
+> >
+> > > > > +       "clk26m_d2",
+> > > > > +       "mainpll_d7_d8",
+> > > > > +       "univpll_d6_d8"
+> > > > > +};
+> > > > > +
+>
+> The parent source here is correct, but not update to the latest in
+> datasheet.
+
+For future reference, could you leave a comment stating that the datasheet
+has not been updated then? Please include the version of the datasheet.
+
+> > > > > +static const char * const dvio_dgi_ref_parents[] = {
+> > > > > +       "clk26m",
+> > > > > +       "in_dgi",
+> > > > > +       "in_dgi_d2",
+> > > > > +       "in_dgi_d4",
+> > > > > +       "in_dgi_d6",
+> > > > > +       "in_dgi_d8",
+> > > > > +       "mmpll_d4_d4"
+> > > > > +};
+> > > > > +
+> > > > > +static const char * const srck_parents[] = {
+> > > > > +       "ulposc_d10",
+> > > > > +       "clk26m"
+> > > > > +};
+> > > > > +
+> > > > > +static const char * const rsvd1_parents[] = {
+> > > > > +       "clk26m",
+> > > > > +       "mainpll_d4_d4",
+> > > > > +       "mainpll_d5_d4",
+> > > > > +       "mainpll_d6_d4",
+> > > > > +       "mainpll_d7_d4",
+> > > > > +       "univpll_d6_d4",
+> >
+> > >
+> >
+> > > These are completely different from the datasheet. Please check.
+> > >
+> >
+> >
+> > > > > +       "ulposc",
+> > > > > +       "ulposc2"
+> > > > > +};
+> > > > > +
+>
+> The parent source here is correct, but not update to the latest in
+> datasheet.
+
+Same for this one.
+
+> > > > > +static const char * const mfg_fast_parents[] = {
+> > > > > +       "mfg_sel",
+> > > > > +       "mfgpll_opp"
+> > > > > +};
+> > > > > +
+> > > > > +static const struct mtk_mux top_mtk_muxes[] = {
+> > > > > +       /* CLK_CFG_0 */
+> > > > > +       MUX_GATE_CLR_SET_UPD_FLAGS(CLK_TOP_AXI_SEL, "axi_sel",
+> >
+> > >
+> >
+> > > Please drop the "_sel" suffix from the clock names. It would have
+> > > made
+> > > sense if this were purely a mux, and there was another clock gate.
+> > > But
+> > > since the driver combines the two components into one
+> > representation,
+> > > please just drop the suffix that implies just a mux. This goes for
+> > > all
+> > > clocks in the series and also the macro bindings.
+> >
+>
+>
+>
+> If we move the "_sel" suffix from clock names, it's hard to represent
+> this mux with gate control. Do you think revise it to "XXX_sel_gate" in
+> CCF name but keep the binding name because change the binding name need
+> all CCF consumer changes.
+
+Please elaborate. Does the "type" of the clock matter? All that is
+really needed is that the name is unique, matches the datasheet more or
+less, and describes the usage or purpose of the clock.
+
+For example, on Allwinner sunxi platforms, we don't include the type
+of the clock in the clock names. Only the base clock name is used.
+That is because the clocks are modeled as composite-ish clocks, so
+only one clock is needed to describe a full mux+divider+gate.
+
+On other platforms, the clock driver deliberately uses base clock types,
+mux, div, and gate, to build up a representation of the full clock unit.
+In these cases, we end up with "XXX_mux", "XXX_div", and "XXX_gate".
+
+Since the Mediatek clock driver is more like the first case, I would
+prefer to see clock names with just the base name, and none of the
+typing.
+
+And regarding binding names, please change them as well. Right now the
+only place that needs to be changed are the header files. This is the
+time to get them right.
+
+> > > > > +               axi_parents, 0x020, 0x024, 0x028, 0, 3, 7, 0x04,
+> > > 0,
+> > > > > CLK_IS_CRITICAL),
+> > > > > +       MUX_GATE_CLR_SET_UPD_FLAGS(CLK_TOP_SPM_SEL, "spm_sel",
+> > > > > +               spm_parents, 0x020, 0x024, 0x028, 8, 2, 15,
+> > > 0x04,
+> > > > > 1, CLK_IS_CRITICAL),
+> >
+> > >
+> >
+> > > Where is the SCP clock?
+>
+>
+>
+> Because SCP is always on and no other clock gates need to reference it,
+> so move it.
+
+Please add a comment as a placeholder then. The comment could simply
+state "clock is always on and should not be handled by Linux".
+
+[...]
+
+> > > > > +       /* CLK_CFG_11 */
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_USB_SEL, "usb_sel",
+> >
+> > >
+> >
+> > > The datasheet lists these as "usb_top" and "usb_top_Xp". Please keep
+> > > the name
+> > > the same as the datasheet so it is easy to search for. Also note the
+> > > discrepency
+> > > between the macro name and the clock name. Same goes for the three
+> > > other USB
+> > > clocks.
+>
+>
+>
+> Do you think revise the name the same as datasheet in CCF name but keep
+> binding name?
+
+Please have them match each other. The whole point of keeping names
+consistent is to be able to search for them easily.
+
+> > >
+> >
+> >
+> > > > > +               usb_parents, 0x0A4, 0x0A8, 0x0AC, 0, 2, 7, 0x08,
+> > > > > 12),
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_SSUSB_XHCI_SEL,
+> > > > > "ssusb_xhci_sel",
+> > > > > +               ssusb_xhci_parents, 0x0A4, 0x0A8, 0x0AC, 8, 2,
+> > > 15,
+> > > > > 0x08, 13),
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_USB_1P_SEL, "usb_1p_sel",
+> > > > > +               usb_1p_parents, 0x0A4, 0x0A8, 0x0AC, 16, 2, 23,
+> > > > > 0x08, 14),
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_SSUSB_XHCI_1P_SEL,
+> > > > > "ssusb_xhci_1p_sel",
+> > > > > +               ssusb_xhci_1p_parents, 0x0A4, 0x0A8, 0x0AC, 24,
+> > > 2,
+> > > > > 31, 0x08, 15),
+> > > > > +       /* CLK_CFG_12 */
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_USB_2P_SEL, "usb_2p_sel",
+> > > > > +               usb_2p_parents, 0x0B0, 0x0B4, 0x0B8, 0, 2, 7,
+> > > 0x08,
+> > > > > 16),
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_SSUSB_XHCI_2P_SEL,
+> > > > > "ssusb_xhci_2p_sel",
+> > > > > +               ssusb_xhci_2p_parents, 0x0B0, 0x0B4, 0x0B8, 8,
+> > > 2,
+> > > > > 15, 0x08, 17),
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_USB_3P_SEL, "usb_3p_sel",
+> > > > > +               usb_3p_parents, 0x0B0, 0x0B4, 0x0B8, 16, 2, 23,
+> > > > > 0x08, 18),
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_SSUSB_XHCI_3P_SEL,
+> > > > > "ssusb_xhci_3p_sel",
+> > > > > +               ssusb_xhci_3p_parents, 0x0B0, 0x0B4, 0x0B8, 24,
+> > > 2,
+> > > > > 31, 0x08, 19),
+> > > > > +       /* CLK_CFG_13 */
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_I2C_SEL, "i2c_sel",
+> > > > > +               i2c_parents, 0x0BC, 0x0C0, 0x0C4, 0, 2, 7, 0x08,
+> > > > > 20),
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_SENINF_SEL, "seninf_sel",
+> > > > > +               seninf_parents, 0x0BC, 0x0C0, 0x0C4, 8, 3, 15,
+> > > > > 0x08, 21),
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_SENINF1_SEL,
+> > > "seninf1_sel",
+> > > > > +               seninf1_parents, 0x0BC, 0x0C0, 0x0C4, 16, 3, 23,
+> > > > > 0x08, 22),
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_SENINF2_SEL,
+> > > "seninf2_sel",
+> > > > > +               seninf2_parents, 0x0BC, 0x0C0, 0x0C4, 24, 3, 31,
+> > > > > 0x08, 23),
+> > > > > +       /* CLK_CFG_14 */
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_SENINF3_SEL,
+> > > "seninf3_sel",
+> > > > > +               seninf3_parents, 0x0C8, 0x0CC, 0x0D0, 0, 3, 7,
+> > > > > 0x08, 24),
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_GCPU_SEL, "gcpu_sel",
+> > > > > +               gcpu_parents, 0x0C8, 0x0CC, 0x0D0, 8, 3, 15,
+> > > 0x08,
+> > > > > 25),
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_DXCC_SEL, "dxcc_sel",
+> > > > > +               dxcc_parents, 0x0C8, 0x0CC, 0x0D0, 16, 2, 23,
+> > > 0x08,
+> > > > > 26),
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_DPMAIF_SEL, "dpmaif_sel",
+> > > > > +               dpmaif_parents, 0x0C8, 0x0CC, 0x0D0, 24, 3, 31,
+> > > > > 0x08, 27),
+> > > > > +       /* CLK_CFG_15 */
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_AES_UFSFDE_SEL,
+> > > > > "aes_ufsfde_sel",
+> > > > > +               aes_ufsfde_parents, 0x0D4, 0x0D8, 0x0DC, 0, 3,
+> > > 7,
+> > > > > 0x08, 28),
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_UFS_SEL, "ufs_sel",
+> > > > > +               ufs_parents, 0x0D4, 0x0D8, 0x0DC, 8, 3, 15,
+> > > 0x08,
+> > > > > 29),
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_UFS_TICK1US_SEL,
+> > > > > "ufs_tick1us_sel",
+> > > > > +               ufs_tick1us_parents, 0x0D4, 0x0D8, 0x0DC, 16, 1,
+> > > > > 23, 0x08, 30),
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_UFS_MP_SAP_SEL,
+> > > > > "ufs_mp_sap_sel",
+> > > > > +               ufs_mp_sap_parents, 0x0D4, 0x0D8, 0x0DC, 24, 1,
+> > > 31,
+> > > > > 0x08, 31),
+> > > > > +       /* CLK_CFG_16 */
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_VENC_SEL, "venc_sel",
+> > > > > +               venc_parents, 0x0E0, 0x0E4, 0x0E8, 0, 4, 7,
+> > > 0x0C,
+> > > > > 0),
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_VDEC_SEL, "vdec_sel",
+> > > > > +               vdec_parents, 0x0E0, 0x0E4, 0x0E8, 8, 4, 15,
+> > > 0x0C,
+> > > > > 1),
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_PWM_SEL, "pwm_sel",
+> > > > > +               pwm_parents, 0x0E0, 0x0E4, 0x0E8, 16, 1, 23,
+> > > 0x0C,
+> > > > > 2),
+> >
+> > >
+> >
+> > > MCU clock? Not sure what it's supposed to be called since the naming
+> > > has a
+> > > slightly different format.
+> > >
+> >
+> > > If you are skipping clocks, please leave a comment in the list
+> > > explaining
+> > > why.
+> > >
+> >
+> > "mcupm" is another micro-processor and is always on, and no others
+> > clock gates need to reference it, so remove it.
+
+Please add a comment, just like in the SCP clock case.
+
+> > > > > +       /* CLK_CFG_17 */
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_SPMI_P_MST_SEL,
+> > > > > "spmi_p_mst_sel",
+> > > > > +               spmi_p_mst_parents, 0x0EC, 0x0F0, 0x0F4, 0, 4,
+> > > 7,
+> > > > > 0x0C, 4),
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_SPMI_M_MST_SEL,
+> > > > > "spmi_m_mst_sel",
+> > > > > +               spmi_m_mst_parents, 0x0EC, 0x0F0, 0x0F4, 8, 4,
+> > > 15,
+> > > > > 0x0C, 5),
+> >
+> > >
+> >
+> > > DVFSRC clock?
+> > >
+> >
+> > "DVFSRC" IP block is always on  and no others clock gates need to
+> > reference it, so remove it.
+
+This one as well.
+
+[...]
+
+> > > > > +       /* CLK_CFG_24 */
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_APLL5_SEL, "apll5_sel",
+> > > > > +               apll5_parents, 0x0140, 0x0144, 0x0148, 0, 1, 7,
+> > > > > 0x010, 0),
+> >
+> > >
+> >
+> > > For the APLLs, you will need to differentiate them from the actual
+> > > PLLs in
+> > > the APMIXEDSYS block.
+> > >
+> >
+> > APLLX providers more precise clock so it has more configuration
+> > register, but it still has same control flow like other PLLs in
+> > APMIXEDSYS.
+
+I think what I meant was, because I asked to remove the "_sel" suffix,
+the global clock names here now collide with the ones in APMIXEDSYS.
+So what I was asking was the names here need to be changed, maybe to
+something like "top_apllX".
+
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_I2SO1_M_SEL,
+> > > "i2so1_m_sel",
+> > > > > +               i2so1_m_parents, 0x0140, 0x0144, 0x0148, 8, 3,
+> > > 15,
+> > > > > 0x010, 1),
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_I2SO2_M_SEL,
+> > > "i2so2_m_sel",
+> > > > > +               i2so2_m_parents, 0x0140, 0x0144, 0x0148, 16, 3,
+> > > 23,
+> > > > > 0x010, 2),
+> >
+> > >
+> >
+> > > I2SO4_M?
+> > >
+> >
+> >
+> > > > > +       /* CLK_CFG_25 */
+> >
+> > >
+> >
+> > > I2SO5_M?
+> > >
+> >
+> >
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_I2SI1_M_SEL,
+> > > "i2si1_m_sel",
+> > > > > +               i2si1_m_parents, 0x014C, 0x0150, 0x0154, 8, 3,
+> > > 15,
+> > > > > 0x010, 5),
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_I2SI2_M_SEL,
+> > > "i2si2_m_sel",
+> > > > > +               i2si2_m_parents, 0x014C, 0x0150, 0x0154, 16, 3,
+> > > 23,
+> > > > > 0x010, 6),
+> >
+> > >
+> >
+> > > I2SI4_M?
+> > >
+> >
+> >
+> > > > > +       /* CLK_CFG_26 */
+> >
+> > >
+> >
+> > > I2SI5_M?
+> > >
+> >
+> > I2SO4/I2SO5/I2SI4_M/I2SI5_M is not used in MT8195, so remove it here.
+
+Please add comments as placeholders for them. The comment could state
+that the clock is unused in the hardware design, so it was skipped.
+
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_DPTX_M_SEL, "dptx_m_sel",
+> > > > > +               dptx_m_parents, 0x0158, 0x015C, 0x0160, 8, 3,
+> > > 15,
+> > > > > 0x010, 9),
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_AUD_IEC_SEL,
+> > > "aud_iec_sel",
+> > > > > +               aud_iec_parents, 0x0158, 0x015C, 0x0160, 16, 3,
+> > > 23,
+> > > > > 0x010, 10),
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_A1SYS_HP_SEL,
+> > > "a1sys_hp_sel",
+> > > > > +               a1sys_hp_parents, 0x0158, 0x015C, 0x0160, 24, 1,
+> > > > > 31, 0x010, 11),
+> > > > > +       /* CLK_CFG_27 */
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_A2SYS_SEL, "a2sys_sel",
+> > > > > +               a2sys_parents, 0x0164, 0x0168, 0x016C, 0, 1, 7,
+> > > > > 0x010, 12),
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_A3SYS_SEL, "a3sys_sel",
+> > > > > +               a3sys_parents, 0x0164, 0x0168, 0x016C, 8, 3, 15,
+> > > > > 0x010, 13),
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_A4SYS_SEL, "a4sys_sel",
+> > > > > +               a4sys_parents, 0x0164, 0x0168, 0x016C, 16, 3,
+> > > 23,
+> > > > > 0x010, 14),
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_SPINFI_B_SEL,
+> > > "spinfi_b_sel",
+> > > > > +               spinfi_b_parents, 0x0164, 0x0168, 0x016C, 24, 3,
+> > > > > 31, 0x010, 15),
+> > > > > +       /* CLK_CFG_28 */
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_NFI1X_SEL, "nfi1x_sel",
+> > > > > +               nfi1x_parents, 0x0170, 0x0174, 0x0178, 0, 3, 7,
+> > > > > 0x010, 16),
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_ECC_SEL, "ecc_sel",
+> > > > > +               ecc_parents, 0x0170, 0x0174, 0x0178, 8, 3, 15,
+> > > > > 0x010, 17),
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_AUDIO_LOCAL_BUS_SEL,
+> > > > > "audio_local_bus_sel",
+> > > > > +               audio_local_bus_parents, 0x0170, 0x0174, 0x0178,
+> > > > > 16, 4, 23, 0x010, 18),
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_SPINOR_SEL, "spinor_sel",
+> > > > > +               spinor_parents, 0x0170, 0x0174, 0x0178, 24, 2,
+> > > 31,
+> > > > > 0x010, 19),
+> > > > > +       /* CLK_CFG_29 */
+> > > > > +       MUX_GATE_CLR_SET_UPD(CLK_TOP_DVIO_DGI_REF_SEL,
+> > > > > "dvio_dgi_ref_sel",
+> > > > > +               dvio_dgi_ref_parents, 0x017C, 0x0180, 0x0184, 0,
+> > > 3,
+> > > > > 7, 0x010, 20),
+> >
+> > >
+> >
+> > > ULPOSC and ULPOSC_CORE?
+> > >
+> >
+>
+>
+>
+> ULPOSC and ULPOSC_CORE is always on and no other clock gate needs to
+> reference it, so just remove it.
+
+Please add placeholder comments describing them, specifically why they
+are missing from the driver. Are the clocks used at all in the hardware
+design? If so then it might be better to add them to the clock driver.
+
+Also, even if they, including SCP and MCU above, are always on, it might
+still be nice to have driver support for them, just to be able to read
+their state from Linux. We could have CLK_IS_CRITICAL set so they don't
+get disabled, and CLK_GET_RATE_NOCACHE if the clocks are expected to be
+changed by firmware running alongside of Linux.
+
+> > > > > +       MUX_GATE_CLR_SET_UPD_FLAGS(CLK_TOP_SRCK_SEL,
+> > > "srck_sel",
+> > > > > +               srck_parents, 0x017C, 0x0180, 0x0184, 24, 1, 31,
+> > > > > 0x010, 23, CLK_IS_CRITICAL),
+> >
+> > >
+> >
+> > > What happened to CLK_CFG_30~36?
+> > >
+> >
+>
+> The muxes in CLK_CFG_30 ~ 36 are not used, so just remove it from CCF.
+
+Please add placeholder comments about them.
+
+> > > > > +       /* CLK_CFG_37 */
+> > > > > +       MUX_GATE_CLR_SET_UPD_FLAGS(CLK_TOP_RSVD1_SEL,
+> > > "rsvd1_sel",
+> > > > > +               rsvd1_parents, 0x01DC, 0x01E0, 0x01E4, 0, 3, 7,
+> > > > > 0x014, 20, CLK_IS_CRITICAL),
+> >
+> > >
+> >
+> > > What about the other three?
+> > >
+> >
+>
+>
+> "rsvd2" and "rsvd3" is not used, so remove it.
+
+Same here.
+
+To be honest, a "rsvd", which I interpret as "reserved", clock being
+used seems kind of contradicting. Do we know what hardware is using
+rsvd1?
+
+> > > > > +};
+> > > > > +
+> > > > > +static struct mtk_composite top_muxes[] = {
+> > > > > +       /* CLK_MISC_CFG_3 */
+> > > > > +       MUX(CLK_TOP_MFG_FAST_SEL, "mfg_fast_sel",
+> > > mfg_fast_parents,
+> > > > > 0x0250, 8, 1),
+> > > > > +};
+> > > > > +
+> > > > > +static const struct mtk_composite top_adj_divs[] = {
+> > > > > +       DIV_GATE(CLK_TOP_APLL12_DIV0, "apll12_div0",
+> > > "i2si1_m_sel",
+> > > > > 0x0320, 0, 0x0328, 8, 0),
+> > > > > +       DIV_GATE(CLK_TOP_APLL12_DIV1, "apll12_div1",
+> > > "i2si2_m_sel",
+> > > > > 0x0320, 1, 0x0328, 8, 8),
+> > > > > +       DIV_GATE(CLK_TOP_APLL12_DIV2, "apll12_div2",
+> > > "i2so1_m_sel",
+> > > > > 0x0320, 2, 0x0328, 8, 16),
+> > > > > +       DIV_GATE(CLK_TOP_APLL12_DIV3, "apll12_div3",
+> > > "i2so2_m_sel",
+> > > > > 0x0320, 3, 0x0328, 8, 24),
+> > > > > +       DIV_GATE(CLK_TOP_APLL12_DIV4, "apll12_div4",
+> > > "aud_iec_sel",
+> > > > > 0x0320, 4, 0x0334, 8, 0),
+> >
+> > >
+> >
+> > > What about 5~8?
+> > >
+> >
+> > div5 ~ 8 are not used in MT8195, so remove it.
+
+Placeholder comments please.
+
+[...]
+
+> > > > > +static const struct mtk_gate_regs top0_cg_regs = {
+> > > > > +       .set_ofs = 0x238,
+> > > > > +       .clr_ofs = 0x238,
+> > > > > +       .sta_ofs = 0x238,
+> > > > > +};
+> > > > > +
+> > > > > +static const struct mtk_gate_regs top1_cg_regs = {
+> > > > > +       .set_ofs = 0x250,
+> > > > > +       .clr_ofs = 0x250,
+> > > > > +       .sta_ofs = 0x250,
+> > > > > +};
+> > > > > +
+> > > > > +#define GATE_TOP0_FLAGS(_id, _name, _parent, _shift,
+> > > > > _flag)            \
+> > > > > +       GATE_MTK_FLAGS(_id, _name, _parent, &top0_cg_regs,
+> > > > > _shift,      \
+> > > > > +               &mtk_clk_gate_ops_no_setclr_inv, _flag)
+> > > > > +
+> > > > > +#define GATE_TOP0(_id, _name, _parent,
+> > > _shift)                 \
+> > > > > +       GATE_TOP0_FLAGS(_id, _name, _parent, _shift, 0)
+> > > > > +
+> > > > > +#define GATE_TOP1(_id, _name, _parent,
+> > > _shift)                 \
+> > > > > +       GATE_MTK(_id, _name, _parent, &top1_cg_regs, _shift,
+> > > > > &mtk_clk_gate_ops_no_setclr_inv)
+> > > > > +
+> > > > > +static const struct mtk_gate top_clks[] = {
+> > > > > +       /* TOP0 */
+> > > > > +       GATE_TOP0(CLK_TOP_CFG_VPP0, "cfg_vpp0", "vpp_sel", 0),
+> > > > > +       GATE_TOP0(CLK_TOP_CFG_VPP1, "cfg_vpp1", "vpp_sel", 1),
+> > > > > +       GATE_TOP0(CLK_TOP_CFG_VDO0, "cfg_vdo0", "vpp_sel", 2),
+> > > > > +       GATE_TOP0(CLK_TOP_CFG_VDO1, "cfg_vdo1", "vpp_sel", 3),
+> > > > > +       GATE_TOP0(CLK_TOP_CFG_UNIPLL_SES, "cfg_unipll_ses",
+> > > > > "univpll_d2", 4),
+> > > > > +       GATE_TOP0(CLK_TOP_CFG_26M_VPP0, "cfg_26m_vpp0",
+> > > "clk26m",
+> > > > > 5),
+> > > > > +       GATE_TOP0(CLK_TOP_CFG_26M_VPP1, "cfg_26m_vpp1",
+> > > "clk26m",
+> > > > > 6),
+> > > > > +       GATE_TOP0(CLK_TOP_CFG_26M_AUD, "cfg_26m_aud", "clk26m",
+> > > 9),
+> > > > > +       GATE_TOP0_FLAGS(CLK_TOP_CFG_AXI_EAST, "cfg_axi_east",
+> > > > > "axi_sel", 10, CLK_IS_CRITICAL),
+> > > > > +       GATE_TOP0_FLAGS(CLK_TOP_CFG_AXI_EAST_NORTH,
+> > > > > "cfg_axi_east_north", "axi_sel", 11,
+> > > > > +               CLK_IS_CRITICAL),
+> > > > > +       GATE_TOP0_FLAGS(CLK_TOP_CFG_AXI_NORTH, "cfg_axi_north",
+> > > > > "axi_sel", 12, CLK_IS_CRITICAL),
+> > > > > +       GATE_TOP0_FLAGS(CLK_TOP_CFG_AXI_SOUTH, "cfg_axi_south",
+> > > > > "axi_sel", 13, CLK_IS_CRITICAL),
+> > > > > +       GATE_TOP0(CLK_TOP_CFG_EXT_TEST, "cfg_ext_test",
+> > > > > "msdcpll_d2", 15),
+> > > > > +       /* TOP1 */
+> > > > > +       GATE_TOP1(CLK_TOP_SSUSB_REF, "ssusb_ref", "clk26m", 0),
+> > > > > +       GATE_TOP1(CLK_TOP_SSUSB_PHY_REF, "ssusb_phy_ref",
+> > > "clk26m",
+> > > > > 1),
+> > > > > +       GATE_TOP1(CLK_TOP_SSUSB_P1_REF, "ssusb_p1_ref",
+> > > "clk26m",
+> > > > > 2),
+> > > > > +       GATE_TOP1(CLK_TOP_SSUSB_PHY_P1_REF, "ssusb_phy_p1_ref",
+> > > > > "clk26m", 3),
+> > > > > +       GATE_TOP1(CLK_TOP_SSUSB_P2_REF, "ssusb_p2_ref",
+> > > "clk26m",
+> > > > > 4),
+> > > > > +       GATE_TOP1(CLK_TOP_SSUSB_PHY_P2_REF, "ssusb_phy_p2_ref",
+> > > > > "clk26m", 5),
+> > > > > +       GATE_TOP1(CLK_TOP_SSUSB_P3_REF, "ssusb_p3_ref",
+> > > "clk26m",
+> > > > > 6),
+> > > > > +       GATE_TOP1(CLK_TOP_SSUSB_PHY_P3_REF, "ssusb_phy_p3_ref",
+> > > > > "clk26m", 7),
+> > > > > +};
+> >
+> > >
+> >
+> > > These should be grouped with the other TOPCKGEN clocks. Another
+> > > reason to
+> > > split this driver into multiple ones.
+> > >
+> >
+>
+>
+>
+> These clocks are "clock gate" in TOPCKGEN, so we separate the data of
+> "clock gate" from "clock mux".
+
+Right, but it gets really confusing when the driver is mixing clocks
+from different clock controllers. Code that gets used together should
+be grouped together. In this case, code for the same hardware block
+should be grouped together. So please split the drivers up if they end
+up being really big, and then group the remaining ones by hardware
+block first, then type second.
+
+> > > > > +
+> > > > > +static const struct mtk_gate_regs apmixed_cg_regs = {
+> > > > > +       .set_ofs = 0x8,
+> > > > > +       .clr_ofs = 0x8,
+> > > > > +       .sta_ofs = 0x8,
+> > > > > +};
+> > > > > +
+> > > > > +#define GATE_APMIXED(_id, _name, _parent,
+> > > > > _shift)                      \
+> > > > > +       GATE_MTK(_id, _name, _parent, &apmixed_cg_regs, _shift,
+> > > > > &mtk_clk_gate_ops_no_setclr_inv)
+> > > > > +
+> > > > > +static const struct mtk_gate apmixed_clks[] = {
+> > > > > +       GATE_APMIXED(CLK_APMIXED_PLL_SSUSB26M, "pll_ssusb26m",
+> > > > > "clk26m", 1),
+> > > > > +};
+> > > > > +
+> > > > > +#define MT8195_PLL_FMAX                (3800UL * MHZ)
+> > > > > +#define MT8195_PLL_FMIN                (1500UL * MHZ)
+> > > > > +#define MT8195_INTEGER_BITS    8
+> > > > > +
+> > > > > +#define PLL(_id, _name, _reg, _pwr_reg, _en_mask,
+> > > _flags,      \
+> > > > > +                       _rst_bar_mask, _pcwbits, _pd_reg,
+> > > > > _pd_shift,    \
+> > > > > +                       _tuner_reg, _tuner_en_reg,
+> > > > > _tuner_en_bit,       \
+> > > > > +                       _pcw_reg, _pcw_shift,
+> > > > > _pcw_chg_reg,                             \
+> > > > > +                       _en_reg, _pll_en_bit)
+> > > > > {                                 \
+> > > > > +               .id =
+> > > > > _id,                                              \
+> > > > > +               .name =
+> > > > > _name,                                          \
+> > > > > +               .reg =
+> > > > > _reg,                                            \
+> > > > > +               .pwr_reg =
+> > > > > _pwr_reg,                                    \
+> > > > > +               .en_mask =
+> > > > > _en_mask,                                    \
+> > > > > +               .flags =
+> > > > > _flags,                                        \
+> > > > > +               .rst_bar_mask =
+> > > > > _rst_bar_mask,                          \
+> > > > > +               .fmax =
+> > > > > MT8195_PLL_FMAX,                                \
+> > > > > +               .fmin =
+> > > > > MT8195_PLL_FMIN,                                \
+> > > > > +               .pcwbits =
+> > > > > _pcwbits,                                    \
+> > > > > +               .pcwibits =
+> > > > > MT8195_INTEGER_BITS,                        \
+> > > > > +               .pd_reg =
+> > > > > _pd_reg,                                      \
+> > > > > +               .pd_shift =
+> > > > > _pd_shift,                                  \
+> > > > > +               .tuner_reg =
+> > > > > _tuner_reg,                                \
+> > > > > +               .tuner_en_reg =
+> > > > > _tuner_en_reg,                          \
+> > > > > +               .tuner_en_bit =
+> > > > > _tuner_en_bit,                          \
+> > > > > +               .pcw_reg =
+> > > > > _pcw_reg,                                    \
+> > > > > +               .pcw_shift =
+> > > > > _pcw_shift,                                \
+> > > > > +               .pcw_chg_reg =
+> > > > > _pcw_chg_reg,                            \
+> > > > > +               .en_reg =
+> > > > > _en_reg,                                      \
+> > > > > +               .pll_en_bit =
+> > > > > _pll_en_bit,                              \
+> > > > > +       }
+> > > > > +
+> > > > > +static const struct mtk_pll_data plls[] = {
+> > > > > +       PLL(CLK_APMIXED_NNAPLL, "nnapll", 0x0390, 0x03a0, 0,
+> > > > > +               0, 0, 22, 0x0398, 24, 0, 0, 0, 0x0398, 0,
+> > > 0x0398,
+> > > > > 0, 9),
+> > > > > +       PLL(CLK_APMIXED_RESPLL, "respll", 0x0190, 0x0320, 0,
+> > > > > +               0, 0, 22, 0x0198, 24, 0, 0, 0, 0x0198, 0,
+> > > 0x0198,
+> > > > > 0, 9),
+> > > > > +       PLL(CLK_APMIXED_ETHPLL, "ethpll", 0x0360, 0x0370, 0,
+> > > > > +               0, 0, 22, 0x0368, 24, 0, 0, 0, 0x0368, 0,
+> > > 0x0368,
+> > > > > 0, 9),
+> > > > > +       PLL(CLK_APMIXED_MSDCPLL, "msdcpll", 0x0710, 0x0720, 0,
+> > > > > +               0, 0, 22, 0x0718, 24, 0, 0, 0, 0x0718, 0,
+> > > 0x0718,
+> > > > > 0, 9),
+> > > > > +       PLL(CLK_APMIXED_TVDPLL1, "tvdpll1", 0x00a0, 0x00b0, 0,
+> > > > > +               0, 0, 22, 0x00a8, 24, 0, 0, 0, 0x00a8, 0,
+> > > 0x00a8,
+> > > > > 0, 9),
+> > > > > +       PLL(CLK_APMIXED_TVDPLL2, "tvdpll2", 0x00c0, 0x00d0, 0,
+> > > > > +               0, 0, 22, 0x00c8, 24, 0, 0, 0, 0x00c8, 0,
+> > > 0x00c8,
+> > > > > 0, 9),
+> > > > > +       PLL(CLK_APMIXED_MMPLL, "mmpll", 0x00e0, 0x00f0,
+> > > 0xff000000,
+> > > > > +               HAVE_RST_BAR, BIT(23), 22, 0x00e8, 24, 0, 0, 0,
+> > > > > 0x00e8, 0, 0x00e8, 0, 9),
+> > > > > +       PLL(CLK_APMIXED_MAINPLL, "mainpll", 0x01d0, 0x01e0,
+> > > > > 0xff000000,
+> > > > > +               HAVE_RST_BAR, BIT(23), 22, 0x01d8, 24, 0, 0, 0,
+> > > > > 0x01d8, 0, 0x01d8, 0, 9),
+> > > > > +       PLL(CLK_APMIXED_VDECPLL, "vdecpll", 0x0890, 0x08a0, 0,
+> > > > > +               0, 0, 22, 0x0898, 24, 0, 0, 0, 0x0898, 0,
+> > > 0x0898,
+> > > > > 0, 9),
+> > > > > +       PLL(CLK_APMIXED_IMGPLL, "imgpll", 0x0100, 0x0110, 0,
+> > > > > +               0, 0, 22, 0x0108, 24, 0, 0, 0, 0x0108, 0,
+> > > 0x0108,
+> > > > > 0, 9),
+> > > > > +       PLL(CLK_APMIXED_UNIVPLL, "univpll", 0x01f0, 0x0700,
+> > > > > 0xff000000,
+> > > > > +               HAVE_RST_BAR, BIT(23), 22, 0x01f8, 24, 0, 0, 0,
+> > > > > 0x01f8, 0, 0x01f8, 0, 9),
+> > > > > +       PLL(CLK_APMIXED_HDMIPLL1, "hdmipll1", 0x08c0, 0x08d0,
+> > > 0,
+> > > > > +               0, 0, 22, 0x08c8, 24, 0, 0, 0, 0x08c8, 0,
+> > > 0x08c8,
+> > > > > 0, 9),
+> > > > > +       PLL(CLK_APMIXED_HDMIPLL2, "hdmipll2", 0x0870, 0x0880,
+> > > 0,
+> > > > > +               0, 0, 22, 0x0878, 24, 0, 0, 0, 0x0878, 0,
+> > > 0x0878,
+> > > > > 0, 9),
+> > > > > +       PLL(CLK_APMIXED_HDMIRX_APLL, "hdmirx_apll", 0x08e0,
+> > > 0x0dd4,
+> > > > > 0,
+> > > > > +               0, 0, 32, 0x08e8, 24, 0, 0, 0, 0x08ec, 0,
+> > > 0x08e8,
+> > > > > 0, 9),
+> > > > > +       PLL(CLK_APMIXED_USB1PLL, "usb1pll", 0x01a0, 0x01b0, 0,
+> > > > > +               0, 0, 22, 0x01a8, 24, 0, 0, 0, 0x01a8, 0,
+> > > 0x01a8,
+> > > > > 0, 9),
+> > > > > +       PLL(CLK_APMIXED_ADSPPLL, "adsppll", 0x07e0, 0x07f0, 0,
+> > > > > +               0, 0, 22, 0x07e8, 24, 0, 0, 0, 0x07e8, 0,
+> > > 0x07e8,
+> > > > > 0, 9),
+> > > > > +       PLL(CLK_APMIXED_APLL1, "apll1", 0x07c0, 0x0dc0, 0,
+> > > > > +               0, 0, 32, 0x07c8, 24, 0x0470, 0x0000, 12,
+> > > 0x07cc,
+> > > > > 0, 0x07c8, 0, 9),
+> > > > > +       PLL(CLK_APMIXED_APLL2, "apll2", 0x0780, 0x0dc4, 0,
+> > > > > +               0, 0, 32, 0x0788, 24, 0x0474, 0x0000, 13,
+> > > 0x078c,
+> > > > > 0, 0x0788, 0, 9),
+> > > > > +       PLL(CLK_APMIXED_APLL3, "apll3", 0x0760, 0x0dc8, 0,
+> > > > > +               0, 0, 32, 0x0768, 24, 0x0478, 0x0000, 14,
+> > > 0x076c,
+> > > > > 0, 0x0768, 0, 9),
+> > > > > +       PLL(CLK_APMIXED_APLL4, "apll4", 0x0740, 0x0dcc, 0,
+> > > > > +               0, 0, 32, 0x0748, 24, 0x047C, 0x0000, 15,
+> > > 0x074c,
+> > > > > 0, 0x0748, 0, 9),
+> > > > > +       PLL(CLK_APMIXED_APLL5, "apll5", 0x07a0, 0x0dd0,
+> > > 0x100000,
+> > > > > +               0, 0, 32, 0x07a8, 24, 0x0480, 0x0000, 16,
+> > > 0x07ac,
+> > > > > 0, 0x07a8, 0, 9),
+> > > > > +       PLL(CLK_APMIXED_MFGPLL, "mfgpll", 0x0340, 0x0350, 0,
+> > > > > +               0, 0, 22, 0x0348, 24, 0, 0, 0, 0x0348, 0,
+> > > 0x0348,
+> > > > > 0, 9),
+> > > > > +       PLL(CLK_APMIXED_DGIPLL, "dgipll", 0x0150, 0x0160, 0,
+> > > > > +               0, 0, 22, 0x0158, 24, 0, 0, 0, 0x0158, 0,
+> > > 0x0158,
+> > > > > 0, 9),
+> > > > > +};
+> > > > > +
+> > > > > +static struct clk_onecell_data *top_clk_data;
+> > > > > +
+> > > > > +static void clk_mt8195_top_init_early(struct device_node
+> > > *node)
+> > > > > +{
+> > > > > +       int i;
+> > > > > +
+> > > > > +       top_clk_data = mtk_alloc_clk_data(CLK_TOP_NR_CLK);
+> > > > > +       if (!top_clk_data)
+> > > > > +               return;
+> > > > > +
+> > > > > +       for (i = 0; i < CLK_TOP_NR_CLK; i++)
+> > > > > +               top_clk_data->clks[i] = ERR_PTR(-EPROBE_DEFER);
+> > > > > +
+> > > > > +       mtk_clk_register_factors(top_early_divs,
+> > > > > ARRAY_SIZE(top_early_divs), top_clk_data);
+> > > > > +
+> > > > > +       of_clk_add_provider(node, of_clk_src_onecell_get,
+> > > > > top_clk_data);
+> > > > > +}
+> > > > > +
+> > > > > +CLK_OF_DECLARE_DRIVER(mt8195_topckgen,
+> > > "mediatek,mt8195-topckgen",
+> > > > > +                       clk_mt8195_top_init_early);
+> > > > > +
+> > > > > +static int clk_mt8195_top_probe(struct platform_device *pdev)
+> > > > > +{
+> > > > > +       struct device_node *node = pdev->dev.of_node;
+> > > > > +       int r;
+> > > > > +       void __iomem *base;
+> > > > > +
+> > > > > +       base = devm_platform_ioremap_resource(pdev, 0);
+> > > > > +       if (IS_ERR(base))
+> > > > > +               return PTR_ERR(base);
+> > > > > +
+> > > > > +       mtk_clk_register_fixed_clks(top_fixed_clks,
+> > > > > ARRAY_SIZE(top_fixed_clks),
+> > > > > +                       top_clk_data);
+> > > > > +       mtk_clk_register_factors(top_early_divs,
+> > > > > ARRAY_SIZE(top_early_divs), top_clk_data);
+> > > > > +       mtk_clk_register_factors(top_divs, ARRAY_SIZE(top_divs),
+> > > > > top_clk_data);
+> > > > > +       mtk_clk_register_muxes(top_mtk_muxes,
+> > > > > ARRAY_SIZE(top_mtk_muxes), node,
+> > > > > +                       &mt8195_clk_lock, top_clk_data);
+> > > > > +       mtk_clk_register_composites(top_muxes,
+> > > > > ARRAY_SIZE(top_muxes), base,
+> > > > > +                       &mt8195_clk_lock, top_clk_data);
+> > > > > +       mtk_clk_register_composites(top_adj_divs,
+> > > > > ARRAY_SIZE(top_adj_divs), base,
+> > > > > +                       &mt8195_clk_lock, top_clk_data);
+> >
+> > >
+> >
+> > > Future work: these functions probably should be made to return
+> > > errors.
+> > >
+> >
+> >
+> > > > > +       r = mtk_clk_register_gates(node, top_clks,
+> > > > > ARRAY_SIZE(top_clks), top_clk_data);
+> > > > > +       if (r)
+> > > > > +               return r;
+> > > > > +
+> > > > > +       return of_clk_add_provider(node, of_clk_src_onecell_get,
+> > > > > top_clk_data);
+> > > > > +}
+> > > > > +
+> > > > > +static int clk_mt8195_infra_ao_probe(struct platform_device
+> > > *pdev)
+> > > > > +{
+> > > > > +       struct clk_onecell_data *clk_data;
+> > > > > +       struct device_node *node = pdev->dev.of_node;
+> > > > > +       int r;
+> > > > > +
+> > > > > +       clk_data = mtk_alloc_clk_data(CLK_INFRA_AO_NR_CLK);
+> > > > > +       if (!clk_data)
+> > > > > +               return -ENOMEM;
+> > > > > +
+> > > > > +       r = mtk_clk_register_gates(node, infra_ao_clks,
+> > > > > ARRAY_SIZE(infra_ao_clks), clk_data);
+> > > > > +       if (r)
+> > > > > +               return r;
+> > > > > +
+> > > > > +       return of_clk_add_provider(node, of_clk_src_onecell_get,
+> > > > > clk_data);
+> >
+> > >
+> >
+> > > You are leaking clk_data if mtk_clk_register_gates() or
+> > > of_clk_add_provider()
+> > > fail.
+> > >
+> >
+>
+>
+>
+> Ok, I will fix it include you mention below, thanks for you comment.
+>
+>
+> > > > > +}
+> > > > > +
+> > > > > +static int clk_mt8195_apmixed_probe(struct platform_device
+> > > *pdev)
+> > > > > +{
+> > > > > +       struct clk_onecell_data *clk_data;
+> > > > > +       struct device_node *node = pdev->dev.of_node;
+> > > > > +       int r;
+> > > > > +
+> > > > > +       clk_data = mtk_alloc_clk_data(CLK_APMIXED_NR_CLK);
+> > > > > +       if (!clk_data)
+> > > > > +               return -ENOMEM;
+> > > > > +
+> > > > > +       mtk_clk_register_plls(node, plls, ARRAY_SIZE(plls),
+> > > > > clk_data);
+> > > > > +       r = mtk_clk_register_gates(node, apmixed_clks,
+> > > > > ARRAY_SIZE(apmixed_clks), clk_data);
+> > > > > +       if (r)
+> > > > > +               return r;
+> > > > > +
+> > > > > +       return of_clk_add_provider(node, of_clk_src_onecell_get,
+> > > > > clk_data);
+> >
+> > >
+> >
+> > > Same here.
+> > >
+> >
+> >
+> > > > > +}
+> > > > > +
+> > > > > +static int clk_mt8195_peri_ao_probe(struct platform_device
+> > > *pdev)
+> > > > > +{
+> > > > > +       struct clk_onecell_data *clk_data;
+> > > > > +       struct device_node *node = pdev->dev.of_node;
+> > > > > +       int r;
+> > > > > +
+> > > > > +       clk_data = mtk_alloc_clk_data(CLK_PERI_AO_NR_CLK);
+> > > > > +       if (!clk_data)
+> > > > > +               return -ENOMEM;
+> > > > > +
+> > > > > +       r = mtk_clk_register_gates(node, peri_ao_clks,
+> > > > > ARRAY_SIZE(peri_ao_clks), clk_data);
+> > > > > +       if (r)
+> > > > > +               return r;
+> > > > > +
+> > > > > +       return of_clk_add_provider(node, of_clk_src_onecell_get,
+> > > > > clk_data);
+> >
+> > >
+> >
+> > > And here.
+> > >
+> >
+> >
+> > > > > +}
+> > > > > +
+> > > > > +static const struct of_device_id of_match_clk_mt8195[] = {
+> > > > > +       {
+> > > > > +               .compatible = "mediatek,mt8195-apmixedsys",
+> > > > > +               .data = clk_mt8195_apmixed_probe,
+> > > > > +       }, {
+> > > > > +               .compatible = "mediatek,mt8195-topckgen",
+> > > > > +               .data = clk_mt8195_top_probe,
+> > > > > +       }, {
+> > > > > +               .compatible = "mediatek,mt8195-infracfg_ao",
+> > > > > +               .data = clk_mt8195_infra_ao_probe,
+> > > > > +       }, {
+> > > > > +               .compatible = "mediatek,mt8195-pericfg_ao",
+> > > > > +               .data = clk_mt8195_peri_ao_probe,
+> >
+> > >
+> >
+> > > This file contains four drivers. They do not have depend on each
+> > > other,
+> > > and do not need to be in the same file. Please split them into
+> > > different
+> > > files and preferably different patches so people reading them don't
+> > > have
+> > > to look through unrelated data. Then you don't need the pointer to
+> > > the
+> > > probe function.
+> > >
+> >
+>
+>
+>
+> Ok, I will split to different driver.
+>
+>
+> > > You can keep them under the same Kconfig symbol.
+> > >
+> >
+> >
+> > > > > +       }, {
+> > > > > +               /* sentinel */
+> > > > > +       }
+> > > > > +};
+> > > > > +
+> > > > > +static int clk_mt8195_probe(struct platform_device *pdev)
+> > > > > +{
+> > > > > +       int (*clk_probe)(struct platform_device *pdev);
+> > > > > +       int r;
+> > > > > +
+> > > > > +       clk_probe = of_device_get_match_data(&pdev->dev);
+> > > > > +       if (!clk_probe)
+> > > > > +               return -EINVAL;
+> > > > > +
+> > > > > +       r = clk_probe(pdev);
+> > > > > +       if (r)
+> > > > > +               dev_err(&pdev->dev,
+> > > > > +                       "could not register clock provider: %s:
+> > > > > %d\n",
+> > > > > +                       pdev->name, r);
+> > > > > +
+> > > > > +       return r;
+> > > > > +}
+> > > > > +
+> > > > > +static struct platform_driver clk_mt8195_drv = {
+> > > > > +       .probe = clk_mt8195_probe,
+> > > > > +       .driver = {
+> > > > > +               .name = "clk-mt8195",
+> > > > > +               .of_match_table = of_match_clk_mt8195,
+> > > > > +       },
+> > > > > +};
+> > > > > +
+> > > > > +static int __init clk_mt8195_init(void)
+> > > > > +{
+> > > > > +       return platform_driver_register(&clk_mt8195_drv);
+> > > > > +}
+> > > > > +
+> > > > > +arch_initcall(clk_mt8195_init);
+> >
+> > >
+> >
+> > > Is there any particular reason for arch_initcall?
+> > >
+> >
+>
+>
+> APMIXEDSYS/TOPCKGEN are clock source of others IP block and
+> PERICFG/INFRACFG provide peripheral and bus clocks control, so we want
+> to init early.
+
+Sure, but this should really be done through standard dependency
+handling, and not trying to sequence them by hand.
+
+Is there an observable benefit to having arch_initcall() vs the standard
+order with builtin_platform_driver()? If so, this should be documented
+here as a justifcation for arch_initcall().
 
 
-> Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/adxl354_adxl355.pdf
-> Signed-off-by: Puranjay Mohan <puranjay12@gmail.com>
-> ---
->  MAINTAINERS                      |   7 +
->  drivers/iio/accel/Kconfig        |  29 ++
->  drivers/iio/accel/Makefile       |   3 +
->  drivers/iio/accel/adxl355.h      |  79 +++++
->  drivers/iio/accel/adxl355_core.c | 536 +++++++++++++++++++++++++++++++
->  drivers/iio/accel/adxl355_i2c.c  |  63 ++++
->  drivers/iio/accel/adxl355_spi.c  |  66 ++++
->  7 files changed, 783 insertions(+)
->  create mode 100644 drivers/iio/accel/adxl355.h
->  create mode 100644 drivers/iio/accel/adxl355_core.c
->  create mode 100644 drivers/iio/accel/adxl355_i2c.c
->  create mode 100644 drivers/iio/accel/adxl355_spi.c
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index bd7aff0c1..461f2a192 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -586,6 +586,13 @@ W: http://ez.analog.com/community/linux-device-drivers
->  F:     Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
->  F:     drivers/input/misc/adxl34x.c
->
-> +ADXL355 THREE-AXIS DIGITAL ACCELEROMETER DRIVER
-> +M:     Puranjay Mohan <puranjay12@gmail.com>
-> +L:     linux-iio@vger.kernel.org
-> +S:     Supported
-> +F:     drivers/iio/accel/adxl34x.c
-> +F:     Documentation/devicetree/bindings/iio/accel/adi,adxl355.yaml
-> +
->  ADXL372 THREE-AXIS DIGITAL ACCELEROMETER DRIVER
->  M:     Michael Hennerich <michael.hennerich@analog.com>
->  S:     Supported
-> diff --git a/drivers/iio/accel/Kconfig b/drivers/iio/accel/Kconfig
-> index cceda3cec..9a65353a4 100644
-> --- a/drivers/iio/accel/Kconfig
-> +++ b/drivers/iio/accel/Kconfig
-> @@ -61,6 +61,35 @@ config ADXL345_SPI
->           will be called adxl345_spi and you will also get adxl345_core
->           for the core module.
->
-> +config ADXL355
-> +       tristate
-> +
-> +config ADXL355_I2C
-> +       tristate "Analog Devices ADXL355 3-Axis Digital Accelerometer I2C Driver"
-> +       depends on I2C
-> +       select ADXL355
-> +       select REGMAP_I2C
-> +       help
-> +         Say Y here if you want to build support for the Analog Devices
-> +         ADXL355 3-axis digital accelerometer.
-> +
-> +         To compile this driver as a module, choose M here: the module
-> +         will be called adxl355_i2c and you will also get adxl355_core
-> +         for the core module.
-> +
-> +config ADXL355_SPI
-> +       tristate "Analog Devices ADXL355 3-Axis Digital Accelerometer SPI Driver"
-> +       depends on SPI
-> +       select ADXL355
-> +       select REGMAP_SPI
-> +       help
-> +         Say Y here if you want to build support for the Analog Devices
-> +         ADXL355 3-axis digital accelerometer.
-> +
-> +         To compile this driver as a module, choose M here: the module
-> +         will be called adxl355_spi and you will also get adxl355_core
-> +         for the core module.
-> +
->  config ADXL372
->         tristate
->         select IIO_BUFFER
-> diff --git a/drivers/iio/accel/Makefile b/drivers/iio/accel/Makefile
-> index 32cd1342a..0e4721d2d 100644
-> --- a/drivers/iio/accel/Makefile
-> +++ b/drivers/iio/accel/Makefile
-> @@ -9,6 +9,9 @@ obj-$(CONFIG_ADIS16209) += adis16209.o
->  obj-$(CONFIG_ADXL345) += adxl345_core.o
->  obj-$(CONFIG_ADXL345_I2C) += adxl345_i2c.o
->  obj-$(CONFIG_ADXL345_SPI) += adxl345_spi.o
-> +obj-$(CONFIG_ADXL355) += adxl355_core.o
-> +obj-$(CONFIG_ADXL355_I2C) += adxl355_i2c.o
-> +obj-$(CONFIG_ADXL355_SPI) += adxl355_spi.o
->  obj-$(CONFIG_ADXL372) += adxl372.o
->  obj-$(CONFIG_ADXL372_I2C) += adxl372_i2c.o
->  obj-$(CONFIG_ADXL372_SPI) += adxl372_spi.o
-> diff --git a/drivers/iio/accel/adxl355.h b/drivers/iio/accel/adxl355.h
-> new file mode 100644
-> index 000000000..e0b1e697f
-> --- /dev/null
-> +++ b/drivers/iio/accel/adxl355.h
-> @@ -0,0 +1,79 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * ADXL355 3-Axis Digital Accelerometer
-> + *
-> + * Copyright (c) 2021 Puranjay Mohan <puranjay12@gmail.com>
-> + */
-> +
-> +#ifndef _ADXL355_H_
-> +#define _ADXL355_H_
-> +
-> +#include <linux/regmap.h>
-> +
-> +/* ADXL355 Register Definitions */
-> +#define ADXL355_DEVID_AD       0x00
-> +#define ADXL355_DEVID_MST      0x01
-> +#define ADXL355_PARTID         0x02
-> +#define ADXL355_REVID          0x03
-> +#define ADXL355_STATUS         0x04
-> +#define ADXL355_FIFO_ENTRIES   0x05
-> +#define ADXL355_TEMP2          0x06
-> +#define ADXL355_XDATA3         0x08
-> +#define ADXL355_YDATA3         0x0B
-> +#define ADXL355_ZDATA3         0x0E
-> +#define ADXL355_FIFO_DATA      0x11
-> +#define ADXL355_OFFSET_X_H     0x1E
-> +#define ADXL355_OFFSET_Y_H     0x20
-> +#define ADXL355_OFFSET_Z_H     0x22
-> +#define ADXL355_ACT_EN         0x24
-> +#define ADXL355_ACT_THRESH_H   0x25
-> +#define ADXL355_ACT_THRESH_L   0x26
-> +#define ADXL355_ACT_COUNT      0x27
-> +#define ADXL355_FILTER         0x28
-> +#define ADXL355_FIFO_SAMPLES   0x29
-> +#define ADXL355_INT_MAP                0x2A
-> +#define ADXL355_SYNC           0x2B
-> +#define ADXL355_RANGE          0x2C
-> +#define ADXL355_POWER_CTL      0x2D
-> +#define ADXL355_SELF_TEST      0x2E
-> +#define ADXL355_RESET          0x2F
-> +
-> +#define ADXL355_DEVID_AD_VAL   0xAD
-> +#define ADXL355_DEVID_MST_VAL  0x1D
-> +#define ADXL355_PARTID_VAL     0xED
-> +#define ADXL355_REVID_VAL      0x01
-> +#define ADXL355_RESET_CODE     0x52
-> +
-> +#define ADXL355_POWER_CTL_MODE_MSK     GENMASK(1, 0)
-> +
-> +#define ADXL355_FILTER_ODR_MSK                 GENMASK(3, 0)
-> +#define ADXL355_FILTER_ODR_MODE(x)             ((x) & 0xF)
-> +#define ADXL355_FILTER_HPF_MSK                 GENMASK(6, 4)
-> +#define ADXL355_FILTER_HPF_MODE(x)             (((x) & 0x7) << 4)
-> +
-> +/*
-> + * The datasheet defines an intercept of 1885 LSB at 25 degC
-> + * and a slope of -9.05 LSB/C. The following formula can be used to find the
-> + * temperature:
-> + * Temp = ((RAW - 1885)/(-9.05)) + 25 but this doesn't follow the format of
-> + * the IIO which is Temp = (RAW + OFFSET) * SCALE. Hence using some rearranging
-> + * we get the scale as -110.49723 and offset as -2111.25
-> + */
-> +#define TEMP_SCALE_VAL -110
-> +#define TEMP_SCALE_VAL2 497238
-> +#define TEMP_OFFSET_VAL -2111
-> +#define TEMP_OFFSET_VAL2 250000
-> +
-> +/*
-> + * At +/- 2g with 20-bit resolution, scale is given in datasheet as
-> + * 3.9ug/LSB = 0.0000039 * 9.80665 = 0.00003824593 m/s^2
-> + */
-> +#define ADXL355_NSCALE 38245
-> +
-> +extern const struct regmap_access_table adxl355_readable_regs_tbl;
-> +
-> +extern const struct regmap_access_table adxl355_writeable_regs_tbl;
-> +
-> +int adxl355_core_probe(struct device *dev, struct regmap *regmap,
-> +                      const char *name);
-> +#endif /* _ADXL355_H_ */
-> diff --git a/drivers/iio/accel/adxl355_core.c b/drivers/iio/accel/adxl355_core.c
-> new file mode 100644
-> index 000000000..fa0370d41
-> --- /dev/null
-> +++ b/drivers/iio/accel/adxl355_core.c
-> @@ -0,0 +1,536 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * ADXL355 3-Axis Digital Accelerometer IIO core driver
-> + *
-> + * Copyright (c) 2021 Puranjay Mohan <puranjay12@gmail.com>
-> + *
-> + * Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/adxl354_adxl355.pdf
-> + */
-> +
-> +#include <linux/iio/iio.h>
-> +#include <linux/iio/sysfs.h>
-> +#include <linux/limits.h>
-> +#include <linux/math64.h>
-> +#include <linux/module.h>
-> +#include <linux/regmap.h>
-> +
-> +#include "adxl355.h"
-> +
-> +static const struct regmap_range adxl355_read_reg_range[] = {
-> +       regmap_reg_range(ADXL355_DEVID_AD, ADXL355_FIFO_DATA),
-> +       regmap_reg_range(ADXL355_OFFSET_X_H, ADXL355_SELF_TEST)
-> +};
-> +
-> +const struct regmap_access_table adxl355_readable_regs_tbl = {
-> +       .yes_ranges = adxl355_read_reg_range,
-> +       .n_yes_ranges = ARRAY_SIZE(adxl355_read_reg_range),
-> +};
-> +EXPORT_SYMBOL_GPL(adxl355_readable_regs_tbl);
-> +
-> +static const struct regmap_range adxl355_write_reg_range[] = {
-> +       regmap_reg_range(ADXL355_OFFSET_X_H, ADXL355_RESET)
-> +};
-> +
-> +const struct regmap_access_table adxl355_writeable_regs_tbl = {
-> +       .yes_ranges = adxl355_write_reg_range,
-> +       .n_yes_ranges = ARRAY_SIZE(adxl355_write_reg_range),
-> +};
-> +EXPORT_SYMBOL_GPL(adxl355_writeable_regs_tbl);
-> +
-> +enum adxl355_op_mode {
-> +       ADXL355_MEASUREMENT,
-> +       ADXL355_STANDBY,
-> +       ADXL355_TEMP_OFF
-> +};
-> +
-> +enum adxl355_odr {
-> +       ADXL355_ODR_4000HZ,
-> +       ADXL355_ODR_2000HZ,
-> +       ADXL355_ODR_1000HZ,
-> +       ADXL355_ODR_500HZ,
-> +       ADXL355_ODR_250HZ,
-> +       ADXL355_ODR_125HZ,
-> +       ADXL355_ODR_62_5HZ,
-> +       ADXL355_ODR_31_25HZ,
-> +       ADXL355_ODR_15_625HZ,
-> +       ADXL355_ODR_7_813HZ,
-> +       ADXL355_ODR_3_906HZ
-> +};
-> +
-> +enum adxl355_hpf_3db {
-> +       ADXL355_HPF_OFF,
-> +       ADXL355_HPF_24_7,
-> +       ADXL355_HPF_6_2084,
-> +       ADXL355_HPF_1_5545,
-> +       ADXL355_HPF_0_3862,
-> +       ADXL355_HPF_0_0954,
-> +       ADXL355_HPF_0_0238
-> +};
-> +
-> +static const int adxl355_odr_table[][2] = {
-> +       [0] = {4000, 0},
-> +       [1] = {2000, 0},
-> +       [2] = {1000, 0},
-> +       [3] = {500, 0},
-> +       [4] = {250, 0},
-> +       [5] = {125, 0},
-> +       [6] = {62, 500000},
-> +       [7] = {31, 250000},
-> +       [8] = {15, 625000},
-> +       [9] = {7, 813000},
-> +       [10] = {3, 906000}
-> +};
-> +
-> +static const int adxl355_hpf_3db_multipliers[] = {
-> +       0,
-> +       247000,
-> +       62084,
-> +       15545,
-> +       3862,
-> +       954,
-> +       238
-> +};
-> +
-> +struct adxl355_data {
-> +       struct regmap *regmap;
-> +       struct device *dev;
-> +       struct mutex lock; /* lock to protect op_mode */
-> +       enum adxl355_op_mode op_mode;
-> +       enum adxl355_odr odr;
-> +       enum adxl355_hpf_3db hpf_3db;
-> +       int x_calibbias;
-> +       int y_calibbias;
-> +       int z_calibbias;
-> +       int adxl355_hpf_3db_table[7][2];
-> +};
-> +
-> +static int adxl355_set_op_mode(struct adxl355_data *data,
-> +                              enum adxl355_op_mode op_mode)
-> +{
-> +       int ret;
-> +
-> +       if (data->op_mode == op_mode)
-> +               return 0;
-> +
-> +       ret = regmap_update_bits(data->regmap, ADXL355_POWER_CTL,
-> +                                ADXL355_POWER_CTL_MODE_MSK, op_mode);
-> +       if (ret < 0)
-> +               return ret;
-> +
-> +       data->op_mode = op_mode;
-> +
-> +       return ret;
-> +}
-> +
-> +static void adxl355_fill_3db_frequency_table(struct adxl355_data *data)
-> +{
-> +       int i;
-> +       u64 rem;
-> +       u64 div;
-> +       u32 multiplier;
-> +       u64 odr = mul_u64_u32_shr(adxl355_odr_table[data->odr][0], 1000000, 0) +
-> +                                       adxl355_odr_table[data->odr][1];
-> +
-> +       for (i = 0; i < ARRAY_SIZE(adxl355_hpf_3db_multipliers); i++) {
-> +               multiplier = adxl355_hpf_3db_multipliers[i];
-> +               div = div64_u64_rem(mul_u64_u32_shr(odr, multiplier, 0),
-> +                                   100000000000000UL, &rem);
-> +
-> +               data->adxl355_hpf_3db_table[i][0] = div;
-> +               data->adxl355_hpf_3db_table[i][1] = div_u64(rem, 100000000);
-> +       }
-> +}
-> +
-> +static int adxl355_setup(struct adxl355_data *data)
-> +{
-> +       unsigned int regval;
-> +       int ret;
-> +
-> +       ret = regmap_read(data->regmap, ADXL355_DEVID_AD, &regval);
-> +       if (ret < 0)
-> +               return ret;
-> +
-> +       if (regval != ADXL355_DEVID_AD_VAL) {
-> +               dev_err(data->dev, "Invalid ADI ID 0x%02x\n", regval);
-> +               return -ENODEV;
-> +       }
-> +
-> +       ret = regmap_read(data->regmap, ADXL355_DEVID_MST, &regval);
-> +       if (ret < 0)
-> +               return ret;
-> +
-> +       if (regval != ADXL355_DEVID_MST_VAL) {
-> +               dev_err(data->dev, "Invalid MEMS ID 0x%02x\n", regval);
-> +               return -ENODEV;
-> +       }
-> +
-> +       ret = regmap_read(data->regmap, ADXL355_PARTID, &regval);
-> +       if (ret < 0)
-> +               return ret;
-> +
-> +       if (regval != ADXL355_PARTID_VAL) {
-> +               dev_err(data->dev, "Invalid DEV ID 0x%02x\n", regval);
-> +               return -ENODEV;
-> +       }
-> +
-> +       /*
-> +        * Perform a software reset to make sure the device is in a consistent
-> +        * state after start up.
-> +        */
-> +       ret = regmap_write(data->regmap, ADXL355_RESET, ADXL355_RESET_CODE);
-> +       if (ret < 0)
-> +               return ret;
-> +
-> +       adxl355_fill_3db_frequency_table(data);
-> +
-> +       return adxl355_set_op_mode(data, ADXL355_MEASUREMENT);
-> +}
-> +
-> +static int adxl355_get_temp_data(struct adxl355_data *data,
-> +                                u8 addr, __be16 *out)
-> +{
-> +       return regmap_bulk_read(data->regmap, addr, out, sizeof(*out));
-> +}
-> +
-> +static int adxl355_read_axis(struct adxl355_data *data, u8 addr)
-> +{
-> +       __be32 regval;
-> +       int ret;
-> +
-> +       ret = regmap_bulk_read(data->regmap, addr, &regval, 3);
-> +       if (ret < 0)
-> +               return ret;
-> +
-> +       return be32_to_cpu(regval) >> 8;
-> +}
-> +
-> +static int adxl355_find_match(const int (*freq_tbl)[2], const int n,
-> +                             const int val, const int val2)
-> +{
-> +       int i;
-> +
-> +       for (i = 0; i < n; i++) {
-> +               if (freq_tbl[i][0] == val && freq_tbl[i][1] == val2)
-> +                       return i;
-> +       }
-> +
-> +       return -EINVAL;
-> +}
-> +
-> +static int adxl355_set_odr(struct adxl355_data *data,
-> +                          enum adxl355_odr odr)
-> +{
-> +       int ret = 0;
-> +
-> +       mutex_lock(&data->lock);
-> +
-> +       if (data->odr == odr)
-> +               goto out_unlock;
-> +
-> +       ret = adxl355_set_op_mode(data, ADXL355_STANDBY);
-> +       if (ret < 0)
-> +               goto out_unlock;
-> +
-> +       ret = regmap_update_bits(data->regmap, ADXL355_FILTER,
-> +                                ADXL355_FILTER_ODR_MSK,
-> +                                ADXL355_FILTER_ODR_MODE(odr));
-> +       if (!ret) {
-> +               data->odr = odr;
-> +               adxl355_fill_3db_frequency_table(data);
-> +       }
-> +
-> +out_unlock:
-> +       ret = adxl355_set_op_mode(data, ADXL355_MEASUREMENT);
-> +       mutex_unlock(&data->lock);
-> +       return ret;
-> +}
-> +
-> +static int adxl355_set_hpf_3db(struct adxl355_data *data,
-> +                              enum adxl355_hpf_3db hpf)
-> +{
-> +       int ret = 0;
-> +
-> +       mutex_lock(&data->lock);
-> +
-> +       if (data->hpf_3db == hpf)
-> +               goto out_unlock;
-> +
-> +       ret = adxl355_set_op_mode(data, ADXL355_STANDBY);
-> +       if (ret < 0)
-> +               goto out_unlock;
-> +
-> +       ret = regmap_update_bits(data->regmap, ADXL355_FILTER,
-> +                                ADXL355_FILTER_HPF_MSK,
-> +                                ADXL355_FILTER_HPF_MODE(hpf));
-> +       if (!ret)
-> +               data->hpf_3db = hpf;
-> +
-> +out_unlock:
-> +       ret = adxl355_set_op_mode(data, ADXL355_MEASUREMENT);
-> +       mutex_unlock(&data->lock);
-> +       return ret;
-> +}
-> +
-> +static int adxl355_set_calibbias(struct adxl355_data *data,
-> +                                int scan_index, int calibbias)
-> +{
-> +       int ret = 0;
-> +       __be16 reg = cpu_to_be16(calibbias);
-> +
-> +       mutex_lock(&data->lock);
-> +
-> +       ret = adxl355_set_op_mode(data, ADXL355_STANDBY);
-> +       if (ret < 0)
-> +               goto out_unlock;
-> +
-> +       switch (scan_index) {
-> +       case 0:
-> +               ret = regmap_bulk_write(data->regmap, ADXL355_OFFSET_X_H,
-> +                                       &reg, 2);
-> +               if (ret < 0)
-> +                       goto out_unlock;
-> +               data->x_calibbias = calibbias;
-> +               break;
-> +       case 1:
-> +               ret = regmap_bulk_write(data->regmap, ADXL355_OFFSET_Y_H,
-> +                                       &reg, 2);
-> +               if (ret < 0)
-> +                       goto out_unlock;
-> +               data->y_calibbias = calibbias;
-> +               break;
-> +       case 2:
-> +               ret = regmap_bulk_write(data->regmap, ADXL355_OFFSET_Z_H,
-> +                                       &reg, 2);
-> +               if (ret < 0)
-> +                       goto out_unlock;
-> +               data->z_calibbias = calibbias;
-> +               break;
-> +       default:
-> +               ret = -EINVAL;
-> +               break;
-> +       }
-> +
-> +out_unlock:
-> +       ret = adxl355_set_op_mode(data, ADXL355_MEASUREMENT);
-> +       mutex_unlock(&data->lock);
-> +       return ret;
-> +}
-> +
-> +static int adxl355_read_raw(struct iio_dev *indio_dev,
-> +                           struct iio_chan_spec const *chan,
-> +                           int *val, int *val2, long mask)
-> +{
-> +       struct adxl355_data *data = iio_priv(indio_dev);
-> +       int ret;
-> +       __be16 out;
-> +
-> +       switch (mask) {
-> +       case IIO_CHAN_INFO_RAW:
-> +               switch (chan->type) {
-> +               case IIO_TEMP:
-> +                       ret = adxl355_get_temp_data(data, chan->address, &out);
-> +                       if (ret < 0)
-> +                               return ret;
-> +                       *val = be16_to_cpu(out);
-> +
-> +                       return IIO_VAL_INT;
-> +               case IIO_ACCEL:
-> +                       ret = adxl355_read_axis(data, chan->address);
-> +                       if (ret < 0)
-> +                               return ret;
-> +                       *val = sign_extend32(ret >> (chan->scan_type.shift),
-> +                                            chan->scan_type.realbits - 1);
-> +                       return IIO_VAL_INT;
-> +               default:
-> +                       return -EINVAL;
-> +               }
-> +
-> +       case IIO_CHAN_INFO_SCALE:
-> +               switch (chan->type) {
-> +               case IIO_TEMP:
-> +                       *val = TEMP_SCALE_VAL;
-> +                       *val2 = TEMP_SCALE_VAL2;
-> +                       return IIO_VAL_INT_PLUS_MICRO;
-> +               case IIO_ACCEL:
-> +                       *val = 0;
-> +                       *val2 = ADXL355_NSCALE;
-> +                       return IIO_VAL_INT_PLUS_NANO;
-> +               default:
-> +                       return -EINVAL;
-> +               }
-> +       case IIO_CHAN_INFO_OFFSET:
-> +               *val = TEMP_OFFSET_VAL;
-> +               *val2 = TEMP_OFFSET_VAL2;
-> +               return IIO_VAL_INT_PLUS_MICRO;
-> +       case IIO_CHAN_INFO_CALIBBIAS:
-> +               if (chan->scan_index == 0)
-> +                       *val = data->x_calibbias;
-> +               else if (chan->scan_index == 1)
-> +                       *val = data->y_calibbias;
-> +               else
-> +                       *val = data->z_calibbias;
-> +               *val = sign_extend32(*val, 15);
-> +               return IIO_VAL_INT;
-> +       case IIO_CHAN_INFO_SAMP_FREQ:
-> +               *val = adxl355_odr_table[data->odr][0];
-> +               *val2 = adxl355_odr_table[data->odr][1];
-> +               return IIO_VAL_INT_PLUS_MICRO;
-> +       case IIO_CHAN_INFO_HIGH_PASS_FILTER_3DB_FREQUENCY:
-> +               *val = data->adxl355_hpf_3db_table[data->hpf_3db][0];
-> +               *val2 = data->adxl355_hpf_3db_table[data->hpf_3db][1];
-> +               return IIO_VAL_INT_PLUS_MICRO;
-> +       }
-> +       return -EINVAL;
-> +}
-> +
-> +static int adxl355_write_raw(struct iio_dev *indio_dev,
-> +                            struct iio_chan_spec const *chan,
-> +                            int val, int val2, long mask)
-> +{
-> +       struct adxl355_data *data = iio_priv(indio_dev);
-> +       int odr_idx, hpf_idx, calibbias;
-> +
-> +       switch (mask) {
-> +       case IIO_CHAN_INFO_SAMP_FREQ:
-> +               odr_idx = adxl355_find_match(adxl355_odr_table,
-> +                                            ARRAY_SIZE(adxl355_odr_table),
-> +                                            val, val2);
-> +               if (odr_idx < 0)
-> +                       return odr_idx;
-> +
-> +               return adxl355_set_odr(data, odr_idx);
-> +       case IIO_CHAN_INFO_HIGH_PASS_FILTER_3DB_FREQUENCY:
-> +               hpf_idx = adxl355_find_match(data->adxl355_hpf_3db_table,
-> +                                       ARRAY_SIZE(data->adxl355_hpf_3db_table),
-> +                                            val, val2);
-> +               if (hpf_idx < 0)
-> +                       return hpf_idx;
-> +
-> +               return adxl355_set_hpf_3db(data, hpf_idx);
-> +       case IIO_CHAN_INFO_CALIBBIAS:
-> +               calibbias = clamp_t(int, val, S16_MIN, S16_MAX);
-> +
-> +               return adxl355_set_calibbias(data, chan->scan_index, calibbias);
-> +       default:
-> +               return -EINVAL;
-> +       }
-> +}
-> +
-> +static int adxl355_read_avail(struct iio_dev *indio_dev,
-> +                             struct iio_chan_spec const *chan,
-> +                             const int **vals, int *type, int *length,
-> +                             long mask)
-> +{
-> +       struct adxl355_data *data = iio_priv(indio_dev);
-> +
-> +       switch (mask) {
-> +       case IIO_CHAN_INFO_SAMP_FREQ:
-> +               *vals = (const int *)adxl355_odr_table;
-> +               *type = IIO_VAL_INT_PLUS_MICRO;
-> +               /* Values are stored in a 2D matrix */
-> +               *length = ARRAY_SIZE(adxl355_odr_table) * 2;
-> +
-> +               return IIO_AVAIL_LIST;
-> +       case IIO_CHAN_INFO_HIGH_PASS_FILTER_3DB_FREQUENCY:
-> +               *vals = (const int *)(data->adxl355_hpf_3db_table);
-> +               *type = IIO_VAL_INT_PLUS_MICRO;
-> +               /* Values are stored in a 2D matrix */
-> +               *length = ARRAY_SIZE(data->adxl355_hpf_3db_table) * 2;
-> +
-> +               return IIO_AVAIL_LIST;
-> +       default:
-> +               return -EINVAL;
-> +       }
-> +}
-> +
-> +static const unsigned long adxl355_avail_scan_masks[] = {
-> +       GENMASK(3, 0),
-> +       0
-> +};
-> +
-> +static const struct iio_info adxl355_info = {
-> +       .read_raw       = adxl355_read_raw,
-> +       .write_raw      = adxl355_write_raw,
-> +       .read_avail     = &adxl355_read_avail
-> +};
-> +
-> +#define ADXL355_ACCEL_CHANNEL(index, reg, axis) {                      \
-> +       .type = IIO_ACCEL,                                              \
-> +       .address = reg,                                                 \
-> +       .modified = 1,                                                  \
-> +       .channel2 = IIO_MOD_##axis,                                     \
-> +       .info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |                  \
-> +                             BIT(IIO_CHAN_INFO_CALIBBIAS),             \
-> +       .info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) |          \
-> +                                   BIT(IIO_CHAN_INFO_SAMP_FREQ) |      \
-> +               BIT(IIO_CHAN_INFO_HIGH_PASS_FILTER_3DB_FREQUENCY),      \
-> +       .info_mask_shared_by_type_available =                           \
-> +               BIT(IIO_CHAN_INFO_SAMP_FREQ) |                          \
-> +               BIT(IIO_CHAN_INFO_HIGH_PASS_FILTER_3DB_FREQUENCY),      \
-> +       .scan_index = index,                                            \
-> +       .scan_type = {                                                  \
-> +               .sign = 's',                                            \
-> +               .realbits = 20,                                         \
-> +               .storagebits = 32,                                      \
-> +               .shift = 4,                                             \
-> +               .endianness = IIO_BE,                                   \
-> +       }                                                               \
-> +}
-> +
-> +static const struct iio_chan_spec adxl355_channels[] = {
-> +       ADXL355_ACCEL_CHANNEL(0, ADXL355_XDATA3, X),
-> +       ADXL355_ACCEL_CHANNEL(1, ADXL355_YDATA3, Y),
-> +       ADXL355_ACCEL_CHANNEL(2, ADXL355_ZDATA3, Z),
-> +       {
-> +               .type = IIO_TEMP,
-> +               .address = ADXL355_TEMP2,
-> +               .info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-> +                                     BIT(IIO_CHAN_INFO_SCALE) |
-> +                                     BIT(IIO_CHAN_INFO_OFFSET),
-> +               .scan_index = 3,
-> +               .scan_type = {
-> +                       .sign = 's',
-> +                       .realbits = 12,
-> +                       .storagebits = 16,
-> +                       .endianness = IIO_BE,
-> +               },
-> +       }
-> +};
-> +
-> +int adxl355_core_probe(struct device *dev, struct regmap *regmap,
-> +                      const char *name)
-> +{
-> +       struct adxl355_data *data;
-> +       struct iio_dev *indio_dev;
-> +       int ret;
-> +
-> +       indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
-> +       if (!indio_dev)
-> +               return -ENOMEM;
-> +
-> +       data = iio_priv(indio_dev);
-> +       data->regmap = regmap;
-> +       data->dev = dev;
-> +       data->op_mode = ADXL355_STANDBY;
-> +       mutex_init(&data->lock);
-> +
-> +       indio_dev->name = name;
-> +       indio_dev->info = &adxl355_info;
-> +       indio_dev->modes = INDIO_DIRECT_MODE;
-> +       indio_dev->channels = adxl355_channels;
-> +       indio_dev->num_channels = ARRAY_SIZE(adxl355_channels);
-> +       indio_dev->available_scan_masks = adxl355_avail_scan_masks;
-> +
-> +       ret = adxl355_setup(data);
-> +       if (ret < 0) {
-> +               dev_err(dev, "ADXL355 setup failed\n");
-> +               return ret;
-> +       }
-> +
-> +       return devm_iio_device_register(dev, indio_dev);
-> +}
-> +EXPORT_SYMBOL_GPL(adxl355_core_probe);
-> +
-> +MODULE_AUTHOR("Puranjay Mohan <puranjay12@gmail.com>");
-> +MODULE_DESCRIPTION("ADXL355 3-Axis Digital Accelerometer core driver");
-> +MODULE_LICENSE("GPL v2");
-> diff --git a/drivers/iio/accel/adxl355_i2c.c b/drivers/iio/accel/adxl355_i2c.c
-> new file mode 100644
-> index 000000000..6b84d8df2
-> --- /dev/null
-> +++ b/drivers/iio/accel/adxl355_i2c.c
-> @@ -0,0 +1,63 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * ADXL355 3-Axis Digital Accelerometer I2C driver
-> + *
-> + * Copyright (c) 2021 Puranjay Mohan <puranjay12@gmail.com>
-> + */
-> +
-> +#include <linux/i2c.h>
-> +#include <linux/module.h>
-> +#include <linux/regmap.h>
-> +
-> +#include "adxl355.h"
-> +
-> +static const struct regmap_config adxl355_i2c_regmap_config = {
-> +       .reg_bits = 8,
-> +       .val_bits = 8,
-> +       .max_register = 0x2F,
-> +       .rd_table = &adxl355_readable_regs_tbl,
-> +       .wr_table = &adxl355_writeable_regs_tbl
-> +};
-> +
-> +static int adxl355_i2c_probe(struct i2c_client *client)
-> +{
-> +       struct regmap *regmap;
-> +
-> +       regmap = devm_regmap_init_i2c(client, &adxl355_i2c_regmap_config);
-> +       if (IS_ERR(regmap)) {
-> +               dev_err(&client->dev, "Error initializing i2c regmap: %ld\n",
-> +                       PTR_ERR(regmap));
-> +               return PTR_ERR(regmap);
-> +       }
-> +
-> +       return adxl355_core_probe(&client->dev, regmap, client->name);
-> +}
-> +
-> +static const struct i2c_device_id adxl355_i2c_id[] = {
-> +       { "adxl355", 0 },
-> +       { }
-> +};
-> +
-> +MODULE_DEVICE_TABLE(i2c, adxl355_i2c_id);
-> +
-> +static const struct of_device_id adxl355_of_match[] = {
-> +       { .compatible = "adi,adxl355" },
-> +       { }
-> +};
-> +
-> +MODULE_DEVICE_TABLE(of, adxl355_of_match);
-> +
-> +static struct i2c_driver adxl355_i2c_driver = {
-> +       .driver = {
-> +               .name   = "adxl355_i2c",
-> +               .of_match_table = adxl355_of_match,
-> +       },
-> +       .probe_new      = adxl355_i2c_probe,
-> +       .id_table       = adxl355_i2c_id,
-> +};
-> +
-> +module_i2c_driver(adxl355_i2c_driver);
-> +
-> +MODULE_AUTHOR("Puranjay Mohan <puranjay12@gmail.com>");
-> +MODULE_DESCRIPTION("ADXL355 3-Axis Digital Accelerometer I2C driver");
-> +MODULE_LICENSE("GPL v2");
-> diff --git a/drivers/iio/accel/adxl355_spi.c b/drivers/iio/accel/adxl355_spi.c
-> new file mode 100644
-> index 000000000..108d1b308
-> --- /dev/null
-> +++ b/drivers/iio/accel/adxl355_spi.c
-> @@ -0,0 +1,66 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * ADXL355 3-Axis Digital Accelerometer SPI driver
-> + *
-> + * Copyright (c) 2021 Puranjay Mohan <puranjay12@gmail.com>
-> + */
-> +
-> +#include <linux/module.h>
-> +#include <linux/regmap.h>
-> +#include <linux/spi/spi.h>
-> +
-> +#include "adxl355.h"
-> +
-> +static const struct regmap_config adxl355_spi_regmap_config = {
-> +       .reg_bits = 7,
-> +       .pad_bits = 1,
-> +       .val_bits = 8,
-> +       .read_flag_mask = BIT(0),
-> +       .max_register = 0x2F,
-> +       .rd_table = &adxl355_readable_regs_tbl,
-> +       .wr_table = &adxl355_writeable_regs_tbl
-> +};
-> +
-> +static int adxl355_spi_probe(struct spi_device *spi)
-> +{
-> +       const struct spi_device_id *id = spi_get_device_id(spi);
-> +       struct regmap *regmap;
-> +
-> +       regmap = devm_regmap_init_spi(spi, &adxl355_spi_regmap_config);
-> +       if (IS_ERR(regmap)) {
-> +               dev_err(&spi->dev, "Error initializing spi regmap: %ld\n",
-> +                       PTR_ERR(regmap));
-> +               return PTR_ERR(regmap);
-> +       }
-> +
-> +       return adxl355_core_probe(&spi->dev, regmap, id->name);
-> +}
-> +
-> +static const struct spi_device_id adxl355_spi_id[] = {
-> +       { "adxl355", 0 },
-> +       { }
-> +};
-> +
-> +MODULE_DEVICE_TABLE(spi, adxl355_spi_id);
-> +
-> +static const struct of_device_id adxl355_of_match[] = {
-> +       { .compatible = "adi,adxl355" },
-> +       { }
-> +};
-> +
-> +MODULE_DEVICE_TABLE(of, adxl355_of_match);
-> +
-> +static struct spi_driver adxl355_spi_driver = {
-> +       .driver = {
-> +               .name   = "adxl355_spi",
-> +               .of_match_table = adxl355_of_match,
-> +       },
-> +       .probe          = adxl355_spi_probe,
-> +       .id_table       = adxl355_spi_id,
-> +};
-> +
-> +module_spi_driver(adxl355_spi_driver);
-> +
-> +MODULE_AUTHOR("Puranjay Mohan <puranjay12@gmail.com>");
-> +MODULE_DESCRIPTION("ADXL355 3-Axis Digital Accelerometer SPI driver");
-> +MODULE_LICENSE("GPL v2");
-> --
-> 2.30.1
->
+Regards
+ChenYu
