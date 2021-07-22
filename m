@@ -2,141 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42F813D21E0
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 12:12:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2EE23D21E5
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 12:12:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231448AbhGVJb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 05:31:29 -0400
-Received: from mail-eopbgr40074.outbound.protection.outlook.com ([40.107.4.74]:23264
-        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230514AbhGVJb2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Jul 2021 05:31:28 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=F8jqb5pU2/7xaFsmUcqDBrbuHrCxt73RfFl5Jb87mgPS9oEMyNr2LzedVtcN0M0LMxyikBFOMbq0nLr4wv8cKM1BspMphMBXVpJ8OQ5PSA//WSOVpyttdowjeSAUTeFg87m9N7c/SF1Huvn6wn3MbTTDZLuygHQhsyVVFXqx9O+IaksIKf5psKx/erO/H9MKpFk/QRqZQuoINaG4HI50rS3ZduUlCUWGAnRt9kE5B0purz6FyEkiT87pw5JKucdbHT4bZ2hSDlFOnW3jh7U4eCMxc4TVQRZyH1cRt2nxtFK4+0Mk2XxMlX1KTlF1qjy6XHQDSySWdeVRF0osLyWGFw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sWY7Q/PZ3Lf9bu5T5h0FTQDfos+bqFK5pE3hQtimb0w=;
- b=kS7qXnc0ZCdQRciMaIaLhJ8VlD70r9zQCC/RdlIRDubXlnZGdBIcXWAEkukA+rLsoiMte8XaPwr60VHf7ZJoyiSC6XPXGKt1ry85WlpXsNZEyF0D54CpTzvWweVZnnjo/pLpAjWxBaWmgG8TCbCtXJGZHSIQW/tQduqwB2eucudJhfoAJgwcyBvU360897QJK4BliHjpfWwXHHEpG7hO6QXp70d2/2UjKaC9UxZAsySdJgXxF6SJEplmUL1XBGRenVsEyrheb8VNZx6nhQhcuDEWgraDo/w2SF9qP90Xd/ZfJ+XhmQ/Fr+myWFx6isSH/VYOcBjgM9lN9fMoiWTtwg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sWY7Q/PZ3Lf9bu5T5h0FTQDfos+bqFK5pE3hQtimb0w=;
- b=O1aQ2cASDpQbtt9tp++/LijmbMdlxpwhXnkDNXnq0a9SNzG+40eMONfzxWTa+J4qxREj4HMuIa/VYprCk6GE2osJbgG9LB5k1rWb/aPN5qaGBDbuDg2eOft77qJgy1OHiHz8Q9cJ0GD0GAvwsFRs0sa+WhuAEdAgrqQ6qj+a03s=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none header.from=nxp.com;
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
- by VI1PR0402MB2862.eurprd04.prod.outlook.com (2603:10a6:800:b6::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4352.25; Thu, 22 Jul
- 2021 10:12:01 +0000
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::109:1995:3e6b:5bd0]) by VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::109:1995:3e6b:5bd0%2]) with mapi id 15.20.4352.026; Thu, 22 Jul 2021
- 10:12:00 +0000
-From:   Vladimir Oltean <vladimir.oltean@nxp.com>
-To:     devicetree@vger.kernel.org
-Cc:     =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH net-next] arm64: dts: armada-3720-turris-mox: fixed indices for the SDHC controllers
-Date:   Thu, 22 Jul 2021 13:11:34 +0300
-Message-Id: <20210722101134.2514089-1-vladimir.oltean@nxp.com>
-X-Mailer: git-send-email 2.25.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: AM0PR02CA0107.eurprd02.prod.outlook.com
- (2603:10a6:208:154::48) To VI1PR04MB5136.eurprd04.prod.outlook.com
- (2603:10a6:803:55::19)
+        id S230367AbhGVJcE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 05:32:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53984 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231534AbhGVJcE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Jul 2021 05:32:04 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A57F261249;
+        Thu, 22 Jul 2021 10:12:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1626948753;
+        bh=PD6+quR50a/B3tEP2haRK97FZm507gd8odCaXmk0NLc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DfRRN584U0PmEiVYBOsEHqGz4ReyrUHA1JzdrNGIoCVAq044FGIivyFHz5zC1p4ql
+         nZaw16+rJU9MvPrtZ/nb+6OuiX/jpEcJJqHjO1EOKbHv6bQ18H2hjb12Qghw2mftra
+         vfw+r+R/HnxQ2/OJTQyp8YqHmsR3tP8b35CGn8+M=
+Date:   Thu, 22 Jul 2021 12:12:30 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     zhiyong tao <zhiyong.tao@mediatek.com>
+Cc:     timur@kernel.org, linux@armlinux.org.uk, alcooperx@gmail.com,
+        tklauser@distanz.ch, sean.wang@kernel.org,
+        srv_heupstream@mediatek.com, hui.liu@mediatek.com,
+        yuchen.huang@mediatek.com, huihui.wang@mediatek.com,
+        eddie.huang@mediatek.com, sean.wang@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-serial@vger.kernel.org
+Subject: Re: [PATCH] uart: mediatek: fix memory corruption issue
+Message-ID: <YPlEjlKn5Hav/GNH@kroah.com>
+References: <20210710090103.2643-1-zhiyong.tao@mediatek.com>
+ <20210710090103.2643-2-zhiyong.tao@mediatek.com>
+ <YPf67gw2KJCk/Ucs@kroah.com>
+ <1626948212.29611.47.camel@mhfsdcap03>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (82.76.66.29) by AM0PR02CA0107.eurprd02.prod.outlook.com (2603:10a6:208:154::48) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4352.24 via Frontend Transport; Thu, 22 Jul 2021 10:11:59 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 40195ce7-ed52-463e-3941-08d94cf92531
-X-MS-TrafficTypeDiagnostic: VI1PR0402MB2862:
-X-Microsoft-Antispam-PRVS: <VI1PR0402MB286296BF3837FCB313D6DAB7E0E49@VI1PR0402MB2862.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Z804K+rhIhpkoO4zVfwK66uMrvSt3jxSA2JfuQNR/RAMxWPp4uc8RUZ+3ic3ecxdqVyjJ0c+NTFDx9XzKt0B4bcWvLwnhpHC2Iq48ov1BgDXtL9aOEOaRCKRD+5WhGO4kBuwbW7+Zf8Y8TJC5bMy+4qZXADcf60ab6z6HdRLD2ERGpA9ioLyMHWP3g6AYGhX8/wIJctffiQry9925o4P8x+TkZeVTPM8OvlyTp4SAxpTS1GsWDYCs6xOo0iidI9JoMxB+EJavXDJhXdgm9bYTpZWTzE8hesI1HrzR0OUweSTbd5zFkjmsdrVqKqa9B+k6N3KwJNROakn5p7AGpl939aHyLNfL6tUczfDWyUmqgFKiI7rDk3g75IjEk+UTXwYI0YVwdmBey5aqDiUrG2ctav6zpg+otDtULxf/PDVjTr/KLtT/IKRFDfE7khp6YCi3zkQwk2HlsfxVUMJ9ODOSQI6bHDgXHQ38veLTm5Q7bIyTnPDuNvn/m6ACSIq6UJFrAIbe4ztUWwj/8NG174YkMeTn23z5VLClL18fxeLNxXjp3U7adpnej/HXFBrfKXiUrNlqbKGH4Pirmn4GNHrhWEQTuU/inUvXE6HpPszpVrEgMzwZpv3iQUkR2BfbJCqvMYFy2m9GMMMN0ck7pY/YhscE+QpkYFZZSFvGMuZILGA7LhqsdjJb10Y68SAM3ANlNMmZ9RAd1rjjdLKo8ELLw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(346002)(366004)(136003)(39860400002)(376002)(956004)(1076003)(86362001)(2616005)(7416002)(5660300002)(4744005)(54906003)(6506007)(6916009)(66556008)(66476007)(66946007)(36756003)(8936002)(52116002)(44832011)(316002)(8676002)(6486002)(4326008)(38100700002)(38350700002)(2906002)(6666004)(26005)(478600001)(186003)(6512007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?O8jv/2ZTZp7zcWD7xTkqw6YvIWH1RSHQz2K6mrWkw9ojllIpL+rDa33wPMDx?=
- =?us-ascii?Q?cyqDi0YVmaBq2ctWnd/7mfKFboYC4c0YGo+Oc6+0/wLcAzF7Enc+o2a8I+y6?=
- =?us-ascii?Q?+dIreUVHPIfeZDcE/iZDOLU2GsjtrhAgUkNrFIlH9KM3PfW+z3rEd1InM8VY?=
- =?us-ascii?Q?uykD6wHoXUjbMoklGzc7tFwT5CfBTS15ToWZEpuNkcFm6sPz49Y+7mE54nCq?=
- =?us-ascii?Q?LBtlhkFRDUfCfxjIgxyoX/Fh8KaO1n67n+tvEmMOZRRzUj2mEwyFXHDjL2aX?=
- =?us-ascii?Q?bmZJ4PNw0E5WJ9H9+TrRqTxuRaw8XpocuXHHzgUkVOgzarbg9uA/bEa85oXL?=
- =?us-ascii?Q?RanJdPrh8oN7mDW+Yd5zKUfDofmxCOvJeStL6Gh4KntreCM2NfIKjOchK/hC?=
- =?us-ascii?Q?0zO6i+uPr7QMyQVBG2sPs0IRd06DOZyLM1Q7pB3UxHhq8WkpckaFaxZpWQdA?=
- =?us-ascii?Q?PPlxjh1BpprF1AkFmUL87u8SX7qKd3p+GeM2zCpVKmYNd3vN3O/2NBqjfN5N?=
- =?us-ascii?Q?UH8rs3GWtKO2L4bt4hN6+ruxOMCUOn/9dSwcFfzX+ma07tGH8zYvMCXJL0IU?=
- =?us-ascii?Q?OH2dRbWH8gzEMAJzmm2A2LSJ9eQHRIRZah7qN/7BlTG/QEsVYL/Fx8TYFjtO?=
- =?us-ascii?Q?J5WUkGxT/fogeQuGaNvijpcwxMnnMVepS7c6V7rjdeycoZaaGyS4TH3a6Cbq?=
- =?us-ascii?Q?Okb0rJTsjqWzJYpLP2hIX5b9xrYtVepFvJJBPTo7XjsIUtvAtzrUwsngT3oN?=
- =?us-ascii?Q?UF+h6qbMamHXIKa1LAn9jvLYMTH31q5mdI8f7Zxd0JRyjLIN6TngaBUKNrTr?=
- =?us-ascii?Q?J6NSLerI0w+xUzosC3Tg3a9EdhBKLQjc3GAgYPs6NWDjehtl0DUB9yrNHJ8G?=
- =?us-ascii?Q?+r8Va/mD9SeBD2uVAdlSOTaS/AuJP9F1WBXaRVUpAYLy+A2xaA8GZGu3Vkod?=
- =?us-ascii?Q?PGqjacQAxjuc+yWnHMm55nu5tzD1dSyqU8tGE2QLEvZN8NdzP7DpWUvUqG9+?=
- =?us-ascii?Q?lEibiAGCzj6hXE4wfcN1jRWXqJwnoxOTDpqZUTmuGIFJtF+dbjhU840CR5mW?=
- =?us-ascii?Q?OoduuYvgoy0j6bq9/sJA3U5C7kfyYDZ8r6zSDQ0EPHqJiuN+vICXRHCqKxpP?=
- =?us-ascii?Q?7uHgjouuZbbT6SX7H8m79Funbi+lsoVRWXkoGC/Ch2zVJgQp7UKzM3ElrFE+?=
- =?us-ascii?Q?g4vkBIUDZ4lNevvXx0KjS/t20Ks5kw5VIWoKbacSaUvipyjPvnh/B7APIxvW?=
- =?us-ascii?Q?4hVONU1jWnbbEY6VQGrJnzv1bc2k1elMAYgNyEEwuEk8T4VHm/yqd6Sq1t+3?=
- =?us-ascii?Q?BiPK/luMPMjncLTqsub5hu2y?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 40195ce7-ed52-463e-3941-08d94cf92531
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jul 2021 10:12:00.6854
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: chD/sOQTgvnD0QgEC8Q0Z/EcDdhoz+/JWdwy4Hl07XRNHhkmjy53a/gEAOM3bsuhDrckxKi9uRcCzziYHkTqyw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB2862
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1626948212.29611.47.camel@mhfsdcap03>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since drivers/mmc/host/sdhci-xenon.c declares the PROBE_PREFER_ASYNCHRONOUS
-probe type, it is not guaranteed whether /dev/mmcblk0 will belong to
-sdhci0 or sdhci1. In turn, this will break booting by:
+On Thu, Jul 22, 2021 at 06:03:32PM +0800, zhiyong tao wrote:
+> On Wed, 2021-07-21 at 12:46 +0200, Greg KH wrote:
+> > On Sat, Jul 10, 2021 at 05:01:03PM +0800, Zhiyong Tao wrote:
+> > > This patch is used to fix memory corruption issue when rx power off.
+> > > 1. add spin lock in mtk8250_dma_rx_complete function in APDMA mode.
+> > 
+> > What does a lock protect from?  Please be explicit and detailed.
+> 
+> ==> Hi Gregkh,
+> 
+> when uart is used as a communication port with external device(GPS).
+> when external device(GPS) power off, the power of rx pin is also from
+> 1.8v to 0v. Even if there is not any data in rx. But uart rx pin can
+> capture the data "0".
 
-root=/dev/mmcblk0p1
+That sounds like a broken hardware design.
 
-Fix the issue by adding aliases so that the old MMC controller indices
-are preserved.
+> If uart don't receive any data in specified cycle, uart will generates
+> BI(Break interrupt) interrupt.
+> If external device(GPS) power off, we found that BI interrupt appeared
+> continuously and very frequently.
+> When uart interrupt type is BI, uart IRQ handler(8250 framwork
+> API:serial8250_handle_irq) will push data to tty buffer.
+> The code path:
+> https://elixir.bootlin.com/linux/latest/source/drivers/tty/serial/8250/8250_port.c#L1917
+> 
+> mtk8250_dma_rx_complete is a task of mtk_uart_apdma_rx_handler.
+> mtk8250_dma_rx_complete priority is lower than uart irq
+> handler(serial8250_handle_irq).
+> if we are in process of mtk8250_dma_rx_complete, uart appear BI
+> interrupt:1)serial8250_handle_irq will priority execution.2)it may cause
+> write tty buffer conflict in mtk8250_dma_rx_complete.
+> So the spin lock protect the rx receive data process is not break.
 
-Fixes: 7320915c8861 ("mmc: Set PROBE_PREFER_ASYNCHRONOUS for drivers that existed in v4.14")
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
----
- arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts | 2 ++
- 1 file changed, 2 insertions(+)
+Then put something like this in the changelog text, as it is, it is not
+descriptive at all.
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-index ce2bcddf396f..f2d7d6f071bc 100644
---- a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-+++ b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-@@ -19,6 +19,8 @@ / {
- 	aliases {
- 		spi0 = &spi0;
- 		ethernet1 = &eth1;
-+		mmc0 = &sdhci0;
-+		mmc1 = &sdhci1;
- 	};
- 
- 	chosen {
--- 
-2.25.1
+> > > 2. add processing mechanism which count value is 0
+> > 
+> > What does this do?  And why is it needed?
+> 
+> ==> when count value is 0, we don't need push data to tty buffer.
+> so we add it.
 
+But that does not actually do anything different from what it does
+today.  And it has nothing to do with the lock, so this should be 2
+different patches, right?
+
+> > > Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
+> > 
+> > What commit does this fix?  Does this need to go to stable kernel trees?
+> > If so, how far back?
+> > 
+> > > ---
+> > >  drivers/tty/serial/8250/8250_mtk.c | 15 +++++++++++----
+> > >  1 file changed, 11 insertions(+), 4 deletions(-)
+> > > 
+> > > diff --git a/drivers/tty/serial/8250/8250_mtk.c b/drivers/tty/serial/8250/8250_mtk.c
+> > > index f7d3023f860f..09f7d2166315 100644
+> > > --- a/drivers/tty/serial/8250/8250_mtk.c
+> > > +++ b/drivers/tty/serial/8250/8250_mtk.c
+> > > @@ -91,12 +91,15 @@ static void mtk8250_dma_rx_complete(void *param)
+> > >  	struct mtk8250_data *data = up->port.private_data;
+> > >  	struct tty_port *tty_port = &up->port.state->port;
+> > >  	struct dma_tx_state state;
+> > > -	int copied, total, cnt;
+> > > +	unsigned int copied, total, cnt;
+> > >  	unsigned char *ptr;
+> > > +	unsigned long flags;
+> > >  
+> > >  	if (data->rx_status == DMA_RX_SHUTDOWN)
+> > >  		return;
+> > >  
+> > > +	spin_lock_irqsave(&up->port.lock, flags);
+> > > +
+> > >  	dmaengine_tx_status(dma->rxchan, dma->rx_cookie, &state);
+> > >  	total = dma->rx_size - state.residue;
+> > >  	cnt = total;
+> > > @@ -104,9 +107,11 @@ static void mtk8250_dma_rx_complete(void *param)
+> > >  	if ((data->rx_pos + cnt) > dma->rx_size)
+> > >  		cnt = dma->rx_size - data->rx_pos;
+> > >  
+> > > -	ptr = (unsigned char *)(data->rx_pos + dma->rx_buf);
+> > > -	copied = tty_insert_flip_string(tty_port, ptr, cnt);
+> > > -	data->rx_pos += cnt;
+> > > +	if (cnt != 0) {
+> > 
+> > Why does cnt matter here?  If cnt is 0, the code above should not do
+> > anything at all, right?
+> 
+> ==> yes, if the counter value is 0, we don't need push data to the tty
+> buffer.
+
+But this does not change the logic as if cnt is 0, nothing gets pushed
+with the current code either, right?
+
+> > Or if it does, should we change tty_insert_flip_string() to always check
+> > for cnt != 0 before it does the first loop?  Hm, it looks like it will
+> > abort if cnt is 0, so what is this change really doing?  Why do you need
+> > it?  What is it "fixing"?
+> > 
+> ==> It is not fix anything, we just think if count value is 0, we don't
+> need do anything.
+
+Then make it a separate patch, independant from the lock patch, and we
+can discuss it there.  Do NOT have patches do multiple things.
+
+thanks,
+
+greg k-h
