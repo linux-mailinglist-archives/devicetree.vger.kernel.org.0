@@ -2,81 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 13F6F3D1C21
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 04:54:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14A693D1C32
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 05:05:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230216AbhGVCN3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 22:13:29 -0400
-Received: from mail-io1-f44.google.com ([209.85.166.44]:37636 "EHLO
-        mail-io1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230093AbhGVCN3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 22:13:29 -0400
-Received: by mail-io1-f44.google.com with SMTP id r18so4717616iot.4;
-        Wed, 21 Jul 2021 19:54:04 -0700 (PDT)
+        id S230093AbhGVCY0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 22:24:26 -0400
+Received: from mail-il1-f182.google.com ([209.85.166.182]:46939 "EHLO
+        mail-il1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230329AbhGVCY0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 22:24:26 -0400
+Received: by mail-il1-f182.google.com with SMTP id y6so4084065ilj.13;
+        Wed, 21 Jul 2021 20:05:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=6jqODs76F2z+ThTv3XQxZcm2LvsH3LDON/fyPSmSUtg=;
-        b=D9S+ckg/Us1T6mmla4IAq47W7NhgApriIjlnHw0bm7zAmgdXTyqleSrF41VSUKz7Dm
-         eFO1LpEvYyJxRCnjLbwuU+A82JCQk3ownypuAdIRUvuIsdLXd+8JYfJ7HexKgZAPD44d
-         3StmzTqJbSj4UI+wU2kGFc4noCDoOaPamrALkNyi99WiRQWuwM+nCYlHgNJPLP5i1VOn
-         AI/hI3pRTWZdNYsyOpIW9qSJdVvaZGtuCvV7f3JsX0Xn/n2lEKXZ0OyJtrTdP2gYB/dM
-         vAwamk8JD/U/3BggyuNo6dEdKEnVG9u5lQS2oqIhk06gz1XK6Wz5Uc4KV7WWLA/8Okgs
-         AIVQ==
-X-Gm-Message-State: AOAM533AAffBp9IBDAzDYSJ0JFukC9dO/t/DsQ2Mp4geJk3hnDjlfjNs
-        qvb7mubGnYkRIT3heT3FvA==
-X-Google-Smtp-Source: ABdhPJyasxgbYXRpKxgQ1GV+cQ2nV0FBlw7vLICuO8TDGev3IifKvA9D5r04JJVI+4C0GGF7HC2SnQ==
-X-Received: by 2002:a05:6602:2e11:: with SMTP id o17mr19963592iow.55.1626922443950;
-        Wed, 21 Jul 2021 19:54:03 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=qRC4i9IC5fmogXiHA+XMn95xo6OUhdJon7l31DRv27U=;
+        b=eB6gJ8xiEfkufi6jSD1xUIonYvYmITFc917NovJpvcA1xvQBXEvHPThef8HyymM+XE
+         RVqJ/odn7Xy3lN8rSYBZ8/Te9BSR7Xsn4BPT3iUnQkLyQ+miBhZ4u74wbXAytMc0Hbfd
+         Yxvk1PP95EgISGay4TJT1TBd3UrwpXoE5N5/uMfeM6MYmplFFZ9UF4TMVpfFWAPqKhKI
+         M9XFVoJSMwLu0OWRIcx0gYNFVfWr4b7JkxBml+8cwgbFbDPji82DHYKT1ajyJiQnyni3
+         Gvoai/Bl7Cys6XXK6Kh0IcmGvY8xFLTu67xGT55ascg4Srkg5Lf4vweyci1hDUBfJPab
+         Ng7A==
+X-Gm-Message-State: AOAM533KguOSGhYLkxQvhATdS6r4Jkx1qHlZywnNhD23NyoTGDG6+Nwo
+        m4AnhSELI94tuANAVVU0tQ==
+X-Google-Smtp-Source: ABdhPJwIIBszKvNLzbrWQ9Pc+iqwT5r+K+S0a6LFvfZ8CBjdst/QTKBOi4qyDVad4aeO2nxsamvo2g==
+X-Received: by 2002:a05:6e02:d93:: with SMTP id i19mr13978285ilj.72.1626923101275;
+        Wed, 21 Jul 2021 20:05:01 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id r6sm15640391ioh.27.2021.07.21.19.54.02
+        by smtp.gmail.com with ESMTPSA id p8sm8863092iol.49.2021.07.21.20.04.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jul 2021 19:54:03 -0700 (PDT)
-Received: (nullmailer pid 3207422 invoked by uid 1000);
-        Thu, 22 Jul 2021 02:54:02 -0000
-Date:   Wed, 21 Jul 2021 20:54:02 -0600
+        Wed, 21 Jul 2021 20:05:00 -0700 (PDT)
+Received: (nullmailer pid 3221816 invoked by uid 1000);
+        Thu, 22 Jul 2021 03:04:58 -0000
+Date:   Wed, 21 Jul 2021 21:04:58 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Tim Harvey <tharvey@gateworks.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: imx: add imx8mm/imx8mn GW7902
- support
-Message-ID: <20210722025401.GA3207393@robh.at.kernel.org>
-References: <20210715141750.11612-1-tharvey@gateworks.com>
+To:     =?utf-8?B?5ZGo55Cw5p2wIChaaG91IFlhbmppZSk=?= 
+        <zhouyanjie@wanyeetech.com>
+Cc:     dongsheng.qiu@ingenic.com, jun.jiang@ingenic.com,
+        daniel.lezcano@linaro.org, sihui.liu@ingenic.com,
+        linux-kernel@vger.kernel.org, aric.pzqi@ingenic.com,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        rick.tyliu@ingenic.com, sernia.zhou@foxmail.com
+Subject: Re: [PATCH] dt-bindings: timer: Add ABIs for new Ingenic SoCs.
+Message-ID: <20210722030458.GA3221766@robh.at.kernel.org>
+References: <1626370605-120775-1-git-send-email-zhouyanjie@wanyeetech.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210715141750.11612-1-tharvey@gateworks.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1626370605-120775-1-git-send-email-zhouyanjie@wanyeetech.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 15 Jul 2021 07:17:49 -0700, Tim Harvey wrote:
-> The GW7902 is based on the i.MX 8M Mini / Nano SoC featuring:
->  - LPDDR4 DRAM
->  - eMMC FLASH
->  - Gateworks System Controller
->  - LTE CAT M1 modem
->  - USB 2.0 HUB
->  - M.2 Socket with USB2.0, PCIe, and dual-SIM
->  - IMX8M FEC
->  - PCIe based GbE
->  - RS232/RS485/RS422 serial transceiver
->  - GPS
->  - CAN bus
->  - WiFi / Bluetooth
->  - MIPI header (DSI/CSI/GPIO/PWM/I2S)
->  - PMIC
+On Fri, 16 Jul 2021 01:36:45 +0800, 周琰杰 (Zhou Yanjie) wrote:
+> 1.Add OST_CLK_EVENT_TIMER for new XBurst®1 SoCs.
+> 2.Add OST_CLK_EVENT_TIMER0 to OST_CLK_EVENT_TIMER15 for new XBurst®2 SoCs.
 > 
-> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
 > ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  include/dt-bindings/clock/ingenic,sysost.h | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
