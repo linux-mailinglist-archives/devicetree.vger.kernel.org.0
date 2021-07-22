@@ -2,581 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 79F7C3D1BC2
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 04:26:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91FF63D1BC3
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 04:29:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230098AbhGVBqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 21:46:12 -0400
-Received: from mail-io1-f48.google.com ([209.85.166.48]:44021 "EHLO
-        mail-io1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229916AbhGVBqM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 21:46:12 -0400
-Received: by mail-io1-f48.google.com with SMTP id k16so4643378ios.10
-        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 19:26:48 -0700 (PDT)
+        id S229932AbhGVBtP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 21:49:15 -0400
+Received: from mail-io1-f50.google.com ([209.85.166.50]:35821 "EHLO
+        mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229916AbhGVBtP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 21:49:15 -0400
+Received: by mail-io1-f50.google.com with SMTP id d9so4670056ioo.2
+        for <devicetree@vger.kernel.org>; Wed, 21 Jul 2021 19:29:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=sUZXj6CmcLqZYdNfLK/fU90Wp5ECzs7rcpG77z2MkPA=;
-        b=WAw5WbWZz51AQp0vrZMSvIvf9zOq/AoGex5OTTERThmwBEvIbtXsvg92XbVE07803O
-         o3HqenxzBuuWXkblasagO5fhuZ74aXfrrV0UQESL7nHaMr9cgQKwtx6YYNlgzDpamT/5
-         S0c3j5HEsAl23lmKZAHY1FmksfkB3Rv9f5dvu8x9nXAm0R6HKiZIUQ1MB0ecWsPlx624
-         S6/BMpEw55mChy4PQEDzzgV+vjYP7ZFgebT4T3AVStpbU1lZHWVVZMGRm68p2dW0FUmE
-         +ONyXx9knZAScY7yfBP767ifH1HhMtKtgNDYluOD5MDjfETG4mHrhSMlHE9mlQQUTx4W
-         OGBg==
-X-Gm-Message-State: AOAM531xPrNxKKdA2D/TJ8iNx1x9tBUsfXmZ6OHy2XE0OlbGkRIrZk2j
-        d924TQOmk0jUayqoGZcZVg==
-X-Google-Smtp-Source: ABdhPJwgY3ki3yzxob3eMVIFlvwrDl82JEnjTvhJKSW1X25eodBlVc+oFYeu9Rb6Ti3+TBTolL2QZQ==
-X-Received: by 2002:a5d:9f11:: with SMTP id q17mr27511350iot.62.1626920807849;
-        Wed, 21 Jul 2021 19:26:47 -0700 (PDT)
+        bh=Vbm9yduWjMJY5Qu5YDirMHSu1+ek7W9mcXgmGCm0CPU=;
+        b=rEuA3tJnHU5f0FsI2tnMVRmFKtDmlpSJDnk7L5xuoZ2Kw6Oby6Een15Nn5+yNgtfn/
+         99CxJj8nwvGlZmghUvMfLjQ1Dchn64obVWyzmba0kweVC/Pr9gGgEg13MxkHrDTuJsTh
+         QyhCHDQi5sq1YbO9P4EWwWtSpHnpcU3rhO7gph+w4medIhxZZ8mglx430X3YXAN53e3n
+         WffsoLTJddR7VY4O6kaHSqQ+RUxBjuD6aeIGIc4eH2QR35k1EtsSutmsmIK7OJjoVPqs
+         SWqHjtjIKBYtcoYuvckZFFXsxysPGGCr0K12KZ8dQLcqWLV7bFZ3ux/aDO3t77Riv42r
+         k7sA==
+X-Gm-Message-State: AOAM530tyE/WBfvKUu1a8sOEbODtTAz+t1uu0RU2lQQLthkG5u6KTr9F
+        tyO5BDkYTWas+/VV9w5DFA==
+X-Google-Smtp-Source: ABdhPJzKaG8Ei8yk6jblQllxcE3R6XvpisIpEnt3aFcCAx4LPObvRjHA51fMIi6L9FSCHTmaPWwQUA==
+X-Received: by 2002:a02:aa15:: with SMTP id r21mr10880858jam.37.1626920990785;
+        Wed, 21 Jul 2021 19:29:50 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id j18sm14997271ioa.53.2021.07.21.19.26.46
+        by smtp.gmail.com with ESMTPSA id b8sm13978039ilh.74.2021.07.21.19.29.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jul 2021 19:26:47 -0700 (PDT)
-Received: (nullmailer pid 3168042 invoked by uid 1000);
-        Thu, 22 Jul 2021 02:26:45 -0000
-Date:   Wed, 21 Jul 2021 20:26:45 -0600
+        Wed, 21 Jul 2021 19:29:50 -0700 (PDT)
+Received: (nullmailer pid 3172014 invoked by uid 1000);
+        Thu, 22 Jul 2021 02:29:47 -0000
+Date:   Wed, 21 Jul 2021 20:29:47 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Maxime Ripard <maxime@cerno.tech>
 Cc:     Chen-Yu Tsai <wens@csie.org>,
         Jernej Skrabec <jernej.skrabec@siol.net>,
         devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
         linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Subject: Re: [PATCH 06/54] dt-bindings: arm: Convert ARM CCI-400 binding to a
- schema
-Message-ID: <20210722022645.GA3153207@robh.at.kernel.org>
+        dri-devel@lists.freedesktop.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+Subject: Re: [PATCH 10/54] dt-bindings: display: panel-lvds: Document panel
+ compatibles
+Message-ID: <20210722022947.GA3168293@robh.at.kernel.org>
 References: <20210721140424.725744-1-maxime@cerno.tech>
- <20210721140424.725744-7-maxime@cerno.tech>
+ <20210721140424.725744-11-maxime@cerno.tech>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210721140424.725744-7-maxime@cerno.tech>
+In-Reply-To: <20210721140424.725744-11-maxime@cerno.tech>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 21, 2021 at 04:03:36PM +0200, Maxime Ripard wrote:
-> The ARM CCI-400 Interconnect is supported by Linux thanks to its device
-> tree binding.
+On Wed, Jul 21, 2021 at 04:03:40PM +0200, Maxime Ripard wrote:
+> The binding mentions that all the drivers using that driver must use a
+> vendor-specific compatible but never enforces it, nor documents the
+> vendor-specific compatibles.
 > 
-> Now that we have the DT validation in place, let's convert the device
-> tree bindings for that driver over to a YAML schema.
+> Let's make we document all of them, and that the binding will create an
+> error if we add one that isn't.
 > 
-> Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Thierry Reding <thierry.reding@gmail.com>
 > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 > ---
->  .../devicetree/bindings/arm/arm,cci-400.yaml  | 216 +++++++++++++++++
->  .../bindings/arm/cci-control-port.yaml        |  38 +++
->  Documentation/devicetree/bindings/arm/cci.txt | 224 ------------------
->  3 files changed, 254 insertions(+), 224 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/arm/arm,cci-400.yaml
->  create mode 100644 Documentation/devicetree/bindings/arm/cci-control-port.yaml
->  delete mode 100644 Documentation/devicetree/bindings/arm/cci.txt
+>  .../bindings/display/panel/lvds.yaml           | 18 ++++++++++++------
+>  1 file changed, 12 insertions(+), 6 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/arm,cci-400.yaml b/Documentation/devicetree/bindings/arm/arm,cci-400.yaml
-> new file mode 100644
-> index 000000000000..b5c0fef9a0c2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/arm,cci-400.yaml
-> @@ -0,0 +1,216 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/arm,cci-400.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ARM CCI Cache Coherent Interconnect Device Tree Binding
-> +
-> +maintainers:
-> +  - Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-> +
-> +description: >
-> +  ARM multi-cluster systems maintain intra-cluster coherency through a cache
-> +  coherent interconnect (CCI) that is capable of monitoring bus transactions
-> +  and manage coherency, TLB invalidations and memory barriers.
-> +
-> +  It allows snooping and distributed virtual memory message broadcast across
-> +  clusters, through memory mapped interface, with a global control register
-> +  space and multiple sets of interface control registers, one per slave
-> +  interface.
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^cci(@[0-9a-f]+)?$"
-> +
-> +  compatible:
-> +    enum:
-> +      - arm,cci-400
-> +      - arm,cci-500
-> +      - arm,cci-550
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: >
-> +      Specifies base physical address of CCI control registers common to all
-> +      interfaces.
-> +
-> +  "#address-cells": true
-> +  "#size-cells": true
-> +  ranges: true
-> +
-> +patternProperties:
-> +  "^slave-if@[0-9a-f]+$":
-> +    type: object
-> +
-> +    properties:
-> +      compatible:
-> +        const: arm,cci-400-ctrl-if
-> +
-> +      interface-type:
-> +        enum:
-> +          - ace
-> +          - ace-lite
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +    required:
-> +      - compatible
-> +      - interface-type
-> +      - reg
-> +
-> +    additionalProperties: false
-> +
-> +  "^pmu@[0-9a-f]+$":
-> +    type: object
-> +
-> +    properties:
-> +      compatible:
-> +        oneOf:
-> +          - const: arm,cci-400-pmu,r0
-> +          - const: arm,cci-400-pmu,r1
-> +          - const: arm,cci-400-pmu
-> +            deprecated: true
-> +            description: >
-> +              Permitted only where OS has secure access to CCI registers
-> +          - const: arm,cci-500-pmu,r0
-> +          - const: arm,cci-550-pmu,r0
-> +
-> +      interrupts:
-> +        minItems: 1
-> +        maxItems: 255
+> diff --git a/Documentation/devicetree/bindings/display/panel/lvds.yaml b/Documentation/devicetree/bindings/display/panel/lvds.yaml
+> index 49460c9dceea..d1513111eb48 100644
+> --- a/Documentation/devicetree/bindings/display/panel/lvds.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/lvds.yaml
+> @@ -31,12 +31,18 @@ allOf:
+>  
+>  properties:
+>    compatible:
+> -    contains:
+> -      const: panel-lvds
+> -    description:
+> -      Shall contain "panel-lvds" in addition to a mandatory panel-specific
+> -      compatible string defined in individual panel bindings. The "panel-lvds"
+> -      value shall never be used on its own.
+> +    items:
+> +      - enum:
+> +          - advantech,idk-1110wr
 
-There's only 8 counters in cci-550. I doubt this schema will be 
-extended.
+At least this one is documented elsewhere. You can add 'minItems: 2' if 
+you want to just enforce having 2 compatibles. Or do:
 
-> +        description: >
-> +          List of counter overflow interrupts, one per counter. The interrupts
-> +          must be specified starting with the cycle counter overflow interrupt,
-> +          followed by counter0 overflow interrupt, counter1 overflow
-> +          interrupt,...  ,counterN overflow interrupt.
-> +
-> +          The CCI PMU has an interrupt signal for each counter. The number of
-> +          interrupts must be equal to the number of counters.
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +    required:
-> +      - compatible
-> +      - interrupts
-> +      - reg
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - compatible
-> +  - ranges
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +      / {
-> +          #address-cells = <2>;
-> +          #size-cells = <2>;
-> +
-> +          compatible = "arm,vexpress,v2p-ca15_a7", "arm,vexpress";
-> +          model = "V2P-CA15_CA7";
-> +          arm,hbi = <0x249>;
-> +          interrupt-parent = <&gic>;
-> +
-> +          /*
-> +          * This CCI node corresponds to a CCI component whose control
-> +          * registers sits at address 0x000000002c090000.
-> +          *
-> +          * CCI slave interface @0x000000002c091000 is connected to dma
-> +          * controller dma0.
-> +          *
-> +          * CCI slave interface @0x000000002c094000 is connected to CPUs
-> +          * {CPU0, CPU1};
-> +          *
-> +          * CCI slave interface @0x000000002c095000 is connected to CPUs
-> +          * {CPU2, CPU3};
-> +          */
-> +
-> +          cpus {
-> +              #size-cells = <0>;
-> +              #address-cells = <1>;
-> +
-> +              CPU0: cpu@0 {
-> +                  device_type = "cpu";
-> +                  compatible = "arm,cortex-a15";
-> +                  cci-control-port = <&cci_control1>;
+items:
+  - {}
+  - const: panel-lvds
 
-Needs to be added to the cpu schema unless I missed you did that.
+Which also enforces the order.
 
-> +                  reg = <0x0>;
-> +              };
-> +
-> +              CPU1: cpu@1 {
-> +                  device_type = "cpu";
-> +                  compatible = "arm,cortex-a15";
-> +                  cci-control-port = <&cci_control1>;
-> +                  reg = <0x1>;
-> +              };
-> +
-> +              CPU2: cpu@100 {
-> +                  device_type = "cpu";
-> +                  compatible = "arm,cortex-a7";
-> +                  cci-control-port = <&cci_control2>;
-> +                  reg = <0x100>;
-> +              };
-> +
-> +              CPU3: cpu@101 {
-> +                  device_type = "cpu";
-> +                  compatible = "arm,cortex-a7";
-> +                  cci-control-port = <&cci_control2>;
-> +                  reg = <0x101>;
-> +              };
-> +          };
-> +
-> +          dma0: dma@3000000 {
-> +              compatible = "arm,pl330", "arm,primecell";
-> +              cci-control-port = <&cci_control0>;
-> +              reg = <0x0 0x3000000 0x0 0x1000>;
-> +              interrupts = <10>;
-> +              #dma-cells = <1>;
-> +              #dma-channels = <8>;
-> +              #dma-requests = <32>;
-> +          };
-> +
-> +          cci@2c090000 {
-> +              compatible = "arm,cci-400";
-> +              #address-cells = <1>;
-> +              #size-cells = <1>;
-> +              reg = <0x0 0x2c090000 0 0x1000>;
-> +              ranges = <0x0 0x0 0x2c090000 0x10000>;
-> +
-> +              cci_control0: slave-if@1000 {
-> +                  compatible = "arm,cci-400-ctrl-if";
-> +                  interface-type = "ace-lite";
-> +                  reg = <0x1000 0x1000>;
-> +              };
-> +
-> +              cci_control1: slave-if@4000 {
-> +                  compatible = "arm,cci-400-ctrl-if";
-> +                  interface-type = "ace";
-> +                  reg = <0x4000 0x1000>;
-> +              };
-> +
-> +              cci_control2: slave-if@5000 {
-> +                  compatible = "arm,cci-400-ctrl-if";
-> +                  interface-type = "ace";
-> +                  reg = <0x5000 0x1000>;
-> +              };
-> +
-> +              pmu@9000 {
-> +                  compatible = "arm,cci-400-pmu";
-> +                  reg = <0x9000 0x5000>;
-> +                  interrupts = <0 101 4>,
-> +                    <0 102 4>,
-> +                    <0 103 4>,
-> +                    <0 104 4>,
-> +                    <0 105 4>;
-> +              };
-> +          };
-> +      };
-> +
-> +...
-> diff --git a/Documentation/devicetree/bindings/arm/cci-control-port.yaml b/Documentation/devicetree/bindings/arm/cci-control-port.yaml
-> new file mode 100644
-> index 000000000000..c9114866213f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/cci-control-port.yaml
-> @@ -0,0 +1,38 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/cci-control-port.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: CCI Interconnect Bus Masters binding
-> +
-> +maintainers:
-> +  - Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-> +
-> +description: |
-> +  Masters in the device tree connected to a CCI port (inclusive of CPUs
-> +  and their cpu nodes).
-> +
-> +select: true
-> +
-> +properties:
-> +  cci-control-port:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +
-> +additionalProperties: true
-> +
-> +examples:
-> +  - |
-> +    cpus {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        cpu@0 {
-> +            compatible = "arm,cortex-a15";
-> +            device_type = "cpu";
-> +            cci-control-port = <&cci_control1>;
-> +            reg = <0>;
-> +        };
-> +    };
-> +
-> +...
-> diff --git a/Documentation/devicetree/bindings/arm/cci.txt b/Documentation/devicetree/bindings/arm/cci.txt
-> deleted file mode 100644
-> index 9600761f2d5b..000000000000
-> --- a/Documentation/devicetree/bindings/arm/cci.txt
-> +++ /dev/null
-> @@ -1,224 +0,0 @@
-> -=======================================================
-> -ARM CCI cache coherent interconnect binding description
-> -=======================================================
-> -
-> -ARM multi-cluster systems maintain intra-cluster coherency through a
-> -cache coherent interconnect (CCI) that is capable of monitoring bus
-> -transactions and manage coherency, TLB invalidations and memory barriers.
-> -
-> -It allows snooping and distributed virtual memory message broadcast across
-> -clusters, through memory mapped interface, with a global control register
-> -space and multiple sets of interface control registers, one per slave
-> -interface.
-> -
-> -* CCI interconnect node
-> -
-> -	Description: Describes a CCI cache coherent Interconnect component
-> -
-> -	Node name must be "cci".
-> -	Node's parent must be the root node /, and the address space visible
-> -	through the CCI interconnect is the same as the one seen from the
-> -	root node (ie from CPUs perspective as per DT standard).
-> -	Every CCI node has to define the following properties:
-> -
-> -	- compatible
-> -		Usage: required
-> -		Value type: <string>
-> -		Definition: must contain one of the following:
-> -			    "arm,cci-400"
-> -			    "arm,cci-500"
-> -			    "arm,cci-550"
-> -
-> -	- reg
-> -		Usage: required
-> -		Value type: Integer cells. A register entry, expressed as a pair
-> -			    of cells, containing base and size.
-> -		Definition: A standard property. Specifies base physical
-> -			    address of CCI control registers common to all
-> -			    interfaces.
-> -
-> -	- ranges:
-> -		Usage: required
-> -		Value type: Integer cells. An array of range entries, expressed
-> -			    as a tuple of cells, containing child address,
-> -			    parent address and the size of the region in the
-> -			    child address space.
-> -		Definition: A standard property. Follow rules in the Devicetree
-> -			    Specification for hierarchical bus addressing. CCI
-> -			    interfaces addresses refer to the parent node
-> -			    addressing scheme to declare their register bases.
-> -
-> -	CCI interconnect node can define the following child nodes:
-> -
-> -	- CCI control interface nodes
-> -
-> -		Node name must be "slave-if".
-> -		Parent node must be CCI interconnect node.
-> -
-> -		A CCI control interface node must contain the following
-> -		properties:
-> -
-> -		- compatible
-> -			Usage: required
-> -			Value type: <string>
-> -			Definition: must be set to
-> -				    "arm,cci-400-ctrl-if"
-> -
-> -		- interface-type:
-> -			Usage: required
-> -			Value type: <string>
-> -			Definition: must be set to one of {"ace", "ace-lite"}
-> -				    depending on the interface type the node
-> -				    represents.
-> -
-> -		- reg:
-> -			Usage: required
-> -			Value type: Integer cells. A register entry, expressed
-> -				    as a pair of cells, containing base and
-> -				    size.
-> -			Definition: the base address and size of the
-> -				    corresponding interface programming
-> -				    registers.
-> -
-> -	- CCI PMU node
-> -
-> -		Parent node must be CCI interconnect node.
-> -
-> -		A CCI pmu node must contain the following properties:
-> -
-> -		- compatible
-> -			Usage: required
-> -			Value type: <string>
-> -			Definition: Must contain one of:
-> -				 "arm,cci-400-pmu,r0"
-> -				 "arm,cci-400-pmu,r1"
-> -				 "arm,cci-400-pmu"  - DEPRECATED, permitted only where OS has
-> -						      secure access to CCI registers
-> -				 "arm,cci-500-pmu,r0"
-> -				 "arm,cci-550-pmu,r0"
-> -		- reg:
-> -			Usage: required
-> -			Value type: Integer cells. A register entry, expressed
-> -				    as a pair of cells, containing base and
-> -				    size.
-> -			Definition: the base address and size of the
-> -				    corresponding interface programming
-> -				    registers.
-> -
-> -		- interrupts:
-> -			Usage: required
-> -			Value type: Integer cells. Array of interrupt specifier
-> -				    entries, as defined in
-> -				    ../interrupt-controller/interrupts.txt.
-> -			Definition: list of counter overflow interrupts, one per
-> -				    counter. The interrupts must be specified
-> -				    starting with the cycle counter overflow
-> -				    interrupt, followed by counter0 overflow
-> -				    interrupt, counter1 overflow interrupt,...
-> -				    ,counterN overflow interrupt.
-> -
-> -				    The CCI PMU has an interrupt signal for each
-> -				    counter. The number of interrupts must be
-> -				    equal to the number of counters.
-> -
-> -* CCI interconnect bus masters
-> -
-> -	Description: masters in the device tree connected to a CCI port
-> -		     (inclusive of CPUs and their cpu nodes).
-> -
-> -	A CCI interconnect bus master node must contain the following
-> -	properties:
-> -
-> -	- cci-control-port:
-> -		Usage: required
-> -		Value type: <phandle>
-> -		Definition: a phandle containing the CCI control interface node
-> -			    the master is connected to.
-> -
-> -Example:
-> -
-> -	cpus {
-> -		#size-cells = <0>;
-> -		#address-cells = <1>;
-> -
-> -		CPU0: cpu@0 {
-> -			device_type = "cpu";
-> -			compatible = "arm,cortex-a15";
-> -			cci-control-port = <&cci_control1>;
-> -			reg = <0x0>;
-> -		};
-> -
-> -		CPU1: cpu@1 {
-> -			device_type = "cpu";
-> -			compatible = "arm,cortex-a15";
-> -			cci-control-port = <&cci_control1>;
-> -			reg = <0x1>;
-> -		};
-> -
-> -		CPU2: cpu@100 {
-> -			device_type = "cpu";
-> -			compatible = "arm,cortex-a7";
-> -			cci-control-port = <&cci_control2>;
-> -			reg = <0x100>;
-> -		};
-> -
-> -		CPU3: cpu@101 {
-> -			device_type = "cpu";
-> -			compatible = "arm,cortex-a7";
-> -			cci-control-port = <&cci_control2>;
-> -			reg = <0x101>;
-> -		};
-> -
-> -	};
-> -
-> -	dma0: dma@3000000 {
-> -		compatible = "arm,pl330", "arm,primecell";
-> -		cci-control-port = <&cci_control0>;
-> -		reg = <0x0 0x3000000 0x0 0x1000>;
-> -		interrupts = <10>;
-> -		#dma-cells = <1>;
-> -		#dma-channels = <8>;
-> -		#dma-requests = <32>;
-> -	};
-> -
-> -	cci@2c090000 {
-> -		compatible = "arm,cci-400";
-> -		#address-cells = <1>;
-> -		#size-cells = <1>;
-> -		reg = <0x0 0x2c090000 0 0x1000>;
-> -		ranges = <0x0 0x0 0x2c090000 0x10000>;
-> -
-> -		cci_control0: slave-if@1000 {
-> -			compatible = "arm,cci-400-ctrl-if";
-> -			interface-type = "ace-lite";
-> -			reg = <0x1000 0x1000>;
-> -		};
-> -
-> -		cci_control1: slave-if@4000 {
-> -			compatible = "arm,cci-400-ctrl-if";
-> -			interface-type = "ace";
-> -			reg = <0x4000 0x1000>;
-> -		};
-> -
-> -		cci_control2: slave-if@5000 {
-> -			compatible = "arm,cci-400-ctrl-if";
-> -			interface-type = "ace";
-> -			reg = <0x5000 0x1000>;
-> -		};
-> -
-> -		pmu@9000 {
-> -			 compatible = "arm,cci-400-pmu";
-> -			 reg = <0x9000 0x5000>;
-> -			 interrupts = <0 101 4>,
-> -				      <0 102 4>,
-> -				      <0 103 4>,
-> -				      <0 104 4>,
-> -				      <0 105 4>;
-> -		};
-> -	};
-> -
-> -This CCI node corresponds to a CCI component whose control registers sits
-> -at address 0x000000002c090000.
-> -CCI slave interface @0x000000002c091000 is connected to dma controller dma0.
-> -CCI slave interface @0x000000002c094000 is connected to CPUs {CPU0, CPU1};
-> -CCI slave interface @0x000000002c095000 is connected to CPUs {CPU2, CPU3};
+> +          - advantech,idk-2121wr
+> +          - auo,b101ew05
+> +          - innolux,ee101ia-01d
+> +          - mitsubishi,aa104xd12
+> +          - mitsubishi,aa121td01
+> +          - sgd,gktw70sdae4se
+> +          - sharp,lq150x1lg11
+> +          - tbs,a711-panel
+> +      - const: panel-lvds
+>  
+>    data-mapping:
+>      enum:
 > -- 
 > 2.31.1
 > 
