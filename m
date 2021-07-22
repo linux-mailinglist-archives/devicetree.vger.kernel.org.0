@@ -2,164 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 319ED3D1D77
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 07:34:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5AC63D1D7A
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 07:35:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230097AbhGVEyK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 00:54:10 -0400
-Received: from mga05.intel.com ([192.55.52.43]:49349 "EHLO mga05.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230306AbhGVEyI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Jul 2021 00:54:08 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10052"; a="297132160"
-X-IronPort-AV: E=Sophos;i="5.84,260,1620716400"; 
-   d="scan'208";a="297132160"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jul 2021 22:34:43 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,260,1620716400"; 
-   d="scan'208";a="632868491"
-Received: from ubuntu18.png.intel.com ([10.88.229.69])
-  by orsmga005.jf.intel.com with ESMTP; 21 Jul 2021 22:34:40 -0700
-From:   nandhini.srikandan@intel.com
-To:     fancer.lancer@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, mgross@linux.intel.com,
-        kris.pan@intel.com, kenchappa.demakkanavar@intel.com,
-        furong.zhou@intel.com, mallikarjunappa.sangannavar@intel.com,
-        mahesh.r.vaidya@intel.com, nandhini.srikandan@intel.com,
-        rashmi.a@intel.com
-Subject: =?utf-8?q?=5B=E2=80=9CPATCH=E2=80=9D=202/2=5D=20spi=3A=20dw=3A=20Add=20support=20for=20Intel=20Thunder=20Bay=20SPI?=
-Date:   Thu, 22 Jul 2021 13:33:58 +0800
-Message-Id: <20210722053358.29682-3-nandhini.srikandan@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210722053358.29682-1-nandhini.srikandan@intel.com>
-References: <20210722053358.29682-1-nandhini.srikandan@intel.com>
+        id S229609AbhGVEzR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 00:55:17 -0400
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:53697 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230262AbhGVEzC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Jul 2021 00:55:02 -0400
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+        by mailnew.nyi.internal (Postfix) with ESMTP id C7A3F5817C4;
+        Thu, 22 Jul 2021 01:35:35 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Thu, 22 Jul 2021 01:35:35 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        subject:to:cc:references:from:message-id:date:mime-version
+        :in-reply-to:content-type:content-transfer-encoding; s=fm3; bh=V
+        CC4K9x1L+piLdGylx5VSb6j9aBuZqYFN90RmCaQeGo=; b=sEKmNLWAyx48HvAqT
+        Ss0Mb3HT5+R0vNtH4+N9joLnr+3tw7GFRFJHX3290nLC14FPTZ9lL7M8greiY2j+
+        zWh0e6M1kwVPHKLQOZajYKJnHIHxjey7g38+l9DlTJC3t5P4k7Xm+6eh/v4jaaz2
+        9CL+3EFl5l1YJBfFDktIdo4VamYxqKqdMW/q+6ZQy6lq4BAhooF5d0wkyoyahnM0
+        rS5k1Lng7PGN6BYCkMzcszj8sgEP3dU/pEoc6/fw0yrspHsloj+ITc9XrPCOp0V6
+        gHkhfai0evRoVNxFkAZxOtSBcvWByweP3uV8fWsdLzVTL/6yx5qjOFoL82f+OAov
+        K9SBQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; bh=VCC4K9x1L+piLdGylx5VSb6j9aBuZqYFN90RmCaQe
+        Go=; b=A+xZzKOWyCd51gjW6RrbQeLx28tMX3azdF+DZ3+yibbvXmfAwX3mo7Gfl
+        dsam3XDkyEyBFJ5nEOMeJLgmy0lgjWKue4XX6LNwf1lpmZ5rH+67tKCBeTUsq3F0
+        iHhjzAc/yu/NeqSnM/G6AT88pbAY8f5DjQ14uWgsQCdJSOwsYu3oxryOqm/36Y6+
+        jWyohMXSf8khi/iM15lUaZrln070tQfhsGqefYK6XRFrtyTJQHRrHUkOGCkFGHnq
+        5sV2d1tjJcTTojKSH449sFK9HKV0Uqr/Jz/5Rg6IrS7Z+eBdsROToG8CPY6dIiju
+        N2TxMMM7gS6TVl5CFH35jeeQSieZg==
+X-ME-Sender: <xms:pgP5YA_dUkO4RWZOVmqHrnCH-514lOd7oM1w03uZ18OGEFjRGp68Eg>
+    <xme:pgP5YIu1rTCIwgLQOUGhRKwWPhW113XHcGz1ZnJRgTSP32CWCZxDwYVucarsz_cNQ
+    uEDMurb6yHYQSryUw>
+X-ME-Received: <xmr:pgP5YGCGlajFviHI3hsL_lEkP3pn4YFHTFNx5NyJHVDwH9PqklAyCmTnZN44uXjXmCnzM0op0WxohDlkhzpOSSbw10dMjjeXxDX_mvZbeJeYxDI1qNfBB3G6EA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeehgdeliecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefuvfhfhffkffgfgggjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghmuhgv
+    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
+    frrghtthgvrhhnpeffiefgledvgfdtteeludevvefguddtiedutdevtedvhfffjeelhfeh
+    teejtedvleenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecuvehluhhsth
+    gvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhho
+    lhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:pgP5YAfjx4O6wOw1mqlFjlXfEqDOlg4X9uGc1wTpXzxrq2odRHA_BQ>
+    <xmx:pgP5YFO4y0oxmNIt8Uu7WsxLzmoMMq1ar4QOvFjHgkv-dE5Z5iyefg>
+    <xmx:pgP5YKmpwkfgqV83TnoZo8md2caj_T0yi0H_KWAS3NKi5Rni0V9hSg>
+    <xmx:pwP5YIrTx6FJ9su8nN_v0fDTGgc8LadDFL_0Gji8QW3Jdf3TavkoGQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 22 Jul 2021 01:35:34 -0400 (EDT)
+Subject: Re: [PATCH 02/54] ASoC: dt-bindings: Convert Bluetooth SCO Link
+ binding to a schema
+To:     Maxime Ripard <maxime@cerno.tech>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
+        alsa-devel@alsa-project.org, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+References: <20210721140424.725744-1-maxime@cerno.tech>
+ <20210721140424.725744-3-maxime@cerno.tech>
+From:   Samuel Holland <samuel@sholland.org>
+Message-ID: <e0ba4dab-abe9-9f4b-2795-e85041efa451@sholland.org>
+Date:   Thu, 22 Jul 2021 00:35:33 -0500
+User-Agent: Mozilla/5.0 (X11; Linux ppc64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.2
 MIME-Version: 1.0
+In-Reply-To: <20210721140424.725744-3-maxime@cerno.tech>
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nandhini Srikandan <nandhini.srikandan@intel.com>
+On 7/21/21 9:03 AM, Maxime Ripard wrote:
+> Bluetooth SCO Link are supported by Linux with a matching device tree
+> binding.
+> 
+> Now that we have the DT validation in place, let's convert the device
+> tree bindings for that driver over to a YAML schema.
+> 
+> The value expected for #sound-dai-cells wasn't documented though, and
+> the users were inconsistent. The example didn't list it, and across the
+> 4 users we have in tree:
+>   - 1 had a cells value of 1, but using only 0 as argument
+>   - 1 had a cells value of 0,
+>   - 2 didn't have this property at all, behaving as if it was 0,
+> 
+> It seems like the consensus seems to be that it should be 0, so let's
+> enforce it.
 
-Add support for Intel Thunder Bay SPI controller, which uses DesignWare
-DWC_ssi core.
-Bit 31 of CTRLR0 register is added for Thunder Bay, to
-configure the device as a master or as a slave serial peripheral.
-Bit 14(SSTE) of CTRLR0 register should be set(1) for Thunder Bay.
-Added reset of SPI controller required for Thunder Bay.
+The driver has two DAIs: "bt-sco-pcm" and "bt-sco-pcm-wb". If
+#sound-dai-cells is 0, only the first DAI can be referenced from a
+device tree. So to declare support for wideband PCM, or explicitly
+declare a lack of support for it, #sound-dai-cells must be 1.
 
-Signed-off-by: Nandhini Srikandan <nandhini.srikandan@intel.com>
----
- drivers/spi/spi-dw-core.c |  6 ++++++
- drivers/spi/spi-dw-mmio.c | 20 ++++++++++++++++++++
- drivers/spi/spi-dw.h      | 15 +++++++++++++++
- 3 files changed, 41 insertions(+)
+Regards,
+Samuel
 
-diff --git a/drivers/spi/spi-dw-core.c b/drivers/spi/spi-dw-core.c
-index a305074c482e..eecf8dcd0677 100644
---- a/drivers/spi/spi-dw-core.c
-+++ b/drivers/spi/spi-dw-core.c
-@@ -302,6 +302,12 @@ static u32 dw_spi_prepare_cr0(struct dw_spi *dws, struct spi_device *spi)
- 
- 		if (dws->caps & DW_SPI_CAP_KEEMBAY_MST)
- 			cr0 |= DWC_SSI_CTRLR0_KEEMBAY_MST;
-+
-+		if (dws->caps & DW_SPI_CAP_THUNDERBAY_MST)
-+			cr0 |= DWC_SSI_CTRLR0_THUNDERBAY_MST;
-+
-+		if (dws->caps & DW_SPI_CAP_THUNDERBAY_SSTE)
-+			cr0 |= DWC_SSI_CTRLR0_THUNDERBAY_SSTE;
- 	}
- 
- 	return cr0;
-diff --git a/drivers/spi/spi-dw-mmio.c b/drivers/spi/spi-dw-mmio.c
-index 3379720cfcb8..ca9aad078752 100644
---- a/drivers/spi/spi-dw-mmio.c
-+++ b/drivers/spi/spi-dw-mmio.c
-@@ -222,6 +222,15 @@ static int dw_spi_keembay_init(struct platform_device *pdev,
- 	return 0;
- }
- 
-+static int dw_spi_thunderbay_init(struct platform_device *pdev,
-+				  struct dw_spi_mmio *dwsmmio)
-+{
-+	dwsmmio->dws.caps = DW_SPI_CAP_THUNDERBAY_MST | DW_SPI_CAP_THUNDERBAY_RST |
-+			    DW_SPI_CAP_THUNDERBAY_SSTE | DW_SPI_CAP_DWC_SSI;
-+
-+	return 0;
-+}
-+
- static int dw_spi_canaan_k210_init(struct platform_device *pdev,
- 				   struct dw_spi_mmio *dwsmmio)
- {
-@@ -243,6 +252,7 @@ static int dw_spi_mmio_probe(struct platform_device *pdev)
- 			 struct dw_spi_mmio *dwsmmio);
- 	struct dw_spi_mmio *dwsmmio;
- 	struct resource *mem;
-+	struct reset_control *rst;
- 	struct dw_spi *dws;
- 	int ret;
- 	int num_cs;
-@@ -309,6 +319,15 @@ static int dw_spi_mmio_probe(struct platform_device *pdev)
- 			goto out;
- 	}
- 
-+	if (dws->caps & DW_SPI_CAP_THUNDERBAY_RST) {
-+		rst = devm_reset_control_get_exclusive(&pdev->dev, NULL);
-+		if (!IS_ERR(rst)) {
-+			reset_control_assert(rst);
-+			udelay(2);
-+			reset_control_deassert(rst);
-+		}
-+	}
-+
- 	pm_runtime_enable(&pdev->dev);
- 
- 	ret = dw_spi_add_host(&pdev->dev, dws);
-@@ -349,6 +368,7 @@ static const struct of_device_id dw_spi_mmio_of_match[] = {
- 	{ .compatible = "renesas,rzn1-spi", .data = dw_spi_dw_apb_init},
- 	{ .compatible = "snps,dwc-ssi-1.01a", .data = dw_spi_dwc_ssi_init},
- 	{ .compatible = "intel,keembay-ssi", .data = dw_spi_keembay_init},
-+	{ .compatible = "intel,thunderbay-ssi", .data = dw_spi_thunderbay_init},
- 	{ .compatible = "microchip,sparx5-spi", dw_spi_mscc_sparx5_init},
- 	{ .compatible = "canaan,k210-spi", dw_spi_canaan_k210_init},
- 	{ /* end of table */}
-diff --git a/drivers/spi/spi-dw.h b/drivers/spi/spi-dw.h
-index b665e040862c..bfe1d5edc25a 100644
---- a/drivers/spi/spi-dw.h
-+++ b/drivers/spi/spi-dw.h
-@@ -82,6 +82,18 @@
-  */
- #define DWC_SSI_CTRLR0_KEEMBAY_MST	BIT(31)
- 
-+/*
-+ * For Thunder Bay, CTRLR0[14] should be set to 1.
-+ */
-+#define DWC_SSI_CTRLR0_THUNDERBAY_SSTE	BIT(14)
-+
-+/*
-+ * For Thunder Bay, CTRLR0[31] is used to select controller mode.
-+ * 0: SSI is slave
-+ * 1: SSI is master
-+ */
-+#define DWC_SSI_CTRLR0_THUNDERBAY_MST	BIT(31)
-+
- /* Bit fields in CTRLR1 */
- #define SPI_NDF_MASK			GENMASK(15, 0)
- 
-@@ -125,6 +137,9 @@ enum dw_ssi_type {
- #define DW_SPI_CAP_KEEMBAY_MST		BIT(1)
- #define DW_SPI_CAP_DWC_SSI		BIT(2)
- #define DW_SPI_CAP_DFS32		BIT(3)
-+#define DW_SPI_CAP_THUNDERBAY_MST	BIT(4)
-+#define DW_SPI_CAP_THUNDERBAY_RST	BIT(5)
-+#define DW_SPI_CAP_THUNDERBAY_SSTE	BIT(6)
- 
- /* Slave spi_transfer/spi_mem_op related */
- struct dw_spi_cfg {
--- 
-2.17.1
+> Cc: alsa-devel@alsa-project.org
+> Cc: devicetree@vger.kernel.org
+> Cc: Liam Girdwood <lgirdwood@gmail.com>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Samuel Holland <samuel@sholland.org>
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> ---
+>  .../devicetree/bindings/sound/bt-sco.txt      | 13 -------
+>  .../bindings/sound/linux,bt-sco.yaml          | 34 +++++++++++++++++++
+>  2 files changed, 34 insertions(+), 13 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/bt-sco.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/linux,bt-sco.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/bt-sco.txt b/Documentation/devicetree/bindings/sound/bt-sco.txt
+> deleted file mode 100644
+> index 641edf75e184..000000000000
+> --- a/Documentation/devicetree/bindings/sound/bt-sco.txt
+> +++ /dev/null
+> @@ -1,13 +0,0 @@
+> -Bluetooth-SCO audio CODEC
+> -
+> -This device support generic Bluetooth SCO link.
+> -
+> -Required properties:
+> -
+> -  - compatible : "delta,dfbmcs320" or "linux,bt-sco"
+> -
+> -Example:
+> -
+> -codec: bt_sco {
+> -	compatible = "delta,dfbmcs320";
+> -};
+> diff --git a/Documentation/devicetree/bindings/sound/linux,bt-sco.yaml b/Documentation/devicetree/bindings/sound/linux,bt-sco.yaml
+> new file mode 100644
+> index 000000000000..334b508205cd
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/linux,bt-sco.yaml
+> @@ -0,0 +1,34 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/linux,bt-sco.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Bluetooth SCO Audio Codec Device Tree Bindings
+> +
+> +maintainers:
+> +  - Mark Brown <broonie@kernel.org>
+> +
+> +properties:
+> +  '#sound-dai-cells':
+> +    const: 0
+> +
+> +  compatible:
+> +    enum:
+> +      - delta,dfbmcs320
+> +      - linux,bt-sco
+> +
+> +required:
+> +  - '#sound-dai-cells'
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    codec {
+> +        #sound-dai-cells = <0>;
+> +        compatible = "linux,bt-sco";
+> +    };
+> +
+> +...
+> 
 
