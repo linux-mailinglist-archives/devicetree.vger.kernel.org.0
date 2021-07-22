@@ -2,65 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB58B3D1BE8
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 04:46:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 695DF3D1BFF
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 04:46:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230331AbhGVCDM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jul 2021 22:03:12 -0400
-Received: from mail-io1-f48.google.com ([209.85.166.48]:35332 "EHLO
-        mail-io1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229932AbhGVCDL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 22:03:11 -0400
-Received: by mail-io1-f48.google.com with SMTP id d9so4696195ioo.2;
-        Wed, 21 Jul 2021 19:43:46 -0700 (PDT)
+        id S230161AbhGVCFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jul 2021 22:05:25 -0400
+Received: from mail-il1-f181.google.com ([209.85.166.181]:41728 "EHLO
+        mail-il1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230146AbhGVCFZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jul 2021 22:05:25 -0400
+Received: by mail-il1-f181.google.com with SMTP id p3so4091421ilg.8;
+        Wed, 21 Jul 2021 19:46:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=6sstflDi3MceJtIHFwONk/lvZMH4MUOVSwrKCIiFyZQ=;
-        b=b36uUHDU7DaoV2kcUUz7943qKicjJXcoYagBtLOE/wgUSVL+SOwmY1j/xQaoKdkW8X
-         YNrgcT/1yhe2vVL3hEvlg38FC04JHAPxenckOaHeIs6DAzzIaJfsDNdz3BgKmaVemZEV
-         256JP6CK3lBOj5VBfPK+8VFRz09fnB7CWIhGiYQx49bkd80gdbT2Z39oVUyRnEGdYl/P
-         O4wToeOWVZuNkTy3juST8iPQmH+isuZOAEM76k09F/z8JhVj9XiQv+opHcBRk3h7HThG
-         08/bD/7SrJa8rqpsTKt12C+n12TYQ+SWsWt37fO8p9oaI1KsqZClsDDzklauunjg338b
-         LydA==
-X-Gm-Message-State: AOAM5316sN2FR8MFgCy5kritaLoIAeHlb16hZlQy7v7S9gl0557cC/nl
-        7JnRstsDV2u0WN8T0xc6HA==
-X-Google-Smtp-Source: ABdhPJzN9m6CX5jHqO9i8bxgqSuU29i0p7rAhuVMkn2k0nkV36pevPVnZY9zB1Vjk2gU3KqHoraNtw==
-X-Received: by 2002:a05:6638:39c2:: with SMTP id o2mr33032388jav.87.1626921826438;
-        Wed, 21 Jul 2021 19:43:46 -0700 (PDT)
+        bh=1ixKGpO941ZDKCFs+4cX6wK1iiC57fsrwJDPh4qCXl8=;
+        b=p6LQT0kW42ZVKkfRH+9xLU3XOW+RUujV3Wrs70SKoMjQMrnOdKNuHqqE2ylz5r/WHo
+         sqJmQHx+2HTsXjeety/eArpQGLpr+4F7tcY2NSp71tk7Kp9Ue9Moq2m+gzKz7GRsGgeU
+         4SnLJzYdtb/laFIl4HAKsluZod5gPy2l3ILCkMEv0tQWwQWaFEOEP9AVyuedoQWRtKa/
+         5+NUxYvqcOjeUFiQTu2pod8bcYyRGgxtduXZ4+P24Sn54rR4lGV6exjYaUcoqH0F6bU1
+         qnZGIGC0a+8XguHj2IaYrJRZv88uj0uLf2vRVaqpVWcCiS1wslr94W/2eGofMDZF/BVG
+         EEMg==
+X-Gm-Message-State: AOAM532OTKqRGstuTjyBLnqZPw+3VsvZhAkMSP9qpUyzL2LdkUGLDCRo
+        9Gzj6Fup2QZMOEbsxIS16Q==
+X-Google-Smtp-Source: ABdhPJzPziBeK/sDz4zL0wrDsgghuGYSXq02K/iHmXhW1iZs16Y2sUUdWpbimdZFJB8XBQAaFKul4A==
+X-Received: by 2002:a92:d5cb:: with SMTP id d11mr25239213ilq.133.1626921959811;
+        Wed, 21 Jul 2021 19:45:59 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id i2sm13985246ilq.83.2021.07.21.19.43.44
+        by smtp.gmail.com with ESMTPSA id z12sm15480548iom.6.2021.07.21.19.45.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jul 2021 19:43:45 -0700 (PDT)
-Received: (nullmailer pid 3193118 invoked by uid 1000);
-        Thu, 22 Jul 2021 02:43:43 -0000
-Date:   Wed, 21 Jul 2021 20:43:43 -0600
+        Wed, 21 Jul 2021 19:45:59 -0700 (PDT)
+Received: (nullmailer pid 3196078 invoked by uid 1000);
+        Thu, 22 Jul 2021 02:45:56 -0000
+Date:   Wed, 21 Jul 2021 20:45:56 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Yassine Oudjana <y.oudjana@protonmail.com>
-Cc:     Michael Auchter <michael.auchter@ni.com>,
-        linux-kernel@vger.kernel.org, Chanwoo Choi <cw00.choi@samsung.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>
-Subject: Re: [PATCH 2/2] dt-bindings: extcon: usbc-tusb320: Add TUSB320L
- compatible string
-Message-ID: <20210722024343.GA3193066@robh.at.kernel.org>
-References: <V8qR7ITKe7vHKON9lWSnEHZpmCB0ir2RDmvbaENmH4@cp3-web-021.plabs.ch>
+To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>
+Cc:     Fabio Estevam <festevam@denx.de>, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, kernel@dh-electronics.com,
+        linux-arm-kernel@lists.infradead.org,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH V3] dt-bindings: arm: fsl: Add DHCOM PicoITX and DHCOM
+ DRC02 boards
+Message-ID: <20210722024556.GA3196044@robh.at.kernel.org>
+References: <20210714202252.5898-1-cniedermaier@dh-electronics.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <V8qR7ITKe7vHKON9lWSnEHZpmCB0ir2RDmvbaENmH4@cp3-web-021.plabs.ch>
+In-Reply-To: <20210714202252.5898-1-cniedermaier@dh-electronics.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Jul 2021 17:43:35 +0000, Yassine Oudjana wrote:
-> Add a compatible string for TUSB320L.
+On Wed, 14 Jul 2021 22:22:52 +0200, Christoph Niedermaier wrote:
+> Add DH electronics DHCOM PicoITX and DHCOM DRC02 boards. The DHCOM DRC02
+> device can only house a SOM with iMX6S and not with iMX6DL, due to some
+> thermal design consideration. But for compatible fsl,imx6dl is chosen,
+> because fsl,imx6s isn't available, the iMX6S is basically a iMX6DL with
+> one CPU core disabled and therefore the kernel discerns the iMX6S/iMX6DL
+> automatically.
 > 
-> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+> Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: robh+dt@kernel.org
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: kernel@dh-electronics.com
+> Cc: Fabio Estevam <festevam@denx.de>
+> To: devicetree@vger.kernel.org
 > ---
->  .../devicetree/bindings/extcon/extcon-usbc-tusb320.yaml       | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+> V2: - Remove line with fsl,imx6s on the DRC02 Board
+> V3: - Rework of the commit message
+>     - Add Fabio Estevam to the CC list
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
