@@ -2,92 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA9E03D2593
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 16:21:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4E393D25E8
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 16:37:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232346AbhGVNkw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 09:40:52 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43018 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232332AbhGVNjc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Jul 2021 09:39:32 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id BFE616135B;
-        Thu, 22 Jul 2021 14:20:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626963601;
-        bh=mJ3JdT0Jl0HeZBBxWkcKK7bwXZcdzgqg5y3jXt3+kZs=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ENCgLVRWTYWJGmbpAbWSfCDWo21E52HEXh7c50OdL/+YGGo4tdSiNuuo+dOLYkEsX
-         6QIfpekMB7Dy5uaOoI6/ve7Fg4ujPmH0iVrjeO0O/a88Y+Nhul0jarTbME/G8yYD3j
-         EdVDQnDzwW9ZDYTiD5Xu9lahxyOo63mZDqk1angMstTmSTOPOfy1JREfjZM3A4SdTH
-         u+PA7jaWbcQAcZAgP04bniCthOJbRwKBxHjrNzXVpLk52i7IrBVVpGOAI6x7OXjKM/
-         ynpK5INQnHPg5ZMtvF7nwE4uiV2uqb2pG5Dxth9b80+AsYiJPCKy/QgPgCfciOU+AN
-         IvtT5iQbHTfQg==
-Received: by mail-ej1-f51.google.com with SMTP id qa36so8593607ejc.10;
-        Thu, 22 Jul 2021 07:20:01 -0700 (PDT)
-X-Gm-Message-State: AOAM530jrq2ylAhf8X19GC7KWhr62T4XEF5Lkx1MsS07a24Hul/YYAq7
-        Pq8ecTOrQj/hCXf8S4y72vQ4XuiZbGlluw8DbA==
-X-Google-Smtp-Source: ABdhPJzPx2tAkBfnTYAJdL+pjejcJt5SFRuqenmexCc8UCCTJ3rc8BOHTUiTGbeTgwSbLXr4S6GftAjXVwj1/pePKQI=
-X-Received: by 2002:a17:906:28d1:: with SMTP id p17mr153498ejd.130.1626963600297;
- Thu, 22 Jul 2021 07:20:00 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210719182001.1573-1-alexander.helms.jy@renesas.com>
- <20210719182001.1573-2-alexander.helms.jy@renesas.com> <20210719224804.GA2768983@robh.at.kernel.org>
- <6fbb307e-8835-224e-7912-2b956985a713@renesas.com>
-In-Reply-To: <6fbb307e-8835-224e-7912-2b956985a713@renesas.com>
+        id S232438AbhGVN4t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 09:56:49 -0400
+Received: from mail-il1-f169.google.com ([209.85.166.169]:45877 "EHLO
+        mail-il1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232434AbhGVN4s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jul 2021 09:56:48 -0400
+Received: by mail-il1-f169.google.com with SMTP id b6so5514453iln.12
+        for <devicetree@vger.kernel.org>; Thu, 22 Jul 2021 07:37:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=Y8GHotfVip9Ehvb2Kldh12w/ZP8HxnWefzrAt6Gb0PU=;
+        b=gwijx18OaiYC5tcmY7d3UkyS1OwdX/s9L7qM8XCet/4CC86A9wwzFnoKhUa/k2Oygv
+         NveQ7ToeTHlmr2jVCNKPYAhhHA/p4XdTSOJjOQ8IwJkLlmu7hmricrNFD8WefHBSRQyj
+         zp3E/XhCjJBXLN3S51ylYHwtOI/n1HXPCn9cDP8kXG3rLBJYGar69m6YThPAyJDHpQPp
+         JTC/stJBfuGgF/6B4/vJaZk3AStnOaDTrSPJg/cqAIisKKfkR1FNS9ALNDydl5HjWqql
+         Y1jASE4xyPvUp38zfrNGVZGQUSB9yg63upWgPfzYsOJzSFgDw4+Qx/SqcqhAcZ/dtGAU
+         0pDA==
+X-Gm-Message-State: AOAM531Ncc4mYsh5VVqbT9dzgMDQCtkUmuIP0Kwu6DLHXAZdUHfEYVLG
+        ZmfQ2WLf5vH3KW0mMbCv2w==
+X-Google-Smtp-Source: ABdhPJzoujfZTpKRMrmi0SnUxZF+yDoAA4QLJHrq4KnmYq4sRLot/LYvdV1eiP6P6q8DZYVxIHzXbw==
+X-Received: by 2002:a92:3302:: with SMTP id a2mr142394ilf.62.1626964642466;
+        Thu, 22 Jul 2021 07:37:22 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id h1sm10473811ioz.22.2021.07.22.07.37.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Jul 2021 07:37:21 -0700 (PDT)
+Received: (nullmailer pid 4183867 invoked by uid 1000);
+        Thu, 22 Jul 2021 14:37:12 -0000
 From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 22 Jul 2021 08:19:47 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+2tpjNffzNPDa2XSZWAk3B-HS-bF7EmZ_j0t_=nfEWvg@mail.gmail.com>
-Message-ID: <CAL_Jsq+2tpjNffzNPDa2XSZWAk3B-HS-bF7EmZ_j0t_=nfEWvg@mail.gmail.com>
-Subject: Re: [PATCH v5 1/2] dt-bindings: Add binding for Renesas 8T49N241
-To:     Alex Helms <alexander.helms.jy@renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
-        <linux-renesas-soc@vger.kernel.org>, david.cater.jc@renesas.com,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        linux-clk <linux-clk@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     devicetree@vger.kernel.org, Marek Vasut <marex@denx.de>,
+        kernel@pengutronix.de, Shawn Guo <shawnguo@kernel.org>,
+        patchwork-lst@pengutronix.de, linux-arm-kernel@lists.infradead.org,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Rob Herring <robh+dt@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Adam Ford <aford173@gmail.com>
+In-Reply-To: <20210721204703.1424034-9-l.stach@pengutronix.de>
+References: <20210716232916.3572966-1-l.stach@pengutronix.de> <20210721204703.1424034-1-l.stach@pengutronix.de> <20210721204703.1424034-9-l.stach@pengutronix.de>
+Subject: Re: [PATCH v2 08/18] dt-bindings: soc: add binding for i.MX8MM VPU blk-ctrl
+Date:   Thu, 22 Jul 2021 08:37:12 -0600
+Message-Id: <1626964632.934672.4183866.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 20, 2021 at 10:58 AM Alex Helms
-<alexander.helms.jy@renesas.com> wrote:
->
-> On 7/19/2021 3:48 PM, Rob Herring wrote:
-> > On Mon, 19 Jul 2021 11:20:00 -0700, Alex Helms wrote:
-> >> Renesas 8T49N241 has 4 outputs, 1 integral and 3 fractional dividers.
-> >> The 8T49N241 accepts up to two differential or single-ended input clocks
-> >> and a fundamental-mode crystal input. The internal PLL can lock to either
-> >> of the input reference clocks or to the crystal to behave as a frequency
-> >> synthesizer.
-> >>
-> >> Signed-off-by: Alex Helms <alexander.helms.jy@renesas.com>
-> >> ---
-> >>  .../bindings/clock/renesas,8t49n241.yaml      | 190 ++++++++++++++++++
-> >>  MAINTAINERS                                   |   6 +
-> >>  2 files changed, 196 insertions(+)
-> >>  create mode 100644 Documentation/devicetree/bindings/clock/renesas,8t49n241.yaml
-> >>
-> >
-> >
-> > Please add Acked-by/Reviewed-by tags when posting new versions. However,
-> > there's no need to repost patches *only* to add the tags. The upstream
-> > maintainer will do that for acks received on the version they apply.
-> >
-> > If a tag was not added on purpose, please state why and what changed.
-> >
->
-> Thank you for the info. I'm new to the kernel process and appreciate your advice.
->
-> I felt uncomfortable adding your Reviewed-By tag but since there were no changes to the dt
-> portion of the patch, in retrospect I guess I should have added it. I'll keep this in mind
-> for the future. Is there anything I need to do for this patch?
+On Wed, 21 Jul 2021 22:46:53 +0200, Lucas Stach wrote:
+> This adds the DT binding for the i.MX8MM VPU blk-ctrl.
+> 
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> ---
+>  .../soc/imx/fsl,imx8mm-vpu-blk-ctrl.yaml      | 76 +++++++++++++++++++
+>  1 file changed, 76 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-vpu-blk-ctrl.yaml
+> 
 
-For v5, no. If there's a v6 posted, then add any tags.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Rob
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-vpu-blk-ctrl.example.dt.yaml: blk-ctrl@38330000: '#power-domain-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-vpu-blk-ctrl.yaml
+\ndoc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1508454
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
