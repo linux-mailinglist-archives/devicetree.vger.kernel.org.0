@@ -2,95 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0881D3D25E3
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 16:37:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34AED3D260E
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 16:45:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231374AbhGVN4m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 09:56:42 -0400
-Received: from mail-io1-f54.google.com ([209.85.166.54]:43785 "EHLO
-        mail-io1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230343AbhGVN4m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jul 2021 09:56:42 -0400
-Received: by mail-io1-f54.google.com with SMTP id k16so6568574ios.10;
-        Thu, 22 Jul 2021 07:37:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=S9oqNdeEmjzMYqfxKnMhuJAig6YozFawShXYrQNAVqU=;
-        b=X1hUm9xqwI8NrHwal/4X82uyONyH7SmwaiYih7A/hO06kBBU6OHw9zbjqaXfV7apzm
-         zwqjfchs80zkTBtfROpaL8WL+WYqM9w9Cuc80+qfduVZYxBDPYBZW3csqGas/MgprH7H
-         0Uy747xKsmGaAa+ErPdFNc8FcwjIAWbT1YHnMGUwAMZIpskdAtpzofA45Ze6dFMvhAXK
-         tXSP42jPf8WtzVxodZCVvRASyDcpyZQPzQCxpc10Ru4ylyFVGJGtGht8RD7wn8ItsXtu
-         zfdKVQsSqo3/XPHBqOPHbBIGKoT1g4k5MR5i2a4zk7KGx1KX8FhHlc5W/wo5NU85mOte
-         fTmw==
-X-Gm-Message-State: AOAM533lJUaWNb6bWH0Y/Tqr7TOMmi+kpWkHnkDP+QQqCiuEQpDO/Udk
-        /uKpgllRmPOiruVfY3haGA==
-X-Google-Smtp-Source: ABdhPJzNL5asZ1slIsXmHQueoDE6m957UCPdvi3vzleu5OadU6dIPbq9iYTm6K3LzeoCsL6DjZtBxA==
-X-Received: by 2002:a05:6602:584:: with SMTP id v4mr45750iox.181.1626964635747;
-        Thu, 22 Jul 2021 07:37:15 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id p9sm14626199ilj.65.2021.07.22.07.37.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Jul 2021 07:37:15 -0700 (PDT)
-Received: (nullmailer pid 4183864 invoked by uid 1000);
-        Thu, 22 Jul 2021 14:37:12 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-gpio@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-In-Reply-To: <20210721191558.22484-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20210721191558.22484-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210721191558.22484-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v3 1/4] dt-bindings: pinctrl: renesas,rzg2l-pinctrl: Add DT bindings for RZ/G2L pinctrl
-Date:   Thu, 22 Jul 2021 08:37:12 -0600
-Message-Id: <1626964632.914515.4183863.nullmailer@robh.at.kernel.org>
+        id S232377AbhGVOEe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 10:04:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49254 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232462AbhGVOEe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Jul 2021 10:04:34 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7735B6100C;
+        Thu, 22 Jul 2021 14:45:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1626965109;
+        bh=5YAppYJPEKAzx4A/4tuph3i/y703F1sjr2cLE9hDsq4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=i2i6FchJo4uyiJLkvGEa+UlcAaWG2V2yseO3DuLFEDKkzEmPm7Hs/vzKxi09hU1Y0
+         5g1LUK2FP0K+0Mjvv/EK+WcsLc7fLLOQd44Vyco/rKgkBsqdKGmv7X0jWniCZqU7WI
+         GncYzk9GoFvIO2fx71rgJXPusB5q/QmnXozVW4qycAlVuQIrDZ2/WmVIxmUYfhbroO
+         GLz55OT0Sx8PXcINV70b6FMSBlye2bLKgaaC2ou9BJUod1/UFqlPxWyHmpeFfS3Rc2
+         h/wb/aX5Z+CZd7zQR4Agf3+I/pkGcBNcFLxnARdnTK3LPIF+4rNBLszBofwNyzUt1e
+         Z+h9j2I/sWtcA==
+Date:   Thu, 22 Jul 2021 16:45:02 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Jason Wang <jasowang@redhat.com>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>,
+        Alex =?utf-8?Q?Benn=C3=A9e?= <alex.bennee@linaro.org>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        Jie Deng <jie.deng@intel.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        virtualization@lists.linux-foundation.org,
+        linux-i2c@vger.kernel.org
+Subject: Re: [PATCH V2 2/5] dt-bindings: i2c: Add bindings for i2c-virtio
+Message-ID: <YPmEbpzQ2O+2PXXc@ninjato>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Jason Wang <jasowang@redhat.com>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@kernel.org>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>,
+        Alex =?utf-8?Q?Benn=C3=A9e?= <alex.bennee@linaro.org>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        Jie Deng <jie.deng@intel.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        virtualization@lists.linux-foundation.org,
+        linux-i2c@vger.kernel.org
+References: <cover.1626947324.git.viresh.kumar@linaro.org>
+ <705f4426a17a395bf190ee6ed6c341ac25550f6b.1626947324.git.viresh.kumar@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="P57eMTZiYrBrOmDx"
+Content-Disposition: inline
+In-Reply-To: <705f4426a17a395bf190ee6ed6c341ac25550f6b.1626947324.git.viresh.kumar@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 21 Jul 2021 20:15:55 +0100, Lad Prabhakar wrote:
-> Add device tree binding documentation and header file for Renesas
-> RZ/G2L pinctrl.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  .../pinctrl/renesas,rzg2l-pinctrl.yaml        | 155 ++++++++++++++++++
->  include/dt-bindings/pinctrl/rzg2l-pinctrl.h   |  23 +++
->  2 files changed, 178 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
->  create mode 100644 include/dt-bindings/pinctrl/rzg2l-pinctrl.h
-> 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+--P57eMTZiYrBrOmDx
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-yamllint warnings/errors:
+On Thu, Jul 22, 2021 at 03:26:40PM +0530, Viresh Kumar wrote:
+> This patch adds binding for virtio I2C device, it is based on
+> virtio-device bindings.
+>=20
+> Cc: Wolfram Sang <wsa@kernel.org>
+> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
 
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.example.dts:29.34-35 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1418: dt_binding_check] Error 2
-\ndoc reference errors (make refcheckdocs):
+I'll leave the review for Rob. I suppose the series should go in via
+some other tree, so for that:
 
-See https://patchwork.ozlabs.org/patch/1508385
+Acked-by: Wolfram Sang <wsa@kernel.org>
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+--P57eMTZiYrBrOmDx
+Content-Type: application/pgp-signature; name="signature.asc"
 
-pip3 install dtschema --upgrade
+-----BEGIN PGP SIGNATURE-----
 
-Please check and re-submit.
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmD5hGoACgkQFA3kzBSg
+KbZfsRAAiu0fM+UhVoc1lA20zfto1sfhNHCW39AHxQjWBHcI5yP0oXxSyxLYpLLR
+iONatxuXBXlSILxycYFD/Hymgo2Jp92YLN3UiyTkuPXd5h5zn3rMO+0lfNfzN0aQ
+zobQ7C0HvGRw3MtUQvtIQKRKpLiSEXwKELaN4tUJBlQUlEX57u/7VSpz+YOu1Blj
+yblZztOpQF97XCMZsggDT+fU7+zYgPVbGJCkWswXNjBTmDEYVpxN4cIs8/+Ikuvm
+RYHEfGD9vFtznYVhAM9ARnS3LM6Rnda5ErYdu3iKuQoghq5F4HgF8Tgj8Kxf7ZCD
+14XpWpu0+lcEtDcJ37Q0gOgJ+OrAqR4hWr+sm0cGT9ycQ6PPfYINVFENFBYW4vER
+sEquSSIKXs3pvvG06QY0wq8zANjiF8I79U9WaBgMYpilNSrCgYLdMTwCu325ap0r
+32IoFaQbtNNM2iENhYBNmZZF25LDJTvxKSBeZ41XSFANxccnKbufLqlnGRmLRPvF
+BbcZ2mfVDKQ9SYonUdNdH7qoOAtVUgBnp+eN73pFtfZK0nu4TcTeakJI5ZMUllo7
+8KnrM5bA9goU43SbBUjrLUXXwYALsef7aLzENJjPfHCGpAkb7OGcuvHCV5z/Gjj4
+H2zSR4dqyS0EZ54zoOjL4EP1IITTWQe9dvFLwt3Z2Z3SmsUw/es=
+=ne8g
+-----END PGP SIGNATURE-----
 
+--P57eMTZiYrBrOmDx--
