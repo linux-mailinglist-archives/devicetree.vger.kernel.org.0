@@ -2,112 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 11B923D211A
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 11:44:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A67D3D2154
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 11:56:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231280AbhGVJDw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 05:03:52 -0400
-Received: from out4-smtp.messagingengine.com ([66.111.4.28]:40971 "EHLO
-        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231272AbhGVJDv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Jul 2021 05:03:51 -0400
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailout.nyi.internal (Postfix) with ESMTP id B9A835C00CB;
-        Thu, 22 Jul 2021 05:44:24 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Thu, 22 Jul 2021 05:44:24 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=IeSRbdKFOSKlGmnR4TG7QTBHwig
-        FaSGVNE6BHClkg5o=; b=ppfI0W7WbalQzAAJw0eg9g0EpPx5C25U5yYvJjKc+ER
-        cE7UXCRh6lkLkWfBnDR7ppmd821oXXUMaceU8wuzICN4Dbn1AZyKsNcAE5dcmYpj
-        wMhG5a0kf5orJuUkxMWVauz/s8F+kRuY8GLYZfBoqiEwwZPp9+zg7PavfxRshiWc
-        zWXXWIsmZoN7ot5/WbhJmkHvZvqZv3DtKw95B4CjAUaPI9sw/aTkSQS9LnYvCG7D
-        UnnPQda72+FT6ulioJAaIAQBnM5MTmtkpAwMB6NOIG86VsLeX81fT4gJzzE/I6PZ
-        7SQ0DMMqUr064iySTYgVSorEO0Gnf0qmdT6kCy/Xo2A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=IeSRbd
-        KFOSKlGmnR4TG7QTBHwigFaSGVNE6BHClkg5o=; b=lQHAR3mrKIvezxkfmQk3PI
-        3cdsN0zhKEm1wCaFMjMm2Siam5HS1osW9KZQ7fW4Gw5oxbPw+B50qBSjyBIjhp0T
-        D6LWdotlUhVimia9IGa0r48EvJoAytPNPvwOfyUR7Vl3AjQkrlXk1msDWR7FN/1I
-        fAep7l5posyjNnsWdqXtHXmF+H64GeYUx8su0fEeyItxG01cHZbg/zCSF9xlQVNP
-        tZUcWnKzUm8YW2fd1eAg0qSZ1KaL9t9d6cn3l/lvczxa0ZAUbVTOFO1V2E7qEbdx
-        q05y6tZpgfe83FVIKMJOKwpk0hXlKTXZZt7FTPCVsh6YcXPAK88UBe7kCaUyYRdQ
-        ==
-X-ME-Sender: <xms:9z35YAHP5AwXILVW2mh-Boqc99BetURELeCwXbn3-h5Vy-J8ZuFrzQ>
-    <xme:9z35YJUlSQo8MXKPhO3mkTLcaxjHw7VxOxufo8HzQ8FVIMVA_98p0rgWw8R1mEjND
-    oiFWGT6RlT4jVJRqik>
-X-ME-Received: <xmr:9z35YKI2petNPq5CzC2oS82vs2h74KuqUJRsD3SUO7RG8zgqlOUiGnUZ8va5zSm4QoD_KkVe0ujnNRV5lkg6TSnRKEjo4ofDBG4O>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeeigddujecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
-    udenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
-    igihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:9z35YCE7qeKA58UxCGaYYtA0ahzCqXE6vzY-BDVn3slkv0nQnWsTLA>
-    <xmx:9z35YGWX3enec_8mKnoYt9ccDu7TI3XfRXck5J6-AuXEZoUpNUceXg>
-    <xmx:9z35YFPQYFF9O-F6CeqUFbBU6Sj_2tNUn6hXUgaj-5t86Zntw_9vRA>
-    <xmx:-D35YKoLd9jaQOaHJwOKkpMqj35Ktlfff-RrZAo69TDN9gD_HxeIxA>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 22 Jul 2021 05:44:22 -0400 (EDT)
-Date:   Thu, 22 Jul 2021 11:44:20 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-sunxi@googlegroups.com, dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH 11/54] dt-bindings: display: simple-bridge: Add corpro,
- gm7123 compatible
-Message-ID: <20210722094420.4x5g5qjzevir27bq@gilmour>
-References: <20210721140424.725744-1-maxime@cerno.tech>
- <20210721140424.725744-12-maxime@cerno.tech>
- <YPgsLcV9La3gXvMZ@ravnborg.org>
+        id S231429AbhGVJQP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 05:16:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39356 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231387AbhGVJQO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jul 2021 05:16:14 -0400
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 026E6C0613C1
+        for <devicetree@vger.kernel.org>; Thu, 22 Jul 2021 02:56:50 -0700 (PDT)
+Received: by mail-pj1-x102f.google.com with SMTP id cu14so5432758pjb.0
+        for <devicetree@vger.kernel.org>; Thu, 22 Jul 2021 02:56:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=95+EWQpHPYU4UdkXqyGmVpXQnpCt50H8R7U1NdxVx1Y=;
+        b=i3U8N+tEhW+LW38nVEAcGy2SDigyEJu5MrcAHdaCZnZvI3yoKV3rgKaPZvna1Qaee/
+         wCFeLlbX3scqTlPnefRqOpyrBwWV+fjfK11fJYk1TDbvG6TjQDYEaJ/BcEyPL1QOPdWU
+         hugqnJ3SWjVw6XQxsCzhB8WiAWjX7iPr279lZ1QAPF3CeyfNovM72NaMrayS6ZIkxx5Z
+         UCfXcGquPRFyWbcJMr8CM+d2MDLywk6xC8Ib7XpyGyGSGPqRKckjNOQ7t8x3Ay12v3sy
+         URMVl1JsyV/idSQIO9eV/THkJAYYljbfRVW9H1vcW6UMt9XPutSjOsR3ZU36asE8QJnh
+         UiNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=95+EWQpHPYU4UdkXqyGmVpXQnpCt50H8R7U1NdxVx1Y=;
+        b=V1iDdy6E2oMW8xzr3zV5m8RMQ3cALyMOVSLvGIJDr+duJcn7ftdN5I8NoWOb8wdqKf
+         nDBcFOTtdqSvPpwPJPpKu0+Ru7lpfzfUmex2az7rD4cbo1eka/A8zmgxPtimjATOIh2W
+         a1R1ppdrfczuWwO9mfvTM7xke6zIRhs2V/F+tivYxsRCvpaUfb3q+Ut3NUyWPsgNWoTU
+         oPf+7irDis/J6TVjkqle398KDqu1v/gZFuDdblcAp1SFX508UkP+/kw/ZTcJjkEtzTcE
+         sP9NsIDhhi/pJg6qL+xrGxcGAboO8jIJGk+mKxarTd5+6qtEdbPsMChTWEnNom3WDYDm
+         PnyA==
+X-Gm-Message-State: AOAM532r4lreEqScVEm5wD8zNGX1ESA2zhSCjQoYy4dCqi+8kFiOqObR
+        HNL3/KbFemS+pyV24lb1FPI+SA==
+X-Google-Smtp-Source: ABdhPJzHw29QGU7w1n29t6HldkPP4fdUC6UQrBEYR9Zbf4pHntjA3REhqKrWZyLwpSmu9u5mGl6POg==
+X-Received: by 2002:a63:2fc2:: with SMTP id v185mr20230069pgv.71.1626947809408;
+        Thu, 22 Jul 2021 02:56:49 -0700 (PDT)
+Received: from localhost ([106.201.108.2])
+        by smtp.gmail.com with ESMTPSA id r15sm25273137pje.12.2021.07.22.02.56.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Jul 2021 02:56:47 -0700 (PDT)
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Jason Wang <jasowang@redhat.com>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>,
+        =?UTF-8?q?Alex=20Benn=C3=A9e?= <alex.bennee@linaro.org>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        Jie Deng <jie.deng@intel.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        virtualization@lists.linux-foundation.org,
+        linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Wolfram Sang <wsa@kernel.org>
+Subject: [PATCH V2 0/5] virtio: Add virtio-device bindings
+Date:   Thu, 22 Jul 2021 15:26:38 +0530
+Message-Id: <cover.1626947324.git.viresh.kumar@linaro.org>
+X-Mailer: git-send-email 2.31.1.272.g89b43f80a514
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="yz2fab3yuo4pgq2a"
-Content-Disposition: inline
-In-Reply-To: <YPgsLcV9La3gXvMZ@ravnborg.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---yz2fab3yuo4pgq2a
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Currently the DT only provides support for following node types for virtio-mmio
+nodes:
 
-On Wed, Jul 21, 2021 at 04:16:13PM +0200, Sam Ravnborg wrote:
-> On Wed, Jul 21, 2021 at 04:03:41PM +0200, Maxime Ripard wrote:
-> > The corpro,gm7123 was in use in a DT but was never properly documented,
-> > let's add it.
-> >=20
-> > Cc: dri-devel@lists.freedesktop.org
-> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> Acked-by: Sam Ravnborg <sam@ravnborg.org>
+        virtio_mmio@a000000 {
+                dma-coherent;
+                interrupts = <0x00 0x10 0x01>;
+                reg = <0x00 0xa000000 0x00 0x200>;
+                compatible = "virtio,mmio";
+        };
 
-Applied to drm-misc-next, thanks!
-Maxime
+Here, each virtio-mmio corresponds to a virtio-device. But there is no way for
+other users in the DT to show their dependency on virtio devices.
 
---yz2fab3yuo4pgq2a
-Content-Type: application/pgp-signature; name="signature.asc"
+This patchset provides that support.
 
------BEGIN PGP SIGNATURE-----
+The first patch adds virtio-device bindings to allow for device sub-nodes to be
+present and the second patch updates the virtio core to update the of_node.
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYPk99AAKCRDj7w1vZxhR
-xfxyAQCbrNNYahQ4ZrqShUZriUCvr+SsoyLAH8oZGMHqB6gNsgD9EBBxA5R8AtWg
-HIQsTVxfXyu6Bge+lTmmSFPN+4hXRQU=
-=v3GL
------END PGP SIGNATURE-----
+Other patches add bindings for i2c and gpio devices.
 
---yz2fab3yuo4pgq2a--
+Tested on x86 with qemu for arm64.
+
+V1->V2:
+- The changes (both binding and code) are made at virtio level, instead of
+  virtio-mmio. This allows the same to be used by all device types, irrespective
+  of the transport mechanism.
+
+- Dropped the reg property and used compatible in the form "virtio,<DID>".
+
+- Dropped dt-bindings/virtio/virtio_ids.h.
+
+- Add a patch to sync virtio-ids from spec, required for the last patch.
+
+--
+Viresh
+
+Viresh Kumar (5):
+  dt-bindings: virtio: Add binding for virtio devices
+  dt-bindings: i2c: Add bindings for i2c-virtio
+  dt-bindings: gpio: Add bindings for gpio-virtio
+  uapi: virtio_ids: Sync ids with specification
+  virtio: Bind virtio device to device-tree node
+
+ .../devicetree/bindings/gpio/gpio-virtio.yaml | 60 +++++++++++++++++
+ .../devicetree/bindings/i2c/i2c-virtio.yaml   | 51 ++++++++++++++
+ .../devicetree/bindings/virtio/mmio.yaml      |  2 +-
+ .../bindings/virtio/virtio-device.yaml        | 47 +++++++++++++
+ drivers/virtio/virtio.c                       | 67 ++++++++++++++++++-
+ include/uapi/linux/virtio_ids.h               | 12 ++++
+ 6 files changed, 235 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/gpio/gpio-virtio.yaml
+ create mode 100644 Documentation/devicetree/bindings/i2c/i2c-virtio.yaml
+ create mode 100644 Documentation/devicetree/bindings/virtio/virtio-device.yaml
+
+-- 
+2.31.1.272.g89b43f80a514
+
