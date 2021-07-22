@@ -2,86 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C71863D21BE
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 12:08:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42F813D21E0
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jul 2021 12:12:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230410AbhGVJ2V convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 22 Jul 2021 05:28:21 -0400
-Received: from guitar.tcltek.co.il ([192.115.133.116]:39339 "EHLO
-        mx.tkos.co.il" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230365AbhGVJ2U (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Jul 2021 05:28:20 -0400
-Received: from tarshish (unknown [10.0.8.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx.tkos.co.il (Postfix) with ESMTPS id 5C872440E85;
-        Thu, 22 Jul 2021 13:08:38 +0300 (IDT)
-References: <f79128fa287e37ee59cb03ae04b319ecb3d68c29.1626176145.git.baruch@tkos.co.il>
- <1173e7b0b58730fd187871d9e14a02cab85158cc.1626176145.git.baruch@tkos.co.il>
- <20210714201839.kfyqcyvowekc4ejs@pengutronix.de> <87eebyst5z.fsf@tarshish>
- <20210716070427.kv7w6imp2zoxhyz5@pengutronix.de>
-User-agent: mu4e 1.4.15; emacs 27.1
-From:   Baruch Siach <baruch@tkos.co.il>
-To:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        id S231448AbhGVJb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 05:31:29 -0400
+Received: from mail-eopbgr40074.outbound.protection.outlook.com ([40.107.4.74]:23264
+        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230514AbhGVJb2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Jul 2021 05:31:28 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=F8jqb5pU2/7xaFsmUcqDBrbuHrCxt73RfFl5Jb87mgPS9oEMyNr2LzedVtcN0M0LMxyikBFOMbq0nLr4wv8cKM1BspMphMBXVpJ8OQ5PSA//WSOVpyttdowjeSAUTeFg87m9N7c/SF1Huvn6wn3MbTTDZLuygHQhsyVVFXqx9O+IaksIKf5psKx/erO/H9MKpFk/QRqZQuoINaG4HI50rS3ZduUlCUWGAnRt9kE5B0purz6FyEkiT87pw5JKucdbHT4bZ2hSDlFOnW3jh7U4eCMxc4TVQRZyH1cRt2nxtFK4+0Mk2XxMlX1KTlF1qjy6XHQDSySWdeVRF0osLyWGFw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sWY7Q/PZ3Lf9bu5T5h0FTQDfos+bqFK5pE3hQtimb0w=;
+ b=kS7qXnc0ZCdQRciMaIaLhJ8VlD70r9zQCC/RdlIRDubXlnZGdBIcXWAEkukA+rLsoiMte8XaPwr60VHf7ZJoyiSC6XPXGKt1ry85WlpXsNZEyF0D54CpTzvWweVZnnjo/pLpAjWxBaWmgG8TCbCtXJGZHSIQW/tQduqwB2eucudJhfoAJgwcyBvU360897QJK4BliHjpfWwXHHEpG7hO6QXp70d2/2UjKaC9UxZAsySdJgXxF6SJEplmUL1XBGRenVsEyrheb8VNZx6nhQhcuDEWgraDo/w2SF9qP90Xd/ZfJ+XhmQ/Fr+myWFx6isSH/VYOcBjgM9lN9fMoiWTtwg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sWY7Q/PZ3Lf9bu5T5h0FTQDfos+bqFK5pE3hQtimb0w=;
+ b=O1aQ2cASDpQbtt9tp++/LijmbMdlxpwhXnkDNXnq0a9SNzG+40eMONfzxWTa+J4qxREj4HMuIa/VYprCk6GE2osJbgG9LB5k1rWb/aPN5qaGBDbuDg2eOft77qJgy1OHiHz8Q9cJ0GD0GAvwsFRs0sa+WhuAEdAgrqQ6qj+a03s=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
+ by VI1PR0402MB2862.eurprd04.prod.outlook.com (2603:10a6:800:b6::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4352.25; Thu, 22 Jul
+ 2021 10:12:01 +0000
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::109:1995:3e6b:5bd0]) by VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::109:1995:3e6b:5bd0%2]) with mapi id 15.20.4352.026; Thu, 22 Jul 2021
+ 10:12:00 +0000
+From:   Vladimir Oltean <vladimir.oltean@nxp.com>
+To:     devicetree@vger.kernel.org
+Cc:     =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kathiravan T <kathirav@codeaurora.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        kernel@pengutronix.de, Robert Marko <robert.marko@sartura.hr>,
-        Lee Jones <lee.jones@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Balaji Prakash J <bjagadee@codeaurora.org>
-Subject: Re: [PATCH v5 2/4] pwm: driver for qualcomm ipq6018 pwm block
-In-reply-to: <20210716070427.kv7w6imp2zoxhyz5@pengutronix.de>
-Date:   Thu, 22 Jul 2021 13:08:47 +0300
-Message-ID: <87k0lizmmo.fsf@tarshish>
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH net-next] arm64: dts: armada-3720-turris-mox: fixed indices for the SDHC controllers
+Date:   Thu, 22 Jul 2021 13:11:34 +0300
+Message-Id: <20210722101134.2514089-1-vladimir.oltean@nxp.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: AM0PR02CA0107.eurprd02.prod.outlook.com
+ (2603:10a6:208:154::48) To VI1PR04MB5136.eurprd04.prod.outlook.com
+ (2603:10a6:803:55::19)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (82.76.66.29) by AM0PR02CA0107.eurprd02.prod.outlook.com (2603:10a6:208:154::48) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4352.24 via Frontend Transport; Thu, 22 Jul 2021 10:11:59 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 40195ce7-ed52-463e-3941-08d94cf92531
+X-MS-TrafficTypeDiagnostic: VI1PR0402MB2862:
+X-Microsoft-Antispam-PRVS: <VI1PR0402MB286296BF3837FCB313D6DAB7E0E49@VI1PR0402MB2862.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Z804K+rhIhpkoO4zVfwK66uMrvSt3jxSA2JfuQNR/RAMxWPp4uc8RUZ+3ic3ecxdqVyjJ0c+NTFDx9XzKt0B4bcWvLwnhpHC2Iq48ov1BgDXtL9aOEOaRCKRD+5WhGO4kBuwbW7+Zf8Y8TJC5bMy+4qZXADcf60ab6z6HdRLD2ERGpA9ioLyMHWP3g6AYGhX8/wIJctffiQry9925o4P8x+TkZeVTPM8OvlyTp4SAxpTS1GsWDYCs6xOo0iidI9JoMxB+EJavXDJhXdgm9bYTpZWTzE8hesI1HrzR0OUweSTbd5zFkjmsdrVqKqa9B+k6N3KwJNROakn5p7AGpl939aHyLNfL6tUczfDWyUmqgFKiI7rDk3g75IjEk+UTXwYI0YVwdmBey5aqDiUrG2ctav6zpg+otDtULxf/PDVjTr/KLtT/IKRFDfE7khp6YCi3zkQwk2HlsfxVUMJ9ODOSQI6bHDgXHQ38veLTm5Q7bIyTnPDuNvn/m6ACSIq6UJFrAIbe4ztUWwj/8NG174YkMeTn23z5VLClL18fxeLNxXjp3U7adpnej/HXFBrfKXiUrNlqbKGH4Pirmn4GNHrhWEQTuU/inUvXE6HpPszpVrEgMzwZpv3iQUkR2BfbJCqvMYFy2m9GMMMN0ck7pY/YhscE+QpkYFZZSFvGMuZILGA7LhqsdjJb10Y68SAM3ANlNMmZ9RAd1rjjdLKo8ELLw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(346002)(366004)(136003)(39860400002)(376002)(956004)(1076003)(86362001)(2616005)(7416002)(5660300002)(4744005)(54906003)(6506007)(6916009)(66556008)(66476007)(66946007)(36756003)(8936002)(52116002)(44832011)(316002)(8676002)(6486002)(4326008)(38100700002)(38350700002)(2906002)(6666004)(26005)(478600001)(186003)(6512007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?O8jv/2ZTZp7zcWD7xTkqw6YvIWH1RSHQz2K6mrWkw9ojllIpL+rDa33wPMDx?=
+ =?us-ascii?Q?cyqDi0YVmaBq2ctWnd/7mfKFboYC4c0YGo+Oc6+0/wLcAzF7Enc+o2a8I+y6?=
+ =?us-ascii?Q?+dIreUVHPIfeZDcE/iZDOLU2GsjtrhAgUkNrFIlH9KM3PfW+z3rEd1InM8VY?=
+ =?us-ascii?Q?uykD6wHoXUjbMoklGzc7tFwT5CfBTS15ToWZEpuNkcFm6sPz49Y+7mE54nCq?=
+ =?us-ascii?Q?LBtlhkFRDUfCfxjIgxyoX/Fh8KaO1n67n+tvEmMOZRRzUj2mEwyFXHDjL2aX?=
+ =?us-ascii?Q?bmZJ4PNw0E5WJ9H9+TrRqTxuRaw8XpocuXHHzgUkVOgzarbg9uA/bEa85oXL?=
+ =?us-ascii?Q?RanJdPrh8oN7mDW+Yd5zKUfDofmxCOvJeStL6Gh4KntreCM2NfIKjOchK/hC?=
+ =?us-ascii?Q?0zO6i+uPr7QMyQVBG2sPs0IRd06DOZyLM1Q7pB3UxHhq8WkpckaFaxZpWQdA?=
+ =?us-ascii?Q?PPlxjh1BpprF1AkFmUL87u8SX7qKd3p+GeM2zCpVKmYNd3vN3O/2NBqjfN5N?=
+ =?us-ascii?Q?UH8rs3GWtKO2L4bt4hN6+ruxOMCUOn/9dSwcFfzX+ma07tGH8zYvMCXJL0IU?=
+ =?us-ascii?Q?OH2dRbWH8gzEMAJzmm2A2LSJ9eQHRIRZah7qN/7BlTG/QEsVYL/Fx8TYFjtO?=
+ =?us-ascii?Q?J5WUkGxT/fogeQuGaNvijpcwxMnnMVepS7c6V7rjdeycoZaaGyS4TH3a6Cbq?=
+ =?us-ascii?Q?Okb0rJTsjqWzJYpLP2hIX5b9xrYtVepFvJJBPTo7XjsIUtvAtzrUwsngT3oN?=
+ =?us-ascii?Q?UF+h6qbMamHXIKa1LAn9jvLYMTH31q5mdI8f7Zxd0JRyjLIN6TngaBUKNrTr?=
+ =?us-ascii?Q?J6NSLerI0w+xUzosC3Tg3a9EdhBKLQjc3GAgYPs6NWDjehtl0DUB9yrNHJ8G?=
+ =?us-ascii?Q?+r8Va/mD9SeBD2uVAdlSOTaS/AuJP9F1WBXaRVUpAYLy+A2xaA8GZGu3Vkod?=
+ =?us-ascii?Q?PGqjacQAxjuc+yWnHMm55nu5tzD1dSyqU8tGE2QLEvZN8NdzP7DpWUvUqG9+?=
+ =?us-ascii?Q?lEibiAGCzj6hXE4wfcN1jRWXqJwnoxOTDpqZUTmuGIFJtF+dbjhU840CR5mW?=
+ =?us-ascii?Q?OoduuYvgoy0j6bq9/sJA3U5C7kfyYDZ8r6zSDQ0EPHqJiuN+vICXRHCqKxpP?=
+ =?us-ascii?Q?7uHgjouuZbbT6SX7H8m79Funbi+lsoVRWXkoGC/Ch2zVJgQp7UKzM3ElrFE+?=
+ =?us-ascii?Q?g4vkBIUDZ4lNevvXx0KjS/t20Ks5kw5VIWoKbacSaUvipyjPvnh/B7APIxvW?=
+ =?us-ascii?Q?4hVONU1jWnbbEY6VQGrJnzv1bc2k1elMAYgNyEEwuEk8T4VHm/yqd6Sq1t+3?=
+ =?us-ascii?Q?BiPK/luMPMjncLTqsub5hu2y?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 40195ce7-ed52-463e-3941-08d94cf92531
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jul 2021 10:12:00.6854
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: chD/sOQTgvnD0QgEC8Q0Z/EcDdhoz+/JWdwy4Hl07XRNHhkmjy53a/gEAOM3bsuhDrckxKi9uRcCzziYHkTqyw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB2862
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Uwe,
+Since drivers/mmc/host/sdhci-xenon.c declares the PROBE_PREFER_ASYNCHRONOUS
+probe type, it is not guaranteed whether /dev/mmcblk0 will belong to
+sdhci0 or sdhci1. In turn, this will break booting by:
 
-On Fri, Jul 16 2021, Uwe Kleine-König wrote:
-> On Fri, Jul 16, 2021 at 08:51:20AM +0300, Baruch Siach wrote:
->> On Wed, Jul 14 2021, Uwe Kleine-König wrote:
->> > On Tue, Jul 13, 2021 at 02:35:43PM +0300, Baruch Siach wrote:
->> >> +	val = FIELD_PREP(IPQ_PWM_REG0_HI_DURATION, hi_dur) |
->> >> +		FIELD_PREP(IPQ_PWM_REG0_PWM_DIV, pwm_div);
->> >> +	ipq_pwm_reg_write(pwm, IPQ_PWM_CFG_REG0, val);
->> >> +
->> >> +	val = FIELD_PREP(IPQ_PWM_REG1_PRE_DIV, pre_div);
->> >> +	ipq_pwm_reg_write(pwm, IPQ_PWM_CFG_REG1, val);
->> >> +
->> >> +	/* Enable needs a separate write to REG1 */
->> >> +	val |= IPQ_PWM_REG1_UPDATE;
->> >
->> > Setting this bit results in the two writes above being configured
->> > atomically so that no mixed settings happen to the output, right?
->> 
->> I guess so. I have no access to hardware documentation, mind you. I
->> first tried to do only one write to REG1, but it had no effect. The
->> existence of the UPDATE bit also indicates that hardware works as you
->> suggest.
->
-> I wouldn't trust HW documentation here. If you have some means to
-> inspect the waveform this is easy to test. Depending on how long you can
-> make the periods an LED is enough. If you start with a slower parent
-> clk, a big pre_div and hi_dur = 0 the LED is supposed to be off. Then
-> set hi_dur = pwm_div/2 which either make the LED blink slowly or keeps
-> off. Then setting pre_div = 2 either increased the blink frequency or it
-> doesn't. ...
+root=/dev/mmcblk0p1
 
-I currently have only access to DVM to measure the PWM effect. I'll try
-to do more measures when I have access to better equipment.
+Fix the issue by adding aliases so that the old MMC controller indices
+are preserved.
 
-baruch
+Fixes: 7320915c8861 ("mmc: Set PROBE_PREFER_ASYNCHRONOUS for drivers that existed in v4.14")
+Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+---
+ arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+index ce2bcddf396f..f2d7d6f071bc 100644
+--- a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
++++ b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+@@ -19,6 +19,8 @@ / {
+ 	aliases {
+ 		spi0 = &spi0;
+ 		ethernet1 = &eth1;
++		mmc0 = &sdhci0;
++		mmc1 = &sdhci1;
+ 	};
+ 
+ 	chosen {
 -- 
-                                                     ~. .~   Tk Open Systems
-=}------------------------------------------------ooO--U--Ooo------------{=
-   - baruch@tkos.co.il - tel: +972.52.368.4656, http://www.tkos.co.il -
+2.25.1
+
