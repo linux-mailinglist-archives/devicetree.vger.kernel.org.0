@@ -2,169 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61DCC3D3960
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 13:23:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2FAA3D3979
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 13:28:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231976AbhGWKnS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 06:43:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34320 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231848AbhGWKnS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Jul 2021 06:43:18 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id EBC78608FE;
-        Fri, 23 Jul 2021 11:23:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627039431;
-        bh=sep4PyPFWFTV1G73N7CdN+qNWYDhfdkSBOFjBh0oYkU=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=R6MI/WJ4vElrqZoGqWHmJCK8Rcli5o9G3c4wT33/ezTsgyN/qu2AhGPqXuetLZ3O5
-         Df6moxTD16ngcV++Y0QxZa2NNZLBuFI9ufHHBZfJB5+UU6JUX15YiV7uW9sG6d9kgv
-         q3+z+UhXyx09bvbBR6sEEg/iglFfzE8PaUTRKy4ZyaIPtKUS9kjR+zea6d98mLVa7f
-         Lj4xD90vokCiOtGRx52Dj4k+2pDWvl5TUSDqK0An/AyIS8TEbNe47jPwCcdzawML6T
-         2RwCCVbZ3Ve6h10lDV0Px52jwl/Ptd/ZVfX37GhmtDrzxdsr3P8rCpmbOQGNCtjwYT
-         Fgnbdjxz1JSdA==
-From:   Felipe Balbi <balbi@kernel.org>
-To:     Ferry Toth <fntoth@gmail.com>,
-        Wesley Cheng <wcheng@codeaurora.org>,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, frowand.list@gmail.com
-Cc:     linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        jackp@codeaurora.org, heikki.krogerus@linux.intel.com,
-        andy.shevchenko@gmail.com
-Subject: Re: [PATCH v10 0/6] Re-introduce TX FIFO resize for larger EP bursting
-In-Reply-To: <d9aef50c-4bd1-4957-13d8-0b6a14b9fcd0@gmail.com>
-References: <1623923899-16759-1-git-send-email-wcheng@codeaurora.org>
- <cfb83fe4-369c-ec72-7887-3bcb0f20fe15@gmail.com>
- <ec8050c5-c013-4af6-b39e-69779c009a9c@codeaurora.org>
- <f5ed0ee7-e333-681f-0f1a-d0227562204b@gmail.com>
- <2e01c435-9ecc-4e3b-f55c-612a86667020@codeaurora.org>
- <2ae9fa6a-3bb1-3742-0dd3-59678bdd8643@gmail.com>
- <ebea75fe-5334-197b-f67a-cb6e1e30b39e@codeaurora.org>
- <bafa93bb-11e3-c8a5-e14a-b0a6d5695055@gmail.com>
- <87v951ldlt.fsf@kernel.org>
- <d9aef50c-4bd1-4957-13d8-0b6a14b9fcd0@gmail.com>
-Date:   Fri, 23 Jul 2021 14:23:40 +0300
-Message-ID: <87pmv9l1dv.fsf@kernel.org>
+        id S234102AbhGWKsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 06:48:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50288 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231703AbhGWKsV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 06:48:21 -0400
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A508C061575;
+        Fri, 23 Jul 2021 04:28:55 -0700 (PDT)
+Received: by mail-pl1-x62f.google.com with SMTP id a14so2909246plh.5;
+        Fri, 23 Jul 2021 04:28:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Q15Uy0/mb1YlRCrH+e/XqE5QNFNkxOvnubki+n6iu+E=;
+        b=RnqFa0767hWlEZszBAiUJaUqeZwiK7eFd25wH2OoyXg1AU1j9Y5aH/LhNJ4AgQ+/nb
+         nt0evg1n3olIYPaR9JCYP+zNhmW2sOIOEfRw9nlvkCxaStC6j2cUhzB7v2wKuO1j/J8q
+         DL9XN6e+auAgW7clpW6ZhcaezeMWALQ0hklhKmAYHbXwiSR/En6cLZDv1sISi2bJmMeB
+         l16E6nfygV7pK6/g/MogY0CWvy8vEx8dy0R5Hi2nBP2m79xtc5IGjrZMk17orFRgImLE
+         njZUVxA/t0Re2hUPe2XjBJ414O2YVnh+Je0R+nLqa/fQSIHwKJv2xb7b+ZYWBF6oWFAF
+         aqpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Q15Uy0/mb1YlRCrH+e/XqE5QNFNkxOvnubki+n6iu+E=;
+        b=cKxc2NzRmXWUa3FS2gQxh9pbB93q8kvmMwmZDR5iiuOIyzBV+WvwUkKFnXP04D97+3
+         JKH2F355WabA0UB7/UQ18euxTe9hLo5hkqefqVXJ0N9QbPzbB1epvOGR2xoMgUtf56ES
+         a22HIlepTFCoLY12/KBv2hGb9dUDEntfZfeZBUJn7s3ucJlA9cBPfq40ZGf47Y+63J4J
+         MUqrZAbTfyPguV/13Ds3eqbOqz/qCYfHrm8FSGxETwGcL3e/LI2PWm3NSEplAOBut0P2
+         9QlWSlXJEc7ShVqrHwg9+Yt55zZdRru8AUaBusdZzTZzduGV34KyeTPRRvfaDD/uBOxx
+         TgiQ==
+X-Gm-Message-State: AOAM531bfI9XxjiU4qQN1tkp0lubTbpjnef5Dhb+7CQ4CYFScMMOoruf
+        3B3vhQTxUSGAigV1PsRwFas=
+X-Google-Smtp-Source: ABdhPJxNfP3fWOf2uAaWb8HhDLAgMVnpJNmVDSstKTmd+aoqqeMKAsBM2j83+Gva9R0WAImDeNWDIg==
+X-Received: by 2002:aa7:800b:0:b029:330:455f:57a8 with SMTP id j11-20020aa7800b0000b0290330455f57a8mr3988625pfi.7.1627039735030;
+        Fri, 23 Jul 2021 04:28:55 -0700 (PDT)
+Received: from localhost.localdomain ([2804:14c:485:504a:d157:8bd3:ec42:18c3])
+        by smtp.gmail.com with ESMTPSA id o9sm35733184pfh.217.2021.07.23.04.28.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Jul 2021 04:28:54 -0700 (PDT)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     davem@davemloft.net
+Cc:     shawnguo@kernel.org, linux-arm-kernel@lists.infradead.org,
+        qiangqing.zhang@nxp.com, robh+dt@kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        Fabio Estevam <festevam@gmail.com>
+Subject: [PATCH net-next] ARM: dts: imx6qdl: Remove unnecessary mdio #address-cells/#size-cells
+Date:   Fri, 23 Jul 2021 08:28:35 -0300
+Message-Id: <20210723112835.31743-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha256; protocol="application/pgp-signature"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
+Since commit dabb5db17c06 ("ARM: dts: imx6qdl: move phy properties into
+phy device node") the following W=1 dtc warnings are seen:
 
-Ferry Toth <fntoth@gmail.com> writes:
+arch/arm/boot/dts/imx6qdl-aristainetos2.dtsi:323.7-334.4: Warning (avoid_unnecessary_addr_size): /soc/bus@2100000/ethernet@2188000/mdio: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
 
-> Hi
->
-> Op 23-07-2021 om 08:59 schreef Felipe Balbi:
->> Hi,
->>
->> Ferry Toth <fntoth@gmail.com> writes:
->>>>> kernel: configfs-gadget gadget: u_audio_start_playback:451 Error!
->>>>> kernel: configfs-gadget gadget: u_audio_start_playback:451 Error!
->>>>> kernel: dwc3 dwc3.0.auto: request 00000000fbc71244 was not queued to =
-ep5in
->>>>> kernel: dwc3 dwc3.0.auto: request 00000000ad1b8c18 was not queued to =
-ep5in
->>>>> kernel: dwc3 dwc3.0.auto: Fifosize(2154) > RAM size(2022) ep5in
->>>>> depth:115540359
->>>>> kernel: configfs-gadget gadget: u_audio_start_playback:451 Error!
->>>>> kernel: configfs-gadget gadget: u_audio_start_playback:451 Error!
->>>>> kernel: dwc3 dwc3.0.auto: request 000000003c32dcc5 was not queued to =
-ep5in
->>>>> kernel: dwc3 dwc3.0.auto: request 00000000b2512aa9 was not queued to =
-ep5in
->>>>>
->>>>> Removing uac2 from the config makes the call trace go away, but the R=
-/W
->>>>> speed does not change.
->>> I am testing with 5.14.0-rc2 and now related error appears (not in rc1).
->>> Disabling uac2 solves it still. Any idea what it could be?
->>>
->>> BUG: unable to handle page fault for address: 0000000500000000
->>> #PF: supervisor instruction fetch in kernel mode
->>> #PF: error_code(0x0010) - not-present page
->>> PGD 0 P4D 0
->>> Oops: 0010 [#1] SMP PTI
->>> CPU: 0 PID: 494 Comm: irq/14-dwc3 Not tainted
->>> 5.14.0-rc2-edison-acpi-standard #1
->> (cool that you're running on ACPI heh)
-> Thanks to Andy this is Edison-Arduino board with ACPI.
->>> Hardware name: Intel Corporation Merrifield/BODEGA BAY, BIOS 542
->>> 2015.01.21:18.19.48
->>> RIP: 0010:0x500000000
->>> Code: Unable to access opcode bytes at RIP 0x4ffffffd6.
->>> RSP: 0018:ffffa4d00045fc28 EFLAGS: 00010046
->>> RAX: 0000000500000000 RBX: ffff8cd546aed200 RCX: 0000000000000000
->>> RDX: 0000000000000000 RSI: ffff8cd547bfcae0 RDI: ffff8cd546aed200
->>> RBP: ffff8cd547bfcae0 R08: 0000000000000000 R09: 0000000000000001
->>> R10: ffff8cd541fd28c0 R11: 0000000000000000 R12: ffff8cd547342828
->>> R13: ffff8cd546aed248 R14: 0000000000000000 R15: ffff8cd548b1d000
->>> FS:  0000000000000000(0000) GS:ffff8cd57e200000(0000) knlGS:00000000000=
-00000
->>> CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
->>> CR2: 0000000500000000 CR3: 000000000311e000 CR4: 00000000001006f0
->>> Call Trace:
->>>    ? dwc3_remove_requests.constprop.0+0x14d/0x170
->>>    ? __dwc3_gadget_ep_disable+0x7a/0x160
->>>    ? dwc3_gadget_ep_disable+0x3d/0xd0
->>>    ? usb_ep_disable+0x1c/0x
->>>    ? u_audio_stop_capture+0x79/0x120 [u_audio]
->>>    ? afunc_set_alt+0x73/0x80 [usb_f_uac2]
->>>    ? composite_setup+0x224/0x1b90 [libcomposite]
->>>    ? __dwc3_gadget_kick_transfer+0x160/0x400
->>>    ? dwc3_gadget_ep_queue+0xf3/0x1a0
->>>    ? configfs_composite_setup+0x6b/0x90 [libcomposite]
->>>    ? configfs_composite_setup+0x6b/0x90 [libcomposite]
->>>    ? dwc3_ep0_interrupt+0x459/0xa40
->>>    ? dwc3_thread_interrupt+0x8ee/0xf40
->>>    ? __schedule+0x235/0x6c0
->>>    ? disable_irq_nosync+0x10/0x10
->>>    ? irq_thread_fn+0x1b/0x60
->>>    ? irq_thread+0xc0/0x160
->>>    ? irq_thread_check_affinity+0x70/0x70
->>>    ? irq_forced_thread_fn+0x70/0x70
->>>    ? kthread+0x122/0x140
->>>    ? set_kthread_struct+0x40/0x40
->>>    ? ret_from_fork+0x22/0x30
->> Do you mind enabling dwc3 traces and collecting them? Trying to figure
->> out how we got here.
->>
-> I'll try if I can get the same error by booting with USB in host mode=20
-> and then switch to device mode. If so I can enable traces and collect as=
-=20
-> you explained me before.
->
-> I'll try before monday, as then I fly for a holiday and will not be=20
-> available before rc5.
+Remove the unnecessary mdio #address-cells/#size-cells to fix it.
 
-you can enable all of those with kernel cmdline :-)
+Fixes: dabb5db17c06 ("ARM: dts: imx6qdl: move phy properties into phy device node")
+Signed-off-by: Fabio Estevam <festevam@gmail.com>
+---
+Hi,
 
-https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html
+I am targetting net-next because this is where the offending patch was
+applied.
 
-you need ftrace_dump_on_oops=3D1 and also need the correct options on
-trace_buf_size and trace_event.
+ arch/arm/boot/dts/imx6q-novena.dts           | 3 ---
+ arch/arm/boot/dts/imx6qdl-aristainetos2.dtsi | 3 ---
+ arch/arm/boot/dts/imx6qdl-nit6xlite.dtsi     | 3 ---
+ arch/arm/boot/dts/imx6qdl-nitrogen6_max.dtsi | 3 ---
+ arch/arm/boot/dts/imx6qdl-nitrogen6x.dtsi    | 3 ---
+ arch/arm/boot/dts/imx6qdl-sabrelite.dtsi     | 3 ---
+ 6 files changed, 18 deletions(-)
 
-=2D-=20
-balbi
+diff --git a/arch/arm/boot/dts/imx6q-novena.dts b/arch/arm/boot/dts/imx6q-novena.dts
+index 225cf6b7a7a4..909adaf4e544 100644
+--- a/arch/arm/boot/dts/imx6q-novena.dts
++++ b/arch/arm/boot/dts/imx6q-novena.dts
+@@ -227,9 +227,6 @@ &fec {
+ 	status = "okay";
+ 
+ 	mdio {
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+ 		ethphy: ethernet-phy {
+ 			compatible = "ethernet-phy-ieee802.3-c22";
+ 			rxc-skew-ps = <3000>;
+diff --git a/arch/arm/boot/dts/imx6qdl-aristainetos2.dtsi b/arch/arm/boot/dts/imx6qdl-aristainetos2.dtsi
+index 563bf9d44fe0..3e13be35b526 100644
+--- a/arch/arm/boot/dts/imx6qdl-aristainetos2.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-aristainetos2.dtsi
+@@ -321,9 +321,6 @@ &fec {
+ 	status = "okay";
+ 
+ 	mdio {
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+ 		ethphy: ethernet-phy {
+ 			compatible = "ethernet-phy-ieee802.3-c22";
+ 			txd0-skew-ps = <0>;
+diff --git a/arch/arm/boot/dts/imx6qdl-nit6xlite.dtsi b/arch/arm/boot/dts/imx6qdl-nit6xlite.dtsi
+index ac34709e9741..492eaa4094ff 100644
+--- a/arch/arm/boot/dts/imx6qdl-nit6xlite.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-nit6xlite.dtsi
+@@ -198,9 +198,6 @@ &fec {
+ 	status = "okay";
+ 
+ 	mdio {
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+ 		ethphy: ethernet-phy {
+ 			compatible = "ethernet-phy-ieee802.3-c22";
+ 			txen-skew-ps = <0>;
+diff --git a/arch/arm/boot/dts/imx6qdl-nitrogen6_max.dtsi b/arch/arm/boot/dts/imx6qdl-nitrogen6_max.dtsi
+index c96f4d7e1e0d..4e5682211f42 100644
+--- a/arch/arm/boot/dts/imx6qdl-nitrogen6_max.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-nitrogen6_max.dtsi
+@@ -340,9 +340,6 @@ &fec {
+ 	status = "okay";
+ 
+ 	mdio {
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+ 		ethphy: ethernet-phy {
+ 			compatible = "ethernet-phy-ieee802.3-c22";
+ 			txen-skew-ps = <0>;
+diff --git a/arch/arm/boot/dts/imx6qdl-nitrogen6x.dtsi b/arch/arm/boot/dts/imx6qdl-nitrogen6x.dtsi
+index 49da30d7510c..c29fbfd87172 100644
+--- a/arch/arm/boot/dts/imx6qdl-nitrogen6x.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-nitrogen6x.dtsi
+@@ -273,9 +273,6 @@ &fec {
+ 	status = "okay";
+ 
+ 	mdio {
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+ 		ethphy: ethernet-phy {
+ 			compatible = "ethernet-phy-ieee802.3-c22";
+ 			txen-skew-ps = <0>;
+diff --git a/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi b/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi
+index eb9a0b104f1c..a6f2d6db521f 100644
+--- a/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi
+@@ -329,9 +329,6 @@ &fec {
+ 	status = "okay";
+ 
+ 	mdio {
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+ 		ethphy: ethernet-phy {
+ 			compatible = "ethernet-phy-ieee802.3-c22";
+ 			txen-skew-ps = <0>;
+-- 
+2.25.1
 
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQFFBAEBCAAvFiEE9DumQ60WEZ09LIErzlfNM9wDzUgFAmD6prwRHGJhbGJpQGtl
-cm5lbC5vcmcACgkQzlfNM9wDzUi2CAf+Kz5z/Z388lfY844QMLR/DnG2Wiw1RNBe
-XiTA8qSzwKgB55ZtO17uVK8GFMMYpvv4I7dnSlSltlaSzEBT3ZWPs3dqVUrjPktq
-7q31dOcRB0DcFIaIxKG6Ip4xe6juQ76T6UmkcnN5c92v6z1YslokrjOiN/KCyVbv
-eXo7dq1q5L6r3zX2ABIxA7JbGghOUWGQb8o7/F/AsdZWJ127KHb+vUNKjmjqHGcw
-ztr2GE4/+DersZ5mm9yyqTKMSs3JrjSctXSDK+xceujIUjRl1Noz3+npvCu22XsD
-7YSQnek9lcTT6W68zgWDPGNbCfGY143d1Yh3D+G2/EEmm6FTArAVPQ==
-=XlmN
------END PGP SIGNATURE-----
---=-=-=--
