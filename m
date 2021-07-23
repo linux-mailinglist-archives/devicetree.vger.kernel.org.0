@@ -2,170 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DB3A3D3C12
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 16:56:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A97A3D3C4A
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 17:17:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235405AbhGWOPZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 10:15:25 -0400
-Received: from frasgout.his.huawei.com ([185.176.79.56]:3467 "EHLO
-        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235351AbhGWOPZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 10:15:25 -0400
-Received: from fraeml744-chm.china.huawei.com (unknown [172.18.147.226])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4GWX7N6Hl5z6D909;
-        Fri, 23 Jul 2021 22:41:04 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml744-chm.china.huawei.com (10.206.15.225) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Fri, 23 Jul 2021 16:55:56 +0200
-Received: from localhost (10.210.170.238) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2176.2; Fri, 23 Jul
- 2021 15:55:55 +0100
-Date:   Fri, 23 Jul 2021 15:55:30 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Billy Tsai <billy_tsai@aspeedtech.com>
-CC:     <jic23@kernel.org>, <lars@metafoo.de>, <pmeerw@pmeerw.net>,
-        <robh+dt@kernel.org>, <joel@jms.id.au>, <andrew@aj.id.au>,
-        <p.zabel@pengutronix.de>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
-        <BMC-SW@aspeedtech.com>
-Subject: Re: [v2 3/8] iio: adc: aspeed: completes the bitfield declare.
-Message-ID: <20210723155530.00000d1c@Huawei.com>
-In-Reply-To: <20210723081621.29477-4-billy_tsai@aspeedtech.com>
-References: <20210723081621.29477-1-billy_tsai@aspeedtech.com>
-        <20210723081621.29477-4-billy_tsai@aspeedtech.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
+        id S235504AbhGWOgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 10:36:51 -0400
+Received: from mail-ua1-f44.google.com ([209.85.222.44]:43657 "EHLO
+        mail-ua1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235486AbhGWOgs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 10:36:48 -0400
+Received: by mail-ua1-f44.google.com with SMTP id j7so630100uaj.10;
+        Fri, 23 Jul 2021 08:17:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Sie/IxwBmILJtt5CfCHMRTqh7diZyseV1fFMGEm6yOk=;
+        b=jG9SlZxIK86OiLf8r0t4+8AL7Dk/UjURdCBdfQwLKoD9bRvI8B+7T17A0evZ1P133Y
+         hLb/9vYPMAX4IHlS9xWUCnJc2cRPKeAiS05LPjkUvsbNDVJL9SlVla5hIJ0w/GVmxpPm
+         JCFIhSLOFgDLt5Q6Y5Clx6pQMwQP8t20rYTMsrIYxRXw5Ok9AgVCvJRlhGNkIi7clO3e
+         zFyHjgmqOOpkzn6x+AJRJvxRBHYX/o9ux2GyQMirhOa3SaGkFeDISWU2DO6a1ECcJqr1
+         mtah0lJtj66ctsHozaxhs/0hmC90K4eAaSsAzEa1eRi1WcvsjhbGmG8Y22sCuRRPMREq
+         C0xw==
+X-Gm-Message-State: AOAM533jwx5k+xexiVUvE9J5tyYwZo0Xx5nB7/mEjn5Om9Zd17rae3cU
+        xGiPIIpJbhBNtTQuDKzYgNQIpNGrLFeYIP/HBd4=
+X-Google-Smtp-Source: ABdhPJwjie6QeabkOjY7IEyTELcNhWlJ1IBBcsCliDIJ6B3GHGV6iAk2cW/JLMoH9H/oEu8zcHMlVqite6WQsRrTwGc=
+X-Received: by 2002:ab0:2554:: with SMTP id l20mr5059882uan.58.1627053440203;
+ Fri, 23 Jul 2021 08:17:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.210.170.238]
-X-ClientProxiedBy: lhreml704-chm.china.huawei.com (10.201.108.53) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
+References: <170e7daa55aced148b8e57827f7c8fc65a0a8c7a.1626266516.git.geert+renesas@glider.be>
+ <mhng-8deebbc6-f8aa-40e3-9e00-e99f12eaac92@palmerdabbelt-glaptop>
+In-Reply-To: <mhng-8deebbc6-f8aa-40e3-9e00-e99f12eaac92@palmerdabbelt-glaptop>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 23 Jul 2021 17:17:08 +0200
+Message-ID: <CAMuHMdUaQW_edTRAiLb8u+=UoVNkSsgedMVTt8=qPPQ59hrfmw@mail.gmail.com>
+Subject: Re: [PATCH v4 06/10] riscv: Remove non-standard linux,elfcorehdr handling
+To:     Palmer Dabbelt <palmer@dabbelt.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Nicolas Pitre <nico@fluxnic.net>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Dave Young <dyoung@redhat.com>,
+        Mike Rapoport <rppt@kernel.org>, Baoquan He <bhe@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        kexec@lists.infradead.org, Linux MM <linux-mm@kvack.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 23 Jul 2021 16:16:16 +0800
-Billy Tsai <billy_tsai@aspeedtech.com> wrote:
+Hi Palmer,
 
-> This patch completes the declare of adc register bitfields and uses the
-> same prefix ASPEED_ADC_* for these bitfields.
-> 
-> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
-Hi Billy
+On Tue, Jul 20, 2021 at 5:43 PM Palmer Dabbelt <palmer@dabbelt.com> wrote:
+> On Wed, 14 Jul 2021 05:50:16 PDT (-0700), geert+renesas@glider.be wrote:
+> > RISC-V uses platform-specific code to locate the elf core header in
+> > memory.  However, this does not conform to the standard
+> > "linux,elfcorehdr" DT bindings, as it relies on a reserved memory node
+> > with the "linux,elfcorehdr" compatible value, instead of on a
+> > "linux,elfcorehdr" property under the "/chosen" node.
+> >
+> > The non-compliant code can just be removed, as the standard behavior is
+> > already implemented by platform-agnostic handling in the FDT core code.
+> >
+> > Fixes: 5640975003d0234d ("RISC-V: Add crash kernel support")
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > ---
+> > v4:
+> >   - No changes.
+> > ---
+> >  arch/riscv/mm/init.c | 20 --------------------
+> >  1 file changed, 20 deletions(-)
+> >
+> > diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
+> > index 269fc648ef3d84b2..4aa4b6a034086df6 100644
+> > --- a/arch/riscv/mm/init.c
+> > +++ b/arch/riscv/mm/init.c
+> > @@ -829,26 +829,6 @@ static void __init reserve_crashkernel(void)
+> >  }
+> >  #endif /* CONFIG_KEXEC_CORE */
+> >
+> > -#ifdef CONFIG_CRASH_DUMP
+> > -/*
+> > - * We keep track of the ELF core header of the crashed
+> > - * kernel with a reserved-memory region with compatible
+> > - * string "linux,elfcorehdr". Here we register a callback
+> > - * to populate elfcorehdr_addr/size when this region is
+> > - * present. Note that this region will be marked as
+> > - * reserved once we call early_init_fdt_scan_reserved_mem()
+> > - * later on.
+> > - */
+> > -static int __init elfcore_hdr_setup(struct reserved_mem *rmem)
+> > -{
+> > -     elfcorehdr_addr = rmem->base;
+> > -     elfcorehdr_size = rmem->size;
+> > -     return 0;
+> > -}
+> > -
+> > -RESERVEDMEM_OF_DECLARE(elfcorehdr, "linux,elfcorehdr", elfcore_hdr_setup);
+> > -#endif
+> > -
+> >  void __init paging_init(void)
+> >  {
+> >       setup_bootmem();
+>
+> Reviewed-by: Palmer Dabbelt <palmerdabbelt@google.com>
+> Acked-by: Palmer Dabbelt <palmerdabbelt@google.com>
+>
+> LMK if you wanted me to take this series, otherwise I'm going to assume
+> it's going in via some other tree.
 
-See inline,
+There will be a v5 of the series in response to the review comments.
+But I think this patch can already be applied.
 
-Thanks,
+Thanks!
 
-Jonathan
+Gr{oetje,eeting}s,
 
-> ---
->  drivers/iio/adc/aspeed_adc.c | 40 ++++++++++++++++++++++++------------
->  1 file changed, 27 insertions(+), 13 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/aspeed_adc.c b/drivers/iio/adc/aspeed_adc.c
-> index 19efaa41bc34..99466a5924c7 100644
-> --- a/drivers/iio/adc/aspeed_adc.c
-> +++ b/drivers/iio/adc/aspeed_adc.c
-> @@ -16,6 +16,7 @@
->  #include <linux/reset.h>
->  #include <linux/spinlock.h>
->  #include <linux/types.h>
-> +#include <linux/bitfield.h>
->  
->  #include <linux/iio/iio.h>
->  #include <linux/iio/driver.h>
-> @@ -28,15 +29,28 @@
->  #define ASPEED_REG_INTERRUPT_CONTROL	0x04
->  #define ASPEED_REG_VGA_DETECT_CONTROL	0x08
->  #define ASPEED_REG_CLOCK_CONTROL	0x0C
-> -#define ASPEED_REG_MAX			0xC0
-> -
-> -#define ASPEED_OPERATION_MODE_POWER_DOWN	(0x0 << 1)
-> -#define ASPEED_OPERATION_MODE_STANDBY		(0x1 << 1)
-> -#define ASPEED_OPERATION_MODE_NORMAL		(0x7 << 1)
-> -
-> -#define ASPEED_ENGINE_ENABLE		BIT(0)
-> -
-> -#define ASPEED_ADC_CTRL_INIT_RDY	BIT(8)
-> +#define ASPEED_REG_COMPENSATION_TRIM	0xC4
-> +#define ASPEED_REG_MAX			0xCC
-> +
-> +#define ASPEED_ADC_ENGINE_ENABLE		BIT(0)
-> +#define ASPEED_ADC_OPERATION_MODE		GENMASK(3, 1)
-> +#define ASPEED_ADC_OPERATION_MODE_POWER_DOWN	FIELD_PREP(ASPEED_ADC_OPERATION_MODE, 0)
-It's more common to have the FIELD_PREP at the location where it
-is used and just have defines here to be to the value of the field.
+                        Geert
 
-Perhaps also consider some abbreviations as I think we can safely
-make them here without losing any meaning, given context.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-ASPEED_ADC_OP_MODE
-ASPEED_ADC_OP_MODE_PWR_DWN
-ASPEED_ADC_OP_MODE_STANDBY
-ASPEED_ADC_OP_MODE_NORMAL
-
-etc.
-
-> +#define ASPEED_ADC_OPERATION_MODE_STANDBY	FIELD_PREP(ASPEED_ADC_OPERATION_MODE, 1)
-> +#define ASPEED_ADC_OPERATION_MODE_NORMAL	FIELD_PREP(ASPEED_ADC_OPERATION_MODE, 7)
-> +#define ASPEED_ADC_CTRL_COMPENSATION		BIT(4)
-> +#define ASPEED_ADC_AUTO_COMPENSATION		BIT(5)
-> +#define ASPEED_ADC_REF_VOLTAGE			GENMASK(7, 6)
-> +#define ASPEED_ADC_REF_VOLTAGE_2500mV		FIELD_PREP(ASPEED_ADC_REF_VOLTAGE, 0)
-> +#define ASPEED_ADC_REF_VOLTAGE_1200mV		FIELD_PREP(ASPEED_ADC_REF_VOLTAGE, 1)
-> +#define ASPEED_ADC_REF_VOLTAGE_EXT_HIGH		FIELD_PREP(ASPEED_ADC_REF_VOLTAGE, 2)
-> +#define ASPEED_ADC_REF_VOLTAGE_EXT_LOW		FIELD_PREP(ASPEED_ADC_REF_VOLTAGE, 3)
-> +#define ASPEED_ADC_CTRL_INIT_RDY		BIT(8)
-> +#define ASPEED_ADC_CH7_MODE			BIT(12)
-> +#define ASPEED_ADC_CH7_NORMAL			FIELD_PREP(ASPEED_ADC_CH7_MODE, 0)
-> +#define ASPEED_ADC_CH7_BATTERY			FIELD_PREP(ASPEED_ADC_CH7_MODE, 1)
-> +#define ASPEED_ADC_BATTERY_SENSING_ENABLE	BIT(13)
-> +#define ASPEED_ADC_CTRL_CHANNEL			GENMASK(31, 16)
-> +#define ASPEED_ADC_CTRL_CHANNEL_ENABLE(ch)	FIELD_PREP(ASPEED_ADC_CTRL_CHANNEL, BIT(ch))
->  
->  #define ASPEED_ADC_INIT_POLLING_TIME	500
->  #define ASPEED_ADC_INIT_TIMEOUT		500000
-> @@ -226,7 +240,7 @@ static int aspeed_adc_probe(struct platform_device *pdev)
->  
->  	if (model_data->wait_init_sequence) {
->  		/* Enable engine in normal mode. */
-> -		writel(ASPEED_OPERATION_MODE_NORMAL | ASPEED_ENGINE_ENABLE,
-> +		writel(ASPEED_ADC_OPERATION_MODE_NORMAL | ASPEED_ADC_ENGINE_ENABLE,
->  		       data->base + ASPEED_REG_ENGINE_CONTROL);
->  
->  		/* Wait for initial sequence complete. */
-> @@ -246,7 +260,7 @@ static int aspeed_adc_probe(struct platform_device *pdev)
->  		goto clk_enable_error;
->  
->  	adc_engine_control_reg_val = GENMASK(31, 16) |
-> -		ASPEED_OPERATION_MODE_NORMAL | ASPEED_ENGINE_ENABLE;
-> +		ASPEED_ADC_OPERATION_MODE_NORMAL | ASPEED_ADC_ENGINE_ENABLE;
->  	writel(adc_engine_control_reg_val,
->  		data->base + ASPEED_REG_ENGINE_CONTROL);
->  
-> @@ -264,7 +278,7 @@ static int aspeed_adc_probe(struct platform_device *pdev)
->  	return 0;
->  
->  iio_register_error:
-> -	writel(ASPEED_OPERATION_MODE_POWER_DOWN,
-> +	writel(ASPEED_ADC_OPERATION_MODE_POWER_DOWN,
->  		data->base + ASPEED_REG_ENGINE_CONTROL);
->  	clk_disable_unprepare(data->clk_scaler->clk);
->  clk_enable_error:
-> @@ -283,7 +297,7 @@ static int aspeed_adc_remove(struct platform_device *pdev)
->  	struct aspeed_adc_data *data = iio_priv(indio_dev);
->  
->  	iio_device_unregister(indio_dev);
-> -	writel(ASPEED_OPERATION_MODE_POWER_DOWN,
-> +	writel(ASPEED_ADC_OPERATION_MODE_POWER_DOWN,
->  		data->base + ASPEED_REG_ENGINE_CONTROL);
->  	clk_disable_unprepare(data->clk_scaler->clk);
->  	reset_control_assert(data->rst);
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
