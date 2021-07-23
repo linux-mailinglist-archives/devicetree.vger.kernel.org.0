@@ -2,138 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48B9B3D4262
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 23:44:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EAD43D4265
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 23:47:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232270AbhGWVDg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 17:03:36 -0400
-Received: from mail-il1-f177.google.com ([209.85.166.177]:38517 "EHLO
-        mail-il1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231839AbhGWVDg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 17:03:36 -0400
-Received: by mail-il1-f177.google.com with SMTP id h18so2838032ilc.5;
-        Fri, 23 Jul 2021 14:44:07 -0700 (PDT)
+        id S231839AbhGWVHY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 17:07:24 -0400
+Received: from mail-il1-f173.google.com ([209.85.166.173]:42785 "EHLO
+        mail-il1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231724AbhGWVHY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 17:07:24 -0400
+Received: by mail-il1-f173.google.com with SMTP id q18so2819066ile.9;
+        Fri, 23 Jul 2021 14:47:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=jauEAPQML28vHg37ymcxFCbm1rxtiHmWx2icExufkOQ=;
-        b=jMjzAE3IKgVJ0NjQ3ErkDt08IrbAkAu33F2d4hCQJqCfDbX6RKujuN/e6kD9mQT3Y8
-         0WavnXnHSz/viLsf1gQqoi4PaofkfPup/ZoZiufQlGNvF6EUcRg1yYplagZgB1StBjqs
-         7/dX0rAvZXA/pZYhR2mCV/68H09h1aJ6xS1qdlLjrN1302MiXVgbQDK5TP23JTLG3WEy
-         +bl8oym4LzEqtU5Bm1Xg0smqwaoh7dGmlpJpvFLVwoCZ1/yQUOq8Khm4eUNJ2Fb+6InV
-         fxE8Nc2gdHnX0i4ZxgiyKRgJF3Zd0rFenbJKN6uSQP5MtsTNOrVIzmbP4DvFnA0qOkmE
-         FfDw==
-X-Gm-Message-State: AOAM533Cp3I4t9W66Lk+SdRZLrTYDhraoygTmioc1t/xShUXPqVWCGRG
-        6V09wxGf4yqe0Y7UStgH+Q==
-X-Google-Smtp-Source: ABdhPJxO8Y0NrOIFnYw/XKpO/cYyXDnNB9L9gRiX1KzFxwgkWiGc+fz9tdBjIE5ilKkINDKEHIzOCg==
-X-Received: by 2002:a05:6e02:1354:: with SMTP id k20mr4676630ilr.169.1627076647357;
-        Fri, 23 Jul 2021 14:44:07 -0700 (PDT)
+        bh=mVXTIkCEA/Uqqb0Qz5i9W55hpLq01WXGURBWMkYAIZ0=;
+        b=KYcbY+jXuHOqmAh4r4T981Yr9aHPTLkYH5Pvwr5sIUb+V4rXYoNUytWD3dBKM5E86z
+         Yhx9NQRRZrlZLXrb2wqvFrJbKuWxZuSJLiq+kamEl3D9eMRFeO5Di+KPSSsqJ+vXS2sK
+         o4J4fbm8mSduEK4/kfZTeipBPs6z/5KO9fvvutdnaGIs/QaorepVjVm50TIlNEbh8h3P
+         myIfw9ZJxvFz8pWkT6VQKdojS9cPwT3lgf6THwzoz7IG1eVuTHLX3FYbSlY+fLMOgSBa
+         nr/fKf48SfTUscBo/jzyEdmGarCfl/CimUa2qAE6+cliaUK4JMGlHQINNwhmTBZA5d1r
+         /+SA==
+X-Gm-Message-State: AOAM530fVgBf8C8h85VfGeax6SAyNB+SI+QktRNRMe5k/+JSPKQpcNcM
+        UeREr6iRonAd51490IxGbQ==
+X-Google-Smtp-Source: ABdhPJxMiz87Kv3pUTKcMiLxbQsUeBdSF/0voUus+UsqA7kZ7DEuPGGZAYTfure9ZZgMsES2t8ogNQ==
+X-Received: by 2002:a92:c54d:: with SMTP id a13mr4591885ilj.74.1627076876758;
+        Fri, 23 Jul 2021 14:47:56 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id r6sm19076141ioh.27.2021.07.23.14.44.05
+        by smtp.gmail.com with ESMTPSA id q7sm368379iow.12.2021.07.23.14.47.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jul 2021 14:44:06 -0700 (PDT)
-Received: (nullmailer pid 2643227 invoked by uid 1000);
-        Fri, 23 Jul 2021 21:44:03 -0000
-Date:   Fri, 23 Jul 2021 15:44:03 -0600
+        Fri, 23 Jul 2021 14:47:56 -0700 (PDT)
+Received: (nullmailer pid 2649238 invoked by uid 1000);
+        Fri, 23 Jul 2021 21:47:54 -0000
+Date:   Fri, 23 Jul 2021 15:47:54 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Chen-Yu Tsai <wens@csie.org>,
+Cc:     Jonathan Cameron <jic23@kernel.org>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Denis Ciocca <denis.ciocca@st.com>,
+        linux-arm-kernel@lists.infradead.org,
         Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        linux-hwmon@vger.kernel.org
-Subject: Re: [PATCH 14/54] dt-bindings: hwmon: Add IIO HWMON binding
-Message-ID: <20210723214403.GA2641256@robh.at.kernel.org>
+        linux-sunxi@googlegroups.com,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>
+Subject: Re: [PATCH 15/54] dt-bindings: iio: st: Remove wrong items length
+ check
+Message-ID: <20210723214754.GA2649204@robh.at.kernel.org>
 References: <20210721140424.725744-1-maxime@cerno.tech>
- <20210721140424.725744-15-maxime@cerno.tech>
- <20210722102027.000035a5@Huawei.com>
- <20210722093453.2jltinepdphrajed@gilmour>
+ <20210721140424.725744-16-maxime@cerno.tech>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210722093453.2jltinepdphrajed@gilmour>
+In-Reply-To: <20210721140424.725744-16-maxime@cerno.tech>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 22, 2021 at 11:34:53AM +0200, Maxime Ripard wrote:
-> Hi Jonathan,
+On Wed, 21 Jul 2021 16:03:45 +0200, Maxime Ripard wrote:
+> The original bindings was listing the length of the interrupts as either
+> 1 or 2, depending on the setup. This is also what is enforced by the top
+> level schema.
 > 
-> On Thu, Jul 22, 2021 at 10:20:27AM +0100, Jonathan Cameron wrote:
-> > On Wed, 21 Jul 2021 16:03:44 +0200
-> > Maxime Ripard <maxime@cerno.tech> wrote:
-> > 
-> > > Even though we had the iio-hwmon driver for some time and a number of
-> > > boards using it already, we never had a binding for it. Let's add it
-> > > based on what the driver expects and the boards are providing.
-> > > 
-> > > Cc: Guenter Roeck <linux@roeck-us.net>
-> > > Cc: Jean Delvare <jdelvare@suse.com>
-> > > Cc: Jonathan Cameron <jic23@kernel.org>
-> > > Cc: linux-hwmon@vger.kernel.org
-> > > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> > > ---
-> > >  .../devicetree/bindings/hwmon/iio-hwmon.yaml  | 37 +++++++++++++++++++
-> > >  1 file changed, 37 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/hwmon/iio-hwmon.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/hwmon/iio-hwmon.yaml b/Documentation/devicetree/bindings/hwmon/iio-hwmon.yaml
-> > > new file mode 100644
-> > > index 000000000000..49dd40f663a6
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/hwmon/iio-hwmon.yaml
-> > > @@ -0,0 +1,37 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: "http://devicetree.org/schemas/hwmon/iio-hwmon.yaml#"
-> > > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > > +
-> > > +title: ADC-attached Hardware Sensor Device Tree Bindings
-> > > +
-> > > +maintainers:
-> > > +  - Jonathan Cameron <jic23@kernel.org>
-> > 
-> > I'd like to share the blame for this one.  Binding was originally added
-> > by Guenter.
-> > 
-> > https://lore.kernel.org/linux-iio/1359668588-13678-4-git-send-email-linux@roeck-us.net/
-> > https://lore.kernel.org/linux-iio/1359668588-13678-11-git-send-email-linux@roeck-us.net/
-> > :)
-> > 
-> > As bindings go this one has always been controversial because
-> > it's mapping between linux subsystems rather than really describing
-> > hardware.  We've had various discussions over the years on how to do
-> > this differently, but perhaps just documenting the current state is the
-> > way to go.  That doesn't stop us moving to something better in the
-> > future.
+> However, that is further constrained with an if clause that require
+> exactly two interrupts, even though it might not make sense on those
+> devices or in some setups.
 > 
-> There's DT using it already, so I guess it's a bit too late to have that
-> discussion indeed :)
+> Let's remove the clause entirely.
 > 
-> > > +
-> > > +description: >
-> > > +  Bindings for hardware monitoring devices connected to ADC controllers
-> > > +  supporting the Industrial I/O bindings.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: iio-hwmon
-> > > +
-> > > +  io-channels:
-> > > +    minItems: 1
-> > > +    maxItems: 1024
-> > 
-> > Why 1024?
+> Cc: Denis Ciocca <denis.ciocca@st.com>
+> Cc: Jonathan Cameron <jic23@kernel.org>
+> Cc: Lars-Peter Clausen <lars@metafoo.de>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: linux-iio@vger.kernel.org
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> ---
+>  .../bindings/iio/st,st-sensors.yaml           | 41 -------------------
+>  1 file changed, 41 deletions(-)
 > 
-> Ought to be enough for anyone :)
-> 
-> We have to set a maximum and I couldn't find any actual maximum
-> documented, if you prefer another value let me know
 
-Just add a comment: '# Should be enough'
+Reviewed-by: Rob Herring <robh@kernel.org>
