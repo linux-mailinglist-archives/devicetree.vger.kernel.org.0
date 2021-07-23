@@ -2,67 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22E113D3231
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 05:21:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D58103D3239
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 05:30:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233497AbhGWCk3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 22:40:29 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58182 "EHLO mail.kernel.org"
+        id S233526AbhGWCte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 22:49:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:32956 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233459AbhGWCk3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Jul 2021 22:40:29 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2CDB760E74;
-        Fri, 23 Jul 2021 03:20:59 +0000 (UTC)
+        id S233499AbhGWCtd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Jul 2021 22:49:33 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2CDEA60EBD;
+        Fri, 23 Jul 2021 03:30:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627010463;
-        bh=TkGSmL7/KKxewmFkRjaFIwQ3Fq+1SkoEmyPTlz0kCqQ=;
+        s=k20201202; t=1627011007;
+        bh=YErrO5x/unzIGIs/Nw2Woznbf+pZoN0es7LVf9cgeTQ=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=uOspOOUbUL6HJUQyNuEsXGRd+FUxMXAqCPXK/xrGebH0WKzkU5PCCg1K+o7IPV9jB
-         Mnwoe3gbTJ1K/lf18JrEZL6H3Y3y42T66h9HQNrZIEJtBIAW4MHHtd6DxhqTPAYBy1
-         h7fQTQqdamIQ4mkLKguo0TpjXS12JtdCPGT/STdkaalyZRe+PEo6LGxlac1vzmhxt+
-         2kuQ8OaVE3MQN04mveI0QydDaYTf/wXJ1Dl8F9o1IWfAiAl6n14nDpNdphLXmqkWCZ
-         EAdija2Cz3ne6AXZilExbFKYlkTaiU6P1wAN599vChw59D/QJ6OFn/jOztfTKHvh7X
-         mVrO3mYcoj2nA==
-Date:   Fri, 23 Jul 2021 11:20:55 +0800
+        b=Wl8sN8xB098z7yNK9TLDFtVG56/NjvUzzYhVIjv4LIk4E5wUhqCe7nsDg5jwCQ8LF
+         9K+6I7qVl70DJKwmxffe5X7yEIWsS9/+xJ3uiB48AV6ItRA2upVk0lNGTkuKL3tbmh
+         IDGtpljZpaMzcUwxbH4+6lOffreqAlLr2zXf4fuMgnW5wntlrO/KryP9/aiaKVCKzD
+         x870fSX62SZxJ7TD+qJLUm8Mgr+0NwIAKmitdhd/vzFVQAzc98p3/KcwX/DQKcel5S
+         I0NDKJ6n9lZZ+8BoXlr1wMXCSgKjrGJk2kLK1RKM7LpfxiGVKNEiWhOIhWH1UJlyRL
+         vjYwqb/52wH9w==
+Date:   Fri, 23 Jul 2021 11:30:02 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Robin Gong <yibin.gong@nxp.com>
-Cc:     vkoul@kernel.org, mark.rutland@arm.com, broonie@kernel.org,
-        robh+dt@kernel.org, catalin.marinas@arm.com, will.deacon@arm.com,
-        festevam@gmail.com, s.hauer@pengutronix.de,
-        martin.fuzzey@flowbird.group, u.kleine-koenig@pengutronix.de,
-        dan.j.williams@intel.com, matthias.schiffer@ew.tq-group.com,
-        frieder.schrempf@kontron.de, m.felsch@pengutronix.de,
-        l.stach@pengutronix.de, xiaoning.wang@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-imx@nxp.com,
-        kernel@pengutronix.de, dmaengine@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v16 00/12] add ecspi ERR009165 for i.mx6/7 soc family
-Message-ID: <20210723032054.GH28658@dragon>
-References: <1626258052-22198-1-git-send-email-yibin.gong@nxp.com>
+To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        kernel@dh-electronics.com, Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH V3] dt-bindings: arm: fsl: Add DHCOM PicoITX and DHCOM
+ DRC02 boards
+Message-ID: <20210723032953.GI28658@dragon>
+References: <20210714202252.5898-1-cniedermaier@dh-electronics.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1626258052-22198-1-git-send-email-yibin.gong@nxp.com>
+In-Reply-To: <20210714202252.5898-1-cniedermaier@dh-electronics.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 14, 2021 at 06:20:40PM +0800, Robin Gong wrote:
-> Robin Gong (12):
->   Revert "ARM: dts: imx6q: Use correct SDMA script for SPI5 core"
->   Revert "ARM: dts: imx6: Use correct SDMA script for SPI cores"
->   Revert "dmaengine: imx-sdma: refine to load context only once"
->   dmaengine: imx-sdma: remove duplicated sdma_load_context
->   dmaengine: dma: imx-sdma: add fw_loaded and is_ram_script
->   dmaengine: imx-sdma: add mcu_2_ecspi script
->   spi: imx: fix ERR009165
->   spi: imx: remove ERR009165 workaround on i.mx6ul
->   dmaengine: imx-sdma: remove ERR009165 on i.mx6ul
->   dma: imx-sdma: add i.mx6ul compatible name
->   dmaengine: imx-sdma: add uart rom script
->   dmaengine: imx-sdma: add terminated list for freed descriptor in
->     worker
+On Wed, Jul 14, 2021 at 10:22:52PM +0200, Christoph Niedermaier wrote:
+> Add DH electronics DHCOM PicoITX and DHCOM DRC02 boards. The DHCOM DRC02
+> device can only house a SOM with iMX6S and not with iMX6DL, due to some
+> thermal design consideration. But for compatible fsl,imx6dl is chosen,
+> because fsl,imx6s isn't available, the iMX6S is basically a iMX6DL with
+> one CPU core disabled and therefore the kernel discerns the iMX6S/iMX6DL
+> automatically.
+> 
+> Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: robh+dt@kernel.org
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: kernel@dh-electronics.com
+> Cc: Fabio Estevam <festevam@denx.de>
+> To: devicetree@vger.kernel.org
 
-Applied all, thanks!
+Applied, thanks!
