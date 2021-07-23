@@ -2,74 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 94AE23D42FC
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 00:35:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC10C3D4306
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 00:43:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232884AbhGWVyk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 17:54:40 -0400
-Received: from mail-il1-f173.google.com ([209.85.166.173]:38405 "EHLO
-        mail-il1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231742AbhGWVyj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 17:54:39 -0400
-Received: by mail-il1-f173.google.com with SMTP id h18so2932086ilc.5;
-        Fri, 23 Jul 2021 15:35:11 -0700 (PDT)
+        id S232401AbhGWWC1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 18:02:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35002 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231954AbhGWWC0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 18:02:26 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6625FC061575
+        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 15:42:58 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id a7so3445864ljq.11
+        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 15:42:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=iXmfZl7tl4+qVCvx5N5v67i1rD9bv+ydkZCcMvPVVHY=;
+        b=emilnGg82dznkreHtSs41UKfoTE6WyVDLr+Z/pur5y1tylLzPoNnJyh82qMBtUh7PF
+         zvsnjErIowErAYZdwo9TBzgxkO8LlFzLV+nRSdV3xixFdzRBxzt/w9Idj1kGh7i8s/oU
+         oqYt/x8y+ERqXHb7Sz7zdWPjh7c/3LfpQRadqpTu5ZaSc9gBTogIcNCvW0DER/+Gp5Mp
+         frsmj13Y3334cQ7JeIL6ohBQ3A2x2qVShMUAyVctHD3zgZt3GFTMq0ep+LFau/P0BthZ
+         liaFT7kvNUxp7m+fqEyyMPI8Frvcnv0Tj1Am10fMbGVl6k8fhzcuLiy09uo+NRiPX2+E
+         /+ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=qQxdLWyho3xwmuPp6KfF8mLtCmH5RhCLEXgrlUIh/L4=;
-        b=H4ypIUhj7MlTM59SbeUerL+Z+usfCzsHARrxvGI6jc15ERz8WafQbdXPkBx0kGdXLZ
-         UvuopZ18GQB0jjbYr/BxoHEk8T6H5JPqhiHYDabBQq18Dn1Mw6sF6j6z65Yky/jwcuR2
-         uyhQTn1hMfs2TWGKUmadoOzOPtGXMF3HdM9WCbg2DFXJ03RLxuf2ou9FKH+kz+JgDSkZ
-         y4YVjFzJYmEV5BvNy1tXwyxQr4nVGe++4C2Bifx4kSakvP3B1ZMNm3k91v6bv9jlrs3p
-         REAd4IjdVnXrsVGK6ZMw0LIPVpncxBRsVeMfY0sVJH2GPe7kt8vnw0egPyGyO0XLiRtY
-         Uliw==
-X-Gm-Message-State: AOAM533zEwRQcLmfFLU7puEyfbrXuoM2UJ2bPOXDD3O6OkrdEIgN4fhc
-        9jFUzT+KQkRS9a6pUMLdHcwJz4dRMA==
-X-Google-Smtp-Source: ABdhPJwnp4BikKGksewDt2ZQql8uFbKwYjGumMljGC6abLtrr1kYbw/PexQnnWka1sOkOVsA94jrDg==
-X-Received: by 2002:a92:505:: with SMTP id q5mr4606791ile.139.1627079711667;
-        Fri, 23 Jul 2021 15:35:11 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id k4sm5340302ilu.67.2021.07.23.15.35.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jul 2021 15:35:11 -0700 (PDT)
-Received: (nullmailer pid 2726106 invoked by uid 1000);
-        Fri, 23 Jul 2021 22:35:08 -0000
-Date:   Fri, 23 Jul 2021 16:35:08 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Viktor Prutyanov <viktor.prutyanov@phystech.edu>
-Cc:     linux-media@vger.kernel.org, khilman@baylibre.com,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        martin.blumenstingl@googlemail.com, linux-kernel@vger.kernel.org,
-        rockosov@gmail.com, narmstrong@baylibre.com,
-        devicetree@vger.kernel.org, jbrunet@baylibre.com,
-        linux-amlogic@lists.infradead.org, sean@mess.org,
-        mchehab@kernel.org
-Subject: Re: [PATCH v7 1/2] media: rc: meson-ir-tx: document device tree
- bindings
-Message-ID: <20210723223508.GA2726071@robh.at.kernel.org>
-References: <20210719170506.13539-1-viktor.prutyanov@phystech.edu>
- <20210719170506.13539-2-viktor.prutyanov@phystech.edu>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=iXmfZl7tl4+qVCvx5N5v67i1rD9bv+ydkZCcMvPVVHY=;
+        b=oKUNH1TZjV9iZtzewwPFApW0xkKy/1s2CAuqUlp2p3k8ZuGKaCAxAx7xzUcPd3iVTu
+         nGWpc4HaGKUYe2WZp2OJWdeAdfBcOJG6XwGYnVnxvJhFNFtjq+DEXEFpphjhBNu5VT+m
+         Za6EDq23NGy9FbpP4GDemhKHWqDChCaBOhyjHFYES23NcYeSc9ibL3IStPSFu63JzEkO
+         YXv6kFRxggDl4TpMbEk1VsKjT6+SKJPZL9dQawtWGc2rjo5nRc6Zdxh28TM9x7jfDrs5
+         oXUtpTuMcrTXgM3Ni4AMydlAmsOMdLYb3CSLa44kdCD8iQIbFJJt+cYgdVOoN/8WFMQk
+         hsDQ==
+X-Gm-Message-State: AOAM533eo0+47PRrjZgzhx0PIHbNSawAIlvTmv28dk9hEj+TygT1vVU8
+        YqI3nmZau8Qn6IfgGfkqvap7t69FrFr3WzQC6OrPDJYfhi0=
+X-Google-Smtp-Source: ABdhPJy0HTvu8w5e9tu7S4zKY9bY9cPxWmJhDoGQm5rv4/Vj2F+LHm2JpFTIbbLaamVyoJlwd1+KsZrvl/DcflauJ0w=
+X-Received: by 2002:a2e:888f:: with SMTP id k15mr4597318lji.326.1627080176511;
+ Fri, 23 Jul 2021 15:42:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210719170506.13539-2-viktor.prutyanov@phystech.edu>
+References: <20210722084330.1618239-1-linus.walleij@linaro.org> <20210723204233.GA2541746@robh.at.kernel.org>
+In-Reply-To: <20210723204233.GA2541746@robh.at.kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Sat, 24 Jul 2021 00:42:45 +0200
+Message-ID: <CACRpkdZ7kh9KYhqa+gsmi2kNE350Zse0SUr23s6MPXXbbs0FVw@mail.gmail.com>
+Subject: Re: [PATCH 1/2 v2] bus: ixp4xx: Add DT bindings for the IXP4xx
+ expansion bus
+To:     Rob Herring <robh@kernel.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Imre Kaloz <kaloz@openwrt.org>,
+        Krzysztof Halasa <khalasa@piap.pl>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Marc Zyngier <maz@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 19 Jul 2021 20:05:05 +0300, Viktor Prutyanov wrote:
-> This patch adds binding documentation for the IR transmitter
-> available in Amlogic Meson SoCs.
-> 
-> Signed-off-by: Viktor Prutyanov <viktor.prutyanov@phystech.edu>
-> ---
->  changes in v7:
->   - fifo-threshold property removed
-> 
->  .../bindings/media/amlogic,meson-ir-tx.yaml   | 60 +++++++++++++++++++
->  1 file changed, 60 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/amlogic,meson-ir-tx.yaml
-> 
+On Fri, Jul 23, 2021 at 10:42 PM Rob Herring <robh@kernel.org> wrote:
+> On Thu, 22 Jul 2021 10:43:30 +0200, Linus Walleij wrote:
+> > This adds device tree bindings for the IXP4xx expansion bus controller.
+> >
+> > Cc: Marc Zyngier <maz@kernel.org>
+> > Cc: devicetree@vger.kernel.org
+> > Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> > ---
+> > ChangeLog v1->v2:
+> > - Drop unevaluatedProperties: false from the node match.
+> >   additionalProperties: true will be the default.
+> > ---
+> >  ...intel,ixp4xx-expansion-bus-controller.yaml | 149 ++++++++++++++++++
+> >  1 file changed, 149 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/bus/intel,ixp4xx-expansion-bus-controller.yaml
+>
+> AFAICT, there is no patch 2/2. If there is it never made the lists.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+I have the habit of occasionally just resending the patch that changed.
+Maybe this is a bad habit :/
+
+> Applied, thanks!
+
+Please drop it if you can, I found problems with the bindings...
+It's always more complex.
+
+If it's hard to drop I can also make an incremental patch.
+
+Yours,
+Linus Walleij
