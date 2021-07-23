@@ -2,97 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4FB73D351E
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 09:17:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEB7A3D3540
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 09:31:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232850AbhGWGg5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 02:36:57 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:47380 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229560AbhGWGg5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 02:36:57 -0400
-X-UUID: 75498d81aefb4632a4746dbb27fda214-20210723
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=prDrh7DxvcudMBmuQ1JSmdMeIVoEkDXcOOdpbvc2mFA=;
-        b=QI6jc+ZVluBVkxEG3ZV3sBFIUZDM97gmELDiXF/AEQI7ajf4sXdARMqMiH4kcznjq+GCXDI1lpw2gaCJXuYd6IMGyM8llAodIzi1B9TAzvMr1XrdtAnMmdKF15rtlebhqXtxSUP9oknFJ6wmBAReIxBMzfQ9XwfQ9tlDR+Rc4Qw=;
-X-UUID: 75498d81aefb4632a4746dbb27fda214-20210723
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
-        (envelope-from <chuanjia.liu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 288064018; Fri, 23 Jul 2021 15:17:28 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 23 Jul 2021 15:17:27 +0800
-Received: from [10.17.3.153] (10.17.3.153) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 23 Jul 2021 15:17:26 +0800
-Message-ID: <1627024646.19956.2.camel@mhfsdcap03>
-Subject: Re: [PATCH v11 1/4] dt-bindings: PCI: mediatek: Update the Device
- tree bindings
-From:   Chuanjia Liu <chuanjia.liu@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Jianjun Wang <jianjun.wang@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        PCI <linux-pci@vger.kernel.org>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        <devicetree@vger.kernel.org>, Yong Wu <yong.wu@mediatek.com>
-Date:   Fri, 23 Jul 2021 15:17:26 +0800
-In-Reply-To: <CAL_JsqJXN1b5Tq7uAngXfDmpTJoPvDmSzMedK3kr6efvuCgQ=w@mail.gmail.com>
-References: <20210719073456.28666-1-chuanjia.liu@mediatek.com>
-         <20210719073456.28666-2-chuanjia.liu@mediatek.com>
-         <20210719224718.GA2766057@robh.at.kernel.org>
-         <1626746843.2466.10.camel@mhfsdcap03>
-         <CAL_JsqJXN1b5Tq7uAngXfDmpTJoPvDmSzMedK3kr6efvuCgQ=w@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S233139AbhGWGuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 02:50:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51304 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229733AbhGWGue (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 02:50:34 -0400
+Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B05B7C061757
+        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 00:31:07 -0700 (PDT)
+Received: by mail-yb1-xb35.google.com with SMTP id d73so903118ybc.10
+        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 00:31:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vs+we/6ft1FfVa0CVz20fRewulUcTgapCBk4PsMDMMQ=;
+        b=JPyoG4tDLazDPsS8Y3oVxlDJm75zO3sr5Mwj9G2MnrcoE/tXE6m8Q7IDz7QI/HrG18
+         xlTRSLavT1GWOuRuJSRa2gKNvB9Z25aSlfeFzmf4rtlDTcVQrSqDVdbuiz1aFt9AbmVS
+         Bn8n8SkRdYMai4NwvEI2Suhn5IvGbTMAXHcMmlN6kBJA2EWAbj7uqaOsdhx5HR6dXh8E
+         Qu1hiLp388RZyk+2SNzk0qHrlu7vQ9ohNOQXse3g8P03+XwbTLKU0GKBYXQl3hnFj5QG
+         4FyAaDXc/oappirdBhHoW7wA1+nwd8NCic04Fu6HtgJ0cfr4lCEuzvZxjEWRXAJEZ9Pv
+         uHGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vs+we/6ft1FfVa0CVz20fRewulUcTgapCBk4PsMDMMQ=;
+        b=R9rvvFTPLE/djsRs8euU7apni/f6zq3/xdIJ/UkXBvJxDvylcyuoIlt7707fQwvBZh
+         IYi90xnbmbjVJ9JRHwpSgtysX/JR43IEz1mSTPoMSN42DJay7Gjwo9hCzJzXpdC30Ymy
+         KUIrvr6uhkAL1iQr2kMM+SsEafdu96J1tDfJ+1ZdLbH+0EfRMIUPgtqDyyQJXF1CaZAf
+         TwroSvWLTT3GiBhoGgZFCQhLyz6f3jJaHJoZtYvsj9w2zJr90T+C15Cv2nKKOsa/Vlr2
+         m3DzCIlamOQWUHS1i+fGpvs78vfqciTZ9i+KD33igb244Qv345zH5kVpRiPAOP2RcyNs
+         sgMw==
+X-Gm-Message-State: AOAM5305JCg852ImXWnWhMkEa/oyYN4p4tJlg++SYym7uKwBYLXmr555
+        Bc+Iq0PGMvqYqflGGiX3rnsDdbbEaatYTbCuYH2SBw==
+X-Google-Smtp-Source: ABdhPJwg0akw1mzLE5SRir9S3txrzipyiauGM7ybFw0aTjvqg6GRL6JrZTEfDza78OmWm3R7qONfl5YzUx+jnBc5bxE=
+X-Received: by 2002:a25:487:: with SMTP id 129mr5006427ybe.0.1627025466848;
+ Fri, 23 Jul 2021 00:31:06 -0700 (PDT)
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+References: <20210712100317.23298-1-steven_lee@aspeedtech.com>
+ <CAMpxmJXfUterUdaGHOJT5hwcVJ+3cqgSQVdp-6Atuyyo36FxfQ@mail.gmail.com> <20210723031615.GA10457@aspeedtech.com>
+In-Reply-To: <20210723031615.GA10457@aspeedtech.com>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Fri, 23 Jul 2021 09:30:56 +0200
+Message-ID: <CAMpxmJU4jN-hpNYPLHLbjx4uZ6vDqcyuMVQXhHg1BWXOqyS22A@mail.gmail.com>
+Subject: Re: [PATCH v6 0/9] ASPEED sgpio driver enhancement.
+To:     Steven Lee <steven_lee@aspeedtech.com>,
+        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Hongwei Zhang <Hongweiz@ami.com>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        Billy Tsai <billy_tsai@aspeedtech.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDIxLTA3LTIwIGF0IDEwOjI2IC0wNjAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
-T24gTW9uLCBKdWwgMTksIDIwMjEgYXQgODowNyBQTSBDaHVhbmppYSBMaXUgPGNodWFuamlhLmxp
-dUBtZWRpYXRlay5jb20+IHdyb3RlOg0KPiA+DQo+ID4gT24gTW9uLCAyMDIxLTA3LTE5IGF0IDE2
-OjQ3IC0wNjAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4gPiA+IE9uIE1vbiwgMTkgSnVsIDIwMjEg
-MTU6MzQ6NTMgKzA4MDAsIENodWFuamlhIExpdSB3cm90ZToNCj4gPiA+ID4gVGhlcmUgYXJlIHR3
-byBpbmRlcGVuZGVudCBQQ0llIGNvbnRyb2xsZXJzIGluIE1UMjcxMiBhbmQgTVQ3NjIyDQo+ID4g
-PiA+IHBsYXRmb3JtLiBFYWNoIG9mIHRoZW0gc2hvdWxkIGNvbnRhaW4gYW4gaW5kZXBlbmRlbnQg
-TVNJIGRvbWFpbi4NCj4gPiA+ID4NCj4gPiA+ID4gSW4gb2xkIGR0cyBhcmNoaXRlY3R1cmUsIE1T
-SSBkb21haW4gd2lsbCBiZSBpbmhlcml0ZWQgZnJvbSB0aGUgcm9vdA0KPiA+ID4gPiBicmlkZ2Us
-IGFuZCBhbGwgb2YgdGhlIGRldmljZXMgd2lsbCBzaGFyZSB0aGUgc2FtZSBNU0kgZG9tYWluLg0K
-PiA+ID4gPiBIZW5jZSB0aGF0LCB0aGUgUENJZSBkZXZpY2VzIHdpbGwgbm90IHdvcmsgcHJvcGVy
-bHkgaWYgdGhlIGlycSBudW1iZXINCj4gPiA+ID4gd2hpY2ggcmVxdWlyZWQgaXMgbW9yZSB0aGFu
-IDMyLg0KPiA+ID4gPg0KPiA+ID4gPiBTcGxpdCB0aGUgUENJZSBub2RlIGZvciBNVDI3MTIgYW5k
-IE1UNzYyMiBwbGF0Zm9ybSB0byBjb21wbHkgd2l0aA0KPiA+ID4gPiB0aGUgaGFyZHdhcmUgZGVz
-aWduIGFuZCBmaXggTVNJIGlzc3VlLg0KPiA+ID4gPg0KPiA+ID4gPiBTaWduZWQtb2ZmLWJ5OiBD
-aHVhbmppYSBMaXUgPGNodWFuamlhLmxpdUBtZWRpYXRlay5jb20+DQo+ID4gPiA+IEFja2VkLWJ5
-OiBSeWRlciBMZWUgPHJ5ZGVyLmxlZUBtZWRpYXRlay5jb20+DQo+ID4gPiA+IC0tLQ0KPiA+ID4g
-PiAgLi4uL2JpbmRpbmdzL3BjaS9tZWRpYXRlay1wY2llLWNmZy55YW1sICAgICAgIHwgIDM5ICsr
-KysNCj4gPiA+ID4gIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BjaS9tZWRpYXRlay1wY2llLnR4
-dCB8IDIwNiArKysrKysrKysrLS0tLS0tLS0NCj4gPiA+ID4gIDIgZmlsZXMgY2hhbmdlZCwgMTUw
-IGluc2VydGlvbnMoKyksIDk1IGRlbGV0aW9ucygtKQ0KPiA+ID4gPiAgY3JlYXRlIG1vZGUgMTAw
-NjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9wY2kvbWVkaWF0ZWstcGNpZS1j
-ZmcueWFtbA0KPiA+ID4gPg0KPiA+ID4NCj4gPiA+DQo+ID4gPiBQbGVhc2UgYWRkIEFja2VkLWJ5
-L1Jldmlld2VkLWJ5IHRhZ3Mgd2hlbiBwb3N0aW5nIG5ldyB2ZXJzaW9ucy4gSG93ZXZlciwNCj4g
-PiA+IHRoZXJlJ3Mgbm8gbmVlZCB0byByZXBvc3QgcGF0Y2hlcyAqb25seSogdG8gYWRkIHRoZSB0
-YWdzLiBUaGUgdXBzdHJlYW0NCj4gPiA+IG1haW50YWluZXIgd2lsbCBkbyB0aGF0IGZvciBhY2tz
-IHJlY2VpdmVkIG9uIHRoZSB2ZXJzaW9uIHRoZXkgYXBwbHkuDQo+ID4gPg0KPiA+ID4gSWYgYSB0
-YWcgd2FzIG5vdCBhZGRlZCBvbiBwdXJwb3NlLCBwbGVhc2Ugc3RhdGUgd2h5IGFuZCB3aGF0IGNo
-YW5nZWQuDQo+ID4gPg0KPiA+IEhpLFJvYg0KPiA+IEkgaGF2ZSBkZXNjcmliZWQgaW4gdGhlIGNv
-dmVyIGxldHRlcjoNCj4gPiB2MTE6UmViYXNlIGZvciA1LjE0LXJjMSBhbmQgYWRkICJpbnRlcnJ1
-cHQtbmFtZXMiLCAibGludXgscGNpLWRvbWFpbiINCj4gPiAgICAgZGVzY3JpcHRpb24gaW4gYmlu
-ZGluZyBmaWxlLiBObyBjb2RlIGNoYW5nZS4NCj4gPiBpZiB5b3Ugc3RpbGwgb2sgZm9yIHRoaXMs
-IEkgd2lsbCBhZGQgUi1iIGluIG5leHQgdmVyc2lvbi4NCj4gDQo+IFllcywgaXQncyBmaW5lLg0K
-PiANCj4gSW4gdGhlIGZ1dHVyZSwgcHV0IHRoZSBjaGFuZ2Vsb2cgZm9yIGEgcGF0Y2ggaW4gdGhl
-IHBhdGNoLg0KSGksIFJvYg0KIFRoYW5rcyBmb3IgeW91IHN1Z2dlc3Rpb24sIEkgd2lsbCBkbyB0
-aGlzIGluIGZ1dHVyZSB2ZXJzaW9ucy4NCkJlc3QgcmVnYXJkcw0KDQoNCg==
+On Fri, Jul 23, 2021 at 5:16 AM Steven Lee <steven_lee@aspeedtech.com> wrote:
+>
+> The 07/21/2021 21:27, Bartosz Golaszewski wrote:
+> > On Mon, Jul 12, 2021 at 12:03 PM Steven Lee <steven_lee@aspeedtech.com> wrote:
+> > >
+> > > AST2600 SoC has 2 SGPIO master interfaces one with 128 pins another one
+> > > with 80 pins, AST2500/AST2400 SoC has 1 SGPIO master interface that
+> > > supports up to 80 pins.
+> > > In the current driver design, the max number of sgpio pins is hardcoded
+> > > in macro MAX_NR_HW_SGPIO and the value is 80.
+> > >
+> > > For supporting sgpio master interfaces of AST2600 SoC, the patch series
+> > > contains the following enhancement:
+> > > - Convert txt dt-bindings to yaml.
+> > > - Update aspeed-g6 dtsi to support the enhanced sgpio.
+> > > - Support muiltiple SGPIO master interfaces.
+> > > - Support up to 128 pins by dts ngpios property.
+> > > - Pair input/output GPIOs instead of using 0 as GPIO input pin base and
+> > >   MAX_NR_HW_SGPIO as GPIO output pin base.
+> > > - Support wdt reset tolerance.
+> > > - Fix irq_chip issues which causes multiple sgpio devices use the same
+> > >   irq_chip data.
+> > > - Replace all of_*() APIs with device_*().
+> > >
+> > > Changes from v5:
+> > > * Squash v5 patch-05 and patch-06 to one patch.
+> > > * Remove MAX_NR_HW_SGPIO and corresponding design to make the gpio
+> > >   input/output pin base are determined by ngpios.
+> > >   For example, if MAX_NR_HW_SGPIO is 80 and ngpios is 10, the original
+> > >   pin order is as follows:
+> > >     Input:
+> > >     0 1 2 3 ... 9
+> > >     Output:
+> > >     80 81 82 ... 89
+> > >
+> > >   With the new design, pin order is changed as follows:
+> > >     Input:
+> > >     0 2 4 6 ... 18(ngpios * 2 - 2)
+> > >     Output:
+> > >     1 3 5 7 ... 19(ngpios * 2 - 1)
+> > > * Replace ast2600-sgpiom-128 and ast2600-sgpiom-80 compatibles by
+> > >   ast2600-sgpiom.
+> > > * Fix coding style issues.
+> > >
+> > > Changes from v4:
+> > > * Remove ngpios from dtsi
+> > > * Add ast2400 and ast2500 platform data.
+> > > * Remove unused macros.
+> > > * Add ngpios check in a separate patch.
+> > > * Fix coding style issues.
+> > >
+> > > Changes from v3:
+> > > * Split dt-bindings patch to 2 patches
+> > > * Rename ast2600-sgpiom1 compatible with ast2600-sgiom-128
+> > > * Rename ast2600-sgpiom2 compatible with ast2600-sgiom-80
+> > > * Correct the typo in commit messages.
+> > > * Fix coding style issues.
+> > > * Replace all of_*() APIs with device_*().
+> > >
+> > > Changes from v2:
+> > > * Remove maximum/minimum of ngpios from bindings.
+> > > * Remove max-ngpios from bindings and dtsi.
+> > > * Remove ast2400-sgpiom and ast2500-sgpiom compatibles from dts and
+> > >   driver.
+> > > * Add ast2600-sgpiom1 and ast2600-sgpiom2 compatibles as their max
+> > >   number of available gpio pins are different.
+> > > * Modify functions to pass aspeed_sgpio struct instead of passing
+> > >   max_ngpios.
+> > > * Split sgpio driver patch to 3 patches
+> > >
+> > > Changes from v1:
+> > > * Fix yaml format issues.
+> > > * Fix issues reported by kernel test robot.
+> > >
+> > > Please help to review.
+> > >
+> > > Thanks,
+> > > Steven
+> > >
+> > > Steven Lee (9):
+> > >   dt-bindings: aspeed-sgpio: Convert txt bindings to yaml.
+> > >   dt-bindings: aspeed-sgpio: Add ast2600 sgpio
+> > >   ARM: dts: aspeed-g6: Add SGPIO node.
+> > >   ARM: dts: aspeed-g5: Remove ngpios from sgpio node.
+> > >   gpio: gpio-aspeed-sgpio: Add AST2600 sgpio support
+> > >   gpio: gpio-aspeed-sgpio: Add set_config function
+> > >   gpio: gpio-aspeed-sgpio: Move irq_chip to aspeed-sgpio struct
+> > >   gpio: gpio-aspeed-sgpio: Use generic device property APIs
+> > >   gpio: gpio-aspeed-sgpio: Return error if ngpios is not multiple of 8.
+> > >
+> > >  .../bindings/gpio/aspeed,sgpio.yaml           |  77 ++++++++
+> > >  .../devicetree/bindings/gpio/sgpio-aspeed.txt |  46 -----
+> > >  arch/arm/boot/dts/aspeed-g5.dtsi              |   1 -
+> > >  arch/arm/boot/dts/aspeed-g6.dtsi              |  28 +++
+> > >  drivers/gpio/gpio-aspeed-sgpio.c              | 178 +++++++++++-------
+> > >  5 files changed, 215 insertions(+), 115 deletions(-)
+> > >  create mode 100644 Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml
+> > >  delete mode 100644 Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
+> > >
+> > > --
+> > > 2.17.1
+> > >
+> >
+> > The series looks good to me. Can the DTS and GPIO patches go into
+> > v5.15 separately?
+> >
+>
+> Hi Bart,
+>
+> Thanks for the review.
+> Shall we do anything to make the patches go into v5.15 or wait for picking-up?
+>
+> Steven
+>
+> > Bart
 
+It's more of a question to the relevant SoC maintainers.
+
+Joel, Andrew: can I take the GPIO patches through the GPIO tree and
+you'll take the ARM patches separately into v5.15?
+
+Bartosz
