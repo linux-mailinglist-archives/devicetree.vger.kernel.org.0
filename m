@@ -2,222 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D0503D3B18
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 15:28:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07EFE3D3B43
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 15:36:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235128AbhGWMsD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 08:48:03 -0400
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:58012 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233230AbhGWMsC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Jul 2021 08:48:02 -0400
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 16NDBbPi018862;
-        Fri, 23 Jul 2021 15:28:18 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=selector1;
- bh=BsQ+xBUP2/QnHH1w0xmCSCVKFsAhAEpEBr3x9WWVBHw=;
- b=mEbwOV0v3n+0zl2RrRtQS8d9GlC5ELajSQdI5TW4KxbFEODIWJQjd1EoVjHfGile+exI
- FUjBHphht3CwFPTzwlmvCCTQPebm4Ro79GdikpoSbU6kc5wx1hEmbx5muMkf8xnP1yCp
- DU5p05IhbVoe/3PYIFsw43PBT9azyegieN7VGES7J0uM54/bPlTa3XkdWLHYdXINQg9V
- qANfyTaVdipQOMFfLrHB/YRxXWHxrpwK2jKofkg8+on8qLnyRxd9KW+Yp+8UtDtUETl0
- BJgN5N4pbPam9uwK4nb+BYGJuc9SBzHApEM8N004V8gNvZMYd0bC7wnEWvAvXdaDAjz/ Rw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 39ygng4592-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 23 Jul 2021 15:28:17 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 758C8100034;
-        Fri, 23 Jul 2021 15:28:17 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 65C0F221783;
-        Fri, 23 Jul 2021 15:28:17 +0200 (CEST)
-Received: from localhost (10.75.127.45) by SFHDAG2NODE3.st.com (10.75.127.6)
- with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 23 Jul 2021 15:28:17
- +0200
-From:   Alexandre Torgue <alexandre.torgue@foss.st.com>
-To:     Linus Walleij <linus.walleij@linaro.org>, <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>, <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Jonathan Corbet <corbet@lwn.net>
-CC:     <linux-gpio@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
+        id S235005AbhGWMz1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 08:55:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51364 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234972AbhGWMz1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 08:55:27 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A012CC061575;
+        Fri, 23 Jul 2021 06:35:59 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id hp25so3565730ejc.11;
+        Fri, 23 Jul 2021 06:35:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=syQdpBaTHu3uZXlH1OVRUA7Md0MxaCJtCpKEccQDxYU=;
+        b=huxKMkt0pXXNh5W/94n8CXFbDb7BVJT05xDQ3kMIqeqJzgh+ugjnRjyXli0YWyYgDn
+         Hdxj+5BexGIoqPGN4yrJ/V6waa4oC7YpEj8zyF+frkDZOszrH5s9tIfW/T8z7azOzCox
+         XGy/sf7+Hb1BGFkxf343bYDJPBu2IaE0oG0j9bQJXm9Em/zr5ofm7B/rReBlgeJ7rhEN
+         qHHxRDXpq3oT0H0xygbSQfP+ESyqDOM+7YLNFKIu+nLmLVF4PtpHTEcFz5A41iSKR8By
+         RTYtFEBVx+Hmaj4DtDcJ7m5ryFnMEW43JPEkjT3JebanLhWEj5coUsMHXQEMzWl/gHw7
+         Adrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=syQdpBaTHu3uZXlH1OVRUA7Md0MxaCJtCpKEccQDxYU=;
+        b=reblioVDRNOtRjD/3enfiHA7ErJKMv4o4RsFl5zYDgfGKM49Y59B3lFTroUNLiCskj
+         g4DoxJJHiz7HwguzRXi5+9pI8O5m6KO8dmK09gahk5V1KwjMCwjh4peV5k4Gdxsb8LNW
+         WOXVapmC2p/YoVTMjoapU3uEuF4YUS49ICULE6sH3aBCtReEHJjq5/zRrwTPiOGZPDk3
+         4QBrB70LsFWSHWiC1rDh0T8xSJHvoF7MQhHVMDEsNOFaEyHcNprBwSBt8ID2f0l9aA4R
+         STawRXJwlLXzUOTxpVVwO8gBIqRaq219Vcpt/tvMe6PkGzB2CHgIw0LZLs8O5ug5ca/3
+         qoSw==
+X-Gm-Message-State: AOAM530IH0s5wlQNVhZbWNPPltc08ocpfn8vRV/IzsSgzugiqksFKaiu
+        TvjuKhAEHpZvx5wR1WsedP0=
+X-Google-Smtp-Source: ABdhPJwb3SBZhK1DPpsdXTPaCI0y0ohVwIroXkDpCWGROEDXHXeJgWea5S0x+piJIduQ49VuPoiSGQ==
+X-Received: by 2002:a17:906:180a:: with SMTP id v10mr4602237eje.112.1627047358195;
+        Fri, 23 Jul 2021 06:35:58 -0700 (PDT)
+Received: from skbuf ([82.76.66.29])
+        by smtp.gmail.com with ESMTPSA id v16sm13478381edc.52.2021.07.23.06.35.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Jul 2021 06:35:57 -0700 (PDT)
+Date:   Fri, 23 Jul 2021 16:35:56 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Shawn Guo <shawnguo@kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
         <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-Subject: [PATCH 7/7] ARM: dts: stm32: add initial support of stm32mp135f-dk board
-Date:   Fri, 23 Jul 2021 15:28:10 +0200
-Message-ID: <20210723132810.25728-8-alexandre.torgue@foss.st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210723132810.25728-1-alexandre.torgue@foss.st.com>
-References: <20210723132810.25728-1-alexandre.torgue@foss.st.com>
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH net-next] ARM: dts: imx6qdl: Remove unnecessary mdio
+ #address-cells/#size-cells
+Message-ID: <20210723133556.xnhhxdkvassykavn@skbuf>
+References: <20210723112835.31743-1-festevam@gmail.com>
+ <20210723130851.6tfl4ijl7hkqzchm@skbuf>
+ <CAOMZO5BRt6M=4WrZMWQjYeDcOXMSFhcfjZ95tdUkst5Jm=yB6A@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.45]
-X-ClientProxiedBy: SFHDAG1NODE3.st.com (10.75.127.3) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
- definitions=2021-07-23_05:2021-07-23,2021-07-23 signatures=0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAOMZO5BRt6M=4WrZMWQjYeDcOXMSFhcfjZ95tdUkst5Jm=yB6A@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support of stm32mp135f discovery board (part number: STM32MP135F-DK).
-It embeds a STM32MP135f SOC with 512 MB of DDR3.
-Several connections are available on this board:
-    4*USB2.0, 1*USB2.0 typeC DRD, SDcard, 2*RJ45, HDMI, Combo Wifi/BT, ...
+On Fri, Jul 23, 2021 at 10:15:52AM -0300, Fabio Estevam wrote:
+> Hi Vladimr,
+> 
+> On Fri, Jul 23, 2021 at 10:08 AM Vladimir Oltean <olteanv@gmail.com> wrote:
+> 
+> > Are you actually sure this is the correct fix? If I look at mdio.yaml, I
+> > think it is pretty clear that the "ethernet-phy" subnode of the MDIO
+> > controller must have an "@[0-9a-f]+$" pattern, and a "reg" property. If
+> > it did, then it wouldn't warn about #address-cells.
+> 
+> Thanks for reviewing it.
+> 
+> After double-checking I realize that the correct fix would be to pass
+> the phy address, like:
+> 
+> phy: ethernet-phy@1 {
+> reg = <1>;
+> 
+> Since the Ethernet PHY address is design dependant, I can not make the
+> fix myself.
+> 
+> I will try to ping the board maintainers for passing the correct phy address.
+> 
+> Thanks
 
-Only SD card, uart4 (console) and watchdog IPs are enabled in this commit.
+Normally you should have been able to make all PHY addresses be 0. That
+is the MDIO "broadcast address" and if there's a single PHY on the bus,
+it should respond to that.
 
-Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
+Citation:
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 863347b6b65e..e4e04e57fba0 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1087,6 +1087,7 @@ dtb-$(CONFIG_ARCH_STM32) += \
- 	stm32h743i-eval.dtb \
- 	stm32h743i-disco.dtb \
- 	stm32h750i-art-pi.dtb \
-+	stm32mp135f-dk.dtb \
- 	stm32mp153c-dhcom-drc02.dtb \
- 	stm32mp157a-avenger96.dtb \
- 	stm32mp157a-dhcor-avenger96.dtb \
-diff --git a/arch/arm/boot/dts/stm32mp13-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp13-pinctrl.dtsi
-new file mode 100644
-index 000000000000..069f95f2b628
---- /dev/null
-+++ b/arch/arm/boot/dts/stm32mp13-pinctrl.dtsi
-@@ -0,0 +1,64 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-+/*
-+ * Copyright (C) STMicroelectronics 2021 - All Rights Reserved
-+ * Author: Alexandre Torgue <alexandre.torgue@foss.st.com>
-+ */
-+#include <dt-bindings/pinctrl/stm32-pinfunc.h>
-+
-+&pinctrl {
-+	sdmmc1_b4_pins_a: sdmmc1-b4-0 {
-+		pins1 {
-+			pinmux = <STM32_PINMUX('C', 8, AF12)>, /* SDMMC1_D0 */
-+				 <STM32_PINMUX('C', 9, AF12)>, /* SDMMC1_D1 */
-+				 <STM32_PINMUX('C', 10, AF12)>, /* SDMMC1_D2 */
-+				 <STM32_PINMUX('C', 11, AF12)>, /* SDMMC1_D3 */
-+				 <STM32_PINMUX('D', 2, AF12)>; /* SDMMC1_CMD */
-+			slew-rate = <1>;
-+			drive-push-pull;
-+			bias-disable;
-+		};
-+		pins2 {
-+			pinmux = <STM32_PINMUX('C', 12, AF12)>; /* SDMMC1_CK */
-+			slew-rate = <2>;
-+			drive-push-pull;
-+			bias-disable;
-+		};
-+	};
-+
-+	sdmmc1_b4_od_pins_a: sdmmc1-b4-od-0 {
-+		pins1 {
-+			pinmux = <STM32_PINMUX('C', 8, AF12)>, /* SDMMC1_D0 */
-+				 <STM32_PINMUX('C', 9, AF12)>, /* SDMMC1_D1 */
-+				 <STM32_PINMUX('C', 10, AF12)>, /* SDMMC1_D2 */
-+				 <STM32_PINMUX('C', 11, AF12)>; /* SDMMC1_D3 */
-+			slew-rate = <1>;
-+			drive-push-pull;
-+			bias-disable;
-+		};
-+		pins2 {
-+			pinmux = <STM32_PINMUX('C', 12, AF12)>; /* SDMMC1_CK */
-+			slew-rate = <2>;
-+			drive-push-pull;
-+			bias-disable;
-+		};
-+		pins3 {
-+			pinmux = <STM32_PINMUX('D', 2, AF12)>; /* SDMMC1_CMD */
-+			slew-rate = <1>;
-+			drive-open-drain;
-+			bias-disable;
-+		};
-+	};
-+
-+	uart4_pins_a: uart4-0 {
-+		pins1 {
-+			pinmux = <STM32_PINMUX('D', 6, AF8)>; /* UART4_TX */
-+			bias-disable;
-+			drive-push-pull;
-+			slew-rate = <0>;
-+		};
-+		pins2 {
-+			pinmux = <STM32_PINMUX('D', 8, AF8)>; /* UART4_RX */
-+			bias-disable;
-+		};
-+	};
-+};
-diff --git a/arch/arm/boot/dts/stm32mp135f-dk.dts b/arch/arm/boot/dts/stm32mp135f-dk.dts
-new file mode 100644
-index 000000000000..7e96d9e36217
---- /dev/null
-+++ b/arch/arm/boot/dts/stm32mp135f-dk.dts
-@@ -0,0 +1,56 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-+/*
-+ * Copyright (C) STMicroelectronics 2021 - All Rights Reserved
-+ * Author: Alexandre Torgue <alexandre.torgue@foss.st.com> for STMicroelectronics.
-+ */
-+
-+/dts-v1/;
-+
-+#include "stm32mp135.dtsi"
-+#include "stm32mp13xf.dtsi"
-+#include "stm32mp13-pinctrl.dtsi"
-+
-+/ {
-+	model = "STMicroelectronics STM32MP135F-DK Discovery Board";
-+	compatible = "st,stm32mp135f-dk", "st,stm32mp135";
-+
-+	aliases {
-+		serial0 = &uart4;
-+	};
-+
-+	memory@c0000000 {
-+		device_type = "memory";
-+		reg = <0xc0000000 0x20000000>;
-+	};
-+
-+	vdd_sd: vdd-sd {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_sd";
-+		regulator-min-microvolt = <2900000>;
-+		regulator-max-microvolt = <2900000>;
-+		regulator-always-on;
-+	};
-+};
-+
-+&iwdg2 {
-+	timeout-sec = <32>;
-+	status = "okay";
-+};
-+
-+&sdmmc1 {
-+	pinctrl-names = "default", "opendrain";
-+	pinctrl-0 = <&sdmmc1_b4_pins_a>;
-+	pinctrl-1 = <&sdmmc1_b4_od_pins_a>;
-+	broken-cd;
-+	disable-wp;
-+	st,neg-edge;
-+	bus-width = <4>;
-+	vmmc-supply = <&vdd_sd>;
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart4_pins_a>;
-+	status = "okay";
-+};
--- 
-2.17.1
+IEEE 802.3-2015:
 
+22.2.4.5.5 PHYAD (PHY Address)
+
+The PHY Address is five bits, allowing 32 unique PHY addresses. The first PHY address bit transmitted and
+received is the MSB of the address. A PHY that is connected to the station management entity via the
+mechanical interface defined in 22.6 shall always respond to transactions addressed to PHY Address zero
+<00000>. A station management entity that is attached to multiple PHYs must have prior knowledge of the
+appropriate PHY Address for each PHY.
+
+However, if you google "MDIO broadcast address", you'll find all sorts
+of funny reports of buggy PHYs not adhering to that clause, under all
+sorts of pretexts...
