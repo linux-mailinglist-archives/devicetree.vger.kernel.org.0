@@ -2,85 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EAD43D4265
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 23:47:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C39843D4266
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 23:49:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231839AbhGWVHY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 17:07:24 -0400
-Received: from mail-il1-f173.google.com ([209.85.166.173]:42785 "EHLO
-        mail-il1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231724AbhGWVHY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 17:07:24 -0400
-Received: by mail-il1-f173.google.com with SMTP id q18so2819066ile.9;
-        Fri, 23 Jul 2021 14:47:57 -0700 (PDT)
+        id S231902AbhGWVI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 17:08:27 -0400
+Received: from mail-io1-f48.google.com ([209.85.166.48]:36366 "EHLO
+        mail-io1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231724AbhGWVI1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 17:08:27 -0400
+Received: by mail-io1-f48.google.com with SMTP id f11so4247745ioj.3;
+        Fri, 23 Jul 2021 14:48:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=mVXTIkCEA/Uqqb0Qz5i9W55hpLq01WXGURBWMkYAIZ0=;
-        b=KYcbY+jXuHOqmAh4r4T981Yr9aHPTLkYH5Pvwr5sIUb+V4rXYoNUytWD3dBKM5E86z
-         Yhx9NQRRZrlZLXrb2wqvFrJbKuWxZuSJLiq+kamEl3D9eMRFeO5Di+KPSSsqJ+vXS2sK
-         o4J4fbm8mSduEK4/kfZTeipBPs6z/5KO9fvvutdnaGIs/QaorepVjVm50TIlNEbh8h3P
-         myIfw9ZJxvFz8pWkT6VQKdojS9cPwT3lgf6THwzoz7IG1eVuTHLX3FYbSlY+fLMOgSBa
-         nr/fKf48SfTUscBo/jzyEdmGarCfl/CimUa2qAE6+cliaUK4JMGlHQINNwhmTBZA5d1r
-         /+SA==
-X-Gm-Message-State: AOAM530fVgBf8C8h85VfGeax6SAyNB+SI+QktRNRMe5k/+JSPKQpcNcM
-        UeREr6iRonAd51490IxGbQ==
-X-Google-Smtp-Source: ABdhPJxMiz87Kv3pUTKcMiLxbQsUeBdSF/0voUus+UsqA7kZ7DEuPGGZAYTfure9ZZgMsES2t8ogNQ==
-X-Received: by 2002:a92:c54d:: with SMTP id a13mr4591885ilj.74.1627076876758;
-        Fri, 23 Jul 2021 14:47:56 -0700 (PDT)
+        bh=GEHnR8wnZdVWKsoL7aIm5Zq5iQrmgflNJ+/CdIL9oX0=;
+        b=kUQB+EqEGeJjWctxQtn8KoyGZ06CIiY8dNzrscQQsLPu0p4whapQBUk4voxAW7a1JH
+         Uwe6vKQwcKBMkAm8mzbHG5sWlN7gcyNQ27Ui3dj2JjqXZbockGtjhumaPS8aJBcf3NCS
+         n9LJeTc1PtXnevjLGGaozL9XUmrRnbkUlbKGqFArx3UT8ajxB5KEiQgxOl8Cg4Kj/vk2
+         Q0doWI6sOo4HrLYLLyAzqC9n6ZbHWNb5BRgmhg+2ua3PHJRFJ5+MNToVVRVLnqehBAsJ
+         bLibdFJ2ampM9oj1bYtgtz5M7AzpFMBy7/R6Bh3UIqulOClWxbd4VFFFd70Dt9qPxG1B
+         nd6A==
+X-Gm-Message-State: AOAM531LFNm4FD020kXdN1n67rLgJHPF+yrjuKr1eWGEuNZ++3rnMCuI
+        lYRVanjTJowv6zoUyaVt6Q==
+X-Google-Smtp-Source: ABdhPJzuVZ1dNIeAQVwYqHc4x9p/qBWaDfx0fJeDGxNUB1qanlOeacDoC3UAFMIfsCd+dp6cd22ANw==
+X-Received: by 2002:a05:6638:3452:: with SMTP id q18mr5847852jav.111.1627076938750;
+        Fri, 23 Jul 2021 14:48:58 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id q7sm368379iow.12.2021.07.23.14.47.55
+        by smtp.gmail.com with ESMTPSA id r8sm19003488iov.39.2021.07.23.14.48.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jul 2021 14:47:56 -0700 (PDT)
-Received: (nullmailer pid 2649238 invoked by uid 1000);
-        Fri, 23 Jul 2021 21:47:54 -0000
-Date:   Fri, 23 Jul 2021 15:47:54 -0600
+        Fri, 23 Jul 2021 14:48:58 -0700 (PDT)
+Received: (nullmailer pid 2650952 invoked by uid 1000);
+        Fri, 23 Jul 2021 21:48:54 -0000
+Date:   Fri, 23 Jul 2021 15:48:54 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Jonathan Cameron <jic23@kernel.org>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Denis Ciocca <denis.ciocca@st.com>,
-        linux-arm-kernel@lists.infradead.org,
+Cc:     devicetree@vger.kernel.org,
         Jernej Skrabec <jernej.skrabec@siol.net>,
         linux-sunxi@googlegroups.com,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
         Frank Rowand <frowand.list@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>
-Subject: Re: [PATCH 15/54] dt-bindings: iio: st: Remove wrong items length
- check
-Message-ID: <20210723214754.GA2649204@robh.at.kernel.org>
+        linux-arm-kernel@lists.infradead.org, Chen-Yu Tsai <wens@csie.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-input@vger.kernel.org,
+        Hans de Goede <hdegoede@redhat.com>
+Subject: Re: [PATCH 16/54] dt-bindings: input: Convert ChipOne ICN8318
+ binding to a schema
+Message-ID: <20210723214854.GA2650907@robh.at.kernel.org>
 References: <20210721140424.725744-1-maxime@cerno.tech>
- <20210721140424.725744-16-maxime@cerno.tech>
+ <20210721140424.725744-17-maxime@cerno.tech>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210721140424.725744-16-maxime@cerno.tech>
+In-Reply-To: <20210721140424.725744-17-maxime@cerno.tech>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 21 Jul 2021 16:03:45 +0200, Maxime Ripard wrote:
-> The original bindings was listing the length of the interrupts as either
-> 1 or 2, depending on the setup. This is also what is enforced by the top
-> level schema.
+On Wed, 21 Jul 2021 16:03:46 +0200, Maxime Ripard wrote:
+> The ChipOne ICN8318 Touchscreen Controller is supported by Linux thanks
+> to its device tree binding.
 > 
-> However, that is further constrained with an if clause that require
-> exactly two interrupts, even though it might not make sense on those
-> devices or in some setups.
+> Now that we have the DT validation in place, let's convert the device
+> tree bindings for that driver over to a YAML schema.
 > 
-> Let's remove the clause entirely.
-> 
-> Cc: Denis Ciocca <denis.ciocca@st.com>
-> Cc: Jonathan Cameron <jic23@kernel.org>
-> Cc: Lars-Peter Clausen <lars@metafoo.de>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: linux-iio@vger.kernel.org
+> Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> Cc: Hans de Goede <hdegoede@redhat.com>
+> Cc: linux-input@vger.kernel.org
 > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 > ---
->  .../bindings/iio/st,st-sensors.yaml           | 41 -------------------
->  1 file changed, 41 deletions(-)
+>  .../input/touchscreen/chipone,icn8318.yaml    | 62 +++++++++++++++++++
+>  .../input/touchscreen/chipone_icn8318.txt     | 44 -------------
+>  2 files changed, 62 insertions(+), 44 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/chipone,icn8318.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/chipone_icn8318.txt
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
