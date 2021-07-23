@@ -2,101 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EA6D3D3BA7
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 16:10:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A39923D3BCA
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 16:31:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235302AbhGWNaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 09:30:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59262 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235380AbhGWNaH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 09:30:07 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74AD7C061757
-        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 07:10:41 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1m6vso-0008EK-EL; Fri, 23 Jul 2021 16:10:34 +0200
-Subject: Re: [Linux-stm32] [PATCH 5/7] ARM: dts: stm32: add STM32MP13 SoCs
- support
-To:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Linus Walleij <linus.walleij@linaro.org>, arnd@arndb.de,
-        Olof Johansson <olof@lixom.net>, robh+dt@kernel.org,
-        Russell King <linux@armlinux.org.uk>,
-        Jonathan Corbet <corbet@lwn.net>
-Cc:     devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-References: <20210723132810.25728-1-alexandre.torgue@foss.st.com>
- <20210723132810.25728-6-alexandre.torgue@foss.st.com>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-Message-ID: <048b94a6-438d-d2ee-0d93-67541c962076@pengutronix.de>
-Date:   Fri, 23 Jul 2021 16:10:31 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
-MIME-Version: 1.0
-In-Reply-To: <20210723132810.25728-6-alexandre.torgue@foss.st.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        id S235368AbhGWNui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 09:50:38 -0400
+Received: from mail-io1-f46.google.com ([209.85.166.46]:41828 "EHLO
+        mail-io1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233665AbhGWNuh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 09:50:37 -0400
+Received: by mail-io1-f46.google.com with SMTP id r6so2760470ioj.8;
+        Fri, 23 Jul 2021 07:31:11 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=NCcIgxYk2Vttr+/GWq3ETgT01MgTyWJladRF/YKSKgE=;
+        b=omq1YTcMadGVcmRusGPO7B9qiuZD110hkrcfnNgN+qOssMmYIbiLAT3aarRekpdCeo
+         Alu1ESwPpYy/ky3Bcs27NwVWX7xU3Nwl0p4NhpWZJoZE13Ket7+TXJS+J2xCh0Cv8o9Z
+         RTR+4gLC98o3NYSomYvyf68/8JkY3y30+ZrTgJ4OUyraUeD0lCUU5HFdmlm7EG0pxXgt
+         +Fz/7R34A7KpGruSJecTgnl06s8z9+ev20gp6x9KoPebOSk8MrerSwXQXTBK7MJNgTa1
+         7hujJWi+VvmuWUbPN2gLrY8bP9x2nTS4TcnoZTR3qLE+Sj+aYExAnz5TIXwQW2IGCsuz
+         RlQw==
+X-Gm-Message-State: AOAM530Qg2LVc9rbu3cH/jO1XGkFRXzRFAZLAg/tXDjM42Ew+wrCxWCm
+        /seCPIUdDJtaUv/7xIO4b6a9uCqnXA==
+X-Google-Smtp-Source: ABdhPJyro8jafGw1WcIhCSZ6bzKfFnYsROLksjos5spxpAsZb4yrc8UVZS1YcTFsQdppsjMPNB+EQg==
+X-Received: by 2002:a02:c906:: with SMTP id t6mr4444638jao.117.1627050670595;
+        Fri, 23 Jul 2021 07:31:10 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id x16sm16094443ila.84.2021.07.23.07.31.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Jul 2021 07:31:08 -0700 (PDT)
+Received: (nullmailer pid 1988198 invoked by uid 1000);
+        Fri, 23 Jul 2021 14:31:05 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     quic_vamslank@quicinc.com
+Cc:     linux-clk@vger.kernel.org, maz@kernel.org, sboyd@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        tglx@linutronix.de, mturquette@baylibre.com, agross@kernel.org,
+        bjorn.andersson@linaro.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org
+In-Reply-To: <40f4b835961e81283ee4b065804a86ddaf98cabb.1626986805.git.quic_vamslank@quicinc.com>
+References: <cover.1626986805.git.quic_vamslank@quicinc.com> <40f4b835961e81283ee4b065804a86ddaf98cabb.1626986805.git.quic_vamslank@quicinc.com>
+Subject: Re: [PATCH v2 1/6] dt-bindings: clock: Add SDX65 GCC clock bindings
+Date:   Fri, 23 Jul 2021 08:31:05 -0600
+Message-Id: <1627050665.694861.1988197.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Alex,
-
-On 23.07.21 15:28, Alexandre Torgue wrote:
-> Add initial support of STM32MP13 family. The STM32MP13 SoC diversity is
-> composed by:
-> -STM32MP131:
->   -core: 1*CA7, 17*TIMERS, 5*LPTIMERS, DMA/MDMA/DMAMUX
->   -storage: 3*SDMCC, 1*QSPI, FMC
->   -com: USB (OHCI/EHCI, OTG), 5*I2C, 5*SPI/I2S, 8*U(S)ART
->   -audio: 2*SAI
->   -network: 1*ETH(GMAC)
-> -STM32MP133: STM32MP131 + 2*CAN, ETH2(GMAC), ADC1
-> -STM32MP135: STM32MP133 + DCMIPP, LTDC
+On Thu, 22 Jul 2021 14:09:38 -0700, quic_vamslank@quicinc.com wrote:
+> From: Vamsi krishna Lanka <quic_vamslank@quicinc.com>
 > 
-> A second diversity layer exists for security features:
-> -STM32MP13xY, "Y" gives information:
->  -Y = A/D means no cryp IP and no secure boot.
->  -Y = C/F means cryp IP + secure boot.
+> Add device tree bindings for global clock controller on SDX65 SOCs.
 > 
-> This commit adds basic peripheral.
+> Signed-off-by: Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
+> ---
+>  .../bindings/clock/qcom,gcc-sdx65.yaml        |  79 ++++++++++++
+>  include/dt-bindings/clock/qcom,gcc-sdx65.h    | 122 ++++++++++++++++++
+>  2 files changed, 201 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sdx65.yaml
+>  create mode 100644 include/dt-bindings/clock/qcom,gcc-sdx65.h
 > 
-> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp131.dtsi b/arch/arm/boot/dts/stm32mp131.dtsi
-> new file mode 100644
-> index 000000000000..86126dc0d898
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/stm32mp131.dtsi
-> @@ -0,0 +1,283 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-> +/*
-> + * Copyright (C) STMicroelectronics 2021 - All Rights Reserved
-> + * Author: Alexandre Torgue <alexandre.torgue@foss.st.com> for STMicroelectronics.
-> + */
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +/ {
 
-Could you add aliases for mmc0-2?
-That way /dev/mmcblk* numbering is fixed from the start and
-doesn't depend on which devices are enabled.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Cheers,
-Ahmad
+yamllint warnings/errors:
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+dtschema/dtc warnings/errors:
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/clock/qcom,gcc-sdx65.example.dts'
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-extract-example", line 45, in <module>
+    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
+    return constructor.get_single_data()
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 120, in get_single_data
+    node = self.composer.get_single_node()
+  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
+  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 773, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 848, in _ruamel_yaml.CParser._compose_sequence_node
+  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
+ruamel.yaml.scanner.ScannerError: while scanning a block scalar
+  in "<unicode string>", line 65, column 5
+found a tab character where an indentation space is expected
+  in "<unicode string>", line 71, column 1
+make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/clock/qcom,gcc-sdx65.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/clock/qcom,gcc-sdx65.yaml:  while scanning a block scalar
+  in "<unicode string>", line 65, column 5
+found a tab character where an indentation space is expected
+  in "<unicode string>", line 71, column 1
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/qcom,gcc-sdx65.yaml: ignoring, error parsing file
+warning: no schema found in file: ./Documentation/devicetree/bindings/clock/qcom,gcc-sdx65.yaml
+make: *** [Makefile:1418: dt_binding_check] Error 2
+\ndoc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1508862
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
