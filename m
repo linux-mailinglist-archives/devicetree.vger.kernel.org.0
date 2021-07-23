@@ -2,120 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE9CA3D4147
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 22:06:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B3073D414D
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 22:11:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231201AbhGWTZc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 15:25:32 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:21451 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231126AbhGWTZb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Jul 2021 15:25:31 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1627070764; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=R6B44KvNJoUb62PuGtXARkIntmCEbpuSvDX2oWLc0ew=;
- b=H9b7TkTPl020zMNI6Jhnbye4jSxR6uOlZ8uTtrt3Jl0KX/R30YheFSI3cNY/MLzwLaX/A3KF
- auImQXfha5xOQdwQ4sxgCmdJ0eoUrAZKLKiCv+kcmiNmCFiwNmjluNDEAgQF8fgigmURoxN4
- ugMoRy6s4oDA/zUG8+MqBtTDcgY=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
- 60fb21144815712f3ad1d3f5 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 23 Jul 2021 20:05:40
- GMT
-Sender: abhinavk=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 2A078C43143; Fri, 23 Jul 2021 20:05:40 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: abhinavk)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 179F8C433F1;
-        Fri, 23 Jul 2021 20:05:39 +0000 (UTC)
+        id S230289AbhGWTad (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 15:30:33 -0400
+Received: from jabberwock.ucw.cz ([46.255.230.98]:38990 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229461AbhGWTac (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 15:30:32 -0400
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 4EE821C0B88; Fri, 23 Jul 2021 22:11:04 +0200 (CEST)
+Date:   Fri, 23 Jul 2021 22:11:04 +0200
+From:   Pavel Machek <pavel@denx.de>
+To:     Sasha Levin <sashal@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+        Mian Yousaf Kaukab <ykaukab@suse.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH AUTOSEL 4.19 31/39] arm64: dts: ls208xa: remove bus-num
+ from dspi node
+Message-ID: <20210723201104.GC22684@duo.ucw.cz>
+References: <20210714194625.55303-1-sashal@kernel.org>
+ <20210714194625.55303-31-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Fri, 23 Jul 2021 13:05:38 -0700
-From:   abhinavk@codeaurora.org
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kuogee Hsieh <khsieh@codeaurora.org>,
-        Tanmay Shah <tanmay@codeaurora.org>,
-        Chandan Uddaraju <chandanu@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/5] dt-bindings: msm/dp: Change reg definition
-In-Reply-To: <20210722024227.3313096-2-bjorn.andersson@linaro.org>
-References: <20210722024227.3313096-1-bjorn.andersson@linaro.org>
- <20210722024227.3313096-2-bjorn.andersson@linaro.org>
-Message-ID: <6318d5abc7f1ed9622218bf29394ec64@codeaurora.org>
-X-Sender: abhinavk@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="4jXrM3lyYWu4nBt5"
+Content-Disposition: inline
+In-Reply-To: <20210714194625.55303-31-sashal@kernel.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-07-21 19:42, Bjorn Andersson wrote:
-> reg was defined as one region covering the entire DP block, but the
-> memory map is actually split in 4 regions and obviously the size of
-> these regions differs between platforms.
-> 
-> Switch the reg to require that all four regions are specified instead.
-> It is expected that the implementation will handle existing DTBs, even
-> though the schema defines the new layout.
-> 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-> ---
->  .../bindings/display/msm/dp-controller.yaml           | 11 +++++++++--
->  1 file changed, 9 insertions(+), 2 deletions(-)
-> 
-> diff --git
-> a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> index 64d8d9e5e47a..a6e41be038fc 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> @@ -19,7 +19,11 @@ properties:
->        - qcom,sc7180-dp
-> 
->    reg:
-> -    maxItems: 1
-> +    items:
-> +      - description: ahb register block
-> +      - description: aux register block
-> +      - description: link register block
-> +      - description: p0 register block
-Do you also want to add the p1 register block here?
-> 
->    interrupts:
->      maxItems: 1
-> @@ -100,7 +104,10 @@ examples:
-> 
->      displayport-controller@ae90000 {
->          compatible = "qcom,sc7180-dp";
-> -        reg = <0xae90000 0x1400>;
-> +        reg = <0xae90000 0x200>,
-> +              <0xae90200 0x200>,
-> +              <0xae90400 0xc00>,
-> +              <0xae91000 0x400>;
-here too?
->          interrupt-parent = <&mdss>;
->          interrupts = <12>;
->          clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+--4jXrM3lyYWu4nBt5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+Hi!
 
+> [ Upstream commit 8240c972c1798ea013cbb407722295fc826b3584 ]
+>=20
+> On LS2088A-RDB board, if the spi-fsl-dspi driver is built as module
+> then its probe fails with the following warning:
+>=20
+> [   10.471363] couldn't get idr
+> [   10.471381] WARNING: CPU: 4 PID: 488 at drivers/spi/spi.c:2689 spi_reg=
+ister_controller+0x73c/0x8d0
+> ...
+> [   10.471651] fsl-dspi 2100000.spi: Problem registering DSPI ctlr
+> [   10.471708] fsl-dspi: probe of 2100000.spi failed with error -16
+>=20
+> Reason for the failure is that bus-num property is set for dspi node.
+> However, bus-num property is not set for the qspi node. If probe for
+> spi-fsl-qspi happens first then id 0 is dynamically allocated to it.
+> Call to spi_register_controller() from spi-fsl-dspi driver then fails.
+> Since commit 29d2daf2c33c ("spi: spi-fsl-dspi: Make bus-num property
+> optional") bus-num property is optional. Remove bus-num property from
+> dspi node to fix the issue.
+
+According to changelog this depends on 29d2daf2c33c. Than one is
+present in 5.10-stable, but not in 4.19-stable, AFAICT.
+
+Best regards,
+								Pavel
+
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+> @@ -479,7 +479,6 @@ dspi: spi@2100000 {
+>  			clocks =3D <&clockgen 4 3>;
+>  			clock-names =3D "dspi";
+>  			spi-num-chipselects =3D <5>;
+> -			bus-num =3D <0>;
+>  		};
+> =20
+>  		esdhc: esdhc@2140000 {
+
+--=20
+DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+
+--4jXrM3lyYWu4nBt5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYPsiWAAKCRAw5/Bqldv6
+8h5oAJ9lBrVSGmwOWXAuOS9iE1zT6+ykXACeJoTOYLzfZQHLTA/Xlwbyk7vzCuw=
+=86RN
+-----END PGP SIGNATURE-----
+
+--4jXrM3lyYWu4nBt5--
