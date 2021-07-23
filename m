@@ -2,353 +2,502 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 490633D3C6B
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 17:29:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D15F3D3C71
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 17:30:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235608AbhGWOsf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 10:48:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48500 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235501AbhGWOsP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 10:48:15 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBF84C0613CF
-        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 08:28:04 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id e2so2783698wrq.6
-        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 08:28:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=NQnI/V0ng7WWg3UXb2UO+GXHp5SVJij1U1V8CX0Oqts=;
-        b=Qajr49s0JBbDQrOHN0aLJ/YsOXvKSeWWxjYOxdygW7JtbhXK/uJMDaOjUcZHy0un5O
-         8ZY2HFw0rBVOR72JLwsE2Xs/6BK2gs+zAOL2UByYz/TLgN7U3rv1un0fjaV3QFhFyKgS
-         z1pLrYxhhNqOoVKzR9olcDxy1vS8t81lV4R2JVCWmD+a/leVYamC0UhzpiPJqRiNNo/i
-         dwnNLqWUFh8J8sXkBUMXWlzol/RuV4wOLUBezeysoUXqcY19nL0dPlwCpcPecT5AbVS0
-         UoUHfDVGM9eWkcUF+ZKRdH6xq4OMA0E5ZCazSPj90juazqIvL2nkmM6AR8V1TLXVnjHu
-         SsbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=NQnI/V0ng7WWg3UXb2UO+GXHp5SVJij1U1V8CX0Oqts=;
-        b=dNQ3SjFrqV9fIzIy9TD0E5GoTodJnja9ThNA62+9R39Ehe5QMMcd2Vc2nCSz0LGAKp
-         qtyG0YdgN01bMLZhJf2XPN3uk+inOHZK9CcaRhPZNK7YmIGqhSUR7Qroi7T+Af6pZaAW
-         VR0xSCnC7joNFu0H0IQbU0/i0+bmW8TGYEAfPwqfYgEPjzvi9pGEzezouG06jMf84Ux/
-         bbISUxwVhc8jv6ZKcCWUEKabHLQoG5JhlfJhzIDk0FqlxIi83lDqOjHhY5YIn2ryrdZI
-         ZH2ZILCwafu0SpVv41qZ44qgDXcyrQD7FNeqhwmnPyIuyfKfiBqh55pTlsSZHZGGMn9W
-         qqZw==
-X-Gm-Message-State: AOAM530yWu1RTtcoMlYuH1r9THH1pHxzlE28bGBP6f6cbkNpwB/3DW3N
-        7aXo1uFVTVsSSN1/yutcLtS0ztM1hRsWOQ==
-X-Google-Smtp-Source: ABdhPJzNIx/ZDD6YcyxArPOmckElO1BmTrwWgp2ACtgFWS3dlsen0uYprBfMFdmGOuiqOrdfetHNOg==
-X-Received: by 2002:adf:ffc3:: with SMTP id x3mr2383544wrs.136.1627054082820;
-        Fri, 23 Jul 2021 08:28:02 -0700 (PDT)
-Received: from google.com ([31.124.24.141])
-        by smtp.gmail.com with ESMTPSA id u2sm5865034wmm.37.2021.07.23.08.28.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jul 2021 08:28:01 -0700 (PDT)
-Date:   Fri, 23 Jul 2021 16:27:59 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: Re: [PATCH 2/3] syscon: add support for "syscon-smc" compatible
-Message-ID: <YPrf/5g7JAtf1c4u@google.com>
-References: <20210723135239.388325-1-clement.leger@bootlin.com>
- <20210723135239.388325-3-clement.leger@bootlin.com>
+        id S235582AbhGWOuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 10:50:13 -0400
+Received: from frasgout.his.huawei.com ([185.176.79.56]:3468 "EHLO
+        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235631AbhGWOt1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 10:49:27 -0400
+Received: from fraeml743-chm.china.huawei.com (unknown [172.18.147.200])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4GWY1S0ybTz6G983;
+        Fri, 23 Jul 2021 23:21:00 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml743-chm.china.huawei.com (10.206.15.224) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Fri, 23 Jul 2021 17:29:58 +0200
+Received: from localhost (10.210.170.238) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2176.2; Fri, 23 Jul
+ 2021 16:29:57 +0100
+Date:   Fri, 23 Jul 2021 16:29:31 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Billy Tsai <billy_tsai@aspeedtech.com>
+CC:     <jic23@kernel.org>, <lars@metafoo.de>, <pmeerw@pmeerw.net>,
+        <robh+dt@kernel.org>, <joel@jms.id.au>, <andrew@aj.id.au>,
+        <p.zabel@pengutronix.de>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
+        <BMC-SW@aspeedtech.com>
+Subject: Re: [v2 4/8] iio: adc: aspeed: Allow driver to support ast2600
+Message-ID: <20210723162931.00004329@Huawei.com>
+In-Reply-To: <20210723081621.29477-5-billy_tsai@aspeedtech.com>
+References: <20210723081621.29477-1-billy_tsai@aspeedtech.com>
+        <20210723081621.29477-5-billy_tsai@aspeedtech.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210723135239.388325-3-clement.leger@bootlin.com>
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.210.170.238]
+X-ClientProxiedBy: lhreml704-chm.china.huawei.com (10.201.108.53) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 23 Jul 2021, Clément Léger wrote:
+On Fri, 23 Jul 2021 16:16:17 +0800
+Billy Tsai <billy_tsai@aspeedtech.com> wrote:
 
-> System controllers can be placed under secure monitor control when running
-> under them. In order to keep existing code which accesses such system
-> controllers using a syscon, add support for "syscon-smc" compatible.
+> The adc controller have some differents at ast2600:
+> 1. Combine control register of clock divider to continuous bitfields.
+> 2. Reference voltage becomes optional which are internal 2500mv/1200mv
+> and external range from 900mv to 2700mv
+> 3. Divided into two engine, each one has 8 voltage sensing channels.
 > 
-> When enable, the syscon will handle this new compatible and look for an
-> "arm,smc-id" property to execute the appropriate SMC. A SMC regmap is then
-> created to forward register access to the secure monitor.
+> This patch handled these changes and compatible with old version.
 > 
-> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
+
+Hi Billy,
+
+Various comment inline.
+
+Thanks,
+
+Jonathan
+
 > ---
->  drivers/mfd/syscon.c | 170 ++++++++++++++++++++++++++++++++++++-------
->  1 file changed, 145 insertions(+), 25 deletions(-)
+>  drivers/iio/adc/aspeed_adc.c | 176 ++++++++++++++++++++++++++---------
+>  1 file changed, 132 insertions(+), 44 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/aspeed_adc.c b/drivers/iio/adc/aspeed_adc.c
+> index 99466a5924c7..84f079195375 100644
+> --- a/drivers/iio/adc/aspeed_adc.c
+> +++ b/drivers/iio/adc/aspeed_adc.c
+> @@ -1,8 +1,9 @@
+>  // SPDX-License-Identifier: GPL-2.0-only
+>  /*
+> - * Aspeed AST2400/2500 ADC
+> + * Aspeed AST2400/2500/2600 ADC
+>   *
+>   * Copyright (C) 2017 Google, Inc.
+> + * Copyright (C) 2021 Aspeed Technology Inc.
+>   */
+>  
+>  #include <linux/clk.h>
+> @@ -55,12 +56,17 @@
+>  #define ASPEED_ADC_INIT_POLLING_TIME	500
+>  #define ASPEED_ADC_INIT_TIMEOUT		500000
+>  
+> +enum aspeed_adc_version {
+> +	aspeed_adc_ast2400,
+> +	aspeed_adc_ast2500,
+> +	aspeed_adc_ast2600,
+> +};
 
-I'm going to let Arnd have at this, but just a couple of points.
+Nitpick! Blank line here.
 
-> diff --git a/drivers/mfd/syscon.c b/drivers/mfd/syscon.c
-> index 765c0210cb52..eb727b146315 100644
-> --- a/drivers/mfd/syscon.c
-> +++ b/drivers/mfd/syscon.c
-> @@ -40,7 +40,15 @@ static const struct regmap_config syscon_regmap_config = {
->  	.reg_stride = 4,
+>  struct aspeed_adc_model_data {
+> -	const char *model_name;
+> +	enum aspeed_adc_version version;
+
+Currently we have a slightly odd mixture of
+a device type enum and a device specific structure
+containing that enum which is then used
+to make additional decisions in the driver.
+
+I would have a
+	struct aspeed_adc_data *model_data;
+pointer in here and make sure that has all the
+relevant stuff so that we never need to
+do special handling by 'version'.
+
+>  	unsigned int min_sampling_rate;	// Hz
+>  	unsigned int max_sampling_rate;	// Hz
+> -	unsigned int vref_voltage;	// mV
+>  	bool wait_init_sequence;
+> +	unsigned int num_channels;
 >  };
 >  
-> -static struct syscon *of_syscon_register(struct device_node *np, bool check_clk)
-> +static void syscon_add(struct syscon *syscon)
+>  struct aspeed_adc_data {
+> @@ -70,6 +76,7 @@ struct aspeed_adc_data {
+>  	struct clk_hw		*clk_prescaler;
+>  	struct clk_hw		*clk_scaler;
+>  	struct reset_control	*rst;
+> +	int			vref;
+
+Ideally I would break this into 2 patches.
+1) Refactoring like this and the enum above.
+2) Introduce the new part number using the result of that
+   refactoring.
+
+>  };
+>  
+>  #define ASPEED_CHAN(_idx, _data_reg_addr) {			\
+> @@ -106,8 +113,6 @@ static int aspeed_adc_read_raw(struct iio_dev *indio_dev,
+>  			       int *val, int *val2, long mask)
+>  {
+>  	struct aspeed_adc_data *data = iio_priv(indio_dev);
+> -	const struct aspeed_adc_model_data *model_data =
+> -			of_device_get_match_data(data->dev);
+>  
+>  	switch (mask) {
+>  	case IIO_CHAN_INFO_RAW:
+> @@ -115,7 +120,7 @@ static int aspeed_adc_read_raw(struct iio_dev *indio_dev,
+>  		return IIO_VAL_INT;
+>  
+>  	case IIO_CHAN_INFO_SCALE:
+> -		*val = model_data->vref_voltage;
+> +		*val = data->vref;
+>  		*val2 = ASPEED_RESOLUTION_BITS;
+>  		return IIO_VAL_FRACTIONAL_LOG2;
+>  
+> @@ -182,6 +187,55 @@ static const struct iio_info aspeed_adc_iio_info = {
+>  	.debugfs_reg_access = aspeed_adc_reg_access,
+>  };
+>  
+> +static int aspeed_adc_vref_config(struct platform_device *pdev)
+
+As mentioned below, this would be slightly simpler if you just passed
+in the struct iio_dev rather than pdev.
+
 > +{
-> +	spin_lock(&syscon_list_slock);
-> +	list_add_tail(&syscon->list, &syscon_list);
-> +	spin_unlock(&syscon_list_slock);
+> +	const struct aspeed_adc_model_data *model_data;
+> +	struct iio_dev *indio_dev = platform_get_drvdata(pdev);
+> +	struct aspeed_adc_data *data = iio_priv(indio_dev);
+> +	int vref;
+> +	u32 adc_engine_control_reg_val =
+> +		readl(data->base + ASPEED_REG_ENGINE_CONTROL);
+> +
+> +	model_data = of_device_get_match_data(&pdev->dev);
+> +	switch (model_data->version) {
+> +	case aspeed_adc_ast2400:
+As mentioned above, instead of using a version enum, just put
+everything required in the model data structure.
+e.g. add a vref_fixed field and set it for these two devices.
+
+	if (model_data->vref_fixed) {
+		data->vref = model_data->vref_fixed;
+		return 0;
+	}
+
+	data->reg = devm_regulator_get_optional(pdev->dev, "vref");
+	if (!IS_ERR(data->reg)) {
+		ret = regulator_enable(data->reg);
+		if (ret)
+			return ret;
+		// need to provide a little function to turn the reg off.
+		ret = devm_add_action_or_reset(aspeed_adc_regdisable, data->reg);
+		if (ret)
+			return ret;
+		
+		ret = regulator_get_voltage(data->reg);
+		if (ret < 0)
+			return ret;
+		data->vref = ret;
+		//Here do the register set depending on value.
+	} else {
+		if (PTR_ERR(data->reg != -ENODEV)
+			return PTR_ERR(data->reg);
+
+		ret = of_property_read_u32(pdev->dev.of_node, "vref_int_mv", data->vref);
+		if (ret)
+			return ret;
+
+		data->vref = ret;
+		//here to the register set to configure the internal regulator.		
+	}
+
+> +		vref = 2500;
+> +		break;
+> +	case aspeed_adc_ast2500:
+> +		vref = 1800;
+> +		break;
+> +	case aspeed_adc_ast2600:
+> +		if (of_property_read_u32(pdev->dev.of_node, "vref", &vref))
+> +			vref = 2500;
+
+As in the binding review, if it's an external reference it needs to be
+specified as a regulator.
+
+If that is not present then you can have something like
+aspeed,int_vref_mv as an enum that can be either 2500 or 1200.
+As this only applies to the ast2600 you should also have a condition
+check in the binding yaml to enforce that (so neither external regulator
+or aspeed,int_vref_mv is allowed for the wrong devices).  You can also
+enforce only one of the regulator and internal vref is supplied in the
+dts, but that is a little fiddly to do and so perhaps not worth it.
+
+> +		if (vref == 2500)
+> +			writel(adc_engine_control_reg_val |
+> +				       ASPEED_ADC_REF_VOLTAGE_2500mV,
+> +			       data->base + ASPEED_REG_ENGINE_CONTROL);
+> +		else if (vref == 1200)
+> +			writel(adc_engine_control_reg_val |
+> +				       ASPEED_ADC_REF_VOLTAGE_1200mV,
+> +			       data->base + ASPEED_REG_ENGINE_CONTROL);
+> +		else if ((vref >= 1550) && (vref <= 2700))
+> +			writel(adc_engine_control_reg_val |
+> +				       ASPEED_ADC_REF_VOLTAGE_EXT_HIGH,
+> +			       data->base + ASPEED_REG_ENGINE_CONTROL);
+> +		else if ((vref >= 900) && (vref <= 1650))
+> +			writel(adc_engine_control_reg_val |
+> +				       ASPEED_ADC_REF_VOLTAGE_EXT_LOW,
+> +			       data->base + ASPEED_REG_ENGINE_CONTROL);
+> +		else {
+> +			dev_err(&pdev->dev, "Vref not support");
+> +			return -EOPNOTSUPP;
+> +		}
+> +		break;
+> +	default:
+> +		dev_err(&pdev->dev, "ADC version not recognized");
+> +		return -EOPNOTSUPP;
+> +	}
+> +	data->vref = vref;
+> +	return 0;
 > +}
 > +
-> +static struct syscon *of_syscon_register_mmio(struct device_node *np,
-> +					      bool check_clk)
+>  static int aspeed_adc_probe(struct platform_device *pdev)
 >  {
->  	struct clk *clk;
->  	struct syscon *syscon;
-> @@ -132,10 +140,6 @@ static struct syscon *of_syscon_register(struct device_node *np, bool check_clk)
->  	syscon->regmap = regmap;
->  	syscon->np = np;
+>  	struct iio_dev *indio_dev;
+> @@ -190,13 +244,16 @@ static int aspeed_adc_probe(struct platform_device *pdev)
+>  	const char *clk_parent_name;
+>  	int ret;
+>  	u32 adc_engine_control_reg_val;
+> +	char scaler_clk_name[32];
 >  
-> -	spin_lock(&syscon_list_slock);
-> -	list_add_tail(&syscon->list, &syscon_list);
-> -	spin_unlock(&syscon_list_slock);
-> -
->  	return syscon;
->  
->  err_attach:
-> @@ -150,8 +154,49 @@ static struct syscon *of_syscon_register(struct device_node *np, bool check_clk)
->  	return ERR_PTR(ret);
->  }
->  
-> +#ifdef CONFIG_REGMAP_SMCCC
-> +static struct syscon *of_syscon_register_smccc(struct device_node *np)
-> +{
-> +	struct syscon *syscon;
-> +	struct regmap *regmap;
-> +	u32 reg_io_width = 4, smc_id;
-> +	int ret;
-> +	struct regmap_config syscon_config = syscon_regmap_config;
-> +
-> +	ret = of_property_read_u32(np, "arm,smc-id", &smc_id);
-
-So this is Arm specific.
-
-Not sure we want to be creating bespoke support for specific
-architectures/platforms in the generic syscon implementation.
-
-> +	if (ret)
-> +		return ERR_PTR(-ENODEV);
-> +
-> +	syscon = kzalloc(sizeof(*syscon), GFP_KERNEL);
-> +	if (!syscon)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	of_property_read_u32(np, "reg-io-width", &reg_io_width);
-> +
-> +	syscon_config.name = kasprintf(GFP_KERNEL, "%pOFn@smc%x", np, smc_id);
-> +	syscon_config.val_bits = reg_io_width * 8;
-> +
-> +	regmap = regmap_init_smccc(NULL, smc_id, &syscon_config);
-> +	if (IS_ERR(regmap)) {
-> +		ret = PTR_ERR(regmap);
-> +		goto err_regmap;
-> +	}
-> +
-> +	syscon->regmap = regmap;
-> +	syscon->np = np;
-> +
-> +	return syscon;
-> +
-> +err_regmap:
-> +	kfree(syscon_config.name);
-> +	kfree(syscon);
-> +
-> +	return ERR_PTR(ret);
-> +}
-> +#endif
-> +
->  static struct regmap *device_node_get_regmap(struct device_node *np,
-> -					     bool check_clk)
-> +					     bool check_clk, bool use_smccc)
->  {
->  	struct syscon *entry, *syscon = NULL;
->  
-> @@ -165,8 +210,19 @@ static struct regmap *device_node_get_regmap(struct device_node *np,
->  
->  	spin_unlock(&syscon_list_slock);
->  
-> -	if (!syscon)
-> -		syscon = of_syscon_register(np, check_clk);
-> +	if (!syscon) {
-> +		if (use_smccc)
-> +#ifdef CONFIG_REGMAP_SMCCC
-> +			syscon = of_syscon_register_smccc(np);
-> +#else
-> +			syscon = NULL;
-> +#endif
-
-... and we certainly don't want to be doing so using #ifdefery.
-
-Please find a better way to support this feature.
-
-> +		else
-> +			syscon = of_syscon_register_mmio(np, check_clk);
-> +
-> +		if (!IS_ERR(syscon))
-> +			syscon_add(syscon);
-> +	}
->  
->  	if (IS_ERR(syscon))
->  		return ERR_CAST(syscon);
-> @@ -176,16 +232,19 @@ static struct regmap *device_node_get_regmap(struct device_node *np,
->  
->  struct regmap *device_node_to_regmap(struct device_node *np)
->  {
-> -	return device_node_get_regmap(np, false);
-> +	return device_node_get_regmap(np, false, false);
->  }
->  EXPORT_SYMBOL_GPL(device_node_to_regmap);
->  
->  struct regmap *syscon_node_to_regmap(struct device_node *np)
->  {
-> -	if (!of_device_is_compatible(np, "syscon"))
-> -		return ERR_PTR(-EINVAL);
-> +	if (of_device_is_compatible(np, "syscon"))
-> +		return device_node_get_regmap(np, true, false);
-> +
-> +	if (of_device_is_compatible(np, "syscon-smc"))
-> +		return device_node_get_regmap(np, true, true);
->  
-> -	return device_node_get_regmap(np, true);
-> +	return ERR_PTR(-EINVAL);
->  }
->  EXPORT_SYMBOL_GPL(syscon_node_to_regmap);
->  
-> @@ -273,19 +332,19 @@ struct regmap *syscon_regmap_lookup_by_phandle_optional(struct device_node *np,
->  }
->  EXPORT_SYMBOL_GPL(syscon_regmap_lookup_by_phandle_optional);
->  
-> -static int syscon_probe(struct platform_device *pdev)
-> +struct syscon_driver_data {
-> +	int (*probe_func)(struct platform_device *pdev, struct device *dev,
-> +			  struct syscon *syscon);
-> +};
-> +
-> +static int syscon_probe_mmio(struct platform_device *pdev,
-> +			     struct device *dev,
-> +			     struct syscon *syscon)
->  {
-> -	struct device *dev = &pdev->dev;
-> -	struct syscon_platform_data *pdata = dev_get_platdata(dev);
-> -	struct syscon *syscon;
->  	struct regmap_config syscon_config = syscon_regmap_config;
->  	struct resource *res;
->  	void __iomem *base;
->  
-> -	syscon = devm_kzalloc(dev, sizeof(*syscon), GFP_KERNEL);
-> -	if (!syscon)
-> -		return -ENOMEM;
-> -
->  	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->  	if (!res)
->  		return -ENOENT;
-> @@ -295,23 +354,84 @@ static int syscon_probe(struct platform_device *pdev)
+> +	model_data = of_device_get_match_data(&pdev->dev);
+>  	indio_dev = devm_iio_device_alloc(&pdev->dev, sizeof(*data));
+>  	if (!indio_dev)
 >  		return -ENOMEM;
 >  
->  	syscon_config.max_register = resource_size(res) - 4;
-> -	if (pdata)
-> -		syscon_config.name = pdata->label;
-> +
->  	syscon->regmap = devm_regmap_init_mmio(dev, base, &syscon_config);
->  	if (IS_ERR(syscon->regmap)) {
->  		dev_err(dev, "regmap init failed\n");
->  		return PTR_ERR(syscon->regmap);
+>  	data = iio_priv(indio_dev);
+>  	data->dev = &pdev->dev;
+> +	dev_set_drvdata(data->dev, indio_dev);
+
+You use platform_get_drvdata() below, so use platform_set_drvdata for this
+
+>  
+>  	data->base = devm_platform_ioremap_resource(pdev, 0);
+>  	if (IS_ERR(data->base))
+> @@ -205,29 +262,39 @@ static int aspeed_adc_probe(struct platform_device *pdev)
+>  	/* Register ADC clock prescaler with source specified by device tree. */
+>  	spin_lock_init(&data->clk_lock);
+>  	clk_parent_name = of_clk_get_parent_name(pdev->dev.of_node, 0);
+> +	if (model_data->version <= aspeed_adc_ast2500) {
+
+I'd like to see this based on a flag in the model_data not a version number match.
+
+> +		data->clk_prescaler = clk_hw_register_divider(
+> +					&pdev->dev, "prescaler", clk_parent_name, 0,
+> +					data->base + ASPEED_REG_CLOCK_CONTROL,
+> +					17, 15, 0, &data->clk_lock);
+> +		if (IS_ERR(data->clk_prescaler))
+> +			return PTR_ERR(data->clk_prescaler);
+>  
+> -	data->clk_prescaler = clk_hw_register_divider(
+> -				&pdev->dev, "prescaler", clk_parent_name, 0,
+> -				data->base + ASPEED_REG_CLOCK_CONTROL,
+> -				17, 15, 0, &data->clk_lock);
+> -	if (IS_ERR(data->clk_prescaler))
+> -		return PTR_ERR(data->clk_prescaler);
+> -
+> -	/*
+> -	 * Register ADC clock scaler downstream from the prescaler. Allow rate
+> -	 * setting to adjust the prescaler as well.
+> -	 */
+> -	data->clk_scaler = clk_hw_register_divider(
+> -				&pdev->dev, "scaler", "prescaler",
+> -				CLK_SET_RATE_PARENT,
+> -				data->base + ASPEED_REG_CLOCK_CONTROL,
+> -				0, 10, 0, &data->clk_lock);
+> -	if (IS_ERR(data->clk_scaler)) {
+> -		ret = PTR_ERR(data->clk_scaler);
+> -		goto scaler_error;
+> +		/*
+> +		 * Register ADC clock scaler downstream from the prescaler. Allow rate
+> +		 * setting to adjust the prescaler as well.
+> +		 */
+> +		data->clk_scaler = clk_hw_register_divider(
+> +					&pdev->dev, "scaler", "prescaler",
+> +					CLK_SET_RATE_PARENT,
+> +					data->base + ASPEED_REG_CLOCK_CONTROL,
+> +					0, 10, 0, &data->clk_lock);
+> +		if (IS_ERR(data->clk_scaler)) {
+> +			ret = PTR_ERR(data->clk_scaler);
+> +			goto scaler_error;
+> +		}
+> +	} else {
+> +		snprintf(scaler_clk_name, sizeof(scaler_clk_name), "scaler-%s",
+> +			 pdev->name);
+> +		data->clk_scaler = clk_hw_register_divider(
+> +			&pdev->dev, scaler_clk_name, clk_parent_name, 0,
+> +			data->base + ASPEED_REG_CLOCK_CONTROL, 0, 16, 0,
+> +			&data->clk_lock);
+> +		if (IS_ERR(data->clk_scaler))
+> +			return PTR_ERR(data->clk_scaler);
 >  	}
 >  
-> -	platform_set_drvdata(pdev, syscon);
-> +	dev_dbg(dev, "regmap_mmio %pR registered\n", res);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct syscon_driver_data syscon_mmio_data = {
-> +	.probe_func = &syscon_probe_mmio,
-> +};
-> +
-> +#ifdef CONFIG_REGMAP_SMCCC
-> +
-> +static int syscon_probe_smc(struct platform_device *pdev,
-> +			    struct device *dev,
-> +			    struct syscon *syscon)
-> +{
-> +	struct regmap_config syscon_config = syscon_regmap_config;
-> +	int smc_id, ret;
-> +
-> +	ret = of_property_read_u32(dev->of_node, "arm,smc-id", &smc_id);
-> +	if (!ret)
-> +		return -ENODEV;
-> +
-> +	syscon->regmap = devm_regmap_init_smccc(dev, smc_id, &syscon_config);
-> +	if (IS_ERR(syscon->regmap)) {
-> +		dev_err(dev, "regmap init failed\n");
-> +		return PTR_ERR(syscon->regmap);
-> +	}
+> -	data->rst = devm_reset_control_get_exclusive(&pdev->dev, NULL);
+> +	data->rst = devm_reset_control_get_shared(&pdev->dev, NULL);
+>  	if (IS_ERR(data->rst)) {
+>  		dev_err(&pdev->dev,
+>  			"invalid or missing reset controller device tree entry");
+> @@ -236,11 +303,17 @@ static int aspeed_adc_probe(struct platform_device *pdev)
+>  	}
+>  	reset_control_deassert(data->rst);
 >  
-> -	dev_dbg(dev, "regmap %pR registered\n", res);
-> +	dev_dbg(dev, "regmap_smccc %x registered\n", smc_id);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct syscon_driver_data syscon_smc_data = {
-> +	.probe_func = &syscon_probe_smc,
-> +};
-> +#endif
-> +
-> +static int syscon_probe(struct platform_device *pdev)
-> +{
-> +	int ret;
-> +	struct device *dev = &pdev->dev;
-> +	struct syscon_platform_data *pdata = dev_get_platdata(dev);
-> +	struct regmap_config syscon_config = syscon_regmap_config;
-> +	struct syscon *syscon;
-> +	const struct syscon_driver_data *driver_data;
-> +
-> +	if (pdata)
-> +		syscon_config.name = pdata->label;
-> +
-> +	syscon = devm_kzalloc(dev, sizeof(*syscon), GFP_KERNEL);
-> +	if (!syscon)
-> +		return -ENOMEM;
-> +
-> +	driver_data = (const struct syscon_driver_data *)
-> +				platform_get_device_id(pdev)->driver_data;
-> +
-> +	ret = driver_data->probe_func(pdev, dev, syscon);
+> -	model_data = of_device_get_match_data(&pdev->dev);
+> +	ret = aspeed_adc_vref_config(pdev);
+
+As we have the struct iio_dev available here I would pass it into this function.
+
 > +	if (ret)
-> +		return ret;
-> +
-> +	platform_set_drvdata(pdev, syscon);
+> +		goto vref_config_error;
+>  
+>  	if (model_data->wait_init_sequence) {
+> +		adc_engine_control_reg_val =
+> +			readl(data->base + ASPEED_REG_ENGINE_CONTROL);
+>  		/* Enable engine in normal mode. */
+> -		writel(ASPEED_ADC_OPERATION_MODE_NORMAL | ASPEED_ADC_ENGINE_ENABLE,
+> +		writel(adc_engine_control_reg_val |
+> +			       ASPEED_ADC_OPERATION_MODE_NORMAL |
+> +			       ASPEED_ADC_ENGINE_ENABLE,
+>  		       data->base + ASPEED_REG_ENGINE_CONTROL);
+>  
+>  		/* Wait for initial sequence complete. */
+> @@ -254,22 +327,23 @@ static int aspeed_adc_probe(struct platform_device *pdev)
+>  			goto poll_timeout_error;
+>  	}
+>  
+> -	/* Start all channels in normal mode. */
+>  	ret = clk_prepare_enable(data->clk_scaler->clk);
+>  	if (ret)
+>  		goto clk_enable_error;
+> -
+> -	adc_engine_control_reg_val = GENMASK(31, 16) |
+> -		ASPEED_ADC_OPERATION_MODE_NORMAL | ASPEED_ADC_ENGINE_ENABLE;
+> +	adc_engine_control_reg_val =
+> +		readl(data->base + ASPEED_REG_ENGINE_CONTROL);
+> +	/* Start all channels in normal mode. */
+> +	adc_engine_control_reg_val |= ASPEED_ADC_CTRL_CHANNEL |
+> +				     ASPEED_ADC_OPERATION_MODE_NORMAL |
+> +				     ASPEED_ADC_ENGINE_ENABLE;
+>  	writel(adc_engine_control_reg_val,
+>  		data->base + ASPEED_REG_ENGINE_CONTROL);
+>  
+> -	model_data = of_device_get_match_data(&pdev->dev);
+> -	indio_dev->name = model_data->model_name;
+> +	indio_dev->name = dev_name(&pdev->dev);
+
+This name needs to be the part number and I don't think that is true after
+this change.  There are lots other ways to identify multiple instances.
+
+>  	indio_dev->info = &aspeed_adc_iio_info;
+>  	indio_dev->modes = INDIO_DIRECT_MODE;
+>  	indio_dev->channels = aspeed_adc_iio_channels;
+> -	indio_dev->num_channels = ARRAY_SIZE(aspeed_adc_iio_channels);
+> +	indio_dev->num_channels = model_data->num_channels;
+>  
+>  	ret = iio_device_register(indio_dev);
+>  	if (ret)
+> @@ -281,13 +355,15 @@ static int aspeed_adc_probe(struct platform_device *pdev)
+>  	writel(ASPEED_ADC_OPERATION_MODE_POWER_DOWN,
+>  		data->base + ASPEED_REG_ENGINE_CONTROL);
+>  	clk_disable_unprepare(data->clk_scaler->clk);
+> +vref_config_error:
+>  clk_enable_error:
+>  poll_timeout_error:
+>  	reset_control_assert(data->rst);
+>  reset_error:
+>  	clk_hw_unregister_divider(data->clk_scaler);
+>  scaler_error:
+> -	clk_hw_unregister_divider(data->clk_prescaler);
+> +	if (model_data->version <= aspeed_adc_ast2500)
+> +		clk_hw_unregister_divider(data->clk_prescaler);
+
+Consider a conversion to devm_add_action_or_reset() based cleanup
+for these and potentially all the undwinding currently in remove.
+It tends to end up simpler, particularly when there are parts of
+probe that only happen for some supported devices.
+
+>  	return ret;
+>  }
+>  
+> @@ -295,36 +371,48 @@ static int aspeed_adc_remove(struct platform_device *pdev)
+>  {
+>  	struct iio_dev *indio_dev = platform_get_drvdata(pdev);
+
+I'm curious.  Before this patch, this was never set, so did the driver
+just crash on remove?
+
+>  	struct aspeed_adc_data *data = iio_priv(indio_dev);
+> +	const struct aspeed_adc_model_data *model_data;
+
+I would suggest storing a pointer to this in the iio_priv() as you
+reference it from multiple places.
+
+>  
+> +	model_data = of_device_get_match_data(&pdev->dev);
+>  	iio_device_unregister(indio_dev);
+>  	writel(ASPEED_ADC_OPERATION_MODE_POWER_DOWN,
+>  		data->base + ASPEED_REG_ENGINE_CONTROL);
+>  	clk_disable_unprepare(data->clk_scaler->clk);
+>  	reset_control_assert(data->rst);
+>  	clk_hw_unregister_divider(data->clk_scaler);
+> -	clk_hw_unregister_divider(data->clk_prescaler);
+> +	if (model_data->version <= aspeed_adc_ast2500)
+> +		clk_hw_unregister_divider(data->clk_prescaler);
 >  
 >  	return 0;
 >  }
 >  
->  static const struct platform_device_id syscon_ids[] = {
-> -	{ "syscon", },
-> +	{ .name = "syscon",	.driver_data = (kernel_ulong_t)&syscon_mmio_data},
-> +#ifdef CONFIG_REGMAP_SMCCC
-> +	{ .name = "syscon-smc",	.driver_data = (kernel_ulong_t)&syscon_smc_data},
-> +#endif
->  	{ }
+>  static const struct aspeed_adc_model_data ast2400_model_data = {
+> -	.model_name = "ast2400-adc",
+> -	.vref_voltage = 2500, // mV
+> +	.version = aspeed_adc_ast2400,
+>  	.min_sampling_rate = 10000,
+>  	.max_sampling_rate = 500000,
+> +	.num_channels = 16,
 >  };
 >  
+>  static const struct aspeed_adc_model_data ast2500_model_data = {
+> -	.model_name = "ast2500-adc",
+> -	.vref_voltage = 1800, // mV
+> -	.min_sampling_rate = 1,
+> -	.max_sampling_rate = 1000000,
+> +	.version = aspeed_adc_ast2500,
+> +	.min_sampling_rate = 10000,
+> +	.max_sampling_rate = 500000,
+> +	.wait_init_sequence = true,
+> +	.num_channels = 16,
+> +};
+> +
+> +static const struct aspeed_adc_model_data ast2600_model_data = {
+> +	.version = aspeed_adc_ast2600,
+> +	.min_sampling_rate = 10000,
+> +	.max_sampling_rate = 500000,
+>  	.wait_init_sequence = true,
+> +	.num_channels = 8,
+>  };
+>  
+>  static const struct of_device_id aspeed_adc_matches[] = {
+>  	{ .compatible = "aspeed,ast2400-adc", .data = &ast2400_model_data },
+>  	{ .compatible = "aspeed,ast2500-adc", .data = &ast2500_model_data },
+> +	{ .compatible = "aspeed,ast2600-adc", .data = &ast2600_model_data },
+>  	{},
+>  };
+>  MODULE_DEVICE_TABLE(of, aspeed_adc_matches);
+> @@ -341,5 +429,5 @@ static struct platform_driver aspeed_adc_driver = {
+>  module_platform_driver(aspeed_adc_driver);
+>  
+>  MODULE_AUTHOR("Rick Altherr <raltherr@google.com>");
+> -MODULE_DESCRIPTION("Aspeed AST2400/2500 ADC Driver");
+> +MODULE_DESCRIPTION("Aspeed AST2400/2500/2600 ADC Driver");
+>  MODULE_LICENSE("GPL");
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
