@@ -2,103 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 324903D3BD4
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 16:34:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A69223D3BDF
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 16:36:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233665AbhGWNx4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 09:53:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36264 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235310AbhGWNxw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 09:53:52 -0400
-Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2487CC061760
-        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 07:34:25 -0700 (PDT)
-Received: by mail-oi1-x235.google.com with SMTP id z26so1986520oih.10
-        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 07:34:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=XAinfP2rs3am3N6tj2c+h5vadTCnbhTDK2b4aCECSE4=;
-        b=u+cadcfhA+j6aHp6BGy9ZUtZxONYh+7Cgj5HKJYLkI/ZqZFcXyRyBkWNm4atPw2l4L
-         YObLRM8IDWnlFrBQ+1dDDuUJAFzPwLq+D3C3DodvczZw8cG4Gexm/+4QYrnUPkUygtNA
-         hM0Ktvz/VTciCKBMovzabl0RaoZtM8NJzK2F68R1Be4bFyLP9dGNrRIGQUplaaY+owpu
-         M2h/C4gMig5HQbe24sbD7d/31fRS8EptxemUdnjJED2vObEwaMOT5LiCIpg7Jqli+sZL
-         F4hcUsnGXVL1yZLaYgPR8xA7kbpKYTWM+nkW9MkJ2HDR+mJYRLBJAwz9repEuw59MwN2
-         BLcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=XAinfP2rs3am3N6tj2c+h5vadTCnbhTDK2b4aCECSE4=;
-        b=MRTesbmNLF7MtC7PxjOnTptwU8NCi5e8dT1pxC1cucQ/NGUJFoyd5N/98rsaFPjYWu
-         2u89oY8f2v5Fg4yUzuSpX/0fEg+Yl7fi4l3+yFyvs3ys3tjVUcLb8TnrP97DLy3TBcz+
-         vVytTiYuDQLJAJGqC9SnY346hIdMRfddJ1Y750P4fT9qvS+dfu6PtnCma/bJ8BIktzAr
-         mfYJdu1RoXOeOfpYevBPZK87TbNcDniOR/+C+FVKsslp8W5V4bUwIGc1JKz54eWF3j04
-         T+JTEP4wUsn8M4tMMA+sem2+7FcEi55YOuZSN4OqOSs09BpTDlgaxu7VYT8bexIL0OKa
-         GAqg==
-X-Gm-Message-State: AOAM531w/MrOrAfBYz+xEkX/w07Mz3nn81E9JbogjIiqPw0wPinY95UE
-        boOtXhqF0YwhmEbNWrx735J25idqeLr1gg==
-X-Google-Smtp-Source: ABdhPJxX86aBV8kuG7xzOwBTqRN+j8bd4Ak482LKf14NiNigPOtJzDnbi3hkRrQbTnoUDdwjoudU6Q==
-X-Received: by 2002:aca:d11:: with SMTP id 17mr8785630oin.19.1627050864349;
-        Fri, 23 Jul 2021 07:34:24 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id q63sm3747743ooq.4.2021.07.23.07.34.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jul 2021 07:34:23 -0700 (PDT)
-Date:   Fri, 23 Jul 2021 09:34:20 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Serge Semin <fancer.lancer@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
+        id S235353AbhGWN4Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 09:56:24 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:4722 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S233665AbhGWN4Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 23 Jul 2021 09:56:24 -0400
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 16NEVTgp014144;
+        Fri, 23 Jul 2021 16:36:41 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=n+jv0fD33/CgdMUX9dBcGBkC8K9zyQoTqjfbXyjDB8Y=;
+ b=lv4XIk83ZU2zORjYXmjXjx0yb+/JSUq6dh4DKuicAwRqQKcsvB0foo/dKLya+MQAt+st
+ 5BHueZ+73OdUhW12SqHreULH16JcOth61rDZwMB3tf6gqTpXNnOLmRBJ8GoR0FHhhtzG
+ 1OamR/zyDlapBO5yA7UyL6h74GUf1LSSD5cFwg2LPBVt+9pA+cYcepIrLkwkujGF/F4v
+ qfE4I3oRFkdZofJCZU+p9oBYlXdMCL5IsI3LZPtyXwEqbH9lm5IuKujBhgdhxvYZNxrG
+ fmKIbe3Tvux3d3zjwZANvvuuTY/qaWlKO6KJMzQlvx63trEipuesJZZfdNH75Fq5rfd2 Eg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 39yt3ehux8-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 23 Jul 2021 16:36:41 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id DD00B10002A;
+        Fri, 23 Jul 2021 16:36:40 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C2BFA2248CE;
+        Fri, 23 Jul 2021 16:36:40 +0200 (CEST)
+Received: from lmecxl0912.lme.st.com (10.75.127.47) by SFHDAG2NODE3.st.com
+ (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 23 Jul
+ 2021 16:36:39 +0200
+Subject: Re: [PATCH 0/7] Add STM32MP13 SoCs and discovery board support
+To:     Arnd Bergmann <arnd@arndb.de>
+CC:     Linus Walleij <linus.walleij@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        John Stultz <john.stultz@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Amit Pundir <amit.pundir@linaro.org>
-Subject: Re: [PATCH 29/29] arm64: dts: qcom: Harmonize DWC USB3 DT nodes name
-Message-ID: <YPrTbC7fNOY3qCcJ@yoga>
-References: <20201020115959.2658-1-Sergey.Semin@baikalelectronics.ru>
- <20201020115959.2658-30-Sergey.Semin@baikalelectronics.ru>
- <CALAqxLX_FNvFndEDWtGbFPjSzuAbfqxQE07diBJFZtftwEJX5A@mail.gmail.com>
- <20210714124807.o22mottsrg3tv6nt@mobilestation>
- <YPfPDqJhfzbvDLvB@kroah.com>
- <20210721100220.ddfxwugivsndsedv@mobilestation>
- <YPf29+ewbrYgHxRP@kroah.com>
- <YPh/AS5svBk+gddY@yoga>
- <YPp7Q4IofUYQlrqd@kroah.com>
+        Russell King <linux@armlinux.org.uk>,
+        Jonathan Corbet <corbet@lwn.net>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+References: <20210723132810.25728-1-alexandre.torgue@foss.st.com>
+ <CAK8P3a1ax29ThCG867phtx1Xb12GgiJFcLDd8H9VLbsJQ1uoAw@mail.gmail.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Message-ID: <ce1fc3e3-190f-6174-a34c-41132807f64e@foss.st.com>
+Date:   Fri, 23 Jul 2021 16:36:39 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YPp7Q4IofUYQlrqd@kroah.com>
+In-Reply-To: <CAK8P3a1ax29ThCG867phtx1Xb12GgiJFcLDd8H9VLbsJQ1uoAw@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.47]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
+ definitions=2021-07-23_08:2021-07-23,2021-07-23 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 23 Jul 03:18 CDT 2021, Greg Kroah-Hartman wrote:
-
-> On Wed, Jul 21, 2021 at 03:09:37PM -0500, Bjorn Andersson wrote:
-> > Which tree did you revert this in? 5.13.stable?)
+On 7/23/21 3:46 PM, Arnd Bergmann wrote:
+> On Fri, Jul 23, 2021 at 3:28 PM Alexandre Torgue
+> <alexandre.torgue@foss.st.com> wrote:
+>>
+>> This series enhance the STM32 MPU family by adding STM32MP13 SoCs support.
+>> It adds machine support and device tree diversity to support the whole
+>> stm32mp13 family (STM32MP131/STM32MP133/STM32MP135, plus security feature
+>> diversity).
+>>
+>> Basically STM32MP13 SoCs embeds one Cortex A7, storage (SD/MMC/SDIO, QSPI FMC),
+>> network (ETH, CAN), display (DCMIPP, LTDC, ...), audio(SAI, DFSDM, SPDIFRX),
+>> com (USB EHCI/OHCI, USB OTG, I2C, SPI/I2S, U(S)ART).
+>>
+>> This series also adds STM32MP135F Discovery board support (stm32mp135f-dk). It
+>> embeds a STM32MP135f SOC with 512 MB of DDR3. Several connections are available
+>> on this board:
+>>   - 4*USB2.0, 1*USB2.0 typeC DRD, SDcard, 2*RJ45, HDMI, Combo Wifi/BT, ...
+>>
+>> Only SD card, uart4 (console) and watchdog IPs are enabled in this commit.
+>>
+>> Note that file stm32mp135.dtsi doesn't define nodes but I add it now to ease adding
+>> of new nodes in a (close) future.
 > 
-> My usb-linus branch which will go to Linus later today.  Then we can
-> backport the revert to older kernels as needed.
+> I had a brief look and it seems all fine to me, nice work!
+> 
+> The only (very minor) thing I noticed is that the crypto engine device node
+> has an unusual name 'cryp@' instead of the usual 'crypto@', but this is already
+> the case on stm32mp157.
+> 
+> With this changed,
+> 
+> Acked-by: Arnd Bergmann <arnd@arndb.de
 > 
 
-I'm not worried about the backports, I'm worried about conflicts you're
-causing because you're taking a non-usb patch through the usb tree.
+Thanks Arnd. I'll change "cryp: cryp@" by "cryp: crypto@" (either in V2 
+or directly during the merge).
 
-I was about to push a revert (to this and the other Qualcomm platforms),
-but as you're taking some set of reverts through the usb tree we're just
-in for a bunch of merge conflicts.
-
-Regards,
-Bjorn
+regards
+Alex
