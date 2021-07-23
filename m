@@ -2,489 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ED9B3D3803
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 11:47:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2486F3D381C
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 11:54:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231195AbhGWJFo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 05:05:44 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34468 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231302AbhGWJFn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Jul 2021 05:05:43 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id F0BC960EC0;
-        Fri, 23 Jul 2021 09:46:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627033577;
-        bh=J09RQL3Cup9ZELNVXrOjP6qigtKTtQstj+tA7AqzG+Y=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bVxWy/NAh0AdAxpxgnAI1njuJqPxI/9JgFQ2lu68pNT2HF8LNFdA4ee6wYA5O+QGO
-         eZvTDVpr7V6efQg9v1dqdBQFXYVmARPpj74smGFolTwF+W4/XbillBN7dG6B6zPFAs
-         8iIM8w/Hl8E9lEMAz3b0uMC6Erho/CIJWs7mlyr2mitbaU+ClFUdrIQqAYV6jxUX3K
-         7vhW6xmx0lUg4uO+3kfcbxe+/645pASR0lMH0q8WiRNGdSIVH5UNnBHW9XlXkGae03
-         H6r5Te4Om+ZHFH4iGnXWZmXLvyY2o1rn9DNpqLXg3qQ0Z3wKdhvuLAG0Vrj3nY/zJp
-         UrlF+VPUKwqMg==
-Date:   Fri, 23 Jul 2021 17:46:12 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Mathew McBride <matt@traverse.com.au>
-Cc:     Li Yang <leoyang.li@nxp.com>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 5/5] arm64: dts: add device tree for Traverse Ten64
- (LS1088A)
-Message-ID: <20210723094608.GK30773@dragon>
-References: <20210722042450.11862-1-matt@traverse.com.au>
- <20210722042450.11862-6-matt@traverse.com.au>
+        id S231350AbhGWJN4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 05:13:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56768 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231273AbhGWJN4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 05:13:56 -0400
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 121CDC061575;
+        Fri, 23 Jul 2021 02:54:29 -0700 (PDT)
+Received: by mail-ot1-x32d.google.com with SMTP id a5-20020a05683012c5b029036edcf8f9a6so1535801otq.3;
+        Fri, 23 Jul 2021 02:54:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5bndOuFZX3tiZBmJcO1TQjXh09mw6xwzbGzrURFBWw4=;
+        b=OGfwqkbgF1tjhCLbVtickH2E5YJ3FaptPyEUgsChnGfDKEBnyvoSezdKA08OFY/F9c
+         rnOABX6HJpFy1iy5XWYvOHQXHpR5S5WBN0/+oVqx35WiYg1MUFgfNk0m0D6+VIY3SSos
+         kzmPvUG27pefM37stoDT3uvKdNrkiMq2WLBAu5JODSYGvvIW2k6jVEYFP4X6bI7bfjtH
+         hCZota0zxq5/f74ziFvEGFvn99uZG0f/3SZxR5Km01OVzidzLKA80EPiL8uKojcbrvLr
+         EdpZq2kZmtFgihZDfeqrTm17jXPJxZzxHubLCLycZFN0bz+1+19PtTzvYp7GzeqZ2OY9
+         8Krw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5bndOuFZX3tiZBmJcO1TQjXh09mw6xwzbGzrURFBWw4=;
+        b=sEsi7GM8OveFEzL63Np8+/dWXmy+tiqiJAFv3Sh8H8NqVTbbrKKLP3mDdPO/V0RZOA
+         61ezZwGCUZJZbpTt2TDNtLIPVP8gXOV8RnHbn2yElvp0TcG3eaP9PqIt4cyex3McvFP7
+         nPkK5TgaSoiYFxMTo3xx+hLdp9m894F1AQLQD3AQ+9YGDOlmEh4kWJ/5XT799CxsCMBp
+         QzQGEIL+mnJc0eUZ8Jz1/RSlXm6UzSaBn1dhU8aukJx1xVYu2x0ZEwQOoJVYKSroczUJ
+         oFWhc5xq/TuLhGjK9nVN3cP18ieb0z40O5mm4cDbf4ceXNJes1pc2Y6rpWSb1aIf+xTq
+         EQqg==
+X-Gm-Message-State: AOAM531O2fcFBOL1qKsdFjP24WfT8xQepjoUPIAAZyb0Qn4AIjMLWDMG
+        6q+fmaOZJZUu4mtpPzhxNUblK4d80jRi03OFVDo=
+X-Google-Smtp-Source: ABdhPJxyIuiIK8mtbPFlozBKzC68z5rXhaTfJeXWaPyq8oeJQuai1UiBZzvI0z3m1KDj7fGWx3TOJsb2yM7a6bwcV7U=
+X-Received: by 2002:a9d:27a4:: with SMTP id c33mr2525083otb.281.1627034068504;
+ Fri, 23 Jul 2021 02:54:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210722042450.11862-6-matt@traverse.com.au>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20210723094138.24793-1-Christine.Zhu@mediatek.com> <20210723094138.24793-3-Christine.Zhu@mediatek.com>
+In-Reply-To: <20210723094138.24793-3-Christine.Zhu@mediatek.com>
+From:   Enric Balletbo Serra <eballetbo@gmail.com>
+Date:   Fri, 23 Jul 2021 11:54:17 +0200
+Message-ID: <CAFqH_539HesXQZz5F3mNXveHvHUjKTTBOkpZxmEf_BBOODHZcQ@mail.gmail.com>
+Subject: Re: [v6,2/3] dt-bindings: reset: mt8195: add toprgu reset-controller
+ header file
+To:     Christine Zhu <Christine.Zhu@mediatek.com>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-watchdog@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        Rex-BC Chen <Rex-BC.Chen@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 22, 2021 at 04:24:50AM +0000, Mathew McBride wrote:
-> The Traverse Technologies Ten64 is a Mini-ITX form factor
-> networking board using the NXP LS1088A SoC.
-> 
-> This device tree only describes features which the mainline
-> kernel currently has support for, such as some I2C-connected
-> devices that are not described at present.
-> 
-> System documentation may be found at ten64doc.traverse.com.au
-> 
-> Signed-off-by: Mathew McBride <matt@traverse.com.au>
+Hi Christine,
+
+Thank you for your patch.
+
+Missatge de Christine Zhu <Christine.Zhu@mediatek.com> del dia dv., 23
+de jul. 2021 a les 11:45:
+>
+> Add toprgu reset-controller header file for MT8195 platform
+>
+> Signed-off-by: Christine Zhu <Christine.Zhu@mediatek.com>
 > ---
->  arch/arm64/boot/dts/freescale/Makefile        |   1 +
->  .../boot/dts/freescale/fsl-ls1088a-ten64.dts  | 375 ++++++++++++++++++
->  2 files changed, 376 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index 25806c4924cb..2b3ee42e4a2a 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -19,6 +19,7 @@ dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1046a-qds.dtb
->  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1046a-rdb.dtb
->  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1088a-qds.dtb
->  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1088a-rdb.dtb
-> +dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1088a-ten64.dtb
->  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls2080a-qds.dtb
->  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls2080a-rdb.dtb
->  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls2080a-simu.dtb
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts b/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts
+>  .../reset-controller/mt8195-resets.h          | 32 +++++++++++++++++++
+>  1 file changed, 32 insertions(+)
+>  create mode 100644 include/dt-bindings/reset-controller/mt8195-resets.h
+>
+> diff --git a/include/dt-bindings/reset-controller/mt8195-resets.h b/include/dt-bindings/reset-controller/mt8195-resets.h
+
+The DT binding includes for reset controllers are located in
+`include/dt-bindings/reset/` Move the Mediatek reset constants there
+instead of the `reset-controller`directory. We're doing this also for
+current files that are there, see [1]
+
+[1] https://patchwork.kernel.org/project/linux-mediatek/patch/20210714121116.v2.1.I514d9aafff3a062f751b37d3fea7402f67595b86@changeid/
+
 > new file mode 100644
-> index 000000000000..7f1584f378fe
+> index 000000000000..8176a3e5063f
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a-ten64.dts
-> @@ -0,0 +1,375 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +++ b/include/dt-bindings/reset-controller/mt8195-resets.h
+> @@ -0,0 +1,32 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-3-Clause) */
 > +/*
-> + * Device Tree file for Travese Ten64 (LS1088) board
-> + * Based on fsl-ls1088a-rdb.dts
-> + * Copyright 2017-2020 NXP
-> + * Copyright 2019-2021 Traverse Technologies
+> + * This file is provided under a dual BSD/GPLv2 license.  When using or
+> + * redistributing this file, you may do so under either licens
+
+This is implicit in the SPDX-License-Identifier, so you can remove
+these two lines.
+
+Thanks,
+  Enric
+
 > + *
-> + * Author: Mathew McBride <matt@traverse.com.au>
+> + * Copyright (c) 2021 MediaTek Inc.
+> + * Author: Christine Zhu <christine.zhu@mediatek.com>
 > + */
 > +
-> +/dts-v1/;
-> +
-> +#include "fsl-ls1088a.dtsi"
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +
-> +/ {
-> +	model = "Traverse Ten64";
-> +	compatible = "traverse,ten64", "fsl,ls1088a";
-> +
-> +	aliases {
-> +		serial0 = &duart0;
-> +		serial1 = &duart1;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	buttons {
-> +		compatible = "gpio-keys";
-
-Have a newline between property list and child node.
-
-> +		/* Fired by system controller when
-> +		 * external power off (e.g ATX Power Button)
-> +		 * asserted
-> +		 */
-> +		powerdn {
-> +			label = "External Power Down";
-> +			gpios = <&gpio1 17 GPIO_ACTIVE_LOW>;
-> +			interrupts = <&gpio1 17 IRQ_TYPE_EDGE_FALLING>;
-> +			linux,code = <KEY_POWER>;
-> +		};
-> +
-> +		/* Rear Panel 'ADMIN' button (GPIO_H) */
-> +		admin {
-> +			label = "ADMIN button";
-> +			gpios = <&gpio3 8 GPIO_ACTIVE_HIGH>;
-> +			interrupts = <&gpio3 8 IRQ_TYPE_EDGE_RISING>;
-> +			linux,code = <KEY_WPS_BUTTON>;
-> +		};
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		sfp1down {
-> +			label = "ten64:green:sfp1:down";
-> +			gpios = <&gpio3 11 GPIO_ACTIVE_HIGH>;
-> +		};
-> +
-> +		sfp2up {
-> +			label = "ten64:green:sfp2:up";
-> +			gpios = <&gpio3 12 GPIO_ACTIVE_HIGH>;
-> +		};
-> +
-> +		admin {
-> +			label = "ten64:admin";
-> +			gpios = <&sfpgpio 12 GPIO_ACTIVE_HIGH>;
-> +		};
-> +	};
-> +
-> +	sfp_xg0: dpmac2_sfp {
-
-We generally use '-' instead of '_' in node name.  sfp-dpmac2 might be
-better.
-
-> +		compatible = "sff,sfp";
-> +		i2c-bus = <&sfplower_i2c>;
-> +		tx-fault-gpios = <&sfpgpio 0 GPIO_ACTIVE_HIGH>;
-> +		tx-disable-gpios = <&sfpgpio 1 GPIO_ACTIVE_HIGH>;
-> +		mod-def0-gpios = <&sfpgpio 2 GPIO_ACTIVE_LOW>;
-> +		los-gpios = <&sfpgpio 3 GPIO_ACTIVE_HIGH>;
-> +		maximum-power-milliwatt = <2000>;
-> +	};
-> +
-> +	sfp_xg1: dpmac1_sfp {
-> +		compatible = "sff,sfp";
-> +		i2c-bus = <&sfpupper_i2c>;
-> +		tx-fault-gpios = <&sfpgpio 4 GPIO_ACTIVE_HIGH>;
-> +		tx-disable-gpios = <&sfpgpio 5 GPIO_ACTIVE_HIGH>;
-> +		mod-def0-gpios = <&sfpgpio 6 GPIO_ACTIVE_LOW>;
-> +		los-gpios = <&sfpgpio 7 GPIO_ACTIVE_HIGH>;
-> +		maximum-power-milliwatt = <2000>;
-> +	};
-> +
-> +};
-> +
-> +/* XG1 - Upper SFP */
-> +&dpmac1 {
-> +	sfp = <&sfp_xg1>;
-> +	pcs-handle = <&pcs1>;
-> +	phy-connection-type = "10gbase-r";
-> +	managed = "in-band-status";
-> +};
-> +
-> +/* XG0 - Lower SFP */
-> +&dpmac2 {
-> +	sfp = <&sfp_xg0>;
-> +	pcs-handle = <&pcs2>;
-> +	phy-connection-type = "10gbase-r";
-> +	managed = "in-band-status";
-> +};
-> +
-> +/* DPMAC3..6 is GE4 to GE8 */
-> +&dpmac3 {
-> +	phy-handle = <&mdio1_phy5>;
-> +	phy-connection-type = "qsgmii";
-> +	managed = "in-band-status";
-> +	pcs-handle = <&pcs3_0>;
-> +};
-> +
-> +&dpmac4 {
-> +	phy-handle = <&mdio1_phy6>;
-> +	phy-connection-type = "qsgmii";
-> +	managed = "in-band-status";
-> +	pcs-handle = <&pcs3_1>;
-> +};
-> +
-> +&dpmac5 {
-> +	phy-handle = <&mdio1_phy7>;
-> +	phy-connection-type = "qsgmii";
-> +	managed = "in-band-status";
-> +	pcs-handle = <&pcs3_2>;
-> +};
-> +
-> +&dpmac6 {
-> +	phy-handle = <&mdio1_phy8>;
-> +	phy-connection-type = "qsgmii";
-> +	managed = "in-band-status";
-> +	pcs-handle = <&pcs3_3>;
-> +};
-> +
-> +/* DPMAC7..10 is GE0 to GE3 */
-> +&dpmac7 {
-> +	phy-handle = <&mdio1_phy1>;
-> +	phy-connection-type = "qsgmii";
-> +	managed = "in-band-status";
-> +	pcs-handle = <&pcs7_0>;
-> +};
-> +
-> +&dpmac8 {
-> +	phy-handle = <&mdio1_phy2>;
-> +	phy-connection-type = "qsgmii";
-> +	managed = "in-band-status";
-> +	pcs-handle = <&pcs7_1>;
-> +};
-> +
-> +&dpmac9 {
-> +	phy-handle = <&mdio1_phy3>;
-> +	phy-connection-type = "qsgmii";
-> +	managed = "in-band-status";
-> +	pcs-handle = <&pcs7_2>;
-> +};
-> +
-> +&dpmac10 {
-> +	phy-handle = <&mdio1_phy4>;
-> +	phy-connection-type = "qsgmii";
-> +	managed = "in-band-status";
-> +	pcs-handle = <&pcs7_3>;
-> +};
-> +
-> +&emdio1 {
-> +	status = "okay";
-> +
-> +	mdio1_phy5: ethernet-phy@c {
-> +		reg = <0xc>;
-> +	};
-> +
-> +	mdio1_phy6: ethernet-phy@d {
-> +		reg = <0xd>;
-> +	};
-> +
-> +	mdio1_phy7: ethernet-phy@e {
-> +		reg = <0xe>;
-> +	};
-> +
-> +	mdio1_phy8: ethernet-phy@f {
-> +		reg = <0xf>;
-> +	};
-> +
-> +	mdio1_phy1: ethernet-phy@1c {
-> +		reg = <0x1c>;
-> +	};
-> +
-> +	mdio1_phy2: ethernet-phy@1d {
-> +		reg = <0x1d>;
-> +	};
-> +
-> +	mdio1_phy3: ethernet-phy@1e {
-> +		reg = <0x1e>;
-> +	};
-> +
-> +	mdio1_phy4: ethernet-phy@1f {
-> +		reg = <0x1f>;
-> +	};
-> +};
-> +
-> +&i2c0 {
-> +	status = "okay";
-> +
-> +	sfpgpio: gpio@76 {
-> +		reg = <0x76>;
-> +		compatible = "ti,tca9539";
-
-We generally start property list with compatible.
-
-> +		#gpio-cells = <2>;
-> +		gpio-controller;
-> +
-> +		admin_led_lower {
-> +			gpio-hog;
-> +			gpios = <13 GPIO_ACTIVE_HIGH>;
-> +			output-low;
-> +		};
-> +	};
-> +
-> +	tpm: at97sc@29 {
-> +		reg = <0x29>;
-> +		compatible = "atmel,at97sc3204t";
-
-Ditto
-
-> +	};
-> +};
-> +
-> +&i2c2 {
-> +	status = "okay";
-> +
-> +	rtc: rx8035@32 {
-
-Node name should be generic while label can be specific, so
-'rx8035: rtc@32' should make more sense.
-
-> +		reg = <0x32>;
-> +		compatible = "epson,rx8035";
-> +	};
-> +};
-> +
-> +&i2c3 {
-> +	status = "okay";
-> +
-> +	i2c-switch@70 {
-> +		compatible = "nxp,pca9540";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		reg = <0x70 >;
-> +
-> +		sfpupper_i2c: i2c@0 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <0>;
-> +		};
-> +
-> +		sfplower_i2c: i2c@1 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <1>;
-> +		};
-> +	};
-> +};
-> +
-> +&duart0 {
-
-Please try to sort these labeling nodes alphabetically.
-
-> +	status = "okay";
-> +};
-> +
-> +&duart1 {
-> +	status = "okay";
-> +};
-> +
-> +&esdhc {
-> +	status = "okay";
-> +};
-> +
-> +&pcs_mdio1 {
-> +	status = "okay";
-> +};
-> +
-> +&pcs_mdio2 {
-> +	status = "okay";
-> +};
-> +
-> +&pcs_mdio3 {
-> +	status = "okay";
-> +};
-> +
-> +&pcs_mdio7 {
-> +	status = "okay";
-> +};
-> +
-> +&qspi {
-> +	status = "okay";
-> +
-> +	en25s64: flash@0 {
-> +		compatible = "jedec,spi-nor";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		spi-max-frequency = <20000000>;
-> +		spi-rx-bus-width = <4>;
-> +		spi-tx-bus-width = <4>;
-> +		reg = <0>;
-> +
-> +		bl2@0 {
-
-Shouldn't the name be 'partition' just like nand flash below.
-
-> +			label = "bl2";
-> +			reg = <0 0x100000>;
-> +		};
-> +
-> +		bl3@100000 {
-> +			label = "bl3";
-> +			reg = <0x100000 0x200000>;
-> +		};
-> +
-> +		mcfirmware@300000 {
-> +			label = "mcfirmware";
-> +			reg = <0x300000 0x200000>;
-> +		};
-> +
-> +		ubootenv@500000 {
-> +			label = "ubootenv";
-> +			reg = <0x500000 0x80000>;
-> +		};
-
-Missing newline.
-
-> +		dpl@580000 {
-> +			label = "dpl";
-> +			reg = <0x580000 0x40000>;
-> +		};
-> +
-> +		dpc@5C0000 {
-> +			label = "dpc";
-> +			reg = <0x5C0000 0x40000>;
-> +		};
-> +
-> +		devicetree@600000 {
-> +			label = "devicetree";
-> +			reg = <0x600000 0x40000>;
-> +		};
-> +	};
-> +
-> +	nand: flash@1 {
-> +		compatible = "spi-nand";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		spi-max-frequency = <20000000>;
-> +		reg = <1>;
-> +		spi-rx-bus-width = <4>;
-> +		spi-tx-bus-width = <4>;
-> +
-> +		/* reserved for future boot direct from NAND flash
-> +		 * (this would use the same layout as the 8MiB NOR flash)
-> +		 */
-> +		partition@0 {
-> +			label = "nand-boot-reserved";
-> +			reg = <0 0x800000>;
-> +		};
-> +
-> +		/* recovery / install environment */
-> +		partition@800000 {
-> +			label = "recovery";
-> +			reg = <0x800000 0x2000000>;
-> +		};
-> +
-> +		/* ubia (first OpenWrt) - a/b names to prevent confusion with ubi0/1/etc. */
-> +		partition@2800000 {
-> +			label = "ubia";
-> +			reg = <0x2800000 0x6C00000>;
-> +		};
-
-Have a newline.
-
-Shawn
-
-> +		/* ubib (second OpenWrt) */
-> +		partition@9400000 {
-> +			label = "ubib";
-> +			reg = <0x9400000 0x6C00000>;
-> +		};
-> +	};
-> +};
-> +
-> +&usb0 {
-> +	status = "okay";
-> +};
-> +
-> +&usb1 {
-> +	status = "okay";
-> +};
-> -- 
-> 2.30.1
-> 
+> +#ifndef _DT_BINDINGS_RESET_CONTROLLER_MT8195
+> +#define _DT_BINDINGS_RESET_CONTROLLER_MT8195
+> +
+> +#define MT8195_TOPRGU_CONN_MCU_SW_RST          0
+> +#define MT8195_TOPRGU_INFRA_GRST_SW_RST        1
+> +#define MT8195_TOPRGU_APU_SW_RST               2
+> +#define MT8195_TOPRGU_INFRA_AO_GRST_SW_RST     6
+> +#define MT8195_TOPRGU_MMSYS_SW_RST             7
+> +#define MT8195_TOPRGU_MFG_SW_RST               8
+> +#define MT8195_TOPRGU_VENC_SW_RST              9
+> +#define MT8195_TOPRGU_VDEC_SW_RST              10
+> +#define MT8195_TOPRGU_IMG_SW_RST               11
+> +#define MT8195_TOPRGU_APMIXEDSYS_SW_RST        13
+> +#define MT8195_TOPRGU_AUDIO_SW_RST             14
+> +#define MT8195_TOPRGU_CAMSYS_SW_RST            15
+> +#define MT8195_TOPRGU_EDPTX_SW_RST             16
+> +#define MT8195_TOPRGU_ADSPSYS_SW_RST           21
+> +#define MT8195_TOPRGU_DPTX_SW_RST              22
+> +#define MT8195_TOPRGU_SPMI_MST_SW_RST          23
+> +
+> +#define MT8195_TOPRGU_SW_RST_NUM               16
+> +
+> +#endif  /* _DT_BINDINGS_RESET_CONTROLLER_MT8195 */
+> --
+> 2.18.0
+>
