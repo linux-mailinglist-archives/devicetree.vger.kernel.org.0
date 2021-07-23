@@ -2,140 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DD013D4321
+	by mail.lfdr.de (Postfix) with ESMTP id 9EDE73D4323
 	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 00:51:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233190AbhGWWKa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 18:10:30 -0400
-Received: from mail-il1-f170.google.com ([209.85.166.170]:35689 "EHLO
-        mail-il1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233064AbhGWWKa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 18:10:30 -0400
-Received: by mail-il1-f170.google.com with SMTP id k3so2982656ilu.2;
-        Fri, 23 Jul 2021 15:51:03 -0700 (PDT)
+        id S233064AbhGWWKi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 18:10:38 -0400
+Received: from mail-il1-f200.google.com ([209.85.166.200]:47872 "EHLO
+        mail-il1-f200.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233265AbhGWWKh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 18:10:37 -0400
+Received: by mail-il1-f200.google.com with SMTP id b11-20020a92c84b0000b0290205c6edd752so1764105ilq.14
+        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 15:51:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Tn97+CizsFw2IJizFnnktOYs6q+YNVabHNC6r+3R/Zw=;
-        b=YnZCxvXKxycVGXjy0l1ho+fN9iz530zglLR7hv7dQ57kDINUwo051xK42PNJPY+6Ne
-         2hSk8UB8o4M3vWJteE4lFbU3bbmXolCISPsX9pzdeJQoTcmPdC4hWQbtyIUtkOYqqXoz
-         g79blj2sdQk1rxmhmLmLilFSLXvCH8/6sbtSal3vVvqNmyGbDO9ksprIaRpkJBvZHGDU
-         evi+KunNexK9/iQr1Vh22KYHqXtfIN4swKws3ijyJAdLWWOspKCPhwLRk0kfVmxCBZAA
-         hTYnBaf55U+m6rwqMJdNaBUZ2EPW1/unvrmXcLQmvsHeFainWxmB9z3+0KZcgTsko42H
-         /Yew==
-X-Gm-Message-State: AOAM531K9ezVNeMWjQJUo7SN2UcaNmkQojBg0W6J5pZx6se8KstkBnYM
-        psTjt3vXfGwex+gNQiWw0Q==
-X-Google-Smtp-Source: ABdhPJyWShSD1k207DyYfCj8OBuahycWaQiiSDzxKTCbPLcLTn2vz5vRXmhkh0na1/i4ybC1Yi4P6g==
-X-Received: by 2002:a92:cf03:: with SMTP id c3mr4924149ilo.195.1627080663062;
-        Fri, 23 Jul 2021 15:51:03 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id m184sm18795821ioa.17.2021.07.23.15.51.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jul 2021 15:51:02 -0700 (PDT)
-Received: (nullmailer pid 2750265 invoked by uid 1000);
-        Fri, 23 Jul 2021 22:50:59 -0000
-Date:   Fri, 23 Jul 2021 16:50:59 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-        linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org
-Subject: Re: [PATCH v7 06/10] dt-bindings: phy: Add bindings for HiKey 970
- PCIe PHY
-Message-ID: <20210723225059.GA2727093@robh.at.kernel.org>
-References: <cover.1626855713.git.mchehab+huawei@kernel.org>
- <946f2426bc542638240980931eae924c57f2ba27.1626855713.git.mchehab+huawei@kernel.org>
+        h=x-gm-message-state:mime-version:date:in-reply-to:message-id:subject
+         :from:to;
+        bh=DaaaaLaBW1jmlP7RMEUt9dIMXSCUGy/U8gtZX+ytnqM=;
+        b=kdyA/5RPicjKtvG4hmTvE6GSPylGPCUwdbuSSQPeZNGciFndSZdU0K76IU41eSiFXn
+         Dowi8vfpuWdQDKM/LpYNbqvu+A/5QnYNz3vUiV8BvuE1kPOBNQ1LjCovsQyw+WkoNVUM
+         0/qxD4JFARSZn4CE4FILO8uh6lOV9j0kCt7LzqVUnVox2aTTxjqccC5ugcg/Gs1wr6m3
+         4TdQpLRYApZ3MsQUQSf0NGTkCjT0bmRwWl9C+L2RFT/wXr9Yj2E+43hVDHC4ySu5qmGA
+         bxf5P7DSphaU2ER8m8MIxldHGuuxudhGi9DBaoLb7C4HqNpUjlUYY9SBAdMPs6Etaifh
+         ovFA==
+X-Gm-Message-State: AOAM5327e4nRuL5mcwokhbdmbUWHqe8gAYAty8aiRTvC8seve8d/fdAV
+        ImJCT4pP9t1eAEfcfqXFmb4ZxhACZt4Hr+bg7ds4NijkzzcU
+X-Google-Smtp-Source: ABdhPJweXdk5LKw1isr4SDbMvL1cbkMhpSNQqGu3T3XT9SozL7genpVeOdqLMsTdl2BTZ1gxnhs5pMIqV2dyyp0c0dqI1H+ZhY0P
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <946f2426bc542638240980931eae924c57f2ba27.1626855713.git.mchehab+huawei@kernel.org>
+X-Received: by 2002:a02:ad08:: with SMTP id s8mr6092490jan.40.1627080670155;
+ Fri, 23 Jul 2021 15:51:10 -0700 (PDT)
+Date:   Fri, 23 Jul 2021 15:51:10 -0700
+In-Reply-To: <20210723193611.746e7071@gmail.com>
+X-Google-Appengine-App-Id: s~syzkaller
+X-Google-Appengine-App-Id-Alias: syzkaller
+Message-ID: <0000000000005d9aa505c7d23d2a@google.com>
+Subject: Re: [syzbot] KASAN: use-after-free Read in tipc_recvmsg
+From:   syzbot <syzbot+e6741b97d5552f97c24d@syzkaller.appspotmail.com>
+To:     davem@davemloft.net, devicetree@vger.kernel.org,
+        frowand.list@gmail.com, gregkh@linuxfoundation.org,
+        jmaloy@redhat.com, kuba@kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, paskripkin@gmail.com, rafael@kernel.org,
+        robh@kernel.org, syzkaller-bugs@googlegroups.com,
+        tipc-discussion@lists.sourceforge.net, ying.xue@windriver.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 21, 2021 at 10:39:08AM +0200, Mauro Carvalho Chehab wrote:
-> Document the bindings for HiKey 970 (hi3670) PCIe PHY
-> interface, supported via the pcie-kirin driver.
-> 
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> ---
->  .../phy/hisilicon,phy-hi3670-pcie.yaml        | 95 +++++++++++++++++++
->  1 file changed, 95 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/hisilicon,phy-hi3670-pcie.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/hisilicon,phy-hi3670-pcie.yaml b/Documentation/devicetree/bindings/phy/hisilicon,phy-hi3670-pcie.yaml
-> new file mode 100644
-> index 000000000000..a5ea13332cac
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/hisilicon,phy-hi3670-pcie.yaml
-> @@ -0,0 +1,95 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/hisilicon,phy-hi3670-pcie.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: HiSilicon Kirin970 PCIe PHY
-> +
-> +maintainers:
-> +  - Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> +
-> +description: |+
-> +  Bindings for PCIe PHY on HiSilicon Kirin 970.
-> +
-> +properties:
-> +  compatible:
-> +    const: hisilicon,hi970-pcie-phy
-> +
-> +  "#phy-cells":
-> +    const: 0
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: PHY Control registers
-> +
-> +  phy-supply:
-> +    description: The PCIe PHY power supply
-> +
-> +  clocks:
-> +    items:
-> +      - description: PCIe PHY clock
-> +      - description: PCIe AUX clock
-> +      - description: PCIe APB PHY clock
-> +      - description: PCIe APB SYS clock
-> +      - description: PCIe ACLK clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: phy_ref
-> +      - const: aux
-> +      - const: apb_phy
-> +      - const: apb_sys
-> +      - const: aclk
-> +
-> +  reset-gpios:
-> +    description: PCI PERST reset GPIOs
-> +    maxItems: 4
-> +
-> +  clkreq-gpios:
-> +    description: Clock request GPIOs
-> +    maxItems: 3
+Hello,
 
-Again, this will not work. 
+syzbot tried to test the proposed patch but the build/boot failed:
 
-It boils down to this fails to describe how the GPIOs are connected 
-which is the point of GPIOs in DT. This in no way captures the hierarchy 
-of devices. While you may be lucky that you can just assert or 
-deassert all the lines at one time, that's not likely to work in a 
-more complicated case (such as having to power up/down each device).
+failed to apply patch:
+checking file net/tipc/socket.c
+Hunk #1 succeeded at 1885 (offset -1 lines).
+Hunk #2 FAILED at 1974.
+1 out of 2 hunks FAILED
 
-I realize the right solution is more complex, but that's the only way to 
-handle this in a host bridge and board independent way.
 
-If you want the simple solution, just configure all these GPIOs in 
-firmware before Linux boots.
 
-Rob
+Tested on:
+
+commit:         704f4cba Merge tag 'ceph-for-5.14-rc3' of git://github..
+git tree:       upstream
+dashboard link: https://syzkaller.appspot.com/bug?extid=e6741b97d5552f97c24d
+compiler:       
+patch:          https://syzkaller.appspot.com/x/patch.diff?x=11e7d8b2300000
+
