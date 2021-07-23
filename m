@@ -2,72 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF1923D4270
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 23:52:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC0793D4273
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 23:52:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231940AbhGWVLh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 17:11:37 -0400
-Received: from mail-il1-f172.google.com ([209.85.166.172]:46899 "EHLO
-        mail-il1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231839AbhGWVLg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 17:11:36 -0400
-Received: by mail-il1-f172.google.com with SMTP id r5so2795706ilc.13;
-        Fri, 23 Jul 2021 14:52:09 -0700 (PDT)
+        id S231902AbhGWVLv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 17:11:51 -0400
+Received: from mail-io1-f43.google.com ([209.85.166.43]:45905 "EHLO
+        mail-io1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231839AbhGWVLu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 17:11:50 -0400
+Received: by mail-io1-f43.google.com with SMTP id l126so4183729ioa.12
+        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 14:52:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=01tm74Bbmv/tKuTNrNA+/wpItd6J9gG0kjycRAEWb48=;
-        b=Iis6+Gm0Q7M4ZhZC/rMU9Bj8gYTiCpTs9bwBmsD2WK6YR/sdPQX/Kk7NgcrytQ8OZU
-         ic2IAKvMq/Tp58uGmCPMInnfo58nrH2HTnIwCoHo8MwOFztL6l+pb/BjkjzKP3JU9ekh
-         TCabf5V/leuqVfAywiKwRNwlUnk9dmigwQGd3KF2BOtE5ixzRUw20WzPO49VgpDToTNa
-         u4SiKOqRGfan6gNkSUPHrtTQAz/SkMHZUMO5iOWRcK1clbQrEq9aubZMAviTchvLFPMR
-         q4s1V2Idl9r6Pf4fkDLwQYEdboxSsMfegy1th3DdfhRvdlSZwyyWnjES3+0LCE9IewxC
-         MRtA==
-X-Gm-Message-State: AOAM531GGdKJG1NsuAiAct628AjYCShBMlHVa5DXX1fmhAgiDrI5Cbg9
-        jcI66cXU2FFlD2Rm1AlLtw==
-X-Google-Smtp-Source: ABdhPJxgmuVgz4k0b9s0WCMrfOI/LpaXbfUEJLr9sk+kPglQcKJYQ8yoLLSD4hlF/yhRXZ1pOoQEjw==
-X-Received: by 2002:a92:ac0b:: with SMTP id r11mr4722069ilh.44.1627077129108;
-        Fri, 23 Jul 2021 14:52:09 -0700 (PDT)
+        bh=UO41X40WQO9H5grNCLnYM3agECHGEhl3gNrQpIhpUYI=;
+        b=LXaio974aPrEl5KdbVW2aC0xXqlSKXRPnVHzgPsp6k2J4KaKnnRUZD2iZ9E5D0zmg9
+         /CBtmXh4C8SJNPivkXxsice/3SW08Hgm4+tQD7/mTfubYtBgpbMW5cJyq/zRx57qEBXz
+         FFXUrpWxb9gWwW9NzgnqBvSKaCHY8GiGH2pZETRFrGFOklUmf2zbIUR5TnHsaADsQnJ4
+         wT/B8niUcEzTx7tB13YHYr1ymxfWJEI2jCctOFKyEupDxt2hUkeuTWNNm5cZfP5SRsqR
+         XBi9Ml5o4Df4/pY8mrvEuFX84aLDK66shkqxi3S8X8Gc+Z3CX6X/kY3ebKcz3iDveiS4
+         PQjQ==
+X-Gm-Message-State: AOAM532GC99sRXvmMSE0UJdHFTZ3HpD51zWsXYWP1yU/a2PVp/1XswIz
+        pPVUdq6r/YAcW08cwhS9xA==
+X-Google-Smtp-Source: ABdhPJxmlNhOeXcJa6zB7Q/l5RVQew0DY3JMnmRM1aeREZ/K5+B6rC8hKcHJklUyzxS7SSYxk0zlyQ==
+X-Received: by 2002:a5d:914a:: with SMTP id y10mr5619437ioq.140.1627077142771;
+        Fri, 23 Jul 2021 14:52:22 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id d9sm8939201ilv.62.2021.07.23.14.52.07
+        by smtp.gmail.com with ESMTPSA id u15sm19612203ion.34.2021.07.23.14.52.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jul 2021 14:52:08 -0700 (PDT)
-Received: (nullmailer pid 2656284 invoked by uid 1000);
-        Fri, 23 Jul 2021 21:52:06 -0000
-Date:   Fri, 23 Jul 2021 15:52:06 -0600
+        Fri, 23 Jul 2021 14:52:22 -0700 (PDT)
+Received: (nullmailer pid 2656735 invoked by uid 1000);
+        Fri, 23 Jul 2021 21:52:20 -0000
+Date:   Fri, 23 Jul 2021 15:52:20 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Hans de Goede <hdegoede@redhat.com>, linux-input@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
-        linux-sunxi@googlegroups.com, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 20/54] dt-bindings: input: sun4i-lradc: Add wakeup-source
-Message-ID: <20210723215206.GA2656230@robh.at.kernel.org>
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        linux-sunxi@googlegroups.com
+Subject: Re: [PATCH 21/54] dt-bindings: interconnect: sunxi: Add R40 MBUS
+ compatible
+Message-ID: <20210723215220.GA2656706@robh.at.kernel.org>
 References: <20210721140424.725744-1-maxime@cerno.tech>
- <20210721140424.725744-21-maxime@cerno.tech>
+ <20210721140424.725744-22-maxime@cerno.tech>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210721140424.725744-21-maxime@cerno.tech>
+In-Reply-To: <20210721140424.725744-22-maxime@cerno.tech>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 21 Jul 2021 16:03:50 +0200, Maxime Ripard wrote:
-> The LRADC can be a wakeup source and is listed as such in some DT
-> already. Let's make sure we allow that property in the binding.
+On Wed, 21 Jul 2021 16:03:51 +0200, Maxime Ripard wrote:
+> The R40 MBUS compatible was introduced recently but it was never
+> documented.
 > 
-> Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> Cc: Hans de Goede <hdegoede@redhat.com>
-> Cc: linux-input@vger.kernel.org
 > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 > ---
->  .../bindings/input/allwinner,sun4i-a10-lradc-keys.yaml          | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../devicetree/bindings/arm/sunxi/allwinner,sun4i-a10-mbus.yaml  | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
