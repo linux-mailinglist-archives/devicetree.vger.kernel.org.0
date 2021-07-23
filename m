@@ -2,118 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07EFE3D3B43
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 15:36:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2A763D3B63
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 15:46:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235005AbhGWMz1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 08:55:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51364 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234972AbhGWMz1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 08:55:27 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A012CC061575;
-        Fri, 23 Jul 2021 06:35:59 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id hp25so3565730ejc.11;
-        Fri, 23 Jul 2021 06:35:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=syQdpBaTHu3uZXlH1OVRUA7Md0MxaCJtCpKEccQDxYU=;
-        b=huxKMkt0pXXNh5W/94n8CXFbDb7BVJT05xDQ3kMIqeqJzgh+ugjnRjyXli0YWyYgDn
-         Hdxj+5BexGIoqPGN4yrJ/V6waa4oC7YpEj8zyF+frkDZOszrH5s9tIfW/T8z7azOzCox
-         XGy/sf7+Hb1BGFkxf343bYDJPBu2IaE0oG0j9bQJXm9Em/zr5ofm7B/rReBlgeJ7rhEN
-         qHHxRDXpq3oT0H0xygbSQfP+ESyqDOM+7YLNFKIu+nLmLVF4PtpHTEcFz5A41iSKR8By
-         RTYtFEBVx+Hmaj4DtDcJ7m5ryFnMEW43JPEkjT3JebanLhWEj5coUsMHXQEMzWl/gHw7
-         Adrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=syQdpBaTHu3uZXlH1OVRUA7Md0MxaCJtCpKEccQDxYU=;
-        b=reblioVDRNOtRjD/3enfiHA7ErJKMv4o4RsFl5zYDgfGKM49Y59B3lFTroUNLiCskj
-         g4DoxJJHiz7HwguzRXi5+9pI8O5m6KO8dmK09gahk5V1KwjMCwjh4peV5k4Gdxsb8LNW
-         WOXVapmC2p/YoVTMjoapU3uEuF4YUS49ICULE6sH3aBCtReEHJjq5/zRrwTPiOGZPDk3
-         4QBrB70LsFWSHWiC1rDh0T8xSJHvoF7MQhHVMDEsNOFaEyHcNprBwSBt8ID2f0l9aA4R
-         STawRXJwlLXzUOTxpVVwO8gBIqRaq219Vcpt/tvMe6PkGzB2CHgIw0LZLs8O5ug5ca/3
-         qoSw==
-X-Gm-Message-State: AOAM530IH0s5wlQNVhZbWNPPltc08ocpfn8vRV/IzsSgzugiqksFKaiu
-        TvjuKhAEHpZvx5wR1WsedP0=
-X-Google-Smtp-Source: ABdhPJwb3SBZhK1DPpsdXTPaCI0y0ohVwIroXkDpCWGROEDXHXeJgWea5S0x+piJIduQ49VuPoiSGQ==
-X-Received: by 2002:a17:906:180a:: with SMTP id v10mr4602237eje.112.1627047358195;
-        Fri, 23 Jul 2021 06:35:58 -0700 (PDT)
-Received: from skbuf ([82.76.66.29])
-        by smtp.gmail.com with ESMTPSA id v16sm13478381edc.52.2021.07.23.06.35.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jul 2021 06:35:57 -0700 (PDT)
-Date:   Fri, 23 Jul 2021 16:35:56 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Shawn Guo <shawnguo@kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH net-next] ARM: dts: imx6qdl: Remove unnecessary mdio
- #address-cells/#size-cells
-Message-ID: <20210723133556.xnhhxdkvassykavn@skbuf>
-References: <20210723112835.31743-1-festevam@gmail.com>
- <20210723130851.6tfl4ijl7hkqzchm@skbuf>
- <CAOMZO5BRt6M=4WrZMWQjYeDcOXMSFhcfjZ95tdUkst5Jm=yB6A@mail.gmail.com>
+        id S235310AbhGWNF7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 09:05:59 -0400
+Received: from mout.kundenserver.de ([217.72.192.73]:34077 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235243AbhGWNF6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 09:05:58 -0400
+Received: from mail-wm1-f53.google.com ([209.85.128.53]) by
+ mrelayeu.kundenserver.de (mreue107 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1N7AEs-1l1fkw2VZM-017TAH; Fri, 23 Jul 2021 15:46:30 +0200
+Received: by mail-wm1-f53.google.com with SMTP id j6-20020a05600c1906b029023e8d74d693so1649695wmq.3;
+        Fri, 23 Jul 2021 06:46:30 -0700 (PDT)
+X-Gm-Message-State: AOAM53176BGyy0OWAenUdEDF0gmmvu1UqqAzbEw5Aatu0UjeTJQloMJc
+        Lg/kGKqd5ih3pTt5gBol3Ac57E9lyA+KmogbeBM=
+X-Google-Smtp-Source: ABdhPJyfbJ/TTAuOw7j89Wul0Xg+2CYe0Hm+3Y35Empz4DlbpbFzr1NRRDGERsVfUMwmu0uZ4yYDMTYgM127TEzwEVk=
+X-Received: by 2002:a7b:c2fa:: with SMTP id e26mr14345036wmk.84.1627047990248;
+ Fri, 23 Jul 2021 06:46:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAOMZO5BRt6M=4WrZMWQjYeDcOXMSFhcfjZ95tdUkst5Jm=yB6A@mail.gmail.com>
+References: <20210723132810.25728-1-alexandre.torgue@foss.st.com>
+In-Reply-To: <20210723132810.25728-1-alexandre.torgue@foss.st.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Fri, 23 Jul 2021 15:46:14 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a1ax29ThCG867phtx1Xb12GgiJFcLDd8H9VLbsJQ1uoAw@mail.gmail.com>
+Message-ID: <CAK8P3a1ax29ThCG867phtx1Xb12GgiJFcLDd8H9VLbsJQ1uoAw@mail.gmail.com>
+Subject: Re: [PATCH 0/7] Add STM32MP13 SoCs and discovery board support
+To:     Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Jonathan Corbet <corbet@lwn.net>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:/IYV4zP0nWsjHpTv3UBJIm4gesWafe7QOTye4w1rD945/TXM8/g
+ 8Q+SRjbfkrVbSKvikHvoqtehTd84cQx5IwqW9KEM/wGSSbkWyVEYXbhKzWfcyrJaO+OKs1x
+ pNQ/uw17qpS7x4gqJqL8b2v+dIXAfvMoSratPfwFw+GRHuVqRS9gWynsv5IX7W3eg4uzFiu
+ LpKW1hGCA85ESL3uvhI2A==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:EfR3PoU4teQ=:m2wGIB5uFzC3E6SakfCPm6
+ zvQwbWy3jU2Z1QKngVoi7clKwI51Wo7vlnRc5juVQ2rdpBeTNbXU4/q0hQzq6jA2KH/KZm2rV
+ 3bqRdhCHGGKOITjGKw1ZAFH/ueOPd/m7L0gdK+nLgVPKGTf9kdmEBSWE4hYjn4hexCDRq2MME
+ 1BP+fl3qXnk2D52YPVbkh2ZyLpUa5RmoanQdXPhBhWfomVExkJEBtTvKM5F42UZmBsyvQJiwT
+ cW6OkGsu9pIp9MOrfg3Ln7HZnOYVxKiKNvc+rJdFcP8RND8t5T4qKnUexG/9l0n2eMJII9uZ/
+ AcFh/bt9Hsl88qLG9e3N9eCyN4qdVehWvQW9i4ALzbgR0/tmuWsURuyj08ahV4C0gmzU8Ey8x
+ NVnRydpFQjZ+chBu4kzFNVK5ogbMG7eFcdJSt+Mh4vJujntHlGeiIZvkU0Ib2b3dVsrx2TGDd
+ b7vxjs+akXT5kfOTvCmcJOVKA4NnLkw9/JFdo7AGFlQtEQNbuYtwvHMbMTT53N7F7vHZKlyW3
+ deRg8r24IQrpR2hDp92F76zrWtLRCz8vteWKhIKjr1I2jOt4YJtMugk2CIERh95gYG+ibscqe
+ wBJxK3/pd/KOJ6LV1I9ebWMy8IWTJiNDxv5sgYKimPhQvX/Y05UypKhxGINq/ueNS6JGjBaKr
+ LQlr/66o7aWb0/TzgiXoc3GJLVcMbJulYUSr7ibUwxAvPQRhGBiAgtNkR2lsu4prNB4+xJhcd
+ 9ySk/TsPhh9umIFpQl2wEUnOvh6sl7YQrF3qIuNpeToHFgM03uilJYp3l+1tBu+J7SMORhKHw
+ S3zrLS7/VKXMh2IqokDc428Y6w0XwfjdFv2hK0ZZtD89rd7+FvcB0ko60FHsdr5VcXkg234
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 23, 2021 at 10:15:52AM -0300, Fabio Estevam wrote:
-> Hi Vladimr,
-> 
-> On Fri, Jul 23, 2021 at 10:08 AM Vladimir Oltean <olteanv@gmail.com> wrote:
-> 
-> > Are you actually sure this is the correct fix? If I look at mdio.yaml, I
-> > think it is pretty clear that the "ethernet-phy" subnode of the MDIO
-> > controller must have an "@[0-9a-f]+$" pattern, and a "reg" property. If
-> > it did, then it wouldn't warn about #address-cells.
-> 
-> Thanks for reviewing it.
-> 
-> After double-checking I realize that the correct fix would be to pass
-> the phy address, like:
-> 
-> phy: ethernet-phy@1 {
-> reg = <1>;
-> 
-> Since the Ethernet PHY address is design dependant, I can not make the
-> fix myself.
-> 
-> I will try to ping the board maintainers for passing the correct phy address.
-> 
-> Thanks
+On Fri, Jul 23, 2021 at 3:28 PM Alexandre Torgue
+<alexandre.torgue@foss.st.com> wrote:
+>
+> This series enhance the STM32 MPU family by adding STM32MP13 SoCs support.
+> It adds machine support and device tree diversity to support the whole
+> stm32mp13 family (STM32MP131/STM32MP133/STM32MP135, plus security feature
+> diversity).
+>
+> Basically STM32MP13 SoCs embeds one Cortex A7, storage (SD/MMC/SDIO, QSPI FMC),
+> network (ETH, CAN), display (DCMIPP, LTDC, ...), audio(SAI, DFSDM, SPDIFRX),
+> com (USB EHCI/OHCI, USB OTG, I2C, SPI/I2S, U(S)ART).
+>
+> This series also adds STM32MP135F Discovery board support (stm32mp135f-dk). It
+> embeds a STM32MP135f SOC with 512 MB of DDR3. Several connections are available
+> on this board:
+>  - 4*USB2.0, 1*USB2.0 typeC DRD, SDcard, 2*RJ45, HDMI, Combo Wifi/BT, ...
+>
+> Only SD card, uart4 (console) and watchdog IPs are enabled in this commit.
+>
+> Note that file stm32mp135.dtsi doesn't define nodes but I add it now to ease adding
+> of new nodes in a (close) future.
 
-Normally you should have been able to make all PHY addresses be 0. That
-is the MDIO "broadcast address" and if there's a single PHY on the bus,
-it should respond to that.
+I had a brief look and it seems all fine to me, nice work!
 
-Citation:
+The only (very minor) thing I noticed is that the crypto engine device node
+has an unusual name 'cryp@' instead of the usual 'crypto@', but this is already
+the case on stm32mp157.
 
-IEEE 802.3-2015:
+With this changed,
 
-22.2.4.5.5 PHYAD (PHY Address)
-
-The PHY Address is five bits, allowing 32 unique PHY addresses. The first PHY address bit transmitted and
-received is the MSB of the address. A PHY that is connected to the station management entity via the
-mechanical interface defined in 22.6 shall always respond to transactions addressed to PHY Address zero
-<00000>. A station management entity that is attached to multiple PHYs must have prior knowledge of the
-appropriate PHY Address for each PHY.
-
-However, if you google "MDIO broadcast address", you'll find all sorts
-of funny reports of buggy PHYs not adhering to that clause, under all
-sorts of pretexts...
+Acked-by: Arnd Bergmann <arnd@arndb.de
