@@ -2,57 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 71D603D38CA
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 12:34:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 216FF3D38E4
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 12:38:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231519AbhGWJyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 05:54:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37976 "EHLO
+        id S231703AbhGWJ6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 05:58:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231876AbhGWJyG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 05:54:06 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2194C061757
-        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 03:34:39 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id b21so1078001ljo.13
-        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 03:34:39 -0700 (PDT)
+        with ESMTP id S232558AbhGWJ6Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 05:58:16 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6A5DC061575
+        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 03:38:49 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id u3so1290295lff.9
+        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 03:38:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=swGcTNpA98MU/vBFxvZLl9qo7SscXLpjeJm2hi9sy7I=;
-        b=fcmHRd/Vsw/hxY/nlM1A5Q8ziml1XikfWihkC5N1/rqK3UXsBVjF13+j+c7VGdeAQ9
-         qnmcozaQc22tvuwglbyJJyZ9TTUBlx7eXU0lZmBTQYHWSoYfjP5BHpCFitc9zQRmC55p
-         isNdKSUBA0ESGnN85ENYb9mTxeUj3P7D50Sl+4LOCBbVILanTs00UnboMm2JMpfBvu0D
-         Ur5a8DtDJY8z3ZE45eZpY1i0KLptXbB9fhGORaXLXQPN16ZJQopTILB9fE0x4SshyobT
-         xCp+aBrBT0mxNeq3C+aEed/s5DS6ouCdToZrKj9H9YNiUNjQC726eWclZRuco3DkqYgh
-         KYWQ==
+        bh=HS+KrbKWpPg6959vVc+gifN5TSsSydBGp7pXF+iv/30=;
+        b=r7GcSBDAig/jsK+TLYxnlKfMPCesIsg38LoZQ/cBD/7LvqMsrhj+tZe3Qw6svxGLOw
+         Wt3NwG3HAiFV0qp/87JXs52adhE4XdaYITwmey+cnGK4kcL0eiMES5ltYd+dRcVN5SQE
+         FTKr6IVugqJhwmMiwnYeJIkkJftbjQUB5iqmcxkFZkSuKq3UN6oVZyOBx5xFpP/p4SPh
+         5HQQMgtnaWTLWI2AK62Wzd1Q47J5FtjnItdrPqw4Hqyh55pz3nQ4ey2soMMEdxq0jkWt
+         3GteKPHdXTdgRcg2OS/y/X1B4N1/ydkgPjG3IVWfuHJSKlGgZugZ/CPDE2fpcZ0swCK2
+         8tug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=swGcTNpA98MU/vBFxvZLl9qo7SscXLpjeJm2hi9sy7I=;
-        b=D6qqVWEd4ZBDVYrAsSjeZnVsogrS4chG3W0MEz9uHzi06h9khDQCikM2GRDoKOCdSm
-         OwLPuBOcatfam7/3k8L0OwhVHu0LtHiN8Xfd7IDwFGENGojmkn2e1FG31+O+pHH2/p8z
-         yWssTAuC5HELfbDydpqzacLhkUMlA9lG1WYqiTNP5326A3toV6emArE2EYnWlN+Gpwyf
-         w6T4cAhkAqOyvMGOfeydX3Dpmu4e/+TMI8ExJqrkgvYS7d6VmMkhDw+3DduZe9TJTCYR
-         wm+b71L3nAcJiHIwy6CeaFWKSqDSCL3KLTjZzqqUJVKRtv+4mgn8+JNnnXAm6QsqOMqJ
-         DCBQ==
-X-Gm-Message-State: AOAM53305y4wqniASV/l8T3MMhfD7i6NoC7gfYSd9p+PfK73t794x03G
-        oDg51xGWMapm7oCSWGeNp6bttY5EHpRahpJm/xkg7w==
-X-Google-Smtp-Source: ABdhPJzCFJwi0QtxItn9n9d22Y44wmE7wx/d8aLLz8VyvFA97du4CxRRxIrfYiQRUruKvqLhoVIWcU1xYaulvbb2KbI=
-X-Received: by 2002:a05:651c:169a:: with SMTP id bd26mr2912069ljb.368.1627036478284;
- Fri, 23 Jul 2021 03:34:38 -0700 (PDT)
+        bh=HS+KrbKWpPg6959vVc+gifN5TSsSydBGp7pXF+iv/30=;
+        b=glPiWRbqhbQlX4Z6EJbwRXcJQ5+VMdt4w+eAX+KMBD7jOnqgET1o0xhngHu50edTX3
+         KpQzl2bui0YAdCRSsYPrJsub8xnt4WbJ9LXfdRABcUSgMQNz+h1WqHPfr7Hy+zx5YVwB
+         HiK/+OxcVScv/5pp8TdRqUaP+n6HMxNfhUl3u9NbbKwNs+8On59NiVnXG8ym+UnfzzMY
+         HAGbD1Up8jqwXCy7L2Q9llBQgJyvVZK1YwHuY+oIANEXaq0gUmSLzqZpy3MAzouZRBF1
+         XnaXCewwhvPYc+s4HpxL8h0aw/Eo19guS3DNyiV6ZZY5pjjVlmSX2GsCrA0pj2reT9fP
+         +sMQ==
+X-Gm-Message-State: AOAM530Xl3ezffwmK+85bXebuaWSV9BIryCBeeIEI9GCYa7Yqw1Q8941
+        CPcDHmlO9f3a8CxRB0EOM14QWtAS9nIRt2raNAzrYQ==
+X-Google-Smtp-Source: ABdhPJxxCneK7uZOaNmZ8Jex91S2cTh3oIpLs58Y0lNCNcMJLcBcz7Xikn7o1GTvucpbIkZVQYf5jYjUbdCC4MQJNYI=
+X-Received: by 2002:a05:6512:3696:: with SMTP id d22mr2724599lfs.586.1627036728197;
+ Fri, 23 Jul 2021 03:38:48 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210618205533.1527384-1-clabbe@baylibre.com>
-In-Reply-To: <20210618205533.1527384-1-clabbe@baylibre.com>
+References: <20210618205533.1527384-1-clabbe@baylibre.com> <20210618205533.1527384-6-clabbe@baylibre.com>
+ <20210712201125.GA2401230@robh.at.kernel.org>
+In-Reply-To: <20210712201125.GA2401230@robh.at.kernel.org>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 23 Jul 2021 12:34:27 +0200
-Message-ID: <CACRpkdZNeJLsOhAOqD9TPsPuHDjK4ec-SUAVrLXvVOkcGd1S-w@mail.gmail.com>
-Subject: Re: [PATCH v2 0/5] ARM: gemini: add two more board
-To:     Corentin Labbe <clabbe@baylibre.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>, SoC Team <soc@kernel.org>,
+Date:   Fri, 23 Jul 2021 12:38:36 +0200
+Message-ID: <CACRpkdb_jpK77w5O-SW1PcDU-SYyrXCFaMgDhMaKa1MiL5HOEA@mail.gmail.com>
+Subject: Re: [PATCH v2 5/5] ARM: gemini: add device tree for ssi1328
+To:     Rob Herring <robh@kernel.org>
+Cc:     Corentin Labbe <clabbe@baylibre.com>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        SoC Team <soc@kernel.org>,
         Hans Ulli Kroll <ulli.kroll@googlemail.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
@@ -63,27 +65,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 18, 2021 at 10:55 PM Corentin Labbe <clabbe@baylibre.com> wrote:
+Thanks Rob,
 
-> I have two boards with a SL3516 SoC. Both are NAS box.
+I fixed some issues while applying.
+
+On Mon, Jul 12, 2021 at 10:11 PM Rob Herring <robh@kernel.org> wrote:
+
+> > +     model = "SSI 1328";
+> > +     compatible = "ssi,1328", "cortina,gemini";
 >
-> Changes since v1:
-> - ssi1328 use now redboot-fis partitions
-> - added pinctrl as asked by Linus Walleij
+> Where's ssi,1328 documented?
+
+I'll take a sweep and add all of the new machines.
+
+> > +     chosen {
+> > +             bootargs = "console=ttyS0,19200n8 initrd=0x900000,9M";
+> > +             stdout-path = &uart0;
 >
-> Corentin Labbe (5):
->   ARM: dts: gemini: add labels for USB, IDE, flash and ethernet
->   dt-bindings: add vendor prefix for edimax
->   dt-bindings: add vendor prefix for ssi
->   ARM: gemini: add device tree for edimax NS2502
->   ARM: gemini: add device tree for ssi1328
+> Don't need both 'console' and stdout-path. (console should be removed)
 
-Thanks Corentin!
-
-All patches applied for v5.15, I saw that the NS2502 does
-not make use of the redboot FIS partition table but that's
-no big deal, you can send a separate patch to fix that
-when you can test it.
+How does one specify a default baudrate using that method?
 
 Yours,
 Linus Walleij
