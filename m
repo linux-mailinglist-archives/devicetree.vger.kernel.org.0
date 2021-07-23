@@ -2,181 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 94FE53D3DA9
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 18:36:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5880C3D3DB6
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 18:38:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229510AbhGWPzo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 11:55:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36224 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229492AbhGWPzn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 11:55:43 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8FB4C061575;
-        Fri, 23 Jul 2021 09:36:16 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id u20so2098050ljo.0;
-        Fri, 23 Jul 2021 09:36:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:in-reply-to:references
-         :mime-version;
-        bh=/USRxrU13aqu7zhq+t3JvF75EdmVYTDZtcN8HN3tTxk=;
-        b=XcTLetOJ+2/MSjfBcdcA8mGbB8dewEH3zppwPDyKblQcid14hYlws5LMAVDPyewc47
-         IDK8x4/8zIRC6wFnm3/HvsUaAnSstrMytpcZnBEmLEp/Duc4ZUeWtQpibTGXdxCXcLqE
-         oovCn0LODMHN1hgS1hokyMZ56txwZXaE5D2RYO65fRosXgDZK+7LjDGZTEoAuUT0atGg
-         aPCLKNEER04WB2EuV6MJCw7rpkTjj3HYpJURthFe2YPeGg9Ofb+uhFcTlCREO/4i61Jm
-         7Rd+64kWyerlu0R6edpV7ISUj8pOF5NrExpNQrkwriRA6zleIrXQnYrBl//VwdYPMHtR
-         fPFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
-         :references:mime-version;
-        bh=/USRxrU13aqu7zhq+t3JvF75EdmVYTDZtcN8HN3tTxk=;
-        b=sed+TWIgTHAM/+t9bzVjuak8anRxoYkhpjlVk7PnEicyEE+HIqUcH9xWugWEPE/E8O
-         8c1tOFpT++OIkm1E22eEDnqC+ciaCYyeJk6dnNPKBvaFlB+eXNZlU+KkxPINlrGUYqbM
-         mc0LQcdZVIechj8nh2gO3dq3GhgSxfsjL/1+q1OZ4td3DdFWMghCOldZzXZ01OLDYUev
-         vWuAGL7sK23bXhBwJqvJbbtfMwe7ROWUJr6PQGewhV/t3b4Avt107Hzmr4ZiXhAQEBoT
-         Fk6TkjQxdpczFsp9zolp/ErJZ6Ol6C45POBIHiCGT2QGBg1fcEI9hhE5Jqp+9/jWoAfz
-         qVLg==
-X-Gm-Message-State: AOAM530iF/3NQTo/WnuRKpmVL+pIMoCwCKAXVuepuLLgJ4JqaaqMb0Oq
-        3yKnUqMzFGhpG9soEJsnjS0=
-X-Google-Smtp-Source: ABdhPJxsZGGZtgDO2ScwU+VHsSRUrS9NeLgPnKJEwOtjcUo3ZXmFg6jQObIG4sUIcX5GNP3o2ipDbw==
-X-Received: by 2002:a2e:9010:: with SMTP id h16mr3973685ljg.62.1627058175105;
-        Fri, 23 Jul 2021 09:36:15 -0700 (PDT)
-Received: from localhost.localdomain ([94.103.227.213])
-        by smtp.gmail.com with ESMTPSA id j26sm1643347lfh.71.2021.07.23.09.36.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jul 2021 09:36:14 -0700 (PDT)
-Date:   Fri, 23 Jul 2021 19:36:11 +0300
-From:   Pavel Skripkin <paskripkin@gmail.com>
-To:     syzbot <syzbot+e6741b97d5552f97c24d@syzkaller.appspotmail.com>
-Cc:     davem@davemloft.net, devicetree@vger.kernel.org,
-        frowand.list@gmail.com, gregkh@linuxfoundation.org,
-        jmaloy@redhat.com, kuba@kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, rafael@kernel.org, robh+dt@kernel.org,
-        robh@kernel.org, syzkaller-bugs@googlegroups.com,
-        tipc-discussion@lists.sourceforge.net, ying.xue@windriver.com
-Subject: Re: [syzbot] KASAN: use-after-free Read in tipc_recvmsg
-Message-ID: <20210723193611.746e7071@gmail.com>
-In-Reply-To: <00000000000017e9a105c768f7a0@google.com>
-References: <00000000000017e9a105c768f7a0@google.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-suse-linux-gnu)
+        id S229713AbhGWP5f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 11:57:35 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33474 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229686AbhGWP5d (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 23 Jul 2021 11:57:33 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id DA24F60200;
+        Fri, 23 Jul 2021 16:38:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1627058286;
+        bh=pd1ix9gd0V9QAYHQpMWrkQIf6jQWsci2L6UchtBY9t4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qI86xF2+XwpGobd+AVtrk9Vt3Xg0RhWBA3tocM463ffJOJYeaWWBW2Y9DsC2bDnvz
+         owj4l9QwiliBJA2eG5gU87ZpumHw/fLqTc3cl7AbWRx3MNrxJ6JKQM6FdNXWnLHlJq
+         T/YNgAUIBzy8BXYKyVTo+lkKuvESNJ4OSnXB/bX2cBuT+yBXgUwXWLuiYX2AbWdJs+
+         f1fybymRgSsSLJO9/08MtdJesr9lazeDZF10pv0BQWzhNN9Na69lpQpujxg/HAgv4X
+         I46TcWgBIpkYYM7PNKO0SwlsbOJlUW7Z7gX1XOFM0oJmfL0xUAW9pecYsBZVSttmQN
+         Tj9hfsiu8gW5Q==
+Date:   Fri, 23 Jul 2021 17:37:59 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Subject: Re: [PATCH 1/3] regmap: add regmap using ARM SMCCC
+Message-ID: <20210723163759.GI5221@sirena.org.uk>
+References: <20210723135239.388325-1-clement.leger@bootlin.com>
+ <20210723135239.388325-2-clement.leger@bootlin.com>
+ <20210723144317.GF5221@sirena.org.uk>
+ <20210723175315.3eb149c7@fixe.home>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="MP_/yRthpUK6XCZGPh=RhCsnSAD"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="0NB0lE7sNnW8+0qW"
+Content-Disposition: inline
+In-Reply-To: <20210723175315.3eb149c7@fixe.home>
+X-Cookie: Integrity has no need for rules.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---MP_/yRthpUK6XCZGPh=RhCsnSAD
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+
+--0NB0lE7sNnW8+0qW
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, 18 Jul 2021 10:15:19 -0700
-syzbot <syzbot+e6741b97d5552f97c24d@syzkaller.appspotmail.com> wrote:
+On Fri, Jul 23, 2021 at 05:53:15PM +0200, Cl=E9ment L=E9ger wrote:
+> Mark Brown <broonie@kernel.org> a =E9crit :
 
-> Hello,
-> 
-> syzbot found the following issue on:
-> 
-> HEAD commit:    ab0441b4a920 Merge branch 'vmxnet3-version-6'
-> git tree:       net-next
-> console output:
-> https://syzkaller.appspot.com/x/log.txt?x=1744ac6a300000 kernel
-> config:  https://syzkaller.appspot.com/x/.config?x=da140227e4f25b17
-> dashboard link:
-> https://syzkaller.appspot.com/bug?extid=e6741b97d5552f97c24d syz
-> repro:
-> https://syzkaller.appspot.com/x/repro.syz?x=13973a74300000 C
-> reproducer:   https://syzkaller.appspot.com/x/repro.c?x=17ffc902300000
-> 
-> The issue was bisected to:
-> 
-> commit 67a3156453859ceb40dc4448b7a6a99ea0ad27c7
-> Author: Rob Herring <robh@kernel.org>
-> Date:   Thu May 27 19:45:47 2021 +0000
-> 
->     of: Merge of_address_to_resource() and
-> of_pci_address_to_resource() implementations
-> 
-> bisection log:
-> https://syzkaller.appspot.com/x/bisect.txt?x=129b0438300000 final
-> oops:     https://syzkaller.appspot.com/x/report.txt?x=119b0438300000
-> console output:
-> https://syzkaller.appspot.com/x/log.txt?x=169b0438300000
-> 
-> IMPORTANT: if you fix the issue, please add the following tag to the
-> commit: Reported-by:
-> syzbot+e6741b97d5552f97c24d@syzkaller.appspotmail.com Fixes:
-> 67a315645385 ("of: Merge of_address_to_resource() and
-> of_pci_address_to_resource() implementations")
-> 
-> ==================================================================
-> BUG: KASAN: use-after-free in tipc_recvmsg+0xf77/0xf90
-> net/tipc/socket.c:1979 Read of size 4 at addr ffff8880328cf1c0 by
-> task kworker/u4:0/8
-> 
+> > I can't see any SMC specification for this interface?  Frankly I have
+> > some very substantial concerns about the use case for this over
+> > exposing the functionality of whatever device the SMC is gating
+> > access to through SMC interfaces specific to that functionality.
 
-Since code accesing skb_cb after possible kfree_skb() call let's just
-store bytes_read to variable and use it instead of acessing
-skb_cb->bytes_read
+> This would require to modify drivers to check if the access should be
+> done using SMCs, parse the device tree to find appropriate SMC ids for
+> each functionality, add dependencies in KConfig on
+> HAVE_ARM_SMCCC_DISCOVERY, and do SMC calls instead of regmap access.
+> I'm not saying this is not the way to go but this is clearly more
+> intrusive than keeping the existing syscon support.
 
-#syz test
-git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git master
+You're not doing this at the syscon level, you're doing this at the
+regmap level.  Any user of this code is going to have to be modified to
+use the SMCCC regmap and discover the relevant SMCCC interfaces no
+matter what, but by having it we're saying that that's a sensible and
+reasonable thing to do and encouraging implementations as a result.
 
+Device specific regmap interfaces do not require adding anything to the
+core, there's the reg_read() and reg_write() callbacks for this, if
+there is a sensible use case for this at the syscon level and only the
+syscon level (but I really do strongly question if it's a good idea at
+all) then you can use those without adding a generic interface for
+defining SMCCC conduits as regmaps.  TBH what's being added to the
+regmap core is so trival that I don't see what we'd be gaining anyway
+even if this was widely used, it's not helping with the SMCCC
+enumeration side at all.
 
+> > Exposing raw access to a (presumed?) subset of whatever device
+> > functionality feels like the wrong abstraction level to be working at
+> > and like an invitation to system integrators to do things that are
+> > going to get them into trouble down the line.
 
-With regards,
-Pavel Skripkin
+> Indeed, access is reduced to a subset of registers offset which are
+> checked by the TEE.
 
---MP_/yRthpUK6XCZGPh=RhCsnSAD
-Content-Type: text/x-patch
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
- filename=0001-tipc-fix-use-after-free-in-tipc_recvmsg.patch
+I really think it would be clearer and safer to have the TEE expose
+specific operations that encode the intent of whatever it is trying to
+accomplish rather than just expose the register map and then audit the
+operations that are going on in the register map after the fact.  It
+seems like it's going to be more error prone to do things this way,
+especially as this starts getting used as a generic pipe for exposing
+things and things get built up - as well as auditing concerns if any
+problems are identified it's going to be harder to track the intent of
+what the non-secure world is doing.
 
-From 9f81f8574bfc1183209022b405848e01c35b86e6 Mon Sep 17 00:00:00 2001
-From: Pavel Skripkin <paskripkin@gmail.com>
-Date: Fri, 23 Jul 2021 19:34:06 +0300
-Subject: [PATCH] tipc: fix use-after-free in tipc_recvmsg
+--0NB0lE7sNnW8+0qW
+Content-Type: application/pgp-signature; name="signature.asc"
 
-/* .. */
+-----BEGIN PGP SIGNATURE-----
 
-Signed-off-by: Pavel Skripkin <paskripkin@gmail.com>
----
- net/tipc/socket.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmD68GcACgkQJNaLcl1U
+h9AOoQf/XcPYNux2gSP2MFrnxE4ztiYuGYt2dJkgiDZ37OOoWt/eiXqZWhYPe+GC
+Mw1O6d/fIJbEVU5aXXE6omUMRNf/gR/SeYzUl2x9Uh8o4IkkVKQ3zNGaLu7O2jys
+93zlueWjwPP58aw5/G0JGSQvO6eYa6/jx4Zr8jbewaPzHI24kKYHtgNAcBoBHUAX
+ELuNj+8mbq/eh8C8yIRT55HAeT7umgJ2WxKCLFAEweh5pLTMZKlDl6V6+2bN4zZc
+58OQhAfe7s5BHZt0wravJkSUPmogBBn9B4GsJd/2KYs5JVclJoZ6Tqb1akhWdBDV
+5QO+gPCQxEFZ39kKZLHcwRUxmb/bCA==
+=Rmsv
+-----END PGP SIGNATURE-----
 
-diff --git a/net/tipc/socket.c b/net/tipc/socket.c
-index 9b0b311c7ec1..0cf2468d209d 100644
---- a/net/tipc/socket.c
-+++ b/net/tipc/socket.c
-@@ -1886,6 +1886,7 @@ static int tipc_recvmsg(struct socket *sock, struct msghdr *m,
- 	struct sk_buff *skb;
- 	bool grp_evt;
- 	long timeout;
-+	unsigned int bytes_read;
- 
- 	/* Catch invalid receive requests */
- 	if (unlikely(!buflen))
-@@ -1973,10 +1974,13 @@ static int tipc_recvmsg(struct socket *sock, struct msghdr *m,
- 		tipc_node_distr_xmit(sock_net(sk), &xmitq);
- 	}
- 
--	if (!skb_cb->bytes_read)
-+	/* To avoid accesing skb_cb after tsk_advance_rx_queue */
-+	bytes_read = skb_cb->bytes_read;
-+
-+	if (!bytes_read)
- 		tsk_advance_rx_queue(sk);
- 
--	if (likely(!connected) || skb_cb->bytes_read)
-+	if (likely(!connected) || bytes_read)
- 		goto exit;
- 
- 	/* Send connection flow control advertisement when applicable */
--- 
-2.32.0
-
-
---MP_/yRthpUK6XCZGPh=RhCsnSAD--
+--0NB0lE7sNnW8+0qW--
