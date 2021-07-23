@@ -2,261 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 968283D4275
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 23:54:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 346BE3D427A
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 23:57:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231724AbhGWVNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 17:13:55 -0400
-Received: from mail-il1-f177.google.com ([209.85.166.177]:41855 "EHLO
-        mail-il1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231839AbhGWVNz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 17:13:55 -0400
-Received: by mail-il1-f177.google.com with SMTP id s5so2834722ild.8
-        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 14:54:28 -0700 (PDT)
+        id S231742AbhGWVQx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 17:16:53 -0400
+Received: from mail-io1-f50.google.com ([209.85.166.50]:43819 "EHLO
+        mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231724AbhGWVQx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 17:16:53 -0400
+Received: by mail-io1-f50.google.com with SMTP id 185so4217963iou.10;
+        Fri, 23 Jul 2021 14:57:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=agR0EsIxUAONrVj8l6ozH7xalH1afrd/nF4lT8UPZwA=;
-        b=WydLz0BVtK4pBSCaJK3ZjKnmL7SFTDWNFPUTO5Za9erEiLsqAcTRKQ3oAPndKgw9l+
-         UbderzznWHUX3jt+buvXnEi+e94e+/+Jgji4c1CKBtbGXELbuYE3A1uT5e2FZdrkPVlr
-         CT1sFdn0O0d1DltZjTBY9vTHF82lEmpXpy9eK9BSd/VPnOyRD4n6vGOa7gMCsqbqV4hu
-         cuIZ+JZrYFCbsourtSFTN+AmgeDvmRsU0kGTAX58ee7Zyb+tI+VHvfBYNYU9+83n/v8/
-         K/DV1BEBigj5q4xBiRebN2Zboi6GkbfvbvtLItV3nHZA8l93yd1K8c2AmlvFq+uWxh5v
-         iylw==
-X-Gm-Message-State: AOAM532sWfBZdSqkcBHPW1KjdtX+pBAb7NuQrPF00hfhz3aM3dGf0IH4
-        mXd535RBjPQcq565eee8SQ==
-X-Google-Smtp-Source: ABdhPJzrrwBh/TglD+y151ZTpw2UUh7lPOqoSUkwpYYw6bLUkgYZuawtqpKoUkdG8+WX2mJ6URBrgQ==
-X-Received: by 2002:a92:de4f:: with SMTP id e15mr473862ilr.267.1627077267868;
-        Fri, 23 Jul 2021 14:54:27 -0700 (PDT)
+        bh=JEUqBiM+J1m4N4wn58eOxCBVMhTaLoqag1E8zxGCL2g=;
+        b=eo5Fa2CaarivrlRULRK6GjRjZCuxozVMcNZniq2HYQ5U0idsCdspAHyzMrxICLYR8j
+         Y5kzxu0NQkMj7nw5ox48/+c8T4yCt43aKfPDP0iD4majDPFRaXVYQss9uFPb23EP5kw6
+         griX1o/fRhXnCcTem9Kun3tSlKJFbcffG/ORCBfBrmhMeDFji9IEbbB3UY12q8Nu4ngg
+         FxM+h/JEsQL6f7w6fQdZ869qVW1oKNeO1GQCgOHtT/LAr3jfEYZv/7phT4vmpKjWv0cW
+         4tmTA7FVnVjugn2FpBc+cMNY3FxBMgs+PBGB7Pa61yRyYfdV3q7iPz78nN+I01Nfs+q1
+         wGWw==
+X-Gm-Message-State: AOAM532MhW+mQc+2zODryzOdcr+6S4H9oKpSC6TU0J4wdHWsNqsDylPo
+        MoBTr/JntjRiSZXKA7xDYA==
+X-Google-Smtp-Source: ABdhPJx+fnNzJ+JYB9ZFpqsmcNuQpBMv6W8e/ZeZZxUWJy94HixqyNW+fd80TUFM24EnnpxS1fJCMQ==
+X-Received: by 2002:a6b:1642:: with SMTP id 63mr5543293iow.68.1627077446285;
+        Fri, 23 Jul 2021 14:57:26 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id k4sm18837007ior.55.2021.07.23.14.54.26
+        by smtp.gmail.com with ESMTPSA id 204sm18862881ioc.50.2021.07.23.14.57.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jul 2021 14:54:27 -0700 (PDT)
-Received: (nullmailer pid 2660030 invoked by uid 1000);
-        Fri, 23 Jul 2021 21:54:26 -0000
-Date:   Fri, 23 Jul 2021 15:54:26 -0600
+        Fri, 23 Jul 2021 14:57:25 -0700 (PDT)
+Received: (nullmailer pid 2664673 invoked by uid 1000);
+        Fri, 23 Jul 2021 21:57:24 -0000
+Date:   Fri, 23 Jul 2021 15:57:24 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Maxime Ripard <maxime@cerno.tech>
 Cc:     Chen-Yu Tsai <wens@csie.org>,
         Jernej Skrabec <jernej.skrabec@siol.net>,
         devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
         linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        Lee Jones <lee.jones@linaro.org>
-Subject: Re: [PATCH 23/54] dt-bindings: mfd: Convert X-Powers AC100 binding
- to a schema
-Message-ID: <20210723215426.GA2656991@robh.at.kernel.org>
+        linux-mmc@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>
+Subject: Re: [PATCH 25/54] dt-bindings: mmc: Convert MMC Card binding to a
+ schema
+Message-ID: <20210723215724.GA2661499@robh.at.kernel.org>
 References: <20210721140424.725744-1-maxime@cerno.tech>
- <20210721140424.725744-24-maxime@cerno.tech>
+ <20210721140424.725744-26-maxime@cerno.tech>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210721140424.725744-24-maxime@cerno.tech>
+In-Reply-To: <20210721140424.725744-26-maxime@cerno.tech>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 21, 2021 at 04:03:53PM +0200, Maxime Ripard wrote:
-> The X-Powers AC100 hybrid devices are supported by Linux thanks to its
-> device tree binding.
+On Wed, Jul 21, 2021 at 04:03:55PM +0200, Maxime Ripard wrote:
+> MMC Cards can have an optional Device Tree binding to add
+> non-discoverable properties.
 > 
 > Now that we have the DT validation in place, let's convert the device
 > tree bindings for that driver over to a YAML schema.
 > 
-> Cc: Chen-Yu Tsai <wens@csie.org>
-> Cc: Lee Jones <lee.jones@linaro.org>
+> Some of these properties were already described in the MMC controller
+> binding, even though they are not generic and do not apply to any
+> device, so we took the occasion to fix this.
+> 
+> Cc: linux-mmc@vger.kernel.org
+> Cc: Ulf Hansson <ulf.hansson@linaro.org>
 > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 > ---
->  .../devicetree/bindings/mfd/ac100.txt         |  50 --------
->  .../bindings/mfd/x-powers,ac100.yaml          | 113 ++++++++++++++++++
->  2 files changed, 113 insertions(+), 50 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mfd/ac100.txt
->  create mode 100644 Documentation/devicetree/bindings/mfd/x-powers,ac100.yaml
+>  .../devicetree/bindings/mmc/mmc-card.txt      | 30 ------------
+>  .../devicetree/bindings/mmc/mmc-card.yaml     | 48 +++++++++++++++++++
+>  .../bindings/mmc/mmc-controller.yaml          |  6 ---
+>  3 files changed, 48 insertions(+), 36 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mmc/mmc-card.txt
+>  create mode 100644 Documentation/devicetree/bindings/mmc/mmc-card.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/ac100.txt b/Documentation/devicetree/bindings/mfd/ac100.txt
+> diff --git a/Documentation/devicetree/bindings/mmc/mmc-card.txt b/Documentation/devicetree/bindings/mmc/mmc-card.txt
 > deleted file mode 100644
-> index dff219f07493..000000000000
-> --- a/Documentation/devicetree/bindings/mfd/ac100.txt
+> index 8d2d71758907..000000000000
+> --- a/Documentation/devicetree/bindings/mmc/mmc-card.txt
 > +++ /dev/null
-> @@ -1,50 +0,0 @@
-> -X-Powers AC100 Codec/RTC IC Device Tree bindings
+> @@ -1,30 +0,0 @@
+> -mmc-card / eMMC bindings
+> -------------------------
 > -
-> -AC100 is a audio codec and RTC subsystem combo IC. The 2 parts are
-> -separated, including power supplies and interrupt lines, but share
-> -a common register address space and host interface.
+> -This documents describes the devicetree bindings for a mmc-host controller
+> -child node describing a mmc-card / an eMMC, see "Use of Function subnodes"
+> -in mmc.txt
 > -
 > -Required properties:
-> -- compatible: "x-powers,ac100"
-> -- reg: The I2C slave address or RSB hardware address for the chip
-> -- sub-nodes:
-> -  - codec
-> -    - compatible:		"x-powers,ac100-codec"
-> -    - interrupts:		SoC NMI / GPIO interrupt connected to the
-> -    				IRQ_AUDIO pin
-> -    - #clock-cells:		Shall be 0
-> -    - clock-output-names:	"4M_adda"
+> --compatible : Must be "mmc-card"
+> --reg        : Must be <0>
 > -
-> -    - see clock/clock-bindings.txt for common clock bindings
-> -
-> -  - rtc
-> -    - compatible:		"x-powers,ac100-rtc"
-> -    - clocks:			A phandle to the codec's "4M_adda" clock
-> -    - #clock-cells:		Shall be 1
-> -    - clock-output-names:	"cko1_rtc", "cko2_rtc", "cko3_rtc"
-> -
-> -    - see clock/clock-bindings.txt for common clock bindings
+> -Optional properties:
+> --broken-hpi : Use this to indicate that the mmc-card has a broken hpi
+> -              implementation, and that hpi should not be used
 > -
 > -Example:
 > -
-> -ac100: codec@e89 {
-> -	compatible = "x-powers,ac100";
-> -	reg = <0xe89>;
+> -&mmc2 {
+> -	pinctrl-names = "default";
+> -	pinctrl-0 = <&mmc2_pins_a>;
+> -	vmmc-supply = <&reg_vcc3v3>;
+> -	bus-width = <8>;
+> -	non-removable;
 > -
-> -	ac100_codec: codec {
-> -		compatible = "x-powers,ac100-codec";
-> -		interrupt-parent = <&r_pio>;
-> -		interrupts = <0 9 IRQ_TYPE_LEVEL_LOW>; /* PL9 */
-> -		#clock-cells = <0>;
-> -		clock-output-names = "4M_adda";
-> -	};
-> -
-> -	ac100_rtc: rtc {
-> -		compatible = "x-powers,ac100-rtc";
-> -		interrupt-parent = <&nmi_intc>;
-> -		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-> -		clocks = <&ac100_codec>;
-> -		#clock-cells = <1>;
-> -		clock-output-names = "cko1_rtc", "cko2_rtc", "cko3_rtc";
+> -	mmccard: mmccard@0 {
+> -		reg = <0>;
+> -		compatible = "mmc-card";
+> -		broken-hpi;
 > -	};
 > -};
-> diff --git a/Documentation/devicetree/bindings/mfd/x-powers,ac100.yaml b/Documentation/devicetree/bindings/mfd/x-powers,ac100.yaml
+> diff --git a/Documentation/devicetree/bindings/mmc/mmc-card.yaml b/Documentation/devicetree/bindings/mmc/mmc-card.yaml
 > new file mode 100644
-> index 000000000000..6990765076b8
+> index 000000000000..aefdd8748b72
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/x-powers,ac100.yaml
-> @@ -0,0 +1,113 @@
+> +++ b/Documentation/devicetree/bindings/mmc/mmc-card.yaml
+> @@ -0,0 +1,48 @@
 > +# SPDX-License-Identifier: GPL-2.0
 > +%YAML 1.2
 > +---
-> +$id: "http://devicetree.org/schemas/mfd/x-powers,ac100.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +$id: http://devicetree.org/schemas/mmc/mmc-card.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: X-Powers AC100 Device Tree Bindings
+> +title: MMC Card / eMMC Generic Device Tree Bindings
 > +
 > +maintainers:
-> +  - Chen-Yu Tsai <wens@csie.org>
+> +  - Ulf Hansson <ulf.hansson@linaro.org>
+> +
+> +description: |
+> +  This documents describes the devicetree bindings for a mmc-host controller
+> +  child node describing a mmc-card / an eMMC.
 > +
 > +properties:
 > +  compatible:
-> +    const: x-powers,ac100
+> +    const: mmc-card
 > +
 > +  reg:
-> +    maxItems: 1
+> +    const: 0
 > +
-> +  codec:
-> +    type: object
-> +
-> +    properties:
-> +      "#clock-cells":
-> +        const: 0
-> +
-> +      compatible:
-> +        const: x-powers,ac100-codec
-> +
-> +      interrupts:
-> +        maxItems: 1
-> +
-> +      clock-output-names:
-> +        description: >
-> +          Name of the 4M_adda clock exposed by the codec
-
-maxItems: 1
-
-> +
-> +    required:
-> +      - "#clock-cells"
-> +      - compatible
-> +      - interrupts
-> +      - clock-output-names
-> +
-> +    additionalProperties: false
-> +
-> +  rtc:
-> +    type: object
-> +
-> +    properties:
-> +      "#clock-cells":
-> +        const: 1
-> +
-> +      compatible:
-> +        const: x-powers,ac100-rtc
-> +
-> +      interrupts:
-> +        maxItems: 1
-> +
-> +      clocks:
-> +        description: >
-> +           A phandle to the codec's "4M_adda" clock
-
-maxItems: 1
-
-> +
-> +      clock-output-names:
-> +        description: >
-> +          Name of the cko1, cko2 and cko3 clocks exposed by the codec
-
-maxItems: 3
-
-> +
-> +    required:
-> +      - "#clock-cells"
-> +      - compatible
-> +      - interrupts
-> +      - clocks
-> +      - clock-output-names
-> +
-> +    additionalProperties: false
+> +  broken-hpi:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      Use this to indicate that the mmc-card has a broken hpi
+> +      implementation, and that hpi should not be used.
 > +
 > +required:
 > +  - compatible
 > +  - reg
-> +  - codec
-> +  - rtc
 > +
-> +additionalProperties: false
+> +additionalProperties: true
+
+Like what? If there's other properties, then there should really be a 
+specific compatible.
+
 > +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    rsb {
+> +    mmc {
 > +        #address-cells = <1>;
 > +        #size-cells = <0>;
 > +
-> +        codec@e89 {
-> +            compatible = "x-powers,ac100";
-> +            reg = <0xe89>;
-> +
-> +            ac100_codec: codec {
-> +                compatible = "x-powers,ac100-codec";
-> +                interrupt-parent = <&r_pio>;
-> +                interrupts = <0 9 IRQ_TYPE_LEVEL_LOW>; /* PL9 */
-> +                #clock-cells = <0>;
-> +                clock-output-names = "4M_adda";
-> +            };
-> +
-> +            ac100_rtc: rtc {
-> +                compatible = "x-powers,ac100-rtc";
-> +                interrupt-parent = <&nmi_intc>;
-> +                interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-> +                clocks = <&ac100_codec>;
-> +                #clock-cells = <1>;
-> +                clock-output-names = "cko1_rtc", "cko2_rtc", "cko3_rtc";
-> +            };
+> +        card@0 {
+> +            compatible = "mmc-card";
+> +            reg = <0>;
+> +            broken-hpi;
 > +        };
 > +    };
 > +
 > +...
+> diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> index 25ac8e200970..513f3c8758aa 100644
+> --- a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> @@ -333,12 +333,6 @@ patternProperties:
+>                subnode describes. A value of 0 denotes the memory SD
+>                function, values from 1 to 7 denote the SDIO functions.
+>  
+> -      broken-hpi:
+> -        $ref: /schemas/types.yaml#/definitions/flag
+> -        description:
+> -          Use this to indicate that the mmc-card has a broken hpi
+> -          implementation, and that hpi should not be used.
+> -
+>      required:
+>        - reg
+>  
 > -- 
 > 2.31.1
 > 
