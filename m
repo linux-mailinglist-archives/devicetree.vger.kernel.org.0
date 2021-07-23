@@ -2,194 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 346BE3D427A
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 23:57:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A76C3D427C
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 23:58:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231742AbhGWVQx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 17:16:53 -0400
-Received: from mail-io1-f50.google.com ([209.85.166.50]:43819 "EHLO
-        mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231724AbhGWVQx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 17:16:53 -0400
-Received: by mail-io1-f50.google.com with SMTP id 185so4217963iou.10;
-        Fri, 23 Jul 2021 14:57:26 -0700 (PDT)
+        id S231754AbhGWVR1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 17:17:27 -0400
+Received: from mail-io1-f49.google.com ([209.85.166.49]:46606 "EHLO
+        mail-io1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231724AbhGWVR0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 17:17:26 -0400
+Received: by mail-io1-f49.google.com with SMTP id u15so4161871iol.13;
+        Fri, 23 Jul 2021 14:57:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=JEUqBiM+J1m4N4wn58eOxCBVMhTaLoqag1E8zxGCL2g=;
-        b=eo5Fa2CaarivrlRULRK6GjRjZCuxozVMcNZniq2HYQ5U0idsCdspAHyzMrxICLYR8j
-         Y5kzxu0NQkMj7nw5ox48/+c8T4yCt43aKfPDP0iD4majDPFRaXVYQss9uFPb23EP5kw6
-         griX1o/fRhXnCcTem9Kun3tSlKJFbcffG/ORCBfBrmhMeDFji9IEbbB3UY12q8Nu4ngg
-         FxM+h/JEsQL6f7w6fQdZ869qVW1oKNeO1GQCgOHtT/LAr3jfEYZv/7phT4vmpKjWv0cW
-         4tmTA7FVnVjugn2FpBc+cMNY3FxBMgs+PBGB7Pa61yRyYfdV3q7iPz78nN+I01Nfs+q1
-         wGWw==
-X-Gm-Message-State: AOAM532MhW+mQc+2zODryzOdcr+6S4H9oKpSC6TU0J4wdHWsNqsDylPo
-        MoBTr/JntjRiSZXKA7xDYA==
-X-Google-Smtp-Source: ABdhPJx+fnNzJ+JYB9ZFpqsmcNuQpBMv6W8e/ZeZZxUWJy94HixqyNW+fd80TUFM24EnnpxS1fJCMQ==
-X-Received: by 2002:a6b:1642:: with SMTP id 63mr5543293iow.68.1627077446285;
-        Fri, 23 Jul 2021 14:57:26 -0700 (PDT)
+        bh=FHPmTs+5gI8XKJ8Ql3COF1J8xxHSJMyndwn+3+KFeQQ=;
+        b=NQK/RNIvWj4SFVcBwBdV8C0kSsB7opqAi9fSPuIC3m2Tnf7Z6TRGnqNbWjbirYMYzE
+         mH6O88IuXaeY2b3+VGhH2lpujoCYrbxZ7Uvw+lWswFUjAkt4CIQR1AzLRgqJ4vVcKMRo
+         8OR4xPFuN9oC66JTYwq8X2aQh3g6/QzE05teq/Y37rpMlFESxnPUOz27tU53EdXQ4SpX
+         9mEYuSsQm2gPgtKiUU4rpKWuS15Iax3kFqk36EsANKVLaUrIixHU9Hrbl12XydDL4T/S
+         dRaPIEjFI9zd+n9cNsMf0TmgfWFyLPs62qE0Gp8fJxgcgttWgpoTrL/TVf+sf4HNUUOw
+         2K/Q==
+X-Gm-Message-State: AOAM531jCKsk1tQ3yJIEHp4QS2qhEMua4+ZPeSYtuq6A+rHCuOo6eS0w
+        /leD2HX8uKu53KdRY9PfYQ==
+X-Google-Smtp-Source: ABdhPJzY7XrtqklCcRf34fVm6kGYCEEM4gCi6zLzAevl639xq5MEeYAWihl8UJrmIpd7CB1PWICdOA==
+X-Received: by 2002:a05:6602:3423:: with SMTP id n35mr5561153ioz.188.1627077479506;
+        Fri, 23 Jul 2021 14:57:59 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id 204sm18862881ioc.50.2021.07.23.14.57.24
+        by smtp.gmail.com with ESMTPSA id b15sm350840ilq.85.2021.07.23.14.57.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jul 2021 14:57:25 -0700 (PDT)
-Received: (nullmailer pid 2664673 invoked by uid 1000);
-        Fri, 23 Jul 2021 21:57:24 -0000
-Date:   Fri, 23 Jul 2021 15:57:24 -0600
+        Fri, 23 Jul 2021 14:57:58 -0700 (PDT)
+Received: (nullmailer pid 2665649 invoked by uid 1000);
+        Fri, 23 Jul 2021 21:57:57 -0000
+Date:   Fri, 23 Jul 2021 15:57:57 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
+Cc:     Frank Rowand <frowand.list@gmail.com>,
         Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Chen-Yu Tsai <wens@csie.org>, Jakub Kicinski <kuba@kernel.org>,
+        netdev@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
+        Jose Abreu <joabreu@synopsys.com>,
         linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        linux-mmc@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>
-Subject: Re: [PATCH 25/54] dt-bindings: mmc: Convert MMC Card binding to a
- schema
-Message-ID: <20210723215724.GA2661499@robh.at.kernel.org>
+        devicetree@vger.kernel.org,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 26/54] dt-bindings: net: dwmac: Fix typo in the R40
+ compatible
+Message-ID: <20210723215757.GA2665619@robh.at.kernel.org>
 References: <20210721140424.725744-1-maxime@cerno.tech>
- <20210721140424.725744-26-maxime@cerno.tech>
+ <20210721140424.725744-27-maxime@cerno.tech>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210721140424.725744-26-maxime@cerno.tech>
+In-Reply-To: <20210721140424.725744-27-maxime@cerno.tech>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 21, 2021 at 04:03:55PM +0200, Maxime Ripard wrote:
-> MMC Cards can have an optional Device Tree binding to add
-> non-discoverable properties.
+On Wed, 21 Jul 2021 16:03:56 +0200, Maxime Ripard wrote:
+> Even though both the driver and the device trees all use the
+> allwinner,sun8i-r40-gmac compatible, we documented the compatible as
+> allwinner,sun8i-r40-emac in the binding. Let's fix this.
 > 
-> Now that we have the DT validation in place, let's convert the device
-> tree bindings for that driver over to a YAML schema.
-> 
-> Some of these properties were already described in the MMC controller
-> binding, even though they are not generic and do not apply to any
-> device, so we took the occasion to fix this.
-> 
-> Cc: linux-mmc@vger.kernel.org
-> Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> Cc: Alexandre Torgue <alexandre.torgue@st.com>
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Giuseppe Cavallaro <peppe.cavallaro@st.com>
+> Cc: Jakub Kicinski <kuba@kernel.org>
+> Cc: Jose Abreu <joabreu@synopsys.com>
+> Cc: netdev@vger.kernel.org
 > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 > ---
->  .../devicetree/bindings/mmc/mmc-card.txt      | 30 ------------
->  .../devicetree/bindings/mmc/mmc-card.yaml     | 48 +++++++++++++++++++
->  .../bindings/mmc/mmc-controller.yaml          |  6 ---
->  3 files changed, 48 insertions(+), 36 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mmc/mmc-card.txt
->  create mode 100644 Documentation/devicetree/bindings/mmc/mmc-card.yaml
+>  .../devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml  | 4 ++--
+>  Documentation/devicetree/bindings/net/snps,dwmac.yaml       | 6 +++---
+>  2 files changed, 5 insertions(+), 5 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/mmc-card.txt b/Documentation/devicetree/bindings/mmc/mmc-card.txt
-> deleted file mode 100644
-> index 8d2d71758907..000000000000
-> --- a/Documentation/devicetree/bindings/mmc/mmc-card.txt
-> +++ /dev/null
-> @@ -1,30 +0,0 @@
-> -mmc-card / eMMC bindings
-> -------------------------
-> -
-> -This documents describes the devicetree bindings for a mmc-host controller
-> -child node describing a mmc-card / an eMMC, see "Use of Function subnodes"
-> -in mmc.txt
-> -
-> -Required properties:
-> --compatible : Must be "mmc-card"
-> --reg        : Must be <0>
-> -
-> -Optional properties:
-> --broken-hpi : Use this to indicate that the mmc-card has a broken hpi
-> -              implementation, and that hpi should not be used
-> -
-> -Example:
-> -
-> -&mmc2 {
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&mmc2_pins_a>;
-> -	vmmc-supply = <&reg_vcc3v3>;
-> -	bus-width = <8>;
-> -	non-removable;
-> -
-> -	mmccard: mmccard@0 {
-> -		reg = <0>;
-> -		compatible = "mmc-card";
-> -		broken-hpi;
-> -	};
-> -};
-> diff --git a/Documentation/devicetree/bindings/mmc/mmc-card.yaml b/Documentation/devicetree/bindings/mmc/mmc-card.yaml
-> new file mode 100644
-> index 000000000000..aefdd8748b72
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mmc/mmc-card.yaml
-> @@ -0,0 +1,48 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mmc/mmc-card.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MMC Card / eMMC Generic Device Tree Bindings
-> +
-> +maintainers:
-> +  - Ulf Hansson <ulf.hansson@linaro.org>
-> +
-> +description: |
-> +  This documents describes the devicetree bindings for a mmc-host controller
-> +  child node describing a mmc-card / an eMMC.
-> +
-> +properties:
-> +  compatible:
-> +    const: mmc-card
-> +
-> +  reg:
-> +    const: 0
-> +
-> +  broken-hpi:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      Use this to indicate that the mmc-card has a broken hpi
-> +      implementation, and that hpi should not be used.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: true
 
-Like what? If there's other properties, then there should really be a 
-specific compatible.
-
-> +
-> +examples:
-> +  - |
-> +    mmc {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        card@0 {
-> +            compatible = "mmc-card";
-> +            reg = <0>;
-> +            broken-hpi;
-> +        };
-> +    };
-> +
-> +...
-> diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> index 25ac8e200970..513f3c8758aa 100644
-> --- a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> @@ -333,12 +333,6 @@ patternProperties:
->                subnode describes. A value of 0 denotes the memory SD
->                function, values from 1 to 7 denote the SDIO functions.
->  
-> -      broken-hpi:
-> -        $ref: /schemas/types.yaml#/definitions/flag
-> -        description:
-> -          Use this to indicate that the mmc-card has a broken hpi
-> -          implementation, and that hpi should not be used.
-> -
->      required:
->        - reg
->  
-> -- 
-> 2.31.1
-> 
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
