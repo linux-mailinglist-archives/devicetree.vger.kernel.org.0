@@ -2,126 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE8CE3D3AC4
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 14:58:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6EE83D3AE5
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 15:08:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234979AbhGWMSH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 08:18:07 -0400
-Received: from relay3-d.mail.gandi.net ([217.70.183.195]:54991 "EHLO
-        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234952AbhGWMSG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 08:18:06 -0400
-Received: (Authenticated sender: gregory.clement@bootlin.com)
-        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 884156000E;
-        Fri, 23 Jul 2021 12:58:37 +0000 (UTC)
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     kostap@marvell.com, miquel.raynal@bootlin.com, kishon@ti.com,
-        vkoul@kernel.org, robh+dt@kernel.org, andrew@lunn.ch,
-        sebastian.hesselbarth@gmail.com, vladimir.vid@sartura.hr,
-        luka.kovacic@sartura.hr, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     mw@semihalf.com, jaz@semihalf.com, nadavh@marvell.com,
-        stefanc@marvell.com, bpeled@marvell.com,
-        Konstantin Porotchkin <kostap@marvell.com>
-Subject: Re: [PATCH v7 0/5] DTS updates for Marvell Armada CN913x platforms
-In-Reply-To: <20210708124612.30742-1-kostap@marvell.com>
-References: <20210708124612.30742-1-kostap@marvell.com>
-Date:   Fri, 23 Jul 2021 14:58:37 +0200
-Message-ID: <87fsw5191e.fsf@BL-laptop>
+        id S235115AbhGWM2W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 08:28:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45236 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232851AbhGWM2W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 08:28:22 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58382C061575;
+        Fri, 23 Jul 2021 06:08:54 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id j2so794799edp.11;
+        Fri, 23 Jul 2021 06:08:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=PAkhX5Xo98YeUW9gogd9oQuzn1u/1XQEnn+TYTLrMLU=;
+        b=nLGpsOsef3mPZvPURhVHCv5/LbnRnsl/AZtg5qi98FUrQrc9FGXLQUUZhgGPi00Njm
+         kRhlsafDhZ/Ir+BDHagW6tl6TfHTHBzYpChRuNK97NBdFrIz3fNjw8CDdyTouPEfNd0n
+         33FkAIkIjHrfFq9o6o+VhBGe6cfKOkXHUCb3TNdm1RMQEVvFSMDby8Yzx7gvAHwAzJWo
+         f7nbp351mxD0VB78Ft2iVsDUnrGJYlPRTvPqE6OweLR7tkybyQMPVGkT5s+tbhgcwaJk
+         xowIYqqrB87usYrt9EgiqAO6lVKA/51Y4xpWV5ddbyVigtBGDhP6j3L9hFsZUsmIgSWU
+         QDlQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=PAkhX5Xo98YeUW9gogd9oQuzn1u/1XQEnn+TYTLrMLU=;
+        b=A3juYI0btdlvxWk7+2k8AtOBNtzHrTljuiASCAbl2HAg5IIvTJaAPeyHFv3n/3GdcB
+         Jemk2x3FLZkft4yZMEDPU8fDM+qOV7jzCixAZioiYhqlZFdkVE8lDK7xNFjmCWL8Drfn
+         DmkHqL3a9v4KWEEg4LXHsDozd/DoQcwT/X+0SYiDA9Sh9YwnfZ+9Uf2DvR16IiWPtkW2
+         UJ4GFfxdF3LiGJ3kCvJf5EHXd+GhrFdhMKjZgDgbRrIZ8ERvQEaIzSO+q+q/P2yr5+OS
+         KT9wnLpwygAdVFkInbSo+ZJQxy5TsE4bCmNZgoCNJmGUdnKTf4Tovn0XombfOSlLta9x
+         Y8Bg==
+X-Gm-Message-State: AOAM531A5wx4EZc22YzOUZjq7UVh9R4WGj4bQsky7RYdX3/XTUIQBxNm
+        VXDzQh/ssW5VUq+REgffCHI=
+X-Google-Smtp-Source: ABdhPJx/9BRca9c3vlIqAYxdsyvYU/mwSwHs5XmUzc3hblRgBGVjpGX4CrAEBTtZGKoUmU/GTr9qbg==
+X-Received: by 2002:a05:6402:1d86:: with SMTP id dk6mr5606889edb.136.1627045732909;
+        Fri, 23 Jul 2021 06:08:52 -0700 (PDT)
+Received: from skbuf ([82.76.66.29])
+        by smtp.gmail.com with ESMTPSA id f23sm9912748ejx.79.2021.07.23.06.08.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Jul 2021 06:08:52 -0700 (PDT)
+Date:   Fri, 23 Jul 2021 16:08:51 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     davem@davemloft.net, shawnguo@kernel.org,
+        linux-arm-kernel@lists.infradead.org, qiangqing.zhang@nxp.com,
+        robh+dt@kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next] ARM: dts: imx6qdl: Remove unnecessary mdio
+ #address-cells/#size-cells
+Message-ID: <20210723130851.6tfl4ijl7hkqzchm@skbuf>
+References: <20210723112835.31743-1-festevam@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210723112835.31743-1-festevam@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kosta,
+Hi Fabio,
 
-> From: Konstantin Porotchkin <kostap@marvell.com>
->
-> This patch series contains the following changes/fixes:
-> 1. Add support for Armada CN913x Development Board topology "B"
-> 2. Add support for Armada CN913x Reference Design boards (CRB)
-> 3. Fixes the NAND paritioninig scheme in DTS eliminating gap between
->    consecutive partitions
-> 4. Fix 10Gb ports PHY mode names
->
-> v2:
-> - extract common nodes from DB boards to separate DTSI files
-> - disable eth2 on CRB boards until the required phy mode support is added
-> - mention the switch part ID in CRB board description
->
-> v3:
-> - do not rename setup A DTS files for DB variants
-> - fix a couple of wrong include names
->
-> v4:
-> - Rebase on top of Linus master branch (v5.11-rc7)
-> - Remove HS400 timing from CRB AP SDHCI (not supported by connected eMMC)
-> - Add cd-gpio entry to CP0 SDHCI for SD card support
-> - Add a comment to CN9130-CRB patch about the required defconfig
->   changes for supporting the onboard i2c expander
-> - Add Stefan's patch to enable 10G port on CN9130-DB platforms
->
-> v5:
-> - Extend enablement of 10G port to CN9131-DB platform
->
-> v6:
-> - Rebased on top of 5.13-rc, merging UTMI settings
->   (requested by Gregory Clement)
->
-> v7:
-> - Remove documentation patch fixing CP11X references in PHY binding document
-> - Change Armada's family 10Gb port phy mode names from 10gbase-kr to 10gbase-r
->
-> Konstantin Porotchkin (4):
->   arch/arm64/boot/dts/marvell: fix NAND partitioning scheme
->   arm64: dts: cn913x: add device trees for topology B boards
->   arm64: dts: add support for Marvell cn9130-crb platform
->   arch/arm64: dts: change 10gbase-kr to 10gbase-r in Armada
->
-> Stefan Chulski (1):
->   dts: marvell: Enable 10G interfaces on 9130-DB and 9131-DB boards
->
+On Fri, Jul 23, 2021 at 08:28:35AM -0300, Fabio Estevam wrote:
+> Since commit dabb5db17c06 ("ARM: dts: imx6qdl: move phy properties into
+> phy device node") the following W=1 dtc warnings are seen:
+> 
+> arch/arm/boot/dts/imx6qdl-aristainetos2.dtsi:323.7-334.4: Warning (avoid_unnecessary_addr_size): /soc/bus@2100000/ethernet@2188000/mdio: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
+> 
+> Remove the unnecessary mdio #address-cells/#size-cells to fix it.
+> 
+> Fixes: dabb5db17c06 ("ARM: dts: imx6qdl: move phy properties into phy device node")
+> Signed-off-by: Fabio Estevam <festevam@gmail.com>
+> ---
 
-Series applied on mvebu/dt64
-
-Thanks,
-
-Gregory
-
-
->  arch/arm64/boot/dts/marvell/Makefile          |   5 +
->  .../arm64/boot/dts/marvell/armada-7040-db.dts |   2 +-
->  .../arm64/boot/dts/marvell/armada-8040-db.dts |   4 +-
->  arch/arm64/boot/dts/marvell/cn9130-crb-A.dts  |  38 ++
->  arch/arm64/boot/dts/marvell/cn9130-crb-B.dts  |  46 ++
->  arch/arm64/boot/dts/marvell/cn9130-crb.dtsi   | 222 ++++++++++
->  arch/arm64/boot/dts/marvell/cn9130-db-B.dts   |  22 +
->  arch/arm64/boot/dts/marvell/cn9130-db.dts     | 403 +----------------
->  arch/arm64/boot/dts/marvell/cn9130-db.dtsi    | 410 ++++++++++++++++++
->  arch/arm64/boot/dts/marvell/cn9131-db-B.dts   |  22 +
->  arch/arm64/boot/dts/marvell/cn9131-db.dts     | 197 +--------
->  arch/arm64/boot/dts/marvell/cn9131-db.dtsi    | 206 +++++++++
->  arch/arm64/boot/dts/marvell/cn9132-db-B.dts   |  22 +
->  arch/arm64/boot/dts/marvell/cn9132-db.dts     | 218 +---------
->  arch/arm64/boot/dts/marvell/cn9132-db.dtsi    | 227 ++++++++++
->  15 files changed, 1241 insertions(+), 803 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/marvell/cn9130-crb-A.dts
->  create mode 100644 arch/arm64/boot/dts/marvell/cn9130-crb-B.dts
->  create mode 100644 arch/arm64/boot/dts/marvell/cn9130-crb.dtsi
->  create mode 100644 arch/arm64/boot/dts/marvell/cn9130-db-B.dts
->  create mode 100644 arch/arm64/boot/dts/marvell/cn9130-db.dtsi
->  create mode 100644 arch/arm64/boot/dts/marvell/cn9131-db-B.dts
->  create mode 100644 arch/arm64/boot/dts/marvell/cn9131-db.dtsi
->  create mode 100644 arch/arm64/boot/dts/marvell/cn9132-db-B.dts
->  create mode 100644 arch/arm64/boot/dts/marvell/cn9132-db.dtsi
->
-> -- 
-> 2.17.1
->
-
--- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+Are you actually sure this is the correct fix? If I look at mdio.yaml, I
+think it is pretty clear that the "ethernet-phy" subnode of the MDIO
+controller must have an "@[0-9a-f]+$" pattern, and a "reg" property. If
+it did, then it wouldn't warn about #address-cells.
