@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F0633D32FA
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 05:59:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F22C3D3312
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 06:00:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233582AbhGWDTE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 23:19:04 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39740 "EHLO mail.kernel.org"
+        id S234445AbhGWDT0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 23:19:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37500 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233997AbhGWDSb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Jul 2021 23:18:31 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5ABB860F45;
-        Fri, 23 Jul 2021 03:59:04 +0000 (UTC)
+        id S234511AbhGWDSq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Jul 2021 23:18:46 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 76B6160F43;
+        Fri, 23 Jul 2021 03:59:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627012745;
-        bh=y9xj+TPN1K9p0q1x7W7ghnJEh1pyk3AwYDdWiLfGaGQ=;
+        s=k20201202; t=1627012757;
+        bh=wZd7GICDbpRKRsD7R0W/4MnRtm5/nTxiCSVvxN715ls=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=g/Yqqsd+PhIVkbapRlauTxZVIGnLvJMwFqp6TCaK8oRlStj2GR+9FuwS/x/zK6QJe
-         o4kM9XkPW4J2MMb3xj/JSUyovju8JfT6GdXSCsqYONiIx7jMsMSzDsruAW86Ol2sUk
-         cp8B/zT/iob3XA/40qc+StwxoNXY8EqQDDUqloKVF/G5cnmviBPkKCQ2P/NC0ozp2/
-         D0GEDMffnNtkflPQoGUh6x/at3KtL0XvrVOJ02mftTu8d4jOEj+xEB/uIJqzYD/96U
-         jn01S4/q4oviMNw7u89p8fC6SmDaog7pTMEFCCYnfCwIvJPxwtwUQfcPZd8P/QdR/w
-         0O4p2Yt2onD2w==
+        b=B84zb8+ugwsEtng8sQ7ww8hWrrVf4tRHyBiO5C/sbP4x0vAjgtQoje0JYlfffZGa0
+         cTkyPvWy98k4JGPqkcV10yaZnCFJXK0B4F64FsBNKAq3GoovFxGX3yUiKwSyTFMBPx
+         duwK4X3MKRPds/aCN1s/suqxE2+kQY2RK7e8ZsR2ejR9GG++OBuaR1yhWI+fNzNFmx
+         FONn6ylgZKZtHUbMFqspY1f22AxGwNw6LQ03I+SDYBXmCLXwFdsVq7/iq1IMMnBWWa
+         v7+6kwVo+LKrWyafYjUubuXHHJbrAVXb3oHm1iClaAxcXh6Kkex9CLgrKuEJhwO/LL
+         gua8tQGkDrV6Q==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Sudeep Holla <sudeep.holla@arm.com>,
         Linus Walleij <linus.walleij@linaro.org>,
         Arnd Bergmann <arnd@arndb.de>, Sasha Levin <sashal@kernel.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.14 8/8] ARM: dts: versatile: Fix up interrupt controller node names
-Date:   Thu, 22 Jul 2021 23:58:52 -0400
-Message-Id: <20210723035852.532303-8-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.9 7/7] ARM: dts: versatile: Fix up interrupt controller node names
+Date:   Thu, 22 Jul 2021 23:59:06 -0400
+Message-Id: <20210723035906.532444-7-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210723035852.532303-1-sashal@kernel.org>
-References: <20210723035852.532303-1-sashal@kernel.org>
+In-Reply-To: <20210723035906.532444-1-sashal@kernel.org>
+References: <20210723035906.532444-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -72,10 +72,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  2 files changed, 3 insertions(+), 4 deletions(-)
 
 diff --git a/arch/arm/boot/dts/versatile-ab.dts b/arch/arm/boot/dts/versatile-ab.dts
-index a9000d22b2c0..873889ddecbe 100644
+index 00d7d28e86f0..4633b79bf5ea 100644
 --- a/arch/arm/boot/dts/versatile-ab.dts
 +++ b/arch/arm/boot/dts/versatile-ab.dts
-@@ -155,16 +155,15 @@ amba {
+@@ -154,16 +154,15 @@ amba {
  		#size-cells = <1>;
  		ranges;
  
@@ -95,10 +95,10 @@ index a9000d22b2c0..873889ddecbe 100644
  			interrupt-controller;
  			#interrupt-cells = <1>;
 diff --git a/arch/arm/boot/dts/versatile-pb.dts b/arch/arm/boot/dts/versatile-pb.dts
-index 06a0fdf24026..e7e751a858d8 100644
+index 33a8eb28374e..3a23164c2c2d 100644
 --- a/arch/arm/boot/dts/versatile-pb.dts
 +++ b/arch/arm/boot/dts/versatile-pb.dts
-@@ -7,7 +7,7 @@ / {
+@@ -6,7 +6,7 @@ / {
  
  	amba {
  		/* The Versatile PB is using more SIC IRQ lines than the AB */
