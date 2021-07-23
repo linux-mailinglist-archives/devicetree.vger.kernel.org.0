@@ -2,216 +2,255 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED5E43D42A3
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 00:09:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EB2E3D42A1
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 00:08:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231940AbhGWV22 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 17:28:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55614 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229863AbhGWV22 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 17:28:28 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E684C061575
-        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 15:09:00 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id b7so3789862wri.8
-        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 15:09:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ecBj1zwkwYbGZmPUHfpHo34O/qFU4IXeWk/Gj4el/tM=;
-        b=HGYGO1agXI7WNvWwPw350KSfg0GLvzcju4Z5EiI8D+l4EP40ZQllCKXTfUAABvAYIc
-         ukNpMOqWdsL0WhHVNhZlCOxZIb1fEyuSOvRKzMbACrfUV088n0fVEsNd0cgEWr+5iKhk
-         fqb4oqe7cZyVJv/MzOmLwEYTm8Ra4CDWuBzy46ruPzfmfvlE2tSKwcNxNrQvTW9Hl8/X
-         C5nghG/eCYy9yt6b0NXGN9bGSSfifgesFDnrObZiI9iI8nfx12eFzMMVHt/BPhtOjDIb
-         1G7KkYePFXHBwrErsA+cRg+vYFnhS48+AVKe+ZC+micMrt9to0/OLV8Kj04u+4XKwUi2
-         bTzw==
+        id S232226AbhGWV2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 17:28:10 -0400
+Received: from mail-il1-f174.google.com ([209.85.166.174]:41968 "EHLO
+        mail-il1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229863AbhGWV2K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 17:28:10 -0400
+Received: by mail-il1-f174.google.com with SMTP id s5so2862131ild.8;
+        Fri, 23 Jul 2021 15:08:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ecBj1zwkwYbGZmPUHfpHo34O/qFU4IXeWk/Gj4el/tM=;
-        b=oAmQjNFgjtejHSOXsem2xYubfXes13qa5LOlscAsaHTJMpCbxIlI9zHtjFF+FosU6T
-         9ED3taxb/8ZhZCFFkXbznO+5sBkaepe0SMUK5I3uLg9ff47Rso9ZzCtzhtL6YNHkk7k7
-         g9L4efHMXtEn8cjgb6wfwhwaeIY+0q2khPPVg+IU9bEiJxCvyR8oMlulWfqaG1OVsQOe
-         EQvrlC/fqgrOPGxsblhpaK5VQVwhsSdCtjo8hjUi1+KWXNhgoW1meV2uzuzP+QNIxcUc
-         Yep0bYff7lpOCNv8mX7y6qPYkH6KSHhaamAAtKEiDQIRFr23VLp13hmVmJKsVgUSlFTP
-         6w8w==
-X-Gm-Message-State: AOAM532lEmRYjSTMxg1aI5Mf7FIMHrjiup5fJWF9Co+21n+4lQpuTjqv
-        6nO+Z4Kqt4V5MEnL1sqrBVk=
-X-Google-Smtp-Source: ABdhPJw8Sxr/QfKAbUpyqwrWHu2bVlTySlMiiJtAJVMHDHH+c3u+yrc4eD88LEHyDBRAn/1TATR+hg==
-X-Received: by 2002:a05:6000:1248:: with SMTP id j8mr7212507wrx.391.1627078138602;
-        Fri, 23 Jul 2021 15:08:58 -0700 (PDT)
-Received: from debian64.daheim (p5b0d7bb8.dip0.t-ipconnect.de. [91.13.123.184])
-        by smtp.gmail.com with ESMTPSA id v30sm36863335wrv.85.2021.07.23.15.08.57
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=6HBiDJI4xo9HACYmRarrDTnnmYlunvqow0d7mBxux3g=;
+        b=MtBHCSQtqGnaBJG13l6O8yVMP4kPtn7ZRVXf3XB106lEasOCMtkRk5lY/lWEmGgZXt
+         pUBjQFEt6hkZ4EHRChkV4KRKYh5PXH8x/Y9fTdK1iz8/oQbv996q0X5602tv0zqceHuj
+         TM8OKpOWTubuvJGyT5XfIGBIRw2m4onYDdq4IyoKcLTM8Bi1vQFh9avFv5rUZ5i2qnGg
+         SsrjKgNve55FdnA8rQdBlUtLopk5PghEHYIqw7Chs3CIK24a7gSze88QUg/nJP4mYN6A
+         SsazoBKleFcMy7+Y6EZQOUrtkcNlf85TPIMQn3t+Um1+naN7LuHk8jjEjyTT9R6JiUof
+         rOBw==
+X-Gm-Message-State: AOAM5323oWiXRUhHUi55aD+t8yeTJFhyf+JRnKNnTOaUTE37kMTWMuyy
+        5fuIf/bGzAUPtcHbsUMebQ==
+X-Google-Smtp-Source: ABdhPJz0x9NwWKkUAMcAYkbRUdzb5k/i3X+4ToE0b3DYVzmq5TXrBU9IcaKVs8vmsNYEb/FTi27zag==
+X-Received: by 2002:a05:6e02:b24:: with SMTP id e4mr4717821ilu.41.1627078122950;
+        Fri, 23 Jul 2021 15:08:42 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id l12sm464501ilg.2.2021.07.23.15.08.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jul 2021 15:08:58 -0700 (PDT)
-Received: from localhost.daheim ([127.0.0.1])
-        by debian64.daheim with esmtp (Exim 4.94.2)
-        (envelope-from <chunkeey@gmail.com>)
-        id 1m73LK-001hIT-Av; Sat, 24 Jul 2021 00:08:30 +0200
-Subject: Re: [PATCH v3 0/5] powerpc: apm82181: adding customer devices
-To:     Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc:     linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        Chris Blake <chrisrblake93@gmail.com>,
-        Paul Mackerras <paulus@samba.org>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Rob Herring <robh+dt@kernel.org>
-References: <cover.1599343429.git.chunkeey@gmail.com>
- <YPsWMRLWQoxHFub6@smile.fi.intel.com>
-From:   Christian Lamparter <chunkeey@gmail.com>
-Message-ID: <8a8f50d1-b89c-322f-1465-062ed287d491@gmail.com>
-Date:   Sat, 24 Jul 2021 00:08:30 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+        Fri, 23 Jul 2021 15:08:42 -0700 (PDT)
+Received: (nullmailer pid 2682761 invoked by uid 1000);
+        Fri, 23 Jul 2021 22:08:40 -0000
+Date:   Fri, 23 Jul 2021 16:08:40 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
+        Dongjin Kim <tobetter@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH 34/54] dt-bindings: usb: Convert SMSC USB3503 binding to
+ a schema
+Message-ID: <20210723220840.GA2675167@robh.at.kernel.org>
+References: <20210721140424.725744-1-maxime@cerno.tech>
+ <20210721140424.725744-35-maxime@cerno.tech>
 MIME-Version: 1.0
-In-Reply-To: <YPsWMRLWQoxHFub6@smile.fi.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210721140424.725744-35-maxime@cerno.tech>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy!
-
-On 23/07/2021 21:19, Andy Shevchenko wrote:
-> On Sun, Sep 06, 2020 at 12:06:10AM +0200, Christian Lamparter wrote:
->> I've been holding on to these devices dts' for a while now.
->> But ever since the recent purge of the PPC405, I'm feeling
->> the urge to move forward.
->>
->> The devices in question have been running with OpenWrt since
->> around 2016/2017. Back then it was linux v4.4 and required
->> many out-of-tree patches (for WIFI, SATA, CRYPTO...), that
->> since have been integrated. So, there's nothing else in the
->> way I think.
->>
->> A patch that adds the Meraki vendor-prefix has been sent
->> separately, as there's also the Meraki MR32 that I'm working
->> on as well. Here's the link to the patch:
->> <https://lore.kernel.org/linuxppc-dev/20200822154045.16036-1-chunkeey@gmail.com/>
->>
->> Now, I've looked around in the arch/powerpc for recent .dts
->> and device submissions to get an understanding of what is
->> required.
->> >From the looks of it, it seems like every device gets a
->> skeleton defconfig and a CONFIG_$DEVICE symbol (Like:
->> CONFIG_MERAKI_MR24, CONFIG_WD_MYBOOKLIVE).
->>
->> Will this be the case? Or would it make sense to further
->> unite the Bluestone, MR24 and MBL under a common CONFIG_APM82181
->> and integrate the BLUESTONE device's defconfig into it as well?
->> (I've stumbled across the special machine compatible
->> handling of ppc in the Documentation/devicetree/usage-model.rst
->> already.)
+On Wed, Jul 21, 2021 at 04:04:04PM +0200, Maxime Ripard wrote:
+> The SMSC USB3503 USB Hub Controller is supported by Linux thanks to
+> its device tree binding.
 > 
-> I haven't found any traces of this to be applied. What is the status of this
-> patch series? And what is the general state of affairs for the PPC44x?
+> Now that we have the DT validation in place, let's convert the device
+> tree bindings for that driver over to a YAML schema.
+> 
+> Cc: Dongjin Kim <tobetter@gmail.com>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: linux-usb@vger.kernel.org
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> ---
+>  .../devicetree/bindings/usb/smsc,usb3503.yaml | 104 ++++++++++++++++++
+>  .../devicetree/bindings/usb/usb3503.txt       |  39 -------
+>  2 files changed, 104 insertions(+), 39 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/usb/smsc,usb3503.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/usb/usb3503.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/smsc,usb3503.yaml b/Documentation/devicetree/bindings/usb/smsc,usb3503.yaml
+> new file mode 100644
+> index 000000000000..0e5622e7df87
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/smsc,usb3503.yaml
+> @@ -0,0 +1,104 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/smsc,usb3503.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: SMSC USB3503 High-Speed Hub Controller Device Tree Bindings
+> +
+> +maintainers:
+> +  - Dongjin Kim <tobetter@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - smsc,usb3503
+> +      - smsc,usb3503a
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  connect-gpios:
+> +    description: >
+> +      GPIO for connect
+
+maxItems: 1
+> +
+> +  intn-gpios:
+> +    description: >
+> +      GPIO for interrupt
+
+maxItems: 1
+
+> +
+> +  reset-gpios:
+> +    description: >
+> +      GPIO for reset
+
+maxItems: 1
+
+> +
+> +  disabled-ports:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 1
+> +    maxItems: 3
+> +    items:
+> +      minimum: 1
+> +      maximum: 3
+> +    description: >
+> +      Specifies the ports unused using their port number. Do not describe this
+> +      property if all ports have to be enabled.
+> +
+> +  initial-mode:
+> +    enum: [1, 2]
+> +    description: >
+> +      Specifies initial mode. 1 for Hub mode, 2 for standby mode.
+> +
+> +  clocks:
+> +    description: >
+> +      Clock used for driving REFCLK signal. If not provided the driver assumes
+> +      that clock signal is always available, its rate is specified by REF_SEL
+> +      pins and a value from the primary reference clock frequencies table is
+> +      used.
+
+maxItems: 1
+
+> +
+> +  clock-names:
+> +    const: refclk
+> +
+> +  refclk-frequency:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: >
+> +      Frequency of the REFCLK signal as defined by REF_SEL pins. If not
+> +      provided, driver will not set rate of the REFCLK signal and assume that a
+> +      value from the primary reference clock frequencies table is used.
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +      i2c {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +        
+> +          usb3503@8 {
+
+usb-hub@8
 
 
-My best guess is: It's complicated. While there was a recent big
-UPSET EVENT regarding the My Book Live (MBL) that affected "hundreds"
-and "thousands": "An unpleasant surprise for My Book Live owners"
-(<https://lwn.net/Articles/861235/>). Sadly this wasn't getting any
-traction.
+> +              compatible = "smsc,usb3503";
+> +              reg = <0x08>;
+> +              connect-gpios = <&gpx3 0 1>;
+> +              disabled-ports = <2 3>;
+> +              intn-gpios = <&gpx3 4 1>;
+> +              reset-gpios = <&gpx3 5 1>;
+> +              initial-mode = <1>;
+> +              clocks = <&clks 80>;
+> +              clock-names = "refclk";
+> +          };
+> +      };
+> +
+> +  - |
+> +      #include <dt-bindings/gpio/gpio.h>
+> +
+> +      usb-hub {
+> +          /* I2C is not connected */
 
-I can tell that the mentioned Cisco Meraki MR32 (Broadcom ARM SoC)
-got merged. So this is off the plate 😌.
+We should probably require this is a USB bus child device in this case, 
+but that's a separate change.
 
-But APM821xx sadly went nowhere 😕. One reason being that I haven't
-yet posted a V4, V5 and so on...
-
-In theory, for v4 I would have liked to know how to handle the
-kConfig aspect of the series: Would it be "OK" to have a
-single CONFIG_APM82181/CONFIG_APM821XX symbol or should there
-be a CONFIG_MBL the CONFIG_MR24 (CONFIG_WNDR4700 and CONFIG_MX60W
-in the future)?
-
-As for the MBL: Well, If you (or any one else) is interested in
-having a more up-to-date Debian. Then I have something:
-
-A while back, I made a "build.sh". This will build a
-"out-of-the-box" Debian unstable/SID powerpc system image.
-This includes sensible NAS defaults + programs as well as
-a Cockpit Web-GUI. But also makes it easily possible to do
-the DTBs development on the latest vanilla (5.14-rc2 as of
-the time of writing this) kernel for the
-MyBook Live Single and Duo:
-
-<https://github.com/chunkeey/mbl-debian>
-
-I can't really make one for the MR24 though. Its 32MiB NAND
-makes it difficult to install anything else than OpenWrt
-(and get some use out of the device).
-
-So, how to proceed?
-
-Cheers,
-Christian
-
-PS.: As for PPC44x health regarding APM82181: It works!
-
-This is with a My Book Live (MBL) and the 5.14.0-rc2(+) kernel.
-
-[    0.000000] printk: bootconsole [udbg0] enabled
-[    0.000000] Activating Kernel Userspace Execution Prevention
-[    0.000000] Linux version 5.14.0-rc2+ (root@debian64) (powerpc-linux-gnu-gcc (Debian 10.2.1-6) 10.2.1 20210110, GNU ld (GNU Binutils for Debian) 2.35.2) #1 Fri Jul 23 22:59:56 CEST 2021
-[    0.000000] Found initrd at 0xcf000000:0xcfe73b70
-[    0.000000] Using PowerPC 44x Platform machine description
-[    0.000000] -----------------------------------------------------
-[    0.000000] phys_mem_size     = 0x10000000
-[    0.000000] dcache_bsize      = 0x20
-[    0.000000] icache_bsize      = 0x20
-[    0.000000] cpu_features      = 0x0000000000000100
-[    0.000000]   possible        = 0x0000000040000100
-[    0.000000]   always          = 0x0000000000000100
-[    0.000000] cpu_user_features = 0x8c008000 0x00000000
-[    0.000000] mmu_features      = 0x00000008
-[    0.000000] -----------------------------------------------------
-[    0.000000] Top of RAM: 0x10000000, Total RAM: 0x10000000
-[    0.000000] Memory hole size: 0MB
-[    0.000000] Zone ranges:
-[    0.000000]   Normal   [mem 0x0000000000000000-0x000000000fffffff]
-[    0.000000] Movable zone start for each node
-[    0.000000] Early memory node ranges
-[    0.000000]   node   0: [mem 0x0000000000000000-0x000000000fffffff]
-[    0.000000] Initmem setup node 0 [mem 0x0000000000000000-0x000000000fffffff]
-[    0.000000] MMU: Allocated 1088 bytes of context maps for 255 contexts
-[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
-[    0.000000] pcpu-alloc: [0] 0
-[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 16352
-[    0.000000] Kernel command line: root=UUID=ef4e8942-768b-4d2e-ba57-486397c97081 console=ttyS0,115200
-[    0.000000] Dentry cache hash table entries: 32768 (order: 3, 131072 bytes, linear)
-[    0.000000] Inode-cache hash table entries: 16384 (order: 2, 65536 bytes, linear)
-[    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
-[    0.000000] Kernel virtual memory layout:
-[    0.000000]   * 0xffbdc000..0xffffc000  : fixmap
-[    0.000000]   * 0xd1000000..0xffbdc000  : vmalloc & ioremap
-[    0.000000] Memory: 237088K/262144K available (6096K kernel code, 832K rwdata, 1888K rodata, 256K init, 338K bss, 25056K reserved, 0K cma-reserved)
-[    0.000000] random: get_random_u32 called from cache_random_seq_create+0x68/0x148 with crng_init=0
-[    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
-[    0.000000] NR_IRQS: 512, nr_irqs: 512, preallocated irqs: 16
-[    0.000000] UIC0 (32 IRQ sources) at DCR 0xc0
-[    0.000000] UIC1 (32 IRQ sources) at DCR 0xd0
-[    0.000000] UIC2 (32 IRQ sources) at DCR 0xe0
-[    0.000000] UIC3 (32 IRQ sources) at DCR 0xf0
-[    0.000000] time_init: decrementer frequency = 800.000008 MHz
-[    0.000000] time_init: processor frequency   = 800.000008 MHz
-[    0.000008] clocksource: timebase: mask: 0xffffffffffffffff max_cycles: 0xb881274fa3, max_idle_ns: 440795210636 ns
-[    0.008985] clocksource: timebase mult[1400000] shift[24] registered
-[    0.014006] clockevent: decrementer mult[ccccccef] shift[32] cpu[0]
-[    0.019181] Console: colour dummy device 80x25
-[    0.022289] pid_max: default: 32768 minimum: 301
-[    0.025979] Mount-cache hash table entries: 4096 (order: 0, 16384 bytes, linear)
-[    0.032024] Mountpoint-cache hash table entries: 4096 (order: 0, 16384 bytes, linear)
-[    0.041291] devtmpfs: initialized
-...
-
-The "+" Patch is:
-<https://github.com/chunkeey/mbl-debian/blob/master/patches/kernel/9999-powerpc-apm82181-add-WD-MyBook-Live-NAS.patch>
-(which adds the "wd,mybooklive" to the list of
-supported devices to ppc44x_simple.c)
+> +          compatible = "smsc,usb3503";
+> +          initial-mode = <1>; /* initialize in HUB mode */
+> +          disabled-ports = <1>;
+> +          intn-gpios = <&pio 7 5 GPIO_ACTIVE_HIGH>; /* PH5 */
+> +          reset-gpios = <&pio 4 16 GPIO_ACTIVE_LOW>; /* PE16 */
+> +          connect-gpios = <&pio 4 17 GPIO_ACTIVE_HIGH>; /* PE17 */
+> +          refclk-frequency = <19200000>;
+> +      };
+> +
+> +...
+> diff --git a/Documentation/devicetree/bindings/usb/usb3503.txt b/Documentation/devicetree/bindings/usb/usb3503.txt
+> deleted file mode 100644
+> index 057dd384d473..000000000000
+> --- a/Documentation/devicetree/bindings/usb/usb3503.txt
+> +++ /dev/null
+> @@ -1,39 +0,0 @@
+> -SMSC USB3503 High-Speed Hub Controller
+> -
+> -Required properties:
+> -- compatible: Should be "smsc,usb3503" or "smsc,usb3503a".
+> -
+> -Optional properties:
+> -- reg: Specifies the i2c slave address, it is required and should be 0x08
+> -       if I2C is used.
+> -- connect-gpios: Should specify GPIO for connect.
+> -- disabled-ports: Should specify the ports unused.
+> -	'1' or '2' or '3' are available for this property to describe the port
+> -	number. 1~3 property values are possible to be described.
+> -	Do not describe this property if all ports have to be enabled.
+> -- intn-gpios: Should specify GPIO for interrupt.
+> -- reset-gpios: Should specify GPIO for reset.
+> -- initial-mode: Should specify initial mode.
+> -                (1 for HUB mode, 2 for STANDBY mode)
+> -- refclk: Clock used for driving REFCLK signal (optional, if not provided
+> -	the driver assumes that clock signal is always available, its
+> -	rate is specified by REF_SEL pins and a value from the primary
+> -	reference clock frequencies table is used). Use clocks and
+> -	clock-names in order to assign it
+> -- refclk-frequency: Frequency of the REFCLK signal as defined by REF_SEL
+> -	pins (optional, if not provided, driver will not set rate of the
+> -	REFCLK signal and assume that a value from the primary reference
+> -	clock frequencies table is used)
+> -
+> -Examples:
+> -	usb3503@8 {
+> -		compatible = "smsc,usb3503";
+> -		reg = <0x08>;
+> -		connect-gpios = <&gpx3 0 1>;
+> -		disabled-ports = <2 3>;
+> -		intn-gpios = <&gpx3 4 1>;
+> -		reset-gpios = <&gpx3 5 1>;
+> -		initial-mode = <1>;
+> -		clocks = <&clks 80>;
+> -		clock-names = "refclk";
+> -	};
+> -- 
+> 2.31.1
+> 
+> 
