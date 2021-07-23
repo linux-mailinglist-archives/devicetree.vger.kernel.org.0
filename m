@@ -2,102 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F9943D3D0C
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 18:00:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 662E93D3D10
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 18:03:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235660AbhGWPUO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 11:20:14 -0400
-Received: from mail-vk1-f170.google.com ([209.85.221.170]:44605 "EHLO
-        mail-vk1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235568AbhGWPUO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 11:20:14 -0400
-Received: by mail-vk1-f170.google.com with SMTP id r2so480183vkl.11;
-        Fri, 23 Jul 2021 09:00:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=kz2EBjCsAE8kTLJ6Qp7R/EqU9Ne3qJlpSL4T+4ntcao=;
-        b=L6hMlTeXaCjY9BDauADwH8o51jFv2xmoMxaJlV5/TubRqJcExNB07PyskSk7BXzgLv
-         s3RKvak8lbQkl8YiLAEVMBQgVAZ30kGu8kEBUN4VUQvUEkTSWeaWqzNw9+X3usjpjZDD
-         rFMGiA9t5ogmqf4UtuJmu6jjPG78lDitYqW8i8/OKnjaXRecf15dusLP2AjTFSFxPmFz
-         K3puSa/vCTPz9/sJw4rlHpUUmDu7nxRx5h9xis6OcECVpAozDge3A+34KShRyf+q7rjD
-         SuHg9AHeruaHSquzfDDn1+l6NSziasDIPzCXOUB2g3thYnMNfQwCX4Elaxc+ud7L0cjV
-         KBTQ==
-X-Gm-Message-State: AOAM530hPCi2nQ2zJfMEChNDktqvU8lka+DbLkR8AW28Zq1Bofg/Pzyv
-        ZuwkzaHD2ONdWI4DtiGu77P5HqDiCJwFoeKW6cI=
-X-Google-Smtp-Source: ABdhPJzzCeJFrifuGMRv6snVWW4e8W2J0sU+bXmUq86k1NPE6cgq9iw44JF/maccCCXJQiLTdAsbEjflVDMBQUDevYg=
-X-Received: by 2002:a05:6122:a12:: with SMTP id 18mr4351968vkn.1.1627056046954;
- Fri, 23 Jul 2021 09:00:46 -0700 (PDT)
+        id S235660AbhGWPXC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 11:23:02 -0400
+Received: from frasgout.his.huawei.com ([185.176.79.56]:3472 "EHLO
+        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235588AbhGWPXC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 11:23:02 -0400
+Received: from fraeml736-chm.china.huawei.com (unknown [172.18.147.206])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4GWYj8133jz6H7mP;
+        Fri, 23 Jul 2021 23:51:56 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml736-chm.china.huawei.com (10.206.15.217) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Fri, 23 Jul 2021 18:03:33 +0200
+Received: from localhost (10.210.170.238) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2176.2; Fri, 23 Jul
+ 2021 17:03:32 +0100
+Date:   Fri, 23 Jul 2021 17:03:09 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Christophe Branchereau <cbranchereau@gmail.com>
+CC:     <paul@crapouillou.net>, <jic23@kernel.org>, <lars@metafoo.de>,
+        <linux-mips@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux@roeck-us.net>,
+        <contact@artur-rojek.eu>
+Subject: Re: [PATCH V2 0/5] iio/adc: ingenic: add support for the JZ4760(B)
+ Socs to the ingenic sadc driver
+Message-ID: <20210723170309.00005c08@Huawei.com>
+In-Reply-To: <20210723085813.1523934-1-cbranchereau@gmail.com>
+References: <893d6165-0f12-d0da-44be-449a4ae96ac2@roeck-us.net>
+        <20210723085813.1523934-1-cbranchereau@gmail.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
 MIME-Version: 1.0
-References: <20210721180632.15080-1-biju.das.jz@bp.renesas.com>
- <CAMuHMdWMB8o=GuvOtzBg6w6m3C030wu7-btT+FJ-dAZgNK3xsQ@mail.gmail.com> <OS0PR01MB592299E2554B073C582F29BE86E59@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-In-Reply-To: <OS0PR01MB592299E2554B073C582F29BE86E59@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 23 Jul 2021 18:00:35 +0200
-Message-ID: <CAMuHMdVD41xHG+4msRm1F8FScLraJJ7EFaadczvx3nXKtq3XVg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: rzg2: Add internal rx delay
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.210.170.238]
+X-ClientProxiedBy: lhreml704-chm.china.huawei.com (10.201.108.53) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+On Fri, 23 Jul 2021 10:58:08 +0200
+Christophe Branchereau <cbranchereau@gmail.com> wrote:
 
-On Fri, Jul 23, 2021 at 5:52 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > Subject: Re: [PATCH] arm64: dts: renesas: rzg2: Add internal rx delay
-> > On Wed, Jul 21, 2021 at 8:06 PM Biju Das <biju.das.jz@bp.renesas.com>
-> > wrote:
-> > > Hihope boards use Realtek PHY. From the very beginning it use only tx
-> > > delays. However the phy driver commit bbc4d71d63549bcd003
-> > > ("net: phy: realtek: fix rtl8211e rx/tx delay config") introduced NFS
-> > > mount failure. Now it needs rx delay inaddition to tx delay for NFS
-> > > mount to work. This patch fixes NFS mount failure issue by adding MAC
-> > > internal rx delay.
-> > >
-> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> >
-> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be> i.e. will queue
-> > in renesas-devel for v5.15.
-> >
-> > Do you want a Fixes: tag?
->
-> It is a tricky situation. The phy patch is introduced in 5.9 and is backported to 5.8.
-> But we don't have MaC internal delays on those kernels. So Fixes for 5.10+ will be ok I guess,
-> So that at least this fix will land on cip 5.10 kernel.
+> This is a set of patches to add support to the JZ4760(B) socs found in numerous gaming handhelds and some
+> mp3 players.
 
-Fixes: bbc4d71d63549bcd ("net: phy: realtek: fix rtl8211e rx/tx delay config")
+Process note.  Please don't set the reply to for new revisions.
+They nest deep inside threads when people read email that way and
+it makes them hard to spot.  I'd much rather see them as a new
+thread related only by the naming.
 
-Then the stable people are at least aware that backporting the PHY
-commit can cause issues.
+Thanks,
 
-So after it has hit upstream, you can send the patch to stable with the
-following added:
+Jonathan
 
-Cc: stable@vger.kernel.org # 5.10.x: a6f51f2efa742df0 ravb: Add
-support for explicit internal clock delay configuration
+> 
+> Christophe Branchereau (5):
+>   iio/adc: ingenic: rename has_aux2 to has_aux_md
+>   dt-bindings: iio/adc: add an INGENIC_ADC_AUX0 entry
+>   iio/adc: ingenic: add JZ4760 support to the sadc driver
+>   iio/adc: ingenic: add JZ4760B support to the sadc driver
+>   dt-bindings: iio/adc: ingenic: add the JZ4760(B) socs to the sadc
+>     Documentation
+> 
 
-I hope I got the syntax right. And there may be dependencies to backport,
-too.
-
-As this doesn't fix an issue introduced in v5.13 or v5.14-rc1, I'll queue
-this for v5.15. CIP can still take it.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
