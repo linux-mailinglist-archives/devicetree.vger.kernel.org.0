@@ -2,61 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6387C3D39E3
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 14:02:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 984A93D3ABE
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 14:57:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234618AbhGWLVj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 07:21:39 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:45180 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234231AbhGWLVi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Jul 2021 07:21:38 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.lan)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1m6tsV-0004qO-47; Fri, 23 Jul 2021 14:02:07 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Rob Herring <robh+dt@kernel.org>, Peter Geis <pgwipeout@gmail.com>,
-        Liang Chen <cl@rock-chips.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [RFC PATCH 0/4] split rk3568 and rk3566 device trees
-Date:   Fri, 23 Jul 2021 14:02:05 +0200
-Message-Id: <162704168907.1329605.13579564143359977102.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210710151034.32857-1-pgwipeout@gmail.com>
-References: <20210710151034.32857-1-pgwipeout@gmail.com>
+        id S234996AbhGWMQm convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 23 Jul 2021 08:16:42 -0400
+Received: from mslow1.mail.gandi.net ([217.70.178.240]:58683 "EHLO
+        mslow1.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234914AbhGWMQm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 08:16:42 -0400
+Received: from relay6-d.mail.gandi.net (unknown [217.70.183.198])
+        by mslow1.mail.gandi.net (Postfix) with ESMTP id 1E014C5251
+        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 12:57:15 +0000 (UTC)
+Received: (Authenticated sender: gregory.clement@bootlin.com)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 786BDC000C;
+        Fri, 23 Jul 2021 12:56:50 +0000 (UTC)
+From:   Gregory CLEMENT <gregory.clement@bootlin.com>
+To:     Pali =?utf-8?Q?Roh=C3=A1r?= <pali@kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Marek =?utf-8?Q?Beh=C3=BAn?= <kabel@kernel.org>,
+        Russell King <rmk+kernel@armlinux.org.uk>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] arm64: dts: armada-3720-turris-mox: remove
+ mrvl,i2c-fast-mode
+In-Reply-To: <20210628151229.25214-1-pali@kernel.org>
+References: <20210628121015.22660-1-pali@kernel.org>
+ <20210628151229.25214-1-pali@kernel.org>
+Date:   Fri, 23 Jul 2021 14:56:50 +0200
+Message-ID: <87lf5x194d.fsf@BL-laptop>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 10 Jul 2021 11:10:30 -0400, Peter Geis wrote:
-> This is an example patch set that addresses the split of the rk3568 and
-> rk3566 soc device trees.
-> This method attempts to avoid deleting and modifing nodes by maintaining
-> a common dtsi for all common items and adding in the differences in
-> separate dtsi files.
-> It also includes a basic dts for the Pine64 Quartz64 Model A board
-> as an example of a rk3566 device.
-> 
-> [...]
+Hi Pali,
 
-Applied, thanks!
+> Some SFP modules are not detected when i2c-fast-mode is enabled even when
+> clock-frequency is already set to 100000. The I2C bus violates the timing
+> specifications when run in fast mode. So disable fast mode on Turris Mox.
+>
+> Same change was already applied for uDPU (also Armada 3720 board with SFP)
+> in commit fe3ec631a77d ("arm64: dts: uDPU: remove i2c-fast-mode").
+>
+> Fixes: 7109d817db2e ("arm64: dts: marvell: add DTS for Turris Mox")
+> Signed-off-by: Pali Rohár <pali@kernel.org>
+> Reviewed-by: Marek Behún <kabel@kernel.org>
 
-[1/4] arm64: dts: rockchip: move rk3568 dtsi to rk356x dtsi
-      commit: 94c75b5265fe899391e298eace826e4f8d1e8e40
-[2/4] arm64: dts: rockchip: split rk3568 device tree
-      commit: 92eb5ffbae440700dd38378e24d8091fe166c352
-[3/4] arm64: dts: rockchip: add rk3566 dtsi
-      commit: 04e1ecf6099cc3ba17c2d4279c968a656320cd12
-[4/4] arm64: dts: rockchip: add basic dts for Pine64 Quartz64-A
-      commit: c95414d68f116462acf9622f715b8a568bb1dd00
+Applied on mvebu/fixes
 
-Best regards,
+Thanks,
+
+Gregory
+
+> ---
+>  arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+> index 6bcc319a0161..85f15f2a4740 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+> +++ b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+> @@ -119,6 +119,7 @@
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&i2c1_pins>;
+>  	clock-frequency = <100000>;
+> +	/delete-property/ mrvl,i2c-fast-mode;
+>  	status = "okay";
+>  
+>  	rtc@6f {
+> -- 
+> 2.20.1
+>
+
 -- 
-Heiko Stuebner <heiko@sntech.de>
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
