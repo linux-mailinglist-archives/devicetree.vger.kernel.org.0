@@ -2,258 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CDC4D3D3C99
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 17:40:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E4943D3CAA
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 17:44:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235767AbhGWO7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 10:59:16 -0400
-Received: from foss.arm.com ([217.140.110.172]:47888 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235687AbhGWO7G (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Jul 2021 10:59:06 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CFFB313D5;
-        Fri, 23 Jul 2021 08:39:39 -0700 (PDT)
-Received: from localhost.localdomain (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 040083F73D;
-        Fri, 23 Jul 2021 08:39:37 -0700 (PDT)
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>, Icenowy Zheng <icenowy@aosc.io>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        Ondrej Jirman <megous@megous.com>, devicetree@vger.kernel.org
-Subject: [PATCH v8 11/11] arm64: dts: allwinner: h616: Add X96 Mate TV box support
-Date:   Fri, 23 Jul 2021 16:38:38 +0100
-Message-Id: <20210723153838.6785-12-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.14.1
-In-Reply-To: <20210723153838.6785-1-andre.przywara@arm.com>
-References: <20210723153838.6785-1-andre.przywara@arm.com>
+        id S235579AbhGWPEK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 11:04:10 -0400
+Received: from frasgout.his.huawei.com ([185.176.79.56]:3470 "EHLO
+        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235470AbhGWPEJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 11:04:09 -0400
+Received: from fraeml734-chm.china.huawei.com (unknown [172.18.147.206])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4GWYLQ2xgwz6G8Gv;
+        Fri, 23 Jul 2021 23:35:42 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml734-chm.china.huawei.com (10.206.15.215) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Fri, 23 Jul 2021 17:44:40 +0200
+Received: from localhost (10.210.170.238) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2176.2; Fri, 23 Jul
+ 2021 16:44:39 +0100
+Date:   Fri, 23 Jul 2021 16:44:13 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Billy Tsai <billy_tsai@aspeedtech.com>
+CC:     <jic23@kernel.org>, <lars@metafoo.de>, <pmeerw@pmeerw.net>,
+        <robh+dt@kernel.org>, <joel@jms.id.au>, <andrew@aj.id.au>,
+        <p.zabel@pengutronix.de>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
+        <BMC-SW@aspeedtech.com>
+Subject: Re: [v2 6/8] iio: adc: aspeed: Add compensation phase.
+Message-ID: <20210723164413.00003de8@Huawei.com>
+In-Reply-To: <20210723081621.29477-7-billy_tsai@aspeedtech.com>
+References: <20210723081621.29477-1-billy_tsai@aspeedtech.com>
+        <20210723081621.29477-7-billy_tsai@aspeedtech.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
+MIME-Version: 1.0
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.210.170.238]
+X-ClientProxiedBy: lhreml704-chm.china.huawei.com (10.201.108.53) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The X96 Mate is an Allwinner H616 based TV box, featuring:
-  - Four ARM Cortex-A53 cores, Mali-G31 MP2 GPU
-  - 2GiB/4GiB RAM (fully usable!)
-  - 16/32/64GiB eMMC
-  - 100Mbps Ethernet (via embedded AC200 EPHY, not yet supported)
-  - Unsupported Allwinner WiFi chip
-  - 2 x USB 2.0 host ports
-  - HDMI port
-  - IR receiver
-  - 5V/2A DC power supply via barrel plug
+On Fri, 23 Jul 2021 16:16:19 +0800
+Billy Tsai <billy_tsai@aspeedtech.com> wrote:
 
-For more information see: https://linux-sunxi.org/X96_Mate
+> This patch adds a compensation phase to improve the accurate of adc
 
-Add a basic devicetree for it, with SD card and eMMC working, as
-well as serial and the essential peripherals, like the AXP PMIC.
+ADC
 
-This DT is somewhat minimal, and should work on many other similar TV
-boxes with the Allwinner H616 chip.
+> measurement. This is the builtin function though input half of the
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
- arch/arm64/boot/dts/allwinner/Makefile        |   1 +
- .../dts/allwinner/sun50i-h616-x96-mate.dts    | 178 ++++++++++++++++++
- 2 files changed, 179 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
+built-in 
 
-diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-index 62f8d43cf84d..14053c566601 100644
---- a/arch/arm64/boot/dts/allwinner/Makefile
-+++ b/arch/arm64/boot/dts/allwinner/Makefile
-@@ -38,3 +38,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-model-b.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
-+dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-new file mode 100644
-index 000000000000..6334f4e20fd0
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-@@ -0,0 +1,178 @@
-+// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+/*
-+ * Copyright (C) 2021 Arm Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sun50i-h616.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+/ {
-+	model = "X96 Mate";
-+	compatible = "hechuang,x96-mate", "allwinner,sun50i-h616";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	reg_vcc5v: vcc5v {
-+		/* board wide 5V supply directly from the DC input */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-5v";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+};
-+
-+&ir {
-+	status = "okay";
-+};
-+
-+&mmc0 {
-+	vmmc-supply = <&reg_dcdce>;
-+	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
-+	bus-width = <4>;
-+	status = "okay";
-+};
-+
-+&mmc2 {
-+	vmmc-supply = <&reg_dcdce>;
-+	vqmmc-supply = <&reg_bldo1>;
-+	bus-width = <8>;
-+	non-removable;
-+	cap-mmc-hw-reset;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+	status = "okay";
-+};
-+
-+&r_rsb {
-+	status = "okay";
-+
-+	axp305: pmic@745 {
-+		compatible = "x-powers,axp305", "x-powers,axp805",
-+			     "x-powers,axp806";
-+		interrupt-controller;
-+		#interrupt-cells = <1>;
-+		#address-cells = <0>;
-+		reg = <0x745>;
-+
-+		x-powers,self-working-mode;
-+		vina-supply = <&reg_vcc5v>;
-+		vinb-supply = <&reg_vcc5v>;
-+		vinc-supply = <&reg_vcc5v>;
-+		vind-supply = <&reg_vcc5v>;
-+		vine-supply = <&reg_vcc5v>;
-+		aldoin-supply = <&reg_vcc5v>;
-+		bldoin-supply = <&reg_vcc5v>;
-+		cldoin-supply = <&reg_vcc5v>;
-+
-+		regulators {
-+			reg_aldo1: aldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc-sys";
-+			};
-+
-+			/* Enabled by the Android BSP */
-+			reg_aldo2: aldo2 {
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc3v3-ext";
-+				status = "disabled";
-+			};
-+
-+			/* Enabled by the Android BSP */
-+			reg_aldo3: aldo3 {
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc3v3-ext2";
-+				status = "disabled";
-+			};
-+
-+			reg_bldo1: bldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc1v8";
-+			};
-+
-+			/* Enabled by the Android BSP */
-+			reg_bldo2: bldo2 {
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc1v8-2";
-+				status = "disabled";
-+			};
-+
-+			bldo3 {
-+				/* unused */
-+			};
-+
-+			bldo4 {
-+				/* unused */
-+			};
-+
-+			cldo1 {
-+				regulator-min-microvolt = <2500000>;
-+				regulator-max-microvolt = <2500000>;
-+				regulator-name = "vcc2v5";
-+			};
-+
-+			cldo2 {
-+				/* unused */
-+			};
-+
-+			cldo3 {
-+				/* unused */
-+			};
-+
-+			reg_dcdca: dcdca {
-+				regulator-always-on;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <1080000>;
-+				regulator-name = "vdd-cpu";
-+			};
-+
-+			reg_dcdcc: dcdcc {
-+				regulator-always-on;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <1080000>;
-+				regulator-name = "vdd-gpu-sys";
-+			};
-+
-+			reg_dcdcd: dcdcd {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1360000>;
-+				regulator-max-microvolt = <1360000>;
-+				regulator-name = "vdd-dram";
-+			};
-+
-+			reg_dcdce: dcdce {
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc-eth-mmc";
-+			};
-+
-+			sw {
-+				/* unused */
-+			};
-+		};
-+	};
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_ph_pins>;
-+	status = "okay";
-+};
--- 
-2.17.6
+> reference voltage to get the adc offset.
+
+ADC
+
+> 
+> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
+> ---
+>  drivers/iio/adc/aspeed_adc.c | 52 ++++++++++++++++++++++++++++++++++--
+>  1 file changed, 50 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/aspeed_adc.c b/drivers/iio/adc/aspeed_adc.c
+> index bb6100228cae..0153b28b83b7 100644
+> --- a/drivers/iio/adc/aspeed_adc.c
+> +++ b/drivers/iio/adc/aspeed_adc.c
+> @@ -61,6 +61,7 @@
+>   * rate for most user case.
+>   */
+>  #define ASPEED_ADC_DEF_SAMPLING_RATE	65000
+> +#define ASPEED_ADC_MAX_RAW_DATA		GENMASK(9, 0)
+>  
+>  enum aspeed_adc_version {
+>  	aspeed_adc_ast2400,
+> @@ -84,6 +85,7 @@ struct aspeed_adc_data {
+>  	struct reset_control	*rst;
+>  	int			vref;
+>  	u32			sample_period_ns;
+> +	int			cv;
+>  };
+>  
+>  #define ASPEED_CHAN(_idx, _data_reg_addr) {			\
+> @@ -115,6 +117,48 @@ static const struct iio_chan_spec aspeed_adc_iio_channels[] = {
+>  	ASPEED_CHAN(15, 0x2E),
+>  };
+>  
+> +static int aspeed_adc_compensation(struct platform_device *pdev)
+> +{
+> +	struct iio_dev *indio_dev = platform_get_drvdata(pdev);
+
+Same comment as previous patches.  pdev doesn't seem to be the best thing
+to pass into these functions.
+
+> +	struct aspeed_adc_data *data = iio_priv(indio_dev);
+> +	u32 index, adc_raw = 0;
+> +	u32 adc_engine_control_reg_val =
+> +		readl(data->base + ASPEED_REG_ENGINE_CONTROL);
+
+blank line here. In this case I would suggest
+
+	u32 adc_engine_control_reg_val;
+
+	adc_engine_control_reg_val = readl(...)
+	
+	adc_engine_control_reg_val |= ...
+
+Whilst we are hear, I'd normally also expect to see a mask to ensure that
+we have no stray bits set.  In this particular case MODE_NORMAL is the mask
+but the reviewer shoudn't need to check that!
+
+> +	adc_engine_control_reg_val |=
+> +		(ASPEED_ADC_OPERATION_MODE_NORMAL | ASPEED_ADC_ENGINE_ENABLE);
+> +
+> +	/*
+> +	 * Enable compensating sensing:
+> +	 * After that, the input voltage of adc will force to half of the reference
+
+"ADC" in all places it appears in comments.
+
+> +	 * voltage. So the expected reading raw data will become half of the max
+> +	 * value. We can get compensating value = 0x200 - adc read raw value.
+> +	 * It is recommended to average at least 10 samples to get a final CV.
+> +	 */
+> +	writel(adc_engine_control_reg_val | ASPEED_ADC_CTRL_COMPENSATION |
+> +		       ASPEED_ADC_CTRL_CHANNEL_ENABLE(0),
+> +	       data->base + ASPEED_REG_ENGINE_CONTROL);
+> +	/*
+> +	 * After enable compensating sensing mode need to wait some time for adc stable
+> +	 * Experiment result is 1ms.
+> +	 */
+> +	mdelay(1);
+> +
+> +	for (index = 0; index < 16; index++) {
+> +		/*
+> +		 * Waiting for the sampling period ensures that the value acquired
+> +		 * is fresh each time.
+> +		 */
+> +		ndelay(data->sample_period_ns);
+> +		adc_raw += readw(data->base + aspeed_adc_iio_channels[0].address);
+> +	}
+> +	adc_raw >>= 4;
+> +	data->cv = BIT(ASPEED_RESOLUTION_BITS - 1) - adc_raw;
+> +	writel(adc_engine_control_reg_val,
+> +	       data->base + ASPEED_REG_ENGINE_CONTROL);
+> +	dev_dbg(data->dev, "compensating value = %d\n", data->cv);
+
+Blank line here.
+
+> +	return 0;
+> +}
+> +
+>  static int aspeed_adc_set_sampling_rate(struct iio_dev *indio_dev, u32 rate)
+>  {
+>  	struct aspeed_adc_data *data = iio_priv(indio_dev);
+> @@ -143,7 +187,11 @@ static int aspeed_adc_read_raw(struct iio_dev *indio_dev,
+>  
+>  	switch (mask) {
+>  	case IIO_CHAN_INFO_RAW:
+> -		*val = readw(data->base + chan->address);
+> +		*val = readw(data->base + chan->address) + data->cv;
+
+We would normally express this as IIO_CHAN_INFO_OFFSET, thus allowing
+userspace to see and apply the compensation offset.  It could also modify
+it if necessary (perhaps some long term drift effect or temperature effect
+might mean userspace has more info than the kernel).
+
+> +		if (*val < 0)
+> +			*val = 0;
+> +		else if (*val >= ASPEED_ADC_MAX_RAW_DATA)
+> +			*val = ASPEED_ADC_MAX_RAW_DATA;
+
+Why clamp the value like this? I'm not sure I follow the logic. Is it
+because some userspace might rely on the existing range?
+
+>  		return IIO_VAL_INT;
+>  
+>  	case IIO_CHAN_INFO_SCALE:
+> @@ -347,7 +395,7 @@ static int aspeed_adc_probe(struct platform_device *pdev)
+>  		if (ret)
+>  			goto poll_timeout_error;
+>  	}
+> -
+Keep the blank line.
+
+> +	aspeed_adc_compensation(pdev);
+>  	adc_engine_control_reg_val =
+>  		readl(data->base + ASPEED_REG_ENGINE_CONTROL);
+>  	/* Start all channels in normal mode. */
 
