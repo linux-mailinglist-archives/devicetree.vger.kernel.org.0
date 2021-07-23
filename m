@@ -2,124 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 77E0A3D314D
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 03:30:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2D463D3199
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 04:26:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233073AbhGWAtc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 20:49:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55492 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233040AbhGWAtc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jul 2021 20:49:32 -0400
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6BDDC061575
-        for <devicetree@vger.kernel.org>; Thu, 22 Jul 2021 18:30:05 -0700 (PDT)
-Received: by mail-pj1-x1036.google.com with SMTP id l19so128101pjz.0
-        for <devicetree@vger.kernel.org>; Thu, 22 Jul 2021 18:30:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=f06gqWc2bEaZJ6nbd8VrGNk6zDGVJAhrmVyUATfeuhY=;
-        b=uH3LTYq9lKkVh6FySVISF2uXoH17+HO/ef+NS7sXs7p8VhOdVPTkf+xDywOJI7ZGeq
-         J5vyXN5sIk5K28aSYCheQLYmLarcrwifRRqWOMDtKPWn4zvvxSsqTA/LMekE9uKmElQt
-         WO5XrD/lpIAFXo8o3ZlXZ2RLIn59Lahw6A0UOEnlf43IpUPKvrAWKBWbPmx+otKNLFFa
-         cTbOkddzUhdmQKUP9KIBFD+aEtLvw3nJaXWw8iW5F28MT+IBeoNC6LThOpDqosoE+XhQ
-         /2s1NQSFVXpy9aIoXoI7voS5KTgATBCgzW+ijmB6nTwYCppDaFbliHaMHs227vBPnrLv
-         UQEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=f06gqWc2bEaZJ6nbd8VrGNk6zDGVJAhrmVyUATfeuhY=;
-        b=n7p3D9jBTlju/h+0OeeYPkVf6jBhkjG7qnq61mMaLv0zpu9af++oJRn9de9N//uQvv
-         Vd2yb+Ja4FS86VnzrknHaz83lVdldjtnJr0r56Po/q3Iept1qlaWUOVhezGkJpnajreB
-         j3vknlgjqrzSSBMNce4gjeYi3r0ZTcmaTfvmOwLNsEzZ1wtJdQ1y57fyZPAfVr2Ki5cF
-         aeBpUEurCj9cJ2gf+D825dKSDxH9oAQkNlSt0TBkf7UTV4lBwmxqtD+XDKJgcNMczTrq
-         9KXQWYJyLO+6vMlGHlDFnucOSTHvCrulk05O5uyJAm4aIaYcELPKKeecG/7zGBq0bsJ2
-         sQQA==
-X-Gm-Message-State: AOAM530HSgkumSIgQ8X6R/wd1Y0LjozEAwtNsUHK+LqAlEWwSdzHrwZu
-        aU28hZls+HFuioTrDFHPj4Z8uQ==
-X-Google-Smtp-Source: ABdhPJydmHBLdYGZ806rSsmrNTgmWWvO9B0B1rmVcJM9THK88hoR6AIbtcF5apFDFRDUXuwolLnX+g==
-X-Received: by 2002:a17:90a:4586:: with SMTP id v6mr2402677pjg.36.1627003805157;
-        Thu, 22 Jul 2021 18:30:05 -0700 (PDT)
-Received: from localhost ([106.201.108.2])
-        by smtp.gmail.com with ESMTPSA id z15sm35760876pgc.13.2021.07.22.18.30.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Jul 2021 18:30:04 -0700 (PDT)
-Date:   Fri, 23 Jul 2021 07:00:00 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Arnd Bergmann <arnd@kernel.org>
-Cc:     Jason Wang <jasowang@redhat.com>,
-        "Michael S. Tsirkin" <mst@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>,
-        Alex =?utf-8?Q?Benn=C3=A9e?= <alex.bennee@linaro.org>,
-        "Enrico Weigelt, metux IT consult" <info@metux.net>,
-        Jie Deng <jie.deng@intel.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE" 
-        <virtualization@lists.linux-foundation.org>
-Subject: Re: [PATCH V2 5/5] virtio: Bind virtio device to device-tree node
-Message-ID: <20210723013000.h43nfnrrichg6nap@vireshk-i7>
-References: <cover.1626947324.git.viresh.kumar@linaro.org>
- <026ad5f274d64d46590623f9f3a04b8abfbe62d7.1626947324.git.viresh.kumar@linaro.org>
- <CAK8P3a0iQ5dt_38Y9j6XCoj=n7YA+cPz7i6mjP24k9WY7QL+oA@mail.gmail.com>
+        id S233224AbhGWBp3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 21:45:29 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:38633 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233193AbhGWBp3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Jul 2021 21:45:29 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id EF8395808BF;
+        Thu, 22 Jul 2021 22:26:02 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Thu, 22 Jul 2021 22:26:02 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm2; bh=piA92a2BDHjHVta7hxYES50nPA
+        VoWHmEd4CMr4Jw8yE=; b=O8i9iPg61BaVTDHJ+7F+p+K4obNfEWnV06plnrbs9V
+        gz59nVBrnMGyyl4ydd+J6VQ0J4TL/YghErBXWSzSNMq3046Nbubiv+JZ0q6P6nFq
+        AEo2wseY7rd/ysKnq402bSfCZCWUbAyt0fDZZK2XdgrlD+bIvOI1uXMaVHk5BKkv
+        V20slIVEOaXATSB/LIQT0Ei3uVztAsXDia8PWZD9nNDmCSPs6sDvCvzfHVUHWEyd
+        26qdkHb4CU1E1c87S4+J7ZeD4CjW7JvfgRn9tdbeWnUdVVQOBjUWZKS3Wav+BQ8n
+        OEvtgqRfualemWnGtmNNynV40m828rbL5mFIN8QGMrbw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=piA92a2BDHjHVta7h
+        xYES50nPAVoWHmEd4CMr4Jw8yE=; b=ZQ6hpGobMwmOQxd1rEYvmPe5JHMCNGCeA
+        nj0uOGapBXCKamXa7S9hx4ZDYMkNOeR31RrVUxnfBZok9j0uCYNfBlrowDEGn7eS
+        lD0Nn+HSnzb6f9LtqwZP5ov12KjhSfJTKab8FnIwrMjiqvCmqmVCF9jI8Qztqsbn
+        NFzdvGFIHg9Ls31RGrbGkmrV0Toa6PWq+ThyZCuMV4bbMCOrY0+2o2iOKwTzkj7b
+        qgtsh+/UUZKdUwo3XhksbnRbpuCbzwJHX7B3lGRPN66yV1Hd0OK2ERfEOfobhozh
+        x8CpBN1BhSxe+o1BA5/qIfBTgaINJGnT8mc+kxKUvTEEJwp5avMgA==
+X-ME-Sender: <xms:uij6YA-berd2T20nD87zdunn_9Al21zaSp3J7v0CcuKYS37EEGWI4A>
+    <xme:uij6YIubTYKKjM7bKFzjLLiUQLMQaFMiQZnG4CLzW1b84jxKyFyUqNIpCKEOMgfmR
+    Uhs_Ph9UL3Mz2yt-mw>
+X-ME-Received: <xmr:uij6YGB0ThpkdKp1pRLlKp9_BbCWtIAzRT6Vl8P1Ug_MnydkuF6j6vTIpYEVafLNsXMlKqwIjFxg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeejgdehhecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffoggfgsedtkeertdertd
+    dtnecuhfhrohhmpeflihgrgihunhcujggrnhhguceojhhirgiguhhnrdihrghnghesfhhl
+    hihgohgrthdrtghomheqnecuggftrfgrthhtvghrnhepgeffjeeitdegieeujedvvdeije
+    etkeefueevteeltdeiheffgfeuffduiefgtedvnecuffhomhgrihhnpedtuddrohhrghen
+    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehjihgrgi
+    hunhdrhigrnhhgsehflhihghhorghtrdgtohhm
+X-ME-Proxy: <xmx:uij6YAc5WX1sUpH0A6_9XYJ2magHEth3mi_UxIOnZ9WcTdWSHs-UOQ>
+    <xmx:uij6YFNW8WirigQDIVu5EwN_Qz_zJ26lGiSNrcjU9pS0RGSfc_rb4A>
+    <xmx:uij6YKnvupEuFHbKZ4Y1BuqcA43yIH0xTvcXo5MYo0lfhb-AiNpIRQ>
+    <xmx:uij6YGEj9lVbGfrGG17fkIQTPbnvoVjYu-5pUSV1D4Hw7ZKBA9iXZQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 22 Jul 2021 22:25:57 -0400 (EDT)
+From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
+To:     linux-mips@vger.kernel.org
+Cc:     tsbogend@alpha.franken.de, mturquette@baylibre.com,
+        daniel.lezcano@linaro.org, linus.walleij@linaro.org,
+        vkoul@kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>
+Subject: [PATCH v4 0/9] MIPS: Migrate pistachio to generic kernel
+Date:   Fri, 23 Jul 2021 10:25:34 +0800
+Message-Id: <20210723022543.4095-1-jiaxun.yang@flygoat.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAK8P3a0iQ5dt_38Y9j6XCoj=n7YA+cPz7i6mjP24k9WY7QL+oA@mail.gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-07-21, 16:52, Arnd Bergmann wrote:
-> On Thu, Jul 22, 2021 at 11:56 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
-> >
-> > +/* Virtio device compatibles and IDs */
-> > +static const struct of_device_id of_virtio_devices[] = {
-> > +       { .compatible = "virtio,22", .data = (void *)VIRTIO_ID_I2C_ADAPTER },
-> > +       { .compatible = "virtio,29", .data = (void *)VIRTIO_ID_GPIO },
-> > +       { }
-> > +};
-> > +
-> > +static int virtio_device_of_init(struct virtio_device *dev)
-> > +{
-> > +       struct device_node *np, *pnode = dev->dev.parent->of_node;
-> > +       const struct of_device_id *match;
-> > +       int ret, count;
-> > +
-> > +       if (!pnode)
-> > +               return 0;
-> > +
-> > +       count = of_get_available_child_count(pnode);
-> > +       if (!count)
-> > +               return 0;
-> > +
-> > +       /* There can be only 1 child node */
-> > +       if (WARN_ON(count > 1))
-> > +               return -EINVAL;
-> > +
-> > +       np = of_get_next_available_child(pnode, NULL);
-> > +       if (WARN_ON(!np))
-> > +               return -ENODEV;
-> > +
-> > +       match = of_match_node(of_virtio_devices, np);
-> > +       if (!match) {
-> > +               ret = -ENODEV;
-> > +               goto out;
-> > +       }
-> 
-> I think it would be better not to have to enumerate the of_virtio_devices[]
-> strings, but instead use of_device_is_compatible() to match against
-> "virtio,%d". Otherwise we end up modifying this function for every
-> virtio driver that needs a binding.
+I'm lucky enough to get a Creator CI40 board from dusts.
+This patchset move it to gerneic kernel to reduce maintenance burden.
+It have been tested with SD Card boot.
 
-Yeah, will do that.
+--
+v2: Minor fixes
+v3: Typo fixes and 0day testbot warning fix (Thanks to Sergei!)
+v4: 01.org warning fix
+
+Jiaxun Yang (9):
+  MIPS: generic: Allow generating FIT image for Marduk board
+  MIPS: DTS: Pistachio add missing cpc and cdmm
+  clk: pistachio: Make it selectable for generic MIPS kernel
+  clocksource/drivers/pistachio: Make it selectable for MIPS
+  phy: pistachio-usb: Depend on MIPS || COMPILE_TEST
+  pinctrl: pistachio: Make it as an option
+  MIPS: config: generic: Add config for Marduk board
+  MIPS: Retire MACH_PISTACHIO
+  MIPS: Make a alias for pistachio_defconfig
+
+ arch/mips/Kbuild.platforms                    |   1 -
+ arch/mips/Kconfig                             |  30 --
+ arch/mips/Makefile                            |   3 +
+ arch/mips/boot/dts/Makefile                   |   2 +-
+ arch/mips/boot/dts/img/Makefile               |   3 +-
+ arch/mips/boot/dts/img/pistachio.dtsi         |  10 +
+ arch/mips/configs/generic/board-marduk.config |  53 +++
+ arch/mips/configs/pistachio_defconfig         | 316 ------------------
+ arch/mips/generic/Kconfig                     |   6 +
+ arch/mips/generic/Platform                    |   1 +
+ arch/mips/generic/board-marduk.its.S          |  22 ++
+ arch/mips/pistachio/Kconfig                   |  14 -
+ arch/mips/pistachio/Makefile                  |   2 -
+ arch/mips/pistachio/Platform                  |   6 -
+ arch/mips/pistachio/init.c                    | 125 -------
+ arch/mips/pistachio/irq.c                     |  24 --
+ arch/mips/pistachio/time.c                    |  55 ---
+ drivers/clk/Kconfig                           |   1 +
+ drivers/clk/Makefile                          |   2 +-
+ drivers/clk/pistachio/Kconfig                 |   8 +
+ drivers/clocksource/Kconfig                   |   3 +-
+ drivers/phy/Kconfig                           |   2 +-
+ drivers/pinctrl/Kconfig                       |   5 +-
+ 23 files changed, 114 insertions(+), 580 deletions(-)
+ create mode 100644 arch/mips/configs/generic/board-marduk.config
+ delete mode 100644 arch/mips/configs/pistachio_defconfig
+ create mode 100644 arch/mips/generic/board-marduk.its.S
+ delete mode 100644 arch/mips/pistachio/Kconfig
+ delete mode 100644 arch/mips/pistachio/Makefile
+ delete mode 100644 arch/mips/pistachio/Platform
+ delete mode 100644 arch/mips/pistachio/init.c
+ delete mode 100644 arch/mips/pistachio/irq.c
+ delete mode 100644 arch/mips/pistachio/time.c
+ create mode 100644 drivers/clk/pistachio/Kconfig
 
 -- 
-viresh
+2.32.0
+
