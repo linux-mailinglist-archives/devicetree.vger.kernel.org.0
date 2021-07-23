@@ -2,100 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85B4F3D41C3
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 22:53:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2C063D41EA
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 23:04:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229655AbhGWUMY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 16:12:24 -0400
-Received: from mail-il1-f169.google.com ([209.85.166.169]:39485 "EHLO
-        mail-il1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229530AbhGWUMX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 16:12:23 -0400
-Received: by mail-il1-f169.google.com with SMTP id r1so2727328iln.6;
-        Fri, 23 Jul 2021 13:52:56 -0700 (PDT)
+        id S231684AbhGWUYV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 16:24:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41046 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231350AbhGWUYV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 16:24:21 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0390DC061757
+        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 14:04:54 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id h11so3189792ljo.12
+        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 14:04:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+du+0LHLfACLmN4y/oi02W5K+tfyhYdkNu9bdamCZoA=;
+        b=PU8ExjLpqbQ7v0/Tet2GfCUlvlxrEFfeIpx99CC6Xk5+aELtn+8O2bULpwHlEZGAvn
+         NnHZbXmI78vEHdBxHtZdyoo4dhMLlT2nPyNgRDVcWyxKJotHDsvBsAI/8Q/F8l4YOnBQ
+         AyrT7aqeEglidsG7hJLMiRgyvgQ3JRMk5SYfTEVV7ThBCZJm5KFsOk5f+lvBLw0btP4d
+         42l2xOo19oJRKfeJBplz2KKkTKwgw9DGVyLxFvfQXjpTCqIQwObnvEaazH8ZHwd4Oykv
+         zukRN0buICPccVlmtRqHaOmhc4TWJsks2Iy/oXmqVOytYVEv4MmzD+t8N/9ISPqhEy9e
+         2cog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=/AvCVAOPmzcCvwso3MEXLVk+T/5PwdgBQwVXHtVRXLQ=;
-        b=oWIJBerd44fkYcRajHOtmSiA4F+zX58JY8MBU/mFlb9Ec0NVLHjYD8AgzdnqehSfmy
-         tEYu7NSHSqHHEtF7/OM/UtNBkMrTzGsfNNvqAzv9Z432gFiVVq1RtRJshsIxXVgk8pIL
-         JcIPFgdLAmAiZjge65ehaz1c2hCteIvE9k+9PqAVWj1VFKOeYGfmW3Nms+cDADLkLn84
-         oTIVThvC0lKN/ouWCjqddvzivFHy9nXOZMtmUmwdxfB/RjJeAalDyj1O/3x0KGvZ2n8P
-         JzXICfYde7quGLNxbkmN9Oozu5PHgziv8OVcCsp0acWHKGcv2M5fDT/+vGHISb6r7s83
-         gm0Q==
-X-Gm-Message-State: AOAM53273Z27WEZOvAy1GTChH6ampyUM6k45so0MJ5Blhj6C08QwufKT
-        65aqsRgYT7V/EcqBwzeMwQ==
-X-Google-Smtp-Source: ABdhPJxvyJlQGFCcyKOtEJ0bf1BBxsJ28bUJFu7YWDYae3GdTeNkSKQFyAoEaqUht/s6+GRgsvUV4A==
-X-Received: by 2002:a92:d5cf:: with SMTP id d15mr4618870ilq.194.1627073575770;
-        Fri, 23 Jul 2021 13:52:55 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id m26sm18982919ioo.23.2021.07.23.13.52.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jul 2021 13:52:55 -0700 (PDT)
-Received: (nullmailer pid 2560560 invoked by uid 1000);
-        Fri, 23 Jul 2021 20:52:52 -0000
-Date:   Fri, 23 Jul 2021 14:52:52 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Alex Elder <elder@linaro.org>
-Cc:     bjorn.andersson@linaro.org, agross@kernel.org, davem@davemloft.net,
-        kuba@kernel.org, evgreen@chromium.org, cpratapa@codeaurora.org,
-        subashab@codeaurora.org, elder@kernel.org,
-        linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 1/3] dt-bindings: net: qcom,ipa: make imem
- interconnect optional
-Message-ID: <20210723205252.GA2550230@robh.at.kernel.org>
-References: <20210719212456.3176086-1-elder@linaro.org>
- <20210719212456.3176086-2-elder@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+du+0LHLfACLmN4y/oi02W5K+tfyhYdkNu9bdamCZoA=;
+        b=BAf0rwrT5YqubZNO6quiMD9GoK2qJNpf9Nx3nDSe+uHr7BAb3iGxNkZ/yED7pB3ThG
+         eBPZk1XFeGnp7k8Ew+de+ZZM1JTtiWLIbZgPUHKyCVdmmYx8VBYLF5yUmperikH2E2yv
+         0JWkUzxrr16/0iVbmKTSkAvFigaYxerubOXhVL+QfvIRFIyw85RPeUKikE0F09aRnMNZ
+         kIDTW3Fmvz7lsSRpNf8ZZep7yWT/057MlaBb8VvoKFvuRJQ8HWd0n2PsbNoq7grhIImU
+         pyhuPgmJqmK1wsXZ+IfE6Rd148THV/lM5fpE8Vh24E9o9m14s5E1KlWmPBfa2mhZXg76
+         AeoA==
+X-Gm-Message-State: AOAM5324n5EgZ2ji1o7mhTLQhgT2TE9yQrEU20WETN5jrPuGrUEgmQdt
+        jVm+B/mv2rdjQrENutdFF8dgXTHu+yzrap7p0qHeiQ==
+X-Google-Smtp-Source: ABdhPJxQWYsOWFLVby006xkxrHiuFL3EnCGftMH8g5GForQjSavZnil4OEtYwmjZFYh8qrp4mdkJspxPgo3NmEIWfGc=
+X-Received: by 2002:a2e:9d15:: with SMTP id t21mr4501765lji.200.1627074292231;
+ Fri, 23 Jul 2021 14:04:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210719212456.3176086-2-elder@linaro.org>
+References: <20210701002037.912625-1-drew@beagleboard.org> <20210701002037.912625-3-drew@beagleboard.org>
+ <8c59105d32a9936f8806501ecd20e044@walle.cc>
+In-Reply-To: <8c59105d32a9936f8806501ecd20e044@walle.cc>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 23 Jul 2021 23:04:41 +0200
+Message-ID: <CACRpkdbhKsuXZiLCh_iajJQWDdQQOZ87QF3xDr5Vc66SoVCnxQ@mail.gmail.com>
+Subject: Re: [RFC PATH 2/2] gpio: starfive-jh7100: Add StarFive JH7100 GPIO driver
+To:     Michael Walle <michael@walle.cc>
+Cc:     Drew Fustini <drew@beagleboard.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Michael Zhu <michael.zhu@starfivetech.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Fu Wei <tekkamanninja@gmail.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Huan Feng <huan.feng@starfivetech.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 19, 2021 at 04:24:54PM -0500, Alex Elder wrote:
-> On some newer SoCs, the interconnect between IPA and SoC internal
-> memory (imem) is not used.  Reflect this in the binding by moving
-> the definition of the "imem" interconnect to the end and defining
-> minItems to be 2 for both the interconnects and interconnect-names
-> properties.
-> 
-> Signed-off-by: Alex Elder <elder@linaro.org>
-> ---
->  .../devicetree/bindings/net/qcom,ipa.yaml      | 18 ++++++++++--------
->  1 file changed, 10 insertions(+), 8 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/qcom,ipa.yaml b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-> index ed88ba4b94df5..4853ab7017bd9 100644
-> --- a/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-> +++ b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-> @@ -87,16 +87,18 @@ properties:
->        - const: ipa-setup-ready
->  
->    interconnects:
-> +    minItems: 2
->      items:
-> -      - description: Interconnect path between IPA and main memory
-> -      - description: Interconnect path between IPA and internal memory
-> -      - description: Interconnect path between IPA and the AP subsystem
-> +      - description: Path leading to system memory
-> +      - description: Path between the AP and IPA config space
-> +      - description: Path leading to internal memory
->  
->    interconnect-names:
-> +    minItems: 2
->      items:
->        - const: memory
-> -      - const: imem
->        - const: config
-> +      - const: imem
+On Thu, Jul 1, 2021 at 8:39 AM Michael Walle <michael@walle.cc> wrote:
+> Am 2021-07-01 02:20, schrieb Drew Fustini:
+> > Add GPIO driver for the StarFive JH7100 SoC [1] used on the
+> > BeagleV Starlight JH7100 board [2].
+> >
+> > [1] https://github.com/starfive-tech/beaglev_doc/
+> > [2] https://github.com/beagleboard/beaglev-starlight
+> >
+> > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> > Signed-off-by: Huan Feng <huan.feng@starfivetech.com>
+> > Signed-off-by: Drew Fustini <drew@beagleboard.org>
+>
+> Could this driver use GPIO_REGMAP and REGMAP_IRQ? See
+> drivers/gpio/gpio-sl28cpld.c for an example.
 
-What about existing users? This will generate warnings. Doing this for 
-the 2nd item would avoid the need for .dts updates:
+To me it looks just memory-mapped?
 
-- enum: [ imem, config ]
+Good old gpio-mmio.c (select GPIO_GENERIC) should
+suffice I think.
 
-Rob
+Drew please look at drivers/gpio/gpio-ftgpio010.c for an example
+of GPIO_GENERIC calling bgpio_init() in probe().
+
+Yours,
+Linus Walleij
