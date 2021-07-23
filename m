@@ -2,61 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D58103D3239
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 05:30:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED4C63D3297
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 05:58:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233526AbhGWCte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 22:49:34 -0400
-Received: from mail.kernel.org ([198.145.29.99]:32956 "EHLO mail.kernel.org"
+        id S234020AbhGWDRc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 23:17:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37608 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233499AbhGWCtd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Jul 2021 22:49:33 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2CDEA60EBD;
-        Fri, 23 Jul 2021 03:30:06 +0000 (UTC)
+        id S233870AbhGWDRN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Jul 2021 23:17:13 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 1822860EE6;
+        Fri, 23 Jul 2021 03:57:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627011007;
-        bh=YErrO5x/unzIGIs/Nw2Woznbf+pZoN0es7LVf9cgeTQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Wl8sN8xB098z7yNK9TLDFtVG56/NjvUzzYhVIjv4LIk4E5wUhqCe7nsDg5jwCQ8LF
-         9K+6I7qVl70DJKwmxffe5X7yEIWsS9/+xJ3uiB48AV6ItRA2upVk0lNGTkuKL3tbmh
-         IDGtpljZpaMzcUwxbH4+6lOffreqAlLr2zXf4fuMgnW5wntlrO/KryP9/aiaKVCKzD
-         x870fSX62SZxJ7TD+qJLUm8Mgr+0NwIAKmitdhd/vzFVQAzc98p3/KcwX/DQKcel5S
-         I0NDKJ6n9lZZ+8BoXlr1wMXCSgKjrGJk2kLK1RKM7LpfxiGVKNEiWhOIhWH1UJlyRL
-         vjYwqb/52wH9w==
-Date:   Fri, 23 Jul 2021 11:30:02 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        kernel@dh-electronics.com, Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH V3] dt-bindings: arm: fsl: Add DHCOM PicoITX and DHCOM
- DRC02 boards
-Message-ID: <20210723032953.GI28658@dragon>
-References: <20210714202252.5898-1-cniedermaier@dh-electronics.com>
+        s=k20201202; t=1627012667;
+        bh=IvaR99okyfXtAYNEkh/0FqubNa6g3Pw/UCxd58DNFpA=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=FqBwSzIIaAdbsa+Pj/Hy1sKeWIKzBtFPTuFZ7KBxluhgOF5qMdClFG/C7xy7wZRS+
+         Zh80g1U7I422nXRaRG47L3gwY98Ym2YSJSXiYh8JA37qdHaIsOkxScRPQwJIpeDj/1
+         HNzTA0W/WgZcvVd1dYdR7BfVKLR3bD+RaXgEXF8QUkR1CLAvdiPPFWgdQ8FEZd3zo0
+         lmE+9GQAvJ/ke8VofgmTJDYSchM8DC/zoDtqGEnEhNDDxQnIOtS4iJe2b+TkPuQ2mI
+         wGc1kFG2Djw/pjwIisR/QwpJPK+oZ4rjCSphb+QOQiF0eV/DFgzEyfOq0N0Ni2UOPH
+         gtkRfqUbYc1HA==
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Sudeep Holla <sudeep.holla@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, Sasha Levin <sashal@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.13 19/19] ARM: dts: versatile: Fix up interrupt controller node names
+Date:   Thu, 22 Jul 2021 23:57:20 -0400
+Message-Id: <20210723035721.531372-19-sashal@kernel.org>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210723035721.531372-1-sashal@kernel.org>
+References: <20210723035721.531372-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210714202252.5898-1-cniedermaier@dh-electronics.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 14, 2021 at 10:22:52PM +0200, Christoph Niedermaier wrote:
-> Add DH electronics DHCOM PicoITX and DHCOM DRC02 boards. The DHCOM DRC02
-> device can only house a SOM with iMX6S and not with iMX6DL, due to some
-> thermal design consideration. But for compatible fsl,imx6dl is chosen,
-> because fsl,imx6s isn't available, the iMX6S is basically a iMX6DL with
-> one CPU core disabled and therefore the kernel discerns the iMX6S/iMX6DL
-> automatically.
-> 
-> Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: robh+dt@kernel.org
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: kernel@dh-electronics.com
-> Cc: Fabio Estevam <festevam@denx.de>
-> To: devicetree@vger.kernel.org
+From: Sudeep Holla <sudeep.holla@arm.com>
 
-Applied, thanks!
+[ Upstream commit 82a1c67554dff610d6be4e1982c425717b3c6a23 ]
+
+Once the new schema interrupt-controller/arm,vic.yaml is added, we get
+the below warnings:
+
+        arch/arm/boot/dts/versatile-ab.dt.yaml:
+        intc@10140000: $nodename:0: 'intc@10140000' does not match
+        '^interrupt-controller(@[0-9a-f,]+)*$'
+
+	arch/arm/boot/dts/versatile-ab.dt.yaml:
+	intc@10140000: 'clear-mask' does not match any of the regexes
+
+Fix the node names for the interrupt controller to conform
+to the standard node name interrupt-controller@.. Also drop invalid
+clear-mask property.
+
+Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+Acked-by: Linus Walleij <linus.walleij@linaro.org>
+Link: https://lore.kernel.org/r/20210701132118.759454-1-sudeep.holla@arm.com'
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm/boot/dts/versatile-ab.dts | 5 ++---
+ arch/arm/boot/dts/versatile-pb.dts | 2 +-
+ 2 files changed, 3 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm/boot/dts/versatile-ab.dts b/arch/arm/boot/dts/versatile-ab.dts
+index 37bd41ff8dff..151c0220047d 100644
+--- a/arch/arm/boot/dts/versatile-ab.dts
++++ b/arch/arm/boot/dts/versatile-ab.dts
+@@ -195,16 +195,15 @@ amba {
+ 		#size-cells = <1>;
+ 		ranges;
+ 
+-		vic: intc@10140000 {
++		vic: interrupt-controller@10140000 {
+ 			compatible = "arm,versatile-vic";
+ 			interrupt-controller;
+ 			#interrupt-cells = <1>;
+ 			reg = <0x10140000 0x1000>;
+-			clear-mask = <0xffffffff>;
+ 			valid-mask = <0xffffffff>;
+ 		};
+ 
+-		sic: intc@10003000 {
++		sic: interrupt-controller@10003000 {
+ 			compatible = "arm,versatile-sic";
+ 			interrupt-controller;
+ 			#interrupt-cells = <1>;
+diff --git a/arch/arm/boot/dts/versatile-pb.dts b/arch/arm/boot/dts/versatile-pb.dts
+index 06a0fdf24026..e7e751a858d8 100644
+--- a/arch/arm/boot/dts/versatile-pb.dts
++++ b/arch/arm/boot/dts/versatile-pb.dts
+@@ -7,7 +7,7 @@ / {
+ 
+ 	amba {
+ 		/* The Versatile PB is using more SIC IRQ lines than the AB */
+-		sic: intc@10003000 {
++		sic: interrupt-controller@10003000 {
+ 			clear-mask = <0xffffffff>;
+ 			/*
+ 			 * Valid interrupt lines mask according to
+-- 
+2.30.2
+
