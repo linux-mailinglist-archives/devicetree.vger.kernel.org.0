@@ -2,179 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 512733D3699
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 10:23:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D52193D36C2
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 10:33:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234480AbhGWHmw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 03:42:52 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:42264 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S234443AbhGWHmu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 03:42:50 -0400
-X-UUID: abf16b55734e49b9b9e28d41dd372acd-20210723
-X-UUID: abf16b55734e49b9b9e28d41dd372acd-20210723
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 725778532; Fri, 23 Jul 2021 16:23:21 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs06n2.mediatek.inc (172.21.101.130) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 23 Jul 2021 16:23:19 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 23 Jul 2021 16:23:19 +0800
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Vinod Koul <vkoul@kernel.org>
-CC:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
+        id S234337AbhGWHvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 03:51:39 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:24585 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234313AbhGWHvj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 03:51:39 -0400
+Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
+  by alexa-out.qualcomm.com with ESMTP; 23 Jul 2021 01:32:11 -0700
+X-QCInternal: smtphost
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/AES256-SHA; 23 Jul 2021 01:32:08 -0700
+X-QCInternal: smtphost
+Received: from c-skakit-linux.ap.qualcomm.com (HELO c-skakit-linux.qualcomm.com) ([10.242.51.242])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 23 Jul 2021 14:01:33 +0530
+Received: by c-skakit-linux.qualcomm.com (Postfix, from userid 2344709)
+        id 3872C52A3; Fri, 23 Jul 2021 14:01:32 +0530 (IST)
+From:   satya priya <skakit@codeaurora.org>
+To:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Eddie Hung <eddie.hung@mediatek.com>
-Subject: [PATCH v4 3/3] phy: phy-mtk-tphy: add support mt8195
-Date:   Fri, 23 Jul 2021 16:22:42 +0800
-Message-ID: <1627028562-23584-3-git-send-email-chunfeng.yun@mediatek.com>
-X-Mailer: git-send-email 1.8.1.1.dirty
-In-Reply-To: <1627028562-23584-1-git-send-email-chunfeng.yun@mediatek.com>
-References: <1627028562-23584-1-git-send-email-chunfeng.yun@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>
+Cc:     Das Srinagesh <gurus@codeaurora.org>, kgunda@codeaurora.org,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        satya priya <skakit@codeaurora.org>
+Subject: [PATCH V7 0/3] Convert qcom pmic gpio bindings to YAML
+Date:   Fri, 23 Jul 2021 14:01:11 +0530
+Message-Id: <1627029074-23449-1-git-send-email-skakit@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The controller is designed to use use PLL integer mode, but
-in fact used fractional mode for some ones on mt8195, this
-causes signal degradation (e.g. eye diagram test fail), fix
-it by switching PLL to 26Mhz from default 48Mhz to improve
-signal quality.
+satya priya (3):
+  dt-bindings: mfd: pm8008: Add gpio-ranges and spmi-gpio compatible
+  dt-bindings: pinctrl: qcom-pmic-gpio: Convert qcom pmic gpio bindings
+    to YAML
+  dt-bindings: pinctrl: qcom-pmic-gpio: Remove the interrupts property
 
-Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
----
-v4:
-    1. add comments suggested by Vinod
-    2. move u2_phy_pll_26m_set() into u2_phy_instance_init()
+ .../devicetree/bindings/mfd/qcom,pm8008.yaml       |  13 +-
+ .../devicetree/bindings/pinctrl/qcom,pmic-gpio.txt | 288 ---------------------
+ .../bindings/pinctrl/qcom,pmic-gpio.yaml           | 239 +++++++++++++++++
+ 3 files changed, 249 insertions(+), 291 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
 
-v2~3: no changes
----
- drivers/phy/mediatek/phy-mtk-tphy.c | 54 +++++++++++++++++++++++++++++
- 1 file changed, 54 insertions(+)
-
-diff --git a/drivers/phy/mediatek/phy-mtk-tphy.c b/drivers/phy/mediatek/phy-mtk-tphy.c
-index 42a1174da6cc..33000b38fd1b 100644
---- a/drivers/phy/mediatek/phy-mtk-tphy.c
-+++ b/drivers/phy/mediatek/phy-mtk-tphy.c
-@@ -41,6 +41,8 @@
- 
- #define U3P_USBPHYACR0		0x000
- #define PA0_RG_U2PLL_FORCE_ON		BIT(15)
-+#define PA0_USB20_PLL_PREDIV		GENMASK(7, 6)
-+#define PA0_USB20_PLL_PREDIV_VAL(x)	((0x3 & (x)) << 6)
- #define PA0_RG_USB20_INTR_EN		BIT(5)
- 
- #define U3P_USBPHYACR1		0x004
-@@ -52,6 +54,8 @@
- #define PA1_RG_TERM_SEL_VAL(x)	((0x7 & (x)) << 8)
- 
- #define U3P_USBPHYACR2		0x008
-+#define PA2_RG_U2PLL_BW			GENMASK(21, 19)
-+#define PA2_RG_U2PLL_BW_VAL(x)		((0x7 & (x)) << 19)
- #define PA2_RG_SIF_U2PLL_FORCE_EN	BIT(18)
- 
- #define U3P_USBPHYACR5		0x014
-@@ -73,6 +77,14 @@
- #define P2C_USB20_GPIO_MODE		BIT(8)
- #define P2C_U2_GPIO_CTR_MSK	(P2C_RG_USB20_GPIO_CTL | P2C_USB20_GPIO_MODE)
- 
-+#define U3P_U2PHYA_RESV		0x030
-+#define P2R_RG_U2PLL_FBDIV_26M		0x1bb13b
-+#define P2R_RG_U2PLL_FBDIV_48M		0x3c0000
-+
-+#define U3P_U2PHYA_RESV1	0x044
-+#define P2R_RG_U2PLL_REFCLK_SEL	BIT(5)
-+#define P2R_RG_U2PLL_FRA_EN		BIT(3)
-+
- #define U3D_U2PHYDCR0		0x060
- #define P2C_RG_SIF_U2PLL_FORCE_ON	BIT(24)
- 
-@@ -277,6 +289,12 @@ enum mtk_phy_version {
- struct mtk_phy_pdata {
- 	/* avoid RX sensitivity level degradation only for mt8173 */
- 	bool avoid_rx_sen_degradation;
-+	/*
-+	 * workaround only for mt8195, HW fix it for others of V3,
-+	 * u2phy should use integer mode instead of fractional mode of
-+	 * 48M PLL, fix it by switching PLL to 26M from default 48M
-+	 */
-+	bool sw_pll_48m_to_26m;
- 	enum mtk_phy_version version;
- };
- 
-@@ -456,6 +474,33 @@ static void u3_phy_instance_init(struct mtk_tphy *tphy,
- 	dev_dbg(tphy->dev, "%s(%d)\n", __func__, instance->index);
- }
- 
-+static void u2_phy_pll_26m_set(struct mtk_tphy *tphy,
-+	struct mtk_phy_instance *instance)
-+{
-+	struct u2phy_banks *u2_banks = &instance->u2_banks;
-+	void __iomem *com = u2_banks->com;
-+	u32 tmp;
-+
-+	if (!tphy->pdata->sw_pll_48m_to_26m)
-+		return;
-+
-+	tmp = readl(com + U3P_USBPHYACR0);
-+	tmp &= ~PA0_USB20_PLL_PREDIV;
-+	tmp |= PA0_USB20_PLL_PREDIV_VAL(0);
-+	writel(tmp, com + U3P_USBPHYACR0);
-+
-+	tmp = readl(com + U3P_USBPHYACR2);
-+	tmp &= ~PA2_RG_U2PLL_BW;
-+	tmp |= PA2_RG_U2PLL_BW_VAL(3);
-+	writel(tmp, com + U3P_USBPHYACR2);
-+
-+	writel(P2R_RG_U2PLL_FBDIV_26M, com + U3P_U2PHYA_RESV);
-+
-+	tmp = readl(com + U3P_U2PHYA_RESV1);
-+	tmp |= P2R_RG_U2PLL_FRA_EN | P2R_RG_U2PLL_REFCLK_SEL;
-+	writel(tmp, com + U3P_U2PHYA_RESV1);
-+}
-+
- static void u2_phy_instance_init(struct mtk_tphy *tphy,
- 	struct mtk_phy_instance *instance)
- {
-@@ -515,6 +560,9 @@ static void u2_phy_instance_init(struct mtk_tphy *tphy,
- 	tmp |= PA6_RG_U2_SQTH_VAL(2);
- 	writel(tmp, com + U3P_USBPHYACR6);
- 
-+	/* Workaround only for mt8195, HW fix it for others (V3) */
-+	u2_phy_pll_26m_set(tphy, instance);
-+
- 	dev_dbg(tphy->dev, "%s(%d)\n", __func__, index);
- }
- 
-@@ -1094,10 +1142,16 @@ static const struct mtk_phy_pdata mt8173_pdata = {
- 	.version = MTK_PHY_V1,
- };
- 
-+static const struct mtk_phy_pdata mt8195_pdata = {
-+	.sw_pll_48m_to_26m = true,
-+	.version = MTK_PHY_V3,
-+};
-+
- static const struct of_device_id mtk_tphy_id_table[] = {
- 	{ .compatible = "mediatek,mt2701-u3phy", .data = &tphy_v1_pdata },
- 	{ .compatible = "mediatek,mt2712-u3phy", .data = &tphy_v2_pdata },
- 	{ .compatible = "mediatek,mt8173-u3phy", .data = &mt8173_pdata },
-+	{ .compatible = "mediatek,mt8195-tphy", .data = &mt8195_pdata },
- 	{ .compatible = "mediatek,generic-tphy-v1", .data = &tphy_v1_pdata },
- 	{ .compatible = "mediatek,generic-tphy-v2", .data = &tphy_v2_pdata },
- 	{ .compatible = "mediatek,generic-tphy-v3", .data = &tphy_v3_pdata },
 -- 
-2.18.0
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+of Code Aurora Forum, hosted by The Linux Foundation
 
