@@ -2,194 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEB7A3D3540
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 09:31:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BF873D354C
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 09:33:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233139AbhGWGuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 02:50:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51304 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229733AbhGWGue (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 02:50:34 -0400
-Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B05B7C061757
-        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 00:31:07 -0700 (PDT)
-Received: by mail-yb1-xb35.google.com with SMTP id d73so903118ybc.10
-        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 00:31:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=vs+we/6ft1FfVa0CVz20fRewulUcTgapCBk4PsMDMMQ=;
-        b=JPyoG4tDLazDPsS8Y3oVxlDJm75zO3sr5Mwj9G2MnrcoE/tXE6m8Q7IDz7QI/HrG18
-         xlTRSLavT1GWOuRuJSRa2gKNvB9Z25aSlfeFzmf4rtlDTcVQrSqDVdbuiz1aFt9AbmVS
-         Bn8n8SkRdYMai4NwvEI2Suhn5IvGbTMAXHcMmlN6kBJA2EWAbj7uqaOsdhx5HR6dXh8E
-         Qu1hiLp388RZyk+2SNzk0qHrlu7vQ9ohNOQXse3g8P03+XwbTLKU0GKBYXQl3hnFj5QG
-         4FyAaDXc/oappirdBhHoW7wA1+nwd8NCic04Fu6HtgJ0cfr4lCEuzvZxjEWRXAJEZ9Pv
-         uHGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=vs+we/6ft1FfVa0CVz20fRewulUcTgapCBk4PsMDMMQ=;
-        b=R9rvvFTPLE/djsRs8euU7apni/f6zq3/xdIJ/UkXBvJxDvylcyuoIlt7707fQwvBZh
-         IYi90xnbmbjVJ9JRHwpSgtysX/JR43IEz1mSTPoMSN42DJay7Gjwo9hCzJzXpdC30Ymy
-         KUIrvr6uhkAL1iQr2kMM+SsEafdu96J1tDfJ+1ZdLbH+0EfRMIUPgtqDyyQJXF1CaZAf
-         TwroSvWLTT3GiBhoGgZFCQhLyz6f3jJaHJoZtYvsj9w2zJr90T+C15Cv2nKKOsa/Vlr2
-         m3DzCIlamOQWUHS1i+fGpvs78vfqciTZ9i+KD33igb244Qv345zH5kVpRiPAOP2RcyNs
-         sgMw==
-X-Gm-Message-State: AOAM5305JCg852ImXWnWhMkEa/oyYN4p4tJlg++SYym7uKwBYLXmr555
-        Bc+Iq0PGMvqYqflGGiX3rnsDdbbEaatYTbCuYH2SBw==
-X-Google-Smtp-Source: ABdhPJwg0akw1mzLE5SRir9S3txrzipyiauGM7ybFw0aTjvqg6GRL6JrZTEfDza78OmWm3R7qONfl5YzUx+jnBc5bxE=
-X-Received: by 2002:a25:487:: with SMTP id 129mr5006427ybe.0.1627025466848;
- Fri, 23 Jul 2021 00:31:06 -0700 (PDT)
+        id S233303AbhGWGv6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 02:51:58 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:43356 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233128AbhGWGv5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 23 Jul 2021 02:51:57 -0400
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1m6pfV-0003dj-8k; Fri, 23 Jul 2021 09:32:25 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     mchehab@kernel.org, hverkuil-cisco@xs4all.nl
+Cc:     ezequiel@collabora.com, dafna.hirschfeld@collabora.com,
+        helen.koike@collabora.com, Laurent.pinchart@ideasonboard.com,
+        linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
+        heiko@sntech.de, robh+dt@kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v7 0/10] rkisp1 support for px30
+Date:   Fri, 23 Jul 2021 09:32:11 +0200
+Message-Id: <20210723073221.1276358-1-heiko@sntech.de>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-References: <20210712100317.23298-1-steven_lee@aspeedtech.com>
- <CAMpxmJXfUterUdaGHOJT5hwcVJ+3cqgSQVdp-6Atuyyo36FxfQ@mail.gmail.com> <20210723031615.GA10457@aspeedtech.com>
-In-Reply-To: <20210723031615.GA10457@aspeedtech.com>
-From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Fri, 23 Jul 2021 09:30:56 +0200
-Message-ID: <CAMpxmJU4jN-hpNYPLHLbjx4uZ6vDqcyuMVQXhHg1BWXOqyS22A@mail.gmail.com>
-Subject: Re: [PATCH v6 0/9] ASPEED sgpio driver enhancement.
-To:     Steven Lee <steven_lee@aspeedtech.com>,
-        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-aspeed@lists.ozlabs.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Hongwei Zhang <Hongweiz@ami.com>,
-        Ryan Chen <ryan_chen@aspeedtech.com>,
-        Billy Tsai <billy_tsai@aspeedtech.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 23, 2021 at 5:16 AM Steven Lee <steven_lee@aspeedtech.com> wrote:
->
-> The 07/21/2021 21:27, Bartosz Golaszewski wrote:
-> > On Mon, Jul 12, 2021 at 12:03 PM Steven Lee <steven_lee@aspeedtech.com> wrote:
-> > >
-> > > AST2600 SoC has 2 SGPIO master interfaces one with 128 pins another one
-> > > with 80 pins, AST2500/AST2400 SoC has 1 SGPIO master interface that
-> > > supports up to 80 pins.
-> > > In the current driver design, the max number of sgpio pins is hardcoded
-> > > in macro MAX_NR_HW_SGPIO and the value is 80.
-> > >
-> > > For supporting sgpio master interfaces of AST2600 SoC, the patch series
-> > > contains the following enhancement:
-> > > - Convert txt dt-bindings to yaml.
-> > > - Update aspeed-g6 dtsi to support the enhanced sgpio.
-> > > - Support muiltiple SGPIO master interfaces.
-> > > - Support up to 128 pins by dts ngpios property.
-> > > - Pair input/output GPIOs instead of using 0 as GPIO input pin base and
-> > >   MAX_NR_HW_SGPIO as GPIO output pin base.
-> > > - Support wdt reset tolerance.
-> > > - Fix irq_chip issues which causes multiple sgpio devices use the same
-> > >   irq_chip data.
-> > > - Replace all of_*() APIs with device_*().
-> > >
-> > > Changes from v5:
-> > > * Squash v5 patch-05 and patch-06 to one patch.
-> > > * Remove MAX_NR_HW_SGPIO and corresponding design to make the gpio
-> > >   input/output pin base are determined by ngpios.
-> > >   For example, if MAX_NR_HW_SGPIO is 80 and ngpios is 10, the original
-> > >   pin order is as follows:
-> > >     Input:
-> > >     0 1 2 3 ... 9
-> > >     Output:
-> > >     80 81 82 ... 89
-> > >
-> > >   With the new design, pin order is changed as follows:
-> > >     Input:
-> > >     0 2 4 6 ... 18(ngpios * 2 - 2)
-> > >     Output:
-> > >     1 3 5 7 ... 19(ngpios * 2 - 1)
-> > > * Replace ast2600-sgpiom-128 and ast2600-sgpiom-80 compatibles by
-> > >   ast2600-sgpiom.
-> > > * Fix coding style issues.
-> > >
-> > > Changes from v4:
-> > > * Remove ngpios from dtsi
-> > > * Add ast2400 and ast2500 platform data.
-> > > * Remove unused macros.
-> > > * Add ngpios check in a separate patch.
-> > > * Fix coding style issues.
-> > >
-> > > Changes from v3:
-> > > * Split dt-bindings patch to 2 patches
-> > > * Rename ast2600-sgpiom1 compatible with ast2600-sgiom-128
-> > > * Rename ast2600-sgpiom2 compatible with ast2600-sgiom-80
-> > > * Correct the typo in commit messages.
-> > > * Fix coding style issues.
-> > > * Replace all of_*() APIs with device_*().
-> > >
-> > > Changes from v2:
-> > > * Remove maximum/minimum of ngpios from bindings.
-> > > * Remove max-ngpios from bindings and dtsi.
-> > > * Remove ast2400-sgpiom and ast2500-sgpiom compatibles from dts and
-> > >   driver.
-> > > * Add ast2600-sgpiom1 and ast2600-sgpiom2 compatibles as their max
-> > >   number of available gpio pins are different.
-> > > * Modify functions to pass aspeed_sgpio struct instead of passing
-> > >   max_ngpios.
-> > > * Split sgpio driver patch to 3 patches
-> > >
-> > > Changes from v1:
-> > > * Fix yaml format issues.
-> > > * Fix issues reported by kernel test robot.
-> > >
-> > > Please help to review.
-> > >
-> > > Thanks,
-> > > Steven
-> > >
-> > > Steven Lee (9):
-> > >   dt-bindings: aspeed-sgpio: Convert txt bindings to yaml.
-> > >   dt-bindings: aspeed-sgpio: Add ast2600 sgpio
-> > >   ARM: dts: aspeed-g6: Add SGPIO node.
-> > >   ARM: dts: aspeed-g5: Remove ngpios from sgpio node.
-> > >   gpio: gpio-aspeed-sgpio: Add AST2600 sgpio support
-> > >   gpio: gpio-aspeed-sgpio: Add set_config function
-> > >   gpio: gpio-aspeed-sgpio: Move irq_chip to aspeed-sgpio struct
-> > >   gpio: gpio-aspeed-sgpio: Use generic device property APIs
-> > >   gpio: gpio-aspeed-sgpio: Return error if ngpios is not multiple of 8.
-> > >
-> > >  .../bindings/gpio/aspeed,sgpio.yaml           |  77 ++++++++
-> > >  .../devicetree/bindings/gpio/sgpio-aspeed.txt |  46 -----
-> > >  arch/arm/boot/dts/aspeed-g5.dtsi              |   1 -
-> > >  arch/arm/boot/dts/aspeed-g6.dtsi              |  28 +++
-> > >  drivers/gpio/gpio-aspeed-sgpio.c              | 178 +++++++++++-------
-> > >  5 files changed, 215 insertions(+), 115 deletions(-)
-> > >  create mode 100644 Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml
-> > >  delete mode 100644 Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
-> > >
-> > > --
-> > > 2.17.1
-> > >
-> >
-> > The series looks good to me. Can the DTS and GPIO patches go into
-> > v5.15 separately?
-> >
->
-> Hi Bart,
->
-> Thanks for the review.
-> Shall we do anything to make the patches go into v5.15 or wait for picking-up?
->
-> Steven
->
-> > Bart
+This series adds support for the slightly different v12
+variant of the ISP used for example in the px30 soc.
 
-It's more of a question to the relevant SoC maintainers.
+changes in v7:
+- address comments from Laurent
+  * some constifying
+  * rst document detailing version differences
+- add received Acks/Reviews
 
-Joel, Andrew: can I take the GPIO patches through the GPIO tree and
-you'll take the ARM patches separately into v5.15?
+changes in v6:
+- camera compatible in px30 binding example (Rob's bot)
+- move a last wrong positionen constant define (a v12 addition
+  should not be added in the v10-prefix change) (Dafna)
+- rename size to clk_size in match-data struct (Dafna)
 
-Bartosz
+changes in v5:
+- handle interrupt-names as conditional required property (Dafna)
+- add second example for showing interrupt-names (Dafna)
+
+changes in v4:
+- clean up multi-irq case (Dafna)
+  Now each variant can have a list of interrupts
+  and their respective handlers, with or without
+  interrupt-names
+
+changes in v3:
+- add necessary binding additions
+- fix pclk naming in binding
+- move v12 clk_ctrl register bits to v12 addition patch
+- fix rebase artefact with hst_enable
+
+changes in v2 (from rfc):
+- split out phy patch into a separate series
+- drop dts patches for now
+- split v12 addition and v10 prefixes into separate patches
+  to enable easier review (Dafna)
+- remove {stats,params}_config structs, we can just use the
+  correct constant (Dafna)
+- adapt to styling comments from Dafna and Helen
+- add patch to remove the unused irq variable in struct rkisp
+
+Heiko Stuebner (10):
+  media: rockchip: rkisp1: remove unused irq variable
+  dt-bindings: media: rkisp1: fix pclk clock-name
+  dt-bindings: media: rkisp1: document different irq possibilities
+  media: rockchip: rkisp1: allow separate interrupts
+  media: rockchip: rkisp1: make some isp-param functions variable
+  media: rockchip: rkisp1: make some isp-stats functions variable
+  media: rockchip: rkisp1: add prefixes for v10 specific parts
+  media: rockchip: rkisp1: add support for v12 isp variants
+  dt-bindings: media: rkisp1: document px30 isp compatible
+  media: rockchip: rkisp1: add support for px30 isp version
+
+ .../bindings/media/rockchip-isp1.yaml         | 114 +++-
+ .../driver-api/media/drivers/rkisp1.rst       |  43 ++
+ .../platform/rockchip/rkisp1/rkisp1-capture.c |   9 +-
+ .../platform/rockchip/rkisp1/rkisp1-common.h  |  44 +-
+ .../platform/rockchip/rkisp1/rkisp1-dev.c     |  81 ++-
+ .../platform/rockchip/rkisp1/rkisp1-isp.c     |  29 +-
+ .../platform/rockchip/rkisp1/rkisp1-params.c  | 557 ++++++++++++++----
+ .../platform/rockchip/rkisp1/rkisp1-regs.h    | 406 ++++++++-----
+ .../platform/rockchip/rkisp1/rkisp1-stats.c   | 107 +++-
+ 9 files changed, 1093 insertions(+), 297 deletions(-)
+ create mode 100644 Documentation/driver-api/media/drivers/rkisp1.rst
+
+-- 
+2.29.2
+
