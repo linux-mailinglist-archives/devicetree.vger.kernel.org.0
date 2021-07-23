@@ -2,83 +2,340 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E11053D3CF2
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 17:55:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 701243D3CFC
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 17:56:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235777AbhGWPOd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 11:14:33 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51646 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235702AbhGWPOX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Jul 2021 11:14:23 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 592D260725;
-        Fri, 23 Jul 2021 15:54:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1627055696;
-        bh=gGq+nFNtYhXh8+LTHNU1d09X9anaFb/jJcdQ6OGEm6w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=w7TXf5P/3VOLNqa3IGJS+/tL1WqsO3lubM2fNseWUGtviwChA0JbxioddqK5Xebzu
-         VBKcT7W2dFhFjKmcOBccaxPRa5CzvwMBY/+1zUDb1IQTjrxjksklcYYYeIcEmsMOL3
-         /z4TEJgfF9/B/bm0KWjIW9F/WJgTnJpsvFiJnY0U=
-Date:   Fri, 23 Jul 2021 17:54:53 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Serge Semin <fancer.lancer@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        John Stultz <john.stultz@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Amit Pundir <amit.pundir@linaro.org>
-Subject: Re: [PATCH 29/29] arm64: dts: qcom: Harmonize DWC USB3 DT nodes name
-Message-ID: <YPrmTYQJ33AIxcwP@kroah.com>
-References: <20201020115959.2658-1-Sergey.Semin@baikalelectronics.ru>
- <20201020115959.2658-30-Sergey.Semin@baikalelectronics.ru>
- <CALAqxLX_FNvFndEDWtGbFPjSzuAbfqxQE07diBJFZtftwEJX5A@mail.gmail.com>
- <20210714124807.o22mottsrg3tv6nt@mobilestation>
- <YPfPDqJhfzbvDLvB@kroah.com>
- <20210721100220.ddfxwugivsndsedv@mobilestation>
- <YPf29+ewbrYgHxRP@kroah.com>
- <YPh/AS5svBk+gddY@yoga>
- <YPp7Q4IofUYQlrqd@kroah.com>
- <YPrTbC7fNOY3qCcJ@yoga>
+        id S235657AbhGWPPc convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 23 Jul 2021 11:15:32 -0400
+Received: from relay5-d.mail.gandi.net ([217.70.183.197]:34449 "EHLO
+        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235660AbhGWPPb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 11:15:31 -0400
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id A8F031C0007;
+        Fri, 23 Jul 2021 15:56:02 +0000 (UTC)
+Date:   Fri, 23 Jul 2021 17:56:01 +0200
+From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Subject: Re: [PATCH 2/3] syscon: add support for "syscon-smc" compatible
+Message-ID: <20210723175601.59febf75@fixe.home>
+In-Reply-To: <YPrf/5g7JAtf1c4u@google.com>
+References: <20210723135239.388325-1-clement.leger@bootlin.com>
+        <20210723135239.388325-3-clement.leger@bootlin.com>
+        <YPrf/5g7JAtf1c4u@google.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YPrTbC7fNOY3qCcJ@yoga>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 23, 2021 at 09:34:20AM -0500, Bjorn Andersson wrote:
-> On Fri 23 Jul 03:18 CDT 2021, Greg Kroah-Hartman wrote:
+Le Fri, 23 Jul 2021 16:27:59 +0100,
+Lee Jones <lee.jones@linaro.org> a écrit :
+
+> On Fri, 23 Jul 2021, Clément Léger wrote:
 > 
-> > On Wed, Jul 21, 2021 at 03:09:37PM -0500, Bjorn Andersson wrote:
-> > > Which tree did you revert this in? 5.13.stable?)
+> > System controllers can be placed under secure monitor control when
+> > running under them. In order to keep existing code which accesses
+> > such system controllers using a syscon, add support for
+> > "syscon-smc" compatible.
 > > 
-> > My usb-linus branch which will go to Linus later today.  Then we can
-> > backport the revert to older kernels as needed.
+> > When enable, the syscon will handle this new compatible and look
+> > for an "arm,smc-id" property to execute the appropriate SMC. A SMC
+> > regmap is then created to forward register access to the secure
+> > monitor.
 > > 
+> > Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> > ---
+> >  drivers/mfd/syscon.c | 170
+> > ++++++++++++++++++++++++++++++++++++------- 1 file changed, 145
+> > insertions(+), 25 deletions(-)  
 > 
-> I'm not worried about the backports, I'm worried about conflicts you're
-> causing because you're taking a non-usb patch through the usb tree.
+> I'm going to let Arnd have at this, but just a couple of points.
 > 
-> I was about to push a revert (to this and the other Qualcomm platforms),
-> but as you're taking some set of reverts through the usb tree we're just
-> in for a bunch of merge conflicts.
+> > diff --git a/drivers/mfd/syscon.c b/drivers/mfd/syscon.c
+> > index 765c0210cb52..eb727b146315 100644
+> > --- a/drivers/mfd/syscon.c
+> > +++ b/drivers/mfd/syscon.c
+> > @@ -40,7 +40,15 @@ static const struct regmap_config
+> > syscon_regmap_config = { .reg_stride = 4,
+> >  };
+> >  
+> > -static struct syscon *of_syscon_register(struct device_node *np,
+> > bool check_clk) +static void syscon_add(struct syscon *syscon)
+> > +{
+> > +	spin_lock(&syscon_list_slock);
+> > +	list_add_tail(&syscon->list, &syscon_list);
+> > +	spin_unlock(&syscon_list_slock);
+> > +}
+> > +
+> > +static struct syscon *of_syscon_register_mmio(struct device_node
+> > *np,
+> > +					      bool check_clk)
+> >  {
+> >  	struct clk *clk;
+> >  	struct syscon *syscon;
+> > @@ -132,10 +140,6 @@ static struct syscon
+> > *of_syscon_register(struct device_node *np, bool check_clk)
+> > syscon->regmap = regmap; syscon->np = np;
+> >  
+> > -	spin_lock(&syscon_list_slock);
+> > -	list_add_tail(&syscon->list, &syscon_list);
+> > -	spin_unlock(&syscon_list_slock);
+> > -
+> >  	return syscon;
+> >  
+> >  err_attach:
+> > @@ -150,8 +154,49 @@ static struct syscon
+> > *of_syscon_register(struct device_node *np, bool check_clk) return
+> > ERR_PTR(ret); }
+> >  
+> > +#ifdef CONFIG_REGMAP_SMCCC
+> > +static struct syscon *of_syscon_register_smccc(struct device_node
+> > *np) +{
+> > +	struct syscon *syscon;
+> > +	struct regmap *regmap;
+> > +	u32 reg_io_width = 4, smc_id;
+> > +	int ret;
+> > +	struct regmap_config syscon_config = syscon_regmap_config;
+> > +
+> > +	ret = of_property_read_u32(np, "arm,smc-id", &smc_id);  
+> 
+> So this is Arm specific.
+> 
+> Not sure we want to be creating bespoke support for specific
+> architectures/platforms in the generic syscon implementation.
 
-It shouldn't be a merge conflict as you can apply the same revert to
-your tree now and keep on merging.  When you pick up 5.14-rc3 from Linus
-it should merge "correctly", right?
+Agreed, I wanted to keep an existing property name but having such
+thing in the syscon is indeed a bad idea.
 
-thanks,
+> 
+> > +	if (ret)
+> > +		return ERR_PTR(-ENODEV);
+> > +
+> > +	syscon = kzalloc(sizeof(*syscon), GFP_KERNEL);
+> > +	if (!syscon)
+> > +		return ERR_PTR(-ENOMEM);
+> > +
+> > +	of_property_read_u32(np, "reg-io-width", &reg_io_width);
+> > +
+> > +	syscon_config.name = kasprintf(GFP_KERNEL, "%pOFn@smc%x",
+> > np, smc_id);
+> > +	syscon_config.val_bits = reg_io_width * 8;
+> > +
+> > +	regmap = regmap_init_smccc(NULL, smc_id, &syscon_config);
+> > +	if (IS_ERR(regmap)) {
+> > +		ret = PTR_ERR(regmap);
+> > +		goto err_regmap;
+> > +	}
+> > +
+> > +	syscon->regmap = regmap;
+> > +	syscon->np = np;
+> > +
+> > +	return syscon;
+> > +
+> > +err_regmap:
+> > +	kfree(syscon_config.name);
+> > +	kfree(syscon);
+> > +
+> > +	return ERR_PTR(ret);
+> > +}
+> > +#endif
+> > +
+> >  static struct regmap *device_node_get_regmap(struct device_node
+> > *np,
+> > -					     bool check_clk)
+> > +					     bool check_clk, bool
+> > use_smccc) {
+> >  	struct syscon *entry, *syscon = NULL;
+> >  
+> > @@ -165,8 +210,19 @@ static struct regmap
+> > *device_node_get_regmap(struct device_node *np, 
+> >  	spin_unlock(&syscon_list_slock);
+> >  
+> > -	if (!syscon)
+> > -		syscon = of_syscon_register(np, check_clk);
+> > +	if (!syscon) {
+> > +		if (use_smccc)
+> > +#ifdef CONFIG_REGMAP_SMCCC
+> > +			syscon = of_syscon_register_smccc(np);
+> > +#else
+> > +			syscon = NULL;
+> > +#endif  
+> 
+> ... and we certainly don't want to be doing so using #ifdefery.
+> 
+> Please find a better way to support this feature.
 
-greg k-h
+Agreed too, best solution would probably be to allow having multiple
+syscon "backends" split in multiple files which would create the
+correct regmap according to the devicetree.
+
+Clément
+
+> 
+> > +		else
+> > +			syscon = of_syscon_register_mmio(np,
+> > check_clk); +
+> > +		if (!IS_ERR(syscon))
+> > +			syscon_add(syscon);
+> > +	}
+> >  
+> >  	if (IS_ERR(syscon))
+> >  		return ERR_CAST(syscon);
+> > @@ -176,16 +232,19 @@ static struct regmap
+> > *device_node_get_regmap(struct device_node *np, 
+> >  struct regmap *device_node_to_regmap(struct device_node *np)
+> >  {
+> > -	return device_node_get_regmap(np, false);
+> > +	return device_node_get_regmap(np, false, false);
+> >  }
+> >  EXPORT_SYMBOL_GPL(device_node_to_regmap);
+> >  
+> >  struct regmap *syscon_node_to_regmap(struct device_node *np)
+> >  {
+> > -	if (!of_device_is_compatible(np, "syscon"))
+> > -		return ERR_PTR(-EINVAL);
+> > +	if (of_device_is_compatible(np, "syscon"))
+> > +		return device_node_get_regmap(np, true, false);
+> > +
+> > +	if (of_device_is_compatible(np, "syscon-smc"))
+> > +		return device_node_get_regmap(np, true, true);
+> >  
+> > -	return device_node_get_regmap(np, true);
+> > +	return ERR_PTR(-EINVAL);
+> >  }
+> >  EXPORT_SYMBOL_GPL(syscon_node_to_regmap);
+> >  
+> > @@ -273,19 +332,19 @@ struct regmap
+> > *syscon_regmap_lookup_by_phandle_optional(struct device_node *np, }
+> >  EXPORT_SYMBOL_GPL(syscon_regmap_lookup_by_phandle_optional);
+> >  
+> > -static int syscon_probe(struct platform_device *pdev)
+> > +struct syscon_driver_data {
+> > +	int (*probe_func)(struct platform_device *pdev, struct
+> > device *dev,
+> > +			  struct syscon *syscon);
+> > +};
+> > +
+> > +static int syscon_probe_mmio(struct platform_device *pdev,
+> > +			     struct device *dev,
+> > +			     struct syscon *syscon)
+> >  {
+> > -	struct device *dev = &pdev->dev;
+> > -	struct syscon_platform_data *pdata = dev_get_platdata(dev);
+> > -	struct syscon *syscon;
+> >  	struct regmap_config syscon_config = syscon_regmap_config;
+> >  	struct resource *res;
+> >  	void __iomem *base;
+> >  
+> > -	syscon = devm_kzalloc(dev, sizeof(*syscon), GFP_KERNEL);
+> > -	if (!syscon)
+> > -		return -ENOMEM;
+> > -
+> >  	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> >  	if (!res)
+> >  		return -ENOENT;
+> > @@ -295,23 +354,84 @@ static int syscon_probe(struct
+> > platform_device *pdev) return -ENOMEM;
+> >  
+> >  	syscon_config.max_register = resource_size(res) - 4;
+> > -	if (pdata)
+> > -		syscon_config.name = pdata->label;
+> > +
+> >  	syscon->regmap = devm_regmap_init_mmio(dev, base,
+> > &syscon_config); if (IS_ERR(syscon->regmap)) {
+> >  		dev_err(dev, "regmap init failed\n");
+> >  		return PTR_ERR(syscon->regmap);
+> >  	}
+> >  
+> > -	platform_set_drvdata(pdev, syscon);
+> > +	dev_dbg(dev, "regmap_mmio %pR registered\n", res);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static const struct syscon_driver_data syscon_mmio_data = {
+> > +	.probe_func = &syscon_probe_mmio,
+> > +};
+> > +
+> > +#ifdef CONFIG_REGMAP_SMCCC
+> > +
+> > +static int syscon_probe_smc(struct platform_device *pdev,
+> > +			    struct device *dev,
+> > +			    struct syscon *syscon)
+> > +{
+> > +	struct regmap_config syscon_config = syscon_regmap_config;
+> > +	int smc_id, ret;
+> > +
+> > +	ret = of_property_read_u32(dev->of_node, "arm,smc-id",
+> > &smc_id);
+> > +	if (!ret)
+> > +		return -ENODEV;
+> > +
+> > +	syscon->regmap = devm_regmap_init_smccc(dev, smc_id,
+> > &syscon_config);
+> > +	if (IS_ERR(syscon->regmap)) {
+> > +		dev_err(dev, "regmap init failed\n");
+> > +		return PTR_ERR(syscon->regmap);
+> > +	}
+> >  
+> > -	dev_dbg(dev, "regmap %pR registered\n", res);
+> > +	dev_dbg(dev, "regmap_smccc %x registered\n", smc_id);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static const struct syscon_driver_data syscon_smc_data = {
+> > +	.probe_func = &syscon_probe_smc,
+> > +};
+> > +#endif
+> > +
+> > +static int syscon_probe(struct platform_device *pdev)
+> > +{
+> > +	int ret;
+> > +	struct device *dev = &pdev->dev;
+> > +	struct syscon_platform_data *pdata = dev_get_platdata(dev);
+> > +	struct regmap_config syscon_config = syscon_regmap_config;
+> > +	struct syscon *syscon;
+> > +	const struct syscon_driver_data *driver_data;
+> > +
+> > +	if (pdata)
+> > +		syscon_config.name = pdata->label;
+> > +
+> > +	syscon = devm_kzalloc(dev, sizeof(*syscon), GFP_KERNEL);
+> > +	if (!syscon)
+> > +		return -ENOMEM;
+> > +
+> > +	driver_data = (const struct syscon_driver_data *)
+> > +
+> > platform_get_device_id(pdev)->driver_data; +
+> > +	ret = driver_data->probe_func(pdev, dev, syscon);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	platform_set_drvdata(pdev, syscon);
+> >  
+> >  	return 0;
+> >  }
+> >  
+> >  static const struct platform_device_id syscon_ids[] = {
+> > -	{ "syscon", },
+> > +	{ .name = "syscon",	.driver_data =
+> > (kernel_ulong_t)&syscon_mmio_data}, +#ifdef CONFIG_REGMAP_SMCCC
+> > +	{ .name = "syscon-smc",	.driver_data =
+> > (kernel_ulong_t)&syscon_smc_data}, +#endif
+> >  	{ }
+> >  };
+> >    
+> 
+
