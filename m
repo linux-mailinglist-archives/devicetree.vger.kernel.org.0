@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED4C63D3297
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 05:58:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6DF83D32BE
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 05:58:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234020AbhGWDRc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 23:17:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37608 "EHLO mail.kernel.org"
+        id S234255AbhGWDSK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 23:18:10 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38344 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233870AbhGWDRN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Jul 2021 23:17:13 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1822860EE6;
-        Fri, 23 Jul 2021 03:57:47 +0000 (UTC)
+        id S233571AbhGWDRi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Jul 2021 23:17:38 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 9696360E9C;
+        Fri, 23 Jul 2021 03:58:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627012667;
+        s=k20201202; t=1627012692;
         bh=IvaR99okyfXtAYNEkh/0FqubNa6g3Pw/UCxd58DNFpA=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=FqBwSzIIaAdbsa+Pj/Hy1sKeWIKzBtFPTuFZ7KBxluhgOF5qMdClFG/C7xy7wZRS+
-         Zh80g1U7I422nXRaRG47L3gwY98Ym2YSJSXiYh8JA37qdHaIsOkxScRPQwJIpeDj/1
-         HNzTA0W/WgZcvVd1dYdR7BfVKLR3bD+RaXgEXF8QUkR1CLAvdiPPFWgdQ8FEZd3zo0
-         lmE+9GQAvJ/ke8VofgmTJDYSchM8DC/zoDtqGEnEhNDDxQnIOtS4iJe2b+TkPuQ2mI
-         wGc1kFG2Djw/pjwIisR/QwpJPK+oZ4rjCSphb+QOQiF0eV/DFgzEyfOq0N0Ni2UOPH
-         gtkRfqUbYc1HA==
+        b=VF2CleLteWwUDF5vRTm04qNdUQJ6uNEBC558ijKSuAWeRGipFswc3cN79EZEBpYAj
+         cNPHqo+k43XM6aLVKqSptsCJYKA5ZdfIno1LXZ0BDk2k+OoUw2n7ni4Sm3hi/4t1Me
+         7B/tBzeBsWrLX1REoQ1NpjlmexMXTG3WLkescXQJYlNaDmVqfFqa01KpHnbFgKXQPR
+         M9yWcFpMTW3ygirEzaIIXa/3ANL6KQLx71zHRflGWyNeLCav0TWYatMROU22AflRaW
+         xlUpeeeKkI5VjUnZVslYksHvxwNZuohbfdlE1tAnlGaUUw0h1VPeWSQlOLbDKSruL0
+         igEPB4IMKRNrw==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Sudeep Holla <sudeep.holla@arm.com>,
         Linus Walleij <linus.walleij@linaro.org>,
         Arnd Bergmann <arnd@arndb.de>, Sasha Levin <sashal@kernel.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.13 19/19] ARM: dts: versatile: Fix up interrupt controller node names
-Date:   Thu, 22 Jul 2021 23:57:20 -0400
-Message-Id: <20210723035721.531372-19-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.10 17/17] ARM: dts: versatile: Fix up interrupt controller node names
+Date:   Thu, 22 Jul 2021 23:57:48 -0400
+Message-Id: <20210723035748.531594-17-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210723035721.531372-1-sashal@kernel.org>
-References: <20210723035721.531372-1-sashal@kernel.org>
+In-Reply-To: <20210723035748.531594-1-sashal@kernel.org>
+References: <20210723035748.531594-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
