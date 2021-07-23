@@ -2,72 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C55D3D4133
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 21:56:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE9CA3D4147
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 22:06:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229530AbhGWTQT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 15:16:19 -0400
-Received: from mail-il1-f169.google.com ([209.85.166.169]:45840 "EHLO
-        mail-il1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbhGWTQS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 15:16:18 -0400
-Received: by mail-il1-f169.google.com with SMTP id z3so2569945ile.12;
-        Fri, 23 Jul 2021 12:56:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=LneocB/f7rm7pYXiKsd0bKUKJNA6iTNE6EU9o8+2b/4=;
-        b=kb716TA5joEA6JUnqypoc3L10yRFsuIcGtvt9XLc48IXRpMTXU/b9rjmxuOZSbdcGm
-         EhdFQbj67iPAOxEQWWnMqmlMfPQHDZpKBNXEOBZ5aqAbmYkDuHIrWYKLIZAy40y6RgHQ
-         H9KuVmE6oQeUCaJBhXoVlr8j0pwNLXSK+Ppb61C/OqzRKybbFqVJ8SXTLOOZdvRO8mpB
-         LmNWe/kZIT8zpkfULYrAva2P4cId58C+3xEuzpBqgB/i2XmGBKSvGW54fgIxBZjXD4M2
-         fQY/cpBEmNnQ/wEVcbkBZs2g3VImfm0bgJDrJPy4ppY+Z+PdJxS83pdcXvSZc3L0SQIP
-         g4Gg==
-X-Gm-Message-State: AOAM533XN4iHow/OGUab4oFgDzaPlX2sNTJ5bA5Cr00tIONVf8czpOa8
-        sSCZF+9wpYOMgBVYa3/V2A==
-X-Google-Smtp-Source: ABdhPJzZtdZfCALqIQrhlEsp6Jwk+w/L141JedKuOpCDZhTgTYvjCVXCyQtNjPKVvtQ2zJAo5/M6wQ==
-X-Received: by 2002:a92:d3cb:: with SMTP id c11mr4635802ilh.178.1627070211690;
-        Fri, 23 Jul 2021 12:56:51 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id d186sm17400914iof.3.2021.07.23.12.56.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jul 2021 12:56:50 -0700 (PDT)
-Received: (nullmailer pid 2472320 invoked by uid 1000);
-        Fri, 23 Jul 2021 19:56:49 -0000
-Date:   Fri, 23 Jul 2021 13:56:49 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Richard Zhu <hongxing.zhu@nxp.com>
-Cc:     galak@kernel.crashing.org, shawnguo@kernel.org,
-        devicetree@vger.kernel.org, l.stach@pengutronix.de,
-        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC 0/2] convert fsl,imx6q-pcie.txt to yaml
-Message-ID: <20210723195649.GA2470892@robh.at.kernel.org>
-References: <1626942155-9209-1-git-send-email-hongxing.zhu@nxp.com>
+        id S231201AbhGWTZc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 15:25:32 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:21451 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231126AbhGWTZb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 23 Jul 2021 15:25:31 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1627070764; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=R6B44KvNJoUb62PuGtXARkIntmCEbpuSvDX2oWLc0ew=;
+ b=H9b7TkTPl020zMNI6Jhnbye4jSxR6uOlZ8uTtrt3Jl0KX/R30YheFSI3cNY/MLzwLaX/A3KF
+ auImQXfha5xOQdwQ4sxgCmdJ0eoUrAZKLKiCv+kcmiNmCFiwNmjluNDEAgQF8fgigmURoxN4
+ ugMoRy6s4oDA/zUG8+MqBtTDcgY=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
+ 60fb21144815712f3ad1d3f5 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 23 Jul 2021 20:05:40
+ GMT
+Sender: abhinavk=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 2A078C43143; Fri, 23 Jul 2021 20:05:40 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: abhinavk)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 179F8C433F1;
+        Fri, 23 Jul 2021 20:05:39 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1626942155-9209-1-git-send-email-hongxing.zhu@nxp.com>
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Fri, 23 Jul 2021 13:05:38 -0700
+From:   abhinavk@codeaurora.org
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kuogee Hsieh <khsieh@codeaurora.org>,
+        Tanmay Shah <tanmay@codeaurora.org>,
+        Chandan Uddaraju <chandanu@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: msm/dp: Change reg definition
+In-Reply-To: <20210722024227.3313096-2-bjorn.andersson@linaro.org>
+References: <20210722024227.3313096-1-bjorn.andersson@linaro.org>
+ <20210722024227.3313096-2-bjorn.andersson@linaro.org>
+Message-ID: <6318d5abc7f1ed9622218bf29394ec64@codeaurora.org>
+X-Sender: abhinavk@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 22, 2021 at 04:22:33PM +0800, Richard Zhu wrote:
-> [RFC 1/2] dt-bindings: PCI: imx6: add fsl,imx6q-pcie.yaml
-> [RFC 2/2] dt-bindings: PCI: imx6: remove fsl,imx6q-pcie.txt
-
-One patch for this please.
-
-Also, there's now a schema for DW PCI in my tree, so this should be 
-based on that.
-
+On 2021-07-21 19:42, Bjorn Andersson wrote:
+> reg was defined as one region covering the entire DP block, but the
+> memory map is actually split in 4 regions and obviously the size of
+> these regions differs between platforms.
 > 
-> .../devicetree/bindings/pci/fsl,imx6q-pcie.txt     | 102 ----------
-> .../devicetree/bindings/pci/fsl,imx6q-pcie.yaml    | 212 +++++++++++++++++++++
-> MAINTAINERS                                        |   2 +-
-> 3 files changed, 213 insertions(+), 103 deletions(-)
-> delete mode 100644 Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt
-> create mode 100644 Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> Switch the reg to require that all four regions are specified instead.
+> It is expected that the implementation will handle existing DTBs, even
+> though the schema defines the new layout.
 > 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+> ---
+>  .../bindings/display/msm/dp-controller.yaml           | 11 +++++++++--
+>  1 file changed, 9 insertions(+), 2 deletions(-)
 > 
+> diff --git
+> a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> index 64d8d9e5e47a..a6e41be038fc 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> @@ -19,7 +19,11 @@ properties:
+>        - qcom,sc7180-dp
+> 
+>    reg:
+> -    maxItems: 1
+> +    items:
+> +      - description: ahb register block
+> +      - description: aux register block
+> +      - description: link register block
+> +      - description: p0 register block
+Do you also want to add the p1 register block here?
+> 
+>    interrupts:
+>      maxItems: 1
+> @@ -100,7 +104,10 @@ examples:
+> 
+>      displayport-controller@ae90000 {
+>          compatible = "qcom,sc7180-dp";
+> -        reg = <0xae90000 0x1400>;
+> +        reg = <0xae90000 0x200>,
+> +              <0xae90200 0x200>,
+> +              <0xae90400 0xc00>,
+> +              <0xae91000 0x400>;
+here too?
+>          interrupt-parent = <&mdss>;
+>          interrupts = <12>;
+>          clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+
+
