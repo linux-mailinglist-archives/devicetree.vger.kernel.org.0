@@ -2,306 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DAE793D3ED0
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 19:34:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 330503D3EDD
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 19:34:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231741AbhGWQvz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 12:51:55 -0400
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:8470 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232216AbhGWQvj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 12:51:39 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1627061533; x=1658597533;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=s/IbI4U2eY/Rf6aGcu5LRgHiyor0Okw2MpZuEmrVh5w=;
-  b=eQxdrAVgD1ir6PxCxsThICgnCYLt7PAYkWMu+lcSkeJos1NajPW/FNME
-   X3rWeNEDbTJzpFY0BHyIvkdYrKm0oSDcWdv03Zeq4KviFv/e6+P1Xv0hD
-   iv0pCfGnQQrDrTpY+qVpbMpd/VK+8ZNXU72KNIQf9kBI5CsPrFEAz2GHd
-   EjxOTxk+IQ5Lss8fKF5sbuYUgOn4xKv+pz9lNdiKcYqQOBFfsB/kbFX/i
-   UJMJkJrSPy13tgyrshfD4x7M23UWiZAML8QzeC+1Epg/EMQNXQmuKoWuu
-   2EvVCkk2/h1jp71yv2JChGZjprWkpTCuXByv9AwxZDX2SdMWdE6UCGEq1
-   Q==;
-IronPort-SDR: IWmxlCDfDse352/jJGLtR4miUk7befqJHK6lilieCpO+4pp62odTB2D6GirSmAn/MUWNTc9MHb
- VhIybc6HS6tR1JvSzPl3GheE/gCEMNghp8e7tj1rzVUWEfeO7Rvn6LXyVs8PiuN52iq1g8GdI/
- 6fiLP1nuOSrMuCwu6UL7HLt3gOLVQcO99XjnM+6Nhfqi0hSWNC4Q7sEzsCW7bwVYfFfOrqHKf/
- 7PUJ71+S1wdp/SPyUYMQ2W+K7JIH5ZZP9w2iCpq7rkiggmSYa+YYyso7lK/7d1v0Zq6B3vYBBL
- zdzSRMpnq4Ek+HBIrPAs80Rq
-X-IronPort-AV: E=Sophos;i="5.84,264,1620716400"; 
-   d="scan'208";a="125755770"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 23 Jul 2021 10:32:12 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Fri, 23 Jul 2021 10:32:11 -0700
-Received: from CHE-LT-I21427LX.microchip.com (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Fri, 23 Jul 2021 10:32:06 -0700
-From:   Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-To:     <andrew@lunn.ch>, <netdev@vger.kernel.org>, <olteanv@gmail.com>,
-        <robh+dt@kernel.org>
-CC:     <UNGLinuxDriver@microchip.com>, <Woojung.Huh@microchip.com>,
-        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-        <davem@davemloft.net>, <kuba@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <vivien.didelot@gmail.com>,
-        <f.fainelli@gmail.com>, <devicetree@vger.kernel.org>
-Subject: [PATCH v3 net-next 10/10] net: dsa: microchip: add support for vlan operations
-Date:   Fri, 23 Jul 2021 23:01:08 +0530
-Message-ID: <20210723173108.459770-11-prasanna.vengateshan@microchip.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210723173108.459770-1-prasanna.vengateshan@microchip.com>
-References: <20210723173108.459770-1-prasanna.vengateshan@microchip.com>
+        id S232759AbhGWQwf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 12:52:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49766 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231594AbhGWQwa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 12:52:30 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DD34C0613D5
+        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 10:33:02 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1m6z2g-0006L1-EF; Fri, 23 Jul 2021 19:32:58 +0200
+Received: from ore by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ore@pengutronix.de>)
+        id 1m6z2f-0000ZZ-7L; Fri, 23 Jul 2021 19:32:57 +0200
+Date:   Fri, 23 Jul 2021 19:32:57 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc:     alexandru.tachici@analog.com, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, andrew@lunn.ch, hkallweit1@gmail.com,
+        davem@davemloft.net, kuba@kernel.org
+Subject: Re: [PATCH v2 0/7] net: phy: adin1100: Add initial support for
+ ADIN1100 industrial PHY
+Message-ID: <20210723173257.66g3epaszn7qwrvd@pengutronix.de>
+References: <20210712130631.38153-1-alexandru.tachici@analog.com>
+ <20210712133358.GD22278@shell.armlinux.org.uk>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210712133358.GD22278@shell.armlinux.org.uk>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 19:23:37 up 233 days,  7:30, 27 users,  load average: 0.11, 0.09,
+ 0.08
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Support for VLAN add, del, prepare and filtering operations.
+On Mon, Jul 12, 2021 at 02:33:58PM +0100, Russell King (Oracle) wrote:
+> On Mon, Jul 12, 2021 at 04:06:24PM +0300, alexandru.tachici@analog.com wrote:
+> > From: Alexandru Tachici <alexandru.tachici@analog.com>
+> > 
+> > The ADIN1100 is a low power single port 10BASE-T1L transceiver designed for
+> > industrial Ethernet applications and is compliant with the IEEE 802.3cg
+> > Ethernet standard for long reach 10 Mb/s Single Pair Ethernet.
+> > 
+> > Ethtool output:
+> >         Settings for eth1:
+> >         Supported ports: [ TP	 MII ]
+> >         Supported link modes:   10baseT1L/Full
+> >                                 2400mv
+> >                                 1000mv
+> 
+> The SI unit of voltage is V not v, so milli-volts is mV not mv. Surely,
+> at the very least, we should be using the SI designation in user
+> visible strings?
+> 
+> It may also be worth providing a brief description of 10BASE-T1L in the
+> cover letter so (e.g.) one doesn't have to look up the fact that the
+> voltage level is negotiated via bit 13 of the base page. I've found
+> that by searching google and finding dp83td510e.pdf
 
-The VLAN aware is a global setting. Mixed vlan filterings
-are not supported. vlan_filtering_is_global is made as true
-in lan937x_setup function.
+I'm curios how the voltage should be actually chosen?
 
-Signed-off-by: Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
----
- drivers/net/dsa/microchip/lan937x_main.c | 198 +++++++++++++++++++++++
- 1 file changed, 198 insertions(+)
+In the adin1100 datasheet i read:
+"The 1.0 V pk-pk operating mode, external termination resistors and independent
+Rx/Tx pins make the ADIN1100 suited to intrinsic safety applications"
 
-diff --git a/drivers/net/dsa/microchip/lan937x_main.c b/drivers/net/dsa/microchip/lan937x_main.c
-index fb780678ef8d..963b066a8ad1 100644
---- a/drivers/net/dsa/microchip/lan937x_main.c
-+++ b/drivers/net/dsa/microchip/lan937x_main.c
-@@ -15,6 +15,14 @@
- #include "ksz_common.h"
- #include "lan937x_dev.h"
- 
-+static int lan937x_wait_vlan_ctrl_ready(struct ksz_device *dev)
-+{
-+	unsigned int val;
-+
-+	return regmap_read_poll_timeout(dev->regmap[0], REG_SW_VLAN_CTRL, val,
-+					!(val & VLAN_START), 10, 1000);
-+}
-+
- static u8 lan937x_get_fid(u16 vid)
- {
- 	if (vid > ALU_FID_SIZE)
-@@ -23,6 +31,97 @@ static u8 lan937x_get_fid(u16 vid)
- 		return vid;
- }
- 
-+static int lan937x_get_vlan_table(struct ksz_device *dev, u16 vid,
-+				  struct lan937x_vlan *vlan_entry)
-+{
-+	u32 data;
-+	int ret;
-+
-+	mutex_lock(&dev->vlan_mutex);
-+
-+	ret = ksz_write16(dev, REG_SW_VLAN_ENTRY_INDEX__2, vid & VLAN_INDEX_M);
-+	if (ret < 0)
-+		goto exit;
-+
-+	ret = ksz_write8(dev, REG_SW_VLAN_CTRL, VLAN_READ | VLAN_START);
-+	if (ret < 0)
-+		goto exit;
-+
-+	/* wait to be cleared */
-+	ret = lan937x_wait_vlan_ctrl_ready(dev);
-+	if (ret < 0)
-+		goto exit;
-+
-+	ret = ksz_read32(dev, REG_SW_VLAN_ENTRY__4, &data);
-+	if (ret < 0)
-+		goto exit;
-+
-+	vlan_entry->valid = !!(data & VLAN_VALID);
-+	vlan_entry->fid	= data & VLAN_FID_M;
-+
-+	ret = ksz_read32(dev, REG_SW_VLAN_ENTRY_UNTAG__4,
-+			 &vlan_entry->untag_prtmap);
-+	if (ret < 0)
-+		goto exit;
-+
-+	ret = ksz_read32(dev, REG_SW_VLAN_ENTRY_PORTS__4,
-+			 &vlan_entry->fwd_map);
-+	if (ret < 0)
-+		goto exit;
-+
-+	ret = ksz_write8(dev, REG_SW_VLAN_CTRL, 0);
-+	if (ret < 0)
-+		goto exit;
-+
-+exit:
-+	mutex_unlock(&dev->vlan_mutex);
-+
-+	return ret;
-+}
-+
-+static int lan937x_set_vlan_table(struct ksz_device *dev, u16 vid,
-+				  struct lan937x_vlan *vlan_entry)
-+{
-+	u32 data;
-+	int ret;
-+
-+	mutex_lock(&dev->vlan_mutex);
-+
-+	data = vlan_entry->valid ? VLAN_VALID : 0;
-+	data |= vlan_entry->fid;
-+
-+	ret = ksz_write32(dev, REG_SW_VLAN_ENTRY__4, data);
-+	if (ret < 0)
-+		goto exit;
-+
-+	ret = ksz_write32(dev, REG_SW_VLAN_ENTRY_UNTAG__4,
-+			  vlan_entry->untag_prtmap);
-+	if (ret < 0)
-+		goto exit;
-+
-+	ret = ksz_write32(dev, REG_SW_VLAN_ENTRY_PORTS__4, vlan_entry->fwd_map);
-+	if (ret < 0)
-+		goto exit;
-+
-+	ret = ksz_write16(dev, REG_SW_VLAN_ENTRY_INDEX__2, vid & VLAN_INDEX_M);
-+	if (ret < 0)
-+		goto exit;
-+
-+	ret = ksz_write8(dev, REG_SW_VLAN_CTRL, VLAN_START | VLAN_WRITE);
-+	if (ret < 0)
-+		goto exit;
-+
-+	/* wait to be cleared */
-+	ret = lan937x_wait_vlan_ctrl_ready(dev);
-+	if (ret < 0)
-+		goto exit;
-+
-+exit:
-+	mutex_unlock(&dev->vlan_mutex);
-+
-+	return ret;
-+}
-+
- static int lan937x_read_table(struct ksz_device *dev, u32 *table)
- {
- 	int ret;
-@@ -197,6 +296,102 @@ static void lan937x_port_stp_state_set(struct dsa_switch *ds, int port,
- 	mutex_unlock(&dev->dev_mutex);
- }
- 
-+static int lan937x_port_vlan_filtering(struct dsa_switch *ds, int port,
-+				       bool flag,
-+				       struct netlink_ext_ack *extack)
-+{
-+	struct ksz_device *dev = ds->priv;
-+	int ret;
-+
-+	ret = lan937x_cfg(dev, REG_SW_LUE_CTRL_0, SW_VLAN_ENABLE,
-+			  flag);
-+
-+	return ret;
-+}
-+
-+static int lan937x_port_vlan_add(struct dsa_switch *ds, int port,
-+				 const struct switchdev_obj_port_vlan *vlan,
-+				 struct netlink_ext_ack *extack)
-+{
-+	bool untagged = vlan->flags & BRIDGE_VLAN_INFO_UNTAGGED;
-+	struct ksz_device *dev = ds->priv;
-+	struct lan937x_vlan vlan_entry;
-+	int ret;
-+
-+	ret = lan937x_get_vlan_table(dev, vlan->vid, &vlan_entry);
-+	if (ret < 0) {
-+		NL_SET_ERR_MSG_MOD(extack, "Failed to get vlan table\n");
-+		return ret;
-+	}
-+
-+	vlan_entry.fid = lan937x_get_fid(vlan->vid);
-+	vlan_entry.valid = true;
-+
-+	/* set/clear switch port when updating vlan table registers */
-+	if (untagged)
-+		vlan_entry.untag_prtmap |= BIT(port);
-+	else
-+		vlan_entry.untag_prtmap &= ~BIT(port);
-+
-+	vlan_entry.fwd_map |= BIT(port);
-+
-+	ret = lan937x_set_vlan_table(dev, vlan->vid, &vlan_entry);
-+	if (ret < 0) {
-+		NL_SET_ERR_MSG_MOD(extack, "Failed to set vlan table\n");
-+		return ret;
-+	}
-+
-+	/* change PVID */
-+	if (vlan->flags & BRIDGE_VLAN_INFO_PVID) {
-+		ret = lan937x_pwrite16(dev, port, REG_PORT_DEFAULT_VID,
-+				       vlan->vid);
-+		if (ret < 0) {
-+			NL_SET_ERR_MSG_MOD(extack, "Failed to set pvid\n");
-+			return ret;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static int lan937x_port_vlan_del(struct dsa_switch *ds, int port,
-+				 const struct switchdev_obj_port_vlan *vlan)
-+{
-+	bool untagged = vlan->flags & BRIDGE_VLAN_INFO_UNTAGGED;
-+	struct ksz_device *dev = ds->priv;
-+	struct lan937x_vlan vlan_entry;
-+	u16 pvid;
-+	int ret;
-+
-+	lan937x_pread16(dev, port, REG_PORT_DEFAULT_VID, &pvid);
-+	pvid &= 0xFFF;
-+
-+	ret = lan937x_get_vlan_table(dev, vlan->vid, &vlan_entry);
-+	if (ret < 0) {
-+		dev_err(dev->dev, "Failed to get vlan table\n");
-+		return ret;
-+	}
-+	/* clear port fwd map */
-+	vlan_entry.fwd_map &= ~BIT(port);
-+
-+	if (untagged)
-+		vlan_entry.untag_prtmap &= ~BIT(port);
-+
-+	ret = lan937x_set_vlan_table(dev, vlan->vid, &vlan_entry);
-+	if (ret < 0) {
-+		dev_err(dev->dev, "Failed to set vlan table\n");
-+		return ret;
-+	}
-+
-+	ret = lan937x_pwrite16(dev, port, REG_PORT_DEFAULT_VID, pvid);
-+	if (ret < 0) {
-+		dev_err(dev->dev, "Failed to set pvid\n");
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
- static int lan937x_port_fdb_add(struct dsa_switch *ds, int port,
- 				const unsigned char *addr, u16 vid)
- {
-@@ -1007,6 +1202,9 @@ const struct dsa_switch_ops lan937x_switch_ops = {
- 	.port_bridge_leave = ksz_port_bridge_leave,
- 	.port_stp_state_set = lan937x_port_stp_state_set,
- 	.port_fast_age = ksz_port_fast_age,
-+	.port_vlan_filtering = lan937x_port_vlan_filtering,
-+	.port_vlan_add = lan937x_port_vlan_add,
-+	.port_vlan_del = lan937x_port_vlan_del,
- 	.port_fdb_dump = lan937x_port_fdb_dump,
- 	.port_fdb_add = lan937x_port_fdb_add,
- 	.port_fdb_del = lan937x_port_fdb_del,
+"For long reach/trunk applications the higher transmit amplitude of 2.4 V pk-pk"
+
+So, it seems to depends on:
+- do we have safety requirements?
+- how long is the cable?
+
+Can we use 2.4V any time if it is available or it is bad idea for short
+cables?
+
+Regards,
+Oleksij
 -- 
-2.27.0
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
