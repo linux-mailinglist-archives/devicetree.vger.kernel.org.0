@@ -2,101 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 330503D3EDD
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 19:34:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DA493D3F18
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 19:44:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232759AbhGWQwf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 12:52:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49766 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231594AbhGWQwa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 12:52:30 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DD34C0613D5
-        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 10:33:02 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1m6z2g-0006L1-EF; Fri, 23 Jul 2021 19:32:58 +0200
-Received: from ore by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ore@pengutronix.de>)
-        id 1m6z2f-0000ZZ-7L; Fri, 23 Jul 2021 19:32:57 +0200
-Date:   Fri, 23 Jul 2021 19:32:57 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc:     alexandru.tachici@analog.com, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, andrew@lunn.ch, hkallweit1@gmail.com,
-        davem@davemloft.net, kuba@kernel.org
-Subject: Re: [PATCH v2 0/7] net: phy: adin1100: Add initial support for
- ADIN1100 industrial PHY
-Message-ID: <20210723173257.66g3epaszn7qwrvd@pengutronix.de>
-References: <20210712130631.38153-1-alexandru.tachici@analog.com>
- <20210712133358.GD22278@shell.armlinux.org.uk>
+        id S231633AbhGWREA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 13:04:00 -0400
+Received: from frasgout.his.huawei.com ([185.176.79.56]:3480 "EHLO
+        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231462AbhGWRD7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 13:03:59 -0400
+Received: from fraeml711-chm.china.huawei.com (unknown [172.18.147.201])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4GWbxd5htXz6H730;
+        Sat, 24 Jul 2021 01:32:53 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml711-chm.china.huawei.com (10.206.15.60) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Fri, 23 Jul 2021 19:44:31 +0200
+Received: from localhost (10.210.170.238) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2176.2; Fri, 23 Jul
+ 2021 18:44:30 +0100
+Date:   Fri, 23 Jul 2021 18:44:04 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Mark Brown <broonie@kernel.org>
+CC:     Puranjay Mohan <puranjay12@gmail.com>,
+        <Michael.Hennerich@analog.com>, <alexandru.ardelean@analog.com>,
+        <jic23@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <lars@metafoo.de>, <Dragos.Bogdan@analog.com>,
+        <Darius.Berghe@analog.com>
+Subject: Re: [PATCH v2 2/2] iio: accel: Add driver support for ADXL355
+Message-ID: <20210723184404.0000001d@Huawei.com>
+In-Reply-To: <20210723171422.GK5221@sirena.org.uk>
+References: <20210722062155.32998-1-puranjay12@gmail.com>
+        <20210722062155.32998-3-puranjay12@gmail.com>
+        <20210723181022.000032bd@Huawei.com>
+        <20210723171422.GK5221@sirena.org.uk>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210712133358.GD22278@shell.armlinux.org.uk>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 19:23:37 up 233 days,  7:30, 27 users,  load average: 0.11, 0.09,
- 0.08
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.210.170.238]
+X-ClientProxiedBy: lhreml704-chm.china.huawei.com (10.201.108.53) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 12, 2021 at 02:33:58PM +0100, Russell King (Oracle) wrote:
-> On Mon, Jul 12, 2021 at 04:06:24PM +0300, alexandru.tachici@analog.com wrote:
-> > From: Alexandru Tachici <alexandru.tachici@analog.com>
-> > 
-> > The ADIN1100 is a low power single port 10BASE-T1L transceiver designed for
-> > industrial Ethernet applications and is compliant with the IEEE 802.3cg
-> > Ethernet standard for long reach 10 Mb/s Single Pair Ethernet.
-> > 
-> > Ethtool output:
-> >         Settings for eth1:
-> >         Supported ports: [ TP	 MII ]
-> >         Supported link modes:   10baseT1L/Full
-> >                                 2400mv
-> >                                 1000mv
+On Fri, 23 Jul 2021 18:14:22 +0100
+Mark Brown <broonie@kernel.org> wrote:
+
+> On Fri, Jul 23, 2021 at 06:10:22PM +0100, Jonathan Cameron wrote:
 > 
-> The SI unit of voltage is V not v, so milli-volts is mV not mv. Surely,
-> at the very least, we should be using the SI designation in user
-> visible strings?
+> > @Mark.  This has come up a few times recently.  Are we now safe to assume
+> > that regmap will always copy data when used with SPI and hence we no
+> > longer need to ensure DMA safe buffers?     
 > 
-> It may also be worth providing a brief description of 10BASE-T1L in the
-> cover letter so (e.g.) one doesn't have to look up the fact that the
-> voltage level is negotiated via bit 13 of the base page. I've found
-> that by searching google and finding dp83td510e.pdf
+> Only for single register I/O, I'd not assume that for things like raw
+> I/O.
 
-I'm curios how the voltage should be actually chosen?
+Thanks for the confirmation.  So in this driver that means we
+need DMA safe buffers for the regmap_bulk_ calls.  Easiest approach
+is probably to use a __cacheline_aligned buffer at the end of the
+iio_priv() structure.
 
-In the adin1100 datasheet i read:
-"The 1.0 V pk-pk operating mode, external termination resistors and independent
-Rx/Tx pins make the ADIN1100 suited to intrinsic safety applications"
+> 
+> Note that my name is spelt Mark.
+> 
 
-"For long reach/trunk applications the higher transmit amplitude of 2.4 V pk-pk"
+I'll blame Friday.
 
-So, it seems to depends on:
-- do we have safety requirements?
-- how long is the cable?
+Thanks,
 
-Can we use 2.4V any time if it is available or it is bad idea for short
-cables?
+Jonathan
 
-Regards,
-Oleksij
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+
