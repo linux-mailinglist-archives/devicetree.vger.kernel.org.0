@@ -2,81 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC90F3D3E48
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 19:14:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14A153D3E66
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 19:21:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230064AbhGWQd4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 12:33:56 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42224 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229492AbhGWQdz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Jul 2021 12:33:55 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A46A960EAF;
-        Fri, 23 Jul 2021 17:14:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627060469;
-        bh=CYlpIedcz47SMki4XJaCg60Cl6KIGEWKSosuQM3Da5o=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bYTpV6vr47MGtABBYcSiDYzO8bV0M74JyBnuTlcKTdYNO0dRbD2LXkAAhPy8Xm5BU
-         0ltitCpD2RVzy2y5Ah7KfrmLZUw1hzTHseWj3+GFpiTH0pfXI2qzw7dEqAAbPjb/ng
-         cu9gLDlEU4bTL+jDrdn15dhsq7zud4srBnx6t/c3wu61IujDJuE9fAn4bdG+QxdNDD
-         01iYQ9caSh9ow3XrIaQ2mcFwzu2keOCxXp1t7KlCeCbQitDsjv7DEjsKSLM9WZMBRu
-         IloX3G0vnS3G8UbhTQ2xMy9p31cKHOduXge6fQ368UR3fYN3NBd6EqOKEWciz94gC/
-         81iraSVD2HgYg==
-Date:   Fri, 23 Jul 2021 18:14:22 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-Cc:     Puranjay Mohan <puranjay12@gmail.com>,
-        Michael.Hennerich@analog.com, alexandru.ardelean@analog.com,
-        jic23@kernel.org, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        lars@metafoo.de, Dragos.Bogdan@analog.com, Darius.Berghe@analog.com
-Subject: Re: [PATCH v2 2/2] iio: accel: Add driver support for ADXL355
-Message-ID: <20210723171422.GK5221@sirena.org.uk>
-References: <20210722062155.32998-1-puranjay12@gmail.com>
- <20210722062155.32998-3-puranjay12@gmail.com>
- <20210723181022.000032bd@Huawei.com>
+        id S230064AbhGWQka (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 12:40:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46782 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229847AbhGWQka (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 12:40:30 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A57F9C061575
+        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 10:21:03 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1m6yr1-00050d-N2; Fri, 23 Jul 2021 19:20:55 +0200
+Received: from ore by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ore@pengutronix.de>)
+        id 1m6yr0-0000IS-5s; Fri, 23 Jul 2021 19:20:54 +0200
+Date:   Fri, 23 Jul 2021 19:20:54 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     alexandru.tachici@analog.com
+Cc:     andrew@lunn.ch, alexandru.ardelean@analog.com, davem@davemloft.net,
+        devicetree@vger.kernel.org, hkallweit1@gmail.com, kuba@kernel.org,
+        linux-kernel@vger.kernel.org, linux@armlinux.org.uk,
+        netdev@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: ADIN1100
+Message-ID: <20210723172054.nfq3shvfhidfnjyn@pengutronix.de>
+References: <YO3GNqqUbyxId+Mn@lunn.ch>
+ <20210716212427.55302-1-alexandru.tachici@analog.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="++alDQ2ROsODg1x+"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210723181022.000032bd@Huawei.com>
-X-Cookie: Integrity has no need for rules.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210716212427.55302-1-alexandru.tachici@analog.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 19:19:14 up 233 days,  7:25, 27 users,  load average: 0.16, 0.13,
+ 0.09
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, Jul 17, 2021 at 12:24:27AM +0300, alexandru.tachici@analog.com wrote:
+> No, ADIN1100 supports only full duplex mode. Added this one just to
+> report through ethtool if lp supports it or not.
 
---++alDQ2ROsODg1x+
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Same about TI T1L phy, there is not half duplex support. I'm courios if
+this is actually required by the 802.3cg standard. 
 
-On Fri, Jul 23, 2021 at 06:10:22PM +0100, Jonathan Cameron wrote:
-
-> @Mark.  This has come up a few times recently.  Are we now safe to assume
-> that regmap will always copy data when used with SPI and hence we no
-> longer need to ensure DMA safe buffers?  =20
-
-Only for single register I/O, I'd not assume that for things like raw
-I/O.
-
-Note that my name is spelt Mark.
-
---++alDQ2ROsODg1x+
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmD6+O0ACgkQJNaLcl1U
-h9CqMgf9G6rh8/mDkku74x+s5FbZRx5bRl6DTaQU9k2ZoYnD7/AvmvmvbTCqouTE
-WggjQ3Xvayj6Lwjzbz95WXm/Ovc7bbnXHHWWrZecG4Q+WX7VhcwSKsslzILp686q
-4XDUpWkZYJTozBB4rkTIzaqzINC0egM3NjTZ/HASh055ttt9xXUVc6QE3Gi0b1hB
-PMH+1jHZIIW/OVJ8PKbFLS49QQTnTFe+2psoV54N39vEC2bCo6dtaP2qkICzkpY2
-TEMZwHOdRrIfhAkTzpjaysV63VcJ3Beku5Azp2BVrW3oyoqWpGKQ38jK8inGYKGz
-xwUU6LfgYze0IJaRrn6sslRfaLc3+Q==
-=yk9t
------END PGP SIGNATURE-----
-
---++alDQ2ROsODg1x+--
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
