@@ -2,93 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C4823D3563
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 09:36:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFADC3D357A
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 09:40:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233209AbhGWGza (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 02:55:30 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:43476 "EHLO gloria.sntech.de"
+        id S233793AbhGWG7j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 02:59:39 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39552 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233205AbhGWGz3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Jul 2021 02:55:29 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.lan)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1m6pfZ-0003dj-Ex; Fri, 23 Jul 2021 09:32:29 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     mchehab@kernel.org, hverkuil-cisco@xs4all.nl
-Cc:     ezequiel@collabora.com, dafna.hirschfeld@collabora.com,
-        helen.koike@collabora.com, Laurent.pinchart@ideasonboard.com,
-        linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
-        heiko@sntech.de, robh+dt@kernel.org, devicetree@vger.kernel.org,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
-Subject: [PATCH v7 10/10] media: rockchip: rkisp1: add support for px30 isp version
-Date:   Fri, 23 Jul 2021 09:32:21 +0200
-Message-Id: <20210723073221.1276358-11-heiko@sntech.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210723073221.1276358-1-heiko@sntech.de>
-References: <20210723073221.1276358-1-heiko@sntech.de>
+        id S233247AbhGWG7i (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 23 Jul 2021 02:59:38 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A11CE60F02;
+        Fri, 23 Jul 2021 07:40:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1627026012;
+        bh=OL8dCFXVHZ6IGGcIwpxKI/zg3sNOpblUin1Ka6UUq+Q=;
+        h=From:To:Cc:Subject:Date:From;
+        b=tVM5nXhPD+1vNVuzcLxcdN46lI/6zX+oUcDFcB3VmzBSEhqmS3Zr9l70QZ/6tYoMn
+         jjXPxNDKpuGwBM/FssJm7fWqcSF/Z1pBn3/LrKIdBt8ax1wu9iMmH4NspMW/RQM+sN
+         REp4oCWdHHZTyFsCQRliY5kwOfWK8Awi0yFsxiZB3jtG8VQdKcRy7ca7AuK1iMeOA4
+         w8hnVKvfG4J1qCf5TU81Wz8jszpQ4BiwE2/DChO01wZTbTKzIqkOyQV1cy9UXbOOW/
+         8+ryhZYNJ5wkqdYy8nQ1lcIMn/Enrk5MKT8BfBGJR+0pICo+mOQ8vZCOzd4MhqL/xx
+         n3YLWzclGhmZg==
+Received: by mail.kernel.org with local (Exim 4.94.2)
+        (envelope-from <mchehab@kernel.org>)
+        id 1m6pn0-00A6vF-G8; Fri, 23 Jul 2021 09:40:10 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-staging@lists.linux.dev
+Subject: [PATCH v15 0/3] Move HiSilicon 6421v600 SPMI and USB drivers out of staging
+Date:   Fri, 23 Jul 2021 09:40:05 +0200
+Message-Id: <cover.1627025657.git.mchehab+huawei@kernel.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+Hi Greg,
 
-The px30 uses a V12 isp block so add compatible and matchdata
-for it.
+Those are the remaining patches needed for USB3 to start working on HiKey 970.
 
-Signed-off-by: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
-Reviewed-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
----
- .../platform/rockchip/rkisp1/rkisp1-dev.c     | 25 +++++++++++++++++++
- 1 file changed, 25 insertions(+)
+I would prefer to have those merged during this cycle, as the PCIe patchset
+currently under review depends on patch 1 and 2 of this series.
 
-diff --git a/drivers/media/platform/rockchip/rkisp1/rkisp1-dev.c b/drivers/media/platform/rockchip/rkisp1/rkisp1-dev.c
-index 290e9bc4c060..23ca49289feb 100644
---- a/drivers/media/platform/rockchip/rkisp1/rkisp1-dev.c
-+++ b/drivers/media/platform/rockchip/rkisp1/rkisp1-dev.c
-@@ -405,6 +405,27 @@ static irqreturn_t rkisp1_isr(int irq, void *ctx)
- 	return IRQ_HANDLED;
- }
- 
-+static const char * const px30_isp_clks[] = {
-+	"isp",
-+	"aclk",
-+	"hclk",
-+	"pclk",
-+};
-+
-+static const struct rkisp1_isr_data px30_isp_isrs[] = {
-+	{ "isp", rkisp1_isp_isr },
-+	{ "mi", rkisp1_capture_isr },
-+	{ "mipi", rkisp1_mipi_isr },
-+};
-+
-+static const struct rkisp1_match_data px30_isp_match_data = {
-+	.clks = px30_isp_clks,
-+	.clk_size = ARRAY_SIZE(px30_isp_clks),
-+	.isrs = px30_isp_isrs,
-+	.isr_size = ARRAY_SIZE(px30_isp_isrs),
-+	.isp_ver = RKISP1_V12,
-+};
-+
- static const char * const rk3399_isp_clks[] = {
- 	"isp",
- 	"aclk",
-@@ -424,6 +445,10 @@ static const struct rkisp1_match_data rk3399_isp_match_data = {
- };
- 
- static const struct of_device_id rkisp1_of_match[] = {
-+	{
-+		.compatible = "rockchip,px30-cif-isp",
-+		.data = &px30_isp_match_data,
-+	},
- 	{
- 		.compatible = "rockchip,rk3399-cif-isp",
- 		.data = &rk3399_isp_match_data,
+So, I dropped the cleanup patch from this series, due to a merge conflict with
+the regulator's tree. I'll re-submit it against the mfd tree after the merge window. 
+
+Mauro Carvalho Chehab (3):
+  mfd: hi6421-spmi-pmic: move driver from staging
+  dts: hisilicon: add support for the PMIC found on Hikey 970
+  dts: hisilicon: add support for USB3 on Hikey 970
+
+ .../mfd/hisilicon,hi6421-spmi-pmic.yaml       | 136 ++++++++++++++++++
+ MAINTAINERS                                   |   7 +
+ .../boot/dts/hisilicon/hi3670-hikey970.dts    | 129 ++++++++++++++---
+ arch/arm64/boot/dts/hisilicon/hi3670.dtsi     |  56 ++++++++
+ .../boot/dts/hisilicon/hikey970-pmic.dtsi     |  86 +++++++++++
+ drivers/mfd/Kconfig                           |  16 +++
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/hi6421-spmi-pmic.c                |  72 ++++++++++
+ drivers/staging/Kconfig                       |   2 -
+ drivers/staging/Makefile                      |   1 -
+ drivers/staging/hikey9xx/Kconfig              |  19 ---
+ drivers/staging/hikey9xx/Makefile             |   3 -
+ drivers/staging/hikey9xx/TODO                 |   5 -
+ drivers/staging/hikey9xx/hi6421-spmi-pmic.c   |  72 ----------
+ .../hikey9xx/hisilicon,hi6421-spmi-pmic.yaml  | 136 ------------------
+ 15 files changed, 484 insertions(+), 257 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
+ create mode 100644 arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
+ create mode 100644 drivers/mfd/hi6421-spmi-pmic.c
+ delete mode 100644 drivers/staging/hikey9xx/Kconfig
+ delete mode 100644 drivers/staging/hikey9xx/Makefile
+ delete mode 100644 drivers/staging/hikey9xx/TODO
+ delete mode 100644 drivers/staging/hikey9xx/hi6421-spmi-pmic.c
+ delete mode 100644 drivers/staging/hikey9xx/hisilicon,hi6421-spmi-pmic.yaml
+
 -- 
-2.29.2
+2.31.1
+
 
