@@ -2,97 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42D663D3D5F
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 18:17:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC7D43D3D78
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 18:21:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229693AbhGWPgu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 11:36:50 -0400
-Received: from frasgout.his.huawei.com ([185.176.79.56]:3476 "EHLO
-        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229686AbhGWPgt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 11:36:49 -0400
-Received: from fraeml707-chm.china.huawei.com (unknown [172.18.147.226])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4GWZ141rb2z6H7qR;
-        Sat, 24 Jul 2021 00:05:44 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml707-chm.china.huawei.com (10.206.15.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Fri, 23 Jul 2021 18:17:21 +0200
-Received: from localhost (10.210.170.238) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2176.2; Fri, 23 Jul
- 2021 17:17:20 +0100
-Date:   Fri, 23 Jul 2021 17:16:57 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Christophe Branchereau <cbranchereau@gmail.com>
-CC:     <paul@crapouillou.net>, <jic23@kernel.org>, <lars@metafoo.de>,
-        <linux-mips@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux@roeck-us.net>,
-        <contact@artur-rojek.eu>
-Subject: Re: [PATCH V2 5/5] dt-bindings: iio/adc: ingenic: add the JZ4760(B)
- socs to the sadc Documentation
-Message-ID: <20210723171657.00003d7f@Huawei.com>
-In-Reply-To: <20210723085813.1523934-6-cbranchereau@gmail.com>
-References: <893d6165-0f12-d0da-44be-449a4ae96ac2@roeck-us.net>
-        <20210723085813.1523934-1-cbranchereau@gmail.com>
-        <20210723085813.1523934-6-cbranchereau@gmail.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
+        id S230487AbhGWPlJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 11:41:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32896 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230421AbhGWPlI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 11:41:08 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29B56C061760
+        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 09:21:41 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id r17so3001444lfe.2
+        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 09:21:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=SliTX8Iw8l9nFjbx/gRlB+2uInDqKw48vi+rU2al8Nc=;
+        b=z2CkY6HOoSWT8+R5fkxgZ069VX+3PJN1Nvq/DmH1sahvH73bCUdm7/j6kXiDunpTps
+         cUSxVODN7M+P8LW7IBoaBbne7Xspvb0LzLvB0Kq7/uHI8Q6QXuW0IoT6RaGfGaaRUPpf
+         tBEKmvdDfRRvyq7poBebhbAx8eGV0FJGBGNgyJJS7SBlgjtwL3PRWg/k35p5fsvYgj9B
+         oQJ7GOjmdDMlYnXHWjdX1BvfssKceNTv/onAJz6FBzOoXqLAWFB2akrZ7JiNtZn905Sb
+         IJ6tLfZ2F+z2AmtsSST04NUyrHQxHmIqwAxTrOmTa2BJRsSVSFtZX3o2QRBinJ+0Bts5
+         YIaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=SliTX8Iw8l9nFjbx/gRlB+2uInDqKw48vi+rU2al8Nc=;
+        b=GwMexisOVElLyK3iqE0Qggf4nriE0lGwbFRRPhmJ4WsI6E88MZ4n/YjGMu4OsUN0jg
+         JyDWo8U0G39f3dqxkI6VVGbfF5x8lx2KO7CYGAt5eK5Jy/6MlFlOEBhQDmjF8D+mgHXW
+         Ze1y0BpB3zlGM6ymFZ4tOtfm1xW9iNJyp6A/hBNAZDHIAFnvMb65zlCLfvkrwhL2LYAa
+         eMUQ6la5SULSflV5JnIUalwg8RrV2z4oTkf78JKyV7okmBjQlx08uRt5X73RlmYXLBv4
+         tRJwDiCUcUS5e10tfYL2dhEEpQohdQIemY/1erjUzSAzMtCJL7sabG3k4X5vSHov3GIx
+         pbIg==
+X-Gm-Message-State: AOAM530rysC68Y462c150APR8ElGlz26L2gqaUz/SzZYycGrlTWP2BrJ
+        iHbHYhSvDZSk4Rba9Wioo6iJtskX9BalMTpRyVL9NQ==
+X-Google-Smtp-Source: ABdhPJwyeo7rGBpxoxiquAEUXMh8R1GJJMHfyFuO8ePzx4uDJagKcKEm/Zrtnh+n4Oi7Tcg2iBTeqT0sI+9NsaX9hM0=
+X-Received: by 2002:a05:6512:169e:: with SMTP id bu30mr3470614lfb.291.1627057299505;
+ Fri, 23 Jul 2021 09:21:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.210.170.238]
-X-ClientProxiedBy: lhreml704-chm.china.huawei.com (10.201.108.53) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
+References: <20210629123407.82561-1-bhupesh.sharma@linaro.org>
+In-Reply-To: <20210629123407.82561-1-bhupesh.sharma@linaro.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 23 Jul 2021 18:21:28 +0200
+Message-ID: <CACRpkdacTi-9YzhOqpfFkNhzSATmbWHs=wMoJcsXwG8pBeW7Mg@mail.gmail.com>
+Subject: Re: [PATCH v4 0/4] pinctrl: qcom/pinctrl-spmi-gpio: Add support for
+ pmic-gpio on SA8155p-adp
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     MSM <linux-arm-msm@vger.kernel.org>, bhupesh.linux@gmail.com,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 23 Jul 2021 10:58:13 +0200
-Christophe Branchereau <cbranchereau@gmail.com> wrote:
+On Tue, Jun 29, 2021 at 2:34 PM Bhupesh Sharma
+<bhupesh.sharma@linaro.org> wrote:
 
-> The jz4760b variant differs slightly from the jz4760, add a property to 
-> let users sample the internal divider if needed and document it.
-> 
-> Signed-off-by: Christophe Branchereau <cbranchereau@gmail.com>
-> ---
->  .../devicetree/bindings/iio/adc/ingenic,adc.yaml         | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/ingenic,adc.yaml b/Documentation/devicetree/bindings/iio/adc/ingenic,adc.yaml
-> index 433a3fb55a2e..0dc42959a64f 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/ingenic,adc.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/ingenic,adc.yaml
-> @@ -23,6 +23,8 @@ properties:
->      enum:
->        - ingenic,jz4725b-adc
->        - ingenic,jz4740-adc
-> +      - ingenic,jz4760-adc
-> +      - ingenic,jz4760b-adc
->        - ingenic,jz4770-adc
->  
->    '#io-channel-cells':
-> @@ -43,6 +45,13 @@ properties:
->    interrupts:
->      maxItems: 1
->  
-> +  ingenic,use-internal-divider:
-> +    description:
-> +      This property can be used to set VBAT_SEL in the JZ4760B CFG register
-> +      to sample the battery voltage from the internal divider. If absent, it
-> +      will sample the external divider.
-> +    type: boolean
-> +
-See reply to the v1 patch for hint on how to 'enforce' that this
-only exists for the jz4760b
+> Changes since v3:
+> -----------------
+> - v3 series can be found here: https://lore.kernel.org/linux-arm-msm/20210617053432.350486-1-bhupesh.sharma@linaro.org/T/#m2b1bf2d32dfdde3196dc5342722e356ee1f87456
+> - Rebased patchset on pinctrl/devel branch.
+> - Added Reviewed-by from Bjorn for patches 1 to 4 and Ack from Rob for
+>   patches 1 and 2.
 
-Thanks,
+This v4 patch set applied!
 
-Jonathan
+Sorry for taking so long, I had a bit too much to do.
 
->  required:
->    - compatible
->    - '#io-channel-cells'
+Excellent work on the patches Bhupesh!
 
+Yours,
+Linus Walleij
