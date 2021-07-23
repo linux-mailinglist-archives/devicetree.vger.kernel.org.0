@@ -2,253 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 627813D357B
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 09:40:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 072AE3D35CF
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 09:59:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233833AbhGWG7j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 02:59:39 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39556 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233298AbhGWG7i (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Jul 2021 02:59:38 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9EEBE60EE6;
-        Fri, 23 Jul 2021 07:40:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627026012;
-        bh=z12ohAzjRBP3E8089FPH94RrqDgdT25W23fpakluff8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=qtmegvyKGQ6idupFOq9cG/C5UqOWEZ8zpn/ozBPACGruNogRWvg7zrefBfwzSSg31
-         gsH9O6IhGqtsvx7jNxA8zPCyruoTd/j1lGLDtmsPuM27g5zhgXF+JnDXj3gJ0Eg0o/
-         +5DLlOMmw240YVIR2GY+NOVc+sBuPpo+ogHCbw8G54DvgYZQtlKRh7LaEb16XrSMHm
-         XS+CdYIlOuERsydZgU5uBbQrN+xjlZOc8Wxf+/Oll1x21q9Dqr3kyR4BLU8zJ/qmme
-         QJYd7E4FNF/28FZbhqmxcZag3vjiJbRc92hsu3V+FYB0VyZGB9mX8PRRSZe3YOrLc4
-         YJdjINYII/qgg==
-Received: by mail.kernel.org with local (Exim 4.94.2)
-        (envelope-from <mchehab@kernel.org>)
-        id 1m6pn0-00A6vW-MA; Fri, 23 Jul 2021 09:40:10 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v15 3/3] dts: hisilicon: add support for USB3 on Hikey 970
-Date:   Fri, 23 Jul 2021 09:40:08 +0200
-Message-Id: <da0401daebfc1bb33dac0d3f8358118b8ea59d06.1627025657.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1627025657.git.mchehab+huawei@kernel.org>
-References: <cover.1627025657.git.mchehab+huawei@kernel.org>
+        id S234311AbhGWHSq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 03:18:46 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:59537 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233291AbhGWHSp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 23 Jul 2021 03:18:45 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id D53FB581634;
+        Fri, 23 Jul 2021 03:59:18 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Fri, 23 Jul 2021 03:59:18 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
+        :to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm3; bh=i8n9O+VsqDFXRYu9i7jNYyfCIp
+        o8E9ZNcVeUyjwI2Ik=; b=WDJa/1k/SAJzvrhFOqBLwsyjc6kmpqly5/dkJBtjQZ
+        Zja0AAC84IaQutQjU8Veo7ApUPkfH7EG0A1NZ6FwPLunySo1OMyzH5hb5px4v+c8
+        +JtQaeILb/fBKsHsMstZvyrcJVqV7lU3i6GVhjCitIc4u7PdNnl5Gz4ZVZqBNrCq
+        575LR3f7/SHGSJLbtaQGbALuIQb5DkNdNFoXl0SCpIGKQevdn9Tdutg94FF+qRE1
+        qjnZq6AcOELPGWrj6Xfs05fRlSy+dzwexmzRDl6/U0RVeHjOs9jZ9LAJDwHJv+eB
+        Qflw4Ju7tpiCCuB9JXkbRff8I2QTcq4sSQ1482BA7+ew==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=i8n9O+VsqDFXRYu9i
+        7jNYyfCIpo8E9ZNcVeUyjwI2Ik=; b=UpxeDh9CqUezIsciiyfavfJ8qQP0tAUzi
+        5MK0L6nKjDHMorgD0BJTkv5CvukVgu5sAnj67Hm+gw6R7eBf7+/t1GLkXiUddU5X
+        R+Vg5N5SvUTaz6T5ZtIbmDp6++2CHrmXqQMgg+zxckh6b0R8e1LoFOsuCFAd5r93
+        /ozXWevK0lfvdqENXkht5E5qpzs29x2fCnSE5i9+lvm0gtGr8EWHNLZKcDC/dNZU
+        QUHq0x56Rk3RMBX+fSncMbzcYZWWgPtlcPDzT0HVEjfeFLw8jMH8/kBaatE2jH0I
+        BzgAFmjZKWWQdHZcymo+rkgpSp6Rc754nxtDyyDhJLh88iFeewllg==
+X-ME-Sender: <xms:1Hb6YKxKzE6oWPgAt3wxPx_ePnTVw65uMxWyjfb74LMBTtoboyzgEQ>
+    <xme:1Hb6YGRvmF6sN0qIhy8d_3fP8hfZKopJHFtaWKJHJS4jkYBM4-8yM5lJ0nZ0GsjVH
+    sllybRhJaTPoO1T9g>
+X-ME-Received: <xmr:1Hb6YMWdi5oqbexFkX3zGmJ7AyiVONBMX8yIIW9zO2aBPTqp848t0q-Waq_xZsAXE5MuyDJsIMbktTCjRaK12240qHdp15iRg1FPDHjPMOaVZIdxVMKHM7Y1h3nzZzP_0ECJuQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeejgdduvddvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgggfestdekredtre
+    dttdenucfhrhhomheptehnughrvgifucflvghffhgvrhihuceorghnughrvgifsegrjhdr
+    ihgurdgruheqnecuggftrfgrthhtvghrnhepkefhieffjeevfeevhedtieeihfefvdejle
+    dvvddthefftedujeethfeuueelfedtnecuvehluhhsthgvrhfuihiivgeptdenucfrrghr
+    rghmpehmrghilhhfrhhomheprghnughrvgifsegrjhdrihgurdgruh
+X-ME-Proxy: <xmx:1Hb6YAiXsMlpzjcmikp88F-5EU14M9ob02JGSwzOUJuI5KRDQMDzIg>
+    <xmx:1Hb6YMBChe99RClN0kXm6hfefuXxkVb0AQ4kjQO7p_qQ5N-cn1GmPA>
+    <xmx:1Hb6YBKInD8nvE6qLjUqrwTk1d7TaJ7DJXhx0qS-eQqg5JSzIP5FAg>
+    <xmx:1nb6YMuJuSNLRfysgLt8Gbbhvqr359rqDYzESyJJdrCS5TtjHkq9GQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 23 Jul 2021 03:59:12 -0400 (EDT)
+From:   Andrew Jeffery <andrew@aj.id.au>
+To:     linux-leds@vger.kernel.org, linux-gpio@vger.kernel.org
+Cc:     clg@kaod.org, robh+dt@kernel.org, joel@jms.id.au, pavel@ucw.cz,
+        linus.walleij@linaro.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: [RFC PATCH 0/6] leds: Fix pca955x GPIO pin mappings
+Date:   Fri, 23 Jul 2021 17:28:52 +0930
+Message-Id: <20210723075858.376378-1-andrew@aj.id.au>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the USB3 bindings for Kirin 970 phy and Hikey 970 board.
+Hello,
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- .../boot/dts/hisilicon/hi3670-hikey970.dts    | 107 ++++++++++++++++++
- arch/arm64/boot/dts/hisilicon/hi3670.dtsi     |  56 +++++++++
- 2 files changed, 163 insertions(+)
+This series does a bunch of crimes, so it's an RFC. I'm cross-posting to the
+pinctrl/GPIO and LEDs lists because the PCA955x devices impact all of them. What
+needs fixing is the leds-pca955x driver's failure to map the GPIO numberspace to
+the pin numberspace of the PCA955x devices. The series solves that by
+implementing pinctrl and pinmux in the leds-pca955x driver.
 
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-index 7c32f5fd5cc5..16f81f86e3fa 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-+++ b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-@@ -53,6 +53,30 @@ wlan_en: wlan-en-1-8v {
- 		startup-delay-us = <70000>;
- 		enable-active-high;
- 	};
-+
-+	hikey_usbhub: hikey_usbhub {
-+		compatible = "hisilicon,kirin970_hikey_usbhub";
-+
-+		typec-vbus-gpios = <&gpio26 1 0>;
-+		otg-switch-gpios = <&gpio4 2 0>;
-+		hub_reset_en_gpio = <&gpio0 3 0>;
-+		hub-vdd-supply = <&ldo17>;
-+		usb-role-switch;
-+
-+		port {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			hikey_usb_ep0: endpoint@0 {
-+				reg = <0>;
-+				remote-endpoint = <&dwc3_role_switch>;
-+			};
-+			hikey_usb_ep1: endpoint@1 {
-+				reg = <1>;
-+				remote-endpoint = <&rt1711h_ep>;
-+			};
-+		};
-+	};
- };
- 
- /*
-@@ -430,3 +454,86 @@ &uart6 {
- 	label = "LS-UART1";
- 	status = "okay";
- };
-+
-+&usb_phy {
-+	phy-supply = <&ldo17>;
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+
-+	rt1711h: rt1711h@4e {
-+		compatible = "richtek,rt1711h";
-+		reg = <0x4e>;
-+		status = "okay";
-+		interrupt-parent = <&gpio27>;
-+		interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usb_cfg_func>;
-+
-+		usb_con: connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			data-role = "dual";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			source-pdos = <PDO_FIXED(5000, 500, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 500, PDO_FIXED_USB_COMM)
-+				PDO_VAR(5000, 5000, 1000)>;
-+			op-sink-microwatt = <10000000>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				port@1 {
-+					reg = <1>;
-+					usb_con_ss: endpoint {
-+						remote-endpoint = <&dwc3_ss>;
-+					};
-+				};
-+			};
-+		};
-+		port {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			rt1711h_ep: endpoint@0 {
-+				reg = <0>;
-+				remote-endpoint = <&hikey_usb_ep1>;
-+			};
-+		};
-+	};
-+};
-+
-+&i2c2 {
-+	/* USB HUB is on this bus at address 0x44 */
-+	status = "okay";
-+};
-+
-+&dwc3 { /* USB */
-+	dr_mode = "otg";
-+	maximum-speed = "super-speed";
-+	phy_type = "utmi";
-+	snps,dis-del-phy-power-chg-quirk;
-+	snps,dis_u2_susphy_quirk;
-+	snps,dis_u3_susphy_quirk;
-+	snps,tx_de_emphasis_quirk;
-+	snps,tx_de_emphasis = <1>;
-+	snps,dis-split-quirk;
-+	snps,gctl-reset-quirk;
-+	usb-role-switch;
-+	role-switch-default-mode = "host";
-+	port {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		dwc3_role_switch: endpoint@0 {
-+			reg = <0>;
-+			remote-endpoint = <&hikey_usb_ep0>;
-+		};
-+
-+		dwc3_ss: endpoint@1 {
-+			reg = <1>;
-+			remote-endpoint = <&usb_con_ss>;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-index 20698cfd0637..1f228612192c 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-@@ -8,6 +8,7 @@
- 
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/hi3670-clock.h>
-+#include <dt-bindings/usb/pd.h>
- 
- / {
- 	compatible = "hisilicon,hi3670";
-@@ -785,5 +786,60 @@ i2c4: i2c@fdf0d000 {
- 			pinctrl-0 = <&i2c4_pmx_func &i2c4_cfg_func>;
- 			status = "disabled";
- 		};
-+
-+		usb3_otg_bc: usb3_otg_bc@ff200000 {
-+			compatible = "syscon", "simple-mfd";
-+			reg = <0x0 0xff200000 0x0 0x1000>;
-+
-+			usb_phy: usbphy {
-+				compatible = "hisilicon,hi3670-usb-phy";
-+				#phy-cells = <0>;
-+				hisilicon,pericrg-syscon = <&crg_ctrl>;
-+				hisilicon,pctrl-syscon = <&pctrl>;
-+				hisilicon,sctrl-syscon = <&sctrl>;
-+				hisilicon,eye-diagram-param = <0xFDFEE4>;
-+				hisilicon,tx-vboost-lvl = <0x5>;
-+			};
-+		};
-+
-+		usb31_misc_rst: usb31_misc_rst_controller {
-+			compatible = "hisilicon,hi3660-reset";
-+			#reset-cells = <2>;
-+			hisi,rst-syscon = <&usb3_otg_bc>;
-+		};
-+
-+		usb3: hisi_dwc3 {
-+			compatible = "hisilicon,hi3670-dwc3";
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+
-+			clocks = <&crg_ctrl HI3670_CLK_GATE_ABB_USB>,
-+				  <&crg_ctrl HI3670_HCLK_GATE_USB3OTG>,
-+				  <&crg_ctrl HI3670_CLK_GATE_USB3OTG_REF>,
-+				  <&crg_ctrl HI3670_ACLK_GATE_USB3DVFS>;
-+			clock-names = "clk_gate_abb_usb",
-+				      "hclk_gate_usb3otg",
-+				      "clk_gate_usb3otg_ref",
-+				      "aclk_gate_usb3dvfs";
-+
-+			assigned-clocks = <&crg_ctrl HI3670_ACLK_GATE_USB3DVFS>;
-+			assigned-clock-rates = <238000000>;
-+			resets = <&crg_rst 0x90 6>,
-+				 <&crg_rst 0x90 7>,
-+				 <&usb31_misc_rst 0xA0 8>,
-+				 <&usb31_misc_rst 0xA0 9>;
-+
-+			dwc3: usb@ff100000 {
-+				compatible = "snps,dwc3";
-+				reg = <0x0 0xff100000 0x0 0x100000>;
-+
-+				interrupts = <0 159 IRQ_TYPE_LEVEL_HIGH>,
-+					    <0 161 IRQ_TYPE_LEVEL_HIGH>;
-+
-+				phys = <&usb_phy>;
-+				phy-names = "usb3-phy";
-+			};
-+		};
- 	};
- };
+Things I'm unsure about:
+
+1. Patch 1: The pinctrl_gpio_as_pin() API feels a bit dirty, not sure what
+   others thoughts are on that (Linus?).
+
+2. Patch 2: I've added a new callback to hook the entirety of the pinctrl map
+   parsing rather than supplying a subnode-specific callback. This was necessary
+   to handle the PCA955x devicetree binding in a backwards compatible way.
+
+3. Patch 4: The PCA955x devices don't actually have any pinmux hardware, but the
+   properties of the pinctrl/pinmux subsystems in the kernel map nicely onto the
+   problem we have. But it's quite a bit of code...
+
+4. Patch 6: I also lost a bunch of time to overlooking the get_group_pins()
+   callback for pinctrl, and it seems odd to me that it isn't required.
+
+Please review!
+
+Andrew
+
+Andrew Jeffery (6):
+  pinctrl: Add pinctrl_gpio_as_pin()
+  pinctrl: Add hook for device-specific map parsing
+  leds: pca955x: Relocate chipdef-related descriptors
+  leds: pca955x: Use pinctrl to map GPIOs to pins
+  ARM: dts: rainier: Add presence-detect and fault indictor GPIO
+    expander
+  pinctrl: Check get_group_pins callback on init
+
+ arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts |  76 +++
+ drivers/leds/leds-pca955x.c                  | 554 +++++++++++++++----
+ drivers/pinctrl/core.c                       |  28 +-
+ include/linux/pinctrl/pinctrl.h              |   4 +
+ 4 files changed, 566 insertions(+), 96 deletions(-)
+
 -- 
-2.31.1
+2.30.2
 
