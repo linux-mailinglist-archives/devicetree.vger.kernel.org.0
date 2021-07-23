@@ -2,155 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 346343D3DC4
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 18:44:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E3013D3DD4
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 18:49:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229616AbhGWQD2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 12:03:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38002 "EHLO
+        id S230510AbhGWQJF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 12:09:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229564AbhGWQD2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 12:03:28 -0400
-Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97874C061757
-        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 09:44:00 -0700 (PDT)
-Received: by mail-qk1-x730.google.com with SMTP id t68so1933350qkf.8
-        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 09:44:00 -0700 (PDT)
+        with ESMTP id S230498AbhGWQJE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 12:09:04 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B3FAC061575;
+        Fri, 23 Jul 2021 09:49:37 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id r17so3128288lfe.2;
+        Fri, 23 Jul 2021 09:49:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=oc8CK0AsdZszsESWwjfIrhAjbLc742tCwBqHvOldIcY=;
-        b=IRarJsCDT60AoiiLdZaWY9Pa53CuNALBm89bNCTf1K9FWkoWh6vFzafpzU6XniduLG
-         K5+jk+ECPltATP2sQMwwxwAOgRWv97d+wXenryGCyyQX5533M5MdwD4sjcj1M+MZf+1b
-         ba5fA9gkLqmdHNJtf7/hPBseKbHcrQfDb8nAY=
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:in-reply-to:references
+         :mime-version;
+        bh=XDdh4rsKCJAYgwlkXrp6L+w5K0Erf3OhyE3Aj6eU6sA=;
+        b=AmwVGzlKyCKPOIJ2ogRrtIH7RqFfUAqExHjcDk8F/xCS3SPvdjHiFV/cRm8DkxEzaB
+         pZczAZvXF5BT5ioLpNS13dK2nTwvpk1HLUXFIhK6zLKcdV1H0P0F7WwNp7FJNijnXtDq
+         8tqNxNearVag8divC8tmS5XjhRiZB3O+UyBoRMD95cNrsrndbCLMQHoYMfstqlkACQf2
+         UpVF4zAt241vyZRPdMK9T9jbNJqCanazLWZ9wTys7qy4RprHQxspZVCBs0hdmoZPHLR2
+         dPhfYx0td/CrbXkr7Fs0Q7+Ut4Xl8S+ts4Val/o1yZRs+WamKgXB0OADPbsFTypqa2QG
+         zlNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=oc8CK0AsdZszsESWwjfIrhAjbLc742tCwBqHvOldIcY=;
-        b=tIYYCHUbG5Dc+gD2zk/Fufc/UB7obQ7GvV/asLLwcp30I5FB4H211LvRwtv4gh2GYF
-         /3x+JHGDXCNxv1x2a/f5g4kTpWPLhzkDd9eRfrpLXQdbR8aBZCcaet9AUbNJoxMfNCXg
-         scZXMFlIbqwGY2ryhJvaGjAwBD7izpTwmvnk6ChVZxyTgaDgS3fedZkAy34abe8CX00F
-         Vj+1bgVFz1eS7FWWU2hhg9kufUzcl5FmaGSLdQU8r29LsHsvABDsrVMZafJv11COxB5S
-         wL1GOGmDutm5KZ7zKcz4KXrsfj7uYFTHAcP2x69JV2V6c0lCywTKZQu4US8ruZYPoUBo
-         UX4g==
-X-Gm-Message-State: AOAM530IIZVMkJXpH4Xu08pCOOyIUsdlQfFEn7zEN81sccJZNapjgNEk
-        TPANy7dPs5kxwC89LTQOVskGIeXhO2rgsw==
-X-Google-Smtp-Source: ABdhPJxYyA3eMawblnpMUhQ84poyPuaMyL9fkiG8Xj+5DlUEtyOc/pTkXm+ZWhIORTv7ROE3HL9i3g==
-X-Received: by 2002:a05:620a:172a:: with SMTP id az42mr5411181qkb.3.1627058639536;
-        Fri, 23 Jul 2021 09:43:59 -0700 (PDT)
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com. [209.85.219.176])
-        by smtp.gmail.com with ESMTPSA id x23sm414253qkf.36.2021.07.23.09.43.58
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Jul 2021 09:43:58 -0700 (PDT)
-Received: by mail-yb1-f176.google.com with SMTP id l145so3242036ybf.7
-        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 09:43:58 -0700 (PDT)
-X-Received: by 2002:a05:6902:521:: with SMTP id y1mr7959636ybs.32.1627058638294;
- Fri, 23 Jul 2021 09:43:58 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+         :references:mime-version;
+        bh=XDdh4rsKCJAYgwlkXrp6L+w5K0Erf3OhyE3Aj6eU6sA=;
+        b=SJ0nEheL7+f3wQUPgC2PdekvHldfD15bSwYr6I10h457+UKj+hW6CafLp9lxh7FO22
+         QTzeQcNneHkDMcXqBOayZm56qbIvnZSE39zvoMoFJh+kJ5DmijgV5TNE8j3f5E8a4xVU
+         yldd06wbUWiYnNXwNZR2/9XXhB8v27Voxa7Lw7v5omKxaMdbzhKjUllQA/hDiCjplEB1
+         H0wE8TUg2xxi0dXboWg/gD5ed0rK1ET/zxOChRyaq5WCMCxpOe4uIqoTBtXK4r0gNCuX
+         KYLRPPPc2w9d22shWm5TIwvooAUUpF0psTeRKvNOe5WsHRRScxwdgyogPRZLt2PPcMM7
+         IwPA==
+X-Gm-Message-State: AOAM530JbFgRxNxPfDt9BP/u4LbfTqt8dlS3+rRwm70ght2XIsyhSbZB
+        dMAiDoD0EJGVK208JdP1tEI=
+X-Google-Smtp-Source: ABdhPJzL1HxlMjQiKhhOw+Ya/ml4TZtcO/9Y3QafLiMoR9r/yEwfO2YjlxRegkMoKqZKwt4uo8XrBQ==
+X-Received: by 2002:a05:6512:110b:: with SMTP id l11mr3662847lfg.255.1627058975585;
+        Fri, 23 Jul 2021 09:49:35 -0700 (PDT)
+Received: from localhost.localdomain ([94.103.227.213])
+        by smtp.gmail.com with ESMTPSA id 193sm3419844ljf.46.2021.07.23.09.49.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Jul 2021 09:49:35 -0700 (PDT)
+Date:   Fri, 23 Jul 2021 19:49:32 +0300
+From:   Pavel Skripkin <paskripkin@gmail.com>
+To:     syzbot <syzbot+e6741b97d5552f97c24d@syzkaller.appspotmail.com>
+Cc:     davem@davemloft.net, devicetree@vger.kernel.org,
+        frowand.list@gmail.com, gregkh@linuxfoundation.org,
+        jmaloy@redhat.com, kuba@kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, rafael@kernel.org, robh+dt@kernel.org,
+        robh@kernel.org, syzkaller-bugs@googlegroups.com,
+        tipc-discussion@lists.sourceforge.net, ying.xue@windriver.com
+Subject: Re: [syzbot] KASAN: use-after-free Read in tipc_recvmsg
+Message-ID: <20210723194932.6c3b77a8@gmail.com>
+In-Reply-To: <20210723193611.746e7071@gmail.com>
+References: <00000000000017e9a105c768f7a0@google.com>
+        <20210723193611.746e7071@gmail.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-suse-linux-gnu)
 MIME-Version: 1.0
-References: <1626931716-10591-1-git-send-email-rnayak@codeaurora.org> <1626931716-10591-3-git-send-email-rnayak@codeaurora.org>
-In-Reply-To: <1626931716-10591-3-git-send-email-rnayak@codeaurora.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 23 Jul 2021 09:43:47 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VHP9GbyueqrM1pJ-ZjgndYWj9Q6883pDHnZmK2mMYN2Q@mail.gmail.com>
-Message-ID: <CAD=FV=VHP9GbyueqrM1pJ-ZjgndYWj9Q6883pDHnZmK2mMYN2Q@mail.gmail.com>
-Subject: Re: [PATCH 2/3] nvmem: qfprom: sc7280: Handle the additional
- power-domains vote
-To:     Rajendra Nayak <rnayak@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        "Ravi Kumar Bokka (Temp)" <rbokka@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/mixed; boundary="MP_/MKoJ6vq7qt8cDOW_ZXQsPzL"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+--MP_/MKoJ6vq7qt8cDOW_ZXQsPzL
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-On Wed, Jul 21, 2021 at 10:29 PM Rajendra Nayak <rnayak@codeaurora.org> wrote:
->
-> On sc7280, to reliably blow fuses, we need an additional vote
-> on max performance state of 'MX' power-domain.
-> Add support for power-domain performance state voting in the
-> driver.
->
-> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
-> ---
->  drivers/nvmem/qfprom.c | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
->
-> diff --git a/drivers/nvmem/qfprom.c b/drivers/nvmem/qfprom.c
-> index 81fbad5..4d0a576 100644
-> --- a/drivers/nvmem/qfprom.c
-> +++ b/drivers/nvmem/qfprom.c
-> @@ -12,6 +12,8 @@
->  #include <linux/mod_devicetable.h>
->  #include <linux/nvmem-provider.h>
->  #include <linux/platform_device.h>
-> +#include <linux/pm_domain.h>
-> +#include <linux/pm_runtime.h>
->  #include <linux/property.h>
->  #include <linux/regulator/consumer.h>
->
-> @@ -149,6 +151,11 @@ static void qfprom_disable_fuse_blowing(const struct qfprom_priv *priv,
->         if (ret)
->                 dev_warn(priv->dev, "Failed to set 0 voltage (ignoring)\n");
->
-> +       if (priv->dev->pm_domain) {
-> +               dev_pm_genpd_set_performance_state(priv->dev, 0);
-> +               pm_runtime_put(priv->dev);
-> +       }
-> +
->         ret = regulator_disable(priv->vcc);
->         if (ret)
->                 dev_warn(priv->dev, "Failed to disable regulator (ignoring)\n");
-> @@ -212,6 +219,16 @@ static int qfprom_enable_fuse_blowing(const struct qfprom_priv *priv,
->                 goto err_clk_rate_set;
->         }
->
-> +       if (priv->dev->pm_domain) {
-> +               ret = pm_runtime_get_sync(priv->dev);
-> +               if (ret < 0) {
-> +                       pm_runtime_put_noidle(priv->dev);
-> +                       dev_err(priv->dev, "Failed to enable power-domain\n");
-> +                       goto err_reg_enable;
-> +               }
-> +               dev_pm_genpd_set_performance_state(priv->dev, INT_MAX);
-> +       }
-> +
->         old->timer_val = readl(priv->qfpconf + QFPROM_BLOW_TIMER_OFFSET);
->         old->accel_val = readl(priv->qfpconf + QFPROM_ACCEL_OFFSET);
->         writel(priv->soc_data->qfprom_blow_timer_value,
-> @@ -221,6 +238,8 @@ static int qfprom_enable_fuse_blowing(const struct qfprom_priv *priv,
->
->         return 0;
->
-> +err_reg_enable:
-> +       regulator_disable(priv->vcc);
->  err_clk_rate_set:
->         clk_set_rate(priv->secclk, old->clk_rate);
->  err_clk_prepared:
-> @@ -420,6 +439,9 @@ static int qfprom_probe(struct platform_device *pdev)
->                         econfig.reg_write = qfprom_reg_write;
->         }
->
-> +       if (dev->pm_domain)
-> +               pm_runtime_enable(dev);
-> +
+On Fri, 23 Jul 2021 19:36:11 +0300
+Pavel Skripkin <paskripkin@gmail.com> wrote:
 
-Where is the matching pm_runtime_disable()? Should be one in
-.remove(), or use devm_add_action_or_reset() to wrap a call to it.
+> On Sun, 18 Jul 2021 10:15:19 -0700
+> syzbot <syzbot+e6741b97d5552f97c24d@syzkaller.appspotmail.com> wrote:
+> 
+> > Hello,
+> > 
+> > syzbot found the following issue on:
+> > 
+> > HEAD commit:    ab0441b4a920 Merge branch 'vmxnet3-version-6'
+> > git tree:       net-next
+> > console output:
+> > https://syzkaller.appspot.com/x/log.txt?x=1744ac6a300000 kernel
+> > config:  https://syzkaller.appspot.com/x/.config?x=da140227e4f25b17
+> > dashboard link:
+> > https://syzkaller.appspot.com/bug?extid=e6741b97d5552f97c24d syz
+> > repro:
+> > https://syzkaller.appspot.com/x/repro.syz?x=13973a74300000 C
+> > reproducer:
+> > https://syzkaller.appspot.com/x/repro.c?x=17ffc902300000
+> > 
+> > The issue was bisected to:
+> > 
+> > commit 67a3156453859ceb40dc4448b7a6a99ea0ad27c7
+> > Author: Rob Herring <robh@kernel.org>
+> > Date:   Thu May 27 19:45:47 2021 +0000
+> > 
+> >     of: Merge of_address_to_resource() and
+> > of_pci_address_to_resource() implementations
+> > 
+> > bisection log:
+> > https://syzkaller.appspot.com/x/bisect.txt?x=129b0438300000 final
+> > oops:
+> > https://syzkaller.appspot.com/x/report.txt?x=119b0438300000 console
+> > output: https://syzkaller.appspot.com/x/log.txt?x=169b0438300000
+> > 
+> > IMPORTANT: if you fix the issue, please add the following tag to the
+> > commit: Reported-by:
+> > syzbot+e6741b97d5552f97c24d@syzkaller.appspotmail.com Fixes:
+> > 67a315645385 ("of: Merge of_address_to_resource() and
+> > of_pci_address_to_resource() implementations")
+> > 
+> > ==================================================================
+> > BUG: KASAN: use-after-free in tipc_recvmsg+0xf77/0xf90
+> > net/tipc/socket.c:1979 Read of size 4 at addr ffff8880328cf1c0 by
+> > task kworker/u4:0/8
+> > 
+> 
+> Since code accesing skb_cb after possible kfree_skb() call let's just
+> store bytes_read to variable and use it instead of acessing
+> skb_cb->bytes_read
+> 
+> #syz test
+> git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+> master
+> 
+> 
 
-Also: do you really need to test for dev->pm_domain in your patch?
-Seems like it should always be fine to call pm_runtime_enable() and
-then always fine to call the get/put. ...and presumably always fine to
-even set the performance state?
+Oops... The buggy code is in -next tree.
 
--Doug
+#syz test
+git://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master 
+
+
+
+With regards,
+Pavel Skripkin
+
+--MP_/MKoJ6vq7qt8cDOW_ZXQsPzL
+Content-Type: text/x-patch
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename=0001-tipc-fix-use-after-free-in-tipc_recvmsg.patch
+
+From 9f81f8574bfc1183209022b405848e01c35b86e6 Mon Sep 17 00:00:00 2001
+From: Pavel Skripkin <paskripkin@gmail.com>
+Date: Fri, 23 Jul 2021 19:34:06 +0300
+Subject: [PATCH] tipc: fix use-after-free in tipc_recvmsg
+
+/* .. */
+
+Signed-off-by: Pavel Skripkin <paskripkin@gmail.com>
+---
+ net/tipc/socket.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/net/tipc/socket.c b/net/tipc/socket.c
+index 9b0b311c7ec1..0cf2468d209d 100644
+--- a/net/tipc/socket.c
++++ b/net/tipc/socket.c
+@@ -1886,6 +1886,7 @@ static int tipc_recvmsg(struct socket *sock, struct msghdr *m,
+ 	struct sk_buff *skb;
+ 	bool grp_evt;
+ 	long timeout;
++	unsigned int bytes_read;
+ 
+ 	/* Catch invalid receive requests */
+ 	if (unlikely(!buflen))
+@@ -1973,10 +1974,13 @@ static int tipc_recvmsg(struct socket *sock, struct msghdr *m,
+ 		tipc_node_distr_xmit(sock_net(sk), &xmitq);
+ 	}
+ 
+-	if (!skb_cb->bytes_read)
++	/* To avoid accesing skb_cb after tsk_advance_rx_queue */
++	bytes_read = skb_cb->bytes_read;
++
++	if (!bytes_read)
+ 		tsk_advance_rx_queue(sk);
+ 
+-	if (likely(!connected) || skb_cb->bytes_read)
++	if (likely(!connected) || bytes_read)
+ 		goto exit;
+ 
+ 	/* Send connection flow control advertisement when applicable */
+-- 
+2.32.0
+
+
+--MP_/MKoJ6vq7qt8cDOW_ZXQsPzL--
