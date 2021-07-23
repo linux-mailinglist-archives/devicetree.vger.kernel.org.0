@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 817503D32EA
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 05:59:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F0633D32FA
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 05:59:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234156AbhGWDSu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 23:18:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37168 "EHLO mail.kernel.org"
+        id S233582AbhGWDTE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 23:19:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39740 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234299AbhGWDSR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Jul 2021 23:18:17 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 974DF60ED7;
-        Fri, 23 Jul 2021 03:58:50 +0000 (UTC)
+        id S233997AbhGWDSb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Jul 2021 23:18:31 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5ABB860F45;
+        Fri, 23 Jul 2021 03:59:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627012731;
-        bh=4WiaT0LJMspWCRApkLSVH+eePzHQR7u5zz1Kmaip1Ww=;
+        s=k20201202; t=1627012745;
+        bh=y9xj+TPN1K9p0q1x7W7ghnJEh1pyk3AwYDdWiLfGaGQ=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=h/7TUMdBygc3F7aWuyQgw5TR5mVwOK6GgWdt0hneeK3STtsD8udKdAS7FF1kA8g5g
-         nG58EntvJvmEZMARI1RcqbsibB2Bi0C8X1nRxKdOqDZ0e3CfmgCidMs3V4bQ6/b5HI
-         Q2/YyRbTFdLmm0/6oWwUquWUZK4qUNW6z/B6cknZcsadm4tV72Qfq4A2qCwGFJbdIK
-         htYpUpEJMnaJJ3c6KoKF87ARlubsXOFBVSiBRopFinsNUd2MA7UJikk8UMrrFiy2Lm
-         aCR5koB7bIG273Aip2MQHgyD2aiOLMQh3iALO4mUHvJJISw3VmST6RzospS0DZM9cD
-         klW6Sv2HfD5jg==
+        b=g/Yqqsd+PhIVkbapRlauTxZVIGnLvJMwFqp6TCaK8oRlStj2GR+9FuwS/x/zK6QJe
+         o4kM9XkPW4J2MMb3xj/JSUyovju8JfT6GdXSCsqYONiIx7jMsMSzDsruAW86Ol2sUk
+         cp8B/zT/iob3XA/40qc+StwxoNXY8EqQDDUqloKVF/G5cnmviBPkKCQ2P/NC0ozp2/
+         D0GEDMffnNtkflPQoGUh6x/at3KtL0XvrVOJ02mftTu8d4jOEj+xEB/uIJqzYD/96U
+         jn01S4/q4oviMNw7u89p8fC6SmDaog7pTMEFCCYnfCwIvJPxwtwUQfcPZd8P/QdR/w
+         0O4p2Yt2onD2w==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Sudeep Holla <sudeep.holla@arm.com>,
         Linus Walleij <linus.walleij@linaro.org>,
         Arnd Bergmann <arnd@arndb.de>, Sasha Levin <sashal@kernel.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 11/11] ARM: dts: versatile: Fix up interrupt controller node names
-Date:   Thu, 22 Jul 2021 23:58:35 -0400
-Message-Id: <20210723035835.532148-11-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.14 8/8] ARM: dts: versatile: Fix up interrupt controller node names
+Date:   Thu, 22 Jul 2021 23:58:52 -0400
+Message-Id: <20210723035852.532303-8-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210723035835.532148-1-sashal@kernel.org>
-References: <20210723035835.532148-1-sashal@kernel.org>
+In-Reply-To: <20210723035852.532303-1-sashal@kernel.org>
+References: <20210723035852.532303-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -72,10 +72,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  2 files changed, 3 insertions(+), 4 deletions(-)
 
 diff --git a/arch/arm/boot/dts/versatile-ab.dts b/arch/arm/boot/dts/versatile-ab.dts
-index 6f4f60ba5429..990b7ef1800e 100644
+index a9000d22b2c0..873889ddecbe 100644
 --- a/arch/arm/boot/dts/versatile-ab.dts
 +++ b/arch/arm/boot/dts/versatile-ab.dts
-@@ -192,16 +192,15 @@ amba {
+@@ -155,16 +155,15 @@ amba {
  		#size-cells = <1>;
  		ranges;
  
