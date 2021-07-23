@@ -2,348 +2,353 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8BEA3D3C67
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 17:26:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 490633D3C6B
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 17:29:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235551AbhGWOpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 10:45:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47940 "EHLO
+        id S235608AbhGWOsf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 10:48:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235554AbhGWOpe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 10:45:34 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D88F5C06175F
-        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 08:26:02 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id n10so2171428ljq.3
-        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 08:26:02 -0700 (PDT)
+        with ESMTP id S235501AbhGWOsP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 10:48:15 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBF84C0613CF
+        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 08:28:04 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id e2so2783698wrq.6
+        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 08:28:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=lTf0DsiowvBZKkFtZMsmpqp1uJ69RCkXbJy1FYZWtKs=;
-        b=SLVJp/cTh2mw0L1Kegosc5UHoVnD/EBGLl9BZ2cG5Wp5XlOrecJ53oz2972WKJuJ1g
-         Cw874pZ5+jsHhJiR97pCtFCXSGJ0FSOi+9PNWYsJIybD4Trk/dIzNLUlDcLZWGlnOnpy
-         3FhlFtl9lcLvKnHM2gOhMdCJwjo9UJG69nIhoo2vQjGe7f45uLOuNsvNQY/ZLmiulrqv
-         OgX4lKMmzmBn28hj4cO8CRu4Lh03QY9hh2gkB8ZDmMTFobZfPp/0/OOkIf7F8++LWNkC
-         rnxi7G13CndrHnZwJoL8E7CP0Rh7rJKe4q+TW+Xq8zWRo+S3H70EpOI7aUTM/MVwkFCY
-         uYAA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=NQnI/V0ng7WWg3UXb2UO+GXHp5SVJij1U1V8CX0Oqts=;
+        b=Qajr49s0JBbDQrOHN0aLJ/YsOXvKSeWWxjYOxdygW7JtbhXK/uJMDaOjUcZHy0un5O
+         8ZY2HFw0rBVOR72JLwsE2Xs/6BK2gs+zAOL2UByYz/TLgN7U3rv1un0fjaV3QFhFyKgS
+         z1pLrYxhhNqOoVKzR9olcDxy1vS8t81lV4R2JVCWmD+a/leVYamC0UhzpiPJqRiNNo/i
+         dwnNLqWUFh8J8sXkBUMXWlzol/RuV4wOLUBezeysoUXqcY19nL0dPlwCpcPecT5AbVS0
+         UoUHfDVGM9eWkcUF+ZKRdH6xq4OMA0E5ZCazSPj90juazqIvL2nkmM6AR8V1TLXVnjHu
+         SsbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=lTf0DsiowvBZKkFtZMsmpqp1uJ69RCkXbJy1FYZWtKs=;
-        b=mtPgLHVMe76YNUn4lNt29wnNokcYJM4oLQKRZafc95gNJueGzsVJCLDDNhzTImrLmg
-         kV78WkDV3ngkQGc7UFEqhmHocFLjrh5ovNBORywI63CIi4NyKx2aSErra21U7zWC92tq
-         qyg4eETtwnOEyo3damLvH5D/B3FR983ZyEGrkAVB1cjEcxN2ac6J7s6CoigyCQYc4yR0
-         RlKva9Ij+vDP72D7fxnbTjUkcitbRO+jwfXXw4RPpaEGcPMsSRsS6RRjtqKj9VAJalvG
-         ZycKaVH7DJrtpqrk0jzB9KwNS6q5x0u1HZkjzkhsQ55bfnIsWYupLFTbapEO3blsWQFy
-         NxlQ==
-X-Gm-Message-State: AOAM5317nmqHQNHfkj4sYf54gMXNmEaVyphEuCE40R/n8vPg9mbewpnG
-        1pS9tNyDLHaWTwI+vDI0KZybBZVMFHmdEA==
-X-Google-Smtp-Source: ABdhPJwlAVUEkeSwQacRPSc/5KbLhZxIAUpPP51YzDAzKhp+bAO5vwBxHFC9EoM99eI+228fT/XgaA==
-X-Received: by 2002:a2e:b16b:: with SMTP id a11mr3051528ljm.346.1627053960249;
-        Fri, 23 Jul 2021 08:26:00 -0700 (PDT)
-Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
-        by smtp.gmail.com with ESMTPSA id r189sm1881380lff.64.2021.07.23.08.25.59
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=NQnI/V0ng7WWg3UXb2UO+GXHp5SVJij1U1V8CX0Oqts=;
+        b=dNQ3SjFrqV9fIzIy9TD0E5GoTodJnja9ThNA62+9R39Ehe5QMMcd2Vc2nCSz0LGAKp
+         qtyG0YdgN01bMLZhJf2XPN3uk+inOHZK9CcaRhPZNK7YmIGqhSUR7Qroi7T+Af6pZaAW
+         VR0xSCnC7joNFu0H0IQbU0/i0+bmW8TGYEAfPwqfYgEPjzvi9pGEzezouG06jMf84Ux/
+         bbISUxwVhc8jv6ZKcCWUEKabHLQoG5JhlfJhzIDk0FqlxIi83lDqOjHhY5YIn2ryrdZI
+         ZH2ZILCwafu0SpVv41qZ44qgDXcyrQD7FNeqhwmnPyIuyfKfiBqh55pTlsSZHZGGMn9W
+         qqZw==
+X-Gm-Message-State: AOAM530yWu1RTtcoMlYuH1r9THH1pHxzlE28bGBP6f6cbkNpwB/3DW3N
+        7aXo1uFVTVsSSN1/yutcLtS0ztM1hRsWOQ==
+X-Google-Smtp-Source: ABdhPJzNIx/ZDD6YcyxArPOmckElO1BmTrwWgp2ACtgFWS3dlsen0uYprBfMFdmGOuiqOrdfetHNOg==
+X-Received: by 2002:adf:ffc3:: with SMTP id x3mr2383544wrs.136.1627054082820;
+        Fri, 23 Jul 2021 08:28:02 -0700 (PDT)
+Received: from google.com ([31.124.24.141])
+        by smtp.gmail.com with ESMTPSA id u2sm5865034wmm.37.2021.07.23.08.28.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jul 2021 08:25:59 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH] dt-bindings: arm: Convert Gemini boards to YAML
-Date:   Fri, 23 Jul 2021 17:23:56 +0200
-Message-Id: <20210723152356.1874088-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.31.1
+        Fri, 23 Jul 2021 08:28:01 -0700 (PDT)
+Date:   Fri, 23 Jul 2021 16:27:59 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Subject: Re: [PATCH 2/3] syscon: add support for "syscon-smc" compatible
+Message-ID: <YPrf/5g7JAtf1c4u@google.com>
+References: <20210723135239.388325-1-clement.leger@bootlin.com>
+ <20210723135239.388325-3-clement.leger@bootlin.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210723135239.388325-3-clement.leger@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This removes the old plaintext Gemini binding and replace it
-with a YAML schema, adding some new boards in the process.
-While we are at it, add the missing vendors to the vendor
-prefix file.
+On Fri, 23 Jul 2021, Clément Léger wrote:
 
-Drop the overly deliberate description of subnodes and the big
-example from the old document. Keep the elaborate description.
+> System controllers can be placed under secure monitor control when running
+> under them. In order to keep existing code which accesses such system
+> controllers using a syscon, add support for "syscon-smc" compatible.
+> 
+> When enable, the syscon will handle this new compatible and look for an
+> "arm,smc-id" property to execute the appropriate SMC. A SMC regmap is then
+> created to forward register access to the secure monitor.
+> 
+> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> ---
+>  drivers/mfd/syscon.c | 170 ++++++++++++++++++++++++++++++++++++-------
+>  1 file changed, 145 insertions(+), 25 deletions(-)
 
-I noticed that "wiliboard" is not a real vendor, the vendor
-is named "wiligear" so deprecated this and replaced with the
-proper vendor.
+I'm going to let Arnd have at this, but just a couple of points.
 
-Cc: Corentin Labbe <clabbe@baylibre.com>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-Rob: maybe it's best that you apply this directly to the bindings
-tree so the vendors file is kept in check.
----
- .../devicetree/bindings/arm/gemini.txt        | 108 ------------------
- .../devicetree/bindings/arm/gemini.yaml       |  95 +++++++++++++++
- .../devicetree/bindings/vendor-prefixes.yaml  |  10 ++
- 3 files changed, 105 insertions(+), 108 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/gemini.txt
- create mode 100644 Documentation/devicetree/bindings/arm/gemini.yaml
+> diff --git a/drivers/mfd/syscon.c b/drivers/mfd/syscon.c
+> index 765c0210cb52..eb727b146315 100644
+> --- a/drivers/mfd/syscon.c
+> +++ b/drivers/mfd/syscon.c
+> @@ -40,7 +40,15 @@ static const struct regmap_config syscon_regmap_config = {
+>  	.reg_stride = 4,
+>  };
+>  
+> -static struct syscon *of_syscon_register(struct device_node *np, bool check_clk)
+> +static void syscon_add(struct syscon *syscon)
+> +{
+> +	spin_lock(&syscon_list_slock);
+> +	list_add_tail(&syscon->list, &syscon_list);
+> +	spin_unlock(&syscon_list_slock);
+> +}
+> +
+> +static struct syscon *of_syscon_register_mmio(struct device_node *np,
+> +					      bool check_clk)
+>  {
+>  	struct clk *clk;
+>  	struct syscon *syscon;
+> @@ -132,10 +140,6 @@ static struct syscon *of_syscon_register(struct device_node *np, bool check_clk)
+>  	syscon->regmap = regmap;
+>  	syscon->np = np;
+>  
+> -	spin_lock(&syscon_list_slock);
+> -	list_add_tail(&syscon->list, &syscon_list);
+> -	spin_unlock(&syscon_list_slock);
+> -
+>  	return syscon;
+>  
+>  err_attach:
+> @@ -150,8 +154,49 @@ static struct syscon *of_syscon_register(struct device_node *np, bool check_clk)
+>  	return ERR_PTR(ret);
+>  }
+>  
+> +#ifdef CONFIG_REGMAP_SMCCC
+> +static struct syscon *of_syscon_register_smccc(struct device_node *np)
+> +{
+> +	struct syscon *syscon;
+> +	struct regmap *regmap;
+> +	u32 reg_io_width = 4, smc_id;
+> +	int ret;
+> +	struct regmap_config syscon_config = syscon_regmap_config;
+> +
+> +	ret = of_property_read_u32(np, "arm,smc-id", &smc_id);
 
-diff --git a/Documentation/devicetree/bindings/arm/gemini.txt b/Documentation/devicetree/bindings/arm/gemini.txt
-deleted file mode 100644
-index 55bf7ce96c44..000000000000
---- a/Documentation/devicetree/bindings/arm/gemini.txt
-+++ /dev/null
-@@ -1,108 +0,0 @@
--Cortina systems Gemini platforms
--
--The Gemini SoC is the project name for an ARMv4 FA525-based SoC originally
--produced by Storlink Semiconductor around 2005. The company was renamed
--later renamed Storm Semiconductor. The chip product name is Storlink SL3516.
--It was derived from earlier products from Storm named SL3316 (Centroid) and
--SL3512 (Bulverde).
--
--Storm Semiconductor was acquired by Cortina Systems in 2008 and the SoC was
--produced and used for NAS and similar usecases. In 2014 Cortina Systems was
--in turn acquired by Inphi, who seem to have discontinued this product family.
--
--Many of the IP blocks used in the SoC comes from Faraday Technology.
--
--Required properties (in root node):
--	compatible = "cortina,gemini";
--
--Required nodes:
--
--- soc: the SoC should be represented by a simple bus encompassing all the
--  onchip devices, this is referred to as the soc bus node.
--
--- syscon: the soc bus node must have a system controller node pointing to the
--  global control registers, with the compatible string
--  "cortina,gemini-syscon", "syscon";
--
--  Required properties on the syscon:
--  - reg: syscon register location and size.
--  - #clock-cells: should be set to <1> - the system controller is also a
--                  clock provider.
--  - #reset-cells: should be set to <1> - the system controller is also a
--                  reset line provider.
--
--  The clock sources have shorthand defines in the include file:
--  <dt-bindings/clock/cortina,gemini-clock.h>
--
--  The reset lines have shorthand defines in the include file:
--  <dt-bindings/reset/cortina,gemini-reset.h>
--
--- timer: the soc bus node must have a timer node pointing to the SoC timer
--  block, with the compatible string "cortina,gemini-timer"
--  See: clocksource/cortina,gemini-timer.txt
--
--- interrupt-controller: the sob bus node must have an interrupt controller
--  node pointing to the SoC interrupt controller block, with the compatible
--  string "cortina,gemini-interrupt-controller"
--  See interrupt-controller/cortina,gemini-interrupt-controller.txt
--
--Example:
--
--/ {
--	model = "Foo Gemini Machine";
--	compatible = "cortina,gemini";
--	#address-cells = <1>;
--	#size-cells = <1>;
--
--	memory {
--		device_type = "memory";
--		reg = <0x00000000 0x8000000>;
--	};
--
--	soc {
--		#address-cells = <1>;
--		#size-cells = <1>;
--		ranges;
--		compatible = "simple-bus";
--		interrupt-parent = <&intcon>;
--
--		syscon: syscon@40000000 {
--			compatible = "cortina,gemini-syscon", "syscon";
--			reg = <0x40000000 0x1000>;
--			#clock-cells = <1>;
--			#reset-cells = <1>;
--		};
--
--		uart0: serial@42000000 {
--			compatible = "ns16550a";
--			reg = <0x42000000 0x100>;
--			resets = <&syscon GEMINI_RESET_UART>;
--			clocks = <&syscon GEMINI_CLK_UART>;
--			interrupts = <18 IRQ_TYPE_LEVEL_HIGH>;
--			reg-shift = <2>;
--		};
--
--		timer@43000000 {
--			compatible = "cortina,gemini-timer";
--			reg = <0x43000000 0x1000>;
--			interrupt-parent = <&intcon>;
--			interrupts = <14 IRQ_TYPE_EDGE_FALLING>, /* Timer 1 */
--				     <15 IRQ_TYPE_EDGE_FALLING>, /* Timer 2 */
--				     <16 IRQ_TYPE_EDGE_FALLING>; /* Timer 3 */
--			resets = <&syscon GEMINI_RESET_TIMER>;
--			/* APB clock or RTC clock */
--			clocks = <&syscon GEMINI_CLK_APB>,
--				 <&syscon GEMINI_CLK_RTC>;
--			clock-names = "PCLK", "EXTCLK";
--			syscon = <&syscon>;
--		};
--
--		intcon: interrupt-controller@48000000 {
--			compatible = "cortina,gemini-interrupt-controller";
--			reg = <0x48000000 0x1000>;
--			resets = <&syscon GEMINI_RESET_INTCON0>;
--			interrupt-controller;
--			#interrupt-cells = <2>;
--		};
--	};
--};
-diff --git a/Documentation/devicetree/bindings/arm/gemini.yaml b/Documentation/devicetree/bindings/arm/gemini.yaml
-new file mode 100644
-index 000000000000..f6a0b675830f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/gemini.yaml
-@@ -0,0 +1,95 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/gemini.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Cortina systems Gemini platforms
-+
-+description: |
-+  The Gemini SoC is the project name for an ARMv4 FA525-based SoC originally
-+  produced by Storlink Semiconductor around 2005. The company was renamed
-+  later renamed Storm Semiconductor. The chip product name is Storlink SL3516.
-+  It was derived from earlier products from Storm named SL3316 (Centroid) and
-+  SL3512 (Bulverde).
-+
-+  Storm Semiconductor was acquired by Cortina Systems in 2008 and the SoC was
-+  produced and used for NAS and similar usecases. In 2014 Cortina Systems was
-+  in turn acquired by Inphi, who seem to have discontinued this product family.
-+
-+  Many of the IP blocks used in the SoC comes from Faraday Technology.
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+properties:
-+  $nodename:
-+    const: '/'
-+  compatible:
-+    oneOf:
-+
-+      - description: Storlink Semiconductor Gemini324 EV-Board also known
-+          as Storm Semiconductor SL93512R_BRD
-+        items:
-+          - const: storlink,gemini324
-+          - const: storm,sl93512r
-+          - const: cortina,gemini
-+
-+      - description: D-Link DIR-685 Xtreme N Storage Router
-+        items:
-+          - const: dlink,dir-685
-+          - const: cortina,gemini
-+
-+      - description: D-Link DNS-313 1-Bay Network Storage Enclosure
-+        items:
-+          - const: dlink,dns-313
-+          - const: cortina,gemini
-+
-+      - description: Edimax NS-2502
-+        items:
-+          - const: edimax,ns-2502
-+          - const: cortina,gemini
-+
-+      - description: ITian Square One SQ201
-+        items:
-+          - const: itian,sq201
-+          - const: cortina,gemini
-+
-+      - description: Raidsonic NAS IB-4220-B
-+        items:
-+          - const: raidsonic,ib-4220-b
-+          - const: cortina,gemini
-+
-+      - description: SSI 1328
-+        items:
-+          - const: ssi,1328
-+          - const: cortina,gemini
-+
-+      - description: Teltonika RUT1xx Mobile Router
-+        items:
-+          - const: teltonika,rut1xx
-+          - const: cortina,gemini
-+
-+      - description: Wiligear Wiliboard WBD-111
-+        items:
-+          - const: wiligear,wiliboard-wbd111
-+          - const: cortina,gemini
-+
-+      - description: Wiligear Wiliboard WBD-222
-+        items:
-+          - const: wiligear,wiliboard-wbd222
-+          - const: cortina,gemini
-+
-+      - description: Wiligear Wiliboard WBD-111 - old incorrect binding
-+        items:
-+          - const: wiliboard,wbd111
-+          - const: cortina,gemini
-+        deprecated: true
-+
-+      - description: Wiligear Wiliboard WBD-222 - old incorrect binding
-+        items:
-+          - const: wiliboard,wbd222
-+          - const: cortina,gemini
-+        deprecated: true
-+
-+additionalProperties: true
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 7781bcc35ab8..141d41491f0f 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -565,6 +565,8 @@ patternProperties:
-     description: ITE Tech. Inc.
-   "^itead,.*":
-     description: ITEAD Intelligent Systems Co.Ltd
-+  "^itian,.*":
-+    description: ITian Corporation
-   "^iwave,.*":
-     description: iWave Systems Technologies Pvt. Ltd.
-   "^jdi,.*":
-@@ -1115,6 +1117,10 @@ patternProperties:
-   "^st-ericsson,.*":
-     description: ST-Ericsson
-     deprecated: true
-+  "^storlink,.*":
-+    description: StorLink Semiconductors, Inc.
-+  "^storm,.*":
-+    description: Storm Semiconductor, Inc.
-   "^summit,.*":
-     description: Summit microelectronics
-   "^sunchip,.*":
-@@ -1147,6 +1153,8 @@ patternProperties:
-     description: TechNexion
-   "^technologic,.*":
-     description: Technologic Systems
-+  "^teltonika,.*":
-+    description: Teltonika Networks
-   "^tempo,.*":
-     description: Tempo Semiconductor
-   "^techstar,.*":
-@@ -1272,6 +1280,8 @@ patternProperties:
-     description: Shenzhen whwave Electronics, Inc.
-   "^wi2wi,.*":
-     description: Wi2Wi, Inc.
-+  "^wiligear,.*":
-+    description: Wiligear, Ltd.
-   "^winbond,.*":
-     description: Winbond Electronics corp.
-   "^winstar,.*":
+So this is Arm specific.
+
+Not sure we want to be creating bespoke support for specific
+architectures/platforms in the generic syscon implementation.
+
+> +	if (ret)
+> +		return ERR_PTR(-ENODEV);
+> +
+> +	syscon = kzalloc(sizeof(*syscon), GFP_KERNEL);
+> +	if (!syscon)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	of_property_read_u32(np, "reg-io-width", &reg_io_width);
+> +
+> +	syscon_config.name = kasprintf(GFP_KERNEL, "%pOFn@smc%x", np, smc_id);
+> +	syscon_config.val_bits = reg_io_width * 8;
+> +
+> +	regmap = regmap_init_smccc(NULL, smc_id, &syscon_config);
+> +	if (IS_ERR(regmap)) {
+> +		ret = PTR_ERR(regmap);
+> +		goto err_regmap;
+> +	}
+> +
+> +	syscon->regmap = regmap;
+> +	syscon->np = np;
+> +
+> +	return syscon;
+> +
+> +err_regmap:
+> +	kfree(syscon_config.name);
+> +	kfree(syscon);
+> +
+> +	return ERR_PTR(ret);
+> +}
+> +#endif
+> +
+>  static struct regmap *device_node_get_regmap(struct device_node *np,
+> -					     bool check_clk)
+> +					     bool check_clk, bool use_smccc)
+>  {
+>  	struct syscon *entry, *syscon = NULL;
+>  
+> @@ -165,8 +210,19 @@ static struct regmap *device_node_get_regmap(struct device_node *np,
+>  
+>  	spin_unlock(&syscon_list_slock);
+>  
+> -	if (!syscon)
+> -		syscon = of_syscon_register(np, check_clk);
+> +	if (!syscon) {
+> +		if (use_smccc)
+> +#ifdef CONFIG_REGMAP_SMCCC
+> +			syscon = of_syscon_register_smccc(np);
+> +#else
+> +			syscon = NULL;
+> +#endif
+
+... and we certainly don't want to be doing so using #ifdefery.
+
+Please find a better way to support this feature.
+
+> +		else
+> +			syscon = of_syscon_register_mmio(np, check_clk);
+> +
+> +		if (!IS_ERR(syscon))
+> +			syscon_add(syscon);
+> +	}
+>  
+>  	if (IS_ERR(syscon))
+>  		return ERR_CAST(syscon);
+> @@ -176,16 +232,19 @@ static struct regmap *device_node_get_regmap(struct device_node *np,
+>  
+>  struct regmap *device_node_to_regmap(struct device_node *np)
+>  {
+> -	return device_node_get_regmap(np, false);
+> +	return device_node_get_regmap(np, false, false);
+>  }
+>  EXPORT_SYMBOL_GPL(device_node_to_regmap);
+>  
+>  struct regmap *syscon_node_to_regmap(struct device_node *np)
+>  {
+> -	if (!of_device_is_compatible(np, "syscon"))
+> -		return ERR_PTR(-EINVAL);
+> +	if (of_device_is_compatible(np, "syscon"))
+> +		return device_node_get_regmap(np, true, false);
+> +
+> +	if (of_device_is_compatible(np, "syscon-smc"))
+> +		return device_node_get_regmap(np, true, true);
+>  
+> -	return device_node_get_regmap(np, true);
+> +	return ERR_PTR(-EINVAL);
+>  }
+>  EXPORT_SYMBOL_GPL(syscon_node_to_regmap);
+>  
+> @@ -273,19 +332,19 @@ struct regmap *syscon_regmap_lookup_by_phandle_optional(struct device_node *np,
+>  }
+>  EXPORT_SYMBOL_GPL(syscon_regmap_lookup_by_phandle_optional);
+>  
+> -static int syscon_probe(struct platform_device *pdev)
+> +struct syscon_driver_data {
+> +	int (*probe_func)(struct platform_device *pdev, struct device *dev,
+> +			  struct syscon *syscon);
+> +};
+> +
+> +static int syscon_probe_mmio(struct platform_device *pdev,
+> +			     struct device *dev,
+> +			     struct syscon *syscon)
+>  {
+> -	struct device *dev = &pdev->dev;
+> -	struct syscon_platform_data *pdata = dev_get_platdata(dev);
+> -	struct syscon *syscon;
+>  	struct regmap_config syscon_config = syscon_regmap_config;
+>  	struct resource *res;
+>  	void __iomem *base;
+>  
+> -	syscon = devm_kzalloc(dev, sizeof(*syscon), GFP_KERNEL);
+> -	if (!syscon)
+> -		return -ENOMEM;
+> -
+>  	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>  	if (!res)
+>  		return -ENOENT;
+> @@ -295,23 +354,84 @@ static int syscon_probe(struct platform_device *pdev)
+>  		return -ENOMEM;
+>  
+>  	syscon_config.max_register = resource_size(res) - 4;
+> -	if (pdata)
+> -		syscon_config.name = pdata->label;
+> +
+>  	syscon->regmap = devm_regmap_init_mmio(dev, base, &syscon_config);
+>  	if (IS_ERR(syscon->regmap)) {
+>  		dev_err(dev, "regmap init failed\n");
+>  		return PTR_ERR(syscon->regmap);
+>  	}
+>  
+> -	platform_set_drvdata(pdev, syscon);
+> +	dev_dbg(dev, "regmap_mmio %pR registered\n", res);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct syscon_driver_data syscon_mmio_data = {
+> +	.probe_func = &syscon_probe_mmio,
+> +};
+> +
+> +#ifdef CONFIG_REGMAP_SMCCC
+> +
+> +static int syscon_probe_smc(struct platform_device *pdev,
+> +			    struct device *dev,
+> +			    struct syscon *syscon)
+> +{
+> +	struct regmap_config syscon_config = syscon_regmap_config;
+> +	int smc_id, ret;
+> +
+> +	ret = of_property_read_u32(dev->of_node, "arm,smc-id", &smc_id);
+> +	if (!ret)
+> +		return -ENODEV;
+> +
+> +	syscon->regmap = devm_regmap_init_smccc(dev, smc_id, &syscon_config);
+> +	if (IS_ERR(syscon->regmap)) {
+> +		dev_err(dev, "regmap init failed\n");
+> +		return PTR_ERR(syscon->regmap);
+> +	}
+>  
+> -	dev_dbg(dev, "regmap %pR registered\n", res);
+> +	dev_dbg(dev, "regmap_smccc %x registered\n", smc_id);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct syscon_driver_data syscon_smc_data = {
+> +	.probe_func = &syscon_probe_smc,
+> +};
+> +#endif
+> +
+> +static int syscon_probe(struct platform_device *pdev)
+> +{
+> +	int ret;
+> +	struct device *dev = &pdev->dev;
+> +	struct syscon_platform_data *pdata = dev_get_platdata(dev);
+> +	struct regmap_config syscon_config = syscon_regmap_config;
+> +	struct syscon *syscon;
+> +	const struct syscon_driver_data *driver_data;
+> +
+> +	if (pdata)
+> +		syscon_config.name = pdata->label;
+> +
+> +	syscon = devm_kzalloc(dev, sizeof(*syscon), GFP_KERNEL);
+> +	if (!syscon)
+> +		return -ENOMEM;
+> +
+> +	driver_data = (const struct syscon_driver_data *)
+> +				platform_get_device_id(pdev)->driver_data;
+> +
+> +	ret = driver_data->probe_func(pdev, dev, syscon);
+> +	if (ret)
+> +		return ret;
+> +
+> +	platform_set_drvdata(pdev, syscon);
+>  
+>  	return 0;
+>  }
+>  
+>  static const struct platform_device_id syscon_ids[] = {
+> -	{ "syscon", },
+> +	{ .name = "syscon",	.driver_data = (kernel_ulong_t)&syscon_mmio_data},
+> +#ifdef CONFIG_REGMAP_SMCCC
+> +	{ .name = "syscon-smc",	.driver_data = (kernel_ulong_t)&syscon_smc_data},
+> +#endif
+>  	{ }
+>  };
+>  
+
 -- 
-2.31.1
-
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
