@@ -2,53 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F2583D31F5
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 04:41:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40FE93D3208
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 04:46:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233472AbhGWCA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 22:00:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43550 "EHLO mail.kernel.org"
+        id S233291AbhGWCGT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 22:06:19 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45838 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233255AbhGWCAZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Jul 2021 22:00:25 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 97A6260EBD;
-        Fri, 23 Jul 2021 02:40:58 +0000 (UTC)
+        id S233222AbhGWCGS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Jul 2021 22:06:18 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5602660EB0;
+        Fri, 23 Jul 2021 02:46:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627008059;
-        bh=Uw/UjQroG3bccpoxxRjplCXJ+f0gWEBZ71qxaMpzeVY=;
+        s=k20201202; t=1627008413;
+        bh=B/F3gtie7BdyxaNs7POJY4LfkjZLp5Om/vcy69gI+ls=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZtER0km0G4OiTFBdh0DML9qrqBJGDbeSJxzxSOQ715pehQj2V0OIotByT5oCowYU6
-         iGb9eMUMBLugYphdv6YwXP5Ff0BGyTr7QLXha7cyXT4oLnlHOEKnZO5EXa8nY5g2iS
-         jKFsv0cgQ5ml/sIVCNA9wX+b+4mm/im5BDSP5A4Ffb9Lb14z+8edSXlRooTUm0NouY
-         dpr3HpwTFWWPATlpJw8urhUDtfXDqY+v1pY7EXXNU8UQPeiT7dpwe2zQr6R5Rtgysg
-         JAlxsWnEjQWPalWftGJ4SrrNtohgeAjteDCKYVc4+OM0RaV1jxrLWe/GgJUri4bFeD
-         I7/xniChtkNEg==
-Date:   Fri, 23 Jul 2021 10:40:54 +0800
+        b=ZIUaw/7kvSGstlsK8ueaOS7+DHZCodzsi7+DpXTQIMz3o6J/0NL7GFZZerlks1lu9
+         wm4Dn5D5WNASXOXjB4VV3/uhcKBdYofgdE1ZB8IU0OYE08Hja0BtaAQAO6BtL0gObB
+         RMXqodSp3yspF52EhrtpqRzK4e0wLaDQi/h7l4Sr0orhIZE2zT2atF+lKpx2CcAHqk
+         PubOXQmKdF9rPX6PHMrj7n15CS+KRFOMdbJBF2AsHebtAh0w1NGfN4/0Ca+l3UHQ9Z
+         FNv2ITCWRRinZ2ZfbgthcyW4SlOfi8Jzw+AwUrxlrPgvOmahtdVoRe1qCIQ6WBbs7S
+         H86//YzzFNPqw==
+Date:   Fri, 23 Jul 2021 10:46:47 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] arm64: dts: ls1028: sl28: fix networking for variant 2
-Message-ID: <20210723024054.GC28658@dragon>
-References: <20210702194914.10921-1-michael@walle.cc>
+To:     Alistair Francis <alistair@alistair23.me>
+Cc:     robh+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alistair23@gmail.com
+Subject: Re: [PATCH v3] ARM: dts: imx7d-remarkable2: Add WiFi support
+Message-ID: <20210723024646.GD28658@dragon>
+References: <20210706114028.132-1-alistair@alistair23.me>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210702194914.10921-1-michael@walle.cc>
+In-Reply-To: <20210706114028.132-1-alistair@alistair23.me>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 02, 2021 at 09:49:14PM +0200, Michael Walle wrote:
-> The PHY configuration for the variant 2 is still missing the flag for
-> in-band signalling between PHY and MAC. Both sides - MAC and PHY - have
-> to match the setting. For now, Linux only supports setting the MAC side
-> and thus it has to match the setting the bootloader is configuring.
-> Enable in-band signalling to make ethernet work.
+On Tue, Jul 06, 2021 at 09:40:28PM +1000, Alistair Francis wrote:
+> Add support for the bcm4329-fmac WiFi in the reMarkable 2, connected via SDHC.
 > 
-> Fixes: ab43f0307449 ("arm64: dts: ls1028a: sl28: add support for variant 2")
-> Signed-off-by: Michael Walle <michael@walle.cc>
+> Signed-off-by: Alistair Francis <alistair@alistair23.me>
 
 Applied, thanks!
