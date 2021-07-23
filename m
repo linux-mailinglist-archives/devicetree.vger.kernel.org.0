@@ -2,103 +2,316 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4FF83D31C8
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 04:27:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 298143D31DE
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 04:33:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233427AbhGWBqT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 21:46:19 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:48897 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233431AbhGWBqQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Jul 2021 21:46:16 -0400
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 9DE765808F8;
-        Thu, 22 Jul 2021 22:26:50 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Thu, 22 Jul 2021 22:26:50 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm2; bh=juuqFtaoRobQQ
-        sYNJO/H9QK58gSnRD3PdI9BHJOIPdI=; b=WD+/CNOL4Tj8cOY3rCwkLPprvpwv4
-        F9/jhl/8RPxwuwKMp/9H0q6TktLhnvIpc0OG+QNrImnB2m+4LqdphOcqwqHZOYqm
-        URtcHzbSlTPqDpTOpXW+19LUFB21rT/akKPIGxYew/U5jrSb+pwXluhoHSobSzsL
-        lH/9bP+cEBGO1aWNbrpPY/ATq/sKLCrtXfKlpGurolQryuWxZb+jWQ5UhcSxyNZJ
-        6C6Egtmdfr9mMPN4QidCTGjjk7TBwg/g6QBZwVRaMYu8I00XgAt8WdqFfDLvRx02
-        7aayw95iT2xs7MMHvQtFxGrTALTiUfBDkLG/NNMnXvHB6QXFShKiPqN3w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=juuqFtaoRobQQsYNJO/H9QK58gSnRD3PdI9BHJOIPdI=; b=Q29a+WcP
-        OJavTcyfz8HR53GEm2PkFci2iTe+umbHt0JGc2C1rjlM/A85jW04/t2I4Uia7kPe
-        s1fwGuGh7pFlFT8sgp3mp8awZUp1KsHsT6tmycdIW0s7+mn79YEIRW2qPNjdTJzI
-        OI1z6iLaHJz8ugcMBPYx+2hSojn90cN92abYoW+/CELcg2eQhguYToVCUNtt6nQp
-        Nt+rFTQGZwbfLJrqzucVWkLDKp9wgBKpdgwnT6JN+eJUeL8WCcowREFrhj+rjB0g
-        tmuX9tHR8+nBPB4XmOepIbUrva4X+26nW5kNAi3G/VKZdA8Hh+umUpV4hUoWxUrE
-        hJ5ajzGvF6Copg==
-X-ME-Sender: <xms:6ij6YGnecj1OGVZ3-n-Du0Qjip82Ux-uSRW2trFzgv3PIO8XkdgmSw>
-    <xme:6ij6YN0kfbziA9gshifFLPm2GLyo99ptn554BHL_2b8I2ORjeekAOce7zXD0MsrUt
-    F-BPgv0IOnOegCnG5Q>
-X-ME-Received: <xmr:6ij6YEqYg0k1TLefHX0abE2Py6kQyJwNdz6igHrgjiaJapGz79UOVBQaCfYAwEi1dkHy5ZVZQHdB>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrfeejgdehgecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtkeertd
-    ertddtnecuhfhrohhmpeflihgrgihunhcujggrnhhguceojhhirgiguhhnrdihrghnghes
-    fhhlhihgohgrthdrtghomheqnecuggftrfgrthhtvghrnhepjeeihffgteelkeelffduke
-    dtheevudejvdegkeekjeefhffhhfetudetgfdtffeunecuvehluhhsthgvrhfuihiivgep
-    geenucfrrghrrghmpehmrghilhhfrhhomhepjhhirgiguhhnrdihrghnghesfhhlhihgoh
-    grthdrtghomh
-X-ME-Proxy: <xmx:6ij6YKm_9Vz8zS1GGm46TE-5-XwnhZTiS7YKbkr13i6gOGGlihKHEA>
-    <xmx:6ij6YE015Nht7OrqP2JinJtlKz9KAgfEGy2KN_Xcj0B1fSAh8Uim1w>
-    <xmx:6ij6YBt88MpoEZZ52gVIZRBumkYca8Il7zBhnzPno-Ew0Rbia-qf1Q>
-    <xmx:6ij6YNu0pnF_JshIOUkh1KYwS27jVY1yExIIGCwM0LeyrGkVq8rqLw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 22 Jul 2021 22:26:45 -0400 (EDT)
-From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
-To:     linux-mips@vger.kernel.org
-Cc:     tsbogend@alpha.franken.de, mturquette@baylibre.com,
-        daniel.lezcano@linaro.org, linus.walleij@linaro.org,
-        vkoul@kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>
-Subject: [PATCH v4 9/9] MIPS: Make a alias for pistachio_defconfig
-Date:   Fri, 23 Jul 2021 10:25:43 +0800
-Message-Id: <20210723022543.4095-10-jiaxun.yang@flygoat.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210723022543.4095-1-jiaxun.yang@flygoat.com>
-References: <20210723022543.4095-1-jiaxun.yang@flygoat.com>
+        id S233392AbhGWBwx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 21:52:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41438 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233394AbhGWBww (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jul 2021 21:52:52 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD6D4C061575;
+        Thu, 22 Jul 2021 19:33:25 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id b29so9767095ljf.11;
+        Thu, 22 Jul 2021 19:33:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ipOP6nu3XG1kXuS3OM4viAcVR9JIka56vy3jKOuWT3o=;
+        b=nKa01dlI97kjhSSTozjBzsJdqXHp4fkJLkMnoygm1eVPcOTOU0wshVmszhzMDTJetO
+         ZfAKIOUc9W3mD+ENnPwwcwwMjM8+x3FpLArFDwI8Nx1NU4ZaliHJ2KW5a8/pn0u/e8od
+         yUgbH6jVeojzLkrUb9jItOBJealsoLx5NilEMPj3lZzO65Z6o6zH/SJhQe2jQKc2ueUm
+         svcMIg5asnRveBkytsG3gLwTK7FGE0ub7eeXg111HErgjUNZf4UA7HjE/02mlUlAD9jD
+         TkaFyMKG4PViOc3EwL4TRUkyecygX2LnD8VoXLJN6WcXHQsBZNc2OLvatM79XPQAv2NT
+         8PCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ipOP6nu3XG1kXuS3OM4viAcVR9JIka56vy3jKOuWT3o=;
+        b=g0VK6vVpBhQqXo8HDDQaRnMUdNEgRVSsDEEicz07+AtR0BNUtcLCZJDfVpU8sBf6rh
+         1Cp55IDLfaqYcMDQzkplgdV+UUt9eV71NyGf/DkLB+x2XlNWGuvVtgSNZQB1hzHrkutC
+         CjGVv0XOGhmqcKBmxRgCD6ObLgkHRthbESFJEcGXS6+PbT6ut2Knh5I+Li/EPnnnonE7
+         W0pCK4jiN/ntDsnzoY96iGhzQOxMB1iU/H2V9crUzGFDOMuMTGcGEyndX36bPi6z5zNO
+         WTlWNmkimQwjJisrJC1CGIwmT/I/gKY+pA/6t8EjO+sZHaui7IuE0ejgnisFsIEbASBm
+         E9eg==
+X-Gm-Message-State: AOAM531nslenARLEscC1OY+y+LKUnEmVZoobsE+Og7BPQzMog2D0AHZc
+        XZQkQX9D8ZVi5biTn65Havg=
+X-Google-Smtp-Source: ABdhPJzpFF6RCOwzFWG7FRpiYcp8g8/6WCMl1p+kDt6RdIFHYVyObMvByTfbxlbIkhtH5Qgrx3kTjQ==
+X-Received: by 2002:a2e:9852:: with SMTP id e18mr2041774ljj.6.1627007604089;
+        Thu, 22 Jul 2021 19:33:24 -0700 (PDT)
+Received: from mobilestation ([95.79.127.110])
+        by smtp.gmail.com with ESMTPSA id g14sm2104872lfv.213.2021.07.22.19.33.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Jul 2021 19:33:23 -0700 (PDT)
+Date:   Fri, 23 Jul 2021 05:33:21 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     "nandhini.srikandan@intel.com" <nandhini.srikandan@intel.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "mgross@linux.intel.com" <mgross@linux.intel.com>,
+        "kris.pan@intel.com" <kris.pan@intel.com>,
+        "kenchappa.demakkanavar@intel.com" <kenchappa.demakkanavar@intel.com>,
+        "furong.zhou@intel.com" <furong.zhou@intel.com>,
+        "mallikarjunappa.sangannavar@intel.com" 
+        <mallikarjunappa.sangannavar@intel.com>,
+        "mahesh.r.vaidya@intel.com" <mahesh.r.vaidya@intel.com>,
+        "rashmi.a@intel.com" <rashmi.a@intel.com>
+Subject: Re: =?utf-8?B?W+KAnFBBVENI?= =?utf-8?B?4oCd?= 2/2] spi: dw: Add
+ support for Intel Thunder Bay SPI
+Message-ID: <20210723023321.h63awes3kyigu7mx@mobilestation>
+References: <20210722053358.29682-1-nandhini.srikandan@intel.com>
+ <20210722053358.29682-3-nandhini.srikandan@intel.com>
+ <20210722170435.y6fla7ixfgzwkje2@mobilestation>
+ <CAHp75VeQ0Q174gUww0oqw9MmmE76AGMxcNLj4UkgjLZzhGy6Mw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHp75VeQ0Q174gUww0oqw9MmmE76AGMxcNLj4UkgjLZzhGy6Mw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For those who miss the old defconfig, make a alias to generic
-kernel.
+On Fri, Jul 23, 2021 at 01:31:07AM +0300, Andy Shevchenko wrote:
+> On Thursday, July 22, 2021, Serge Semin <fancer.lancer@gmail.com> wrote:
+> 
+> > On Thu, Jul 22, 2021 at 01:33:58PM +0800, nandhini.srikandan@intel.com
+> > wrote:
+> > > From: Nandhini Srikandan <nandhini.srikandan@intel.com>
+> > >
+> > > Add support for Intel Thunder Bay SPI controller, which uses DesignWare
+> > > DWC_ssi core.
+> > > Bit 31 of CTRLR0 register is added for Thunder Bay, to
+> > > configure the device as a master or as a slave serial peripheral.
+> >
+> > > Bit 14(SSTE) of CTRLR0 register should be set(1) for Thunder Bay.
+> >
+> > Could you elaborate what this bit mean?
+> >
+> > > Added reset of SPI controller required for Thunder Bay.
+> >
+> > If it's really required (is it?) then you were supposed to reflect
+> > that in the code by returning a negative error if the driver fails to
+> > retrieve the reset control handler. In accordance with that the
+> > bindings should have been also updated so the dtbs_check procedure
+> > would make sure the Thunder Bay SPI DT-node comply to the requirements
+> > in that matter.
+> >
+> > Anyway I've got a few comments regarding this part of your patch.
+> > Please see them below.
+> >
+> > >
+> > > Signed-off-by: Nandhini Srikandan <nandhini.srikandan@intel.com>
+> > > ---
+> > >  drivers/spi/spi-dw-core.c |  6 ++++++
+> > >  drivers/spi/spi-dw-mmio.c | 20 ++++++++++++++++++++
+> > >  drivers/spi/spi-dw.h      | 15 +++++++++++++++
+> > >  3 files changed, 41 insertions(+)
+> > >
+> > > diff --git a/drivers/spi/spi-dw-core.c b/drivers/spi/spi-dw-core.c
+> > > index a305074c482e..eecf8dcd0677 100644
+> > > --- a/drivers/spi/spi-dw-core.c
+> > > +++ b/drivers/spi/spi-dw-core.c
+> > > @@ -302,6 +302,12 @@ static u32 dw_spi_prepare_cr0(struct dw_spi *dws,
+> > struct spi_device *spi)
+> > >
+> > >               if (dws->caps & DW_SPI_CAP_KEEMBAY_MST)
+> > >                       cr0 |= DWC_SSI_CTRLR0_KEEMBAY_MST;
+> > > +
+> >
+> > > +             if (dws->caps & DW_SPI_CAP_THUNDERBAY_MST)
+> > > +                     cr0 |= DWC_SSI_CTRLR0_THUNDERBAY_MST;
+> >
+> > I guess that KeemBay and ThunderBay SPI controllers have been
+> > synthesized based on the same IP-core with a few differences. Is that
+> > true? Could you tell us what is the difference between them?
+> >
+> > Anyway regarding this the Master/Slave part. Is the ThunderBay
+> > implementation of the Master/Slave capability the same as it was
+> > embedded in the KeemBay controller? If so then what do you think about
+> > just renaming DW_SPI_CAP_KEEMBAY_MST to something like
+> > DW_SPI_CAP_INTEL_MST and using it then for both Keembay and ThunderBay
+> > versions of the SPI-controllers? (The similar renaming needs to be
+> > provided for the DWC_SSI_CTRLR0_KEEMBAY_MST macro then.) You can
+> > implement it as a preparation patch posted before this one in the
+> > series.
+> 
+> 
 
-Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
----
-v2: Fix typo 'xilfpga
----
- arch/mips/Makefile | 3 +++
- 1 file changed, 3 insertions(+)
+> 
+> Please, if you go this way add some more specific definition, b/c this IP
+> is being used on other intel SoCs which have nothing to do with these two.
+> 
 
-diff --git a/arch/mips/Makefile b/arch/mips/Makefile
-index 258234c35a09..c299c6ae91af 100644
---- a/arch/mips/Makefile
-+++ b/arch/mips/Makefile
-@@ -563,6 +563,9 @@ sead3micro_defconfig-y		:= micro32r2el_defconfig BOARDS=sead-3
- legacy_defconfigs		+= xilfpga_defconfig
- xilfpga_defconfig-y		:= 32r2el_defconfig BOARDS=xilfpga
- 
-+legacy_defconfigs		+= pistachio_defconfig
-+pistachio_defconfig-y		:= 32r2el_defconfig BOARDS=marduk
-+
- .PHONY: $(legacy_defconfigs)
- $(legacy_defconfigs):
- 	$(Q)$(MAKE) -f $(srctree)/Makefile $($@-y)
--- 
-2.32.0
+Does it have the same Master/Slave capability? If it does then we can
+stick with suggested name like DW_SPI_CAP_INTEL_MST, which could be
+perceived as "Intel-specific MST capability implemented for DW SPI".
+If it doesn't then does it have another type of the Master/Slave
+capability? If it does, then indeed we need to think on a better
+naming here. What name would you suggest in that case?
 
+-Sergey
+
+> 
+> >
+> > > +
+> > > +             if (dws->caps & DW_SPI_CAP_THUNDERBAY_SSTE)
+> > > +                     cr0 |= DWC_SSI_CTRLR0_THUNDERBAY_SSTE;
+> >
+> > Similar question regarding the SSTE bit. Is it something ThunderBay
+> > specific only? Was the corresponding functionality embedded into the
+> > KeemBay or any other Intel version of the DW SPI controller?
+> >
+> > >       }
+> > >
+> > >       return cr0;
+> > > diff --git a/drivers/spi/spi-dw-mmio.c b/drivers/spi/spi-dw-mmio.c
+> > > index 3379720cfcb8..ca9aad078752 100644
+> > > --- a/drivers/spi/spi-dw-mmio.c
+> > > +++ b/drivers/spi/spi-dw-mmio.c
+> > > @@ -222,6 +222,15 @@ static int dw_spi_keembay_init(struct
+> > platform_device *pdev,
+> > >       return 0;
+> > >  }
+> > >
+> > > +static int dw_spi_thunderbay_init(struct platform_device *pdev,
+> > > +                               struct dw_spi_mmio *dwsmmio)
+> > > +{
+> >
+> > > +     dwsmmio->dws.caps = DW_SPI_CAP_THUNDERBAY_MST |
+> > DW_SPI_CAP_THUNDERBAY_RST |
+> > > +                         DW_SPI_CAP_THUNDERBAY_SSTE |
+> > DW_SPI_CAP_DWC_SSI;
+> > > +
+> >
+> > Originally the DW_SPI_CAP-functionality was provided to modify the DW
+> > SPI core driver behavior when it was required. For instance it was
+> > mostly connected with the platform-specific CR0-register
+> > configurations. So as I see it the reset part can be successfully
+> > handled fully in the framework of the MMIO-platform glue-driver.
+> > Instead of defining a new capability you could have just added the
+> > next code in the ThunderBay init-method:
+> >
+> > +       if (!dwsmmio->rstc) {
+> > +               dev_err(&pdev->dev, "Reset control is missing\n");
+> > +               return -EINVAL;
+> > +       }
+> > +
+> > +       reset_control_assert(dwsmmio->rstc);
+> > +       udelay(2);
+> > +       reset_control_deassert(dwsmmio->rstc);
+> > +
+> >
+> > Thus you'd reuse the already implemented reset-controller handler
+> > defined in the dw_spi_mmio structure with no need of implementing
+> > a new capability.
+> >
+> > > +     return 0;
+> > > +}
+> > > +
+> > >  static int dw_spi_canaan_k210_init(struct platform_device *pdev,
+> > >                                  struct dw_spi_mmio *dwsmmio)
+> > >  {
+> > > @@ -243,6 +252,7 @@ static int dw_spi_mmio_probe(struct platform_device
+> > *pdev)
+> > >                        struct dw_spi_mmio *dwsmmio);
+> > >       struct dw_spi_mmio *dwsmmio;
+> > >       struct resource *mem;
+> > > +     struct reset_control *rst;
+> > >       struct dw_spi *dws;
+> > >       int ret;
+> > >       int num_cs;
+> > > @@ -309,6 +319,15 @@ static int dw_spi_mmio_probe(struct platform_device
+> > *pdev)
+> > >                       goto out;
+> > >       }
+> > >
+> >
+> > > +     if (dws->caps & DW_SPI_CAP_THUNDERBAY_RST) {
+> > > +             rst = devm_reset_control_get_exclusive(&pdev->dev, NULL);
+> > > +             if (!IS_ERR(rst)) {
+> > > +                     reset_control_assert(rst);
+> > > +                     udelay(2);
+> > > +                     reset_control_deassert(rst);
+> > > +             }
+> > > +     }
+> > > +
+> >
+> > Please see my comment above. We don't need to have this code here if
+> > you get to implement what I suggest there.
+> >
+> > >       pm_runtime_enable(&pdev->dev);
+> > >
+> > >       ret = dw_spi_add_host(&pdev->dev, dws);
+> > > @@ -349,6 +368,7 @@ static const struct of_device_id
+> > dw_spi_mmio_of_match[] = {
+> > >       { .compatible = "renesas,rzn1-spi", .data = dw_spi_dw_apb_init},
+> > >       { .compatible = "snps,dwc-ssi-1.01a", .data = dw_spi_dwc_ssi_init},
+> > >       { .compatible = "intel,keembay-ssi", .data = dw_spi_keembay_init},
+> > > +     { .compatible = "intel,thunderbay-ssi", .data =
+> > dw_spi_thunderbay_init},
+> > >       { .compatible = "microchip,sparx5-spi", dw_spi_mscc_sparx5_init},
+> > >       { .compatible = "canaan,k210-spi", dw_spi_canaan_k210_init},
+> > >       { /* end of table */}
+> > > diff --git a/drivers/spi/spi-dw.h b/drivers/spi/spi-dw.h
+> > > index b665e040862c..bfe1d5edc25a 100644
+> > > --- a/drivers/spi/spi-dw.h
+> > > +++ b/drivers/spi/spi-dw.h
+> > > @@ -82,6 +82,18 @@
+> > >   */
+> > >  #define DWC_SSI_CTRLR0_KEEMBAY_MST   BIT(31)
+> > >
+> >
+> > > +/*
+> > > + * For Thunder Bay, CTRLR0[14] should be set to 1.
+> > > + */
+> >
+> > Could you provide a bit more details what this bit has been
+> > implemented for?
+> >
+> > > +#define DWC_SSI_CTRLR0_THUNDERBAY_SSTE       BIT(14)
+> > > +
+> >
+> > > +/*
+> > > + * For Thunder Bay, CTRLR0[31] is used to select controller mode.
+> > > + * 0: SSI is slave
+> > > + * 1: SSI is master
+> > > + */
+> > > +#define DWC_SSI_CTRLR0_THUNDERBAY_MST        BIT(31)
+> >
+> > Please see my suggestion regarding the Master/Slave capability in one
+> > of the comments above.
+> >
+> > Regards
+> > -Serge
+> >
+> > > +
+> > >  /* Bit fields in CTRLR1 */
+> > >  #define SPI_NDF_MASK                 GENMASK(15, 0)
+> > >
+> > > @@ -125,6 +137,9 @@ enum dw_ssi_type {
+> > >  #define DW_SPI_CAP_KEEMBAY_MST               BIT(1)
+> > >  #define DW_SPI_CAP_DWC_SSI           BIT(2)
+> > >  #define DW_SPI_CAP_DFS32             BIT(3)
+> > > +#define DW_SPI_CAP_THUNDERBAY_MST    BIT(4)
+> > > +#define DW_SPI_CAP_THUNDERBAY_RST    BIT(5)
+> > > +#define DW_SPI_CAP_THUNDERBAY_SSTE   BIT(6)
+> > >
+> > >  /* Slave spi_transfer/spi_mem_op related */
+> > >  struct dw_spi_cfg {
+> > > --
+> > > 2.17.1
+> > >
+> >
+> 
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
