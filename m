@@ -2,154 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1751B3D4196
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 22:33:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5D983D41A9
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 22:42:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229461AbhGWTwj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 15:52:39 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:24873 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231621AbhGWTwi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Jul 2021 15:52:38 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1627072392; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=lxM7FSYBNI/KMt33mBjhA8tdIQ6+GVXlVgXqExsNcZI=;
- b=SL2SpH71/bJ8c9/al786vcF3l/6jMpzGx+xN0hnpcq/0+WmMGDGSyWhRkHxprTSrEVKAsp/b
- qxu9XuVGG1uXHQMVb07Iz5dKhHVUXzXcsXQnywEvobfDqdF3GGQiIlKGQllKNMHTmJv82nbL
- zYQ08I64H65SFr1yM9iN//uWAL4=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
- 60fb2785290ea35ee62c72e1 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 23 Jul 2021 20:33:09
- GMT
-Sender: abhinavk=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 8F07DC43143; Fri, 23 Jul 2021 20:33:08 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: abhinavk)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 5EC2CC433F1;
-        Fri, 23 Jul 2021 20:33:07 +0000 (UTC)
+        id S229535AbhGWUCC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 16:02:02 -0400
+Received: from mail-il1-f169.google.com ([209.85.166.169]:43834 "EHLO
+        mail-il1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229530AbhGWUCC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 16:02:02 -0400
+Received: by mail-il1-f169.google.com with SMTP id 10so2695003ill.10
+        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 13:42:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=JT3GG7anTyw8BDT8jvvTGThCHjMwDKp/QaQK0gUZd7c=;
+        b=o76cco9Wrf5eN427Qg7wNdDYSItPZOirdrrY0eXATD8IMxqKQQK/9BKmW8voRYoZIn
+         mUdn+xeXPkQ7ahOWAyo2v6xvqBvf7/V4oDH5H7FyVV6LKrPtmAaFTUCoCt8qS4gxC1NM
+         lokcA3FXhjfhe3cpDi9uNXkD8PDs/QXG4N4JFgFc2gQ+3TIFb3kt0v+AF21jJH2O99tf
+         qvCJRvhYp0cvBgWup0RuejY4eFMZfcIj5LU/JczfeRWr40uQ8ldb5q4H250t+RunM5bX
+         rc4GHW8oeN+gujzR3sHUBbS98MfVwgAAbgyuqbjkW55SGsXmoYlqcEZDUomXuTnClUC3
+         YgcA==
+X-Gm-Message-State: AOAM531D/5W9Vbc6CQ39GpRwbgAkYwHk/nHxILXjvCT/RwKCGcrsl4Bk
+        Wi+gmnGUuv4ppeBffwtsSw==
+X-Google-Smtp-Source: ABdhPJxPEtFhJMGcmLtlznr2WRtr1KXCyz4cAh0mpirGfovfXry5DketPoRCW3sZj+mrCqxDfPAgkQ==
+X-Received: by 2002:a05:6e02:1d89:: with SMTP id h9mr4407657ila.46.1627072955438;
+        Fri, 23 Jul 2021 13:42:35 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id i5sm17448202ilc.16.2021.07.23.13.42.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Jul 2021 13:42:34 -0700 (PDT)
+Received: (nullmailer pid 2542706 invoked by uid 1000);
+        Fri, 23 Jul 2021 20:42:33 -0000
+Date:   Fri, 23 Jul 2021 14:42:33 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     devicetree@vger.kernel.org, Imre Kaloz <kaloz@openwrt.org>,
+        Krzysztof Halasa <khalasa@piap.pl>,
+        linux-arm-kernel@lists.infradead.org, Marc Zyngier <maz@kernel.org>
+Subject: Re: [PATCH 1/2 v2] bus: ixp4xx: Add DT bindings for the IXP4xx
+ expansion bus
+Message-ID: <20210723204233.GA2541746@robh.at.kernel.org>
+References: <20210722084330.1618239-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Fri, 23 Jul 2021 13:33:07 -0700
-From:   abhinavk@codeaurora.org
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Kuogee Hsieh <khsieh@codeaurora.org>,
-        Tanmay Shah <tanmay@codeaurora.org>,
-        freedreno@lists.freedesktop.org,
-        Chandan Uddaraju <chandanu@codeaurora.org>
-Subject: Re: [Freedreno] [PATCH 5/5] drm/msm/dp: Allow sub-regions to be
- specified in DT
-In-Reply-To: <20210722024227.3313096-6-bjorn.andersson@linaro.org>
-References: <20210722024227.3313096-1-bjorn.andersson@linaro.org>
- <20210722024227.3313096-6-bjorn.andersson@linaro.org>
-Message-ID: <2d969e35f13b6a5313a901ac8b6dde9e@codeaurora.org>
-X-Sender: abhinavk@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210722084330.1618239-1-linus.walleij@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-07-21 19:42, Bjorn Andersson wrote:
-> Not all platforms has P0 at an offset of 0x1000 from the base address,
-> so add support for specifying each sub-region in DT. The code falls 
-> back
-> to the predefined offsets in the case that only a single reg is
-> specified, in order to support existing DT.
+On Thu, 22 Jul 2021 10:43:30 +0200, Linus Walleij wrote:
+> This adds device tree bindings for the IXP4xx expansion bus controller.
 > 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-The change itself looks good, hence
-Reviewed-by: Abhinav Kumar <abhinavk@codeaurora.org>
-
-But as a follow up to this change, can we move the existing DP DT on
-sc7180 to this model and then drop this legacy path?
-
-That will clean this up nicely.
-
+> Cc: Marc Zyngier <maz@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
->  drivers/gpu/drm/msm/dp/dp_parser.c | 49 +++++++++++++++++++++++-------
->  1 file changed, 38 insertions(+), 11 deletions(-)
+> ChangeLog v1->v2:
+> - Drop unevaluatedProperties: false from the node match.
+>   additionalProperties: true will be the default.
+> ---
+>  ...intel,ixp4xx-expansion-bus-controller.yaml | 149 ++++++++++++++++++
+>  1 file changed, 149 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/bus/intel,ixp4xx-expansion-bus-controller.yaml
 > 
-> diff --git a/drivers/gpu/drm/msm/dp/dp_parser.c
-> b/drivers/gpu/drm/msm/dp/dp_parser.c
-> index 1a10901ae574..fc8a6452f641 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_parser.c
-> +++ b/drivers/gpu/drm/msm/dp/dp_parser.c
-> @@ -63,18 +63,45 @@ static int dp_parser_ctrl_res(struct dp_parser 
-> *parser)
->  		return PTR_ERR(dss->ahb);
->  	}
-> 
-> -	if (dss->ahb_len < DP_DEFAULT_P0_OFFSET + DP_DEFAULT_P0_SIZE) {
-> -		DRM_ERROR("legacy memory region not large enough\n");
-> -		return -EINVAL;
-> -	}
-> +	dss->aux = dp_ioremap(pdev, 1, &dss->aux_len);
-> +	if (IS_ERR(dss->aux)) {
-> +		/*
-> +		 * The initial binding had a single reg, but in order to
-> +		 * support variation in the sub-region sizes this was split.
-> +		 * dp_ioremap() will fail with -ENODEV here if only a single
-> +		 * reg is specified, so fill in the sub-region offsets and
-> +		 * lengths based on this single region.
-> +		 */
-> +		if (PTR_ERR(dss->aux) == -ENODEV) {
-> +			if (dss->ahb_len < DP_DEFAULT_P0_OFFSET + DP_DEFAULT_P0_SIZE) {
-> +				DRM_ERROR("legacy memory region not large enough\n");
-> +				return -EINVAL;
-> +			}
-> +
-> +			dss->ahb_len = DP_DEFAULT_AHB_SIZE;
-> +			dss->aux = dss->ahb + DP_DEFAULT_AUX_OFFSET;
-> +			dss->aux_len = DP_DEFAULT_AUX_SIZE;
-> +			dss->link = dss->ahb + DP_DEFAULT_LINK_OFFSET;
-> +			dss->link_len = DP_DEFAULT_LINK_SIZE;
-> +			dss->p0 = dss->ahb + DP_DEFAULT_P0_OFFSET;
-> +			dss->p0_len = DP_DEFAULT_P0_SIZE;
-> +		} else {
-> +			DRM_ERROR("unable to remap aux region: %pe\n", dss->aux);
-> +			return PTR_ERR(dss->aux);
-> +		}
-> +	} else {
-> +		dss->link = dp_ioremap(pdev, 2, &dss->link_len);
-> +		if (IS_ERR(dss->link)) {
-> +			DRM_ERROR("unable to remap link region: %pe\n", dss->link);
-> +			return PTR_ERR(dss->link);
-> +		}
-> 
-> -	dss->ahb_len = DP_DEFAULT_AHB_SIZE;
-> -	dss->aux = dss->ahb + DP_DEFAULT_AUX_OFFSET;
-> -	dss->aux_len = DP_DEFAULT_AUX_SIZE;
-> -	dss->link = dss->ahb + DP_DEFAULT_LINK_OFFSET;
-> -	dss->link_len = DP_DEFAULT_LINK_SIZE;
-> -	dss->p0 = dss->ahb + DP_DEFAULT_P0_OFFSET;
-> -	dss->p0_len = DP_DEFAULT_P0_SIZE;
-> +		dss->p0 = dp_ioremap(pdev, 3, &dss->p0_len);
-> +		if (IS_ERR(dss->p0)) {
-> +			DRM_ERROR("unable to remap p0 region: %pe\n", dss->p0);
-> +			return PTR_ERR(dss->p0);
-> +		}
-> +	}
-> 
->  	io->phy = devm_phy_get(&pdev->dev, "dp");
->  	if (IS_ERR(io->phy))
+
+AFAICT, there is no patch 2/2. If there is it never made the lists.
+
+Applied, thanks!
