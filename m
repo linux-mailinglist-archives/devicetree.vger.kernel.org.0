@@ -2,171 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 93AF63D30D7
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 02:22:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77E0A3D314D
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 03:30:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232697AbhGVXlx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 19:41:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40392 "EHLO
+        id S233073AbhGWAtc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 20:49:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232860AbhGVXlr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jul 2021 19:41:47 -0400
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6032C0617BE
-        for <devicetree@vger.kernel.org>; Thu, 22 Jul 2021 17:22:20 -0700 (PDT)
-Received: by mail-pl1-x62e.google.com with SMTP id c11so1168258plg.11
-        for <devicetree@vger.kernel.org>; Thu, 22 Jul 2021 17:22:20 -0700 (PDT)
+        with ESMTP id S233040AbhGWAtc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jul 2021 20:49:32 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6BDDC061575
+        for <devicetree@vger.kernel.org>; Thu, 22 Jul 2021 18:30:05 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id l19so128101pjz.0
+        for <devicetree@vger.kernel.org>; Thu, 22 Jul 2021 18:30:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=cbDiUWXywQuHvWbK5KgToA8hljAFXRAZ8RdP96k0ztI=;
-        b=g+MMetn7ZgIZd9+ufiUGW8oAfNXo8QWuBLD1d0E7atOYLNbDLR2P/EyOZJg+zTuGzt
-         ixFiHfFjiqbspkrMlWwGpnjph8L5idjm6M+seAPG76+1GWbz5PlywdoeySLA8X6W7gLm
-         894t4F/EflgYTP7emt9lS3L4bauCmLnd29vTk=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=f06gqWc2bEaZJ6nbd8VrGNk6zDGVJAhrmVyUATfeuhY=;
+        b=uH3LTYq9lKkVh6FySVISF2uXoH17+HO/ef+NS7sXs7p8VhOdVPTkf+xDywOJI7ZGeq
+         J5vyXN5sIk5K28aSYCheQLYmLarcrwifRRqWOMDtKPWn4zvvxSsqTA/LMekE9uKmElQt
+         WO5XrD/lpIAFXo8o3ZlXZ2RLIn59Lahw6A0UOEnlf43IpUPKvrAWKBWbPmx+otKNLFFa
+         cTbOkddzUhdmQKUP9KIBFD+aEtLvw3nJaXWw8iW5F28MT+IBeoNC6LThOpDqosoE+XhQ
+         /2s1NQSFVXpy9aIoXoI7voS5KTgATBCgzW+ijmB6nTwYCppDaFbliHaMHs227vBPnrLv
+         UQEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=cbDiUWXywQuHvWbK5KgToA8hljAFXRAZ8RdP96k0ztI=;
-        b=R5Y4WzAhyNF4MRcxTz/N+GztgPtcczID/VY6ZEIlZDX0dG+IUr8vY5tVn34ZE/Yo/J
-         d3YciBAQ1uUlgJTk83w8zYCx/oLMIUPmBYZPMeMo0SfyY/Kqq3uXP/+FHfLHdGvJg2OX
-         JsPlS7GQKEa+iXMEKv0fGUurDZg0mGvFZCA3WDr+ruS7iOPiXJRt1OBXRyWWgIFGe1r/
-         8OPSPHCCAVO7EQGSCbZ6KbEW/ThVaqbhyEvE0qaUs9Hllbwzyrj9VtuiU4WIDRkRUhPG
-         WQU1Vo8qlArNVPBfwc01xyTuYR5luphkNDa6cwDyQH43pqXiNWpwIY+mhOJUPjzNNNz7
-         8A8w==
-X-Gm-Message-State: AOAM532Pu5vMtlfBLs8q936Oygq2Xh1yw2Sxmp/7Oz/9wTkl3/zkIRVl
-        IOprI7ODgvpHMRNgZw2U8pcUOA==
-X-Google-Smtp-Source: ABdhPJzzG/Dkx5U9t15FY1dr/BrlYj0ipVj0xo+4dULJS5i2lgAmf8BOEZlDWJChZ2JPF9c9NUKVWQ==
-X-Received: by 2002:a17:90a:4884:: with SMTP id b4mr11251465pjh.173.1626999740346;
-        Thu, 22 Jul 2021 17:22:20 -0700 (PDT)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:5e70:6a49:67b5:2b7e])
-        by smtp.gmail.com with ESMTPSA id iy13sm4072377pjb.28.2021.07.22.17.22.19
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=f06gqWc2bEaZJ6nbd8VrGNk6zDGVJAhrmVyUATfeuhY=;
+        b=n7p3D9jBTlju/h+0OeeYPkVf6jBhkjG7qnq61mMaLv0zpu9af++oJRn9de9N//uQvv
+         Vd2yb+Ja4FS86VnzrknHaz83lVdldjtnJr0r56Po/q3Iept1qlaWUOVhezGkJpnajreB
+         j3vknlgjqrzSSBMNce4gjeYi3r0ZTcmaTfvmOwLNsEzZ1wtJdQ1y57fyZPAfVr2Ki5cF
+         aeBpUEurCj9cJ2gf+D825dKSDxH9oAQkNlSt0TBkf7UTV4lBwmxqtD+XDKJgcNMczTrq
+         9KXQWYJyLO+6vMlGHlDFnucOSTHvCrulk05O5uyJAm4aIaYcELPKKeecG/7zGBq0bsJ2
+         sQQA==
+X-Gm-Message-State: AOAM530HSgkumSIgQ8X6R/wd1Y0LjozEAwtNsUHK+LqAlEWwSdzHrwZu
+        aU28hZls+HFuioTrDFHPj4Z8uQ==
+X-Google-Smtp-Source: ABdhPJydmHBLdYGZ806rSsmrNTgmWWvO9B0B1rmVcJM9THK88hoR6AIbtcF5apFDFRDUXuwolLnX+g==
+X-Received: by 2002:a17:90a:4586:: with SMTP id v6mr2402677pjg.36.1627003805157;
+        Thu, 22 Jul 2021 18:30:05 -0700 (PDT)
+Received: from localhost ([106.201.108.2])
+        by smtp.gmail.com with ESMTPSA id z15sm35760876pgc.13.2021.07.22.18.30.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Jul 2021 17:22:20 -0700 (PDT)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Steev Klimaszewski <steev@kali.org>,
-        dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
-        devicetree@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
-        Maxime Ripard <mripard@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        linux-arm-msm@vger.kernel.org, Linus W <linus.walleij@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org
-Subject: [RFC PATCH 8/8] arm64: dts: qcom: sc7180: trogdor devices can use probable eDP panels
-Date:   Thu, 22 Jul 2021 17:21:46 -0700
-Message-Id: <20210722172104.RFC.8.I038959fe65a202bd513cebeeffc7309114b5ffde@changeid>
-X-Mailer: git-send-email 2.32.0.432.gabb21c7263-goog
-In-Reply-To: <20210723002146.1962910-1-dianders@chromium.org>
-References: <20210723002146.1962910-1-dianders@chromium.org>
+        Thu, 22 Jul 2021 18:30:04 -0700 (PDT)
+Date:   Fri, 23 Jul 2021 07:00:00 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Arnd Bergmann <arnd@kernel.org>
+Cc:     Jason Wang <jasowang@redhat.com>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>,
+        Alex =?utf-8?Q?Benn=C3=A9e?= <alex.bennee@linaro.org>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        Jie Deng <jie.deng@intel.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE" 
+        <virtualization@lists.linux-foundation.org>
+Subject: Re: [PATCH V2 5/5] virtio: Bind virtio device to device-tree node
+Message-ID: <20210723013000.h43nfnrrichg6nap@vireshk-i7>
+References: <cover.1626947324.git.viresh.kumar@linaro.org>
+ <026ad5f274d64d46590623f9f3a04b8abfbe62d7.1626947324.git.viresh.kumar@linaro.org>
+ <CAK8P3a0iQ5dt_38Y9j6XCoj=n7YA+cPz7i6mjP24k9WY7QL+oA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAK8P3a0iQ5dt_38Y9j6XCoj=n7YA+cPz7i6mjP24k9WY7QL+oA@mail.gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This change enables probable eDP panels for all sc7180-trogdor
-variants, leaving the existing panel as a fallback.
+On 22-07-21, 16:52, Arnd Bergmann wrote:
+> On Thu, Jul 22, 2021 at 11:56 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+> >
+> > +/* Virtio device compatibles and IDs */
+> > +static const struct of_device_id of_virtio_devices[] = {
+> > +       { .compatible = "virtio,22", .data = (void *)VIRTIO_ID_I2C_ADAPTER },
+> > +       { .compatible = "virtio,29", .data = (void *)VIRTIO_ID_GPIO },
+> > +       { }
+> > +};
+> > +
+> > +static int virtio_device_of_init(struct virtio_device *dev)
+> > +{
+> > +       struct device_node *np, *pnode = dev->dev.parent->of_node;
+> > +       const struct of_device_id *match;
+> > +       int ret, count;
+> > +
+> > +       if (!pnode)
+> > +               return 0;
+> > +
+> > +       count = of_get_available_child_count(pnode);
+> > +       if (!count)
+> > +               return 0;
+> > +
+> > +       /* There can be only 1 child node */
+> > +       if (WARN_ON(count > 1))
+> > +               return -EINVAL;
+> > +
+> > +       np = of_get_next_available_child(pnode, NULL);
+> > +       if (WARN_ON(!np))
+> > +               return -ENODEV;
+> > +
+> > +       match = of_match_node(of_virtio_devices, np);
+> > +       if (!match) {
+> > +               ret = -ENODEV;
+> > +               goto out;
+> > +       }
+> 
+> I think it would be better not to have to enumerate the of_virtio_devices[]
+> strings, but instead use of_device_is_compatible() to match against
+> "virtio,%d". Otherwise we end up modifying this function for every
+> virtio driver that needs a binding.
 
-Though this won't make any immediate change, it paves the way for
-supporting more second source panels on trogdor devices. It also
-removes a "little white lie" which is that some trogdor devices
-already had second sources for their panels but the panels were
-compatible enough that they could simply use the same delays across
-the board.
+Yeah, will do that.
 
-NOTE that all trogdor devices currently supported by mainline have HPD
-hooked up properly and so there is no need for the hpd-absent-delay on
-any of these. One of the trogdor devices does have a glitchy HPD upon
-first power on, though, so we need "hpd-reliable-delay" on lazor.
-
-This also removes the "innolux,n116bge" fallback from one of the
-limozeen models. The limozeen board never had this panel but the
-"innolux,n116bge" panel timings / delays worked OK and having this as
-a fallback compatible string helped until the "innolux,n116bca-ea1"
-panel was supported.
-
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
-
- arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi            | 2 +-
- .../arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots.dts | 2 +-
- arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen.dts     | 2 +-
- arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi             | 3 ++-
- arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi            | 2 +-
- 5 files changed, 6 insertions(+), 5 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-index 4c6e433c8226..b2ff87769a7b 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-@@ -74,7 +74,7 @@ &i2c9 {
- };
- 
- &panel {
--	compatible = "boe,nv110wtm-n61";
-+	compatible = "edp-panel", "boe,nv110wtm-n61";
- };
- 
- &pp3300_dx_edp {
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots.dts
-index 0456c7e05d00..56bff28cdd9e 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots.dts
-@@ -18,7 +18,7 @@ / {
- /delete-node/&ap_ts;
- 
- &panel {
--	compatible = "innolux,n116bca-ea1", "innolux,n116bge";
-+	compatible = "edp-panel", "innolux,n116bca-ea1";
- };
- 
- &sdhc_2 {
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen.dts
-index e6ad6dae4e60..892f6ff8f155 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen.dts
-@@ -34,7 +34,7 @@ ap_ts: touchscreen@10 {
- };
- 
- &panel {
--	compatible = "auo,b116xa01";
-+	compatible = "edp-panel", "auo,b116xa01";
- };
- 
- &sdhc_2 {
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-index 6b10b96173e8..f31a8f54c855 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-@@ -42,7 +42,8 @@ ap_ts: touchscreen@10 {
- };
- 
- &panel {
--	compatible = "boe,nv133fhm-n62";
-+	compatible = "edp-panel", "boe,nv133fhm-n62";
-+	hpd-reliable-delay = <15>;
- };
- 
- &trackpad {
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
-index 622b5f1b88a2..bf0d2a8a195b 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
-@@ -108,7 +108,7 @@ ap_ts: touchscreen@10 {
- };
- 
- &panel {
--	compatible = "kingdisplay,kd116n21-30nv-a010";
-+	compatible = "edp-panel", "kingdisplay,kd116n21-30nv-a010";
- };
- 
- &pen_insert {
 -- 
-2.32.0.432.gabb21c7263-goog
-
+viresh
