@@ -2,83 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFA5E3D36DE
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 10:36:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 376AD3D372E
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 10:58:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234442AbhGWH4S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 03:56:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41116 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234276AbhGWH4R (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Jul 2021 03:56:17 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id CFD5760E77;
-        Fri, 23 Jul 2021 08:36:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627029405;
-        bh=UyVuqNmKaOLCkr5dhRsTE6bDJ2Pg+oAGurbYq8p5lCQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KfuwdXTzWBtlxfv0mIC7O1od0ef4CDsyZVwt9YRDw7Wa+5LKnmAY/6u6zLocwlLnG
-         IHlcmVYX+x3AtEtWkH3dxTiqO72OkhkDEh4C4A65HQknRypiegceZ5QBgfk3ORvRD4
-         ifmguEpWfA41wmXWOERXnC1+B4E3MBAI2nVc6/MyTrPs4gD97V4R7JPHHpxE1tVyOM
-         agh3gOQ9UYo/P3BrMwhMrWNtj5ClCgR4quLoyJ+kHFLM73qo3+c2qKVgFMySXfecuT
-         3qEGaYfcmTUMGsOtEr/oDb+BVKlnOlkKTC8zSqWqqI0ar/4SJJ0hKa1ejtzkNoQgHN
-         MYDHcHVuwo1HA==
-Date:   Fri, 23 Jul 2021 16:36:41 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Mathew McBride <matt@traverse.com.au>
-Cc:     Li Yang <leoyang.li@nxp.com>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/5] arm64: dts: ls1088a: add missing PMU node
-Message-ID: <20210723083640.GJ30773@dragon>
-References: <20210722042450.11862-1-matt@traverse.com.au>
- <20210722042450.11862-3-matt@traverse.com.au>
+        id S230506AbhGWISE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 04:18:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43648 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229771AbhGWISD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 04:18:03 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3DF5C061575;
+        Fri, 23 Jul 2021 01:58:35 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id z8-20020a1c4c080000b029022d4c6cfc37so3046655wmf.5;
+        Fri, 23 Jul 2021 01:58:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=D+tvkneWqFNuFXwgztNmpZ6245wB98P+2fGEEotpNgU=;
+        b=d4XsK4a+xAUkAerLoLRvNXkDfShJWUm9GtCgWAFOkj09do9Rz/vEvpyjuXoIifzSWr
+         o0QBI0GwPHzSwqCuIuDFZJ3qig+IDGkVmVA53AxsUD/oWbIEJ8GbbNTjf5UBqGvJYULK
+         EMzjlTe/OLmIqZFmy0a72jbsHnm4sjJaraklsGWF8QXA9kZpGDw8QCSQ6Yvhiwe4YeGc
+         VzosmH8ii1g8laryeCGa3sToah0eS6wRMw6f8Hu+zhHHBTj8Roe35JfcZ/CiUxd2mPdK
+         PRzUYZx5jTaz5l39/UF63575vZvfcM3frpF7BW6p8dA9tUFW0q6u6j5eJZ1u+JDWi8cm
+         8lXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=D+tvkneWqFNuFXwgztNmpZ6245wB98P+2fGEEotpNgU=;
+        b=BbPFeO0+p1C3pqPf1m/aeGzICkJ0moy/nxrHXLw+LzDrCq0kslyLBi4S2+DnMtxKNw
+         H5z/8iYyz2uUqlpHApS8jEVhA0Ae2ufyHDokeY+AvToK2Xz8Cf7yxkFxv60rKQMHZJ0C
+         PRdRLs0+9TSSlCCtkx5mP6yHp5AqIQWKvtCZOTh4BMR1AQ23nYA7pMqLLpPkaOZFCRXb
+         gw+LOmzJb9MeiObKgbocLan9WAuSq3tzHFTbuLaGXqJsuBxO6k5PkLEg3GDo2SwylwTR
+         o9pkLwKsOUQodMLQ804mgmmiqywwkQwE5KDdpG/K358/cpf2h79EkWn+loIJ8kMdPRpe
+         tGPw==
+X-Gm-Message-State: AOAM5323CcEliC85ax1mVAPJ6uT328EGaxQoq75Yd6iVbFY/s1vXMpXc
+        ue4r6hscE+JFm3k9PJc10VY=
+X-Google-Smtp-Source: ABdhPJxFepvS3q7t8SZqKe1Ll7vZlYBcTcDgGT35/+ZojJnhtq0mohzryyIgEcdYB5NpXvcKs7jqcA==
+X-Received: by 2002:a7b:c318:: with SMTP id k24mr3536549wmj.144.1627030714307;
+        Fri, 23 Jul 2021 01:58:34 -0700 (PDT)
+Received: from monk.home (astrasbourg-157-1-7-84.w90-40.abo.wanadoo.fr. [90.40.218.84])
+        by smtp.gmail.com with ESMTPSA id l23sm17503607wme.22.2021.07.23.01.58.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Jul 2021 01:58:34 -0700 (PDT)
+From:   Christophe Branchereau <cbranchereau@gmail.com>
+To:     paul@crapouillou.net
+Cc:     jic23@kernel.org, lars@metafoo.de, linux-mips@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org, linux@roeck-us.net,
+        contact@artur-rojek.eu,
+        Christophe Branchereau <cbranchereau@gmail.com>
+Subject: [PATCH V2 0/5] iio/adc: ingenic: add support for the JZ4760(B) Socs to the ingenic sadc driver
+Date:   Fri, 23 Jul 2021 10:58:08 +0200
+Message-Id: <20210723085813.1523934-1-cbranchereau@gmail.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <893d6165-0f12-d0da-44be-449a4ae96ac2@roeck-us.net>
+References: <893d6165-0f12-d0da-44be-449a4ae96ac2@roeck-us.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210722042450.11862-3-matt@traverse.com.au>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 22, 2021 at 04:24:47AM +0000, Mathew McBride wrote:
-> The Performance Manager Unit was not described in the DTS
-> which meant performance event monitoring was not possible.
-> 
-> This was exposed by a change to the PMU handling in KVM
-> in 5.11-rc3 which now prevents a PMU being exposed to a
-> guest when the host does not provide one:
-> "KVM: arm64: Don't access PMCR_EL0 when no PMU is available"
-> 
-> Signed-off-by: Mathew McBride <matt@traverse.com.au>
-> ---
->  arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-> index 79ceadc9dc4a..752c7f41e6b1 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-> @@ -189,6 +189,11 @@ timer {
->  			     <1 10 IRQ_TYPE_LEVEL_LOW>;/* Hypervisor PPI */
->  	};
->  
-> +	pmu {
-> +		compatible = "arm,armv8-pmuv3";
-> +		interrupts = <1 7 0x8>; /* PMU PPI, Level low type */
+This is a set of patches to add support to the JZ4760(B) socs found in numerous gaming handhelds and some
+mp3 players.
 
-Use define GIC_PPI and IRQ_TYPE_LEVEL_LOW, so that you can drop the
-comment.
+Christophe Branchereau (5):
+  iio/adc: ingenic: rename has_aux2 to has_aux_md
+  dt-bindings: iio/adc: add an INGENIC_ADC_AUX0 entry
+  iio/adc: ingenic: add JZ4760 support to the sadc driver
+  iio/adc: ingenic: add JZ4760B support to the sadc driver
+  dt-bindings: iio/adc: ingenic: add the JZ4760(B) socs to the sadc
+    Documentation
 
-Shawn
-
-> +	};
-> +
->  	psci {
->  		compatible = "arm,psci-0.2";
->  		method = "smc";
-> -- 
-> 2.30.1
-> 
