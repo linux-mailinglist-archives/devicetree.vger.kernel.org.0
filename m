@@ -2,73 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D5D983D41A9
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 22:42:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA0B53D41B5
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 22:50:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229535AbhGWUCC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 16:02:02 -0400
-Received: from mail-il1-f169.google.com ([209.85.166.169]:43834 "EHLO
-        mail-il1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229530AbhGWUCC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 16:02:02 -0400
-Received: by mail-il1-f169.google.com with SMTP id 10so2695003ill.10
-        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 13:42:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=JT3GG7anTyw8BDT8jvvTGThCHjMwDKp/QaQK0gUZd7c=;
-        b=o76cco9Wrf5eN427Qg7wNdDYSItPZOirdrrY0eXATD8IMxqKQQK/9BKmW8voRYoZIn
-         mUdn+xeXPkQ7ahOWAyo2v6xvqBvf7/V4oDH5H7FyVV6LKrPtmAaFTUCoCt8qS4gxC1NM
-         lokcA3FXhjfhe3cpDi9uNXkD8PDs/QXG4N4JFgFc2gQ+3TIFb3kt0v+AF21jJH2O99tf
-         qvCJRvhYp0cvBgWup0RuejY4eFMZfcIj5LU/JczfeRWr40uQ8ldb5q4H250t+RunM5bX
-         rc4GHW8oeN+gujzR3sHUBbS98MfVwgAAbgyuqbjkW55SGsXmoYlqcEZDUomXuTnClUC3
-         YgcA==
-X-Gm-Message-State: AOAM531D/5W9Vbc6CQ39GpRwbgAkYwHk/nHxILXjvCT/RwKCGcrsl4Bk
-        Wi+gmnGUuv4ppeBffwtsSw==
-X-Google-Smtp-Source: ABdhPJxPEtFhJMGcmLtlznr2WRtr1KXCyz4cAh0mpirGfovfXry5DketPoRCW3sZj+mrCqxDfPAgkQ==
-X-Received: by 2002:a05:6e02:1d89:: with SMTP id h9mr4407657ila.46.1627072955438;
-        Fri, 23 Jul 2021 13:42:35 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id i5sm17448202ilc.16.2021.07.23.13.42.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jul 2021 13:42:34 -0700 (PDT)
-Received: (nullmailer pid 2542706 invoked by uid 1000);
-        Fri, 23 Jul 2021 20:42:33 -0000
-Date:   Fri, 23 Jul 2021 14:42:33 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     devicetree@vger.kernel.org, Imre Kaloz <kaloz@openwrt.org>,
-        Krzysztof Halasa <khalasa@piap.pl>,
-        linux-arm-kernel@lists.infradead.org, Marc Zyngier <maz@kernel.org>
-Subject: Re: [PATCH 1/2 v2] bus: ixp4xx: Add DT bindings for the IXP4xx
- expansion bus
-Message-ID: <20210723204233.GA2541746@robh.at.kernel.org>
-References: <20210722084330.1618239-1-linus.walleij@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210722084330.1618239-1-linus.walleij@linaro.org>
+        id S231462AbhGWUJg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 16:09:36 -0400
+Received: from finn.gateworks.com ([108.161.129.64]:57720 "EHLO
+        finn.localdomain" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229575AbhGWUJf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 16:09:35 -0400
+Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+        by finn.localdomain with esmtp (Exim 4.93)
+        (envelope-from <tharvey@gateworks.com>)
+        id 1m727M-0057Vc-FI; Fri, 23 Jul 2021 20:50:00 +0000
+From:   Tim Harvey <tharvey@gateworks.com>
+To:     Richard Zhu <hongxing.zhu@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc:     Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH 0/6] Add IMX8M Mini PCI support
+Date:   Fri, 23 Jul 2021 13:49:52 -0700
+Message-Id: <20210723204958.7186-1-tharvey@gateworks.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 22 Jul 2021 10:43:30 +0200, Linus Walleij wrote:
-> This adds device tree bindings for the IXP4xx expansion bus controller.
-> 
-> Cc: Marc Zyngier <maz@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
-> ChangeLog v1->v2:
-> - Drop unevaluatedProperties: false from the node match.
->   additionalProperties: true will be the default.
-> ---
->  ...intel,ixp4xx-expansion-bus-controller.yaml | 149 ++++++++++++++++++
->  1 file changed, 149 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/bus/intel,ixp4xx-expansion-bus-controller.yaml
-> 
+The IMX8M Mini PCI controller shares much in common with the existing
+SoC's supported by the pci-imx6 driver.
 
-AFAICT, there is no patch 2/2. If there is it never made the lists.
+This series adds support for it. Driver changes came from the NXP
+downstream vendor kernel [1]
 
-Applied, thanks!
+This series depends on Lucas Stach's i.MX8MM GPC improvements and
+BLK_CTRL driver and is based on top of his v2 submission [2]
+
+The final patch adds PCIe support to the
+Tim
+[1] https://source.codeaurora.org/external/imx/linux-imx/
+[2]
+https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=519251
+
+Tim Harvey (6):
+  dt-bindings: imx6q-pcie: add compatible for IMX8MM support
+  dt-bindings: reset: imx8mq: add pcie reset
+  PCI: imx6: add IMX8MM support
+  reset: imx7: add resets for PCIe
+  arm64: dts: imx8mm: add PCIe support
+  arm64: dts: imx8mm: add gpc iomux compatible
+
+ .../bindings/pci/fsl,imx6q-pcie.txt           |   4 +-
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi     |  38 ++++++-
+ drivers/pci/controller/dwc/pci-imx6.c         | 103 +++++++++++++++++-
+ drivers/reset/reset-imx7.c                    |   3 +
+ include/dt-bindings/reset/imx8mq-reset.h      |   3 +-
+ 5 files changed, 147 insertions(+), 4 deletions(-)
+
+-- 
+2.17.1
+
