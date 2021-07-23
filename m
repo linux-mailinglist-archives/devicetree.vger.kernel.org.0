@@ -2,81 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 620223D3D32
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 18:09:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F235F3D3D39
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 18:10:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229686AbhGWP3E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 11:29:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58216 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229510AbhGWP3D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 11:29:03 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1887C061575
-        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 09:09:36 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id g13so2847494lfj.12
-        for <devicetree@vger.kernel.org>; Fri, 23 Jul 2021 09:09:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=CUZub6tYMC5rdH2GsxFohlUBAJBqmcxB+r6GGbVLSQI=;
-        b=jDcmGZqh5+TCG4aW8YRE7eHDVom1uRP1PjSpQYjST6gGZfVqMs/Kjk2L64i30vA1mt
-         hCADMD9+8FknjB3QrSDx8L3AkP8jguROpDDeyh5Q6hSg0tqAY7OJmnyXscXNke8n3Nzp
-         CnuDn3AoeGdPYHvUUhMH14y9Ri4GhyKV1r+nUdNMiWwLL9VY+1lb+loi005d51jaPrDb
-         QGm5CV2jo2YLD1Q1SrcUwUOjXnn2+axtONqxNUMIRqM53/XKraWIULcSau3yXWU48wSi
-         neMbTsLg2McH8GmBCnBFvhK3JTib0phAX+8LjpbFD92a/7m6iTSlWrSgktWjuGCTd5fc
-         IvRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CUZub6tYMC5rdH2GsxFohlUBAJBqmcxB+r6GGbVLSQI=;
-        b=TnXERNzspU3TkcUmQKF/7AfeKlN6SiKzg+dcHI1mruZ3GwWITn6sV+biEZIEx1gqk7
-         uCM0Z+BQAsJlfmRvlMcv8vcYlWPkOXwdINTtILdpUGRMz38lpEJlpFLRmgMD+Ft0PzHH
-         z4fSG/LzBdMwp9eCPoOgJm58hXZxUGAs/12P/vopSWIu0oDJ+lIJO52hR+M0m1zOPWn2
-         yBvfwCoTQd8WTrcwZ8gHoHUqvV7smYpoReGYl1i1Gis8KRi0JQ3XwU5jAeBCGfWrOXo7
-         cL07K3gCynU7CI8KDkQN3gS0J9M+cahmV6VLFqQsJHLaJLqmXst1K5R8dFG3Cg7BtYpi
-         atvw==
-X-Gm-Message-State: AOAM532FSDGcBp0bB0dVwXrxB72sMt9Pej06/eKP2SswvLjYtQsgNVnC
-        Ep1xLdEcliI5F60g4nMeWBQX8HTGM13/xLoeQ9GcfA==
-X-Google-Smtp-Source: ABdhPJyGZM4DpxYoi4G/uaylBWCJNwRIGO7fkTktk0W9ZePKQef+muQvEXOnibA8DVz68yRY+B1BXqD87s4k8HGuhAw=
-X-Received: by 2002:a05:6512:2603:: with SMTP id bt3mr3597638lfb.529.1627056575160;
- Fri, 23 Jul 2021 09:09:35 -0700 (PDT)
+        id S229949AbhGWPaP convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 23 Jul 2021 11:30:15 -0400
+Received: from frasgout.his.huawei.com ([185.176.79.56]:3473 "EHLO
+        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229492AbhGWPaN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 11:30:13 -0400
+Received: from fraeml714-chm.china.huawei.com (unknown [172.18.147.207])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4GWYwR4490z6H6lC;
+        Sat, 24 Jul 2021 00:01:43 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml714-chm.china.huawei.com (10.206.15.33) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Fri, 23 Jul 2021 18:10:41 +0200
+Received: from localhost (10.210.170.238) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2176.2; Fri, 23 Jul
+ 2021 17:10:40 +0100
+Date:   Fri, 23 Jul 2021 17:10:15 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Paul Cercueil <paul@crapouillou.net>
+CC:     citral23 <cbranchereau@gmail.com>, <jic23@kernel.org>,
+        <lars@metafoo.de>, <linux-mips@vger.kernel.org>,
+        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux@roeck-us.net>, <contact@artur-rojek.eu>
+Subject: Re: [PATCH 6/6] dt-bindings: iio/adc: ingenic: add the JZ4760(B)
+ socs to the sadc Documentation
+Message-ID: <20210723171015.00001b44@Huawei.com>
+In-Reply-To: <L90MWQ.K24XQ4Q0L9XN@crapouillou.net>
+References: <20210721105317.36742-1-cbranchereau@gmail.com>
+        <20210721105317.36742-7-cbranchereau@gmail.com>
+        <L90MWQ.K24XQ4Q0L9XN@crapouillou.net>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
 MIME-Version: 1.0
-References: <20210624214458.68716-2-mail@david-bauer.net> <202106251253.ajNPgHe1-lkp@intel.com>
-In-Reply-To: <202106251253.ajNPgHe1-lkp@intel.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 23 Jul 2021 18:09:24 +0200
-Message-ID: <CACRpkdYH=UVnm379f2CyFJyO3eGyy9HCqaOW-=saYqshUO-M4Q@mail.gmail.com>
-Subject: Re: [PATCH v6 2/2] pinctrl: Add driver for Awinic AW9523/B I2C GPIO Expander
-To:     kernel test robot <lkp@intel.com>
-Cc:     David Bauer <mail@david-bauer.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, kbuild-all@lists.01.org,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 8BIT
+X-Originating-IP: [10.210.170.238]
+X-ClientProxiedBy: lhreml704-chm.china.huawei.com (10.201.108.53) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 25, 2021 at 6:51 AM kernel test robot <lkp@intel.com> wrote:
+On Wed, 21 Jul 2021 20:17:45 +0100
+Paul Cercueil <paul@crapouillou.net> wrote:
 
->    drivers/pinctrl/pinctrl-aw9523.c: In function 'aw9523_init_gpiochip':
-> >> drivers/pinctrl/pinctrl-aw9523.c:812:10: error: 'struct gpio_chip' has no member named 'of_node'
->      812 |  gpiochip->of_node = dev->of_node;
->          |          ^~
->
->
-> vim +812 drivers/pinctrl/pinctrl-aw9523.c
+> Hi Christophe,
+> 
+> Please always add a short description in your patches, even if all you 
+> do is repeat the patch title.
+> 
+> 
+> Le mer., juil. 21 2021 at 12:53:17 +0200, citral23 
+> <cbranchereau@gmail.com> a écrit :
+> > Signed-off-by: citral23 <cbranchereau@gmail.com>
+> > ---
+> >  .../devicetree/bindings/iio/adc/ingenic,adc.yaml         | 9 
+> > +++++++++
+> >  1 file changed, 9 insertions(+)
+> > 
+> > diff --git 
+> > a/Documentation/devicetree/bindings/iio/adc/ingenic,adc.yaml 
+> > b/Documentation/devicetree/bindings/iio/adc/ingenic,adc.yaml
+> > index 433a3fb55a2e..1b423adba61d 100644
+> > --- a/Documentation/devicetree/bindings/iio/adc/ingenic,adc.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/adc/ingenic,adc.yaml
+> > @@ -23,6 +23,8 @@ properties:
+> >      enum:
+> >        - ingenic,jz4725b-adc
+> >        - ingenic,jz4740-adc
+> > +      - ingenic,jz4760-adc
+> > +      - ingenic,jz4760b-adc
+> >        - ingenic,jz4770-adc
+> > 
+> >    '#io-channel-cells':
+> > @@ -43,6 +45,12 @@ properties:
+> >    interrupts:
+> >      maxItems: 1
+> > 
+> > +  ingenic,use-internal-divider:
+> > +    description:
+> > +      This property can be used to set VBAT_SEL in the JZ4760B CFG 
+> > register
+> > +      to sample the battery voltage from the internal divider. If 
+> > absent, it
+> > +      will sample the external divider.  
+> 
+> Please remove trailing spaces. And you don't need to describe internal 
+> behaviour; you only need to explain the functionality in a user-facing 
+> perspective. Something like:
+> 
+> "If present, battery voltage is read from the VBAT_IR pin, which has an 
+> internal /4 divider. If absent, it is read through the VBAT_ER pin, 
+> which does not have such divider."
+> 
+> You also don't specify the type of the property, please add "type: 
+> boolean" before the description.
+> 
+> There should also be a way to make sure that this property can only be 
+> used with the JZ4760B SoC. So a dependency for this vendor property on 
+> the "ingenic,jz4760b-adc" compatible string. But I'm honestly not sure 
+> how to express that... Maybe Rob can help.
 
-I haven't even seen the patch adding this driver, is the problem on my
-side?
+Lots of examples in tree.
+e.g.
+https://elixir.bootlin.com/linux/v5.14-rc2/source/Documentation/devicetree/bindings/iio/st,st-sensors.yaml#L153
 
-Yours,
-Linus Walleij
+Basically you have an if block matching the compatible and for non matches
+set it to false.  That combined with additionaProperties: false enforces
+the property can't exist for those other devices.
+
+> 
+> > +
+> >  required:
+> >    - compatible
+> >    - '#io-channel-cells'
+> > @@ -53,6 +61,7 @@ required:
+> > 
+> >  additionalProperties: false
+> > 
+> > +  
+> 
+> Remove the extra newline.
+> 
+> Cheers,
+> -Paul
+> 
+> >  examples:
+> >    - |
+> >      #include <dt-bindings/clock/jz4740-cgu.h>
+> > --
+> > 2.30.2
+> >   
+> 
+> 
+
