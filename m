@@ -2,51 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95C0B3D31EC
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 04:38:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F2583D31F5
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 04:41:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233215AbhGWB57 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 21:57:59 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42380 "EHLO mail.kernel.org"
+        id S233472AbhGWCA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 22:00:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43550 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231663AbhGWB56 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Jul 2021 21:57:58 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8296A60EB5;
-        Fri, 23 Jul 2021 02:38:31 +0000 (UTC)
+        id S233255AbhGWCAZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Jul 2021 22:00:25 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 97A6260EBD;
+        Fri, 23 Jul 2021 02:40:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627007913;
-        bh=+3NaWAo1tTtvbezkzEY0NGs/I19agbA+vy6yZHm58Jc=;
+        s=k20201202; t=1627008059;
+        bh=Uw/UjQroG3bccpoxxRjplCXJ+f0gWEBZ71qxaMpzeVY=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Xe/zXZ5dIL3KSka6FMdS8W1jMn51I9Ot7RYKPu9Ey+NTa39BsmVD6EIwM+yTjA9Gv
-         8aRPC7soLVRCDeRRHBQuPXRFEVVLwoxGKmfA0W6rVjYs5Me5oFvX50G+MaU99WS3we
-         jvvdEMkZNqLL2lKfHLKb4Hpu+sO/erUEXJSuKndzDE9+HUr+7un1l+rk70ULey1iXh
-         1D1JXZOP8s4agDlC1KGClW/9wf9UrGA4csGky5myDNVcWpFSawNxxl5KYH+XoQkzpT
-         uqW1pnnGrFpqaRCcrKqb/6Y97PBu7fM/0R5Yym5CtgnEbJLGtyh749fx2MRMPaJoIi
-         oG2xJGerLHvow==
-Date:   Fri, 23 Jul 2021 10:38:28 +0800
+        b=ZtER0km0G4OiTFBdh0DML9qrqBJGDbeSJxzxSOQ715pehQj2V0OIotByT5oCowYU6
+         iGb9eMUMBLugYphdv6YwXP5Ff0BGyTr7QLXha7cyXT4oLnlHOEKnZO5EXa8nY5g2iS
+         jKFsv0cgQ5ml/sIVCNA9wX+b+4mm/im5BDSP5A4Ffb9Lb14z+8edSXlRooTUm0NouY
+         dpr3HpwTFWWPATlpJw8urhUDtfXDqY+v1pY7EXXNU8UQPeiT7dpwe2zQr6R5Rtgysg
+         JAlxsWnEjQWPalWftGJ4SrrNtohgeAjteDCKYVc4+OM0RaV1jxrLWe/GgJUri4bFeD
+         I7/xniChtkNEg==
+Date:   Fri, 23 Jul 2021 10:40:54 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Tim Harvey <tharvey@gateworks.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: imx6qdl-gw5904: atecc508a support
-Message-ID: <20210723023827.GB28658@dragon>
-References: <20210701180633.4905-1-tharvey@gateworks.com>
+To:     Michael Walle <michael@walle.cc>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH] arm64: dts: ls1028: sl28: fix networking for variant 2
+Message-ID: <20210723024054.GC28658@dragon>
+References: <20210702194914.10921-1-michael@walle.cc>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210701180633.4905-1-tharvey@gateworks.com>
+In-Reply-To: <20210702194914.10921-1-michael@walle.cc>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 01, 2021 at 11:06:33AM -0700, Tim Harvey wrote:
-> Add one node for the Atmel ATECC508A 'CryptoAuthentication' i2c device.
+On Fri, Jul 02, 2021 at 09:49:14PM +0200, Michael Walle wrote:
+> The PHY configuration for the variant 2 is still missing the flag for
+> in-band signalling between PHY and MAC. Both sides - MAC and PHY - have
+> to match the setting. For now, Linux only supports setting the MAC side
+> and thus it has to match the setting the bootloader is configuring.
+> Enable in-band signalling to make ethernet work.
 > 
-> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+> Fixes: ab43f0307449 ("arm64: dts: ls1028a: sl28: add support for variant 2")
+> Signed-off-by: Michael Walle <michael@walle.cc>
 
 Applied, thanks!
