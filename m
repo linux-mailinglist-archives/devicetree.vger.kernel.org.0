@@ -2,213 +2,376 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E3FD3D434E
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 01:13:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50CFF3D4351
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 01:13:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233024AbhGWWcv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 18:32:51 -0400
-Received: from mail-db8eur05on2083.outbound.protection.outlook.com ([40.107.20.83]:51072
-        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232550AbhGWWcu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Jul 2021 18:32:50 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mhDyylJ4qPJ9NzjxqJuIzdTEI9vAGDgd3w1dWTvbwXtUF0P0ZNir/L3sYwENxtf4jak2MiQGqhuInlAj4fl5eSmm2JuYLC+p05HyJtQGwiQ6TgVAntAzLTUqlcBobcHMR702GBUQVjCIB/BMd1h0rQpYn86n22bhAT19QTse4tAjOHKCny4iZx2x2ZPCDR/t4mx8yyPMIuVeGOOAPJlat93DNBwMKQtVSbLWuL0mtoWgt8cYAec2NLqhRgSA3nGD9jfFDdATwmqgyt/wcnRpb8ed61wOljqlo6/jhRLakUk1nv3OooIOJ4u1bqK6r87ybAetr4qszx7lUc33Bpx2Jw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=khF1ZlA4537PL8GtuMAnV6DYFsV/OWpxEZqhlprbSEE=;
- b=eHvq3OtsgynlnR/zBCd2aDfx+sx6lMqVAvlM1u8GiviIskkAbpRfoXEtCjAg5+y8to7HDmvIrh4jfUgeeKTaf8jEK/19QXK0gKfpIP+GLhh2xdQZC0EnvPsI+NFRGnnO8pdPsSPwFLCSScLPXmSni8vv06UaOVC2U4824rvjaVPiebYW0f13cpxb4LDXKIzq9cUzWTfeSModpql1oS/DXskDmwcYrrFPPj8FZw8nG6iaLGR6khfQU4MoAJhoEA+eZjsS5S2ctCj8hzphDGs+4D60hJa1PRu0W3kwr81veQsMsk9O6QobcDQF42EaVaRrT95j3mSp07KclxhFXck3iA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=secospa.onmicrosoft.com; s=selector2-secospa-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=khF1ZlA4537PL8GtuMAnV6DYFsV/OWpxEZqhlprbSEE=;
- b=lkL2kynzkEvfwvYGnY3OZo3Chv6GKxJvdth+rvfvxfo6ZMa/4baE7PHisJ6hXJSbV225nCSpwb0tjMnUJWRLxg1zUkiEA1NQC5G3mKGbrUV3oa94CNPsG0vv/gF8rLXYyTXGn0KxPOvuUQJwQrAytlPHD7KkQtELx0VEezvTSPY=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none header.from=seco.com;
-Received: from DB7PR03MB4523.eurprd03.prod.outlook.com (2603:10a6:10:19::27)
- by DBBPR03MB5365.eurprd03.prod.outlook.com (2603:10a6:10:f1::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4352.29; Fri, 23 Jul
- 2021 23:13:19 +0000
-Received: from DB7PR03MB4523.eurprd03.prod.outlook.com
- ([fe80::dc6c:815b:2062:d1f1]) by DB7PR03MB4523.eurprd03.prod.outlook.com
- ([fe80::dc6c:815b:2062:d1f1%7]) with mapi id 15.20.4352.025; Fri, 23 Jul 2021
- 23:13:18 +0000
-From:   Sean Anderson <sean.anderson@seco.com>
-To:     linux-clk@vger.kernel.org, Luca Ceresoli <luca@lucaceresoli.net>
-Cc:     Stephen Boyd <sboyd@kernel.org>, Adam Ford <aford173@gmail.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Sean Anderson <sean.anderson@seco.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v6 1/3] dt-bindings: clk: vc5: Add properties for configuring the SD/OE pin
-Date:   Fri, 23 Jul 2021 19:13:04 -0400
-Message-Id: <20210723231306.674310-1-sean.anderson@seco.com>
-X-Mailer: git-send-email 2.25.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BL0PR05CA0005.namprd05.prod.outlook.com
- (2603:10b6:208:91::15) To DB7PR03MB4523.eurprd03.prod.outlook.com
- (2603:10a6:10:19::27)
+        id S233049AbhGWWdO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 18:33:14 -0400
+Received: from mail-io1-f46.google.com ([209.85.166.46]:42906 "EHLO
+        mail-io1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231954AbhGWWdO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 18:33:14 -0400
+Received: by mail-io1-f46.google.com with SMTP id h1so4383680iol.9;
+        Fri, 23 Jul 2021 16:13:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ZB00Ds6KoI5x1WT5XNdgK15EVg0jEG6uuHyKMdGNqQo=;
+        b=KKy1tCSzxkHdlbWGAwMI5LVn6XPQ5k6y8927WgXzlWngW+PZcur7NhyD7UK0sPmk7c
+         Z6hx3tkc7A639V+pWE4SSBYVsXxzS13GA4G8CVJCCFLv33ASXsaEbbRFVwsFYkJ0AUxo
+         ABM6oJDqNaPSt+S4PyD0Wou0CgaB4pAAf0WvfAs1CfrzZrBdXkTcP6aohC4KpUCHMckd
+         KgItNrd0XOaioxWH1cMelEh4N9q3uh3IvJVgZ4e+yGPJ1rj3UYpC9RW1Sml1C8r9OHcY
+         te9p18R3KooL82AfbOIeUmU7SulCdBsIir/h7PAMBqaI+CBxflbdypm4uGRlS2DDRob9
+         vLPw==
+X-Gm-Message-State: AOAM5334a2T+Irs2jyuDqndO6glqlz+S/vF1M8JCkkAityXBHVo85BPb
+        W11asS+OMR7bImZ35cPDBQ==
+X-Google-Smtp-Source: ABdhPJwpOJQwg2W6oneYH/cmi1cz+nE8ciUCHDeXvjP+egp/W9YCayfPoS3lAFKDKaSvEtYtgKg94A==
+X-Received: by 2002:a02:c491:: with SMTP id t17mr6045273jam.56.1627082026261;
+        Fri, 23 Jul 2021 16:13:46 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id l5sm18750954ion.44.2021.07.23.16.13.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Jul 2021 16:13:45 -0700 (PDT)
+Received: (nullmailer pid 2785859 invoked by uid 1000);
+        Fri, 23 Jul 2021 23:13:43 -0000
+Date:   Fri, 23 Jul 2021 17:13:43 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Moudy Ho <moudy.ho@mediatek.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        tfiga@chromium.org, drinkcat@chromium.org, acourbot@chromium.org,
+        pihsun@chromium.org, menghui.lin@mediatek.com,
+        sj.huang@mediatek.com, ben.lok@mediatek.com, randy.wu@mediatek.com,
+        srv_heupstream@mediatek.com
+Subject: Re: [PATCH v5 1/3] dt-binding: mt8183: Add Mediatek MDP3 dt-bindings
+Message-ID: <20210723231343.GA2773035@robh.at.kernel.org>
+References: <20210719074640.25058-1-moudy.ho@mediatek.com>
+ <20210719074640.25058-2-moudy.ho@mediatek.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from plantagenet.inhand.com (50.195.82.171) by BL0PR05CA0005.namprd05.prod.outlook.com (2603:10b6:208:91::15) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.7 via Frontend Transport; Fri, 23 Jul 2021 23:13:17 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5e270a8d-153c-4e3c-6c48-08d94e2f7532
-X-MS-TrafficTypeDiagnostic: DBBPR03MB5365:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DBBPR03MB53657D6D4B8B71A37BAD31DE96E59@DBBPR03MB5365.eurprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: jZYg75qINcReX7Ufalrf0IFgJd8dxxp/0HoBaPEIJtDcFAEUNiAMRihddUttYJoilJHWrPJXMtTUwsoSE00AUCPOidcTdLleIrnbVEwDO6juZxdYP5uRKvffeZTLf0Tl5PPUED6KISrE1wublA06PyiDczAxbVm3N/Bnq2Xic0xQFA42d3MnUfekDiIHwxvGqyUabnELQO1OK8MQNC/M43M4jDrWAJMNOEph8wnVLTC2+gswhRgP5adXJm8RBJgViQ6deRYroT8MmMRSMWEdVTjF3BTa+YHVvYAu3/5HiXz49mWWVa0LeAl8IxJVcGMbHb/0ABO0MzYg0nPamay93NGEnVZH6irouh8ESqsR3mPjHEoduDwMkBE/ADKpdHfmpmvfRKFNRynNYMO1Ds0b1eOoDloDykpPP9D1b6rCp4+hkBPBPIcrK4ySf2FIT13eE+qbP8IqtuM7TeLuHJfkbWVQFNB6C9Vaxmo2nqbO1hMNO10cZeQqkUGcJDJ36jdQXUhXVm5WsvMfF6fqkZGQZmSZy3DaPeUHmisiZHlKjLP+N7NVhH6NS47JQ8p20fYKH0j+jtWfeHrrYo/Ilv2nfYBvLImbXVUizL/aeXKGBgoOkximzZBDJmqazNR0yjNKvy8YKHtR0I1+YAe8XeR/SovfyNPwRWkDA6xRK8ihc5jqfzQsQeSwy8lFC7kh/s71B/0mlsph1wpUJQ+Dy7doEA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4523.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(346002)(136003)(366004)(39840400004)(396003)(376002)(66556008)(66476007)(66946007)(38100700002)(38350700002)(52116002)(36756003)(5660300002)(956004)(54906003)(6506007)(44832011)(26005)(6916009)(316002)(2616005)(4326008)(6486002)(478600001)(186003)(8936002)(8676002)(86362001)(6666004)(2906002)(6512007)(83380400001)(1076003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+SIilGN3GLxMdUoVgBFQqLzRrxVTin4JYl5iDDVPztURVpoMHYPMvDegkO2z?=
- =?us-ascii?Q?7xOhimfCUgPjqq4S3q+CdcmAgkzBsTK3fpuir2Y5EkXTs07kVqNyZKn9L4qH?=
- =?us-ascii?Q?1Vx1UhiMZMaHe3Mzd/sfS7cD8xhDdhWGkZDGAIv0RvedBhaeU5p9BPOn6y8x?=
- =?us-ascii?Q?255dCjKG1hmf2zN8rk86uoL8DreQnu95vyoNRch14IjRqBSMif9knjxtsfqt?=
- =?us-ascii?Q?ALABCHauTR8VE8YN1i9fsaKeabDuOK5ESiZfkRb2iLbFM0tl2+Dvd8jMYaCt?=
- =?us-ascii?Q?qhUkc2PiFQQb/XiZt5fZP+k4j4TTrgQjiaB+mkc0UHr9G4wV4Eq9W2f9bNOL?=
- =?us-ascii?Q?diiKue5qIr96E4lNca4/woFX5skBjvYFmhSCdsVQ3oKH9x5UhewU4GvdDkiQ?=
- =?us-ascii?Q?eBWfedWGTjEX+yyO+g8D7/9IEECeFMx1y17PZ7K9qCd6DdrlJahaKCfQMwSH?=
- =?us-ascii?Q?BKK1psKqJpycPard4hUefGOaKcu7077JwomApzppZlUHSdOieD82vokbCPC5?=
- =?us-ascii?Q?dmJ4+lvfRN+bxgRuQ8JJn+vyYlrOXfi4wgwVziOAz94KPZM8+pLVwOuZNZu3?=
- =?us-ascii?Q?11vLP4gOxtVxgCR0DbqTbkDZzKcWTwQl7dJYZFN64kiuwrgJCOr9mFO8MIuv?=
- =?us-ascii?Q?P/sxSb8v/resJfQXqDds0tciDDkMUhU0W8BylzC+HVPayA9e4z9CoQRKypXH?=
- =?us-ascii?Q?QsO70NDYMWoRIqqork0C9u72KdY6Y8jMcnykiS7I09kfiHPtI2GT7Ua4NHv+?=
- =?us-ascii?Q?jSuH+cfr1ji9SfooBXaasjbDaTHo27yrzZrFS8k7LioFmbgji/jGqVeY6Rh9?=
- =?us-ascii?Q?pQ+yygiiRLCUlRXoslQU8v1MUpRdaPLnqHRm/53RwqdIiu5+Rllmv3MA1BCl?=
- =?us-ascii?Q?8RXGpSKDLF5RhSkA7ZM0AoQAMfkhnNQJ3cHaZKPNycoipRRZkN6r6WYqk6i8?=
- =?us-ascii?Q?pRsUVg2bTRL5qwkiDGk9r0alLlQmD2mHGekqWKEaNwQ5ay40DqYQN8SpK0ni?=
- =?us-ascii?Q?G0K8p2ddq++cc4aH+dRnNLRXJ22GjnOwXNcK1gNKRRDuZaKymyf4B36QqFTv?=
- =?us-ascii?Q?nD1OOVmROkRMn1aERGKE4y+1xtg7t30MBgiyfZQ8BTvEN8RIBCfFEa96BnrT?=
- =?us-ascii?Q?AQZemdZyGOOHoUuFXv87e7T6eDqNalerRg3Q0FYbHa7U4xERMEBrf8pSvEW+?=
- =?us-ascii?Q?cnYTvFfCFHKyyEhB3Z3rEdO817i7cZWCzbnwMHVez3bjSTrvVy/RGGn7WFcw?=
- =?us-ascii?Q?nBSL68U4UTPHE+a5Et7rqi3FNiDgycRtfmPfbv2gohpIkt5W7VMZ1htkvVf9?=
- =?us-ascii?Q?jNurAoN5Gc6dFcc2jSOzvCLL?=
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5e270a8d-153c-4e3c-6c48-08d94e2f7532
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4523.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jul 2021 23:13:18.7923
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: q3QZnOCxAiDWHDo65Tmua/LeIK9xrk1Srtkri9h+xmFwplSOR/x7Ekmb4kvc0mu00qNPXLQtfJORk7NjVbddAw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR03MB5365
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210719074640.25058-2-moudy.ho@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-These properties allow configuring the SD/OE pin as described in the
-datasheet.
+On Mon, Jul 19, 2021 at 03:46:38PM +0800, Moudy Ho wrote:
+> This patch adds DT binding document for Media Data Path 3 (MDP3)
+> a unit in multimedia system used for scaling and color format convert.
+> 
+> Signed-off-by: Ping-Hsun Wu <ping-hsun.wu@mediatek.com>
+> Signed-off-by: daoyuan huang <daoyuan.huang@mediatek.com>
+> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+> ---
+>  .../bindings/media/mediatek-mdp3.yaml         | 274 ++++++++++++++++++
+>  1 file changed, 274 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek-mdp3.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/mediatek-mdp3.yaml b/Documentation/devicetree/bindings/media/mediatek-mdp3.yaml
+> new file mode 100644
+> index 000000000000..e3e10f0544ba
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/mediatek-mdp3.yaml
+> @@ -0,0 +1,274 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/mediatek-mdp3.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Mediatek Media Data Path 3 Device Tree Bindings
+> +
+> +maintainers:
+> +  - Daoyuan Huang <daoyuan.huang@mediatek.com>
+> +  - Moudy Ho <moudy.ho@mediatek.com>
+> +
+> +description: |
+> +  Media Data Path 3 (MDP3) is used for scaling and color space conversion.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +        - enum:
+> +          # controller node
+> +          - mediatek,mt8183-mdp3
+> +        - enum:
+> +          - mediatek,mt8183-mdp3-rdma
+> +
+> +      - items:
+> +        - enum:
+> +          # read DMA
+> +          - mediatek,mt8183-mdp3-rdma
+> +          # frame resizer
+> +          - mediatek,mt8183-mdp3-rsz
+> +          # write DMA
+> +          - mediatek,mt8183-mdp3-wdma
+> +          # write DMA with frame rotation
+> +          - mediatek,mt8183-mdp3-wrot
+> +          # color correction with 3X3 matrix
+> +          - mediatek,mt8183-mdp3-ccorr
 
-Signed-off-by: Sean Anderson <sean.anderson@seco.com>
----
+These are all different h/w blocks, right? I think they should be 
+separate schema files. 
 
-Changes in v6:
-- Use tri-state properties
 
-Changes in v5:
-- Don't use dummy if's for oneOfs under allOfs
+> +
+> +  mediatek,scp:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    maxItems: 1
+> +    description: |
+> +      The node of system control processor (SCP), using
+> +      the remoteproc & rpmsg framework.
+> +      $ref: /schemas/remoteproc/mtk,scp.yaml
+> +
+> +  mediatek,mdp3-id:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    maxItems: 1
+> +    description: |
+> +      HW index to distinguish same functionality modules.
 
-Changes in v4:
-- Specify that bindings should specify these properties, but don't make
-  any guarantees about the driver's behavior when they are not present.
-- Clarify description of idt,(en|dis)able-shutdown properties.
-- Make opposing properties mutually exclusive.
-- Add these properties to the example.
+We generally don't do indices in DT, so explain why this is needed or 
+come up with another way (and aliases is not it).
 
-Changes in v3:
-- Add idt,disable-shutdown and idt,output-enable-active-low to allow for
-  a default of not changing the SP/SH bits at all.
+> +
+> +  mdp3-comps:
+> +    $ref: /schemas/types.yaml#/definitions/string-array
+> +    description: |
+> +      Subcomponent, the number aligns with
+> +      mdp_sub_comp_dt_ids[] in mtk-mdp3-comp.c.
+> +
+> +  mdp3-comp-ids:
+> +    maxItems: 1
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    description: |
+> +      Index of the modules, the number list in
+> +      mdp_comp_matches[] in mtk-mdp3-comp.c.
 
-Changes in v2:
-- Rename idt,sd-active-high to idt,output-enable-active-high
-- Add idt,enable-shutdown
+Bindings describe h/w. Why is this referring to some driver file?
 
- .../bindings/clock/idt,versaclock5.yaml       | 40 +++++++++++++++++++
- 1 file changed, 40 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-index 28675b0b80f1..e9fc781a21b5 100644
---- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-+++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-@@ -30,6 +30,20 @@ description: |
-     3 -- OUT3
-     4 -- OUT4
- 
-+  The idt,shutdown and idt,output-enable-active properties control the
-+  SH (en_global_shutdown) and SP bits of the Primary Source and Shutdown
-+  Register, respectively. Their behavior is summarized by the following
-+  table:
-+
-+  SH SP Output when the SD/OE pin is Low/High
-+  == == =====================================
-+   0  0 Active/Inactive
-+   0  1 Inactive/Active
-+   1  0 Active/Shutdown
-+   1  1 Inactive/Shutdown
-+
-+  The case where SH and SP are both 1 is likely not very interesting.
-+
- maintainers:
-   - Luca Ceresoli <luca@lucaceresoli.net>
- 
-@@ -64,6 +78,26 @@ properties:
-     maximum: 22760
-     description: Optional load capacitor for XTAL1 and XTAL2
- 
-+  idt,shutdown:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [0, 1]
-+    description: |
-+      If 1, this enables the shutdown functionality: the chip will be
-+      shut down if the SD/OE pin is driven high. If 0, this disables the
-+      shutdown functionality: the chip will never be shut down based on
-+      the value of the SD/OE pin. This property corresponds to the SH
-+      bit of the Primary Source and Shutdown Register.
-+
-+  idt,output-enable-active:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [0, 1]
-+    description: |
-+      If 1, this enables output when the SD/OE pin is high, and disables
-+      output when the SD/OE pin is low. If 0, this disables output when
-+      the SD/OE pin is high, and enables output when the SD/OE pin is
-+      low. This corresponds to the SP bit of the Primary Source and
-+      Shutdown Register.
-+
- patternProperties:
-   "^OUT[1-4]$":
-     type: object
-@@ -89,6 +123,8 @@ required:
-   - compatible
-   - reg
-   - '#clock-cells'
-+  - idt,shutdown
-+  - idt,output-enable-active
- 
- allOf:
-   - if:
-@@ -138,6 +174,10 @@ examples:
-             clocks = <&ref25m>;
-             clock-names = "xin";
- 
-+            /* Set the SD/OE pin's settings */
-+            idt,shutdown = <0>;
-+            idt,output-enable-active = <0>;
-+
-             OUT1 {
-                 idt,drive-mode = <VC5_CMOSD>;
-                 idt,voltage-microvolts = <1800000>;
--- 
-2.25.1
-
+> +
+> +  reg:
+> +    description: |
+> +      Physical base address and length of the function block
+> +      register space, the number aligns with the component
+> +      and its own subcomponent.
+> +
+> +  mediatek,gce-client-reg:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description: |
+> +      sub-system id corresponding to the global command engine (GCE)
+> +      register address.
+> +      $ref: /schemas/mailbox/mtk-gce.txt
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 6
+> +
+> +  iommus:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: |
+> +      Should point to the respective IOMMU block with master
+> +      port as argument.
+> +      $ref: /schemas/iommu/mediatek,iommu.yaml
+> +
+> +  mediatek,mmsys:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    maxItems: 1
+> +    description: |
+> +      The node of mux(multiplexer) controller for HW connections.
+> +
+> +  mediatek,mm-mutex:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    maxItems: 1
+> +    description: |
+> +      The node of sof(start of frame) signal controller.
+> +
+> +  mediatek,mailbox-gce:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: |
+> +      The node of global command engine (GCE), used to read/write
+> +      registers with critical time limitation.
+> +      $ref: /schemas/mailbox/mtk-gce.txt
+> +
+> +  mboxes:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description: |
+> +      $ref: /schemas/mailbox/mailbox.txt
+> +
+> +  gce-subsys:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description: |
+> +      sub-system id corresponding to the global command engine (GCE)
+> +      register address.
+> +      $ref: /schemas/mailbox/mtk-gce.txt
+> +
+> +  mediatek,gce-events:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    description: |
+> +      In use event IDs list, all IDs are defined in
+> +      'dt-bindings/gce/mt8183-gce.h'.
+> +      $ref: /schemas/mailbox/mtk-gce.txt
+> +
+> +if:
+> +  properties:
+> +    compatible:
+> +      items:
+> +        - enum:
+> +          - mediatek,mt8183-mdp3
+> +        - enum:
+> +          - mediatek,mt8183-mdp3-rdma
+> +
+> +then:
+> +  required:
+> +    - mediatek,scp
+> +    - mediatek,mmsys
+> +    - mediatek,mm-mutex
+> +    - mediatek,gce-events
+> +    - mediatek,mailbox-gce
+> +    - mboxes
+> +    - gce-subsys
+> +
+> +required:
+> +  - compatible
+> +  - mediatek,mdp3-id
+> +  - reg
+> +  - clocks
+> +  - mediatek,gce-client-reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/mt8183-clk.h>
+> +    #include <dt-bindings/gce/mt8183-gce.h>
+> +    #include <dt-bindings/power/mt8183-power.h>
+> +    #include <dt-bindings/memory/mt8183-larb-port.h>
+> +
+> +    mdp3_rdma0: mdp3_rdma0@14001000 {
+> +      compatible = "mediatek,mt8183-mdp3",
+> +                   "mediatek,mt8183-mdp3-rdma";
+> +      mediatek,scp = <&scp>;
+> +      mediatek,mdp3-id = <0>;
+> +      mdp3-comps = "mediatek,mt8183-mdp3-dl", "mediatek,mt8183-mdp3-dl1",
+> +                   "mediatek,mt8183-mdp3-imgi", "mediatek,mt8183-mdp3-exto";
+> +      mdp3-comp-ids = <0 1 0 1>;
+> +      reg = <0x14001000 0x1000>,
+> +            <0x14000000 0x1000>,
+> +            <0x15020000 0x1000>;
+> +      mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x1000 0x1000>,
+> +                                <&gce SUBSYS_1400XXXX 0 0x1000>,
+> +                                <&gce SUBSYS_1502XXXX 0 0x1000>;
+> +      power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
+> +      clocks = <&mmsys CLK_MM_MDP_RDMA0>,
+> +               <&mmsys CLK_MM_MDP_RSZ1>,
+> +               <&mmsys CLK_MM_MDP_DL_TXCK>,
+> +               <&mmsys CLK_MM_MDP_DL_RX>,
+> +               <&mmsys CLK_MM_IPU_DL_TXCK>,
+> +               <&mmsys CLK_MM_IPU_DL_RX>;
+> +      iommus = <&iommu>;
+> +      mediatek,mmsys = <&mmsys>;
+> +      mediatek,mm-mutex = <&mutex>;
+> +      mediatek,mailbox-gce = <&gce>;
+> +      mboxes = <&gce 20 CMDQ_THR_PRIO_LOWEST 0>,
+> +               <&gce 21 CMDQ_THR_PRIO_LOWEST 0>,
+> +               <&gce 22 CMDQ_THR_PRIO_LOWEST 0>,
+> +               <&gce 23 CMDQ_THR_PRIO_LOWEST 0>;
+> +      gce-subsys = <&gce 0x14000000 SUBSYS_1400XXXX>,
+> +                   <&gce 0x14010000 SUBSYS_1401XXXX>,
+> +                   <&gce 0x14020000 SUBSYS_1402XXXX>,
+> +                   <&gce 0x15020000 SUBSYS_1502XXXX>;
+> +      mediatek,gce-events = <CMDQ_EVENT_MDP_RDMA0_SOF>,
+> +                            <CMDQ_EVENT_MDP_RDMA0_EOF>,
+> +                            <CMDQ_EVENT_MDP_RSZ0_SOF>,
+> +                            <CMDQ_EVENT_MDP_RSZ1_SOF>,
+> +                            <CMDQ_EVENT_MDP_TDSHP_SOF>,
+> +                            <CMDQ_EVENT_MDP_WROT0_SOF>,
+> +                            <CMDQ_EVENT_MDP_WROT0_EOF>,
+> +                            <CMDQ_EVENT_MDP_WDMA0_SOF>,
+> +                            <CMDQ_EVENT_MDP_WDMA0_EOF>,
+> +                            <CMDQ_EVENT_ISP_FRAME_DONE_P2_0>,
+> +                            <CMDQ_EVENT_ISP_FRAME_DONE_P2_1>,
+> +                            <CMDQ_EVENT_ISP_FRAME_DONE_P2_2>,
+> +                            <CMDQ_EVENT_ISP_FRAME_DONE_P2_3>,
+> +                            <CMDQ_EVENT_ISP_FRAME_DONE_P2_4>,
+> +                            <CMDQ_EVENT_ISP_FRAME_DONE_P2_5>,
+> +                            <CMDQ_EVENT_ISP_FRAME_DONE_P2_6>,
+> +                            <CMDQ_EVENT_ISP_FRAME_DONE_P2_7>,
+> +                            <CMDQ_EVENT_ISP_FRAME_DONE_P2_8>,
+> +                            <CMDQ_EVENT_ISP_FRAME_DONE_P2_9>,
+> +                            <CMDQ_EVENT_ISP_FRAME_DONE_P2_10>,
+> +                            <CMDQ_EVENT_ISP_FRAME_DONE_P2_11>,
+> +                            <CMDQ_EVENT_ISP_FRAME_DONE_P2_12>,
+> +                            <CMDQ_EVENT_ISP_FRAME_DONE_P2_13>,
+> +                            <CMDQ_EVENT_ISP_FRAME_DONE_P2_14>,
+> +                            <CMDQ_EVENT_WPE_A_DONE>,
+> +                            <CMDQ_EVENT_SPE_B_DONE>;
+> +    };
+> +
+> +    mdp3_rsz0: mdp3_rsz0@14003000 {
+> +      compatible = "mediatek,mt8183-mdp3-rsz";
+> +      mediatek,mdp3-id = <0>;
+> +      reg = <0x14003000 0x1000>;
+> +      mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x3000 0x1000>;
+> +      clocks = <&mmsys CLK_MM_MDP_RSZ0>;
+> +    };
+> +
+> +    mdp3_rsz1: mdp3_rsz1@14004000 {
+> +      compatible = "mediatek,mt8183-mdp3-rsz";
+> +      mediatek,mdp3-id = <1>;
+> +      reg = <0x14004000 0x1000>;
+> +      mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x4000 0x1000>;
+> +      clocks = <&mmsys CLK_MM_MDP_RSZ1>;
+> +    };
+> +
+> +    mdp3_wrot0: mdp3_wrot0@14005000 {
+> +      compatible = "mediatek,mt8183-mdp3-wrot";
+> +      mediatek,mdp3-id = <0>;
+> +      mdp3-comps = "mediatek,mt8183-mdp3-path";
+> +      mdp3-comp-ids = <0>;
+> +      reg = <0x14005000 0x1000>;
+> +      mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x5000 0x1000>;
+> +      power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
+> +      clocks = <&mmsys CLK_MM_MDP_WROT0>;
+> +      iommus = <&iommu>;
+> +    };
+> +
+> +    mdp3_wdma: mdp3_wdma@14006000 {
+> +      compatible = "mediatek,mt8183-mdp3-wdma";
+> +      mediatek,mdp3-id = <0>;
+> +      mdp3-comps = "mediatek,mt8183-mdp3-path";
+> +      mdp3-comp-ids = <1>;
+> +      reg = <0x14006000 0x1000>;
+> +      mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x6000 0x1000>;
+> +      power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
+> +      clocks = <&mmsys CLK_MM_MDP_WDMA0>;
+> +      iommus = <&iommu>;
+> +    };
+> +
+> +    mdp3_ccorr: mdp3_ccorr@1401c000 {
+> +      compatible = "mediatek,mt8183-mdp3-ccorr";
+> +      mediatek,mdp3-id = <0>;
+> +      reg = <0x1401c000 0x1000>;
+> +      mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0xc000 0x1000>;
+> +      clocks = <&mmsys CLK_MM_MDP_CCORR>;
+> +    };
+> +
+> -- 
+> 2.18.0
+> 
+> 
