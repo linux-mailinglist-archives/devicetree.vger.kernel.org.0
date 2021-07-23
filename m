@@ -2,86 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D8B23D409E
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 21:19:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE60B3D40A0
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 21:23:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229528AbhGWSiu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 14:38:50 -0400
-Received: from mga18.intel.com ([134.134.136.126]:12357 "EHLO mga18.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229461AbhGWSiu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Jul 2021 14:38:50 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10054"; a="199199000"
-X-IronPort-AV: E=Sophos;i="5.84,264,1620716400"; 
-   d="scan'208";a="199199000"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jul 2021 12:19:22 -0700
-X-IronPort-AV: E=Sophos;i="5.84,264,1620716400"; 
-   d="scan'208";a="471629902"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jul 2021 12:19:20 -0700
-Received: from andy by smile with local (Exim 4.94.2)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1m70hV-00HTx9-M4; Fri, 23 Jul 2021 22:19:13 +0300
-Date:   Fri, 23 Jul 2021 22:19:13 +0300
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     Christian Lamparter <chunkeey@gmail.com>
-Cc:     linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        Chris Blake <chrisrblake93@gmail.com>,
-        Paul Mackerras <paulus@samba.org>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v3 0/5] powerpc: apm82181: adding customer devices
-Message-ID: <YPsWMRLWQoxHFub6@smile.fi.intel.com>
-References: <cover.1599343429.git.chunkeey@gmail.com>
+        id S229648AbhGWSnS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 14:43:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46380 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229461AbhGWSnR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 14:43:17 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E402BC061575;
+        Fri, 23 Jul 2021 12:23:50 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id nb11so5249680ejc.4;
+        Fri, 23 Jul 2021 12:23:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=0YuNEjQ93aY4JDiXzCp80bBY8qmnqhiZNHxqK7oA1no=;
+        b=H5XcXggs0ZR4anlpkduQEe6r8V5VW2C77aCP9AXSeatrqgzQxhmkCqGcyOB316c24k
+         1VGzfDMV6QS4k4V1ixs3IGmWrax4K2EI0Mt4pmHxcZ6ChNWRtvU28HEwH7dpzCQyIFzK
+         /7jVfTGJUpoNafVtllOd51rQfo4EWMcjulTBXg31WUHofFFA0leg30GSb/ISME8uG3Z2
+         DRhQ0217mfOpR+QHt/tiDYq+O4fJSORGLt83PeoVNbL+2tX0bOk1hBsrngqXk9wUZK5D
+         u5UbDBXrtYHeCZDVBXrnEb6ibjgiEoxTVm3A1RdwC4ieJhZcKIpM9pwv+2D30hzdJvGn
+         3c2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=0YuNEjQ93aY4JDiXzCp80bBY8qmnqhiZNHxqK7oA1no=;
+        b=G4Fe+6YDgUYEnKMXpuY+J4EfeXldXw4gL9TrzeNSwGx15DHDDVzPSn+sMXfIThZ+1T
+         xtMzR+K4h+qL1DorxHG8xBfXn2EDwJ1lz9mACemnntvmylfOjvWwNEJsM7agA29spnvO
+         HR5SR1apZ8RThN4dp26VQj+4cZkeQxQ2PX2Ma9vo/42y4E8SMrPUIalED3lPGW8wfJ3h
+         bkc5Z+KzTYUeQStsQdIOLICfMwPjHfYrIK+XyoubMjWr/aFcetB6jQvOqgkDs85Hq27C
+         5xoZp9zvd04XmlumNpkZ929mSxshDxfEehfEAfoZ4Wpl7tz3qTpXoQ3oVyoB1rfQ2oLw
+         jD+A==
+X-Gm-Message-State: AOAM532yR0QJqEn+W/NFiSjDm+0UzvCtbTyZpalJIq5ZjrE8Ny2CT16w
+        ZvyoAQyX9Rqx08atUqsRHII=
+X-Google-Smtp-Source: ABdhPJynTVca3YXsb1eqmVf75pMPhmJEmBzr9Bexg7rEK6fatJhXSZQYLJYoSiMlg541LoK3mUTOgg==
+X-Received: by 2002:a17:906:2a8e:: with SMTP id l14mr6040777eje.321.1627068229318;
+        Fri, 23 Jul 2021 12:23:49 -0700 (PDT)
+Received: from skbuf ([82.76.66.29])
+        by smtp.gmail.com with ESMTPSA id v24sm14617420eds.44.2021.07.23.12.23.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Jul 2021 12:23:49 -0700 (PDT)
+Date:   Fri, 23 Jul 2021 22:23:47 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
+Cc:     andrew@lunn.ch, netdev@vger.kernel.org, robh+dt@kernel.org,
+        UNGLinuxDriver@microchip.com, Woojung.Huh@microchip.com,
+        hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
+        kuba@kernel.org, linux-kernel@vger.kernel.org,
+        vivien.didelot@gmail.com, f.fainelli@gmail.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 net-next 04/10] net: dsa: tag_ksz: add tag handling
+ for Microchip LAN937x
+Message-ID: <20210723192347.ykgszwjh53phvpcn@skbuf>
+References: <20210723173108.459770-1-prasanna.vengateshan@microchip.com>
+ <20210723173108.459770-5-prasanna.vengateshan@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cover.1599343429.git.chunkeey@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20210723173108.459770-5-prasanna.vengateshan@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 06, 2020 at 12:06:10AM +0200, Christian Lamparter wrote:
-> Hello,
-> 
-> I've been holding on to these devices dts' for a while now.
-> But ever since the recent purge of the PPC405, I'm feeling
-> the urge to move forward.
-> 
-> The devices in question have been running with OpenWrt since
-> around 2016/2017. Back then it was linux v4.4 and required
-> many out-of-tree patches (for WIFI, SATA, CRYPTO...), that
-> since have been integrated. So, there's nothing else in the
-> way I think.
-> 
-> A patch that adds the Meraki vendor-prefix has been sent
-> separately, as there's also the Meraki MR32 that I'm working
-> on as well. Here's the link to the patch:
-> <https://lore.kernel.org/linuxppc-dev/20200822154045.16036-1-chunkeey@gmail.com/>
-> 
-> Now, I've looked around in the arch/powerpc for recent .dts
-> and device submissions to get an understanding of what is
-> required.
-> >From the looks of it, it seems like every device gets a
-> skeleton defconfig and a CONFIG_$DEVICE symbol (Like:
-> CONFIG_MERAKI_MR24, CONFIG_WD_MYBOOKLIVE).
-> 
-> Will this be the case? Or would it make sense to further
-> unite the Bluestone, MR24 and MBL under a common CONFIG_APM82181
-> and integrate the BLUESTONE device's defconfig into it as well?
-> (I've stumbled across the special machine compatible
-> handling of ppc in the Documentation/devicetree/usage-model.rst
-> already.)
+On Fri, Jul 23, 2021 at 11:01:02PM +0530, Prasanna Vengateshan wrote:
+> --- a/net/dsa/tag_ksz.c
+> +++ b/net/dsa/tag_ksz.c
+> @@ -187,10 +187,66 @@ static const struct dsa_device_ops ksz9893_netdev_ops = {
+>  DSA_TAG_DRIVER(ksz9893_netdev_ops);
+>  MODULE_ALIAS_DSA_TAG_DRIVER(DSA_TAG_PROTO_KSZ9893);
+>  
+> +/* For xmit, 2 bytes are added before FCS.
+> + * ---------------------------------------------------------------------------
+> + * DA(6bytes)|SA(6bytes)|....|Data(nbytes)|tag0(1byte)|tag1(1byte)|FCS(4bytes)
+> + * ---------------------------------------------------------------------------
+> + * tag0 : represents tag override, lookup and valid
+> + * tag1 : each bit represents port (eg, 0x01=port1, 0x02=port2, 0x80=port8)
+> + *
+> + * For rcv, 1 byte is added before FCS.
+> + * ---------------------------------------------------------------------------
+> + * DA(6bytes)|SA(6bytes)|....|Data(nbytes)|tag0(1byte)|FCS(4bytes)
+> + * ---------------------------------------------------------------------------
+> + * tag0 : zero-based value represents port
+> + *	  (eg, 0x00=port1, 0x02=port3, 0x07=port8)
+> + */
+> +#define LAN937X_EGRESS_TAG_LEN		2
+> +
+> +#define LAN937X_TAIL_TAG_BLOCKING_OVERRIDE	BIT(11)
+> +#define LAN937X_TAIL_TAG_LOOKUP			BIT(12)
+> +#define LAN937X_TAIL_TAG_VALID			BIT(13)
+> +#define LAN937X_TAIL_TAG_PORT_MASK		7
+> +
+> +static struct sk_buff *lan937x_xmit(struct sk_buff *skb,
+> +				    struct net_device *dev)
+> +{
+> +	struct dsa_port *dp = dsa_slave_to_port(dev);
+> +	const struct ethhdr *hdr = eth_hdr(skb);
+> +	__be16 *tag;
+> +	u16 val;
 
-I haven't found any traces of this to be applied. What is the status of this
-patch series? And what is the general state of affairs for the PPC44x?
+There was a recent patch on net.git to fix an issue with DSA master
+drivers which set NETIF_F_HW_CSUM in dev->vlan_features, which DSA
+inherits.
+https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net.git/commit/?id=37120f23ac8998c250573ea3247ff77426551f69
+Until we fix the issue at the DSA layer, could you also apply that fix
+here please?
 
+> +
+> +	tag = skb_put(skb, LAN937X_EGRESS_TAG_LEN);
+> +
+> +	val = BIT(dp->index);
+> +
+> +	if (is_link_local_ether_addr(hdr->h_dest))
+> +		val |= LAN937X_TAIL_TAG_BLOCKING_OVERRIDE;
+> +
+> +	/* Tail tag valid bit - This bit should always be set by the CPU*/
+> +	val |= LAN937X_TAIL_TAG_VALID;
 
--- 
-With Best Regards,
-Andy Shevchenko
+Please add an extra space here between "CPU" and the comment ending
+delimiter.
 
+> +
+> +	*tag = cpu_to_be16(val);
 
+This probably works for the arch you are testing on, but it is better to
+avoid unaligned accesses when the skb->len is odd:
+https://www.kernel.org/doc/Documentation/unaligned-memory-access.txt
+
+You can use put_unaligned_be16().
+
+> +
+> +	return skb;
+> +}
