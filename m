@@ -2,49 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 40FE93D3208
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 04:46:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EA323D3211
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 04:56:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233291AbhGWCGT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jul 2021 22:06:19 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45838 "EHLO mail.kernel.org"
+        id S233286AbhGWCQA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jul 2021 22:16:00 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49292 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233222AbhGWCGS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Jul 2021 22:06:18 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5602660EB0;
-        Fri, 23 Jul 2021 02:46:51 +0000 (UTC)
+        id S233222AbhGWCQA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Jul 2021 22:16:00 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7A2AD60EB1;
+        Fri, 23 Jul 2021 02:56:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627008413;
-        bh=B/F3gtie7BdyxaNs7POJY4LfkjZLp5Om/vcy69gI+ls=;
+        s=k20201202; t=1627008994;
+        bh=0qejonRfIXOl8SWVLo3HVgB2UvOHe/ZYT+ExYN4oGGI=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZIUaw/7kvSGstlsK8ueaOS7+DHZCodzsi7+DpXTQIMz3o6J/0NL7GFZZerlks1lu9
-         wm4Dn5D5WNASXOXjB4VV3/uhcKBdYofgdE1ZB8IU0OYE08Hja0BtaAQAO6BtL0gObB
-         RMXqodSp3yspF52EhrtpqRzK4e0wLaDQi/h7l4Sr0orhIZE2zT2atF+lKpx2CcAHqk
-         PubOXQmKdF9rPX6PHMrj7n15CS+KRFOMdbJBF2AsHebtAh0w1NGfN4/0Ca+l3UHQ9Z
-         FNv2ITCWRRinZ2ZfbgthcyW4SlOfi8Jzw+AwUrxlrPgvOmahtdVoRe1qCIQ6WBbs7S
-         H86//YzzFNPqw==
-Date:   Fri, 23 Jul 2021 10:46:47 +0800
+        b=oZOEhvQI0yPateI2LMezPt8FIKG6uuWTiodvf3tcw4EHFrZunzUV6wpjZUJQ5gT0o
+         qugI/lX9Ntk+G9jUsw8wFCcq17mlPjRI+SzWElrx7COWl1x2G5nMMZX4fYNnessAie
+         /8zaG0HOV+WIS37U/ehSjUszYkKIS5OI4X33k8T5KiHSFqVNfQQCEnCkLin/zhTX8U
+         LWOy7Um6LuCLuS+nfQVT+DP7TanUOCpblamjl7rCbwicCDAUQo8BDxsE1SzDC2hgzw
+         +3+StWjuisxfAd54Cg4Z5DheJ9EAlDrYFuSAwa6S5WspowMNqTGAKy/JQKcn6pMkpi
+         giUj+QoyKIX3w==
+Date:   Fri, 23 Jul 2021 10:56:28 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Alistair Francis <alistair@alistair23.me>
-Cc:     robh+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alistair23@gmail.com
-Subject: Re: [PATCH v3] ARM: dts: imx7d-remarkable2: Add WiFi support
-Message-ID: <20210723024646.GD28658@dragon>
-References: <20210706114028.132-1-alistair@alistair23.me>
+To:     Oleksandr Suvorov <oleksandr.suvorov@toradex.com>
+Cc:     linux-next@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Stefan Agner <stefan@agner.ch>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] ARM: dts: colibri-imx6ull: limit SDIO clock to 25MHz
+Message-ID: <20210723025627.GF28658@dragon>
+References: <20210713202108.449831-1-oleksandr.suvorov@toradex.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210706114028.132-1-alistair@alistair23.me>
+In-Reply-To: <20210713202108.449831-1-oleksandr.suvorov@toradex.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 06, 2021 at 09:40:28PM +1000, Alistair Francis wrote:
-> Add support for the bcm4329-fmac WiFi in the reMarkable 2, connected via SDHC.
+On Tue, Jul 13, 2021 at 11:21:07PM +0300, Oleksandr Suvorov wrote:
+> NXP and AzureWave don't recommend using SDIO bus mode 3.3V@50MHz due
+> to noise affecting the wireless throughput. Colibri iMX6ULL uses only
+> 3.3V signaling for Wi-Fi module AW-CM276NF.
 > 
-> Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> Limit the SDIO Clock on Colibri iMX6ULL to 25MHz.
+> 
+> Fixes: c2e4987e0e02 ("ARM: dts: imx6ull: add Toradex Colibri iMX6ULL support")
+> Signed-off-by: Oleksandr Suvorov <oleksandr.suvorov@toradex.com>
+> Reviewed-by: Fabio Estevam <festevam@gmail.com>
 
 Applied, thanks!
