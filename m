@@ -2,174 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2FAA3D3979
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 13:28:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F23233D39E4
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 14:02:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234102AbhGWKsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 06:48:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50288 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231703AbhGWKsV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 06:48:21 -0400
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A508C061575;
-        Fri, 23 Jul 2021 04:28:55 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id a14so2909246plh.5;
-        Fri, 23 Jul 2021 04:28:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Q15Uy0/mb1YlRCrH+e/XqE5QNFNkxOvnubki+n6iu+E=;
-        b=RnqFa0767hWlEZszBAiUJaUqeZwiK7eFd25wH2OoyXg1AU1j9Y5aH/LhNJ4AgQ+/nb
-         nt0evg1n3olIYPaR9JCYP+zNhmW2sOIOEfRw9nlvkCxaStC6j2cUhzB7v2wKuO1j/J8q
-         DL9XN6e+auAgW7clpW6ZhcaezeMWALQ0hklhKmAYHbXwiSR/En6cLZDv1sISi2bJmMeB
-         l16E6nfygV7pK6/g/MogY0CWvy8vEx8dy0R5Hi2nBP2m79xtc5IGjrZMk17orFRgImLE
-         njZUVxA/t0Re2hUPe2XjBJ414O2YVnh+Je0R+nLqa/fQSIHwKJv2xb7b+ZYWBF6oWFAF
-         aqpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Q15Uy0/mb1YlRCrH+e/XqE5QNFNkxOvnubki+n6iu+E=;
-        b=cKxc2NzRmXWUa3FS2gQxh9pbB93q8kvmMwmZDR5iiuOIyzBV+WvwUkKFnXP04D97+3
-         JKH2F355WabA0UB7/UQ18euxTe9hLo5hkqefqVXJ0N9QbPzbB1epvOGR2xoMgUtf56ES
-         a22HIlepTFCoLY12/KBv2hGb9dUDEntfZfeZBUJn7s3ucJlA9cBPfq40ZGf47Y+63J4J
-         MUqrZAbTfyPguV/13Ds3eqbOqz/qCYfHrm8FSGxETwGcL3e/LI2PWm3NSEplAOBut0P2
-         9QlWSlXJEc7ShVqrHwg9+Yt55zZdRru8AUaBusdZzTZzduGV34KyeTPRRvfaDD/uBOxx
-         TgiQ==
-X-Gm-Message-State: AOAM531bfI9XxjiU4qQN1tkp0lubTbpjnef5Dhb+7CQ4CYFScMMOoruf
-        3B3vhQTxUSGAigV1PsRwFas=
-X-Google-Smtp-Source: ABdhPJxNfP3fWOf2uAaWb8HhDLAgMVnpJNmVDSstKTmd+aoqqeMKAsBM2j83+Gva9R0WAImDeNWDIg==
-X-Received: by 2002:aa7:800b:0:b029:330:455f:57a8 with SMTP id j11-20020aa7800b0000b0290330455f57a8mr3988625pfi.7.1627039735030;
-        Fri, 23 Jul 2021 04:28:55 -0700 (PDT)
-Received: from localhost.localdomain ([2804:14c:485:504a:d157:8bd3:ec42:18c3])
-        by smtp.gmail.com with ESMTPSA id o9sm35733184pfh.217.2021.07.23.04.28.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jul 2021 04:28:54 -0700 (PDT)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     davem@davemloft.net
-Cc:     shawnguo@kernel.org, linux-arm-kernel@lists.infradead.org,
-        qiangqing.zhang@nxp.com, robh+dt@kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH net-next] ARM: dts: imx6qdl: Remove unnecessary mdio #address-cells/#size-cells
-Date:   Fri, 23 Jul 2021 08:28:35 -0300
-Message-Id: <20210723112835.31743-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        id S234683AbhGWLVk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 07:21:40 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:45186 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234601AbhGWLVj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 23 Jul 2021 07:21:39 -0400
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1m6tsU-0004qO-PN; Fri, 23 Jul 2021 14:02:06 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     devicetree@vger.kernel.org,
+        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
+        <nfraprado@collabora.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, kernel@collabora.com,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Xing Zheng <zhengxing@rock-chips.com>,
+        linux-clk@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Elaine Zhang <zhangqing@rock-chips.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: clk: Convert rockchip,rk3399-cru to DT schema
+Date:   Fri, 23 Jul 2021 14:02:04 +0200
+Message-Id: <162704168907.1329605.6589153087595599071.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210610175613.167601-1-nfraprado@collabora.com>
+References: <20210610175613.167601-1-nfraprado@collabora.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since commit dabb5db17c06 ("ARM: dts: imx6qdl: move phy properties into
-phy device node") the following W=1 dtc warnings are seen:
+On Thu, 10 Jun 2021 14:56:13 -0300, Nícolas F. R. A. Prado wrote:
+> Convert the rockchip,rk3399-cru binding to DT schema format.
+> Tested with
+> ARCH=arm64 make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/clock/rockchip,rk3399-cru.yaml
+> ARCH=arm64 make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/clock/rockchip,rk3399-cru.yaml
 
-arch/arm/boot/dts/imx6qdl-aristainetos2.dtsi:323.7-334.4: Warning (avoid_unnecessary_addr_size): /soc/bus@2100000/ethernet@2188000/mdio: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
+Applied, thanks!
 
-Remove the unnecessary mdio #address-cells/#size-cells to fix it.
+[1/1] dt-bindings: clk: Convert rockchip,rk3399-cru to DT schema
+      commit: d475653672b730a30bd1391f68c98f450afaf725
 
-Fixes: dabb5db17c06 ("ARM: dts: imx6qdl: move phy properties into phy device node")
-Signed-off-by: Fabio Estevam <festevam@gmail.com>
----
-Hi,
-
-I am targetting net-next because this is where the offending patch was
-applied.
-
- arch/arm/boot/dts/imx6q-novena.dts           | 3 ---
- arch/arm/boot/dts/imx6qdl-aristainetos2.dtsi | 3 ---
- arch/arm/boot/dts/imx6qdl-nit6xlite.dtsi     | 3 ---
- arch/arm/boot/dts/imx6qdl-nitrogen6_max.dtsi | 3 ---
- arch/arm/boot/dts/imx6qdl-nitrogen6x.dtsi    | 3 ---
- arch/arm/boot/dts/imx6qdl-sabrelite.dtsi     | 3 ---
- 6 files changed, 18 deletions(-)
-
-diff --git a/arch/arm/boot/dts/imx6q-novena.dts b/arch/arm/boot/dts/imx6q-novena.dts
-index 225cf6b7a7a4..909adaf4e544 100644
---- a/arch/arm/boot/dts/imx6q-novena.dts
-+++ b/arch/arm/boot/dts/imx6q-novena.dts
-@@ -227,9 +227,6 @@ &fec {
- 	status = "okay";
- 
- 	mdio {
--		#address-cells = <1>;
--		#size-cells = <0>;
--
- 		ethphy: ethernet-phy {
- 			compatible = "ethernet-phy-ieee802.3-c22";
- 			rxc-skew-ps = <3000>;
-diff --git a/arch/arm/boot/dts/imx6qdl-aristainetos2.dtsi b/arch/arm/boot/dts/imx6qdl-aristainetos2.dtsi
-index 563bf9d44fe0..3e13be35b526 100644
---- a/arch/arm/boot/dts/imx6qdl-aristainetos2.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-aristainetos2.dtsi
-@@ -321,9 +321,6 @@ &fec {
- 	status = "okay";
- 
- 	mdio {
--		#address-cells = <1>;
--		#size-cells = <0>;
--
- 		ethphy: ethernet-phy {
- 			compatible = "ethernet-phy-ieee802.3-c22";
- 			txd0-skew-ps = <0>;
-diff --git a/arch/arm/boot/dts/imx6qdl-nit6xlite.dtsi b/arch/arm/boot/dts/imx6qdl-nit6xlite.dtsi
-index ac34709e9741..492eaa4094ff 100644
---- a/arch/arm/boot/dts/imx6qdl-nit6xlite.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-nit6xlite.dtsi
-@@ -198,9 +198,6 @@ &fec {
- 	status = "okay";
- 
- 	mdio {
--		#address-cells = <1>;
--		#size-cells = <0>;
--
- 		ethphy: ethernet-phy {
- 			compatible = "ethernet-phy-ieee802.3-c22";
- 			txen-skew-ps = <0>;
-diff --git a/arch/arm/boot/dts/imx6qdl-nitrogen6_max.dtsi b/arch/arm/boot/dts/imx6qdl-nitrogen6_max.dtsi
-index c96f4d7e1e0d..4e5682211f42 100644
---- a/arch/arm/boot/dts/imx6qdl-nitrogen6_max.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-nitrogen6_max.dtsi
-@@ -340,9 +340,6 @@ &fec {
- 	status = "okay";
- 
- 	mdio {
--		#address-cells = <1>;
--		#size-cells = <0>;
--
- 		ethphy: ethernet-phy {
- 			compatible = "ethernet-phy-ieee802.3-c22";
- 			txen-skew-ps = <0>;
-diff --git a/arch/arm/boot/dts/imx6qdl-nitrogen6x.dtsi b/arch/arm/boot/dts/imx6qdl-nitrogen6x.dtsi
-index 49da30d7510c..c29fbfd87172 100644
---- a/arch/arm/boot/dts/imx6qdl-nitrogen6x.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-nitrogen6x.dtsi
-@@ -273,9 +273,6 @@ &fec {
- 	status = "okay";
- 
- 	mdio {
--		#address-cells = <1>;
--		#size-cells = <0>;
--
- 		ethphy: ethernet-phy {
- 			compatible = "ethernet-phy-ieee802.3-c22";
- 			txen-skew-ps = <0>;
-diff --git a/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi b/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi
-index eb9a0b104f1c..a6f2d6db521f 100644
---- a/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi
-@@ -329,9 +329,6 @@ &fec {
- 	status = "okay";
- 
- 	mdio {
--		#address-cells = <1>;
--		#size-cells = <0>;
--
- 		ethphy: ethernet-phy {
- 			compatible = "ethernet-phy-ieee802.3-c22";
- 			txen-skew-ps = <0>;
+Best regards,
 -- 
-2.25.1
-
+Heiko Stuebner <heiko@sntech.de>
