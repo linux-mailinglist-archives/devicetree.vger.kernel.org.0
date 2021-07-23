@@ -2,70 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF61E3D3744
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 11:00:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 946AA3D37BE
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 11:32:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234131AbhGWITi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 04:19:38 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49782 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234661AbhGWITa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Jul 2021 04:19:30 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1EC0E60ED4;
-        Fri, 23 Jul 2021 09:00:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627030802;
-        bh=i/SLSdoPGycqqQzXxoO/uSPvWizS46ohQxaCWaQwtHk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=U0NUWUCOKObXBlEcVLjvSg4l1ZOBFoYdqsuXa52obSdyAeWw1aYS0Qw5SpWHPMUwy
-         nfkQ1BOQoasUsOiAwwRl1ruvIvwjNt+SF27To/+2qtKmUcESB1cW5cTUFjpyivckMk
-         LbTy8mGifkRGCqkXEk6nGUNSFFDw4DuscDQfS8Ptl9XJJpiTHB4D/k+i0G2N7rnUEO
-         LRMlDDPZS3cPmyA2mfwLU9GqTaeTGxJIqfRk28DTN1nrzNCvYAUczymrnZN+LykFLN
-         BmsBCYEkWa3vNg8lnjsVOWQphkR6XT/Z024uQBrqEPw6dN+NRkKGdrEMNHBbIosq97
-         YeM6WlaA3athA==
-Received: by mail-wm1-f47.google.com with SMTP id a80-20020a1c98530000b0290245467f26a4so1214022wme.0;
-        Fri, 23 Jul 2021 02:00:02 -0700 (PDT)
-X-Gm-Message-State: AOAM532/TKjVQRAJbbivmkjARcdy27TYA9UqOMaHztjADvcWPuF8sFw3
-        qjd1JqxpFOdk45ufcV7tqVcP2p5Df1+k2RHw2mg=
-X-Google-Smtp-Source: ABdhPJwHPwcqUC1aYRuD0bi0jvic8ZST223S6CxliTeuDhn6Fo1iTMXFZnRu1HfyRZ/V3/3KSfYKv3UzRtGaneZPeZo=
-X-Received: by 2002:a1c:4e0c:: with SMTP id g12mr13005903wmh.120.1627030800777;
- Fri, 23 Jul 2021 02:00:00 -0700 (PDT)
+        id S230520AbhGWIwA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 04:52:00 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:33494 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229949AbhGWIv7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 04:51:59 -0400
+X-UUID: d4173402705d470d9d8b5dc487989237-20210723
+X-UUID: d4173402705d470d9d8b5dc487989237-20210723
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <christine.zhu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 29985510; Fri, 23 Jul 2021 17:32:30 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 23 Jul 2021 17:32:29 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 23 Jul 2021 17:32:28 +0800
+From:   Christine Zhu <Christine.Zhu@mediatek.com>
+To:     <wim@linux-watchdog.org>, <linux@roeck-us.net>,
+        <robh+dt@kernel.org>, <matthias.bgg@gmail.com>
+CC:     <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <seiya.wang@mediatek.com>,
+        <Rex-BC.Chen@mediatek.com>,
+        Christine Zhu <Christine.Zhu@mediatek.com>
+Subject: [v6,1/3] dt-bindings: mediatek: mt8195: update mtk-wdt document
+Date:   Fri, 23 Jul 2021 17:31:26 +0800
+Message-ID: <20210723093127.24568-2-Christine.Zhu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <20210723093127.24568-1-Christine.Zhu@mediatek.com>
+References: <20210723093127.24568-1-Christine.Zhu@mediatek.com>
 MIME-Version: 1.0
-References: <026ad5f274d64d46590623f9f3a04b8abfbe62d7.1626947324.git.viresh.kumar@linaro.org>
- <3606cdcc637682a3eb401d617e6e247431b78ec6.1627019436.git.viresh.kumar@linaro.org>
-In-Reply-To: <3606cdcc637682a3eb401d617e6e247431b78ec6.1627019436.git.viresh.kumar@linaro.org>
-From:   Arnd Bergmann <arnd@kernel.org>
-Date:   Fri, 23 Jul 2021 10:59:44 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a3-CesWmHMRst1_XP=CECAr19mT40ZiuK5ruEcW_qa24Q@mail.gmail.com>
-Message-ID: <CAK8P3a3-CesWmHMRst1_XP=CECAr19mT40ZiuK5ruEcW_qa24Q@mail.gmail.com>
-Subject: Re: [PATCH V2.1 5/5] virtio: Bind virtio device to device-tree node
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Jason Wang <jasowang@redhat.com>,
-        "Michael S. Tsirkin" <mst@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>,
-        =?UTF-8?B?QWxleCBCZW5uw6ll?= <alex.bennee@linaro.org>,
-        "Enrico Weigelt, metux IT consult" <info@metux.net>,
-        Jie Deng <jie.deng@intel.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE" 
-        <virtualization@lists.linux-foundation.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 23, 2021 at 8:12 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
->
-> Bind the virtio devices with their of_node. This will help users of the
-> virtio devices to mention their dependencies on the device in the DT
-> itself. Like GPIO pin users can use the phandle of the device node, or
-> the node may contain more subnodes to add i2c or spi eeproms and other
-> users.
->
-> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+Update mtk-wdt document for MT8195 platform.
 
-Reviewed-by: Arnd Bergmann <arnd@arndb.de>
+Signed-off-by: Christine Zhu <Christine.Zhu@mediatek.com>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/watchdog/mtk-wdt.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt b/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
+index e36ba60de829..ca9b67ab7c44 100644
+--- a/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
++++ b/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
+@@ -13,6 +13,7 @@ Required properties:
+ 	"mediatek,mt8183-wdt": for MT8183
+ 	"mediatek,mt8516-wdt", "mediatek,mt6589-wdt": for MT8516
+ 	"mediatek,mt8192-wdt": for MT8192
++	"mediatek,mt8195-wdt": for MT8195
+ 
+ - reg : Specifies base physical address and size of the registers.
+ 
+-- 
+2.18.0
+
