@@ -2,79 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E75233D3D23
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 18:07:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86E0B3D3D27
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jul 2021 18:08:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230414AbhGWP05 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 11:26:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57674 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230243AbhGWP04 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 11:26:56 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4AC6C061575;
-        Fri, 23 Jul 2021 09:07:28 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id z2so2952686lft.1;
-        Fri, 23 Jul 2021 09:07:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lTvO61y1SGuCg3UXl9dim6u9NJ6zEuQSX5WNIWVfWus=;
-        b=ldcP1SEKPeuCr6b4yMJb81raEbH6Kze1KunmaBZeR0vWWLm5GXNp6UW/hXWcyp665S
-         dBHnXY4/RERInUAyiTc9S3botHn+ZHRyA8YIhuLEvqEbBmn1oxHFJuI8I2W9iJS/du2S
-         624LB6QOC3gi+EwjaV/ohHOE/9W5MHdVkBjKvqz6E8YmM0x1HV6iK2Z0FMxCVgvf/kWw
-         PNkT3E+Xxxys9TJzCcbv1xFEtxl4ti8tNw0FYk6HRMg485ouQalJXcIfEGiXpOxAJCgK
-         YHV9T18N/rGgZQW9gAsGlNRKlpDzuMK9+oGKedyly6RGp0oDxq5zXgLoa4Q+x7JV68mF
-         5IEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lTvO61y1SGuCg3UXl9dim6u9NJ6zEuQSX5WNIWVfWus=;
-        b=gX8JU6bSq7E1zBRvtZuCELdHnaLqx0gtlbKotppvYVfTR5xRWSiFTp8bZ1GEr0Iwj9
-         NoitgrPfS2tDkrb+fTwYigWH5lLLbVAUSHD6Ewbh4q/XOvnhTJBg8owLVeG2hAd1Z5qb
-         b+VFhiypk5DST/PW9zlFKEoMilafw5rZmrpttWXV8ug3C3K36ByjpDkfKjrJizNtyLYn
-         DmI6+ToW1/wFQXoxWBAX+Z/17RLQ5y8MK65XVtet4eYmVRhmjnhc3aCmUaMuP6U+hvy7
-         bKdM7vGKY/m0QO1sN56GAhFHLoEqvIOIZPLvQa2944lg1uLeMSJhWB5ZRdPX2rzbn0Ic
-         zHbg==
-X-Gm-Message-State: AOAM531UdOKTzAHieaUDswnAlhgANHBvOwBoZR4hDUQ2adD91cbowAhR
-        /ptKzq3KkEU/zSuuE9afBq8P/F+5Z8VbduiXyTA=
-X-Google-Smtp-Source: ABdhPJw35BEdaVTjN2YWB6qzLuNpgQfvBKyCXQH/vuJxImlFGQnCxAmyYZuyEzlGt/WNLS2fGf5asjZGMb+J9j7whMU=
-X-Received: by 2002:ac2:494c:: with SMTP id o12mr3548385lfi.229.1627056447210;
- Fri, 23 Jul 2021 09:07:27 -0700 (PDT)
+        id S229813AbhGWP1a convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 23 Jul 2021 11:27:30 -0400
+Received: from mout.kundenserver.de ([212.227.126.130]:53359 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229689AbhGWP13 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 11:27:29 -0400
+Received: from mail-wr1-f52.google.com ([209.85.221.52]) by
+ mrelayeu.kundenserver.de (mreue010 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1MoOIi-1lICcr2AyO-00ordX; Fri, 23 Jul 2021 18:08:01 +0200
+Received: by mail-wr1-f52.google.com with SMTP id y8so2879720wrt.10;
+        Fri, 23 Jul 2021 09:08:01 -0700 (PDT)
+X-Gm-Message-State: AOAM532D8jNeAJy/V/FS6mD+5WNVnzKZEQEnaUIoQA61K7MtaPt1YQzq
+        qWFw13tQluHNlfEcUOydqbdMrtrsFpGS1AD5WLc=
+X-Google-Smtp-Source: ABdhPJyDxcXYnbAWrd2+tMOLBTnAk6SpSqUS9fFD2eD49803zJQO9lGqAZ6d+2hujv8A2p3zN3ZF3qWAEFLk3e/6uRU=
+X-Received: by 2002:a5d:438c:: with SMTP id i12mr6150931wrq.99.1627056481160;
+ Fri, 23 Jul 2021 09:08:01 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210607061041.2654568-1-ping.bai@nxp.com> <20210607061041.2654568-2-ping.bai@nxp.com>
- <CACRpkdb=B644KMoL1R=JVkn-9bYQF+4miie5SAROLhQ9HKkHWA@mail.gmail.com>
-In-Reply-To: <CACRpkdb=B644KMoL1R=JVkn-9bYQF+4miie5SAROLhQ9HKkHWA@mail.gmail.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Fri, 23 Jul 2021 13:07:16 -0300
-Message-ID: <CAOMZO5AW7185p+e1ECbfLaQvVH2Qq_w=88RDPkwGkGwSFqKTUA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] pinctrl: imx8ulp: Add pinctrl driver support
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Jacky Bai <ping.bai@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Stefan Agner <stefan@agner.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
+References: <20210723135239.388325-1-clement.leger@bootlin.com> <20210723135239.388325-3-clement.leger@bootlin.com>
+In-Reply-To: <20210723135239.388325-3-clement.leger@bootlin.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Fri, 23 Jul 2021 18:07:44 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a1stoM2zRpkEBOLSFRxPy6Tabn6NgO-1sVRL4uq3wudaQ@mail.gmail.com>
+Message-ID: <CAK8P3a1stoM2zRpkEBOLSFRxPy6Tabn6NgO-1sVRL4uq3wudaQ@mail.gmail.com>
+Subject: Re: [PATCH 2/3] syscon: add support for "syscon-smc" compatible
+To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Peng Fan <peng.fan@nxp.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Provags-ID: V03:K1:G4O7xmamhDeBcU8ID4FkPa6qMK8+Gojv3vqIqCROeiIpZkYuPIg
+ 8WUIW34yCzmlF+J01pTWy1JNTQeoNXIGyWuSAaXhYDi3lM+bRzKaddEYyAruZLKu8Dja7Lg
+ /j/bo9ZIBgOUVD5Hu2UC0/+cU8Ncqli8n/AfJFgMapZte2hVm+EEfvSU0KafSkIBx6SiTne
+ 7n9uLwYQGHOD8+XTY0peQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:DmIKFgwXff4=:TyZ0G0egf72z2xW2cgGThG
+ BAOCKmJxhdjVhpuzevs8FK/GUNusCPgqJNlPEo7fW2wpVrNZimlBqdgkz0z6Kzf3mtysBdpAX
+ IbaAcZVrJypdsF3Nh+y52rCEJ3lOvB8aCUV/y6YBg6AF+SVLwYM7SO73/i2BHh6YReGApe9mZ
+ I/9BEBtPZUKT195odlp54fulN8j6FIW6Z4qwqLLc+8JKRIpJIcmUrmgfiubBeVpYe6y7PGSlL
+ rlSRZpkUSTwF57ZrF5OD0NgKJYMhTmGPTuRhjsPglhzjV+ibRPlv10jg1iTDRxcxW3S5HNr+W
+ /R6BU+0TkkcE3jhfB5fVry/WxJUxx4DIhPX3Iyg9g0L0JimHca4AfbdR62BWpP2T7MnWfbHVD
+ IrD3tLEl3XvjdObmIRe0sUlGZFsCFMwVvCUATvJeJ4Kbd+G3OL6A7IcmBLA9PUcqDMXTIEJ/V
+ cx9z2L0x6gDX4RhAo7/vfX9OHxTBnGmggS8vSNSxf2oacqYED2/spoVu7i2yaL9DDXxJt675I
+ PPavjucABCz9SE9mGEZdROh8//UUEurJOiJrCIbn8xDs3yGiUvGRIIMMLlD9Y6j4jGyQw65IZ
+ NqZFk2OtGq3jzs8PvZB52LWzWLJ1JlFYC/yccnNeiHPB21SyjMh8UQsKKN5FEGd2zCoSnRFM4
+ rvmQm6y5s188yRWSCceKT252DUQeMhtlL+ZNYoqDGNNCCSeYINu7ukPoQxfZFA7o8crSnVUH1
+ hWw5K2fTaytQE8lTwhrk7e7tDX4rq4Y0Ij/iZu2w5tIc+nWWE4VKuS/njMGiRwcc3LQV7HBbs
+ LMD2xIDqn31IZjE/UE/Vxtjs5uHE+6xkNS2U1jMnhPZYA9D+nwb68IrAgkYaVS7jIv8Hzj5
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
-
-On Fri, Jul 23, 2021 at 1:05 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-
-> Patch applied!
+On Fri, Jul 23, 2021 at 3:52 PM Clément Léger <clement.leger@bootlin.com> wrote:
 >
-> BTW does "ULP" in the name mean "ultra low power" as usual?
+> System controllers can be placed under secure monitor control when running
+> under them. In order to keep existing code which accesses such system
+> controllers using a syscon, add support for "syscon-smc" compatible.
+>
+> When enable, the syscon will handle this new compatible and look for an
+> "arm,smc-id" property to execute the appropriate SMC. A SMC regmap is then
+> created to forward register access to the secure monitor.
+>
+> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
 
-Yes, this is correct:
-https://www.nxp.com/products/processors-and-microcontrollers/arm-processors/i-mx-applications-processors/i-mx-8-processors/i-mx-8ulp-applications-processor-family:i.MX8ULP
+I don't see anything wrong with the implementation, but this worries
+me conceptually, because of the ways this might get abused:
 
-Thanks
+- this creates one more way to keep device drivers hidden away
+  behind firmware when they should be in the kernel. You can already
+  do that with separate SMC calls, but adding an indirection makes it
+  sneakier. If the 'registers' in here are purely
+
+- This may be seen as an easy way out for firmware writers that just
+   expose a bare register-level interface when the correct solution would
+   be to create a high-level interface.
+
+There is also a problem with locking: In the case that both firmware and
+kernel have to access registers within a syscon area, you may need to
+have a semaphore to protect an atomic sequence of accesses, but since
+the interface only provides a single register load/store, there is no way for
+a kernel driver to serialize against a firmware-internal driver.
+
+        Arnd
