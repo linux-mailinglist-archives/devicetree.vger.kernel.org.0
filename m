@@ -2,154 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD5B23D442A
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 03:13:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 750223D448F
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 05:44:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233298AbhGXAcg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 20:32:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39704 "EHLO
+        id S233774AbhGXDDn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 23:03:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233296AbhGXAcf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 20:32:35 -0400
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65730C061575;
-        Fri, 23 Jul 2021 18:13:07 -0700 (PDT)
-Received: by mail-pj1-x1036.google.com with SMTP id l19so4686628pjz.0;
-        Fri, 23 Jul 2021 18:13:07 -0700 (PDT)
+        with ESMTP id S233769AbhGXDDm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 23:03:42 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41A54C061575;
+        Fri, 23 Jul 2021 20:44:15 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id pf12-20020a17090b1d8cb0290175c085e7a5so11718305pjb.0;
+        Fri, 23 Jul 2021 20:44:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=UxGyBTIHhwTyGgmF4lVTY6KQSyR2h+ZEVbUZC6/uyQ0=;
-        b=uchks1WB7cp4XDeGULk8Yv9tpLHvmqUNNJUdM5+D4GcptaqwzpaKUr5YsbigXQA2Bv
-         5PEtUDCTwZk5siIX7PjbsuQUYFSt1YdV2irpQbTYzZkSuV3rgX9DGdJMY7jUeHRfnNAl
-         5iLIgClCbGoYP8XC34FJP6rVS1adQt8A2HZLsPjnFOyhijQ9m5v4FCVE+fNznXQ+qzDZ
-         2VpPPYn1D+h4of/wqVaxMx/61opV7L5ylc5u8ShD5K6OcTUGWj361Hwc9Spyhpyl0P2x
-         gs7L0a4q2Tya2zS4pN1HIbPWtRgV2H9z2/GTha/zv4u5ZWwpcQ0reEQeiVbFu5w5rNYA
-         Ez0A==
+        h=from:to:cc:subject:date:message-id;
+        bh=KzYdVSq+hzPkiy2rWNyAMfR6nXUf8PV4FMF6QSsanc0=;
+        b=HwRIt5xmgKGu4CMhFNGPNx/cq8ZtKNiCaEeFzg23kvA2et/soaIIFDQOGRSFcLN3tf
+         I5qJnEI08e203s/RTrO1hs4/7ZvfQz557bPfXnnSZvdUfNjD10vheWvfO3YHn7PK10hy
+         854pE0hdmYJiAgNc22kAQGTphdhXNF0GgefDxV7twVAQ3+6VVXElg+d9hH0NAfBBOaBu
+         Gz+nIijVPa1o5noz8726Y9K8g2T3zyPI28L+g5Rm3fswmQ4V4jP09I9cK2hqD/Br9o6C
+         chz/uvb7Jrz5vWLE2B5vmMVpsqpJmRkXOPkqAi9EbkeM22CgdPczwAQ1whVECQxTIi9X
+         D28w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=UxGyBTIHhwTyGgmF4lVTY6KQSyR2h+ZEVbUZC6/uyQ0=;
-        b=cKi2Z9KUJe0ShxIK6m+kaD9IqJcDTS8nHTCOjmMBE9WpKF5M/6BepPRi9354HnsN91
-         EUMpf+YKU1HxlWRX0P8T/xgdeQin37q+HqSebHNUNt/GJJOpzPVRLrsQIFqA8Jr35x8Y
-         f6JauDUKSf0v4q0Li9qngSfTx7F8aKTGTtezgV8SpuPIMdH6wewvcqxKy7EvX52mfmSB
-         bMAwBGIO7oIDZ+dDVOES/U1zBDejM+cbIVSa1K2Obz2xiWJh3SLIibaQWePiw+Y7KVx0
-         1tP6UktxMTDyJaS5cQyaMt8YEby3eYzXN4qGLlvUy/fpyaHGoq4jh8wKkj/OIJyXLPuT
-         A8mA==
-X-Gm-Message-State: AOAM533lpVW18jEK4xOmSWQEbeSqDTyv+94dkgQu0MxtZdej0Tn7FHSs
-        6BM0pGuvkbkpl/4v+9b5WOQ=
-X-Google-Smtp-Source: ABdhPJzgVvJ1mZkT0E1XqWNnB53pR7Yp/6Sd41wzNVZrs8+2LyH6ZcV4Az1nQu02sSMg0ztTNSWyow==
-X-Received: by 2002:aa7:824a:0:b029:2ec:89ee:e798 with SMTP id e10-20020aa7824a0000b02902ec89eee798mr6931561pfn.12.1627089186554;
-        Fri, 23 Jul 2021 18:13:06 -0700 (PDT)
-Received: from google.com ([2620:15c:202:201:55b1:90d5:6a79:755f])
-        by smtp.gmail.com with ESMTPSA id v27sm36404110pfi.166.2021.07.23.18.13.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jul 2021 18:13:05 -0700 (PDT)
-Date:   Fri, 23 Jul 2021 18:13:02 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-input@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        Michael Srba <Michael.Srba@seznam.cz>,
-        phone-devel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] Input: zinitix - Handle proper supply names
-Message-ID: <YPtpHg2aoGlULuQQ@google.com>
-References: <20210625113435.2539282-1-linus.walleij@linaro.org>
- <20210625113435.2539282-2-linus.walleij@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210625113435.2539282-2-linus.walleij@linaro.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=KzYdVSq+hzPkiy2rWNyAMfR6nXUf8PV4FMF6QSsanc0=;
+        b=oqOYIW1xUvHH/1VASC3nSv2P1hGZO8CGzYQRsMRhvCLFWSJaFIbZzgOMkzR+qmtQv2
+         bVpAwnUhePIDxpGZVnqBi+0u0Jj11CPY8ng8GboAnVG+TzzrNsROsj42UJmJuDlwCH6G
+         fbfL4ZTkhvX6mwjZgB+IlMqsNNCf+T0hejZ1285XVAOKs+w3egSWZnSkG0r6ewjrVroU
+         7bzKiUMqnpohDKyskiNq2+7aUoHAGYPD//Zs2wq9XpNwdhX+f6EAVR0GxGg/RoOGOnp1
+         gnN8r4S0W8jqn/HYW0Xje0BdJvtJ3ep4GAjuAWn9aHt7NVm2pIMYXyF/i4Cee9/mhMi6
+         sDqA==
+X-Gm-Message-State: AOAM533potl8DlNXKyeRtfRzPHS0fun838WnYKfP4ReZROULqHVgCTtJ
+        21p4AOO7posdAoKZAr8U5d8=
+X-Google-Smtp-Source: ABdhPJzC1Psa2hNrHlE+tkGyXCvT4y61A7xVh6MTTBPBveXgeXdVcEj/D8j1GbgPAqFrEqzYq9ll/w==
+X-Received: by 2002:a17:902:c60b:b029:12a:e53f:9f44 with SMTP id r11-20020a170902c60bb029012ae53f9f44mr6562714plr.28.1627098253167;
+        Fri, 23 Jul 2021 20:44:13 -0700 (PDT)
+Received: from localhost.localdomain ([23.228.102.68])
+        by smtp.gmail.com with ESMTPSA id c17sm35118733pfv.68.2021.07.23.20.44.07
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 23 Jul 2021 20:44:12 -0700 (PDT)
+From:   dillon.minfei@gmail.com
+To:     laurent.pinchart@ideasonboard.com, thierry.reding@gmail.com,
+        sam@ravnborg.org, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, linus.walleij@linaro.org,
+        alexandre.torgue@foss.st.com, mcoquelin.stm32@gmail.com,
+        noralf@tronnes.org
+Cc:     kbuild-all@lists.01.org, linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Dillon Min <dillon.minfei@gmail.com>
+Subject: [PATCH v4 0/3] Add ilitek ili9341 panel driver
+Date:   Sat, 24 Jul 2021 11:44:00 +0800
+Message-Id: <1627098243-2742-1-git-send-email-dillon.minfei@gmail.com>
+X-Mailer: git-send-email 1.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+From: Dillon Min <dillon.minfei@gmail.com>
 
-On Fri, Jun 25, 2021 at 01:34:35PM +0200, Linus Walleij wrote:
-> The supply names of the Zinitix touchscreen were a bit confused, the new
-> bindings rectifies this.
-> 
-> To deal with old and new devicetrees, first check if we have "vddo" and in
-> case that exists assume the old supply names. Else go and look for the new
-> ones.
-> 
-> We cannot just get the regulators since we would get an OK and a dummy
-> regulator: we need to check explicitly for the old supply name.
-> 
-> Use struct device *dev as a local variable instead of the I2C client since
-> the device is what we are actually obtaining the resources from.
-> 
-> Cc: Mark Brown <broonie@kernel.org>
-> Cc: Michael Srba <Michael.Srba@seznam.cz>
-> Cc: phone-devel@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
-> Mark: please check that I'm doing this check the right way, I assume
-> that since we get regulator dummies this is the way I need to check
-> for the old regulator name but maybe there are better ways.
-> ---
->  drivers/input/touchscreen/zinitix.c | 22 +++++++++++++++++-----
->  1 file changed, 17 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/input/touchscreen/zinitix.c b/drivers/input/touchscreen/zinitix.c
-> index b8d901099378..7001307382f0 100644
-> --- a/drivers/input/touchscreen/zinitix.c
-> +++ b/drivers/input/touchscreen/zinitix.c
-> @@ -252,16 +252,28 @@ static int zinitix_init_touch(struct bt541_ts_data *bt541)
->  
->  static int zinitix_init_regulators(struct bt541_ts_data *bt541)
->  {
-> -	struct i2c_client *client = bt541->client;
-> +	struct device *dev = &bt541->client->dev;
->  	int error;
->  
-> -	bt541->supplies[0].supply = "vdd";
-> -	bt541->supplies[1].supply = "vddo";
-> -	error = devm_regulator_bulk_get(&client->dev,
-> +	/*
-> +	 * Some older device trees have erroneous names for the regulators,
-> +	 * so check if "vddo" is present and in that case use these names
-> +	 * and warn. Else use the proper supply names on the component.
-> +	 */
-> +	if (IS_ENABLED(CONFIG_OF) &&
+Since the st,sf-tc240t-9370-t dts binding already exist in stm32f429-disco.dts
+but, the panel driver didn't get accepted from mainline. it's time to submit
+patch fot it.
 
-Why is this check needed? The of_property_*() are stubbed out properly I
-believe. We might need to check that dev->of_node is not NULL, although
-I think of_* API handles this properly.
+This driver can support two different interface by different dts bindings:
+- spi+dpi, use spi to configure register, dpi for graphic data.
+  st,sf-tc240t-9370-t
+- only spi, just like tiny/ili9341.c (actually, this part is copy from tiny)
+  adafruit,yx240qv29
 
-> +	    of_property_read_bool(dev->of_node, "vddo-supply")) {
+I was submited the first patch last year, you can find it at [1].
+this patch has one major difference from that one, which is replace the low
+level communication way, from spi_sync() to mipi_dbi_{command,
+command_stackbuf}() interface, referred from Linus's patch [2].
 
-If we go with this I do not like using of_property_read_bool() as this
-is not a boolean property, but rather of_find_property().
+both the two dpi/dbi interface was tested on stm32f429-disco board, if anyone
+want to verify this patch, you need apply the clk patch for this board first,
+you can get it from [3].
 
-However maybe we should use regulator_get_optional() which will not give
-a dummy regulator? Still quite awkward, a dedicated API to see if a
-regulator is defined would be nice.
+[1] "drm/panel: Add ilitek ili9341 panel driver"
+https://lore.kernel.org/lkml/1590378348-8115-7-git-send-email-dillon.minfei@gmail.com/
 
-> +		bt541->supplies[0].supply = "vdd";
-> +		bt541->supplies[1].supply = "vddo";
-> +	} else {
-> +		/* Else use the proper supply names */
-> +		bt541->supplies[0].supply = "vcca";
-> +		bt541->supplies[1].supply = "vdd";
-> +	}
-> +	error = devm_regulator_bulk_get(dev,
->  					ARRAY_SIZE(bt541->supplies),
->  					bt541->supplies);
->  	if (error < 0) {
-> -		dev_err(&client->dev, "Failed to get regulators: %d\n", error);
-> +		dev_err(dev, "Failed to get regulators: %d\n", error);
->  		return error;
->  	}
->  
-> -- 
-> 2.31.1
-> 
+[2] "drm/panel: s6e63m0: Switch to DBI abstraction for SPI"
+https://lore.kernel.org/dri-devel/20210611214243.669892-1-linus.walleij@linaro.org/
 
-Thanks.
+[3]
+https://lore.kernel.org/lkml/1590378348-8115-6-git-send-email-dillon.minfei@gmail.com/
+
+v4:
+- fix m68k-allmodconfig build error which reported by lkp, thanks.
+- add Copyright 2018 David Lechner <david@lechnology.com>.
+v3 link:
+https://lore.kernel.org/lkml/1627013203-23099-1-git-send-email-dillon.minfei@gmail.com/
+
+v3:
+- add Fixes tags.
+- collect reviewed-by tags from linus and jagan.
+- replace DRM_ERROR() with dev_err() or drm_err().
+- remove kernel-doc markers from struct ili9341_config{}.
+- reorder include headers.
+- remove the struct device *dev from struct ili9341{}.
+- restructure the ili9341_probe() function, add two ili9341_{dbi,dpi)_probe()
+  to make it more readable according to jagan's suggestion, thanks.
+
+for the full drm driver exist in drm/panel need Sam and Laurent's feedback.
+so, not cover this part at this time, will be update later.
+
+v2 link:
+https://lore.kernel.org/lkml/1626853288-31223-1-git-send-email-dillon.minfei@gmail.com/
+
+v2:
+- replace vcc regulator to bulk regulators in driver, from linus suggestion.
+- fix dtbs_check warnings on ili9341 dts binding check.
+- add bulk regulation node in ilitek,ili9341.yaml.
+v1 link:
+https://lore.kernel.org/lkml/1626430843-23823-1-git-send-email-dillon.minfei@gmail.com/
+
+Dillon Min (3):
+  dt-bindings: display: panel: Add ilitek ili9341 panel bindings
+  ARM: dts: stm32: fix dtbs_check warning on ili9341 dts binding
+  drm/panel: Add ilitek ili9341 panel driver
+
+ .../bindings/display/panel/ilitek,ili9341.yaml     |  78 ++
+ arch/arm/boot/dts/stm32f429-disco.dts              |   2 +-
+ drivers/gpu/drm/panel/Kconfig                      |  12 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-ilitek-ili9341.c       | 792 +++++++++++++++++++++
+ 5 files changed, 884 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-ilitek-ili9341.c
 
 -- 
-Dmitry
+1.9.1
+
