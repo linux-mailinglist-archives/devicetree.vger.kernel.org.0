@@ -2,93 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 022BB3D4369
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 01:36:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 876C33D4391
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 02:07:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232825AbhGWWzt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jul 2021 18:55:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37352 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232550AbhGWWzt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Jul 2021 18:55:49 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2440060F35;
-        Fri, 23 Jul 2021 23:36:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627083382;
-        bh=OgmN047jAuLjM5BKQ46Fip2OTLJSsCLtOO5/JwB+VY4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=V4B/bP/wttZGa5Bpb/JMdmDYR5VzCb55h2j420M50J8Q6G6hPHSDONKZuj6yUBk03
-         1ZV+N+YappLmblGOhO0bPuh1iVbWNj2iEVKFcKb5uq+JOCIDOrup2ZqpRqlPOrX6bY
-         iQFQ7zgXOV3dIsKmA9SsckWbH5ws7YidrLQ0FeucDjUUCcG/7xnIqrQJ7a7icGatoz
-         OvZxoXxoBHIPSNOYqBRrifCl2lwCVoBtOt82bKmVOBoPCiKI2wZGjs75FbGkUDGNDQ
-         hKrSQqnoKch/3to6VNf/GIipqXUWg3G/NXQE/aRg20fJlY2cwwv88ieQsjYOW8Ox6V
-         AvpZoLx2cLiWA==
-Received: by mail-ed1-f52.google.com with SMTP id df26so3644136edb.9;
-        Fri, 23 Jul 2021 16:36:22 -0700 (PDT)
-X-Gm-Message-State: AOAM530o7nPfwxG7x5aMIgSUE8ZL5ABOh0k0EiyklYAt8nZcg4m99PZl
-        D7z9kVYRwoS8USPoNdZjLWtW6hpBXwCxzv/Rag==
-X-Google-Smtp-Source: ABdhPJyZST6mg5GShwdylESiCi8iKzOx7W2m4QuplhuIQas0YRkQ2/nGFg4qa+gkYWbLK8bEZZVxgJWR002O9d1/BlQ=
-X-Received: by 2002:aa7:df12:: with SMTP id c18mr8438913edy.62.1627083380778;
- Fri, 23 Jul 2021 16:36:20 -0700 (PDT)
+        id S233271AbhGWX0c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jul 2021 19:26:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53424 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233059AbhGWX0c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jul 2021 19:26:32 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08E9CC061575;
+        Fri, 23 Jul 2021 17:07:04 -0700 (PDT)
+Received: from pendragon.lan (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 56BAB255;
+        Sat, 24 Jul 2021 02:07:00 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1627085220;
+        bh=xEo/CQNYqj63iAN2RCqLB7wwRY0GHrHZrfs6dVn81xY=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=JVkPaIT4nnD5aQLoEAsPbRiXFDC4KuQJcqJIC0cb9Rx/2FI6pY/yd705G0kkS7eev
+         ewFZXhCzU5Yha/JJYXef9QPS6t9NJoX8f3A8J2sYV4J5ZTr2cq2Xlb3s6PvEhV3KX8
+         DMeY1UW4UUSc4ECLHQ9V5A15hj923TQ2GPbAbgks=
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     linux-iio@vger.kernel.org
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sean Nyekjaer <sean@geanix.com>, devicetree@vger.kernel.org,
+        Jose Cazarin <joseespiriki@gmail.com>,
+        linux-i2c@vger.kernel.org, Wolfram Sang <wsa@kernel.org>
+Subject: [PATCH v1.1 2/2] iio: dac: dac5571: Fix chip id detection for OF devices
+Date:   Sat, 24 Jul 2021 03:06:54 +0300
+Message-Id: <20210724000654.23168-1-laurent.pinchart@ideasonboard.com>
+X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20210723183114.26017-3-laurent.pinchart@ideasonboard.com>
+References: <20210723183114.26017-3-laurent.pinchart@ideasonboard.com>
 MIME-Version: 1.0
-References: <20210519161847.3747352-1-fparent@baylibre.com>
- <20210521014815.GA2476751@robh.at.kernel.org> <CAL_Jsq+HWxQwFuKM==g-PBROxGN_xoWCc060U0pDpsDdfWJWPg@mail.gmail.com>
- <CAFqH_50rKvYZGeRMoaqtYZ6Hdbm6tjLTHB3N9JGsFai1ad0Dzg@mail.gmail.com>
-In-Reply-To: <CAFqH_50rKvYZGeRMoaqtYZ6Hdbm6tjLTHB3N9JGsFai1ad0Dzg@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 23 Jul 2021 17:36:08 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKyA+Br=44gvK66VX_Ardx7QOgkqCZ5Xv=5+enn4vZtsQ@mail.gmail.com>
-Message-ID: <CAL_JsqKyA+Br=44gvK66VX_Ardx7QOgkqCZ5Xv=5+enn4vZtsQ@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: arm: mediatek: mmsys: convert to YAML format
-To:     Enric Balletbo Serra <eballetbo@gmail.com>
-Cc:     Fabien Parent <fparent@baylibre.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 23, 2021 at 3:45 AM Enric Balletbo Serra
-<eballetbo@gmail.com> wrote:
->
-> Hi Rob,
->
-> Missatge de Rob Herring <robh+dt@kernel.org> del dia dv., 21 de maig
-> 2021 a les 3:51:
-> >
-> > On Thu, May 20, 2021 at 8:48 PM Rob Herring <robh@kernel.org> wrote:
-> > >
-> > > On Wed, 19 May 2021 18:18:44 +0200, Fabien Parent wrote:
-> > > > Convert the mmsys bindings to the YAML format.
-> > > >
-> > > > Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> > > > ---
-> > > >  .../bindings/arm/mediatek/mediatek,mmsys.txt  | 31 ----------
-> > > >  .../bindings/arm/mediatek/mediatek,mmsys.yaml | 57 +++++++++++++++++++
-> > > >  2 files changed, 57 insertions(+), 31 deletions(-)
-> > > >  delete mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.txt
-> > > >  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-> > > >
-> > >
-> > > Applied, thanks!
-> >
-> > Actually, should go with patch 3. So dropped and:
-> >
->
-> I think that this patch can be applied alone through your tree, patch
-> 2 and 3 can be applied later for the maintainers when they are fine.
-> There are other patches in the ML that depend on having this meged, so
-> it would be really nice to have it. Although it has already your
-> ack/review if it help I also took a look and I know the hardware so:
->
-> Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+From: Jose Cazarin <joseespiriki@gmail.com>
 
-Okay, patch 1 and 2 applied.
+When matching an OF device, the match mechanism tries all components of
+the compatible property. This can result with a device matched with a
+compatible string that isn't the first in the compatible list. For
+instance, with a compatible property set to
 
-Rob
+    compatible = "ti,dac081c081", "ti,dac5571";
+
+the driver will match the second compatible string, as the first one
+isn't listed in the of_device_id table. The device will however be named
+"dac081c081" by the I2C core.
+
+This causes an issue when identifying the chip. The probe function
+receives a i2c_device_id that comes from the module's I2C device ID
+table. There is no entry in that table for "dac081c081", which results
+in a NULL pointer passed to the probe function.
+
+To fix this, add chip_id information in the data field of the OF device
+ID table, and retrieve it with of_device_get_match_data() for OF
+devices.
+
+Signed-off-by: Jose Cazarin <joseespiriki@gmail.com>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+---
+Changes since v1:
+
+- Include linux/of_device.h
+---
+ drivers/iio/dac/ti-dac5571.c | 28 ++++++++++++++++++----------
+ 1 file changed, 18 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/iio/dac/ti-dac5571.c b/drivers/iio/dac/ti-dac5571.c
+index 2a5ba1b08a1d..8ceb1b42b14e 100644
+--- a/drivers/iio/dac/ti-dac5571.c
++++ b/drivers/iio/dac/ti-dac5571.c
+@@ -19,6 +19,7 @@
+ #include <linux/i2c.h>
+ #include <linux/module.h>
+ #include <linux/mod_devicetable.h>
++#include <linux/of_device.h>
+ #include <linux/regulator/consumer.h>
+ 
+ enum chip_id {
+@@ -311,6 +312,7 @@ static int dac5571_probe(struct i2c_client *client,
+ 	const struct dac5571_spec *spec;
+ 	struct dac5571_data *data;
+ 	struct iio_dev *indio_dev;
++	enum chip_id chip_id;
+ 	int ret, i;
+ 
+ 	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
+@@ -326,7 +328,13 @@ static int dac5571_probe(struct i2c_client *client,
+ 	indio_dev->modes = INDIO_DIRECT_MODE;
+ 	indio_dev->channels = dac5571_channels;
+ 
+-	spec = &dac5571_spec[id->driver_data];
++	if (dev->of_node)
++		chip_id = (uintptr_t)of_device_get_match_data(dev);
++	else
++		chip_id = id->driver_data;
++
++	spec = &dac5571_spec[chip_id];
++
+ 	indio_dev->num_channels = spec->num_channels;
+ 	data->spec = spec;
+ 
+@@ -384,15 +392,15 @@ static int dac5571_remove(struct i2c_client *i2c)
+ }
+ 
+ static const struct of_device_id dac5571_of_id[] = {
+-	{.compatible = "ti,dac5571"},
+-	{.compatible = "ti,dac6571"},
+-	{.compatible = "ti,dac7571"},
+-	{.compatible = "ti,dac5574"},
+-	{.compatible = "ti,dac6574"},
+-	{.compatible = "ti,dac7574"},
+-	{.compatible = "ti,dac5573"},
+-	{.compatible = "ti,dac6573"},
+-	{.compatible = "ti,dac7573"},
++	{.compatible = "ti,dac5571", .data = (void *)single_8bit},
++	{.compatible = "ti,dac6571", .data = (void *)single_10bit},
++	{.compatible = "ti,dac7571", .data = (void *)single_12bit},
++	{.compatible = "ti,dac5574", .data = (void *)quad_8bit},
++	{.compatible = "ti,dac6574", .data = (void *)quad_10bit},
++	{.compatible = "ti,dac7574", .data = (void *)quad_12bit},
++	{.compatible = "ti,dac5573", .data = (void *)quad_8bit},
++	{.compatible = "ti,dac6573", .data = (void *)quad_10bit},
++	{.compatible = "ti,dac7573", .data = (void *)quad_12bit},
+ 	{}
+ };
+ MODULE_DEVICE_TABLE(of, dac5571_of_id);
+-- 
+Regards,
+
+Laurent Pinchart
+
