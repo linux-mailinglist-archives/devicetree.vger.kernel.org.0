@@ -2,86 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE9263D47AE
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 14:48:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1CBD3D47B6
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 14:52:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231511AbhGXMHs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Jul 2021 08:07:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50014 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230449AbhGXMHr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jul 2021 08:07:47 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AE29C061575;
-        Sat, 24 Jul 2021 05:48:18 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id n6so5061667ljp.9;
-        Sat, 24 Jul 2021 05:48:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=RfMSh6YLaZEkpisGzz8tzT+CWBhFXuhceR7+JI0KV/M=;
-        b=kA3ig6s28YpJPVSPJ4rtpTNz6R12Y92GVLIz6CG/yYbl686dISHG8qmMtBV+Nx9UFM
-         cAfH1i8HmgS9Qv9/1rYlY2QcUc5E2O1mrRYQTv4a0nuPS9WliPcBxIQUng5dFmFb2cpV
-         4nM9QvwpGgS/ySlcc7v6fypZSFiaWGG4lQt4knNUwvQu+otuc0etkjVBkpnORVpIh1qG
-         Os0pIBT7MSQvtArgSdVC2uo/5ZQhV94cBj1Oks2JsfHFkv+SXF9lhC6bPTG0UGf/Pj4r
-         vPwhWodCbpjrG9VbxxoUowMoG9TWURnoGhn9XnxbtqhDr6OY84F7//Vyn48ITMTjHdmV
-         3mwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=RfMSh6YLaZEkpisGzz8tzT+CWBhFXuhceR7+JI0KV/M=;
-        b=GsO9BvQ8DD6VBHC7/3XL3iIn84xrHVvCp7nu+tU7FDEhaphEEwnYh47L0TtTxUORf+
-         KN74ZO5bVpIMF0M+2oNZlsDgr25+8VJR9mtcGLoCzQmqkNa1athv9QUOvgoyt5C61IUl
-         Pt4fN4/RPmWxvtQ3Oy2cuqrQYuGVcSgWlCKIB4Dq+Y10Q8hCA8RPVUHliHXV5b9gxGC1
-         punxSj3lFxO3VMvickIfvk7Rl9e95gzgsz303VPueDan3AhvDu5HvuB1+xHjwFiT1OSH
-         AmGsOIjF1kBRNkbZ6uzom4o807gc6nK7sdNARyxzxm6KnfaKlVpkFQ/EPdZUKKnVcjGj
-         st2A==
-X-Gm-Message-State: AOAM531/MOgYrVlTY0YG3AdBFjLy74vjvI0FjKSNum2rBam5zwzjoKnZ
-        dbnUUY/Rd0P5QQgB8pLhJPvjhg1hI4nk2sUXz1w=
-X-Google-Smtp-Source: ABdhPJwTKMzqfmKrpi+o6iZEl3eiwHJlpHehq/87sN2KhUYNKmn4LsVc1dET97l4kEBYxCo3vc5v0zH5kuzC+9kKgQA=
-X-Received: by 2002:a2e:a164:: with SMTP id u4mr6069456ljl.121.1627130896569;
- Sat, 24 Jul 2021 05:48:16 -0700 (PDT)
+        id S234275AbhGXMMY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Jul 2021 08:12:24 -0400
+Received: from out29-173.mail.aliyun.com ([115.124.29.173]:35569 "EHLO
+        out29-173.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230449AbhGXMMX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jul 2021 08:12:23 -0400
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07889097|-1;CH=blue;DM=|OVERLOAD|false|;DS=CONTINUE|ham_regular_dialog|0.0463647-0.00462302-0.949012;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047205;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=14;RT=14;SR=0;TI=SMTPD_---.KpzR04K_1627131171;
+Received: from 192.168.88.130(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.KpzR04K_1627131171)
+          by smtp.aliyun-inc.com(10.147.41.199);
+          Sat, 24 Jul 2021 20:52:52 +0800
+Subject: Re: [PATCH 1/2] dt-bindings: dwc2: Add bindings for new Ingenic SoCs.
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        hminas@synopsys.com, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        sihui.liu@ingenic.com, jun.jiang@ingenic.com,
+        sernia.zhou@foxmail.com
+References: <1627116521-124612-1-git-send-email-zhouyanjie@wanyeetech.com>
+ <1627116521-124612-2-git-send-email-zhouyanjie@wanyeetech.com>
+ <CLWQWQ.DBCX3I00Y95T2@crapouillou.net>
+From:   Zhou Yanjie <zhouyanjie@wanyeetech.com>
+Message-ID: <ad64396d-d7ab-b8dd-4086-f565e91edb00@wanyeetech.com>
+Date:   Sat, 24 Jul 2021 20:52:30 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-References: <20210723112835.31743-1-festevam@gmail.com> <20210723130851.6tfl4ijl7hkqzchm@skbuf>
- <CAOMZO5BRt6M=4WrZMWQjYeDcOXMSFhcfjZ95tdUkst5Jm=yB6A@mail.gmail.com> <DB8PR04MB6795F1B7B273777BA55B81ABE6E69@DB8PR04MB6795.eurprd04.prod.outlook.com>
-In-Reply-To: <DB8PR04MB6795F1B7B273777BA55B81ABE6E69@DB8PR04MB6795.eurprd04.prod.outlook.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Sat, 24 Jul 2021 09:48:05 -0300
-Message-ID: <CAOMZO5CvVA8xfkinRAhf=WLnLxjZ9mZask3jYm8=NSiSa5z+TQ@mail.gmail.com>
-Subject: Re: [PATCH net-next] ARM: dts: imx6qdl: Remove unnecessary mdio #address-cells/#size-cells
-To:     Joakim Zhang <qiangqing.zhang@nxp.com>
-Cc:     Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Shawn Guo <shawnguo@kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CLWQWQ.DBCX3I00Y95T2@crapouillou.net>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Joakim and Vladimir,
+Hi Paul,
 
-On Sat, Jul 24, 2021 at 2:21 AM Joakim Zhang <qiangqing.zhang@nxp.com> wrote:
+On 2021/7/24 下午6:46, Paul Cercueil wrote:
+> Hi Zhou,
+>
+> Le sam., juil. 24 2021 at 16:48:40 +0800, 周琰杰 (Zhou Yanjie) 
+> <zhouyanjie@wanyeetech.com> a écrit :
+>> Add the dwc2 bindings for the JZ4775 SoC, the JZ4780 SoC, the X1000 SoC,
+>> the X1600 SoC, the X1830 SoC, and the X2000 SoC from Ingenic.
+>>
+>> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
+>> ---
+>>  Documentation/devicetree/bindings/usb/dwc2.yaml | 6 ++++++
+>>  1 file changed, 6 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/usb/dwc2.yaml 
+>> b/Documentation/devicetree/bindings/usb/dwc2.yaml
+>> index 10c7d9b..e779d33 100644
+>> --- a/Documentation/devicetree/bindings/usb/dwc2.yaml
+>> +++ b/Documentation/devicetree/bindings/usb/dwc2.yaml
+>> @@ -14,6 +14,12 @@ properties:
+>>      oneOf:
+>>        - const: brcm,bcm2835-usb
+>>        - const: hisilicon,hi6220-usb
+>> +      - const: ingenic,jz4775-otg
+>> +      - const: ingenic,jz4780-otg
+>> +      - const: ingenic,x1000-otg
+>> +      - const: ingenic,x1600-otg
+>> +      - const: ingenic,x1830-otg
+>> +      - const: ingenic,x2000-otg
+>
+> I don't know if all these IPs are the exact same, but if they are, 
+> they all should have "ingenic,jz4775-otg" as the fallback.
 
-> I prepare this patch to fix dtbs_check when convert fec binding into schema.
-> I realized that we need a "reg" under phy device node, but I also don't know how to add it since
-> the phy is obviously not on board. And I check the phy code, it supports auto scan for PHYs with empty
-> "reg" property.
 
-I looked in the U-Boot code for the nitrogenx6x board:
-https://source.denx.de/u-boot/u-boot/-/blob/master/board/boundary/nitrogen6x/nitrogen6x.c#L343-356
+I'm not too sure whether they are exactly the same, but comparing the 
+code in Ingenics SDK,
 
-and it scans for a range of Ethernet PHY addresses.
+the code of the USB part of jz4775, jz4780, and x1000 are the same, the 
+code of the USB part
 
-As we can't pass a reg property in the dts in this case, the patch I
-sent that removes the
-#address-cells/#size-cells properties looks good, right?
+of x1600 and x1830 are the same, and the USB part code of X2000 are 
+different from all of them.
 
-What do you think?
+
+Thanks and best regards!
+
+
+>
+> -Paul
+>
+>>        - items:
+>>            - const: rockchip,rk3066-usb
+>>            - const: snps,dwc2
+>> -- 
+>> 2.7.4
+>>
+>
