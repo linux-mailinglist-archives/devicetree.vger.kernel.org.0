@@ -2,297 +2,294 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A51143D4558
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 08:37:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D2A63D4577
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 09:00:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234060AbhGXF4x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Jul 2021 01:56:53 -0400
-Received: from out28-1.mail.aliyun.com ([115.124.28.1]:52603 "EHLO
-        out28-1.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234001AbhGXF4t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jul 2021 01:56:49 -0400
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.08010397|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.308076-0.00040167-0.691522;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047213;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=13;RT=13;SR=0;TI=SMTPD_---.Kpjyp2k_1627108627;
-Received: from zhouyanjie-virtual-machine.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.Kpjyp2k_1627108627)
-          by smtp.aliyun-inc.com(10.147.43.95);
-          Sat, 24 Jul 2021 14:37:19 +0800
-From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
-        <zhouyanjie@wanyeetech.com>
-To:     linus.walleij@linaro.org
-Cc:     robh+dt@kernel.org, paul@crapouillou.net,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
-        rick.tyliu@ingenic.com, sihui.liu@ingenic.com,
-        jun.jiang@ingenic.com, sernia.zhou@foxmail.com
-Subject: [PATCH 4/4] pinctrl: Ingenic: Add pinctrl driver for X2100.
-Date:   Sat, 24 Jul 2021 14:36:44 +0800
-Message-Id: <1627108604-91304-5-git-send-email-zhouyanjie@wanyeetech.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1627108604-91304-1-git-send-email-zhouyanjie@wanyeetech.com>
-References: <1627108604-91304-1-git-send-email-zhouyanjie@wanyeetech.com>
+        id S234105AbhGXGUJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Jul 2021 02:20:09 -0400
+Received: from mga07.intel.com ([134.134.136.100]:4593 "EHLO mga07.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229941AbhGXGUJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 24 Jul 2021 02:20:09 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10054"; a="275811777"
+X-IronPort-AV: E=Sophos;i="5.84,265,1620716400"; 
+   d="gz'50?scan'50,208,50";a="275811777"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jul 2021 00:00:41 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.84,265,1620716400"; 
+   d="gz'50?scan'50,208,50";a="502984832"
+Received: from lkp-server01.sh.intel.com (HELO d053b881505b) ([10.239.97.150])
+  by FMSMGA003.fm.intel.com with ESMTP; 24 Jul 2021 00:00:38 -0700
+Received: from kbuild by d053b881505b with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1m7BeH-00033u-JY; Sat, 24 Jul 2021 07:00:37 +0000
+Date:   Sat, 24 Jul 2021 15:00:19 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>
+Cc:     kbuild-all@lists.01.org,
+        =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH 2/3] syscon: add support for "syscon-smc" compatible
+Message-ID: <202107241438.ZGxGgokJ-lkp@intel.com>
+References: <20210723135239.388325-3-clement.leger@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: multipart/mixed; boundary="ReaqsoxgOBHFXBhH"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210723135239.388325-3-clement.leger@bootlin.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for probing the pinctrl-ingenic driver on the
-X2100 SoC from Ingenic.
 
-Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
+--ReaqsoxgOBHFXBhH
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+
+Hi "Cl�ment,
+
+Thank you for the patch! Perhaps something to improve:
+
+[auto build test WARNING on regmap/for-next]
+[also build test WARNING on robh/for-next v5.14-rc2 next-20210723]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/0day-ci/linux/commits/Cl-ment-L-ger/add-SMC-based-regmap-driver-for-secure-syscon-access/20210723-215708
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regmap.git for-next
+config: riscv-nommu_k210_defconfig (attached as .config)
+compiler: riscv64-linux-gcc (GCC) 10.3.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/5b8123662c54263f6fc86b6ef9e296739fe78353
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Cl-ment-L-ger/add-SMC-based-regmap-driver-for-secure-syscon-access/20210723-215708
+        git checkout 5b8123662c54263f6fc86b6ef9e296739fe78353
+        # save the attached .config to linux build tree
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-10.3.0 make.cross ARCH=riscv 
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+   drivers/mfd/syscon.c: In function 'syscon_probe':
+>> drivers/mfd/syscon.c:407:23: warning: variable 'syscon_config' set but not used [-Wunused-but-set-variable]
+     407 |  struct regmap_config syscon_config = syscon_regmap_config;
+         |                       ^~~~~~~~~~~~~
+
+
+vim +/syscon_config +407 drivers/mfd/syscon.c
+
+   401	
+   402	static int syscon_probe(struct platform_device *pdev)
+   403	{
+   404		int ret;
+   405		struct device *dev = &pdev->dev;
+   406		struct syscon_platform_data *pdata = dev_get_platdata(dev);
+ > 407		struct regmap_config syscon_config = syscon_regmap_config;
+   408		struct syscon *syscon;
+   409		const struct syscon_driver_data *driver_data;
+   410	
+   411		if (pdata)
+   412			syscon_config.name = pdata->label;
+   413	
+   414		syscon = devm_kzalloc(dev, sizeof(*syscon), GFP_KERNEL);
+   415		if (!syscon)
+   416			return -ENOMEM;
+   417	
+   418		driver_data = (const struct syscon_driver_data *)
+   419					platform_get_device_id(pdev)->driver_data;
+   420	
+   421		ret = driver_data->probe_func(pdev, dev, syscon);
+   422		if (ret)
+   423			return ret;
+   424	
+   425		platform_set_drvdata(pdev, syscon);
+   426	
+   427		return 0;
+   428	}
+   429	
+
 ---
- drivers/pinctrl/pinctrl-ingenic.c | 216 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 216 insertions(+)
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
 
-diff --git a/drivers/pinctrl/pinctrl-ingenic.c b/drivers/pinctrl/pinctrl-ingenic.c
-index f88bccf..cd296d9 100644
---- a/drivers/pinctrl/pinctrl-ingenic.c
-+++ b/drivers/pinctrl/pinctrl-ingenic.c
-@@ -104,6 +104,7 @@ enum jz_version {
- 	ID_X1500,
- 	ID_X1830,
- 	ID_X2000,
-+	ID_X2100,
- };
- 
- struct ingenic_chip_info {
-@@ -2980,6 +2981,216 @@ static const struct ingenic_chip_info x2000_chip_info = {
- 	.pull_downs = x2000_pull_downs,
- };
- 
-+static const u32 x2100_pull_ups[5] = {
-+	0x0003ffff, 0xffffffff, 0x1ff0ffff, 0xc7fe3f3f, 0x0fbf003f,
-+};
-+
-+static const u32 x2100_pull_downs[5] = {
-+	0x0003ffff, 0xffffffff, 0x1ff0ffff, 0x00000000, 0x0fbf003f,
-+};
-+
-+static int x2100_mac_pins[] = {
-+	0x4b, 0x47, 0x46, 0x4a, 0x43, 0x42, 0x4c, 0x4d, 0x4f, 0x41,
-+};
-+
-+static const struct group_desc x2100_groups[] = {
-+	INGENIC_PIN_GROUP("uart0-data", x2000_uart0_data, 2),
-+	INGENIC_PIN_GROUP("uart0-hwflow", x2000_uart0_hwflow, 2),
-+	INGENIC_PIN_GROUP("uart1-data", x2000_uart1_data, 1),
-+	INGENIC_PIN_GROUP("uart1-hwflow", x2000_uart1_hwflow, 1),
-+	INGENIC_PIN_GROUP("uart2-data", x2000_uart2_data, 0),
-+	INGENIC_PIN_GROUP("uart3-data-c", x2000_uart3_data_c, 0),
-+	INGENIC_PIN_GROUP("uart3-data-d", x2000_uart3_data_d, 1),
-+	INGENIC_PIN_GROUP("uart3-hwflow-c", x2000_uart3_hwflow_c, 0),
-+	INGENIC_PIN_GROUP("uart3-hwflow-d", x2000_uart3_hwflow_d, 1),
-+	INGENIC_PIN_GROUP("uart4-data-a", x2000_uart4_data_a, 1),
-+	INGENIC_PIN_GROUP("uart4-data-c", x2000_uart4_data_c, 3),
-+	INGENIC_PIN_GROUP("uart4-hwflow-a", x2000_uart4_hwflow_a, 1),
-+	INGENIC_PIN_GROUP("uart4-hwflow-c", x2000_uart4_hwflow_c, 3),
-+	INGENIC_PIN_GROUP("uart5-data-a", x2000_uart5_data_a, 1),
-+	INGENIC_PIN_GROUP("uart5-data-c", x2000_uart5_data_c, 3),
-+	INGENIC_PIN_GROUP("uart6-data-a", x2000_uart6_data_a, 1),
-+	INGENIC_PIN_GROUP("uart6-data-c", x2000_uart6_data_c, 3),
-+	INGENIC_PIN_GROUP("uart7-data-a", x2000_uart7_data_a, 1),
-+	INGENIC_PIN_GROUP("uart7-data-c", x2000_uart7_data_c, 3),
-+	INGENIC_PIN_GROUP("uart8-data", x2000_uart8_data, 3),
-+	INGENIC_PIN_GROUP("uart9-data", x2000_uart9_data, 3),
-+	INGENIC_PIN_GROUP("sfc-data-if0-d", x2000_sfc_data_if0_d, 1),
-+	INGENIC_PIN_GROUP("sfc-data-if0-e", x2000_sfc_data_if0_e, 0),
-+	INGENIC_PIN_GROUP("sfc-data-if1", x2000_sfc_data_if1, 1),
-+	INGENIC_PIN_GROUP("sfc-clk-d", x2000_sfc_clk_d, 1),
-+	INGENIC_PIN_GROUP("sfc-clk-e", x2000_sfc_clk_e, 0),
-+	INGENIC_PIN_GROUP("sfc-ce-d", x2000_sfc_ce_d, 1),
-+	INGENIC_PIN_GROUP("sfc-ce-e", x2000_sfc_ce_e, 0),
-+	INGENIC_PIN_GROUP("ssi0-dt-b", x2000_ssi0_dt_b, 1),
-+	INGENIC_PIN_GROUP("ssi0-dt-d", x2000_ssi0_dt_d, 1),
-+	INGENIC_PIN_GROUP("ssi0-dr-b", x2000_ssi0_dr_b, 1),
-+	INGENIC_PIN_GROUP("ssi0-dr-d", x2000_ssi0_dr_d, 1),
-+	INGENIC_PIN_GROUP("ssi0-clk-b", x2000_ssi0_clk_b, 1),
-+	INGENIC_PIN_GROUP("ssi0-clk-d", x2000_ssi0_clk_d, 1),
-+	INGENIC_PIN_GROUP("ssi0-ce-b", x2000_ssi0_ce_b, 1),
-+	INGENIC_PIN_GROUP("ssi0-ce-d", x2000_ssi0_ce_d, 1),
-+	INGENIC_PIN_GROUP("ssi1-dt-c", x2000_ssi1_dt_c, 2),
-+	INGENIC_PIN_GROUP("ssi1-dt-d", x2000_ssi1_dt_d, 2),
-+	INGENIC_PIN_GROUP("ssi1-dt-e", x2000_ssi1_dt_e, 1),
-+	INGENIC_PIN_GROUP("ssi1-dr-c", x2000_ssi1_dr_c, 2),
-+	INGENIC_PIN_GROUP("ssi1-dr-d", x2000_ssi1_dr_d, 2),
-+	INGENIC_PIN_GROUP("ssi1-dr-e", x2000_ssi1_dr_e, 1),
-+	INGENIC_PIN_GROUP("ssi1-clk-c", x2000_ssi1_clk_c, 2),
-+	INGENIC_PIN_GROUP("ssi1-clk-d", x2000_ssi1_clk_d, 2),
-+	INGENIC_PIN_GROUP("ssi1-clk-e", x2000_ssi1_clk_e, 1),
-+	INGENIC_PIN_GROUP("ssi1-ce-c", x2000_ssi1_ce_c, 2),
-+	INGENIC_PIN_GROUP("ssi1-ce-d", x2000_ssi1_ce_d, 2),
-+	INGENIC_PIN_GROUP("ssi1-ce-e", x2000_ssi1_ce_e, 1),
-+	INGENIC_PIN_GROUP("mmc0-1bit", x2000_mmc0_1bit, 0),
-+	INGENIC_PIN_GROUP("mmc0-4bit", x2000_mmc0_4bit, 0),
-+	INGENIC_PIN_GROUP("mmc0-8bit", x2000_mmc0_8bit, 0),
-+	INGENIC_PIN_GROUP("mmc1-1bit", x2000_mmc1_1bit, 0),
-+	INGENIC_PIN_GROUP("mmc1-4bit", x2000_mmc1_4bit, 0),
-+	INGENIC_PIN_GROUP("mmc2-1bit", x2000_mmc2_1bit, 0),
-+	INGENIC_PIN_GROUP("mmc2-4bit", x2000_mmc2_4bit, 0),
-+	INGENIC_PIN_GROUP("emc-8bit-data", x2000_emc_8bit_data, 0),
-+	INGENIC_PIN_GROUP("emc-16bit-data", x2000_emc_16bit_data, 0),
-+	INGENIC_PIN_GROUP("emc-addr", x2000_emc_addr, 0),
-+	INGENIC_PIN_GROUP("emc-rd-we", x2000_emc_rd_we, 0),
-+	INGENIC_PIN_GROUP("emc-wait", x2000_emc_wait, 0),
-+	INGENIC_PIN_GROUP("emc-cs1", x2000_emc_cs1, 3),
-+	INGENIC_PIN_GROUP("emc-cs2", x2000_emc_cs2, 3),
-+	INGENIC_PIN_GROUP("i2c0-data", x2000_i2c0, 3),
-+	INGENIC_PIN_GROUP("i2c1-data-c", x2000_i2c1_c, 2),
-+	INGENIC_PIN_GROUP("i2c1-data-d", x2000_i2c1_d, 1),
-+	INGENIC_PIN_GROUP("i2c2-data-b", x2000_i2c2_b, 2),
-+	INGENIC_PIN_GROUP("i2c2-data-d", x2000_i2c2_d, 2),
-+	INGENIC_PIN_GROUP("i2c2-data-e", x2000_i2c2_e, 1),
-+	INGENIC_PIN_GROUP("i2c3-data-a", x2000_i2c3_a, 0),
-+	INGENIC_PIN_GROUP("i2c3-data-d", x2000_i2c3_d, 1),
-+	INGENIC_PIN_GROUP("i2c4-data-c", x2000_i2c4_c, 1),
-+	INGENIC_PIN_GROUP("i2c4-data-d", x2000_i2c4_d, 2),
-+	INGENIC_PIN_GROUP("i2c5-data-c", x2000_i2c5_c, 1),
-+	INGENIC_PIN_GROUP("i2c5-data-d", x2000_i2c5_d, 1),
-+	INGENIC_PIN_GROUP("i2s1-data-tx", x2000_i2s1_data_tx, 2),
-+	INGENIC_PIN_GROUP("i2s1-data-rx", x2000_i2s1_data_rx, 2),
-+	INGENIC_PIN_GROUP("i2s1-clk-tx", x2000_i2s1_clk_tx, 2),
-+	INGENIC_PIN_GROUP("i2s1-clk-rx", x2000_i2s1_clk_rx, 2),
-+	INGENIC_PIN_GROUP("i2s1-sysclk-tx", x2000_i2s1_sysclk_tx, 2),
-+	INGENIC_PIN_GROUP("i2s1-sysclk-rx", x2000_i2s1_sysclk_rx, 2),
-+	INGENIC_PIN_GROUP("i2s2-data-rx0", x2000_i2s2_data_rx0, 2),
-+	INGENIC_PIN_GROUP("i2s2-data-rx1", x2000_i2s2_data_rx1, 2),
-+	INGENIC_PIN_GROUP("i2s2-data-rx2", x2000_i2s2_data_rx2, 2),
-+	INGENIC_PIN_GROUP("i2s2-data-rx3", x2000_i2s2_data_rx3, 2),
-+	INGENIC_PIN_GROUP("i2s2-clk-rx", x2000_i2s2_clk_rx, 2),
-+	INGENIC_PIN_GROUP("i2s2-sysclk-rx", x2000_i2s2_sysclk_rx, 2),
-+	INGENIC_PIN_GROUP("i2s3-data-tx0", x2000_i2s3_data_tx0, 2),
-+	INGENIC_PIN_GROUP("i2s3-data-tx1", x2000_i2s3_data_tx1, 2),
-+	INGENIC_PIN_GROUP("i2s3-data-tx2", x2000_i2s3_data_tx2, 2),
-+	INGENIC_PIN_GROUP("i2s3-data-tx3", x2000_i2s3_data_tx3, 2),
-+	INGENIC_PIN_GROUP("i2s3-clk-tx", x2000_i2s3_clk_tx, 2),
-+	INGENIC_PIN_GROUP("i2s3-sysclk-tx", x2000_i2s3_sysclk_tx, 2),
-+	INGENIC_PIN_GROUP("dmic-if0", x2000_dmic_if0, 0),
-+	INGENIC_PIN_GROUP("dmic-if1", x2000_dmic_if1, 0),
-+	INGENIC_PIN_GROUP("dmic-if2", x2000_dmic_if2, 0),
-+	INGENIC_PIN_GROUP("dmic-if3", x2000_dmic_if3, 0),
-+	INGENIC_PIN_GROUP_FUNCS("cim-data-8bit", x2000_cim_8bit,
-+				x2000_cim_8bit_funcs),
-+	INGENIC_PIN_GROUP("cim-data-12bit", x2000_cim_12bit, 0),
-+	INGENIC_PIN_GROUP("lcd-tft-8bit", x2000_lcd_tft_8bit, 1),
-+	INGENIC_PIN_GROUP("lcd-tft-16bit", x2000_lcd_tft_16bit, 1),
-+	INGENIC_PIN_GROUP("lcd-tft-18bit", x2000_lcd_tft_18bit, 1),
-+	INGENIC_PIN_GROUP("lcd-tft-24bit", x2000_lcd_tft_24bit, 1),
-+	INGENIC_PIN_GROUP("lcd-slcd-8bit", x2000_lcd_slcd_8bit, 2),
-+	INGENIC_PIN_GROUP("lcd-slcd-16bit", x2000_lcd_tft_16bit, 2),
-+	INGENIC_PIN_GROUP("pwm0-c", x2000_pwm_pwm0_c, 0),
-+	INGENIC_PIN_GROUP("pwm0-d", x2000_pwm_pwm0_d, 2),
-+	INGENIC_PIN_GROUP("pwm1-c", x2000_pwm_pwm1_c, 0),
-+	INGENIC_PIN_GROUP("pwm1-d", x2000_pwm_pwm1_d, 2),
-+	INGENIC_PIN_GROUP("pwm2-c", x2000_pwm_pwm2_c, 0),
-+	INGENIC_PIN_GROUP("pwm2-e", x2000_pwm_pwm2_e, 1),
-+	INGENIC_PIN_GROUP("pwm3-c", x2000_pwm_pwm3_c, 0),
-+	INGENIC_PIN_GROUP("pwm3-e", x2000_pwm_pwm3_e, 1),
-+	INGENIC_PIN_GROUP("pwm4-c", x2000_pwm_pwm4_c, 0),
-+	INGENIC_PIN_GROUP("pwm4-e", x2000_pwm_pwm4_e, 1),
-+	INGENIC_PIN_GROUP("pwm5-c", x2000_pwm_pwm5_c, 0),
-+	INGENIC_PIN_GROUP("pwm5-e", x2000_pwm_pwm5_e, 1),
-+	INGENIC_PIN_GROUP("pwm6-c", x2000_pwm_pwm6_c, 0),
-+	INGENIC_PIN_GROUP("pwm6-e", x2000_pwm_pwm6_e, 1),
-+	INGENIC_PIN_GROUP("pwm7-c", x2000_pwm_pwm7_c, 0),
-+	INGENIC_PIN_GROUP("pwm7-e", x2000_pwm_pwm7_e, 1),
-+	INGENIC_PIN_GROUP("pwm8", x2000_pwm_pwm8, 0),
-+	INGENIC_PIN_GROUP("pwm9", x2000_pwm_pwm9, 0),
-+	INGENIC_PIN_GROUP("pwm10", x2000_pwm_pwm10, 0),
-+	INGENIC_PIN_GROUP("pwm11", x2000_pwm_pwm11, 0),
-+	INGENIC_PIN_GROUP("pwm12", x2000_pwm_pwm12, 0),
-+	INGENIC_PIN_GROUP("pwm13", x2000_pwm_pwm13, 0),
-+	INGENIC_PIN_GROUP("pwm14", x2000_pwm_pwm14, 0),
-+	INGENIC_PIN_GROUP("pwm15", x2000_pwm_pwm15, 0),
-+	INGENIC_PIN_GROUP("mac", x2100_mac, 1),
-+};
-+
-+static const char *x2100_mac_groups[] = { "mac", };
-+
-+static const struct function_desc x2100_functions[] = {
-+	{ "uart0", x2000_uart0_groups, ARRAY_SIZE(x2000_uart0_groups), },
-+	{ "uart1", x2000_uart1_groups, ARRAY_SIZE(x2000_uart1_groups), },
-+	{ "uart2", x2000_uart2_groups, ARRAY_SIZE(x2000_uart2_groups), },
-+	{ "uart3", x2000_uart3_groups, ARRAY_SIZE(x2000_uart3_groups), },
-+	{ "uart4", x2000_uart4_groups, ARRAY_SIZE(x2000_uart4_groups), },
-+	{ "uart5", x2000_uart5_groups, ARRAY_SIZE(x2000_uart5_groups), },
-+	{ "uart6", x2000_uart6_groups, ARRAY_SIZE(x2000_uart6_groups), },
-+	{ "uart7", x2000_uart7_groups, ARRAY_SIZE(x2000_uart7_groups), },
-+	{ "uart8", x2000_uart8_groups, ARRAY_SIZE(x2000_uart8_groups), },
-+	{ "uart9", x2000_uart9_groups, ARRAY_SIZE(x2000_uart9_groups), },
-+	{ "sfc", x2000_sfc_groups, ARRAY_SIZE(x2000_sfc_groups), },
-+	{ "ssi0", x2000_ssi0_groups, ARRAY_SIZE(x2000_ssi0_groups), },
-+	{ "ssi1", x2000_ssi1_groups, ARRAY_SIZE(x2000_ssi1_groups), },
-+	{ "mmc0", x2000_mmc0_groups, ARRAY_SIZE(x2000_mmc0_groups), },
-+	{ "mmc1", x2000_mmc1_groups, ARRAY_SIZE(x2000_mmc1_groups), },
-+	{ "mmc2", x2000_mmc2_groups, ARRAY_SIZE(x2000_mmc2_groups), },
-+	{ "emc", x2000_emc_groups, ARRAY_SIZE(x2000_emc_groups), },
-+	{ "emc-cs1", x2000_cs1_groups, ARRAY_SIZE(x2000_cs1_groups), },
-+	{ "emc-cs2", x2000_cs2_groups, ARRAY_SIZE(x2000_cs2_groups), },
-+	{ "i2c0", x2000_i2c0_groups, ARRAY_SIZE(x2000_i2c0_groups), },
-+	{ "i2c1", x2000_i2c1_groups, ARRAY_SIZE(x2000_i2c1_groups), },
-+	{ "i2c2", x2000_i2c2_groups, ARRAY_SIZE(x2000_i2c2_groups), },
-+	{ "i2c3", x2000_i2c3_groups, ARRAY_SIZE(x2000_i2c3_groups), },
-+	{ "i2c4", x2000_i2c4_groups, ARRAY_SIZE(x2000_i2c4_groups), },
-+	{ "i2c5", x2000_i2c5_groups, ARRAY_SIZE(x2000_i2c5_groups), },
-+	{ "i2s1", x2000_i2s1_groups, ARRAY_SIZE(x2000_i2s1_groups), },
-+	{ "i2s2", x2000_i2s2_groups, ARRAY_SIZE(x2000_i2s2_groups), },
-+	{ "i2s3", x2000_i2s3_groups, ARRAY_SIZE(x2000_i2s3_groups), },
-+	{ "dmic", x2000_dmic_groups, ARRAY_SIZE(x2000_dmic_groups), },
-+	{ "cim", x2000_cim_groups, ARRAY_SIZE(x2000_cim_groups), },
-+	{ "lcd", x2000_lcd_groups, ARRAY_SIZE(x2000_lcd_groups), },
-+	{ "pwm0", x2000_pwm0_groups, ARRAY_SIZE(x2000_pwm0_groups), },
-+	{ "pwm1", x2000_pwm1_groups, ARRAY_SIZE(x2000_pwm1_groups), },
-+	{ "pwm2", x2000_pwm2_groups, ARRAY_SIZE(x2000_pwm2_groups), },
-+	{ "pwm3", x2000_pwm3_groups, ARRAY_SIZE(x2000_pwm3_groups), },
-+	{ "pwm4", x2000_pwm4_groups, ARRAY_SIZE(x2000_pwm4_groups), },
-+	{ "pwm5", x2000_pwm5_groups, ARRAY_SIZE(x2000_pwm5_groups), },
-+	{ "pwm6", x2000_pwm6_groups, ARRAY_SIZE(x2000_pwm6_groups), },
-+	{ "pwm7", x2000_pwm7_groups, ARRAY_SIZE(x2000_pwm7_groups), },
-+	{ "pwm8", x2000_pwm8_groups, ARRAY_SIZE(x2000_pwm8_groups), },
-+	{ "pwm9", x2000_pwm9_groups, ARRAY_SIZE(x2000_pwm9_groups), },
-+	{ "pwm10", x2000_pwm10_groups, ARRAY_SIZE(x2000_pwm10_groups), },
-+	{ "pwm11", x2000_pwm11_groups, ARRAY_SIZE(x2000_pwm11_groups), },
-+	{ "pwm12", x2000_pwm12_groups, ARRAY_SIZE(x2000_pwm12_groups), },
-+	{ "pwm13", x2000_pwm13_groups, ARRAY_SIZE(x2000_pwm13_groups), },
-+	{ "pwm14", x2000_pwm14_groups, ARRAY_SIZE(x2000_pwm14_groups), },
-+	{ "pwm15", x2000_pwm15_groups, ARRAY_SIZE(x2000_pwm15_groups), },
-+	{ "mac", x2100_mac_groups, ARRAY_SIZE(x2100_mac_groups), },
-+};
-+
-+static const struct ingenic_chip_info x2100_chip_info = {
-+	.num_chips = 5,
-+	.reg_offset = 0x100,
-+	.version = ID_X2100,
-+	.groups = x2100_groups,
-+	.num_groups = ARRAY_SIZE(x2100_groups),
-+	.functions = x2100_functions,
-+	.num_functions = ARRAY_SIZE(x2100_functions),
-+	.pull_ups = x2100_pull_ups,
-+	.pull_downs = x2100_pull_downs,
-+};
-+
- static u32 ingenic_gpio_read_reg(struct ingenic_gpio_chip *jzgc, u8 reg)
- {
- 	unsigned int val;
-@@ -3845,6 +4056,7 @@ static const struct of_device_id ingenic_gpio_of_matches[] __initconst = {
- 	{ .compatible = "ingenic,x1000-gpio" },
- 	{ .compatible = "ingenic,x1830-gpio" },
- 	{ .compatible = "ingenic,x2000-gpio" },
-+	{ .compatible = "ingenic,x2100-gpio" },
- 	{},
- };
- 
-@@ -4100,6 +4312,10 @@ static const struct of_device_id ingenic_pinctrl_of_matches[] = {
- 		.compatible = "ingenic,x2000e-pinctrl",
- 		.data = IF_ENABLED(CONFIG_MACH_X2000, &x2000_chip_info)
- 	},
-+	{
-+		.compatible = "ingenic,x2100-pinctrl",
-+		.data = IF_ENABLED(CONFIG_MACH_X2100, &x2100_chip_info)
-+	},
- 	{ /* sentinel */ },
- };
- 
--- 
-2.7.4
+--ReaqsoxgOBHFXBhH
+Content-Type: application/gzip
+Content-Disposition: attachment; filename=".config.gz"
+Content-Transfer-Encoding: base64
 
+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
+
+--ReaqsoxgOBHFXBhH--
