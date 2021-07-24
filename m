@@ -2,202 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A49E3D484A
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 17:20:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAEF33D486C
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 17:46:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229944AbhGXOkK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Jul 2021 10:40:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36118 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229545AbhGXOkJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 24 Jul 2021 10:40:09 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 690A260E96;
-        Sat, 24 Jul 2021 15:20:37 +0000 (UTC)
-Date:   Sat, 24 Jul 2021 16:23:09 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Christophe Branchereau <cbranchereau@gmail.com>
-Cc:     Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Paul Cercueil <paul@crapouillou.net>, lars@metafoo.de,
-        linux-mips@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux@roeck-us.net,
-        contact@artur-rojek.eu
-Subject: Re: [PATCH V2 5/5] dt-bindings: iio/adc: ingenic: add the JZ4760(B)
- socs to the sadc Documentation
-Message-ID: <20210724162309.70334ae8@jic23-huawei>
-In-Reply-To: <CAFsFa84mJpAk90W6rSYwZ9m-RCbu959_8HJ+1Dr3ScP2k9SbKw@mail.gmail.com>
-References: <893d6165-0f12-d0da-44be-449a4ae96ac2@roeck-us.net>
-        <20210723085813.1523934-1-cbranchereau@gmail.com>
-        <20210723085813.1523934-6-cbranchereau@gmail.com>
-        <20210723171657.00003d7f@Huawei.com>
-        <CAFsFa84mJpAk90W6rSYwZ9m-RCbu959_8HJ+1Dr3ScP2k9SbKw@mail.gmail.com>
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S230093AbhGXPFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Jul 2021 11:05:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60588 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229545AbhGXPFo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jul 2021 11:05:44 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0892C061575;
+        Sat, 24 Jul 2021 08:46:15 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id h2so7264550lfu.4;
+        Sat, 24 Jul 2021 08:46:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Sffnf9T+HDaeklR+SXFRloM02OtNxtUSj/wfngSo6ps=;
+        b=axSiGC6W9WCnQx3YXyXZJ1Qoy1I1rjTHPv9m0VNZsi48GVA+8oIkuGSP2KnCQcZsvw
+         qZht948bYXEDAI03qizSGACxNipG4KkJgVAL290PXyKKKe4BCCtJY5mBbdzC1hA/d4mj
+         M4NmDEF0bN+6uv5lP7+7BLucfQkmNJ68Lkz1+AAqo/81RWZs36lyFfzrj8kH224zBK2J
+         p6PtkBFYCMoe8kR7gW6NVKdDzmjxEVT57XvK4ufnlwy/viKy/s1lRr+aJ2fUMbiqesHj
+         kbJg4RIc094t6PKYXVxC8DwQbBPsrv335GmkbtQUqQB+4jxBImKt1PKW7s3AvSRfQUin
+         vfDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Sffnf9T+HDaeklR+SXFRloM02OtNxtUSj/wfngSo6ps=;
+        b=S+CTwUPYh64ORlCSFiXRHi98UoSIisyfnEWGTv6fVSM330k7xjminsTn6yWS4kzWfo
+         zbi0UVpf84w3ogmQb06KWPeWWv9FR2SeGLWjg2nDo0Ye2UTugJGcRuN0XQhnEN3gW3TU
+         IFmZ5HeEybqJBUAvlknkIAiBG68cTbtB8pWDWJoHlSlZAo7QLHfc3dTRow81A7OShEYV
+         8nvt2LMn4Pvj+1pvIRKhV5ulweUNjJJn1DJou2JRoIoGP4RBfUZRt40rBp+0AbikZbvD
+         XFWwp4qsbKbOHIe6OY1bP3PlI41GKT/m1Gsp1FXrVmTus/M4hMw+RHxYPMvOenlX/Myi
+         lYMQ==
+X-Gm-Message-State: AOAM531YkrW5nX1+Zs0K5BFiG/9gbyh8idya0TvG3FJZwsyd05EA6/52
+        +iDqOYZd8DS8PJabSTOCH3+V3BWqLD6EEV9lmd8=
+X-Google-Smtp-Source: ABdhPJw6Opk+Xec3/M1Gz6JkYtTn4AePvHDFW8tyCf9VNFToRaAHZcdccNgIku0kGKz7QXT1CJf+Lkc86sWw97BKE1I=
+X-Received: by 2002:a19:c312:: with SMTP id t18mr6901214lff.354.1627141573558;
+ Sat, 24 Jul 2021 08:46:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20210722062155.32998-1-puranjay12@gmail.com> <20210722062155.32998-2-puranjay12@gmail.com>
+ <20210723172902.00004151@Huawei.com>
+In-Reply-To: <20210723172902.00004151@Huawei.com>
+From:   Puranjay Mohan <puranjay12@gmail.com>
+Date:   Sat, 24 Jul 2021 21:16:02 +0530
+Message-ID: <CANk7y0g9c8BMdbTe2LcLwcc1ZYtFZL+mK5y4AxMF_eXGWDxb8A@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: accel: Add ADXL355 in trivial-devices
+To:     Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Cc:     "Hennerich, Michael" <Michael.Hennerich@analog.com>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        "Bogdan, Dragos" <Dragos.Bogdan@analog.com>,
+        "Berghe, Darius" <Darius.Berghe@analog.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 24 Jul 2021 09:33:46 +0200
-Christophe Branchereau <cbranchereau@gmail.com> wrote:
-
-> Hello Johnathan, am I allowed to declare the property within the if
-> block like this?
-
-Test it...
-
-Short answer is no you aren't.  As someone explained it to me the other
-day, each layer of the yaml is checked independently so if you declare
-a property in the if block and not the outer layer the additionalProperties
-check will fail should it be present.
-
-So declare it outside, then set it false for the cases where it's not valid.
-
-Jonathan
-
-> 
-> # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> # Copyright 2019-2020 Artur Rojek
-> %YAML 1.2
-> ---
-> $id: "http://devicetree.org/schemas/iio/adc/ingenic,adc.yaml#"
-> $schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> 
-> title: Ingenic JZ47xx ADC controller IIO bindings
-> 
-> maintainers:
->   - Artur Rojek <contact@artur-rojek.eu>
-> 
-> description: >
->   Industrial I/O subsystem bindings for ADC controller found in
->   Ingenic JZ47xx SoCs.
-> 
->   ADC clients must use the format described in
->   https://github.com/devicetree-org/dt-schema/blob/master/schemas/iio/iio-consumer.yaml,
->   giving a phandle and IIO specifier pair ("io-channels") to the ADC controller.
-> 
-> properties:
->   compatible:
->     enum:
->       - ingenic,jz4725b-adc
->       - ingenic,jz4740-adc
->       - ingenic,jz4760-adc
->       - ingenic,jz4760b-adc
->       - ingenic,jz4770-adc
-> 
->   '#io-channel-cells':
->     const: 1
->     description:
->       Must be set to <1> to indicate channels are selected by index.
-> 
->   reg:
->     maxItems: 1
-> 
->   clocks:
->     maxItems: 1
-> 
->   clock-names:
->     items:
->       - const: adc
-> 
->   interrupts:
->     maxItems: 1
-> 
-> allOf:
->   - if:
->       properties:
->         compatible:
->           contains:
->             enum:
->               - ingenic,jz4760b-adc
-> then:
->   properties:
->     ingenic,use-internal-divider:
->       description:
->         If present, battery voltage is read from the VBAT_IR pin, which has an
->         internal 1/4 divider. If absent, it is read through the VBAT_ER pin,
->         which does not have such a divider.
->       type: boolean
-> 
-> required:
->   - compatible
->   - '#io-channel-cells'
->   - reg
->   - clocks
->   - clock-names
->   - interrupts
-> 
-> additionalProperties: false
-> 
-> examples:
->   - |
->     #include <dt-bindings/clock/jz4740-cgu.h>
->     #include <dt-bindings/iio/adc/ingenic,adc.h>
-> 
->     adc@10070000 {
->             compatible = "ingenic,jz4740-adc";
->             #io-channel-cells = <1>;
-> 
->             reg = <0x10070000 0x30>;
-> 
->             clocks = <&cgu JZ4740_CLK_ADC>;
->             clock-names = "adc";
-> 
->             interrupt-parent = <&intc>;
->             interrupts = <18>;
->     };
-> 
-> On Fri, Jul 23, 2021 at 6:17 PM Jonathan Cameron
-> <Jonathan.Cameron@huawei.com> wrote:
+On Fri, Jul 23, 2021 at 9:59 PM Jonathan Cameron
+<Jonathan.Cameron@huawei.com> wrote:
+>
+> On Thu, 22 Jul 2021 11:51:53 +0530
+> Puranjay Mohan <puranjay12@gmail.com> wrote:
+>
+> > Add ADXL355, a 3-Axis MEMS Accelerometer into trivial-devices.yaml.
 > >
-> > On Fri, 23 Jul 2021 10:58:13 +0200
-> > Christophe Branchereau <cbranchereau@gmail.com> wrote:
-> >  
-> > > The jz4760b variant differs slightly from the jz4760, add a property to
-> > > let users sample the internal divider if needed and document it.
-> > >
-> > > Signed-off-by: Christophe Branchereau <cbranchereau@gmail.com>
-> > > ---
-> > >  .../devicetree/bindings/iio/adc/ingenic,adc.yaml         | 9 +++++++++
-> > >  1 file changed, 9 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/iio/adc/ingenic,adc.yaml b/Documentation/devicetree/bindings/iio/adc/ingenic,adc.yaml
-> > > index 433a3fb55a2e..0dc42959a64f 100644
-> > > --- a/Documentation/devicetree/bindings/iio/adc/ingenic,adc.yaml
-> > > +++ b/Documentation/devicetree/bindings/iio/adc/ingenic,adc.yaml
-> > > @@ -23,6 +23,8 @@ properties:
-> > >      enum:
-> > >        - ingenic,jz4725b-adc
-> > >        - ingenic,jz4740-adc
-> > > +      - ingenic,jz4760-adc
-> > > +      - ingenic,jz4760b-adc
-> > >        - ingenic,jz4770-adc
-> > >
-> > >    '#io-channel-cells':
-> > > @@ -43,6 +45,13 @@ properties:
-> > >    interrupts:
-> > >      maxItems: 1
-> > >
-> > > +  ingenic,use-internal-divider:
-> > > +    description:
-> > > +      This property can be used to set VBAT_SEL in the JZ4760B CFG register
-> > > +      to sample the battery voltage from the internal divider. If absent, it
-> > > +      will sample the external divider.
-> > > +    type: boolean
-> > > +  
-> > See reply to the v1 patch for hint on how to 'enforce' that this
-> > only exists for the jz4760b
-> >
-> > Thanks,
-> >
-> > Jonathan
-> >  
-> > >  required:
-> > >    - compatible
-> > >    - '#io-channel-cells'  
-> >  
+> > Signed-off-by: Puranjay Mohan <puranjay12@gmail.com>
+>
+> Hi Puranjay,
+>
+> So, a binding should include (as well as we can) all hardware elements,
+> not just those currently supported by the driver.
+>
+> This particular device has two interrupts + a dataready signal which is
+> effectively another interrupt. It also has dual power supplies.
+>
+> That makes it a rather non-trivial device from the point of view of
+> bindings. Hence, please give it a file of it's own and also document
+> the interrupt and supply elements.
+>
+> Jonathan
+>
 
+I will add a separate file in  the next version.
+
+thanks,
+Puranjay
+
+> > ---
+> >  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> > index 8341e9d23..0097d6e81 100644
+> > --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> > +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> > @@ -41,6 +41,8 @@ properties:
+> >            - adi,adp5589
+> >              # +/-1C TDM Extended Temp Range I.C
+> >            - adi,adt7461
+> > +            # ADXL355:- 3-Axis Low noise MEMS Accelerometer.
+> > +          - adi,adxl355
+> >              # +/-1C TDM Extended Temp Range I.C
+> >            - adt7461
+> >              # AMS iAQ-Core VOC Sensor
+>
