@@ -2,118 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD0A13D4920
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 20:21:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 173063D494B
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 20:56:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229921AbhGXRkr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Jul 2021 13:40:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38246 "EHLO
+        id S229609AbhGXSQC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Jul 2021 14:16:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229925AbhGXRkm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jul 2021 13:40:42 -0400
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70AC6C061575
-        for <devicetree@vger.kernel.org>; Sat, 24 Jul 2021 11:21:14 -0700 (PDT)
-Received: by mail-pl1-x62d.google.com with SMTP id e10so7017224pls.2
-        for <devicetree@vger.kernel.org>; Sat, 24 Jul 2021 11:21:14 -0700 (PDT)
+        with ESMTP id S229510AbhGXSQA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jul 2021 14:16:00 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66A13C061575;
+        Sat, 24 Jul 2021 11:56:31 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id y8so5928500wrt.10;
+        Sat, 24 Jul 2021 11:56:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=I3DcjUQm2rBf8J4pHhxOP/EGD2IowZ7+YWf/+CetAic=;
-        b=0gcGmJXkg1XOJ5o6Dfv9yrfisW0wY8pOYrV+sztmb39kZ/J+XiesGZxVGwepJaPpdU
-         eUs7xNrTxf9ZkHHcKWYdgQENTK6gqpB8p6kNAYa6oFqo8O/gABn0gno4xnwzsiU1gVTY
-         v6/DTpCqxZirWXRRrKbj6/fu9/0iKX5L6I7ulm7620FYAYm3XyrV1w+hypMnBm5+dNGn
-         cYZOyhoaPe0OfaLOjsL5huohcb3Hm9rmverGIOLjwtHWnKKTIqnnAvenS4sY3noGDwk3
-         8NqeySQBZ92mx0CceQBhfhoZjQ/kNocr1RAU9P9H52poq8DY6KTEcA21iMLD5uX11PWA
-         YY+Q==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:reply-to:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=3cToLkhxue4mfM4vekP8IOnb/EcTEEpzWIpkfDq5mZM=;
+        b=EfNz22WT9hsyfy4lxaHxbKtF6MxDQIbNejOE8jWoic7rWyv3ExSvGOnf6vhJVzi5Xp
+         rbMSuUIfVVHzGterc8p6kt4cdHvCiBAlEX+7FP887lht2p1qXf/4U4//flTaqOsSHwyE
+         s+j4CEQRpRdXClW5y9XOFl0ZascBuxysBWsKQ8F/ySdSklWZbQxZfYvwcMeSDNNKnhNS
+         WvYHUA3SyKkDq81NuDi5h5U14oo8A4lK27iPLBze24hNSKkkMtGolBY6+6JLN6XJj88i
+         rLx+OqfNq/GfTNm+dSxSB40K1Nao8hfB1IjUTY67kXxQa/nqYO7cM3j0l3eE9/0xs57A
+         rQRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=I3DcjUQm2rBf8J4pHhxOP/EGD2IowZ7+YWf/+CetAic=;
-        b=MKw9qaf3zsxBpzIMlM+0cI+8cbu1cGxzGiAbFsiZip3XjmyXfN8laxtDta3eclTA1Z
-         mdnPoKzZxAuZNaGO+jpyOC48as4vhhlFyag2DXB7rDK4zi9GtOw8/8tkYRRDr0GoImYT
-         dcUztBagt3oUaEXtPwD9rDTwirmtsviOaF62Sox6aCeRDin3dTTe2qIXBHjbd5sPWV1F
-         Aj5/rVjHAuSophNyuZDTnE+t41HtWsCpgQO5qkqyaZ7N1gNe28EH9G03CBAbSL8cVzNp
-         MgurlvGRef/gy8YBMyCLLGC+D179188Q6/wjYbjvEGR6YtG5MnButEB3Xo+mBpl0fvmt
-         MCNg==
-X-Gm-Message-State: AOAM5309iIGAP+z0KMsKmQ6ijgv5WVrZtvQP/nIO2F1TLtjHZcup7s33
-        lrgo+xmmbAU57CAVAwX8QdSq+ucjf791dM50Mkvk5g==
-X-Google-Smtp-Source: ABdhPJxuZApXVn8LhJOKI4UnbMl6UCs6yq8K33NzdxOjrdLpjU33x/5O3Pbpy3N6Js/tm1f80Z0DhY+8LvL2OGIrFHo=
-X-Received: by 2002:a63:e513:: with SMTP id r19mr10542325pgh.30.1627150874042;
- Sat, 24 Jul 2021 11:21:14 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:reply-to
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=3cToLkhxue4mfM4vekP8IOnb/EcTEEpzWIpkfDq5mZM=;
+        b=KiuWYldtbRPz477vDoTiq5Seibwd51LVbwA71yskwhhKLY9EyrZ6OtzcEZ9dqLmk0D
+         3fLLDJHDMeK5JTmDbTeWoV3WIiAKxroB/XVvdEAoFIn4grxML7dnX2qLiVuAdVu8r4y4
+         9wIYyvlIng+zPi6rFmdbexmGQa9YJWRhrQCs/B/JW4CJeJPywaDCypd7CGanTd8+AiMo
+         x8DaY2gxT+q80qLuXpYNT6Wvine7qKXAr/mypwkGauEsw+ppLc/ToS1QTTXQ2Bif4Cb4
+         Zet3p1+ejt7VIsgRGTddIdnsGG/8f9Z5W0Xjca204cfzAeLuVDlGCUpSOmzi1VRVv4G7
+         EIdQ==
+X-Gm-Message-State: AOAM530gk7+fLmYVhmwEkGtvCvnY7PAOw3oINpJRSo61CUChhtVdlbwJ
+        BOMNfnscMiF/8gFp8Op9Vc9XbA3Y7593Ow==
+X-Google-Smtp-Source: ABdhPJyoxa2Etz0mZamZmCmnNW/4T6kabG89+pvOzH2gvDfA9rerFkrQekw8xxiJIc3GXny7W0Lziw==
+X-Received: by 2002:a05:6000:1b0c:: with SMTP id f12mr11053984wrz.225.1627152989926;
+        Sat, 24 Jul 2021 11:56:29 -0700 (PDT)
+Received: from pevik (gw.ms-free.net. [95.85.240.250])
+        by smtp.gmail.com with ESMTPSA id c125sm9995059wme.36.2021.07.24.11.56.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 24 Jul 2021 11:56:29 -0700 (PDT)
+Date:   Sat, 24 Jul 2021 20:56:26 +0200
+From:   Petr Vorel <petr.vorel@gmail.com>
+To:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Konrad Dybcio <konradybcio@gmail.com>,
+        Alexey Minnekhanov <alexeymin@postmarketos.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/1] arm64: dts: qcom: msm8994-angler: Disable
+ cont_splash_mem
+Message-ID: <YPxiWvUasvLFjG8e@pevik>
+Reply-To: Petr Vorel <petr.vorel@gmail.com>
+References: <20210622191019.23771-1-petr.vorel@gmail.com>
 MIME-Version: 1.0
-References: <20210601174917.1979-1-tharvey@gateworks.com> <20210601174917.1979-3-tharvey@gateworks.com>
-In-Reply-To: <20210601174917.1979-3-tharvey@gateworks.com>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Sat, 24 Jul 2021 11:21:01 -0700
-Message-ID: <CAJ+vNU1ORho1WJuTX0Rp_FrZJpenWpUcwSQZ2wWwVU2JuqLsYw@mail.gmail.com>
-Subject: Re: [PATCH 3/4] arm64: dts: imx8mm-venice-gw7901: add support for USB
- hub subload
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>
-Cc:     Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210622191019.23771-1-petr.vorel@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 1, 2021 at 10:49 AM Tim Harvey <tharvey@gateworks.com> wrote:
->
-> The USB hub has it's reset as GPIO4_IO17 but can be sub-loaded and
-> VBUS provided by a VBUS regulator with GPIO4_IO2 as the enable and
-> GPIO1_IO15 as the active-low over-current.
->
-> Enable pull-up for GPIO4_IO17 to keep hub out of reset and move VBUS
-> enable to GPIO4_IO2. Additionally enable pull-up on GPIO1_IO15 so that
-> if the hub is loaded it never over-currents.
->
-> This allows USB to work in both configurations without a device-tree
-> change.
->
-> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+Hi Bjorn,
+
+could you please queue also this fix? Angler needs it for booting.
+
+Kind regards,
+Petr
+
+> As the default definition breaks booting angler:
+> [    1.862561] printk: console [ttyMSM0] enabled
+> [    1.872260] msm_serial: driver initialized
+> D -     15524 - pm_driver_init, Delta
+
+> cont_splash_mem was introduced in 74d6d0a145835, but the problem
+> manifested after 86588296acbf ("fdt: Properly handle "no-map" field
+> in the memory region").
+
+> Disabling it because Angler's firmware does not report where the memory
+> is allocated (dmesg from downstream kernel):
+> [    0.000000] cma: Found cont_splash_mem@0, memory base 0x0000000000000000, size 16 MiB, limit 0x0000000000000000
+> [    0.000000] cma: CMA: reserved 16 MiB at 0x0000000000000000 for cont_splash_mem
+
+> Similar issue might be on Google Nexus 5X (lg-bullhead). Other MSM8992/4
+> are known to report correct address.
+
+> Fixes: 74d6d0a145835 ("arm64: dts: qcom: msm8994/8994-kitakami: Fix up
+> the memory map")
+
+> Suggested-by: Konrad Dybcio <konradybcio@gmail.com>
+> Signed-off-by: Petr Vorel <petr.vorel@gmail.com>
 > ---
->  arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-> index 5a1e9df39bec..db43ee28bdb6 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-> @@ -216,7 +216,7 @@
->                 pinctrl-0 = <&pinctrl_reg_usb2>;
->                 compatible = "regulator-fixed";
->                 regulator-name = "usb_usb2_vbus";
-> -               gpio = <&gpio4 17 GPIO_ACTIVE_HIGH>;
-> +               gpio = <&gpio4 2 GPIO_ACTIVE_HIGH>;
->                 enable-active-high;
->                 regulator-min-microvolt = <5000000>;
->                 regulator-max-microvolt = <5000000>;
-> @@ -824,8 +824,9 @@
->
->         pinctrl_reg_usb2: regusb1grp {
->                 fsl,pins = <
-> -                       MX8MM_IOMUXC_SAI1_TXD5_GPIO4_IO17       0x41
-> -                       MX8MM_IOMUXC_GPIO1_IO15_USB2_OTG_OC     0x41
-> +                       MX8MM_IOMUXC_SAI1_RXD0_GPIO4_IO2        0x41
-> +                       MX8MM_IOMUXC_SAI1_TXD5_GPIO4_IO17       0x140
-> +                       MX8MM_IOMUXC_GPIO1_IO15_USB2_OTG_OC     0x140
->                 >;
->         };
->
-> --
-> 2.17.1
->
+> Changes v3->v4:
+> * add a comment in dts (asked by Konrad)
 
-Shawn,
+> Kind regards,
+> Petr
 
-Is there anything you want changed here?
+>  arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts | 4 ++++
+>  1 file changed, 4 insertions(+)
 
-Best regards,
+> diff --git a/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts b/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
+> index ffe1a9bd8f70..c096b7758aa0 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
+> @@ -1,12 +1,16 @@
+>  // SPDX-License-Identifier: GPL-2.0-only
+>  /* Copyright (c) 2015, Huawei Inc. All rights reserved.
+>   * Copyright (c) 2016, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2021, Petr Vorel <petr.vorel@gmail.com>
+>   */
 
-Tim
+>  /dts-v1/;
+
+>  #include "msm8994.dtsi"
+
+> +/* Angler's firmware does not report where the memory is allocated */
+> +/delete-node/ &cont_splash_mem;
+> +
+>  / {
+>  	model = "Huawei Nexus 6P";
+>  	compatible = "huawei,angler", "qcom,msm8994";
