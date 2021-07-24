@@ -2,238 +2,764 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 67CCB3D48F7
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 19:56:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B24E3D4901
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 20:03:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229852AbhGXRQW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Jul 2021 13:16:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32862 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbhGXRQV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jul 2021 13:16:21 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32234C061575
-        for <devicetree@vger.kernel.org>; Sat, 24 Jul 2021 10:56:53 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1m7LtC-0006BX-5X; Sat, 24 Jul 2021 19:56:42 +0200
-Received: from pengutronix.de (unknown [IPv6:2a03:f580:87bc:d400:41cc:c65c:f580:3bde])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 1B18D657090;
-        Sat, 24 Jul 2021 17:56:39 +0000 (UTC)
-Date:   Sat, 24 Jul 2021 19:56:37 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-Cc:     Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-Subject: Re: [PATCH v4 2/2] can: m_can: Add support for transceiver as phy
-Message-ID: <20210724175637.vcslc2iewcdqnvev@pengutronix.de>
-References: <20210510052541.14168-1-a-govindraju@ti.com>
- <20210510052541.14168-3-a-govindraju@ti.com>
+        id S229609AbhGXRXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Jul 2021 13:23:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36020 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229461AbhGXRXE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 24 Jul 2021 13:23:04 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 519B860E8B;
+        Sat, 24 Jul 2021 18:03:30 +0000 (UTC)
+Date:   Sat, 24 Jul 2021 19:06:01 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Alexandru Ardelean <aardelean@deviqon.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH v2 2/4] iio: adc: Add driver for Renesas RZ/G2L A/D
+ converter
+Message-ID: <20210724190601.084d43e7@jic23-huawei>
+In-Reply-To: <20210719085840.21842-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20210719085840.21842-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <20210719085840.21842-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="aozsztylvh5w2ifj"
-Content-Disposition: inline
-In-Reply-To: <20210510052541.14168-3-a-govindraju@ti.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 19 Jul 2021 09:58:38 +0100
+Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
 
---aozsztylvh5w2ifj
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> Add ADC driver support for Renesas RZ/G2L A/D converter in SW
+> trigger mode.
+> 
+> A/D Converter block is a successive approximation analog-to-digital
+> converter with a 12-bit accuracy and supports a maximum of 8 input
+> channels.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-On 10.05.2021 10:55:41, Aswath Govindraju wrote:
-> From: Faiz Abbas <faiz_abbas@ti.com>
->=20
-> Add support for implementing transceiver node as phy. The max_bitrate is
-> obtained by getting a phy attribute.
->=20
-> Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+Hi Lad,
+
+A few additional comments inline.
+
+Thanks,
+
+Jonathan
+
 > ---
->  drivers/net/can/m_can/m_can.c          | 11 +++++++++++
->  drivers/net/can/m_can/m_can.h          |  2 ++
->  drivers/net/can/m_can/m_can_platform.c | 13 +++++++++++++
->  3 files changed, 26 insertions(+)
->=20
-> diff --git a/drivers/net/can/m_can/m_can.c b/drivers/net/can/m_can/m_can.c
-> index 3cf6de21d19c..afbecc35d3b6 100644
-> --- a/drivers/net/can/m_can/m_can.c
-> +++ b/drivers/net/can/m_can/m_can.c
-> @@ -21,6 +21,7 @@
->  #include <linux/iopoll.h>
->  #include <linux/can/dev.h>
->  #include <linux/pinctrl/consumer.h>
-> +#include <linux/phy/phy.h>
-> =20
->  #include "m_can.h"
-> =20
-> @@ -1514,6 +1515,7 @@ static void m_can_stop(struct net_device *dev)
->  static int m_can_close(struct net_device *dev)
->  {
->  	struct m_can_classdev *cdev =3D netdev_priv(dev);
-> +	int err;
-> =20
->  	netif_stop_queue(dev);
-> =20
-> @@ -1536,6 +1538,10 @@ static int m_can_close(struct net_device *dev)
->  	close_candev(dev);
->  	can_led_event(dev, CAN_LED_EVENT_STOP);
-> =20
-> +	err =3D phy_power_off(cdev->transceiver);
-> +	if (err)
-> +		return err;
-
-No need to propagate errors in the close().
-
+>  MAINTAINERS                 |   8 +
+>  drivers/iio/adc/Kconfig     |  10 +
+>  drivers/iio/adc/Makefile    |   1 +
+>  drivers/iio/adc/rzg2l_adc.c | 545 ++++++++++++++++++++++++++++++++++++
+>  4 files changed, 564 insertions(+)
+>  create mode 100644 drivers/iio/adc/rzg2l_adc.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 6c8be735cc91..6a52f9f4604c 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -15839,6 +15839,14 @@ L:	linux-renesas-soc@vger.kernel.org
+>  S:	Maintained
+>  F:	drivers/phy/renesas/phy-rcar-gen3-usb*.c
+>  
+> +RENESAS RZ/G2L A/D DRIVER
+> +M:	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> +L:	linux-iio@vger.kernel.org
+> +L:	linux-renesas-soc@vger.kernel.org
+> +S:	Supported
+> +F:	Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
+> +F:	drivers/iio/adc/rzg2l_adc.c
 > +
->  	return 0;
->  }
-> =20
-> @@ -1721,6 +1727,10 @@ static int m_can_open(struct net_device *dev)
->  	struct m_can_classdev *cdev =3D netdev_priv(dev);
->  	int err;
-> =20
-> +	err =3D phy_power_on(cdev->transceiver);
-> +	if (err)
-> +		return err;
+>  RESET CONTROLLER FRAMEWORK
+>  M:	Philipp Zabel <p.zabel@pengutronix.de>
+>  S:	Maintained
+> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+> index db0c8fb60515..af168e1c9fdb 100644
+> --- a/drivers/iio/adc/Kconfig
+> +++ b/drivers/iio/adc/Kconfig
+> @@ -887,6 +887,16 @@ config ROCKCHIP_SARADC
+>  	  To compile this driver as a module, choose M here: the
+>  	  module will be called rockchip_saradc.
+>  
+> +config RZG2L_ADC
+> +	tristate "Renesas RZ/G2L ADC driver"
+> +	depends on ARCH_R9A07G044 || COMPILE_TEST
+> +	help
+> +	  Say yes here to build support for the ADC found in Renesas
+> +	  RZ/G2L family.
 > +
->  	err =3D m_can_clk_start(cdev);
->  	if (err)
->  		return err;
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called rzg2l_adc.
+> +
+>  config SC27XX_ADC
+>  	tristate "Spreadtrum SC27xx series PMICs ADC"
+>  	depends on MFD_SC27XX_PMIC || COMPILE_TEST
+> diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
+> index f70d877c555a..d68550f493e3 100644
+> --- a/drivers/iio/adc/Makefile
+> +++ b/drivers/iio/adc/Makefile
+> @@ -82,6 +82,7 @@ obj-$(CONFIG_QCOM_PM8XXX_XOADC) += qcom-pm8xxx-xoadc.o
+>  obj-$(CONFIG_RCAR_GYRO_ADC) += rcar-gyroadc.o
+>  obj-$(CONFIG_RN5T618_ADC) += rn5t618-adc.o
+>  obj-$(CONFIG_ROCKCHIP_SARADC) += rockchip_saradc.o
+> +obj-$(CONFIG_RZG2L_ADC) += rzg2l_adc.o
+>  obj-$(CONFIG_SC27XX_ADC) += sc27xx_adc.o
+>  obj-$(CONFIG_SPEAR_ADC) += spear_adc.o
+>  obj-$(CONFIG_STX104) += stx104.o
+> diff --git a/drivers/iio/adc/rzg2l_adc.c b/drivers/iio/adc/rzg2l_adc.c
+> new file mode 100644
+> index 000000000000..033cdec9e976
+> --- /dev/null
+> +++ b/drivers/iio/adc/rzg2l_adc.c
+> @@ -0,0 +1,545 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * RZ/G2L A/D Converter driver
+> + *
+> + *  Copyright (c) 2021 Renesas Electronics Europe GmbH
+> + *
+> + * Author: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/completion.h>
+> +#include <linux/delay.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
 
-Here, don't handle the error properly.
+Add mod_devicetable.h and drop the of specific headers
+as nothing in them used directly as far as I can tell.
 
-> @@ -1781,6 +1791,7 @@ static int m_can_open(struct net_device *dev)
->  	close_candev(dev);
->  exit_disable_clks:
->  	m_can_clk_stop(cdev);
-> +	phy_power_off(cdev->transceiver);
->  	return err;
->  }
-> =20
-> diff --git a/drivers/net/can/m_can/m_can.h b/drivers/net/can/m_can/m_can.h
-> index ace071c3e58c..38cad068abad 100644
-> --- a/drivers/net/can/m_can/m_can.h
-> +++ b/drivers/net/can/m_can/m_can.h
-> @@ -28,6 +28,7 @@
->  #include <linux/iopoll.h>
->  #include <linux/can/dev.h>
->  #include <linux/pinctrl/consumer.h>
-> +#include <linux/phy/phy.h>
-> =20
->  /* m_can lec values */
->  enum m_can_lec_type {
-> @@ -82,6 +83,7 @@ struct m_can_classdev {
->  	struct workqueue_struct *tx_wq;
->  	struct work_struct tx_work;
->  	struct sk_buff *tx_skb;
-> +	struct phy *transceiver;
-> =20
->  	struct can_bittiming_const *bit_timing;
->  	struct can_bittiming_const *data_timing;
-> diff --git a/drivers/net/can/m_can/m_can_platform.c b/drivers/net/can/m_c=
-an/m_can_platform.c
-> index 599de0e08cd7..f102d532b7f0 100644
-> --- a/drivers/net/can/m_can/m_can_platform.c
-> +++ b/drivers/net/can/m_can/m_can_platform.c
-> @@ -6,6 +6,7 @@
->  // Copyright (C) 2018-19 Texas Instruments Incorporated - http://www.ti.=
-com/
-> =20
->  #include <linux/platform_device.h>
-> +#include <linux/phy/phy.h>
-> =20
->  #include "m_can.h"
-> =20
-> @@ -67,6 +68,7 @@ static int m_can_plat_probe(struct platform_device *pde=
-v)
->  	struct resource *res;
->  	void __iomem *addr;
->  	void __iomem *mram_addr;
-> +	struct phy *transceiver;
->  	int irq, ret =3D 0;
-> =20
->  	mcan_class =3D m_can_class_allocate_dev(&pdev->dev,
-> @@ -101,6 +103,16 @@ static int m_can_plat_probe(struct platform_device *=
-pdev)
->  		goto probe_fail;
->  	}
-> =20
-> +	transceiver =3D devm_phy_optional_get(&pdev->dev, NULL);
-> +	if (IS_ERR(transceiver)) {
-> +		ret =3D PTR_ERR(transceiver);
-> +		dev_err_probe(&pdev->dev, ret, "failed to get phy\n");
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/reset.h>
+> +
+> +#define DRIVER_NAME		"rzg2l-adc"
+> +
+> +#define RZG2L_ADM(n)			((n) * 0x4)
+> +#define RZG2L_ADM0_ADCE			BIT(0)
+> +#define RZG2L_ADM0_ADBSY		BIT(1)
+> +#define RZG2L_ADM0_PWDWNB		BIT(2)
+> +#define RZG2L_ADM0_SRESB		BIT(15)
+> +#define RZG2L_ADM1_TRG			BIT(0)
+> +#define RZG2L_ADM1_MS			BIT(2)
+> +#define RZG2L_ADM1_BS			BIT(4)
+> +#define RZG2L_ADM1_EGA_CLEAR		~GENMASK(13, 12)
+> +#define RZG2L_ADM2_CHSEL_CLEAR		~GENMASK(7, 0)
+
+I'd rather see these defined as _MASK and the
+inversion made explicit inline.
+
+> +#define RZG2L_ADM3_ADSMP		0x578
+> +#define RZG2L_ADM3_ADCMP		(0xe << 16)
+> +#define RZG2L_ADM3_ADIL_CLEAR		~GENMASK(31, 24)
+> +
+> +#define RZG2L_ADINT			0x20
+> +#define RZG2L_ADINT_CH_CLEAR		~GENMASK(7, 0)
+> +#define RZG2L_ADINT_CSEEN		BIT(16)
+> +#define RZG2L_ADINT_INTS		BIT(31)
+> +#define RZG2L_ADSTS			0x24
+> +#define RZG2L_ADINT_INTST_MASK		GENMASK(7, 0)
+> +#define RZG2L_ADSTS_CSEST		BIT(16)
+> +#define RZG2L_ADIVC			0x28
+> +#define RZG2L_ADIVC_DIVADC_CLEAR	~GENMASK(8, 0)
+> +#define RZG2L_ADIVC_DIVADC_4		0x4
+
+Perhaps adopt the _MASK and FIELD_PREP() approach to setting
+particular values.  That way it is obvious at the call site that
+DVADC_4 is a value within the DIVADC_MASK covered field.
+
+> +#define RZG2L_ADFIL			0x2c
+> +#define RZG2L_ADCR(n)			(0x30 + ((n) * 0x4))
+> +#define RZG2L_ADCR_AD_MASK		GENMASK(11, 0)
+> +
+> +#define RZG2L_ADC_MAX_CHANNELS		8
+> +#define RZG2L_ADC_CHN_MASK		0x7
+> +#define RZG2L_ADC_TIMEOUT		usecs_to_jiffies(1 * 4)
+> +
+> +struct rzg2l_adc_data {
+> +	const struct iio_chan_spec *channels;
+> +	u8 num_channels;
+> +};
+> +
+> +struct rzg2l_adc {
+> +	void __iomem *base;
+> +	struct clk *pclk;
+> +	struct clk *adclk;
+> +	struct reset_control *presetn;
+> +	struct reset_control *adrstn;
+> +	struct completion completion;
+> +	const struct rzg2l_adc_data *data;
+> +	u16 last_val[RZG2L_ADC_MAX_CHANNELS];
+> +};
+> +
+> +static const char * const rzg2l_adc_channel_name[] = {
+> +	"adc0",
+Is it useful to expose these as labels to userspace?
+Seems unnecessary given they map directly to the channel
+numbers.
+
+> +	"adc1",
+> +	"adc2",
+> +	"adc3",
+> +	"adc4",
+> +	"adc5",
+> +	"adc6",
+> +	"adc7",
+> +};
+> +
+> +static unsigned int rzg2l_adc_readl(struct rzg2l_adc *adc, u32 reg)
+> +{
+> +	return readl(adc->base + reg);
+> +}
+> +
+> +static void rzg2l_adc_writel(struct rzg2l_adc *adc, unsigned int reg, u32 val)
+> +{
+> +	writel(val, adc->base + reg);
+> +}
+> +
+> +static void rzg2l_adc_pwr(struct rzg2l_adc *adc, bool on)
+> +{
+> +	u32 reg;
+> +
+> +	reg = rzg2l_adc_readl(adc, RZG2L_ADM(0));
+> +	if (on)
+> +		reg |= RZG2L_ADM0_PWDWNB;
+> +	else
+> +		reg &= ~RZG2L_ADM0_PWDWNB;
+> +	rzg2l_adc_writel(adc, RZG2L_ADM(0), reg);
+> +	udelay(2);
+> +}
+> +
+> +static void rzg2l_adc_start_stop(struct rzg2l_adc *adc, bool start)
+> +{
+> +	int timeout = 5;
+> +	u32 reg;
+> +
+> +	/* stop A/D conversion */
+> +	reg = rzg2l_adc_readl(adc, RZG2L_ADM(0));
+> +	if (start)
+> +		reg |= RZG2L_ADM0_ADCE;
+> +	else
+> +		reg &= ~RZG2L_ADM0_ADCE;
+> +	rzg2l_adc_writel(adc, RZG2L_ADM(0), reg);
+> +
+> +	if (start)
+> +		return;
+> +
+> +	do {
+> +		usleep_range(100, 200);
+> +		reg = rzg2l_adc_readl(adc, RZG2L_ADM(0));
+> +		timeout--;
+> +		if (!timeout) {
+> +			pr_err("%s stopping ADC timed out\n", __func__);
+> +			break;
+> +		}
+> +	} while (((reg & RZG2L_ADM0_ADBSY) || (reg & RZG2L_ADM0_ADCE)));
+> +}
+> +
+> +static void rzg2l_set_trigger(struct rzg2l_adc *adc)
+> +{
+> +	u32 reg;
+> +
+> +	/* SW trigger */
+> +	reg = rzg2l_adc_readl(adc, RZG2L_ADM(1));
+> +	reg &= RZG2L_ADM1_EGA_CLEAR;
+> +	reg &= ~RZG2L_ADM1_BS;
+> +	reg |= RZG2L_ADM1_MS;
+> +	reg &= ~RZG2L_ADM1_TRG;
+> +	rzg2l_adc_writel(adc, RZG2L_ADM(1), reg);
+> +}
+> +
+> +static int rzg2l_adc_conversion_setup(struct rzg2l_adc *adc, u8 ch)
+> +{
+> +	u32 reg;
+> +
+> +	if (rzg2l_adc_readl(adc, RZG2L_ADM(0)) & RZG2L_ADM0_ADBSY)
+> +		return -EBUSY;
+> +
+> +	rzg2l_set_trigger(adc);
+> +
+> +	/* select channel */
+> +	reg = rzg2l_adc_readl(adc, RZG2L_ADM(2));
+> +	reg &= RZG2L_ADM2_CHSEL_CLEAR;
+> +	reg |= BIT(ch);
+> +	rzg2l_adc_writel(adc, RZG2L_ADM(2), reg);
+> +
+> +	reg = rzg2l_adc_readl(adc, RZG2L_ADM(3));
+> +	reg &= RZG2L_ADM3_ADIL_CLEAR;
+> +	reg |= RZG2L_ADM3_ADCMP;
+> +	reg |= RZG2L_ADM3_ADSMP;
+
+No loss in readability in combining the two lines above and shorter
+code is always good.  Having the mask on a separate line makes
+sense but the |= pair doesn't.
+
+What is a bit unusual here is you clear some bits then write different
+ones.  That is presumably relying on the fact that the ADCCMP part
+is always set to the same value.  That seems unwise to assume from
+a long term maintainability point of view.
+
+> +	rzg2l_adc_writel(adc, RZG2L_ADM(3), reg);
+> +
+> +	reg = rzg2l_adc_readl(adc, RZG2L_ADIVC);
+> +	reg &= RZG2L_ADIVC_DIVADC_CLEAR;
+> +	reg |= RZG2L_ADIVC_DIVADC_4;
+> +	rzg2l_adc_writel(adc, RZG2L_ADIVC, reg);
+> +
+> +	reg = rzg2l_adc_readl(adc, RZG2L_ADINT);
+> +	reg &= ~RZG2L_ADINT_INTS;
+> +	reg &= RZG2L_ADINT_CH_CLEAR;
+> +	reg |= RZG2L_ADINT_CSEEN;
+> +	reg |= BIT(ch);
+> +	rzg2l_adc_writel(adc, RZG2L_ADINT, reg);
+> +
+> +	return 0;
+> +}
+> +
+> +static int rzg2l_adc_set_power(struct iio_dev *indio_dev, bool on)
+> +{
+> +	struct device *dev = indio_dev->dev.parent;
+> +
+> +	if (on)
+> +		return pm_runtime_resume_and_get(dev);
+> +
+> +	return pm_runtime_put_sync(dev);
+> +}
+> +
+> +static int rzg2l_adc_conversion(struct iio_dev *indio_dev, struct rzg2l_adc *adc, u8 ch)
+> +{
+> +	int ret;
+> +
+> +	ret = rzg2l_adc_set_power(indio_dev, true);
+> +	if (ret)
 > +		return ret;
-
-Here you leak the memory allocated by m_can_class_allocate_dev().
-
+> +
+> +	ret = rzg2l_adc_conversion_setup(adc, ch);
+> +	if (ret) {
+> +		rzg2l_adc_set_power(indio_dev, false);
+> +		return ret;
 > +	}
 > +
-> +	if (transceiver)
-> +		mcan_class->can.bitrate_max =3D transceiver->attrs.max_link_rate;
+> +	reinit_completion(&adc->completion);
 > +
->  	priv->base =3D addr;
->  	priv->mram_base =3D mram_addr;
-> =20
-> @@ -108,6 +120,7 @@ static int m_can_plat_probe(struct platform_device *p=
-dev)
->  	mcan_class->pm_clock_support =3D 1;
->  	mcan_class->can.clock.freq =3D clk_get_rate(mcan_class->cclk);
->  	mcan_class->dev =3D &pdev->dev;
-> +	mcan_class->transceiver =3D transceiver;
-> =20
->  	mcan_class->ops =3D &m_can_plat_ops;
-> =20
-> --=20
-> 2.17.1
->=20
->
+> +	rzg2l_adc_start_stop(adc, true);
+> +
+> +	if (!wait_for_completion_timeout(&adc->completion, RZG2L_ADC_TIMEOUT)) {
+> +		rzg2l_adc_writel(adc, RZG2L_ADINT,
+> +				 rzg2l_adc_readl(adc, RZG2L_ADINT) & RZG2L_ADINT_CH_CLEAR);
+> +		rzg2l_adc_start_stop(adc, false);
+> +		rzg2l_adc_set_power(indio_dev, false);
+> +		return -ETIMEDOUT;
+> +	}
+> +
+> +	return rzg2l_adc_set_power(indio_dev, false);
+> +}
+> +
+> +static int rzg2l_adc_read_raw(struct iio_dev *indio_dev,
+> +			      struct iio_chan_spec const *chan,
+> +			      int *val, int *val2, long mask)
+> +{
+> +	struct rzg2l_adc *adc = iio_priv(indio_dev);
+> +	int ret;
+> +	u8 ch;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		if (chan->type != IIO_VOLTAGE)
+> +			return -EINVAL;
+> +
+> +		ret = iio_device_claim_direct_mode(indio_dev);
+> +		if (ret)
+> +			return ret;
+> +
+> +		ch = chan->channel & RZG2L_ADC_CHN_MASK;
+> +		ret = rzg2l_adc_conversion(indio_dev, adc, ch);
+> +		if (ret) {
+> +			iio_device_release_direct_mode(indio_dev);
+> +			return ret;
+> +		}
+> +		*val = adc->last_val[ch];
+> +		iio_device_release_direct_mode(indio_dev);
+> +
+> +		return IIO_VAL_INT;
+> +
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int rzg2l_adc_read_label(struct iio_dev *iio_dev,
+> +				const struct iio_chan_spec *chan,
+> +				char *label)
+> +{
+> +	if (chan->channel >= RZG2L_ADC_MAX_CHANNELS)
+> +		return -EINVAL;
+> +
+> +	return snprintf(label, PAGE_SIZE, "%s\n", rzg2l_adc_channel_name[chan->channel]);
 
-I've send a v5 fixing these problems.
+sysfs_emit()?.
 
-regards,
-Marc
+> +}
+> +
+> +static const struct iio_info rzg2l_adc_iio_info = {
+> +	.read_raw = rzg2l_adc_read_raw,
+> +	.read_label = rzg2l_adc_read_label,
+> +};
+> +
+> +static irqreturn_t rzg2l_adc_isr(int irq, void *dev_id)
+> +{
+> +	struct rzg2l_adc *adc = (struct rzg2l_adc *)dev_id;
+> +	u8 intst;
+> +	u32 reg;
+> +	u8 i;
+> +
+> +	reg = rzg2l_adc_readl(adc, RZG2L_ADSTS);
+> +	if (reg & RZG2L_ADSTS_CSEST) {
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+Probably good to add a brief comment on what is going on in this check.
+Perhaps even an error print if it's an error path.
 
---aozsztylvh5w2ifj
-Content-Type: application/pgp-signature; name="signature.asc"
+> +		rzg2l_adc_writel(adc, RZG2L_ADSTS, reg);
+> +		return IRQ_HANDLED;
+> +	}
+> +
+> +	intst = reg & RZG2L_ADINT_INTST_MASK;
+> +	if (!intst)
 
------BEGIN PGP SIGNATURE-----
+I'm guessing this means spurious interrupt in which case IRQ_NONE
+so the core irq code knows about it.
 
-iQEzBAABCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAmD8VFMACgkQqclaivrt
-76lU3Af6A5JrBDeFGF/y9LtAa9s/HuuJtW5am23+tonZTKV2LwpFZlxSR18/e9of
-ZpdHaLJf+XBo33FxQKc32zvHg+4u+d2qgfkrAJrqaSadRx0V3nwm08Ab/QBc4LPM
-gO99CqSvRUGZkmhiFMQ51u5WQHQ1VDS4UszqAcyuyZ7JIlwUE2/tzDU0/Ovmu6kO
-yuRIOHZuhEO8bHP26u1/4iZOpOhRfC9xg70/HeXZvwGQmLXLLZzXQJVY1+mPEjkn
-us6tglOHQO/SWugT8xwSxGydys3NN92aB+xxsmsd97det544z0wEjjS4d6gJYSaN
-/psJgaQEDFCttcrHRUMT4XfxylnhxA==
-=uHbx
------END PGP SIGNATURE-----
+> +		return IRQ_HANDLED;
+> +
+> +	for (i = 0; i < RZG2L_ADC_MAX_CHANNELS; i++) {
+> +		if (intst & BIT(i))
 
---aozsztylvh5w2ifj--
+for_each_bit_set() and make intst a long so the types are right for
+that macro
+
+
+> +			adc->last_val[i] = rzg2l_adc_readl(adc, RZG2L_ADCR(i)) & RZG2L_ADCR_AD_MASK;
+> +	}
+> +
+> +	rzg2l_adc_writel(adc, RZG2L_ADSTS, reg);
+> +
+> +	complete(&adc->completion);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int rzg2l_adc_parse_of(struct platform_device *pdev, struct rzg2l_adc *adc)
+> +{
+> +	struct iio_chan_spec *chan_array;
+> +	struct fwnode_handle *fwnode;
+> +	struct rzg2l_adc_data *data;
+> +	unsigned int channel;
+> +	int num_channels;
+> +	int ret;
+> +	u8 i;
+> +
+> +	data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	num_channels = device_get_child_node_count(&pdev->dev);
+> +	if (!num_channels) {
+> +		dev_err(&pdev->dev, "no channel children\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	if (num_channels > RZG2L_ADC_MAX_CHANNELS) {
+> +		dev_err(&pdev->dev, "num of channel children out of range\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	chan_array = devm_kcalloc(&pdev->dev, num_channels, sizeof(*chan_array),
+> +				  GFP_KERNEL);
+> +	if (!chan_array)
+> +		return -ENOMEM;
+> +
+> +	i = 0;
+> +	device_for_each_child_node(&pdev->dev, fwnode) {
+> +		ret = fwnode_property_read_u32(fwnode, "reg", &channel);
+> +		if (ret)
+> +			return ret;
+> +
+> +		if (channel >= RZG2L_ADC_MAX_CHANNELS)
+> +			return -EINVAL;
+> +
+> +		chan_array[i].type = IIO_VOLTAGE;
+> +		chan_array[i].indexed = 1;
+> +		chan_array[i].channel = channel;
+> +		chan_array[i].info_mask_separate = BIT(IIO_CHAN_INFO_RAW);
+> +		chan_array[i].datasheet_name = rzg2l_adc_channel_name[channel];
+> +		i++;
+> +	}
+> +
+> +	data->num_channels = num_channels;
+> +	data->channels = chan_array;
+> +	adc->data = data;
+> +
+> +	return 0;
+> +}
+> +
+> +static int rzg2l_adc_sw_reset(struct rzg2l_adc *adc)
+> +{
+> +	int timeout = 5;
+> +	u32 val;
+> +
+> +	val = rzg2l_adc_readl(adc, RZG2L_ADM(0));
+> +	val |= RZG2L_ADM0_SRESB;
+> +	rzg2l_adc_writel(adc, RZG2L_ADM(0), val);
+> +
+> +	while (!(rzg2l_adc_readl(adc, RZG2L_ADM(0)) & RZG2L_ADM0_SRESB)) {
+> +		if (!timeout)
+> +			return -EBUSY;
+> +		timeout--;
+> +		usleep_range(100, 200);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int rzg2l_adc_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct iio_dev *indio_dev;
+> +	struct rzg2l_adc *adc;
+> +	int ret;
+> +	int irq;
+> +
+> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*adc));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	adc = iio_priv(indio_dev);
+> +
+> +	ret = rzg2l_adc_parse_of(pdev, adc);
+
+*_parse_properties() or *_parse_firmware()
+as it's not of specific now.
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	adc->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(adc->base))
+> +		return PTR_ERR(adc->base);
+> +
+> +	irq = platform_get_irq(pdev, 0);
+> +	if (irq < 0) {
+> +		dev_err(dev, "no irq resource\n");
+> +		return irq;
+> +	}
+> +
+> +	adc->pclk = devm_clk_get(dev, "pclk");
+> +	if (IS_ERR(adc->pclk)) {
+> +		dev_err(dev, "Failed to get pclk");
+> +		return PTR_ERR(adc->pclk);
+> +	}
+> +
+> +	adc->adclk = devm_clk_get(dev, "adclk");
+> +	if (IS_ERR(adc->adclk)) {
+> +		dev_err(dev, "Failed to get adclk");
+> +		return PTR_ERR(adc->adclk);
+> +	}
+> +
+> +	adc->adrstn = devm_reset_control_get_exclusive(dev, "adrst-n");
+> +	if (IS_ERR(adc->adrstn)) {
+> +		dev_err(dev, "failed to get adrstn\n");
+> +		return PTR_ERR(adc->adrstn);
+> +	}
+> +
+> +	adc->presetn = devm_reset_control_get_exclusive(dev, "presetn");
+> +	if (IS_ERR(adc->presetn)) {
+> +		dev_err(dev, "failed to get presetn\n");
+> +		return PTR_ERR(adc->presetn);
+> +	}
+> +
+> +	ret = reset_control_deassert(adc->adrstn);
+> +	if (ret)
+> +		return ret;
+
+devm_add_action_or_reset() here to make the reasserting of these part
+of the automated cleanup.
+
+> +
+> +	ret = reset_control_deassert(adc->presetn);
+> +	if (ret)
+> +		goto assert_adrstn;
+> +
+> +	ret = clk_prepare_enable(adc->pclk);
+> +	if (ret)
+> +		goto assert_presetn;
+> +
+> +	ret = rzg2l_adc_sw_reset(adc);
+> +	if (ret)
+> +		goto unprepare_pclk;
+> +
+> +	clk_disable_unprepare(adc->pclk);
+
+As below, reorder as:
+
+	ret = rzg2l_adc_sw_reset(adc);
+	clk_disable_unprepare(adc->pclk);
+	if (ret)
+		goto assert_preset_n;
+
+> +
+> +	init_completion(&adc->completion);
+> +
+> +	platform_set_drvdata(pdev, indio_dev);
+> +
+> +	ret = devm_request_irq(dev, irq, rzg2l_adc_isr,
+> +			       0, dev_name(dev), adc);
+
+Another aspect of the comment below about mixing and matching between
+devm and not.  If the order of remove is not that opposite of probe
+then there should be a comment saying why.  There are far too many
+race conditions introduced by people doing things in a different order
+without carefully considering why.
+
+> +	if (ret < 0)
+> +		goto assert_presetn;
+> +
+> +	indio_dev->name = DRIVER_NAME;
+> +	indio_dev->info = &rzg2l_adc_iio_info;
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +	indio_dev->channels = adc->data->channels;
+> +	indio_dev->num_channels = adc->data->num_channels;
+> +
+> +	pm_runtime_enable(dev);
+> +
+> +	ret = devm_iio_device_register(dev, indio_dev);
+> +	if (ret)
+> +		goto err_iio_device_register;
+> +
+> +	return 0;
+> +
+> +unprepare_pclk:
+> +	clk_disable_unprepare(adc->pclk);
+
+Bad sign that you have this here and not in remove..
+When you have cases like this, it's normally better to
+either factor out the relevant code into a function
+that lets you do this call whether or not there is an
+error, or to just move this up to the relevant if statements.
+
+
+> +err_iio_device_register:
+> +	pm_runtime_disable(dev);
+> +assert_presetn:
+> +	reset_control_assert(adc->presetn);
+> +assert_adrstn:
+> +	reset_control_assert(adc->adrstn);
+> +	return ret;
+> +}
+> +
+> +static int rzg2l_adc_remove(struct platform_device *pdev)
+> +{
+> +	struct iio_dev *indio_dev = platform_get_drvdata(pdev);
+> +	struct rzg2l_adc *adc = iio_priv(indio_dev);
+> +
+> +	reset_control_assert(adc->presetn);
+> +	reset_control_assert(adc->adrstn);
+> +	pm_runtime_disable(indio_dev->dev.parent);
+
+You can't mix and match devm managed and unmanaged like this.
+The userspace interfce is still exposed after you've put the
+device into reset which is unlikely to be a good idea.
+
+One option is to use devm_add_action_or_reset() to make
+this stuff happen in the managed flow, which happens after
+remove is done.  That would let you drop remove() entirely.
+
+
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id rzg2l_adc_match[] = {
+> +	{ .compatible = "renesas,rzg2l-adc",},
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, rzg2l_adc_match);
+> +
+> +static int __maybe_unused rzg2l_adc_pm_runtime_suspend(struct device *dev)
+> +{
+> +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+> +	struct rzg2l_adc *adc = iio_priv(indio_dev);
+> +
+> +	rzg2l_adc_pwr(adc, false);
+> +	clk_disable_unprepare(adc->adclk);
+> +	clk_disable_unprepare(adc->pclk);
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused rzg2l_adc_pm_runtime_resume(struct device *dev)
+> +{
+> +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+> +	struct rzg2l_adc *adc = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	ret = clk_prepare_enable(adc->pclk);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = clk_prepare_enable(adc->adclk);
+> +	if (ret)
+> +		return ret;
+> +
+> +	rzg2l_adc_pwr(adc, true);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct dev_pm_ops rzg2l_adc_pm_ops = {
+> +	SET_RUNTIME_PM_OPS(rzg2l_adc_pm_runtime_suspend,
+> +			   rzg2l_adc_pm_runtime_resume,
+> +			   NULL)
+> +};
+> +
+> +static struct platform_driver rzg2l_adc_driver = {
+> +	.probe		= rzg2l_adc_probe,
+> +	.remove		= rzg2l_adc_remove,
+> +	.driver		= {
+> +		.name		= DRIVER_NAME,
+> +		.of_match_table = rzg2l_adc_match,
+> +		.pm		= &rzg2l_adc_pm_ops,
+> +	},
+> +};
+> +
+> +module_platform_driver(rzg2l_adc_driver);
+> +
+> +MODULE_AUTHOR("Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>");
+> +MODULE_DESCRIPTION("Renesas RZ/G2L ADC driver");
+> +MODULE_LICENSE("GPL v2");
+
