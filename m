@@ -2,231 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA8B63D4767
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 13:25:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBC673D47A7
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 14:36:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232093AbhGXKpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Jul 2021 06:45:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60396 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231922AbhGXKpS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jul 2021 06:45:18 -0400
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99151C061575;
-        Sat, 24 Jul 2021 04:25:49 -0700 (PDT)
-Received: by mail-ot1-x332.google.com with SMTP id f20-20020a9d6c140000b02904bb9756274cso4733159otq.6;
-        Sat, 24 Jul 2021 04:25:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Wmho9+Wg/RJHAISJdsior3XXLcEk7YEvFee8MxRP09k=;
-        b=sBD4JZJyWmX6lsJDfGpjMimE5kudyumm+g9ej2RbDy+wldPtx+AOWP1CP9pzLNSnCt
-         fniZmpcjSyXySqZMR+CI7yIbOq6xNSpN7pz71BmiK4TJfTF8hKm9GVP8buPkk4nWuimA
-         yvgd5GfIp6GEfVcYkg5tSUf2i+2jpOXoLqhMox93HF0V528bcDtlaG4/cE2Zshf5tdfW
-         88Som5LckR0nEdi+wwwVL2uo5KYN7CPpZRgVvuxM6c8QEu/FVXW2BhZOnB5HpwqYqndy
-         uVvluUxjBI53gK+1dPEDmKefXtkMymgMoacRCF1AwItOycd0FteeVK1bTVXxAkR8pHo3
-         Bd+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Wmho9+Wg/RJHAISJdsior3XXLcEk7YEvFee8MxRP09k=;
-        b=f3oCgdAygLb+G/KJjZFHCKJ4sBuMqpJcL5FkCHlrmjGD6zQ+Xh3DDV7K8yZ3J2CSD9
-         A8Nk/KhdCC2EWmtah3v79EE3Wn/CL0JuOxqaLIOwXhAYQ3SGcWRIyu08XTAL4P0k1g+2
-         A+ISeSIrVkVB6b+RnEDO7Ig21grdpSDabW5WmbFzFKihoXwPMZI1myzEIwRem5Egb1OK
-         B2lzwXOpSdFuculpqetfHVKocmyEiIG8Cl6zFhWlhBvmcvjhBaEErxAk8NdDAKNBFDnp
-         US3gCbp4PNPDr+EZNk76TX6euLPupl7v2Sos4/ZatZ1mjwSI4tOg1jCd8kIBjoXUivxy
-         +09w==
-X-Gm-Message-State: AOAM532eWDBXqWDevStAaBJcebfbthX0DSjVbUXCruoTEDIZmXY9n85T
-        95OYMCA3UJ/uYfeIcZcQeKpoOapnkXhrgnMvFNk=
-X-Google-Smtp-Source: ABdhPJxWgrDKgFnxb3wKdHMq7ugLW3b0qOd75IBA+QSiFRt4LAmH1DY21+1lfsI6y1v/C7JczAcLz3MBghtlQjbR88E=
-X-Received: by 2002:a9d:6d83:: with SMTP id x3mr5656396otp.110.1627125949017;
- Sat, 24 Jul 2021 04:25:49 -0700 (PDT)
+        id S232166AbhGXLz7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Jul 2021 07:55:59 -0400
+Received: from mail-db8eur05on2064.outbound.protection.outlook.com ([40.107.20.64]:14624
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231511AbhGXLz7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 24 Jul 2021 07:55:59 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DPfAgbCWk1LCUzpeOTgQjjzeul8raJhdzuWsRPE22Df7NUHbdhw4hwq0HQMsLZVg4vx6BAGXBTQbCx4HhmFUT9xNNvYOcwUQ7sgV88DkuMARs8pyyi3Wh7a5FuGzGIFHEnTNZUvTqhTGlmM742KjAkSj8lNQdFSNlC6c98KXPHXanK1XjeYDQeLdivz2p65olhoJvYgGlAbodtxSsIK3I24On+LGC5TFaU89wnSEyW+BmjfcbC7IUcGoVkO/q1d1UPWsxx6x9T7mVRPuH0BlKqXayn4lW/sWXcF9mkYppz4/Y4aCWSHbywlwkF0um/VGqg820Y+unM9xZp9RpPEkyw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2xT0R7UfrEk0wVNEjNcEKA/u9GuuqYjYLyNvvh89UPo=;
+ b=Kx426kdUoQruijK5LooqloohMcQWm7mk8Nb8nsoFC1PwVOf54BUOAFzxJqu2/syQaZ4JjUB/Yj3WjTNgud3X5GuABzEUQfBmezrOFPuxnw2Hms7cdalQisshtl+ZMAc6GopnF65ifl3cS5OHrzGtzVcxB0mpBNO/9EZgxZ/29r93LALAavHpAojB7itfqpBmkevamJtnLGtf411tFXxBKYuoX1aRtKEvKehNLFCF4JI/JfKxCocemmadnH4GDXcyFJ06XAOrxAbQWD+rzO2Qhma2IjwyRnBE/Qit3/aw+IjKo3CIbVs91Uc89UdNaXr9rKq+Ozz4LqzO77DvIumAWA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2xT0R7UfrEk0wVNEjNcEKA/u9GuuqYjYLyNvvh89UPo=;
+ b=BXhnDZUgamI373MNqCkTce03u1UjYCATYSgu6lRtJisjo07rJwBmFqTxYUhHbxLXDKEESmukKVGfh1OkpJVPGDpJIh3S7z/X3/WkcbRzNfNydgjSw2C76IFzhR1+et5iYoGc4e4mkdArT6vOiOnEqjz71db3OOrG0v1hN3Sd9ZU=
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
+ by DB8PR04MB7179.eurprd04.prod.outlook.com (2603:10a6:10:124::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4352.25; Sat, 24 Jul
+ 2021 12:36:27 +0000
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::c445:d742:eb76:86dd]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::c445:d742:eb76:86dd%9]) with mapi id 15.20.4331.035; Sat, 24 Jul 2021
+ 12:36:27 +0000
+From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To:     Arnd Bergmann <arnd@arndb.de>,
+        =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+CC:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Subject: RE: [PATCH 2/3] syscon: add support for "syscon-smc" compatible
+Thread-Topic: [PATCH 2/3] syscon: add support for "syscon-smc" compatible
+Thread-Index: AQHXf8p3RWr7/P8EwUqhR+4nxzCwZKtQuigAgAFWDhA=
+Date:   Sat, 24 Jul 2021 12:36:27 +0000
+Message-ID: <DB6PR0402MB2760A70606BEC3B9B7CBC5BB88E69@DB6PR0402MB2760.eurprd04.prod.outlook.com>
+References: <20210723135239.388325-1-clement.leger@bootlin.com>
+ <20210723135239.388325-3-clement.leger@bootlin.com>
+ <CAK8P3a1stoM2zRpkEBOLSFRxPy6Tabn6NgO-1sVRL4uq3wudaQ@mail.gmail.com>
+In-Reply-To: <CAK8P3a1stoM2zRpkEBOLSFRxPy6Tabn6NgO-1sVRL4uq3wudaQ@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: arndb.de; dkim=none (message not signed)
+ header.d=none;arndb.de; dmarc=none action=none header.from=oss.nxp.com;
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: f40aad5e-4f68-4e8e-b412-08d94e9fa829
+x-ms-traffictypediagnostic: DB8PR04MB7179:
+x-ms-exchange-sharedmailbox-routingagent-processed: True
+x-microsoft-antispam-prvs: <DB8PR04MB7179E9B9F4F49676B000319BC9E69@DB8PR04MB7179.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 7775bq2ARFCVr0+zGPxksMJrbYco90qYfdB7Z6SOS6sEyOznmgfJCDmgmHnPEQWCTyQgyjZem1BHf5pKnisro/LyifPOkqk41NeAlnhj38KtjTTTW9mRCuq5FXQNp4sMEleiif/mAccqy3I2F77UTYj2fEotj6AdKPnbAs/LL7MgEmFQLXB+opjmkr6kJSYgLEntQayt5g8p2V+Ea9WjHALY+p4RQsN1S+nIZ6s1Q1a7RediIkF2xtiNLTplPmQHHJxMoAmMofzz+n26y0LxjmSGYAqs/NeFXHneGJHgdU+5hoZy5K8TmhEYK0ur38iNJe5LTtZm2B2tRiG3FIqW34kNAVg4Ja33K7Z/uNz4O0VGiG6/cT72APrOnMIXFqqWI7Gq50Gf/MVCgmyBHsf5y2REtFHjkSBMIG4ILm+imt4lK9emeqo0BhebovLOZ5jN9hWKojDUI1WLT/xmmpuLUiIr7uSh8tQVblkIX0fFeX3aXLmvK/11EQeNs1oXzRTEpXBNB5pZpSj7P+0eUXqbaFEhPpd8CdfUg/5QevsKgeIl/1EX9ns3VhS1SC68Sob8BUM3O84RHS8APAWK+fB8vrKCEDIwMHot3c64czU7uwlxXhay8PZGi/z5TFkSJvk17aSlOiV2o6rDtGVyK9SVHIYXNRHVSQjS0yjU7tPHHkR/Yd5MdyAkDwnhCh5MJzWGwIjAEfRe63tqKfymO7X2Uw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(396003)(39850400004)(376002)(136003)(366004)(186003)(7696005)(26005)(83380400001)(6506007)(53546011)(478600001)(33656002)(54906003)(66446008)(66946007)(66476007)(64756008)(71200400001)(7416002)(4326008)(38100700002)(76116006)(316002)(110136005)(2906002)(55016002)(5660300002)(8676002)(52536014)(66556008)(122000001)(8936002)(86362001)(9686003)(66574015)(38070700004);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SncxRlJ1NkVxVVRkVndsVmgxVGxXaUMrWkwwTFlCMmlDbmhqSGNaQ0JBcC84?=
+ =?utf-8?B?c0RVMlZKRUZYMDZ1eUVtd0pORENGQTdoUW5mWWl4T2FHY0Y1NkNEbjZLQU1X?=
+ =?utf-8?B?ZDNwZEZITVhJWmsyd0pmVzF0Y2dOVFZ5Sml0NHk0dXo2Y0hSYmk3M1NBSXZM?=
+ =?utf-8?B?c0hoeG02WUJKYjZhZWIvRWdTZVlrSHhuZURSL2kwSWc3ZHRTL1RLY2JpOUVR?=
+ =?utf-8?B?RUJDSEhIVnkrTHU0R1QzOENTVmM5L2VKKzg0N1orVXhqVHQ2eElZNURGRzlI?=
+ =?utf-8?B?Z2ZzQmxrMnN5eHlidCtZY2wvOTA1STdaWXJpKy9mS3NxWURCVUxJbmJQaG52?=
+ =?utf-8?B?WFpHUElGZGluUDhha0FGNjd0STlKaXhsdi81cU85c3dVYjVBZDcyR3lpb29P?=
+ =?utf-8?B?b2E5Tmt2UFF3Q0YxaXN1VEphWTBoRlZvY0xJYndNbEJBdUsyN09MV2thV2F1?=
+ =?utf-8?B?TnRGdmdGeWtlZmhWWWpHTVhyZkxGOXY1UDZjbGh5YzVVRGJ2bDFRdTN3NWpj?=
+ =?utf-8?B?dW51Y1JvM204d3NoZ2VOQ2s4bXVpZjJKdVN2QzdlSjlnRWU2VnhSV0N0eEtl?=
+ =?utf-8?B?QTMveDZJTDZGS1hoZUFaZG9QR0hlamMzV0s4MWNTN1B3WFJDM21ESHFqbllw?=
+ =?utf-8?B?cWc3SmhFYkM3SGt2YlFzU0UxSnpkQ2xPN3Nydm9JcWlMc3ZPQ2NUN1I5Ri9a?=
+ =?utf-8?B?U3lZV08zMFhKa1FrMUlKYk41VTdUbGxHcmJiUGZrNVZ5V25JVVVPTDF4M3J4?=
+ =?utf-8?B?U0J5Y3BWSWozbERpaDlZWWFOWjRLRGlGYndBaDh3WFRiR3l4WVUzN0w3UW5H?=
+ =?utf-8?B?NS9DbzZROTUxMFdCRk1waUZTeXdsOWhZTVVLOU1Zdm9ULzBTdDdpQXMxbkFp?=
+ =?utf-8?B?YUo5YzcwOFFTdDNNMFZrYSt4bjV0eDlZcmdUbDJQTmpuVXVXSmlrRzMxUmdm?=
+ =?utf-8?B?VjFub0pWR0tTR2VpQUtrQ21ybWdWdkF3bEdqT20wbVBXSEVCbytHbzBUVXRt?=
+ =?utf-8?B?ejRDUkdZWXJjRDVHQmVXV25YTmV3bncwVzdyZDkzSk9tOE5vZnBMY1RzcHpO?=
+ =?utf-8?B?eU5Wa1pkRzI3Q3dsM3lLQ0RNamdsUGplODFXK2Vsd1NVcGlLUjB4RFhUTFdL?=
+ =?utf-8?B?RytRb3JMRGQ5eUxZWUZlYWtodlAxUkZ6V3dLQVBmeitLc2IwRHhkcFJ2blV4?=
+ =?utf-8?B?WERmWWk0eExtUFFBTjZ4UW44WkhlL3V1ZjA1N2J6ZzEzdXdQS2dhOGhUZ21o?=
+ =?utf-8?B?V1U0bm1uM1F5VTA4cFN2dHVucm1FRXlPRkRYU1N5VjdLeXpDNk5nZThPemg0?=
+ =?utf-8?B?OEZneGhyT0M0R1E0ZTlYZmxTU0VOWHVnQTRkY244NzlFSnFkSld2NWpCZ3gr?=
+ =?utf-8?B?ZmZtTFIwREpIc0RCVkE3YVF1RlVRV25sTURKM2dPMm53c2pHd3hSL25oamJm?=
+ =?utf-8?B?ZXZRTU1GZ3hRMHZpVitKNU53RDc4VnR4bTRRZEJnZ1dLTWZWMXVHbnpJMmc2?=
+ =?utf-8?B?NWFtM092VVJjcDdaSnVEZTk3L0xRWnRBR3pMUmNDNjBvWTllUXJHL1VzV040?=
+ =?utf-8?B?RzNPVHVHTDl0UVdhNTdBZ25nRWNOK2pkcUtCNlZHVzVhMVY2b3NOdU1QSjl6?=
+ =?utf-8?B?MU5OaktaSFcrVGViVVVYbFRoVlRjNEpOamE3anUwL3VnVk0zQ3lTc1NzTVlo?=
+ =?utf-8?B?Z2k1Vno0cnZtZ3UvaDB1SkUzdW5qWlZwSmZoY0swc1hxbXZmVEZTLy9jQ3pG?=
+ =?utf-8?Q?+gK9N6gCsvD9uv2l717j4PARGkhFx7nKQkgnD5D?=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20210719145317.79692-1-stephan@gerhold.net> <20210719145317.79692-5-stephan@gerhold.net>
- <CAMZdPi8oxRMo0erfd0wrUPzD2UsbexoR=86u2N75Fd9RpXHoKg@mail.gmail.com> <YPmRcBXpRtKKSDl8@gerhold.net>
-In-Reply-To: <YPmRcBXpRtKKSDl8@gerhold.net>
-From:   Sergey Ryazanov <ryazanov.s.a@gmail.com>
-Date:   Sat, 24 Jul 2021 14:25:59 +0300
-Message-ID: <CAHNKnsQr4Ys8q3Ctru-H=L3ZDwb__2D3E08mMZchDLAs1KetAg@mail.gmail.com>
-Subject: Re: [RFC PATCH net-next 4/4] net: wwan: Add Qualcomm BAM-DMUX WWAN
- network driver
-To:     Stephan Gerhold <stephan@gerhold.net>,
-        Loic Poulain <loic.poulain@linaro.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Johannes Berg <johannes@sipsolutions.net>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Aleksander Morgado <aleksander@aleksander.es>,
-        Network Development <netdev@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dmaengine@vger.kernel.org, devicetree <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f40aad5e-4f68-4e8e-b412-08d94e9fa829
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Jul 2021 12:36:27.5978
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: FLWUy24HyeHuyE/67LQwnhfutKtD6afg4+Q7xR+D4XOpccIoAX/7eKVMsa/72PPC2d/aeczxDp8jT3bHCGCV2A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB7179
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 22, 2021 at 6:40 PM Stephan Gerhold <stephan@gerhold.net> wrote:
-> On Mon, Jul 19, 2021 at 06:01:33PM +0200, Loic Poulain wrote:
->> On Mon, 19 Jul 2021 at 17:01, Stephan Gerhold <stephan@gerhold.net> wrote:
->>> I'm not sure how to integrate the driver with the WWAN subsystem yet.
->>> At the moment the driver creates network interfaces for all channels
->>> announced by the modem, it does not make use of the WWAN link management
->>> yet. Unfortunately, this is a bit complicated:
->>>
->>> Both QMAP and the built-in multiplexing layer might be needed at some point.
->>> There are firmware versions that do not support QMAP and the other way around
->>> (the built-in multiplexing was disabled on very recent firmware versions).
->>> Only userspace can check if QMAP is supported in the firmware (via QMI).
->>>
->>> I could ignore QMAP completely for now but I think someone will show up
->>> who will need this eventually. And if there is going to be common code for
->>> QMAP/rmnet link management it would be nice if BAM-DMUX could also make
->>> use of it.
->>
->> I have this on my TODO list for mhi-net QMAP.
->
-> Great, thanks!
->
->>> But the question is, how could this look like? How do we know if we should
->>> create a link for QMAP or a BAM-DMUX channel? Does it even make sense
->>> to manage the 1-8 channels via the WWAN link management?
->>
->> Couldn't it be specified via dts (property or different compatible
->> string)?
->
-> It would probably work in most cases, but I have to admit that I would
-> prefer to avoid this for the following reason: This driver is used on
-> some smartphones that have different variants for different parts of the
-> world. As far as Linux is concerned the hardware is pretty much
-> identical, but the modem firmware is often somewhat device-specific.
->
-> This means that the same device tree is often used with different
-> firmware versions. Perhaps we are lucky enough that the firmware
-> versions have the same capabilities, but I'm not fully sure about that.
->
-> I think at the end the situation is fairly similar to qmi_wwan/USB.
-> There the kernel also does not know if the modem supports QMAP or not.
-> The way it's solved there at the moment is that ModemManager tries to
-> enable it from user space and then the mode of the network interface
-> can be switched through a sysfs file ("qmi/pass_through").
->
-> Something like this should probably also work in my case. This should
-> also allow me to ignore QMAP for now and deal with it if someone really
-> needs it at some point since it's quite complicated for BAM-DMUX.
-> (I tried QMAP again today and listed the problems in [1] for reference,
->  but it's all BAM-DMUX specific...)
->
-> [1] https://lore.kernel.org/netdev/YPmF8bzevuabO2K9@gerhold.net/
->
->> would it make sense to have two drivers (with common core) to
->> manage either the multi-bam channel or newer QMAP based single
->> bam-channel modems.
->
-> There should be fairly little difference between those two usage modes,
-> so I don't think it's worth splitting the driver for this. Actually
-> right now (ignoring the link management of the WWAN subsystem),
-> it's already possible to use both.
->
-> I can use the network interfaces as-is in Raw-IP mode or I do
-> "sudo ip link add link rmnet0 name rmnet0_qmap type rmnet mux_id 1"
-> on top and use QMAP. The BAM-DMUX driver does not care, because it
-> just hands over sent/received packets as-is and the modem data format
-> must be always configured via QMI from user space.
->
->>> Another problem is that the WWAN subsystem currently creates all network
->>> interfaces below the common WWAN device. This means that userspace like
->>> ModemManager has no way to check which driver provides them. This is
->>> necessary though to decide how to set it up via QMI (ModemManager uses it).
->>
->> Well, I have quite a similar concern since I'm currently porting
->> mhi-net mbim to wwan framework, and I was thinking about not making
->> wwan device parent of the network link/netdev (in the same way as
->> wlan0 is not child of ieee80211 device), but not sure if it's a good
->> idea or not since we can not really consider driver name part of the
->> uapi.
->
-> Hm, I think the main disadvantage of that would be that the network
-> interface is no longer directly related to the WWAN device, right?
-> Userspace would then need some special matching to find the network
-> interfaces that belong to a certain control port.
->
-> With the current setup, e.g. ModemManager can simply match the WWAN
-> device and then look at its children and find the control port and
-> network interfaces. How would it find the network interfaces if they are
-> no longer below the WWAN device?
->
-> > The way links are created is normally abstracted, so if you know which
-> > bam variant you have from wwan network driver side (e.g. via dts), you
-> > should have nothing to check on the user side, except the session id.
->
-> In a perfect world it would probably be like this, but I'm afraid the
-> Qualcomm firmware situation isn't as simple. User space needs to know
-> which setup it is dealing with because all the setup happens via QMI.
->
-> Let's take the BAM-DMUX channels vs QMAP mux-IDs for example:
->
-> First, user space needs to configure the data format. This happens with
-> the QMI WDA (Wireless Data Administrative Service) "Set Data Format"
-> message. Parameter would be link layer format (Raw-IP in both cases)
-> but also the uplink/downlink data aggregation protocol. This is either
-> one of many QMAP versions (qmap|qmapv2|qmapv3|qmapv4|qmapv5), or simply
-> "none" when using BAM-DMUX without QMAP.
->
-> Then, the "session ID" (= BAM-DMUX channel or QMAP mux-ID) must be bound
-> to a WDS (Wireless Data Service) session. The QMI message for that is
-> different for BAM-DMUX and QMAP:
->
->   - BAM-DMUX: WDS "Bind Data Port"
->       (Parameter: SIO port number, can be derived from channel ID)
->
->   - QMAP: WDS "Bind MUX Data Port" (note the "MUX", different message!)
->       (Parameter: MUX ID, port type (USB/embedded/...), port number)
->
-> My point here: Since userspace is responsible for QMI at the moment
-> we will definitely need to make it aware of the setup that it needs to
-> apply. Just having an abstract "session ID" won't be enough to set up
-> the connection properly. :/
-
-Stephan, Loic, I have a polemic question related to a drivers model
-that we should build to smoothly support qualcomm hardware by the
-kernel. I would depict the situation as I see it and then ask the
-question. Please correct me if I am misunderstanding something or
-simply wrong. Or maybe you will be gracious once more and point me to
-earlier discussions :)
-
-We always talk that a userspace software should take care of
-multiplexing configuration to make data communication possible at all.
-The motivation here is simple - management protocol (QMI) is complex,
-userspace software must implement it anyway to manage network
-connectivity, so why not implement the multiplexing management there
-too?
-
-This way the userspace software that should simply command a "modem"
-to establish a data connection and poll a "modem" for a signal level
-became a self contained device manager that knows all modem-to-host
-interconnection details and even must to perform an initial
-modem-to-host interfaces negotiation and configuration. The last task
-is what userspace software usually expects to be performed by an OS
-kernel.
-
-But what if we implement the QMI multiplexing management part in the
-kernel? This way the kernel will take care about modem-to-host
-communication protocols and interfaces, and provides userspace with a
-single WWAN device (possibly with multiple network and network
-management interfaces).
-
-I do not propose to fully implement QMI protocol inside the kernel,
-but implement only a mux management part, while passing all other
-messages between a "modem" and a userspace software as-is.
-
-What pros and cons of such a design do you see?
-
--- 
-Sergey
+PiBTdWJqZWN0OiBSZTogW1BBVENIIDIvM10gc3lzY29uOiBhZGQgc3VwcG9ydCBmb3IgInN5c2Nv
+bi1zbWMiIGNvbXBhdGlibGUNCj4gDQo+IE9uIEZyaSwgSnVsIDIzLCAyMDIxIGF0IDM6NTIgUE0g
+Q2zDqW1lbnQgTMOpZ2VyIDxjbGVtZW50LmxlZ2VyQGJvb3RsaW4uY29tPg0KPiB3cm90ZToNCj4g
+Pg0KPiA+IFN5c3RlbSBjb250cm9sbGVycyBjYW4gYmUgcGxhY2VkIHVuZGVyIHNlY3VyZSBtb25p
+dG9yIGNvbnRyb2wgd2hlbg0KPiA+IHJ1bm5pbmcgdW5kZXIgdGhlbS4gSW4gb3JkZXIgdG8ga2Vl
+cCBleGlzdGluZyBjb2RlIHdoaWNoIGFjY2Vzc2VzIHN1Y2gNCj4gPiBzeXN0ZW0gY29udHJvbGxl
+cnMgdXNpbmcgYSBzeXNjb24sIGFkZCBzdXBwb3J0IGZvciAic3lzY29uLXNtYyIgY29tcGF0aWJs
+ZS4NCj4gPg0KPiA+IFdoZW4gZW5hYmxlLCB0aGUgc3lzY29uIHdpbGwgaGFuZGxlIHRoaXMgbmV3
+IGNvbXBhdGlibGUgYW5kIGxvb2sgZm9yDQo+ID4gYW4gImFybSxzbWMtaWQiIHByb3BlcnR5IHRv
+IGV4ZWN1dGUgdGhlIGFwcHJvcHJpYXRlIFNNQy4gQSBTTUMgcmVnbWFwDQo+ID4gaXMgdGhlbiBj
+cmVhdGVkIHRvIGZvcndhcmQgcmVnaXN0ZXIgYWNjZXNzIHRvIHRoZSBzZWN1cmUgbW9uaXRvci4N
+Cj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IENsw6ltZW50IEzDqWdlciA8Y2xlbWVudC5sZWdlckBi
+b290bGluLmNvbT4NCj4gDQo+IEkgZG9uJ3Qgc2VlIGFueXRoaW5nIHdyb25nIHdpdGggdGhlIGlt
+cGxlbWVudGF0aW9uLA0KDQpJIGFsc28gdm90ZSBmb3Igc3VjaCBhbiBpbXBsZW1lbnRhdGlvbi4g
+U3VjaCBhcyB3ZSBoYXZlIGEgY2hpcCBoYXMgYSBtaXNjDQpyZWdpc3RlciBzcGFjZSwgcGFydCBh
+cyBiZWxvdzoNCg0KNDRoIFVTQiBXYWtlLXVwIENvbnRyb2wgUmVnaXN0ZXIgKERHTyAxMCkgKFVT
+Ql9XQUtFVVApIA0KNDhoIFBURCBQYWRzIENvbXBlbnNhdGlvbiBDZWxsIENvbmZpZ3VyYXRpb24g
+UmVnaXN0ZXINCjRDaCBMb3dlciBDQTM1IFRTIFRpbWVyIEZpcnN0IENvbXBhcmUgVmFsdWUgKFRT
+VE1SX0NNUDBfVkFMX0wpDQo1MGggVXBwZXIgQ0EzNSBUUyBUaW1lciBGaXJzdCBDb21wYXJlIFZh
+bHVlDQo1NGggTG93ZXIgQ0EzNSBUUyBUaW1lciBTZWNvbmQgQ29tcGFyZSB2YWx1ZQ0KNThoIFVw
+cGVyIENBMzUgVFMgVGltZXIgU2Vjb25kIENvbXBhcmUgVmFsdWUNCjVDaCBDQTM1IENvcmUwIFJl
+c2V0IFZlY3RvciBCYXNlIEFkZHJlc3MgKERHTyA4KSAoUlZCQVJBRERSMCkgDQo2MGggQ0EzNSBD
+b3JlMSBSZXNldCBWZWN0b3IgQmFzZSBBZGRyZXNzIChER08gOSkgKFJWQkFSQUREUjEpIA0KNjRo
+IE1lZGl1bSBRdWFsaXR5IFNvdW5kIENvbmZpZ3VyYXRpb24gUmVnaXN0ZXIgKE1RUzFfQ0YpIDMy
+IFJXIDAxMDBfMDAwMGgNCg0KSXQgY29udGFpbnMgc2V2ZXJhbCBmdW5jdGlvbnMsIHdlIG5lZWQg
+cHJvdGVjdCA1Q2gsIDYwaCB0byBhdm9pZA0KTm9uLXNlY3VyZSB3b3JsZCBtb2RpZnkgaXQuIE90
+aGVycyBjb3VsZCBiZSBkaXJlY3RseSB1c2VkIGJ5IExpbnV4IGtlcm5lbC4NCkJ1dCB3ZSBjb3Vs
+ZCBvbmx5IGhpZGUgdGhlIHdob2xlIHJlZ2lzdGVyIHNwYWNlIGluIHNlY3VyZSB3b3JsZCB0byBt
+YWtlDQo1Qy82MGggcmVnaXN0ZXIgbm90IHRvdWNoIGJ5IGxpbnV4Lg0KDQpXZSBub3QgZmluZCBh
+IGdvb2Qgd2F5IHRvIHByb3ZpZGUgaGlnaC1sZXZlbCBpbnRlcmZhY2UgZm9yIHN1Y2gNCmEgbWlz
+YyByZWdpc3RlciBzcGFjZSwgcHJvdmlkZSByZWdpc3RlciBsZXZlbCBpbnRlcmZhY2Ugd291bGQg
+bWFrZQ0KaXQgZWFzeSBmb3IgdmFyaW91cyBkcml2ZXJzIHRvIHVzZS4NCg0KVGhhbmtzLA0KUGVu
+Zy4NCg0KDQpidXQgdGhpcyB3b3JyaWVzIG1lDQo+IGNvbmNlcHR1YWxseSwgYmVjYXVzZSBvZiB0
+aGUgd2F5cyB0aGlzIG1pZ2h0IGdldCBhYnVzZWQ6DQo+IA0KPiAtIHRoaXMgY3JlYXRlcyBvbmUg
+bW9yZSB3YXkgdG8ga2VlcCBkZXZpY2UgZHJpdmVycyBoaWRkZW4gYXdheQ0KPiAgIGJlaGluZCBm
+aXJtd2FyZSB3aGVuIHRoZXkgc2hvdWxkIGJlIGluIHRoZSBrZXJuZWwuIFlvdSBjYW4gYWxyZWFk
+eQ0KPiAgIGRvIHRoYXQgd2l0aCBzZXBhcmF0ZSBTTUMgY2FsbHMsIGJ1dCBhZGRpbmcgYW4gaW5k
+aXJlY3Rpb24gbWFrZXMgaXQNCj4gICBzbmVha2llci4gSWYgdGhlICdyZWdpc3RlcnMnIGluIGhl
+cmUgYXJlIHB1cmVseQ0KPiANCj4gLSBUaGlzIG1heSBiZSBzZWVuIGFzIGFuIGVhc3kgd2F5IG91
+dCBmb3IgZmlybXdhcmUgd3JpdGVycyB0aGF0IGp1c3QNCj4gICAgZXhwb3NlIGEgYmFyZSByZWdp
+c3Rlci1sZXZlbCBpbnRlcmZhY2Ugd2hlbiB0aGUgY29ycmVjdCBzb2x1dGlvbiB3b3VsZA0KPiAg
+ICBiZSB0byBjcmVhdGUgYSBoaWdoLWxldmVsIGludGVyZmFjZS4NCj4gDQo+IFRoZXJlIGlzIGFs
+c28gYSBwcm9ibGVtIHdpdGggbG9ja2luZzogSW4gdGhlIGNhc2UgdGhhdCBib3RoIGZpcm13YXJl
+IGFuZA0KPiBrZXJuZWwgaGF2ZSB0byBhY2Nlc3MgcmVnaXN0ZXJzIHdpdGhpbiBhIHN5c2NvbiBh
+cmVhLCB5b3UgbWF5IG5lZWQgdG8gaGF2ZSBhDQo+IHNlbWFwaG9yZSB0byBwcm90ZWN0IGFuIGF0
+b21pYyBzZXF1ZW5jZSBvZiBhY2Nlc3NlcywgYnV0IHNpbmNlIHRoZSBpbnRlcmZhY2UNCj4gb25s
+eSBwcm92aWRlcyBhIHNpbmdsZSByZWdpc3RlciBsb2FkL3N0b3JlLCB0aGVyZSBpcyBubyB3YXkg
+Zm9yIGEga2VybmVsIGRyaXZlciB0bw0KPiBzZXJpYWxpemUgYWdhaW5zdCBhIGZpcm13YXJlLWlu
+dGVybmFsIGRyaXZlci4NCj4gDQo+ICAgICAgICAgQXJuZA0K
