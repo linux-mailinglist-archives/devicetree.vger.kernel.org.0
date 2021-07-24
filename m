@@ -2,182 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF6563D4906
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 20:04:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01ABA3D491D
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 20:19:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229865AbhGXRX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Jul 2021 13:23:29 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36146 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229461AbhGXRX2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 24 Jul 2021 13:23:28 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A7F0E60E8F;
-        Sat, 24 Jul 2021 18:03:56 +0000 (UTC)
-Date:   Sat, 24 Jul 2021 19:06:28 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Stephan Gerhold <stephan@gerhold.net>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
-        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>, Andy
-        Shevchenko <andy.shevchenko@gmail.com>," 
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        Nikita Travkin <nikita@trvn.ru>
-Subject: Re: [PATCH 3/4] iio: accel: bmc150: Make it possible to configure
- INT2 instead of INT1
-Message-ID: <20210724190614.3593dcd1@jic23-huawei>
-In-Reply-To: <CAHp75VcZDSL5u2bP_ZFySmk7cPkHRycyA-+gMqSVWCpgFXhn7Q@mail.gmail.com>
-References: <20210719112156.27087-1-stephan@gerhold.net>
-        <20210719112156.27087-4-stephan@gerhold.net>
-        <CACRpkdYNqi0EDrtC3j=cu5cp17sEJ6_nf2KRn-hxCxgbTGhgXw@mail.gmail.com>
-        <CAHp75VcsVFO2Oizpyeh53MNt2v9yD81vXp1xKCVX-U4zb-KTdg@mail.gmail.com>
-        <YPWV537oN3gDpAQS@gerhold.net>
-        <CAHp75Vdjotgi9RrmKQC4J_QQSYdRWwp+-8aHGkChx6VFLPDh-Q@mail.gmail.com>
-        <YPW1xGtLyLNGKqjJ@gerhold.net>
-        <CAHp75VcZDSL5u2bP_ZFySmk7cPkHRycyA-+gMqSVWCpgFXhn7Q@mail.gmail.com>
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S229535AbhGXRjE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Jul 2021 13:39:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37876 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229530AbhGXRjE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jul 2021 13:39:04 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EEA4C061575
+        for <devicetree@vger.kernel.org>; Sat, 24 Jul 2021 11:19:35 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id pf12-20020a17090b1d8cb0290175c085e7a5so13756960pjb.0
+        for <devicetree@vger.kernel.org>; Sat, 24 Jul 2021 11:19:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gateworks-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=408uhdvajAOrgk79juAKDI2FDzjmrADhiWfdmKM+KPI=;
+        b=hK7VFty7Tc4YPcJvy+uZR/slVfij+TwIuNFMc0dnh3UaHilkhUIWYEaX5JDDNPfZ2o
+         ObHnfXK8U3OxAA+9yIHh4gfSFJfQbMgE0aOQFWy886cTIl5tll1n/3eD6okIq8qMlptE
+         zelGxVzQFmky17e1xGlWU3B+RURwrdtY6+undHd3sLZ3sD6Y5nUhcPTv4xQsPziiEVsk
+         CXCSJw8SQbcCsVb9SdL/1h9UHaBbmrPEQGJH91Ag/lD3zxXuqPt63njVzD0eUSmvwZRz
+         1aQo2FYp/KH2G8vpoPAQR7gglx0tYZtCXet1UYSavFle387ODPp4K71Tfl2NWNARyvkm
+         767Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=408uhdvajAOrgk79juAKDI2FDzjmrADhiWfdmKM+KPI=;
+        b=jw6kNCgHISX68ETpdZEXEftL1+etbOGi+o7B93Eu0NptGTK1VEUAUkIODeOQUIDHhV
+         tDj7dbUoKiW4PtPkh8wlS3eav1NZdqhSdaxsg1hxnmJDtokOLED7GBGEEQSDdFxkjGSM
+         6yfBV3dHBLOhWrUE0iNFVDG5KK1cPRHzMNzRmVmtRFg0gNtf1uXLSBz/+KyLj/H0OOxN
+         t/O1MwT6ybKrKX8q0vmjdoHRUt5ZnNJ0IQsjVjOLnGFexqON1dKXnp43p93b0Rc21S+Q
+         ZF1yKKjtNl4g6VHLNh34ExPI60WqmMlL2dr4ZIwt7PNy5HsvnVFxDpXQsHgHAb5+v6Je
+         Zy4Q==
+X-Gm-Message-State: AOAM532osiz+WDNRmL/BJc7LgdNFlmQc9suKpliAmdSV6OqSN0Iop/Fu
+        gW6j1z8p7ODlFijkyh9ouKacCWAKmUNQ7dH1oeX3og==
+X-Google-Smtp-Source: ABdhPJypEhLUTyn9hcujdchfL1vVeJ8hK+oQRto1ad9VADd7QIJrxmMQcS5Dvh+kMH1BsWG0VtQ7gSJg+U5Q8KTPjlw=
+X-Received: by 2002:a62:be18:0:b029:2aa:db3a:4c1d with SMTP id
+ l24-20020a62be180000b02902aadb3a4c1dmr10249726pff.58.1627150774927; Sat, 24
+ Jul 2021 11:19:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20210601174917.1979-1-tharvey@gateworks.com> <20210601174917.1979-2-tharvey@gateworks.com>
+In-Reply-To: <20210601174917.1979-2-tharvey@gateworks.com>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Sat, 24 Jul 2021 11:19:21 -0700
+Message-ID: <CAJ+vNU3wtJ+N0XtVw6Ka+jZVKcKKmPhs+6O+dDqKQhpi3tB9ew@mail.gmail.com>
+Subject: Re: [PATCH 2/4] arm64: dts: imx8mm-venice-gw700x: fix mp5416 pmic config
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 19 Jul 2021 21:05:48 +0300
-Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+On Tue, Jun 1, 2021 at 10:49 AM Tim Harvey <tharvey@gateworks.com> wrote:
+>
+> Fix various MP5416 PMIC configurations:
+>  - Update regulator names per dt-bindings
+>  - ensure values fit among valid register values
+>  - add required regulator-max-microamp property
+>  - add regulator-always-on prop
+>
+> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+> ---
+>  .../dts/freescale/imx8mm-venice-gw700x.dtsi   | 56 ++++++++++++-------
+>  1 file changed, 37 insertions(+), 19 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
+> index 512b76cd7c3b..f4eb827baed7 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
+> @@ -283,65 +283,83 @@
+>                 reg = <0x69>;
+>
+>                 regulators {
+> +                       /* vdd_0p95: DRAM/GPU/VPU */
+>                         buck1 {
+> -                               regulator-name = "vdd_0p95";
+> -                               regulator-min-microvolt = <805000>;
+> +                               regulator-name = "buck1";
+> +                               regulator-min-microvolt = <800000>;
+>                                 regulator-max-microvolt = <1000000>;
+> -                               regulator-max-microamp = <2500000>;
+> +                               regulator-min-microamp  = <3800000>;
+> +                               regulator-max-microamp  = <6800000>;
+>                                 regulator-boot-on;
+> +                               regulator-always-on;
+>                         };
+>
+> +                       /* vdd_soc */
+>                         buck2 {
+> -                               regulator-name = "vdd_soc";
+> -                               regulator-min-microvolt = <805000>;
+> +                               regulator-name = "buck2";
+> +                               regulator-min-microvolt = <800000>;
+>                                 regulator-max-microvolt = <900000>;
+> -                               regulator-max-microamp = <1000000>;
+> +                               regulator-min-microamp  = <2200000>;
+> +                               regulator-max-microamp  = <5200000>;
+>                                 regulator-boot-on;
+> +                               regulator-always-on;
+>                         };
+>
+> +                       /* vdd_arm */
+>                         buck3_reg: buck3 {
+> -                               regulator-name = "vdd_arm";
+> -                               regulator-min-microvolt = <805000>;
+> +                               regulator-name = "buck3";
+> +                               regulator-min-microvolt = <800000>;
+>                                 regulator-max-microvolt = <1000000>;
+> -                               regulator-max-microamp = <2200000>;
+> -                               regulator-boot-on;
+> +                               regulator-min-microamp  = <3800000>;
+> +                               regulator-max-microamp  = <6800000>;
+> +                               regulator-always-on;
+>                         };
+>
+> +                       /* vdd_1p8 */
+>                         buck4 {
+> -                               regulator-name = "vdd_1p8";
+> +                               regulator-name = "buck4";
+>                                 regulator-min-microvolt = <1800000>;
+>                                 regulator-max-microvolt = <1800000>;
+> -                               regulator-max-microamp = <500000>;
+> +                               regulator-min-microamp  = <2200000>;
+> +                               regulator-max-microamp  = <5200000>;
+>                                 regulator-boot-on;
+> +                               regulator-always-on;
+>                         };
+>
+> +                       /* nvcc_snvs_1p8 */
+>                         ldo1 {
+> -                               regulator-name = "nvcc_snvs_1p8";
+> +                               regulator-name = "ldo1";
+>                                 regulator-min-microvolt = <1800000>;
+>                                 regulator-max-microvolt = <1800000>;
+> -                               regulator-max-microamp = <300000>;
+>                                 regulator-boot-on;
+> +                               regulator-always-on;
+>                         };
+>
+> +                       /* vdd_snvs_0p8 */
+>                         ldo2 {
+> -                               regulator-name = "vdd_snvs_0p8";
+> +                               regulator-name = "ldo2";
+>                                 regulator-min-microvolt = <800000>;
+>                                 regulator-max-microvolt = <800000>;
+>                                 regulator-boot-on;
+> +                               regulator-always-on;
+>                         };
+>
+> +                       /* vdd_0p9 */
+>                         ldo3 {
+> -                               regulator-name = "vdd_0p95";
+> -                               regulator-min-microvolt = <800000>;
+> -                               regulator-max-microvolt = <800000>;
+> +                               regulator-name = "ldo3";
+> +                               regulator-min-microvolt = <900000>;
+> +                               regulator-max-microvolt = <900000>;
+>                                 regulator-boot-on;
+> +                               regulator-always-on;
+>                         };
+>
+> +                       /* vdd_1p8 */
+>                         ldo4 {
+> -                               regulator-name = "vdd_1p8";
+> +                               regulator-name = "ldo4";
+>                                 regulator-min-microvolt = <1800000>;
+>                                 regulator-max-microvolt = <1800000>;
+>                                 regulator-boot-on;
+> +                               regulator-always-on;
+>                         };
+>                 };
+>         };
+> --
+> 2.17.1
+>
 
-> On Mon, Jul 19, 2021 at 8:29 PM Stephan Gerhold <stephan@gerhold.net> wrote:
-> >
-> > On Mon, Jul 19, 2021 at 07:19:05PM +0300, Andy Shevchenko wrote:  
-> > > On Mon, Jul 19, 2021 at 6:11 PM Stephan Gerhold <stephan@gerhold.net> wrote:  
-> > > > On Mon, Jul 19, 2021 at 06:01:01PM +0300, Andy Shevchenko wrote:  
-> > > > > On Mon, Jul 19, 2021 at 5:07 PM Linus Walleij <linus.walleij@linaro.org> wrote:  
-> > > > > > On Mon, Jul 19, 2021 at 1:26 PM Stephan Gerhold <stephan@gerhold.net> wrote:  
-> 
-> ...
-> 
-> > > > > > >  #include <linux/acpi.h>
-> > > > > > > +#include <linux/of_irq.h>  
-> > > > > > (...)  
-> > > > > > > +       irq_info = bmc150_accel_interrupts_int1;
-> > > > > > > +       if (irq == of_irq_get_byname(dev->of_node, "INT2"))
-> > > > > > > +               irq_info = bmc150_accel_interrupts_int2;  
-> > > > > >
-> > > > > > This looks a bit DT-specific, but I don't see that ACPI has
-> > > > > > named IRQs so I don't know what to do about it either.  
-> > > > >
-> > > > > Yeah, we only have so far the (de facto) established way of naming
-> > > > > GPIO based IRQs, and not IOxAPIC ones.
-> > > > >  
-> > > > > > What does platform_get_irq_byname() do on ACPI systems?  
-> > > > >
-> > > > > See above.
-> > > > >  
-> > > > > > If there is no obvious fix I would leave it like this until the
-> > > > > > first ACPI used needing this comes along, but I think maybe
-> > > > > > Andy has suggestions.  
-> > > > >
-> > > > > The platform_get_irq_byname() should do something similar that has
-> > > > > been done in platform_get_irq() WRT ACPI.
-> > > > > Here for sure the platform_get_irq_byname() or its optional variant
-> > > > > should be used.  
-> > > >
-> > > > I don't think there is a platform device here, we only have the
-> > > > i2c_client or spi_device. That's why I didn't use
-> > > > platform_get_irq_byname(). :)
-> > > >
-> > > > Is there something equivalent for I2C/SPI drivers?  
-> > >
-> > > Not yet. You probably need to supply some code there to allow
-> > > multi-IRQ devices (in resource provider agnostic way).
-> > >
-> > > You need to provide fwnode_get_irq_byname() to be similar with
-> > > https://elixir.bootlin.com/linux/latest/source/drivers/base/property.c#L1010
-> > >
-> > > Then use it in the drivers.
-> > >
-> > > And/or integrate into frameworks somehow (something in between the
-> > > lines: https://elixir.bootlin.com/linux/latest/source/drivers/i2c/i2c-core-base.c#L461).
-> > >  
-> >
-> > Well, I don't think anyone has an ACPI use case for this right now so
-> > it's probably better if this is done by someone who actually needs this
-> > and can test it somewhere. :)
-> >
-> > I actually just "copied" this approach from some other IIO drivers where
-> > this is done similarly (and additionally checked the source code to make
-> > sure this won't break anything for ACPI platforms).  
-> 
-> I see in today's Linux Next snapshot:
-> 
-> drivers/iio/accel/fxls8962af-core.c:774:        irq =
-> of_irq_get_byname(of_node, "INT2");
-> drivers/iio/accel/mma8452.c:1616:               irq2 =
-> of_irq_get_byname(client->dev.of_node, "INT2");
-> drivers/iio/gyro/fxas21002c_core.c:834: irq1 = of_irq_get_byname(np, "INT1");
-> drivers/iio/imu/adis16480.c:1265:               irq =
-> of_irq_get_byname(of_node, adis16480_int_pin_names[i]);
-> drivers/iio/imu/bmi160/bmi160_core.c:655:       irq =
-> of_irq_get_byname(of_node, "INT1");
-> drivers/iio/imu/bmi160/bmi160_core.c:661:       irq =
-> of_irq_get_byname(of_node, "INT2");
-> 
-> I believe we may stop distributing this and actually start using a
-> common API. I don't want this to be spread again over all IIO. Btw, I
-> have LSM9DS0, which supports two INT pins for IMU and currently it
-> uses hard coded pin mapping.
+Shawn,
 
-I'm definitely keen to tidy this up, though I'd also rather not tie it
-to this particular series.
+Is there anything you want changed here?
 
-> 
-> Side note to Jonathan, I believe the below may be (lazily) converted
-> to fwnode / device properties APIs.
+Best regards,
 
-Yup.  I know we still have a bunch of these to tidy up.
-Might take a while to get to them though!
-
-> 
-> drivers/iio/adc/ab8500-gpadc.c:1041:    nchans =
-> of_get_available_child_count(np);
-> drivers/iio/adc/ad7124.c:747:   st->num_channels =
-> of_get_available_child_count(np);
-> drivers/iio/adc/berlin2-adc.c:287:      struct device_node *parent_np
-> = of_get_parent(pdev->dev.of_node);
-> drivers/iio/adc/qcom-pm8xxx-xoadc.c:830:        adc->nchans =
-> of_get_available_child_count(np);
-> drivers/iio/adc/qcom-spmi-adc5.c:650:   channel_name = of_get_property(node,
-> drivers/iio/adc/qcom-spmi-adc5.c:813:   adc->nchannels =
-> of_get_available_child_count(node);
-> drivers/iio/adc/qcom-spmi-vadc.c:743:   vadc->nchannels =
-> of_get_available_child_count(node);
-> drivers/iio/adc/stm32-adc.c:1630:static int
-> stm32_adc_of_get_resolution(struct iio_dev *indio_dev)
-> drivers/iio/adc/stm32-adc.c:1935:       ret =
-> stm32_adc_of_get_resolution(indio_dev);
-> drivers/iio/adc/xilinx-xadc-core.c:1248:        chan_node =
-> of_get_child_by_name(np, "xlnx,channels");
-> drivers/iio/imu/adis16480.c:1293:static int
-> adis16480_of_get_ext_clk_pin(struct adis16480 *st,
-> drivers/iio/imu/adis16480.c:1328:       pin =
-> adis16480_of_get_ext_clk_pin(st, of_node);
-> drivers/iio/imu/inv_mpu6050/inv_mpu_i2c.c:68:           mux_node =
-> of_get_child_by_name(dev->of_node, "i2c-gate")
-> ;
-> drivers/iio/industrialio-core.c:1877:   label =
-> of_get_property(indio_dev->dev.of_node, "label", NULL);
-> drivers/iio/inkern.c:228:               if (np && !of_get_property(np,
-> "io-channel-ranges", NULL))
-> drivers/iio/temperature/ltc2983.c:1275: st->num_channels =
-> of_get_available_child_count(dev->of_node);
-> 
-> 
-
+Tim
