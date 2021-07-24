@@ -2,193 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 422553D470D
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 12:22:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E99F63D471C
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 12:34:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234845AbhGXJlk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Jul 2021 05:41:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46438 "EHLO
+        id S234333AbhGXJxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Jul 2021 05:53:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234232AbhGXJlj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jul 2021 05:41:39 -0400
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2F33C061575;
-        Sat, 24 Jul 2021 03:22:11 -0700 (PDT)
-Received: by mail-ot1-x336.google.com with SMTP id f20-20020a9d6c140000b02904bb9756274cso4634987otq.6;
-        Sat, 24 Jul 2021 03:22:11 -0700 (PDT)
+        with ESMTP id S234219AbhGXJxl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jul 2021 05:53:41 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CE93C061575;
+        Sat, 24 Jul 2021 03:34:12 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id r23so1659496lji.3;
+        Sat, 24 Jul 2021 03:34:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=aRoUv1wABabEGBHGqPIcqO0DCv1yalyroN2HGWm8Zyc=;
-        b=ZpBG5Pth38l1GL8iZw9LT6YoGIh2Vig8EYSbVQbIqo3lsSK+Rb0k8O7UEMPdTUZ/4n
-         CnXZNA4W5N6+BGBVH83xffazL9hQx65nvkeBgkgbcmZoKYY4xUes4Z5HMTk1e5kJfSUm
-         kuBlcxCw9fLoPSH5qIFMfYOfMfDcb4490HpA3Zi8L80p/ZzL8ruYX3986d9jK54Wj2cv
-         WCyXvoyRt/8xNYGw8q+Z9aR+fpuSPBdabA1CGaPmgWGw0cTtCH9gDRneYKNmtFSCNV7k
-         5YTqzSFIDYtPh+MMWhFtbYIjDp++TNTljwL97B331mt5/O2V0amzUdzIMn3A+WXn0u0E
-         Lo/g==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=x6qKlfQqH4Pff1qY3yh2+h4mSC4bChkJmId4p4BeXQU=;
+        b=O6hvyvnQIiTssakclxodabsh84VNdDn9LRuunsV2DlxcfjfrE5a0C4XDVFjIOUQ2CV
+         eaB1icO6o4OMnXoQ8j8f+EQIFM2T8vf4S/f/0Sj966XKDC+fv8D315AcsWcblWaZbOwi
+         ZIRKKJJePG3/B/vSvOA1q2+idYwZxjqwxo1xfa4a/LPCERHcEg3jGQdIjTg7LNiSY1D3
+         a6xahXn2u6LTYwKzP3/2Luq5a69Osd1FojrSm01WqlWWxPkXrYlDYFxICAzdFkUApcUJ
+         N1S0WVoHxzx38vFAWUfFoFOsuCeHzEo8B/HnyyAIBvC7UuKWr7bwZSoW5XKd04dOm9ZT
+         O+Gw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=aRoUv1wABabEGBHGqPIcqO0DCv1yalyroN2HGWm8Zyc=;
-        b=p3gXqNZtumkaCdnv74uerCVq4UlfaU8m5dzB2t0wRGNUJQE1PO8LKnDv5Mv6iSvmEc
-         8Cd1C+c3nx9FIFItCfbs3tT9TZ6WPFGcYP0ah5G2SdENFoVyFeeNKlK9rtW9XGgOFcXV
-         fTGaSG/NDD+fD5a6Ndy9Q8I8l5okrJxhK1XsqUYLxMKDUBuPFc1AltcKNn8NTk7ILVWd
-         NxXae9wL/yM2zMOdhGPecqDPTBLqwue+GkCX9jseqhQWrcGwxv9Ep+7Oj2UhHOoPGZyK
-         dVbmIl75BFjjDa3km8f14pmrrk2AbjR8cKw+7KAx2ad+aHLrfFkdpPdSWsJMxlX5enX0
-         3uoA==
-X-Gm-Message-State: AOAM531pxEC/GpuEhT2ah0jESCWDWehw4/oYEJsepynByL3PiuHvWttR
-        WWg3A/PYgQ1EA0KJrdlZji6O1Ey6XQb12e2lCbM=
-X-Google-Smtp-Source: ABdhPJyvCXh0jYmGBSOC0D0TYxIXw+zOnL0ZwXIXYQACqxrb4F0ld7fFvBJidMAWaiJja0NqDuBj0twE7d7V1H9aPJs=
-X-Received: by 2002:a9d:3608:: with SMTP id w8mr5886963otb.371.1627122130908;
- Sat, 24 Jul 2021 03:22:10 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=x6qKlfQqH4Pff1qY3yh2+h4mSC4bChkJmId4p4BeXQU=;
+        b=o9LhecUhxtAyVlnIfzcpIEg7lcXBWo3laZBFURvyCi8cP09oC2+jJJ1WwRGN5cLI8M
+         /RJRTqHCD7wR+gvfSHna6K7rDtAVKyy0ORXYJ/EkH6O73AfjeXTQZ98f9CXoHjgYy+d3
+         EVHfHxmg92kkEfLVAaRFlV2B6jr3UDOaDY/chqxeoNi7M1qv0u4G1AnQ1vDPTFyWco8/
+         TfsBdlYhokSO15O9A7QkI+HOjlGXIKvmguF7EdCzDr7TIKjTrXMMxhhmIiqHgNoenWbm
+         J335VyRvXU4x4xr98XZLPGk+UkznbmYmZ5wZRK2+PpnjgYNlcwSWzh9JsjX41I6Vzvka
+         OlKw==
+X-Gm-Message-State: AOAM531ZPMjGrM2Vxx5ovW5lIPBFnQOkpv0Rp8dpQnzEarwVyULQ9f1R
+        /dAYoSiiwHI/wExmFRnGOHc=
+X-Google-Smtp-Source: ABdhPJw1DpZY1EfJig8d3cXTa8Tc9M+VIOgYNm4+S2hFK0uPqhzIBTOFv32HnDYsxMsZfB/QZql0TQ==
+X-Received: by 2002:a2e:8743:: with SMTP id q3mr1517461ljj.397.1627122850546;
+        Sat, 24 Jul 2021 03:34:10 -0700 (PDT)
+Received: from akaWolf-PC.. ([194.79.5.201])
+        by smtp.gmail.com with ESMTPSA id v22sm2158938lfi.270.2021.07.24.03.34.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 24 Jul 2021 03:34:10 -0700 (PDT)
+From:   Artjom Vejsel <akawolf0@gmail.com>
+Cc:     thierry.reding@gmail.com, sam@ravnborg.org,
+        dri-devel@lists.freedesktop.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        paul@crapouillou.net, akawolf0@gmail.com
+Subject: [PATCH v2 0/3] add Gopher 2b LCD panel
+Date:   Sat, 24 Jul 2021 13:33:55 +0300
+Message-Id: <20210724103358.1632020-1-akawolf0@gmail.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-References: <20210719145317.79692-1-stephan@gerhold.net> <20210719145317.79692-5-stephan@gerhold.net>
- <CAHNKnsTVSg5T_ZK3PQ50wuJydHbANFfpJd5NZ-71b1m3B_4dQg@mail.gmail.com> <YPgQR/VbNVyxERnb@gerhold.net>
-In-Reply-To: <YPgQR/VbNVyxERnb@gerhold.net>
-From:   Sergey Ryazanov <ryazanov.s.a@gmail.com>
-Date:   Sat, 24 Jul 2021 13:22:21 +0300
-Message-ID: <CAHNKnsQXb6H0Ee3sjbVi_UyED0UAXv7LK7mL1aKAG3SQtQ48ng@mail.gmail.com>
-Subject: Re: [RFC PATCH net-next 4/4] net: wwan: Add Qualcomm BAM-DMUX WWAN
- network driver
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Johannes Berg <johannes@sipsolutions.net>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Aleksander Morgado <aleksander@aleksander.es>,
-        netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        open list <linux-kernel@vger.kernel.org>,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Stephan,
+The Gopher 2b LCD panel is used in Gopher 2b handhelds.
+It's simple panel with NewVision NV3047 driver,
+but SPI lines are not connected.
+It has no specific name, since it's unique to that handhelds.
+lot name at AliExpress: 4.3 inch 40PIN TFT LCD Screen COG
+NV3047 Drive IC 480(RGB)*272 No Touch 24Bit RGB Interface
 
-On Wed, Jul 21, 2021 at 3:17 PM Stephan Gerhold <stephan@gerhold.net> wrote:
-> On Tue, Jul 20, 2021 at 12:10:42PM +0300, Sergey Ryazanov wrote:
->> On Mon, Jul 19, 2021 at 6:01 PM Stephan Gerhold <stephan@gerhold.net> wrote:
->>> The BAM Data Multiplexer provides access to the network data channels of
->>> modems integrated into many older Qualcomm SoCs, e.g. Qualcomm MSM8916 or
->>> MSM8974. It is built using a simple protocol layer on top of a DMA engine
->>> (Qualcomm BAM) and bidirectional interrupts to coordinate power control.
->>>
->>> The modem announces a fixed set of channels by sending an OPEN command.
->>> The driver exports each channel as separate network interface so that
->>> a connection can be established via QMI from userspace. The network
->>> interface can work either in Ethernet or Raw-IP mode (configurable via
->>> QMI). However, Ethernet mode seems to be broken with most firmwares
->>> (network packets are actually received as Raw-IP), therefore the driver
->>> only supports Raw-IP mode.
->>>
->>> The driver uses runtime PM to coordinate power control with the modem.
->>> TX/RX buffers are put in a kind of "ring queue" and submitted via
->>> the bam_dma driver of the DMAEngine subsystem.
->>>
->>> The basic architecture looks roughly like this:
->>>
->>>                    +------------+                +-------+
->>>          [IPv4/6]  |  BAM-DMUX  |                |       |
->>>          [Data...] |            |                |       |
->>>         ---------->|rmnet0      | [DMUX chan: x] |       |
->>>          [IPv4/6]  | (chan: 0)  | [IPv4/6]       |       |
->>>          [Data...] |            | [Data...]      |       |
->>>         ---------->|rmnet1      |--------------->| Modem |
->>>                    | (chan: 1)  |      BAM       |       |
->>>          [IPv4/6]  | ...        |  (DMA Engine)  |       |
->>>          [Data...] |            |                |       |
->>>         ---------->|rmnet7      |                |       |
->>>                    | (chan: 7)  |                |       |
->>>                    +------------+                +-------+
->>>
->>> However, on newer SoCs/firmware versions Qualcomm began gradually moving
->>> to QMAP (rmnet driver) as backend-independent protocol for multiplexing
->>> and data aggegration. Some firmware versions allow using QMAP on top of
->>> BAM-DMUX (effectively resulting in a second multiplexing layer plus data
->>> aggregation). The architecture with QMAP would look roughly like this:
->>>
->>>            +-------------+           +------------+                  +-------+
->>>  [IPv4/6]  |    RMNET    |           |  BAM-DMUX  |                  |       |
->>>  [Data...] |             |           |            | [DMUX chan: 0]   |       |
->>> ---------->|rmnet_data1  |     ----->|rmnet0      | [QMAP mux-id: x] |       |
->>>            | (mux-id: 1) |     |     | (chan: 0)  | [IPv4/6]         |       |
->>>            |             |     |     |            | [Data...]        |       |
->>>  [IPv4/6]  | ...         |------     |            |----------------->| Modem |
->>>  [Data...] |             |           |            |       BAM        |       |
->>> ---------->|rmnet_data42 | [QMAP: x] |[rmnet1]    |   (DMA Engine)   |       |
->>>            | (mux-id: 42)| [IPv4/6]  |... unused! |                  |       |
->>>            |             | [Data...] |[rmnet7]    |                  |       |
->>>            |             |           |            |                  |       |
->>>            +-------------+           +------------+                  +-------+
->>>
->>> In this case, rmnet1-7 would remain unused. The firmware used on the most
->>> recent SoCs with BAM-DMUX even seems to announce only a single BAM-DMUX
->>> channel (rmnet0), which makes QMAP the only option for multiplexing there.
->>>
->>> So far the driver is mainly tested on various smartphones/tablets based on
->>> Qualcomm MSM8916/MSM8974 without QMAP. It looks like QMAP depends on a MTU
->>> negotiation feature in BAM-DMUX which is not yet supported by the driver.
->>>
->>> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
->>> ---
->>> Note that this is my first network driver, so I apologize in advance
->>> if I made some obvious mistakes. :)
->>>
->>> I'm not sure how to integrate the driver with the WWAN subsystem yet.
->>> At the moment the driver creates network interfaces for all channels
->>> announced by the modem, it does not make use of the WWAN link management
->>> yet. Unfortunately, this is a bit complicated:
->>>
->>> Both QMAP and the built-in multiplexing layer might be needed at some point.
->>> There are firmware versions that do not support QMAP and the other way around
->>> (the built-in multiplexing was disabled on very recent firmware versions).
->>> Only userspace can check if QMAP is supported in the firmware (via QMI).
->>
->> I am not very familiar with the Qualcomm protocols and am just curious
->> whether BAM-DMUX has any control (management) channels or only IPv4/v6
->> data channels?
->>
->> The WWAN subsystem began as a framework for exporting management
->> interfaces (MBIM, AT, etc.) to user space. And then the network
->> interfaces (data channels) management interface was added to
->> facilitate management of devices with multiple data channels. That is
->> why I am curious about the BAM-DMUX device management interface or in
->> other words, how a user space application could control the modem
->> work?
->
-> Sorry for the confusion! It's briefly mentioned in the Kconfig option
-> but I should have made this more clear in the commit message. It was so
-> long already that I wasn't sure where to put it. :)
->
-> BAM-DMUX does not have any control channels. Instead I use it together
-> with the rpmsg_wwan_ctrl driver [1] that I already submitted for 5.14.
-> The control/data channels are pretty much separate in this setup and
-> don't have much to do with each other.
->
-> I also had a short overview of some of the many different modem
-> protocols Qualcomm has come up with in a related RFC for that driver,
-> see [2] if you are curious.
->
-> I hope that clarifies some things, please let me know if I should
-> explain something better! :)
->
-> [1]: https://lore.kernel.org/netdev/20210618173611.134685-3-stephan@gerhold.net/
-> [2]: https://lore.kernel.org/netdev/YLfL9Q+4860uqS8f@gerhold.net/
+In v2 removed .num_modes as noticed by Paul.
 
-Many thanks for such informative clarification, especially for
-pointing me to  the rpmsg_wwan_ctrl driver. I saw it, but by a some
-reason I did not link it to BAM-DMUX. Reading these links in
-conjunction with your parallel talks make the situation much more
-clear. I could not say that "I know kung fu", but I can say that now I
-know how complex kung fu is.
+Artjom Vejsel (3):
+  dt-bindings: Add QiShenglong vendor prefix
+  dt-bindings: Add DT bindings for QiShenglong Gopher 2b panel
+  drm/panel-simple: add Gopher 2b LCD panel
+
+ .../bindings/display/panel/panel-simple.yaml  |  2 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+ drivers/gpu/drm/panel/panel-simple.c          | 43 +++++++++++++++++++
+ 3 files changed, 47 insertions(+)
 
 --
-Sergey
+2.32.0
