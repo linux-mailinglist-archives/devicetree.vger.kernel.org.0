@@ -2,326 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 068213D474F
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 13:16:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA8B63D4767
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jul 2021 13:25:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231925AbhGXKfG convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sat, 24 Jul 2021 06:35:06 -0400
-Received: from aposti.net ([89.234.176.197]:51348 "EHLO aposti.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229586AbhGXKfG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 24 Jul 2021 06:35:06 -0400
-Date:   Sat, 24 Jul 2021 12:15:26 +0100
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH 2/2] remoteproc: Ingenic: Add support for new Ingenic
- SoCs.
-To:     =?UTF-8?b?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
-Cc:     ohad@wizery.com, bjorn.andersson@linaro.org,
-        mathieu.poirier@linaro.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
-        rick.tyliu@ingenic.com, sihui.liu@ingenic.com,
-        jun.jiang@ingenic.com, sernia.zhou@foxmail.com
-Message-Id: <QXXQWQ.G04EHJWEN1TT3@crapouillou.net>
-In-Reply-To: <1627117898-125239-3-git-send-email-zhouyanjie@wanyeetech.com>
-References: <1627117898-125239-1-git-send-email-zhouyanjie@wanyeetech.com>
-        <1627117898-125239-3-git-send-email-zhouyanjie@wanyeetech.com>
+        id S232093AbhGXKpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Jul 2021 06:45:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60396 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231922AbhGXKpS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jul 2021 06:45:18 -0400
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99151C061575;
+        Sat, 24 Jul 2021 04:25:49 -0700 (PDT)
+Received: by mail-ot1-x332.google.com with SMTP id f20-20020a9d6c140000b02904bb9756274cso4733159otq.6;
+        Sat, 24 Jul 2021 04:25:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Wmho9+Wg/RJHAISJdsior3XXLcEk7YEvFee8MxRP09k=;
+        b=sBD4JZJyWmX6lsJDfGpjMimE5kudyumm+g9ej2RbDy+wldPtx+AOWP1CP9pzLNSnCt
+         fniZmpcjSyXySqZMR+CI7yIbOq6xNSpN7pz71BmiK4TJfTF8hKm9GVP8buPkk4nWuimA
+         yvgd5GfIp6GEfVcYkg5tSUf2i+2jpOXoLqhMox93HF0V528bcDtlaG4/cE2Zshf5tdfW
+         88Som5LckR0nEdi+wwwVL2uo5KYN7CPpZRgVvuxM6c8QEu/FVXW2BhZOnB5HpwqYqndy
+         uVvluUxjBI53gK+1dPEDmKefXtkMymgMoacRCF1AwItOycd0FteeVK1bTVXxAkR8pHo3
+         Bd+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Wmho9+Wg/RJHAISJdsior3XXLcEk7YEvFee8MxRP09k=;
+        b=f3oCgdAygLb+G/KJjZFHCKJ4sBuMqpJcL5FkCHlrmjGD6zQ+Xh3DDV7K8yZ3J2CSD9
+         A8Nk/KhdCC2EWmtah3v79EE3Wn/CL0JuOxqaLIOwXhAYQ3SGcWRIyu08XTAL4P0k1g+2
+         A+ISeSIrVkVB6b+RnEDO7Ig21grdpSDabW5WmbFzFKihoXwPMZI1myzEIwRem5Egb1OK
+         B2lzwXOpSdFuculpqetfHVKocmyEiIG8Cl6zFhWlhBvmcvjhBaEErxAk8NdDAKNBFDnp
+         US3gCbp4PNPDr+EZNk76TX6euLPupl7v2Sos4/ZatZ1mjwSI4tOg1jCd8kIBjoXUivxy
+         +09w==
+X-Gm-Message-State: AOAM532eWDBXqWDevStAaBJcebfbthX0DSjVbUXCruoTEDIZmXY9n85T
+        95OYMCA3UJ/uYfeIcZcQeKpoOapnkXhrgnMvFNk=
+X-Google-Smtp-Source: ABdhPJxWgrDKgFnxb3wKdHMq7ugLW3b0qOd75IBA+QSiFRt4LAmH1DY21+1lfsI6y1v/C7JczAcLz3MBghtlQjbR88E=
+X-Received: by 2002:a9d:6d83:: with SMTP id x3mr5656396otp.110.1627125949017;
+ Sat, 24 Jul 2021 04:25:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8BIT
+References: <20210719145317.79692-1-stephan@gerhold.net> <20210719145317.79692-5-stephan@gerhold.net>
+ <CAMZdPi8oxRMo0erfd0wrUPzD2UsbexoR=86u2N75Fd9RpXHoKg@mail.gmail.com> <YPmRcBXpRtKKSDl8@gerhold.net>
+In-Reply-To: <YPmRcBXpRtKKSDl8@gerhold.net>
+From:   Sergey Ryazanov <ryazanov.s.a@gmail.com>
+Date:   Sat, 24 Jul 2021 14:25:59 +0300
+Message-ID: <CAHNKnsQr4Ys8q3Ctru-H=L3ZDwb__2D3E08mMZchDLAs1KetAg@mail.gmail.com>
+Subject: Re: [RFC PATCH net-next 4/4] net: wwan: Add Qualcomm BAM-DMUX WWAN
+ network driver
+To:     Stephan Gerhold <stephan@gerhold.net>,
+        Loic Poulain <loic.poulain@linaro.org>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Aleksander Morgado <aleksander@aleksander.es>,
+        Network Development <netdev@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dmaengine@vger.kernel.org, devicetree <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Zhou,
+On Thu, Jul 22, 2021 at 6:40 PM Stephan Gerhold <stephan@gerhold.net> wrote:
+> On Mon, Jul 19, 2021 at 06:01:33PM +0200, Loic Poulain wrote:
+>> On Mon, 19 Jul 2021 at 17:01, Stephan Gerhold <stephan@gerhold.net> wrote:
+>>> I'm not sure how to integrate the driver with the WWAN subsystem yet.
+>>> At the moment the driver creates network interfaces for all channels
+>>> announced by the modem, it does not make use of the WWAN link management
+>>> yet. Unfortunately, this is a bit complicated:
+>>>
+>>> Both QMAP and the built-in multiplexing layer might be needed at some point.
+>>> There are firmware versions that do not support QMAP and the other way around
+>>> (the built-in multiplexing was disabled on very recent firmware versions).
+>>> Only userspace can check if QMAP is supported in the firmware (via QMI).
+>>>
+>>> I could ignore QMAP completely for now but I think someone will show up
+>>> who will need this eventually. And if there is going to be common code for
+>>> QMAP/rmnet link management it would be nice if BAM-DMUX could also make
+>>> use of it.
+>>
+>> I have this on my TODO list for mhi-net QMAP.
+>
+> Great, thanks!
+>
+>>> But the question is, how could this look like? How do we know if we should
+>>> create a link for QMAP or a BAM-DMUX channel? Does it even make sense
+>>> to manage the 1-8 channels via the WWAN link management?
+>>
+>> Couldn't it be specified via dts (property or different compatible
+>> string)?
+>
+> It would probably work in most cases, but I have to admit that I would
+> prefer to avoid this for the following reason: This driver is used on
+> some smartphones that have different variants for different parts of the
+> world. As far as Linux is concerned the hardware is pretty much
+> identical, but the modem firmware is often somewhat device-specific.
+>
+> This means that the same device tree is often used with different
+> firmware versions. Perhaps we are lucky enough that the firmware
+> versions have the same capabilities, but I'm not fully sure about that.
+>
+> I think at the end the situation is fairly similar to qmi_wwan/USB.
+> There the kernel also does not know if the modem supports QMAP or not.
+> The way it's solved there at the moment is that ModemManager tries to
+> enable it from user space and then the mode of the network interface
+> can be switched through a sysfs file ("qmi/pass_through").
+>
+> Something like this should probably also work in my case. This should
+> also allow me to ignore QMAP for now and deal with it if someone really
+> needs it at some point since it's quite complicated for BAM-DMUX.
+> (I tried QMAP again today and listed the problems in [1] for reference,
+>  but it's all BAM-DMUX specific...)
+>
+> [1] https://lore.kernel.org/netdev/YPmF8bzevuabO2K9@gerhold.net/
+>
+>> would it make sense to have two drivers (with common core) to
+>> manage either the multi-bam channel or newer QMAP based single
+>> bam-channel modems.
+>
+> There should be fairly little difference between those two usage modes,
+> so I don't think it's worth splitting the driver for this. Actually
+> right now (ignoring the link management of the WWAN subsystem),
+> it's already possible to use both.
+>
+> I can use the network interfaces as-is in Raw-IP mode or I do
+> "sudo ip link add link rmnet0 name rmnet0_qmap type rmnet mux_id 1"
+> on top and use QMAP. The BAM-DMUX driver does not care, because it
+> just hands over sent/received packets as-is and the modem data format
+> must be always configured via QMI from user space.
+>
+>>> Another problem is that the WWAN subsystem currently creates all network
+>>> interfaces below the common WWAN device. This means that userspace like
+>>> ModemManager has no way to check which driver provides them. This is
+>>> necessary though to decide how to set it up via QMI (ModemManager uses it).
+>>
+>> Well, I have quite a similar concern since I'm currently porting
+>> mhi-net mbim to wwan framework, and I was thinking about not making
+>> wwan device parent of the network link/netdev (in the same way as
+>> wlan0 is not child of ieee80211 device), but not sure if it's a good
+>> idea or not since we can not really consider driver name part of the
+>> uapi.
+>
+> Hm, I think the main disadvantage of that would be that the network
+> interface is no longer directly related to the WWAN device, right?
+> Userspace would then need some special matching to find the network
+> interfaces that belong to a certain control port.
+>
+> With the current setup, e.g. ModemManager can simply match the WWAN
+> device and then look at its children and find the control port and
+> network interfaces. How would it find the network interfaces if they are
+> no longer below the WWAN device?
+>
+> > The way links are created is normally abstracted, so if you know which
+> > bam variant you have from wwan network driver side (e.g. via dts), you
+> > should have nothing to check on the user side, except the session id.
+>
+> In a perfect world it would probably be like this, but I'm afraid the
+> Qualcomm firmware situation isn't as simple. User space needs to know
+> which setup it is dealing with because all the setup happens via QMI.
+>
+> Let's take the BAM-DMUX channels vs QMAP mux-IDs for example:
+>
+> First, user space needs to configure the data format. This happens with
+> the QMI WDA (Wireless Data Administrative Service) "Set Data Format"
+> message. Parameter would be link layer format (Raw-IP in both cases)
+> but also the uplink/downlink data aggregation protocol. This is either
+> one of many QMAP versions (qmap|qmapv2|qmapv3|qmapv4|qmapv5), or simply
+> "none" when using BAM-DMUX without QMAP.
+>
+> Then, the "session ID" (= BAM-DMUX channel or QMAP mux-ID) must be bound
+> to a WDS (Wireless Data Service) session. The QMI message for that is
+> different for BAM-DMUX and QMAP:
+>
+>   - BAM-DMUX: WDS "Bind Data Port"
+>       (Parameter: SIO port number, can be derived from channel ID)
+>
+>   - QMAP: WDS "Bind MUX Data Port" (note the "MUX", different message!)
+>       (Parameter: MUX ID, port type (USB/embedded/...), port number)
+>
+> My point here: Since userspace is responsible for QMI at the moment
+> we will definitely need to make it aware of the setup that it needs to
+> apply. Just having an abstract "session ID" won't be enough to set up
+> the connection properly. :/
 
-Le sam., juil. 24 2021 at 17:11:38 +0800, 周琰杰 (Zhou Yanjie) 
-<zhouyanjie@wanyeetech.com> a écrit :
-> Add support for probing the ingenic_rproc driver on the JZ4760 SoC,
-> the JZ4760B SoC, the JZ4775 SoC, and the JZ4780 SoC from Ingenic.
-> 
-> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
-> ---
->  drivers/remoteproc/ingenic_rproc.c | 115 
-> +++++++++++++++++++++++++++++--------
->  1 file changed, 91 insertions(+), 24 deletions(-)
-> 
-> diff --git a/drivers/remoteproc/ingenic_rproc.c 
-> b/drivers/remoteproc/ingenic_rproc.c
-> index a356738..6a2e864 100644
-> --- a/drivers/remoteproc/ingenic_rproc.c
-> +++ b/drivers/remoteproc/ingenic_rproc.c
-> @@ -2,6 +2,7 @@
->  /*
->   * Ingenic JZ47xx remoteproc driver
->   * Copyright 2019, Paul Cercueil <paul@crapouillou.net>
-> + * Copyright 2021, 周琰杰 (Zhou Yanjie) 
-> <zhouyanjie@wanyeetech.com>
->   */
-> 
->  #include <linux/bitops.h>
-> @@ -17,7 +18,7 @@
-> 
->  #define REG_AUX_CTRL		0x0
->  #define REG_AUX_MSG_ACK		0x10
-> -#define REG_AUX_MSG		0x14
-> +#define REG_AUX_MSG			0x14
->  #define REG_CORE_MSG_ACK	0x18
->  #define REG_CORE_MSG		0x1C
-> 
-> @@ -32,6 +33,20 @@ module_param(auto_boot, bool, 0400);
->  MODULE_PARM_DESC(auto_boot,
->  		 "Auto-boot the remote processor [default=false]");
-> 
-> +enum ingenic_vpu_version {
-> +	ID_JZ4760,
-> +	ID_JZ4770,
-> +	ID_JZ4775,
-> +};
+Stephan, Loic, I have a polemic question related to a drivers model
+that we should build to smoothly support qualcomm hardware by the
+kernel. I would depict the situation as I see it and then ask the
+question. Please correct me if I am misunderstanding something or
+simply wrong. Or maybe you will be gracious once more and point me to
+earlier discussions :)
 
-The "version" field of ingenic_so_cinfo is not used anywhere, so you 
-can drop this enum completely.
+We always talk that a userspace software should take care of
+multiplexing configuration to make data communication possible at all.
+The motivation here is simple - management protocol (QMI) is complex,
+userspace software must implement it anyway to manage network
+connectivity, so why not implement the multiplexing management there
+too?
 
-> +
-> +struct ingenic_soc_info {
-> +	enum ingenic_vpu_version version;
-> +	const struct vpu_mem_map *mem_map;
-> +
-> +	unsigned int num_clks;
-> +	unsigned int num_mems;
-> +};
-> +
->  struct vpu_mem_map {
->  	const char *name;
->  	unsigned int da;
-> @@ -43,26 +58,21 @@ struct vpu_mem_info {
->  	void __iomem *base;
->  };
-> 
-> -static const struct vpu_mem_map vpu_mem_map[] = {
-> -	{ "tcsm0", 0x132b0000 },
-> -	{ "tcsm1", 0xf4000000 },
-> -	{ "sram",  0x132f0000 },
-> -};
-> -
->  /**
->   * struct vpu - Ingenic VPU remoteproc private structure
->   * @irq: interrupt number
->   * @clks: pointers to the VPU and AUX clocks
->   * @aux_base: raw pointer to the AUX interface registers
-> - * @mem_info: array of struct vpu_mem_info, which contain the 
-> mapping info of
-> + * @mem_info: pointers to the struct vpu_mem_info, which contain the 
-> mapping info of
->   *            each of the external memories
->   * @dev: private pointer to the device
->   */
->  struct vpu {
->  	int irq;
-> -	struct clk_bulk_data clks[2];
->  	void __iomem *aux_base;
-> -	struct vpu_mem_info mem_info[ARRAY_SIZE(vpu_mem_map)];
-> +	const struct ingenic_soc_info *soc_info;
-> +	struct clk_bulk_data *clks;
-> +	struct vpu_mem_info *mem_info;
->  	struct device *dev;
->  };
-> 
-> @@ -72,7 +82,7 @@ static int ingenic_rproc_prepare(struct rproc 
-> *rproc)
->  	int ret;
-> 
->  	/* The clocks must be enabled for the firmware to be loaded in TCSM 
-> */
-> -	ret = clk_bulk_prepare_enable(ARRAY_SIZE(vpu->clks), vpu->clks);
-> +	ret = clk_bulk_prepare_enable(vpu->soc_info->num_clks, vpu->clks);
->  	if (ret)
->  		dev_err(vpu->dev, "Unable to start clocks: %d\n", ret);
-> 
-> @@ -83,7 +93,7 @@ static int ingenic_rproc_unprepare(struct rproc 
-> *rproc)
->  {
->  	struct vpu *vpu = rproc->priv;
-> 
-> -	clk_bulk_disable_unprepare(ARRAY_SIZE(vpu->clks), vpu->clks);
-> +	clk_bulk_disable_unprepare(vpu->soc_info->num_clks, vpu->clks);
-> 
->  	return 0;
->  }
-> @@ -127,7 +137,7 @@ static void *ingenic_rproc_da_to_va(struct rproc 
-> *rproc, u64 da, size_t len, boo
->  	void __iomem *va = NULL;
->  	unsigned int i;
-> 
-> -	for (i = 0; i < ARRAY_SIZE(vpu_mem_map); i++) {
-> +	for (i = 0; i < vpu->soc_info->num_mems; i++) {
->  		const struct vpu_mem_info *info = &vpu->mem_info[i];
->  		const struct vpu_mem_map *map = info->map;
-> 
-> @@ -163,8 +173,60 @@ static irqreturn_t vpu_interrupt(int irq, void 
-> *data)
->  	return rproc_vq_interrupt(rproc, vring);
->  }
-> 
-> +static const struct vpu_mem_map jz4760_vpu_mem_map[] = {
-> +	{ "tcsm0", 0x132b0000 },
-> +	{ "tcsm1", 0xf4000000 },
-> +	{ "sram",  0x132d0000 },
-> +};
-> +
-> +static const struct vpu_mem_map jz4770_vpu_mem_map[] = {
-> +	{ "tcsm0", 0x132b0000 },
-> +	{ "tcsm1", 0xf4000000 },
-> +	{ "sram",  0x132f0000 },
-> +};
-> +
-> +static const struct vpu_mem_map jz4775_vpu_mem_map[] = {
-> +	{ "tcsm",  0xf4000000 },
-> +	{ "sram",  0x132f0000 },
-> +};
-> +
-> +static const struct ingenic_soc_info jz4760_soc_info = {
-> +	.version = ID_JZ4760,
-> +	.mem_map = jz4760_vpu_mem_map,
-> +
-> +	.num_clks = 2,
-> +	.num_mems = 3,
+This way the userspace software that should simply command a "modem"
+to establish a data connection and poll a "modem" for a signal level
+became a self contained device manager that knows all modem-to-host
+interconnection details and even must to perform an initial
+modem-to-host interfaces negotiation and configuration. The last task
+is what userspace software usually expects to be performed by an OS
+kernel.
 
-.num_mems = ARRAY_SIZE(jz4760_vpu_mem_map),
+But what if we implement the QMI multiplexing management part in the
+kernel? This way the kernel will take care about modem-to-host
+communication protocols and interfaces, and provides userspace with a
+single WWAN device (possibly with multiple network and network
+management interfaces).
 
-And the same for the other ingenic_soc_info below.
+I do not propose to fully implement QMI protocol inside the kernel,
+but implement only a mux management part, while passing all other
+messages between a "modem" and a userspace software as-is.
 
-> +};
-> +
-> +static const struct ingenic_soc_info jz4770_soc_info = {
-> +	.version = ID_JZ4770,
-> +	.mem_map = jz4770_vpu_mem_map,
-> +
-> +	.num_clks = 2,
-> +	.num_mems = 3,
-> +};
-> +
-> +static const struct ingenic_soc_info jz4775_soc_info = {
-> +	.version = ID_JZ4775,
-> +	.mem_map = jz4775_vpu_mem_map,
-> +
-> +	.num_clks = 1,
-> +	.num_mems = 2,
-> +};
-> +
-> +static const struct of_device_id ingenic_rproc_of_matches[] = {
-> +	{ .compatible = "ingenic,jz4760-vpu-rproc", .data = 
-> &jz4760_soc_info },
-> +	{ .compatible = "ingenic,jz4760b-vpu-rproc", .data = 
-> &jz4760_soc_info },
-> +	{ .compatible = "ingenic,jz4770-vpu-rproc", .data = 
-> &jz4770_soc_info },
-> +	{ .compatible = "ingenic,jz4775-vpu-rproc", .data = 
-> &jz4775_soc_info },
-> +	{ .compatible = "ingenic,jz4780-vpu-rproc", .data = 
-> &jz4775_soc_info },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, ingenic_rproc_of_matches);
-> +
->  static int ingenic_rproc_probe(struct platform_device *pdev)
->  {
-> +	const struct of_device_id *id = 
-> of_match_node(ingenic_rproc_of_matches, pdev->dev.of_node);
->  	struct device *dev = &pdev->dev;
->  	struct resource *mem;
->  	struct rproc *rproc;
-> @@ -181,6 +243,7 @@ static int ingenic_rproc_probe(struct 
-> platform_device *pdev)
-> 
->  	vpu = rproc->priv;
->  	vpu->dev = &pdev->dev;
-> +	vpu->soc_info = id->data;
+What pros and cons of such a design do you see?
 
-Use of_device_get_match_data(dev).
-
-Then you can get rid of the "id" variable, and you won't have to move 
-the "ingenic_rproc_of_matches" array.
-
->  	platform_set_drvdata(pdev, vpu);
-> 
->  	mem = platform_get_resource_byname(pdev, IORESOURCE_MEM, "aux");
-> @@ -190,9 +253,13 @@ static int ingenic_rproc_probe(struct 
-> platform_device *pdev)
->  		return PTR_ERR(vpu->aux_base);
->  	}
-> 
-> -	for (i = 0; i < ARRAY_SIZE(vpu_mem_map); i++) {
-> +	vpu->mem_info = kzalloc(sizeof(struct vpu_mem_info) * 
-> vpu->soc_info->num_mems, GFP_KERNEL);
-
-You are leaking memory here.
-
-Also, why not just fix the current mem_info array size to 3? That 
-sounds way simpler.
-
-> +	if (!vpu->mem_info)
-> +		return -ENOMEM;
-> +
-> +	for (i = 0; i < vpu->soc_info->num_mems; i++) {
->  		mem = platform_get_resource_byname(pdev, IORESOURCE_MEM,
-> -						   vpu_mem_map[i].name);
-> +						   vpu->soc_info->mem_map[i].name);
-> 
->  		vpu->mem_info[i].base = devm_ioremap_resource(dev, mem);
->  		if (IS_ERR(vpu->mem_info[i].base)) {
-> @@ -202,13 +269,19 @@ static int ingenic_rproc_probe(struct 
-> platform_device *pdev)
->  		}
-> 
->  		vpu->mem_info[i].len = resource_size(mem);
-> -		vpu->mem_info[i].map = &vpu_mem_map[i];
-> +		vpu->mem_info[i].map = &vpu->soc_info->mem_map[i];
->  	}
-> 
-> +	vpu->clks = kzalloc(sizeof(struct clk_bulk_data) * 
-> vpu->soc_info->num_clks, GFP_KERNEL);
-
-Same here, the "clks" array is already size 2, so it won't be a problem 
-if you have only one clock. No need to alloc "clks" dynamically.
-
-> +	if (!vpu->clks)
-> +		return -ENOMEM;
-> +
->  	vpu->clks[0].id = "vpu";
-> -	vpu->clks[1].id = "aux";
-> 
-> -	ret = devm_clk_bulk_get(dev, ARRAY_SIZE(vpu->clks), vpu->clks);
-> +	if (vpu->soc_info->version == ID_JZ4770)
-> +		vpu->clks[1].id = "aux";
-> +
-> +	ret = devm_clk_bulk_get(dev, vpu->soc_info->num_clks, vpu->clks);
->  	if (ret) {
->  		dev_err(dev, "Failed to get clocks\n");
->  		return ret;
-> @@ -235,12 +308,6 @@ static int ingenic_rproc_probe(struct 
-> platform_device *pdev)
->  	return 0;
->  }
-> 
-> -static const struct of_device_id ingenic_rproc_of_matches[] = {
-> -	{ .compatible = "ingenic,jz4770-vpu-rproc", },
-> -	{}
-> -};
-> -MODULE_DEVICE_TABLE(of, ingenic_rproc_of_matches);
-
-As I wrote above - you don't need to move this.
-
-Cheers,
--Paul
-
-> -
->  static struct platform_driver ingenic_rproc_driver = {
->  	.probe = ingenic_rproc_probe,
->  	.driver = {
-> --
-> 2.7.4
-> 
-
-
+-- 
+Sergey
