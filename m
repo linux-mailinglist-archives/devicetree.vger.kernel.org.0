@@ -2,105 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFB9B3D4A88
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jul 2021 00:56:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 722663D4A97
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jul 2021 01:14:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229573AbhGXWPj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Jul 2021 18:15:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42228 "EHLO
+        id S229689AbhGXWdw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Jul 2021 18:33:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229549AbhGXWPj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jul 2021 18:15:39 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 662B4C061575;
-        Sat, 24 Jul 2021 15:56:10 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id ga41so9308652ejc.10;
-        Sat, 24 Jul 2021 15:56:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:subject:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=2YkOr/SOjc8e1D7v+UhUxdLCEbTLFclJesQWR+kwwU4=;
-        b=jPyeQ8mCSCGcS4f5mZtBfqomTp4MTHmxo9HWg11n//qazKN+3QvEBHKY5jHbvMIkDH
-         t/OsPKUdaBBm8Yu81QZdxzq62a2IIT0bKomf+wAvNjIK9grlcxUr4PxpwC5DkVFStrx2
-         4LkIl8ULRHMVq1g/ZkbpG/j/YYYp6Xn4v4zkTvheiCOPSpDATsSI/1K5G9oYnDuVBHVA
-         zZKJmPQ0umryo1fiGCIWxzmQMcnfMHWp3jXbFr4MOmyTIi7RM+OGcu94+d6fd9jH42KR
-         UM3r/wLiqkro4MR66T4YiqBO925oijtN5eMYrCqmuefI78j3YxKx76gWO/UIMmiFvxUB
-         i/jg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:subject:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=2YkOr/SOjc8e1D7v+UhUxdLCEbTLFclJesQWR+kwwU4=;
-        b=q5BqcEZKHIIQwZrhHhHcOOYSl0S+5FiJonH5r0851MJKh55vcD2oiZyABYfCe6P711
-         IH48Z4UDZwsPMPKcHIQRgmtq9v1Etzr20Uu68m0hXti6CUXLazD6VcTpamHaD+UDk39o
-         lwcQPzDwD11iq5bth0aLfIb5hbr54IiRDfa8lEGPZDf9mNlTvqPjqQN4aoOu9r988J54
-         A0dtMA7J7rKe8hfoKbCweLSPdS+Jj85TXRj9S7rjxh5y0N6pe9vDdqG10cBshdpixPcb
-         EZdvMw+a5+mUIHR0vQ2NLC6uKsh/kKUfZ+c6HKhF9RWgZFwmVJOi25s7iAdQav1NpURx
-         6C+g==
-X-Gm-Message-State: AOAM531/uD2Mp4nZJ3AyQ5xx+n8hCuQ45BYKGnmS4Lx2MymtFijMFYhZ
-        OXX0F9vY7xch6Mvk21hK/Rw=
-X-Google-Smtp-Source: ABdhPJyF2fwAlFNkbLur3s36viBfsxpoawYSmYWz6s8vGu2O8tNtfqRcY5iKh/GkAR7FdIVbELP3jQ==
-X-Received: by 2002:a17:906:c29a:: with SMTP id r26mr11064629ejz.235.1627167368957;
-        Sat, 24 Jul 2021 15:56:08 -0700 (PDT)
-Received: from ?IPv6:2001:981:6fec:1:7f54:b3a5:1f2:dfcf? ([2001:981:6fec:1:7f54:b3a5:1f2:dfcf])
-        by smtp.gmail.com with ESMTPSA id q8sm14442106edd.43.2021.07.24.15.56.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 24 Jul 2021 15:56:08 -0700 (PDT)
-From:   Ferry Toth <fntoth@gmail.com>
-Subject: Re: [PATCH v10 0/6] Re-introduce TX FIFO resize for larger EP
- bursting
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Felipe Balbi <balbi@kernel.org>,
-        Wesley Cheng <wcheng@codeaurora.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S229573AbhGXWdw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jul 2021 18:33:52 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF338C061575;
+        Sat, 24 Jul 2021 16:14:23 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6AC96255;
+        Sun, 25 Jul 2021 01:14:19 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1627168459;
+        bh=r88xAdrjfzXdoiMkkqh9g2SZTk3/HDf6/u8QtHD8API=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Nic7BMs2Zy+fc94wMG4jR1dVQKgisByjECcTYS3H5kmkk3fFrouz1np4H5FxvZfYL
+         4meDj6/kBtiQ4J3a+V038SI/Z2GtRYJn5c7kHti24UKhgAy7VBJKriwIi6cEssagWJ
+         0JTLgkNS+4uDZPM1oC3vkiVg+JBjbzt52HugJt/w=
+Date:   Sun, 25 Jul 2021 02:14:15 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        USB <linux-usb@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-msm@vger.kernel.org, Jack Pham <jackp@codeaurora.org>,
-        "Krogerus, Heikki" <heikki.krogerus@linux.intel.com>
-References: <1623923899-16759-1-git-send-email-wcheng@codeaurora.org>
- <cfb83fe4-369c-ec72-7887-3bcb0f20fe15@gmail.com>
- <ec8050c5-c013-4af6-b39e-69779c009a9c@codeaurora.org>
- <f5ed0ee7-e333-681f-0f1a-d0227562204b@gmail.com>
- <2e01c435-9ecc-4e3b-f55c-612a86667020@codeaurora.org>
- <2ae9fa6a-3bb1-3742-0dd3-59678bdd8643@gmail.com>
- <ebea75fe-5334-197b-f67a-cb6e1e30b39e@codeaurora.org>
- <bafa93bb-11e3-c8a5-e14a-b0a6d5695055@gmail.com> <87v951ldlt.fsf@kernel.org>
- <d9aef50c-4bd1-4957-13d8-0b6a14b9fcd0@gmail.com> <87pmv9l1dv.fsf@kernel.org>
- <9dc6cd83-17b9-7075-0934-6b9d41b6875d@gmail.com>
- <CAHp75Vc7HDvCiT9Fp2hRsPTzNpRmm0E5yRHSuhpyD1Gqkf2FfA@mail.gmail.com>
-Message-ID: <4955687e-1015-37d6-9905-2b68aa9a85a0@gmail.com>
-Date:   Sun, 25 Jul 2021 00:56:07 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        Sean Nyekjaer <sean@geanix.com>, devicetree@vger.kernel.org,
+        Jose Cazarin <joseespiriki@gmail.com>,
+        linux-i2c@vger.kernel.org, Wolfram Sang <wsa@kernel.org>
+Subject: Re: [PATCH v1.1 2/2] iio: dac: dac5571: Fix chip id detection for OF
+ devices
+Message-ID: <YPyex1l0qLc2TTcF@pendragon.ideasonboard.com>
+References: <20210723183114.26017-3-laurent.pinchart@ideasonboard.com>
+ <20210724000654.23168-1-laurent.pinchart@ideasonboard.com>
+ <20210724154308.55afb03c@jic23-huawei>
 MIME-Version: 1.0
-In-Reply-To: <CAHp75Vc7HDvCiT9Fp2hRsPTzNpRmm0E5yRHSuhpyD1Gqkf2FfA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210724154308.55afb03c@jic23-huawei>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+Hi Jonathan,
 
-Op 24-07-2021 om 23:19 schreef Andy Shevchenko:
-> On Sat, Jul 24, 2021 at 11:59 PM Ferry Toth<fntoth@gmail.com>  wrote:
->
->> BTW there is a secondary problem not related to dwc3: the console is not
->> working well and loosing chars. I can connect through wifi/ssh though.
-> You mean even on the kernel before any crash happened due to DWC3 stuff?
+On Sat, Jul 24, 2021 at 03:43:08PM +0100, Jonathan Cameron wrote:
+> On Sat, 24 Jul 2021 03:06:54 +0300 Laurent Pinchart wrote:
+> 
+> > From: Jose Cazarin <joseespiriki@gmail.com>
+> > 
+> > When matching an OF device, the match mechanism tries all components of
+> > the compatible property. This can result with a device matched with a
+> > compatible string that isn't the first in the compatible list. For
+> > instance, with a compatible property set to
+> > 
+> >     compatible = "ti,dac081c081", "ti,dac5571";
+> > 
+> > the driver will match the second compatible string, as the first one
+> > isn't listed in the of_device_id table. The device will however be named
+> > "dac081c081" by the I2C core.
+> > 
+> > This causes an issue when identifying the chip. The probe function
+> > receives a i2c_device_id that comes from the module's I2C device ID
+> > table. There is no entry in that table for "dac081c081", which results
+> > in a NULL pointer passed to the probe function.
+> > 
+> > To fix this, add chip_id information in the data field of the OF device
+> > ID table, and retrieve it with of_device_get_match_data() for OF
+> > devices.
+> > 
+> > Signed-off-by: Jose Cazarin <joseespiriki@gmail.com>
+> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> 
+> Interesting problem that I hadn't previously realised could happen.
+> 
+> One request though, can we use device_get_match_data() here rather than
+> the of specific version?  Include property.h as well for that.
+> 
+> That should allow the same issue with compatible to work correctly when
+> using PRP0001 based ACPI methods. 
+> https://elixir.bootlin.com/linux/v5.14-rc1/source/drivers/acpi/bus.c#L891
+> Will result in acpi_of_device_get_match_data() being called which will
+> match to the of_device_id table.
 
-Exactly.
+Good point. I wasn't aware of PRP0001. I'll submit a v2 with this fixed,
+after giving a bit of time for additional review, if any (I'm in
+particular interested in whether this issue should be fixed in
+individual drivers or in the I2C core, as explained in the cover
+letter)).
 
-And this was working fine with rc1.
+> > ---
+> > Changes since v1:
+> > 
+> > - Include linux/of_device.h
+> > ---
+> >  drivers/iio/dac/ti-dac5571.c | 28 ++++++++++++++++++----------
+> >  1 file changed, 18 insertions(+), 10 deletions(-)
+> > 
+> > diff --git a/drivers/iio/dac/ti-dac5571.c b/drivers/iio/dac/ti-dac5571.c
+> > index 2a5ba1b08a1d..8ceb1b42b14e 100644
+> > --- a/drivers/iio/dac/ti-dac5571.c
+> > +++ b/drivers/iio/dac/ti-dac5571.c
+> > @@ -19,6 +19,7 @@
+> >  #include <linux/i2c.h>
+> >  #include <linux/module.h>
+> >  #include <linux/mod_devicetable.h>
+> > +#include <linux/of_device.h>
+> >  #include <linux/regulator/consumer.h>
+> >  
+> >  enum chip_id {
+> > @@ -311,6 +312,7 @@ static int dac5571_probe(struct i2c_client *client,
+> >  	const struct dac5571_spec *spec;
+> >  	struct dac5571_data *data;
+> >  	struct iio_dev *indio_dev;
+> > +	enum chip_id chip_id;
+> >  	int ret, i;
+> >  
+> >  	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
+> > @@ -326,7 +328,13 @@ static int dac5571_probe(struct i2c_client *client,
+> >  	indio_dev->modes = INDIO_DIRECT_MODE;
+> >  	indio_dev->channels = dac5571_channels;
+> >  
+> > -	spec = &dac5571_spec[id->driver_data];
+> > +	if (dev->of_node)
+> > +		chip_id = (uintptr_t)of_device_get_match_data(dev);
+> > +	else
+> > +		chip_id = id->driver_data;
+> > +
+> > +	spec = &dac5571_spec[chip_id];
+> > +
+> >  	indio_dev->num_channels = spec->num_channels;
+> >  	data->spec = spec;
+> >  
+> > @@ -384,15 +392,15 @@ static int dac5571_remove(struct i2c_client *i2c)
+> >  }
+> >  
+> >  static const struct of_device_id dac5571_of_id[] = {
+> > -	{.compatible = "ti,dac5571"},
+> > -	{.compatible = "ti,dac6571"},
+> > -	{.compatible = "ti,dac7571"},
+> > -	{.compatible = "ti,dac5574"},
+> > -	{.compatible = "ti,dac6574"},
+> > -	{.compatible = "ti,dac7574"},
+> > -	{.compatible = "ti,dac5573"},
+> > -	{.compatible = "ti,dac6573"},
+> > -	{.compatible = "ti,dac7573"},
+> > +	{.compatible = "ti,dac5571", .data = (void *)single_8bit},
+> > +	{.compatible = "ti,dac6571", .data = (void *)single_10bit},
+> > +	{.compatible = "ti,dac7571", .data = (void *)single_12bit},
+> > +	{.compatible = "ti,dac5574", .data = (void *)quad_8bit},
+> > +	{.compatible = "ti,dac6574", .data = (void *)quad_10bit},
+> > +	{.compatible = "ti,dac7574", .data = (void *)quad_12bit},
+> > +	{.compatible = "ti,dac5573", .data = (void *)quad_8bit},
+> > +	{.compatible = "ti,dac6573", .data = (void *)quad_10bit},
+> > +	{.compatible = "ti,dac7573", .data = (void *)quad_12bit},
+> >  	{}
+> >  };
+> >  MODULE_DEVICE_TABLE(of, dac5571_of_id);
+> 
 
-I do have patches (as you know) for improving dma for the hsu. But, for 
-the console afaik dma is disabled.
+-- 
+Regards,
 
+Laurent Pinchart
