@@ -2,221 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C01653D4EDA
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jul 2021 19:01:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24CE83D4F05
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jul 2021 19:14:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230316AbhGYQVF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Jul 2021 12:21:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52444 "EHLO
+        id S230110AbhGYQdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Jul 2021 12:33:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230147AbhGYQVE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jul 2021 12:21:04 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BED4C061760
-        for <devicetree@vger.kernel.org>; Sun, 25 Jul 2021 10:01:34 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id t14so8192864oiw.0
-        for <devicetree@vger.kernel.org>; Sun, 25 Jul 2021 10:01:34 -0700 (PDT)
+        with ESMTP id S230075AbhGYQdi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jul 2021 12:33:38 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DC8DC061760
+        for <devicetree@vger.kernel.org>; Sun, 25 Jul 2021 10:14:08 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id he41so12625846ejc.6
+        for <devicetree@vger.kernel.org>; Sun, 25 Jul 2021 10:14:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=J0CqnawQFzTaboVphqTqnPpq47SB6w0kctdgBqfSago=;
-        b=ITGcVgWjSvk5bdFkmu5wJhRrOIzDh7n905jeU+xxK0Mz9qtizqH+GcTExX46Y0QVas
-         5OE3hmix/dh79fsNFA9eB0sYl3mYP4aTas4Gwj5JjuFGvTENZ8gyHOMtNnBH8dRQAMeK
-         etMtwLyA2hEgPDgaCvMfvz24iEUyCFFCpLx3L/W/XkMWCJmrYtk9kqG2Qui5owf8X1Hg
-         8PM180c3svlm4TGJ8KEebXANtqymxujl3Xm66BwvuyJ4ZHVsueIWafOo7dPE5Dk87pvD
-         bSZuRwPbjn50cpOOPz82O3HHYkSXefr2AB2Yt4XXwq46rpXa+tEsgT/wlc+Rocw8FU2L
-         YdqQ==
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=H3RPOWBRf2k2synG3wrZwitti/PedojQEmKKrIh2UUo=;
+        b=TH2gxgFULV3Btg8IqnkRewzfEIxAXYMpVn2yzlu582rw3Tkd6LO0hyYodBGl+z3oOG
+         FCCEjmdxW1A8AOt5F8w+i6QkbHU5HZJ6cl68r8LuL4Tj7K2bwik3XqCiX4ybx0XqDenN
+         voy9QGTXoRAhRVXYCmsSBDR824M8vqCCNStoI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=J0CqnawQFzTaboVphqTqnPpq47SB6w0kctdgBqfSago=;
-        b=bWbhrqMhXAF8XjVGmWWhV9DGBM1rCRt8U1Q0jkOxVVe3gt8gaY+mP4Li+R+1oAOb/Q
-         QeJjOeZEv493fcLKjIS3Vpnh630pmwO5HoauONXVoP+Dkr7XelNjSG8xc6pRL5VNwKu3
-         Yb1eoe9Qub+AAq5uvYUjkPVD9mvNxi6XHT+J8srL+P8xEv2GstxrsW1xztavVwpZ87W0
-         34ig6vnDat8GTifzPvRkG5tT+ygCVrepAyRFi2q78tM1gQOGInY0AwJ6QXmJ1xGt01NI
-         ePeLWBv+vaq8DD0+1wl4bhu0lRmajMhUXz6rc+v2pMjy+ckg1EfWadQnZOEB9LEe9gcc
-         5xzA==
-X-Gm-Message-State: AOAM531Ezr2KF+0jfP3RBNPUtlxpuoui2kGSewatD+9Kn14tXNGKCKaA
-        3t+5iEiGcXUQFAmMcvGx/feuQA==
-X-Google-Smtp-Source: ABdhPJwkUYRSRS/PVfVlS/yPsxZSb3XuJOtkClFX3eA5J4vUj2jA5H1/Ze8TUvDpulmBKoPP1z6+vg==
-X-Received: by 2002:aca:4355:: with SMTP id q82mr14520179oia.165.1627232493401;
-        Sun, 25 Jul 2021 10:01:33 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id r24sm6852639otg.14.2021.07.25.10.01.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Jul 2021 10:01:32 -0700 (PDT)
-Date:   Sun, 25 Jul 2021 12:01:30 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Rajendra Nayak <rnayak@codeaurora.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>, ulf.hansson@linaro.org,
-        viresh.kumar@linaro.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, rojay@codeaurora.org,
-        stephan@gerhold.net
-Subject: Re: [PATCH v4 2/2] arm64: dts: sc7180: Add required-opps for i2c
-Message-ID: <YP2Y6qs5P5mb2jzE@yoga>
-References: <1626429658-18961-1-git-send-email-rnayak@codeaurora.org>
- <1626429658-18961-3-git-send-email-rnayak@codeaurora.org>
- <YPHpsO5LlQRQxj9y@yoga>
- <CAE-0n53CHD8c7C4ETWRgzmZmFSCcBw46wSs4pKbYMRjA_tD3yg@mail.gmail.com>
- <YPHxfHPC/faq/y+J@yoga>
- <CAE-0n50qx80cMFPJ1x9rc+EMR1L+j2CUMyDjWAbnE9mPHjf-TQ@mail.gmail.com>
- <YPIBK/NJgBNZVI8Y@yoga>
- <12711a61-e16c-d2bc-6e04-ab94c7551abe@codeaurora.org>
- <YPXQNFYKfH/xZxFY@yoga>
- <bc79ea3e-4981-8f9b-f9a7-59cb972047a7@codeaurora.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=H3RPOWBRf2k2synG3wrZwitti/PedojQEmKKrIh2UUo=;
+        b=jujzJkBW//AKQV4dmu/mAfe39ZCADQmGMsoMJ1I8U2efZmTcHjPq/Q4iLxjpTBKavv
+         eetaaTzFdgtTsu9fEpVTJei0bIq/uf3ZLc2JYNiMzhTQ3gpAjwdOF+Q3xeYMiBlOTXUU
+         a4XAAS78uDGWHRp+AnCo+uZid2dD4qImJxBAkXCz/rGWouxu5IqPQZ35lxNo8u/Abtvz
+         aJECPMqj6taNiAbOIRjtXGPUjjLTuJtBPTQm5uPx+zPJbvwEwM88v4c9WDFwgumEkFPN
+         DBHwBzXFgn1etmFKIPfIAgXSAtutEIO0cf7AVFbRs2UfbryyK1yzI8a7AzvBPmhXMcST
+         /XxA==
+X-Gm-Message-State: AOAM530qFlH6UqQmJY0tRAkt/9I1woWH+O4iSTvv056QhJO8l9N6DUHo
+        T8ZPBtOYEfTIvNKf5MNhfpCE9TrgjYOK26rZxwn2Pw==
+X-Google-Smtp-Source: ABdhPJxHwHQXUhyRK5a5X9ubPP7qAlXX/q2WPa8HKt6EPPQlN1ZOYkiGslGAR5j+VSADs9ttExe8DXD7AN113IbTGAQ=
+X-Received: by 2002:a17:906:368e:: with SMTP id a14mr14034879ejc.60.1627233247000;
+ Sun, 25 Jul 2021 10:14:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bc79ea3e-4981-8f9b-f9a7-59cb972047a7@codeaurora.org>
+References: <20210704090230.26489-1-jagan@amarulasolutions.com> <YP2ZvoVQyvwTXP++@ravnborg.org>
+In-Reply-To: <YP2ZvoVQyvwTXP++@ravnborg.org>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Sun, 25 Jul 2021 22:43:55 +0530
+Message-ID: <CAMty3ZANJz=HSKFzZ8gn896uw98iVwMEpGhmanXNbj77Ren4hw@mail.gmail.com>
+Subject: Re: [RFC PATCH 00/17] drm: bridge: Samsung MIPI DSIM bridge
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     Inki Dae <inki.dae@samsung.com>,
+        Joonyoung Shim <jy0922.shim@samsung.com>,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        Marek Vasut <marex@denx.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-samsung-soc@vger.kernel.org,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 19 Jul 23:29 CDT 2021, Rajendra Nayak wrote:
+Hi Sam,
 
-> 
-> 
-> On 7/20/2021 12:49 AM, Bjorn Andersson wrote:
-> > On Mon 19 Jul 04:37 CDT 2021, Rajendra Nayak wrote:
-> > 
-> > > 
-> > > 
-> > > On 7/17/2021 3:29 AM, Bjorn Andersson wrote:
-> > > > On Fri 16 Jul 16:49 CDT 2021, Stephen Boyd wrote:
-> > > > 
-> > > > > Quoting Bjorn Andersson (2021-07-16 13:52:12)
-> > > > > > On Fri 16 Jul 15:21 CDT 2021, Stephen Boyd wrote:
-> > > > > > 
-> > > > > > > Quoting Bjorn Andersson (2021-07-16 13:18:56)
-> > > > > > > > On Fri 16 Jul 05:00 CDT 2021, Rajendra Nayak wrote:
-> > > > > > > > 
-> > > > > > > > > qup-i2c devices on sc7180 are clocked with a fixed clock (19.2 MHz)
-> > > > > > > > > Though qup-i2c does not support DVFS, it still needs to vote for a
-> > > > > > > > > performance state on 'CX' to satisfy the 19.2 Mhz clock frequency
-> > > > > > > > > requirement.
-> > > > > > > > > 
-> > > > > > > > 
-> > > > > > > > Sounds good, but...
-> > > > > > > > 
-> > > > > > > > > Use 'required-opps' to pass this information from
-> > > > > > > > > device tree, and also add the power-domains property to specify
-> > > > > > > > > the CX power-domain.
-> > > > > > > > > 
-> > > > > > > > 
-> > > > > > > > ..is the required-opps really needed with my rpmhpd patch in place?
-> > > > > > > > 
-> > > > > > > 
-> > > > > > > Yes? Because rpmhpd_opp_low_svs is not the lowest performance state for
-> > > > > > > CX.
-> > > > > > 
-> > > > > > On e.g. sm8250 the first available non-zero corner presented in cmd-db
-> > > > > > is low_svs.
-> > > 
-> > > what rail is this? the mmcx? Perhaps it does not support RET.
-> > > cx usually supports both collapse state and RET.
-> > > 
-> > 
-> > That was the one I was specifically looking at for the MDSS_GDSC->MMCX
-> > issue, so it's likely I didn't look elsewhere.
-> > 
-> > > > > 
-> > > > > Indeed. On sc7180 it's not the first non-zero corner. I suppose
-> > > > > retention for CX isn't actually used when the SoC is awake so your
-> > > > > rpmhpd patch is putting in a vote for something that doesn't do anything
-> > > > > at runtime for CX? I imagine that rpmh only sets the aggregate corner to
-> > > > > retention when the whole SoC is suspended/sleeping, otherwise things
-> > > > > wouldn't go very well. Similarly, min_svs may be VDD minimization? If
-> > > > > so, those first two states are basically states that shouldn't be used
-> > > > > at runtime, almost like sleep states.
-> > > > > 
-> > > > 
-> > > > But if that's the case, I don't think it's appropriate for the "enabled
-> > > > state" of the domain to use any of those corners.
-> > > 
-> > > I rechecked the downstream kernels where all this voting happens from within
-> > > the clock drivers, and I do see votes to min_svs for some clocks, but Stephen is
-> > > right that RET is not something that's voted on while in active state.
-> > > 
-> > > But always going with something just above the ret level while active will also
-> > > not work for all devices, for instance for i2c on 7180, it needs a cx vote of
-> > > low svs while the rail (cx) does support something lower than that which is min svs.
-> > > (why can't it just work with min svs?, I don't know, these values and recommendations
-> > > come in from the voltage plans published by HW teams for every SoC and we just end up
-> > > using them in SW, perhaps something to dig further and understand which I will try and
-> > > do but these are the values in voltage plans and downstream kernels which work for now)
-> > > 
-> > 
-> > So to some degree this invalidates my argumentation about the
-> > enabled_corner in rpmhpd, given that "enabled" means a different corner
-> > for each rail - not just the one with lowest non-zero value.
-> 
-> Right, it might work in some cases but might not work for all.
-> 
+On Sun, Jul 25, 2021 at 10:35 PM Sam Ravnborg <sam@ravnborg.org> wrote:
+>
+> Hi Jagan,
+>
+> On Sun, Jul 04, 2021 at 02:32:13PM +0530, Jagan Teki wrote:
+> > This series supports common bridge support for Samsung MIPI DSIM
+> > which is used in Exynos and i.MX8MM SoC's.
+> >
+> > The final bridge supports both the Exynos and i.MX8MM DSI devices.
+> >
+> > Right now bridge offers two sets of implementations.
+> >
+> > A. With component_ops and exynos specific code exclusively for
+> >    exynos dsi drivers and it's legacy bindings.
+> >
+> > B. Without componenet_ops for newly implemented bridges and its
+> >    users like i.MX8MM.
+> >
+> > The future plan is to fix the implementation A) by dropping
+> > component_ops and fixing exynos specific code in order to make
+> > the bridge more mature to use and the same is mentioned in
+> > drivers TODO.
+> >
+> > Patch 0001 - 0006: Bridge conversion
+> > Patch 0007 - 0017: Samsung MIPI DSIM bridge fixes, additions
+> >
+> > Tested in Engicam i.Core MX8M Mini SoM.
+> >
+> > Anyone interest, please have a look on this repo
+> > https://github.com/openedev/linux/tree/070421-imx8mm-dsim
+> >
+> > Would appreciate anyone from the exynos team to test it on
+> > the exynos platform?
+> >
+> > Any inputs?
+>
+> I really like where you are headign with this!
+> No testing - sorry. But I will try to provide a bit of feedback on the
+> individual patches.
+>
+> I hope you find a way to move forward with this.
 
-Which makes it way less desirable.
+Thanks for the response.
 
-The enable state for rpmhpd power domains doesn't meet my expectations
-for how a power domain should behave, but we should at least be
-consistent across all consumers of it then...
+We have found some issues with Bridge conversion on existing exynos
+drivers. The component based DSI drivers(like exynos) are difficult to
+attach if it involves kms hotplug. kms hotplug would require drm
+pointer and that pointer would only available after the bind call
+finishes. But the bridge attach in bind call will defer till it find
+the attached bridge.
 
+Right now I'm trying to find the proper way to attach the bridges for
+component based DSI drivers which involves kms hot-plug.
 
-But the original issue remains, that when a device is powered by
-MDSS_GDSC, which is a subdomain of MMCX we still need to ensure that
-"on" for MMCX is actually "on" - which just happens to be the first
-non-0 corner.
+If you have any ideas on this, please let me know.
 
-But I presume we will end up having to do the same with &gcc's GDSCs,
-which are subdomains of CX and MX where this isn't true.
-
-> > 
-> > So perhaps instead of introducing the enabled_corner we need to
-> > introduce your patch and slap a WARN_ON(corner == 0) in
-> > rpmhpd_power_on() - to ensure that all clients that uses a rpmhpd domain
-> > actually do vote for a high enough corner?
-> 
-> So this would mean the expectation is that the clients set the perf state/corner
-> before they call power_on? I don;t think that's the case today with most clients,
-> infact its the opposite, we power on first and then make a call to set the perf
-> state of the domain.
-> 
-
-You're right, it's pretty much always the opposite, given that genpd
-will always enable the domain during attach.
-
-Regards,
-Bjorn
-
-> > 
-> > Regards,
-> > Bjorn
-> > 
-> > > > 
-> > > > As this means that anyone who needs any of the rpmhpd domains active
-> > > > also needs to specify required-opps, which wouldn't be needed for any
-> > > > other power domain provider.
-> > > > 
-> > > > And more importantly it means that a device sitting in a GDSC, which
-> > > > would be parented by a rpmhpd domain has no way to specify the GDSC and
-> > > > trickle the minimum-vote up to the rpmhpd domain. (And I know that we
-> > > > don't describe the parentship of the GDSCs today, but this patch
-> > > > tells me that it's around the corner - for more than MMCX)
-> > > > 
-> > > > Regards,
-> > > > Bjorn
-> > > > 
-> > > > > > 
-> > > > > > And if this (which?) clock requires a higher corner than the lowest
-> > > > > > possible in order to tick at this "lowest" frequency, I'm certainly
-> > > > > > interested in some more details.
-> > > > > > 
-> > > 
-> > > -- 
-> > > QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-> > > of Code Aurora Forum, hosted by The Linux Foundation
-> 
-> -- 
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-> of Code Aurora Forum, hosted by The Linux Foundation
+Thanks,
+Jagan.
