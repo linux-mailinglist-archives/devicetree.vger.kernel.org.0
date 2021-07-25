@@ -2,140 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 691B63D505F
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 00:16:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 848E83D5067
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 00:18:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231239AbhGYVfj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Jul 2021 17:35:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36186 "EHLO
+        id S229604AbhGYVhs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Jul 2021 17:37:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231280AbhGYVfj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jul 2021 17:35:39 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E23DFC061757;
-        Sun, 25 Jul 2021 15:16:08 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id bp1so12043392lfb.3;
-        Sun, 25 Jul 2021 15:16:08 -0700 (PDT)
+        with ESMTP id S229531AbhGYVhr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jul 2021 17:37:47 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EAA4C061757;
+        Sun, 25 Jul 2021 15:18:17 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id u20so8733705ljo.0;
+        Sun, 25 Jul 2021 15:18:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=6B4jEJL67NPET91efGnsWZsqxuxCtq/o5nz6hNotkO4=;
-        b=BxSZFFCUwe+jQ8T87WItuzNoJcDlu154rWQJJMghA8dQX0fmzhKsCmr6QRDL0iFKIz
-         UVIw3FhQlxabjAxaGoUF7/kUm8Q2mkaEj2HiMhDq4q/sTnyJW7P8qZPsIHo5hIq9FP07
-         vHiisc+pC5Vw4cInOEEw7a9b6eeBoDRohH+IaPdi9pd9hrqIbXmde5jeEKxpGHMK0K8a
-         1fLEasbCkIJPVrnzNSS0k4frtmAsKx3WtbKySH0Y9X7LKjfTNoMlWDnqr7j6v0xBbI8n
-         uMYJonkT5ZRGUye9Dr5lja7Y1jmOeubtfoaBH03TJHW0icvayPE3JbFkf7Q9fYNSrDwd
-         2rNQ==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=dUhRXsVILafLbrcPB/Q67vmty0U4fF9veTlHlCnEtoE=;
+        b=VqTyDZKeiBNSF6NY6wJ0B3QVeonvwGYiWYwC/C+IuteaaqkDUxehCSd2G/mtnhHTzK
+         msMphgqw2cM+0qROxPr9ph2omWLOSammr3kv9gt6Pzne55jLwsy8F661PhND3T1ry3IR
+         fiEczxO0OAxsr0J86IZC8tDYg3kGw5091+yXSjCCd8qY+2oPTTSqwEgsIG036W1+nm1d
+         nvvicSsBF5LENUTy0jv61/AyHP5ZHVn89lxtg9cgZQFhNPqBqjqejjViGXATG+VmapkP
+         YAfPXk49SibWv8wMQZx3teBdNxz8TRBdOEpEBVu/nU7Ek9hcINlrpu70/2/zpkmvlPvT
+         0eqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=6B4jEJL67NPET91efGnsWZsqxuxCtq/o5nz6hNotkO4=;
-        b=hBJR7cGjMhRY3cjhe1CFuCclU7j+ybJ300HItAQcg0wSYvMovj5o+fA058YX3TNUUK
-         VIi+Ad8L4/q62u3D8kmsNk63moXVec/Q3kSj+z2jOr1Sckgngf82+LXqhWgqTk/+MAws
-         Wx6EO36GEIPT+3Ly0WJuB9YwlBuJxB3rU3s9dfcP0sl8RZLcGUwW6nzBcvdhwC9dmCy3
-         wCF5ImbgB4yuivSXrK51E8r+aQEZadsaNvGH6QUuqhdquvcaERTSpVsx0PknjJftpyrf
-         9YJhy/ry408VpkZYgOrCQepd6A8tlOReRL7eVouHQcS6Ogfpppy4JmPppS1vUSka+F1j
-         tx8A==
-X-Gm-Message-State: AOAM530G0zl+YBn8RtQ4IfBVFdqdBSAE6oxUvIOrHBZgTJlVhm6balWi
-        naWiyTr6j19kO2clIV8Sp78=
-X-Google-Smtp-Source: ABdhPJxL2L6D6hlrndH5ArxdXn3vZvFTY6HE9Ya6xghjgEv7cqSHBJqJh4TBbw6snIoS0QyU9IdSpQ==
-X-Received: by 2002:ac2:4888:: with SMTP id x8mr10406743lfc.19.1627251367371;
-        Sun, 25 Jul 2021 15:16:07 -0700 (PDT)
-Received: from akaWolf-PC.. ([194.79.5.201])
-        by smtp.gmail.com with ESMTPSA id z12sm2862647lfu.53.2021.07.25.15.16.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Jul 2021 15:16:06 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=dUhRXsVILafLbrcPB/Q67vmty0U4fF9veTlHlCnEtoE=;
+        b=MjK2W99mWYGhUxUtHWyvqLW1oXDqF1wxAvR7so9nobsKo6iMtwPghAo7Lzu4xcRwX7
+         O/8BnWxouVGrYyhJUpAAFpc266GcpOqohUQ9UsVJH7wHSZrUoiT/TLDC0KfyZkIBVuhe
+         RqoibgPZ9ZwoKsbu+4KUEcN3G9qQaK4xzNQXqVNtpz72WR8Vtgot1y0Gz6/KlSei1Z8S
+         f3kHmPV+lhubIn/qsBH7YmctSOiBTTMaW1PpGgBh8FRV/h1V4z51szMwZ7f9/k283v2C
+         /NUnsJySxpUtOkVHs4/Iryomve/5/m8hne+oiUei423TqAxphIdXCIRp7oS925L2Km98
+         3jMg==
+X-Gm-Message-State: AOAM5326x/9M9lcb/ttBHNO2BvrlzxpckU5hNy8JCeVR/1Do1n/t2+Vp
+        irQMTCD51XNbPqfiduIK+7s=
+X-Google-Smtp-Source: ABdhPJy6QvaawejBf4U+EnmKUnrnqwaUPLrkiynHcuqhsBM2ozdPNtDPQ0xlDMFv7kw7Q1HxHuogjQ==
+X-Received: by 2002:a2e:8110:: with SMTP id d16mr10417607ljg.42.1627251495466;
+        Sun, 25 Jul 2021 15:18:15 -0700 (PDT)
+Received: from [192.168.1.6] ([194.79.5.201])
+        by smtp.gmail.com with ESMTPSA id 10sm2867285lfz.115.2021.07.25.15.18.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 25 Jul 2021 15:18:15 -0700 (PDT)
+Subject: Re: [PATCH v2 3/3] drm/panel-simple: add Gopher 2b LCD panel
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, paul@crapouillou.net,
+        robh+dt@kernel.org, thierry.reding@gmail.com
+References: <20210724103358.1632020-1-akawolf0@gmail.com>
+ <20210724103358.1632020-4-akawolf0@gmail.com> <YP3IM4PbN68qd4ec@ravnborg.org>
 From:   Artjom Vejsel <akawolf0@gmail.com>
-Cc:     thierry.reding@gmail.com, sam@ravnborg.org,
-        dri-devel@lists.freedesktop.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        paul@crapouillou.net, akawolf0@gmail.com
-Subject: [PATCH v3 3/3] drm/panel-simple: add Gopher 2b LCD panel
-Date:   Mon, 26 Jul 2021 01:15:27 +0300
-Message-Id: <20210725221527.1771892-4-akawolf0@gmail.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210725221527.1771892-1-akawolf0@gmail.com>
-References: <20210725221527.1771892-1-akawolf0@gmail.com>
+Message-ID: <b588df49-2c85-f8c7-115e-6e86d0692daf@gmail.com>
+Date:   Mon, 26 Jul 2021 01:18:11 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+In-Reply-To: <YP3IM4PbN68qd4ec@ravnborg.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Gopher 2b LCD panel is used in Gopher 2b handhelds.
-It's simple panel with NewVision NV3047 driver, but SPI lines are not connected.
-It has no specific name, since it's unique to that handhelds.
-lot name at AliExpress: 4.3 inch 40PIN TFT LCD Screen COG NV3047 Drive IC 480(RGB)*272 No Touch 24Bit RGB Interface
+Hi, Sam! Thanks for commentaries, I've sent v3.
 
-Signed-off-by: Artjom Vejsel <akawolf0@gmail.com>
----
- drivers/gpu/drm/panel/panel-simple.c | 43 ++++++++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
-
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 9b286bd4444f..6b69c0c70814 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -3563,6 +3563,46 @@ static const struct panel_desc qd43003c0_40 = {
- 	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
- };
- 
-+static const struct drm_display_mode qishenglong_gopher2b_lcd_panel_modes[] = {
-+	{ /* 60 Hz */
-+		.clock = 10800,
-+		.hdisplay = 480,
-+		.hsync_start = 480 + 77,
-+		.hsync_end = 480 + 77 + 41,
-+		.htotal = 480 + 77 + 41 + 2,
-+		.vdisplay = 272,
-+		.vsync_start = 272 + 16,
-+		.vsync_end = 272 + 16 + 10,
-+		.vtotal = 272 + 16 + 10 + 2,
-+		.flags = DRM_MODE_FLAG_NVSYNC | DRM_MODE_FLAG_NHSYNC,
-+	},
-+	{ /* 50 Hz */
-+		.clock = 10800,
-+		.hdisplay = 480,
-+		.hsync_start = 480 + 17,
-+		.hsync_end = 480 + 17 + 41,
-+		.htotal = 480 + 17 + 41 + 2,
-+		.vdisplay = 272,
-+		.vsync_start = 272 + 116,
-+		.vsync_end = 272 + 116 + 10,
-+		.vtotal = 272 + 116 + 10 + 2,
-+		.flags = DRM_MODE_FLAG_NVSYNC | DRM_MODE_FLAG_NHSYNC,
-+	},
-+};
-+
-+static const struct panel_desc qishenglong_gopher2b_lcd_panel = {
-+	.modes = qishenglong_gopher2b_lcd_panel_modes,
-+	.num_modes = ARRAY_SIZE(qishenglong_gopher2b_lcd_panel_modes),
-+	.bpc = 8,
-+	.size = {
-+		.width = 95,
-+		.height = 54,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
-+	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE,
-+	.connector_type = DRM_MODE_CONNECTOR_DPI,
-+};
-+
- static const struct display_timing rocktech_rk070er9427_timing = {
- 	.pixelclock = { 26400000, 33300000, 46800000 },
- 	.hactive = { 800, 800, 800 },
-@@ -4651,6 +4691,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "qiaodian,qd43003c0-40",
- 		.data = &qd43003c0_40,
-+	}, {
-+		.compatible = "qishenglong,gopher2b-lcd-panel",
-+		.data = &qishenglong_gopher2b_lcd_panel,
- 	}, {
- 		.compatible = "rocktech,rk070er9427",
- 		.data = &rocktech_rk070er9427,
--- 
-2.32.0
-
+On 25/07/2021 23.23, Sam Ravnborg wrote:
+> On Sat, Jul 24, 2021 at 01:33:58PM +0300, Artjom Vejsel wrote:
+>> The Gopher 2b LCD panel is used in Gopher 2b handhelds.
+>> It's simple panel with NewVision NV3047 driver, but SPI lines are not connected.
+>> It has no specific name, since it's unique to that handhelds.
+>> lot name at AliExpress: 4.3 inch 40PIN TFT LCD Screen COG NV3047 Drive IC 480(RGB)*272 No Touch 24Bit RGB Interface
+>>
+>> Signed-off-by: Artjom Vejsel <akawolf0@gmail.com>
+>> ---
+>>   drivers/gpu/drm/panel/panel-simple.c | 43 ++++++++++++++++++++++++++++
+>>   1 file changed, 43 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+>> index 9b286bd4444f..9676e25accb3 100644
+>> --- a/drivers/gpu/drm/panel/panel-simple.c
+>> +++ b/drivers/gpu/drm/panel/panel-simple.c
+>> @@ -4306,6 +4306,46 @@ static const struct panel_desc yes_optoelectronics_ytc700tlag_05_201c = {
+>>   	.connector_type = DRM_MODE_CONNECTOR_LVDS,
+>>   };
+>>   
+>> +static const struct drm_display_mode qishenglong_gopher2b_lcd_panel_modes[] = {
+>> +	{ /* 60 Hz */
+>> +		.clock = 10800,
+>> +		.hdisplay = 480,
+>> +		.hsync_start = 480 + 77,
+>> +		.hsync_end = 480 + 77 + 41,
+>> +		.htotal = 480 + 77 + 41 + 2,
+>> +		.vdisplay = 272,
+>> +		.vsync_start = 272 + 16,
+>> +		.vsync_end = 272 + 16 + 10,
+>> +		.vtotal = 272 + 16 + 10 + 2,
+>> +		.flags = DRM_MODE_FLAG_NVSYNC | DRM_MODE_FLAG_NHSYNC,
+>> +	},
+>> +	{ /* 50 Hz */
+>> +		.clock = 10800,
+>> +		.hdisplay = 480,
+>> +		.hsync_start = 480 + 17,
+>> +		.hsync_end = 480 + 17 + 41,
+>> +		.htotal = 480 + 17 + 41 + 2,
+>> +		.vdisplay = 272,
+>> +		.vsync_start = 272 + 116,
+>> +		.vsync_end = 272 + 116 + 10,
+>> +		.vtotal = 272 + 116 + 10 + 2,
+>> +		.flags = DRM_MODE_FLAG_NVSYNC | DRM_MODE_FLAG_NHSYNC,
+>> +	},
+>> +};
+>> +
+>> +static const struct panel_desc qishenglong_gopher2b_lcd_panel = {
+>> +	.modes = qishenglong_gopher2b_lcd_panel_modes,
+>> +	.num_modes = ARRAY_SIZE(qishenglong_gopher2b_lcd_panel_modes),
+>> +	.bpc = 8,
+>> +	.size = {
+>> +		.width = 95,
+>> +		.height = 54,
+>> +	},
+>> +	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
+>> +	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE,
+>> +	.connector_type = DRM_MODE_CONNECTOR_DPI,
+>> +};
+>> +
+>>   static const struct drm_display_mode arm_rtsm_mode[] = {
+>>   	{
+>>   		.clock = 65000,
+>> @@ -4753,6 +4793,9 @@ static const struct of_device_id platform_of_match[] = {
+>>   	}, {
+>>   		.compatible = "yes-optoelectronics,ytc700tlag-05-201c",
+>>   		.data = &yes_optoelectronics_ytc700tlag_05_201c,
+>> +	}, {
+>> +		.compatible = "qishenglong,gopher2b-lcd-panel",
+>> +		.data = &qishenglong_gopher2b_lcd_panel,
+>>   	}, {
+> This list shall also be sorted alphabetically, after the compatible.
+> Same goes for the definition of the variable &qishenglong_gopher2b_lcd_panel
+> that shall be listed in the same order as here.
+>
+> Sorry for the nit-picking - but if we do not ask to have it fixed then
+> we quickly have a mess.
+>
+> 	Sam
