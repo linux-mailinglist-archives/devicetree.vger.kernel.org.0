@@ -2,835 +2,454 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 923983D4D4C
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jul 2021 14:19:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0ED43D4D73
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jul 2021 14:41:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230127AbhGYLi7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Jul 2021 07:38:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46744 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229538AbhGYLi6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jul 2021 07:38:58 -0400
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4523C061757;
-        Sun, 25 Jul 2021 05:19:21 -0700 (PDT)
-Received: by mail-yb1-xb2f.google.com with SMTP id x192so10103704ybe.0;
-        Sun, 25 Jul 2021 05:19:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=bkQVrzukn+ApNOCz4kuOqiC74G71+4kJpa7NC6+JEmg=;
-        b=Zcnkq0BjZhToZQm95pojEH5LxOAHV/jxmWgkBY491S1vQN7QzJdcUyp0Gt/Dr6KOAz
-         UCeQzd/hZwUC62zHkAKiERRaOY5r0c+ByHLphwuqZzIYFfMEQudDl0i6BoJoCrdSi5Z5
-         rZ43Cf1M4jkIfH9vOPYNpvJf5zS+cB5eC5CZuV77rRgRmcobPBQUwc4i5dDIK5NOqxWV
-         nHjrkq7bfG+8mqB+r7jTjEy4SZ6koj1ePGmBCJVyTtB8TXLMkeQwm5spc+eUNTtdTdEM
-         06XOFqvp84xz7ml1mdruer2P073vwCFFoEm2MeCc7dRBX2nB75l9mVPAUCz2QtN9v2CT
-         cAog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=bkQVrzukn+ApNOCz4kuOqiC74G71+4kJpa7NC6+JEmg=;
-        b=SQ7/arhY6/bumkkgyx7LiXxVMHqvwNv/aN+U6S110XAFWyM6Nt+JQlYvl+k3nlTW6F
-         hXExqHzBSiMnMXHQ+7T29fCYnQklm+Sne850uTtREM4Oh2brMGE2xRyGeB1tGV38bqx4
-         YocjsADUuOrD+NqHijTgwAIhx/yASlXOxgjR3OMrogJrW2KVUwtquL6KvoaVHixh2b3G
-         1RwlrYGGRXbKMfNKaTqDScFDILTsPQpmzbmeF0EEV0kXb0veE8oG6UNpVhgA5lHuvOS5
-         EJTw/t8BT0N89LR/T5FQcoYoYPh5Kvo0WBX4djVWnhzU7pwT7pFiKiKdyePQyRrZiJ10
-         oenA==
-X-Gm-Message-State: AOAM5329kjTiBCZ6yxFod/TFt+Z77aXl5fIUdkQuwy2qK4MEeHa2wAsr
-        2ue0mOGkqy8k7t+lm73ah0xKi3J3ODMEoRWMoRw=
-X-Google-Smtp-Source: ABdhPJxcajM3aPhdwuXev6H/6uEiZ63XQZm8OxtFD/75OBZcJxp+kLPJ5rG18OkGiH3AvmiU6JByIYW9IN0xVEQWJsA=
-X-Received: by 2002:a5b:b48:: with SMTP id b8mr17268699ybr.179.1627215560381;
- Sun, 25 Jul 2021 05:19:20 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210719085840.21842-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20210719085840.21842-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210724190601.084d43e7@jic23-huawei>
-In-Reply-To: <20210724190601.084d43e7@jic23-huawei>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Sun, 25 Jul 2021 13:18:53 +0100
-Message-ID: <CA+V-a8v28TuGa9Vay9wraRetEK4XZBm6BU4USZYTdFR4BkwBBQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] iio: adc: Add driver for Renesas RZ/G2L A/D converter
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Alexandru Ardelean <aardelean@deviqon.com>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S230284AbhGYMAo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Jul 2021 08:00:44 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:35237 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230264AbhGYMAn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 25 Jul 2021 08:00:43 -0400
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailnew.nyi.internal (Postfix) with ESMTP id BF1F2580447;
+        Sun, 25 Jul 2021 08:41:13 -0400 (EDT)
+Received: from imap21 ([10.202.2.71])
+  by compute1.internal (MEProxy); Sun, 25 Jul 2021 08:41:13 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=mime-version:message-id:in-reply-to:references:date:from:to
+        :cc:subject:content-type; s=fm2; bh=9Vxtwp0zDM7hmdE838Qhd0C2fpYY
+        IhzFdv/zN3orH/E=; b=ZBkKjtZ/p+iJv+ypBsDPVbWyt0K0Yv1PaIgL6zPdycJD
+        cyCkNSs+Mnqx0WtDPk0aQwYl9v+zvyRm24V0Em+jrInt8erb3gFpLG+we3turqTy
+        2in6I0qehD8yL74RP219VRGdiSwVfna/3UTFCP05bN/oZI4UgGDXhh21MVna6nFi
+        T6Fwvn0mo36lhhWEJsVIzCpE8btY5N4HQpds44qO6adeOAq0C7K1+ZQ062gS+ICR
+        bw6KmAEp25o8P92mFCaVPlFvySrXJQALcFz6R86CK2bamYDHPAF3vfFGT0cNdyG2
+        hvS4bS9UesGrY6jxh6i8Gu1BFA11j+Vjx0h8LaqOtA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=9Vxtwp
+        0zDM7hmdE838Qhd0C2fpYYIhzFdv/zN3orH/E=; b=Kgho/LE9ekfsCahxeIaC/N
+        gdmTg4LlM50NHCPBiE4xb/rZvY4nQeC9DG7paeFnSxj8jjqz3EPyG0QMlz7Guwm3
+        7sGGhQ8lGAHrBicULrVCQDZG3QMReQ1VnEJP1I+ptlttbcow3G0qyBpJbGHdJ0xT
+        abDT6YKFNV2gUSRCVQBqmSCmu/9CM6SheFiSeD3VUgq+2HY0PDVkC4EkGkGIaXOv
+        z4O4AwjqdRcAmG7p4qvxvUBJhEnB44QelM/047cYImvyf9aDSgANCBYhQ0GrFBqg
+        3sXUjBejTrEK+g3z+VZ0WJ5oiwnxvuID9hgAWCcKofxsAyZznIUDhonuytEi6YVg
+        ==
+X-ME-Sender: <xms:51v9YCGedN4lKPdI6MhqfqyNn0Wm8xf1WAViIeGBjDMXO_0hZEqdRg>
+    <xme:51v9YDUWGyohKo9IQcHXf2cZEbIjkgeS5uXI81FZlOw4ImQQva0xJwwglKaGJY5Ky
+    Fw7xlyVrvT_uNe75ro>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrgedvgdehgecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedfufhvvghn
+    ucfrvghtvghrfdcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrfgrth
+    htvghrnhepgfeigeeiffeuhfettdejgfetjeetfeelfefgfefgvddvtdfghfffudehvdef
+    keffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepsh
+    hvvghnsehsvhgvnhhpvghtvghrrdguvghv
+X-ME-Proxy: <xmx:51v9YMJquKmqBO80PG3-9QLvQyJ-1TCvxUqGLrF5nchBqiNaKQmwGw>
+    <xmx:51v9YMEsK99YndIA_qhwX6vzCT3eoYQXLP37yFm0Q3AllIGXUXxUog>
+    <xmx:51v9YIU4x6vY3xaxkkc6QN6jXumNwW-HlsIzesZ2O85lZ9gxPKODJQ>
+    <xmx:6Vv9YJsHiGm437hPUOiTmwUKZvPLbcs4OEWCKidxWhgNJ78eflOmmQ>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id C3DA651C0061; Sun, 25 Jul 2021 08:41:11 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-540-g21c5be8f1e-fm-20210722.001-g21c5be8f
+Mime-Version: 1.0
+Message-Id: <de9dcabd-a3c3-4f34-9f09-6e23deed3a98@www.fastmail.com>
+In-Reply-To: <69259ab4-0da9-ddc7-97b0-9ef1e33a39ec@arm.com>
+References: <20210627143405.77298-1-sven@svenpeter.dev>
+ <20210627143405.77298-4-sven@svenpeter.dev>
+ <f3574c75-db2d-47fc-bda5-0f0f627fb524@arm.com>
+ <30b00cf1-6366-4075-be8a-992fb1778306@www.fastmail.com>
+ <69259ab4-0da9-ddc7-97b0-9ef1e33a39ec@arm.com>
+Date:   Sun, 25 Jul 2021 14:40:51 +0200
+From:   "Sven Peter" <sven@svenpeter.dev>
+To:     "Robin Murphy" <robin.murphy@arm.com>
+Cc:     "Will Deacon" <will@kernel.org>, "Joerg Roedel" <joro@8bytes.org>,
+        "Arnd Bergmann" <arnd@kernel.org>,
+        "Rouven Czerwinski" <r.czerwinski@pengutronix.de>,
+        devicetree@vger.kernel.org, "Marc Zyngier" <maz@kernel.org>,
+        "Hector Martin" <marcan@marcan.st>, linux-kernel@vger.kernel.org,
+        "Petr Mladek via iommu" <iommu@lists.linux-foundation.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Alexander Graf" <graf@amazon.com>,
+        "Alyssa Rosenzweig" <alyssa.rosenzweig@collabora.com>,
+        "Mohamed Mediouni" <mohamed.mediouni@caramail.com>,
+        "Mark Kettenis" <mark.kettenis@xs4all.nl>,
+        linux-arm-kernel@lists.infradead.org,
+        "Stan Skowronek" <stan@corellium.com>
+Subject: Re: [PATCH v4 3/3] iommu: dart: Add DART iommu driver
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jonathan,
 
-Thank you for the review.
 
-On Sat, Jul 24, 2021 at 7:03 PM Jonathan Cameron <jic23@kernel.org> wrote:
->
-> On Mon, 19 Jul 2021 09:58:38 +0100
-> Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
->
-> > Add ADC driver support for Renesas RZ/G2L A/D converter in SW
-> > trigger mode.
-> >
-> > A/D Converter block is a successive approximation analog-to-digital
-> > converter with a 12-bit accuracy and supports a maximum of 8 input
-> > channels.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
->
-> Hi Lad,
->
-> A few additional comments inline.
->
-> Thanks,
->
-> Jonathan
->
-> > ---
-> >  MAINTAINERS                 |   8 +
-> >  drivers/iio/adc/Kconfig     |  10 +
-> >  drivers/iio/adc/Makefile    |   1 +
-> >  drivers/iio/adc/rzg2l_adc.c | 545 ++++++++++++++++++++++++++++++++++++
-> >  4 files changed, 564 insertions(+)
-> >  create mode 100644 drivers/iio/adc/rzg2l_adc.c
-> >
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 6c8be735cc91..6a52f9f4604c 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -15839,6 +15839,14 @@ L:   linux-renesas-soc@vger.kernel.org
-> >  S:   Maintained
-> >  F:   drivers/phy/renesas/phy-rcar-gen3-usb*.c
-> >
-> > +RENESAS RZ/G2L A/D DRIVER
-> > +M:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > +L:   linux-iio@vger.kernel.org
-> > +L:   linux-renesas-soc@vger.kernel.org
-> > +S:   Supported
-> > +F:   Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
-> > +F:   drivers/iio/adc/rzg2l_adc.c
-> > +
-> >  RESET CONTROLLER FRAMEWORK
-> >  M:   Philipp Zabel <p.zabel@pengutronix.de>
-> >  S:   Maintained
-> > diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-> > index db0c8fb60515..af168e1c9fdb 100644
-> > --- a/drivers/iio/adc/Kconfig
-> > +++ b/drivers/iio/adc/Kconfig
-> > @@ -887,6 +887,16 @@ config ROCKCHIP_SARADC
-> >         To compile this driver as a module, choose M here: the
-> >         module will be called rockchip_saradc.
-> >
-> > +config RZG2L_ADC
-> > +     tristate "Renesas RZ/G2L ADC driver"
-> > +     depends on ARCH_R9A07G044 || COMPILE_TEST
-> > +     help
-> > +       Say yes here to build support for the ADC found in Renesas
-> > +       RZ/G2L family.
-> > +
-> > +       To compile this driver as a module, choose M here: the
-> > +       module will be called rzg2l_adc.
-> > +
-> >  config SC27XX_ADC
-> >       tristate "Spreadtrum SC27xx series PMICs ADC"
-> >       depends on MFD_SC27XX_PMIC || COMPILE_TEST
-> > diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
-> > index f70d877c555a..d68550f493e3 100644
-> > --- a/drivers/iio/adc/Makefile
-> > +++ b/drivers/iio/adc/Makefile
-> > @@ -82,6 +82,7 @@ obj-$(CONFIG_QCOM_PM8XXX_XOADC) += qcom-pm8xxx-xoadc.o
-> >  obj-$(CONFIG_RCAR_GYRO_ADC) += rcar-gyroadc.o
-> >  obj-$(CONFIG_RN5T618_ADC) += rn5t618-adc.o
-> >  obj-$(CONFIG_ROCKCHIP_SARADC) += rockchip_saradc.o
-> > +obj-$(CONFIG_RZG2L_ADC) += rzg2l_adc.o
-> >  obj-$(CONFIG_SC27XX_ADC) += sc27xx_adc.o
-> >  obj-$(CONFIG_SPEAR_ADC) += spear_adc.o
-> >  obj-$(CONFIG_STX104) += stx104.o
-> > diff --git a/drivers/iio/adc/rzg2l_adc.c b/drivers/iio/adc/rzg2l_adc.c
-> > new file mode 100644
-> > index 000000000000..033cdec9e976
-> > --- /dev/null
-> > +++ b/drivers/iio/adc/rzg2l_adc.c
-> > @@ -0,0 +1,545 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * RZ/G2L A/D Converter driver
-> > + *
-> > + *  Copyright (c) 2021 Renesas Electronics Europe GmbH
-> > + *
-> > + * Author: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > + */
-> > +
-> > +#include <linux/clk.h>
-> > +#include <linux/completion.h>
-> > +#include <linux/delay.h>
-> > +#include <linux/iio/iio.h>
-> > +#include <linux/interrupt.h>
-> > +#include <linux/io.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of.h>
-> > +#include <linux/of_device.h>
->
-> Add mod_devicetable.h and drop the of specific headers
-> as nothing in them used directly as far as I can tell.
->
-OK.
+On Mon, Jul 19, 2021, at 20:15, Robin Murphy wrote:
+> On 2021-07-15 17:41, Sven Peter via iommu wrote:
+> [...]
+> >>> +	u64 sw_bypass_cpu_start;
+> >>> +	u64 sw_bypass_dma_start;
+> >>> +	u64 sw_bypass_len;
+> >>> +
+> >>> +	struct list_head streams;
+> >>
+> >> I'm staring to think this could just be a bitmap, in a u16 even.
+> > 
+> > The problem is that these streams may come from two different
+> > DART instances. That is required for e.g. the dwc3 controller which
+> > has a weird quirk where DMA transactions go through two separate
+> > DARTs with no clear pattern (e.g. some xhci control structures use the
+> > first dart while other structures use the second one).
+> 
+> Ah right, I do remember discussing that situation, but I think I 
+> misinterpreted dart_domain->dart representing "the DART instance" here 
+> to mean we weren't trying to accommodate that just yet.
+> 
+> > Both of them need to point to the same pagetable.
+> > In the device tree the node will have an entry like this:
+> > 
+> > dwc3_0: usb@382280000{
+> >     ...
+> >     iommus = <&dwc3_0_dart_0 0>, <&dwc3_0_dart_1 1>;
+> > };
+> > 
+> > There's no need for a linked list though once I do this properly with
+> > groups. I can just use an array allocated when the first device is
+> > attached, which just contains apple_dart* and streamid values.
+> > 
+> > 
+> >>
+> >>> +
+> >>> +	spinlock_t lock;
+> >>> +
+> >>> +	struct iommu_domain domain;
+> >>> +};
+> >>> +
+> >>> +/*
+> >>> + * This structure is attached to devices with dev_iommu_priv_set() on of_xlate
+> >>> + * and contains a list of streams bound to this device as defined in the
+> >>> + * device tree. Multiple DART instances can be attached to a single device
+> >>> + * and each stream is identified by its stream id.
+> >>> + * It's usually reference by a pointer called *cfg.
+> >>> + *
+> >>> + * A dynamic array instead of a linked list is used here since in almost
+> >>> + * all cases a device will just be attached to a single stream and streams
+> >>> + * are never removed after they have been added.
+> >>> + *
+> >>> + * @num_streams: number of streams attached
+> >>> + * @streams: array of structs to identify attached streams and the device link
+> >>> + *           to the iommu
+> >>> + */
+> >>> +struct apple_dart_master_cfg {
+> >>> +	int num_streams;
+> >>> +	struct {
+> >>> +		struct apple_dart *dart;
+> >>> +		u32 sid;
+> >>
+> >> Can't you use the fwspec for this?
+> > 
+> > 
+> > I'd be happy to use the fwspec code if that's somehow possible.
+> > I'm not sure how though since I need to store both the reference to the DART
+> > _and_ to the stream id. As far as I can tell the fwspec code would only allow
+> > to store the stream ids.
+> > (see also the previous comment regarding the dwc3 node which requires stream
+> > ids from two separate DART instances)
+> 
+> Hmm, yes, as above I was overlooking that, although there are still 
+> various ideas that come to mind; the question becomes whether they're 
+> actually worthwhile or just too-clever-for-their-own-good hacks. The 
+> exact format of fwspec->ids is not fixed (other than the ACPI IORT code 
+> having a common understanding with the Arm SMMU drivers) so in principle 
+> you could munge some sort of DART instance index or indeed anything, but 
+> if it remains cleaner to manage your own data internally then by all 
+> means keep doing that.
 
-> > +#include <linux/platform_device.h>
-> > +#include <linux/pm_runtime.h>
-> > +#include <linux/reset.h>
-> > +
-> > +#define DRIVER_NAME          "rzg2l-adc"
-> > +
-> > +#define RZG2L_ADM(n)                 ((n) * 0x4)
-> > +#define RZG2L_ADM0_ADCE                      BIT(0)
-> > +#define RZG2L_ADM0_ADBSY             BIT(1)
-> > +#define RZG2L_ADM0_PWDWNB            BIT(2)
-> > +#define RZG2L_ADM0_SRESB             BIT(15)
-> > +#define RZG2L_ADM1_TRG                       BIT(0)
-> > +#define RZG2L_ADM1_MS                        BIT(2)
-> > +#define RZG2L_ADM1_BS                        BIT(4)
-> > +#define RZG2L_ADM1_EGA_CLEAR         ~GENMASK(13, 12)
-> > +#define RZG2L_ADM2_CHSEL_CLEAR               ~GENMASK(7, 0)
->
-> I'd rather see these defined as _MASK and the
-> inversion made explicit inline.
->
-OK will use them as _MASK's and invert inline when required.
+Yeah, I can think of some hacks as well (like storing a global id->apple_dart* map
+or stuffing the 64bit pointer into two ints) and I've tried a few of them in the past
+days but didn't like either of them.
 
-> > +#define RZG2L_ADM3_ADSMP             0x578
-> > +#define RZG2L_ADM3_ADCMP             (0xe << 16)
-> > +#define RZG2L_ADM3_ADIL_CLEAR                ~GENMASK(31, 24)
-> > +
-> > +#define RZG2L_ADINT                  0x20
-> > +#define RZG2L_ADINT_CH_CLEAR         ~GENMASK(7, 0)
-> > +#define RZG2L_ADINT_CSEEN            BIT(16)
-> > +#define RZG2L_ADINT_INTS             BIT(31)
-> > +#define RZG2L_ADSTS                  0x24
-> > +#define RZG2L_ADINT_INTST_MASK               GENMASK(7, 0)
-> > +#define RZG2L_ADSTS_CSEST            BIT(16)
-> > +#define RZG2L_ADIVC                  0x28
-> > +#define RZG2L_ADIVC_DIVADC_CLEAR     ~GENMASK(8, 0)
-> > +#define RZG2L_ADIVC_DIVADC_4         0x4
->
-> Perhaps adopt the _MASK and FIELD_PREP() approach to setting
-> particular values.  That way it is obvious at the call site that
-> DVADC_4 is a value within the DIVADC_MASK covered field.
->
-Agreed will change that.
+I do like the idea to just put two (struct apple_dart *dart, u16 sidmap)
+in there though which will be plenty for all current configurations.
 
-> > +#define RZG2L_ADFIL                  0x2c
-> > +#define RZG2L_ADCR(n)                        (0x30 + ((n) * 0x4))
-> > +#define RZG2L_ADCR_AD_MASK           GENMASK(11, 0)
-> > +
-> > +#define RZG2L_ADC_MAX_CHANNELS               8
-> > +#define RZG2L_ADC_CHN_MASK           0x7
-> > +#define RZG2L_ADC_TIMEOUT            usecs_to_jiffies(1 * 4)
-> > +
-> > +struct rzg2l_adc_data {
-> > +     const struct iio_chan_spec *channels;
-> > +     u8 num_channels;
-> > +};
-> > +
-> > +struct rzg2l_adc {
-> > +     void __iomem *base;
-> > +     struct clk *pclk;
-> > +     struct clk *adclk;
-> > +     struct reset_control *presetn;
-> > +     struct reset_control *adrstn;
-> > +     struct completion completion;
-> > +     const struct rzg2l_adc_data *data;
-> > +     u16 last_val[RZG2L_ADC_MAX_CHANNELS];
-> > +};
-> > +
-> > +static const char * const rzg2l_adc_channel_name[] = {
-> > +     "adc0",
-> Is it useful to expose these as labels to userspace?
-> Seems unnecessary given they map directly to the channel
-> numbers.
->
-Exposing  them as this may vary depending on the wiring on the board,
-so it  would be better for user space to know which channels are
-available.
+> 
+> >>> +		struct device_link *link;
+> >>
+> >> Is it necessary to use stateless links, or could you use
+> >> DL_FLAG_AUTOREMOVE_SUPPLIER and not have to keep track of them manually?
+> > 
+> > I'll just use DL_FLAG_AUTOREMOVE_SUPPLIER. No idea why I went for stateless links.
+> > 
+> >>
+> > [...]
+> >>> +	/* restore stream identity map */
+> >>> +	writel(0x03020100, dart->regs + DART_STREAM_REMAP);
+> >>> +	writel(0x07060504, dart->regs + DART_STREAM_REMAP + 4);
+> >>> +	writel(0x0b0a0908, dart->regs + DART_STREAM_REMAP + 8);
+> >>> +	writel(0x0f0e0d0c, dart->regs + DART_STREAM_REMAP + 12);
+> >>
+> >> Any hint of what the magic numbers mean?
+> > 
+> > Yes, it's just 0,1,2,3...,0xe,0xf but I can't do 8bit writes to the bus
+> > and 32 bit writes then require these slightly awkward "swapped" numbers.
+> > I'll add a comment since it's not obvious at first glance.
+> 
+> Sure, I guessed that much from "identity map" - it was more a question 
+> of why that means 0x03020100... rather than, say, 0x0c0d0e0f... or 
+> 0x76543210..., and perhaps the reason for "restoring" it in the first place.
 
-> > +     "adc1",
-> > +     "adc2",
-> > +     "adc3",
-> > +     "adc4",
-> > +     "adc5",
-> > +     "adc6",
-> > +     "adc7",
-> > +};
-> > +
-> > +static unsigned int rzg2l_adc_readl(struct rzg2l_adc *adc, u32 reg)
-> > +{
-> > +     return readl(adc->base + reg);
-> > +}
-> > +
-> > +static void rzg2l_adc_writel(struct rzg2l_adc *adc, unsigned int reg, u32 val)
-> > +{
-> > +     writel(val, adc->base + reg);
-> > +}
-> > +
-> > +static void rzg2l_adc_pwr(struct rzg2l_adc *adc, bool on)
-> > +{
-> > +     u32 reg;
-> > +
-> > +     reg = rzg2l_adc_readl(adc, RZG2L_ADM(0));
-> > +     if (on)
-> > +             reg |= RZG2L_ADM0_PWDWNB;
-> > +     else
-> > +             reg &= ~RZG2L_ADM0_PWDWNB;
-> > +     rzg2l_adc_writel(adc, RZG2L_ADM(0), reg);
-> > +     udelay(2);
-> > +}
-> > +
-> > +static void rzg2l_adc_start_stop(struct rzg2l_adc *adc, bool start)
-> > +{
-> > +     int timeout = 5;
-> > +     u32 reg;
-> > +
-> > +     /* stop A/D conversion */
-> > +     reg = rzg2l_adc_readl(adc, RZG2L_ADM(0));
-> > +     if (start)
-> > +             reg |= RZG2L_ADM0_ADCE;
-> > +     else
-> > +             reg &= ~RZG2L_ADM0_ADCE;
-> > +     rzg2l_adc_writel(adc, RZG2L_ADM(0), reg);
-> > +
-> > +     if (start)
-> > +             return;
-> > +
-> > +     do {
-> > +             usleep_range(100, 200);
-> > +             reg = rzg2l_adc_readl(adc, RZG2L_ADM(0));
-> > +             timeout--;
-> > +             if (!timeout) {
-> > +                     pr_err("%s stopping ADC timed out\n", __func__);
-> > +                     break;
-> > +             }
-> > +     } while (((reg & RZG2L_ADM0_ADBSY) || (reg & RZG2L_ADM0_ADCE)));
-> > +}
-> > +
-> > +static void rzg2l_set_trigger(struct rzg2l_adc *adc)
-> > +{
-> > +     u32 reg;
-> > +
-> > +     /* SW trigger */
-> > +     reg = rzg2l_adc_readl(adc, RZG2L_ADM(1));
-> > +     reg &= RZG2L_ADM1_EGA_CLEAR;
-> > +     reg &= ~RZG2L_ADM1_BS;
-> > +     reg |= RZG2L_ADM1_MS;
-> > +     reg &= ~RZG2L_ADM1_TRG;
-> > +     rzg2l_adc_writel(adc, RZG2L_ADM(1), reg);
-> > +}
-> > +
-> > +static int rzg2l_adc_conversion_setup(struct rzg2l_adc *adc, u8 ch)
-> > +{
-> > +     u32 reg;
-> > +
-> > +     if (rzg2l_adc_readl(adc, RZG2L_ADM(0)) & RZG2L_ADM0_ADBSY)
-> > +             return -EBUSY;
-> > +
-> > +     rzg2l_set_trigger(adc);
-> > +
-> > +     /* select channel */
-> > +     reg = rzg2l_adc_readl(adc, RZG2L_ADM(2));
-> > +     reg &= RZG2L_ADM2_CHSEL_CLEAR;
-> > +     reg |= BIT(ch);
-> > +     rzg2l_adc_writel(adc, RZG2L_ADM(2), reg);
-> > +
-> > +     reg = rzg2l_adc_readl(adc, RZG2L_ADM(3));
-> > +     reg &= RZG2L_ADM3_ADIL_CLEAR;
-> > +     reg |= RZG2L_ADM3_ADCMP;
-> > +     reg |= RZG2L_ADM3_ADSMP;
->
-> No loss in readability in combining the two lines above and shorter
-> code is always good.  Having the mask on a separate line makes
-> sense but the |= pair doesn't.
->
-Agreed will move to the same line.
+So what this feature does is to allow the DART to take an incoming DMA stream
+tagged with id i and pretend that it's actually been tagged with
+readb(dart->regs + 0x80 + i) instead. That's as much as I can figure out by
+poking the hardware. More details are probably only available to Apple.
 
-> What is a bit unusual here is you clear some bits then write different
-> ones.  That is presumably relying on the fact that the ADCCMP part
-> is always set to the same value.  That seems unwise to assume from
-> a long term maintainability point of view.
->
-The ADIL bits have to be set to zero, so I am clearing the ADIL bits
-(bit 24-bits 31) and the ADCMP/ADSMP should be set to specific values
-oxe/0x578 respectively.
+Now the reason I thought I needed this was that I assumed we are handed these DARTs
+in an unclean state because Apple makes use of this internally:
+In their device tree they have a sid-remap property which I believe is a hack to make
+their driver simpler. The dwc3 controller requires stream 0 of dartA and stream 1 of
+dartB to be configured the same way. They configure dartB to remap stream 1 to stream 0
+and then just mirror all MMIO writes from dartA to dartB and pretend that dwc3 only
+needs a single DART.
 
-> > +     rzg2l_adc_writel(adc, RZG2L_ADM(3), reg);
-> > +
-> > +     reg = rzg2l_adc_readl(adc, RZG2L_ADIVC);
-> > +     reg &= RZG2L_ADIVC_DIVADC_CLEAR;
-> > +     reg |= RZG2L_ADIVC_DIVADC_4;
-> > +     rzg2l_adc_writel(adc, RZG2L_ADIVC, reg);
-> > +
-> > +     reg = rzg2l_adc_readl(adc, RZG2L_ADINT);
-> > +     reg &= ~RZG2L_ADINT_INTS;
-> > +     reg &= RZG2L_ADINT_CH_CLEAR;
-> > +     reg |= RZG2L_ADINT_CSEEN;
-> > +     reg |= BIT(ch);
-> > +     rzg2l_adc_writel(adc, RZG2L_ADINT, reg);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int rzg2l_adc_set_power(struct iio_dev *indio_dev, bool on)
-> > +{
-> > +     struct device *dev = indio_dev->dev.parent;
-> > +
-> > +     if (on)
-> > +             return pm_runtime_resume_and_get(dev);
-> > +
-> > +     return pm_runtime_put_sync(dev);
-> > +}
-> > +
-> > +static int rzg2l_adc_conversion(struct iio_dev *indio_dev, struct rzg2l_adc *adc, u8 ch)
-> > +{
-> > +     int ret;
-> > +
-> > +     ret = rzg2l_adc_set_power(indio_dev, true);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     ret = rzg2l_adc_conversion_setup(adc, ch);
-> > +     if (ret) {
-> > +             rzg2l_adc_set_power(indio_dev, false);
-> > +             return ret;
-> > +     }
-> > +
-> > +     reinit_completion(&adc->completion);
-> > +
-> > +     rzg2l_adc_start_stop(adc, true);
-> > +
-> > +     if (!wait_for_completion_timeout(&adc->completion, RZG2L_ADC_TIMEOUT)) {
-> > +             rzg2l_adc_writel(adc, RZG2L_ADINT,
-> > +                              rzg2l_adc_readl(adc, RZG2L_ADINT) & RZG2L_ADINT_CH_CLEAR);
-> > +             rzg2l_adc_start_stop(adc, false);
-> > +             rzg2l_adc_set_power(indio_dev, false);
-> > +             return -ETIMEDOUT;
-> > +     }
-> > +
-> > +     return rzg2l_adc_set_power(indio_dev, false);
-> > +}
-> > +
-> > +static int rzg2l_adc_read_raw(struct iio_dev *indio_dev,
-> > +                           struct iio_chan_spec const *chan,
-> > +                           int *val, int *val2, long mask)
-> > +{
-> > +     struct rzg2l_adc *adc = iio_priv(indio_dev);
-> > +     int ret;
-> > +     u8 ch;
-> > +
-> > +     switch (mask) {
-> > +     case IIO_CHAN_INFO_RAW:
-> > +             if (chan->type != IIO_VOLTAGE)
-> > +                     return -EINVAL;
-> > +
-> > +             ret = iio_device_claim_direct_mode(indio_dev);
-> > +             if (ret)
-> > +                     return ret;
-> > +
-> > +             ch = chan->channel & RZG2L_ADC_CHN_MASK;
-> > +             ret = rzg2l_adc_conversion(indio_dev, adc, ch);
-> > +             if (ret) {
-> > +                     iio_device_release_direct_mode(indio_dev);
-> > +                     return ret;
-> > +             }
-> > +             *val = adc->last_val[ch];
-> > +             iio_device_release_direct_mode(indio_dev);
-> > +
-> > +             return IIO_VAL_INT;
-> > +
-> > +     default:
-> > +             return -EINVAL;
-> > +     }
-> > +}
-> > +
-> > +static int rzg2l_adc_read_label(struct iio_dev *iio_dev,
-> > +                             const struct iio_chan_spec *chan,
-> > +                             char *label)
-> > +{
-> > +     if (chan->channel >= RZG2L_ADC_MAX_CHANNELS)
-> > +             return -EINVAL;
-> > +
-> > +     return snprintf(label, PAGE_SIZE, "%s\n", rzg2l_adc_channel_name[chan->channel]);
->
-> sysfs_emit()?.
->
-OK
+As it actually turns out though, iBoot doesn't use the USB DARTs and we already get
+them in the sane state. I can just drop this code. (And if we actually need it
+for other DARTs I can also just restore those in our bootloader or add it in a
+follow up).
 
-> > +}
-> > +
-> > +static const struct iio_info rzg2l_adc_iio_info = {
-> > +     .read_raw = rzg2l_adc_read_raw,
-> > +     .read_label = rzg2l_adc_read_label,
-> > +};
-> > +
-> > +static irqreturn_t rzg2l_adc_isr(int irq, void *dev_id)
-> > +{
-> > +     struct rzg2l_adc *adc = (struct rzg2l_adc *)dev_id;
-> > +     u8 intst;
-> > +     u32 reg;
-> > +     u8 i;
-> > +
-> > +     reg = rzg2l_adc_readl(adc, RZG2L_ADSTS);
-> > +     if (reg & RZG2L_ADSTS_CSEST) {
->
-> Probably good to add a brief comment on what is going on in this check.
-> Perhaps even an error print if it's an error path.
->
-Agreed will add a comment, this condition happens on channel selection error.
+> 
+> [...]
+> >>> +	/*
+> >>> +	 * we can't mix and match DARTs that support bypass mode with those who don't
+> >>> +	 * because the iova space in fake bypass mode generally has an offset
+> >>> +	 */
+> >>
+> >> Erm, something doesn't sound right there... IOMMU_DOMAIN_IDENTITY should
+> >> be exactly what it says, regardless of how it's implemented. If you
+> >> can't provide a true identity mapping then you're probably better off
+> >> not pretending to support them in the first place.
+> > 
+> > Some background: the PCIe DART only supports a 32bit VA space but RAM
+> > on these machines starts at 0x8_0000_0000. I have something like
+> >    dma-ranges = <0x42000000 0 0 0x8 0 0 0xffff0000>;
+> > in the pcie nodes to add that offset to dma addresses.
+> > 
+> > What I want to do here then is to setup an identity mapping with respect
+> > to the DMA layer understanding of addresses encoded in bus_dma_region.
+> > Now this will always just be a constant offset of 0x8_0000_0000 for
+> > all M1s but I didn't want to hardcode that.
+> > The code here is just there to guard against a situation where someone
+> > somehow manages to attach two devices with different offsets to the same
+> > domain.
+> 
+> Urgh, *now* I think I get it - the addressing limitation WRT the 
+> physical memory map layout had also slipped my mind. So you describe the 
+> RC *as if* it had a physical bus offset, rely on iommu-dma ignoring it 
+> when active (which is more by luck than design - we don't expect to ever 
+> see a device with a real hard-wired offset upstream of an IOMMU, 
+> although I did initially try to support it back in the very early days), 
+> and otherwise statically program a translation such that anyone else who 
+> *does* respect bus_dma_regions finds things work as expected.
 
-> > +             rzg2l_adc_writel(adc, RZG2L_ADSTS, reg);
-> > +             return IRQ_HANDLED;
-> > +     }
-> > +
-> > +     intst = reg & RZG2L_ADINT_INTST_MASK;
-> > +     if (!intst)
->
-> I'm guessing this means spurious interrupt in which case IRQ_NONE
-> so the core irq code knows about it.
->
-Agreed IRQ_NONE should be returned.
+Yes, exactly. It's not very nice but it works...
 
-> > +             return IRQ_HANDLED;
-> > +
-> > +     for (i = 0; i < RZG2L_ADC_MAX_CHANNELS; i++) {
-> > +             if (intst & BIT(i))
->
-> for_each_bit_set() and make intst a long so the types are right for
-> that macro
->
->
-Agreed will do.
+> 
+> That actually seems like an even stronger argument for having the 
+> fake-bypass table belong to the DART rather than the domain, and at that 
+> point you shouldn't even need the mismatch restriction, since as long as 
+> you haven't described the fake offset for any devices who *can* achieve 
+> real bypass, then "attach to an identity domain" simply comes down to 
+> doing the appropriate thing for each individual stream, regardless of 
+> whether it's the same nominal identity domain that another device is 
+> using or a distinct one (it's highly unlikely that two groups would ever 
+> get attached to one identity domain rather than simply having their own 
+> anyway, but it is technically possible).
+> 
 
-> > +                     adc->last_val[i] = rzg2l_adc_readl(adc, RZG2L_ADCR(i)) & RZG2L_ADCR_AD_MASK;
-> > +     }
-> > +
-> > +     rzg2l_adc_writel(adc, RZG2L_ADSTS, reg);
-> > +
-> > +     complete(&adc->completion);
-> > +
-> > +     return IRQ_HANDLED;
-> > +}
-> > +
-> > +static int rzg2l_adc_parse_of(struct platform_device *pdev, struct rzg2l_adc *adc)
-> > +{
-> > +     struct iio_chan_spec *chan_array;
-> > +     struct fwnode_handle *fwnode;
-> > +     struct rzg2l_adc_data *data;
-> > +     unsigned int channel;
-> > +     int num_channels;
-> > +     int ret;
-> > +     u8 i;
-> > +
-> > +     data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
-> > +     if (!data)
-> > +             return -ENOMEM;
-> > +
-> > +     num_channels = device_get_child_node_count(&pdev->dev);
-> > +     if (!num_channels) {
-> > +             dev_err(&pdev->dev, "no channel children\n");
-> > +             return -ENODEV;
-> > +     }
-> > +
-> > +     if (num_channels > RZG2L_ADC_MAX_CHANNELS) {
-> > +             dev_err(&pdev->dev, "num of channel children out of range\n");
-> > +             return -EINVAL;
-> > +     }
-> > +
-> > +     chan_array = devm_kcalloc(&pdev->dev, num_channels, sizeof(*chan_array),
-> > +                               GFP_KERNEL);
-> > +     if (!chan_array)
-> > +             return -ENOMEM;
-> > +
-> > +     i = 0;
-> > +     device_for_each_child_node(&pdev->dev, fwnode) {
-> > +             ret = fwnode_property_read_u32(fwnode, "reg", &channel);
-> > +             if (ret)
-> > +                     return ret;
-> > +
-> > +             if (channel >= RZG2L_ADC_MAX_CHANNELS)
-> > +                     return -EINVAL;
-> > +
-> > +             chan_array[i].type = IIO_VOLTAGE;
-> > +             chan_array[i].indexed = 1;
-> > +             chan_array[i].channel = channel;
-> > +             chan_array[i].info_mask_separate = BIT(IIO_CHAN_INFO_RAW);
-> > +             chan_array[i].datasheet_name = rzg2l_adc_channel_name[channel];
-> > +             i++;
-> > +     }
-> > +
-> > +     data->num_channels = num_channels;
-> > +     data->channels = chan_array;
-> > +     adc->data = data;
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int rzg2l_adc_sw_reset(struct rzg2l_adc *adc)
-> > +{
-> > +     int timeout = 5;
-> > +     u32 val;
-> > +
-> > +     val = rzg2l_adc_readl(adc, RZG2L_ADM(0));
-> > +     val |= RZG2L_ADM0_SRESB;
-> > +     rzg2l_adc_writel(adc, RZG2L_ADM(0), val);
-> > +
-> > +     while (!(rzg2l_adc_readl(adc, RZG2L_ADM(0)) & RZG2L_ADM0_SRESB)) {
-> > +             if (!timeout)
-> > +                     return -EBUSY;
-> > +             timeout--;
-> > +             usleep_range(100, 200);
-> > +     }
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int rzg2l_adc_probe(struct platform_device *pdev)
-> > +{
-> > +     struct device *dev = &pdev->dev;
-> > +     struct iio_dev *indio_dev;
-> > +     struct rzg2l_adc *adc;
-> > +     int ret;
-> > +     int irq;
-> > +
-> > +     indio_dev = devm_iio_device_alloc(dev, sizeof(*adc)
-> > +     if (!indio_dev)
-> > +             return -ENOMEM;
-> > +
-> > +     adc = iio_priv(indio_dev);
-> > +
-> > +     ret = rzg2l_adc_parse_of(pdev, adc);
->
-> *_parse_properties() or *_parse_firmware()
-> as it's not of specific now.
->
-OK will rename it to rzg2l_adc_parse_properties().
+Agreed. That sounds a lot nicer actually.
 
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     adc->base = devm_platform_ioremap_resource(pdev, 0);
-> > +     if (IS_ERR(adc->base))
-> > +             return PTR_ERR(adc->base);
-> > +
-> > +     irq = platform_get_irq(pdev, 0);
-> > +     if (irq < 0) {
-> > +             dev_err(dev, "no irq resource\n");
-> > +             return irq;
-> > +     }
-> > +
-> > +     adc->pclk = devm_clk_get(dev, "pclk");
-> > +     if (IS_ERR(adc->pclk)) {
-> > +             dev_err(dev, "Failed to get pclk");
-> > +             return PTR_ERR(adc->pclk);
-> > +     }
-> > +
-> > +     adc->adclk = devm_clk_get(dev, "adclk");
-> > +     if (IS_ERR(adc->adclk)) {
-> > +             dev_err(dev, "Failed to get adclk");
-> > +             return PTR_ERR(adc->adclk);
-> > +     }
-> > +
-> > +     adc->adrstn = devm_reset_control_get_exclusive(dev, "adrst-n");
-> > +     if (IS_ERR(adc->adrstn)) {
-> > +             dev_err(dev, "failed to get adrstn\n");
-> > +             return PTR_ERR(adc->adrstn);
-> > +     }
-> > +
-> > +     adc->presetn = devm_reset_control_get_exclusive(dev, "presetn");
-> > +     if (IS_ERR(adc->presetn)) {
-> > +             dev_err(dev, "failed to get presetn\n");
-> > +             return PTR_ERR(adc->presetn);
-> > +     }
-> > +
-> > +     ret = reset_control_deassert(adc->adrstn);
-> > +     if (ret)
-> > +             return ret;
->
-> devm_add_action_or_reset() here to make the reasserting of these part
-> of the automated cleanup.
->
-OK will use devm_add_action_or_reset().
 
-> > +
-> > +     ret = reset_control_deassert(adc->presetn);
-> > +     if (ret)
-> > +             goto assert_adrstn;
-> > +
-> > +     ret = clk_prepare_enable(adc->pclk);
-> > +     if (ret)
-> > +             goto assert_presetn;
-> > +
-> > +     ret = rzg2l_adc_sw_reset(adc);
-> > +     if (ret)
-> > +             goto unprepare_pclk;
-> > +
-> > +     clk_disable_unprepare(adc->pclk);
->
-> As below, reorder as:
->
->         ret = rzg2l_adc_sw_reset(adc);
->         clk_disable_unprepare(adc->pclk);
->         if (ret)
->                 goto assert_preset_n;
->
-Agreed.
+> > If that's not how the abstraction is supposed to work and/or too big of a hack
+> > I'll just remove the software bypass mode altogether.
+> > PCIe won't work on 4k kernels then but the only people using this so far
+> > build their own kernels with patches either way and won't complain.
+> > And by the time Linux will actually be useful for "normal" setups
+> > the dma-iommu layer can hopefully just handle a larger page granularity.
+> 
+> It's certainly... "creative", and TBH I don't hate it (in a "play the 
+> hand you've been given" kind of way), but the one significant downside 
+> is that if the DART driver isn't loaded for any reason, PCI DMA will 
+> look like it should be usable but then just silently (or not so 
+> silently) fail.
 
-> > +
-> > +     init_completion(&adc->completion);
-> > +
-> > +     platform_set_drvdata(pdev, indio_dev);
-> > +
-> > +     ret = devm_request_irq(dev, irq, rzg2l_adc_isr,
-> > +                            0, dev_name(dev), adc);
->
-> Another aspect of the comment below about mixing and matching between
-> devm and not.  If the order of remove is not that opposite of probe
-> then there should be a comment saying why.  There are far too many
-> race conditions introduced by people doing things in a different order
-> without carefully considering why.
->
-Agreed will completely move to devm
+Good point!
 
-> > +     if (ret < 0)
-> > +             goto assert_presetn;
-> > +
-> > +     indio_dev->name = DRIVER_NAME;
-> > +     indio_dev->info = &rzg2l_adc_iio_info;
-> > +     indio_dev->modes = INDIO_DIRECT_MODE;
-> > +     indio_dev->channels = adc->data->channels;
-> > +     indio_dev->num_channels = adc->data->num_channels;
-> > +
-> > +     pm_runtime_enable(dev);
-> > +
-> > +     ret = devm_iio_device_register(dev, indio_dev);
-> > +     if (ret)
-> > +             goto err_iio_device_register;
-> > +
-> > +     return 0;
-> > +
-> > +unprepare_pclk:
-> > +     clk_disable_unprepare(adc->pclk);
->
-> Bad sign that you have this here and not in remove..
-> When you have cases like this, it's normally better to
-> either factor out the relevant code into a function
-> that lets you do this call whether or not there is an
-> error, or to just move this up to the relevant if statements.
->
-As agreed above, will alter the code.
+> 
+> FWIW if you do want to keep the option open, I'd be inclined to have the 
+> DT just give an "honest" description of just the 32-bit limitation, then 
+> have the DART driver's .probe_device sneakily modify the bus_dma_region 
+> to match the relevant fake-bypass table as appropriate. It's possible 
+> other folks might hate that even more though :D
 
->
-> > +err_iio_device_register:
-> > +     pm_runtime_disable(dev);
-> > +assert_presetn:
-> > +     reset_control_assert(adc->presetn);
-> > +assert_adrstn:
-> > +     reset_control_assert(adc->adrstn);
-> > +     return ret;
-> > +}
-> > +
-> > +static int rzg2l_adc_remove(struct platform_device *pdev)
-> > +{
-> > +     struct iio_dev *indio_dev = platform_get_drvdata(pdev);
-> > +     struct rzg2l_adc *adc = iio_priv(indio_dev);
-> > +
-> > +     reset_control_assert(adc->presetn);
-> > +     reset_control_assert(adc->adrstn);
-> > +     pm_runtime_disable(indio_dev->dev.parent);
->
-> You can't mix and match devm managed and unmanaged like this.
-> The userspace interfce is still exposed after you've put the
-> device into reset which is unlikely to be a good idea.
->
-> One option is to use devm_add_action_or_reset() to make
-> this stuff happen in the managed flow, which happens after
-> remove is done.  That would let you drop remove() entirely.
->
-Agreed will use devm_add_action_or_reset() and get rid of remove callback().
+I've given that one a try and I kinda like it so far :D
+I'll keep it for v5 and just drop it in case someone complains.
 
-Cheers,
-Prabhakar
->
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static const struct of_device_id rzg2l_adc_match[] = {
-> > +     { .compatible = "renesas,rzg2l-adc",},
-> > +     { /* sentinel */ }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, rzg2l_adc_match);
-> > +
-> > +static int __maybe_unused rzg2l_adc_pm_runtime_suspend(struct device *dev)
-> > +{
-> > +     struct iio_dev *indio_dev = dev_get_drvdata(dev);
-> > +     struct rzg2l_adc *adc = iio_priv(indio_dev);
-> > +
-> > +     rzg2l_adc_pwr(adc, false);
-> > +     clk_disable_unprepare(adc->adclk);
-> > +     clk_disable_unprepare(adc->pclk);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int __maybe_unused rzg2l_adc_pm_runtime_resume(struct device *dev)
-> > +{
-> > +     struct iio_dev *indio_dev = dev_get_drvdata(dev);
-> > +     struct rzg2l_adc *adc = iio_priv(indio_dev);
-> > +     int ret;
-> > +
-> > +     ret = clk_prepare_enable(adc->pclk);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     ret = clk_prepare_enable(adc->adclk);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     rzg2l_adc_pwr(adc, true);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static const struct dev_pm_ops rzg2l_adc_pm_ops = {
-> > +     SET_RUNTIME_PM_OPS(rzg2l_adc_pm_runtime_suspend,
-> > +                        rzg2l_adc_pm_runtime_resume,
-> > +                        NULL)
-> > +};
-> > +
-> > +static struct platform_driver rzg2l_adc_driver = {
-> > +     .probe          = rzg2l_adc_probe,
-> > +     .remove         = rzg2l_adc_remove,
-> > +     .driver         = {
-> > +             .name           = DRIVER_NAME,
-> > +             .of_match_table = rzg2l_adc_match,
-> > +             .pm             = &rzg2l_adc_pm_ops,
-> > +     },
-> > +};
-> > +
-> > +module_platform_driver(rzg2l_adc_driver);
-> > +
-> > +MODULE_AUTHOR("Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>");
-> > +MODULE_DESCRIPTION("Renesas RZ/G2L ADC driver");
-> > +MODULE_LICENSE("GPL v2");
->
+> 
+> >>> +	if (WARN_ON(domain->type == IOMMU_DOMAIN_IDENTITY &&
+> >>> +		    (domain->dart->supports_bypass != dart->supports_bypass)))
+> >>> +		return -EINVAL;
+> >>> +
+> >>> +	list_for_each_entry(stream, &domain->streams, stream_head) {
+> >>> +		if (stream->dart == dart && stream->sid == sid) {
+> >>> +			stream->num_devices++;
+> >>> +			return 0;
+> >>> +		}
+> >>> +	}
+> >>> +
+> >>> +	spin_lock_irqsave(&dart->lock, flags);
+> >>> +
+> >>> +	if (WARN_ON(dart->used_sids & BIT(sid))) {
+> >>> +		ret = -EINVAL;
+> >>> +		goto error;
+> >>> +	}
+> >>> +
+> >>> +	stream = kzalloc(sizeof(*stream), GFP_ATOMIC);
+> >>> +	if (!stream) {
+> >>> +		ret = -ENOMEM;
+> >>> +		goto error;
+> >>> +	}
+> >>
+> >> Couldn't you do this outside the lock? (If, calling back to other
+> >> comments, it can't get refactored out of existence anyway)
+> > 
+> > Probably, but I'll first see if I can just refactor it away.
+> 
+> Actually I missed that we're already under dart_domain->lock at this 
+> point anyway, so it's not going to make much difference, but it does 
+> mean that the spin_lock_irqsave() above could just be spin_lock(), 
+> unless it's possible to relax the domain locking a bit such that we 
+> don't have to do the whole domain init with IRQs masked.
+
+I can relax the locking quite a bit.
+Right now, I only need a spinlock around the TLB flush MMIO writes
+and a mutex to protect domain initialization.
+
+> 
+> [...]
+> >>> +static struct iommu_domain *apple_dart_domain_alloc(unsigned int type)
+> >>> +{
+> >>> +	struct apple_dart_domain *dart_domain;
+> >>> +
+> >>> +	if (type != IOMMU_DOMAIN_DMA && type != IOMMU_DOMAIN_UNMANAGED &&
+> >>> +	    type != IOMMU_DOMAIN_IDENTITY && type != IOMMU_DOMAIN_BLOCKED)
+> >>> +		return NULL;
+> >>
+> >> I want to say there's not much point in that, but then I realise I've
+> >> spent the last couple of days writing patches to add a new domain type :)
+> > 
+> > Hah! Just because I'm curious: What is that new domain type going to be? :)
+> 
+> Splitting IOMMU_DOMAIN_DMA into two to replace iommu_dma_strict being an 
+> orthogonal thing.
+> 
+> [...]
+> >>> +static int apple_dart_of_xlate(struct device *dev, struct of_phandle_args *args)
+> >>> +{
+> >>> +	struct platform_device *iommu_pdev = of_find_device_by_node(args->np);
+> >>> +	struct apple_dart_master_cfg *cfg = dev_iommu_priv_get(dev);
+> >>> +	unsigned int num_streams = cfg ? cfg->num_streams : 0;
+> >>> +	struct apple_dart_master_cfg *cfg_new;
+> >>> +	struct apple_dart *dart = platform_get_drvdata(iommu_pdev);
+> >>> +
+> >>> +	if (args->args_count != 1)
+> >>> +		return -EINVAL;
+> >>> +
+> >>> +	cfg_new = krealloc(cfg, struct_size(cfg, streams, num_streams + 1),
+> >>> +			   GFP_KERNEL);
+> >>> +	if (!cfg_new)
+> >>> +		return -ENOMEM;
+> >>> +
+> >>> +	cfg = cfg_new;
+> >>> +	dev_iommu_priv_set(dev, cfg);
+> >>> +
+> >>> +	cfg->num_streams = num_streams;
+> >>> +	cfg->streams[cfg->num_streams].dart = dart;
+> >>> +	cfg->streams[cfg->num_streams].sid = args->args[0];
+> >>> +	cfg->num_streams++;
+> >>
+> >> Yeah, this is way too reminiscent of the fwspec code for comfort. Even
+> >> if you can't use autoremove links for some reason, an array of 16
+> >> device_link pointers hung off apple_dart still wins over these little
+> >> pointer-heavy structures if you need more than a few of them.
+> > 
+> > I can get rid of the links, but I'll still need some way to store
+> > both the apple_dart and the sid here. Like mentioned above, I'll
+> > be happy to reuse the fwspec code but I don't see how yet.
+> 
+> As before, if you can fit in some kind of DART instance identifier which 
+> isn't impractical to unpack than it makes sense to use the fwspec since 
+> it's already there. However if you still need to allocate something 
+> per-device rather than just stashing an existing pointer in iommu_priv, 
+> then you may as well keep everything together there. If the worst known 
+> case could still fit in just two DART pointers and two 64-bit bitmaps, 
+> I'd be inclined to just have that as a fixed structure and save all the 
+> extra bother - you're not cross-architecture like the fwspec code, and 
+> arm64's minimum kmalloc granularity has just gone back up to 128 bytes 
+> (but even at 64 bytes you'd have had plenty of room).
+
+That's a very good point, I somehow tried to make this part as general
+as possible and didn't realize that this only has to work on essentially
+one SoC for now. I also don't expect Apple to require more than two
+DARTs for a single master in the future.
+
+I've tried the fixed structure now and I really like it so far.
+
+> 
+> [...]
+> >>> +static int apple_dart_remove(struct platform_device *pdev)
+> >>> +{
+> >>> +	struct apple_dart *dart = platform_get_drvdata(pdev);
+> >>> +
+> >>> +	devm_free_irq(dart->dev, dart->irq, dart);
+> >>> +
+> >>> +	iommu_device_unregister(&dart->iommu);
+> >>> +	iommu_device_sysfs_remove(&dart->iommu);
+> >>> +
+> >>> +	clk_bulk_disable(dart->num_clks, dart->clks);
+> >>> +	clk_bulk_unprepare(dart->num_clks, dart->clks);
+> >>
+> >> Ditto.
+> >>
+> >> And again the bus ops are still installed - that'll get really fun if
+> >> this is a module unload...
+> > 
+> > Ugh, yeah. I'll fix that as well. I'll have to see how to make this work
+> > correctly with multiple DART instances. I guess I should only remove the
+> > bus ops once the last one is removed. Now that I think about it, this
+> > could also get tricky in the cleanup paths of apple_dart_probe.
+> > 
+> > Maybe just add a module_init that sets up the bus ops when it finds at
+> > least one DART node and module_exit to tear them down again?
+> 
+> Actually by this point it was late and I wasn't thinking as clearly as I 
+> could have been, apologies ;)
+> 
+> I believe a module unload is in fact the *only* time you should expect 
+> to see .remove called - you want to set .suppress_bind_attrs in your 
+> driver data because there's basically no way to prevent manual unbinding 
+> from blowing up - so it should be fine to unconditionally clear the ops 
+> at this point (being removed means you must have successfully probed, so 
+> any ops must be yours).
+
+Makes sense, thanks!
+
+I'll let my current version simmer for a bit and wait until it's been
+tested by a few people and will send it in a week or so then!
+
+
+Best,
+
+Sven
