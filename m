@@ -2,152 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B1EBB3D4C7A
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jul 2021 08:55:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37A943D4CCA
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jul 2021 11:14:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229538AbhGYGPG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Jul 2021 02:15:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33108 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229460AbhGYGPG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jul 2021 02:15:06 -0400
-Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33646C061757
-        for <devicetree@vger.kernel.org>; Sat, 24 Jul 2021 23:55:37 -0700 (PDT)
-Received: by mail-ot1-x32f.google.com with SMTP id a5-20020a05683012c5b029036edcf8f9a6so6657009otq.3
-        for <devicetree@vger.kernel.org>; Sat, 24 Jul 2021 23:55:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kali.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=BGn+EjMqq99Bj04hcp2WO+QUSqyG5NK9Xv1j68OtcH0=;
-        b=BcLvcUE6Fwt13XrkUHN/uz/j8woPZS1aYLDsNjLOmdnms6EFWkIR7tihdK7Cgu+W4f
-         CtRNrqXqCFzAiJg/Hqw/gw/88rA9P3SZn8N+aa9UMAtwRO7XBB+lfQo19TTuEnIVm/HW
-         ql28wyYFMjwuDLG3zxczw8JfDhu/B2hIQzKh7E4jxu4lr5GQBlLXaESVfCYGg65NDNdM
-         FigSk0gsyw2IsCg8l6mMZd2DvGanx4Iwc+tBg3lzMXprgIUTJHWMR70btuO12b04QUFP
-         mYdlaAcP9/TOZUy6e45RKfClfSv/qL7a94Dt37dx3Iq4k/o0BU3xLfpYOSUN0CmISJN7
-         o46A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=BGn+EjMqq99Bj04hcp2WO+QUSqyG5NK9Xv1j68OtcH0=;
-        b=bjxFHOnvGKu6tAdctYDKHdpBI31jBrGz6/yF0mw46Zah06Yi/4/oMcsFUazSbb4UI7
-         MOpA8ObLGjMDNnXGbSYIT/3WuXBN6ZBzwdES+Hx/vf8RQISXa1VZR9IqEa0bO6LHYiHQ
-         va/CXgKAjt5SppK8mLRbRiTbBK2UxwHFngFYM5c4fa0YXshKF7WX5tIQhD+kLkoB0SUQ
-         2yuU+7dGVzfNmuBdZCTrb5qZGtZHJwiiO8j4ogUEZTNr8RaHkeKy4Kcnl+3pRY/myLBs
-         IB1k7WuB+lHyQg592wJ8qq2YcCrTJEhSmPkRxFl3e79dVlCZ0WNkOieC1pSsKhxcWJ37
-         bu7A==
-X-Gm-Message-State: AOAM530bXt5ChTxr8ZSbkljYCsrkBnMh/KP7koxAfoTpLWNodsYdgYdA
-        a3/YbqMXJwX0PH7m2NPxtheJXQ==
-X-Google-Smtp-Source: ABdhPJynVQWZnbcHqSx6DNemrpNukJu/Vnj0fuSC7MDxJlHlvE364cXzRFvZwCEOS69yYR8t0McbnQ==
-X-Received: by 2002:a9d:7f98:: with SMTP id t24mr8484242otp.366.1627196136433;
-        Sat, 24 Jul 2021 23:55:36 -0700 (PDT)
-Received: from MacBook-Pro.hackershack.net (cpe-173-173-107-246.satx.res.rr.com. [173.173.107.246])
-        by smtp.gmail.com with ESMTPSA id r26sm4288163ooh.32.2021.07.24.23.55.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 24 Jul 2021 23:55:35 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: qcom: sdm850-yoga: Enable IPA
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20210615232816.835325-1-bjorn.andersson@linaro.org>
-From:   Steev Klimaszewski <steev@kali.org>
-Message-ID: <fd2222e9-e3ba-b54d-43ac-e52a04ad82c5@kali.org>
-Date:   Sun, 25 Jul 2021 01:55:34 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
- Gecko/20100101 Thunderbird/78.12.0
+        id S230261AbhGYIeH convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sun, 25 Jul 2021 04:34:07 -0400
+Received: from aposti.net ([89.234.176.197]:41052 "EHLO aposti.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229883AbhGYIeH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 25 Jul 2021 04:34:07 -0400
+Date:   Sun, 25 Jul 2021 10:14:26 +0100
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v3 1/5] iio/adc: ingenic: rename has_aux2 to has_aux_md
+To:     Christophe Branchereau <cbranchereau@gmail.com>
+Cc:     jic23@kernel.org, lars@metafoo.de, linux-mips@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org, linux@roeck-us.net,
+        contact@artur-rojek.eu
+Message-Id: <20NSWQ.3V5OK4JZMMRN@crapouillou.net>
+In-Reply-To: <20210724190449.221894-2-cbranchereau@gmail.com>
+References: <20210724190449.221894-1-cbranchereau@gmail.com>
+        <20210724190449.221894-2-cbranchereau@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210615232816.835325-1-bjorn.andersson@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Christophe,
 
-On 6/15/21 6:28 PM, Bjorn Andersson wrote:
-> Shuffle memory regions to make firmware loading succeed and then enable
-> the ipa device.
->
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Le sam., juil. 24 2021 at 21:04:45 +0200, Christophe Branchereau 
+<cbranchereau@gmail.com> a écrit :
+> The jz4760(b) socs have 3 aux channels.
+> 
+> The purpose of has_aux2 is to set the MD bits used to select
+> the AUX channel to be sampled, not to describe the hardware.
+> 
+> Rename it to a more appropriate name.
+> 
+> Signed-off-by: Christophe Branchereau <cbranchereau@gmail.com>
+
+Reviewed-by: Paul Cercueil <paul@crapouillou.net>
+
+Cheers,
+-Paul
+
 > ---
->  arch/arm64/boot/dts/qcom/sdm845.dtsi          | 21 +++++++------------
->  .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts |  5 +++++
->  2 files changed, 13 insertions(+), 13 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> index 1796ae8372be..49624eadce84 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> @@ -128,28 +128,23 @@ camera_mem: memory@8bf00000 {
->  			no-map;
->  		};
->  
-> -		ipa_fw_mem: memory@8c400000 {
-> -			reg = <0 0x8c400000 0 0x10000>;
-> +		wlan_msa_mem: memory@8c400000 {
-> +			reg = <0 0x8c400000 0 0x100000>;
->  			no-map;
->  		};
->  
-> -		ipa_gsi_mem: memory@8c410000 {
-> -			reg = <0 0x8c410000 0 0x5000>;
-> +		gpu_mem: memory@8c515000 {
-> +			reg = <0 0x8c515000 0 0x2000>;
->  			no-map;
->  		};
->  
-> -		gpu_mem: memory@8c415000 {
-> -			reg = <0 0x8c415000 0 0x2000>;
-> +		ipa_fw_mem: memory@8c517000 {
-> +			reg = <0 0x8c517000 0 0x5a000>;
->  			no-map;
->  		};
->  
-> -		adsp_mem: memory@8c500000 {
-> -			reg = <0 0x8c500000 0 0x1a00000>;
-> -			no-map;
-> -		};
-> -
-> -		wlan_msa_mem: memory@8df00000 {
-> -			reg = <0 0x8df00000 0 0x100000>;
-> +		adsp_mem: memory@8c600000 {
-> +			reg = <0 0x8c600000 0 0x1a00000>;
->  			no-map;
->  		};
->  
-> diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> index c2a709a384e9..3eaa42dc3794 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> @@ -415,6 +415,11 @@ ecsh: hid@5c {
->  	};
->  };
->  
-> +&ipa {
-> +	status = "okay";
-> +	memory-region = <&ipa_fw_mem>;
-> +};
-> +
->  &mdss {
->  	status = "okay";
->  };
+>  drivers/iio/adc/ingenic-adc.c | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/ingenic-adc.c 
+> b/drivers/iio/adc/ingenic-adc.c
+> index 34c03a264f74..40f2d8c2cf72 100644
+> --- a/drivers/iio/adc/ingenic-adc.c
+> +++ b/drivers/iio/adc/ingenic-adc.c
+> @@ -92,7 +92,7 @@ struct ingenic_adc_soc_data {
+>  	const int *battery_scale_avail;
+>  	size_t battery_scale_avail_size;
+>  	unsigned int battery_vref_mode: 1;
+> -	unsigned int has_aux2: 1;
+> +	unsigned int has_aux_md: 1;
+>  	const struct iio_chan_spec *channels;
+>  	unsigned int num_channels;
+>  	int (*init_clk_div)(struct device *dev, struct ingenic_adc *adc);
+> @@ -506,7 +506,7 @@ static const struct ingenic_adc_soc_data 
+> jz4725b_adc_soc_data = {
+>  	.battery_scale_avail = jz4725b_adc_battery_scale_avail,
+>  	.battery_scale_avail_size = 
+> ARRAY_SIZE(jz4725b_adc_battery_scale_avail),
+>  	.battery_vref_mode = true,
+> -	.has_aux2 = false,
+> +	.has_aux_md = false,
+>  	.channels = jz4740_channels,
+>  	.num_channels = ARRAY_SIZE(jz4740_channels),
+>  	.init_clk_div = jz4725b_adc_init_clk_div,
+> @@ -520,7 +520,7 @@ static const struct ingenic_adc_soc_data 
+> jz4740_adc_soc_data = {
+>  	.battery_scale_avail = jz4740_adc_battery_scale_avail,
+>  	.battery_scale_avail_size = 
+> ARRAY_SIZE(jz4740_adc_battery_scale_avail),
+>  	.battery_vref_mode = true,
+> -	.has_aux2 = false,
+> +	.has_aux_md = false,
+>  	.channels = jz4740_channels,
+>  	.num_channels = ARRAY_SIZE(jz4740_channels),
+>  	.init_clk_div = NULL, /* no ADCLK register on JZ4740 */
+> @@ -534,7 +534,7 @@ static const struct ingenic_adc_soc_data 
+> jz4770_adc_soc_data = {
+>  	.battery_scale_avail = jz4770_adc_battery_scale_avail,
+>  	.battery_scale_avail_size = 
+> ARRAY_SIZE(jz4770_adc_battery_scale_avail),
+>  	.battery_vref_mode = false,
+> -	.has_aux2 = true,
+> +	.has_aux_md = true,
+>  	.channels = jz4770_channels,
+>  	.num_channels = ARRAY_SIZE(jz4770_channels),
+>  	.init_clk_div = jz4770_adc_init_clk_div,
+> @@ -581,7 +581,7 @@ static int ingenic_adc_read_chan_info_raw(struct 
+> iio_dev *iio_dev,
+> 
+>  	/* We cannot sample AUX/AUX2 in parallel. */
+>  	mutex_lock(&adc->aux_lock);
+> -	if (adc->soc_data->has_aux2 && engine == 0) {
+> +	if (adc->soc_data->has_aux_md && engine == 0) {
+>  		bit = BIT(chan->channel == INGENIC_ADC_AUX2);
+>  		ingenic_adc_set_config(adc, JZ_ADC_REG_CFG_AUX_MD, bit);
+>  	}
+> --
+> 2.30.2
+> 
 
-
-Hi,
-
-Thank you for this!
-
-Tested - one thing that end users/distro packagers may need to be aware
-of, if the module is loaded in an initramfs, the firmware file also
-needs to be loaded in the initramfs.Â  If the module is in an initramfs
-and the firmware is not, the module will need to be removed and
-re-inserted for the device to come up.
-
-Tested-by: Steev Klimaszewski <steev@kali.org>
 
