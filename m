@@ -2,74 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DAF83D506E
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 00:29:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E0B83D5082
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 00:58:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229547AbhGYVs4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Jul 2021 17:48:56 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34792 "EHLO mail.kernel.org"
+        id S229604AbhGYWSL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Jul 2021 18:18:11 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:58808 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229531AbhGYVsz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 25 Jul 2021 17:48:55 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 94F8F60F43;
-        Sun, 25 Jul 2021 22:29:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627252165;
-        bh=LXdv3SNozGddEOtTXiweAPm33gFyubUEqk9QT+fHMHc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=NBPZZmLXXECARRRpEYQnILLiWAelyx07J8u147xeLgLnvwVuOuCbSyWtEgjGZdGXZ
-         qczGtqvXBsxZc3Az2W3EwEoNOBBYlO16DwuPkJprDfNylmKUSeVQ3oCdothZgb2Bni
-         9rQiM6bwtcPjqV3EfCv8OvpNve5f6FFEM6tPO6mUf1oWARwt2aBLkvV4tYPGnS0ifn
-         reMmxDr85ZhAAxogPTTL8v3QrLWdyVkGkF5/MmZ6l9GlDyP2q3+tFQJpEqTHYN4Wqj
-         lSlGFU29w6nStaab2+shG0nR9K87pYEGuvSnGCORJ80K0d5pqHvRyeMrP6BLDerHKd
-         qZfasI1lM/seA==
-Received: by mail-ej1-f51.google.com with SMTP id o5so13601005ejy.2;
-        Sun, 25 Jul 2021 15:29:25 -0700 (PDT)
-X-Gm-Message-State: AOAM532JlAfb+maw244hpLVG1+kfIBa/6vW+pkTWe/54pZw7vG61U4NQ
-        ELpflc0AkmGRSJy1Ac+GQTG8pRf9AlqzkAMGTA==
-X-Google-Smtp-Source: ABdhPJwfSEK/zGq4H+iwJok9IKltb7Tkin7X2hIbv0FMn04qW6BMg5NfENWFO8APXBMeuB8xHMIhsh3UlasWyhyEfQE=
-X-Received: by 2002:a17:906:95ce:: with SMTP id n14mr5509121ejy.130.1627252164182;
- Sun, 25 Jul 2021 15:29:24 -0700 (PDT)
+        id S229531AbhGYWSL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 25 Jul 2021 18:18:11 -0400
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1m7n4o-0007er-IY; Mon, 26 Jul 2021 00:58:30 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     dri-devel@lists.freedesktop.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        hjc@rock-chips.com, robh+dt@kernel.org,
+        sebastian.fricke@posteo.net, linux-media@vger.kernel.org,
+        dafna.hirschfeld@collabora.com, helen.koike@collabora.com,
+        ezequiel@collabora.com, cmuellner@linux.com
+Subject: Re: [PATCH v2 0/6] Support second Image Signal Processor on rk3399
+Date:   Mon, 26 Jul 2021 00:58:29 +0200
+Message-ID: <7055305.V25eIC5XRa@diego>
+In-Reply-To: <20210210111020.2476369-1-heiko@sntech.de>
+References: <20210210111020.2476369-1-heiko@sntech.de>
 MIME-Version: 1.0
-References: <20210723214031.3251801-1-atish.patra@wdc.com> <20210723214031.3251801-4-atish.patra@wdc.com>
-In-Reply-To: <20210723214031.3251801-4-atish.patra@wdc.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Sun, 25 Jul 2021 16:29:12 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKG9xkSAQGkBE8_BEE+O9S+z09M8C9+gWN-58aXEZWqgg@mail.gmail.com>
-Message-ID: <CAL_JsqKG9xkSAQGkBE8_BEE+O9S+z09M8C9+gWN-58aXEZWqgg@mail.gmail.com>
-Subject: Re: [RFC 3/5] dma-mapping: Enable global non-coherent pool support
- for RISC-V
-To:     Atish Patra <atish.patra@wdc.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Christoph Hellwig <hch@lst.de>, devicetree@vger.kernel.org,
-        Dmitry Vyukov <dvyukov@google.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Guo Ren <guoren@linux.alibaba.com>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Tobias Klauser <tklauser@distanz.ch>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 23, 2021 at 3:40 PM Atish Patra <atish.patra@wdc.com> wrote:
->
-> Currently, linux,dma-default is used to reserve a global non-coherent pool
-> to allocate memory for dma operations. This can be useful for RISC-V as
-> well as the ISA specification doesn't specify a method to modify PMA
-> attributes or page table entries to define non-cacheable area yet.
-> A non-cacheable memory window is an alternate options for vendors to
-> support non-coherent devices. "dma-ranges" must be used in conjunction with
-> "linux,dma-default" property to define one or more mappings between device
-> and cpu accesible memory regions.
+Am Mittwoch, 10. Februar 2021, 12:10:14 CEST schrieb Heiko Stuebner:
+> The rk3399 has two ISPs and right now only the first one is usable.
+> The second ISP is connected to the TXRX dphy on the soc.
+> 
+> The phy of ISP1 is only accessible through the DSI controller's
+> io-memory, so this series adds support for simply using the dsi
+> controller is a phy if needed.
+> 
+> That solution is needed at least on rk3399 and rk3288 but no-one
+> has looked at camera support on rk3288 at all, so right now
+> only implement the rk3399 specifics.
+> 
+> changes in v2:
+> - enable grf-clock also for init callback
+>   to not break if for example hdmi is connected on boot
+>   and disabled the grf clock during its probe
+> - add Sebastian's Tested-by
+> - add Rob's Ack for the phy-cells property
 
-'dma-ranges' applies to buses. And, well, maybe devices when the bus
-is not well defined. It is not a reserved-memory property.
+finally found the time and applied patches 1-3 to drmmisc-next
+after fixing the alphabetical kconfig ordering Helen pointed out
+and also applied patches 4-6 to my rockchip tree for 5.15
 
-Rob
+
+> 
+> Heiko Stuebner (6):
+>   drm/rockchip: dsi: add own additional pclk handling
+>   dt-bindings: display: rockchip-dsi: add optional #phy-cells property
+>   drm/rockchip: dsi: add ability to work as a phy instead of full dsi
+>   arm64: dts: rockchip: add #phy-cells to mipi-dsi1
+>   arm64: dts: rockchip: add cif clk-control pinctrl for rk3399
+>   arm64: dts: rockchip: add isp1 node on rk3399
+> 
+>  .../display/rockchip/dw_mipi_dsi_rockchip.txt |   1 +
+>  arch/arm64/boot/dts/rockchip/rk3399.dtsi      |  39 ++
+>  drivers/gpu/drm/rockchip/Kconfig              |   2 +
+>  .../gpu/drm/rockchip/dw-mipi-dsi-rockchip.c   | 349 ++++++++++++++++++
+>  4 files changed, 391 insertions(+)
+> 
+> 
+
+
+
+
