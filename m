@@ -2,86 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E90763D4B11
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jul 2021 05:00:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 095633D4B16
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jul 2021 05:00:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230149AbhGYCTw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Jul 2021 22:19:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38418 "EHLO
+        id S230193AbhGYCTy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Jul 2021 22:19:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229949AbhGYCTw (ORCPT
+        with ESMTP id S230120AbhGYCTw (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jul 2021 22:19:52 -0400
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39D9DC06175F
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAD45C061765
         for <devicetree@vger.kernel.org>; Sat, 24 Jul 2021 20:00:22 -0700 (PDT)
-Received: by mail-oi1-x231.google.com with SMTP id t128so6814115oig.1
+Received: by mail-oi1-x234.google.com with SMTP id l126so6800168oib.2
         for <devicetree@vger.kernel.org>; Sat, 24 Jul 2021 20:00:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=wUU0F6F+EwCOUqAHdrS1FCoIIs2D4cf6PA8YqPnT4Ok=;
-        b=xPKhK+TngIGr6ibzCQQAHh56+6viK/fjLQsjNxpj9o1L0D3nTkNVysVOnmtdaPpJRl
-         BylnrClMCn/Sjt4QUdyXkhJyPnaugKm9p9UXyHgIIakhgg9ai+62yHwdyRyK79Vk7AK2
-         XA1PInaBVh/teMAOr6jRiD77NNY7uP31rZmFE905axej/FJYlhTWeipUg9JbISTjhTHq
-         nC7mrzUvcXte7rDm00CKpoVcMJd6CrwRahKHMWRF6uhWgDRoRwcR6EwlgP4Yi+SClx9y
-         loc7HlH7WI6Pd/p6aI6Jo3G9ieiymEfOMuxjH+AjBLl5p2tgx2jRuMgrzPOAu8IufN76
-         7KAg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=S/k3pA60ouJZ44RuPSvAHC3cHM/2BM3D5bSCGPUdEZs=;
+        b=iq0K/p/JvUX/Z/CG55BUou126nQBafLr1kMc5mgq8q/oDBu9G65nyc05mN1gGOrEt4
+         3C9jkBsNNznOxbtZe2exQZHfZfdZUOqcXvI1rcX8lfOSpkU+EyjrRtPQ9cNltYylscOs
+         +gcjvnrEgrkoR7Owc3YOYhvtQc5LXNd84lVB3nyb/DU89zgtnu2L/Ga6hF8l33QHefLN
+         8enENhTX/6A6i8moBkIbRdgGbxXcg3gzqfh1iXxtTX9Mf2IsRhxE8jKfpULoSYC9MPiT
+         Q8JbgPUm3+ZGBP4NvxJKBKTdABOm63th9D/3l3rSKci1Qkb5+sFV7qJ0G93ppP8AIp35
+         bdLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=wUU0F6F+EwCOUqAHdrS1FCoIIs2D4cf6PA8YqPnT4Ok=;
-        b=ncqBWLKRnzPdjI/jJhQ8qTCKi0jlrUu93tWc2mXXNyJThmZcpqw1pu2jFWUcdefYz4
-         +MsU3I1NDyDkuqvEcvW3JnoVb9mGe7oW48f3P6WYEh770UewssmhOAmroBo3VmvTyAbH
-         yh4KXZwCRNUU6AT5oOgT/k7eW96t+6baiv4gxRMAI51WmRc6Obz6GKF1rGjjT/y0HCRc
-         pgBg3MdABwlncuzc7tGpjTkxZZSqBOS+VdU/mh1XM0/1Qkv0hMSPQlSX5gzLJSYy+5dQ
-         mgHZhlQ5YaqfgJ6nSN1JujqCusxSq9lkn9MZ8r72UpG1y6wpC0KknEEX4XlyD5nctdCu
-         jW9A==
-X-Gm-Message-State: AOAM5339ksVF3kP/mIByLnrhqG3LRw6dfINR7GhlU3J8yMVrm1UX4QU2
-        LrFDzZAjELI5SICTYt2/iImMLQ==
-X-Google-Smtp-Source: ABdhPJy+XcdhLqbOYNh6pE6M0i0lKoEDuhjNOqllSpvpqPWH8v5m0pGEQi2v+AeegYeOKpf4G0lq8g==
-X-Received: by 2002:aca:47ca:: with SMTP id u193mr13024685oia.116.1627182021358;
-        Sat, 24 Jul 2021 20:00:21 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=S/k3pA60ouJZ44RuPSvAHC3cHM/2BM3D5bSCGPUdEZs=;
+        b=XHnbzTcPPX6ynMRABzC2jaEia1kg88qGvu+i16O7jvg02M+wukSHBEZupO6lQxoP9d
+         y+V0rtfnaruLCVYXQUz17a2a9+bA06vZu8fVupdc49cKLAmILXclb0t/79z1jdb1oyNE
+         PXA7FlkwU5sY1jVESswpI+OMXmbu9QW0M5vI9yRrdbZmvwlSsqi8pmWDT9hrszq+WwCg
+         nd9nkbBB0viWXQGGf5ZlNMCV25UaTY4wgoygSNvRUap+duwR/lWf3Y8IiMXdsAlgANRz
+         qo0RJkOB18XQut9j3S3ALHXuQh0oTanL0hcm0uTgj+M2Kj2mOBK9+vEi5LgHj307mZOz
+         dSHA==
+X-Gm-Message-State: AOAM533KjwKhDluO1hKaNNCJ46jOb3lnfwoiS3Od2Y+T3ugjzKTa8+B6
+        SQxBPTMjTQZ81cQaIlO6l7r3nQ==
+X-Google-Smtp-Source: ABdhPJwlJGY5pKXD+dB0PHg5IdDOxBBvz6DMMSWilQtk3xGQY92qcMGuJFoaqIMXzG0EXmwyNb4euw==
+X-Received: by 2002:aca:7589:: with SMTP id q131mr12489680oic.76.1627182022100;
+        Sat, 24 Jul 2021 20:00:22 -0700 (PDT)
 Received: from localhost.localdomain (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id n202sm3366180oig.10.2021.07.24.20.00.20
+        by smtp.gmail.com with ESMTPSA id n202sm3366180oig.10.2021.07.24.20.00.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 24 Jul 2021 20:00:20 -0700 (PDT)
+        Sat, 24 Jul 2021 20:00:21 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Georgi Djakov <djakov@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
         Sibi Sankar <sibis@codeaurora.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: interconnect: Add SC8180x to OSM L3 DT binding
-Date:   Sat, 24 Jul 2021 19:58:33 -0700
-Message-Id: <20210725025834.3941777-1-bjorn.andersson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 2/2] interconnect: qcom: osm-l3: Add sc8180x support
+Date:   Sat, 24 Jul 2021 19:58:34 -0700
+Message-Id: <20210725025834.3941777-2-bjorn.andersson@linaro.org>
 X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210725025834.3941777-1-bjorn.andersson@linaro.org>
+References: <20210725025834.3941777-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Qualcomm SC8180x has an OSM L3, add compatible for this.
+Add support for the Qualcomm SC8180x platform to the OSM L3 driver.
 
 Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 ---
- Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/interconnect/qcom/osm-l3.c  | 18 ++++++++++++++++++
+ drivers/interconnect/qcom/sc8180x.h |  2 ++
+ 2 files changed, 20 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
-index d6a95c3cb26f..e701524ee811 100644
---- a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
-+++ b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
-@@ -18,6 +18,7 @@ properties:
-   compatible:
-     enum:
-       - qcom,sc7180-osm-l3
-+      - qcom,sc8180x-osm-l3
-       - qcom,sdm845-osm-l3
-       - qcom,sm8150-osm-l3
-       - qcom,sm8250-epss-l3
+diff --git a/drivers/interconnect/qcom/osm-l3.c b/drivers/interconnect/qcom/osm-l3.c
+index 695f28789e98..13e41b932567 100644
+--- a/drivers/interconnect/qcom/osm-l3.c
++++ b/drivers/interconnect/qcom/osm-l3.c
+@@ -15,6 +15,7 @@
+ #include <dt-bindings/interconnect/qcom,osm-l3.h>
+ 
+ #include "sc7180.h"
++#include "sc8180x.h"
+ #include "sdm845.h"
+ #include "sm8150.h"
+ #include "sm8250.h"
+@@ -113,6 +114,22 @@ static const struct qcom_icc_desc sc7180_icc_osm_l3 = {
+ 	.reg_perf_state = OSM_REG_PERF_STATE,
+ };
+ 
++DEFINE_QNODE(sc8180x_osm_apps_l3, SC8180X_MASTER_OSM_L3_APPS, 32, SC8180X_SLAVE_OSM_L3);
++DEFINE_QNODE(sc8180x_osm_l3, SC8180X_SLAVE_OSM_L3, 32);
++
++static const struct qcom_icc_node *sc8180x_osm_l3_nodes[] = {
++	[MASTER_OSM_L3_APPS] = &sc8180x_osm_apps_l3,
++	[SLAVE_OSM_L3] = &sc8180x_osm_l3,
++};
++
++static const struct qcom_icc_desc sc8180x_icc_osm_l3 = {
++	.nodes = sc8180x_osm_l3_nodes,
++	.num_nodes = ARRAY_SIZE(sc8180x_osm_l3_nodes),
++	.lut_row_size = OSM_LUT_ROW_SIZE,
++	.reg_freq_lut = OSM_REG_FREQ_LUT,
++	.reg_perf_state = OSM_REG_PERF_STATE,
++};
++
+ DEFINE_QNODE(sm8150_osm_apps_l3, SM8150_MASTER_OSM_L3_APPS, 32, SM8150_SLAVE_OSM_L3);
+ DEFINE_QNODE(sm8150_osm_l3, SM8150_SLAVE_OSM_L3, 32);
+ 
+@@ -311,6 +328,7 @@ static const struct of_device_id osm_l3_of_match[] = {
+ 	{ .compatible = "qcom,sc7180-osm-l3", .data = &sc7180_icc_osm_l3 },
+ 	{ .compatible = "qcom,sdm845-osm-l3", .data = &sdm845_icc_osm_l3 },
+ 	{ .compatible = "qcom,sm8150-osm-l3", .data = &sm8150_icc_osm_l3 },
++	{ .compatible = "qcom,sc8180x-osm-l3", .data = &sc8180x_icc_osm_l3 },
+ 	{ .compatible = "qcom,sm8250-epss-l3", .data = &sm8250_icc_epss_l3 },
+ 	{ }
+ };
+diff --git a/drivers/interconnect/qcom/sc8180x.h b/drivers/interconnect/qcom/sc8180x.h
+index fed2dc2d4acb..e70cf7032f80 100644
+--- a/drivers/interconnect/qcom/sc8180x.h
++++ b/drivers/interconnect/qcom/sc8180x.h
+@@ -168,5 +168,7 @@
+ #define SC8180X_SLAVE_EBI_CH0_DISPLAY		158
+ #define SC8180X_SLAVE_MNOC_SF_MEM_NOC_DISPLAY	159
+ #define SC8180X_SLAVE_MNOC_HF_MEM_NOC_DISPLAY	160
++#define SC8180X_MASTER_OSM_L3_APPS		161
++#define SC8180X_SLAVE_OSM_L3			162
+ 
+ #endif
 -- 
 2.29.2
 
