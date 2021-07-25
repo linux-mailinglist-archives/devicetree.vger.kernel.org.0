@@ -2,51 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24CE83D4F05
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jul 2021 19:14:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C43273D4F18
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jul 2021 19:31:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230110AbhGYQdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Jul 2021 12:33:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55210 "EHLO
+        id S229831AbhGYQuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Jul 2021 12:50:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230075AbhGYQdi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jul 2021 12:33:38 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DC8DC061760
-        for <devicetree@vger.kernel.org>; Sun, 25 Jul 2021 10:14:08 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id he41so12625846ejc.6
-        for <devicetree@vger.kernel.org>; Sun, 25 Jul 2021 10:14:08 -0700 (PDT)
+        with ESMTP id S229545AbhGYQup (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jul 2021 12:50:45 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 277A5C061757
+        for <devicetree@vger.kernel.org>; Sun, 25 Jul 2021 10:31:14 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id f13so4640360edq.13
+        for <devicetree@vger.kernel.org>; Sun, 25 Jul 2021 10:31:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=H3RPOWBRf2k2synG3wrZwitti/PedojQEmKKrIh2UUo=;
-        b=TH2gxgFULV3Btg8IqnkRewzfEIxAXYMpVn2yzlu582rw3Tkd6LO0hyYodBGl+z3oOG
-         FCCEjmdxW1A8AOt5F8w+i6QkbHU5HZJ6cl68r8LuL4Tj7K2bwik3XqCiX4ybx0XqDenN
-         voy9QGTXoRAhRVXYCmsSBDR824M8vqCCNStoI=
+        bh=UkBtWhkl5JjlzgWjWjbI0oCul3smhswI+BT+jn3A+AY=;
+        b=lBBlbVTgySrhfYF11i0DKiwn3+sSA7nyyo0yoTZTVFnYulOqwe3Wijrr0RpX8FDptS
+         nDVJh/X1mD/yD8XHJOIaYurWvOcIO6GmVpnIcUqYI9L0pSi3Oq4H6TXmtA2Eu2EVDCt7
+         ftUZ9aMRZdzcjyTEhRpFSadpe/L4hrOcUQ2fw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=H3RPOWBRf2k2synG3wrZwitti/PedojQEmKKrIh2UUo=;
-        b=jujzJkBW//AKQV4dmu/mAfe39ZCADQmGMsoMJ1I8U2efZmTcHjPq/Q4iLxjpTBKavv
-         eetaaTzFdgtTsu9fEpVTJei0bIq/uf3ZLc2JYNiMzhTQ3gpAjwdOF+Q3xeYMiBlOTXUU
-         a4XAAS78uDGWHRp+AnCo+uZid2dD4qImJxBAkXCz/rGWouxu5IqPQZ35lxNo8u/Abtvz
-         aJECPMqj6taNiAbOIRjtXGPUjjLTuJtBPTQm5uPx+zPJbvwEwM88v4c9WDFwgumEkFPN
-         DBHwBzXFgn1etmFKIPfIAgXSAtutEIO0cf7AVFbRs2UfbryyK1yzI8a7AzvBPmhXMcST
-         /XxA==
-X-Gm-Message-State: AOAM530qFlH6UqQmJY0tRAkt/9I1woWH+O4iSTvv056QhJO8l9N6DUHo
-        T8ZPBtOYEfTIvNKf5MNhfpCE9TrgjYOK26rZxwn2Pw==
-X-Google-Smtp-Source: ABdhPJxHwHQXUhyRK5a5X9ubPP7qAlXX/q2WPa8HKt6EPPQlN1ZOYkiGslGAR5j+VSADs9ttExe8DXD7AN113IbTGAQ=
-X-Received: by 2002:a17:906:368e:: with SMTP id a14mr14034879ejc.60.1627233247000;
- Sun, 25 Jul 2021 10:14:07 -0700 (PDT)
+        bh=UkBtWhkl5JjlzgWjWjbI0oCul3smhswI+BT+jn3A+AY=;
+        b=R/wgirweens+clFwugUi1iYjSH3o0WbfoHvWKVJMoW0rV0Pao0jsA29uM4fWovH+hE
+         AnIGE+0/CNs8qwZKO6wYnLIyt+H8kXpfLi2V4zCzkuqGCUTXxc2utWvZ4uYYQ8qebW7T
+         dROqnrrl2Y3V93bEeWGCYmVbQr6uDNwC+7wvgZwHM5hXXb6pAhbr7n1XZX6yIG0aIGID
+         CihySZETcc+2upXA8A5ezioWxVwvcPrEXPHCb4H6aqYKeGBaaEgvzJ4LPJZJmZ5SWdw1
+         mLHRjTJbL6yP9pZ3PIjHybcsBddb0KNEeoSP1XMHksdxWgPzhrE8mO4BmaEYfKGdZFdr
+         cOzQ==
+X-Gm-Message-State: AOAM533PDFARsaKUHLZUhGUMIlDwSlmVpEFRlaEJHY6mNoTaYXR7htWK
+        toh/qSQMp9vS/FpNcAIKR7JKpUUpA+0w6xL2dcwAPQ==
+X-Google-Smtp-Source: ABdhPJx151WxgS05DBXIbJnohD/dbKLDBEbx/smB09iPx/aNJsLqRY1rRPuWytgxhRRXNS+9iqhHYx5oieQg99TAJ7Q=
+X-Received: by 2002:a05:6402:144f:: with SMTP id d15mr17294723edx.27.1627234271837;
+ Sun, 25 Jul 2021 10:31:11 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210704090230.26489-1-jagan@amarulasolutions.com> <YP2ZvoVQyvwTXP++@ravnborg.org>
-In-Reply-To: <YP2ZvoVQyvwTXP++@ravnborg.org>
+References: <20210704090230.26489-1-jagan@amarulasolutions.com>
+ <20210704090230.26489-7-jagan@amarulasolutions.com> <YP2el40V3K4R7ner@ravnborg.org>
+In-Reply-To: <YP2el40V3K4R7ner@ravnborg.org>
 From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Sun, 25 Jul 2021 22:43:55 +0530
-Message-ID: <CAMty3ZANJz=HSKFzZ8gn896uw98iVwMEpGhmanXNbj77Ren4hw@mail.gmail.com>
-Subject: Re: [RFC PATCH 00/17] drm: bridge: Samsung MIPI DSIM bridge
+Date:   Sun, 25 Jul 2021 23:01:00 +0530
+Message-ID: <CAMty3ZAw9ZNYCm=LnETEoi8qHn3qc5_B2tewhOKw-TTPrU0xog@mail.gmail.com>
+Subject: Re: [RFC PATCH 06/17] drm/exynos: dsi: Handle exynos specifics via driver_data
 To:     Sam Ravnborg <sam@ravnborg.org>
 Cc:     Inki Dae <inki.dae@samsung.com>,
         Joonyoung Shim <jy0922.shim@samsung.com>,
@@ -72,63 +73,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sam,
-
-On Sun, Jul 25, 2021 at 10:35 PM Sam Ravnborg <sam@ravnborg.org> wrote:
+On Sun, Jul 25, 2021 at 10:55 PM Sam Ravnborg <sam@ravnborg.org> wrote:
 >
-> Hi Jagan,
+> On Sun, Jul 04, 2021 at 02:32:19PM +0530, Jagan Teki wrote:
+> > Exynos DSI driver is actually a Samsung MIPI DSIM bridge
+> > IP which is also used in i.MX8MM platforms.
+> >
+> > Right now the existing driver has some exynos drm specific
+> > code bases like te_irq, crtc and component_ops.
+> >
+> > In order to switch this driver into a common bridge driver
+> > We can see 2 options to handle the exynos specific code.
+> >
+> > A. Drop the component_ops, and rework other specifics.
+> >    This may lead to more foundation work as it requires
+> >    more changes in exynos drm drivers stack.
+> >
+> > B. Handle the exynos specifics via driver data, and make
+> >    the common bridge work in different platforms and plan
+> >    for option A in future.
+> >
+> > So, this patch is trying to add option B) changes to handle
+> > exynos specifics via driver_data.
 >
-> On Sun, Jul 04, 2021 at 02:32:13PM +0530, Jagan Teki wrote:
-> > This series supports common bridge support for Samsung MIPI DSIM
-> > which is used in Exynos and i.MX8MM SoC's.
-> >
-> > The final bridge supports both the Exynos and i.MX8MM DSI devices.
-> >
-> > Right now bridge offers two sets of implementations.
-> >
-> > A. With component_ops and exynos specific code exclusively for
-> >    exynos dsi drivers and it's legacy bindings.
-> >
-> > B. Without componenet_ops for newly implemented bridges and its
-> >    users like i.MX8MM.
-> >
-> > The future plan is to fix the implementation A) by dropping
-> > component_ops and fixing exynos specific code in order to make
-> > the bridge more mature to use and the same is mentioned in
-> > drivers TODO.
-> >
-> > Patch 0001 - 0006: Bridge conversion
-> > Patch 0007 - 0017: Samsung MIPI DSIM bridge fixes, additions
-> >
-> > Tested in Engicam i.Core MX8M Mini SoM.
-> >
-> > Anyone interest, please have a look on this repo
-> > https://github.com/openedev/linux/tree/070421-imx8mm-dsim
-> >
-> > Would appreciate anyone from the exynos team to test it on
-> > the exynos platform?
-> >
-> > Any inputs?
+> We really should find someone that has the time, energy, knowledge and
+> hardware that can include device_link support once anf for all for
+> bridges.
+> Then we would avoid hacks like this.
 >
-> I really like where you are headign with this!
-> No testing - sorry. But I will try to provide a bit of feedback on the
-> individual patches.
->
-> I hope you find a way to move forward with this.
+> I see no other options at the moment, but look forward for a better
+> solution.
 
-Thanks for the response.
-
-We have found some issues with Bridge conversion on existing exynos
-drivers. The component based DSI drivers(like exynos) are difficult to
-attach if it involves kms hotplug. kms hotplug would require drm
-pointer and that pointer would only available after the bind call
-finishes. But the bridge attach in bind call will defer till it find
-the attached bridge.
-
-Right now I'm trying to find the proper way to attach the bridges for
-component based DSI drivers which involves kms hot-plug.
-
-If you have any ideas on this, please let me know.
+The real key problem here is hardware, unfortunately I'm unable to
+find any proper exynos DSI hardware for myself to proceed atleast.
 
 Thanks,
 Jagan.
