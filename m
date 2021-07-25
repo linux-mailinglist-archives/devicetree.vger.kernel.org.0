@@ -2,47 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C3ADD3D4E27
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jul 2021 16:52:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DF0B3D4E3C
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jul 2021 17:14:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231239AbhGYOMT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Jul 2021 10:12:19 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39466 "EHLO mail.kernel.org"
+        id S231264AbhGYOeG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Jul 2021 10:34:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51306 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231128AbhGYOMS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 25 Jul 2021 10:12:18 -0400
+        id S231208AbhGYOeF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 25 Jul 2021 10:34:05 -0400
 Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EE54760720;
-        Sun, 25 Jul 2021 14:52:43 +0000 (UTC)
-Date:   Sun, 25 Jul 2021 15:55:15 +0100
+        by mail.kernel.org (Postfix) with ESMTPSA id 0573060F3A;
+        Sun, 25 Jul 2021 15:14:31 +0000 (UTC)
+Date:   Sun, 25 Jul 2021 16:17:04 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Alexandru Ardelean <aardelean@deviqon.com>,
+To:     Puranjay Mohan <puranjay12@gmail.com>
+Cc:     Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        "Hennerich, Michael" <Michael.Hennerich@analog.com>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>,
+        devicetree <devicetree@vger.kernel.org>,
         linux-iio <linux-iio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH v2 2/4] iio: adc: Add driver for Renesas RZ/G2L A/D
- converter
-Message-ID: <20210725155515.25c727b9@jic23-huawei>
-In-Reply-To: <CA+V-a8v28TuGa9Vay9wraRetEK4XZBm6BU4USZYTdFR4BkwBBQ@mail.gmail.com>
-References: <20210719085840.21842-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-        <20210719085840.21842-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-        <20210724190601.084d43e7@jic23-huawei>
-        <CA+V-a8v28TuGa9Vay9wraRetEK4XZBm6BU4USZYTdFR4BkwBBQ@mail.gmail.com>
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        "Bogdan, Dragos" <Dragos.Bogdan@analog.com>,
+        "Berghe, Darius" <Darius.Berghe@analog.com>,
+        Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH v2 2/2] iio: accel: Add driver support for ADXL355
+Message-ID: <20210725161704.4aed26a2@jic23-huawei>
+In-Reply-To: <CANk7y0irgGbsEXG0jhduVycFSvbL7TkPh9+Z4RmM_XbMx=1rcA@mail.gmail.com>
+References: <20210722062155.32998-1-puranjay12@gmail.com>
+        <20210722062155.32998-3-puranjay12@gmail.com>
+        <20210723181022.000032bd@Huawei.com>
+        <CANk7y0irgGbsEXG0jhduVycFSvbL7TkPh9+Z4RmM_XbMx=1rcA@mail.gmail.com>
 X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -51,158 +44,127 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 25 Jul 2021 13:18:53 +0100
-"Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
-
-> Hi Jonathan,
-> 
-> Thank you for the review.
-> 
-> On Sat, Jul 24, 2021 at 7:03 PM Jonathan Cameron <jic23@kernel.org> wrote:
-> >
-> > On Mon, 19 Jul 2021 09:58:38 +0100
-> > Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> >  
-> > > Add ADC driver support for Renesas RZ/G2L A/D converter in SW
-> > > trigger mode.
-> > >
-> > > A/D Converter block is a successive approximation analog-to-digital
-> > > converter with a 12-bit accuracy and supports a maximum of 8 input
-> > > channels.
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>  
-> >
-> > Hi Lad,
-> >
-> > A few additional comments inline.
-> >
-> > Thanks,
-> >
-> > Jonathan
-> >  
-
 ...
-
-> 
-> > > +#define RZG2L_ADFIL                  0x2c
-> > > +#define RZG2L_ADCR(n)                        (0x30 + ((n) * 0x4))
-> > > +#define RZG2L_ADCR_AD_MASK           GENMASK(11, 0)
 > > > +
-> > > +#define RZG2L_ADC_MAX_CHANNELS               8
-> > > +#define RZG2L_ADC_CHN_MASK           0x7
-> > > +#define RZG2L_ADC_TIMEOUT            usecs_to_jiffies(1 * 4)
-> > > +
-> > > +struct rzg2l_adc_data {
-> > > +     const struct iio_chan_spec *channels;
-> > > +     u8 num_channels;
-> > > +};
-> > > +
-> > > +struct rzg2l_adc {
-> > > +     void __iomem *base;
-> > > +     struct clk *pclk;
-> > > +     struct clk *adclk;
-> > > +     struct reset_control *presetn;
-> > > +     struct reset_control *adrstn;
-> > > +     struct completion completion;
-> > > +     const struct rzg2l_adc_data *data;
-> > > +     u16 last_val[RZG2L_ADC_MAX_CHANNELS];
-> > > +};
-> > > +
-> > > +static const char * const rzg2l_adc_channel_name[] = {
-> > > +     "adc0",  
-> > Is it useful to expose these as labels to userspace?
-> > Seems unnecessary given they map directly to the channel
-> > numbers.
-> >  
-> Exposing  them as this may vary depending on the wiring on the board,
-> so it  would be better for user space to know which channels are
-> available.
-
-Hmm.  One thing to take into account is the IIO ABI doesn't require
-channel numbers to be consecutive.  There are a few drivers where
-they aren't due to channel optionality.
-
-Perhaps that would make sense here?  If not, I'm fine with leaving
-these as you have it.  They do no harm.
-
-> 
-> > > +     "adc1",
-> > > +     "adc2",
-> > > +     "adc3",
-> > > +     "adc4",
-> > > +     "adc5",
-> > > +     "adc6",
-> > > +     "adc7",
-> > > +};
-> > > +
-...
-
-> > > +static int rzg2l_adc_conversion_setup(struct rzg2l_adc *adc, u8 ch)
+> > > +static int adxl355_set_hpf_3db(struct adxl355_data *data,
+> > > +                            enum adxl355_hpf_3db hpf)
 > > > +{
-> > > +     u32 reg;
+> > > +     int ret = 0;
 > > > +
-> > > +     if (rzg2l_adc_readl(adc, RZG2L_ADM(0)) & RZG2L_ADM0_ADBSY)
-> > > +             return -EBUSY;
+> > > +     mutex_lock(&data->lock);
 > > > +
-> > > +     rzg2l_set_trigger(adc);
+> > > +     if (data->hpf_3db == hpf)
+> > > +             goto out_unlock;
 > > > +
-> > > +     /* select channel */
-> > > +     reg = rzg2l_adc_readl(adc, RZG2L_ADM(2));
-> > > +     reg &= RZG2L_ADM2_CHSEL_CLEAR;
-> > > +     reg |= BIT(ch);
-> > > +     rzg2l_adc_writel(adc, RZG2L_ADM(2), reg);
+> > > +     ret = adxl355_set_op_mode(data, ADXL355_STANDBY);
+> > > +     if (ret < 0)
+> > > +             goto out_unlock;
 > > > +
-> > > +     reg = rzg2l_adc_readl(adc, RZG2L_ADM(3));
-> > > +     reg &= RZG2L_ADM3_ADIL_CLEAR;
-> > > +     reg |= RZG2L_ADM3_ADCMP;
-> > > +     reg |= RZG2L_ADM3_ADSMP;  
-> >
-> > No loss in readability in combining the two lines above and shorter
-> > code is always good.  Having the mask on a separate line makes
-> > sense but the |= pair doesn't.
-> >  
-> Agreed will move to the same line.
-> 
-> > What is a bit unusual here is you clear some bits then write different
-> > ones.  That is presumably relying on the fact that the ADCCMP part
-> > is always set to the same value.  That seems unwise to assume from
-> > a long term maintainability point of view.
-> >  
-> The ADIL bits have to be set to zero, so I am clearing the ADIL bits
-> (bit 24-bits 31) and the ADCMP/ADSMP should be set to specific values
-> oxe/0x578 respectively.
-
-Understood, but from this 'local' bit of code it's not obvious that they don't
-have other bits say, perhaps ADSMP is set to 0x483 for example by some
-other code? (obviously it isn't, but it's nice to not have to sanity check
-the rest of the driver to be sure!)  So normal thing to do would be to also
-mask those bits out. 
-
-I'm a bit curious on whether there are other bits in this register that make it
-useful to do the read modify write cycle? (doesn't seem to be a public
-datasheet from a quick google...)
-
-> 
-> > > +     rzg2l_adc_writel(adc, RZG2L_ADM(3), reg);
+> > > +     ret = regmap_update_bits(data->regmap, ADXL355_FILTER,
+> > > +                              ADXL355_FILTER_HPF_MSK,
+> > > +                              ADXL355_FILTER_HPF_MODE(hpf));
+> > > +     if (!ret)
+> > > +             data->hpf_3db = hpf;
 > > > +
-> > > +     reg = rzg2l_adc_readl(adc, RZG2L_ADIVC);
-> > > +     reg &= RZG2L_ADIVC_DIVADC_CLEAR;
-> > > +     reg |= RZG2L_ADIVC_DIVADC_4;
-> > > +     rzg2l_adc_writel(adc, RZG2L_ADIVC, reg);
-> > > +
-> > > +     reg = rzg2l_adc_readl(adc, RZG2L_ADINT);
-> > > +     reg &= ~RZG2L_ADINT_INTS;
-> > > +     reg &= RZG2L_ADINT_CH_CLEAR;
-> > > +     reg |= RZG2L_ADINT_CSEEN;
-> > > +     reg |= BIT(ch);
-> > > +     rzg2l_adc_writel(adc, RZG2L_ADINT, reg);
-> > > +
-> > > +     return 0;
+> > > +out_unlock:
+> > > +     ret = adxl355_set_op_mode(data, ADXL355_MEASUREMENT);
+> > > +     mutex_unlock(&data->lock);
+> > > +     return ret;
 > > > +}
 > > > +
+> > > +static int adxl355_set_calibbias(struct adxl355_data *data,
+> > > +                              int scan_index, int calibbias)
+> > > +{
+> > > +     int ret = 0;
+> > > +     __be16 reg = cpu_to_be16(calibbias);  
+> >
+> > Hmm. I'm a bit in two minds on whether we can always rely on regmap
+> > now copying these buffers and hence avoiding the need for DMA safe buffers
+> > when used with SPI.  It seems like it now does but that's no documented
+> > and a fairly recent development. Anyhow, I went with just asking Mark
+> > Brown - see top of email.
+> >  
+> I will need to study this as I don't have knowledge about what you are saying.
+
+It's a really 'interesting' but fiddly corner.  Following discussion with Mark
+on the other branch of this thread the upshot is we should never use a buffer
+on the stack for multiple register accesses in regmap because the underlying
+bus driver (here SPI controller drivers are the ones that matters) may receive
+the buffer directly for use in a scatter gather DMA access.
+
+The guarantees around coherency of access to the data buffer only apply at the
+size of a cacheline.  That means you can get evil things like..
+
+1) DMA set up for the SPI transfer using this buffer.
+2) Whilst DMA is going on, some unrelated bit of the driver writes a flag.
+3) DMA completes and writes back the whole cacheline (some devices do this)
+   and neatly rewrites the flag to it's value from before DMA started.
+Having once encountered an SPI controller that could indeed do this I can tell
+you it is very tricky to debug... 
+https://www.youtube.com/watch?v=JDwaMClvV-s is a good presentation by Wolfram
+that goes into some of these issues and why they are really hard to solve
+in general (and hence why drivers still need to care!)
+
+Anyhow, ensuring you don't share a cacheline that is used for DMA with 
+anything else guarantees everything will be fine.
+There would be ways of SPI controller drivers work around this, but reality
+is data moves around system interconnects in cacheline sized blocks so it
+fine in real systems.
+
+Two ways of getting such data.  A heap allocation is always big enough
+to ensure no sharing. IIO also has a trick given we hit this a lot.
+The iio_priv() structure is cacheline aligned and on the heap.  So
+if you put your buffer at the end of your driver structure that you
+access via iio_priv and mark it ____cacheline_aligned then it will
+start at the beginning of a new cacheline and that C requires structures
+to be padded to the value of maximum element alignment means you
+will be in a cacheline on your own.
+
+A side note here is that is fine to share a cacheline for rx and tx
+buffers if that makes sense as we can assume an SPI controller won't
+trash it's own data.
+
+
+> > > +
+> > > +     mutex_lock(&data->lock);
+> > > +
+> > > +     ret = adxl355_set_op_mode(data, ADXL355_STANDBY);
+> > > +     if (ret < 0)
+> > > +             goto out_unlock;
+> > > +
+
 ...
 
-Thanks,
+> >  
+> > > +
+> > > +static const struct iio_info adxl355_info = {
+> > > +     .read_raw       = adxl355_read_raw,
+> > > +     .write_raw      = adxl355_write_raw,
+> > > +     .read_avail     = &adxl355_read_avail
+> > > +};
+> > > +
+> > > +#define ADXL355_ACCEL_CHANNEL(index, reg, axis) {                    \
+> > > +     .type = IIO_ACCEL,                                              \
+> > > +     .address = reg,                                                 \
+> > > +     .modified = 1,                                                  \
+> > > +     .channel2 = IIO_MOD_##axis,                                     \
+> > > +     .info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |                  \
+> > > +                           BIT(IIO_CHAN_INFO_CALIBBIAS),             \
+> > > +     .info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) |          \
+> > > +                                 BIT(IIO_CHAN_INFO_SAMP_FREQ) |      \
+> > > +             BIT(IIO_CHAN_INFO_HIGH_PASS_FILTER_3DB_FREQUENCY),      \
+> > > +     .info_mask_shared_by_type_available =                           \
+> > > +             BIT(IIO_CHAN_INFO_SAMP_FREQ) |                          \
+> > > +             BIT(IIO_CHAN_INFO_HIGH_PASS_FILTER_3DB_FREQUENCY),      \
+> > > +     .scan_index = index,                                            \  
+> >
+> > Only makes sense if you are supporting buffered mode as otherwise there
+> > isn't really any such thing as a 'scan'.  
+> 
+> I will be adding the support for buffered mode soon, is it fine if I
+> leave these here?
+
+Sure, that's fine though even better to do it in that patch ;)
 
 Jonathan
+
