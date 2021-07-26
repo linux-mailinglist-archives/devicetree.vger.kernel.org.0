@@ -2,173 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E28753D65D5
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 19:34:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2BF63D6608
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 19:50:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234592AbhGZQyZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 12:54:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43656 "EHLO
+        id S231696AbhGZRJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 13:09:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233704AbhGZQyW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 12:54:22 -0400
-Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE23CC061765
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 10:34:50 -0700 (PDT)
-Received: by mail-ot1-x32e.google.com with SMTP id a5-20020a05683012c5b029036edcf8f9a6so10762224otq.3
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 10:34:50 -0700 (PDT)
+        with ESMTP id S229680AbhGZRJx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 13:09:53 -0400
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4B08C061760
+        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 10:50:21 -0700 (PDT)
+Received: by mail-oi1-x230.google.com with SMTP id l126so11883158oib.2
+        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 10:50:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=6vcmdJW0PQwHX3N7q/LEirUpgpEmrk9ZWnfdjvnD6Jk=;
-        b=nLHtI5JJvX9xtd7elYmv5mrwhLNRE1SFbDt8Hzb3bV4/IjlXMW+HUjFbztwqRDg363
-         gdppbsUhRFsLlctiHkM+9XscRrpYT+/xmXJO65+5z5dQi7huKXI8i1OWIAE1r4/bcIev
-         XYw9AY5CApf+ZA9ZIYNfN/UTclla7SICAY006mFZhWEW+VTP6gET/enl5BnAP9MwW0CS
-         J8YOa2K8dUvHygM/dlLe0v/T5TZCGqU0cT/VAhXIUR4xRlkk8ToBBBMdbNVIHnvB4SFv
-         2wnBmb5fUSkBJo+KnX25L+lZWUBHgjU8w9We1btPimzVKy2VnfLf023t/NlnU/eejiAF
-         fT4A==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=db48y/ovq+/R24P2kuhwOLAKu+icrzjTHuCcSHS86vg=;
+        b=w1uqw0eZtgt4oeg8v9LZI7uXoVEIOkGhBTsjhDru5QNLljSUpMgtcxH9f+3VbGkoYV
+         hJP1nNBhc6oQIjO1dZd6jFOoLYmfT5vM1qnC6Ffx1bc/ny6L3xG2rPcJ5mGeGj90ZeTV
+         JVxgMgz8/du2yQv2Az0128DkCblfYB7wwh2/7hJF2BJusX5wv13SSZPChhuzr/PI8QKZ
+         zrdrOUdEi7Wo7h2RZcduQkOvSp3kua+ivw3AQ4JlHEOdDsMhKCmMHlI3+WvowjtlpxR7
+         cJ6YzL/XAaAhi0I3bmrkp5mHjGs5JfXiItLz67tvOqBeoi4KL16VdFmwM5tSDm5XqdSm
+         a3ng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=6vcmdJW0PQwHX3N7q/LEirUpgpEmrk9ZWnfdjvnD6Jk=;
-        b=pIkE04g4LQqNS3I5UOhpe0Xe+ZC/gL9znFOpJZ7Jnm5UdDwRUTzy63bOo455mldLPj
-         4+oZLctxrOLyMm7YSvyxRwLT5e69SgDqG737hbrZz6oZTakipzOP8RdcGTKXoDc8dCkR
-         TnBspJfN1GvgPacPEtkFZTa1lGy1EJBJH3e1A5E+ruZHB8PhEMk9inJGjKqUVuYY+8Gj
-         q0mFyBt93Vz/T0b0OgMVF5/BR33nSEfJ7+JhGuVBrml/MDExDaJTPxuKtyghBWSs6rxZ
-         LcK6uw1MRR6Eh86A/+s9x8bvZWk5yC0KnGWPHo+ol0PiXnNt76tgHc6MWNqX1FODRzde
-         c40g==
-X-Gm-Message-State: AOAM531WVeJRtdJUsCxKXYUlhVqcIhR1p7U8ILecb6LRYGRfiEg/+Fw7
-        rred9Y/Cz1ipOTo5/rhEDOaQVw==
-X-Google-Smtp-Source: ABdhPJztOzkgX+7urD2V90sFSZLX88MlP0aAgAWiiwYZyalCxrrj2COGktvlJXnrIRyp4ra/dedq4Q==
-X-Received: by 2002:a9d:448:: with SMTP id 66mr7390470otc.345.1627320890170;
-        Mon, 26 Jul 2021 10:34:50 -0700 (PDT)
-Received: from localhost.localdomain (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id s24sm69328ooq.37.2021.07.26.10.34.49
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=db48y/ovq+/R24P2kuhwOLAKu+icrzjTHuCcSHS86vg=;
+        b=GycqCUjwxEgBvwugK4yHwDKIORvvuteUREPrjzmvZNNbqEpbddFtGDWobfa7VZtxq4
+         ag2HOcmVSDM1shqcG2Ap7Q3Nhk0/QaiiH6UeCrZQreGpW1DIKPUErJwJBSY9ZhbkKlkI
+         L3vep7QalKLbB82XfOpNmXCd690BUkCU304wYaAtN68X/xn3ZyZRR6wXq7ZYk4jiXIn/
+         lwIPs7ZcuikBd6fk1OsuJvONK4GdhCHAIGnXOoUKloS4qVoQBMGyonqDsD2ci3hB9LRp
+         dX29fI5uOs1GFB4c6ZKoq0JjO/4ca/4VIyyh0hmC88+Wxc0hKWtPqwyJGB0q+OdI6LOj
+         8rwg==
+X-Gm-Message-State: AOAM531WWvS1lyjqtv9QtznssEXvHmQihXVLMXWDAo2Mfvf7hqzNdhbo
+        cM1H6RiK9yiFi79h6WV+uOMg4zhGKuyc7Q==
+X-Google-Smtp-Source: ABdhPJx/nGg701JhccQq4lqQVoXFFP3F3OPPYRM5w+P3u/t+MNBSirVAf1yX4j6qSp94l2IEEXDSng==
+X-Received: by 2002:aca:4d55:: with SMTP id a82mr12164918oib.100.1627321821170;
+        Mon, 26 Jul 2021 10:50:21 -0700 (PDT)
+Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id l17sm107177ota.20.2021.07.26.10.50.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jul 2021 10:34:49 -0700 (PDT)
+        Mon, 26 Jul 2021 10:50:20 -0700 (PDT)
+Date:   Mon, 26 Jul 2021 10:48:32 -0700
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] drm/panel: simple: Add support for two more AUO panels
-Date:   Mon, 26 Jul 2021 10:33:00 -0700
-Message-Id: <20210726173300.432039-2-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210726173300.432039-1-bjorn.andersson@linaro.org>
-References: <20210726173300.432039-1-bjorn.andersson@linaro.org>
+To:     Baruch Siach <baruch@tkos.co.il>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe Kleine-K?nig <u.kleine-koenig@pengutronix.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Balaji Prakash J <bjagadee@codeaurora.org>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Kathiravan T <kathirav@codeaurora.org>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v6 3/4] dt-bindings: pwm: add IPQ6018 binding
+Message-ID: <YP71cMSjuvmiREda@ripper>
+References: <889aae1b88f120cb6281919d27164a959fbe69d0.1626948070.git.baruch@tkos.co.il>
+ <70f0522a9394e9da2f31871442d47f6ad0ff41aa.1626948070.git.baruch@tkos.co.il>
+ <YP2tAR+zZgJZQOgG@yoga>
+ <87h7ghwwcb.fsf@tarshish>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87h7ghwwcb.fsf@tarshish>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add definition of the AUO B133HAN05.4 13.3" FHD panel and the
-B140HAN06.4 14.0" FHD panel.
+On Sun 25 Jul 21:08 PDT 2021, Baruch Siach wrote:
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- drivers/gpu/drm/panel/panel-simple.c | 66 ++++++++++++++++++++++++++++
- 1 file changed, 66 insertions(+)
+> Hi Bjorn,
+> 
+> On Sun, Jul 25 2021, Bjorn Andersson wrote:
+> > On Thu 22 Jul 05:01 CDT 2021, Baruch Siach wrote:
+> >> +  clocks:
+> >> +    maxItems: 1
+> >> +
+> >> +  clock-names:
+> >> +    const: core
+> >
+> > With a single clock, it's nice to skip the -names.
+> 
+> I find it nicer and better for forward compatibility with hardware
+> variants the might introduce more clocks.
+> 
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 21939d4352cf..fcf6cbbfdedb 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -1080,6 +1080,36 @@ static const struct panel_desc auo_b133xtn01 = {
- 	},
- };
- 
-+static const struct drm_display_mode auo_b133han05_mode = {
-+	.clock = 142600,
-+	.hdisplay = 1920,
-+	.hsync_start = 1920 + 58,
-+	.hsync_end = 1920 + 58 + 42,
-+	.htotal = 1920 + 58 + 42 + 60,
-+	.vdisplay = 1080,
-+	.vsync_start = 1080 + 3,
-+	.vsync_end = 1080 + 3 + 5,
-+	.vtotal = 1080 + 3 + 5 + 54,
-+};
-+
-+static const struct panel_desc auo_b133han05 = {
-+	.modes = &auo_b133han05_mode,
-+	.num_modes = 1,
-+	.bpc = 8,
-+	.size = {
-+		.width = 293,
-+		.height = 165,
-+	},
-+	.delay = {
-+		.prepare = 100,
-+		.enable = 20,
-+		.unprepare = 50,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
-+	.bus_flags = DRM_BUS_FLAG_DATA_MSB_TO_LSB,
-+	.connector_type = DRM_MODE_CONNECTOR_eDP,
-+};
-+
- static const struct drm_display_mode auo_b133htn01_mode = {
- 	.clock = 150660,
- 	.hdisplay = 1920,
-@@ -1107,6 +1137,36 @@ static const struct panel_desc auo_b133htn01 = {
- 	},
- };
- 
-+static const struct drm_display_mode auo_b140han06_mode = {
-+	.clock = 141000,
-+	.hdisplay = 1920,
-+	.hsync_start = 1920 + 16,
-+	.hsync_end = 1920 + 16 + 16,
-+	.htotal = 1920 + 16 + 16 + 152,
-+	.vdisplay = 1080,
-+	.vsync_start = 1080 + 3,
-+	.vsync_end = 1080 + 3 + 14,
-+	.vtotal = 1080 + 3 + 14 + 19,
-+};
-+
-+static const struct panel_desc auo_b140han06 = {
-+	.modes = &auo_b140han06_mode,
-+	.num_modes = 1,
-+	.bpc = 8,
-+	.size = {
-+		.width = 309,
-+		.height = 174,
-+	},
-+	.delay = {
-+		.prepare = 100,
-+		.enable = 20,
-+		.unprepare = 50,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
-+	.bus_flags = DRM_BUS_FLAG_DATA_MSB_TO_LSB,
-+	.connector_type = DRM_MODE_CONNECTOR_eDP,
-+};
-+
- static const struct display_timing auo_g070vvn01_timings = {
- 	.pixelclock = { 33300000, 34209000, 45000000 },
- 	.hactive = { 800, 800, 800 },
-@@ -4233,9 +4293,15 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "auo,b116xw03",
- 		.data = &auo_b116xw03,
-+	}, {
-+		.compatible = "auo,b133han05",
-+		.data = &auo_b133han05,
- 	}, {
- 		.compatible = "auo,b133htn01",
- 		.data = &auo_b133htn01,
-+	}, {
-+		.compatible = "auo,b140han06",
-+		.data = &auo_b140han06,
- 	}, {
- 		.compatible = "auo,b133xtn01",
- 		.data = &auo_b133xtn01,
--- 
-2.29.2
+Do you foresee any need for forward compatibility? What other clocks
+would this binding have to refer to?
 
+That said, you'd achieve the same forward compatibility by just
+making sure that the current clock is the first on in the amended
+binding (which you have to do with or without -names).
+
+> Are there any downsides to -names?
+> 
+
+Look at the number of places in a typical dts that we could have added
+clock-names, reg-names, interrupt-names, power-domain-names etc for a
+single cell.
+
+I do find it beneficial to keep things cleaner and sticking with the
+design of "single resource has no -names".
+
+Regards,
+Bjorn
