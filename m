@@ -2,61 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E84253D561B
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 11:05:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BC7B3D562A
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 11:08:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232542AbhGZIZY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 04:25:24 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:33190 "EHLO gloria.sntech.de"
+        id S231853AbhGZI2F convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 26 Jul 2021 04:28:05 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:33250 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232041AbhGZIZY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Jul 2021 04:25:24 -0400
+        id S231728AbhGZI2F (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Jul 2021 04:28:05 -0400
 Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
         by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <heiko@sntech.de>)
-        id 1m7wYL-0001MM-Tu; Mon, 26 Jul 2021 11:05:37 +0200
+        id 1m7wb8-0001Nq-Qe; Mon, 26 Jul 2021 11:08:30 +0200
 From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     cl@rock-chips.com
-Cc:     robh+dt@kernel.org, jagan@amarulasolutions.com, wens@csie.org,
-        uwe@kleine-koenig.org, mail@david-bauer.net, jbx6244@gmail.com,
+To:     thierry.reding@gmail.com, lee.jones@linaro.org
+Cc:     u.kleine-koenig@pengutronix.de, robh+dt@kernel.org,
+        cl@rock-chips.com, pgwipeout@gmail.com, xxm@rock-chips.com,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        jensenhuang@friendlyarm.com, michael@amarulasolutions.com,
-        cnsztl@gmail.com, devicetree@vger.kernel.org,
-        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
-        gregkh@linuxfoundation.org, linux-serial@vger.kernel.org,
-        linux-i2c@vger.kernel.org, jay.xu@rock-chips.com,
-        shawn.lin@rock-chips.com, david.wu@rock-chips.com,
-        zhangqing@rock-chips.com, huangtao@rock-chips.com,
-        cl@rock-chips.com, wim@linux-watchdog.org, linux@roeck-us.net,
-        jamie@jamieiles.com, linux-watchdog@vger.kernel.org, maz@kernel.org
-Subject: Re: [PATCH v5 1/4] dt-bindings: pwm: rockchip: add description for rk3568
-Date:   Mon, 26 Jul 2021 11:05:36 +0200
-Message-ID: <6196734.7s5MMGUR32@diego>
-In-Reply-To: <20210622020517.13100-2-cl@rock-chips.com>
-References: <20210622020517.13100-1-cl@rock-chips.com> <20210622020517.13100-2-cl@rock-chips.com>
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: rockchip: add description for rk3568
+Date:   Mon, 26 Jul 2021 11:08:29 +0200
+Message-ID: <5607670.PIDvDuAF1L@diego>
+In-Reply-To: <20210726090355.1548483-1-heiko@sntech.de>
+References: <20210726090355.1548483-1-heiko@sntech.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="iso-8859-1"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, 22. Juni 2021, 04:05:14 CEST schrieb cl@rock-chips.com:
+Am Montag, 26. Juli 2021, 11:03:54 CEST schrieb Heiko Stuebner:
 > From: Liang Chen <cl@rock-chips.com>
 > 
 > add "rockchip,rk3568-pwm", "rockchip,rk3328-pwm" for pwm nodes on
 > a rk3568 platform to pwm-rockchip.yaml.
 > 
 > Signed-off-by: Liang Chen <cl@rock-chips.com>
+> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 
-I've picked this for a new separate patch submission to finalize adding pwm
-for rk3568 in
-https://lore.kernel.org/r/20210726090355.1548483-1-heiko@sntech.de
+Sorry, forgot to read the slightly longer original reply thread.
+The binding is already:
+
+Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+Acked-by: Rob Herring <robh@kernel.org>
+
+
+And I guess the pwm maintainers would be responsible for picking
+up the binding addition and I will pick the devicetree addition after that.
+
+
+Heiko
 
 
 > ---
+> The core rk3568 support was mostly applied, leaving out the pwm
+> parts. So I've separated the binding and dtsi patch out
+> into its owm series, so it can be better reviewed.
+> 
 >  Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml | 1 +
 >  1 file changed, 1 insertion(+)
 > 
