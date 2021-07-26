@@ -2,78 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 57EEB3D5D13
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 17:34:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BD853D5D97
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 17:43:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234866AbhGZOxw convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 26 Jul 2021 10:53:52 -0400
-Received: from mslow1.mail.gandi.net ([217.70.178.240]:57043 "EHLO
-        mslow1.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234546AbhGZOxv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 10:53:51 -0400
-Received: from relay6-d.mail.gandi.net (unknown [217.70.183.198])
-        by mslow1.mail.gandi.net (Postfix) with ESMTP id E58BACA908;
-        Mon, 26 Jul 2021 15:29:32 +0000 (UTC)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 613B2C0008;
-        Mon, 26 Jul 2021 15:29:03 +0000 (UTC)
-Date:   Mon, 26 Jul 2021 17:29:02 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Lukas Bulwahn <lukas.bulwahn@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Yu Chen <chenyu56@huawei.com>,
-        Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Naga Sureshkumar Relli <nagasure@xilinx.com>,
-        Hans Ulli Kroll <ulli.kroll@googlemail.com>,
-        Deepak Saxena <dsaxena@plexity.net>,
-        Mirela Rabulea <mirela.rabulea@nxp.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
-        Wilken Gottwalt <wilken.gottwalt@posteo.net>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Brendan Higgins <brendanhiggins@google.com>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Joe Perches <joe@perches.com>,
-        Ralf Ramsauer <ralf.ramsauer@oth-regensburg.de>,
-        kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 6/8] MAINTAINERS: rectify entries to mtd-physmap.yaml
-Message-ID: <20210726172902.4ce8892f@xps13>
-In-Reply-To: <20210726142943.27008-7-lukas.bulwahn@gmail.com>
-References: <20210726142943.27008-1-lukas.bulwahn@gmail.com>
-        <20210726142943.27008-7-lukas.bulwahn@gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S235735AbhGZPCQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 11:02:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46304 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235740AbhGZPCM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 11:02:12 -0400
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E0D0C061764
+        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 08:42:41 -0700 (PDT)
+Received: by mail-pl1-x636.google.com with SMTP id t21so11947494plr.13
+        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 08:42:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=EHunyQVdmyIsCyTs6jyTk2mOp7kQ6TFaQgSnOQTR9xM=;
+        b=Nd9B/Ey3g6J47c+7GhXc4H80ghOZzQwDZlzwUnDv8cJfrD7xm7g7l04ftT4rut7ukp
+         QsUFVBVDDhTUTIvqde3Er83b9b0Eud7hP4sS/21EeAzKwDVx6hHVMKcvDXa6bVTJWDpT
+         7WkW2fk1lFPc5TvkRyLHS7oRgkey5Z1LBUobk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=EHunyQVdmyIsCyTs6jyTk2mOp7kQ6TFaQgSnOQTR9xM=;
+        b=EHiilfze9kP4xE1leyIq0dlwEVQ0+OPrGFulccx6+Kdb/ATdMRK6mNsqQtucsTnORL
+         QisKzX68Vd2YTAtENf8bAvUU5bdoUVD9Z3foXxUzCtQWOIWttL5JOtUKF2ULKY9RwsHT
+         jd10iqjWuwxX2S0U1xx9mOnWEXPti6n8o4vRstNzeyh82MONI+QQOcamHvtanObXCYcc
+         +RG8FgR5IYJDjiai4oTly5yTztJlCu3TNK0YIOjiKjGTS872aJdx+M/wxTQKWmVg8UEQ
+         N5Ukmk6DpNxwwbCn+JSe7Uz9znLa7o+OCfIkQIfE/PRqmD3WRQza8bWI8DgK1hGVRqrr
+         o2ew==
+X-Gm-Message-State: AOAM5307jH01tn8kAJ3lmo6BWq+KFL5yLyZAT08zZxcQumZmrCapKSea
+        EF0z+E7zgqZA563LLcrYKpc2lA==
+X-Google-Smtp-Source: ABdhPJy8Zr2JjcRLKwUHLJkgieVtTgbg79KYS2EFnbjMjPkoV7xF8YD65tKiul/99s5pud4A687Hhw==
+X-Received: by 2002:a05:6a00:1503:b029:395:f05c:e073 with SMTP id q3-20020a056a001503b0290395f05ce073mr7117267pfu.80.1627314161175;
+        Mon, 26 Jul 2021 08:42:41 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:f794:2436:8d25:f451])
+        by smtp.gmail.com with UTF8SMTPSA id h30sm363032pfr.191.2021.07.26.08.42.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Jul 2021 08:42:40 -0700 (PDT)
+Date:   Mon, 26 Jul 2021 08:42:38 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Rajesh Patil <rajpat@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, rnayak@codeaurora.org,
+        saiprakash.ranjan@codeaurora.org, msavaliy@qti.qualcomm.com,
+        skakit@codeaurora.org, Roja Rani Yarubandi <rojay@codeaurora.org>
+Subject: Re: [PATCH V4 3/4] arm64: dts: sc7280: Update QUPv3 Debug UART DT
+ node
+Message-ID: <YP7X7kjH9wd818Xg@google.com>
+References: <1627306847-25308-1-git-send-email-rajpat@codeaurora.org>
+ <1627306847-25308-4-git-send-email-rajpat@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1627306847-25308-4-git-send-email-rajpat@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lukas,
-
-Lukas Bulwahn <lukas.bulwahn@gmail.com> wrote on Mon, 26 Jul 2021
-16:29:41 +0200:
-
-> Commit 63f8e9e0ac65 ("dt-bindings: mtd: Convert mtd-physmap to DT schema")
-> aggregated, amongst others, arm-versatile.txt and cypress,hyperflash.txt,
-> into mtd-physmap.yaml in ./Documentation/devicetree/bindings/mtd/.
+On Mon, Jul 26, 2021 at 07:10:46PM +0530, Rajesh Patil wrote:
+> From: Roja Rani Yarubandi <rojay@codeaurora.org>
 > 
-> The two .txt files are however mentioned in MAINTAINERS; hence,
-> ./scripts/get_maintainer.pl --self-test=patterns complains about broken
-> references.
+> Update QUPv3 Debug UART DT node with the interconnect names and
+> functions for SC7280 SoC.
 > 
-> Refer to mtd-physmap.yaml, so that the maintainers and reviewers of
-> ARM INTEGRATOR, VERSATILE AND REALVIEW SUPPORT and HYPERBUS SUPPORT are
-> informed on any changes in the yaml file.
+> Split the Debug UART pin control functions.
 > 
-> Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
+> Signed-off-by: Roja Rani Yarubandi <rojay@codeaurora.org>
+> Signed-off-by: Rajesh Patil <rajpat@codeaurora.org>
+> ---
+> Changes in V4:
+>  - As per Bjorn's comment, posting this debug-uart node update
+>    as seperate patch
+> 
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dts | 18 +++++++-----------
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi    | 28 ++++++++++++++++++++++++----
+>  2 files changed, 31 insertions(+), 15 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> index f63cf51..a50c9e5 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> @@ -383,18 +383,14 @@
+>  	bias-pull-up;
+>  };
+>  
+> -&qup_uart5_default {
+> -	tx {
+> -		pins = "gpio46";
+> -		drive-strength = <2>;
+> -		bias-disable;
+> -	};
+> +&qup_uart5_tx {
+> +	drive-strength = <2>;
+> +	bias-disable;
+> +};
+>  
+> -	rx {
+> -		pins = "gpio47";
+> -		drive-strength = <2>;
+> -		bias-pull-up;
+> -	};
+> +&qup_uart5_rx {
+> +	drive-strength = <2>;
+> +	bias-pull-up;
+>  };
+>  
+>  &sdc1_on {
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 455e58f..951818f 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -853,8 +853,13 @@
+>  				clock-names = "se";
+>  				clocks = <&gcc GCC_QUPV3_WRAP0_S5_CLK>;
+>  				pinctrl-names = "default";
+> -				pinctrl-0 = <&qup_uart5_default>;
+> +				pinctrl-0 = <&qup_uart5_cts>, <&qup_uart5_rts>, <&qup_uart5_tx>, <&qup_uart5_rx>;
+>  				interrupts = <GIC_SPI 606 IRQ_TYPE_LEVEL_HIGH>;
+> +				power-domains = <&rpmhpd SC7280_CX>;
+> +				operating-points-v2 = <&qup_opp_table>;
+> +				interconnects = <&clk_virt MASTER_QUP_CORE_0 0 &clk_virt SLAVE_QUP_CORE_0 0>,
+> +						<&gem_noc MASTER_APPSS_PROC 0 &cnoc2 SLAVE_QUP_0 0>;
+> +				interconnect-names = "qup-core", "qup-config";
 
-Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
 
-Thanks,
-Miquèl
+Most of the above should be added by patch '[2/4] arm64: dts: sc7280: Add QUPv3
+wrapper_0 nodes'.
+
+I have to say I dislike that the SoC DT file dictates which UART to use for
+the serial console. Technically it could be any of them, right? uart5 is
+used because that's what the IDP does, and the rest of the world is expected
+to follow. Why not configure uart5 as "qcom,geni-uart" by default and
+overwrite the compatible string and pinctrl in the board file? You could even
+add 'qup-uartN-all' (or similar) pinconfigs to sc7280.dtsi, which would make
+the changes in the board file trivial.
