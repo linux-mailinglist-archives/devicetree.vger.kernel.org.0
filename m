@@ -2,69 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B2B203D5501
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 10:15:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7AF63D5508
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 10:15:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232824AbhGZH0K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 03:26:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36572 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231778AbhGZH0J (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Jul 2021 03:26:09 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C1B9460F53;
-        Mon, 26 Jul 2021 08:06:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627286798;
-        bh=N+wlJsy4GAKrIINv/w8H1NHXEA0AtiFjo4AvgF3fsDQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=LilKKglcL9bWEkz2pGvJiWYdBZtbRgsYIbtN0/H51SaDd9tLnKGogMyqkFvpty/gD
-         CKC1DNevRcMA97K1fgz3hcXT5xgA1Dlyj2cNI83mSNvHS8RpXIsze4nMIIFqIwqxug
-         42jRJYTJSkPwybgbxzS5iDngwC+0iNXbxjs0btbTlripEeSHBiGlu0KEG4ngSS4D2K
-         8DD5GuxL2aYD78u8ZFKYxa73ZCwTo7I2Pu1pM1BRmJLaTjl6vR7L36JIOe3uqj41/w
-         DJarcT2jwxsx5e0JmfLMVr/V9lejrIb/PzeDmFBRNy2+lxlnI9N7ga7E7AQZkfXsCm
-         6jkE0B8TpNDPw==
-Received: by mail-wm1-f48.google.com with SMTP id m19so883261wms.0;
-        Mon, 26 Jul 2021 01:06:38 -0700 (PDT)
-X-Gm-Message-State: AOAM5315rTk0y2B1tX6nOtJjlBf2b0T+ccUqKtoDB2T1wZq+Ya0KPGp7
-        XrZH12f3QXR7b875gdaQ4i0clqCMCMWUt7RLS84=
-X-Google-Smtp-Source: ABdhPJwcOdFhOsjnYf+WxL7ESQbys8kr2V7TRIk/gIgktuoMlOyr2SsKRO0kd1SrjaU7tPyWep45kuoTATurYxmdr44=
-X-Received: by 2002:a7b:ce10:: with SMTP id m16mr6587786wmc.75.1627286797299;
- Mon, 26 Jul 2021 01:06:37 -0700 (PDT)
+        id S232524AbhGZH3k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 03:29:40 -0400
+Received: from szxga01-in.huawei.com ([45.249.212.187]:16001 "EHLO
+        szxga01-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233018AbhGZH3g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 03:29:36 -0400
+Received: from dggeme758-chm.china.huawei.com (unknown [172.30.72.55])
+        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4GYCDs0lYvzZsrC;
+        Mon, 26 Jul 2021 16:06:37 +0800 (CST)
+Received: from [10.40.166.221] (10.40.166.221) by
+ dggeme758-chm.china.huawei.com (10.3.19.104) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2176.2; Mon, 26 Jul 2021 16:10:03 +0800
+Message-ID: <60FE6DDA.8080904@hisilicon.com>
+Date:   Mon, 26 Jul 2021 16:10:02 +0800
+From:   Wei Xu <xuwei5@hisilicon.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 MIME-Version: 1.0
-References: <cover.1627273794.git.viresh.kumar@linaro.org> <4182aff2d1437b30025f3d17d11e5fdc21845239.1627273794.git.viresh.kumar@linaro.org>
-In-Reply-To: <4182aff2d1437b30025f3d17d11e5fdc21845239.1627273794.git.viresh.kumar@linaro.org>
-From:   Arnd Bergmann <arnd@kernel.org>
-Date:   Mon, 26 Jul 2021 10:06:21 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a3FniCgQJ0UCvrwZ8F=f11mLAwe7XH5CcrqxL8TTMUvVg@mail.gmail.com>
-Message-ID: <CAK8P3a3FniCgQJ0UCvrwZ8F=f11mLAwe7XH5CcrqxL8TTMUvVg@mail.gmail.com>
-Subject: Re: [PATCH V3 2/5] dt-bindings: i2c: Add bindings for i2c-virtio
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Jason Wang <jasowang@redhat.com>,
-        "Michael S. Tsirkin" <mst@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>,
-        =?UTF-8?B?QWxleCBCZW5uw6ll?= <alex.bennee@linaro.org>,
-        "Enrico Weigelt, metux IT consult" <info@metux.net>,
-        Jie Deng <jie.deng@intel.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE" 
-        <virtualization@lists.linux-foundation.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     <linuxarm@huawei.com>, <mauro.chehab@huawei.com>,
+        Rob Herring <robh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, "xuwei (O)" <xuwei5@huawei.com>
+Subject: Re: [PATCH 1/2] dts: hisilicon: add support for the PMIC found on
+ Hikey 970
+References: <cover.1627116285.git.mchehab+huawei@kernel.org>    <4a3583dd683512c2a4a138e88d4c889e51bf48e8.1627116285.git.mchehab+huawei@kernel.org>     <60FE20AC.3050400@hisilicon.com>        <20210726081812.54431189@coco.lan>      <60FE57B5.2010603@hisilicon.com> <20210726094344.0a415bd0@coco.lan>
+In-Reply-To: <20210726094344.0a415bd0@coco.lan>
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.40.166.221]
+X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
+ dggeme758-chm.china.huawei.com (10.3.19.104)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 26, 2021 at 6:52 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
->
-> This patch adds binding for virtio I2C device, it is based on
-> virtio-device bindings.
->
-> Acked-by: Wolfram Sang <wsa@kernel.org>
-> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+Hi Mauro,
 
-Reviewed-by: Arnd Bergmann <arnd@arndb.de>
+On 2021/7/26 15:43, Mauro Carvalho Chehab wrote:
+> Em Mon, 26 Jul 2021 14:35:33 +0800
+> Wei Xu <xuwei5@hisilicon.com> escreveu:
+> 
+>> Hi Mauro,
+>>
+>> On 2021/7/26 14:19, Mauro Carvalho Chehab wrote:
+>>> Em Mon, 26 Jul 2021 10:40:44 +0800
+>>> Wei Xu <xuwei5@hisilicon.com> escreveu:
+>>>   
+>>>> Hi Mauro,
+>>>>
+>>>> On 2021/7/24 16:55, Mauro Carvalho Chehab wrote:  
+>>>>> Add a device tree for the HiSilicon 6421v600 SPMI PMIC, used
+>>>>> on HiKey970 board.
+>>>>>
+>>>>> As we now have support for it, change the fixed regulators
+>>>>> used by the SD I/O to use the proper LDO supplies.
+>>>>>
+>>>>> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+>>>>> ---
+>>>>>  .../boot/dts/hisilicon/hi3670-hikey970.dts    | 22 +----
+>>>>>  .../boot/dts/hisilicon/hikey970-pmic.dtsi     | 86 +++++++++++++++++++
+>>>>>  2 files changed, 89 insertions(+), 19 deletions(-)
+>>>>>  create mode 100644 arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
+>>>>> index d8abf442ee7e..7c32f5fd5cc5 100644
+>>>>> --- a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
+>>>>> +++ b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
+>>>>> @@ -12,6 +12,7 @@
+>>>>>  
+>>>>>  #include "hi3670.dtsi"
+>>>>>  #include "hikey970-pinctrl.dtsi"
+>>>>> +#include "hikey970-pmic.dtsi"
+>>>>>  
+>>>>>  / {
+>>>>>  	model = "HiKey970";
+>>>>> @@ -39,23 +40,6 @@ memory@0 {
+>>>>>  		reg = <0x0 0x0 0x0 0x0>;
+>>>>>  	};
+>>>>>  
+>>>>> -	sd_1v8: regulator-1v8 {
+>>>>> -		compatible = "regulator-fixed";
+>>>>> -		regulator-name = "fixed-1.8V";
+>>>>> -		regulator-min-microvolt = <1800000>;
+>>>>> -		regulator-max-microvolt = <1800000>;
+>>>>> -		regulator-always-on;
+>>>>> -	};
+>>>>> -
+>>>>> -	sd_3v3: regulator-3v3 {
+>>>>> -		compatible = "regulator-fixed";
+>>>>> -		regulator-name = "fixed-3.3V";
+>>>>> -		regulator-min-microvolt = <3300000>;
+>>>>> -		regulator-max-microvolt = <3300000>;
+>>>>> -		regulator-boot-on;
+>>>>> -		regulator-always-on;
+>>>>> -	};
+>>>>> -
+>>>>>  	wlan_en: wlan-en-1-8v {
+>>>>>  		compatible = "regulator-fixed";
+>>>>>  		regulator-name = "wlan-en-regulator";
+>>>>> @@ -402,8 +386,8 @@ &dwmmc1 {
+>>>>>  	pinctrl-0 = <&sd_pmx_func
+>>>>>  		     &sd_clk_cfg_func    
+>>>>>  		     &sd_cfg_func>;    
+>>>>> -	vmmc-supply = <&sd_3v3>;
+>>>>> -	vqmmc-supply = <&sd_1v8>;
+>>>>> +	vmmc-supply = <&ldo16>;
+>>>>> +	vqmmc-supply = <&ldo9>;
+>>>>>  	status = "okay";
+>>>>>  };
+>>>>>  
+>>>>> diff --git a/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
+>>>>> new file mode 100644
+>>>>> index 000000000000..970047f2dabd
+>>>>> --- /dev/null
+>>>>> +++ b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
+>>>>> @@ -0,0 +1,86 @@
+>>>>> +// SPDX-License-Identifier: GPL-2.0
+>>>>> +/*
+>>>>> + * dts file for Hi6421v600 SPMI PMIC used at the HiKey970 Development Board
+>>>>> + *
+>>>>> + * Copyright (C) 2020, Huawei Tech. Co., Ltd.
+>>>>> + */
+>>>>> +
+>>>>> +#include <dt-bindings/spmi/spmi.h>
+>>>>> +
+>>>>> +/ {
+>>>>> +	spmi: spmi@fff24000 {
+>>>>> +		compatible = "hisilicon,kirin970-spmi-controller";
+>>>>> +		#address-cells = <2>;
+>>>>> +		#size-cells = <0>;
+>>>>> +		status = "okay";
+>>>>> +		reg = <0x0 0xfff24000 0x0 0x1000>;
+>>>>> +		hisilicon,spmi-channel = <2>;
+>>>>> +
+>>>>> +		pmic: pmic@0 {
+>>>>> +			compatible = "hisilicon,hi6421-spmi";    
+>>>>
+>>>> Should this be "hisilicon,hi6421-pmic" which is already in the binding document "mfd/hi6421.txt"?
+>>>> Others are OK to me.  
+>>>
+>>> No. 
+>>>
+>>> hisilicon,hi6421-pmic is used by this driver
+>>> 	drivers/mfd/hi6421-pmic-core.c
+>>>
+>>> which provides support for the Hi6421 variants that don't use a MIPI
+>>> SPMI bus.
+>>>
+>>> The "hisilicon,hi6421-spmi" compatible is for the new driver:
+>>> 	drivers/mfd/hi6421-spmi-pmic.c
+>>>
+>>> And it is defined at:
+>>> 	Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
+>>>
+>>> Both DT bindings and the driver were promoted from staging on this patch:
+>>>
+>>> 	https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging.git/commit/?h=staging-next&id=9bd9e0de1cf5b89c4854be505ac0a418ddcc01bf  
+>>
+>> Got it. Thanks for your kind explanation!
+>> So I am fine with this patch.
+>> Do you need my ack now or later I can merge it once it is out of staging.
+> 
+> Whatever works best for you and Greg.
+> 
+> It should be noticed that the driver should be out of staging for v5.15-rc1
+> (as the patch moving it out of staging was already merged at Greg's tree).
+> This patch is needed by the PCI driver patchset I'm currently working,
+> so the best would be if this patch could also be merged for v5.15-rc1
+> (either via HiSilicon tree or via staging tree).
+> 
+> I suspect that having your ack and merging this via staging would work
+> best, as this would ensure that both changes will be merged upstream
+> at the same time.
+> 
+> But, as I said, it is up to you both ;-)
+
+Got it.
+To avoid dependency, I think it is better to be merged by Greg's tree.
+So for this patch,
+
+Reviewed-by: Wei Xu <xuwei5@hisilicon.com>
+
+Best Regards,
+Wei
+
+> 
+> Thanks,
+> Mauro
+> .
+> 
