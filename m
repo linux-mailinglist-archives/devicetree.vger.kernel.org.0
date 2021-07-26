@@ -2,77 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B6533D69BD
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 00:46:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 579423D69C4
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 00:48:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232938AbhGZWGQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 18:06:16 -0400
-Received: from mail-il1-f176.google.com ([209.85.166.176]:35771 "EHLO
-        mail-il1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231502AbhGZWGP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 18:06:15 -0400
-Received: by mail-il1-f176.google.com with SMTP id k3so10492186ilu.2;
-        Mon, 26 Jul 2021 15:46:43 -0700 (PDT)
+        id S233580AbhGZWHi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 18:07:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60344 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233463AbhGZWHh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 18:07:37 -0400
+Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA7E7C061760
+        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 15:48:05 -0700 (PDT)
+Received: by mail-yb1-xb2b.google.com with SMTP id k65so12836922yba.13
+        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 15:48:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=atishpatra.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=BvsqUUy/O01l4CBRzfrPE1Jc7wO/JNGVxsEuCcHSCWw=;
+        b=Oj1mDz93drUb82Y4dwGcG6EgM1Z32HcAKJ4YfgJCNUqNIvF/kV3bQ3NHUCklnTy4SW
+         1GD2cx3JJGrezXOK+L9wjvpJ96IV67qydn4ANvKcp7SDWJs80YFbIdORNMRlexi21vaX
+         bIzr8ywtm1/QqdYt2jpgnb8HNzTEWOFg+DmXI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=3xQehkSUJPoWNPYuDHJm1QnxjcYyWYFk9UbyBzQlc28=;
-        b=fiijZC/uKm17ruX5yeL4b8mkP7HSZWI78K5MdxUImiqNRM+x/JObPWQsZDX6Y95E2t
-         G+M7fNQ71KmFmttjHwUaa5D1rW9aDBhZSAMCiNw0ZKKfbmxhSwaaGPib4TWZa3LkjrjR
-         aN0fmB77OisEHPypC7KFBNLWWtVj5daFldLFfyEmVhO39NDQQsAen/5CtnhhffZ3zVaV
-         AKs68xfBy+AkU4EECUP1y5LRNyGXila3zAqqvtzPPLo1EQyAM/425pvCVfGdDJygrdEs
-         aZIfaZLEPwzrmsBrOqE4+I3rzTp04wiESmLkDi80tnQd6oR+jQGtlG3Ls+jbuAez0tOK
-         yP7A==
-X-Gm-Message-State: AOAM530ObspJxoMW4zGdbvI+JQICx5VSIuCIaaGkK4F2aDO5F6lxa20g
-        dO192m3hN91lRZjVE7rSyg==
-X-Google-Smtp-Source: ABdhPJwDc13JBpgUC2buiYv21chtkxuE8Z5+P9ZXkwf8q5nqGwMPgfEfdyvXy6GjrwD0UXaAVbnaFA==
-X-Received: by 2002:a92:cf42:: with SMTP id c2mr14412234ilr.138.1627339602803;
-        Mon, 26 Jul 2021 15:46:42 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id b8sm605563ilh.74.2021.07.26.15.46.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jul 2021 15:46:42 -0700 (PDT)
-Received: (nullmailer pid 1016217 invoked by uid 1000);
-        Mon, 26 Jul 2021 22:46:40 -0000
-Date:   Mon, 26 Jul 2021 16:46:40 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Wolfgang Grandegger <wg@grandegger.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: net: can: renesas,rcar-canfd:
- Document RZ/G2L SoC
-Message-ID: <20210726224640.GA1016160@robh.at.kernel.org>
-References: <20210721194951.30983-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20210721194951.30983-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=BvsqUUy/O01l4CBRzfrPE1Jc7wO/JNGVxsEuCcHSCWw=;
+        b=MZku8jS8DuM6NfHDsxcb5sLfmgYkA1erlvj9qgQziCxsrIN5wEaspQET1KXiUr1KVV
+         Jk897f3jLx3BnlSovJi602tjBRddSaTjjlYgbljcQR19nkubSATHyk38wnEqGCfcfc0W
+         kfx+4NxMCi/pPY/oTTmvaF6NINA+htgqk0wuYmaF7HRQLeWk8cazesG+5JPtbl8kUOyI
+         SnzbkWTDnvu4je4HyxzYTpuPlLj0ic9s6iP3cEA9WYhBlibD+J7331IWM5ow8RVdM6IV
+         xg8fHacOic2x5YM8wpKZ4Lg9w+hZ5CPKc3Vq0GHJ+vvkftc5s5s53sHjBSKEtY0E3PFC
+         d1pw==
+X-Gm-Message-State: AOAM530504IsDgXHwHixxvErCAXr/k8bMQdRospIYrbAGbSm5DptkMBM
+        XCLcFspUtFjNLiSAm2VTITvQ5A3gJrUJT/Vl9dSW
+X-Google-Smtp-Source: ABdhPJz2EUkj2zAeJLmOGn6kDSu8McU02FKdlq3ZbpM5EcX89ffvE35I5g7gwLzw3lEJ0O8h/gzUiEZysEgj2Z7EPDA=
+X-Received: by 2002:a25:3289:: with SMTP id y131mr5835871yby.317.1627339684970;
+ Mon, 26 Jul 2021 15:48:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210721194951.30983-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20210723214031.3251801-1-atish.patra@wdc.com> <20210723214031.3251801-4-atish.patra@wdc.com>
+ <20210726070030.GB9035@lst.de>
+In-Reply-To: <20210726070030.GB9035@lst.de>
+From:   Atish Patra <atishp@atishpatra.org>
+Date:   Mon, 26 Jul 2021 15:47:54 -0700
+Message-ID: <CAOnJCU+qRznBTn9Mt6t_DE6UUz6_LuaBBuOmnURS2Yh3pmpjvg@mail.gmail.com>
+Subject: Re: [RFC 3/5] dma-mapping: Enable global non-coherent pool support
+ for RISC-V
+To:     Christoph Hellwig <hch@lst.de>
+Cc:     Atish Patra <atish.patra@wdc.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Tobias Klauser <tklauser@distanz.ch>,
+        Robin Murphy <robin.murphy@arm.com>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        iommu@lists.linux-foundation.org,
+        Guo Ren <guoren@linux.alibaba.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Dmitry Vyukov <dvyukov@google.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 21 Jul 2021 20:49:49 +0100, Lad Prabhakar wrote:
-> Add CANFD binding documentation for Renesas RZ/G2L SoC.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  .../bindings/net/can/renesas,rcar-canfd.yaml  | 69 +++++++++++++++++--
->  1 file changed, 63 insertions(+), 6 deletions(-)
-> 
+On Mon, Jul 26, 2021 at 12:00 AM Christoph Hellwig <hch@lst.de> wrote:
+>
+> On Fri, Jul 23, 2021 at 02:40:29PM -0700, Atish Patra wrote:
+> > Currently, linux,dma-default is used to reserve a global non-coherent pool
+> > to allocate memory for dma operations. This can be useful for RISC-V as
+> > well as the ISA specification doesn't specify a method to modify PMA
+> > attributes or page table entries to define non-cacheable area yet.
+> > A non-cacheable memory window is an alternate options for vendors to
+> > support non-coherent devices.
+>
+> Please explain why you do not want to use the simply non-cachable
+> window support using arch_dma_set_uncached as used by mips, niops2 and
+> xtensa.
+>
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+arch_dma_set_uncached works as well in this case. However, mips,
+niops2 & xtensa uses a
+fixed (via config) value for the offset. Similar approach can't be
+used here because the platform specific
+offset value has to be determined at runtime so that a single kernel
+image can boot on all platforms.
+That's why we need the following additional changes for RISC-V to make it work.
+
+1. a new DT property so that arch specific code is aware of the
+non-cacheable window offset.
+    - either under /chosen node or a completely separate node with
+multiple non-cacheable window support
+   We also need to define how it is going to referenced from
+individual device if a per-device non-cacheable
+   window support is required in future. As of now, the beagleV memory
+region lies in 0x10_0000_00000 - x17_FFFF_FFFF
+   which is mapped to start of DRAM 0x80000000. All of the
+non-coherent devices can do 32bit DMA only.
+
+2. Use the dma-ranges and modify the arch_dma_set_uncached function to
+pass the struct device as an argument.
+
+Either way, we will need arch specific hook ups and additional changes
+while the global non-coherent pool
+provides a more elegant solution without any additional arch specific code.
+
+If arch_dma_set_uncached is still preferred way to solve this problem,
+I can revise the patch with either approach 1 or approach 2
+
+> > +static int __dma_init_global_coherent(phys_addr_t phys_addr, dma_addr_t device_addr, size_t size)
+>
+>
+>
+>
+> >  {
+> >       struct dma_coherent_mem *mem;
+> >
+> > -     mem = dma_init_coherent_memory(phys_addr, phys_addr, size, true);
+> > +     if (phys_addr == device_addr)
+> > +             mem = dma_init_coherent_memory(phys_addr, device_addr, size, true);
+> > +     else
+> > +             mem = dma_init_coherent_memory(phys_addr, device_addr, size, false);
+>
+> Nak.  The phys_addr != device_addr support is goign away.  This needs
+
+ok.
+
+> to be filled in using dma-ranges property hanging of the struct device.
+
+struct device is only accessible in rmem_dma_device_init. I couldn't
+find a proper way to access it during
+dma_reserved_default_memory setup under global pool.
+
+Does that mean we should use a per-device memory pool instead of a
+global non-coherent pool ?
+
+> _______________________________________________
+> iommu mailing list
+> iommu@lists.linux-foundation.org
+> https://lists.linuxfoundation.org/mailman/listinfo/iommu
+
+
+
+-- 
+Regards,
+Atish
