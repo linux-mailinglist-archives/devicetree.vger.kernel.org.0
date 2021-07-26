@@ -2,55 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 285E83D5A33
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 15:20:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 836523D5A47
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 15:25:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233194AbhGZMjk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 08:39:40 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:34062 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233287AbhGZMjh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 08:39:37 -0400
-Received: from maud (unknown [IPv6:2600:8800:8c04:8c00::ffa6])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: alyssa)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 1F5A91F424CD;
-        Mon, 26 Jul 2021 14:19:57 +0100 (BST)
-Date:   Mon, 26 Jul 2021 09:19:52 -0400
-From:   Alyssa Rosenzweig <alyssa@collabora.com>
-To:     Sven Peter <sven@svenpeter.dev>
-Cc:     Robin Murphy <robin.murphy@arm.com>, Will Deacon <will@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Rouven Czerwinski <r.czerwinski@pengutronix.de>,
-        devicetree@vger.kernel.org, Marc Zyngier <maz@kernel.org>,
-        Hector Martin <marcan@marcan.st>, linux-kernel@vger.kernel.org,
-        Petr Mladek via iommu <iommu@lists.linux-foundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alexander Graf <graf@amazon.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        linux-arm-kernel@lists.infradead.org,
-        Stan Skowronek <stan@corellium.com>
-Subject: Re: [PATCH v4 3/3] iommu: dart: Add DART iommu driver
-Message-ID: <YP62eOnGSpXOumX+@maud>
-References: <20210627143405.77298-1-sven@svenpeter.dev>
- <20210627143405.77298-4-sven@svenpeter.dev>
- <f3574c75-db2d-47fc-bda5-0f0f627fb524@arm.com>
- <30b00cf1-6366-4075-be8a-992fb1778306@www.fastmail.com>
- <69259ab4-0da9-ddc7-97b0-9ef1e33a39ec@arm.com>
- <de9dcabd-a3c3-4f34-9f09-6e23deed3a98@www.fastmail.com>
+        id S233425AbhGZMov (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 08:44:51 -0400
+Received: from mail-vk1-f180.google.com ([209.85.221.180]:35625 "EHLO
+        mail-vk1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232572AbhGZMou (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 08:44:50 -0400
+Received: by mail-vk1-f180.google.com with SMTP id i26so2013743vkk.2;
+        Mon, 26 Jul 2021 06:25:19 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=iiK1bEfZv0REyFeZQ6eGnheFa6agVqoobWMIj2sCXMM=;
+        b=BUAaXbWyaea+TAdXGje71lH1LmPH5lRnbXWr2uJubVt1CLc+2pbroEzCylgLNEkxHh
+         ZcJzPqfFBKSY1EXnNvcgkRcf5jDPC15tAq9ibx+QDPQx8UrV3PAFM2r9afDVAaNJuNac
+         AYiVCRuf+pE6evMh2S4Rh1scrz830u0IylAYslXt4sGIc8b4Aps+KltoCSjahsK2xxdi
+         Vl1L6o9xyxpCaCFzywAaw9uTa5TnClgKO8g6yaooc19ZtXZzeRiCRMwTp/yRlkQLVRy0
+         wMVOVLHH3ZeCQO7uvUmKB7Vx3u73x6RoZvty09mw6/88l0Hco01Ax3zWb4DfSd16qizq
+         o6hQ==
+X-Gm-Message-State: AOAM531Eb7x2OB78IMBwwQ+GoMSORGUDkJ2rYSnYMDl3MndsUsewkqQA
+        Ebru/gC0upMiVWkXVzPYaKbJHMeEhySWLyFCuHM=
+X-Google-Smtp-Source: ABdhPJwOmNw+NUdyRa6fs6Yd24Srzz7LWuqCJoocbSYcr4aZR7cGIgHsBgXk63yc6Xppks8q98hgWQwqMuuVn+gfchs=
+X-Received: by 2002:ac5:cd9b:: with SMTP id i27mr10079261vka.1.1627305918978;
+ Mon, 26 Jul 2021 06:25:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <de9dcabd-a3c3-4f34-9f09-6e23deed3a98@www.fastmail.com>
+References: <20210721191558.22484-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210721191558.22484-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20210721191558.22484-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 26 Jul 2021 15:25:07 +0200
+Message-ID: <CAMuHMdWD+p7w2_KSsM-sYoZfK-7z4BM7yXAOf+5amxkmq4xvPg@mail.gmail.com>
+Subject: Re: [PATCH v3 2/4] pinctrl: renesas: Add RZ/G2L pin and gpio
+ controller driver
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> I'll let my current version simmer for a bit and wait until it's been
-> tested by a few people and will send it in a week or so then!
+Hi Prabhakar,
 
-New version has my T-b :)
+On Wed, Jul 21, 2021 at 9:16 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> Add support for pin and gpio controller driver for RZ/G2L SoC.
+>
+> Based on a patch in the BSP by Hien Huynh <hien.huynh.px@renesas.com>.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+
+Thanks for the update!
+
+> --- /dev/null
+> +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+
+> +#define RZG2L_MPXED_PIN_FUNCS          (PIN_CFG_IOLH | \
+> +                                        PIN_CFG_SR | \
+> +                                        PIN_CFG_PUPD | \
+> +                                        PIN_CFG_FILONOFF | \
+> +                                        PIN_CFG_FILNUM | \
+> +                                        PIN_CFG_FILCLKSEL)
+> +
+> +#define RZG2L_MPXED_ETH_PIN_FUNCS(x)   ((x) | \
+> +                                        PIN_CFG_FILONOFF | \
+> +                                        PIN_CFG_FILNUM | \
+> +                                        PIN_CFG_FILCLKSEL)
+
+I thought you were going for MULTI? ;-)
+
+> +
+> +/*
+> + * n indicates number of pins in the port, a is the register index
+> + * and f is pin configuration capabilities supported.
+> + */
+> +#define RZG2L_GPIO_PORT_PACK(n, a, f)  (((n) << 28) | ((a) << 20) | (f))
+> +#define RZG2L_GPIO_PORT_GET_PINCNT(x)  (((x) >> 28) & 0x7)
+> +#define RZG2L_GPIO_PORT_GET_INDEX(x)   ((((x) & GENMASK(27, 20)) >> 20) & 0x7f)
+
+Actually the "& 0x7f" can be removed, too, if you adjust the mask:
+
+    (((x) & GENMASK(26, 20)) >> 20)
+
+> +#define RZG2L_GPIO_PORT_GET_CFGS(x)    ((x) & GENMASK(19, 0))
+> +
+> +/*
+> + * BIT(31) indicates dedicated pin, p is the register index while
+> + * referencing to SR/IEN/IOLH/FILxx registers, b is the register bits
+> + * (b * 8) and f is the pin configuration capabilities supported.
+> + */
+> +#define RZG2L_SINGLE_PIN               BIT(31)
+> +#define RZG2L_SINGLE_PIN_PACK(p, b, f) (RZG2L_SINGLE_PIN | \
+> +                                        ((p) << 24) | ((b) << 20) | (f))
+> +#define RZG2L_SINGLE_PIN_GET_PORT(x)   (((x) >> 24) & 0x7f)
+> +#define RZG2L_SINGLE_PIN_GET_BIT(x)    ((((x) & GENMASK(23, 20)) >> 20) & 0x7)
+
+Likewise:
+
+    (((x) & GENMASK(22, 20)) >> 20)
+
+> +#define RZG2L_SINGLE_PIN_GET_CFGS(x)   ((x) & GENMASK(19, 0))
+
+> +       struct rzg2l_pinctrl *pctrl = pinctrl_dev_get_drvdata(pctldev);
+> +       struct function_desc *func;
+> +       unsigned int i, *psel_val;
+> +       struct group_desc *group;
+> +       unsigned long data;
+> +       int *pins;
+> +
+> +       func = pinmux_generic_get_function(pctldev, func_selector);
+> +       if (!func)
+> +               return -EINVAL;
+> +       group = pinctrl_generic_get_group(pctldev, group_selector);
+> +       if (!group)
+> +               return -EINVAL;
+> +
+> +       psel_val = func->data;
+> +       pins = group->pins;
+> +       data = (unsigned long)group->data;
+
+Lkp reports data is unused.
+Which matches with passing NULL as the last parameter of
+pinctrl_generic_add_group().
+
+> +
+> +       for (i = 0; i < group->num_pins; i++) {
+> +               dev_dbg(pctrl->dev, "port:%u pin: %u PSEL:%u\n",
+> +                       RZG2L_PIN_ID_TO_PORT(pins[i]), RZG2L_PIN_ID_TO_PIN(pins[i]),
+> +                       psel_val[i]);
+> +               rzg2l_pinctrl_set_pfc_mode(pctrl, RZG2L_PIN_ID_TO_PORT(pins[i]),
+> +                                          RZG2L_PIN_ID_TO_PIN(pins[i]), psel_val[i]);
+> +       }
+> +
+> +       return 0;
+> +};
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
