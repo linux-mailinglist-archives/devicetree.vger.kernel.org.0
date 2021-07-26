@@ -2,106 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CCEB63D5866
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 13:19:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B629D3D5883
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 13:31:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233295AbhGZKjU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 06:39:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42036 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233283AbhGZKjT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 06:39:19 -0400
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97D9DC061757
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 04:19:47 -0700 (PDT)
-Received: by mail-pl1-x62e.google.com with SMTP id d1so3881676pll.1
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 04:19:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=vcy/qtkkiK7UjSfWP1fK7FSTP1jeUYmZqbE4rjgeDZo=;
-        b=nxXu/cb7lqQ0xcne5Q9FiIRI/FlMMkHZgMvc7pXPxsxGrUsf4h387Mip2jlFjfFIvW
-         xNZn9vlDYcjAPdyAXdftKFBKzCrc6PZl8Bomt9x6uCBFDCKDKxwk3TzYsX3cvh/qtXNk
-         IZ5HOy3NAbaGyGLoCs8C4IvMc3N0o//ne6k9s=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=vcy/qtkkiK7UjSfWP1fK7FSTP1jeUYmZqbE4rjgeDZo=;
-        b=RkORYhmnOfYabxruksAI4RhVbkF2ZvlOqRtcL5ktO4OnzaXgzZjuVr0uRQa7yJlhhK
-         MOHw5pywKM5zaNPas9MwuWN1D1+aUmYCdJbSRP2pTZf5ugBiEzZ6kaKYgquNGXwHR1Fh
-         bAFcFhvSHWI0l9jvSSF/Qn46kLD+4/alhQ3ndA3t/mErKb71mD9Fq9zTQLcM5hte6KVe
-         Aj3a5K8k9RUnFbookEMI5zAy6mAtzCZb+t/ajyUKYp7blrH+vXi6w0Xs0glYch4D2q8r
-         bdiR3MlhO6RonFBoOutqDfd+M08ROooLCTaFNNIpiBC6IERnG/nQm7QIHFdk8krwV74G
-         W29A==
-X-Gm-Message-State: AOAM533IEgxphe7od5IWdJ3DoaRzIs1D7ubAKl34YhO8fjxHHIeCUMUP
-        wPkUa5Jo45HzZ38g158RxD5Yaw==
-X-Google-Smtp-Source: ABdhPJx8aNBhyrJBVcN6CEdp0jeeHRROLel4R3XbbG0babm5xfUipZKyTH6KacoIEaVqh5+UOe67ug==
-X-Received: by 2002:a63:e841:: with SMTP id a1mr17876872pgk.197.1627298386871;
-        Mon, 26 Jul 2021 04:19:46 -0700 (PDT)
-Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:1b02:54ad:f521:5496])
-        by smtp.gmail.com with ESMTPSA id b10sm42070578pfi.122.2021.07.26.04.19.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jul 2021 04:19:46 -0700 (PDT)
-From:   Chen-Yu Tsai <wenst@chromium.org>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S233231AbhGZKuw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 06:50:52 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:52452 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S233162AbhGZKuw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 06:50:52 -0400
+X-UUID: 8accbbb64a9d41b086ba4a9e510bb324-20210726
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=SvbcylQIDwYvhf0Wwa/jBlMORZrzYSGu9JBqThQEr2E=;
+        b=rKFkTeqSNbEwCgCxyr/AB/tUYOp3cspJ++Td6m/QtSYorwPfY2/W0tnybKz+oM2ZRebOFOhIFrZ9dcpovkX1WnD2Upcgg0fuUosk6kvJKZ5wStKAt1YyJlfYeOInKw3jasX0AYe20c7DpU5+cqhnWK46oCGWC9/pBsdoBuSMSyc=;
+X-UUID: 8accbbb64a9d41b086ba4a9e510bb324-20210726
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <chun-jie.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 661082176; Mon, 26 Jul 2021 19:31:18 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 26 Jul 2021 19:31:17 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 26 Jul 2021 19:31:16 +0800
+Message-ID: <a8c0bd3cba8731fefac0678fe25d0482b8ed8b13.camel@mediatek.com>
+Subject: Re: [v3 5/5] soc: mediatek: pm-domains: Remove unused macro
+From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
+To:     Chen-Yu Tsai <wenst@chromium.org>
+CC:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>
-Cc:     Chen-Yu Tsai <wenst@chromium.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: pinctrl: mt8195: Use real world values for drive-strength arguments
-Date:   Mon, 26 Jul 2021 19:19:41 +0800
-Message-Id: <20210726111941.1447057-1-wenst@chromium.org>
-X-Mailer: git-send-email 2.32.0.432.gabb21c7263-goog
+        Nicolas Boichat <drinkcat@chromium.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Mon, 26 Jul 2021 19:31:16 +0800
+In-Reply-To: <CAGXv+5ETE=qSPyKL6AjDtSHCDvu3Ua-rrLZWOECjZXrcNZ-9Tw@mail.gmail.com>
+References: <20210705054111.4473-1-chun-jie.chen@mediatek.com>
+         <20210705054111.4473-6-chun-jie.chen@mediatek.com>
+         <CAGXv+5ETE=qSPyKL6AjDtSHCDvu3Ua-rrLZWOECjZXrcNZ-9Tw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The original binding submission for MT8195 pinctrl described the
-possible drive strength values in micro-amps in its description, but
-then proceeded to list register values in its device tree binding
-constraints.
-
-However, the macros used with the Mediatek pinctrl bindings directly
-specify the drive strength in micro-amps, instead of hardware register
-values. The current driver implementation in Linux does convert the
-value from micro-amps to hardware register values. This implementation
-is also used with MT7622 and MT8183, which use real world values in
-their device trees.
-
-Given the above, it was likely an oversight to use the raw register
-values in the binding. Correct the values in the binding. Also drop
-the description since the binding combined with its parent,
-pinctrl/pincfg.yaml, the binding is now self-describing.
-
-Fixes: 7f7663899d94 ("dt-bindings: pinctrl: mt8195: add pinctrl file and binding document")
-Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
----
- .../devicetree/bindings/pinctrl/pinctrl-mt8195.yaml          | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
-index 2f12ec59eee5..e17a399e0904 100644
---- a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
-@@ -80,10 +80,7 @@ patternProperties:
-           as macros in dt-bindings/pinctrl/<soc>-pinfunc.h directly.
- 
-       drive-strength:
--        description: |
--          It can support some arguments which is from 0 to 7. It can only support
--          2/4/6/8/10/12/14/16mA in mt8195.
--        enum: [0, 1, 2, 3, 4, 5, 6, 7]
-+        enum: [2, 4, 6, 8, 10, 12, 14, 16]
- 
-       bias-pull-down: true
- 
--- 
-2.32.0.432.gabb21c7263-goog
+T24gVGh1LCAyMDIxLTA3LTE1IGF0IDE0OjQwICswODAwLCBDaGVuLVl1IFRzYWkgd3JvdGU6DQo+
+IE9uIE1vbiwgSnVsIDUsIDIwMjEgYXQgMTo0OCBQTSBDaHVuLUppZSBDaGVuIDwNCj4gY2h1bi1q
+aWUuY2hlbkBtZWRpYXRlay5jb20+IHdyb3RlOg0KPiA+IA0KPiA+IER1ZSB0byBjbGsgcmVzb3Vy
+Y2UgZGF0YSB3aWxsIGJlIGFsbG9jYXRlZCBkeW5hbWljYWxseSBieQ0KPiA+IHNlYXJjaGluZyBw
+YXJlbnQgY291bnQgb2YgY2xrIGluIHBvd2VyIGRvbWFpbiBub2RlLCBzbyByZW1vdmUNCj4gPiB0
+aGUgdW51c2VkIG1hcmNvIE1BWF9TVUJTWVNfQ0xLUyBmb3Igc3RhdGljIGFsbG9jYXRpb24uDQo+
+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogQ2h1bi1KaWUgQ2hlbiA8Y2h1bi1qaWUuY2hlbkBtZWRp
+YXRlay5jb20+DQo+ID4gUmV2aWV3ZWQtYnk6IEVucmljIEJhbGxldGJvIGkgU2VycmEgPGVucmlj
+LmJhbGxldGJvQGNvbGxhYm9yYS5jb20+DQo+ID4gLS0tDQo+ID4gIGRyaXZlcnMvc29jL21lZGlh
+dGVrL210ay1wbS1kb21haW5zLmggfCAyIC0tDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCAyIGRlbGV0
+aW9ucygtKQ0KPiA+IA0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3NvYy9tZWRpYXRlay9tdGst
+cG0tZG9tYWlucy5oDQo+ID4gYi9kcml2ZXJzL3NvYy9tZWRpYXRlay9tdGstcG0tZG9tYWlucy5o
+DQo+ID4gaW5kZXggY2FhYTM4MTAwMDkzLi4xYjg5NjdiOTgyOWUgMTAwNjQ0DQo+ID4gLS0tIGEv
+ZHJpdmVycy9zb2MvbWVkaWF0ZWsvbXRrLXBtLWRvbWFpbnMuaA0KPiA+ICsrKyBiL2RyaXZlcnMv
+c29jL21lZGlhdGVrL210ay1wbS1kb21haW5zLmgNCj4gPiBAQCAtNzIsOCArNzIsNiBAQCBzdHJ1
+Y3Qgc2Nwc3lzX2J1c19wcm90X2RhdGEgew0KPiA+ICAgICAgICAgYm9vbCBpZ25vcmVfY2xyX2Fj
+azsNCj4gPiAgfTsNCj4gPiANCj4gPiAtI2RlZmluZSBNQVhfU1VCU1lTX0NMS1MgMTANCj4gPiAt
+DQo+IA0KPiBGdXR1cmUgYWR2aWNlOiBjbGVhbnVwcyBsaWtlIHRoaXMgYW5kIG90aGVyIGZpeGVz
+IHNob3VsZCBiZSBwdXQgaW4NCj4gdGhlDQo+IGZyb250IG9mIHRoZSBzZXJpZXMsIGJlZm9yZSBh
+bnkgcGF0Y2hlcyB0aGF0IGludHJvZHVjZSBzdXBwb3J0IGZvcg0KPiBuZXcNCj4gZmVhdHVyZXMg
+b3IgaGFyZHdhcmUuIFRoYXQgd2F5IGlmIHRoZSBuZXcgY29kZSBzdGlsbCBuZWVkcyB3b3JrLA0K
+PiBtYWludGFpbmVycyBjYW4gb3B0aW9uYWxseSBhcHBseSB0aGUgZml4ZXMgc28geW91IGRvbid0
+IGhhdmUgdG8gY2FycnkNCj4gYSBsYXJnZSBwYXRjaCBzZXJpZXMgZm9yd2FyZC4NCj4gDQo+IENo
+ZW5ZdQ0KPiANCk9rLCBJIHdpbGwgcmUtb3JkZXIgdGhlIHBhdGNoZXMgaW4gbmV4dCBzZXJpZXMu
+DQpUaGFua3MgZm9yIHlvdXIgY29tbWVudC4NCg0KQmVzdCBSZWdhcmRzLA0KQ2h1bi1KaWUNCg0K
+PiA+ICAvKioNCj4gPiAgICogc3RydWN0IHNjcHN5c19kb21haW5fZGF0YSAtIHNjcCBkb21haW4g
+ZGF0YSBmb3IgcG93ZXIgb24vb2ZmDQo+ID4gZmxvdw0KPiA+ICAgKiBAbmFtZTogVGhlIG5hbWUg
+b2YgdGhlIHBvd2VyIGRvbWFpbi4NCj4gPiAtLQ0KPiA+IDIuMTguMA0KPiA+IF9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+ID4gTGludXgtbWVkaWF0ZWsg
+bWFpbGluZyBsaXN0DQo+ID4gTGludXgtbWVkaWF0ZWtAbGlzdHMuaW5mcmFkZWFkLm9yZw0KPiA+
+IA0KaHR0cHM6Ly91cmxkZWZlbnNlLmNvbS92My9fX2h0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3Jn
+L21haWxtYW4vbGlzdGluZm8vbGludXgtbWVkaWF0ZWtfXzshIUNUUk5LQTl3TWcwQVJidyEybF82
+aS1NZHJmMjcwZVZLb281OWNsQ25PVlpvaTV3bEJFdUhGQWZyaVR2YVNzcnY2TG9jOEhKYnQ3SzhM
+ZXhJSld1UiQNCj4gPiAgDQo=
 
