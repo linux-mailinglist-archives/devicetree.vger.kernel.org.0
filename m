@@ -2,145 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BD853D5D97
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 17:43:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 073FF3D5DFB
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 17:47:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235735AbhGZPCQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 11:02:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46304 "EHLO
+        id S236067AbhGZPEw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 11:04:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235740AbhGZPCM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 11:02:12 -0400
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E0D0C061764
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 08:42:41 -0700 (PDT)
-Received: by mail-pl1-x636.google.com with SMTP id t21so11947494plr.13
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 08:42:41 -0700 (PDT)
+        with ESMTP id S235999AbhGZPEa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 11:04:30 -0400
+Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CAE2C0613C1
+        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 08:44:59 -0700 (PDT)
+Received: by mail-io1-xd2e.google.com with SMTP id a13so12414752iol.5
+        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 08:44:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=EHunyQVdmyIsCyTs6jyTk2mOp7kQ6TFaQgSnOQTR9xM=;
-        b=Nd9B/Ey3g6J47c+7GhXc4H80ghOZzQwDZlzwUnDv8cJfrD7xm7g7l04ftT4rut7ukp
-         QsUFVBVDDhTUTIvqde3Er83b9b0Eud7hP4sS/21EeAzKwDVx6hHVMKcvDXa6bVTJWDpT
-         7WkW2fk1lFPc5TvkRyLHS7oRgkey5Z1LBUobk=
+        d=ieee.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=pbRvFeE3V8H7xDoGykMRI3aEDOBUlE9euyeCQx8JWcU=;
+        b=ZLPTBrBaqdFweht2hYWT414CbI1wA994+4yGI5mDqtyzYoYttzxRJOUkULAtmnvu0S
+         sQAQ85ltSEVq94oC4e7vInWp4wFALfZ0AB2EXpL89NR2eEEzXBcJJ4QVVCS8IfpIlvji
+         ABHdaebki48MiXLSArnt77v6H9NhzXaeVqgrY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=EHunyQVdmyIsCyTs6jyTk2mOp7kQ6TFaQgSnOQTR9xM=;
-        b=EHiilfze9kP4xE1leyIq0dlwEVQ0+OPrGFulccx6+Kdb/ATdMRK6mNsqQtucsTnORL
-         QisKzX68Vd2YTAtENf8bAvUU5bdoUVD9Z3foXxUzCtQWOIWttL5JOtUKF2ULKY9RwsHT
-         jd10iqjWuwxX2S0U1xx9mOnWEXPti6n8o4vRstNzeyh82MONI+QQOcamHvtanObXCYcc
-         +RG8FgR5IYJDjiai4oTly5yTztJlCu3TNK0YIOjiKjGTS872aJdx+M/wxTQKWmVg8UEQ
-         N5Ukmk6DpNxwwbCn+JSe7Uz9znLa7o+OCfIkQIfE/PRqmD3WRQza8bWI8DgK1hGVRqrr
-         o2ew==
-X-Gm-Message-State: AOAM5307jH01tn8kAJ3lmo6BWq+KFL5yLyZAT08zZxcQumZmrCapKSea
-        EF0z+E7zgqZA563LLcrYKpc2lA==
-X-Google-Smtp-Source: ABdhPJy8Zr2JjcRLKwUHLJkgieVtTgbg79KYS2EFnbjMjPkoV7xF8YD65tKiul/99s5pud4A687Hhw==
-X-Received: by 2002:a05:6a00:1503:b029:395:f05c:e073 with SMTP id q3-20020a056a001503b0290395f05ce073mr7117267pfu.80.1627314161175;
-        Mon, 26 Jul 2021 08:42:41 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:f794:2436:8d25:f451])
-        by smtp.gmail.com with UTF8SMTPSA id h30sm363032pfr.191.2021.07.26.08.42.40
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=pbRvFeE3V8H7xDoGykMRI3aEDOBUlE9euyeCQx8JWcU=;
+        b=Q+vCX4KAEm1NPaqXBJWVz2UL1ChYh2+qDuEUTACxNYvq/OW1FNOGHQCTVN5y4zYEFl
+         2NCV9w975SPvOGBZTNzjMuwnWwarJVsMzDxyNRobc96hnmKEKwjTtMCqu0RPghTXkX9U
+         ReYBN6cRnJ5owRBQtHiOd8DdDBzzl2Q5EJSTvSbqmnwJ0QdF91eXnVtfgwpUzVaUiXhZ
+         Dn4PxHlT+k7NWJ5emhe2SLKiH2nsyw1zzU8yV12x66XPyL3dkAHPG2MnM4oJy1/d8U5+
+         2AdoJJ0n4fmH405GZ4fEocmcxUF7+93dkb+9RzIuB4ogSRmboqYoqSmWBJr678ItIdW+
+         RpNg==
+X-Gm-Message-State: AOAM530Dy2nbE8SqvkWtVUyYV4smhJG+hpDWOsuIK73ILqdiqyGbXTPV
+        1BplVQJaWuq0hmPAwoqKqSua8Q==
+X-Google-Smtp-Source: ABdhPJwbAAipgxvf4CJ2zY0+vEwMgJvuywJpYy7Riel+0d9+gmasyJdYUyXwDFsmxESgFmkuj7qepQ==
+X-Received: by 2002:a6b:c90f:: with SMTP id z15mr14867286iof.183.1627314298767;
+        Mon, 26 Jul 2021 08:44:58 -0700 (PDT)
+Received: from [172.22.22.4] (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
+        by smtp.googlemail.com with ESMTPSA id i4sm122034iom.21.2021.07.26.08.44.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Jul 2021 08:42:40 -0700 (PDT)
-Date:   Mon, 26 Jul 2021 08:42:38 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Rajesh Patil <rajpat@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, rnayak@codeaurora.org,
-        saiprakash.ranjan@codeaurora.org, msavaliy@qti.qualcomm.com,
-        skakit@codeaurora.org, Roja Rani Yarubandi <rojay@codeaurora.org>
-Subject: Re: [PATCH V4 3/4] arm64: dts: sc7280: Update QUPv3 Debug UART DT
- node
-Message-ID: <YP7X7kjH9wd818Xg@google.com>
-References: <1627306847-25308-1-git-send-email-rajpat@codeaurora.org>
- <1627306847-25308-4-git-send-email-rajpat@codeaurora.org>
+        Mon, 26 Jul 2021 08:44:58 -0700 (PDT)
+Subject: Re: [PATCH net-next 0/3] arm64: dts: qcom: DTS updates
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>, davem@davemloft.net,
+        kuba@kernel.org
+Cc:     Alex Elder <elder@linaro.org>, agross@kernel.org,
+        robh+dt@kernel.org, evgreen@chromium.org, cpratapa@codeaurora.org,
+        subashab@codeaurora.org, elder@kernel.org,
+        linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210719212456.3176086-1-elder@linaro.org>
+ <162679080524.18101.16626774349145809936.git-patchwork-notify@kernel.org>
+ <YPby3eJmDmNlESC8@yoga>
+From:   Alex Elder <elder@ieee.org>
+Message-ID: <01beb264-0f25-fb50-29fc-15b6941de422@ieee.org>
+Date:   Mon, 26 Jul 2021 10:44:56 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1627306847-25308-4-git-send-email-rajpat@codeaurora.org>
+In-Reply-To: <YPby3eJmDmNlESC8@yoga>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 26, 2021 at 07:10:46PM +0530, Rajesh Patil wrote:
-> From: Roja Rani Yarubandi <rojay@codeaurora.org>
+On 7/20/21 10:59 AM, Bjorn Andersson wrote:
+> On Tue 20 Jul 09:20 CDT 2021, patchwork-bot+netdevbpf@kernel.org wrote:
 > 
-> Update QUPv3 Debug UART DT node with the interconnect names and
-> functions for SC7280 SoC.
+>> Hello:
+>>
+>> This series was applied to netdev/net-next.git (refs/heads/master):
+>>
 > 
-> Split the Debug UART pin control functions.
-> 
-> Signed-off-by: Roja Rani Yarubandi <rojay@codeaurora.org>
-> Signed-off-by: Rajesh Patil <rajpat@codeaurora.org>
-> ---
-> Changes in V4:
->  - As per Bjorn's comment, posting this debug-uart node update
->    as seperate patch
-> 
->  arch/arm64/boot/dts/qcom/sc7280-idp.dts | 18 +++++++-----------
->  arch/arm64/boot/dts/qcom/sc7280.dtsi    | 28 ++++++++++++++++++++++++----
->  2 files changed, 31 insertions(+), 15 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> index f63cf51..a50c9e5 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> @@ -383,18 +383,14 @@
->  	bias-pull-up;
->  };
->  
-> -&qup_uart5_default {
-> -	tx {
-> -		pins = "gpio46";
-> -		drive-strength = <2>;
-> -		bias-disable;
-> -	};
-> +&qup_uart5_tx {
-> +	drive-strength = <2>;
-> +	bias-disable;
-> +};
->  
-> -	rx {
-> -		pins = "gpio47";
-> -		drive-strength = <2>;
-> -		bias-pull-up;
-> -	};
-> +&qup_uart5_rx {
-> +	drive-strength = <2>;
-> +	bias-pull-up;
->  };
->  
->  &sdc1_on {
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 455e58f..951818f 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -853,8 +853,13 @@
->  				clock-names = "se";
->  				clocks = <&gcc GCC_QUPV3_WRAP0_S5_CLK>;
->  				pinctrl-names = "default";
-> -				pinctrl-0 = <&qup_uart5_default>;
-> +				pinctrl-0 = <&qup_uart5_cts>, <&qup_uart5_rts>, <&qup_uart5_tx>, <&qup_uart5_rx>;
->  				interrupts = <GIC_SPI 606 IRQ_TYPE_LEVEL_HIGH>;
-> +				power-domains = <&rpmhpd SC7280_CX>;
-> +				operating-points-v2 = <&qup_opp_table>;
-> +				interconnects = <&clk_virt MASTER_QUP_CORE_0 0 &clk_virt SLAVE_QUP_CORE_0 0>,
-> +						<&gem_noc MASTER_APPSS_PROC 0 &cnoc2 SLAVE_QUP_0 0>;
-> +				interconnect-names = "qup-core", "qup-config";
+> David, Jakub, can you please revert/drop the two "arm64: dts" patches
+> from the net-next tree?
+
+David, I intended for this series to go through the Qualcomm repository
+rather than net-next, to avoid any conflicts with other updates to the
+affected DTS file.  The only indication I made was by having you and
+Jakub in the "Cc" list rather than "To" list; in the future I will be
+more obvious in the cover page.
+
+Would you please revert the entire merge, so that these commits can
+go through the Qualcomm repository?  These are the commits (in order):
+   6a0eb6c9d9341 dt-bindings: net: qcom,ipa: make imem interconnect optional
+   f8bd3c82bf7d7 arm64: dts: qcom: sc7280: add IPA information
+   fd0f72c34bd96 arm64: dts: qcom: sc7180: define ipa_fw_mem node
+   b79c6fba6cd7c Merge branch 'qcom-dts-updates'
+
+If there is another way you think this should be handled, please
+explain.  Thanks.
+
+					-Alex
 
 
-Most of the above should be added by patch '[2/4] arm64: dts: sc7280: Add QUPv3
-wrapper_0 nodes'.
+> 
+> DTS patches are generally merged through the qcom and ultimately soc
+> tree and I have a number of patches queued up in both sc7180 and sc7280
+> that will cause merge conflicts down the road, so I would prefer to pick
+> these up as well.
+> 
+> Regards,
+> Bjorn
+> 
+>> On Mon, 19 Jul 2021 16:24:53 -0500 you wrote:
+>>> This series updates some IPA-related DT nodes.
+>>>
+>>> Newer versions of IPA do not require an interconnect between IPA
+>>> and SoC internal memory.  The first patch updates the DT binding
+>>> to reflect this.
+>>>
+>>> The second patch adds IPA information to "sc7280.dtsi", using only
+>>> two interconnects.  It includes the definition of the reserved
+>>> memory area used to hold IPA firmware.
+>>>
+>>> [...]
+>>
+>> Here is the summary with links:
+>>    - [net-next,1/3] dt-bindings: net: qcom,ipa: make imem interconnect optional
+>>      https://git.kernel.org/netdev/net-next/c/6a0eb6c9d934
+>>    - [net-next,2/3] arm64: dts: qcom: sc7280: add IPA information
+>>      https://git.kernel.org/netdev/net-next/c/f8bd3c82bf7d
+>>    - [net-next,3/3] arm64: dts: qcom: sc7180: define ipa_fw_mem node
+>>      https://git.kernel.org/netdev/net-next/c/fd0f72c34bd9
+>>
+>> You are awesome, thank you!
+>> --
+>> Deet-doot-dot, I am a bot.
+>> https://korg.docs.kernel.org/patchwork/pwbot.html
+>>
+>>
 
-I have to say I dislike that the SoC DT file dictates which UART to use for
-the serial console. Technically it could be any of them, right? uart5 is
-used because that's what the IDP does, and the rest of the world is expected
-to follow. Why not configure uart5 as "qcom,geni-uart" by default and
-overwrite the compatible string and pinctrl in the board file? You could even
-add 'qup-uartN-all' (or similar) pinconfigs to sc7280.dtsi, which would make
-the changes in the board file trivial.
