@@ -2,168 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C0E43D5585
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 10:23:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 778AF3D55A6
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 10:30:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233163AbhGZHlU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 03:41:20 -0400
-Received: from comms.puri.sm ([159.203.221.185]:36158 "EHLO comms.puri.sm"
+        id S231779AbhGZHtp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 03:49:45 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49462 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232454AbhGZHlU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Jul 2021 03:41:20 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id E5D55DF72B;
-        Mon, 26 Jul 2021 01:21:48 -0700 (PDT)
-Received: from comms.puri.sm ([127.0.0.1])
-        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id R1lqYKh8Gn3j; Mon, 26 Jul 2021 01:21:48 -0700 (PDT)
-From:   Martin Kepplinger <martin.kepplinger@puri.sm>
-To:     laurent.pinchart@ideasonboard.com, shawnguo@kernel.org
-Cc:     devicetree@vger.kernel.org, festevam@gmail.com,
-        kernel@pengutronix.de, kernel@puri.sm, krzk@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-staging@lists.linux.dev, m.felsch@pengutronix.de,
-        mchehab@kernel.org, phone-devel@vger.kernel.org, robh@kernel.org,
-        slongerbeam@gmail.com,
-        Martin Kepplinger <martin.kepplinger@puri.sm>
-Subject: [PATCH v9 3/3] arm64: dts: imx8mq: add mipi csi phy and csi bridge descriptions
-Date:   Mon, 26 Jul 2021 10:21:17 +0200
-Message-Id: <20210726082117.2423597-4-martin.kepplinger@puri.sm>
-In-Reply-To: <20210726082117.2423597-1-martin.kepplinger@puri.sm>
-References: <20210726082117.2423597-1-martin.kepplinger@puri.sm>
-Content-Transfer-Encoding: 8bit
+        id S231707AbhGZHto (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Jul 2021 03:49:44 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0621F60F48;
+        Mon, 26 Jul 2021 08:30:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1627288213;
+        bh=9ALaw7y2tRFr/BE56ff65zn5b4GcdY8S0eccT1u4ZuA=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=Nd+O82Lj4BOQPNw5bXAXnmgpbqnp2m+TEiVzyKdTJKFugOb9CQaL613VtLC06C2vX
+         kdYdf7L6+KzVvzs6qaOltjiTUq5u1i83snzT06X/BGnkJObBltLaylWwUyt1Vrdaev
+         VsE6R6f+1RNy3hesvFEtKzwTTp1l8wCy1ed96EmiMDSuVrVk53qd0Dsk0jafSuWnWv
+         VA80YFglaDHKqdt6kr9scl1Le9YLL8c36MhD9wOnU40TVcxr/L4D0z9otvKiZ/1YJb
+         xip++mfVheE3Qk1Vw+R1MyxEBc3dG47ahhQ00QFj91Whs+Z2Meg/Stn23XYoQtbsWf
+         tWWoZmXbdwjhQ==
+Message-ID: <1a9705ff4a4f30b80371f464182ac53a5b16a541.camel@kernel.org>
+Subject: Re: [PATCH] ARM: dts: bcm283x: Fix VEC address for BCM2711
+From:   nicolas saenz julienne <nsaenz@kernel.org>
+To:     Stefan Wahren <stefan.wahren@i2se.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
+Date:   Mon, 26 Jul 2021 10:30:08 +0200
+In-Reply-To: <1626980528-3835-1-git-send-email-stefan.wahren@i2se.com>
+References: <1626980528-3835-1-git-send-email-stefan.wahren@i2se.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.3 (3.40.3-1.fc34) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Describe the 2 available CSI interfaces on the i.MX8MQ with the MIPI-CSI2
-receiver (new driver) and the CSI Bridge that provides the user buffers
-(existing driver).
+On Thu, 2021-07-22 at 21:02 +0200, Stefan Wahren wrote:
+> From: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
+> 
+> The VEC has a different address (0x7ec13000) on the BCM2711 (used in
+> e.g. Raspberry Pi 4) compared to BCM283x (e.g. Pi 3 and earlier). This
+> was erroneously not taken account for.
+> 
+> Definition of the VEC in the devicetrees had to be moved from
+> bcm283x.dtsi to bcm2711.dtsi and bcm2835-common.dtsi to allow for this
+> differentiation.
+> 
+> Fixes: 7894bdc6228f ("ARM: boot: dts: bcm2711: Add BCM2711 VEC compatible")
+> Signed-off-by: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
+> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+> ---
 
-An image sensor is to be connected to the MIPIs' second port, to be described
-in board files.
+Applied for next.
 
-Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
----
- arch/arm64/boot/dts/freescale/imx8mq.dtsi | 104 ++++++++++++++++++++++
- 1 file changed, 104 insertions(+)
+Thanks,
+Nicolas
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index 91df9c5350ae..e026a39bddce 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -1099,6 +1099,110 @@ uart4: serial@30a60000 {
- 				status = "disabled";
- 			};
- 
-+			mipi_csi1: csi@30a70000 {
-+				compatible = "fsl,imx8mq-mipi-csi2";
-+				reg = <0x30a70000 0x1000>;
-+				clocks = <&clk IMX8MQ_CLK_CSI1_CORE>,
-+				   <&clk IMX8MQ_CLK_CSI1_ESC>,
-+				   <&clk IMX8MQ_CLK_CSI1_PHY_REF>;
-+				clock-names = "core", "esc", "ui";
-+				assigned-clocks = <&clk IMX8MQ_CLK_CSI1_CORE>,
-+				    <&clk IMX8MQ_CLK_CSI1_PHY_REF>,
-+				    <&clk IMX8MQ_CLK_CSI1_ESC>;
-+				assigned-clock-rates = <266000000>, <333000000>, <66000000>;
-+				assigned-clock-parents = <&clk IMX8MQ_SYS1_PLL_266M>,
-+					<&clk IMX8MQ_SYS2_PLL_1000M>,
-+					<&clk IMX8MQ_SYS1_PLL_800M>;
-+				power-domains = <&pgc_mipi_csi1>;
-+				resets = <&src IMX8MQ_RESET_MIPI_CSI1_CORE_RESET>,
-+					 <&src IMX8MQ_RESET_MIPI_CSI1_PHY_REF_RESET>,
-+					 <&src IMX8MQ_RESET_MIPI_CSI1_ESC_RESET>;
-+				fsl,mipi-phy-gpr = <&iomuxc_gpr 0x88>;
-+				interconnects = <&noc IMX8MQ_ICM_CSI1 &noc IMX8MQ_ICS_DRAM>;
-+				interconnect-names = "dram";
-+				status = "disabled";
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+
-+						csi1_mipi_ep: endpoint {
-+							remote-endpoint = <&csi1_ep>;
-+						};
-+					};
-+				};
-+			};
-+
-+			csi1: csi@30a90000 {
-+				compatible = "fsl,imx8mq-csi", "fsl,imx7-csi";
-+				reg = <0x30a90000 0x10000>;
-+				interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clk IMX8MQ_CLK_CSI1_ROOT>;
-+				clock-names = "mclk";
-+				status = "disabled";
-+
-+				port {
-+					csi1_ep: endpoint {
-+						remote-endpoint = <&csi1_mipi_ep>;
-+					};
-+				};
-+			};
-+
-+			mipi_csi2: csi@30b60000 {
-+				compatible = "fsl,imx8mq-mipi-csi2";
-+				reg = <0x30b60000 0x1000>;
-+				clocks = <&clk IMX8MQ_CLK_CSI2_CORE>,
-+				   <&clk IMX8MQ_CLK_CSI2_ESC>,
-+				   <&clk IMX8MQ_CLK_CSI2_PHY_REF>;
-+				clock-names = "core", "esc", "ui";
-+				assigned-clocks = <&clk IMX8MQ_CLK_CSI2_CORE>,
-+				    <&clk IMX8MQ_CLK_CSI2_PHY_REF>,
-+				    <&clk IMX8MQ_CLK_CSI2_ESC>;
-+				assigned-clock-rates = <266000000>, <333000000>, <66000000>;
-+				assigned-clock-parents = <&clk IMX8MQ_SYS1_PLL_266M>,
-+					<&clk IMX8MQ_SYS2_PLL_1000M>,
-+					<&clk IMX8MQ_SYS1_PLL_800M>;
-+				power-domains = <&pgc_mipi_csi2>;
-+				resets = <&src IMX8MQ_RESET_MIPI_CSI2_CORE_RESET>,
-+					 <&src IMX8MQ_RESET_MIPI_CSI2_PHY_REF_RESET>,
-+					 <&src IMX8MQ_RESET_MIPI_CSI2_ESC_RESET>;
-+				fsl,mipi-phy-gpr = <&iomuxc_gpr 0xa4>;
-+				interconnects = <&noc IMX8MQ_ICM_CSI2 &noc IMX8MQ_ICS_DRAM>;
-+				interconnect-names = "dram";
-+				status = "disabled";
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+
-+						csi2_mipi_ep: endpoint {
-+							remote-endpoint = <&csi2_ep>;
-+						};
-+					};
-+				};
-+			};
-+
-+			csi2: csi@30b80000 {
-+				compatible = "fsl,imx8mq-csi", "fsl,imx7-csi";
-+				reg = <0x30b80000 0x10000>;
-+				interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clk IMX8MQ_CLK_CSI2_ROOT>;
-+				clock-names = "mclk";
-+				status = "disabled";
-+
-+				port {
-+					csi2_ep: endpoint {
-+						remote-endpoint = <&csi2_mipi_ep>;
-+					};
-+				};
-+			};
-+
- 			mu: mailbox@30aa0000 {
- 				compatible = "fsl,imx8mq-mu", "fsl,imx6sx-mu";
- 				reg = <0x30aa0000 0x10000>;
--- 
-2.30.2
 
