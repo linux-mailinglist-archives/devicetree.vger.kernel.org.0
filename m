@@ -2,142 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B52BB3D5FB5
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 18:01:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D2093D6074
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 18:11:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236571AbhGZPS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 11:18:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50066 "EHLO
+        id S237326AbhGZPWY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 11:22:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235673AbhGZPSh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 11:18:37 -0400
-Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC0F1C061765
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 08:59:05 -0700 (PDT)
-Received: by mail-io1-xd2f.google.com with SMTP id n19so12592531ioz.0
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 08:59:05 -0700 (PDT)
+        with ESMTP id S236558AbhGZPWW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 11:22:22 -0400
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBB4DC061760;
+        Mon, 26 Jul 2021 09:02:49 -0700 (PDT)
+Received: by mail-yb1-xb30.google.com with SMTP id z18so15625889ybg.8;
+        Mon, 26 Jul 2021 09:02:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ieee.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=2oqVdc+Bwmni6M3nVJzlpNG4FMWWLNOhFE43b4PtG5Q=;
-        b=cKI0ApA8ngPZMooBLOh7lfAS1DsT2EHd2K3e68CR4zgtntvO2LDikDqPfrKKxfL+HZ
-         KjDxlBy4CqosymqCj4oljmWfEhXMB9Ljoaq1uG3SCr3OXux7uJbEVNvDlCSaSSudh+4q
-         gFlnjYV+fYFBzX+CxkZIODAe3Vek39iWL6hvI=
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/vdCwKqpYs5uKHu1FuyczQq7cYQsTzNkCH7uKUuocFI=;
+        b=Ccwppfqdag4Y2Dt+znmPsPo/79r7J8pR7XbyuJVbv1BOJacE/wy3mijdcYafdP9pUb
+         /c0AA2xeuqCilvKD9mpEmCCjjmCtCAsCh/Up20j/E2x4Qa0BbGNylOUw1uIeLkrhOG6O
+         aA8P+35pFNosgQSzwfaW5RLoK8VdXdD+wDC+8s/eXxMY38Wt4u+oj6Jq0+MrfHI5W8B1
+         sF+RIwR4Ug4eK1C0x4UhwZuYXAIJc4VWC83bWYG106bXV+cjrmmMImIQ8hg3PMFp9Xll
+         ohz8SVUkb1aUI3jBRi0+uLFCoKHE97Kb2AeAZHQGxIKt3ZvyMxN22QdbI6Hojv/rlC/m
+         AyiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=2oqVdc+Bwmni6M3nVJzlpNG4FMWWLNOhFE43b4PtG5Q=;
-        b=F+YSDtUdNUhNfue0N8yB1Vp/pyk2eM/+escTgNJILtKEGyKrqD+/BcrCsl+3HTc2RL
-         M/M2giPsXrtoey2KTOMlHKVlvE9sEI9XzDVv7NUKJeQBKIu0/ndVQJqZjd+T99tD43n+
-         w3FZsWJyHDZACrOmfXoDQiPGTpd+OGe4JrSSvXYXFqAuI1QvXQlNJlBMDyOv8ltIlg8V
-         9yM0f3pTRfQeUNUtg+zF+VJ2NtYR/4Pb1F+KG/EtGUGbwTrT9rWoPZj/R1gahv5nJjs6
-         CPeOfHLxRAl01QvuVoM86S3QBdWhSslm5Iw8dqkBvK3T+b1//pAeceYRyhFdJj4qn+59
-         Ofvw==
-X-Gm-Message-State: AOAM5329HGovEbmKC9FUMe3bDh9PAQkvZbJcWdKPvdDj+hEC1wVxXG6G
-        6DyrFacMzNNVRIbB2yFG9Df7VQ==
-X-Google-Smtp-Source: ABdhPJzcoLCiWULduAJ6beoqhxsv3ChnwQVAVpBm3E4lg/mBvDeOOmGaoHxC4yOFi27MB7GKWKBa+Q==
-X-Received: by 2002:a5e:c109:: with SMTP id v9mr15382903iol.76.1627315145241;
-        Mon, 26 Jul 2021 08:59:05 -0700 (PDT)
-Received: from [172.22.22.4] (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
-        by smtp.googlemail.com with ESMTPSA id h24sm169070ioj.32.2021.07.26.08.59.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Jul 2021 08:59:04 -0700 (PDT)
-Subject: Re: [PATCH net-next 1/3] dt-bindings: net: qcom,ipa: make imem
- interconnect optional
-To:     Rob Herring <robh@kernel.org>, Alex Elder <elder@linaro.org>
-Cc:     bjorn.andersson@linaro.org, agross@kernel.org, davem@davemloft.net,
-        kuba@kernel.org, evgreen@chromium.org, cpratapa@codeaurora.org,
-        subashab@codeaurora.org, elder@kernel.org,
-        linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210719212456.3176086-1-elder@linaro.org>
- <20210719212456.3176086-2-elder@linaro.org>
- <20210723205252.GA2550230@robh.at.kernel.org>
-From:   Alex Elder <elder@ieee.org>
-Message-ID: <6c1779aa-c90c-2160-f8b9-497fb8c32dc5@ieee.org>
-Date:   Mon, 26 Jul 2021 10:59:03 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/vdCwKqpYs5uKHu1FuyczQq7cYQsTzNkCH7uKUuocFI=;
+        b=Vfj58xHndOP6eq9dRXYDGhZV8E2NW8au1bwJ57Uo+F3b71aTdTryMQgMWwa/7SNYiw
+         kjo/J/9S2tcN0YLdtaPlyI02cIuL7Y6DOUkknoKVXtxcub3DvwHMBW88B/ByNFWDAK2b
+         NTFV1/fW7LnP+H48Zh9tP2/qSn5cNPRyY+VfFE78FW0iPqlxZFdZO4CnivAxoChhOQaq
+         2LLDLSEK7cWMadXNqySe5Glguz8soBaX+VaxrEEFaHD+KelZxdbRY9IrDRn/i9A9yvXE
+         WUOo3egzNk6bVqeu40siLFhiRldbntCAs6qDH1y7ZJp42eWecHuB6OTDF1hlvrHhXUyW
+         UrGA==
+X-Gm-Message-State: AOAM533EGi8S9sgv9lIEjGR8blFfuaDhbMIN9JvjTGnBfuhBRLPSVeX4
+        lM9bKgTuKCUXiwT4av/b8nGLe3SnmeiiSOOwM98=
+X-Google-Smtp-Source: ABdhPJysmaJMplTVwB1scGNstcAWZRe4sNDtyS++LO5nZ2c5Sb5uZWE7wJb4nytjMk2b5fLBqNqGTTqezIozOSTzZsw=
+X-Received: by 2002:a5b:403:: with SMTP id m3mr25971799ybp.62.1627315369061;
+ Mon, 26 Jul 2021 09:02:49 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210723205252.GA2550230@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210721191558.22484-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20210721191558.22484-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdWD+p7w2_KSsM-sYoZfK-7z4BM7yXAOf+5amxkmq4xvPg@mail.gmail.com>
+In-Reply-To: <CAMuHMdWD+p7w2_KSsM-sYoZfK-7z4BM7yXAOf+5amxkmq4xvPg@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Mon, 26 Jul 2021 17:02:22 +0100
+Message-ID: <CA+V-a8tb+F_CfbzUYoQBka0c2WptA+GpirxWSSoGYMgR6KpTMA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/4] pinctrl: renesas: Add RZ/G2L pin and gpio
+ controller driver
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/23/21 3:52 PM, Rob Herring wrote:
-> On Mon, Jul 19, 2021 at 04:24:54PM -0500, Alex Elder wrote:
->> On some newer SoCs, the interconnect between IPA and SoC internal
->> memory (imem) is not used.  Reflect this in the binding by moving
->> the definition of the "imem" interconnect to the end and defining
->> minItems to be 2 for both the interconnects and interconnect-names
->> properties.
->>
->> Signed-off-by: Alex Elder <elder@linaro.org>
->> ---
->>   .../devicetree/bindings/net/qcom,ipa.yaml      | 18 ++++++++++--------
->>   1 file changed, 10 insertions(+), 8 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/net/qcom,ipa.yaml b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
->> index ed88ba4b94df5..4853ab7017bd9 100644
->> --- a/Documentation/devicetree/bindings/net/qcom,ipa.yaml
->> +++ b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
->> @@ -87,16 +87,18 @@ properties:
->>         - const: ipa-setup-ready
->>   
->>     interconnects:
->> +    minItems: 2
->>       items:
->> -      - description: Interconnect path between IPA and main memory
->> -      - description: Interconnect path between IPA and internal memory
->> -      - description: Interconnect path between IPA and the AP subsystem
->> +      - description: Path leading to system memory
->> +      - description: Path between the AP and IPA config space
->> +      - description: Path leading to internal memory
->>   
->>     interconnect-names:
->> +    minItems: 2
->>       items:
->>         - const: memory
->> -      - const: imem
->>         - const: config
->> +      - const: imem
-> 
-> What about existing users? This will generate warnings. Doing this for
-> the 2nd item would avoid the need for .dts updates:
-> 
-> - enum: [ imem, config ]
+Hi Geert,
 
-If I understand correctly, the effect of this would be that
-the second item can either be "imem" or "config", and the third
-(if present) could only be "imem"?
+Thank you for the review.
 
-And you're saying that otherwise, existing users (the only
-one it applies to at the moment is "sdm845.dtsi") would
-produce warnings, because the interconnects are listed
-in an order different from what the binding specifies.
+On Mon, Jul 26, 2021 at 2:25 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Wed, Jul 21, 2021 at 9:16 PM Lad Prabhakar
+> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > Add support for pin and gpio controller driver for RZ/G2L SoC.
+> >
+> > Based on a patch in the BSP by Hien Huynh <hien.huynh.px@renesas.com>.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+>
+> Thanks for the update!
+>
+> > --- /dev/null
+> > +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+>
+> > +#define RZG2L_MPXED_PIN_FUNCS          (PIN_CFG_IOLH | \
+> > +                                        PIN_CFG_SR | \
+> > +                                        PIN_CFG_PUPD | \
+> > +                                        PIN_CFG_FILONOFF | \
+> > +                                        PIN_CFG_FILNUM | \
+> > +                                        PIN_CFG_FILCLKSEL)
+> > +
+> > +#define RZG2L_MPXED_ETH_PIN_FUNCS(x)   ((x) | \
+> > +                                        PIN_CFG_FILONOFF | \
+> > +                                        PIN_CFG_FILNUM | \
+> > +                                        PIN_CFG_FILCLKSEL)
+>
+> I thought you were going for MULTI? ;-)
+>
+I renamed it to _MULTI but it didn't sound good so renamed it to the
+other suggested alternative "MPXED".
 
-Is that correct?
+> > +
+> > +/*
+> > + * n indicates number of pins in the port, a is the register index
+> > + * and f is pin configuration capabilities supported.
+> > + */
+> > +#define RZG2L_GPIO_PORT_PACK(n, a, f)  (((n) << 28) | ((a) << 20) | (f))
+> > +#define RZG2L_GPIO_PORT_GET_PINCNT(x)  (((x) >> 28) & 0x7)
+> > +#define RZG2L_GPIO_PORT_GET_INDEX(x)   ((((x) & GENMASK(27, 20)) >> 20) & 0x7f)
+>
+> Actually the "& 0x7f" can be removed, too, if you adjust the mask:
+>
+>     (((x) & GENMASK(26, 20)) >> 20)
+>
+Agreed.
 
-If so, what you propose suggests "imem" could be listed twice.
-It doesn't make sense, and maybe it's precluded in other ways
-so that's OK.  But I'd be happy to update "sdm845.dtsi" to
-address your concern.  (Maybe that's something you would rather
-avoid?)
+> > +#define RZG2L_GPIO_PORT_GET_CFGS(x)    ((x) & GENMASK(19, 0))
+> > +
+> > +/*
+> > + * BIT(31) indicates dedicated pin, p is the register index while
+> > + * referencing to SR/IEN/IOLH/FILxx registers, b is the register bits
+> > + * (b * 8) and f is the pin configuration capabilities supported.
+> > + */
+> > +#define RZG2L_SINGLE_PIN               BIT(31)
+> > +#define RZG2L_SINGLE_PIN_PACK(p, b, f) (RZG2L_SINGLE_PIN | \
+> > +                                        ((p) << 24) | ((b) << 20) | (f))
+> > +#define RZG2L_SINGLE_PIN_GET_PORT(x)   (((x) >> 24) & 0x7f)
+> > +#define RZG2L_SINGLE_PIN_GET_BIT(x)    ((((x) & GENMASK(23, 20)) >> 20) & 0x7)
+>
+> Likewise:
+>
+>     (((x) & GENMASK(22, 20)) >> 20)
+>
+Agreed.
 
-Also, I need to make a separate update to "sm8350.dtsi" because
-that was defined before I understood what I do now about the 
-interconnects.  It uses the wrong names, and should combine
-its first two interconnects into just one.
+> > +#define RZG2L_SINGLE_PIN_GET_CFGS(x)   ((x) & GENMASK(19, 0))
+>
+> > +       struct rzg2l_pinctrl *pctrl = pinctrl_dev_get_drvdata(pctldev);
+> > +       struct function_desc *func;
+> > +       unsigned int i, *psel_val;
+> > +       struct group_desc *group;
+> > +       unsigned long data;
+> > +       int *pins;
+> > +
+> > +       func = pinmux_generic_get_function(pctldev, func_selector);
+> > +       if (!func)
+> > +               return -EINVAL;
+> > +       group = pinctrl_generic_get_group(pctldev, group_selector);
+> > +       if (!group)
+> > +               return -EINVAL;
+> > +
+> > +       psel_val = func->data;
+> > +       pins = group->pins;
+> > +       data = (unsigned long)group->data;
+>
+> Lkp reports data is unused.
+> Which matches with passing NULL as the last parameter of
+> pinctrl_generic_add_group().
+>
+Will drop this variable.
 
-					-Alex
-
-> 
-> Rob
-> 
-
+Cheers,
+Prabhakar
+> > +
+> > +       for (i = 0; i < group->num_pins; i++) {
+> > +               dev_dbg(pctrl->dev, "port:%u pin: %u PSEL:%u\n",
+> > +                       RZG2L_PIN_ID_TO_PORT(pins[i]), RZG2L_PIN_ID_TO_PIN(pins[i]),
+> > +                       psel_val[i]);
+> > +               rzg2l_pinctrl_set_pfc_mode(pctrl, RZG2L_PIN_ID_TO_PORT(pins[i]),
+> > +                                          RZG2L_PIN_ID_TO_PIN(pins[i]), psel_val[i]);
+> > +       }
+> > +
+> > +       return 0;
+> > +};
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
