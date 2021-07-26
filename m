@@ -2,67 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D2B953D69AC
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 00:40:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 432633D69B5
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 00:43:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233928AbhGZWAC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 18:00:02 -0400
-Received: from mail-il1-f171.google.com ([209.85.166.171]:41788 "EHLO
-        mail-il1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233735AbhGZWAB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 18:00:01 -0400
-Received: by mail-il1-f171.google.com with SMTP id u7so7246005ilj.8;
-        Mon, 26 Jul 2021 15:40:28 -0700 (PDT)
+        id S233788AbhGZWC4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 18:02:56 -0400
+Received: from mail-il1-f175.google.com ([209.85.166.175]:38555 "EHLO
+        mail-il1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233763AbhGZWCz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 18:02:55 -0400
+Received: by mail-il1-f175.google.com with SMTP id h18so10473775ilc.5;
+        Mon, 26 Jul 2021 15:43:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=PKyPZZFWNBD3YGcaGyBrYxxu9nXQpsWEDIZhCced8rU=;
-        b=o5+J8qYdZRkPQCMiwWVZDv8hVXJaoHCuft5ZCedNzmGe+oT+eVtWe7HEZD1Nujo7l/
-         FlghBxgoE3TPn3NgQsw/Na3XfH0Jyv4WnA1QNRHfnVtDRwwnabDchBQuo8JFEhkJeS+U
-         TPZAmxJ3g43KpyII860HFJ96T94EATKoXzQPZtDn8xwn8Qn+Gg5PzeRia3d08cROvXeo
-         ee8SkQ3+vMr0dsPPxhNOz73ZPnFqBQwTEfxb6g/eZQz1SjLKbY+R3RdkxH8cdtqXYqHM
-         NZBa6hwdFn7GU4CZTAeSjwcMrbrdHeH4n79XnA5RghRtyMs/XV1xq7AQN7sYFlq3CxAh
-         WiOg==
-X-Gm-Message-State: AOAM530DuV850zED9eIATOsQfTIJGf53u/Y6HWTxdmNHI2VnZP3ICh4E
-        /pVqlQSL4yQS9C0c+tElPQ==
-X-Google-Smtp-Source: ABdhPJzwaI8/pHCM50TQ39rAr0/bljtTErcAH4s4zj9xoSkOpgh3I75KNv8VFfhGiEXVQGLbZiG5pA==
-X-Received: by 2002:a92:c0c2:: with SMTP id t2mr12199743ilf.260.1627339228514;
-        Mon, 26 Jul 2021 15:40:28 -0700 (PDT)
+        bh=i7W+OmniO0n+yFAm2mpkHoKuWj91dOMIPVrO2iqKr3s=;
+        b=OW89SAgwGC2/y5lT+rA6jYcEW9ny1nEZHDV7dA5sQ+F/ygmAMzW1aYtbqO8f3on+Ei
+         0wgEiGKbMfr5mDBXE+a9lZLEWVm8DCsKBDlc8e9Lzlk3vq5W6t9uyKyD4eDtv4UVvuS5
+         wT105cSIHHauq7SyHGrO+LOKKD/E19+SfngTxEjx6tx4PWFJbJMVS6A8DpzGy74ONalN
+         2xUHRTMalDqOJ0EQoNrpvjSYCxpy/QT3d5ggf0jXxXPnQ7ImBsbEqCG4Sx9xrniyUl9k
+         GEe+r16ku5jaAOUOAOmrukgfYKmV2PhqdUgqu6SQWBMlm9u+CMk9tu4zdvjINV1nIEvn
+         J+5A==
+X-Gm-Message-State: AOAM533RRAx0MMANL7LFaY2OTo8UMI776fQ3qS7m2LLTDD2E6JeHG36k
+        8+7H8v4P8RGfSVrMu+wQLQ==
+X-Google-Smtp-Source: ABdhPJxLb0vkmfm3yZD46Ugp2iWjnCSCJbj5zOl/HDGf1iJ7if7H2PMNmik0W1L0sZmcYz7kOx9dqQ==
+X-Received: by 2002:a05:6e02:13e2:: with SMTP id w2mr14703915ilj.308.1627339402660;
+        Mon, 26 Jul 2021 15:43:22 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id j20sm724437ile.17.2021.07.26.15.40.26
+        by smtp.gmail.com with ESMTPSA id 125sm843773iow.9.2021.07.26.15.43.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jul 2021 15:40:27 -0700 (PDT)
-Received: (nullmailer pid 1006511 invoked by uid 1000);
-        Mon, 26 Jul 2021 22:40:25 -0000
-Date:   Mon, 26 Jul 2021 16:40:25 -0600
+        Mon, 26 Jul 2021 15:43:21 -0700 (PDT)
+Received: (nullmailer pid 1010994 invoked by uid 1000);
+        Mon, 26 Jul 2021 22:43:18 -0000
+Date:   Mon, 26 Jul 2021 16:43:18 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Christophe Branchereau <cbranchereau@gmail.com>
-Cc:     devicetree@vger.kernel.org, jic23@kernel.org, robh+dt@kernel.org,
-        paul@crapouillou.net, linux@roeck-us.net, contact@artur-rojek.eu,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-mips@vger.kernel.org, lars@metafoo.de
-Subject: Re: [PATCH v4 5/5] dt-bindings: iio/adc: ingenic: add the JZ4760(B)
- socs to the sadc Documentation
-Message-ID: <20210726224025.GA1006453@robh.at.kernel.org>
-References: <20210726082033.351533-1-cbranchereau@gmail.com>
- <20210726082033.351533-6-cbranchereau@gmail.com>
+To:     Naveen Krishna Chatradhi <nchatrad@amd.com>
+Cc:     devicetree@vger.kernel.org, jdelvare@suse.com,
+        Akshay Gupta <Akshay.Gupta@amd.com>, broonie@kernel.org,
+        linux@roeck-us.net, linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH v4 3/3] dt-bindings: sbrmi: Add SB-RMI hwmon driver
+ bindings
+Message-ID: <20210726224318.GA1009398@robh.at.kernel.org>
+References: <20210625132544.18094-1-nchatrad@amd.com>
+ <20210726133615.9709-1-nchatrad@amd.com>
+ <20210726133615.9709-3-nchatrad@amd.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210726082033.351533-6-cbranchereau@gmail.com>
+In-Reply-To: <20210726133615.9709-3-nchatrad@amd.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 26 Jul 2021 10:20:33 +0200, Christophe Branchereau wrote:
-> Add both the jz4760 and jz4760b, plus a property to use the internal
-> divider on the b variant and document it.
+On Mon, 26 Jul 2021 19:06:15 +0530, Naveen Krishna Chatradhi wrote:
+> From: Akshay Gupta <Akshay.Gupta@amd.com>
 > 
-> Signed-off-by: Christophe Branchereau <cbranchereau@gmail.com>
+> - Document device tree bindings for AMD SB-RMI emulated service.
+> 
+> Signed-off-by: Akshay Gupta <Akshay.Gupta@amd.com>
+> Signed-off-by: Naveen Krishna Chatradhi <nchatrad@amd.com>
 > ---
->  .../bindings/iio/adc/ingenic,adc.yaml         | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
+> Changes since v3:
+> None
+> 
+>  .../devicetree/bindings/hwmon/amd,sbrmi.yaml  | 53 +++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/amd,sbrmi.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
