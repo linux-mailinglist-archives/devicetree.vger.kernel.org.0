@@ -2,130 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 078A13D542B
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 09:28:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 322553D544A
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 09:34:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232376AbhGZGlI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 02:41:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43560 "EHLO
+        id S232096AbhGZGyA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 02:54:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231774AbhGZGlI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 02:41:08 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35CF2C061757;
-        Mon, 26 Jul 2021 00:21:37 -0700 (PDT)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 9BA582224A;
-        Mon, 26 Jul 2021 09:21:31 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1627284092;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=buAfjcLR7fPMvNNPaqEniqQuht6PIhq7VepmuEtbukM=;
-        b=d4AnwWs/wVsXCvpOc1ES4tlK7A2t8P+dVfiyyRz2zkQMmAoJvVPnMeKmKXX0K5yKezneM3
-        h8yG7/e3J+UcfEipB0TI6OUEE9rxPqZFgjCLsuY9bQk0Lx/ZNiBwCoA7pWjZLSUnUFln5/
-        Hsux3av4yhkx7wlzcuYm6uSC0SMWUww=
+        with ESMTP id S232019AbhGZGxz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 02:53:55 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A22DCC061764
+        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 00:34:24 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id a26so13726665lfr.11
+        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 00:34:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=WzDj03+uxLgpoaWPrzchlzGJJRHt1KDyhKLfW9KxchY=;
+        b=HHqCwgyGLk0Ov3RHSfpHlqmMBwt5TuC97L4nerS0XtXoP8DI5MLxkyrP+gAoQlQ4lV
+         xH0yLFwgDpntDSy79PE3K3YJpqpt5gI1O4nxu6sR7TGuipxNCOV5VXIas3GWMLnYi6gQ
+         EE++XcigBwGznPWEZMtrHSb/I9HMp3ZnTKu8skB1zwoEBfOdTHdZc2TnB62KC541rcZM
+         3mK2jfGuENnG97VhsBrQ7JqZYXzYRFw/zTQJEZk/5TLck3W3bo0Byz5+bMlivxJvM/LL
+         NHtq7QccDdCUkrQ/9XKBkgGKSmilFwRXJkyoeXgYVb24q8OXwe57Qe3IiYl3Wwn5My2c
+         TM5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WzDj03+uxLgpoaWPrzchlzGJJRHt1KDyhKLfW9KxchY=;
+        b=aOm/pajMVZAv2f8SmwW5ilpAtgTc2+4xNkXQ3JkAexiH/2JBWan/VeKOP04/hQ9aI/
+         /dj8AHn76PR6mtQDkYxNVv1TavyhXpuRpzkD3XlL77Euk6dNkyaWAb/lufhJe9/O/HHd
+         IQ1k3U8Ew0S11pkRDs5OfvNyNiM0oekZjlepuxW6K5GsyafM4gcr0mUlQHRlxZsBNd79
+         L1g9z6kW0rjSqdbbya1pVuFBeZwYvhnDb3GeiZ10sdVsq3/ky+q3CaAtOTRMCw1XWYFq
+         05nPhiuP9tcu6lu0eIAdPeviaKu6IvJs+By+I2ASDs62UKLBoJUJaCtxDLJqwjJqloCk
+         Ps7A==
+X-Gm-Message-State: AOAM533ot+Y8b6RlEN52iLEZ4uzlvuksxu+biOMD3EiII6psuZQX/gPq
+        6sYDUcm8SFAxqZMpwhi5Ftm2vyimBQOACQUJzwd2BA==
+X-Google-Smtp-Source: ABdhPJwbLFqSyy74K8M+dukb4YtYay7Zz9Rpac3plBuqfsj3peN7OHDMZlo+UvvrDG6M66iSFDucy0RcrwWyXRRQ1D0=
+X-Received: by 2002:ac2:5e71:: with SMTP id a17mr11760484lfr.465.1627284862797;
+ Mon, 26 Jul 2021 00:34:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 26 Jul 2021 09:21:31 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     Drew Fustini <drew@beagleboard.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Michael Zhu <michael.zhu@starfivetech.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Fu Wei <tekkamanninja@gmail.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
+References: <20210201165307.51443-1-iskren.chernev@gmail.com> <20210201165307.51443-2-iskren.chernev@gmail.com>
+In-Reply-To: <20210201165307.51443-2-iskren.chernev@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 26 Jul 2021 09:34:11 +0200
+Message-ID: <CACRpkdai5+vDj0C053qfPkdM-FCC-74HDCVF4=SPtUb7LE=Srw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] drm/panel: Add panel for Samsung Galaxy S5
+To:     Iskren Chernev <iskren.chernev@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Sam Ravnborg <sam@ravnborg.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Huan Feng <huan.feng@starfivetech.com>
-Subject: Re: [RFC PATH 2/2] gpio: starfive-jh7100: Add StarFive JH7100 GPIO
- driver
-In-Reply-To: <20210726071124.GA9184@x1>
-References: <20210701002037.912625-1-drew@beagleboard.org>
- <20210701002037.912625-3-drew@beagleboard.org>
- <8c59105d32a9936f8806501ecd20e044@walle.cc>
- <CACRpkdbhKsuXZiLCh_iajJQWDdQQOZ87QF3xDr5Vc66SoVCnxQ@mail.gmail.com>
- <20210726071124.GA9184@x1>
-User-Agent: Roundcube Webmail/1.4.11
-Message-ID: <dad13b899b69436acc1804b7c3438639@walle.cc>
-X-Sender: michael@walle.cc
+        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        phone-devel@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
+        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>, Andy
+        Shevchenko <andy.shevchenko@gmail.com>," 
+        <~postmarketos/upstreaming@lists.sr.ht>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Drew, Hi Linus,
+Hi Iskren,
 
-Am 2021-07-26 09:11, schrieb Drew Fustini:
-> On Fri, Jul 23, 2021 at 11:04:41PM +0200, Linus Walleij wrote:
->> On Thu, Jul 1, 2021 at 8:39 AM Michael Walle <michael@walle.cc> wrote:
->> > Am 2021-07-01 02:20, schrieb Drew Fustini:
->> > > Add GPIO driver for the StarFive JH7100 SoC [1] used on the
->> > > BeagleV Starlight JH7100 board [2].
->> > >
->> > > [1] https://github.com/starfive-tech/beaglev_doc/
->> > > [2] https://github.com/beagleboard/beaglev-starlight
->> > >
->> > > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
->> > > Signed-off-by: Huan Feng <huan.feng@starfivetech.com>
->> > > Signed-off-by: Drew Fustini <drew@beagleboard.org>
->> >
->> > Could this driver use GPIO_REGMAP and REGMAP_IRQ? See
->> > drivers/gpio/gpio-sl28cpld.c for an example.
->> 
->> To me it looks just memory-mapped?
->> 
->> Good old gpio-mmio.c (select GPIO_GENERIC) should
->> suffice I think.
+thanks for your patch!
 
-But that doesn't mean gpio-regmap can't be used, no? Or what are
-the advantages of gpio-mmio?
+On Mon, Feb 1, 2021 at 5:56 PM Iskren Chernev <iskren.chernev@gmail.com> wrote:
 
->> Drew please look at drivers/gpio/gpio-ftgpio010.c for an example
->> of GPIO_GENERIC calling bgpio_init() in probe().
-> 
-> Thank you for the suggestion. However, I am not sure that will work for
-> this SoC.
-> 
-> The GPIO registers are described in section 12 of JH7100 datasheet [1]
-> and I don't think they fit the expectation of gpio-mmio.c because there
-> is a seperate register for each GPIO line for output data value and
-> output enable.
-> 
-> There are 64 output data config registers which are 4 bytes wide. There
-> are 64 output enable config registers which are 4 bytes wide too. 
-> Output
-> data and output enable registers for a given GPIO pad are contiguous.
-> GPIO0_DOUT_CFG is 0x50 and GPIO0_DOEN_CFG is 0x54 while GPIO1_DOUT_CFG
-> is 0x58 and GPIO1_DOEN_CFG is 0x5C. The stride between GPIO pads is
-> effectively 8, which yields the formula: GPIOn_DOUT_CFG is 0x50+8n.
-> Similarly, GPIO0_DOEN_CFG is 0x54 and thus GPIOn_DOEN_CFG is 0x54+8n.
-> 
-> However, GPIO input data does use just one bit for each line. GPIODIN_0
-> at 0x48 covers GPIO[31:0] and GPIODIN_1 at 0x4c covers GPIO[63:32].
+> The Samsung Galaxy S5 uses the samsung s6e3fa2 AMOLED cmd LCD panel.
+>
+> This driver was generated with [1], with the addition of
+> mipi_dsi_dcs_set_display_on at the end of the on method.
+>
+> [1] https://github.com/msm8916-mainline/linux-mdss-dsi-panel-driver-generator
+>
+> Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
 
-I'd say, that should work with the .reg_mask_xlate of the gpio-regmap.
+(...)
 
--michael
+> +config DRM_PANEL_SAMSUNG_S6E3FA2
+> +       tristate "Samsung S6E3FA2 DSI cmd mode panel"
 
-> Thus the input could work with gpio-mmio but I am not sure how to
-> reconcile the register-per-gpio for the output value and output enable.
-> 
-> Is there way a way to adapt gpio-mmio for this situation?
-> 
-> Thanks,
-> Drew
-> 
-> [1] https://github.com/starfive-tech/beaglev_doc
+Spell it out "command mode" no need to abbreviate.
+
+> +struct samsung_s6e3fa2 {
+> +       struct drm_panel panel;
+> +       struct mipi_dsi_device *dsi;
+> +       struct regulator_bulk_data supplies[2];
+> +       struct gpio_desc *reset_gpio;
+> +       bool prepared;
+
+Why do you need to keep track of prepared?
+The framework already does that and that is why it keeps
+different callbacks for prepare and enable.
+
+> +#define dsi_generic_write_seq(dsi, seq...) do {                                \
+> +               static const u8 d[] = { seq };                          \
+> +               int ret;                                                \
+> +               ret = mipi_dsi_generic_write(dsi, d, ARRAY_SIZE(d));    \
+> +               if (ret < 0)                                            \
+> +                       return ret;                                     \
+> +       } while (0)
+> +
+> +#define dsi_dcs_write_seq(dsi, seq...) do {                            \
+> +               static const u8 d[] = { seq };                          \
+> +               int ret;                                                \
+> +               ret = mipi_dsi_dcs_write_buffer(dsi, d, ARRAY_SIZE(d)); \
+> +               if (ret < 0)                                            \
+> +                       return ret;                                     \
+> +       } while (0)
+
+Maybe this is something we should add to
+include/drm/drm_mipi_dsi.h?
+It looks very generic and helpful.
+
+> +static void samsung_s6e3fa2_reset(struct samsung_s6e3fa2 *ctx)
+> +{
+> +       gpiod_set_value_cansleep(ctx->reset_gpio, 0);
+> +       usleep_range(5000, 6000);
+
+There is really no need to do this, the next statement asserts
+reset. It looks like a copy/paste thing from a less informed
+framework.
+
+> +       gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> +       usleep_range(5000, 6000);
+> +       gpiod_set_value_cansleep(ctx->reset_gpio, 0);
+> +       usleep_range(7000, 8000);
+
+These two look good.
+
+> +static int samsung_s6e3fa2_on(struct samsung_s6e3fa2 *ctx)
+> +{
+> +       struct mipi_dsi_device *dsi = ctx->dsi;
+> +       struct device *dev = &dsi->dev;
+> +       int ret;
+> +
+> +       dsi->mode_flags |= MIPI_DSI_MODE_LPM;
+> +
+> +       dsi_generic_write_seq(dsi, 0xf0, 0x5a, 0x5a);
+> +       dsi_generic_write_seq(dsi, 0xfc, 0x5a, 0x5a);
+
+These are very similar to other Samsung panels so you can definately
+add this to your driver:
+
+#define S6E3FA2_LEVEL_2_KEY         0xf0
+
+> +       dsi_generic_write_seq(dsi, 0xf0, 0xa5, 0xa5);
+> +       dsi_generic_write_seq(dsi, 0xfc, 0xa5, 0xa5);
+
+Add a comment that this locks level 2 control again.
+
+> +static int samsung_s6e3fa2_prepare(struct drm_panel *panel)
+> +{
+> +       struct samsung_s6e3fa2 *ctx = to_samsung_s6e3fa2(panel);
+> +       struct device *dev = &ctx->dsi->dev;
+> +       int ret;
+> +
+> +       if (ctx->prepared)
+> +               return 0;
+
+Looks unnecessary. The framework should keep track of this.
+
+> +       dsi->lanes = 4;
+> +       dsi->format = MIPI_DSI_FMT_RGB888;
+> +       dsi->mode_flags = MIPI_DSI_MODE_VIDEO_BURST |
+> +                         MIPI_DSI_CLOCK_NON_CONTINUOUS;
+
+You are not setting dsi->hs_rate and dsi->lp_rate.
+The panel definitely has these max timings so when you
+don't set them the DSI host will just go with some defaults
+(some of them don't even allow you to configure this).
+
+For reusability it would be great if you know roughly what these
+clocks are, sometimes board files in vendor trees give a hint.
+
+Worst case drop a comment that HS and LP rates are unknown.
+
+I also wonder if the panel can report an MTP ID?
+
+If you add some code like this and call from prepare(), what
+happens?
+
+#define READ_ID1                 0xda /* Read panel ID 1 */
+#define READ_ID2                 0xdb /* Read panel ID 2 */
+#define READ_ID3                 0xdc /* Read panel ID 3 */
+
+static int s6e3fa2_read_id(struct samsung_s6e3fa2 *ctx)
+{
+        struct mipi_dsi_device *dsi = ctx->dsi;
+        struct device *dev = &dsi->dev;
+        u8 id1, id2, id3;
+        int ret;
+
+        ret = mipi_dsi_dcs_read(dsi, READ_ID1, &id1, 1);
+        if (ret < 0) {
+                dev_err(dev, "could not read MTP ID1\n");
+                return ret;
+        }
+        ret = mipi_dsi_dcs_read(dsi, READ_ID2, &id2, 1);
+        if (ret < 0) {
+                dev_err(dev, "could not read MTP ID2\n");
+                return ret;
+        }
+        ret = mipi_dsi_dcs_read(dsi, READ_ID3, &id3, 1);
+        if (ret < 0) {
+                dev_err(dev, "could not read MTP ID3\n");
+                return ret;
+        }
+
+        dev_info(dev, "MTP ID manufacturer: %02x version: %02x driver:
+%02x\n", id1, id2, id3);
+
+        return 0;
+}
+
+(Dry coded, but you get the idea.)
+
+Yours,
+Linus Walleij
