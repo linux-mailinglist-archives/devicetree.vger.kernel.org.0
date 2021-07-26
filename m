@@ -2,131 +2,262 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EE6E3D698E
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 00:30:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96C473D6998
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 00:36:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233589AbhGZVuJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 17:50:09 -0400
-Received: from mail-io1-f54.google.com ([209.85.166.54]:35480 "EHLO
-        mail-io1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233348AbhGZVuJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 17:50:09 -0400
-Received: by mail-io1-f54.google.com with SMTP id y9so13853307iox.2;
-        Mon, 26 Jul 2021 15:30:36 -0700 (PDT)
+        id S232876AbhGZV4C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 17:56:02 -0400
+Received: from mail-il1-f181.google.com ([209.85.166.181]:41543 "EHLO
+        mail-il1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233660AbhGZV4C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 17:56:02 -0400
+Received: by mail-il1-f181.google.com with SMTP id u7so7239010ilj.8;
+        Mon, 26 Jul 2021 15:36:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=0CUfASdPcgc+7dcIK4FubYYfBLXisBtKwn64dA+QuXE=;
-        b=ngW3BxUT7EyAku17r/xJmYbO+EiG2/gTH7rnjNc8pzIY+6/rpzOr9u/TALlpykK6L4
-         1u6lvXBO9TjrP5/lxJko+DBnMk3q+YbUpkpBvrqIV+uEon6Zq7miJWuHf3Y04+2wJbWN
-         x8OQHO1RMrro7n8TXhBxXVfwA8L2q+a3vLESoWl0DG2JXNGU62F1azBJGfA4keoDhNQU
-         1lE22vwcsyokrxJUffW2CFOJneAwFvbBgoNnzGy3bOPOblSZye/8K4GQXDFxqBW7Ec1d
-         91/yEtY7bcTcUm5pNeGY1wbUcFu3i1QpuaLO9aUZujmzg3VxqfkJJkYQtGEME4RFNQ71
-         Yu1A==
-X-Gm-Message-State: AOAM5314PFhBRZWkLuOZFt/2rAEZ+nn6YgCkn3t66g1qAReI9gdU1RJ9
-        y8kl0dkS3rd3WVNRBtd70w==
-X-Google-Smtp-Source: ABdhPJzv1dCnrv5erKiqYvhfzCzd01fFpBZ4TZMg+kQ/KhC5KNuM83gtiUN21PqWGjloql1pXYdy6A==
-X-Received: by 2002:a02:cebb:: with SMTP id z27mr18570768jaq.72.1627338636162;
-        Mon, 26 Jul 2021 15:30:36 -0700 (PDT)
+        bh=/rppsr5tYkZD3EhoihiPjK+I6AiULmSIgZNTdzPLLls=;
+        b=bLlTdEFa3IAGipzOF8L4BsiO47jWJEKYdSDtwqT22Qo8/n/7ZQCja+ime+e1KTNzWT
+         DhkClsFg9BQPkU2Qhod1n5Kd89oZnRHRDMHQZehikpwP6iuLLnrYACBa3LrHh64ekWAe
+         0tiucfSzAtkFT7ff6IEpgsuT9J7sALIIyPKdZyQfmSSb2UdWahqLPlyc2j/3Ms3HsF+X
+         lINZfyvqFHeFkbPgkQMi5v0OeDuYC6ck7j7hHS8431ziRedjXl9GIfP6XUXv+dPDlQkK
+         JVADdDBddwlfKdV+MawKXUyR6k4yfScBev4zsyCi25fpoXDmUvZIDi0BZzPsWLAPXwoR
+         EEFA==
+X-Gm-Message-State: AOAM530H84M/W7NIo5wAr+eAGsJJjHRa1sla7Qkm5fg7249l+vZmq5cu
+        AI7/7zABBDjpSms15lIDHw==
+X-Google-Smtp-Source: ABdhPJwt25seF9vzoD5MRkLXGLslumuHTagO5rdQvXCo3ptNp8Q+E5gr3CgMuUv3TsgfbLsinUPs0Q==
+X-Received: by 2002:a05:6e02:190e:: with SMTP id w14mr14001660ilu.61.1627338990075;
+        Mon, 26 Jul 2021 15:36:30 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id t24sm768033ioh.24.2021.07.26.15.30.34
+        by smtp.gmail.com with ESMTPSA id t26sm728095iob.19.2021.07.26.15.36.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jul 2021 15:30:35 -0700 (PDT)
-Received: (nullmailer pid 991114 invoked by uid 1000);
-        Mon, 26 Jul 2021 22:30:32 -0000
-Date:   Mon, 26 Jul 2021 16:30:32 -0600
+        Mon, 26 Jul 2021 15:36:29 -0700 (PDT)
+Received: (nullmailer pid 1000057 invoked by uid 1000);
+        Mon, 26 Jul 2021 22:36:26 -0000
+Date:   Mon, 26 Jul 2021 16:36:26 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v4 09/10] dt-bindings: usb: renesas,usbhs: Document
- RZ/G2L bindings
-Message-ID: <20210726223032.GA988259@robh.at.kernel.org>
-References: <20210719121938.6532-1-biju.das.jz@bp.renesas.com>
- <20210719121938.6532-10-biju.das.jz@bp.renesas.com>
+To:     Ming Qian <ming.qian@nxp.com>
+Cc:     mchehab@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        hverkuil-cisco@xs4all.nl, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, aisheng.dong@nxp.com,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 01/13] dt-bindings: media: imx8q: add imx video codec
+ bindings
+Message-ID: <20210726223626.GA991611@robh.at.kernel.org>
+References: <cover.1626743758.git.ming.qian@nxp.com>
+ <5032168eca16a277cc8ba9e951073a37089c0eec.1626743758.git.ming.qian@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210719121938.6532-10-biju.das.jz@bp.renesas.com>
+In-Reply-To: <5032168eca16a277cc8ba9e951073a37089c0eec.1626743758.git.ming.qian@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 19, 2021 at 01:19:37PM +0100, Biju Das wrote:
-> Document RZ/G2L (R9A07G044L) SoC bindings.
+On Tue, Jul 20, 2021 at 09:43:20AM +0800, Ming Qian wrote:
+> Add devicetree binding documentation for IMX8Q Video Processing Unit IP
 > 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Signed-off-by: Ming Qian <ming.qian@nxp.com>
+> Signed-off-by: Shijie Qin <shijie.qin@nxp.com>
+> Signed-off-by: Zhou Peng <eagle.zhou@nxp.com>
 > ---
-> v3->v4:
->  * Added maxitems in interrupt property as per Rob's suggestion.
-> v3:
->  * Updated the bindings as per the USBPHY control IP.
-> ---
->  .../bindings/usb/renesas,usbhs.yaml           | 22 +++++++++++++++++--
->  1 file changed, 20 insertions(+), 2 deletions(-)
+>  .../bindings/media/nxp,imx8q-vpu.yaml         | 178 ++++++++++++++++++
+>  1 file changed, 178 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/nxp,imx8q-vpu.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/renesas,usbhs.yaml b/Documentation/devicetree/bindings/usb/renesas,usbhs.yaml
-> index ad73339ffe1d..a85ad392d443 100644
-> --- a/Documentation/devicetree/bindings/usb/renesas,usbhs.yaml
-> +++ b/Documentation/devicetree/bindings/usb/renesas,usbhs.yaml
-> @@ -17,7 +17,9 @@ properties:
->            - const: renesas,rza1-usbhs
->  
->        - items:
-> -          - const: renesas,usbhs-r7s9210 # RZ/A2
-> +          - enum:
-> +              - renesas,usbhs-r7s9210   # RZ/A2
-> +              - renesas,usbhs-r9a07g044 # RZ/G2{L,LC}
->            - const: renesas,rza2-usbhs
->  
->        - items:
-> @@ -59,7 +61,8 @@ properties:
->        - description: USB 2.0 clock selector
->  
->    interrupts:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 4
->  
->    renesas,buswait:
->      $ref: /schemas/types.yaml#/definitions/uint32
-> @@ -108,6 +111,21 @@ required:
->    - clocks
->    - interrupts
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,usbhs-r9a07g044
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          items:
-> +            - description: U2P_IXL_INT
-> +            - description: U2P_INT_DMA[0]
-> +            - description: U2P_INT_DMA[1]
-> +            - description: U2P_INT_DMAERR
+> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8q-vpu.yaml b/Documentation/devicetree/bindings/media/nxp,imx8q-vpu.yaml
+> new file mode 100644
+> index 000000000000..337c9bf2395f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/nxp,imx8q-vpu.yaml
+> @@ -0,0 +1,178 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/nxp,imx8q-vpu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP i.MX8Q video encode and decode accelerators
+> +
+> +maintainers:
+> +  - Ming Qian <ming.qian@nxp.com>
+> +  - Shijie Qin <shijie.qin@nxp.com>
+> +
+> +description: |-
+> +  The Amphion MXC video encoder(Windsor) and decoder(Malone) accelerators present
+> +  on NXP i.MX8Q SoCs.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^vpu@[0-9a-f]+$"
+> +
+> +  compatible:
+> +    oneOf:
+> +      - const: nxp,imx8qm-vpu
+> +      - const: nxp,imx8qxp-vpu
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 1
+> +
+> +  ranges: true
+> +
+> +patternProperties:
+> +  "^mailbox@[0-9a-f]+$":
+> +    description:
+> +      Each vpu encoder or decoder correspond a MU, which used for communication
+> +      between driver and firmware. Implement via mailbox on driver.
+> +    $ref: ../mailbox/fsl,mu.yaml#
+> +
+> +
+> +  "^vpu_core@[0-9a-f]+$":
+> +    description:
+> +      Each core correspond a decoder or encoder, need to configure them
+> +      separately. NXP i.MX8QM SoC has one decoder and two encoder, i.MX8QXP SoC
+> +      has one decoder and one encoder.
+> +    type: object
+> +
+> +    properties:
+> +      compatible:
+> +        oneOf:
+> +          - const: nxp,imx8q-vpu-decoder
+> +          - const: nxp,imx8q-vpu-encoder
+> +
+> +      reg:
+> +        maxItems: 1
+> +
+> +      power-domains:
+> +        maxItems: 1
+> +
+> +      mbox-names:
+> +        items:
+> +          - const: tx0
+> +          - const: tx1
+> +          - const: rx
 
-else:
-  properties:
-    interrupts:
-      maxItems: 1
+3 here and...
 
 > +
->  additionalProperties: false
->  
->  examples:
+> +      mboxes:
+> +        description:
+> +          List of phandle of 2 MU channels for tx, 1 MU channel for rx.
+> +        maxItems: 1
+
+1 here?
+
+> +
+> +      memory-region:
+> +        description:
+> +          Phandle to the reserved memory nodes to be associated with the
+> +          remoteproc device. The reserved memory nodes should be carveout nodes,
+> +          and should be defined as per the bindings in
+> +          Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+> +        items:
+> +          - description: region reserved for firmware image sections.
+> +          - description: region used for RPC shared memory between firmware and
+> +                         driver.
+> +
+> +    required:
+> +      - compatible
+> +      - reg
+> +      - power-domains
+> +      - mbox-names
+> +      - mboxes
+> +      - memory-region
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - power-domains
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  # Device node example for i.MX8QM platform:
+> +  - |
+> +    #include <dt-bindings/firmware/imx/rsrc.h>
+> +
+> +    vpu: vpu@2c000000 {
+> +      compatible = "nxp,imx8qm-vpu";
+> +      ranges = <0x2c000000 0x2c000000 0x2000000>;
+> +      reg = <0x2c000000 0x1000000>;
+> +      #address-cells = <1>;
+> +      #size-cells = <1>;
+> +      power-domains = <&pd IMX_SC_R_VPU>;
+> +
+> +      mu_m0: mailbox@2d000000 {
+> +        compatible = "fsl,imx6sx-mu";
+> +        reg = <0x2d000000 0x20000>;
+> +        interrupts = <0 472 4>;
+> +        #mbox-cells = <2>;
+> +        power-domains = <&pd IMX_SC_R_VPU_MU_0>;
+> +      };
+> +
+> +      mu1_m0: mailbox@2d020000 {
+> +        compatible = "fsl,imx6sx-mu";
+> +        reg = <0x2d020000 0x20000>;
+> +        interrupts = <0 473 4>;
+> +        #mbox-cells = <2>;
+> +        power-domains = <&pd IMX_SC_R_VPU_MU_1>;
+> +      };
+> +
+> +      mu2_m0: mailbox@2d040000 {
+> +        compatible = "fsl,imx6sx-mu";
+> +        reg = <0x2d040000 0x20000>;
+> +        interrupts = <0 474 4>;
+> +        #mbox-cells = <2>;
+> +        power-domains = <&pd IMX_SC_R_VPU_MU_2>;
+> +      };
+> +
+> +      vpu_core0: vpu_core@2d080000 {
+> +        compatible = "nxp,imx8q-vpu-decoder";
+> +        reg = <0x2d080000 0x10000>;
+> +        power-domains = <&pd IMX_SC_R_VPU_DEC_0>;
+> +        mbox-names = "tx0", "tx1", "rx";
+> +        mboxes = <&mu_m0 0 0
+> +                  &mu_m0 0 1
+> +                  &mu_m0 1 0>;
+> +        memory-region = <&decoder_boot>, <&decoder_rpc>;
+> +      };
+> +
+> +      vpu_core1: vpu_core@2d090000 {
+> +        compatible = "nxp,imx8q-vpu-encoder";
+> +        reg = <0x2d090000 0x10000>;
+> +        power-domains = <&pd IMX_SC_R_VPU_ENC_0>;
+> +        mbox-names = "tx0", "tx1", "rx";
+> +        mboxes = <&mu1_m0 0 0
+> +                  &mu1_m0 0 1
+> +                  &mu1_m0 1 0>;
+> +        memory-region = <&encoder1_boot>, <&encoder1_rpc>;
+> +      };
+> +
+> +      vpu_core2: vpu_core@2d0a0000 {
+> +        reg = <0x2d0a0000 0x10000>;
+> +        compatible = "nxp,imx8q-vpu-encoder";
+> +        power-domains = <&pd IMX_SC_R_VPU_ENC_1>;
+> +        mbox-names = "tx0", "tx1", "rx";
+> +        mboxes = <&mu2_m0 0 0
+> +                  &mu2_m0 0 1
+> +                  &mu2_m0 1 0>;
+> +        memory-region = <&encoder2_boot>, <&encoder2_rpc>;
+> +      };
+> +    };
+> +
+> +...
 > -- 
-> 2.17.1
+> 2.32.0
 > 
 > 
