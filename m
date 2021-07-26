@@ -2,228 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 322553D544A
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 09:34:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8F2D3D5456
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 09:39:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232096AbhGZGyA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 02:54:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46462 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232019AbhGZGxz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 02:53:55 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A22DCC061764
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 00:34:24 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id a26so13726665lfr.11
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 00:34:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=WzDj03+uxLgpoaWPrzchlzGJJRHt1KDyhKLfW9KxchY=;
-        b=HHqCwgyGLk0Ov3RHSfpHlqmMBwt5TuC97L4nerS0XtXoP8DI5MLxkyrP+gAoQlQ4lV
-         xH0yLFwgDpntDSy79PE3K3YJpqpt5gI1O4nxu6sR7TGuipxNCOV5VXIas3GWMLnYi6gQ
-         EE++XcigBwGznPWEZMtrHSb/I9HMp3ZnTKu8skB1zwoEBfOdTHdZc2TnB62KC541rcZM
-         3mK2jfGuENnG97VhsBrQ7JqZYXzYRFw/zTQJEZk/5TLck3W3bo0Byz5+bMlivxJvM/LL
-         NHtq7QccDdCUkrQ/9XKBkgGKSmilFwRXJkyoeXgYVb24q8OXwe57Qe3IiYl3Wwn5My2c
-         TM5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=WzDj03+uxLgpoaWPrzchlzGJJRHt1KDyhKLfW9KxchY=;
-        b=aOm/pajMVZAv2f8SmwW5ilpAtgTc2+4xNkXQ3JkAexiH/2JBWan/VeKOP04/hQ9aI/
-         /dj8AHn76PR6mtQDkYxNVv1TavyhXpuRpzkD3XlL77Euk6dNkyaWAb/lufhJe9/O/HHd
-         IQ1k3U8Ew0S11pkRDs5OfvNyNiM0oekZjlepuxW6K5GsyafM4gcr0mUlQHRlxZsBNd79
-         L1g9z6kW0rjSqdbbya1pVuFBeZwYvhnDb3GeiZ10sdVsq3/ky+q3CaAtOTRMCw1XWYFq
-         05nPhiuP9tcu6lu0eIAdPeviaKu6IvJs+By+I2ASDs62UKLBoJUJaCtxDLJqwjJqloCk
-         Ps7A==
-X-Gm-Message-State: AOAM533ot+Y8b6RlEN52iLEZ4uzlvuksxu+biOMD3EiII6psuZQX/gPq
-        6sYDUcm8SFAxqZMpwhi5Ftm2vyimBQOACQUJzwd2BA==
-X-Google-Smtp-Source: ABdhPJwbLFqSyy74K8M+dukb4YtYay7Zz9Rpac3plBuqfsj3peN7OHDMZlo+UvvrDG6M66iSFDucy0RcrwWyXRRQ1D0=
-X-Received: by 2002:ac2:5e71:: with SMTP id a17mr11760484lfr.465.1627284862797;
- Mon, 26 Jul 2021 00:34:22 -0700 (PDT)
+        id S232411AbhGZGyv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 02:54:51 -0400
+Received: from mickerik.phytec.de ([195.145.39.210]:56436 "EHLO
+        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232371AbhGZGyv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 02:54:51 -0400
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+        q=dns/txt; i=@phytec.de; t=1627284918; x=1629876918;
+        h=From:Sender:Reply-To:Subject:Date:Message-Id:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=qxOFmUW6q/tdE/nq5AMZH6Fmc9XyQiz1E75+b8GctxI=;
+        b=fnTHOYQVV0U9r94LRvWXBYk+gXYXtb+yZrOo232++I7jZyKKYSLTn2oth6K2xaKL
+        9b1u3YnCU78Oc8JLvHo/qGeTo/LnrmKpaOCPA/J5ApXEb9wjaxNC6W1FrdZhkt9X
+        dUb96Xpw1qyY1gN/mdvwsjcvUsCWoS1IBtuLgClFPt0=;
+X-AuditID: c39127d2-1e4f970000001daf-a0-60fe65b65d82
+Received: from idefix.phytec.de (Unknown_Domain [172.16.0.10])
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id F2.82.07599.6B56EF06; Mon, 26 Jul 2021 09:35:18 +0200 (CEST)
+Received: from augenblix2.phytec.de ([172.16.0.56])
+          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
+          with ESMTP id 2021072609351818-1233313 ;
+          Mon, 26 Jul 2021 09:35:18 +0200 
+From:   Stefan Riedmueller <s.riedmueller@phytec.de>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Stefan Riedmueller <s.riedmueller@phytec.de>
+Subject: [PATCH v7 0/6] media: mt9p031: Read back the real clock rate
+Date:   Mon, 26 Jul 2021 09:35:12 +0200
+Message-Id: <20210726073518.2167398-1-s.riedmueller@phytec.de>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20210201165307.51443-1-iskren.chernev@gmail.com> <20210201165307.51443-2-iskren.chernev@gmail.com>
-In-Reply-To: <20210201165307.51443-2-iskren.chernev@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 26 Jul 2021 09:34:11 +0200
-Message-ID: <CACRpkdai5+vDj0C053qfPkdM-FCC-74HDCVF4=SPtUb7LE=Srw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] drm/panel: Add panel for Samsung Galaxy S5
-To:     Iskren Chernev <iskren.chernev@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        phone-devel@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
-        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>, Andy
-        Shevchenko <andy.shevchenko@gmail.com>," 
-        <~postmarketos/upstreaming@lists.sr.ht>
-Content-Type: text/plain; charset="UTF-8"
+X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 26.07.2021 09:35:18,
+        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 26.07.2021 09:35:18
+X-TNEFEvaluated: 1
+Content-Transfer-Encoding: quoted-printable
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrMLMWRmVeSWpSXmKPExsWyRoCBS3db6r8Eg2n/lC3mHznHatE5cQm7
+        xeVdc9gsejZsZbVYtukPk0Xr3iPsFp+2fGNyYPeY3TGT1WPTqk42j3knAz0+b5ILYInisklJ
+        zcksSy3St0vgyrj97SBLQZdwxdEVe5kbGN/zdTFyckgImEh0T5zO2sXIxSEksI1RYltHKxNI
+        QkjgAqPE3bZKEJtNwEhiwbRGJpAiEYE2RokdR5rBHGaBLYwSn+/vB+sQFnCV6N9wlB3EZhFQ
+        lTj+ahtYnFfATuLs4QPsEOvkJWZe+s4OEReUODnzCQvIIAmBK4wSK9tPsEAUCUmcXnyWGcRm
+        FtCWWLbwNfMERr5ZSHpmIUktYGRaxSiUm5mcnVqUma1XkFFZkpqsl5K6iREYkIcnql/awdg3
+        x+MQIxMH4yFGCQ5mJRFehxW/E4R4UxIrq1KL8uOLSnNSiw8xSnOwKInzbuAtCRMSSE8sSc1O
+        TS1ILYLJMnFwSjUwFukecJ7yQZ55xYvUY42e/bdmvfZycRHQOrXK5l1l2PRH15Il3q/5pCSg
+        X/5gVXHMVC67vE6t8Exhy6U6Mk4mijp7uVfGGSrwTn15I7qr3GXSm5zmNX714VuVc7nO3Np2
+        iKfh7tKzD3d6ys0v5uObsCmqrno6y0c9u8TQyc/5bSvqduj1sfxQYinOSDTUYi4qTgQA9Y9s
+        6DYCAAA=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Iskren,
+Hi,
 
-thanks for your patch!
+Changes in v7:
+ - Drop bus-type and bus-width documentation since there is only one
+   possible setting.
 
-On Mon, Feb 1, 2021 at 5:56 PM Iskren Chernev <iskren.chernev@gmail.com> wrote:
+Changes in v6:
+ - Add type, description and constraints to custom endpoint properties
+ - Add properties from video-interfaces.yaml
+ - Add reviewed-by from Rob to
+   media: dt-bindings: mt9p031: Add missing required properties
 
-> The Samsung Galaxy S5 uses the samsung s6e3fa2 AMOLED cmd LCD panel.
->
-> This driver was generated with [1], with the addition of
-> mipi_dsi_dcs_set_display_on at the end of the on method.
->
-> [1] https://github.com/msm8916-mainline/linux-mdss-dsi-panel-driver-generator
->
-> Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
+Changes in v5:
+ - Fixed issues reported by dt=5Fbinding=5Fcheck
+ - Use /schemas/graph.yaml#/$defs/port-base instead of
+   /schemas/graph.yaml#/properties/port since we have additional
+   endpoint properties
+ - Update commit message
 
-(...)
+Changes in v4:
+ - Add two missing BIT macro conversions
+ - Switch to dt-bindings yaml schema before applying changes
+ - Drop explicit pclk-sample property documentation patch since it is
+   documented in the referenced video-interface schema now. (I hope that
+   is correct)
 
-> +config DRM_PANEL_SAMSUNG_S6E3FA2
-> +       tristate "Samsung S6E3FA2 DSI cmd mode panel"
+Changes in v3:
+ - Dropped 1/5 media: mt9p031: Add support for 8 bit and 10 bit formats
+ - Dropped 3/5 media: mt9p031: Implement [gs]=5Fregister debug calls
+ - Added reviewed-by from Laurent Pinchart to
+   media: mt9p031: Read back the real clock rate
+ - Dropped unnecessary register reads in
+   media: mt9p031: Fix corrupted frame after restarting
+ - Changed sorting of register bits from MSB to LSB
+ - Added patch to switch to BIT macro
+ - Added two additional dt-bindings patches to add missing properties
+   documentation
 
-Spell it out "command mode" no need to abbreviate.
+Christian Hemp (1):
+  media: mt9p031: Make pixel clock polarity configurable by DT
 
-> +struct samsung_s6e3fa2 {
-> +       struct drm_panel panel;
-> +       struct mipi_dsi_device *dsi;
-> +       struct regulator_bulk_data supplies[2];
-> +       struct gpio_desc *reset_gpio;
-> +       bool prepared;
+Dirk Bender (1):
+  media: mt9p031: Fix corrupted frame after restarting stream
 
-Why do you need to keep track of prepared?
-The framework already does that and that is why it keeps
-different callbacks for prepare and enable.
+Enrico Scholz (1):
+  media: mt9p031: Read back the real clock rate
 
-> +#define dsi_generic_write_seq(dsi, seq...) do {                                \
-> +               static const u8 d[] = { seq };                          \
-> +               int ret;                                                \
-> +               ret = mipi_dsi_generic_write(dsi, d, ARRAY_SIZE(d));    \
-> +               if (ret < 0)                                            \
-> +                       return ret;                                     \
-> +       } while (0)
-> +
-> +#define dsi_dcs_write_seq(dsi, seq...) do {                            \
-> +               static const u8 d[] = { seq };                          \
-> +               int ret;                                                \
-> +               ret = mipi_dsi_dcs_write_buffer(dsi, d, ARRAY_SIZE(d)); \
-> +               if (ret < 0)                                            \
-> +                       return ret;                                     \
-> +       } while (0)
+Stefan Riedmueller (3):
+  media: mt9p031: Use BIT macro
+  media: dt-bindings: mt9p031: Convert bindings to yaml
+  media: dt-bindings: mt9p031: Add missing required properties
 
-Maybe this is something we should add to
-include/drm/drm_mipi_dsi.h?
-It looks very generic and helpful.
+ .../bindings/media/i2c/aptina,mt9p031.yaml    | 108 ++++++++++++++++++
+ .../devicetree/bindings/media/i2c/mt9p031.txt |  40 -------
+ MAINTAINERS                                   |   1 +
+ drivers/media/i2c/Kconfig                     |   1 +
+ drivers/media/i2c/mt9p031.c                   |  80 ++++++++++---
+ include/media/i2c/mt9p031.h                   |   1 +
+ 6 files changed, 173 insertions(+), 58 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/aptina,mt9p=
+031.yaml
+ delete mode 100644 Documentation/devicetree/bindings/media/i2c/mt9p031.txt
 
-> +static void samsung_s6e3fa2_reset(struct samsung_s6e3fa2 *ctx)
-> +{
-> +       gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-> +       usleep_range(5000, 6000);
+--=20
+2.25.1
 
-There is really no need to do this, the next statement asserts
-reset. It looks like a copy/paste thing from a less informed
-framework.
-
-> +       gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-> +       usleep_range(5000, 6000);
-> +       gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-> +       usleep_range(7000, 8000);
-
-These two look good.
-
-> +static int samsung_s6e3fa2_on(struct samsung_s6e3fa2 *ctx)
-> +{
-> +       struct mipi_dsi_device *dsi = ctx->dsi;
-> +       struct device *dev = &dsi->dev;
-> +       int ret;
-> +
-> +       dsi->mode_flags |= MIPI_DSI_MODE_LPM;
-> +
-> +       dsi_generic_write_seq(dsi, 0xf0, 0x5a, 0x5a);
-> +       dsi_generic_write_seq(dsi, 0xfc, 0x5a, 0x5a);
-
-These are very similar to other Samsung panels so you can definately
-add this to your driver:
-
-#define S6E3FA2_LEVEL_2_KEY         0xf0
-
-> +       dsi_generic_write_seq(dsi, 0xf0, 0xa5, 0xa5);
-> +       dsi_generic_write_seq(dsi, 0xfc, 0xa5, 0xa5);
-
-Add a comment that this locks level 2 control again.
-
-> +static int samsung_s6e3fa2_prepare(struct drm_panel *panel)
-> +{
-> +       struct samsung_s6e3fa2 *ctx = to_samsung_s6e3fa2(panel);
-> +       struct device *dev = &ctx->dsi->dev;
-> +       int ret;
-> +
-> +       if (ctx->prepared)
-> +               return 0;
-
-Looks unnecessary. The framework should keep track of this.
-
-> +       dsi->lanes = 4;
-> +       dsi->format = MIPI_DSI_FMT_RGB888;
-> +       dsi->mode_flags = MIPI_DSI_MODE_VIDEO_BURST |
-> +                         MIPI_DSI_CLOCK_NON_CONTINUOUS;
-
-You are not setting dsi->hs_rate and dsi->lp_rate.
-The panel definitely has these max timings so when you
-don't set them the DSI host will just go with some defaults
-(some of them don't even allow you to configure this).
-
-For reusability it would be great if you know roughly what these
-clocks are, sometimes board files in vendor trees give a hint.
-
-Worst case drop a comment that HS and LP rates are unknown.
-
-I also wonder if the panel can report an MTP ID?
-
-If you add some code like this and call from prepare(), what
-happens?
-
-#define READ_ID1                 0xda /* Read panel ID 1 */
-#define READ_ID2                 0xdb /* Read panel ID 2 */
-#define READ_ID3                 0xdc /* Read panel ID 3 */
-
-static int s6e3fa2_read_id(struct samsung_s6e3fa2 *ctx)
-{
-        struct mipi_dsi_device *dsi = ctx->dsi;
-        struct device *dev = &dsi->dev;
-        u8 id1, id2, id3;
-        int ret;
-
-        ret = mipi_dsi_dcs_read(dsi, READ_ID1, &id1, 1);
-        if (ret < 0) {
-                dev_err(dev, "could not read MTP ID1\n");
-                return ret;
-        }
-        ret = mipi_dsi_dcs_read(dsi, READ_ID2, &id2, 1);
-        if (ret < 0) {
-                dev_err(dev, "could not read MTP ID2\n");
-                return ret;
-        }
-        ret = mipi_dsi_dcs_read(dsi, READ_ID3, &id3, 1);
-        if (ret < 0) {
-                dev_err(dev, "could not read MTP ID3\n");
-                return ret;
-        }
-
-        dev_info(dev, "MTP ID manufacturer: %02x version: %02x driver:
-%02x\n", id1, id2, id3);
-
-        return 0;
-}
-
-(Dry coded, but you get the idea.)
-
-Yours,
-Linus Walleij
