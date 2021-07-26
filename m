@@ -2,177 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 70BEC3D51C5
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 05:52:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4496D3D521C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 06:03:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231530AbhGZDLf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Jul 2021 23:11:35 -0400
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:41971 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231616AbhGZDLT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 25 Jul 2021 23:11:19 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 096CE58045A;
-        Sun, 25 Jul 2021 23:51:48 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Sun, 25 Jul 2021 23:51:48 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm3; bh=k3FFcPhqCAND3
-        XKLb3s8dDhV8GC8RamGsODpXFVE8Dw=; b=pTX19j08oUdGotxPXYgxd6Cs+HKU8
-        QZYwEWdvHt8umRXgHCc+6sptWlNbjwsSMSN1qhnsFCumHFt6HYPptJOAtoL4dm85
-        TPqb5X0tH1Kca4Gb542/caL79Q8AJ1xkQSe6SghSCQOyE5t1QhaWiO0Ay9ZMxonp
-        BIi/Cx1gdfCPBQs21VBA9NCYNgpjt/5m1aSpF4E0dTgfX9M/+hI5CC9Zp92Ugncx
-        9407m74pCd1Wiu+WoXm1wkCcRbxiiMbyRJKicAXwenff/N/JTQAwKCE3KB+PxUwE
-        jTvH8OMGn0lylqEDYJFOmSxneBD3/XONXeKkYZo5/RqkE5ToYT6JfltjA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=k3FFcPhqCAND3XKLb3s8dDhV8GC8RamGsODpXFVE8Dw=; b=GPFr+3QV
-        lSoyrNsxZx4LUJaVv3rW76DWfSJZ4NB/JdQgaQAHIJUXnEiKIR9nlD8aBlQfZYSH
-        3eKNCeCOycsxHISOyd4WdjLwOOCiR6FOejfdgxlXtcOUMW93G1K+KN5PHM2JlFJJ
-        iHDSyNsy+T/XXePGO54B01f2zVzGC0P2iLWOVqhCcNIqX8cczfgVUOAdh3PdEtwA
-        zzzFCvYYoBNPq63Sq9AC6X9pPQp+nXJnXQN6xNdDl6OuLJqeQy0bZF6gqXkHuy/v
-        AJIRQBokF4S4WrUfHGnWtamuhHZ0++oq6ja/JrSJbeid9Av7PK4GFdT99ffnxfNo
-        QfTi8ddunBQnug==
-X-ME-Sender: <xms:UzH-YNAjxr-U7A4aTWIH6NMpfea2p70FDq9G6S_64ImiZMjVBMYPRw>
-    <xme:UzH-YLg7QFcuRhQvfdDuDSW9bZAgVYre3cf2Drn8J_P6FQYjPLiha9znLMaioCt81
-    Fheaj3LUFaoexs6wA>
-X-ME-Received: <xmr:UzH-YIkVAXHYZwgw5Dm65n3iDLIW7R0fhWFIm-Rc7wsfiSrTVZ5eEFXRO5JhCfTlUHZDVtnTLU19Y7dI7QxPTCKZXJmOFwod-dF3T1oy-zMJLgcj4EcC9C22HInxQfRkpU8p2A>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrgeeggdejvdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepufgrmhhuvghl
-    ucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecuggftrf
-    grthhtvghrnhepudfhjeefvdfhgfefheetgffhieeigfefhefgvddvveefgeejheejvdfg
-    jeehueeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    epshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:UzH-YHyt_gOq8FOaxLpXkphqF6hiaUM80VhtdC5ZOtO2GWRiffEv-A>
-    <xmx:UzH-YCQK4TXlrFoZqJg9v-w1fQNcVJl55Z4vn7kbisAOPZUjAa-vYg>
-    <xmx:UzH-YKZFBDIIOyh14nhnPTowsUW4QHAwlZNP67aU97UPD73W8l2_DA>
-    <xmx:VDH-YHJt7hgUdqKH8iLZS3e-vsgqzV5rMSIjIPo6OFWRiq1wj3w5Rg>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
- 25 Jul 2021 23:51:47 -0400 (EDT)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-watchdog@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Samuel Holland <samuel@sholland.org>
-Subject: [PATCH 3/3] watchdog: sunxi_wdt: Add support for D1
-Date:   Sun, 25 Jul 2021 22:51:43 -0500
-Message-Id: <20210726035143.53132-3-samuel@sholland.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210726035143.53132-1-samuel@sholland.org>
-References: <20210726035143.53132-1-samuel@sholland.org>
+        id S231455AbhGZDWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Jul 2021 23:22:33 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:35154 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231421AbhGZDWd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jul 2021 23:22:33 -0400
+X-UUID: 76ec69579b424d7d853456f41aa59438-20210726
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=1qkMfTfeNRmsWMXbQc8lB+Iu1NAA2I+IZkOV+hmaRlY=;
+        b=n3LrDrR5TA/du10LfUrjJS6LRF2AbbmsDlYs6yci5avcTsMEzYuafFJYAkARVdtdD6nvU+xm4G23ivt6tnGjG2x4SRREcFGeKSEWYFiBc9i0tJiRJlcWL867wE82lSiCcibUnvRdBQ2tuvz2598mlmmf2j8e9rrb1xkPWYCyCKg=;
+X-UUID: 76ec69579b424d7d853456f41aa59438-20210726
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1229402346; Mon, 26 Jul 2021 12:02:58 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 26 Jul 2021 12:02:57 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 26 Jul 2021 12:02:57 +0800
+Message-ID: <1627272177.27642.1.camel@mtksdaap41>
+Subject: Re: [PATCH v3 2/2] dt-bindings: mediatek: add
+ force_dsi_end_without_null for dsi
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Jitao Shi <jitao.shi@mediatek.com>
+CC:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Daniel Vetter" <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>,
+        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <stonea168@163.com>,
+        <huijuan.xie@mediatek.com>, <rex-bc.chen@mediatek.com>,
+        <shuijing.li@mediatek.com>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+Date:   Mon, 26 Jul 2021 12:02:57 +0800
+In-Reply-To: <20210726021104.80007-2-jitao.shi@mediatek.com>
+References: <20210726021104.80007-1-jitao.shi@mediatek.com>
+         <20210726021104.80007-2-jitao.shi@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-D1 adds a key field to the "CFG" and "MODE" registers, that must be set
-to change the other bits. Add logic to set the key when updating those
-registers.
-
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
- drivers/watchdog/sunxi_wdt.c | 20 +++++++++++++++++++-
- 1 file changed, 19 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/watchdog/sunxi_wdt.c b/drivers/watchdog/sunxi_wdt.c
-index b50757882a98..6cf82922d3fb 100644
---- a/drivers/watchdog/sunxi_wdt.c
-+++ b/drivers/watchdog/sunxi_wdt.c
-@@ -48,6 +48,7 @@ struct sunxi_wdt_reg {
- 	u8 wdt_timeout_shift;
- 	u8 wdt_reset_mask;
- 	u8 wdt_reset_val;
-+	u32 wdt_key_val;
- };
- 
- struct sunxi_wdt_dev {
-@@ -91,12 +92,14 @@ static int sunxi_wdt_restart(struct watchdog_device *wdt_dev,
- 	val = readl(wdt_base + regs->wdt_cfg);
- 	val &= ~(regs->wdt_reset_mask);
- 	val |= regs->wdt_reset_val;
-+	val |= regs->wdt_key_val;
- 	writel(val, wdt_base + regs->wdt_cfg);
- 
- 	/* Set lowest timeout and enable watchdog */
- 	val = readl(wdt_base + regs->wdt_mode);
- 	val &= ~(WDT_TIMEOUT_MASK << regs->wdt_timeout_shift);
- 	val |= WDT_MODE_EN;
-+	val |= regs->wdt_key_val;
- 	writel(val, wdt_base + regs->wdt_mode);
- 
- 	/*
-@@ -109,6 +112,7 @@ static int sunxi_wdt_restart(struct watchdog_device *wdt_dev,
- 		mdelay(5);
- 		val = readl(wdt_base + regs->wdt_mode);
- 		val |= WDT_MODE_EN;
-+		val |= regs->wdt_key_val;
- 		writel(val, wdt_base + regs->wdt_mode);
- 	}
- 	return 0;
-@@ -141,6 +145,7 @@ static int sunxi_wdt_set_timeout(struct watchdog_device *wdt_dev,
- 	reg = readl(wdt_base + regs->wdt_mode);
- 	reg &= ~(WDT_TIMEOUT_MASK << regs->wdt_timeout_shift);
- 	reg |= wdt_timeout_map[timeout] << regs->wdt_timeout_shift;
-+	reg |= regs->wdt_key_val;
- 	writel(reg, wdt_base + regs->wdt_mode);
- 
- 	sunxi_wdt_ping(wdt_dev);
-@@ -154,7 +159,7 @@ static int sunxi_wdt_stop(struct watchdog_device *wdt_dev)
- 	void __iomem *wdt_base = sunxi_wdt->wdt_base;
- 	const struct sunxi_wdt_reg *regs = sunxi_wdt->wdt_regs;
- 
--	writel(0, wdt_base + regs->wdt_mode);
-+	writel(regs->wdt_key_val, wdt_base + regs->wdt_mode);
- 
- 	return 0;
- }
-@@ -176,11 +181,13 @@ static int sunxi_wdt_start(struct watchdog_device *wdt_dev)
- 	reg = readl(wdt_base + regs->wdt_cfg);
- 	reg &= ~(regs->wdt_reset_mask);
- 	reg |= regs->wdt_reset_val;
-+	reg |= regs->wdt_key_val;
- 	writel(reg, wdt_base + regs->wdt_cfg);
- 
- 	/* Enable watchdog */
- 	reg = readl(wdt_base + regs->wdt_mode);
- 	reg |= WDT_MODE_EN;
-+	reg |= regs->wdt_key_val;
- 	writel(reg, wdt_base + regs->wdt_mode);
- 
- 	return 0;
-@@ -220,9 +227,20 @@ static const struct sunxi_wdt_reg sun6i_wdt_reg = {
- 	.wdt_reset_val = 0x01,
- };
- 
-+static const struct sunxi_wdt_reg sun20i_wdt_reg = {
-+	.wdt_ctrl = 0x10,
-+	.wdt_cfg = 0x14,
-+	.wdt_mode = 0x18,
-+	.wdt_timeout_shift = 4,
-+	.wdt_reset_mask = 0x03,
-+	.wdt_reset_val = 0x01,
-+	.wdt_key_val = 0x16aa0000,
-+};
-+
- static const struct of_device_id sunxi_wdt_dt_ids[] = {
- 	{ .compatible = "allwinner,sun4i-a10-wdt", .data = &sun4i_wdt_reg },
- 	{ .compatible = "allwinner,sun6i-a31-wdt", .data = &sun6i_wdt_reg },
-+	{ .compatible = "allwinner,sun20i-d1-wdt", .data = &sun20i_wdt_reg },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, sunxi_wdt_dt_ids);
--- 
-2.31.1
+SGksIEppdGFvOg0KDQpPbiBNb24sIDIwMjEtMDctMjYgYXQgMTA6MTEgKzA4MDAsIEppdGFvIFNo
+aSB3cm90ZToNCj4gU29tZSBicmlkZ2UgY2hpcCB3aWxsIHNoaWZ0IHNjcmVlbiB3aGVuIHRoZSBk
+c2kgZGF0YSBkb2VzJ3QgZW50IGF0DQo+IHRoZSBzYW1lIHRpbWUgaW4gbGluZS4NCj4gDQo+IFNp
+Z25lZC1vZmYtYnk6IEppdGFvIFNoaSA8aml0YW8uc2hpQG1lZGlhdGVrLmNvbT4NCj4gLS0tDQo+
+ICAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L21lZGlhdGVrL21lZGlhdGVrLGRzaS50
+eHQgICAgIHwgNCArKysrDQo+ICAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspDQo+IA0K
+PiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkv
+bWVkaWF0ZWsvbWVkaWF0ZWssZHNpLnR4dCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
+aW5ncy9kaXNwbGF5L21lZGlhdGVrL21lZGlhdGVrLGRzaS50eHQNCj4gaW5kZXggODIzOGE4NjY4
+NmJlLi4xYzJmNTNmM2FjM2QgMTAwNjQ0DQo+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJl
+ZS9iaW5kaW5ncy9kaXNwbGF5L21lZGlhdGVrL21lZGlhdGVrLGRzaS50eHQNCj4gKysrIGIvRG9j
+dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvbWVkaWF0ZWsvbWVkaWF0ZWss
+ZHNpLnR4dA0KPiBAQCAtMTksNiArMTksMTAgQEAgUmVxdWlyZWQgcHJvcGVydGllczoNCj4gICAg
+RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2dyYXBoLnR4dC4gVGhpcyBwb3J0IHNo
+b3VsZCBiZSBjb25uZWN0ZWQNCj4gICAgdG8gdGhlIGlucHV0IHBvcnQgb2YgYW4gYXR0YWNoZWQg
+RFNJIHBhbmVsIG9yIERTSS10by1lRFAgZW5jb2RlciBjaGlwLg0KPiAgDQo+ICtPcHRpb25hbCBw
+cm9wZXJ0aWVzOg0KPiArLSBmb3JjZV9kc2lfZW5kX3dpdGhvdXRfbnVsbDogU29tZSBicmlkZ2Ug
+Y2hpcChleC4gQU5YNzYyNSkgcmVxdWlyZXMgdGhlDQo+ICsgIHBhY2tldHMgb24gbGFuZXMgYWxp
+Z25lZCBhdCB0aGUgZW5kLg0KPiArDQoNCkkgdGhpbmsgeW91IHNob3VsZCBhZGQgdGhpcyBwcm9w
+ZXJ0eSBpbiBbMV0gYmVjYXVzZSB0aGlzIGxpbWl0YXRpb24gaXMNCkFOWDc2MjUncyBsaW1pdGF0
+aW9uLg0KDQpbMV0NCkRvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L2Jy
+aWRnZS9hbmFsb2dpeCxhbng3NjI1LnlhbWwNCg0KUmVnYXJkcywNCkNLDQoNCj4gIE1JUEkgVFgg
+Q29uZmlndXJhdGlvbiBNb2R1bGUNCj4gID09PT09PT09PT09PT09PT09PT09PT09PT09PT0NCj4g
+IA0KDQo=
 
