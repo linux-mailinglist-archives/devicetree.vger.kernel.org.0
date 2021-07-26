@@ -2,76 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FFB23D537B
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 09:01:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D141E3D5399
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 09:11:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231902AbhGZGUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 02:20:34 -0400
-Received: from verein.lst.de ([213.95.11.211]:43954 "EHLO verein.lst.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231879AbhGZGUd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Jul 2021 02:20:33 -0400
-Received: by verein.lst.de (Postfix, from userid 2407)
-        id B117C68BEB; Mon, 26 Jul 2021 09:01:00 +0200 (CEST)
-Date:   Mon, 26 Jul 2021 09:01:00 +0200
-From:   Christoph Hellwig <hch@lst.de>
-To:     Atish Patra <atish.patra@wdc.com>
-Cc:     linux-kernel@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
-        Christoph Hellwig <hch@lst.de>, devicetree@vger.kernel.org,
-        Dmitry Vyukov <dvyukov@google.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Guo Ren <guoren@linux.alibaba.com>,
-        iommu@lists.linux-foundation.org, linux-riscv@lists.infradead.org,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
+        id S231759AbhGZGbB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 02:31:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41010 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231707AbhGZGbA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 02:31:00 -0400
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBAECC061764
+        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 00:11:28 -0700 (PDT)
+Received: by mail-pj1-x102a.google.com with SMTP id m10-20020a17090a34cab0290176b52c60ddso6903972pjf.4
+        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 00:11:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=beagleboard-org.20150623.gappssmtp.com; s=20150623;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=+5p8Aei7IrZs3alqaJKEyL3k4NRbSzzZGcPcbzf/ZKM=;
+        b=nsFEEqxuhHH0w55xR+qWi6/8JTZFD+CjXaMMEmRxPwhw2+t/dxlIOoeHh6BpICM3mq
+         gNT4qD6yRd/mY6jEACPu0YsvzhLNNFAflHc0uWnAC/j7XT9FAhDDBCx7p9j2vtIs0vCd
+         y111+bounbY/WPKSDg7zqY0suEQPOzJntP/Vsa+De7Dkj5L32jI5icyEcWzyEnJAzCq7
+         aA3xdsgUDt0CbErUbVFasdkp2E1dn6c8e9+j7u0uDTyc57FJVgyU+uLeZDcPrd8Ti2RV
+         /XdKYIyowWMIT/h8pOCMmIrI//hpZnh5WqTho6WOgON21kM/nrs6WNASFxgJQAX9f9zF
+         DaYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=+5p8Aei7IrZs3alqaJKEyL3k4NRbSzzZGcPcbzf/ZKM=;
+        b=CVyEuXPYpxO3YK/j2IR1BXcV/+ZcwNO0RmYMaEavceTxA4HPyBgUMfL/uuBQX1sMOL
+         MrP8XaqAHSAppXF4C5hLWp2udTcQjIGJB45FmNKAmUNGf5UY/VS5tnqKQbIFUwZdkmON
+         fFHpOnFA5d653sOe8xOGBr4uybieFSMV0tNjzpSUrNsMV6L4xs9fuvJADjVXB6E9zR/f
+         xHqh6Oi1IWxASetv5NxaBpmaN2DQ3aGu6X4+r762Yt5JURa0LpuY/XoCLEjKrRDqEvIu
+         Lfcw6d459nRpsx4PpUjigCD5XD022XkRWUTO32YEjfrg6oDu1UCcwbHCIVnP+Cq0aM7O
+         UWzA==
+X-Gm-Message-State: AOAM530bje9tCarJB7vrZa74i75F4RCma/ED4qdMWPDvnsdTt2bCnf9W
+        Tw5NsXvUtq5jJ6+4dbffe6dndA==
+X-Google-Smtp-Source: ABdhPJz/DGTo2HlVZORTFeTFS3UbYQ8fKSzvDp+CtRgvg+g+iWcVQ+dYYlu8pI/PRW+yWU/1lhgXHg==
+X-Received: by 2002:a17:90a:6482:: with SMTP id h2mr24182383pjj.24.1627283486888;
+        Mon, 26 Jul 2021 00:11:26 -0700 (PDT)
+Received: from x1 ([174.127.163.79])
+        by smtp.gmail.com with ESMTPSA id o134sm43060098pfg.62.2021.07.26.00.11.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Jul 2021 00:11:26 -0700 (PDT)
+Date:   Mon, 26 Jul 2021 00:11:24 -0700
+From:   Drew Fustini <drew@beagleboard.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Michael Walle <michael@walle.cc>, Rob Herring <robh+dt@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
         Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Tobias Klauser <tklauser@distanz.ch>
-Subject: Re: [RFC 4/5] dma-direct: Allocate dma pages directly if global
- pool allocation fails
-Message-ID: <20210726070100.GC9035@lst.de>
-References: <20210723214031.3251801-1-atish.patra@wdc.com> <20210723214031.3251801-5-atish.patra@wdc.com>
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Michael Zhu <michael.zhu@starfivetech.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Fu Wei <tekkamanninja@gmail.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Huan Feng <huan.feng@starfivetech.com>
+Subject: Re: [RFC PATH 2/2] gpio: starfive-jh7100: Add StarFive JH7100 GPIO
+ driver
+Message-ID: <20210726071124.GA9184@x1>
+References: <20210701002037.912625-1-drew@beagleboard.org>
+ <20210701002037.912625-3-drew@beagleboard.org>
+ <8c59105d32a9936f8806501ecd20e044@walle.cc>
+ <CACRpkdbhKsuXZiLCh_iajJQWDdQQOZ87QF3xDr5Vc66SoVCnxQ@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210723214031.3251801-5-atish.patra@wdc.com>
-User-Agent: Mutt/1.5.17 (2007-11-01)
+In-Reply-To: <CACRpkdbhKsuXZiLCh_iajJQWDdQQOZ87QF3xDr5Vc66SoVCnxQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 23, 2021 at 02:40:30PM -0700, Atish Patra wrote:
-> DMA_GLOBAL_POOL config may be enabled for platforms where global pool is
-> not supported because a generic defconfig is expected to boot on different
-> platforms. Specifically, some RISC-V platforms may use global pool for
-> non-coherent devices while some other platforms are completely coherent.
-> However, it is expected that single kernel image must boot on all the
-> platforms.
+On Fri, Jul 23, 2021 at 11:04:41PM +0200, Linus Walleij wrote:
+> On Thu, Jul 1, 2021 at 8:39 AM Michael Walle <michael@walle.cc> wrote:
+> > Am 2021-07-01 02:20, schrieb Drew Fustini:
+> > > Add GPIO driver for the StarFive JH7100 SoC [1] used on the
+> > > BeagleV Starlight JH7100 board [2].
+> > >
+> > > [1] https://github.com/starfive-tech/beaglev_doc/
+> > > [2] https://github.com/beagleboard/beaglev-starlight
+> > >
+> > > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> > > Signed-off-by: Huan Feng <huan.feng@starfivetech.com>
+> > > Signed-off-by: Drew Fustini <drew@beagleboard.org>
+> >
+> > Could this driver use GPIO_REGMAP and REGMAP_IRQ? See
+> > drivers/gpio/gpio-sl28cpld.c for an example.
 > 
-> Continue the dma direct allocation if a allocation from global pool failed.
-> This indicates that the platform is relying on some other method (direct
-> remap) or just have coherent devices.
+> To me it looks just memory-mapped?
 > 
-> Signed-off-by: Atish Patra <atish.patra@wdc.com>
-> ---
->  kernel/dma/direct.c | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
+> Good old gpio-mmio.c (select GPIO_GENERIC) should
+> suffice I think.
 > 
-> diff --git a/kernel/dma/direct.c b/kernel/dma/direct.c
-> index d1d0258ed6d0..984ea776f099 100644
-> --- a/kernel/dma/direct.c
-> +++ b/kernel/dma/direct.c
-> @@ -161,8 +161,11 @@ void *dma_direct_alloc(struct device *dev, size_t size,
->  		return arch_dma_alloc(dev, size, dma_handle, gfp, attrs);
->  
->  	if (IS_ENABLED(CONFIG_DMA_GLOBAL_POOL) &&
-> -	    !dev_is_dma_coherent(dev))
-> -		return dma_alloc_from_global_coherent(dev, size, dma_handle);
-> +	    !dev_is_dma_coherent(dev)) {
-> +		ret = dma_alloc_from_global_coherent(dev, size, dma_handle);
-> +		if (ret)
-> +			return ret;
+> Drew please look at drivers/gpio/gpio-ftgpio010.c for an example
+> of GPIO_GENERIC calling bgpio_init() in probe().
 
-This will now silently return normal non-cache coherent memory when
-the global pool allocation fails, and thus is completely broken.
+Thank you for the suggestion. However, I am not sure that will work for
+this SoC.
+
+The GPIO registers are described in section 12 of JH7100 datasheet [1]
+and I don't think they fit the expectation of gpio-mmio.c because there
+is a seperate register for each GPIO line for output data value and
+output enable.
+
+There are 64 output data config registers which are 4 bytes wide. There
+are 64 output enable config registers which are 4 bytes wide too. Output
+data and output enable registers for a given GPIO pad are contiguous.
+GPIO0_DOUT_CFG is 0x50 and GPIO0_DOEN_CFG is 0x54 while GPIO1_DOUT_CFG
+is 0x58 and GPIO1_DOEN_CFG is 0x5C. The stride between GPIO pads is
+effectively 8, which yields the formula: GPIOn_DOUT_CFG is 0x50+8n.
+Similarly, GPIO0_DOEN_CFG is 0x54 and thus GPIOn_DOEN_CFG is 0x54+8n.
+
+However, GPIO input data does use just one bit for each line. GPIODIN_0
+at 0x48 covers GPIO[31:0] and GPIODIN_1 at 0x4c covers GPIO[63:32].
+
+Thus the input could work with gpio-mmio but I am not sure how to
+reconcile the register-per-gpio for the output value and output enable.
+
+Is there way a way to adapt gpio-mmio for this situation?
+
+Thanks,
+Drew
+
+[1] https://github.com/starfive-tech/beaglev_doc
