@@ -2,126 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BA193D5468
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 09:40:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4354A3D5485
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 09:44:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232646AbhGZGzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 02:55:07 -0400
-Received: from mickerik.phytec.de ([195.145.39.210]:56446 "EHLO
-        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232390AbhGZGyz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 02:54:55 -0400
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-        q=dns/txt; i=@phytec.de; t=1627284920; x=1629876920;
-        h=From:Sender:Reply-To:Subject:Date:Message-Id:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=zqdg7cPQM0a0PwYnHpAj5YucP/jlhWnUNr7bDHErP8M=;
-        b=Vjwd6zwr7fv+eZf91o+cdstlZecigHYecI6MYh7xKWCf9bh4oAwzGklvsYl+IXzV
-        zjGIH4+wMluMG5QY9leeE/oPGLD6NgmQID0zs9HXh9OEfNT67dKNplcaVVFyqqkl
-        qoo5nmsh3KqJCZlOFxVwNf2YOwmHadFVxPQC4G5xgcI=;
-X-AuditID: c39127d2-1e4f970000001daf-af-60fe65b85094
-Received: from idefix.phytec.de (Unknown_Domain [172.16.0.10])
-        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 96.82.07599.8B56EF06; Mon, 26 Jul 2021 09:35:20 +0200 (CEST)
-Received: from augenblix2.phytec.de ([172.16.0.56])
-          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
-          with ESMTP id 2021072609351980-1233319 ;
-          Mon, 26 Jul 2021 09:35:19 +0200 
-From:   Stefan Riedmueller <s.riedmueller@phytec.de>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Stefan Riedmueller <s.riedmueller@phytec.de>,
-        Rob Herring <robh@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v7 6/6] media: dt-bindings: mt9p031: Add missing required properties
-Date:   Mon, 26 Jul 2021 09:35:18 +0200
-Message-Id: <20210726073518.2167398-7-s.riedmueller@phytec.de>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210726073518.2167398-1-s.riedmueller@phytec.de>
-References: <20210726073518.2167398-1-s.riedmueller@phytec.de>
+        id S231848AbhGZHCy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 03:02:54 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:40522 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231774AbhGZHCx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 03:02:53 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 16Q7hEDb040963;
+        Mon, 26 Jul 2021 02:43:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1627285394;
+        bh=Z7jD0mQAoy3ojk+iiHUn5mhLG0G8KU5yeTjQ/OUuIHc=;
+        h=Subject:From:To:CC:References:Date:In-Reply-To;
+        b=rCaB7D0oplf2khih2XUOj5Lad1KWQq/J9d8A238aNupC4FA2uYhARrkeY+ql68CUI
+         W7LZBO8cr/OX0kOME9wpHGxSJB1smNF2e0RjV+PQCmTkdCZzx9w1DoejEH4T5Za3p4
+         bzmASsw9oLH+3myDJHjS/gt5MWTqPonpt+1dElmM=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 16Q7hE3L036458
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 26 Jul 2021 02:43:14 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 26
+ Jul 2021 02:43:14 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Mon, 26 Jul 2021 02:43:14 -0500
+Received: from [10.250.148.136] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 16Q7h9gu048924;
+        Mon, 26 Jul 2021 02:43:10 -0500
+Subject: Re: [PATCH 3/6] arm64: dts: ti: k3-j721e: Add support for MCAN nodes
+From:   Aswath Govindraju <a-govindraju@ti.com>
+To:     Marc Kleine-Budde <mkl@pengutronix.de>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+References: <20210720141642.24999-1-a-govindraju@ti.com>
+ <20210720141642.24999-4-a-govindraju@ti.com>
+ <20210720145451.6eby7pbfocyyfi4e@pengutronix.de>
+ <41ff222b-e751-1586-b774-4e55bfe5e017@ti.com>
+Message-ID: <65368cf6-afad-cb08-1b27-883e8e7eafef@ti.com>
+Date:   Mon, 26 Jul 2021 13:13:08 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 26.07.2021 09:35:19,
-        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 26.07.2021 09:35:19
-X-TNEFEvaluated: 1
-Content-Transfer-Encoding: quoted-printable
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrHLMWRmVeSWpSXmKPExsWyRoCBS3dH6r8Eg/uLGC3mHznHatE5cQm7
-        xeVdc9gsejZsZbVYtukPk0Xr3iPsFv/37GC3+LTlG5MDh8fsjpmsHptWdbJ5zDsZ6PF5k1wA
-        SxSXTUpqTmZZapG+XQJXRuPqBSwFu3grTh7yaWCcztXFyMEhIWAi8f5pVhcjF4eQwDZGiWfv
-        9zNBOBcYJaZPb2PsYuTkYBMwklgwrREsISLQxiix40gzE0iCWeAyo8S3rz4gtrBAiMTHzT+Z
-        QWwWAVWJCd8Ws4HYvAJ2Es/vfgGzJQTkJWZe+s4OYnMK2EvcevoezBYCqmnt3MgOUS8ocXLm
-        ExaQZRICVxglDhzdyATRLCRxevFZZojF2hLLFr5mnsAoMAtJzywkqQWMTKsYhXIzk7NTizKz
-        9QoyKktSk/VSUjcxAsP48ET1SzsY++Z4HGJk4mA8xCjBwawkwuuw4neCEG9KYmVValF+fFFp
-        TmrxIUZpDhYlcd4NvCVhQgLpiSWp2ampBalFMFkmDk6pBsaK+abRk0umzy8PO/30xOe2k6pm
-        6S2s5SeesXSX3BEROsG9TIxj7x+5XTe97e7dl31Tzf2I6/felQHrM8/mbenwEVvy1ODKnqy7
-        i7/4m52J3JKx5V/qE7/zrjP0LUJ/v5wQ9Ysx+OhMz+pk1+fHLq52+Lo/dGGI2f3jmRc7r+Ut
-        OFLC9XzXljVvlFiKMxINtZiLihMBxtG8dFECAAA=
+In-Reply-To: <41ff222b-e751-1586-b774-4e55bfe5e017@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add missing required clocks and supply regulator properties for the
-sensor input clock and vdd, vdd=5Fio and vaa supply regulators.
+Hi Marc,
 
-Signed-off-by: Stefan Riedmueller <s.riedmueller@phytec.de>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../bindings/media/i2c/aptina,mt9p031.yaml    | 22 +++++++++++++++++++
- 1 file changed, 22 insertions(+)
+On 21/07/21 1:18 pm, Aswath Govindraju wrote:
+> Hi Marc,
+> 
+> On 20/07/21 8:24 pm, Marc Kleine-Budde wrote:
+>> On 20.07.2021 19:46:39, Aswath Govindraju wrote:
+>>> From: Faiz Abbas <faiz_abbas@ti.com>
+>>>
+>>> Add support for 14 MCAN controllers in main domain and 2 MCAN controllers
+>>> present in mcu domain. All the MCAN controllers support classic CAN
+>>> messages as well as CAN_FD messages.
+>>>
+>>> Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
+>>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+>>> ---
+>>>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 196 ++++++++++++++++++
+>>>  .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      |  28 +++
+>>>  2 files changed, 224 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+>>> index cf3482376c1e..4215b8e6785a 100644
+>>> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+>>> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+>>> @@ -1940,4 +1940,200 @@
+>>>  			bus_freq = <1000000>;
+>>>  		};
+>>>  	};
+>>> +
+>>> +	main_mcan0: can@2701000 {
+>>> +		compatible = "bosch,m_can";
+>>> +		reg = <0x00 0x02701000 0x00 0x200>,
+>>> +		      <0x00 0x02708000 0x00 0x8000>;
+>>> +		reg-names = "m_can", "message_ram";
+>>> +		power-domains = <&k3_pds 156 TI_SCI_PD_EXCLUSIVE>;
+>>> +		clocks = <&k3_clks 156 1>, <&k3_clks 156 0>;
+>>> +		clock-names = "cclk", "hclk";
+>>> +		interrupts = <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>,
+>>> +			     <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>;
+>>> +		interrupt-names = "int0", "int1";
+>>> +		bosch,mram-cfg = <0x0 0 0 32 0 0 1 1>;
+>>
+>> Are you intentionally only enabling 1 TX buffer?
+>>
+> 
+> I have used this configuration for testing. It can be increased to 32 if
+> required. Is it better to set it to the maximum number of buffers ?
+> 
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/aptina,mt9p031.yam=
-l b/Documentation/devicetree/bindings/media/i2c/aptina,mt9p031.yaml
-index bc0e8e5194e8..c2ba78116dbb 100644
---- a/Documentation/devicetree/bindings/media/i2c/aptina,mt9p031.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/aptina,mt9p031.yaml
-@@ -24,6 +24,18 @@ properties:
-     description: I2C device address
-     maxItems: 1
-=20
-+  clocks:
-+    maxItems: 1
-+
-+  vdd-supply:
-+    description: Digital supply voltage, 1.8 V
-+
-+  vdd=5Fio-supply:
-+    description: I/O supply voltage, 1.8 or 2.8 V
-+
-+  vaa-supply:
-+    description: Analog supply voltage, 2.8 V
-+
-   reset-gpios:
-     maxItems: 1
-     description: Chip reset GPIO
-@@ -59,6 +71,10 @@ properties:
- required:
-   - compatible
-   - reg
-+  - clocks
-+  - vdd-supply
-+  - vdd=5Fio-supply
-+  - vaa-supply
-   - port
-=20
- additionalProperties: false
-@@ -74,6 +90,12 @@ examples:
-             reg =3D <0x5d>;
-             reset-gpios =3D <&gpio=5Fsensor 0 0>;
-=20
-+            clocks =3D <&sensor=5Fclk>;
-+
-+            vdd-supply =3D <&reg=5Fvdd>;
-+            vdd=5Fio-supply =3D <&reg=5Fvdd=5Fio>;
-+            vaa-supply =3D <&reg=5Fvaa>;
-+
-             port {
-                 mt9p031=5F1: endpoint {
-                     input-clock-frequency =3D <6000000>;
---=20
-2.25.1
+I have now set all the parameters that can be configured, to the their
+max values.
+
+"bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;"
+
+Earlier while setting only one tx buffer I was unintentionally limiting
+it. As far as I was able to search, the only constraint in setting them
+to max values is the memory space allocated for message ram. As in this
+case there is enough memory for configuring the message ram with max
+values for all parameters, I see that memory space wouldn't be an issue.
+
+After setting the above mentioned configuration I was able to perform a
+few tests and they were passing.
+
+I will fix this configuration and send a respin for this series.
+
+Thanks,
+Aswath
+
+> Thanks,
+> Aswath
+> 
+>> Marc
+>>
+> 
 
