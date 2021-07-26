@@ -2,67 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 70F0F3D5517
+	by mail.lfdr.de (Postfix) with ESMTP id 289073D5516
 	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 10:15:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232940AbhGZHc0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 03:32:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55458 "EHLO
+        id S232973AbhGZHc1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 03:32:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232896AbhGZHcZ (ORCPT
+        with ESMTP id S232977AbhGZHcZ (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 03:32:25 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04E31C061764
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 01:12:50 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id m20-20020a05600c4f54b029024e75a15716so4717413wmq.2
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 01:12:49 -0700 (PDT)
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E449C0613D5
+        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 01:12:54 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id h24-20020a1ccc180000b029022e0571d1a0so5655360wmb.5
+        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 01:12:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Yq3/Usg23HBuIMfDTsX3A2d2AdqpGJKmC06vUXWwG8E=;
-        b=CzQF+6G19IDqt6+jnnEAWeFDqZiAtBSDlznMfDlFQyG/wd74/mcrVc9W/M883ZGDMs
-         lqjUfRd+4wGHVSK7AujVAoZtIosvU1cjF02YuvMeVEzUzuw095/q8Xplw37MXi8EooCl
-         R+f9dCokfwFQgLOONjvZ8X6+ykLNn27j4hQlPrzfB0DpL/4GMWGocAzrBfwMYmMWg/RF
-         uOeOlA8NKWYqneKCf1LkDkVu9REtd0Letq/7/LSe1oRALiuz71D4n6iQEbknMp5EWyBN
-         A555b/ogGegRzFxzW/cciWWFdxh5ue30qlVgvvNxKHpPk89xmIy2D/R5Jh4hym7QChAp
-         6Yyg==
+        bh=E1tqK1iTmNRLpcSNr0tub0A4uI6FbhV9kAz5unEaOR8=;
+        b=qM+U7w3dxOkS3lq/Bekk4CYwU6QOPEr5DkUYPksSpVjVWCQkXUo+/IFShRFANUkqQz
+         WZ+/szCu3z8L8ubAWqAcUHplQsA+lvs1GK8fwWrHyT1h2tOsRL0Kr55W1RAZG80/F00o
+         EDrGOrH0FceaRBjGqeqqq51YsJw819KuikQk6wuKtED1dVdTpD3DudrkNIiJhGN17eJ1
+         kw3bypQD4og+tzPPS0l5pLAiKR2owJLNZ+lrSbHX+2sEr02FnitRkqSNZiKYz8hCg64p
+         hSjZo/y+Z+03h+3Tg4u4fZ5g9q2IRiacFTgI7AIkdY97utPoCpXWloTe3Dig6puuAYSu
+         DbHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Yq3/Usg23HBuIMfDTsX3A2d2AdqpGJKmC06vUXWwG8E=;
-        b=oSeMUSRuMiQwYMT805ajIwLWhbhql4RueXqLhfCPaodMTgOPJIgXuxRyCl9AtM8nHc
-         mDRfTaVAdXUsA0uxi7TtXbH7D0aCyicj1Q8hhh4l823UAmB5AUrMjm9MFAh/5CZ8Tpn7
-         ps+83u02as4aP+upT1b8kJpKTeofYvy2hTEnaJh6aqy+ygWuSaqlhYMKGCzwgx9DV4I+
-         v4NpOeJghsCsH9S2wCUTzC1oWgrwfiTRM37eHrbInNUjoyPC/JxreZU0luf44OGY6T61
-         b4mZikC33WwrgrUicOKmqn/OiKeZuvlE8htyzbKZS8YCnmvkRLll0tzoGkqGEakGqgpa
-         qyaA==
-X-Gm-Message-State: AOAM533LsU7G7sVz7hoMRMGtjYyPbNrjGmXiWFvBVthp2zCAHXXmcM4c
-        zQSdNzCZZRX22whbL5Im1v5JCQ==
-X-Google-Smtp-Source: ABdhPJxx3eMucSN49AJxrsYAM/bzg6uYgeTTFscxgW1oSmdLnxJP1ucK7mNwiZf31V86inX3IcD/RA==
-X-Received: by 2002:a7b:cb09:: with SMTP id u9mr1209192wmj.63.1627287168602;
-        Mon, 26 Jul 2021 01:12:48 -0700 (PDT)
+        bh=E1tqK1iTmNRLpcSNr0tub0A4uI6FbhV9kAz5unEaOR8=;
+        b=UvTKWGEMCz/6++4p3eCkgnxgecdyRCd5FpWs+qt2ybq5MJ0GKaF5UsxooHEYqxSugm
+         q5kk7ZfOb4Qm9ETpZ51SUZKXIFGTZ4o/QNWMptG/SfF9tH8XS+snv7jNMEC0napkpMq/
+         rQqKemdkuk88s/eURJpc4DrzSk4MtPQlTRiXmm4WCMW6ejMyef7yZmRVM3D1S/ZWG0Jh
+         Qq0/PbLw5F+6pC+19krjjYRDdxP5snamkAHCAZGGY7gK1x9RZZKfPcmgYiJXaeVhm42u
+         4zUz3UK861Lyl4lXxWYVOiHxSa20Ck2XCbI5V9DMd8GQUB9+dFG98zAHheF3Uv1VEU32
+         67cg==
+X-Gm-Message-State: AOAM530RJJMVEkf2qahtWEvzTWpsnaeTOQJ7De5hUc6pCczInQU8XCma
+        PJgpoUsn6VafpXdPe4jYrwMrKw==
+X-Google-Smtp-Source: ABdhPJz2/+Tf5eYCYct0tYno0IeJ3EoZiBJQ7jLZx/evy1F7uvBD3CbLodH4A1LLF0nDpgeY6bIdbQ==
+X-Received: by 2002:a05:600c:4982:: with SMTP id h2mr16154472wmp.184.1627287173204;
+        Mon, 26 Jul 2021 01:12:53 -0700 (PDT)
 Received: from localhost.localdomain ([2001:861:44c0:66c0:32b6:aa71:d2df:4f1d])
-        by smtp.gmail.com with ESMTPSA id c15sm646762wrx.70.2021.07.26.01.12.47
+        by smtp.gmail.com with ESMTPSA id c15sm646762wrx.70.2021.07.26.01.12.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jul 2021 01:12:48 -0700 (PDT)
+        Mon, 26 Jul 2021 01:12:52 -0700 (PDT)
 From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Anand Moon <linux.amoon@gmail.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Chen-Yu Tsai <wens@kernel.org>,
         Jerome Brunet <jbrunet@baylibre.com>,
         Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>
-Subject: Re: [PATCHv2 0/3] Fix the pwm regulator supply properties
-Date:   Mon, 26 Jul 2021 10:12:37 +0200
-Message-Id: <162728713307.14205.16664284438953464220.b4-ty@baylibre.com>
+        Kevin Hilman <khilman@baylibre.com>
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Chen-Yu Tsai <wens@csie.org>
+Subject: Re: [PATCH v3] arm64: dts: meson-gxbb: nanopi-k2: Enable Bluetooth
+Date:   Mon, 26 Jul 2021 10:12:41 +0200
+Message-Id: <162728713307.14205.377532057351030776.b4-ty@baylibre.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210705112358.3554-1-linux.amoon@gmail.com>
-References: <20210705112358.3554-1-linux.amoon@gmail.com>
+In-Reply-To: <20210712135919.32059-1-wens@kernel.org>
+References: <20210712135919.32059-1-wens@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -72,26 +71,17 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On Mon, 5 Jul 2021 11:23:52 +0000, Anand Moon wrote:
-> Changes PWM supply properties help fix internal link of PWM to
-> main 5V supply as per the shematics.
+On Mon, 12 Jul 2021 21:59:19 +0800, Chen-Yu Tsai wrote:
+> The NanoPi K2 has a AP6212 WiFi+BT combo module. The WiFi portion is
+> already enabled. The BT part is connected via UART and I2S.
 > 
-> PATCHv1 below
-> [0] https://lore.kernel.org/linux-amlogic/CANAwSgRD9_B7f5UjPrxeL+x-eMMc2MAG3tXLQw36x0ho+ba_Uw@mail.gmail.com/T/#t
-> 
-> Thanks
-> -Anand
-> 
-> [...]
+> Enable the UART and add a device node describing the Bluetooth portion
+> of the module.
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (for-next)
 
-[1/3] ARM: dts: meson8b: odroidc1: Fix the pwm regulator supply properties
-      https://git.kernel.org/amlogic/c/876228e9f935f19c7afc7ba394d17e2ec9143b65
-[2/3] ARM: dts: meson8b: mxq: Fix the pwm regulator supply properties
-      https://git.kernel.org/amlogic/c/632062e540becbbcb067523ec8bcadb1239d9578
-[3/3] ARM: dts: meson8b: ec100: Fix the pwm regulator supply properties
-      https://git.kernel.org/amlogic/c/72ccc373b064ae3ac0c5b5f2306069b60ca118df
+[1/1] arm64: dts: meson-gxbb: nanopi-k2: Enable Bluetooth
+      https://git.kernel.org/amlogic/c/46f2735c17d215fd76c54d7bfc4d7ca5ec206eb2
 
 -- 
 Neil
