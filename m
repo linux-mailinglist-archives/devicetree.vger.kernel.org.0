@@ -2,120 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A17F93D6863
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 23:03:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C06F43D687E
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 23:15:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233199AbhGZUWn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 16:22:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36344 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233081AbhGZUWm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 16:22:42 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2FF9C061757
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 14:03:10 -0700 (PDT)
-Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 0CF8983343;
-        Mon, 26 Jul 2021 23:03:08 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1627333388;
-        bh=TL41y2FDQuhG0hYx54miiXzWh4R1JANiHcbnbdyX8pM=;
-        h=From:To:Cc:Subject:Date:From;
-        b=uMJyOE66hTE32wOThFSCo9AlZ18g6BzQpN1k3rkVcI9ragHYvYxtwX9PgOZqADSik
-         Bgy0/iUXnh8ByobHbqgmkH2chaCm8NmKOQnHha2+y4SZgmJ0olcPWW+odc/uZ2pv/Z
-         zA73xOr+eoK85Tb1hCsEXOeZ8lNg3j8YFa9L0wphGXilsNHD1wUoynwVwuSt8GItob
-         NPT6/KlvdgRNuiTig5UBOxcgQIE98UptATiKp9RlDCtQ4PPwEPQMlkXiFGWMxJ6wJh
-         2Q6cuG78TOr4COrZMhGch9zxxznZcI//iHPLwLMQX+Zb3sY5ZOtkVlS3R+R5hjqVQO
-         QByM3T+LJd3OA==
-From:   Marek Vasut <marex@denx.de>
-To:     dri-devel@lists.freedesktop.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
-Subject: [PATCH V3 1/2] dt-bindings: display: bridge: lvds-codec: Document LVDS data mapping select
-Date:   Mon, 26 Jul 2021 23:02:49 +0200
-Message-Id: <20210726210250.531544-1-marex@denx.de>
-X-Mailer: git-send-email 2.30.2
+        id S233468AbhGZUe7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 16:34:59 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:46276 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232788AbhGZUe6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Jul 2021 16:34:58 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=Yoc2z7uSUjkhWnv+tKrvr5GkQUl2nOVtSonxg9WBwAg=; b=fx8fYTsSCW+Qonl46qValLkRYL
+        itn1Vur0eObChQR30YQp85ntEWfAPd3naBCSLlLPbX5huNS8U4c+mDF4Ab2hFJmTXId9l5eN1GsgW
+        beKngG6niNYpyXY1+4PzYV3/bf3ck04bV1PjkYHLySD0tUHm7Mk5DeK4QqYDm8gJjQNI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1m87wX-00EuuR-Cu; Mon, 26 Jul 2021 23:15:21 +0200
+Date:   Mon, 26 Jul 2021 23:15:21 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Gerhard Engleder <gerhard@engleder-embedded.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        michal.simek@xilinx.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 4/5] tsnep: Add TSN endpoint Ethernet MAC driver
+Message-ID: <YP8l6cWaQU/2NoIA@lunn.ch>
+References: <20210726194603.14671-1-gerhard@engleder-embedded.com>
+ <20210726194603.14671-5-gerhard@engleder-embedded.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210726194603.14671-5-gerhard@engleder-embedded.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Decoder input LVDS format is a property of the decoder chip or even
-its strapping. Add DT property data-mapping the same way lvds-panel
-does, to define the LVDS data mapping.
+> +static int tsnep_mdiobus_read(struct mii_bus *bus, int addr, int regnum)
+> +{
+> +	struct tsnep_adapter *adapter = bus->priv;
+> +	u16 data;
+> +	int retval;
+> +
+> +	if (adapter->loopback)
+> +		return 0;
+> +
+> +	retval = tsnep_read_md(adapter, addr, regnum, &data);
+> +	if (retval != 0)
+> +		return retval;
 
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Sam Ravnborg <sam@ravnborg.org>
-Cc: devicetree@vger.kernel.org
-To: dri-devel@lists.freedesktop.org
----
-V2: - Use allOf
-    - Move the data-mapping to endpoint
-V3: - Rebase on V2 submitted a while ago, reinstate changelog
-    - Drop the allOf and un-rebase on previous pclk patch
----
- .../bindings/display/bridge/lvds-codec.yaml   | 31 +++++++++++++++++++
- 1 file changed, 31 insertions(+)
+It appears your MDIO bus can only do C22. Please add a test for C45 and return -EOPNOTSUPP.
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-index 304a1367faaa7..f795c671c3ce1 100644
---- a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-@@ -60,6 +60,21 @@ properties:
-           For LVDS encoders, port 1 is the LVDS output
-           For LVDS decoders, port 1 is the parallel output
- 
-+        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              data-mapping:
-+                enum:
-+                  - jeida-18
-+                  - jeida-24
-+                  - vesa-24
-+                description: |
-+                  The color signals mapping order. See details in
-+                  Documentation/devicetree/bindings/display/panel/lvds.yaml
-+
-     required:
-       - port@0
-       - port@1
-@@ -71,6 +86,22 @@ properties:
- 
-   power-supply: true
- 
-+if:
-+  not:
-+    properties:
-+      compatible:
-+        contains:
-+          const: lvds-decoder
-+then:
-+  properties:
-+    ports:
-+      properties:
-+        port@1:
-+          properties:
-+            endpoint:
-+              properties:
-+                data-mapping: false
-+
- required:
-   - compatible
-   - ports
--- 
-2.30.2
+> +static void tsnep_phy_link_status_change(struct net_device *netdev)
+> +{
+> +	struct tsnep_adapter *adapter = netdev_priv(netdev);
+> +	struct phy_device *phydev = netdev->phydev;
+> +
+> +	if (adapter->loopback)
+> +		return;
+> +
+> +	if (adapter->gmii2rgmii) {
+> +		u16 val;
+> +
+> +		if (phydev->link && phydev->speed == 1000)
+> +			val = BMCR_SPEED1000;
+> +		else
+> +			val = BMCR_SPEED100;
+> +		tsnep_write_md(adapter, ECM_GMII2RGMII_ADDR,
+> +			       ECM_GMII2RGMII_BMCR, val);
+> +	}
 
+I _think_ this is wrong. They way the PHYs are chained means you
+should not need to do this, the xgmiitorgmii_read_status() does it.
+Maybe you have the chaining setup wrong?
+
+> +static int tsnep_phy_open(struct tsnep_adapter *adapter)
+> +{
+> +	__ETHTOOL_DECLARE_LINK_MODE_MASK(mask);
+> +	struct ethtool_eee ethtool_eee;
+> +	int retval;
+> +
+> +	retval = phy_connect_direct(adapter->netdev, adapter->phydev,
+> +				    tsnep_phy_link_status_change,
+> +				    adapter->phy_mode);
+> +	if (retval)
+> +		return -EIO;
+
+phy_connect_direct() returns an error code. Use it, rather than
+changing it to something else. This applies everywhere. You must have
+a good reason to change error codes, and then it is wise to put a
+comment why you change it.
+
+> +
+> +	/* MAC supports only 100Mbps|1000Mbps full duplex
+> +	 * SPE (Single Pair Ethernet) is also an option but not implemented yet
+> +	 */
+> +	linkmode_zero(mask);
+> +	linkmode_set_bit(ETHTOOL_LINK_MODE_Autoneg_BIT, mask);
+> +	linkmode_set_bit(ETHTOOL_LINK_MODE_100baseT_Full_BIT, mask);
+> +	linkmode_set_bit(ETHTOOL_LINK_MODE_1000baseT_Full_BIT, mask);
+> +	linkmode_and(mask, adapter->phydev->supported, mask);
+> +	linkmode_copy(adapter->phydev->supported, mask);
+> +	linkmode_copy(adapter->phydev->advertising, mask);
+
+You should not be accessing the phydev directly. Use
+phy_remove_link_mode(phydev, ETHTOOL_LINK_MODE_1000baseT_Half_BIT),
+etc.
+
+> +static int tsnep_phy_init(struct tsnep_adapter *adapter)
+> +{
+> +	struct device_node *dn;
+> +	u16 val;
+> +	u32 id;
+> +	int retval;
+> +
+> +	retval = of_get_phy_mode(adapter->pdev->dev.of_node,
+> +				 &adapter->phy_mode);
+> +	if (retval)
+> +		adapter->phy_mode = PHY_INTERFACE_MODE_GMII;
+> +
+> +	dn = of_parse_phandle(adapter->pdev->dev.of_node, "phy-handle", 0);
+> +	adapter->phydev = of_phy_find_device(dn);
+> +	if (!adapter->phydev)
+> +		adapter->phydev = phy_find_first(adapter->mdiobus);
+> +	if (!adapter->phydev)
+> +		return -EIO;
+> +
+> +	/* detect optional GMII2RGMII */
+> +	retval = tsnep_read_md(adapter, ECM_GMII2RGMII_ADDR, MII_PHYSID1, &val);
+> +	if (retval)
+> +		return retval;
+> +	id = val << 16;
+> +	retval = tsnep_read_md(adapter, ECM_GMII2RGMII_ADDR, MII_PHYSID2, &val);
+> +	if (retval)
+> +		return retval;
+> +	id |= val;
+> +	if (id == 0)
+> +		adapter->gmii2rgmii = true;
+
+This is where i think GMII2RGMII goes wrong. MAC phy-handle should
+point to the GMII2RGMII device in DT. The GMII2RGMII should have a
+phy-handle which points to the PHY.
+
+> +	/* reset PHY */
+> +	retval = tsnep_write_md(adapter, adapter->phydev->mdio.addr, MII_BMCR,
+> +				BMCR_RESET);
+> +	if (retval)
+> +		return retval;
+> +
+> +	/* reset GMII2RGMII */
+> +	if (adapter->gmii2rgmii) {
+> +		retval = tsnep_write_md(adapter, ECM_GMII2RGMII_ADDR,
+> +					ECM_GMII2RGMII_BMCR, BMCR_RESET);
+> +		if (retval)
+> +			return retval;
+> +		retval = tsnep_write_md(adapter, ECM_GMII2RGMII_ADDR,
+> +					ECM_GMII2RGMII_BMCR, BMCR_SPEED100);
+> +		if (retval)
+> +			return retval;
+> +	}
+
+The PHY driver is in control of the PHY, not the MAC. Please remove.
+
+    Andrew
