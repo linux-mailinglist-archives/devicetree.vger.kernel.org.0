@@ -2,69 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 778AF3D55A6
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 10:30:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79DF43D55BC
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 10:39:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231779AbhGZHtp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 03:49:45 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49462 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231707AbhGZHto (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Jul 2021 03:49:44 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0621F60F48;
-        Mon, 26 Jul 2021 08:30:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627288213;
-        bh=9ALaw7y2tRFr/BE56ff65zn5b4GcdY8S0eccT1u4ZuA=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=Nd+O82Lj4BOQPNw5bXAXnmgpbqnp2m+TEiVzyKdTJKFugOb9CQaL613VtLC06C2vX
-         kdYdf7L6+KzVvzs6qaOltjiTUq5u1i83snzT06X/BGnkJObBltLaylWwUyt1Vrdaev
-         VsE6R6f+1RNy3hesvFEtKzwTTp1l8wCy1ed96EmiMDSuVrVk53qd0Dsk0jafSuWnWv
-         VA80YFglaDHKqdt6kr9scl1Le9YLL8c36MhD9wOnU40TVcxr/L4D0z9otvKiZ/1YJb
-         xip++mfVheE3Qk1Vw+R1MyxEBc3dG47ahhQ00QFj91Whs+Z2Meg/Stn23XYoQtbsWf
-         tWWoZmXbdwjhQ==
-Message-ID: <1a9705ff4a4f30b80371f464182ac53a5b16a541.camel@kernel.org>
-Subject: Re: [PATCH] ARM: dts: bcm283x: Fix VEC address for BCM2711
-From:   nicolas saenz julienne <nsaenz@kernel.org>
-To:     Stefan Wahren <stefan.wahren@i2se.com>,
+        id S231800AbhGZH7O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 03:59:14 -0400
+Received: from lb3-smtp-cloud9.xs4all.net ([194.109.24.30]:50795 "EHLO
+        lb3-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231728AbhGZH7O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Jul 2021 03:59:14 -0400
+X-Greylist: delayed 431 seconds by postgrey-1.27 at vger.kernel.org; Mon, 26 Jul 2021 03:59:13 EDT
+Received: from copland.sibelius.xs4all.nl ([83.163.83.176])
+        by smtp-cloud9.xs4all.net with ESMTP
+        id 7w2DmOzH54Jsb7w2EmW9Mp; Mon, 26 Jul 2021 10:32:30 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
+        t=1627288350; bh=aj0DzTZBIxsexmhMpHw/owBjAQ/ySL4SOuHiY/ftDuQ=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version:From:Subject;
+        b=nLK+JyAPuW8TLciSMMU18MR4Dviz2di0rbveBUZTOX56W6zCXdjLBtrVDlGxtlyBL
+         CH6MWD/KWITle4r2lS8oQ2dsKE/JnvpkkkmVznwD2BFYstl+3V0pmVBZkx2W2ElJIN
+         7QgQsLxZvsZm7U8o+tMSOFH0KsjO+q6yJ41DfvFqQRB2yUr85Qv0aZ6pf5Nw+J4OpM
+         LcqR6LZ3r25AtyFEXyju4Ll8Uzh9R9UiO6k8kf3A4Magsx0BU6w0/Nx93SU8lLoE7T
+         xXmbJB6wHOl7mnrVQ8iWfkr1wzNwM3WATYYwhhUPawgb/GZuPsub4VkSTL7M8NkIlH
+         4zcvTqcrYl4vw==
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     devicetree@vger.kernel.org
+Cc:     maz@kernel.org, robin.murphy@arm.com, sven@svenpeter.dev,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Hector Martin <marcan@marcan.st>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
-Date:   Mon, 26 Jul 2021 10:30:08 +0200
-In-Reply-To: <1626980528-3835-1-git-send-email-stefan.wahren@i2se.com>
-References: <1626980528-3835-1-git-send-email-stefan.wahren@i2se.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.3 (3.40.3-1.fc34) 
+        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/2] Apple M1 PCIe DT bindings
+Date:   Mon, 26 Jul 2021 10:31:59 +0200
+Message-Id: <20210726083204.93196-1-mark.kettenis@xs4all.nl>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CMAE-Envelope: MS4xfC5rqQSex9y1nQvPdjLYz3X7h5Q4DGif9oeHclh8nCZpGIdTg9koclwDAVwJ6j3uJUo13ZHnXuCUisnTHy7XVsOoBHL39lwjg4fh33ZdBx7WgcnguKyS
+ fyMdN7n7uLsOMB7Do5VLRkEJujzA7SyCC9msk7K4DcTTgARf0DSiTekPkjehPe2rZm66+rcKB9csifgZu/ExdWXeLNNxUnkDGmIlcM+3H8nnkXUslvdj26i6
+ EshCJF+ZBEXyCvHz5Rco4raq8PE5+mpkiYkCwzq8ystAbzjQeIPHNL5nshgQoFQKQqKdxYEmU36A2bQ6i/B1d3xjirq+wiGOPU7gazf7YLhwKoNO49APTm29
+ ph19JG43no1SEv2IstkRGgs4YW+t22CUKTcn7+ml/SsX1WB63Q8MOlKwlBoV6fAhkEdnBgcnKROljEx9GDoGZAcex1Rtl4DKoEJoOLsMmei+hl9WXwBdSQdm
+ ce95TfdKDgF8P6pnfdEBQKXsvC6UBhYqmQ+MRWd1mGfzjL2oAXGNe8OBq4SfcSDtQtahdn9iKJObo4SRg3T2UnM0PyTDbIHodmxLRQ==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2021-07-22 at 21:02 +0200, Stefan Wahren wrote:
-> From: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
-> 
-> The VEC has a different address (0x7ec13000) on the BCM2711 (used in
-> e.g. Raspberry Pi 4) compared to BCM283x (e.g. Pi 3 and earlier). This
-> was erroneously not taken account for.
-> 
-> Definition of the VEC in the devicetrees had to be moved from
-> bcm283x.dtsi to bcm2711.dtsi and bcm2835-common.dtsi to allow for this
-> differentiation.
-> 
-> Fixes: 7894bdc6228f ("ARM: boot: dts: bcm2711: Add BCM2711 VEC compatible")
-> Signed-off-by: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-> ---
+From: Mark Kettenis <kettenis@openbsd.org>
 
-Applied for next.
+This small series adds bindings for the PCIe controller found on the
+Apple M1 SoC.
 
-Thanks,
-Nicolas
+At this point, the primary consumer for these bindings is U-Boot.
+With these bindings U-Boot can bring up the links for the root ports
+of the PCIe root complex.  A simple OS driver can then provide
+standard ECAM access and manage MSI interrupts to provide access
+to the built-in Ethernet and XHCI controllers of the Mac mini.
 
+The Apple controller incorporates Synopsys Designware PCIe logic
+to implement its root port.  But unlike other hardware currently
+supported by U-Boot and the Linux kernel the Apple hardware
+integrates multiple root ports.  As such the existing bindings
+for the DWC PCIe interface can't be used.  There is a single ECAM
+space for all root space, but separate GPIOs to take the PCI devices
+on those ports out of reset.  Therefore the standard "reset-gpio" and
+"max-link-speed" properties appear on the child nodes representing
+the PCI devices that correspond to the individual root ports.
+
+MSIs are handled by the PCIe controller and translated into "regular
+interrupts".  A range of 32 MSIs is provided.  These 32 MSIs can be
+distributed over the root ports as the OS sees fit by programming the
+PCIe controller port registers.
+
+I still hope to hear from Marc Zyngier on the way MSIs are represented
+in this binding.
+
+Patch 2/2 of this series depends on the pinctrl series I sent earlier
+and will probably go through Hector Martin's Apple M1 SoC tree.
+
+
+Changelog:
+
+v3: - Remove unneeded include in example
+
+v2: - Adjust name for ECAM in "reg-names"
+    - Drop "phy" registers
+    - Expand description
+    - Add description for "interrupts"
+    - Fix incorrect minItems for "interrupts"
+    - Fix incorrect MaxItems for "reg-names"
+    - Document the use of "msi-controller", "msi-parent", "iommu-map" and
+      "iommu-map-mask"
+    - Fix "bus-range" and "iommu-map" properties in the example
+
+Mark Kettenis (2):
+  dt-bindings: pci: Add DT bindings for apple,pcie
+  arm64: apple: Add PCIe node
+
+ .../devicetree/bindings/pci/apple,pcie.yaml   | 166 ++++++++++++++++++
+ MAINTAINERS                                   |   1 +
+ arch/arm64/boot/dts/apple/t8103.dtsi          |  63 +++++++
+ 3 files changed, 230 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/apple,pcie.yaml
+
+-- 
+2.32.0
 
