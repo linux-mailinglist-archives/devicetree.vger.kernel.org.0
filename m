@@ -2,174 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2484A3D533D
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 08:35:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6C2D3D535E
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 08:53:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231954AbhGZFzI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 01:55:08 -0400
-Received: from szxga08-in.huawei.com ([45.249.212.255]:12263 "EHLO
-        szxga08-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231916AbhGZFzH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 01:55:07 -0400
-Received: from dggeme756-chm.china.huawei.com (unknown [172.30.72.55])
-        by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4GY9512rPvz1CMhl;
-        Mon, 26 Jul 2021 14:29:41 +0800 (CST)
-Received: from [10.40.166.221] (10.40.166.221) by
- dggeme756-chm.china.huawei.com (10.3.19.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2176.2; Mon, 26 Jul 2021 14:35:34 +0800
-Message-ID: <60FE57B5.2010603@hisilicon.com>
-Date:   Mon, 26 Jul 2021 14:35:33 +0800
-From:   Wei Xu <xuwei5@hisilicon.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
-MIME-Version: 1.0
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-CC:     <linuxarm@huawei.com>, <mauro.chehab@huawei.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        id S231712AbhGZGMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 02:12:41 -0400
+Received: from mail-eopbgr1320104.outbound.protection.outlook.com ([40.107.132.104]:45554
+        "EHLO APC01-PU1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229658AbhGZGMl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Jul 2021 02:12:41 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=aYwwQxtzTrDtNXnuzJ27P/y8kQnXV9Lyl/ktVT0JEpqVb1Oa7YOFnSegw+IlDCAa7xpOHF48n+2iCqN+swZU22R/LJsIZ/I0beRwWvfoK7oBwgCwdy/CTxd8PdZssv54HE3pPigebnEV8VggO/f6bVQ7ZHjWuoHFtX0KkNACyDIFHMuzRENn43vZFX55Kk6yG6ZhSnggiA30VIHXsRq3IkyebfFM4eyB+0ORFGMlsJrh9ycP/6hz1ecCKTnScwFCsMcPwi7GD625GOaAD7FLva9rzbyv2FuNu4/oaTfT+rdK5I44abbqSJ9j2z0NRsGjHDv/o1qmuSeLdEyIjSgGAw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dEpPBKe+b+1p5RrXpc+Go5rDMykKrwa5n5JLD5PHlMQ=;
+ b=Q+1WNy7ob1WFgCVvaRpLX/KC3SjSITb6r+Hx0MB7spKHLr+y1v2ayn5Y6lDRXr9Q1dHwv/W+kQ/SR8TsiHiOTc38Je8ZemXCLFnSLFlg4HSOFOV2e24WJ1fIQydDUqEAoSFBQuEsWCGFBFP9jM8PBBQN1XBrxHiHnoneseQEmVTm2qz8P5pwVaPNls0FQsiKZcmdDhAL71WqEqIOrw4yir5DFD/FEvKG24zB8TPQ+y+p6+M4YklLeanSiH7I64uLn0chp8i+/FGYlOo41RX09IboFbv3UxIybQ1f1phWHGVaVSXA6fdXw+zzdN/Rf7NGTrVdFFRRXgYOToCOt/S3tQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dEpPBKe+b+1p5RrXpc+Go5rDMykKrwa5n5JLD5PHlMQ=;
+ b=mIq9vvwE5AQnqmfE9kjtvgDN/dglhYfVizAlLNyD2ZXp9INYDLgMiuYQhFEkS4EhauUUsobMIlHGLapsNxVkVnKdGHfAY2KqU+fcBqVV5zNlTx1UrTsqd89embWE7HMO+bpTEdJrolE0gIyfaWJcA4TslP9BQ14SqLPnwrMi1TMgvMRczstRE3dnf90ED4Y/keEUVUK3rDjnYajI1IbGI9yQDQDRWUKZb0DnEEBzKKtoMvyyCIBjubrHaBIC05tmG7tAAhP7U5NhoIqP7Xp3efvvsLKgfSWGbpR59SHHDy2PKNymGYLiTPZjeb2dT9tcimC4a65uC0PhcDDLTZ6Kww==
+Received: from HK0PR06MB3362.apcprd06.prod.outlook.com (2603:1096:203:8b::10)
+ by HK0PR06MB3715.apcprd06.prod.outlook.com (2603:1096:203:be::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4352.29; Mon, 26 Jul
+ 2021 06:53:08 +0000
+Received: from HK0PR06MB3362.apcprd06.prod.outlook.com
+ ([fe80::a529:f5b3:b9d6:5e27]) by HK0PR06MB3362.apcprd06.prod.outlook.com
+ ([fe80::a529:f5b3:b9d6:5e27%4]) with mapi id 15.20.4352.031; Mon, 26 Jul 2021
+ 06:53:07 +0000
+From:   Billy Tsai <billy_tsai@aspeedtech.com>
+To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+CC:     "jic23@kernel.org" <jic23@kernel.org>,
+        "lars@metafoo.de" <lars@metafoo.de>,
+        "pmeerw@pmeerw.net" <pmeerw@pmeerw.net>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, "xuwei (O)" <xuwei5@huawei.com>
-Subject: Re: [PATCH 1/2] dts: hisilicon: add support for the PMIC found on
- Hikey 970
-References: <cover.1627116285.git.mchehab+huawei@kernel.org>    <4a3583dd683512c2a4a138e88d4c889e51bf48e8.1627116285.git.mchehab+huawei@kernel.org>     <60FE20AC.3050400@hisilicon.com> <20210726081812.54431189@coco.lan>
-In-Reply-To: <20210726081812.54431189@coco.lan>
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.40.166.221]
-X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
- dggeme756-chm.china.huawei.com (10.3.19.102)
-X-CFilter-Loop: Reflected
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        BMC-SW <BMC-SW@aspeedtech.com>
+Subject: Re: [v2 1/8] dt-bindings: iio: adc: rename the aspeed adc yaml
+Thread-Topic: [v2 1/8] dt-bindings: iio: adc: rename the aspeed adc yaml
+Thread-Index: AQHXf5rvaFI7lCUjSkmdExN/5MdE96tQo2UAgAS5RwA=
+Date:   Mon, 26 Jul 2021 06:53:07 +0000
+Message-ID: <E650AFD8-FFD1-4D87-87B0-42D20D9C3BB4@aspeedtech.com>
+References: <20210723081621.29477-1-billy_tsai@aspeedtech.com>
+ <20210723081621.29477-2-billy_tsai@aspeedtech.com>
+ <20210723154456.00006744@Huawei.com>
+In-Reply-To: <20210723154456.00006744@Huawei.com>
+Accept-Language: zh-TW, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: Huawei.com; dkim=none (message not signed)
+ header.d=none;Huawei.com; dmarc=none action=none header.from=aspeedtech.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 39ff2490-3e5a-4913-6cba-08d950020681
+x-ms-traffictypediagnostic: HK0PR06MB3715:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <HK0PR06MB37153ADB9CED5DA6F2A561078BE89@HK0PR06MB3715.apcprd06.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 2xsnWE0xjLT+p5EjFstL9R0D4toZzIhICOHnrGhG8S6xd/yPdfx7jvCk45njTjHBX51mowiojuPApZ/T/u+gbBJgdQKUdDJW2gFTsnIy2wr/67sYZ0IxnwUbVfxiy1b/veUA3QGTPFmlhjr4DrH9Q8mBa8VBeIAeG3gY97/yfSOIrwqt6dEpJ/OamzKh5KDMEWSKkUW0LxtSLKpRVQ1x0pmcdxX7xxY7gzj2bWyuD8HWP46CEnDjfxajkWQcj88fPPJPBHh8mPDoe3pnLu1b01hg9xDrB8Dhfz8a0xATc6sDba/Mg4lKAPnvmu304HILtjRT6MdFkVLbcaCi/hHWePIVitfUuI/hWe8t9uuq7cdV74WI44tfIALMATbCBGLJqtqO/wI+gdkJgq+MYf+pS66mJSg1w3R3OfEiSECaFyxhkNhrwiN4MGvqdzCtCT6ac0AajCTI44SJ3df47jyY40HLd6O/V21KA1ZccBxWQs43EFqaFnZeQWm3ObBZtyCzzOr3IJ6929ZM/OVk50RonzKHzljcsrzoAoDE/+idydti84+alQ/9+g3bwbJfia08GGd46Du/vNeH4DanROuvwk8IFgQK/LmliZ+ukh9mTdrYfLQ0DTNPeJCrhF6MC0D6tPvKvcSsl0/ZQcnJZ6ANNeUlKiBUAlaaknFCSOFQk+jbx7jJKxtl9CGau9pfXY2wmRyllJztSH948WQ6kdHfIAo9hIutOba3Nv5/zrSRrYk=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR06MB3362.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(136003)(39840400004)(396003)(366004)(376002)(346002)(71200400001)(8676002)(2906002)(26005)(66556008)(36756003)(5660300002)(107886003)(4744005)(55236004)(6512007)(6506007)(53546011)(316002)(66446008)(478600001)(54906003)(76116006)(91956017)(38100700002)(122000001)(8936002)(2616005)(64756008)(66476007)(66946007)(6486002)(86362001)(4326008)(6916009)(7416002)(186003)(33656002)(38070700004)(45980500001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?VllUSU1YNXpwbUt5K0FGZlorckJ3MkZ5V1NFMWljTHpnakNzeHFDbGVFczdk?=
+ =?utf-8?B?cmVsY0VoNjBkYWpORkphaEMweVZjbXd2eGRZWXFpdnpGZXpoVDZTUGhDUXM2?=
+ =?utf-8?B?L2xoRmw3ZndtSmtHSlJ2K2tPeVBobFRPeURLWGhkZG5jRWZ3amgrNmdGSWVu?=
+ =?utf-8?B?cENjSVpzMEIxd0NUQnFIMkdwVld3eDVKWTEyTHU0RnpPMWhpUWYrRUdPR3Jq?=
+ =?utf-8?B?NFltTHF0UUM1ZjFjT093T0U3dnJlU2poRWpId0E4U0JXSzJrY3NsOGJhTkJj?=
+ =?utf-8?B?K3pmZXBqZkVXWVVleG55ZWZST0hhOXpvRk5rUXBQcEFsajBUQUFLdE03b0tP?=
+ =?utf-8?B?TlgybFRQRW42R0ZQTWQ5SnZoMTFCZGpGbVhNMG93aFNPeERXV1JzRmlodCtE?=
+ =?utf-8?B?RlpkellCcE1raytqUUtFL0pWUWkxL082cHg0MTNqUnhDUmFUMkRGUEpUSEtl?=
+ =?utf-8?B?azRPaFNoQTJaOUdVQzlLa3pCMEliTEpocXJoK1RESnBBV2hrbm8veGxaVEJY?=
+ =?utf-8?B?UlR5ZGd2WDhBVEoyNlE3aHNNNGN3LzVnWGxaYStSSlN2QkpJTHo2blJ4WFRB?=
+ =?utf-8?B?OXR1aW1kK1ZpVlFwbngySVFlN2V1bzE1d1hESFJTKzZZb3c2MnVlc3NvRXBa?=
+ =?utf-8?B?eFNZbkM3VGFzVnpYbHpXVWxvZy84ckhacitMTnRhVTFJcEluL1EvcWtxN1Jm?=
+ =?utf-8?B?d3lXWHRLK1VnNVhHU3JYSVJSQ0htK24wb0p0OXBsSk5PMnpnSEtSY0tpRGhX?=
+ =?utf-8?B?NzMzaUR2UGVHcnNST3hSVjNxSWVNc2hUNVVqWkdwWTBpV1cxandsSUg4VWJn?=
+ =?utf-8?B?eS92NjlCNnZvcGdhNEl6c1RBOEVTeTh5bWh6TnBJMCtwdVAzMmdERGwzSDQ4?=
+ =?utf-8?B?cWwzOEtrRnVnSnNsaG5YcjdyUE4xSTdiS3ZCc3E4Z1RwMWtNbWZvWGdKT2JZ?=
+ =?utf-8?B?SDdZRXF1RmIxTFlUWUREN01xMEFaRmo4WFpDQ05OdVZIWS9ZL0wreWJtcG5q?=
+ =?utf-8?B?K2Rwa1d4V1lqYlpDdHlHaXU1SDRweVV5Wjk0eTJoZ0hUc3lNRlRxR0lGU0tj?=
+ =?utf-8?B?bDdYSU5odTMvZ083U2JSMUJoOGVFYkE1ckw1cmlqLzMxc0ltdm9LUHZxNEw1?=
+ =?utf-8?B?ZTYrQVl2UytIKy9pTnoya25jVkJmRHVOSTF6WXlXVzNaMHlpY1paR0lkME1U?=
+ =?utf-8?B?SFd3RUtwdHpRRVpiZXQrQXFBYXNaNWpzRllIclhGNmJrcG84bVNqVFp6c2t3?=
+ =?utf-8?B?bVg0T2Y0cHZCU3BmZGl1bmh4Z0VleTJ2OUFKR2VweGlOY3JWV0c4WDVJbVJv?=
+ =?utf-8?B?ZlA3U0xhZm5DYWFKbmFrYjlyODQ2c0hsQWhCQTF6STdLM2Mzd2dEa2orZUQr?=
+ =?utf-8?B?NDVUOWs5TkJld0JMYUZOano4ZnhNaGI4U1JvbWtGNnZVK0dxaHU3RFlNN3NC?=
+ =?utf-8?B?Z29UZkZBc1JUb29RaHRrZGZZUUh6QTNwQk5NQnl1STloRkxpMDlEQkZkZlYx?=
+ =?utf-8?B?SUdrQUx6bXA0UXlOYUYzRk9wblJNSEF6ZjFwdmN2MVRMNTVicHhFTDlDcTBy?=
+ =?utf-8?B?OGsvNS8vRU5KQVFZWjNnZjEzUUxnVHJEb3lqczBBRmJZdVFaTmlFVVZWaERR?=
+ =?utf-8?B?VW4xaDEyamdYbGRHeGNjNVVTMzNYQ0FpdEZLeEVRTXhDLzFsdGJSRTlvcjJu?=
+ =?utf-8?B?VlFTQTJQU2JTUC9hczU2L3RXUTlKOWU0dGJuUHdzei9FL0IrR3BET09uSDJQ?=
+ =?utf-8?Q?MXphTo/KuZnctAV4NbA5OkmoVqlMxhsPmSBR/fe?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <79A5F402C0F06A4D9D63A292F75C42BA@apcprd06.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: HK0PR06MB3362.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 39ff2490-3e5a-4913-6cba-08d950020681
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jul 2021 06:53:07.7338
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: we3Ky8dZxPpnDObDaQh2zvG0idgAa1tdPu36ROFybP9f4Ei7HRH5hiOPhh4dDgFfabSwOFWcKPGuLPa6I/RtKiIszJ6u80/NCf0szd5jUrU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK0PR06MB3715
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mauro,
-
-On 2021/7/26 14:19, Mauro Carvalho Chehab wrote:
-> Em Mon, 26 Jul 2021 10:40:44 +0800
-> Wei Xu <xuwei5@hisilicon.com> escreveu:
-> 
->> Hi Mauro,
->>
->> On 2021/7/24 16:55, Mauro Carvalho Chehab wrote:
->>> Add a device tree for the HiSilicon 6421v600 SPMI PMIC, used
->>> on HiKey970 board.
->>>
->>> As we now have support for it, change the fixed regulators
->>> used by the SD I/O to use the proper LDO supplies.
->>>
->>> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
->>> ---
->>>  .../boot/dts/hisilicon/hi3670-hikey970.dts    | 22 +----
->>>  .../boot/dts/hisilicon/hikey970-pmic.dtsi     | 86 +++++++++++++++++++
->>>  2 files changed, 89 insertions(+), 19 deletions(-)
->>>  create mode 100644 arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
->>>
->>> diff --git a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
->>> index d8abf442ee7e..7c32f5fd5cc5 100644
->>> --- a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
->>> +++ b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
->>> @@ -12,6 +12,7 @@
->>>  
->>>  #include "hi3670.dtsi"
->>>  #include "hikey970-pinctrl.dtsi"
->>> +#include "hikey970-pmic.dtsi"
->>>  
->>>  / {
->>>  	model = "HiKey970";
->>> @@ -39,23 +40,6 @@ memory@0 {
->>>  		reg = <0x0 0x0 0x0 0x0>;
->>>  	};
->>>  
->>> -	sd_1v8: regulator-1v8 {
->>> -		compatible = "regulator-fixed";
->>> -		regulator-name = "fixed-1.8V";
->>> -		regulator-min-microvolt = <1800000>;
->>> -		regulator-max-microvolt = <1800000>;
->>> -		regulator-always-on;
->>> -	};
->>> -
->>> -	sd_3v3: regulator-3v3 {
->>> -		compatible = "regulator-fixed";
->>> -		regulator-name = "fixed-3.3V";
->>> -		regulator-min-microvolt = <3300000>;
->>> -		regulator-max-microvolt = <3300000>;
->>> -		regulator-boot-on;
->>> -		regulator-always-on;
->>> -	};
->>> -
->>>  	wlan_en: wlan-en-1-8v {
->>>  		compatible = "regulator-fixed";
->>>  		regulator-name = "wlan-en-regulator";
->>> @@ -402,8 +386,8 @@ &dwmmc1 {
->>>  	pinctrl-0 = <&sd_pmx_func
->>>  		     &sd_clk_cfg_func  
->>>  		     &sd_cfg_func>;  
->>> -	vmmc-supply = <&sd_3v3>;
->>> -	vqmmc-supply = <&sd_1v8>;
->>> +	vmmc-supply = <&ldo16>;
->>> +	vqmmc-supply = <&ldo9>;
->>>  	status = "okay";
->>>  };
->>>  
->>> diff --git a/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
->>> new file mode 100644
->>> index 000000000000..970047f2dabd
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
->>> @@ -0,0 +1,86 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +/*
->>> + * dts file for Hi6421v600 SPMI PMIC used at the HiKey970 Development Board
->>> + *
->>> + * Copyright (C) 2020, Huawei Tech. Co., Ltd.
->>> + */
->>> +
->>> +#include <dt-bindings/spmi/spmi.h>
->>> +
->>> +/ {
->>> +	spmi: spmi@fff24000 {
->>> +		compatible = "hisilicon,kirin970-spmi-controller";
->>> +		#address-cells = <2>;
->>> +		#size-cells = <0>;
->>> +		status = "okay";
->>> +		reg = <0x0 0xfff24000 0x0 0x1000>;
->>> +		hisilicon,spmi-channel = <2>;
->>> +
->>> +		pmic: pmic@0 {
->>> +			compatible = "hisilicon,hi6421-spmi";  
->>
->> Should this be "hisilicon,hi6421-pmic" which is already in the binding document "mfd/hi6421.txt"?
->> Others are OK to me.
-> 
-> No. 
-> 
-> hisilicon,hi6421-pmic is used by this driver
-> 	drivers/mfd/hi6421-pmic-core.c
-> 
-> which provides support for the Hi6421 variants that don't use a MIPI
-> SPMI bus.
-> 
-> The "hisilicon,hi6421-spmi" compatible is for the new driver:
-> 	drivers/mfd/hi6421-spmi-pmic.c
-> 
-> And it is defined at:
-> 	Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
-> 
-> Both DT bindings and the driver were promoted from staging on this patch:
-> 
-> 	https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging.git/commit/?h=staging-next&id=9bd9e0de1cf5b89c4854be505ac0a418ddcc01bf
-
-Got it. Thanks for your kind explanation!
-So I am fine with this patch.
-Do you need my ack now or later I can merge it once it is out of staging.
-
-Best Regards,
-Wei
-
-> 
-> Regards,
-> Mauro
-> .
-> 
+SGkgSm9uYXRoYW4sDQoNCk9uIDIwMjEvNy8yMywgMTA6NDUgUE0sICJKb25hdGhhbiBDYW1lcm9u
+IiA8Sm9uYXRoYW4uQ2FtZXJvbkBIdWF3ZWkuY29tPiB3cm90ZToNCg0KICAgIE9uIEZyaSwgMjMg
+SnVsIDIwMjEgMTY6MTY6MTQgKzA4MDANCiAgICBCaWxseSBUc2FpIDxiaWxseV90c2FpQGFzcGVl
+ZHRlY2guY29tPiB3cm90ZToNCg0KICAgID4gICA+IFRoZSBhc3BlZWQsYXN0MjQwMC1hZGMueWFt
+bCBub3Qgb25seSBkZXNjcmlwdG9yIHRoZSBiaW5kaW5ncyBvZiBhc3QyNDAwLg0KICAgID4gICA+
+IFJlbmFtZSBpdCB0byBhc3BlZWQsYWRjLnlhbWwgZm9yIGFsbCBvZiB0aGUgYXNwZWVkIGFkYyBi
+aW5kaW5ncy4NCiAgICA+ICAgPiANCiAgICA+ICAgPiBTaWduZWQtb2ZmLWJ5OiBCaWxseSBUc2Fp
+IDxiaWxseV90c2FpQGFzcGVlZHRlY2guY29tPg0KDQogICAgPiAgIFdlIHRyeSB0byBhdm9pZCAn
+d2lsZCcgY2FyZCB0eXBlIG5hbWluZ3MgbW9zdCBvZiB0aGUgdGltZSBhbmQgaW5zdGVhZA0KICAg
+ID4gICBuYW1lIGFmdGVyIGEgcGFydGljdWxhciBwYXJ0IG51bWJlci4gIEkgc2F5IHRyeSBiZWNh
+dXNlIGNsZWFybHkNCiAgICA+ICAgd2UgbGV0IGEgZmV3IGluIG92ZXIgdGhlIHllYXJzIDooDQoN
+CiAgICA+ICAgSXQgaXMgdmVyeSBoYXJkIHRvIGtub3cgaWYgdGhpcyBiaW5kaW5nIHdpbGwgYXBw
+bHkgdG8gJ2FsbCcgZnV0dXJlDQogICAgPiAgIGFzcGVlZCBBRENzLg0KDQogICAgPiAgIEFzIHN1
+Y2ggSSdtIG5vdCBzdXJlIHRoaXMgcGFydGljdWxhciByZW5hbWUgbWFrZXMgc2Vuc2UuDQoNCklm
+IEkgd2FudCB0byBleHRlbmQgdGhlIHlhbWwgZmlsZSB0byBjb21wYXRpYmxlIG1vcmUgdmVyc2lv
+bnMgb2YgdGhlIGFzcGVlZCBhZGMuDQpXb3VsZCB5b3Ugc3VnZ2VzdCB0byBhZGQgbmV3IGZpbGVz
+IGNhbGwgYXNwZWVkLGFzdDI2MDAtYWRjLnlhbWwgb3IganVzdCBhcHBlbmQgaXQNCnRvIHRoZSBh
+c3BlZWQsYXN0MjQwMC1hZGMueWFtbD8NCg0KVGhhbmtzDQoNCkJlc3QgUmVnYXJkcywNCkJpbGx5
+IFRzYWkNCg0KDQo=
