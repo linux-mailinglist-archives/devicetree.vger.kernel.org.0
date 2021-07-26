@@ -2,96 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F1FCB3D5568
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 10:23:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C24C3D556D
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 10:23:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232380AbhGZHjz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 03:39:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57364 "EHLO
+        id S231951AbhGZHkM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 03:40:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232320AbhGZHjx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 03:39:53 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CF58C061757
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 01:20:22 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id h2so14027236lfu.4
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 01:20:22 -0700 (PDT)
+        with ESMTP id S233093AbhGZHkL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 03:40:11 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA2E2C061757;
+        Mon, 26 Jul 2021 01:20:38 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id 9-20020a05600c26c9b02901e44e9caa2aso5677204wmv.4;
+        Mon, 26 Jul 2021 01:20:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:from:date:message-id:subject:to:cc;
-        bh=91yXb1VgXd5JhIW1bX57GkCbuisDS0fNOG8Fkd81qLY=;
-        b=FygJv0Sm71wlNsHO+sqMNccJlsftKpOA/wgSG/X15ho9In3iyj7q2bEnSLlCtjD12L
-         N/M7zXxrwMCTf3a4UtmdqGojLPb9b7WaJOnty8rww0ORl+tzW8hTdRfEpfRm/BmXKpG4
-         yCuxashLUeZU1hZS4DgXeoD2PStAB022xLxYc=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=G1sESUOwYQF5ojlEDTCdGxRcHpdp4Ued2GOsbRa4r8E=;
+        b=Vy1ELi+UlfPWWVKOn6Enti8XWXun8Jgu4aMxQ/ZoUG0fICnYniH1G+CAcwmZ2sZfPq
+         Lh9/LPSXCSkfBJ8jojmO2Wr74Mp6MSGrle9fXb+JuIG75uuxgXAWrNKvESbZ1jfH83nw
+         FO2OjGxUZU8ICpnusz577lNp9cCh5nyl4kMOL9TglJPRpSdyxQd/ge0SW+mmQKi6k4A1
+         3pKXIWh2uZKOBTR2jIjftN0o+Wyg5lJ1bQR8OYy4B5NyXn+fRgytjCJOvwQNVmeUO7bC
+         NFBX6/ldUEAZ8NZ3R51UkRg+dS3EYc4FZxPxsCrlnsyCGPiSjcu8icj/x4en5RKeZ2Z6
+         nP/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
-        bh=91yXb1VgXd5JhIW1bX57GkCbuisDS0fNOG8Fkd81qLY=;
-        b=AkbjVzRiIj+Nt2M/V/5pkwAhczl5nbuFW0ENU81d+16PSCvmBb74yt3fZXsPs4WpIl
-         qIoTY2IY746s43MQVjwt7TGWxMtRM5cPpSO4Z/ig7q/d7yOMnfPYhtcfKcY44EmOGCAi
-         bjYALFU1JDLae6Wdp7y/D5awzRqWuVrPQv4cFlOrGxinh7WBdOcv/ff0Sj++OdCrdOi1
-         0mXwgmCEyxUZkpm3AzOcTrfU+ef3ONXq7P91NhDUWE9VbZIIIqW+y8YhchPFdhe7TWqN
-         ck7plgtGQS6jHOeeSSxXsZB2gw2DP6OOcMNqJU9aleXknnZY1xAKTNCzMwJgFJhK4VM6
-         G9qg==
-X-Gm-Message-State: AOAM533dv0CiUR6Ti+LiHIvuRe7ilmxGt0ijby3LMJDBQKeG4L98moN+
-        gOQLLfEk9oPfL/ih3ve8G2wBlkA/q6zbanXmHDPHcg==
-X-Google-Smtp-Source: ABdhPJwfbJe3IIQsY3UXhqvOx83qo8udghPA/zhl6SSU23YZpe1JFdaeLb5Lxi5GlOdmAKbpunqhPBD06JXT87jgpNk=
-X-Received: by 2002:a19:f00c:: with SMTP id p12mr12028038lfc.647.1627287620624;
- Mon, 26 Jul 2021 01:20:20 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=G1sESUOwYQF5ojlEDTCdGxRcHpdp4Ued2GOsbRa4r8E=;
+        b=j8Ou/ngznwWcdaM2ofRgu3A47KFQ7klcvNyIhPkp74aHfLPNx6a90+N3bw/ZQlcGTa
+         uBKsldzmgY1hyjFFupthAU+2mDNEfA+QaC4x2/nslqYyI8RObErIYPYriumkrirxhLPM
+         Y/GpR4B/Lg4fZjsShaciI4Smddagvi3EkON4K3PYqVbDrVYunZWUlbfeS+xU50N3cFCr
+         pcWZWw0gkOzgMIMPT+Prk9rf8sYtr8pLSugb47TOs10gmqtiDNOy7kejtdIAMQqq18cO
+         wLsSOWhuqvgwJCTvvvY6swkyHibEhL7M1E1hZhX2Kq94dNJu7BqxPvrFzmaRFl8la7/0
+         hK/g==
+X-Gm-Message-State: AOAM531E/561oBGZCGRaeHoW0L6cmLu75IPfdggJ+Hmi5+3xUS5ouSfb
+        J4v4Oehl/Xk6eiZCp4H5MRc61i9W7IgHQ9ndPLc=
+X-Google-Smtp-Source: ABdhPJwmFS8dF925El9HP8gniYqsBVNoAbPZxkCZR8v9fe2u3uB/uWVQMxnigTx694dU7UKIRO1grA==
+X-Received: by 2002:a05:600c:2194:: with SMTP id e20mr1539929wme.77.1627287637393;
+        Mon, 26 Jul 2021 01:20:37 -0700 (PDT)
+Received: from monk.home (astrasbourg-157-1-7-84.w90-40.abo.wanadoo.fr. [90.40.218.84])
+        by smtp.gmail.com with ESMTPSA id w13sm4799464wru.72.2021.07.26.01.20.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Jul 2021 01:20:36 -0700 (PDT)
+From:   Christophe Branchereau <cbranchereau@gmail.com>
+Cc:     jic23@kernel.org, lars@metafoo.de, linux-mips@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org, linux@roeck-us.net,
+        contact@artur-rojek.eu, paul@crapouillou.net,
+        Christophe Branchereau <cbranchereau@gmail.com>
+Subject: [PATCH v4 0/5] iio/adc: ingenic: add support for the JZ4760(B) Socs to the ingenic sadc driver
+Date:   Mon, 26 Jul 2021 10:20:28 +0200
+Message-Id: <20210726082033.351533-1-cbranchereau@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Mon, 26 Jul 2021 16:20:09 +0800
-Message-ID: <CAGXv+5Ev4QU72cMqMW7sA=dijzh7-DCsfHY+Lmqd36uzg_7Nww@mail.gmail.com>
-Subject: arm64: dts: mt8183: Incorrect mediatek,pull-*-adv values
-To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fabien Parent <fparent@baylibre.com>
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, Zhiyong Tao <zhiyong.tao@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This is a set of patches to add support to the JZ4760(B) socs found in numerous gaming handhelds and some
+mp3 players to the ingenic-sadc driver.
 
-I was looking at MTK pinctrl stuff upstream, and it seems there are a few
-`mediatek,pull-*-adv` entries that have invalid values:
+Changelog for this v4:
 
-arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi:
-mediatek,pull-down-adv = <10>;
-arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi:
-mediatek,pull-down-adv = <10>;
-arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi:
-mediatek,pull-down-adv = <10>;
-arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi:
-mediatek,pull-up-adv = <10>;
-arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi:
-mediatek,pull-down-adv = <10>;
-arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi:
-mediatek,pull-up-adv = <10>;
-arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi:
-mediatek,pull-down-adv = <10>;
-arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts:
- mediatek,pull-down-adv = <10>;
-arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts:
- mediatek,pull-down-adv = <10>;
-arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts:
- mediatek,pull-down-adv = <10>;
-arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts:
- mediatek,pull-up-adv = <10>;
-arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts:
- mediatek,pull-down-adv = <10>;
-arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts:
- mediatek,pull-up-adv = <10>;
+Fix patch 4/5 that was missing the .compatible string for the jz4760b.
 
-According to the bindings, the values should 0~3. <10> is probably a
-incorrect attempt at using binary representation, which is wrong. This
-probably leads to the pull-up/down getting disabled or ignored.
+Christophe Branchereau (5):
+  iio/adc: ingenic: rename has_aux2 to has_aux_md
+  dt-bindings: iio/adc: add an INGENIC_ADC_AUX0 entry
+  iio/adc: ingenic: add JZ4760 support to the sadc driver
+  iio/adc: ingenic: add JZ4760B support to the sadc driver
+  dt-bindings: iio/adc: ingenic: add the JZ4760(B) socs to the sadc
+    Documentation
 
-Cound people still working on these two devices take a look?
+ .../bindings/iio/adc/ingenic,adc.yaml         |  19 ++++
+ drivers/iio/adc/ingenic-adc.c                 | 102 ++++++++++++++++--
+ include/dt-bindings/iio/adc/ingenic,adc.h     |   1 +
+ 3 files changed, 113 insertions(+), 9 deletions(-)
 
+-- 
+2.30.2
 
-Regards
-ChenYu
