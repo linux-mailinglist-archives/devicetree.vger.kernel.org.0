@@ -2,112 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F397D3D5931
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 14:10:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72F6A3D5986
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 14:30:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233722AbhGZL3m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 07:29:42 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:22712 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233904AbhGZL3l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 07:29:41 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1627301410; h=Content-Transfer-Encoding: MIME-Version:
- References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=3/gmCHMGkJM6P5MYZ8rOcK36PcqAgmXsbRRFLqUIVq8=; b=Q4HbYXkoOpvs0t2E6YuVdpbmg4QqHZAnbWXFkp5rruXs5ZgsE+YBwlvJb6TfPXJ6uJaXv91O
- xAbhBDbfNJG3JG7uj/EfRs8MY1o8IyTwzMF/LKA2mmjN37AY0hY0e5JihsajdC0+ZX+pHowQ
- LFocU+3SJhQlyvC35pq8N2URV8I=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
- 60fea609290ea35ee601eba2 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 26 Jul 2021 12:09:45
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id B8984C433D3; Mon, 26 Jul 2021 12:09:44 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 78238C433F1;
-        Mon, 26 Jul 2021 12:09:40 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 78238C433F1
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, rohitkr@codeaurora.org,
-        srinivas.kandagatla@linaro.org, dianders@chromium.org,
-        swboyd@chromium.org, judyhsiao@chromium.org
-Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Subject: [PATCH v7 2/2] arm64: dts: qcom: sc7180-trogdor: Add lpass dai link for HDMI
-Date:   Mon, 26 Jul 2021 17:39:10 +0530
-Message-Id: <20210726120910.20335-3-srivasam@codeaurora.org>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20210726120910.20335-1-srivasam@codeaurora.org>
-References: <20210726120910.20335-1-srivasam@codeaurora.org>
+        id S234040AbhGZLtt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 07:49:49 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:36184 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S233995AbhGZLtt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 07:49:49 -0400
+X-UUID: c6bdd2e5954943319e01f964410c6c68-20210726
+X-UUID: c6bdd2e5954943319e01f964410c6c68-20210726
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <christine.zhu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 910698119; Mon, 26 Jul 2021 20:30:13 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 26 Jul 2021 20:30:12 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 26 Jul 2021 20:30:11 +0800
+From:   Christine Zhu <Christine.Zhu@mediatek.com>
+To:     <wim@linux-watchdog.org>, <linux@roeck-us.net>,
+        <robh+dt@kernel.org>, <matthias.bgg@gmail.com>
+CC:     <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <seiya.wang@mediatek.com>,
+        Christine Zhu <Christine.Zhu@mediatek.com>
+Subject: [v7,1/3] dt-bindings: mediatek: mt8195: update mtk-wdt document
+Date:   Mon, 26 Jul 2021 20:29:00 +0800
+Message-ID: <20210726122901.12195-2-Christine.Zhu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <20210726122901.12195-1-Christine.Zhu@mediatek.com>
+References: <20210726122901.12195-1-Christine.Zhu@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+Update mtk-wdt document for MT8195 platform.
 
-Add dai link in sc7180-trogdor.dtsi for supporting audio over DP
-
-Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Signed-off-by: Christine Zhu <Christine.Zhu@mediatek.com>
+Acked-by: Rob Herring <robh@kernel.org>
 ---
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ Documentation/devicetree/bindings/watchdog/mtk-wdt.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index 31bf7c698b8f..472710165b32 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -314,6 +314,18 @@ sound_multimedia1_codec: codec {
- 				sound-dai = <&max98357a>;
- 			};
- 		};
-+
-+		dai-link@5 {
-+			link-name = "MultiMedia2";
-+			reg = <LPASS_DP_RX>;
-+			cpu {
-+				sound-dai = <&lpass_cpu 2>;
-+			};
-+
-+			codec {
-+				sound-dai = <&mdss_dp>;
-+			};
-+		};
- 	};
- };
+diff --git a/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt b/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
+index e36ba60de829..ca9b67ab7c44 100644
+--- a/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
++++ b/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
+@@ -13,6 +13,7 @@ Required properties:
+ 	"mediatek,mt8183-wdt": for MT8183
+ 	"mediatek,mt8516-wdt", "mediatek,mt6589-wdt": for MT8516
+ 	"mediatek,mt8192-wdt": for MT8192
++	"mediatek,mt8195-wdt": for MT8195
  
-@@ -768,6 +780,10 @@ secondary_mi2s: mi2s@1 {
- 		reg = <MI2S_SECONDARY>;
- 		qcom,playback-sd-lines = <0>;
- 	};
-+
-+	hdmi@5 {
-+		reg = <LPASS_DP_RX>;
-+	};
- };
+ - reg : Specifies base physical address and size of the registers.
  
- &mdp {
 -- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+2.18.0
 
