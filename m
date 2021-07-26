@@ -2,200 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C7AF63D5508
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 10:15:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2440C3D550C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 10:15:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232524AbhGZH3k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 03:29:40 -0400
-Received: from szxga01-in.huawei.com ([45.249.212.187]:16001 "EHLO
-        szxga01-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233018AbhGZH3g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 03:29:36 -0400
-Received: from dggeme758-chm.china.huawei.com (unknown [172.30.72.55])
-        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4GYCDs0lYvzZsrC;
-        Mon, 26 Jul 2021 16:06:37 +0800 (CST)
-Received: from [10.40.166.221] (10.40.166.221) by
- dggeme758-chm.china.huawei.com (10.3.19.104) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2176.2; Mon, 26 Jul 2021 16:10:03 +0800
-Message-ID: <60FE6DDA.8080904@hisilicon.com>
-Date:   Mon, 26 Jul 2021 16:10:02 +0800
-From:   Wei Xu <xuwei5@hisilicon.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+        id S232734AbhGZHak (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 03:30:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55050 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231778AbhGZHaj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 03:30:39 -0400
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E9F7C061760
+        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 01:11:09 -0700 (PDT)
+Received: by mail-oi1-x230.google.com with SMTP id x15so9964906oic.9
+        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 01:11:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=aleksander-es.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0GP/EHeB2F+joGDHU02CEiGN7OLbvD6PYDzreWGz75Y=;
+        b=bWjvUWCy0CBmB2s70fd3Kkx52yx3LEJ5JZnLcv9ee1cv2SjeoIlDKIDVayngd9K6ks
+         UveqbpPisyT3xluAnHYHLDprWWh2tLvzKadsLyzxne/z2bhqFc6YXb9Qd7fAKIjYLSzg
+         P+LO6KSqbJAfTMh/W7efJ6IRgtWFmAE/jioTo6b4o43BFnu/9mfTiSKzx8wueYiLV3zj
+         ASvdYD9wTNOl+27Jf02f246TWynZ8WNpPHy9rUWftoBYQSbAedJSSjEo2Doqu/h5CuSr
+         3tGPl9uEvYchI/5PtRtMD0nn1Fi69fRKhfwv/G9/NAZJArgg/ouaSEYIe5AXV/A8JMna
+         ntpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0GP/EHeB2F+joGDHU02CEiGN7OLbvD6PYDzreWGz75Y=;
+        b=Vk/doXIT+HEcVujnbCaFEqleEZYQw35d1iuADEp9Z4x4OzGnTTYIAVUZ40D8G4ev35
+         NRfQm+HRM29CNxAUPfHXQ2sWiNOyB76H7ko8yugQ1QhdPu99rZWG7VnmRN2ZcbbqTVJe
+         WJhiB2/mMHW7YbWIbmKFy2NjiKWtJs4usCC9/nK+GwuBKXOwzipyJ2/wtvIzfeyjD/Nb
+         wmLsO8tnPgZ30t9dsZ5ePBqqX5/6jwjlrBluLBx9gfyWmm2QAQoLYFqFk1SfGa6TpQbZ
+         78bH4LgYd2pfrbpEnqL+Ro1GTZ+dpFECSPaXDvV7JlGlnPuYf8OiR6O41Iz2xJHwyuXX
+         KGYQ==
+X-Gm-Message-State: AOAM531JLOqxieS9YLZE35dOYEklL8JdAc/PHU8JmDxoAxOtTF0wZAUW
+        XC2THA5iW+oz8J8W6moQab2uEzonXlZ+qkrdOHJSBA==
+X-Google-Smtp-Source: ABdhPJxsLtxOE30YI4uU9tzXePvXaR+jEzI/+O8buRjlY4pKNDL9jEQFsrUHWJneA04tkY5laBLNP5cPn8JGfpAlsCg=
+X-Received: by 2002:aca:3094:: with SMTP id w142mr8854244oiw.37.1627287068295;
+ Mon, 26 Jul 2021 01:11:08 -0700 (PDT)
 MIME-Version: 1.0
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     <linuxarm@huawei.com>, <mauro.chehab@huawei.com>,
-        Rob Herring <robh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, "xuwei (O)" <xuwei5@huawei.com>
-Subject: Re: [PATCH 1/2] dts: hisilicon: add support for the PMIC found on
- Hikey 970
-References: <cover.1627116285.git.mchehab+huawei@kernel.org>    <4a3583dd683512c2a4a138e88d4c889e51bf48e8.1627116285.git.mchehab+huawei@kernel.org>     <60FE20AC.3050400@hisilicon.com>        <20210726081812.54431189@coco.lan>      <60FE57B5.2010603@hisilicon.com> <20210726094344.0a415bd0@coco.lan>
-In-Reply-To: <20210726094344.0a415bd0@coco.lan>
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.40.166.221]
-X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
- dggeme758-chm.china.huawei.com (10.3.19.104)
-X-CFilter-Loop: Reflected
+References: <20210719145317.79692-1-stephan@gerhold.net> <20210719145317.79692-5-stephan@gerhold.net>
+ <CAMZdPi8oxRMo0erfd0wrUPzD2UsbexoR=86u2N75Fd9RpXHoKg@mail.gmail.com>
+ <YPmRcBXpRtKKSDl8@gerhold.net> <CAHNKnsQr4Ys8q3Ctru-H=L3ZDwb__2D3E08mMZchDLAs1KetAg@mail.gmail.com>
+In-Reply-To: <CAHNKnsQr4Ys8q3Ctru-H=L3ZDwb__2D3E08mMZchDLAs1KetAg@mail.gmail.com>
+From:   Aleksander Morgado <aleksander@aleksander.es>
+Date:   Mon, 26 Jul 2021 10:10:57 +0200
+Message-ID: <CAAP7ucLDEoJzwNvWLCWyCNE+kKBDn4aBU-9XT_Uv_yetnX4h-g@mail.gmail.com>
+Subject: Re: [RFC PATCH net-next 4/4] net: wwan: Add Qualcomm BAM-DMUX WWAN
+ network driver
+To:     Sergey Ryazanov <ryazanov.s.a@gmail.com>,
+        =?UTF-8?Q?Bj=C3=B8rn_Mork?= <bjorn@mork.no>
+Cc:     Stephan Gerhold <stephan@gerhold.net>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Network Development <netdev@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dmaengine@vger.kernel.org, devicetree <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mauro,
+Hey!
 
-On 2021/7/26 15:43, Mauro Carvalho Chehab wrote:
-> Em Mon, 26 Jul 2021 14:35:33 +0800
-> Wei Xu <xuwei5@hisilicon.com> escreveu:
-> 
->> Hi Mauro,
->>
->> On 2021/7/26 14:19, Mauro Carvalho Chehab wrote:
->>> Em Mon, 26 Jul 2021 10:40:44 +0800
->>> Wei Xu <xuwei5@hisilicon.com> escreveu:
->>>   
->>>> Hi Mauro,
->>>>
->>>> On 2021/7/24 16:55, Mauro Carvalho Chehab wrote:  
->>>>> Add a device tree for the HiSilicon 6421v600 SPMI PMIC, used
->>>>> on HiKey970 board.
->>>>>
->>>>> As we now have support for it, change the fixed regulators
->>>>> used by the SD I/O to use the proper LDO supplies.
->>>>>
->>>>> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
->>>>> ---
->>>>>  .../boot/dts/hisilicon/hi3670-hikey970.dts    | 22 +----
->>>>>  .../boot/dts/hisilicon/hikey970-pmic.dtsi     | 86 +++++++++++++++++++
->>>>>  2 files changed, 89 insertions(+), 19 deletions(-)
->>>>>  create mode 100644 arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
->>>>> index d8abf442ee7e..7c32f5fd5cc5 100644
->>>>> --- a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
->>>>> +++ b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
->>>>> @@ -12,6 +12,7 @@
->>>>>  
->>>>>  #include "hi3670.dtsi"
->>>>>  #include "hikey970-pinctrl.dtsi"
->>>>> +#include "hikey970-pmic.dtsi"
->>>>>  
->>>>>  / {
->>>>>  	model = "HiKey970";
->>>>> @@ -39,23 +40,6 @@ memory@0 {
->>>>>  		reg = <0x0 0x0 0x0 0x0>;
->>>>>  	};
->>>>>  
->>>>> -	sd_1v8: regulator-1v8 {
->>>>> -		compatible = "regulator-fixed";
->>>>> -		regulator-name = "fixed-1.8V";
->>>>> -		regulator-min-microvolt = <1800000>;
->>>>> -		regulator-max-microvolt = <1800000>;
->>>>> -		regulator-always-on;
->>>>> -	};
->>>>> -
->>>>> -	sd_3v3: regulator-3v3 {
->>>>> -		compatible = "regulator-fixed";
->>>>> -		regulator-name = "fixed-3.3V";
->>>>> -		regulator-min-microvolt = <3300000>;
->>>>> -		regulator-max-microvolt = <3300000>;
->>>>> -		regulator-boot-on;
->>>>> -		regulator-always-on;
->>>>> -	};
->>>>> -
->>>>>  	wlan_en: wlan-en-1-8v {
->>>>>  		compatible = "regulator-fixed";
->>>>>  		regulator-name = "wlan-en-regulator";
->>>>> @@ -402,8 +386,8 @@ &dwmmc1 {
->>>>>  	pinctrl-0 = <&sd_pmx_func
->>>>>  		     &sd_clk_cfg_func    
->>>>>  		     &sd_cfg_func>;    
->>>>> -	vmmc-supply = <&sd_3v3>;
->>>>> -	vqmmc-supply = <&sd_1v8>;
->>>>> +	vmmc-supply = <&ldo16>;
->>>>> +	vqmmc-supply = <&ldo9>;
->>>>>  	status = "okay";
->>>>>  };
->>>>>  
->>>>> diff --git a/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
->>>>> new file mode 100644
->>>>> index 000000000000..970047f2dabd
->>>>> --- /dev/null
->>>>> +++ b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
->>>>> @@ -0,0 +1,86 @@
->>>>> +// SPDX-License-Identifier: GPL-2.0
->>>>> +/*
->>>>> + * dts file for Hi6421v600 SPMI PMIC used at the HiKey970 Development Board
->>>>> + *
->>>>> + * Copyright (C) 2020, Huawei Tech. Co., Ltd.
->>>>> + */
->>>>> +
->>>>> +#include <dt-bindings/spmi/spmi.h>
->>>>> +
->>>>> +/ {
->>>>> +	spmi: spmi@fff24000 {
->>>>> +		compatible = "hisilicon,kirin970-spmi-controller";
->>>>> +		#address-cells = <2>;
->>>>> +		#size-cells = <0>;
->>>>> +		status = "okay";
->>>>> +		reg = <0x0 0xfff24000 0x0 0x1000>;
->>>>> +		hisilicon,spmi-channel = <2>;
->>>>> +
->>>>> +		pmic: pmic@0 {
->>>>> +			compatible = "hisilicon,hi6421-spmi";    
->>>>
->>>> Should this be "hisilicon,hi6421-pmic" which is already in the binding document "mfd/hi6421.txt"?
->>>> Others are OK to me.  
->>>
->>> No. 
->>>
->>> hisilicon,hi6421-pmic is used by this driver
->>> 	drivers/mfd/hi6421-pmic-core.c
->>>
->>> which provides support for the Hi6421 variants that don't use a MIPI
->>> SPMI bus.
->>>
->>> The "hisilicon,hi6421-spmi" compatible is for the new driver:
->>> 	drivers/mfd/hi6421-spmi-pmic.c
->>>
->>> And it is defined at:
->>> 	Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
->>>
->>> Both DT bindings and the driver were promoted from staging on this patch:
->>>
->>> 	https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging.git/commit/?h=staging-next&id=9bd9e0de1cf5b89c4854be505ac0a418ddcc01bf  
->>
->> Got it. Thanks for your kind explanation!
->> So I am fine with this patch.
->> Do you need my ack now or later I can merge it once it is out of staging.
-> 
-> Whatever works best for you and Greg.
-> 
-> It should be noticed that the driver should be out of staging for v5.15-rc1
-> (as the patch moving it out of staging was already merged at Greg's tree).
-> This patch is needed by the PCI driver patchset I'm currently working,
-> so the best would be if this patch could also be merged for v5.15-rc1
-> (either via HiSilicon tree or via staging tree).
-> 
-> I suspect that having your ack and merging this via staging would work
-> best, as this would ensure that both changes will be merged upstream
-> at the same time.
-> 
-> But, as I said, it is up to you both ;-)
+>
+> But what if we implement the QMI multiplexing management part in the
+> kernel? This way the kernel will take care about modem-to-host
+> communication protocols and interfaces, and provides userspace with a
+> single WWAN device (possibly with multiple network and network
+> management interfaces).
+>
+> I do not propose to fully implement QMI protocol inside the kernel,
+> but implement only a mux management part, while passing all other
+> messages between a "modem" and a userspace software as-is.
+>
+> What pros and cons of such a design do you see?
+>
 
-Got it.
-To avoid dependency, I think it is better to be merged by Greg's tree.
-So for this patch,
+The original GobiNet driver already provided some QMI protocol
+implementation in the driver itself. In addition to initial device
+setup as you suggest, it also allowed userspace applications to
+allocate and release QMI clients for the different services that could
+be used independently by different processes. Not going to say that
+was the wrong way to do it, but the implementation is definitely not
+simple. The decision taken in qmi_wwan to make the driver as simple as
+possible and leave all the QMI management to userspace was quite an
+important one; it made the driver extremely simple, leaving all the
+complexity of managing the protocol to userspace, and while it had
+some initial drawbacks (e.g. only one process could talk QMI at a
+time) the userspace tools have evolved to avoid them (e.g. the
+qmi-proxy).
 
-Reviewed-by: Wei Xu <xuwei5@hisilicon.com>
+I wrote some time ago about this, maybe it's still relevant today:
+Blogpost https://sigquit.wordpress.com/2014/06/11/qmiwwan-or-gobinet/,
+Article in PDF https://aleksander.es/data/Qualcomm%20Gobi%20devices%20on%20Linux.pdf
 
-Best Regards,
-Wei
+Making the driver talk QMI just for device setup would require the
+kernel to know how the QMI protocol works, how QMI client allocations
+and releases are done, how errors are reported, how is the format of
+the requests and responses involved; it would require the kernel to
+wait until the QMI protocol endpoint in the modem is capable of
+returning QMI responses (this could be up to 20 or 30 secs after the
+device is available in the bus), it would require to have possibly
+some specific rules on how the QMI clients are managed after a
+suspend/resume operation. It would also require to sync the access to
+the CTL service, which is the one running QMI service allocations and
+releases, so that both kernel and userspace can perform operations
+with that service at the same time. It would need to know how
+different QMI capable devices behave, because not all devices support
+the same services, and some don't even support the WDA service that
+would be the one needed to setup data aggregation. There is definitely
+some overlap on what the kernel could do and what userspace could do,
+and I'd say that we have much more flexibility in userspace to do all
+this leaving all the complexity out of the kernel driver.
 
-> 
-> Thanks,
-> Mauro
-> .
-> 
+ModemManager already provides a unified API to e.g. setup multiplexed
+data sessions, regardless of what the underlying kernel implementation
+is (qmi_wwan only, qmi_wwan+rmnet, ipa+rmnet, bam-dmux, cdc_mbim...) .
+The logic doing all that is extremely complex and possibly full of
+errors, I would definitely not want to have all that logic in the
+kernel itself, let the errors be in userspace! Unifying stuff in the
+kernel is a good idea, but if you ask me, it should be done in a way
+that is as simple as possible, leaving complexity to userspace, even
+if that means that userspace still needs to know what type of device
+we have behind the wwan subsystem, because userspace will anyway need
+to know all that.
+
+-- 
+Aleksander
+https://aleksander.es
