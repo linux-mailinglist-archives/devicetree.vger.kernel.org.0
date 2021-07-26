@@ -2,74 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D12993D5132
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 04:11:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 067873D5152
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 04:40:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231205AbhGZBax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Jul 2021 21:30:53 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:47205 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230272AbhGZBaw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jul 2021 21:30:52 -0400
-X-UUID: bb83b93e7d30446a957bb5905b6ff50e-20210726
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=yslLm1vymujKFarhO3A6h6EAP8QMCCeSyOC9SgSoByQ=;
-        b=HXEze7R926+axNQTFL/y9nSa870dUfBaUPsWrAFsSi8cRLwRgWT1nW+ANizDFX3toJ3lkfHvj1tohEgcw6lIHW6sraxyYcrfkImJtZUGb+ZgPevtp2RSGE98IMJyQFb0d3o0yj8foaG1m31qTlQhOeoHG9lIVWvvqxH1ayBbuEo=;
-X-UUID: bb83b93e7d30446a957bb5905b6ff50e-20210726
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <jitao.shi@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 892610681; Mon, 26 Jul 2021 10:11:14 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS33N2.mediatek.inc
- (172.27.4.76) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 26 Jul
- 2021 10:11:09 +0800
-Received: from mszsdclx1018.gcn.mediatek.inc (10.16.6.18) by
- MTKCAS36.mediatek.inc (172.27.4.170) with Microsoft SMTP Server id
- 15.0.1497.2 via Frontend Transport; Mon, 26 Jul 2021 10:11:08 +0800
-From:   Jitao Shi <jitao.shi@mediatek.com>
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>
-CC:     <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <ck.hu@mediatek.com>,
-        <stonea168@163.com>, <huijuan.xie@mediatek.com>,
-        <rex-bc.chen@mediatek.com>, <shuijing.li@mediatek.com>,
-        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        Jitao Shi <jitao.shi@mediatek.com>
-Subject: [PATCH v3 2/2] dt-bindings: mediatek: add force_dsi_end_without_null for dsi
-Date:   Mon, 26 Jul 2021 10:11:04 +0800
-Message-ID: <20210726021104.80007-2-jitao.shi@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210726021104.80007-1-jitao.shi@mediatek.com>
-References: <20210726021104.80007-1-jitao.shi@mediatek.com>
+        id S231285AbhGZCAX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Jul 2021 22:00:23 -0400
+Received: from szxga01-in.huawei.com ([45.249.212.187]:15998 "EHLO
+        szxga01-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231205AbhGZCAW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jul 2021 22:00:22 -0400
+Received: from dggeme755-chm.china.huawei.com (unknown [172.30.72.56])
+        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4GY3wz5dMXzZrtD;
+        Mon, 26 Jul 2021 10:37:23 +0800 (CST)
+Received: from [10.40.166.221] (10.40.166.221) by
+ dggeme755-chm.china.huawei.com (10.3.19.101) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2176.2; Mon, 26 Jul 2021 10:40:50 +0800
+Message-ID: <60FE20AC.3050400@hisilicon.com>
+Date:   Mon, 26 Jul 2021 10:40:44 +0800
+From:   Wei Xu <xuwei5@hisilicon.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: 57D432427D8170D0E97DD4E151E61F3C5A53BC80ABE18CDC438CC901559AF70F2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+CC:     <linuxarm@huawei.com>, <mauro.chehab@huawei.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, "xuwei (O)" <xuwei5@huawei.com>
+Subject: Re: [PATCH 1/2] dts: hisilicon: add support for the PMIC found on
+ Hikey 970
+References: <cover.1627116285.git.mchehab+huawei@kernel.org> <4a3583dd683512c2a4a138e88d4c889e51bf48e8.1627116285.git.mchehab+huawei@kernel.org>
+In-Reply-To: <4a3583dd683512c2a4a138e88d4c889e51bf48e8.1627116285.git.mchehab+huawei@kernel.org>
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.40.166.221]
+X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
+ dggeme755-chm.china.huawei.com (10.3.19.101)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-U29tZSBicmlkZ2UgY2hpcCB3aWxsIHNoaWZ0IHNjcmVlbiB3aGVuIHRoZSBkc2kgZGF0YSBkb2Vz
-J3QgZW50IGF0DQp0aGUgc2FtZSB0aW1lIGluIGxpbmUuDQoNClNpZ25lZC1vZmYtYnk6IEppdGFv
-IFNoaSA8aml0YW8uc2hpQG1lZGlhdGVrLmNvbT4NCi0tLQ0KIC4uLi9kZXZpY2V0cmVlL2JpbmRp
-bmdzL2Rpc3BsYXkvbWVkaWF0ZWsvbWVkaWF0ZWssZHNpLnR4dCAgICAgfCA0ICsrKysNCiAxIGZp
-bGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspDQoNCmRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9u
-L2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9tZWRpYXRlay9tZWRpYXRlayxkc2kudHh0IGIv
-RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvbWVkaWF0ZWsvbWVkaWF0
-ZWssZHNpLnR4dA0KaW5kZXggODIzOGE4NjY4NmJlLi4xYzJmNTNmM2FjM2QgMTAwNjQ0DQotLS0g
-YS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9tZWRpYXRlay9tZWRp
-YXRlayxkc2kudHh0DQorKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlz
-cGxheS9tZWRpYXRlay9tZWRpYXRlayxkc2kudHh0DQpAQCAtMTksNiArMTksMTAgQEAgUmVxdWly
-ZWQgcHJvcGVydGllczoNCiAgIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9ncmFw
-aC50eHQuIFRoaXMgcG9ydCBzaG91bGQgYmUgY29ubmVjdGVkDQogICB0byB0aGUgaW5wdXQgcG9y
-dCBvZiBhbiBhdHRhY2hlZCBEU0kgcGFuZWwgb3IgRFNJLXRvLWVEUCBlbmNvZGVyIGNoaXAuDQog
-DQorT3B0aW9uYWwgcHJvcGVydGllczoNCistIGZvcmNlX2RzaV9lbmRfd2l0aG91dF9udWxsOiBT
-b21lIGJyaWRnZSBjaGlwKGV4LiBBTlg3NjI1KSByZXF1aXJlcyB0aGUNCisgIHBhY2tldHMgb24g
-bGFuZXMgYWxpZ25lZCBhdCB0aGUgZW5kLg0KKw0KIE1JUEkgVFggQ29uZmlndXJhdGlvbiBNb2R1
-bGUNCiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09DQogDQotLSANCjIuMjUuMQ0K
+Hi Mauro,
 
+On 2021/7/24 16:55, Mauro Carvalho Chehab wrote:
+> Add a device tree for the HiSilicon 6421v600 SPMI PMIC, used
+> on HiKey970 board.
+> 
+> As we now have support for it, change the fixed regulators
+> used by the SD I/O to use the proper LDO supplies.
+> 
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> ---
+>  .../boot/dts/hisilicon/hi3670-hikey970.dts    | 22 +----
+>  .../boot/dts/hisilicon/hikey970-pmic.dtsi     | 86 +++++++++++++++++++
+>  2 files changed, 89 insertions(+), 19 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
+> index d8abf442ee7e..7c32f5fd5cc5 100644
+> --- a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
+> +++ b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
+> @@ -12,6 +12,7 @@
+>  
+>  #include "hi3670.dtsi"
+>  #include "hikey970-pinctrl.dtsi"
+> +#include "hikey970-pmic.dtsi"
+>  
+>  / {
+>  	model = "HiKey970";
+> @@ -39,23 +40,6 @@ memory@0 {
+>  		reg = <0x0 0x0 0x0 0x0>;
+>  	};
+>  
+> -	sd_1v8: regulator-1v8 {
+> -		compatible = "regulator-fixed";
+> -		regulator-name = "fixed-1.8V";
+> -		regulator-min-microvolt = <1800000>;
+> -		regulator-max-microvolt = <1800000>;
+> -		regulator-always-on;
+> -	};
+> -
+> -	sd_3v3: regulator-3v3 {
+> -		compatible = "regulator-fixed";
+> -		regulator-name = "fixed-3.3V";
+> -		regulator-min-microvolt = <3300000>;
+> -		regulator-max-microvolt = <3300000>;
+> -		regulator-boot-on;
+> -		regulator-always-on;
+> -	};
+> -
+>  	wlan_en: wlan-en-1-8v {
+>  		compatible = "regulator-fixed";
+>  		regulator-name = "wlan-en-regulator";
+> @@ -402,8 +386,8 @@ &dwmmc1 {
+>  	pinctrl-0 = <&sd_pmx_func
+>  		     &sd_clk_cfg_func
+>  		     &sd_cfg_func>;
+> -	vmmc-supply = <&sd_3v3>;
+> -	vqmmc-supply = <&sd_1v8>;
+> +	vmmc-supply = <&ldo16>;
+> +	vqmmc-supply = <&ldo9>;
+>  	status = "okay";
+>  };
+>  
+> diff --git a/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
+> new file mode 100644
+> index 000000000000..970047f2dabd
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
+> @@ -0,0 +1,86 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * dts file for Hi6421v600 SPMI PMIC used at the HiKey970 Development Board
+> + *
+> + * Copyright (C) 2020, Huawei Tech. Co., Ltd.
+> + */
+> +
+> +#include <dt-bindings/spmi/spmi.h>
+> +
+> +/ {
+> +	spmi: spmi@fff24000 {
+> +		compatible = "hisilicon,kirin970-spmi-controller";
+> +		#address-cells = <2>;
+> +		#size-cells = <0>;
+> +		status = "okay";
+> +		reg = <0x0 0xfff24000 0x0 0x1000>;
+> +		hisilicon,spmi-channel = <2>;
+> +
+> +		pmic: pmic@0 {
+> +			compatible = "hisilicon,hi6421-spmi";
+
+Should this be "hisilicon,hi6421-pmic" which is already in the binding document "mfd/hi6421.txt"?
+Others are OK to me.
+Thanks!
+
+Best Regards,
+Wei
