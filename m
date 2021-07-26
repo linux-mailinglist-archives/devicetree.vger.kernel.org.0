@@ -2,242 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 83D373D56DE
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 11:53:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 517D43D5707
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 12:05:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233115AbhGZJMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 05:12:49 -0400
-Received: from mail-vs1-f54.google.com ([209.85.217.54]:35660 "EHLO
-        mail-vs1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233040AbhGZJMt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 05:12:49 -0400
-Received: by mail-vs1-f54.google.com with SMTP id p13so4896517vsg.2;
-        Mon, 26 Jul 2021 02:53:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=mo44UZHj7UyEbhGMPjthYrR+6cIV8nYK59wZuJbcwls=;
-        b=HgT7Zh+m8LxQ6fsspwMqyvmFuRyAEl+TNC3Lg+FIvfu/Bcm1mCZur3f9yNmpFAHaai
-         JucuO1ei6gPV8eCSRXAU+JiuwItK7V7yM2xVK5TkqF7DZczRMkSCjW1yjvhb/GBq9fIc
-         qF/QkVmliwHslLamKkA10AhHonKxbOED8LuFnGt1bYzpaR6sZIsOKeviPh+ekDgQEI7V
-         ji1nBtmjTuBr0GKyfBzvG3GTxEV3kbf0oWJcq9R9INY4BAONhfguIr15ehnzQW6OnjSF
-         padF1BCs0X0yptruDVDXiJriaul+5iBE3AmpM9ECOmVLU34THI5GGtevWJoNcvV1zSmi
-         vxlA==
-X-Gm-Message-State: AOAM532OmBMfE3vMjHkIRJICAIAMtSeplElCpP207jNA0dNdgDKmMYSt
-        VIrGp4YtPx5qFAQVT8aecKNXgJsW7NJ9ceCikdY=
-X-Google-Smtp-Source: ABdhPJyi2KG9djcxQLYJlEr3Qxzre7k9jFg6SE0AUxjF4rVlN643niJ5kjEhHf7i9K4wmXFRhnqB3+QlJisYrQ73KcU=
-X-Received: by 2002:a05:6102:2828:: with SMTP id ba8mr11359232vsb.18.1627293196190;
- Mon, 26 Jul 2021 02:53:16 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210721194951.30983-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210721194951.30983-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20210721194951.30983-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 26 Jul 2021 11:53:04 +0200
-Message-ID: <CAMuHMdU0YkKb-_k00Zbr3aQGSHRD8639Ut207VwQ_ji0E+YL2g@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] can: rcar_canfd: Add support for RZ/G2L family
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-can@vger.kernel.org, netdev <netdev@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S233109AbhGZJYt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 05:24:49 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56968 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233245AbhGZJYl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Jul 2021 05:24:41 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1D6E1603E7;
+        Mon, 26 Jul 2021 10:05:10 +0000 (UTC)
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1m7xTw-00100G-4x; Mon, 26 Jul 2021 11:05:08 +0100
+Date:   Mon, 26 Jul 2021 11:05:07 +0100
+Message-ID: <87r1fle6gc.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Mark Kettenis <mark.kettenis@xs4all.nl>
+Cc:     devicetree@vger.kernel.org, robin.murphy@arm.com,
+        sven@svenpeter.dev, Mark Kettenis <kettenis@openbsd.org>,
+        Hector Martin <marcan@marcan.st>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/2] Apple M1 PCIe DT bindings
+In-Reply-To: <20210726083204.93196-1-mark.kettenis@xs4all.nl>
+References: <20210726083204.93196-1-mark.kettenis@xs4all.nl>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: mark.kettenis@xs4all.nl, devicetree@vger.kernel.org, robin.murphy@arm.com, sven@svenpeter.dev, kettenis@openbsd.org, marcan@marcan.st, bhelgaas@google.com, robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+On Mon, 26 Jul 2021 09:31:59 +0100,
+Mark Kettenis <mark.kettenis@xs4all.nl> wrote:
+> 
+> From: Mark Kettenis <kettenis@openbsd.org>
+> 
+> This small series adds bindings for the PCIe controller found on the
+> Apple M1 SoC.
+> 
+> At this point, the primary consumer for these bindings is U-Boot.
+> With these bindings U-Boot can bring up the links for the root ports
+> of the PCIe root complex.  A simple OS driver can then provide
+> standard ECAM access and manage MSI interrupts to provide access
+> to the built-in Ethernet and XHCI controllers of the Mac mini.
+> 
+> The Apple controller incorporates Synopsys Designware PCIe logic
+> to implement its root port.  But unlike other hardware currently
+> supported by U-Boot and the Linux kernel the Apple hardware
+> integrates multiple root ports.  As such the existing bindings
+> for the DWC PCIe interface can't be used.  There is a single ECAM
+> space for all root space, but separate GPIOs to take the PCI devices
+> on those ports out of reset.  Therefore the standard "reset-gpio" and
+> "max-link-speed" properties appear on the child nodes representing
+> the PCI devices that correspond to the individual root ports.
+> 
+> MSIs are handled by the PCIe controller and translated into "regular
+> interrupts".  A range of 32 MSIs is provided.  These 32 MSIs can be
+> distributed over the root ports as the OS sees fit by programming the
+> PCIe controller port registers.
+> 
+> I still hope to hear from Marc Zyngier on the way MSIs are represented
+> in this binding.
+> 
+> Patch 2/2 of this series depends on the pinctrl series I sent earlier
+> and will probably go through Hector Martin's Apple M1 SoC tree.
+> 
+> 
+> Changelog:
+> 
+> v3: - Remove unneeded include in example
+> 
+> v2: - Adjust name for ECAM in "reg-names"
+>     - Drop "phy" registers
+>     - Expand description
+>     - Add description for "interrupts"
+>     - Fix incorrect minItems for "interrupts"
+>     - Fix incorrect MaxItems for "reg-names"
+>     - Document the use of "msi-controller", "msi-parent", "iommu-map" and
+>       "iommu-map-mask"
+>     - Fix "bus-range" and "iommu-map" properties in the example
+> 
+> Mark Kettenis (2):
+>   dt-bindings: pci: Add DT bindings for apple,pcie
+>   arm64: apple: Add PCIe node
+> 
+>  .../devicetree/bindings/pci/apple,pcie.yaml   | 166 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  arch/arm64/boot/dts/apple/t8103.dtsi          |  63 +++++++
+>  3 files changed, 230 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/apple,pcie.yaml
 
-On Wed, Jul 21, 2021 at 9:50 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> CANFD block on RZ/G2L SoC is almost identical to one found on
-> R-Car Gen3 SoC's. On RZ/G2L SoC interrupt sources for each channel
-> are split into different sources and the IP doesn't divide (1/2)
-> CANFD clock within the IP.
->
-> This patch adds compatible string for RZ/G2L family and registers
-> the irq handlers required for CANFD operation. IRQ numbers are now
-> fetched based on names instead of indices. For backward compatibility
-> on non RZ/G2L SoC's we fallback reading based on indices.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Thanks a log for doing this! For the whole series:
 
-Thanks for the update!
+Reviewed-by: Marc Zyngier <maz@kernel.org>
 
-I think you misunderstood my comment on v1 about the interrupt
-handlers, cfr. below.
-
-> --- a/drivers/net/can/rcar/rcar_canfd.c
-> +++ b/drivers/net/can/rcar/rcar_canfd.c
-
-> @@ -1577,6 +1586,53 @@ static int rcar_canfd_channel_probe(struct rcar_canfd_global *gpriv, u32 ch,
->         priv->can.clock.freq = fcan_freq;
->         dev_info(&pdev->dev, "can_clk rate is %u\n", priv->can.clock.freq);
->
-> +       if (gpriv->chip_id == RENESAS_RZG2L) {
-> +               char *irq_name;
-> +               int err_irq;
-> +               int tx_irq;
-> +
-> +               err_irq = platform_get_irq_byname(pdev, ch == 0 ? "ch0_err" : "ch1_err");
-> +               if (err_irq < 0) {
-> +                       err = err_irq;
-> +                       goto fail;
-> +               }
-> +
-> +               tx_irq = platform_get_irq_byname(pdev, ch == 0 ? "ch0_trx" : "ch1_trx");
-> +               if (tx_irq < 0) {
-> +                       err = tx_irq;
-> +                       goto fail;
-> +               }
-> +
-> +               irq_name = devm_kasprintf(&pdev->dev, GFP_KERNEL,
-> +                                         "canfd.ch%d_err", ch);
-> +               if (!irq_name) {
-> +                       err = -ENOMEM;
-> +                       goto fail;
-> +               }
-> +               err = devm_request_irq(&pdev->dev, err_irq,
-> +                                      rcar_canfd_channel_interrupt, 0,
-
-This is the same interrupt handler...
-
-> +                                      irq_name, gpriv);
-> +               if (err) {
-> +                       dev_err(&pdev->dev, "devm_request_irq CH Err(%d) failed, error %d\n",
-> +                               err_irq, err);
-> +                       goto fail;
-> +               }
-> +               irq_name = devm_kasprintf(&pdev->dev, GFP_KERNEL,
-> +                                         "canfd.ch%d_trx", ch);
-> +               if (!irq_name) {
-> +                       err = -ENOMEM;
-> +                       goto fail;
-> +               }
-> +               err = devm_request_irq(&pdev->dev, tx_irq,
-> +                                      rcar_canfd_channel_interrupt, 0,
-
-... as this one.
-
-> +                                      irq_name, gpriv);
-> +               if (err) {
-> +                       dev_err(&pdev->dev, "devm_request_irq Tx (%d) failed, error %d\n",
-> +                               tx_irq, err);
-> +                       goto fail;
-> +               }
-> +       }
-> +
->         if (gpriv->fdmode) {
->                 priv->can.bittiming_const = &rcar_canfd_nom_bittiming_const;
->                 priv->can.data_bittiming_const =
-
-> @@ -1711,20 +1798,51 @@ static int rcar_canfd_probe(struct platform_device *pdev)
->         gpriv->base = addr;
->
->         /* Request IRQ that's common for both channels */
-> -       err = devm_request_irq(&pdev->dev, ch_irq,
-> -                              rcar_canfd_channel_interrupt, 0,
-> -                              "canfd.chn", gpriv);
-> -       if (err) {
-> -               dev_err(&pdev->dev, "devm_request_irq(%d) failed, error %d\n",
-> -                       ch_irq, err);
-> -               goto fail_dev;
-> +       if (gpriv->chip_id == RENESAS_RCAR_GEN3) {
-> +               err = devm_request_irq(&pdev->dev, ch_irq,
-> +                                      rcar_canfd_channel_interrupt, 0,
-> +                                      "canfd.ch_int", gpriv);
-> +               if (err) {
-> +                       dev_err(&pdev->dev, "devm_request_irq(%d) failed, error %d\n",
-> +                               ch_irq, err);
-> +                       goto fail_dev;
-> +               }
-> +
-> +               err = devm_request_irq(&pdev->dev, g_irq,
-> +                                      rcar_canfd_global_interrupt, 0,
-> +                                      "canfd.g_int", gpriv);
-> +               if (err) {
-> +                       dev_err(&pdev->dev, "devm_request_irq(%d) failed, error %d\n",
-> +                               g_irq, err);
-> +                       goto fail_dev;
-> +               }
-> +       } else {
-> +               err = devm_request_irq(&pdev->dev, g_recc_irq,
-> +                                      rcar_canfd_global_interrupt, 0,
-
-This is the same interrupt handler...
-
-> +                                      "canfd.g_recc", gpriv);
-> +
-> +               if (err) {
-> +                       dev_err(&pdev->dev, "devm_request_irq(%d) failed, error %d\n",
-> +                               g_recc_irq, err);
-> +                       goto fail_dev;
-> +               }
-> +
-> +               err = devm_request_irq(&pdev->dev, g_err_irq,
-> +                                      rcar_canfd_global_interrupt, 0,
-
-... as this one.
-
-> +                                      "canfd.g_err", gpriv);
-> +               if (err) {
-> +                       dev_err(&pdev->dev, "devm_request_irq(%d) failed, error %d\n",
-> +                               g_err_irq, err);
-> +                       goto fail_dev;
-> +               }
->         }
-> -       err = devm_request_irq(&pdev->dev, g_irq,
-> -                              rcar_canfd_global_interrupt, 0,
-> -                              "canfd.gbl", gpriv);
-> +
-> +       err = reset_control_reset(gpriv->rstc1);
-> +       if (err)
-> +               goto fail_dev;
-> +       err = reset_control_reset(gpriv->rstc2);
->         if (err) {
-> -               dev_err(&pdev->dev, "devm_request_irq(%d) failed, error %d\n",
-> -                       g_irq, err);
-> +               reset_control_assert(gpriv->rstc1);
->                 goto fail_dev;
->         }
-
-I did not object to having fine-grained interrupt handlers on RZ/G2L.
-I did object to duplicating code in global and fine-grained interrupt
-handlers.
-
-The trick to have both is to let the global interrupt handlers call
-(conditionally) into the fine-grained handlers. In pseudo-code:
-
-    global_interrupt_handler()
-    {
-            if (...)
-                    fine_grained_handler1();
-
-            if (...)
-                    fine_grained_handler2();
-            ...
-    }
-
-On R-Car Gen3, you register the global interrupt handlers, as before.
-On RZ/G2L, you register the fine-grained interrupt handlers instead.
-
-Gr{oetje,eeting}s,
-
-                        Geert
+	M.
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Without deviation from the norm, progress is not possible.
