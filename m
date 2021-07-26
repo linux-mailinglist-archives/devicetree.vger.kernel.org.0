@@ -2,140 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C7B63D6133
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 18:13:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CC173D65B6
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 19:28:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231207AbhGZPaQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 11:30:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52266 "EHLO
+        id S241012AbhGZQrd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 12:47:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229482AbhGZP2W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 11:28:22 -0400
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D69CC0613D3
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 09:08:00 -0700 (PDT)
-Received: by mail-pj1-x102a.google.com with SMTP id m2-20020a17090a71c2b0290175cf22899cso704724pjs.2
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 09:08:00 -0700 (PDT)
+        with ESMTP id S239146AbhGZQra (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 12:47:30 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9027BC0068F6;
+        Mon, 26 Jul 2021 10:18:22 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id y12so3524509edo.6;
+        Mon, 26 Jul 2021 10:18:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=BHTk+Z+0QSOpCt1sappkmwhVqvSoFxs0RZxbYZqcDGg=;
-        b=iG9Cnaei0YWF3dL5PXk9Go6U1qBL6VEUhK+y+da767lITj04u3O07EZ7CSEdmLxT6+
-         z+WKSbAjjUAmr0Jf9C7enUdsjh6fO17iGTDgOt2KKuap7hWNAcEsM+RKTFdAskec1kLM
-         hJNEtLjaGHW641moe7Qa5waVLuX+WKfSUuBzA=
+        d=gmail.com; s=20161025;
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hBMxMyhbgJV7n+sTCKYEUkCtead+H/tnhZXc07MplwM=;
+        b=KysArF5dkhIsTPF5BbdXrCDyCOfixYgHX0Of1wne/KYuc9OWsqKrqFy6t7xkxzNrNh
+         NQ/9JLy5BNWpJfLTFlV66IW7WsnzibMaWlaHCXpf3ZXZnWY3l/9dZcBlRZW9RYWAJHMw
+         52gYS7HRoKcTZ455t9gxLbk2uwBVaYGGqCx28k7nAtCSbY7JmWhR9y6xZMxBbyX8nnCa
+         aY+hKICxRc1ySWEpuxpTdqBubYO6tibPHv5NCew9L4bj9wWj0T5dVcujVKJRS9nN9EQH
+         GfmEnvDXCNE2G9NTKccf3kYt4nn/k2UL1ELoEfDRPoBj9PIgBA6RMrouUaDiTSJmd82V
+         +cLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=BHTk+Z+0QSOpCt1sappkmwhVqvSoFxs0RZxbYZqcDGg=;
-        b=k5lioZlflveLnGeF4dOgRj0yUGxaYG6rItO6yaSPK6frKmoPHdhYhxF+eN4qvOYw0J
-         z3TSkgnTujJHKakPPA81BtOOBsT1VaAfVFwl02A3mPVTZGfYHXzsRmT/bbkdT3gxJncY
-         xmFEIvrYNAN+TvPHcmsCF1WD7gpbHLteMbFEYrz99tJ7bIEEYWu06bwYvmu2Di8Fu3b4
-         /Vb4OeU2fivVsr+Hq/98sXVThM7PN4FZOtm9wmx2ifjZ98ngeYd+e5jO5balvH2UzQJk
-         X5KWpN0gILbDGQVGDKu0edbGm6To/pUdmAE6CEZ2TjueQv/4CJqYLjm4sq/Rpa1EcVjo
-         bVEw==
-X-Gm-Message-State: AOAM532aSz3VczVjW4rk1e68pF0FSWIWLD9ljbSzBepyMCVc4axuELGs
-        uZpfXcAne6lZsvgFkVi0EUh97g==
-X-Google-Smtp-Source: ABdhPJwboRD80dRmLYgrVd44lIf45dc8GDVX9YVZCQF81QLG7Tl1Q2ldVi03GG90aHmZI1321dPhiA==
-X-Received: by 2002:a63:1656:: with SMTP id 22mr19008943pgw.163.1627315679965;
-        Mon, 26 Jul 2021 09:07:59 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:f794:2436:8d25:f451])
-        by smtp.gmail.com with UTF8SMTPSA id m1sm484988pfc.36.2021.07.26.09.07.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Jul 2021 09:07:59 -0700 (PDT)
-Date:   Mon, 26 Jul 2021 09:07:58 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Rajesh Patil <rajpat@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=hBMxMyhbgJV7n+sTCKYEUkCtead+H/tnhZXc07MplwM=;
+        b=FRIsGVgzGxRlFijbPgTz2UPwG525ngBZF2aUuIqrwGRHmbVcqR8SKdeFA2QNyk2MR3
+         Xqs1MaSu5n2jFhCxEnOyc3y/+H1zi29JnQ/v/j8Q2FECkDDK2xA2kpIo7R8qW+I5cKxx
+         apbmSuh7rLX81JmF5nC8hvbbruarzLMUJVSPVMc7VB+gK67Gm6HLrWsrkDgd6fj82JER
+         uDiGyRo4MHH5u9+2sJM2vUZ0c41+X6DQogn0Aot109nKYQttqZqxUrNvqmDA4gCSPZrJ
+         dsnzTUYCBljvTCa7fTXnZ/AdOA31Bgm86KScaKJImAram61Red7WQoBORXAhBc5gRq5K
+         M14Q==
+X-Gm-Message-State: AOAM533LOoulzct9/lwVnNgF0G8N7DmD/LrTtEhae8uZHe7ZBKI5jV6I
+        fWRIogTfooEJCY8d0sohTxk4ctQsMjEf8w==
+X-Google-Smtp-Source: ABdhPJwqP4JhStOhqwMnLsEv0c0FOGDAUc1KFddOEQYD4Qvb9AoFB2rfKabWal5ll4dljwzD0D6s7A==
+X-Received: by 2002:a05:6402:4248:: with SMTP id g8mr15639123edb.302.1627319901240;
+        Mon, 26 Jul 2021 10:18:21 -0700 (PDT)
+Received: from stitch.. ([2a01:4262:1ab:c:132c:4c2b:f8ab:5392])
+        by smtp.gmail.com with ESMTPSA id e7sm195932edk.3.2021.07.26.10.18.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Jul 2021 10:18:20 -0700 (PDT)
+Sender: Emil Renner Berthing <emil.renner.berthing@gmail.com>
+From:   Emil Renner Berthing <kernel@esmil.dk>
+To:     Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, rnayak@codeaurora.org,
-        saiprakash.ranjan@codeaurora.org, msavaliy@qti.qualcomm.com,
-        skakit@codeaurora.org, Roja Rani Yarubandi <rojay@codeaurora.org>
-Subject: Re: [PATCH V4 1/4] arm64: dts: sc7280: Add QSPI node
-Message-ID: <YP7d3gZGnfj9YqSY@google.com>
-References: <1627306847-25308-1-git-send-email-rajpat@codeaurora.org>
- <1627306847-25308-2-git-send-email-rajpat@codeaurora.org>
+        Jonathan Corbet <corbet@lwn.net>,
+        Samin Guo <samin.guo@starfivetech.com>
+Cc:     Emil Renner Berthing <kernel@esmil.dk>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/2] hwmon: Add StarFive JH7100 temperature sensor
+Date:   Mon, 26 Jul 2021 19:18:00 +0200
+Message-Id: <20210726171802.1052716-1-kernel@esmil.dk>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1627306847-25308-2-git-send-email-rajpat@codeaurora.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 26, 2021 at 07:10:44PM +0530, Rajesh Patil wrote:
-> From: Roja Rani Yarubandi <rojay@codeaurora.org>
-> 
-> Add QSPI DT node for SC7280 SoC.
-> 
-> Signed-off-by: Roja Rani Yarubandi <rojay@codeaurora.org>
-> Signed-off-by: Rajesh Patil <rajpat@codeaurora.org>
-> ---
-> Changes in V4:
->  - As per Stephen's comment updated spi-max-frequency to 37.5MHz, moved
->    qspi_opp_table from /soc to / (root).
->    
-> Changes in V3:
->  - Broken the huge V2 patch into 3 smaller patches.
->    1. QSPI DT nodes
->    2. QUP wrapper_0 DT nodes
->    3. QUP wrapper_1 DT nodes
->    
-> Changes in V2:
->  - As per Doug's comments removed pinmux/pinconf subnodes.
->  - As per Doug's comments split of SPI, UART nodes has been done.
->  - Moved QSPI node before aps_smmu as per the order.
-> 
->  arch/arm64/boot/dts/qcom/sc7280-idp.dts | 27 ++++++++++++++
->  arch/arm64/boot/dts/qcom/sc7280.dtsi    | 62 +++++++++++++++++++++++++++++++++
->  2 files changed, 89 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> index 73225e3..b0bfd8e 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> @@ -269,6 +269,20 @@
->  		};
->  };
->  
-> +&qspi {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&qspi_clk>, <&qspi_cs0>, <&qspi_data01>;
-> +
-> +	flash@0 {
-> +		compatible = "jedec,spi-nor";
-> +		reg = <0>;
-> +		spi-max-frequency = <37500000>;
-> +		spi-tx-bus-width = <2>;
-> +		spi-rx-bus-width = <2>;
-> +	};
-> +};
-> +
->  &qupv3_id_0 {
->  	status = "okay";
->  };
-> @@ -346,6 +360,19 @@
->  
->  /* PINCTRL - additions to nodes defined in sc7280.dtsi */
->  
-> +&qspi_cs0 {
-> +	bias-disable;
-> +};
-> +
-> +&qspi_clk {
-> +	bias-disable;
-> +};
-> +
-> +&qspi_data01 {
-> +	/* High-Z when no transfers; nice to park the lines */
-> +	bias-pull-up;
-> +};
-> +
+This adds a driver for the temperature sensor on the JH7100, a RISC-V
+SoC by StarFive Technology Co. Ltd., and most likely also the upcoming
+JH7110 version.
 
-This configures the SPI flash of the SC7280 IDP board, which is neither
-mentioned in the subject nor the body of the commit message. IMO this
-should be split out into a separate patch.
+The SoC is used on the BeagleV Starlight board:
+https://github.com/beagleboard/beaglev-starlight
+
+Support for this SoC is not yet upstreamed, but is actively worked on,
+so it should only be a matter of time before that happens.
+
+v3:
+* Handle timeouts from wait_for_completion_interruptible_timeout
+  properly.
+
+v2:
+* Fix checkpatch.pl --strict warnings
+  - Add myself to MAINTAINERS
+  - Fix multiline comments
+  - Use proper case and whitespace for #defines
+  - Add comment to sfctemp::lock mutex.
+* Remaining comments by Guenter Roeck
+  - Add Documentation/hwmon/sfctemp.rst
+  - Use devm_add_action() and devm_hwmon_device_register_with_info()
+    instead of a driver .remove function.
+  - Don't do test conversion at probe time.
+  - #include <linux/io.h>
+  - Remove unused #defines
+  - Use int return variable in sfctemp_convert().
+* Add Samin's Signed-off-by to patch 2/2
+
+Emil Renner Berthing (2):
+  dt-bindings: hwmon: add starfive,jh7100-temp bindings
+  hwmon: (sfctemp) Add StarFive JH7100 temperature sensor
+
+ .../bindings/hwmon/starfive,jh7100-temp.yaml  |  43 +++
+ Documentation/hwmon/index.rst                 |   1 +
+ Documentation/hwmon/sfctemp.rst               |  32 ++
+ MAINTAINERS                                   |   8 +
+ drivers/hwmon/Kconfig                         |  10 +
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/sfctemp.c                       | 291 ++++++++++++++++++
+ 7 files changed, 386 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/starfive,jh7100-temp.yaml
+ create mode 100644 Documentation/hwmon/sfctemp.rst
+ create mode 100644 drivers/hwmon/sfctemp.c
+
+-- 
+2.32.0
+
