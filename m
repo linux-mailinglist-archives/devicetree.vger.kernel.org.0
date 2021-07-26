@@ -2,109 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A9D2C3D5661
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 11:21:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3382F3D56A9
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 11:32:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232434AbhGZIkf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 04:40:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43110 "EHLO
+        id S232689AbhGZIvu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 04:51:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232359AbhGZIke (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 04:40:34 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B8FEC061757
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 02:21:04 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id ds11-20020a17090b08cbb0290172f971883bso18847004pjb.1
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 02:21:04 -0700 (PDT)
+        with ESMTP id S232807AbhGZIvu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 04:51:50 -0400
+Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23251C061757;
+        Mon, 26 Jul 2021 02:32:18 -0700 (PDT)
+Received: by mail-oi1-x22c.google.com with SMTP id t128so10207270oig.1;
+        Mon, 26 Jul 2021 02:32:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=Q2bTbIzuNR8Z17qVedSx5UTI8m+JO41tvc9PLnzRbyY=;
-        b=tWadrVNRyXQFNGcdGTy5ELi21BrWtCSXF2pYOfvz+nc3S8H4LMjdd+tv3d9Iys2qJK
-         SYG89iS7msEv/oK+ffbBpjZEHWbSeeY4HvxrGgxVSTOUK169+A80wnQpUgxCljEy3Ayi
-         f9n2Va62XCW/Pa67igB8NGzQMZlwvacjQYsMoP48fBsyZTsBfOCqOAj0wRsSyXLsp42D
-         UyJU0z+F8truVI1Z8B912kOWtfKVLodOQhu8TYxU54UqXaU+UPfwcpWHoEy+wE3z/LgZ
-         zTdqlJc0ZXc7wnAcNK4B7l2I+MpZTAwE3ji0W1lO9yRGvNaCjeH1Jt34qVToIz4XAX9X
-         00lg==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=TvB2lU3cpIiYxB3yUvnpi686GY8PdgzLtSomY5oaEog=;
+        b=cI8CEovvUbYc4RTo/50NJmMV+CsWTMEGKA2jXDrWifgQtrm1C034WUzFAh59x/KWzF
+         XVvMZwU8i6pcw2sEQ2haz8972spAgFHvwQ7ccCLOQq2qKpvt2r7qPwbMbFuWT+t+AMwz
+         ZSgld8ytrnY+GWNJy7HUPPs0h/sgXc3Dl7KJHVAYM0hPWrjTgWPJN82BXXozDEqa4fer
+         kqCo6Xy+5MNLnvcBpihc+31Jo3gF9DY8U9RjX7uVGMETeZpAn/rILAA+L/cNUfkIB3e6
+         NVtU91VCF/a/ORP58S/3IrDKNRGhy+6R09dBM2ophufne8uoZ6UkzV6Du4Stu3QO3AdN
+         Fxcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Q2bTbIzuNR8Z17qVedSx5UTI8m+JO41tvc9PLnzRbyY=;
-        b=WffpZ7goOeesaLM6W3Ft0UYOOzxIo5CGOWw5yA4Qw56quIhyHeZahtgVJ9nlyMzF6n
-         YKgmDc8kR7rz+bt7qzQ8otDOa68PDk+autABqRgLpybo4YtLIdcaF7Z3iLOS3pD9KfIY
-         yxE89DWhnTbqVv7/rQJBb5fMwh2uBmVAERQ/qvuSwykB5mFbEGol5ogrsw8KFQVRm5nQ
-         wgVwP8kEIyMZX1DpHKA0Kmh669uv0xg9v6YgZ8oZraf3R8o2HXj+jhD4XQxuVBg9W8FV
-         wUyVQ3ICGwAyT78yF0nQEw+AkLkweCPqO0j9GCLX5DgpI3d0SvIz8o/R/HcFPb90j5O/
-         3FZw==
-X-Gm-Message-State: AOAM532RL6e+vwJ28NrLII/iq7lgapJ+V/vYIrj8syhIOpbCeVbeA2WT
-        wB0XeTx5oCHR/5VqHkM7eV/P2g==
-X-Google-Smtp-Source: ABdhPJzmUDnTNUKbWGwqSdm7aMIzCwtdu9YyEc3FRNxnsh53o+Wpv+9lXdE9a+3TxmU5FRPAMdta1A==
-X-Received: by 2002:a17:90a:940e:: with SMTP id r14mr25446503pjo.41.1627291263269;
-        Mon, 26 Jul 2021 02:21:03 -0700 (PDT)
-Received: from localhost ([122.172.201.85])
-        by smtp.gmail.com with ESMTPSA id t9sm49619360pgc.81.2021.07.26.02.21.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jul 2021 02:21:02 -0700 (PDT)
-Date:   Mon, 26 Jul 2021 14:51:00 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Arnd Bergmann <arnd@kernel.org>
-Cc:     Jason Wang <jasowang@redhat.com>,
-        "Michael S. Tsirkin" <mst@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>,
-        Alex =?utf-8?Q?Benn=C3=A9e?= <alex.bennee@linaro.org>,
-        "Enrico Weigelt, metux IT consult" <info@metux.net>,
-        Jie Deng <jie.deng@intel.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE" 
-        <virtualization@lists.linux-foundation.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>
-Subject: Re: [PATCH V3 2/5] dt-bindings: i2c: Add bindings for i2c-virtio
-Message-ID: <20210726092100.y4kuwzgzb2dhcwpf@vireshk-i7>
-References: <cover.1627273794.git.viresh.kumar@linaro.org>
- <4182aff2d1437b30025f3d17d11e5fdc21845239.1627273794.git.viresh.kumar@linaro.org>
- <CAK8P3a3FniCgQJ0UCvrwZ8F=f11mLAwe7XH5CcrqxL8TTMUvVg@mail.gmail.com>
- <CAK8P3a2m3BB2=4gkHXZD+=y1C47Og0QvfTWuA7e28oAonMyvzw@mail.gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=TvB2lU3cpIiYxB3yUvnpi686GY8PdgzLtSomY5oaEog=;
+        b=F1SplcSKH/BoK7Jtci9/AZ9R2lEC0JzfgLwpT6S+Blv4ORI9LAwX65lgwbMZBJhe+s
+         4X1z++SNhTOJvHJL2kNk7pWC0Z4U1tCy+mYOExWCqSrHmxV8VeFz/RsKzG9KKwF22gYJ
+         xPk6pnAo1U6jX4ueLmvhZLTt26LSKRzosSczHZAdg6CzdSBtesVTDt14kqw2vvqvy1ab
+         Tn8ECMWJomLsUCxkayEpmGXR+0X9QCWnm05BZwVjxKdHbdM7uy3upcP7c0w9egnAFIRq
+         l6jKPjLYp9i2X/03aXEAqDxzLuA0GkXkHgPUAx0Wk2Skyrnrbt4hnL32vqIVpdbd8y7H
+         dOGw==
+X-Gm-Message-State: AOAM530BwUiXAx0hZacsyFBgOSejNRDcp2yWH16haPtMdpY6qkiAKoc7
+        H3GNEl8TX2vXEGdF7Iyr8bfWHyaAg3kDMWsIRTg=
+X-Google-Smtp-Source: ABdhPJxPbsQMG7e++KYhaErKSQEC0RsF92zrY6kaJhfP72TiFAKnUN1wA6vD9nUlwwCYUS14lzoHWQg/3ZmrduoI81Q=
+X-Received: by 2002:aca:c0c3:: with SMTP id q186mr4872462oif.39.1627291937488;
+ Mon, 26 Jul 2021 02:32:17 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAK8P3a2m3BB2=4gkHXZD+=y1C47Og0QvfTWuA7e28oAonMyvzw@mail.gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+References: <20210726050831.1917982-1-hsinyi@chromium.org>
+In-Reply-To: <20210726050831.1917982-1-hsinyi@chromium.org>
+From:   Enric Balletbo Serra <eballetbo@gmail.com>
+Date:   Mon, 26 Jul 2021 11:32:05 +0200
+Message-ID: <CAFqH_53zJp7ejwXn3qqiVPnoTy6W3WonvvDxsZDCjmaQA57h6A@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: mt8183: kukui: Use aliases to mmc nodes
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Eizan Miyamoto <eizan@chromium.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26-07-21, 10:11, Arnd Bergmann wrote:
-> On Mon, Jul 26, 2021 at 10:06 AM Arnd Bergmann <arnd@kernel.org> wrote:
-> >
-> > On Mon, Jul 26, 2021 at 6:52 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
-> > >
-> > > This patch adds binding for virtio I2C device, it is based on
-> > > virtio-device bindings.
-> > >
-> > > Acked-by: Wolfram Sang <wsa@kernel.org>
-> > > Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
-> >
-> > Reviewed-by: Arnd Bergmann <arnd@arndb.de>
-> 
-> Too quick, after seeing the same issue in the gpio binding I saw it here too:
-> 
-> > +        i2c-virtio {
-> > +            compatible = "virtio,22";
-> 
-> The node name "i2c-virtio" looks wrong. According to
-> https://github.com/devicetree-org/dt-schema/blob/master/schemas/i2c/i2c-controller.yaml,
-> this needs to be plain "i2c".
+Hi Hsin-Yi,
 
-Okay, I will move back to simple node names then.
+Thank you for the patch.
 
-Thanks.
+Missatge de Hsin-Yi Wang <hsinyi@chromium.org> del dia dl., 26 de jul.
+2021 a les 7:08:
+>
+> Use aliases to mmc nodes so the partition name for eMMC and SD card will
+> be consistent across boots.
+>
 
--- 
-viresh
+This definitely helps with my "troubles" flashing the kernel to the
+correct place" so
+
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+
+Tested-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+
+Btw, I think that a similar patch should be send for Elm, could you
+take care of it?
+
+Thanks,
+  Enric
+
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> index ae549d55a94fc..ed499e17b6570 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> @@ -13,6 +13,8 @@
+>  / {
+>         aliases {
+>                 serial0 = &uart0;
+> +                mmc0 = &mmc0;
+> +                mmc1 = &mmc1;
+>         };
+>
+>         chosen {
+> --
+> 2.32.0.432.gabb21c7263-goog
+>
