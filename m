@@ -2,168 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C06F43D687E
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 23:15:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCC5F3D688C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 23:20:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233468AbhGZUe7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 16:34:59 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:46276 "EHLO vps0.lunn.ch"
+        id S233125AbhGZUkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 16:40:03 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37002 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232788AbhGZUe6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Jul 2021 16:34:58 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=Yoc2z7uSUjkhWnv+tKrvr5GkQUl2nOVtSonxg9WBwAg=; b=fx8fYTsSCW+Qonl46qValLkRYL
-        itn1Vur0eObChQR30YQp85ntEWfAPd3naBCSLlLPbX5huNS8U4c+mDF4Ab2hFJmTXId9l5eN1GsgW
-        beKngG6niNYpyXY1+4PzYV3/bf3ck04bV1PjkYHLySD0tUHm7Mk5DeK4QqYDm8gJjQNI=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1m87wX-00EuuR-Cu; Mon, 26 Jul 2021 23:15:21 +0200
-Date:   Mon, 26 Jul 2021 23:15:21 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Gerhard Engleder <gerhard@engleder-embedded.com>
-Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        michal.simek@xilinx.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 4/5] tsnep: Add TSN endpoint Ethernet MAC driver
-Message-ID: <YP8l6cWaQU/2NoIA@lunn.ch>
-References: <20210726194603.14671-1-gerhard@engleder-embedded.com>
- <20210726194603.14671-5-gerhard@engleder-embedded.com>
+        id S232788AbhGZUkD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Jul 2021 16:40:03 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8AC5160F9D;
+        Mon, 26 Jul 2021 21:20:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1627334431;
+        bh=N9/OEgtjGYplEYJ/2SOff1RZYBM03Kyk8wRDdt0TzFc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=YZSz8zAjEKWKGI4CNnl01LcN2CPppamcN98FCWIlsp5JgD5xRuZeNoK7drOJnNjkT
+         En59u7HuKtdBwJBGMjA5g4ipvOX+8OOAORgfE1CKxHjTZSZ6q/bE2r338oDnjrHp/O
+         0UtnnrjNQyUD6yXGVIiawJybgIvB9M1VfiuvZPz/EhzeNr/lStgTMjlBwBEd6SOazD
+         6me1WH9inpfA9BC0DbwFGWoxwo6/YGHA6rdUN0pdKd7W23vjJm89Zg9D+uxci7P203
+         +WOyr9YM3XP92Mkp2gUfhmJC308zfhFZZIs58aggP0DIzP+TPnmRU/IkI7ZsE83fa9
+         t+kPQJ7Fsqa/g==
+Received: by mail-wm1-f45.google.com with SMTP id n21so6187171wmq.5;
+        Mon, 26 Jul 2021 14:20:31 -0700 (PDT)
+X-Gm-Message-State: AOAM531alCQQXk6JunS/qLYhAiu9yVq/VCrNOIIKgr6R550Byk/ZccfM
+        phP+vRnS3rsam91BUZBWseHYE1gBZ1TPMbSyegQ=
+X-Google-Smtp-Source: ABdhPJxecW5jkR7LfzmXR3zNuQcz/90Y46z/6ABGm60QvcrorfMTOoQ5aTUp9zNbHSyx4J61jVUQYG6gdWvN8OjB3CI=
+X-Received: by 2002:a7b:ce10:: with SMTP id m16mr787071wmc.75.1627334430138;
+ Mon, 26 Jul 2021 14:20:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210726194603.14671-5-gerhard@engleder-embedded.com>
+References: <cover.1627273794.git.viresh.kumar@linaro.org> <fced2f2b9dcf3f32f16866d7d104f46171316396.1627273794.git.viresh.kumar@linaro.org>
+ <CAL_Jsq+XXhe2g0Rmda1v_Ws4-E_-UE6X5HUsSk-GcAETqQZiCQ@mail.gmail.com>
+ <CAK8P3a3bCk+iA+YziQrQFg6xH_d9cyySdTN_1j94D9CA8a_Sjw@mail.gmail.com> <CAL_JsqLk8q6N2Sf43em57OXKkrQ7SW01GBnAEV1zzPMYQF7agA@mail.gmail.com>
+In-Reply-To: <CAL_JsqLk8q6N2Sf43em57OXKkrQ7SW01GBnAEV1zzPMYQF7agA@mail.gmail.com>
+From:   Arnd Bergmann <arnd@kernel.org>
+Date:   Mon, 26 Jul 2021 23:20:13 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a3bnOYNC-wqzQr+iv9EWGUX7gQA1tC2pPDKqav_m5r4fQ@mail.gmail.com>
+Message-ID: <CAK8P3a3bnOYNC-wqzQr+iv9EWGUX7gQA1tC2pPDKqav_m5r4fQ@mail.gmail.com>
+Subject: Re: [PATCH V3 1/5] dt-bindings: virtio: Add binding for virtio devices
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Jason Wang <jasowang@redhat.com>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>,
+        =?UTF-8?B?QWxleCBCZW5uw6ll?= <alex.bennee@linaro.org>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        Jie Deng <jie.deng@intel.com>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE" 
+        <virtualization@lists.linux-foundation.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +static int tsnep_mdiobus_read(struct mii_bus *bus, int addr, int regnum)
-> +{
-> +	struct tsnep_adapter *adapter = bus->priv;
-> +	u16 data;
-> +	int retval;
-> +
-> +	if (adapter->loopback)
-> +		return 0;
-> +
-> +	retval = tsnep_read_md(adapter, addr, regnum, &data);
-> +	if (retval != 0)
-> +		return retval;
+On Mon, Jul 26, 2021 at 10:37 PM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Mon, Jul 26, 2021 at 9:54 AM Arnd Bergmann <arnd@kernel.org> wrote:
+> >
+> > On Mon, Jul 26, 2021 at 4:57 PM Rob Herring <robh+dt@kernel.org> wrote:
+> > > On Sun, Jul 25, 2021 at 10:52 PM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+> > > > +    description: |
+> > > > +      Exactly one node describing the virtio device. The name of the node isn't
+> > > > +      significant but its phandle can be used to by a user of the virtio device.
+> > > > +
+> > > > +  compatible:
+> > > > +    pattern: "^virtio,[0-9a-f]+$"
+> > >
+> > > DID is only 4 chars? If so, "^virtio,[0-9a-f]{1,4}$"
+> >
+> > Any opinion on whether this should have any namespace prefix (or infix, I guess)
+> > after "virtio,"?
+> >
+> > I previously suggested making it "virtio,device[0-9a-f]{1,4}$", which would
+> > make it clearer that the following digits are the device ID rather
+> > than something
+> > else we might define in the future. Viresh picked this version because it's
+> > somewhat more consistent with other subsystems.
+>
+> I'm fine either way, though I do find just a number a bit strange. So
+> I'd lean toward adding 'device' or even just a 'd'.
 
-It appears your MDIO bus can only do C22. Please add a test for C45 and return -EOPNOTSUPP.
+I don't think just 'd' would be a good idea since it is indistinguishable from
+a hexadecimal character. 'dev' would work though.
 
-> +static void tsnep_phy_link_status_change(struct net_device *netdev)
-> +{
-> +	struct tsnep_adapter *adapter = netdev_priv(netdev);
-> +	struct phy_device *phydev = netdev->phydev;
-> +
-> +	if (adapter->loopback)
-> +		return;
-> +
-> +	if (adapter->gmii2rgmii) {
-> +		u16 val;
-> +
-> +		if (phydev->link && phydev->speed == 1000)
-> +			val = BMCR_SPEED1000;
-> +		else
-> +			val = BMCR_SPEED100;
-> +		tsnep_write_md(adapter, ECM_GMII2RGMII_ADDR,
-> +			       ECM_GMII2RGMII_BMCR, val);
-> +	}
+> BTW, what happens if/when the device protocol is rev'ed? A new DID or
+> is there a separate revision that's discoverable?
 
-I _think_ this is wrong. They way the PHYs are chained means you
-should not need to do this, the xgmiitorgmii_read_status() does it.
-Maybe you have the chaining setup wrong?
+This should normally be done using feature bits that are negotiated
+between the two sides, and if only one side can do it, they use the
+old revision.
 
-> +static int tsnep_phy_open(struct tsnep_adapter *adapter)
-> +{
-> +	__ETHTOOL_DECLARE_LINK_MODE_MASK(mask);
-> +	struct ethtool_eee ethtool_eee;
-> +	int retval;
-> +
-> +	retval = phy_connect_direct(adapter->netdev, adapter->phydev,
-> +				    tsnep_phy_link_status_change,
-> +				    adapter->phy_mode);
-> +	if (retval)
-> +		return -EIO;
+There could be a new device ID but I don't think that has happened so far.
 
-phy_connect_direct() returns an error code. Use it, rather than
-changing it to something else. This applies everywhere. You must have
-a good reason to change error codes, and then it is wise to put a
-comment why you change it.
-
-> +
-> +	/* MAC supports only 100Mbps|1000Mbps full duplex
-> +	 * SPE (Single Pair Ethernet) is also an option but not implemented yet
-> +	 */
-> +	linkmode_zero(mask);
-> +	linkmode_set_bit(ETHTOOL_LINK_MODE_Autoneg_BIT, mask);
-> +	linkmode_set_bit(ETHTOOL_LINK_MODE_100baseT_Full_BIT, mask);
-> +	linkmode_set_bit(ETHTOOL_LINK_MODE_1000baseT_Full_BIT, mask);
-> +	linkmode_and(mask, adapter->phydev->supported, mask);
-> +	linkmode_copy(adapter->phydev->supported, mask);
-> +	linkmode_copy(adapter->phydev->advertising, mask);
-
-You should not be accessing the phydev directly. Use
-phy_remove_link_mode(phydev, ETHTOOL_LINK_MODE_1000baseT_Half_BIT),
-etc.
-
-> +static int tsnep_phy_init(struct tsnep_adapter *adapter)
-> +{
-> +	struct device_node *dn;
-> +	u16 val;
-> +	u32 id;
-> +	int retval;
-> +
-> +	retval = of_get_phy_mode(adapter->pdev->dev.of_node,
-> +				 &adapter->phy_mode);
-> +	if (retval)
-> +		adapter->phy_mode = PHY_INTERFACE_MODE_GMII;
-> +
-> +	dn = of_parse_phandle(adapter->pdev->dev.of_node, "phy-handle", 0);
-> +	adapter->phydev = of_phy_find_device(dn);
-> +	if (!adapter->phydev)
-> +		adapter->phydev = phy_find_first(adapter->mdiobus);
-> +	if (!adapter->phydev)
-> +		return -EIO;
-> +
-> +	/* detect optional GMII2RGMII */
-> +	retval = tsnep_read_md(adapter, ECM_GMII2RGMII_ADDR, MII_PHYSID1, &val);
-> +	if (retval)
-> +		return retval;
-> +	id = val << 16;
-> +	retval = tsnep_read_md(adapter, ECM_GMII2RGMII_ADDR, MII_PHYSID2, &val);
-> +	if (retval)
-> +		return retval;
-> +	id |= val;
-> +	if (id == 0)
-> +		adapter->gmii2rgmii = true;
-
-This is where i think GMII2RGMII goes wrong. MAC phy-handle should
-point to the GMII2RGMII device in DT. The GMII2RGMII should have a
-phy-handle which points to the PHY.
-
-> +	/* reset PHY */
-> +	retval = tsnep_write_md(adapter, adapter->phydev->mdio.addr, MII_BMCR,
-> +				BMCR_RESET);
-> +	if (retval)
-> +		return retval;
-> +
-> +	/* reset GMII2RGMII */
-> +	if (adapter->gmii2rgmii) {
-> +		retval = tsnep_write_md(adapter, ECM_GMII2RGMII_ADDR,
-> +					ECM_GMII2RGMII_BMCR, BMCR_RESET);
-> +		if (retval)
-> +			return retval;
-> +		retval = tsnep_write_md(adapter, ECM_GMII2RGMII_ADDR,
-> +					ECM_GMII2RGMII_BMCR, BMCR_SPEED100);
-> +		if (retval)
-> +			return retval;
-> +	}
-
-The PHY driver is in control of the PHY, not the MAC. Please remove.
-
-    Andrew
+       Arnd
