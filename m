@@ -2,136 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A30E3D56C2
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 11:43:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE7FB3D56CE
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 11:49:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232524AbhGZJCt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 05:02:49 -0400
-Received: from mga06.intel.com ([134.134.136.31]:33530 "EHLO mga06.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232792AbhGZJCs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Jul 2021 05:02:48 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10056"; a="273283778"
-X-IronPort-AV: E=Sophos;i="5.84,270,1620716400"; 
-   d="scan'208";a="273283778"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jul 2021 02:43:12 -0700
-X-IronPort-AV: E=Sophos;i="5.84,270,1620716400"; 
-   d="scan'208";a="417001763"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jul 2021 02:43:10 -0700
-Received: from andy by smile with local (Exim 4.94.2)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1m7x8X-000fh1-Mv; Mon, 26 Jul 2021 12:43:01 +0300
-Date:   Mon, 26 Jul 2021 12:43:01 +0300
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     Christian Lamparter <chunkeey@gmail.com>
-Cc:     linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        Chris Blake <chrisrblake93@gmail.com>,
-        Paul Mackerras <paulus@samba.org>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v3 0/5] powerpc: apm82181: adding customer devices
-Message-ID: <YP6DpWPhIFpF+j40@smile.fi.intel.com>
-References: <cover.1599343429.git.chunkeey@gmail.com>
- <YPsWMRLWQoxHFub6@smile.fi.intel.com>
- <8a8f50d1-b89c-322f-1465-062ed287d491@gmail.com>
+        id S232524AbhGZJIj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 05:08:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49546 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232482AbhGZJIi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 05:08:38 -0400
+Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38F15C061757;
+        Mon, 26 Jul 2021 02:48:53 -0700 (PDT)
+Received: by mail-ot1-x32e.google.com with SMTP id c2-20020a0568303482b029048bcf4c6bd9so8072951otu.8;
+        Mon, 26 Jul 2021 02:48:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=pl+v3DiaeJpUrELYg7AfdBLvrcikVCH+JCi57zYA5L8=;
+        b=tIuPKH6cDjAbmsEOgBBM5J1qa1ubNYlki7Sxx3yS/okutf/coP9GMnuO1sCiLwZh1O
+         QQ6hZ4bUx4w3QdP08k6+oLwlR9GHH3hwRg5a5RrM7JsHOmmtie1H4FWR0L4ETu4foQQ9
+         VYlV4rqikPgp1ZCwMBAwgSqY+8BC+bItpVUDD1gr0ubGsc/dW+oYhzgcBtacCIC+o27/
+         we5nXqkTqzfYS3NdY4+xzPJtCltqjwIEka0ZuwvU2TtI+9brtk4tJmTPzzRz2O/Jpg2M
+         KVuiCgUE7Vu+0j7tek5Ay1YLWxlE0/kP5nPZFJeB2uipxi75nXAChj2Ti1Br2EYDKzh0
+         pTOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=pl+v3DiaeJpUrELYg7AfdBLvrcikVCH+JCi57zYA5L8=;
+        b=j7LxJp/ioToa21Yr03D0NurotkI5/2PzIw5iylODDI1hB98o74fuX5Rs5DnNS+iCJi
+         UrXps9KwFohohyznsCjk/bzpuZCrQiGfGa5Lzsd9jeiIdumJeGjImJ1o049We9v5ndZq
+         Y6qqyvqsreHGGLk/W/HbrPCUjkyzcxaKq9C3VTIxANxr3OR+HCEk+oZo2TIdgR7ir6yp
+         XzdgyOPr0v8y7uKUF8rub0Yo9XxD/Hz/qNIQcqJ5a1L1Ua4ZrrWdo3PsicXvL7J0Xta2
+         o8SbkBC1DQWX38NZCaW/EHD91ohV9sPuPGiWhzt90UP1mtzaJu7wNGwFqxWQka/ftRCD
+         rjhw==
+X-Gm-Message-State: AOAM530yfXT0br8xVHn9xvD1vp8iEAD/8/7P9q99OuOt2iRx/9xDOieI
+        f0ck6uvHrSleIaUZBCFOQibQ0R1CuVlJTZ/VUd4=
+X-Google-Smtp-Source: ABdhPJwIjI3BLNNv2h2ltqxDCxpofhxdenLAJEBrCmVZcH0wgLU4BC6+IZJezfASEvU7wasViER7NsvA8lTj47uS5w0=
+X-Received: by 2002:a9d:27a4:: with SMTP id c33mr11353766otb.281.1627292932673;
+ Mon, 26 Jul 2021 02:48:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8a8f50d1-b89c-322f-1465-062ed287d491@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <CAGXv+5Ev4QU72cMqMW7sA=dijzh7-DCsfHY+Lmqd36uzg_7Nww@mail.gmail.com>
+ <CAJMQK-hH5HM5iN4q6UgUf8T5fwj+0oULKPw=XafYOPrki-aDkg@mail.gmail.com> <CAGXv+5E9MWzHtJLEab_ZKQNgVqhL5H_Teor9c5zCQD8OHOcYYA@mail.gmail.com>
+In-Reply-To: <CAGXv+5E9MWzHtJLEab_ZKQNgVqhL5H_Teor9c5zCQD8OHOcYYA@mail.gmail.com>
+From:   Enric Balletbo Serra <eballetbo@gmail.com>
+Date:   Mon, 26 Jul 2021 11:48:41 +0200
+Message-ID: <CAFqH_51Sg0h+CC9whUAgpp80OxDsB461NYSdKQvGxho_VF8oJg@mail.gmail.com>
+Subject: Re: arm64: dts: mt8183: Incorrect mediatek,pull-*-adv values
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, linux-gpio@vger.kernel.org,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 24, 2021 at 12:08:30AM +0200, Christian Lamparter wrote:
-> On 23/07/2021 21:19, Andy Shevchenko wrote:
-> > On Sun, Sep 06, 2020 at 12:06:10AM +0200, Christian Lamparter wrote:
-> > > I've been holding on to these devices dts' for a while now.
-> > > But ever since the recent purge of the PPC405, I'm feeling
-> > > the urge to move forward.
-> > > 
-> > > The devices in question have been running with OpenWrt since
-> > > around 2016/2017. Back then it was linux v4.4 and required
-> > > many out-of-tree patches (for WIFI, SATA, CRYPTO...), that
-> > > since have been integrated. So, there's nothing else in the
-> > > way I think.
-> > > 
-> > > A patch that adds the Meraki vendor-prefix has been sent
-> > > separately, as there's also the Meraki MR32 that I'm working
-> > > on as well. Here's the link to the patch:
-> > > <https://lore.kernel.org/linuxppc-dev/20200822154045.16036-1-chunkeey@gmail.com/>
-> > > 
-> > > Now, I've looked around in the arch/powerpc for recent .dts
-> > > and device submissions to get an understanding of what is
-> > > required.
-> > > >From the looks of it, it seems like every device gets a
-> > > skeleton defconfig and a CONFIG_$DEVICE symbol (Like:
-> > > CONFIG_MERAKI_MR24, CONFIG_WD_MYBOOKLIVE).
-> > > 
-> > > Will this be the case? Or would it make sense to further
-> > > unite the Bluestone, MR24 and MBL under a common CONFIG_APM82181
-> > > and integrate the BLUESTONE device's defconfig into it as well?
-> > > (I've stumbled across the special machine compatible
-> > > handling of ppc in the Documentation/devicetree/usage-model.rst
-> > > already.)
-> > 
-> > I haven't found any traces of this to be applied. What is the status of this
-> > patch series? And what is the general state of affairs for the PPC44x?
-> 
-> 
-> My best guess is: It's complicated. While there was a recent big
-> UPSET EVENT regarding the My Book Live (MBL) that affected "hundreds"
-> and "thousands": "An unpleasant surprise for My Book Live owners"
-> (<https://lwn.net/Articles/861235/>). Sadly this wasn't getting any
-> traction.
-> 
-> I can tell that the mentioned Cisco Meraki MR32 (Broadcom ARM SoC)
-> got merged. So this is off the plate 😌.
-> 
-> But APM821xx sadly went nowhere 😕. One reason being that I haven't
-> yet posted a V4, V5 and so on...
-
-I will help with testing if needed, please continue this, it's helpful!
-
-> In theory, for v4 I would have liked to know how to handle the
-> kConfig aspect of the series: Would it be "OK" to have a
-> single CONFIG_APM82181/CONFIG_APM821XX symbol or should there
-> be a CONFIG_MBL the CONFIG_MR24 (CONFIG_WNDR4700 and CONFIG_MX60W
-> in the future)?
-
-No idea. Not a PPC maintainer here.
-
-> As for the MBL: Well, If you (or any one else) is interested in
-> having a more up-to-date Debian. Then I have something:
-> 
-> A while back, I made a "build.sh". This will build a
-> "out-of-the-box" Debian unstable/SID powerpc system image.
-> This includes sensible NAS defaults + programs as well as
-> a Cockpit Web-GUI. But also makes it easily possible to do
-> the DTBs development on the latest vanilla (5.14-rc2 as of
-> the time of writing this) kernel for the
-> MyBook Live Single and Duo:
-> 
-> <https://github.com/chunkeey/mbl-debian>
-
-Thanks for the pointer.
-
-> I can't really make one for the MR24 though. Its 32MiB NAND
-> makes it difficult to install anything else than OpenWrt
-> (and get some use out of the device).
-
-Not interested in MR24, up to you.
-
-> So, how to proceed?
-
-At least send a v4 :-)
-
--- 
-With Best Regards,
-Andy Shevchenko
+Hi Chen-Yu and Hsin-Yi,
 
 
+Missatge de Chen-Yu Tsai <wenst@chromium.org> del dia dl., 26 de jul.
+2021 a les 10:58:
+>
+> On Mon, Jul 26, 2021 at 4:50 PM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
+> >
+> > On Mon, Jul 26, 2021 at 4:20 PM Chen-Yu Tsai <wenst@chromium.org> wrote:
+> > >
+> > > Hi,
+> > >
+> > > I was looking at MTK pinctrl stuff upstream, and it seems there are a few
+> > > `mediatek,pull-*-adv` entries that have invalid values:
+> > >
+> > > arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi:
+> > > mediatek,pull-down-adv = <10>;
+
+The confusion comes probably because the binding says that this value
+is valid, see
+
+   Documentation/devicetree/bindings/pinctrl/pinctrl-mt8183.txt
+
+it'd be nice to convert that binding and the others to yaml format and
+remove the possibility to specify it in binary format.
+
+  Documentation/devicetree/bindings/pinctrl/pinctrl-mt65xx.txt
+  Documentation/devicetree/bindings/pinctrl/pinctrl-mt7622.txt
+  Documentation/devicetree/bindings/pinctrl/pinctrl-mt6797.txt
+
+Should be pretty easy as there is already an example:
+Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl.yaml
+
+Thanks,
+  Enric
+
+> > > arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi:
+> > > mediatek,pull-down-adv = <10>;
+> > > arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi:
+> > > mediatek,pull-down-adv = <10>;
+> > > arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi:
+> > > mediatek,pull-up-adv = <10>;
+> > > arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi:
+> > > mediatek,pull-down-adv = <10>;
+> > > arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi:
+> > > mediatek,pull-up-adv = <10>;
+> > > arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi:
+> > > mediatek,pull-down-adv = <10>;
+> > > arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts:
+> > >  mediatek,pull-down-adv = <10>;
+> > > arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts:
+> > >  mediatek,pull-down-adv = <10>;
+> > > arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts:
+> > >  mediatek,pull-down-adv = <10>;
+> > > arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts:
+> > >  mediatek,pull-up-adv = <10>;
+> > > arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts:
+> > >  mediatek,pull-down-adv = <10>;
+> > > arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts:
+> > >  mediatek,pull-up-adv = <10>;
+> > >
+> > > According to the bindings, the values should 0~3. <10> is probably a
+> > > incorrect attempt at using binary representation, which is wrong. This
+> > > probably leads to the pull-up/down getting disabled or ignored.
+> > >
+> > > Cound people still working on these two devices take a look?
+> > >
+> > Thanks for pointing this out. It's an incorrect value but 10=0b1010 so
+> > the result is same as 2, since the driver test the value by checking
+> > the last 2 bit. We should still fix this in dts.
+>
+
+I see that the are
+
+
+
+> That probably explains why no one noticed.
