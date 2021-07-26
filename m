@@ -2,80 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B21AC3D5F05
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 17:59:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B52BB3D5FB5
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 18:01:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236078AbhGZPQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 11:16:34 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54248 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236874AbhGZPPn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Jul 2021 11:15:43 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D9FAB61006;
-        Mon, 26 Jul 2021 15:54:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627314854;
-        bh=1UURlyqsMlhFBDtKQ5OkWxpvTCr15igrtOB2uhsDtAc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Xt1JS69WcRfNBf10BC7klLwJue00soMk56I/Q+DlLUvc5LkeKjY1ofkI8F4j4Me31
-         TRFQ93psHdxQCL6INC7viuaNcM+2iQUQskILhHDF9f16ExrthpUcp+MRrwKBl0bUn0
-         qCXGfKB2ZyW0ihAixyLU+TH88o1pIEwFyOD9CH7g+2rlpWDe2Q+/RH0kKaoK2xjo6H
-         buSKSSULzJ8+4Sy14cdWiUCK5kH/StVNqQKnKaBxxgi6GLmx4QKm+69RzwXd6dgYoO
-         wRFsynUbO/NGmLfC9JJ6+Rf7FztKCFIueAxYcCqfvkmgLzTmJ20rwgD6lQzx9mmy09
-         a+pdAOLBc6INw==
-Received: by mail-wm1-f52.google.com with SMTP id h24-20020a1ccc180000b029022e0571d1a0so297907wmb.5;
-        Mon, 26 Jul 2021 08:54:14 -0700 (PDT)
-X-Gm-Message-State: AOAM531K/U3wY7GpDPqetnTEMN8YQQ0ZzMuDjqfkRdX/2fksQepf9L+0
-        Drk3g/UkUtTYHIHEMXyJl6bpthqWriDnYsVUJBA=
-X-Google-Smtp-Source: ABdhPJyfayTexfKmJXMNn4XX3QQ4A+JhJZPnrMjFG+lYbcQXFXTNeBfZSy5NHj6FNZWGchEzxA364vxfUetwDeI2AkY=
-X-Received: by 2002:a7b:c2fa:: with SMTP id e26mr27585853wmk.84.1627314853538;
- Mon, 26 Jul 2021 08:54:13 -0700 (PDT)
+        id S236571AbhGZPS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 11:18:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50066 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235673AbhGZPSh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 11:18:37 -0400
+Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC0F1C061765
+        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 08:59:05 -0700 (PDT)
+Received: by mail-io1-xd2f.google.com with SMTP id n19so12592531ioz.0
+        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 08:59:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ieee.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=2oqVdc+Bwmni6M3nVJzlpNG4FMWWLNOhFE43b4PtG5Q=;
+        b=cKI0ApA8ngPZMooBLOh7lfAS1DsT2EHd2K3e68CR4zgtntvO2LDikDqPfrKKxfL+HZ
+         KjDxlBy4CqosymqCj4oljmWfEhXMB9Ljoaq1uG3SCr3OXux7uJbEVNvDlCSaSSudh+4q
+         gFlnjYV+fYFBzX+CxkZIODAe3Vek39iWL6hvI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=2oqVdc+Bwmni6M3nVJzlpNG4FMWWLNOhFE43b4PtG5Q=;
+        b=F+YSDtUdNUhNfue0N8yB1Vp/pyk2eM/+escTgNJILtKEGyKrqD+/BcrCsl+3HTc2RL
+         M/M2giPsXrtoey2KTOMlHKVlvE9sEI9XzDVv7NUKJeQBKIu0/ndVQJqZjd+T99tD43n+
+         w3FZsWJyHDZACrOmfXoDQiPGTpd+OGe4JrSSvXYXFqAuI1QvXQlNJlBMDyOv8ltIlg8V
+         9yM0f3pTRfQeUNUtg+zF+VJ2NtYR/4Pb1F+KG/EtGUGbwTrT9rWoPZj/R1gahv5nJjs6
+         CPeOfHLxRAl01QvuVoM86S3QBdWhSslm5Iw8dqkBvK3T+b1//pAeceYRyhFdJj4qn+59
+         Ofvw==
+X-Gm-Message-State: AOAM5329HGovEbmKC9FUMe3bDh9PAQkvZbJcWdKPvdDj+hEC1wVxXG6G
+        6DyrFacMzNNVRIbB2yFG9Df7VQ==
+X-Google-Smtp-Source: ABdhPJzcoLCiWULduAJ6beoqhxsv3ChnwQVAVpBm3E4lg/mBvDeOOmGaoHxC4yOFi27MB7GKWKBa+Q==
+X-Received: by 2002:a5e:c109:: with SMTP id v9mr15382903iol.76.1627315145241;
+        Mon, 26 Jul 2021 08:59:05 -0700 (PDT)
+Received: from [172.22.22.4] (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
+        by smtp.googlemail.com with ESMTPSA id h24sm169070ioj.32.2021.07.26.08.59.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Jul 2021 08:59:04 -0700 (PDT)
+Subject: Re: [PATCH net-next 1/3] dt-bindings: net: qcom,ipa: make imem
+ interconnect optional
+To:     Rob Herring <robh@kernel.org>, Alex Elder <elder@linaro.org>
+Cc:     bjorn.andersson@linaro.org, agross@kernel.org, davem@davemloft.net,
+        kuba@kernel.org, evgreen@chromium.org, cpratapa@codeaurora.org,
+        subashab@codeaurora.org, elder@kernel.org,
+        linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210719212456.3176086-1-elder@linaro.org>
+ <20210719212456.3176086-2-elder@linaro.org>
+ <20210723205252.GA2550230@robh.at.kernel.org>
+From:   Alex Elder <elder@ieee.org>
+Message-ID: <6c1779aa-c90c-2160-f8b9-497fb8c32dc5@ieee.org>
+Date:   Mon, 26 Jul 2021 10:59:03 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <cover.1627273794.git.viresh.kumar@linaro.org> <fced2f2b9dcf3f32f16866d7d104f46171316396.1627273794.git.viresh.kumar@linaro.org>
- <CAL_Jsq+XXhe2g0Rmda1v_Ws4-E_-UE6X5HUsSk-GcAETqQZiCQ@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+XXhe2g0Rmda1v_Ws4-E_-UE6X5HUsSk-GcAETqQZiCQ@mail.gmail.com>
-From:   Arnd Bergmann <arnd@kernel.org>
-Date:   Mon, 26 Jul 2021 17:53:56 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a3bCk+iA+YziQrQFg6xH_d9cyySdTN_1j94D9CA8a_Sjw@mail.gmail.com>
-Message-ID: <CAK8P3a3bCk+iA+YziQrQFg6xH_d9cyySdTN_1j94D9CA8a_Sjw@mail.gmail.com>
-Subject: Re: [PATCH V3 1/5] dt-bindings: virtio: Add binding for virtio devices
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Jason Wang <jasowang@redhat.com>,
-        "Michael S. Tsirkin" <mst@redhat.com>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>,
-        =?UTF-8?B?QWxleCBCZW5uw6ll?= <alex.bennee@linaro.org>,
-        "Enrico Weigelt, metux IT consult" <info@metux.net>,
-        Jie Deng <jie.deng@intel.com>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE" 
-        <virtualization@lists.linux-foundation.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210723205252.GA2550230@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 26, 2021 at 4:57 PM Rob Herring <robh+dt@kernel.org> wrote:
-> On Sun, Jul 25, 2021 at 10:52 PM Viresh Kumar <viresh.kumar@linaro.org> wrote:
-> > +    description: |
-> > +      Exactly one node describing the virtio device. The name of the node isn't
-> > +      significant but its phandle can be used to by a user of the virtio device.
-> > +
-> > +  compatible:
-> > +    pattern: "^virtio,[0-9a-f]+$"
->
-> DID is only 4 chars? If so, "^virtio,[0-9a-f]{1,4}$"
+On 7/23/21 3:52 PM, Rob Herring wrote:
+> On Mon, Jul 19, 2021 at 04:24:54PM -0500, Alex Elder wrote:
+>> On some newer SoCs, the interconnect between IPA and SoC internal
+>> memory (imem) is not used.  Reflect this in the binding by moving
+>> the definition of the "imem" interconnect to the end and defining
+>> minItems to be 2 for both the interconnects and interconnect-names
+>> properties.
+>>
+>> Signed-off-by: Alex Elder <elder@linaro.org>
+>> ---
+>>   .../devicetree/bindings/net/qcom,ipa.yaml      | 18 ++++++++++--------
+>>   1 file changed, 10 insertions(+), 8 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/qcom,ipa.yaml b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
+>> index ed88ba4b94df5..4853ab7017bd9 100644
+>> --- a/Documentation/devicetree/bindings/net/qcom,ipa.yaml
+>> +++ b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
+>> @@ -87,16 +87,18 @@ properties:
+>>         - const: ipa-setup-ready
+>>   
+>>     interconnects:
+>> +    minItems: 2
+>>       items:
+>> -      - description: Interconnect path between IPA and main memory
+>> -      - description: Interconnect path between IPA and internal memory
+>> -      - description: Interconnect path between IPA and the AP subsystem
+>> +      - description: Path leading to system memory
+>> +      - description: Path between the AP and IPA config space
+>> +      - description: Path leading to internal memory
+>>   
+>>     interconnect-names:
+>> +    minItems: 2
+>>       items:
+>>         - const: memory
+>> -      - const: imem
+>>         - const: config
+>> +      - const: imem
+> 
+> What about existing users? This will generate warnings. Doing this for
+> the 2nd item would avoid the need for .dts updates:
+> 
+> - enum: [ imem, config ]
 
-Any opinion on whether this should have any namespace prefix (or infix, I guess)
-after "virtio,"?
+If I understand correctly, the effect of this would be that
+the second item can either be "imem" or "config", and the third
+(if present) could only be "imem"?
 
-I previously suggested making it "virtio,device[0-9a-f]{1,4}$", which would
-make it clearer that the following digits are the device ID rather
-than something
-else we might define in the future. Viresh picked this version because it's
-somewhat more consistent with other subsystems.
+And you're saying that otherwise, existing users (the only
+one it applies to at the moment is "sdm845.dtsi") would
+produce warnings, because the interconnects are listed
+in an order different from what the binding specifies.
 
-       Arnd
+Is that correct?
+
+If so, what you propose suggests "imem" could be listed twice.
+It doesn't make sense, and maybe it's precluded in other ways
+so that's OK.  But I'd be happy to update "sdm845.dtsi" to
+address your concern.  (Maybe that's something you would rather
+avoid?)
+
+Also, I need to make a separate update to "sm8350.dtsi" because
+that was defined before I understood what I do now about the 
+interconnects.  It uses the wrong names, and should combine
+its first two interconnects into just one.
+
+					-Alex
+
+> 
+> Rob
+> 
+
