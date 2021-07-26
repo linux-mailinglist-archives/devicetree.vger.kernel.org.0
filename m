@@ -2,18 +2,18 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9695A3D536A
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 08:57:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3215E3D5423
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 09:28:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231707AbhGZGQc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 02:16:32 -0400
-Received: from verein.lst.de ([213.95.11.211]:43913 "EHLO verein.lst.de"
+        id S231728AbhGZGUH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 02:20:07 -0400
+Received: from verein.lst.de ([213.95.11.211]:43938 "EHLO verein.lst.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229658AbhGZGQc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Jul 2021 02:16:32 -0400
+        id S231570AbhGZGUG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Jul 2021 02:20:06 -0400
 Received: by verein.lst.de (Postfix, from userid 2407)
-        id 408B168AFE; Mon, 26 Jul 2021 08:56:58 +0200 (CEST)
-Date:   Mon, 26 Jul 2021 08:56:57 +0200
+        id DA9D068B05; Mon, 26 Jul 2021 09:00:30 +0200 (CEST)
+Date:   Mon, 26 Jul 2021 09:00:30 +0200
 From:   Christoph Hellwig <hch@lst.de>
 To:     Atish Patra <atish.patra@wdc.com>
 Cc:     linux-kernel@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
@@ -28,52 +28,44 @@ Cc:     linux-kernel@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
         Rob Herring <robh+dt@kernel.org>,
         Robin Murphy <robin.murphy@arm.com>,
         Tobias Klauser <tklauser@distanz.ch>
-Subject: Re: [RFC 1/5] RISC-V: Implement arch_sync_dma* functions
-Message-ID: <20210726065657.GA9035@lst.de>
-References: <20210723214031.3251801-1-atish.patra@wdc.com> <20210723214031.3251801-2-atish.patra@wdc.com>
+Subject: Re: [RFC 3/5] dma-mapping: Enable global non-coherent pool support
+ for RISC-V
+Message-ID: <20210726070030.GB9035@lst.de>
+References: <20210723214031.3251801-1-atish.patra@wdc.com> <20210723214031.3251801-4-atish.patra@wdc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210723214031.3251801-2-atish.patra@wdc.com>
+In-Reply-To: <20210723214031.3251801-4-atish.patra@wdc.com>
 User-Agent: Mutt/1.5.17 (2007-11-01)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +#ifdef CONFIG_RISCV_DMA_NONCOHERENT
-> +struct riscv_dma_cache_sync {
-> +	void (*cache_invalidate)(phys_addr_t paddr, size_t size);
-> +	void (*cache_clean)(phys_addr_t paddr, size_t size);
-> +	void (*cache_flush)(phys_addr_t paddr, size_t size);
-> +};
-> +
-> +void riscv_dma_cache_sync_set(struct riscv_dma_cache_sync *ops);
-> +#endif
+On Fri, Jul 23, 2021 at 02:40:29PM -0700, Atish Patra wrote:
+> Currently, linux,dma-default is used to reserve a global non-coherent pool
+> to allocate memory for dma operations. This can be useful for RISC-V as
+> well as the ISA specification doesn't specify a method to modify PMA
+> attributes or page table entries to define non-cacheable area yet.
+> A non-cacheable memory window is an alternate options for vendors to
+> support non-coherent devices.
 
-As told a bunch of times before: doing indirect calls here is a
-performance nightmare.  Use something that actually does perform
-horribly like alternatives.  Or even delay implementing that until
-we need it and do a plain direct call for now.
+Please explain why you do not want to use the simply non-cachable
+window support using arch_dma_set_uncached as used by mips, niops2 and
+xtensa.
 
-static void __dma_sync(phys_addr_t paddr, size_t size, enum dma_data_direction dir)
-> +{
-> +	if ((dir == DMA_FROM_DEVICE) && (dma_cache_sync->cache_invalidate))
-> +		dma_cache_sync->cache_invalidate(paddr, size);
-> +	else if ((dir == DMA_TO_DEVICE) && (dma_cache_sync->cache_clean))
-> +		dma_cache_sync->cache_clean(paddr, size);
-> +	else if ((dir == DMA_BIDIRECTIONAL) && dma_cache_sync->cache_flush)
-> +		dma_cache_sync->cache_flush(paddr, size);
-> +}
+> +static int __dma_init_global_coherent(phys_addr_t phys_addr, dma_addr_t device_addr, size_t size)
 
-The seletion of flush types is completely broken.  Take a look at the
-comment in arch/arc/mm/dma.c above arch_sync_dma_for_device for a good
-explanation.
 
-> +void arch_dma_prep_coherent(struct page *page, size_t size)
-> +{
-> +	void *flush_addr = page_address(page);
-> +
-> +	memset(flush_addr, 0, size);
 
-arch_dma_prep_coherent is not supposed to modify the content of
-the data.
+
+>  {
+>  	struct dma_coherent_mem *mem;
+>  
+> -	mem = dma_init_coherent_memory(phys_addr, phys_addr, size, true);
+> +	if (phys_addr == device_addr)
+> +		mem = dma_init_coherent_memory(phys_addr, device_addr, size, true);
+> +	else
+> +		mem = dma_init_coherent_memory(phys_addr, device_addr, size, false);
+
+Nak.  The phys_addr != device_addr support is goign away.  This needs
+to be filled in using dma-ranges property hanging of the struct device.
