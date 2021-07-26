@@ -2,259 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B8923D5174
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 05:02:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32A183D51BE
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 05:52:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230321AbhGZCVa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Jul 2021 22:21:30 -0400
-Received: from szxga03-in.huawei.com ([45.249.212.189]:12306 "EHLO
-        szxga03-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230272AbhGZCV3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jul 2021 22:21:29 -0400
-Received: from dggeme758-chm.china.huawei.com (unknown [172.30.72.55])
-        by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4GY4Mv6lLyz7y9Z;
-        Mon, 26 Jul 2021 10:57:15 +0800 (CST)
-Received: from [10.40.166.221] (10.40.166.221) by
- dggeme758-chm.china.huawei.com (10.3.19.104) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2176.2; Mon, 26 Jul 2021 11:01:56 +0800
-Message-ID: <60FE25A4.4040905@hisilicon.com>
-Date:   Mon, 26 Jul 2021 11:01:56 +0800
-From:   Wei Xu <xuwei5@hisilicon.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+        id S231601AbhGZDLS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Jul 2021 23:11:18 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:39343 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231530AbhGZDLS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 25 Jul 2021 23:11:18 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id B6720580457;
+        Sun, 25 Jul 2021 23:51:46 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Sun, 25 Jul 2021 23:51:46 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm3; bh=H3jwiRFGXqJPvuv7Y4q/rPalVp
+        61u1Fw/7F6aOr79LI=; b=DEnQEUhxbmdScDeubloC1ND86h8tYv8bVxrPn1LwGc
+        9ZQxGFMjHYpjLl8dO31XXc6CzHhsAqYXz4gJcuC+67Q+7n0qXurdxsvl1O57/7Dn
+        hNXNrLkjW3YUPrgnqnDzWVt2GIchjvIUSKpIIvHCUyJjtJ3yMUx5cSsEngjDO6pw
+        xG0D3hxOkuJHqqzPUvfl+vCr2PfZMB108kbZbScILPv3LBb6nZk9RHk3lbbIfTSB
+        6P/Urs9UztRG7UWbDtY3fhdMOJpGCVzMFFgYH3GH0zBm5yZIh/QaRzDB6uuYkOAI
+        7QF5Q62Qijsp25LPD6j4awKBNTHJVBsiKHcHRRf0u7DA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=H3jwiRFGXqJPvuv7Y
+        4q/rPalVp61u1Fw/7F6aOr79LI=; b=jAiPfcuGN3j+8SGBwkGLvBedOFfeEpr3Y
+        2HvcuQkNm7rrwj8T+yBEb3SL5Mvez1y++G/grk+yCaqIagvoO7xZlZKtFQ3kAzIr
+        KK//onyqKn4k4/iVVLtqpTDJ7pfWgSZBT2ie32E86aCv2WfzzU8loOcoKFkdYiWP
+        5do7oqIPZ8EKpfjOKB9T6Pp8H+IL+UYxTQlzyy9XQbjuczBNkkQWSkDPXqloCOAI
+        zM2KAu++JL5rHn5RUsVILlLkO0Ak8nlKxM5wajuBXlZMPJrloA6qXoYVY7f+RbSM
+        Y5bPQFR1BrcwG2m8nqLVUr5sn7Vfrr1a7EEMcYo9ZWZ0gj6KUnjKg==
+X-ME-Sender: <xms:UDH-YFiqFn0FADDZTYj9HyovQR4n1Go_RCUT5L3Bbghu8hSuOX5zRQ>
+    <xme:UDH-YKCzx0CxXZK8tkSDiB4P1fFIIXY1TNJ8ahOKzuX6Su9UhSUaxYgK3_UxQm6s-
+    7CYDhxi9WRerqEj9w>
+X-ME-Received: <xmr:UDH-YFGTSU-9qaaUPO7HPTdcMf4bq2zlfYFeIHMFTHdBpWUtCEYodJ_V9Or8UVDj1o6Igqxrw9mNUsuNdF90pplrM6mjefFIWk_wCRrIE9DkSzqnhut8KD_D0oxIq3-6wquTDw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrgeeggdejvdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomhepufgrmhhuvghlucfj
+    ohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecuggftrfgrth
+    htvghrnhepieetkefhheduudfgledtudefjeejfeegveehkeeufffhhfejkeehiefftdev
+    tdevnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepsh
+    grmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:UDH-YKTrPS4_z-OoFFDKWH_EmjeJdpl4piO3rU11wMPnHUvo_3VmyQ>
+    <xmx:UDH-YCxxhgHOGSBqAf4Hri13lzfLSD5_vG0eYdPeeMcQB9TY2Z1pSQ>
+    <xmx:UDH-YA5UYm2jrIUs7rCOhSs027j20-K7COUdjh_n8rWZDvZVpQbF7g>
+    <xmx:UjH-YHqmW8jzILQqmjzoB5_lavdFjuZX-dCXtPqSqCs3hit_4H06UQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
+ 25 Jul 2021 23:51:43 -0400 (EDT)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-watchdog@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Samuel Holland <samuel@sholland.org>
+Subject: [PATCH 1/3] dt-bindings: watchdog: sunxi: Add compatible for R329
+Date:   Sun, 25 Jul 2021 22:51:41 -0500
+Message-Id: <20210726035143.53132-1-samuel@sholland.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-CC:     <linuxarm@huawei.com>, <mauro.chehab@huawei.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] dts: hisilicon: add support for USB3 on Hikey 970
-References: <cover.1627116285.git.mchehab+huawei@kernel.org> <ec30515cad1247280356943d5f93157330eaa73f.1627116285.git.mchehab+huawei@kernel.org>
-In-Reply-To: <ec30515cad1247280356943d5f93157330eaa73f.1627116285.git.mchehab+huawei@kernel.org>
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.40.166.221]
-X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
- dggeme758-chm.china.huawei.com (10.3.19.104)
-X-CFilter-Loop: Reflected
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mauro,
+On existing SoCs, the watchdog has a single clock input: HOSC (OSC24M)
+divided by 750.  However, starting with R329, LOSC (OSC32k) is added as
+an alternative clock source, with a bit to switch between them.
 
-On 2021/7/24 16:55, Mauro Carvalho Chehab wrote:
-> Add the USB3 bindings for Kirin 970 phy and Hikey 970 board.
-> 
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Since 24 MHz / 750 == 32 kHz, not 32.768 kHz, the hardware adjusts the
+cycle counts to keep the timeouts independent of the clock source. This
+keeps the programming interface backward-compatible.
 
-Fine to me and I can merge this patch once the binding for the 
-"kirin970_hikey_usbhub" and "hi3670-dwc3" are ready.
-Thanks!
+R329 also adds two new registers, to allow software to immediately drive
+the SoC reset signal.
 
-Best Regards,
-Wei
+Signed-off-by: Samuel Holland <samuel@sholland.org>
+---
+ .../watchdog/allwinner,sun4i-a10-wdt.yaml     | 30 ++++++++++++++++++-
+ 1 file changed, 29 insertions(+), 1 deletion(-)
 
-> ---
->  .../boot/dts/hisilicon/hi3670-hikey970.dts    | 107 ++++++++++++++++++
->  arch/arm64/boot/dts/hisilicon/hi3670.dtsi     |  56 +++++++++
->  2 files changed, 163 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-> index 7c32f5fd5cc5..16f81f86e3fa 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-> @@ -53,6 +53,30 @@ wlan_en: wlan-en-1-8v {
->  		startup-delay-us = <70000>;
->  		enable-active-high;
->  	};
-> +
-> +	hikey_usbhub: hikey_usbhub {
-> +		compatible = "hisilicon,kirin970_hikey_usbhub";
-> +
-> +		typec-vbus-gpios = <&gpio26 1 0>;
-> +		otg-switch-gpios = <&gpio4 2 0>;
-> +		hub_reset_en_gpio = <&gpio0 3 0>;
-> +		hub-vdd-supply = <&ldo17>;
-> +		usb-role-switch;
-> +
-> +		port {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			hikey_usb_ep0: endpoint@0 {
-> +				reg = <0>;
-> +				remote-endpoint = <&dwc3_role_switch>;
-> +			};
-> +			hikey_usb_ep1: endpoint@1 {
-> +				reg = <1>;
-> +				remote-endpoint = <&rt1711h_ep>;
-> +			};
-> +		};
-> +	};
->  };
->  
->  /*
-> @@ -430,3 +454,86 @@ &uart6 {
->  	label = "LS-UART1";
->  	status = "okay";
->  };
-> +
-> +&usb_phy {
-> +	phy-supply = <&ldo17>;
-> +};
-> +
-> +&i2c1 {
-> +	status = "okay";
-> +
-> +	rt1711h: rt1711h@4e {
-> +		compatible = "richtek,rt1711h";
-> +		reg = <0x4e>;
-> +		status = "okay";
-> +		interrupt-parent = <&gpio27>;
-> +		interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&usb_cfg_func>;
-> +
-> +		usb_con: connector {
-> +			compatible = "usb-c-connector";
-> +			label = "USB-C";
-> +			data-role = "dual";
-> +			power-role = "dual";
-> +			try-power-role = "sink";
-> +			source-pdos = <PDO_FIXED(5000, 500, PDO_FIXED_USB_COMM)>;
-> +			sink-pdos = <PDO_FIXED(5000, 500, PDO_FIXED_USB_COMM)
-> +				PDO_VAR(5000, 5000, 1000)>;
-> +			op-sink-microwatt = <10000000>;
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				port@1 {
-> +					reg = <1>;
-> +					usb_con_ss: endpoint {
-> +						remote-endpoint = <&dwc3_ss>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +		port {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			rt1711h_ep: endpoint@0 {
-> +				reg = <0>;
-> +				remote-endpoint = <&hikey_usb_ep1>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&i2c2 {
-> +	/* USB HUB is on this bus at address 0x44 */
-> +	status = "okay";
-> +};
-> +
-> +&dwc3 { /* USB */
-> +	dr_mode = "otg";
-> +	maximum-speed = "super-speed";
-> +	phy_type = "utmi";
-> +	snps,dis-del-phy-power-chg-quirk;
-> +	snps,dis_u2_susphy_quirk;
-> +	snps,dis_u3_susphy_quirk;
-> +	snps,tx_de_emphasis_quirk;
-> +	snps,tx_de_emphasis = <1>;
-> +	snps,dis-split-quirk;
-> +	snps,gctl-reset-quirk;
-> +	usb-role-switch;
-> +	role-switch-default-mode = "host";
-> +	port {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		dwc3_role_switch: endpoint@0 {
-> +			reg = <0>;
-> +			remote-endpoint = <&hikey_usb_ep0>;
-> +		};
-> +
-> +		dwc3_ss: endpoint@1 {
-> +			reg = <1>;
-> +			remote-endpoint = <&usb_con_ss>;
-> +		};
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> index 20698cfd0637..1f228612192c 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> @@ -8,6 +8,7 @@
->  
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/clock/hi3670-clock.h>
-> +#include <dt-bindings/usb/pd.h>
->  
->  / {
->  	compatible = "hisilicon,hi3670";
-> @@ -785,5 +786,60 @@ i2c4: i2c@fdf0d000 {
->  			pinctrl-0 = <&i2c4_pmx_func &i2c4_cfg_func>;
->  			status = "disabled";
->  		};
-> +
-> +		usb3_otg_bc: usb3_otg_bc@ff200000 {
-> +			compatible = "syscon", "simple-mfd";
-> +			reg = <0x0 0xff200000 0x0 0x1000>;
-> +
-> +			usb_phy: usbphy {
-> +				compatible = "hisilicon,hi3670-usb-phy";
-> +				#phy-cells = <0>;
-> +				hisilicon,pericrg-syscon = <&crg_ctrl>;
-> +				hisilicon,pctrl-syscon = <&pctrl>;
-> +				hisilicon,sctrl-syscon = <&sctrl>;
-> +				hisilicon,eye-diagram-param = <0xFDFEE4>;
-> +				hisilicon,tx-vboost-lvl = <0x5>;
-> +			};
-> +		};
-> +
-> +		usb31_misc_rst: usb31_misc_rst_controller {
-> +			compatible = "hisilicon,hi3660-reset";
-> +			#reset-cells = <2>;
-> +			hisi,rst-syscon = <&usb3_otg_bc>;
-> +		};
-> +
-> +		usb3: hisi_dwc3 {
-> +			compatible = "hisilicon,hi3670-dwc3";
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges;
-> +
-> +			clocks = <&crg_ctrl HI3670_CLK_GATE_ABB_USB>,
-> +				  <&crg_ctrl HI3670_HCLK_GATE_USB3OTG>,
-> +				  <&crg_ctrl HI3670_CLK_GATE_USB3OTG_REF>,
-> +				  <&crg_ctrl HI3670_ACLK_GATE_USB3DVFS>;
-> +			clock-names = "clk_gate_abb_usb",
-> +				      "hclk_gate_usb3otg",
-> +				      "clk_gate_usb3otg_ref",
-> +				      "aclk_gate_usb3dvfs";
-> +
-> +			assigned-clocks = <&crg_ctrl HI3670_ACLK_GATE_USB3DVFS>;
-> +			assigned-clock-rates = <238000000>;
-> +			resets = <&crg_rst 0x90 6>,
-> +				 <&crg_rst 0x90 7>,
-> +				 <&usb31_misc_rst 0xA0 8>,
-> +				 <&usb31_misc_rst 0xA0 9>;
-> +
-> +			dwc3: usb@ff100000 {
-> +				compatible = "snps,dwc3";
-> +				reg = <0x0 0xff100000 0x0 0x100000>;
-> +
-> +				interrupts = <0 159 IRQ_TYPE_LEVEL_HIGH>,
-> +					    <0 161 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +				phys = <&usb_phy>;
-> +				phy-names = "usb3-phy";
-> +			};
-> +		};
->  	};
->  };
-> 
+diff --git a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+index 9aa3c313c49f..853ceb1b7c0f 100644
+--- a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
++++ b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+@@ -24,6 +24,7 @@ properties:
+               - allwinner,sun50i-a100-wdt
+               - allwinner,sun50i-h6-wdt
+               - allwinner,sun50i-h616-wdt
++              - allwinner,sun50i-r329-wdt
+           - const: allwinner,sun6i-a31-wdt
+       - items:
+           - const: allwinner,suniv-f1c100s-wdt
+@@ -33,7 +34,16 @@ properties:
+     maxItems: 1
+ 
+   clocks:
+-    maxItems: 1
++    minItems: 1
++    maxItems: 2
++
++  clock-names:
++    minItems: 1
++    maxItems: 2
++    items:
++      enum:
++        - hosc
++        - losc
+ 
+   interrupts:
+     maxItems: 1
+@@ -44,6 +54,24 @@ required:
+   - clocks
+   - interrupts
+ 
++if:
++  properties:
++    compatible:
++      contains:
++        enum:
++          - allwinner,sun50i-r329-wdt
++
++then:
++  properties:
++    clocks:
++      minItems: 2
++
++    clock-names:
++      minItems: 2
++
++  required:
++    - clock-names
++
+ unevaluatedProperties: false
+ 
+ examples:
+-- 
+2.31.1
+
