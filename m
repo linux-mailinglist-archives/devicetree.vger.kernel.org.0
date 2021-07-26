@@ -2,134 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 86E583D6906
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 23:53:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 989523D690A
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 23:53:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233249AbhGZVMn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 17:12:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47696 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233199AbhGZVMn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 17:12:43 -0400
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDD5FC061757
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 14:53:10 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id a201so17227368ybg.12
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 14:53:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=atishpatra.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6kBp8vg6yrbqOVIKTerlcVAvXP0g+WzVUYrd5yH/+QE=;
-        b=XA6S+wcg4qscUKPhrHfs9id0ov3mJw7DOLhvASuXhtr999Q3C6XmfJvxjMDGwtF5yP
-         /ROSFbhTi6Bo2WJ7XqA7thr54ZyRRqBxFGPRUUpQDwu5dtF1UF2mNn2XKy0/k6KPL5HO
-         BWQQP5EMcW2boq2BtlUyF+Cwh1u74WAo1zqdI=
+        id S233365AbhGZVMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 17:12:54 -0400
+Received: from mail-il1-f171.google.com ([209.85.166.171]:41635 "EHLO
+        mail-il1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233380AbhGZVMt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 17:12:49 -0400
+Received: by mail-il1-f171.google.com with SMTP id u7so7162101ilj.8;
+        Mon, 26 Jul 2021 14:53:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6kBp8vg6yrbqOVIKTerlcVAvXP0g+WzVUYrd5yH/+QE=;
-        b=bTa48Ia7ORnL9D3Vppk2wjN865MLeT4gtWn3y+So6A4Vy+29/KpAiSbJEDApCuujRl
-         CeWYFes5geBOUfxRa+zFmts50suDBFMGHVi1OSplfyh+h1ggv4iP8EFZobekTJz+pl2v
-         1lGIZTEA1TGgqov98+LgO0fr1u6n4lKz5/p3NEKIkDsIVqprMbLRgfoMlx1mQIuM+w3c
-         gLlOuJ8Qht0sDPCigG/5igyti3c2Dl+lXrO3Gqktx68w0LAfb3oIJPqAufSEL4BgfPmU
-         E6aNgludy+nkeIlFgDQgkbX8vvDn2CZtY0Ejs9FiuQjURkHizHp/UYlf5jxl1r7er2ow
-         luqQ==
-X-Gm-Message-State: AOAM531fxskU5eOLh/W961LlsTVj0rskIqgTu9UytRCYJ2p0n6TzXLa2
-        aJnyi2rr0kmnVuTrfxgM/TkbVeLPLalQc+73taUs
-X-Google-Smtp-Source: ABdhPJw1sNKFekdI1Ln5GFGtrd+fGGKvAqudNs0O/HZL6Z2vY9+JbXh7u0IWSx+tE6iFXOzqgaQ/prFDh7B5VuUxCDI=
-X-Received: by 2002:a25:d015:: with SMTP id h21mr25548749ybg.202.1627336390145;
- Mon, 26 Jul 2021 14:53:10 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=IXAKV/l0kP9SHRYfoiPV0gMiejA+aj5bOuiKVlPykZY=;
+        b=XplgseEcXs0W5fajVIXNUuWG61n4Do7Gau77EBMH65ljbIEQFKDhjK6tGMV1RhuJqh
+         U2CYnK7WLscOTHHLzyAgbfjSj69XEn3nX6MDcAqzZ8s1t6LPvSxHbW4sbT0hdWO453LT
+         I9fxbV+dusxOLrEZetQuUCT9xulTlfLVH6Dlz30g4Eec4r4uPK7C0Zp/i+f9PknDv2VT
+         KJZ9Acr2tSMQ119AxQoAUE+E9+u14bmUVIPSIw46xHa58z1xSoTIUm4WppbPjMTfYxPH
+         n3wR4uE/nCGPDmj1dmJt6PVkxYoeB6lMLBArXLdCN5cnGfsFO4FDsVdJPvJvqyoyORIv
+         zlgQ==
+X-Gm-Message-State: AOAM532Zmp/Y7tIFlaSPo7Xi4d/KWXycyvVB8sbrkzCczWu3x34kNgbu
+        u2y0/USUleaCaqYC7zFqcOx1CbBDPQ==
+X-Google-Smtp-Source: ABdhPJzVh15QLMJGUDbuboGdisyc4KKn38I+bfwIUiMnA1lkKgje5EywKf0tA9kndw3i15G1xdZ/Lw==
+X-Received: by 2002:a92:d24d:: with SMTP id v13mr14978274ilg.238.1627336396792;
+        Mon, 26 Jul 2021 14:53:16 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id x11sm535881ilu.3.2021.07.26.14.53.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Jul 2021 14:53:16 -0700 (PDT)
+Received: (nullmailer pid 932853 invoked by uid 1000);
+        Mon, 26 Jul 2021 21:53:14 -0000
+Date:   Mon, 26 Jul 2021 15:53:14 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        Luca Ceresoli <luca@lucaceresoli.net>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Adam Ford <aford173@gmail.com>
+Subject: Re: [PATCH v6 1/3] dt-bindings: clk: vc5: Add properties for
+ configuring the SD/OE pin
+Message-ID: <20210726215314.GA932558@robh.at.kernel.org>
+References: <20210723231306.674310-1-sean.anderson@seco.com>
 MIME-Version: 1.0
-References: <20210723214031.3251801-1-atish.patra@wdc.com> <20210723214031.3251801-2-atish.patra@wdc.com>
- <20210726065657.GA9035@lst.de>
-In-Reply-To: <20210726065657.GA9035@lst.de>
-From:   Atish Patra <atishp@atishpatra.org>
-Date:   Mon, 26 Jul 2021 14:52:59 -0700
-Message-ID: <CAOnJCUJFOZsqC2F9sqJqYw5bLJK0fQS+w=Rp6PeM2ih=75Cxag@mail.gmail.com>
-Subject: Re: [RFC 1/5] RISC-V: Implement arch_sync_dma* functions
-To:     Christoph Hellwig <hch@lst.de>
-Cc:     Atish Patra <atish.patra@wdc.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Tobias Klauser <tklauser@distanz.ch>,
-        Robin Murphy <robin.murphy@arm.com>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        iommu@lists.linux-foundation.org,
-        Guo Ren <guoren@linux.alibaba.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Dmitry Vyukov <dvyukov@google.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210723231306.674310-1-sean.anderson@seco.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jul 25, 2021 at 11:57 PM Christoph Hellwig <hch@lst.de> wrote:
->
-> > +#ifdef CONFIG_RISCV_DMA_NONCOHERENT
-> > +struct riscv_dma_cache_sync {
-> > +     void (*cache_invalidate)(phys_addr_t paddr, size_t size);
-> > +     void (*cache_clean)(phys_addr_t paddr, size_t size);
-> > +     void (*cache_flush)(phys_addr_t paddr, size_t size);
-> > +};
-> > +
-> > +void riscv_dma_cache_sync_set(struct riscv_dma_cache_sync *ops);
-> > +#endif
->
-> As told a bunch of times before: doing indirect calls here is a
-> performance nightmare.  Use something that actually does perform
-> horribly like alternatives.  Or even delay implementing that until
-> we need it and do a plain direct call for now.
->
+On Fri, 23 Jul 2021 19:13:04 -0400, Sean Anderson wrote:
+> These properties allow configuring the SD/OE pin as described in the
+> datasheet.
+> 
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> ---
+> 
+> Changes in v6:
+> - Use tri-state properties
+> 
+> Changes in v5:
+> - Don't use dummy if's for oneOfs under allOfs
+> 
+> Changes in v4:
+> - Specify that bindings should specify these properties, but don't make
+>   any guarantees about the driver's behavior when they are not present.
+> - Clarify description of idt,(en|dis)able-shutdown properties.
+> - Make opposing properties mutually exclusive.
+> - Add these properties to the example.
+> 
+> Changes in v3:
+> - Add idt,disable-shutdown and idt,output-enable-active-low to allow for
+>   a default of not changing the SP/SH bits at all.
+> 
+> Changes in v2:
+> - Rename idt,sd-active-high to idt,output-enable-active-high
+> - Add idt,enable-shutdown
+> 
+>  .../bindings/clock/idt,versaclock5.yaml       | 40 +++++++++++++++++++
+>  1 file changed, 40 insertions(+)
+> 
 
-I was initially planning to replace this with alternatives in the
-future versions. But there is no point in doing it
-until we have CMO spec finalized. We also don't have any other
-platform using these apart from sifive l2
-cache controllers for now.
-
-I will change these to direct for now.
-
-> static void __dma_sync(phys_addr_t paddr, size_t size, enum dma_data_direction dir)
-> > +{
-> > +     if ((dir == DMA_FROM_DEVICE) && (dma_cache_sync->cache_invalidate))
-> > +             dma_cache_sync->cache_invalidate(paddr, size);
-> > +     else if ((dir == DMA_TO_DEVICE) && (dma_cache_sync->cache_clean))
-> > +             dma_cache_sync->cache_clean(paddr, size);
-> > +     else if ((dir == DMA_BIDIRECTIONAL) && dma_cache_sync->cache_flush)
-> > +             dma_cache_sync->cache_flush(paddr, size);
-> > +}
->
-> The seletion of flush types is completely broken.  Take a look at the
-> comment in arch/arc/mm/dma.c above arch_sync_dma_for_device for a good
-> explanation.
->
-
-Thanks. I will fix it.
-
-> > +void arch_dma_prep_coherent(struct page *page, size_t size)
-> > +{
-> > +     void *flush_addr = page_address(page);
-> > +
-> > +     memset(flush_addr, 0, size);
->
-> arch_dma_prep_coherent is not supposed to modify the content of
-> the data.
-
-Sorry. This was a leftover from some experimental code. It shouldn't
-have been included.
-
-> _______________________________________________
-> iommu mailing list
-> iommu@lists.linux-foundation.org
-> https://lists.linuxfoundation.org/mailman/listinfo/iommu
-
-
-
--- 
-Regards,
-Atish
+Reviewed-by: Rob Herring <robh@kernel.org>
