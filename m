@@ -2,77 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 791663D6965
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 00:21:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BB773D6971
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 00:23:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232854AbhGZVlG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 17:41:06 -0400
-Received: from mail-io1-f49.google.com ([209.85.166.49]:39624 "EHLO
-        mail-io1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231978AbhGZVlE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 17:41:04 -0400
-Received: by mail-io1-f49.google.com with SMTP id j21so13798326ioo.6;
-        Mon, 26 Jul 2021 15:21:31 -0700 (PDT)
+        id S233408AbhGZVnY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 17:43:24 -0400
+Received: from mail-il1-f179.google.com ([209.85.166.179]:45821 "EHLO
+        mail-il1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233162AbhGZVnY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 17:43:24 -0400
+Received: by mail-il1-f179.google.com with SMTP id z3so10408061ile.12;
+        Mon, 26 Jul 2021 15:23:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=mv6erYWaZJR9dk5x4Gfa5MHHYyiQEZ5IAKk/24C/zJg=;
-        b=a/OhC2L7N6RlkIWWRFDU6SYn0uTBuN4YQZZLE5OBpIXKbFTF4YPmYqIveJIF13+D9W
-         KilBvOYn9O9tlOXYAV60nm0lQP22MjKZ7ryD5o9smr9m3VUml6zTLwrxMCLdN5kAiBiE
-         HuUiCjmDRAICH6l2zwYcLtyxwXdzwusI/WPOrD2IgoB14CgyIeN0INMH9PcBIO1YZkx3
-         EDSH+/BfpZbulaqZrYc+wfy/CHMpYG0/6BxwFZf1+ERSIFqFJAHoADwljB3efGKq9HUc
-         fDqpwILunKnueoqOqZgKy3gVu8yKGpI5nMxY1r32tZmuqKEsBg4kUglOBzpfAQ/dQLfo
-         XOuw==
-X-Gm-Message-State: AOAM531WQm/eeO3gAtJXnGR30wm8uF8ZRULwEKXO+I3sD4ZebcuFZTEp
-        CLEWI2fyanX2V2d53brmow==
-X-Google-Smtp-Source: ABdhPJwxrp8upfs2mo/1MgMfEJ0vL1b6dEOhoaWvwBBrrcWDiSW1AKf+zKQ3J8zFOVN7ibXIhwvnkw==
-X-Received: by 2002:a02:a797:: with SMTP id e23mr18647088jaj.121.1627338091257;
-        Mon, 26 Jul 2021 15:21:31 -0700 (PDT)
+        bh=dOz5E7HVjFqVAWLA76t/vpT1NocpXtD+l9AS40cwRw8=;
+        b=I8hu8FRz5oY86XT0fodKstX8itf4QO+qq7ROTXbhVeRGRjFKC3cSF3aq62a759KEQr
+         3kQF0emAL7g+UOnHME4qRK4V+i76VDD+o9w+Pm9j8iPnGj+w2QsKnnhfbKcOV1oZfoEY
+         OEV2zKKrkdZMUk7WIaq/W26cNw4UAtyjvcU78/1sBswtc1u2BCXJ5PS2kCW9M1YgwPsQ
+         tJMGxGp5cK+fm9yjdonz0nR6ugD8b1GNKoT2VQbjvWGgyO96Kn93T+Jn0kIMAI34xSBL
+         hRnRDOb5QHcyRbbuuLcSLQB+52RClRLHRvC5pmtJ5gAj61LftLxL4jjulfyPtwCtZzv6
+         xyxw==
+X-Gm-Message-State: AOAM5316JNmoG6883nLBLLJ5AqPWMDJeXmCOaalI0c9+rQqoTMsc/FeB
+        +9ChdAOGlFblOndzmQRAnQ==
+X-Google-Smtp-Source: ABdhPJwSP3kbL1KH7zx/6aZ6tXF7AlLcNfp88AXqdvjydYHLaRjr1AFxmSBakwlvWBCPEYgunztqPg==
+X-Received: by 2002:a92:de0a:: with SMTP id x10mr14678766ilm.215.1627338231045;
+        Mon, 26 Jul 2021 15:23:51 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id z18sm545175ilh.55.2021.07.26.15.21.29
+        by smtp.gmail.com with ESMTPSA id v14sm689132ioh.11.2021.07.26.15.23.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jul 2021 15:21:30 -0700 (PDT)
-Received: (nullmailer pid 977034 invoked by uid 1000);
-        Mon, 26 Jul 2021 22:21:29 -0000
-Date:   Mon, 26 Jul 2021 16:21:29 -0600
+        Mon, 26 Jul 2021 15:23:50 -0700 (PDT)
+Received: (nullmailer pid 980634 invoked by uid 1000);
+        Mon, 26 Jul 2021 22:23:45 -0000
+Date:   Mon, 26 Jul 2021 16:23:45 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Stefan Riedmueller <s.riedmueller@phytec.de>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, linux-media@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH v7 5/6] media: dt-bindings: mt9p031: Convert bindings to
- yaml
-Message-ID: <20210726222129.GA977000@robh.at.kernel.org>
-References: <20210726073518.2167398-1-s.riedmueller@phytec.de>
- <20210726073518.2167398-6-s.riedmueller@phytec.de>
+To:     Christine Zhu <Christine.Zhu@mediatek.com>
+Cc:     linux-mediatek@lists.infradead.org, robh+dt@kernel.org,
+        linux@roeck-us.net, linux-arm-kernel@lists.infradead.org,
+        linux-watchdog@vger.kernel.org, seiya.wang@mediatek.com,
+        matthias.bgg@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, srv_heupstream@mediatek.com,
+        wim@linux-watchdog.org
+Subject: Re: [v7,2/3] dt-bindings: reset: mt8195: add toprgu reset-controller
+ header file
+Message-ID: <20210726222345.GA980575@robh.at.kernel.org>
+References: <20210726122901.12195-1-Christine.Zhu@mediatek.com>
+ <20210726122901.12195-3-Christine.Zhu@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210726073518.2167398-6-s.riedmueller@phytec.de>
+In-Reply-To: <20210726122901.12195-3-Christine.Zhu@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 26 Jul 2021 09:35:17 +0200, Stefan Riedmueller wrote:
-> Convert mt9p031 sensor bindings to yaml schema. Also update the
-> MAINTAINERS entry.
+On Mon, 26 Jul 2021 20:29:01 +0800, Christine Zhu wrote:
+> Add toprgu reset-controller header file for MT8195 platform.
 > 
-> Although input-clock-frequency and pixel-clock-frequency have not been
-> definded as endpoint propierties in the textual bindings, the sensor
-> does parse them from the endpoint. Thus move these properties to the
-> endpoint in the new yaml bindings.
-> 
-> Signed-off-by: Stefan Riedmueller <s.riedmueller@phytec.de>
+> Signed-off-by: Christine Zhu <Christine.Zhu@mediatek.com>
 > ---
->  .../bindings/media/i2c/aptina,mt9p031.yaml    | 86 +++++++++++++++++++
->  .../devicetree/bindings/media/i2c/mt9p031.txt | 40 ---------
->  MAINTAINERS                                   |  1 +
->  3 files changed, 87 insertions(+), 40 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/aptina,mt9p031.yaml
->  delete mode 100644 Documentation/devicetree/bindings/media/i2c/mt9p031.txt
+>  include/dt-bindings/reset/mt8195-resets.h | 29 +++++++++++++++++++++++
+>  1 file changed, 29 insertions(+)
+>  create mode 100644 include/dt-bindings/reset/mt8195-resets.h
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
