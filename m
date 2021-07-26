@@ -2,161 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 74A623D5BF0
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 16:41:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E86C93D5C80
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 16:58:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234244AbhGZOBP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 10:01:15 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:57863 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233206AbhGZOBO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Jul 2021 10:01:14 -0400
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailnew.nyi.internal (Postfix) with ESMTP id CAB13580422;
-        Mon, 26 Jul 2021 10:41:42 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Mon, 26 Jul 2021 10:41:42 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=iVDLFnFaqPyU6ygsCm/rZzf8cgw
-        XDYGnNuYlC3C9qO0=; b=sOoPnrKgIZqPxVRFVnrEQkdMvp9sIF7l9+Gh3ImJ+oL
-        HnxOZ8U7AELAZr7TMzUKgZUQlx/8s620xdLtKMmbzwmcolHoSbN5i9O2ORmxF71n
-        qpacyTLPe+y1cCVkupKXM5+hSE2SVhQNvwEZ82kLjCY5hDP9XmngRW7E6GoAGkRS
-        0ahanFceojZL0F7yCuc5aEzXBYLMdyr9yU1tcyXs9H9t5/YZSGMnYW44Mq14LZJz
-        TNr3m13GISNpu6ER12aJ3+vRU4C1eeZ9poji0w2z7YZ3l3Ov1JIvsjU8V/1HBuPu
-        3ixEHshTRZ2KuHGDTx1ajqzZHWsnY/5GXfMklQcFllg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=iVDLFn
-        FaqPyU6ygsCm/rZzf8cgwXDYGnNuYlC3C9qO0=; b=tUljJ4ohL5+EutNVYmCfXP
-        3iC/W2KNVYjxtnU1dZJ1EWAkPJhHhabD1ksogY75/6HbOit7FmbczxjMNE7uc7pu
-        ycJWCqhvaBJuXlts2CiIi682qb7zefK8lInpdnuW4LykCQX2BGB1YdfeUxVKADpZ
-        JQayHsAHGdJ7dX68NGeXFf7EZEbouQmCD4R86l0U8I8xmcyp+Jm2kTqJZPsVzGV+
-        iJ70x6M/tZhAy7jZHbdl6LL6SgQIAo59p+5FJ4ylJW4eXe6jL8UbtCdXSnIt9ZzM
-        o073eSY1iEPh7X6tKs2v/JjnDfDJ1S3FkMsv7lbnh7BceCXLwFFkT3eLrLcuhoJA
-        ==
-X-ME-Sender: <xms:pMn-YA-NZt5-eeap61mn_0PK3cDa_klkIkhU6hjahPHy0VOJU7xoFg>
-    <xme:pMn-YIulLygpQ6-nsXr0DTqbvD-mtIL9_ZA18EvMQrAqxUgd3CKtNmm7KqaET12ew
-    pPQF_HC6GnOhNuSxtI>
-X-ME-Received: <xmr:pMn-YGC2iAiulA4cf2WHrjHoYIiYDGz1sIJJVrQ0fc1YJ0oL35LpG_wXBrMQX2dSxqOhd4u9m7vQNizv7GsazIb7_pLhLY1ZxwGl>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrgeehgdejlecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
-    udenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
-    igihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:pMn-YAdTcxvCBHEG_jWfMHUiTINCAewm0RouEQN5yQDeGUkQ0UWIIA>
-    <xmx:pMn-YFNoaiVfVpOjDnzYpdAPGuKkkcoQyiK9HbJTx7Q9M2oTSFLjAg>
-    <xmx:pMn-YKmZcy8IE4CuESC_7W34T5W6ipjgQGPDZPBxdsaoiThWjB9fAA>
-    <xmx:psn-YLtnwRgTvnT3gOnyCT2tDy4TeZ5kFwzjlud_fSReho2I0XbDIg>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 26 Jul 2021 10:41:39 -0400 (EDT)
-Date:   Mon, 26 Jul 2021 16:41:37 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Rob Herring <robh@kernel.org>, Icenowy Zheng <icenowy@aosc.io>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        Ondrej Jirman <megous@megous.com>, devicetree@vger.kernel.org,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-rtc@vger.kernel.org
-Subject: Re: [PATCH v8 02/11] dt-bindings: rtc: sun6i: Add H616 compatible
- string
-Message-ID: <20210726144137.6dauuxdssu7yszox@gilmour>
-References: <20210723153838.6785-1-andre.przywara@arm.com>
- <20210723153838.6785-3-andre.przywara@arm.com>
+        id S235066AbhGZORj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 10:17:39 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55972 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234762AbhGZORi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Jul 2021 10:17:38 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 88D5360F51;
+        Mon, 26 Jul 2021 14:58:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1627311487;
+        bh=0qF0Vz3MazY904U0HR1NZXSQgySYJWbeHNONYEffRY4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=qp5vKlIP2r6iVWq4GuDh8CS4jyYF+H4u+Rh3ffwgiBZPqk9x6Pk9PWEIU9zA056Yf
+         w6T/rJ6tWcu1d8Vj2KYLzd2iyqALV2eJlxonboskuZlGI2Y1VovtQbFxBGS5qY7wv3
+         SwMOzJFsBqgiHK1uz5JrZkuBKwxaY8Aet0hM+n6uNWc1uKFXzKsXENCnoFLeQageCT
+         6BAHPGAAFFZFd9hgUjo2mn3Hp6y06UxNIZC+w95aVYHrZjn/WyytRlHqwwXIwjA8Mz
+         DiOjQeKW1LfqeZfJcbvS6Ka2ieiZ9AtjVg3x+jl1qJIek2Za2Zm0P7oC9o3sYe5nGz
+         oGBYLaVkM3TAA==
+Received: by mail-ed1-f45.google.com with SMTP id x14so6153157edr.12;
+        Mon, 26 Jul 2021 07:58:07 -0700 (PDT)
+X-Gm-Message-State: AOAM5328TnTPvmmqbMRN/axvRkoRDPdjxriuh4QdS6etEWla2o3NQGA3
+        hoG9u76c9M1hXwW7eOywCrN/MXUTx4xrPV3tbQ==
+X-Google-Smtp-Source: ABdhPJzTiDkxSgrhPUX6HVFGWQ6NBHJXfNpeHFEettRTT0Af+nT7OyyVs51oAy00niCXbs42B2E1B49veAv8Q89s8ss=
+X-Received: by 2002:aa7:cb19:: with SMTP id s25mr22336914edt.194.1627311486141;
+ Mon, 26 Jul 2021 07:58:06 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="aiq5ywgupr4t6rom"
-Content-Disposition: inline
-In-Reply-To: <20210723153838.6785-3-andre.przywara@arm.com>
+References: <cover.1627273794.git.viresh.kumar@linaro.org> <fced2f2b9dcf3f32f16866d7d104f46171316396.1627273794.git.viresh.kumar@linaro.org>
+In-Reply-To: <fced2f2b9dcf3f32f16866d7d104f46171316396.1627273794.git.viresh.kumar@linaro.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 26 Jul 2021 08:57:54 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+XXhe2g0Rmda1v_Ws4-E_-UE6X5HUsSk-GcAETqQZiCQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+XXhe2g0Rmda1v_Ws4-E_-UE6X5HUsSk-GcAETqQZiCQ@mail.gmail.com>
+Subject: Re: [PATCH V3 1/5] dt-bindings: virtio: Add binding for virtio devices
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Jason Wang <jasowang@redhat.com>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>,
+        =?UTF-8?B?QWxleCBCZW5uw6ll?= <alex.bennee@linaro.org>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        Jie Deng <jie.deng@intel.com>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE" 
+        <virtualization@lists.linux-foundation.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---aiq5ywgupr4t6rom
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-On Fri, Jul 23, 2021 at 04:38:29PM +0100, Andre Przywara wrote:
-> Add the obvious compatible name to the existing RTC binding.
-> The actual RTC part of the device uses a different day/month/year
-> storage scheme, so it's not compatible with the previous devices.
-> Also the clock part is quite different, as there is no external 32K LOSC
-> oscillator input.
->=20
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+On Sun, Jul 25, 2021 at 10:52 PM Viresh Kumar <viresh.kumar@linaro.org> wrote:
 >
+> Allow virtio device sub-nodes to be added to the virtio mmio or pci
+> nodes. The compatible property for virtio device must be of format
+> "virtio,<DID>", where DID is virtio device ID in hexadecimal format.
+>
+> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
 > ---
->  .../bindings/rtc/allwinner,sun6i-a31-rtc.yaml      | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rt=
-c.yaml b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
-> index beeb90e55727..d8a6500e5840 100644
-> --- a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
-> @@ -26,6 +26,7 @@ properties:
->            - const: allwinner,sun50i-a64-rtc
->            - const: allwinner,sun8i-h3-rtc
->        - const: allwinner,sun50i-h6-rtc
-> +      - const: allwinner,sun50i-h616-rtc
-> =20
->    reg:
->      maxItems: 1
-> @@ -104,6 +105,19 @@ allOf:
->            minItems: 3
->            maxItems: 3
-> =20
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: allwinner,sun50i-h616-rtc
+>  .../devicetree/bindings/virtio/mmio.yaml      |  2 +-
+>  .../bindings/virtio/virtio-device.yaml        | 47 +++++++++++++++++++
+>  2 files changed, 48 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/devicetree/bindings/virtio/virtio-device.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/virtio/mmio.yaml b/Documentation/devicetree/bindings/virtio/mmio.yaml
+> index d46597028cf1..1b91553f87c6 100644
+> --- a/Documentation/devicetree/bindings/virtio/mmio.yaml
+> +++ b/Documentation/devicetree/bindings/virtio/mmio.yaml
+> @@ -36,7 +36,7 @@ title: virtio memory mapped devices
+>    - reg
+>    - interrupts
+>
+> -additionalProperties: false
+> +additionalProperties: true
+
+That just allows for any random property. What you want is child nodes only:
+
+addtionalProperties:
+  type: object
+
+Or you could reference virtio-device.yaml here.
+
+>
+>  examples:
+>    - |
+> diff --git a/Documentation/devicetree/bindings/virtio/virtio-device.yaml b/Documentation/devicetree/bindings/virtio/virtio-device.yaml
+> new file mode 100644
+> index 000000000000..15cb6df8c98a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/virtio/virtio-device.yaml
+> @@ -0,0 +1,47 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/virtio/virtio-device.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +    then:
-> +      properties:
-> +        clock-output-names:
-> +          minItems: 3
-> +          maxItems: 3
-
-You don't need both of them when they are equal
-
-> +        clocks: false
+> +title: Virtio device bindings
 > +
+> +maintainers:
+> +  - Viresh Kumar <viresh.kumar@linaro.org>
+> +
+> +description:
+> +  These bindings are applicable to virtio devices irrespective of the bus they
+> +  are bound to, like mmio or pci.
+> +
+> +# We need a select here so we don't match all nodes with 'virtio,mmio'
+> +properties:
+> +  $nodename:
+> +    pattern: '^[a-z0-9]+-virtio(-[a-z0-9]+)?$'
 
-It's not entirely clear to me what those clocks are about though. If we
-look at the clock output in the user manual, it looks like there's only
-two clocks that are actually being output: the 32k "fanout" clock and
-the losc. What are the 3 you're talking about?
+Node names aren't based on the bus they are on, but their class.
+You'll need to drop this.
 
-Also, it looks like the 32k fanout clock needs at least the hosc or
-pll-periph in input, so we probably don't want to ask for no parent
-clock?
+> +    description: |
+> +      Exactly one node describing the virtio device. The name of the node isn't
+> +      significant but its phandle can be used to by a user of the virtio device.
+> +
+> +  compatible:
+> +    pattern: "^virtio,[0-9a-f]+$"
 
-Maxime
+DID is only 4 chars? If so, "^virtio,[0-9a-f]{1,4}$"
 
---aiq5ywgupr4t6rom
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYP7JoQAKCRDj7w1vZxhR
-xQRLAQDVnReS1EyY1LoZj+IrPcI0+iNFJA6ywfgcCyvxILsY1wEAwKCt/M3I7GRN
-ZcZzGWYP2AxXqE9As3rd3HZaWUE/3Qw=
-=irLn
------END PGP SIGNATURE-----
-
---aiq5ywgupr4t6rom--
+> +    description: Virtio device nodes.
+> +      "virtio,DID", where DID is the virtio device id. The textual
+> +      representation of DID shall be in lower case hexadecimal with leading
+> +      zeroes suppressed.
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: true
+> +
+> +examples:
+> +  - |
+> +    virtio@3000 {
+> +        compatible = "virtio,mmio";
+> +        reg = <0x3000 0x100>;
+> +        interrupts = <43>;
+> +
+> +        i2c-virtio {
+> +            compatible = "virtio,22";
+> +        };
+> +    };
+> +...
+> --
+> 2.31.1.272.g89b43f80a514
+>
