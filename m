@@ -2,232 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 503623D52C2
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 07:14:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 803E83D52F4
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 07:57:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229579AbhGZEeX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 00:34:23 -0400
-Received: from mail-eopbgr1320139.outbound.protection.outlook.com ([40.107.132.139]:62144
-        "EHLO APC01-PU1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229711AbhGZEeD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Jul 2021 00:34:03 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lcKMcwiV1VJ9OlLi/ymWb6kAIGoNWUbCZ985PUPA+JakqcS23EtVfSlgyGD+OXzyEaW1Z+BPOGVfjQHVYtkioRaMq8/IgM7ltLlgy6vkLc7bPQ3rWUcrRk9YAbO6gR2m3v4lhvuI4y6KTuUx8m4yB95/G722YuteJpJrHFLAPWhRsD5dDakmIFIu3uuZudT555teEkjflLkbtMuYRCiF4xhMDEEAXN6gKEDF7liWF4VVk6jfGOXpEpE/EjL6wvOK5XtJIjimH7ERio0AwklA3MLlWTgKJMYDVlTTglpe3SVJ1q/uAodjbXaUFBF11aPXIMj9xUkaKE2uc7q6rBytoQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ck1llJqnYuVluiYjscZ8CqS8e7DQHKJpNpYgW6JCa0U=;
- b=hDX25f/OGibPNTTmZtspnwEehNbHuOAhFpgsuD7sXscIPnzd4RlpXeFXUUgaShstOHz5I4P1wUY1XX4CIVHfkp64odw/dNyiJqcrvI2Bn2gDt516tdI7ZHBW1HHeL8jZwwk2PFs5k/ZT7pf3KyUBDBCq3cefd1bFtMiAp5jihVwwJKaC6Kd1kURbJNlsq33gYOj3PsJrOdoUtG3hdJR0JW11Agc+neGdGwQhXWVHA482zO3WwbLAPti33tkxqvQf4Wriugphqn+J5xQ6gVMA7obO350o9hTIN20YpF1YMvsICTN2hPaamMym3BmMprJ448609YoleaR+71ht8iee1w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ck1llJqnYuVluiYjscZ8CqS8e7DQHKJpNpYgW6JCa0U=;
- b=OyOCUDS5krzujWopGLobvXRFs6DadCa7xZUdsoBnoZBYOrgqM5XbABbnO3OS1yBHm6Chfwz5liE+f6QtgBCnf7rD6JhRfpiLnjieWE/GN7CEK4f4SpTB5Gmg+KqGO0iRKtDtTiOxo4IJTZilNUBBLvdeXns/CmH9ACk8Q0K5aackbeM9B0WKG9mZd4biGvx6ioXrd071ZhoKDACDmWZ1c7gjl5VszPHGlu55D83f7/NnKnUfQ4eSq5Hi1qf6836TRaMx56AwQYHba7lvkcbzasMQZIiFrRSXeRHW2N1vpXHXmg6CvZZO5w0O6rfcexdq2555WWDvQoGMtrRH60vBAw==
-Received: from HK0PR06MB3362.apcprd06.prod.outlook.com (2603:1096:203:8b::10)
- by HK0PR06MB2865.apcprd06.prod.outlook.com (2603:1096:203:30::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4352.29; Mon, 26 Jul
- 2021 05:14:09 +0000
-Received: from HK0PR06MB3362.apcprd06.prod.outlook.com
- ([fe80::a529:f5b3:b9d6:5e27]) by HK0PR06MB3362.apcprd06.prod.outlook.com
- ([fe80::a529:f5b3:b9d6:5e27%4]) with mapi id 15.20.4352.031; Mon, 26 Jul 2021
- 05:14:09 +0000
-From:   Billy Tsai <billy_tsai@aspeedtech.com>
-To:     =?utf-8?B?VXdlIEtsZWluZS1Lw7ZuaWc=?= 
-        <u.kleine-koenig@pengutronix.de>
-CC:     "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        BMC-SW <BMC-SW@aspeedtech.com>
-Subject: Re: [v9 2/2] pwm: Add Aspeed ast2600 PWM support
-Thread-Topic: [v9 2/2] pwm: Add Aspeed ast2600 PWM support
-Thread-Index: AQHXdI70LATZWzg1kUKYrs9wZPLHOKtELJmAgAE5s4D//9OwgIAAqykA//+IDYCAAJI6gIAH2oiA//+aeoAAY7A+AAAQZVwAAIhAMYA=
-Date:   Mon, 26 Jul 2021 05:14:09 +0000
-Message-ID: <80C715D4-5B8A-4FC9-AD60-106F682DC929@aspeedtech.com>
-References: <20210709065217.6153-3-billy_tsai@aspeedtech.com>
- <20210715150533.vppkw5oiomkxmfrn@pengutronix.de>
- <BD5B012C-B377-45E2-B04E-61D12B086670@aspeedtech.com>
- <20210716070943.ayxkz2irkwhgincz@pengutronix.de>
- <DD5590B4-11BC-411B-95BF-03AC26C078E4@aspeedtech.com>
- <20210716101301.l563tdwt5xuq5iq6@pengutronix.de>
- <3F12A498-DF5C-4954-8BCE-8C0C66BC9734@aspeedtech.com>
- <4BC9AEF6-31EA-4EDA-BCB2-7E4D44B6D5D2@aspeedtech.com>
- <20210721124859.clv6qlitbyomdz6s@pengutronix.de>
- <7F794DD8-0FC6-491D-B071-CAD6C216E044@aspeedtech.com>
- <20210723201250.x4ki5ackfznmn4aw@pengutronix.de>
-In-Reply-To: <20210723201250.x4ki5ackfznmn4aw@pengutronix.de>
-Accept-Language: zh-TW, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: pengutronix.de; dkim=none (message not signed)
- header.d=none;pengutronix.de; dmarc=none action=none
- header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: e6111065-69c0-4fa3-f67e-08d94ff43317
-x-ms-traffictypediagnostic: HK0PR06MB2865:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <HK0PR06MB28654809B281344CB5E1716B8BE89@HK0PR06MB2865.apcprd06.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6430;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: zCqKvQIghk7zq1WumuUB7yM2HNdT9UtZErw37tGHjN+kOft0K2NIC8UebYihpG4oGN7Oc0t81aT5NNGYV7gv3xiusXqnZ1mewcPQRRYFXABxGK+3Mp4gLHe3lTP5+O3cPunnIQZ0KTIvRSpYUftXN3wLQoIDvoahXHpAp44/8QGa0sC5pvPkoTz5+IFJC8cxN42kEPcuCL+w2dnZpDuYueBDlFBmy8AHLJ6T25M74SxcXUC4Kk+9WCSoZbr9hkBY7hXMHmW3aQ2Ln4V7W6Z9lX9I4izwoq2VE0u1A3g51krzcck+mDJKx6tgb/5DwZXPeJFYfvOfpiviDHdUDwKMxkCeKm/PzidZea00vv/SW2nKMqa9SiKl2M9bxKMvdHjw5napZbkD4eU+du9iyB6AZoENimfDRLczVuda7+Lb03e07dbVRHoMHlzDirS5v10uu96vJx0BqZ2GYgaPHA5xtJK9BZrHUn13eJR1hh+/jV89ir+VhRcoE2gHZ2ryq2ENeHDLIIp3JSRodYyw1AIwTCLcoZHGBluSvkCAJiJo4E9kPrRHigEQ5E0k0tFSY1tn8PoiNjDE8qEFY5CAI+GJRTtm+UTh6fjFupVzSTSAUf4biS9PvRgAfoEj0B3GHrLDHe9yx2oOd6c7SmjM0yTYoH7eVquLSKHvVnQbGMd1w3Di7u+HI2WITLmjR4CTBmNBNtVPl+gxD9X5p2tDgu1GYa/20H930pwpr3otJU7v2wc=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR06MB3362.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(39840400004)(396003)(346002)(136003)(376002)(366004)(64756008)(2616005)(66946007)(66476007)(76116006)(91956017)(38100700002)(54906003)(8936002)(122000001)(83380400001)(186003)(7416002)(6916009)(66574015)(66556008)(33656002)(6486002)(4326008)(86362001)(26005)(36756003)(5660300002)(107886003)(8676002)(71200400001)(2906002)(6506007)(53546011)(6512007)(508600001)(66446008)(316002)(55236004)(45980500001)(38070700004);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?aXNHU1JWeGVMVjh1Yit2L09OYy9scGdiSTZCT2dZMTNydnJFSXNFanlZMVlx?=
- =?utf-8?B?aDljU1EwUHVKajZWV2VEc2txT2hqMGFldUJESnFJcVY1K3RoVmJNZ3dxWVpn?=
- =?utf-8?B?K291bWcrbnJ2VEdTRnZ4ZDJLYlM3Um9hc1Q5RlVmK1FLN1FxMUhtc081Z28z?=
- =?utf-8?B?SmFCTDQzQVM4V0xsYzZOKzBpVDV3ZXNqNmpxcnNsMlBtYUQwQWNkdHdNcnUw?=
- =?utf-8?B?Y0Z5MjZuaGFpUFlUYmtMVkNxdU9RclBSODRKUmhiUSswMXB1QXFwRlcyMWFr?=
- =?utf-8?B?T2dNQ2Y5NzUyQXk4N1ZXdnJGbEJFT3VmZUJqNlU1VTBXdzNmc1pVSXpqbVEx?=
- =?utf-8?B?OGZrWHdsdjNRblhubnZPK3ExSmlsVlV3ZnZTVnk3TXNnTnc2OG5mMEt3SERU?=
- =?utf-8?B?SE1LOGNTREN5RDdjZ0JEVzNzdjNyczVZWlhOdkZoby9TWk1tZFdjR29qeTkr?=
- =?utf-8?B?OUhtV1NCVUlhUks5RGFTSSsxOWJzQU12ZituV2taUVFkQVBpaG5CS09Nai9V?=
- =?utf-8?B?WXlJcCtpeC82MUFFeTgzbWw3N1kybWFsL3N3b3BUYjR4YnBLTXIxT3lDTUpn?=
- =?utf-8?B?VzVnWWVSaHZqeGdrS1QwVzJLZkgxOWhodnhPcTZ6YVdGYnY1QSt4cnVReko5?=
- =?utf-8?B?NWZyb25FK0c3UnFzdXpEcFM5bnNxYzRwWjRHMTgrMG93Q1RyK0RKc3poSDI2?=
- =?utf-8?B?WGJkWEFVeGdiUGRZeFhOanJFWFcvTnhqeW01dTFKRCsxVDB3aFAwOG9RQUYr?=
- =?utf-8?B?TEJHdnBKM2xyc3I1UVgxdzdTQ3NjWEIrRUdud2Mxd09tSytQOWJUWUVGZUdp?=
- =?utf-8?B?WHlRLzJvN1lObGxQRWk1dUdDSW16NFJOSS9jdVAwWGlrZHBTbG5HT1lBVXpV?=
- =?utf-8?B?WTQwTVBmcFd4cTVaVE9BWXprczRBMjQyMVZpV1dMOG92NzM0bnMxeXFPdmo3?=
- =?utf-8?B?Zmh0ejgrVHVVS3EvbEJnZDBzdE1vMkNEdkZFUzJUVldSUmlObnYxNFU2WG5x?=
- =?utf-8?B?eS9yZE1kV1lBbzlHQnd4QmlYV21OWU9NdlNDb3JBK1g3cVQ2TDlZRlRhSytr?=
- =?utf-8?B?RmxoSHowWjlRN0xaQ01XeHh6eTgvcUVSV05mOFFRbEdWR2Z6THdTcmR2SWpO?=
- =?utf-8?B?QnpZTTN6VDZaMGIvcVNpM1R6MWJ2TjNmYTdmc3lRalh1QXNMQXdrZGx4YnBv?=
- =?utf-8?B?NjFzV3FLSWRMN1lOQjB3VTNCVTA3c1kxWFo5V1dnR0VST3FUWS9RYlNCQmNr?=
- =?utf-8?B?M2JXaVFtb1JtU2hBTnNMaUtBYnVjTjFPR2l2Ni9IdVk2clVpUURtdVRTZzFL?=
- =?utf-8?B?dE1XOHNadnB2dGptKzgzUUl2R0ZjcTJ5QThhNzZ4Q1YvZWhNT0tJaHp6eTN6?=
- =?utf-8?B?QXdJbFpVb0J0SGlGNFJ3MXZDY0VkaS9DN1l0NFZvWGpSTXplVzB3N1lRNEJk?=
- =?utf-8?B?R2JWdFRTMWpaMURvdHlndFdQZWVSZlB4bUhDNVhKbDJtVXpWbmppMkhzcTRx?=
- =?utf-8?B?OUVBUXNwaWlPT2J5K2UycFFnKy84aDRQNktOUVhCVjR6cW9VZ3JlYnovOWEr?=
- =?utf-8?B?MEhPNzFuNXV5K3Uya2Q2VDVYZVR4NlBLVWlacVFmRjZJZjR0OVoyQUxEVHFt?=
- =?utf-8?B?UWk1S3ZBTXRNWi9pSVJ5d2hZc1I4VkZqWkFQTmhsWFVLZHRQdUtWRnNQQSti?=
- =?utf-8?B?TXo5MjBtQU02aFlKQllNSkRpRklLSGdqQ2lwY2w1bEM5TGJRWDdjNm4za2pR?=
- =?utf-8?Q?fCeBpeu5th0wqGSiyCyRdEiqaGJVG4xnYh4+cxJ?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <35AC582785C4284B8CF72F11E3B3094B@apcprd06.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        id S231263AbhGZFRT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 01:17:19 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41600 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229654AbhGZFRT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Jul 2021 01:17:19 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8B4D160249;
+        Mon, 26 Jul 2021 05:57:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1627279068;
+        bh=t9Hcu2jDuc2To5Rp0zMCpDxyX2lTv2t24hYmAJCz09Y=;
+        h=References:From:To:Cc:Subject:In-reply-to:Date:From;
+        b=GGpdv5FdfnXsOaRSBUncHCv5lPqseu0cmhY9xGXbkXow9xmcBTpMIoUtp58v7zZha
+         /kgEj/4x0upr0ntjXqH2woX29rLjQySlKoKRJahs+Vsu9xou246h9TNcRnHaxv6Pdv
+         gqlewpf3SKW0lq9AdQ7/B0Hwcwc7DloBFPz0/TwvgRxiO1auzO0ysAEHnq3cmEDiA2
+         IixYlXqGaHrd4Np9BEVpVBl37RlXOTf/EbTzZWk1VSCB39VMHqTNcZolRE5mK3iNLt
+         FlQo0d9e/U2H6KfVvOlvUXWa5VUlBH6KJl2vs18p1QRj4SnNpiKanb21zoEP6VGJcE
+         sO9l/Q8VaX+Zw==
+References: <1623923899-16759-1-git-send-email-wcheng@codeaurora.org>
+ <cfb83fe4-369c-ec72-7887-3bcb0f20fe15@gmail.com>
+ <ec8050c5-c013-4af6-b39e-69779c009a9c@codeaurora.org>
+ <f5ed0ee7-e333-681f-0f1a-d0227562204b@gmail.com>
+ <2e01c435-9ecc-4e3b-f55c-612a86667020@codeaurora.org>
+ <2ae9fa6a-3bb1-3742-0dd3-59678bdd8643@gmail.com>
+ <ebea75fe-5334-197b-f67a-cb6e1e30b39e@codeaurora.org>
+ <bafa93bb-11e3-c8a5-e14a-b0a6d5695055@gmail.com>
+ <87v951ldlt.fsf@kernel.org>
+ <d9aef50c-4bd1-4957-13d8-0b6a14b9fcd0@gmail.com>
+ <87pmv9l1dv.fsf@kernel.org>
+ <9dc6cd83-17b9-7075-0934-6b9d41b6875d@gmail.com>
+ <87a6mbudvc.fsf@kernel.org>
+ <6e8bb4ad-fe68-ad36-7416-2b8e10b6ae96@gmail.com>
+ <877dhev68a.fsf@kernel.org>
+ <cca69e90-b0ef-00b8-75d3-3bf959a93b45@gmail.com>
+User-agent: mu4e 1.4.15; emacs 27.2
+From:   Felipe Balbi <balbi@kernel.org>
+To:     Ferry Toth <fntoth@gmail.com>
+Cc:     Wesley Cheng <wcheng@codeaurora.org>, gregkh@linuxfoundation.org,
+        robh+dt@kernel.org, agross@kernel.org, bjorn.andersson@linaro.org,
+        frowand.list@gmail.com, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, jackp@codeaurora.org,
+        heikki.krogerus@linux.intel.com, andy.shevchenko@gmail.com
+Subject: Re: [PATCH v10 0/6] Re-introduce TX FIFO resize for larger EP bursting
+In-reply-to: <cca69e90-b0ef-00b8-75d3-3bf959a93b45@gmail.com>
+Date:   Mon, 26 Jul 2021 08:57:43 +0300
+Message-ID: <874kchvcq0.fsf@kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: HK0PR06MB3362.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e6111065-69c0-4fa3-f67e-08d94ff43317
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jul 2021 05:14:09.5399
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: SnGjpHYhT3GRxRW3pe9osDnPzUt7ev4jg87wQAkC5S14heZtNYTVSRY7lPf2pqsvcV9gYoyIdpEED+v+VqE58Hmn8LCs/u392YkvaIGNLwI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK0PR06MB2865
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgVXdlDQoNCk9uIDIwMjEvNy8yNCwgNDoxMyBBTSwgIlV3ZSBLbGVpbmUtS8O2bmlnIiA8dS5r
-bGVpbmUta29lbmlnQHBlbmd1dHJvbml4LmRlPiB3cm90ZToNCg0KICAgID4gICBPbiBGcmksIEp1
-bCAyMywgMjAyMSBhdCAwNDoyMzoyM0FNICswMDAwLCBCaWxseSBUc2FpIHdyb3RlOg0KICAgID4g
-ICA+IE9uIDIwMjEvNy8yMywgMzoxNyBBTSwgIlV3ZSBLbGVpbmUtS8O2bmlnIiA8dS5rbGVpbmUt
-a29lbmlnQHBlbmd1dHJvbml4LmRlPiB3cm90ZToNCiAgICA+ICAgPiANCiAgICA+ICAgPiAgICAg
-T24gV2VkLCBKdWwgMjEsIDIwMjEgYXQgMTA6NTI6MjFBTSArMDAwMCwgQmlsbHkgVHNhaSB3cm90
-ZToNCiAgICA+ICAgPiAgICAgPj4gSGkgVXdlLA0KICAgID4gICA+ICAgICA+PiANCiAgICA+ICAg
-PiAgICAgPj4gICAgIE9uIDIwMjEvNy8xNiwgNjoxMyBQTSwgIlV3ZSBLbGVpbmUtS8O2bmlnIiA8
-dS5rbGVpbmUta29lbmlnQHBlbmd1dHJvbml4LmRlPiB3cm90ZToNCiAgICA+ICAgPiAgICAgPj4g
-DQogICAgPiAgID4gICAgID4+ICAgICAgICAgT24gRnJpLCBKdWwgMTYsIDIwMjEgYXQgMDk6MjI6
-MjJBTSArMDAwMCwgQmlsbHkgVHNhaSB3cm90ZToNCiAgICA+ICAgPiAgICAgPj4gICAgICAgICA+
-PiBPbiAyMDIxLzcvMTYsIDM6MTAgUE0sICJVd2UgS2xlaW5lLUvDtm5pZyIgPHUua2xlaW5lLWtv
-ZW5pZ0BwZW5ndXRyb25peC5kZT4gd3JvdGU6DQogICAgPiAgID4gICAgID4+ICAgICAgICAgPj4g
-DQogICAgPiAgID4gICAgID4+ICAgICAgICAgPj4gICAgIE9uIEZyaSwgSnVsIDE2LCAyMDIxIGF0
-IDAxOjQ4OjIwQU0gKzAwMDAsIEJpbGx5IFRzYWkgd3JvdGU6DQogICAgPiAgID4gICAgID4+ICAg
-ICAgICAgPj4gICAgID4+IE9uIDIwMjEvNy8xNSwgMTE6MDYgUE0sICJVd2UgS2xlaW5lLUvDtm5p
-ZyIgPHUua2xlaW5lLWtvZW5pZ0BwZW5ndXRyb25peC5kZT4+IHdyb3RlOg0KICAgID4gICA+ICAg
-ICA+PiAgICAgICAgID4+ICAgICA+PiAgICAgPiBBbm90aGVyIGlzOiBUaGUgUFdNIGRvZXNuJ3Qg
-c3VwcG9ydCBkdXR5X2N5Y2xlIDAsIG9uIHN1Y2ggYSByZXF1ZXN0IHRoZQ0KICAgID4gICA+ICAg
-ICA+PiAgICAgICAgID4+ICAgICA+PiAgICAgPiBQV00gaXMgZGlzYWJsZWQgd2hpY2ggcmVzdWx0
-cyBpbiBhIGNvbnN0YW50IGluYWN0aXZlIGxldmVsLg0KICAgID4gICA+ICAgICA+PiAgICAgICAg
-ID4+ICAgICA+PiANCiAgICA+ICAgPiAgICAgPj4gICAgICAgICA+PiAgICAgPj4gICAgID4gKFRo
-aXMgaXMgY29ycmVjdCwgaXMgaXQ/IE9yIGRvZXMgaXQgeWllbGQgYSBjb25zdGFudCAwIGxldmVs
-PykNCiAgICA+ICAgPiAgICAgPj4gICAgICAgICA+PiAgICAgPj4gDQogICAgPiAgID4gICAgID4+
-ICAgICAgICAgPj4gICAgID4+IE91ciBwd20gY2FuIHN1cHBvcnQgZHV0eV9jeWNsZSAwIGJ5IHVu
-c2V0IENMS19FTkFCTEUuDQogICAgPiAgID4gICAgID4+ICAgICAgICAgPj4gDQogICAgPiAgID4g
-ICAgID4+ICAgICAgICAgPj4gICAgID4gVGhpcyBoYXMgYSBzbGlnaHRseSBkaWZmZXJlbnQgc2Vt
-YW50aWMgdGhvdWdoLiBTb21lIGNvbnN1bWVyIG1pZ2h0DQogICAgPiAgID4gICAgID4+ICAgICAg
-ICAgPj4gICAgID4gZXhwZWN0IHRoYXQgdGhlIGZvbGxvd2luZyBzZXF1ZW5jZToNCiAgICA+ICAg
-PiAgICAgPj4gICAgICAgICA+PiANCiAgICA+ICAgPiAgICAgPj4gICAgICAgICA+PiAgICAgPglw
-d21fYXBwbHkobXlwd20sIHsgLnBlcmlvZCA9IDEwMDAwLCAuZHV0eV9jeWNsZSA9IDEwMDAwLCAu
-ZW5hYmxlZCA9IHRydWUgfSkNCiAgICA+ICAgPiAgICAgPj4gICAgICAgICA+PiAgICAgPglwd21f
-YXBwbHkobXlwd20sIHsgLnBlcmlvZCA9IDEwMDAwLCAuZHV0eV9jeWNsZSA9IDAsIC5lbmFibGVk
-ID0gdHJ1ZSB9KQ0KICAgID4gICA+ICAgICA+PiAgICAgICAgID4+ICAgICA+CXB3bV9hcHBseSht
-eXB3bSwgeyAucGVyaW9kID0gMTAwMDAsIC5kdXR5X2N5Y2xlID0gMTAwMDAsIC5lbmFibGVkID0g
-dHJ1ZSB9KQ0KICAgID4gICA+ICAgICA+PiAgICAgICAgID4+IA0KICAgID4gICA+ICAgICA+PiAg
-ICAgICAgID4+ICAgICA+IHJlc3VsdHMgaW4gdGhlIG91dHB1dCBiZWluZyBsb3cgZm9yIGFuIGlu
-dGVnZXIgbXVsdGlwbGUgb2YgMTAgwrVzLiBUaGlzDQogICAgPiAgID4gICAgID4+ICAgICAgICAg
-Pj4gICAgID4gaXNuJ3QgZ2l2ZW4gd2l0aCBzZXR0aW5nIENMS19FTkFCTEUgdG8gemVybywgaXMg
-aXQ/IChJIGRpZG4ndCByZWNoZWNrLA0KICAgID4gICA+ICAgICA+PiAgICAgICAgID4+ICAgICA+
-IGlmIHRoZSBQV00gZG9lc24ndCBjb21wbGV0ZSBwZXJpb2RzIG9uIHJlY29uZmlndXJhdGlvbiB0
-aGlzIGRvZXNuJ3QNCiAgICA+ICAgPiAgICAgPj4gICAgICAgICA+PiAgICAgPiBtYXR0ZXIgbXVj
-aCB0aG91Z2guKQ0KICAgID4gICA+ICAgICA+PiAgICAgICAgID4+IFRoYW5rcyBmb3IgdGhlIGV4
-cGxhbmF0aW9uLg0KICAgID4gICA+ICAgICA+PiAgICAgICAgID4+IE91ciBoYXJkd2FyZSBhY3R1
-YWxseSBjYW4gb25seSBzdXBwb3J0IGR1dHkgZnJvbSAxLzI1NiB0byAyNTYvMjU2Lg0KICAgID4g
-ICA+ICAgICA+PiAgICAgICAgID4+IEZvciB0aGlzIHNpdHVhdGlvbiBJIGNhbiBkbyBwb3NzaWJs
-ZSBzb2x1dGlvbjoNCiAgICA+ICAgPiAgICAgPj4gICAgICAgICA+PiBXZSBjYW4gdGhvdWdoIGNo
-YW5nZSBwb2xhcml0eSB0byBtZWV0IHRoaXMgcmVxdWlyZW1lbnQuIEludmVyc2UgdGhlIHBpbiBh
-bmQgdXNlDQogICAgPiAgID4gICAgID4+ICAgICAgICAgPj4gZHV0eV9jeWNsZSAxMDAuIA0KICAg
-ID4gICA+ICAgICA+PiAgICAgICAgID4+IEJ1dCBJIHRoaW5rIHRoaXMgaXMgbm90IGEgZ29vZCBz
-b2x1dGlvbiBmb3IgdGhpcyBwcm9ibGVtIHJpZ2h0Pw0KICAgID4gICA+ICAgICA+PiANCiAgICA+
-ICAgPiAgICAgPj4gICAgICAgICA+IElmIHRoaXMgZG9lc24ndCByZXN1bHQgaW4gbW9yZSBnbGl0
-Y2hlcyB0aGF0IHdvdWxkIGJlIGZpbmUgZm9yIG1lLg0KICAgID4gICA+ICAgICA+PiAgICAgICAg
-ID4gKEFzc3VtaW5nIGl0IGlzIGRvY3VtZW50ZWQgZ29vZCBlbm91Z2ggaW4gdGhlIGNvZGUgdG8g
-YmUNCiAgICA+ICAgPiAgICAgPj4gICAgICAgICA+IHVuZGVyc3RhbmRhYmxlLikNCiAgICA+ICAg
-PiAgICAgPj4gDQogICAgPiAgID4gICAgID4+ICAgICA+IFRoZSBwb2xhcml0eSBvZiBvdXIgcHdt
-IGNvbnRyb2xsZXIgd2lsbCBhZmZlY3QgdGhlIGR1dHkgY3ljbGUgcmFuZ2U6DQogICAgPiAgID4g
-ICAgID4+ICAgICA+IFBXTV9QT0xBUklUWV9JTlZFUlNFRCA6IFN1cHBvcnQgZHV0eV9jeWNsZSBm
-cm9tIDAlIHRvIDk5JQ0KICAgID4gICA+ICAgICA+PiAgICAgPiBQV01fUE9MQVJJVFlfTk9STUFM
-OiBTdXBwb3J0IGR1dHlfY3ljbGUgZnJvbSAxJSB0byAxMDAlDQogICAgPiAgID4gICAgID4+ICAg
-ICA+IER5bmFtaWMgY2hhbmdlIHBvbGFyaXR5IHdpbGwgcmVzdWx0IGluIG1vcmUgZ2xpdGNoZXMu
-IFRodXMsIHRoaXMgd2lsbCBiZWNvbWUNCiAgICA+ICAgPiAgICAgPj4gICAgID4gYSB0cmFkZS1v
-ZmYgYmV0d2VlbiAxMDAlIGFuZCAwJSBkdXR5X2N5Y2xlIHN1cHBvcnQgZm9yIHVzZXIgdG8gdXNl
-IG91ciBwd20gZGV2aWNlLg0KICAgID4gICA+ICAgICA+PiAgICAgPiBJIHdpbGwgZG9jdW1lbnQg
-aXQgYW5kIHNlbmQgbmV4dCBwYXRjaC4NCiAgICA+ICAgPiAgICAgPj4gDQogICAgPiAgID4gICAg
-ID4+IEZvciBoYW5kbGluZyB0aGUgc2l0dWF0aW9uIHRoYXQgdGhlIHVzZXIgd2FudCB0byBzZXQg
-dGhlIGR1dHkgY3ljbGUgdG8gMCUsIHRoZSBkcml2ZXIgY2FuOg0KICAgID4gICA+ICAgICA+PiAx
-LiBKdXN0IHJldHVybiB0aGUgZXJyb3IuDQogICAgPiAgID4gICAgID4+IDIuIFVzZSB0aGUgbWlu
-aW11bSBkdXR5IGN5Y2xlIHZhbHVlLg0KICAgID4gICA+ICAgICA+PiBJIGRvbid0IGtub3cgd2hp
-Y2ggc29sdXRpb24gd2lsbCBiZSB0aGUgYmV0dGVyIHdheSBvciBvdGhlcnMuDQogICAgPiAgID4g
-ICAgID4+IEkgd291bGQgYmUgZ3JhdGVmdWwgaWYgeW91IGNhbiBnaXZlIG1lIHNvbWUgc3VnZ2Vz
-dGlvbiBhYm91dCB0aGlzIHByb2JsZW0uDQogICAgPiAgID4gDQogICAgPiAgID4gICAgID4gSSB0
-aG91Z2h0IGlmIHlvdSBkaXNhYmxlIHRoZSBQV00gaXQgZW1pdHMgdGhlIGluYWN0aXZlIGxldmVs
-PyBUaGVuIHRoaXMNCiAgICA+ICAgPiAgICAgPiBpcyB0aGUgYmVzdCB5b3UgY2FuIGRvIGlmIGR1
-dHlfY3ljbGUgPSAwIGlzIHJlcXVlc3RlZC4NCiAgICA+ICAgPiANCiAgICA+ICAgPiBUaGFua3Mg
-Zm9yIHlvdXIgcXVpY2sgcmVwbHkuDQogICAgPiAgID4gV2hlbiBkdXR5X2N5Y2xlID0gMCBpcyBy
-ZXF1ZXN0ZWQgbXkgZHJpdmVyIGN1cnJlbnRseSB3aWxsIGVtaXQgdGhlIGluYWN0aXZlIGxldmVs
-Lg0KICAgID4gICA+IFNvLCB0aGUgbmV4dCBwYXRjaCBJIG5lZWQgdG8gZG8gaXMgdG8gYWRkIHRo
-ZSBjb21tZW50IGFib3V0IHRoaXM/DQoNCiAgICA+ICAgTm90IHN1cmUgSSBnb3QgdGhlIGNvbXBs
-ZXRlIHBpY3R1cmUgbm93LiBUaGUgdGhpbmdzIEkgY29uc2lkZXIgaW1wb3J0YW50DQogICAgPiAg
-IGFyZToNCg0KICAgID4gICAgLSBJZiB5b3VyIGhhcmR3YXJlIGNhbm5vdCBlbWl0IGEgMTAwJSBv
-ciAwJSByZWxhdGl2ZSBkdXR5IGN5Y2xlLCBub3RlDQogICAgPiAgICAgIHRoaXMgaW4gdGhlIExp
-bWl0YXRpb25zIHNlY3Rpb24NCg0KICAgID4gICAgLSBBc3N1bWluZyB5b3VyIFBXTSBlbWl0cyB0
-aGUgaW5hY3RpdmUgbGV2ZWwgd2hlbiBkaXNhYmxlZCAodGhhdCBpcyAwDQogICAgPiAgICAgIGZv
-ciBQV01fUE9MQVJJVFlfTk9STUFMIGFuZCAxIGZvciBQV01fUE9MQVJJVFlfSU5WRVJTRUQpIHRo
-aXMgaXMgdGhlDQogICAgPiAgICAgIGJlc3QgdGhhdCBjYW4gYmUgZG9uZSB3aGVuIGEgMCUgcmVs
-YXRpdmUgZHV0eSBjeWNsZSBpcyByZXF1ZXN0ZWQNCiAgICA+ICAgICAgKGFzc3VtaW5nIHRoZSBo
-YXJkd2FyZSBjYW5ub3QgaW1wbGVtZW50IHRoYXQgaW4gYSBub3JtYWwgd2F5KS4NCg0KT3VyIGhh
-cmR3YXJlIGlzIHRoZSBzYW1lIGFzIHRoaXMgZGVzY3JpcHRpb24uIA0KU28gSSBkaWRuJ3QgbmVl
-ZCB0byBhZGQgdGhlIGxpbWl0YXRpb25zIGFib3V0IHRoZSBkdXR5IGN5Y2xlLCByaWdodD8NCk9y
-IEkgbmVlZCB0byBub3RlIHRoYXQgdGhlIGR1dHkgY3ljbGUgMCUgaXMganVzdCB0aGUgaW5hY3Rp
-dmUgb3V0cHV0IHRoYXQgZG9lc24ndCBoYXZlIHRoZSBwZXJpb2QgY29uY2VwdC4NCg0KICAgID4g
-ICBJIGhvcGUgdGhpcyBhbnN3ZXJlZCB5b3VyIHJlbWFpbmluZyBxdWVzdGlvbnMuDQoNClRoYW5r
-cy4NCg0K
+
+Hi,
+
+Ferry Toth <fntoth@gmail.com> writes:
+>>>> Ferry Toth <fntoth@gmail.com> writes:
+>>>>>>>>> Hardware name: Intel Corporation Merrifield/BODEGA BAY, BIOS 542
+>>>>>>>>> 2015.01.21:18.19.48
+>>>>>>>>> RIP: 0010:0x500000000
+>>>>>>>>> Code: Unable to access opcode bytes at RIP 0x4ffffffd6.
+>>>>>>>>> RSP: 0018:ffffa4d00045fc28 EFLAGS: 00010046
+>>>>>>>>> RAX: 0000000500000000 RBX: ffff8cd546aed200 RCX: 0000000000000000
+>>>>>>>>> RDX: 0000000000000000 RSI: ffff8cd547bfcae0 RDI: ffff8cd546aed200
+>>>>>>>>> RBP: ffff8cd547bfcae0 R08: 0000000000000000 R09: 0000000000000001
+>>>>>>>>> R10: ffff8cd541fd28c0 R11: 0000000000000000 R12: ffff8cd547342828
+>>>>>>>>> R13: ffff8cd546aed248 R14: 0000000000000000 R15: ffff8cd548b1d000
+>>>>>>>>> FS:  0000000000000000(0000) GS:ffff8cd57e200000(0000) knlGS:0000000000000000
+>>>>>>>>> CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+>>>>>>>>> CR2: 0000000500000000 CR3: 000000000311e000 CR4: 00000000001006f0
+>>>>>>>>> Call Trace:
+>>>>>>>>>       ? dwc3_remove_requests.constprop.0+0x14d/0x170
+>>>>>>>>>       ? __dwc3_gadget_ep_disable+0x7a/0x160
+>>>>>>>>>       ? dwc3_gadget_ep_disable+0x3d/0xd0
+>>>>>>>>>       ? usb_ep_disable+0x1c/0x
+>>>>>>>>>       ? u_audio_stop_capture+0x79/0x120 [u_audio]
+>>>>>>>>>       ? afunc_set_alt+0x73/0x80 [usb_f_uac2]
+>> So this is triggered by a SetInterface request...
+>>
+>>>>>>>>>       ? composite_setup+0x224/0x1b90 [libcomposite]
+>>>>>>>>>       ? __dwc3_gadget_kick_transfer+0x160/0x400
+>>>>>>>>>       ? dwc3_gadget_ep_queue+0xf3/0x1a0
+>>>>>>>>>       ? configfs_composite_setup+0x6b/0x90 [libcomposite]
+>>>>>>>>>       ? configfs_composite_setup+0x6b/0x90 [libcomposite]
+>>>>>>>>>       ? dwc3_ep0_interrupt+0x459/0xa40
+>>>>>>>>>       ? dwc3_thread_interrupt+0x8ee/0xf40
+>>>>>>>>>       ? __schedule+0x235/0x6c0
+>>>>>>>>>       ? disable_irq_nosync+0x10/0x10
+>>>>>>>>>       ? irq_thread_fn+0x1b/0x60
+>>>>>>>>>       ? irq_thread+0xc0/0x160
+>>>>>>>>>       ? irq_thread_check_affinity+0x70/0x70
+>>>>>>>>>       ? irq_forced_thread_fn+0x70/0x70
+>>>>>>>>>       ? kthread+0x122/0x140
+>>>>>>>>>       ? set_kthread_struct+0x40/0x40
+>>>>>>>>>       ? ret_from_fork+0x22/0x30
+>>>>>>>> Do you mind enabling dwc3 traces and collecting them? Trying to figure
+>>>>>>>> out how we got here.
+>>>>>>>>
+>>>>>>> I'll try if I can get the same error by booting with USB in host mode
+>>>>>>> and then switch to device mode. If so I can enable traces and collect as
+>>>>>>> you explained me before.
+>>>>>>>
+>>>>>>> I'll try before monday, as then I fly for a holiday and will not be
+>>>>>>> available before rc5.
+>>>>>> you can enable all of those with kernel cmdline :-)
+>>>>>>
+>>>>>> https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html
+>>>>>>
+>>>>>> you need ftrace_dump_on_oops=1 and also need the correct options on
+>>>>>> trace_buf_size and trace_event.
+>>>>>>
+>>>>> On Edison-Arduino I have a switch to go to device mode, after which
+>>>>> udev triggers a script configure gadgets through configfs.
+>>>>>
+>>>>> I tried to log following these instructions:
+>>>>>
+>>>>> https://www.kernel.org/doc/html/latest/driver-api/usb/dwc3.html#reporting-bugs  <https://www.kernel.org/doc/html/latest/driver-api/usb/dwc3.html#reporting-bugs>
+>>>>>
+>>>>> Unfortunately the kernel crashes so badly I can not get to the ` cp
+>>>>> /t/trace /root/trace.txt` line (after a while the watchdog kicks).
+>>>>>
+>>>>> What to do next?
+>>>> Pass ftrace_dump_on_oops to kernel cmdline.
+>>>>
+>>> No sure if I did this right, on oops everything is pushed to console
+>>> (115k2 serial), I hope nothing essential is lost.
+>>>
+>>> I copied the screen buffer to file see attached.
+>> Thank you, I bet it took quite a some time :-) Anyway, looking at
+>> the logs around Set Interface requests, we can track every endpoint
+>> that's disabled. I'll take a guess and assume we're failing at the last
+>> Set Interface, that means we should have something odd with ep6in, but
+>> everything looks fine in the trace output:
+>>
+>> [   75.823107] irq/14-d-596       0d... 42789194us : dwc3_gadget_ep_enable: ep6in: mps 192/346 streams 16 burst 0 ring 0/0 flags E:swbp:<
+>> [   75.835472] irq/14-d-596       0d... 42789198us : dwc3_alloc_request: ep6in: req 0000000002c71409 length 0/0 zsI ==> 0
+>> [   75.846416] irq/14-d-596       0d... 42789202us : dwc3_ep_queue: ep6in: req 0000000002c71409 length 0/192 zsI ==> -115
+>> [   75.857360] irq/14-d-596       0d... 42789204us : dwc3_alloc_request: ep6in: req 00000000a324f5d0 length 0/0 zsI ==> 0
+>> [   75.868301] irq/14-d-596       0d... 42789206us : dwc3_ep_queue: ep6in: req 00000000a324f5d0 length 0/192 zsI ==> -115
+>> [   75.879244] irq/14-d-596       0d... 42789209us : dwc3_event: event (000020c2): ep0in: Transfer Not Ready [0] (Not Active) [Status Phase]
+>> [   75.891880] irq/14-d-596       0d... 42789211us : dwc3_prepare_trb: ep0in: trb 000000004c0ae319 (E0:D0) buf 000000001bded000 size 0 ctrl 00000c33 (HLcs:SC:status2)
+>> [   75.989131] irq/14-d-596       0d... 42789224us : dwc3_gadget_ep_cmd: ep0in: cmd 'Start Transfer' [406] params 00000000 1bded000 00000000 --> status: Successful
+>> [   76.096261] irq/14-d-596       0d... 42789272us : dwc3_event: event (0000c042): ep0in: Transfer Complete (sIL) [Status Phase]
+>> [   76.107834] irq/14-d-596       0d... 42789275us : dwc3_complete_trb: ep0out: trb 000000004c0ae319 (E0:D0) buf 000000001bded000 size 0 ctrl 00000c32 (hLcs:SC:status2)
+>> [   76.122944] irq/14-d-596       0d... 42789277us : dwc3_gadget_giveback: ep0out: req 00000000cb1bd3cd length 0/0 zsI ==> 0
+>> [   76.134160] irq/14-d-596       0d... 42789280us : dwc3_prepare_trb: ep0out: trb 000000004c0ae319 (E0:D0) buf 000000001bded000 size 8 ctrl 00000c23 (HLcs:SC:setup)
+>> [   76.231322] irq/14-d-596       0d... 42789292us : dwc3_gadget_ep_cmd: ep0out: cmd 'Start Transfer' [406] params 00000000 1bded000 00000000 --> status: Successful
+>> [   76.297418] kworker/-23        0d... 42789670us : dwc3_ep_queue: ep3in: req 0000000029586135 length 0/96 ZsI ==> -115
+>> [   76.308278] kworker/-23        0d... 42789695us : dwc3_prepare_trb: ep3in: trb 00000000b81213d6 (E1:D0) buf 0000000003b7a800 size 96 ctrl 00000811 (Hlcs:sC:normal)
+>> [   76.395294] kworker/-23        0d... 42789707us : dwc3_gadget_ep_cmd: ep3in: cmd 'Update Transfer' [60007] params 00000000 00000000 00000000 --> status: Successful
+>> [   76.471900] irq/14-d-596       0d... 42789842us : dwc3_event: event (0000c040): ep0out: Transfer Complete (sIL) [Setup Phase]
+>> [   76.489308] irq/14-d-596       0d... 42789845us : dwc3_ctrl_req: Set Interface(Intf = 5, Alt.Setting = 0)
+>> [   76.505650] irq/14-d-596       0d... 42789851us : dwc3_ep_dequeue: ep6in: req 0000000002c71409 length 0/192 zsI ==> -115
+>> [   76.523315] irq/14-d-596       0d... 42789854us : dwc3_gadget_giveback: ep6in: req 0000000002c71409 length 0/192 zsI ==> -104
+>> [   76.541427] irq/14-d-596       0d... 42789857us : dwc3_free_request: ep6in: req 0000000002c71409 length 0/192 zsI ==> -104
+>> [   76.559267] irq/14-d-596       0d... 42789859us : dwc3_ep_dequeue: ep6in: req 00000000a324f5d0 length 0/192 zsI ==> -115
+>> [   76.576937] irq/14-d-596       0d... 42789861us : dwc3_gadget_giveback: ep6in: req 00000000a324f5d0 length 0/192 zsI ==> -104
+>> [   76.595046] irq/14-d-596       0d... 42789862us : dwc3_free_request: ep6in: req 00000000a324f5d0 length 0/192 zsI ==> -104
+>> [   76.612892] irq/14-d-596       0d... 42789865us : dwc3_gadget_ep_disable: ep6in: mps 192/346 streams 16 burst 0 ring 0/0 flags E:swbp:<
+>> [   76.665535] irq/14-d-596       0d... 42789873us : dwc3_event: event (000020c2): ep0in: Transfer Not Ready [0] (Not Active) [Status Phase]
+>> [   76.684716] irq/14-d-596       0d... 42789875us : dwc3_prepare_trb: ep0in: trb 000000004c0ae319 (E0:D0) buf 000000001bded000 size 0 ctrl 00000c33 (HLcs:SC:status2)
+>> [   76.819195] irq/14-d-596       0d... 42789886us : dwc3_gadget_ep_cmd: ep0in: cmd 'Start Transfer' [406] params 00000000 1bded000 00000000 --> status: Successful
+>> [   76.926324] irq/14-d-596       0d... 42789930us : dwc3_event: event (0000c042): ep0in: Transfer Complete (sIL) [Status Phase]
+>> [   76.937892] irq/14-d-596       0d... 42789933us : dwc3_complete_trb: ep0out: trb 000000004c0ae319 (E0:D0) buf 000000001bded000 size 0 ctrl 00000c32 (hLcs:SC:status2)
+>> [   76.953003] irq/14-d-596       0d... 42789935us : dwc3_gadget_giveback: ep0out: req 00000000cb1bd3cd length 0/0 zsI ==> 0
+>> [   76.964217] irq/14-d-596       0d... 42789938us : dwc3_prepare_trb: ep0out: trb 000000004c0ae319 (E0:D0) buf 000000001bded000 size 8 ctrl 00000c23 (HLcs:SC:setup)
+>> [   77.061379] irq/14-d-596       0d... 42789950us : dwc3_gadget_ep_cmd: ep0out: cmd 'Start Transfer' [406] params 00000000 1bded000 00000000 --> status: Successful
+>> [   77.168595] irq/14-d-596       0d... 42790509us : dwc3_event: event (0000c040): ep0out: Transfer Complete (sIL) [Setup Phase]
+>> [   77.180159] irq/14-d-596       0d... 42790512us : dwc3_ctrl_req: Get String Descriptor(Index = 18, Length = 255)
+>> [   77.190578] irq/14-d-596       0d... 42790537us : dwc3_prepare_trb: ep0in: trb 000000004c0ae319 (E0:D0) buf 0000000003b68000 size 36 ctrl 00000c53 (HLcs:SC:data)
+>> [   77.287648] irq/14-d-596       0d... 42790550us : dwc3_gadget_ep_cmd: ep0in: cmd 'Start Transfer' [406] params 00000000 1bded000 00000000 --> status: Successful
+>> [   77.333107] irq/14-d-596       0d... 42790557us : dwc3_event: event (000010c2): ep0in: Transfer Not Ready [0] (Not Active) [Data Phase]
+>> [   77.407223] irq/14-d-596       0d... 42790575us : dwc3_event: event (000090c2): ep0in: Transfer Not Ready [0] (Active) [Data Phase]
+>> [   77.480985] irq/14-d-596       0d... 42790588us : dwc3_event: event (0000c042): ep0in: Transfer Complete (sIL) [Data Phase]
+>> [   77.492376] irq/14-d-596       0d... 42790590us : dwc3_complete_trb: ep0out: trb 000000004c0ae319 (E0:D0) buf 0000000003b68000 size 0 ctrl 00000c52 (hLcs:SC:data)
+>> [   77.507221] irq/14-d-596       0d... 42790595us : dwc3_gadget_giveback: ep0out: req 00000000cb1bd3cd length 36/36 ZsI ==> 0
+>> [   77.518609] irq/14-d-596       0d... 42790597us : dwc3_event: event (000020c0): ep0out: Transfer Not Ready [0] (Not Active) [Status Phase]
+>> [   77.531332] irq/14-d-596       0d... 42790598us : dwc3_prepare_trb: ep0out: trb 000000004c0ae319 (E0:D0) buf 000000001bded000 size 0 ctrl 00000c43 (HLcs:SC:status3)
+>> [   77.628669] irq/14-d-596       0d... 42790609us : dwc3_gadget_ep_cmd: ep0out: cmd 'Start Transfer' [406] params 00000000 1bded000 00000000 --> status: Successful
+>>
+>> Do you mind adding a few prints in dwc3_remove_requests to tell us which
+>> endpoint is being processed? Then we'll know for sure which one caused
+>> the crash.
+>>
+> I wouldn't mind but am leaving on a holiday, won't have time until 6 aug.
+
+not a problem, we'll still be here when you're back :-)
+
+> But as I am using configfs (excerpt follows) and just disabling the
+> last 2 line resolves the issue, I'm guessing uac2 is the issue. Or
+> exceeding the available resources.
+>
+> # Create directory structure
+> mkdir "${GADGET_BASE_DIR}"
+> cd "${GADGET_BASE_DIR}"
+> mkdir -p configs/c.1/strings/0x409
+> mkdir -p strings/0x409
+>
+> # Serial device
+> mkdir functions/gser.usb0
+> ln -s functions/gser.usb0 configs/c.1/
+> ###
+>
+> # Ethernet device
+> mkdir functions/eem.usb0
+> echo "${DEV_ETH_ADDR}" > functions/eem.usb0/dev_addr
+> echo "${HOST_ETH_ADDR}" > functions/eem.usb0/host_addr
+> ln -s functions/eem.usb0 configs/c.1/
+>
+> # Mass Storage device
+> mkdir functions/mass_storage.usb0
+> echo 1 > functions/mass_storage.usb0/stall
+> echo 0 > functions/mass_storage.usb0/lun.0/cdrom
+> echo 0 > functions/mass_storage.usb0/lun.0/ro
+> echo 0 > functions/mass_storage.usb0/lun.0/nofua
+> echo "${USBDISK}" > functions/mass_storage.usb0/lun.0/file
+> ln -s functions/mass_storage.usb0 configs/c.1/
+>
+> # UAC2 device
+> mkdir functions/uac2.usb0
+> ln -s functions/uac2.usb0 configs/c.1
+
+Right, either there's an actual bug in uac2, or we're running out of
+FIFO space.
+
+-- 
+balbi
