@@ -2,102 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60C513D54A6
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 09:52:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26AA63D54C1
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 10:02:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232329AbhGZHL7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 03:11:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50708 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231912AbhGZHL7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 03:11:59 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C703C061757;
-        Mon, 26 Jul 2021 00:52:27 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id l6so7434806edc.5;
-        Mon, 26 Jul 2021 00:52:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=AaM4y6RazzXQuuDdTjSTqLkohIWqL53KdsjSdPJ6ZEw=;
-        b=Lw/vHgj9KqqEqMBanNNBEybP3JIerZKOywu554T1F+xh9vZ0mJ9fg3/X9DtffhykYB
-         yK0r5GEiAexjzFuBkWLKZ1+TRPJOtuEROPKWVNEfmUxEruoBO6sntrYu/CYYqr0bT7mj
-         e+ZUcVA1A1GAdx+vKk5Uwib3HAhwgdWXzeXLTtuGqr4aHyktEnSeB8z+c4pif2I8zr8Z
-         PxLhFxsFp85u1QZWtqmFJq3Ioi998EPCLptYNcDHfVER6fLAhwLdkaalOSwngDAolD6G
-         bKa8gd4k5HelKtde6ClkB4xK0PM6IltG/Cz/tOk0rFT1cJVDZd9gJPhu4GOjAK2UWzrO
-         x6aA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=AaM4y6RazzXQuuDdTjSTqLkohIWqL53KdsjSdPJ6ZEw=;
-        b=WQzqK2PCS5hd8/gYzINVY3jjuipJCC+jRu03CHBdIkH9PiK8f1Z9gt5kKl+jQ8EMIU
-         rZxYTxVrSkk1faQlFGS8kX2uZFiThz2J8p03GUSR7XbuJusryPigEVmpsem9fxv8piId
-         V53T6UmtIGT9qtfQmxAfooP7/Gfip6LEKdAo8H2nDxkCzptGuU/J4fGeCjpNGnl57aZ4
-         Ql/QEoeEXxrq8FOI7d0+QXv/h92xo0D/q8y47PORRIv2Qi2VClCDgsAsu3Dl2JXihNa2
-         3/0GWmvjq+JSt4Pnc4o4dLe1DN2bxIE+ee6w581v28kZjDpTdKN/WH/mJJ3z7czmcWRf
-         uajg==
-X-Gm-Message-State: AOAM532789QfNzyHM5bidgUEMSmdOJmZs8rQUK+0IBlAGp4vsh2bFdkO
-        k6rMvJfI0iHvBRaU2wcV9dI=
-X-Google-Smtp-Source: ABdhPJyUguAOT5xjjXwhLROhPMHfGYnOQD7SmS2eI9s9NajEmanndl6z0ouP7oTXtWSNBHoGExXmkw==
-X-Received: by 2002:a05:6402:3482:: with SMTP id v2mr20244649edc.116.1627285944910;
-        Mon, 26 Jul 2021 00:52:24 -0700 (PDT)
-Received: from [192.168.74.110] (178-169-161-196.razgrad.ddns.bulsat.com. [178.169.161.196])
-        by smtp.gmail.com with ESMTPSA id f5sm13826511ejj.45.2021.07.26.00.52.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Jul 2021 00:52:24 -0700 (PDT)
-Subject: Re: [PATCH v3 2/2] drm/panel: Add panel for Samsung Galaxy S5
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        phone-devel@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20210201165307.51443-1-iskren.chernev@gmail.com>
- <20210201165307.51443-2-iskren.chernev@gmail.com>
- <CACRpkdai5+vDj0C053qfPkdM-FCC-74HDCVF4=SPtUb7LE=Srw@mail.gmail.com>
-From:   Iskren Chernev <iskren.chernev@gmail.com>
-Message-ID: <9e5d9c5b-8276-6e75-45e5-2296afa90c02@gmail.com>
-Date:   Mon, 26 Jul 2021 10:52:22 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+        id S232291AbhGZHTy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 03:19:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34686 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232684AbhGZHTy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Jul 2021 03:19:54 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 890BF60F0F;
+        Mon, 26 Jul 2021 08:00:23 +0000 (UTC)
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1m7vXB-000ySI-KO; Mon, 26 Jul 2021 09:00:21 +0100
 MIME-Version: 1.0
-In-Reply-To: <CACRpkdai5+vDj0C053qfPkdM-FCC-74HDCVF4=SPtUb7LE=Srw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Date:   Mon, 26 Jul 2021 09:00:21 +0100
+From:   Marc Zyngier <maz@kernel.org>
+To:     "Thokala, Srikanth" <srikanth.thokala@intel.com>
+Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, robh+dt@kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
+        "Raja Subramanian, Lakshmi Bai" 
+        <lakshmi.bai.raja.subramanian@intel.com>,
+        "Sangannavar, Mallikarjunappa" 
+        <mallikarjunappa.sangannavar@intel.com>, kw@linux.com
+Subject: Re: [PATCH v10 2/2] PCI: keembay: Add support for Intel Keem Bay
+In-Reply-To: <PH0PR11MB559558D60263F29C168E6C5185069@PH0PR11MB5595.namprd11.prod.outlook.com>
+References: <20210607154044.26074-1-srikanth.thokala@intel.com>
+ <20210607154044.26074-3-srikanth.thokala@intel.com>
+ <20210621162506.GA31511@lpieralisi>
+ <PH0PR11MB559558D60263F29C168E6C5185069@PH0PR11MB5595.namprd11.prod.outlook.com>
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <2e4554241c532f03cce30beaf7b9921f@kernel.org>
+X-Sender: maz@kernel.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: srikanth.thokala@intel.com, lorenzo.pieralisi@arm.com, robh+dt@kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, andriy.shevchenko@linux.intel.com, mgross@linux.intel.com, lakshmi.bai.raja.subramanian@intel.com, mallikarjunappa.sangannavar@intel.com, kw@linux.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 7/26/21 10:34 AM, Linus Walleij wrote:
-> Hi Iskren,
+On 2021-06-25 04:23, Thokala, Srikanth wrote:
+> Hi Lorenzo,
 > 
-> thanks for your patch!
+>> -----Original Message-----
+>> From: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+>> Sent: Monday, June 21, 2021 10:23 PM
+>> To: Thokala, Srikanth <srikanth.thokala@intel.com>; maz@kernel.org
+>> Cc: robh+dt@kernel.org; linux-pci@vger.kernel.org;
+>> devicetree@vger.kernel.org; andriy.shevchenko@linux.intel.com;
+>> mgross@linux.intel.com; Raja Subramanian, Lakshmi Bai
+>> <lakshmi.bai.raja.subramanian@intel.com>; Sangannavar, Mallikarjunappa
+>> <mallikarjunappa.sangannavar@intel.com>; kw@linux.com
+>> Subject: Re: [PATCH v10 2/2] PCI: keembay: Add support for Intel Keem 
+>> Bay
+>> 
+>> [+Marc]
+>> 
+>> On Mon, Jun 07, 2021 at 09:10:44PM +0530, srikanth.thokala@intel.com
+>> wrote:
+>> [...]
+>> 
+>> > +static void keembay_pcie_msi_irq_handler(struct irq_desc *desc)
+>> > +{
+>> > +	struct keembay_pcie *pcie = irq_desc_get_handler_data(desc);
+>> > +	struct irq_chip *chip = irq_desc_get_chip(desc);
+>> > +	u32 val, mask, status;
+>> > +	struct pcie_port *pp;
+>> > +
+>> > +	chained_irq_enter(chip, desc);
+>> > +
+>> > +	pp = &pcie->pci.pp;
+>> > +	val = readl(pcie->apb_base + PCIE_REGS_INTERRUPT_STATUS);
+>> > +	mask = readl(pcie->apb_base + PCIE_REGS_INTERRUPT_ENABLE);
+>> > +
+>> > +	status = val & mask;
+>> > +
+>> > +	if (status & MSI_CTRL_INT) {
+>> > +		dw_handle_msi_irq(pp);
+>> > +		writel(status, pcie->apb_base + PCIE_REGS_INTERRUPT_STATUS);
+>> > +	}
+>> > +
+>> > +	chained_irq_exit(chip, desc);
+>> > +}
+>> > +
+>> > +static int keembay_pcie_setup_msi_irq(struct keembay_pcie *pcie)
+>> > +{
+>> > +	struct dw_pcie *pci = &pcie->pci;
+>> > +	struct device *dev = pci->dev;
+>> > +	struct platform_device *pdev = to_platform_device(dev);
+>> > +	int irq;
+>> > +
+>> > +	irq = platform_get_irq_byname(pdev, "pcie");
+>> > +	if (irq < 0)
+>> > +		return irq;
+>> > +
+>> > +	irq_set_chained_handler_and_data(irq, keembay_pcie_msi_irq_handler,
+>> > +					 pcie);
+>> > +
+>> 
+>> Ok this is yet another DWC MSI incantation and given that Marc worked
+>> hard consolidating them let's have a look before we merge it.
+>> 
+>> IIUC - this IP relies on the DWC logic to handle MSIs + custom
+>> registers to detect a pending MSI IRQ because the logic in
+>> dw_chained_msi_irq() is *not* enough so you have to register
+>> a driver specific chained handler. This looks similar to the dra7xx
+>> driver MSI handling but I am not entirely convinced it is needed.
+>> 
+>> I assume this code in keembay_pcie_msi_irq_handler() is required
+>> owing to additional IP logic on top of the standard DWC IP, in
+>> particular the PCIE_REGS_INTERRUPT_STATUS write to "clear" the
+>> IRQ.
+>> 
+>> We need more insights before merging it so please provide them.
+>> 
+>> pp = &pcie->pci.pp;
+>> val = readl(pcie->apb_base + PCIE_REGS_INTERRUPT_STATUS);
+>> mask = readl(pcie->apb_base + PCIE_REGS_INTERRUPT_ENABLE);
+>> 
+>> status = val & mask;
+>> 
+>> if (status & MSI_CTRL_INT) {
+>> 	dw_handle_msi_irq(pp);
+>> 	writel(status, pcie->apb_base + PCIE_REGS_INTERRUPT_STATUS);
+>> }
+> 
+> Yes, your understanding is correct.
+> 
+> Additional registers PCIE_REGS_INTERRUPT_ENABLE/_STATUS are provided
+> by IP to control the interrupts.
+> 
+> To receive MSI interrupts, SW must enable bit '8' of _ENABLE register.
+> And once a MSI is raised by the End point, bit '8' of _STATUS register
+> will be set and it needs to be cleared after servicing the interrupt.
 
-Thanks a lot for reviewing this. Alexey wrote a new version of the patch [1]
-that was recently reviewed by Sam, and it also includes support for brightness
-and another panel found on the S5. My patch is pretty much untouched out of the
-panel driver generator, so we can definitely improve the generated code based
-on your comments.
+What isn't clear here is whether the other bits that are written back
+are significant and have a side effect. If only bit 8 is required,
+shouldn't you *only* write this bit back?
 
-[1] https://lists.freedesktop.org/archives/dri-devel/2021-July/316804.html
+Only you can know the answer to this, but it would be good if you
+could actually document this deviation from the already wonky
+DWC infrastructure.
 
-I guess Alexey will submit a new version with the two panels split, and he
-might incorporate your suggestions (as his code comes from the generator as
-well).
+Thanks,
 
-Regards,
-Iskren
+         M.
+-- 
+Jazz is not dead. It just smells funny...
