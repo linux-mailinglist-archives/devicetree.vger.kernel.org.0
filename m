@@ -2,102 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5132B3D67FB
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 22:17:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 104823D6830
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 22:36:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232411AbhGZTgy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 15:36:54 -0400
-Received: from phobos.denx.de ([85.214.62.61]:51846 "EHLO phobos.denx.de"
+        id S232653AbhGZT4B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 15:56:01 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55436 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229646AbhGZTgx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Jul 2021 15:36:53 -0400
-Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 6F4F2833A8;
-        Mon, 26 Jul 2021 22:17:20 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1627330640;
-        bh=rauE+1kO9XPBRX/theDn9mFQbfOaN4CD6lB/WP6DY/U=;
-        h=From:To:Cc:Subject:Date:From;
-        b=a8dvzvBnuuBQ+Z5hru1HfNYCStjR4jCZp+7+FiulPW4lbAKSJHYc3wnkfuHSQ7JVT
-         3lASU5/zpxN7FtKZp7u4RD0x6lnmLUJCI+En6DE7qIOHDO0izv4AweKTAKFLeXIeEF
-         mAGTqFIAMmQf0XtaXBn4IJ6/x+L/9iH003aWd2VSyJHOT363QTgVQR0CfcFwppIT+7
-         4M6ZDCNGm9dSf2iSD0Z0WLjPhgRGwksd0VS42N4LgetkFQZ1qH2aWwSkio4SFgx3IW
-         T64WF8nFq9u0E76Mf3+b3YKlVvNItAiy+6x2RNDMyhbf1Z/x1hpD7gjVxH1Ah9p8QX
-         Gxww2Kdfsk+ow==
-From:   Marek Vasut <marex@denx.de>
-To:     dri-devel@lists.freedesktop.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
-Subject: [PATCH V2 1/2] dt-bindings: display: bridge: lvds-codec: Document LVDS data mapping select
-Date:   Mon, 26 Jul 2021 22:16:47 +0200
-Message-Id: <20210726201648.396798-1-marex@denx.de>
-X-Mailer: git-send-email 2.30.2
+        id S232359AbhGZT4A (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Jul 2021 15:56:00 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id F3FD360F94;
+        Mon, 26 Jul 2021 20:36:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1627331789;
+        bh=3riA8t9dhiYBRD1Zo/I1Hj+SO5jhDplsAp2AKdHWpLA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ZeC55X+ii1EFrVqG2LhhEpFJ2XVlWO5U5yR0AYGD74kDstUM1REQDsHuLGCWniMoS
+         s8+NIMUQQ1rs+71RkwXWbTnXGDstWix4QcNh+x2IE+eW9W/I26hqk2bWvnEG23BASd
+         aBSUnxfvn3MO2+I/ZQie+fjcnr4EmLmYSJOy8u8ydz8F5w3zuPTT0GZwHpW998kZ5q
+         bcS+SGXJWjOOH/DYHw2QLiQGxvZDhSCLfT7Wbatnft/6+1oDCRJh0bgjJIfN1SG7Uv
+         0V2cwoIIPog1oCrEnX40WM4icReRQVdfmxOLrcTPMG1JrIpgnYGB2IgvXZ8Mz3czdm
+         PiviFHOObmzLA==
+Received: by mail-ed1-f51.google.com with SMTP id r16so12298534edt.7;
+        Mon, 26 Jul 2021 13:36:28 -0700 (PDT)
+X-Gm-Message-State: AOAM533YQuUOOfGGtIqnGCSgVO1PB+TSiSJRflmPqPjIyPfcN5+/9WuZ
+        jFxDmc1kA+JAZQChb9kRqhmvjFU6IIoeKVIFaQ==
+X-Google-Smtp-Source: ABdhPJxJvbq2g1KVho0J4ni/dJfg/SR6NMsVddzMiVey2KHzvQfwm0Lk820JJcWPeqiRPXYyscNT4jTklDKfEDPvWFc=
+X-Received: by 2002:aa7:da4b:: with SMTP id w11mr24326198eds.258.1627331787560;
+ Mon, 26 Jul 2021 13:36:27 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
-X-Virus-Status: Clean
+References: <cover.1627273794.git.viresh.kumar@linaro.org> <fced2f2b9dcf3f32f16866d7d104f46171316396.1627273794.git.viresh.kumar@linaro.org>
+ <CAL_Jsq+XXhe2g0Rmda1v_Ws4-E_-UE6X5HUsSk-GcAETqQZiCQ@mail.gmail.com> <CAK8P3a3bCk+iA+YziQrQFg6xH_d9cyySdTN_1j94D9CA8a_Sjw@mail.gmail.com>
+In-Reply-To: <CAK8P3a3bCk+iA+YziQrQFg6xH_d9cyySdTN_1j94D9CA8a_Sjw@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 26 Jul 2021 14:36:14 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLk8q6N2Sf43em57OXKkrQ7SW01GBnAEV1zzPMYQF7agA@mail.gmail.com>
+Message-ID: <CAL_JsqLk8q6N2Sf43em57OXKkrQ7SW01GBnAEV1zzPMYQF7agA@mail.gmail.com>
+Subject: Re: [PATCH V3 1/5] dt-bindings: virtio: Add binding for virtio devices
+To:     Arnd Bergmann <arnd@kernel.org>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Jason Wang <jasowang@redhat.com>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>,
+        =?UTF-8?B?QWxleCBCZW5uw6ll?= <alex.bennee@linaro.org>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        Jie Deng <jie.deng@intel.com>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE" 
+        <virtualization@lists.linux-foundation.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Decoder input LVDS format is a property of the decoder chip or even
-its strapping. Add DT property data-mapping the same way lvds-panel
-does, to define the LVDS data mapping.
+On Mon, Jul 26, 2021 at 9:54 AM Arnd Bergmann <arnd@kernel.org> wrote:
+>
+> On Mon, Jul 26, 2021 at 4:57 PM Rob Herring <robh+dt@kernel.org> wrote:
+> > On Sun, Jul 25, 2021 at 10:52 PM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+> > > +    description: |
+> > > +      Exactly one node describing the virtio device. The name of the node isn't
+> > > +      significant but its phandle can be used to by a user of the virtio device.
+> > > +
+> > > +  compatible:
+> > > +    pattern: "^virtio,[0-9a-f]+$"
+> >
+> > DID is only 4 chars? If so, "^virtio,[0-9a-f]{1,4}$"
+>
+> Any opinion on whether this should have any namespace prefix (or infix, I guess)
+> after "virtio,"?
+>
+> I previously suggested making it "virtio,device[0-9a-f]{1,4}$", which would
+> make it clearer that the following digits are the device ID rather
+> than something
+> else we might define in the future. Viresh picked this version because it's
+> somewhat more consistent with other subsystems.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Sam Ravnborg <sam@ravnborg.org>
-Cc: devicetree@vger.kernel.org
-To: dri-devel@lists.freedesktop.org
----
-V2: Rebase on latest next
----
- .../bindings/display/bridge/lvds-codec.yaml   | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+I'm fine either way, though I do find just a number a bit strange. So
+I'd lean toward adding 'device' or even just a 'd'.
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-index 304a1367faaa7..33e0c08933b72 100644
---- a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-@@ -64,6 +64,15 @@ properties:
-       - port@0
-       - port@1
- 
-+  data-mapping:
-+    enum:
-+      - jeida-18
-+      - jeida-24
-+      - vesa-24
-+    description: |
-+      The color signals mapping order. See details in
-+      Documentation/devicetree/bindings/display/panel/lvds.yaml
-+
-   powerdown-gpios:
-     description:
-       The GPIO used to control the power down line of this device.
-@@ -71,6 +80,16 @@ properties:
- 
-   power-supply: true
- 
-+if:
-+  not:
-+    properties:
-+      compatible:
-+        contains:
-+          const: lvds-decoder
-+then:
-+  properties:
-+    data-mapping: false
-+
- required:
-   - compatible
-   - ports
--- 
-2.30.2
+BTW, what happens if/when the device protocol is rev'ed? A new DID or
+is there a separate revision that's discoverable?
 
+Rob
