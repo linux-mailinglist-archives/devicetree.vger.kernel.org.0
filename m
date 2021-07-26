@@ -2,160 +2,419 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E9A5E3D5B79
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 16:19:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C07193D5B86
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 16:25:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233526AbhGZNj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 09:39:27 -0400
-Received: from mail-dm6nam10on2057.outbound.protection.outlook.com ([40.107.93.57]:14017
-        "EHLO NAM10-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S233206AbhGZNj0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Jul 2021 09:39:26 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jEfsJub4iw2ienZC9jQ294C6CmHnzcs2wiGa+7vRWTIkgXud4qtz6sPmZ1eAVrwRuusBIm3m8L9bDcqx2wGp0sXYgBOs7QU4jxHhrgzT+OEBrItiZfPmMI+wwMBGeHiJvq8pnTuptG74DmINWzG520tJN4Io11Qf7Wtwl3tAMC9JC0DSJx2EyBQ3gNejudU5e3uMEaYJCgiA+o4CIkWSpyv1dUiFQE2PAx25DCPUYj3zkO7lHxLUtkdnU0iTdPSqJ/HegF0OtcEQhLNDDTmKlrojDGt45Ow+KT4eJRi9CK83E6uHajQ72WPCGkqMnfLDpuTIdY0jL47tZHqc3sh7Mg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NDjKhKOPJst+rj5i1L/dYbB0fYqxjDGNmUGSStsB9C0=;
- b=a0draFQqYqNDH2Kff9ylsL802gw/p3wr6MdSA3Z6kM/A2WxgX6rMD53dUidpGAhtdaT4onHEfW6aWMJE6wEeOI5Z3wH7ovZaI4z8Ei2QfXRoV55qUWMYSqHKCktSn7e8pWzadsSPck5rZzeOmALzs310GC+37IfwDwQ07rkbyW+SvizEC9kFzN1v2ogbNu+KcOTfK2ZB76SqxRpLGIhX2ARRB5ntXDw8scehPcyj/VKsnFCkHi2ABDUxWk8manIXU7bhtQDh0zgoaUwjYVQ+UQewRXdpO8tAinNf+hSjd9131ihMsnTDyhNBP8E57kr12dsuPh3GsWmNfWelyCJ02Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NDjKhKOPJst+rj5i1L/dYbB0fYqxjDGNmUGSStsB9C0=;
- b=XkcKE8G6Kynmf8bnNwZGEDIBUgj2O/2j60J0hJQFJlWKNN91FXaMmOHYYwjiLDXXdQmGtP48geyrfZ5U3sqzDce85RI3xRCb/V/hVK4OtBZHhvULORjb4IWJ1vO/9T5q6jJdL1LZ7qXGrub4WPjSz9nGd+jdTHK2eYXaMDQFhdY=
-Received: from DM6PR02CA0072.namprd02.prod.outlook.com (2603:10b6:5:177::49)
- by CO1PR02MB8380.namprd02.prod.outlook.com (2603:10b6:303:153::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4352.26; Mon, 26 Jul
- 2021 14:19:54 +0000
-Received: from DM3NAM02FT019.eop-nam02.prod.protection.outlook.com
- (2603:10b6:5:177:cafe::82) by DM6PR02CA0072.outlook.office365.com
- (2603:10b6:5:177::49) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4352.26 via Frontend
- Transport; Mon, 26 Jul 2021 14:19:53 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
-Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
- DM3NAM02FT019.mail.protection.outlook.com (10.13.4.191) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4352.24 via Frontend Transport; Mon, 26 Jul 2021 14:19:53 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Mon, 26 Jul 2021 07:19:53 -0700
-Received: from smtp.xilinx.com (172.19.127.96) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Mon, 26 Jul 2021 07:19:52 -0700
-Envelope-to: devicetree@vger.kernel.org,
- ysato@users.sourceforge.jp,
- robh@kernel.org,
- dalias@libc.org,
- alexander.sverdlin@nokia.com,
- gregkh@linuxfoundation.org,
- linux-serial@vger.kernel.org,
- peter@korsgaard.com,
- peter.korsgaard@barco.com,
- sean.anderson@seco.com
-Received: from [172.30.17.109] (port=59096)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1m81SS-0000bp-Nw; Mon, 26 Jul 2021 07:19:52 -0700
-Subject: Re: [PATCH 0/5] tty: serial: uartlite: Disable changing fixed
- parameters
-To:     Sean Anderson <sean.anderson@seco.com>,
-        Peter Korsgaard <peter.korsgaard@barco.com>,
-        Peter Korsgaard <peter@korsgaard.com>,
-        <linux-serial@vger.kernel.org>,
-        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Alexander Sverdlin <alexander.sverdlin@nokia.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Rich Felker <dalias@libc.org>, Rob Herring <robh@kernel.org>,
-        Yoshinori Sato <ysato@users.sourceforge.jp>,
-        <devicetree@vger.kernel.org>
-References: <20210723223152.648326-1-sean.anderson@seco.com>
-From:   Michal Simek <michal.simek@xilinx.com>
-Message-ID: <d2570d88-9f2a-2589-d264-1bdb2b2744a5@xilinx.com>
-Date:   Mon, 26 Jul 2021 16:19:49 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
-MIME-Version: 1.0
-In-Reply-To: <20210723223152.648326-1-sean.anderson@seco.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: dd8aa420-cbb5-4f79-b76d-08d950406fec
-X-MS-TrafficTypeDiagnostic: CO1PR02MB8380:
-X-Microsoft-Antispam-PRVS: <CO1PR02MB83809F986536DE2C6208D3B8C6E89@CO1PR02MB8380.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: J4xkcXLdJLeTQ4Y0Y9u3q9Rw/BRta9zRZZmSZ5MrW4aKU8tnGIm8NXjXqvX/RRdXxCnmp+X6P6ZqVGuWhekjsWFS0d2XEbANzEobAZSJQ3vm2VRx+otSBcbEbYmhAPNnRVZi3pg/+xExbtwkPIkwhhfSQ5brjwNNOU+MqyNC3BLmiW1f0y4a0n8vyC2xrYH2qaKRgZIjFkVvgFtxjc6pSxyXoWRtmxMqRY2aN3C+6leN7Nn4tEZofwu45Q5wUlqN1Z5V7MLPSYzbvmiob85zu9oH2UkiecWQoho0jdFvdU8OlMU1LLCq+7DDNA18VzGps1lrCZMKzIhvkpOAb4OK0XjQccICXDVsRe9p9pve+JMaLIM1Vkr4Ys1vRd/gglBZpvGoLVMp4oGjCuXj/837WFKWME1YVrmBs6OdnMVLo3PIOpYaD7K5W3G9l3nVeo4E7xhiFx0oELF2QuKxYrZaggMxyPU3p3Jic75GjQK3e83RMbFjzeuicdHlq2TK7BAwCN/HxNVeErl09bJewbKgL8rTJVN82+tcYI+pbWs6OwIbI4BK0RvZF8iemMl8LDuWojQN0JNy4qX/HutElIrKauur8LSFOOwzPbpUx0KAgjwhpfrRAgB/PlSJZ21xmiHaTtJQjWyNStrW3gXsQJ6ED5zRVXP76p6+Tz741ZEHpUFuvXnekaiuq+zcF/5Hsu9180/a7EygzB1f2PIN/0c7wm2yc8yxLYyYxDbr7I0K2dDdR3jBiu2BCEsmkYNDcV4TOvs5wetr0uwQOBdGyUzCnQ==
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(136003)(396003)(39860400002)(346002)(376002)(46966006)(36840700001)(7636003)(356005)(36860700001)(336012)(6666004)(83380400001)(47076005)(26005)(31686004)(44832011)(53546011)(5660300002)(186003)(2906002)(82310400003)(31696002)(6636002)(8676002)(82740400003)(4326008)(9786002)(110136005)(54906003)(36756003)(426003)(70206006)(478600001)(70586007)(8936002)(7416002)(36906005)(316002)(2616005)(50156003)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jul 2021 14:19:53.4659
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: dd8aa420-cbb5-4f79-b76d-08d950406fec
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM3NAM02FT019.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR02MB8380
+        id S233719AbhGZNpL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 09:45:11 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46890 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233691AbhGZNpK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Jul 2021 09:45:10 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4E92360F55;
+        Mon, 26 Jul 2021 14:25:39 +0000 (UTC)
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1m81Y1-0013q4-9q; Mon, 26 Jul 2021 15:25:37 +0100
+Date:   Mon, 26 Jul 2021 15:25:36 +0100
+Message-ID: <87k0lddue7.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Anup Patel <anup.patel@wdc.com>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Palmer Dabbelt <palmerdabbelt@google.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Atish Patra <atish.patra@wdc.com>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Anup Patel <anup@brainfault.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH v2 07/11] irqchip: Add ACLINT software interrupt driver
+In-Reply-To: <20210618123851.1344518-8-anup.patel@wdc.com>
+References: <20210618123851.1344518-1-anup.patel@wdc.com>
+        <20210618123851.1344518-8-anup.patel@wdc.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: anup.patel@wdc.com, palmer@dabbelt.com, palmerdabbelt@google.com, paul.walmsley@sifive.com, tglx@linutronix.de, daniel.lezcano@linaro.org, robh+dt@kernel.org, atish.patra@wdc.com, Alistair.Francis@wdc.com, anup@brainfault.org, linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+Shubhrajyoti
+On Fri, 18 Jun 2021 13:38:47 +0100,
+Anup Patel <anup.patel@wdc.com> wrote:
+> 
+> The RISC-V ACLINT provides MSWI and SSWI devices for M-mode and
+> S-mode software interrupts respectively. We add irqchip driver
+> which provide IPI operations based on ACLINT [M|S]SWI devices
+> to the Linux RISC-V kernel.
+> 
+> Signed-off-by: Anup Patel <anup.patel@wdc.com>
+> ---
+>  drivers/irqchip/Kconfig          |  11 ++
+>  drivers/irqchip/Makefile         |   1 +
+>  drivers/irqchip/irq-aclint-swi.c | 271 +++++++++++++++++++++++++++++++
+>  3 files changed, 283 insertions(+)
+>  create mode 100644 drivers/irqchip/irq-aclint-swi.c
+> 
+> diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
+> index 62543a4eccc0..2010d493b03b 100644
+> --- a/drivers/irqchip/Kconfig
+> +++ b/drivers/irqchip/Kconfig
+> @@ -508,6 +508,17 @@ config RISCV_INTC
+>  
+>  	   If you don't know what to do here, say Y.
+>  
+> +config RISCV_ACLINT_SWI
+> +	bool "RISC-V Advanced Core Local Interruptor Software Interrupts"
+> +	depends on RISCV
+> +	help
+> +	   This enables support for software interrupts using the Advanced
+> +	   Core Local Interruptor (ACLINT) found in RISC-V systems.  The
+> +	   RISC-V ACLINT provides devices for inter-process interrupt and
+> +	   timer functionality.
+> +
+> +	   If you don't know what to do here, say Y.
 
-On 7/24/21 12:31 AM, Sean Anderson wrote:
-> The uartlite device is a "soft" device and certain parameters (such as
-> data bits, parity, and baud) are configured at synthesis time, and
-> cannot be discovered at runtime. Fortunately, bindings for this device
-> typically include some of these parameters (especially baud rate).
-> Instead of silently letting Linux's termios drift away from what the
-> hardware is actually doing, make the termios reflect the hardware, and
-> prevent them from being changed. With this series applied, the user
-> recieves an error message the first time they try and change these
-> termios:
+Let's face it, nobody knows what to say. So instead of asking the
+question, how about selecting it from the platform support config
+instead?
+
+> +
+>  config SIFIVE_PLIC
+>  	bool "SiFive Platform-Level Interrupt Controller"
+>  	depends on RISCV
+> diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
+> index f88cbf36a9d2..a6edf6733c1d 100644
+> --- a/drivers/irqchip/Makefile
+> +++ b/drivers/irqchip/Makefile
+> @@ -97,6 +97,7 @@ obj-$(CONFIG_QCOM_PDC)			+= qcom-pdc.o
+>  obj-$(CONFIG_CSKY_MPINTC)		+= irq-csky-mpintc.o
+>  obj-$(CONFIG_CSKY_APB_INTC)		+= irq-csky-apb-intc.o
+>  obj-$(CONFIG_RISCV_INTC)		+= irq-riscv-intc.o
+> +obj-$(CONFIG_RISCV_ACLINT_SWI)		+= irq-aclint-swi.o
+>  obj-$(CONFIG_SIFIVE_PLIC)		+= irq-sifive-plic.o
+>  obj-$(CONFIG_IMX_IRQSTEER)		+= irq-imx-irqsteer.o
+>  obj-$(CONFIG_IMX_INTMUX)		+= irq-imx-intmux.o
+> diff --git a/drivers/irqchip/irq-aclint-swi.c b/drivers/irqchip/irq-aclint-swi.c
+> new file mode 100644
+> index 000000000000..a31a7fc504d1
+> --- /dev/null
+> +++ b/drivers/irqchip/irq-aclint-swi.c
+> @@ -0,0 +1,271 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2021 Western Digital Corporation or its affiliates.
+> + */
+> +
+> +#define pr_fmt(fmt) "aclint-swi: " fmt
+> +#include <linux/cpu.h>
+> +#include <linux/cpumask.h>
+> +#include <linux/io.h>
+> +#include <linux/init.h>
+> +#include <linux/irq.h>
+> +#include <linux/irqchip.h>
+> +#include <linux/irqchip/chained_irq.h>
+> +#include <linux/irqdomain.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_address.h>
+> +#include <linux/of_irq.h>
+> +#include <linux/smp.h>
+> +
+> +struct aclint_swi {
+> +	void __iomem *sip_reg;
+> +	unsigned long bits;
+> +};
+> +
+> +static int aclint_swi_parent_irq __ro_after_init;
+> +static struct irq_domain *aclint_swi_domain __ro_after_init;
+> +static DEFINE_PER_CPU(struct aclint_swi, aclint_swis);
+> +
+> +static void aclint_swi_dummy_mask_unmask(struct irq_data *d)
+> +{
+> +}
+> +
+> +static void aclint_swi_send_mask(struct irq_data *d,
+> +				  const struct cpumask *mask)
+> +{
+> +	int cpu;
+> +	struct aclint_swi *swi;
+> +
+> +	/* Barrier before doing atomic bit update to IPI bits */
+> +	smp_mb__before_atomic();
+> +
+> +	for_each_cpu(cpu, mask) {
+> +		swi = per_cpu_ptr(&aclint_swis, cpu);
+> +		set_bit(d->hwirq, &swi->bits);
+> +		writel(1, swi->sip_reg);
+> +	}
+> +
+> +	/* Barrier after doing atomic bit update to IPI bits */
+> +	smp_mb__after_atomic();
+> +}
+> +
+> +static struct irq_chip aclint_swi_chip = {
+> +	.name = "RISC-V ACLINT SWI",
+> +	.irq_mask	= aclint_swi_dummy_mask_unmask,
+
+Please call this function something that doesn't immediately
+contradict the callback it is assigned to.
+
+> +	.irq_unmask	= aclint_swi_dummy_mask_unmask,
+> +	.ipi_send_mask	= aclint_swi_send_mask,
+> +};
+> +
+> +static int aclint_swi_domain_map(struct irq_domain *d, unsigned int irq,
+> +				 irq_hw_number_t hwirq)
+> +{
+> +	irq_set_percpu_devid(irq);
+> +	irq_domain_set_info(d, irq, hwirq, &aclint_swi_chip, d->host_data,
+> +			    handle_percpu_devid_irq, NULL, NULL);
+> +
+> +	return 0;
+> +}
+> +
+> +static int aclint_swi_domain_alloc(struct irq_domain *d, unsigned int virq,
+> +				   unsigned int nr_irqs, void *arg)
+> +{
+> +	int i, ret;
+> +	irq_hw_number_t hwirq;
+> +	unsigned int type = IRQ_TYPE_NONE;
+> +	struct irq_fwspec *fwspec = arg;
+> +
+> +	ret = irq_domain_translate_onecell(d, fwspec, &hwirq, &type);
+> +	if (ret)
+> +		return ret;
+> +
+> +	for (i = 0; i < nr_irqs; i++) {
+> +		ret = aclint_swi_domain_map(d, virq + i, hwirq + i);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct irq_domain_ops aclint_swi_domain_ops = {
+> +	.translate	= irq_domain_translate_onecell,
+> +	.alloc		= aclint_swi_domain_alloc,
+> +	.free		= irq_domain_free_irqs_top,
+> +};
+> +
+> +static void aclint_swi_handle_irq(struct irq_desc *desc)
+> +{
+> +	int irq;
+> +	unsigned long irqs;
+> +	irq_hw_number_t hwirq;
+> +	struct irq_chip *chip = irq_desc_get_chip(desc);
+> +	struct aclint_swi *swi = this_cpu_ptr(&aclint_swis);
+> +
+> +	chained_irq_enter(chip, desc);
+> +
+> +	writel(0, swi->sip_reg);
+> +
+> +	while (true) {
+> +		/* Order bit clearing and data access. */
+> +		mb();
+> +
+> +		irqs = xchg(&swi->bits, 0);
+> +		if (!irqs)
+> +			goto done;
+> +
+> +		for (hwirq = 0; hwirq < BITS_PER_LONG; hwirq++) {
+> +			if (!(BIT(hwirq) & irqs))
+> +				continue;
+
+		for_each_set_bit(hwirq, &irqs, BITS_PER_LONG) {
+
+> +
+> +			irq = irq_find_mapping(aclint_swi_domain, hwirq);
+> +			if (unlikely(irq <= 0))
+> +				pr_warn_ratelimited(
+> +					"can't find mapping for hwirq %lu\n",
+> +					hwirq);
+> +			else
+> +				generic_handle_irq(irq);
+
+You can now convert this over to generic_handle_domain_irq().
+
+> +		}
+> +	}
+
+So you can loop here and consume bits forever, but only ack the
+interrupt once? This feels sketchy.
+
+> +
+> +done:
+> +	chained_irq_exit(chip, desc);
+> +}
+> +
+> +static int aclint_swi_dying_cpu(unsigned int cpu)
+> +{
+> +	disable_percpu_irq(aclint_swi_parent_irq);
+> +	return 0;
+> +}
+> +
+> +static int aclint_swi_starting_cpu(unsigned int cpu)
+> +{
+> +	enable_percpu_irq(aclint_swi_parent_irq,
+> +			  irq_get_trigger_type(aclint_swi_parent_irq));
+> +	return 0;
+> +}
+> +
+> +static int __init aclint_swi_set_virq(void)
+> +{
+> +	int virq;
+> +	struct irq_fwspec ipi = {
+> +		.fwnode		= aclint_swi_domain->fwnode,
+> +		.param_count	= 1,
+> +		.param[0]	= 0,
+> +	};
+> +
+> +	virq = __irq_domain_alloc_irqs(aclint_swi_domain, -1, BITS_PER_LONG,
+> +				       NUMA_NO_NODE, &ipi,
+> +				       false, NULL);
+> +	if (virq <= 0) {
+> +		pr_err("unable to alloc IRQs from SBI IPI IRQ domain\n");
+> +		return -ENOMEM;
+> +	}
+> +
+> +	riscv_ipi_set_virq_range(virq, BITS_PER_LONG, true);
+> +
+> +	return 0;
+> +}
+> +
+> +static int __init aclint_swi_domain_init(struct device_node *node)
+> +{
+> +	/*
+> +	 * We can have multiple ACLINT SWI devices but we only need
+> +	 * one IRQ domain for providing per-HART (or per-CPU) IPIs.
+> +	 */
+> +	if (aclint_swi_domain)
+> +		return 0;
+> +
+> +	aclint_swi_domain = irq_domain_add_linear(node, BITS_PER_LONG,
+> +						&aclint_swi_domain_ops, NULL);
+> +	if (!aclint_swi_domain) {
+> +		pr_err("unable to add ACLINT SWI IRQ domain\n");
+> +		return -ENOMEM;
+> +	}
+> +
+> +	return aclint_swi_set_virq();
+> +}
+> +
+> +static int __init aclint_swi_init(struct device_node *node,
+> +				  struct device_node *parent)
+> +{
+> +	int rc;
+> +	void __iomem *base;
+> +	struct aclint_swi *swi;
+> +	u32 i, nr_irqs, nr_cpus = 0;
+> +
+> +	/* Map the registers */
+> +	base = of_iomap(node, 0);
+> +	if (!base) {
+> +		pr_err("%pOFP: could not map registers\n", node);
+> +		return -ENODEV;
+> +	}
+> +
+> +	/* Iterarte over each target CPU connected with this ACLINT */
+> +	nr_irqs = of_irq_count(node);
+> +	for (i = 0; i < nr_irqs; i++) {
+> +		struct of_phandle_args parent;
+> +		int cpu, hartid;
+> +
+> +		if (of_irq_parse_one(node, i, &parent)) {
+> +			pr_err("%pOFP: failed to parse irq %d.\n",
+> +			       node, i);
+> +			continue;
+> +		}
+> +
+> +		if (parent.args[0] != RV_IRQ_SOFT) {
+> +			pr_err("%pOFP: invalid irq %d (hwirq %d)\n",
+> +			       node, i, parent.args[0]);
+> +			continue;
+> +		}
+> +
+> +		hartid = riscv_of_parent_hartid(parent.np);
+> +		if (hartid < 0) {
+> +			pr_warn("failed to parse hart ID for irq %d.\n", i);
+> +			continue;
+> +		}
+> +
+> +		cpu = riscv_hartid_to_cpuid(hartid);
+> +		if (cpu < 0) {
+> +			pr_warn("Invalid cpuid for irq %d\n", i);
+> +			continue;
+> +		}
+> +
+> +		/* Find parent domain and register chained handler */
+> +		if (!aclint_swi_parent_irq && irq_find_host(parent.np)) {
+> +			aclint_swi_parent_irq = irq_of_parse_and_map(node, i);
+> +			if (aclint_swi_parent_irq) {
+
+What is the point of describing all the interrupts for each and every
+CPU if you only need *one* to establish the routing on behalf of all
+CPUs?
+
+> +				irq_set_chained_handler(aclint_swi_parent_irq,
+> +							aclint_swi_handle_irq);
+> +				cpuhp_setup_state(CPUHP_AP_ONLINE_DYN,
+> +					"irqchip/riscv/aclint-swi:starting",
+> +					aclint_swi_starting_cpu,
+> +					aclint_swi_dying_cpu);
+> +			}
+> +		}
+
+else?
+
+> +
+> +		swi = per_cpu_ptr(&aclint_swis, cpu);
+> +		swi->sip_reg = base + i * sizeof(u32);
+> +		writel(0, swi->sip_reg);
+> +
+> +		nr_cpus++;
+> +	}
+> +
+> +	/* Create the IPI domain for ACLINT SWI device */
+> +	rc = aclint_swi_domain_init(node);
+> +	if (rc)
+> +		return rc;
+> +
+> +	/* Announce the ACLINT SWI device */
+> +	pr_info("%pOFP: providing IPIs for %d CPUs\n", node, nr_cpus);
+> +
+> +	return 0;
+> +}
+> +
+> +#ifdef CONFIG_RISCV_M_MODE
+> +IRQCHIP_DECLARE(riscv_aclint_swi, "riscv,clint0", aclint_swi_init);
+> +IRQCHIP_DECLARE(riscv_aclint_swi1, "sifive,clint0", aclint_swi_init);
+> +IRQCHIP_DECLARE(riscv_aclint_swi2, "riscv,aclint-mswi", aclint_swi_init);
+> +#else
+> +IRQCHIP_DECLARE(riscv_aclint_swi, "riscv,aclint-sswi", aclint_swi_init);
+> +#endif
+> -- 
+> 2.25.1
 > 
->     # stty parity
->     [    7.221696] uartlite 84000000.serial: only 'n' parity supported
->     [    7.222139] uartlite 84000000.serial: only 8 data bits supported
->     stty: standard input: cannot perform all requested operations
 > 
-> In addition, the configured baud/parity/bits/etc. are exposed through
-> the standard termios ioctls, instead of using the default termios for
-> unconfigured ttys.
-> 
-> 
-> Sean Anderson (5):
->   dt-bindings: serial: uartlite: Convert to json-schema
->   dt-bindings: serial: uartlite: Add properties for synthesis-time
->     parameters
->   sh: j2: Update uartlite binding with data and parity properties
->   tty: serial: uartlite: Initialize termios with fixed synthesis
->     parameters
->   tty: serial: uartlite: Prevent changing fixed parameters
-> 
->  .../bindings/serial/xlnx,opb-uartlite.txt     |  23 ----
->  .../bindings/serial/xlnx,opb-uartlite.yaml    |  92 ++++++++++++++
->  arch/sh/boot/dts/j2_mimas_v2.dts              |   2 +
->  drivers/tty/serial/uartlite.c                 | 118 ++++++++++++++++--
->  4 files changed, 203 insertions(+), 32 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.txt
->  create mode 100644 Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml
-> 
+
+Thanks,
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
