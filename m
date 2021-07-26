@@ -2,138 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 073FF3D5DFB
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 17:47:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B21AC3D5F05
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 17:59:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236067AbhGZPEw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 11:04:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46886 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235999AbhGZPEa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 11:04:30 -0400
-Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CAE2C0613C1
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 08:44:59 -0700 (PDT)
-Received: by mail-io1-xd2e.google.com with SMTP id a13so12414752iol.5
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 08:44:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ieee.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=pbRvFeE3V8H7xDoGykMRI3aEDOBUlE9euyeCQx8JWcU=;
-        b=ZLPTBrBaqdFweht2hYWT414CbI1wA994+4yGI5mDqtyzYoYttzxRJOUkULAtmnvu0S
-         sQAQ85ltSEVq94oC4e7vInWp4wFALfZ0AB2EXpL89NR2eEEzXBcJJ4QVVCS8IfpIlvji
-         ABHdaebki48MiXLSArnt77v6H9NhzXaeVqgrY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=pbRvFeE3V8H7xDoGykMRI3aEDOBUlE9euyeCQx8JWcU=;
-        b=Q+vCX4KAEm1NPaqXBJWVz2UL1ChYh2+qDuEUTACxNYvq/OW1FNOGHQCTVN5y4zYEFl
-         2NCV9w975SPvOGBZTNzjMuwnWwarJVsMzDxyNRobc96hnmKEKwjTtMCqu0RPghTXkX9U
-         ReYBN6cRnJ5owRBQtHiOd8DdDBzzl2Q5EJSTvSbqmnwJ0QdF91eXnVtfgwpUzVaUiXhZ
-         Dn4PxHlT+k7NWJ5emhe2SLKiH2nsyw1zzU8yV12x66XPyL3dkAHPG2MnM4oJy1/d8U5+
-         2AdoJJ0n4fmH405GZ4fEocmcxUF7+93dkb+9RzIuB4ogSRmboqYoqSmWBJr678ItIdW+
-         RpNg==
-X-Gm-Message-State: AOAM530Dy2nbE8SqvkWtVUyYV4smhJG+hpDWOsuIK73ILqdiqyGbXTPV
-        1BplVQJaWuq0hmPAwoqKqSua8Q==
-X-Google-Smtp-Source: ABdhPJwbAAipgxvf4CJ2zY0+vEwMgJvuywJpYy7Riel+0d9+gmasyJdYUyXwDFsmxESgFmkuj7qepQ==
-X-Received: by 2002:a6b:c90f:: with SMTP id z15mr14867286iof.183.1627314298767;
-        Mon, 26 Jul 2021 08:44:58 -0700 (PDT)
-Received: from [172.22.22.4] (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
-        by smtp.googlemail.com with ESMTPSA id i4sm122034iom.21.2021.07.26.08.44.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Jul 2021 08:44:58 -0700 (PDT)
-Subject: Re: [PATCH net-next 0/3] arm64: dts: qcom: DTS updates
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>, davem@davemloft.net,
-        kuba@kernel.org
-Cc:     Alex Elder <elder@linaro.org>, agross@kernel.org,
-        robh+dt@kernel.org, evgreen@chromium.org, cpratapa@codeaurora.org,
-        subashab@codeaurora.org, elder@kernel.org,
-        linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210719212456.3176086-1-elder@linaro.org>
- <162679080524.18101.16626774349145809936.git-patchwork-notify@kernel.org>
- <YPby3eJmDmNlESC8@yoga>
-From:   Alex Elder <elder@ieee.org>
-Message-ID: <01beb264-0f25-fb50-29fc-15b6941de422@ieee.org>
-Date:   Mon, 26 Jul 2021 10:44:56 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S236078AbhGZPQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 11:16:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54248 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236874AbhGZPPn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Jul 2021 11:15:43 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D9FAB61006;
+        Mon, 26 Jul 2021 15:54:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1627314854;
+        bh=1UURlyqsMlhFBDtKQ5OkWxpvTCr15igrtOB2uhsDtAc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Xt1JS69WcRfNBf10BC7klLwJue00soMk56I/Q+DlLUvc5LkeKjY1ofkI8F4j4Me31
+         TRFQ93psHdxQCL6INC7viuaNcM+2iQUQskILhHDF9f16ExrthpUcp+MRrwKBl0bUn0
+         qCXGfKB2ZyW0ihAixyLU+TH88o1pIEwFyOD9CH7g+2rlpWDe2Q+/RH0kKaoK2xjo6H
+         buSKSSULzJ8+4Sy14cdWiUCK5kH/StVNqQKnKaBxxgi6GLmx4QKm+69RzwXd6dgYoO
+         wRFsynUbO/NGmLfC9JJ6+Rf7FztKCFIueAxYcCqfvkmgLzTmJ20rwgD6lQzx9mmy09
+         a+pdAOLBc6INw==
+Received: by mail-wm1-f52.google.com with SMTP id h24-20020a1ccc180000b029022e0571d1a0so297907wmb.5;
+        Mon, 26 Jul 2021 08:54:14 -0700 (PDT)
+X-Gm-Message-State: AOAM531K/U3wY7GpDPqetnTEMN8YQQ0ZzMuDjqfkRdX/2fksQepf9L+0
+        Drk3g/UkUtTYHIHEMXyJl6bpthqWriDnYsVUJBA=
+X-Google-Smtp-Source: ABdhPJyfayTexfKmJXMNn4XX3QQ4A+JhJZPnrMjFG+lYbcQXFXTNeBfZSy5NHj6FNZWGchEzxA364vxfUetwDeI2AkY=
+X-Received: by 2002:a7b:c2fa:: with SMTP id e26mr27585853wmk.84.1627314853538;
+ Mon, 26 Jul 2021 08:54:13 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <YPby3eJmDmNlESC8@yoga>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <cover.1627273794.git.viresh.kumar@linaro.org> <fced2f2b9dcf3f32f16866d7d104f46171316396.1627273794.git.viresh.kumar@linaro.org>
+ <CAL_Jsq+XXhe2g0Rmda1v_Ws4-E_-UE6X5HUsSk-GcAETqQZiCQ@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+XXhe2g0Rmda1v_Ws4-E_-UE6X5HUsSk-GcAETqQZiCQ@mail.gmail.com>
+From:   Arnd Bergmann <arnd@kernel.org>
+Date:   Mon, 26 Jul 2021 17:53:56 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a3bCk+iA+YziQrQFg6xH_d9cyySdTN_1j94D9CA8a_Sjw@mail.gmail.com>
+Message-ID: <CAK8P3a3bCk+iA+YziQrQFg6xH_d9cyySdTN_1j94D9CA8a_Sjw@mail.gmail.com>
+Subject: Re: [PATCH V3 1/5] dt-bindings: virtio: Add binding for virtio devices
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Jason Wang <jasowang@redhat.com>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>,
+        =?UTF-8?B?QWxleCBCZW5uw6ll?= <alex.bennee@linaro.org>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        Jie Deng <jie.deng@intel.com>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE" 
+        <virtualization@lists.linux-foundation.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/20/21 10:59 AM, Bjorn Andersson wrote:
-> On Tue 20 Jul 09:20 CDT 2021, patchwork-bot+netdevbpf@kernel.org wrote:
-> 
->> Hello:
->>
->> This series was applied to netdev/net-next.git (refs/heads/master):
->>
-> 
-> David, Jakub, can you please revert/drop the two "arm64: dts" patches
-> from the net-next tree?
+On Mon, Jul 26, 2021 at 4:57 PM Rob Herring <robh+dt@kernel.org> wrote:
+> On Sun, Jul 25, 2021 at 10:52 PM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+> > +    description: |
+> > +      Exactly one node describing the virtio device. The name of the node isn't
+> > +      significant but its phandle can be used to by a user of the virtio device.
+> > +
+> > +  compatible:
+> > +    pattern: "^virtio,[0-9a-f]+$"
+>
+> DID is only 4 chars? If so, "^virtio,[0-9a-f]{1,4}$"
 
-David, I intended for this series to go through the Qualcomm repository
-rather than net-next, to avoid any conflicts with other updates to the
-affected DTS file.  The only indication I made was by having you and
-Jakub in the "Cc" list rather than "To" list; in the future I will be
-more obvious in the cover page.
+Any opinion on whether this should have any namespace prefix (or infix, I guess)
+after "virtio,"?
 
-Would you please revert the entire merge, so that these commits can
-go through the Qualcomm repository?  These are the commits (in order):
-   6a0eb6c9d9341 dt-bindings: net: qcom,ipa: make imem interconnect optional
-   f8bd3c82bf7d7 arm64: dts: qcom: sc7280: add IPA information
-   fd0f72c34bd96 arm64: dts: qcom: sc7180: define ipa_fw_mem node
-   b79c6fba6cd7c Merge branch 'qcom-dts-updates'
+I previously suggested making it "virtio,device[0-9a-f]{1,4}$", which would
+make it clearer that the following digits are the device ID rather
+than something
+else we might define in the future. Viresh picked this version because it's
+somewhat more consistent with other subsystems.
 
-If there is another way you think this should be handled, please
-explain.  Thanks.
-
-					-Alex
-
-
-> 
-> DTS patches are generally merged through the qcom and ultimately soc
-> tree and I have a number of patches queued up in both sc7180 and sc7280
-> that will cause merge conflicts down the road, so I would prefer to pick
-> these up as well.
-> 
-> Regards,
-> Bjorn
-> 
->> On Mon, 19 Jul 2021 16:24:53 -0500 you wrote:
->>> This series updates some IPA-related DT nodes.
->>>
->>> Newer versions of IPA do not require an interconnect between IPA
->>> and SoC internal memory.  The first patch updates the DT binding
->>> to reflect this.
->>>
->>> The second patch adds IPA information to "sc7280.dtsi", using only
->>> two interconnects.  It includes the definition of the reserved
->>> memory area used to hold IPA firmware.
->>>
->>> [...]
->>
->> Here is the summary with links:
->>    - [net-next,1/3] dt-bindings: net: qcom,ipa: make imem interconnect optional
->>      https://git.kernel.org/netdev/net-next/c/6a0eb6c9d934
->>    - [net-next,2/3] arm64: dts: qcom: sc7280: add IPA information
->>      https://git.kernel.org/netdev/net-next/c/f8bd3c82bf7d
->>    - [net-next,3/3] arm64: dts: qcom: sc7180: define ipa_fw_mem node
->>      https://git.kernel.org/netdev/net-next/c/fd0f72c34bd9
->>
->> You are awesome, thank you!
->> --
->> Deet-doot-dot, I am a bot.
->> https://korg.docs.kernel.org/patchwork/pwbot.html
->>
->>
-
+       Arnd
