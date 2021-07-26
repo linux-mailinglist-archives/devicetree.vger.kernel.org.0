@@ -2,89 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CFD93D598F
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 14:31:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E677B3D59B7
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 14:45:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234094AbhGZLu7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 07:50:59 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:37790 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S234110AbhGZLuz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 07:50:55 -0400
-X-UUID: 119136e097104ddcb3445739bbcef377-20210726
-X-UUID: 119136e097104ddcb3445739bbcef377-20210726
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <christine.zhu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 412292837; Mon, 26 Jul 2021 20:31:18 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 26 Jul 2021 20:31:17 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 26 Jul 2021 20:31:16 +0800
-From:   Christine Zhu <Christine.Zhu@mediatek.com>
-To:     <wim@linux-watchdog.org>, <linux@roeck-us.net>,
-        <robh+dt@kernel.org>, <matthias.bgg@gmail.com>
-CC:     <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <seiya.wang@mediatek.com>,
-        Christine Zhu <Christine.Zhu@mediatek.com>
-Subject: [v7,3/3] watchdog: mediatek: mt8195: add wdt support
-Date:   Mon, 26 Jul 2021 20:29:02 +0800
-Message-ID: <20210726122901.12195-4-Christine.Zhu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210726122901.12195-1-Christine.Zhu@mediatek.com>
-References: <20210726122901.12195-1-Christine.Zhu@mediatek.com>
+        id S234074AbhGZMFO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 08:05:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33394 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233754AbhGZMFG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 08:05:06 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88DC0C061757
+        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 05:45:35 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id p5so5816474wro.7
+        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 05:45:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=brainfault-org.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=EdSEiQhPPfqlW+mNBlXL/6LkyvS46s9MWaLUDSXboLs=;
+        b=cMAiwG60O3mJ/yFl82iRKWkX/2RsxNQFV+GdGrduhGDtDa2s1/iXKKFhmMPpVGXPLK
+         fJa7sibt5Qn1sSJM14MEXSKYhHVIGjDRCz9X7aNrg6dOmwXXmwEQFDbWwzXzywuwj+VD
+         xwc6C5GLLOEluhgH8wwnqHv/dEwyGGZ0xX8MMn40qeZre05Pcv5x9J8Ez3DbQM6BS2ks
+         mGLPEPyxshCEpdnYQ3lZIzNETd8SIBde/3rhDmD0DG54cIbOK2eUcfRrJtwG/myAkFrz
+         nQ3d6EkT5soST7X/ajaFq1FVf5YxMeCPk9mlcbPCYTVcru1CUnGpvdLskrzEKpqQ0k3x
+         wpiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=EdSEiQhPPfqlW+mNBlXL/6LkyvS46s9MWaLUDSXboLs=;
+        b=c7vU3JrCByCXDVc23mR/8TGnkLkB/2VALlttGOP3jGAGQQhiwQsc13MHsY2IVe0EF9
+         5syEhtQiFFvuBIcLw6dBCrTm1rhzUAzTdhE1OU/J9nocbMKA7I1vAkxLZQPCSsgSzAP0
+         WzSGmTk/v0BM1sNJD1i0mtLUmIbJlU2mFw+41CAZgrXh1YuMO3TG19PU/RWuytpK6Y0L
+         OLKGHLj3eyC4bqnzyu0atjRiSfULi1WlL0ncghayeFtpC2CbjlabBCT4vhvvohUra7qJ
+         eksKULzcxx+YWtZCbeQcIIM+TG6TObyQiWeMZuwhumlHCaQN7lAiiXCOOJ/LuMVGGBys
+         hqAw==
+X-Gm-Message-State: AOAM532RL2F140zoBxJUWTE+dPhuDLCKlEeeCLrxOqpF/DnC9l8i/RMs
+        UI0rJ1i6c5EgOaiEzT9DC7c7RmmwUqlf1GkyO8GpBQ==
+X-Google-Smtp-Source: ABdhPJwkUJfUzY+D0ZUeN/xa+//W784LaiFLRerJU1kMI4d9SXUSL+tAmGatjZAFWSLpWKG5op/x6x/WbN6LfRBY86I=
+X-Received: by 2002:a05:6000:2a1:: with SMTP id l1mr18569977wry.128.1627303534054;
+ Mon, 26 Jul 2021 05:45:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+References: <20210618123851.1344518-1-anup.patel@wdc.com>
+In-Reply-To: <20210618123851.1344518-1-anup.patel@wdc.com>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Mon, 26 Jul 2021 18:15:20 +0530
+Message-ID: <CAAhSdy3E56j9XBfNr93AdW62mEx40F9F4-SYbNEFdkKA2BWRqA@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 00/11] Linux RISC-V ACLINT Support
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Palmer Dabbelt <palmerdabbelt@google.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Atish Patra <atish.patra@wdc.com>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Anup Patel <anup.patel@wdc.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Support MT8195 watchdog device.
+Hi Marc,
 
-Signed-off-by: Christine Zhu <Christine.Zhu@mediatek.com>
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-Reviewed-by: Tzung-Bi Shih <tzungbi@google.com>
----
- drivers/watchdog/mtk_wdt.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+I have taken the approach of IPI domains (like you suggested) in this series.
 
-diff --git a/drivers/watchdog/mtk_wdt.c b/drivers/watchdog/mtk_wdt.c
-index 97ca993bd009..3c3f8adc45ac 100644
---- a/drivers/watchdog/mtk_wdt.c
-+++ b/drivers/watchdog/mtk_wdt.c
-@@ -12,6 +12,7 @@
- #include <dt-bindings/reset-controller/mt2712-resets.h>
- #include <dt-bindings/reset-controller/mt8183-resets.h>
- #include <dt-bindings/reset-controller/mt8192-resets.h>
-+#include <dt-bindings/reset/mt8195-resets.h>
- #include <linux/delay.h>
- #include <linux/err.h>
- #include <linux/init.h>
-@@ -81,6 +82,10 @@ static const struct mtk_wdt_data mt8192_data = {
- 	.toprgu_sw_rst_num = MT8192_TOPRGU_SW_RST_NUM,
- };
- 
-+static const struct mtk_wdt_data mt8195_data = {
-+	.toprgu_sw_rst_num = MT8195_TOPRGU_SW_RST_NUM,
-+};
-+
- static int toprgu_reset_update(struct reset_controller_dev *rcdev,
- 			       unsigned long id, bool assert)
- {
-@@ -341,6 +346,7 @@ static const struct of_device_id mtk_wdt_dt_ids[] = {
- 	{ .compatible = "mediatek,mt6589-wdt" },
- 	{ .compatible = "mediatek,mt8183-wdt", .data = &mt8183_data },
- 	{ .compatible = "mediatek,mt8192-wdt", .data = &mt8192_data },
-+	{ .compatible = "mediatek,mt8195-wdt", .data = &mt8195_data },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, mtk_wdt_dt_ids);
--- 
-2.18.0
+What do you think ?
 
+Regards,
+Anup
+
+On Fri, Jun 18, 2021 at 6:09 PM Anup Patel <anup.patel@wdc.com> wrote:
+>
+> Most of the existing RISC-V platforms use SiFive CLINT to provide M-level
+> timer and IPI support whereas S-level uses SBI calls for timer and IPI
+> support. Also, the SiFive CLINT device is a single device providing both
+> timer and IPI functionality so RISC-V platforms can't partially implement
+> SiFive CLINT device and provide alternate mechanism for timer and IPI.
+>
+> The RISC-V Advacned Core Local Interruptor (ACLINT) tries to address the
+> limitations of SiFive CLINT by:
+> 1) Taking modular approach and defining timer and IPI functionality as
+>    separate devices so that RISC-V platforms can include only required
+>    devices
+> 2) Providing dedicated MMIO device for S-level IPIs so that SBI calls
+>    can be avoided for IPIs in Linux RISC-V
+> 3) Allowing multiple instances of timer and IPI devices for a
+>    multi-socket (or multi-die) NUMA systems
+> 4) Being backward compatible to SiFive CLINT so that existing RISC-V
+>    platforms stay compliant with RISC-V ACLINT specification
+>
+> Latest RISC-V ACLINT specification (will be frozen in a month) can be
+> found at:
+> https://github.com/riscv/riscv-aclint/blob/main/riscv-aclint.adoc
+>
+> This series adds RISC-V ACLINT support and can be found in riscv_aclint_v2
+> branch at:
+> https://github.com/avpatel/linux
+>
+> To test this series, the RISC-V ACLINT support for QEMU and OpenSBI
+> can be found in the riscv_aclint_v1 branch at:
+> https://github.com/avpatel/qemu
+> https://github.com/avpatel/opensbi
+>
+> Changes since v1:
+>  - Added a new PATCH3 to treat IPIs as normal Linux IRQs for RISC-V kernel
+>  - New SBI IPI call based irqchip driver in PATCH3 which is only initialized
+>    by riscv_ipi_setup() when no Linux IRQ numbers are available for IPIs
+>  - Moved DT bindings patches before corresponding driver patches
+>  - Implemented ACLINT SWI driver as a irqchip driver in PATCH7
+>  - Minor nit fixes pointed by Bin Meng
+>
+> Anup Patel (11):
+>   RISC-V: Clear SIP bit only when using SBI IPI operations
+>   RISC-V: Use common print prefix in smp.c
+>   RISC-V: Treat IPIs as normal Linux IRQs
+>   RISC-V: Allow marking IPIs as suitable for remote FENCEs
+>   RISC-V: Use IPIs for remote TLB flush when possible
+>   dt-bindings: interrupt-controller: Add ACLINT MSWI and SSWI bindings
+>   irqchip: Add ACLINT software interrupt driver
+>   RISC-V: Select ACLINT SWI driver for virt machine
+>   dt-bindings: timer: Add ACLINT MTIMER bindings
+>   clocksource: clint: Add support for ACLINT MTIMER device
+>   MAINTAINERS: Add entry for RISC-V ACLINT drivers
+>
+>  .../riscv,aclint-swi.yaml                     |  82 ++++++
+>  .../bindings/timer/riscv,aclint-mtimer.yaml   |  55 ++++
+>  MAINTAINERS                                   |   9 +
+>  arch/riscv/Kconfig                            |   1 +
+>  arch/riscv/Kconfig.socs                       |   1 +
+>  arch/riscv/include/asm/sbi.h                  |   2 +
+>  arch/riscv/include/asm/smp.h                  |  48 +++-
+>  arch/riscv/kernel/Makefile                    |   1 +
+>  arch/riscv/kernel/cpu-hotplug.c               |   2 +
+>  arch/riscv/kernel/irq.c                       |   1 +
+>  arch/riscv/kernel/sbi-ipi.c                   | 223 ++++++++++++++
+>  arch/riscv/kernel/sbi.c                       |  15 -
+>  arch/riscv/kernel/smp.c                       | 171 +++++------
+>  arch/riscv/kernel/smpboot.c                   |   4 +-
+>  arch/riscv/mm/tlbflush.c                      |  62 +++-
+>  drivers/clocksource/timer-clint.c             |  58 ++--
+>  drivers/irqchip/Kconfig                       |  11 +
+>  drivers/irqchip/Makefile                      |   1 +
+>  drivers/irqchip/irq-aclint-swi.c              | 271 ++++++++++++++++++
+>  drivers/irqchip/irq-riscv-intc.c              |  55 ++--
+>  20 files changed, 879 insertions(+), 194 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,aclint-swi.yaml
+>  create mode 100644 Documentation/devicetree/bindings/timer/riscv,aclint-mtimer.yaml
+>  create mode 100644 arch/riscv/kernel/sbi-ipi.c
+>  create mode 100644 drivers/irqchip/irq-aclint-swi.c
+>
+> --
+> 2.25.1
+>
