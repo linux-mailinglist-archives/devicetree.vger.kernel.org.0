@@ -2,132 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E46AB3D5CDD
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 17:22:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57EEB3D5D13
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jul 2021 17:34:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234922AbhGZOmI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 10:42:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41600 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234739AbhGZOmH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 10:42:07 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7880C061764
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 08:22:35 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id e2so11551894wrq.6
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 08:22:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=avDShFOnRifoiKTiQKCeIkAP138nxzPrnp0tkIoBLys=;
-        b=LG0MkcBw3Z8/VwJ4qdyP2VQUN3bST3lAmhEB7ChPfdR1gEwwIuYBgiN/RXIjg2IypI
-         JZDI6pM94yYdb1m7jGnbk6OK7ppwXgVaqF/AuCaSXl/V69s/EC3aevtYsFPQ8DCWHhbJ
-         BDHi2MYfoFNrbPwhrvKoLCDgNAXqXIZUQQiZMoNwUmOOPaUsa2liD2V59LICIMvMzkHV
-         WC1XX9f/bx5A6PU0H7krRq+N/59uSo18rJuCA5QO1oaObAt2braN1ZHR3n/c80akk5vN
-         elUrX0N53yel+hJ+nLwZZFsXE1M7kQiaLEs6O8SYeKxPpxIEv/qOSHM4+dKv7BXK9niZ
-         3c0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=avDShFOnRifoiKTiQKCeIkAP138nxzPrnp0tkIoBLys=;
-        b=MqQvBUmFivHLYm4blSr/poR/pJV8nRIpCLMzBEzpFlBIwMWo3rnyJc4E9tsTKdMmH3
-         ObUHv7FHM96RVuwGWvy/u0RfQ/cqY4j0o//ndL3BNSOumyowryzmwPDXQWB5xhv4tzG/
-         kMRZO7BcLMoMvO8NsmWt1UbLVz921B9V4YWcJjsXnzflfJiqD6rRXDlb7JW84wGgzB4n
-         JQgaCBmFCulbdvyLt2jqL0KtoaDD9eynN5NCHHI1FSC681ZzoSZ6B5qguKH8G21968ow
-         Nc/iP6DRc6oNEy7/kRNdfar3foenOybG//29cpNasTFw+XOAoUlwNwprs/4lsxwfEbLb
-         nZIA==
-X-Gm-Message-State: AOAM531Lr/+V1e2b7B+FD39cTe1d18jNDZebWQc/iOE9OchLV4sRGcbb
-        Y+ZWlEJ8vadU8ICJwGVyhtpyGOahU4F07KUx3ABQog==
-X-Google-Smtp-Source: ABdhPJxS1dRI/OSfH5W9DS2t09aCkQ4v/mCbJyOLuy5wMIvH2nM9dj7G3bhhBdXNRi0ux2I+OSdKyT7lKWDbq822IjU=
-X-Received: by 2002:a5d:424d:: with SMTP id s13mr10302527wrr.356.1627312954415;
- Mon, 26 Jul 2021 08:22:34 -0700 (PDT)
+        id S234866AbhGZOxw convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 26 Jul 2021 10:53:52 -0400
+Received: from mslow1.mail.gandi.net ([217.70.178.240]:57043 "EHLO
+        mslow1.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234546AbhGZOxv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 10:53:51 -0400
+Received: from relay6-d.mail.gandi.net (unknown [217.70.183.198])
+        by mslow1.mail.gandi.net (Postfix) with ESMTP id E58BACA908;
+        Mon, 26 Jul 2021 15:29:32 +0000 (UTC)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 613B2C0008;
+        Mon, 26 Jul 2021 15:29:03 +0000 (UTC)
+Date:   Mon, 26 Jul 2021 17:29:02 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Lukas Bulwahn <lukas.bulwahn@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Yu Chen <chenyu56@huawei.com>,
+        Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Naga Sureshkumar Relli <nagasure@xilinx.com>,
+        Hans Ulli Kroll <ulli.kroll@googlemail.com>,
+        Deepak Saxena <dsaxena@plexity.net>,
+        Mirela Rabulea <mirela.rabulea@nxp.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
+        Wilken Gottwalt <wilken.gottwalt@posteo.net>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Joe Perches <joe@perches.com>,
+        Ralf Ramsauer <ralf.ramsauer@oth-regensburg.de>,
+        kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 6/8] MAINTAINERS: rectify entries to mtd-physmap.yaml
+Message-ID: <20210726172902.4ce8892f@xps13>
+In-Reply-To: <20210726142943.27008-7-lukas.bulwahn@gmail.com>
+References: <20210726142943.27008-1-lukas.bulwahn@gmail.com>
+        <20210726142943.27008-7-lukas.bulwahn@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20210618123851.1344518-1-anup.patel@wdc.com> <20210618123851.1344518-3-anup.patel@wdc.com>
- <87lf5tdw9z.wl-maz@kernel.org>
-In-Reply-To: <87lf5tdw9z.wl-maz@kernel.org>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Mon, 26 Jul 2021 20:52:23 +0530
-Message-ID: <CAAhSdy3tLNPsdLEW2zSqFSUS5iuoVCLrcmwQkcw4w75DPHXUyw@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 02/11] RISC-V: Use common print prefix in smp.c
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Anup Patel <anup.patel@wdc.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Palmer Dabbelt <palmerdabbelt@google.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Atish Patra <atish.patra@wdc.com>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>, Bin Meng <bmeng.cn@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 26, 2021 at 7:14 PM Marc Zyngier <maz@kernel.org> wrote:
->
-> On Fri, 18 Jun 2021 13:38:42 +0100,
-> Anup Patel <anup.patel@wdc.com> wrote:
-> >
-> > We add "#define pr_fmt()" in smp.c to use "riscv:" as common
-> > print prefix for all pr_xyz() statements in this file.
-> >
-> > Signed-off-by: Anup Patel <anup.patel@wdc.com>
-> > Reviewed-by: Bin Meng <bmeng.cn@gmail.com>
-> > ---
-> >  arch/riscv/kernel/smp.c | 9 +++++----
-> >  1 file changed, 5 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/arch/riscv/kernel/smp.c b/arch/riscv/kernel/smp.c
-> > index 547dc508f7d1..eea0c9d11d9f 100644
-> > --- a/arch/riscv/kernel/smp.c
-> > +++ b/arch/riscv/kernel/smp.c
-> > @@ -8,6 +8,7 @@
-> >   * Copyright (C) 2017 SiFive
-> >   */
-> >
-> > +#define pr_fmt(fmt) "riscv: " fmt
-> >  #include <linux/cpu.h>
-> >  #include <linux/clockchips.h>
-> >  #include <linux/interrupt.h>
-> > @@ -114,7 +115,7 @@ static void send_ipi_mask(const struct cpumask *mask, enum ipi_message_type op)
-> >       if (ipi_ops && ipi_ops->ipi_inject)
-> >               ipi_ops->ipi_inject(mask);
-> >       else
-> > -             pr_warn("SMP: IPI inject method not available\n");
-> > +             pr_warn("IPI inject method not available\n");
-> >  }
-> >
-> >  static void send_ipi_single(int cpu, enum ipi_message_type op)
-> > @@ -126,7 +127,7 @@ static void send_ipi_single(int cpu, enum ipi_message_type op)
-> >       if (ipi_ops && ipi_ops->ipi_inject)
-> >               ipi_ops->ipi_inject(cpumask_of(cpu));
-> >       else
-> > -             pr_warn("SMP: IPI inject method not available\n");
-> > +             pr_warn("IPI inject method not available\n");
->
-> "SMP:" made a lot more sense. I assume that the user knows that they
-> are using a RISC-V machine. On the other hand, seeing a "SMP:" prefix
-> for a message indicates the provenance of the message.
->
-> I honestly don't see the point in this change.
+Hi Lukas,
 
-The intention was to distinguish arch specific prints from
-generic kernel prints at boot-time because "SMP: " prefix
-was not making it obvious that these are arch specific prints.
+Lukas Bulwahn <lukas.bulwahn@gmail.com> wrote on Mon, 26 Jul 2021
+16:29:41 +0200:
 
-I am certainly fine dropping this patch as well.
+> Commit 63f8e9e0ac65 ("dt-bindings: mtd: Convert mtd-physmap to DT schema")
+> aggregated, amongst others, arm-versatile.txt and cypress,hyperflash.txt,
+> into mtd-physmap.yaml in ./Documentation/devicetree/bindings/mtd/.
+> 
+> The two .txt files are however mentioned in MAINTAINERS; hence,
+> ./scripts/get_maintainer.pl --self-test=patterns complains about broken
+> references.
+> 
+> Refer to mtd-physmap.yaml, so that the maintainers and reviewers of
+> ARM INTEGRATOR, VERSATILE AND REALVIEW SUPPORT and HYPERBUS SUPPORT are
+> informed on any changes in the yaml file.
+> 
+> Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
 
-Regards,
-Anup
+Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
 
->
->         M.
->
-> --
-> Without deviation from the norm, progress is not possible.
+Thanks,
+Miquèl
