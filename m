@@ -2,73 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B948A3D78BB
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 16:44:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32DEE3D78C6
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 16:45:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236864AbhG0OoE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jul 2021 10:44:04 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34732 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232419AbhG0OoE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Jul 2021 10:44:04 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0797761AFF;
-        Tue, 27 Jul 2021 14:44:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627397044;
-        bh=DCZF5vBtRxSN3Atl2JhvAAXniNqQ9yKfWqAuw901/g0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=hXmkITMiD+G++yOdjW8wvcqV7BEWConYzRL7641nwDZEuw3AsVgfogwi2oLfraOAi
-         eCpITE1ME7ar+yxsaWsDT6BqcgMhr6goj4e2jzTyDjsoANtCbVbCB4+F0IRmnW8QfI
-         2yKPtVByc5VwdN+++Fo4CdqnT/LTpEWaUXVHLYVJV5ii0yMRKy+wgT7lAdPr85tC7G
-         ZR5MoP9Aed3Xt1rtxWSxJmeM0XSfNdVH7kFEhdGOtTp/3EYfgS6P2vCRjUDzsFI0aS
-         geDl2wujqFTNaN/23At38LkTBaLLw3kO99hI/FLsyAjtZvITSpbH1TwOPdNu7vhKEq
-         qd7n6CC9zW7YQ==
-Received: by mail-ed1-f54.google.com with SMTP id u12so15696008eds.2;
-        Tue, 27 Jul 2021 07:44:03 -0700 (PDT)
-X-Gm-Message-State: AOAM5304AhnuUB1i7sTjf3Xha6V4SCP6D+FAVWT4zHvmdMFNd16zOISy
-        d39dH/ldQa76KU8sLALeOveOckwqMeHVG1ulsg==
-X-Google-Smtp-Source: ABdhPJx8n4J+Z7UVlfNp/CVCcr9EQN4eY3722ljng8pzZMprzmkjsfd/Smzx7DvX5NOBodU83zHEZApOaOyOxc/Uv34=
-X-Received: by 2002:aa7:df12:: with SMTP id c18mr28268276edy.62.1627397042636;
- Tue, 27 Jul 2021 07:44:02 -0700 (PDT)
+        id S232499AbhG0Opc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jul 2021 10:45:32 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:37829 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232419AbhG0Opc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 10:45:32 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1627397132; x=1658933132;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=zxGFIXNqkxZz4/b5iPvdXFv0dc3fQevhmYiTcgs0RGI=;
+  b=CunhGqW+mUlmbFv3D5TO1Wu2xNTgWU7hy2YJ1o/NToJ9xMpwJDi1hYkg
+   5sqNNyZePrGQ8HR6meN5Bs9x14/7/2PaaY2mNMSdfnfXS67PKow5Om4cM
+   vQyjAIJ/DO22s2U/BVL1cUt8aVuLq3i1xdT+MuQMha00mJ1ZXBcBuq4WQ
+   IM/NL5jiSrGSqBcDwZWKMNUsXu8XrAzGxbqBeExeZExb3R33YY4gJuO9P
+   Py0oKWWoaAnSEmMdyrcSfPB5LieMU2Q+MlrP2v49Hwqgj4zwqUfqexsq6
+   1i2mtOkUZLalmU/Nx/60FoEn5rjJWTvcMzmsIQPY8QzPU7H2mLFpWO5OV
+   w==;
+IronPort-SDR: nm4pwU5L5A36wt1jUIp9yVXQLq7Py4z3MEIrWtAI48HAKvTb7fx422vtF19/ecHXryrZTLAnD8
+ brIyuosOgxMJQ2ywDy1tupxnGbWbGG1T+EH4J3T09xSRdcvql9FOwuXHVJRtNIePCsnMDqdClz
+ BKTCTi9SBbxlnoJrfAN1VByh+s/JaoQ6T6VAToVo5VW1QO4GzmUBfLGQz4DxuKSNp2NBbdKTPM
+ /s85vNiESzWbX3+nhhFZtuEgXVwEm0Hi/AZT6ovVU26nz10cD6jECsqOrtYGHhi3VbTXFQGp/i
+ peosrn3nfHNv5NT77h65Ds/h
+X-IronPort-AV: E=Sophos;i="5.84,273,1620716400"; 
+   d="scan'208";a="63755044"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 27 Jul 2021 07:45:31 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Tue, 27 Jul 2021 07:45:31 -0700
+Received: from [10.171.246.86] (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
+ Transport; Tue, 27 Jul 2021 07:45:29 -0700
+Subject: Re: [PATCH v2] ARM: dts: at91: sama5d2_icp: enable digital filter for
+ I2C nodes
+To:     Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <robh+dt@kernel.org>, <alexandre.belloni@bootlin.com>,
+        <ludovic.desroches@microchip.com>
+References: <20210727134115.1353494-1-codrin.ciubotariu@microchip.com>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+Message-ID: <1444f480-be56-02a8-152e-8b6d0a94a0a9@microchip.com>
+Date:   Tue, 27 Jul 2021 16:45:28 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <20210721191558.22484-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210721191558.22484-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20210721191558.22484-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 27 Jul 2021 08:43:51 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKLGf5VGwt9fbs4nYuxkq12sfTnuvmENTLshz45jPE+GA@mail.gmail.com>
-Message-ID: <CAL_JsqKLGf5VGwt9fbs4nYuxkq12sfTnuvmENTLshz45jPE+GA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/4] dt-bindings: pinctrl: renesas,rzg2l-pinctrl: Add
- DT bindings for RZ/G2L pinctrl
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210727134115.1353494-1-codrin.ciubotariu@microchip.com>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 21, 2021 at 1:16 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
->
-> Add device tree binding documentation and header file for Renesas
-> RZ/G2L pinctrl.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On 27/07/2021 at 15:41, Codrin Ciubotariu wrote:
+> SAMA5D2's I2C controller supports digital filter, so let's enable it.
+> 
+> Signed-off-by: Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
 > ---
->  .../pinctrl/renesas,rzg2l-pinctrl.yaml        | 155 ++++++++++++++++++
->  include/dt-bindings/pinctrl/rzg2l-pinctrl.h   |  23 +++
->  2 files changed, 178 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
->  create mode 100644 include/dt-bindings/pinctrl/rzg2l-pinctrl.h
+> 
+> Changes in v2:
+>   - removed Acked-by tag
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+And I add it back here ;-) :
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+
+I queue the patch in at91-dt for 5.15.
+
+Thanks Codrin, best regards,
+   Nicolas
+
+> 
+>   arch/arm/boot/dts/at91-sama5d2_icp.dts | 6 ++++++
+>   1 file changed, 6 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/at91-sama5d2_icp.dts b/arch/arm/boot/dts/at91-sama5d2_icp.dts
+> index bd64721fa23c..1c235fc5f788 100644
+> --- a/arch/arm/boot/dts/at91-sama5d2_icp.dts
+> +++ b/arch/arm/boot/dts/at91-sama5d2_icp.dts
+> @@ -184,6 +184,8 @@ i2c6: i2c@600 {
+>   		dmas = <0>, <0>;
+>   		pinctrl-names = "default";
+>   		pinctrl-0 = <&pinctrl_flx4_default>;
+> +		i2c-digital-filter;
+> +		i2c-digital-filter-width-ns = <35>;
+>   		status = "okay";
+>   
+>   		mcp16502@5b {
+> @@ -307,6 +309,8 @@ regulator-state-mem {
+>   &i2c0 { /* mikrobus i2c */
+>   	pinctrl-names = "default";
+>   	pinctrl-0 = <&pinctrl_mikrobus_i2c>;
+> +	i2c-digital-filter;
+> +	i2c-digital-filter-width-ns = <35>;
+>   	status = "okay";
+>   };
+>   
+> @@ -314,6 +318,8 @@ &i2c1 {
+>   	dmas = <0>, <0>;
+>   	pinctrl-names = "default";
+>   	pinctrl-0 = <&pinctrl_i2c1_default>;
+> +	i2c-digital-filter;
+> +	i2c-digital-filter-width-ns = <35>;
+>   	status = "okay";
+>   
+>   	eeprom@50 {
+> 
+
+
+-- 
+Nicolas Ferre
