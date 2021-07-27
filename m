@@ -2,122 +2,269 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32DEE3D78C6
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 16:45:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D5143D7927
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 16:57:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232499AbhG0Opc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jul 2021 10:45:32 -0400
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:37829 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232419AbhG0Opc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 10:45:32 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1627397132; x=1658933132;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=zxGFIXNqkxZz4/b5iPvdXFv0dc3fQevhmYiTcgs0RGI=;
-  b=CunhGqW+mUlmbFv3D5TO1Wu2xNTgWU7hy2YJ1o/NToJ9xMpwJDi1hYkg
-   5sqNNyZePrGQ8HR6meN5Bs9x14/7/2PaaY2mNMSdfnfXS67PKow5Om4cM
-   vQyjAIJ/DO22s2U/BVL1cUt8aVuLq3i1xdT+MuQMha00mJ1ZXBcBuq4WQ
-   IM/NL5jiSrGSqBcDwZWKMNUsXu8XrAzGxbqBeExeZExb3R33YY4gJuO9P
-   Py0oKWWoaAnSEmMdyrcSfPB5LieMU2Q+MlrP2v49Hwqgj4zwqUfqexsq6
-   1i2mtOkUZLalmU/Nx/60FoEn5rjJWTvcMzmsIQPY8QzPU7H2mLFpWO5OV
-   w==;
-IronPort-SDR: nm4pwU5L5A36wt1jUIp9yVXQLq7Py4z3MEIrWtAI48HAKvTb7fx422vtF19/ecHXryrZTLAnD8
- brIyuosOgxMJQ2ywDy1tupxnGbWbGG1T+EH4J3T09xSRdcvql9FOwuXHVJRtNIePCsnMDqdClz
- BKTCTi9SBbxlnoJrfAN1VByh+s/JaoQ6T6VAToVo5VW1QO4GzmUBfLGQz4DxuKSNp2NBbdKTPM
- /s85vNiESzWbX3+nhhFZtuEgXVwEm0Hi/AZT6ovVU26nz10cD6jECsqOrtYGHhi3VbTXFQGp/i
- peosrn3nfHNv5NT77h65Ds/h
-X-IronPort-AV: E=Sophos;i="5.84,273,1620716400"; 
-   d="scan'208";a="63755044"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 27 Jul 2021 07:45:31 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Tue, 27 Jul 2021 07:45:31 -0700
-Received: from [10.171.246.86] (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
- Transport; Tue, 27 Jul 2021 07:45:29 -0700
-Subject: Re: [PATCH v2] ARM: dts: at91: sama5d2_icp: enable digital filter for
- I2C nodes
-To:     Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <robh+dt@kernel.org>, <alexandre.belloni@bootlin.com>,
-        <ludovic.desroches@microchip.com>
-References: <20210727134115.1353494-1-codrin.ciubotariu@microchip.com>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-Message-ID: <1444f480-be56-02a8-152e-8b6d0a94a0a9@microchip.com>
-Date:   Tue, 27 Jul 2021 16:45:28 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S236871AbhG0O5W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jul 2021 10:57:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54882 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236755AbhG0O5U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 10:57:20 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 825DAC061757
+        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 07:57:19 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id d131-20020a1c1d890000b02902516717f562so2540381wmd.3
+        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 07:57:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=EqFt2vhRpfIbTS1mg258ar/twtBzCyQEowAQHE3Yv28=;
+        b=l7IZyi1LWdaDgWFaG0L+XzhR0wJ+YbJY7JZRQGhZ+nLJtE5XOQwN2N0qnsOWGi+5D4
+         A4bPs6OH6KvuRAST3gJiFO2Sz/GklYvT6C9VQDvNnHwSSAnYC+jXPd4gkmlk1143SBmT
+         z9IwO2ei0v8fCGc4/GMwwo//QgnZNjp6STzUxCMBhlMt7lqpzFhGnEBAFqWwvami4vzE
+         /zy4dsp+ZbOj/6oN5idjEqqbWclOKGP6iIBEy29WZHo028MNJ+fz+O+ABPwGGWAAbkKt
+         FQ5iwaixKgKzM81tnM/ReKqXEDdqH3s9EJH7lo/XsPYntF1xZzHeWqMJSWXcQRz/pyb/
+         uajQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=EqFt2vhRpfIbTS1mg258ar/twtBzCyQEowAQHE3Yv28=;
+        b=F4SjUdMTDXK/M7hPK4lSoA1Mu585dHurbcxBJFgXKhYubC4R/jAZH301SogYagjWv1
+         cxZ5XnWyJ9M58HpwnFeN5LNnTjy0UhpDG1bXfMXdGldcaMAQ/NoEHOVWcVrFRscj5NJ/
+         qrOxd96KklIlgk2fUjQl8S4nEejGUIEahAmnPrMyucuhm32ZilQYTPRw1uNJUjGRrSja
+         bjL1TswNUj532aBPkUiRG0A4BwldxYwGc1Vy1MAF3AcarOk7y9P6xzolUNVVKCG6SukI
+         uLscc35nUhZ+9CnxJTB1FSgDnbOKXB3gf1QVz+6HVPSvPHsqZVNUYQngha2WekfP/cmw
+         b+vA==
+X-Gm-Message-State: AOAM533ELb6WUmQmWgKtfoJgFZbyKQMl/pF5a6mk1BItpqL9L3rylA26
+        plmNTAXuOLXPzG0TW3K9Ma4a2Z9ut1nOIVyDVQdWKA==
+X-Google-Smtp-Source: ABdhPJy0527DySdaF0QbUTfkqaBmAxcSlt5xV1Y2DkQ5SSVi6UK7yG/P08m2+gfUVNs9muUkIzsQFP6U+AQhCi03FTM=
+X-Received: by 2002:a05:600c:154d:: with SMTP id f13mr22405964wmg.3.1627397838046;
+ Tue, 27 Jul 2021 07:57:18 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210727134115.1353494-1-codrin.ciubotariu@microchip.com>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210723094422.2150313-1-jens.wiklander@linaro.org>
+ <20210723094422.2150313-2-jens.wiklander@linaro.org> <87zgud1giz.wl-maz@kernel.org>
+ <CAHUa44EhP5NCH6S27+Af8ePxAup9nJnrwGr_nMRUFumXOTh7uQ@mail.gmail.com> <87eebkdumr.wl-maz@kernel.org>
+In-Reply-To: <87eebkdumr.wl-maz@kernel.org>
+From:   Jens Wiklander <jens.wiklander@linaro.org>
+Date:   Tue, 27 Jul 2021 16:57:07 +0200
+Message-ID: <CAHUa44HCEr_HKU0Fz10HPZYMowXVkx5JtnXMVTXd29wAv-dTCg@mail.gmail.com>
+Subject: Re: [PATCH v3 1/6] docs: staging/tee.rst: add a section on OP-TEE notifications
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        OP-TEE TrustedFirmware <op-tee@lists.trustedfirmware.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        Jerome Forissier <jerome@forissier.org>,
+        Etienne Carriere <etienne.carriere@linaro.org>,
+        Sumit Garg <sumit.garg@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Ard Biesheuvel <ardb@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/07/2021 at 15:41, Codrin Ciubotariu wrote:
-> SAMA5D2's I2C controller supports digital filter, so let's enable it.
-> 
-> Signed-off-by: Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
-> ---
-> 
-> Changes in v2:
->   - removed Acked-by tag
+On Tue, Jul 27, 2021 at 10:32 AM Marc Zyngier <maz@kernel.org> wrote:
+>
+> On Tue, 27 Jul 2021 08:46:39 +0100,
+> Jens Wiklander <jens.wiklander@linaro.org> wrote:
+> >
+> > On Fri, Jul 23, 2021 at 12:16 PM Marc Zyngier <maz@kernel.org> wrote:
+> > >
+> > > On Fri, 23 Jul 2021 10:44:17 +0100,
+> > > Jens Wiklander <jens.wiklander@linaro.org> wrote:
+> > > >
+> > > > Adds a section on notifications used by OP-TEE, synchronous and
+> > > > asynchronous.
+> > > >
+> > > > Signed-off-by: Jens Wiklander <jens.wiklander@linaro.org>
+> > > > ---
+> > > >  Documentation/staging/tee.rst | 27 +++++++++++++++++++++++++++
+> > > >  1 file changed, 27 insertions(+)
+> > > >
+> > > > diff --git a/Documentation/staging/tee.rst b/Documentation/staging/tee.rst
+> > > > index 4d4b5f889603..37bdd097336f 100644
+> > > > --- a/Documentation/staging/tee.rst
+> > > > +++ b/Documentation/staging/tee.rst
+> > > > @@ -184,6 +184,33 @@ order to support device enumeration. In other words, OP-TEE driver invokes this
+> > > >  application to retrieve a list of Trusted Applications which can be registered
+> > > >  as devices on the TEE bus.
+> > > >
+> > > > +OP-TEE notifications
+> > > > +--------------------
+> > > > +
+> > > > +There are two kinds of notifications that secure world can use to make
+> > > > +normal world aware of some event.
+> > > > +
+> > > > +1. Synchronous notifications delivered with ``OPTEE_RPC_CMD_NOTIFICATION``
+> > > > +   using the ``OPTEE_RPC_NOTIFICATION_SEND`` parameter.
+> > > > +2. Asynchronous notifications delivered with a combination of a non-secure
+> > > > +   interrupt and a fast call from the non-secure interrupt handler.
+> > > > +
+> > > > +Synchronous notifications are limited by depending on RPC for delivery,
+> > > > +this is only usable when secure world is entered with a yielding call via
+> > > > +``OPTEE_SMC_CALL_WITH_ARG``. This excludes such notifications from secure
+> > > > +world interrupt handlers.
+> > > > +
+> > > > +An asynchronous notification is delivered via a non-secure interrupt to an
+> > > > +interrupt handler registered in the OP-TEE driver. The actual notification
+> > > > +value are retrieved with the fast call ``OPTEE_SMC_GET_ASYNC_NOTIF_VALUE``.
+> > > > +
+> > > > +One notification value ``OPTEE_SMC_ASYNC_NOTIF_VALUE_DO_BOTTOM_HALF`` has a
+> > > > +special meaning. When this value is received it means that normal world is
+> > > > +supposed to make a yielding call ``OPTEE_MSG_CMD_DO_BOTTOM_HALF``. This
+> > > > +call is done from the thread assisting the interrupt handler. This is a
+> > > > +building block for OP-TEE OS in secure world to implement the top half and
+> > > > +bottom half style of device drivers.
+> > > > +
+> > >
+> > > What I find missing here is a description of the trigger for this
+> > > interrupt, and how it influences the way the kernel drivers interacts
+> > > with the secure side:
+> > >
+> > > - if it is edge triggered, this is 'fire and forget'. The interrupt
+> > >   will be consumed by the kernel handler, and whether it eventually
+> > >   calls into the secure side has no impact on the interrupt flow.
+> > >
+> > > - if it is level triggered, then the interrupt may be asserted until
+> > >   the kernel calls into the secure side, which may then drop the line
+> > >   level if no other requests are pending.
+> > >
+> > > These are evidently two very different flows, and you need to pick a
+> > > side. Note that not all interrupt controllers support both signalling
+> > > modes, so you are likely to leave something behind. Or you can try and
+> > > support both flows, but that may make the driver slightly more
+> > > complex.
+> > >
+> > > Either way, this needs specifying, here and in the DT binding.
+> >
+> > In the example I'm using a level triggered interrupt which is
+> > triggered by writing to GICD_ISPENDR by secure world. Reading of
+> > GICC_IAR should clear the interrupt,the GICv2 reference manual is
+> > quite clear on that.
+>
+> No, it merely activates it. You can't transition an interrupt from
+> pending to inactive (unless you clear it using GICD_ICPENDR). If you
+> have spotted something else in the GICv2 architecture manual, please
+> say so and I'll get it fixed 15 years after the facts. The fact that
+> GICC_IAR consumes a pending bit introduced by a write to ISPENDR is an
+> implementation detail, see below.
 
-And I add it back here ;-) :
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+I was looking at figure 4-10 "Logic of the pending status of a
+level-sensitive interrupt".
 
-I queue the patch in at91-dt for 5.15.
+>
+> It is also a flawed approach, as this behaviour is IMPDEF on GICv3
+> (see 4.5 "Shared Peripheral Interrupts" in the GICv3 arch spec). Given
+> that GICv2 is pretty much a dead horse (TFFT!), I can't see this approach
+> being successful in the long run.
 
-Thanks Codrin, best regards,
-   Nicolas
+OK, thanks.
 
-> 
->   arch/arm/boot/dts/at91-sama5d2_icp.dts | 6 ++++++
->   1 file changed, 6 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/at91-sama5d2_icp.dts b/arch/arm/boot/dts/at91-sama5d2_icp.dts
-> index bd64721fa23c..1c235fc5f788 100644
-> --- a/arch/arm/boot/dts/at91-sama5d2_icp.dts
-> +++ b/arch/arm/boot/dts/at91-sama5d2_icp.dts
-> @@ -184,6 +184,8 @@ i2c6: i2c@600 {
->   		dmas = <0>, <0>;
->   		pinctrl-names = "default";
->   		pinctrl-0 = <&pinctrl_flx4_default>;
-> +		i2c-digital-filter;
-> +		i2c-digital-filter-width-ns = <35>;
->   		status = "okay";
->   
->   		mcp16502@5b {
-> @@ -307,6 +309,8 @@ regulator-state-mem {
->   &i2c0 { /* mikrobus i2c */
->   	pinctrl-names = "default";
->   	pinctrl-0 = <&pinctrl_mikrobus_i2c>;
-> +	i2c-digital-filter;
-> +	i2c-digital-filter-width-ns = <35>;
->   	status = "okay";
->   };
->   
-> @@ -314,6 +318,8 @@ &i2c1 {
->   	dmas = <0>, <0>;
->   	pinctrl-names = "default";
->   	pinctrl-0 = <&pinctrl_i2c1_default>;
-> +	i2c-digital-filter;
-> +	i2c-digital-filter-width-ns = <35>;
->   	status = "okay";
->   
->   	eeprom@50 {
-> 
+>
+> > So, if I understand it correctly, it will for
+> > this purpose work in the same way as an edge triggered interrupt. If
+> > this wouldn't be the case in some configuration and the interrupt must
+> > be cleared by some other action that would be a job for the receiver
+> > of OPTEE_SMC_GET_ASYNC_NOTIF_VALUE, that is, a secure world problem.
+> > The normal world flow should be the same.
+>
+> You are assuming that the secure side will use GICD_ISPENDR, and
+> that's a leap of faith.
 
+Not in this case with upstream OP-TEE. If we need to signal in a
+different way we can do that instead.
+What happens downstream we have no control over, but that's perhaps
+not so different from the kernel.
 
--- 
-Nicolas Ferre
+> An implementation should use, say, a GPIO to
+> drive the interrupt line and give it proper level semantics.
+
+I'm not so keen on that since we often don't touch GPIO at all in
+OP-TEE and this would then mean more platform specific code. We may
+even need to synchronize some hardware access with the normal world
+and then we'd be back at square one again.
+
+>
+> > Now that we describe the interrupt configuration in device tree it
+> > must use something that mirrors the secure world expectations. I don't
+> > see a point in restricting what's allowed as long it doesn't need code
+> > changes in the kernel too. Does this make any sense?
+>
+> And that's the crucial point: what *are* the expectations of the
+> secure side?
+
+That should be up to the OP-TEE port of that particular platform to
+decide and advise which device tree configuration to use.
+
+> You seem to assume edge semantics, but that's unclear at
+> best.
+
+Fair enough, edge semantics solves the problem here.
+
+>
+> > If I just expand a bit above explaining that the interrupt handler
+> > must call OPTEE_SMC_GET_ASYNC_NOTIF_VALUE as part of clearing the
+> > interrupt even if it might be cleared anyway in some configurations.
+> > Would that make it more clear, good enough even :-) ?
+>
+> This is an interrupt, please document it in terms of interrupt
+> signalling.
+
+In this file, Documentation/staging/tee.rst ? A pointer to a good
+example of what you're expecting would be much appreciated.
+There's also the file drivers/tee/optee/optee_smc.h, this is where the
+ABI to OP-TEE is defined.
+
+>
+> - If it is level, the handler has to call into secure to observe the
+>   level dropping. If the driver can observe the level being low before
+>   calling into secure, it is perfectly allowed to consider the
+>   interrupt being spurious and not perform the call. If you don't have
+>   a device actively driving the line, this doesn't work.
+
+Spurious calls to OPTEE_SMC_GET_ASYNC_NOTIF_VALUE are harmless, but it
+will of course save a few cycles if they can be avoided.
+
+>
+> - It is edge, the handler can do anything it likes, including ignoring
+>   the request after consuming the interrupt, or call into secure from
+>   a kernel thread with interrupts enabled.
+
+Yes, that's a bit more relaxed. Now I'm doing that part in the upper
+half handler. I don't suppose it matters much, not much time is spent
+there. The advantage is that it will work with a level triggered
+interrupt too, if it would ever come to that. Provided that
+OPTEE_SMC_GET_ASYNC_NOTIF_VALUE does what's needed to clear the
+interrupt in secure world, but that should be mandated in such
+configurations.
+
+>
+> At the end of the day, only you can decide which of these two flows
+> are appropriate. If you don't want to mandate actual HW driving the
+> line, edge triggered is your only option.
+
+I agree that in the GIC case we should use edge triggered interrupts.
+But It's not clear to me why this must be nailed down in any other
+case instead of being left open to configuration.
+
+The configuration that is best for the platform should be used, but
+this is still a platform specific detail [1]. If device tree can give
+us the flexibility to use level triggered interrupts with some other
+interrupt controller and the kernel code already is capable of working
+with that, what's the harm in leaving that open?
+
+Thanks for your patience, I'm still trying to understand the parameters.
+
+Cheers,
+Jens
+[1] The OP-TEE firmware is always built per platform with platform
+specific configuration. With FF-A that may change, but then we'll also
+base these notifications on FF-A instead of playing directly with
+interrupts.
