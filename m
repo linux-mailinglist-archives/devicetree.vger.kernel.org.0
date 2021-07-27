@@ -2,97 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 789A33D7EFC
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 22:18:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA26C3D7F05
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 22:20:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232047AbhG0UST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jul 2021 16:18:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44718 "EHLO
+        id S230426AbhG0UUV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jul 2021 16:20:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230425AbhG0UST (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 16:18:19 -0400
-Received: from mail-io1-xd29.google.com (mail-io1-xd29.google.com [IPv6:2607:f8b0:4864:20::d29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC029C061760
-        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 13:18:18 -0700 (PDT)
-Received: by mail-io1-xd29.google.com with SMTP id 185so192965iou.10
-        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 13:18:18 -0700 (PDT)
+        with ESMTP id S231932AbhG0UUU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 16:20:20 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37F56C061765
+        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 13:20:19 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id d17so23973841lfv.0
+        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 13:20:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=engleder-embedded-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=EGfLd9D8CJ0XM8pNkBp/RBltPnDlCoaQe6KBAezvO04=;
-        b=g7xMssaF+tdCP9oijWOYFkWd+H55lfjYbqo6OzOAEXuOdQ3+ip7eT622oVKinOFf1p
-         66uc2Hg23s704ueA5HhrfPMNFanCrwTpJ9M23sV6+sxsA+kJIRouQ6i442sxhbhMRB2f
-         6fd3NIVCpzW+oUglzwXH0WgvG9HDO8A6C7zSyG9i3TtYU68RmuJKTxm/CafmX/6MTBxf
-         E9lY8vNdYuKTCT1JmMHnte6L/7paCsXOcPItJ0rQvPJglDJUnwDv0RibjCvXkYD/aEbp
-         sP2IcTZn1AhKArh2bQoIin/0evLTm68htv74AbnDSX9OdnKDM6smAhz/ojXtACdRCrx3
-         aVQw==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=pu/Dc0wbZEEdBX0n+gymF7OvWfXDUCeDoTyuI35f9nc=;
+        b=FOFa/sNjWhym9g8D5DSS89BwZuBiqUD+SSrqL7sVUVC38ErQozC1yUlsOxaRti3W6S
+         52HkAvK2KdjLeuOIPS0jYFaCYhCGPguKkErKLPC222pg2A+/Shx/g6xk4Qr8Jn/0tY87
+         CMCpEQMG4CiFKqHDQRbaEDOumAZCbtUv6cl5ONykldV00D8ia4duiru2eGYQrv0mbMjy
+         k8xJ8Gh5kd1jdWB2ap0Bq7FmLLG5qOf2BlKNetEmwS/QGXtTk3h/IZcNxt3jjkil6mqM
+         l5RxuPFDwB9dZuwYZe9YmsZj0yRYSzEYTBoahqTkdO5lv3xMXJ7ybvz7ZTNrAhgLXKKW
+         KUfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=EGfLd9D8CJ0XM8pNkBp/RBltPnDlCoaQe6KBAezvO04=;
-        b=tjikSBkmpzw1yNDnhWPF+b0HT3iwp6uAvJZHPVi/UhnLjOmeBfRajPFvQjVatTPQaj
-         FAOiYf6ac8Yz4zSUaHJAdTv1K1TnyvlCPlwaDazMpSdERkknW7O+7+iI7wXgjyBOoc7J
-         f791gfXPGSaZd1s3BP3qbeLYzRz6BixSI+xqIi4ORtxBO96D9A5WtIZi4zG7biX6F88S
-         /jR9O4ZFA+b/Ld1MB6PGISnjTdAqCspMaxflIKgpXGTFWklhX18jy72T9WE9pNNnMRDh
-         ETKoSeuKxUWdjEg2ZeIscRn1txg77i79bjpjtczmFiKbBJU9Y3EJJJ4O0ZXGelLZ/UmY
-         vK+A==
-X-Gm-Message-State: AOAM530oYzvavgjHvlsmJZcQcQ2xMnX6xZ5zWjcE/4oD7DpP4UzeHjaS
-        2lMdEMlXw9HcijObg+cx3b30o39XvXJgXpYivMc2aw==
-X-Google-Smtp-Source: ABdhPJzdYgF7ua/8SX1bFAaXWqsm0OEi75CCI50iFNU5UspYEDR9M97eLyOJlLLzlK7dQOK8ZzG9nfutC4q59xjnmx0=
-X-Received: by 2002:a05:6602:48c:: with SMTP id y12mr16699755iov.14.1627417098287;
- Tue, 27 Jul 2021 13:18:18 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=pu/Dc0wbZEEdBX0n+gymF7OvWfXDUCeDoTyuI35f9nc=;
+        b=fjI9r+qF1q9RHjCPtPWyBZba46OldZG8o9aDHmI38d47V/Z+K1cq5ISJp+k2GbgKBe
+         wSqxgS4mGrxkcW2+mB2urNqxQiL8KdO4Gp7d+8hc3+yn5SzdnG29G+F2sITt9sdr47fy
+         c+sE+kpWAgooV++wX+ubLo+VsB7PSAIEFSqm1iI3C30jgICoHvi3BenjLJQiqZ3kg+Ju
+         6ZJC/sjqpryhJ7ABKdfoAaIueQ1HOsXID/7TDcIw2DWCZRnKG3FKs8kmy4xaHwjZBC9J
+         wgNPtZiCIqeQ5tdy81yB6CRqlx2XaFZjcKocdgyQT2V12KiAPZvt4XWFWGPqvMyKHg1A
+         A0Yw==
+X-Gm-Message-State: AOAM533/hxGyAjf6cAfQjKuy6ac1jWOfg4FSQxhPUUawnCENF2o/jVhV
+        RyyI/3ORKehrxIgiwuRyGPVULg==
+X-Google-Smtp-Source: ABdhPJykKCBAnljgl6eXjGqYqbLHliukLxoc381p7oH+9gphJk5y+ErWEJAaVK0G+SYW7j65jmFswg==
+X-Received: by 2002:ac2:50c3:: with SMTP id h3mr18255303lfm.126.1627417217436;
+        Tue, 27 Jul 2021 13:20:17 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id i11sm376502lfe.215.2021.07.27.13.20.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Jul 2021 13:20:17 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Michael Turquette <mturquette@baylibre.com>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v6 0/6] clk: qcom: use power-domain for sm8250's clock controllers
+Date:   Tue, 27 Jul 2021 23:19:56 +0300
+Message-Id: <20210727202004.712665-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <20210726194603.14671-1-gerhard@engleder-embedded.com>
- <20210726194603.14671-5-gerhard@engleder-embedded.com> <YP8f8lXieL+Ld1eW@lunn.ch>
-In-Reply-To: <YP8f8lXieL+Ld1eW@lunn.ch>
-From:   Gerhard Engleder <gerhard@engleder-embedded.com>
-Date:   Tue, 27 Jul 2021 22:18:07 +0200
-Message-ID: <CANr-f5xp7DG9idmg-Mn+Tj6+a+pxrajVw-h8Tm4O6NAjB1AJYw@mail.gmail.com>
-Subject: Re: [PATCH net-next 4/5] tsnep: Add TSN endpoint Ethernet MAC driver
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     David Miller <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 26, 2021 at 10:50 PM Andrew Lunn <andrew@lunn.ch> wrote:
-> Hi Gerhard
+On SM8250 both the display and video clock controllers are powered up by
+the MMCX power domain. Handle this by linking clock controllers to the
+proper power domain, and using runtime power management to enable and
+disable the MMCX power domain.
 
-Hi Andrew
+Dependencies:
+- https://lore.kernel.org/linux-arm-msm/20210703005416.2668319-1-bjorn.andersson@linaro.org/
+  (pending)
 
-> > +int tsnep_read_md(struct tsnep_adapter *adapter, int phy, int reg, u16 *data)
-> > +{
-> > +     u32 md;
-> > +     int retval = 0;
-> > +
-> > +     if (mutex_lock_interruptible(&adapter->md_lock) != 0)
-> > +             return -ERESTARTSYS;
->
-> This probably means you have something wrong with your architecture.
-> The core mdio layer will serialise access to the mdio bus. So you
-> should not need such locks.
->
-> > +int tsnep_enable_loopback(struct tsnep_adapter *adapter, int speed)
-> > +{
-> > +     int phy_address = adapter->phydev->mdio.addr;
-> > +     u16 val;
-> > +     int retval;
-> > +
-> > +     adapter->loopback = true;
-> > +     adapter->loopback_speed = speed;
-> > +
-> > +     retval = tsnep_read_md(adapter, phy_address, MII_BMCR, &val);
->
-> And this might be why you have these locks?
->
-> A MAC driver should never directly touch the PHY hardware. Use the
-> phy_loopback(phydev) call.
+Changes since v5:
+ - Dropped devm_pm_runtime_enable callback to remove extra dependency
 
-I will try to use phy_loopback(phydev) . Thanks for the advice!
+Changes since v4:
+ - Dropped pm_runtime handling from drivers/clk/qcom/common.c Moved the
+   code into dispcc-sm8250.c and videocc-sm8250.c
 
-Gerhard
+Changes since v3:
+ - Wrap gdsc_enable/gdsc_disable into pm_runtime_get/put calls rather
+   than calling pm_runtime_get in gdsc_enabled and _put in gdsc_disable
+ - Squash gdsc patches together to remove possible dependencies between
+   two patches.
+
+Changes since v2:
+ - Move pm_runtime calls from generic genpd code to the gdsc code for
+   now (as suggested by Ulf & Bjorn)
+
+Changes since v1:
+ - Rebase on top of Bjorn's patches, removing the need for setting
+   performance state directly.
+ - Move runtime PM calls from GDSC code to generic genpd code.
+ - Always call pm_runtime_enable in the Qualcomm generic clock
+   controller code.
+ - Register GDSC power domains as subdomains of the domain powering the
+   clock controller if there is one.
+
+----------------------------------------------------------------
+Dmitry Baryshkov (8):
+      dt-bindings: clock: qcom,dispcc-sm8x50: add mmcx power domain
+      dt-bindings: clock: qcom,videocc: add mmcx power domain
+      clk: qcom: dispcc-sm8250: use runtime PM for the clock controller
+      clk: qcom: videocc-sm8250: use runtime PM for the clock controller
+      clk: qcom: gdsc: enable optional power domain support
+      arm64: dts: qcom: sm8250: remove mmcx regulator
+      clk: qcom: dispcc-sm8250: stop using mmcx regulator
+      clk: qcom: videocc-sm8250: stop using mmcx regulator
+
+ .../bindings/clock/qcom,dispcc-sm8x50.yaml         |  7 +++
+ .../devicetree/bindings/clock/qcom,videocc.yaml    |  7 +++
+ arch/arm64/boot/dts/qcom/sm8250.dtsi               | 11 +---
+ drivers/clk/qcom/dispcc-sm8250.c                   | 28 ++++++++--
+ drivers/clk/qcom/gdsc.c                            | 59 ++++++++++++++++++++--
+ drivers/clk/qcom/gdsc.h                            |  2 +
+ drivers/clk/qcom/videocc-sm8250.c                  | 31 +++++++++---
+ 7 files changed, 124 insertions(+), 21 deletions(-)
+
+
