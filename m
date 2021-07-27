@@ -2,93 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D09743D6DD3
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 07:09:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 897AE3D6DE3
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 07:16:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234904AbhG0FJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jul 2021 01:09:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32770 "EHLO
+        id S234905AbhG0FQq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jul 2021 01:16:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234865AbhG0FJL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 01:09:11 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6815AC061757
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 22:09:12 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id ca5so3760543pjb.5
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 22:09:12 -0700 (PDT)
+        with ESMTP id S234923AbhG0FQq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 01:16:46 -0400
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 523ACC061757;
+        Mon, 26 Jul 2021 22:16:45 -0700 (PDT)
+Received: by mail-pj1-x1033.google.com with SMTP id b1-20020a17090a8001b029017700de3903so1976246pjn.1;
+        Mon, 26 Jul 2021 22:16:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=jMb1KRUbiUlacJfAVD1/R8vrh+6l8zpcFNirbTWr1q4=;
-        b=Yso/kk9zDSFsGRMyC/gs/cauJC8vGbPr+iUqMihO+rX6CTMTtNIqua+TvNUgtPbfYu
-         KvqSzFhXJEijB4imj9I7mYJ54IITie8MTKgenGgW8uSXn1FBoxSqa0hebxLHjuFL9IaR
-         MQZUY+2fd02tmll4YscUDlDhIP74HMLuip0H9/rKf5H+FFKWpRMv8NRfTHj1k/PVPVyy
-         etRR4bWUS9hhtQJUF8eZsqavNk+oeWwPgbyAsmGECaxt2EL7+Hxr4QM8aoyTQP0SbA9T
-         52D8/j9xLTXXhhGFygFrHx0rttkO5HtvR4Mt1+A4TnOxRx2YltlK50yNtaf1/VFprP0S
-         hZnA==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZKYFgBjjZwYmO/YYDavSQwhPmskL/iEGpl6anuA2AZE=;
+        b=iSGB8Yk6SY7cMvHQklOeef//X9ijee3KjIt1/NK1eh6KyY4d+PSJSapguDHoEL/sey
+         voVWNwcH4AMphup/tyAzSxT4ezuH3Pzrtl4W5Zlcc9bH2sh/i+/e6esiR4qH/7k8gg3G
+         T/2iiTepe38Ve6vqyVfHxXp1lftOjfo7vKTTHMFQIuJ/WVObEYAF81zMwMqYnfyINxR1
+         jMHIm61X2V1qQ0NQ6Nz86BJt3pIOa4LSvbnb81erUJ91FaxZbAfLFSJhBy1Q40BP9iFZ
+         9VQSPqZyt7wPogQnVte2gR0vOFUM6HvhG1jPDFhXdvPq0CO8CJYtrbB6AOgMb/Hj/JAA
+         zcvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=jMb1KRUbiUlacJfAVD1/R8vrh+6l8zpcFNirbTWr1q4=;
-        b=uZ2AtTioyJTbCRDIHCZ8rjhx+Z/RyIsA6nHdXgL8UQLX7grBIFX3KtIDGJRj1JJ5dY
-         HN9aAaUEaa6Y3y47UszpxIrSJhqZTZ+dmBvSSGFgJapMHWMyrobFhFZs9PeQg107AMmH
-         Vi5d6vP6Q1X7Ytq1ZhPz3S1hucZLNnOkJIsCjk0lq8i/lWx4rIupI19o/B/GxOlVysC1
-         27xLfAdwZFSmnm4u+4MunOMax3iYCWFKVkeyJ/ocK5+5I5bi+cHz9wY7cQA4dQzAEcSD
-         Bno+HPevKcc0N68tQH4w7dbJmETg9J4/boeYjUtUB//IpppN4ko8EFpuGznFBrtlYNlw
-         ac/Q==
-X-Gm-Message-State: AOAM532aI00soVphlISmqCtInpHgQrbgnrvJu/JAKN0TK/dQfQVVb78S
-        +U45E2JvwjOFmTT5U9q9hndP/A==
-X-Google-Smtp-Source: ABdhPJwI0o/AFZSBs2tCGBCeJzWBzREp/9JaTjCOKUT78rlQB8bhoLyrYx24q4Coul5PQQhvFydbIQ==
-X-Received: by 2002:a65:40cc:: with SMTP id u12mr17863936pgp.18.1627362551965;
-        Mon, 26 Jul 2021 22:09:11 -0700 (PDT)
-Received: from localhost ([122.172.201.85])
-        by smtp.gmail.com with ESMTPSA id q4sm1913130pfn.23.2021.07.26.22.09.05
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZKYFgBjjZwYmO/YYDavSQwhPmskL/iEGpl6anuA2AZE=;
+        b=XBsSK7DqLwmrN9OxiiSlcocznuSOkmKidi6j/7MiNA+xF6THxtL/5HxUAPtbL0YAE3
+         5p/dnwDIbcFTXyGdxHR+5YVbsWl8lVDwgdhLzvjDNHyA/QKSmTf6/Q4M87O266eXSveO
+         EQkOie/dBHqDXkM8rmP/IPOMWBAO1+i7wAMvTarIh4ruYJZoT+fioaS6U63bYeD1iF8U
+         NgZIN1dTLvhSTpuqBsx36hxC7ipvHQJYBYDjGWZwnUNcULDH6Do4ouw3hoCl0+aRsChw
+         XIehSqLGnrPwHOaCuVkKxOublnP0cFe1b/30ugKbfeNiy6clWnRGSh4ZSfv835o5nM1U
+         PtAg==
+X-Gm-Message-State: AOAM532WVVGrIhGSHjKKEOH3SR5Jw9rSmfBKdpez7uue8cf0y+9AuFf6
+        ubvqeiL8kM94qoOJ340FJMY=
+X-Google-Smtp-Source: ABdhPJyfzmDdbaen3mSXOnNDEdwKQGBuud2r53KZOFCsFenEvdjXOfAdreyB0ILQlwiQxtXqtwmNqw==
+X-Received: by 2002:a65:680c:: with SMTP id l12mr2805634pgt.122.1627363004734;
+        Mon, 26 Jul 2021 22:16:44 -0700 (PDT)
+Received: from localhost.localdomain ([49.156.121.207])
+        by smtp.googlemail.com with ESMTPSA id k198sm1870787pfd.148.2021.07.26.22.16.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jul 2021 22:09:06 -0700 (PDT)
-Date:   Tue, 27 Jul 2021 10:39:03 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Jason Wang <jasowang@redhat.com>,
-        "Michael S. Tsirkin" <mst@redhat.com>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>,
-        Alex =?utf-8?Q?Benn=C3=A9e?= <alex.bennee@linaro.org>,
-        "Enrico Weigelt, metux IT consult" <info@metux.net>,
-        Jie Deng <jie.deng@intel.com>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE" 
-        <virtualization@lists.linux-foundation.org>
-Subject: Re: [PATCH V3 1/5] dt-bindings: virtio: Add binding for virtio
- devices
-Message-ID: <20210727050903.io6kbeotsyplt2lx@vireshk-i7>
-References: <cover.1627273794.git.viresh.kumar@linaro.org>
- <fced2f2b9dcf3f32f16866d7d104f46171316396.1627273794.git.viresh.kumar@linaro.org>
- <CAL_Jsq+XXhe2g0Rmda1v_Ws4-E_-UE6X5HUsSk-GcAETqQZiCQ@mail.gmail.com>
+        Mon, 26 Jul 2021 22:16:44 -0700 (PDT)
+From:   Puranjay Mohan <puranjay12@gmail.com>
+To:     Michael.Hennerich@analog.com, alexandru.ardelean@analog.com,
+        jic23@kernel.org, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        lars@metafoo.de, Dragos.Bogdan@analog.com, Darius.Berghe@analog.com
+Cc:     Puranjay Mohan <puranjay12@gmail.com>
+Subject: [PATCH v4 0/2] iio: accel: add support for ADXL355
+Date:   Tue, 27 Jul 2021 10:46:25 +0530
+Message-Id: <20210727051627.12234-1-puranjay12@gmail.com>
+X-Mailer: git-send-email 2.30.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+XXhe2g0Rmda1v_Ws4-E_-UE6X5HUsSk-GcAETqQZiCQ@mail.gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26-07-21, 08:57, Rob Herring wrote:
-> On Sun, Jul 25, 2021 at 10:52 PM Viresh Kumar <viresh.kumar@linaro.org> wrote:
-> > +    description: |
-> > +      Exactly one node describing the virtio device. The name of the node isn't
-> > +      significant but its phandle can be used to by a user of the virtio device.
-> > +
-> > +  compatible:
-> > +    pattern: "^virtio,[0-9a-f]+$"
-> 
-> DID is only 4 chars? If so, "^virtio,[0-9a-f]{1,4}$"
+Add the dt-bindings and the driver for ADXL355 3-axis MEMS Accelerometer.
 
-It is 32 bit actually, so making this {1,8}.
+Changes since v3:
+1. Fix errors in yaml DT doc.
+2. Change SPDX-License-Identifier to GPL-2.0-only OR BSD-2-Clause
+
+Changes since v2:
+1. Add separate DT binding doc in yaml.
+2. Use ____cacheline_aligned buffer for regmap_bulk_read/write calls.
+3. Make code consistent by using same style in switch case.
+4. Use FIELD_PREP in place of custom macros.
+5. Make Kconfig description more informative.
+
+Changes since v1:
+1. Remove the declarations for static regmap structures from adxl355.h.
+This was missed in the v1 and caused errors.
+2. Make switch case statements consistent by directly returning from
+each case rather than saving the return in a variable.
+3. Some coding style changes.
+
+Changes since v0:
+1. Move adxl355_hpf_3db_table to adxl355_data structure. This is done to make
+sure that each device gets its own table.
+2. Make local regmap definitions private to adxl355_core.c.
+3. Other minor coding style changes.
+
+Puranjay Mohan (2):
+  dt-bindings: iio: accel: Add DT binding doc for ADXL355
+  iio: accel: Add driver support for ADXL355
+
+ .../bindings/iio/accel/adi,adxl355.yaml       |  76 +++
+ MAINTAINERS                                   |   7 +
+ drivers/iio/accel/Kconfig                     |  29 +
+ drivers/iio/accel/Makefile                    |   3 +
+ drivers/iio/accel/adxl355.h                   |  77 +++
+ drivers/iio/accel/adxl355_core.c              | 545 ++++++++++++++++++
+ drivers/iio/accel/adxl355_i2c.c               |  63 ++
+ drivers/iio/accel/adxl355_spi.c               |  66 +++
+ 8 files changed, 866 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adxl355.yaml
+ create mode 100644 drivers/iio/accel/adxl355.h
+ create mode 100644 drivers/iio/accel/adxl355_core.c
+ create mode 100644 drivers/iio/accel/adxl355_i2c.c
+ create mode 100644 drivers/iio/accel/adxl355_spi.c
 
 -- 
-viresh
+2.30.1
+
