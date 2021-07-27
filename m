@@ -2,933 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C421B3D77BF
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 16:02:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73D6F3D780C
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 16:07:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236537AbhG0OC0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jul 2021 10:02:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41962 "EHLO
+        id S236774AbhG0OFO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jul 2021 10:05:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232406AbhG0OCR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 10:02:17 -0400
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED5BDC061757;
-        Tue, 27 Jul 2021 07:02:16 -0700 (PDT)
-Received: by mail-pj1-x102d.google.com with SMTP id q17-20020a17090a2e11b02901757deaf2c8so5034852pjd.0;
-        Tue, 27 Jul 2021 07:02:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=45+VXmW3x0B6NNJkJSbe1PLv8rx3fbgvNWrfh3B+Dug=;
-        b=eIhGtOSkRKVpYQjcdpvAbqGBsegcmSFsphmDVOQDAe+Dx1QhqV0e05wSgsfeUZnMqx
-         4BLniAcRXfWzgDNUzMPAsLYaX0OK/TCoHaWDEhd8YIkgLJ1iT6DQuFuIc7W+59AeLMqL
-         NU6ZEGvmGZaRaiiib1K//UzxPVhQI8Vb167okayAKGXDRnCs5yX4kJCGoreHtyn5ASRt
-         L7qzHFIde4TOtOJK7Iq0b5HVpDAgeEty6tZ3YBY0zFFmHpQyXb25+mlSWG0HOpCIV7P1
-         s9mxslyi89SDdTPLldwq2w6ED1pcPrPKLxMln1w0VHKMlpfe/bQYEB39NATHbUbDjvAs
-         c8fw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=45+VXmW3x0B6NNJkJSbe1PLv8rx3fbgvNWrfh3B+Dug=;
-        b=F539qnoBYhfp7QzxHKJTeriwPLR2+ditwle7NJRPb1tG7gy1Mjs+oPaY1wjrHUecx5
-         G8dzo1Q7z84K8/cPWaVhHBdZbIgm6RLaB+HQQJDaxm8yt5/5p5aLkvaVIml0KcyF1v8+
-         zr5KkTCsJBSARAd+z8FKQS8bA7jRaQQqqaeZT8+CT5Z7hz2glzXbIR0AdCsyGVf74RFG
-         t7QM4AdstYlgGJpGBfaMrHf15U0cfmMnZkxNlog9U8lRdDbuJAK7GDJdwS70d2vI37W3
-         nYu0QHFmTCbqV+o+QiyedzRVcFCtErYMxSuHjFCtrvrPQz0hz/U2xnM1rvQ4ArxXqUS/
-         AYoQ==
-X-Gm-Message-State: AOAM531y3Tw5QKgOdZFzaM7iZSMRx1LGbIMikLZc+hIPwkkvwVdvMmSM
-        H3ukaZ5IqMvi1hjre7jJ/U3I8n9ofb4y+w==
-X-Google-Smtp-Source: ABdhPJwdhG27cmiaki40lvxnXHdwSmBzQauusaiOFs5HeF+3kSzb8OToZgQ0CHh7VAbB3DKg0MCxAQ==
-X-Received: by 2002:a17:90b:1109:: with SMTP id gi9mr4399932pjb.61.1627394536341;
-        Tue, 27 Jul 2021 07:02:16 -0700 (PDT)
-Received: from localhost.localdomain ([49.156.66.102])
-        by smtp.googlemail.com with ESMTPSA id o8sm3071563pjm.21.2021.07.27.07.02.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Jul 2021 07:02:15 -0700 (PDT)
-From:   Puranjay Mohan <puranjay12@gmail.com>
-To:     Michael.Hennerich@analog.com, alexandru.ardelean@analog.com,
-        jic23@kernel.org, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        lars@metafoo.de, Dragos.Bogdan@analog.com, Darius.Berghe@analog.com
-Cc:     Puranjay Mohan <puranjay12@gmail.com>
-Subject: [PATCH v5 2/2] iio: accel: Add driver support for ADXL355
-Date:   Tue, 27 Jul 2021 19:31:58 +0530
-Message-Id: <20210727140158.201188-3-puranjay12@gmail.com>
-X-Mailer: git-send-email 2.30.1
-In-Reply-To: <20210727140158.201188-1-puranjay12@gmail.com>
-References: <20210727140158.201188-1-puranjay12@gmail.com>
+        with ESMTP id S232460AbhG0OFM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 10:05:12 -0400
+Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70809C0613CF
+        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 07:05:11 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:b0a9:7e88:5ca4:551a])
+        by albert.telenet-ops.be with bizsmtp
+        id aE562500X1fSPfK06E56wa; Tue, 27 Jul 2021 16:05:09 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1m8Nhi-001PuI-1G; Tue, 27 Jul 2021 16:05:06 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1m8Nhh-00FoBr-AX; Tue, 27 Jul 2021 16:05:05 +0200
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+To:     Robin van der Gracht <robin@protonic.nl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Miguel Ojeda <ojeda@kernel.org>,
+        Paul Burton <paulburton@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Pavel Machek <pavel@ucw.cz>, Marek Behun <marek.behun@nic.cz>
+Cc:     devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert@linux-m68k.org>
+Subject: [PATCH v4 00/19] auxdisplay: ht16k33: Add character display support
+Date:   Tue, 27 Jul 2021 16:04:40 +0200
+Message-Id: <20210727140459.3767788-1-geert@linux-m68k.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ADXL355 is 3-axis MEMS Accelerometer. It offers low noise density,
-low 0g offset drift, low power with selectable measurement ranges.
-It also features programmable high-pass and low-pass filters.
+	Hi all,
 
-Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/adxl354_adxl355.pdf
-Signed-off-by: Puranjay Mohan <puranjay12@gmail.com>
----
- MAINTAINERS                      |   7 +
- drivers/iio/accel/Kconfig        |  29 ++
- drivers/iio/accel/Makefile       |   3 +
- drivers/iio/accel/adxl355.h      |  77 +++++
- drivers/iio/accel/adxl355_core.c | 542 +++++++++++++++++++++++++++++++
- drivers/iio/accel/adxl355_i2c.c  |  63 ++++
- drivers/iio/accel/adxl355_spi.c  |  66 ++++
- 7 files changed, 787 insertions(+)
- create mode 100644 drivers/iio/accel/adxl355.h
- create mode 100644 drivers/iio/accel/adxl355_core.c
- create mode 100644 drivers/iio/accel/adxl355_i2c.c
- create mode 100644 drivers/iio/accel/adxl355_spi.c
+The Holtek HT16K33 LED controller is not only used for driving
+dot-matrix displays, but also for driving segment displays.
+The current auxdisplay driver is limited to dot-matrix displays, which
+are exposed as a frame buffer device.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index bd7aff0c1..461f2a192 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -586,6 +586,13 @@ W:	http://ez.analog.com/community/linux-device-drivers
- F:	Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
- F:	drivers/input/misc/adxl34x.c
- 
-+ADXL355 THREE-AXIS DIGITAL ACCELEROMETER DRIVER
-+M:	Puranjay Mohan <puranjay12@gmail.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Supported
-+F:	drivers/iio/accel/adxl34x.c
-+F:	Documentation/devicetree/bindings/iio/accel/adi,adxl355.yaml
-+
- ADXL372 THREE-AXIS DIGITAL ACCELEROMETER DRIVER
- M:	Michael Hennerich <michael.hennerich@analog.com>
- S:	Supported
-diff --git a/drivers/iio/accel/Kconfig b/drivers/iio/accel/Kconfig
-index cceda3cec..d0c45c809 100644
---- a/drivers/iio/accel/Kconfig
-+++ b/drivers/iio/accel/Kconfig
-@@ -61,6 +61,35 @@ config ADXL345_SPI
- 	  will be called adxl345_spi and you will also get adxl345_core
- 	  for the core module.
- 
-+config ADXL355
-+	tristate
-+
-+config ADXL355_I2C
-+	tristate "Analog Devices ADXL355 3-Axis Digital Accelerometer I2C Driver"
-+	depends on I2C
-+	select ADXL355
-+	select REGMAP_I2C
-+	help
-+	  Say Y here if you want to build i2c support for the Analog Devices
-+	  ADXL355 3-axis digital accelerometer.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called adxl355_i2c and you will also get adxl355_core
-+	  for the core module.
-+
-+config ADXL355_SPI
-+	tristate "Analog Devices ADXL355 3-Axis Digital Accelerometer SPI Driver"
-+	depends on SPI
-+	select ADXL355
-+	select REGMAP_SPI
-+	help
-+	  Say Y here if you want to build spi support for the Analog Devices
-+	  ADXL355 3-axis digital accelerometer.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called adxl355_spi and you will also get adxl355_core
-+	  for the core module.
-+
- config ADXL372
- 	tristate
- 	select IIO_BUFFER
-diff --git a/drivers/iio/accel/Makefile b/drivers/iio/accel/Makefile
-index 32cd1342a..0e4721d2d 100644
---- a/drivers/iio/accel/Makefile
-+++ b/drivers/iio/accel/Makefile
-@@ -9,6 +9,9 @@ obj-$(CONFIG_ADIS16209) += adis16209.o
- obj-$(CONFIG_ADXL345) += adxl345_core.o
- obj-$(CONFIG_ADXL345_I2C) += adxl345_i2c.o
- obj-$(CONFIG_ADXL345_SPI) += adxl345_spi.o
-+obj-$(CONFIG_ADXL355) += adxl355_core.o
-+obj-$(CONFIG_ADXL355_I2C) += adxl355_i2c.o
-+obj-$(CONFIG_ADXL355_SPI) += adxl355_spi.o
- obj-$(CONFIG_ADXL372) += adxl372.o
- obj-$(CONFIG_ADXL372_I2C) += adxl372_i2c.o
- obj-$(CONFIG_ADXL372_SPI) += adxl372_spi.o
-diff --git a/drivers/iio/accel/adxl355.h b/drivers/iio/accel/adxl355.h
-new file mode 100644
-index 000000000..77d0d0a28
---- /dev/null
-+++ b/drivers/iio/accel/adxl355.h
-@@ -0,0 +1,77 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * ADXL355 3-Axis Digital Accelerometer
-+ *
-+ * Copyright (c) 2021 Puranjay Mohan <puranjay12@gmail.com>
-+ */
-+
-+#ifndef _ADXL355_H_
-+#define _ADXL355_H_
-+
-+#include <linux/regmap.h>
-+
-+/* ADXL355 Register Definitions */
-+#define ADXL355_DEVID_AD	0x00
-+#define ADXL355_DEVID_MST	0x01
-+#define ADXL355_PARTID		0x02
-+#define ADXL355_REVID		0x03
-+#define ADXL355_STATUS		0x04
-+#define ADXL355_FIFO_ENTRIES	0x05
-+#define ADXL355_TEMP2		0x06
-+#define ADXL355_XDATA3		0x08
-+#define ADXL355_YDATA3		0x0B
-+#define ADXL355_ZDATA3		0x0E
-+#define ADXL355_FIFO_DATA	0x11
-+#define ADXL355_OFFSET_X_H	0x1E
-+#define ADXL355_OFFSET_Y_H	0x20
-+#define ADXL355_OFFSET_Z_H	0x22
-+#define ADXL355_ACT_EN		0x24
-+#define ADXL355_ACT_THRESH_H	0x25
-+#define ADXL355_ACT_THRESH_L	0x26
-+#define ADXL355_ACT_COUNT	0x27
-+#define ADXL355_FILTER		0x28
-+#define ADXL355_FIFO_SAMPLES	0x29
-+#define ADXL355_INT_MAP		0x2A
-+#define ADXL355_SYNC		0x2B
-+#define ADXL355_RANGE		0x2C
-+#define ADXL355_POWER_CTL	0x2D
-+#define ADXL355_SELF_TEST	0x2E
-+#define ADXL355_RESET		0x2F
-+
-+#define ADXL355_DEVID_AD_VAL	0xAD
-+#define ADXL355_DEVID_MST_VAL	0x1D
-+#define ADXL355_PARTID_VAL	0xED
-+#define ADXL355_REVID_VAL	0x01
-+#define ADXL355_RESET_CODE	0x52
-+
-+#define ADXL355_POWER_CTL_MODE_MSK	GENMASK(1, 0)
-+
-+#define ADXL355_FILTER_ODR_MSK			GENMASK(3, 0)
-+#define ADXL355_FILTER_HPF_MSK			GENMASK(6, 4)
-+
-+/*
-+ * The datasheet defines an intercept of 1885 LSB at 25 degC
-+ * and a slope of -9.05 LSB/C. The following formula can be used to find the
-+ * temperature:
-+ * Temp = ((RAW - 1885)/(-9.05)) + 25 but this doesn't follow the format of
-+ * the IIO which is Temp = (RAW + OFFSET) * SCALE. Hence using some rearranging
-+ * we get the scale as -110.49723 and offset as -2111.25
-+ */
-+#define TEMP_SCALE_VAL -110
-+#define TEMP_SCALE_VAL2 497238
-+#define TEMP_OFFSET_VAL -2111
-+#define TEMP_OFFSET_VAL2 250000
-+
-+/*
-+ * At +/- 2g with 20-bit resolution, scale is given in datasheet as
-+ * 3.9ug/LSB = 0.0000039 * 9.80665 = 0.00003824593 m/s^2
-+ */
-+#define ADXL355_NSCALE	38245
-+
-+extern const struct regmap_access_table adxl355_readable_regs_tbl;
-+
-+extern const struct regmap_access_table adxl355_writeable_regs_tbl;
-+
-+int adxl355_core_probe(struct device *dev, struct regmap *regmap,
-+		       const char *name);
-+#endif /* _ADXL355_H_ */
-diff --git a/drivers/iio/accel/adxl355_core.c b/drivers/iio/accel/adxl355_core.c
-new file mode 100644
-index 000000000..313a3d2d1
---- /dev/null
-+++ b/drivers/iio/accel/adxl355_core.c
-@@ -0,0 +1,542 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * ADXL355 3-Axis Digital Accelerometer IIO core driver
-+ *
-+ * Copyright (c) 2021 Puranjay Mohan <puranjay12@gmail.com>
-+ *
-+ * Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/adxl354_adxl355.pdf
-+ */
-+#include <linux/bitfield.h>
-+#include <linux/iio/iio.h>
-+#include <linux/iio/sysfs.h>
-+#include <linux/limits.h>
-+#include <linux/math64.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/regmap.h>
-+
-+#include "adxl355.h"
-+
-+static const struct regmap_range adxl355_read_reg_range[] = {
-+	regmap_reg_range(ADXL355_DEVID_AD, ADXL355_FIFO_DATA),
-+	regmap_reg_range(ADXL355_OFFSET_X_H, ADXL355_SELF_TEST)
-+};
-+
-+const struct regmap_access_table adxl355_readable_regs_tbl = {
-+	.yes_ranges = adxl355_read_reg_range,
-+	.n_yes_ranges = ARRAY_SIZE(adxl355_read_reg_range),
-+};
-+EXPORT_SYMBOL_GPL(adxl355_readable_regs_tbl);
-+
-+static const struct regmap_range adxl355_write_reg_range[] = {
-+	regmap_reg_range(ADXL355_OFFSET_X_H, ADXL355_RESET)
-+};
-+
-+const struct regmap_access_table adxl355_writeable_regs_tbl = {
-+	.yes_ranges = adxl355_write_reg_range,
-+	.n_yes_ranges = ARRAY_SIZE(adxl355_write_reg_range),
-+};
-+EXPORT_SYMBOL_GPL(adxl355_writeable_regs_tbl);
-+
-+enum adxl355_op_mode {
-+	ADXL355_MEASUREMENT,
-+	ADXL355_STANDBY,
-+	ADXL355_TEMP_OFF
-+};
-+
-+enum adxl355_odr {
-+	ADXL355_ODR_4000HZ,
-+	ADXL355_ODR_2000HZ,
-+	ADXL355_ODR_1000HZ,
-+	ADXL355_ODR_500HZ,
-+	ADXL355_ODR_250HZ,
-+	ADXL355_ODR_125HZ,
-+	ADXL355_ODR_62_5HZ,
-+	ADXL355_ODR_31_25HZ,
-+	ADXL355_ODR_15_625HZ,
-+	ADXL355_ODR_7_813HZ,
-+	ADXL355_ODR_3_906HZ
-+};
-+
-+enum adxl355_hpf_3db {
-+	ADXL355_HPF_OFF,
-+	ADXL355_HPF_24_7,
-+	ADXL355_HPF_6_2084,
-+	ADXL355_HPF_1_5545,
-+	ADXL355_HPF_0_3862,
-+	ADXL355_HPF_0_0954,
-+	ADXL355_HPF_0_0238
-+};
-+
-+static const int adxl355_odr_table[][2] = {
-+	[0] = {4000, 0},
-+	[1] = {2000, 0},
-+	[2] = {1000, 0},
-+	[3] = {500, 0},
-+	[4] = {250, 0},
-+	[5] = {125, 0},
-+	[6] = {62, 500000},
-+	[7] = {31, 250000},
-+	[8] = {15, 625000},
-+	[9] = {7, 813000},
-+	[10] = {3, 906000}
-+};
-+
-+static const int adxl355_hpf_3db_multipliers[] = {
-+	0,
-+	247000,
-+	62084,
-+	15545,
-+	3862,
-+	954,
-+	238
-+};
-+
-+struct adxl355_data {
-+	struct regmap *regmap;
-+	struct device *dev;
-+	struct mutex lock; /* lock to protect op_mode */
-+	enum adxl355_op_mode op_mode;
-+	enum adxl355_odr odr;
-+	enum adxl355_hpf_3db hpf_3db;
-+	int x_calibbias;
-+	int y_calibbias;
-+	int z_calibbias;
-+	int adxl355_hpf_3db_table[7][2];
-+	u8 transf_buf[3] ____cacheline_aligned;
-+};
-+
-+static int adxl355_set_op_mode(struct adxl355_data *data,
-+			       enum adxl355_op_mode op_mode)
-+{
-+	int ret;
-+
-+	if (data->op_mode == op_mode)
-+		return 0;
-+
-+	ret = regmap_update_bits(data->regmap, ADXL355_POWER_CTL,
-+				 ADXL355_POWER_CTL_MODE_MSK, op_mode);
-+	if (ret < 0)
-+		return ret;
-+
-+	data->op_mode = op_mode;
-+
-+	return ret;
-+}
-+
-+static void adxl355_fill_3db_frequency_table(struct adxl355_data *data)
-+{
-+	int i;
-+	u64 rem;
-+	u64 div;
-+	u32 multiplier;
-+	u64 odr = mul_u64_u32_shr(adxl355_odr_table[data->odr][0], 1000000, 0) +
-+					adxl355_odr_table[data->odr][1];
-+
-+	for (i = 0; i < ARRAY_SIZE(adxl355_hpf_3db_multipliers); i++) {
-+		multiplier = adxl355_hpf_3db_multipliers[i];
-+		div = div64_u64_rem(mul_u64_u32_shr(odr, multiplier, 0),
-+				    100000000000000UL, &rem);
-+
-+		data->adxl355_hpf_3db_table[i][0] = div;
-+		data->adxl355_hpf_3db_table[i][1] = div_u64(rem, 100000000);
-+	}
-+}
-+
-+static int adxl355_setup(struct adxl355_data *data)
-+{
-+	unsigned int regval;
-+	int ret;
-+
-+	ret = regmap_read(data->regmap, ADXL355_DEVID_AD, &regval);
-+	if (ret)
-+		return ret;
-+
-+	if (regval != ADXL355_DEVID_AD_VAL) {
-+		dev_err(data->dev, "Invalid ADI ID 0x%02x\n", regval);
-+		return -ENODEV;
-+	}
-+
-+	ret = regmap_read(data->regmap, ADXL355_DEVID_MST, &regval);
-+	if (ret)
-+		return ret;
-+
-+	if (regval != ADXL355_DEVID_MST_VAL) {
-+		dev_err(data->dev, "Invalid MEMS ID 0x%02x\n", regval);
-+		return -ENODEV;
-+	}
-+
-+	ret = regmap_read(data->regmap, ADXL355_PARTID, &regval);
-+	if (ret)
-+		return ret;
-+
-+	if (regval != ADXL355_PARTID_VAL) {
-+		dev_err(data->dev, "Invalid DEV ID 0x%02x\n", regval);
-+		return -ENODEV;
-+	}
-+
-+	/*
-+	 * Perform a software reset to make sure the device is in a consistent
-+	 * state after start up.
-+	 */
-+	ret = regmap_write(data->regmap, ADXL355_RESET, ADXL355_RESET_CODE);
-+	if (ret)
-+		return ret;
-+
-+	adxl355_fill_3db_frequency_table(data);
-+
-+	return adxl355_set_op_mode(data, ADXL355_MEASUREMENT);
-+}
-+
-+static int adxl355_get_temp_data(struct adxl355_data *data, u8 addr)
-+{
-+	return regmap_bulk_read(data->regmap, addr, data->transf_buf, 2);
-+}
-+
-+static int adxl355_read_axis(struct adxl355_data *data, u8 addr)
-+{
-+	int ret;
-+
-+	ret = regmap_bulk_read(data->regmap, addr, data->transf_buf, 3);
-+	if (ret < 0)
-+		return ret;
-+	ret = (data->transf_buf[0] << 16) + (data->transf_buf[1] << 8)
-+					  + (data->transf_buf[2] >> 4);
-+
-+	return ret;
-+}
-+
-+static int adxl355_find_match(const int (*freq_tbl)[2], const int n,
-+			      const int val, const int val2)
-+{
-+	int i;
-+
-+	for (i = 0; i < n; i++) {
-+		if (freq_tbl[i][0] == val && freq_tbl[i][1] == val2)
-+			return i;
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static int adxl355_set_odr(struct adxl355_data *data,
-+			   enum adxl355_odr odr)
-+{
-+	int ret = 0;
-+
-+	mutex_lock(&data->lock);
-+
-+	if (data->odr == odr)
-+		goto out_unlock;
-+
-+	ret = adxl355_set_op_mode(data, ADXL355_STANDBY);
-+	if (ret < 0)
-+		goto out_unlock;
-+
-+	ret = regmap_update_bits(data->regmap, ADXL355_FILTER,
-+				 ADXL355_FILTER_ODR_MSK,
-+				 FIELD_PREP(ADXL355_FILTER_ODR_MSK, odr));
-+	if (ret < 0)
-+		goto out_unlock;
-+
-+	data->odr = odr;
-+	adxl355_fill_3db_frequency_table(data);
-+
-+out_unlock:
-+	ret = adxl355_set_op_mode(data, ADXL355_MEASUREMENT);
-+	mutex_unlock(&data->lock);
-+	return ret;
-+}
-+
-+static int adxl355_set_hpf_3db(struct adxl355_data *data,
-+			       enum adxl355_hpf_3db hpf)
-+{
-+	int ret = 0;
-+
-+	mutex_lock(&data->lock);
-+
-+	if (data->hpf_3db == hpf)
-+		goto out_unlock;
-+
-+	ret = adxl355_set_op_mode(data, ADXL355_STANDBY);
-+	if (ret < 0)
-+		goto out_unlock;
-+
-+	ret = regmap_update_bits(data->regmap, ADXL355_FILTER,
-+				 ADXL355_FILTER_HPF_MSK,
-+				 FIELD_PREP(ADXL355_FILTER_HPF_MSK, hpf));
-+	if (!ret)
-+		data->hpf_3db = hpf;
-+
-+out_unlock:
-+	ret = adxl355_set_op_mode(data, ADXL355_MEASUREMENT);
-+	mutex_unlock(&data->lock);
-+	return ret;
-+}
-+
-+static int adxl355_set_calibbias(struct adxl355_data *data,
-+				 int channel2, int calibbias)
-+{
-+	int ret = 0;
-+
-+	data->transf_buf[0] = (calibbias >> 8) & 0xFF;
-+	data->transf_buf[1] = calibbias & 0xFF;
-+	data->transf_buf[2] = 0;
-+
-+	mutex_lock(&data->lock);
-+
-+	ret = adxl355_set_op_mode(data, ADXL355_STANDBY);
-+	if (ret < 0)
-+		goto out_unlock;
-+
-+	switch (channel2) {
-+	case IIO_MOD_X:
-+		ret = regmap_bulk_write(data->regmap, ADXL355_OFFSET_X_H,
-+					data->transf_buf, 2);
-+		if (ret < 0)
-+			goto out_unlock;
-+		data->x_calibbias = calibbias;
-+		break;
-+	case IIO_MOD_Y:
-+		ret = regmap_bulk_write(data->regmap, ADXL355_OFFSET_Y_H,
-+					data->transf_buf, 2);
-+		if (ret < 0)
-+			goto out_unlock;
-+		data->y_calibbias = calibbias;
-+		break;
-+	case IIO_MOD_Z:
-+		ret = regmap_bulk_write(data->regmap, ADXL355_OFFSET_Z_H,
-+					data->transf_buf, 2);
-+		if (ret < 0)
-+			goto out_unlock;
-+		data->z_calibbias = calibbias;
-+		break;
-+	default:
-+		ret = -EINVAL;
-+		break;
-+	}
-+
-+out_unlock:
-+	ret = adxl355_set_op_mode(data, ADXL355_MEASUREMENT);
-+	mutex_unlock(&data->lock);
-+	return ret;
-+}
-+
-+static int adxl355_read_raw(struct iio_dev *indio_dev,
-+			    struct iio_chan_spec const *chan,
-+			    int *val, int *val2, long mask)
-+{
-+	struct adxl355_data *data = iio_priv(indio_dev);
-+	int ret;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		switch (chan->type) {
-+		case IIO_TEMP:
-+			ret = adxl355_get_temp_data(data, chan->address);
-+			if (ret < 0)
-+				return ret;
-+			*val = (data->transf_buf[0] << 8) + data->transf_buf[1];
-+
-+			return IIO_VAL_INT;
-+		case IIO_ACCEL:
-+			ret = adxl355_read_axis(data, chan->address);
-+			if (ret < 0)
-+				return ret;
-+			*val = sign_extend32(ret >> (chan->scan_type.shift),
-+					     chan->scan_type.realbits - 1);
-+			return IIO_VAL_INT;
-+		default:
-+			return -EINVAL;
-+		}
-+
-+	case IIO_CHAN_INFO_SCALE:
-+		switch (chan->type) {
-+		case IIO_TEMP:
-+			*val = TEMP_SCALE_VAL;
-+			*val2 = TEMP_SCALE_VAL2;
-+			return IIO_VAL_INT_PLUS_MICRO;
-+		case IIO_ACCEL:
-+			*val = 0;
-+			*val2 = ADXL355_NSCALE;
-+			return IIO_VAL_INT_PLUS_NANO;
-+		default:
-+			return -EINVAL;
-+		}
-+	case IIO_CHAN_INFO_OFFSET:
-+		*val = TEMP_OFFSET_VAL;
-+		*val2 = TEMP_OFFSET_VAL2;
-+		return IIO_VAL_INT_PLUS_MICRO;
-+	case IIO_CHAN_INFO_CALIBBIAS:
-+		if (chan->channel2 == IIO_MOD_X)
-+			*val = data->x_calibbias;
-+		else if (chan->channel2 == IIO_MOD_Y)
-+			*val = data->y_calibbias;
-+		else
-+			*val = data->z_calibbias;
-+		*val = sign_extend32(*val, 15);
-+		return IIO_VAL_INT;
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		*val = adxl355_odr_table[data->odr][0];
-+		*val2 = adxl355_odr_table[data->odr][1];
-+		return IIO_VAL_INT_PLUS_MICRO;
-+	case IIO_CHAN_INFO_HIGH_PASS_FILTER_3DB_FREQUENCY:
-+		*val = data->adxl355_hpf_3db_table[data->hpf_3db][0];
-+		*val2 = data->adxl355_hpf_3db_table[data->hpf_3db][1];
-+		return IIO_VAL_INT_PLUS_MICRO;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int adxl355_write_raw(struct iio_dev *indio_dev,
-+			     struct iio_chan_spec const *chan,
-+			     int val, int val2, long mask)
-+{
-+	struct adxl355_data *data = iio_priv(indio_dev);
-+	int odr_idx, hpf_idx, calibbias;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		odr_idx = adxl355_find_match(adxl355_odr_table,
-+					     ARRAY_SIZE(adxl355_odr_table),
-+					     val, val2);
-+		if (odr_idx < 0)
-+			return odr_idx;
-+
-+		return adxl355_set_odr(data, odr_idx);
-+	case IIO_CHAN_INFO_HIGH_PASS_FILTER_3DB_FREQUENCY:
-+		hpf_idx = adxl355_find_match(data->adxl355_hpf_3db_table,
-+					ARRAY_SIZE(data->adxl355_hpf_3db_table),
-+					     val, val2);
-+		if (hpf_idx < 0)
-+			return hpf_idx;
-+
-+		return adxl355_set_hpf_3db(data, hpf_idx);
-+	case IIO_CHAN_INFO_CALIBBIAS:
-+		calibbias = clamp_t(int, val, S16_MIN, S16_MAX);
-+
-+		return adxl355_set_calibbias(data, chan->channel2, calibbias);
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int adxl355_read_avail(struct iio_dev *indio_dev,
-+			      struct iio_chan_spec const *chan,
-+			      const int **vals, int *type, int *length,
-+			      long mask)
-+{
-+	struct adxl355_data *data = iio_priv(indio_dev);
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		*vals = (const int *)adxl355_odr_table;
-+		*type = IIO_VAL_INT_PLUS_MICRO;
-+		/* Values are stored in a 2D matrix */
-+		*length = ARRAY_SIZE(adxl355_odr_table) * 2;
-+
-+		return IIO_AVAIL_LIST;
-+	case IIO_CHAN_INFO_HIGH_PASS_FILTER_3DB_FREQUENCY:
-+		*vals = (const int *)(data->adxl355_hpf_3db_table);
-+		*type = IIO_VAL_INT_PLUS_MICRO;
-+		/* Values are stored in a 2D matrix */
-+		*length = ARRAY_SIZE(data->adxl355_hpf_3db_table) * 2;
-+
-+		return IIO_AVAIL_LIST;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static const unsigned long adxl355_avail_scan_masks[] = {
-+	GENMASK(3, 0),
-+	0
-+};
-+
-+static const struct iio_info adxl355_info = {
-+	.read_raw	= adxl355_read_raw,
-+	.write_raw	= adxl355_write_raw,
-+	.read_avail	= &adxl355_read_avail
-+};
-+
-+#define ADXL355_ACCEL_CHANNEL(index, reg, axis) {			\
-+	.type = IIO_ACCEL,						\
-+	.address = reg,							\
-+	.modified = 1,							\
-+	.channel2 = IIO_MOD_##axis,					\
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |			\
-+			      BIT(IIO_CHAN_INFO_CALIBBIAS),		\
-+	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) |		\
-+				    BIT(IIO_CHAN_INFO_SAMP_FREQ) |	\
-+		BIT(IIO_CHAN_INFO_HIGH_PASS_FILTER_3DB_FREQUENCY),	\
-+	.info_mask_shared_by_type_available =				\
-+		BIT(IIO_CHAN_INFO_SAMP_FREQ) |				\
-+		BIT(IIO_CHAN_INFO_HIGH_PASS_FILTER_3DB_FREQUENCY),	\
-+	.scan_index = index,						\
-+	.scan_type = {							\
-+		.sign = 's',						\
-+		.realbits = 20,						\
-+		.storagebits = 32,					\
-+		.shift = 4,						\
-+		.endianness = IIO_BE,					\
-+	}								\
-+}
-+
-+static const struct iio_chan_spec adxl355_channels[] = {
-+	ADXL355_ACCEL_CHANNEL(0, ADXL355_XDATA3, X),
-+	ADXL355_ACCEL_CHANNEL(1, ADXL355_YDATA3, Y),
-+	ADXL355_ACCEL_CHANNEL(2, ADXL355_ZDATA3, Z),
-+	{
-+		.type = IIO_TEMP,
-+		.address = ADXL355_TEMP2,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+				      BIT(IIO_CHAN_INFO_SCALE) |
-+				      BIT(IIO_CHAN_INFO_OFFSET),
-+		.scan_index = 3,
-+		.scan_type = {
-+			.sign = 's',
-+			.realbits = 12,
-+			.storagebits = 16,
-+			.endianness = IIO_BE,
-+		},
-+	}
-+};
-+
-+int adxl355_core_probe(struct device *dev, struct regmap *regmap,
-+		       const char *name)
-+{
-+	struct adxl355_data *data;
-+	struct iio_dev *indio_dev;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	data = iio_priv(indio_dev);
-+	data->regmap = regmap;
-+	data->dev = dev;
-+	data->op_mode = ADXL355_STANDBY;
-+	mutex_init(&data->lock);
-+
-+	indio_dev->name = name;
-+	indio_dev->info = &adxl355_info;
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+	indio_dev->channels = adxl355_channels;
-+	indio_dev->num_channels = ARRAY_SIZE(adxl355_channels);
-+	indio_dev->available_scan_masks = adxl355_avail_scan_masks;
-+
-+	ret = adxl355_setup(data);
-+	if (ret < 0) {
-+		dev_err(dev, "ADXL355 setup failed\n");
-+		return ret;
-+	}
-+
-+	return devm_iio_device_register(dev, indio_dev);
-+}
-+EXPORT_SYMBOL_GPL(adxl355_core_probe);
-+
-+MODULE_AUTHOR("Puranjay Mohan <puranjay12@gmail.com>");
-+MODULE_DESCRIPTION("ADXL355 3-Axis Digital Accelerometer core driver");
-+MODULE_LICENSE("GPL v2");
-diff --git a/drivers/iio/accel/adxl355_i2c.c b/drivers/iio/accel/adxl355_i2c.c
-new file mode 100644
-index 000000000..6b84d8df2
---- /dev/null
-+++ b/drivers/iio/accel/adxl355_i2c.c
-@@ -0,0 +1,63 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * ADXL355 3-Axis Digital Accelerometer I2C driver
-+ *
-+ * Copyright (c) 2021 Puranjay Mohan <puranjay12@gmail.com>
-+ */
-+
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/regmap.h>
-+
-+#include "adxl355.h"
-+
-+static const struct regmap_config adxl355_i2c_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = 0x2F,
-+	.rd_table = &adxl355_readable_regs_tbl,
-+	.wr_table = &adxl355_writeable_regs_tbl
-+};
-+
-+static int adxl355_i2c_probe(struct i2c_client *client)
-+{
-+	struct regmap *regmap;
-+
-+	regmap = devm_regmap_init_i2c(client, &adxl355_i2c_regmap_config);
-+	if (IS_ERR(regmap)) {
-+		dev_err(&client->dev, "Error initializing i2c regmap: %ld\n",
-+			PTR_ERR(regmap));
-+		return PTR_ERR(regmap);
-+	}
-+
-+	return adxl355_core_probe(&client->dev, regmap, client->name);
-+}
-+
-+static const struct i2c_device_id adxl355_i2c_id[] = {
-+	{ "adxl355", 0 },
-+	{ }
-+};
-+
-+MODULE_DEVICE_TABLE(i2c, adxl355_i2c_id);
-+
-+static const struct of_device_id adxl355_of_match[] = {
-+	{ .compatible = "adi,adxl355" },
-+	{ }
-+};
-+
-+MODULE_DEVICE_TABLE(of, adxl355_of_match);
-+
-+static struct i2c_driver adxl355_i2c_driver = {
-+	.driver = {
-+		.name	= "adxl355_i2c",
-+		.of_match_table = adxl355_of_match,
-+	},
-+	.probe_new	= adxl355_i2c_probe,
-+	.id_table	= adxl355_i2c_id,
-+};
-+
-+module_i2c_driver(adxl355_i2c_driver);
-+
-+MODULE_AUTHOR("Puranjay Mohan <puranjay12@gmail.com>");
-+MODULE_DESCRIPTION("ADXL355 3-Axis Digital Accelerometer I2C driver");
-+MODULE_LICENSE("GPL v2");
-diff --git a/drivers/iio/accel/adxl355_spi.c b/drivers/iio/accel/adxl355_spi.c
-new file mode 100644
-index 000000000..108d1b308
---- /dev/null
-+++ b/drivers/iio/accel/adxl355_spi.c
-@@ -0,0 +1,66 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * ADXL355 3-Axis Digital Accelerometer SPI driver
-+ *
-+ * Copyright (c) 2021 Puranjay Mohan <puranjay12@gmail.com>
-+ */
-+
-+#include <linux/module.h>
-+#include <linux/regmap.h>
-+#include <linux/spi/spi.h>
-+
-+#include "adxl355.h"
-+
-+static const struct regmap_config adxl355_spi_regmap_config = {
-+	.reg_bits = 7,
-+	.pad_bits = 1,
-+	.val_bits = 8,
-+	.read_flag_mask = BIT(0),
-+	.max_register = 0x2F,
-+	.rd_table = &adxl355_readable_regs_tbl,
-+	.wr_table = &adxl355_writeable_regs_tbl
-+};
-+
-+static int adxl355_spi_probe(struct spi_device *spi)
-+{
-+	const struct spi_device_id *id = spi_get_device_id(spi);
-+	struct regmap *regmap;
-+
-+	regmap = devm_regmap_init_spi(spi, &adxl355_spi_regmap_config);
-+	if (IS_ERR(regmap)) {
-+		dev_err(&spi->dev, "Error initializing spi regmap: %ld\n",
-+			PTR_ERR(regmap));
-+		return PTR_ERR(regmap);
-+	}
-+
-+	return adxl355_core_probe(&spi->dev, regmap, id->name);
-+}
-+
-+static const struct spi_device_id adxl355_spi_id[] = {
-+	{ "adxl355", 0 },
-+	{ }
-+};
-+
-+MODULE_DEVICE_TABLE(spi, adxl355_spi_id);
-+
-+static const struct of_device_id adxl355_of_match[] = {
-+	{ .compatible = "adi,adxl355" },
-+	{ }
-+};
-+
-+MODULE_DEVICE_TABLE(of, adxl355_of_match);
-+
-+static struct spi_driver adxl355_spi_driver = {
-+	.driver = {
-+		.name	= "adxl355_spi",
-+		.of_match_table = adxl355_of_match,
-+	},
-+	.probe		= adxl355_spi_probe,
-+	.id_table	= adxl355_spi_id,
-+};
-+
-+module_spi_driver(adxl355_spi_driver);
-+
-+MODULE_AUTHOR("Puranjay Mohan <puranjay12@gmail.com>");
-+MODULE_DESCRIPTION("ADXL355 3-Axis Digital Accelerometer SPI driver");
-+MODULE_LICENSE("GPL v2");
+This patch series extends the driver to 4-digit 7-segment and quad
+14-segment alphanumeric displays, allowing the user to display and
+scroll text messages.
+
+List of patches:
+  - Patch 1 provides font data for displaying ASCII characters on
+    14-segment displays,
+  - Patch 2 updates the HT16K33 DT bindings for segment displays,
+  - Patches 3-5 contain a bug fix and small improvements for the
+    Imagination Technologies ASCII LCD Display driver,
+  - Patch 6 extracts the character line display core support from the
+    Imagination Technologies ASCII LCD Display driver, for reuse,
+  - Patches 7-8 contain cleanups and improvements for the character line
+    display core driver,
+  - Patches 9-16 contain a bug fix, cleanups and improvements for the
+    HT16K33 driver, to prepare for segment display support,
+  - Patch 17 adds support for 7/14-segment displays to the HT16K33
+    driver,
+  - Patch 18 updates the HT16K33 DT bindings to document an LED subnode,
+  - Patch 19 adds segment display LED support to the HT16K33 driver,
+    to make use of hardware blinking, and to expose display color.
+
+Changes compared to v3[1]:
+  - Combine compatible values for 7/14 segment displays into an enum,
+  - Add Reviewed-by,
+  - Add missing select LEDS_CLASS.
+
+Changes compared to v2[2]:
+  - Drop color property from display node,
+  - Use compat_only_sysfs_link_entry_to_kobj() instead of cooking our
+    own helper on top of kernfs_create_link(),
+  - Use "err" instead of "error" to be consistent with existing driver
+    naming style,
+  - Pass "dev" instead of "client" to ht16k33_fbdev_probe() and
+    ht16k33_seg_probe(),
+  - Drop local variable "node",
+  - Remove unneeded inclusion of <linux/leds.h> and <linux/of_device.h>,
+  - Document LED subnode,
+  - Remove unneeded C++ comment,
+  - Make the creation of the LED device dependent on the presence of the
+    "led" subnode in DT, so it can be used in dot-matrix mode too.
+  - Use led_init_data() and devm_led_classdev_register_ext() to retrieve
+    all LED properties from DT, instead of manual LED name construction
+    based on just the "color" property.
+
+Changes compared to v1[3]:
+  - Fix type of color to uint32,
+  - "refresh-rate-hz" is still required for dot-matrix displays.
+  - Move "select LINEDISP" for HT16K33 symbol to correct patch,
+  - Add backwards compatibility "message" symlink to img-ascii-lcd,
+  - Connect backlight to fbdev in ht16k33 dot-matrix mode,
+  - Set "err = -EINVAL" in switch() case that cannot happen,
+  - Use "auxdisplay" instead of DRIVER_NAME in LED name.
+
+This series has been tested using an Adafruit 0.54" Quad Alphanumeric
+Red FeatherWing Display, connected to an OrangeCrab ECP5 FPGA board
+running a 64 MHz VexRiscv RISC-V softcore.
+7-segment display support is based purely on schematics, and has not
+been tested on actual hardware.  The changes to img-ascii-lcd.c are also
+untested, due to lack of hardware.
+
+Thanks!
+
+[1] "[PATCH v3 00/19] auxdisplay: ht16k33: Add character display support"
+    https://lore.kernel.org/r/20210714151130.2531831-1-geert@linux-m68k.org/
+[2] "[PATCH v2 00/18] auxdisplay: ht16k33: Add character display support"
+    https://lore.kernel.org/r/20210625125902.1162428-1-geert@linux-m68k.org/
+[3] "[PATCH 00/17] auxdisplay: ht16k33: Add character display support"
+    https://lore.kernel.org/r/20210322144848.1065067-1-geert@linux-m68k.org/
+
+
+Geert Uytterhoeven (19):
+  uapi: Add <linux/map_to_14segment.h>
+  dt-bindings: auxdisplay: ht16k33: Document Adafruit segment displays
+  auxdisplay: img-ascii-lcd: Fix lock-up when displaying empty string
+  auxdisplay: img-ascii-lcd: Add helper variable dev
+  auxdisplay: img-ascii-lcd: Convert device attribute to sysfs_emit()
+  auxdisplay: Extract character line display core support
+  auxdisplay: linedisp: Use kmemdup_nul() helper
+  auxdisplay: linedisp: Add support for changing scroll rate
+  auxdisplay: ht16k33: Connect backlight to fbdev
+  auxdisplay: ht16k33: Use HT16K33_FB_SIZE in ht16k33_initialize()
+  auxdisplay: ht16k33: Remove unneeded error check in keypad probe()
+  auxdisplay: ht16k33: Convert to simple i2c probe function
+  auxdisplay: ht16k33: Add helper variable dev
+  auxdisplay: ht16k33: Move delayed work
+  auxdisplay: ht16k33: Extract ht16k33_brightness_set()
+  auxdisplay: ht16k33: Extract frame buffer probing
+  auxdisplay: ht16k33: Add support for segment displays
+  dt-bindings: auxdisplay: ht16k33: Document LED subnode
+  auxdisplay: ht16k33: Add LED support
+
+ .../bindings/auxdisplay/holtek,ht16k33.yaml   |  31 +-
+ drivers/auxdisplay/Kconfig                    |   9 +
+ drivers/auxdisplay/Makefile                   |   1 +
+ drivers/auxdisplay/ht16k33.c                  | 473 ++++++++++++++----
+ drivers/auxdisplay/img-ascii-lcd.c            | 205 ++------
+ drivers/auxdisplay/line-display.c             | 261 ++++++++++
+ drivers/auxdisplay/line-display.h             |  43 ++
+ include/uapi/linux/map_to_14segment.h         | 239 +++++++++
+ 8 files changed, 995 insertions(+), 267 deletions(-)
+ create mode 100644 drivers/auxdisplay/line-display.c
+ create mode 100644 drivers/auxdisplay/line-display.h
+ create mode 100644 include/uapi/linux/map_to_14segment.h
+
 -- 
-2.30.1
+2.25.1
 
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
