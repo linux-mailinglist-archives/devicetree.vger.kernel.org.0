@@ -2,53 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 190CC3D6AFA
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 02:21:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D71903D6B2C
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 02:41:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234193AbhGZXlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 19:41:02 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57864 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233770AbhGZXlC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Jul 2021 19:41:02 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E84FF60C51;
-        Tue, 27 Jul 2021 00:21:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627345290;
-        bh=jx7GrUjcBVT4+QbmqnGbi6IvhiI5CLtmhVggNmKVUU8=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=bN0owBW/W8+hcAOGEtiAIhijoEATVuN/+t1MSymdEmMpYUikvHigO6eNG1xyNFqzr
-         q2yWLXLPBCxO+Fh7xEeZg9QE3MaDq4ufdqibSsrJprqDbXzDhfqmTMGpf0rHkwACBX
-         DTs509F7RRObj8L/yjmGXM1vBwSqVeq8wZfdCy0xJZiN5pc7IcYsf2cszDFGHrt5Oa
-         XUoWvKpiPubRdKaSZMqigNwG5KDsYYjGdROgUD2sPKFUpLK7ErDd20pTs/T0R8Vo5Q
-         dTVb7KheJhWzDl7J74IT2ja6moU4gtJJbTu7jLYgi0oST45+BMODzRf/quC4lEslS7
-         EvcpJ6IxcIUpw==
-Content-Type: text/plain; charset="utf-8"
+        id S234410AbhG0AA5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 20:00:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57830 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234366AbhG0AA4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 20:00:56 -0400
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94F03C061765
+        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 17:41:23 -0700 (PDT)
+Received: by mail-pl1-x629.google.com with SMTP id i1so13752937plr.9
+        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 17:41:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0jFCOGwVLro74l3AmLxyBCChPeG0hsgLLLHqSxGYC8Q=;
+        b=j7ylPVAQw+lTn6ziL/mjQqe0zt1970y8zj8Ky2J8/U3Mm/6MbgYAdeab5b1tgow/Z9
+         PutsnDEE+8JERJOP5SZv6R6zO41Yo5ubUF/51vLXDtWVpHOVBccGkkfte7LEi6V3VPgo
+         qVR2ddrgwtyysqZpJ46+xhYYsyOC4HPRvPDxE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0jFCOGwVLro74l3AmLxyBCChPeG0hsgLLLHqSxGYC8Q=;
+        b=Npk3ocuyoBDlL0S4VpPF5Hgvgyx29oYVik/3EVlsbr+ryYWNfi6UI5FOv/tgw6E5f3
+         ijis230RcBz1eXzWpm4cUhQ16yck9s81AX6kYVg1D6NJAxr/yKe5WBeB8KgtD33aI+h+
+         F2qtooDJbHUD1+QYGGd+fLTW3x+0A8TtPexwsAtdJv7C3Gl/uaLs8QdDOt/XXihAnusS
+         WbywORjOgLHk+G/Bb1/GqH5MbnyIs/V3dm+j16hP9lBQf6qzOAOoipONZG0O9FcXWWjH
+         9obqVKH9suV/vocFkYNgnarOZiPihJ1CWfZYnW8YHdp5EbwE6mitjDKOk2m8pTuFh6jX
+         VzsA==
+X-Gm-Message-State: AOAM531T9NEZGrkWM218XIgY6+OTAkjx99hUxsFCoV2hxMM3qQIkzMgo
+        sAMawTKyLaRThx++8918CylSNg==
+X-Google-Smtp-Source: ABdhPJxSujWkxvebgTf191AqcD9sTAO6N5nM6PwU/6B5IuN0Uwt2UPomKNnQaijzM9rdXKMVE7fbyA==
+X-Received: by 2002:a17:90b:4ac4:: with SMTP id mh4mr1597666pjb.48.1627346483049;
+        Mon, 26 Jul 2021 17:41:23 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:9c3d:270c:6be9:9c33])
+        by smtp.gmail.com with UTF8SMTPSA id y8sm1278565pfe.162.2021.07.26.17.41.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Jul 2021 17:41:22 -0700 (PDT)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>
+Cc:     Bastien Nocera <hadess@hadess.net>,
+        Peter Chen <peter.chen@kernel.org>, devicetree@vger.kernel.org,
+        Michal Simek <michal.simek@xilinx.com>,
+        linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-usb@vger.kernel.org,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Al Cooper <alcooperx@gmail.com>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Andy Gross <agross@kernel.org>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Nishanth Menon <nm@ti.com>,
+        Pawel Laszczak <pawell@cadence.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org
+Subject: [PATCH v15 0/6] usb: misc: Add onboard_usb_hub driver
+Date:   Mon, 26 Jul 2021 17:41:12 -0700
+Message-Id: <20210727004118.2583774-1-mka@chromium.org>
+X-Mailer: git-send-email 2.32.0.432.gabb21c7263-goog
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210723022543.4095-4-jiaxun.yang@flygoat.com>
-References: <20210723022543.4095-1-jiaxun.yang@flygoat.com> <20210723022543.4095-4-jiaxun.yang@flygoat.com>
-Subject: Re: [PATCH v4 3/9] clk: pistachio: Make it selectable for generic MIPS kernel
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     tsbogend@alpha.franken.de, mturquette@baylibre.com,
-        daniel.lezcano@linaro.org, linus.walleij@linaro.org,
-        vkoul@kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>
-To:     Jiaxun Yang <jiaxun.yang@flygoat.com>, linux-mips@vger.kernel.org
-Date:   Mon, 26 Jul 2021 17:21:28 -0700
-Message-ID: <162734528861.2368309.16849274181317725077@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Jiaxun Yang (2021-07-22 19:25:37)
-> We're moving pistachio to generic MIPS kernel. The clk driver
-> should be avilable to the generic MIPS kernel.
->=20
-> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
-> ---
+This series adds:
+- the onboard_usb_hub_driver
+- glue in the xhci-plat driver to create and destroy the
+  onboard_usb_hub platform devices if needed
+- a device tree binding for the Realtek RTS5411 USB hub controller
+- device tree changes that add RTS5411 entries for the QCA SC7180
+  based boards trogdor and lazor
+- a couple of stubs for platform device functions to avoid
+  unresolved symbols with certain kernel configs
 
-Acked-by: Stephen Boyd <sboyd@kernel.org>
+The main issue the driver addresses is that a USB hub needs to be
+powered before it can be discovered. For discrete onboard hubs (an
+example for such a hub is the Realtek RTS5411) this is often solved
+by supplying the hub with an 'always-on' regulator, which is kind
+of a hack. Some onboard hubs may require further initialization
+steps, like changing the state of a GPIO or enabling a clock, which
+requires even more hacks. This driver creates a platform device
+representing the hub which performs the necessary initialization.
+Currently it only supports switching on a single regulator, support
+for multiple regulators or other actions can be added as needed.
+Different initialization sequences can be supported based on the
+compatible string.
+
+Besides performing the initialization the driver can be configured
+to power the hub off during system suspend. This can help to extend
+battery life on battery powered devices which have no requirements
+to keep the hub powered during suspend. The driver can also be
+configured to leave the hub powered when a wakeup capable USB device
+is connected when suspending, and power it off otherwise.
+
+Changes in v15:
+- adjusted dependencies of USB_DWC3_CORE to make sure it can only
+  be enabled when at least one of USB_DWC3_HOST, USB_DWC3_GADGET
+  or USB_DWC3_DUAL_ROLE is selectable
+
+Changes in v14:
+- rebased on top of v5.14-rc1
+- dropped DT binding patch which landed in v5.13
+
+Changes in v13:
+- added patch "usb: Specify dependency on USB_XHCI_PLATFORM with
+  'depends on'" to the series to avoid Kconfig conflicts
+- added patch "arm64: defconfig: Explicitly enable USB_XHCI_PLATFORM"
+  to the series to keep effective defconfig unchanged
+
+Changes in v12:
+- onboard_hub driver: use IS_ENABLED(CONFIG_USB_ONBOARD_HUB_MODULE)
+  in onboard_hub.h to also check for the driver built as module
+- onboard_hub_driver: include onboard_hub.h again to make sure there
+  are prototype declarations for the public functions
+
+Changes in v11:
+- support multiple onboard hubs connected to the same parent
+- don't include ‘onboard_hub.h’ from the onboard hub driver
+
+Changes in v10:
+- always use of_is_onboard_usb_hub() stub unless ONBOARD_USB_HUB=y/m
+- keep 'regulator-boot-on' property for pp3300_hub
+
+Changes in v9:
+- added dependency on ONBOARD_USB_HUB (or !!ONBOARD_USB_HUB) to
+  USB_PLATFORM_XHCI
+
+Changes in v7:
+- updated DT binding
+- series rebased on qcom/arm64-for-5.13
+
+Changes in v6:
+- updated summary
+
+Changes in v5:
+- cover letter added
+
+Matthias Kaehlcke (6):
+  usb: misc: Add onboard_usb_hub driver
+  of/platform: Add stubs for of_platform_device_create/destroy()
+  arm64: defconfig: Explicitly enable USB_XHCI_PLATFORM
+  usb: Specify dependencies on USB_XHCI_PLATFORM with 'depends on'
+  usb: host: xhci-plat: Create platform device for onboard hubs in
+    probe()
+  arm64: dts: qcom: sc7180-trogdor: Add nodes for onboard USB hub
+
+ .../sysfs-bus-platform-onboard-usb-hub        |   8 +
+ MAINTAINERS                                   |   7 +
+ .../boot/dts/qcom/sc7180-trogdor-lazor-r0.dts |  19 +-
+ .../boot/dts/qcom/sc7180-trogdor-lazor-r1.dts |  12 +-
+ .../arm64/boot/dts/qcom/sc7180-trogdor-r1.dts |  19 +-
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  |  19 +-
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/usb/cdns3/Kconfig                     |   2 +-
+ drivers/usb/dwc3/Kconfig                      |   5 +-
+ drivers/usb/host/Kconfig                      |   5 +-
+ drivers/usb/host/xhci-plat.c                  |   6 +
+ drivers/usb/host/xhci.h                       |   2 +
+ drivers/usb/misc/Kconfig                      |  17 +
+ drivers/usb/misc/Makefile                     |   1 +
+ drivers/usb/misc/onboard_usb_hub.c            | 497 ++++++++++++++++++
+ include/linux/of_platform.h                   |  22 +-
+ include/linux/usb/onboard_hub.h               |  18 +
+ 17 files changed, 621 insertions(+), 39 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-platform-onboard-usb-hub
+ create mode 100644 drivers/usb/misc/onboard_usb_hub.c
+ create mode 100644 include/linux/usb/onboard_hub.h
+
+-- 
+2.32.0.432.gabb21c7263-goog
+
