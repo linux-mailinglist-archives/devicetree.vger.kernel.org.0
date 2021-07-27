@@ -2,62 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AD0F3D826A
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 00:19:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EF773D8329
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 00:41:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232289AbhG0WTi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jul 2021 18:19:38 -0400
-Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:51201 "EHLO
-        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231706AbhG0WTh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Jul 2021 18:19:37 -0400
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 27 Jul 2021 15:19:37 -0700
-X-QCInternal: smtphost
-Received: from hu-gurus-sd.qualcomm.com (HELO hu-devc-sd-c.qualcomm.com) ([10.56.230.15])
-  by ironmsg01-sd.qualcomm.com with ESMTP; 27 Jul 2021 15:19:36 -0700
-Received: by hu-devc-sd-c.qualcomm.com (Postfix, from userid 383780)
-        id E102921089; Tue, 27 Jul 2021 15:19:36 -0700 (PDT)
-Date:   Tue, 27 Jul 2021 15:19:36 -0700
-From:   Guru Das Srinagesh <gurus@codeaurora.org>
-To:     satya priya <skakit@codeaurora.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>, kgunda@codeaurora.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH V7 1/3] dt-bindings: mfd: pm8008: Add gpio-ranges and
- spmi-gpio compatible
-Message-ID: <20210727221936.GA10322@codeaurora.org>
-References: <1627029074-23449-1-git-send-email-skakit@codeaurora.org>
- <1627029074-23449-2-git-send-email-skakit@codeaurora.org>
+        id S232903AbhG0WlQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jul 2021 18:41:16 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:48734 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232336AbhG0WlP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Jul 2021 18:41:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=pmcqorDtNtoD1g0ufe4Uy6O//KZkJ4mkvGlwp8H6qmc=; b=a7GbZNXpXwi2yZ6GNzX5yM+bX2
+        SIE2L8vR3kJDTO2xUad3wLZMXQOwFFHPKgCsIBRWHS8lTmQOcnFGOD8sW12X1YebHS94hwihdmdbZ
+        qE4f0SJ38dA2WT2adbX78YXuv4DyqGu5wcHjkq3BRuGz/Q9/zNKVGzRx2kouAtHDb45c=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1m8Vl5-00F5hR-4C; Wed, 28 Jul 2021 00:41:07 +0200
+Date:   Wed, 28 Jul 2021 00:41:07 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Gerhard Engleder <gerhard@engleder-embedded.com>
+Cc:     David Miller <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 4/5] tsnep: Add TSN endpoint Ethernet MAC driver
+Message-ID: <YQCLg3iLubJW+3yB@lunn.ch>
+References: <20210726194603.14671-1-gerhard@engleder-embedded.com>
+ <20210726194603.14671-5-gerhard@engleder-embedded.com>
+ <YP8pM+qD/AfuSCcU@lunn.ch>
+ <CANr-f5y7eVbAf_NK3puJa3AcnkLXMbhzfwwmZ+r2KuWMbDhhsA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1627029074-23449-2-git-send-email-skakit@codeaurora.org>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+In-Reply-To: <CANr-f5y7eVbAf_NK3puJa3AcnkLXMbhzfwwmZ+r2KuWMbDhhsA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 23, 2021 at 02:01:12PM +0530, satya priya wrote:
-> Add gpio-ranges and "qcom,spmi-gpio" compatible to match with the
-> parent qcom,pmic-gpio.yaml binding.
-> 
-> Signed-off-by: satya priya <skakit@codeaurora.org>
-> ---
-> Changes in V7:
->  - This is newly added in V7 to resolve below error.
->  dtschema/dtc warnings/errors:
->  /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/qcom,pm8008.example.dt.yaml: gpio@c000: compatible: ['qcom,pm8008-gpio'] is too short
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
->  /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/qcom,pm8008.example.dt.yaml: gpio@c000: 'gpio-ranges' is a required property
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-> 
->  Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml | 13 ++++++++++---
->  1 file changed, 10 insertions(+), 3 deletions(-)
+> I also expect some discussion about this feature. Mapping device specific
+> TX/RX queues to user space is not done in mainline Linux so far.
 
-Reviewed-by: Guru Das Srinagesh <gurus@codeaurora.org>
+That is probably not quite true. I expect GPUs do it, or at least
+something very similar.
+
+> I will follow your suggestion and drop tsnep_stream.c for the moment.
+> Any early comments about this feature are welcome, because the direct
+> use of additional TX/RX queues for real-time communication is the main
+> feature of this device.
+
+I know enough to know i don't know enough about cache management from
+user space to be able to make any sensible recommendations.
+
+You probably want to start a discussion with the XDP people and get
+them to agree XDP does not work for your use case. Also, the people
+who implemented zero-copy, MSG_ZEROCOPY and make sure that is also
+unsuitable. Then see if you can reuse some GPU code which has been
+well reviewed and tested. You will get less pushback that way,
+compared to your own code which will need a good review by somebody
+who understands all the issues.
+
+    Andrew
