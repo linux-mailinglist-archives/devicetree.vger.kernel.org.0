@@ -2,153 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA8BA3D7405
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 13:06:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 908A53D741A
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 13:16:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236227AbhG0LG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jul 2021 07:06:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57936 "EHLO
+        id S236419AbhG0LPK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jul 2021 07:15:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236169AbhG0LG0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 07:06:26 -0400
-Received: from mail-il1-x12f.google.com (mail-il1-x12f.google.com [IPv6:2607:f8b0:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A46F3C061757
-        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 04:06:26 -0700 (PDT)
-Received: by mail-il1-x12f.google.com with SMTP id r1so11680842iln.6
-        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 04:06:26 -0700 (PDT)
+        with ESMTP id S236399AbhG0LPI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 07:15:08 -0400
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 021F1C061760
+        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 04:15:08 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id a20so15602245plm.0
+        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 04:15:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KaH6OTwrWG90914prFT1/hBGveSe1LpJn6vY9Adila8=;
-        b=SDh/ZiBj+wM/6RLopNPtxhhmjY4AOhwtUlsj7CBXB5kWyYXr4/eEwwMraRCCYOGBu8
-         4+gwT7UhgkK6MDRdhMlBprwwCgOKmjdnT+99U8rD/ZksvEtppzkTxzsX/KkM4vygStQR
-         5W8tG5BXychsijrX3WI5DDmbAZsvu6Xwzxre0=
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=BHNyu7k4UK63DVq7rOYoExZI6cBgQIh7p/Fi6u7I8PE=;
+        b=DGLK8ZaGcLZ9qrMkM7KdMWjTsFlwbZzg7dIvgy3A8POI0ux2QLqiOutfmPLYOEy4S3
+         SP9jaEuFOZwpSipJm9CdJ26hVsVcFyDj2KUHgIZUqc0dxdkxJ7F20hWTGNo4LjSloYR6
+         76hzq7Dk1EiJMfPvfji7Zk5dTMsT4XQXW9j8o=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KaH6OTwrWG90914prFT1/hBGveSe1LpJn6vY9Adila8=;
-        b=UiZOStMQrT+uNtLPAYxL0UG1UBIWiC3FWMDgI2aIx9hVGST69AMAZ5GhweaI6zvpHx
-         Ces708RN6YPRC2VvpqT5HaTZHYaenmytAlyKoSys3n73YgCzfuePKggRHHJOLwM7uq5s
-         y1MsVrLIIpt8a+jQAXJa+fniFaHNbdWz3AIkhdqylUPm+dwE1tHygHHLldyXviZIgZMV
-         6b8VBcQ5oemcmk39/9HVEKl37Nhcs+c50xr7Sw/ZtqNfc1CdXKv1KjX9uNz6w44FQ8Hi
-         xf7ypDRc2HKZV7Rq20xoOixsagYEi3SKzNcRGoOpCHbFLGcQp+MULyVYxI/xWqDyTP5r
-         fnlA==
-X-Gm-Message-State: AOAM533E3YYfw7/TNt0kap93NcfBzF6xVDxYlBttkWMnrXTOGcEm4+Uz
-        GMtNXathqrOfiOmLrnoNpYXc7uva+K/5cFDPVrJBHw==
-X-Google-Smtp-Source: ABdhPJzN3bMcohyLx+BmCBR3X6vZL0tTvooFjXp3y2FFWtT9H5YBTmKIeAGF+vyrAAa7JitBin1NHaVrXGI4vBGiKTs=
-X-Received: by 2002:a05:6e02:13e2:: with SMTP id w2mr16501620ilj.308.1627383986040;
- Tue, 27 Jul 2021 04:06:26 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAGXv+5Ev4QU72cMqMW7sA=dijzh7-DCsfHY+Lmqd36uzg_7Nww@mail.gmail.com>
- <CAJMQK-hH5HM5iN4q6UgUf8T5fwj+0oULKPw=XafYOPrki-aDkg@mail.gmail.com>
- <CAGXv+5E9MWzHtJLEab_ZKQNgVqhL5H_Teor9c5zCQD8OHOcYYA@mail.gmail.com> <CAFqH_51Sg0h+CC9whUAgpp80OxDsB461NYSdKQvGxho_VF8oJg@mail.gmail.com>
-In-Reply-To: <CAFqH_51Sg0h+CC9whUAgpp80OxDsB461NYSdKQvGxho_VF8oJg@mail.gmail.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=BHNyu7k4UK63DVq7rOYoExZI6cBgQIh7p/Fi6u7I8PE=;
+        b=ivFw/k/cbi9RNgkOWYOWovSKQ9kATuTnppIf/1PCnAngOzTXXE8LKQKuWtlBsBG/Ja
+         k5D13w7QfLG22jBnu3d5kuctIVakqXJiMSyX6oFterRwwdiYqHZf+EAlrSvasWqymUQu
+         2Svbj2rMSbc0X4FKLqULfP3Eut5sQR9ef630QXed19kZ0HUYan0FJEL9fsv/rhPeEFqa
+         d8K9sk/z7KYiUnM6mUQ1zJ6HeC0w5GKJhNIXy4Ah14MMACzKUtGxvN0VO2MJ8mrpZ8d0
+         clbPxxjMIek+NNEM/XwNHZUPCf48ZsJgwOT22C7LAAvnbKgC4GPRN2Ct3V03/CI34Zjj
+         UXNw==
+X-Gm-Message-State: AOAM530C0ju8qUGGClImkb+GqdFzwqg7LcROxTbQp3lAPvyi4ghgM6v3
+        5kW7V/vuUZKpoog10A/Hkj9W3w==
+X-Google-Smtp-Source: ABdhPJzIMWQIKWL3D4AB+HqQObX91XCw/5cAdIwjOgJtQrBbMGoOuLOom54j+toKSzvKj0sN+PeEJw==
+X-Received: by 2002:a63:5344:: with SMTP id t4mr5589835pgl.372.1627384507409;
+        Tue, 27 Jul 2021 04:15:07 -0700 (PDT)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:5176:76cc:2193:9b8f])
+        by smtp.gmail.com with ESMTPSA id t1sm3362305pgp.42.2021.07.27.04.15.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Jul 2021 04:15:07 -0700 (PDT)
 From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Tue, 27 Jul 2021 19:06:00 +0800
-Message-ID: <CAJMQK-j_SFVOA7KcZpGaE+mS3WZf3fe9CaXw4pHPND_UWUU6Kg@mail.gmail.com>
-Subject: Re: arm64: dts: mt8183: Incorrect mediatek,pull-*-adv values
-To:     Enric Balletbo Serra <eballetbo@gmail.com>
-Cc:     Chen-Yu Tsai <wenst@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, linux-gpio@vger.kernel.org,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        eizan@chromium.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] arm64: dts: mt8183: kukui: Use aliases to mmc nodes
+Date:   Tue, 27 Jul 2021 19:15:01 +0800
+Message-Id: <20210727111502.2506311-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.32.0.432.gabb21c7263-goog
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 26, 2021 at 5:48 PM Enric Balletbo Serra
-<eballetbo@gmail.com> wrote:
->
-> Hi Chen-Yu and Hsin-Yi,
->
->
-> Missatge de Chen-Yu Tsai <wenst@chromium.org> del dia dl., 26 de jul.
-> 2021 a les 10:58:
-> >
-> > On Mon, Jul 26, 2021 at 4:50 PM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
-> > >
-> > > On Mon, Jul 26, 2021 at 4:20 PM Chen-Yu Tsai <wenst@chromium.org> wrote:
-> > > >
-> > > > Hi,
-> > > >
-> > > > I was looking at MTK pinctrl stuff upstream, and it seems there are a few
-> > > > `mediatek,pull-*-adv` entries that have invalid values:
-> > > >
-> > > > arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi:
-> > > > mediatek,pull-down-adv = <10>;
->
-> The confusion comes probably because the binding says that this value
-> is valid, see
->
->    Documentation/devicetree/bindings/pinctrl/pinctrl-mt8183.txt
->
-> it'd be nice to convert that binding and the others to yaml format and
-> remove the possibility to specify it in binary format.
->
->   Documentation/devicetree/bindings/pinctrl/pinctrl-mt65xx.txt
->   Documentation/devicetree/bindings/pinctrl/pinctrl-mt7622.txt
->   Documentation/devicetree/bindings/pinctrl/pinctrl-mt6797.txt
->
-> Should be pretty easy as there is already an example:
-> Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl.yaml
->
+fa2d0aa96941 ("mmc: core: Allow setting slot index via device tree alias")
+allows the use of aliases to number SD/MMC slots. This patch use aliases
+to mmc nodes so the partition name for eMMC and SD card will be consistent
+across boots.
 
-Hi Enric,
+Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+Tested-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+---
+ arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-I've sent a patch for converting these into yaml here:
-https://lore.kernel.org/patchwork/patch/1468449/
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+index ae549d55a94fc..ed499e17b6570 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+@@ -13,6 +13,8 @@
+ / {
+ 	aliases {
+ 		serial0 = &uart0;
++                mmc0 = &mmc0;
++                mmc1 = &mmc1;
+ 	};
+ 
+ 	chosen {
+-- 
+2.32.0.432.gabb21c7263-goog
 
-Thanks
-
-> Thanks,
->   Enric
->
-> > > > arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi:
-> > > > mediatek,pull-down-adv = <10>;
-> > > > arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi:
-> > > > mediatek,pull-down-adv = <10>;
-> > > > arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi:
-> > > > mediatek,pull-up-adv = <10>;
-> > > > arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi:
-> > > > mediatek,pull-down-adv = <10>;
-> > > > arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi:
-> > > > mediatek,pull-up-adv = <10>;
-> > > > arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi:
-> > > > mediatek,pull-down-adv = <10>;
-> > > > arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts:
-> > > >  mediatek,pull-down-adv = <10>;
-> > > > arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts:
-> > > >  mediatek,pull-down-adv = <10>;
-> > > > arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts:
-> > > >  mediatek,pull-down-adv = <10>;
-> > > > arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts:
-> > > >  mediatek,pull-up-adv = <10>;
-> > > > arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts:
-> > > >  mediatek,pull-down-adv = <10>;
-> > > > arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts:
-> > > >  mediatek,pull-up-adv = <10>;
-> > > >
-> > > > According to the bindings, the values should 0~3. <10> is probably a
-> > > > incorrect attempt at using binary representation, which is wrong. This
-> > > > probably leads to the pull-up/down getting disabled or ignored.
-> > > >
-> > > > Cound people still working on these two devices take a look?
-> > > >
-> > > Thanks for pointing this out. It's an incorrect value but 10=0b1010 so
-> > > the result is same as 2, since the driver test the value by checking
-> > > the last 2 bit. We should still fix this in dts.
-> >
->
-> I see that the are
->
->
->
-> > That probably explains why no one noticed.
