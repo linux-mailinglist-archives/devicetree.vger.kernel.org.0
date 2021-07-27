@@ -2,52 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B662E3D6D94
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 06:42:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 375963D6D96
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 06:43:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235081AbhG0Emu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jul 2021 00:42:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55110 "EHLO
+        id S235113AbhG0En0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jul 2021 00:43:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235041AbhG0Emt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 00:42:49 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E877C061757
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 21:42:49 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id a4-20020a17090aa504b0290176a0d2b67aso2385694pjq.2
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 21:42:49 -0700 (PDT)
+        with ESMTP id S234995AbhG0EnY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 00:43:24 -0400
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A927C061757
+        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 21:43:25 -0700 (PDT)
+Received: by mail-pl1-x634.google.com with SMTP id c16so8792488plh.7
+        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 21:43:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=JAG3r4q1eXvW4jnmIxPlqvAFPEHnfRa806/4BqgTPyc=;
-        b=e7wngxPzpp0yJQOTn+ibbOBw2mwLX4Sys3bp7NiFrw+mlxjWp6RHpc7h/0VT+sGgJK
-         Aeev4HodmIPg0iBkKNcOQFWj58CYndJ8oCY+gZn8C1RSygbYI6G8sm0+hnfTXoHe6259
-         0I+UhsI0GlYWAUpmtZjsOGa7VRJio3Nb5CSfQ=
+        bh=8OgNNI/ZkkFCiDWQYC06fGQinvIGcARtCC3HkxPSNzA=;
+        b=Q5D2/AyVMa1IWbGsysocOoq8QjOGrae5n6e9Q199iOQUX9WzJoez34mv9P/teNkYEt
+         klKGHnai2cbH8VssVKLVQ+IhLy040E1J7bVziAzCleY+Getjb1NHun5CHSeiMYDlqzXe
+         6Y8FaVfsMd70FaCepmZ0ibonK1bObtcY8uP+w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=JAG3r4q1eXvW4jnmIxPlqvAFPEHnfRa806/4BqgTPyc=;
-        b=AGRSk5Y/hQ/5tAXkmGrmh+VJPnsXu7PB1DxT002r9nB3iddGoVNW3dfXG78yO2VA1j
-         lspwyNvZx8h+4THHpkGRC+WGbTdkM3FXKcV7Kge+1BoOc6ju/2p2ST1+tJseJF3Tnfge
-         /VxYUIjsaD85yira0aGAcTEqUGmxvdQ+7yk5PE6nilZrphV4/OjP1Xb6/TpoGjwmk3Gb
-         F/clGv0lxz7vA3zYbPDGY0WuJB39HMahAReI9T3Jy5Ty2N8HIXTvtY3fo/z40Pku5Ng0
-         rrz/OgJ+YQazKJtjNs8hwr39kVhg4QpT7SQMcCFMtlk563HLTWzawVar02ga+1MAnQC+
-         bXmA==
-X-Gm-Message-State: AOAM5334pgJWGEVFSrseRvaEJcT/SQm4dbz8llGg/HCKyiKxVh3ds2QE
-        Qzyxk9JlF9497F+gWfHT6+/doPAtD6HiQTlOXNQxzA==
-X-Google-Smtp-Source: ABdhPJwdTmIIqDIkRt5Ak/lU9NfF+K5qaQxw4lncfdy5vGygLf6ht6RWYKwum/QaKt4mbq4xALxTpF8TnTjnoO5kRaQ=
-X-Received: by 2002:a17:902:b788:b029:12c:2888:9589 with SMTP id
- e8-20020a170902b788b029012c28889589mr6389338pls.60.1627360968879; Mon, 26 Jul
- 2021 21:42:48 -0700 (PDT)
+        bh=8OgNNI/ZkkFCiDWQYC06fGQinvIGcARtCC3HkxPSNzA=;
+        b=tOtGBR8HX043Ob2Wx8ed/sUFQB+6x5bWjEDlGi6O5xiIw+XCLNF8I6dmtw2Fe4/RrY
+         3zExYIoA2fgICivwV+svlZpeN3DPexYFSME+DIK/fqB0rcbJ8ZAJh0KkBRyF7lHhHbcA
+         oaxijih2K2BSGobw4mAew3i8itFSL2PRdC/PXhCkwfPqBEaZ4zqrqS/2nghRbF5/6XJr
+         KlEK2yXwVGiA3RnvmPX1/mFx7XKi/cWUU2nklwX2NxIYDtwzz9cB6DBF+pnKVReh2RL+
+         wO5qPakcIYc5USAeaQmz4YbZGvF1neOxeZ4fHw/NLN6Xg+eA9ADJ/oUG8fX4/LftHLno
+         El6g==
+X-Gm-Message-State: AOAM532X4Kjq2fiOIoRvbL0PO7qIE9y9Lf83Iu98DOJ+Nisq0QOYtro+
+        SI3csyIMpe55KiNbUHXXIrVW5ji+AKKQQ0mgbxZmaQ==
+X-Google-Smtp-Source: ABdhPJxoc5CSpPY3vQh7WBrophJ46+dx+Oemf64p8gEZ/MeteoctC+j1XOB9bhr65cib2vxfEoicD6FmTXf3GIPsuds=
+X-Received: by 2002:a17:90a:8403:: with SMTP id j3mr2306339pjn.112.1627361005167;
+ Mon, 26 Jul 2021 21:43:25 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210726105719.15793-1-chun-jie.chen@mediatek.com> <20210726105719.15793-14-chun-jie.chen@mediatek.com>
-In-Reply-To: <20210726105719.15793-14-chun-jie.chen@mediatek.com>
+References: <20210726105719.15793-1-chun-jie.chen@mediatek.com> <20210726105719.15793-15-chun-jie.chen@mediatek.com>
+In-Reply-To: <20210726105719.15793-15-chun-jie.chen@mediatek.com>
 From:   Ikjoon Jang <ikjn@chromium.org>
-Date:   Tue, 27 Jul 2021 12:42:38 +0800
-Message-ID: <CAATdQgDuSuaP=10-WN5DpCEisJYMVjbGdSb81tFyGC5CXyBs2Q@mail.gmail.com>
-Subject: Re: [v14 13/21] clk: mediatek: Add MT8192 imp i2c wrapper clock support
+Date:   Tue, 27 Jul 2021 12:43:14 +0800
+Message-ID: <CAATdQgBkdst+fVnQhoYzJgO8meaef+YCjcPgEMTLbECTxRC6tQ@mail.gmail.com>
+Subject: Re: [v14 14/21] clk: mediatek: Add MT8192 ipesys clock support
 To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>
 Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
         Stephen Boyd <sboyd@kernel.org>,
@@ -68,10 +67,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 26, 2021 at 7:08 PM Chun-Jie Chen
+On Mon, Jul 26, 2021 at 7:02 PM Chun-Jie Chen
 <chun-jie.chen@mediatek.com> wrote:
 >
-> Add MT8192 imp i2c wrapper clock provider
+> Add MT8192 ipesys clock provider
 >
 > Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
 > Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
