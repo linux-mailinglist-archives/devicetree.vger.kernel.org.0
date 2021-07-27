@@ -2,269 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D5143D7927
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 16:57:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 986313D7930
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 16:58:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236871AbhG0O5W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jul 2021 10:57:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54882 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236755AbhG0O5U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 10:57:20 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 825DAC061757
-        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 07:57:19 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id d131-20020a1c1d890000b02902516717f562so2540381wmd.3
-        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 07:57:19 -0700 (PDT)
+        id S236974AbhG0O6a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jul 2021 10:58:30 -0400
+Received: from mail-eopbgr1400098.outbound.protection.outlook.com ([40.107.140.98]:52349
+        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231825AbhG0O63 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Jul 2021 10:58:29 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HBJVi1s2N9IQ9IrTr+B29RLrPViEbyjWWgv8VzOjO2HpSiuVnulO+DA+Y1nQVk7yf1W1h0AKZq9PsvNWUwPASO/A0wdv0dqZTdvzOUJb6PyispccVK615N3vKfbqc1gLkW+I8fXahheSwdQlk82pxpOeV1m6ehLvkognOW5CuNsRiuCrqBLT1MyJWQO9tItoPGNPqL6Lv0Nca77a8chvaCK/auVoA8rSsjzSzNGYYDxOfJXwdXGWlA79iCb+/yxzgU98Q3fCfDQ47ry4nboy1Q2J+wQr4E74VCyTGLzWZzSuNnOkxn05Ri2QFDZooPUr5htMvj+lzCQcSaNgvTyLHg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WXVzC5Erey2pv70HaGoDoPGAzjPpMnpZd4DTmxcC+qQ=;
+ b=OcPK0roC2DYlxDY/da6NYoEudlVD2e6iM+o90DoJxS+AmlKCnN2t4MXyztaxfKPImWq/jyNYEwP6mNxicOGnd+3yfBW2MyErWFKGZsbRthhs2M1XaE1N88XAH3A3xmaBeWmwc6tjGAe0VkCg8By6+rXwTZlA+pRDNlOduz8emHW9iWgIPpzjR9KHEIxv0hgbh7vfg5ceeRe+TR1arL0PIUXeTSyCLHIpL/Sb0ELL1jn+3N2hu1Nu1EjcN/KRezCoZ/n5HE5eICjMfP7w+a8dUXweNgOEtoLg8+FR+HEgHWIczmX6He/V66LnUNulYw+GbE9RN3RNd/KHZ9rAqCnyqg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=EqFt2vhRpfIbTS1mg258ar/twtBzCyQEowAQHE3Yv28=;
-        b=l7IZyi1LWdaDgWFaG0L+XzhR0wJ+YbJY7JZRQGhZ+nLJtE5XOQwN2N0qnsOWGi+5D4
-         A4bPs6OH6KvuRAST3gJiFO2Sz/GklYvT6C9VQDvNnHwSSAnYC+jXPd4gkmlk1143SBmT
-         z9IwO2ei0v8fCGc4/GMwwo//QgnZNjp6STzUxCMBhlMt7lqpzFhGnEBAFqWwvami4vzE
-         /zy4dsp+ZbOj/6oN5idjEqqbWclOKGP6iIBEy29WZHo028MNJ+fz+O+ABPwGGWAAbkKt
-         FQ5iwaixKgKzM81tnM/ReKqXEDdqH3s9EJH7lo/XsPYntF1xZzHeWqMJSWXcQRz/pyb/
-         uajQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=EqFt2vhRpfIbTS1mg258ar/twtBzCyQEowAQHE3Yv28=;
-        b=F4SjUdMTDXK/M7hPK4lSoA1Mu585dHurbcxBJFgXKhYubC4R/jAZH301SogYagjWv1
-         cxZ5XnWyJ9M58HpwnFeN5LNnTjy0UhpDG1bXfMXdGldcaMAQ/NoEHOVWcVrFRscj5NJ/
-         qrOxd96KklIlgk2fUjQl8S4nEejGUIEahAmnPrMyucuhm32ZilQYTPRw1uNJUjGRrSja
-         bjL1TswNUj532aBPkUiRG0A4BwldxYwGc1Vy1MAF3AcarOk7y9P6xzolUNVVKCG6SukI
-         uLscc35nUhZ+9CnxJTB1FSgDnbOKXB3gf1QVz+6HVPSvPHsqZVNUYQngha2WekfP/cmw
-         b+vA==
-X-Gm-Message-State: AOAM533ELb6WUmQmWgKtfoJgFZbyKQMl/pF5a6mk1BItpqL9L3rylA26
-        plmNTAXuOLXPzG0TW3K9Ma4a2Z9ut1nOIVyDVQdWKA==
-X-Google-Smtp-Source: ABdhPJy0527DySdaF0QbUTfkqaBmAxcSlt5xV1Y2DkQ5SSVi6UK7yG/P08m2+gfUVNs9muUkIzsQFP6U+AQhCi03FTM=
-X-Received: by 2002:a05:600c:154d:: with SMTP id f13mr22405964wmg.3.1627397838046;
- Tue, 27 Jul 2021 07:57:18 -0700 (PDT)
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WXVzC5Erey2pv70HaGoDoPGAzjPpMnpZd4DTmxcC+qQ=;
+ b=lVxiemBao4zvWMSTqWvsiAAhzDtgcDgRjYEa858UWaNfGhIz/Htuaiqe/0tUIOqBD2nxK8kKFETB7PiqS3LikdTB+E4JN8+OL9dY+I735e+lu8wPydb4GqJld1J9ZLtEPlnNvAvVva2viBDiq/LtIxOz430bnMfWXTgNED9YrCk=
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
+ by OSBPR01MB4694.jpnprd01.prod.outlook.com (2603:1096:604:79::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4352.25; Tue, 27 Jul
+ 2021 14:58:27 +0000
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::c6f:e31f:eaa9:60fe]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::c6f:e31f:eaa9:60fe%9]) with mapi id 15.20.4352.032; Tue, 27 Jul 2021
+ 14:58:26 +0000
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH v4 06/10] dt-bindings: phy: renesas,usb2-phy: Document
+ RZ/G2L phy bindings
+Thread-Topic: [PATCH v4 06/10] dt-bindings: phy: renesas,usb2-phy: Document
+ RZ/G2L phy bindings
+Thread-Index: AQHXfJhldyVeRRVeIkeYXPxYeURoE6tV4e4AgAEURqA=
+Date:   Tue, 27 Jul 2021 14:58:26 +0000
+Message-ID: <OS0PR01MB5922CBEC636344FB4521006F86E99@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+References: <20210719121938.6532-1-biju.das.jz@bp.renesas.com>
+ <20210719121938.6532-7-biju.das.jz@bp.renesas.com>
+ <20210726222830.GB981051@robh.at.kernel.org>
+In-Reply-To: <20210726222830.GB981051@robh.at.kernel.org>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: da14c781-7003-41aa-6885-08d9510efd36
+x-ms-traffictypediagnostic: OSBPR01MB4694:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <OSBPR01MB4694B7B2DC9735873E95D89386E99@OSBPR01MB4694.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: d/sry+X8DUEzJygmLZnaBRp2OihKW6cAcx5Y7OyuUBw/TLTEVtaqt9eg7Mr1x2AYmqRQ7p7Q9iQu+b8GEUCemGqnwkkSLaomDLdJH5qD65O6joL8wlBYjR8F5YjsqJmgU5YjoFp09hZpz54iLc0MeOCCeVfwWGOL3D6wiE+LxTGR1Y3Uv17kWrj7eJ685DVlsPkw1xbc+cPd1bvzbuEgpZMADB+NTvAMrpfoptNZpne+iH/0jEgiHJHLpUjKry82pF8+tpJOVUCwGPECoSkWZHxm6/oFJtG+jDz6nN9NShvUvUYqAqLLzjTvZTCqTlWoZNAkzf1G8J1uchMDLEeHfsMUkas6xUZ6z/PhUrGlecgc7glNeRmtMWhAVurTOQIwDG2gLvT/nFET1ng5h+BJNhKEYx3xBaiAMkgqAvFc0DOkQdO61wDMV6NCe+TWA8HXWz88VZAzLNzY7K7gT3drAMkZBYqo2+PjN1TOupKlYmNB35Yomf6WdnKABEK89+6Qxi9b+w0TF9Gs2tZK6qjIlprDGRlewJQyiJq6bEhguITabliLWoY7LTJOxGJ1NSAH8Z9Pna8P/HUSbAEH5tonP/0M/ChaeZMVYHYWYS35xd8ty9DjYgqDIWXwzEo1zkhNz5mTY1YSv1WLc+pF3/yD2v3pJDeUAfpW1OYaoax0eu9eLRt6ok4iYcdLpcpDluslV7h3AE6WXE9TEUT1KIlzHA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39850400004)(396003)(346002)(366004)(136003)(376002)(76116006)(66946007)(8936002)(2906002)(52536014)(33656002)(83380400001)(55016002)(7696005)(26005)(186003)(9686003)(4326008)(6506007)(64756008)(66446008)(66476007)(66556008)(71200400001)(86362001)(54906003)(122000001)(478600001)(316002)(6916009)(8676002)(5660300002)(38100700002)(38070700004);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?P0Ilp8ExlPZAcug3R0PV6PZsXpBMQGi/ix6vftsTU4W+YiPRC/9xQcaPLoNW?=
+ =?us-ascii?Q?ms76KZBqBLSIRhfEmsQukDhCWAv+N53VbDuc6UNo9KdW5r7ebRdHKURR93TC?=
+ =?us-ascii?Q?gC3Tp8SlhP8aWpxX3+km6sRurDmKCVHJFXan3MLEdfKYhF6plBDG2qIacCJ9?=
+ =?us-ascii?Q?tcYkmznTXKV0pNQd5KlpxmeAyp7JeGt+YvsMQw8EANODliPTXsMWkRX/TMUi?=
+ =?us-ascii?Q?0P716rORqiU2gO++s6OWfqcVtZcOLUEw+TVYqHw6yvOuaRnNu/nSiJBaURud?=
+ =?us-ascii?Q?Mn37dExSk7O46aE5yy9n91pWjU820hW4pARy25bAJ73pCSUDhABGgl+HgBOT?=
+ =?us-ascii?Q?0bHM7VbJrXxy1UZFhZslN60jGKihLJZq8iGq9dyMKnPah2nyGCXgTKw1TQT6?=
+ =?us-ascii?Q?vlrKVzaCZgIea8cDS5zu57Xl++Hh1Mjoy7Or/QOP74odb/HXXR2YBL5Qc2rv?=
+ =?us-ascii?Q?RrXWnsNAvKQhBwTqAmerxIET+XdNwPDGQJmmgM2SvtqA98Bkmnw5tfmBKXan?=
+ =?us-ascii?Q?h6qKOUbxV2m3s9TEvQFVchskPcyEyT4i2g5rBxBGWJavv37Bjb+ncAId+gbT?=
+ =?us-ascii?Q?HmXQd5BAILvJdyKAqAT+uucKcv0RP7RPtoVZGEhzNpppN/CgvDc39nnHfvtt?=
+ =?us-ascii?Q?bdfJ6jF79Vx+QA77s1kUq0Y2mi5BvzQ57CqKWu0bhee6VHI/pZEWgZHF2yHP?=
+ =?us-ascii?Q?WYgUQimnq+7OqsUkdUIAffww4jres83p6yQCWeZmglHri5EXcifUz/rjUKZM?=
+ =?us-ascii?Q?ZD8BOO+qbEoaoeuozS2FROtYPlFPUmGAoX2syutER3BoBFwGHFBhqQ1I1myO?=
+ =?us-ascii?Q?C15BCG02YYoCyn8e6ddFyK8z6Pcd42V3pn0OWAak05HkNxf5NuaeaOKz698L?=
+ =?us-ascii?Q?aj9pstqoHXDoJroKEag0zs/xDkCJakdHpDM/awpD+jT3PFgx7vG9F6+VuVcG?=
+ =?us-ascii?Q?HpGrK2cDftz5jno1SM8ntA6bq7kFVf2dZPluu/Srtj7X++htcrlT7t7FYWKk?=
+ =?us-ascii?Q?NdxWNTk1Oi/EVt7vWNmNUFXodWiOnVypnQKwzhT8Z1yRuKIs2aJW5/ej/Q7P?=
+ =?us-ascii?Q?Bhj44egoJWm+V3prSKQ7YfC68AWoAxOH5xp5remMGOs8YCtS4tIItH4naWFV?=
+ =?us-ascii?Q?Eer/Jx3/P6lBJBw7rmiJyhACzpC5ZNE/mTeOjupPr4zdQMZ8trlHu6BIVDpN?=
+ =?us-ascii?Q?KaTgXCiDHsmxnT1b7YWcdTkwJci4RXl8NwdoZER2b02rpzprbxoSS1ALs0WO?=
+ =?us-ascii?Q?G9HWycJSOvqqlSr0xB3Jso1lVPSgNssjAt1RsUtv7aFW1iaPq5B5WOdRSZlF?=
+ =?us-ascii?Q?RkS0jDMyo8gvY/UTg3sHymJV?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-References: <20210723094422.2150313-1-jens.wiklander@linaro.org>
- <20210723094422.2150313-2-jens.wiklander@linaro.org> <87zgud1giz.wl-maz@kernel.org>
- <CAHUa44EhP5NCH6S27+Af8ePxAup9nJnrwGr_nMRUFumXOTh7uQ@mail.gmail.com> <87eebkdumr.wl-maz@kernel.org>
-In-Reply-To: <87eebkdumr.wl-maz@kernel.org>
-From:   Jens Wiklander <jens.wiklander@linaro.org>
-Date:   Tue, 27 Jul 2021 16:57:07 +0200
-Message-ID: <CAHUa44HCEr_HKU0Fz10HPZYMowXVkx5JtnXMVTXd29wAv-dTCg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/6] docs: staging/tee.rst: add a section on OP-TEE notifications
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        OP-TEE TrustedFirmware <op-tee@lists.trustedfirmware.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Jerome Forissier <jerome@forissier.org>,
-        Etienne Carriere <etienne.carriere@linaro.org>,
-        Sumit Garg <sumit.garg@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Ard Biesheuvel <ardb@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: da14c781-7003-41aa-6885-08d9510efd36
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Jul 2021 14:58:26.8084
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: c9wrhGoh6xDBxvzDF4vNZnexP6VDJ4uno4Lep5XmVVU7AsLTUDRcpqKFFldB2rtEotHEAUValVbZI8gawDMOHaKU0C5L/tsC4C4txP2ES3A=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSBPR01MB4694
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 27, 2021 at 10:32 AM Marc Zyngier <maz@kernel.org> wrote:
->
-> On Tue, 27 Jul 2021 08:46:39 +0100,
-> Jens Wiklander <jens.wiklander@linaro.org> wrote:
+Hi Rob,
+
+Thanks for the feedback.
+
+> Subject: Re: [PATCH v4 06/10] dt-bindings: phy: renesas,usb2-phy: Documen=
+t
+> RZ/G2L phy bindings
+>=20
+> On Mon, Jul 19, 2021 at 01:19:34PM +0100, Biju Das wrote:
+> > Document USB phy bindings for RZ/G2L SoC.
 > >
-> > On Fri, Jul 23, 2021 at 12:16 PM Marc Zyngier <maz@kernel.org> wrote:
-> > >
-> > > On Fri, 23 Jul 2021 10:44:17 +0100,
-> > > Jens Wiklander <jens.wiklander@linaro.org> wrote:
-> > > >
-> > > > Adds a section on notifications used by OP-TEE, synchronous and
-> > > > asynchronous.
-> > > >
-> > > > Signed-off-by: Jens Wiklander <jens.wiklander@linaro.org>
-> > > > ---
-> > > >  Documentation/staging/tee.rst | 27 +++++++++++++++++++++++++++
-> > > >  1 file changed, 27 insertions(+)
-> > > >
-> > > > diff --git a/Documentation/staging/tee.rst b/Documentation/staging/tee.rst
-> > > > index 4d4b5f889603..37bdd097336f 100644
-> > > > --- a/Documentation/staging/tee.rst
-> > > > +++ b/Documentation/staging/tee.rst
-> > > > @@ -184,6 +184,33 @@ order to support device enumeration. In other words, OP-TEE driver invokes this
-> > > >  application to retrieve a list of Trusted Applications which can be registered
-> > > >  as devices on the TEE bus.
-> > > >
-> > > > +OP-TEE notifications
-> > > > +--------------------
-> > > > +
-> > > > +There are two kinds of notifications that secure world can use to make
-> > > > +normal world aware of some event.
-> > > > +
-> > > > +1. Synchronous notifications delivered with ``OPTEE_RPC_CMD_NOTIFICATION``
-> > > > +   using the ``OPTEE_RPC_NOTIFICATION_SEND`` parameter.
-> > > > +2. Asynchronous notifications delivered with a combination of a non-secure
-> > > > +   interrupt and a fast call from the non-secure interrupt handler.
-> > > > +
-> > > > +Synchronous notifications are limited by depending on RPC for delivery,
-> > > > +this is only usable when secure world is entered with a yielding call via
-> > > > +``OPTEE_SMC_CALL_WITH_ARG``. This excludes such notifications from secure
-> > > > +world interrupt handlers.
-> > > > +
-> > > > +An asynchronous notification is delivered via a non-secure interrupt to an
-> > > > +interrupt handler registered in the OP-TEE driver. The actual notification
-> > > > +value are retrieved with the fast call ``OPTEE_SMC_GET_ASYNC_NOTIF_VALUE``.
-> > > > +
-> > > > +One notification value ``OPTEE_SMC_ASYNC_NOTIF_VALUE_DO_BOTTOM_HALF`` has a
-> > > > +special meaning. When this value is received it means that normal world is
-> > > > +supposed to make a yielding call ``OPTEE_MSG_CMD_DO_BOTTOM_HALF``. This
-> > > > +call is done from the thread assisting the interrupt handler. This is a
-> > > > +building block for OP-TEE OS in secure world to implement the top half and
-> > > > +bottom half style of device drivers.
-> > > > +
-> > >
-> > > What I find missing here is a description of the trigger for this
-> > > interrupt, and how it influences the way the kernel drivers interacts
-> > > with the secure side:
-> > >
-> > > - if it is edge triggered, this is 'fire and forget'. The interrupt
-> > >   will be consumed by the kernel handler, and whether it eventually
-> > >   calls into the secure side has no impact on the interrupt flow.
-> > >
-> > > - if it is level triggered, then the interrupt may be asserted until
-> > >   the kernel calls into the secure side, which may then drop the line
-> > >   level if no other requests are pending.
-> > >
-> > > These are evidently two very different flows, and you need to pick a
-> > > side. Note that not all interrupt controllers support both signalling
-> > > modes, so you are likely to leave something behind. Or you can try and
-> > > support both flows, but that may make the driver slightly more
-> > > complex.
-> > >
-> > > Either way, this needs specifying, here and in the DT binding.
+> > RZ/G2L USB2.0 phy uses line ctrl register for OTG_ID pin changes. It
+> > uses a different OTG-BC interrupt bit for device recognition. Apart
+> > from this, the PHY reset is controlled by USBPHY control IP and
+> > Document reset is a required property.
 > >
-> > In the example I'm using a level triggered interrupt which is
-> > triggered by writing to GICD_ISPENDR by secure world. Reading of
-> > GICC_IAR should clear the interrupt,the GICv2 reference manual is
-> > quite clear on that.
->
-> No, it merely activates it. You can't transition an interrupt from
-> pending to inactive (unless you clear it using GICD_ICPENDR). If you
-> have spotted something else in the GICv2 architecture manual, please
-> say so and I'll get it fixed 15 years after the facts. The fact that
-> GICC_IAR consumes a pending bit introduced by a write to ISPENDR is an
-> implementation detail, see below.
+> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> > v3->v4:
+> >  * Removed second reset
+> >  * Added family specific compatible string.
+> > v2->v3
+> >  * Created a new compatible for RZ/G2L as per Geert's suggestion.
+> >  * Added resets required properties for RZ/G2L SoC.
+> > ---
+> >  .../bindings/phy/renesas,usb2-phy.yaml        | 19 +++++++++++++++++++
+> >  1 file changed, 19 insertions(+)
+> >
+> > diff --git
+> > a/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
+> > b/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
+> > index d5dc5a3cdceb..151158d7a224 100644
+> > --- a/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
+> > +++ b/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
+> > @@ -30,6 +30,11 @@ properties:
+> >                - renesas,usb2-phy-r8a77995 # R-Car D3
+> >            - const: renesas,rcar-gen3-usb2-phy
+> >
+> > +      - items:
+> > +          - enum:
+> > +              - renesas,usb2-phy-r9a07g044 # RZ/G2{L,LC}
+> > +          - const: renesas,rzg2l-usb2-phy  # RZ/G2L family
+> > +
+> >    reg:
+> >      maxItems: 1
+> >
+> > @@ -91,6 +96,20 @@ required:
+> >    - clocks
+> >    - '#phy-cells'
+> >
+> > +allOf:
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: renesas,rzg2l-usb2-phy
+> > +    then:
+> > +      properties:
+> > +        resets:
+> > +          description: |
+> > +            USB/PHY reset associated with the port.
+>=20
+> You don't need 'properties' part here. Just 'required'.
 
-I was looking at figure 4-10 "Logic of the pending status of a
-level-sensitive interrupt".
+OK. Will fix this in next version.
 
->
-> It is also a flawed approach, as this behaviour is IMPDEF on GICv3
-> (see 4.5 "Shared Peripheral Interrupts" in the GICv3 arch spec). Given
-> that GICv2 is pretty much a dead horse (TFFT!), I can't see this approach
-> being successful in the long run.
+Regards,
+Biju
 
-OK, thanks.
-
->
-> > So, if I understand it correctly, it will for
-> > this purpose work in the same way as an edge triggered interrupt. If
-> > this wouldn't be the case in some configuration and the interrupt must
-> > be cleared by some other action that would be a job for the receiver
-> > of OPTEE_SMC_GET_ASYNC_NOTIF_VALUE, that is, a secure world problem.
-> > The normal world flow should be the same.
->
-> You are assuming that the secure side will use GICD_ISPENDR, and
-> that's a leap of faith.
-
-Not in this case with upstream OP-TEE. If we need to signal in a
-different way we can do that instead.
-What happens downstream we have no control over, but that's perhaps
-not so different from the kernel.
-
-> An implementation should use, say, a GPIO to
-> drive the interrupt line and give it proper level semantics.
-
-I'm not so keen on that since we often don't touch GPIO at all in
-OP-TEE and this would then mean more platform specific code. We may
-even need to synchronize some hardware access with the normal world
-and then we'd be back at square one again.
-
->
-> > Now that we describe the interrupt configuration in device tree it
-> > must use something that mirrors the secure world expectations. I don't
-> > see a point in restricting what's allowed as long it doesn't need code
-> > changes in the kernel too. Does this make any sense?
->
-> And that's the crucial point: what *are* the expectations of the
-> secure side?
-
-That should be up to the OP-TEE port of that particular platform to
-decide and advise which device tree configuration to use.
-
-> You seem to assume edge semantics, but that's unclear at
-> best.
-
-Fair enough, edge semantics solves the problem here.
-
->
-> > If I just expand a bit above explaining that the interrupt handler
-> > must call OPTEE_SMC_GET_ASYNC_NOTIF_VALUE as part of clearing the
-> > interrupt even if it might be cleared anyway in some configurations.
-> > Would that make it more clear, good enough even :-) ?
->
-> This is an interrupt, please document it in terms of interrupt
-> signalling.
-
-In this file, Documentation/staging/tee.rst ? A pointer to a good
-example of what you're expecting would be much appreciated.
-There's also the file drivers/tee/optee/optee_smc.h, this is where the
-ABI to OP-TEE is defined.
-
->
-> - If it is level, the handler has to call into secure to observe the
->   level dropping. If the driver can observe the level being low before
->   calling into secure, it is perfectly allowed to consider the
->   interrupt being spurious and not perform the call. If you don't have
->   a device actively driving the line, this doesn't work.
-
-Spurious calls to OPTEE_SMC_GET_ASYNC_NOTIF_VALUE are harmless, but it
-will of course save a few cycles if they can be avoided.
-
->
-> - It is edge, the handler can do anything it likes, including ignoring
->   the request after consuming the interrupt, or call into secure from
->   a kernel thread with interrupts enabled.
-
-Yes, that's a bit more relaxed. Now I'm doing that part in the upper
-half handler. I don't suppose it matters much, not much time is spent
-there. The advantage is that it will work with a level triggered
-interrupt too, if it would ever come to that. Provided that
-OPTEE_SMC_GET_ASYNC_NOTIF_VALUE does what's needed to clear the
-interrupt in secure world, but that should be mandated in such
-configurations.
-
->
-> At the end of the day, only you can decide which of these two flows
-> are appropriate. If you don't want to mandate actual HW driving the
-> line, edge triggered is your only option.
-
-I agree that in the GIC case we should use edge triggered interrupts.
-But It's not clear to me why this must be nailed down in any other
-case instead of being left open to configuration.
-
-The configuration that is best for the platform should be used, but
-this is still a platform specific detail [1]. If device tree can give
-us the flexibility to use level triggered interrupts with some other
-interrupt controller and the kernel code already is capable of working
-with that, what's the harm in leaving that open?
-
-Thanks for your patience, I'm still trying to understand the parameters.
-
-Cheers,
-Jens
-[1] The OP-TEE firmware is always built per platform with platform
-specific configuration. With FF-A that may change, but then we'll also
-base these notifications on FF-A instead of playing directly with
-interrupts.
+>=20
+> > +      required:
+> > +        - resets
+> > +
+> >  additionalProperties: false
+> >
+> >  examples:
+> > --
+> > 2.17.1
+> >
+> >
