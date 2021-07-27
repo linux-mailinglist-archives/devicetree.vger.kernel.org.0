@@ -2,123 +2,278 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D9C6B3D71F6
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 11:27:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7ACC93D7237
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 11:43:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236022AbhG0J1Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jul 2021 05:27:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35030 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235979AbhG0J1Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 05:27:24 -0400
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C33C2C061757;
-        Tue, 27 Jul 2021 02:27:24 -0700 (PDT)
-Received: by mail-yb1-xb2c.google.com with SMTP id v46so19656708ybi.3;
-        Tue, 27 Jul 2021 02:27:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=OXaP/V7E9VE6tY63eKRQ5gbV86lhUto9d36GQTXubCY=;
-        b=KFYuPqxEbWgJg3sI4935wrP5FBajhMICpfDFJ/IMUVseOWYZO0nYmXhWZWZOLUogHE
-         qb7gWpp8a0cQ+4z6ZlAkSP9Kzl39NPb9WQREZ1+g4HJfrV29b702Ix3Ouu5eHIjcweOS
-         hpGAWABAAmWD8+PgeUuHmshjbnjrJJE1/ddrb/8DijucGXrrD0KdX0fH4wiInCGiylzB
-         V5woj6lUKYdB1BLkMkxWTUnDwbbIh/qjj4ZhCzBGPLl15uR9DH1OcV+qeezs/42PGGcO
-         3laD/q54vfQ8YEtxA1kW7RYxOuQBC9STRkRaSORLhV2vXF9bL9aWJoShf3LWCrP2MWOF
-         afvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OXaP/V7E9VE6tY63eKRQ5gbV86lhUto9d36GQTXubCY=;
-        b=J8cedr2qc4QlWLDL/FYN5wECqyOwm66+iPaYDJK2uOxWXH+0/YNHUFXhW9e+yM6Q7Z
-         OAfa4T6A9dGFSJ/r+tWfC1WxMV8HM+1+S6sR93KkrSuXInK9CXNL9QSz7S19dlfGIWJs
-         HLsRX9X+6rPE5eD28EUaxr/Mcye7G0s9KGj4Ms8svC2eZ1lmQ7+YyZehyo27nhxzKPop
-         GcbNCi/DTXinZOSltEriWhSeJNy63DOg205dssKc6KYw51XUpf1xATouxI7sI86Nb5Js
-         0ECLGzmUGsVhDGkMQ3L+TZagRHfkgxeeka/oI/eXHJUCXmJU83fsbtEl5Nmb6edbQPy9
-         KKJg==
-X-Gm-Message-State: AOAM532BxuQclL4+umbE5WdqdD83iX43TU5xcsuhYk6/S6pwyJC4lPOT
-        EbeIHMsRclFLfaKeefjuOhQCXnoNTrrwHWVe5qY=
-X-Google-Smtp-Source: ABdhPJw1d5jLrLhylPnJafYE/2u8pPAm5nX0i33oemeAERzvm+qCWm0EaJqS+oc/I2QRqEtkk6JwwZzPZEsIkSmEq04=
-X-Received: by 2002:a25:dad7:: with SMTP id n206mr15828153ybf.119.1627378044106;
- Tue, 27 Jul 2021 02:27:24 -0700 (PDT)
+        id S236105AbhG0Jnd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jul 2021 05:43:33 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:59603 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235897AbhG0Jnc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 05:43:32 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20210727094331euoutp01127d928f7a550cd5e9e8b15cdbfb6730~VnJaycykg1662316623euoutp01h
+        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 09:43:31 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20210727094331euoutp01127d928f7a550cd5e9e8b15cdbfb6730~VnJaycykg1662316623euoutp01h
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1627379011;
+        bh=Dtrq29VY/2TjbyC6nggbrf8kmghWjyjBq/HFm/fAsZU=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=CweXAzvqFEA5zovzBCDtvLo4JQ2O5w78hYTYhRPAEblz6p0kNrmuvLqmDdObcQaWy
+         jUjAP07cnCuCZHfKMCawlI/KUDy2FM1ovlkB09ROqfQimWckT5fDkyoQhdufcyZOoO
+         UFOzGXf+nw/kS1rc822Fwy+VxB6cfImMNg5kvuZs=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20210727094330eucas1p2d29edc0ec1d5014cff1103f65d32f1c3~VnJaK-MH73249832498eucas1p2v;
+        Tue, 27 Jul 2021 09:43:30 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id 5E.60.56448.245DFF06; Tue, 27
+        Jul 2021 10:43:30 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20210727094330eucas1p11f9927c305e4cf4a2d5eda067c7a5a46~VnJZsoP0x1958219582eucas1p1U;
+        Tue, 27 Jul 2021 09:43:30 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20210727094330eusmtrp23169e0afbff45cb974e3631b3f755c37~VnJZrbCiV2985629856eusmtrp2_;
+        Tue, 27 Jul 2021 09:43:30 +0000 (GMT)
+X-AuditID: cbfec7f5-d53ff7000002dc80-2b-60ffd542be15
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 26.05.20981.245DFF06; Tue, 27
+        Jul 2021 10:43:30 +0100 (BST)
+Received: from localhost (unknown [106.120.51.46]) by eusmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20210727094329eusmtip2730d4842120e33c3a321a7a52e78ea06~VnJZZReg22043020430eusmtip2x;
+        Tue, 27 Jul 2021 09:43:29 +0000 (GMT)
+From:   =?UTF-8?q?=C5=81ukasz=20Stelmach?= <l.stelmach@samsung.com>
+To:     Andrew Lunn <andrew@lunn.ch>, jim.cromie@gmail.com,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+Cc:     =?UTF-8?q?Bart=C5=82omiej=20=C5=BBolnierkiewicz?= 
+        <b.zolnierkie@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        =?UTF-8?q?=C5=81ukasz=20Stelmach?= <l.stelmach@samsung.com>
+Subject: [PATCH net-next v15 0/3] AX88796C SPI Ethernet Adapter
+Date:   Tue, 27 Jul 2021 11:43:22 +0200
+Message-Id: <20210727094325.9189-1-l.stelmach@samsung.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-References: <20210721191558.22484-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20210721191558.22484-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <1626964632.914515.4183863.nullmailer@robh.at.kernel.org>
-In-Reply-To: <1626964632.914515.4183863.nullmailer@robh.at.kernel.org>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Tue, 27 Jul 2021 10:26:58 +0100
-Message-ID: <CA+V-a8s1Cp+atEYFxSm1EpMO+ZqAa00jhHS7bm5QdTPJyd6oJQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/4] dt-bindings: pinctrl: renesas,rzg2l-pinctrl: Add
- DT bindings for RZ/G2L pinctrl
-To:     Rob Herring <robh@kernel.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Organization: Samsung R&D Institute Poland
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrIKsWRmVeSWpSXmKPExsWy7djP87pOV/8nGFz/pm5x/u4hZouNM9az
+        Wsw538JiMf/IOVaLRe9nsFpce3uH1aL/8Wtmi/PnN7BbXNjWx2px89AKRotNj6+xWlzeNYfN
+        Ysb5fUwWh6buZbRYe+Quu8WxBWIWrXuPsDsIely+dpHZY8vKm0weO2fdZffYtKqTzWPzknqP
+        nTs+M3n0bVnF6PF5k1wARxSXTUpqTmZZapG+XQJXxpcf+5gKbhpVbFue28B4Ur2LkZNDQsBE
+        4uKDh6xdjFwcQgIrGCVebJnMBuF8YZRYsb4XyvnMKNG1cC4zTMuBLZ+gWpYzSvxdOY8RwnnO
+        KPHk9gV2kCo2AUeJ/qUnwKpEBO4xS6xvfwBWxSywj1Fi570pYLOEBewlPl44DdbBIqAq0fv+
+        BRuIzStgJTHr7k82iH3yEu3Lt0PFBSVOznzCAmLzC2hJrGm6DmYzA9U0b53NDLJAQmAxp8Si
+        d6vYIZpdJA48uc4IYQtLvDq+BSouI/F/53ymLkYOILteYvIkM4jeHkaJbXN+sEDUWEvcOfeL
+        DaSGWUBTYv0ufYiwo8Th+dOYIVr5JG68FYQ4gU9i0rbpUGFeiY42IYhqFYl1/XugBkpJ9L5a
+        AXWMh8SxzvfsExgVZyF5bBaSZ2Yh7F3AyLyKUTy1tDg3PbXYOC+1XK84Mbe4NC9dLzk/dxMj
+        MNWd/nf86w7GFa8+6h1iZOJgPMQowcGsJMLrsOJ3ghBvSmJlVWpRfnxRaU5q8SFGaQ4WJXHe
+        XVvXxAsJpCeWpGanphakFsFkmTg4pRqY6v0mSC+yOPnflqVa0/2dg33CIo/1f74lvvt5LHfn
+        Hp+UTad3vdJdaDFdIv7KQi2Z6OT6K8+u/2ANfGh+Pdvup0WKusdSk4tLl5ZYacWbP+K9V9kw
+        5S973AubNdX1p8+tN485k8M5U4Cv+2ncqWjJtC8mTb8tj7LrKtV+nPgnrovzecvhlsd8vXp3
+        pH46ychpaUdJKPbqbL18780XBb+0DSJ3s/jb+IW6XpzYaxhjO2HO7CNHvjA4sB7KfHlvB7+N
+        oqe2QYhe/2rrTqlGliOFU8R1eQ6fmfnca9bVDxziL8Lbf1Q83lr91tcl8Fe6XuPNynzX0+sP
+        N0XvifLa8G05Q0mcwErts3H/c82nyoQosRRnJBpqMRcVJwIAzQYlP+QDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrJIsWRmVeSWpSXmKPExsVy+t/xe7pOV/8nGPw+zGJx/u4hZouNM9az
+        Wsw538JiMf/IOVaLRe9nsFpce3uH1aL/8Wtmi/PnN7BbXNjWx2px89AKRotNj6+xWlzeNYfN
+        Ysb5fUwWh6buZbRYe+Quu8WxBWIWrXuPsDsIely+dpHZY8vKm0weO2fdZffYtKqTzWPzknqP
+        nTs+M3n0bVnF6PF5k1wAR5SeTVF+aUmqQkZ+cYmtUrShhZGeoaWFnpGJpZ6hsXmslZGpkr6d
+        TUpqTmZZapG+XYJexpcf+5gKbhpVbFue28B4Ur2LkZNDQsBE4sCWT6xdjFwcQgJLGSUOnP/G
+        0sXIAZSQklg5Nx2iRljiz7UuNoiap4wS33dPZwVJsAk4SvQvPQHWLCLwhlmi6d5bdhCHWWAf
+        o8T+o4vZQaqEBewlPl44DWazCKhK9L5/wQZi8wpYScy6+5MNYoW8RPvy7VBxQYmTM5+AXcEs
+        oC6xfp4QSJhfQEtiTdN1FhCbGai8eets5gmMArOQdMxC6JiFpGoBI/MqRpHU0uLc9NxiI73i
+        xNzi0rx0veT83E2MwDjdduznlh2MK1991DvEyMTBeIhRgoNZSYTXYcXvBCHelMTKqtSi/Pii
+        0pzU4kOMpkAfTGSWEk3OByaKvJJ4QzMDU0MTM0sDU0szYyVxXpMja+KFBNITS1KzU1MLUotg
+        +pg4OKUamBImL/Dcsr9h7e+M9V73ErPDNA6Hq54885azVrn26iRnLZ1b8mynXiitWO9wesrc
+        DTq/5vy9y9v+9i+fjb06a8zeUFv5U2eF3rDx+agrL5qke93i3Zv44lvxUYoCDOnLNztLbtK5
+        VNAbt3iG2h5ppz3v7nvuvfjbcpfD0k1Fb6zNvHV3v2C++qX7UMbh313Nczmq85XU/571yawJ
+        5P6cpNDpq/7jnO0T+UUFZz6eOHSWZ+Le909L0va989qSErhK3Y7x2et+Ru7/38/4ylyvLfnU
+        cL/Rw1yId0+NRjJP8oep03f3dGVMq63gClmipTXtxgafYzevzhNMCMkz6Hk0QXZOuOVepccC
+        Bj0ep2aUlyqxFGckGmoxFxUnAgB6ZYXHXAMAAA==
+X-CMS-MailID: 20210727094330eucas1p11f9927c305e4cf4a2d5eda067c7a5a46
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20210727094330eucas1p11f9927c305e4cf4a2d5eda067c7a5a46
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20210727094330eucas1p11f9927c305e4cf4a2d5eda067c7a5a46
+References: <CGME20210727094330eucas1p11f9927c305e4cf4a2d5eda067c7a5a46@eucas1p1.samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+This is a driver for AX88796C Ethernet Adapter connected in SPI mode as
+found on ARTIK5 evaluation board. The driver has been ported from a
+v3.10.9 vendor kernel for ARTIK5 board.
 
-On Thu, Jul 22, 2021 at 3:37 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, 21 Jul 2021 20:15:55 +0100, Lad Prabhakar wrote:
-> > Add device tree binding documentation and header file for Renesas
-> > RZ/G2L pinctrl.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > ---
-> >  .../pinctrl/renesas,rzg2l-pinctrl.yaml        | 155 ++++++++++++++++++
-> >  include/dt-bindings/pinctrl/rzg2l-pinctrl.h   |  23 +++
-> >  2 files changed, 178 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
-> >  create mode 100644 include/dt-bindings/pinctrl/rzg2l-pinctrl.h
-> >
->
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->
-> yamllint warnings/errors:
->
-> dtschema/dtc warnings/errors:
-> Error: Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.example.dts:29.34-35 syntax error
-> FATAL ERROR: Unable to parse input tree
-> make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.example.dt.yaml] Error 1
-> make[1]: *** Waiting for unfinished jobs....
-> make: *** [Makefile:1418: dt_binding_check] Error 2
-> \ndoc reference errors (make refcheckdocs):
->
-> See https://patchwork.ozlabs.org/patch/1508385
->
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
->
-The base patch series required for this path is v5.14-rc2. (I had
-mentioned it in the cover letter, maybe I should have added a note
-here too)
+Changes in v15:
+  - rebased onto net-next 5.14-rc2 (268ca4129d8d)
+  - added explicit cast of le16_to_cpus() argument to u16*
+    (reported by: kernel test robot <lkp@intel.com>)
+  - removed invalid and superfluous call to u64_stats_init()
+    (reported by: Jakub Kicinski <kuba@kernel.org>)
+  
+Changes in v14:
+  - rebased onto net-next 5.14-rc1 (0d6835ffe50c)
 
-Sorry for the inconvenience.
+Changes in v13:
+  - rebased onto net-next (ebbf5fcb94a7)
+  - minor fix: use u64_stats_update_{begin_irqsave,end_irqrestore}
+  - minor fix: initialize the syncp lock
 
-Cheers,
-Prabhakar
+Changes in v12:
+  - rebased to net-next-5.13
+  - added missing spaces after commas
+  - corrected indentation
 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->
-> pip3 install dtschema --upgrade
->
-> Please check and re-submit.
->
+Changes in v11:
+  - changed stat counters to 64-bit
+  - replaced WARN_ON(!mutex_is_locked()) with lockdep_assert_held()
+  - replaced ax88796c_free_skb_queue() with __skb_queue_purge()
+  - added cancel_work_sync() for ax_work
+  - removed unused fields of struct skb_data
+  - replaced MAX() with max() from minmax.h
+  - rebased to net-next (resend)
+
+Changes in v10:
+  - removed unused variable
+ 
+Changes in v9:
+  - used pskb_extend_head()
+  - used ethtool private flags instead of tunables to switch SPI
+    compression
+  - changed
+    - alloc_skb() to netdev_alloc(skb)
+    - __pskb_trim() to pskb_trim()
+  - removed:
+    - chages to skb->truesize
+    - unnecessary casting to short
+    - return f() in a void function
+    - IRQF_SHARED flags
+    - unnecessary memset(0) of kzalloc()ed buffer
+    - unused endiannes detection
+    - unnecessary __packed attribute for some structures
+  - added:
+    - temporary variable in AX_WRITE/READ sequences
+    - missin mutex_unlock() in error paths
+  - axspi_read_reg() returns a constant value in case of an error
+  
+Changes in v8:
+  - fixed the entry in MAINTAINERS
+  - removed unnecessary netif_err()
+  - changed netif_rx() to netif_rx_ni() for code running in a process
+    context
+  - added explicit type casting for ~BIT()
+
+Changes in v7:
+  - removed duplicate code
+  - moved a constant buffer definition away from a header file
+
+Changes in v6:
+  - fixed typos in Kconfig
+  - checked argument value in ax88796c_set_tunable
+  - updated tags in commit messages
+
+Changes in v5:
+  - coding style (local variable declarations)
+  - added spi0 node in the DT binding example and removed
+    interrupt-parent
+  - removed comp module parameter
+  - added CONFIG_SPI_AX88796C_COMPRESSION option to set the initial
+    state of SPI compression
+  - introduced new ethtool tunable "spi-compression" to controll SPI
+    transfer compression
+  - removed unused fields in struct ax88796c_device
+  - switched from using buffers allocated on stack for SPI transfers
+    to DMA safe ones embedded in struct ax_spi and allocated with
+    kmalloc()
+
+Changes in v4:
+  - fixed compilation problems in asix,ax88796c.yaml and in
+  ax88796c_main.c introduced in v3
+
+Changes in v3:
+  - modify vendor-prefixes.yaml in a separate patch
+  - fix several problems in the dt binding
+    - removed unnecessary descriptions and properties
+    - changed the order of entries
+    - fixed problems with missing defines in the example
+  - change (1 << N) to BIT(N), left a few (0 << N)
+  - replace ax88796c_get_link(), ax88796c_get_link_ksettings(),
+    ax88796c_set_link_ksettings(), ax88796c_nway_reset(),
+    ax88796c_set_mac_address() with appropriate kernel functions.
+  - disable PHY auto-polling in MAC and use PHYLIB to track the state
+    of PHY and configure MAC
+  - propagate return values instead of returning constants in several
+    places
+  - add WARN_ON() for unlocked mutex
+  - remove local work queue and use the system_wq
+  - replace phy_connect_direct() with phy_connect() and move
+    devm_register_netdev() to the end of ax88796c_probe()
+    (Unlike phy_connect_direct() phy_connect() does not crash if the
+    network device isn't registered yet.)
+  - remove error messages on ENOMEM
+  - move free_irq() to the end of ax88796c_close() to avoid race
+    condition
+  - implement flow-control
+
+Changes in v2:
+  - use phylib
+  - added DT bindings
+  - moved #includes to *.c files
+  - used mutex instead of a semaphore for locking
+  - renamed some constants
+  - added error propagation for several functions
+  - used ethtool for dumping registers
+  - added control over checksum offloading
+  - remove vendor specific PM
+  - removed macaddr module parameter and added support for reading a MAC
+    address from platform data (e.g. DT)
+  - removed dependency on SPI from NET_VENDOR_ASIX
+  - added an entry in the MAINTAINERS file
+  - simplified logging with appropriate netif_* and netdev_* helpers
+  - lots of style fixes
+
+Łukasz Stelmach (3):
+  dt-bindings: vendor-prefixes: Add asix prefix
+  dt-bindings: net: Add bindings for AX88796C SPI Ethernet Adapter
+  net: ax88796c: ASIX AX88796C SPI Ethernet Adapter Driver
+
+ .../bindings/net/asix,ax88796c.yaml           |   73 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ MAINTAINERS                                   |    6 +
+ drivers/net/ethernet/Kconfig                  |    1 +
+ drivers/net/ethernet/Makefile                 |    1 +
+ drivers/net/ethernet/asix/Kconfig             |   35 +
+ drivers/net/ethernet/asix/Makefile            |    6 +
+ drivers/net/ethernet/asix/ax88796c_ioctl.c    |  239 ++++
+ drivers/net/ethernet/asix/ax88796c_ioctl.h    |   26 +
+ drivers/net/ethernet/asix/ax88796c_main.c     | 1148 +++++++++++++++++
+ drivers/net/ethernet/asix/ax88796c_main.h     |  568 ++++++++
+ drivers/net/ethernet/asix/ax88796c_spi.c      |  115 ++
+ drivers/net/ethernet/asix/ax88796c_spi.h      |   69 +
+ 13 files changed, 2289 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/asix,ax88796c.yaml
+ create mode 100644 drivers/net/ethernet/asix/Kconfig
+ create mode 100644 drivers/net/ethernet/asix/Makefile
+ create mode 100644 drivers/net/ethernet/asix/ax88796c_ioctl.c
+ create mode 100644 drivers/net/ethernet/asix/ax88796c_ioctl.h
+ create mode 100644 drivers/net/ethernet/asix/ax88796c_main.c
+ create mode 100644 drivers/net/ethernet/asix/ax88796c_main.h
+ create mode 100644 drivers/net/ethernet/asix/ax88796c_spi.c
+ create mode 100644 drivers/net/ethernet/asix/ax88796c_spi.h
+
+-- 
+2.26.2
+
