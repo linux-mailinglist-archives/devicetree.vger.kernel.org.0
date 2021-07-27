@@ -2,95 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 16F4D3D741B
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 13:16:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6746F3D7454
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 13:26:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236416AbhG0LPL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jul 2021 07:15:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59860 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236427AbhG0LPK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 07:15:10 -0400
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E14B6C061760
-        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 04:15:10 -0700 (PDT)
-Received: by mail-pl1-x629.google.com with SMTP id i1so15358650plr.9
-        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 04:15:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=+kNbslq7vj9YiuOoktOVh6hBVXag9OQ/inx+NSoMTgg=;
-        b=EKGqxJGnjY+bKuBecKb+9x9V4U/zyM+DfI9cY8TJhi7MREHhy+5CblfukvfTyY1GnK
-         qLPMOn0NfI5IO1onW2adkZwW/WzOoH05UqDRSyeJKs5LkjOYVDEoomKGyJe01U66eDjT
-         cDOB5epPM1W3XhF+rOhslBK60tOGTaMakKcCU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=+kNbslq7vj9YiuOoktOVh6hBVXag9OQ/inx+NSoMTgg=;
-        b=L+NettsE9MKD1BL7KRAft4W7jNZ8yfhkUixCMgkYeGklwD8u1TMu9u976BEuoeLr5H
-         E2eEao8Q26dYNV7lC/jLzpM9Ssax0lPm+DTw6qu65QeeQZS1jOT1E84DAyutUic/7vQr
-         Ju4JOxbPldgUGrU2vRnBpEqT5fG+MtjwA4Nir+nkKX1+jIS1bZAdZLLhf+dSbmSxGEcp
-         uVSvlwm8fbvRv3Ipx8D/SEW1NEMyoa3ye0eWzQ49Cgeh7dy+pgeLYV0nlH1Z/fKpzDyB
-         Rg277FvW7wUCCAAYYd8I4eBFKZU2ipUH9eLMJl/VFecSMDtWvMEnl0ibFE+p3JNj7b6U
-         xmZA==
-X-Gm-Message-State: AOAM530UbfNrWjMeSlEiavMYzdc8wXh5gJ0shFhqP4b+STtHtIaf6H19
-        x0aMhIuzmThYjT+axdnmP9KFQA==
-X-Google-Smtp-Source: ABdhPJzkLIgghdfrbRoZrulmILkoZzo0xSTn37F9lFpSImUcxzYkhY/lOslEJ4rksKObpe9qSWZe7Q==
-X-Received: by 2002:a63:5f55:: with SMTP id t82mr23038185pgb.226.1627384510116;
-        Tue, 27 Jul 2021 04:15:10 -0700 (PDT)
-Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:5176:76cc:2193:9b8f])
-        by smtp.gmail.com with ESMTPSA id t1sm3362305pgp.42.2021.07.27.04.15.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Jul 2021 04:15:09 -0700 (PDT)
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        eizan@chromium.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] arm64: dts: mt8173: elm: Use aliases to mmc nodes
-Date:   Tue, 27 Jul 2021 19:15:02 +0800
-Message-Id: <20210727111502.2506311-2-hsinyi@chromium.org>
-X-Mailer: git-send-email 2.32.0.432.gabb21c7263-goog
-In-Reply-To: <20210727111502.2506311-1-hsinyi@chromium.org>
-References: <20210727111502.2506311-1-hsinyi@chromium.org>
+        id S236432AbhG0L0E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jul 2021 07:26:04 -0400
+Received: from mail.hostpark.net ([212.243.197.30]:36594 "EHLO
+        mail.hostpark.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236320AbhG0L0D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 07:26:03 -0400
+X-Greylist: delayed 559 seconds by postgrey-1.27 at vger.kernel.org; Tue, 27 Jul 2021 07:26:02 EDT
+Received: from localhost (localhost [127.0.0.1])
+        by mail.hostpark.net (Postfix) with ESMTP id C000A163CB;
+        Tue, 27 Jul 2021 13:16:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=elsoft.ch; h=
+        content-transfer-encoding:content-type:content-type:in-reply-to
+        :mime-version:user-agent:date:date:message-id:organization:from
+        :from:references:subject:subject:received:received; s=sel2011a;
+         t=1627384600; bh=nnN5lZfFj9MppOjkb9i1D7D+MJTulP6KsKyauxX4sGo=; b=
+        eESr91MaPfXJrnskyOyzLqbm1XhuG04+D86JOWAVA9IL+sGz+lm0QWKyU4w/uMqN
+        UtKagNjJkDUuFIxWMwQ4LjBgm83pypHT4iXjnISq80yy/DmbNIiNBbLiJjvo2pto
+        ATTm0dxI5+bH/WdJaLzFKkDefW0DncAPjodyFFWUTSk=
+X-Virus-Scanned: by Hostpark/NetZone Mailprotection at hostpark.net
+Received: from mail.hostpark.net ([127.0.0.1])
+        by localhost (mail1.hostpark.net [127.0.0.1]) (amavisd-new, port 10224)
+        with ESMTP id b9k2yq6cDK1n; Tue, 27 Jul 2021 13:16:40 +0200 (CEST)
+Received: from customer (localhost [127.0.0.1])
+        by mail.hostpark.net (Postfix) with ESMTPA id 3348E164A0;
+        Tue, 27 Jul 2021 13:16:40 +0200 (CEST)
+Subject: Re: [PATCH 10/14] peci: Add peci-cpu driver
+To:     Iwona Winiarska <iwona.winiarska@intel.com>,
+        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org
+Cc:     linux-aspeed@lists.ozlabs.org, linux-doc@vger.kernel.org,
+        Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>, x86@kernel.org,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Ingo Molnar <mingo@redhat.com>,
+        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+        Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Borislav Petkov <bp@alien8.de>,
+        Andy Lutomirski <luto@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org,
+        Tony Luck <tony.luck@intel.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Yazen Ghannam <yazen.ghannam@amd.com>
+References: <20210712220447.957418-1-iwona.winiarska@intel.com>
+ <20210712220447.957418-11-iwona.winiarska@intel.com>
+From:   =?UTF-8?Q?David_M=c3=bcller_=28ELSOFT_AG=29?= <d.mueller@elsoft.ch>
+Openpgp: preference=signencrypt
+Organization: ELSOFT AG
+Message-ID: <26dbd0d3-c326-96a5-2ec7-4fc3387865e9@elsoft.ch>
+Date:   Tue, 27 Jul 2021 13:16:47 +0200
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:52.0) Gecko/20100101 Firefox/52.0
+ SeaMonkey/2.49.5
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210712220447.957418-11-iwona.winiarska@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-fa2d0aa96941 ("mmc: core: Allow setting slot index via device tree alias")
-allows the use of aliases to number SD/MMC slots. This patch use aliases
-to mmc nodes so the partition name for eMMC and SD card will be consistent
-across boots.
+Iwona Winiarska wrote:
 
-Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
----
- arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+> +static const struct peci_device_id peci_cpu_device_ids[] = {
+> +	{ /* Haswell Xeon */
+> +		.family	= 6,
+> +		.model	= INTEL_FAM6_HASWELL_X,
+> +		.data	= "hsx",
+> +	},
+> +	{ /* Broadwell Xeon */
+> +		.family	= 6,
+> +		.model	= INTEL_FAM6_BROADWELL_X,
+> +		.data	= "bdx",
+> +	},
+> +	{ /* Broadwell Xeon D */
+> +		.family	= 6,
+> +		.model	= INTEL_FAM6_BROADWELL_D,
+> +		.data	= "skxd",
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-index 21452c51a20a8..d5a2cad39c9c7 100644
---- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-@@ -10,6 +10,12 @@
- #include "mt8173.dtsi"
- 
- / {
-+	aliases {
-+		mmc0 = &mmc0;
-+		mmc1 = &mmc1;
-+		mmc2 = &mmc3;
-+	};
-+
- 	memory@40000000 {
- 		device_type = "memory";
- 		reg = <0 0x40000000 0 0x80000000>;
--- 
-2.32.0.432.gabb21c7263-goog
-
+I think this should read "bdxd" as "skxd" does not exist in the
+cputemp/dimmtemp drivers.
