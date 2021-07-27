@@ -2,52 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 751A23D7B1E
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 18:36:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CD4C3D7BFA
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 19:16:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229848AbhG0QgU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jul 2021 12:36:20 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:47846 "EHLO vps0.lunn.ch"
+        id S229809AbhG0RQW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jul 2021 13:16:22 -0400
+Received: from box.trvn.ru ([194.87.146.52]:52621 "EHLO box.trvn.ru"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229759AbhG0QgU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Jul 2021 12:36:20 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=N9IVrWRXxsCuaImLb/sEKG+W00sCSXz/eWKQb2ovXDI=; b=pHO962RwMvRrn6xdjmJTk8PliN
-        7Xg5BMuKiBZu8S4HYdwIEgxhmzijuW5QZGy/e8o7wTtjpW0+PR3CbnOGVpEs8yPdupykteATCMx+C
-        QnJCw961S9UBlt/syE/hOtkslblz63SzDvg/uKTH3myE9nnU6qeQIbOZLGVZtazo8i+4=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1m8Q3r-00F2WS-6M; Tue, 27 Jul 2021 18:36:07 +0200
-Date:   Tue, 27 Jul 2021 18:36:07 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     alexandru.tachici@analog.com, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        davem@davemloft.net, kuba@kernel.org,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>
-Subject: Re: [PATCH v2 3/7] net: phy: adin1100: Add initial support for
- ADIN1100 industrial PHY
-Message-ID: <YQA19+65/nOr/qCb@lunn.ch>
-References: <20210712130631.38153-1-alexandru.tachici@analog.com>
- <20210712130631.38153-4-alexandru.tachici@analog.com>
- <20210727064746.lsz3ip7jyjbjkskj@pengutronix.de>
+        id S229497AbhG0RQV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Jul 2021 13:16:21 -0400
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by box.trvn.ru (Postfix) with ESMTPSA id 79A33413D3;
+        Tue, 27 Jul 2021 22:06:28 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+        t=1627405589; bh=1+ecd5RxP5Uu5mrSwspRP0Hg++hsqVRh3UdQruBewQo=;
+        h=From:To:Cc:Subject:Date:From;
+        b=gu6DPLyLOcrzln61ZvTvlqDHox5pqN7yr0b7Wz65ba1Le9Fq3jPs3gJtr30ROjZLF
+         aR4KggTq53VE8WIHvBF+Hk0VZP8XmrsR2USdbaE+kFBQQhhcq6z2Gu3yZPCFM+D4iS
+         Em8AR5wXT6n+2o+azb3FCwWjIeP4EOXhHent128qCuVqJM9VEI0aldLA1kFN5yxeaA
+         LnmzI0QTcKwbyWnEONd4ENCYMBpnDIXT9fC5obiBzdR21+SX3JtPfT2L861H4J8p2C
+         tmWtbagczx4e1tzscB93zQ1mmD2K0yDylxL0QNN8EA6S3gPWsyGIehwQorpOFxcXXo
+         Tudgseh3lFYdQ==
+From:   Nikita Travkin <nikita@trvn.ru>
+To:     sre@kernel.org
+Cc:     robh+dt@kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Nikita Travkin <nikita@trvn.ru>
+Subject: [PATCH 1/2] dt-bindings: power: supply: max17042: Document max77849-battery
+Date:   Tue, 27 Jul 2021 22:03:44 +0500
+Message-Id: <20210727170345.115004-1-nikita@trvn.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210727064746.lsz3ip7jyjbjkskj@pengutronix.de>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Please compare the PHY datasheet with 802.3.2018 and 802.3cg-2019, and
-> implement common parts as phy generic code.
+max77849 is a combined fuel-gauge, charger and MUIC device. Add it to
+the bindings documentation.
 
-+1
+Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+---
+ .../devicetree/bindings/power/supply/maxim,max17042.yaml         | 1 +
+ 1 file changed, 1 insertion(+)
 
-Thanks
-	Andrew
+diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max17042.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max17042.yaml
+index c70f05ea6d27..42ebf87d300b 100644
+--- a/Documentation/devicetree/bindings/power/supply/maxim,max17042.yaml
++++ b/Documentation/devicetree/bindings/power/supply/maxim,max17042.yaml
+@@ -19,6 +19,7 @@ properties:
+       - maxim,max17047
+       - maxim,max17050
+       - maxim,max17055
++      - maxim,max77849-battery
+ 
+   reg:
+     maxItems: 1
+-- 
+2.30.2
+
