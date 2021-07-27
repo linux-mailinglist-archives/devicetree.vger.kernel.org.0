@@ -2,92 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3BE43D73FD
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 13:03:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA8BA3D7405
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 13:06:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236320AbhG0LDz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jul 2021 07:03:55 -0400
-Received: from ni.piap.pl ([195.187.100.5]:44220 "EHLO ni.piap.pl"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236274AbhG0LDy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Jul 2021 07:03:54 -0400
-Received: from t19.piap.pl (OSB1819.piap.pl [10.0.9.19])
-        by ni.piap.pl (Postfix) with ESMTPSA id 5DD79C3F2A52;
-        Tue, 27 Jul 2021 13:03:53 +0200 (CEST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 ni.piap.pl 5DD79C3F2A52
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=piap.pl; s=mail;
-        t=1627383833; bh=Amq+jkF0BngY9L7QHpS8oR7xrYrTBUXFufJ73FZ21XY=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=jgJ1z/1MZIwzc4MYIOzf+Yq98QPAhzIFppHNqgiOTI1vMeWXq+gIUNQmnnhYicNNi
-         JmPtNJdqDddSQ/ttykbHmN19ab3Xkrrzu8d6/EI6mKHe4UgqOZYRtqQ1goFL0rao3D
-         P5st0lEF4LP0Y8zSZgs8w45F1Bue7IzoOxYCqsBI=
-From:   =?utf-8?Q?Krzysztof_Ha=C5=82asa?= <khalasa@piap.pl>
-To:     Sakari Ailus <sakari.ailus@iki.fi>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        devicetree@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC v3] dt-binding: media: document ON Semi AR0521 sensor
- bindings
-References: <m37dhkdrat.fsf@t19.piap.pl>
-        <YP9ccgd7WNpHuLgG@pendragon.ideasonboard.com>
-        <m3o8aoavrv.fsf@t19.piap.pl>
-        <20210727105830.GH3@valkosipuli.retiisi.eu>
-Sender: khalasa@piap.pl
-Date:   Tue, 27 Jul 2021 13:03:53 +0200
-In-Reply-To: <20210727105830.GH3@valkosipuli.retiisi.eu> (Sakari Ailus's
-        message of "Tue, 27 Jul 2021 13:58:30 +0300")
-Message-ID: <m3fsw0auhy.fsf@t19.piap.pl>
+        id S236227AbhG0LG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jul 2021 07:06:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57936 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236169AbhG0LG0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 07:06:26 -0400
+Received: from mail-il1-x12f.google.com (mail-il1-x12f.google.com [IPv6:2607:f8b0:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A46F3C061757
+        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 04:06:26 -0700 (PDT)
+Received: by mail-il1-x12f.google.com with SMTP id r1so11680842iln.6
+        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 04:06:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=KaH6OTwrWG90914prFT1/hBGveSe1LpJn6vY9Adila8=;
+        b=SDh/ZiBj+wM/6RLopNPtxhhmjY4AOhwtUlsj7CBXB5kWyYXr4/eEwwMraRCCYOGBu8
+         4+gwT7UhgkK6MDRdhMlBprwwCgOKmjdnT+99U8rD/ZksvEtppzkTxzsX/KkM4vygStQR
+         5W8tG5BXychsijrX3WI5DDmbAZsvu6Xwzxre0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=KaH6OTwrWG90914prFT1/hBGveSe1LpJn6vY9Adila8=;
+        b=UiZOStMQrT+uNtLPAYxL0UG1UBIWiC3FWMDgI2aIx9hVGST69AMAZ5GhweaI6zvpHx
+         Ces708RN6YPRC2VvpqT5HaTZHYaenmytAlyKoSys3n73YgCzfuePKggRHHJOLwM7uq5s
+         y1MsVrLIIpt8a+jQAXJa+fniFaHNbdWz3AIkhdqylUPm+dwE1tHygHHLldyXviZIgZMV
+         6b8VBcQ5oemcmk39/9HVEKl37Nhcs+c50xr7Sw/ZtqNfc1CdXKv1KjX9uNz6w44FQ8Hi
+         xf7ypDRc2HKZV7Rq20xoOixsagYEi3SKzNcRGoOpCHbFLGcQp+MULyVYxI/xWqDyTP5r
+         fnlA==
+X-Gm-Message-State: AOAM533E3YYfw7/TNt0kap93NcfBzF6xVDxYlBttkWMnrXTOGcEm4+Uz
+        GMtNXathqrOfiOmLrnoNpYXc7uva+K/5cFDPVrJBHw==
+X-Google-Smtp-Source: ABdhPJzN3bMcohyLx+BmCBR3X6vZL0tTvooFjXp3y2FFWtT9H5YBTmKIeAGF+vyrAAa7JitBin1NHaVrXGI4vBGiKTs=
+X-Received: by 2002:a05:6e02:13e2:: with SMTP id w2mr16501620ilj.308.1627383986040;
+ Tue, 27 Jul 2021 04:06:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-KLMS-Rule-ID: 1
-X-KLMS-Message-Action: clean
-X-KLMS-AntiSpam-Lua-Profiles: 165268 [Jul 27 2021]
-X-KLMS-AntiSpam-Version: 5.9.20.0
-X-KLMS-AntiSpam-Envelope-From: khalasa@piap.pl
-X-KLMS-AntiSpam-Rate: 0
-X-KLMS-AntiSpam-Status: not_detected
-X-KLMS-AntiSpam-Method: none
-X-KLMS-AntiSpam-Auth: dkim=pass header.d=piap.pl
-X-KLMS-AntiSpam-Info: LuaCore: 449 449 5db59deca4a4f5e6ea34a93b13bc730e229092f4, {Tracking_Text_ENG_RU_Has_Extended_Latin_Letters, eng}, {Tracking_marketers, three}, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;piap.pl:7.1.1;t19.piap.pl:7.1.1
-X-MS-Exchange-Organization-SCL: -1
-X-KLMS-AntiSpam-Interceptor-Info: scan successful
-X-KLMS-AntiPhishing: Clean, bases: 2021/07/27 08:44:00
-X-KLMS-AntiVirus: Kaspersky Security for Linux Mail Server, version 8.0.3.30, bases: 2021/07/27 08:46:00 #16963359
-X-KLMS-AntiVirus-Status: Clean, skipped
+References: <CAGXv+5Ev4QU72cMqMW7sA=dijzh7-DCsfHY+Lmqd36uzg_7Nww@mail.gmail.com>
+ <CAJMQK-hH5HM5iN4q6UgUf8T5fwj+0oULKPw=XafYOPrki-aDkg@mail.gmail.com>
+ <CAGXv+5E9MWzHtJLEab_ZKQNgVqhL5H_Teor9c5zCQD8OHOcYYA@mail.gmail.com> <CAFqH_51Sg0h+CC9whUAgpp80OxDsB461NYSdKQvGxho_VF8oJg@mail.gmail.com>
+In-Reply-To: <CAFqH_51Sg0h+CC9whUAgpp80OxDsB461NYSdKQvGxho_VF8oJg@mail.gmail.com>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Tue, 27 Jul 2021 19:06:00 +0800
+Message-ID: <CAJMQK-j_SFVOA7KcZpGaE+mS3WZf3fe9CaXw4pHPND_UWUU6Kg@mail.gmail.com>
+Subject: Re: arm64: dts: mt8183: Incorrect mediatek,pull-*-adv values
+To:     Enric Balletbo Serra <eballetbo@gmail.com>
+Cc:     Chen-Yu Tsai <wenst@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, linux-gpio@vger.kernel.org,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sakari,
-
-Sakari Ailus <sakari.ailus@iki.fi> writes:
-
-> I think Laurent meant:
+On Mon, Jul 26, 2021 at 5:48 PM Enric Balletbo Serra
+<eballetbo@gmail.com> wrote:
 >
-> 	    bus-type:
-> 	      const: 4
+> Hi Chen-Yu and Hsin-Yi,
 >
-> This way the bindings can be later amended with HiSPi support without
-> relying on defaults. Albeit the other busses in practice almost never end
-> up being used even if supported, apart from the standard BT.601, BT.656 a=
-nd
-> CSI-2.
 >
-> Either way is fine IMO.
+> Missatge de Chen-Yu Tsai <wenst@chromium.org> del dia dl., 26 de jul.
+> 2021 a les 10:58:
+> >
+> > On Mon, Jul 26, 2021 at 4:50 PM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
+> > >
+> > > On Mon, Jul 26, 2021 at 4:20 PM Chen-Yu Tsai <wenst@chromium.org> wrote:
+> > > >
+> > > > Hi,
+> > > >
+> > > > I was looking at MTK pinctrl stuff upstream, and it seems there are a few
+> > > > `mediatek,pull-*-adv` entries that have invalid values:
+> > > >
+> > > > arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi:
+> > > > mediatek,pull-down-adv = <10>;
+>
+> The confusion comes probably because the binding says that this value
+> is valid, see
+>
+>    Documentation/devicetree/bindings/pinctrl/pinctrl-mt8183.txt
+>
+> it'd be nice to convert that binding and the others to yaml format and
+> remove the possibility to specify it in binary format.
+>
+>   Documentation/devicetree/bindings/pinctrl/pinctrl-mt65xx.txt
+>   Documentation/devicetree/bindings/pinctrl/pinctrl-mt7622.txt
+>   Documentation/devicetree/bindings/pinctrl/pinctrl-mt6797.txt
+>
+> Should be pretty easy as there is already an example:
+> Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl.yaml
+>
 
-Ok, so I'll leave it as is (apart from Rob's additions/changes).
+Hi Enric,
 
-> No need to add support for the driver.
+I've sent a patch for converting these into yaml here:
+https://lore.kernel.org/patchwork/patch/1468449/
 
-Ok.
+Thanks
 
-Thanks.
---=20
-Krzysztof "Chris" Ha=C5=82asa
-
-Sie=C4=87 Badawcza =C5=81ukasiewicz
-Przemys=C5=82owy Instytut Automatyki i Pomiar=C3=B3w PIAP
-Al. Jerozolimskie 202, 02-486 Warszawa
+> Thanks,
+>   Enric
+>
+> > > > arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi:
+> > > > mediatek,pull-down-adv = <10>;
+> > > > arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi:
+> > > > mediatek,pull-down-adv = <10>;
+> > > > arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi:
+> > > > mediatek,pull-up-adv = <10>;
+> > > > arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi:
+> > > > mediatek,pull-down-adv = <10>;
+> > > > arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi:
+> > > > mediatek,pull-up-adv = <10>;
+> > > > arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi:
+> > > > mediatek,pull-down-adv = <10>;
+> > > > arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts:
+> > > >  mediatek,pull-down-adv = <10>;
+> > > > arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts:
+> > > >  mediatek,pull-down-adv = <10>;
+> > > > arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts:
+> > > >  mediatek,pull-down-adv = <10>;
+> > > > arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts:
+> > > >  mediatek,pull-up-adv = <10>;
+> > > > arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts:
+> > > >  mediatek,pull-down-adv = <10>;
+> > > > arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts:
+> > > >  mediatek,pull-up-adv = <10>;
+> > > >
+> > > > According to the bindings, the values should 0~3. <10> is probably a
+> > > > incorrect attempt at using binary representation, which is wrong. This
+> > > > probably leads to the pull-up/down getting disabled or ignored.
+> > > >
+> > > > Cound people still working on these two devices take a look?
+> > > >
+> > > Thanks for pointing this out. It's an incorrect value but 10=0b1010 so
+> > > the result is same as 2, since the driver test the value by checking
+> > > the last 2 bit. We should still fix this in dts.
+> >
+>
+> I see that the are
+>
+>
+>
+> > That probably explains why no one noticed.
