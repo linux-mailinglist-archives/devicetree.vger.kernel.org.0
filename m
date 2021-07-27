@@ -2,201 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 934E63D7F7C
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 22:49:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37FDD3D8075
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 23:05:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232208AbhG0Utj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jul 2021 16:49:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51890 "EHLO
+        id S232359AbhG0VFJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jul 2021 17:05:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232133AbhG0Utj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 16:49:39 -0400
-Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B6B6C061757
-        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 13:49:39 -0700 (PDT)
-Received: by mail-io1-xd36.google.com with SMTP id f11so335186ioj.3
-        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 13:49:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=engleder-embedded-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=64tNPGucwZBu9cEJcgaC2pBbTlgtzE/y1Q1KvB08ytA=;
-        b=IdGN52UmTF1b0dKE/DwwfwWVY0ALlk16Cl+YXbIzE2iWthfEQaKtZ5aUMXKt/6ETmE
-         /nux9Q5iPxerbE11u4zDnPA+lFzHEiGGbxhaeXxn5cJnhWPV/PM/v39KpMui2t1PcbVa
-         wx2Kg2NSm5J7JudzswT0nb0WykvPNC15TkK0aBMTLKNCx7aW8eH5kEZ2xbNtiiEYH7os
-         Sc++SOQlIGyC9tCAgJ9LPeuwuE7QVxiw35lOAi+huU8IMFL7Yayn77kjv1Zu4VXKwsB3
-         oGxl2VSTa5x7E6zVoSysEhylZgprynD2J/P8y/7Q2lJcAcqpCuLGQWHbmLrOPmWfp5D+
-         HUmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=64tNPGucwZBu9cEJcgaC2pBbTlgtzE/y1Q1KvB08ytA=;
-        b=kShJ3CRRxNIsP57IXM9kRXW7c12hVz7aTsqhRonn/Zf00m50+DCD9J1AgltXi87Cxg
-         /nw/+oa7vwj4xJZxDXIeJxML3KEBawihQHRp8/cyjjCCY3cb1C2LT3Q3oAQVKDwR0AGC
-         Oa/xzjFT5nPBn90PVY7nnaffnvNQe0Cg8PzLz6ey7uysJt30e8Ef3qmnbfE9FT5+6Mzq
-         6bPHyYWaa64Kx5uFTNMXFIQFyEVwlveVCAT1SNid4Wd2dh7DDq9XIn6m+olLwo89y7zv
-         3OYkvN0J8DYmzugWudltnMdqyVjzuXcOInqJLOP+PW1Qq9+zJjWQOyPOuWBDNVKTg9vW
-         f6ig==
-X-Gm-Message-State: AOAM533dFrj+Cjzfz1js7kTFdLDHxgQAXkewDDN+62DOT7WoXJwmMnRa
-        GyF58Hofz/0fu49tzbfvWXumNXX+8dA66TtP/fzfVj8YsbfGRIdQHOSg9A==
-X-Google-Smtp-Source: ABdhPJzr+kjWb75ibDmQA0bhH6DcFg215f5lkpfWA45ZPPGKvzYMzXTwddcEO0toK39m6cpENiwgU9mfdLv9Ythzan0=
-X-Received: by 2002:a05:6638:41a7:: with SMTP id az39mr23015848jab.52.1627418978515;
- Tue, 27 Jul 2021 13:49:38 -0700 (PDT)
+        with ESMTP id S231368AbhG0VFJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 17:05:09 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F15C5C061757;
+        Tue, 27 Jul 2021 14:05:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
+        Subject:Sender:Reply-To:Content-ID:Content-Description;
+        bh=NO0RGVu+XndYKUq3uNCgF+Kta6CYfhtwRahspvD+83o=; b=LHPi7HOMmKXpl/JTivGeHL+Uc/
+        gubaL8xVK/zdLXCvONaAPiqG5U2sYv8n1bPlDYE/POrSnQYVhIscyxFVGD6H0COPC/fziMsUFIpy6
+        YqheJe1AcA8FtncDzpDzfKvjP5LmVPCsOAJktFaVYBi5pardy6QnQF8Y7A9ucqqfsEYbyX4GC1uM+
+        T9oKfls5/9bUIs7HSJJBJ+hQU814fh9DNJMxovTxGoGgsmSCzk8Ia+uUs/7Qn7CUJz3WGCb12FBt4
+        9kDgGiiaP45Yr75bFU/HFyCEt7ab0t6jWoolqzcgttG+Odq5YouAKuyPkkgAqtrPdy3SAzhRwFLbJ
+        9sc5tW7Q==;
+Received: from [2601:1c0:6280:3f0::aefb]
+        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1m8UGA-00GMRO-TV; Tue, 27 Jul 2021 21:05:07 +0000
+Subject: Re: [PATCH v4 19/19] auxdisplay: ht16k33: Add LED support
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Robin van der Gracht <robin@protonic.nl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Miguel Ojeda <ojeda@kernel.org>,
+        Paul Burton <paulburton@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Pavel Machek <pavel@ucw.cz>, Marek Behun <marek.behun@nic.cz>,
+        Arnd Bergmann <arnd@arndb.de>
+Cc:     devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210727140459.3767788-1-geert@linux-m68k.org>
+ <20210727140459.3767788-20-geert@linux-m68k.org>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <5b70f272-eec9-0ff7-1bd2-bf1659b10e9c@infradead.org>
+Date:   Tue, 27 Jul 2021 14:05:05 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <20210726194603.14671-1-gerhard@engleder-embedded.com>
- <20210726194603.14671-5-gerhard@engleder-embedded.com> <YP8l6cWaQU/2NoIA@lunn.ch>
-In-Reply-To: <YP8l6cWaQU/2NoIA@lunn.ch>
-From:   Gerhard Engleder <gerhard@engleder-embedded.com>
-Date:   Tue, 27 Jul 2021 22:49:27 +0200
-Message-ID: <CANr-f5xOn1VcKZQNfb+iunHjq+8uUkxNQb0F1_gkjqd4CxGKDQ@mail.gmail.com>
-Subject: Re: [PATCH net-next 4/5] tsnep: Add TSN endpoint Ethernet MAC driver
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     David Miller <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210727140459.3767788-20-geert@linux-m68k.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 26, 2021 at 11:15 PM Andrew Lunn <andrew@lunn.ch> wrote:
-> > +static int tsnep_mdiobus_read(struct mii_bus *bus, int addr, int regnum)
-> > +{
-> > +     struct tsnep_adapter *adapter = bus->priv;
-> > +     u16 data;
-> > +     int retval;
-> > +
-> > +     if (adapter->loopback)
-> > +             return 0;
-> > +
-> > +     retval = tsnep_read_md(adapter, addr, regnum, &data);
-> > +     if (retval != 0)
-> > +             return retval;
->
-> It appears your MDIO bus can only do C22. Please add a test for C45 and return -EOPNOTSUPP.
+On 7/27/21 7:04 AM, Geert Uytterhoeven wrote:
+> Instantiate a single LED based on the "led" subnode in DT.
+> This allows the user to control display brightness and blinking (backed
+> by hardware support) through the LED class API and triggers, and exposes
+> the display color.  The LED will be named
+> "auxdisplay:<color>:<function>".
+> 
+> When running in dot-matrix mode and if no "led" subnode is found, the
+> driver falls back to the traditional backlight mode, to preserve
+> backwards compatibility.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+> ---
+> v4:
+>   - Add missing select LEDS_CLASS,
+> 
+> v3:
+>   - Remove unneeded C++ comment,
+>   - Use "err" instead of "error" to be consistent with existing driver
+>     naming style,
+>   - Make the creation of the LED device dependent on the presence of the
+>     "led" subnode in DT, so it can be used in dot-matrix mode too.
+>   - Use led_init_data() and devm_led_classdev_register_ext() to retrieve
+>     all LED properties from DT, instead of manual LED name construction
+>     based on just the "color" property,
+> 
+> v2:
+>   - Use "auxdisplay" instead of DRIVER_NAME in LED name.
 
-You are right. I will add that check.
+Hi Geert,
 
-> > +static void tsnep_phy_link_status_change(struct net_device *netdev)
-> > +{
-> > +     struct tsnep_adapter *adapter = netdev_priv(netdev);
-> > +     struct phy_device *phydev = netdev->phydev;
-> > +
-> > +     if (adapter->loopback)
-> > +             return;
-> > +
-> > +     if (adapter->gmii2rgmii) {
-> > +             u16 val;
-> > +
-> > +             if (phydev->link && phydev->speed == 1000)
-> > +                     val = BMCR_SPEED1000;
-> > +             else
-> > +                     val = BMCR_SPEED100;
-> > +             tsnep_write_md(adapter, ECM_GMII2RGMII_ADDR,
-> > +                            ECM_GMII2RGMII_BMCR, val);
-> > +     }
->
-> I _think_ this is wrong. They way the PHYs are chained means you
-> should not need to do this, the xgmiitorgmii_read_status() does it.
-> Maybe you have the chaining setup wrong?
+Since LEDS_CLASS depends on NEW_LEDS, does this also need to
+select NEW_LEDS?
 
-I will try to use xgmiitorgmii.
+and similar for INPUT_MATRIXKMAP: it depends on INPUT.
 
-> > +static int tsnep_phy_open(struct tsnep_adapter *adapter)
-> > +{
-> > +     __ETHTOOL_DECLARE_LINK_MODE_MASK(mask);
-> > +     struct ethtool_eee ethtool_eee;
-> > +     int retval;
-> > +
-> > +     retval = phy_connect_direct(adapter->netdev, adapter->phydev,
-> > +                                 tsnep_phy_link_status_change,
-> > +                                 adapter->phy_mode);
-> > +     if (retval)
-> > +             return -EIO;
->
-> phy_connect_direct() returns an error code. Use it, rather than
-> changing it to something else. This applies everywhere. You must have
-> a good reason to change error codes, and then it is wise to put a
-> comment why you change it.
+However, selecting (enabling) an entire subsystem is not a
+preferable thing to do.
 
-I will fix it.
+> ---
+>  drivers/auxdisplay/Kconfig   |   1 +
+>  drivers/auxdisplay/ht16k33.c | 124 ++++++++++++++++++++++++++++++-----
+>  2 files changed, 108 insertions(+), 17 deletions(-)
+> 
+> diff --git a/drivers/auxdisplay/Kconfig b/drivers/auxdisplay/Kconfig
+> index 42fc7b155de09dbc..7436b9a4edbe5450 100644
+> --- a/drivers/auxdisplay/Kconfig
+> +++ b/drivers/auxdisplay/Kconfig
+> @@ -176,6 +176,7 @@ config HT16K33
+>  	select FB_SYS_IMAGEBLIT
+>  	select INPUT_MATRIXKMAP
+>  	select FB_BACKLIGHT
+> +	select LEDS_CLASS
+>  	select LINEDISP
+>  	help
+>  	  Say yes here to add support for Holtek HT16K33, RAM mapping 16*8
 
-> > +
-> > +     /* MAC supports only 100Mbps|1000Mbps full duplex
-> > +      * SPE (Single Pair Ethernet) is also an option but not implemented yet
-> > +      */
-> > +     linkmode_zero(mask);
-> > +     linkmode_set_bit(ETHTOOL_LINK_MODE_Autoneg_BIT, mask);
-> > +     linkmode_set_bit(ETHTOOL_LINK_MODE_100baseT_Full_BIT, mask);
-> > +     linkmode_set_bit(ETHTOOL_LINK_MODE_1000baseT_Full_BIT, mask);
-> > +     linkmode_and(mask, adapter->phydev->supported, mask);
-> > +     linkmode_copy(adapter->phydev->supported, mask);
-> > +     linkmode_copy(adapter->phydev->advertising, mask);
->
-> You should not be accessing the phydev directly. Use
-> phy_remove_link_mode(phydev, ETHTOOL_LINK_MODE_1000baseT_Half_BIT),
-> etc.I will try to use xgmiitorgmii.
+thanks.
+-- 
+~Randy
 
-I will use phy_remove_link_mode().
-
-> > +static int tsnep_phy_init(struct tsnep_adapter *adapter)
-> > +{
-> > +     struct device_node *dn;
-> > +     u16 val;
-> > +     u32 id;
-> > +     int retval;
-> > +
-> > +     retval = of_get_phy_mode(adapter->pdev->dev.of_node,
-> > +                              &adapter->phy_mode);
-> > +     if (retval)
-> > +             adapter->phy_mode = PHY_INTERFACE_MODE_GMII;
-> > +
-> > +     dn = of_parse_phandle(adapter->pdev->dev.of_node, "phy-handle", 0);
-> > +     adapter->phydev = of_phy_find_device(dn);
-> > +     if (!adapter->phydev)
-> > +             adapter->phydev = phy_find_first(adapter->mdiobus);
-> > +     if (!adapter->phydev)
-> > +             return -EIO;
-> > +
-> > +     /* detect optional GMII2RGMII */I will try to use xgmiitorgmii.
-> > +     retval = tsnep_read_md(adapter, ECM_GMII2RGMII_ADDR, MII_PHYSID1, &val);
-> > +     if (retval)
-> > +             return retval;
-> > +     id = val << 16;
-> > +     retval = tsnep_read_md(adapter, ECM_GMII2RGMII_ADDR, MII_PHYSID2, &val);
-> > +     if (retval)
-> > +             return retval;
-> > +     id |= val;
-> > +     if (id == 0)
-> > +             adapter->gmii2rgmii = true;
->
-> This is where i think GMII2RGMII goes wrong. MAC phy-handle should
-> point to the GMII2RGMII device in DT. The GMII2RGMII should have a
-> phy-handle which points to the PHY.
-
-As mentioned above, I will try to use xgmiitorgmii.
-
-> > +     /* reset PHY */
-> > +     retval = tsnep_write_md(adapter, adapter->phydev->mdio.addr, MII_BMCR,
-> > +                             BMCR_RESET);
-> > +     if (retval)
-> > +             return retval;
-> > +
-> > +     /* reset GMII2RGMII */
-> > +     if (adapter->gmii2rgmii) {
-> > +             retval = tsnep_write_md(adapter, ECM_GMII2RGMII_ADDR,
-> > +                                     ECM_GMII2RGMII_BMCR, BMCR_RESET);
-> > +             if (retval)
-> > +                     return retval;
-> > +             retval = tsnep_write_md(adapter, ECM_GMII2RGMII_ADDR,
-> > +                                     ECM_GMII2RGMII_BMCR, BMCR_SPEED100);
-> > +             if (retval)
-> > +                     return retval;
-> > +     }
->
-> The PHY driver is in control of the PHY, not the MAC. Please remove.
-
-Ok, I will do that.
-
-Gerhard
