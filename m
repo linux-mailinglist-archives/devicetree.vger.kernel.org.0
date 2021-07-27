@@ -2,76 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B61B3D7D5A
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 20:26:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03AB83D7D61
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 20:26:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229593AbhG0S0l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jul 2021 14:26:41 -0400
-Received: from mail-il1-f182.google.com ([209.85.166.182]:44756 "EHLO
+        id S230315AbhG0S0v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jul 2021 14:26:51 -0400
+Received: from mail-il1-f182.google.com ([209.85.166.182]:38663 "EHLO
         mail-il1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229453AbhG0S0k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 14:26:40 -0400
-Received: by mail-il1-f182.google.com with SMTP id o7so162911ilh.11;
-        Tue, 27 Jul 2021 11:26:40 -0700 (PDT)
+        with ESMTP id S231200AbhG0S0t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 14:26:49 -0400
+Received: by mail-il1-f182.google.com with SMTP id h18so195241ilc.5;
+        Tue, 27 Jul 2021 11:26:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=3DEZXygmMlbze51t61j0f6IluPe9JhL1JPPs4o0+k/c=;
-        b=JUhzvjk4VfvedQWDbz86cKmdII61TH7wO6Qy/WMmvd6haqYLlzhpeaXbLiCika6MhH
-         WdvvalGiFp7Y7gKKMygJ9qTasdtPmYCzna66aBvOL3ZmjDGJ9ssgtTgnx3l8Wtm8NyWN
-         k+5wVcvWj/6FXK0Cu9UWoq1hVUogeOwNzhAkXQE84MBUJTvTiaNdcGAyCbKzvcYxbexj
-         hesIJ+7kce+rpCnk7i1q2UzeDbk8diPMeB0VDirQBUr0QqFTMs3ybGzlpKq5c0jG7p/E
-         5+X7eeLwJ3YFww0cCcoadiMLegVEouDFX1tafgnZlPkOOKL+ePY5T6+28ko8/uDMkpNc
-         fOGw==
-X-Gm-Message-State: AOAM533/iVgLDzhrHbhgUQ9Fs+MOJUEkdpdotMGnIF3NJg4o4fj4Ly46
-        cVNraidb5M3UbwiAA0XD6A==
-X-Google-Smtp-Source: ABdhPJwfRr8AvkY38MhYpDZWVP8j2iQzXoN0b+J+lJpwI2+Gqkmx9sagb5uvIKdLN+TXbdBGUM5t2Q==
-X-Received: by 2002:a92:7d08:: with SMTP id y8mr17500252ilc.111.1627410399986;
-        Tue, 27 Jul 2021 11:26:39 -0700 (PDT)
+        bh=2ZN+Os4KcblXwXlTL5vzGACuV2+/v2kG3feRmGVKyCo=;
+        b=BRzHPIoDVKNnF+bu6IZ/d3FagDEFXVA0zSgzabCx4LooKpQX3bTf+mR4KdcAzI1FYy
+         bnpoVL4KEZiZa8H+9D7PslSOtTiqTiYF9IEa1A0z+E35hBlsaKHMFo7R18rxweDKZHqa
+         whOhD54HRVGeg+Wv5WTwOJwIkU8P44QkCs+g0A4j2R/fEZnGiHC+mfwAJgZvjAfK/Qez
+         RNjoqjCsNNVvUF/hJPo/crFdz2JFpA0a9dM38H3Fgnks76s72TknnN8Mb4GG3hAcMdeC
+         KADI1pgXxqXR933G804S/e7NnssuZPDgX6x++vNBq38rQ0erhewmrPSEoyT5imLUOe7o
+         1u0w==
+X-Gm-Message-State: AOAM533KHYu2IKBCdmQSCuqRd059x+pgRXFgsFHVIpY1CUfXXGdpRdk8
+        alhJMwZobAtFDaAfTE+D2w==
+X-Google-Smtp-Source: ABdhPJxJ2NYaxQ1nbNMMl3dkF0KXaLypDNB2gEo4iR1RWB0PAxHYmIYgSOJlEvITbTdqjse0NV4VtA==
+X-Received: by 2002:a92:dc8a:: with SMTP id c10mr17390858iln.48.1627410408071;
+        Tue, 27 Jul 2021 11:26:48 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id i11sm2301722ilb.15.2021.07.27.11.26.36
+        by smtp.gmail.com with ESMTPSA id h13sm2066103ila.44.2021.07.27.11.26.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Jul 2021 11:26:39 -0700 (PDT)
-Received: (nullmailer pid 3210651 invoked by uid 1000);
+        Tue, 27 Jul 2021 11:26:47 -0700 (PDT)
+Received: (nullmailer pid 3210656 invoked by uid 1000);
         Tue, 27 Jul 2021 18:26:35 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>
-Cc:     linux-kernel@vger.kernel.org, Hsin-Yi Wang <hsinyi@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        linux-media@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tomasz Figa <tfiga@google.com>,
-        Irui Wang <irui.wang@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        linux-arm-kernel@lists.infradead.org, srv_heupstream@mediatek.com
-In-Reply-To: <20210727101051.24418-14-yunfei.dong@mediatek.com>
-References: <20210727101051.24418-1-yunfei.dong@mediatek.com> <20210727101051.24418-14-yunfei.dong@mediatek.com>
-Subject: Re: [PATCH v3, 13/15] dt-bindings: media: mtk-vcodec: Adds decoder dt-bindings for mt8192
+To:     Thara Gopinath <thara.gopinath@linaro.org>
+Cc:     bjorn.andersson@linaro.org, agross@kernel.org,
+        daniel.lezcano@linaro.org, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        steev@kali.org, robh+dt@kernel.org, viresh.kumar@linaro.org,
+        devicetree@vger.kernel.org, rui.zhang@intel.com, rjw@rjwysocki.net
+In-Reply-To: <20210727152512.1098329-7-thara.gopinath@linaro.org>
+References: <20210727152512.1098329-1-thara.gopinath@linaro.org> <20210727152512.1098329-7-thara.gopinath@linaro.org>
+Subject: Re: [Patch v4 6/6] dt-bindings: thermal: Add dt binding for QCOM LMh
 Date:   Tue, 27 Jul 2021 12:26:35 -0600
-Message-Id: <1627410395.860934.3210650.nullmailer@robh.at.kernel.org>
+Message-Id: <1627410395.886153.3210655.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 27 Jul 2021 18:10:49 +0800, Yunfei Dong wrote:
-> Adds decoder dt-bindings for mt8192.
+On Tue, 27 Jul 2021 11:25:12 -0400, Thara Gopinath wrote:
+> Add dt binding documentation to describe Qualcomm
+> Limits Management Hardware node.
 > 
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
 > ---
-> v3: Fix yaml check fail.
-> ---
->  .../media/mediatek,vcodec-comp-decoder.yaml   | 154 ++++++++++++++++++
->  1 file changed, 154 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.yaml
+> 
+> v3->v4:
+> 	- Changed dt property qcom,lmh-cpu-id to qcom,lmh-cpu and made it
+> 	  a phandle pointing to the cpu node instead of a number as per
+> 	  Rob Herring's review comments.
+> 	- Added suffix -millicelsius to all temperature properties as per
+> 	  Rob Herring's review comments.
+> 	- Dropped unnecessary #includes in the example as pointed out by Bjorn.
+> 	- Other minor fixes.
+> 
+>  .../devicetree/bindings/thermal/qcom-lmh.yaml | 100 ++++++++++++++++++
+>  1 file changed, 100 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/thermal/qcom-lmh.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -80,111 +78,15 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.example.dts'
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-extract-example", line 45, in <module>
-    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 122, in get_single_data
-    return self.construct_document(node)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 132, in construct_document
-    for _dummy in generator:
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 722, in construct_yaml_map
-    value = self.construct_mapping(node)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 446, in construct_mapping
-    return BaseConstructor.construct_mapping(self, node, deep=deep)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 264, in construct_mapping
-    if self.check_mapping_key(node, key_node, mapping, key, value):
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 295, in check_mapping_key
-    raise DuplicateKeyError(*args)
-ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
-  in "<unicode string>", line 19, column 5
-found duplicate key "items" with value "[]" (original value: "[]")
-  in "<unicode string>", line 21, column 5
-
-To suppress this check see:
-    http://yaml.readthedocs.io/en/latest/api.html#duplicate-keys
-
-Duplicate keys will become an error in future releases, and are errors
-by default when using the new API.
-
-make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/media/mediatek,vcodec-comp-decoder.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-doc-validate", line 67, in <module>
-    ret = check_doc(f)
-  File "/usr/local/bin/dt-doc-validate", line 25, in check_doc
-    testtree = dtschema.load(filename, line_number=line_number)
-  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 623, in load
-    return yaml.load(f.read())
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 122, in get_single_data
-    return self.construct_document(node)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 132, in construct_document
-    for _dummy in generator:
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 722, in construct_yaml_map
-    value = self.construct_mapping(node)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 446, in construct_mapping
-    return BaseConstructor.construct_mapping(self, node, deep=deep)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 264, in construct_mapping
-    if self.check_mapping_key(node, key_node, mapping, key, value):
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 295, in check_mapping_key
-    raise DuplicateKeyError(*args)
-ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
-  in "<unicode string>", line 19, column 5
-found duplicate key "items" with value "[]" (original value: "[]")
-  in "<unicode string>", line 21, column 5
-
-To suppress this check see:
-    http://yaml.readthedocs.io/en/latest/api.html#duplicate-keys
-
-Duplicate keys will become an error in future releases, and are errors
-by default when using the new API.
-
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/processed-schema-examples.json'
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-mk-schema", line 38, in <module>
-    schemas = dtschema.process_schemas(args.schemas, core_schema=(not args.useronly))
-  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 585, in process_schemas
-    sch = process_schema(os.path.abspath(filename))
-  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 558, in process_schema
-    schema = load_schema(filename)
-  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 125, in load_schema
-    return do_load(os.path.join(schema_basedir, schema))
-  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 111, in do_load
-    return yaml.load(f.read())
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 122, in get_single_data
-    return self.construct_document(node)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 132, in construct_document
-    for _dummy in generator:
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 722, in construct_yaml_map
-    value = self.construct_mapping(node)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 446, in construct_mapping
-    return BaseConstructor.construct_mapping(self, node, deep=deep)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 264, in construct_mapping
-    if self.check_mapping_key(node, key_node, mapping, key, value):
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 295, in check_mapping_key
-    raise DuplicateKeyError(*args)
-ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
-  in "<unicode string>", line 19, column 5
-found duplicate key "items" with value "[]" (original value: "[]")
-  in "<unicode string>", line 21, column 5
-
-To suppress this check see:
-    http://yaml.readthedocs.io/en/latest/api.html#duplicate-keys
-
-Duplicate keys will become an error in future releases, and are errors
-by default when using the new API.
-
-make[1]: *** [Documentation/devicetree/bindings/Makefile:62: Documentation/devicetree/bindings/processed-schema-examples.json] Error 1
-make: *** [Makefile:1418: dt_binding_check] Error 2
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/thermal/qcom-lmh.yaml: required:3: None is not of type 'string'
+	from schema $id: http://json-schema.org/draft-07/schema#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/thermal/qcom-lmh.yaml: ignoring, error in schema: required: 3
+warning: no schema found in file: ./Documentation/devicetree/bindings/thermal/qcom-lmh.yaml
+Documentation/devicetree/bindings/thermal/qcom-lmh.example.dt.yaml:0:0: /example-0/lmh@17d70800: failed to match any schema with compatible: ['qcom,sdm845-lmh']
+Documentation/devicetree/bindings/thermal/qcom-lmh.example.dt.yaml:0:0: /example-1/lmh@17d78800: failed to match any schema with compatible: ['qcom,sdm845-lmh']
 \ndoc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1510417
+See https://patchwork.ozlabs.org/patch/1510556
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
