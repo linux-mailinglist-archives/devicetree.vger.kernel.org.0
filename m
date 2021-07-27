@@ -2,208 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C43333D7A7F
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 18:05:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BEDC3D7A92
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 18:10:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229441AbhG0QFq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jul 2021 12:05:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42434 "EHLO
+        id S229553AbhG0QKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jul 2021 12:10:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229497AbhG0QFp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 12:05:45 -0400
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B750BC061757
-        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 09:05:45 -0700 (PDT)
-Received: by mail-pj1-x102e.google.com with SMTP id b6so18433809pji.4
-        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 09:05:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=GA0HEtCR0kWwxjLsAya2A6A9znwDVIlKBUL+riaEJPg=;
-        b=1BKpt8zVuWA0lIJ83/uHMDzqVDFFKAd8PEmYXj9ywo+OndZm8aQDsAcqus5h2BwumV
-         +auiUsv7NW9ZxGxKe8BYxhYY8libVQPahPsBTB7caPXwJgP7AAbNizYWqxt3Lvc1cSHf
-         DitrIhDsf2U2rIUL2CIznW+1MuqO6fXSdULU1o5qnL+3QcnujJWeEimTiWkQsfY+5hLS
-         mF+vp8afzOdN0x084mf7huAEUvcObpj46pM4PNu4vdFTARhTsHDkKNWeshYrKrGu5L7m
-         p+VnpUzyvg/R2LFzD+jh79q0lbeBreUkMGSaE5Yyok4EGYLPfbN97fKUwUMocPKTt2lX
-         B9cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=GA0HEtCR0kWwxjLsAya2A6A9znwDVIlKBUL+riaEJPg=;
-        b=QtJwM1kQKTxtIWnwgLhv7c83SNA9sU/BXfoFva3e3hFDFHNpMrSKW6Mx4YFTeMS/Hk
-         IbvVx/ewmKW1IXsQh2j4hueCgOVbPIkuojCM8nN32feHW+idGq/h/UZRSDiJ3jgDiKRf
-         oVgT80ZmEqvGel8NUxU0wIfKzxc0tIAGHT+hqCYvtzqNehuoTUi20gjJQZsNjkmgag9T
-         poHN4VxWkOjNpsNiq8rZjKO9Oxf9irio6Go1PCHcACFtUja0++C6VqN55djBE32o3P6m
-         ihGrdeFQP8NsGN3ZFrE7IxKE3/KB3m7vtg67YnSMKymqrijlH3Jp0kOmE51+J6IZZifL
-         xI9A==
-X-Gm-Message-State: AOAM530s9Xr6yS8QDF2lV4TIcMWx7jmk/8rjpMRU8S0Td4UQ1xFZjvbL
-        cnsbfpzNgDLx4MmXXC7/WYAyGo2eWJwBeqa7D69N0Q==
-X-Google-Smtp-Source: ABdhPJzwwCUNnijZyIOmf6geL6KMdyZcwdlSjZuUfzqNOPSSqYFhXsiKKqvKywIUVlPmKpPtDxA6sPB9XEXdm8QfFAw=
-X-Received: by 2002:a05:6a00:16d2:b029:300:200b:6572 with SMTP id
- l18-20020a056a0016d2b0290300200b6572mr24014481pfc.62.1627401945257; Tue, 27
- Jul 2021 09:05:45 -0700 (PDT)
+        with ESMTP id S229441AbhG0QKq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 12:10:46 -0400
+Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88422C061764
+        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 09:10:46 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:b0a9:7e88:5ca4:551a])
+        by albert.telenet-ops.be with bizsmtp
+        id aGAk2500G1fSPfK06GAkik; Tue, 27 Jul 2021 18:10:44 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1m8PfI-001S4y-1d; Tue, 27 Jul 2021 18:10:44 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1m8PfH-00Fr8E-Lg; Tue, 27 Jul 2021 18:10:43 +0200
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Paul Burton <paulburton@kernel.org>,
+        Miguel Ojeda <ojeda@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert@linux-m68k.org>
+Subject: [PATCH] dt-bindings: auxdisplay: img-ascii-lcd: Convert to json-schema
+Date:   Tue, 27 Jul 2021 18:10:34 +0200
+Message-Id: <6e74aa466d39ddc9abe502e054d04e8cc7b76b40.1627402094.git.geert@linux-m68k.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20210601174917.1979-1-tharvey@gateworks.com> <20210601174917.1979-2-tharvey@gateworks.com>
- <CAJ+vNU3wtJ+N0XtVw6Ka+jZVKcKKmPhs+6O+dDqKQhpi3tB9ew@mail.gmail.com> <20210726010139.GB5901@dragon>
-In-Reply-To: <20210726010139.GB5901@dragon>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Tue, 27 Jul 2021 09:05:34 -0700
-Message-ID: <CAJ+vNU2_UHMBi21=w9YKvv8F6+XQGEN1HFfpLM-Q=AA_PXUXxw@mail.gmail.com>
-Subject: Re: [PATCH 2/4] arm64: dts: imx8mm-venice-gw700x: fix mp5416 pmic config
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jul 25, 2021 at 6:01 PM Shawn Guo <shawnguo@kernel.org> wrote:
->
-> On Sat, Jul 24, 2021 at 11:19:21AM -0700, Tim Harvey wrote:
-> > On Tue, Jun 1, 2021 at 10:49 AM Tim Harvey <tharvey@gateworks.com> wrote:
-> > >
-> > > Fix various MP5416 PMIC configurations:
-> > >  - Update regulator names per dt-bindings
-> > >  - ensure values fit among valid register values
-> > >  - add required regulator-max-microamp property
-> > >  - add regulator-always-on prop
-> > >
-> > > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-> > > ---
-> > >  .../dts/freescale/imx8mm-venice-gw700x.dtsi   | 56 ++++++++++++-------
-> > >  1 file changed, 37 insertions(+), 19 deletions(-)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
-> > > index 512b76cd7c3b..f4eb827baed7 100644
-> > > --- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
-> > > +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
-> > > @@ -283,65 +283,83 @@
-> > >                 reg = <0x69>;
-> > >
-> > >                 regulators {
-> > > +                       /* vdd_0p95: DRAM/GPU/VPU */
-> > >                         buck1 {
-> > > -                               regulator-name = "vdd_0p95";
-> > > -                               regulator-min-microvolt = <805000>;
-> > > +                               regulator-name = "buck1";
-> > > +                               regulator-min-microvolt = <800000>;
-> > >                                 regulator-max-microvolt = <1000000>;
-> > > -                               regulator-max-microamp = <2500000>;
-> > > +                               regulator-min-microamp  = <3800000>;
-> > > +                               regulator-max-microamp  = <6800000>;
-> > >                                 regulator-boot-on;
-> > > +                               regulator-always-on;
-> > >                         };
-> > >
-> > > +                       /* vdd_soc */
-> > >                         buck2 {
-> > > -                               regulator-name = "vdd_soc";
-> > > -                               regulator-min-microvolt = <805000>;
-> > > +                               regulator-name = "buck2";
-> > > +                               regulator-min-microvolt = <800000>;
-> > >                                 regulator-max-microvolt = <900000>;
-> > > -                               regulator-max-microamp = <1000000>;
-> > > +                               regulator-min-microamp  = <2200000>;
-> > > +                               regulator-max-microamp  = <5200000>;
-> > >                                 regulator-boot-on;
-> > > +                               regulator-always-on;
-> > >                         };
-> > >
-> > > +                       /* vdd_arm */
-> > >                         buck3_reg: buck3 {
-> > > -                               regulator-name = "vdd_arm";
-> > > -                               regulator-min-microvolt = <805000>;
-> > > +                               regulator-name = "buck3";
-> > > +                               regulator-min-microvolt = <800000>;
-> > >                                 regulator-max-microvolt = <1000000>;
-> > > -                               regulator-max-microamp = <2200000>;
-> > > -                               regulator-boot-on;
-> > > +                               regulator-min-microamp  = <3800000>;
-> > > +                               regulator-max-microamp  = <6800000>;
-> > > +                               regulator-always-on;
-> > >                         };
-> > >
-> > > +                       /* vdd_1p8 */
-> > >                         buck4 {
-> > > -                               regulator-name = "vdd_1p8";
-> > > +                               regulator-name = "buck4";
-> > >                                 regulator-min-microvolt = <1800000>;
-> > >                                 regulator-max-microvolt = <1800000>;
-> > > -                               regulator-max-microamp = <500000>;
-> > > +                               regulator-min-microamp  = <2200000>;
-> > > +                               regulator-max-microamp  = <5200000>;
-> > >                                 regulator-boot-on;
-> > > +                               regulator-always-on;
-> > >                         };
-> > >
-> > > +                       /* nvcc_snvs_1p8 */
-> > >                         ldo1 {
-> > > -                               regulator-name = "nvcc_snvs_1p8";
-> > > +                               regulator-name = "ldo1";
-> > >                                 regulator-min-microvolt = <1800000>;
-> > >                                 regulator-max-microvolt = <1800000>;
-> > > -                               regulator-max-microamp = <300000>;
-> > >                                 regulator-boot-on;
-> > > +                               regulator-always-on;
-> > >                         };
-> > >
-> > > +                       /* vdd_snvs_0p8 */
-> > >                         ldo2 {
-> > > -                               regulator-name = "vdd_snvs_0p8";
-> > > +                               regulator-name = "ldo2";
-> > >                                 regulator-min-microvolt = <800000>;
-> > >                                 regulator-max-microvolt = <800000>;
-> > >                                 regulator-boot-on;
-> > > +                               regulator-always-on;
-> > >                         };
-> > >
-> > > +                       /* vdd_0p9 */
-> > >                         ldo3 {
-> > > -                               regulator-name = "vdd_0p95";
-> > > -                               regulator-min-microvolt = <800000>;
-> > > -                               regulator-max-microvolt = <800000>;
-> > > +                               regulator-name = "ldo3";
-> > > +                               regulator-min-microvolt = <900000>;
-> > > +                               regulator-max-microvolt = <900000>;
-> > >                                 regulator-boot-on;
-> > > +                               regulator-always-on;
-> > >                         };
-> > >
-> > > +                       /* vdd_1p8 */
-> > >                         ldo4 {
-> > > -                               regulator-name = "vdd_1p8";
-> > > +                               regulator-name = "ldo4";
-> > >                                 regulator-min-microvolt = <1800000>;
-> > >                                 regulator-max-microvolt = <1800000>;
-> > >                                 regulator-boot-on;
-> > > +                               regulator-always-on;
-> > >                         };
-> > >                 };
-> > >         };
-> > > --
-> > > 2.17.1
-> > >
-> >
-> > Shawn,
-> >
-> > Is there anything you want changed here?
->
-> Tim,
->
-> Could you resend the series?  For some reason, I cannot find the
-> original posting in my mailbox.
->
-> Shawn
+Convert the Device Tree binding documentation for ASCII LCD displays on
+Imagination Technologies boards to json-schema.
 
-Sure... probably better anyway as I was asking you to drop one of them
-from the series.
+Drop bogus regmap property.
+Add example.
 
-Tim
+Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+---
+ .../bindings/auxdisplay/img,ascii-lcd.yaml    | 54 +++++++++++++++++++
+ .../bindings/auxdisplay/img-ascii-lcd.txt     | 17 ------
+ MAINTAINERS                                   |  2 +-
+ 3 files changed, 55 insertions(+), 18 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/auxdisplay/img,ascii-lcd.yaml
+ delete mode 100644 Documentation/devicetree/bindings/auxdisplay/img-ascii-lcd.txt
+
+diff --git a/Documentation/devicetree/bindings/auxdisplay/img,ascii-lcd.yaml b/Documentation/devicetree/bindings/auxdisplay/img,ascii-lcd.yaml
+new file mode 100644
+index 0000000000000000..66e54f12f40f2f78
+--- /dev/null
++++ b/Documentation/devicetree/bindings/auxdisplay/img,ascii-lcd.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/auxdisplay/img,ascii-lcd.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ASCII LCD displays on Imagination Technologies boards
++
++maintainers:
++  - Paul Burton <paulburton@kernel.org>
++
++properties:
++  compatible:
++    enum:
++      - img,boston-lcd
++      - mti,malta-lcd
++      - mti,sead3-lcd
++
++  reg:
++    maxItems: 1
++
++  offset:
++    description:
++      Offset in bytes to the LCD registers within the system controller
++
++required:
++  - compatible
++
++oneOf:
++  - required:
++      - reg
++  - required:
++      - offset
++
++if:
++  properties:
++    compatible:
++      contains:
++        const: img,boston-lcd
++then:
++  required:
++    - reg
++else:
++  required:
++    - offset
++
++additionalProperties: false
++
++examples:
++  - |
++    lcd: lcd@17fff000 {
++            compatible = "img,boston-lcd";
++            reg = <0x17fff000 0x8>;
++    };
+diff --git a/Documentation/devicetree/bindings/auxdisplay/img-ascii-lcd.txt b/Documentation/devicetree/bindings/auxdisplay/img-ascii-lcd.txt
+deleted file mode 100644
+index b69bb68992fdf2a7..0000000000000000
+--- a/Documentation/devicetree/bindings/auxdisplay/img-ascii-lcd.txt
++++ /dev/null
+@@ -1,17 +0,0 @@
+-Binding for ASCII LCD displays on Imagination Technologies boards
+-
+-Required properties:
+-- compatible : should be one of:
+-    "img,boston-lcd"
+-    "mti,malta-lcd"
+-    "mti,sead3-lcd"
+-
+-Required properties for "img,boston-lcd":
+-- reg : memory region locating the device registers
+-
+-Required properties for "mti,malta-lcd" or "mti,sead3-lcd":
+-- regmap: phandle of the system controller containing the LCD registers
+-- offset: offset in bytes to the LCD registers within the system controller
+-
+-The layout of the registers & properties of the display are determined
+-from the compatible string, making this binding somewhat trivial.
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 7c2ca9c3809f0104..a8afc9238fd8e164 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -9063,7 +9063,7 @@ F:	drivers/usb/atm/ueagle-atm.c
+ IMGTEC ASCII LCD DRIVER
+ M:	Paul Burton <paulburton@kernel.org>
+ S:	Maintained
+-F:	Documentation/devicetree/bindings/auxdisplay/img-ascii-lcd.txt
++F:	Documentation/devicetree/bindings/auxdisplay/img,ascii-lcd.yaml
+ F:	drivers/auxdisplay/img-ascii-lcd.c
+ 
+ IMGTEC IR DECODER DRIVER
+-- 
+2.25.1
+
