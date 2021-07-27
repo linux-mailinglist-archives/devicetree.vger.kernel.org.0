@@ -2,90 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D9683D7A60
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 18:01:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A6D43D7A70
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 18:03:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237130AbhG0QBM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jul 2021 12:01:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41314 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237103AbhG0QBL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 12:01:11 -0400
-Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20523C061764
-        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 09:01:10 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:b0a9:7e88:5ca4:551a])
-        by michel.telenet-ops.be with bizsmtp
-        id aG172500F1fSPfK06G177b; Tue, 27 Jul 2021 18:01:09 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1m8PVz-001RuT-4K; Tue, 27 Jul 2021 18:01:07 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1m8PVy-00Fqnr-Ml; Tue, 27 Jul 2021 18:01:06 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v2] dt-bindings: memory: renesas,rpc-if: Miscellaneous improvements
-Date:   Tue, 27 Jul 2021 18:01:05 +0200
-Message-Id: <d81b59a513c2a5204c8378b4a89cd07f97c46797.1627401508.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        id S229646AbhG0QDf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jul 2021 12:03:35 -0400
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:2040 "EHLO
+        mx0b-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230130AbhG0QDc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Jul 2021 12:03:32 -0400
+Received: from pps.filterd (m0127361.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 16RFpo5S001144;
+        Tue, 27 Jul 2021 12:03:23 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-transfer-encoding; s=pp1;
+ bh=HDvKu8WaTUsEecYqW26lv3BDYg3y0cz/yQMfDphWoYA=;
+ b=EVvUmCteqcDp5qGhIW19hs88Jz2qZWJlJBBrvPi2ljIwaqySnQXxy7DboHgLFGOVDUtF
+ xrFU8O2W1QAD4PdUpaD4zRI3Lnkjsog71j7jUeo6l3/y2rHxeJIEVSjplefFsuyf/KVy
+ xlJjEA6ZPskeo4D4o/AIbV9VRkm9Mc5pJQjIWCEh8dBo2HsnsliQQG49V/KlHUhLjqII
+ 8brzDUdW0W7257QkbLwDDJSKmOsUOY1+ij4hsQs9EiZCuEilVVjh+7pLcgE3HGZ+sqis
+ oBmSYDFaHpTs9ufWcmAQrxL5r1a1TLLe7sM722Ll9zxfkxB0FHtqlgk2D5S/J7wcqxRF 8A== 
+Received: from ppma03wdc.us.ibm.com (ba.79.3fa9.ip4.static.sl-reverse.com [169.63.121.186])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 3a2n5n0au1-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 27 Jul 2021 12:03:23 -0400
+Received: from pps.filterd (ppma03wdc.us.ibm.com [127.0.0.1])
+        by ppma03wdc.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 16RG24rF014388;
+        Tue, 27 Jul 2021 16:03:22 GMT
+Received: from b03cxnp08028.gho.boulder.ibm.com (b03cxnp08028.gho.boulder.ibm.com [9.17.130.20])
+        by ppma03wdc.us.ibm.com with ESMTP id 3a235mj9k1-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 27 Jul 2021 16:03:22 +0000
+Received: from b03ledav005.gho.boulder.ibm.com (b03ledav005.gho.boulder.ibm.com [9.17.130.236])
+        by b03cxnp08028.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 16RG3Lg239190886
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 27 Jul 2021 16:03:21 GMT
+Received: from b03ledav005.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 5D1C9BE056;
+        Tue, 27 Jul 2021 16:03:21 +0000 (GMT)
+Received: from b03ledav005.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 05274BE063;
+        Tue, 27 Jul 2021 16:03:20 +0000 (GMT)
+Received: from v0005c16.aus.stglabs.ibm.com (unknown [9.211.139.59])
+        by b03ledav005.gho.boulder.ibm.com (Postfix) with ESMTP;
+        Tue, 27 Jul 2021 16:03:20 +0000 (GMT)
+From:   Eddie James <eajames@linux.ibm.com>
+To:     linux-i2c@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        peda@axentia.se, robh+dt@kernel.org,
+        Eddie James <eajames@linux.ibm.com>
+Subject: [PATCH v2 0/2] i2c: mux: pca954x: Support multiple devices on a single reset line
+Date:   Tue, 27 Jul 2021 11:03:13 -0500
+Message-Id: <20210727160315.15575-1-eajames@linux.ibm.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: b-1ZKOAM0QSmdRfTC6xd-jpr7O-atpsd
+X-Proofpoint-ORIG-GUID: b-1ZKOAM0QSmdRfTC6xd-jpr7O-atpsd
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
+ definitions=2021-07-27_10:2021-07-27,2021-07-27 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 spamscore=0
+ phishscore=0 mlxlogscore=999 lowpriorityscore=0 suspectscore=0 mlxscore=0
+ clxscore=1015 malwarescore=0 priorityscore=1501 adultscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2107140000 definitions=main-2107270093
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-  - Fix rejection of legitimate flash subnodes containing multiple
-    compatible values,
-  - Add missing list of required properties.
+Some systems connect several PCA954x devices to a single reset GPIO. For
+these devices to get out of reset and probe successfully, each device must
+defer the probe until the GPIO has been hogged. Accomplish this by
+attempting to grab a new "reset-shared-hogged" devicetree property, but
+expect it to fail with EPROBE_DEFER or EBUSY.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v2:
-  - Drop #{address,size}-cells.
----
- .../memory-controllers/renesas,rpc-if.yaml      | 17 ++++++++++++++---
- 1 file changed, 14 insertions(+), 3 deletions(-)
+Changes since v1:
+ - Rework the patch to use a new devicetree property that we don't expect to
+   successfully obtain
 
-diff --git a/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml b/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml
-index 990489fdd2ac33fe..d25072c414e45326 100644
---- a/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml
-+++ b/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml
-@@ -61,12 +61,23 @@ patternProperties:
-     type: object
-     properties:
-       compatible:
--        enum:
--          - cfi-flash
--          - jedec,spi-nor
-+        contains:
-+          enum:
-+            - cfi-flash
-+            - jedec,spi-nor
- 
- unevaluatedProperties: false
- 
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - clocks
-+  - power-domains
-+  - resets
-+  - '#address-cells'
-+  - '#size-cells'
-+
- examples:
-   - |
-     #include <dt-bindings/clock/renesas-cpg-mssr.h>
+Eddie James (2):
+  dt-bindings: i2c: i2c-mux-pca954x: Define the reset-shared-hogged gpio
+  i2c: mux: pca954x: Support multiple devices on a single reset line
+
+ .../bindings/i2c/i2c-mux-pca954x.yaml         |  5 ++
+ drivers/i2c/muxes/i2c-mux-pca954x.c           | 46 +++++++++++++++----
+ 2 files changed, 42 insertions(+), 9 deletions(-)
+
 -- 
-2.25.1
+2.27.0
 
