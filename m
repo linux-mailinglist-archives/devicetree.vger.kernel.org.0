@@ -2,129 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E68AF3D7DBE
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 20:33:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4969F3D7DC3
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 20:35:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229899AbhG0Sds (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jul 2021 14:33:48 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35228 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229453AbhG0Sds (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Jul 2021 14:33:48 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0DB0360E08;
-        Tue, 27 Jul 2021 18:33:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627410828;
-        bh=IoOC+f1m/YhQqNhVUFsH6+csX5fiqfZsvIU8e2BPats=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=I+ocGSufKazh8ZWpBPK2NYgfV15CZu1lN7aB7iX5rdq/oG245Q9cPh7r+PqFTF1IN
-         5zJQIt/S+A9KaOP3u9WZenlj5LIQf+fPc9dWewKAO4WKvLdwa5TEGvMpisR/ZdniC9
-         HoKT8IVkSjL/0i1kNskDZTkao/4Rtt5cXyoxyiytToHv3Alm8xwyaZOwUJKCA6y5SS
-         y+tctTnQ42+QHitTpj3oBkc2JaYarLOTW5Q4hmMbkNaYWmeP1Cxi5ExUhptgnk1xa7
-         bnlnwGUsyiUdQPka0I+bJIM0e/flrc4w46vrFT6nARv6V2DLoxNAB6Wf/AoCjQQ2dV
-         cD60pwL9n38BQ==
-Content-Type: text/plain; charset="utf-8"
+        id S229994AbhG0SfK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jul 2021 14:35:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49470 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229962AbhG0SfJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 14:35:09 -0400
+Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81076C061757
+        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 11:35:09 -0700 (PDT)
+Received: by mail-io1-xd33.google.com with SMTP id a13so17148679iol.5
+        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 11:35:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=engleder-embedded-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=zrEt6H15num0xNPtPS+QEBLlhe17gtDgPinwM2RusM4=;
+        b=vEBMYJRbHqGaFVM+/ZCTnLd6sdm+m7dsPHLkQbmSj8HLn9hwowEy4toZAHJ+KDKcye
+         zdnPz0zxVTvTcnEex/8BaAkLDlxMaJnp/1iiPeCqC8wf4rsyz9/hGYJYu/QJNslCaze9
+         96aa92AiQwuQCujbO1xA1ht3D45QtoBjHVMlZP/ySA/vhOPJwpQMnk1WgvaQ3S5in/Ja
+         lX4xknDWFhthRc0K2lfUAk1fu4/8VASZXLblq0LqZc9mbZ7KMzi8jYev39XmLrEO+Nft
+         ZBxIk8dv74acbnn6dGj5MhzFuxigeDi4fdkFZoIZALuJznolI1ejnNhYKqC1jCaaeyVW
+         qi+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=zrEt6H15num0xNPtPS+QEBLlhe17gtDgPinwM2RusM4=;
+        b=CYdQ2nNyrK+xBsGSK7onduT9lG2G6TQ6MCnTxCoWbKIos9a4f/PNzw+LS0kl+UCTo3
+         OJOAVypvJJVKOgtg27LUhQkJbIpXircJESsK8cWmIzXCpr85GVxP3aYTTlBpJuuFIk76
+         b2YGPtvK4R+mF3eYV1utcQ8luKnXAI/FpKwM6/HEsi5YmusuvXFWxGU8EPTuIWWDANTU
+         213IeC5GwqT/H8SbDFO3I2k8pHM5WDvPtGpuUnUzJTh8huI98lhJbplmQUThBOPHZBgT
+         T5LYgOpkTT3lLOpzm0rkjoxU3V+4S+nFhayopkPIPjPQWLllvR39UkE9CPoi4F4iohSy
+         CyOw==
+X-Gm-Message-State: AOAM533zzFY4CRtnnt8gVMdPGTL59kOEMvplR2Xh/tCDJ5dnBonZuIpR
+        ok/B0SJyhn5bsMJqNrnsA3XKlkQpW02jdT1yFu5Bug==
+X-Google-Smtp-Source: ABdhPJz0P0OXbr/xdFP+81etR+Xbi99dD45tDqsK5EzgIyhIwDE6sI0BpyrZw3uzVWgs+9J8o/gnFwjx7tRsJh/Br90=
+X-Received: by 2002:a05:6638:41a7:: with SMTP id az39mr22609350jab.52.1627410908785;
+ Tue, 27 Jul 2021 11:35:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210627185538.690277-3-iskren.chernev@gmail.com>
-References: <20210627185538.690277-1-iskren.chernev@gmail.com> <20210627185538.690277-3-iskren.chernev@gmail.com>
-Subject: Re: [PATCH v2 2/2] clk: qcom: Add Global Clock controller (GCC) driver for SM6115
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Iskren Chernev <iskren.chernev@gmail.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Iskren Chernev <iskren.chernev@gmail.com>
-Date:   Tue, 27 Jul 2021 11:33:46 -0700
-Message-ID: <162741082663.2368309.12852214008454271169@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+References: <20210726194603.14671-1-gerhard@engleder-embedded.com>
+ <20210726194603.14671-3-gerhard@engleder-embedded.com> <CAL_JsqLe0XScBgCJ+or=QdnnUGp36cyxr17BhKrirbkZ_nrxkA@mail.gmail.com>
+In-Reply-To: <CAL_JsqLe0XScBgCJ+or=QdnnUGp36cyxr17BhKrirbkZ_nrxkA@mail.gmail.com>
+From:   Gerhard Engleder <gerhard@engleder-embedded.com>
+Date:   Tue, 27 Jul 2021 20:34:57 +0200
+Message-ID: <CANr-f5wscRwY1zk4tu2qY_zguLf+8qNcEqp46GzpMka8d-qxjQ@mail.gmail.com>
+Subject: Re: [PATCH net-next 2/5] dt-bindings: net: Add tsnep Ethernet controller
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     David Miller <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Iskren Chernev (2021-06-27 11:55:38)
-> diff --git a/drivers/clk/qcom/gcc-sm6115.c b/drivers/clk/qcom/gcc-sm6115.c
-> new file mode 100644
-> index 000000000000..e3c830b33dec
-> --- /dev/null
-> +++ b/drivers/clk/qcom/gcc-sm6115.c
-> @@ -0,0 +1,3623 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2019-2021, The Linux Foundation. All rights reserved.
-> + */
-> +
-> +#include <linux/err.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/reset-controller.h>
+On Tue, Jul 27, 2021 at 1:35 AM Rob Herring <robh+dt@kernel.org> wrote:
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+>
+> Don't need oneOf when there is only one entry.
 
-Should be clk-provider.h in this list as well.
+I will fix that.
 
-> +
-> +#include <dt-bindings/clock/qcom,gcc-sm6115.h>
-> +
-> +#include "clk-alpha-pll.h"
-> +#include "clk-branch.h"
-> +#include "clk-pll.h"
-> +#include "clk-rcg.h"
-> +#include "clk-regmap.h"
-> +#include "clk-regmap-divider.h"
-> +#include "common.h"
-> +#include "gdsc.h"
-> +#include "reset.h"
-> +
-> +enum {
-> +       P_BI_TCXO,
-> +       P_CORE_BI_PLL_TEST_SE,
-> +       P_GPLL0_OUT_AUX2,
-> +       P_GPLL0_OUT_EARLY,
-> +       P_GPLL10_OUT_MAIN,
-> +       P_GPLL11_OUT_AUX,
-> +       P_GPLL11_OUT_AUX2,
-> +       P_GPLL11_OUT_MAIN,
-> +       P_GPLL3_OUT_EARLY,
-> +       P_GPLL3_OUT_MAIN,
-> +       P_GPLL4_OUT_MAIN,
-> +       P_GPLL6_OUT_EARLY,
-> +       P_GPLL6_OUT_MAIN,
-> +       P_GPLL7_OUT_MAIN,
-> +       P_GPLL8_OUT_EARLY,
-> +       P_GPLL8_OUT_MAIN,
-> +       P_GPLL9_OUT_EARLY,
-> +       P_GPLL9_OUT_MAIN,
-> +       P_SLEEP_CLK,
-> +};
-> +
-> +static const struct parent_map gcc_parent_map_0[] =3D {
-> +       { P_BI_TCXO, 0 },
-> +       { P_GPLL0_OUT_EARLY, 1 },
-> +       { P_GPLL0_OUT_AUX2, 2 },
-> +       { P_CORE_BI_PLL_TEST_SE, 7 },
-> +};
-> +
-> +static const char * const gcc_parent_names_0[] =3D {
+> > +      - enum:
+> > +        - engleder,tsnep
+>
+> tsnep is pretty generic. Only 1 version ever? Or differences are/will
+> be discoverable by other means.
 
-Please use struct clk_parent_data instead of these arrays of strings.
+Differences shall be detected by flags in the registers; e.g., a flag for
+gate control support. Anyway a version may make sense. Can you
+point to a good reference binding with versions? I did not find a
+network controller binding with versions.
 
-> +       "bi_tcxo",
-> +       "gpll0",
-> +       "gpll0_out_aux2",
-> +       "core_bi_pll_test_se",
-> +};
+> > +  reg: true
+>
+> How many? And what is each entry if more than 1.
 
-And add newlines between structs.
+Only one. I will fix that.
 
-> +static const char * const gcc_parent_names_0_ao[] =3D {
-> +       "bi_tcxo_ao",
-> +       "gpll0",
-> +       "gpll0_out_aux2",
-> +       "core_bi_pll_test_se",
-> +};
-> +
+> > +  interrupts: true
+>
+> How many?
+
+Only one. I will fix that.
+
+> > +
+> > +  local-mac-address: true
+> > +  mac-address: true
+> > +  nvmem-cells: true
+>
+> How many?
+
+Is that not inherited from ethernet-controller.yaml?
+  nvmem-cells:
+    maxItems: 1
+
+> > +  nvmem-cells-names: true
+>
+> Need to define the names.
+
+Is that not inherited from ethernet-controller.yaml?
+  nvmem-cell-names:
+    const: mac-address
+
+> > +  phy-connection-type: true
+> > +  phy-mode: true
+>
+> All the modes the generic binding support are supported by this device?
+
+Only GMII and RGMII are supported. I will fix that.
+
+> > +  phy-handle: true
+> > +
+> > +  '#address-cells':
+> > +    description: Number of address cells for the MDIO bus.
+>
+> No need to re-describe common properties unless you have something
+> special to say.
+>
+> Anyway, put an MDIO bus under an 'mdio' node.
+>
+> > +    const: 1
+> > +
+> > +  '#size-cells':
+> > +    description: Number of size cells on the MDIO bus.
+> > +    const: 0
+> > +
+> > +patternProperties:
+> > +  "^ethernet-phy@[0-9a-f]$":
+> > +    type: object
+> > +    $ref: ethernet-phy.yaml#
+>
+> Referencing mdio.yaml will do all this.
+
+I will reference mdio.yaml.
