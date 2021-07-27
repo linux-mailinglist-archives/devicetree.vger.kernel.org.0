@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A8043D6B35
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 02:41:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44CD63D6B36
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 02:41:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234731AbhG0ABP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jul 2021 20:01:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57872 "EHLO
+        id S234745AbhG0ABQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jul 2021 20:01:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234615AbhG0ABH (ORCPT
+        with ESMTP id S234617AbhG0ABH (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jul 2021 20:01:07 -0400
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54824C06179B
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 17:41:32 -0700 (PDT)
-Received: by mail-pl1-x629.google.com with SMTP id n10so13884744plf.4
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 17:41:32 -0700 (PDT)
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85A1CC06179F
+        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 17:41:34 -0700 (PDT)
+Received: by mail-pj1-x1032.google.com with SMTP id a4-20020a17090aa504b0290176a0d2b67aso1601635pjq.2
+        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 17:41:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Bg3T3fp6ClOTSMmD1DDjhfIf3JwA594nQfOaMYR27yE=;
-        b=NczGudCY9nMSUhnMs7zIh82RpkRgKfixp/X4RyFsvp4gBKec78U4LI4IkEFA4UmNM4
-         dvKBV7jlYRCn9IdF2/F63Ym4VK5j4TgTe91ot2Y+sNfm7fpJOEFMxsJrCZCKeK5atiDu
-         EsDnKU/Raj6yrA+U9PbHpNeHe9kjWt4YgIWtQ=
+        bh=l1TdIia5oT/voXXUM8yfgtY/ld2vpGF8mnnowb7I2uA=;
+        b=hfSix+mnUbMCu8A40vm+XLqCtZK4K9Jk/VjM6gz8k5i/rH2AI8ho6UTmEHdm6F204n
+         mtfA1ywu5eSd4cdJlEWC/51Cja6fJJkepSUOCfvPN2gwKV09Jus+N+Jb1RAsoRbNzkIU
+         wOs/PChCn705N3dK+IkUdEXPo6m7PB0UgqMNY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Bg3T3fp6ClOTSMmD1DDjhfIf3JwA594nQfOaMYR27yE=;
-        b=FMs7tWZP1SlZRJQ7wI9bIpZylwx+kbYsLfhHXPbmGJnwzCE3iI5bbTuNAUVG9V+imi
-         V8F75WgQ+pB2Oi3A4JSd2AspwlyM6UTQvbv99JpjRLB2alWTRJLpj5DHlMQCp3tQemcu
-         z39FMvNVlI+9O8iG5fLyE5QGUvpq0m0gt0mAUPD5KqH06g6V4wcwFLOoz2aKlcvckA4h
-         c9/cao4n73oKwqD4Avqrooimd/SikJMJg4dLH/pdyPFKfUv6yRBJmk67y7I5jabsBJvp
-         JoH78xz65unmngO+7gTXpvA/BSfDpbr04o3D1eClMsFm4zgcnkljJSFnQZo9IIRAn9zr
-         Qzwg==
-X-Gm-Message-State: AOAM530qUioChaC57P8CP8+mx/VO5s46yxypC/dvpUGjG603gxMY8uu2
-        f9+hN6o+MxLt7UyQHpr9zw5fGA==
-X-Google-Smtp-Source: ABdhPJxrYiV4vpovVhpRKUT3DhTBE5GbBkusAPwrc6zhQkc6fxI+no5VtFCBHD5sFk3N9BFyo83Jjw==
-X-Received: by 2002:a63:789:: with SMTP id 131mr20994864pgh.45.1627346491923;
-        Mon, 26 Jul 2021 17:41:31 -0700 (PDT)
+        bh=l1TdIia5oT/voXXUM8yfgtY/ld2vpGF8mnnowb7I2uA=;
+        b=GaqaMd+lbWPpN5DdMcnun5m2NPGJ3mGvhfH00GAOPnD0uNcHAA43MEgnyGpJtML+DE
+         xf/0keNOUk4tzBnYqWA9dPORL01AHnzhcEqxcVNLJur8EX4wQUchf+MGfTredMnzW1N9
+         S2XUh73h83rCdZp2wNgKd1ae19C6ivTEti3n1K60XNOz9L6mUyBG9qnxKt3WH8ewHmFb
+         QX7pCVdUWdzmG1eJ05Wsf3mPJjxVXwBV1E7K9/RaGCH0NdxOdTCYzLIZpofVScAIwJgV
+         978cYP4myhSHcvmkTcUofAKvZwnpcaTIOVvT0tNAyNY9RxGvkoYUmns76NMLT4aOTaQy
+         086w==
+X-Gm-Message-State: AOAM5302sMGuNE3XE6QJOGexBpyWNotcHI/wvOfUKI4OseEiX9xbCdV/
+        MA2rdRIfn7UTKg7hOEvDvIZyEw==
+X-Google-Smtp-Source: ABdhPJwrUmIYjcLSmqI7Zx8l8YF+URlYNPNpbbDnrWfUmW7G4MGkqUfOQusH4JSWBeevvQjKfXUKHg==
+X-Received: by 2002:a17:90b:212:: with SMTP id fy18mr8675133pjb.52.1627346494140;
+        Mon, 26 Jul 2021 17:41:34 -0700 (PDT)
 Received: from localhost ([2620:15c:202:201:9c3d:270c:6be9:9c33])
-        by smtp.gmail.com with UTF8SMTPSA id n134sm1275801pfd.89.2021.07.26.17.41.30
+        by smtp.gmail.com with UTF8SMTPSA id x18sm1241519pfh.48.2021.07.26.17.41.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Jul 2021 17:41:31 -0700 (PDT)
+        Mon, 26 Jul 2021 17:41:33 -0700 (PDT)
 From:   Matthias Kaehlcke <mka@chromium.org>
 To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Alan Stern <stern@rowland.harvard.edu>,
@@ -61,14 +61,11 @@ Cc:     Bastien Nocera <hadess@hadess.net>,
         Ravi Chandra Sadineni <ravisadineni@chromium.org>,
         Stephen Boyd <swboyd@chromium.org>,
         Matthias Kaehlcke <mka@chromium.org>,
-        Aswath Govindraju <a-govindraju@ti.com>,
         Dmitry Osipenko <digetx@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pawel Laszczak <pawell@cadence.com>,
-        Roger Quadros <rogerq@kernel.org>
-Subject: [PATCH v15 4/6] usb: Specify dependencies on USB_XHCI_PLATFORM with 'depends on'
-Date:   Mon, 26 Jul 2021 17:41:16 -0700
-Message-Id: <20210726174048.v15.4.If248f05613bbb06a44eb0b0909be5d97218f417b@changeid>
+        Fabio Estevam <festevam@gmail.com>
+Subject: [PATCH v15 5/6] usb: host: xhci-plat: Create platform device for onboard hubs in probe()
+Date:   Mon, 26 Jul 2021 17:41:17 -0700
+Message-Id: <20210726174048.v15.5.I7a3a7d9d2126c34079b1cab87aa0b2ec3030f9b7@changeid>
 X-Mailer: git-send-email 2.32.0.432.gabb21c7263-goog
 In-Reply-To: <20210727004118.2583774-1-mka@chromium.org>
 References: <20210727004118.2583774-1-mka@chromium.org>
@@ -78,105 +75,117 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some USB controller drivers that depend on the xhci-plat driver
-specify this dependency using 'select' in Kconfig. This is not
-recommended for symbols that have other dependencies as it may
-lead to invalid configurations. Use 'depends on' to specify the
-dependency instead of 'select'.
+Call onboard_hub_create/destroy_pdevs() from  _probe()/_remove()
+to create/destroy platform devices for onboard USB hubs that may
+be connected to the root hub of the controller. These functions
+are a NOP unless CONFIG_USB_ONBOARD_HUB=y/m.
 
-For dwc3 specify the dependency on USB_XHCI_PLATFORM in
-USB_DWC3_HOST and USB_DWC3_DUAL_ROLE. Also adjust the
-dependencies of USB_DWC3_CORE to make sure that at least one
-of USB_DWC3_HOST, USB_DWC3_GADGET or USB_DWC3_DUAL_ROLE can be
-selected.
+Also add a field to struct xhci_hcd to keep track of the onboard hub
+platform devices that are owned by the xHCI.
 
 Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 ---
 
 Changes in v15:
-- adjusted dependencies of USB_DWC3_CORE to make sure it can only
-  be enabled when at least one of USB_DWC3_HOST, USB_DWC3_GADGET
-  or USB_DWC3_DUAL_ROLE is selectable
-- updated commit message
+- none
 
 Changes in v14:
 - none
 
 Changes in v13:
+- added comment for 'depends on USB_ONBOARD_HUB || !USB_ONBOARD_HUB'
+  construct
+
+Changes in v12:
+- none
+
+Changes in v11:
+- use onboard_hub_create/destroy_pdevs() to support multiple onboard
+  hubs that are connected to the same root hub
+- moved field/list to keep track of platform devices from struct
+  usb_hcd to struct xhci_hcd
+- updated commit message
+
+Changes in v10:
+- none
+
+Changes in v9:
+- added dependency on USB_ONBOARD_HUB (or !!USB_ONBOARD_HUB) to
+  USB_XHCI_PLATFORM
+
+Changes in v8:
+- none
+
+Changes in v7:
+- none
+
+Changes in v6:
+- none
+
+Changes in v5:
 - patch added to the series
 
- drivers/usb/cdns3/Kconfig | 2 +-
- drivers/usb/dwc3/Kconfig  | 5 +++--
- drivers/usb/host/Kconfig  | 4 ++--
- 3 files changed, 6 insertions(+), 5 deletions(-)
+ drivers/usb/host/Kconfig     | 1 +
+ drivers/usb/host/xhci-plat.c | 6 ++++++
+ drivers/usb/host/xhci.h      | 2 ++
+ 3 files changed, 9 insertions(+)
 
-diff --git a/drivers/usb/cdns3/Kconfig b/drivers/usb/cdns3/Kconfig
-index b98ca0a1352a..07e12f786d48 100644
---- a/drivers/usb/cdns3/Kconfig
-+++ b/drivers/usb/cdns3/Kconfig
-@@ -1,7 +1,7 @@
- config USB_CDNS_SUPPORT
- 	tristate "Cadence USB Support"
- 	depends on USB_SUPPORT && (USB || USB_GADGET) && HAS_DMA
--	select USB_XHCI_PLATFORM if USB_XHCI_HCD
-+	depends on !USB_XHCI_HCD || USB_XHCI_PLATFORM
- 	select USB_ROLE_SWITCH
- 	help
- 	  Say Y here if your system has a Cadence USBSS or USBSSP
-diff --git a/drivers/usb/dwc3/Kconfig b/drivers/usb/dwc3/Kconfig
-index 66b1454c4db2..870f2251350a 100644
---- a/drivers/usb/dwc3/Kconfig
-+++ b/drivers/usb/dwc3/Kconfig
-@@ -2,8 +2,7 @@
- 
- config USB_DWC3
- 	tristate "DesignWare USB3 DRD Core Support"
--	depends on (USB || USB_GADGET) && HAS_DMA
--	select USB_XHCI_PLATFORM if USB_XHCI_HCD
-+	depends on ((USB && USB_XHCI_PLATFORM) || USB_GADGET) && HAS_DMA
- 	select USB_ROLE_SWITCH if USB_DWC3_DUAL_ROLE
- 	help
- 	  Say Y or M here if your system has a Dual Role SuperSpeed
-@@ -30,6 +29,7 @@ choice
- config USB_DWC3_HOST
- 	bool "Host only mode"
- 	depends on USB=y || USB=USB_DWC3
-+	depends on USB_XHCI_PLATFORM
- 	help
- 	  Select this when you want to use DWC3 in host mode only,
- 	  thereby the gadget feature will be regressed.
-@@ -44,6 +44,7 @@ config USB_DWC3_GADGET
- config USB_DWC3_DUAL_ROLE
- 	bool "Dual Role mode"
- 	depends on ((USB=y || USB=USB_DWC3) && (USB_GADGET=y || USB_GADGET=USB_DWC3))
-+	depends on USB_XHCI_PLATFORM
- 	depends on (EXTCON=y || EXTCON=USB_DWC3)
- 	help
- 	  This is the default mode of working of DWC3 controller where
 diff --git a/drivers/usb/host/Kconfig b/drivers/usb/host/Kconfig
-index df9428f1dc5e..518c2312ef0c 100644
+index 518c2312ef0c..099e9615919c 100644
 --- a/drivers/usb/host/Kconfig
 +++ b/drivers/usb/host/Kconfig
-@@ -80,7 +80,7 @@ config USB_XHCI_MTK
+@@ -54,6 +54,7 @@ config USB_XHCI_PCI_RENESAS
+ config USB_XHCI_PLATFORM
+ 	tristate "Generic xHCI driver for a platform device"
+ 	select USB_XHCI_RCAR if ARCH_RENESAS
++	depends on USB_ONBOARD_HUB || !USB_ONBOARD_HUB # if USB_ONBOARD_HUB=m, this can't be 'y'
+ 	help
+ 	  Adds an xHCI host driver for a generic platform device, which
+ 	  provides a memory space and an irq.
+diff --git a/drivers/usb/host/xhci-plat.c b/drivers/usb/host/xhci-plat.c
+index c1edcc9b13ce..ee98a3671619 100644
+--- a/drivers/usb/host/xhci-plat.c
++++ b/drivers/usb/host/xhci-plat.c
+@@ -15,6 +15,7 @@
+ #include <linux/of.h>
+ #include <linux/of_device.h>
+ #include <linux/platform_device.h>
++#include <linux/usb/onboard_hub.h>
+ #include <linux/usb/phy.h>
+ #include <linux/slab.h>
+ #include <linux/acpi.h>
+@@ -374,6 +375,9 @@ static int xhci_plat_probe(struct platform_device *pdev)
+ 	 */
+ 	pm_runtime_forbid(&pdev->dev);
  
- config USB_XHCI_MVEBU
- 	tristate "xHCI support for Marvell Armada 375/38x/37xx"
--	select USB_XHCI_PLATFORM
-+	depends on USB_XHCI_PLATFORM
- 	depends on HAS_IOMEM
- 	depends on ARCH_MVEBU || COMPILE_TEST
- 	help
-@@ -112,9 +112,9 @@ config USB_EHCI_BRCMSTB
- config USB_BRCMSTB
- 	tristate "Broadcom STB USB support"
- 	depends on (ARCH_BRCMSTB && PHY_BRCM_USB) || COMPILE_TEST
-+	depends on !USB_XHCI_HCD || USB_XHCI_PLATFORM
- 	select USB_OHCI_HCD_PLATFORM if USB_OHCI_HCD
- 	select USB_EHCI_BRCMSTB if USB_EHCI_HCD
--	select USB_XHCI_PLATFORM if USB_XHCI_HCD
- 	help
- 	  Enables support for XHCI, EHCI and OHCI host controllers
- 	  found in Broadcom STB SoC's.
++	INIT_LIST_HEAD(&xhci->onboard_hub_devs);
++	onboard_hub_create_pdevs(hcd->self.root_hub, &xhci->onboard_hub_devs);
++
+ 	return 0;
+ 
+ 
+@@ -420,6 +424,8 @@ static int xhci_plat_remove(struct platform_device *dev)
+ 	usb_remove_hcd(hcd);
+ 	usb_put_hcd(shared_hcd);
+ 
++	onboard_hub_destroy_pdevs(&xhci->onboard_hub_devs);
++
+ 	clk_disable_unprepare(clk);
+ 	clk_disable_unprepare(reg_clk);
+ 	usb_put_hcd(hcd);
+diff --git a/drivers/usb/host/xhci.h b/drivers/usb/host/xhci.h
+index 3c7d281672ae..5ba01d5ccab8 100644
+--- a/drivers/usb/host/xhci.h
++++ b/drivers/usb/host/xhci.h
+@@ -1923,6 +1923,8 @@ struct xhci_hcd {
+ 	struct dentry		*debugfs_slots;
+ 	struct list_head	regset_list;
+ 
++	struct list_head	onboard_hub_devs;
++
+ 	void			*dbc;
+ 	/* platform-specific data -- must come last */
+ 	unsigned long		priv[] __aligned(sizeof(s64));
 -- 
 2.32.0.432.gabb21c7263-goog
 
