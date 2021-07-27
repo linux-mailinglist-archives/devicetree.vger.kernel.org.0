@@ -2,72 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E18A83D7F48
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 22:31:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0DA33D7F4B
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 22:33:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232208AbhG0UbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jul 2021 16:31:11 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48230 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230409AbhG0UbK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Jul 2021 16:31:10 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 41C7660F9D;
-        Tue, 27 Jul 2021 20:31:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627417870;
-        bh=ZkhS55XggLNssuCIBqtuPZ0Y/L4fu7HoNPrNXlSi3H0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=kKbLYUkTlJrXfrhwcbofYMAT0Aop2PvcbQtZ3pTZQaKI/9fg5uvByY+V8OB2YlbXx
-         avrb24K+NrF9IHGKq/o/X1sMrUrrklEKceLo8l6bU/JEHpI2KKjmjZIaoS2XVo/oiM
-         XDM7rHWLlnYEoitiYzA4eUr4o+eg5Yz4WpFSfHgXUKqiQZF7Gezex3PzxwyqbZTopi
-         983GFo307ij96rxx1kGXi3dtJYQ82IKTPrsVT4vB0MVbJZiwOfPBv5SZB9nd/CVNR9
-         HPW/mRcDVq2/13wN9Jc3Vix0UXlMOXWjV+Oi9HnYcfznmCoC/RKCh3u0pleSI8s1mK
-         3y5NnRcetNDBw==
-Received: by mail-ed1-f43.google.com with SMTP id z26so201850edr.0;
-        Tue, 27 Jul 2021 13:31:10 -0700 (PDT)
-X-Gm-Message-State: AOAM531EIoykfp3aiB5j3mM90YqUhMBFhEwFRwgjzY4do3dtR2Ktu2dr
-        tZWdlX1HubQ1Zrnpqr5y7vcrfDVwSTENiEmsYg==
-X-Google-Smtp-Source: ABdhPJyj1o0RiCXcDt0UK5f2hKJR4DHqtubY4gmn20A+p9mszuTSkyEL1stsRYSj+yi431oxWeSE4QZmZUQ3HMqG0mg=
-X-Received: by 2002:a05:6402:1a4c:: with SMTP id bf12mr14265859edb.137.1627417868821;
- Tue, 27 Jul 2021 13:31:08 -0700 (PDT)
+        id S232296AbhG0Udk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jul 2021 16:33:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48296 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232208AbhG0Udj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 16:33:39 -0400
+Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48EB4C061760
+        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 13:33:39 -0700 (PDT)
+Received: by mail-io1-xd36.google.com with SMTP id y200so298215iof.1
+        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 13:33:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=engleder-embedded-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=RjE/W6T/G1G3DE60Zpq30R6kBO27bGvIJy9HHGSW6YY=;
+        b=Wn8R3QzT6y0RM/QZtPvHbNhXNkPWqUFHl/IcpfJ2YFFlAzx5o6P1m7BdgNpUQ68MwJ
+         VH6S7FgNv9LvBi+vKkHRvIkJbKUZ6zvwPM62lJ/uaD+KqG7m37vSUtU/cXdX38HYKran
+         h5CgK1edbXdqALvlIv8JAhNIXbVevomqme83Pdb4/Cyrhhlqyw8pEpHgKqCMbHsZKeQf
+         94ExX3UPal6uTkBq8j2/HcDVunQY1vqkLliaP98EJYs7sY9S+AJZC0m3EBPwpVXTmbrw
+         4O1TczLDDgcwOaTw568IXvUMy7GNgrnc5jcP+Gp9c3LlCcG+DmwQ/6rgA/ZpH5FFt0NU
+         vRYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=RjE/W6T/G1G3DE60Zpq30R6kBO27bGvIJy9HHGSW6YY=;
+        b=Cb+pg3niM+ayCB9UxurkLo12KllHS8jjpy+dVsX7Am56tyzR3Adfp8WNOUAiDlhJrh
+         r0MFI8VYSs+iYSXBOGX33lhGFINjz6YbgnanuoyF5HJCaQm1sy0259F8SdxIBT6ZFu94
+         IfeD4XDe83n41Z5ircbYNyk0H4mN4r5iBXGmWs+FfBXobIxftA2bK8Zy0g9vAsJGroRd
+         EDOz48CUFhrYgGgyH7SsYZFpWln7tIgOM1k92DvQvb0mGMKDG7v4HQaPryx/lniSEwfy
+         CZ9G2jw7zmrQU2Jvwq8P/uCfEE4VDbnmzlI8BC/+KYq3CmVo8Xc6D3IyQT5cInbRLCNn
+         mqwg==
+X-Gm-Message-State: AOAM530oK2LEjEipO1afrmJoAZm/Aq8apVzM9FjXdt7+wbyAvzuUuchi
+        1OCRg8jwl74OcjVlqd2LtfjCe8bcq12CZD1isYkoDg==
+X-Google-Smtp-Source: ABdhPJzN6PDCaZS5qI2RCQNlVxbVKe1re3RQgcqiPkQpZkKOk/JWjPWZ/BwrwDv4ai3+mRCpLrBn7M7hLX3BXzFaOu4=
+X-Received: by 2002:a5d:9ccb:: with SMTP id w11mr20491126iow.174.1627418018729;
+ Tue, 27 Jul 2021 13:33:38 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210726182850.14328-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210726182850.14328-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20210726182850.14328-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 27 Jul 2021 14:30:57 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJXYJjPXUGEGqmiXB0o=40SjdizG6JhRbVCkjpqCZG2bQ@mail.gmail.com>
-Message-ID: <CAL_JsqJXYJjPXUGEGqmiXB0o=40SjdizG6JhRbVCkjpqCZG2bQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: iio: adc: Add binding documentation
- for Renesas RZ/G2L A/D converter
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Alexandru Ardelean <aardelean@deviqon.com>,
-        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
+References: <20210726194603.14671-1-gerhard@engleder-embedded.com>
+ <20210726194603.14671-3-gerhard@engleder-embedded.com> <CAL_JsqLe0XScBgCJ+or=QdnnUGp36cyxr17BhKrirbkZ_nrxkA@mail.gmail.com>
+ <CANr-f5wscRwY1zk4tu2qY_zguLf+8qNcEqp46GzpMka8d-qxjQ@mail.gmail.com> <CAL_JsqKq6H471iFoLWRGvNSLpaJmuF+feDFut2p+J725n3U4HA@mail.gmail.com>
+In-Reply-To: <CAL_JsqKq6H471iFoLWRGvNSLpaJmuF+feDFut2p+J725n3U4HA@mail.gmail.com>
+From:   Gerhard Engleder <gerhard@engleder-embedded.com>
+Date:   Tue, 27 Jul 2021 22:33:27 +0200
+Message-ID: <CANr-f5ykgOHc1G2JQrTnMCFyQ35LbnWPH2pTKV07v-ucy_Zi1Q@mail.gmail.com>
+Subject: Re: [PATCH net-next 2/5] dt-bindings: net: Add tsnep Ethernet controller
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     David Miller <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 26, 2021 at 12:31 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+On Tue, Jul 27, 2021 at 10:25 PM Rob Herring <robh+dt@kernel.org> wrote:
+> > > tsnep is pretty generic. Only 1 version ever? Or differences are/will
+> > > be discoverable by other means.
+> >
+> > Differences shall be detected by flags in the registers; e.g., a flag for
+> > gate control support. Anyway a version may make sense. Can you
+> > point to a good reference binding with versions? I did not find a
+> > network controller binding with versions.
 >
-> Add binding documentation for Renesas RZ/G2L A/D converter block.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
->  .../bindings/iio/adc/renesas,rzg2l-adc.yaml   | 134 ++++++++++++++++++
->  1 file changed, 134 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
+> Some of the SiFive IP blocks have versions. Version numbers are the
+> exception though. Ideally they would correspond to some version of
+> your FPGA image. I just don't want to see 'v1' because that sounds
+> made up. The above string can mean 'v1' or whatever version you want.
+> I'm fine if you just add some description here about feature flag
+> registers.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+I will do that.
+
+Gerhard
