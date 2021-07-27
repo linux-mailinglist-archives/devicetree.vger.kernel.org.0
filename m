@@ -2,67 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 73B9F3D709B
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 09:51:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AEC33D70AF
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 09:57:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235788AbhG0Hvt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jul 2021 03:51:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47456 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235621AbhG0Hvt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Jul 2021 03:51:49 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id AF4DA6120A;
-        Tue, 27 Jul 2021 07:51:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627372309;
-        bh=N2yhUHFzYph7KZ5wl9QL58WERXQF7RT+if1eOPzjX8I=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=UGIe+h6fnmh2uZqvtrMR7Qh4prgksTBZhP/PNQ9qxzGHPAqA4MecvUFqy46CGg8KI
-         eHi+v5XfX5Zseib4SKydxd979SP8iEZkLCbVSDScrvvCL5RwCOIrz3n9xtp3slge92
-         krGLxbxrG8GzEL4ozbFiXEJpJZP2hihFj7unOIT5Seuq6Y1GiY8r9UJWi4TbDGYvZ1
-         6qXSVfjL1SLzUaUNggKYjOHeEWahI6KvYCOKJaHv66+V1qur+JCN/IvySRLEBf4T7r
-         HNtuj6qs4sMHUWzfLw1XQCIeyTndBtAG+AOGLugYUPXi9OAUwblykaSfv0m0Zoun0A
-         8a+v/DaJuIRyQ==
-Received: by mail-wr1-f54.google.com with SMTP id l18so6352665wrv.5;
-        Tue, 27 Jul 2021 00:51:49 -0700 (PDT)
-X-Gm-Message-State: AOAM533KeErdCuhD2PX7p9GYyVUMbNe6uxT2VgoldQy5ZxOlX/DgoQjP
-        oyi0SPVVAy6mJrfl/vaQu47weyRexwNcOhUmAv4=
-X-Google-Smtp-Source: ABdhPJzkrTpoW9lwm549EDKKK2/4LDrs+jDmhB7qtu0+t4r2k9JLz61Q10pGG6nnTX4k+EReornpLTFGprOjpOJmKHM=
-X-Received: by 2002:adf:f446:: with SMTP id f6mr10414343wrp.361.1627372308302;
- Tue, 27 Jul 2021 00:51:48 -0700 (PDT)
+        id S235629AbhG0H5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jul 2021 03:57:32 -0400
+Received: from mail-0301.mail-europe.com ([188.165.51.139]:41518 "EHLO
+        mail-0301.mail-europe.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235621AbhG0H5b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 03:57:31 -0400
+Date:   Tue, 27 Jul 2021 07:57:19 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail; t=1627372647;
+        bh=u3G2fqXXeibWLhXcsZ5/K1ahfoesTPk2yC7KcHsatq8=;
+        h=Date:To:From:Cc:Reply-To:Subject:From;
+        b=P7aHOGJuRFe6GY24c87woPSnvd4dK2TzwKgBAkzI5DlnSn4HlQErw0S62KFUnjUdE
+         Z/BLKqMOItmzsp4Z9nL1JMCi+7dkeGwmE3yd0o1gzFmlrwmECuWtXRKmHWY+p9Ni4l
+         mqi5+RIw+6XCIkueSeUIe73P3R/ZrIOJnmznnwVQ=
+To:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+From:   Yassine Oudjana <y.oudjana@protonmail.com>
+Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-kernel@vger.kernel.org
+Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
+Subject: [PATCH] arm64: dts: qcom: msm8996: Change power domain for mdp_smmu
+Message-ID: <ziJMQ8GqduRgb0M8oiP0NHbAQYTdBU2gFjzyQxhmts@cp3-web-029.plabs.ch>
 MIME-Version: 1.0
-References: <cover.1627362340.git.viresh.kumar@linaro.org> <d8319fd18df7086b12cdcc23193c313893aa071a.1627362340.git.viresh.kumar@linaro.org>
-In-Reply-To: <d8319fd18df7086b12cdcc23193c313893aa071a.1627362340.git.viresh.kumar@linaro.org>
-From:   Arnd Bergmann <arnd@kernel.org>
-Date:   Tue, 27 Jul 2021 09:51:32 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a0Y_c1ECp-bFyvkyoDAbivWLvgXDL+gyfJxsWo213Nu1A@mail.gmail.com>
-Message-ID: <CAK8P3a0Y_c1ECp-bFyvkyoDAbivWLvgXDL+gyfJxsWo213Nu1A@mail.gmail.com>
-Subject: Re: [PATCH V4 1/5] dt-bindings: virtio: Add binding for virtio devices
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Jason Wang <jasowang@redhat.com>,
-        "Michael S. Tsirkin" <mst@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>,
-        =?UTF-8?B?QWxleCBCZW5uw6ll?= <alex.bennee@linaro.org>,
-        "Enrico Weigelt, metux IT consult" <info@metux.net>,
-        Jie Deng <jie.deng@intel.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE" 
-        <virtualization@lists.linux-foundation.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 27, 2021 at 7:23 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
->
-> Allow virtio device sub-nodes to be added to the virtio mmio or pci
-> nodes. The compatible property for virtio device must be of the format
-> "virtio,device<ID>", where ID is virtio device ID in hexadecimal format.
->
-> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+The MDP SMMU is powered by MMAGIC_MDSS_GDSC. Change power-domains to match.
 
-Reviewed-by: Arnd Bergmann <arnd@arndb.de>
+Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+---
+ arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qc=
+om/msm8996.dtsi
+index 78c55ca10ba9..dd241dc7c124 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+@@ -1998,7 +1998,7 @@ mdp_smmu: iommu@d00000 {
+ =09=09=09=09 <&mmcc SMMU_MDP_AXI_CLK>;
+ =09=09=09clock-names =3D "iface", "bus";
+=20
+-=09=09=09power-domains =3D <&mmcc MDSS_GDSC>;
++=09=09=09power-domains =3D <&mmcc MMAGIC_MDSS_GDSC>;
+ =09=09};
+=20
+ =09=09venus_smmu: iommu@d40000 {
+--=20
+2.32.0
+
+
