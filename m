@@ -2,112 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 79EC23D7870
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 16:27:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA18B3D78A9
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 16:42:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232437AbhG0O1F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jul 2021 10:27:05 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59212 "EHLO mail.kernel.org"
+        id S231552AbhG0Omp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jul 2021 10:42:45 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34214 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232136AbhG0O1F (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Jul 2021 10:27:05 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id F352761A80;
-        Tue, 27 Jul 2021 14:27:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1627396025;
-        bh=v/tEQ3PQ1eef41dTT73R8Pz7a9kFv4BM4FDDufD4pWw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tjQz6Ms92du6kRrp3+vpMiIH8pBOZuRvlRsTvkDuQaOMFWnJmLB9eVNh0Tzzvqk1G
-         0HXXtlpKRgw8S3QISeSbIkKBc2fbzFj8F7hzOwEIEjNXI5680ZAhdlycEETd3k9kxm
-         MVWmKn3N6PYws2NssShV0TU4NNT8Slc1TGC63tZs=
-Date:   Tue, 27 Jul 2021 16:27:03 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     =?utf-8?B?5ZGo55Cw5p2wIChaaG91IFlhbmppZSk=?= 
-        <zhouyanjie@wanyeetech.com>
-Cc:     robh+dt@kernel.org, hminas@synopsys.com, paul@crapouillou.net,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
-        rick.tyliu@ingenic.com, sihui.liu@ingenic.com,
-        jun.jiang@ingenic.com, sernia.zhou@foxmail.com,
-        Dragan =?utf-8?B?xIxlxI1hdmFj?= <dragancecavac@yahoo.com>
-Subject: Re: [PATCH 2/2] USB: dwc2: Add OTG support for Ingenic SoCs.
-Message-ID: <YQAXt1pCFZqRm2ud@kroah.com>
-References: <1627116521-124612-1-git-send-email-zhouyanjie@wanyeetech.com>
- <1627116521-124612-3-git-send-email-zhouyanjie@wanyeetech.com>
+        id S231466AbhG0Omp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Jul 2021 10:42:45 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 00C7961AFF;
+        Tue, 27 Jul 2021 14:42:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1627396965;
+        bh=iRcdF2bhdw7wijnGeYka6rVc5jIoSeBNnn7qex/P0HQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=CezHG+tN8iSD42upYvUv4+WtE7Alx+F5QFWt/28yF6jOhHhpeNabpFsCA1y2N+pm+
+         xfCVPK3w5TEFTeMEw9mC/xNIxM5+t3FdKMLsnHFJTWwBEhR/183bB78NVEB25RsMC5
+         ttG0K3OX6aOHckUJC0N37RO4febBJy5IK/ZdaZcBNmPLkhQzwb4kCkf/ohU9uG/s92
+         3HcvJ5IESp7KdqBqF1qqod/xznWDVS3mQq6/P5/ayGb0g8OtpQVNPyXRejnkH328SP
+         pVVHbD8xbr38n9Q3GPZ0fuMGI0qDBk0Mg+dV+Hpdu+9mUXMl3B3WRy5+g5qNAukPnI
+         7eBjb7jdSFWZA==
+Received: by mail-ed1-f48.google.com with SMTP id p21so8553046edi.9;
+        Tue, 27 Jul 2021 07:42:44 -0700 (PDT)
+X-Gm-Message-State: AOAM533BWBCyAlQfyfy3fTLPgjNAM5iNMRUKFaXSgd7vXoqEQuTP29ef
+        lIU8MzLTYGxxlq5l+abfWKUyBaDwHH6qjwXRuw==
+X-Google-Smtp-Source: ABdhPJzZ3dcZSbE62SJMPL78QY10ME4lTGnE3r29kSVxIitdu3Zd+vnoWb2Mu+sUJOFdb/Oj42ta2AYGXTpcF7y0Ry0=
+X-Received: by 2002:aa7:da4b:: with SMTP id w11mr28997675eds.258.1627396963563;
+ Tue, 27 Jul 2021 07:42:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1627116521-124612-3-git-send-email-zhouyanjie@wanyeetech.com>
+References: <20210721191558.22484-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20210721191558.22484-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <1626964632.914515.4183863.nullmailer@robh.at.kernel.org> <CA+V-a8s1Cp+atEYFxSm1EpMO+ZqAa00jhHS7bm5QdTPJyd6oJQ@mail.gmail.com>
+In-Reply-To: <CA+V-a8s1Cp+atEYFxSm1EpMO+ZqAa00jhHS7bm5QdTPJyd6oJQ@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 27 Jul 2021 08:42:31 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKdCMG=ONAfBh61DJ7Led32CH8XjwoRUp3CK_xkfpGUVw@mail.gmail.com>
+Message-ID: <CAL_JsqKdCMG=ONAfBh61DJ7Led32CH8XjwoRUp3CK_xkfpGUVw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: pinctrl: renesas,rzg2l-pinctrl: Add
+ DT bindings for RZ/G2L pinctrl
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 24, 2021 at 04:48:41PM +0800, 周琰杰 (Zhou Yanjie) wrote:
-> Add OTG support for the JZ4775 SoC, the JZ4780 SoC, the X1000
-> SoC, the X1600 SoC, the X1830 SoC, and the X2000 SoC. Introduce
-> support for disable Ingenic overcurrent detection, once selected
-> it enables GOTGCTL register bits VbvalidOvEn and VbvalidOvVal to
-> disable the VBUS overcurrent detection.
-> 
-> This patch is derived from Dragan Čečavac (in the kernel 3.18.3
-> tree of CI20). It is very useful for the MIPS Creator CI20 (r1).
-> Without this patch, OTG port of CI20 has a great probability to
-> face overcurrent warning, which breaks the OTG functionality.
-> 
-> Signed-off-by: Dragan Čečavac <dragancecavac@yahoo.com>
-> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
-> ---
->  drivers/usb/dwc2/core.c   |  9 +++++++++
->  drivers/usb/dwc2/core.h   |  5 +++++
->  drivers/usb/dwc2/params.c | 49 ++++++++++++++++++++++++++++++++++++++++++++++-
->  3 files changed, 62 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/usb/dwc2/core.c b/drivers/usb/dwc2/core.c
-> index 272ae57..c35b2e2 100644
-> --- a/drivers/usb/dwc2/core.c
-> +++ b/drivers/usb/dwc2/core.c
-> @@ -1153,6 +1153,7 @@ static void dwc2_set_turnaround_time(struct dwc2_hsotg *hsotg)
->  int dwc2_phy_init(struct dwc2_hsotg *hsotg, bool select_phy)
->  {
->  	u32 usbcfg;
-> +	u32 otgctl;
->  	int retval = 0;
->  
->  	if ((hsotg->params.speed == DWC2_SPEED_PARAM_FULL ||
-> @@ -1187,6 +1188,14 @@ int dwc2_phy_init(struct dwc2_hsotg *hsotg, bool select_phy)
->  		dwc2_writel(hsotg, usbcfg, GUSBCFG);
->  	}
->  
-> +	if (hsotg->params.deactivate_ingenic_overcurrent_detection) {
-> +		if (dwc2_is_host_mode(hsotg)) {
-> +			otgctl = readl(hsotg->regs + GOTGCTL);
-> +			otgctl |= GOTGCTL_VBVALOEN | GOTGCTL_VBVALOVAL;
-> +			writel(otgctl, hsotg->regs + GOTGCTL);
-> +		}
-> +	}
-> +
->  	return retval;
->  }
->  
-> diff --git a/drivers/usb/dwc2/core.h b/drivers/usb/dwc2/core.h
-> index ab6b815..e026d13 100644
-> --- a/drivers/usb/dwc2/core.h
-> +++ b/drivers/usb/dwc2/core.h
-> @@ -418,6 +418,10 @@ enum dwc2_ep0_state {
->   *			detection using GGPIO register.
->   *			0 - Deactivate the external level detection (default)
->   *			1 - Activate the external level detection
-> + * @deactivate_ingenic_overcurrent_detection: Deactivate Ingenic overcurrent
-> + *			detection.
-> + *			0 - Activate the overcurrent detection (default)
+On Tue, Jul 27, 2021 at 3:27 AM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
+>
+> Hi Rob,
+>
+> On Thu, Jul 22, 2021 at 3:37 PM Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Wed, 21 Jul 2021 20:15:55 +0100, Lad Prabhakar wrote:
+> > > Add device tree binding documentation and header file for Renesas
+> > > RZ/G2L pinctrl.
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > ---
+> > >  .../pinctrl/renesas,rzg2l-pinctrl.yaml        | 155 ++++++++++++++++++
+> > >  include/dt-bindings/pinctrl/rzg2l-pinctrl.h   |  23 +++
+> > >  2 files changed, 178 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
+> > >  create mode 100644 include/dt-bindings/pinctrl/rzg2l-pinctrl.h
+> > >
+> >
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> >
+> > yamllint warnings/errors:
+> >
+> > dtschema/dtc warnings/errors:
+> > Error: Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.example.dts:29.34-35 syntax error
+> > FATAL ERROR: Unable to parse input tree
+> > make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.example.dt.yaml] Error 1
+> > make[1]: *** Waiting for unfinished jobs....
+> > make: *** [Makefile:1418: dt_binding_check] Error 2
+> > \ndoc reference errors (make refcheckdocs):
+> >
+> > See https://patchwork.ozlabs.org/patch/1508385
+> >
+> > This check can fail if there are any dependencies. The base for a patch
+> > series is generally the most recent rc1.
+> >
+> The base patch series required for this path is v5.14-rc2. (I had
+> mentioned it in the cover letter, maybe I should have added a note
+> here too)
 
-Having 0 as "active" is rough to handle over time.
+I knew that and thought I'd updated my base. But it seems I didn't. Now fixed.
 
-All of the other options are "activate", so please, keep them the same
-if at all possible.
-
-thanks,
-
-greg k-h
+Rob
