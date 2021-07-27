@@ -2,160 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C73C3D73E1
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 12:59:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E447D3D73F0
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 13:02:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236274AbhG0K7T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jul 2021 06:59:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56196 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236169AbhG0K7S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 06:59:18 -0400
-Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [IPv6:2a0b:5c81:1c1::37])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7734CC061757;
-        Tue, 27 Jul 2021 03:59:17 -0700 (PDT)
-Received: from hillosipuli.retiisi.eu (89-27-100-251.bb.dnainternet.fi [89.27.100.251])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sailus)
-        by lahtoruutu.iki.fi (Postfix) with ESMTPSA id C00531B00238;
-        Tue, 27 Jul 2021 13:59:13 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
-        t=1627383553;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=FnxEodskcXSYQ/A+/Q1PIrn4pOXRcxd+x5S5f3m29O0=;
-        b=dlvdvfyM5HBf224ix/CqeA2GGbTkZzdYYMto0uK8tS1r6F33cZHs9bC9PH15tfvSM3nHqw
-        IMPfDnUxSI+aJJUB14G/2BTtz6YmDuJJNtV6deJXB/EZ9oBQe/sqpiy9yrcSOpPCtCcrgg
-        FA6cp/q2onlExWlMwL9EBSIXidcV+Scp5iRTflbmJrm91itr1NV2B3k5//giZZdPs3SJv4
-        j/0RWWAJKDoF2LFTpVElQ00N5KjUXZOwxxLQgmdj9qcRQtNwHvIKc7gZn419tKepyhwbsQ
-        notvNt+uwq8FC/gTK4sK5PVVAnOLnyhiJsrXLQdMk4C2ZAsIWwRpI/CmcB3M8A==
-Received: from valkosipuli.localdomain (valkosipuli.localdomain [IPv6:fd35:1bc8:1a6:d3d5::80:2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 29910634C87;
-        Tue, 27 Jul 2021 13:58:04 +0300 (EEST)
-Received: from localhost ([127.0.0.1] helo=valkosipuli.retiisi.eu)
-        by valkosipuli.localdomain with esmtp (Exim 4.92)
-        (envelope-from <sakari.ailus@iki.fi>)
-        id 1m8Kn8-0001I3-Ef; Tue, 27 Jul 2021 13:58:30 +0300
-Date:   Tue, 27 Jul 2021 13:58:30 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        devicetree@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC v3] dt-binding: media: document ON Semi AR0521 sensor
- bindings
-Message-ID: <20210727105830.GH3@valkosipuli.retiisi.eu>
-References: <m37dhkdrat.fsf@t19.piap.pl>
- <YP9ccgd7WNpHuLgG@pendragon.ideasonboard.com>
- <m3o8aoavrv.fsf@t19.piap.pl>
+        id S236320AbhG0LCS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jul 2021 07:02:18 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:45934 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236221AbhG0LCR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 07:02:17 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1627383737; x=1658919737;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=Y8+DswQOgqJ+Z109s5uZ3P5QjJf+XnVxLaqAzGjFO8A=;
+  b=RYq9ut6Y71X7h2+AIJfQaiePeW+eEgdQFILQ7/u7RL/ojS7wJ4ypSay/
+   j4ketqxuJnPq8xmnX2wsvSe8wMgDpa3WOtVOIU06RBhW4mz854Zm5SFwO
+   4WxpeSPKM+h1SwNqsHixQfNhSUnvMmBZUbPHntQMISfZMUSxlsYFhgXHs
+   W8cvlHT2LEYy6xoNvrzo9dAdcxZcBYktHVLO5fygN6dzowEslOculf9kn
+   IendabCTbuOVO7tH+x5Z3itiayH2sADN+ekvILUPOmtmDmvBXB8iqrHbM
+   RkbzOv67kawDpPsRtQkjagHZn0ukE3cDtSHNWiXAHqbHWphha68q4X6LQ
+   w==;
+IronPort-SDR: TKnfswii3JJzbTcQowpZ3Bac84fFpMTjol9FvslS1IjTvjUAsSyJhPz6DaH68FRoWBfChsT3ju
+ e00vr2/9xK2FKd8FIYdN5/GFxR00tPpnIeM0MHAR9tcWvAJLL2b9oNpSHtwqROLdKELvm1hpwg
+ vFKvmnsAljJDwWyiRRxL6KQ44986W32HIUEq4kTt9P7QyVc6pLPyVPgyJLlPOkajOY10nFIGv4
+ XQ3K9bZ6dyUxV8ip3OkHLTrjl6oh/o/9UFsrR8Y+K4kEp/Ugi+0iS/fc+8Tu9IczME+girhoFj
+ GWy98HT/mIiF2zIJoeCTnlO4
+X-IronPort-AV: E=Sophos;i="5.84,273,1620716400"; 
+   d="scan'208";a="123596040"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 27 Jul 2021 04:02:16 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Tue, 27 Jul 2021 04:02:17 -0700
+Received: from rob-ult-m19940.amer.actel.com (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2176.2 via Frontend Transport; Tue, 27 Jul 2021 04:02:13 -0700
+From:   Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
+To:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <robh+dt@kernel.org>, <nicolas.ferre@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>,
+        "Codrin Ciubotariu" <codrin.ciubotariu@microchip.com>
+Subject: [PATCH] ARM: dts: at91: sama5d2_icp: enable digital filter for I2C nodes
+Date:   Tue, 27 Jul 2021 14:02:06 +0300
+Message-ID: <20210727110206.1336773-1-codrin.ciubotariu@microchip.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <m3o8aoavrv.fsf@t19.piap.pl>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-ARC-Authentication-Results: i=1;
-        ORIGINATING;
-        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-        s=lahtoruutu; t=1627383553;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=FnxEodskcXSYQ/A+/Q1PIrn4pOXRcxd+x5S5f3m29O0=;
-        b=u2lYg9uFnZypc/EKVxG7GzzKr3bdWW512fhapacOQRi58CRAJRb8PLKtLqyEnyh5lhULvI
-        eXcaGfcQHmLCWQIJZAel+oKkYJkIU5S8ALfcX6tIC8IANZukOcZwkNcj5YvPHhCN/YzwQP
-        VEAVvCdKBgxCzMVJHB9Og5feF8Dph3oUKS94N3m9hDrx45UpGt47OEeZ/S/6G2gXnq21rx
-        HmbGGpbeqJZjJ5nWnOqR8n+kC32a5KPHgaWlsruWOYrQtqDG3IWCSHQhm3g32+gIOQDsSC
-        aHlZ0HjO6GS5rJmpka0gQ5t+WcQHJBaaZawKolkhTCCm4I49jyQUbDRr0B6XFA==
-ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1627383553; a=rsa-sha256;
-        cv=none;
-        b=jaRzm/fLepTiV1ksVrLPYto69e+WIoiA7JgznMInoWBwf6QXLPSRyMRjwMke3SiSenDOMi
-        0CgjuMEMQE4KfZMbdRC6+mmtSk8QriJCvOL8HSyuhi0FfGlygUoPRKL5JEyaynBG3vzqWW
-        a0VgIofuELydwKQmF5ao0W+IulOUnX3SDXX1twDEIa2OALuI6kcP4/lYYu6gT+2MV01mlX
-        xb1c9SUkWmzJm+ZnLd3KHNL6LmKhPB9/CVGAPVg3EinDGJMoest39ZfulaQUsrwV+Br5Mn
-        rhYYCo0M/a1t9Fa1OB1fz3/OaMnmKZfXCXQKW4XGs6OQl9SZFsvBDkoRBYxYBA==
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+SAMA5D2's I2C controller supports digital filter, so let's enable it.
 
-On Tue, Jul 27, 2021 at 12:36:20PM +0200, Krzysztof Hałasa wrote:
-> Hi Laurent,
-> 
-> Laurent Pinchart <laurent.pinchart@ideasonboard.com> writes:
-> 
-> >> +        properties:
-> >> +          data-lanes:
-> >> +            anyOf:
-> >> +              - items:
-> >> +                  - const: 1
-> >> +              - items:
-> >> +                  - const: 1
-> >> +                  - const: 2
-> >> +              - items:
-> >> +                  - const: 1
-> >> +                  - const: 2
-> >> +                  - const: 3
-> >> +                  - const: 4
-> >
-> > As the sensor also supports an HiSPi output, I would add the bus-type
-> > property:
-> >
-> >           data-lanes:
-> > 	    const: 4
-> 
-> Is there any example of this? I'm not sure how should it it look like.
-> Something like the following?
-> 
->         properties:
->          data-lanes:
->             anyOf:
->               - items:
->                   - const: 1
->               - items:
->                   - const: 1
->                   - const: 2
->               - items:
->                   - const: 1
->                   - const: 2
->                   - const: 3
->                   - const: 4
->           bus-type:
->             data-lanes:
->               const: 4
+Signed-off-by: Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+---
+ arch/arm/boot/dts/at91-sama5d2_icp.dts | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-I think Laurent meant:
-
-	    bus-type:
-	      const: 4
-
-This way the bindings can be later amended with HiSPi support without
-relying on defaults. Albeit the other busses in practice almost never end
-up being used even if supported, apart from the standard BT.601, BT.656 and
-CSI-2.
-
-Either way is fine IMO.
-
-> 
-> And... HiSPi would need additional code in the driver. And preferably
-> some testing. I think I'd prefer to have DT and the driver staying in
-> some sort of sync. Also, I'm uncertain about the syntax and the meaning
-> of such, apparently redundant, construct. Nor about its relation to
-> HiSPi. An example would be welcome.
-
-No need to add support for the driver.
-
+diff --git a/arch/arm/boot/dts/at91-sama5d2_icp.dts b/arch/arm/boot/dts/at91-sama5d2_icp.dts
+index bd64721fa23c..1c235fc5f788 100644
+--- a/arch/arm/boot/dts/at91-sama5d2_icp.dts
++++ b/arch/arm/boot/dts/at91-sama5d2_icp.dts
+@@ -184,6 +184,8 @@ i2c6: i2c@600 {
+ 		dmas = <0>, <0>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_flx4_default>;
++		i2c-digital-filter;
++		i2c-digital-filter-width-ns = <35>;
+ 		status = "okay";
+ 
+ 		mcp16502@5b {
+@@ -307,6 +309,8 @@ regulator-state-mem {
+ &i2c0 { /* mikrobus i2c */
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_mikrobus_i2c>;
++	i2c-digital-filter;
++	i2c-digital-filter-width-ns = <35>;
+ 	status = "okay";
+ };
+ 
+@@ -314,6 +318,8 @@ &i2c1 {
+ 	dmas = <0>, <0>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_i2c1_default>;
++	i2c-digital-filter;
++	i2c-digital-filter-width-ns = <35>;
+ 	status = "okay";
+ 
+ 	eeprom@50 {
 -- 
-Sakari Ailus
+2.30.2
+
