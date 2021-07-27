@@ -2,114 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C9073D7360
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 12:36:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72F6B3D73C4
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 12:52:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236127AbhG0KgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jul 2021 06:36:25 -0400
-Received: from ni.piap.pl ([195.187.100.5]:39858 "EHLO ni.piap.pl"
+        id S236212AbhG0Kw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jul 2021 06:52:57 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57212 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236104AbhG0KgY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Jul 2021 06:36:24 -0400
-Received: from t19.piap.pl (OSB1819.piap.pl [10.0.9.19])
-        by ni.piap.pl (Postfix) with ESMTPSA id 537ADC369558;
-        Tue, 27 Jul 2021 12:36:20 +0200 (CEST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 ni.piap.pl 537ADC369558
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=piap.pl; s=mail;
-        t=1627382180; bh=xrp6HjZNt5fuhmpqSLgJecqDApFe/ZteKo0bn4DP8tc=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=bsCQIAo9ER90npjCybE3VUTe4pLXOPqObwMTF2c0nnG+dWRahkpPsdvsxVOrCxWbQ
-         9rvb0nLrpbONdQ5A3hs8N4XW/ET4wsVjuZD8GwoT58+mgPLixgYcpXQp24UuaObKUR
-         CUS6wmSntxcJu2pONUggyC91mO/m52Yo3/1NLbvE=
-From:   =?utf-8?Q?Krzysztof_Ha=C5=82asa?= <khalasa@piap.pl>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     devicetree@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Sakari Ailus <sakari.ailus@iki.fi>
-Subject: Re: [RFC v3] dt-binding: media: document ON Semi AR0521 sensor
- bindings
-References: <m37dhkdrat.fsf@t19.piap.pl>
-        <YP9ccgd7WNpHuLgG@pendragon.ideasonboard.com>
-Sender: khalasa@piap.pl
-Date:   Tue, 27 Jul 2021 12:36:20 +0200
-In-Reply-To: <YP9ccgd7WNpHuLgG@pendragon.ideasonboard.com> (Laurent Pinchart's
-        message of "Tue, 27 Jul 2021 04:08:02 +0300")
-Message-ID: <m3o8aoavrv.fsf@t19.piap.pl>
+        id S236238AbhG0Kw5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Jul 2021 06:52:57 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8F19F60F59;
+        Tue, 27 Jul 2021 10:52:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1627383177;
+        bh=o6O8e5HB1DC2SNNVTZK+mEPKiFGCwPXKPNIaW5ZkSwc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=tlbO2b/KilfGN2L4k7mzU2F9ESv7A8P+KFgiQ4G/y3Y/qp6XWExuT+e7s1gu1c3L4
+         Cp3mSjwq8TiuboNWp5dKO5zzuBwWZi8gDthgo9bZ4mjMhWqDjNQ85CT2Y0AvXs3qwU
+         OXBlWaX5rd3f0s+hFJCSWTLBP5zaAhHrWnGXcyYou3zDEC+VWmM+BGoKDa8jD7KOeI
+         Ca2shEQDRJObSN3E8AIgTT1vVFkPXuVosphi6oI/XPPzd3P9Y580ftp8zoowKV5eN0
+         G1oTaKsMYRy0AKGhmmLEruKmsDMVhRW6QpyCWMYiMYsnK0Cr350noSieA7YY+jtRTo
+         B3OJMS1vdAlSg==
+Received: by mail-pj1-f41.google.com with SMTP id j1so17133101pjv.3;
+        Tue, 27 Jul 2021 03:52:57 -0700 (PDT)
+X-Gm-Message-State: AOAM5300NcgtBvpdwqHcn6/qjcwQicaeLqjgWeFLfAXzoMwTWK3M7jJq
+        rTRMhld7iCJ/K+VN1gAc2IlLKvvFUBREW6m2AmE=
+X-Google-Smtp-Source: ABdhPJyfcwQ1u2ibJyIrNkXJnCgzuHBsqbP+LnDm7ZMh42MUC8rRudQhUMpanldUPxxIR7CfCMAtpt1cNDIbn+YMkpE=
+X-Received: by 2002:a62:7c52:0:b029:329:d4c2:8820 with SMTP id
+ x79-20020a627c520000b0290329d4c28820mr22727273pfc.59.1627383177274; Tue, 27
+ Jul 2021 03:52:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-KLMS-Rule-ID: 1
-X-KLMS-Message-Action: clean
-X-KLMS-AntiSpam-Lua-Profiles: 165267 [Jul 27 2021]
-X-KLMS-AntiSpam-Version: 5.9.20.0
-X-KLMS-AntiSpam-Envelope-From: khalasa@piap.pl
-X-KLMS-AntiSpam-Rate: 0
-X-KLMS-AntiSpam-Status: not_detected
-X-KLMS-AntiSpam-Method: none
-X-KLMS-AntiSpam-Auth: dkim=pass header.d=piap.pl
-X-KLMS-AntiSpam-Info: LuaCore: 449 449 5db59deca4a4f5e6ea34a93b13bc730e229092f4, {Tracking_Text_ENG_RU_Has_Extended_Latin_Letters, eng}, {Tracking_marketers, three}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;t19.piap.pl:7.1.1;127.0.0.199:7.1.2;piap.pl:7.1.1
-X-MS-Exchange-Organization-SCL: -1
-X-KLMS-AntiSpam-Interceptor-Info: scan successful
-X-KLMS-AntiPhishing: Clean, bases: 2021/07/27 08:44:00
-X-KLMS-AntiVirus: Kaspersky Security for Linux Mail Server, version 8.0.3.30, bases: 2021/07/27 08:46:00 #16963359
-X-KLMS-AntiVirus-Status: Clean, skipped
+References: <20210627163244.1090296-1-jic23@kernel.org> <20210627163244.1090296-12-jic23@kernel.org>
+ <20210714155809.GA2653479@robh.at.kernel.org>
+In-Reply-To: <20210714155809.GA2653479@robh.at.kernel.org>
+From:   Ricardo Ribalda Delgado <ribalda@kernel.org>
+Date:   Tue, 27 Jul 2021 12:52:41 +0200
+X-Gmail-Original-Message-ID: <CAPybu_2EFm74tr74F-ww5WOE9xBrtU0VRzB1CS_2DRTxXWPhyw@mail.gmail.com>
+Message-ID: <CAPybu_2EFm74tr74F-ww5WOE9xBrtU0VRzB1CS_2DRTxXWPhyw@mail.gmail.com>
+Subject: Re: [PATCH 11/15] dt-bindings: iio: dac: ad5761: Add missing binding doc.
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jonathan Cameron <jic23@kernel.org>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+Sorry for the late reply, holiday season :). Thanks for the patch
 
-Laurent Pinchart <laurent.pinchart@ideasonboard.com> writes:
+Acked-by: Ricardo Ribalda <ribalda@kernel.org>
 
->> +        properties:
->> +          data-lanes:
->> +            anyOf:
->> +              - items:
->> +                  - const: 1
->> +              - items:
->> +                  - const: 1
->> +                  - const: 2
->> +              - items:
->> +                  - const: 1
->> +                  - const: 2
->> +                  - const: 3
->> +                  - const: 4
+On Wed, Jul 14, 2021 at 5:58 PM Rob Herring <robh@kernel.org> wrote:
 >
-> As the sensor also supports an HiSPi output, I would add the bus-type
-> property:
+> On Sun, 27 Jun 2021 17:32:40 +0100, Jonathan Cameron wrote:
+> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> >
+> > Straight forward binding with vref optional for those part with internal
+> > regulators, but required for those without.
+> >
+> > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > Cc: Ricardo Ribalda <ribalda@kernel.org>
+> > ---
+> >  .../bindings/iio/dac/adi,ad5761.yaml          | 60 +++++++++++++++++++
+> >  1 file changed, 60 insertions(+)
+> >
 >
->           data-lanes:
-> 	    const: 4
-
-Is there any example of this? I'm not sure how should it it look like.
-Something like the following?
-
-        properties:
-         data-lanes:
-            anyOf:
-              - items:
-                  - const: 1
-              - items:
-                  - const: 1
-                  - const: 2
-              - items:
-                  - const: 1
-                  - const: 2
-                  - const: 3
-                  - const: 4
-          bus-type:
-            data-lanes:
-              const: 4
-
-And... HiSPi would need additional code in the driver. And preferably
-some testing. I think I'd prefer to have DT and the driver staying in
-some sort of sync. Also, I'm uncertain about the syntax and the meaning
-of such, apparently redundant, construct. Nor about its relation to
-HiSPi. An example would be welcome.
---=20
-Krzysztof "Chris" Ha=C5=82asa
-
-Sie=C4=87 Badawcza =C5=81ukasiewicz
-Przemys=C5=82owy Instytut Automatyki i Pomiar=C3=B3w PIAP
-Al. Jerozolimskie 202, 02-486 Warszawa
+> Reviewed-by: Rob Herring <robh@kernel.org>
