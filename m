@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA26C3D7F05
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 22:20:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C81A33D7F02
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 22:20:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230426AbhG0UUV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S232027AbhG0UUV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 27 Jul 2021 16:20:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45168 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231932AbhG0UUU (ORCPT
+        with ESMTP id S231351AbhG0UUU (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 16:20:20 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37F56C061765
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6843C061760
         for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 13:20:19 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id d17so23973841lfv.0
+Received: by mail-lf1-x12a.google.com with SMTP id z2so23959977lft.1
         for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 13:20:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=pu/Dc0wbZEEdBX0n+gymF7OvWfXDUCeDoTyuI35f9nc=;
-        b=FOFa/sNjWhym9g8D5DSS89BwZuBiqUD+SSrqL7sVUVC38ErQozC1yUlsOxaRti3W6S
-         52HkAvK2KdjLeuOIPS0jYFaCYhCGPguKkErKLPC222pg2A+/Shx/g6xk4Qr8Jn/0tY87
-         CMCpEQMG4CiFKqHDQRbaEDOumAZCbtUv6cl5ONykldV00D8ia4duiru2eGYQrv0mbMjy
-         k8xJ8Gh5kd1jdWB2ap0Bq7FmLLG5qOf2BlKNetEmwS/QGXtTk3h/IZcNxt3jjkil6mqM
-         l5RxuPFDwB9dZuwYZe9YmsZj0yRYSzEYTBoahqTkdO5lv3xMXJ7ybvz7ZTNrAhgLXKKW
-         KUfg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=D63/+TxRKfSO58fkCSffqgWBORWJvZPVM0amiHKwxec=;
+        b=uc6aI1bT4oYPAXdYes42FS0Izp1zNLRkiWaGnSYlwTVIVOsTJSUmch0aAT5BmcYlcE
+         ytrOkbt2DiOy0FKyOcCFU+QB/iJe6Azcx27O4p4DElOfL9rh8oagFB3QRQyOwv6/ykRA
+         VBUr9jguO2RzUwDjQ60ngQSZABJqc1xPbbyPCkpfHBGiVdJRGYuR4ks1ey5VdH2H3HwP
+         4QDg8KYTIo/TvTnZDpGJDH+qyfCfrr4BDU8eu4keUJfMmRB3rDIGP6R0PasbOvffXzkU
+         thDS7DIzY3kpx5HSg4cXVYslvWprRGRgaKWoEqZ5HXMlg2o1bt8UcQe4MwD0esSupeAp
+         NF+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=pu/Dc0wbZEEdBX0n+gymF7OvWfXDUCeDoTyuI35f9nc=;
-        b=fjI9r+qF1q9RHjCPtPWyBZba46OldZG8o9aDHmI38d47V/Z+K1cq5ISJp+k2GbgKBe
-         wSqxgS4mGrxkcW2+mB2urNqxQiL8KdO4Gp7d+8hc3+yn5SzdnG29G+F2sITt9sdr47fy
-         c+sE+kpWAgooV++wX+ubLo+VsB7PSAIEFSqm1iI3C30jgICoHvi3BenjLJQiqZ3kg+Ju
-         6ZJC/sjqpryhJ7ABKdfoAaIueQ1HOsXID/7TDcIw2DWCZRnKG3FKs8kmy4xaHwjZBC9J
-         wgNPtZiCIqeQ5tdy81yB6CRqlx2XaFZjcKocdgyQT2V12KiAPZvt4XWFWGPqvMyKHg1A
-         A0Yw==
-X-Gm-Message-State: AOAM533/hxGyAjf6cAfQjKuy6ac1jWOfg4FSQxhPUUawnCENF2o/jVhV
-        RyyI/3ORKehrxIgiwuRyGPVULg==
-X-Google-Smtp-Source: ABdhPJykKCBAnljgl6eXjGqYqbLHliukLxoc381p7oH+9gphJk5y+ErWEJAaVK0G+SYW7j65jmFswg==
-X-Received: by 2002:ac2:50c3:: with SMTP id h3mr18255303lfm.126.1627417217436;
-        Tue, 27 Jul 2021 13:20:17 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=D63/+TxRKfSO58fkCSffqgWBORWJvZPVM0amiHKwxec=;
+        b=rQVMyqXBxtxlOnWl7hp+v0uOL+L+zqlDKzFUqnqT2xhvjDveXIfrBOBUjV33qu1n5n
+         2MlpRK0cwzfM9Lq4QRHTokWJlFCXTCFTSyBg0f5OGITbeEikUW9GNYMsTrfuXeAzkp4D
+         xcl23JV6i/zC1n+frFGDmVZDWEu8h7ZUtmxm1cgSmgFQg15lgvl4Z5mA3fxvxTNTyHT8
+         PY93m0A9S60zRt14e7l3A1ZBs+0pRkqVvclDx/pVxEN5KP8S76B2OBINmV2eeS2bd12G
+         xDB/VWWTaCRbN3dnPT64m7l3kzjAQ/s2ZqS+F7u5FpBrUGErHbYTagOABucwRp+HQAt/
+         mbpA==
+X-Gm-Message-State: AOAM530gon06Vqutec1YrurCU2KZpsPRGYdivE8kwn6G/PamZD4atXEo
+        qEb9oMB+l3q5i1FsbIEw6SDoEQ==
+X-Google-Smtp-Source: ABdhPJxtBIHimc4+h8RBOli+FFBmffq0wgOKwkP8OCNq2ZfDAhNfcnN+3ZvhYtUJ3OltmmbvPEAgaA==
+X-Received: by 2002:a19:f716:: with SMTP id z22mr17747060lfe.13.1627417218148;
+        Tue, 27 Jul 2021 13:20:18 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id i11sm376502lfe.215.2021.07.27.13.20.16
+        by smtp.gmail.com with ESMTPSA id i11sm376502lfe.215.2021.07.27.13.20.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Tue, 27 Jul 2021 13:20:17 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
@@ -60,70 +60,63 @@ Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
         Mark Brown <broonie@kernel.org>,
         Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v6 0/6] clk: qcom: use power-domain for sm8250's clock controllers
-Date:   Tue, 27 Jul 2021 23:19:56 +0300
-Message-Id: <20210727202004.712665-1-dmitry.baryshkov@linaro.org>
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: [PATCH v6 1/8] dt-bindings: clock: qcom,dispcc-sm8x50: add mmcx power domain
+Date:   Tue, 27 Jul 2021 23:19:57 +0300
+Message-Id: <20210727202004.712665-2-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210727202004.712665-1-dmitry.baryshkov@linaro.org>
+References: <20210727202004.712665-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On SM8250 both the display and video clock controllers are powered up by
-the MMCX power domain. Handle this by linking clock controllers to the
-proper power domain, and using runtime power management to enable and
-disable the MMCX power domain.
+On sm8250 dispcc requires MMCX power domain to be powered up before
+clock controller's registers become available. For now sm8250 was using
+external regulator driven by the power domain to describe this
+relationship. Switch into specifying power-domain and required opp-state
+directly.
 
-Dependencies:
-- https://lore.kernel.org/linux-arm-msm/20210703005416.2668319-1-bjorn.andersson@linaro.org/
-  (pending)
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml      | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-Changes since v5:
- - Dropped devm_pm_runtime_enable callback to remove extra dependency
-
-Changes since v4:
- - Dropped pm_runtime handling from drivers/clk/qcom/common.c Moved the
-   code into dispcc-sm8250.c and videocc-sm8250.c
-
-Changes since v3:
- - Wrap gdsc_enable/gdsc_disable into pm_runtime_get/put calls rather
-   than calling pm_runtime_get in gdsc_enabled and _put in gdsc_disable
- - Squash gdsc patches together to remove possible dependencies between
-   two patches.
-
-Changes since v2:
- - Move pm_runtime calls from generic genpd code to the gdsc code for
-   now (as suggested by Ulf & Bjorn)
-
-Changes since v1:
- - Rebase on top of Bjorn's patches, removing the need for setting
-   performance state directly.
- - Move runtime PM calls from GDSC code to generic genpd code.
- - Always call pm_runtime_enable in the Qualcomm generic clock
-   controller code.
- - Register GDSC power domains as subdomains of the domain powering the
-   clock controller if there is one.
-
-----------------------------------------------------------------
-Dmitry Baryshkov (8):
-      dt-bindings: clock: qcom,dispcc-sm8x50: add mmcx power domain
-      dt-bindings: clock: qcom,videocc: add mmcx power domain
-      clk: qcom: dispcc-sm8250: use runtime PM for the clock controller
-      clk: qcom: videocc-sm8250: use runtime PM for the clock controller
-      clk: qcom: gdsc: enable optional power domain support
-      arm64: dts: qcom: sm8250: remove mmcx regulator
-      clk: qcom: dispcc-sm8250: stop using mmcx regulator
-      clk: qcom: videocc-sm8250: stop using mmcx regulator
-
- .../bindings/clock/qcom,dispcc-sm8x50.yaml         |  7 +++
- .../devicetree/bindings/clock/qcom,videocc.yaml    |  7 +++
- arch/arm64/boot/dts/qcom/sm8250.dtsi               | 11 +---
- drivers/clk/qcom/dispcc-sm8250.c                   | 28 ++++++++--
- drivers/clk/qcom/gdsc.c                            | 59 ++++++++++++++++++++--
- drivers/clk/qcom/gdsc.h                            |  2 +
- drivers/clk/qcom/videocc-sm8250.c                  | 31 +++++++++---
- 7 files changed, 124 insertions(+), 21 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
+index 6667261dc665..6b3380cf1a10 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
+@@ -56,6 +56,11 @@ properties:
+   reg:
+     maxItems: 1
+ 
++  power-domains:
++    description:
++      A phandle and PM domain specifier for the MMCX power domain.
++    maxItems: 1
++
+ required:
+   - compatible
+   - reg
+@@ -70,6 +75,7 @@ additionalProperties: false
+ examples:
+   - |
+     #include <dt-bindings/clock/qcom,rpmh.h>
++    #include <dt-bindings/power/qcom-rpmpd.h>
+     clock-controller@af00000 {
+       compatible = "qcom,sm8250-dispcc";
+       reg = <0x0af00000 0x10000>;
+@@ -90,5 +96,6 @@ examples:
+       #clock-cells = <1>;
+       #reset-cells = <1>;
+       #power-domain-cells = <1>;
++      power-domains = <&rpmhpd SM8250_MMCX>;
+     };
+ ...
+-- 
+2.30.2
 
