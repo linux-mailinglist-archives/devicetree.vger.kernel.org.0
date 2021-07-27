@@ -2,272 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 643AC3D6E10
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 07:29:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FE7F3D6E4D
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jul 2021 07:53:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235286AbhG0F27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jul 2021 01:28:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37236 "EHLO
+        id S235274AbhG0Fxg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jul 2021 01:53:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235272AbhG0F24 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 01:28:56 -0400
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1A0AC061765
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 22:28:56 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id i1so14470921plr.9
-        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 22:28:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=beagleboard-org.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=sgOiW6w20j4J7SdvVbVJ67kfsguckEETP9qNYgQUNsI=;
-        b=vkW/a6RTxvBKemqwE16fSx+LxXIqOQWifdOrnmSL7mF3kd5t2hHwqJTgPMvKrhLzfo
-         ZL75NjT0x13hZCMFwy2JaubVl5oq6GtRYIYY8OjBcAywk9wLV2iWmIIB5tNoVT94mj+E
-         p6qcV4UzeFqGC9egu10qKIfTbtoKsn3TD+Hbt6K2BZeutudjdd0/uwlN1QhrTtETDxWQ
-         8ofyZ3vVN8sSrZaWn2jWz7EqSg2+xhVtJtzL1PHXiXw5Lpo2A3Doy7+3HQz3lUzELlA6
-         gIzckUtvgMgvKBHS5Gr8Ej9RNmXZfJRvyi7DZCiqYSYvTGtyP9jiWW/F8YrhoDnJ8kc1
-         cEUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=sgOiW6w20j4J7SdvVbVJ67kfsguckEETP9qNYgQUNsI=;
-        b=UiJxl7D+yHOxunrpzze3AL75dk2ETqZuIaXM5xnmPzopZm/F5Yp2/fR6WAgR2WeMC9
-         5IRxG0MH/dT46Igkcna3Kle7XVuNqTylQP64Pq9ZhMA5ujJs5K6UL7kx3coyhnoZX2Kd
-         9CW4yT36JkDukZrI7vMU1LRuSj7x28rcybD2SsUqEwEBZGY/K2MVdP94Qc+SLwu4ysPq
-         sOJ1zHwQGRERm/Ti0pHyQGgztd81kV6a055WteqC2qo4JylWIGjvgKC2wgQOMmL1LEX9
-         dM287ELUTosxytK0y6oZnieNmN0I1AxM1b3Xe824T7ihjlGUUMWiqBCt4SiG3I1YqxJv
-         zXuA==
-X-Gm-Message-State: AOAM533S2tho5wnIIv12e3O2wQ/S7U/4v3AgiZMv2jOUzgWbAgwezi3j
-        fpCN8r5R93A8pDsT3sVtVIrsvg==
-X-Google-Smtp-Source: ABdhPJxkGabf4kyTW+5lVhJwSGUk30SgSmSNzobzKDTHp55bAtOdOiOjvhw61eE5M0zTsmPOoka81g==
-X-Received: by 2002:a17:902:9a02:b029:118:307e:a9dd with SMTP id v2-20020a1709029a02b0290118307ea9ddmr17070535plp.47.1627363736119;
-        Mon, 26 Jul 2021 22:28:56 -0700 (PDT)
-Received: from x1 ([174.127.163.79])
-        by smtp.gmail.com with ESMTPSA id a13sm2053720pfl.92.2021.07.26.22.28.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jul 2021 22:28:54 -0700 (PDT)
-Date:   Mon, 26 Jul 2021 22:28:51 -0700
-From:   Drew Fustini <drew@beagleboard.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Michael Zhu <michael.zhu@starfivetech.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Fu Wei <tekkamanninja@gmail.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Huan Feng <huan.feng@starfivetech.com>
-Subject: Re: [RFC PATH 2/2] gpio: starfive-jh7100: Add StarFive JH7100 GPIO
- driver
-Message-ID: <20210727052851.GA3147871@x1>
-References: <20210701002037.912625-1-drew@beagleboard.org>
- <20210701002037.912625-3-drew@beagleboard.org>
- <8c59105d32a9936f8806501ecd20e044@walle.cc>
- <CACRpkdbhKsuXZiLCh_iajJQWDdQQOZ87QF3xDr5Vc66SoVCnxQ@mail.gmail.com>
- <20210726071124.GA9184@x1>
- <dad13b899b69436acc1804b7c3438639@walle.cc>
+        with ESMTP id S235128AbhG0Fxf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 01:53:35 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B8AAC061760
+        for <devicetree@vger.kernel.org>; Mon, 26 Jul 2021 22:53:36 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1m8G1z-0005Y0-UG; Tue, 27 Jul 2021 07:53:31 +0200
+Received: from ore by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ore@pengutronix.de>)
+        id 1m8G1x-00060v-Gs; Tue, 27 Jul 2021 07:53:29 +0200
+Date:   Tue, 27 Jul 2021 07:53:29 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     alexandru.tachici@analog.com
+Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org, andrew@lunn.ch,
+        hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
+        kuba@kernel.org
+Subject: Re: [PATCH v2 7/7] dt-bindings: adin1100: Add binding for ADIN1100
+ Ethernet PHY
+Message-ID: <20210727055329.7y23ob7kir3te2e4@pengutronix.de>
+References: <20210712130631.38153-1-alexandru.tachici@analog.com>
+ <20210712130631.38153-8-alexandru.tachici@analog.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <dad13b899b69436acc1804b7c3438639@walle.cc>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210712130631.38153-8-alexandru.tachici@analog.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 07:38:48 up 236 days, 19:45, 12 users,  load average: 0.11, 0.08,
+ 0.02
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 26, 2021 at 09:21:31AM +0200, Michael Walle wrote:
-> Hi Drew, Hi Linus,
+On Mon, Jul 12, 2021 at 04:06:31PM +0300, alexandru.tachici@analog.com wrote:
+> From: Alexandru Tachici <alexandru.tachici@analog.com>
 > 
-> Am 2021-07-26 09:11, schrieb Drew Fustini:
-> > On Fri, Jul 23, 2021 at 11:04:41PM +0200, Linus Walleij wrote:
-> > > On Thu, Jul 1, 2021 at 8:39 AM Michael Walle <michael@walle.cc> wrote:
-> > > > Am 2021-07-01 02:20, schrieb Drew Fustini:
-> > > > > Add GPIO driver for the StarFive JH7100 SoC [1] used on the
-> > > > > BeagleV Starlight JH7100 board [2].
-> > > > >
-> > > > > [1] https://github.com/starfive-tech/beaglev_doc/
-> > > > > [2] https://github.com/beagleboard/beaglev-starlight
-> > > > >
-> > > > > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> > > > > Signed-off-by: Huan Feng <huan.feng@starfivetech.com>
-> > > > > Signed-off-by: Drew Fustini <drew@beagleboard.org>
-> > > >
-> > > > Could this driver use GPIO_REGMAP and REGMAP_IRQ? See
-> > > > drivers/gpio/gpio-sl28cpld.c for an example.
-> > > 
-> > > To me it looks just memory-mapped?
-> > > 
-> > > Good old gpio-mmio.c (select GPIO_GENERIC) should
-> > > suffice I think.
+> DT bindings for the ADIN1100 10BASE-T1L Ethernet PHY.
 > 
-> But that doesn't mean gpio-regmap can't be used, no? Or what are
-> the advantages of gpio-mmio?
+> Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
+> ---
+>  .../devicetree/bindings/net/adi,adin1100.yaml | 45 +++++++++++++++++++
+>  1 file changed, 45 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/adi,adin1100.yaml
 > 
-> > > Drew please look at drivers/gpio/gpio-ftgpio010.c for an example
-> > > of GPIO_GENERIC calling bgpio_init() in probe().
-> > 
-> > Thank you for the suggestion. However, I am not sure that will work for
-> > this SoC.
-> > 
-> > The GPIO registers are described in section 12 of JH7100 datasheet [1]
-> > and I don't think they fit the expectation of gpio-mmio.c because there
-> > is a seperate register for each GPIO line for output data value and
-> > output enable.
-> > 
-> > There are 64 output data config registers which are 4 bytes wide. There
-> > are 64 output enable config registers which are 4 bytes wide too. Output
-> > data and output enable registers for a given GPIO pad are contiguous.
-> > GPIO0_DOUT_CFG is 0x50 and GPIO0_DOEN_CFG is 0x54 while GPIO1_DOUT_CFG
-> > is 0x58 and GPIO1_DOEN_CFG is 0x5C. The stride between GPIO pads is
-> > effectively 8, which yields the formula: GPIOn_DOUT_CFG is 0x50+8n.
-> > Similarly, GPIO0_DOEN_CFG is 0x54 and thus GPIOn_DOEN_CFG is 0x54+8n.
-> > 
-> > However, GPIO input data does use just one bit for each line. GPIODIN_0
-> > at 0x48 covers GPIO[31:0] and GPIODIN_1 at 0x4c covers GPIO[63:32].
+> diff --git a/Documentation/devicetree/bindings/net/adi,adin1100.yaml b/Documentation/devicetree/bindings/net/adi,adin1100.yaml
+> new file mode 100644
+> index 000000000000..14943164da7a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/adi,adin1100.yaml
+> @@ -0,0 +1,45 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/adi,adin1100.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices ADIN1100 PHY
+> +
+> +maintainers:
+> +  - Alexandru Tachici <alexandru.tachici@analog.com>
+> +
+> +description:
+> +  Bindings for Analog Devices Industrial Low Power 10BASE-T1L Ethernet PHY
+> +
+> +allOf:
+> +  - $ref: ethernet-phy.yaml#
+> +
+> +properties:
+> +  adi,disable-2400mv-tx-level:
+> +    description:
+> +      Prevent ADIN1100 from using the 2.4 V pk-pk transmit level.
+> +    type: boolean
+
+This property should be generic. It is defined by IEEE 802.3cg 2019 and can
+be implemented on all T1L PHYs.
+
+I assume, it should be something like:
+ethernet-phy-10base-t1l-2.4vpp-enable
+ethernet-phy-10base-t1l-2.4vpp-disable
+
+To overwrite bootstrapped of fuzed values if supported. The IEEE 802.3cg
+specification uses following wordings for this functionality:
+"10BASE-T1L increased transmit level request ..."
+
+"146.5.4.1 Transmitter output voltage
+When tested with the test fixture shown in Figure 146–20 with the transmitter
+in test mode 1, the transmitter output voltage shall be 2.4 V + 5%/ – 15%
+peak-to-peak (for the 2.4 Vpp operating mode) and 1.0 V + 5%/ – 15%
+peak-to-peak (for the 1.0 Vpp operating mode). Transmitter output
+voltage can be set using the management interface or by hardware default set-up."
+
+I would recommend to use similar wording if possible.
+
+
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    ethernet@e000c000 {
+> +            compatible = "cdns,zynq-gem", "cdns,gem";
+> +            reg = <0xe000c000 0x1000>;
+> +            status = "okay";
+> +            phy-mode = "mii";
+> +            interrupts = <0 45 4>;
+> +            clocks = <&clkc 31>, <&clkc 31>, <&clkc 14>;
+> +            clock-names = "pclk", "hclk", "tx_clk";
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            ethernet-phy@0 {
+> +                    reg = <0>;
+> +                    device_type = "ethernet-phy";
+> +                    adi,disable-2400mv-tx-level;
+> +            };
+> +
+> +    };
+> -- 
+> 2.25.1
 > 
-> I'd say, that should work with the .reg_mask_xlate of the gpio-regmap.
 > 
-> -michael
 
-Thanks, yes, I think trying to figure out how .reg_mask_xlate would need
-to work this SoC.  I believe these are the only two implementations.
-
-From drivers/gpio/gpio-regmap.c:
-
-  static int gpio_regmap_simple_xlate(struct gpio_regmap *gpio,
-				      unsigned int base, unsigned int offset,
-				      unsigned int *reg, unsigned int *mask)
-  {
-	  unsigned int line = offset % gpio->ngpio_per_reg;
-	  unsigned int stride = offset / gpio->ngpio_per_reg;
-
-	  *reg = base + stride * gpio->reg_stride;
-	  *mask = BIT(line);
-
-	  return 0;
-  }
-
-From drivers/pinctrl/bcm/pinctrl-bcm63xx.c:
-
-  static int bcm63xx_reg_mask_xlate(struct gpio_regmap *gpio,
-				    unsigned int base, unsigned int offset,
-				    unsigned int *reg, unsigned int *mask)
-  {
-	  unsigned int line = offset % BCM63XX_BANK_GPIOS;
-	  unsigned int stride = offset / BCM63XX_BANK_GPIOS;
-
-	  *reg = base - stride * BCM63XX_BANK_SIZE;
-	  *mask = BIT(line);
-
-	  return 0;
-  }
-
-Let's say a driver calls gpio_regmap_set(chip, 0, 5) to set line 5 to
-value 1.
-
-I believe this would result in call to:
-
-  gpio->reg_mask_xlate(gpio, gpio->reg_set_base, 5, &reg, &mask)
-
-Then this would be called to set the register:
-
-  regmap_update_bits(gpio->regmap, reg, mask, mask);
-
-From datasheet section 12 [1], there are 64 output data registers which
-are 4 bytes wide. There are 64 output enable registers which are also 4
-bytes wide too. Output data and output enable registers for a GPIO line
-are contiguous. Thus GPIO0_DOUT_CFG is 0x50 and GPIO0_DOEN_CFG is 0x54.
-The forumla is GPIOn_DOUT_CFG is 0x50+8n and GPIOn_DOEN_CFG is 0x54+8n.
-Thus for GPIO line 5:
-
-  GPIO5_DOUT_CFG is 0x50 + 0x28 = 0x78
-  GPIO5_DOEN_CFG is 0x54 + 0x28 = 0x7C
-
-Enable GPIO line 5 as output by writing 0x1 to 0x7C and set output value
-to 1 by writing 1 to 0x7C.
-
-Using gpio_regmap_simple_xlate() as a template, I am thinking through
-xlate for this gpio controller:
-
-
-static int gpio_regmap_starfive_xlate(struct gpio_regmap *gpio,
-				      unsigned int base, unsigned int offset,
-				      unsigned int *reg, unsigned int *mask)
-{
-	// reg_set_base is passed as base
-	// let reg_set_base = 0x50 (GPIO0_DOUT_CFG)
-	// let gpio->reg_stride = 8
-	// let offest = 5 (for gpio line 5)
-
-	*reg = base + offset * gpio->reg_stride;
-	// *reg = base:0x50 + offset:0x5 * reg_stride:0x8
-	// *reg = 0x50 + 0x28
-	// *reg=  0x78
-
-	// Each gpio line has a full register, not just a bit. To output
-	// a digital 1, then GPIO5_DOUT_CFG would be 0x1. To output
-	// digital 0, GPIO5_DOUT_CFG would be 0x0. Thus I think the mask
-	// should be the least significant bit.
-	*mask = BIT(1);
-
-	return 0;
-}
-
-Let's walk through what would happen if gpio_regmap_set() was the
-caller:
-
-static void gpio_regmap_set(struct gpio_chip *chip, unsigned int offset,
-			    int val)
-{
-	// for gpio line, offset = 5
-	// if want to set line 5 high, then val = 1
-	struct gpio_regmap *gpio = gpiochip_get_data(chip);
-
-	// reg_set_base would be set to 0x50 (GPIO0_DOUT_CFG)
-	unsigned int base = gpio_regmap_addr(gpio->reg_set_base);
-	unsigned int reg, mask;
-
-	gpio->reg_mask_xlate(gpio, base /* 0x50 */, offset /* 5 */, &reg, &mask);
-	if (val) /* if val is 1 */
-		regmap_update_bits(gpio->regmap, reg, mask, mask);
-		// if mask returned was 0x1, then this would set the
-		// bit 0 in GPIO5_DOUT_CFG
-	else /* if val is 0 */
-		regmap_update_bits(gpio->regmap, reg, mask, 0);
-		// if mask returned was 0x1, then this would clear
-		// bit 0 in GPIO5_DOUT_CFG
-}
-
-Now for the output enable register GPIO5_DOEN_CFG, the output driver is
-active low so 0x0 is actually enables output where as 0x1 disables
-output.  Thus maybe I need to add logic like:
-
-
-static int gpio_regmap_starfive_xlate(struct gpio_regmap *gpio,
-				      unsigned int base, unsigned int offset,
-				      unsigned int *reg, unsigned int *mask)
-{
-	<snip>
-	if (base == GPIO0_DOUT_CFG)
-		*mask = 0x1U;
-	else if (base == GPIO0_DOEN_CFG)
-		*bit = ~(0x1U);
-
-	return 0;
-}
-
-What do you think of that approach?
-
-Are there any other examples of regmap xlate that I missed?
-
-Thanks,
-Drew
-
-[1] https://github.com/starfive-tech/beaglev_doc/blob/main/JH7100%20Data%20Sheet%20V01.01.04-EN%20(4-21-2021).pdf
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
