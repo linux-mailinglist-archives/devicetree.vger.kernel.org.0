@@ -2,57 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8888D3D991F
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 00:56:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9DE83D9930
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 01:02:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232180AbhG1W4x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 18:56:53 -0400
-Received: from mail.blitar.go.id ([103.148.208.194]:41996 "EHLO
-        mail.blitarkota.go.id" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232163AbhG1W4x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 18:56:53 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by mail.blitarkota.go.id (Postfix) with ESMTP id AE867528B15;
-        Thu, 29 Jul 2021 05:56:10 +0700 (WIB)
-Received: from mail.blitarkota.go.id ([127.0.0.1])
-        by localhost (mail.blitarkota.go.id [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id vMTfbKpjVOOJ; Thu, 29 Jul 2021 05:56:10 +0700 (WIB)
-Received: from localhost (localhost [127.0.0.1])
-        by mail.blitarkota.go.id (Postfix) with ESMTP id 2F076542EEE;
-        Thu, 29 Jul 2021 05:56:10 +0700 (WIB)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.blitarkota.go.id 2F076542EEE
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=blitarkota.go.id;
-        s=9A007E36-2400-11EA-BC1D-4C7ACDE6EBEB; t=1627512970;
-        bh=FKD7qwP2hkcHuU/J9rV/G6AWRigbSX47VZkRuxgOCVA=;
-        h=Date:From:Message-ID:MIME-Version;
-        b=BMQu9nNoE6yuxylB3AoPz5EnDEstiDZZoJnogae5z4QDDCTS62bPze9brKB9DsyJ+
-         nBix3gU1QWwG1E6BXsrQdkiPENa6QGqsZE7LEHWoIMOrGGbS+wQ90RA7h1kmCXuurE
-         U0gyxqSVrgwYRDXBbAz0cqUcQiCk8ZblZqDtvOFq8Cy3w/N3EkHeljP/wV78qsyAQd
-         +TrQZYzmZ3Vxk9u8I/RCNW6rh0a0nY5JgJoJ0O1B+0CeiY0vWRFj0IHsPTbUDDYnBe
-         sNvO/qxOc9Ae706wWYSByPva8de3RSgJs8g0OVHR2FyDKlUuo/aUHQMuq4AQs6YFgW
-         E1V/xBLZMVWZg==
-X-Virus-Scanned: amavisd-new at mail.blitarkota.go.id
-Received: from mail.blitarkota.go.id ([127.0.0.1])
-        by localhost (mail.blitarkota.go.id [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id M9EZq6TqJc1I; Thu, 29 Jul 2021 05:56:10 +0700 (WIB)
-Received: from mail.blitarkota.go.id (mx1.blitar.go.id [192.168.99.194])
-        by mail.blitarkota.go.id (Postfix) with ESMTP id 087DE528B15;
-        Thu, 29 Jul 2021 05:56:09 +0700 (WIB)
-Date:   Thu, 29 Jul 2021 05:56:09 +0700 (WIB)
-From:   Stronghill Capital Loans Service <tkn-blitar1@blitarkota.go.id>
-Reply-To: info_stronghillcapitalloansservi@aol.com
-Message-ID: <1392358166.58247.1627512969019.JavaMail.zimbra@blitarkota.go.id>
-Subject: Fast Cash
+        id S232208AbhG1XCC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 19:02:02 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:51760 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232143AbhG1XCC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 19:02:02 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: ezequiel)
+        with ESMTPSA id 9C40F1F430F9
+From:   Ezequiel Garcia <ezequiel@collabora.com>
+To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Alex Bee <knaerzche@gmail.com>, maccraft123mc@gmail.com,
+        Chris Healy <cphealy@gmail.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Ezequiel Garcia <ezequiel@collabora.com>
+Subject: [PATCH v4] arm64: dts: rockchip: Add VPU support for the PX30
+Date:   Wed, 28 Jul 2021 20:00:40 -0300
+Message-Id: <20210728230040.17368-1-ezequiel@collabora.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [192.168.99.194]
-X-Mailer: Zimbra 8.8.12_GA_3866 (zclient/8.8.12_GA_3866)
-Thread-Index: A0kzdcO5vFmBA7e6aoorPbhMM3W4RQ==
-Thread-Topic: Fast Cash
-To:     unlisted-recipients:; (no To-header on input)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Do you need a Loan @ 2% P.A? Mail us your: Names,Home Add,Mob No,Email id,Amount Needed,Loan Duration,Occupation :If you are interested kindly contact us via email for more details.
+From: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+
+The PX30 has a VPU (both decoder and encoder) with a dedicated IOMMU.
+Describe these two entities in device-tree.
+
+Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
+---
+Changes from v3:
+  * Drop interrupt-names in the iommu.
+
+Heiko, please pick this one via your tree.
+
+The driver and dt-binding patches are already in the media-next tree,
+git://linuxtv.org/mchehab/media-next.git.
+
+ arch/arm64/boot/dts/rockchip/px30.dtsi | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/rockchip/px30.dtsi b/arch/arm64/boot/dts/rockchip/px30.dtsi
+index 248ebb61aa79..fb3f175d25e5 100644
+--- a/arch/arm64/boot/dts/rockchip/px30.dtsi
++++ b/arch/arm64/boot/dts/rockchip/px30.dtsi
+@@ -1024,6 +1024,28 @@ gpu: gpu@ff400000 {
+ 		status = "disabled";
+ 	};
+ 
++	vpu: video-codec@ff442000 {
++		compatible = "rockchip,px30-vpu";
++		reg = <0x0 0xff442000 0x0 0x800>;
++		interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-names = "vepu", "vdpu";
++		clocks = <&cru ACLK_VPU>, <&cru HCLK_VPU>;
++		clock-names = "aclk", "hclk";
++		iommus = <&vpu_mmu>;
++		power-domains = <&power PX30_PD_VPU>;
++	};
++
++	vpu_mmu: iommu@ff442800 {
++		compatible = "rockchip,iommu";
++		reg = <0x0 0xff442800 0x0 0x100>;
++		interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&cru ACLK_VPU>, <&cru HCLK_VPU>;
++		clock-names = "aclk", "iface";
++		#iommu-cells = <0>;
++		power-domains = <&power PX30_PD_VPU>;
++	};
++
+ 	dsi: dsi@ff450000 {
+ 		compatible = "rockchip,px30-mipi-dsi";
+ 		reg = <0x0 0xff450000 0x0 0x10000>;
+-- 
+2.32.0
+
