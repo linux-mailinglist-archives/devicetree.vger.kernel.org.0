@@ -2,194 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 300853D932A
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 18:26:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA4FB3D9362
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 18:43:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229501AbhG1Q0t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 12:26:49 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:56786 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229515AbhG1Q0s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 12:26:48 -0400
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 105A23F;
-        Wed, 28 Jul 2021 18:26:46 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1627489606;
-        bh=CQuHJ4sTC6shUZSx8nMiM+y/K6DN7rznAFMUxzECdjg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=u4b51Zv+WUyJeLRz21ZlaBcBHnxwdFalXuPIX4FM/LuFZfN0Zi+AJzEVs6UlvotoE
-         K2zOe/7y0GbhV4WLaoh6ge/h+Y3KZmRkvSuDTfDphgfjQiTpIot8XeJeRp3XMtPXrE
-         w19yhYgk+zoLsvcR12DVXFyklN1RkYlYGF4P9yX0=
-Date:   Wed, 28 Jul 2021 19:26:39 +0300
-From:   Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-To:     dri-devel@lists.freedesktop.org
-Cc:     linux-renesas-soc@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [RESEND] [PATCH v2 1/2] dt-bindings: display: bridge: Add binding
- for R-Car MIPI DSI/CSI-2 TX
-Message-ID: <YQGFP/cFoSksPyn+@pendragon.ideasonboard.com>
-References: <20210623135639.17125-1-laurent.pinchart+renesas@ideasonboard.com>
+        id S229593AbhG1Qne (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 12:43:34 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:51656 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229567AbhG1Qn2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Jul 2021 12:43:28 -0400
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1m8meT-0006pT-8b; Wed, 28 Jul 2021 18:43:25 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Michael Riesch <michael.riesch@wolfvision.net>
+Cc:     Rob Herring <robh+dt@kernel.org>, Liang Chen <cl@rock-chips.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Simon Xue <xxm@rock-chips.com>
+Subject: Re: [PATCH 1/2] arm64: dts: rockchip: add gmac0 node to rk3568
+Date:   Wed, 28 Jul 2021 18:43:24 +0200
+Message-ID: <2193550.atdPhlSkOF@diego>
+In-Reply-To: <20210728161020.3905-2-michael.riesch@wolfvision.net>
+References: <20210728161020.3905-1-michael.riesch@wolfvision.net> <20210728161020.3905-2-michael.riesch@wolfvision.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210623135639.17125-1-laurent.pinchart+renesas@ideasonboard.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The R-Car MIPI DSI/CSI-2 TX is embedded in the Renesas R-Car V3U SoC. It
-can operate in either DSI or CSI-2 mode, with up to four data lanes.
+Hi,
 
-Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
----
-Looks like I forgot to CC the devicetree mailing list and Rob Herring on
-the first try. Resending, sorry about that.
----
- .../display/bridge/renesas,dsi-csi2-tx.yaml   | 118 ++++++++++++++++++
- MAINTAINERS                                   |   1 +
- 2 files changed, 119 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
+Am Mittwoch, 28. Juli 2021, 18:10:19 CEST schrieb Michael Riesch:
+> While both RK3566 and RK3568 feature the gmac1 node, the gmac0
+> node is exclusive to the RK3568.
+> 
+> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3568.dtsi | 51 ++++++++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+> index da01a59f6f26..ec39a2c593b6 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+> @@ -22,6 +22,57 @@
+>  		compatible = "rockchip,rk3568-qos", "syscon";
+>  		reg = <0x0 0xfe190200 0x0 0x20>;
+>  	};
+> +
+> +	gmac0: ethernet@fe2a0000 {
+> +		compatible = "rockchip,rk3568-gmac", "snps,dwmac-4.20a";
+> +		reg = <0x0 0xfe2a0000 0x0 0x10000>;
+> +		interrupts = <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "macirq", "eth_wake_irq";
+> +		rockchip,grf = <&grf>;
+> +		clocks = <&cru SCLK_GMAC0>, <&cru SCLK_GMAC0_RX_TX>,
+> +			 <&cru SCLK_GMAC0_RX_TX>, <&cru CLK_MAC0_REFOUT>,
+> +			 <&cru ACLK_GMAC0>, <&cru PCLK_GMAC0>,
+> +			 <&cru SCLK_GMAC0_RX_TX>, <&cru CLK_GMAC0_PTP_REF>,
+> +			 <&cru PCLK_XPCS>;
+> +		clock-names = "stmmaceth", "mac_clk_rx",
+> +			      "mac_clk_tx", "clk_mac_refout",
+> +			      "aclk_mac", "pclk_mac",
+> +			      "clk_mac_speed", "ptp_ref",
+> +			      "pclk_xpcs";
+> +		resets = <&cru SRST_A_GMAC0>;
+> +		reset-names = "stmmaceth";
+> +
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
-new file mode 100644
-index 000000000000..afeeb967393d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
-@@ -0,0 +1,118 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/bridge/renesas,dsi-csi2-tx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas R-Car MIPI DSI/CSI-2 Encoder
-+
-+maintainers:
-+  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-+
-+description: |
-+  This binding describes the MIPI DSI/CSI-2 encoder embedded in the Renesas
-+  R-Car V3U SoC. The encoder can operate in either DSI or CSI-2 mode, with up
-+  to four data lanes.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - renesas,r8a779a0-dsi-csi2-tx    # for V3U
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: Functional clock
-+      - description: DSI (and CSI-2) functional clock
-+      - description: PLL reference clock
-+
-+  clock-names:
-+    items:
-+      - const: fck
-+      - const: dsi
-+      - const: pll
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Parallel input port
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description: DSI/CSI-2 output port
-+
-+        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              data-lanes:
-+                minItems: 1
-+                maxItems: 4
-+
-+            required:
-+              - data-lanes
-+
-+    required:
-+      - port@0
-+      - port@1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - power-domains
-+  - resets
-+  - ports
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r8a779a0-cpg-mssr.h>
-+    #include <dt-bindings/power/r8a779a0-sysc.h>
-+
-+    dsi0: dsi-encoder@fed80000 {
-+        compatible = "renesas,r8a779a0-dsi-csi2-tx";
-+        reg = <0xfed80000 0x10000>;
-+        power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
-+        clocks = <&cpg CPG_MOD 415>,
-+                 <&cpg CPG_CORE R8A779A0_CLK_DSI>,
-+                 <&cpg CPG_CORE R8A779A0_CLK_CP>;
-+        clock-names = "fck", "dsi", "pll";
-+        resets = <&cpg 415>;
-+
-+        ports {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            port@0 {
-+                reg = <0>;
-+                dsi0_in: endpoint {
-+                    remote-endpoint = <&du_out_dsi0>;
-+                };
-+            };
-+
-+            port@1 {
-+                reg = <1>;
-+                dsi0_out: endpoint {
-+                    data-lanes = <1 2>;
-+                    remote-endpoint = <&sn65dsi86_in>;
-+                };
-+            };
-+        };
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b2cbb5c49358..1c9ea6279189 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -6139,6 +6139,7 @@ L:	dri-devel@lists.freedesktop.org
- L:	linux-renesas-soc@vger.kernel.org
- S:	Supported
- T:	git git://linuxtv.org/pinchartl/media drm/du/next
-+F:	Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
- F:	Documentation/devicetree/bindings/display/bridge/renesas,dw-hdmi.yaml
- F:	Documentation/devicetree/bindings/display/bridge/renesas,lvds.yaml
- F:	Documentation/devicetree/bindings/display/renesas,du.yaml
--- 
-Regards,
+is this missing a rockchip,grf phandle?
 
-Laurent Pinchart
+gmac1 has one and the driver side also does want to access the grf for both
+controllers.
+
+
+Heiko
+
+> +		snps,mixed-burst;
+> +		snps,tso;
+> +
+> +		snps,axi-config = <&gmac0_stmmac_axi_setup>;
+> +		snps,mtl-rx-config = <&gmac0_mtl_rx_setup>;
+> +		snps,mtl-tx-config = <&gmac0_mtl_tx_setup>;
+> +		status = "disabled";
+> +
+> +		mdio0: mdio {
+> +			compatible = "snps,dwmac-mdio";
+> +			#address-cells = <0x1>;
+> +			#size-cells = <0x0>;
+> +		};
+> +
+> +		gmac0_stmmac_axi_setup: stmmac-axi-config {
+> +			snps,wr_osr_lmt = <4>;
+> +			snps,rd_osr_lmt = <8>;
+> +			snps,blen = <0 0 0 0 16 8 4>;
+> +		};
+> +
+> +		gmac0_mtl_rx_setup: rx-queues-config {
+> +			snps,rx-queues-to-use = <1>;
+> +			queue0 {};
+> +		};
+> +
+> +		gmac0_mtl_tx_setup: tx-queues-config {
+> +			snps,tx-queues-to-use = <1>;
+> +			queue0 {};
+> +		};
+> +	};
+>  };
+>  
+>  &cpu0_opp_table {
+> 
+
+
+
 
