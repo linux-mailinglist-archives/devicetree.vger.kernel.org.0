@@ -2,102 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B86B63D90C2
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 16:36:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D62563D90CC
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 16:41:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235427AbhG1OgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 10:36:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40714 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235420AbhG1OgY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 10:36:24 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67E7CC061757;
-        Wed, 28 Jul 2021 07:36:21 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id o5so5019355ejy.2;
-        Wed, 28 Jul 2021 07:36:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=U9j1VUNwpLjqthf/lcX140LSEyF9Vm2SDMFtz8UeK9Y=;
-        b=ixMvR3uPmTOI3ig8cTK9p5JW7g3ktbkYGZ0HehamKHLaBqiINRUHlhYy73M4g7A9is
-         1Cu0CmpA+wzXN5soyIOXxj2Vqu0JsVnRWp/DqnsIm0Mkws9Oa+kkYHsVV3cB4y6+mWET
-         Zn2kwkjHIr5uzbXqp4iu/vxI4Edy7M2A9//1eWsHxvp6YWTzoAjRVXXqBG9r0xhaeg+i
-         4ejMOhlBzsH4+4uID0mJlXifXaUUTad7xnfvueNsXlUwW59YTEw6H+9PvGFOJWtbNXl9
-         DKiXSHzjAYdGqNlU/oxXs3Ghy+K0P8tXULQnrgGaUD967oM1y7vdcHclAOVIwKgMG6YC
-         VOEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=U9j1VUNwpLjqthf/lcX140LSEyF9Vm2SDMFtz8UeK9Y=;
-        b=SKVPa7GTt584G16HpWDgQ96ES9KNdV/eTNOUq7I4H5XN1U2c0U1KGimL7lWmDHg5d3
-         8t9xcASuoxYA4qHEkuksVoT+uryvOx61gGGi9uh7MXZ0GBOGTWWVLHSCz0JzrmDZBoOk
-         AqK6/A88c9+U00Y0PUl3RlvZ49hyQebqf9k/esKXL2zKSiy8kabu96FLPmjXkRgtVzkz
-         3bvHG/lDqKckzeK5BY4KV7hnYZKIZsAqnDtEte+FqK0OAhbiqd3hxzTodblri05YH4SN
-         JezG29T2pt+kT/PSP4woAZx12PiOcsjGzLDT7/KUlxJTbUh4dDGppf04v0M7y4utBMTG
-         pA7Q==
-X-Gm-Message-State: AOAM531cxDHc7Iv7ZQv4QbZyZDdSBigY75frI8xQ8hc7yPfeLBVBXBcS
-        iNI12WU1NZpCbOZVCRX9vFg=
-X-Google-Smtp-Source: ABdhPJyye5fMTzpPnUMWlW9dAlR8976//YpdeSHIGDi6TZPSCNQnHfH4Nr2GmoUJyASCfmHJGq9rEQ==
-X-Received: by 2002:a17:906:c087:: with SMTP id f7mr26707500ejz.487.1627482980043;
-        Wed, 28 Jul 2021 07:36:20 -0700 (PDT)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id og35sm2151108ejc.28.2021.07.28.07.36.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Jul 2021 07:36:19 -0700 (PDT)
-Subject: Re: [RFC PATCH 1/9] dt-bindings: soc: rockchip: add
- rk3568-usb2phy-grf
-To:     Peter Geis <pgwipeout@gmail.com>, Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org
-References: <20210728122606.697619-1-pgwipeout@gmail.com>
- <20210728122606.697619-2-pgwipeout@gmail.com>
-From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <fc6d5b02-707b-aa0e-9ef0-2984bbb1f5b8@gmail.com>
-Date:   Wed, 28 Jul 2021 16:36:18 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S235389AbhG1OlM convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 28 Jul 2021 10:41:12 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:50568 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235345AbhG1OlM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Jul 2021 10:41:12 -0400
+Received: from [95.90.166.74] (helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1m8kk6-0006AS-UT; Wed, 28 Jul 2021 16:41:06 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 6/9] arm64: dts: rockchip: add missing rk3568 cru phandles
+Date:   Wed, 28 Jul 2021 16:41:06 +0200
+Message-ID: <6063626.MhkbZ0Pkbq@diego>
+In-Reply-To: <CAMdYzYqR+ocrXQi8TOHY0Yd2oULXuPgE_QnbcuQSw=BoaumBKA@mail.gmail.com>
+References: <20210728135534.703028-1-pgwipeout@gmail.com> <13247009.uLZWGnKmhe@diego> <CAMdYzYqR+ocrXQi8TOHY0Yd2oULXuPgE_QnbcuQSw=BoaumBKA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210728122606.697619-2-pgwipeout@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="iso-8859-1"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peter,
-
-On 7/28/21 2:25 PM, Peter Geis wrote:
-> Add the documentation for the rk3568-usb2phy-grf node, which is separate
-> from the usb2phy node on this chip.
+Am Mittwoch, 28. Juli 2021, 16:18:49 CEST schrieb Peter Geis:
+> On Wed, Jul 28, 2021 at 10:06 AM Heiko Stübner <heiko@sntech.de> wrote:
+> >
+> > Hi Peter,
+> >
+> > Am Mittwoch, 28. Juli 2021, 15:55:31 CEST schrieb Peter Geis:
+> > > The grf and pmugrf phandles are necessary for the pmucru and cru to
+> > > modify clocks. Add these phandles to permit adjusting the clock rates
+> > > and muxes.
+> > >
+> > > Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+> > > ---
+> > >  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 3 +++
+> > >  1 file changed, 3 insertions(+)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> > > index 0905fac0726a..8ba0516eedd8 100644
+> > > --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> > > +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> > > @@ -218,6 +218,8 @@ grf: syscon@fdc60000 {
+> > >       pmucru: clock-controller@fdd00000 {
+> > >               compatible = "rockchip,rk3568-pmucru";
+> > >               reg = <0x0 0xfdd00000 0x0 0x1000>;
+> > > +             rockchip,grf = <&grf>;
+> > > +             rockchip,pmugrf = <&pmugrf>;
+> >
+> > I don't think the pmucru needs both and in fact the mainline
+> > clock driver should just reference its specific grf at all, i.e.
+> >         pmucru -> pmugrf (via the rockchip,grf handle)
+> >         cru -> grf
+> >
+> > I've not seen anything breaking this scope so far.
 > 
-> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
-> ---
->  Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> I thought the same thing as well, but for some reason the driver
+> refuses to apply assigned-clocks to the plls unless these are all
+> present.
+> If the driver can get these assignments automatically eventually,
+> perhaps it's a loading order issue?
 > 
-> diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-> index fa010df51a5c..3b0e06b6ea61 100644
-> --- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-> +++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-> @@ -16,6 +16,7 @@ properties:
->            - enum:
->                - rockchip,rk3288-sgrf
+> Thinking about it, it's probably the grf and pmugrf haven't probed
+> when the driver is attempting to assign these, and tying them together
+> forces the probe to happen first.
 
->                - rockchip,rv1108-usbgrf
-> +              - rockchip,rk3568-usb2phy-grf
+though nothing references the regular grf from the pmucru I think.
 
-Could you sort this in alphabetical order?
+I.e. the pmucru PLL read their lock state from RK3568_PMU_MODE_CON
 
->            - const: syscon
->        - items:
->            - enum:
+The rk3568 reuses the pll_rk3328-type which in turn is a modified pll_rk3036
+and uses their ops. Which in turn means the pll shouldn't access the GRF at
+all, as it uses the pll's own register to check the locked state.
+
+Can you try to change clk-pll.c from
+
+	switch (pll_type) {
+	case pll_rk3036:
+	case pll_rk3328:
+		if (!pll->rate_table || IS_ERR(ctx->grf))
+			init.ops = &rockchip_rk3036_pll_clk_norate_ops;
+...
+to
+	switch (pll_type) {
+	case pll_rk3036:
+	case pll_rk3328:
+		if (!pll->rate_table)
+			init.ops = &rockchip_rk3036_pll_clk_norate_ops;
+
+similar to rk3399?
+
+Heiko
+
+> > >               #clock-cells = <1>;
+> > >               #reset-cells = <1>;
+> > >       };
+> > > @@ -225,6 +227,7 @@ pmucru: clock-controller@fdd00000 {
+> > >       cru: clock-controller@fdd20000 {
+> > >               compatible = "rockchip,rk3568-cru";
+> > >               reg = <0x0 0xfdd20000 0x0 0x1000>;
+> > > +             rockchip,grf = <&grf>;
+> > >               #clock-cells = <1>;
+> > >               #reset-cells = <1>;
+> > >       };
+> > >
+> >
+> >
+> >
+> >
 > 
+
+
+
+
