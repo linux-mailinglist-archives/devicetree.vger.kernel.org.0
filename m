@@ -2,110 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 589B43D942F
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 19:23:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 039F53D9442
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 19:25:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229962AbhG1RX2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 13:23:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53056 "EHLO mail.kernel.org"
+        id S230249AbhG1RZm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 13:25:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53944 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229574AbhG1RX1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Jul 2021 13:23:27 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D5AF56103B;
-        Wed, 28 Jul 2021 17:23:25 +0000 (UTC)
+        id S229690AbhG1RZl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Jul 2021 13:25:41 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 10B3061037;
+        Wed, 28 Jul 2021 17:25:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627493005;
-        bh=oy2CdTpDQZqSOXZB0jmZSt0g6kLN/VjpudOGzr8rM1Q=;
+        s=k20201202; t=1627493140;
+        bh=LOPa9M/VXLESqMP09wMrmR6ALvHacP6UNwwzwnDINFo=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=LMTrXSBJdcPhhVK888FzkTPIHHm1QFIqtRu60IEoVpEUAZ/PyMNeRlhQDj6f+lJrn
-         LuNrLo9g+x4eWRU8zc2XHBEJ/hBzjPNaWRXq72zeR3Z/4hn0Tswg/Udvl6kkXTkmG0
-         qyUP9yn4iLclKOk3DiUlVepSrd9vx8YNF4lA2gLLE0nX25tdtqE8y7PhR25OxLK28Q
-         oO5MPFValqqViyBawxoEP4yoFIjAGlc7UZlcG9Sp34Cql7PkNRH3c5WWmws/LU+E3P
-         C8NX9uV7a0ejx04WN8j6rKGz7svCPo+d458miN5KN3RTwWhKNIeqlRfO1cOejMasFh
-         hK6a+l6dFwrow==
-Received: by mail-ej1-f52.google.com with SMTP id o5so5850791ejy.2;
-        Wed, 28 Jul 2021 10:23:25 -0700 (PDT)
-X-Gm-Message-State: AOAM532S7ljnTHLog9caJ4MEPSU3qiE92Mfk1TWjHAElpo+wqW3OcI9e
-        HXk4Ka66cubgk12Id3mU+m4hPIkCqWiaVg6qlQ==
-X-Google-Smtp-Source: ABdhPJzBRhqr2Ud4HELrNH9AHHg58LqSJjd4vf9qzNk7vw7IkgfkJNJ/8+Otv5jy2oAsvgquPL7L3ePPRqeCXlHZK28=
-X-Received: by 2002:a17:907:766c:: with SMTP id kk12mr477374ejc.525.1627493004282;
- Wed, 28 Jul 2021 10:23:24 -0700 (PDT)
+        b=nKbnqqp7ZAL1TVU2KCxlMI0NE963f7igidLLFS54z9dWN91j7Ao5CQuouUHBqHl+g
+         dcCAZiIM9aFkGdraEMQt3hhUCMOEgfKMNRIoky6FMxnE649cPuDK6bWfWDEVGarh9T
+         FxFNSY5syj2f6ZruMOO1DLMGeDNpnypBzwP8XLuSsdWAZs1u8KJZTGNlOmMkIMZvM7
+         zm5vUf6Aa/0MGK9fr5zCGO3K/lbs0w/G/ucNmvsz7JI/kKz7gLFWCQVHKmo4IJ7R9F
+         +VuTBuQMxDL3G1VGL2SyJiQfd6JlsAaynGvHnnNYJdNn6XaMy2mvVku7PpBNgl0ZBH
+         Q4+FWgtC1mARg==
+Received: by mail-ej1-f48.google.com with SMTP id e19so5798805ejs.9;
+        Wed, 28 Jul 2021 10:25:39 -0700 (PDT)
+X-Gm-Message-State: AOAM530b2GOiAV5Xtz5Owsi/p+lgMCXO1Nl/iVXQSLFWcKCSa91+W1Ry
+        zhHv9dRXO6EGvc6RSstys/v1dOaf70ozX354pQ==
+X-Google-Smtp-Source: ABdhPJwjV6JnpxeDQO/A1R1Vv9Ly6bfQZtLChu6Kyy9z+4HlfXjFG80f0I7SA2bQNHDFom/M3452cC52BHRDuhUNS+s=
+X-Received: by 2002:a17:906:af7c:: with SMTP id os28mr507805ejb.341.1627493138663;
+ Wed, 28 Jul 2021 10:25:38 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210712130631.38153-1-alexandru.tachici@analog.com>
- <20210712130631.38153-8-alexandru.tachici@analog.com> <20210727055329.7y23ob7kir3te2e4@pengutronix.de>
-In-Reply-To: <20210727055329.7y23ob7kir3te2e4@pengutronix.de>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 28 Jul 2021 11:23:12 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJXAPW7KRAdJac+uje95Nk-b6ojjow8VEzkF=PZvbDvnA@mail.gmail.com>
-Message-ID: <CAL_JsqJXAPW7KRAdJac+uje95Nk-b6ojjow8VEzkF=PZvbDvnA@mail.gmail.com>
-Subject: Re: [PATCH v2 7/7] dt-bindings: adin1100: Add binding for ADIN1100
- Ethernet PHY
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Alexandru Tachici <alexandru.tachici@analog.com>,
-        netdev <netdev@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        David Miller <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>
+References: <20210710151034.32857-1-pgwipeout@gmail.com> <20210710151034.32857-5-pgwipeout@gmail.com>
+ <20210715162131.GA1184545@robh.at.kernel.org> <CAMdYzYpXNdmHKBOOgC6DL-_7qrZyifnDPB=WuU0vAY8qPj1_ww@mail.gmail.com>
+In-Reply-To: <CAMdYzYpXNdmHKBOOgC6DL-_7qrZyifnDPB=WuU0vAY8qPj1_ww@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 28 Jul 2021 11:25:26 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJxutcEjDC6Fv1BTnsx6PqL1Th3hNfEOt+WeR8=cgK9ow@mail.gmail.com>
+Message-ID: <CAL_JsqJxutcEjDC6Fv1BTnsx6PqL1Th3hNfEOt+WeR8=cgK9ow@mail.gmail.com>
+Subject: Re: [RFC PATCH 4/4] arm64: dts: rockchip: add basic dts for Pine64 Quartz64-A
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        Liang Chen <cl@rock-chips.com>, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 26, 2021 at 11:53 PM Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+On Tue, Jul 20, 2021 at 10:19 AM Peter Geis <pgwipeout@gmail.com> wrote:
 >
-> On Mon, Jul 12, 2021 at 04:06:31PM +0300, alexandru.tachici@analog.com wrote:
-> > From: Alexandru Tachici <alexandru.tachici@analog.com>
+> On Thu, Jul 15, 2021 at 12:21 PM Rob Herring <robh@kernel.org> wrote:
 > >
-> > DT bindings for the ADIN1100 10BASE-T1L Ethernet PHY.
+> > On Sat, 10 Jul 2021 11:10:34 -0400, Peter Geis wrote:
+> > > Add a basic dts for the Pine64 Quartz64 Model A Single Board Computer.
+> > > This board outputs on uart2 for debug.
+> > >
+> > > Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+> > > ---
+> > >  .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+> > >  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+> > >  .../boot/dts/rockchip/rk3566-quartz64-a.dts   | 321 ++++++++++++++++++
+> > >  3 files changed, 327 insertions(+)
+> > >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+> > >
 > >
-> > Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
-> > ---
-> >  .../devicetree/bindings/net/adi,adin1100.yaml | 45 +++++++++++++++++++
-> >  1 file changed, 45 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/net/adi,adin1100.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/net/adi,adin1100.yaml b/Documentation/devicetree/bindings/net/adi,adin1100.yaml
-> > new file mode 100644
-> > index 000000000000..14943164da7a
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/adi,adin1100.yaml
-> > @@ -0,0 +1,45 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/adi,adin1100.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Analog Devices ADIN1100 PHY
-> > +
-> > +maintainers:
-> > +  - Alexandru Tachici <alexandru.tachici@analog.com>
-> > +
-> > +description:
-> > +  Bindings for Analog Devices Industrial Low Power 10BASE-T1L Ethernet PHY
-> > +
-> > +allOf:
-> > +  - $ref: ethernet-phy.yaml#
-> > +
-> > +properties:
-> > +  adi,disable-2400mv-tx-level:
-> > +    description:
-> > +      Prevent ADIN1100 from using the 2.4 V pk-pk transmit level.
-> > +    type: boolean
+> > Acked-by: Rob Herring <robh@kernel.org>
 >
-> This property should be generic. It is defined by IEEE 802.3cg 2019 and can
-> be implemented on all T1L PHYs.
->
-> I assume, it should be something like:
-> ethernet-phy-10base-t1l-2.4vpp-enable
-> ethernet-phy-10base-t1l-2.4vpp-disable
+> Thank you!
+> I need to split the dt-bindings out into a separate patch, and the
+> quartz64-a dts has some mild changes.
+> Are you okay with me using your ack still?
 
-'ethernet-phy-' is a bit redundant and I'd make it a tristate (not
-present, 0, 1). So just '10base-t1l-2.4vpp'?
+Yes.
 
-> To overwrite bootstrapped of fuzed values if supported. The IEEE 802.3cg
-> specification uses following wordings for this functionality:
-> "10BASE-T1L increased transmit level request ..."
+Rob
