@@ -2,148 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 65F1B3D8A3B
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 11:04:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C3633D8A5D
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 11:13:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230520AbhG1JE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 05:04:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48362 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231287AbhG1JE4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 05:04:56 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29DE6C061760
-        for <devicetree@vger.kernel.org>; Wed, 28 Jul 2021 02:04:55 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id n6so2199828ljp.9
-        for <devicetree@vger.kernel.org>; Wed, 28 Jul 2021 02:04:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=CV70NmWuaFf/90QHNhrtM//ts+9JPH+aY+q63Jc+k1o=;
-        b=uVn6BLJqAJcv0QI+qQW4OYZ6ugNWU589N5kwsXbH38wQvzJxXLO6/nxe0tcvyFwDpJ
-         Q6hS7VIG4WcKDmMY3sU0gkF4clvgUWHKvnEJsbjjomTB1SxL1yk51J1Gv3owPbCxgNap
-         CBtPxaUrcu5LKHfMb7H/v0zRH+DYWoInI4+PLyERzVcMJIOCFkrFaXLGUmT0qFlWgdXJ
-         gY4Kl8FS8IhzeO1LAzE8YQF9xwKaF1zyQdAmTkTlNXLCQB0OFN7RgDpHHk8+DF2CkOPZ
-         tVRMUJcNIjWD6Iiyojhc2Pn9LzxPKUIAfc7WHaMbkkXg1gmwSVr6UGsRshAmAV1QRh1q
-         38Kg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=CV70NmWuaFf/90QHNhrtM//ts+9JPH+aY+q63Jc+k1o=;
-        b=GM9g9783MbOeTPTkTc6Pti87JX9+jTlh6fIVIa8tNSPT6kHOZk3Qw/2fETelYFbRjj
-         kys+htq1ZaVXxQ+YWa1hUc3kvlwsoNKrBd354Gz20ZEP7wEI1diyml1pLfiKUlEFHJ04
-         VqxI42tWG3Mxcgs/PG/EWLR5lsS+gwdbNWdzoFlvH1QAKzuFwnUXJ/Ufl5FX8nnTqxoX
-         1zoiDGHKURXl52Obd+p8GVX4QpG0eyvhZf2/wPwETYOfA8NWMNB9lHMyQdhaLpFlk2cH
-         2oBi5CUonVn7bFWlbjM2M+fdtkMfTRFDVF074GhMt280Yen8y1XJkwQFgAmm5YxTjriK
-         f83A==
-X-Gm-Message-State: AOAM5328n1IP8z8+WQpOV8Ioq1F9Mn+h7wrYXKdBLE1TS0dwA05l1TRu
-        bz29HN5QAQdQyQxRV3xzCPmtAw==
-X-Google-Smtp-Source: ABdhPJw/LE+jcxwKvn8Liar5mn5PeIjcGs8MvNbzizziYZMK6H6CtrgKCofqXBxmavvszDjAu/FYbA==
-X-Received: by 2002:a05:651c:d5:: with SMTP id 21mr10757064ljr.135.1627463093563;
-        Wed, 28 Jul 2021 02:04:53 -0700 (PDT)
-Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
-        by smtp.gmail.com with ESMTPSA id d9sm505495ljq.54.2021.07.28.02.04.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Jul 2021 02:04:53 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Jens Axboe <axboe@kernel.dk>, linux-ide@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Imre Kaloz <kaloz@openwrt.org>,
-        Krzysztof Halasa <khalasa@piap.pl>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 4/5] pata: ixp4xx: Add DT bindings
-Date:   Wed, 28 Jul 2021 11:02:41 +0200
-Message-Id: <20210728090242.2758812-5-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210728090242.2758812-1-linus.walleij@linaro.org>
-References: <20210728090242.2758812-1-linus.walleij@linaro.org>
-MIME-Version: 1.0
+        id S235503AbhG1JNk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 05:13:40 -0400
+Received: from comms.puri.sm ([159.203.221.185]:37418 "EHLO comms.puri.sm"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235471AbhG1JNc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Jul 2021 05:13:32 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id 41581E0E7D;
+        Wed, 28 Jul 2021 02:13:01 -0700 (PDT)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id zuZBgGbAAueh; Wed, 28 Jul 2021 02:12:56 -0700 (PDT)
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+To:     laurent.pinchart@ideasonboard.com, dafna.hirschfeld@collabora.com,
+        shawnguo@kernel.org
+Cc:     devicetree@vger.kernel.org, festevam@gmail.com,
+        kernel@pengutronix.de, kernel@puri.sm, krzk@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-staging@lists.linux.dev, m.felsch@pengutronix.de,
+        mchehab@kernel.org, phone-devel@vger.kernel.org, robh@kernel.org,
+        slongerbeam@gmail.com,
+        Martin Kepplinger <martin.kepplinger@puri.sm>
+Subject: [PATCH v10 0/3] media: imx: add support for imx8mq MIPI RX
+Date:   Wed, 28 Jul 2021 11:12:42 +0200
+Message-Id: <20210728091245.231043-1-martin.kepplinger@puri.sm>
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds device tree bindings for the Intel IXP4xx compact flash card
-interface.
+hi,
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- .../ata/intel,ixp4xx-compact-flash.yaml       | 62 +++++++++++++++++++
- 1 file changed, 62 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/ata/intel,ixp4xx-compact-flash.yaml
+This patch series adds a driver for the i.MX8MQ CSI MIPI receiver / controller.
 
-diff --git a/Documentation/devicetree/bindings/ata/intel,ixp4xx-compact-flash.yaml b/Documentation/devicetree/bindings/ata/intel,ixp4xx-compact-flash.yaml
-new file mode 100644
-index 000000000000..b254be858de6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/ata/intel,ixp4xx-compact-flash.yaml
-@@ -0,0 +1,62 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/ata/intel,ixp4xx-compact-flash.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Intel IXP4xx CompactFlash Card Controller
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description: |
-+  The IXP4xx network processors have a CompactFlash interface that presents
-+  a CompactFlash card to the system as a true IDE (parallell ATA) device. The
-+  device is always connected to the expansion bus of the IXP4xx SoCs using one
-+  or two chip select areas and address translating logic on the board. The
-+  node must be placed inside a chip select node on the IXP4xx expansion bus.
-+
-+properties:
-+  compatible:
-+    const: intel,ixp4xx-compact-flash
-+
-+  reg:
-+    minItems: 2
-+    maxItems: 2
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+allOf:
-+  - $ref: pata-common.yaml#
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    bus@c4000000 {
-+      compatible = "intel,ixp43x-expansion-bus-controller", "syscon";
-+      reg = <0xc4000000 0x1000>;
-+      native-endian;
-+      #address-cells = <2>;
-+      #size-cells = <1>;
-+      ranges = <0 0x0 0x50000000 0x01000000>, <1 0x0 0x51000000 0x01000000>;
-+      dma-ranges = <0 0x0 0x50000000 0x01000000>, <1 0x0 0x51000000 0x01000000>;
-+      ide@1,0 {
-+        compatible = "intel,ixp4xx-compact-flash";
-+        intel,ixp4xx-eb-t1 = <3>;
-+        intel,ixp4xx-eb-t2 = <3>;
-+        reg = <1 0x00000000 0x1000>, <1 0x00040000 0x1000>;
-+        interrupt-parent = <&gpio0>;
-+        interrupts = <12 IRQ_TYPE_EDGE_RISING>;
-+      };
-+    };
-+
-+...
+It includes the driver, the dt-bindings and the DT addition to the SoC dtsi.
+I test it using libcamera. Thanks to Laurent who helped a lot. I'm happy for
+any feedback,
+
+                           martin
+
+revision history
+----------------
+v10: (thank you Dafna)
+* improve send_level documentation.
+* add some comments to 0x180 and 0x184
+* after re-reading I could eliminate the unneeded setting of 0x184 (ignored
+  by setting 0x180 to 1).
+
+v9: (thank you Laurent)
+* improve getting the esc clock rate for hs_settle
+https://lore.kernel.org/linux-media/20210726082117.2423597-1-martin.kepplinger@puri.sm/
+
+v8: (thank you Laurent)
+* calculate hs_settle for any clk rate and mode
+* add reviewed-by tag
+https://lore.kernel.org/linux-media/20210723101217.1954805-1-martin.kepplinger@puri.sm/T/
+
+v7: (thank you Laurent and Rob)
+* fix the binding example (include the reset driver)
+* use pm_runtime_resume_and_get()
+* fix some logic in init_cfg()
+* add some useful code comments and fix minor bits found by Laurent in v6
+https://lore.kernel.org/linux-media/20210716102244.581182-1-martin.kepplinger@puri.sm/T/#t
+
+v6: (thank you Laurent and Rob)
+* add reviewed-by tag to binding
+* statically allocate clk_bulk_data
+* fix how the hs_settle value is applied
+* remove s_power calls
+* remove the link_setup() callback implementation and make the link immutable
+* more cleanups according to Laurents' review from v5
+https://lore.kernel.org/linux-media/20210714111931.324485-1-martin.kepplinger@puri.sm/
+
+v5: (thank you Laurent)
+* fix reset usage by using the already supported reset controller driver
+* remove clko2 (totally unrelated clock / had been included by accident)
+* rename pxl clock to ui
+https://lore.kernel.org/linux-media/20210618095753.114557-1-martin.kepplinger@puri.sm/
+
+v4: (thank you Rob and Marco)
+* create fsl,mipi-phy-gpr custom dt property instead of confusing "phy"
+* add imx8mq-specific compatibile to imx8mq.dtsi for future use
+https://lore.kernel.org/linux-media/20210614121522.2944593-1-martin.kepplinger@puri.sm/
+
+v3: (thank you, Rob and Laurent)
+among minor other things according to v2 review, changes include:
+* better describe the clocks
+* rename DT property "phy-reset" to "reset" and "phy-gpr" to "phy"
+https://lore.kernel.org/linux-media/20210608104128.1616028-1-martin.kepplinger@puri.sm/T/#t
+
+v2: (thank you, Dan and Guido)
+among fixes according to v1 reviews, changes include:
+* remove status property from dt-bindings example
+* define a few bits in order to have less magic values
+* use "imx8mq_mipi_csi_" as local function prefix
+* read DT properties only during probe()
+* remove dead code (log_status)
+* add imx8mq_mipi_csi_release_icc()
+* fix imx8mq_mipi_csi_init_icc()
+https://lore.kernel.org/linux-media/20210531112326.90094-1-martin.kepplinger@puri.sm/
+
+v1:
+https://lore.kernel.org/linux-media/20210527075407.3180744-1-martin.kepplinger@puri.sm/T/#t
+
+
+Martin Kepplinger (3):
+  dt-bindings: media: document the nxp,imx8mq-mipi-csi2 receiver phy and
+    controller
+  media: imx: add a driver for i.MX8MQ mipi csi rx phy and controller
+  arm64: dts: imx8mq: add mipi csi phy and csi bridge descriptions
+
+ .../bindings/media/nxp,imx8mq-mipi-csi2.yaml  | 174 +++
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi     | 104 ++
+ drivers/staging/media/imx/Makefile            |   1 +
+ drivers/staging/media/imx/imx8mq-mipi-csi2.c  | 991 ++++++++++++++++++
+ 4 files changed, 1270 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
+ create mode 100644 drivers/staging/media/imx/imx8mq-mipi-csi2.c
+
 -- 
-2.31.1
+2.30.2
 
