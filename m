@@ -2,201 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED6AB3D976D
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 23:17:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 632433D97CF
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 23:52:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231764AbhG1VRq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 17:17:46 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:53666 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231755AbhG1VRq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Jul 2021 17:17:46 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1m8qvj-00086Y-Gz; Wed, 28 Jul 2021 23:17:31 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Rob Herring <robh+dt@kernel.org>, Peter Geis <pgwipeout@gmail.com>,
-        cl@rock-chips.com, kever.yang@rock-chips.com
-Cc:     Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 5/8] arm64: dts: rockchip: add rk3568 tsadc nodes
-Date:   Wed, 28 Jul 2021 23:17:30 +0200
-Message-ID: <3091522.BEx9A2HvPv@diego>
-In-Reply-To: <20210728180034.717953-6-pgwipeout@gmail.com>
-References: <20210728180034.717953-1-pgwipeout@gmail.com> <20210728180034.717953-6-pgwipeout@gmail.com>
+        id S232007AbhG1Vwb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 17:52:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56188 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231969AbhG1Vwa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 17:52:30 -0400
+Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [IPv6:2001:4b7a:2000:18::162])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95A86C061757
+        for <devicetree@vger.kernel.org>; Wed, 28 Jul 2021 14:52:28 -0700 (PDT)
+Received: from localhost.localdomain (83.6.168.174.neoplus.adsl.tpnet.pl [83.6.168.174])
+        by m-r1.th.seeweb.it (Postfix) with ESMTPA id 7D63F1FA91;
+        Wed, 28 Jul 2021 23:52:23 +0200 (CEST)
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+To:     ~postmarketos/upstreaming@lists.sr.ht
+Cc:     martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: remoteproc: qcom: adsp: Add SDM660 ADSP
+Date:   Wed, 28 Jul 2021 23:52:11 +0200
+Message-Id: <20210728215212.18217-1-konrad.dybcio@somainline.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peter, Kever,
+Add a compatible string for SDM660 ADSP.
 
-Am Mittwoch, 28. Juli 2021, 20:00:31 CEST schrieb Peter Geis:
-> Add the thermal and tsadc nodes to the rk3568 device tree.
-> There are two sensors, one for the cpu, one for the gpu.
-> 
-> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
-> ---
->  .../boot/dts/rockchip/rk3568-pinctrl.dtsi     |  7 ++
->  arch/arm64/boot/dts/rockchip/rk356x.dtsi      | 70 +++++++++++++++++++
->  2 files changed, 77 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-pinctrl.dtsi b/arch/arm64/boot/dts/rockchip/rk3568-pinctrl.dtsi
-> index a588ca95ace2..3b1efaf2646e 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3568-pinctrl.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568-pinctrl.dtsi
-> @@ -2420,6 +2420,13 @@ spi3m1_cs1: spi3m1-cs1 {
->  	};
->  
->  	tsadc {
-> +		/omit-if-no-ref/
-> +		tsadc_pin: tsadc-pin {
-> +			rockchip,pins =
-> +				/* tsadc_pin */
-> +				<0 RK_PA1 0 &pcfg_pull_none>;
-> +		};
-> +
+Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+---
+ Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-The rk3568-pinctrl.dtsi is autogenerated on Rockchip's side and I don't
-want to break that unnecessarily ;-) .
-
-So the question below is more for Kever and Liang:
-
-The tsadc on most mainline Rockchip socs uses the additional init-pinctrl
-to set the pin to gpio mode before the tsadc probes and only to the shutdown
-function after the tsadc has probed sucessfully. This prevents the
-shutdown firing before the tsadc actually attached to the pin function.
-
-Is it possible to fit the above addition pin setting in the database you
-have as base for the autogeneration?
-
-
-Thanks
-Heiko
-
-
-
-
-
->  		/omit-if-no-ref/
->  		tsadcm0_shut: tsadcm0-shut {
->  			rockchip,pins =
-> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> index fbd9f1c366ff..c74072941da1 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> @@ -50,6 +50,7 @@ cpu0: cpu@0 {
->  			compatible = "arm,cortex-a55";
->  			reg = <0x0 0x0>;
->  			clocks = <&scmi_clk 0>;
-> +			#cooling-cells = <2>;
->  			enable-method = "psci";
->  			operating-points-v2 = <&cpu0_opp_table>;
->  		};
-> @@ -58,6 +59,7 @@ cpu1: cpu@100 {
->  			device_type = "cpu";
->  			compatible = "arm,cortex-a55";
->  			reg = <0x0 0x100>;
-> +			#cooling-cells = <2>;
->  			enable-method = "psci";
->  			operating-points-v2 = <&cpu0_opp_table>;
->  		};
-> @@ -66,6 +68,7 @@ cpu2: cpu@200 {
->  			device_type = "cpu";
->  			compatible = "arm,cortex-a55";
->  			reg = <0x0 0x200>;
-> +			#cooling-cells = <2>;
->  			enable-method = "psci";
->  			operating-points-v2 = <&cpu0_opp_table>;
->  		};
-> @@ -74,6 +77,7 @@ cpu3: cpu@300 {
->  			device_type = "cpu";
->  			compatible = "arm,cortex-a55";
->  			reg = <0x0 0x300>;
-> +			#cooling-cells = <2>;
->  			enable-method = "psci";
->  			operating-points-v2 = <&cpu0_opp_table>;
->  		};
-> @@ -773,6 +777,72 @@ uart9: serial@fe6d0000 {
->  		status = "disabled";
->  	};
->  
-> +	thermal_zones: thermal-zones {
-> +		cpu_thermal: cpu-thermal {
-> +			polling-delay-passive = <100>;
-> +			polling-delay = <1000>;
-> +
-> +			thermal-sensors = <&tsadc 0>;
-> +
-> +			trips {
-> +				cpu_alert0: cpu_alert0 {
-> +					temperature = <70000>;
-> +					hysteresis = <2000>;
-> +					type = "passive";
-> +				};
-> +				cpu_alert1: cpu_alert1 {
-> +					temperature = <75000>;
-> +					hysteresis = <2000>;
-> +					type = "passive";
-> +				};
-> +				cpu_crit: cpu_crit {
-> +					temperature = <95000>;
-> +					hysteresis = <2000>;
-> +					type = "critical";
-> +				};
-> +			};
-> +
-> +			cooling-maps {
-> +				map0 {
-> +					trip = <&cpu_alert0>;
-> +					cooling-device =
-> +						<&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +						<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +						<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +						<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +				};
-> +			};
-> +		};
-> +
-> +		gpu_thermal: gpu-thermal {
-> +			polling-delay-passive = <20>; /* milliseconds */
-> +			polling-delay = <1000>; /* milliseconds */
-> +
-> +			thermal-sensors = <&tsadc 1>;
-> +		};
-> +	};
-> +
-> +	tsadc: tsadc@fe710000 {
-> +		compatible = "rockchip,rk3568-tsadc";
-> +		reg = <0x0 0xfe710000 0x0 0x100>;
-> +		interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>;
-> +		assigned-clocks = <&cru CLK_TSADC_TSEN>, <&cru CLK_TSADC>;
-> +		assigned-clock-rates = <17000000>, <700000>;
-> +		clocks = <&cru CLK_TSADC>, <&cru PCLK_TSADC>;
-> +		clock-names = "tsadc", "apb_pclk";
-> +		resets = <&cru SRST_TSADC>, <&cru SRST_P_TSADC>,
-> +			 <&cru SRST_TSADCPHY>;
-> +		reset-names = "tsadc", "tsadc-apb", "tsadc-phy";
-> +		rockchip,grf = <&grf>;
-> +		rockchip,hw-tshut-temp = <95000>;
-> +		pinctrl-names = "init", "default", "sleep";
-> +		pinctrl-0 = <&tsadc_pin>;
-> +		pinctrl-1 = <&tsadc_shutorg>;
-> +		pinctrl-2 = <&tsadc_pin>;
-> +		#thermal-sensor-cells = <1>;
-> +		status = "disabled";
-> +	};
-> +
->  	saradc: saradc@fe720000 {
->  		compatible = "rockchip,rk3568-saradc", "rockchip,rk3399-saradc";
->  		reg = <0x0 0xfe720000 0x0 0x100>;
-> 
-
-
-
+diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
+index c597ccced623..efa926ebab2c 100644
+--- a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
++++ b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
+@@ -28,6 +28,7 @@ properties:
+       - qcom,sc8180x-adsp-pas
+       - qcom,sc8180x-cdsp-pas
+       - qcom,sc8180x-mpss-pas
++      - qcom,sdm660-adsp-pil
+       - qcom,sdm845-adsp-pas
+       - qcom,sdm845-cdsp-pas
+       - qcom,sdx55-mpss-pas
+-- 
+2.32.0
 
