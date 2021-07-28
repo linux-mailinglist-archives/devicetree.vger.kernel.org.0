@@ -2,58 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B09E73D8894
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 09:10:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15FFE3D88A9
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 09:16:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233459AbhG1HKG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 03:10:06 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46982 "EHLO mail.kernel.org"
+        id S233758AbhG1HQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 03:16:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51636 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233187AbhG1HKE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Jul 2021 03:10:04 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6F6A860F01;
-        Wed, 28 Jul 2021 07:10:02 +0000 (UTC)
+        id S233732AbhG1HQ2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Jul 2021 03:16:28 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0650160F93;
+        Wed, 28 Jul 2021 07:16:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627456203;
-        bh=spLJJp0kWz4iiYPQWcebOS6VyUZYt/YL7QyUP4C3ddM=;
+        s=k20201202; t=1627456587;
+        bh=x0xcvQaq9O32Nso7pIl+O6xyOtevShOSKrCBXswXPXg=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=E0laffxtaI1HhSySNQxdxufyAYMnAPLjZQZV49FZYIXIvj3UbgqWcdon+/gFdqQ1d
-         pX5PaZzNCUHW+LCm3rUShTuC03O61V6p6ipvirO1n/mZvCUwVfCLZEJTyQU8yWYFwx
-         Dw+3czxSk9Q6v6chLBuzyOhVJoKTXsgBjYLGpG9M6l3AZNcxKuLoCWcLFR7jYNi8v1
-         C20765URrLmDb/mFtAlq6NbLYkEELeCG1ip8XyxAzd90AG7zKHJiDdhgLqGVVbksCc
-         eF50NtP4Eb7iwcnEswfGKkctd1jM0Q56vSP8NNjWB2cd2ORu65yX7S0WaTzra02rg4
-         Ey9/++NCxMelA==
-Date:   Wed, 28 Jul 2021 12:39:57 +0530
+        b=O/NTRx+isUoN0Lv+rgz6j5o45+43BtRQUES2zsp/QQGZcqbRi4WjQfzzM5JPdacwW
+         QkTowxaah7QCMacjilrpYLDnY5Q2a+S1mmggW/2WG6Ur9Wr6g4h4am/Isc60Ag6dpq
+         7lwle47pO0XoFe37HKoBncAzLIDVOU1Vwt1zkU9s8/bkE6EHC9vmpB5kvaud12yknW
+         ompwuV7hTHZUQYWawL6B2yY3zl5Ypc8GN+7RKIoTQ/nUgqVunhnWKnDJZAHZBlJDub
+         uyP7FDyRZpAfAowA/9iUrwNnXDXDoqDm7muGJHDj7gRnJX8ggw4SZ9nC+Z6LXNW7E4
+         ujQUGM3MNCQ7w==
+Date:   Wed, 28 Jul 2021 12:46:20 +0530
 From:   Vinod Koul <vkoul@kernel.org>
-To:     Amelie Delaunay <amelie.delaunay@foss.st.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Pierre-Yves Mordret <pierre-yves.mordret@foss.st.com>
-Subject: Re: [PATCH 0/2] STM32 DMA alternative REQ/ACK protocol support
-Message-ID: <YQECxSZqa9aHw6CB@matsya>
-References: <20210624093959.142265-1-amelie.delaunay@foss.st.com>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Rob Herring <robh+dt@kernel.org>, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mips@vger.kernel.org, list@opendingux.net
+Subject: Re: [PATCH 3/3] dma: jz4780: Add support for the MDMA in the
+ JZ4760(B)
+Message-ID: <YQEERH97pngKbTiG@matsya>
+References: <20210718122024.204907-1-paul@crapouillou.net>
+ <20210718122024.204907-3-paul@crapouillou.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210624093959.142265-1-amelie.delaunay@foss.st.com>
+In-Reply-To: <20210718122024.204907-3-paul@crapouillou.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24-06-21, 11:39, Amelie Delaunay wrote:
-> Default REQ/ACK protocol consists in maintaining ACK signal up to the
-> removal of REQuest and the transfer completion.
-> In case of alternative REQ/ACK protocol, ACK de-assertion does not wait the
-> removal of the REQuest, but only the transfer completion.
-> Due to a possible DMA stream lock when transferring data to/from STM32
-> USART/UART, add support to select alternative REQ/ACK protocol.
+On 18-07-21, 13:20, Paul Cercueil wrote:
+> The JZ4760 and JZ4760B SoCs have two regular DMA controllers with 6
+> channels each. They also have an extra DMA controller named MDMA
+> with only 2 channels, that only supports memcpy operations.
 
-Applied, thanks
+It is dmaengine not dma:
+
+> 
+> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+> ---
+>  drivers/dma/dma-jz4780.c | 22 ++++++++++++++++++++--
+>  1 file changed, 20 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/dma/dma-jz4780.c b/drivers/dma/dma-jz4780.c
+> index d71bc7235959..eed505e3cce2 100644
+> --- a/drivers/dma/dma-jz4780.c
+> +++ b/drivers/dma/dma-jz4780.c
+> @@ -93,6 +93,7 @@
+>  #define JZ_SOC_DATA_PER_CHAN_PM		BIT(2)
+>  #define JZ_SOC_DATA_NO_DCKES_DCKEC	BIT(3)
+>  #define JZ_SOC_DATA_BREAK_LINKS		BIT(4)
+> +#define JZ_SOC_DATA_ONLY_MEMCPY		BIT(5)
+
+Why -ve logic? Looks like MEMCPY is eveywhere and only peripheral is not
+there at few SoC, so use JZ_SOC_DATA_PERIPHERAL
+>  
+>  /**
+>   * struct jz4780_dma_hwdesc - descriptor structure read by the DMA controller.
+> @@ -896,8 +897,10 @@ static int jz4780_dma_probe(struct platform_device *pdev)
+>  	dd = &jzdma->dma_device;
+>  
+>  	dma_cap_set(DMA_MEMCPY, dd->cap_mask);
+> -	dma_cap_set(DMA_SLAVE, dd->cap_mask);
+> -	dma_cap_set(DMA_CYCLIC, dd->cap_mask);
+> +	if (!(soc_data->flags & JZ_SOC_DATA_ONLY_MEMCPY)) {
+> +		dma_cap_set(DMA_SLAVE, dd->cap_mask);
+> +		dma_cap_set(DMA_CYCLIC, dd->cap_mask);
+> +	}
+
+and set this if JZ_SOC_DATA_PERIPHERAL is set?
+
+>  
+>  	dd->dev = dev;
+>  	dd->copy_align = DMAENGINE_ALIGN_4_BYTES;
+> @@ -1018,12 +1021,25 @@ static const struct jz4780_dma_soc_data jz4760_dma_soc_data = {
+>  	.flags = JZ_SOC_DATA_PER_CHAN_PM | JZ_SOC_DATA_NO_DCKES_DCKEC,
+>  };
+>  
+> +static const struct jz4780_dma_soc_data jz4760_mdma_soc_data = {
+> +	.nb_channels = 2,
+> +	.transfer_ord_max = 6,
+> +	.flags = JZ_SOC_DATA_PER_CHAN_PM | JZ_SOC_DATA_NO_DCKES_DCKEC |
+> +		 JZ_SOC_DATA_ONLY_MEMCPY,
+> +};
+> +
+>  static const struct jz4780_dma_soc_data jz4760b_dma_soc_data = {
+>  	.nb_channels = 5,
+>  	.transfer_ord_max = 6,
+>  	.flags = JZ_SOC_DATA_PER_CHAN_PM,
+>  };
+>  
+> +static const struct jz4780_dma_soc_data jz4760b_mdma_soc_data = {
+> +	.nb_channels = 2,
+> +	.transfer_ord_max = 6,
+> +	.flags = JZ_SOC_DATA_PER_CHAN_PM | JZ_SOC_DATA_ONLY_MEMCPY,
+> +};
+> +
+>  static const struct jz4780_dma_soc_data jz4770_dma_soc_data = {
+>  	.nb_channels = 6,
+>  	.transfer_ord_max = 6,
+> @@ -1052,7 +1068,9 @@ static const struct of_device_id jz4780_dma_dt_match[] = {
+>  	{ .compatible = "ingenic,jz4740-dma", .data = &jz4740_dma_soc_data },
+>  	{ .compatible = "ingenic,jz4725b-dma", .data = &jz4725b_dma_soc_data },
+>  	{ .compatible = "ingenic,jz4760-dma", .data = &jz4760_dma_soc_data },
+> +	{ .compatible = "ingenic,jz4760-mdma", .data = &jz4760_mdma_soc_data },
+>  	{ .compatible = "ingenic,jz4760b-dma", .data = &jz4760b_dma_soc_data },
+> +	{ .compatible = "ingenic,jz4760b-mdma", .data = &jz4760b_mdma_soc_data },
+>  	{ .compatible = "ingenic,jz4770-dma", .data = &jz4770_dma_soc_data },
+>  	{ .compatible = "ingenic,jz4780-dma", .data = &jz4780_dma_soc_data },
+>  	{ .compatible = "ingenic,x1000-dma", .data = &x1000_dma_soc_data },
+> -- 
+> 2.30.2
 
 -- 
 ~Vinod
