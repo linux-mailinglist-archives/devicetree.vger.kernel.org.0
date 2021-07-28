@@ -2,181 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE9983D9394
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 18:50:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14AC93D939C
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 18:54:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229809AbhG1QuE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 12:50:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43908 "EHLO
+        id S229716AbhG1QyW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 12:54:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230025AbhG1QuD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 12:50:03 -0400
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AF02C061757;
-        Wed, 28 Jul 2021 09:50:01 -0700 (PDT)
-Received: by mail-yb1-xb2d.google.com with SMTP id a93so5063819ybi.1;
-        Wed, 28 Jul 2021 09:50:01 -0700 (PDT)
+        with ESMTP id S229515AbhG1QyV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 12:54:21 -0400
+Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DBC0C061757;
+        Wed, 28 Jul 2021 09:54:19 -0700 (PDT)
+Received: by mail-qt1-x834.google.com with SMTP id d2so1826783qto.6;
+        Wed, 28 Jul 2021 09:54:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=otNTlDwa87Ct7KnwMnmWEklfb8eXN/ybU6dmwmB/y4k=;
-        b=Hz1c+rC6UucgzDlm5ZjYdqfckks0A1P9uuWsr0puCpQLwdw5cahcJNSxTYc99NBr/N
-         u+tW+C8g2d6CK7OT5A0pPor1ZXJJMo6VvHMSmYeyyYmfv2y5L7cseFltdcWLDv/BpP2S
-         iNS0Sd+jp2XBZVH98iLn4WdYtSdrEkq4WcCWNv9EEC95pleo3vI3QDgsBMZCHS3MsAKr
-         pD4rxKYfzjZuxwKGaxoskZLB58c7NIsVw6OmCXllHGZ62oTcRNtcGIpgqBlB7avcmp6/
-         aXu9YiOvi82wkh651hshpX5nrd0wVp8YXLSg3ITLV7qR/9OW2YqsVfdaFXDM974hZfK7
-         PkDg==
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=5WRc7NZsG224KMOLzT6MF0xtQDYlQYQ+sE4yZrsGKwI=;
+        b=pBbZcC8qkw1M+SzXsZgZ5rDmHtG5kHyuGt7FeWdqYfewy8ozYb23OuFRnZl27Ig3Gq
+         8nJRAv0WeA7zY3g96vIf1jKVCOaGmPnwL4AEMbZ3WEWzUXO0v8m7zmMijhJReAkJgK+w
+         zIAf0ffeQOEHQDLHuRBs8C0C9Ya1+Y1oPhQqjhYsPGioMYhpwItCppl8GgSVdk/XOH60
+         C4teyvrMbxJBXCut4FzlKDhHJT4b+hpnZRxKEd1pUdr3gUTBdpfbQXx8a5Db9wwermez
+         FQsIfy7NSl6FJJX0KAXmcKsiqoDjlVAbiT4r9M2yYTp5pZbPzzxTp/iSBy35T3fyCTUX
+         sjdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=otNTlDwa87Ct7KnwMnmWEklfb8eXN/ybU6dmwmB/y4k=;
-        b=rE44zhC2MQP4hiPrLgc2lFj2zOX/wCrSm3/UxkQ3QEFVi81T9zY197AJPnHT3yBAD/
-         6v4TKSPjp5mX4TdpDOBaM5lsNfV46HEFlx7dFmiAg5oj1yfNXiSvYCID60FncZ0uV8Ju
-         TfVWdL3s5l/kpk8vXVEK1VcDUDQ/MLJwQ+Q0StgziIRvWwfpl5b29Pm9cwO46mQklqBx
-         uH+uUo6jLQVo2WXdhrfuVjlAPIxSl7yBXSUi7eIy8JUm+QPuSlEPkJbIB3Uv28ytG6E2
-         +B8E4lXD28/rqvPIInie8ScqbG2X+X+Ss8uWK70YrojjSToF3dD8nC4f6d8WnxcePwPF
-         yxqQ==
-X-Gm-Message-State: AOAM532T3Av8/koXFPjvpy2p00Zsb0AFEoICruad23C1tyu9tIQ34Bec
-        IpLScUtf5ZIbsuG8YfjrLf5csIYpjcvds2puXK8=
-X-Google-Smtp-Source: ABdhPJw1TruNXS+01KTW3gp+Fe37RtD+n7CfbVJq7xUSj403ji3R82e0709hZow8OpZrbJQoYJR41H7iUFiOiVkK5UM=
-X-Received: by 2002:a25:3c5:: with SMTP id 188mr701558ybd.437.1627491000573;
- Wed, 28 Jul 2021 09:50:00 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210728135534.703028-1-pgwipeout@gmail.com> <13247009.uLZWGnKmhe@diego>
- <CAMdYzYqR+ocrXQi8TOHY0Yd2oULXuPgE_QnbcuQSw=BoaumBKA@mail.gmail.com>
- <6063626.MhkbZ0Pkbq@diego> <CAMdYzYqz-i1X2oORi6SjSqi6_KwRcbt2u04+cVxcSonX9gxOew@mail.gmail.com>
-In-Reply-To: <CAMdYzYqz-i1X2oORi6SjSqi6_KwRcbt2u04+cVxcSonX9gxOew@mail.gmail.com>
-From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Wed, 28 Jul 2021 12:49:47 -0400
-Message-ID: <CAMdYzYrj7PdvmfvSNV5B3=aDrAx1VUO2=w8vgVprBE1qiEZP3A@mail.gmail.com>
-Subject: Re: [PATCH 6/9] arm64: dts: rockchip: add missing rk3568 cru phandles
-To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=5WRc7NZsG224KMOLzT6MF0xtQDYlQYQ+sE4yZrsGKwI=;
+        b=B40N3FTHGresIcadDsizX8sY++iqSI0h4XgKKjZkyNpUHljdFrK8ofxjDd1ElB+C5w
+         MMnhQSbnmxcBYTxpg/sHp6iSpcTSbJiNbpi3fMGXSz3YlqIAVUd9g1ohotGxr7p8O/Xv
+         3Q0YwCaSf+w4p2LgxJWDw2TQhY7DGXPKOU6Hv0WFtq1SJ7n3jCDr1pKS3umWzCRJ3c0N
+         Di6z06HSXR+12M/NNRcnE2eGsRNVghM75nBqYgQzq0Dp0mpm1cDyYuTpUwp9Hrjo85Zw
+         2RgtemnVVf/Eo7jKAMdIa8dVWgdoH8SnnLIzNJVfo2x9H8wC49oCQMd/fDY9gkMrvMvI
+         Vh9w==
+X-Gm-Message-State: AOAM532zBGIXda1/1sjECdHeTK11A0yAq/zowEXKRbWF6/ytGIsEePRk
+        7qoRHX3S+mmH3FtL+PZhPE4p5jNmw6Y=
+X-Google-Smtp-Source: ABdhPJwVA0b4E2zT2rdSCKwbX9fTqBQ5wfZz9pIwBnO5KXoem83v2RNfPRnRMaXGRn7rUPQceKS1Zw==
+X-Received: by 2002:a05:622a:283:: with SMTP id z3mr459040qtw.312.1627491258155;
+        Wed, 28 Jul 2021 09:54:18 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id m17sm169167qtu.34.2021.07.28.09.54.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Jul 2021 09:54:17 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: [PATCH v3 0/2] hwmon: Add StarFive JH7100 temperature sensor
+To:     Emil Renner Berthing <kernel@esmil.dk>,
+        Jean Delvare <jdelvare@suse.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Jonathan Corbet <corbet@lwn.net>,
+        Samin Guo <samin.guo@starfivetech.com>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210726171802.1052716-1-kernel@esmil.dk>
+From:   Guenter Roeck <linux@roeck-us.net>
+Message-ID: <bcc9de67-f006-0a81-8c3f-2ae5188dca48@roeck-us.net>
+Date:   Wed, 28 Jul 2021 09:54:15 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+MIME-Version: 1.0
+In-Reply-To: <20210726171802.1052716-1-kernel@esmil.dk>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 28, 2021 at 11:16 AM Peter Geis <pgwipeout@gmail.com> wrote:
->
-> On Wed, Jul 28, 2021 at 10:41 AM Heiko St=C3=BCbner <heiko@sntech.de> wro=
-te:
-> >
-> > Am Mittwoch, 28. Juli 2021, 16:18:49 CEST schrieb Peter Geis:
-> > > On Wed, Jul 28, 2021 at 10:06 AM Heiko St=C3=BCbner <heiko@sntech.de>=
- wrote:
-> > > >
-> > > > Hi Peter,
-> > > >
-> > > > Am Mittwoch, 28. Juli 2021, 15:55:31 CEST schrieb Peter Geis:
-> > > > > The grf and pmugrf phandles are necessary for the pmucru and cru =
-to
-> > > > > modify clocks. Add these phandles to permit adjusting the clock r=
-ates
-> > > > > and muxes.
-> > > > >
-> > > > > Signed-off-by: Peter Geis <pgwipeout@gmail.com>
-> > > > > ---
-> > > > >  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 3 +++
-> > > > >  1 file changed, 3 insertions(+)
-> > > > >
-> > > > > diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm6=
-4/boot/dts/rockchip/rk356x.dtsi
-> > > > > index 0905fac0726a..8ba0516eedd8 100644
-> > > > > --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> > > > > +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> > > > > @@ -218,6 +218,8 @@ grf: syscon@fdc60000 {
-> > > > >       pmucru: clock-controller@fdd00000 {
-> > > > >               compatible =3D "rockchip,rk3568-pmucru";
-> > > > >               reg =3D <0x0 0xfdd00000 0x0 0x1000>;
-> > > > > +             rockchip,grf =3D <&grf>;
-> > > > > +             rockchip,pmugrf =3D <&pmugrf>;
-> > > >
-> > > > I don't think the pmucru needs both and in fact the mainline
-> > > > clock driver should just reference its specific grf at all, i.e.
-> > > >         pmucru -> pmugrf (via the rockchip,grf handle)
-> > > >         cru -> grf
-> > > >
-> > > > I've not seen anything breaking this scope so far.
-> > >
-> > > I thought the same thing as well, but for some reason the driver
-> > > refuses to apply assigned-clocks to the plls unless these are all
-> > > present.
-> > > If the driver can get these assignments automatically eventually,
-> > > perhaps it's a loading order issue?
-> > >
-> > > Thinking about it, it's probably the grf and pmugrf haven't probed
-> > > when the driver is attempting to assign these, and tying them togethe=
-r
-> > > forces the probe to happen first.
-> >
-> > though nothing references the regular grf from the pmucru I think.
-> >
-> > I.e. the pmucru PLL read their lock state from RK3568_PMU_MODE_CON
-> >
-> > The rk3568 reuses the pll_rk3328-type which in turn is a modified pll_r=
-k3036
-> > and uses their ops. Which in turn means the pll shouldn't access the GR=
-F at
-> > all, as it uses the pll's own register to check the locked state.
-> >
-> > Can you try to change clk-pll.c from
-> >
-> >         switch (pll_type) {
-> >         case pll_rk3036:
-> >         case pll_rk3328:
-> >                 if (!pll->rate_table || IS_ERR(ctx->grf))
-> >                         init.ops =3D &rockchip_rk3036_pll_clk_norate_op=
-s;
-> > ...
-> > to
-> >         switch (pll_type) {
-> >         case pll_rk3036:
-> >         case pll_rk3328:
-> >                 if (!pll->rate_table)
-> >                         init.ops =3D &rockchip_rk3036_pll_clk_norate_op=
-s;
-> >
-> > similar to rk3399?
->
-> Thanks, I'll test this!
+On 7/26/21 10:18 AM, Emil Renner Berthing wrote:
+> This adds a driver for the temperature sensor on the JH7100, a RISC-V
+> SoC by StarFive Technology Co. Ltd., and most likely also the upcoming
+> JH7110 version.
+> 
+> The SoC is used on the BeagleV Starlight board:
+> https://github.com/beagleboard/beaglev-starlight
+> 
+> Support for this SoC is not yet upstreamed, but is actively worked on,
+> so it should only be a matter of time before that happens.
+> 
 
-Confirmed this fixed the issue for the rk3566, so as long as it
-doesn't break rk3328 this works.
-I'll include the patch in the next series.
+Hmm, makes me wonder if I should apply the series now or later,
+when the chip is actually supported by the kernel. Comments/thoughts ?
 
->
-> >
-> > Heiko
-> >
-> > > > >               #clock-cells =3D <1>;
-> > > > >               #reset-cells =3D <1>;
-> > > > >       };
-> > > > > @@ -225,6 +227,7 @@ pmucru: clock-controller@fdd00000 {
-> > > > >       cru: clock-controller@fdd20000 {
-> > > > >               compatible =3D "rockchip,rk3568-cru";
-> > > > >               reg =3D <0x0 0xfdd20000 0x0 0x1000>;
-> > > > > +             rockchip,grf =3D <&grf>;
-> > > > >               #clock-cells =3D <1>;
-> > > > >               #reset-cells =3D <1>;
-> > > > >       };
-> > > > >
-> > > >
-> > > >
-> > > >
-> > > >
-> > >
-> >
-> >
-> >
-> >
+Guenter
+
+> v3:
+> * Handle timeouts from wait_for_completion_interruptible_timeout
+>    properly.
+> 
+> v2:
+> * Fix checkpatch.pl --strict warnings
+>    - Add myself to MAINTAINERS
+>    - Fix multiline comments
+>    - Use proper case and whitespace for #defines
+>    - Add comment to sfctemp::lock mutex.
+> * Remaining comments by Guenter Roeck
+>    - Add Documentation/hwmon/sfctemp.rst
+>    - Use devm_add_action() and devm_hwmon_device_register_with_info()
+>      instead of a driver .remove function.
+>    - Don't do test conversion at probe time.
+>    - #include <linux/io.h>
+>    - Remove unused #defines
+>    - Use int return variable in sfctemp_convert().
+> * Add Samin's Signed-off-by to patch 2/2
+> 
+> Emil Renner Berthing (2):
+>    dt-bindings: hwmon: add starfive,jh7100-temp bindings
+>    hwmon: (sfctemp) Add StarFive JH7100 temperature sensor
+> 
+>   .../bindings/hwmon/starfive,jh7100-temp.yaml  |  43 +++
+>   Documentation/hwmon/index.rst                 |   1 +
+>   Documentation/hwmon/sfctemp.rst               |  32 ++
+>   MAINTAINERS                                   |   8 +
+>   drivers/hwmon/Kconfig                         |  10 +
+>   drivers/hwmon/Makefile                        |   1 +
+>   drivers/hwmon/sfctemp.c                       | 291 ++++++++++++++++++
+>   7 files changed, 386 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/hwmon/starfive,jh7100-temp.yaml
+>   create mode 100644 Documentation/hwmon/sfctemp.rst
+>   create mode 100644 drivers/hwmon/sfctemp.c
+> 
+
