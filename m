@@ -2,333 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 887B23D8BD2
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 12:32:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 345843D8C48
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 12:55:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235791AbhG1Kcj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 06:32:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40440 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235797AbhG1KcI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 06:32:08 -0400
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05B29C061764;
-        Wed, 28 Jul 2021 03:32:00 -0700 (PDT)
-Received: by mail-oi1-x236.google.com with SMTP id t128so3202213oig.1;
-        Wed, 28 Jul 2021 03:31:59 -0700 (PDT)
+        id S234283AbhG1KzP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 06:55:15 -0400
+Received: from mail-dm6nam11on2073.outbound.protection.outlook.com ([40.107.223.73]:38368
+        "EHLO NAM11-DM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231994AbhG1KzN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Jul 2021 06:55:13 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mHLD1wAUW2tyOTi2x7K1aZDttDeTwk3rGm1am2sdFQaYVWb8JR8kaI2C3KZx1BhyEhyMi5HAaAsAeujbFryLScJnb5d4ukjebdL2wXjet8nng/qBq8cWsZKWxugjl210Dy4fI1VdglC1z24jUS0hDdVXR1Wu5+QOWAtlSsA3f1QVfFtOo1uxuYHFpQQJJLRopt7L0erseIJGVawpdiKjLEpWtwvpJh0pPyHJWmuEcGMa4Pv15xkmOlbLqJDNrDkOU5mJwpSHx9y8UpjOHnuy9Nfu10ZRsvRpOBB56QUhbMriZyGRvml7iJzJzXW9NPxM5OJusCXAaOXF3B5iMCrtIA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/veWbCzNmqpY0y00flMjRdID36qWP7fiH8mJ0xntYpM=;
+ b=f7NxM1ljCPHt5jdenwmw5fRjB/HxDNQ7isbHq9XuJFZT5iBEAgzvFGcSK8spyZqJUcMGEPuLhrBDTYfR1vtDLAlDgkoRxT+GqsNSD8RpsA3KJVc91KwbDoJdrGGzPLUfsGBCG3If38PeKF0CYM5mpbEKjO2WHwxuDOO/XMdutGo/i9VNLVXlXfKg9cF+iKBNeb+Ghu4oLNEcOeIJEq1OlINNjZvo/Ji0G13+0sfxiu8ypcnTVWs8xvhrbzhkp+lpJbo/eVID14yq6VzDNpwovKzIapZn1rISq9mEdP38J/JiMi2+YO4gDbk9yyE/FoFniY2ZndAyDhQylg2ymU+RSQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=E5FmPty+N5ZcichQzXMzHfN0dH/qL8aGaMzdP7cxzJM=;
-        b=n91B40wXj+MhLSjDiE1xwHFb9mfl212Wj+bWA/eWPvF6QbdBKCD5oNL4tEK/WuVLAp
-         iPluwU724rN3kdydpz93lb3N11njPjAjtHPH+TzW9xI32VR+nZL0Z7vTW2ABWXJeUC8/
-         Znef0KKbCwAC/TYj0uSw7HNonCFylDSoErGLOgNXART5EBt9x78+74Fx+rwm8yZJEA0s
-         4Qi+WJfz8z+jSkgpcCI21GbFbIaVK7+cLPgEklVIPRjEKKrZeRnJb/0VCWAi2eqDrIPw
-         zOeJvoeOMU+b7Z7Xbb/ljzZOiabMnfkU1wAXacGUP8CWMs01ig6IL9LfatkKLyaA74BK
-         NiPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=E5FmPty+N5ZcichQzXMzHfN0dH/qL8aGaMzdP7cxzJM=;
-        b=Q0mltMNby/kL+W4VCGt6lEAI4uy3kd+jNeUFIQ9MTrt+PCGZAig/9etVV+IGLwA7LI
-         HJubcRLQsOBoKbR2OCqh9gxOkZ8TAa9/pRuHbCeVjGOdZfKLNfk02aVQVzkvGINFK+/b
-         bdKVo0qReJdIbRb1JE//ft/8tcP/DVkaCtzmNQeAYpAjDIHUYb4dl+T0HpRNYvp2BR5W
-         CsBcksNMVrd8vP5fIK185449T0KwNKG9ghYN5OmaJG2ra6vBQarMLxqnKeSqW36N9FRe
-         Ge23F2WW/GSHwf/ZqEXlqIE1ClLQbby3fI8NI5ndtFQ56LLfhv4lkL3g7/Z1DkDoxktL
-         rUEQ==
-X-Gm-Message-State: AOAM531NMVTZG0Un+pfyoYWq/wLuFp8QzZ+bDfmBy107EsHq6wFBv0Mj
-        i2p73FGaiyRXz5qBSulELpn0VsOeq5fy0B/LDTY=
-X-Google-Smtp-Source: ABdhPJysV5Oj8jZdYHs2pQ2NNGU6Sd68SOf29TWzZF3jvR4KuBHo9ZG0N8NnGMbjNROfeV3WTqLcT9xSzy6V1x+8dqA=
-X-Received: by 2002:aca:c6c9:: with SMTP id w192mr17712844oif.47.1627468319411;
- Wed, 28 Jul 2021 03:31:59 -0700 (PDT)
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/veWbCzNmqpY0y00flMjRdID36qWP7fiH8mJ0xntYpM=;
+ b=HDPc4BrpjOlizUtnt5ALYRMjBrG63IUxjshtXq/6SD7PBvbNll31ca8jndrado7yVgwFTIETQ+5WQuXgr8gaLAm0JhqbKC4e4eBiZYfIBe8+8GXnNQPQT0nc04hpyzsTrW9w1gL4auXGKX3vj5LxZfkzzzxcAFib0ULdK9Og9kM=
+Received: from DM5PR2001CA0023.namprd20.prod.outlook.com (2603:10b6:4:16::33)
+ by BN7PR02MB3987.namprd02.prod.outlook.com (2603:10b6:406:f5::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4352.29; Wed, 28 Jul
+ 2021 10:55:09 +0000
+Received: from DM3NAM02FT044.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:4:16:cafe::56) by DM5PR2001CA0023.outlook.office365.com
+ (2603:10b6:4:16::33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.18 via Frontend
+ Transport; Wed, 28 Jul 2021 10:55:09 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
+Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
+ DM3NAM02FT044.mail.protection.outlook.com (10.13.5.98) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4373.18 via Frontend Transport; Wed, 28 Jul 2021 10:55:09 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Wed, 28 Jul 2021 03:55:09 -0700
+Received: from smtp.xilinx.com (172.19.127.95) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2176.2 via Frontend Transport; Wed, 28 Jul 2021 03:55:09 -0700
+Envelope-to: devicetree@vger.kernel.org,
+ netdev@vger.kernel.org,
+ kuba@kernel.org,
+ davem@davemloft.net,
+ robh+dt@kernel.org,
+ gerhard@engleder-embedded.com
+Received: from [172.30.17.109] (port=37646)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <michal.simek@xilinx.com>)
+        id 1m8hDQ-0004n0-OU; Wed, 28 Jul 2021 03:55:08 -0700
+Subject: Re: [PATCH net-next 2/5] dt-bindings: net: Add tsnep Ethernet
+ controller
+To:     Gerhard Engleder <gerhard@engleder-embedded.com>,
+        Michal Simek <michal.simek@xilinx.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        David Miller <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        netdev <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20210726194603.14671-1-gerhard@engleder-embedded.com>
+ <20210726194603.14671-3-gerhard@engleder-embedded.com>
+ <CAL_JsqLe0XScBgCJ+or=QdnnUGp36cyxr17BhKrirbkZ_nrxkA@mail.gmail.com>
+ <CANr-f5wscRwY1zk4tu2qY_zguLf+8qNcEqp46GzpMka8d-qxjQ@mail.gmail.com>
+ <CAL_JsqKq6H471iFoLWRGvNSLpaJmuF+feDFut2p+J725n3U4HA@mail.gmail.com>
+ <ae17968a-e265-6108-233a-bd0538ad186c@xilinx.com>
+ <CANr-f5zvWN6pFUqRHvYV9oMGhF+VBJzhK+yE+SqMuSEhA5-X7Q@mail.gmail.com>
+From:   Michal Simek <michal.simek@xilinx.com>
+Message-ID: <b3921ff3-55d4-0d26-ebe3-2fee0c73332e@xilinx.com>
+Date:   Wed, 28 Jul 2021 12:55:06 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-References: <20210722094551.15255-1-nancy.lin@mediatek.com>
- <20210722094551.15255-10-nancy.lin@mediatek.com> <CAFqH_53bnNvjGjZ2S8oyAx2t0if-YpQyZcb9sRapG2q21X4fGw@mail.gmail.com>
- <692eeb1314da94e28ccc8722b94c7ce8cae6c880.camel@mediatek.com>
-In-Reply-To: <692eeb1314da94e28ccc8722b94c7ce8cae6c880.camel@mediatek.com>
-From:   Enric Balletbo Serra <eballetbo@gmail.com>
-Date:   Wed, 28 Jul 2021 12:31:47 +0200
-Message-ID: <CAFqH_51k9wGgAUmFCkx2M9Nbefzxw0rBLTmQwkXzEyOFVKwuJA@mail.gmail.com>
-Subject: Re: [PATCH v2 09/14] soc: mediatek: mmsys: Add reset controller
- support for MT8195 vdosys1
-To:     "Nancy.Lin" <nancy.lin@mediatek.com>
-Cc:     CK Hu <ck.hu@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
-        singo.chang@mediatek.com,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CANr-f5zvWN6pFUqRHvYV9oMGhF+VBJzhK+yE+SqMuSEhA5-X7Q@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 56625e44-3392-49ff-98e6-08d951b62afa
+X-MS-TrafficTypeDiagnostic: BN7PR02MB3987:
+X-Microsoft-Antispam-PRVS: <BN7PR02MB3987334D97D5F8930BED3298C6EA9@BN7PR02MB3987.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 5/0v+V5hWcsI2b3UXN100b7CGDvGhOMBjdEHd5cH2Ek5biOoMljLxg4B3ALu9BRmEkIGCN996KeBxY1mKmEKMz0YErWhaJpxLy8emYntzNpgKvoPwyBwrBuI1pSL6u53eSC6A4/EItR4kIPAbByw1tq/xxdhHPqC6EBOo9UCuGB9FgNsYOkVW0xrMSwI/Y/AuuieN3CrqRN5iiteicBuaCH7QDFS66QI3JA8hY8exCG35y6Mok+EYvtJFpKdMfCQkw7z9nNKi44VaiCCwz4NYDyXA0kQ56K0gcT1hjV9rkRR2UpvpNE6IRJIDoZymQjBTCn+FxI7MJW7xyEYc/BnuvcLErewKhuKFeHexHpo67fOPGLdqGMWTaYISTp4Iwouah6Hf9UsT2YrkbkCQQvNKg/+bCtu6zEMVj6BZn+5WBlsPqbMASfSsvfp1oi25yEkxS2k0VC8T78PoTMx4RWtxJinjhM1ILeGoEU/n2o5O+w1Fn21e4W4eNU5zfV9bL7rnpJiRQCGAGzo+mWA6CEWvMYjp5nsTn5GfB99uOuLG7rYcxXz/nFtLLDNI73csPzNv8J5eDE84X5Dk39F9UTgFyHLLtpTPeRSG7m8Dor8P5qawUWDKnig1SeXjNmW0hbFgX/3TrQtHExvQtAP2v1kJk5RAkx/96JTFkQ7ukOPFCiY79wx+NyzrSaK4utzkNX64SM7TQF0NENptrT1SLY4WGSH/gfwxnuq41csNFAFtfqacXl7X283JuZ3AqPo3Ozq64XF2vj0bcOJGkaAEBHo0w==
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(376002)(39860400002)(136003)(396003)(346002)(46966006)(36840700001)(336012)(31686004)(54906003)(82310400003)(186003)(82740400003)(8676002)(356005)(70586007)(478600001)(5660300002)(53546011)(44832011)(26005)(70206006)(36906005)(8936002)(4326008)(36756003)(9786002)(7636003)(36860700001)(316002)(110136005)(31696002)(2616005)(2906002)(83380400001)(47076005)(426003)(50156003)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jul 2021 10:55:09.5680
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 56625e44-3392-49ff-98e6-08d951b62afa
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM3NAM02FT044.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR02MB3987
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nancy,
-
-Missatge de Nancy.Lin <nancy.lin@mediatek.com> del dia dc., 28 de jul.
-2021 a les 8:01:
->
-> Hi Enric,
->
-> Thanks for your review.
->
-> On Fri, 2021-07-23 at 12:57 +0200, Enric Balletbo Serra wrote:
-> > Hi Nancy,
-> >
-> > Thank you for your patch.
-> >
-> > Missatge de Nancy.Lin <nancy.lin@mediatek.com> del dia dj., 22 de
-> > jul.
-> > 2021 a les 11:46:
-> > >
-> > > Among other features the mmsys driver should implement a reset
-> > > controller to be able to reset different bits from their space.
-> > >
-> >
-> > I'm working on a series that does the same, it should be nice if we
-> > can coordinate [1]
-> >
-> > [1]
-> > https://urldefense.com/v3/__https://patchwork.kernel.org/project/linux-mediatek/list/?series=515355__;!!CTRNKA9wMg0ARbw!xP6Ko9hF-3KasGgr7-8Aby_tCwiU2M6gFBAngDLVcJjzooj-MEeTcNG8cf2e9wGb$
-> >
-> >
-> OK, I will add this series to my reference base in the next patch
-> revision.
->
-> > > Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
-> > > ---
-> > >  drivers/soc/mediatek/mt8195-mmsys.h |  1 +
-> > >  drivers/soc/mediatek/mtk-mmsys.c    | 77
-> > > +++++++++++++++++++++++++++++
-> > >  drivers/soc/mediatek/mtk-mmsys.h    |  1 +
-> > >  3 files changed, 79 insertions(+)
-> > >
-> > > diff --git a/drivers/soc/mediatek/mt8195-mmsys.h
-> > > b/drivers/soc/mediatek/mt8195-mmsys.h
-> > > index 4bdb2087250c..a7f6e275bfe5 100644
-> > > --- a/drivers/soc/mediatek/mt8195-mmsys.h
-> > > +++ b/drivers/soc/mediatek/mt8195-mmsys.h
-> > > @@ -154,6 +154,7 @@
-> > >  #define DISP_DP_INTF0_SEL_IN_FROM_VDO0_MERGE_DL_ASYNC_MOUT     (1
-> > > << 0)
-> > >  #define DISP_DP_INTF0_SEL_IN_FROM_VDO0_DSC_DL_ASYNC_MOUT       (2
-> > > << 0)
-> > >
-> > > +#define MT8195_VDO1_SW0_RST_B           0x1d0
-> > >  #define MT8195_VDO1_MERGE0_ASYNC_CFG_WD        0xe30
-> > >  #define MT8195_VDO1_MERGE1_ASYNC_CFG_WD        0xe40
-> > >  #define MT8195_VDO1_MERGE2_ASYNC_CFG_WD        0xe50
-> > > diff --git a/drivers/soc/mediatek/mtk-mmsys.c
-> > > b/drivers/soc/mediatek/mtk-mmsys.c
-> > > index d0f4a407f8f8..1ae04efeadab 100644
-> > > --- a/drivers/soc/mediatek/mtk-mmsys.c
-> > > +++ b/drivers/soc/mediatek/mtk-mmsys.c
-> > > @@ -4,10 +4,12 @@
-> > >   * Author: James Liao <jamesjj.liao@mediatek.com>
-> > >   */
-> > >
-> > > +#include <linux/delay.h>
-> > >  #include <linux/device.h>
-> > >  #include <linux/io.h>
-> > >  #include <linux/of_device.h>
-> > >  #include <linux/platform_device.h>
-> > > +#include <linux/reset-controller.h>
-> > >  #include <linux/soc/mediatek/mtk-mmsys.h>
-> > >
-> > >  #include "mtk-mmsys.h"
-> > > @@ -15,6 +17,8 @@
-> > >  #include "mt8183-mmsys.h"
-> > >  #include "mt8195-mmsys.h"
-> > >
-> > > +#define MMSYS_SW_RESET_PER_REG 32
-> > > +
-> > >  static const struct mtk_mmsys_driver_data mt2701_mmsys_driver_data
-> > > = {
-> > >         .clk_driver = "clk-mt2701-mm",
-> > >         .routes = mmsys_default_routing_table,
-> > > @@ -65,12 +69,15 @@ static const struct mtk_mmsys_driver_data
-> > > mt8195_vdosys1_driver_data = {
-> > >         .num_routes = ARRAY_SIZE(mmsys_mt8195_routing_table),
-> > >         .config = mmsys_mt8195_config_table,
-> > >         .num_configs = ARRAY_SIZE(mmsys_mt8195_config_table),
-> > > +       .sw_reset_start = MT8195_VDO1_SW0_RST_B,
-> >
-> > That change is interesting and I think I should also take it into
-> > consideration with my series.
-> >
-> > >  };
-> > >
-> > >  struct mtk_mmsys {
-> > >         void __iomem *regs;
-> > >         struct cmdq_client_reg cmdq_base;
-> > >         const struct mtk_mmsys_driver_data *data;
-> > > +       spinlock_t lock; /* protects mmsys_sw_rst_b reg */
-> >
-> > Seems that mmsys_sw_rst_b reg has different names for different SoCs?
-> > I mean I know that for MT8173 and MT8183 the register is called
-> > mmsys_sw0_rst_b but looks like for MT8195 the name is vdo1_sw0_rst_b?
-> > So maybe we should update this comment to be more generic.
-> >
-> Yes, the name of MT8195 vdosys1 sw reset is called VDOSYS1_SW0_RST_B
-> and the name of vdosys0 sw reset is called GLOBAL0_SW0_RST_B. They have
-> a different name. Maybe we can change the comment to "protects mmsys sw
-> reset reg".
->
-> > >
->
-> > > +       struct reset_controller_dev rcdev;
-> > >  };
-> > >
-> > >  void mtk_mmsys_ddp_connect(struct device *dev,
-> > > @@ -148,6 +155,63 @@ void mtk_mmsys_ddp_config(struct device *dev,
-> > > enum mtk_mmsys_config_type config,
-> > >  }
-> > >  EXPORT_SYMBOL_GPL(mtk_mmsys_ddp_config);
-> > >
-> > > +static int mtk_mmsys_reset_update(struct reset_controller_dev
-> > > *rcdev, unsigned long id,
-> > > +                                 bool assert)
-> > > +{
-> > > +       struct mtk_mmsys *mmsys = container_of(rcdev, struct
-> > > mtk_mmsys, rcdev);
-> > > +       unsigned long flags;
-> > > +       u32 reg;
-> > > +       int i;
-> > > +       u32 offset;
-> > > +
-> > > +       offset = (id / MMSYS_SW_RESET_PER_REG) * sizeof(u32);
-> > > +       id = 1 << (id % MMSYS_SW_RESET_PER_REG);
-> > > +
-> > > +       spin_lock_irqsave(&mmsys->lock, flags);
-> > > +
-> > > +       reg = readl_relaxed(mmsys->regs + mmsys->data-
-> > > >sw_reset_start + offset);
-> > > +
-> > > +       if (assert)
-> > > +               reg &= ~BIT(id);
-> > > +       else
-> > > +               reg |= BIT(id);
-> > > +
-> > > +       writel_relaxed(reg, mmsys->regs + mmsys->data-
-> > > >sw_reset_start + offset);
-> > > +
-> > > +       spin_unlock_irqrestore(&mmsys->lock, flags);
-> > > +
-> > > +       return 0;
-> > > +}
-> > > +
-> > > +static int mtk_mmsys_reset_assert(struct reset_controller_dev
-> > > *rcdev, unsigned long id)
-> > > +{
-> > > +       return mtk_mmsys_reset_update(rcdev, id, true);
-> > > +}
-> > > +
-> > > +static int mtk_mmsys_reset_deassert(struct reset_controller_dev
-> > > *rcdev, unsigned long id)
-> > > +{
-> > > +       return mtk_mmsys_reset_update(rcdev, id, false);
-> > > +}
-> > > +
-> > > +static int mtk_mmsys_reset(struct reset_controller_dev *rcdev,
-> > > unsigned long id)
-> > > +{
-> > > +       int ret;
-> > > +
-> > > +       ret = mtk_mmsys_reset_assert(rcdev, id);
-> > > +       if (ret)
-> > > +               return ret;
-> > > +
-> > > +       usleep_range(1000, 1100);
-> > > +
-> >
-> > One question that I received in my series, and I couldn't answer
-> > because I don't have the datasheet, is if
-> > is this known to be enough for all IP cores that can be reset by this
-> > controller? Is this time specified in the datasheet?
->
-> It only takes few cycles for the reset. The 1000us is enough for the
-> reset to take effect.
->
-
-Saying enough looks to me that 1000us is a random number, is there any
-specific real number in the datasheet?
-
-Note that I'm not against it, just want to make sure the number makes sense.
 
 
-> > > +       return mtk_mmsys_reset_deassert(rcdev, id);
-> > > +}
-> > > +
-> > > +static const struct reset_control_ops mtk_mmsys_reset_ops = {
-> > > +       .assert = mtk_mmsys_reset_assert,
-> > > +       .deassert = mtk_mmsys_reset_deassert,
-> > > +       .reset = mtk_mmsys_reset,
-> > > +};
-> > > +
-> > >  static int mtk_mmsys_probe(struct platform_device *pdev)
-> > >  {
-> > >         struct device *dev = &pdev->dev;
-> > > @@ -174,6 +238,19 @@ static int mtk_mmsys_probe(struct
-> > > platform_device *pdev)
-> > >         if (ret)
-> > >                 dev_dbg(dev, "No mediatek,gce-client-reg!\n");
-> > >  #endif
-> > > +
-> > > +       spin_lock_init(&mmsys->lock);
-> > > +
-> > > +       mmsys->rcdev.owner = THIS_MODULE;
-> > > +       mmsys->rcdev.nr_resets = 64;
-> >
-> > Is the number of resets 64 for MT8195? I think is 32 for MT8173 and
-> > MT8183. Can you confirm?
-> >
-> > Thanks,
-> >   Enric
-> >
-> The number of resets in MT8195 vdosys1 is 64 (43 resets are used, 21
-> are not used).
->
+On 7/28/21 9:44 AM, Gerhard Engleder wrote:
+> On Wed, Jul 28, 2021 at 7:13 AM Michal Simek <michal.simek@xilinx.com> wrote:
+>> On 7/27/21 10:25 PM, Rob Herring wrote:
+>>> On Tue, Jul 27, 2021 at 12:35 PM Gerhard Engleder
+>>> <gerhard@engleder-embedded.com> wrote:
+>>>>
+>>>> On Tue, Jul 27, 2021 at 1:35 AM Rob Herring <robh+dt@kernel.org> wrote:
+>>>>>> +properties:
+>>>>>> +  compatible:
+>>>>>> +    oneOf:
+>>>>>
+>>>>> Don't need oneOf when there is only one entry.
+>>>>
+>>>> I will fix that.
+>>>>
+>>>>>> +      - enum:
+>>>>>> +        - engleder,tsnep
+>>>>>
+>>>>> tsnep is pretty generic. Only 1 version ever? Or differences are/will
+>>>>> be discoverable by other means.
+>>>>
+>>>> Differences shall be detected by flags in the registers; e.g., a flag for
+>>>> gate control support. Anyway a version may make sense. Can you
+>>>> point to a good reference binding with versions? I did not find a
+>>>> network controller binding with versions.
+>>>
+>>> Some of the SiFive IP blocks have versions. Version numbers are the
+>>> exception though. Ideally they would correspond to some version of
+>>> your FPGA image. I just don't want to see 'v1' because that sounds
+>>> made up. The above string can mean 'v1' or whatever version you want.
+>>> I'm fine if you just add some description here about feature flag
+>>> registers.
+>>
+>> Don't Xilinx design tool (vivado) force you to use IP version?
+>> Normally all Xilinx IPs have certain version because that's the only way
+>> how to manage it.
+> 
+> Yes I use an IP version in the Xilinx design tool. I use it as a version of the
+> VHDL code itself. In my case this version is not related to the
+> hardware software
+> interface. The goal is to keep the hardware software interface compatible, so
+> the IP version should not be relevant.
 
-Ok, thanks for the information.
+I expect this is goal for everybody but it fails over time. We normally
+compose compatible string for PL based IP with IP version which is used.
+And it is quite common that couple of HW version are SW compatible to
+each other.
+It means use the same HW version as you use now. When you reach the
+point when your HW IP needs to be upgraded and will require SW alignment
+you have versions around which can be used directly.
 
-> > > +       mmsys->rcdev.ops = &mtk_mmsys_reset_ops;
-> > > +       mmsys->rcdev.of_node = pdev->dev.of_node;
-> > > +       ret = devm_reset_controller_register(&pdev->dev, &mmsys-
-> > > >rcdev);
-> > > +       if (ret) {
-> > > +               dev_err(&pdev->dev, "Couldn't register mmsys reset
-> > > controller: %d\n", ret);
-> > > +               return ret;
-> > > +       }
-> > > +
-> > >         platform_set_drvdata(pdev, mmsys);
-> > >
-> > >         clks = platform_device_register_data(&pdev->dev, mmsys-
-> > > >data->clk_driver,
-> > > diff --git a/drivers/soc/mediatek/mtk-mmsys.h
-> > > b/drivers/soc/mediatek/mtk-mmsys.h
-> > > index 084b1f5f3c88..cc57c3895c51 100644
-> > > --- a/drivers/soc/mediatek/mtk-mmsys.h
-> > > +++ b/drivers/soc/mediatek/mtk-mmsys.h
-> > > @@ -87,6 +87,7 @@ struct mtk_mmsys_driver_data {
-> > >         const unsigned int num_routes;
-> > >         const struct mtk_mmsys_config *config;
-> > >         const unsigned int num_configs;
-> > > +       u32 sw_reset_start;
-> > >  };
-> > >
-> > >  /*
-> > > --
-> > > 2.18.0
-> > >
+Thanks,
+Michal
+
