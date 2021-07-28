@@ -2,130 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 557823D8A65
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 11:13:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F88D3D8A74
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 11:16:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235522AbhG1JNp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 05:13:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50392 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235520AbhG1JNo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 05:13:44 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F88BC0613CF;
-        Wed, 28 Jul 2021 02:13:43 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id f13so1923304plj.2;
-        Wed, 28 Jul 2021 02:13:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6m4UZEx/kYzeDD67ywCPsN6+L14vcm0XjCn8vgnR0gs=;
-        b=iC6z8Qctytr3DWMW26XBlXyJXmcX9mHqtGYg7L6xD94wbl7ajzQi5zIilGaoIAsNBu
-         ZN7L0JWLQB0NsyAQiW+JqWlOT1mTbK4f+uOaBNUne3qrnSByPi9LK4eaUGHE6oXAo+tw
-         7gXczYP9K2NW9xgp4RU0Wn0tG7xRBm8dvpW/t/+zJk+V0r1Lb6GZzxN+922cNAK3aV+j
-         lKtMq4xZPZfiDze9gJjeELttGZiHW7K0jpIUX7aPHQVSLXgmQga/VBWMx7C7W9UDTxml
-         zt0rZuogVBn8QhRnDgl2my8YDzXxJUe2Cy1wtm27Z5pRU6koXTuaHQgUeJXb1z/uUgVX
-         Qrbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6m4UZEx/kYzeDD67ywCPsN6+L14vcm0XjCn8vgnR0gs=;
-        b=PUjkq5B1sWa0E3dOPmT2GEukvgq/pSjuUldr3TjQu3lRiIwYQxuPURmRXaZ0DogowA
-         zrW/T0LEZRAi54f3kqG57fP+eDcFwOuBP1LbtbTKmD82awpzp+juGaD83SO8WnkoIRTo
-         zGl/kIjF8f8/6TghFUMa2+veeVAHguLPspshtfF9fRAor+3WX6Avu7CLof1XAhkzJ4XC
-         8dWcg8duXeBi4Sx2KvIEemb+fAHszFyIwWIy8/zjt/vKgKZTfw0aQc0OXuyNybN9qrcu
-         q4w9+p7ySHJpxDpQIRt6nDVmPDVzi1yqBaEWS8zD3oS4ZxtUyIhaZ0seXb1cVk1ql4ur
-         gRug==
-X-Gm-Message-State: AOAM532ZDkGtX55k0RKd7AfriGSxKt6icOHLQj4q/j4k6fyD2VPWq4au
-        TF5zKbF+0ENBPH7Huhv1sqMC/hrZQhsx4ksxs/8=
-X-Google-Smtp-Source: ABdhPJyyR2mCT0pEZEhhVsDOslGMUTe+AfTMeNLSOODQi5iwax+TD6tMAXsYw27Coe070sKnGki21opJt2OQkPeCxzA=
-X-Received: by 2002:a17:902:ac90:b029:12c:e7a:c183 with SMTP id
- h16-20020a170902ac90b029012c0e7ac183mr14859743plr.21.1627463622505; Wed, 28
- Jul 2021 02:13:42 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210723075858.376378-1-andrew@aj.id.au> <CAHp75VeQML7njMZ6x8kC-ZJVexC1xJ6n1cB3JneVMAVfuOJgWw@mail.gmail.com>
- <d019990e-a725-4ef5-bb54-aadee9d18b86@www.fastmail.com>
-In-Reply-To: <d019990e-a725-4ef5-bb54-aadee9d18b86@www.fastmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 28 Jul 2021 12:13:06 +0300
-Message-ID: <CAHp75Vc2W+WmwNj1AvH6EiT_80c+5gADV9QzK+asHxpd1Ucppw@mail.gmail.com>
-Subject: Re: [RFC PATCH 0/6] leds: Fix pca955x GPIO pin mappings
-To:     Andrew Jeffery <andrew@aj.id.au>
-Cc:     "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        =?UTF-8?Q?C=C3=A9dric_Le_Goater?= <clg@kaod.org>,
+        id S231465AbhG1JQS convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 28 Jul 2021 05:16:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47414 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230520AbhG1JQS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Jul 2021 05:16:18 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1EC6D6023F;
+        Wed, 28 Jul 2021 09:16:17 +0000 (UTC)
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1m8ffj-001Ud6-4P; Wed, 28 Jul 2021 10:16:15 +0100
+Date:   Wed, 28 Jul 2021 10:16:14 +0100
+Message-ID: <878s1qer35.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Guillaume Tucker <guillaume.tucker@collabora.com>
+Cc:     Robin Murphy <robin.murphy@arm.com>, kernelci-results@groups.io,
+        Johan Jonker <jbx6244@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Maciej Matuszczyk <maccraft123mc@gmail.com>,
+        Jacob Chen <jacob2.chen@rock-chips.com>,
+        Sandy Huang <hjc@rock-chips.com>, linux-kernel@vger.kernel.org,
+        Chen-Yu Tsai <wens@csie.org>,
+        Cameron Nemo <cnemo@tutanota.com>, devicetree@vger.kernel.org,
+        Elaine Zhang <zhangqing@rock-chips.com>,
+        Helen Koike <helen.koike@collabora.com>,
+        Shunqian Zheng <zhengsq@rock-chips.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>, Pavel Machek <pavel@ucw.cz>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        Collabora Kernel ML <kernel@collabora.com>
+Subject: Re: renesas/master bisection: baseline-nfs.bootrr.rockchip-usb2phy0-probed on rk3399-gru-kevin
+In-Reply-To: <cff1e2d1-ceee-eee8-de14-a268429acbc3@collabora.com>
+References: <61002766.1c69fb81.8f53.9f6a@mx.google.com>
+        <c52f6cfb-1316-dd6a-46fa-17abfcc4bf18@collabora.com>
+        <eb04c12b-414e-70a7-5dff-12da3eb98cd0@arm.com>
+        <cff1e2d1-ceee-eee8-de14-a268429acbc3@collabora.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: guillaume.tucker@collabora.com, robin.murphy@arm.com, kernelci-results@groups.io, jbx6244@gmail.com, heiko@sntech.de, enric.balletbo@collabora.com, maccraft123mc@gmail.com, jacob2.chen@rock-chips.com, hjc@rock-chips.com, linux-kernel@vger.kernel.org, wens@csie.org, cnemo@tutanota.com, devicetree@vger.kernel.org, zhangqing@rock-chips.com, helen.koike@collabora.com, zhengsq@rock-chips.com, ezequiel@collabora.com, robh+dt@kernel.org, yifeng.zhao@rock-chips.com, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, kernel@collabora.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 28, 2021 at 8:43 AM Andrew Jeffery <andrew@aj.id.au> wrote:
-> On Fri, 23 Jul 2021, at 17:45, Andy Shevchenko wrote:
-> > On Friday, July 23, 2021, Andrew Jeffery <andrew@aj.id.au> wrote:
+On Wed, 28 Jul 2021 09:59:49 +0100,
+Guillaume Tucker <guillaume.tucker@collabora.com> wrote:
+> 
+> On 28/07/2021 09:39, Robin Murphy wrote:
+> > Hi Guillaume,
+> > 
+> > Not sure what I did to get CC'd on this, but since I'm here...
+> 
+> You were listed by get_maintainer.pl for the patch found by the
+> bisection:
+> 
+>   Robin Murphy <robin.murphy@arm.com> (authored:1/8=12%,added_lines:9/71=13%,removed_lines:16/41=39%,added_lines:11/45=24%,removed_lines:18/32=56%,authored:1/12=8%,added_lines:22/83=27%,removed_lines:29/69=42%)
+> 
+> Maybe the logic to automatically build the list of recipients
+> could look at those stats and apply some threshold if too many
+> people get listed because of small contributions to some files.
+> It's not a common issue though, usually the recipients are all
+> pretty relevant.
+> 
+> > On 2021-07-28 07:04, Guillaume Tucker wrote:
+> >> Please see the bisection report below about usb2phy failing to
+> >> probe on rk3399-gru-kevin.
+> >>
+> >> Reports aren't automatically sent to the public while we're
+> >> trialing new bisection features on kernelci.org but this one
+> >> looks valid.
+> >>
+> >> The bisection was run in the Renesas tree but the same regression
+> >> is present in mainline for both usb2phy0 and usb2phy1 devices:
+> >>
+> >>    https://linux.kernelci.org/test/plan/id/6100af012344eef9b85018f3/
+> >>    https://linux.kernelci.org/test/case/id/6100af012344eef9b85018fa/
+> >>
+> >> I don't see any errors in the logs, it looks like the driver is
+> >> just not probing.
+> > 
+> > What's the actual testcase for "rockchip-usb2phy0-probed"? If it's looking for a hard-coded path like "/sys/bus/platform/devices/ff770000.syscon:usb2-phy@e450/driver" then it can be expected to fail, since changing the node name is reflected in the device name.
+> 
+> Dang, you're right.  This is the test case:
+> 
+>   https://github.com/kernelci/bootrr/blob/main/boards/google%2Ckevin#L119
+> 
+> assert_driver_present rockchip-usb2phy-driver-present rockchip-usb2phy
+> assert_device_present rockchip-usb2phy0-probed rockchip-usb2phy ff770000.syscon:usb2-phy@e450
+> assert_device_present rockchip-usb2phy1-probed rockchip-usb2phy ff770000.syscon:usb2-phy@e460
+> 
+> Now that needs a conditional depending on the kernel version.  Or
+> we could try to make it more dynamic rather than with hard-coded
+> paths, but doing that has its own set of issues too.
 
-> > > This series does a bunch of crimes, so it's an RFC. I'm cross-posting to the
-> > > pinctrl/GPIO and LEDs lists because the PCA955x devices impact all of them. What
-> > > needs fixing is the leds-pca955x driver's failure to map the GPIO numberspace to
-> > > the pin numberspace of the PCA955x devices. The series solves that by
-> > > implementing pinctrl and pinmux in the leds-pca955x driver.
-> > >
-> > > Things I'm unsure about:
-> > >
-> > > 1. Patch 1: The pinctrl_gpio_as_pin() API feels a bit dirty, not sure what
-> > >    others thoughts are on that (Linus?).
-> > >
-> > > 2. Patch 2: I've added a new callback to hook the entirety of the pinctrl map
-> > >    parsing rather than supplying a subnode-specific callback. This was necessary
-> > >    to handle the PCA955x devicetree binding in a backwards compatible way.
-> > >
-> > > 3. Patch 4: The PCA955x devices don't actually have any pinmux hardware, but the
-> > >    properties of the pinctrl/pinmux subsystems in the kernel map nicely onto the
-> > >    problem we have. But it's quite a bit of code...
-> > >
-> > > 4. Patch 6: I also lost a bunch of time to overlooking the get_group_pins()
-> > >    callback for pinctrl, and it seems odd to me that it isn't required.
-> > >
-> > > Please review!
-> >
-> >
-> > Sounds like a hack.
->
-> Yes, possibly. Feedback like this is why I sent the series as an RFC.
->
-> > I was briefly looking into patches 1-4 and suddenly
-> > realized that the fix can be similar as in PCA9685 (PWM), I.e. we
-> > always have chips for the entire pin space and one may map them
-> > accordingly, requested in one realm (LED) in the other (GPIO)
-> > automatically is BUSY. Or I missed the point?
->
-> No, you haven't missed the point. I will look at the PCA9685 driver.
->
-> That said, my goal was to implement the behaviour intended by the
-> existing binding (i.e. fix a bug).
+And this shows once more that DT churn has consequences: it breaks a
+userspace ABI. Changing userspace visible paths for the sake of
+keeping a build-time checker quiet seems counter-productive. My
+preference would be to just revert this patch, and instead have an
+annotation acknowledging the deviation from the 'standard' and keeping
+the checker at bay.
 
-Okay, so it implies that this used to work at some point. What has
-changed from that point? Why can't we simply fix the culprit commit?
+Thanks,
 
-> However, userspace would never have
-> got the results it expected with the existing driver implementation, so
-> I guess you could argue that no such (useful) userspace exists. Given
-> that, we could adopt the strategy of always defining a gpiochip
-> covering the whole pin space, and parts of the devicetree binding just
-> become redundant.
-
-I'm lost now. GPIO has its own userspace ABI, how does it work right
-now in application to this chip?
+	M.
 
 -- 
-With Best Regards,
-Andy Shevchenko
+Without deviation from the norm, progress is not possible.
