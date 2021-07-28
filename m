@@ -2,191 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7220E3D9368
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 18:45:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E1FC3D936C
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 18:46:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229607AbhG1Qpv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 12:45:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42842 "EHLO
+        id S229809AbhG1Qq0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 12:46:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229574AbhG1Qpv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 12:45:51 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9564C061757;
-        Wed, 28 Jul 2021 09:45:48 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id p21so4087780edi.9;
-        Wed, 28 Jul 2021 09:45:48 -0700 (PDT)
+        with ESMTP id S229515AbhG1Qq0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 12:46:26 -0400
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2AEFC061764
+        for <devicetree@vger.kernel.org>; Wed, 28 Jul 2021 09:46:24 -0700 (PDT)
+Received: by mail-pl1-x635.google.com with SMTP id t21so3347777plr.13
+        for <devicetree@vger.kernel.org>; Wed, 28 Jul 2021 09:46:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=TGfA1NrZyQu1R2a0GsuAljWypmKOfYdM6LECx2rex44=;
-        b=HRJgApN2/CKWbs9hr+WFXtAIgadljNcdJPQRjHz7pIzlU8wYsvU2xwPdYaZctom5YM
-         868KASENk4JOJZVCvGOomxLzc2xczWUPAC82JHgtK75pCNnsrwCXPnvFnO74TuGmr3ku
-         5c7IBjOT/2DNJuPypDpKomQOXdDVLBLvLzBZCPNgv9pXCNcqe7i0myBvEEWurCB2F812
-         fWJvsjOrVG30AMDEcGsTz3A+F946LOimskwfiYe8uG862hEvGSo9OF/Qf01pdc9w47+p
-         MYgkcOnBOaFu6vtOmXhrhL1PI6aqjY+Ab82HUoOJBO6L1qzY+7oO3IqTfuw+ICsovIvP
-         wKsg==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3Wf14gG5Rla0NCThAzrC4jotbBpcH9EXwPpxX3uNRjo=;
+        b=EtlAYDaEc0TpuNyXhqKi50L3nKK4in1bT8Phheri8gREf7P5NrxJ2A29bcz9tTkNV4
+         KMxG0EH+veKm8iIIsYG68Hmklfn+DxuQp9m7Kv3Wqy4kOtalb2dvdpSOmUM0aFyN6p9x
+         8aa2qd57b8OCOv02Ru/xKrV2Y1aghXj14dmi8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=TGfA1NrZyQu1R2a0GsuAljWypmKOfYdM6LECx2rex44=;
-        b=gMi8copXUk55a5YpQkFPl8JyMFJRpt873GIyoZ8B5jzOfXNIVyQprJUP6s3kkNC2bB
-         PeL6yjzL+qNIya6EWzpIjIfKBIEHIps4t3eggqcZ0HJyaGfYAHOqZxTGhGTC4zobwBel
-         7xE9Eh0v9tdvki8Bqu82QW31XFx5D6qVyaNQlijiEbKxfs9agcEjdB49Mdiy5z3lNyVs
-         jaS30hGPMKnFPyVRi1X/6ZcvhjQ7Sf1ElaO/28J0yXMfFrMR6nPro4ku342lyYRA/0ja
-         snPw9A0nubgQANraco9o5MkpGy4Yi+uwepQ0mg0GjAPkJZtIk/+CHksspAwdGFHqDOMv
-         ym1A==
-X-Gm-Message-State: AOAM533/Z4g3UldGHCVFmrXXHoXbm3G01KiGxVeZbyYFx9K2zCsgAMM+
-        /loWZ4KbKZbOemrJco5GvPc=
-X-Google-Smtp-Source: ABdhPJytWGmxMlsX7P0Mt6mcG7wJoKfTFU8iv0Jiw9IHj/VGfVHrqPBGug3j3yVFepDVDbGW+XESLw==
-X-Received: by 2002:a05:6402:2228:: with SMTP id cr8mr854158edb.309.1627490747347;
-        Wed, 28 Jul 2021 09:45:47 -0700 (PDT)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id c7sm121524edn.45.2021.07.28.09.45.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Jul 2021 09:45:46 -0700 (PDT)
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: rk3568-evb1-v10: add ethernet
- support
-To:     Michael Riesch <michael.riesch@wolfvision.net>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Liang Chen <cl@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Simon Xue <xxm@rock-chips.com>
-References: <20210728161020.3905-1-michael.riesch@wolfvision.net>
- <20210728161020.3905-3-michael.riesch@wolfvision.net>
-From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <eb5932de-bd6c-de5e-d130-5252f98a12c7@gmail.com>
-Date:   Wed, 28 Jul 2021 18:45:45 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        bh=3Wf14gG5Rla0NCThAzrC4jotbBpcH9EXwPpxX3uNRjo=;
+        b=Nmz2IuHnKJ5GwqvYcY0Cay3EK+6l9zCC7FTI+sYf9CqiSVVYSHtPE+ui2WDovGTr/j
+         nslHHDh9ZxKDKly+qRTLmdd9A/lajPqONrmjGw8KxkmPr8lPuJCgnPoqcxbt7Nzw1fms
+         Ch0S/4TdrhxFu8OlrwzVycmCGlahQn5PabTtNbFYftlfjai/fwFa49tzFYGz3wA0r40j
+         PJtpVDnwJWChm6lEZCpVtW9bb26jUW2KmGiUKQ/yc+kD5lqNVrARoDNrl968/QBQ4TFf
+         pRk96piKd/jmyN2YkkUFuLEa2JoWtqZilMWSc/AixeFnKVeg+lM0lUEH4Nq+iIJZ+K2r
+         Kg9A==
+X-Gm-Message-State: AOAM530U0tzp8SMwQWQfkQolKTBN3LoOtJv4SCTFBeRojldTnh8ChM0Z
+        SuI6gFkoCV8rmUF50SHCSlMZeA==
+X-Google-Smtp-Source: ABdhPJzfO4KkJpCh98jEoXUePNoIZEGk1qRg4kKFgs4O1HX2oxNwF0DCb/etyqdvMdxChckiCrP56g==
+X-Received: by 2002:a65:4382:: with SMTP id m2mr656852pgp.205.1627490784259;
+        Wed, 28 Jul 2021 09:46:24 -0700 (PDT)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:9f1e:e713:1a5e:89dc])
+        by smtp.gmail.com with ESMTPSA id l12sm474075pff.182.2021.07.28.09.46.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Jul 2021 09:46:23 -0700 (PDT)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     dri-devel@lists.freedesktop.org
+Cc:     tzimmermann@suse.de, linux-arm-msm@vger.kernel.org,
+        a.hajda@samsung.com, sam@ravnborg.org, airlied@linux.ie,
+        bjorn.andersson@linaro.org, daniel@ffwll.ch,
+        devicetree@vger.kernel.org, rodrigo.vivi@intel.com,
+        jonas@kwiboo.se, narmstrong@baylibre.com,
+        Laurent.pinchart@ideasonboard.com, robert.foss@linaro.org,
+        jernej.skrabec@gmail.com, mripard@kernel.org,
+        linus.walleij@linaro.org, maarten.lankhorst@linux.intel.com,
+        rajeevny@codeaurora.org, lyude@redhat.com,
+        thierry.reding@gmail.com, steev@kali.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Sandeep Panda <spanda@codeaurora.org>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/6] drm/panel: atna33xc20: Fix the Samsung ATNA33XC20 panel
+Date:   Wed, 28 Jul 2021 09:45:51 -0700
+Message-Id: <20210728164557.1882787-1-dianders@chromium.org>
+X-Mailer: git-send-email 2.32.0.432.gabb21c7263-goog
 MIME-Version: 1.0
-In-Reply-To: <20210728161020.3905-3-michael.riesch@wolfvision.net>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
 
-On 7/28/21 6:10 PM, Michael Riesch wrote:
-> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
-> ---
->  .../boot/dts/rockchip/rk3568-evb1-v10.dts     | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-> index 69786557093d..8f4c40d71914 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-> @@ -13,6 +13,11 @@
->  	model = "Rockchip RK3568 EVB1 DDR4 V10 Board";
->  	compatible = "rockchip,rk3568-evb1-v10", "rockchip,rk3568";
->  
-> +	aliases {
-> +		ethernet0 = &gmac0;
-> +		ethernet1 = &gmac1;
-> +	};
-> +
->  	chosen: chosen {
->  		stdout-path = "serial2:1500000n8";
->  	};
-> @@ -67,6 +72,70 @@
->  	};
->  };
->  
-> +&gmac0 {
-> +	phy-mode = "rgmii";
-> +	clock_in_out = "output";
-> +
-> +	assigned-clocks = <&cru SCLK_GMAC0_RX_TX>, <&cru SCLK_GMAC0>;
-> +	assigned-clock-parents = <&cru SCLK_GMAC0_RGMII_SPEED>;
-> +	assigned-clock-rates = <0>, <125000000>;
-> +
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&gmac0_miim
-> +		     &gmac0_tx_bus2
-> +		     &gmac0_rx_bus2
-> +		     &gmac0_rgmii_clk
-> +		     &gmac0_rgmii_bus>;
-> +
-> +	tx_delay = <0x3c>;
-> +	rx_delay = <0x2f>;
-> +
-> +	phy-handle = <&rgmii_phy0>;
-> +	status = "okay";
-> +};
-> +
-> +&gmac1 {
-> +	phy-mode = "rgmii";
-> +	clock_in_out = "output";
-> +
-> +	assigned-clocks = <&cru SCLK_GMAC1_RX_TX>, <&cru SCLK_GMAC1>;
-> +	assigned-clock-parents = <&cru SCLK_GMAC1_RGMII_SPEED>;
-> +	assigned-clock-rates = <0>, <125000000>;
-> +
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&gmac1m1_miim
-> +		     &gmac1m1_tx_bus2
-> +		     &gmac1m1_rx_bus2
-> +		     &gmac1m1_rgmii_clk
-> +		     &gmac1m1_rgmii_bus>;
-> +
-> +	tx_delay = <0x4f>;
-> +	rx_delay = <0x26>;
-> +
-> +	phy-handle = <&rgmii_phy1>;
-> +	status = "okay";
-> +};
-> +
-> +&mdio0 {
+The overall goal of this series is to make the Samsung ATNA33XC20
+panel work more properly. As part of this, we have:
+* A bugfix for the recently abstracted DP AUX backlight code.
+* A bugfix for the sequencing of the ti-sn65dsi86 bridge driver.
+* Removal of the panel from panel-simple and moving it to its own
+  driver.
 
-> +	rgmii_phy0: phy@0 {
+If the bugfixes look good but the rest of the series needs work then
+those could land early on their own. There's no real compile time
+dependency on the bugfixes, things are just glitchier without them.
 
-Could you test with ethernet-phy.yaml?
+NOTE: this series will (slightly) conflict with my other recent series
+making eDP panels probable [1]. The conflict is easy to resolve and
+I'm happy to repost either once the other lands. It should be noted
+that the fact that the Samsung ATNA33XC20 needs its own panel driver
+means that it _can't_ handled as a probed driver. I think this is
+fine, at least for now. I don't think it would be easy to make a
+unified design with this panel and other panels given that it's an
+AMOLED panel and has a whole bunch of different components on board.
 
-  $nodename:
-    pattern: "^ethernet-phy(@[a-f0-9]+)?$"
+[1] https://lore.kernel.org/r/20210723002146.1962910-1-dianders@chromium.org/
 
-> +		compatible = "ethernet-phy-ieee802.3-c22";
-> +		reset-gpios = <&gpio2 RK_PD3 GPIO_ACTIVE_LOW>;
-> +		reset-assert-us = <20000>;
-> +		reset-deassert-us = <100000>;
-> +		reg = <0x0>;
 
-Sort order is:
-compatible
-reg
-(interrupts)
-The rest in alphabetical order.
+Douglas Anderson (6):
+  drm/dp: Don't zero PWMGEN_BIT_COUNT when driver_pwm_freq_hz not
+    specified
+  drm/bridge: ti-sn65dsi86: Fix power off sequence
+  drm/bridge: ti-sn65dsi86: Add some 100 us delays
+  Revert "drm/panel-simple: Add Samsung ATNA33XC20"
+  Revert "drm/panel-simple: Support for delays between GPIO & regulator"
+  drm/panel: atna33xc20: Introduce the Samsung ATNA33XC20 panel
 
-> +	};
-> +};
-> +
-> +&mdio1 {
+ drivers/gpu/drm/bridge/ti-sn65dsi86.c         |  17 +-
+ drivers/gpu/drm/drm_dp_helper.c               |  10 +-
+ drivers/gpu/drm/panel/Kconfig                 |  12 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ .../gpu/drm/panel/panel-samsung-atna33xc20.c  | 366 ++++++++++++++++++
+ drivers/gpu/drm/panel/panel-simple.c          |  61 ---
+ 6 files changed, 398 insertions(+), 69 deletions(-)
+ create mode 100644 drivers/gpu/drm/panel/panel-samsung-atna33xc20.c
 
-> +	rgmii_phy1: phy@0 {
+-- 
+2.32.0.432.gabb21c7263-goog
 
-dito
-
-> +		compatible = "ethernet-phy-ieee802.3-c22";
-> +		reset-gpios = <&gpio2 RK_PD1 GPIO_ACTIVE_LOW>;
-> +		reset-assert-us = <20000>;
-> +		reset-deassert-us = <100000>;
-> +		reg = <0x0>;
-
-dito
-
-> +	};
-> +};
-> +
->  &sdhci {
->  	bus-width = <8>;
->  	max-frequency = <200000000>;
-> 
