@@ -2,67 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6638F3D94AB
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 19:55:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 295383D94A3
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 19:54:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230427AbhG1RzX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 13:55:23 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:50376 "EHLO vps0.lunn.ch"
+        id S231338AbhG1RyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 13:54:11 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38590 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229581AbhG1RzW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Jul 2021 13:55:22 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=hpRbk0yCaD06IT2pljlpFDQ+YXKte4gavVlH1cev1Rw=; b=3TqZYHyMWBYfoFw895VTj5AHTx
-        L059GjKxNd/svHThIWsqVNnhCK/2FDLfwgFKZaKuQNISIwNCjPS6Ftix2BEc8yjgXM481q5PCRqcj
-        2AA+3o6sB3Bs8P8H/Bygb8bfir6xaHyHsIAdrm0hWP9oTDx5f58F31Pa9Ne6mwWuAuic=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1m8nlw-00FDLz-HE; Wed, 28 Jul 2021 19:55:12 +0200
-Date:   Wed, 28 Jul 2021 19:55:12 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Michael Riesch <michael.riesch@wolfvision.net>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Liang Chen <cl@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Simon Xue <xxm@rock-chips.com>
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: rk3568-evb1-v10: add ethernet
+        id S231287AbhG1RyK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Jul 2021 13:54:10 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id F3B4B60C3E;
+        Wed, 28 Jul 2021 17:54:05 +0000 (UTC)
+Date:   Wed, 28 Jul 2021 18:56:41 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Siddharth Manthan <siddharth_manthan@outlook.com>
+Cc:     robh+dt@kernel.org, ktsai@capellamicro.com, lars@metafoo.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org, nikita@trvn.ru
+Subject: Re: [PATCH 2/2] drivers: iio: light: cm3323: Add device tree
  support
-Message-ID: <YQGaAFvqqc7wXrWD@lunn.ch>
-References: <20210728161020.3905-1-michael.riesch@wolfvision.net>
- <20210728161020.3905-3-michael.riesch@wolfvision.net>
+Message-ID: <20210728185641.7ea37875@jic23-huawei>
+In-Reply-To: <SG2PR02MB38141E2560616F0514CF9A768FEA9@SG2PR02MB3814.apcprd02.prod.outlook.com>
+References: <20210728122216.22849-1-siddharth_manthan@outlook.com>
+        <SG2PR02MB38141E2560616F0514CF9A768FEA9@SG2PR02MB3814.apcprd02.prod.outlook.com>
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210728161020.3905-3-michael.riesch@wolfvision.net>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 28, 2021 at 06:10:20PM +0200, Michael Riesch wrote:
-> +&gmac0 {
-> +	phy-mode = "rgmii";
+On Wed, 28 Jul 2021 17:52:16 +0530
+Siddharth Manthan <siddharth_manthan@outlook.com> wrote:
 
-...
+> Add Device Tree support for Capella cm3323 Ambient Light Sensor
+> 
+> Signed-off-by: Siddharth Manthan <siddharth_manthan@outlook.com>
+It 'should' have worked without the explicit of_device_id table,
+via the fallback that I2C has to use the i2c_device_id table.
+
+I'm fine with making it explicit though as that route doesn't
+use the vendor ID at all, so we 'might' get a clash.
+
+I'll change the patch title when applying to something like
+iio:light:cm3323: Add of_device_id table
+
+Note also drop the drivers bit as we don't normally have that for
+IIO devices.
+
+Jonathan
+
+> ---
+>  drivers/iio/light/cm3323.c | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/drivers/iio/light/cm3323.c b/drivers/iio/light/cm3323.c
+> index 6d1b0ffd1..fd9a8c27d 100644
+> --- a/drivers/iio/light/cm3323.c
+> +++ b/drivers/iio/light/cm3323.c
+> @@ -256,9 +256,16 @@ static const struct i2c_device_id cm3323_id[] = {
+>  };
+>  MODULE_DEVICE_TABLE(i2c, cm3323_id);
+>  
+> +static const struct of_device_id cm3323_of_match[] = {
+> +	{ .compatible = "capella,cm3323", },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, cm3323_of_match);
 > +
-> +	tx_delay = <0x3c>;
-> +	rx_delay = <0x2f>;
+>  static struct i2c_driver cm3323_driver = {
+>  	.driver = {
+>  		.name = CM3323_DRV_NAME,
+> +		.of_match_table = cm3323_of_match,
+>  	},
+>  	.probe		= cm3323_probe,
+>  	.id_table	= cm3323_id,
 
-Hi Michael
-
-In general, we try to have the PHY introduce the RGMII delays, not the
-MAC. Did you try
-
-phy-mode = "rgmii-id";
-
-and remove these delay values? It is hard for me to say if that will
-work because i've no idea what 0x3c and 0x2f means? Are they
-equivalent to 2ns?
-
-     Andrew
