@@ -2,97 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E05F3D9312
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 18:22:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AB033D8C92
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 13:19:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229797AbhG1QWN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 12:22:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37174 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229542AbhG1QWM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 12:22:12 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27F6BC061757;
-        Wed, 28 Jul 2021 09:22:10 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id a4-20020a17090aa504b0290176a0d2b67aso10870595pjq.2;
-        Wed, 28 Jul 2021 09:22:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=0V2k2Na18FcBV+BsH63ifuucHYEQEy28n8NPkKkmgbo=;
-        b=Js1kEJ/0cn/vs8Jatu1KFmLm/rH7EpdhZ+Ekx7eXTD1jMYX4XAPKIUJ8UKsKsXRF1x
-         5HqzIQhGUhPBkwOZKuaIoEHOAJRf4KGulmDNSRhvRd2YlIyCJBZ7AAVfIajce6qDYwaF
-         FY8JxRIeA1VCi9BKgmmolOkL2nCl0mE4f2VNRy/oeXxYDKvToI72G4Um1r4+bYl3PTKX
-         TOl2B14mQUtefH6FsevryNprtgEVcVFkcoQjobuSu8ACmaPMFIQoj8pNjsp9ufj7a1G8
-         1RRNOwIW755AwTIhj/VePHUo+SRzeX+yWTntChpJ/yfcNKX+VqkeuXghU5kT1B4NTRGY
-         eQlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=0V2k2Na18FcBV+BsH63ifuucHYEQEy28n8NPkKkmgbo=;
-        b=RQQL3DmbJq4g/1U1mG98F0I/FpzA8X4qqZ17oi8OXzqw/veNmhLYP35cQEFmscq8Fm
-         fXVuqcqfkkRn0TznX9g8x0hWY7TL/rV8sMxisWKbGzpcEpGK7MRYjEQHMaRI1AovfC1B
-         MWQjfz39wDVbTfuPVqd7GkMEUfubxtvg6Xt4YedFAec8UixCTsQFu74KoXmJISErXVI5
-         z8+cZhVEexHsAjzS0WVJAG6brBy+qhs3/YWA4+2uDbcxozkYabpcXRlhWcYXQzJcs7EE
-         PpJXxWOO5wVo6tkgW6yraOWbA0o0lbA/0suOLnb7KiRsIvTWLESSU2GnGsPPU4Ir61Gv
-         k7KQ==
-X-Gm-Message-State: AOAM533UAka9fGtU9xM66zqL6Td471Uwbt1mtIdbAbmzfUZ4enM8WYU9
-        dKaJJVsbbKer0bLeYUB9d/g=
-X-Google-Smtp-Source: ABdhPJzrtL1UuAhv31tB/IB9aX3ZYjptbZvPQK7GRCAIzSmP3Q9At1zjpGbMesrZlAiukCCst5qkwQ==
-X-Received: by 2002:a63:155c:: with SMTP id 28mr614831pgv.154.1627489329792;
-        Wed, 28 Jul 2021 09:22:09 -0700 (PDT)
-Received: from localhost.localdomain ([2405:204:828b:a80e:e12:9310:6b88:a724])
-        by smtp.gmail.com with ESMTPSA id j5sm214323pgg.41.2021.07.28.09.22.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Jul 2021 09:22:09 -0700 (PDT)
-From:   Siddharth Manthan <siddharth.manthan@gmail.com>
-To:     jic23@kernel.org
-Cc:     robh+dt@kernel.org, nikita@trvn.ru, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        ktsai@capellamicro.com, lars@metafoo.de,
-        Siddharth Manthan <siddharth.manthan@gmail.com>
-Subject: [PATCH 2/2] drivers: iio: light: cm3323: Add device tree support
-Date:   Wed, 28 Jul 2021 16:30:48 +0530
-Message-Id: <20210728110048.14593-2-siddharth.manthan@gmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210728110048.14593-1-siddharth.manthan@gmail.com>
-References: <20210728110048.14593-1-siddharth.manthan@gmail.com>
+        id S232786AbhG1LTT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 07:19:19 -0400
+Received: from ssl.serverraum.org ([176.9.125.105]:49329 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234722AbhG1LTS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 07:19:18 -0400
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 703A622175;
+        Wed, 28 Jul 2021 13:19:14 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1627471154;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=7gd/q/9Efd319bq9/Xek1Wzgq86ZS5+DbyemxYnLNbM=;
+        b=EGpSJ0lCMS2uDVS4hfL0F5Grk6GKZ+3lPJ/TYuKdNMDwuYvMWSDoszzP1EX+m+yDFru2f5
+        3F8co3OoqPGVJseQSZIdrJ14thRZ0YXF/pZtqtIGqa/ygiS/qvbFc5pZTtZhXttCF5ZU2Z
+        5ckhGIXV7n5uZKmyyPAxw7CMAqV4vWM=
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 28 Jul 2021 13:19:14 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Emil Renner Berthing <kernel@esmil.dk>
+Cc:     Drew Fustini <drew@beagleboard.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Michael Zhu <michael.zhu@starfivetech.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Fu Wei <tekkamanninja@gmail.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Huan Feng <huan.feng@starfivetech.com>
+Subject: Re: [RFC PATH 2/2] gpio: starfive-jh7100: Add StarFive JH7100 GPIO
+ driver
+In-Reply-To: <CANBLGczfrmv1tzFm=Fu6B_S8nZ=ckwd3DOBkN4x7BUZtAg7bdw@mail.gmail.com>
+References: <20210701002037.912625-1-drew@beagleboard.org>
+ <20210701002037.912625-3-drew@beagleboard.org>
+ <8c59105d32a9936f8806501ecd20e044@walle.cc>
+ <CACRpkdbhKsuXZiLCh_iajJQWDdQQOZ87QF3xDr5Vc66SoVCnxQ@mail.gmail.com>
+ <20210726071124.GA9184@x1> <dad13b899b69436acc1804b7c3438639@walle.cc>
+ <20210727052851.GA3147871@x1> <ff76b62927e3f5f016f6c4c11ca16ccf@walle.cc>
+ <CANBLGczfrmv1tzFm=Fu6B_S8nZ=ckwd3DOBkN4x7BUZtAg7bdw@mail.gmail.com>
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <a15823a88515f944cad6d77bdd65555c@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Device Tree support for Capella cm3323 Ambient Light Sensor
+Am 2021-07-28 12:59, schrieb Emil Renner Berthing:
+> On Wed, 28 Jul 2021 at 11:49, Michael Walle <michael@walle.cc> wrote:
+>> Hi Drew,
+>> Am 2021-07-27 07:28, schrieb Drew Fustini:
+>> [..]
+>> >> > > Drew please look at drivers/gpio/gpio-ftgpio010.c for an example
+>> >> > > of GPIO_GENERIC calling bgpio_init() in probe().
+>> >> >
+>> >> > Thank you for the suggestion. However, I am not sure that will work for
+>> >> > this SoC.
+>> >> >
+>> >> > The GPIO registers are described in section 12 of JH7100 datasheet [1]
+>> >> > and I don't think they fit the expectation of gpio-mmio.c because there
+>> >> > is a seperate register for each GPIO line for output data value and
+>> >> > output enable.
+>> >> >
+>> >> > There are 64 output data config registers which are 4 bytes wide. There
+>> >> > are 64 output enable config registers which are 4 bytes wide too. Output
+>> >> > data and output enable registers for a given GPIO pad are contiguous.
+>> >> > GPIO0_DOUT_CFG is 0x50 and GPIO0_DOEN_CFG is 0x54 while GPIO1_DOUT_CFG
+>> >> > is 0x58 and GPIO1_DOEN_CFG is 0x5C. The stride between GPIO pads is
+>> >> > effectively 8, which yields the formula: GPIOn_DOUT_CFG is 0x50+8n.
+>> >> > Similarly, GPIO0_DOEN_CFG is 0x54 and thus GPIOn_DOEN_CFG is 0x54+8n.
+>> >> >
+>> >> > However, GPIO input data does use just one bit for each line. GPIODIN_0
+>> >> > at 0x48 covers GPIO[31:0] and GPIODIN_1 at 0x4c covers GPIO[63:32].
+>> 
+>> Mh, I'm not sure I'm understanding the datasheet/registers. _DOUT_CFG
+>> and _DOEN_CFG seem to specify the pad where this GPIO is mapped to.
+>> Shouldn't this be some kind of pinctrl then? Apparently you can map
+>> any GPIO number to any output pad, no? Or at least to all pads
+>> which are described in Table 11-2. What happens if two different GPIOs
+>> are mapped to the same pad? Bit 31 in these _CFG seems to be an invert
+>> bit, but what does it invert?
+>> 
+>> Similar, the input GPIOs are connected to an output pad by all the
+>> GPI_*_CFG registers.
+>> 
+>> To me it seems, that there two multiplexers for each GPIO, where
+>> you can connect any GPIOn to any input pad and output pad. Sound
+>> like a huge overkill. I must be missing something here.
+>> 
+>> But what puzzles me the most, where do I set the actual GPIO output
+>> value?
+> 
+> Yeah, it's a little confusing. The DOUT registers choose between a 
+> number of
+> signals from various peripherals to control the output value of the
+> pin. Similarly
+> the DOEN registers chose between a number of signals to control the 
+> output
+> enable of the pin. However, two of those signals are special in that 
+> they are
+> constant 0 or constant 1. This is how you control the output value and 
+> output
+> enable from software like a regular GPIO.
+> 
+> You're completely right though. This ought to be managed by a proper 
+> pinctrl
+> driver, and I'm working on one here:
+> https://github.com/esmil/linux/commits/beaglev-pinctrl
 
-Signed-off-by: Siddharth Manthan <siddharth.manthan@gmail.com>
----
- drivers/iio/light/cm3323.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+Ahh, I see. So for the non-gpio function you have to set a value other
+than 0 or 1, correct?
 
-diff --git a/drivers/iio/light/cm3323.c b/drivers/iio/light/cm3323.c
-index 6d1b0ffd144b..fd9a8c27de2e 100644
---- a/drivers/iio/light/cm3323.c
-+++ b/drivers/iio/light/cm3323.c
-@@ -256,9 +256,16 @@ static const struct i2c_device_id cm3323_id[] = {
- };
- MODULE_DEVICE_TABLE(i2c, cm3323_id);
- 
-+static const struct of_device_id cm3323_of_match[] = {
-+	{ .compatible = "capella,cm3323", },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, cm3323_of_match);
-+
- static struct i2c_driver cm3323_driver = {
- 	.driver = {
- 		.name = CM3323_DRV_NAME,
-+		.of_match_table = cm3323_of_match,
- 	},
- 	.probe		= cm3323_probe,
- 	.id_table	= cm3323_id,
--- 
-2.31.1
+And as an implementation detail you have to set the corresponding OE
+pin if the non-gpio function will need a tristate pin (or whatever).
 
+So, the _DOUT_CFG will actually be shared between the pinctrl and the
+gpio driver, right? (I haven't done anything with pinctrl, so this might
+be a stupid question).
+
+-michael
