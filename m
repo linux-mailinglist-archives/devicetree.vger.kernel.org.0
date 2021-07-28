@@ -2,71 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E89053D92B8
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 18:08:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CAEF93D92AF
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 18:03:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237849AbhG1QHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 12:07:46 -0400
-Received: from mail.bonc.com.cn ([39.155.134.159]:59297 "EHLO bonc.com.cn"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S237314AbhG1QD2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Jul 2021 12:03:28 -0400
-X-Greylist: delayed 384 seconds by postgrey-1.27 at vger.kernel.org; Wed, 28 Jul 2021 12:03:28 EDT
-Received: from localhost.localdomain.localdomain (unknown [223.70.140.94])
-        by coremail (Coremail) with SMTP id AQAAfwCnRmTpfQFhLjwiAA--.10309S2;
-        Wed, 28 Jul 2021 23:55:34 +0800 (CST)
-From:   Baisheng Gao <gaobaisheng@bonc.com.cn>
-To:     robh+dt@kernel.org, kuba@kernel.org, davem@davemloft.net
-Cc:     devicetree@vger.kernel.org
-Subject: [PATCH] Documentation: fix incorrect macro referencing in mscc-phy-vsc8531.txt
-Date:   Thu, 29 Jul 2021 00:01:26 +0800
-Message-Id: <1627488086-200263-1-git-send-email-gaobaisheng@bonc.com.cn>
-X-Mailer: git-send-email 1.8.3.1
-X-CM-TRANSID: AQAAfwCnRmTpfQFhLjwiAA--.10309S2
-X-Coremail-Antispam: 1UD129KBjvdXoWrtFykWF4kAFyDKw4kGFyxAFb_yoWkuFcEkF
-        naqF18Jr9rGr1Fga1jvrsrZF4Yvr4jy3s7u3sFqFyIv3yrA398CFyDJwnxZr1xCFWUuF4x
-        Zry8uF17u3ZrKjkaLaAFLSUrUUUUbb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-        9fnUUIcSsGvfJTRUUUb7kYjsxI4VWxJwAYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I
-        6I8E6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM2
-        8CjxkF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVWUJVWUCwA2z4x0Y4vE2Ix0
-        cI8IcVCY1x0267AKxVWUJVW8JwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z2
-        80aVCY1x0267AKxVW0oVCq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAK
-        zVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Gr0_Cr1lOx
-        8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JM4x0Y48IcxkI7VAKI48G6xCjnVAK
-        z4kxMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI
-        0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUAVWUtwCI42IY
-        6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6x
-        AIw20EY4v20xvaj40_Wr1j6rW3Jr1lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280
-        aVCY1x0267AKxVWUJVW8JbIYCTnIWIevJa73UjIFyTuYvjxUIoqcUUUUU
-X-CM-SenderInfo: xjdrutplvkv0nj6e003fof0zgofq/
+        id S230397AbhG1QDC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 12:03:02 -0400
+Received: from mail-io1-f48.google.com ([209.85.166.48]:44810 "EHLO
+        mail-io1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230372AbhG1QDB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 12:03:01 -0400
+Received: by mail-io1-f48.google.com with SMTP id l18so3510155ioh.11;
+        Wed, 28 Jul 2021 09:02:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=AlrRt63O8LnOYD8MBx5zu+erqllBRCmDVTupX8LxCl4=;
+        b=lfX7bbMoMTuJxZPOf9YXFv/Yatv7dWC5pFw3isjDUU0A0BxbJ1Gv4jKcFX4R4NGG8L
+         fZrVhV1kiQAMfHuFa3h/K2TRxCFIfmKI0pSH0ZvEMUOxNvxxLkqpTu0xtCHSdJACDc4u
+         F/uH4t+lDlI78sOiwKDmGSwyhu6NWUOXclmS2QrMh0gECxDjK1bmcxxHWODXY+DUwKLX
+         vROkubl9eKaLo3KXeDU8emZB65/M8M+v/lIT8ndmCooZDtsruVL0Z7EfRpImf7FZM6+h
+         FYpf7AUIHI130io3Tl+7+HjhdaczzRnGTN0R/XV7/LFwmYf+jHDp0BMx7PdcD20pf53H
+         3E4A==
+X-Gm-Message-State: AOAM530t8SdSFgEdL2/55v6ilBMmHaoJUJgAVbmBTZyn3emFxTifu7s8
+        IspbFWMgwk6HxIqQA5UugA==
+X-Google-Smtp-Source: ABdhPJxgx+iXa8zZL6hdbpKKkzPoHiC+UmtuBd1XEyLj60qo3WskzKZEDMsDRQXw9uC0k+WDOaFnrQ==
+X-Received: by 2002:a05:6602:1814:: with SMTP id t20mr168381ioh.204.1627488178433;
+        Wed, 28 Jul 2021 09:02:58 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id z6sm159022ilz.54.2021.07.28.09.02.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Jul 2021 09:02:57 -0700 (PDT)
+Received: (nullmailer pid 1150584 invoked by uid 1000);
+        Wed, 28 Jul 2021 16:02:53 -0000
+Date:   Wed, 28 Jul 2021 10:02:53 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Prabhakar <prabhakar.csengg@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v4 1/4] dt-bindings: pinctrl: renesas,rzg2l-pinctrl: Add
+ DT bindings for RZ/G2L pinctrl
+Message-ID: <20210728160253.GA1150550@robh.at.kernel.org>
+References: <20210727112328.18809-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20210727112328.18809-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210727112328.18809-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Modify LINK_1000_ACTIVITY and LINK_100_ACTIVITY to VSC8531_LINK_1000_ACTIVITY
-and VSC8531_LINK_100_ACTIVITY respectively in the example of ethernet-phy node
-according to include/dt-bindings/net/mscc-phy-vsc8531.h.
+On Tue, 27 Jul 2021 12:23:25 +0100, Lad Prabhakar wrote:
+> Add device tree binding documentation and header file for Renesas
+> RZ/G2L pinctrl.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> Hi Rob,
+> 
+> This patch requires the base series to be Linux 5.14-rc2(or +) or
+> the bots would complain about check failures
+> 
+> Cheers,
+> Prabhakar
+> ---
+>  .../pinctrl/renesas,rzg2l-pinctrl.yaml        | 155 ++++++++++++++++++
+>  include/dt-bindings/pinctrl/rzg2l-pinctrl.h   |  23 +++
+>  2 files changed, 178 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
+>  create mode 100644 include/dt-bindings/pinctrl/rzg2l-pinctrl.h
+> 
 
-Signed-off-by: Baisheng Gao <gaobaisheng@bonc.com.cn>
----
- Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
-index 87a27d7..0a3647f 100644
---- a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
-+++ b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
-@@ -67,7 +67,7 @@ Example:
-                 compatible = "ethernet-phy-id0007.0570";
-                 vsc8531,vddmac		= <3300>;
-                 vsc8531,edge-slowdown	= <7>;
--                vsc8531,led-0-mode	= <LINK_1000_ACTIVITY>;
--                vsc8531,led-1-mode	= <LINK_100_ACTIVITY>;
-+                vsc8531,led-0-mode	= <VSC8531_LINK_1000_ACTIVITY>;
-+                vsc8531,led-1-mode	= <VSC8531_LINK_100_ACTIVITY>;
- 		load-save-gpios		= <&gpio 10 GPIO_ACTIVE_HIGH>;
-         };
--- 
-1.8.3.1
-
-
+Reviewed-by: Rob Herring <robh@kernel.org>
