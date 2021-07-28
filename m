@@ -2,209 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A35C3D9588
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 20:49:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C74D3D9673
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 22:14:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230059AbhG1Stj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 14:49:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43414 "EHLO
+        id S231158AbhG1UO0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 16:14:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229920AbhG1Sti (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 14:49:38 -0400
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D727DC0613CF
-        for <devicetree@vger.kernel.org>; Wed, 28 Jul 2021 11:49:36 -0700 (PDT)
-Received: by mail-oi1-x231.google.com with SMTP id x15so4931534oic.9
-        for <devicetree@vger.kernel.org>; Wed, 28 Jul 2021 11:49:36 -0700 (PDT)
+        with ESMTP id S230289AbhG1UOZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 16:14:25 -0400
+Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E90C9C061765
+        for <devicetree@vger.kernel.org>; Wed, 28 Jul 2021 13:14:23 -0700 (PDT)
+Received: by mail-io1-xd2a.google.com with SMTP id 185so4249771iou.10
+        for <devicetree@vger.kernel.org>; Wed, 28 Jul 2021 13:14:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=U7vNPIko5GOjWbPYkaIByKIDTKv6SGLaM0HuUzXJ7Do=;
-        b=IWX2ITiBL6y1vEe0ozMojPakXQ01o2k+aYejjRl4zE0021Ay7iEGsZUh31vLZY0Jym
-         AOJRN8JGcT1MKHxDPwcHpbt69C31nkw+qyFcB+Z3sRSXX0v2z4vXlfzL46ZzUPi53rb5
-         iwIgFzidujHad32g5L9CypUC0bjt30ch/DQ6wUzuS451o+Wn/dX7E+oxoZ3msZfSAKhE
-         MDeboJH25jqc2RnIMB687Kfh2Rj8OgA+jYJHJdnBy6aaPqJw/cV4wYWBi5cc2rBgRcMH
-         VRSko1PV8GqQxa5l63HsgWd8hYjb40bHmCKsNjENNfVoFjzpGU5RiPScAxLzYAIKLzg0
-         NZ7g==
+        d=engleder-embedded-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ubJgrDNEMsCflqG4YOXZKMLlAzg0rRahHfeJ5NprhF4=;
+        b=AUo6FFwz913kDcN1mpv6AVTcXif3PDz/6RQZXRMSov+XphL+u5wIBnKUG/Lg0GF14A
+         LjWbd11MNhh3GEwvrf8gmBxImE+rzhg4WKpI+MQqE6Ccv/0jdOK5E7CDPeY3MQHFsBTv
+         KQt7HGf8sQNcsOZcbXlXJ2ESxsxHdwzj5V6vqhmHdDGOOejzTSmh0Hgt94rqV6cB7vQM
+         jBt6dkzL/xg0bk0MXWlfFSdiK6PotnaMpmZ6Dp0OEgHfxNOMEBCnJw9wIzfAkPaPFV0x
+         WYu7PIdYykbV5F4IJfTeA3R0I0pTfUs0YZMCZOGOy8fGCBRV7YLTuJjZ3+K3VPRXkwVK
+         r9Nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=U7vNPIko5GOjWbPYkaIByKIDTKv6SGLaM0HuUzXJ7Do=;
-        b=C7ClUaAjtyOOltloZeMIlTnG+AgXiUBFr16K10mXlVUuCJwtEcmEBSTVDc7E3u2Kb1
-         JuYDFx9ERr9TpVxrjOdddRpI6DFfXPhrNa8p05SqQ1+hCRbKXpIaO0uMZJgKkfNSdlQq
-         C5IJvoAUcGvdHosQOL/CHj4mCYX/C5ODAGL/+V/0tlpqdZ5xoH7USUln/WSlJ/xZXWgx
-         rTGNGEFokelN7Y3PpQ1NI7B2xyzQ/vtxWc6ELIkqdRl0F1ZJJKZ7CXcWOLwpnT4qYw7D
-         FIC39dWmOudRWiF2wTovnvT54jGEphKglUhZw9AsaYc3+9rZ1dKObRzBV4Xd9nwI7NhA
-         hHbg==
-X-Gm-Message-State: AOAM531IS+99EWByh3dQPCxJRkMEABVLbk7uU4NSpP9YAV8jbUCO74wH
-        KSe5ZrC5A4vRIytWDzRRjBXGIQ==
-X-Google-Smtp-Source: ABdhPJwxcGRr32B2c1xZaRJ3khgROrE350We7kDTSR0NZxjlPl6eo+gEwRdkmWxv3Tw1zkx794iADg==
-X-Received: by 2002:aca:5f8b:: with SMTP id t133mr7259687oib.15.1627498176010;
-        Wed, 28 Jul 2021 11:49:36 -0700 (PDT)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id b6sm149201oib.51.2021.07.28.11.49.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Jul 2021 11:49:35 -0700 (PDT)
-Date:   Wed, 28 Jul 2021 11:47:45 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
-        Stephen Boyd <swboyd@chromium.org>, ulf.hansson@linaro.org,
-        viresh.kumar@linaro.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, rojay@codeaurora.org,
-        stephan@gerhold.net
-Subject: Re: [PATCH v4 2/2] arm64: dts: sc7180: Add required-opps for i2c
-Message-ID: <YQGmUWE8quTVMV6+@ripper>
-References: <YPHxfHPC/faq/y+J@yoga>
- <CAE-0n50qx80cMFPJ1x9rc+EMR1L+j2CUMyDjWAbnE9mPHjf-TQ@mail.gmail.com>
- <YPIBK/NJgBNZVI8Y@yoga>
- <12711a61-e16c-d2bc-6e04-ab94c7551abe@codeaurora.org>
- <YPXQNFYKfH/xZxFY@yoga>
- <bc79ea3e-4981-8f9b-f9a7-59cb972047a7@codeaurora.org>
- <YP2Y6qs5P5mb2jzE@yoga>
- <b6b315ae-ee68-6ba8-7453-f28dace3d8d2@codeaurora.org>
- <YQDTImwRhp8juvKh@yoga>
- <f73f1c31-dc31-32f9-d7d8-1aa3233b0040@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ubJgrDNEMsCflqG4YOXZKMLlAzg0rRahHfeJ5NprhF4=;
+        b=bZtRhA//robChyfuXspLKJy6DuagRaR6mQaAWLYOu9s9O5Gwd8HgXrz8/2iPMutMQB
+         nL6As3TbJYfsHIMQDOQQ/BKKAGBDiTnZvmktgHEF08ZSSZ48+AUlqDpmcuAq/Gm8GtXk
+         oHeI5ymXsxS3HOWydBJxmK65c7Me3ihnEx0Rh0SG9oPJYd9XNOhD9aOq0rtqsvEFxKb3
+         4mLy465T1MWr1C0TEALFk6FRuP4qR0m13fQAAC2BJ3s6ToFE3OvGfhsj7qDvhjIy51Zq
+         fdtgS9aU0GftEKgf6xlkTTS2LScLlxnNHcc3GXQVamYUn0XrOXhiCNP72eLxgxq8GEX7
+         BNeg==
+X-Gm-Message-State: AOAM533663R25po8gOHlT7y+RrQmnmrVONZ+IYMWWW8w24e6/7wBPUce
+        uMujmOr+SVV56YblWVlM+CmHDKLJPRJa5HTDHGB0dBC084S7vn0AZhI=
+X-Google-Smtp-Source: ABdhPJxzqdXkxuX25EnHM978DCQhthOlj+NIH/N6KcP4+iZ2prrC914LGZnIHH2uvlZ2pl+4CvlQWWbP61r6zbicC4M=
+X-Received: by 2002:a05:6638:538:: with SMTP id j24mr1293839jar.59.1627503263335;
+ Wed, 28 Jul 2021 13:14:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f73f1c31-dc31-32f9-d7d8-1aa3233b0040@linaro.org>
+References: <20210726194603.14671-1-gerhard@engleder-embedded.com>
+ <20210726194603.14671-3-gerhard@engleder-embedded.com> <CAL_JsqLe0XScBgCJ+or=QdnnUGp36cyxr17BhKrirbkZ_nrxkA@mail.gmail.com>
+ <CANr-f5wscRwY1zk4tu2qY_zguLf+8qNcEqp46GzpMka8d-qxjQ@mail.gmail.com>
+ <CAL_JsqKq6H471iFoLWRGvNSLpaJmuF+feDFut2p+J725n3U4HA@mail.gmail.com>
+ <ae17968a-e265-6108-233a-bd0538ad186c@xilinx.com> <CANr-f5zvWN6pFUqRHvYV9oMGhF+VBJzhK+yE+SqMuSEhA5-X7Q@mail.gmail.com>
+ <b3921ff3-55d4-0d26-ebe3-2fee0c73332e@xilinx.com>
+In-Reply-To: <b3921ff3-55d4-0d26-ebe3-2fee0c73332e@xilinx.com>
+From:   Gerhard Engleder <gerhard@engleder-embedded.com>
+Date:   Wed, 28 Jul 2021 22:14:12 +0200
+Message-ID: <CANr-f5y4=1hj-6WFT1HdewU=sich6KgkgmR6-qWimFxQiV5MFQ@mail.gmail.com>
+Subject: Re: [PATCH net-next 2/5] dt-bindings: net: Add tsnep Ethernet controller
+To:     Michal Simek <michal.simek@xilinx.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        David Miller <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 28 Jul 07:01 PDT 2021, Dmitry Baryshkov wrote:
+On Wed, Jul 28, 2021 at 12:55 PM Michal Simek <michal.simek@xilinx.com> wrote:
+> >>>>>> +      - enum:
+> >>>>>> +        - engleder,tsnep
+> >>>>>
+> >>>>> tsnep is pretty generic. Only 1 version ever? Or differences are/will
+> >>>>> be discoverable by other means.
+> >>>>
+> >>>> Differences shall be detected by flags in the registers; e.g., a flag for
+> >>>> gate control support. Anyway a version may make sense. Can you
+> >>>> point to a good reference binding with versions? I did not find a
+> >>>> network controller binding with versions.
+> >>>
+> >>> Some of the SiFive IP blocks have versions. Version numbers are the
+> >>> exception though. Ideally they would correspond to some version of
+> >>> your FPGA image. I just don't want to see 'v1' because that sounds
+> >>> made up. The above string can mean 'v1' or whatever version you want.
+> >>> I'm fine if you just add some description here about feature flag
+> >>> registers.
+> >>
+> >> Don't Xilinx design tool (vivado) force you to use IP version?
+> >> Normally all Xilinx IPs have certain version because that's the only way
+> >> how to manage it.
+> >
+> > Yes I use an IP version in the Xilinx design tool. I use it as a version of the
+> > VHDL code itself. In my case this version is not related to the
+> > hardware software
+> > interface. The goal is to keep the hardware software interface compatible, so
+> > the IP version should not be relevant.
+>
+> I expect this is goal for everybody but it fails over time. We normally
+> compose compatible string for PL based IP with IP version which is used.
+> And it is quite common that couple of HW version are SW compatible to
+> each other.
+> It means use the same HW version as you use now. When you reach the
+> point when your HW IP needs to be upgraded and will require SW alignment
+> you have versions around which can be used directly.
 
-> On 28/07/2021 06:46, Bjorn Andersson wrote:
-> > On Tue 27 Jul 02:35 CDT 2021, Rajendra Nayak wrote:
-> > 
-> > > 
-> > > On 7/25/2021 10:31 PM, Bjorn Andersson wrote:
-> > > > On Mon 19 Jul 23:29 CDT 2021, Rajendra Nayak wrote:
-> > > > 
-> > > > > 
-> > > > > 
-> > > > > On 7/20/2021 12:49 AM, Bjorn Andersson wrote:
-> > > > > > On Mon 19 Jul 04:37 CDT 2021, Rajendra Nayak wrote:
-> > > > > > 
-> > > > > > > 
-> > > > > > > 
-> > > > > > > On 7/17/2021 3:29 AM, Bjorn Andersson wrote:
-> > > > > > > > On Fri 16 Jul 16:49 CDT 2021, Stephen Boyd wrote:
-> > > > > > > > 
-> > > > > > > > > Quoting Bjorn Andersson (2021-07-16 13:52:12)
-> > > > > > > > > > On Fri 16 Jul 15:21 CDT 2021, Stephen Boyd wrote:
-> > > > > > > > > > 
-> > > > > > > > > > > Quoting Bjorn Andersson (2021-07-16 13:18:56)
-> > > > > > > > > > > > On Fri 16 Jul 05:00 CDT 2021, Rajendra Nayak wrote:
-> > > > > > > > > > > > 
-> > > > > > > > > > > > > qup-i2c devices on sc7180 are clocked with a fixed clock (19.2 MHz)
-> > > > > > > > > > > > > Though qup-i2c does not support DVFS, it still needs to vote for a
-> > > > > > > > > > > > > performance state on 'CX' to satisfy the 19.2 Mhz clock frequency
-> > > > > > > > > > > > > requirement.
-> > > > > > > > > > > > > 
-> > > > > > > > > > > > 
-> > > > > > > > > > > > Sounds good, but...
-> > > > > > > > > > > > 
-> > > > > > > > > > > > > Use 'required-opps' to pass this information from
-> > > > > > > > > > > > > device tree, and also add the power-domains property to specify
-> > > > > > > > > > > > > the CX power-domain.
-> > > > > > > > > > > > > 
-> > > > > > > > > > > > 
-> > > > > > > > > > > > ..is the required-opps really needed with my rpmhpd patch in place?
-> > > > > > > > > > > > 
-> > > > > > > > > > > 
-> > > > > > > > > > > Yes? Because rpmhpd_opp_low_svs is not the lowest performance state for
-> > > > > > > > > > > CX.
-> > > > > > > > > > 
-> > > > > > > > > > On e.g. sm8250 the first available non-zero corner presented in cmd-db
-> > > > > > > > > > is low_svs.
-> > > > > > > 
-> > > > > > > what rail is this? the mmcx? Perhaps it does not support RET.
-> > > > > > > cx usually supports both collapse state and RET.
-> > > > > > > 
-> > > > > > 
-> > > > > > That was the one I was specifically looking at for the MDSS_GDSC->MMCX
-> > > > > > issue, so it's likely I didn't look elsewhere.
-> > > > > > 
-> > > > > > > > > 
-> > > > > > > > > Indeed. On sc7180 it's not the first non-zero corner. I suppose
-> > > > > > > > > retention for CX isn't actually used when the SoC is awake so your
-> > > > > > > > > rpmhpd patch is putting in a vote for something that doesn't do anything
-> > > > > > > > > at runtime for CX? I imagine that rpmh only sets the aggregate corner to
-> > > > > > > > > retention when the whole SoC is suspended/sleeping, otherwise things
-> > > > > > > > > wouldn't go very well. Similarly, min_svs may be VDD minimization? If
-> > > > > > > > > so, those first two states are basically states that shouldn't be used
-> > > > > > > > > at runtime, almost like sleep states.
-> > > > > > > > > 
-> > > > > > > > 
-> > > > > > > > But if that's the case, I don't think it's appropriate for the "enabled
-> > > > > > > > state" of the domain to use any of those corners.
-> > > > > > > 
-> > > > > > > I rechecked the downstream kernels where all this voting happens from within
-> > > > > > > the clock drivers, and I do see votes to min_svs for some clocks, but Stephen is
-> > > > > > > right that RET is not something that's voted on while in active state.
-> > > > > > > 
-> > > > > > > But always going with something just above the ret level while active will also
-> > > > > > > not work for all devices, for instance for i2c on 7180, it needs a cx vote of
-> > > > > > > low svs while the rail (cx) does support something lower than that which is min svs.
-> > > > > > > (why can't it just work with min svs?, I don't know, these values and recommendations
-> > > > > > > come in from the voltage plans published by HW teams for every SoC and we just end up
-> > > > > > > using them in SW, perhaps something to dig further and understand which I will try and
-> > > > > > > do but these are the values in voltage plans and downstream kernels which work for now)
-> > > > > > > 
-> > > > > > 
-> > > > > > So to some degree this invalidates my argumentation about the
-> > > > > > enabled_corner in rpmhpd, given that "enabled" means a different corner
-> > > > > > for each rail - not just the one with lowest non-zero value.
-> > > > > 
-> > > > > Right, it might work in some cases but might not work for all.
-> > > > > 
-> > > > 
-> > > > Which makes it way less desirable.
-> > > > 
-> > > > The enable state for rpmhpd power domains doesn't meet my expectations
-> > > > for how a power domain should behave,
-> > > 
-> > > Right and that's perhaps because these are not the usual power-domains,
-> > > which have one "on/active" state and one or more "off/inactive" states (off/ret/clock-stop)
-> > > Rpmhpd has multiple "on/active" states, and whats "on/active" for one consumer
-> > > might not be "on/active" for another, so this information is hard to be managed
-> > > at a generic level and these requests in some way or the other need to come
-> > > in explicitly from the resp. consumers.
-> > > 
-> > 
-> > I think it's fine if we just acknowledge that this is how the rpmhpd
-> > domains works.
-> > 
-> > But I am worried about how we're going to handle the case where the
-> > consumer is indirectly referencing one of these power-domains using a
-> > subdomain (gdsc).
-> 
-> With the proper subdomain relationship in place and with Ulf's patches, this
-> seems to be handled correctly. gdsc sets proper level for the parent power
-> domain, which gets voted and unvoted by the core pm code when gdsc's power
-> domain is powered on or off.
-> 
+I would like to follow the argument from Rob:
+"The above string can mean 'v1' or whatever version you want."
+If there ever is an incompatible new IP version, then a new compatible string
+can be added which means 'v2'. E.g. for 128bit physical address support I
+would choose the compatible string 'engleder,tsnep128'. I don't see an
+advantage in adding a version number to the compatible string.
 
-Right, but this works only in our case because "on" for MMCX happens to
-be the first non-zero corner.
+This IP will be used in products where compatible hardware is a must.
+An IP upgrade which requires SW alignment will result in heavy complaints
+from the customers. Such an IP upgrade would result in a new IP.
+Like for shared libraries, an incompatible API change is similar to a new
+library.
 
-What this patch points out is that for some of the other power domains
-my patch in the rpmhpd driver isn't sufficient - and presumably wouldn't
-work for other gdsc's (that are parented by CX or MX).
-
-Regards,
-Bjorn
-
-> > And the open question is if a solution to that problem will solve this
-> > problem as well, or if we need to have this and some mechanism to
-> > describe the "on state" for the parent of a subdomain.
-> 
-> 
-> -- 
-> With best wishes
-> Dmitry
+Gerhard
