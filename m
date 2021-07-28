@@ -2,134 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 130263D8D2A
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 13:52:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA40A3D8D43
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 13:54:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236269AbhG1Lwk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 07:52:40 -0400
-Received: from mail-eopbgr80082.outbound.protection.outlook.com ([40.107.8.82]:39300
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S236261AbhG1Lw3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Jul 2021 07:52:29 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jB64N8guVLyldKGNd40qJy2oHBEdUXxYkiwAMxKXhQuSO2mX47w0baQ5kEJEiCJk4o/fOYiYYaJzDbZJWF9DUq6QrOJLlxs4xIegPmIrcA6dMKsfGIrcguQ37L7GCSRcOi3Wm2bRoRJmaq/6l14yWJTC3PELWWjqPGWoJZv5MWBA2DogqgdPVc8X/ctpR4jc17i0S8NKEoTdr060oKFT92IIZDxpmkSOiYpBnJjU9LPdbotMozIR8lP7RdyJ3DAFovIWGeAUHJCmOQIrOQfh7zLvMmrZGbNz3KFzXP63BOL2TJQiiOmpfT1LJMZkC1PdALnXGkh/mayUM5Z6vg99sQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Tw7E2FfkX5J8YEhES8eQgZe6b+hT8Ylfb2aft6BzEbw=;
- b=GrzE6APxr8zIK1JaJD5tJG1jDmZ6EB7eWes+jVYqsyJFOK7Ssg1AcS56oct/F1fgl7VD/aQfpYM5+yqX9w10V4SCKwxZpm7iaUqmo8NWIlXc/c6a3qhAvZE8NI/zyIA9nCzkxnw168EM/5A40lS/Q2czuENmOerrqurki4f5f5B0yVvp71vil99uiQgmV5GldypihgZetXAmNNtop1a9NMchN52x5692MuZ/AnDDfpvc9JNyY9AAQKbIL/Z35FEiGRUMzTWEdzR1m/tV7od4YbtwN27pZYQyIP8DImjJ0bg24YBNxLEoJRdq4y2yqQYLOCz0nCJMaHyhezG35fSjRA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Tw7E2FfkX5J8YEhES8eQgZe6b+hT8Ylfb2aft6BzEbw=;
- b=QTn/IntgPDb4XqvSncg7IzQxN00XeUEXqNH+GijO0XyEnxEf44szw0vqCxvXNUCBwVOMEOJ45vOrk95W4FOPv6n7V0jnTbBcSIhcT8uFKBQbj+/7jww/hpKMzM1DwXNpQL5wYsaJbZ5yLSEpQMYk9g0QqtNh/lT1A1/HPbHYBxo=
-Authentication-Results: davemloft.net; dkim=none (message not signed)
- header.d=none;davemloft.net; dmarc=none action=none header.from=nxp.com;
-Received: from DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
- by DBBPR04MB7900.eurprd04.prod.outlook.com (2603:10a6:10:1e8::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4352.28; Wed, 28 Jul
- 2021 11:52:19 +0000
-Received: from DB8PR04MB6795.eurprd04.prod.outlook.com
- ([fe80::9c70:fd2f:f676:4802]) by DB8PR04MB6795.eurprd04.prod.outlook.com
- ([fe80::9c70:fd2f:f676:4802%9]) with mapi id 15.20.4352.032; Wed, 28 Jul 2021
- 11:52:19 +0000
-From:   Joakim Zhang <qiangqing.zhang@nxp.com>
-To:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH V2 net-next 7/7] arm64: dts: imx8qxp: add "fsl,imx8qm-fec" compatible string for FEC
-Date:   Wed, 28 Jul 2021 19:52:03 +0800
-Message-Id: <20210728115203.16263-8-qiangqing.zhang@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210728115203.16263-1-qiangqing.zhang@nxp.com>
-References: <20210728115203.16263-1-qiangqing.zhang@nxp.com>
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR01CA0100.apcprd01.prod.exchangelabs.com
- (2603:1096:3:15::26) To DB8PR04MB6795.eurprd04.prod.outlook.com
- (2603:10a6:10:fa::15)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (119.31.174.71) by SG2PR01CA0100.apcprd01.prod.exchangelabs.com (2603:1096:3:15::26) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.18 via Frontend Transport; Wed, 28 Jul 2021 11:52:16 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e077de9a-9113-47fa-3633-08d951be2756
-X-MS-TrafficTypeDiagnostic: DBBPR04MB7900:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DBBPR04MB7900045F4CCFFFC8AF175F74E6EA9@DBBPR04MB7900.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1388;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: LUglQnW82YuxH5qgSsVQycHurA+4KOvtPajYMh3pfyZw39TaINwAMySmUk9s/k3XJ63xL9itxFtC6USDvzQOPcJSrwgdgsbGpXAAYd9QAkVgzTxs4Bf2qQT9aEVpwrAZms1taUqrdT4RY5viEMcUVEvA5HAzNwzKXxCgwJviSwPxLfPrZm6eeGfhRHfVMVEuMQ7fU/f5xMVI3ve2KxAF+EMXOp+szuNuDMk2/rUX6U6oHt2sRTLkT7JLe1hUxwpjaGK4dVGr0UqiCeZKBbBuHml83adu5hP/NSK3GLNAuSMGl/7Fu1umLy+nAu1vwR+HQgSTHb9EjQ0IqK6d1FjgtC/ZOPY+T/lMI2VZrJjpHnjf085C0TMUi6XtPVDHpWWQnoD+HPyi1FSADaCQp7F0HDvkihC6ug9ZFmdhdhQB+FI5lriM4caU8d6UZ0s9p1Q10glMU5DyqyCVClqv0MtdNWW90au5u5JcgTC26tgDEF5SB6qc9jlh7vTMK0NbLoRXW6cBgKEMKZMS8dxJX8sI6ris/DJdrjwE79M6t/7Jmp4CrMfoISiRSLw8Dx6yP4FMXmI/Z4iYTkyVzD1A/ZCb3De0fDioVmdpr83cl0R+s8fVRiKkJ+KEhTxG2E2pxkvJrU81Jv26dybSVBEv9l01kZPnXP6O54eALdmWvwDSmz3Y/6qcHWe6wG+DlJMvcreemluOjqAB3BWHHTe9qg/p1V7PhepjsmDE3sj0P9EXx0w=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6795.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(136003)(39840400004)(366004)(376002)(346002)(52116002)(1076003)(8936002)(26005)(956004)(38100700002)(2616005)(7416002)(38350700002)(478600001)(6512007)(6486002)(316002)(2906002)(66556008)(86362001)(186003)(66946007)(6666004)(66476007)(6506007)(4326008)(5660300002)(36756003)(83380400001)(4744005)(8676002)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Z5++8VOuKub+uOzgPvvHxatz9DMKilsaltu7KCC0tuPWb41LDrGfjaNDsiNX?=
- =?us-ascii?Q?r9pWK30VRIope4DnmQopImqhnaW1tTy+KpHWsaGbWD0Zzg5GnOReoEkOvmfR?=
- =?us-ascii?Q?OfkHDgmseL0Lio4do87vs5k73MDVAhKsgZNO2HgsBD90k//cqiFWWx9oRgeL?=
- =?us-ascii?Q?Ah5XgZjJ0l4c9dS8tgpHsLBPOw15eJrvhqYt7f5FCd+cTcNpZVuBhTSvodWb?=
- =?us-ascii?Q?5qNBIR7qG8MmqAELSSnfN9eUPoqplscv77mnAwaBv+woy/KsbJ2/XRSOziHI?=
- =?us-ascii?Q?soxQ55Nusv71HLfMfSUoCvPwCTh0kJX4WXY9QWj0bgn3sa0w6swDqsChS4m9?=
- =?us-ascii?Q?EddS9ErMFKbT759lA9NQA9qqg1fpDgqZPxANQaHDI8b49Q1lfksdQ2uQqdtO?=
- =?us-ascii?Q?Yur/385iXkyZVf67DHJeiJxXI0AKWqG7sNgXvwBdFnBQgXazYfKI22LFMmAA?=
- =?us-ascii?Q?QU6v0jEW+Glg24Odxetg8zk8pKGEhq4hpzlFqWGmmajrdTZmj08Z8gbvKOoP?=
- =?us-ascii?Q?13sT8DL6CrNvE1ExtyHF1EAwZXtMTVDCoj0qD+OBsPNmxwtKvW9ZWpdH4U96?=
- =?us-ascii?Q?7Fx8uJlGxEY5hvqGnit72oP3se9AaJKWTtEi/+UrRRNYFlb7Xl/L5fduXtUP?=
- =?us-ascii?Q?H0eIR1zQ+efEBN13F04UTnTfT/ZFkFzfZyymIJ/xQe0P5kwuCBiyJ44BGArq?=
- =?us-ascii?Q?Gubpiz5OGw0O52K0S2dqTAuOcA5IKQvvpqtVcVcBVplH/vp5Ql9N3uNv/ssf?=
- =?us-ascii?Q?pNzLYL/fQXVrITdLjwHWN7IDyvD7TcjdGVD4pDstlF9T4jajt0Qt27AyCysE?=
- =?us-ascii?Q?BS0a7rpViLdpi4ksA5Y8KvxHiMRUax1wgTAPn0/lb6qaDoD34eeyLQpkRMD9?=
- =?us-ascii?Q?4/TfgT2ZqrfpAtMbzPgvbzaLsgRuOMbhQdMZQoy8ljFYVz8B28Susxl8BkVY?=
- =?us-ascii?Q?RjVdq0AttDbnWAqB6fJC6z/R53Ln75EnSvRcHnK2Fm0jikCXtiKrM3NWwRJU?=
- =?us-ascii?Q?RLqrHFrAclxyCIPunbJrSpLcfZru0zPVRVuqQxyXQS8wXlZwsxmgKZR6wB/R?=
- =?us-ascii?Q?alJJZ3VPkVk2e0SXczW+XFpuAxC9/Z9PCZN4SQVIOQ/1axouGJhwoiajTtHc?=
- =?us-ascii?Q?NsBfOlk6NPS9fsytV6DPtBOeAHyiAd6fB2ey2wLpOJA/XwpfLIvVV+NPxoi5?=
- =?us-ascii?Q?n6PiiFV6pKhB3q/uXiGiqBzp1eDeIJr5zwE4Eb1Tefm/7V3WFs4nEz/yo+n/?=
- =?us-ascii?Q?KLsspUwHAVcE5C8gDIme3ogaQkcuEdzFOU9rZSYQIoZVw0JZIXAnaQfyvcqK?=
- =?us-ascii?Q?yKiIJVlsZABPnFAO7OSDDQus?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e077de9a-9113-47fa-3633-08d951be2756
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB6795.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jul 2021 11:52:19.8628
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Hdq92hGIfx0xduQhDEcbmCN70dxMBYbL4RnPu6Ixi3kwz/PMrYPbBqqG9QUfRTh06RCAXk5dHCwK7SY0BGvssg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7900
+        id S234835AbhG1Lyi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 07:54:38 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:56613 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236241AbhG1Lyi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 07:54:38 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1627473277; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=I+6EtmTkJGuPi6NoSMeA9deQefDBI6Bli9FnlFgsfRM=; b=hfGrX4vDqqIPGxm6epHq1gSUPZ8fPy8D/XvOFkjiA7u02ZGgh75LwKRsaQVpg5CEOYPfD9Ya
+ j0VY5VDpaXA7rJv55KvK+OWfjxyUnWHbCO55/tCe+jfCZhCGOoLjPR2P+RZvq2UYlqvaAmAB
+ +iLXE9TR6MU/c4UnYctuQWGO1sQ=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
+ 61014566e31d882d18f4a10c (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 28 Jul 2021 11:54:14
+ GMT
+Sender: akhilpo=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 31DC5C4360C; Wed, 28 Jul 2021 11:54:14 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from hyd-lnxbld559.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: akhilpo)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4E297C433D3;
+        Wed, 28 Jul 2021 11:54:08 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 4E297C433D3
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=akhilpo@codeaurora.org
+From:   Akhil P Oommen <akhilpo@codeaurora.org>
+To:     freedreno <freedreno@lists.freedesktop.org>,
+        dri-devel@lists.freedesktop.org,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>, linux-arm-msm@vger.kernel.org,
+        Stephen Boyd <swboyd@chromium.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Manaf Meethalavalappu Pallikunhi <manafm@codeaurora.org>
+Cc:     Jordan Crouse <jordan@cosmicpenguin.net>,
+        Douglas Anderson <dianders@chromium.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/2] arm64: dts: qcom: sc7280: Add gpu support
+Date:   Wed, 28 Jul 2021 17:24:01 +0530
+Message-Id: <1627473242-35926-1-git-send-email-akhilpo@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add "fsl,imx8qm-fec" compatible string for FEC to support new feature
-(RGMII delayed clock).
+Add the necessary dt nodes for gpu support in sc7280.
 
-Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
+Signed-off-by: Akhil P Oommen <akhilpo@codeaurora.org>
 ---
- arch/arm64/boot/dts/freescale/imx8qxp-ss-conn.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+This has dependency on the below GPUCC bindings patch which is already
+accepted in clk-next:
+https://patchwork.kernel.org/project/linux-clk/list/?series=514831&state=%2A&archive=both
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-ss-conn.dtsi b/arch/arm64/boot/dts/freescale/imx8qxp-ss-conn.dtsi
-index f5f58959f65c..46da21af3702 100644
---- a/arch/arm64/boot/dts/freescale/imx8qxp-ss-conn.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8qxp-ss-conn.dtsi
-@@ -17,9 +17,9 @@
- };
+Changes in v3:
+- Re-ordered the nodes based on address (Stephan)
+- Added the patch for gpu cooling to the stack.
+
+Changes in v2:
+- formatting update and removed a duplicate header (Stephan)
+
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 116 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 116 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 029723a..c88f366 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -6,6 +6,7 @@
+  */
  
- &fec1 {
--	compatible = "fsl,imx8qxp-fec", "fsl,imx6sx-fec";
-+	compatible = "fsl,imx8qxp-fec", "fsl,imx8qm-fec", "fsl,imx6sx-fec";
- };
+ #include <dt-bindings/clock/qcom,gcc-sc7280.h>
++#include <dt-bindings/clock/qcom,gpucc-sc7280.h>
+ #include <dt-bindings/clock/qcom,rpmh.h>
+ #include <dt-bindings/interconnect/qcom,sc7280.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+@@ -592,6 +593,85 @@
+ 			qcom,bcm-voters = <&apps_bcm_voter>;
+ 		};
  
- &fec2 {
--	compatible = "fsl,imx8qxp-fec", "fsl,imx6sx-fec";
-+	compatible = "fsl,imx8qxp-fec", "fsl,imx8qm-fec", "fsl,imx6sx-fec";
- };
++		gpu@3d00000 {
++			compatible = "qcom,adreno-635.0", "qcom,adreno";
++			#stream-id-cells = <16>;
++			reg = <0 0x03d00000 0 0x40000>,
++			      <0 0x03d9e000 0 0x1000>,
++			      <0 0x03d61000 0 0x800>;
++			reg-names = "kgsl_3d0_reg_memory",
++				    "cx_mem",
++				    "cx_dbgc";
++			interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
++			iommus = <&adreno_smmu 0 0x401>;
++			operating-points-v2 = <&gpu_opp_table>;
++			qcom,gmu = <&gmu>;
++			interconnects = <&gem_noc MASTER_GFX3D 0 &mc_virt SLAVE_EBI1 0>;
++			interconnect-names = "gfx-mem";
++
++			gpu_opp_table: opp-table {
++				compatible = "operating-points-v2";
++
++				opp-550000000 {
++					opp-hz = /bits/ 64 <550000000>;
++					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
++					opp-peak-kBps = <6832000>;
++				};
++
++				opp-450000000 {
++					opp-hz = /bits/ 64 <450000000>;
++					opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
++					opp-peak-kBps = <4068000>;
++				};
++
++				opp-315000000 {
++					opp-hz = /bits/ 64 <315000000>;
++					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
++					opp-peak-kBps = <1804000>;
++				};
++			};
++		};
++
++		gmu: gmu@3d69000 {
++			compatible="qcom,adreno-gmu-635.0", "qcom,adreno-gmu";
++			reg = <0 0x03d6a000 0 0x34000>,
++				<0 0x3de0000 0 0x10000>,
++				<0 0x0b290000 0 0x10000>;
++			reg-names = "gmu", "rscc", "gmu_pdc";
++			interrupts = <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "hfi", "gmu";
++			clocks = <&gpucc GPU_CC_CX_GMU_CLK>,
++					<&gpucc GPU_CC_CXO_CLK>,
++					<&gcc GCC_DDRSS_GPU_AXI_CLK>,
++					<&gcc GCC_GPU_MEMNOC_GFX_CLK>,
++					<&gpucc GPU_CC_AHB_CLK>,
++					<&gpucc GPU_CC_HUB_CX_INT_CLK>,
++					<&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>;
++			clock-names = "gmu",
++				      "cxo",
++				      "axi",
++				      "memnoc",
++				      "ahb",
++				      "hub",
++				      "smmu_vote";
++			power-domains = <&gpucc GPU_CC_CX_GDSC>,
++					<&gpucc GPU_CC_GX_GDSC>;
++			power-domain-names = "cx",
++					     "gx";
++			iommus = <&adreno_smmu 5 0x400>;
++			operating-points-v2 = <&gmu_opp_table>;
++
++			gmu_opp_table: opp-table {
++				compatible = "operating-points-v2";
++
++				opp-200000000 {
++					opp-hz = /bits/ 64 <200000000>;
++					opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
++				};
++			};
++		};
++
+ 		gpucc: clock-controller@3d90000 {
+ 			compatible = "qcom,sc7280-gpucc";
+ 			reg = <0 0x03d90000 0 0x9000>;
+@@ -606,6 +686,42 @@
+ 			#power-domain-cells = <1>;
+ 		};
+ 
++		adreno_smmu: iommu@3da0000 {
++			compatible = "qcom,sc7280-smmu-500", "qcom,adreno-smmu", "arm,mmu-500";
++			reg = <0 0x03da0000 0 0x20000>;
++			#iommu-cells = <2>;
++			#global-interrupts = <2>;
++			interrupts = <GIC_SPI 673 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_SPI 675 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_SPI 678 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_SPI 679 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_SPI 680 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_SPI 681 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_SPI 682 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_SPI 683 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_SPI 684 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_SPI 685 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_SPI 686 IRQ_TYPE_LEVEL_HIGH>,
++					<GIC_SPI 687 IRQ_TYPE_LEVEL_HIGH>;
++
++			clocks = <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
++					<&gcc GCC_GPU_SNOC_DVM_GFX_CLK>,
++					<&gpucc GPU_CC_AHB_CLK>,
++					<&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>,
++					<&gpucc GPU_CC_CX_GMU_CLK>,
++					<&gpucc GPU_CC_HUB_CX_INT_CLK>,
++					<&gpucc GPU_CC_HUB_AON_CLK>;
++			clock-names = "gcc_gpu_memnoc_gfx_clk",
++					"gcc_gpu_snoc_dvm_gfx_clk",
++					"gpu_cc_ahb_clk",
++					"gpu_cc_hlos1_vote_gpu_smmu_clk",
++					"gpu_cc_cx_gmu_clk",
++					"gpu_cc_hub_cx_int_clk",
++					"gpu_cc_hub_aon_clk";
++
++			power-domains = <&gpucc GPU_CC_CX_GDSC>;
++		};
++
+ 		stm@6002000 {
+ 			compatible = "arm,coresight-stm", "arm,primecell";
+ 			reg = <0 0x06002000 0 0x1000>,
 -- 
-2.17.1
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation.
 
