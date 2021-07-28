@@ -2,119 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EDC93D8B1F
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 11:52:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B3E43D8B9F
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 12:21:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231443AbhG1JwD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 05:52:03 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:48546 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231761AbhG1JwD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Jul 2021 05:52:03 -0400
-Received: from [95.90.166.74] (helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1m8gEA-0004pC-76; Wed, 28 Jul 2021 11:51:50 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Guillaume Tucker <guillaume.tucker@collabora.com>,
-        Marc Zyngier <maz@kernel.org>, robh+dt@kernel.org
-Cc:     Robin Murphy <robin.murphy@arm.com>, kernelci-results@groups.io,
-        Johan Jonker <jbx6244@gmail.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Maciej Matuszczyk <maccraft123mc@gmail.com>,
-        Jacob Chen <jacob2.chen@rock-chips.com>,
-        Sandy Huang <hjc@rock-chips.com>, linux-kernel@vger.kernel.org,
-        Chen-Yu Tsai <wens@csie.org>,
-        Cameron Nemo <cnemo@tutanota.com>, devicetree@vger.kernel.org,
-        Elaine Zhang <zhangqing@rock-chips.com>,
-        Helen Koike <helen.koike@collabora.com>,
-        Shunqian Zheng <zhengsq@rock-chips.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
+        id S231936AbhG1KVM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 06:21:12 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:44146 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229574AbhG1KVL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 06:21:11 -0400
+X-UUID: a6123fab58ef4b71af91edc86908cd1a-20210728
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=pOtzGqpNSphuXXqUkv0xXxPPYQqKavCRJjR/ns5nsaE=;
+        b=Tk67lpeXIABoys/9Twvsix2+Lwo8zk+DjnM/l9dkiKzn2GuVvg+PCvD0fUfprX9MtTgXBrY2FFTB7U8E/ud0vAkzBL/K03r4+meFtJiYyMpCXUJi3cYC20NOeKfKpbnB+6tma5f6fnJ/4NYiNLvL+ufbbgXZ0lHYQYP2aoF8e+w=;
+X-UUID: a6123fab58ef4b71af91edc86908cd1a-20210728
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <chun-jie.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 202140126; Wed, 28 Jul 2021 18:21:05 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 28 Jul 2021 18:21:04 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 28 Jul 2021 18:21:04 +0800
+Message-ID: <fd1a7b95ea63296e350aa04dce1dbb4f8c84092c.camel@mediatek.com>
+Subject: Re: [v14 02/21] dt-bindings: ARM: Mediatek: Add mmsys document
+ binding for MT8192
+From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
+To:     Enric Balletbo Serra <eballetbo@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        Collabora Kernel ML <kernel@collabora.com>
-Subject: Annotation for dtbscheck to ignore a defect (Was: Re: renesas/master bisection: baseline-nfs.bootrr.rockchip-usb2phy0-probed on rk3399-gru-kevin)
-Date:   Wed, 28 Jul 2021 11:51:48 +0200
-Message-ID: <5095423.31r3eYUQgx@diego>
-In-Reply-To: <878s1qer35.wl-maz@kernel.org>
-References: <61002766.1c69fb81.8f53.9f6a@mx.google.com> <cff1e2d1-ceee-eee8-de14-a268429acbc3@collabora.com> <878s1qer35.wl-maz@kernel.org>
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Wed, 28 Jul 2021 18:21:04 +0800
+In-Reply-To: <CAFqH_51D0A_Oht785cxvWjuNFYgLL25-qX1QEpLhWBARtTgVMA@mail.gmail.com>
+References: <20210726105719.15793-1-chun-jie.chen@mediatek.com>
+         <20210726105719.15793-3-chun-jie.chen@mediatek.com>
+         <162740843452.2368309.13157283201271440368@swboyd.mtv.corp.google.com>
+         <CAFqH_51D0A_Oht785cxvWjuNFYgLL25-qX1QEpLhWBARtTgVMA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, 28. Juli 2021, 11:16:14 CEST schrieb Marc Zyngier:
-> On Wed, 28 Jul 2021 09:59:49 +0100,
-> Guillaume Tucker <guillaume.tucker@collabora.com> wrote:
-> > 
-> > On 28/07/2021 09:39, Robin Murphy wrote:
-> > > Hi Guillaume,
-> > > 
-> > > Not sure what I did to get CC'd on this, but since I'm here...
-> > 
-> > You were listed by get_maintainer.pl for the patch found by the
-> > bisection:
-> > 
-> >   Robin Murphy <robin.murphy@arm.com> (authored:1/8=12%,added_lines:9/71=13%,removed_lines:16/41=39%,added_lines:11/45=24%,removed_lines:18/32=56%,authored:1/12=8%,added_lines:22/83=27%,removed_lines:29/69=42%)
-> > 
-> > Maybe the logic to automatically build the list of recipients
-> > could look at those stats and apply some threshold if too many
-> > people get listed because of small contributions to some files.
-> > It's not a common issue though, usually the recipients are all
-> > pretty relevant.
-> > 
-> > > On 2021-07-28 07:04, Guillaume Tucker wrote:
-> > >> Please see the bisection report below about usb2phy failing to
-> > >> probe on rk3399-gru-kevin.
-> > >>
-> > >> Reports aren't automatically sent to the public while we're
-> > >> trialing new bisection features on kernelci.org but this one
-> > >> looks valid.
-> > >>
-> > >> The bisection was run in the Renesas tree but the same regression
-> > >> is present in mainline for both usb2phy0 and usb2phy1 devices:
-> > >>
-> > >>    https://linux.kernelci.org/test/plan/id/6100af012344eef9b85018f3/
-> > >>    https://linux.kernelci.org/test/case/id/6100af012344eef9b85018fa/
-> > >>
-> > >> I don't see any errors in the logs, it looks like the driver is
-> > >> just not probing.
-> > > 
-> > > What's the actual testcase for "rockchip-usb2phy0-probed"? If it's looking for a hard-coded path like "/sys/bus/platform/devices/ff770000.syscon:usb2-phy@e450/driver" then it can be expected to fail, since changing the node name is reflected in the device name.
-> > 
-> > Dang, you're right.  This is the test case:
-> > 
-> >   https://github.com/kernelci/bootrr/blob/main/boards/google%2Ckevin#L119
-> > 
-> > assert_driver_present rockchip-usb2phy-driver-present rockchip-usb2phy
-> > assert_device_present rockchip-usb2phy0-probed rockchip-usb2phy ff770000.syscon:usb2-phy@e450
-> > assert_device_present rockchip-usb2phy1-probed rockchip-usb2phy ff770000.syscon:usb2-phy@e460
-> > 
-> > Now that needs a conditional depending on the kernel version.  Or
-> > we could try to make it more dynamic rather than with hard-coded
-> > paths, but doing that has its own set of issues too.
-> 
-> And this shows once more that DT churn has consequences: it breaks a
-> userspace ABI. Changing userspace visible paths for the sake of
-> keeping a build-time checker quiet seems counter-productive. My
-> preference would be to just revert this patch, and instead have an
-> annotation acknowledging the deviation from the 'standard' and keeping
-> the checker at bay.
-
-I'd be fine with that, if that is the consensus. And an annotation comment
-would be good in that case, just to keep a similar change  from getting
-submitted.
-
-I guess the interesting question is if dtbscheck has some sort of tooling
-to detect these "this is meant to be that way for backwards compatibility"
-hence adding Rob for that question.
-
-
-Heiko
-
+T24gV2VkLCAyMDIxLTA3LTI4IGF0IDEwOjQ3ICswMjAwLCBFbnJpYyBCYWxsZXRibyBTZXJyYSB3
+cm90ZToNCj4gSGkgQ2h1bi1KaWUgYW5kIFN0ZXBoZW4sDQo+IA0KPiBNaXNzYXRnZSBkZSBTdGVw
+aGVuIEJveWQgPHNib3lkQGtlcm5lbC5vcmc+IGRlbCBkaWEgZHQuLCAyNyBkZSBqdWwuDQo+IDIw
+MjEgYSBsZXMgMTk6NTQ6DQo+ID4gDQo+ID4gUXVvdGluZyBDaHVuLUppZSBDaGVuICgyMDIxLTA3
+LTI2IDAzOjU3OjAwKQ0KPiA+ID4gVGhpcyBwYXRjaCBhZGRzIHRoZSBtbXN5cyBkb2N1bWVudCBi
+aW5kaW5nIGZvciBNVDgxOTIgU29DLg0KPiA+ID4gDQo+ID4gPiBTaWduZWQtb2ZmLWJ5OiBDaHVu
+LUppZSBDaGVuIDxjaHVuLWppZS5jaGVuQG1lZGlhdGVrLmNvbT4NCj4gPiA+IFJldmlld2VkLWJ5
+OiBDaHVuLUt1YW5nIEh1IDxjaHVua3VhbmcuaHVAa2VybmVsLm9yZz4NCj4gPiA+IFJldmlld2Vk
+LWJ5OiBNYXR0aGlhcyBCcnVnZ2VyIDxtYXR0aGlhcy5iZ2dAZ21haWwuY29tPg0KPiA+ID4gQWNr
+ZWQtYnk6IFJvYiBIZXJyaW5nIDxyb2JoQGtlcm5lbC5vcmc+DQo+ID4gPiAtLS0NCj4gPiANCj4g
+PiBBcHBsaWVkIHRvIGNsay1uZXh0DQo+ID4gDQo+IA0KPiBUaGlzIHdpbGwgY29uZmxpY3QgaW4g
+bGludXgtbmV4dCBhcyB0aGUgYmluZGluZyB3YXMgYWxyZWFkeSBjb252ZXJ0ZWQNCj4gdG8geWFt
+bC4gU2VlDQo+IA0KPiANCmh0dHBzOi8vdXJsZGVmZW5zZS5jb20vdjMvX19odHRwczovL2dpdC5r
+ZXJuZWwub3JnL3B1Yi9zY20vbGludXgva2VybmVsL2dpdC9uZXh0L2xpbnV4LW5leHQuZ2l0L2Nv
+bW1pdC9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL21lZGlhdGVrL21lZGlh
+dGVrLG1tc3lzLnlhbWw/aWQ9NjNlMTEyNWU2YmI4ZWFlM2NkMjAyOTJmNmExMGVlNDIxZGQ1NzRh
+ZV9fOyEhQ1RSTktBOXdNZzBBUmJ3ITFsOUl5dXp6eWRVSm1HYUVSUExjYUwycFNkemJ1QlN0TVI0
+X2pxVzFhVnlWd0JHZFVVX2cyMmp5RGhxYkNseDREYU5UJA0KPiAgDQo+IA0KPiBUaGFua3MsDQo+
+ICAgRW5yaWMNCj4gDQoNCkkgd2lsbCByZXNlbmQgbW1zeXMgYmluZGluZyBkb2N1bWVudCBzaW5n
+bHkgYmFzZWQgb24gWzFdLg0KDQpbMV0gDQpodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3By
+b2plY3QvbGludXgtbWVkaWF0ZWsvbGlzdC8/c2VyaWVzPTQ4NTE2NQ0KDQoNCkJlc3QgUmVnYXJk
+cywNCkNodW4tSmllDQoNCj4gPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXw0KPiA+IExpbnV4LW1lZGlhdGVrIG1haWxpbmcgbGlzdA0KPiA+IExpbnV4LW1l
+ZGlhdGVrQGxpc3RzLmluZnJhZGVhZC5vcmcNCj4gPiANCmh0dHBzOi8vdXJsZGVmZW5zZS5jb20v
+djMvX19odHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LW1l
+ZGlhdGVrX187ISFDVFJOS0E5d01nMEFSYnchMWw5SXl1enp5ZFVKbUdhRVJQTGNhTDJwU2R6YnVC
+U3RNUjRfanFXMWFWeVZ3QkdkVVVfZzIyanlEaHFiQ3BLWWxxNkkkDQo+ID4gIA0K
 
