@@ -2,101 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 71C943D954C
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 20:30:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7C083D9563
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 20:38:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229556AbhG1SaG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 14:30:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38950 "EHLO
+        id S230376AbhG1SiP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 14:38:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229542AbhG1SaG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 14:30:06 -0400
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97821C061757;
-        Wed, 28 Jul 2021 11:30:03 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id a93so5576451ybi.1;
-        Wed, 28 Jul 2021 11:30:03 -0700 (PDT)
+        with ESMTP id S229556AbhG1SiO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 14:38:14 -0400
+Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C07C2C061757;
+        Wed, 28 Jul 2021 11:38:12 -0700 (PDT)
+Received: by mail-qk1-x733.google.com with SMTP id x3so3212688qkl.6;
+        Wed, 28 Jul 2021 11:38:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=y95ajZGFXcI2xcNt97PSRH6Nx3noubDMmxeuFO9Gk2o=;
-        b=bNDvnmWEOW5mJA2nX6+TwYm+WfU/8VI/sTK0FcMohSw8ezYb31tiy3T70kSUl334Ry
-         xdeiM/EpCKCyiSFMi0u1Kd+2OZWOal7irKJG+ep4Hq3B2pAdfGd8jzWBHpoPxfxhnG3L
-         LvReE8RPlv9ta5ns0axwZXOeWMyDvKqQWNykLBTW1r0aG3vPCkIMdr2Uj5mug8kuUQJb
-         EptKzl+PZMeRqA1KD4VG6evHWDZ8VxKQ08W6x5iMvu0tLmfMMKMxXC0crResOblZuc+D
-         oB1CgZ/PDqBr3LXRjwIJoN9kV8K+9m9Y4v2F1qQD9LiRgLmN5hp8BY6sVfCAMB5dsOvO
-         JbUg==
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=7HRR7nhKUjk1JfK8VR0mwUf9DVteb2WniFYn+45+48M=;
+        b=gIRG56Doy9daa8RP1c9wPiexRBDJDv7oYWuM+dnUxfQ8l0OJcVao4Tn+J/8dID0bRr
+         Pg+ooL0ZYVjvHnG53UNuyPMnZ9YuNC4DplYRRsiVF1Y6uE3qIASRew0KhpSiGZfzWcCS
+         L2FDySP+H5bdWkYe259YCZ/IEpNsnhHBZXJo2NEMOGkmIAObpSWvr/01JCkrg3V4/ZR2
+         F1CmGWkImus02CHNe8kVvIEc3SOl5zM1QCfBFe6rKy3xbcUPYNXocSETZpmZdiqgBFBG
+         2v0w+A0Vx+MMOXAeKMUkW4Tiy2FPehsBAhDe6kQIAhOlJuiOlPE99nRClxrNXcQG0e6T
+         MvwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=y95ajZGFXcI2xcNt97PSRH6Nx3noubDMmxeuFO9Gk2o=;
-        b=KzZ8tsb/3FZ7R5n4As3cQASJmiQNh7eCaeV9kD2g6qyfBYKBlpSyjjExVDm42ZIVvJ
-         UjDgxVYneoeHKAr2o+tSfb3i9vo74Atu0uxd/zHv8xirgJgJXZwgnvuQmko0zFAqHCtQ
-         9PjIoUAViefM1EAELgelryYoq+6/LEDEfP5+9ADFjYDGR7/QxdEPn0z29cfUD76W4aVG
-         LCHuR3BxiH2m5TJYs2lgi+jhPJVM1l3GXyGCWBxLA0puiAEzgPmgW5dLgH/0yJQ23N2P
-         s+0UgNFYQqCWg+Tss4gRHfOIJQDsowz48V2kd5vtL1mBiLFNjUP6a55O33OsMYs85ybS
-         9/Eg==
-X-Gm-Message-State: AOAM530O5JVKWS+m0pUrAXpQOyRNSEvWeIOEEy0HOpQ1IGo/NADc18ox
-        PshqXAOttiM2SudUbaYySEIJwbkalQId+a9uh2R1ohmFfFjvRA==
-X-Google-Smtp-Source: ABdhPJz8AaPKzA6NAbKDMFvIaMMGEpaICIrpzm6ZaC0jVYadagMj+meR/xZJdBaq+MGpF5RxyIfm4Ihl6OkuyeK+hrc=
-X-Received: by 2002:a5b:48f:: with SMTP id n15mr1368515ybp.457.1627497002716;
- Wed, 28 Jul 2021 11:30:02 -0700 (PDT)
+        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=7HRR7nhKUjk1JfK8VR0mwUf9DVteb2WniFYn+45+48M=;
+        b=pdRvNBsAeFC3inhyYowfgfq4SDZnastGUwF52DL5yWmT3wRMqQCuvG54JX60V7+CGO
+         2D3uMAVP+FxaG+UM3GuPQCq/k6kAbSwDEkawjPmETEb2CE5l1evIciQ2nKw2N12VaUG8
+         Pe/CCevDOpVNWpl5skjOmnjbzZJUNVPOB6TmYGzY3baVHOSITzU2gr1fLfjAqpiJyslY
+         oFJ4Up51TadPlJ8N99DzTiSl0YPyIBlu2+YRFl/WqZewajVNW/HCQTOesiRwdkNBT72h
+         pcQIf3RtidKhM/Hcz7yyt45Razf+y22KpBfYATbNq63KHIzKS7+JK5q6mk24e9e68bss
+         xOhg==
+X-Gm-Message-State: AOAM531+lktNKMuyEYcLEpMWCKhGgJeSq8WNWgUciQdd6Lbk+kJH2QBK
+        4q0Kzzsngw+6tc3RmCOle7L/zxNzAbw=
+X-Google-Smtp-Source: ABdhPJyeGp9zFGNGuG15haKUOmltTo6z51BXkKBw4Xn5fHK1oTk2Bd9FrEcnq7SvKgdZhXnwW73HXA==
+X-Received: by 2002:a05:620a:20c7:: with SMTP id f7mr1104066qka.186.1627497491944;
+        Wed, 28 Jul 2021 11:38:11 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id a16sm377852qkn.107.2021.07.28.11.38.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Jul 2021 11:38:11 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: [RFC PATCH 0/6] AXI FAN new features and improvements
+To:     "Sa, Nuno" <Nuno.Sa@analog.com>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>
+References: <20210708120111.519444-1-nuno.sa@analog.com>
+ <PH0PR03MB6366CDE5F062E14F7A8E943F99E99@PH0PR03MB6366.namprd03.prod.outlook.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Message-ID: <bcb1160d-adba-53e3-11d9-f93aac1e9137@roeck-us.net>
+Date:   Wed, 28 Jul 2021 11:38:09 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <20210728161020.3905-1-michael.riesch@wolfvision.net>
- <20210728161020.3905-3-michael.riesch@wolfvision.net> <YQGaAFvqqc7wXrWD@lunn.ch>
-In-Reply-To: <YQGaAFvqqc7wXrWD@lunn.ch>
-From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Wed, 28 Jul 2021 14:29:50 -0400
-Message-ID: <CAMdYzYo8zf0wjtAxTuYQnZQsBtw38prNuAA0j0sBEamcbzZbfA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: rk3568-evb1-v10: add ethernet support
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Michael Riesch <michael.riesch@wolfvision.net>,
-        devicetree@vger.kernel.org,
-        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Liang Chen <cl@rock-chips.com>, Simon Xue <xxm@rock-chips.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <PH0PR03MB6366CDE5F062E14F7A8E943F99E99@PH0PR03MB6366.namprd03.prod.outlook.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 28, 2021 at 1:55 PM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> On Wed, Jul 28, 2021 at 06:10:20PM +0200, Michael Riesch wrote:
-> > +&gmac0 {
-> > +     phy-mode = "rgmii";
->
-> ...
-> > +
-> > +     tx_delay = <0x3c>;
-> > +     rx_delay = <0x2f>;
->
-> Hi Michael
->
-> In general, we try to have the PHY introduce the RGMII delays, not the
-> MAC. Did you try
->
-> phy-mode = "rgmii-id";
->
-> and remove these delay values? It is hard for me to say if that will
-> work because i've no idea what 0x3c and 0x2f means? Are they
-> equivalent to 2ns?
+Hi,
 
-Unfortunately the driver and TRM are both rather non-specific as to
-how this works.
-The driver sets the tx_delay to 0x30 and rx_delay to 0x10 if these
-values are not defined, or sets them both to 0 in case of rgmii_id.
+On 7/27/21 1:42 AM, Sa, Nuno wrote:
+> 
+> Hi Guenter,
+> 
+>> From: Nuno Sá <nuno.sa@analog.com>
+>> Sent: Thursday, July 8, 2021 2:01 PM
+>> To: linux-hwmon@vger.kernel.org; devicetree@vger.kernel.org
+>> Cc: Guenter Roeck <linux@roeck-us.net>; Rob Herring
+>> <robh+dt@kernel.org>; Jean Delvare <jdelvare@suse.com>
+>> Subject: [RFC PATCH 0/6] AXI FAN new features and improvements
+>>
+>> This series adds some new features to the axi-fan-control driver. On
+>> top
+>> of that, the HW had some changes (basically it now starts automatically
+>> out of reset) so that the driver needed some minor refactoring. The
+>> reason I'm sending this as RFC, is mainly because of the last patch
+>> ("hwmon: axi-fan-control: support temperature vs pwm points"). The
+>> core
+>> has some predefined values which define a temperature vs pwm
+>> curve [1].
+>> It also exposes registers so that users can change it according to their
+>> needs. As I could not find standard attributes in the subsystem, I'm
+>> proposing some "raw" sysfs files. Looking at [2], the pwm_auto_point
+>> stuff looked to be what I want. Obviously I might be wrong :). If this
+>> is accepted, I will add a proper sysfs DOC file describing the new files
+>> (being lazy in the RFC).
+>>
+>> For patch 5 ("hwmon: axi-fan-control: clear the fan fault irq at
+>> startup"),
+>> it's also arguable if we really need it. The main reason I have it is
+>> because of some userland apps that might take some drastic measures
+>> by
+>> just reading 1 fan_fault alarm. Obviously, we can argue that the
+>> problem
+>> is in the app and not in the driver. Though it's such a minimal change
+>> that I decided to include it (I'm more than fine in dropping the patch).
+>>
+>> [1]: https://wiki.analog.com/resources/fpga/docs/axi_fan_control
+>> [2]:
+>> https://urldefense.com/v3/__https://www.kernel.org/doc/Documen
+>> tation/hwmon/sysfs-
+>> interface__;!!A3Ni8CS0y2Y!uwjpaOT8QEBVfKTCWELJNbjJJ69iR7S3tKS
+>> WV4B0K742CtcARkTtAqMxknnpPw$
+>>
+>> Nuno Sá (6):
+>>    hwmon: axi-fan-control: make sure the clock is enabled
+>>    hwmon: axi-fan-control: add tacho devicetree properties
+>>    dt-bindings: axi-fan-control: add tacho properties
+>>    hwmon: axi-fan-control: handle irqs in natural order
+>>    hwmon: axi-fan-control: clear the fan fault irq at startup
+>>    hwmon: axi-fan-control: support temperature vs pwm points
+>>
+> 
+> The HW guy is willing to change how the core works. This means,
+> that all that unstable pwm - rpm points will go away and we will
+> have a register where we can set the minimum fan speed for
+> evaluating the FAN. He also said that the default value for the
+> this setting will be pretty low so that we should only have _real_
+> faults at startup which means patch 5 should not be needed
+> anymore...
+> 
+> Anyways, I will send a new pull with patches 1,3 and 5 and
 
-Generally all rockchip boards use this value instead of the rgmii_id,
-I imagine because it's more consistent to tune here than the hit or
-miss support of the phy drivers.
-The usual course of action is to test to find the lowest and highest
-working values and take the median value to plug in here.
+That kind of contradicts what you say above, that patch 5 won't be
+needed anymore. Am I missing something ?
 
->
->      Andrew
+> as soon as I have some HW ready to test, I will send the other
+> patches. With the new mechanism, we can also simplify the IRQ
+> handling [1]...
+> 
+> For the new devicetree property, I think now it really is a fan
+> property which makes me wonder if the property will be accepted
+> in the controller bindings or if I need to send a fan.yaml...
+> 
+Not really sure myself. At he very least we'll have sysfs properties,
+so the minimum speed could also be updated from userspace. Ultimately
+we'll need some set of devicetree properties, not only for fans but
+for pretty much everything supported by hwmon, but I have no idea what
+is acceptable and what isn't - if I did I might have proposed something
+by now.
+
+Guenter
