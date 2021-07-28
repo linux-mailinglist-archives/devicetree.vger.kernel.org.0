@@ -2,135 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 67AB23D945B
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 19:34:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D45263D9463
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 19:36:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229537AbhG1Ret convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 28 Jul 2021 13:34:49 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:52028 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229515AbhG1Ret (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Jul 2021 13:34:49 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1m8nS6-000730-28; Wed, 28 Jul 2021 19:34:42 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Michael Riesch <michael.riesch@wolfvision.net>
-Cc:     Rob Herring <robh+dt@kernel.org>, Liang Chen <cl@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Simon Xue <xxm@rock-chips.com>
-Subject: Re: [PATCH 1/2] arm64: dts: rockchip: add gmac0 node to rk3568
-Date:   Wed, 28 Jul 2021 19:34:41 +0200
-Message-ID: <814179037.0ifERbkFSE@diego>
-In-Reply-To: <2193550.atdPhlSkOF@diego>
-References: <20210728161020.3905-1-michael.riesch@wolfvision.net> <20210728161020.3905-2-michael.riesch@wolfvision.net> <2193550.atdPhlSkOF@diego>
+        id S229542AbhG1Rg6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 13:36:58 -0400
+Received: from mail-io1-f50.google.com ([209.85.166.50]:38871 "EHLO
+        mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229515AbhG1Rg5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 13:36:57 -0400
+Received: by mail-io1-f50.google.com with SMTP id a13so3849607iol.5;
+        Wed, 28 Jul 2021 10:36:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=+ZuWCSGhI9p946I5meiTY9tIujdg9WTVzTMSIiS4wvA=;
+        b=rowxeJEt+7OrmigRlYQ3zs+P/C7VbmZCElTDPQy5iCzPggHdHESNG6dyrq8npDdHba
+         J4sY55w1qCt+kFd0JKch0eHQUQuFSYwuxC94qeNcNKyE1sEepZhi1RXn6xaxqrkEbhuj
+         UK+sWXGDW2sC905LbxWEIp/gW5CzNmwhDDDtETRCRPOEA+mY5XO42OTk75vARY1Atp4/
+         U5At/FC+NBDRXRAJvVOU4YORAie1Ix7NZj1JN0PIDLFo6XidpkJUi0lXu7HFJ52kYbxg
+         EohXwEOToPpYGQh2LIEAOfoA8TJwlVzfDlCgwNNQDusorvrkc/A0fznckltUcuoBoNZH
+         Fphw==
+X-Gm-Message-State: AOAM531mAJpkbF9qwIe2cZGdkl5ocnBNg2Ptbsx4thCdblWB+bVLUqp7
+        fkCQ7t1iXlWTA+9gIeZaWA==
+X-Google-Smtp-Source: ABdhPJxCmh3UPQcqE4Y7EaPT/8ZYwkH97oksdw+d/L95duJC5Jdb6zChMU6kTNaWH9jRrV8yythhsw==
+X-Received: by 2002:a05:6638:289:: with SMTP id c9mr876595jaq.14.1627493814569;
+        Wed, 28 Jul 2021 10:36:54 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id g4sm335630ilc.11.2021.07.28.10.36.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Jul 2021 10:36:53 -0700 (PDT)
+Received: (nullmailer pid 1298058 invoked by uid 1000);
+        Wed, 28 Jul 2021 17:36:49 -0000
+Date:   Wed, 28 Jul 2021 11:36:49 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     bjorn.andersson@linaro.org, broonie@kernel.org,
+        plai@codeaurora.org, tiwai@suse.de, devicetree@vger.kernel.org,
+        perex@perex.cz, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
+        bgoswami@codeaurora.org
+Subject: Re: [PATCH v2 04/16] ASoC: qcom: dt-bindings: add bindings Audio
+ Processing manager
+Message-ID: <20210728173649.GA1290628@robh.at.kernel.org>
+References: <20210714153039.28373-1-srinivas.kandagatla@linaro.org>
+ <20210714153039.28373-5-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210714153039.28373-5-srinivas.kandagatla@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, 28. Juli 2021, 18:43:24 CEST schrieb Heiko Stübner:
-> Hi,
+On Wed, Jul 14, 2021 at 04:30:27PM +0100, Srinivas Kandagatla wrote:
+> This patch adds bindings support for Qualcomm Audio Processing Manager
+> service in Audio DSP.
 > 
-> Am Mittwoch, 28. Juli 2021, 18:10:19 CEST schrieb Michael Riesch:
-> > While both RK3566 and RK3568 feature the gmac1 node, the gmac0
-> > node is exclusive to the RK3568.
-> > 
-> > Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
-> > ---
-> >  arch/arm64/boot/dts/rockchip/rk3568.dtsi | 51 ++++++++++++++++++++++++
-> >  1 file changed, 51 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-> > index da01a59f6f26..ec39a2c593b6 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-> > @@ -22,6 +22,57 @@
-> >  		compatible = "rockchip,rk3568-qos", "syscon";
-> >  		reg = <0x0 0xfe190200 0x0 0x20>;
-> >  	};
-> > +
-> > +	gmac0: ethernet@fe2a0000 {
-> > +		compatible = "rockchip,rk3568-gmac", "snps,dwmac-4.20a";
-> > +		reg = <0x0 0xfe2a0000 0x0 0x10000>;
-> > +		interrupts = <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>,
-> > +			     <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
-> > +		interrupt-names = "macirq", "eth_wake_irq";
-> > +		rockchip,grf = <&grf>;
+> Audio Process Manager is one of the static service in DSP which is
+> responsible for Command/response handling, graph Management
+> and Control/Event management between modules.
 
-Johan thankfully pointed out that the grf is hiding up here, so this should
-move below reset-names ;-)
+This all looks fairly similar to the prior Qcom audio binding(s). It 
+would be nice to not see this all re-invented.
 
-
-Heiko
-
-
-> > +		clocks = <&cru SCLK_GMAC0>, <&cru SCLK_GMAC0_RX_TX>,
-> > +			 <&cru SCLK_GMAC0_RX_TX>, <&cru CLK_MAC0_REFOUT>,
-> > +			 <&cru ACLK_GMAC0>, <&cru PCLK_GMAC0>,
-> > +			 <&cru SCLK_GMAC0_RX_TX>, <&cru CLK_GMAC0_PTP_REF>,
-> > +			 <&cru PCLK_XPCS>;
-> > +		clock-names = "stmmaceth", "mac_clk_rx",
-> > +			      "mac_clk_tx", "clk_mac_refout",
-> > +			      "aclk_mac", "pclk_mac",
-> > +			      "clk_mac_speed", "ptp_ref",
-> > +			      "pclk_xpcs";
-> > +		resets = <&cru SRST_A_GMAC0>;
-> > +		reset-names = "stmmaceth";
-> > +
 > 
-> is this missing a rockchip,grf phandle?
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> ---
+>  .../devicetree/bindings/sound/qcom,q6apm.yaml | 87 +++++++++++++++++++
+>  include/dt-bindings/sound/qcom,q6apm.h        |  8 ++
+>  2 files changed, 95 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6apm.yaml
+>  create mode 100644 include/dt-bindings/sound/qcom,q6apm.h
 > 
-> gmac1 has one and the driver side also does want to access the grf for both
-> controllers.
-> 
-> 
-> Heiko
-> 
-> > +		snps,mixed-burst;
-> > +		snps,tso;
-> > +
-> > +		snps,axi-config = <&gmac0_stmmac_axi_setup>;
-> > +		snps,mtl-rx-config = <&gmac0_mtl_rx_setup>;
-> > +		snps,mtl-tx-config = <&gmac0_mtl_tx_setup>;
-> > +		status = "disabled";
-> > +
-> > +		mdio0: mdio {
-> > +			compatible = "snps,dwmac-mdio";
-> > +			#address-cells = <0x1>;
-> > +			#size-cells = <0x0>;
-> > +		};
-> > +
-> > +		gmac0_stmmac_axi_setup: stmmac-axi-config {
-> > +			snps,wr_osr_lmt = <4>;
-> > +			snps,rd_osr_lmt = <8>;
-> > +			snps,blen = <0 0 0 0 16 8 4>;
-> > +		};
-> > +
-> > +		gmac0_mtl_rx_setup: rx-queues-config {
-> > +			snps,rx-queues-to-use = <1>;
-> > +			queue0 {};
-> > +		};
-> > +
-> > +		gmac0_mtl_tx_setup: tx-queues-config {
-> > +			snps,tx-queues-to-use = <1>;
-> > +			queue0 {};
-> > +		};
-> > +	};
-> >  };
-> >  
-> >  &cpu0_opp_table {
-> > 
-> 
-> 
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,q6apm.yaml b/Documentation/devicetree/bindings/sound/qcom,q6apm.yaml
+> new file mode 100644
+> index 000000000000..6f27567523a9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/qcom,q6apm.yaml
+> @@ -0,0 +1,87 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/sound/qcom,q6apm.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Qualcomm Audio Process Manager binding
+> +
+> +maintainers:
+> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> +
+> +description: |
+> +  This binding describes the Qualcomm Audio Process Manager service in DSP
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,q6apm
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +#APM Services
+> +patternProperties:
+> +  'apm@[0-9]+$':
 
+This means '.*apm' for the node name. Did you need a '^'?
 
+> +    type: object
+> +    description:
+> +      APM devices use subnodes for services.
+> +
+> +    properties:
+> +      compatible:
+> +        enum:
+> +          - qcom,q6apm-dais
+> +          - qcom,q6apm-bedais
+> +
+> +      iommus:
+> +        maxItems: 1
+> +
+> +      "#sound-dai-cells":
+> +        const: 1
+> +
+> +      reg:
+> +        maxItems: 1
+> +
+> +    required:
+> +      - compatible
+> +      - reg
+> +      - '#sound-dai-cells'
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    gpr {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        gprservice@1 {
+> +          compatible = "qcom,q6apm";
+> +          reg = <1>;
+> +
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          apm@1 {
+> +            compatible = "qcom,q6apm-dais";
+> +            #sound-dai-cells = <1>;
+> +            reg = <1>;
+> +          };
+> +
+> +          apm@2 {
+> +            compatible = "qcom,q6apm-bedais";
+> +            #sound-dai-cells = <1>;
+> +            reg = <2>;
+> +          };
+> +        };
+> +    };
+> diff --git a/include/dt-bindings/sound/qcom,q6apm.h b/include/dt-bindings/sound/qcom,q6apm.h
+> new file mode 100644
+> index 000000000000..3c3987eb6e95
+> --- /dev/null
+> +++ b/include/dt-bindings/sound/qcom,q6apm.h
+> @@ -0,0 +1,8 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +#ifndef __DT_BINDINGS_Q6_APM_H__
+> +#define __DT_BINDINGS_Q6_APM_H__
+> +
+> +/* Audio Process Manager (APM) virtual ports IDs */
+> +#include <dt-bindings/sound/qcom,q6afe.h>
 
+Why add this indirection? Rename the file if you need something to cover 
+both.
 
+> +
+> +#endif /* __DT_BINDINGS_Q6_APM_H__ */
+> -- 
+> 2.21.0
+> 
+> 
