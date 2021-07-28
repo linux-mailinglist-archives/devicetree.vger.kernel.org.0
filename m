@@ -2,72 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89CF23D9425
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 19:18:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 589B43D942F
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 19:23:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229574AbhG1RSN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 13:18:13 -0400
-Received: from mail-io1-f51.google.com ([209.85.166.51]:35365 "EHLO
-        mail-io1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229515AbhG1RSM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 13:18:12 -0400
-Received: by mail-io1-f51.google.com with SMTP id y9so3803653iox.2;
-        Wed, 28 Jul 2021 10:18:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=MhCaJJI/FxwbAqWqGNqDCa1/ELrQ+ncelMrX8vBhF+Y=;
-        b=criz/h4CsvfMp4GUEPIe+RwgtxejctrjF/KarL2ju/0660pDqMy2OjZsGsFpBzE8LD
-         T00tgvx15y6WvHPSl0OKr9HrUj1IktyO0GlOPquUAYE6bbF7ajqbz/Oyf+bkcl9Sx7P9
-         qSeOCAqzUxJKxYdgJChPBX/PvGL1YeuSq4okBG8AmBrwmHB1NqL+2o+JXweWD/eTJDIa
-         6dwT4eNWoxVM7shyFwU+8TUZwReVwbBhqBW0MW+V17FeTkN7E4YBRWTCkgAQ7EJK5teA
-         6w8wEZHlgP5JN0lieGIUpcvrSx6dleIY1MeP3YhxrePkvdYdAaLTwVks45BcWti9lawV
-         vVPw==
-X-Gm-Message-State: AOAM532uoZFwEih92oGv0ayP9ABChR/4IFI0T6GWFqt94baPui5UR0P1
-        MZRQ5INCEhkxBdb01+N8og==
-X-Google-Smtp-Source: ABdhPJzYD5vrsFQa6LZr+r7UlHykUF0j1thT7fabyZOU1+d+F/lp7UhiifIfk02RMe2Ub3JiO29hVA==
-X-Received: by 2002:a5e:dc48:: with SMTP id s8mr386481iop.133.1627492690365;
-        Wed, 28 Jul 2021 10:18:10 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id l5sm388932ion.44.2021.07.28.10.18.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Jul 2021 10:18:09 -0700 (PDT)
-Received: (nullmailer pid 1269234 invoked by uid 1000);
-        Wed, 28 Jul 2021 17:18:07 -0000
-Date:   Wed, 28 Jul 2021 11:18:07 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Yassine Oudjana <y.oudjana@protonmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Michael Auchter <michael.auchter@ni.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>
-Subject: Re: [PATCH v2 3/3] dt-bindings: extcon: usbc-tusb320: Add TUSB320L
- compatible string
-Message-ID: <20210728171807.GA1269122@robh.at.kernel.org>
-References: <a4rEWQfScKM8Y0B7u0NXSAdvKC6Xzesp1OWGUYjeWaA@cp3-web-016.plabs.ch>
+        id S229962AbhG1RX2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 13:23:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53056 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229574AbhG1RX1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Jul 2021 13:23:27 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D5AF56103B;
+        Wed, 28 Jul 2021 17:23:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1627493005;
+        bh=oy2CdTpDQZqSOXZB0jmZSt0g6kLN/VjpudOGzr8rM1Q=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=LMTrXSBJdcPhhVK888FzkTPIHHm1QFIqtRu60IEoVpEUAZ/PyMNeRlhQDj6f+lJrn
+         LuNrLo9g+x4eWRU8zc2XHBEJ/hBzjPNaWRXq72zeR3Z/4hn0Tswg/Udvl6kkXTkmG0
+         qyUP9yn4iLclKOk3DiUlVepSrd9vx8YNF4lA2gLLE0nX25tdtqE8y7PhR25OxLK28Q
+         oO5MPFValqqViyBawxoEP4yoFIjAGlc7UZlcG9Sp34Cql7PkNRH3c5WWmws/LU+E3P
+         C8NX9uV7a0ejx04WN8j6rKGz7svCPo+d458miN5KN3RTwWhKNIeqlRfO1cOejMasFh
+         hK6a+l6dFwrow==
+Received: by mail-ej1-f52.google.com with SMTP id o5so5850791ejy.2;
+        Wed, 28 Jul 2021 10:23:25 -0700 (PDT)
+X-Gm-Message-State: AOAM532S7ljnTHLog9caJ4MEPSU3qiE92Mfk1TWjHAElpo+wqW3OcI9e
+        HXk4Ka66cubgk12Id3mU+m4hPIkCqWiaVg6qlQ==
+X-Google-Smtp-Source: ABdhPJzBRhqr2Ud4HELrNH9AHHg58LqSJjd4vf9qzNk7vw7IkgfkJNJ/8+Otv5jy2oAsvgquPL7L3ePPRqeCXlHZK28=
+X-Received: by 2002:a17:907:766c:: with SMTP id kk12mr477374ejc.525.1627493004282;
+ Wed, 28 Jul 2021 10:23:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a4rEWQfScKM8Y0B7u0NXSAdvKC6Xzesp1OWGUYjeWaA@cp3-web-016.plabs.ch>
+References: <20210712130631.38153-1-alexandru.tachici@analog.com>
+ <20210712130631.38153-8-alexandru.tachici@analog.com> <20210727055329.7y23ob7kir3te2e4@pengutronix.de>
+In-Reply-To: <20210727055329.7y23ob7kir3te2e4@pengutronix.de>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 28 Jul 2021 11:23:12 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJXAPW7KRAdJac+uje95Nk-b6ojjow8VEzkF=PZvbDvnA@mail.gmail.com>
+Message-ID: <CAL_JsqJXAPW7KRAdJac+uje95Nk-b6ojjow8VEzkF=PZvbDvnA@mail.gmail.com>
+Subject: Re: [PATCH v2 7/7] dt-bindings: adin1100: Add binding for ADIN1100
+ Ethernet PHY
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Alexandru Tachici <alexandru.tachici@analog.com>,
+        netdev <netdev@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        David Miller <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 27 Jul 2021 09:57:15 +0000, Yassine Oudjana wrote:
-> Add a compatible string for TUSB320L.
-> 
-> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
-> ---
->  .../devicetree/bindings/extcon/extcon-usbc-tusb320.yaml       | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
+On Mon, Jul 26, 2021 at 11:53 PM Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+>
+> On Mon, Jul 12, 2021 at 04:06:31PM +0300, alexandru.tachici@analog.com wrote:
+> > From: Alexandru Tachici <alexandru.tachici@analog.com>
+> >
+> > DT bindings for the ADIN1100 10BASE-T1L Ethernet PHY.
+> >
+> > Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
+> > ---
+> >  .../devicetree/bindings/net/adi,adin1100.yaml | 45 +++++++++++++++++++
+> >  1 file changed, 45 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/net/adi,adin1100.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/net/adi,adin1100.yaml b/Documentation/devicetree/bindings/net/adi,adin1100.yaml
+> > new file mode 100644
+> > index 000000000000..14943164da7a
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/net/adi,adin1100.yaml
+> > @@ -0,0 +1,45 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/net/adi,adin1100.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Analog Devices ADIN1100 PHY
+> > +
+> > +maintainers:
+> > +  - Alexandru Tachici <alexandru.tachici@analog.com>
+> > +
+> > +description:
+> > +  Bindings for Analog Devices Industrial Low Power 10BASE-T1L Ethernet PHY
+> > +
+> > +allOf:
+> > +  - $ref: ethernet-phy.yaml#
+> > +
+> > +properties:
+> > +  adi,disable-2400mv-tx-level:
+> > +    description:
+> > +      Prevent ADIN1100 from using the 2.4 V pk-pk transmit level.
+> > +    type: boolean
+>
+> This property should be generic. It is defined by IEEE 802.3cg 2019 and can
+> be implemented on all T1L PHYs.
+>
+> I assume, it should be something like:
+> ethernet-phy-10base-t1l-2.4vpp-enable
+> ethernet-phy-10base-t1l-2.4vpp-disable
 
+'ethernet-phy-' is a bit redundant and I'd make it a tristate (not
+present, 0, 1). So just '10base-t1l-2.4vpp'?
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
-
-If a tag was not added on purpose, please state why and what changed.
-
+> To overwrite bootstrapped of fuzed values if supported. The IEEE 802.3cg
+> specification uses following wordings for this functionality:
+> "10BASE-T1L increased transmit level request ..."
