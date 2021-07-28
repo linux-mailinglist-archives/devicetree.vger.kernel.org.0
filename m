@@ -2,282 +2,277 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7091A3D8A9E
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 11:29:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFD2F3D8B1B
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 11:49:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235594AbhG1J3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 05:29:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54154 "EHLO
+        id S233734AbhG1Jtt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 05:49:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235471AbhG1J3v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 05:29:51 -0400
-Received: from mail-yb1-xb4a.google.com (mail-yb1-xb4a.google.com [IPv6:2607:f8b0:4864:20::b4a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E37DC061760
-        for <devicetree@vger.kernel.org>; Wed, 28 Jul 2021 02:29:50 -0700 (PDT)
-Received: by mail-yb1-xb4a.google.com with SMTP id 16-20020a250b100000b029055791ebe1e6so2128657ybl.20
-        for <devicetree@vger.kernel.org>; Wed, 28 Jul 2021 02:29:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
-         :cc;
-        bh=l5yKvXjQ8S/W0y/XNebRWWjDHarzrh79K/doATDwMR4=;
-        b=gaMN5SEfV1eft1jbLB9r/qJanlNFIo4DqD83bYWIuUcEpfIExks4K/XTkvDafm/12F
-         DjGwHLkeBH7+FwAZn69m7x9Ga2VKb/OE4Xn4J3th0qmpfavxvM5CjdUwqzSN915XqF1q
-         eKh/vakSQauLQJRHaZUFQq0eJr4p9i+oe7M1L5A/62UtVQTBJDLhwLf1HhQFCKVxUIS/
-         9kVEWaTugdQQ38zOGFL5BPWcMuSnWx4Gsyz6tYHB5/9usSMIoTTaC8siLQtJHZSmvoOH
-         QseCcFbWhmdqWAwDSNQDK3aNiGb3gPfsNoZyth27GEDAzbB55WNTs7rCBKV3eD9AfZw0
-         8UAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=l5yKvXjQ8S/W0y/XNebRWWjDHarzrh79K/doATDwMR4=;
-        b=G7Stt9NXErRc+jaqZdMP1tGioMNRmCabLZnvSysKZF2M1eUTHlW708sRMZzmRqzJOq
-         uI0ZQ5qpjhpeBANcb0LYLcgPmlJmpH4Ge4XRDWwVhor/lstOzjhFQI+vIdDRwHHLMqmP
-         WvS+UheQxiqcpeRbO5i3uQj1mIJjBI+ekZqor0pc2Sw2N0XcCG0eOaaC3WTzARZOHpd/
-         F68y6AThbsxsWNjh+jsS8iMkXZfLF+hQz3QIUIeeImfniRuGiHSymrGUus9PNwXqnPwU
-         bNff6DQ0QL/kagPIGOR943roJY4Ipd4K2ZiLGF6xqBLvRczd0xF3GhxwfI1PllZxx4XZ
-         brug==
-X-Gm-Message-State: AOAM531AJsYSnJFqkNHUlIkeMKrL4Ji+znDufvagqc6YLMDxZBSz3OeW
-        M2DyTYYnhWtTlH28NvxA9rRKq0zXF3Un
-X-Google-Smtp-Source: ABdhPJwM2k70JZA/Cyd8J9ASauzN+CGEocnhvVzX5dwnGVbFWBTZX8W43wmvT1BarCWfiyhSCx7ObvzHRWTX
-X-Received: from kyletso.ntc.corp.google.com ([2401:fa00:fc:202:da7f:a21b:ee74:66a2])
- (user=kyletso job=sendgmr) by 2002:a25:ca88:: with SMTP id
- a130mr38241072ybg.4.1627464589705; Wed, 28 Jul 2021 02:29:49 -0700 (PDT)
-Date:   Wed, 28 Jul 2021 17:29:30 +0800
-In-Reply-To: <20210728092930.2552619-1-kyletso@google.com>
-Message-Id: <20210728092930.2552619-3-kyletso@google.com>
-Mime-Version: 1.0
-References: <20210728092930.2552619-1-kyletso@google.com>
-X-Mailer: git-send-email 2.32.0.432.gabb21c7263-goog
-Subject: [PATCH v3 2/2] usb: typec: tcpm: Support non-PD mode
-From:   Kyle Tso <kyletso@google.com>
-To:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org
-Cc:     badhri@google.com, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Kyle Tso <kyletso@google.com>
-Content-Type: text/plain; charset="UTF-8"
+        with ESMTP id S231443AbhG1Jtt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 05:49:49 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8441C061757;
+        Wed, 28 Jul 2021 02:49:47 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 56EE32222E;
+        Wed, 28 Jul 2021 11:49:41 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1627465785;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=wSwNdWOzcxnppq8rt6ZnreiwiQj3iUz9ZFkmSObTj88=;
+        b=ZIA9+a1lDl/W8HdwSQ3giERKNld3dgV3jYmBI2BuFt6/p7954j8IvFYmqvsD3YIUWY8RH4
+        BFGBB80iJu+WU3Pevyv0R0XRHsbyMj8uE6VHz2rWWjYnd5hb/M+IY3TmuqMqoCDdzgrzC5
+        sktonDiGJAjXtGBBbuvacNvfIW3PSqs=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 28 Jul 2021 11:49:41 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Drew Fustini <drew@beagleboard.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Michael Zhu <michael.zhu@starfivetech.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Fu Wei <tekkamanninja@gmail.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Huan Feng <huan.feng@starfivetech.com>
+Subject: Re: [RFC PATH 2/2] gpio: starfive-jh7100: Add StarFive JH7100 GPIO
+ driver
+In-Reply-To: <20210727052851.GA3147871@x1>
+References: <20210701002037.912625-1-drew@beagleboard.org>
+ <20210701002037.912625-3-drew@beagleboard.org>
+ <8c59105d32a9936f8806501ecd20e044@walle.cc>
+ <CACRpkdbhKsuXZiLCh_iajJQWDdQQOZ87QF3xDr5Vc66SoVCnxQ@mail.gmail.com>
+ <20210726071124.GA9184@x1> <dad13b899b69436acc1804b7c3438639@walle.cc>
+ <20210727052851.GA3147871@x1>
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <ff76b62927e3f5f016f6c4c11ca16ccf@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Even if the Type-C controller supports PD, it is doable to disable PD
-capabilities with the current state machine in TCPM. Without enabling RX
-in low-level drivers and with skipping the power negotiation, the port
-is eligible to be a non-PD Type-C port. Use new flags whose values are
-populated from the device tree to decide the port PD capability. Adding
-"pd-unsupported" property in device tree indicates that the port does
-not support PD. If "pd-unsupported" is not found, "typec-power-opmode"
-shall be added to specify the advertised Rp value if the port supports
-SRC role.
+Hi Drew,
 
-Signed-off-by: Kyle Tso <kyletso@google.com>
----
-changes since v2:
-- Changed the control flow if the port is SNK or DRP. Return directly if
-  the flag is false (PD not supported). Read "self-powered" before that.
+Am 2021-07-27 07:28, schrieb Drew Fustini:
+[..]
+>> > > Drew please look at drivers/gpio/gpio-ftgpio010.c for an example
+>> > > of GPIO_GENERIC calling bgpio_init() in probe().
+>> >
+>> > Thank you for the suggestion. However, I am not sure that will work for
+>> > this SoC.
+>> >
+>> > The GPIO registers are described in section 12 of JH7100 datasheet [1]
+>> > and I don't think they fit the expectation of gpio-mmio.c because there
+>> > is a seperate register for each GPIO line for output data value and
+>> > output enable.
+>> >
+>> > There are 64 output data config registers which are 4 bytes wide. There
+>> > are 64 output enable config registers which are 4 bytes wide too. Output
+>> > data and output enable registers for a given GPIO pad are contiguous.
+>> > GPIO0_DOUT_CFG is 0x50 and GPIO0_DOEN_CFG is 0x54 while GPIO1_DOUT_CFG
+>> > is 0x58 and GPIO1_DOEN_CFG is 0x5C. The stride between GPIO pads is
+>> > effectively 8, which yields the formula: GPIOn_DOUT_CFG is 0x50+8n.
+>> > Similarly, GPIO0_DOEN_CFG is 0x54 and thus GPIOn_DOEN_CFG is 0x54+8n.
+>> >
+>> > However, GPIO input data does use just one bit for each line. GPIODIN_0
+>> > at 0x48 covers GPIO[31:0] and GPIODIN_1 at 0x4c covers GPIO[63:32].
 
- drivers/usb/typec/tcpm/tcpm.c | 88 ++++++++++++++++++++++++++++-------
- 1 file changed, 70 insertions(+), 18 deletions(-)
+Mh, I'm not sure I'm understanding the datasheet/registers. _DOUT_CFG
+and _DOEN_CFG seem to specify the pad where this GPIO is mapped to.
+Shouldn't this be some kind of pinctrl then? Apparently you can map
+any GPIO number to any output pad, no? Or at least to all pads
+which are described in Table 11-2. What happens if two different GPIOs
+are mapped to the same pad? Bit 31 in these _CFG seems to be an invert
+bit, but what does it invert?
 
-diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
-index 5b22a1c931a9..d8d6ef8c6282 100644
---- a/drivers/usb/typec/tcpm/tcpm.c
-+++ b/drivers/usb/typec/tcpm/tcpm.c
-@@ -316,6 +316,7 @@ struct tcpm_port {
- 	struct typec_partner *partner;
- 
- 	enum typec_cc_status cc_req;
-+	enum typec_cc_status src_rp;	/* work only if pd_supported == false */
- 
- 	enum typec_cc_status cc1;
- 	enum typec_cc_status cc2;
-@@ -323,6 +324,7 @@ struct tcpm_port {
- 
- 	bool attached;
- 	bool connected;
-+	bool pd_supported;
- 	enum typec_port_type port_type;
- 
- 	/*
-@@ -804,6 +806,7 @@ static void tcpm_apply_rc(struct tcpm_port *port)
- 	}
- }
- 
-+
- /*
-  * Determine RP value to set based on maximum current supported
-  * by a port if configured as source.
-@@ -815,6 +818,9 @@ static enum typec_cc_status tcpm_rp_cc(struct tcpm_port *port)
- 	int nr_pdo = port->nr_src_pdo;
- 	int i;
- 
-+	if (!port->pd_supported)
-+		return port->src_rp;
-+
- 	/*
- 	 * Search for first entry with matching voltage.
- 	 * It should report the maximum supported current.
-@@ -3568,9 +3574,11 @@ static int tcpm_src_attach(struct tcpm_port *port)
- 	if (ret < 0)
- 		return ret;
- 
--	ret = port->tcpc->set_pd_rx(port->tcpc, true);
--	if (ret < 0)
--		goto out_disable_mux;
-+	if (port->pd_supported) {
-+		ret = port->tcpc->set_pd_rx(port->tcpc, true);
-+		if (ret < 0)
-+			goto out_disable_mux;
-+	}
- 
- 	/*
- 	 * USB Type-C specification, version 1.2,
-@@ -3600,7 +3608,8 @@ static int tcpm_src_attach(struct tcpm_port *port)
- out_disable_vconn:
- 	tcpm_set_vconn(port, false);
- out_disable_pd:
--	port->tcpc->set_pd_rx(port->tcpc, false);
-+	if (port->pd_supported)
-+		port->tcpc->set_pd_rx(port->tcpc, false);
- out_disable_mux:
- 	tcpm_mux_set(port, TYPEC_STATE_SAFE, USB_ROLE_NONE,
- 		     TYPEC_ORIENTATION_NONE);
-@@ -3804,6 +3813,20 @@ static enum typec_pwr_opmode tcpm_get_pwr_opmode(enum typec_cc_status cc)
- 	}
- }
- 
-+static enum typec_cc_status tcpm_pwr_opmode_to_rp(enum typec_pwr_opmode opmode)
-+{
-+	switch (opmode) {
-+	case TYPEC_PWR_MODE_USB:
-+		return TYPEC_CC_RP_DEF;
-+	case TYPEC_PWR_MODE_1_5A:
-+		return TYPEC_CC_RP_1_5;
-+	case TYPEC_PWR_MODE_3_0A:
-+	case TYPEC_PWR_MODE_PD:
-+	default:
-+		return TYPEC_CC_RP_3_0;
-+	}
-+}
-+
- static void run_state_machine(struct tcpm_port *port)
- {
- 	int ret;
-@@ -3914,6 +3937,10 @@ static void run_state_machine(struct tcpm_port *port)
- 		if (port->ams == POWER_ROLE_SWAP ||
- 		    port->ams == FAST_ROLE_SWAP)
- 			tcpm_ams_finish(port);
-+		if (!port->pd_supported) {
-+			tcpm_set_state(port, SRC_READY, 0);
-+			break;
-+		}
- 		port->upcoming_state = SRC_SEND_CAPABILITIES;
- 		tcpm_ams_start(port, POWER_NEGOTIATION);
- 		break;
-@@ -4161,7 +4188,10 @@ static void run_state_machine(struct tcpm_port *port)
- 				current_lim = PD_P_SNK_STDBY_MW / 5;
- 			tcpm_set_current_limit(port, current_lim, 5000);
- 			tcpm_set_charge(port, true);
--			tcpm_set_state(port, SNK_WAIT_CAPABILITIES, 0);
-+			if (!port->pd_supported)
-+				tcpm_set_state(port, SNK_READY, 0);
-+			else
-+				tcpm_set_state(port, SNK_WAIT_CAPABILITIES, 0);
- 			break;
- 		}
- 		/*
-@@ -4389,7 +4419,8 @@ static void run_state_machine(struct tcpm_port *port)
- 		tcpm_set_vbus(port, true);
- 		if (port->ams == HARD_RESET)
- 			tcpm_ams_finish(port);
--		port->tcpc->set_pd_rx(port->tcpc, true);
-+		if (port->pd_supported)
-+			port->tcpc->set_pd_rx(port->tcpc, true);
- 		tcpm_set_attached_state(port, true);
- 		tcpm_set_state(port, SRC_UNATTACHED, PD_T_PS_SOURCE_ON);
- 		break;
-@@ -5898,6 +5929,7 @@ EXPORT_SYMBOL_GPL(tcpm_tcpc_reset);
- static int tcpm_fw_get_caps(struct tcpm_port *port,
- 			    struct fwnode_handle *fwnode)
- {
-+	const char *opmode_str;
- 	const char *cap_str;
- 	int ret;
- 	u32 mw, frs_current;
-@@ -5932,22 +5964,37 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
- 		return ret;
- 	port->typec_caps.type = ret;
- 	port->port_type = port->typec_caps.type;
-+	port->pd_supported = !fwnode_property_read_bool(fwnode, "pd-unsupported");
- 
- 	port->slow_charger_loop = fwnode_property_read_bool(fwnode, "slow-charger-loop");
-+
- 	if (port->port_type == TYPEC_PORT_SNK)
- 		goto sink;
- 
- 	/* Get source pdos */
--	ret = fwnode_property_count_u32(fwnode, "source-pdos");
--	if (ret <= 0)
--		return -EINVAL;
-+	if (port->pd_supported) {
-+		ret = fwnode_property_count_u32(fwnode, "source-pdos");
-+		if (ret <= 0)
-+			return -EINVAL;
- 
--	port->nr_src_pdo = min(ret, PDO_MAX_OBJECTS);
--	ret = fwnode_property_read_u32_array(fwnode, "source-pdos",
--					     port->src_pdo, port->nr_src_pdo);
--	if ((ret < 0) || tcpm_validate_caps(port, port->src_pdo,
--					    port->nr_src_pdo))
--		return -EINVAL;
-+		port->nr_src_pdo = min(ret, PDO_MAX_OBJECTS);
-+		ret = fwnode_property_read_u32_array(fwnode, "source-pdos",
-+						     port->src_pdo, port->nr_src_pdo);
-+		if ((ret < 0) || tcpm_validate_caps(port, port->src_pdo,
-+						    port->nr_src_pdo))
-+			return -EINVAL;
-+	} else {
-+		port->nr_src_pdo = 0;
-+		ret = fwnode_property_read_string(fwnode, "typec-power-opmode", &opmode_str);
-+		if (ret == 0) {
-+			ret = typec_find_pwr_opmode(opmode_str);
-+			if (ret < 0)
-+				return ret;
-+			port->src_rp = tcpm_pwr_opmode_to_rp(ret);
-+		} else {
-+			return ret;
-+		}
-+	}
- 
- 	if (port->port_type == TYPEC_PORT_SRC)
- 		return 0;
-@@ -5961,6 +6008,13 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
- 	if (port->typec_caps.prefer_role < 0)
- 		return -EINVAL;
- sink:
-+	port->self_powered = fwnode_property_read_bool(fwnode, "self-powered");
-+
-+	if (!port->pd_supported) {
-+		port->nr_snk_pdo = 0;
-+		return 0;
-+	}
-+
- 	/* Get sink pdos */
- 	ret = fwnode_property_count_u32(fwnode, "sink-pdos");
- 	if (ret <= 0)
-@@ -5977,9 +6031,7 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
- 		return -EINVAL;
- 	port->operating_snk_mw = mw / 1000;
- 
--	port->self_powered = fwnode_property_read_bool(fwnode, "self-powered");
--
--	/* FRS can only be supported byb DRP ports */
-+	/* FRS can only be supported by DRP ports */
- 	if (port->port_type == TYPEC_PORT_DRP) {
- 		ret = fwnode_property_read_u32(fwnode, "new-source-frs-typec-current",
- 					       &frs_current);
--- 
-2.32.0.432.gabb21c7263-goog
+Similar, the input GPIOs are connected to an output pad by all the
+GPI_*_CFG registers.
+
+To me it seems, that there two multiplexers for each GPIO, where
+you can connect any GPIOn to any input pad and output pad. Sound
+like a huge overkill. I must be missing something here.
+
+But what puzzles me the most, where do I set the actual GPIO output
+value?
+
+>> I'd say, that should work with the .reg_mask_xlate of the gpio-regmap.
+>> 
+>> -michael
+> 
+> Thanks, yes, I think trying to figure out how .reg_mask_xlate would 
+> need
+> to work this SoC.  I believe these are the only two implementations.
+> 
+> From drivers/gpio/gpio-regmap.c:
+> 
+>   static int gpio_regmap_simple_xlate(struct gpio_regmap *gpio,
+> 				      unsigned int base, unsigned int offset,
+> 				      unsigned int *reg, unsigned int *mask)
+>   {
+> 	  unsigned int line = offset % gpio->ngpio_per_reg;
+> 	  unsigned int stride = offset / gpio->ngpio_per_reg;
+> 
+> 	  *reg = base + stride * gpio->reg_stride;
+> 	  *mask = BIT(line);
+> 
+> 	  return 0;
+>   }
+> 
+> From drivers/pinctrl/bcm/pinctrl-bcm63xx.c:
+> 
+>   static int bcm63xx_reg_mask_xlate(struct gpio_regmap *gpio,
+> 				    unsigned int base, unsigned int offset,
+> 				    unsigned int *reg, unsigned int *mask)
+>   {
+> 	  unsigned int line = offset % BCM63XX_BANK_GPIOS;
+> 	  unsigned int stride = offset / BCM63XX_BANK_GPIOS;
+> 
+> 	  *reg = base - stride * BCM63XX_BANK_SIZE;
+> 	  *mask = BIT(line);
+> 
+> 	  return 0;
+>   }
+> 
+> Let's say a driver calls gpio_regmap_set(chip, 0, 5) to set line 5 to
+> value 1.
+> 
+> I believe this would result in call to:
+> 
+>   gpio->reg_mask_xlate(gpio, gpio->reg_set_base, 5, &reg, &mask)
+> 
+> Then this would be called to set the register:
+> 
+>   regmap_update_bits(gpio->regmap, reg, mask, mask);
+> 
+> From datasheet section 12 [1], there are 64 output data registers which
+> are 4 bytes wide. There are 64 output enable registers which are also 4
+> bytes wide too. Output data and output enable registers for a GPIO line
+> are contiguous. Thus GPIO0_DOUT_CFG is 0x50 and GPIO0_DOEN_CFG is 0x54.
+> The forumla is GPIOn_DOUT_CFG is 0x50+8n and GPIOn_DOEN_CFG is 0x54+8n.
+> Thus for GPIO line 5:
+> 
+>   GPIO5_DOUT_CFG is 0x50 + 0x28 = 0x78
+>   GPIO5_DOEN_CFG is 0x54 + 0x28 = 0x7C
+> 
+> Enable GPIO line 5 as output by writing 0x1 to 0x7C and set output 
+> value
+> to 1 by writing 1 to 0x7C.
+> 
+> Using gpio_regmap_simple_xlate() as a template, I am thinking through
+> xlate for this gpio controller:
+> 
+> 
+> static int gpio_regmap_starfive_xlate(struct gpio_regmap *gpio,
+> 				      unsigned int base, unsigned int offset,
+> 				      unsigned int *reg, unsigned int *mask)
+> {
+> 	// reg_set_base is passed as base
+> 	// let reg_set_base = 0x50 (GPIO0_DOUT_CFG)
+> 	// let gpio->reg_stride = 8
+> 	// let offest = 5 (for gpio line 5)
+> 
+> 	*reg = base + offset * gpio->reg_stride;
+> 	// *reg = base:0x50 + offset:0x5 * reg_stride:0x8
+> 	// *reg = 0x50 + 0x28
+> 	// *reg=  0x78
+> 
+> 	// Each gpio line has a full register, not just a bit. To output
+> 	// a digital 1, then GPIO5_DOUT_CFG would be 0x1. To output
+> 	// digital 0, GPIO5_DOUT_CFG would be 0x0. Thus I think the mask
+> 	// should be the least significant bit.
+> 	*mask = BIT(1);
+> 
+> 	return 0;
+> }
+> 
+> Let's walk through what would happen if gpio_regmap_set() was the
+> caller:
+> 
+> static void gpio_regmap_set(struct gpio_chip *chip, unsigned int 
+> offset,
+> 			    int val)
+> {
+> 	// for gpio line, offset = 5
+> 	// if want to set line 5 high, then val = 1
+> 	struct gpio_regmap *gpio = gpiochip_get_data(chip);
+> 
+> 	// reg_set_base would be set to 0x50 (GPIO0_DOUT_CFG)
+> 	unsigned int base = gpio_regmap_addr(gpio->reg_set_base);
+> 	unsigned int reg, mask;
+> 
+> 	gpio->reg_mask_xlate(gpio, base /* 0x50 */, offset /* 5 */, &reg, 
+> &mask);
+> 	if (val) /* if val is 1 */
+> 		regmap_update_bits(gpio->regmap, reg, mask, mask);
+> 		// if mask returned was 0x1, then this would set the
+> 		// bit 0 in GPIO5_DOUT_CFG
+> 	else /* if val is 0 */
+> 		regmap_update_bits(gpio->regmap, reg, mask, 0);
+> 		// if mask returned was 0x1, then this would clear
+> 		// bit 0 in GPIO5_DOUT_CFG
+> }
+> 
+> Now for the output enable register GPIO5_DOEN_CFG, the output driver is
+> active low so 0x0 is actually enables output where as 0x1 disables
+> output.  Thus maybe I need to add logic like:
+> 
+> 
+> static int gpio_regmap_starfive_xlate(struct gpio_regmap *gpio,
+> 				      unsigned int base, unsigned int offset,
+> 				      unsigned int *reg, unsigned int *mask)
+> {
+> 	<snip>
+> 	if (base == GPIO0_DOUT_CFG)
+> 		*mask = 0x1U;
+> 	else if (base == GPIO0_DOEN_CFG)
+> 		*bit = ~(0x1U);
+> 
+> 	return 0;
+> }
+> 
+> What do you think of that approach?
+
+I'm also not opposed to add a new flag to gpio-regmap which
+invert the value itself.
+
+But the idea was that you can differentiate in _xlate() by the
+base register offset, like you already did:
+
+static int gpio_regmap_starfive_xlate(struct gpio_regmap *gpio,
+				      unsigned int base, unsigned int offset,
+				      unsigned int *reg, unsigned int *mask)
+{
+	switch (base) {
+	case GPIO0_DOUT_CFG:
+		/* do some custom mapping just for DOUT_CFG */
+	case GPIO0_DOEN_CFG:
+		/* do some custom mapping just for DOEN_CFG */
+	default:
+		/* do normal mapping */
+}
+
+> Are there any other examples of regmap xlate that I missed?
+
+No there aren't much yet. Usually the simple one is enough.
+
+-michael
+
+> [1] 
+> https://github.com/starfive-tech/beaglev_doc/blob/main/JH7100%20Data%20Sheet%20V01.01.04-EN%20(4-21-2021).pdf
 
