@@ -2,138 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E83493D8C9F
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 13:22:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 504E23D8D17
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 13:52:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234576AbhG1LWH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 07:22:07 -0400
-Received: from mail-yb1-f176.google.com ([209.85.219.176]:36556 "EHLO
-        mail-yb1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232165AbhG1LWG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 07:22:06 -0400
-Received: by mail-yb1-f176.google.com with SMTP id j77so1342164ybj.3;
-        Wed, 28 Jul 2021 04:22:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=9C90hpgYkE4biTrUIzNHDYYty+iOjCgfF4PS52t6ewo=;
-        b=F6pJPrvdCieXriMEBuqgIXnPrNl6PtcJpZiaoh3GGXKuHZowv6plgRKI2uRH93Lbfh
-         AKiAwfdG+sAvdvz1Wpwib/UQtps7ej/ius40I1HAKzkcAhliU1gtoKLmE2vr6kJQPo7Y
-         w+Lattr/kY729rVR0sddKt0LSBYh1cxJjYDiHws0sidf7/AfPCzRyaHnMAM5CsjPic/f
-         1cb/0wXiw7VsbQo7zjt2AT7NFqHvCVKAWayp7D0J+2UkB3pjQavxpWMHkCa7kL/CayA3
-         UC+G5v+80KNR6PwPjXbq/LecM0JUr50Vf+7kRLDxEbZMxsi+xZjgAJDuCeigCGsvAktm
-         vRJg==
-X-Gm-Message-State: AOAM533zp8NXxWGhVujmsuzCr6KClIbetHx1Dh4GWuEW0mWed+WusCLR
-        aHH59FAc6+6cqry5Ejslj7X65oa3YQ0iucKCICk=
-X-Google-Smtp-Source: ABdhPJyMKN9A7vWkH92nGKXoClZVP7xtHJgjDzAKw67iBSQKKzU7V2Oom+eEuE5m1MWc9u5CTXApe/NPMo7j7l4w0a4=
-X-Received: by 2002:a25:1e89:: with SMTP id e131mr9659175ybe.90.1627471323751;
- Wed, 28 Jul 2021 04:22:03 -0700 (PDT)
+        id S234638AbhG1Lv7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 07:51:59 -0400
+Received: from mail-vi1eur05on2073.outbound.protection.outlook.com ([40.107.21.73]:32449
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S234537AbhG1Lv6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Jul 2021 07:51:58 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=imx/OX9DS/oIVjSS9eVz8ODt+64OZaoGgurHv+MKVDLwyKi+nLQNS4yYKzgLOLlu/kw6JXBBjE7PPDCCC/CnaYsBvJoLpQVypTXcI4B7woCL8t9F2ZLylrmefV074QjeuyFV88XwlLLhgq1PUjeCTU7lR9+NCXvQHxQYueRJzfIA9aMAGSnnHg/vChV7uuQfFlrvc4yxd6hl3/D0fjBGlsch8tuyj3HjC4qAfwMnsTi2P/OH0WDkOEUtSgdtGjzOnWZodQMs0n34HS8vhM5k6x9q/el6kQuYtz5upkEIBVADLm88lAiUM2njy6Qao2z2HdrA4qs+9zonL7Uk9PW9HA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DmC2RZjt0OOqlW1JC+lks1SbLSMo+H4f+pR+34O7AhU=;
+ b=Be/KjtGTbbSbCsi+qm1lbwOIeEJl9FczcowAaaAx9X2N2BohYNfusSakLCyWPGZsmmZWK9dapNq5lQ8rAR8vlHBQBe/m2xDgVpL0KpO7BI2cWdQwAAnTXrsZKj5cH7ZVsaA8h+7JUYTRVDrpD5MhIym/tvY8TrsAzpzRJlmE0r4k1c3ADM8L4KOc+L7THNfe/L42hwTvoJQz1CDdicw0tJEYVC8rvZA4RHJM1d4jZfehpzIqExnPe0QeqLHC9PIQo8ZJT8ulHeEjODutMvJzufXMJpcx4fi3uV969kBkWVHgzQcQwP37dlNWRo4X0xa6WDQBhUZROeFkgm5XMRV48A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DmC2RZjt0OOqlW1JC+lks1SbLSMo+H4f+pR+34O7AhU=;
+ b=A0Ga8lH2SKGvTAS6Frus1NRnPMZbhxO8ygGUormZ2T+SGgXTqduzDItZtcVcAKY7wLjiaG5LhnvvqU8WCdUQiHfb2x0SQLTZIVKjytsXL7F1/GuIrRJuSXzZOtDuJEadRnfXcoUwL8MQwK1REtCyjsPyEg7eaVTeCOhwd2vfZ6s=
+Authentication-Results: davemloft.net; dkim=none (message not signed)
+ header.d=none;davemloft.net; dmarc=none action=none header.from=nxp.com;
+Received: from DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
+ by DB6PR04MB3094.eurprd04.prod.outlook.com (2603:10a6:6:10::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.18; Wed, 28 Jul
+ 2021 11:51:54 +0000
+Received: from DB8PR04MB6795.eurprd04.prod.outlook.com
+ ([fe80::9c70:fd2f:f676:4802]) by DB8PR04MB6795.eurprd04.prod.outlook.com
+ ([fe80::9c70:fd2f:f676:4802%9]) with mapi id 15.20.4352.032; Wed, 28 Jul 2021
+ 11:51:53 +0000
+From:   Joakim Zhang <qiangqing.zhang@nxp.com>
+To:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH V2 net-next 0/7] net: fec: add support for i.MX8MQ and i.MX8QM
+Date:   Wed, 28 Jul 2021 19:51:56 +0800
+Message-Id: <20210728115203.16263-1-qiangqing.zhang@nxp.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR01CA0100.apcprd01.prod.exchangelabs.com
+ (2603:1096:3:15::26) To DB8PR04MB6795.eurprd04.prod.outlook.com
+ (2603:10a6:10:fa::15)
 MIME-Version: 1.0
-References: <20210701002037.912625-1-drew@beagleboard.org> <20210701002037.912625-3-drew@beagleboard.org>
- <8c59105d32a9936f8806501ecd20e044@walle.cc> <CACRpkdbhKsuXZiLCh_iajJQWDdQQOZ87QF3xDr5Vc66SoVCnxQ@mail.gmail.com>
- <20210726071124.GA9184@x1> <dad13b899b69436acc1804b7c3438639@walle.cc>
- <20210727052851.GA3147871@x1> <ff76b62927e3f5f016f6c4c11ca16ccf@walle.cc>
- <CANBLGczfrmv1tzFm=Fu6B_S8nZ=ckwd3DOBkN4x7BUZtAg7bdw@mail.gmail.com> <a15823a88515f944cad6d77bdd65555c@walle.cc>
-In-Reply-To: <a15823a88515f944cad6d77bdd65555c@walle.cc>
-From:   Emil Renner Berthing <kernel@esmil.dk>
-Date:   Wed, 28 Jul 2021 13:21:52 +0200
-Message-ID: <CANBLGcyN9TVp6UghJMpc4hULz4e+OPux0fEwfQoJrixxO4rcuA@mail.gmail.com>
-Subject: Re: [RFC PATH 2/2] gpio: starfive-jh7100: Add StarFive JH7100 GPIO driver
-To:     Michael Walle <michael@walle.cc>
-Cc:     Drew Fustini <drew@beagleboard.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Michael Zhu <michael.zhu@starfivetech.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Fu Wei <tekkamanninja@gmail.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Huan Feng <huan.feng@starfivetech.com>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.71) by SG2PR01CA0100.apcprd01.prod.exchangelabs.com (2603:1096:3:15::26) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.18 via Frontend Transport; Wed, 28 Jul 2021 11:51:50 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 60e84ee6-cc5e-451b-8e4d-08d951be17cf
+X-MS-TrafficTypeDiagnostic: DB6PR04MB3094:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DB6PR04MB3094D33BDC88733AA443D1EDE6EA9@DB6PR04MB3094.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2512;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: zs2+XSWuwZcjRau8OckMWbOMm5xpg7vUGeUMlQDkJ+6cI+eiRe1FQJCOQ+jkQy/aJVQ92fDpDkqKIm6din1xqI0CNVcf/PORtqFx+Uimv/tHZhjwi84DhW9OZFNWRYRGxb7cjcZfkWhkzYujO6/4aOs5iVWMETwRbAh9BaKCWHcPZK1KiVTw9foofv2xSpjyfzPjN22NnNP3Cy59RSWEhG2f7xq9/K0+SVRU9U4MMATi47ddwkUlXS1FUPeEVgTL7sbsFyMOgInzfHLiMqBXxGEj2zC0EW6+Wy2iohvb/ZE+5i9xqI+h0uzwXdx1cG6RInc+Z/l/EWOpW/ZJXdrvPIWcFqDyqF3FOIpEs7DA1xL8U9NZy64sA8O6s4yaU8rUA30RZuKiagL9aSGwSong7y8RseCL6RuLVtTMb4Xoirk4Kf1eIIl2sW4WQTH1Be/YfgVjpc4KxV4IcTHgpCSgr+m7oaMKkq48WJAhFtg40DHIHCTEhbY58TJiqZB7iV7wqYMZq1j0AG9IpTCHPikO97BfhtcwYiFCVnyGDnp+ZPGPeShOPDw9zlBy6myiAv88X2+/nj6EmeB8eygr+5/I1jQ1+m3gOK7GieELZwBV/YSYGjhNqtUBBqubWMm6An1SQWYRttoql+5k4V4qxh7lHj8NvEkrrxgNE74OCpT+vWKP2P4SZ5K1s3f+hBLxrKGmFIeAVGTbUIszzY4D9ErKAQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6795.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39840400004)(136003)(396003)(366004)(376002)(346002)(6512007)(7416002)(26005)(2906002)(6486002)(66946007)(66476007)(66556008)(8676002)(1076003)(6506007)(478600001)(38350700002)(38100700002)(186003)(5660300002)(2616005)(956004)(36756003)(86362001)(316002)(52116002)(83380400001)(4326008)(8936002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?9MdR/QEXqA1U9RcTY5dqC0itLeC9kvECmOyYQI5ceCSrY0cm/FA3eqrQq+03?=
+ =?us-ascii?Q?SvZavj9o8faUGYDwwI1OrnXI7kVpSuI+yRK9PPae1UXdAicg4pw8v/9IIwuW?=
+ =?us-ascii?Q?BOM3Qypyd6YxO5tPbhqTo1NoXo3B5Xqwwaa8IyVxO/RMut9iy3l2ZUYBKFDs?=
+ =?us-ascii?Q?PFIjB9qpNPwdnOmNYA3zQNwqtWs51g773JxKFdhKAyWe0siQ52xfEONr/mIv?=
+ =?us-ascii?Q?r2YO70LS5F49gY8GBhagRiTkps80B832GTmMqf8Z6KHJK8i3sbVNbm8kpU7V?=
+ =?us-ascii?Q?0J/c8X+JHE4TVJPETX8O26//rWQtozNnd8BQMeaT5vm/KVQqwVw2aqG2qk9g?=
+ =?us-ascii?Q?dr/sL+3ubjx/KkB246hrtNxsaKTiTghzO51rsWNsjdcQUc4nLVap7+Qo8Dwe?=
+ =?us-ascii?Q?HrLV3ip9XwAHLaRGq/dFJF3mxlfPvksh5YZ05RaX51yoQvLGjwbemqRjNvqk?=
+ =?us-ascii?Q?lOYGw02GUC/sMEHU20JlfJndEZMpkeqx93MuD/h3pkdsoM+kSJoqUSKbhuyn?=
+ =?us-ascii?Q?9S1SLIcP4xJTIk4zU1w0QR3LP1tuyF9MVcV4avpYDjMRxc6cIIPj2mEZfMQM?=
+ =?us-ascii?Q?5UFxJrjdI1EqxdSNA590C+752EZAb4CaZ//MbcGJL24aMM05I/CtOnO5qwll?=
+ =?us-ascii?Q?5Mbcghdm/EG41FL9Qko5ROyzVe8/TCky3dq5hCr3fipG3DWUMWF1PUj720eM?=
+ =?us-ascii?Q?Xcdv120a6b1+o0IEZxcqzKF7OpIZMeAKCWM4Qy79ERjadCGhpA7O0CwUUuqY?=
+ =?us-ascii?Q?a0x23IA0Y8Me1nzZGEvR8W3W8AgvKmSK90AJak1SSlnaqdcus6l47Uyu+p54?=
+ =?us-ascii?Q?aITjfcfrVcAFZPFmUqCfp+JF/T2dUKrdkO0NyYx9Uq0q2za+2fjRqOthe+IZ?=
+ =?us-ascii?Q?OYBni5wum+5EdYE2BA3cl2FWsi/az45RCrU5omwUoeq8Ug9irfNarq94AOyq?=
+ =?us-ascii?Q?BPYacP/h2no8OGrG5Ibe88wbadJTcQeTGWZNwoJlWDn56FQsq7BBrTZJoToR?=
+ =?us-ascii?Q?98ty3TLo1iWSskRFaQJ2aln7sOXjrylXMi4uJ4RiI0dm1XduUvkrjZ02OugB?=
+ =?us-ascii?Q?mVXa04xUPxe68DvJVuzZMD52VTPfUm9GjgHDULSsT0XbzNoShgZtXi83Brzu?=
+ =?us-ascii?Q?KfAc+Etee/KjwM0mqa/3khMOEploUYdqd5qFOucHtNxPzJDjqM8VIKt3uSOe?=
+ =?us-ascii?Q?wgM2u9QzV1PFncTrgwAtr0mgFwIGNbR7fdELPBn3B4zWMHfu3p6nYp/mCQus?=
+ =?us-ascii?Q?eU4VqRYJnzGXTkcs5eLeibutZhv1SunvjlhekhKjz7SZqpSOBvOr/0XuVpIq?=
+ =?us-ascii?Q?eNsM517pxt7z3wunYnGrf4Ql?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 60e84ee6-cc5e-451b-8e4d-08d951be17cf
+X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB6795.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jul 2021 11:51:53.8374
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Lfa0zgSCjPEaD5jXHwq8gpcf+V3NEYRGzAETvFTzaIEiDKBK4TjLDLLWj+J5GY//0zGSkcYTfkBfENEtIA0oYQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR04MB3094
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 28 Jul 2021 at 13:19, Michael Walle <michael@walle.cc> wrote:
-> Am 2021-07-28 12:59, schrieb Emil Renner Berthing:
-> > On Wed, 28 Jul 2021 at 11:49, Michael Walle <michael@walle.cc> wrote:
-> >> Hi Drew,
-> >> Am 2021-07-27 07:28, schrieb Drew Fustini:
-> >> [..]
-> >> >> > > Drew please look at drivers/gpio/gpio-ftgpio010.c for an example
-> >> >> > > of GPIO_GENERIC calling bgpio_init() in probe().
-> >> >> >
-> >> >> > Thank you for the suggestion. However, I am not sure that will work for
-> >> >> > this SoC.
-> >> >> >
-> >> >> > The GPIO registers are described in section 12 of JH7100 datasheet [1]
-> >> >> > and I don't think they fit the expectation of gpio-mmio.c because there
-> >> >> > is a seperate register for each GPIO line for output data value and
-> >> >> > output enable.
-> >> >> >
-> >> >> > There are 64 output data config registers which are 4 bytes wide. There
-> >> >> > are 64 output enable config registers which are 4 bytes wide too. Output
-> >> >> > data and output enable registers for a given GPIO pad are contiguous.
-> >> >> > GPIO0_DOUT_CFG is 0x50 and GPIO0_DOEN_CFG is 0x54 while GPIO1_DOUT_CFG
-> >> >> > is 0x58 and GPIO1_DOEN_CFG is 0x5C. The stride between GPIO pads is
-> >> >> > effectively 8, which yields the formula: GPIOn_DOUT_CFG is 0x50+8n.
-> >> >> > Similarly, GPIO0_DOEN_CFG is 0x54 and thus GPIOn_DOEN_CFG is 0x54+8n.
-> >> >> >
-> >> >> > However, GPIO input data does use just one bit for each line. GPIODIN_0
-> >> >> > at 0x48 covers GPIO[31:0] and GPIODIN_1 at 0x4c covers GPIO[63:32].
-> >>
-> >> Mh, I'm not sure I'm understanding the datasheet/registers. _DOUT_CFG
-> >> and _DOEN_CFG seem to specify the pad where this GPIO is mapped to.
-> >> Shouldn't this be some kind of pinctrl then? Apparently you can map
-> >> any GPIO number to any output pad, no? Or at least to all pads
-> >> which are described in Table 11-2. What happens if two different GPIOs
-> >> are mapped to the same pad? Bit 31 in these _CFG seems to be an invert
-> >> bit, but what does it invert?
-> >>
-> >> Similar, the input GPIOs are connected to an output pad by all the
-> >> GPI_*_CFG registers.
-> >>
-> >> To me it seems, that there two multiplexers for each GPIO, where
-> >> you can connect any GPIOn to any input pad and output pad. Sound
-> >> like a huge overkill. I must be missing something here.
-> >>
-> >> But what puzzles me the most, where do I set the actual GPIO output
-> >> value?
-> >
-> > Yeah, it's a little confusing. The DOUT registers choose between a
-> > number of
-> > signals from various peripherals to control the output value of the
-> > pin. Similarly
-> > the DOEN registers chose between a number of signals to control the
-> > output
-> > enable of the pin. However, two of those signals are special in that
-> > they are
-> > constant 0 or constant 1. This is how you control the output value and
-> > output
-> > enable from software like a regular GPIO.
-> >
-> > You're completely right though. This ought to be managed by a proper
-> > pinctrl
-> > driver, and I'm working on one here:
-> > https://github.com/esmil/linux/commits/beaglev-pinctrl
->
-> Ahh, I see. So for the non-gpio function you have to set a value other
-> than 0 or 1, correct?
->
-> And as an implementation detail you have to set the corresponding OE
-> pin if the non-gpio function will need a tristate pin (or whatever).
->
-> So, the _DOUT_CFG will actually be shared between the pinctrl and the
-> gpio driver, right? (I haven't done anything with pinctrl, so this might
-> be a stupid question).
+This patch set adds supports for i.MX8MQ and i.MX8QM, both of them extend new features.
 
-No, not a stupid question. You've got that exactly right.
+ChangeLogs:
+V1->V2:
+	* rebase on schema binding, and update dts compatible string.
+	* use generic ethernet controller property for MAC internal RGMII clock delay
+	  rx-internal-delay-ps and tx-internal-delay-ps
 
-/Emil
+Fugang Duan (3):
+  net: fec: add imx8mq and imx8qm new versions support
+  net: fec: add eee mode tx lpi support
+  net: fec: add MAC internal delayed clock feature support
+
+Joakim Zhang (4):
+  dt-bindings: net: fsl,fec: update compatible items
+  dt-bindings: net: fsl,fec: add RGMII internal clock delay
+  arm64: dts: imx8m: add "fsl,imx8mq-fec" compatible string for FEC
+  arm64: dts: imx8qxp: add "fsl,imx8qm-fec" compatible string for FEC
+
+ .../devicetree/bindings/net/fsl,fec.yaml      |  27 ++++
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi     |   2 +-
+ arch/arm64/boot/dts/freescale/imx8mn.dtsi     |   2 +-
+ .../boot/dts/freescale/imx8qxp-ss-conn.dtsi   |   4 +-
+ drivers/net/ethernet/freescale/fec.h          |  25 +++
+ drivers/net/ethernet/freescale/fec_main.c     | 146 ++++++++++++++++++
+ 6 files changed, 202 insertions(+), 4 deletions(-)
+
+-- 
+2.17.1
+
