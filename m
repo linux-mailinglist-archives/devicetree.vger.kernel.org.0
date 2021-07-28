@@ -2,119 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 238663D9713
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 22:51:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED6AB3D976D
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 23:17:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231716AbhG1Uvy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 16:51:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42684 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231645AbhG1Uvx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 16:51:53 -0400
-Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BBE2C061757
-        for <devicetree@vger.kernel.org>; Wed, 28 Jul 2021 13:51:51 -0700 (PDT)
-Received: by mail-io1-xd2e.google.com with SMTP id r6so4358750ioj.8
-        for <devicetree@vger.kernel.org>; Wed, 28 Jul 2021 13:51:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=engleder-embedded-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=lQryhZRpBDogvHVvPU/fbTSTLbqOv2BW46SJ0iT0+Kk=;
-        b=QPwP35TBa172vGVYjCVnQNJ8/Z5GEw9t/L13P3rnCIQ7lIEi8iXeMT25pYXjC5Oe5p
-         PrmyQJxWTQ9U5jUCesPeJwxaYFrO3o6YpXi4Wbqx3Ya88GOkWh8eLwnk7bCgUsCjIiEH
-         Oimg3j91WIGh6CIMvdgu4glTEushsIQKW541kJ81GvDvtUqs/VQaansZEyVx34MUetGc
-         VhZpZTa4kBtgHhPKJ1LJrDVct5/LE3lI/W5lV7PnPtBu5rIeC+/i+HdKxcGEqv1yyRzr
-         Z/0NGjpYMphirTeLqDvblR3eyktG7EtlTkCwOCpSZQYAfLwLu3Efl+czsS7BdZObtRtm
-         73FQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=lQryhZRpBDogvHVvPU/fbTSTLbqOv2BW46SJ0iT0+Kk=;
-        b=hzR0vIiIy9+Gjr49Izr3nul7aAcii43m8U3WkmGKYZSDQmzZz2BlI9Bqcz2fpTKFv4
-         48iLCmqloXqfhlh2C0IhyK/hoMFGGgsggOJeL4+B2FsQTSRAqvcyXRiigavR352ZGyJb
-         3skeGBlvKKygEHahpvU8UK+zL7IC4YTxAbbjC86rzJZC5Y+9/bn+9QajvioNUGugJVXj
-         AKdo4e0TNh5mtor/yl74vx+5AdiWqFW3rThvPUjBHW2ztXiE4guS/9a9/JAQ+C14WmjU
-         QG8GC1o2P+7xws+c5KMja9EbFysIlhgPihZtjpisVnQmvOxZ9B/QagN7djo/jdBpwMfo
-         JSTQ==
-X-Gm-Message-State: AOAM5317wU2WuzWWthhl03XLSPgHNXpPHOiFkYEEqq5SqE6GOEP0KXM5
-        YxBEApWjnyamdbid/oEnKZ7fhjNZtVRhPIUiVHOTNw==
-X-Google-Smtp-Source: ABdhPJyz3si1e6J74f54OMY+3WrZFPDX1HMkiL1piCDiYhFWrwcljdJ3zgzAj8iqLInp7qcHJsoS0s3n2RiAPeCbDB4=
-X-Received: by 2002:a5e:dc0c:: with SMTP id b12mr1035138iok.141.1627505510888;
- Wed, 28 Jul 2021 13:51:50 -0700 (PDT)
+        id S231764AbhG1VRq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 17:17:46 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:53666 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231755AbhG1VRq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Jul 2021 17:17:46 -0400
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1m8qvj-00086Y-Gz; Wed, 28 Jul 2021 23:17:31 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Rob Herring <robh+dt@kernel.org>, Peter Geis <pgwipeout@gmail.com>,
+        cl@rock-chips.com, kever.yang@rock-chips.com
+Cc:     Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 5/8] arm64: dts: rockchip: add rk3568 tsadc nodes
+Date:   Wed, 28 Jul 2021 23:17:30 +0200
+Message-ID: <3091522.BEx9A2HvPv@diego>
+In-Reply-To: <20210728180034.717953-6-pgwipeout@gmail.com>
+References: <20210728180034.717953-1-pgwipeout@gmail.com> <20210728180034.717953-6-pgwipeout@gmail.com>
 MIME-Version: 1.0
-References: <20210726194603.14671-1-gerhard@engleder-embedded.com>
- <20210726194603.14671-6-gerhard@engleder-embedded.com> <CAL_JsqJC19OsTCa6T98m8bOJ3Z4jUbaVO13MwZFK78XPSpoWBg@mail.gmail.com>
- <CANr-f5yW4sob_fgxhEafHME71QML8K-+Ka5AzNm5p3A0Ktv02Q@mail.gmail.com>
- <CAL_JsqK9OvwicCbckvpk4CMWbhcP8yDBXAW_7CmLzR__-fJf0Q@mail.gmail.com>
- <CANr-f5zWdFAYAteE7tX5qTvT4XMZ+kxaHy03=BnRxFbQLt3pUg@mail.gmail.com>
- <43958f2b-6756-056a-b2fa-cb8f6d84f603@xilinx.com> <CANr-f5xu=xHn7CGve3=Msd8CEcoDujQzSYSNQ2Zbh7NOvyXFYA@mail.gmail.com>
- <839bdf26-6aef-7e05-94b9-78c0d2061bf9@xilinx.com>
-In-Reply-To: <839bdf26-6aef-7e05-94b9-78c0d2061bf9@xilinx.com>
-From:   Gerhard Engleder <gerhard@engleder-embedded.com>
-Date:   Wed, 28 Jul 2021 22:51:39 +0200
-Message-ID: <CANr-f5xJbTYa-jPzVMPcAV2Un+POBn24gd+604rzPt36RkRcDQ@mail.gmail.com>
-Subject: Re: [PATCH net-next 5/5] arm64: dts: zynqmp: Add ZCU104 based TSN endpoint
-To:     Michal Simek <michal.simek@xilinx.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        David Miller <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 28, 2021 at 12:59 PM Michal Simek <michal.simek@xilinx.com> wro=
-te:
-> >> In past we said that we won't be accepting any FPGA description in
-> >> u-boot/linux projects. I don't think anything has changed from that ti=
-me
-> >> and I don't want to end up in situation that we will have a lot of
-> >> configurations which none else can try and use.
-> You have to share to customers bitstream. Likely also boot.bin with
-> PS/PL configuration and other files in it. That's why it will be quite
-> simple to also share them full DT or DT overlay just for your IP in the
-> same image.
+Hi Peter, Kever,
 
-That's possible of course.
+Am Mittwoch, 28. Juli 2021, 20:00:31 CEST schrieb Peter Geis:
+> Add the thermal and tsadc nodes to the rk3568 device tree.
+> There are two sensors, one for the cpu, one for the gpu.
+> 
+> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+> ---
+>  .../boot/dts/rockchip/rk3568-pinctrl.dtsi     |  7 ++
+>  arch/arm64/boot/dts/rockchip/rk356x.dtsi      | 70 +++++++++++++++++++
+>  2 files changed, 77 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-pinctrl.dtsi b/arch/arm64/boot/dts/rockchip/rk3568-pinctrl.dtsi
+> index a588ca95ace2..3b1efaf2646e 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3568-pinctrl.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568-pinctrl.dtsi
+> @@ -2420,6 +2420,13 @@ spi3m1_cs1: spi3m1-cs1 {
+>  	};
+>  
+>  	tsadc {
+> +		/omit-if-no-ref/
+> +		tsadc_pin: tsadc-pin {
+> +			rockchip,pins =
+> +				/* tsadc_pin */
+> +				<0 RK_PA1 0 &pcfg_pull_none>;
+> +		};
+> +
 
-> Till now I didn't hear any strong argument why this should be accepted.
+The rk3568-pinctrl.dtsi is autogenerated on Rockchip's side and I don't
+want to break that unnecessarily ;-) .
 
-I want to try a new argument:
+So the question below is more for Kever and Liang:
 
-For new bindings a schema is used. The goal is to ensure that the binding
-schema and the driver fit together. The validation chain is the following:
-1) The binding schema is used to validate the device tree.
-2) The device tree is used to "validate" the driver by booting.
+The tsadc on most mainline Rockchip socs uses the additional init-pinctrl
+to set the pin to gpio mode before the tsadc probes and only to the shutdown
+function after the tsadc has probed sucessfully. This prevents the
+shutdown firing before the tsadc actually attached to the pin function.
 
-So the kernel tree needs to contain a device tree which uses the binding
-to build up the complete validation chain. The validation of the driver aga=
-inst
-the binding is not possible without a device tree. The only option would be
-to compare driver and binding manually, which is error prone.
+Is it possible to fit the above addition pin setting in the database you
+have as base for the autogeneration?
 
-If device trees with FPGA descriptions are not allowed in the kernel tree, =
-then
-the kernel tree will never contain complete validation chains f=C3=BCr FPGA=
- based
-IPs. The validation of bindings for FPGA based IPs has to rely on device tr=
-ees
-which are maintained out of tree. It is possible/likely that schema
-validation is
-not done out of tree. As a result it is more likely that binding and
-driver do not
-fit together for FPGA based IPs. In the end the quality of the support for =
-FPGA
-based IPs would suffer.
 
-I suggest allowing a single device tree with FPGA descriptions for a bindin=
-g
-of FPGA based IPs. This will build up the complete validation chain in the
-kernel tree and ensures that binding and driver fit together. This single d=
-evice
-tree would form the reference platform for the FPGA based IP.
+Thanks
+Heiko
 
-Gerhard
+
+
+
+
+>  		/omit-if-no-ref/
+>  		tsadcm0_shut: tsadcm0-shut {
+>  			rockchip,pins =
+> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> index fbd9f1c366ff..c74072941da1 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> @@ -50,6 +50,7 @@ cpu0: cpu@0 {
+>  			compatible = "arm,cortex-a55";
+>  			reg = <0x0 0x0>;
+>  			clocks = <&scmi_clk 0>;
+> +			#cooling-cells = <2>;
+>  			enable-method = "psci";
+>  			operating-points-v2 = <&cpu0_opp_table>;
+>  		};
+> @@ -58,6 +59,7 @@ cpu1: cpu@100 {
+>  			device_type = "cpu";
+>  			compatible = "arm,cortex-a55";
+>  			reg = <0x0 0x100>;
+> +			#cooling-cells = <2>;
+>  			enable-method = "psci";
+>  			operating-points-v2 = <&cpu0_opp_table>;
+>  		};
+> @@ -66,6 +68,7 @@ cpu2: cpu@200 {
+>  			device_type = "cpu";
+>  			compatible = "arm,cortex-a55";
+>  			reg = <0x0 0x200>;
+> +			#cooling-cells = <2>;
+>  			enable-method = "psci";
+>  			operating-points-v2 = <&cpu0_opp_table>;
+>  		};
+> @@ -74,6 +77,7 @@ cpu3: cpu@300 {
+>  			device_type = "cpu";
+>  			compatible = "arm,cortex-a55";
+>  			reg = <0x0 0x300>;
+> +			#cooling-cells = <2>;
+>  			enable-method = "psci";
+>  			operating-points-v2 = <&cpu0_opp_table>;
+>  		};
+> @@ -773,6 +777,72 @@ uart9: serial@fe6d0000 {
+>  		status = "disabled";
+>  	};
+>  
+> +	thermal_zones: thermal-zones {
+> +		cpu_thermal: cpu-thermal {
+> +			polling-delay-passive = <100>;
+> +			polling-delay = <1000>;
+> +
+> +			thermal-sensors = <&tsadc 0>;
+> +
+> +			trips {
+> +				cpu_alert0: cpu_alert0 {
+> +					temperature = <70000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+> +				cpu_alert1: cpu_alert1 {
+> +					temperature = <75000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+> +				cpu_crit: cpu_crit {
+> +					temperature = <95000>;
+> +					hysteresis = <2000>;
+> +					type = "critical";
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu_alert0>;
+> +					cooling-device =
+> +						<&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+> +		};
+> +
+> +		gpu_thermal: gpu-thermal {
+> +			polling-delay-passive = <20>; /* milliseconds */
+> +			polling-delay = <1000>; /* milliseconds */
+> +
+> +			thermal-sensors = <&tsadc 1>;
+> +		};
+> +	};
+> +
+> +	tsadc: tsadc@fe710000 {
+> +		compatible = "rockchip,rk3568-tsadc";
+> +		reg = <0x0 0xfe710000 0x0 0x100>;
+> +		interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>;
+> +		assigned-clocks = <&cru CLK_TSADC_TSEN>, <&cru CLK_TSADC>;
+> +		assigned-clock-rates = <17000000>, <700000>;
+> +		clocks = <&cru CLK_TSADC>, <&cru PCLK_TSADC>;
+> +		clock-names = "tsadc", "apb_pclk";
+> +		resets = <&cru SRST_TSADC>, <&cru SRST_P_TSADC>,
+> +			 <&cru SRST_TSADCPHY>;
+> +		reset-names = "tsadc", "tsadc-apb", "tsadc-phy";
+> +		rockchip,grf = <&grf>;
+> +		rockchip,hw-tshut-temp = <95000>;
+> +		pinctrl-names = "init", "default", "sleep";
+> +		pinctrl-0 = <&tsadc_pin>;
+> +		pinctrl-1 = <&tsadc_shutorg>;
+> +		pinctrl-2 = <&tsadc_pin>;
+> +		#thermal-sensor-cells = <1>;
+> +		status = "disabled";
+> +	};
+> +
+>  	saradc: saradc@fe720000 {
+>  		compatible = "rockchip,rk3568-saradc", "rockchip,rk3399-saradc";
+>  		reg = <0x0 0xfe720000 0x0 0x100>;
+> 
+
+
+
+
