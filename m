@@ -2,134 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 848283D8FE6
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 15:57:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 527833D8FFE
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 16:01:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236793AbhG1N4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 09:56:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59466 "EHLO
+        id S235427AbhG1OB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 10:01:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236709AbhG1N4B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 09:56:01 -0400
-Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBA4FC061757;
-        Wed, 28 Jul 2021 06:55:59 -0700 (PDT)
-Received: by mail-qk1-x72a.google.com with SMTP id f22so2230783qke.10;
-        Wed, 28 Jul 2021 06:55:59 -0700 (PDT)
+        with ESMTP id S235420AbhG1OB5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 10:01:57 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41C16C061757
+        for <devicetree@vger.kernel.org>; Wed, 28 Jul 2021 07:01:55 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id bp1so4211678lfb.3
+        for <devicetree@vger.kernel.org>; Wed, 28 Jul 2021 07:01:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=tcKay3c6C9hrMhtn74mlAVcFV1FvG+ErliMHy1IIxoY=;
-        b=darC8OKOI71aM5dPQgy1vXucgnZu/mwcIs2CSjb0RuZr0zGTbHlKIt2BX7Is7PMrFX
-         4UqWsvhV5M0BqYah3bvjZy0ZuvuFkYDBXv7pxFPY53fGdbZdsPS+l8WI1EaITn53EuKC
-         YLP7OgGg/VlILxz0/jECX3dtntv3/3h/vww1k+6GnusLtR4PTzNk5lbW4jvtqSGDSU7g
-         ReJ3c4koHvqZtVYTV5un+nPy+Dh6JSNQVRE39wkrGWZ6Ws7Th3hXSeyaMrjM1l80O4b0
-         2rsICw2mYMIR4l+fFhVGi/SPmp19saEGzwNlZlgSGhwNzbFO/JuMbPXKGN+SEco0ph48
-         5uUw==
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=HkzKATWQiJzwj9+f4qauTnrP7HOjchHXfR7sVxWkLd4=;
+        b=Z2XfG/9ykSGrj/xt0ovI/QuVJGiIPo8ma/mlpZecQ5KGkrdwUl0o4wNcgsrB5M6CPy
+         k+LRIVKdGv37hjQyssh7sOp4ReHsKazfJU8T2WDcfrvC/knSTILmluDY0QDU/Ev5vgAr
+         o9pGwdEvesM0RkO4A5bCBuH1Zuq64s3JJJf+OUpGokUqIjL7s/mZw4+Td14Tb+Qes4ge
+         AvfPzyB90XtBS5DYsTZHW+8RWQTx7tX1AYN3lldi1CDuFzT7cD5Ez6DMLV1WIfHu89iF
+         N4+wbNvwWcIAOwcD7tR6wMUsNunVzqXRYy0Dwm3t12W9ILVQPFKbvd0V3qDg8bScDJW4
+         3cnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=tcKay3c6C9hrMhtn74mlAVcFV1FvG+ErliMHy1IIxoY=;
-        b=I22TDVqZqif+YKh5QEgP0Hd2UQc16FiSLK4U4WBknMuEWR75VA+1yKOiqtaI0cZlmz
-         dT5MYeBnmN1Dm1hVTzLeOZrRYYd9d7ENTcDOIOB7yu1FHvNQ/fFLoy/Iz7KVLU/XYZ/6
-         THJOLHN7ZeBKt3krVcD4ltolvsk65JeUJ5Tyf2aXykWVmzI2i6am/t3JSpDhsO6oSg9Q
-         jT/64TNUDzVhClWBo3UbWwDSmJUHux1mA0JHICfxJB+hL5PZpLDFUj+/0hTYjkEwQj58
-         GX8If20zwpVZrLDeQKlXAEPcnASq6w6UiUE/6sQ7Nm7YBYRVmwD2jnP9saSbYIs43Alj
-         /jVQ==
-X-Gm-Message-State: AOAM53055Kj0TNhNhxcxwOAErmndqElT3bVVjsyZQ1qj+k2ihgr1WM1R
-        0gHVVRGhtFW+SHA1Emiuaej8ps20jEUE2CYt
-X-Google-Smtp-Source: ABdhPJw0z8ytX74Ph/kZ+j0zcEFNcYorj+QzIBa5GqZDctfXT7NmKz3XFmKk4Jg/YWnmekqjWstU6A==
-X-Received: by 2002:a37:a04a:: with SMTP id j71mr2805363qke.424.1627480558957;
-        Wed, 28 Jul 2021 06:55:58 -0700 (PDT)
-Received: from master-laptop.sparksnet ([2601:153:980:85b1:b58:2ae8:d75f:660a])
-        by smtp.gmail.com with ESMTPSA id t64sm27202qkd.71.2021.07.28.06.55.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Jul 2021 06:55:58 -0700 (PDT)
-From:   Peter Geis <pgwipeout@gmail.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: [PATCH 9/9] arm64: dts: rockchip: add thermal support to Quartz64 Model A
-Date:   Wed, 28 Jul 2021 09:55:34 -0400
-Message-Id: <20210728135534.703028-10-pgwipeout@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210728135534.703028-1-pgwipeout@gmail.com>
-References: <20210728135534.703028-1-pgwipeout@gmail.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=HkzKATWQiJzwj9+f4qauTnrP7HOjchHXfR7sVxWkLd4=;
+        b=ceANoJkDuQELSnO1QP1MMgKC+rel7EYUMzRrNmTlKREqQj75BGWdi5UYlYnsTf5s96
+         SiGNF4414egJ1FuJ31vx/57rfWH6DwlrVuAKQuuiBNBmr68DRaNW2PGfCvYoE6OR1TBv
+         clgReCedl42KfFer0SWLe8pgT7n64mUEhfWIfNB0I1FarM3a28fAG7EOePR1y/OA7ARm
+         XcpMFoVDEGuW5dKz0GbNMb47pfhDqfbuHcnOso4Ove38XppKJ6WSXpNvNf3E8QWPXZga
+         s0XG1pThXkjlooekAqj6nMECaxFRO+iGyKFtKh2MUbfdrohI6BJzc2Wq0OPbeEV/GbA1
+         f1dw==
+X-Gm-Message-State: AOAM5304qgSuA+Mw+mUPzF2t6UymCOFuDktss94/vs/Crt4I+oU/dyzb
+        JanMtsVjakJsTPNPIIPyaC7zFw==
+X-Google-Smtp-Source: ABdhPJyX6gIG42z6TXISGYD1AbaGbevxFM65kRY0gZHdDQyTHym/lcLS3jklXa5hLa0Zm/Hprzll9g==
+X-Received: by 2002:a05:6512:400c:: with SMTP id br12mr21749856lfb.268.1627480913485;
+        Wed, 28 Jul 2021 07:01:53 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id l13sm514250ljj.43.2021.07.28.07.01.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Jul 2021 07:01:53 -0700 (PDT)
+Subject: Re: [PATCH v4 2/2] arm64: dts: sc7180: Add required-opps for i2c
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>, ulf.hansson@linaro.org,
+        viresh.kumar@linaro.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, rojay@codeaurora.org,
+        stephan@gerhold.net
+References: <YPHpsO5LlQRQxj9y@yoga>
+ <CAE-0n53CHD8c7C4ETWRgzmZmFSCcBw46wSs4pKbYMRjA_tD3yg@mail.gmail.com>
+ <YPHxfHPC/faq/y+J@yoga>
+ <CAE-0n50qx80cMFPJ1x9rc+EMR1L+j2CUMyDjWAbnE9mPHjf-TQ@mail.gmail.com>
+ <YPIBK/NJgBNZVI8Y@yoga> <12711a61-e16c-d2bc-6e04-ab94c7551abe@codeaurora.org>
+ <YPXQNFYKfH/xZxFY@yoga> <bc79ea3e-4981-8f9b-f9a7-59cb972047a7@codeaurora.org>
+ <YP2Y6qs5P5mb2jzE@yoga> <b6b315ae-ee68-6ba8-7453-f28dace3d8d2@codeaurora.org>
+ <YQDTImwRhp8juvKh@yoga>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Message-ID: <f73f1c31-dc31-32f9-d7d8-1aa3233b0040@linaro.org>
+Date:   Wed, 28 Jul 2021 17:01:52 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <YQDTImwRhp8juvKh@yoga>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the thermal nodes for the Quartz64 Model A.
-The Model A supports a single speed gpio fan.
+On 28/07/2021 06:46, Bjorn Andersson wrote:
+> On Tue 27 Jul 02:35 CDT 2021, Rajendra Nayak wrote:
+> 
+>>
+>> On 7/25/2021 10:31 PM, Bjorn Andersson wrote:
+>>> On Mon 19 Jul 23:29 CDT 2021, Rajendra Nayak wrote:
+>>>
+>>>>
+>>>>
+>>>> On 7/20/2021 12:49 AM, Bjorn Andersson wrote:
+>>>>> On Mon 19 Jul 04:37 CDT 2021, Rajendra Nayak wrote:
+>>>>>
+>>>>>>
+>>>>>>
+>>>>>> On 7/17/2021 3:29 AM, Bjorn Andersson wrote:
+>>>>>>> On Fri 16 Jul 16:49 CDT 2021, Stephen Boyd wrote:
+>>>>>>>
+>>>>>>>> Quoting Bjorn Andersson (2021-07-16 13:52:12)
+>>>>>>>>> On Fri 16 Jul 15:21 CDT 2021, Stephen Boyd wrote:
+>>>>>>>>>
+>>>>>>>>>> Quoting Bjorn Andersson (2021-07-16 13:18:56)
+>>>>>>>>>>> On Fri 16 Jul 05:00 CDT 2021, Rajendra Nayak wrote:
+>>>>>>>>>>>
+>>>>>>>>>>>> qup-i2c devices on sc7180 are clocked with a fixed clock (19.2 MHz)
+>>>>>>>>>>>> Though qup-i2c does not support DVFS, it still needs to vote for a
+>>>>>>>>>>>> performance state on 'CX' to satisfy the 19.2 Mhz clock frequency
+>>>>>>>>>>>> requirement.
+>>>>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>>> Sounds good, but...
+>>>>>>>>>>>
+>>>>>>>>>>>> Use 'required-opps' to pass this information from
+>>>>>>>>>>>> device tree, and also add the power-domains property to specify
+>>>>>>>>>>>> the CX power-domain.
+>>>>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>>> ..is the required-opps really needed with my rpmhpd patch in place?
+>>>>>>>>>>>
+>>>>>>>>>>
+>>>>>>>>>> Yes? Because rpmhpd_opp_low_svs is not the lowest performance state for
+>>>>>>>>>> CX.
+>>>>>>>>>
+>>>>>>>>> On e.g. sm8250 the first available non-zero corner presented in cmd-db
+>>>>>>>>> is low_svs.
+>>>>>>
+>>>>>> what rail is this? the mmcx? Perhaps it does not support RET.
+>>>>>> cx usually supports both collapse state and RET.
+>>>>>>
+>>>>>
+>>>>> That was the one I was specifically looking at for the MDSS_GDSC->MMCX
+>>>>> issue, so it's likely I didn't look elsewhere.
+>>>>>
+>>>>>>>>
+>>>>>>>> Indeed. On sc7180 it's not the first non-zero corner. I suppose
+>>>>>>>> retention for CX isn't actually used when the SoC is awake so your
+>>>>>>>> rpmhpd patch is putting in a vote for something that doesn't do anything
+>>>>>>>> at runtime for CX? I imagine that rpmh only sets the aggregate corner to
+>>>>>>>> retention when the whole SoC is suspended/sleeping, otherwise things
+>>>>>>>> wouldn't go very well. Similarly, min_svs may be VDD minimization? If
+>>>>>>>> so, those first two states are basically states that shouldn't be used
+>>>>>>>> at runtime, almost like sleep states.
+>>>>>>>>
+>>>>>>>
+>>>>>>> But if that's the case, I don't think it's appropriate for the "enabled
+>>>>>>> state" of the domain to use any of those corners.
+>>>>>>
+>>>>>> I rechecked the downstream kernels where all this voting happens from within
+>>>>>> the clock drivers, and I do see votes to min_svs for some clocks, but Stephen is
+>>>>>> right that RET is not something that's voted on while in active state.
+>>>>>>
+>>>>>> But always going with something just above the ret level while active will also
+>>>>>> not work for all devices, for instance for i2c on 7180, it needs a cx vote of
+>>>>>> low svs while the rail (cx) does support something lower than that which is min svs.
+>>>>>> (why can't it just work with min svs?, I don't know, these values and recommendations
+>>>>>> come in from the voltage plans published by HW teams for every SoC and we just end up
+>>>>>> using them in SW, perhaps something to dig further and understand which I will try and
+>>>>>> do but these are the values in voltage plans and downstream kernels which work for now)
+>>>>>>
+>>>>>
+>>>>> So to some degree this invalidates my argumentation about the
+>>>>> enabled_corner in rpmhpd, given that "enabled" means a different corner
+>>>>> for each rail - not just the one with lowest non-zero value.
+>>>>
+>>>> Right, it might work in some cases but might not work for all.
+>>>>
+>>>
+>>> Which makes it way less desirable.
+>>>
+>>> The enable state for rpmhpd power domains doesn't meet my expectations
+>>> for how a power domain should behave,
+>>
+>> Right and that's perhaps because these are not the usual power-domains,
+>> which have one "on/active" state and one or more "off/inactive" states (off/ret/clock-stop)
+>> Rpmhpd has multiple "on/active" states, and whats "on/active" for one consumer
+>> might not be "on/active" for another, so this information is hard to be managed
+>> at a generic level and these requests in some way or the other need to come
+>> in explicitly from the resp. consumers.
+>>
+> 
+> I think it's fine if we just acknowledge that this is how the rpmhpd
+> domains works.
+> 
+> But I am worried about how we're going to handle the case where the
+> consumer is indirectly referencing one of these power-domains using a
+> subdomain (gdsc).
 
-Signed-off-by: Peter Geis <pgwipeout@gmail.com>
----
- .../boot/dts/rockchip/rk3566-quartz64-a.dts   | 29 +++++++++++++++++++
- 1 file changed, 29 insertions(+)
+With the proper subdomain relationship in place and with Ulf's patches, 
+this seems to be handled correctly. gdsc sets proper level for the 
+parent power domain, which gets voted and unvoted by the core pm code 
+when gdsc's power domain is powered on or off.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-index 90cdabfac86b..eb311ea19f6a 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-@@ -26,6 +26,14 @@ gmac1_clkin: external-gmac1-clock {
- 		#clock-cells = <0>;
- 	};
- 
-+	fan: gpio_fan {
-+		compatible = "gpio-fan";
-+		gpios = <&gpio0 RK_PD5 GPIO_ACTIVE_HIGH>;
-+		gpio-fan,speed-map = <0    0
-+				      4500 1>;
-+		#cooling-cells = <2>;
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
- 
-@@ -123,6 +131,23 @@ &cpu3 {
- 	cpu-supply = <&vdd_cpu>;
- };
- 
-+&cpu_thermal {
-+	trips {
-+		cpu_hot: cpu_hot {
-+			temperature = <55000>;
-+			hysteresis = <2000>;
-+			type = "active";
-+		};
-+	};
-+
-+	cooling-maps {
-+		map1 {
-+			trip = <&cpu_hot>;
-+			cooling-device = <&fan THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+		};
-+	};
-+};
-+
- &gmac1 {
- 	assigned-clocks = <&cru SCLK_GMAC1_RX_TX>, <&cru SCLK_GMAC1_RGMII_SPEED>, <&cru SCLK_GMAC1>;
- 	assigned-clock-parents = <&cru SCLK_GMAC1_RGMII_SPEED>, <&cru SCLK_GMAC1>, <&gmac1_clkin>;
-@@ -432,6 +457,10 @@ &sdmmc0 {
- 	status = "okay";
- };
- 
-+&tsadc {
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_xfer>;
+> And the open question is if a solution to that problem will solve this
+> problem as well, or if we need to have this and some mechanism to
+> describe the "on state" for the parent of a subdomain.
+
+
 -- 
-2.25.1
-
+With best wishes
+Dmitry
