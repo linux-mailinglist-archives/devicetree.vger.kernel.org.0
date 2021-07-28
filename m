@@ -2,18 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E2BFE3D9896
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 00:26:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9788E3D98C6
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 00:27:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232942AbhG1W0i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 18:26:38 -0400
-Received: from relay01.th.seeweb.it ([5.144.164.162]:59243 "EHLO
-        relay01.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232934AbhG1W0W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 18:26:22 -0400
+        id S233067AbhG1W1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 18:27:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35626 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233243AbhG1W1W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 18:27:22 -0400
+Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [IPv6:2001:4b7a:2000:18::162])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21C36C0619C1
+        for <devicetree@vger.kernel.org>; Wed, 28 Jul 2021 15:26:22 -0700 (PDT)
 Received: from localhost.localdomain (83.6.168.174.neoplus.adsl.tpnet.pl [83.6.168.174])
-        by m-r1.th.seeweb.it (Postfix) with ESMTPA id DA7611FF08;
-        Thu, 29 Jul 2021 00:26:18 +0200 (CEST)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPA id 0B4A51FFEA;
+        Thu, 29 Jul 2021 00:26:19 +0200 (CEST)
 From:   Konrad Dybcio <konrad.dybcio@somainline.org>
 To:     ~postmarketos/upstreaming@lists.sr.ht
 Cc:     martin.botka@somainline.org,
@@ -25,9 +28,9 @@ Cc:     martin.botka@somainline.org,
         Rob Herring <robh+dt@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 25/39] arm64: dts: qcom: Add device tree for SDM636
-Date:   Thu, 29 Jul 2021 00:25:28 +0200
-Message-Id: <20210728222542.54269-26-konrad.dybcio@somainline.org>
+Subject: [PATCH 26/39] arm64: dts: qcom: sdm630: Add IMEM node
+Date:   Thu, 29 Jul 2021 00:25:29 +0200
+Message-Id: <20210728222542.54269-27-konrad.dybcio@somainline.org>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20210728222542.54269-1-konrad.dybcio@somainline.org>
 References: <20210728222542.54269-1-konrad.dybcio@somainline.org>
@@ -37,45 +40,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This SoC is almost identical to its older brother,
-SDM660, with a few minor exceptions like the
-different GPU.
+Add IMEM node and PIL reloc info as its child.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 ---
- arch/arm64/boot/dts/qcom/sdm636.dtsi | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sdm636.dtsi
+ arch/arm64/boot/dts/qcom/sdm630.dtsi | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm636.dtsi b/arch/arm64/boot/dts/qcom/sdm636.dtsi
-new file mode 100644
-index 000000000000..ae15d81fa3f9
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sdm636.dtsi
-@@ -0,0 +1,23 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2020, AngeloGioacchino Del Regno <kholk11@gmail.com>
-+ * Copyright (c) 2020, Konrad Dybcio <konradybcio@gmail.com>
-+ * Copyright (c) 2020, Martin Botka <martin.botka1@gmail.com>
-+ */
+diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+index c7d39fea8254..5b31b594e787 100644
+--- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+@@ -1923,6 +1923,21 @@ blsp_i2c8: i2c@c1b8000 {
+ 			status = "disabled";
+ 		};
+ 
++		imem@146bf000 {
++			compatible = "simple-mfd";
++			reg = <0x146bf000 0x1000>;
 +
-+#include "sdm660.dtsi"
++			#address-cells = <1>;
++			#size-cells = <1>;
 +
-+/*
-+ * According to the downstream DTS,
-+ * 636 is basically a 660 except for
-+ * different CPU frequencies, Adreno
-+ * 509 instead of 512 and lack of
-+ * turing IP. These differences will
-+ * be addressed when the aforementioned
-+ * peripherals will be enabled upstream.
-+ */
++			ranges = <0 0x146bf000 0x1000>;
 +
-+&adreno_gpu {
-+	compatible = "qcom,adreno-509.0", "qcom,adreno";
-+	/* Adreno 509 shares the frequency table with 512 */
-+};
++			pil-reloc@94c {
++				compatible = "qcom,pil-reloc-info";
++				reg = <0x94c 0xc8>;
++			};
++		};
++
+ 		mmss_smmu: iommu@cd00000 {
+ 			compatible = "qcom,sdm630-smmu-v2", "qcom,smmu-v2";
+ 			reg = <0x0cd00000 0x40000>;
 -- 
 2.32.0
 
