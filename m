@@ -2,131 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F4103D89A9
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 10:21:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57D8E3D89AF
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 10:22:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234510AbhG1IV5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 04:21:57 -0400
-Received: from mail-vk1-f170.google.com ([209.85.221.170]:38511 "EHLO
-        mail-vk1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234484AbhG1IV4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 04:21:56 -0400
-Received: by mail-vk1-f170.google.com with SMTP id k124so292056vke.5;
-        Wed, 28 Jul 2021 01:21:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5yoCkO99kgbo6iNFJCPB9hwYY0ETTMuSEc015zhPeQ4=;
-        b=CSUQ6Xp7MIiYiOyLeV7ehqUdlgFDWK/mpfAABiu4C1feiK7W4yI8tg0nbgOO5LQLsP
-         rtzu5ztlEBpJe/CG5b78/8bUDCOjrbXAuwimR3Qa3gqei6AqP6XPRwTJQrssyU1vEbi+
-         NwV0TNVoFcFVCvKW0Qa6AZlIatoqgM9kaLuwjuLYZom1rFq1taf4tGX7/G9L+g3Y6KBR
-         2Fl+IvJTNgJSn+PTgTE5itA5vFkRUcwT5UJv132PKqVrn85IyZ88TNyc2xW2OkKGt6Hb
-         L/XyP8+TvdcPSI1jAnCg4Ewelnbmf6IigFjQP0BUNXliK29Xk6xfoakMrpWVVMFbz7WI
-         OTNw==
-X-Gm-Message-State: AOAM531HvRqOSDt+cAUgC3i1xEYUuBCVEzxIzo6VEu6qmYaisXootOZt
-        OLQQl3JRc7lZd6yivHLqVCa+BPZk3hCqZFYNyUI=
-X-Google-Smtp-Source: ABdhPJyWBoWEgvEHaDFhVnRanGUz34OpgjBijFlUQxzQqRUc/jAO3Nsk1dj3Typp58sDq4dVptKaRYsggixkhO8G7Mk=
-X-Received: by 2002:ac5:c956:: with SMTP id s22mr17928824vkm.2.1627460514192;
- Wed, 28 Jul 2021 01:21:54 -0700 (PDT)
+        id S234484AbhG1IWu convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 28 Jul 2021 04:22:50 -0400
+Received: from aposti.net ([89.234.176.197]:43998 "EHLO aposti.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235169AbhG1IWu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Jul 2021 04:22:50 -0400
+Date:   Wed, 28 Jul 2021 09:22:34 +0100
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH 3/3] dma: jz4780: Add support for the MDMA in the
+ JZ4760(B)
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mips@vger.kernel.org, list@opendingux.net
+Message-Id: <ML4YWQ.2MOPKABT5JGC1@crapouillou.net>
+In-Reply-To: <YQEERH97pngKbTiG@matsya>
+References: <20210718122024.204907-1-paul@crapouillou.net>
+        <20210718122024.204907-3-paul@crapouillou.net> <YQEERH97pngKbTiG@matsya>
 MIME-Version: 1.0
-References: <61002766.1c69fb81.8f53.9f6a@mx.google.com> <c52f6cfb-1316-dd6a-46fa-17abfcc4bf18@collabora.com>
- <CAMuHMdUi_=xnvYFgiWXxSyrfoMn0JJCcH+TXFUh+1JUf=4u87A@mail.gmail.com>
-In-Reply-To: <CAMuHMdUi_=xnvYFgiWXxSyrfoMn0JJCcH+TXFUh+1JUf=4u87A@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 28 Jul 2021 10:21:43 +0200
-Message-ID: <CAMuHMdW4iyRTxuhjhAEpaHfD=Y8_nUF0Cv+A_H=ci5Je_dC-Hw@mail.gmail.com>
-Subject: Re: renesas/master bisection: baseline-nfs.bootrr.rockchip-usb2phy0-probed
- on rk3399-gru-kevin
-To:     Guillaume Tucker <guillaume.tucker@collabora.com>
-Cc:     kernelci-results@groups.io, Johan Jonker <jbx6244@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Maciej Matuszczyk <maccraft123mc@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Cameron Nemo <cnemo@tutanota.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Elaine Zhang <zhangqing@rock-chips.com>,
-        Helen Koike <helen.koike@collabora.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Shunqian Zheng <zhengsq@rock-chips.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Collabora Kernel ML <kernel@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-CC kernelci@groups.io
-dropped kernelci-reports@groups.io ("500 This message has been flagged as spam")
-dropped Jacob ("550 jacob2.chen@rock-chips.com:user not exist")
+Hi Vinod,
 
-On Wed, Jul 28, 2021 at 10:17 AM Geert Uytterhoeven
-<geert@linux-m68k.org> wrote:
->
-> Hi Guillaume et al,
->
-> On Wed, Jul 28, 2021 at 8:05 AM Guillaume Tucker
-> <guillaume.tucker@collabora.com> wrote:
-> > Please see the bisection report below about usb2phy failing to
-> > probe on rk3399-gru-kevin.
-> >
-> > Reports aren't automatically sent to the public while we're
-> > trialing new bisection features on kernelci.org but this one
-> > looks valid.
->
-> Thanks for your report!
->
-> > The bisection was run in the Renesas tree but the same regression
-> > is present in mainline for both usb2phy0 and usb2phy1 devices:
->
-> Exactly, the faulty commit is part of v5.14-rc1.
->
-> > > Breaking commit found:
-> > >
-> > > -------------------------------------------------------------------------------
-> > > commit 8c3d64251ac5c5a3d10364f6b07d3603ac1e7b4a
-> > > Author: Johan Jonker <jbx6244@gmail.com>
-> > > Date:   Tue Jun 1 18:47:59 2021 +0200
-> > >
-> > >     arm64: dts: rockchip: rename nodename for phy-rockchip-inno-usb2
->
-> P.S. KernelCI is sending lots of reports to linux-reneas-soc[1] for
->      (a) issues on non-Renesas platforms[2], and
->      (b) issues not originating in the renesas-devel tree, like this one.
->
-> Suggestions for improvement:
->   1. If a regression is detected in an upstream tree, there is no
->      need to report it for downstream trees, unless it affects
->      the downstream tree, or originated there.
->   2. If a regression is detected for a platform, there is no need
->      to report it for different platform trees, unless it originated
->      there.
->
-> BTW, I do look at the reports for Renesas platforms, but usually I
-> don't see what's wrong, and the same platform works fine locally.
-> Note that yesterday and today I get "Error while loading data from the
-> server (error code: 500). Please contact the website administrator".
->
-> Thanks!
->
-> [1] https://lore.kernel.org/linux-renesas-soc/?q=kernelci.org
-> [2] https://lore.kernel.org/linux-renesas-soc/60ff86ff.1c69fb81.dfe6f.6a7c@mx.google.com/
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
+Le mer., juil. 28 2021 at 12:46:20 +0530, Vinod Koul <vkoul@kernel.org> 
+a écrit :
+> On 18-07-21, 13:20, Paul Cercueil wrote:
+>>  The JZ4760 and JZ4760B SoCs have two regular DMA controllers with 6
+>>  channels each. They also have an extra DMA controller named MDMA
+>>  with only 2 channels, that only supports memcpy operations.
+> 
+> It is dmaengine not dma:
+> 
+>> 
+>>  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+>>  ---
+>>   drivers/dma/dma-jz4780.c | 22 ++++++++++++++++++++--
+>>   1 file changed, 20 insertions(+), 2 deletions(-)
+>> 
+>>  diff --git a/drivers/dma/dma-jz4780.c b/drivers/dma/dma-jz4780.c
+>>  index d71bc7235959..eed505e3cce2 100644
+>>  --- a/drivers/dma/dma-jz4780.c
+>>  +++ b/drivers/dma/dma-jz4780.c
+>>  @@ -93,6 +93,7 @@
+>>   #define JZ_SOC_DATA_PER_CHAN_PM		BIT(2)
+>>   #define JZ_SOC_DATA_NO_DCKES_DCKEC	BIT(3)
+>>   #define JZ_SOC_DATA_BREAK_LINKS		BIT(4)
+>>  +#define JZ_SOC_DATA_ONLY_MEMCPY		BIT(5)
+> 
+> Why -ve logic? Looks like MEMCPY is eveywhere and only peripheral is 
+> not
+> there at few SoC, so use JZ_SOC_DATA_PERIPHERAL
+
+That means touching every other jz4780_dma_soc_data structure in a 
+patch that's focused on one SoC. That means a messy patch, and I don't 
+like that.
+
+Negative logic is a problem if it makes it harder to understand, I 
+don't think it's the case here. Besides, we already have 
+JZ_SOC_DATA_NO_DCKES_DCKEC.
+
+Cheers,
+-Paul
+
+>> 
+>>   /**
+>>    * struct jz4780_dma_hwdesc - descriptor structure read by the DMA 
+>> controller.
+>>  @@ -896,8 +897,10 @@ static int jz4780_dma_probe(struct 
+>> platform_device *pdev)
+>>   	dd = &jzdma->dma_device;
+>> 
+>>   	dma_cap_set(DMA_MEMCPY, dd->cap_mask);
+>>  -	dma_cap_set(DMA_SLAVE, dd->cap_mask);
+>>  -	dma_cap_set(DMA_CYCLIC, dd->cap_mask);
+>>  +	if (!(soc_data->flags & JZ_SOC_DATA_ONLY_MEMCPY)) {
+>>  +		dma_cap_set(DMA_SLAVE, dd->cap_mask);
+>>  +		dma_cap_set(DMA_CYCLIC, dd->cap_mask);
+>>  +	}
+> 
+> and set this if JZ_SOC_DATA_PERIPHERAL is set?
+> 
+>> 
+>>   	dd->dev = dev;
+>>   	dd->copy_align = DMAENGINE_ALIGN_4_BYTES;
+>>  @@ -1018,12 +1021,25 @@ static const struct jz4780_dma_soc_data 
+>> jz4760_dma_soc_data = {
+>>   	.flags = JZ_SOC_DATA_PER_CHAN_PM | JZ_SOC_DATA_NO_DCKES_DCKEC,
+>>   };
+>> 
+>>  +static const struct jz4780_dma_soc_data jz4760_mdma_soc_data = {
+>>  +	.nb_channels = 2,
+>>  +	.transfer_ord_max = 6,
+>>  +	.flags = JZ_SOC_DATA_PER_CHAN_PM | JZ_SOC_DATA_NO_DCKES_DCKEC |
+>>  +		 JZ_SOC_DATA_ONLY_MEMCPY,
+>>  +};
+>>  +
+>>   static const struct jz4780_dma_soc_data jz4760b_dma_soc_data = {
+>>   	.nb_channels = 5,
+>>   	.transfer_ord_max = 6,
+>>   	.flags = JZ_SOC_DATA_PER_CHAN_PM,
+>>   };
+>> 
+>>  +static const struct jz4780_dma_soc_data jz4760b_mdma_soc_data = {
+>>  +	.nb_channels = 2,
+>>  +	.transfer_ord_max = 6,
+>>  +	.flags = JZ_SOC_DATA_PER_CHAN_PM | JZ_SOC_DATA_ONLY_MEMCPY,
+>>  +};
+>>  +
+>>   static const struct jz4780_dma_soc_data jz4770_dma_soc_data = {
+>>   	.nb_channels = 6,
+>>   	.transfer_ord_max = 6,
+>>  @@ -1052,7 +1068,9 @@ static const struct of_device_id 
+>> jz4780_dma_dt_match[] = {
+>>   	{ .compatible = "ingenic,jz4740-dma", .data = 
+>> &jz4740_dma_soc_data },
+>>   	{ .compatible = "ingenic,jz4725b-dma", .data = 
+>> &jz4725b_dma_soc_data },
+>>   	{ .compatible = "ingenic,jz4760-dma", .data = 
+>> &jz4760_dma_soc_data },
+>>  +	{ .compatible = "ingenic,jz4760-mdma", .data = 
+>> &jz4760_mdma_soc_data },
+>>   	{ .compatible = "ingenic,jz4760b-dma", .data = 
+>> &jz4760b_dma_soc_data },
+>>  +	{ .compatible = "ingenic,jz4760b-mdma", .data = 
+>> &jz4760b_mdma_soc_data },
+>>   	{ .compatible = "ingenic,jz4770-dma", .data = 
+>> &jz4770_dma_soc_data },
+>>   	{ .compatible = "ingenic,jz4780-dma", .data = 
+>> &jz4780_dma_soc_data },
+>>   	{ .compatible = "ingenic,x1000-dma", .data = &x1000_dma_soc_data 
+>> },
+>>  --
+>>  2.30.2
+> 
 > --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+> ~Vinod
+
+
