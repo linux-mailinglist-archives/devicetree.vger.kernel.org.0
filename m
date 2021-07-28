@@ -2,18 +2,18 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 721F13D988D
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 00:26:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 559733D9894
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 00:26:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233028AbhG1W03 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 18:26:29 -0400
-Received: from relay04.th.seeweb.it ([5.144.164.165]:40443 "EHLO
-        relay04.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232634AbhG1W0P (ORCPT
+        id S232867AbhG1W0g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 18:26:36 -0400
+Received: from relay03.th.seeweb.it ([5.144.164.164]:50801 "EHLO
+        relay03.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232644AbhG1W0P (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 18:26:15 -0400
 Received: from localhost.localdomain (83.6.168.174.neoplus.adsl.tpnet.pl [83.6.168.174])
-        by m-r1.th.seeweb.it (Postfix) with ESMTPA id AF7352004C;
-        Thu, 29 Jul 2021 00:26:07 +0200 (CEST)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPA id D267E20055;
+        Thu, 29 Jul 2021 00:26:08 +0200 (CEST)
 From:   Konrad Dybcio <konrad.dybcio@somainline.org>
 To:     ~postmarketos/upstreaming@lists.sr.ht
 Cc:     martin.botka@somainline.org,
@@ -25,9 +25,9 @@ Cc:     martin.botka@somainline.org,
         Rob Herring <robh+dt@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 16/39] arm64: dts: qcom: sdm630: Add thermal-zones configuration
-Date:   Thu, 29 Jul 2021 00:25:19 +0200
-Message-Id: <20210728222542.54269-17-konrad.dybcio@somainline.org>
+Subject: [PATCH 17/39] arm64: dts: qcom: sdm630: Add ADSP remoteproc configuration
+Date:   Thu, 29 Jul 2021 00:25:20 +0200
+Message-Id: <20210728222542.54269-18-konrad.dybcio@somainline.org>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20210728222542.54269-1-konrad.dybcio@somainline.org>
 References: <20210728222542.54269-1-konrad.dybcio@somainline.org>
@@ -37,199 +37,122 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a basic thermal-zones configuration to make sure the SoC
-doesn't overheat itself to death.
+Configure the ADSP remote processor and add a simple sound{}
+node to make way for future development.
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
 Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 ---
- arch/arm64/boot/dts/qcom/sdm630.dtsi | 173 +++++++++++++++++++++++++++
- 1 file changed, 173 insertions(+)
+ arch/arm64/boot/dts/qcom/sdm630.dtsi | 83 ++++++++++++++++++++++++++++
+ 1 file changed, 83 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-index cbc8bab0d34b..936929e69be1 100644
+index 936929e69be1..50dea8afd2a1 100644
 --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-@@ -521,6 +521,179 @@ modem_smp2p_in: slave-kernel {
+@@ -10,6 +10,7 @@
+ #include <dt-bindings/power/qcom-rpmpd.h>
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
++#include <dt-bindings/soc/qcom,apr.h>
+ 
+ / {
+ 	interrupt-parent = <&intc>;
+@@ -521,6 +522,9 @@ modem_smp2p_in: slave-kernel {
  		};
  	};
  
-+	thermal-zones {
-+		aoss-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <1000>;
-+
-+			thermal-sensors = <&tsens 0>;
-+
-+			trips {
-+				aoss_alert0: trip-point0 {
-+					temperature = <105000>;
-+					hysteresis = <1000>;
-+					type = "hot";
-+				};
-+			};
-+		};
-+
-+		cpuss0-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <1000>;
-+
-+			thermal-sensors = <&tsens 1>;
-+
-+			trips {
-+				cpuss0_alert0: trip-point0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "hot";
-+				};
-+			};
-+		};
-+
-+		cpuss1-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <1000>;
-+
-+			thermal-sensors = <&tsens 2>;
-+
-+			trips {
-+				cpuss1_alert0: trip-point0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "hot";
-+				};
-+			};
-+		};
-+
-+		cpu0-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <1000>;
-+
-+			thermal-sensors = <&tsens 3>;
-+
-+			trips {
-+				cpu0_alert0: trip-point0 {
-+					temperature = <70000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+
-+				cpu0_crit: cpu_crit {
-+					temperature = <110000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpu1-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <1000>;
-+
-+			thermal-sensors = <&tsens 4>;
-+
-+			trips {
-+				cpu1_alert0: trip-point0 {
-+					temperature = <70000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+
-+				cpu1_crit: cpu_crit {
-+					temperature = <110000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpu2-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <1000>;
-+
-+			thermal-sensors = <&tsens 5>;
-+
-+			trips {
-+				cpu2_alert0: trip-point0 {
-+					temperature = <70000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+
-+				cpu2_crit: cpu_crit {
-+					temperature = <110000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpu3-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <1000>;
-+
-+			thermal-sensors = <&tsens 6>;
-+
-+			trips {
-+				cpu3_alert0: trip-point0 {
-+					temperature = <70000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+
-+				cpu3_crit: cpu_crit {
-+					temperature = <110000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		/*
-+		 * According to what downstream DTS says,
-+		 * the entire power efficient cluster has
-+		 * only a single thermal sensor.
-+		 */
-+
-+		pwr-cluster-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <1000>;
-+
-+			thermal-sensors = <&tsens 7>;
-+
-+			trips {
-+				pwr_cluster_alert0: trip-point0 {
-+					temperature = <70000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+
-+				pwr_cluster_crit: cpu_crit {
-+					temperature = <110000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		gpu-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <1000>;
-+
-+			thermal-sensors = <&tsens 8>;
-+
-+			trips {
-+				gpu_alert0: trip-point0 {
-+					temperature = <90000>;
-+					hysteresis = <1000>;
-+					type = "hot";
-+				};
-+			};
-+		};
++	sound: sound {
 +	};
 +
- 	soc {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
+ 	thermal-zones {
+ 		aoss-thermal {
+ 			polling-delay-passive = <250>;
+@@ -1882,6 +1886,85 @@ mmss_smmu: iommu@cd00000 {
+ 			status = "disabled";
+ 		};
+ 
++		adsp_pil: remoteproc@15700000 {
++			compatible = "qcom,sdm660-adsp-pil";
++			reg = <0x15700000 0x4040>;
++
++			interrupts-extended =
++				<&intc GIC_SPI 162 IRQ_TYPE_EDGE_RISING>,
++				<&adsp_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
++				<&adsp_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
++				<&adsp_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
++				<&adsp_smp2p_in 3 IRQ_TYPE_EDGE_RISING>;
++			interrupt-names = "wdog", "fatal", "ready",
++					  "handover", "stop-ack";
++
++			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>;
++			clock-names = "xo";
++
++			memory-region = <&adsp_region>;
++			power-domains = <&rpmpd SDM660_VDDCX>;
++			power-domain-names = "cx";
++
++			qcom,smem-states = <&adsp_smp2p_out 0>;
++			qcom,smem-state-names = "stop";
++
++			glink-edge {
++				interrupts = <GIC_SPI 157 IRQ_TYPE_EDGE_RISING>;
++
++				label = "lpass";
++				mboxes = <&apcs_glb 9>;
++				qcom,remote-pid = <2>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				apr {
++					compatible = "qcom,apr-v2";
++					qcom,glink-channels = "apr_audio_svc";
++					qcom,apr-domain = <APR_DOMAIN_ADSP>;
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					q6core {
++						reg = <APR_SVC_ADSP_CORE>;
++						compatible = "qcom,q6core";
++					};
++
++					q6afe: apr-service@4 {
++						compatible = "qcom,q6afe";
++						reg = <APR_SVC_AFE>;
++						q6afedai: dais {
++							compatible = "qcom,q6afe-dais";
++							#address-cells = <1>;
++							#size-cells = <0>;
++							#sound-dai-cells = <1>;
++						};
++					};
++
++					q6asm: apr-service@7 {
++						compatible = "qcom,q6asm";
++						reg = <APR_SVC_ASM>;
++						q6asmdai: dais {
++							compatible = "qcom,q6asm-dais";
++							#address-cells = <1>;
++							#size-cells = <0>;
++							#sound-dai-cells = <1>;
++							iommus = <&lpass_smmu 1>;
++						};
++					};
++
++					q6adm: apr-service@8 {
++						compatible = "qcom,q6adm";
++						reg = <APR_SVC_ADM>;
++						q6routing: routing {
++							compatible = "qcom,q6adm-routing";
++							#sound-dai-cells = <0>;
++						};
++					};
++				};
++			};
++		};
++
+ 		gnoc: interconnect@17900000 {
+ 			compatible = "qcom,sdm660-gnoc";
+ 			reg = <0x17900000 0xe000>;
 -- 
 2.32.0
 
