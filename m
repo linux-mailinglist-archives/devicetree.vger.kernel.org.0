@@ -2,89 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D17393D9259
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 17:51:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E89053D92B8
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 18:08:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229904AbhG1Pvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 11:51:40 -0400
-Received: from mail-io1-f41.google.com ([209.85.166.41]:46851 "EHLO
-        mail-io1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229622AbhG1Pvk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 11:51:40 -0400
-Received: by mail-io1-f41.google.com with SMTP id z7so2665121iog.13;
-        Wed, 28 Jul 2021 08:51:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=QGlRQ7YvLwv8K5AbN7ZnxnSoIhB/O2l82NrH2XfQAws=;
-        b=Mv6N5P9IxHdI/9yK8xG1g3OMplQOQVZoUao/p+6NUgmEBm7Vx8X+7fWZ7nJOlpgbEZ
-         OlKv0IziEvqdCTsPOptjnOcBlY4IBnNHnkdFGu13kPXALEIAoMwDyZpLIfQeUmOGcfsl
-         Cyz/FoRAp2xBAZ6e49qdjrGMTTklGDx8cGhPF1G9IRxWWE3Nf1RAadOlvhorV1hiXkOh
-         JTxveLtSfhoDi1vRsFfl0FTyOmpxspLREL6GAi9DMZCwYitQ4UizSWcGirY12wcX45Ui
-         Mav37uDp5PMKILvGNdPUVq1M30HC8sF0I8tIU0Yey6aGYe8PUkO2mHN7QZC+sLZrag+6
-         URQg==
-X-Gm-Message-State: AOAM533GvLFN/b3y/HV5yYFf3f4cg2GEaRH6iFyx04sRIV1J+JKyHuux
-        zfP981d9j7MyeLjGO3P9tA==
-X-Google-Smtp-Source: ABdhPJzaxRpaGHuNLWhFtE2F69DI0X2Ny22fQs48Z8P6xy+5OSHIaCODrcsxpUgXTInNv5LVA4hffg==
-X-Received: by 2002:a6b:1685:: with SMTP id 127mr99194iow.135.1627487498497;
-        Wed, 28 Jul 2021 08:51:38 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id t15sm238450iog.26.2021.07.28.08.51.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Jul 2021 08:51:37 -0700 (PDT)
-Received: (nullmailer pid 1132983 invoked by uid 1000);
-        Wed, 28 Jul 2021 15:51:35 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Peter Geis <pgwipeout@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20210728135534.703028-2-pgwipeout@gmail.com>
-References: <20210728135534.703028-1-pgwipeout@gmail.com> <20210728135534.703028-2-pgwipeout@gmail.com>
-Subject: Re: [PATCH 1/9] dt-bindings: gpio: rockchip,gpio-bank: increase max clocks
-Date:   Wed, 28 Jul 2021 09:51:35 -0600
-Message-Id: <1627487495.967642.1132982.nullmailer@robh.at.kernel.org>
+        id S237849AbhG1QHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 12:07:46 -0400
+Received: from mail.bonc.com.cn ([39.155.134.159]:59297 "EHLO bonc.com.cn"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S237314AbhG1QD2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Jul 2021 12:03:28 -0400
+X-Greylist: delayed 384 seconds by postgrey-1.27 at vger.kernel.org; Wed, 28 Jul 2021 12:03:28 EDT
+Received: from localhost.localdomain.localdomain (unknown [223.70.140.94])
+        by coremail (Coremail) with SMTP id AQAAfwCnRmTpfQFhLjwiAA--.10309S2;
+        Wed, 28 Jul 2021 23:55:34 +0800 (CST)
+From:   Baisheng Gao <gaobaisheng@bonc.com.cn>
+To:     robh+dt@kernel.org, kuba@kernel.org, davem@davemloft.net
+Cc:     devicetree@vger.kernel.org
+Subject: [PATCH] Documentation: fix incorrect macro referencing in mscc-phy-vsc8531.txt
+Date:   Thu, 29 Jul 2021 00:01:26 +0800
+Message-Id: <1627488086-200263-1-git-send-email-gaobaisheng@bonc.com.cn>
+X-Mailer: git-send-email 1.8.3.1
+X-CM-TRANSID: AQAAfwCnRmTpfQFhLjwiAA--.10309S2
+X-Coremail-Antispam: 1UD129KBjvdXoWrtFykWF4kAFyDKw4kGFyxAFb_yoWkuFcEkF
+        naqF18Jr9rGr1Fga1jvrsrZF4Yvr4jy3s7u3sFqFyIv3yrA398CFyDJwnxZr1xCFWUuF4x
+        Zry8uF17u3ZrKjkaLaAFLSUrUUUUbb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+        9fnUUIcSsGvfJTRUUUb7kYjsxI4VWxJwAYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I
+        6I8E6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM2
+        8CjxkF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVWUJVWUCwA2z4x0Y4vE2Ix0
+        cI8IcVCY1x0267AKxVWUJVW8JwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z2
+        80aVCY1x0267AKxVW0oVCq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAK
+        zVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Gr0_Cr1lOx
+        8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JM4x0Y48IcxkI7VAKI48G6xCjnVAK
+        z4kxMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI
+        0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUAVWUtwCI42IY
+        6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6x
+        AIw20EY4v20xvaj40_Wr1j6rW3Jr1lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280
+        aVCY1x0267AKxVWUJVW8JbIYCTnIWIevJa73UjIFyTuYvjxUIoqcUUUUU
+X-CM-SenderInfo: xjdrutplvkv0nj6e003fof0zgofq/
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 28 Jul 2021 09:55:26 -0400, Peter Geis wrote:
-> The rk356x adds a debounce clock to the gpio devices.
-> Increase the maximum clocks to account for it.
-> 
-> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
-> ---
->  Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+Modify LINK_1000_ACTIVITY and LINK_100_ACTIVITY to VSC8531_LINK_1000_ACTIVITY
+and VSC8531_LINK_100_ACTIVITY respectively in the example of ethernet-phy node
+according to include/dt-bindings/net/mscc-phy-vsc8531.h.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Signed-off-by: Baisheng Gao <gaobaisheng@bonc.com.cn>
+---
+ Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-yamllint warnings/errors:
+diff --git a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
+index 87a27d7..0a3647f 100644
+--- a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
++++ b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
+@@ -67,7 +67,7 @@ Example:
+                 compatible = "ethernet-phy-id0007.0570";
+                 vsc8531,vddmac		= <3300>;
+                 vsc8531,edge-slowdown	= <7>;
+-                vsc8531,led-0-mode	= <LINK_1000_ACTIVITY>;
+-                vsc8531,led-1-mode	= <LINK_100_ACTIVITY>;
++                vsc8531,led-0-mode	= <VSC8531_LINK_1000_ACTIVITY>;
++                vsc8531,led-1-mode	= <VSC8531_LINK_100_ACTIVITY>;
+ 		load-save-gpios		= <&gpio 10 GPIO_ACTIVE_HIGH>;
+         };
+-- 
+1.8.3.1
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.example.dt.yaml: gpio@2000a000: clocks: [[4294967295, 9]] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.example.dt.yaml: gpio@2003c000: clocks: [[4294967295, 10]] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/gpio/rockchip,gpio-bank.yaml
-\ndoc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1510854
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
 
