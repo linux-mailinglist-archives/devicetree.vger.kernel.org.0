@@ -2,223 +2,326 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4952B3D8587
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 03:41:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02ECD3D85D0
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 04:11:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233158AbhG1BlO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jul 2021 21:41:14 -0400
-Received: from mail-eopbgr10087.outbound.protection.outlook.com ([40.107.1.87]:47013
-        "EHLO EUR02-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232926AbhG1BlO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Jul 2021 21:41:14 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YfG76g1xYo7w+ltL9eLyzQMAAvkwvNmMEKjxO2nsc7Nq5yb7ggAxzDycRgHFRp0u00Ep5b8E7qz2VIOYye4PYzMqHiCIgfl46JiOuhITgppbdii+4j0o7bz8vjUKcsxZ7FL+2buLqGkbkWFRkW6bkcbM5GgjYP0zSc7kGc5sFiJo4IWHsKcuGFgbQWlruursUjUiHUeCo24mSaKUJSeyv2svdW854jjy7gDBdxlYgNfsT71jrHYsA/HVGMbWLIUFlPXSFXGaaSsZZv1JkaBsrs3weAZ3dMy8OjyZf1lZ8fWics557U9oKdX+NM9Y872JPv/Yr0J13U6ezTKT3Cr+hw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tzx/JtEyi3UeHxIVB5MLlVuazp7XY8Efk5T5Zya4klE=;
- b=ecpBBYyFDWGugtZtVSMMm+YSyEKTowD1rYsJWKiGxEb+x9OCZsTUDUqKFDt+a2kM3suE1SvWVLK6bc8xY8IWBngcvbe+heV24q/6PKXboHpbCCK55yQueWADJ7FRf7tDI2UIx4OtosvriSTxEDP1KlbW6IG03QaMkZftv1tF74FPD5oxMkrFAjNTiBbUHAehicqAqCoP4KhSFizCvW0JMp5DccvQUs7qepd3GHJaznomDwK8kA5u8m7fhLpuehvgVh8/0kwS/7z14oHg1BB8AXczVpceQLMuxuSjhtzLIZPAxwlbUqgzHLfvNr8d6bzNYORjyB7EZ3CNazRmmjeqcQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tzx/JtEyi3UeHxIVB5MLlVuazp7XY8Efk5T5Zya4klE=;
- b=BABm3DHPQ+m1ZpUI9Dc7IQwBax0+Y0NnQuWz0o4VpFQtODta1j7BBPMBYT668lTkVjk7yQ2ACTZh/basTH4YWrDeg+Q7zJOkmimVwKimxgaRXta9AqXhnZnE+1vgqePO5WlI/s80Jl6OiIKug9WidsLnWOW0NUZpUJkLk/KB6hI=
-Received: from AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
- by AM5PR0401MB2434.eurprd04.prod.outlook.com (2603:10a6:203:35::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4352.25; Wed, 28 Jul
- 2021 01:41:10 +0000
-Received: from AM6PR04MB6341.eurprd04.prod.outlook.com
- ([fe80::81e3:1e06:83ee:5db8]) by AM6PR04MB6341.eurprd04.prod.outlook.com
- ([fe80::81e3:1e06:83ee:5db8%3]) with mapi id 15.20.4352.031; Wed, 28 Jul 2021
- 01:41:10 +0000
-From:   Ming Qian <ming.qian@nxp.com>
-To:     Nicolas Dufresne <nicolas@ndufresne.ca>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
-CC:     "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [EXT] Re: [PATCH v5 02/14] media:Add nt8 and nt10 video format.
-Thread-Topic: [EXT] Re: [PATCH v5 02/14] media:Add nt8 and nt10 video format.
-Thread-Index: AQHXgpD8B0LcqraPZ0Klt5ff7x/la6tXHMiAgACA4tA=
-Date:   Wed, 28 Jul 2021 01:41:10 +0000
-Message-ID: <AM6PR04MB6341EF298D521EC922CF1F53E7EA9@AM6PR04MB6341.eurprd04.prod.outlook.com>
-References: <cover.1627353315.git.ming.qian@nxp.com>
-         <ee482c18fdaae121e3c9495d07b0f3eb1661e36e.1627353315.git.ming.qian@nxp.com>
- <e88f70b1438d4e5b5313aacccb1f369cabe513bc.camel@ndufresne.ca>
-In-Reply-To: <e88f70b1438d4e5b5313aacccb1f369cabe513bc.camel@ndufresne.ca>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: ndufresne.ca; dkim=none (message not signed)
- header.d=none;ndufresne.ca; dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 1e3b6231-8aff-472a-a721-08d95168c6dc
-x-ms-traffictypediagnostic: AM5PR0401MB2434:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <AM5PR0401MB2434450E16FBB16ED8D6DF7BE7EA9@AM5PR0401MB2434.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6790;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: lb+0hRCVSYGHl+WIA1f9Se+Y0uViVX2IEeWaJle+DxUHE0d+KvP+2f+XJxHVTOT3ZuFK+YHjIScxNV8Tcj0+WQg4jtTZkjnSxYxPCqrg9ac297oaYprf55axNcMcn0DFhfq0RP/e/FKHnkAx/eq325qTW5HTF1obkCuCIOl0c7Eyy6O9jXXg6SPOo6DpmfChrihcuH9NoitsR46GUttzFdK3Vd+n0P7Pe+JPAyYgjemHrd3da/R4Y08IApqx10P3aLlPTBoewdqNKzoRJb2X3RFCgMPe1G2T6XgzR+yCXrS5LOiZ7Ju80SzAjEA4Ht/0y/QmFb0FsB69XNGpCpoyVCviYrpBT6RpXWV6kJsL+JgIreX4NmmLoXM9a46VCyENS9YyDyO3LA6GYKJzB+1UxYRppEkDBVfd3vL/f5eTUyJtOMsTK7LaJ1BlzMwyiuydinH6JGiN4awdwrqycX+avLiGC3PIQd5E97HGT5LA4eNw7zF/VMPyDuYv62JRUr4tItHl1TouDbUd8eD5LjBNlDQxtjdBZ4Q9wcbwQwf03m0wFtrnsKocjW4KxFA+KxoW7hRQoZdIvyr6Uk8L4G+ckv5HgX+JeeTf05OiXg+yjmGb3BHz18H2kCg5WW9g7PPeLQU2VjqwPI+37oE6vozQL4Jegf+oabhSlpFjmtKMvOhc98PBx3R9q+nM6+djLbbssTyLDg2ETEfT4lijCvs2UA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6341.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(346002)(376002)(366004)(396003)(136003)(9686003)(55016002)(7696005)(316002)(8936002)(7416002)(66946007)(6506007)(186003)(478600001)(53546011)(26005)(8676002)(2906002)(71200400001)(44832011)(38100700002)(110136005)(54906003)(5660300002)(4326008)(76116006)(66574015)(122000001)(86362001)(52536014)(33656002)(66476007)(66446008)(38070700005)(64756008)(83380400001)(66556008);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SVZvN1lvUDhVTjBxTmRWQitSNHBZWGdoMUhZdG1odXB3MjJwem5mMVAyaHFO?=
- =?utf-8?B?VEJ5OGtPSFQrS0dBZ2xvWjV5enl3TEYwanZlZmRRZDh2ZGt0VFNHMm9ZM0dR?=
- =?utf-8?B?a0hXNmtWeHNSem9tRlV2UzViRmp4YzlXUUdLQ3JGM0NwNXNXaEJHVHlXZS9U?=
- =?utf-8?B?K1krc3hSZ21CSThyZVVBNFpFc2lZQzlQb1o0cUswalJTL0hhNWdlc2MvUzVv?=
- =?utf-8?B?RjZpSS9jNVVGMTVDeGtEbVhKMEE2dndVa01LU29JWnpmYVVBYUl0SlhQVFo5?=
- =?utf-8?B?akQrQ3AwTjQ3ZTlJVTB1TUd6RCtaZFZyTnpSWGtWNTlnK1U1SHBOYzE4K3Ur?=
- =?utf-8?B?Vkt6RUtSakxGejdHQ3pyWmsyTHFpaEhsbUVtYjFaZ1Fic09OOFkvQ0FrMHl1?=
- =?utf-8?B?NllUTWZuY1FpdHVsWWdFNFVOcVFVZm5PcDc3YTc1elhUMjI1YzlCRXZRenRq?=
- =?utf-8?B?eWRDU0VlR3ROK2g0bHZuaG1lcU5HNDNIaW00aWZwaXh2d0RWRXFkKzNmVnVr?=
- =?utf-8?B?TzZoTW8xY0xLOEJZK2pXbTVObTNCdkhTWVRTdVZnV2NKd1RSckQ1WnpRWUlB?=
- =?utf-8?B?aGZuUERoUlJqQUdTTWc0VzJtSHJEUDJHZlh5S1d0YWFrcS9DUDlmSjZpVEtI?=
- =?utf-8?B?dFlyR2JBWWNHOVBOTGxMaFhiM2hBV1pvbzlKbUZyWU1saUt2dEkvTzlQM2Yz?=
- =?utf-8?B?QlB5Q2FCaEV1S2NPUFJMZkJTRmUxWTRaM0tiV3FLKytpY09lckpsa1laaUNl?=
- =?utf-8?B?bzlFUGcwQUtwUVhSb1lLZ3cvbnlZMmlqdDk5SGY5MjlSc0ZqbHp2WFE5Lytq?=
- =?utf-8?B?TzZUL2ZKZi9uZGJPV0g3VllXMXcreWpZRW1naFA3OGcxSVZGbWppd3hLQmd5?=
- =?utf-8?B?VVRuNkdQT1FnUHdMT0Z0R0xDTW54Mlpub1Z2YmZDdVlOdHYrWEwvV2hUSXg4?=
- =?utf-8?B?QVcwc3pNb2tVZ2NpbUpYbC8yS0ZjNkR1d3JJWWpQdlVjZGtJQTk2V01lZHRX?=
- =?utf-8?B?Q2ZNeDQ3eDFxR1UvNVdXWEMzOTZMSjZsWHRqZU5iR0NUWDZvY3drSjNCbVkr?=
- =?utf-8?B?SVNqLzNTbEgzeVMvNGIvOTJUTzAzdCs2ekUyQUU0MkZOQmNrWFlGRDFabzR4?=
- =?utf-8?B?ZWZLeTVlT0EyeHNDSGk1YkFraFFtLzRLQVdmWlBCMDZPNW5iRGlNZzk3UGEv?=
- =?utf-8?B?SEF0eE1TTTNMQUVrNmsvM09zOHUvaWU5NTA4MktvclFpTEdxYnZBVXBCQnBo?=
- =?utf-8?B?OUdDWmp1b1U3ZTJ2ZDcrM0hoOGQ5MVJQNnJNb3J4dndMNHYzY0ZIb2hNUmxG?=
- =?utf-8?B?dXlPYlVSN0h1eDA0ZHJYbE8wUFhia3pZZTI5bXo1cFdTVlV4Sk1uWUh4QU9l?=
- =?utf-8?B?WDdpc09xNnVuekFVUE0vZXc4Q1EwSlo0c1lyV001OWU1NVJFazU2S0xNVlZk?=
- =?utf-8?B?R1NDemFlSTIrUC8zZGlTN3BJd2NoMzQrVGptbUZKeUFqbmxoSWFvdE5rQ1FX?=
- =?utf-8?B?T3Roc1NIUU44WWZoYUFhL2lLaUdUZXIwZHl3MitjUmpSNUdRWm83c0dOWm1G?=
- =?utf-8?B?RCtMU094dlNVWHNxMHJJOWlIN3pwajBDVmdDK20wNkxjdFoyYUIvUzFyT3hT?=
- =?utf-8?B?QnBTVkcxZWFDRjUweC8vRHpVV2FjTGNEUE05elZnY2F0RkYzcXVMOVJoeVI1?=
- =?utf-8?B?VndVdGdGTkV3M2NRa1ZVYzMyVmNqbC9RY2FmcFBOZXBvdDIvdnlRZ2ltek9J?=
- =?utf-8?Q?K2jlxclwCzrpK7/JVw=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S233384AbhG1CLp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jul 2021 22:11:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40152 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233256AbhG1CLo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 22:11:44 -0400
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49CBFC061760
+        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 19:11:44 -0700 (PDT)
+Received: by mail-oi1-x22b.google.com with SMTP id z26so1838328oih.10
+        for <devicetree@vger.kernel.org>; Tue, 27 Jul 2021 19:11:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=AfBXNgrMpBvktP8L3i6TARNdAjtCH+8h0QG9uYxjHTE=;
+        b=RVYpT0Zow2LjpWSbzV6llKwgsgjvpyMyZsHMedbzFOMjEJ5cDRXWlLpMDTI/gAIBNa
+         5aTzKV0hWOsvVEXlOMlf+eD1dAS1Js2f5f2yxwGU8LViv6/f3SOhpm8zuQpIQQjUPd9H
+         /jSXuRSKLAMevP4ROPTFmQWOw3/Uz274UTp+QYOtxW8TrbQIvZNwhXrlhEm8+IHxoYoN
+         nPs0xbLyrZW3cfsmBrBKp/8CxL9bZm3S9aBLSOLjhpcxCW2fegWSL3nARHl27rqAOr/J
+         oomHeWsSesVJhBlkz46pDiPWofa/Y7z7p3mPAZwlTp/cPuQseWOuY73XcXl6jlM/F7HL
+         bk8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AfBXNgrMpBvktP8L3i6TARNdAjtCH+8h0QG9uYxjHTE=;
+        b=hXkz4CZ5ZYQJoDESMDM7PoRnyLkemN+y4NdNgtLTeY+YIee056SFOAAhqfsZTHyiZB
+         628590K40RVXvKNpLA8L0HM7IPbSpj46qvnmKLtmOeN878tVgcBnin28KcXbdy6DUWgh
+         dmjSN3SeOo1LQ+FH91jZCsbmldJ31l6bxsTQwr3TVJU6Io7D0u0MzpduOKpMFGbvth+d
+         Rr8SCMzTiVtGrhvCHZcRh7PCYirT++xiCdnSsyUa+sHU6PCsfu161EWXFcU7tXy/6+l3
+         dmfHBPbQ0vZk5GXhi14YeblASBRYt8TJFvzzBH+dDLOy/y8MFkZlKJen77ZIV28Ku2nE
+         aYKA==
+X-Gm-Message-State: AOAM532h44rZAAzPqpOWVhnQKNy7Jl07Grz5gUCfx0Dcq+aWGpApP0i5
+        ZwIsjn/puU4CNUdCe8ut0hLwM61p0S08d3RyD+dHpQ==
+X-Google-Smtp-Source: ABdhPJzFOZ78iIWSjSy7azGbbd9ETwT86fADXm1p0ytfl0juEToTmZBLjdB0d4o/VmDZTzKGIf7gZXtHzW2sQemXJyk=
+X-Received: by 2002:aca:ad10:: with SMTP id w16mr4782521oie.26.1627438303156;
+ Tue, 27 Jul 2021 19:11:43 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6341.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1e3b6231-8aff-472a-a721-08d95168c6dc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jul 2021 01:41:10.3334
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: osgJt9WC0LbT99leNsDnO/4ZBlL059hzLmoI+OCoh8BkZS37x0jbmr12LR1zdwIJKv65sWcdIFji56+PqLFT6Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR0401MB2434
+References: <20210727151307.2178352-1-kyletso@google.com> <20210727151307.2178352-3-kyletso@google.com>
+ <cbc4bdd6-de34-08a8-7968-9d3b0276e347@roeck-us.net>
+In-Reply-To: <cbc4bdd6-de34-08a8-7968-9d3b0276e347@roeck-us.net>
+From:   Kyle Tso <kyletso@google.com>
+Date:   Wed, 28 Jul 2021 10:11:26 +0800
+Message-ID: <CAGZ6i=0CQy7sMvwT3e47w-3SFWgTXr-5kA2pOn1oLhH=GJJE0A@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] usb: typec: tcpm: Support non-PD mode
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
+        robh+dt@kernel.org, badhri@google.com, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogTmljb2xhcyBEdWZyZXNu
-ZSBbbWFpbHRvOm5pY29sYXNAbmR1ZnJlc25lLmNhXQ0KPiBTZW50OiBXZWRuZXNkYXksIEp1bHkg
-MjgsIDIwMjEgMTo1OCBBTQ0KPiBUbzogTWluZyBRaWFuIDxtaW5nLnFpYW5AbnhwLmNvbT47IG1j
-aGVoYWJAa2VybmVsLm9yZzsNCj4gc2hhd25ndW9Aa2VybmVsLm9yZzsgcm9iaCtkdEBrZXJuZWwu
-b3JnOyBzLmhhdWVyQHBlbmd1dHJvbml4LmRlDQo+IENjOiBodmVya3VpbC1jaXNjb0B4czRhbGwu
-bmw7IGtlcm5lbEBwZW5ndXRyb25peC5kZTsgZmVzdGV2YW1AZ21haWwuY29tOw0KPiBkbC1saW51
-eC1pbXggPGxpbnV4LWlteEBueHAuY29tPjsgQWlzaGVuZyBEb25nIDxhaXNoZW5nLmRvbmdAbnhw
-LmNvbT47DQo+IGxpbnV4LW1lZGlhQHZnZXIua2VybmVsLm9yZzsgbGludXgta2VybmVsQHZnZXIu
-a2VybmVsLm9yZzsNCj4gZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWFybS1rZXJu
-ZWxAbGlzdHMuaW5mcmFkZWFkLm9yZw0KPiBTdWJqZWN0OiBbRVhUXSBSZTogW1BBVENIIHY1IDAy
-LzE0XSBtZWRpYTpBZGQgbnQ4IGFuZCBudDEwIHZpZGVvIGZvcm1hdC4NCj4gDQo+IENhdXRpb246
-IEVYVCBFbWFpbA0KPiANCj4gTGUgbWFyZGkgMjcganVpbGxldCAyMDIxIMOgIDExOjIwICswODAw
-LCBNaW5nIFFpYW4gYSDDqWNyaXQgOg0KPiA+IE5UOCBpcyA4LWJpdCB0aWxlZCBudjEyIGZvcm1h
-dCB1c2VkIGJ5IGFtcGhpb24gZGVjb2Rlci4NCj4gPiBOVDEwIGlzIDEwLWJpdCB0aWxlZCBmb3Jt
-YXQgdXNlZCBieSBhbXBoaW9uIGRlY29kZXIuDQo+ID4gVGhlIHRpbGUgc2l6ZSBpcyA4eDEyOA0K
-PiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogTWluZyBRaWFuIDxtaW5nLnFpYW5AbnhwLmNvbT4NCj4g
-PiBTaWduZWQtb2ZmLWJ5OiBTaGlqaWUgUWluIDxzaGlqaWUucWluQG54cC5jb20+DQo+ID4gU2ln
-bmVkLW9mZi1ieTogWmhvdSBQZW5nIDxlYWdsZS56aG91QG54cC5jb20+DQo+ID4gLS0tDQo+ID4g
-IC4uLi91c2Vyc3BhY2UtYXBpL21lZGlhL3Y0bC9waXhmbXQtcmVzZXJ2ZWQucnN0ICAgfCAxNSAr
-KysrKysrKysrKysrKysNCj4gPiAgZHJpdmVycy9tZWRpYS92NGwyLWNvcmUvdjRsMi1pb2N0bC5j
-ICAgICAgICAgICAgICB8ICAyICsrDQo+ID4gIGluY2x1ZGUvdWFwaS9saW51eC92aWRlb2RldjIu
-aCAgICAgICAgICAgICAgICAgICAgfCAgMiArKw0KPiA+ICAzIGZpbGVzIGNoYW5nZWQsIDE5IGlu
-c2VydGlvbnMoKykNCj4gPg0KPiA+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL3VzZXJzcGFj
-ZS1hcGkvbWVkaWEvdjRsL3BpeGZtdC1yZXNlcnZlZC5yc3QNCj4gPiBiL0RvY3VtZW50YXRpb24v
-dXNlcnNwYWNlLWFwaS9tZWRpYS92NGwvcGl4Zm10LXJlc2VydmVkLnJzdA0KPiA+IGluZGV4IGM5
-MjMxZTE4ODU5Yi4uMmRlYWU0OTIxMGE3IDEwMDY0NA0KPiA+IC0tLSBhL0RvY3VtZW50YXRpb24v
-dXNlcnNwYWNlLWFwaS9tZWRpYS92NGwvcGl4Zm10LXJlc2VydmVkLnJzdA0KPiA+ICsrKyBiL0Rv
-Y3VtZW50YXRpb24vdXNlcnNwYWNlLWFwaS9tZWRpYS92NGwvcGl4Zm10LXJlc2VydmVkLnJzdA0K
-PiA+IEBAIC0yNTYsMyArMjU2LDE4IEBAIHBsZWFzZSBtYWtlIGEgcHJvcG9zYWwgb24gdGhlIGxp
-bnV4LW1lZGlhIG1haWxpbmcNCj4gbGlzdC4NCj4gPiAgICAgICBvZiB0aWxlcywgcmVzdWx0aW5n
-IGluIDMyLWFsaWduZWQgcmVzb2x1dGlvbnMgZm9yIHRoZSBsdW1pbmFuY2UgcGxhbmUNCj4gPiAg
-ICAgICBhbmQgMTYtYWxpZ25lZCByZXNvbHV0aW9ucyBmb3IgdGhlIGNocm9taW5hbmNlIHBsYW5l
-ICh3aXRoIDJ4Mg0KPiA+ICAgICAgIHN1YnNhbXBsaW5nKS4NCj4gPiArICAgICogLi4gX1Y0TDIt
-UElYLUZNVC1OVDg6DQo+ID4gKw0KPiA+ICsgICAgICAtIGBgVjRMMl9QSVhfRk1UX05UOGBgDQo+
-ID4gKyAgICAgIC0gJ05BMTInDQo+ID4gKyAgICAgIC0gVHdvLXBsYW5hciBOVjEyLWJhc2VkIGZv
-cm1hdCB1c2VkIGJ5IHRoZSB2aWRlbyBlbmdpbmUgZm91bmQgb24NCj4gQW1waGlvbiBkZWNvZGVy
-LA0KPiA+ICsgICAgd2l0aCA4eDEyOCB0aWxlcyBmb3IgdGhlIGx1bWluYW5jZSBwbGFuZSBhbmQg
-Y2hyb21pbmFuY2UgcGxhbmUuDQo+ID4gKyAgICBUaGUgbnVtYmVyIG9mIGJ5dGVzIGluIG9uZSBs
-dW1pbmFuY2Ugb3IgY2hyb21pbmFuY2Ugcm93IG11c3QgYmUNCj4gZGl2aXNpYmxlIGJ5IDI1Ni4N
-Cj4gPiArICAgICogLi4gX1Y0TDItUElYLUZNVC1OVDEwOg0KPiANCj4gVGhlcmUgaXMgYSBsYXJn
-ZSBzcHJlYWQgb2YgInZlbmRvciBzcGVjaWZpYyIgZm9ybWF0IHRoYXQgYXJlbid0IHJlYWxseSBz
-cGVjaWZpYywgb3INCj4gY29tcGxleCBlbm91Z2ggdG8gYmUgd29ydGggYmVpbmcgbWFya2VkIGFz
-IHZlbmRvciBmb3JtYXQuIEFzIHBlciBteQ0KPiByZWFkaW5nIG9mIHRoaXMgZGVzY3JpcHRpb24s
-IHRoaXMgaXMgbGluZWFybHkgbGF5b3V0IDh4MTI4IHRpbGVkIGZvcm1hdCwgd2l0aCBubw0KPiBj
-b21wcmVzc2lvbiBvciBhbnl0aGluZyAod2VsbCB1bmxlc3MgeW91IGZvcmdvdCB0byBtZW50aW9u
-KS4gQXMgYSBzaWRlIGVmZmVjdCwNCj4gd2Ugc2hvdWxkIGdpdmUgdGhhdCBmb3JtYXQgYW4gZXhw
-bGljaXQgbmFtZSAoTlQ4IGlzIGNyeXB0aWMpLiBXaGF0IGFib3V0DQo+IFY0TDJfUElYX0ZNVF9O
-VjEyXzhMMTI4LCBteSBjb2xsZWFndWUgaXMgYWJvdXQgdG8gc2VuZCBhIHByb3Bvc2FsIGluIHRo
-YXQNCj4gZGlyZWN0aW9uLiBUaGF0IHdvdWxkIGJlIE5WMTIgd2l0aCBwbGFuZSB0aWxlZCA4eDEy
-OCBieXRlcyBhbmQgbGF5b3V0IGxpbmVhcmx5LA0KPiByb3cgYnkgcm93LCBsZWZ0IHRvIHJpZ2h0
-LiBXZSBhbHJlYWR5IGhhdmUgY3J5cHRpYyBmb3JtYXRzIGxpa2UgU1VOWEksIEhNMTINCj4gdGhh
-dCBhcmUgbGl0ZXJhbGx5IGp1c3QgdGhhdCwgc2ltcGxlIHRpbGluZywgYW5kIHdlIGVuZHVwIGhh
-dmluZyB0byB1c2Ugb2JzY3VyZQ0KPiB2ZW5kb3IgbmFtZSB3aGVuZXZlciBvdGhlciBIVyB1c2Vz
-IHRoZSBzYW1lLg0KPiANCj4gKHRoaXMgY29tbWVudCBleHRlbmRzIHRvIHRoZSBvdGhlciBmb3Jt
-YXRzIGhlcmUpDQoNCkhpIE5pY29sYXMsDQogICBUaGFua3MgZm9yIHlvdXIgYWR2aWNlLCBJJ2xs
-IGNoYW5nZSB0aGUgZm9ybWF0IG5hbWUgZnJvbSBOVDggdG8gTlYxMl84TDEyOA0KDQo+IA0KPiA+
-ICsNCj4gPiArICAgICAgLSBgYFY0TDJfUElYX0ZNVF9OVDEwYGANCj4gPiArICAgICAgLSAnTlQx
-MicNCj4gPiArICAgICAgLSBOVDEwIGlzIGEgdGlsZWQgWVVWIGZvcm1hdCB3aXRoIDEwLWJpdHMg
-cGVyIHBpeGVsIHdpdGggaW50ZXJsZWF2ZWQNCj4gVVYuDQo+ID4gKyAgICBJdCdzIHVzZWQgYnkg
-dGhlIHZpZGVvIGVuZ2luZSBmb3VuZCBvbiBBbXBoaW9uIGRlY29kZXIsDQo+ID4gKyAgICB3aXRo
-IDh4MTI4IHRpbGVzIGZvciB0aGUgbHVtaW5hbmNlIHBsYW5lIGFuZCBjaHJvbWluYW5jZSBwbGFu
-ZS4NCj4gPiArICAgIFRoZSBudW1iZXIgb2YgYnl0ZXMgaW4gb25lIGx1bWluYW5jZSBvciBjaHJv
-bWluYW5jZSByb3cgbXVzdCBiZQ0KPiBkaXZpc2libGUgYnkgMjU2Lg0KPiA+IGRpZmYgLS1naXQg
-YS9kcml2ZXJzL21lZGlhL3Y0bDItY29yZS92NGwyLWlvY3RsLmMNCj4gPiBiL2RyaXZlcnMvbWVk
-aWEvdjRsMi1jb3JlL3Y0bDItaW9jdGwuYw0KPiA+IGluZGV4IGVlZmYzOThmYmRjYy4uMzRlNjQx
-NWU1NzIyIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvbWVkaWEvdjRsMi1jb3JlL3Y0bDItaW9j
-dGwuYw0KPiA+ICsrKyBiL2RyaXZlcnMvbWVkaWEvdjRsMi1jb3JlL3Y0bDItaW9jdGwuYw0KPiA+
-IEBAIC0xNDAyLDYgKzE0MDIsOCBAQCBzdGF0aWMgdm9pZCB2NGxfZmlsbF9mbXRkZXNjKHN0cnVj
-dCB2NGwyX2ZtdGRlc2MNCj4gKmZtdCkNCj4gPiAgICAgICBjYXNlIFY0TDJfTUVUQV9GTVRfVVZD
-OiAgICAgICAgIGRlc2NyID0gIlVWQyBQYXlsb2FkIEhlYWRlcg0KPiBNZXRhZGF0YSI7IGJyZWFr
-Ow0KPiA+ICAgICAgIGNhc2UgVjRMMl9NRVRBX0ZNVF9ENFhYOiAgICAgICAgZGVzY3IgPSAiSW50
-ZWwgRDR4eCBVVkMNCj4gTWV0YWRhdGEiOyBicmVhazsNCj4gPiAgICAgICBjYXNlIFY0TDJfTUVU
-QV9GTVRfVklWSUQ6ICAgICAgIGRlc2NyID0gIlZpdmlkIE1ldGFkYXRhIjsNCj4gYnJlYWs7DQo+
-ID4gKyAgICAgY2FzZSBWNEwyX1BJWF9GTVRfTlQ4OiAgICAgICAgICBkZXNjciA9ICJBbXBoaW9u
-IFRpbGVkIDh4MTI4DQo+IE5WMTIiOyBicmVhazsNCj4gPiArICAgICBjYXNlIFY0TDJfUElYX0ZN
-VF9OVDEwOiAgICAgICAgIGRlc2NyID0gIkFtcGhpb24gVGlsZWQgOHgxMjgNCj4gMTAtYml0Ijsg
-YnJlYWs7DQo+ID4NCj4gPiAgICAgICBkZWZhdWx0Og0KPiA+ICAgICAgICAgICAgICAgLyogQ29t
-cHJlc3NlZCBmb3JtYXRzICovIGRpZmYgLS1naXQNCj4gPiBhL2luY2x1ZGUvdWFwaS9saW51eC92
-aWRlb2RldjIuaCBiL2luY2x1ZGUvdWFwaS9saW51eC92aWRlb2RldjIuaA0KPiA+IGluZGV4IDUz
-NGVhYTRkMzliYy4uNDgzNjU5MGE2OTBjIDEwMDY0NA0KPiA+IC0tLSBhL2luY2x1ZGUvdWFwaS9s
-aW51eC92aWRlb2RldjIuaA0KPiA+ICsrKyBiL2luY2x1ZGUvdWFwaS9saW51eC92aWRlb2RldjIu
-aA0KPiA+IEBAIC03NDAsNiArNzQwLDggQEAgc3RydWN0IHY0bDJfcGl4X2Zvcm1hdCB7DQo+ID4g
-ICNkZWZpbmUgVjRMMl9QSVhfRk1UX0lOWkkgICAgIHY0bDJfZm91cmNjKCdJJywgJ04nLCAnWics
-ICdJJykgLyogSW50ZWwgUGxhbmFyDQo+IEdyZXlzY2FsZSAxMC1iaXQgYW5kIERlcHRoIDE2LWJp
-dCAqLw0KPiA+ICAjZGVmaW5lIFY0TDJfUElYX0ZNVF9TVU5YSV9USUxFRF9OVjEyIHY0bDJfZm91
-cmNjKCdTJywgJ1QnLCAnMScsICcyJykgLyoNCj4gU3VueGkgVGlsZWQgTlYxMiBGb3JtYXQgKi8N
-Cj4gPiAgI2RlZmluZSBWNEwyX1BJWF9GTVRfQ05GNCAgICAgdjRsMl9mb3VyY2MoJ0MnLCAnTics
-ICdGJywgJzQnKSAvKiBJbnRlbCA0LWJpdA0KPiBwYWNrZWQgZGVwdGggY29uZmlkZW5jZSBpbmZv
-cm1hdGlvbiAqLw0KPiA+ICsjZGVmaW5lIFY0TDJfUElYX0ZNVF9OVDggICAgICB2NGwyX2ZvdXJj
-YygnTicsICdBJywgJzEnLCAnMicpIC8qIEFtcGhpb24NCj4gVGlsZWQgOHgxMjggTlYxMiBGb3Jt
-YXQgKi8NCj4gPiArI2RlZmluZSBWNEwyX1BJWF9GTVRfTlQxMCAgICAgdjRsMl9mb3VyY2MoJ04n
-LCAnVCcsICcxJywgJzInKSAvKiBBbXBoaW9uDQo+IFRpbGVkIDh4MTI4IDEwIGJpdCBGb3JtYXQg
-Ki8NCj4gPg0KPiA+ICAvKiAxMGJpdCByYXcgYmF5ZXIgcGFja2VkLCAzMiBieXRlcyBmb3IgZXZl
-cnkgMjUgcGl4ZWxzLCBsYXN0IExTQiA2IGJpdHMNCj4gdW51c2VkICovDQo+ID4gICNkZWZpbmUg
-VjRMMl9QSVhfRk1UX0lQVTNfU0JHR1IxMCAgICB2NGwyX2ZvdXJjYygnaScsICdwJywgJzMnLCAn
-YicpIC8qDQo+IElQVTMgcGFja2VkIDEwLWJpdCBCR0dSIGJheWVyICovDQo+IA0KDQo=
+On Wed, Jul 28, 2021 at 6:46 AM Guenter Roeck <linux@roeck-us.net> wrote:
+>
+> On 7/27/21 8:13 AM, Kyle Tso wrote:
+> > Even if the Type-C controller supports PD, it is doable to disable PD
+> > capabilities with the current state machine in TCPM. Without enabling RX
+> > in low-level drivers and with skipping the power negotiation, the port
+> > is eligible to be a non-PD Type-C port. Use new flags whose values are
+> > populated from the device tree to decide the port PD capability. Adding
+> > "pd-supported" property in device tree indicates that the port supports
+> > PD. If "pd-supported" is not found, "typec-power-opmode" shall be added
+> > to specify the advertised Rp value if the port supports SRC role.
+> >
+> > Signed-off-by: Kyle Tso <kyletso@google.com>
+> > ---
+> > changes since v1:
+> > - Revised the patch to use dt properties
+> > - Added back the checks of callbacks set_pd_rx and pd_transmit
+> > - Added src_rp to indicate which Rp value should be used in SRC. This
+> >    variable is derived from dt property "typec-power-opmode"
+> >
+> >   drivers/usb/typec/tcpm/tcpm.c | 108 +++++++++++++++++++++++++---------
+> >   1 file changed, 79 insertions(+), 29 deletions(-)
+> >
+> > diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
+> > index 5b22a1c931a9..4cf77c787f54 100644
+> > --- a/drivers/usb/typec/tcpm/tcpm.c
+> > +++ b/drivers/usb/typec/tcpm/tcpm.c
+> > @@ -316,6 +316,7 @@ struct tcpm_port {
+> >       struct typec_partner *partner;
+> >
+> >       enum typec_cc_status cc_req;
+> > +     enum typec_cc_status src_rp;    /* work only if pd_supported == false */
+> >
+> >       enum typec_cc_status cc1;
+> >       enum typec_cc_status cc2;
+> > @@ -323,6 +324,7 @@ struct tcpm_port {
+> >
+> >       bool attached;
+> >       bool connected;
+> > +     bool pd_supported;
+> >       enum typec_port_type port_type;
+> >
+> >       /*
+> > @@ -804,6 +806,7 @@ static void tcpm_apply_rc(struct tcpm_port *port)
+> >       }
+> >   }
+> >
+> > +
+> >   /*
+> >    * Determine RP value to set based on maximum current supported
+> >    * by a port if configured as source.
+> > @@ -815,6 +818,9 @@ static enum typec_cc_status tcpm_rp_cc(struct tcpm_port *port)
+> >       int nr_pdo = port->nr_src_pdo;
+> >       int i;
+> >
+> > +     if (!port->pd_supported)
+> > +             return port->src_rp;
+> > +
+> >       /*
+> >        * Search for first entry with matching voltage.
+> >        * It should report the maximum supported current.
+> > @@ -3568,9 +3574,11 @@ static int tcpm_src_attach(struct tcpm_port *port)
+> >       if (ret < 0)
+> >               return ret;
+> >
+> > -     ret = port->tcpc->set_pd_rx(port->tcpc, true);
+> > -     if (ret < 0)
+> > -             goto out_disable_mux;
+> > +     if (port->pd_supported) {
+> > +             ret = port->tcpc->set_pd_rx(port->tcpc, true);
+> > +             if (ret < 0)
+> > +                     goto out_disable_mux;
+> > +     }
+> >
+> >       /*
+> >        * USB Type-C specification, version 1.2,
+> > @@ -3600,7 +3608,8 @@ static int tcpm_src_attach(struct tcpm_port *port)
+> >   out_disable_vconn:
+> >       tcpm_set_vconn(port, false);
+> >   out_disable_pd:
+> > -     port->tcpc->set_pd_rx(port->tcpc, false);
+> > +     if (port->pd_supported)
+> > +             port->tcpc->set_pd_rx(port->tcpc, false);
+> >   out_disable_mux:
+> >       tcpm_mux_set(port, TYPEC_STATE_SAFE, USB_ROLE_NONE,
+> >                    TYPEC_ORIENTATION_NONE);
+> > @@ -3804,6 +3813,20 @@ static enum typec_pwr_opmode tcpm_get_pwr_opmode(enum typec_cc_status cc)
+> >       }
+> >   }
+> >
+> > +static enum typec_cc_status tcpm_pwr_opmode_to_rp(enum typec_pwr_opmode opmode)
+> > +{
+> > +     switch (opmode) {
+> > +     case TYPEC_PWR_MODE_USB:
+> > +             return TYPEC_CC_RP_DEF;
+> > +     case TYPEC_PWR_MODE_1_5A:
+> > +             return TYPEC_CC_RP_1_5;
+> > +     case TYPEC_PWR_MODE_3_0A:
+> > +     case TYPEC_PWR_MODE_PD:
+> > +     default:
+> > +             return TYPEC_CC_RP_3_0;
+> > +     }
+> > +}
+> > +
+> >   static void run_state_machine(struct tcpm_port *port)
+> >   {
+> >       int ret;
+> > @@ -3914,6 +3937,10 @@ static void run_state_machine(struct tcpm_port *port)
+> >               if (port->ams == POWER_ROLE_SWAP ||
+> >                   port->ams == FAST_ROLE_SWAP)
+> >                       tcpm_ams_finish(port);
+> > +             if (!port->pd_supported) {
+> > +                     tcpm_set_state(port, SRC_READY, 0);
+> > +                     break;
+> > +             }
+> >               port->upcoming_state = SRC_SEND_CAPABILITIES;
+> >               tcpm_ams_start(port, POWER_NEGOTIATION);
+> >               break;
+> > @@ -4161,7 +4188,10 @@ static void run_state_machine(struct tcpm_port *port)
+> >                               current_lim = PD_P_SNK_STDBY_MW / 5;
+> >                       tcpm_set_current_limit(port, current_lim, 5000);
+> >                       tcpm_set_charge(port, true);
+> > -                     tcpm_set_state(port, SNK_WAIT_CAPABILITIES, 0);
+> > +                     if (!port->pd_supported)
+> > +                             tcpm_set_state(port, SNK_READY, 0);
+> > +                     else
+> > +                             tcpm_set_state(port, SNK_WAIT_CAPABILITIES, 0);
+> >                       break;
+> >               }
+> >               /*
+> > @@ -4389,7 +4419,8 @@ static void run_state_machine(struct tcpm_port *port)
+> >               tcpm_set_vbus(port, true);
+> >               if (port->ams == HARD_RESET)
+> >                       tcpm_ams_finish(port);
+> > -             port->tcpc->set_pd_rx(port->tcpc, true);
+> > +             if (port->pd_supported)
+> > +                     port->tcpc->set_pd_rx(port->tcpc, true);
+> >               tcpm_set_attached_state(port, true);
+> >               tcpm_set_state(port, SRC_UNATTACHED, PD_T_PS_SOURCE_ON);
+> >               break;
+> > @@ -5898,6 +5929,7 @@ EXPORT_SYMBOL_GPL(tcpm_tcpc_reset);
+> >   static int tcpm_fw_get_caps(struct tcpm_port *port,
+> >                           struct fwnode_handle *fwnode)
+> >   {
+> > +     const char *opmode_str;
+> >       const char *cap_str;
+> >       int ret;
+> >       u32 mw, frs_current;
+> > @@ -5932,22 +5964,36 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
+> >               return ret;
+> >       port->typec_caps.type = ret;
+> >       port->port_type = port->typec_caps.type;
+> > +     port->pd_supported = fwnode_property_read_bool(fwnode, "pd-supported");
+> >
+>
+> As mentioned in the other patch, I think this needs to be negated.
+> Not the variable itself, but the meaning of the property.
+>
+
+Makes sense. I will send another patch.
+
+> >       port->slow_charger_loop = fwnode_property_read_bool(fwnode, "slow-charger-loop");
+>
+> It might make sense to move the properties needed with !pd_supported to here
+> and return immediately after they are read. This would reduce the number of
+> required changes and avoid trying to read irrelevant properties.
+> Something like
+>
+>         if (port->port_type != TYPEC_PORT_SRC)
+>                 port->self_powered = fwnode_property_read_bool(fwnode, "self-powered");
+>
+>         if (!port->pd_supported)
+>                 return 0;
+>
+
+I will try to modify the flow control as well.
+
+thanks,
+Kyle
+
+> >       if (port->port_type == TYPEC_PORT_SNK)
+> >               goto sink;
+> >
+> >       /* Get source pdos */
+> > -     ret = fwnode_property_count_u32(fwnode, "source-pdos");
+> > -     if (ret <= 0)
+> > -             return -EINVAL;
+> > +     if (port->pd_supported) {
+> > +             ret = fwnode_property_count_u32(fwnode, "source-pdos");
+> > +             if (ret <= 0)
+> > +                     return -EINVAL;
+> >
+> > -     port->nr_src_pdo = min(ret, PDO_MAX_OBJECTS);
+> > -     ret = fwnode_property_read_u32_array(fwnode, "source-pdos",
+> > -                                          port->src_pdo, port->nr_src_pdo);
+> > -     if ((ret < 0) || tcpm_validate_caps(port, port->src_pdo,
+> > -                                         port->nr_src_pdo))
+> > -             return -EINVAL;
+> > +             port->nr_src_pdo = min(ret, PDO_MAX_OBJECTS);
+> > +             ret = fwnode_property_read_u32_array(fwnode, "source-pdos",
+> > +                                                  port->src_pdo, port->nr_src_pdo);
+> > +             if ((ret < 0) || tcpm_validate_caps(port, port->src_pdo,
+> > +                                                 port->nr_src_pdo))
+> > +                     return -EINVAL;
+> > +     } else {
+> > +             port->nr_src_pdo = 0;
+> > +             ret = fwnode_property_read_string(fwnode, "typec-power-opmode", &opmode_str);
+> > +             if (ret == 0) {
+> > +                     ret = typec_find_pwr_opmode(opmode_str);
+> > +                     if (ret < 0)
+> > +                             return ret;
+> > +                     port->src_rp = tcpm_pwr_opmode_to_rp(ret);
+> > +             } else {
+> > +                     return ret;
+> > +             }
+> > +     }
+> >
+> >       if (port->port_type == TYPEC_PORT_SRC)
+> >               return 0;
+> > @@ -5962,25 +6008,29 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
+> >               return -EINVAL;
+> >   sink:
+> >       /* Get sink pdos */
+> > -     ret = fwnode_property_count_u32(fwnode, "sink-pdos");
+> > -     if (ret <= 0)
+> > -             return -EINVAL;
+> > +     if (port->pd_supported) {
+> > +             ret = fwnode_property_count_u32(fwnode, "sink-pdos");
+> > +             if (ret <= 0)
+> > +                     return -EINVAL;
+> >
+> > -     port->nr_snk_pdo = min(ret, PDO_MAX_OBJECTS);
+> > -     ret = fwnode_property_read_u32_array(fwnode, "sink-pdos",
+> > -                                          port->snk_pdo, port->nr_snk_pdo);
+> > -     if ((ret < 0) || tcpm_validate_caps(port, port->snk_pdo,
+> > -                                         port->nr_snk_pdo))
+> > -             return -EINVAL;
+> > +             port->nr_snk_pdo = min(ret, PDO_MAX_OBJECTS);
+> > +             ret = fwnode_property_read_u32_array(fwnode, "sink-pdos",
+> > +                                                  port->snk_pdo, port->nr_snk_pdo);
+> > +             if ((ret < 0) || tcpm_validate_caps(port, port->snk_pdo,
+> > +                                                 port->nr_snk_pdo))
+> > +                     return -EINVAL;
+> >
+> > -     if (fwnode_property_read_u32(fwnode, "op-sink-microwatt", &mw) < 0)
+> > -             return -EINVAL;
+> > -     port->operating_snk_mw = mw / 1000;
+> > +             if (fwnode_property_read_u32(fwnode, "op-sink-microwatt", &mw) < 0)
+> > +                     return -EINVAL;
+> > +             port->operating_snk_mw = mw / 1000;
+> > +     } else {
+> > +             port->nr_snk_pdo = 0;
+> > +     }
+> >
+> >       port->self_powered = fwnode_property_read_bool(fwnode, "self-powered");
+> >
+> > -     /* FRS can only be supported byb DRP ports */
+> > -     if (port->port_type == TYPEC_PORT_DRP) {
+> > +     /* FRS can only be supported by DRP ports */
+> > +     if (port->port_type == TYPEC_PORT_DRP && port->pd_supported) {
+> >               ret = fwnode_property_read_u32(fwnode, "new-source-frs-typec-current",
+> >                                              &frs_current);
+> >               if (ret >= 0 && frs_current <= FRS_5V_3A)
+> >
+>
