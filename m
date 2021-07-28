@@ -2,128 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 15FFE3D88A9
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 09:16:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CA823D88B4
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 09:17:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233758AbhG1HQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 03:16:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51636 "EHLO mail.kernel.org"
+        id S233514AbhG1HR7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 03:17:59 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:46277 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233732AbhG1HQ2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Jul 2021 03:16:28 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0650160F93;
-        Wed, 28 Jul 2021 07:16:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627456587;
-        bh=x0xcvQaq9O32Nso7pIl+O6xyOtevShOSKrCBXswXPXg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=O/NTRx+isUoN0Lv+rgz6j5o45+43BtRQUES2zsp/QQGZcqbRi4WjQfzzM5JPdacwW
-         QkTowxaah7QCMacjilrpYLDnY5Q2a+S1mmggW/2WG6Ur9Wr6g4h4am/Isc60Ag6dpq
-         7lwle47pO0XoFe37HKoBncAzLIDVOU1Vwt1zkU9s8/bkE6EHC9vmpB5kvaud12yknW
-         ompwuV7hTHZUQYWawL6B2yY3zl5Ypc8GN+7RKIoTQ/nUgqVunhnWKnDJZAHZBlJDub
-         uyP7FDyRZpAfAowA/9iUrwNnXDXDoqDm7muGJHDj7gRnJX8ggw4SZ9nC+Z6LXNW7E4
-         ujQUGM3MNCQ7w==
-Date:   Wed, 28 Jul 2021 12:46:20 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Rob Herring <robh+dt@kernel.org>, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org, list@opendingux.net
-Subject: Re: [PATCH 3/3] dma: jz4780: Add support for the MDMA in the
- JZ4760(B)
-Message-ID: <YQEERH97pngKbTiG@matsya>
-References: <20210718122024.204907-1-paul@crapouillou.net>
- <20210718122024.204907-3-paul@crapouillou.net>
+        id S233758AbhG1HR5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Jul 2021 03:17:57 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1627456676; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=uTWyTqMs+PRR6Vr7fo7QE9aqKJhA7o/4CIJbMLl7ewQ=; b=xaWwd00xOR3WTwy735j44Fh53J2EtW/ukWMLhy4lcoeg9waiPXDpw8P330wfMyjwI43TkB5z
+ X6D7w8s/OVU4CPbq3TmVJSq8/SDK5kRgDEakZ//Mn25hpSmw8MblDtQLHevooNDE/4c8KON1
+ 8oDdxvKt/iELyeWjSoyMwQ8BuKE=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
+ 610104a24815712f3a159e68 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 28 Jul 2021 07:17:53
+ GMT
+Sender: akhilpo=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 194B5C433F1; Wed, 28 Jul 2021 07:17:53 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.2 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [192.168.1.105] (unknown [59.89.229.93])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: akhilpo)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id F0052C433D3;
+        Wed, 28 Jul 2021 07:17:47 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org F0052C433D3
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=akhilpo@codeaurora.org
+Subject: Re: [PATCH v2] arm64: dts: qcom: sc7280: Add gpu support
+To:     Stephen Boyd <swboyd@chromium.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org,
+        freedreno <freedreno@lists.freedesktop.org>,
+        linux-arm-msm@vger.kernel.org
+Cc:     Jonathan Marek <jonathan@marek.ca>, linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Jordan Crouse <jordan@cosmicpenguin.net>,
+        Andy Gross <agross@kernel.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+References: <1627147740-11590-1-git-send-email-akhilpo@codeaurora.org>
+ <CAE-0n52mEy1GReYwcVrffT2KOy4EHMHH-RyCJ_mmxhaeXwGdYA@mail.gmail.com>
+From:   Akhil P Oommen <akhilpo@codeaurora.org>
+Message-ID: <e1a28bed-a2a9-2bf2-d0f0-3f608a538f69@codeaurora.org>
+Date:   Wed, 28 Jul 2021 12:47:45 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210718122024.204907-3-paul@crapouillou.net>
+In-Reply-To: <CAE-0n52mEy1GReYwcVrffT2KOy4EHMHH-RyCJ_mmxhaeXwGdYA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18-07-21, 13:20, Paul Cercueil wrote:
-> The JZ4760 and JZ4760B SoCs have two regular DMA controllers with 6
-> channels each. They also have an extra DMA controller named MDMA
-> with only 2 channels, that only supports memcpy operations.
+On 7/27/2021 5:46 AM, Stephen Boyd wrote:
+> Quoting Akhil P Oommen (2021-07-24 10:29:00)
+>> Add the necessary dt nodes for gpu support in sc7280.
+>>
+>> Signed-off-by: Akhil P Oommen <akhilpo@codeaurora.org>
+>> ---
+>> This patch has dependency on the GPUCC bindings patch here:
+>> https://patchwork.kernel.org/project/linux-arm-msm/patch/1619519590-3019-4-git-send-email-tdas@codeaurora.org/
+> 
+> To avoid the dependency the plain numbers can be used.
 
-It is dmaengine not dma:
+But, won't that reduce readability and make things prone to error? If 
+the other patch doesn't get picked up soon, we should try this option. 
+We like to get this patch merged in v5.15.
 
 > 
-> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-> ---
->  drivers/dma/dma-jz4780.c | 22 ++++++++++++++++++++--
->  1 file changed, 20 insertions(+), 2 deletions(-)
+>>
+>> Changes in v2:
+>> - formatting update and removed a duplicate header (Stephan)
+>>
+>>   arch/arm64/boot/dts/qcom/sc7280.dtsi | 116 +++++++++++++++++++++++++++++++++++
+>>   1 file changed, 116 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> index 029723a..524a5e0 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> @@ -585,6 +586,121 @@
+>>                          #clock-cells = <1>;
+>>                  };
+>>
+>> +               gpu@3d00000 {
+>> +                       compatible = "qcom,adreno-635.0", "qcom,adreno";
+>> +                       #stream-id-cells = <16>;
+>> +                       reg = <0 0x03d00000 0 0x40000>,
+>> +                             <0 0x03d9e000 0 0x1000>,
+>> +                             <0 0x03d61000 0 0x800>;
+>> +                       reg-names = "kgsl_3d0_reg_memory",
+>> +                                   "cx_mem",
+>> +                                   "cx_dbgc";
+>> +                       interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
+>> +                       iommus = <&adreno_smmu 0 0x401>;
+>> +                       operating-points-v2 = <&gpu_opp_table>;
+>> +                       qcom,gmu = <&gmu>;
+>> +                       interconnects = <&gem_noc MASTER_GFX3D 0 &mc_virt SLAVE_EBI1 0>;
+>> +                       interconnect-names = "gfx-mem";
+>> +
+>> +                       gpu_opp_table: opp-table {
+>> +                               compatible = "operating-points-v2";
+>> +
+>> +                               opp-550000000 {
+>> +                                       opp-hz = /bits/ 64 <550000000>;
+>> +                                       opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
+>> +                                       opp-peak-kBps = <6832000>;
+>> +                               };
+>> +
+>> +                               opp-450000000 {
+>> +                                       opp-hz = /bits/ 64 <450000000>;
+>> +                                       opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
+>> +                                       opp-peak-kBps = <4068000>;
+>> +                               };
+>> +
+>> +                               opp-315000000 {
+>> +                                       opp-hz = /bits/ 64 <315000000>;
+>> +                                       opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
+>> +                                       opp-peak-kBps = <1804000>;
+>> +                               };
+>> +                       };
+>> +               };
+>> +
+>> +               gmu: gmu@3d69000 {
+>> +                       compatible="qcom,adreno-gmu-635.0", "qcom,adreno-gmu";
+>> +                       reg = <0 0x03d6a000 0 0x34000>,
+>> +                               <0 0x3de0000 0 0x10000>,
+>> +                               <0 0x0b290000 0 0x10000>;
+>> +                       reg-names = "gmu", "rscc", "gmu_pdc";
+>> +                       interrupts = <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
+>> +                                       <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>;
+>> +                       interrupt-names = "hfi", "gmu";
+>> +                       clocks = <&gpucc GPU_CC_CX_GMU_CLK>,
+>> +                                       <&gpucc GPU_CC_CXO_CLK>,
+>> +                                       <&gcc GCC_DDRSS_GPU_AXI_CLK>,
+>> +                                       <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
+>> +                                       <&gpucc GPU_CC_AHB_CLK>,
+>> +                                       <&gpucc GPU_CC_HUB_CX_INT_CLK>,
+>> +                                       <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>;
+>> +                       clock-names = "gmu",
+>> +                                     "cxo",
+>> +                                     "axi",
+>> +                                     "memnoc",
+>> +                                     "ahb",
+>> +                                     "hub",
+>> +                                     "smmu_vote";
+>> +                       power-domains = <&gpucc GPU_CC_CX_GDSC>,
+>> +                                       <&gpucc GPU_CC_GX_GDSC>;
+>> +                       power-domain-names = "cx",
+>> +                                            "gx";
+>> +                       iommus = <&adreno_smmu 5 0x400>;
+>> +                       operating-points-v2 = <&gmu_opp_table>;
+>> +
+>> +                       gmu_opp_table: opp-table {
+>> +                               compatible = "operating-points-v2";
+>> +
+>> +                               opp-200000000 {
+>> +                                       opp-hz = /bits/ 64 <200000000>;
+>> +                                       opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
+>> +                               };
+>> +                       };
+>> +               };
+>> +
+>> +               adreno_smmu: iommu@3da0000 {
+>> +                       compatible = "qcom,sc7280-smmu-500", "qcom,adreno-smmu", "arm,mmu-500";
+>> +                       reg = <0 0x03da0000 0 0x20000>;
+>> +                       #iommu-cells = <2>;
+>> +                       #global-interrupts = <2>;
+>> +                       interrupts = <GIC_SPI 673 IRQ_TYPE_LEVEL_HIGH>,
+>> +                                       <GIC_SPI 675 IRQ_TYPE_LEVEL_HIGH>,
+>> +                                       <GIC_SPI 678 IRQ_TYPE_LEVEL_HIGH>,
+>> +                                       <GIC_SPI 679 IRQ_TYPE_LEVEL_HIGH>,
+>> +                                       <GIC_SPI 680 IRQ_TYPE_LEVEL_HIGH>,
+>> +                                       <GIC_SPI 681 IRQ_TYPE_LEVEL_HIGH>,
+>> +                                       <GIC_SPI 682 IRQ_TYPE_LEVEL_HIGH>,
+>> +                                       <GIC_SPI 683 IRQ_TYPE_LEVEL_HIGH>,
+>> +                                       <GIC_SPI 684 IRQ_TYPE_LEVEL_HIGH>,
+>> +                                       <GIC_SPI 685 IRQ_TYPE_LEVEL_HIGH>,
+>> +                                       <GIC_SPI 686 IRQ_TYPE_LEVEL_HIGH>,
+>> +                                       <GIC_SPI 687 IRQ_TYPE_LEVEL_HIGH>;
+>> +
+>> +                       clocks = <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
+>> +                                       <&gcc GCC_GPU_SNOC_DVM_GFX_CLK>,
+>> +                                       <&gpucc GPU_CC_AHB_CLK>,
+>> +                                       <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>,
+>> +                                       <&gpucc GPU_CC_CX_GMU_CLK>,
+>> +                                       <&gpucc GPU_CC_HUB_CX_INT_CLK>,
+>> +                                       <&gpucc GPU_CC_HUB_AON_CLK>;
+>> +                       clock-names = "gcc_gpu_memnoc_gfx_clk",
+>> +                                       "gcc_gpu_snoc_dvm_gfx_clk",
+>> +                                       "gpu_cc_ahb_clk",
+>> +                                       "gpu_cc_hlos1_vote_gpu_smmu_clk",
+>> +                                       "gpu_cc_cx_gmu_clk",
+>> +                                       "gpu_cc_hub_cx_int_clk",
+>> +                                       "gpu_cc_hub_aon_clk";
+>> +
+>> +                       power-domains = <&gpucc GPU_CC_CX_GDSC>;
+>> +               };
+>> +
+>>                  lpass_ag_noc: interconnect@3c40000 {
 > 
-> diff --git a/drivers/dma/dma-jz4780.c b/drivers/dma/dma-jz4780.c
-> index d71bc7235959..eed505e3cce2 100644
-> --- a/drivers/dma/dma-jz4780.c
-> +++ b/drivers/dma/dma-jz4780.c
-> @@ -93,6 +93,7 @@
->  #define JZ_SOC_DATA_PER_CHAN_PM		BIT(2)
->  #define JZ_SOC_DATA_NO_DCKES_DCKEC	BIT(3)
->  #define JZ_SOC_DATA_BREAK_LINKS		BIT(4)
-> +#define JZ_SOC_DATA_ONLY_MEMCPY		BIT(5)
+> This node is 3c40000 and the one above is 3da0000. 3c comes before 3d.
+> Please order nodes properly.
 
-Why -ve logic? Looks like MEMCPY is eveywhere and only peripheral is not
-there at few SoC, so use JZ_SOC_DATA_PERIPHERAL
->  
->  /**
->   * struct jz4780_dma_hwdesc - descriptor structure read by the DMA controller.
-> @@ -896,8 +897,10 @@ static int jz4780_dma_probe(struct platform_device *pdev)
->  	dd = &jzdma->dma_device;
->  
->  	dma_cap_set(DMA_MEMCPY, dd->cap_mask);
-> -	dma_cap_set(DMA_SLAVE, dd->cap_mask);
-> -	dma_cap_set(DMA_CYCLIC, dd->cap_mask);
-> +	if (!(soc_data->flags & JZ_SOC_DATA_ONLY_MEMCPY)) {
-> +		dma_cap_set(DMA_SLAVE, dd->cap_mask);
-> +		dma_cap_set(DMA_CYCLIC, dd->cap_mask);
-> +	}
+Yeah, I messed up the order at a couple of places. Will fix.
 
-and set this if JZ_SOC_DATA_PERIPHERAL is set?
+-Akhil.
+> 
+>>                          reg = <0 0x03c40000 0 0xf080>;
+>>                          compatible = "qcom,sc7280-lpass-ag-noc";
 
->  
->  	dd->dev = dev;
->  	dd->copy_align = DMAENGINE_ALIGN_4_BYTES;
-> @@ -1018,12 +1021,25 @@ static const struct jz4780_dma_soc_data jz4760_dma_soc_data = {
->  	.flags = JZ_SOC_DATA_PER_CHAN_PM | JZ_SOC_DATA_NO_DCKES_DCKEC,
->  };
->  
-> +static const struct jz4780_dma_soc_data jz4760_mdma_soc_data = {
-> +	.nb_channels = 2,
-> +	.transfer_ord_max = 6,
-> +	.flags = JZ_SOC_DATA_PER_CHAN_PM | JZ_SOC_DATA_NO_DCKES_DCKEC |
-> +		 JZ_SOC_DATA_ONLY_MEMCPY,
-> +};
-> +
->  static const struct jz4780_dma_soc_data jz4760b_dma_soc_data = {
->  	.nb_channels = 5,
->  	.transfer_ord_max = 6,
->  	.flags = JZ_SOC_DATA_PER_CHAN_PM,
->  };
->  
-> +static const struct jz4780_dma_soc_data jz4760b_mdma_soc_data = {
-> +	.nb_channels = 2,
-> +	.transfer_ord_max = 6,
-> +	.flags = JZ_SOC_DATA_PER_CHAN_PM | JZ_SOC_DATA_ONLY_MEMCPY,
-> +};
-> +
->  static const struct jz4780_dma_soc_data jz4770_dma_soc_data = {
->  	.nb_channels = 6,
->  	.transfer_ord_max = 6,
-> @@ -1052,7 +1068,9 @@ static const struct of_device_id jz4780_dma_dt_match[] = {
->  	{ .compatible = "ingenic,jz4740-dma", .data = &jz4740_dma_soc_data },
->  	{ .compatible = "ingenic,jz4725b-dma", .data = &jz4725b_dma_soc_data },
->  	{ .compatible = "ingenic,jz4760-dma", .data = &jz4760_dma_soc_data },
-> +	{ .compatible = "ingenic,jz4760-mdma", .data = &jz4760_mdma_soc_data },
->  	{ .compatible = "ingenic,jz4760b-dma", .data = &jz4760b_dma_soc_data },
-> +	{ .compatible = "ingenic,jz4760b-mdma", .data = &jz4760b_mdma_soc_data },
->  	{ .compatible = "ingenic,jz4770-dma", .data = &jz4770_dma_soc_data },
->  	{ .compatible = "ingenic,jz4780-dma", .data = &jz4780_dma_soc_data },
->  	{ .compatible = "ingenic,x1000-dma", .data = &x1000_dma_soc_data },
-> -- 
-> 2.30.2
-
--- 
-~Vinod
