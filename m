@@ -2,333 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF51B3D84D9
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 02:49:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4952B3D8587
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 03:41:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232926AbhG1AtI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jul 2021 20:49:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49896 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232883AbhG1AtI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jul 2021 20:49:08 -0400
-Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CE4DC061757;
-        Tue, 27 Jul 2021 17:49:06 -0700 (PDT)
-Received: by mail-qv1-xf29.google.com with SMTP id 3so718140qvd.2;
-        Tue, 27 Jul 2021 17:49:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ZYSkWz7X4lVExOiPJYIDBIKS/NtBt7O7x8a39WZcw3A=;
-        b=XxXcSAvHMJhwvcJMawngDxrodFcL2rVGZxd02Jy4gc0VItkwXCY/5wc4zKof87q1rI
-         gC6R9QO9JRWd148OyM03HUlx2p3Arz6gF4XjTLOV9Co3CGT7YwRJ4S0sybasvynrgGMk
-         a2UujeghF0Y4ziZ6k1DGo/AM8u5215eD0xqdm5zpEq94N0uZiymbgBWhxxM7CLwnUdWp
-         N/EfXnHNN87tcsaJ0T/wyc8cAtalWSB/du8b1rjoiQbvQU4ff2kZRRYWQ0S7ChP6AkmM
-         RgkvMwreh14PxMO23goH1W/q+DjP0Ot4yRjO6CuVKDe5YojCjSC0XbAjOYgoERHmbbln
-         zsCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ZYSkWz7X4lVExOiPJYIDBIKS/NtBt7O7x8a39WZcw3A=;
-        b=SW/+/muBHEFSViIpL87+syfKR4s6aMo5/Y9lVyvRgo/M3mJjBUIDte4znVHdZqidp7
-         7txQmBebx8436xw1DMnZjzs2YLvbm8GE+fXBAn8K5hLTgXf/XZLpgiw6BWY4Kye2gjfB
-         dgFISPtcVDcDIYMSL5n5B0TM2uzg0oeyrg1kiFv1sZo3+ucxEyoHeOHknY1mZ9knYS1x
-         mVEJHFI7vqtrX5v8F6fi54g/F93BCe1BY/ewM9adobRTb1rq4QZZfvJBREVOpSWQ945o
-         lslM7y9arWaReKS04ofnk2u9WZKCW/4Z8HAYjST0pOq+sIU3/vc1KmkXCypWOBHgf+3B
-         7i3w==
-X-Gm-Message-State: AOAM532VAYRwYycWpni4Yb9LDeOp2rHJlKeZZ3UfSCqPXGi0XrGpY3XC
-        AnXG3FykpInb3YqWHHvhWw0=
-X-Google-Smtp-Source: ABdhPJxdzeFGwi00dHcakpdAEHj91b5POB/NtMklO+oyPvYZZZaVzb+xSa7UDkJ1O5U7s1PTVATRaQ==
-X-Received: by 2002:ad4:58cb:: with SMTP id dh11mr8742794qvb.29.1627433345679;
-        Tue, 27 Jul 2021 17:49:05 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id f11sm2191098qtp.85.2021.07.27.17.49.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Jul 2021 17:49:05 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Subject: Re: [PATCH 13/14] docs: hwmon: Document PECI drivers
-To:     Zev Weiss <zweiss@equinix.com>,
-        Iwona Winiarska <iwona.winiarska@intel.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        "x86@kernel.org" <x86@kernel.org>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Ingo Molnar <mingo@redhat.com>,
+        id S233158AbhG1BlO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jul 2021 21:41:14 -0400
+Received: from mail-eopbgr10087.outbound.protection.outlook.com ([40.107.1.87]:47013
+        "EHLO EUR02-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S232926AbhG1BlO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Jul 2021 21:41:14 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YfG76g1xYo7w+ltL9eLyzQMAAvkwvNmMEKjxO2nsc7Nq5yb7ggAxzDycRgHFRp0u00Ep5b8E7qz2VIOYye4PYzMqHiCIgfl46JiOuhITgppbdii+4j0o7bz8vjUKcsxZ7FL+2buLqGkbkWFRkW6bkcbM5GgjYP0zSc7kGc5sFiJo4IWHsKcuGFgbQWlruursUjUiHUeCo24mSaKUJSeyv2svdW854jjy7gDBdxlYgNfsT71jrHYsA/HVGMbWLIUFlPXSFXGaaSsZZv1JkaBsrs3weAZ3dMy8OjyZf1lZ8fWics557U9oKdX+NM9Y872JPv/Yr0J13U6ezTKT3Cr+hw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tzx/JtEyi3UeHxIVB5MLlVuazp7XY8Efk5T5Zya4klE=;
+ b=ecpBBYyFDWGugtZtVSMMm+YSyEKTowD1rYsJWKiGxEb+x9OCZsTUDUqKFDt+a2kM3suE1SvWVLK6bc8xY8IWBngcvbe+heV24q/6PKXboHpbCCK55yQueWADJ7FRf7tDI2UIx4OtosvriSTxEDP1KlbW6IG03QaMkZftv1tF74FPD5oxMkrFAjNTiBbUHAehicqAqCoP4KhSFizCvW0JMp5DccvQUs7qepd3GHJaznomDwK8kA5u8m7fhLpuehvgVh8/0kwS/7z14oHg1BB8AXczVpceQLMuxuSjhtzLIZPAxwlbUqgzHLfvNr8d6bzNYORjyB7EZ3CNazRmmjeqcQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tzx/JtEyi3UeHxIVB5MLlVuazp7XY8Efk5T5Zya4klE=;
+ b=BABm3DHPQ+m1ZpUI9Dc7IQwBax0+Y0NnQuWz0o4VpFQtODta1j7BBPMBYT668lTkVjk7yQ2ACTZh/basTH4YWrDeg+Q7zJOkmimVwKimxgaRXta9AqXhnZnE+1vgqePO5WlI/s80Jl6OiIKug9WidsLnWOW0NUZpUJkLk/KB6hI=
+Received: from AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
+ by AM5PR0401MB2434.eurprd04.prod.outlook.com (2603:10a6:203:35::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4352.25; Wed, 28 Jul
+ 2021 01:41:10 +0000
+Received: from AM6PR04MB6341.eurprd04.prod.outlook.com
+ ([fe80::81e3:1e06:83ee:5db8]) by AM6PR04MB6341.eurprd04.prod.outlook.com
+ ([fe80::81e3:1e06:83ee:5db8%3]) with mapi id 15.20.4352.031; Wed, 28 Jul 2021
+ 01:41:10 +0000
+From:   Ming Qian <ming.qian@nxp.com>
+To:     Nicolas Dufresne <nicolas@ndufresne.ca>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+CC:     "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Borislav Petkov <bp@alien8.de>,
-        Andy Lutomirski <luto@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
         "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Yazen Ghannam <yazen.ghannam@amd.com>
-References: <20210712220447.957418-1-iwona.winiarska@intel.com>
- <20210712220447.957418-14-iwona.winiarska@intel.com>
- <20210727225808.GU8018@packtop>
-From:   Guenter Roeck <linux@roeck-us.net>
-Message-ID: <0521a076-9772-532f-2eab-8870464ca211@roeck-us.net>
-Date:   Tue, 27 Jul 2021 17:49:01 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
-MIME-Version: 1.0
-In-Reply-To: <20210727225808.GU8018@packtop>
-Content-Type: text/plain; charset=utf-8; format=flowed
+        <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [EXT] Re: [PATCH v5 02/14] media:Add nt8 and nt10 video format.
+Thread-Topic: [EXT] Re: [PATCH v5 02/14] media:Add nt8 and nt10 video format.
+Thread-Index: AQHXgpD8B0LcqraPZ0Klt5ff7x/la6tXHMiAgACA4tA=
+Date:   Wed, 28 Jul 2021 01:41:10 +0000
+Message-ID: <AM6PR04MB6341EF298D521EC922CF1F53E7EA9@AM6PR04MB6341.eurprd04.prod.outlook.com>
+References: <cover.1627353315.git.ming.qian@nxp.com>
+         <ee482c18fdaae121e3c9495d07b0f3eb1661e36e.1627353315.git.ming.qian@nxp.com>
+ <e88f70b1438d4e5b5313aacccb1f369cabe513bc.camel@ndufresne.ca>
+In-Reply-To: <e88f70b1438d4e5b5313aacccb1f369cabe513bc.camel@ndufresne.ca>
+Accept-Language: zh-CN, en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: ndufresne.ca; dkim=none (message not signed)
+ header.d=none;ndufresne.ca; dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 1e3b6231-8aff-472a-a721-08d95168c6dc
+x-ms-traffictypediagnostic: AM5PR0401MB2434:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AM5PR0401MB2434450E16FBB16ED8D6DF7BE7EA9@AM5PR0401MB2434.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: lb+0hRCVSYGHl+WIA1f9Se+Y0uViVX2IEeWaJle+DxUHE0d+KvP+2f+XJxHVTOT3ZuFK+YHjIScxNV8Tcj0+WQg4jtTZkjnSxYxPCqrg9ac297oaYprf55axNcMcn0DFhfq0RP/e/FKHnkAx/eq325qTW5HTF1obkCuCIOl0c7Eyy6O9jXXg6SPOo6DpmfChrihcuH9NoitsR46GUttzFdK3Vd+n0P7Pe+JPAyYgjemHrd3da/R4Y08IApqx10P3aLlPTBoewdqNKzoRJb2X3RFCgMPe1G2T6XgzR+yCXrS5LOiZ7Ju80SzAjEA4Ht/0y/QmFb0FsB69XNGpCpoyVCviYrpBT6RpXWV6kJsL+JgIreX4NmmLoXM9a46VCyENS9YyDyO3LA6GYKJzB+1UxYRppEkDBVfd3vL/f5eTUyJtOMsTK7LaJ1BlzMwyiuydinH6JGiN4awdwrqycX+avLiGC3PIQd5E97HGT5LA4eNw7zF/VMPyDuYv62JRUr4tItHl1TouDbUd8eD5LjBNlDQxtjdBZ4Q9wcbwQwf03m0wFtrnsKocjW4KxFA+KxoW7hRQoZdIvyr6Uk8L4G+ckv5HgX+JeeTf05OiXg+yjmGb3BHz18H2kCg5WW9g7PPeLQU2VjqwPI+37oE6vozQL4Jegf+oabhSlpFjmtKMvOhc98PBx3R9q+nM6+djLbbssTyLDg2ETEfT4lijCvs2UA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6341.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(346002)(376002)(366004)(396003)(136003)(9686003)(55016002)(7696005)(316002)(8936002)(7416002)(66946007)(6506007)(186003)(478600001)(53546011)(26005)(8676002)(2906002)(71200400001)(44832011)(38100700002)(110136005)(54906003)(5660300002)(4326008)(76116006)(66574015)(122000001)(86362001)(52536014)(33656002)(66476007)(66446008)(38070700005)(64756008)(83380400001)(66556008);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SVZvN1lvUDhVTjBxTmRWQitSNHBZWGdoMUhZdG1odXB3MjJwem5mMVAyaHFO?=
+ =?utf-8?B?VEJ5OGtPSFQrS0dBZ2xvWjV5enl3TEYwanZlZmRRZDh2ZGt0VFNHMm9ZM0dR?=
+ =?utf-8?B?a0hXNmtWeHNSem9tRlV2UzViRmp4YzlXUUdLQ3JGM0NwNXNXaEJHVHlXZS9U?=
+ =?utf-8?B?K1krc3hSZ21CSThyZVVBNFpFc2lZQzlQb1o0cUswalJTL0hhNWdlc2MvUzVv?=
+ =?utf-8?B?RjZpSS9jNVVGMTVDeGtEbVhKMEE2dndVa01LU29JWnpmYVVBYUl0SlhQVFo5?=
+ =?utf-8?B?akQrQ3AwTjQ3ZTlJVTB1TUd6RCtaZFZyTnpSWGtWNTlnK1U1SHBOYzE4K3Ur?=
+ =?utf-8?B?Vkt6RUtSakxGejdHQ3pyWmsyTHFpaEhsbUVtYjFaZ1Fic09OOFkvQ0FrMHl1?=
+ =?utf-8?B?NllUTWZuY1FpdHVsWWdFNFVOcVFVZm5PcDc3YTc1elhUMjI1YzlCRXZRenRq?=
+ =?utf-8?B?eWRDU0VlR3ROK2g0bHZuaG1lcU5HNDNIaW00aWZwaXh2d0RWRXFkKzNmVnVr?=
+ =?utf-8?B?TzZoTW8xY0xLOEJZK2pXbTVObTNCdkhTWVRTdVZnV2NKd1RSckQ1WnpRWUlB?=
+ =?utf-8?B?aGZuUERoUlJqQUdTTWc0VzJtSHJEUDJHZlh5S1d0YWFrcS9DUDlmSjZpVEtI?=
+ =?utf-8?B?dFlyR2JBWWNHOVBOTGxMaFhiM2hBV1pvbzlKbUZyWU1saUt2dEkvTzlQM2Yz?=
+ =?utf-8?B?QlB5Q2FCaEV1S2NPUFJMZkJTRmUxWTRaM0tiV3FLKytpY09lckpsa1laaUNl?=
+ =?utf-8?B?bzlFUGcwQUtwUVhSb1lLZ3cvbnlZMmlqdDk5SGY5MjlSc0ZqbHp2WFE5Lytq?=
+ =?utf-8?B?TzZUL2ZKZi9uZGJPV0g3VllXMXcreWpZRW1naFA3OGcxSVZGbWppd3hLQmd5?=
+ =?utf-8?B?VVRuNkdQT1FnUHdMT0Z0R0xDTW54Mlpub1Z2YmZDdVlOdHYrWEwvV2hUSXg4?=
+ =?utf-8?B?QVcwc3pNb2tVZ2NpbUpYbC8yS0ZjNkR1d3JJWWpQdlVjZGtJQTk2V01lZHRX?=
+ =?utf-8?B?Q2ZNeDQ3eDFxR1UvNVdXWEMzOTZMSjZsWHRqZU5iR0NUWDZvY3drSjNCbVkr?=
+ =?utf-8?B?SVNqLzNTbEgzeVMvNGIvOTJUTzAzdCs2ekUyQUU0MkZOQmNrWFlGRDFabzR4?=
+ =?utf-8?B?ZWZLeTVlT0EyeHNDSGk1YkFraFFtLzRLQVdmWlBCMDZPNW5iRGlNZzk3UGEv?=
+ =?utf-8?B?SEF0eE1TTTNMQUVrNmsvM09zOHUvaWU5NTA4MktvclFpTEdxYnZBVXBCQnBo?=
+ =?utf-8?B?OUdDWmp1b1U3ZTJ2ZDcrM0hoOGQ5MVJQNnJNb3J4dndMNHYzY0ZIb2hNUmxG?=
+ =?utf-8?B?dXlPYlVSN0h1eDA0ZHJYbE8wUFhia3pZZTI5bXo1cFdTVlV4Sk1uWUh4QU9l?=
+ =?utf-8?B?WDdpc09xNnVuekFVUE0vZXc4Q1EwSlo0c1lyV001OWU1NVJFazU2S0xNVlZk?=
+ =?utf-8?B?R1NDemFlSTIrUC8zZGlTN3BJd2NoMzQrVGptbUZKeUFqbmxoSWFvdE5rQ1FX?=
+ =?utf-8?B?T3Roc1NIUU44WWZoYUFhL2lLaUdUZXIwZHl3MitjUmpSNUdRWm83c0dOWm1G?=
+ =?utf-8?B?RCtMU094dlNVWHNxMHJJOWlIN3pwajBDVmdDK20wNkxjdFoyYUIvUzFyT3hT?=
+ =?utf-8?B?QnBTVkcxZWFDRjUweC8vRHpVV2FjTGNEUE05elZnY2F0RkYzcXVMOVJoeVI1?=
+ =?utf-8?B?VndVdGdGTkV3M2NRa1ZVYzMyVmNqbC9RY2FmcFBOZXBvdDIvdnlRZ2ltek9J?=
+ =?utf-8?Q?K2jlxclwCzrpK7/JVw=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6341.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1e3b6231-8aff-472a-a721-08d95168c6dc
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jul 2021 01:41:10.3334
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: osgJt9WC0LbT99leNsDnO/4ZBlL059hzLmoI+OCoh8BkZS37x0jbmr12LR1zdwIJKv65sWcdIFji56+PqLFT6Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR0401MB2434
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/27/21 3:58 PM, Zev Weiss wrote:
-> On Mon, Jul 12, 2021 at 05:04:46PM CDT, Iwona Winiarska wrote:
->> From: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
->>
->> Add documentation for peci-cputemp driver that provides DTS thermal
->> readings for CPU packages and CPU cores and peci-dimmtemp driver that
->> provides DTS thermal readings for DIMMs.
->>
->> Signed-off-by: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
->> Co-developed-by: Iwona Winiarska <iwona.winiarska@intel.com>
->> Signed-off-by: Iwona Winiarska <iwona.winiarska@intel.com>
->> Reviewed-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
->> ---
->> Documentation/hwmon/index.rst         |  2 +
->> Documentation/hwmon/peci-cputemp.rst  | 93 +++++++++++++++++++++++++++
->> Documentation/hwmon/peci-dimmtemp.rst | 58 +++++++++++++++++
->> MAINTAINERS                           |  2 +
->> 4 files changed, 155 insertions(+)
->> create mode 100644 Documentation/hwmon/peci-cputemp.rst
->> create mode 100644 Documentation/hwmon/peci-dimmtemp.rst
->>
->> diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
->> index bc01601ea81a..cc76b5b3f791 100644
->> --- a/Documentation/hwmon/index.rst
->> +++ b/Documentation/hwmon/index.rst
->> @@ -154,6 +154,8 @@ Hardware Monitoring Kernel Drivers
->>     pcf8591
->>     pim4328
->>     pm6764tr
->> +   peci-cputemp
->> +   peci-dimmtemp
->>     pmbus
->>     powr1220
->>     pxe1610
->> diff --git a/Documentation/hwmon/peci-cputemp.rst b/Documentation/hwmon/peci-cputemp.rst
->> new file mode 100644
->> index 000000000000..d3a218ba810a
->> --- /dev/null
->> +++ b/Documentation/hwmon/peci-cputemp.rst
->> @@ -0,0 +1,93 @@
->> +.. SPDX-License-Identifier: GPL-2.0-only
->> +
->> +Kernel driver peci-cputemp
->> +==========================
->> +
->> +Supported chips:
->> +	One of Intel server CPUs listed below which is connected to a PECI bus.
->> +		* Intel Xeon E5/E7 v3 server processors
->> +			Intel Xeon E5-14xx v3 family
->> +			Intel Xeon E5-24xx v3 family
->> +			Intel Xeon E5-16xx v3 family
->> +			Intel Xeon E5-26xx v3 family
->> +			Intel Xeon E5-46xx v3 family
->> +			Intel Xeon E7-48xx v3 family
->> +			Intel Xeon E7-88xx v3 family
->> +		* Intel Xeon E5/E7 v4 server processors
->> +			Intel Xeon E5-16xx v4 family
->> +			Intel Xeon E5-26xx v4 family
->> +			Intel Xeon E5-46xx v4 family
->> +			Intel Xeon E7-48xx v4 family
->> +			Intel Xeon E7-88xx v4 family
->> +		* Intel Xeon Scalable server processors
->> +			Intel Xeon D family
->> +			Intel Xeon Bronze family
->> +			Intel Xeon Silver family
->> +			Intel Xeon Gold family
->> +			Intel Xeon Platinum family
->> +
->> +	Datasheet: Available from http://www.intel.com/design/literature.htm
->> +
->> +Author: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
->> +
->> +Description
->> +-----------
->> +
->> +This driver implements a generic PECI hwmon feature which provides Digital
->> +Thermal Sensor (DTS) thermal readings of the CPU package and CPU cores that are
->> +accessible via the processor PECI interface.
->> +
->> +All temperature values are given in millidegree Celsius and will be measurable
->> +only when the target CPU is powered on.
->> +
->> +Sysfs interface
->> +-------------------
->> +
->> +======================= =======================================================
->> +temp1_label		"Die"
->> +temp1_input		Provides current die temperature of the CPU package.
->> +temp1_max		Provides thermal control temperature of the CPU package
->> +			which is also known as Tcontrol.
->> +temp1_crit		Provides shutdown temperature of the CPU package which
->> +			is also known as the maximum processor junction
->> +			temperature, Tjmax or Tprochot.
->> +temp1_crit_hyst		Provides the hysteresis value from Tcontrol to Tjmax of
->> +			the CPU package.
->> +
->> +temp2_label		"DTS"
->> +temp2_input		Provides current DTS temperature of the CPU package.
-> 
-> Would this be a good place to note the slightly counter-intuitive nature
-> of DTS readings?  i.e. add something along the lines of "The DTS sensor
-> produces a delta relative to Tjmax, so negative values are normal and
-> values approaching zero are hot."  (In my experience people who aren't
-> already familiar with it tend to think something's wrong when a CPU
-> temperature reading shows -50C.)
-> 
-
-All attributes shall follow the ABI, and the driver must translate reported
-values to degrees C. If those sensors do not follow the ABI and report something
-else, I won't accept the driver.
-
-Guenter
-
->> +temp2_max		Provides thermal control temperature of the CPU package
->> +			which is also known as Tcontrol.
->> +temp2_crit		Provides shutdown temperature of the CPU package which
->> +			is also known as the maximum processor junction
->> +			temperature, Tjmax or Tprochot.
->> +temp2_crit_hyst		Provides the hysteresis value from Tcontrol to Tjmax of
->> +			the CPU package.
->> +
->> +temp3_label		"Tcontrol"
->> +temp3_input		Provides current Tcontrol temperature of the CPU
->> +			package which is also known as Fan Temperature target.
->> +			Indicates the relative value from thermal monitor trip
->> +			temperature at which fans should be engaged.
->> +temp3_crit		Provides Tcontrol critical value of the CPU package
->> +			which is same to Tjmax.
->> +
->> +temp4_label		"Tthrottle"
->> +temp4_input		Provides current Tthrottle temperature of the CPU
->> +			package. Used for throttling temperature. If this value
->> +			is allowed and lower than Tjmax - the throttle will
->> +			occur and reported at lower than Tjmax.
->> +
->> +temp5_label		"Tjmax"
->> +temp5_input		Provides the maximum junction temperature, Tjmax of the
->> +			CPU package.
->> +
->> +temp[6-N]_label		Provides string "Core X", where X is resolved core
->> +			number.
->> +temp[6-N]_input		Provides current temperature of each core.
->> +temp[6-N]_max		Provides thermal control temperature of the core.
->> +temp[6-N]_crit		Provides shutdown temperature of the core.
->> +temp[6-N]_crit_hyst	Provides the hysteresis value from Tcontrol to Tjmax of
->> +			the core.
-> 
-> I only see *_label and *_input for the per-core temperature sensors, no
-> *_max, *_crit, or *_crit_hyst.
-> 
->> +
->> +======================= =======================================================
->> diff --git a/Documentation/hwmon/peci-dimmtemp.rst b/Documentation/hwmon/peci-dimmtemp.rst
->> new file mode 100644
->> index 000000000000..1778d9317e43
->> --- /dev/null
->> +++ b/Documentation/hwmon/peci-dimmtemp.rst
->> @@ -0,0 +1,58 @@
->> +.. SPDX-License-Identifier: GPL-2.0
->> +
->> +Kernel driver peci-dimmtemp
->> +===========================
->> +
->> +Supported chips:
->> +	One of Intel server CPUs listed below which is connected to a PECI bus.
->> +		* Intel Xeon E5/E7 v3 server processors
->> +			Intel Xeon E5-14xx v3 family
->> +			Intel Xeon E5-24xx v3 family
->> +			Intel Xeon E5-16xx v3 family
->> +			Intel Xeon E5-26xx v3 family
->> +			Intel Xeon E5-46xx v3 family
->> +			Intel Xeon E7-48xx v3 family
->> +			Intel Xeon E7-88xx v3 family
->> +		* Intel Xeon E5/E7 v4 server processors
->> +			Intel Xeon E5-16xx v4 family
->> +			Intel Xeon E5-26xx v4 family
->> +			Intel Xeon E5-46xx v4 family
->> +			Intel Xeon E7-48xx v4 family
->> +			Intel Xeon E7-88xx v4 family
->> +		* Intel Xeon Scalable server processors
->> +			Intel Xeon D family
->> +			Intel Xeon Bronze family
->> +			Intel Xeon Silver family
->> +			Intel Xeon Gold family
->> +			Intel Xeon Platinum family
->> +
->> +	Datasheet: Available from http://www.intel.com/design/literature.htm
->> +
->> +Author: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
->> +
->> +Description
->> +-----------
->> +
->> +This driver implements a generic PECI hwmon feature which provides Digital
->> +Thermal Sensor (DTS) thermal readings of DIMM components that are accessible
->> +via the processor PECI interface.
-> 
-> I had thought "DTS" referred to a fairly specific sensor in the CPU; is
-> the same term also used for DIMM temp sensors or is the mention of it
-> here a copy/paste error?
-> 
->> +
->> +All temperature values are given in millidegree Celsius and will be measurable
->> +only when the target CPU is powered on.
->> +
->> +Sysfs interface
->> +-------------------
->> +
->> +======================= =======================================================
->> +
->> +temp[N]_label		Provides string "DIMM CI", where C is DIMM channel and
->> +			I is DIMM index of the populated DIMM.
->> +temp[N]_input		Provides current temperature of the populated DIMM.
->> +temp[N]_max		Provides thermal control temperature of the DIMM.
->> +temp[N]_crit		Provides shutdown temperature of the DIMM.
->> +
->> +======================= =======================================================
->> +
->> +Note:
->> +	DIMM temperature attributes will appear when the client CPU's BIOS
->> +	completes memory training and testing.
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 35ba9e3646bd..d16da127bbdc 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -14509,6 +14509,8 @@ M:	Iwona Winiarska <iwona.winiarska@intel.com>
->> R:	Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
->> L:	linux-hwmon@vger.kernel.org
->> S:	Supported
->> +F:	Documentation/hwmon/peci-cputemp.rst
->> +F:	Documentation/hwmon/peci-dimmtemp.rst
->> F:	drivers/hwmon/peci/
->>
->> PECI SUBSYSTEM
->> -- 
->> 2.31.1
->>
-> 
-
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogTmljb2xhcyBEdWZyZXNu
+ZSBbbWFpbHRvOm5pY29sYXNAbmR1ZnJlc25lLmNhXQ0KPiBTZW50OiBXZWRuZXNkYXksIEp1bHkg
+MjgsIDIwMjEgMTo1OCBBTQ0KPiBUbzogTWluZyBRaWFuIDxtaW5nLnFpYW5AbnhwLmNvbT47IG1j
+aGVoYWJAa2VybmVsLm9yZzsNCj4gc2hhd25ndW9Aa2VybmVsLm9yZzsgcm9iaCtkdEBrZXJuZWwu
+b3JnOyBzLmhhdWVyQHBlbmd1dHJvbml4LmRlDQo+IENjOiBodmVya3VpbC1jaXNjb0B4czRhbGwu
+bmw7IGtlcm5lbEBwZW5ndXRyb25peC5kZTsgZmVzdGV2YW1AZ21haWwuY29tOw0KPiBkbC1saW51
+eC1pbXggPGxpbnV4LWlteEBueHAuY29tPjsgQWlzaGVuZyBEb25nIDxhaXNoZW5nLmRvbmdAbnhw
+LmNvbT47DQo+IGxpbnV4LW1lZGlhQHZnZXIua2VybmVsLm9yZzsgbGludXgta2VybmVsQHZnZXIu
+a2VybmVsLm9yZzsNCj4gZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWFybS1rZXJu
+ZWxAbGlzdHMuaW5mcmFkZWFkLm9yZw0KPiBTdWJqZWN0OiBbRVhUXSBSZTogW1BBVENIIHY1IDAy
+LzE0XSBtZWRpYTpBZGQgbnQ4IGFuZCBudDEwIHZpZGVvIGZvcm1hdC4NCj4gDQo+IENhdXRpb246
+IEVYVCBFbWFpbA0KPiANCj4gTGUgbWFyZGkgMjcganVpbGxldCAyMDIxIMOgIDExOjIwICswODAw
+LCBNaW5nIFFpYW4gYSDDqWNyaXQgOg0KPiA+IE5UOCBpcyA4LWJpdCB0aWxlZCBudjEyIGZvcm1h
+dCB1c2VkIGJ5IGFtcGhpb24gZGVjb2Rlci4NCj4gPiBOVDEwIGlzIDEwLWJpdCB0aWxlZCBmb3Jt
+YXQgdXNlZCBieSBhbXBoaW9uIGRlY29kZXIuDQo+ID4gVGhlIHRpbGUgc2l6ZSBpcyA4eDEyOA0K
+PiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogTWluZyBRaWFuIDxtaW5nLnFpYW5AbnhwLmNvbT4NCj4g
+PiBTaWduZWQtb2ZmLWJ5OiBTaGlqaWUgUWluIDxzaGlqaWUucWluQG54cC5jb20+DQo+ID4gU2ln
+bmVkLW9mZi1ieTogWmhvdSBQZW5nIDxlYWdsZS56aG91QG54cC5jb20+DQo+ID4gLS0tDQo+ID4g
+IC4uLi91c2Vyc3BhY2UtYXBpL21lZGlhL3Y0bC9waXhmbXQtcmVzZXJ2ZWQucnN0ICAgfCAxNSAr
+KysrKysrKysrKysrKysNCj4gPiAgZHJpdmVycy9tZWRpYS92NGwyLWNvcmUvdjRsMi1pb2N0bC5j
+ICAgICAgICAgICAgICB8ICAyICsrDQo+ID4gIGluY2x1ZGUvdWFwaS9saW51eC92aWRlb2RldjIu
+aCAgICAgICAgICAgICAgICAgICAgfCAgMiArKw0KPiA+ICAzIGZpbGVzIGNoYW5nZWQsIDE5IGlu
+c2VydGlvbnMoKykNCj4gPg0KPiA+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL3VzZXJzcGFj
+ZS1hcGkvbWVkaWEvdjRsL3BpeGZtdC1yZXNlcnZlZC5yc3QNCj4gPiBiL0RvY3VtZW50YXRpb24v
+dXNlcnNwYWNlLWFwaS9tZWRpYS92NGwvcGl4Zm10LXJlc2VydmVkLnJzdA0KPiA+IGluZGV4IGM5
+MjMxZTE4ODU5Yi4uMmRlYWU0OTIxMGE3IDEwMDY0NA0KPiA+IC0tLSBhL0RvY3VtZW50YXRpb24v
+dXNlcnNwYWNlLWFwaS9tZWRpYS92NGwvcGl4Zm10LXJlc2VydmVkLnJzdA0KPiA+ICsrKyBiL0Rv
+Y3VtZW50YXRpb24vdXNlcnNwYWNlLWFwaS9tZWRpYS92NGwvcGl4Zm10LXJlc2VydmVkLnJzdA0K
+PiA+IEBAIC0yNTYsMyArMjU2LDE4IEBAIHBsZWFzZSBtYWtlIGEgcHJvcG9zYWwgb24gdGhlIGxp
+bnV4LW1lZGlhIG1haWxpbmcNCj4gbGlzdC4NCj4gPiAgICAgICBvZiB0aWxlcywgcmVzdWx0aW5n
+IGluIDMyLWFsaWduZWQgcmVzb2x1dGlvbnMgZm9yIHRoZSBsdW1pbmFuY2UgcGxhbmUNCj4gPiAg
+ICAgICBhbmQgMTYtYWxpZ25lZCByZXNvbHV0aW9ucyBmb3IgdGhlIGNocm9taW5hbmNlIHBsYW5l
+ICh3aXRoIDJ4Mg0KPiA+ICAgICAgIHN1YnNhbXBsaW5nKS4NCj4gPiArICAgICogLi4gX1Y0TDIt
+UElYLUZNVC1OVDg6DQo+ID4gKw0KPiA+ICsgICAgICAtIGBgVjRMMl9QSVhfRk1UX05UOGBgDQo+
+ID4gKyAgICAgIC0gJ05BMTInDQo+ID4gKyAgICAgIC0gVHdvLXBsYW5hciBOVjEyLWJhc2VkIGZv
+cm1hdCB1c2VkIGJ5IHRoZSB2aWRlbyBlbmdpbmUgZm91bmQgb24NCj4gQW1waGlvbiBkZWNvZGVy
+LA0KPiA+ICsgICAgd2l0aCA4eDEyOCB0aWxlcyBmb3IgdGhlIGx1bWluYW5jZSBwbGFuZSBhbmQg
+Y2hyb21pbmFuY2UgcGxhbmUuDQo+ID4gKyAgICBUaGUgbnVtYmVyIG9mIGJ5dGVzIGluIG9uZSBs
+dW1pbmFuY2Ugb3IgY2hyb21pbmFuY2Ugcm93IG11c3QgYmUNCj4gZGl2aXNpYmxlIGJ5IDI1Ni4N
+Cj4gPiArICAgICogLi4gX1Y0TDItUElYLUZNVC1OVDEwOg0KPiANCj4gVGhlcmUgaXMgYSBsYXJn
+ZSBzcHJlYWQgb2YgInZlbmRvciBzcGVjaWZpYyIgZm9ybWF0IHRoYXQgYXJlbid0IHJlYWxseSBz
+cGVjaWZpYywgb3INCj4gY29tcGxleCBlbm91Z2ggdG8gYmUgd29ydGggYmVpbmcgbWFya2VkIGFz
+IHZlbmRvciBmb3JtYXQuIEFzIHBlciBteQ0KPiByZWFkaW5nIG9mIHRoaXMgZGVzY3JpcHRpb24s
+IHRoaXMgaXMgbGluZWFybHkgbGF5b3V0IDh4MTI4IHRpbGVkIGZvcm1hdCwgd2l0aCBubw0KPiBj
+b21wcmVzc2lvbiBvciBhbnl0aGluZyAod2VsbCB1bmxlc3MgeW91IGZvcmdvdCB0byBtZW50aW9u
+KS4gQXMgYSBzaWRlIGVmZmVjdCwNCj4gd2Ugc2hvdWxkIGdpdmUgdGhhdCBmb3JtYXQgYW4gZXhw
+bGljaXQgbmFtZSAoTlQ4IGlzIGNyeXB0aWMpLiBXaGF0IGFib3V0DQo+IFY0TDJfUElYX0ZNVF9O
+VjEyXzhMMTI4LCBteSBjb2xsZWFndWUgaXMgYWJvdXQgdG8gc2VuZCBhIHByb3Bvc2FsIGluIHRo
+YXQNCj4gZGlyZWN0aW9uLiBUaGF0IHdvdWxkIGJlIE5WMTIgd2l0aCBwbGFuZSB0aWxlZCA4eDEy
+OCBieXRlcyBhbmQgbGF5b3V0IGxpbmVhcmx5LA0KPiByb3cgYnkgcm93LCBsZWZ0IHRvIHJpZ2h0
+LiBXZSBhbHJlYWR5IGhhdmUgY3J5cHRpYyBmb3JtYXRzIGxpa2UgU1VOWEksIEhNMTINCj4gdGhh
+dCBhcmUgbGl0ZXJhbGx5IGp1c3QgdGhhdCwgc2ltcGxlIHRpbGluZywgYW5kIHdlIGVuZHVwIGhh
+dmluZyB0byB1c2Ugb2JzY3VyZQ0KPiB2ZW5kb3IgbmFtZSB3aGVuZXZlciBvdGhlciBIVyB1c2Vz
+IHRoZSBzYW1lLg0KPiANCj4gKHRoaXMgY29tbWVudCBleHRlbmRzIHRvIHRoZSBvdGhlciBmb3Jt
+YXRzIGhlcmUpDQoNCkhpIE5pY29sYXMsDQogICBUaGFua3MgZm9yIHlvdXIgYWR2aWNlLCBJJ2xs
+IGNoYW5nZSB0aGUgZm9ybWF0IG5hbWUgZnJvbSBOVDggdG8gTlYxMl84TDEyOA0KDQo+IA0KPiA+
+ICsNCj4gPiArICAgICAgLSBgYFY0TDJfUElYX0ZNVF9OVDEwYGANCj4gPiArICAgICAgLSAnTlQx
+MicNCj4gPiArICAgICAgLSBOVDEwIGlzIGEgdGlsZWQgWVVWIGZvcm1hdCB3aXRoIDEwLWJpdHMg
+cGVyIHBpeGVsIHdpdGggaW50ZXJsZWF2ZWQNCj4gVVYuDQo+ID4gKyAgICBJdCdzIHVzZWQgYnkg
+dGhlIHZpZGVvIGVuZ2luZSBmb3VuZCBvbiBBbXBoaW9uIGRlY29kZXIsDQo+ID4gKyAgICB3aXRo
+IDh4MTI4IHRpbGVzIGZvciB0aGUgbHVtaW5hbmNlIHBsYW5lIGFuZCBjaHJvbWluYW5jZSBwbGFu
+ZS4NCj4gPiArICAgIFRoZSBudW1iZXIgb2YgYnl0ZXMgaW4gb25lIGx1bWluYW5jZSBvciBjaHJv
+bWluYW5jZSByb3cgbXVzdCBiZQ0KPiBkaXZpc2libGUgYnkgMjU2Lg0KPiA+IGRpZmYgLS1naXQg
+YS9kcml2ZXJzL21lZGlhL3Y0bDItY29yZS92NGwyLWlvY3RsLmMNCj4gPiBiL2RyaXZlcnMvbWVk
+aWEvdjRsMi1jb3JlL3Y0bDItaW9jdGwuYw0KPiA+IGluZGV4IGVlZmYzOThmYmRjYy4uMzRlNjQx
+NWU1NzIyIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvbWVkaWEvdjRsMi1jb3JlL3Y0bDItaW9j
+dGwuYw0KPiA+ICsrKyBiL2RyaXZlcnMvbWVkaWEvdjRsMi1jb3JlL3Y0bDItaW9jdGwuYw0KPiA+
+IEBAIC0xNDAyLDYgKzE0MDIsOCBAQCBzdGF0aWMgdm9pZCB2NGxfZmlsbF9mbXRkZXNjKHN0cnVj
+dCB2NGwyX2ZtdGRlc2MNCj4gKmZtdCkNCj4gPiAgICAgICBjYXNlIFY0TDJfTUVUQV9GTVRfVVZD
+OiAgICAgICAgIGRlc2NyID0gIlVWQyBQYXlsb2FkIEhlYWRlcg0KPiBNZXRhZGF0YSI7IGJyZWFr
+Ow0KPiA+ICAgICAgIGNhc2UgVjRMMl9NRVRBX0ZNVF9ENFhYOiAgICAgICAgZGVzY3IgPSAiSW50
+ZWwgRDR4eCBVVkMNCj4gTWV0YWRhdGEiOyBicmVhazsNCj4gPiAgICAgICBjYXNlIFY0TDJfTUVU
+QV9GTVRfVklWSUQ6ICAgICAgIGRlc2NyID0gIlZpdmlkIE1ldGFkYXRhIjsNCj4gYnJlYWs7DQo+
+ID4gKyAgICAgY2FzZSBWNEwyX1BJWF9GTVRfTlQ4OiAgICAgICAgICBkZXNjciA9ICJBbXBoaW9u
+IFRpbGVkIDh4MTI4DQo+IE5WMTIiOyBicmVhazsNCj4gPiArICAgICBjYXNlIFY0TDJfUElYX0ZN
+VF9OVDEwOiAgICAgICAgIGRlc2NyID0gIkFtcGhpb24gVGlsZWQgOHgxMjgNCj4gMTAtYml0Ijsg
+YnJlYWs7DQo+ID4NCj4gPiAgICAgICBkZWZhdWx0Og0KPiA+ICAgICAgICAgICAgICAgLyogQ29t
+cHJlc3NlZCBmb3JtYXRzICovIGRpZmYgLS1naXQNCj4gPiBhL2luY2x1ZGUvdWFwaS9saW51eC92
+aWRlb2RldjIuaCBiL2luY2x1ZGUvdWFwaS9saW51eC92aWRlb2RldjIuaA0KPiA+IGluZGV4IDUz
+NGVhYTRkMzliYy4uNDgzNjU5MGE2OTBjIDEwMDY0NA0KPiA+IC0tLSBhL2luY2x1ZGUvdWFwaS9s
+aW51eC92aWRlb2RldjIuaA0KPiA+ICsrKyBiL2luY2x1ZGUvdWFwaS9saW51eC92aWRlb2RldjIu
+aA0KPiA+IEBAIC03NDAsNiArNzQwLDggQEAgc3RydWN0IHY0bDJfcGl4X2Zvcm1hdCB7DQo+ID4g
+ICNkZWZpbmUgVjRMMl9QSVhfRk1UX0lOWkkgICAgIHY0bDJfZm91cmNjKCdJJywgJ04nLCAnWics
+ICdJJykgLyogSW50ZWwgUGxhbmFyDQo+IEdyZXlzY2FsZSAxMC1iaXQgYW5kIERlcHRoIDE2LWJp
+dCAqLw0KPiA+ICAjZGVmaW5lIFY0TDJfUElYX0ZNVF9TVU5YSV9USUxFRF9OVjEyIHY0bDJfZm91
+cmNjKCdTJywgJ1QnLCAnMScsICcyJykgLyoNCj4gU3VueGkgVGlsZWQgTlYxMiBGb3JtYXQgKi8N
+Cj4gPiAgI2RlZmluZSBWNEwyX1BJWF9GTVRfQ05GNCAgICAgdjRsMl9mb3VyY2MoJ0MnLCAnTics
+ICdGJywgJzQnKSAvKiBJbnRlbCA0LWJpdA0KPiBwYWNrZWQgZGVwdGggY29uZmlkZW5jZSBpbmZv
+cm1hdGlvbiAqLw0KPiA+ICsjZGVmaW5lIFY0TDJfUElYX0ZNVF9OVDggICAgICB2NGwyX2ZvdXJj
+YygnTicsICdBJywgJzEnLCAnMicpIC8qIEFtcGhpb24NCj4gVGlsZWQgOHgxMjggTlYxMiBGb3Jt
+YXQgKi8NCj4gPiArI2RlZmluZSBWNEwyX1BJWF9GTVRfTlQxMCAgICAgdjRsMl9mb3VyY2MoJ04n
+LCAnVCcsICcxJywgJzInKSAvKiBBbXBoaW9uDQo+IFRpbGVkIDh4MTI4IDEwIGJpdCBGb3JtYXQg
+Ki8NCj4gPg0KPiA+ICAvKiAxMGJpdCByYXcgYmF5ZXIgcGFja2VkLCAzMiBieXRlcyBmb3IgZXZl
+cnkgMjUgcGl4ZWxzLCBsYXN0IExTQiA2IGJpdHMNCj4gdW51c2VkICovDQo+ID4gICNkZWZpbmUg
+VjRMMl9QSVhfRk1UX0lQVTNfU0JHR1IxMCAgICB2NGwyX2ZvdXJjYygnaScsICdwJywgJzMnLCAn
+YicpIC8qDQo+IElQVTMgcGFja2VkIDEwLWJpdCBCR0dSIGJheWVyICovDQo+IA0KDQo=
