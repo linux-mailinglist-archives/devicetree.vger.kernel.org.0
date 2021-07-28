@@ -2,53 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F08D33D9020
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 16:10:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 844023D903B
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 16:19:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236665AbhG1OKz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 10:10:55 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:49924 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236668AbhG1OKz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Jul 2021 10:10:55 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=dn7Kp73y2jWoHdQMYsqP+HDt7Jswx+VZ/Cd2d00WOak=; b=oDIUmU8rD1Z1i6GeQCvr9SAo2b
-        op4tL38NAz23ewHcEPU8UnkGvI3vbXp0cQ873+q2r+zreVEB4JTlymNHLOkvyZc4Zmpw8+zCJERmi
-        IKMZGsD0lniUXMd6+d9ed70GHGPOkiCcHI/ZKj8SsZAz9MoS7BiNR249pS/37fbTIM9U=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1m8kGl-00FB92-Q5; Wed, 28 Jul 2021 16:10:47 +0200
-Date:   Wed, 28 Jul 2021 16:10:47 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Joakim Zhang <qiangqing.zhang@nxp.com>
-Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V2 net-next 5/7] net: fec: add MAC internal delayed clock
- feature support
-Message-ID: <YQFlZ+eZRTikjItm@lunn.ch>
-References: <20210728115203.16263-1-qiangqing.zhang@nxp.com>
- <20210728115203.16263-6-qiangqing.zhang@nxp.com>
+        id S236646AbhG1OTF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 10:19:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36544 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236619AbhG1OTE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 10:19:04 -0400
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E478C061764;
+        Wed, 28 Jul 2021 07:19:03 -0700 (PDT)
+Received: by mail-yb1-xb2e.google.com with SMTP id g76so4231550ybf.4;
+        Wed, 28 Jul 2021 07:19:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=ejXULwDzPXwJ/LTVaK86AHBcOGDiYvQDKdZvKfGyr+E=;
+        b=izLih9JXIZe8uv9f2Y5f/dBmFONzdLNBX3NwBX8w15sMRi8/cSqjpYVpa7WPKvKmb0
+         YVeN4seCnkjHpYV1oC6tmJDU3mZiehtap5QguPxcxHLBLD8Ki993awTH38hIi9mFB9Yc
+         cbOL/VtgQCEQsKgtMylpl+gZftgiDw8jaEMXp463BpIbSnFURa+wj8OatcJMBWMvqo3K
+         vb7rXPy9/j+oseSpdi1cxsRVIHyZNLJPkpTm58hwkgdJpl+7x7FjkwEzcbEiH/5Fdb+B
+         sqmxgMRqluJgNLeHvg4ueTvoxpNW6YpitOnPKeA7gpKu12Vb0YjPZRKK6iEIstxIHpCN
+         P4CQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=ejXULwDzPXwJ/LTVaK86AHBcOGDiYvQDKdZvKfGyr+E=;
+        b=WtX8zBESWKjXiMLLsGI3TbmqPYq7Bewardxk6hGDTUnhknMEEAsWNOKyZlQoZ3OMNq
+         3xh+UZsv99s5GTqJcgGj8GCVZ/ZwX93C1S9EloON2b3WspT5fm0+6Hs1hvUn9tKKEuqZ
+         +N4HAQ9drv9sWH3xZXDQDCnx42HcUlk9ZIki8ZicTQb28obHiZF7ZmR/nEAub8Fn1JoM
+         NiZ2X6zbt8XDsCjMknC2Cw+ocClVhU4MWbW8PQUC3KTdJZ7fFV0bKyp0ugE7dkiglwcc
+         /dEYgsjFeueOQJ7qf6/O//muQDADtfkji7SOWelbe29FGLbVsLKEodbOxMYuGpXDuc8W
+         fGeQ==
+X-Gm-Message-State: AOAM531mvJIHe4yvoZOCMPqii/BlF1bQF+F/n8K6oZCK88fyOpbhGEui
+        ddF+9RXVUN/F0ms+6AYGz/AnAsYN6UBRBBahkzw=
+X-Google-Smtp-Source: ABdhPJxuR9VjMFM8xLFvjAI/XQvLoRT9mV8kY/kO1BcownGU4fjyQoi5dCN6U0Vxw4ND7H9kfs1D+MrhHXnhCNLzZ1o=
+X-Received: by 2002:a25:3c5:: with SMTP id 188mr8800245ybd.437.1627481942356;
+ Wed, 28 Jul 2021 07:19:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210728115203.16263-6-qiangqing.zhang@nxp.com>
+References: <20210728135534.703028-1-pgwipeout@gmail.com> <20210728135534.703028-7-pgwipeout@gmail.com>
+ <13247009.uLZWGnKmhe@diego>
+In-Reply-To: <13247009.uLZWGnKmhe@diego>
+From:   Peter Geis <pgwipeout@gmail.com>
+Date:   Wed, 28 Jul 2021 10:18:49 -0400
+Message-ID: <CAMdYzYqR+ocrXQi8TOHY0Yd2oULXuPgE_QnbcuQSw=BoaumBKA@mail.gmail.com>
+Subject: Re: [PATCH 6/9] arm64: dts: rockchip: add missing rk3568 cru phandles
+To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +	/* For rgmii internal delay, valid values are 0ps and 2000ps */
-> +	if (of_property_read_u32(np, "tx-internal-delay-ps", &rgmii_delay))
-> +		fep->rgmii_txc_dly = true;
-> +	if (of_property_read_u32(np, "rx-internal-delay-ps", &rgmii_delay))
-> +		fep->rgmii_rxc_dly = true;
+On Wed, Jul 28, 2021 at 10:06 AM Heiko St=C3=BCbner <heiko@sntech.de> wrote=
+:
+>
+> Hi Peter,
+>
+> Am Mittwoch, 28. Juli 2021, 15:55:31 CEST schrieb Peter Geis:
+> > The grf and pmugrf phandles are necessary for the pmucru and cru to
+> > modify clocks. Add these phandles to permit adjusting the clock rates
+> > and muxes.
+> >
+> > Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+> > ---
+> >  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 3 +++
+> >  1 file changed, 3 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot=
+/dts/rockchip/rk356x.dtsi
+> > index 0905fac0726a..8ba0516eedd8 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> > +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> > @@ -218,6 +218,8 @@ grf: syscon@fdc60000 {
+> >       pmucru: clock-controller@fdd00000 {
+> >               compatible =3D "rockchip,rk3568-pmucru";
+> >               reg =3D <0x0 0xfdd00000 0x0 0x1000>;
+> > +             rockchip,grf =3D <&grf>;
+> > +             rockchip,pmugrf =3D <&pmugrf>;
+>
+> I don't think the pmucru needs both and in fact the mainline
+> clock driver should just reference its specific grf at all, i.e.
+>         pmucru -> pmugrf (via the rockchip,grf handle)
+>         cru -> grf
+>
+> I've not seen anything breaking this scope so far.
 
-I don't see any validation of the only supported values are 0ps and
-2000ps.
+I thought the same thing as well, but for some reason the driver
+refuses to apply assigned-clocks to the plls unless these are all
+present.
+If the driver can get these assignments automatically eventually,
+perhaps it's a loading order issue?
 
-	Andrew
+Thinking about it, it's probably the grf and pmugrf haven't probed
+when the driver is attempting to assign these, and tying them together
+forces the probe to happen first.
+
+>
+>
+> Heiko
+>
+> >               #clock-cells =3D <1>;
+> >               #reset-cells =3D <1>;
+> >       };
+> > @@ -225,6 +227,7 @@ pmucru: clock-controller@fdd00000 {
+> >       cru: clock-controller@fdd20000 {
+> >               compatible =3D "rockchip,rk3568-cru";
+> >               reg =3D <0x0 0xfdd20000 0x0 0x1000>;
+> > +             rockchip,grf =3D <&grf>;
+> >               #clock-cells =3D <1>;
+> >               #reset-cells =3D <1>;
+> >       };
+> >
+>
+>
+>
+>
