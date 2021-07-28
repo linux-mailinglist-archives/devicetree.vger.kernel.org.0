@@ -2,365 +2,328 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 377F93D90A9
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 16:31:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B2C23D90AD
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 16:31:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237406AbhG1Obh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 10:31:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47462 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236868AbhG1O2s (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Jul 2021 10:28:48 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E4F8A60F91;
-        Wed, 28 Jul 2021 14:28:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627482519;
-        bh=98m7jHCj8Qw27iWe0c9Uq3hXqk5DfR0xhuh5cbT3b/0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=NVHs085nLK/SJ7YUy+ykqb0d9RwebH/VQJFV83SsKAHb5wiP+oAClubC/c9X4Hs8u
-         Qe8CdeOGt0omFrJdXRekq/rURpGum+tk9ho4GKAj6nj8GaU3oXUEzocYcV8+rfPYpP
-         bM2eFd1+tKDFiqKY6ECx9Fh7+lKMnsMgMx/RgYn8bGe+0dpu/4Fla/bzOtGCOWyInW
-         L7TQmZQMGZ25w8rdBx0QkkQvdXm5JMyIShQNX48cvQuGx5N0fmTXX5ozTpQAt9FfA2
-         dZnTr2KhIK4wQtB8DO4rkWmJ+4iDXGSCduqKWNX2fycVxTlqR3iOjUmt0pD8eDi9mV
-         UUAr16AJMjsRw==
-Received: by mail-ej1-f48.google.com with SMTP id ga41so4898881ejc.10;
-        Wed, 28 Jul 2021 07:28:39 -0700 (PDT)
-X-Gm-Message-State: AOAM533IAIKeqR+Tbi9wr0BrrZDsRdxZAn++DZcB1Bo3kIQqe6vMnt7z
-        e8OQJD9RmDNqxFfce3SwYZFDPY1gZyKyMIDMEQ==
-X-Google-Smtp-Source: ABdhPJxbku8IzWJXJ8o8drnqIdmudsKIsqQxvtxY1mjL/QDryCiCm4S3m1bpO6OlSpU1n2oGnpG4hp7XGc775Evo+7o=
-X-Received: by 2002:a17:907:766c:: with SMTP id kk12mr4450790ejc.525.1627482518348;
- Wed, 28 Jul 2021 07:28:38 -0700 (PDT)
+        id S237463AbhG1Obi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 10:31:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39402 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237768AbhG1ObS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 10:31:18 -0400
+Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12EFEC061757;
+        Wed, 28 Jul 2021 07:31:17 -0700 (PDT)
+Received: by mail-qk1-x731.google.com with SMTP id t66so2430258qkb.0;
+        Wed, 28 Jul 2021 07:31:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:to:cc:references:from:subject:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=OIT9wiYfRoogamrg1PzE3Z+TJ72/Ixxk1vDz3bswdc8=;
+        b=YQQm3KH19/yI/CDLfvuWq71i1fb5qvnbxEKehPBdMHl/lnVV2IF+h6g43oF536gR3/
+         pX1VaVd8klpVHXC7CZEd+x4DkJONkJULeXIF7grcjic0mU4qpK+2Qg7OpRuJT58zzBFH
+         ue8+NbDZjJxyzNNGp1qf4nVEQWX/QYSNwsO/8i0Z3ERn+jWpEAsH16B4Jc+jPHX1BDzt
+         et9/39zaLUJJLtW2oT6yvmEO1XtF882p8rn+Ep6Q7MLR3b1LjfJf8V29nnH053/DxeY4
+         dDqW08RmVyH1c34jqMdKMH4tor5v6cWz1XmuAOT1QgHZtsT9WPHrmhsmkln0ZYTNBaRQ
+         Ybbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:to:cc:references:from:subject:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=OIT9wiYfRoogamrg1PzE3Z+TJ72/Ixxk1vDz3bswdc8=;
+        b=SpW+0Bgl1m84TiouAVk4gjoZVxujG+k76oyAqivAwL6B2Ub3fLSjWpR03/LsvgYm82
+         hu0dRI9MY1YIJBvILn7HvxG33jWHpDJ6Vewmc8TF2v/9k2ic5hxiiFLvR4WUgVwO/NsV
+         N/WKsS3qCmRcGClPuZ/6JfezkZoJdgWhsoWQjZDHudT20hWdYeczDavjUnLXw33sMxe/
+         SrkwgYH52zgDLEK87wgEkPkMEzHD1+0CVGN2oco1YGswLj2xe/Ctju+PS52J7c+3hqfQ
+         mMiC40ja0mUVBuUU1eIFK08sGGENQ8gxKLqBdGIs5AU6H7IwNqUv0jezEfsdVXHdxLnl
+         JWqg==
+X-Gm-Message-State: AOAM532otmzh6+czJLNCBo0VEgJAFgQs21ZfCxEXYXrvRc2bGo+lMIS7
+        CyPflwJFmYHAtXi7Du6gFLilt/0tIYQ=
+X-Google-Smtp-Source: ABdhPJywG2WGGNIe2WrX++bXEMak6Y98dS1qxsE3PTtQKrjyNx8e9TS4ehSvsYp1l8AwO1sihsfBeg==
+X-Received: by 2002:a37:9401:: with SMTP id w1mr27266623qkd.166.1627482676011;
+        Wed, 28 Jul 2021 07:31:16 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id k10sm5903qtp.76.2021.07.28.07.31.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Jul 2021 07:31:15 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+To:     Kyle Tso <kyletso@google.com>, heikki.krogerus@linux.intel.com,
+        gregkh@linuxfoundation.org, robh+dt@kernel.org
+Cc:     badhri@google.com, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20210728092930.2552619-1-kyletso@google.com>
+ <20210728092930.2552619-3-kyletso@google.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v3 2/2] usb: typec: tcpm: Support non-PD mode
+Message-ID: <346bf811-52d1-cd27-649b-7cd1b9b2fbc6@roeck-us.net>
+Date:   Wed, 28 Jul 2021 07:31:13 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <cover.1626855713.git.mchehab+huawei@kernel.org>
- <946f2426bc542638240980931eae924c57f2ba27.1626855713.git.mchehab+huawei@kernel.org>
- <20210723225059.GA2727093@robh.at.kernel.org> <20210724021244.780297ee@coco.lan>
- <CAL_JsqLA7Z908SQKkZpyEcCvpkWsW3pa42eajpxCSkbUy4rv9g@mail.gmail.com>
- <20210727015020.403bbf73@coco.lan> <20210727085205.5aafb5c9@coco.lan>
- <CAL_Jsq+5raGQAK5T4SoC=Jfzsbov-y4u-rdJ3DJt+ryYOK8q2w@mail.gmail.com> <20210728093838.4c7114bf@coco.lan>
-In-Reply-To: <20210728093838.4c7114bf@coco.lan>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 28 Jul 2021 08:28:26 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLQX-zkWigA3P4PG2LikCQMq6Lrh8Ok95P4KbcbNS6+_w@mail.gmail.com>
-Message-ID: <CAL_JsqLQX-zkWigA3P4PG2LikCQMq6Lrh8Ok95P4KbcbNS6+_w@mail.gmail.com>
-Subject: Re: [PATCH v7 06/10] dt-bindings: phy: Add bindings for HiKey 970
- PCIe PHY
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-        Linuxarm <linuxarm@huawei.com>, mauro.chehab@huawei.com,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-phy@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210728092930.2552619-3-kyletso@google.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 28, 2021 at 1:38 AM Mauro Carvalho Chehab
-<mchehab+huawei@kernel.org> wrote:
->
-> Em Tue, 27 Jul 2021 16:17:43 -0600
-> Rob Herring <robh@kernel.org> escreveu:
->
-> > On Tue, Jul 27, 2021 at 12:52 AM Mauro Carvalho Chehab
-> > <mchehab+huawei@kernel.org> wrote:
-> > >
-> > > Em Tue, 27 Jul 2021 01:50:20 +0200
-> > > Mauro Carvalho Chehab <mchehab+huawei@kernel.org> escreveu:
-> > >
-> > > > Em Mon, 26 Jul 2021 15:37:28 -0600
-> > > > Rob Herring <robh@kernel.org> escreveu:
-> > > >
-> > >
-> > > > > > > > +  reset-gpios:
-> > > > > > > > +    description: PCI PERST reset GPIOs
-> > > > > > > > +    maxItems: 4
-> > > > > > > > +
-> > > > > > > > +  clkreq-gpios:
-> > > > > > > > +    description: Clock request GPIOs
-> > > > > > > > +    maxItems: 3
-> > > > > > >
-> > > > > > > Again, this will not work.
-> > > > > >
-> > > > > > Just to be sure: you're talking about the PERST# gpios (e. g. reset-gpios)
-> > > > > > here, right?
-> > > > >
-> > > > > Both that and CLKREQ.
-> > >
-> > > The original DT from the downstream version (found at Linaro's tree)
-> > > has:
-> > >
-> > >         pcie@f4000000 {
-> > >                 compatible = "hisilicon,hikey970";
-> > > ...
-> > >                 switch,reset-gpios = <&gpio7 0 0 >;
-> > >                 eth,reset-gpios = <&gpio25 2 0 >;
-> > >                 m_2,reset-gpios = <&gpio3 1 0 >;
-> > >                 mini1,reset-gpios = <&gpio27 4 0 >;
-> > >
-> > >                 eth,clkreq-gpios = <&gpio20 6 0 >;
-> > >                 m_2,clkreq-gpios = <&gpio27 3 0 >;
-> > >                 mini1,clkreq-gpios = <&gpio17 0 0 >;
-> > >         };
-> > >
-> > > So, if we're willing to have a single reset-gpios for the PCIe
-> > > interface, in order to follow the current pci-bus.yaml schema,
-> > > this would probably be:
-> > >
-> > >         reset-gpios = <&gpio7 0 0 >;
-> > >
-> > > which maps to the PEX8606 PCIe bridge chip.
-> > >
-> > > With that, DT still need to point a per-slot clkreq and
-> > > reset-gpio.
-> > >
-> > > One alternative would be to map it as either 3 PCI or PHY
-> > > child nodes. E. g. something like this:
-> > >
-> > >         pcie@f4000000 {
-> > >                 compatible = "hisilicon,kirin970-pcie";
-> > > ...
-> > >                 reset-gpios = <&gpio7 0 0 >;
-> > >
-> > >                 slot {
-> > >                         eth {
-> > >                                 reset-gpios = <&gpio25 2 0>;
-> > >                                 clkreq-gpios = <&gpio20 6 0>;
-> > >                         };
-> > >                         m2 {
-> > >                                 reset-gpios = <&gpio3 1 0>;
-> > >                                 clkreq-gpios = <&gpio27 3 0>;
-> > >                         };
-> > >                         mini1 {
-> > >                                 reset-gpios = <&gpio27 4 0>;
-> > >                                 clkreq-gpios = <&gpio17 0 0>;
-> > >                         };
-> > >                 };
-> > >         };
-> > >
-> > >
-> > > Placing the child nodes ("slot"?) at the pci bus properties makes more
-> > > sense to me, but placing them at the PHY node has the advantage of
-> > > only affecting Kirin 970.
-> > >
-> > > In either case, if each child would need a different power supply,
-> > > it won't be hard to add a "slot-supply" property later on.
-> > >
-> > > Would something like that be acceptable for you?
-> >
-> > On the right track, but there's already a definition for what child
-> > devices look like in pci2_1.pdf. I think you want something like this:
-> >
-> > pcie@f4000000 { // RP: Bus 0, Device 0
-> >     compatible = "hisilicon,kirin970-pcie";
-> >     ...
-> >     reset-gpios = <&gpio7 0 0>;  // PERST to switch
-> >
-> >     pcie@0 { // PCIe switch: Bus 1, Device 0
-> >         reg = <0 0 0 0 0>;
-> >         compatible = "pciclass,0604";
-> >         device_type = "pci";
-> >
-> >         pcie@1 { // NC (Can omit this node)
-> >             reg = <0x80 0 0 0 0>;
-> >             compatible = "pciclass,0604";
-> >             device_type = "pci";
-> >         };
-> >
-> >         pcie@4 { // M.2
-> >             reg = <0x200 0 0 0 0>;
->
-> Not sure what to put at reg. I suspect that the best would be to follow
-> the PEX port number, as, if one day someone decides to implement an
-> I2C driver, this might be useful.
+On 7/28/21 2:29 AM, Kyle Tso wrote:
+> Even if the Type-C controller supports PD, it is doable to disable PD
+> capabilities with the current state machine in TCPM. Without enabling RX
+> in low-level drivers and with skipping the power negotiation, the port
+> is eligible to be a non-PD Type-C port. Use new flags whose values are
+> populated from the device tree to decide the port PD capability. Adding
+> "pd-unsupported" property in device tree indicates that the port does
+> not support PD. If "pd-unsupported" is not found, "typec-power-opmode"
 
-It's defined in the PCI bus binding. Basically, it's the BDF of the
-device. However, as the bus number is dynamic, I think we want to
-leave that as 0 for FDT. The function is optional and always 0 in this
-case.
+"is not found" -> "is found" (based on previous revision)
 
+I think "If PD is not supported, ..." might be a better wording and
+avoid the use of a property name here.
 
-> >             compatible = "pciclass,0604";
-> >             device_type = "pci";
-> >             reset-gpios = <&gpio7 1 0>; // PERST to M.2 slot
->
-> We also need the clock-req phandle for the three devices.
+> shall be added to specify the advertised Rp value if the port supports
+> SRC role.
+> 
+> Signed-off-by: Kyle Tso <kyletso@google.com>
+> ---
+> changes since v2:
+> - Changed the control flow if the port is SNK or DRP. Return directly if
+>    the flag is false (PD not supported). Read "self-powered" before that.
+> 
+>   drivers/usb/typec/tcpm/tcpm.c | 88 ++++++++++++++++++++++++++++-------
+>   1 file changed, 70 insertions(+), 18 deletions(-)
+> 
+> diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
+> index 5b22a1c931a9..d8d6ef8c6282 100644
+> --- a/drivers/usb/typec/tcpm/tcpm.c
+> +++ b/drivers/usb/typec/tcpm/tcpm.c
+> @@ -316,6 +316,7 @@ struct tcpm_port {
+>   	struct typec_partner *partner;
+>   
+>   	enum typec_cc_status cc_req;
+> +	enum typec_cc_status src_rp;	/* work only if pd_supported == false */
+>   
+>   	enum typec_cc_status cc1;
+>   	enum typec_cc_status cc2;
+> @@ -323,6 +324,7 @@ struct tcpm_port {
+>   
+>   	bool attached;
+>   	bool connected;
+> +	bool pd_supported;
+>   	enum typec_port_type port_type;
+>   
+>   	/*
+> @@ -804,6 +806,7 @@ static void tcpm_apply_rc(struct tcpm_port *port)
+>   	}
+>   }
+>   
+> +
 
-Hopefully, you can figure out where those belong now...
+stray empty line
 
->
-> >        };
-> >
-> >         pcie@5 { // Mini
-> >             reg = <0x280 0 0 0 0>;
-> >             compatible = "pciclass,0604";
-> >             device_type = "pci";
-> >             reset-gpios = <&gpio7 2 0>; // PERST to Mini slot
-> >         };
-> >
-> >         pcie@7 { // Ethernet
-> >             reg = <0x380 0 0 0 0>;
-> >             compatible = "pciclass,0604";
-> >             device_type = "pci";
-> >             reset-gpios = <&gpio7 3 0>; // PERST to Ethernet
-> >
-> >             ethernet@0 {
-> >                 reg = <0 0 0 0 0>;
-> >                 local-mac-address = [ 00 01 02 03 04 05 06 ];
-> >             };
->
-> No need to add a mac address here. The Ethernet card has a mac
-> already:
+>   /*
+>    * Determine RP value to set based on maximum current supported
+>    * by a port if configured as source.
+> @@ -815,6 +818,9 @@ static enum typec_cc_status tcpm_rp_cc(struct tcpm_port *port)
+>   	int nr_pdo = port->nr_src_pdo;
+>   	int i;
+>   
+> +	if (!port->pd_supported)
+> +		return port->src_rp;
+> +
+>   	/*
+>   	 * Search for first entry with matching voltage.
+>   	 * It should report the maximum supported current.
+> @@ -3568,9 +3574,11 @@ static int tcpm_src_attach(struct tcpm_port *port)
+>   	if (ret < 0)
+>   		return ret;
+>   
+> -	ret = port->tcpc->set_pd_rx(port->tcpc, true);
+> -	if (ret < 0)
+> -		goto out_disable_mux;
+> +	if (port->pd_supported) {
+> +		ret = port->tcpc->set_pd_rx(port->tcpc, true);
+> +		if (ret < 0)
+> +			goto out_disable_mux;
+> +	}
+>   
+>   	/*
+>   	 * USB Type-C specification, version 1.2,
+> @@ -3600,7 +3608,8 @@ static int tcpm_src_attach(struct tcpm_port *port)
+>   out_disable_vconn:
+>   	tcpm_set_vconn(port, false);
+>   out_disable_pd:
+> -	port->tcpc->set_pd_rx(port->tcpc, false);
+> +	if (port->pd_supported)
+> +		port->tcpc->set_pd_rx(port->tcpc, false);
+>   out_disable_mux:
+>   	tcpm_mux_set(port, TYPEC_STATE_SAFE, USB_ROLE_NONE,
+>   		     TYPEC_ORIENTATION_NONE);
+> @@ -3804,6 +3813,20 @@ static enum typec_pwr_opmode tcpm_get_pwr_opmode(enum typec_cc_status cc)
+>   	}
+>   }
+>   
+> +static enum typec_cc_status tcpm_pwr_opmode_to_rp(enum typec_pwr_opmode opmode)
+> +{
+> +	switch (opmode) {
+> +	case TYPEC_PWR_MODE_USB:
+> +		return TYPEC_CC_RP_DEF;
+> +	case TYPEC_PWR_MODE_1_5A:
+> +		return TYPEC_CC_RP_1_5;
+> +	case TYPEC_PWR_MODE_3_0A:
+> +	case TYPEC_PWR_MODE_PD:
+> +	default:
+> +		return TYPEC_CC_RP_3_0;
+> +	}
+> +}
+> +
+>   static void run_state_machine(struct tcpm_port *port)
+>   {
+>   	int ret;
+> @@ -3914,6 +3937,10 @@ static void run_state_machine(struct tcpm_port *port)
+>   		if (port->ams == POWER_ROLE_SWAP ||
+>   		    port->ams == FAST_ROLE_SWAP)
+>   			tcpm_ams_finish(port);
+> +		if (!port->pd_supported) {
+> +			tcpm_set_state(port, SRC_READY, 0);
+> +			break;
+> +		}
+>   		port->upcoming_state = SRC_SEND_CAPABILITIES;
+>   		tcpm_ams_start(port, POWER_NEGOTIATION);
+>   		break;
+> @@ -4161,7 +4188,10 @@ static void run_state_machine(struct tcpm_port *port)
+>   				current_lim = PD_P_SNK_STDBY_MW / 5;
+>   			tcpm_set_current_limit(port, current_lim, 5000);
+>   			tcpm_set_charge(port, true);
+> -			tcpm_set_state(port, SNK_WAIT_CAPABILITIES, 0);
+> +			if (!port->pd_supported)
+> +				tcpm_set_state(port, SNK_READY, 0);
+> +			else
+> +				tcpm_set_state(port, SNK_WAIT_CAPABILITIES, 0);
+>   			break;
+>   		}
+>   		/*
+> @@ -4389,7 +4419,8 @@ static void run_state_machine(struct tcpm_port *port)
+>   		tcpm_set_vbus(port, true);
+>   		if (port->ams == HARD_RESET)
+>   			tcpm_ams_finish(port);
+> -		port->tcpc->set_pd_rx(port->tcpc, true);
+> +		if (port->pd_supported)
+> +			port->tcpc->set_pd_rx(port->tcpc, true);
+>   		tcpm_set_attached_state(port, true);
+>   		tcpm_set_state(port, SRC_UNATTACHED, PD_T_PS_SOURCE_ON);
+>   		break;
+> @@ -5898,6 +5929,7 @@ EXPORT_SYMBOL_GPL(tcpm_tcpc_reset);
+>   static int tcpm_fw_get_caps(struct tcpm_port *port,
+>   			    struct fwnode_handle *fwnode)
+>   {
+> +	const char *opmode_str;
+>   	const char *cap_str;
+>   	int ret;
+>   	u32 mw, frs_current;
+> @@ -5932,22 +5964,37 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
+>   		return ret;
+>   	port->typec_caps.type = ret;
+>   	port->port_type = port->typec_caps.type;
+> +	port->pd_supported = !fwnode_property_read_bool(fwnode, "pd-unsupported");
+>   
+>   	port->slow_charger_loop = fwnode_property_read_bool(fwnode, "slow-charger-loop");
+> +
 
-That was just for illustration of what a device node would look like
-should you need extra properties for a device. If you only needed to
-set the MAC address, guess what, you need to create the hierarchy
-above.
+Unnecessary whitespace change
 
->
->         60:fa:9d:xx:xx:xx
->
-> Which seems to be a valid one:
->
->         https://hwaddress.com/?q=60%3Afa%3A9d
->
-> >         };
-> >
-> >         pcie@9 { // NC
-> >             reg = <0x480 0 0 0 0>;
-> >             compatible = "pciclass,0604";
-> >             device_type = "pci";
-> >        };
-> > };
-> >
-> > This is based on what you previously sent:
-> > 00:00.0 PCI bridge: Huawei Technologies Co., Ltd. Device 3670 (rev 01)
-> > 01:00.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI
-> > Express Gen 2 (5.0 GT/s) Switch (rev ba)
-> > 02:01.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI
-> > Express Gen 2 (5.0 GT/s) Switch (rev ba)
-> > 02:04.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI
-> > Express Gen 2 (5.0 GT/s) Switch (rev ba)
-> > 02:05.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI
-> > Express Gen 2 (5.0 GT/s) Switch (rev ba)
-> > 02:07.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI
-> > Express Gen 2 (5.0 GT/s) Switch (rev ba)
-> > 02:09.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI
-> > Express Gen 2 (5.0 GT/s) Switch (rev ba)
-> > 06:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd.
-> > RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller (rev 07)
-> >
-> > A few notes:
-> > I left out #size-cells, #address-cells, and ranges for brevity.
-> >
-> > I'm not completely sure I've got the bridges mapped to the right
-> > functions on Hikey970. That's my best guess looking at the schematics.
-> > You should be able to confirm which bridge is the parent bridge for
-> > ethernet at least.
->
-> I added a NVMe to M.2 slot:
->
-> $ lspci -D -P -PP
-> 0000:00:00.0 PCI bridge: Huawei Technologies Co., Ltd. Device 3670 (rev 01)
-> 0000:00:00.0/01:00.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
-> 0000:00:00.0/01:00.0/02:01.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
-> 0000:00:00.0/01:00.0/02:04.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
-> 0000:00:00.0/01:00.0/02:05.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
-> 0000:00:00.0/01:00.0/02:07.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
-> 0000:00:00.0/01:00.0/02:09.0 PCI bridge: PLX Technology, Inc. PEX 8606 6 Lane, 6 Port PCI Express Gen 2 (5.0 GT/s) Switch (rev ba)
-> 0000:00:00.0/01:00.0/02:01.0/03:00.0 Non-Volatile memory controller: Samsung Electronics Co Ltd Device a809
-> 0000:00:00.0/01:00.0/02:07.0/06:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller (rev 07)
->
-> it sounds that all devices are behind the PEX 8606 bridge:
->         - port 1 seems to be the M.2 slot
->         - port 7 seems to be the Ethernet adapter
->
-> I don't have any mini PCIe devices here. I'll try to get one in order to be
-> sure about the topology.
+>   	if (port->port_type == TYPEC_PORT_SNK)
+>   		goto sink;
+>   
+>   	/* Get source pdos */
+> -	ret = fwnode_property_count_u32(fwnode, "source-pdos");
+> -	if (ret <= 0)
+> -		return -EINVAL;
+> +	if (port->pd_supported) {
+> +		ret = fwnode_property_count_u32(fwnode, "source-pdos");
+> +		if (ret <= 0)
+> +			return -EINVAL;
+>   
+> -	port->nr_src_pdo = min(ret, PDO_MAX_OBJECTS);
+> -	ret = fwnode_property_read_u32_array(fwnode, "source-pdos",
+> -					     port->src_pdo, port->nr_src_pdo);
+> -	if ((ret < 0) || tcpm_validate_caps(port, port->src_pdo,
+> -					    port->nr_src_pdo))
+> -		return -EINVAL;
+> +		port->nr_src_pdo = min(ret, PDO_MAX_OBJECTS);
+> +		ret = fwnode_property_read_u32_array(fwnode, "source-pdos",
+> +						     port->src_pdo, port->nr_src_pdo);
+> +		if ((ret < 0) || tcpm_validate_caps(port, port->src_pdo,
+> +						    port->nr_src_pdo))
 
-I found the mapping in table 4-1 from
-https://docs.broadcom.com/doc/PEX_8606-BA_Data_Book_v1.3_31Mar11.pdf
+Since we are changing this code, might as well get rid of the unnecessary ()
+around 'ret < 0'. Or, even better,
 
-So it is like this:
-Device 0 - lane 0 - upstream
-Device 1 - lane 4 - m.2
-Device 5 - lane 5 - mini PCIe
-Device 7 - lane 6 - ethernet
+		if (ret)
+			return ret;
+		ret = tcpm_validate_caps(port, port->src_pdo, port->nr_src_pdo);
+		if (ret)
+			return ret;
 
-'lane' is the signal numbering in the schematics.
+because that avoids overwriting the error return code from
+fwnode_property_read_u32_array().
 
->
-> > The compatible strings aren't strictly needed. Linux doesn't look at them.
->
-> If not needed, IMO the best would be to not add it, keeping it as
-> simple as possible.
+> +			return -EINVAL;
+> +	} else {
+> +		port->nr_src_pdo = 0;
 
-I would say that anything with extra properties should have a compatible.
+That should be unnecessary.
 
-> >
-> > There's a pretty complete example in:
-> > arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
->
-> Thanks!
->
-> > The simplest Linux implementation to handle the above is just walk the
-> > child nodes and get all the 'reset-gpios' properties. That's not the
-> > implementation I think we should have though. We should handle the
-> > GPIO as each bridge is probed and children scanned.
->
-> The power-on sequence is:
->
->         1. CLK, PHY and DWC initialization;
->         2. 21ms delay;
->         3. PERST# sent to each device;
->         4. 10ms delay;
->         5. adjust the eye diagram;
->         6. power off NOC.
->
-> Most of the above are at the PHY driver. Now, it would be possible to
-> map those as:
->
->         phy->init() - steps 1 and 2;
->         phy->power_on() - steps 4, 5 and 6.
->
-> And change somehow the pcie-kirin driver to only call phy->power_on()
-> after doing the bus probing sequence, but a change like that would mean
-> that the eye diagram will only be adjusted at the end. That doesn't
-> sound a good idea to me, as probing devices with a wrong eye diagram
-> could cause bit errors when talking to the devices inside the PCI bus.
-> This is likely not a problem if all devices are directly connected to
-> the hardware, but it could be an issue if someone uses either a M.2 or
-> a mini-PCI extensor.
+> +		ret = fwnode_property_read_string(fwnode, "typec-power-opmode", &opmode_str);
+> +		if (ret == 0) {
+> +			ret = typec_find_pwr_opmode(opmode_str);
+> +			if (ret < 0)
+> +				return ret;
+> +			port->src_rp = tcpm_pwr_opmode_to_rp(ret);
+> +		} else {
+> +			return ret;
+> +		}
 
-The eye diagram only applies to the link between the RP and switch.
-There's no way that any of the downstream PERSTs matter, that's just
-not logical. So you only need to deassert PERST on that link.
+I prefer 'normal' error handling.
+		if (ret)
+			return ret;
+		ret = typec_find_pwr_opmode(opmode_str);
+		...
 
-What happens if you only handle the switch PERST and CLKREQ? You
-should simply only discover the switch and no downstream devices.
+> +	}
+>   
+>   	if (port->port_type == TYPEC_PORT_SRC)
+>   		return 0;
+> @@ -5961,6 +6008,13 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
+>   	if (port->typec_caps.prefer_role < 0)
+>   		return -EINVAL;
+>   sink:
+> +	port->self_powered = fwnode_property_read_bool(fwnode, "self-powered");
+> +
+> +	if (!port->pd_supported) {
+> +		port->nr_snk_pdo = 0;
 
-> So, IMO, the best would be for the PHY driver to walk the child nodes
-> and get all the 'reset-gpios' properties.
->
-> With regards to the clock-req phandles, those should be enabled before
-> the PHY clocks, in order to avoid the SError issue.
+Should be unnecessary.
 
-Huh? What exactly causes an SError. Has to be some bus access. But
-again, it's only going to be the one for the RP link that matters
-here.
+> +		return 0;
+> +	}
+> +
+>   	/* Get sink pdos */
+>   	ret = fwnode_property_count_u32(fwnode, "sink-pdos");
+>   	if (ret <= 0)
+> @@ -5977,9 +6031,7 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
+>   		return -EINVAL;
+>   	port->operating_snk_mw = mw / 1000;
+>   
+> -	port->self_powered = fwnode_property_read_bool(fwnode, "self-powered");
+> -
+> -	/* FRS can only be supported byb DRP ports */
+> +	/* FRS can only be supported by DRP ports */
+>   	if (port->port_type == TYPEC_PORT_DRP) {
+>   		ret = fwnode_property_read_u32(fwnode, "new-source-frs-typec-current",
+>   					       &frs_current);
+> 
 
-> It should be easy to implement this at the the PCIe driver, but, this
-> should happen in early stages at the power-on sequence (before enabling
-> the DWC PHY clocks). So, the PCIe driver (or the PHY) will need to
-> walk the child nodes and get all the 'reset-gpios' properties.
->
-> For the sake of avoiding to duplicate the walk-though and parsing
-> logic, I would do it only at the PHY driver.
-
-Everyone else handles this stuff in their PCIe driver. You are not special...
-
-I have a plan to make the PERST handling common across all PCIe host
-drivers and also make the PHY handling common across DWC drivers.
-Don't make that harder.
-
-Rob
