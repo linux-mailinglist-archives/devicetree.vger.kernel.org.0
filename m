@@ -2,150 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37A8E3D92F6
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 18:14:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 300853D932A
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 18:26:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229897AbhG1QOw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 12:14:52 -0400
-Received: from mail-io1-f42.google.com ([209.85.166.42]:43761 "EHLO
-        mail-io1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229690AbhG1QOs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 12:14:48 -0400
-Received: by mail-io1-f42.google.com with SMTP id 185so3563982iou.10;
-        Wed, 28 Jul 2021 09:14:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=/mtNibC7Fvo1HsXc7idF5QFDgyDNt/2Z97m95bd7FNY=;
-        b=kmlx+UaX+fE2FaxL9cctyOthQ2jkQwZTDxplBe52ZPIOjg5N2PTDQmYM2SrfpjmfNA
-         BNpRdx0Oo5R8SDPwCULsfJhinY9NDSpJujPtQG5BIqT5GizdPemn+DN1NYIrZ7lUctw+
-         S5UjgQBHmdFnJxiTLW/aphwGLvrM4/EfbN91PofaJZEAsWrZF4vFqeYkV3PpyJw6vkyu
-         r62RcG5uw9UGDeW1CnkII/qezyWKJkKuWjyoeVl0QJ70YYFhfpRWCfaYeYs1lboedtaK
-         eAx5Ub09Yghu1OL6om3QUrl+9Vo0ut8S0+/lLlYCFVNLopt4ns9EhtISNK7kwMzpglWo
-         9unQ==
-X-Gm-Message-State: AOAM533wZB/eElSi5SODit0zyZYaN0IWEyI1iVVkfcBvmKu3SGmi8lq+
-        bg+TLFG0nZ0yoLlAqIC2KA==
-X-Google-Smtp-Source: ABdhPJzQ7wN03n2xbbg8YAn/mDpn/QiQPE7/urkDzDsUYKTWFpi4oAUGKuqfdsnDqk1S3nx+Php6GQ==
-X-Received: by 2002:a05:6638:22f:: with SMTP id f15mr550556jaq.141.1627488884481;
-        Wed, 28 Jul 2021 09:14:44 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id j11sm176849ilu.78.2021.07.28.09.14.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Jul 2021 09:14:43 -0700 (PDT)
-Received: (nullmailer pid 1168840 invoked by uid 1000);
-        Wed, 28 Jul 2021 16:14:41 -0000
-Date:   Wed, 28 Jul 2021 10:14:41 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Jens Axboe <axboe@kernel.dk>, linux-ide@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Imre Kaloz <kaloz@openwrt.org>,
-        Krzysztof Halasa <khalasa@piap.pl>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 4/5] pata: ixp4xx: Add DT bindings
-Message-ID: <20210728161441.GA1163345@robh.at.kernel.org>
-References: <20210728090242.2758812-1-linus.walleij@linaro.org>
- <20210728090242.2758812-5-linus.walleij@linaro.org>
+        id S229501AbhG1Q0t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 12:26:49 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:56786 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229515AbhG1Q0s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 12:26:48 -0400
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 105A23F;
+        Wed, 28 Jul 2021 18:26:46 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1627489606;
+        bh=CQuHJ4sTC6shUZSx8nMiM+y/K6DN7rznAFMUxzECdjg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=u4b51Zv+WUyJeLRz21ZlaBcBHnxwdFalXuPIX4FM/LuFZfN0Zi+AJzEVs6UlvotoE
+         K2zOe/7y0GbhV4WLaoh6ge/h+Y3KZmRkvSuDTfDphgfjQiTpIot8XeJeRp3XMtPXrE
+         w19yhYgk+zoLsvcR12DVXFyklN1RkYlYGF4P9yX0=
+Date:   Wed, 28 Jul 2021 19:26:39 +0300
+From:   Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+To:     dri-devel@lists.freedesktop.org
+Cc:     linux-renesas-soc@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [RESEND] [PATCH v2 1/2] dt-bindings: display: bridge: Add binding
+ for R-Car MIPI DSI/CSI-2 TX
+Message-ID: <YQGFP/cFoSksPyn+@pendragon.ideasonboard.com>
+References: <20210623135639.17125-1-laurent.pinchart+renesas@ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210728090242.2758812-5-linus.walleij@linaro.org>
+In-Reply-To: <20210623135639.17125-1-laurent.pinchart+renesas@ideasonboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 28, 2021 at 11:02:41AM +0200, Linus Walleij wrote:
-> This adds device tree bindings for the Intel IXP4xx compact flash card
-> interface.
-> 
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
->  .../ata/intel,ixp4xx-compact-flash.yaml       | 62 +++++++++++++++++++
->  1 file changed, 62 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/ata/intel,ixp4xx-compact-flash.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/ata/intel,ixp4xx-compact-flash.yaml b/Documentation/devicetree/bindings/ata/intel,ixp4xx-compact-flash.yaml
-> new file mode 100644
-> index 000000000000..b254be858de6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/ata/intel,ixp4xx-compact-flash.yaml
-> @@ -0,0 +1,62 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/ata/intel,ixp4xx-compact-flash.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Intel IXP4xx CompactFlash Card Controller
-> +
-> +maintainers:
-> +  - Linus Walleij <linus.walleij@linaro.org>
-> +
-> +description: |
-> +  The IXP4xx network processors have a CompactFlash interface that presents
-> +  a CompactFlash card to the system as a true IDE (parallell ATA) device. The
+The R-Car MIPI DSI/CSI-2 TX is embedded in the Renesas R-Car V3U SoC. It
+can operate in either DSI or CSI-2 mode, with up to four data lanes.
 
-typo. (you can setup checkpatch.pl to do spell checking)
+Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+---
+Looks like I forgot to CC the devicetree mailing list and Rob Herring on
+the first try. Resending, sorry about that.
+---
+ .../display/bridge/renesas,dsi-csi2-tx.yaml   | 118 ++++++++++++++++++
+ MAINTAINERS                                   |   1 +
+ 2 files changed, 119 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
 
-> +  device is always connected to the expansion bus of the IXP4xx SoCs using one
-> +  or two chip select areas and address translating logic on the board. The
-> +  node must be placed inside a chip select node on the IXP4xx expansion bus.
-> +
-> +properties:
-> +  compatible:
-> +    const: intel,ixp4xx-compact-flash
-> +
-> +  reg:
-> +    minItems: 2
-> +    maxItems: 2
+diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
+new file mode 100644
+index 000000000000..afeeb967393d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
+@@ -0,0 +1,118 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/bridge/renesas,dsi-csi2-tx.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Renesas R-Car MIPI DSI/CSI-2 Encoder
++
++maintainers:
++  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
++
++description: |
++  This binding describes the MIPI DSI/CSI-2 encoder embedded in the Renesas
++  R-Car V3U SoC. The encoder can operate in either DSI or CSI-2 mode, with up
++  to four data lanes.
++
++properties:
++  compatible:
++    enum:
++      - renesas,r8a779a0-dsi-csi2-tx    # for V3U
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: Functional clock
++      - description: DSI (and CSI-2) functional clock
++      - description: PLL reference clock
++
++  clock-names:
++    items:
++      - const: fck
++      - const: dsi
++      - const: pll
++
++  power-domains:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Parallel input port
++
++      port@1:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description: DSI/CSI-2 output port
++
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              data-lanes:
++                minItems: 1
++                maxItems: 4
++
++            required:
++              - data-lanes
++
++    required:
++      - port@0
++      - port@1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - power-domains
++  - resets
++  - ports
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/r8a779a0-cpg-mssr.h>
++    #include <dt-bindings/power/r8a779a0-sysc.h>
++
++    dsi0: dsi-encoder@fed80000 {
++        compatible = "renesas,r8a779a0-dsi-csi2-tx";
++        reg = <0xfed80000 0x10000>;
++        power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
++        clocks = <&cpg CPG_MOD 415>,
++                 <&cpg CPG_CORE R8A779A0_CLK_DSI>,
++                 <&cpg CPG_CORE R8A779A0_CLK_CP>;
++        clock-names = "fck", "dsi", "pll";
++        resets = <&cpg 415>;
++
++        ports {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            port@0 {
++                reg = <0>;
++                dsi0_in: endpoint {
++                    remote-endpoint = <&du_out_dsi0>;
++                };
++            };
++
++            port@1 {
++                reg = <1>;
++                dsi0_out: endpoint {
++                    data-lanes = <1 2>;
++                    remote-endpoint = <&sn65dsi86_in>;
++                };
++            };
++        };
++    };
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index b2cbb5c49358..1c9ea6279189 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -6139,6 +6139,7 @@ L:	dri-devel@lists.freedesktop.org
+ L:	linux-renesas-soc@vger.kernel.org
+ S:	Supported
+ T:	git git://linuxtv.org/pinchartl/media drm/du/next
++F:	Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
+ F:	Documentation/devicetree/bindings/display/bridge/renesas,dw-hdmi.yaml
+ F:	Documentation/devicetree/bindings/display/bridge/renesas,lvds.yaml
+ F:	Documentation/devicetree/bindings/display/renesas,du.yaml
+-- 
+Regards,
 
-What is each entry?
+Laurent Pinchart
 
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +allOf:
-> +  - $ref: pata-common.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    bus@c4000000 {
-> +      compatible = "intel,ixp43x-expansion-bus-controller", "syscon";
-> +      reg = <0xc4000000 0x1000>;
-> +      native-endian;
-> +      #address-cells = <2>;
-> +      #size-cells = <1>;
-> +      ranges = <0 0x0 0x50000000 0x01000000>, <1 0x0 0x51000000 0x01000000>;
-> +      dma-ranges = <0 0x0 0x50000000 0x01000000>, <1 0x0 0x51000000 0x01000000>;
-> +      ide@1,0 {
-> +        compatible = "intel,ixp4xx-compact-flash";
-
-> +        intel,ixp4xx-eb-t1 = <3>;
-> +        intel,ixp4xx-eb-t2 = <3>;
-
-Can you omit these? Otherwise, this will start failing soon as 
-unevaluatedProperties is implemented (I have a test branch). Or you need 
-to handle child node properties as discussed.
-
-> +        reg = <1 0x00000000 0x1000>, <1 0x00040000 0x1000>;
-> +        interrupt-parent = <&gpio0>;
-> +        interrupts = <12 IRQ_TYPE_EDGE_RISING>;
-> +      };
-> +    };
-> +
-> +...
-> -- 
-> 2.31.1
-> 
-> 
