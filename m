@@ -2,143 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DDA193D8F29
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 15:32:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 627233D8FCD
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 15:55:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236519AbhG1Ncz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 09:32:55 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:54190 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236495AbhG1Ncz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 09:32:55 -0400
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 77FBCEE;
-        Wed, 28 Jul 2021 15:32:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1627479171;
-        bh=c1dkUuPXfClOIv5jpAqPkqsyfaPoUtpNHnoR7YUBKtE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JgCARYIVVkDVfEHmvs9gFM9xYM7j/CTlLRSZtKoKNqHJIs0AF6WwqQgMxUr03ru+P
-         ypa7AigHetwOwZZOaGKbE2sakovaTsIV6Ny//st1PPyyR+gwYKG/iCPI81o/tnAtk5
-         iwnjIUWpksVMQze9N4GnXsCRy6iR713Kq6mBzR0U=
-Date:   Wed, 28 Jul 2021 16:32:45 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     dafna.hirschfeld@collabora.com, shawnguo@kernel.org,
-        devicetree@vger.kernel.org, festevam@gmail.com,
-        kernel@pengutronix.de, kernel@puri.sm, krzk@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-staging@lists.linux.dev, m.felsch@pengutronix.de,
-        mchehab@kernel.org, phone-devel@vger.kernel.org, robh@kernel.org,
-        slongerbeam@gmail.com, Sascha Hauer <s.hauer@pengutronix.de>
-Subject: Re: [PATCH v10 0/3] media: imx: add support for imx8mq MIPI RX
-Message-ID: <YQFcfbrTmGw4kZvQ@pendragon.ideasonboard.com>
-References: <20210728091245.231043-1-martin.kepplinger@puri.sm>
+        id S236273AbhG1Nz4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 09:55:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59436 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232441AbhG1Nzz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 09:55:55 -0400
+Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62051C061757;
+        Wed, 28 Jul 2021 06:55:53 -0700 (PDT)
+Received: by mail-qk1-x730.google.com with SMTP id b20so2259868qkj.3;
+        Wed, 28 Jul 2021 06:55:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=pGfwAbdRt78qHTO96TNHse01yCgrSXx0nBQE1K40Z9k=;
+        b=oqxg8mVy/V6nu+jVSAFy/QCDzw4popNFWi0oMDsYaEG6drkfVexNbdx+GFQOcSCAgK
+         Q4I4iOETyduykRRnpF/1yZQ1S8r0gplh47RkJE8o61uTRV+O0qGHSZqaefM1+kFWwXJr
+         7fw1crb4tbEyYGRNKho8iLHDRLTTEjMVau7riZJi7ulD3ZWPtgh9jyEchpDYCktXY0NQ
+         wlX31YlIfnfKq264A0Wjoazr5fvy1CufiUQQ7oPI1IdlWLWCDjkRAZV4cq8vtudg1Med
+         hXemtX53BEFNnO34o2AAev56iHoUmsN7Y/zVokRyBFuT05FGteJHS+wpstmNVhCb/16N
+         xvuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=pGfwAbdRt78qHTO96TNHse01yCgrSXx0nBQE1K40Z9k=;
+        b=OTIxNHrgUmy8cKZlm2KjmPP1slDHldS5JMGoS+o7YOgkYRw7d2Ey51DujePpYsmLbN
+         6IdUOpWWkedbVpgqMCegRu25qCiowuPd49hi4NsLTbTYuUFuuIVlKpWzA0qAlH/fZAo1
+         Yke9L2vfbHz4dLaS5l7WzbmtpoCVT4whjGX3UviOn5V8eEUBxrKl1USokynyfm32ibzR
+         85CMb8anCeurIQqMMOgyH3b9XS5mwkmqxCtqVC1UF3CvtI22bo44v14uu81CWNH0bzkZ
+         +1YAlPkiF/5KZPQMXr2XaG1pf495Kmj+edbJ5rYADRtfxfLuGZlW9OFYsVFPXL3csIvA
+         HktA==
+X-Gm-Message-State: AOAM5313D9vPSnJqJr3k5uTJeGq7wh8MxDTor0B77sXQo6Ij9fFIG64B
+        LIaJ9WrAHbgDTsohsQYi3e8=
+X-Google-Smtp-Source: ABdhPJwFOefvh7nvrQLkSCRfqcRb4dWBL8gmNm47o675Elqgo8EaaKtcFOiaHI58yZ4EhsJVPVQQHg==
+X-Received: by 2002:a05:620a:a19:: with SMTP id i25mr27119975qka.426.1627480552482;
+        Wed, 28 Jul 2021 06:55:52 -0700 (PDT)
+Received: from master-laptop.sparksnet ([2601:153:980:85b1:b58:2ae8:d75f:660a])
+        by smtp.gmail.com with ESMTPSA id t64sm27202qkd.71.2021.07.28.06.55.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Jul 2021 06:55:51 -0700 (PDT)
+From:   Peter Geis <pgwipeout@gmail.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Peter Geis <pgwipeout@gmail.com>
+Subject: [PATCH 0/9] fixes and enablement for rk356x
+Date:   Wed, 28 Jul 2021 09:55:25 -0400
+Message-Id: <20210728135534.703028-1-pgwipeout@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210728091245.231043-1-martin.kepplinger@puri.sm>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
+Good Morning,
 
-On Wed, Jul 28, 2021 at 11:12:42AM +0200, Martin Kepplinger wrote:
-> hi,
-> 
-> This patch series adds a driver for the i.MX8MQ CSI MIPI receiver / controller.
-> 
-> It includes the driver, the dt-bindings and the DT addition to the SoC dtsi.
-> I test it using libcamera. Thanks to Laurent who helped a lot. I'm happy for
-> any feedback,
+This series aims to fix some early issues with the rk356x and enable
+nodes that are currently supported by the available drivers.
 
-Thank you for the series. I've submitted a pull request that contains
-patches 1/3 and 2/3.
+1. increases the max clocks in the dt-bindings to permit patch 3.
+2. fixes the mbi-alias, which points to the wrong location
+3. adds the gpio debounce clocks which are necessary for gpio to bind
+4. adds the common gmac1 node
+5. adds the tsadc nodes
+6. adds the missing cru and pmucru phandles necessary to reclock
+7. adjusts the gpll and ppll clocks to better support hardware
+8. enables the gmac1 on the Quartz64
+9. adds thermal support to the Quartz64
 
-Shawn, Sascha, how would you like to handle 3/3 ?
+Peter Geis (9):
+  dt-bindings: gpio: rockchip,gpio-bank: increase max clocks
+  arm64: dts: rockchip: fix rk3568 mbi-alias
+  arm64: dts: rockchip: add rk356x gpio debounce clocks
+  arm64: dts: rockchip: add rk356x gmac1 node
+  arm64: dts: rockchip: add rk3568 tsadc nodes
+  arm64: dts: rockchip: add missing rk3568 cru phandles
+  arm64: dts: rockchip: adjust rk3568 pll clocks
+  arm64: dts: rockchip: enable gmac node on quartz64-a
+  arm64: dts: rockchip: add thermal support to Quartz64 Model A
 
-> revision history
-> ----------------
-> v10: (thank you Dafna)
-> * improve send_level documentation.
-> * add some comments to 0x180 and 0x184
-> * after re-reading I could eliminate the unneeded setting of 0x184 (ignored
->   by setting 0x180 to 1).
-> 
-> v9: (thank you Laurent)
-> * improve getting the esc clock rate for hs_settle
-> https://lore.kernel.org/linux-media/20210726082117.2423597-1-martin.kepplinger@puri.sm/
-> 
-> v8: (thank you Laurent)
-> * calculate hs_settle for any clk rate and mode
-> * add reviewed-by tag
-> https://lore.kernel.org/linux-media/20210723101217.1954805-1-martin.kepplinger@puri.sm/T/
-> 
-> v7: (thank you Laurent and Rob)
-> * fix the binding example (include the reset driver)
-> * use pm_runtime_resume_and_get()
-> * fix some logic in init_cfg()
-> * add some useful code comments and fix minor bits found by Laurent in v6
-> https://lore.kernel.org/linux-media/20210716102244.581182-1-martin.kepplinger@puri.sm/T/#t
-> 
-> v6: (thank you Laurent and Rob)
-> * add reviewed-by tag to binding
-> * statically allocate clk_bulk_data
-> * fix how the hs_settle value is applied
-> * remove s_power calls
-> * remove the link_setup() callback implementation and make the link immutable
-> * more cleanups according to Laurents' review from v5
-> https://lore.kernel.org/linux-media/20210714111931.324485-1-martin.kepplinger@puri.sm/
-> 
-> v5: (thank you Laurent)
-> * fix reset usage by using the already supported reset controller driver
-> * remove clko2 (totally unrelated clock / had been included by accident)
-> * rename pxl clock to ui
-> https://lore.kernel.org/linux-media/20210618095753.114557-1-martin.kepplinger@puri.sm/
-> 
-> v4: (thank you Rob and Marco)
-> * create fsl,mipi-phy-gpr custom dt property instead of confusing "phy"
-> * add imx8mq-specific compatibile to imx8mq.dtsi for future use
-> https://lore.kernel.org/linux-media/20210614121522.2944593-1-martin.kepplinger@puri.sm/
-> 
-> v3: (thank you, Rob and Laurent)
-> among minor other things according to v2 review, changes include:
-> * better describe the clocks
-> * rename DT property "phy-reset" to "reset" and "phy-gpr" to "phy"
-> https://lore.kernel.org/linux-media/20210608104128.1616028-1-martin.kepplinger@puri.sm/T/#t
-> 
-> v2: (thank you, Dan and Guido)
-> among fixes according to v1 reviews, changes include:
-> * remove status property from dt-bindings example
-> * define a few bits in order to have less magic values
-> * use "imx8mq_mipi_csi_" as local function prefix
-> * read DT properties only during probe()
-> * remove dead code (log_status)
-> * add imx8mq_mipi_csi_release_icc()
-> * fix imx8mq_mipi_csi_init_icc()
-> https://lore.kernel.org/linux-media/20210531112326.90094-1-martin.kepplinger@puri.sm/
-> 
-> v1:
-> https://lore.kernel.org/linux-media/20210527075407.3180744-1-martin.kepplinger@puri.sm/T/#t
-> 
-> 
-> Martin Kepplinger (3):
->   dt-bindings: media: document the nxp,imx8mq-mipi-csi2 receiver phy and
->     controller
->   media: imx: add a driver for i.MX8MQ mipi csi rx phy and controller
->   arm64: dts: imx8mq: add mipi csi phy and csi bridge descriptions
-> 
->  .../bindings/media/nxp,imx8mq-mipi-csi2.yaml  | 174 +++
->  arch/arm64/boot/dts/freescale/imx8mq.dtsi     | 104 ++
->  drivers/staging/media/imx/Makefile            |   1 +
->  drivers/staging/media/imx/imx8mq-mipi-csi2.c  | 991 ++++++++++++++++++
->  4 files changed, 1270 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
->  create mode 100644 drivers/staging/media/imx/imx8mq-mipi-csi2.c
+ .../bindings/gpio/rockchip,gpio-bank.yaml     |   2 +-
+ .../boot/dts/rockchip/rk3566-quartz64-a.dts   |  66 +++++++++
+ .../boot/dts/rockchip/rk3568-pinctrl.dtsi     |   6 +
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi      | 136 +++++++++++++++++-
+ 4 files changed, 203 insertions(+), 7 deletions(-)
 
 -- 
-Regards,
+2.25.1
 
-Laurent Pinchart
