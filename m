@@ -2,58 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B773B3D91AD
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 17:19:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E4963D91B6
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 17:20:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235620AbhG1PTS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 11:19:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50586 "EHLO
+        id S237056AbhG1PUT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 11:20:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237163AbhG1PTR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 11:19:17 -0400
-Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 896A4C061757;
-        Wed, 28 Jul 2021 08:19:15 -0700 (PDT)
-Received: by mail-yb1-xb33.google.com with SMTP id q15so4561019ybu.2;
-        Wed, 28 Jul 2021 08:19:15 -0700 (PDT)
+        with ESMTP id S235574AbhG1PUS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 11:20:18 -0400
+Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42830C061757;
+        Wed, 28 Jul 2021 08:20:17 -0700 (PDT)
+Received: by mail-yb1-xb34.google.com with SMTP id p145so3494279ybg.6;
+        Wed, 28 Jul 2021 08:20:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/6eWkFQouDwZToZfzqmLvZAa+8eHzBjwiwsCPEZ3T78=;
-        b=oN9p2Q2hKZtCKNVMAT+NVxX1xipwNCvL4SYZ9WviVLfZeJ7CryQ9ipjmT2TDx9uLPZ
-         1Xm33ENbeoCwWOM5CaEnziOHXZhHlPkfjq/PyX8Om+HUQOvGJgPjJkuxuYaI2zipt3GJ
-         /GMhGb8wYkc2GKJOTVcUSda/yAUyUdgMN9IPEp30RTtQlbNTOyOz4M2JbLyZt4w6jsOI
-         QWSJ/y1bfrjCPBKVSTg/W6U4DdFz+UU2GrgGekos3fTJrDfYcjGOJTG7dn2r5rTE5+qS
-         TvLTgqMgUZkOrT63KGVItxnAlPD/U6VHa+DhdHdUHcuUU87n0M5Qjkz8Vc/eYhM2PyVO
-         MrEw==
+         :cc:content-transfer-encoding;
+        bh=C9e4N76VZyEvVhCoJ57+DYxJLCF2oxGdBxIJxV6PGVU=;
+        b=CFgFbL44s+UPKBdiA2vhX8GjtA7RaAE2vpOFqAxLycDqjTP64RMRTWR7qrqUNYHiYq
+         DL6eaVMJ1jwNsLi6mS7RhBy0UyU4TNoVwTVZ+uvWpCeCGdgTqkXlN9FePkQ0Lh4/aEBF
+         JWPCx08mcGnGFnVtt3JIGHWEfBFeTlCRM1taZdRyyb81ehxgy1fJ9bdanexy8PtQgurQ
+         1OMusjT7ycl/Eszzk8ah31ZIqsDCKTSzb/MUWN6oNALiYg+n7WU8IWwn1QKs/80qSAvi
+         2+TOaMRuVwT+HCX+VDtiRj4Fl3mockQVaNT51tcgE0jFjIliUokh/9z548h1/JFkIOha
+         +eMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/6eWkFQouDwZToZfzqmLvZAa+8eHzBjwiwsCPEZ3T78=;
-        b=CTAtS76amrAGkxkZiatrWI3SKjYZN/HenAeN/s4HD13ijEoGfPMKtQi1BJqUI+KbsA
-         95yE77CzLa5GHMy+AeFWHBFeWrf4AJrq38BjRmvjelGWHz6DWKuJWV2pKJg+FbHasiZu
-         ZYNJOq98N9QHXsOoCoGB3c4rh3d5T0VGU6+KSw8SVj20REM8rqwwhi/7uFbPW6G6VJnl
-         4QDeria7TIbh+eav58+Ik5hmN2Hl0EURkTFvSbNpPbhnftmOsHbtctmeU1Bx+uZgRIwN
-         Qpkof3TF9w3jN97bzYrEGYVUKaU19ulDf39DRppiDKL0CZamXODbeEPJQLKKhKjV5qi3
-         nfkg==
-X-Gm-Message-State: AOAM532MoVJkShIs3lCPkE96dMjNOkvJAuqxS5oEkwyGjLp3uLMbuWpr
-        Ccr8tMMeF0MFduMEHX5tpQChUYcbklULjbp4+OM=
-X-Google-Smtp-Source: ABdhPJycH7ZHcpeF3vjYS1kJ8DHksPXaFAYcATKn9VKTTwqXA64ilzqCFgKdeIJ43KoNBtYwMr8NcyT1fRpGgPY1ZCM=
-X-Received: by 2002:a5b:48f:: with SMTP id n15mr242372ybp.457.1627485554814;
- Wed, 28 Jul 2021 08:19:14 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=C9e4N76VZyEvVhCoJ57+DYxJLCF2oxGdBxIJxV6PGVU=;
+        b=jlPjHEQnZUZZQtPPxN06ppJpW9U8Pi2nTje/wngXsMoydel9Ifg+SO3bcpu0/Sft10
+         hzgwVDuE0BiFwWji3gqjoEXttmK1ntfwecVTqnUnTuDnd4OdeOrpq0Rj81LWn0B5BrBe
+         JRL5j2hVOVaF9sd9AsW8RjIMe8JvecOeQ4q1U81RBEUOjlrzK4SThi4S4RVg1Mo557tg
+         YI3RBwyJNNeAxArY/0cbAJr2GfYWeummf4bjEWoy3nrJ8LMqFKToeZWo4HkyYgfTduFc
+         yYNyZH/SVsx++uaKzPnmOzLZ5XP+FwCIlbRfEViHmuQvBn0zjTO8BZYIEGIvG2Qtg8gO
+         Vgvw==
+X-Gm-Message-State: AOAM532Cr8VZRykqmdHqlJszFMOXVj1RDaw5KG2N0J5bEEWIa5mgGfTN
+        QKpaOnXbC+23ciyAi+obmTqyP5vLSgFRJCoBL0g=
+X-Google-Smtp-Source: ABdhPJyU3e/C/5c1p9vu84o+w1Z8Xd+bdL5IDbjuLp5JPTUVvRN7Jgosu43o7A0ZYvayBICL1tceMp6z5a5uBGrDI4o=
+X-Received: by 2002:a5b:303:: with SMTP id j3mr227992ybp.433.1627485616549;
+ Wed, 28 Jul 2021 08:20:16 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210728122606.697619-1-pgwipeout@gmail.com> <20210728122606.697619-3-pgwipeout@gmail.com>
- <c7ea6f09-bed0-15d2-1124-44cf98898538@gmail.com>
-In-Reply-To: <c7ea6f09-bed0-15d2-1124-44cf98898538@gmail.com>
+References: <20210728122606.697619-1-pgwipeout@gmail.com> <20210728122606.697619-4-pgwipeout@gmail.com>
+ <3733382.QJadu78ljV@diego>
+In-Reply-To: <3733382.QJadu78ljV@diego>
 From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Wed, 28 Jul 2021 11:19:02 -0400
-Message-ID: <CAMdYzYoBHZ-8XfcAZ1uGGtT2EEY_wQQoAixhoArsBYVH62pbwA@mail.gmail.com>
-Subject: Re: [RFC PATCH 2/9] dt-bindings: phy: phy-rockchip-inno-usb2: add
- rk3568 documentation
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+Date:   Wed, 28 Jul 2021 11:20:03 -0400
+Message-ID: <CAMdYzYpcqJHedu=xBBLC60j1wcFQ9zL1R73ahKy33RjUnw2xKA@mail.gmail.com>
+Subject: Re: [RFC PATCH 3/9] dt-bindings: usb: generic-ohci: increase maximum clocks
+To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Kishon Vijay Abraham I <kishon@ti.com>,
         Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
         arm-mail-list <linux-arm-kernel@lists.infradead.org>,
@@ -61,115 +60,52 @@ Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         linux-phy@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 28, 2021 at 11:14 AM Johan Jonker <jbx6244@gmail.com> wrote:
+On Wed, Jul 28, 2021 at 10:59 AM Heiko St=C3=BCbner <heiko@sntech.de> wrote=
+:
 >
 > Hi Peter,
 >
-> Some comments. Have a look if it's useful.
->
-> On 7/28/21 2:25 PM, Peter Geis wrote:
-> > The rk3568 usb2phy node is a standalone node with a single muxed
-> > interrupt.
-> > Add documentation for it to phy-rockchip-inno-usb2.
+> Am Mittwoch, 28. Juli 2021, 14:26:00 CEST schrieb Peter Geis:
+> > The rk3568 generic ohci controller has four clocks.
+> > Increase the maximum clocks in the documentation to account for this.
 > >
 > > Signed-off-by: Peter Geis <pgwipeout@gmail.com>
 > > ---
-> >  .../devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml   | 8 ++++----
-> >  1 file changed, 4 insertions(+), 4 deletions(-)
+> >  Documentation/devicetree/bindings/usb/generic-ohci.yaml | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
 > >
-> > diff --git a/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml b/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
-> > index 5bebd86bf8b6..f16fea5cad1c 100644
-> > --- a/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
-> > +++ b/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
-> > @@ -18,6 +18,7 @@ properties:
-> >        - rockchip,rk3328-usb2phy
-> >        - rockchip,rk3366-usb2phy
-> >        - rockchip,rk3399-usb2phy
-> > +      - rockchip,rk3568-usb2phy
-> >        - rockchip,rv1108-usb2phy
+> > diff --git a/Documentation/devicetree/bindings/usb/generic-ohci.yaml b/=
+Documentation/devicetree/bindings/usb/generic-ohci.yaml
+> > index 569777a76c90..850996e6f451 100644
+> > --- a/Documentation/devicetree/bindings/usb/generic-ohci.yaml
+> > +++ b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
+> > @@ -59,7 +59,7 @@ properties:
 > >
-> >    reg:
-> > @@ -50,6 +51,9 @@ properties:
-> >      description:
-> >        Phandle to the extcon device providing the cable state for the otg phy.
+> >    clocks:
+> >      minItems: 1
+> > -    maxItems: 3
+> > +    maxItems: 4
+> >      description: |
+> >        In case the Renesas R-Car Gen3 SoCs:
+> >          - if a host only channel: first clock should be host.
 > >
 >
-> > +  interrupts:
+> In the patch adding the usb nodes, I see that this 4th clock references
+> the clock generated inside usbphy itself.
 >
-> > +    description: Muxed interrupt for both ports
->
-> My spelling checker suggest: Mixed. Don't know what's correct...
+> Does the usb controller actually use that or is this just a way to
+> enable the usbphy clock, which in that case should maybe just happen
+> on phy-power-on in the phy driver?
 
-It is muxed, all interrupts come over the single line.
-
->
-> > +
->
-> For rk3568 only.
-> Could you test/use something like this?
->
-> if:
->   properties:
->     compatible:
->       contains:
->         const: rockchip,rk3568-usb2phy
->
-> then:
->   properties:
->     interrupts:
->       maxItems: 1
->
->   required:
->        - interrupts
->
-> >    rockchip,usbgrf:
-> >      $ref: /schemas/types.yaml#/definitions/phandle
-> >      description:
-> > @@ -78,8 +82,6 @@ properties:
-> >
->
-> >      required:
-> >        - "#phy-cells"
-> > -      - interrupts
-> > -      - interrupt-names
->
-> These are still required for other Rockchip SoCs.
-> Could you test/use something like this?
->
->       if:
->         properties:
->           compatible:
->             contains:
->               const: rockchip,rk3568-usb2phy
->
->       else:
->         required:
->           - interrupts
->           - interrupt-names
-
-This is all sane to me, I'll check to ensure it works.
+I'll check if it works without it.
 
 >
-> >
-> >    otg-port:
-> >      type: object
-> > @@ -109,8 +111,6 @@ properties:
-> >
 >
-> >      required:
-> >        - "#phy-cells"
-> > -      - interrupts
-> > -      - interrupt-names
+> Heiko
 >
-> dito
 >
-> >
-> >  required:
-> >    - compatible
-> >
-
-Thank you for the feedback!
