@@ -2,117 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 31E763D93EB
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 19:06:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89CF23D9425
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jul 2021 19:18:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231301AbhG1RGE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 13:06:04 -0400
-Received: from mail-yb1-f175.google.com ([209.85.219.175]:34389 "EHLO
-        mail-yb1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230493AbhG1RGA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 13:06:00 -0400
-Received: by mail-yb1-f175.google.com with SMTP id a93so5154311ybi.1;
-        Wed, 28 Jul 2021 10:05:58 -0700 (PDT)
+        id S229574AbhG1RSN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 13:18:13 -0400
+Received: from mail-io1-f51.google.com ([209.85.166.51]:35365 "EHLO
+        mail-io1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229515AbhG1RSM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 13:18:12 -0400
+Received: by mail-io1-f51.google.com with SMTP id y9so3803653iox.2;
+        Wed, 28 Jul 2021 10:18:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Qa1TBZYoLh+YW4PL+E3qWZTqGnp9tadNlp+6JNZ01k8=;
-        b=Jy4xHBJ9PFo19VYDdXr9BvTMVMM6CFfvG1/Y3JYGZKK8/4J2eCkAPXh0VqskJEmAn9
-         A2QFGvRXHLa3BPXPN0OHTkCbTFE/XGnv+f44Sm+J1Jawz8rYdjNKhQK+43if5QOwjKlp
-         UMxEbV+lfMR7CXIT5O7awZOIT0bo2Dcfu4YboHSoHgEOHlbshyl2m3Jonh8chaoY8Ozc
-         ZJWS7kI3qyWSV93tfb7jFgBMK9RpkRpaBeMt1mM30YvXJOhrZrXDAMjJM7BBSb3awSKS
-         EuW2blx5cYEwn0KJuTZ+0fqlu+FDufQM6qLAhEjYe3NIQlhCXFQ+yd72eWWSb30absz1
-         Gtag==
-X-Gm-Message-State: AOAM531niC+Dmygu1T9/bKf7My4p2Fp9gCTuBFVKH3K3q1Ocr1WnPAmN
-        8g/dkOH56yJYNc0S0pdIaEoHvu2zlbQMVmxwzy8=
-X-Google-Smtp-Source: ABdhPJxAcps2oVxkB58J6mo4MBlUBaaOa0QLieInecYjzoFhd3BRYME5jWkJspYp6fLqXsEuVOFrUpsE+D1Sw7atR20=
-X-Received: by 2002:a25:8093:: with SMTP id n19mr945626ybk.414.1627491958119;
- Wed, 28 Jul 2021 10:05:58 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=MhCaJJI/FxwbAqWqGNqDCa1/ELrQ+ncelMrX8vBhF+Y=;
+        b=criz/h4CsvfMp4GUEPIe+RwgtxejctrjF/KarL2ju/0660pDqMy2OjZsGsFpBzE8LD
+         T00tgvx15y6WvHPSl0OKr9HrUj1IktyO0GlOPquUAYE6bbF7ajqbz/Oyf+bkcl9Sx7P9
+         qSeOCAqzUxJKxYdgJChPBX/PvGL1YeuSq4okBG8AmBrwmHB1NqL+2o+JXweWD/eTJDIa
+         6dwT4eNWoxVM7shyFwU+8TUZwReVwbBhqBW0MW+V17FeTkN7E4YBRWTCkgAQ7EJK5teA
+         6w8wEZHlgP5JN0lieGIUpcvrSx6dleIY1MeP3YhxrePkvdYdAaLTwVks45BcWti9lawV
+         vVPw==
+X-Gm-Message-State: AOAM532uoZFwEih92oGv0ayP9ABChR/4IFI0T6GWFqt94baPui5UR0P1
+        MZRQ5INCEhkxBdb01+N8og==
+X-Google-Smtp-Source: ABdhPJzYD5vrsFQa6LZr+r7UlHykUF0j1thT7fabyZOU1+d+F/lp7UhiifIfk02RMe2Ub3JiO29hVA==
+X-Received: by 2002:a5e:dc48:: with SMTP id s8mr386481iop.133.1627492690365;
+        Wed, 28 Jul 2021 10:18:10 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id l5sm388932ion.44.2021.07.28.10.18.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Jul 2021 10:18:09 -0700 (PDT)
+Received: (nullmailer pid 1269234 invoked by uid 1000);
+        Wed, 28 Jul 2021 17:18:07 -0000
+Date:   Wed, 28 Jul 2021 11:18:07 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Yassine Oudjana <y.oudjana@protonmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Michael Auchter <michael.auchter@ni.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>
+Subject: Re: [PATCH v2 3/3] dt-bindings: extcon: usbc-tusb320: Add TUSB320L
+ compatible string
+Message-ID: <20210728171807.GA1269122@robh.at.kernel.org>
+References: <a4rEWQfScKM8Y0B7u0NXSAdvKC6Xzesp1OWGUYjeWaA@cp3-web-016.plabs.ch>
 MIME-Version: 1.0
-References: <20210726171802.1052716-1-kernel@esmil.dk> <bcc9de67-f006-0a81-8c3f-2ae5188dca48@roeck-us.net>
-In-Reply-To: <bcc9de67-f006-0a81-8c3f-2ae5188dca48@roeck-us.net>
-From:   Emil Renner Berthing <kernel@esmil.dk>
-Date:   Wed, 28 Jul 2021 19:05:47 +0200
-Message-ID: <CANBLGcxpaFt-bokq8=Tie-bJnWk5AqLyr-1Ns-+Xtobxs5bYQQ@mail.gmail.com>
-Subject: Re: [PATCH v3 0/2] hwmon: Add StarFive JH7100 temperature sensor
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Drew Fustini <drew@beagleboard.org>
-Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        linux-hwmon@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-doc@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a4rEWQfScKM8Y0B7u0NXSAdvKC6Xzesp1OWGUYjeWaA@cp3-web-016.plabs.ch>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 28 Jul 2021 at 18:54, Guenter Roeck <linux@roeck-us.net> wrote:
-> On 7/26/21 10:18 AM, Emil Renner Berthing wrote:
-> > This adds a driver for the temperature sensor on the JH7100, a RISC-V
-> > SoC by StarFive Technology Co. Ltd., and most likely also the upcoming
-> > JH7110 version.
-> >
-> > The SoC is used on the BeagleV Starlight board:
-> > https://github.com/beagleboard/beaglev-starlight
-> >
-> > Support for this SoC is not yet upstreamed, but is actively worked on,
-> > so it should only be a matter of time before that happens.
-> >
->
-> Hmm, makes me wonder if I should apply the series now or later,
-> when the chip is actually supported by the kernel. Comments/thoughts ?
->
-> Guenter
+On Tue, 27 Jul 2021 09:57:15 +0000, Yassine Oudjana wrote:
+> Add a compatible string for TUSB320L.
+> 
+> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+> ---
+>  .../devicetree/bindings/extcon/extcon-usbc-tusb320.yaml       | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
 
-I'd of course love if it was applied now. That would at least mean
-fewer patches to rebase when keeping the beaglev patches [1] up to
-date, and I'd be very surprised if SoC support doesn't make it
-upstream eventually. But I'd also fully understand the position that
-this only makes sense to add when support for the SoC is upstream too.
-I'm adding Drew, as he might have something to say about this.
 
-[1]: https://github.com/starfive-tech/linux/tree/beaglev
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
 
-/Emil
+If a tag was not added on purpose, please state why and what changed.
 
-> > v3:
-> > * Handle timeouts from wait_for_completion_interruptible_timeout
-> >    properly.
-> >
-> > v2:
-> > * Fix checkpatch.pl --strict warnings
-> >    - Add myself to MAINTAINERS
-> >    - Fix multiline comments
-> >    - Use proper case and whitespace for #defines
-> >    - Add comment to sfctemp::lock mutex.
-> > * Remaining comments by Guenter Roeck
-> >    - Add Documentation/hwmon/sfctemp.rst
-> >    - Use devm_add_action() and devm_hwmon_device_register_with_info()
-> >      instead of a driver .remove function.
-> >    - Don't do test conversion at probe time.
-> >    - #include <linux/io.h>
-> >    - Remove unused #defines
-> >    - Use int return variable in sfctemp_convert().
-> > * Add Samin's Signed-off-by to patch 2/2
-> >
-> > Emil Renner Berthing (2):
-> >    dt-bindings: hwmon: add starfive,jh7100-temp bindings
-> >    hwmon: (sfctemp) Add StarFive JH7100 temperature sensor
-> >
-> >   .../bindings/hwmon/starfive,jh7100-temp.yaml  |  43 +++
-> >   Documentation/hwmon/index.rst                 |   1 +
-> >   Documentation/hwmon/sfctemp.rst               |  32 ++
-> >   MAINTAINERS                                   |   8 +
-> >   drivers/hwmon/Kconfig                         |  10 +
-> >   drivers/hwmon/Makefile                        |   1 +
-> >   drivers/hwmon/sfctemp.c                       | 291 ++++++++++++++++++
-> >   7 files changed, 386 insertions(+)
-> >   create mode 100644 Documentation/devicetree/bindings/hwmon/starfive,jh7100-temp.yaml
-> >   create mode 100644 Documentation/hwmon/sfctemp.rst
-> >   create mode 100644 drivers/hwmon/sfctemp.c
-> >
->
