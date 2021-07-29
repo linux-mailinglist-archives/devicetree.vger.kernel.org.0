@@ -2,137 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB4BE3DA76B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 17:22:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A58513DA7F8
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 17:56:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237872AbhG2PWA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 11:22:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35078 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237851AbhG2PV3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Jul 2021 11:21:29 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 78F5660F6F;
-        Thu, 29 Jul 2021 15:20:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627572028;
-        bh=0qRItNNqVu8zfNEhkI6lQ1f99lsFwPpdEwh6oAob7zg=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=LgOdWV6wH+oSwuXgfbHVWS5VuXIOmPutB22ujAKjF2LYIUXWe3lghgaLG1y+YnbSj
-         jPSpbu9CapaCtZSwvP9nNo8SN7EsEMQJoma6RaOhB++QQ6gb9KztT4xFcitxW6ESeS
-         NcHHmfMf1MHTPdmDMMpsK3RKdjSfJnJ8RWsGe7AhHmiN9DKTzBixJjPgM4RUuhmuxy
-         6SWaDZvQ1Lv3d368fSVjJA+5OIIy8huEQvA5Ui7g9dyXpLcOn9yWkOkYB8eWpp491K
-         gwbxeweG237cCEYkEF5rzDM0YgJsQzAuOz3A5k7UhLlbLeISRaGB2NeQQ8J0Sfyf4o
-         ffv+dfwDlbcOA==
-Received: by mail-ej1-f42.google.com with SMTP id go31so11315252ejc.6;
-        Thu, 29 Jul 2021 08:20:28 -0700 (PDT)
-X-Gm-Message-State: AOAM532lX434hLhoA6KihgIOu20tbl1BfkzOtRidDeYsAx35mfZ5Fifd
-        bTHS3BeMLEiGNx6siGbkXhYJZrd+O/IGYhhzrw==
-X-Google-Smtp-Source: ABdhPJzIzmyTxtOz/wextmHAw+KU5WQry2z11p9/WrOUFwGXVTXlS25TsvwKMcGrTXjTJ+rAWonhQ+kNbp+O9zDwciY=
-X-Received: by 2002:a17:906:95ce:: with SMTP id n14mr4797386ejy.130.1627572027002;
- Thu, 29 Jul 2021 08:20:27 -0700 (PDT)
+        id S238088AbhG2P4f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 11:56:35 -0400
+Received: from relay03.th.seeweb.it ([5.144.164.164]:60341 "EHLO
+        relay03.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237851AbhG2P4f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 11:56:35 -0400
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 68E121F6AA;
+        Thu, 29 Jul 2021 17:56:26 +0200 (CEST)
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+To:     bjorn.andersson@linaro.org
+Cc:     agross@kernel.org, daniel.lezcano@linaro.org, rjw@rjwysocki.net,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, jeffrey.l.hugo@gmail.com,
+        jami.kettunen@somainline.org,
+        ~postmarketos/upstreaming@lists.sr.ht, devicetree@vger.kernel.org,
+        stephan@gerhold.net, robh@kernel.org, bartosz.dudziak@snejp.pl,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Subject: [PATCH v8 0/5] Implement SPM/SAW for MSM8998 and SDM6xx
+Date:   Thu, 29 Jul 2021 17:56:04 +0200
+Message-Id: <20210729155609.608159-1-angelogioacchino.delregno@somainline.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-References: <cover.1627559126.git.mchehab+huawei@kernel.org> <2cf7bd80d0b54f7658a64febf79d3a36e70aba86.1627559126.git.mchehab+huawei@kernel.org>
-In-Reply-To: <2cf7bd80d0b54f7658a64febf79d3a36e70aba86.1627559126.git.mchehab+huawei@kernel.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 29 Jul 2021 09:20:15 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+JgWMf8XPdHQ9GRdA+7EODJ47vwuz0jGkkyeETZPXz9Q@mail.gmail.com>
-Message-ID: <CAL_Jsq+JgWMf8XPdHQ9GRdA+7EODJ47vwuz0jGkkyeETZPXz9Q@mail.gmail.com>
-Subject: Re: [PATCH 3/5] dt-bindings: PCI: kirin: Add support for Kirin970
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Linuxarm <linuxarm@huawei.com>, mauro.chehab@huawei.com,
-        Binghui Wang <wangbinghui@hisilicon.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Xiaowei Song <songxiaowei@hisilicon.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        PCI <linux-pci@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 29, 2021 at 5:56 AM Mauro Carvalho Chehab
-<mchehab+huawei@kernel.org> wrote:
->
-> Add a new compatible, plus the new bindings needed by
-> HiKey970 board.
->
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> ---
->  .../bindings/pci/hisilicon,kirin-pcie.yaml    | 61 ++++++++++++++++++-
->  1 file changed, 60 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml b/Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml
-> index 90cab09e8d4b..bb0c3a081d68 100644
-> --- a/Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml
-> @@ -24,11 +24,13 @@ properties:
->      contains:
->        enum:
->          - hisilicon,kirin960-pcie
-> +        - hisilicon,kirin970-pcie
->
->    reg:
->      description: |
->        Should contain dbi, apb, config registers location and length.
-> -      For HiKey960, it should also contain phy.
-> +      For HiKey960, it should also contain phy. All other devices
-> +      should use a separate phy driver.
->      minItems: 3
->      maxItems: 4
->
-> @@ -47,6 +49,7 @@ examples:
->    - |
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
->      #include <dt-bindings/clock/hi3660-clock.h>
-> +    #include <dt-bindings/clock/hi3670-clock.h>
->
->      soc {
->        #address-cells = <2>;
-> @@ -83,4 +86,60 @@ examples:
->          clock-names = "pcie_phy_ref", "pcie_aux", "pcie_apb_phy",
->                        "pcie_apb_sys", "pcie_aclk";
->        };
-> +
-> +      pcie@f5000000 {
-> +        compatible = "hisilicon,kirin970-pcie";
-> +        reg = <0x0 0xf4000000 0x0 0x1000000>,
-> +              <0x0 0xfc180000 0x0 0x1000>,
-> +              <0x0 0xf5000000 0x0 0x2000>;
-> +        reg-names = "dbi", "apb", "config";
-> +        bus-range = <0x0  0x1>;
-> +        msi-parent = <&its_pcie>;
-> +        #address-cells = <3>;
-> +        #size-cells = <2>;
-> +        device_type = "pci";
-> +        phys = <&pcie_phy>;
-> +        ranges = <0x02000000 0x0 0x00000000
-> +                  0x0 0xf6000000
-> +                  0x0 0x02000000>;
-> +        num-lanes = <1>;
-> +        #interrupt-cells = <1>;
-> +        interrupts = <GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-names = "msi";
-> +        interrupt-map-mask = <0 0 0 7>;
-> +        interrupt-map = <0x0 0 0 1 &gic GIC_SPI 282 IRQ_TYPE_LEVEL_HIGH>,
-> +                        <0x0 0 0 2 &gic GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>,
-> +                        <0x0 0 0 3 &gic GIC_SPI 284 IRQ_TYPE_LEVEL_HIGH>,
-> +                        <0x0 0 0 4 &gic GIC_SPI 285 IRQ_TYPE_LEVEL_HIGH>;
-> +        pcie@4,0 { // Lane 4: M.2
-> +          reg = <0 0 0 0 0>;
-> +          compatible = "pciclass,0604";
-> +          device_type = "pci";
-> +          reset-gpios = <&gpio7 1 0>;
-> +          clkreq-gpios = <&gpio27 3 0 >;
+Changes in v8:
+- Rebased on next-20210728
+- Fixed all YAML issues from dt_binding_check
+- Fixed forgotten signoffs (truly, truly sorry about that)
 
-Looking at the schematics some more, this is not right. CLKREQ# is an
-input from the device, and they are not connected to any GPIO (just
-pulled high) on hikey970. These GPIOs are simply clock enables and
-very much specific to hikey. So I'd call this 'hisilicon,clken-gpios'
-and you can just stick them in the host bridge node.
+Changes in v7:
+- Fixed functionality breakage on ARM for cpuidle-qcom-spm... now it works :))
+- Reworded description of patch 1/5
 
-I think the way the board should have been designed is the CLKREQ#
-signals to the clock driver chip OE signals. Then there'd be no s/w
-control needed.
+Changes in v6:
+- Moved cpuidle_driver to be private to cpuidle-qcom-spm (unused in spm.c),
+  now we are assigning the cpuidle_driver structure fields inside of the
+  spm_cpuidle_register function; this also fixes the cpumask assignment
+  issue from v5
+- Fixed another contamination from 2/3 in 1/3 (argh!! :])
+- Added dt-bindings documentation for the SPM driver
 
-Rob
+Changes in v5:
+- Fixed contamination from patch 2/3 in patch 1/3
+- Fixed missing bits in cpuidle-qcom-spm (thanks Stephan)
+
+Changes in v4:
+- Huge patch series has been split for better reviewability,
+  as suggested by Bjorn
+
+Changes in v3:
+- Rebased (no changes - was in previous series' v3)
+
+Changes in v2:
+- Fixed MSM8998 SAW parameters on SPM driver
+
+Tested on the following smartphones:
+- Sony Xperia XA2        (SDM630)
+- Sony Xperia XA2 Ultra  (SDM630)
+- Sony Xperia 10         (SDM630)
+- Sony Xperia XZ Premium (MSM8998)
+- F(x)Tec Pro 1          (MSM8998)
+
+This is a component that we can find on very old
+chips, like MSM8974; there, it has been used to actually do the
+power scaling basically "on its own" - sending the cores in a specific
+sleep mode to save power.
+On the newer ones, including MSM8998, SDM630, 660 and others, it is still
+present! Though, this time, it's being used for the cluster caches and it
+has a different firmware (and maybe it's also slightly different HW),
+implementing the SAWv4.1 set and getting controlled *not by the OS* but
+by other controllers in the SoC (like the OSM).
+
+Contrary from MSM8974 and the like, this new version of the SPM just
+requires us to set the initial parameters for AVS and *nothing else*, as
+its states will be totally managed internally.
+AngeloGioacchino Del Regno (5):
+  cpuidle: qcom_spm: Detach state machine from main SPM handling
+  dt-bindings: soc: qcom: Add devicetree binding for QCOM SPM
+  soc: qcom: spm: Implement support for SAWv4.1, SDM630/660 L2 AVS
+  soc: qcom: spm: Add compatible for MSM8998 SAWv4.1 L2
+  dt-bindings: soc: qcom: spm: Document SDM660 and MSM8998 compatibles
+
+ .../bindings/soc/qcom/qcom,spm.yaml           |  80 +++++
+ drivers/cpuidle/Kconfig.arm                   |   1 +
+ drivers/cpuidle/cpuidle-qcom-spm.c            | 318 ++++--------------
+ drivers/soc/qcom/Kconfig                      |   9 +
+ drivers/soc/qcom/Makefile                     |   1 +
+ drivers/soc/qcom/spm.c                        | 254 ++++++++++++++
+ include/soc/qcom/spm.h                        |  43 +++
+ 7 files changed, 456 insertions(+), 250 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
+ create mode 100644 drivers/soc/qcom/spm.c
+ create mode 100644 include/soc/qcom/spm.h
+
+-- 
+2.32.0
+
