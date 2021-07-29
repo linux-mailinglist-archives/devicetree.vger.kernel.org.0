@@ -2,41 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D86743DA6D5
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 16:50:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB4BE3DA76B
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 17:22:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229890AbhG2Ou3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 10:50:29 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49654 "EHLO mail.kernel.org"
+        id S237872AbhG2PWA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 11:22:00 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35078 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237779AbhG2Ou1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Jul 2021 10:50:27 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4555460EC0;
-        Thu, 29 Jul 2021 14:50:24 +0000 (UTC)
+        id S237851AbhG2PV3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Jul 2021 11:21:29 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 78F5660F6F;
+        Thu, 29 Jul 2021 15:20:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627570224;
-        bh=XKY5u0bJ0B2fRF4cBxdfCIrb0OGQzonKKoO795Xgo9g=;
+        s=k20201202; t=1627572028;
+        bh=0qRItNNqVu8zfNEhkI6lQ1f99lsFwPpdEwh6oAob7zg=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=RcHHfDNr+N5GfVElx2ARm+V1D6/WXteoAS5srn7ibnU+95jvLFM47yr/X4uuralwI
-         CEMnd+b2pjHXACptGqSmo8iS9Oap2ck0uqGgR+Xey7nPUN9bDsZte3ZGrKDPp388A9
-         /xWDVobjH1jmp/SpN9pde1Mu+IOTNy7MS1kkwtMHKKB7/L6AczxZgffQOQX7pBcl3l
-         KX5Wh8JZ+hZR1/MOjWKunlm2zahnCUlk2KWl7IWtJk73h0ByNQnmem6qlz54zMvXQp
-         BT7os1idhAU6j4NnI304O7716UMnwfSB+6qc1+Kc4I7D78xHM9rAaVw1BNHF/TbxrD
-         QeTLvnMSMTlYQ==
-Received: by mail-ed1-f42.google.com with SMTP id p21so8559513edi.9;
-        Thu, 29 Jul 2021 07:50:24 -0700 (PDT)
-X-Gm-Message-State: AOAM531D7YZOJ2k1ocxrRf9BzeMv7pD80x6w16/zAQ70spV7kWjF8qTl
-        FG9GhWxoPlNmzdso05SfOUKZERm7Zx5uRBN/yg==
-X-Google-Smtp-Source: ABdhPJw3ygJAkZ4ht4GjoVI/NQA/HWHfXCRKB5L4L2V65JZswoBAhU1tRjae+rErWf0dH6UZKtJiXEfjzfHORM7yZjY=
-X-Received: by 2002:aa7:d8d4:: with SMTP id k20mr6317360eds.373.1627570222829;
- Thu, 29 Jul 2021 07:50:22 -0700 (PDT)
+        b=LgOdWV6wH+oSwuXgfbHVWS5VuXIOmPutB22ujAKjF2LYIUXWe3lghgaLG1y+YnbSj
+         jPSpbu9CapaCtZSwvP9nNo8SN7EsEMQJoma6RaOhB++QQ6gb9KztT4xFcitxW6ESeS
+         NcHHmfMf1MHTPdmDMMpsK3RKdjSfJnJ8RWsGe7AhHmiN9DKTzBixJjPgM4RUuhmuxy
+         6SWaDZvQ1Lv3d368fSVjJA+5OIIy8huEQvA5Ui7g9dyXpLcOn9yWkOkYB8eWpp491K
+         gwbxeweG237cCEYkEF5rzDM0YgJsQzAuOz3A5k7UhLlbLeISRaGB2NeQQ8J0Sfyf4o
+         ffv+dfwDlbcOA==
+Received: by mail-ej1-f42.google.com with SMTP id go31so11315252ejc.6;
+        Thu, 29 Jul 2021 08:20:28 -0700 (PDT)
+X-Gm-Message-State: AOAM532lX434hLhoA6KihgIOu20tbl1BfkzOtRidDeYsAx35mfZ5Fifd
+        bTHS3BeMLEiGNx6siGbkXhYJZrd+O/IGYhhzrw==
+X-Google-Smtp-Source: ABdhPJzIzmyTxtOz/wextmHAw+KU5WQry2z11p9/WrOUFwGXVTXlS25TsvwKMcGrTXjTJ+rAWonhQ+kNbp+O9zDwciY=
+X-Received: by 2002:a17:906:95ce:: with SMTP id n14mr4797386ejy.130.1627572027002;
+ Thu, 29 Jul 2021 08:20:27 -0700 (PDT)
 MIME-Version: 1.0
 References: <cover.1627559126.git.mchehab+huawei@kernel.org> <2cf7bd80d0b54f7658a64febf79d3a36e70aba86.1627559126.git.mchehab+huawei@kernel.org>
 In-Reply-To: <2cf7bd80d0b54f7658a64febf79d3a36e70aba86.1627559126.git.mchehab+huawei@kernel.org>
 From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 29 Jul 2021 08:50:10 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLhxGFV9iBhbYj7QNct54Se7pBhhTgFyqRYO0uLvoPnmg@mail.gmail.com>
-Message-ID: <CAL_JsqLhxGFV9iBhbYj7QNct54Se7pBhhTgFyqRYO0uLvoPnmg@mail.gmail.com>
+Date:   Thu, 29 Jul 2021 09:20:15 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+JgWMf8XPdHQ9GRdA+7EODJ47vwuz0jGkkyeETZPXz9Q@mail.gmail.com>
+Message-ID: <CAL_Jsq+JgWMf8XPdHQ9GRdA+7EODJ47vwuz0jGkkyeETZPXz9Q@mail.gmail.com>
 Subject: Re: [PATCH 3/5] dt-bindings: PCI: kirin: Add support for Kirin970
 To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 Cc:     Linuxarm <linuxarm@huawei.com>, mauro.chehab@huawei.com,
@@ -119,51 +119,20 @@ On Thu, Jul 29, 2021 at 5:56 AM Mauro Carvalho Chehab
 > +                        <0x0 0 0 3 &gic GIC_SPI 284 IRQ_TYPE_LEVEL_HIGH>,
 > +                        <0x0 0 0 4 &gic GIC_SPI 285 IRQ_TYPE_LEVEL_HIGH>;
 > +        pcie@4,0 { // Lane 4: M.2
-
-You are missing a level here. You need the upstream bridge device. I
-figured this out for you, why am I having to correct it?
-
-Isn't this supposed to be Device 1 as 1 and 4 are swapped in terms of
-lane number and device number.
-
 > +          reg = <0 0 0 0 0>;
-
-Not the right address. I would have expected a dtc warning on this.
-
 > +          compatible = "pciclass,0604";
 > +          device_type = "pci";
 > +          reset-gpios = <&gpio7 1 0>;
 > +          clkreq-gpios = <&gpio27 3 0 >;
-> +          #address-cells = <3>;
-> +          #size-cells = <2>;
-> +          ranges;
-> +        };
-> +        pcie@5,0 { // Lane 5: Mini PCIe
 
-It's device 5 not lane 5.
+Looking at the schematics some more, this is not right. CLKREQ# is an
+input from the device, and they are not connected to any GPIO (just
+pulled high) on hikey970. These GPIOs are simply clock enables and
+very much specific to hikey. So I'd call this 'hisilicon,clken-gpios'
+and you can just stick them in the host bridge node.
 
+I think the way the board should have been designed is the CLKREQ#
+signals to the clock driver chip OE signals. Then there'd be no s/w
+control needed.
 
-> +          reg = <0 0 0 0 0>;
-> +          compatible = "pciclass,0604";
-> +          device_type = "pci";
-> +          reset-gpios = <&gpio7 2 0>;
-> +          clkreq-gpios = <&gpio17 0 0 >;
-> +          #address-cells = <3>;
-> +          #size-cells = <2>;
-> +          ranges;
-> +        };
-> +        pcie@7,0 { // Lane 7: Ethernet
-> +          reg = <0 0 0 0 0>;
-> +          compatible = "pciclass,0604";
-> +          device_type = "pci";
-> +          reset-gpios = <&gpio7 3 0>;
-> +          clkreq-gpios = <&gpio20 0 0 >;
-> +          #address-cells = <3>;
-> +          #size-cells = <2>;
-> +          ranges;
-> +        };
-> +      };
->      };
-> --
-> 2.31.1
->
+Rob
