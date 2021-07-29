@@ -2,200 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB4CF3DA070
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 11:39:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F2353DA07C
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 11:43:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236235AbhG2Jj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 05:39:58 -0400
-Received: from mail-eopbgr130047.outbound.protection.outlook.com ([40.107.13.47]:48358
-        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S236209AbhG2Jj4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Jul 2021 05:39:56 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MT1k8oUerJF0SPPip8RDZd0XKy3t8qsEZF0v60Tj3433WQjJvFlYFA37tFmnomwyqjwFvUyKx/2qK9TRwYZiEsLxumb95TOBF0Bs+iMRAaT9DclgCEuvLIyZYT9Zk5UBayJC40VukBHfJqwFCddZU+QhAUMGw/ux34MWC7DSwcakWcZBzsp9p8cQSnVz7Ks4uYTC4HkZkl5O1+WQOh8jqWZ/nTp6Ji1Zqpelkm1bseGtkcUfBsBvRDxjaKSLnqhdtBrbotQmkL8O5NxCfcWa0kFv5FaAjQXmGRF011VRrNavLL/II6WtA8vKVXZZVJiBCBNVLt4ypus3zKUGKkKeYg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0hSJS0PEz0nkwiwguedeCZqn0gRUmyNjY/+ynYYIiwc=;
- b=IXmZiph6UCLnzW9cND2+/DVKZ8ullDK8I0VH4NciH14cWj0Ky6VjHR8HdgV9SnmxSDpneI+8sD0DP7jc12wOp0fDp8p/PmZSenX36GzSJZkRfr5OZVZwDSrDL2Yts52IPFHxakKoxakP2cH3GOc3dxLh+c6QX0C8Dzvt5keHbYGDcFDWVMSSXKBW9kpra9gM81zckmOGnkMwvgYUZkI6E0JNKeLuxfFdPgASMJUciZx3jxqiIuc1NBtpeDGrw35eCaviYmC1pIaa8VTZXO4Hdm21t/9xt3PPIF9n/48sMNOxPt4xauIEmqC2UhrzgEpIDvbCNXCCOJdBlkQnFeEXVg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wolfvision.net; dmarc=pass action=none
- header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0hSJS0PEz0nkwiwguedeCZqn0gRUmyNjY/+ynYYIiwc=;
- b=IhavrHdOrq4+KAdqmQFt/UfgVbbvDqoZiWzhOtUnAhqDzrGslyAewOrc0Y8dh9uVbGM1kc9psS8+M2qsx/8pftkgUBwuWMeG9jMd4/30IYqsNnw0XE+nbSlKU65Dk+lZMfeq7SCwcdVECx72uKdOrFFI73xOIif+WfN+0uNWjvM=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none
- header.from=wolfvision.net;
-Received: from DBBPR08MB4523.eurprd08.prod.outlook.com (2603:10a6:10:c8::19)
- by DB7PR08MB3548.eurprd08.prod.outlook.com (2603:10a6:10:4d::30) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4352.31; Thu, 29 Jul
- 2021 09:39:52 +0000
-Received: from DBBPR08MB4523.eurprd08.prod.outlook.com
- ([fe80::ade3:93e2:735c:c10b]) by DBBPR08MB4523.eurprd08.prod.outlook.com
- ([fe80::ade3:93e2:735c:c10b%7]) with mapi id 15.20.4373.019; Thu, 29 Jul 2021
- 09:39:52 +0000
-From:   Michael Riesch <michael.riesch@wolfvision.net>
-To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Liang Chen <cl@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Simon Xue <xxm@rock-chips.com>
-Subject: [PATCH v2 2/2] arm64: dts: rockchip: rk3568-evb1-v10: add ethernet support
-Date:   Thu, 29 Jul 2021 11:39:13 +0200
-Message-Id: <20210729093913.8917-3-michael.riesch@wolfvision.net>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210729093913.8917-1-michael.riesch@wolfvision.net>
-References: <20210729093913.8917-1-michael.riesch@wolfvision.net>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: AM5PR0701CA0018.eurprd07.prod.outlook.com
- (2603:10a6:203:51::28) To DBBPR08MB4523.eurprd08.prod.outlook.com
- (2603:10a6:10:c8::19)
+        id S235244AbhG2Jnq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 05:43:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48546 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235141AbhG2Jnq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 05:43:46 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C5A3C061757
+        for <devicetree@vger.kernel.org>; Thu, 29 Jul 2021 02:43:43 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id r26so9870436lfp.5
+        for <devicetree@vger.kernel.org>; Thu, 29 Jul 2021 02:43:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rsaad1GJ/XkOm8cfftebiAxoVa/TpWToS62izuGJ9pY=;
+        b=ROFh5zsDdjGB7xsZ3gfN08X4TCqyLE5GcRkJ/K9oEApY7i/IignrvExID9mp+hgOyH
+         m+q2hwtfQ3PcGy4Zu1LihgEvq5qWFR/OkQ+71zz+O8nUDZjw76nkxxU3HSuT73irF7KN
+         57aQnO2wW+VyKNylkZJkCNV4eqIcS2Gdtt3M0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rsaad1GJ/XkOm8cfftebiAxoVa/TpWToS62izuGJ9pY=;
+        b=aj1cA97RdK5oAXzMhCJppX/kUZ7PuU2Sy5/IfQuymoiwTHW52nmTd7UR+bPMkESUzh
+         cyvcrDneSARYxADf75HT1abtWNL55FfI5tkyMu9gIxQ10MpR7ouc69wPDA2fbrrydvqA
+         rO5adzIOaW926AvCVz7LCe+uOW2SDnElSluuHecJRWvx2YwXU4iuxnUzE/Ua/LLVm+2V
+         hzdyWOAIAwUtt5vkKb/I+jOtpvqkWbS1Z2x7vrRZMza2pNILB5n3JGqSUBbvLvHfBQUD
+         yfJpl5xrjnqv6waHTrZYr1pP4jn6+K/+If7MtaBRg6nV1FhRjQxHeUuVlqUfiIuEKE89
+         AgXg==
+X-Gm-Message-State: AOAM530IyGsJBtpXDJgzllZL+fIJxAMLcqjhyGdOiqoPJabC4r7AyKv4
+        oUr2r9Ce8jN6/ooaNlvlu/bxjQrf9rTtfSZ6fnvQDQ==
+X-Google-Smtp-Source: ABdhPJxZA8w1PV7njkB8YqwoZbP8na6AFtXiJ942E2I1irAuG8V7nC6e8Ne+qo+7pXOc9OavLte6E41ZTbaK5boATXU=
+X-Received: by 2002:a05:6512:a89:: with SMTP id m9mr3260592lfu.342.1627551821389;
+ Thu, 29 Jul 2021 02:43:41 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from carlos.wolfvision-at.intra (91.118.163.37) by AM5PR0701CA0018.eurprd07.prod.outlook.com (2603:10a6:203:51::28) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.6 via Frontend Transport; Thu, 29 Jul 2021 09:39:51 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3bfdd051-8789-421c-8c7b-08d95274d085
-X-MS-TrafficTypeDiagnostic: DB7PR08MB3548:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DB7PR08MB3548C021E9FB7479579C3231F2EB9@DB7PR08MB3548.eurprd08.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1303;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: e1X7NtbXT3CXxAlZIRwDCHFKyBRrwGsesesMwlNyQTVRLVEHI34Ok3k4mcVC4W+/5BpV1A/YgiGJ01eeWmiPueYJmBR/DVZom5BAN137g93oboXxIxow9uoxzbt5P2YbAl7YN36uCWmeqZiDiMF/IE4rV/70DjHWq2QrJ03mGgcn8ZBybrwoHShpFLjzjgWMDs2Bxt9pPLzNhm5rzW/k8ImEqRUlVKzrIqZ5gjnAXQ3+dY+/bHiQGQpSf3G5SU4siipGCFnItVngOVFHnRWjIxcVNwvtexod8DHXia2DEsO0CmR6uCPLe2nGCRhteFDdd8jqXd5zw+DX6NIEf8MRxebKYRO5yyuePOcsbBxpy7rvq395X0OgaEhratfzqW2UabfJXqwboqfpe7HF/dWTjypz3MQjHm1G2Fp9qpUrmxc8iTHCf2306pJuSaV2GHHbMX7J76BxOTgSbHjfzj2AqEpRCsN+23wd9HFith/NveInXtpPARkJ9/keZZp3mHcrvQGpVhfpQSgBWRovadpQnayK5QvUaQqb8jk8nefPiADwZsTtmWXXyD3Uzym5rxIXlFxvOEAdZZOvSy3G8mmEAgHXdVMG7K+JoaiupukVCGxlcsuXrCE9cltdZq7cftc1L0f9fDV2x0ZY3AXcATS7HZtNBYp4q1gds6GXXRQJKnbD69xk4mtOaaFHuwCz+pTlRbKzuASCrWh7e9bWR6o0uQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR08MB4523.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(39840400004)(366004)(346002)(136003)(376002)(8676002)(52116002)(5660300002)(26005)(2616005)(44832011)(316002)(6506007)(54906003)(66946007)(6666004)(66476007)(2906002)(186003)(478600001)(36756003)(6486002)(38350700002)(1076003)(38100700002)(83380400001)(8936002)(956004)(86362001)(66556008)(6512007)(4326008);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?gPO/BitUk+/Zdq5nhTjf6pWmSHd9tWd70ZB8kuIEASZM8Imp8ngatE6Q5q4K?=
- =?us-ascii?Q?MznILaK0aknJvd3GqUgWgjsz0mJ6z39h4H/dzr5zvKJB1ZNJSNgbbgifyw/E?=
- =?us-ascii?Q?BdtGkAeN7h5gJsHidWHlcPIgBOZjiWccGKahHYLM6AoAGdPA2Uv05kBjA68W?=
- =?us-ascii?Q?7jdo87XSxutOxX+1/fmZWC5RvqD3JSvtiGb81oMYyjemtJ+uOEKTwcboCNuB?=
- =?us-ascii?Q?v2v0FFi34+r9og0NuN/c8BNOTB5oyog/LUfuBexXpcuciCF/E55NBhZ6jCWu?=
- =?us-ascii?Q?gyjRJQP5q6qX9RVivYBLz68JjKLBtUPsz2kp6ztipQqYXFegM3izKqosIOlk?=
- =?us-ascii?Q?LqkbBYXccmBGhxcG6SUPmNSEc0SSbgYxFSwXADRu3QC0+/7ze3w10Zbj5gXr?=
- =?us-ascii?Q?wy1YrWnw9YFJRf3A4fGGWVCda84ZeG15eIbLbrvixF3c3xKmXWOz30ZUE4E0?=
- =?us-ascii?Q?rhLkGigBJTeyOBkbKjx4GBXMRxW5EOe1p+7L43izpUSHobdpp4L7+Vu3ZfEj?=
- =?us-ascii?Q?zVPIQRx307/TBsMjGOR8on2ZQx/U8dfBOlgRgc8unYkw0trMmcS9l/mWkigq?=
- =?us-ascii?Q?A3rxE4gL/vZrgWHc5K5JKFkb9bwujIFv3E9GNORxYyD0wrPuPkrOrrzPg3qa?=
- =?us-ascii?Q?cu1MwzbO6Y0nxdkQIekpolSlnxNclaz5DIy2R+Cn0Em63w90s5/ofY6HbMI+?=
- =?us-ascii?Q?iKpfZaXVL8gvZCw+B1yzO/X8I7JMTD5FrwuhETP4625BbWxsbHkjtWyY07VJ?=
- =?us-ascii?Q?jIvH8ixA7+xcFXzVI6ImdX9AVmjz/SCc2PvBohD/Th7sjmee+paKNr1j6T1Y?=
- =?us-ascii?Q?YbU2Pe7A7j+yP77lMN/QNKH22IXE5wcDtDbnTa7jEmr5jkMfEft836sXO3wX?=
- =?us-ascii?Q?F/wZ7Iu2PhvPdAyxdaV6i/siQtCuNp1iT5ZJkael0MUC/1vPPV9QgdvOVijm?=
- =?us-ascii?Q?M/CtP8QVSnJwxP1fPJL2nqOQZLXogxUDjknMU5AMiKI85Jbij6BGYXDFu6Xp?=
- =?us-ascii?Q?EUxrMK2JAn+7b/Tx3zcND8wmvcvb69dRH7O4V4NuqzF+Vypop1F2YVvGZpg3?=
- =?us-ascii?Q?gAsI7sZfbayhUdro0Myq9OcI6VKux+tgbtTecDqSuIYp+ln6pwPOA1YpeRoy?=
- =?us-ascii?Q?//ADBQXqDr1DgPYD6grSdX7sSIZWUP04d0tQZK+qhqIRHuMQoKkKUKnGFTli?=
- =?us-ascii?Q?AUXlYh/P5WJNi8qGYm3+lNGlW05Tn5h+ztSYu8yxjSWiO1QC0DjfSxQGDbo+?=
- =?us-ascii?Q?arFIAvwr1EU2ka8+VkdJ8Zfs6aIuMQIPgAojV3GgJgtXiyMwPqdAN9uKvSE9?=
- =?us-ascii?Q?cYxxHJhscquLRowijFBHb1i7?=
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3bfdd051-8789-421c-8c7b-08d95274d085
-X-MS-Exchange-CrossTenant-AuthSource: DBBPR08MB4523.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jul 2021 09:39:51.8992
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7pBGUMxMDLfQEFAmwsfL7u/CsPWQnxBwWcUr3/e5R4zMps928OTzcKzl51cp6xRUP87kcPJ96LHAPXoI8HMEZ1VQEUZrUmj18pm46itDYh0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR08MB3548
+References: <20210710081722.1828-1-zhiyong.tao@mediatek.com>
+ <20210710081722.1828-2-zhiyong.tao@mediatek.com> <CAGXv+5GXg0RuOQkh4vaRmcLpehZiXnEUXBvEaObiatAa1sXvaA@mail.gmail.com>
+ <1626940470.29611.9.camel@mhfsdcap03> <CAGXv+5F_-W4aNt0WVSDBGLo_t8orNUq59GMKk_4xVr+hMb9Ctg@mail.gmail.com>
+ <07388dac4e25e0f260725e8f80ba099d5aa80949.camel@mediatek.com>
+In-Reply-To: <07388dac4e25e0f260725e8f80ba099d5aa80949.camel@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Thu, 29 Jul 2021 17:43:30 +0800
+Message-ID: <CAGXv+5EagmhYYpri+nzo6WgGz8A=oiU3Vy+2AVjho=eo6Z+DLw@mail.gmail.com>
+Subject: Re: [PATCH v10 1/2] dt-bindings: pinctrl: mt8195: add rsel define
+To:     "zhiyong.tao" <zhiyong.tao@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>, mark.rutland@arm.com,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        hui.liu@mediatek.com, Eddie Huang <eddie.huang@mediatek.com>,
+        light.hsieh@mediatek.com, biao.huang@mediatek.com,
+        hongzhou.yang@mediatek.com, Sean Wang <sean.wang@mediatek.com>,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
----
-v2:
-- sort properties alphabetically
-- use phy-mode "rgmii-id" without delay properties
-- rename phy nodes to "ethernet-phy"
+On Thu, Jul 29, 2021 at 4:23 PM zhiyong.tao <zhiyong.tao@mediatek.com> wrote:
+>
+> On Mon, 2021-07-26 at 16:02 +0800, Chen-Yu Tsai wrote:
+> > On Thu, Jul 22, 2021 at 3:54 PM zhiyong tao <zhiyong.tao@mediatek.com
+> > > wrote:
+> > >
+> > > On Tue, 2021-07-13 at 15:17 +0800, Chen-Yu Tsai wrote:
+> > > > Hi,
+> > > >
+> > > > On Sat, Jul 10, 2021 at 4:17 PM Zhiyong Tao <
+> > > > zhiyong.tao@mediatek.com> wrote:
+> > > > >
+> > > > > This patch adds rsel define for mt8195.
+> > > > >
+> > > > > Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
+> > > > > ---
+> > > > >  include/dt-bindings/pinctrl/mt65xx.h | 9 +++++++++
+> > > > >  1 file changed, 9 insertions(+)
+> > > > >
+> > > > > diff --git a/include/dt-bindings/pinctrl/mt65xx.h b/include/dt-
+> > > > > bindings/pinctrl/mt65xx.h
+> > > > > index 7e16e58fe1f7..f5934abcd1bd 100644
+> > > > > --- a/include/dt-bindings/pinctrl/mt65xx.h
+> > > > > +++ b/include/dt-bindings/pinctrl/mt65xx.h
+> > > > > @@ -16,6 +16,15 @@
+> > > > >  #define MTK_PUPD_SET_R1R0_10 102
+> > > > >  #define MTK_PUPD_SET_R1R0_11 103
+> > > > >
+> > > > > +#define MTK_PULL_SET_RSEL_000  200
+> > > > > +#define MTK_PULL_SET_RSEL_001  201
+> > > > > +#define MTK_PULL_SET_RSEL_010  202
+> > > > > +#define MTK_PULL_SET_RSEL_011  203
+> > > > > +#define MTK_PULL_SET_RSEL_100  204
+> > > > > +#define MTK_PULL_SET_RSEL_101  205
+> > > > > +#define MTK_PULL_SET_RSEL_110  206
+> > > > > +#define MTK_PULL_SET_RSEL_111  207
+> > > > > +
+> > > >
+> > > > Instead of all the obscure macros and the new custom "rsel"
+> > > > property,
+> > > > which BTW is not in the bindings, can't we just list the actual
+> > > > bias
+> > > > resistance of each setting? We could also migrate away from R1R0.
+> > > >
+> > >
+> > > ==>Hi Chenyu,
+> > > The rsel actual bias resistance of each setting:
+> > >
+> > > MTK_PULL_SET_RSEL_000:75K in PU, 75k in PD;
+> > > MTK_PULL_SET_RSEL_001:10k in PU, 5k in PD;
+> > > MTK_PULL_SET_RSEL_010:5k in PU, 75k in PD;
+> > > MTK_PULL_SET_RSEL_011:4k in PU, 5K in PD;
+> > > MTK_PULL_SET_RSEL_100:3k in PU, 75k in PD;
+> > > MTK_PULL_SET_RSEL_101:2k in PU, 5K in PD;
+> > > MTK_PULL_SET_RSEL_110:1.5k in PU, 75k in PD;
+> > > MTK_PULL_SET_RSEL_111:1k in PU, 5k in PD.
+> > >
+> > > The rsel actual bias resistance is different between PU and PD.
+> >
+> > Thanks. Somehow I missed this when looking through the datasheet.
+> > This
+> > encoding is interesting. Since it doesn't make sense to have both
+> > pull-up and pull-down, even though the hardware seems capable of
+> > doing
+> > so, I suppose the intent is to support 75k or 5k for pull-down, and
+> > (75k, 10k, 5k, 4k, 3k, 2k, 1.5k, 1k) for pull-up?
+> >
+> > We could add these values to the binding so we could check for
+> > misuse.
+> >
+> > The range of values seems to also cover those supported by the
+> > alternative R0/R1 settings. The values for kprow[01] and kpcol[01]
+> > seem to be different though.
+> >
+> > We should get rid of the MTK_PUPD_SET_R1R0_* macros at the same time.
+> > They seem to be some magic values used with bias-pull-*, which is not
+> > how the properties should be used. At the same time, they overlap
+> > with
+> > mediatek,pull-* properties.
+> >
+> > It would be great if we could standardize on the generic pinconf
+> > properties, and also use real values that fit the requirements of the
+> > properties, i.e. using real resistance values. I'm not sure if it
+> > would make sense to enumerate which pins support which configurations
+> > though.
+> >
+> >
+> > Thanks
+> > ChenYu
+> >
+> >
+> The rsel actual bias resistance of each setting is different in
+> different IC. we think that the define "MTK_PULL_SET_RSEL_000" is more
+> common for all different IC.
 
- .../boot/dts/rockchip/rk3568-evb1-v10.dts     | 57 +++++++++++++++++++
- 1 file changed, 57 insertions(+)
+I see. I personally prefer having things clearly described. I can
+understand this might be an extra burden to support different chips
+with different parameters, though this should be fairly straightforward
+with lookup tables tied to the compatible strings.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-index 69786557093d..65e536c78d2e 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-@@ -13,6 +13,11 @@
- 	model = "Rockchip RK3568 EVB1 DDR4 V10 Board";
- 	compatible = "rockchip,rk3568-evb1-v10", "rockchip,rk3568";
- 
-+	aliases {
-+		ethernet0 = &gmac0;
-+		ethernet1 = &gmac1;
-+	};
-+
- 	chosen: chosen {
- 		stdout-path = "serial2:1500000n8";
- 	};
-@@ -67,6 +72,58 @@
- 	};
- };
- 
-+&gmac0 {
-+	assigned-clocks = <&cru SCLK_GMAC0_RX_TX>, <&cru SCLK_GMAC0>;
-+	assigned-clock-parents = <&cru SCLK_GMAC0_RGMII_SPEED>;
-+	assigned-clock-rates = <0>, <125000000>;
-+	clock_in_out = "output";
-+	phy-handle = <&rgmii_phy0>;
-+	phy-mode = "rgmii-id";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gmac0_miim
-+		     &gmac0_tx_bus2
-+		     &gmac0_rx_bus2
-+		     &gmac0_rgmii_clk
-+		     &gmac0_rgmii_bus>;
-+	status = "okay";
-+};
-+
-+&gmac1 {
-+	assigned-clocks = <&cru SCLK_GMAC1_RX_TX>, <&cru SCLK_GMAC1>;
-+	assigned-clock-parents = <&cru SCLK_GMAC1_RGMII_SPEED>;
-+	assigned-clock-rates = <0>, <125000000>;
-+	clock_in_out = "output";
-+	phy-handle = <&rgmii_phy1>;
-+	phy-mode = "rgmii-id";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gmac1m1_miim
-+		     &gmac1m1_tx_bus2
-+		     &gmac1m1_rx_bus2
-+		     &gmac1m1_rgmii_clk
-+		     &gmac1m1_rgmii_bus>;
-+	status = "okay";
-+};
-+
-+&mdio0 {
-+	rgmii_phy0: ethernet-phy@0 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <0x0>;
-+		reset-assert-us = <20000>;
-+		reset-deassert-us = <100000>;
-+		reset-gpios = <&gpio2 RK_PD3 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&mdio1 {
-+	rgmii_phy1: ethernet-phy@0 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <0x0>;
-+		reset-assert-us = <20000>;
-+		reset-deassert-us = <100000>;
-+		reset-gpios = <&gpio2 RK_PD1 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
- &sdhci {
- 	bus-width = <8>;
- 	max-frequency = <200000000>;
--- 
-2.20.1
+Let's see if Rob and Linus have anything to add.
 
+
+ChenYu
+
+
+> Thanks.
+>
+> > > > Then we can specify the setting with the standard bias-pull-
+> > > > up/down
+> > > > properties [1].
+> > > >
+> > > > Also, please ask internally if Mediatek could relicense all the
+> > > > header
+> > > > files that Mediatek has contributed under include/dt-
+> > > > bindings/pinctrl/ [2]
+> > > > to GPL-2.0 and BSD dual license. These files are part of the DT
+> > > > bindings
+> > > > and we really want them to be dual licensed as well, and not just
+> > > > the
+> > > > YAML files.
+> > > >
+> > >
+> > > ==> We will confirm it internally and reply it later.
+> > >
+> > > Thanks.
+> > > >
+> > > > Regards
+> > > > ChenYu
+> > > >
+> > > >
+> > > > [1]
+> > > > https://elixir.bootlin.com/linux/latest/source/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml#L37
+> > > > [2] Note that a few files were contributed by other people
+> > > >
+> > > > >  #define MTK_DRIVE_2mA  2
+> > > > >  #define MTK_DRIVE_4mA  4
+> > > > >  #define MTK_DRIVE_6mA  6
+> > > > > --
+> > > > > 2.18.0
+> > > > > _______________________________________________
+> > > > > Linux-mediatek mailing list
+> > > > > Linux-mediatek@lists.infradead.org
+> > > > > http://lists.infradead.org/mailman/listinfo/linux-mediatek
