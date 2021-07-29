@@ -2,109 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3316B3D9DC2
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 08:41:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25DB13D9DCF
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 08:47:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234118AbhG2Glu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 02:41:50 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:50178 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S234079AbhG2Glu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 02:41:50 -0400
-X-UUID: 13cdff71a09946a58e23e32ab7b71af5-20210729
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=OVLK3H5y5iwA63PL1InnEGJOkT0m5xgZgp18ut59SDc=;
-        b=YvmL2EEDeBsnxfEGzPpgElS3DnAmPGxXUfZI+SajdwDwRufewozPnohsltjt2ur8a6ZwvLIgUrMTt5k753cjdqLT/0NWCKBkTgIKosKyImbv0860S6Fnve6QVbopskyGzxtDa++EiNRfefvgZIE7B0YaEUnMKQRSNWuOCN9c7R0=;
-X-UUID: 13cdff71a09946a58e23e32ab7b71af5-20210729
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1376133388; Thu, 29 Jul 2021 14:41:44 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 29 Jul 2021 14:41:43 +0800
-Received: from [10.17.3.153] (10.17.3.153) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 29 Jul 2021 14:41:42 +0800
-Message-ID: <1627540902.13818.3.camel@mhfsdcap03>
-Subject: Re: [PATCH v2 11/11] memory: mtk-smi: mt8195: Add initial setting
- for smi-larb
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Ikjoon Jang <ikjn@chromium.org>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Krzysztof Kozlowski" <krzk@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux-foundation.org>
-Date:   Thu, 29 Jul 2021 14:41:42 +0800
-In-Reply-To: <1626935902.27875.7.camel@mhfsdcap03>
-References: <20210715121209.31024-1-yong.wu@mediatek.com>
-         <20210715121209.31024-12-yong.wu@mediatek.com>
-         <CAATdQgAfo9oNR5=ogEottHajODngi1ahvKUnEOUczzjreYpPcQ@mail.gmail.com>
-         <1626935902.27875.7.camel@mhfsdcap03>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S234248AbhG2GrX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 02:47:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35204 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234079AbhG2GrW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 02:47:22 -0400
+Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E606C061765
+        for <devicetree@vger.kernel.org>; Wed, 28 Jul 2021 23:47:20 -0700 (PDT)
+Received: by mail-il1-x12b.google.com with SMTP id a14so4752572ila.1
+        for <devicetree@vger.kernel.org>; Wed, 28 Jul 2021 23:47:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=engleder-embedded-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=eao//OsP6cSr6GKd8L7vo+eJ14NpICiKg2DYYKkeyGY=;
+        b=YM+lxX2iK/At5v+fSELdaUWzHdInnJ5z+rczTJVW2CWlcNuU1ZV/8MGqc+Xsy8fOBf
+         BWUVzyzoidByT5q49kJOwjMsHvSH8WFO9wUspDFvznQ2PsvcFgCkf1RDSaeFTwC2z4VU
+         +rYFYvfZjeY49EUDzpBL6i7g4Lne+Ubql8s6Voed0ooRvwK/i4Xx7OxqGrBO5fveJjfm
+         K7o+85RwT6FOTCkf5vUl2KfK38ADJcMG6mFSAB+fI2Y4BNPOtMqkelWsBcRj75hsyN82
+         BlnaaRmwwCIFlUUw9NUzT6eo8V9J4GP++E6/Wyn6hxi6fU47oJHCPjCThHc26jh5bRaQ
+         KAAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=eao//OsP6cSr6GKd8L7vo+eJ14NpICiKg2DYYKkeyGY=;
+        b=ORiGHuHkTCaK+gZwx6uSBD4fmocnTvNUqbuxLNAx0qC9HzpJsL8Aux7sNP4bBEfUQ0
+         myhZcBKwptWsH/iWP/Nc+JTUaNHIQ0zQFQ51Ry60rTFzw9a3t/VI+AY457cmUu0v7pDG
+         M/B+Uf1cti9WG/1Khjapzlcpu0MA6w9ic+5n+F0w5bXd4QuLUIpPGLe0pWGeOOBVXrwz
+         rddQ5PwOaGcZwYCGIuzjaQ74hYZIRF5Jj7EtcquzhiA6UnKiM8wHp+bkhepxuMIGrF1o
+         in0L5u/HwC4I7UQMvGAo06aCNPIQWx1DCsX6Mi9NsrZJYqZB4gx8fZsnp9TaPKwXkBLs
+         tZtQ==
+X-Gm-Message-State: AOAM530qNmCv8PeZVZU7cr/PMtXnLdbRK5pJvVFj98wOc73J4zXNE4l1
+        W3fh9dTnJPZQl11D7Czloxq2+l9mXGymQXGFzpq99Q==
+X-Google-Smtp-Source: ABdhPJyqZyzu4Y3EVzk9nBehU7aUQd6Z1swoutv1tb4BKQZh2SMDR7OUdYIJrMje2q98r5i6Wf9Gu6JOPR2Zp+2a4ZI=
+X-Received: by 2002:a92:9412:: with SMTP id c18mr1848147ili.38.1627541239754;
+ Wed, 28 Jul 2021 23:47:19 -0700 (PDT)
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+References: <20210726194603.14671-1-gerhard@engleder-embedded.com>
+ <20210726194603.14671-6-gerhard@engleder-embedded.com> <CAL_JsqJC19OsTCa6T98m8bOJ3Z4jUbaVO13MwZFK78XPSpoWBg@mail.gmail.com>
+ <CANr-f5yW4sob_fgxhEafHME71QML8K-+Ka5AzNm5p3A0Ktv02Q@mail.gmail.com>
+ <CAL_JsqK9OvwicCbckvpk4CMWbhcP8yDBXAW_7CmLzR__-fJf0Q@mail.gmail.com>
+ <CANr-f5zWdFAYAteE7tX5qTvT4XMZ+kxaHy03=BnRxFbQLt3pUg@mail.gmail.com>
+ <43958f2b-6756-056a-b2fa-cb8f6d84f603@xilinx.com> <CANr-f5xu=xHn7CGve3=Msd8CEcoDujQzSYSNQ2Zbh7NOvyXFYA@mail.gmail.com>
+ <839bdf26-6aef-7e05-94b9-78c0d2061bf9@xilinx.com> <CANr-f5xJbTYa-jPzVMPcAV2Un+POBn24gd+604rzPt36RkRcDQ@mail.gmail.com>
+ <d763d777-f258-7390-a85a-6cae098102eb@xilinx.com>
+In-Reply-To: <d763d777-f258-7390-a85a-6cae098102eb@xilinx.com>
+From:   Gerhard Engleder <gerhard@engleder-embedded.com>
+Date:   Thu, 29 Jul 2021 08:47:08 +0200
+Message-ID: <CANr-f5yuZ0t782fX_6w3ksKXVdObGWxFHA9Lg+tUQwrXkUh2ng@mail.gmail.com>
+Subject: Re: [PATCH net-next 5/5] arm64: dts: zynqmp: Add ZCU104 based TSN endpoint
+To:     Michal Simek <michal.simek@xilinx.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        David Miller <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgSWtqb29uLA0KDQpKdXN0IGEgcGluZy4NCg0KT24gVGh1LCAyMDIxLTA3LTIyIGF0IDE0OjM4
-ICswODAwLCBZb25nIFd1IHdyb3RlOg0KPiBPbiBXZWQsIDIwMjEtMDctMjEgYXQgMjE6NDAgKzA4
-MDAsIElram9vbiBKYW5nIHdyb3RlOg0KPiA+IE9uIFRodSwgSnVsIDE1LCAyMDIxIGF0IDg6MjMg
-UE0gWW9uZyBXdSA8eW9uZy53dUBtZWRpYXRlay5jb20+IHdyb3RlOg0KPiA+ID4NCj4gPiA+IFRv
-IGltcHJvdmUgdGhlIHBlcmZvcm1hbmNlLCBXZSBhZGQgc29tZSBpbml0aWFsIHNldHRpbmcgZm9y
-IHNtaSBsYXJicy4NCj4gPiA+IHRoZXJlIGFyZSB0d28gcGFydDoNCj4gPiA+IDEpLCBFYWNoIHBv
-cnQgaGFzIHRoZSBzcGVjaWFsIG9zdGQob3V0c3RhbmRpbmcpIHZhbHVlIGluIGVhY2ggbGFyYi4N
-Cj4gPiA+IDIpLCBUd28gZ2VuZXJhbCBzZXR0aW5nIGZvciBlYWNoIGxhcmIuDQo+ID4gPg0KPiA+
-ID4gSW4gc29tZSBTb0MsIHRoaXMgc2V0dGluZyBtYXliZSBjaGFuZ2VkIGR5bmFtaWNhbGx5IGZv
-ciBzb21lIHNwZWNpYWwgY2FzZQ0KPiA+ID4gbGlrZSA0SywgYW5kIHRoaXMgaW5pdGlhbCBzZXR0
-aW5nIGlzIGVub3VnaCBpbiBtdDgxOTUuDQo+ID4gPg0KPiA+ID4gU2lnbmVkLW9mZi1ieTogWW9u
-ZyBXdSA8eW9uZy53dUBtZWRpYXRlay5jb20+DQo+ID4gPiAtLS0NCj4gWy4uLl0NCj4gPiA+ICBz
-dHJ1Y3QgbXRrX3NtaSB7DQo+ID4gPiBAQCAtMjEzLDEyICsyMjgsMjIgQEAgc3RhdGljIHZvaWQg
-bXRrX3NtaV9sYXJiX2NvbmZpZ19wb3J0X210ODE3MyhzdHJ1Y3QgZGV2aWNlICpkZXYpDQo+ID4g
-PiAgc3RhdGljIHZvaWQgbXRrX3NtaV9sYXJiX2NvbmZpZ19wb3J0X2dlbjJfZ2VuZXJhbChzdHJ1
-Y3QgZGV2aWNlICpkZXYpDQo+ID4gPiAgew0KPiA+ID4gICAgICAgICBzdHJ1Y3QgbXRrX3NtaV9s
-YXJiICpsYXJiID0gZGV2X2dldF9kcnZkYXRhKGRldik7DQo+ID4gPiAtICAgICAgIHUzMiByZWc7
-DQo+ID4gPiArICAgICAgIHUzMiByZWcsIGZsYWdzX2dlbmVyYWwgPSBsYXJiLT5sYXJiX2dlbi0+
-ZmxhZ3NfZ2VuZXJhbDsNCj4gPiA+ICsgICAgICAgY29uc3QgdTggKmxhcmJvc3RkID0gbGFyYi0+
-bGFyYl9nZW4tPm9zdGRbbGFyYi0+bGFyYmlkXTsNCj4gPiA+ICAgICAgICAgaW50IGk7DQo+ID4g
-Pg0KPiA+ID4gICAgICAgICBpZiAoQklUKGxhcmItPmxhcmJpZCkgJiBsYXJiLT5sYXJiX2dlbi0+
-bGFyYl9kaXJlY3RfdG9fY29tbW9uX21hc2spDQo+ID4gPiAgICAgICAgICAgICAgICAgcmV0dXJu
-Ow0KPiA+ID4NCj4gPiA+ICsgICAgICAgaWYgKE1US19TTUlfQ0FQUyhmbGFnc19nZW5lcmFsLCBN
-VEtfU01JX0ZMQUdfTEFSQl9USFJUX0VOKSkNCj4gPiA+ICsgICAgICAgICAgICAgICB3cml0ZWxf
-cmVsYXhlZChTTUlfTEFSQl9USFJUX0VOLCBsYXJiLT5iYXNlICsgU01JX0xBUkJfQ01EX1RIUlRf
-Q09OKTsNCj4gPiA+ICsNCj4gPiA+ICsgICAgICAgaWYgKE1US19TTUlfQ0FQUyhmbGFnc19nZW5l
-cmFsLCBNVEtfU01JX0ZMQUdfTEFSQl9TV19GTEFHKSkNCj4gPiA+ICsgICAgICAgICAgICAgICB3
-cml0ZWxfcmVsYXhlZChTTUlfTEFSQl9TV19GTEFHXzEsIGxhcmItPmJhc2UgKyBTTUlfTEFSQl9T
-V19GTEFHKTsNCj4gPiA+ICsNCj4gPiA+ICsgICAgICAgZm9yIChpID0gMDsgaSA8IFNNSV9MQVJC
-X1BPUlRfTlJfTUFYICYmIGxhcmJvc3RkICYmICEhbGFyYm9zdGRbaV07IGkrKykNCj4gPiA+ICsg
-ICAgICAgICAgICAgICB3cml0ZWxfcmVsYXhlZChsYXJib3N0ZFtpXSwgbGFyYi0+YmFzZSArIFNN
-SV9MQVJCX09TVERMX1BPUlR4KGkpKTsNCj4gPiANCj4gPiBBbGwgb3RoZXIgbXRrIHBsYXRmb3Jt
-J3MgbGFyYnMgaGF2ZSB0aGUgc2FtZSBmb3JtYXQgZm9yIFNNSV9MQVJCX09TVERMX1BPUlR4KCkN
-Cj4gPiByZWdpc3RlcnMgYXQgdGhlIHNhbWUgb2Zmc2V0PyBvciBpcyB0aGlzIHVuaXF1ZSBmZWF0
-dXJlIGZvciBtdDgxOTU/DQo+IA0KPiBBbGwgdGhlIG90aGVyIFBsYXRmb3JtJ3MgbGFyYnMgaGF2
-ZSB0aGUgc2FtZSBmb3JtYXQgYXQgdGhlIHNhbWUgb2Zmc2V0Lg0KDQpJbiB0aGlzIGNhc2UsIERv
-IHlvdSBoYXZlIHNvbWUgb3RoZXIgZnVydGhlciBjb21tZW50PyBJZiBubywgSSB3aWxsIGtlZXAN
-CnRoZSBjdXJyZW50IHNvbHV0aW9uIGZvciB0aGlzLg0KDQpUaGFua3MuDQoNCj4gDQo+ID4gDQo+
-ID4gPiArDQo+ID4gPiAgICAgICAgIGZvcl9lYWNoX3NldF9iaXQoaSwgKHVuc2lnbmVkIGxvbmcg
-KilsYXJiLT5tbXUsIDMyKSB7DQo+ID4gPiAgICAgICAgICAgICAgICAgcmVnID0gcmVhZGxfcmVs
-YXhlZChsYXJiLT5iYXNlICsgU01JX0xBUkJfTk9OU0VDX0NPTihpKSk7DQo+ID4gPiAgICAgICAg
-ICAgICAgICAgcmVnIHw9IEZfTU1VX0VOOw0KPiA+ID4gQEAgLTIyNyw2ICsyNTIsNTEgQEAgc3Rh
-dGljIHZvaWQgbXRrX3NtaV9sYXJiX2NvbmZpZ19wb3J0X2dlbjJfZ2VuZXJhbChzdHJ1Y3QgZGV2
-aWNlICpkZXYpDQo+ID4gPiAgICAgICAgIH0NCj4gPiA+ICB9DQo+ID4gPg0KPiANCj4gWy4uLl0N
-Cj4gDQoNCg==
+On Thu, Jul 29, 2021 at 7:22 AM Michal Simek <michal.simek@xilinx.com> wrot=
+e:
+> On 7/28/21 10:51 PM, Gerhard Engleder wrote:
+> > On Wed, Jul 28, 2021 at 12:59 PM Michal Simek <michal.simek@xilinx.com>=
+ wrote:
+> >>>> In past we said that we won't be accepting any FPGA description in
+> >>>> u-boot/linux projects. I don't think anything has changed from that =
+time
+> >>>> and I don't want to end up in situation that we will have a lot of
+> >>>> configurations which none else can try and use.
+> >> You have to share to customers bitstream. Likely also boot.bin with
+> >> PS/PL configuration and other files in it. That's why it will be quite
+> >> simple to also share them full DT or DT overlay just for your IP in th=
+e
+> >> same image.
+> >
+> > That's possible of course.
+> >
+> >> Till now I didn't hear any strong argument why this should be accepted=
+.
+> >
+> > I want to try a new argument:
+> >
+> > For new bindings a schema is used. The goal is to ensure that the bindi=
+ng
+> > schema and the driver fit together. The validation chain is the followi=
+ng:
+> > 1) The binding schema is used to validate the device tree.
+> > 2) The device tree is used to "validate" the driver by booting.
+> >
+> > So the kernel tree needs to contain a device tree which uses the bindin=
+g
+> > to build up the complete validation chain. The validation of the driver=
+ against
+> > the binding is not possible without a device tree. The only option woul=
+d be
+> > to compare driver and binding manually, which is error prone.
+> >
+> > If device trees with FPGA descriptions are not allowed in the kernel tr=
+ee, then
+> > the kernel tree will never contain complete validation chains f=C3=BCr =
+FPGA based
+> > IPs. The validation of bindings for FPGA based IPs has to rely on devic=
+e trees
+> > which are maintained out of tree. It is possible/likely that schema
+> > validation is
+> > not done out of tree. As a result it is more likely that binding and
+> > driver do not
+> > fit together for FPGA based IPs. In the end the quality of the support =
+for FPGA
+> > based IPs would suffer.
+> >
+> > I suggest allowing a single device tree with FPGA descriptions for a bi=
+nding
+> > of FPGA based IPs. This will build up the complete validation chain in =
+the
+> > kernel tree and ensures that binding and driver fit together. This sing=
+le device
+> > tree would form the reference platform for the FPGA based IP.
+>
+> This is good theory but the only person who can do this validation is
+> you or your customer who is interested in TSN. I am doing this for quite
+> a long time and even people are giving me commitments that they will
+> support the whole custom board but they stop to do at some point and
+> then silently disappear. Then it is up to me to deal with this and I
+> really don't want to do it.
+> When your driver is merged you should start to do regression testing
+> against linux-next, rc versions. When you convince me that you are
+> regularly doing this for 2 years or so we can restart this discussion.
+>
+> Till that time you can simply keep rebasing one patch with your DT on
+> the top which is quite easy to do and you get all
+> functionality/advantages you are asking about above.
 
+Ok, I give up.
+
+Gerhard
