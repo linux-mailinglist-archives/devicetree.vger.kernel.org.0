@@ -2,62 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ABDD63DA8C5
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 18:19:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 760153DA8E7
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 18:24:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229676AbhG2QTj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 12:19:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60494 "EHLO
+        id S230406AbhG2QYs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 12:24:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231475AbhG2QTi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 12:19:38 -0400
-Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com [IPv6:2607:f8b0:4864:20::f2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B948C061765
-        for <devicetree@vger.kernel.org>; Thu, 29 Jul 2021 09:19:34 -0700 (PDT)
-Received: by mail-qv1-xf2e.google.com with SMTP id g6so3647168qvj.8
-        for <devicetree@vger.kernel.org>; Thu, 29 Jul 2021 09:19:34 -0700 (PDT)
+        with ESMTP id S230228AbhG2QYq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 12:24:46 -0400
+Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E44DC061765
+        for <devicetree@vger.kernel.org>; Thu, 29 Jul 2021 09:24:41 -0700 (PDT)
+Received: by mail-qk1-x732.google.com with SMTP id t66so6586311qkb.0
+        for <devicetree@vger.kernel.org>; Thu, 29 Jul 2021 09:24:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=CQOpyHR0dniHjwxjRmNhdF/ycVh6frpl8ClqJFnJ9xQ=;
-        b=ic/+jL/sRZ9YoobekO1A6TTBbRQSbO+0ZcaQ1XhRlWBY3radRJChbEef0Q7ltIrJIz
-         GELxuymuBGzolOq87K5y7cqjYqwH1HVuiJHEo4OrtIt1w13Zq27SYklgQZi02gEdupO9
-         OAnmex7mBJ1NfOgBYxwJ9gHRM0/OW2wT10jGM=
+        bh=lrbYP93L2tMwFoTHuD2bfzhhJvQFO01pQtZG8WiVqAk=;
+        b=Sohrb55AH82uy9S0BXeyNZ+trj8sQwFMFTGrix422Z6JvroYXcGAMVMQf7fIlpvDAs
+         eZruADDr/U7SRQI+eFcQ/AqKzwY8WC1A7fGTSbCrnns45gvM6Zp7rbHVWbq2N4Li0+mk
+         r879Og8Y8m072gVYEPBs0guffl9ggBZ5X88x4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=CQOpyHR0dniHjwxjRmNhdF/ycVh6frpl8ClqJFnJ9xQ=;
-        b=lMdDr84XCooyg8onFHo/IpOntwaECFlGUD3iP0UVEEpRHdbW0cYPcR517IKViHazQu
-         rlNt6JyKm0dyKXtZ/sl9Vb1oplee/ArJy6kERRF3AVi+wRWTKkKzw0sEXZx00GLircJ6
-         kJ1DNehZAN5uLOCtCXdkhUPYTkO0BEfcNL2td/uIiargtORgyCUqfMHs0spotGOXPzkQ
-         tIC+fNt80Tu8q4kWHSiZY0qaS2Ptuqd/TjGNjnH+lU2nhux6PbcASuuIdNJNZPkXuvSg
-         X7sh3u8dMYPRo6jllksl9lBlj7qsy2Kht3gWB2TrTkCNN52Uiy5PDT/UKZolCDYC+BBr
-         SdEQ==
-X-Gm-Message-State: AOAM532OkHTRVaR/YOSDyktGRkWJI/zWcnWXEszz2dhdb2tS/jL5KllF
-        G6XeLWzFrdlYKKf0kz/sHEjW9O7kEOss1w==
-X-Google-Smtp-Source: ABdhPJzsBP0MWbjTZHQcN1kJgZ+3WpDAjESmq3OIFQsFnVudCZxopQ/MqFZS8pvovAhdayc9KrvZnQ==
-X-Received: by 2002:a0c:ac43:: with SMTP id m3mr5953389qvb.5.1627575573218;
-        Thu, 29 Jul 2021 09:19:33 -0700 (PDT)
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
-        by smtp.gmail.com with ESMTPSA id s3sm1400584qtn.4.2021.07.29.09.19.32
+        bh=lrbYP93L2tMwFoTHuD2bfzhhJvQFO01pQtZG8WiVqAk=;
+        b=suC0maL3TxoZ1s6+eEXmkwI3Fzq8pXG3Ofbt05XQNrpgNN0msUYR/C4GS43jd3CNTP
+         lbv3J3Vkj3Yfj2c5q6fEUxBSAgU9TBOEOlw1Rpu9AwPlenzJieGpApGyR5uYR+sqWGJr
+         7LLHbTZlr3fHdABs2T5fTE+Scyl1/Kz+ya1dCkEHX8PteUXxH2yTqw7r8D9wpIN0n8Ku
+         cCcG8sMOpn9wJmIUDynAgXmxQqQ/gygDUtTXYC2q0ks3rssgz/AHT7xHwgPl6BSfjHiT
+         HyJnT1kwlC6k18oivp72yV3FTu3Zt68r2Q+eK0sC8teQvLY4qbckBm+s88JR68NJIY64
+         yq5A==
+X-Gm-Message-State: AOAM531Chiw6czQMOmlzWFQCSe/JjEe1wla/MTBJrS39Ys+TJcYd2zF3
+        KXVc5ij++B8jrbOripJsj5pIrkJUxpGaYA==
+X-Google-Smtp-Source: ABdhPJyc+vOMSSHSjJ5vDKtUxbM/hp50Op1X1sYgesB2rqKpjz2SgBWxbj8TbEoTT+zN22e3GinJlQ==
+X-Received: by 2002:a37:cd0:: with SMTP id 199mr6049580qkm.69.1627575880480;
+        Thu, 29 Jul 2021 09:24:40 -0700 (PDT)
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com. [209.85.219.176])
+        by smtp.gmail.com with ESMTPSA id g26sm1937546qkm.122.2021.07.29.09.24.39
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Jul 2021 09:19:32 -0700 (PDT)
-Received: by mail-yb1-f179.google.com with SMTP id m193so11106011ybf.9
-        for <devicetree@vger.kernel.org>; Thu, 29 Jul 2021 09:19:32 -0700 (PDT)
-X-Received: by 2002:a25:2904:: with SMTP id p4mr7599226ybp.276.1627575571977;
- Thu, 29 Jul 2021 09:19:31 -0700 (PDT)
+        Thu, 29 Jul 2021 09:24:39 -0700 (PDT)
+Received: by mail-yb1-f176.google.com with SMTP id a201so11071702ybg.12
+        for <devicetree@vger.kernel.org>; Thu, 29 Jul 2021 09:24:39 -0700 (PDT)
+X-Received: by 2002:a25:2904:: with SMTP id p4mr7625518ybp.276.1627575878937;
+ Thu, 29 Jul 2021 09:24:38 -0700 (PDT)
 MIME-Version: 1.0
-References: <1627560036-1626-1-git-send-email-rnayak@codeaurora.org> <1627560036-1626-2-git-send-email-rnayak@codeaurora.org>
-In-Reply-To: <1627560036-1626-2-git-send-email-rnayak@codeaurora.org>
+References: <1627560036-1626-1-git-send-email-rnayak@codeaurora.org> <1627560036-1626-4-git-send-email-rnayak@codeaurora.org>
+In-Reply-To: <1627560036-1626-4-git-send-email-rnayak@codeaurora.org>
 From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 29 Jul 2021 09:19:20 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Vtp0HGFpoS4cdZOQ0GUBbhiyw=TuYxWNTGVAyMUKMhvQ@mail.gmail.com>
-Message-ID: <CAD=FV=Vtp0HGFpoS4cdZOQ0GUBbhiyw=TuYxWNTGVAyMUKMhvQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: nvmem: qfprom: Add optional
- power-domains property
+Date:   Thu, 29 Jul 2021 09:24:28 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=UYsKNgZZUmAM22Mwxz7fJFN_3p0YRx6W3dnZHvd13_Zg@mail.gmail.com>
+Message-ID: <CAD=FV=UYsKNgZZUmAM22Mwxz7fJFN_3p0YRx6W3dnZHvd13_Zg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sc7280: Add qfprom node
 To:     Rajendra Nayak <rnayak@codeaurora.org>
 Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -76,37 +75,14 @@ Hi,
 
 On Thu, Jul 29, 2021 at 5:01 AM Rajendra Nayak <rnayak@codeaurora.org> wrote:
 >
-> qfprom devices on some SoCs need to vote on the performance state
-> of a power-domain, so add the power-domains optional property to the
-> bindings
+> Add the qfprom node and its properties for the sc7280 SoC.
 >
 > Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
 > ---
->  Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
-> index 861b205..a498a08 100644
-> --- a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
-> +++ b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
-> @@ -51,6 +51,9 @@ properties:
->    vcc-supply:
->      description: Our power supply.
->
-> +  power-domains:
-> +    description: A phandle to a power domain node.
-> +
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
 
-I'm trying to channel my inner Rob here by saying that this
-description doesn't add anything and this should just be:
+Peachy! I guess a future patch will add things like USB2 trim and GPU
+speed bin definitions?
 
-power-domains:
-  maxItems: 1
-
-Here's an example of Rob saying this:
-
-https://lore.kernel.org/linux-devicetree/20210712151322.GA1931925@robh.at.kernel.org/
-
-Other than that, feel free to add my "Reviewed-by" tag.
-
--Doug
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
