@@ -2,107 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA11C3D9C92
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 06:24:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B6583D9CC5
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 06:30:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233444AbhG2EY4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 00:24:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59300 "EHLO
+        id S229485AbhG2Ea0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 00:30:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232580AbhG2EYz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 00:24:55 -0400
-Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06BB0C061757;
-        Wed, 28 Jul 2021 21:24:52 -0700 (PDT)
-Received: by mail-qk1-x734.google.com with SMTP id 184so4697968qkh.1;
-        Wed, 28 Jul 2021 21:24:51 -0700 (PDT)
+        with ESMTP id S233763AbhG2Ea0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 00:30:26 -0400
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B420C061765
+        for <devicetree@vger.kernel.org>; Wed, 28 Jul 2021 21:30:23 -0700 (PDT)
+Received: by mail-pj1-x102a.google.com with SMTP id pf12-20020a17090b1d8cb0290175c085e7a5so13629367pjb.0
+        for <devicetree@vger.kernel.org>; Wed, 28 Jul 2021 21:30:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=7Oqj3DttJ5RhEJCqZkn0/WMVhGGM0rTesKNmkQoAdSg=;
-        b=l+w5qTrAUfiJGPqP+BIKupqZOTbFZyq9f2ChgMbFZrCOSpM7nb2S+o1Jy99HoSLAdl
-         V/4RzbWceiywjoYdXUD27eRMLKoexStLUvEZX5SYtpfBZq05+YnRmNqQlSkOqhZySKnT
-         6E8/GOKw9GNKPz8H+oalgsmKb+Vj8BuC1zHsD8EtoCKAOFfpeKj7ZRFz8QDna0NDxth6
-         kDQr5hVQyxYnyI+f8++f8xx/9IKwDitR/d2tSmQarVLoQ2at/zWYRQPNlzEoBYMCnN2e
-         9C4JoLg4Y/yUnkCXmaRfcAwRVKKY+mD687U3PR6WQ8pNPSC+CamJUvs7IR5UBBaibUVs
-         NSdw==
+        d=google.com; s=20161025;
+        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
+         :content-transfer-encoding;
+        bh=r5qJLsWAEhPcHvajOIKkhTOz7l5fXoAdAbtdJ9zbKtk=;
+        b=Q86TpW5I0znqVc+apP3BPb/AIu+ZMA7Y7RBJURS9q38hVOM5CB6KzIfy5NFXTmi2A2
+         5OvecmcEubsVRmQJA7Qf+/gcM6S9x0MnhYuWtWkO4usV+lBskgriqJ0BEW3SQuaHH61X
+         CSnYLol3lLvPAKivObS8tfJ/Gc70QVEnJqEz4wtfQrXED1yNBuDc+v5Wn5hmS2ZDyYuX
+         vykBxBxLjRsFdpC4q/e4oIDDLLvqklQBHyAkV/SX71d+0Jro+i8hrU/KPZZbjX89MQdt
+         w65N9mbpRg5uMPiCmAa9m46aRoMLdExB3v6VoCqHPU38QxjJ76ugMsEeaE3jhDMmHnv1
+         WbUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=7Oqj3DttJ5RhEJCqZkn0/WMVhGGM0rTesKNmkQoAdSg=;
-        b=iirrzGpLs9wCJ44SYboThwtmdqa+cA9WXe/XkAITAskwY2RAjnlzVLOTQVg9ZKWnfA
-         t3ymJetki+umhul2dizpXvHsMRWHvkIg5yaylmxAWZ2V8s+b4YdX3o1JpFEfFUCiapNi
-         f44BWMVy5vywMpQCW7A+rC+AbvmR74Mf1Ep2q+ddBLBB1CrGxG9xXGbyRwZhEPL2689C
-         F711XO+7OUUV7AMW9Wwb4Sriw+ccIAeGc4qXfVR8RSKKvidYMSLNUt5ko0ywOUKdMWR1
-         U9h6eHtxCHbDIQFamY771w7L4r+ig+Xf5cqqlakXumPZcyv0t9Y908U4sK8YKwLiGuXX
-         JRIg==
-X-Gm-Message-State: AOAM531LeUxM4zWELLrMEC0GH0fSVTQ8qYkilMBzIEIgNYHMzKV6MNY8
-        e+9cOJRr1W/IoNPpFusgClNUH57DonA=
-X-Google-Smtp-Source: ABdhPJz4GevoejyfdnOCq1g5/zuOuNU2b/OD8GiMc+U3hhNU0CHPpZcIgdplnlu3wFkebxkhJY/O0A==
-X-Received: by 2002:a05:620a:204c:: with SMTP id d12mr3279206qka.417.1627532691260;
-        Wed, 28 Jul 2021 21:24:51 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id n14sm846138qti.47.2021.07.28.21.24.50
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=r5qJLsWAEhPcHvajOIKkhTOz7l5fXoAdAbtdJ9zbKtk=;
+        b=sJ7OhR1IhID+9kQxiEGALNzdmjpq0U569lX49yPAYmOPOvntHKWNrlO1AbBGnisxAu
+         9LqQhQJglVUY/0z2oHKjqbgC5icE7GVhRmgDUgZHAZKwiUh8BprzoOc5BFXhpnlsFwQk
+         e/DGr3e/Zej4F0yLpHbFHmoLh0aMwl6t9NRtV84lfbkF+6QYoc1oRmQ7w6+WrodSpOHZ
+         /bbd5QzYEBR8q1qWLaMPsNttDYla6Vi8obVieWOxEnlCyz8EskdxK0wy//yctOxcS1TN
+         64Oj/xNnuQDlEe7ILNo35Eege2ED2RC4lPmu9z6hU1t63UXTO2I9TovqD/I2wSTViWai
+         wlgw==
+X-Gm-Message-State: AOAM5318H4ofKE9eXLJuyyPh3jOtnhCeVcKDwl0mONWWpBx5QKwWIJ1D
+        CTIykcWMq10lNFOjqEXc6jREdQ==
+X-Google-Smtp-Source: ABdhPJw3SvJQlvvPQ4XX9lqXTB2Eg+0Y5qeOAYr7uHk8BfoCC2cp0TE4CD8Kga1iRtVepSUFZ9yVYw==
+X-Received: by 2002:a17:902:dacd:b029:12b:acab:b878 with SMTP id q13-20020a170902dacdb029012bacabb878mr2857505plx.4.1627533022446;
+        Wed, 28 Jul 2021 21:30:22 -0700 (PDT)
+Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
+        by smtp.gmail.com with ESMTPSA id u188sm1720773pfc.115.2021.07.28.21.30.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Jul 2021 21:24:50 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Wed, 28 Jul 2021 21:24:49 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-watchdog@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: watchdog: sunxi: Add compatible for D1
-Message-ID: <20210729042449.GA1716994@roeck-us.net>
-References: <20210726035143.53132-1-samuel@sholland.org>
- <20210726035143.53132-2-samuel@sholland.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210726035143.53132-2-samuel@sholland.org>
+        Wed, 28 Jul 2021 21:30:20 -0700 (PDT)
+Date:   Wed, 28 Jul 2021 21:30:20 -0700 (PDT)
+X-Google-Original-Date: Wed, 28 Jul 2021 20:38:34 PDT (-0700)
+Subject:     Re: [RFC PATCH v2 00/11] Linux RISC-V ACLINT Support
+In-Reply-To: <CAAhSdy1rA9e2iCJWeVEQwKTRfTZZaRZVcMe1o8wMnFiWOOGW3w@mail.gmail.com>
+CC:     Marc Zyngier <maz@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>, tglx@linutronix.de,
+        daniel.lezcano@linaro.org, robh+dt@kernel.org,
+        Atish Patra <Atish.Patra@wdc.com>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Anup Patel <Anup.Patel@wdc.com>
+From:   Palmer Dabbelt <palmerdabbelt@google.com>
+To:     anup@brainfault.org
+Message-ID: <mhng-7fd3d454-cd80-4ede-baed-08003d66b3a4@palmerdabbelt-glaptop>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jul 25, 2021 at 10:51:42PM -0500, Samuel Holland wrote:
-> D1 keeps the same register layout and clock sources as the R329, but it
-> adds a key field which must be set to update the watchdog's "CFG" and
-> "MODE" registers. Therefore it is not backward-compatible.
-> 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> ---
->  .../devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml   | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
-> index 853ceb1b7c0f..756e6ab99860 100644
-> --- a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
-> @@ -29,6 +29,7 @@ properties:
->        - items:
->            - const: allwinner,suniv-f1c100s-wdt
->            - const: allwinner,sun4i-a10-wdt
-> +      - const: allwinner,sun20i-d1-wdt
+On Mon, 26 Jul 2021 06:01:01 PDT (-0700), anup@brainfault.org wrote:
+> Hi Marc,
+>
+> On Mon, Jul 26, 2021 at 8:02 PM Marc Zyngier <maz@kernel.org> wrote:
+>>
+>> On Mon, 26 Jul 2021 13:45:20 +0100,
+>> Anup Patel <anup@brainfault.org> wrote:
+>> >
+>> > Hi Marc,
+>> >
+>> > I have taken the approach of IPI domains (like you suggested) in this series.
+>> >
+>> > What do you think ?
+>>
+>> I have commented on the irqchip driver.
+>>
+>> As for the RISC-V specific code, I'll let the architecture maintainers
+>> look into it. I guess the elephant in the room is that this spec seems
+>> to be evolving, and that there is no HW implementation (how this
+>> driver maps on SF's CLINT is anybody's guess).
 
-Alignment is off.
+There's a long history of interrupt controller efforts from the RISC-V 
+foundation, and we've yet to have any of them result in hardware.
 
-Guenter
+> The SiFive CLINT is a more convoluted device and provides M-level
+> timer functionality and M-level IPI functionality in one MMIO device.
+>
+> The RISC-V ACLINT specification is more modular and backward
+> compatible with the SiFive CLINT. In fact, a SiFive CLINT device
+> can be viewed as a ACLINT MSWI device + ACLINT MTIMER device.
+> This means existing RISC-V boards having SiFive CLINT will be
+> automatically compliant to the RISC-V ACLINT specification.
 
->  
->    reg:
->      maxItems: 1
-> @@ -59,6 +60,7 @@ if:
->      compatible:
->        contains:
->          enum:
-> +          - allwinner,sun20i-d1-wdt
->            - allwinner,sun50i-r329-wdt
->  
->  then:
+So is there any hardware that this new specification enables?  It seems 
+to be a more convoluted way to describe the same mess we're already in.  
+I'm not really inclined to take a bunch of code that just does the same 
+thing via a more complicated specification.
+
+> Here's the RISC-V ACLINT spec:
+> https://github.com/riscv/riscv-aclint/blob/main/riscv-aclint.adoc
+>
+> The RISC-V ACLINT spec is quite stable and we are not seeing any
+> further changes hence I sent out RFC PATCHes to get feedback. The
+> RISC-V ACLINT spec will be frozen before 2021 end (i.e. before next
+> RISC-V summit).
+
+Have you talked to the other ISA folks about that?
+
+As far as I can tell this new spec allows for multiple MTIME registers, 
+which seems to be in direct contradiction to the single -MTIME register 
+as defined in the ISA manual.  It also seems to be vaguely incompatible 
+WRT the definition of SSIP, but I'm not sure that one really matters all 
+that much as it's not like old software can write the new registers.
+
+I just talked to Krste and Andrew, they say they haven't heard of any of 
+this.  I don't know what's going on over there, but it's very hard to 
+review anything when I can't even tell where the ISA is defined.
+
+> The Linux NoMMU kernel (M-level) will use an ACLINT MSWI device
+> for IPI support whereas the regular Linux MMU kernel (S-level) will
+> use an ACLINT SSWI device for IPI support.
+>
+> The ACLINT SWI driver is a common IPI driver for both ACLINT
+> MSWI (Linux NoMMU) and ACLINT SSWI (Linux MMU). In fact,
+> the ACLINT SWI also works for IPI part (i.e. MSWI) of SiFive CLINT.
+>
+> Regards,
+> Anup
+>
+>>
+>>         M.
+>>
+>> --
+>> Without deviation from the norm, progress is not possible.
