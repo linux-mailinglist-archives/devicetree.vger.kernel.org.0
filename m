@@ -2,94 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB4193DA2C0
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 14:02:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC3FB3DA2CA
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 14:03:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234135AbhG2MCK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 08:02:10 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:19682 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234949AbhG2MCK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Jul 2021 08:02:10 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1627560127; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=8ZShUh/7shxi0qSPSPWiZDxQFDNYCnz6z35iLFinikI=; b=Id2E3eYRy6h9FAA3iidmdal8vR5mF4ZSbCKtBJ5IKWd/0RR5Rrgxla6q27C+cj8pyK/9NfxT
- kk7nj9bcQNUrGFmgydCQdDlw7rk74Y2JZx9EIvZK21SlAjyJeHvIwJwF7XLPxSSgZQV7HEvi
- Szh3G8oFyo6TXvnzLrbfVZpO7fw=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 6102988396a66e66b2059694 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 29 Jul 2021 12:01:07
- GMT
-Sender: rnayak=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id D7391C43460; Thu, 29 Jul 2021 12:01:07 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from blr-ubuntu-173.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: rnayak)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 43D69C43460;
-        Thu, 29 Jul 2021 12:01:04 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 43D69C43460
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
-From:   Rajendra Nayak <rnayak@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org,
-        srinivas.kandagatla@linaro.org, robh+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, rbokka@codeaurora.org,
-        dianders@chromium.org, Rajendra Nayak <rnayak@codeaurora.org>
-Subject: [PATCH v2 3/3] arm64: dts: qcom: sc7280: Add qfprom node
-Date:   Thu, 29 Jul 2021 17:30:36 +0530
-Message-Id: <1627560036-1626-4-git-send-email-rnayak@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1627560036-1626-1-git-send-email-rnayak@codeaurora.org>
-References: <1627560036-1626-1-git-send-email-rnayak@codeaurora.org>
+        id S235799AbhG2MDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 08:03:50 -0400
+Received: from out4-smtp.messagingengine.com ([66.111.4.28]:56977 "EHLO
+        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S236712AbhG2MDu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Jul 2021 08:03:50 -0400
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+        by mailout.nyi.internal (Postfix) with ESMTP id B14245C011C;
+        Thu, 29 Jul 2021 08:03:46 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Thu, 29 Jul 2021 08:03:46 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:content-transfer-encoding:in-reply-to; s=fm3; bh=Y
+        NjUjuKrFMqVuoUSE4kiwVk/MGuHpjlgf6oi8ECgA44=; b=AgwvSgyny45yq6AE/
+        +Z5cCd1U6/oIgYRRdAXFIK4htTC45nJf2lquNcikQX66PK6v7ue+8IEvI08B1z/K
+        XSjgAsf0cVpyOVMwtDjuXFVRYt1LEqlK7PUb/IqoUyqG7FqsKFZ+WvKILkuzQk7T
+        PeO6ME8p+Z6SOOoJA9Cm0k02TDGHlQ2NL47UCnRP82IS46YyZnQgEzVMpXHe6HqU
+        rvmov0WEdcP6zN4tn4oCFu1xBUK6ovw59F61qYPbUXyXYN92Orv2A6DjFJDAGp7x
+        ZMwax2tLhCe1deVAbrWFIXB687vBamDu4yo3JnZcX6K3h40CIcuM/Nu+6/yf12se
+        d3egA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; bh=YNjUjuKrFMqVuoUSE4kiwVk/MGuHpjlgf6oi8ECgA
+        44=; b=Au5nnhC5iugDqTc0gqMH2SkdEAR0TipfbtQzacCm0kvjD3IdiZ81sWlGe
+        rPipc3JUy063fLYawYpYM4fLAd7q0U0OsvLzoBxR4OyQp7tn+aM85bjgClbRCSqW
+        dfRPdAJtbixPMF8cX4AWMNyb7/USqSFCu4TWWNWab8Y+2ennUZL3Ww/Ld9JEeUcX
+        qn1qUIB78nVBW1JrGjZRXdmYlWkHQ7QO2AdO7xLzeVEb3rGRTe4R46RRTegnsmyN
+        Uh/Gbci1C4xmTy3gjhZvqqTeWhm9jPHiJ1IM94POpfV/os72geIgBn+vIcp3+4en
+        3QZsSQAI0lof/rJSxCduPGf8rTM+Q==
+X-ME-Sender: <xms:IZkCYUpk7IVPHlIaJyRjKSDCOsd7R1-_7zQ04aWTWg0RsNbZuQyBow>
+    <xme:IZkCYapL70-fdL_RpRU9bQxyC0eJHHWw_kOAX_LlmOMmMkCtYxdOkQGf9LOnLVCg1
+    bX0bZQHmE0A3ZYkgX8>
+X-ME-Received: <xmr:IZkCYZNL9iorf6nYzgQR2C4N16z4WOXhg6zvgpsUTFVPgzAUtPJxXGbGIzY3FT7ecZ8myaqgTsMEzFunq58RmT7U76B0cImgjGYR>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrheefgddutdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggugfgjsehtqhertddttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepgfejtedtjefggfffvdetuedthedtheegheeuteekfeeghfdtteejkeeludeg
+    vddunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
+    grgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:IZkCYb6rK_2tCkVfLjbNkWSB2qcGHrLaoa4SBSmoSPCh33be3pojsw>
+    <xmx:IZkCYT6YUFsEuafhicxvInn9ZYfYPAzK1U769jB18r5OPxZf7xoWtQ>
+    <xmx:IZkCYbgiJ-gaOUdZGQAsvl0gci0Ws0ErXOd7qyNggv_Ln_SPvveuCA>
+    <xmx:IpkCYZSwDQz0ySYiSCmLmA4C2IcDtyP3ZGUwoLfCLc_Xgms15TrnCw>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 29 Jul 2021 08:03:45 -0400 (EDT)
+Date:   Thu, 29 Jul 2021 14:03:42 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com
+Subject: Re: [PATCH 00/54] ARM: dts: Last round of DT schema fixes
+Message-ID: <20210729120342.p67ksrxinlr4zwyb@gilmour>
+References: <20210721140424.725744-1-maxime@cerno.tech>
+ <20210721164826.GA2405162@robh.at.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210721164826.GA2405162@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the qfprom node and its properties for the sc7280 SoC.
+On Wed, Jul 21, 2021 at 10:48:26AM -0600, Rob Herring wrote:
+> On Wed, Jul 21, 2021 at 04:03:30PM +0200, Maxime Ripard wrote:
+> > Hi,
+> >=20
+> > Here's another round of schema warnings fixes for the Allwinner platfor=
+m.
+> >=20
+> > There's a fair share of new schemas in there since the schema tools now=
+ warn
+> > when a compatible is not documented in a schema.
+> >=20
+> > We don't have any warning anymore if we use the OPP binding Rob submitt=
+ed, and
+> > since that means we have all our devices properly validated I don't exp=
+ect more
+> > fixes now, aside from the usual bunch of regressions.
+>=20
+> Great! You deserve a prize.=20
+>=20
+> I want to start enabling the schema checks by default. (Though then I'd=
+=20
+> have to worry about new warnings.) This should be pretty easy to do=20
+> where we have subdirs per family, but for arm32 we'd need to move dts=20
+> files to subdirs if we don't want a flag per dts file.
 
-Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+That's definitely something that I'd be interested in. It's very easy
+for a warning / error to slip through during review, so having some
+builders somewhere reporting new issues would be awesome.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 029723a..e87b210 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -442,6 +442,19 @@
- 			#mbox-cells = <2>;
- 		};
- 
-+		qfprom: efuse@784000 {
-+			compatible = "qcom,sc7280-qfprom", "qcom,qfprom";
-+			reg = <0 0x00784000 0 0xa20>,
-+			      <0 0x00780000 0 0xa20>,
-+			      <0 0x00782000 0 0x120>,
-+			      <0 0x00786000 0 0x1fff>;
-+			clocks = <&gcc GCC_SEC_CTRL_CLK_SRC>;
-+			clock-names = "core";
-+			power-domains = <&rpmhpd SC7280_MX>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+		};
-+
- 		sdhc_1: sdhci@7c4000 {
- 			compatible = "qcom,sc7280-sdhci", "qcom,sdhci-msm-v5";
- 			status = "disabled";
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+On arm32 though, we have per-family defconfig so maybe we can opt-in by
+defconfig? It should work in most case
 
+Maxime
