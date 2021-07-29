@@ -2,154 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A7063DA888
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 18:11:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8387B3DA8C1
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 18:19:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231716AbhG2QLX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 12:11:23 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:58922 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234234AbhG2QJw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Jul 2021 12:09:52 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1m98aN-0004AD-4y; Thu, 29 Jul 2021 18:08:39 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        joro@8bytes.org, will@kernel.org, robh+dt@kernel.org,
-        xxm@rock-chips.com, robin.murphy@arm.com,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-Subject: Re: [PATCH v7 3/4] iommu: rockchip: Add internal ops to handle variants
-Date:   Thu, 29 Jul 2021 18:08:38 +0200
-Message-ID: <3544194.oiGErgHkdL@diego>
-In-Reply-To: <c6175f3d-a324-9fb5-bd39-cfe0447ee5e7@collabora.com>
-References: <20210525121551.606240-1-benjamin.gaignard@collabora.com> <20210525121551.606240-4-benjamin.gaignard@collabora.com> <c6175f3d-a324-9fb5-bd39-cfe0447ee5e7@collabora.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+        id S229807AbhG2QTR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 12:19:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60386 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231193AbhG2QTR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 12:19:17 -0400
+Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6F17C0613C1;
+        Thu, 29 Jul 2021 09:19:13 -0700 (PDT)
+Received: by mail-qk1-x735.google.com with SMTP id 190so6469183qkk.12;
+        Thu, 29 Jul 2021 09:19:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
+         :from:to:references:in-reply-to;
+        bh=+KrPCSnHKZvHsetzaaVnpnXvX+hBEhmIj6HrXqly/yw=;
+        b=hbn/daSt/1s1i1oc3sjUwYCXyQaDW0+Mlwv2Pysfhzvc/OXs2haCgtHEO5EdaCK6Ve
+         eGapBu0EK0vdaYskUIGMEy00N0x7IYD4Sl1DTYo7S3DYzRSMufUWfzoJtT/yy9fzG3VI
+         i4txpMPImlvJevkt/snlTeKEleeDR30pnqiis2YWhxCJ63xV3BPOyJ7bF6RCCmJxK27Q
+         HvIJVkZzM7gx0m0mvush8FurK6KhFzhkht8U0TY3yWxB6btlNaqSWa0hQrPq9ER9owAU
+         iWj3h0Hqi73o5ahu0FRTYwB/zsMBWz6450p2bj/kbKfSHzMv7cw80+FwF6wj+u39bClq
+         L3QQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:cc:subject:from:to:references:in-reply-to;
+        bh=+KrPCSnHKZvHsetzaaVnpnXvX+hBEhmIj6HrXqly/yw=;
+        b=EMILTMtkYJ1fme0hJsx8ZdD73pDHE7pdt57KtgmPtGSpuA3l50gscMIZOSs6m7FZhZ
+         0MY1WGPrLQoXwbjBMQ7QBRaOs9NNcGXcXv05Vsee7cZXCegerSBdxxX3kJJpk1IvQ6Ik
+         gNWHDIWVx/bxByr1D74Im8fPDS+hb8/ZL3YEqc16yRGMHhmx/5ygNjdvq7tR2udvyYBi
+         ZsA2gfx5/MX6vi+P/uESiYNq8ILBhpXLK6cMJ3MZmvRSkL2HEU5dQPys+e/R8GHjhqkv
+         zVW5mIchZOWGGCCNxuT33W/TqEwoYrHjLCj9uGgBmwzTg/KUwfZBvV6W8SgfzBGOU4UA
+         UXDQ==
+X-Gm-Message-State: AOAM532f6Ds1+qknEZcfl+Q0ppnTVZXoFzhF8Bc84G6BBuWrdRrIk3wZ
+        UKe+LUxgsahdaTSs1xNPCfY=
+X-Google-Smtp-Source: ABdhPJz661BdOVblk6GTu7tyQvsCsBpmmzdhPBejYOF/1uRwvlaEFJRUZav+5KfZAaRYNY6k2OwE2w==
+X-Received: by 2002:a05:620a:124e:: with SMTP id a14mr5958489qkl.356.1627575552888;
+        Thu, 29 Jul 2021 09:19:12 -0700 (PDT)
+Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
+        by smtp.gmail.com with ESMTPSA id g26sm1930311qkm.122.2021.07.29.09.19.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Jul 2021 09:19:12 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Thu, 29 Jul 2021 12:19:11 -0400
+Message-Id: <CD5RDQA6H2AZ.3R2031X2O3BWK@shaak>
+Cc:     <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
+Subject: Re: [PATCH v6 09/13] iio: afe: rescale: fix precision on fractional
+ log scale
+From:   "Liam Beguin" <liambeguin@gmail.com>
+To:     "Peter Rosin" <peda@axentia.se>, <jic23@kernel.org>,
+        <lars@metafoo.de>, <pmeerw@pmeerw.net>
+References: <20210721030613.3105327-1-liambeguin@gmail.com>
+ <20210721030613.3105327-10-liambeguin@gmail.com>
+ <d2dea8ea-5a31-0428-4eac-4e4315d07a42@axentia.se>
+ <CD4CHX6R9QRI.2Q76MYJGTXNWK@shaak>
+ <4e477a42-1cae-06f8-2778-fc734359d6f3@axentia.se>
+In-Reply-To: <4e477a42-1cae-06f8-2778-fc734359d6f3@axentia.se>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dafna,
+On Wed Jul 28, 2021 at 3:58 AM EDT, Peter Rosin wrote:
+> On 2021-07-28 02:26, Liam Beguin wrote:
+> > On Fri Jul 23, 2021 at 5:20 PM EDT, Peter Rosin wrote:
+> >> On 2021-07-21 05:06, Liam Beguin wrote:
+> >>> From: Liam Beguin <lvb@xiphos.com>
+> >>>
+> >>> The IIO_VAL_FRACTIONAL_LOG2 scale type doesn't return the expected
+> >>> scale. Update the case so that the rescaler returns a fractional type
+> >>> and a more precise scale.
+> >>>
+> >>> Signed-off-by: Liam Beguin <lvb@xiphos.com>
+> >>> ---
+> >>>  drivers/iio/afe/iio-rescale.c | 9 +++------
+> >>>  1 file changed, 3 insertions(+), 6 deletions(-)
+> >>>
+> >>> diff --git a/drivers/iio/afe/iio-rescale.c b/drivers/iio/afe/iio-resc=
+ale.c
+> >>> index 35fa3b4e53e0..47cd4a6d9aca 100644
+> >>> --- a/drivers/iio/afe/iio-rescale.c
+> >>> +++ b/drivers/iio/afe/iio-rescale.c
+> >>> @@ -44,12 +44,9 @@ int rescale_process_scale(struct rescale *rescale,=
+ int scale_type,
+> >>>  		*val2 =3D rescale->denominator;
+> >>>  		return IIO_VAL_FRACTIONAL;
+> >>>  	case IIO_VAL_FRACTIONAL_LOG2:
+> >>> -		tmp =3D *val * 1000000000LL;
+> >>> -		do_div(tmp, rescale->denominator);
+> >>> -		tmp *=3D rescale->numerator;
+> >>> -		do_div(tmp, 1000000000LL);
+> >>> -		*val =3D tmp;
+> >>> -		return scale_type;
+> >>> +		*val =3D rescale->numerator * *val;
+> >>> +		*val2 =3D rescale->denominator * (1 << *val2);
+> >>> +		return IIO_VAL_FRACTIONAL;
+> >>
+> >> Hi!
+> >=20
+> > Hi Peter,
+> >=20
+> >>
+> >> I do not think this is an uncontested improvement. You have broken the
+> >> case
+> >> where *val2 is "large" before the scale factor is applied.
+> >=20
+> > I was a little reluctant to add this change as I keep increasing the
+> > scope of this series, but since I added tests for all cases, I didn't
+> > want to leave this one out.
+>
+> > Would you rather I drop this patch and the test cases associated to it?
+>
+> Why drop the tests? Are they doing any harm? Or are they testing exactly
+> the problem situation that fail without this patch?
 
-Am Donnerstag, 29. Juli 2021, 17:59:26 CEST schrieb Dafna Hirschfeld:
-> On 25.05.21 14:15, Benjamin Gaignard wrote:
-> > @@ -879,7 +895,7 @@ static int rk_iommu_enable(struct rk_iommu *iommu)
-> >   
-> >   	for (i = 0; i < iommu->num_mmu; i++) {
-> >   		rk_iommu_write(iommu->bases[i], RK_MMU_DTE_ADDR,
-> > -			       rk_domain->dt_dma);
-> > +			       rk_ops->dma_addr_dte(rk_domain->dt_dma));
-> 
-> Hi,
-> This is not related to that patch, I was wondring why are all mmu devices initialized
-> with the same dt_dma?
-> I see for example that the isp0_mmu in rk3399.dtsi has two resources. Can't each resource
-> be initialized with different dt_dma and this way there are two dt tables instead of the two mmus pointing
-> to the same dt table.
+They are testing this problem and fail without the patch.
 
-maybe
-git log -1 cd6438c5f8446691afa4829fe1a9d7b656204f11
+>
+> In that case, I guess fix the tests to pass and preferably add tests
+> for the *val2 is "large" situation (that this patch breaks) so that the
+> next person trying to improve precision is made aware of the overflow
+> problem. Does that make sense?
 
-"iommu/rockchip: Reconstruct to support multi slaves
-    
-There are some IPs, such as video encoder/decoder, contains 2 slave iommus,
-one for reading and the other for writing. They share the same irq and
-clock with master.
-    
-This patch reconstructs to support this case by making them share the same
-Page Directory, Page Tables and even the register operations.
-That means every instruction to the reading MMU registers would be
-duplicated to the writing MMU and vice versa."
+To handle large values of *val2, I could use the same logic as in
+IIO_VAL_FRACTIONAL with check_mul_overflow() and gcd().
 
+would that be okay?
 
-Heiko
+Thanks,
+Liam
 
-
-> 
-> Thanks,
-> Dafna
-> 
-> >   		rk_iommu_base_command(iommu->bases[i], RK_MMU_CMD_ZAP_CACHE);
-> >   		rk_iommu_write(iommu->bases[i], RK_MMU_INT_MASK, RK_MMU_IRQ_MASK);
-> >   	}
-> > @@ -1037,7 +1053,7 @@ static void rk_iommu_domain_free(struct iommu_domain *domain)
-> >   	for (i = 0; i < NUM_DT_ENTRIES; i++) {
-> >   		u32 dte = rk_domain->dt[i];
-> >   		if (rk_dte_is_pt_valid(dte)) {
-> > -			phys_addr_t pt_phys = rk_dte_pt_address(dte);
-> > +			phys_addr_t pt_phys = rk_ops->pt_address(dte);
-> >   			u32 *page_table = phys_to_virt(pt_phys);
-> >   			dma_unmap_single(dma_dev, pt_phys,
-> >   					 SPAGE_SIZE, DMA_TO_DEVICE);
-> > @@ -1127,6 +1143,7 @@ static int rk_iommu_probe(struct platform_device *pdev)
-> >   	struct device *dev = &pdev->dev;
-> >   	struct rk_iommu *iommu;
-> >   	struct resource *res;
-> > +	const struct rk_iommu_ops *ops;
-> >   	int num_res = pdev->num_resources;
-> >   	int err, i;
-> >   
-> > @@ -1138,6 +1155,17 @@ static int rk_iommu_probe(struct platform_device *pdev)
-> >   	iommu->dev = dev;
-> >   	iommu->num_mmu = 0;
-> >   
-> > +	ops = of_device_get_match_data(dev);
-> > +	if (!rk_ops)
-> > +		rk_ops = ops;
-> > +
-> > +	/*
-> > +	 * That should not happen unless different versions of the
-> > +	 * hardware block are embedded the same SoC
-> > +	 */
-> > +	if (WARN_ON(rk_ops != ops))
-> > +		return -EINVAL;
-> > +
-> >   	iommu->bases = devm_kcalloc(dev, num_res, sizeof(*iommu->bases),
-> >   				    GFP_KERNEL);
-> >   	if (!iommu->bases)
-> > @@ -1226,6 +1254,8 @@ static int rk_iommu_probe(struct platform_device *pdev)
-> >   		}
-> >   	}
-> >   
-> > +	dma_set_mask_and_coherent(dev, rk_ops->dma_bit_mask);
-> > +
-> >   	return 0;
-> >   err_remove_sysfs:
-> >   	iommu_device_sysfs_remove(&iommu->iommu);
-> > @@ -1277,8 +1307,20 @@ static const struct dev_pm_ops rk_iommu_pm_ops = {
-> >   				pm_runtime_force_resume)
-> >   };
-> >   
-> > +static struct rk_iommu_ops iommu_data_ops_v1 = {
-> > +	.pt_address = &rk_dte_pt_address,
-> > +	.mk_dtentries = &rk_mk_dte,
-> > +	.mk_ptentries = &rk_mk_pte,
-> > +	.dte_addr_phys = &rk_dte_addr_phys,
-> > +	.dma_addr_dte = &rk_dma_addr_dte,
-> > +	.dma_bit_mask = DMA_BIT_MASK(32),
-> > +};
-> > +
-> > +
-> >   static const struct of_device_id rk_iommu_dt_ids[] = {
-> > -	{ .compatible = "rockchip,iommu" },
-> > +	{	.compatible = "rockchip,iommu",
-> > +		.data = &iommu_data_ops_v1,
-> > +	},
-> >   	{ /* sentinel */ }
-> >   };
-> >   
-> > 
-> 
-
-
-
+>
+> Cheers,
+> Peter
+>
+> > Thanks,
+> > Liam
+> >=20
+> >>
+> >> Cheers,
+> >> Peter
+> >>
+> >>>  	case IIO_VAL_INT_PLUS_NANO:
+> >>>  		tmp =3D ((s64)*val * 1000000000LL + *val2) * rescale->numerator;
+> >>>  		tmp =3D div_s64(tmp, rescale->denominator);
+> >>>
+> >=20
 
