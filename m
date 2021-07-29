@@ -2,146 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25DB13D9DCF
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 08:47:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 727013D9E0A
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 09:07:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234248AbhG2GrX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 02:47:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35204 "EHLO
+        id S234336AbhG2HHX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 03:07:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234079AbhG2GrW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 02:47:22 -0400
-Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E606C061765
-        for <devicetree@vger.kernel.org>; Wed, 28 Jul 2021 23:47:20 -0700 (PDT)
-Received: by mail-il1-x12b.google.com with SMTP id a14so4752572ila.1
-        for <devicetree@vger.kernel.org>; Wed, 28 Jul 2021 23:47:20 -0700 (PDT)
+        with ESMTP id S234312AbhG2HHV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 03:07:21 -0400
+Received: from mail-il1-x133.google.com (mail-il1-x133.google.com [IPv6:2607:f8b0:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 333FCC061765
+        for <devicetree@vger.kernel.org>; Thu, 29 Jul 2021 00:07:18 -0700 (PDT)
+Received: by mail-il1-x133.google.com with SMTP id c3so4775802ilh.3
+        for <devicetree@vger.kernel.org>; Thu, 29 Jul 2021 00:07:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=engleder-embedded-com.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=eao//OsP6cSr6GKd8L7vo+eJ14NpICiKg2DYYKkeyGY=;
-        b=YM+lxX2iK/At5v+fSELdaUWzHdInnJ5z+rczTJVW2CWlcNuU1ZV/8MGqc+Xsy8fOBf
-         BWUVzyzoidByT5q49kJOwjMsHvSH8WFO9wUspDFvznQ2PsvcFgCkf1RDSaeFTwC2z4VU
-         +rYFYvfZjeY49EUDzpBL6i7g4Lne+Ubql8s6Voed0ooRvwK/i4Xx7OxqGrBO5fveJjfm
-         K7o+85RwT6FOTCkf5vUl2KfK38ADJcMG6mFSAB+fI2Y4BNPOtMqkelWsBcRj75hsyN82
-         BlnaaRmwwCIFlUUw9NUzT6eo8V9J4GP++E6/Wyn6hxi6fU47oJHCPjCThHc26jh5bRaQ
-         KAAQ==
+         :cc;
+        bh=i7tWRI2/pBsm3KiewYI+IUt6wiFkejoi1mmnLILvYmc=;
+        b=sT5JTE6XinjkASQnvhqTkRgdbM2Plu97ocAZcRrBRdX+ZThyfzmnZXDm2cxJ8XGYI8
+         2HznEkK46F2ghVgtKcIbNSoFjtIzhHnsXZqn6C7P57bXHiEeKf7vOWG42FCBDgiL+GE4
+         nJ+stW5ratEg+5YpD3qlqgHxuVuYlogWDwIwoXVm/N2xRQ9CVkoX+eRrqCdCNdb1Ai2q
+         cWept1McEdaQ/3F8JEFiGn6E/O8q8NeV+MkjQXYt5m02WYcX/7qKZP5S4e6WKkkjEFn/
+         F1nfWwhh+Jli0PlcLkGy2fFrUVwCVPsHL8KLDT7m2gQEggFRXP8J4SCWaaWv8zRjPvIh
+         esfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=eao//OsP6cSr6GKd8L7vo+eJ14NpICiKg2DYYKkeyGY=;
-        b=ORiGHuHkTCaK+gZwx6uSBD4fmocnTvNUqbuxLNAx0qC9HzpJsL8Aux7sNP4bBEfUQ0
-         myhZcBKwptWsH/iWP/Nc+JTUaNHIQ0zQFQ51Ry60rTFzw9a3t/VI+AY457cmUu0v7pDG
-         M/B+Uf1cti9WG/1Khjapzlcpu0MA6w9ic+5n+F0w5bXd4QuLUIpPGLe0pWGeOOBVXrwz
-         rddQ5PwOaGcZwYCGIuzjaQ74hYZIRF5Jj7EtcquzhiA6UnKiM8wHp+bkhepxuMIGrF1o
-         in0L5u/HwC4I7UQMvGAo06aCNPIQWx1DCsX6Mi9NsrZJYqZB4gx8fZsnp9TaPKwXkBLs
-         tZtQ==
-X-Gm-Message-State: AOAM530qNmCv8PeZVZU7cr/PMtXnLdbRK5pJvVFj98wOc73J4zXNE4l1
-        W3fh9dTnJPZQl11D7Czloxq2+l9mXGymQXGFzpq99Q==
-X-Google-Smtp-Source: ABdhPJyqZyzu4Y3EVzk9nBehU7aUQd6Z1swoutv1tb4BKQZh2SMDR7OUdYIJrMje2q98r5i6Wf9Gu6JOPR2Zp+2a4ZI=
-X-Received: by 2002:a92:9412:: with SMTP id c18mr1848147ili.38.1627541239754;
- Wed, 28 Jul 2021 23:47:19 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=i7tWRI2/pBsm3KiewYI+IUt6wiFkejoi1mmnLILvYmc=;
+        b=RvmsE/6mN43M6Z1fQNMmWLUNxBphGloe8cysoetgD7HCHQT8u7zej7IoDg0aMJPmqk
+         aGV42k7sgZviVuhxyvWpij3Mp81/3dPDQv3aKhbyxsHc47eotcMPBxNM1hGvMd00l5Vw
+         FZYXDyRokJJ2bMhnn7LK/Q20W8WFuxkZ3O7qJDkn1YAj/bHI7aJYyUqVmbhDm9fIc58Y
+         oAyhGHJ1ZQV7Lv2RCNlDurKPozysXihvFk1Ov42hE2j4a3P9xrrJwPSQUzO3RpR4+hma
+         Wy0lzZ+utl2qdiONYsxQZGQDUTUOq4PWUsun3lS2WtQIlL5fiSzdjNBZsCZM7C0+JuKt
+         ssYg==
+X-Gm-Message-State: AOAM532WSqVpTRNd/EHZx/P62oOw/ws8AiZyxgoQ5FySL67rlCxeghc7
+        8YO+4LGn002TW+CR0HUg1apQXzcTbKr7UrnBpFleYQ==
+X-Google-Smtp-Source: ABdhPJygcOzVJpOIGLdlyW/c4B2i5pB2/N0Hgv6RXIUsYWMi5xQM67oaenWnR+ocJnNBnz6lvlGXhc4JKOzyHSCAqvw=
+X-Received: by 2002:a92:cec5:: with SMTP id z5mr2493504ilq.226.1627542437600;
+ Thu, 29 Jul 2021 00:07:17 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210726194603.14671-1-gerhard@engleder-embedded.com>
- <20210726194603.14671-6-gerhard@engleder-embedded.com> <CAL_JsqJC19OsTCa6T98m8bOJ3Z4jUbaVO13MwZFK78XPSpoWBg@mail.gmail.com>
- <CANr-f5yW4sob_fgxhEafHME71QML8K-+Ka5AzNm5p3A0Ktv02Q@mail.gmail.com>
- <CAL_JsqK9OvwicCbckvpk4CMWbhcP8yDBXAW_7CmLzR__-fJf0Q@mail.gmail.com>
- <CANr-f5zWdFAYAteE7tX5qTvT4XMZ+kxaHy03=BnRxFbQLt3pUg@mail.gmail.com>
- <43958f2b-6756-056a-b2fa-cb8f6d84f603@xilinx.com> <CANr-f5xu=xHn7CGve3=Msd8CEcoDujQzSYSNQ2Zbh7NOvyXFYA@mail.gmail.com>
- <839bdf26-6aef-7e05-94b9-78c0d2061bf9@xilinx.com> <CANr-f5xJbTYa-jPzVMPcAV2Un+POBn24gd+604rzPt36RkRcDQ@mail.gmail.com>
- <d763d777-f258-7390-a85a-6cae098102eb@xilinx.com>
-In-Reply-To: <d763d777-f258-7390-a85a-6cae098102eb@xilinx.com>
+ <20210726194603.14671-3-gerhard@engleder-embedded.com> <CAL_JsqLe0XScBgCJ+or=QdnnUGp36cyxr17BhKrirbkZ_nrxkA@mail.gmail.com>
+ <CANr-f5wscRwY1zk4tu2qY_zguLf+8qNcEqp46GzpMka8d-qxjQ@mail.gmail.com>
+ <CAL_JsqKq6H471iFoLWRGvNSLpaJmuF+feDFut2p+J725n3U4HA@mail.gmail.com>
+ <ae17968a-e265-6108-233a-bd0538ad186c@xilinx.com> <CANr-f5zvWN6pFUqRHvYV9oMGhF+VBJzhK+yE+SqMuSEhA5-X7Q@mail.gmail.com>
+ <b3921ff3-55d4-0d26-ebe3-2fee0c73332e@xilinx.com> <CANr-f5y4=1hj-6WFT1HdewU=sich6KgkgmR6-qWimFxQiV5MFQ@mail.gmail.com>
+ <2a151f9a-f743-31f4-a4c1-cdf15daf1b67@xilinx.com>
+In-Reply-To: <2a151f9a-f743-31f4-a4c1-cdf15daf1b67@xilinx.com>
 From:   Gerhard Engleder <gerhard@engleder-embedded.com>
-Date:   Thu, 29 Jul 2021 08:47:08 +0200
-Message-ID: <CANr-f5yuZ0t782fX_6w3ksKXVdObGWxFHA9Lg+tUQwrXkUh2ng@mail.gmail.com>
-Subject: Re: [PATCH net-next 5/5] arm64: dts: zynqmp: Add ZCU104 based TSN endpoint
+Date:   Thu, 29 Jul 2021 09:07:06 +0200
+Message-ID: <CANr-f5wuZTo-bH2rvB8oCGKJe4Qmg-gz9r7ym_VhWemP42o2sQ@mail.gmail.com>
+Subject: Re: [PATCH net-next 2/5] dt-bindings: net: Add tsnep Ethernet controller
 To:     Michal Simek <michal.simek@xilinx.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         David Miller <davem@davemloft.net>,
         Jakub Kicinski <kuba@kernel.org>,
         netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 29, 2021 at 7:22 AM Michal Simek <michal.simek@xilinx.com> wrot=
-e:
-> On 7/28/21 10:51 PM, Gerhard Engleder wrote:
-> > On Wed, Jul 28, 2021 at 12:59 PM Michal Simek <michal.simek@xilinx.com>=
- wrote:
-> >>>> In past we said that we won't be accepting any FPGA description in
-> >>>> u-boot/linux projects. I don't think anything has changed from that =
-time
-> >>>> and I don't want to end up in situation that we will have a lot of
-> >>>> configurations which none else can try and use.
-> >> You have to share to customers bitstream. Likely also boot.bin with
-> >> PS/PL configuration and other files in it. That's why it will be quite
-> >> simple to also share them full DT or DT overlay just for your IP in th=
-e
-> >> same image.
+On Thu, Jul 29, 2021 at 7:07 AM Michal Simek <michal.simek@xilinx.com> wrote:
+> On 7/28/21 10:14 PM, Gerhard Engleder wrote:
+> > On Wed, Jul 28, 2021 at 12:55 PM Michal Simek <michal.simek@xilinx.com> wrote:
+> >>>>>>>> +      - enum:
+> >>>>>>>> +        - engleder,tsnep
+> >>>>>>>
+> >>>>>>> tsnep is pretty generic. Only 1 version ever? Or differences are/will
+> >>>>>>> be discoverable by other means.
+> >>>>>>
+> >>>>>> Differences shall be detected by flags in the registers; e.g., a flag for
+> >>>>>> gate control support. Anyway a version may make sense. Can you
+> >>>>>> point to a good reference binding with versions? I did not find a
+> >>>>>> network controller binding with versions.
+> >>>>>
+> >>>>> Some of the SiFive IP blocks have versions. Version numbers are the
+> >>>>> exception though. Ideally they would correspond to some version of
+> >>>>> your FPGA image. I just don't want to see 'v1' because that sounds
+> >>>>> made up. The above string can mean 'v1' or whatever version you want.
+> >>>>> I'm fine if you just add some description here about feature flag
+> >>>>> registers.
+> >>>>
+> >>>> Don't Xilinx design tool (vivado) force you to use IP version?
+> >>>> Normally all Xilinx IPs have certain version because that's the only way
+> >>>> how to manage it.
+> >>>
+> >>> Yes I use an IP version in the Xilinx design tool. I use it as a version of the
+> >>> VHDL code itself. In my case this version is not related to the
+> >>> hardware software
+> >>> interface. The goal is to keep the hardware software interface compatible, so
+> >>> the IP version should not be relevant.
+> >>
+> >> I expect this is goal for everybody but it fails over time. We normally
+> >> compose compatible string for PL based IP with IP version which is used.
+> >> And it is quite common that couple of HW version are SW compatible to
+> >> each other.
+> >> It means use the same HW version as you use now. When you reach the
+> >> point when your HW IP needs to be upgraded and will require SW alignment
+> >> you have versions around which can be used directly.
 > >
-> > That's possible of course.
+> > I would like to follow the argument from Rob:
+> > "The above string can mean 'v1' or whatever version you want."
+> > If there ever is an incompatible new IP version, then a new compatible string
+> > can be added which means 'v2'. E.g. for 128bit physical address support I
+> > would choose the compatible string 'engleder,tsnep128'. I don't see an
+> > advantage in adding a version number to the compatible string.
 > >
-> >> Till now I didn't hear any strong argument why this should be accepted=
-.
-> >
-> > I want to try a new argument:
-> >
-> > For new bindings a schema is used. The goal is to ensure that the bindi=
-ng
-> > schema and the driver fit together. The validation chain is the followi=
-ng:
-> > 1) The binding schema is used to validate the device tree.
-> > 2) The device tree is used to "validate" the driver by booting.
-> >
-> > So the kernel tree needs to contain a device tree which uses the bindin=
-g
-> > to build up the complete validation chain. The validation of the driver=
- against
-> > the binding is not possible without a device tree. The only option woul=
-d be
-> > to compare driver and binding manually, which is error prone.
-> >
-> > If device trees with FPGA descriptions are not allowed in the kernel tr=
-ee, then
-> > the kernel tree will never contain complete validation chains f=C3=BCr =
-FPGA based
-> > IPs. The validation of bindings for FPGA based IPs has to rely on devic=
-e trees
-> > which are maintained out of tree. It is possible/likely that schema
-> > validation is
-> > not done out of tree. As a result it is more likely that binding and
-> > driver do not
-> > fit together for FPGA based IPs. In the end the quality of the support =
-for FPGA
-> > based IPs would suffer.
-> >
-> > I suggest allowing a single device tree with FPGA descriptions for a bi=
-nding
-> > of FPGA based IPs. This will build up the complete validation chain in =
-the
-> > kernel tree and ensures that binding and driver fit together. This sing=
-le device
-> > tree would form the reference platform for the FPGA based IP.
+> > This IP will be used in products where compatible hardware is a must.
+> > An IP upgrade which requires SW alignment will result in heavy complaints
+> > from the customers. Such an IP upgrade would result in a new IP.
+> > Like for shared libraries, an incompatible API change is similar to a new
+> > library.
 >
-> This is good theory but the only person who can do this validation is
-> you or your customer who is interested in TSN. I am doing this for quite
-> a long time and even people are giving me commitments that they will
-> support the whole custom board but they stop to do at some point and
-> then silently disappear. Then it is up to me to deal with this and I
-> really don't want to do it.
-> When your driver is merged you should start to do regression testing
-> against linux-next, rc versions. When you convince me that you are
-> regularly doing this for 2 years or so we can restart this discussion.
+> From my point of view where I expect the most of customers are using
+> Xilinx DTG (device tree generator) compatible string is composed with IP
+> name and version used in design tool. This is unique combination which
+> properly describes your HW.
+> And choosing different compatible string or string without version is
+> breaking this connection between hw design tool and sw.
 >
-> Till that time you can simply keep rebasing one patch with your DT on
-> the top which is quite easy to do and you get all
-> functionality/advantages you are asking about above.
+> From my perspective it is much simpler to understand that your HW ip
+> called ABC-rev1 requires DT node which is your_company,ABC-rev1 instead
+> of any made name.
+> But up2you - you will be talking to your customers.
 
-Ok, I give up.
+Thanks for explaining your point of view. From my side I don't expect that
+Xilinx DTG is used. The few people I know who are working with Zynq/ZynqMP
+are using the Xilinx tools only to generate the bitstream. This way you are able
+to do software development for the Zynq/ZynqMP like for any other hardware
+platform.
+
+Thanks for your Feedback!
 
 Gerhard
