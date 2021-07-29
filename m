@@ -2,134 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E8913D9A27
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 02:39:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28F953D9B38
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 03:49:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233052AbhG2AjF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jul 2021 20:39:05 -0400
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:52007 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232869AbhG2AjF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Jul 2021 20:39:05 -0400
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 8E791580B8B;
-        Wed, 28 Jul 2021 20:39:02 -0400 (EDT)
-Received: from imap43 ([10.202.2.93])
-  by compute2.internal (MEProxy); Wed, 28 Jul 2021 20:39:02 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm3; bh=9IbRewnClnxS9l6M0pLMy55dQydOlsR
-        xDHwEOF66KXI=; b=Y8OPiiCMQOcWR0PaHgRUdivy2vn7o5sC0L9P8l6kXbF/7Da
-        GOQsKQAAWau//gDQx5K4oOJi/HlK764Cvi+/YBzEa3+QsM57yHQcWjLlbsBTU7MF
-        22INHIUPBbLxej0hrxshMfT3UYfWEt8UotwUfpLN27Bcuehhum8VGOV1roN7OD6B
-        hG8Ka1CoHkO5xCaOYGFumXqHeRClfVsfTQtWeXcu3It7hMV9XjsiV3llnO9Tey0U
-        vSeWSmQcmswmYHKDTtjhofV+IfkrutvUoXbfctuJnjYz0IC8r9XAdLSVGkIbtkkE
-        wEnU64VJ5gtKG/8havaEI4K87bul4AxqbjWZGBA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=9IbRew
-        nClnxS9l6M0pLMy55dQydOlsRxDHwEOF66KXI=; b=CDtarNNZzKiyLynvEX6I/l
-        MDwmt8NphT9dUmhuH9d7DRJvEp7UfWKmjDIlnkVa3p5JwuqUvxsnEk89aFaAfrLX
-        6lPOqskMXRHU1ma6YtENcv9GBxrEKR3wGac0FRxWhK+hkDtsg4+9VJDwjijtfbrI
-        XgJyZxk+FqA5ln8LzFr06swKs3tQ/1rOsOis8dDrJm1JWpDFiFfj4nRYwVas6sbw
-        Eq+sdA4iopbbDt5RPeyEQCVxqXg5mlNi+aRk5NOMrdx8BsDP85Ytpnst7T0daIxc
-        BCo3RlMuK/90X0q+WpyO+rK3OAhS9TqjYOiEC1P/0sRW3AmqvVOE0E6XVH5kPuEw
-        ==
-X-ME-Sender: <xms:pfgBYRMGfcCXkAS1DM07Dn1xRAvWKdxbFihuW4VE6r9Vji2UTlS2Lw>
-    <xme:pfgBYT_EKqT6C0YbFhPPdPq7fbo2cvSP-Nf3sZz5wTz3z3HZLL7pR7Ti3x-UtFRFK
-    6dM-JPjrQBrbOv7SA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrhedtgddvjecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedftehnughr
-    vgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucggtffrrg
-    htthgvrhhnpeehhfefkefgkeduveehffehieehudejfeejveejfedugfefuedtuedvhefh
-    veeuffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    grnhgurhgvfiesrghjrdhiugdrrghu
-X-ME-Proxy: <xmx:pfgBYQSB-tVwLEab7KejDzxCm_vXsE_X-hEb0NNjfyQZPowsUFCKnQ>
-    <xmx:pfgBYdvyJdj9pQUi59QDW16T2jp5_HjLpjlMdsKJLraaXMKKC4C-zg>
-    <xmx:pfgBYZftgCgxzbF75eRceoqxvMNQ7z5TRwtxIT4r-Uyu2Wjh7UMElA>
-    <xmx:pvgBYV6A2XWO3Tm6_39_jvIUGpl3zHZaW49Myl6XJ6JBm9zKV-tjdQ>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id F3BD7AC0DD0; Wed, 28 Jul 2021 20:39:00 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-545-g7a4eea542e-fm-20210727.001-g7a4eea54
-Mime-Version: 1.0
-Message-Id: <6cc64039-f82a-4c1e-ad2c-16fad7aa3178@www.fastmail.com>
-In-Reply-To: <CAHp75Vc2W+WmwNj1AvH6EiT_80c+5gADV9QzK+asHxpd1Ucppw@mail.gmail.com>
-References: <20210723075858.376378-1-andrew@aj.id.au>
- <CAHp75VeQML7njMZ6x8kC-ZJVexC1xJ6n1cB3JneVMAVfuOJgWw@mail.gmail.com>
- <d019990e-a725-4ef5-bb54-aadee9d18b86@www.fastmail.com>
- <CAHp75Vc2W+WmwNj1AvH6EiT_80c+5gADV9QzK+asHxpd1Ucppw@mail.gmail.com>
-Date:   Thu, 29 Jul 2021 10:08:38 +0930
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Andy Shevchenko" <andy.shevchenko@gmail.com>
-Cc:     "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        =?UTF-8?Q?C=C3=A9dric_Le_Goater?= <clg@kaod.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Joel Stanley" <joel@jms.id.au>, "Pavel Machek" <pavel@ucw.cz>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
+        id S233270AbhG2BtA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jul 2021 21:49:00 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:42308 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S233205AbhG2Bs6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jul 2021 21:48:58 -0400
+X-UUID: 73cc931f060843f99ccebaa6a6b692a7-20210729
+X-UUID: 73cc931f060843f99ccebaa6a6b692a7-20210729
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <zhiyong.tao@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1007863186; Thu, 29 Jul 2021 09:48:51 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 29 Jul 2021 09:48:49 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 29 Jul 2021 09:48:48 +0800
+From:   Zhiyong Tao <zhiyong.tao@mediatek.com>
+To:     <timur@kernel.org>, <linux@armlinux.org.uk>, <alcooperx@gmail.com>,
+        <tklauser@distanz.ch>, <sean.wang@kernel.org>
+CC:     <srv_heupstream@mediatek.com>, <zhiyong.tao@mediatek.com>,
+        <hui.liu@mediatek.com>, <yuchen.huang@mediatek.com>,
+        <huihui.wang@mediatek.com>, <eddie.huang@mediatek.com>,
+        <sean.wang@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH 0/6] leds: Fix pca955x GPIO pin mappings
+        <linux-mediatek@lists.infradead.org>,
+        <linux-serial@vger.kernel.org>
+Subject: [PATCH v1 0/1] Mediatek uart patch 
+Date:   Thu, 29 Jul 2021 09:48:16 +0800
+Message-ID: <20210729014817.11879-1-zhiyong.tao@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
 Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series includes 1 patches:
+1.fix uart corruption issue when rx power off
+
+when uart is used as a communication port with external device(GPS).
+when external device(GPS) power off, the power of rx pin is also from
+1.8v to 0v. Even if there is not any data in rx. But uart rx pin can
+capture the data "0".
+If uart don't receive any data in specified cycle, uart will generates
+BI(Break interrupt) interrupt.
+If external device(GPS) power off, we found that BI interrupt appeared
+continuously and very frequently.
+When uart interrupt type is BI, uart IRQ handler(8250 framwork
+API:serial8250_handle_irq) will push data to tty buffer.
+The code path:
+https://elixir.bootlin.com/linux/latest/source/drivers/tty/serial/8250/8250_port.c#L1917
+mtk8250_dma_rx_complete is a task of mtk_uart_apdma_rx_handler.
+mtk8250_dma_rx_complete priority is lower than uart irq
+handler(serial8250_handle_irq).
+if we are in process of mtk8250_dma_rx_complete, uart appear BI
+interrupt:1)serial8250_handle_irq will priority execution.2)it may cause
+write tty buffer conflict in mtk8250_dma_rx_complete.
+So the spin lock protect the rx receive data process is not break.
+
+Changes in patch v1:
+1. remove processing mechanism which count value is 0.
+2. change patch title and commit message.
+3. explain the detailed reason for the patch in changelog.
+
+Zhiyong Tao (1):
+  serial: 8250_mtk: fix uart corruption issue when rx power off
+
+ drivers/tty/serial/8250/8250_mtk.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+--
+2.18.0
 
 
-On Wed, 28 Jul 2021, at 18:43, Andy Shevchenko wrote:
-> On Wed, Jul 28, 2021 at 8:43 AM Andrew Jeffery <andrew@aj.id.au> wrote:
-> > On Fri, 23 Jul 2021, at 17:45, Andy Shevchenko wrote:
-> >
-> > > I was briefly looking into patches 1-4 and suddenly
-> > > realized that the fix can be similar as in PCA9685 (PWM), I.e. we
-> > > always have chips for the entire pin space and one may map them
-> > > accordingly, requested in one realm (LED) in the other (GPIO)
-> > > automatically is BUSY. Or I missed the point?
-> >
-> > No, you haven't missed the point. I will look at the PCA9685 driver.
-> >
-> > That said, my goal was to implement the behaviour intended by the
-> > existing binding (i.e. fix a bug).
-> 
-> Okay, so it implies that this used to work at some point. 
-
-I don't think this is true. It only "works" if the lines specified as 
-GPIO in the devicetree are contiguous from line 0. That way the pin and 
-GPIO number spaces align. I suspect that's all that's been tested up 
-until this point.
-
-We now have a board with a PCA9552 where the first 8 pins are LED and 
-the last 8 pins are GPIO, and if you specify this in the devicetree 
-according to the binding you hit the failure to map between the two 
-number spaces.
-
-> What has
-> changed from that point? Why can't we simply fix the culprit commit?
-
-As such nothing has changed, I think it's always been broken, just we 
-haven't had hardware configurations that demonstrated the failure.
-
-> 
-> > However, userspace would never have
-> > got the results it expected with the existing driver implementation, so
-> > I guess you could argue that no such (useful) userspace exists. Given
-> > that, we could adopt the strategy of always defining a gpiochip
-> > covering the whole pin space, and parts of the devicetree binding just
-> > become redundant.
-> 
-> I'm lost now. GPIO has its own userspace ABI, how does it work right
-> now in application to this chip?
-
-As above, it "works" if the GPIOs specified in the devicetree are 
-contiguous from line 0. It's broken if they're not.
-
-Andrew
