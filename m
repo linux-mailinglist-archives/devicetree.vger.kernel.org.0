@@ -2,96 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E984D3DAA9A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 20:00:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7196C3DAAAA
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 20:05:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229620AbhG2SAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 14:00:49 -0400
-Received: from mail-io1-f51.google.com ([209.85.166.51]:46594 "EHLO
-        mail-io1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229485AbhG2SAs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 14:00:48 -0400
-Received: by mail-io1-f51.google.com with SMTP id z7so7412951iog.13;
-        Thu, 29 Jul 2021 11:00:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=na8BkWUA5gMutg6qlMuN6847wnsVMn6PQTz3HEtGN8g=;
-        b=ZRDpz676cggKPazRiaGHA5j+eSgrlRjKxVoJ0jVgUNlWHMUYlwsGe+VFMFnodGQPRD
-         OULDME/+iuR5ihXPTPAObD7D0lJCacXowFxLibnF/fhzHHWCRAUNvCyRo8xz0QNBMxmv
-         77tGTCoctsckESzV4fBcG+QNfEPVjsuC3EEawpGd/Q2VcOcLcsqD6jrASImix4vVQXqO
-         Qvq4z3ekTzulm3q2hWe+CwgLchr11lt1nIgp/ANC3IVzNOLISS2MipPxFwBdChalZVU/
-         ggJPJrGU0mzoQ7I/IVbjPKImyxyLSKzczwWubiESup8Y5koNH5T+Sr4RcOYXRTNZsiXW
-         MQvA==
-X-Gm-Message-State: AOAM53168fk4/xEvjY3EcFtQKKwykS0hU1PGuh2G5k04PyP2p+GEXKn+
-        31SbW84Jonsb+pysIk0+hA==
-X-Google-Smtp-Source: ABdhPJyyLaALH3IuCiyR6jnGkq4nhdmhKmJq1u9FckH2SSDuzIvc24kHJAdJpEA7v69Ag+QZFobSsQ==
-X-Received: by 2002:a05:6602:446:: with SMTP id e6mr5082379iov.85.1627581644107;
-        Thu, 29 Jul 2021 11:00:44 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id d9sm2297620ilu.9.2021.07.29.11.00.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Jul 2021 11:00:43 -0700 (PDT)
-Received: (nullmailer pid 578452 invoked by uid 1000);
-        Thu, 29 Jul 2021 18:00:42 -0000
-Date:   Thu, 29 Jul 2021 12:00:42 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Chris Brandt <chris.brandt@renesas.com>, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v5 1/3] dt-bindings: dma: Document RZ/G2L bindings
-Message-ID: <YQLsykqsogHXMVpA@robh.at.kernel.org>
-References: <20210729082520.26186-1-biju.das.jz@bp.renesas.com>
- <20210729082520.26186-2-biju.das.jz@bp.renesas.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210729082520.26186-2-biju.das.jz@bp.renesas.com>
+        id S230074AbhG2SFN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 14:05:13 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:12056 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229758AbhG2SFN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Jul 2021 14:05:13 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1627581909; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=jGAZNpvv9zROAVlHGnt4zPV0nfKI5c1XmksYWoQ4fn0=; b=S517ZWLohZ5vz46nfs3qwqy4poiYzOkS5IL9WtDu51uROHnHB6bEr8fWDfoPme5b5dKOxS+o
+ Q7nLgJ33UmVT590uucXgG8vmIBdME0DLaezRczHungU/fhjKqKpZRWUXUdCjLlPQ2mjtdfSB
+ 0rPZ/tzo9qvi072s98T67MC39Hs=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
+ 6102edcd1dd16c87885da9ce (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 29 Jul 2021 18:05:01
+ GMT
+Sender: sibis=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 85B93C43217; Thu, 29 Jul 2021 18:05:00 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from blr-ubuntu-87.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id DC769C433D3;
+        Thu, 29 Jul 2021 18:04:55 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org DC769C433D3
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=sibis@codeaurora.org
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     sboyd@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        mka@chromium.org
+Cc:     viresh.kumar@linaro.org, agross@kernel.org, rjw@rjwysocki.net,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        dianders@chromium.org, tdas@codeaurora.org,
+        Sibi Sankar <sibis@codeaurora.org>
+Subject: [PATCH 0/4] Fixup register offsets to support per core L3 DCVS
+Date:   Thu, 29 Jul 2021 23:34:41 +0530
+Message-Id: <1627581885-32165-1-git-send-email-sibis@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 29 Jul 2021 09:25:18 +0100, Biju Das wrote:
-> Document RZ/G2L DMAC bindings.
-> 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> Note:-
->  This base series for this patch is Linux 5.14-rc2(or +) otherwise bots would
->  complain about check failures
-> 
-> v4->v5:
->   * Passing legacy slave channel configuration parameters using dmaengine_slave_config is prohibited.
->     So started passing this parameters in DT instead, by encoding MID/RID values with channel parameters
->     in the #dma-cells.
->   * Updated the description for #dma-cells
->   * Removed Rb tag's of Geert and Rob since there is a modification in binding patch
-> v3->v4:
->   * Added Rob's Rb tag
->   * Described clocks and reset properties
-> v2->v3:
->   * Added error interrupt first.
->   * Updated clock and reset maxitems.
->   * Added Geert's Rb tag.
-> v1->v2:
->   * Made interrupt names in defined order
->   * Removed src address and channel configuration from dma-cells.
->   * Changed the compatibele string to "renesas,r9a07g044-dmac".
-> v1:-
->   * https://patchwork.kernel.org/project/linux-renesas-soc/patch/20210611113642.18457-2-biju.das.jz@bp.renesas.com/
-> ---
-> ---
->  .../bindings/dma/renesas,rz-dmac.yaml         | 130 ++++++++++++++++++
->  1 file changed, 130 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
-> 
+Qualcomm SoCs (starting with SM8350) support per core voting for L3 cache
+frequency. The patch series re-arranges the cpufreq register offsets to
+allow access for the L3 interconnect to implement per core control i.e.
+the first 0x100 is now accessed by the L3 interconnect driver instead.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+L3 interconnect provider node on SC7280 SoC:
+epss_l3: interconnect@18590000 {
+	compatible = "qcom,sc7280-epss-l3";
+        reg = <0 0x18590000 0 0x1000>, <0 0x18591000 0 0x100>,
+	      <0 0x18592000 0 0x100>, <0 0x18593000 0 0x100>;
+	...
+};
+
+CPUFREQ node on SC7280 SoC:
+cpufreq_hw: cpufreq@18591000 {
+	compatible = "qcom,cpufreq-epss";
+	reg = <0 0x18591100 0 0x900>,
+	      <0 0x18592100 0 0x900>,
+	      <0 0x18593100 0 0x900>;
+	...
+};
+
+The patch series also prevents binding breakage by using the
+SM8250/SM8350 EPSS compatible.
+
+Sibi Sankar (4):
+  dt-bindings: cpufreq: cpufreq-qcom-hw: Add compatible for SM8250/8350
+  cpufreq: qcom: Re-arrange register offsets to support per core L3 DCVS
+  arm64: dts: qcom: sc7280: Fixup the cpufreq node
+  arm64: dts: qcom: sm8350: Fixup the cpufreq node
+
+ .../bindings/cpufreq/cpufreq-qcom-hw.txt           |  6 +++++-
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               |  6 +++---
+ arch/arm64/boot/dts/qcom/sm8350.dtsi               |  9 ++++-----
+ drivers/cpufreq/qcom-cpufreq-hw.c                  | 23 ++++++++++++++++++----
+ 4 files changed, 31 insertions(+), 13 deletions(-)
+
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
+
