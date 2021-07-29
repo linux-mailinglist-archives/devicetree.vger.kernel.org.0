@@ -2,70 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 602883DAEE7
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 00:32:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 733743DAF46
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 00:39:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229749AbhG2WcC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 18:32:02 -0400
-Received: from mail-io1-f44.google.com ([209.85.166.44]:46663 "EHLO
-        mail-io1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229707AbhG2WcC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 18:32:02 -0400
-Received: by mail-io1-f44.google.com with SMTP id z7so8238128iog.13;
-        Thu, 29 Jul 2021 15:31:58 -0700 (PDT)
+        id S229938AbhG2Wjy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 18:39:54 -0400
+Received: from mail-io1-f54.google.com ([209.85.166.54]:45842 "EHLO
+        mail-io1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229795AbhG2Wjy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 18:39:54 -0400
+Received: by mail-io1-f54.google.com with SMTP id l126so9092637ioa.12;
+        Thu, 29 Jul 2021 15:39:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=8xRR7b05CZCC7cFh3+x7THVjJVxqClYmWXBUMBmzhzc=;
-        b=cIRNKjit5UGDHbFD5lkg/cTWMtTP39+j7o9TZsCj5lbseoDAw1Mc1TaiyttXcjDNZM
-         dk7zg95ZwTrFLOTxHD3qhUVbZn3k4Je3A9qzw7+c1AcCZE/zYlL+gNG4VcNj+hhFsN6C
-         66E4XEsMmhrz2wr+5T6/Oc25h94zXWcdy0aMsRbWnf2v4+rivETT21aQ9LPZN4dxJugA
-         ylN3MSOgR2vmqWcGKs6XxRY4Uql7mSCeyFk4oLDYXc+8Yc9mxsgfeaLCY76ck5qHgw5m
-         oX+y0xoLhr98mc6X4UysQgvH5FCAwhiFocuE5/XAyaMjBuDnwAC4ho+HBOQ/bcdpStWw
-         EsgA==
-X-Gm-Message-State: AOAM533MOz3CrsIOUeOL/XVPlnvHgJ+SEf0Fit7fpZeTyQVOa1+u5yNu
-        YEfRYiLhVe2VwE6OAFrUng==
-X-Google-Smtp-Source: ABdhPJz3myyUSpUJ0VTVRdeLG/tG/ZdbT3RE/4rk1olugX7JtG6zT1jFIK54Se6giDwLxuwmQTIE6Q==
-X-Received: by 2002:a6b:b795:: with SMTP id h143mr5887746iof.74.1627597918403;
-        Thu, 29 Jul 2021 15:31:58 -0700 (PDT)
+        bh=XlptD/tZIHvjx581AafuTapU2M/nw56BX9ZwEjQcLOM=;
+        b=apx2VH11L1JSSM0BAXxk+cGuK3Vz+ECuRtTfvb2jhokdicD2pBIeCvp6oGm0adhJ7+
+         hKbLIaVyP30wbwD3XRtP3rURlYWG9my5k0GY9s3uKVjQa/obSjKyyXgHplecOz2apmy8
+         qaONTpoBqgcyh3TtWuF6E3XIt+VoeMqV730XdQ8ZlfcNDUKSSubt2tvCacw57bjqSE2H
+         uhkCVDj4hIvmOKh9rTg9ij70czbfPC/YOnw1nCjrnNanAlemNaKXOeD251j1brT/YXV/
+         ++XlCLzG1mB0jt3Cz4E335mgu5Mh5mKC4DSBow5fCm0uBL/WVrIlCFe6jMq/by6ZSdMQ
+         DJHw==
+X-Gm-Message-State: AOAM532IpjSLAiQkbXGqpskdOrq9NwhrzRJDL503nuxH0bxT4SzRexgi
+        V6fgWblZRUYFKL/l7KL7oA==
+X-Google-Smtp-Source: ABdhPJzJOkvgxA1BTZ4PAi4OWpI9cFABggjmNMgJcaQ7V8JKyLgCLbuj+pSyPTNZmoVNLJoo924bRQ==
+X-Received: by 2002:a02:90cb:: with SMTP id c11mr6480022jag.53.1627598389390;
+        Thu, 29 Jul 2021 15:39:49 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id p9sm2554309ilj.65.2021.07.29.15.31.56
+        by smtp.gmail.com with ESMTPSA id w14sm3078200ioa.47.2021.07.29.15.39.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Jul 2021 15:31:57 -0700 (PDT)
-Received: (nullmailer pid 1022957 invoked by uid 1000);
-        Thu, 29 Jul 2021 22:31:55 -0000
-Date:   Thu, 29 Jul 2021 16:31:55 -0600
+        Thu, 29 Jul 2021 15:39:48 -0700 (PDT)
+Received: (nullmailer pid 1035245 invoked by uid 1000);
+        Thu, 29 Jul 2021 22:39:47 -0000
+Date:   Thu, 29 Jul 2021 16:39:47 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Alexey Minnekhanov <alexeymin@postmarketos.org>
-Cc:     Daniel Vetter <daniel@ffwll.ch>, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        phone-devel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH 1/2] dt-bindings: panel: Add Samsung S6E3FA2 panel
-Message-ID: <YQMsW0Z9UhM/PXcW@robh.at.kernel.org>
-References: <20210725140339.2465677-1-alexeymin@postmarketos.org>
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Samuel Holland <samuel@sholland.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-watchdog@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: watchdog: sunxi: Add compatible for D1
+Message-ID: <YQMuM2McwNGzqAhe@robh.at.kernel.org>
+References: <20210726035143.53132-1-samuel@sholland.org>
+ <20210726035143.53132-2-samuel@sholland.org>
+ <20210729042449.GA1716994@roeck-us.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210725140339.2465677-1-alexeymin@postmarketos.org>
+In-Reply-To: <20210729042449.GA1716994@roeck-us.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 25 Jul 2021 17:03:37 +0300, Alexey Minnekhanov wrote:
-> The Samsung S6E3FA2 AMOLED cmd LCD panel is used on Samsung Galaxy
-> S5 (klte) phone.
+On Wed, Jul 28, 2021 at 09:24:49PM -0700, Guenter Roeck wrote:
+> On Sun, Jul 25, 2021 at 10:51:42PM -0500, Samuel Holland wrote:
+> > D1 keeps the same register layout and clock sources as the R329, but it
+> > adds a key field which must be set to update the watchdog's "CFG" and
+> > "MODE" registers. Therefore it is not backward-compatible.
+> > 
+> > Signed-off-by: Samuel Holland <samuel@sholland.org>
+> > ---
+> >  .../devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml   | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+> > index 853ceb1b7c0f..756e6ab99860 100644
+> > --- a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+> > +++ b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+> > @@ -29,6 +29,7 @@ properties:
+> >        - items:
+> >            - const: allwinner,suniv-f1c100s-wdt
+> >            - const: allwinner,sun4i-a10-wdt
+> > +      - const: allwinner,sun20i-d1-wdt
 > 
-> Signed-off-by: Alexey Minnekhanov <alexeymin@postmarketos.org>
-> ---
->  .../display/panel/samsung,s6e3fa2.yaml        | 63 +++++++++++++++++++
->  1 file changed, 63 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/samsung,s6e3fa2.yaml
-> 
+> Alignment is off.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+No, it's correct. It's not part of the above list, but a new 'oneOf' 
+entry.
+
+Rob
