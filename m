@@ -2,111 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D5173D9D6F
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 08:04:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D55C3D9D86
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 08:17:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232901AbhG2GEF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 02:04:05 -0400
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:49309 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230223AbhG2GEE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Jul 2021 02:04:04 -0400
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 51A46580B39;
-        Thu, 29 Jul 2021 02:04:01 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Thu, 29 Jul 2021 02:04:01 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=oOA9yKbtZrclxkXt8oi2w9Qy4VI
-        sBkPwwH4Zip+yF2Q=; b=jlS/9w7SQZpmcYyil/QHB10d4j+LqD1BBnEeV4VpVbv
-        YZcHJh/Vq7gQ63HSRfNySSGszZLBGMRyX1HZCbzDmg98A2mDQDi9CL2eo/w+lBeZ
-        9rpP82l3iy8NfhCPOD4RfvQs5zQGdY9wjNBUtjqYjF1AFeAJ3mEGZSxluDAgsqSX
-        YcJUHUl1XVpqLVSIG+P7e52LxOPCsz3M/NPpapeIjUKNYZmhv/lebtp/qOd2meNd
-        rEUU8cBd+lDKoxPGgYkpcbdhX3u974W8teP+KCvkJ4I1cT1OyQrtyR8pToEKAhuh
-        i8/SQExgJwN6Q2vtcdzs1yf3lKlMoM4xPjQPYuouStg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=oOA9yK
-        btZrclxkXt8oi2w9Qy4VIsBkPwwH4Zip+yF2Q=; b=ErtoLAJ54DmhkFR0iJpgqm
-        9ERknF9Qyd1Esscd3Cy/Jh109VV7+BA16zm23A4kNc+Q5nhpTd1Ncu19h+a8bOWD
-        rss1BNt43SQWfUysU2ae1tPSYAAPOhpRkvnWjdcBx0BGuh2FKfDxgxCx3zdnnwTh
-        aGWwKrbBr67B4XNUUAitjbo+WQAYZEHhyBjlCKWFvyHQNYoCqwoPi6adNPoTuDfK
-        FIwj5ID3KnQ9Jh+cEuzw8s8bQZTusEXoKwn4PSHeNwV5LOZvcpQmTqRBkbNI73w9
-        MCEaOoM/fdDer11hxBw/9Ow43j2/r671/LX7PS3SiGFeNBJkqyY6uN7EAlJj1Gpg
-        ==
-X-ME-Sender: <xms:0EQCYbyYxtkJu4glF-PyF7Vmo43tTOkmvx7vk1EntVZdLMEsHu3C3Q>
-    <xme:0EQCYTQMDkRSNrRfWPG-hblj2PmnOTxNvFK7bUM5dB0oC_22euwHulzvy7WykXbDR
-    hcIb45NDz3qsA>
-X-ME-Received: <xmr:0EQCYVVCQuiiDMb-vlKynWBt1gusm3RY0N0qSpi8uTEjqcbSEDY8vYCjsGkVpQytv_Ajx3LMmq2fb0184BL90bN5-mEmdm76>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrhedtgdelfecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomhepifhrvghgucfm
-    jfcuoehgrhgvgheskhhrohgrhhdrtghomheqnecuggftrfgrthhtvghrnhepfeefueduhe
-    egtddvueejueeiveelhedthfejudehteejgfegudffgedttdetheeknecuffhomhgrihhn
-    pegsohhothhlihhnrdgtohhmnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpe
-    hmrghilhhfrhhomhepghhrvghgsehkrhhorghhrdgtohhm
-X-ME-Proxy: <xmx:0EQCYVgIDo1Ew43r7hAFpqP8nmJpY5A5vd9QDYdocfnL7YV5_tY1qw>
-    <xmx:0EQCYdBh3Od3AAwJM5CHD0pPk69bSsf7bG7F1_I1lMG6ty4Onw0P6g>
-    <xmx:0EQCYeIhXcVY50E1ruC0Z8OVs-Gv2-qNTmHE6IJR-H-yWCCk6BNUhQ>
-    <xmx:0UQCYdansu-BxNZUR8BiGYppnOc_z2YNFJumpJ6Ouh-OROzART6GgQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 29 Jul 2021 02:04:00 -0400 (EDT)
-Date:   Thu, 29 Jul 2021 08:03:58 +0200
-From:   Greg KH <greg@kroah.com>
-To:     Zhiyong Tao <zhiyong.tao@mediatek.com>
-Cc:     timur@kernel.org, linux@armlinux.org.uk, alcooperx@gmail.com,
-        tklauser@distanz.ch, sean.wang@kernel.org,
-        srv_heupstream@mediatek.com, hui.liu@mediatek.com,
-        yuchen.huang@mediatek.com, huihui.wang@mediatek.com,
-        eddie.huang@mediatek.com, sean.wang@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-serial@vger.kernel.org
-Subject: Re: [PATCH v1 0/1] Mediatek uart patch
-Message-ID: <YQJEzlb2NyxD1EpD@kroah.com>
-References: <20210729014817.11879-1-zhiyong.tao@mediatek.com>
+        id S234129AbhG2GRV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 02:17:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56578 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234089AbhG2GRU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 02:17:20 -0400
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE98EC0613C1
+        for <devicetree@vger.kernel.org>; Wed, 28 Jul 2021 23:17:17 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id d17so5705168plh.10
+        for <devicetree@vger.kernel.org>; Wed, 28 Jul 2021 23:17:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=Na0oMqbeSSwR2uZk9VSSlYB8c9rLTTyh7/SgfQdnKJQ=;
+        b=EWCHDf+R+bffFsYfepKPFX8HRT2BUsfyeOX/npypd0dYNYRHM8CtfedSTIdGaT/KHc
+         EMVRuqiqvrDLk748kZ1qJdb9+t1gMIOYnqlarDZHzvEz6VSmT7VQFXoxXcZZFjmt8vOt
+         zer9ql5xxlrKGM+r5H55qCH7VsuYta+KF5WqAyl31PFHFzPBKM66LDBkXkgl/tkLcPnl
+         i2jcu6mtqjHY02xEbnRztcj9L2vo4gvmIBp3QII212YJrumoJu8Dq28zJyeRroyQ8AMi
+         BOWbd9wr0WgpadRwVR2OKAqRYLCeJpsfJIOWG0k49oS1ZtkougRAgPcGN1t9+C2O2npb
+         c2PA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Na0oMqbeSSwR2uZk9VSSlYB8c9rLTTyh7/SgfQdnKJQ=;
+        b=q1/JbYfu1yg2jak9f1BuJjSD0MvyUbdVXKZj1vkVdBRjonTZBSyWjo4KqisSpppjRb
+         CT10FCesbt0OLJgZtDGQObJA79qS995dGevK9gUcVE0Q/KiYkBpVQ3yGHcEOk9bO2RDo
+         3fTdsKRvGRVWFjdeI27itJDIFx9HTsrk6+h1sFuS3Oopb1txWEU85Jxs9tQfIIVvKC8i
+         eUxgiiydbA08vuihmkx9O17A6T134NAGHXq6vQgBKGfjAZjxBos4EitqAQQKdYdAomn8
+         foL9JG7nTjFo+Ab2bXkwHd+eODCfG+75Zu1zOUzxlNrd6fRut4Fp0+AhTPGlRhGGSHx+
+         oVNQ==
+X-Gm-Message-State: AOAM531c3vc8rO8D924Yy+h6wtyr1R0vop4KXGO+xeD2ugGgWjwDpVX6
+        mcpAV50kY/uN0MpUT5baBfm7OA==
+X-Google-Smtp-Source: ABdhPJxhx8hhazm+8eAUS1yOwSVtPtHtAWPcgAv+iDPm82IezE+pVLL+bV10jbyoN4P9o9w1PReZaA==
+X-Received: by 2002:a17:90b:2112:: with SMTP id kz18mr13388679pjb.137.1627539437273;
+        Wed, 28 Jul 2021 23:17:17 -0700 (PDT)
+Received: from localhost ([122.172.201.85])
+        by smtp.gmail.com with ESMTPSA id k25sm2003510pfa.213.2021.07.28.23.17.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Jul 2021 23:17:15 -0700 (PDT)
+Date:   Thu, 29 Jul 2021 11:47:13 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Thara Gopinath <thara.gopinath@linaro.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, rui.zhang@intel.com,
+        daniel.lezcano@linaro.org, rjw@rjwysocki.net, robh+dt@kernel.org,
+        steev@kali.org, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [Patch v4 3/6] cpufreq: qcom-cpufreq-hw: Add dcvs interrupt
+ support
+Message-ID: <20210729061713.kzhka7nymo53zw2o@vireshk-i7>
+References: <20210727152512.1098329-1-thara.gopinath@linaro.org>
+ <20210727152512.1098329-4-thara.gopinath@linaro.org>
+ <20210728035014.25mgvrpnraxfslq7@vireshk-i7>
+ <9a257605-d282-cd06-cc44-5ad5a5f8484d@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210729014817.11879-1-zhiyong.tao@mediatek.com>
+In-Reply-To: <9a257605-d282-cd06-cc44-5ad5a5f8484d@linaro.org>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 29, 2021 at 09:48:16AM +0800, Zhiyong Tao wrote:
-> This series includes 1 patches:
-> 1.fix uart corruption issue when rx power off
+On 28-07-21, 18:19, Thara Gopinath wrote:
+> Ha! I was too lazy to write this down! So how about I make this a mutex and
+
+mutex may not work as you come here from irq.
+
+> put mod_delayed_work() inside the lock. So it will be something like below
 > 
-> when uart is used as a communication port with external device(GPS).
-> when external device(GPS) power off, the power of rx pin is also from
-> 1.8v to 0v. Even if there is not any data in rx. But uart rx pin can
-> capture the data "0".
-> If uart don't receive any data in specified cycle, uart will generates
-> BI(Break interrupt) interrupt.
-> If external device(GPS) power off, we found that BI interrupt appeared
-> continuously and very frequently.
-> When uart interrupt type is BI, uart IRQ handler(8250 framwork
-> API:serial8250_handle_irq) will push data to tty buffer.
-> The code path:
-> https://elixir.bootlin.com/linux/latest/source/drivers/tty/serial/8250/8250_port.c#L1917
-> mtk8250_dma_rx_complete is a task of mtk_uart_apdma_rx_handler.
-> mtk8250_dma_rx_complete priority is lower than uart irq
-> handler(serial8250_handle_irq).
-> if we are in process of mtk8250_dma_rx_complete, uart appear BI
-> interrupt:1)serial8250_handle_irq will priority execution.2)it may cause
-> write tty buffer conflict in mtk8250_dma_rx_complete.
-> So the spin lock protect the rx receive data process is not break.
+> qcom_lmh_dcvs_notify()			qcom_cpufreq_hw_lmh_exit()
+> 
+> mutex_lock()				mutex_lock()
+>   if (data->cancel_throttle) {		cancel_throttle = true
+> 	mutex_unlock()			mutex_unlock()
+> 	return				cancel_delayed_work_sync()
+>   }					free_irq()
+>   enable_irq() / mod_delayed_work()
+> mutex_unlock()
+> 
+> I will let you break it!
 
-All of this information should be in the changelog for the patch itself.
-There is no need for a "cover letter" for a single patch like this.
+I can't any further :)
 
-Can you redo your 1/1 patch and add the above information to the
-changelog text and resend it as a v2?
+Consider merging below to this patch, it fixes sever other minor
+issues I see in the code.
 
-thanks,
+-- 
+viresh
 
-greg k-h
+-------------------------8<-------------------------
+
+diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c b/drivers/cpufreq/qcom-cpufreq-hw.c
+index 3cc27d9e2ed1..4261299fa9e5 100644
+--- a/drivers/cpufreq/qcom-cpufreq-hw.c
++++ b/drivers/cpufreq/qcom-cpufreq-hw.c
+@@ -38,13 +38,17 @@ struct qcom_cpufreq_soc_data {
+ struct qcom_cpufreq_data {
+        void __iomem *base;
+        struct resource *res;
+-       struct delayed_work throttle_work;
+        const struct qcom_cpufreq_soc_data *soc_data;
+-       struct cpufreq_policy *policy;
+-       /* Lock to synchronize between de-init sequence and re-starting LMh polling/interrupts */
++
++       /*
++        * Lock to synchronize between de-init sequence and re-starting LMh
++        * polling/interrupts.
++        */
+        spinlock_t throttle_lock;
+        int throttle_irq;
+        bool cancel_throttle;
++       struct delayed_work throttle_work;
++       struct cpufreq_policy *policy;
+ };
+
+ static unsigned long cpu_hw_rate, xo_rate;
+@@ -271,10 +275,11 @@ static unsigned int qcom_lmh_get_throttle_freq(struct qcom_cpufreq_data *data)
+
+ static void qcom_lmh_dcvs_notify(struct qcom_cpufreq_data *data)
+ {
++       unsigned long max_capacity, capacity, freq_hz, throttled_freq;
+        struct cpufreq_policy *policy = data->policy;
++       int cpu = cpumask_first(policy->cpus);
++       struct device *dev = get_cpu_device(cpu);
+        struct dev_pm_opp *opp;
+-       struct device *dev;
+-       unsigned long max_capacity, capacity, freq_hz, throttled_freq;
+        unsigned int freq;
+
+        /*
+@@ -284,7 +289,6 @@ static void qcom_lmh_dcvs_notify(struct qcom_cpufreq_data *data)
+        freq = qcom_lmh_get_throttle_freq(data);
+        freq_hz = freq * HZ_PER_KHZ;
+
+-       dev = get_cpu_device(cpumask_first(policy->cpus));
+        opp = dev_pm_opp_find_freq_floor(dev, &freq_hz);
+        if (IS_ERR(opp) && PTR_ERR(opp) == -ERANGE)
+                opp = dev_pm_opp_find_freq_ceil(dev, &freq_hz);
+@@ -293,34 +297,37 @@ static void qcom_lmh_dcvs_notify(struct qcom_cpufreq_data *data)
+
+        /* Update thermal pressure */
+
+-       max_capacity = arch_scale_cpu_capacity(cpumask_first(policy->cpus));
++       max_capacity = arch_scale_cpu_capacity(cpu);
+        capacity = mult_frac(max_capacity, throttled_freq, policy->cpuinfo.max_freq);
++
+        /* Don't pass boost capacity to scheduler */
+        if (capacity > max_capacity)
+                capacity = max_capacity;
+
+        arch_set_thermal_pressure(policy->cpus, max_capacity - capacity);
+
+-       /* In the unlikely case cpufreq is de-registered do not enable polling or h/w interrupt */
+-
++       /*
++        * In the unlikely case, where the policy is going away, do not enable
++        * polling or h/w interrupt.
++        */
+        spin_lock(&data->throttle_lock);
+-       if (data->cancel_throttle) {
+-               spin_unlock(&data->throttle_lock);
+-               return;
+-       }
+-       spin_unlock(&data->throttle_lock);
++
++       if (data->cancel_throttle)
++               goto out;
+
+        /*
+-        * If h/w throttled frequency is higher than what cpufreq has requested for, stop
+-        * polling and switch back to interrupt mechanism
++        * If h/w throttled frequency is higher than what cpufreq has requested
++        * for, then stop polling and switch back to interrupt mechanism.
+         */
+
+-       if (throttled_freq >= qcom_cpufreq_hw_get(cpumask_first(policy->cpus)))
+-               /* Clear the existing interrupts and enable it back */
++       if (throttled_freq >= qcom_cpufreq_hw_get(cpu)) {
+                enable_irq(data->throttle_irq);
+-       else
++       } else {
+                mod_delayed_work(system_highpri_wq, &data->throttle_work,
+                                 msecs_to_jiffies(10));
++       }
++out:
++       spin_unlock(&data->throttle_lock);
+ }
+
+ static void qcom_lmh_dcvs_poll(struct work_struct *work)
+@@ -328,7 +335,6 @@ static void qcom_lmh_dcvs_poll(struct work_struct *work)
+        struct qcom_cpufreq_data *data;
+
+        data = container_of(work, struct qcom_cpufreq_data, throttle_work.work);
+-
+        qcom_lmh_dcvs_notify(data);
+ }
+
+@@ -407,6 +413,7 @@ static void qcom_cpufreq_hw_lmh_exit(struct qcom_cpufreq_data *data)
+        spin_lock(&data->throttle_lock);
+        data->cancel_throttle = true;
+        spin_unlock(&data->throttle_lock);
++
+        cancel_delayed_work_sync(&data->throttle_work);
+        free_irq(data->throttle_irq, data);
+ }
+
