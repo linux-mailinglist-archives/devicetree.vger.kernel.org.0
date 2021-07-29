@@ -2,328 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B1DD3DA830
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 18:01:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A708E3DA849
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 18:02:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233242AbhG2QBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 12:01:00 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:38458 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238468AbhG2QAA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 12:00:00 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: dafna)
-        with ESMTPSA id 9F1DE1F43FB6
-Subject: Re: [PATCH v7 3/4] iommu: rockchip: Add internal ops to handle
- variants
-To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        joro@8bytes.org, will@kernel.org, robh+dt@kernel.org,
-        heiko@sntech.de, xxm@rock-chips.com, robin.murphy@arm.com,
-        Ezequiel Garcia <ezequiel@collabora.com>
-Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-References: <20210525121551.606240-1-benjamin.gaignard@collabora.com>
- <20210525121551.606240-4-benjamin.gaignard@collabora.com>
-From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-Message-ID: <c6175f3d-a324-9fb5-bd39-cfe0447ee5e7@collabora.com>
-Date:   Thu, 29 Jul 2021 17:59:26 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
-MIME-Version: 1.0
-In-Reply-To: <20210525121551.606240-4-benjamin.gaignard@collabora.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S232372AbhG2QCV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 12:02:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56086 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233234AbhG2QCK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 12:02:10 -0400
+Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com [IPv6:2607:f8b0:4864:20::f32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F3A0C06179E;
+        Thu, 29 Jul 2021 09:02:04 -0700 (PDT)
+Received: by mail-qv1-xf32.google.com with SMTP id jm13so3639348qvb.5;
+        Thu, 29 Jul 2021 09:02:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:content-transfer-encoding:date:message-id:to:cc
+         :subject:from:references:in-reply-to;
+        bh=crl+m4xpN2rQpodK9IBboDzgVn58oWozCut4cofRiKA=;
+        b=pLGZ1EOkiUZRuQU/Do9j/kxjA/lCZMffc0hvACY1Zge+1zX8hdK1Fx7UsnIGykgq/o
+         /G34St8ykVgFj0QntTTbLoIY4Vzw8fNX4mB/0PkWz8oR2G9hmFsWD+6DVTqHWmyPkGvM
+         /nGhNNRebpfn0Sbc/BPRmUmmV2HZUQt1R4wXyLbzUywSzvmpoyb7faXyEGzXxAeP5HSz
+         SxGU22wVHyxE+q5eqpJbe22P1NWroAS2hd4XGrr2KdVewgaeDbD0chche8p/5O5niCeV
+         XdYfwoTz6B2nFOoo1CUF7EBciyUaPcFzmFTyy8aOI5daH3OcFNS/UbfiyWisUIryIDs8
+         grLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:to:cc:subject:from:references:in-reply-to;
+        bh=crl+m4xpN2rQpodK9IBboDzgVn58oWozCut4cofRiKA=;
+        b=s8FLr1HfcLmWSVLoRZ/wKoEyEzZjUytr0uVQVZ25OQ0q0zXrMjqpWgCFtZ1MdAUjFZ
+         6j0CJkS/ehb4+sgvuiTTMHBBq+SwcWeocv5IZgbwmL0LPyXB34yn/rjw/uBFq3PUTvog
+         dtutsnQmaQzgevLFQNIb86FqDI41SSCUAHpnYgmSSEbIn1Y0qC/JgXVl++VGnE5wCIM0
+         u2xCFKs7Pa1NvkOZWyLpgtiuiiOnBdyEKyBTP3QyvyPEfu4WEVuFU8ajhz9pslc0Tcm9
+         Y9R8gI08WfNuHGuNKsPMb6GRdZnCoEfs7VoiuYoV9tKajrdoIj74l5GKUcdaYnr59c8s
+         qSbg==
+X-Gm-Message-State: AOAM531KcgJkb+ui1ZBGWDc53oQB8EfZkW0UneIP2XMKnMZCmLU4Yh2z
+        IOXAw7jkKZ6tV2PXaz+Xl3c=
+X-Google-Smtp-Source: ABdhPJzx2LYBdpKuzt3oweT6Zevzoqq/lpFIJVehrZQ8vtNlnak8IOgeE5kiL2TxoEiusQxeGMMG4A==
+X-Received: by 2002:a0c:c3d1:: with SMTP id p17mr5969024qvi.44.1627574523531;
+        Thu, 29 Jul 2021 09:02:03 -0700 (PDT)
+Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
+        by smtp.gmail.com with ESMTPSA id 6sm1983547qkv.115.2021.07.29.09.02.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Jul 2021 09:02:02 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Thu, 29 Jul 2021 12:02:01 -0400
+Message-Id: <CD5R0LBMZ65W.29NU0NCABDJT7@shaak>
+To:     "Peter Rosin" <peda@axentia.se>, <jic23@kernel.org>,
+        <lars@metafoo.de>, <pmeerw@pmeerw.net>
+Cc:     <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
+Subject: Re: [PATCH v6 08/13] iio: afe: rescale: reduce risk of integer
+ overflow
+From:   "Liam Beguin" <liambeguin@gmail.com>
+References: <20210721030613.3105327-1-liambeguin@gmail.com>
+ <20210721030613.3105327-9-liambeguin@gmail.com>
+ <9e0e4398-873e-b5c0-0f0c-50a186ed2228@axentia.se>
+ <CD4C37PEMPOM.91UZ60Q6534Q@shaak>
+ <1a6e4851-9119-f524-76ff-a31ef0db8988@axentia.se>
+In-Reply-To: <1a6e4851-9119-f524-76ff-a31ef0db8988@axentia.se>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed Jul 28, 2021 at 3:47 AM EDT, Peter Rosin wrote:
+> On 2021-07-28 02:07, Liam Beguin wrote:
+> > On Fri Jul 23, 2021 at 5:17 PM EDT, Peter Rosin wrote:
+> >> On 2021-07-21 05:06, Liam Beguin wrote:
+> >>> From: Liam Beguin <lvb@xiphos.com>
+> >>>
+> >>> Reduce the risk of integer overflow by doing the scale calculation wi=
+th
+> >>> 64bit integers and looking for a Greatest Common Divider for both par=
+ts
+> >>> of the fractional value when required.
+> >>>
+> >>> Signed-off-by: Liam Beguin <lvb@xiphos.com>
+> >>> ---
+> >>>  drivers/iio/afe/iio-rescale.c | 15 ++++++++++++---
+> >>>  1 file changed, 12 insertions(+), 3 deletions(-)
+> >>>
+> >>> diff --git a/drivers/iio/afe/iio-rescale.c b/drivers/iio/afe/iio-resc=
+ale.c
+> >>> index 6f6a711ae3ae..35fa3b4e53e0 100644
+> >>> --- a/drivers/iio/afe/iio-rescale.c
+> >>> +++ b/drivers/iio/afe/iio-rescale.c
+> >>> @@ -21,12 +21,21 @@
+> >>>  int rescale_process_scale(struct rescale *rescale, int scale_type,
+> >>>  			  int *val, int *val2)
+> >>>  {
+> >>> -	unsigned long long tmp;
+> >>> +	s64 tmp, tmp2;
+> >>> +	u32 factor;
+> >>> =20
+> >>>  	switch (scale_type) {
+> >>>  	case IIO_VAL_FRACTIONAL:
+> >>> -		*val *=3D rescale->numerator;
+> >>> -		*val2 *=3D rescale->denominator;
+> >>> +		if (check_mul_overflow(*val, rescale->numerator, (s32 *)&tmp) ||
+> >>> +		    check_mul_overflow(*val2, rescale->denominator, (s32 *)&tmp2))=
+ {
+> >>> +			tmp =3D (s64)*val * rescale->numerator;
+> >>> +			tmp2 =3D (s64)*val2 * rescale->denominator;
+> >>> +			factor =3D gcd(tmp, tmp2);
+> >=20
+> > Hi Peter,
+> >=20
+> >>
+> >> Hi!
+> >>
+> >> Reiterating that gcd() only works for unsigned operands, so this is
+> >> broken for
+> >> negative values.
+> >=20
+> > Apologies, I didn't mean to make it seem like I ignored your comments. =
+I
+> > should've added a note. After you pointed out that gcd() only works for
+> > unsigned elements, I added test cases for negative values, and all test=
+s
+> > passed. I'll look into it more.
+>
+> Maybe I've misread the code and gcd is in fact working for negative
+> numbers? However, I imagine it might be arch specific, so testing on
+> a single arch feels insufficient and deeper analysis is required.
+>
+> However, looking at lib/math/gcd.c it certainly still looks like
+> negative values will work very poorly, and there is no macro magic
+> in include/linux/gcd.h to handle it by wrapping the core C routine.
 
+I agree that looking at lib/math/gcd.c odd things might happen with
+negative values. I'll use the the absolute values to calculate the GCD
+as it shouldn't affect the value of factor.
 
-On 25.05.21 14:15, Benjamin Gaignard wrote:
-> Add internal ops to be able to handle incoming variant v2.
-> The goal is to keep the overall structure of the framework but
-> to allow to add the evolution of this hardware block.
-> 
-> The ops are global for a SoC because iommu domains are not
-> attached to a specific devices if they are for a virtuel device like
-> drm. Use a global variable shouldn't be since SoC usually doesn't
-> embedded different versions of the iommu hardware block.
-> If that happen one day a WARN_ON will be displayed at probe time.
-> 
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-> ---
-> version 7:
->   - Set DMA mask
->   - Add function to convert dma address to dte
-> 
-> version 6:
->   - Remove #include <module.h>
->   - Remove pt_address_mask field
->   - Only use once of_device_get_match_data
->   - Return an error if ops don't match
-> 
-> version 5:
->   - Use of_device_get_match_data()
->   - Add internal ops inside the driver
-> 
->   drivers/iommu/rockchip-iommu.c | 86 +++++++++++++++++++++++++---------
->   1 file changed, 64 insertions(+), 22 deletions(-)
-> 
-> diff --git a/drivers/iommu/rockchip-iommu.c b/drivers/iommu/rockchip-iommu.c
-> index 7a2932772fdf..bd2cf7f08c71 100644
-> --- a/drivers/iommu/rockchip-iommu.c
-> +++ b/drivers/iommu/rockchip-iommu.c
-> @@ -96,6 +96,15 @@ static const char * const rk_iommu_clocks[] = {
->   	"aclk", "iface",
->   };
->   
-> +struct rk_iommu_ops {
-> +	phys_addr_t (*pt_address)(u32 dte);
-> +	u32 (*mk_dtentries)(dma_addr_t pt_dma);
-> +	u32 (*mk_ptentries)(phys_addr_t page, int prot);
-> +	phys_addr_t (*dte_addr_phys)(u32 addr);
-> +	u32 (*dma_addr_dte)(dma_addr_t dt_dma);
-> +	u64 dma_bit_mask;
-> +};
-> +
->   struct rk_iommu {
->   	struct device *dev;
->   	void __iomem **bases;
-> @@ -116,6 +125,7 @@ struct rk_iommudata {
->   };
->   
->   static struct device *dma_dev;
-> +static const struct rk_iommu_ops *rk_ops;
->   
->   static inline void rk_table_flush(struct rk_iommu_domain *dom, dma_addr_t dma,
->   				  unsigned int count)
-> @@ -215,11 +225,6 @@ static inline u32 rk_mk_dte(dma_addr_t pt_dma)
->   #define RK_PTE_PAGE_READABLE      BIT(1)
->   #define RK_PTE_PAGE_VALID         BIT(0)
->   
-> -static inline phys_addr_t rk_pte_page_address(u32 pte)
-> -{
-> -	return (phys_addr_t)pte & RK_PTE_PAGE_ADDRESS_MASK;
-> -}
-> -
->   static inline bool rk_pte_is_page_valid(u32 pte)
->   {
->   	return pte & RK_PTE_PAGE_VALID;
-> @@ -448,10 +453,10 @@ static int rk_iommu_force_reset(struct rk_iommu *iommu)
->   	 * and verifying that upper 5 nybbles are read back.
->   	 */
->   	for (i = 0; i < iommu->num_mmu; i++) {
-> -		rk_iommu_write(iommu->bases[i], RK_MMU_DTE_ADDR, DTE_ADDR_DUMMY);
-> +		dte_addr = rk_ops->pt_address(DTE_ADDR_DUMMY);
-> +		rk_iommu_write(iommu->bases[i], RK_MMU_DTE_ADDR, dte_addr);
->   
-> -		dte_addr = rk_iommu_read(iommu->bases[i], RK_MMU_DTE_ADDR);
-> -		if (dte_addr != (DTE_ADDR_DUMMY & RK_DTE_PT_ADDRESS_MASK)) {
-> +		if (dte_addr != rk_iommu_read(iommu->bases[i], RK_MMU_DTE_ADDR)) {
->   			dev_err(iommu->dev, "Error during raw reset. MMU_DTE_ADDR is not functioning\n");
->   			return -EFAULT;
->   		}
-> @@ -470,6 +475,16 @@ static int rk_iommu_force_reset(struct rk_iommu *iommu)
->   	return 0;
->   }
->   
-> +static inline phys_addr_t rk_dte_addr_phys(u32 addr)
-> +{
-> +	return (phys_addr_t)addr;
-> +}
-> +
-> +static inline u32 rk_dma_addr_dte(dma_addr_t dt_dma)
-> +{
-> +	return dt_dma;
-> +}
-> +
->   static void log_iova(struct rk_iommu *iommu, int index, dma_addr_t iova)
->   {
->   	void __iomem *base = iommu->bases[index];
-> @@ -489,7 +504,7 @@ static void log_iova(struct rk_iommu *iommu, int index, dma_addr_t iova)
->   	page_offset = rk_iova_page_offset(iova);
->   
->   	mmu_dte_addr = rk_iommu_read(base, RK_MMU_DTE_ADDR);
-> -	mmu_dte_addr_phys = (phys_addr_t)mmu_dte_addr;
-> +	mmu_dte_addr_phys = rk_ops->dte_addr_phys(mmu_dte_addr);
->   
->   	dte_addr_phys = mmu_dte_addr_phys + (4 * dte_index);
->   	dte_addr = phys_to_virt(dte_addr_phys);
-> @@ -498,14 +513,14 @@ static void log_iova(struct rk_iommu *iommu, int index, dma_addr_t iova)
->   	if (!rk_dte_is_pt_valid(dte))
->   		goto print_it;
->   
-> -	pte_addr_phys = rk_dte_pt_address(dte) + (pte_index * 4);
-> +	pte_addr_phys = rk_ops->pt_address(dte) + (pte_index * 4);
->   	pte_addr = phys_to_virt(pte_addr_phys);
->   	pte = *pte_addr;
->   
->   	if (!rk_pte_is_page_valid(pte))
->   		goto print_it;
->   
-> -	page_addr_phys = rk_pte_page_address(pte) + page_offset;
-> +	page_addr_phys = rk_ops->pt_address(pte) + page_offset;
->   	page_flags = pte & RK_PTE_PAGE_FLAGS_MASK;
->   
->   print_it:
-> @@ -601,13 +616,13 @@ static phys_addr_t rk_iommu_iova_to_phys(struct iommu_domain *domain,
->   	if (!rk_dte_is_pt_valid(dte))
->   		goto out;
->   
-> -	pt_phys = rk_dte_pt_address(dte);
-> +	pt_phys = rk_ops->pt_address(dte);
->   	page_table = (u32 *)phys_to_virt(pt_phys);
->   	pte = page_table[rk_iova_pte_index(iova)];
->   	if (!rk_pte_is_page_valid(pte))
->   		goto out;
->   
-> -	phys = rk_pte_page_address(pte) + rk_iova_page_offset(iova);
-> +	phys = rk_ops->pt_address(pte) + rk_iova_page_offset(iova);
->   out:
->   	spin_unlock_irqrestore(&rk_domain->dt_lock, flags);
->   
-> @@ -679,14 +694,14 @@ static u32 *rk_dte_get_page_table(struct rk_iommu_domain *rk_domain,
->   		return ERR_PTR(-ENOMEM);
->   	}
->   
-> -	dte = rk_mk_dte(pt_dma);
-> +	dte = rk_ops->mk_dtentries(pt_dma);
->   	*dte_addr = dte;
->   
->   	rk_table_flush(rk_domain, pt_dma, NUM_PT_ENTRIES);
->   	rk_table_flush(rk_domain,
->   		       rk_domain->dt_dma + dte_index * sizeof(u32), 1);
->   done:
-> -	pt_phys = rk_dte_pt_address(dte);
-> +	pt_phys = rk_ops->pt_address(dte);
->   	return (u32 *)phys_to_virt(pt_phys);
->   }
->   
-> @@ -728,7 +743,7 @@ static int rk_iommu_map_iova(struct rk_iommu_domain *rk_domain, u32 *pte_addr,
->   		if (rk_pte_is_page_valid(pte))
->   			goto unwind;
->   
-> -		pte_addr[pte_count] = rk_mk_pte(paddr, prot);
-> +		pte_addr[pte_count] = rk_ops->mk_ptentries(paddr, prot);
->   
->   		paddr += SPAGE_SIZE;
->   	}
-> @@ -750,7 +765,7 @@ static int rk_iommu_map_iova(struct rk_iommu_domain *rk_domain, u32 *pte_addr,
->   			    pte_count * SPAGE_SIZE);
->   
->   	iova += pte_count * SPAGE_SIZE;
-> -	page_phys = rk_pte_page_address(pte_addr[pte_count]);
-> +	page_phys = rk_ops->pt_address(pte_addr[pte_count]);
->   	pr_err("iova: %pad already mapped to %pa cannot remap to phys: %pa prot: %#x\n",
->   	       &iova, &page_phys, &paddr, prot);
->   
-> @@ -785,7 +800,8 @@ static int rk_iommu_map(struct iommu_domain *domain, unsigned long _iova,
->   	dte_index = rk_domain->dt[rk_iova_dte_index(iova)];
->   	pte_index = rk_iova_pte_index(iova);
->   	pte_addr = &page_table[pte_index];
-> -	pte_dma = rk_dte_pt_address(dte_index) + pte_index * sizeof(u32);
-> +
-> +	pte_dma = rk_ops->pt_address(dte_index) + pte_index * sizeof(u32);
->   	ret = rk_iommu_map_iova(rk_domain, pte_addr, pte_dma, iova,
->   				paddr, size, prot);
->   
-> @@ -821,7 +837,7 @@ static size_t rk_iommu_unmap(struct iommu_domain *domain, unsigned long _iova,
->   		return 0;
->   	}
->   
-> -	pt_phys = rk_dte_pt_address(dte);
-> +	pt_phys = rk_ops->pt_address(dte);
->   	pte_addr = (u32 *)phys_to_virt(pt_phys) + rk_iova_pte_index(iova);
->   	pte_dma = pt_phys + rk_iova_pte_index(iova) * sizeof(u32);
->   	unmap_size = rk_iommu_unmap_iova(rk_domain, pte_addr, pte_dma, size);
-> @@ -879,7 +895,7 @@ static int rk_iommu_enable(struct rk_iommu *iommu)
->   
->   	for (i = 0; i < iommu->num_mmu; i++) {
->   		rk_iommu_write(iommu->bases[i], RK_MMU_DTE_ADDR,
-> -			       rk_domain->dt_dma);
-> +			       rk_ops->dma_addr_dte(rk_domain->dt_dma));
+>
+> > rescale_voltage_divider_props() seems to also use gcd() with signed
+> > integers.
+>
+> The type of the operands may be s32, but if you look at how those values
+> are populated, and with what they are populated, I think you will find
+> that
+> only positive scale factors are sensible for a voltage divider. Using
+> resistors with so high resistance that s32 is not enough is simply not
+> supported.
 
-Hi,
-This is not related to that patch, I was wondring why are all mmu devices initialized
-with the same dt_dma?
-I see for example that the isp0_mmu in rk3399.dtsi has two resources. Can't each resource
-be initialized with different dt_dma and this way there are two dt tables instead of the two mmus pointing
-to the same dt table.
+That makes sense!
 
 Thanks,
-Dafna
+Liam
 
->   		rk_iommu_base_command(iommu->bases[i], RK_MMU_CMD_ZAP_CACHE);
->   		rk_iommu_write(iommu->bases[i], RK_MMU_INT_MASK, RK_MMU_IRQ_MASK);
->   	}
-> @@ -1037,7 +1053,7 @@ static void rk_iommu_domain_free(struct iommu_domain *domain)
->   	for (i = 0; i < NUM_DT_ENTRIES; i++) {
->   		u32 dte = rk_domain->dt[i];
->   		if (rk_dte_is_pt_valid(dte)) {
-> -			phys_addr_t pt_phys = rk_dte_pt_address(dte);
-> +			phys_addr_t pt_phys = rk_ops->pt_address(dte);
->   			u32 *page_table = phys_to_virt(pt_phys);
->   			dma_unmap_single(dma_dev, pt_phys,
->   					 SPAGE_SIZE, DMA_TO_DEVICE);
-> @@ -1127,6 +1143,7 @@ static int rk_iommu_probe(struct platform_device *pdev)
->   	struct device *dev = &pdev->dev;
->   	struct rk_iommu *iommu;
->   	struct resource *res;
-> +	const struct rk_iommu_ops *ops;
->   	int num_res = pdev->num_resources;
->   	int err, i;
->   
-> @@ -1138,6 +1155,17 @@ static int rk_iommu_probe(struct platform_device *pdev)
->   	iommu->dev = dev;
->   	iommu->num_mmu = 0;
->   
-> +	ops = of_device_get_match_data(dev);
-> +	if (!rk_ops)
-> +		rk_ops = ops;
-> +
-> +	/*
-> +	 * That should not happen unless different versions of the
-> +	 * hardware block are embedded the same SoC
-> +	 */
-> +	if (WARN_ON(rk_ops != ops))
-> +		return -EINVAL;
-> +
->   	iommu->bases = devm_kcalloc(dev, num_res, sizeof(*iommu->bases),
->   				    GFP_KERNEL);
->   	if (!iommu->bases)
-> @@ -1226,6 +1254,8 @@ static int rk_iommu_probe(struct platform_device *pdev)
->   		}
->   	}
->   
-> +	dma_set_mask_and_coherent(dev, rk_ops->dma_bit_mask);
-> +
->   	return 0;
->   err_remove_sysfs:
->   	iommu_device_sysfs_remove(&iommu->iommu);
-> @@ -1277,8 +1307,20 @@ static const struct dev_pm_ops rk_iommu_pm_ops = {
->   				pm_runtime_force_resume)
->   };
->   
-> +static struct rk_iommu_ops iommu_data_ops_v1 = {
-> +	.pt_address = &rk_dte_pt_address,
-> +	.mk_dtentries = &rk_mk_dte,
-> +	.mk_ptentries = &rk_mk_pte,
-> +	.dte_addr_phys = &rk_dte_addr_phys,
-> +	.dma_addr_dte = &rk_dma_addr_dte,
-> +	.dma_bit_mask = DMA_BIT_MASK(32),
-> +};
-> +
-> +
->   static const struct of_device_id rk_iommu_dt_ids[] = {
-> -	{ .compatible = "rockchip,iommu" },
-> +	{	.compatible = "rockchip,iommu",
-> +		.data = &iommu_data_ops_v1,
-> +	},
->   	{ /* sentinel */ }
->   };
->   
-> 
+>
+> Cheers,
+> Peter
+>
+> > Thanks,
+> > Liam
+> >=20
+> >>
+> >> Cheers,
+> >> Peter
+> >>
+> >>> +			tmp =3D div_s64(tmp, factor);
+> >>> +			tmp2 =3D div_s64(tmp2, factor);
+> >>> +		}
+> >>> +		*val =3D tmp;
+> >>> +		*val2 =3D tmp2;
+> >>>  		return scale_type;
+> >>>  	case IIO_VAL_INT:
+> >>>  		*val *=3D rescale->numerator;
+> >>>
+> >=20
+
