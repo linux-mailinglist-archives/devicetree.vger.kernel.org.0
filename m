@@ -2,179 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 46AFB3DA29A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 13:56:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C8C83DA2BE
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 14:01:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235721AbhG2L4j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 07:56:39 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46386 "EHLO mail.kernel.org"
+        id S236642AbhG2MB7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 08:01:59 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:19682 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234979AbhG2L4g (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Jul 2021 07:56:36 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 694E460F23;
-        Thu, 29 Jul 2021 11:56:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627559793;
-        bh=nwAM8QY+x471etO2KMwuk1C3sqssSURF/22fBW46n34=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=W1RRqz3l61jc4JsTWP6MVUXA145SzIrsQz1JKCkejGR7OpVABEEEDlYdGfJ9yLyGZ
-         6JMIghimKn8VoOaggS5diNOzeTcwwOEhxlOoOf1PMY802Or9DAKjtYW+iKoowwZxWy
-         pf8NEa/sglcvSPmKE8uD5FcsOYgR4Xk429yW0YPT3NXrzjxwkz2GsIylc5C6CFKOWa
-         Ri0+dwH60UCkleoAlW60dn3CMdCOQl1hvLB0XqtxMlcbHhekC1jnZEUYcAGYNAdAlY
-         iXgA/0nNtkwPb+TOSDiZ9CTwr8mmduk+q+Lfa5Bf/bCDr3moHGWQNCBO0KLxdyBan/
-         KpcoNYNfXG7Jw==
-Received: by mail.kernel.org with local (Exim 4.94.2)
-        (envelope-from <mchehab@kernel.org>)
-        id 1m94eN-004d28-Ec; Thu, 29 Jul 2021 13:56:31 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Subject: [PATCH 5/5] arm64: dts: HiSilicon: Add support for HiKey 970 PCIe controller hardware
-Date:   Thu, 29 Jul 2021 13:56:28 +0200
-Message-Id: <261a7accef272a1f5fc774e1e3c6e179dd16a85a.1627559126.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1627559126.git.mchehab+huawei@kernel.org>
-References: <cover.1627559126.git.mchehab+huawei@kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
+        id S234949AbhG2MB4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Jul 2021 08:01:56 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1627560113; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=ncuVk0tm8feeNx3H/BvLh3vi7YpsBR7Hq/K0HuPg+lI=; b=KTfJnhFsuAvdcaVOtmEKyRRyy+wHge4AsRp++sxxIf5w+4nAokMXrMix32i39xqDKkPFH+2v
+ W9txVyALYA7b+dNrHzNAnbeLJ+ClktaAxdt0UzO0jhvgTWLJthK0ejk60xJ7FM935sTbYvhb
+ RiXbYqhWcpEaqRPstz9hye+z02w=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
+ 6102987996a66e66b20562c6 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 29 Jul 2021 12:00:57
+ GMT
+Sender: rnayak=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 094BCC4338A; Thu, 29 Jul 2021 12:00:57 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from blr-ubuntu-173.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rnayak)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 679EBC433D3;
+        Thu, 29 Jul 2021 12:00:53 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 679EBC433D3
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
+From:   Rajendra Nayak <rnayak@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org,
+        srinivas.kandagatla@linaro.org, robh+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, rbokka@codeaurora.org,
+        dianders@chromium.org, Rajendra Nayak <rnayak@codeaurora.org>
+Subject: [PATCH v2 0/3] nvmem: qfprom: Add binding updates and power-domain handling
+Date:   Thu, 29 Jul 2021 17:30:33 +0530
+Message-Id: <1627560036-1626-1-git-send-email-rnayak@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+v2:
+* pm_runtime calls made unconditionally, should work even without the power-domains property in DT
+* Added the missing pm_runtime_disable() handling
+* DT patch rebased on msm/for-next
 
-Add DTS bindings for the HiKey 970 board's PCIe hardware.
+--
+qfprom devices on sc7280 have an additional requirement to vote on a power-domain
+performance state to reliably blow fuses. Add the binding updates and handle this in
+the driver, also add the DT node for sc7280 platform.
 
-Co-developed-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- arch/arm64/boot/dts/hisilicon/hi3670.dtsi | 99 +++++++++++++++++++++++
- 1 file changed, 99 insertions(+)
+Rajendra Nayak (3):
+  dt-bindings: nvmem: qfprom: Add optional power-domains property
+  nvmem: qfprom: sc7280: Handle the additional power-domains vote
+  arm64: dts: qcom: sc7280: Add qfprom node
 
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-index 20698cfd0637..2cf19c8960f3 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-@@ -176,6 +176,12 @@ sctrl: sctrl@fff0a000 {
- 			#clock-cells = <1>;
- 		};
- 
-+		pmctrl: pmctrl@fff31000 {
-+			compatible = "hisilicon,hi3670-pmctrl", "syscon";
-+			reg = <0x0 0xfff31000 0x0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
- 		iomcu: iomcu@ffd7e000 {
- 			compatible = "hisilicon,hi3670-iomcu", "syscon";
- 			reg = <0x0 0xffd7e000 0x0 0x1000>;
-@@ -659,6 +665,99 @@ gpio28: gpio@fff1d000 {
- 			clock-names = "apb_pclk";
- 		};
- 
-+		its_pcie: interrupt-controller@f4000000 {
-+			compatible = "arm,gic-v3-its";
-+			msi-controller;
-+			reg = <0x0 0xf5100000 0x0 0x100000>;
-+		};
-+
-+		pcie_phy: pcie-phy@fc000000 {
-+			compatible = "hisilicon,hi970-pcie-phy";
-+			reg = <0x0 0xfc000000 0x0 0x80000>;
-+
-+			phy-supply = <&ldo33>;
-+
-+			clocks = <&crg_ctrl HI3670_CLK_GATE_PCIEPHY_REF>,
-+				 <&crg_ctrl HI3670_CLK_GATE_PCIEAUX>,
-+				 <&crg_ctrl HI3670_PCLK_GATE_PCIE_PHY>,
-+				 <&crg_ctrl HI3670_PCLK_GATE_PCIE_SYS>,
-+				 <&crg_ctrl HI3670_ACLK_GATE_PCIE>;
-+			clock-names = "phy_ref", "aux",
-+				      "apb_phy", "apb_sys",
-+				      "aclk";
-+
-+			/* vboost iboost pre post main */
-+			hisilicon,eye-diagram-param = <0xffffffff 0xffffffff
-+						       0xffffffff 0xffffffff
-+						       0xffffffff>;
-+
-+			#phy-cells = <0>;
-+		};
-+
-+		pcie@f4000000 {
-+			compatible = "hisilicon,kirin970-pcie";
-+			reg = <0x0 0xf4000000 0x0 0x1000000>,
-+			      <0x0 0xfc180000 0x0 0x1000>,
-+			      <0x0 0xf5000000 0x0 0x2000>;
-+			reg-names = "dbi", "apb", "config";
-+			bus-range = <0x0  0x1>;
-+			msi-parent = <&its_pcie>;
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+			device_type = "pci";
-+			phys = <&pcie_phy>;
-+			ranges = <0x02000000 0x0 0x00000000
-+				  0x0 0xf6000000
-+				  0x0 0x02000000>;
-+			num-lanes = <1>;
-+			#interrupt-cells = <1>;
-+			interrupts = <GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "msi";
-+			interrupt-map-mask = <0 0 0 7>;
-+			interrupt-map = <0x0 0 0 1
-+					 &gic GIC_SPI 282 IRQ_TYPE_LEVEL_HIGH>,
-+					<0x0 0 0 2
-+					 &gic GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>,
-+					<0x0 0 0 3
-+					 &gic GIC_SPI 284 IRQ_TYPE_LEVEL_HIGH>,
-+					<0x0 0 0 4
-+					 &gic GIC_SPI 285 IRQ_TYPE_LEVEL_HIGH>;
-+			reset-gpios = <&gpio7 0 0 >;
-+
-+			pcie@4,0 { // Lane 4: M.2
-+				reg = <0 0 0 0 0>;
-+				compatible = "pciclass,0604";
-+				device_type = "pci";
-+				reset-gpios = <&gpio7 1 0>;
-+				clkreq-gpios = <&gpio27 3 0 >;
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				ranges;
-+			};
-+
-+			pcie@5,0 { // Lane 5: Mini PCIe
-+				reg = <0 0 0 0 0>;
-+				compatible = "pciclass,0604";
-+				device_type = "pci";
-+				reset-gpios = <&gpio7 2 0>;
-+				clkreq-gpios = <&gpio17 0 0 >;
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				ranges;
-+			};
-+
-+			pcie@7,0 { // Lane 7: Ethernet
-+				reg = <0 0 0 0 0>;
-+				compatible = "pciclass,0604";
-+				device_type = "pci";
-+				reset-gpios = <&gpio7 3 0>;
-+				clkreq-gpios = <&gpio20 0 0 >;
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				ranges;
-+			};
-+		};
-+
- 		/* UFS */
- 		ufs: ufs@ff3c0000 {
- 			compatible = "hisilicon,hi3670-ufs", "jedec,ufs-2.1";
+ .../devicetree/bindings/nvmem/qcom,qfprom.yaml     |  3 +++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               | 13 +++++++++++
+ drivers/nvmem/qfprom.c                             | 26 ++++++++++++++++++++++
+ 3 files changed, 42 insertions(+)
+
 -- 
-2.31.1
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
 
