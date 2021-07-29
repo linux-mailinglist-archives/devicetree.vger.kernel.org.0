@@ -2,100 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B6F9F3DA6A7
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 16:39:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9BE33DA6BC
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 16:46:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234999AbhG2Oj7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 10:39:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35810 "EHLO
+        id S237360AbhG2Oqa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 10:46:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237458AbhG2Oj7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 10:39:59 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F38D2C061765
-        for <devicetree@vger.kernel.org>; Thu, 29 Jul 2021 07:39:55 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1m97CR-0000QI-G5; Thu, 29 Jul 2021 16:39:51 +0200
-Subject: Re: [PATCH 0/6] Add IMX8M Mini PCI support
-To:     Tim Harvey <tharvey@gateworks.com>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+        with ESMTP id S237825AbhG2OoY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 10:44:24 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 529CFC0613C1;
+        Thu, 29 Jul 2021 07:44:20 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id c16so7241113wrp.13;
+        Thu, 29 Jul 2021 07:44:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=QONJvagN9ws6tf6fSosJAxib6FmQVL/pCUAju2Cappc=;
+        b=OhQraQEWoeuRYN19Ds7AMR7+SvajLjAHKcJZGuXkkdVWK/PTtxKc8cE8qfNueWiqQg
+         hKUV2IUqQYHt9DCtA2BHMlR13ix7IVhiuQgJGW+N75Yu0CMCIrRLOlBFMV+lgwQAJVb/
+         vn2W0ifo0WKnR+OO3OZapcHCpmMukO5a7aQmqnhwqSkYjDLJKhhi6QondtoGFn85jvVy
+         t4twblJVYRxQEa0xN2eQ2BQo83Chr2yZJBgtRLkEd+QMUfbzAIuG2WSkzPouMUnae5SJ
+         T2eVVap002Htki+P75/mjPaaFiXRClJhLw6+QIuuiFSgftLLcCdX1XIUx4/vWQpAki+f
+         5NKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=QONJvagN9ws6tf6fSosJAxib6FmQVL/pCUAju2Cappc=;
+        b=DvZ8b1ZOPnugZ9JnymBq/WkJZXHRxhfskE3WrIrpwQgW5/jTFQDkCI1nBufU1v0m0G
+         kiL+A2duEyyeI6ASmuF7OZrzcUhseae0wXiV28bb8oYznruw2+HVuy8t71qW4sNakrXP
+         ix2OX2OhDZzann3/YuLzoVVSmxW7bIl5Tzri3olk7fgshHO/qpbiphbfUMn7H1/hW6JW
+         oMiVnzNqNgxvLS16Lde1zGh6ShJ8SnMgiqybXjDN4CPSNM5iWqUrL54nXIsPAnAEMNVv
+         7s4FIsCzdBGrK9b33PjmP4Ji3DQ4Z7PboauXABImNF08v+CLNZR4nxfgJj4ojGhmZCeJ
+         eDag==
+X-Gm-Message-State: AOAM532Iuyv24TCjj373W1EwExAmxC3sojUb7n8jCxKL2Evk5SkXjilv
+        Z0Es8DK8S+t4Tg4gR0wAnk9QMsJYQ2akOm78
+X-Google-Smtp-Source: ABdhPJyeYQP9mZmrNRMGNDAbza/Vs5f4RZMsz/ei4HZNiOV5tYzw0s+MbsAu8yiVPiLrkc/Vm8BBpA==
+X-Received: by 2002:a5d:5481:: with SMTP id h1mr1387970wrv.93.1627569858933;
+        Thu, 29 Jul 2021 07:44:18 -0700 (PDT)
+Received: from ltoban.skidata.net (195-192-77-216.dyn.cablelink.at. [195.192.77.216])
+        by smtp.gmail.com with ESMTPSA id 6sm9549423wmi.3.2021.07.29.07.44.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Jul 2021 07:44:18 -0700 (PDT)
+From:   Andreas Obergschwandtner <andreas.obergschwandtner@gmail.com>
+Cc:     andreas.obergschwandtner@gmail.com,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-References: <20210723204958.7186-1-tharvey@gateworks.com>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-Message-ID: <36070609-9f1f-00c8-ccf5-8ed7877b29da@pengutronix.de>
-Date:   Thu, 29 Jul 2021 16:39:49 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: tegra: tamonten: Fix UART pad setting
+Date:   Thu, 29 Jul 2021 16:42:26 +0200
+Message-Id: <20210729144226.111900-1-andreas.obergschwandtner@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <20210723204958.7186-1-tharvey@gateworks.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Tim,
+This patch fixes the tristate and pullup configuration for UART 1 to 3
+on the Tamonten SOM.
 
-On 23.07.21 22:49, Tim Harvey wrote:
-> The IMX8M Mini PCI controller shares much in common with the existing
-> SoC's supported by the pci-imx6 driver.
-> 
-> This series adds support for it. Driver changes came from the NXP
-> downstream vendor kernel [1]
-> 
-> This series depends on Lucas Stach's i.MX8MM GPC improvements and
-> BLK_CTRL driver and is based on top of his v2 submission [2]
+Signed-off-by: Andreas Obergschwandtner <andreas.obergschwandtner@gmail.com>
+---
+ arch/arm/boot/dts/tegra20-tamonten.dtsi | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-Are you aware of Lucas' patch series and Rob's remarks there?
-https://lore.kernel.org/linux-pci/20210510141509.929120-7-l.stach@pengutronix.de/
-
-Cheers,
-Ahmad
-
-> 
-> The final patch adds PCIe support to the
-> Tim
-> [1] https://source.codeaurora.org/external/imx/linux-imx/
-> [2]
-> https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=519251
-> 
-> Tim Harvey (6):
->   dt-bindings: imx6q-pcie: add compatible for IMX8MM support
->   dt-bindings: reset: imx8mq: add pcie reset
->   PCI: imx6: add IMX8MM support
->   reset: imx7: add resets for PCIe
->   arm64: dts: imx8mm: add PCIe support
->   arm64: dts: imx8mm: add gpc iomux compatible
-> 
->  .../bindings/pci/fsl,imx6q-pcie.txt           |   4 +-
->  arch/arm64/boot/dts/freescale/imx8mm.dtsi     |  38 ++++++-
->  drivers/pci/controller/dwc/pci-imx6.c         | 103 +++++++++++++++++-
->  drivers/reset/reset-imx7.c                    |   3 +
->  include/dt-bindings/reset/imx8mq-reset.h      |   3 +-
->  5 files changed, 147 insertions(+), 4 deletions(-)
-> 
-
-
+diff --git a/arch/arm/boot/dts/tegra20-tamonten.dtsi b/arch/arm/boot/dts/tegra20-tamonten.dtsi
+index 95e6bccdb4f6..dd4d506683de 100644
+--- a/arch/arm/boot/dts/tegra20-tamonten.dtsi
++++ b/arch/arm/boot/dts/tegra20-tamonten.dtsi
+@@ -185,8 +185,9 @@ conf_ata {
+ 				nvidia,pins = "ata", "atb", "atc", "atd", "ate",
+ 					"cdev1", "cdev2", "dap1", "dtb", "gma",
+ 					"gmb", "gmc", "gmd", "gme", "gpu7",
+-					"gpv", "i2cp", "pta", "rm", "slxa",
+-					"slxk", "spia", "spib", "uac";
++					"gpv", "i2cp", "irrx", "irtx", "pta",
++					"rm", "slxa", "slxk", "spia", "spib",
++					"uac";
+ 				nvidia,pull = <TEGRA_PIN_PULL_NONE>;
+ 				nvidia,tristate = <TEGRA_PIN_DISABLE>;
+ 			};
+@@ -211,7 +212,7 @@ conf_crtp {
+ 			conf_ddc {
+ 				nvidia,pins = "ddc", "dta", "dtd", "kbca",
+ 					"kbcb", "kbcc", "kbcd", "kbce", "kbcf",
+-					"sdc";
++					"sdc", "uad", "uca";
+ 				nvidia,pull = <TEGRA_PIN_PULL_UP>;
+ 				nvidia,tristate = <TEGRA_PIN_DISABLE>;
+ 			};
+@@ -221,10 +222,9 @@ conf_hdint {
+ 					"lvp0", "owc", "sdb";
+ 				nvidia,tristate = <TEGRA_PIN_ENABLE>;
+ 			};
+-			conf_irrx {
+-				nvidia,pins = "irrx", "irtx", "sdd", "spic",
+-					"spie", "spih", "uaa", "uab", "uad",
+-					"uca", "ucb";
++			conf_sdd {
++				nvidia,pins = "sdd", "spic", "spie", "spih",
++					"uaa", "uab", "ucb";
+ 				nvidia,pull = <TEGRA_PIN_PULL_UP>;
+ 				nvidia,tristate = <TEGRA_PIN_ENABLE>;
+ 			};
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.31.1
+
