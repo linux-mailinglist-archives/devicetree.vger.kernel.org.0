@@ -2,87 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 760153DA8E7
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 18:24:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 029EA3DA985
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 18:58:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230406AbhG2QYs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 12:24:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33666 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230228AbhG2QYq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 12:24:46 -0400
-Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E44DC061765
-        for <devicetree@vger.kernel.org>; Thu, 29 Jul 2021 09:24:41 -0700 (PDT)
-Received: by mail-qk1-x732.google.com with SMTP id t66so6586311qkb.0
-        for <devicetree@vger.kernel.org>; Thu, 29 Jul 2021 09:24:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lrbYP93L2tMwFoTHuD2bfzhhJvQFO01pQtZG8WiVqAk=;
-        b=Sohrb55AH82uy9S0BXeyNZ+trj8sQwFMFTGrix422Z6JvroYXcGAMVMQf7fIlpvDAs
-         eZruADDr/U7SRQI+eFcQ/AqKzwY8WC1A7fGTSbCrnns45gvM6Zp7rbHVWbq2N4Li0+mk
-         r879Og8Y8m072gVYEPBs0guffl9ggBZ5X88x4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lrbYP93L2tMwFoTHuD2bfzhhJvQFO01pQtZG8WiVqAk=;
-        b=suC0maL3TxoZ1s6+eEXmkwI3Fzq8pXG3Ofbt05XQNrpgNN0msUYR/C4GS43jd3CNTP
-         lbv3J3Vkj3Yfj2c5q6fEUxBSAgU9TBOEOlw1Rpu9AwPlenzJieGpApGyR5uYR+sqWGJr
-         7LLHbTZlr3fHdABs2T5fTE+Scyl1/Kz+ya1dCkEHX8PteUXxH2yTqw7r8D9wpIN0n8Ku
-         cCcG8sMOpn9wJmIUDynAgXmxQqQ/gygDUtTXYC2q0ks3rssgz/AHT7xHwgPl6BSfjHiT
-         HyJnT1kwlC6k18oivp72yV3FTu3Zt68r2Q+eK0sC8teQvLY4qbckBm+s88JR68NJIY64
-         yq5A==
-X-Gm-Message-State: AOAM531Chiw6czQMOmlzWFQCSe/JjEe1wla/MTBJrS39Ys+TJcYd2zF3
-        KXVc5ij++B8jrbOripJsj5pIrkJUxpGaYA==
-X-Google-Smtp-Source: ABdhPJyc+vOMSSHSjJ5vDKtUxbM/hp50Op1X1sYgesB2rqKpjz2SgBWxbj8TbEoTT+zN22e3GinJlQ==
-X-Received: by 2002:a37:cd0:: with SMTP id 199mr6049580qkm.69.1627575880480;
-        Thu, 29 Jul 2021 09:24:40 -0700 (PDT)
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com. [209.85.219.176])
-        by smtp.gmail.com with ESMTPSA id g26sm1937546qkm.122.2021.07.29.09.24.39
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Jul 2021 09:24:39 -0700 (PDT)
-Received: by mail-yb1-f176.google.com with SMTP id a201so11071702ybg.12
-        for <devicetree@vger.kernel.org>; Thu, 29 Jul 2021 09:24:39 -0700 (PDT)
-X-Received: by 2002:a25:2904:: with SMTP id p4mr7625518ybp.276.1627575878937;
- Thu, 29 Jul 2021 09:24:38 -0700 (PDT)
+        id S229863AbhG2Q6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 12:58:17 -0400
+Received: from foss.arm.com ([217.140.110.172]:52986 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229739AbhG2Q6Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Jul 2021 12:58:16 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A298F1FB;
+        Thu, 29 Jul 2021 09:58:10 -0700 (PDT)
+Received: from [10.57.36.146] (unknown [10.57.36.146])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9AF463F73D;
+        Thu, 29 Jul 2021 09:58:08 -0700 (PDT)
+Subject: Re: [PATCH v7 3/4] iommu: rockchip: Add internal ops to handle
+ variants
+To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        joro@8bytes.org, will@kernel.org, robh+dt@kernel.org,
+        xxm@rock-chips.com, Ezequiel Garcia <ezequiel@collabora.com>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        iommu@lists.linux-foundation.org, kernel@collabora.com,
+        linux-arm-kernel@lists.infradead.org
+References: <20210525121551.606240-1-benjamin.gaignard@collabora.com>
+ <20210525121551.606240-4-benjamin.gaignard@collabora.com>
+ <c6175f3d-a324-9fb5-bd39-cfe0447ee5e7@collabora.com>
+ <3544194.oiGErgHkdL@diego>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <06cdd178-66af-9ff7-5100-3da4e901040f@arm.com>
+Date:   Thu, 29 Jul 2021 17:58:03 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-References: <1627560036-1626-1-git-send-email-rnayak@codeaurora.org> <1627560036-1626-4-git-send-email-rnayak@codeaurora.org>
-In-Reply-To: <1627560036-1626-4-git-send-email-rnayak@codeaurora.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 29 Jul 2021 09:24:28 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UYsKNgZZUmAM22Mwxz7fJFN_3p0YRx6W3dnZHvd13_Zg@mail.gmail.com>
-Message-ID: <CAD=FV=UYsKNgZZUmAM22Mwxz7fJFN_3p0YRx6W3dnZHvd13_Zg@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sc7280: Add qfprom node
-To:     Rajendra Nayak <rnayak@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        "Ravi Kumar Bokka (Temp)" <rbokka@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <3544194.oiGErgHkdL@diego>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 2021-07-29 17:08, Heiko Stübner wrote:
+> Hi Dafna,
+> 
+> Am Donnerstag, 29. Juli 2021, 17:59:26 CEST schrieb Dafna Hirschfeld:
+>> On 25.05.21 14:15, Benjamin Gaignard wrote:
+>>> @@ -879,7 +895,7 @@ static int rk_iommu_enable(struct rk_iommu *iommu)
+>>>    
+>>>    	for (i = 0; i < iommu->num_mmu; i++) {
+>>>    		rk_iommu_write(iommu->bases[i], RK_MMU_DTE_ADDR,
+>>> -			       rk_domain->dt_dma);
+>>> +			       rk_ops->dma_addr_dte(rk_domain->dt_dma));
+>>
+>> Hi,
+>> This is not related to that patch, I was wondring why are all mmu devices initialized
+>> with the same dt_dma?
+>> I see for example that the isp0_mmu in rk3399.dtsi has two resources. Can't each resource
+>> be initialized with different dt_dma and this way there are two dt tables instead of the two mmus pointing
+>> to the same dt table.
+> 
+> maybe
+> git log -1 cd6438c5f8446691afa4829fe1a9d7b656204f11
+> 
+> "iommu/rockchip: Reconstruct to support multi slaves
+>      
+> There are some IPs, such as video encoder/decoder, contains 2 slave iommus,
+> one for reading and the other for writing. They share the same irq and
+> clock with master.
+>      
+> This patch reconstructs to support this case by making them share the same
+> Page Directory, Page Tables and even the register operations.
+> That means every instruction to the reading MMU registers would be
+> duplicated to the writing MMU and vice versa."
 
-On Thu, Jul 29, 2021 at 5:01 AM Rajendra Nayak <rnayak@codeaurora.org> wrote:
->
-> Add the qfprom node and its properties for the sc7280 SoC.
->
-> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
+Right. In theory we *could* maintain a separate pagetable for each IOMMU 
+instance, but it would just lead to a load of complexity and overhead. 
+For a map request, we'd have to do extra work to decide which table(s) 
+need modifying, and duplicate all the work of the actual mapping if it's 
+more than one. For an unmap request, we'd have no choice but to walk 
+*all* the tables backing that domain to figure out which (if any) 
+actually had it mapped in the first place.
 
-Peachy! I guess a future patch will add things like USB2 trim and GPU
-speed bin definitions?
+Given that we already have distinct read and write permissions for 
+mappings within a single table, there's not even any functional benefit 
+that could be gained in this case (and in the more general case where 
+the device might emit all kinds of transactions from all its interfaces 
+you'd have to maintain identical mappings for all its IOMMUs anyway). 
+Saving memory and code complexity by physically sharing one pagetable 
+and not worrying about trying to do selective TLB maintenance is a 
+bigger win than anything else could be.
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Robin.
