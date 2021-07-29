@@ -2,74 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB6903DAB15
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 20:39:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99DD43DAB1C
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 20:41:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229620AbhG2Sj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 14:39:58 -0400
-Received: from mail-il1-f170.google.com ([209.85.166.170]:36728 "EHLO
-        mail-il1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229614AbhG2Sj6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 14:39:58 -0400
-Received: by mail-il1-f170.google.com with SMTP id c3so6910027ilh.3;
-        Thu, 29 Jul 2021 11:39:55 -0700 (PDT)
+        id S229620AbhG2SmB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 14:42:01 -0400
+Received: from mail-il1-f172.google.com ([209.85.166.172]:40449 "EHLO
+        mail-il1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229614AbhG2SmB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 14:42:01 -0400
+Received: by mail-il1-f172.google.com with SMTP id d10so6899173ils.7;
+        Thu, 29 Jul 2021 11:41:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=G8n24DYudmmBlwPEsIXvodH0cqEc+9JvYB6zqj+BSWA=;
-        b=bbTg9xQcqeKr3I0czAlvIhs3OS0DnFY9++YElSx5zFNWZf72WtIPll0wmHpkMWcnI5
-         rEgkZgL6PbRrkVxW0lQ8ntRKq+bKr7p4QPE+qsgso8V+HpC0rLWjGeDOD+okKQo3NP2p
-         gPJDRi8sdhD7OIQuU5GKuR8ay3IC6STEmrrj1wY0kpMUTWWKtnNcu1hGfjP6iWDl4vXo
-         IqGvopBqGcYZrSqiibm3gRvTDrE7V3dnxj4iNcY50i0ra8wIz7StZrW30apKKzPM91fv
-         oSyVpJe5KKCZYK0wqHCq9NXZPEqECOCJDNvKlrXWrqo3CLYzus0IxwcmAgUd7ReezbTp
-         rvdQ==
-X-Gm-Message-State: AOAM5315q7ul+J9o3P+tLly42VFXw0IKCoG5MS6NqlPX/IK4dppTyQuL
-        wCOcZ/t7ZwMaSoZs2s6IrA==
-X-Google-Smtp-Source: ABdhPJzHZZglPsN0icIN4InIO/S2YvyIIh/Lyvd63Ouq0Q3WHZDfaRAcbLEDefewEG0ysVBx3EdK0Q==
-X-Received: by 2002:a05:6e02:e82:: with SMTP id t2mr4721387ilj.218.1627583994765;
-        Thu, 29 Jul 2021 11:39:54 -0700 (PDT)
+        bh=NtViR9x5Y9jf6CYnl+g3ab+BJ+XJIy7vEdyqlPaGRJ4=;
+        b=AttvCpgKjh29OISJGOhKSMG0+/RyiamijrsNKmLGcsgJJEtowYupN316kzpmoMWK3D
+         ghDByB87uu4TmW9AWjpT3Q9DbbFRGalQzqZANeNtd8lEMQqD1DKitn28Qv9SFxpXbpcL
+         tL5YnReeZCTiZbFaE+g3pohcVCpicHf404j0ehi1yc2UCC3ilroiTyYeYMd8OGifyYd/
+         iA8E+T8bLpatGNDbsIiOgaceH8BbvLKvz0sBl+v3cjxRotPJeD5EDqe7hbOS2rh3f04o
+         STIMmmHuRhK8QPDpMOei1DCSrDswvdNrAVJRBaUkvEcBhGnUb2UubnrnU4HpxjBLmN9y
+         sInA==
+X-Gm-Message-State: AOAM531eDHluxp59r6G0fNDePBeCSZAbd2ggt/+fGWfzNSkXUIwkgOvR
+        PiuKC+A1l0zYUictqRuDeA==
+X-Google-Smtp-Source: ABdhPJw+h6P8CSjbZZFVEEteSHNMK/DPfJGo9hPOtNCOG8Tf2WHkDB/1x6jJcx/UFtv879arbob2ow==
+X-Received: by 2002:a92:ced0:: with SMTP id z16mr3431286ilq.0.1627584116404;
+        Thu, 29 Jul 2021 11:41:56 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id g1sm2356621ilq.13.2021.07.29.11.39.53
+        by smtp.gmail.com with ESMTPSA id u15sm2734766ion.34.2021.07.29.11.41.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Jul 2021 11:39:54 -0700 (PDT)
-Received: (nullmailer pid 659539 invoked by uid 1000);
-        Thu, 29 Jul 2021 18:39:52 -0000
-Date:   Thu, 29 Jul 2021 12:39:52 -0600
+        Thu, 29 Jul 2021 11:41:55 -0700 (PDT)
+Received: (nullmailer pid 662786 invoked by uid 1000);
+        Thu, 29 Jul 2021 18:41:54 -0000
+Date:   Thu, 29 Jul 2021 12:41:54 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-fpga@vger.kernel.org, michal.simek@xilinx.com,
-        linux-kernel@vger.kernel.org, trix@redhat.com, navam@xilinx.com,
-        linux-arm-kernel@lists.infradead.org, mdf@kernel.org
-Subject: Re: [PATCH v2] dt-bindings: fpga: convert Xilinx Zynq MPSoC bindings
- to YAML
-Message-ID: <YQL1+JfwKukG6E7j@robh.at.kernel.org>
-References: <20210716212621.286806-1-iwamatsu@nigauri.org>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     list@opendingux.net, Rob Herring <robh+dt@kernel.org>,
+        linux-mips@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
+        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: dma: ingenic: Add compatible strings
+ for MDMA
+Message-ID: <YQL2cjo78ADXBIlf@robh.at.kernel.org>
+References: <20210718122024.204907-1-paul@crapouillou.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210716212621.286806-1-iwamatsu@nigauri.org>
+In-Reply-To: <20210718122024.204907-1-paul@crapouillou.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 17 Jul 2021 06:26:21 +0900, Nobuhiro Iwamatsu wrote:
-> Convert FPGA Manager for Xilinx Zynq MPSoC bindings documentation to
-> YAML.
+On Sun, 18 Jul 2021 13:20:22 +0100, Paul Cercueil wrote:
+> The JZ4760 and JZ4760B SoCs have an additional DMA controller, dubbed
+> MDMA, that only supports memcpy operations.
 > 
-> Signed-off-by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-> 
+> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
 > ---
-> v2:
->   - Fix to the correct maintainer 'Nava kishore Manne <navam@xilinx.com>'.
->   - Update the word from configuration to Configuration.
-> 
->  .../bindings/fpga/xlnx,zynqmp-pcap-fpga.txt   | 25 -------------
->  .../bindings/fpga/xlnx,zynqmp-pcap-fpga.yaml  | 36 +++++++++++++++++++
->  2 files changed, 36 insertions(+), 25 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.txt
->  create mode 100644 Documentation/devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.yaml
+>  Documentation/devicetree/bindings/dma/ingenic,dma.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
-Applied, thanks!
+Acked-by: Rob Herring <robh@kernel.org>
