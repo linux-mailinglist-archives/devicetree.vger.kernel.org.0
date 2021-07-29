@@ -2,47 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC3FB3DA2CA
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 14:03:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A9383DA2F5
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 14:18:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235799AbhG2MDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 08:03:50 -0400
-Received: from out4-smtp.messagingengine.com ([66.111.4.28]:56977 "EHLO
-        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236712AbhG2MDu (ORCPT
+        id S234949AbhG2MS0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 08:18:26 -0400
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:37875 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S236916AbhG2MS0 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Jul 2021 08:03:50 -0400
+        Thu, 29 Jul 2021 08:18:26 -0400
 Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailout.nyi.internal (Postfix) with ESMTP id B14245C011C;
-        Thu, 29 Jul 2021 08:03:46 -0400 (EDT)
+        by mailnew.nyi.internal (Postfix) with ESMTP id E61AD580D2B;
+        Thu, 29 Jul 2021 08:18:21 -0400 (EDT)
 Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Thu, 29 Jul 2021 08:03:46 -0400
+  by compute2.internal (MEProxy); Thu, 29 Jul 2021 08:18:21 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:content-transfer-encoding:in-reply-to; s=fm3; bh=Y
-        NjUjuKrFMqVuoUSE4kiwVk/MGuHpjlgf6oi8ECgA44=; b=AgwvSgyny45yq6AE/
-        +Z5cCd1U6/oIgYRRdAXFIK4htTC45nJf2lquNcikQX66PK6v7ue+8IEvI08B1z/K
-        XSjgAsf0cVpyOVMwtDjuXFVRYt1LEqlK7PUb/IqoUyqG7FqsKFZ+WvKILkuzQk7T
-        PeO6ME8p+Z6SOOoJA9Cm0k02TDGHlQ2NL47UCnRP82IS46YyZnQgEzVMpXHe6HqU
-        rvmov0WEdcP6zN4tn4oCFu1xBUK6ovw59F61qYPbUXyXYN92Orv2A6DjFJDAGp7x
-        ZMwax2tLhCe1deVAbrWFIXB687vBamDu4yo3JnZcX6K3h40CIcuM/Nu+6/yf12se
-        d3egA==
+        :content-type:content-transfer-encoding:in-reply-to; s=fm3; bh=c
+        u23+PZRqrAy/6j8rc1XI2CnzOsUmITZAfnFUZNm5jg=; b=LCdYhaZxjmT6YovVi
+        cR85cwO5zt910fZyksOL8KnNtJ0AZ2n0o3K/ScXxburHdly3dTUx6e/gYdvRUyou
+        esAZEopVeVEwzK1ZBB5gN6Of2KADfpYVh6MoG/cW88kIrPcAmddimMdo1OSGZD3x
+        uj3t8VcBY0CC3zPoKyhUTYP/d8rpC6FX+xBNP3Y0NI4fdx5ePMeXDAPHRwLE34W8
+        OPGwG6TVtZqYuxQd0F09aCfLliWJJsbewgUXvs/3l8rervQA4aze0P4J2KQS5hgo
+        htPhX2Y+OvKGob0imm58Y1BJl3j2AIXx0dRmHWY0dn6Ascsuf8uffO7LkZXns1OZ
+        hslxA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:content-type
         :date:from:in-reply-to:message-id:mime-version:references
         :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; bh=YNjUjuKrFMqVuoUSE4kiwVk/MGuHpjlgf6oi8ECgA
-        44=; b=Au5nnhC5iugDqTc0gqMH2SkdEAR0TipfbtQzacCm0kvjD3IdiZ81sWlGe
-        rPipc3JUy063fLYawYpYM4fLAd7q0U0OsvLzoBxR4OyQp7tn+aM85bjgClbRCSqW
-        dfRPdAJtbixPMF8cX4AWMNyb7/USqSFCu4TWWNWab8Y+2ennUZL3Ww/Ld9JEeUcX
-        qn1qUIB78nVBW1JrGjZRXdmYlWkHQ7QO2AdO7xLzeVEb3rGRTe4R46RRTegnsmyN
-        Uh/Gbci1C4xmTy3gjhZvqqTeWhm9jPHiJ1IM94POpfV/os72geIgBn+vIcp3+4en
-        3QZsSQAI0lof/rJSxCduPGf8rTM+Q==
-X-ME-Sender: <xms:IZkCYUpk7IVPHlIaJyRjKSDCOsd7R1-_7zQ04aWTWg0RsNbZuQyBow>
-    <xme:IZkCYapL70-fdL_RpRU9bQxyC0eJHHWw_kOAX_LlmOMmMkCtYxdOkQGf9LOnLVCg1
-    bX0bZQHmE0A3ZYkgX8>
-X-ME-Received: <xmr:IZkCYZNL9iorf6nYzgQR2C4N16z4WOXhg6zvgpsUTFVPgzAUtPJxXGbGIzY3FT7ecZ8myaqgTsMEzFunq58RmT7U76B0cImgjGYR>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrheefgddutdcutefuodetggdotefrodftvf
+        :x-sasl-enc; s=fm3; bh=cu23+PZRqrAy/6j8rc1XI2CnzOsUmITZAfnFUZNm5
+        jg=; b=rpe92drOK60Ux41Rj7BmQJ9c8u1gvK8i1QItj/H+7MEtms/YNp+s0rD3G
+        GcC1yt+DOePiG3iacZVCVvkpQQldt9NbdZrHvxOigEjs0FRPETIGgUinIDioNkEk
+        McYH8BvDHOiZuPU+7YUKbj9ldXUdlhYrAUYNN00j606UFOISR8MFLSP8qo0fMV2I
+        aJfZ8MqxAokdiB7ltjWJknk7QlgquSd7rYNNmuq+nfDQ3hSF4KgyUfy0obBzbSGD
+        xr4htAahVV7YKyVKBSFlOS9/ywTJkh11fqy1IAuFpB33/OuiaMvz41IHSNPB+oao
+        dgeAZ2UVFEwHA2CzIj5dRBy8oznVg==
+X-ME-Sender: <xms:jJwCYc6s8wndG5bqI19RtFfgbeOGJy2Hf9IZMV2Og_09v9j9kOZu0w>
+    <xme:jJwCYd7D32OvLW9_X3F2Ii6mOCsVZHYnlJr1M-Aalm7pQGZhUj2gaVQcgA8JT1WIk
+    kbArgtEHlNxzOtwBv4>
+X-ME-Received: <xmr:jJwCYbcxSJzfC3Ef2AXUes0VZgfvyWsXqyKPuwTRVJzVsMPT3jOOZNpPGANDxwX6X6b_c_gTqSDJPKE27hbf1ptbSlOK1cB9g8Aq>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrheefgdduvdcutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
     fjughrpeffhffvuffkfhggtggugfgjsehtqhertddttddvnecuhfhrohhmpeforgigihhm
@@ -50,62 +50,92 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrheefgddutdcutefuodetggdote
     htvghrnhepgfejtedtjefggfffvdetuedthedtheegheeuteekfeeghfdtteejkeeludeg
     vddunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
     grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:IZkCYb6rK_2tCkVfLjbNkWSB2qcGHrLaoa4SBSmoSPCh33be3pojsw>
-    <xmx:IZkCYT6YUFsEuafhicxvInn9ZYfYPAzK1U769jB18r5OPxZf7xoWtQ>
-    <xmx:IZkCYbgiJ-gaOUdZGQAsvl0gci0Ws0ErXOd7qyNggv_Ln_SPvveuCA>
-    <xmx:IpkCYZSwDQz0ySYiSCmLmA4C2IcDtyP3ZGUwoLfCLc_Xgms15TrnCw>
+X-ME-Proxy: <xmx:jJwCYRIB_zIR6Emy1hOEceywGXW_DHl8oT01irWlrLPoZFB2cnUIww>
+    <xmx:jJwCYQJlZablBP-zyxdXAUnb_EqGUUJ7EV5nVNjor0XsEM5fK4xCrQ>
+    <xmx:jJwCYSxqqkzJwL43kX3X_7EUU1FWAxsHnFfPRTHlZIQbcIY4Wejaug>
+    <xmx:jZwCYVWK_kkvvRTvB4MvsqKY9y31RmWU09j4s3ip44CUxkqaL__1Nw>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 29 Jul 2021 08:03:45 -0400 (EDT)
-Date:   Thu, 29 Jul 2021 14:03:42 +0200
+ 29 Jul 2021 08:18:20 -0400 (EDT)
+Date:   Thu, 29 Jul 2021 14:18:19 +0200
 From:   Maxime Ripard <maxime@cerno.tech>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH 00/54] ARM: dts: Last round of DT schema fixes
-Message-ID: <20210729120342.p67ksrxinlr4zwyb@gilmour>
-References: <20210721140424.725744-1-maxime@cerno.tech>
- <20210721164826.GA2405162@robh.at.kernel.org>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-watchdog@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: watchdog: sunxi: Add compatible for R329
+Message-ID: <20210729121819.oqryiww4mzow3kev@gilmour>
+References: <20210726035143.53132-1-samuel@sholland.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210721164826.GA2405162@robh.at.kernel.org>
+In-Reply-To: <20210726035143.53132-1-samuel@sholland.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 21, 2021 at 10:48:26AM -0600, Rob Herring wrote:
-> On Wed, Jul 21, 2021 at 04:03:30PM +0200, Maxime Ripard wrote:
-> > Hi,
-> >=20
-> > Here's another round of schema warnings fixes for the Allwinner platfor=
-m.
-> >=20
-> > There's a fair share of new schemas in there since the schema tools now=
- warn
-> > when a compatible is not documented in a schema.
-> >=20
-> > We don't have any warning anymore if we use the OPP binding Rob submitt=
-ed, and
-> > since that means we have all our devices properly validated I don't exp=
-ect more
-> > fixes now, aside from the usual bunch of regressions.
->=20
-> Great! You deserve a prize.=20
->=20
-> I want to start enabling the schema checks by default. (Though then I'd=
-=20
-> have to worry about new warnings.) This should be pretty easy to do=20
-> where we have subdirs per family, but for arm32 we'd need to move dts=20
-> files to subdirs if we don't want a flag per dts file.
+Hi,
 
-That's definitely something that I'd be interested in. It's very easy
-for a warning / error to slip through during review, so having some
-builders somewhere reporting new issues would be awesome.
+On Sun, Jul 25, 2021 at 10:51:41PM -0500, Samuel Holland wrote:
+> On existing SoCs, the watchdog has a single clock input: HOSC (OSC24M)
+> divided by 750.  However, starting with R329, LOSC (OSC32k) is added as
+> an alternative clock source, with a bit to switch between them.
+>=20
+> Since 24 MHz / 750 =3D=3D 32 kHz, not 32.768 kHz, the hardware adjusts the
+> cycle counts to keep the timeouts independent of the clock source. This
+> keeps the programming interface backward-compatible.
+>=20
+> R329 also adds two new registers, to allow software to immediately drive
+> the SoC reset signal.
+>=20
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> ---
+>  .../watchdog/allwinner,sun4i-a10-wdt.yaml     | 30 ++++++++++++++++++-
+>  1 file changed, 29 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a=
+10-wdt.yaml b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a1=
+0-wdt.yaml
+> index 9aa3c313c49f..853ceb1b7c0f 100644
+> --- a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.=
+yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.=
+yaml
+> @@ -24,6 +24,7 @@ properties:
+>                - allwinner,sun50i-a100-wdt
+>                - allwinner,sun50i-h6-wdt
+>                - allwinner,sun50i-h616-wdt
+> +              - allwinner,sun50i-r329-wdt
+>            - const: allwinner,sun6i-a31-wdt
+>        - items:
+>            - const: allwinner,suniv-f1c100s-wdt
+> @@ -33,7 +34,16 @@ properties:
+>      maxItems: 1
+> =20
+>    clocks:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    maxItems: 2
+> +    items:
+> +      enum:
+> +        - hosc
+> +        - losc
 
-On arm32 though, we have per-family defconfig so maybe we can opt-in by
-defconfig? It should work in most case
+So I assume that the expectations are that hosc is first (or the only
+valid choice with older SoCs), and losc second?
+
+If so, we should make it clear using two const instead of an enum. Here
+you state that on older SoCs we could use either the hosc or losc clocks
+as source, which is incorrect.
+
+I guess adding descriptions for clocks would be great too.
 
 Maxime
