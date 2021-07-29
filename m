@@ -2,82 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 114033DAA27
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 19:29:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD61B3DAA35
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 19:31:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231829AbhG2R3n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 13:29:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50084 "EHLO
+        id S231599AbhG2Rba (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 13:31:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229906AbhG2R3n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 13:29:43 -0400
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0F78C0613CF
-        for <devicetree@vger.kernel.org>; Thu, 29 Jul 2021 10:29:38 -0700 (PDT)
-Received: by mail-oi1-x236.google.com with SMTP id u10so9403243oiw.4
-        for <devicetree@vger.kernel.org>; Thu, 29 Jul 2021 10:29:38 -0700 (PDT)
+        with ESMTP id S229863AbhG2Rba (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 13:31:30 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99B0BC061765;
+        Thu, 29 Jul 2021 10:31:25 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id j2so7856246wrx.9;
+        Thu, 29 Jul 2021 10:31:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=nuL9Gtrngyb6HozKG8XOhySmiHppyZ4SPKwk+KQp+Zc=;
-        b=JdtXha2KVXzKZ2i+/dg6/TqTi8BKHsyrpUafLCGrH3a4/NrAgfn9+1VV61+cKYypI/
-         zQis9HjO0mRR/RhoP0rU+vdBW8oNeszZsNBI9t+oY9amV7+Q38G2zdiUy58bnHalNRVT
-         BzZ5MybexeU8CXngY8eZukXE4Gw0vor1OAyfs=
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=pnVzhT/kHdPgZUP65cfJqBoONaapfo5r8e0MrAlb984=;
+        b=jaC3QwjjviykfCntbsWoFJDNF21xu8yghmN2KvvaAwVUR4mtfATAQuHMPuqadbtwUo
+         enKV2slTVRgfCP9UgZzJYDTlQzdrKjzXg40LcjUTktctC59CEkWGBuKgJOqn3kcVELDN
+         Gqxm5cr4MEyeN4XO3INSQNXopzzpjPCRuzeAqoaougPd45yqEiG0QSflJ4YmoIPr+AG2
+         C19SzpImiBO3ayVtb+QZgtJZkr/k/yLA40n2jxJGvVR/esMJm87HNs/Zm41DwU8GfwaN
+         egcbUqeuxrXgU6aRr8UnTTrN6e03v1GHu4m4OBgMNOkR0Q8S9CR9s+XfGM23/WP7MRAM
+         7eBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=nuL9Gtrngyb6HozKG8XOhySmiHppyZ4SPKwk+KQp+Zc=;
-        b=l3hGNab72vX/cZhIOCTLR0ErHKggaLvotMvJYuAJRc5CScjPbMr4FqQQBI8296AQ7/
-         wDd83cU6b+F4ZCiYmJGbZ2d/2x/dWL9NceNEEuWOXmbBId4yhZyo/PLH74BXBMrYTAwn
-         YRvxiEB7/xUq/bi0TbAAiDHN3Ff5kB3zR3ihlJpKS2KWIIApoEpISYiLLIRR1Z/HWpYd
-         zj0UVO9za3DsGhA3JFrzpO6TiasWyJraU7bxnVEbTi7lm8kmSmzeam+7IUTxI88IbCpk
-         JY6NdoOPRezkO3XGtC6f2DV97r9bMy1KluRjlhSh1ddPVeOZgvK2alvEw2A2lKJgsWa6
-         t1KA==
-X-Gm-Message-State: AOAM533J/To99IfNBgHU69mkshUpD8ZujGFKBkLUcdtV5ejUnGD9g9+t
-        r8+t/CgS1ZSePqDXnG2pZwQT4jfp3TT/ODF979LUxw==
-X-Google-Smtp-Source: ABdhPJwi3G9rwu5lrD06uFLjaL3kNc79dxhFbRDbNktWD54FVP7PGqPqCjr1IvDBEJd9gDzQ74iPrFgSWrFNyjY6nRc=
-X-Received: by 2002:a05:6808:114a:: with SMTP id u10mr3928249oiu.19.1627579778357;
- Thu, 29 Jul 2021 10:29:38 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 29 Jul 2021 12:29:38 -0500
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=pnVzhT/kHdPgZUP65cfJqBoONaapfo5r8e0MrAlb984=;
+        b=LtaCzrn8Uas1y2LurY07RxsIL9eXbafMdZexY8GSER3/kBRXZyjsCOTMqHMvl+7x2s
+         HoCyXwM0N/7JFGv0Tr0ABHtM3DZrk/tanwNW4RKkxmwEMumq/I415bQDjdePnnl04YIy
+         yEtO0oNP2/hkovrT6mfXQ2ZdycR+eqye9nT5OFR1iirTO7GSNRhrDlMNuCbmfiRaYoNj
+         ioZ8pjcsH+3rz8e8pMiVGBpLTLoFxMz3FAng8ZVP+uLCAx/gd40x9iRPJa4TAUFjpFe3
+         flNhhTxAVUAUReTuixV64UtyBNFyCjf/aW23FeCydB4vPIYPWvKIyNslW+E4+9m6EdLO
+         z8cQ==
+X-Gm-Message-State: AOAM531D9FkAhVaEpRNKgk8RTO037oulgBKaZYM+lHmX7hV2GVF6AGkc
+        vBpcDA9aade/OIZn3SPnhHxJqum3nKz35mUlo+I=
+X-Google-Smtp-Source: ABdhPJzB3zZoxPwWPnZQvco4cbgtwKh7tKLWjYB2qIguBecvjgdSw2VQJQ94SIm5agk39ycqx5XjveJvKou3TG92Cro=
+X-Received: by 2002:a5d:4348:: with SMTP id u8mr6400529wrr.28.1627579884127;
+ Thu, 29 Jul 2021 10:31:24 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210728172330.v3.2.Iea8318d85a23f0167fd523ea85df5630147649f9@changeid>
-References: <1627473242-35926-1-git-send-email-akhilpo@codeaurora.org> <20210728172330.v3.2.Iea8318d85a23f0167fd523ea85df5630147649f9@changeid>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Thu, 29 Jul 2021 12:29:37 -0500
-Message-ID: <CAE-0n50GLdByWnMxf2AZJ0r1pdZFRwG3b5t3V69wZY6H6pf32A@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: sc7280: Add gpu thermal zone
- cooling support
-To:     Akhil P Oommen <akhilpo@codeaurora.org>,
+References: <1627473242-35926-1-git-send-email-akhilpo@codeaurora.org> <CAE-0n53xMHudWaL7gdnN7jEPE1uLmetZaxYiqToO1AzTZ2R0Mw@mail.gmail.com>
+In-Reply-To: <CAE-0n53xMHudWaL7gdnN7jEPE1uLmetZaxYiqToO1AzTZ2R0Mw@mail.gmail.com>
+From:   Rob Clark <robdclark@gmail.com>
+Date:   Thu, 29 Jul 2021 10:35:32 -0700
+Message-ID: <CAF6AEGv9G99YqEixdUZCLxEgXX1+EqcjgQP-v5CCuj64sv_bTA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] arm64: dts: qcom: sc7280: Add gpu support
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Akhil P Oommen <akhilpo@codeaurora.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Manaf Meethalavalappu Pallikunhi <manafm@codeaurora.org>,
         OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
         <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org,
+        dri-devel <dri-devel@lists.freedesktop.org>,
         freedreno <freedreno@lists.freedesktop.org>,
-        linux-arm-msm@vger.kernel.org
-Cc:     Jordan Crouse <jordan@cosmicpenguin.net>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Jordan Crouse <jordan@cosmicpenguin.net>,
         Douglas Anderson <dianders@chromium.org>,
-        Rob Clark <robdclark@gmail.com>,
         Matthias Kaehlcke <mka@chromium.org>,
         Jonathan Marek <jonathan@marek.ca>,
-        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org
+        Andy Gross <agross@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Akhil P Oommen (2021-07-28 04:54:02)
-> From: Manaf Meethalavalappu Pallikunhi <manafm@codeaurora.org>
+On Thu, Jul 29, 2021 at 10:19 AM Stephen Boyd <swboyd@chromium.org> wrote:
 >
-> Add cooling-cells property and the cooling maps for the gpu thermal
-> zones to support GPU thermal cooling.
+> Quoting Akhil P Oommen (2021-07-28 04:54:01)
+> > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> > index 029723a..c88f366 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> > @@ -592,6 +593,85 @@
+> >                         qcom,bcm-voters = <&apps_bcm_voter>;
+> >                 };
+> >
+> > +               gpu@3d00000 {
+> > +                       compatible = "qcom,adreno-635.0", "qcom,adreno";
+> > +                       #stream-id-cells = <16>;
+> > +                       reg = <0 0x03d00000 0 0x40000>,
+> > +                             <0 0x03d9e000 0 0x1000>,
+> > +                             <0 0x03d61000 0 0x800>;
+> > +                       reg-names = "kgsl_3d0_reg_memory",
+> > +                                   "cx_mem",
+> > +                                   "cx_dbgc";
+> > +                       interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
+> > +                       iommus = <&adreno_smmu 0 0x401>;
+> > +                       operating-points-v2 = <&gpu_opp_table>;
+> > +                       qcom,gmu = <&gmu>;
+> > +                       interconnects = <&gem_noc MASTER_GFX3D 0 &mc_virt SLAVE_EBI1 0>;
+> > +                       interconnect-names = "gfx-mem";
+> > +
+> > +                       gpu_opp_table: opp-table {
+> > +                               compatible = "operating-points-v2";
+> > +
+> > +                               opp-550000000 {
+> > +                                       opp-hz = /bits/ 64 <550000000>;
+> > +                                       opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
+> > +                                       opp-peak-kBps = <6832000>;
+> > +                               };
+> > +
+> > +                               opp-450000000 {
 >
-> Signed-off-by: Manaf Meethalavalappu Pallikunhi <manafm@codeaurora.org>
-> Signed-off-by: Akhil P Oommen <akhilpo@codeaurora.org>
-> ---
+> Why is 450000000 after 550000000? Is it on purpose? If not intended
+> please sort by frequency.
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+We've used descending order, at least for gpu opp table, on other
+gens, fwiw.. not sure if that just means we were doing it wrong
+previously
+
+BR,
+-R
+
+>
+> > +                                       opp-hz = /bits/ 64 <450000000>;
+> > +                                       opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
+> > +                                       opp-peak-kBps = <4068000>;
+> > +                               };
+> > +
+> > +                               opp-315000000 {
+> > +                                       opp-hz = /bits/ 64 <315000000>;
+> > +                                       opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
+> > +                                       opp-peak-kBps = <1804000>;
+> > +                               };
+> > +                       };
+> > +               };
+> > +
