@@ -2,132 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55C743DA40F
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 15:27:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C0203DA42F
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 15:28:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237464AbhG2N1G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 09:27:06 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:51792 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237528AbhG2N1C (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Jul 2021 09:27:02 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=ve/KL1lU44TvwHzfefIp6JxgDdI8qbOUpEiu1gJ+fiU=; b=Z7OaNwnYWxUZ3TTXmSx0cznR3c
-        Tr03VFm1LyFn5euqXGtQ0L5TuicEeg/xYF/h0QERCRdUo0H1TUsG8SY+YtaSAEWtN4vJfljqHoJfD
-        w0v2zUo9xqF0mFQC94/UYFqBeyjhaHIp45kkw+xflO/G8x5I2VgAH/HoN5kewLZkNDD0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1m963q-00FJdk-4G; Thu, 29 Jul 2021 15:26:54 +0200
-Date:   Thu, 29 Jul 2021 15:26:54 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Luo Jie <luoj@codeaurora.org>
-Cc:     hkallweit1@gmail.com, davem@davemloft.net, kuba@kernel.org,
-        p.zabel@pengutronix.de, agross@kernel.org,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        robert.marko@sartura.hr, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, sricharan@codeaurora.org
-Subject: Re: [PATCH 1/3] net: mdio-ipq4019: Add mdio reset function
-Message-ID: <YQKsnqWCfoTpTuxI@lunn.ch>
-References: <20210729125358.5227-1-luoj@codeaurora.org>
+        id S237701AbhG2N24 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 09:28:56 -0400
+Received: from relay05.th.seeweb.it ([5.144.164.166]:58931 "EHLO
+        relay05.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237719AbhG2N2x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 09:28:53 -0400
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 60C9C3EBCB;
+        Thu, 29 Jul 2021 15:28:47 +0200 (CEST)
+Subject: Re: [PATCH v6 9/9] dt-bindings: cpufreq: qcom-hw: Make reg-names a
+ required property
+To:     Rob Herring <robh@kernel.org>
+Cc:     bjorn.andersson@linaro.org, viresh.kumar@linaro.org,
+        agross@kernel.org, rjw@rjwysocki.net, devicetree@vger.kernel.org,
+        amit.kucheria@linaro.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, jami.kettunen@somainline.org,
+        paul.bouchara@somainline.org,
+        ~postmarketos/upstreaming@lists.sr.ht, jeffrey.l.hugo@gmail.com
+References: <20210701105730.322718-1-angelogioacchino.delregno@somainline.org>
+ <20210701105730.322718-10-angelogioacchino.delregno@somainline.org>
+ <20210713224245.GA981311@robh.at.kernel.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Message-ID: <0a4a4328-0b8b-46d0-53b9-8a3566c46ca9@somainline.org>
+Date:   Thu, 29 Jul 2021 15:28:47 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210729125358.5227-1-luoj@codeaurora.org>
+In-Reply-To: <20210713224245.GA981311@robh.at.kernel.org>
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Luo
+Il 14/07/21 00:42, Rob Herring ha scritto:
+> On Thu, Jul 01, 2021 at 12:57:30PM +0200, AngeloGioacchino Del Regno wrote:
+>> The property reg-names is required after the addition of the OSM
+>> programming sequence, as that mandates specifying different register
+>> domains; to avoid confusion and improve devicetree readability,
+>> specifying the regions names was made mandatory.
+> 
+> Can't take patches missing a S-o-b.
+> 
 
-For a patchset, netdev wants to see a patch 0/X which describes the
-big picture. What is the patchset as a whole doing.
+Sorry again. Didn't notice at all.
 
-> +static int ipq_mdio_reset(struct mii_bus *bus)
-> +{
-> +	struct ipq4019_mdio_data *priv = bus->priv;
-> +	struct device *dev = bus->parent;
-> +	struct gpio_desc *reset_gpio;
-> +	u32 val;
-> +	int i, ret;
-> +
-> +	/* To indicate CMN_PLL that ethernet_ldo has been ready if needed */
-> +	if (!IS_ERR(priv->eth_ldo_rdy)) {
-> +		val = readl(priv->eth_ldo_rdy);
-> +		val |= BIT(0);
-> +		writel(val, priv->eth_ldo_rdy);
-> +		fsleep(QCA_PHY_SET_DELAY_US);
-> +	}
-> +
-> +	/* Reset GEPHY if need */
-> +	if (!IS_ERR(priv->reset_ctrl)) {
-> +		reset_control_assert(priv->reset_ctrl);
-> +		fsleep(QCA_PHY_SET_DELAY_US);
-> +		reset_control_deassert(priv->reset_ctrl);
-> +		fsleep(QCA_PHY_SET_DELAY_US);
-> +	}
+> Making existing properties required breaks compatibility. That's okay on
+> *all* the platforms using this? If so, that needs to be crystal clear in
+> the commit msg.
+> 
 
-What exactly is being reset here? Which is GEPHY?
+Yes that's just fine on all platforms using this. In any case, they all
+do have the reg-names specified in their DT, even if previously not required,
+so there's nothing to update, even.
 
-The MDIO bus master driver should not be touching any Ethernet
-PHYs. All it provides is a bus, nothing more.
+I will make it crystal clear in the commit message in the next version.
 
-> +
-> +	/* Configure MDIO clock frequency */
-> +	if (!IS_ERR(priv->mdio_clk)) {
-> +		ret = clk_set_rate(priv->mdio_clk, QCA_MDIO_CLK_RATE);
-> +		if (ret)
-> +			return ret;
-> +
-> +		ret = clk_prepare_enable(priv->mdio_clk);
-> +		if (ret)
-> +			return ret;
-> +	}
+>> ---
+>>   Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+>> index 29b663321a0b..17fd6a6cefb0 100644
+>> --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+>> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+>> @@ -98,6 +98,7 @@ else:
+>>   required:
+>>     - compatible
+>>     - reg
+>> +  - reg-names
+>>     - clocks
+>>     - clock-names
+>>     - '#freq-domain-cells'
+>> -- 
+>> 2.32.0
+>>
+>>
 
-> +
-> +	/* Reset PHYs by gpio pins */
-> +	for (i = 0; i < gpiod_count(dev, "phy-reset"); i++) {
-> +		reset_gpio = gpiod_get_index_optional(dev, "phy-reset", i, GPIOD_OUT_HIGH);
-> +		if (IS_ERR(reset_gpio))
-> +			continue;
-> +		gpiod_set_value_cansleep(reset_gpio, 0);
-> +		fsleep(QCA_PHY_SET_DELAY_US);
-> +		gpiod_set_value_cansleep(reset_gpio, 1);
-> +		fsleep(QCA_PHY_SET_DELAY_US);
-> +		gpiod_put(reset_gpio);
-> +	}
-
-No, there is common code in phylib to do that.
-
->  static int ipq4019_mdio_probe(struct platform_device *pdev)
->  {
->  	struct ipq4019_mdio_data *priv;
->  	struct mii_bus *bus;
-> +	struct resource *res;
->  	int ret;
->  
->  	bus = devm_mdiobus_alloc_size(&pdev->dev, sizeof(*priv));
-> @@ -182,14 +244,23 @@ static int ipq4019_mdio_probe(struct platform_device *pdev)
->  		return -ENOMEM;
->  
->  	priv = bus->priv;
-> +	priv->eth_ldo_rdy = IOMEM_ERR_PTR(-EINVAL);
->  
->  	priv->membase = devm_platform_ioremap_resource(pdev, 0);
->  	if (IS_ERR(priv->membase))
->  		return PTR_ERR(priv->membase);
->  
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
-> +	if (res)
-> +		priv->eth_ldo_rdy = devm_ioremap_resource(&pdev->dev, res);
-> +
-> +	priv->reset_ctrl = devm_reset_control_get_exclusive(&pdev->dev, "gephy_mdc_rst");
-> +	priv->mdio_clk = devm_clk_get(&pdev->dev, "gcc_mdio_ahb_clk");
-
-You probably want to use devm_clk_get_optional().
-
-    Andrew
