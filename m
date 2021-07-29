@@ -2,171 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20D403DAA02
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 19:23:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4D243DAA29
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 19:29:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229657AbhG2RX1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 13:23:27 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:37849 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S229614AbhG2RXZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Jul 2021 13:23:25 -0400
-X-IronPort-AV: E=Sophos;i="5.84,279,1620658800"; 
-   d="scan'208";a="89179390"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 30 Jul 2021 02:23:20 +0900
-Received: from localhost.localdomain (unknown [10.226.92.2])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id CDE0C4016D49;
-        Fri, 30 Jul 2021 02:23:17 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v3 1/3] ASoC: dt-bindings: Document RZ/G2L bindings
-Date:   Thu, 29 Jul 2021 18:23:09 +0100
-Message-Id: <20210729172311.31111-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210729172311.31111-1-biju.das.jz@bp.renesas.com>
-References: <20210729172311.31111-1-biju.das.jz@bp.renesas.com>
+        id S231834AbhG2R3t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 13:29:49 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44060 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229556AbhG2R3t (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Jul 2021 13:29:49 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D5C6560F43;
+        Thu, 29 Jul 2021 17:29:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1627579785;
+        bh=D3GkyggaS8+s7F+pG5XYZLwdyMlGI8ykOK7/wJAH8s0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=d3nXdn0n9uSdRZI+synYf/53sKlOTZAkKVoooS5YzD47RvQu8MQJxv0AOXhrrF1Kh
+         JwAx5jab1JVEQ9TCo0BC5pR49kibcLWun6/sfK+OIHqhb9lduJkwFB+BpF1X1/2KRM
+         OTuhBZOf6P6cTeAS5SyQR6NzFLIoOYoL+WvLmPTIk0XB+PPdYHKrk9m4s05M7Vjm2m
+         LAmCPqhvzttvFGcdHlgOvC31eod1A4Swvh3iHMywGn46BvxMAoiZUYkxzYkzcUFuOH
+         /DL9zxX05x0YV+Oz1V9SKLlUlwwA3h0OxmTuhudq924I+3iBliar/iUF+5bWvQz+tF
+         Oc+BTUyr7uF9Q==
+Received: by mail-ed1-f45.google.com with SMTP id n2so9204908eda.10;
+        Thu, 29 Jul 2021 10:29:45 -0700 (PDT)
+X-Gm-Message-State: AOAM533IzY+wRg38rjGQ/HpdtlXbUota15jrbWAL5QMwrqJX7JJB0UV5
+        QVWNX+Io1zIMzxGj3+GOcxND5sbbUlerxZV+xw==
+X-Google-Smtp-Source: ABdhPJw4ypzoO5I0cFz+8tX94+fRXltPKkKQ2OvDPUtTv03o4F7mt4UfDhDO0s9y6xTSDbJkVRQlhL7Pis3zPb9TcAQ=
+X-Received: by 2002:a05:6402:254a:: with SMTP id l10mr7573233edb.258.1627579784471;
+ Thu, 29 Jul 2021 10:29:44 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210729125358.5227-1-luoj@codeaurora.org> <20210729125358.5227-3-luoj@codeaurora.org>
+In-Reply-To: <20210729125358.5227-3-luoj@codeaurora.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 29 Jul 2021 11:29:32 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+=Vyy7_EQ_A7JW4ZfqpPU=6eCyUYMnPORChGvefw-yTA@mail.gmail.com>
+Message-ID: <CAL_Jsq+=Vyy7_EQ_A7JW4ZfqpPU=6eCyUYMnPORChGvefw-yTA@mail.gmail.com>
+Subject: Re: [PATCH 3/3] dt-bindings: net: rename Qualcomm IPQ MDIO bindings
+To:     Luo Jie <luoj@codeaurora.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        David Miller <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Gross, Andy" <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Robert Marko <robert.marko@sartura.hr>,
+        netdev <netdev@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        devicetree@vger.kernel.org, Sricharan <sricharan@codeaurora.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document RZ/G2L ASoC serial sound interface bindings.
+On Thu, Jul 29, 2021 at 6:54 AM Luo Jie <luoj@codeaurora.org> wrote:
+>
+> rename ipq4019-mdio.yaml to ipq-mdio.yaml for supporting more
+> ipq boards such as ipq40xx, ipq807x, ipq60xx and ipq50xx.
+>
+> Signed-off-by: Luo Jie <luoj@codeaurora.org>
+> ---
+>  ...m,ipq4019-mdio.yaml => qcom,ipq-mdio.yaml} | 32 ++++++++++++++++---
+>  1 file changed, 28 insertions(+), 4 deletions(-)
+>  rename Documentation/devicetree/bindings/net/{qcom,ipq4019-mdio.yaml => qcom,ipq-mdio.yaml} (58%)
+>
+> diff --git a/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml b/Documentation/devicetree/bindings/net/qcom,ipq-mdio.yaml
+> similarity index 58%
+> rename from Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
+> rename to Documentation/devicetree/bindings/net/qcom,ipq-mdio.yaml
+> index 0c973310ada0..5bdeb461523b 100644
+> --- a/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
+> +++ b/Documentation/devicetree/bindings/net/qcom,ipq-mdio.yaml
+> @@ -1,10 +1,10 @@
+>  # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>  %YAML 1.2
+>  ---
+> -$id: http://devicetree.org/schemas/net/qcom,ipq4019-mdio.yaml#
+> +$id: http://devicetree.org/schemas/net/qcom,ipq-mdio.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>
+> -title: Qualcomm IPQ40xx MDIO Controller Device Tree Bindings
+> +title: Qualcomm IPQ MDIO Controller Device Tree Bindings
+>
+>  maintainers:
+>    - Robert Marko <robert.marko@sartura.hr>
+> @@ -14,7 +14,9 @@ allOf:
+>
+>  properties:
+>    compatible:
+> -    const: qcom,ipq4019-mdio
+> +    oneOf:
+> +      - const: qcom,ipq4019-mdio
+> +      - const: qcom,ipq-mdio
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-Note:-
- This base series for this patch is Linux 5.14-rc2(or +) otherwise bots would 
- complain about check failure
+This is more than the commit log suggests. A generic compatible by
+itself is not sufficient. If other chips have the same block, just use
+'qcom,ipq4019-mdio'. They should also have a compatible for the new
+SoC in case it's not 'the same'.
 
-v2->v3:
- * Merged the binding patch with dmas added
- * Updated dt binding example with encoded #dma-cells value.
-v1->v2:
- * Rebased on 5.14-rc2.
----
- .../bindings/sound/renesas,rz-ssi.yaml        | 100 ++++++++++++++++++
- 1 file changed, 100 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml
+Also, use 'enum' rather than oneOf plus const.
 
-diff --git a/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml b/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml
-new file mode 100644
-index 000000000000..9923e7b8264f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml
-@@ -0,0 +1,100 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/renesas,rz-ssi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas RZ/G2L ASoC Sound Serial Interface (SSIF-2)
-+
-+maintainers:
-+  - Biju Das <biju.das.jz@bp.renesas.com>
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - renesas,r9a07g044-ssi  # RZ/G2{L,LC}
-+      - const: renesas,rz-ssi
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 4
-+
-+  interrupt-names:
-+    items:
-+      - const: int_req
-+      - const: dma_rx
-+      - const: dma_tx
-+      - const: dma_rt
-+
-+  clocks:
-+    maxItems: 4
-+
-+  clock-names:
-+    items:
-+      - const: ssi
-+      - const: ssi_sfr
-+      - const: audio_clk1
-+      - const: audio_clk2
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  dmas:
-+    minItems: 1
-+    maxItems: 2
-+
-+  dma-names:
-+    oneOf:
-+      - items:
-+          - const: tx
-+          - const: rx
-+      - items:
-+          - const: rt
-+
-+  '#sound-dai-cells':
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - clock-names
-+  - resets
-+  - '#sound-dai-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/r9a07g044-cpg.h>
-+
-+    ssi0: ssi@10049c00 {
-+        compatible = "renesas,r9a07g044-ssi",
-+                     "renesas,rz-ssi";
-+            reg = <0x10049c00 0x400>;
-+            interrupts = <GIC_SPI 326 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 327 IRQ_TYPE_EDGE_RISING>,
-+                         <GIC_SPI 328 IRQ_TYPE_EDGE_RISING>,
-+                         <GIC_SPI 329 IRQ_TYPE_EDGE_RISING>;
-+            interrupt-names = "int_req", "dma_rx", "dma_tx", "dma_rt";
-+            clocks = <&cpg CPG_MOD R9A07G044_SSI0_PCLK2>,
-+                     <&cpg CPG_MOD R9A07G044_SSI0_PCLK_SFR>,
-+                     <&audio_clk1>,
-+                     <&audio_clk2>;
-+            clock-names = "ssi", "ssi_sfr", "audio_clk1", "audio_clk2";
-+            power-domains = <&cpg>;
-+            resets = <&cpg R9A07G044_SSI0_RST_M2_REG>;
-+            dmas = <&dmac 0x2655>,
-+                   <&dmac 0x2656>;
-+            dma-names = "tx", "rx";
-+            #sound-dai-cells = <0>;
-+    };
--- 
-2.17.1
+>
+>    "#address-cells":
+>      const: 1
+> @@ -23,7 +25,29 @@ properties:
+>      const: 0
+>
+>    reg:
+> -    maxItems: 1
+> +    maxItems: 2
 
+This breaks compatibility because now 1 entry is not valid.
+
+> +
+> +  clocks:
+> +    items:
+> +      - description: MDIO clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: gcc_mdio_ahb_clk
+> +
+> +  resets:
+> +    items:
+> +      - description: MDIO reset & GEPHY hardware reset
+> +
+> +  reset-names:
+> +    items:
+> +      - const: gephy_mdc_rst
+
+These all now apply to 'qcom,ipq4019-mdio'. The h/w had no clocks or
+resets and now does?
+
+You don't need *-names when there is only 1.
+
+> +  phy-reset-gpios:
+> +    maxItems: 3
+> +    description:
+> +      The phandle and specifier for the GPIO that controls the RESET
+> +      lines of PHY devices on that MDIO bus.
+
+This belongs in the phy node since the reset is connected to the phy.
+
+>
+>  required:
+>    - compatible
+> --
+> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+> a Linux Foundation Collaborative Project
+>
