@@ -2,209 +2,312 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BC2A3DAB93
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 21:03:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C6413DAB9F
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 21:08:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229896AbhG2TDq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 15:03:46 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55852 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229713AbhG2TDp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Jul 2021 15:03:45 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2217560041;
-        Thu, 29 Jul 2021 19:03:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627585422;
-        bh=QZzTxuOXLw86rHcrs3zAcLvxXqbKvso+gGJ/Bt/V7Yo=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=TH2hos7zxb777wZ4DD5mN0DLcj65CFt3bLmdhbc6AYFgav8nyV0CRJSDoH0LY8Jow
-         R+jXTaFeTZJMdfkVePdh3VudGpQfc2BmYI5fbu2AFf88fJLfMiwIHe1+CliGXbew8A
-         vwflPDfg0fR+UqRe8INTZ9eEF4/746XoDgm05V6Ja2QhKuvO4S6CP2pC2UB5Q6X/zA
-         i2JIBwXdzJJPH7Brqzo3PQgRgZr0Z42SETyY4c5URe+cCpiEh1tdnZGDp26UXwz61c
-         xccOpLXbdBL1w1TOe3rH67+4Evgt6KBDR8VsxSIMbs0GlUfk9bj6TFaBnAsGO9v9a9
-         dt4irhlxmF8Qw==
-Date:   Thu, 29 Jul 2021 21:03:37 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linuxarm <linuxarm@huawei.com>, mauro.chehab@huawei.com,
-        Binghui Wang <wangbinghui@hisilicon.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Xiaowei Song <songxiaowei@hisilicon.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        PCI <linux-pci@vger.kernel.org>
-Subject: Re: [PATCH 3/5] dt-bindings: PCI: kirin: Add support for Kirin970
-Message-ID: <20210729210337.6fc9a92c@coco.lan>
-In-Reply-To: <CAL_Jsq+JgWMf8XPdHQ9GRdA+7EODJ47vwuz0jGkkyeETZPXz9Q@mail.gmail.com>
-References: <cover.1627559126.git.mchehab+huawei@kernel.org>
-        <2cf7bd80d0b54f7658a64febf79d3a36e70aba86.1627559126.git.mchehab+huawei@kernel.org>
-        <CAL_Jsq+JgWMf8XPdHQ9GRdA+7EODJ47vwuz0jGkkyeETZPXz9Q@mail.gmail.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-redhat-linux-gnu)
+        id S229672AbhG2TId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 15:08:33 -0400
+Received: from mail-il1-f177.google.com ([209.85.166.177]:44678 "EHLO
+        mail-il1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231984AbhG2TId (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 15:08:33 -0400
+Received: by mail-il1-f177.google.com with SMTP id o7so6946967ilh.11;
+        Thu, 29 Jul 2021 12:08:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=HmDYTMDrb5z+wR/I3Bgep+1Plzvx/T7uZyiKlMv4WDc=;
+        b=GveE0qFDfkN/8lTwzt+EAqWRHKaMNrQdalWmAWdRxy3UfT79g8NlOq36Xj8q9gdwfy
+         VTAFic/7sNO4K/8qLWf3R4RMRwBi6K6gXOIXUoaMUpQ5HJDTMEgEgHk3nYqTWNgQpPGl
+         DB3RdPOxGTzKWntVz01dHM6lrT+Bf/WWuUkT+7Ka2G0adfUUvxzOaaeUj6p7/g+zlwIa
+         jIaYEcI9vonsyZuaLewzweEWMo3k4MkazqNmeAwPBSJlseA28aDSsX9fiC+L4Pd78Kpo
+         VmS37yqSJRclDFlgee94+Bc04EwGg2nYLp4UxRvvizOvYVTsIMeyUODaJ1NzC0cjnkua
+         SXJw==
+X-Gm-Message-State: AOAM531xtPDigktzoZFMDEsumv9QIAEGHxalEenuY7Qc5TD70+Z/jUPN
+        nRwDqJhAGA5Vemp/Kr+YDQ==
+X-Google-Smtp-Source: ABdhPJzo5t2afAZSo7+QVOK17vpxXGg6rQM1gUcfwrGEIFPcxdTBNVn/G0Kjax4Mwehv6E92N252OQ==
+X-Received: by 2002:a92:dad0:: with SMTP id o16mr4695293ilq.65.1627585708145;
+        Thu, 29 Jul 2021 12:08:28 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id q10sm2975639ion.3.2021.07.29.12.08.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Jul 2021 12:08:27 -0700 (PDT)
+Received: (nullmailer pid 704017 invoked by uid 1000);
+        Thu, 29 Jul 2021 19:08:24 -0000
+Date:   Thu, 29 Jul 2021 13:08:24 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Xin Ji <xji@analogixsemi.com>
+Cc:     David Airlie <airlied@linux.ie>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Ricardo =?iso-8859-1?Q?Ca=F1uelo?= 
+        <ricardo.canuelo@collabora.com>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, Bernie Liang <bliang@analogixsemi.com>,
+        Sheng Pan <span@analogixsemi.com>,
+        Zhen Li <zhenli@analogixsemi.com>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v10 1/4] dt-bindings:drm/bridge:anx7625:add vendor define
+ flags
+Message-ID: <YQL8qLpN41ocV9N0@robh.at.kernel.org>
+References: <cover.1626685856.git.xji@analogixsemi.com>
+ <85126d087cb045ea5e00a5100fc7d81840744a68.1626685856.git.xji@analogixsemi.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <85126d087cb045ea5e00a5100fc7d81840744a68.1626685856.git.xji@analogixsemi.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Em Thu, 29 Jul 2021 09:20:15 -0600
-Rob Herring <robh@kernel.org> escreveu:
-
-> On Thu, Jul 29, 2021 at 5:56 AM Mauro Carvalho Chehab
-> <mchehab+huawei@kernel.org> wrote:
-> >
-> > Add a new compatible, plus the new bindings needed by
-> > HiKey970 board.
-> >
-> > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> > ---
-> >  .../bindings/pci/hisilicon,kirin-pcie.yaml    | 61 ++++++++++++++++++-
-> >  1 file changed, 60 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml b/Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml
-> > index 90cab09e8d4b..bb0c3a081d68 100644
-> > --- a/Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml
-> > +++ b/Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml
-> > @@ -24,11 +24,13 @@ properties:
-> >      contains:
-> >        enum:
-> >          - hisilicon,kirin960-pcie
-> > +        - hisilicon,kirin970-pcie
-> >
-> >    reg:
-> >      description: |
-> >        Should contain dbi, apb, config registers location and length.
-> > -      For HiKey960, it should also contain phy.
-> > +      For HiKey960, it should also contain phy. All other devices
-> > +      should use a separate phy driver.
-> >      minItems: 3
-> >      maxItems: 4
-> >
-> > @@ -47,6 +49,7 @@ examples:
-> >    - |
-> >      #include <dt-bindings/interrupt-controller/arm-gic.h>
-> >      #include <dt-bindings/clock/hi3660-clock.h>
-> > +    #include <dt-bindings/clock/hi3670-clock.h>
-> >
-> >      soc {
-> >        #address-cells = <2>;
-> > @@ -83,4 +86,60 @@ examples:
-> >          clock-names = "pcie_phy_ref", "pcie_aux", "pcie_apb_phy",
-> >                        "pcie_apb_sys", "pcie_aclk";
-> >        };
-> > +
-> > +      pcie@f5000000 {
-> > +        compatible = "hisilicon,kirin970-pcie";
-> > +        reg = <0x0 0xf4000000 0x0 0x1000000>,
-> > +              <0x0 0xfc180000 0x0 0x1000>,
-> > +              <0x0 0xf5000000 0x0 0x2000>;
-> > +        reg-names = "dbi", "apb", "config";
-> > +        bus-range = <0x0  0x1>;
-> > +        msi-parent = <&its_pcie>;
-> > +        #address-cells = <3>;
-> > +        #size-cells = <2>;
-> > +        device_type = "pci";
-> > +        phys = <&pcie_phy>;
-> > +        ranges = <0x02000000 0x0 0x00000000
-> > +                  0x0 0xf6000000
-> > +                  0x0 0x02000000>;
-> > +        num-lanes = <1>;
-> > +        #interrupt-cells = <1>;
-> > +        interrupts = <GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>;
-> > +        interrupt-names = "msi";
-> > +        interrupt-map-mask = <0 0 0 7>;
-> > +        interrupt-map = <0x0 0 0 1 &gic GIC_SPI 282 IRQ_TYPE_LEVEL_HIGH>,
-> > +                        <0x0 0 0 2 &gic GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>,
-> > +                        <0x0 0 0 3 &gic GIC_SPI 284 IRQ_TYPE_LEVEL_HIGH>,
-> > +                        <0x0 0 0 4 &gic GIC_SPI 285 IRQ_TYPE_LEVEL_HIGH>;
-> > +        pcie@4,0 { // Lane 4: M.2
-> > +          reg = <0 0 0 0 0>;
-> > +          compatible = "pciclass,0604";
-> > +          device_type = "pci";
-> > +          reset-gpios = <&gpio7 1 0>;
-> > +          clkreq-gpios = <&gpio27 3 0 >;  
+On Mon, Jul 19, 2021 at 06:10:09PM +0800, Xin Ji wrote:
+> Add 'bus-type' and 'data-lanes' define for port0. Define DP tx lane0,
+> lane1 swing register array define, and audio enable flag.
 > 
-> Looking at the schematics some more, this is not right. CLKREQ# is an
-> input from the device, and they are not connected to any GPIO (just
-> pulled high) on hikey970. These GPIOs are simply clock enables and
-> very much specific to hikey. So I'd call this 'hisilicon,clken-gpios'
-> and you can just stick them in the host bridge node.
+> The device which cannot pass DP tx PHY CTS caused by long PCB trace or
+> embedded MUX, adjusting ANX7625 PHY parameters can pass the CTS test. The
+> adjusting type include Pre-emphasis, Vp-p, Rterm(Resistor Termination)
+> and Rsel(Driven Strength). Each lane has maximum 20 registers for
+> these settings.
 > 
+> For the DP tx swing setting, each lane has 10 different combination for
+> swing, as Pre0: swing3|swing2|swing1|swing0, Pre1: swing2|swing1|swing0,
+> Pre2: swing1|swing0, Pre3: swing0.
+> 
+> Register definition as:
+> [Boost_ctrl]
+> These registers control post cursor manual, increase the Boost_Ctrl
+> setting can increase Pre-emphasis value separately.
+> Lane	Condition	Register address
+> Lane0	Swing0_Pre0	0x7a:0x00 bit[3:0]
+> Lane0	Swing1_Pre0	0x7a:0x01 bit[3:0]
+> Lane0	Swing2_Pre0	0x7a:0x02 bit[3:0]
+> Lane0	Swing3_Pre0	0x7a:0x03 bit[3:0]
+> Lane0	Swing0_Pre1	0x7a:0x04 bit[3:0]
+> Lane0	Swing1_Pre1	0x7a:0x05 bit[3:0]
+> Lane0	Swing2_Pre1	0x7a:0x06 bit[3:0]
+> Lane0	Swing0_Pre2	0x7a:0x07 bit[3:0]
+> Lane0	Swing1_Pre2	0x7a:0x08 bit[3:0]
+> Lane0	Swing0_Pre3	0x7a:0x09 bit[3:0]
+> Lane1	Swing0_Pre0	0x7a:0x14 bit[3:0]
+> Lane1	Swing1_Pre0	0x7a:0x15 bit[3:0]
+> Lane1	Swing2_Pre0	0x7a:0x16 bit[3:0]
+> Lane1	Swing3_Pre0	0x7a:0x17 bit[3:0]
+> Lane1	Swing0_Pre1	0x7a:0x18 bit[3:0]
+> Lane1	Swing1_Pre1	0x7a:0x19 bit[3:0]
+> Lane1	Swing2_Pre1	0x7a:0x1a bit[3:0]
+> Lane1	Swing0_Pre2	0x7a:0x1b bit[3:0]
+> Lane1	Swing1_Pre2	0x7a:0x1c bit[3:0]
+> Lane1	Swing0_Pre3	0x7a:0x1d bit[3:0]
+> 
+> [Swing_ctrl]
+> These registers control swing manual, increase Swing_Ctrl setting can
+> increase Vp-p value separately.
+> Lane	Condition	Register address
+> Lane0	Swing0_Pre0	0x7a:0x00 bit[6:4]
+> Lane0	Swing1_Pre0	0x7a:0x01 bit[6:4]
+> Lane0	Swing2_Pre0	0x7a:0x02 bit[6:4]
+> Lane0	Swing3_Pre0	0x7a:0x03 bit[6:4]
+> Lane0	Swing0_Pre1	0x7a:0x04 bit[6:4]
+> Lane0	Swing1_Pre1	0x7a:0x05 bit[6:4]
+> Lane0	Swing2_Pre1	0x7a:0x06 bit[6:4]
+> Lane0	Swing0_Pre2	0x7a:0x07 bit[6:4]
+> Lane0	Swing1_Pre2	0x7a:0x08 bit[6:4]
+> Lane0	Swing0_Pre3	0x7a:0x09 bit[6:4]
+> Lane1	Swing0_Pre0	0x7a:0x14 bit[6:4]
+> Lane1	Swing1_Pre0	0x7a:0x15 bit[6:4]
+> Lane1	Swing2_Pre0	0x7a:0x16 bit[6:4]
+> Lane1	Swing3_Pre0	0x7a:0x17 bit[6:4]
+> Lane1	Swing0_Pre1	0x7a:0x18 bit[6:4]
+> Lane1	Swing1_Pre1	0x7a:0x19 bit[6:4]
+> Lane1	Swing2_Pre1	0x7a:0x1a bit[6:4]
+> Lane1	Swing0_Pre2	0x7a:0x1b bit[6:4]
+> Lane1	Swing1_Pre2	0x7a:0x1c bit[6:4]
+> Lane1	Swing0_Pre3	0x7a:0x1d bit[6:4]
+> 
+> [Rsel_ctrl]
+> These registers control resistor compensation manual, increase Rsel_ctrl
+> can increase the IO driven strength, increase Vp-p simultaneously.
+> Lane	Condition	Register address
+> Lane0	Swing0_Pre0	0x7a:0x0a bit[4:0]
+> Lane0	Swing1_Pre0	0x7a:0x0b bit[4:0]
+> Lane0	Swing2_Pre0	0x7a:0x0c bit[4:0]
+> Lane0	Swing3_Pre0	0x7a:0x0d bit[4:0]
+> Lane0	Swing0_Pre1	0x7a:0x0e bit[4:0]
+> Lane0	Swing1_Pre1	0x7a:0x0f bit[4:0]
+> Lane0	Swing2_Pre1	0x7a:0x10 bit[4:0]
+> Lane0	Swing0_Pre2	0x7a:0x11 bit[4:0]
+> Lane0	Swing1_Pre2	0x7a:0x12 bit[4:0]
+> Lane0	Swing0_Pre3	0x7a:0x13 bit[4:0]
+> Lane1	Swing0_Pre0	0x7a:0x1e bit[4:0]
+> Lane1	Swing1_Pre0	0x7a:0x1f bit[4:0]
+> Lane1	Swing2_Pre0	0x7a:0x20 bit[4:0]
+> Lane1	Swing3_Pre0	0x7a:0x21 bit[4:0]
+> Lane1	Swing0_Pre1	0x7a:0x22 bit[4:0]
+> Lane1	Swing1_Pre1	0x7a:0x23 bit[4:0]
+> Lane1	Swing2_Pre1	0x7a:0x24 bit[4:0]
+> Lane1	Swing0_Pre2	0x7a:0x25 bit[4:0]
+> Lane1	Swing1_Pre2	0x7a:0x26 bit[4:0]
+> Lane1	Swing0_Pre3	0x7a:0x27 bit[4:0]
+> 
+> [Rterm_ctrl]
+> These registers adjust 50ohm impedance of DP tx
+> 00:55 ohm
+> 01:50 ohm(default)
+> 10:45 ohm
+> 11:40 ohm
+> Lane	Condition	Register address
+> Lane0	Swing0_Pre0	0x7a:0x0a bit[6:5]
+> Lane0	Swing1_Pre0	0x7a:0x0b bit[6:5]
+> Lane0	Swing2_Pre0	0x7a:0x0c bit[6:5]
+> Lane0	Swing3_Pre0	0x7a:0x0d bit[6:5]
+> Lane0	Swing0_Pre1	0x7a:0x0e bit[6:5]
+> Lane0	Swing1_Pre1	0x7a:0x0f bit[6:5]
+> Lane0	Swing2_Pre1	0x7a:0x10 bit[6:5]
+> Lane0	Swing0_Pre2	0x7a:0x11 bit[6:5]
+> Lane0	Swing1_Pre2	0x7a:0x12 bit[6:5]
+> Lane0	Swing0_Pre3	0x7a:0x13 bit[6:5]
+> lane1	Swing0_Pre0	0x7a:0x1e bit[6:5]
+> Lane1	Swing1_Pre0	0x7a:0x1f bit[6:5]
+> Lane1	Swing2_Pre0	0x7a:0x20 bit[6:5]
+> Lane1	Swing3_Pre0	0x7a:0x21 bit[6:5]
+> Lane1	Swing0_Pre1	0x7a:0x22 bit[6:5]
+> Lane1	Swing1_Pre1	0x7a:0x23 bit[6:5]
+> Lane1	Swing2_Pre1	0x7a:0x24 bit[6:5]
+> Lane1	Swing0_Pre2	0x7a:0x25 bit[6:5]
+> Lane1	Swing1_Pre2	0x7a:0x26 bit[6:5]
+> Lane1	Swing0_Pre3	0x7a:0x27 bit[6:5]
 
-Ok. If I understood your review, the schema will then be:
+All this information should be in the properties description. But the 
+above form is not all that clear in defining how to fill in the 
+properties. You need to describe what is in each word of the properties 
+and assume the reader has the datasheet. 
+> 
+> Signed-off-by: Xin Ji <xji@analogixsemi.com>
+> ---
+>  .../display/bridge/analogix,anx7625.yaml      | 55 ++++++++++++++++++-
+>  1 file changed, 54 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> index ab48ab2f4240..77b160d7c269 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> @@ -43,6 +43,24 @@ properties:
+>    vdd33-supply:
+>      description: Regulator that provides the supply 3.3V power.
+>  
+> +  analogix,lane0-swing:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 1
+> +    maxItems: 20
+> +    description:
+> +      an array of swing register setting for DP tx lane0 PHY.
+> +
+> +  analogix,lane1-swing:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 1
+> +    maxItems: 20
+> +    description:
+> +      an array of swing register setting for DP tx lane1 PHY.
+> +
+> +  analogix,audio-enable:
+> +    type: boolean
+> +    description: let the driver enable audio HDMI codec function or not.
+> +
+>    ports:
+>      $ref: /schemas/graph.yaml#/properties/ports
+>  
+> @@ -50,13 +68,43 @@ properties:
+>        port@0:
+>          $ref: /schemas/graph.yaml#/properties/port
 
-      pcie@f4000000 {
-        compatible = "hisilicon,kirin970-pcie";
-        reg = <0x0 0xf4000000 0x0 0x1000000>,
-              <0x0 0xfc180000 0x0 0x1000>,
-              <0x0 0xf5000000 0x0 0x2000>;
-        reg-names = "dbi", "apb", "config";
-        bus-range = <0x0  0x1>;
-        msi-parent = <&its_pcie>;
-        #address-cells = <3>;
-        #size-cells = <2>;
-        device_type = "pci";
-        phys = <&pcie_phy>;
-        ranges = <0x02000000 0x0 0x00000000
-                  0x0 0xf6000000
-                  0x0 0x02000000>;
-        num-lanes = <1>;
-        #interrupt-cells = <1>;
-        interrupts = <GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>;
-        interrupt-names = "msi";
-        interrupt-map-mask = <0 0 0 7>;
-        interrupt-map = <0x0 0 0 1 &gic GIC_SPI 282 IRQ_TYPE_LEVEL_HIGH>,
-                        <0x0 0 0 2 &gic GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>,
-                        <0x0 0 0 3 &gic GIC_SPI 284 IRQ_TYPE_LEVEL_HIGH>,
-                        <0x0 0 0 4 &gic GIC_SPI 285 IRQ_TYPE_LEVEL_HIGH>;
-        reset-gpios = <&gpio7 0 0>;
+This needs to be #/$defs/port-base instead since you are adding child 
+properties.
 
-        pcie@0 { // Lane 0: upstream
-          reg = <0 0 0 0 0>;
-          compatible = "pciclass,0604";
-          device_type = "pci";
-          #address-cells = <3>;
-          #size-cells = <2>;
-          hisilicon,clken-gpios = <&gpio27 3 0 >, <&gpio17 0 0 >, <&gpio20 6 0 >;
-          ranges;
+Also needs 'unevaluatedProperties: false'.
 
-          pcie@1,0 { // Lane 4: M.2
-            reg = <0x800 0 0 0 0>;
-            compatible = "pciclass,0604";
-            device_type = "pci";
-            reset-gpios = <&gpio3 1 0>;
-            #address-cells = <3>;
-            #size-cells = <2>;
-            ranges;
-          };
+>          description:
+> -          Video port for MIPI DSI input.
+> +          MIPI DSI/DPI input.
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: /schemas/media/video-interfaces.yaml#
+> +            type: object
+> +            additionalProperties: false
+> +
+> +            properties:
+> +              remote-endpoint: true
+> +              bus-type: true
 
-          pcie@5,0 { // Lane 5: Mini PCIe
-            reg = <0x2800 0 0 0 0>;
-            compatible = "pciclass,0604";
-            device_type = "pci";
-            reset-gpios = <&gpio27 4 0 >;
-            #address-cells = <3>;
-            #size-cells = <2>;
-            ranges;
-          };
+All the possible bus-type values are supported by this h/w?
 
-          pcie@7,0 { // Lane 7: Ethernet
-            reg = <0x3800 0 0 0 0>;
-            compatible = "pciclass,0604";
-            device_type = "pci";
-            reset-gpios = <&gpio25 2 0 >;
-            #address-cells = <3>;
-            #size-cells = <2>;
-            ranges;
-          };
-        };
-      };
-    };
+> +              data-lanes: true
+> +
+> +            required:
+> +              - remote-endpoint
 
-Right?
+Drop this.
 
-After updating the dt-schema from your git tree, the above doesn't 
-generate warnings anymore.
+> +
+> +        required:
+> +          - endpoint
 
-Thanks,
-Mauro
+Drop this.
+
+> +
+>  
+>        port@1:
+>          $ref: /schemas/graph.yaml#/properties/port
+>          description:
+>            Video port for panel or connector.
+>  
+> +        properties:
+> +          endpoint:
+> +            $ref: /schemas/media/video-interfaces.yaml#
+
+No additional properties, you don't need this reference or the rest of 
+this addition.
+
+> +            type: object
+> +            additionalProperties: false
+> +
+> +            properties:
+> +              remote-endpoint: true
+> +
+> +            required:
+> +              - remote-endpoint
+> +
+>      required:
+>        - port@0
+>        - port@1
+> @@ -87,6 +135,9 @@ examples:
+>              vdd10-supply = <&pp1000_mipibrdg>;
+>              vdd18-supply = <&pp1800_mipibrdg>;
+>              vdd33-supply = <&pp3300_mipibrdg>;
+> +            analogix,audio-enable;
+> +            analogix,lane0-swing = <0x14 0x54 0x64 0x74 0x29 0x7b 0x77 0x5b>;
+> +            analogix,lane1-swing = <0x14 0x54 0x64 0x74 0x29 0x7b 0x77 0x5b>;
+
+If the values are only 8-bit, then make the type uint8-array.
+
+>  
+>              ports {
+>                  #address-cells = <1>;
+> @@ -96,6 +147,8 @@ examples:
+>                      reg = <0>;
+>                      anx7625_in: endpoint {
+>                          remote-endpoint = <&mipi_dsi>;
+> +                        bus-type = <5>;
+> +                        data-lanes = <0 1 2 3>;
+>                      };
+>                  };
+>  
+> -- 
+> 2.25.1
+> 
+> 
