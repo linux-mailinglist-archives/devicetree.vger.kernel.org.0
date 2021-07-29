@@ -2,112 +2,653 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4260F3DAC18
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 21:51:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D51D3DAC2F
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 21:53:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229642AbhG2TvM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 15:51:12 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.53]:29746 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229606AbhG2TvL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 15:51:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1627588261;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=a1f/4Mzvy91uylKaEBSa+SbUv2oypgU64QN38rZ/W1A=;
-    b=BhFcK3pVObxgbgbV6J1xl7tDYIcvcsOU6ZLYorGXAWqwHPUe2gEwIbvGh/j5F63rvm
-    XZudNTAUZFotrbXXFDcjDo7N9schc9DbXE0dH+dYZldo0aCHzeob3yid8SmfRXCIWJzf
-    KJTRsqB+Z8kZZJbucHz3eYSSMYEh79Y0Y6me2QB2PJzXC6bDG1Mleo5vTcwAvt/Q3nvU
-    ax6+Fz5bqesHLub+E37q4wkquBD1Nt2BMZmoca33kxypXWrPsFyLeq60GrpY9DeBLMTJ
-    T4zdtqrjxfy6u/zGiY42LM1HPSOAR43XHwViPsYFy9AM6FJYHvOV2Bi78eGArf/VHitk
-    Tgnw==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8paM1A=="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.28.1 DYNA|AUTH)
-    with ESMTPSA id g02a44x6TJp06W6
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Thu, 29 Jul 2021 21:51:00 +0200 (CEST)
-Date:   Thu, 29 Jul 2021 21:50:54 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Rob Herring <robh@kernel.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Sergey Ryazanov <ryazanov.s.a@gmail.com>,
-        Johannes Berg <johannes@sipsolutions.net>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Aleksander Morgado <aleksander@aleksander.es>,
-        netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Subject: Re: [RFC PATCH net-next 1/4] dt-bindings: dmaengine: bam_dma: Add
- remote power collapse mode
-Message-ID: <YQMGnmXEOCmCzKnr@gerhold.net>
-References: <20210719145317.79692-1-stephan@gerhold.net>
- <20210719145317.79692-2-stephan@gerhold.net>
- <YQMDP6+ft/iRJQQr@robh.at.kernel.org>
+        id S232403AbhG2Txd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 15:53:33 -0400
+Received: from mail-il1-f181.google.com ([209.85.166.181]:35691 "EHLO
+        mail-il1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232659AbhG2Txc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 15:53:32 -0400
+Received: by mail-il1-f181.google.com with SMTP id k3so7110034ilu.2;
+        Thu, 29 Jul 2021 12:53:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=gAEcIg+6eSv0xYRy/Hb751KGkGlIdZmPlxl9cTTBDP8=;
+        b=dSnt1LNRRHda42xaEzGvZ+JHtuxbEk5ZFMEJOg9fC2Gc+AaW+vnnkmkEv9/vgNLmH6
+         b09LzQVVm6CBA+hZTFpTsNOuyX2ejd+JzF6OmeVQfWUBWKPUmYoe7WF3g8uQdBIV8/9C
+         ZtSwDIB2CJiJx6fAI64Zb5BPwgjxSb4wz7Wh435B0oHQGbTaxkJHSCwXOtBsFEk9JrjW
+         odOogopEYqYlpvEvSLRHvvW0Rotk94/Vt3D9IpLee2fiwerAkMgznSSfuFVE6ob+T11y
+         Eo2QSycw+zsnWswFwfNtRpflV+roUdYypujq+7LEKzLcSE9B0ZyylB/sj4oxJJvOMqBa
+         FEZA==
+X-Gm-Message-State: AOAM533WoBTTN1DyRKBlXBw7aF5cQsirIdG7bCtgvgcyWJfPfPLf5db8
+        dKFjeSCBdBw0zba/PsWeGQ==
+X-Google-Smtp-Source: ABdhPJxJIpfbKIdShtUd3btc1XJPwzZU+WPqAS9Ev9DiCSLWtPJKS0tLpK2oczdEk/Fg3ptpd7NHyA==
+X-Received: by 2002:a92:db44:: with SMTP id w4mr4729855ilq.101.1627588408197;
+        Thu, 29 Jul 2021 12:53:28 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id f5sm2335863ilr.72.2021.07.29.12.53.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Jul 2021 12:53:27 -0700 (PDT)
+Received: (nullmailer pid 774080 invoked by uid 1000);
+        Thu, 29 Jul 2021 19:53:25 -0000
+Date:   Thu, 29 Jul 2021 13:53:25 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     kenchappa.demakkanavar@intel.com
+Cc:     will@kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        dinguyen@kernel.org, furong.zhou@intel.com,
+        kris.pan@linux.intel.com, kris.pan@intel.com,
+        mgross@linux.intel.com, mark.gross@intel.com
+Subject: Re: [PATCH V2 3/3] arm64: dts: add initial device tree for Thunder
+ Bay SoC
+Message-ID: <YQMHNX5cCBFdm7YK@robh.at.kernel.org>
+References: <1626758569-27176-1-git-send-email-kenchappa.demakkanavar@intel.com>
+ <1626758569-27176-4-git-send-email-kenchappa.demakkanavar@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YQMDP6+ft/iRJQQr@robh.at.kernel.org>
+In-Reply-To: <1626758569-27176-4-git-send-email-kenchappa.demakkanavar@intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 29, 2021 at 01:36:31PM -0600, Rob Herring wrote:
-> On Mon, Jul 19, 2021 at 04:53:14PM +0200, Stephan Gerhold wrote:
-> > In some configurations, the BAM DMA controller is set up by a remote
-> > processor and the local processor can simply start making use of it
-> > without setting up the BAM. This is already supported using the
-> > "qcom,controlled-remotely" property.
-> > 
-> > However, for some reason another possible configuration is that the
-> > remote processor is responsible for powering up the BAM, but we are
-> > still responsible for initializing it (e.g. resetting it etc). Add
-> > a "qcom,remote-power-collapse" property to describe that configuration.
-> > 
-> > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> > ---
-> > NOTE: This is *not* a compile-time requirement for the BAM-DMUX driver
-> >       so this could also go through the dmaengine tree.
-> > 
-> > Also note that there is an ongoing effort to convert these bindings
-> > to DT schema but sadly there were not any updates for a while. :/
-> > https://lore.kernel.org/linux-arm-msm/20210519143700.27392-2-bhupesh.sharma@linaro.org/
-> > ---
-> >  Documentation/devicetree/bindings/dma/qcom_bam_dma.txt | 2 ++
-> >  1 file changed, 2 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt b/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
-> > index cf5b9e44432c..362a4f0905a8 100644
-> > --- a/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
-> > +++ b/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
-> > @@ -15,6 +15,8 @@ Required properties:
-> >    the secure world.
-> >  - qcom,controlled-remotely : optional, indicates that the bam is controlled by
-> >    remote proccessor i.e. execution environment.
-> > +- qcom,remote-power-collapse : optional, indicates that the bam is powered up by
-> > +  a remote processor but must be initialized by the local processor.
+On Tue, Jul 20, 2021 at 10:52:49AM +0530, kenchappa.demakkanavar@intel.com wrote:
+> From: "Demakkanavar, Kenchappa" <kenchappa.demakkanavar@intel.com>
 > 
-> Wouldn't 'qcom,remote-power' or 'qcom,remote-powered' be sufficient? I 
-> don't understand what 'collapse' means here. Doesn't sound good though.
+> Add initial device tree for Intel Movidius SoC code-named Thunder Bay.
 > 
+> This initial DT includes nodes for 4 CPU clusters with 4 Cortex-A53
+> cores per cluster, UARTs, GIC, ARM Timer and PSCI.
 
-Yeah I can't think of any significant meaning of the "collapse" part
-for the bindings, I probably just picked it up somewhere while trying to
-find some information about how the BAM DMUX setup works. :)
+Make sure you run 'make dtbs_check' on these.
 
-Just one question, would you prefer "qcom,remote-powered" or rather
-"qcom,powered-remotely" for consistency with the existing
-"qcom,controlled-remotely"? Both sounds fine to me.
+There shouldn't be any dtc warnings and or undocumented compatible 
+warnings at a minimum.
 
-Thanks!
-Stephan
+> thunderbay-soc.dtsi   - Thunder Bay SoC dtsi file
+> hddl_hybrid_4s.dts    - Thunder Bay full configuration board dts
+> 			with 4 VPU processors
+> hddl_hybrid_2s_02.dts - Thunder Bay prime configuration board dts with
+> 			2 VPU processors (slice 0 and slice 2 enabled)
+> hddl_hybrid_2s_03.dts - Thunder Bay prime configuration board dts with
+> 			2 VPU processors (slice 0 and slice 3 enabled)
+> hddl_hybrid_2s_12.dts - Thunder Bay prime configuration board dts with
+> 			2 VPU processors (slice 1 and slice 2 enabled)
+> hddl_hybrid_2s_13.dts - Thunder Bay prime configuration board dts with
+> 			2 VPU processors (slice 1 and slice 3 enabled)
+> 
+> Signed-off-by: Demakkanavar, Kenchappa <kenchappa.demakkanavar@intel.com>
+> ---
+>  MAINTAINERS                                     |   2 +
+>  arch/arm64/boot/dts/intel/Makefile              |   6 +
+>  arch/arm64/boot/dts/intel/hddl_hybrid_2s_02.dts |  43 +++++
+>  arch/arm64/boot/dts/intel/hddl_hybrid_2s_03.dts |  43 +++++
+>  arch/arm64/boot/dts/intel/hddl_hybrid_2s_12.dts |  43 +++++
+>  arch/arm64/boot/dts/intel/hddl_hybrid_2s_13.dts |  43 +++++
+>  arch/arm64/boot/dts/intel/hddl_hybrid_4s.dts    |  54 ++++++
+>  arch/arm64/boot/dts/intel/thunderbay-soc.dtsi   | 243 ++++++++++++++++++++++++
+>  8 files changed, 477 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/intel/hddl_hybrid_2s_02.dts
+>  create mode 100644 arch/arm64/boot/dts/intel/hddl_hybrid_2s_03.dts
+>  create mode 100644 arch/arm64/boot/dts/intel/hddl_hybrid_2s_12.dts
+>  create mode 100644 arch/arm64/boot/dts/intel/hddl_hybrid_2s_13.dts
+>  create mode 100644 arch/arm64/boot/dts/intel/hddl_hybrid_4s.dts
+>  create mode 100644 arch/arm64/boot/dts/intel/thunderbay-soc.dtsi
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 041f9a0..68317f0 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1996,6 +1996,8 @@ ARM/INTEL THUNDERBAY ARCHITECTURE
+>  M:	Demakkanavar, Kenchappa <kenchappa.demakkanavar@intel.com>
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/arm/intel,thunderbay.yaml
+> +F:	arch/arm64/boot/dts/intel/hddl*
+> +F:	arch/arm64/boot/dts/intel/thunderbay-soc.dtsi
+>  
+>  ARM/INTEL XSC3 (MANZANO) ARM CORE
+>  M:	Lennert Buytenhek <kernel@wantstofly.org>
+> diff --git a/arch/arm64/boot/dts/intel/Makefile b/arch/arm64/boot/dts/intel/Makefile
+> index 0b54774..767b74b 100644
+> --- a/arch/arm64/boot/dts/intel/Makefile
+> +++ b/arch/arm64/boot/dts/intel/Makefile
+> @@ -3,3 +3,9 @@ dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += socfpga_agilex_socdk.dtb \
+>  				socfpga_agilex_socdk_nand.dtb \
+>  				socfpga_n5x_socdk.dtb
+>  dtb-$(CONFIG_ARCH_KEEMBAY) += keembay-evm.dtb
+> +
+> +dtb-$(CONFIG_ARCH_THUNDERBAY) += hddl_hybrid_4s.dtb \
+> +				 hddl_hybrid_2s_02.dtb \
+> +				 hddl_hybrid_2s_03.dtb \
+> +				 hddl_hybrid_2s_12.dtb \
+> +				 hddl_hybrid_2s_13.dtb
+> diff --git a/arch/arm64/boot/dts/intel/hddl_hybrid_2s_02.dts b/arch/arm64/boot/dts/intel/hddl_hybrid_2s_02.dts
+> new file mode 100644
+> index 0000000..f907ddd
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/intel/hddl_hybrid_2s_02.dts
+> @@ -0,0 +1,43 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-3-Clause)
+> +/*
+> + * Copyright (c) 2021 Intel Corporation.
+> + *
+> + * Device tree describing Intel Thunder Bay Hybrid HDDL Prime configuration
+> + * board.
+> + *
+> + * DDR 8GB + 4GB with vpu slice 0 and vpu slice 2
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "thunderbay-soc.dtsi"
+> +
+> +/ {
+> +	model = "Intel Thunder Bay Hybrid HDDL Prime Board";
+> +	compatible = "intel,thunderbay";
+> +
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +		serial1 = &uart1;
+
+Why do you have an alias to a disabled node?
+
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	memory@100A000000 {
+
+Lowercase hex on unit-addresses.
+
+> +		device_type = "memory";
+> +		/* 8GB of DDR memory */
+> +		reg = <0x10 0x0A000000 0x2 0x0>;
+> +	};
+> +
+> +	memory@1200000000 {
+> +		device_type = "memory";
+> +		/* 4GB of DDR memory */
+> +		reg = <0x12 0x0 0x1 0x0>;
+> +	};
+> +
+> +};
+> diff --git a/arch/arm64/boot/dts/intel/hddl_hybrid_2s_03.dts b/arch/arm64/boot/dts/intel/hddl_hybrid_2s_03.dts
+> new file mode 100644
+> index 0000000..01a3d4c
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/intel/hddl_hybrid_2s_03.dts
+> @@ -0,0 +1,43 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-3-Clause)
+> +/*
+> + * Copyright (c) 2021 Intel Corporation.
+> + *
+> + * Device tree describing Intel Thunder Bay Hybrid HDDL Prime configuration
+> + * board
+> + *
+> + * DDR 8GB + 4GB with vpu slice 0 and vpu slice 3
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "thunderbay-soc.dtsi"
+> +
+> +/ {
+> +	model = "Intel Thunder Bay Hybrid HDDL Prime Board";
+> +	compatible = "intel,thunderbay";
+
+This should have a board specific compatible. Not sure if you need 1 or 
+4 though. If the VPU slice stuff is determined elsewhere then 1 is 
+enough.
+
+> +
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +		serial1 = &uart1;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	memory@100A000000 {
+> +		device_type = "memory";
+> +		/* 8GB of DDR memory */
+> +		reg = <0x10 0x0A000000 0x2 0x0>;
+> +	};
+> +
+> +	memory@1200000000 {
+> +		device_type = "memory";
+> +		/* 4GB of DDR memory */
+> +		reg = <0x12 0x0 0x1 0x0>;
+> +	};
+> +
+> +};
+> diff --git a/arch/arm64/boot/dts/intel/hddl_hybrid_2s_12.dts b/arch/arm64/boot/dts/intel/hddl_hybrid_2s_12.dts
+> new file mode 100644
+> index 0000000..e31db16
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/intel/hddl_hybrid_2s_12.dts
+> @@ -0,0 +1,43 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-3-Clause)
+> +/*
+> + * Copyright (c) 2021 Intel Corporation.
+> + *
+> + * Device tree describing Intel Thunder Bay Hybrid HDDL Prime configuration
+> + * board
+> + *
+> + * DDR 8GB + 4GB with vpu slice 1 and vpu slice 2
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "thunderbay-soc.dtsi"
+> +
+> +/ {
+> +	model = "Intel Thunder Bay Hybrid HDDL Prime Board";
+> +	compatible = "intel,thunderbay";
+> +
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +		serial1 = &uart1;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	memory@100A000000 {
+> +		device_type = "memory";
+> +		/* 8GB of DDR memory */
+> +		reg = <0x10 0x0A000000 0x2 0x0>;
+> +	};
+> +
+> +	memory@1200000000 {
+> +		device_type = "memory";
+> +		/* 4GB of DDR memory */
+> +		reg = <0x12 0x0 0x1 0x0>;
+> +	};
+> +
+> +};
+> diff --git a/arch/arm64/boot/dts/intel/hddl_hybrid_2s_13.dts b/arch/arm64/boot/dts/intel/hddl_hybrid_2s_13.dts
+> new file mode 100644
+> index 0000000..6529664
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/intel/hddl_hybrid_2s_13.dts
+> @@ -0,0 +1,43 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-3-Clause)
+> +/*
+> + * Copyright (c) 2021 Intel Corporation.
+> + *
+> + * Device tree describing Intel Thunder Bay Hybrid HDDL Prime configuration
+> + * board
+> + *
+> + * DDR 8GB + 4GB with vpu slice 1 and vpu slice 3
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "thunderbay-soc.dtsi"
+> +
+> +/ {
+> +	model = "Intel Thunder Bay Hybrid HDDL Prime Board";
+> +	compatible = "intel,thunderbay";
+> +
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +		serial1 = &uart1;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	memory@100A000000 {
+> +		device_type = "memory";
+> +		/* 8GB of DDR memory */
+> +		reg = <0x10 0x0A000000 0x2 0x0>;
+> +	};
+> +
+> +	memory@1200000000 {
+> +		device_type = "memory";
+> +		/* 4GB of DDR memory */
+> +		reg = <0x12 0x0 0x1 0x0>;
+> +	};
+> +
+> +};
+
+These all look the same, why do we need 4 copies?
+
+> diff --git a/arch/arm64/boot/dts/intel/hddl_hybrid_4s.dts b/arch/arm64/boot/dts/intel/hddl_hybrid_4s.dts
+> new file mode 100644
+> index 0000000..561ecea
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/intel/hddl_hybrid_4s.dts
+> @@ -0,0 +1,54 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-3-Clause)
+> +/*
+> + * Copyright (c) 2021 Intel Corporation.
+> + *
+> + * Device tree describing Intel Thunder Bay Hybrid HDDL Full configuration
+> + * board
+> + *
+> + * DDR 8GB + 8GB + 4GB + 4GB with four vpu slices
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "thunderbay-soc.dtsi"
+> +
+> +/ {
+> +	model = "Intel Thunder Bay Hybrid HDDL Full Board";
+> +	compatible = "intel,thunderbay";
+> +
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +		serial1 = &uart1;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	memory@100A000000 {
+> +		device_type = "memory";
+> +		/* 8GB of DDR memory */
+> +		reg = <0x10 0x0A000000 0x2 0x0>;
+> +	};
+> +
+> +	memory@1200000000 {
+> +		device_type = "memory";
+> +		/* 8GB of DDR memory */
+> +		reg = <0x12 0x0 0x2 0x0>;
+> +	};
+> +
+> +	memory@1400000000 {
+> +		device_type = "memory";
+> +		/* 4GB of DDR memory */
+> +		reg = <0x14 0x0 0x1 0x0>;
+> +	};
+> +
+> +	memory@1500000000 {
+> +		device_type = "memory";
+> +		/* 4GB of DDR memory */
+> +		reg = <0x15 0x0 0x1 0x0>;
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/intel/thunderbay-soc.dtsi b/arch/arm64/boot/dts/intel/thunderbay-soc.dtsi
+> new file mode 100644
+> index 0000000..834200d
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/intel/thunderbay-soc.dtsi
+> @@ -0,0 +1,243 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-3-Clause)
+> +/*
+> + * Copyright (c) 2021 Intel Corporation.
+> + *
+> + * Device tree describing Thunder Bay SoC
+> + */
+> +
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +/ {
+> +
+> +	compatible = "intel,thunderbay";
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +	interrupt-parent = <&gic>;
+> +
+> +	cpus {
+> +		#address-cells = <2>;
+> +		#size-cells = <0>;
+> +
+> +		cpu-map {
+> +			cluster0 {
+> +				core0 {
+> +					cpu = <&CPU0>;
+> +				};
+> +				core1 {
+> +					cpu = <&CPU1>;
+> +				};
+> +				core2 {
+> +					cpu = <&CPU2>;
+> +				};
+> +				core3 {
+> +					cpu = <&CPU3>;
+> +				};
+> +			};
+> +			cluster1 {
+> +				core0 {
+> +					cpu = <&CPU4>;
+> +				};
+> +				core1 {
+> +					cpu = <&CPU5>;
+> +				};
+> +				core2 {
+> +					cpu = <&CPU6>;
+> +				};
+> +				core3 {
+> +					cpu = <&CPU7>;
+> +				};
+> +			};
+> +			cluster2 {
+> +				core0 {
+> +					cpu = <&CPU8>;
+> +				};
+> +				core1 {
+> +					cpu = <&CPU9>;
+> +				};
+> +				core2 {
+> +					cpu = <&CPU10>;
+> +				};
+> +				core3 {
+> +					cpu = <&CPU11>;
+> +				};
+> +			};
+> +			cluster3 {
+> +				core0 {
+> +					cpu = <&CPU12>;
+> +				};
+> +				core1 {
+> +					cpu = <&CPU13>;
+> +				};
+> +				core2 {
+> +					cpu = <&CPU14>;
+> +				};
+> +				core3 {
+> +					cpu = <&CPU15>;
+> +				};
+> +			};
+> +		};
+> +
+> +		CPU0: cpu@0 {
+> +			compatible = "arm,cortex-a53";
+> +			device_type = "cpu";
+> +			reg = <0x0 0x0>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		CPU1: cpu@1 {
+> +			compatible = "arm,cortex-a53";
+> +			device_type = "cpu";
+> +			reg = <0x0 0x1>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		CPU2: cpu@2 {
+> +			compatible = "arm,cortex-a53";
+> +			device_type = "cpu";
+> +			reg = <0x0 0x2>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		CPU3: cpu@3 {
+> +			compatible = "arm,cortex-a53";
+> +			device_type = "cpu";
+> +			reg = <0x0 0x3>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		CPU4: cpu@100 {
+> +			compatible = "arm,cortex-a53";
+> +			device_type = "cpu";
+> +			reg = <0x0 0x100>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		CPU5: cpu@101 {
+> +			compatible = "arm,cortex-a53";
+> +			device_type = "cpu";
+> +			reg = <0x0 0x101>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		CPU6: cpu@102 {
+> +			compatible = "arm,cortex-a53";
+> +			device_type = "cpu";
+> +			reg = <0x0 0x102>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		CPU7: cpu@103 {
+> +			compatible = "arm,cortex-a53";
+> +			device_type = "cpu";
+> +			reg = <0x0 0x103>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		CPU8: cpu@200 {
+> +			compatible = "arm,cortex-a53";
+> +			device_type = "cpu";
+> +			reg = <0x0 0x200>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		CPU9: cpu@201 {
+> +			compatible = "arm,cortex-a53";
+> +			device_type = "cpu";
+> +			reg = <0x0 0x201>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		CPU10: cpu@202 {
+> +			compatible = "arm,cortex-a53";
+> +			device_type = "cpu";
+> +			reg = <0x0 0x202>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		CPU11: cpu@203 {
+> +			compatible = "arm,cortex-a53";
+> +			device_type = "cpu";
+> +			reg = <0x0 0x203>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		CPU12: cpu@300 {
+> +			compatible = "arm,cortex-a53";
+> +			device_type = "cpu";
+> +			reg = <0x0 0x300>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		CPU13: cpu@301 {
+> +			compatible = "arm,cortex-a53";
+> +			device_type = "cpu";
+> +			reg = <0x0 0x301>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		CPU14: cpu@302 {
+> +			compatible = "arm,cortex-a53";
+> +			device_type = "cpu";
+> +			reg = <0x0 0x302>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		CPU15: cpu@303 {
+> +			compatible = "arm,cortex-a53";
+> +			device_type = "cpu";
+> +			reg = <0x0 0x303>;
+> +			enable-method = "psci";
+> +		};
+> +	};
+> +
+> +	psci {
+> +		compatible = "arm,psci-0.2";
+
+PSCI 1.0 has been out for 6 years...
+
+> +		method = "smc";
+> +	};
+> +
+> +	gic: interrupt-controller@88400000 {
+> +		compatible = "arm,gic-v3";
+> +		interrupt-controller;
+> +		#interrupt-cells = <3>;
+> +		reg = <0x0 0x88400000 0x0 0x200000>,	/* GICD */
+> +		      <0x0 0x88600000 0x0 0x200000>;	/* GICR */
+> +		/* VGIC maintenance interrupt */
+> +		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		/* Secure, non-secure, virtual, and hypervisor */
+> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH>;
+> +	};
+> +
+> +	soc {
+> +		compatible = "simple-bus";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +		dma-ranges;
+> +
+> +		uart0: serial@80460000 {
+> +			compatible = "snps,dw-apb-uart";
+> +			reg = <0x0 0x80460000 0x0 0x100>;
+> +			interrupts = <GIC_SPI 725 IRQ_TYPE_LEVEL_HIGH>;
+> +			clock-frequency = <50000000>;
+> +			reg-shift = <2>;
+> +			reg-io-width = <4>;
+> +		};
+> +
+> +		uart1: serial@80470000 {
+> +			compatible = "snps,dw-apb-uart";
+> +			reg = <0x0 0x80470000 0x0 0x100>;
+> +			interrupts = <GIC_SPI 724 IRQ_TYPE_LEVEL_HIGH>;
+> +			clock-frequency = <50000000>;
+> +			reg-shift = <2>;
+> +			reg-io-width = <4>;
+> +			status = "disabled";
+> +		};
+> +	};
+> +};
+> -- 
+> 2.7.4
+> 
+> 
