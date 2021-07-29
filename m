@@ -2,149 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ED7B3DA3D1
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 15:20:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 984FC3DA409
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 15:26:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237389AbhG2NUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 09:20:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44064 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237344AbhG2NUd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 09:20:33 -0400
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DD5EC061765
-        for <devicetree@vger.kernel.org>; Thu, 29 Jul 2021 06:20:30 -0700 (PDT)
-Received: by mail-pj1-x102a.google.com with SMTP id g23-20020a17090a5797b02901765d605e14so9235899pji.5
-        for <devicetree@vger.kernel.org>; Thu, 29 Jul 2021 06:20:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Dn16VRGzINjpK5hTkcROYonwyO77GNzKhrw6QPtb+WU=;
-        b=UGHYkoDL7+nEZ+Ici1GVaiIpoD7un33lWWCEf4TVNKpJZjvFUFTBaCsYxSYJMq7F7t
-         kjEuDYUfGdm2Y6esFw8K58f+EtxqDY5JhVZLQ7fzcMwehxZ/F3219Hp4LfVIgxqlvVUl
-         BPRICJBCxma317as9WmiDNoqXmVh6wgIbhnpN4smFb3XFiVF3Def2iBGIsnHGWpMY6xf
-         NzTuG6Px+qvjkyin3DpjfFz7pinhGGfhL88FXiVFxz3uo6Bv2AleoBCaTbdqm8SWUL4T
-         hDwnFgPcmBMW6URS35QlFCYGwuYjDtVuMcuWY2k65CTNCOt16N46Hcd0YWKwDp23uB7b
-         q4pQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Dn16VRGzINjpK5hTkcROYonwyO77GNzKhrw6QPtb+WU=;
-        b=hWTYSUZEVtn20D0m+BraivEC8aLEMqiMdrTqbPstYZPmrhaVHrb+LnqmmcEZ7S9gky
-         rVM6nnCtUIvf8TgLv/EA2Y9ifxe58Z/y4nTU9Emje99xStYJ4jFEDXpfJWYrGZvyM0r1
-         5eDZqz0tu22Rl/ovYBswAP32dYEwkFBU25RormDh6peaMPudUJ2rM9KHFe+i1arFISiW
-         2QXhsZpClSF+uxvslGlwTXZAcBbQXNskbJ0Tn+d7r18XbJP+Kivv8Jrn+jp783ED+MiI
-         tl9koIAkVVIljrnXT/Ngcb3C22zOwrwLcBL/sgjhBKzEyPTjHtir8crnjsttIhDKF/S9
-         lEEQ==
-X-Gm-Message-State: AOAM5328r6jzx5RfoxpeWb1d1kviYjbbvaXbpc9jcG6to/HHFxg8i26F
-        wr7AXezn+3Xux/eKjty7OIC1xCYapF7+tidWPhXakw==
-X-Google-Smtp-Source: ABdhPJwZGMBeDDIs8OW6egcQktP4OuNjLmCnf0s9q2ER3N5wFGSw0h4xjwRmt/xhkYeiRPsvGus7PV8t11L557Z5dnY=
-X-Received: by 2002:a63:494f:: with SMTP id y15mr3798897pgk.185.1627564829264;
- Thu, 29 Jul 2021 06:20:29 -0700 (PDT)
+        id S237579AbhG2N0Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 09:26:16 -0400
+Received: from relay06.th.seeweb.it ([5.144.164.167]:50299 "EHLO
+        relay06.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237344AbhG2N0O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 09:26:14 -0400
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 61D393F359;
+        Thu, 29 Jul 2021 15:26:08 +0200 (CEST)
+Subject: Re: [PATCH v7 5/5] dt-bindings: soc: qcom: spm: Document SDM660 and
+ MSM8998 compatibles
+To:     Rob Herring <robh@kernel.org>
+Cc:     bjorn.andersson@linaro.org, agross@kernel.org,
+        daniel.lezcano@linaro.org, rjw@rjwysocki.net,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, jeffrey.l.hugo@gmail.com,
+        jami.kettunen@somainline.org,
+        ~postmarketos/upstreaming@lists.sr.ht, devicetree@vger.kernel.org,
+        stephan@gerhold.net
+References: <20210622141117.358893-1-angelogioacchino.delregno@somainline.org>
+ <20210622141117.358893-6-angelogioacchino.delregno@somainline.org>
+ <20210713222111.GA944952@robh.at.kernel.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Message-ID: <285d7b38-da08-e263-d664-1cdf73d7c0d1@somainline.org>
+Date:   Thu, 29 Jul 2021 15:26:08 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-References: <20210704090230.26489-1-jagan@amarulasolutions.com> <20210704090230.26489-6-jagan@amarulasolutions.com>
-In-Reply-To: <20210704090230.26489-6-jagan@amarulasolutions.com>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Thu, 29 Jul 2021 15:20:17 +0200
-Message-ID: <CAG3jFytHb=iOc6CHy47iGwvxuSg1UMqnpE7oFZL9tfcPUB22eA@mail.gmail.com>
-Subject: Re: [RFC PATCH 05/17] drm/exynos: dsi: Get the mode from bridge
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Inki Dae <inki.dae@samsung.com>,
-        Joonyoung Shim <jy0922.shim@samsung.com>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        Marek Vasut <marex@denx.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-samsung-soc@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210713222111.GA944952@robh.at.kernel.org>
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Jagan,
+Il 14/07/21 00:21, Rob Herring ha scritto:
+> On Tue, Jun 22, 2021 at 04:11:17PM +0200, AngeloGioacchino Del Regno wrote:
+>> The driver was updated to add SAW2 v4.1 support for new SoCs: document
+>> the new compatibles.
+> 
+> Can't take patches without a S-o-b. Run checkpatch.pl, it points this
+> out for you.
+> 
 
-On Sun, 4 Jul 2021 at 11:04, Jagan Teki <jagan@amarulasolutions.com> wrote:
->
-> Now the exynos dsi driver is fully aware of bridge
-> handling, so get the display mode from bridge, mode_set
-> API instead of legacy encoder crtc.
->
-> This makes bridge usage more efficient instead of relying
-> on encoder stack.
->
-> Add mode_set in drm_bridge_funcs.
->
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> ---
->  drivers/gpu/drm/exynos/exynos_drm_dsi.c | 13 ++++++++++++-
->  1 file changed, 12 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/exynos/exynos_drm_dsi.c b/drivers/gpu/drm/exynos/exynos_drm_dsi.c
-> index d828be07c325..99a1b8c22313 100644
-> --- a/drivers/gpu/drm/exynos/exynos_drm_dsi.c
-> +++ b/drivers/gpu/drm/exynos/exynos_drm_dsi.c
-> @@ -275,6 +275,7 @@ struct exynos_dsi {
->         u32 format;
->
->         int state;
-> +       struct drm_display_mode mode;
->         struct drm_property *brightness;
->         struct completion completed;
->
-> @@ -881,7 +882,7 @@ static int exynos_dsi_init_link(struct exynos_dsi *dsi)
->
->  static void exynos_dsi_set_display_mode(struct exynos_dsi *dsi)
->  {
-> -       struct drm_display_mode *m = &dsi->encoder.crtc->state->adjusted_mode;
-> +       struct drm_display_mode *m = &dsi->mode;
->         unsigned int num_bits_resol = dsi->driver_data->num_bits_resol;
->         u32 reg;
->
-> @@ -1411,6 +1412,15 @@ static void exynos_dsi_bridge_disable(struct drm_bridge *bridge)
->         pm_runtime_put_sync(dsi->dev);
->  }
->
-> +static void exynos_dsi_bridge_mode_set(struct drm_bridge *bridge,
-> +                                      const struct drm_display_mode *mode,
-> +                                      const struct drm_display_mode *adjusted_mode)
-> +{
-> +       struct exynos_dsi *dsi = bridge_to_dsi(bridge);
-> +
-> +       drm_mode_copy(&dsi->mode, adjusted_mode);
-> +}
-> +
->  static int exynos_dsi_panel_or_bridge(struct exynos_dsi *dsi,
->                                       struct device_node *node)
->  {
-> @@ -1451,6 +1461,7 @@ static int exynos_dsi_bridge_attach(struct drm_bridge *bridge,
->  static const struct drm_bridge_funcs exynos_dsi_bridge_funcs = {
->         .enable = exynos_dsi_bridge_enable,
->         .disable = exynos_dsi_bridge_disable,
-> +       .mode_set = exynos_dsi_bridge_mode_set,
+I am truly sorry for missing my S-o-b.
 
-As far as I understand it, .enable(), .disable() &.mode_set() are
-deprecated[1] and should be replaced by atomic_enable(),
-atomic_disable() & atomic_enable() respectively.
+>> ---
+>>   .../bindings/soc/qcom/qcom,spm.yaml           | 21 +++++++++++++++++++
+>>   1 file changed, 21 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
+>> index 4aaa319b2932..0faf52700dec 100644
+>> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
+>> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
+>> @@ -17,6 +17,10 @@ description: |
+>>   properties:
+>>     compatible:
+>>       enum:
+>> +      - qcom,sdm660-gold-saw2-v4.1-l2
+>> +      - qcom,sdm660-silver-saw2-v4.1-l2
+>> +      - qcom,msm8998-gold-saw2-v4.1-l2
+>> +      - qcom,msm8998-silver-saw2-v4.1-l2
+> 
+> What's the difference between gold and silver? Are the h/w instances
+> different (I realize the CPUs are) in some way? How does the OS use the
+> different compatible strings?
+> 
 
-[1] https://lore.kernel.org/dri-devel/20210722062246.2512666-8-sam@ravnborg.org/
+They have different configuration parameters and the HW instances should
+be different indeed (at least from what I remember), plus they're always
+at different iostart.
 
->         .attach = exynos_dsi_bridge_attach,
->  };
->
-> --
-> 2.25.1
->
+The driver is using the different compatible strings to choose which
+configuration gets written. You can also avoid writing the configuration
+to one of them or both (if you wish to lose capabilities given by this
+driver, perhaps also if you want to simply never use the gold cluster, for
+example).
+
+
+>>         - qcom,msm8974-saw2-v2.1-cpu
+>>         - qcom,apq8084-saw2-v2.1-cpu
+>>         - qcom,apq8064-saw2-v1.1-cpu
+>> @@ -33,6 +37,8 @@ additionalProperties: false
+>>   
+>>   examples:
+>>     - |
+>> +
+>> +    /* Example 1: SoC using SAW2 and kpss-acc-v2 CPUIdle */
+>>       cpus {
+>>           #address-cells = <1>;
+>>           #size-cells = <0>;
+>> @@ -52,4 +58,19 @@ examples:
+>>           reg = <0xf9089000 0x1000>;
+>>       };
+>>   
+>> +  - |
+>> +
+>> +    /* Example 2: New-gen multi cluster SoC using SAW only for L2;
+>> +     * This does not require any cpuidle driver, nor any cpu phandle.
+>> +     */
+>> +    power-controller@17812000 {
+>> +        compatible = "qcom,msm8998-gold-saw2-v4.1-l2", "qcom,saw2";
+>> +        reg = <0x17812000 0x1000>;
+>> +    };
+>> +
+>> +    power-controller@17912000 {
+>> +        compatible = "qcom,msm8998-silver-saw2-v4.1-l2", "qcom,saw2";
+>> +        reg = <0x17912000 0x1000>;
+>> +    };
+>> +
+>>   ...
+>> -- 
+>> 2.32.0
+>>
+>>
+
