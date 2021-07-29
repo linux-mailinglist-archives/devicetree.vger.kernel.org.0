@@ -2,59 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 237EA3D9F47
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 10:16:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95C863D9F78
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 10:25:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234986AbhG2IQm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 04:16:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57304 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234713AbhG2IQl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Jul 2021 04:16:41 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id F09C760F00;
-        Thu, 29 Jul 2021 08:16:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627546599;
-        bh=QLpJ27PpjgHdqk/SlCGrFqNXAoLhxUMJjnxd/c2gf+8=;
-        h=References:From:To:Cc:Subject:Date:In-reply-to:From;
-        b=KWNS7dkG9sDogu9P5keLwLeV50fVVBVsj/YBW9QQsN15NfT2bVOLAq2srlje8LD+n
-         LFiYdIbscJY48siDXM6qSn38jpiSZI5bKfkVuoWHp2R8UHmIQxsy0gxO+yWjevqvxd
-         RssObJ9uDmLNwq1pcAgwzRiZ+gGyWSuea1nxhpo+Su+xLL4sBwrlCZ+rjT+C9MryI2
-         rSo//xgW1RXoVD6sskTJGnBOg+fD+m92eS3DIhggFniG/6pN4kxMWQ7rjvcvgkq1N7
-         9JzdEFbQcsf80oz3uCV1EhE74eE+T1bh6fH6l8wrzRR7T+UH6ISGmomruhrrCRhrJd
-         M8Y1RA4ta28LA==
-References: <20210728221921.52068-1-konrad.dybcio@somainline.org>
-User-agent: mu4e 1.6.0; emacs 27.2
-From:   Felipe Balbi <balbi@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] drivers: usb: dwc3-qcom: Add sdm660 compatible
-Date:   Thu, 29 Jul 2021 11:16:19 +0300
-In-reply-to: <20210728221921.52068-1-konrad.dybcio@somainline.org>
-Message-ID: <87wnp9v8ke.fsf@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain
+        id S234912AbhG2IZb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 04:25:31 -0400
+Received: from relmlor2.renesas.com ([210.160.252.172]:58501 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S234673AbhG2IZ3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Jul 2021 04:25:29 -0400
+X-IronPort-AV: E=Sophos;i="5.84,278,1620658800"; 
+   d="scan'208";a="89101697"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 29 Jul 2021 17:25:25 +0900
+Received: from localhost.localdomain (unknown [10.226.92.2])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id C2BE8420869A;
+        Thu, 29 Jul 2021 17:25:22 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v5 0/3] Add RZ/G2L DMAC support
+Date:   Thu, 29 Jul 2021 09:25:17 +0100
+Message-Id: <20210729082520.26186-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch series aims to add DMAC support on RZ/G2L SoC's.
 
-Konrad Dybcio <konrad.dybcio@somainline.org> writes:
+It is based on the work done by Chris Brandt for RZ/A DMA driver.
 
-> Add a new compatible for SDM660's DWC3.
->
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+v4->v5:
+ * Passing legacy slave channel configuration parameters using dmaengine_slave_config is prohibited.
+   So started passing this parameters in DT instead, by encoding MID/RID values with channel parameters
+   in the #dma-cells.
+ * Removed Rb tag's of Geert and Rob since there is a modification in binding patch
+ * Added 128 byte slave bus width support
+ * Removed SoC dtsi and Defconfig patch from this series. Will send as separate patch.
 
-Acked-by: Felipe Balbi <balbi@kernel.org>
+Ref:-
+  https://lore.kernel.org/linux-renesas-soc/20210719092535.4474-1-biju.das.jz@bp.renesas.com/T/#ma0b261df6d4400882204aaaaa014ddb59c479db4
+
+v3->v4:
+ * Added Rob's Rb tag for binding patch.
+ * Incorporated Vinod and Geert's review comments.
+v2->v3:
+  * Described clocks and resets in binding file as per Rob's feedback.
+
+v1->v2
+ * Started using virtual DMAC
+ * Added Geert's Rb tag for binding patch.
+
+Biju Das (3):
+  dt-bindings: dma: Document RZ/G2L bindings
+  dmaengine: Extend the dma_slave_width for 128 bytes
+  drivers: dma: sh: Add DMAC driver for RZ/G2L SoC
+
+ .../bindings/dma/renesas,rz-dmac.yaml         | 130 +++
+ drivers/dma/sh/Kconfig                        |   9 +
+ drivers/dma/sh/Makefile                       |   1 +
+ drivers/dma/sh/rz-dmac.c                      | 971 ++++++++++++++++++
+ include/linux/dmaengine.h                     |   3 +-
+ 5 files changed, 1113 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
+ create mode 100644 drivers/dma/sh/rz-dmac.c
 
 -- 
-balbi
+2.17.1
+
