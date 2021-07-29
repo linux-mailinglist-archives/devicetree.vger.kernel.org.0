@@ -2,166 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5106C3DA11A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 12:34:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D4AB3DA188
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 12:50:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235721AbhG2KeX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 06:34:23 -0400
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:58237 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232054AbhG2KeV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Jul 2021 06:34:21 -0400
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 094EE580CD9;
-        Thu, 29 Jul 2021 06:34:18 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute1.internal (MEProxy); Thu, 29 Jul 2021 06:34:18 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
-         h=from:to:cc:subject:date:message-id:mime-version
-        :content-transfer-encoding; s=fm1; bh=V4C55hsRueWa8C1kkzjddTo5uH
-        zR8ZYH9nUiecGcVuk=; b=g+/XtHHoj3CfrBsfqDX/52EObavJ6dr8GOdOXNlJXB
-        wUmP46oD+pYDLpPRhXUL8HvVo6ZWLOPZZdlt0rTkuwj6LKta5dMfYHdjdsIEEiw4
-        Gy9NoN98v4UGCjDA4iKpderM3SF/vih4XagQKyI1gBXg5FISeTzQjdup0UqoG5Ln
-        dJE96WL5fqfare0QQCBW3AmreJZRGYJ4hOLyxI5/ZOEVncWzaOxibp6RqglMEWiA
-        P1XI+MlSCjnVnS18/6kSei9oirsRzS69LjjIFQvRy3zUd3BUrKEk8wQGRwbs5c9Z
-        gY0ToJlOKJx5AKqXFz13fn25JIQtZx1EFwNn2d6/Ujnw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=V4C55hsRueWa8C1kk
-        zjddTo5uHzR8ZYH9nUiecGcVuk=; b=GrHseugRFsVX7h2G58XQ7y1K5rZAGKwrN
-        Eiw3KAZm87qiiDSyQgT8XtpWPZmAupJ7euCdeiBbKHq1T8jCGaowENUU9+gXB7zd
-        93Zao0mxxGJWWCKTeW0obIYRSPO+FpCeKN9lkWuBepIR01exzPHG+/N87zLJZS5p
-        d+FaVNa3IfnXilEW0qXx165JAhqsASUhxdxBNi/cAepx3eDIIg5k9tDVjp2NC61Q
-        f3RuPTTVLSKueyWIUENklDwE8b2/+ywAD6T9IGXlSkxYJAcUyfQPOYRJeoPlBgzW
-        8T8JDvngxmM54/KumZkWxhNuuFsDj6jhHwDDQiQaPXkjCCIWezzNQ==
-X-ME-Sender: <xms:J4QCYR8L6XPQ8MERFwA4-FnXTX5NkjqCuP4DsO-u_QXRPTU6IxYH5A>
-    <xme:J4QCYVuywSTSMtVD8_ddIyoCipbLVhRdcz0MwcJ2A78CU54RJBvppZSSD4bwi-Zwt
-    ebFYcmfzPF3LEX6LTQ>
-X-ME-Received: <xmr:J4QCYfAK-_mYamets8ftnz4zct_LDxMGi9r1KiIxIM9h17ylmy_gxw2qR3SfDyY2GB2jNUahXkKfcp2nthU1BuxqWKmZEwGXei99DiGw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrhedugddvudcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomheptehlihhsthgrihhr
-    ucfhrhgrnhgtihhsuceorghlihhsthgrihhrsegrlhhishhtrghirhdvfedrmhgvqeenuc
-    ggtffrrghtthgvrhhnpefghfegkeejtddvfeekjeelgeffhefhvddvvddtvefgfffftdek
-    geeljeefvdeiudenucffohhmrghinhepvghinhhkrdgtohhmnecuvehluhhsthgvrhfuih
-    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghlihhsthgrihhrsegrlhhishht
-    rghirhdvfedrmhgv
-X-ME-Proxy: <xmx:J4QCYVe02nXhSMk0zWzqSkERFmklr-Rj0DyB70Y6j6mSmZ5QEJcG6g>
-    <xmx:J4QCYWO3nJr2iz34JRFe_38l047YF9KQE5dysCYn5MVXO8LDaxYg8w>
-    <xmx:J4QCYXmjpwvPQap6kgZMNVjAN0zvilueH-uJ37r08cdML3tneSLrCQ>
-    <xmx:KoQCYTvJB0tKhA5yeCNgIAdREBGd69MS684CWuztX_alZgWgPNt20w>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 29 Jul 2021 06:34:07 -0400 (EDT)
-From:   Alistair Francis <alistair@alistair23.me>
-To:     robh+dt@kernel.org, thierry.reding@gmail.com, sam@ravnborg.org,
-        krzk@kernel.org, shawnguo@kernel.org, daniel@0x0f.com,
-        linux@rempel-privat.de, kuninori.morimoto.gx@renesas.com,
-        max.Merchel@tq-group.com, geert+renesas@glider.be,
-        airlied@linux.ie, daniel@ffwll.ch
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, alistair23@gmail.com,
-        Alistair Francis <alistair@alistair23.me>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v4] drm/panel: Add support for E Ink VB3300-KCA
-Date:   Thu, 29 Jul 2021 20:33:58 +1000
-Message-Id: <20210729103358.209-1-alistair@alistair23.me>
-X-Mailer: git-send-email 2.20.1
+        id S234000AbhG2Ku5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 06:50:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36320 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232135AbhG2Ku5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 06:50:57 -0400
+Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B90FC0613C1
+        for <devicetree@vger.kernel.org>; Thu, 29 Jul 2021 03:50:54 -0700 (PDT)
+Received: by mail-qv1-xf36.google.com with SMTP id 3so3156627qvd.2
+        for <devicetree@vger.kernel.org>; Thu, 29 Jul 2021 03:50:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=7LDSqJbg5uCatZHHPu87WA9Bh6dYYJKdoQ4UcOW9Nqk=;
+        b=R+6Utq/mypO/2BTESax//iPcjehFNB85vYbB++C51eQcimGRAY1islhP1BkqB4EO6f
+         eD1GDVj7bSuVkbDfpXdRLtnvnyjaqxTal+EM+ROj+JJzMV531IrZCIrWLXWK7q52Va8S
+         QMxIeu+c01guO+Dyygq2Obc4YFHokMC7XAarXF/dc5BJ1rhFbX4nTD2wpekkOWp6HaTy
+         r+gCjeMzIf3XVBnbWPcCBpibBJmKHUUumHJ+eIN0A5JttMhW6SS2z2Ipo0dWJd8+2ilc
+         hQtG8NaIMqL2frteNVLJEavYWuB6N3t3/R0k55rZKTXK+NM0vysud8OMLaa8GlnOuidt
+         sZBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=7LDSqJbg5uCatZHHPu87WA9Bh6dYYJKdoQ4UcOW9Nqk=;
+        b=H2sWguwAgDL66b/ZQ28tqEm7DsrGAoKPGCp88n+4uhyVRnmCC0rIN4udbn3cg1W9d0
+         jtZcIP9htjzkGLDc0td0UgDoLgfw0n39L9yi/Y4s2Gy8OpusM+sTKSY9Z6jVdoCojLCB
+         rg8EVVqebSUD/Mx3viqTdf3kRYryUR0jyYfINm4Yg0cDZON2Xw8Zrocizg3JsGH3/320
+         5jFCPKDx4mJAjWtcriYO9y92+tV/DWmpkAI67ivjg/euqsyZpdZd30REUWj9W8yEeCKJ
+         9xZiyNnKyd7kKtiLZ8oDVbg8Ii32Iz1AGP0mcOWPiZOc7y6+452vNVYIXZgQ9e/lIgCw
+         VF1g==
+X-Gm-Message-State: AOAM530Wo70Da2sJqkSYhWSwXozybnvAIILQvWxBjex42KsP3IYic7dc
+        9SKK2SMEh7CRYn0aCDwzAUcauw==
+X-Google-Smtp-Source: ABdhPJymclFCGkiQXunpw1ReNKgxD5q725uzyeVyljJl8XX1w+h0z08VUI397n+uEQLXPhkGIF4G1w==
+X-Received: by 2002:a0c:e087:: with SMTP id l7mr4591930qvk.23.1627555853690;
+        Thu, 29 Jul 2021 03:50:53 -0700 (PDT)
+Received: from [192.168.1.93] (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
+        by smtp.gmail.com with ESMTPSA id 188sm1515483qkj.48.2021.07.29.03.50.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Jul 2021 03:50:52 -0700 (PDT)
+Subject: Re: [PATCH 14/39] arm64: dts: qcom: sdm630: Add TSENS node
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht
+Cc:     martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210728222542.54269-1-konrad.dybcio@somainline.org>
+ <20210728222542.54269-15-konrad.dybcio@somainline.org>
+From:   Thara Gopinath <thara.gopinath@linaro.org>
+Message-ID: <860f1120-c5a4-f531-3ea9-aa90c6b063dc@linaro.org>
+Date:   Thu, 29 Jul 2021 06:50:52 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210728222542.54269-15-konrad.dybcio@somainline.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the 10.3" E Ink panel described at:
-https://www.eink.com/product.html?type=productdetail&id=7
+Hi Konrad,
 
-Signed-off-by: Alistair Francis <alistair@alistair23.me>
-Acked-by: Rob Herring <robh@kernel.org>
----
-v4:
- - Fixup alphebetical sorting
+On 7/28/21 6:25 PM, Konrad Dybcio wrote:
+> This will enable temperature reporting for various SoC
+> components.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> ---
+>   .../devicetree/bindings/thermal/qcom-tsens.yaml       |  1 +
+>   arch/arm64/boot/dts/qcom/sdm630.dtsi                  | 11 +++++++++++
+>   2 files changed, 12 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> index 4a2eaf28e3fd..d3b9e9b600a2 100644
+> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> @@ -48,6 +48,7 @@ properties:
+>                 - qcom,sc7180-tsens
+>                 - qcom,sc7280-tsens
+>                 - qcom,sc8180x-tsens
+> +              - qcom,sdm630-tsens
+>                 - qcom,sdm845-tsens
+>                 - qcom,sm8150-tsens
+>                 - qcom,sm8250-tsens
+> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> index 1e54828817d5..7e9c80e35fba 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> @@ -627,6 +627,17 @@ mnoc: interconnect@1745000 {
+>   				 <&mmcc AHB_CLK_SRC>;
+>   		};
+>   
+> +		tsens: thermal-sensor@10ae000 {
+> +			compatible = "qcom,sdm630-tsens", "qcom,tsens-v2";
+> +			reg = <0x010ae000 0x1000>, /* TM */
+> +				  <0x010ad000 0x1000>; /* SROT */
+> +			#qcom,sensors = <12>;
 
- .../bindings/display/panel/panel-simple.yaml  |  2 ++
- .../devicetree/bindings/vendor-prefixes.yaml  |  2 ++
- drivers/gpu/drm/panel/panel-simple.c          | 29 +++++++++++++++++++
- 3 files changed, 33 insertions(+)
+Are all 12 sensors used ? I see that in a later patch "arm64: dts: qcom: 
+sdm630: Add thermal-zones configuration" only 9 are used.
 
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-index b3797ba2698b..799e20222551 100644
---- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-@@ -128,6 +128,8 @@ properties:
-         # Emerging Display Technology Corp. WVGA TFT Display with capacitive touch
-       - edt,etm0700g0dh6
-       - edt,etm0700g0edh6
-+        # E Ink VB3300-KCA
-+      - eink,vb3300-kca
-         # Evervision Electronics Co. Ltd. VGG804821 5.0" WVGA TFT LCD Panel
-       - evervision,vgg804821
-         # Foxlink Group 5" WVGA TFT LCD panel
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 71da86e7b3a2..31745c45dd92 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -339,6 +339,8 @@ patternProperties:
-     description: eGalax_eMPIA Technology Inc
-   "^einfochips,.*":
-     description: Einfochips
-+  "^eink,.*":
-+    description: E Ink Corporation
-   "^elan,.*":
-     description: Elan Microelectronic Corp.
-   "^element14,.*":
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 21939d4352cf..8d6317b85465 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -2046,6 +2046,32 @@ static const struct panel_desc edt_etm0700g0bdh6 = {
- 	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_DRIVE_POSEDGE,
- };
- 
-+static const struct display_timing eink_vb3300_kca_timing = {
-+	.pixelclock = { 40000000, 40000000, 40000000 },
-+	.hactive = { 334, 334, 334 },
-+	.hfront_porch = { 1, 1, 1 },
-+	.hback_porch = { 1, 1, 1 },
-+	.hsync_len = { 1, 1, 1 },
-+	.vactive = { 1405, 1405, 1405 },
-+	.vfront_porch = { 1, 1, 1 },
-+	.vback_porch = { 1, 1, 1 },
-+	.vsync_len = { 1, 1, 1 },
-+	.flags = DISPLAY_FLAGS_HSYNC_LOW | DISPLAY_FLAGS_VSYNC_LOW |
-+		 DISPLAY_FLAGS_DE_HIGH | DISPLAY_FLAGS_PIXDATA_POSEDGE,
-+};
-+
-+static const struct panel_desc eink_vb3300_kca = {
-+	.timings = &eink_vb3300_kca_timing,
-+	.num_timings = 1,
-+	.bpc = 6,
-+	.size = {
-+		.width = 157,
-+		.height = 209,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
-+	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_DRIVE_POSEDGE,
-+};
-+
- static const struct display_timing evervision_vgg804821_timing = {
- 	.pixelclock = { 27600000, 33300000, 50000000 },
- 	.hactive = { 800, 800, 800 },
-@@ -4350,6 +4376,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "edt,etm0700g0edh6",
- 		.data = &edt_etm0700g0bdh6,
-+	}, {
-+		.compatible = "eink,vb3300-kca",
-+		.data = &eink_vb3300_kca,
- 	}, {
- 		.compatible = "evervision,vgg804821",
- 		.data = &evervision_vgg804821,
+> +			interrupts = <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>,
+> +					 <GIC_SPI 430 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "uplow", "critical";
+> +			#thermal-sensor-cells = <1>;
+> +		};
+> +
+>   		tcsr_mutex_regs: syscon@1f40000 {
+>   			compatible = "syscon";
+>   			reg = <0x01f40000 0x20000>;
+> 
+
 -- 
-2.31.1
-
+Warm Regards
+Thara (She/Her/Hers)
