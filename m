@@ -2,104 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 276EB3D9FD0
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 10:47:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DEEA3DA012
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 11:07:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235105AbhG2IrU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 04:47:20 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:47186 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S234878AbhG2IrU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 04:47:20 -0400
-X-UUID: 1be3e42e7bef43cba7867ad3766c9ec9-20210729
-X-UUID: 1be3e42e7bef43cba7867ad3766c9ec9-20210729
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <zhiyong.tao@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1199891843; Thu, 29 Jul 2021 16:47:15 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 29 Jul 2021 16:47:14 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 29 Jul 2021 16:47:13 +0800
-From:   Zhiyong Tao <zhiyong.tao@mediatek.com>
-To:     <timur@kernel.org>, <linux@armlinux.org.uk>, <alcooperx@gmail.com>,
-        <tklauser@distanz.ch>, <sean.wang@kernel.org>
-CC:     <srv_heupstream@mediatek.com>, <zhiyong.tao@mediatek.com>,
-        <hui.liu@mediatek.com>, <yuchen.huang@mediatek.com>,
-        <huihui.wang@mediatek.com>, <eddie.huang@mediatek.com>,
-        <sean.wang@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-serial@vger.kernel.org>
-Subject: [PATCH v2 1/1] serial: 8250_mtk: fix uart corruption issue when rx power off
-Date:   Thu, 29 Jul 2021 16:46:40 +0800
-Message-ID: <20210729084640.17613-2-zhiyong.tao@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210729084640.17613-1-zhiyong.tao@mediatek.com>
-References: <20210729084640.17613-1-zhiyong.tao@mediatek.com>
+        id S235197AbhG2JH6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 05:07:58 -0400
+Received: from mail-eopbgr10057.outbound.protection.outlook.com ([40.107.1.57]:32753
+        "EHLO EUR02-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S234936AbhG2JH5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Jul 2021 05:07:57 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KGi8X0ByfzdBm9EReBYgtjtX2QKPuLU5swT7EURZ7UA3wXhsRY6VWNjTskNklNDzdsdT8SAq8c39aTzKhEYe8fhbo/dNH2hZvGJrWNbeR+FbGT8yV9LKh6f1k/xrwv7Rz5ffLdTR3wacFnCn+4OPaRIyA9PmFttuNgHWcFLn2TWY9OZvMT0CAa9DgCFPIzUkQFJOhVELlcfncgqGIbvrDrnYYA/rF4IeIQmi97gs05nEdvZjp4zJ4gdl110cpOIRoWF6EcW16YQ2FXJKO71OmCG6mguuS/6skcaCJSurvxzEPX5sqMBl5SguxNz/Dq6Tc1MofArAwi77q8IAhXwcEQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=g+dlEyhVkpW9k3iK/hAVEwk/c/8LG3g62mGiG7XnXVs=;
+ b=AOh3LzA2dPu03Tw5Y7wb3+MJziPCfOe9+9PuynQdgK48Cn7H+tLMVsx65uX6mPTspcGhvitLPS/hZFLTsA2EBGIsNnvztR3fOJyorAoN17LrXoF6IcJyE6k+XtSkUNlIsHVR/efSj1MJUHfhHBh8uJwLdjJ3B8RTpBALZq/sRpQo/QWwYqZRwmkQklh5poGFePiNJa6fSwoCFkbEgklScU64ik0omurU6zly4A9fZdyJIvx+Wzop3v4QWIjeB2XHB5NKDnI60x2pCjshpq/6ydndzbJtPa/Q5GyiMeh25+C4MCA4eJl8IkT+rrBWB1BUNyM6wFdLsQnCNOn4Y8KS9A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=g+dlEyhVkpW9k3iK/hAVEwk/c/8LG3g62mGiG7XnXVs=;
+ b=oJwClmMVSMbDLl6Ac6Ax7PdFaFjX3gjc6acrPCTCMSm3Q54DNRlTdZx+088diblM8ttZCAXHl9fGHCDaWsYybIxEfLI2H0a/IRDAEpfp5vHtXKXOyO1WJzuynZeydmsNNvr3WJO7+qayjfhEuSPeBppjF652YFC+GEt9+v/4Z/M=
+Authentication-Results: rock-chips.com; dkim=none (message not signed)
+ header.d=none;rock-chips.com; dmarc=none action=none
+ header.from=wolfvision.net;
+Received: from DBBPR08MB4523.eurprd08.prod.outlook.com (2603:10a6:10:c8::19)
+ by DBAPR08MB5670.eurprd08.prod.outlook.com (2603:10a6:10:1a6::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.21; Thu, 29 Jul
+ 2021 09:07:52 +0000
+Received: from DBBPR08MB4523.eurprd08.prod.outlook.com
+ ([fe80::ade3:93e2:735c:c10b]) by DBBPR08MB4523.eurprd08.prod.outlook.com
+ ([fe80::ade3:93e2:735c:c10b%7]) with mapi id 15.20.4373.019; Thu, 29 Jul 2021
+ 09:07:52 +0000
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: rk3568-evb1-v10: add ethernet
+ support
+To:     Andrew Lunn <andrew@lunn.ch>, Peter Geis <pgwipeout@gmail.com>
+Cc:     devicetree@vger.kernel.org,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Liang Chen <cl@rock-chips.com>, Simon Xue <xxm@rock-chips.com>
+References: <20210728161020.3905-1-michael.riesch@wolfvision.net>
+ <20210728161020.3905-3-michael.riesch@wolfvision.net>
+ <YQGaAFvqqc7wXrWD@lunn.ch>
+ <CAMdYzYo8zf0wjtAxTuYQnZQsBtw38prNuAA0j0sBEamcbzZbfA@mail.gmail.com>
+ <YQHAHmMmysBVpF+m@lunn.ch>
+From:   Michael Riesch <michael.riesch@wolfvision.net>
+Organization: WolfVision GmbH
+Message-ID: <a01e7faf-4cfc-dc04-44ea-2b1e0724778b@wolfvision.net>
+Date:   Thu, 29 Jul 2021 11:07:50 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+In-Reply-To: <YQHAHmMmysBVpF+m@lunn.ch>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AM6PR08CA0026.eurprd08.prod.outlook.com
+ (2603:10a6:20b:c0::14) To DBBPR08MB4523.eurprd08.prod.outlook.com
+ (2603:10a6:10:c8::19)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.100.125] (91.118.163.37) by AM6PR08CA0026.eurprd08.prod.outlook.com (2603:10a6:20b:c0::14) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.18 via Frontend Transport; Thu, 29 Jul 2021 09:07:51 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: e72ca8c5-32a5-40bc-c39b-08d95270582f
+X-MS-TrafficTypeDiagnostic: DBAPR08MB5670:
+X-Microsoft-Antispam-PRVS: <DBAPR08MB56702BF1C25651C100E33046F2EB9@DBAPR08MB5670.eurprd08.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Nby37xrPybM9HZYbqXoGKiXdtRFujjh0MUGS1kZQ0bU1uNgXcl5vnMj+HjUO2FE9TfIoM8Pis98taJmbUTXoKnYraEW6Um2VAbgdObEMHkcGxQFU7kw4t+n90sBTPs2CPNiql6imLk494u67rUTKau0hrvY2pIkj8ZpsSjRt8sDTHiRFdV8/TKUCWI8SggZU8VelRE9YZ49o4hVvx+vwUyPuUpRXBvzJTXLZd0SzhxGQXQoYdR2pll/lxKnD5QuKKrVljOdL1Y60L/8EAEk89I3BD56E+4CBKhcoEJmLv0vywAI8uFK1cwTeOdF2/GvVq5EUHOrmUgo1Wq6MPcaKqWnhh6RVN7Kyqc/UNTd3mtLphYlcVHEp+lPITrLI7e0TJ8JhGqMIWAUD9NCUA24R7ee9lsWCv2MKImJOlKAsWj1mRNZRjW5vfV2A/kBNwld3qQMifwQehbq4ULIKsvYe3uSgvm1ryARLAxhrVrJNCj9UwvQ7WdMke3ACsDndDJtTYrE+J85H0TmarYQS1aZSPLWAldfQ0tOb+im9ZIweviVHvjwSg1Pu+MJYcif37TIoJx/Xu688M/a38jJyT3V219r7xbJ/984RTDjV3zQ8UlcmlDb6KQXfzV/ifpj++XEFFRWCwwokxBx3HFY0HzPJpgH9r/RpjBJ2XLyMEBGJgojMMX34b/k7iwR+MQiRg6vPBxAvnGw2YrMWx3MqKAQYE02BCBFgiraPrXpeMpdMNjfl45WzsDsy/cbybgTqIniptzxYG3IAlELkS5zGGutUJg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR08MB4523.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(39840400004)(396003)(346002)(376002)(366004)(8676002)(2906002)(7416002)(66556008)(66476007)(8936002)(53546011)(2616005)(6486002)(956004)(36916002)(31686004)(52116002)(66946007)(86362001)(44832011)(36756003)(478600001)(110136005)(4744005)(38350700002)(38100700002)(4326008)(5660300002)(26005)(54906003)(186003)(31696002)(316002)(16576012)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WHV0MmVualRHZUVwVTlTdmtlVEpUMWw1RlNLM0ZTYkttaWJrRStGTlppVitU?=
+ =?utf-8?B?VlVyYWdDU1kyY0xYeWh2cWg0cmVmaXZWdUc5eTQrRUR6Q3pPUXVnVndRS1RS?=
+ =?utf-8?B?N2ZlSGZXdEczbjlJTHRkWERMQkJTY3hvRVAzK1M5V0orWGhCemltSkFicEJo?=
+ =?utf-8?B?WEwxazV2R294c3h6N2dDNUZCaXZiM3lRRFZPMU95SFRIWjlETThXL0VvUUxR?=
+ =?utf-8?B?L3VTMmIyM1VOK2NtQ0gySTMvTzBkRy9jQmhYSlBlNjBCOTEyTlFmMlVWeHNk?=
+ =?utf-8?B?b29tVVhYZlB5YlRvQjltMkRrYzlBRmgrUWRUQVFYUFZvcEMxNnZ3VWN5SG9o?=
+ =?utf-8?B?Z2ZreTNINmNveGNXWXhXVTNQVUhaWFArQURUemgwNTZPUVN3blowOHlCQzZC?=
+ =?utf-8?B?MjUwV21oenZzcFcxNTJMZE1BajNTVEl5SnVJWFppVWFBa2VuR3JuTnNKZTZq?=
+ =?utf-8?B?SEpDM0tRNWY2ajdxU24zQ1VzUGxrV1phdXBmaU13USs0RGY0eE9ZdkFvZlFl?=
+ =?utf-8?B?aTJwdmFRZmRxVC9mUk1lTllrN0RIdm1wSHJhYzNIczcvQW5RcCtwMVVJQXZ2?=
+ =?utf-8?B?RFNrVGJxYWpBQ2RoREVHSlp3QUcxYW5mUDNyU2t3bnEzVVhyY2J3RzY5SG41?=
+ =?utf-8?B?cVloay9vZ3V0cEdpeTgrVkprUDNCYm5SWklXdXZ0TmtQcjU1MjR5eXd0a1JN?=
+ =?utf-8?B?cDhzU2xCMkt1MTAxQmtYNnAzQWhJWHlxcFBYMndpbEFPZFMxYU9UWERQaDZW?=
+ =?utf-8?B?TlVPZDlyTVhaTFdGdVVUdzBMVkxkTWxxR01QTzRhcVBxZzBXWUtiYmJmSWZF?=
+ =?utf-8?B?VFgyTG8zZ05JRkIzMHNEdG9TVE1qZFRBWnQzTnhTYzludk40dUhlMXp5WXQ0?=
+ =?utf-8?B?cXRBY2ZJSklveDIzbHNFeEo1cFU1SUlUR25RbEdYaDVmckxHWDRDQ09lVzAz?=
+ =?utf-8?B?Uks3d003RnNUSkRUQTNoR2o5aGwxMkJNSXVYWEtDSC8xbG9udCtTOW95Skh3?=
+ =?utf-8?B?N0ZNZTBLRENWRkdnclI5a28zdmowVCtmZ0w4ZkFjemNTU0lCTkUzR3lLSVk3?=
+ =?utf-8?B?d29oV0I5YW1ESEpuTkpERE9vUHFvTXdjMTZIYitpSDBwS3AxaEtSaWpzelVE?=
+ =?utf-8?B?dWtVb1dTOUN5TzU2K3NaOHh1ekMzc3hBalhnRXlwdlRzUzFvT1RDdFg5UHpO?=
+ =?utf-8?B?c2QvU2t5Nyt6bVF4cW0vYlFtL2pRSjV2MnUrMCtLTHhRcitzUk4yTWZOa3Rw?=
+ =?utf-8?B?MFM4YVRNTGcrVitTYkdvZUxmeVZjSmc1MGE1Z1ZYcU91VHl1cW16eG5HTjRP?=
+ =?utf-8?B?cGp0cHo4NDhoWTFmTmxqMTVTblJuaVNuTDZsaTV2TzJNMTZ5bmRMQUZUbHhH?=
+ =?utf-8?B?VlhvTlhIOVFjQys4czRPOTRodHVLVmtFZUYrMVQ0Y3YrTloyeG45WEFDdnUr?=
+ =?utf-8?B?aFc2STQ3dGVyakxLVEcwQm52LzRIczN1eFpGR25VcFVtVFQ0VDdUNWNWSFJP?=
+ =?utf-8?B?am9DR3FuVmxCVVpDSU14ek9tQThaQ3BBd3gva1M4dXlmdGttVzZVaXFXWUNk?=
+ =?utf-8?B?OVVWRk9aZC94QkUwaXNzSDlMS3pqeVJ6a1h3RTlHWFhBKzhiQ0JVcEROZVMr?=
+ =?utf-8?B?R3dPTWdrRTB0MnNqUHBWTzVMem0vaEgzdGJTOFRsdC9USjlBN2E0V2ludlN3?=
+ =?utf-8?B?THB6WGVEN2xYcG1ScnRhTkY1VkU3NnJod3NIMGtHd3d1Y3IwdnhLalVySnRz?=
+ =?utf-8?Q?x9v99CRGVwFUB9IXvEu9R0ElVmfwzzptXoyHGfn?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: e72ca8c5-32a5-40bc-c39b-08d95270582f
+X-MS-Exchange-CrossTenant-AuthSource: DBBPR08MB4523.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jul 2021 09:07:52.0614
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: eg2xglsIdnwEDt8f9VJ0UsvpZI9bnAcdl6U7yq1YY5pzt+lsCTrDiugcFSPJ9oiqfQIyItUZboUmHrXPIMKlyxkP8dPFlZE7ppvB/05cCz4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR08MB5670
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix uart corruption issue when rx power off.
-Add spin lock in mtk8250_dma_rx_complete function in APDMA mode.
+Hello Andrew, Peter,
 
-when uart is used as a communication port with external device(GPS).
-when external device(GPS) power off, the power of rx pin is also from
-1.8v to 0v. Even if there is not any data in rx. But uart rx pin can
-capture the data "0".
-If uart don't receive any data in specified cycle, uart will generates
-BI(Break interrupt) interrupt.
-If external device(GPS) power off, we found that BI interrupt appeared
-continuously and very frequently.
-When uart interrupt type is BI, uart IRQ handler(8250 framwork
-API:serial8250_handle_irq) will push data to tty buffer.
-mtk8250_dma_rx_complete is a task of mtk_uart_apdma_rx_handler.
-mtk8250_dma_rx_complete priority is lower than uart irq
-handler(serial8250_handle_irq).
-if we are in process of mtk8250_dma_rx_complete, uart appear BI
-interrupt:1)serial8250_handle_irq will priority execution.2)it may cause
-write tty buffer conflict in mtk8250_dma_rx_complete.
-So the spin lock protect the rx receive data process is not break.
+On 7/28/21 10:37 PM, Andrew Lunn wrote:
+>> Generally all rockchip boards use this value instead of the rgmii_id,
+>> I imagine because it's more consistent to tune here than the hit or
+>> miss support of the phy drivers.
+> 
+> Most PHY drivers actually implement it correctly, since by default,
+> most systems get the PHY to do the delays.
+> 
+> But if most Rockchip boards do it this way, there is a lot to be said
+> for consistence, so this is fine by me.
 
-Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
----
- drivers/tty/serial/8250/8250_mtk.c | 5 +++++
- 1 file changed, 5 insertions(+)
+I have tested a dts without the delays and with phy-mode = "rgmii-id"
+and it seems to work just fine.
 
-diff --git a/drivers/tty/serial/8250/8250_mtk.c b/drivers/tty/serial/8250/8250_mtk.c
-index f7d3023f860f..fb65dc601b23 100644
---- a/drivers/tty/serial/8250/8250_mtk.c
-+++ b/drivers/tty/serial/8250/8250_mtk.c
-@@ -93,10 +93,13 @@ static void mtk8250_dma_rx_complete(void *param)
- 	struct dma_tx_state state;
- 	int copied, total, cnt;
- 	unsigned char *ptr;
-+	unsigned long flags;
- 
- 	if (data->rx_status == DMA_RX_SHUTDOWN)
- 		return;
- 
-+	spin_lock_irqsave(&up->port.lock, flags);
-+
- 	dmaengine_tx_status(dma->rxchan, dma->rx_cookie, &state);
- 	total = dma->rx_size - state.residue;
- 	cnt = total;
-@@ -120,6 +123,8 @@ static void mtk8250_dma_rx_complete(void *param)
- 	tty_flip_buffer_push(tty_port);
- 
- 	mtk8250_rx_dma(up);
-+
-+	spin_unlock_irqrestore(&up->port.lock, flags);
- }
- 
- static void mtk8250_rx_dma(struct uart_8250_port *up)
--- 
-2.18.0
+Although consistency with other Rockchip boards is something one should
+consider, I think I'll go along the "rgmii-id" path since this seems to
+be a more general convention.
 
+Thanks for your comments, I'll submit a v2.
+
+Regards, Michael
