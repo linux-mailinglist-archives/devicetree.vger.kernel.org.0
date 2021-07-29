@@ -2,111 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A0BE3DAB8E
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 21:02:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BC2A3DAB93
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 21:03:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231475AbhG2TCT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 15:02:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44300 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229672AbhG2TCS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 15:02:18 -0400
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B3ACC061765
-        for <devicetree@vger.kernel.org>; Thu, 29 Jul 2021 12:02:15 -0700 (PDT)
-Received: by mail-oi1-x229.google.com with SMTP id 21so9751446oin.8
-        for <devicetree@vger.kernel.org>; Thu, 29 Jul 2021 12:02:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=Su69e0VwCDTVXaZGqAhM3F7LtZETVHlakvlYKvoZayM=;
-        b=SebcM8G3BBQpdbYfLQP0sdWaVQX0nFTrotqhmuGnCKbjKWaSNqupvYNVRfuM7GhE5z
-         LbpWNsB4ztjfjw6ymIQKoHysAEYtFeGSFdsbJ5mQSqQzMdhlctZh2XtEA5M99LcG/f3b
-         lMmA1rH5F2+pMRgkFSwb5QYY8Dh708WIynYSc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=Su69e0VwCDTVXaZGqAhM3F7LtZETVHlakvlYKvoZayM=;
-        b=S35LV5Pj8XUUHWgFvANUUKi8nUb/c8es73+PmsQ49QdPsKBtmetMBpiTOcs9n9QXxw
-         vv+wrk9y6ILig/YgG8K5J5itGjFnpewt6KQ23Bvp0fRATfC+xnMP3kpQkPCtnBmn5GF1
-         8H/KDiIAAULRXqFuY6IXiSLas7dlwMJrAV9GWRHksoOdBQJZOhz28RCFdAq2HnztBN3e
-         hEdiHQuH5HthUhcBB1hGIdHG6Cex02sfcLHSVwZwgF5VcuPC1ud+EL+nmzm7jdSu4lou
-         XaG3P/GFznpmLQ44p7K9djid8IWvyI1ItIY3Uv8YuDMHkPXeLGmf1R0eRcHZlWoEAbxN
-         XuRw==
-X-Gm-Message-State: AOAM53230IM1rc2dOy75YFQqFmysn+/FDdXMnh9x4HSaU4I2PEx3QdqI
-        9M57IAPO4UpWQ+nn9gWArg39uY21MiewKhvEF0l2Aw==
-X-Google-Smtp-Source: ABdhPJz7dbzotSQmyoBhO3gVd5uNSdiIKcidtDyg1R8EG+Y9ws7CEIXpDqoO0HYTgqDy8Fs8af2iAnOgsNNuQTnmwHI=
-X-Received: by 2002:a54:468d:: with SMTP id k13mr11054293oic.125.1627585334851;
- Thu, 29 Jul 2021 12:02:14 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 29 Jul 2021 12:02:14 -0700
+        id S229896AbhG2TDq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 15:03:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55852 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229713AbhG2TDp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Jul 2021 15:03:45 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2217560041;
+        Thu, 29 Jul 2021 19:03:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1627585422;
+        bh=QZzTxuOXLw86rHcrs3zAcLvxXqbKvso+gGJ/Bt/V7Yo=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=TH2hos7zxb777wZ4DD5mN0DLcj65CFt3bLmdhbc6AYFgav8nyV0CRJSDoH0LY8Jow
+         R+jXTaFeTZJMdfkVePdh3VudGpQfc2BmYI5fbu2AFf88fJLfMiwIHe1+CliGXbew8A
+         vwflPDfg0fR+UqRe8INTZ9eEF4/746XoDgm05V6Ja2QhKuvO4S6CP2pC2UB5Q6X/zA
+         i2JIBwXdzJJPH7Brqzo3PQgRgZr0Z42SETyY4c5URe+cCpiEh1tdnZGDp26UXwz61c
+         xccOpLXbdBL1w1TOe3rH67+4Evgt6KBDR8VsxSIMbs0GlUfk9bj6TFaBnAsGO9v9a9
+         dt4irhlxmF8Qw==
+Date:   Thu, 29 Jul 2021 21:03:37 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linuxarm <linuxarm@huawei.com>, mauro.chehab@huawei.com,
+        Binghui Wang <wangbinghui@hisilicon.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Xiaowei Song <songxiaowei@hisilicon.com>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        PCI <linux-pci@vger.kernel.org>
+Subject: Re: [PATCH 3/5] dt-bindings: PCI: kirin: Add support for Kirin970
+Message-ID: <20210729210337.6fc9a92c@coco.lan>
+In-Reply-To: <CAL_Jsq+JgWMf8XPdHQ9GRdA+7EODJ47vwuz0jGkkyeETZPXz9Q@mail.gmail.com>
+References: <cover.1627559126.git.mchehab+huawei@kernel.org>
+        <2cf7bd80d0b54f7658a64febf79d3a36e70aba86.1627559126.git.mchehab+huawei@kernel.org>
+        <CAL_Jsq+JgWMf8XPdHQ9GRdA+7EODJ47vwuz0jGkkyeETZPXz9Q@mail.gmail.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <308d8f1e-9f23-9d78-42cc-a42ce3463027@codeaurora.org>
-References: <1627147740-11590-1-git-send-email-akhilpo@codeaurora.org>
- <CAE-0n52mEy1GReYwcVrffT2KOy4EHMHH-RyCJ_mmxhaeXwGdYA@mail.gmail.com>
- <e1a28bed-a2a9-2bf2-d0f0-3f608a538f69@codeaurora.org> <CAE-0n50-1eN3wwDukJi0JoTxCKnYx8NT1Ap2r0WDftQ621iBqQ@mail.gmail.com>
- <308d8f1e-9f23-9d78-42cc-a42ce3463027@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Thu, 29 Jul 2021 12:02:14 -0700
-Message-ID: <CAE-0n5211NZx43Q0UwHJATYYV7zXPH3WWx66808rEmOgSBDQyg@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: qcom: sc7280: Add gpu support
-To:     Akhil P Oommen <akhilpo@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org,
-        freedreno <freedreno@lists.freedesktop.org>,
-        linux-arm-msm@vger.kernel.org
-Cc:     Jonathan Marek <jonathan@marek.ca>, linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Jordan Crouse <jordan@cosmicpenguin.net>,
-        Andy Gross <agross@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Akhil P Oommen (2021-07-29 11:57:23)
-> On 7/29/2021 10:46 PM, Stephen Boyd wrote:
-> > Quoting Akhil P Oommen (2021-07-28 00:17:45)
-> >> On 7/27/2021 5:46 AM, Stephen Boyd wrote:
-> >>> Quoting Akhil P Oommen (2021-07-24 10:29:00)
-> >>>> Add the necessary dt nodes for gpu support in sc7280.
-> >>>>
-> >>>> Signed-off-by: Akhil P Oommen <akhilpo@codeaurora.org>
-> >>>> ---
-> >>>> This patch has dependency on the GPUCC bindings patch here:
-> >>>> https://patchwork.kernel.org/project/linux-arm-msm/patch/1619519590-3019-4-git-send-email-tdas@codeaurora.org/
-> >>>
-> >>> To avoid the dependency the plain numbers can be used.
-> >>
-> >> But, won't that reduce readability and make things prone to error?
-> >
-> > The numbers are not supposed to change so maybe it reduces readability
-> > but I don't see how it is prone to error.
->
-> I cross check GPU's clock list whenever there is a system level issue
-> like NoC errors. So it is convenient to have the clock names here, at
-> least for me. But, I will budge if it is not easy to manage the dependency.
+Em Thu, 29 Jul 2021 09:20:15 -0600
+Rob Herring <robh@kernel.org> escreveu:
 
-To clarify my statement, the defines can be used eventually once the
-header file is part of the same tree. A duplicate patch between clk and
-qcom trees is fine or pulling in the clk branch works too.
+> On Thu, Jul 29, 2021 at 5:56 AM Mauro Carvalho Chehab
+> <mchehab+huawei@kernel.org> wrote:
+> >
+> > Add a new compatible, plus the new bindings needed by
+> > HiKey970 board.
+> >
+> > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> > ---
+> >  .../bindings/pci/hisilicon,kirin-pcie.yaml    | 61 ++++++++++++++++++-
+> >  1 file changed, 60 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml b/Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml
+> > index 90cab09e8d4b..bb0c3a081d68 100644
+> > --- a/Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml
+> > +++ b/Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml
+> > @@ -24,11 +24,13 @@ properties:
+> >      contains:
+> >        enum:
+> >          - hisilicon,kirin960-pcie
+> > +        - hisilicon,kirin970-pcie
+> >
+> >    reg:
+> >      description: |
+> >        Should contain dbi, apb, config registers location and length.
+> > -      For HiKey960, it should also contain phy.
+> > +      For HiKey960, it should also contain phy. All other devices
+> > +      should use a separate phy driver.
+> >      minItems: 3
+> >      maxItems: 4
+> >
+> > @@ -47,6 +49,7 @@ examples:
+> >    - |
+> >      #include <dt-bindings/interrupt-controller/arm-gic.h>
+> >      #include <dt-bindings/clock/hi3660-clock.h>
+> > +    #include <dt-bindings/clock/hi3670-clock.h>
+> >
+> >      soc {
+> >        #address-cells = <2>;
+> > @@ -83,4 +86,60 @@ examples:
+> >          clock-names = "pcie_phy_ref", "pcie_aux", "pcie_apb_phy",
+> >                        "pcie_apb_sys", "pcie_aclk";
+> >        };
+> > +
+> > +      pcie@f5000000 {
+> > +        compatible = "hisilicon,kirin970-pcie";
+> > +        reg = <0x0 0xf4000000 0x0 0x1000000>,
+> > +              <0x0 0xfc180000 0x0 0x1000>,
+> > +              <0x0 0xf5000000 0x0 0x2000>;
+> > +        reg-names = "dbi", "apb", "config";
+> > +        bus-range = <0x0  0x1>;
+> > +        msi-parent = <&its_pcie>;
+> > +        #address-cells = <3>;
+> > +        #size-cells = <2>;
+> > +        device_type = "pci";
+> > +        phys = <&pcie_phy>;
+> > +        ranges = <0x02000000 0x0 0x00000000
+> > +                  0x0 0xf6000000
+> > +                  0x0 0x02000000>;
+> > +        num-lanes = <1>;
+> > +        #interrupt-cells = <1>;
+> > +        interrupts = <GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>;
+> > +        interrupt-names = "msi";
+> > +        interrupt-map-mask = <0 0 0 7>;
+> > +        interrupt-map = <0x0 0 0 1 &gic GIC_SPI 282 IRQ_TYPE_LEVEL_HIGH>,
+> > +                        <0x0 0 0 2 &gic GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>,
+> > +                        <0x0 0 0 3 &gic GIC_SPI 284 IRQ_TYPE_LEVEL_HIGH>,
+> > +                        <0x0 0 0 4 &gic GIC_SPI 285 IRQ_TYPE_LEVEL_HIGH>;
+> > +        pcie@4,0 { // Lane 4: M.2
+> > +          reg = <0 0 0 0 0>;
+> > +          compatible = "pciclass,0604";
+> > +          device_type = "pci";
+> > +          reset-gpios = <&gpio7 1 0>;
+> > +          clkreq-gpios = <&gpio27 3 0 >;  
+> 
+> Looking at the schematics some more, this is not right. CLKREQ# is an
+> input from the device, and they are not connected to any GPIO (just
+> pulled high) on hikey970. These GPIOs are simply clock enables and
+> very much specific to hikey. So I'd call this 'hisilicon,clken-gpios'
+> and you can just stick them in the host bridge node.
+> 
 
->
-> >
-> >> If
-> >> the other patch doesn't get picked up soon, we should try this option.
-> >> We like to get this patch merged in v5.15.
-> >
-> > The clk binding is already picked up but Bjorn would need to merge it
-> > into the qcom tree to use it. I don't know what the plan is there.
-> >
->
-> Bjorn, could you please advise here?
->
-> -Akhil.
+Ok. If I understood your review, the schema will then be:
+
+      pcie@f4000000 {
+        compatible = "hisilicon,kirin970-pcie";
+        reg = <0x0 0xf4000000 0x0 0x1000000>,
+              <0x0 0xfc180000 0x0 0x1000>,
+              <0x0 0xf5000000 0x0 0x2000>;
+        reg-names = "dbi", "apb", "config";
+        bus-range = <0x0  0x1>;
+        msi-parent = <&its_pcie>;
+        #address-cells = <3>;
+        #size-cells = <2>;
+        device_type = "pci";
+        phys = <&pcie_phy>;
+        ranges = <0x02000000 0x0 0x00000000
+                  0x0 0xf6000000
+                  0x0 0x02000000>;
+        num-lanes = <1>;
+        #interrupt-cells = <1>;
+        interrupts = <GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>;
+        interrupt-names = "msi";
+        interrupt-map-mask = <0 0 0 7>;
+        interrupt-map = <0x0 0 0 1 &gic GIC_SPI 282 IRQ_TYPE_LEVEL_HIGH>,
+                        <0x0 0 0 2 &gic GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>,
+                        <0x0 0 0 3 &gic GIC_SPI 284 IRQ_TYPE_LEVEL_HIGH>,
+                        <0x0 0 0 4 &gic GIC_SPI 285 IRQ_TYPE_LEVEL_HIGH>;
+        reset-gpios = <&gpio7 0 0>;
+
+        pcie@0 { // Lane 0: upstream
+          reg = <0 0 0 0 0>;
+          compatible = "pciclass,0604";
+          device_type = "pci";
+          #address-cells = <3>;
+          #size-cells = <2>;
+          hisilicon,clken-gpios = <&gpio27 3 0 >, <&gpio17 0 0 >, <&gpio20 6 0 >;
+          ranges;
+
+          pcie@1,0 { // Lane 4: M.2
+            reg = <0x800 0 0 0 0>;
+            compatible = "pciclass,0604";
+            device_type = "pci";
+            reset-gpios = <&gpio3 1 0>;
+            #address-cells = <3>;
+            #size-cells = <2>;
+            ranges;
+          };
+
+          pcie@5,0 { // Lane 5: Mini PCIe
+            reg = <0x2800 0 0 0 0>;
+            compatible = "pciclass,0604";
+            device_type = "pci";
+            reset-gpios = <&gpio27 4 0 >;
+            #address-cells = <3>;
+            #size-cells = <2>;
+            ranges;
+          };
+
+          pcie@7,0 { // Lane 7: Ethernet
+            reg = <0x3800 0 0 0 0>;
+            compatible = "pciclass,0604";
+            device_type = "pci";
+            reset-gpios = <&gpio25 2 0 >;
+            #address-cells = <3>;
+            #size-cells = <2>;
+            ranges;
+          };
+        };
+      };
+    };
+
+Right?
+
+After updating the dt-schema from your git tree, the above doesn't 
+generate warnings anymore.
+
+Thanks,
+Mauro
