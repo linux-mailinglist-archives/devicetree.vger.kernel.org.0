@@ -2,99 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 326A13DAD9D
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 22:31:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7AA33DADAF
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 22:34:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232654AbhG2Ubm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 16:31:42 -0400
-Received: from mail-io1-f49.google.com ([209.85.166.49]:37700 "EHLO
-        mail-io1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229707AbhG2Ubm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 16:31:42 -0400
-Received: by mail-io1-f49.google.com with SMTP id r18so8783098iot.4;
-        Thu, 29 Jul 2021 13:31:37 -0700 (PDT)
+        id S232671AbhG2Ueb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 16:34:31 -0400
+Received: from mail-io1-f48.google.com ([209.85.166.48]:37563 "EHLO
+        mail-io1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229845AbhG2Ue2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 16:34:28 -0400
+Received: by mail-io1-f48.google.com with SMTP id r18so8792295iot.4;
+        Thu, 29 Jul 2021 13:34:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=KUWvqLY5dtYTcBMoP6MzaeBbDWJ4C0b6SsAxNWS8lfo=;
-        b=ZLq0dZZyAnfRGtM2an19Wmy/yzELC2al21+FauFK+o8itA72QvLXskLzAwj0P1NC3B
-         EIUEzPU3b07uRLHYstSqiwb/bejqsiyxFYNL4cCmXFg3ePS2bJm+Vpjvjd5/t6XCCHu6
-         WbpQ31d8P/UyqOB+vB5v+2UEPu4zPGs5dDhMbs17JoKqMOwmRQgZ0ObIY3N/0eRDf+VK
-         37KEwCww1jON2RZsRT/zyMbHw42JHkhoNZ8NbNCT4HzILr5CsBgJqrG/2wze8baB4SX4
-         rHbqrc0nQvCghjYtnjP0hULBTETht6PO6qVB2R0znWXuhK2uoTOHDZMpAxYaoCGuEnQe
-         k9ew==
-X-Gm-Message-State: AOAM530gutzjkUF3hcjamV72TgVQCSm/rBeBW1bRy4xBzIK9KkEJbMKK
-        ospssAqisIGVjUMlEEFVNA==
-X-Google-Smtp-Source: ABdhPJwioEdi04/jbfnfuOGVu5hP7n0ehPaMIaPvCp13mUJRpi/eNyFwP4zVRi+5d9gf9aBvRLrKSQ==
-X-Received: by 2002:a5d:8986:: with SMTP id m6mr5466807iol.87.1627590697396;
-        Thu, 29 Jul 2021 13:31:37 -0700 (PDT)
+        bh=K5V012xL88GFPg0nzzWvkyZK/M/tg+yzd7/vSuHbGEc=;
+        b=s2L+M99gKZHQTlYQY6oeVImttWEemN9ajvx5j/M9El4FI6gGmCArsJYeDJSi2Fp148
+         KkJAR+cXAMvRqbDLrmNOLuoPkM2C6ASu1kjQPsglFWP9ATyiDjqMupDt770ncT6khRxN
+         LW+hkSMikkns/wvrkxIq0MTIHcMgTjSXFtRpRji7ZRLUvj72jcrHtX2o3o7rH1qCuKuO
+         IkR1m0Bdc6n3MX9m/KnqqfV4djVnwJ6yOc1yRXP9hovjySzoOayeZUn+NA8uwFNcGH2v
+         feZZOBkH4ddy7bZlhH5SwTnxi5FY36meN3EfRSPuLwlIYENHfRLwtcI63ukOKL6lIEZc
+         LtJA==
+X-Gm-Message-State: AOAM531PpwB+s0K3wb9WTW6LEAtqaCBkZeMGzpC73bCn+OFirpljdcEe
+        LNXnzfhLuaS3PZBl6iL2lgyrG4RAAA==
+X-Google-Smtp-Source: ABdhPJxJzuYy/bh76WKd2gMGYVNi5fvug8TBfrecWZaqizyLUG0jPn7EJS6HVwIjJFWa5EBPGa6TRg==
+X-Received: by 2002:a6b:7a04:: with SMTP id h4mr5563850iom.149.1627590863357;
+        Thu, 29 Jul 2021 13:34:23 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id a3sm2101033ilj.39.2021.07.29.13.31.35
+        by smtp.gmail.com with ESMTPSA id t15sm2476727iln.36.2021.07.29.13.34.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Jul 2021 13:31:36 -0700 (PDT)
-Received: (nullmailer pid 835093 invoked by uid 1000);
-        Thu, 29 Jul 2021 20:31:35 -0000
-Date:   Thu, 29 Jul 2021 14:31:35 -0600
+        Thu, 29 Jul 2021 13:34:22 -0700 (PDT)
+Received: (nullmailer pid 839820 invoked by uid 1000);
+        Thu, 29 Jul 2021 20:34:20 -0000
+Date:   Thu, 29 Jul 2021 14:34:20 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Billy Tsai <billy_tsai@aspeedtech.com>
-Cc:     Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "pmeerw@pmeerw.net" <pmeerw@pmeerw.net>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        BMC-SW <BMC-SW@aspeedtech.com>
-Subject: Re: [v2 1/8] dt-bindings: iio: adc: rename the aspeed adc yaml
-Message-ID: <YQMQJ15KpM0eeLIb@robh.at.kernel.org>
-References: <20210723081621.29477-1-billy_tsai@aspeedtech.com>
- <20210723081621.29477-2-billy_tsai@aspeedtech.com>
- <20210723154456.00006744@Huawei.com>
- <E650AFD8-FFD1-4D87-87B0-42D20D9C3BB4@aspeedtech.com>
+To:     Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc:     Jonathan Corbet <corbet@lwn.net>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-doc@vger.kernel.org, arnd@arndb.de,
+        Olof Johansson <olof@lixom.net>, robh+dt@kernel.org,
+        linux-gpio@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/7] dt-bindings: pinctrl: stm32: add new compatible for
+ STM32MP135 SoC
+Message-ID: <YQMQzFXeEJ8FT9dF@robh.at.kernel.org>
+References: <20210723132810.25728-1-alexandre.torgue@foss.st.com>
+ <20210723132810.25728-2-alexandre.torgue@foss.st.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <E650AFD8-FFD1-4D87-87B0-42D20D9C3BB4@aspeedtech.com>
+In-Reply-To: <20210723132810.25728-2-alexandre.torgue@foss.st.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 26, 2021 at 06:53:07AM +0000, Billy Tsai wrote:
-> Hi Jonathan,
+On Fri, 23 Jul 2021 15:28:04 +0200, Alexandre Torgue wrote:
+> New compatible to manage ball out and pin muxing of STM32MP135 SoC.
 > 
-> On 2021/7/23, 10:45 PM, "Jonathan Cameron" <Jonathan.Cameron@Huawei.com> wrote:
+> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
 > 
->     On Fri, 23 Jul 2021 16:16:14 +0800
->     Billy Tsai <billy_tsai@aspeedtech.com> wrote:
-> 
->     >   > The aspeed,ast2400-adc.yaml not only descriptor the bindings of ast2400.
->     >   > Rename it to aspeed,adc.yaml for all of the aspeed adc bindings.
->     >   > 
->     >   > Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
-> 
->     >   We try to avoid 'wild' card type namings most of the time and instead
->     >   name after a particular part number.  I say try because clearly
->     >   we let a few in over the years :(
-> 
->     >   It is very hard to know if this binding will apply to 'all' future
->     >   aspeed ADCs.
-> 
->     >   As such I'm not sure this particular rename makes sense.
-> 
-> If I want to extend the yaml file to compatible more versions of the aspeed adc.
-> Would you suggest to add new files call aspeed,ast2600-adc.yaml or just append it
-> to the aspeed,ast2400-adc.yaml?
 
-If 2600 is not backwards compatible with 2400, then probably a new 
-schema file. Given you are adding new properties (which only apply to 
-2600?), then most likely a new schema file. Depends at which point there 
-are too many conditional (if/then/else) schemas.
-
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
