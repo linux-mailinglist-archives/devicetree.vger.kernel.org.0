@@ -2,77 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F66E3DA3C4
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 15:18:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAA1E3DA3C7
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 15:19:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237540AbhG2NST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 09:18:19 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:51742 "EHLO vps0.lunn.ch"
+        id S234324AbhG2NT0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 09:19:26 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:57668 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237475AbhG2NSI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Jul 2021 09:18:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=o6gDh22Ro6ovNEhQvwZBx+WNuMjXayJvQyfw3IGhpLs=; b=mIEmM9k9u+fpHO9PVfmWz7W3vj
-        NAV+9xbJ5o2VdKOLo0MhDk8tGz9cXFe85Ygj4M97KR6v32mMpEDs7/A28oLAIC2yfnOUnFcFCYxZG
-        2T4k2BjbVk3+fXxBi7QsLBtDsYgm6LlwgV3krNZ33Set7f+Si6h/6Yi+3NnSsKGNv1gQ=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1m95vC-00FJYn-MF; Thu, 29 Jul 2021 15:17:58 +0200
-Date:   Thu, 29 Jul 2021 15:17:58 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Luo Jie <luoj@codeaurora.org>
-Cc:     hkallweit1@gmail.com, davem@davemloft.net, kuba@kernel.org,
-        p.zabel@pengutronix.de, agross@kernel.org,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        robert.marko@sartura.hr, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, sricharan@codeaurora.org
-Subject: Re: [PATCH 3/3] dt-bindings: net: rename Qualcomm IPQ MDIO bindings
-Message-ID: <YQKqhoJ4iPOTiGHZ@lunn.ch>
-References: <20210729125358.5227-1-luoj@codeaurora.org>
- <20210729125358.5227-3-luoj@codeaurora.org>
+        id S237339AbhG2NTZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Jul 2021 09:19:25 -0400
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1m95wW-0003Jt-Is; Thu, 29 Jul 2021 15:19:20 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Ezequiel Garcia <ezequiel@collabora.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        maccraft123mc@gmail.com, Chris Healy <cphealy@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Alex Bee <knaerzche@gmail.com>
+Subject: Re: [PATCH v4] arm64: dts: rockchip: Add VPU support for the PX30
+Date:   Thu, 29 Jul 2021 15:19:16 +0200
+Message-Id: <162755606327.1705274.1593160960961175960.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210728230040.17368-1-ezequiel@collabora.com>
+References: <20210728230040.17368-1-ezequiel@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210729125358.5227-3-luoj@codeaurora.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> @@ -23,7 +25,29 @@ properties:
->      const: 0
->  
->    reg:
-> -    maxItems: 1
-> +    maxItems: 2
-> +
-> +  clocks:
-> +    items:
-> +      - description: MDIO clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: gcc_mdio_ahb_clk
-> +
-> +  resets:
-> +    items:
-> +      - description: MDIO reset & GEPHY hardware reset
-> +
-> +  reset-names:
-> +    items:
-> +      - const: gephy_mdc_rst
-> +
-> +  phy-reset-gpios:
-> +    maxItems: 3
-> +    description:
-> +      The phandle and specifier for the GPIO that controls the RESET
-> +      lines of PHY devices on that MDIO bus.
+On Wed, 28 Jul 2021 20:00:40 -0300, Ezequiel Garcia wrote:
+> The PX30 has a VPU (both decoder and encoder) with a dedicated IOMMU.
+> Describe these two entities in device-tree.
 
-This is clearly not a rename. It is great you are adding missing
-properties, but please do it as a separate patch.
+Applied, thanks!
 
-	    Andrew
+[1/1] arm64: dts: rockchip: Add VPU support for the PX30
+      commit: 10c68d1788eb29b69b96b5da12c673576922a267
+
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
