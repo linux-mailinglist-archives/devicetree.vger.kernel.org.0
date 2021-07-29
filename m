@@ -2,177 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A708E3DA849
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 18:02:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFF333DA88B
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 18:11:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232372AbhG2QCV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 12:02:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56086 "EHLO
+        id S232244AbhG2QL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 12:11:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233234AbhG2QCK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 12:02:10 -0400
-Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com [IPv6:2607:f8b0:4864:20::f32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F3A0C06179E;
-        Thu, 29 Jul 2021 09:02:04 -0700 (PDT)
-Received: by mail-qv1-xf32.google.com with SMTP id jm13so3639348qvb.5;
-        Thu, 29 Jul 2021 09:02:04 -0700 (PDT)
+        with ESMTP id S234742AbhG2QKO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 12:10:14 -0400
+Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3043C0619C1
+        for <devicetree@vger.kernel.org>; Thu, 29 Jul 2021 09:08:03 -0700 (PDT)
+Received: by mail-qk1-x732.google.com with SMTP id b20so6477538qkj.3
+        for <devicetree@vger.kernel.org>; Thu, 29 Jul 2021 09:08:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:content-transfer-encoding:date:message-id:to:cc
-         :subject:from:references:in-reply-to;
-        bh=crl+m4xpN2rQpodK9IBboDzgVn58oWozCut4cofRiKA=;
-        b=pLGZ1EOkiUZRuQU/Do9j/kxjA/lCZMffc0hvACY1Zge+1zX8hdK1Fx7UsnIGykgq/o
-         /G34St8ykVgFj0QntTTbLoIY4Vzw8fNX4mB/0PkWz8oR2G9hmFsWD+6DVTqHWmyPkGvM
-         /nGhNNRebpfn0Sbc/BPRmUmmV2HZUQt1R4wXyLbzUywSzvmpoyb7faXyEGzXxAeP5HSz
-         SxGU22wVHyxE+q5eqpJbe22P1NWroAS2hd4XGrr2KdVewgaeDbD0chche8p/5O5niCeV
-         XdYfwoTz6B2nFOoo1CUF7EBciyUaPcFzmFTyy8aOI5daH3OcFNS/UbfiyWisUIryIDs8
-         grLQ==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=7rnfNZ1smkd3MOn2QE94nhDLg5Z3RCUAAhAiNnfRCE4=;
+        b=JO+Wc0xx+6zrqWzU8d5m29orUQfNIbr+4Or7rVWWlQ13j9DpUSX3xkJWhtz51wsxdG
+         tiaNwM9js+uKQYNP4kt6zhVkU0DN/T9JgTXJUdHwFpFSunFwYIvk03BdYsklBUrYxQ4P
+         oCjMOKJ1XcklPD/WBBqk1Xe2qXRuH5g8oUFpg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding:date
-         :message-id:to:cc:subject:from:references:in-reply-to;
-        bh=crl+m4xpN2rQpodK9IBboDzgVn58oWozCut4cofRiKA=;
-        b=s8FLr1HfcLmWSVLoRZ/wKoEyEzZjUytr0uVQVZ25OQ0q0zXrMjqpWgCFtZ1MdAUjFZ
-         6j0CJkS/ehb4+sgvuiTTMHBBq+SwcWeocv5IZgbwmL0LPyXB34yn/rjw/uBFq3PUTvog
-         dtutsnQmaQzgevLFQNIb86FqDI41SSCUAHpnYgmSSEbIn1Y0qC/JgXVl++VGnE5wCIM0
-         u2xCFKs7Pa1NvkOZWyLpgtiuiiOnBdyEKyBTP3QyvyPEfu4WEVuFU8ajhz9pslc0Tcm9
-         Y9R8gI08WfNuHGuNKsPMb6GRdZnCoEfs7VoiuYoV9tKajrdoIj74l5GKUcdaYnr59c8s
-         qSbg==
-X-Gm-Message-State: AOAM531KcgJkb+ui1ZBGWDc53oQB8EfZkW0UneIP2XMKnMZCmLU4Yh2z
-        IOXAw7jkKZ6tV2PXaz+Xl3c=
-X-Google-Smtp-Source: ABdhPJzx2LYBdpKuzt3oweT6Zevzoqq/lpFIJVehrZQ8vtNlnak8IOgeE5kiL2TxoEiusQxeGMMG4A==
-X-Received: by 2002:a0c:c3d1:: with SMTP id p17mr5969024qvi.44.1627574523531;
-        Thu, 29 Jul 2021 09:02:03 -0700 (PDT)
-Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
-        by smtp.gmail.com with ESMTPSA id 6sm1983547qkv.115.2021.07.29.09.02.02
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=7rnfNZ1smkd3MOn2QE94nhDLg5Z3RCUAAhAiNnfRCE4=;
+        b=CzXbKw0SmrAnepuqkPCOrKJOgGqLZygRSAtQVz8QbC948cmMlajvA9sSVv/1LOvVwU
+         FiOgZxPivSS8i1VZYaK62gqy4Dz/H4mlpsPmxhp0JoJ94TLtaI9QxD8bIsoqxfJtd5QS
+         RGiVAf2dji4zK3J/ncyoFF3bvnatPRPUNMLGsS1cPB5jZlJQSXCJ8VQl/AT8n7vPiEEN
+         YwodnsRTnOTa5FioT5mqBzriI5ar4vYbEQYmj70b4siArjxEvPMpSiLoKX1badSwVs3j
+         FS9MwwGwVzFsQG+BIQmQQS4zWvCWZ2pmzcaICYaImn06xRJt1uXkYJ/a9yi7GoQeIoum
+         F8AQ==
+X-Gm-Message-State: AOAM530wOyZCTz7RHjbuoiSGzhq/FbTOC71gojwVb+IZjkscxbpYQ8k3
+        lt4N66IHq4KoOgoF84onepe3Mwwk6hD4dw==
+X-Google-Smtp-Source: ABdhPJwkbSHrNJULu7vy6b0V2e6WljJldDaaoAvBytzsCa3H/yCf+1ZpKm8tZnWeCIskpZE7SJ7eaw==
+X-Received: by 2002:a37:5d3:: with SMTP id 202mr6084070qkf.125.1627574882785;
+        Thu, 29 Jul 2021 09:08:02 -0700 (PDT)
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
+        by smtp.gmail.com with ESMTPSA id w20sm2032471qkj.27.2021.07.29.09.08.01
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Jul 2021 09:02:02 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Thu, 29 Jul 2021 12:02:01 -0400
-Message-Id: <CD5R0LBMZ65W.29NU0NCABDJT7@shaak>
-To:     "Peter Rosin" <peda@axentia.se>, <jic23@kernel.org>,
-        <lars@metafoo.de>, <pmeerw@pmeerw.net>
-Cc:     <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
-Subject: Re: [PATCH v6 08/13] iio: afe: rescale: reduce risk of integer
- overflow
-From:   "Liam Beguin" <liambeguin@gmail.com>
-References: <20210721030613.3105327-1-liambeguin@gmail.com>
- <20210721030613.3105327-9-liambeguin@gmail.com>
- <9e0e4398-873e-b5c0-0f0c-50a186ed2228@axentia.se>
- <CD4C37PEMPOM.91UZ60Q6534Q@shaak>
- <1a6e4851-9119-f524-76ff-a31ef0db8988@axentia.se>
-In-Reply-To: <1a6e4851-9119-f524-76ff-a31ef0db8988@axentia.se>
+        Thu, 29 Jul 2021 09:08:02 -0700 (PDT)
+Received: by mail-yb1-f182.google.com with SMTP id k65so10958042yba.13
+        for <devicetree@vger.kernel.org>; Thu, 29 Jul 2021 09:08:01 -0700 (PDT)
+X-Received: by 2002:a25:b845:: with SMTP id b5mr7441639ybm.343.1627574881505;
+ Thu, 29 Jul 2021 09:08:01 -0700 (PDT)
+MIME-Version: 1.0
+References: <1627560036-1626-1-git-send-email-rnayak@codeaurora.org> <1627560036-1626-3-git-send-email-rnayak@codeaurora.org>
+In-Reply-To: <1627560036-1626-3-git-send-email-rnayak@codeaurora.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 29 Jul 2021 09:07:50 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Wy6iyrty0tmygY42GJdWSNqby9XePjpg6pKpce-9A7fg@mail.gmail.com>
+Message-ID: <CAD=FV=Wy6iyrty0tmygY42GJdWSNqby9XePjpg6pKpce-9A7fg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] nvmem: qfprom: sc7280: Handle the additional
+ power-domains vote
+To:     Rajendra Nayak <rnayak@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        "Ravi Kumar Bokka (Temp)" <rbokka@codeaurora.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed Jul 28, 2021 at 3:47 AM EDT, Peter Rosin wrote:
-> On 2021-07-28 02:07, Liam Beguin wrote:
-> > On Fri Jul 23, 2021 at 5:17 PM EDT, Peter Rosin wrote:
-> >> On 2021-07-21 05:06, Liam Beguin wrote:
-> >>> From: Liam Beguin <lvb@xiphos.com>
-> >>>
-> >>> Reduce the risk of integer overflow by doing the scale calculation wi=
-th
-> >>> 64bit integers and looking for a Greatest Common Divider for both par=
-ts
-> >>> of the fractional value when required.
-> >>>
-> >>> Signed-off-by: Liam Beguin <lvb@xiphos.com>
-> >>> ---
-> >>>  drivers/iio/afe/iio-rescale.c | 15 ++++++++++++---
-> >>>  1 file changed, 12 insertions(+), 3 deletions(-)
-> >>>
-> >>> diff --git a/drivers/iio/afe/iio-rescale.c b/drivers/iio/afe/iio-resc=
-ale.c
-> >>> index 6f6a711ae3ae..35fa3b4e53e0 100644
-> >>> --- a/drivers/iio/afe/iio-rescale.c
-> >>> +++ b/drivers/iio/afe/iio-rescale.c
-> >>> @@ -21,12 +21,21 @@
-> >>>  int rescale_process_scale(struct rescale *rescale, int scale_type,
-> >>>  			  int *val, int *val2)
-> >>>  {
-> >>> -	unsigned long long tmp;
-> >>> +	s64 tmp, tmp2;
-> >>> +	u32 factor;
-> >>> =20
-> >>>  	switch (scale_type) {
-> >>>  	case IIO_VAL_FRACTIONAL:
-> >>> -		*val *=3D rescale->numerator;
-> >>> -		*val2 *=3D rescale->denominator;
-> >>> +		if (check_mul_overflow(*val, rescale->numerator, (s32 *)&tmp) ||
-> >>> +		    check_mul_overflow(*val2, rescale->denominator, (s32 *)&tmp2))=
- {
-> >>> +			tmp =3D (s64)*val * rescale->numerator;
-> >>> +			tmp2 =3D (s64)*val2 * rescale->denominator;
-> >>> +			factor =3D gcd(tmp, tmp2);
-> >=20
-> > Hi Peter,
-> >=20
-> >>
-> >> Hi!
-> >>
-> >> Reiterating that gcd() only works for unsigned operands, so this is
-> >> broken for
-> >> negative values.
-> >=20
-> > Apologies, I didn't mean to make it seem like I ignored your comments. =
-I
-> > should've added a note. After you pointed out that gcd() only works for
-> > unsigned elements, I added test cases for negative values, and all test=
-s
-> > passed. I'll look into it more.
->
-> Maybe I've misread the code and gcd is in fact working for negative
-> numbers? However, I imagine it might be arch specific, so testing on
-> a single arch feels insufficient and deeper analysis is required.
->
-> However, looking at lib/math/gcd.c it certainly still looks like
-> negative values will work very poorly, and there is no macro magic
-> in include/linux/gcd.h to handle it by wrapping the core C routine.
+Hi,
 
-I agree that looking at lib/math/gcd.c odd things might happen with
-negative values. I'll use the the absolute values to calculate the GCD
-as it shouldn't affect the value of factor.
-
+On Thu, Jul 29, 2021 at 5:01 AM Rajendra Nayak <rnayak@codeaurora.org> wrote:
 >
-> > rescale_voltage_divider_props() seems to also use gcd() with signed
-> > integers.
+> On sc7280, to reliably blow fuses, we need an additional vote
+> on max performance state of 'MX' power-domain.
+> Add support for power-domain performance state voting in the
+> driver.
 >
-> The type of the operands may be s32, but if you look at how those values
-> are populated, and with what they are populated, I think you will find
-> that
-> only positive scale factors are sensible for a voltage divider. Using
-> resistors with so high resistance that s32 is not enough is simply not
-> supported.
-
-That makes sense!
-
-Thanks,
-Liam
-
+> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
+> ---
+>  drivers/nvmem/qfprom.c | 26 ++++++++++++++++++++++++++
+>  1 file changed, 26 insertions(+)
 >
-> Cheers,
-> Peter
+> diff --git a/drivers/nvmem/qfprom.c b/drivers/nvmem/qfprom.c
+> index 81fbad5..b5f27df 100644
+> --- a/drivers/nvmem/qfprom.c
+> +++ b/drivers/nvmem/qfprom.c
+> @@ -12,6 +12,8 @@
+>  #include <linux/mod_devicetable.h>
+>  #include <linux/nvmem-provider.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/pm_domain.h>
+> +#include <linux/pm_runtime.h>
+>  #include <linux/property.h>
+>  #include <linux/regulator/consumer.h>
 >
-> > Thanks,
-> > Liam
-> >=20
-> >>
-> >> Cheers,
-> >> Peter
-> >>
-> >>> +			tmp =3D div_s64(tmp, factor);
-> >>> +			tmp2 =3D div_s64(tmp2, factor);
-> >>> +		}
-> >>> +		*val =3D tmp;
-> >>> +		*val2 =3D tmp2;
-> >>>  		return scale_type;
-> >>>  	case IIO_VAL_INT:
-> >>>  		*val *=3D rescale->numerator;
-> >>>
-> >=20
+> @@ -139,6 +141,9 @@ static void qfprom_disable_fuse_blowing(const struct qfprom_priv *priv,
+>  {
+>         int ret;
+>
+> +       dev_pm_genpd_set_performance_state(priv->dev, 0);
+> +       pm_runtime_put(priv->dev);
 
+To me it feels as if this should be at the end of the function rather
+than the beginning. I guess it doesn't matter (?), but it feels wrong
+that we have writes to the register space after we're don't a
+pm_runtime_put().
+
+
+> @@ -420,6 +440,12 @@ static int qfprom_probe(struct platform_device *pdev)
+>                         econfig.reg_write = qfprom_reg_write;
+>         }
+>
+> +       ret = devm_add_action_or_reset(dev, qfprom_runtime_disable, dev);
+> +       if (ret)
+> +               return ret;
+> +
+> +       pm_runtime_enable(dev);
+> +
+
+Swap the order of the two. IOW first pm_runtime_enable(), then
+devm_add_action_or_reset(). Specifically the "_or_reset" means that if
+you fail to add the action (AKA devm_add_action() fails to allocate
+the tiny amount of memory it needs) it will actually _call_ the
+action. That means that in your code if the memory allocation fails
+you'll call pm_runtime_disable() without the corresponding
+pm_runtime_enable().
+
+
+Other than those two issues this looks good to me. Feel free to add my
+Reviewed-by when you fix them.
+
+-Doug
