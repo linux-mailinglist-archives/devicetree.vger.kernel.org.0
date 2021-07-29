@@ -2,79 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3ABE93DA3CB
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 15:19:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ED7B3DA3D1
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 15:20:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237408AbhG2NT1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 09:19:27 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:57674 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237360AbhG2NT0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Jul 2021 09:19:26 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.lan)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1m95wX-0003Jt-8q; Thu, 29 Jul 2021 15:19:21 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Peter Geis <pgwipeout@gmail.com>, Johan Jonker <jbx6244@gmail.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: (subset) [PATCH v2 0/8] fixes and enablement for rk356x
-Date:   Thu, 29 Jul 2021 15:19:18 +0200
-Message-Id: <162755606328.1705274.3410702521597936344.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210728180034.717953-1-pgwipeout@gmail.com>
-References: <20210728180034.717953-1-pgwipeout@gmail.com>
+        id S237389AbhG2NUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 09:20:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44064 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237344AbhG2NUd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 09:20:33 -0400
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DD5EC061765
+        for <devicetree@vger.kernel.org>; Thu, 29 Jul 2021 06:20:30 -0700 (PDT)
+Received: by mail-pj1-x102a.google.com with SMTP id g23-20020a17090a5797b02901765d605e14so9235899pji.5
+        for <devicetree@vger.kernel.org>; Thu, 29 Jul 2021 06:20:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Dn16VRGzINjpK5hTkcROYonwyO77GNzKhrw6QPtb+WU=;
+        b=UGHYkoDL7+nEZ+Ici1GVaiIpoD7un33lWWCEf4TVNKpJZjvFUFTBaCsYxSYJMq7F7t
+         kjEuDYUfGdm2Y6esFw8K58f+EtxqDY5JhVZLQ7fzcMwehxZ/F3219Hp4LfVIgxqlvVUl
+         BPRICJBCxma317as9WmiDNoqXmVh6wgIbhnpN4smFb3XFiVF3Def2iBGIsnHGWpMY6xf
+         NzTuG6Px+qvjkyin3DpjfFz7pinhGGfhL88FXiVFxz3uo6Bv2AleoBCaTbdqm8SWUL4T
+         hDwnFgPcmBMW6URS35QlFCYGwuYjDtVuMcuWY2k65CTNCOt16N46Hcd0YWKwDp23uB7b
+         q4pQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Dn16VRGzINjpK5hTkcROYonwyO77GNzKhrw6QPtb+WU=;
+        b=hWTYSUZEVtn20D0m+BraivEC8aLEMqiMdrTqbPstYZPmrhaVHrb+LnqmmcEZ7S9gky
+         rVM6nnCtUIvf8TgLv/EA2Y9ifxe58Z/y4nTU9Emje99xStYJ4jFEDXpfJWYrGZvyM0r1
+         5eDZqz0tu22Rl/ovYBswAP32dYEwkFBU25RormDh6peaMPudUJ2rM9KHFe+i1arFISiW
+         2QXhsZpClSF+uxvslGlwTXZAcBbQXNskbJ0Tn+d7r18XbJP+Kivv8Jrn+jp783ED+MiI
+         tl9koIAkVVIljrnXT/Ngcb3C22zOwrwLcBL/sgjhBKzEyPTjHtir8crnjsttIhDKF/S9
+         lEEQ==
+X-Gm-Message-State: AOAM5328r6jzx5RfoxpeWb1d1kviYjbbvaXbpc9jcG6to/HHFxg8i26F
+        wr7AXezn+3Xux/eKjty7OIC1xCYapF7+tidWPhXakw==
+X-Google-Smtp-Source: ABdhPJwZGMBeDDIs8OW6egcQktP4OuNjLmCnf0s9q2ER3N5wFGSw0h4xjwRmt/xhkYeiRPsvGus7PV8t11L557Z5dnY=
+X-Received: by 2002:a63:494f:: with SMTP id y15mr3798897pgk.185.1627564829264;
+ Thu, 29 Jul 2021 06:20:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20210704090230.26489-1-jagan@amarulasolutions.com> <20210704090230.26489-6-jagan@amarulasolutions.com>
+In-Reply-To: <20210704090230.26489-6-jagan@amarulasolutions.com>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Thu, 29 Jul 2021 15:20:17 +0200
+Message-ID: <CAG3jFytHb=iOc6CHy47iGwvxuSg1UMqnpE7oFZL9tfcPUB22eA@mail.gmail.com>
+Subject: Re: [RFC PATCH 05/17] drm/exynos: dsi: Get the mode from bridge
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Inki Dae <inki.dae@samsung.com>,
+        Joonyoung Shim <jy0922.shim@samsung.com>,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        Marek Vasut <marex@denx.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-samsung-soc@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 28 Jul 2021 14:00:26 -0400, Peter Geis wrote:
-> Good Morning,
-> 
-> This series aims to fix some early issues with the rk356x and enable
-> nodes that are currently supported by the available drivers.
-> 
-> 1. fixes the mbi-alias, which points to the wrong location
-> 2. fixes the rockchip clk-pll to work without a grf node
-> 3. adds the gpio debounce clocks which are necessary for gpio to bind
-> 4. adds the common gmac1 node
-> 5. adds the tsadc nodes
-> 6. adjusts the gpll and ppll clocks to better support hardware
-> 7. enables the gmac1 on the Quartz64
-> 8. adds thermal support to the Quartz64
-> 
-> [...]
+Hey Jagan,
 
-Applied the easy ones for now, thanks!
+On Sun, 4 Jul 2021 at 11:04, Jagan Teki <jagan@amarulasolutions.com> wrote:
+>
+> Now the exynos dsi driver is fully aware of bridge
+> handling, so get the display mode from bridge, mode_set
+> API instead of legacy encoder crtc.
+>
+> This makes bridge usage more efficient instead of relying
+> on encoder stack.
+>
+> Add mode_set in drm_bridge_funcs.
+>
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> ---
+>  drivers/gpu/drm/exynos/exynos_drm_dsi.c | 13 ++++++++++++-
+>  1 file changed, 12 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/exynos/exynos_drm_dsi.c b/drivers/gpu/drm/exynos/exynos_drm_dsi.c
+> index d828be07c325..99a1b8c22313 100644
+> --- a/drivers/gpu/drm/exynos/exynos_drm_dsi.c
+> +++ b/drivers/gpu/drm/exynos/exynos_drm_dsi.c
+> @@ -275,6 +275,7 @@ struct exynos_dsi {
+>         u32 format;
+>
+>         int state;
+> +       struct drm_display_mode mode;
+>         struct drm_property *brightness;
+>         struct completion completed;
+>
+> @@ -881,7 +882,7 @@ static int exynos_dsi_init_link(struct exynos_dsi *dsi)
+>
+>  static void exynos_dsi_set_display_mode(struct exynos_dsi *dsi)
+>  {
+> -       struct drm_display_mode *m = &dsi->encoder.crtc->state->adjusted_mode;
+> +       struct drm_display_mode *m = &dsi->mode;
+>         unsigned int num_bits_resol = dsi->driver_data->num_bits_resol;
+>         u32 reg;
+>
+> @@ -1411,6 +1412,15 @@ static void exynos_dsi_bridge_disable(struct drm_bridge *bridge)
+>         pm_runtime_put_sync(dsi->dev);
+>  }
+>
+> +static void exynos_dsi_bridge_mode_set(struct drm_bridge *bridge,
+> +                                      const struct drm_display_mode *mode,
+> +                                      const struct drm_display_mode *adjusted_mode)
+> +{
+> +       struct exynos_dsi *dsi = bridge_to_dsi(bridge);
+> +
+> +       drm_mode_copy(&dsi->mode, adjusted_mode);
+> +}
+> +
+>  static int exynos_dsi_panel_or_bridge(struct exynos_dsi *dsi,
+>                                       struct device_node *node)
+>  {
+> @@ -1451,6 +1461,7 @@ static int exynos_dsi_bridge_attach(struct drm_bridge *bridge,
+>  static const struct drm_bridge_funcs exynos_dsi_bridge_funcs = {
+>         .enable = exynos_dsi_bridge_enable,
+>         .disable = exynos_dsi_bridge_disable,
+> +       .mode_set = exynos_dsi_bridge_mode_set,
 
-[1/8] arm64: dts: rockchip: fix rk3568 mbi-alias
-      commit: 0ecf7b9137e05e2ade45b0555b00248cc0b7ac69
--> just put that in for 5.15, as the rk3568 on 5.14 is
-   still largely a wip
+As far as I understand it, .enable(), .disable() &.mode_set() are
+deprecated[1] and should be replaced by atomic_enable(),
+atomic_disable() & atomic_enable() respectively.
 
-[2/8] clk: rockchip: fix clk-pll rk356x early pll init
-      commit: 6fffe52fb336ec2063270a7305652a93ea677ca1
--> I've adapted the commit message here
+[1] https://lore.kernel.org/dri-devel/20210722062246.2512666-8-sam@ravnborg.org/
 
-[4/8] arm64: dts: rockchip: add rk356x gmac1 node
-      commit: 6cdca5eb64c6eff6d552b475b6dc9182d84f2a31
--> did a bit of sorting here
-
-[6/8] arm64: dts: rockchip: adjust rk3568 pll clocks
-      commit: 66a6450203e2e9bcaf6cb5938e7a9a159234722a
--> adapted commit message with your reply from v1
-
-[7/8] arm64: dts: rockchip: enable gmac node on quartz64-a
-      commit: 797fc427ffb9a746d985c5f31e9c14defc1d1187
-
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+>         .attach = exynos_dsi_bridge_attach,
+>  };
+>
+> --
+> 2.25.1
+>
