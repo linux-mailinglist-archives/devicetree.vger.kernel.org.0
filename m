@@ -2,66 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 99DD43DAB1C
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 20:41:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF9263DAB4B
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 20:47:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229620AbhG2SmB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 14:42:01 -0400
-Received: from mail-il1-f172.google.com ([209.85.166.172]:40449 "EHLO
-        mail-il1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229614AbhG2SmB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 14:42:01 -0400
-Received: by mail-il1-f172.google.com with SMTP id d10so6899173ils.7;
-        Thu, 29 Jul 2021 11:41:56 -0700 (PDT)
+        id S229813AbhG2Sre (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 14:47:34 -0400
+Received: from mail-io1-f43.google.com ([209.85.166.43]:39775 "EHLO
+        mail-io1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229672AbhG2Srd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 14:47:33 -0400
+Received: by mail-io1-f43.google.com with SMTP id f6so2588914ioc.6;
+        Thu, 29 Jul 2021 11:47:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=NtViR9x5Y9jf6CYnl+g3ab+BJ+XJIy7vEdyqlPaGRJ4=;
-        b=AttvCpgKjh29OISJGOhKSMG0+/RyiamijrsNKmLGcsgJJEtowYupN316kzpmoMWK3D
-         ghDByB87uu4TmW9AWjpT3Q9DbbFRGalQzqZANeNtd8lEMQqD1DKitn28Qv9SFxpXbpcL
-         tL5YnReeZCTiZbFaE+g3pohcVCpicHf404j0ehi1yc2UCC3ilroiTyYeYMd8OGifyYd/
-         iA8E+T8bLpatGNDbsIiOgaceH8BbvLKvz0sBl+v3cjxRotPJeD5EDqe7hbOS2rh3f04o
-         STIMmmHuRhK8QPDpMOei1DCSrDswvdNrAVJRBaUkvEcBhGnUb2UubnrnU4HpxjBLmN9y
-         sInA==
-X-Gm-Message-State: AOAM531eDHluxp59r6G0fNDePBeCSZAbd2ggt/+fGWfzNSkXUIwkgOvR
-        PiuKC+A1l0zYUictqRuDeA==
-X-Google-Smtp-Source: ABdhPJw+h6P8CSjbZZFVEEteSHNMK/DPfJGo9hPOtNCOG8Tf2WHkDB/1x6jJcx/UFtv879arbob2ow==
-X-Received: by 2002:a92:ced0:: with SMTP id z16mr3431286ilq.0.1627584116404;
-        Thu, 29 Jul 2021 11:41:56 -0700 (PDT)
+        bh=JXUaHWb17rRBkscs+X15u2vWI6zx0AERlWO1TvqsfQc=;
+        b=JL0rh8i5Y5sImQZ6iM96zuDl3axB8M0hoF8dmH4bYPBmCx9HBIWdWIRjXOZHbzQImd
+         aJ94x/SkrI7iTCslZ4GDvQ/mD7EIjAh27C5bNhVoGWvj5DBDqR+WUfbFW0lLiIIiDXuk
+         Bxpp1ThyVMCMpzAWjpy+yDXimPRwlWq5KDhkk13JBng954SNCog80Krf307laUleLXDM
+         dbfQOrC8t6EcmIoso1gwX8Jr2QpdT+RHZ5uFIUZC/k0lViMlNLKFNufgD+x3IutFFv3X
+         Cbgq9iXSQ327MoghRHLPzWTv3hKfAP3ZWbb6VO9/UltdEjt4OOyKRLDxM+QqSSrNTZgH
+         DRUw==
+X-Gm-Message-State: AOAM530HTJ+DxSB8t564cfEBwatEOsPX6YcQWlLMUCnJw4o6ZgbvdSpA
+        4g13ev+dTpq24p+Bb6Xl7w==
+X-Google-Smtp-Source: ABdhPJxrnJg4IzjTnLhlQ9yzS4rXMgXt/nFaInSKZq/xQrOFCtioJPpHOFZEvJJQ7W8QIrOPD03zxQ==
+X-Received: by 2002:a05:6602:58b:: with SMTP id v11mr5235906iox.70.1627584449501;
+        Thu, 29 Jul 2021 11:47:29 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id u15sm2734766ion.34.2021.07.29.11.41.54
+        by smtp.gmail.com with ESMTPSA id v18sm2322404iln.49.2021.07.29.11.47.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Jul 2021 11:41:55 -0700 (PDT)
-Received: (nullmailer pid 662786 invoked by uid 1000);
-        Thu, 29 Jul 2021 18:41:54 -0000
-Date:   Thu, 29 Jul 2021 12:41:54 -0600
+        Thu, 29 Jul 2021 11:47:28 -0700 (PDT)
+Received: (nullmailer pid 671440 invoked by uid 1000);
+        Thu, 29 Jul 2021 18:47:27 -0000
+Date:   Thu, 29 Jul 2021 12:47:27 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     list@opendingux.net, Rob Herring <robh+dt@kernel.org>,
-        linux-mips@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
-        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: dma: ingenic: Add compatible strings
- for MDMA
-Message-ID: <YQL2cjo78ADXBIlf@robh.at.kernel.org>
-References: <20210718122024.204907-1-paul@crapouillou.net>
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Masami Hiramatsu <mhiramat@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: nvmem: Extend patternProperties to
+ optionally indicate bit position
+Message-ID: <YQL3v5bSGG7Hof93@robh.at.kernel.org>
+References: <1626661864-15473-1-git-send-email-hayashi.kunihiko@socionext.com>
+ <1626661864-15473-2-git-send-email-hayashi.kunihiko@socionext.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210718122024.204907-1-paul@crapouillou.net>
+In-Reply-To: <1626661864-15473-2-git-send-email-hayashi.kunihiko@socionext.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 18 Jul 2021 13:20:22 +0100, Paul Cercueil wrote:
-> The JZ4760 and JZ4760B SoCs have an additional DMA controller, dubbed
-> MDMA, that only supports memcpy operations.
+On Mon, Jul 19, 2021 at 11:31:03AM +0900, Kunihiko Hayashi wrote:
+> Allow to extend expression of sub nodes to optionally indicate bit
+> position. This extension is needed to distinguish between different bit
+> positions in the same address.
 > 
-> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+> For example, there are two nvmem nodes starting with bit 4 and bit 0
+> at the same address 0x54. In this case, it can be expressed as follows.
+> 
+>     trim@54,4 {
+>         reg = <0x54 1>;
+>         bits = <4 2>;
+>     };
+>     trim@54,0 {
+>         reg = <0x54 1>;
+>         bits = <0 4>;
+>     };
+> 
+> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 > ---
->  Documentation/devicetree/bindings/dma/ingenic,dma.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  Documentation/devicetree/bindings/nvmem/nvmem.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/nvmem/nvmem.yaml b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+> index b8dc3d2..9dfe196 100644
+> --- a/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+> +++ b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+> @@ -40,7 +40,7 @@ properties:
+>      maxItems: 1
+>  
+>  patternProperties:
+> -  "^.*@[0-9a-f]+$":
+> +  "^.*@[0-9a-f]+(,[0-9]+)?$":
 
-Acked-by: Rob Herring <robh@kernel.org>
+The bit offset should be hex. But I think the max would be 7 as we can 
+assume 'reg' starts at a byte boundary.
+
+I'll fix up when applying.
+
+Rob
