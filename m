@@ -2,131 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 307E93DA327
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 14:29:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95E7A3DA377
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 14:55:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236909AbhG2M3q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 08:29:46 -0400
-Received: from out4-smtp.messagingengine.com ([66.111.4.28]:53471 "EHLO
-        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236868AbhG2M3q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Jul 2021 08:29:46 -0400
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.nyi.internal (Postfix) with ESMTP id C298F5C00BC;
-        Thu, 29 Jul 2021 08:29:42 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute1.internal (MEProxy); Thu, 29 Jul 2021 08:29:42 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:content-transfer-encoding:in-reply-to; s=fm3; bh=6
-        Fzowjt81NyaUnF7+p0gjmnL8GZGPKJTWRJZvkPp5zI=; b=t5hVYCm7duDUEFcP6
-        3WwSXJaFRoCc4zRc3hX+btqmFT+DyvnNUJ4sRbdle+jxSXIETePlw0gzeAtwm7VE
-        J93QgY4ygk6rKzrxizRV/eWXAs7wzsWQ3r+1BuMGr+zsmA31sxqe2Q+n5oNLKSgz
-        Lcjkpn1v6Oh2IrIDqyyyILloohEKQ5Jg/tlPYyzqDBhuoazkDUcNIB7eXWjNjmOZ
-        /FybOC5O3faOf6QR4tqcQADTrx93FxwlwAetYWnxqlSkr1xlAum1Znfo+siQOJgW
-        r4jQ24UczLcLXJw+y+y3f0bje7j5cLuZCNYmfXyVO9m0gF4e0HLaQQnHXsl/ej7p
-        O8sDg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; bh=6Fzowjt81NyaUnF7+p0gjmnL8GZGPKJTWRJZvkPp5
-        zI=; b=keTZeIBGLbbkPxUAgv2Hafk98V4NlP0BFbHN01qov27OJTv6gMSe2QUc+
-        IFZkF08DEyhC3eR8iRvWb1XH2SOZGXDkAMzUPVeNhrvbGvElg7LOnepHrhSCIsO5
-        HRcPBMAjgP7p+nNKX8zZTZbIh1IKE0ydeAiLPRiyYNYbg/hzoFdhZ8BGWSN2INsd
-        hUSO4BZz6XwQYXC0xOuBvwxafKd+t3lHS9ly3Wzc1rPSvQf/F4bJ/L+QQadmejAq
-        dvD1pXksY2FQwN1MqtleVGsEF6vrXlajAkBX+/50mDHtt0vzhTgFN6KCqiv1QPaN
-        HLNVcuuQG8saKYN4eEIBM7xpr0mFw==
-X-ME-Sender: <xms:NZ8CYcTHIN6xmeVJDIxz2KudLbw5Df31dfSObHDLuecls6rmOGDYcA>
-    <xme:NZ8CYZxCFXBFtotLLucdN_-xNvhxrRt9aib6X3dfJShzWNKsdfyHlvTdDywPuML_i
-    7O1Vrc_M4L-NN3o4jU>
-X-ME-Received: <xmr:NZ8CYZ3cFXoNAjp_k2G-9kQFI8NwPCtLHj6LHZb7PR35E8LzM_Mvqav0UZx1i71nKAloDj4u-zT9fbxOq-JGTDH-SkSkvA1QV3xb>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrheefgddugecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggugfgjsehtqhertddttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepgfejtedtjefggfffvdetuedthedtheegheeuteekfeeghfdtteejkeeludeg
-    vddunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
-    grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:NZ8CYQBpI2vYE6tBctjdgHOeSu0jIs5CpwQdfJ13_XXCk4-aZ3n9bg>
-    <xmx:NZ8CYVh5rXZtuNCPu20Ck2I4e5hUPXCM4qTYaKIDmCRVJ1ayTvZl5A>
-    <xmx:NZ8CYcpW6BDZNjmSEyrmgorMC1RMlm3YQW4mrnQ7B94midOaS2RHvw>
-    <xmx:Np8CYWUmGToKWIX0ePRHeX7V5kL5ugho4GkVhrBDebyZjBz2wP3iyw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 29 Jul 2021 08:29:40 -0400 (EDT)
-Date:   Thu, 29 Jul 2021 14:29:38 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        Felipe Balbi <balbi@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-usb@vger.kernel.org
-Subject: Re: [PATCH 35/54] dt-bindings: usb: dwc3: Fix usb-phy check
-Message-ID: <20210729122938.t432abpl2dm2p46c@gilmour>
-References: <20210721140424.725744-1-maxime@cerno.tech>
- <20210721140424.725744-36-maxime@cerno.tech>
- <20210723221530.GA2684283@robh.at.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210723221530.GA2684283@robh.at.kernel.org>
+        id S237404AbhG2MzK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 08:55:10 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:55061 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237376AbhG2MzE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 08:55:04 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1627563301; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=6KbRnv1WSKDO9nbls2nTXvR0S1bslILj0H/eogKAD+I=; b=tcy4x2iMoAGkfSmziuPtJIWP8IK43fwpS2tsQ2BqQPOHcc1hpsQvw2xXKpr971PxyR7e/Foq
+ gnCEr9z8hF78TUMaEK09ZyuU3jlyWAfjhzMwoLtPfRPcyqYyFcbVvoyurK/syvkS7kh7zECW
+ kKb2v064j/8+n1zFV+9/1a9zdMU=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
+ 6102a50417c2b4047d44965f (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 29 Jul 2021 12:54:28
+ GMT
+Sender: luoj=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 0428CC433D3; Thu, 29 Jul 2021 12:54:27 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from akronite-sh-dev02.qualcomm.com (unknown [180.166.53.21])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: luoj)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 9E341C433D3;
+        Thu, 29 Jul 2021 12:54:22 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 9E341C433D3
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=luoj@codeaurora.org
+From:   Luo Jie <luoj@codeaurora.org>
+To:     andrew@lunn.ch, hkallweit1@gmail.com, davem@davemloft.net,
+        kuba@kernel.org, p.zabel@pengutronix.de, agross@kernel.org,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        robert.marko@sartura.hr
+Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        sricharan@codeaurora.org, Luo Jie <luoj@codeaurora.org>
+Subject: [PATCH 1/3] net: mdio-ipq4019: Add mdio reset function
+Date:   Thu, 29 Jul 2021 20:53:56 +0800
+Message-Id: <20210729125358.5227-1-luoj@codeaurora.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Support PHY reset function and MDIO clock frequency configuration.
 
-On Fri, Jul 23, 2021 at 04:15:30PM -0600, Rob Herring wrote:
-> On Wed, Jul 21, 2021 at 04:04:05PM +0200, Maxime Ripard wrote:
-> > The original binding was allowing any combination of usb2-phy and
-> > usb3-phy in the phys and phy-names properties.
-> >=20
-> > However, the current binding enforces that those properties must be a
-> > list of usb2-phy and usb3-phy, with exactly one element, effectively
-> > making usb2-phy the only value being valid.
->=20
-> Huh? If 'maxItems' is not specified, then it's the length of 'items'=20
-> list.
+Signed-off-by: Luo Jie <luoj@codeaurora.org>
+---
+ drivers/net/mdio/Kconfig        |  1 +
+ drivers/net/mdio/mdio-ipq4019.c | 71 +++++++++++++++++++++++++++++++++
+ 2 files changed, 72 insertions(+)
 
-Even if minItems is set?
+diff --git a/drivers/net/mdio/Kconfig b/drivers/net/mdio/Kconfig
+index 99a6c13a11af..06a605ffb950 100644
+--- a/drivers/net/mdio/Kconfig
++++ b/drivers/net/mdio/Kconfig
+@@ -169,6 +169,7 @@ config MDIO_OCTEON
+ config MDIO_IPQ4019
+ 	tristate "Qualcomm IPQ4019 MDIO interface support"
+ 	depends on HAS_IOMEM && OF_MDIO
++	depends on GPIOLIB && COMMON_CLK && RESET_CONTROLLER
+ 	help
+ 	  This driver supports the MDIO interface found in Qualcomm
+ 	  IPQ40xx series Soc-s.
+diff --git a/drivers/net/mdio/mdio-ipq4019.c b/drivers/net/mdio/mdio-ipq4019.c
+index 9cd71d896963..01f5b9393537 100644
+--- a/drivers/net/mdio/mdio-ipq4019.c
++++ b/drivers/net/mdio/mdio-ipq4019.c
+@@ -11,6 +11,9 @@
+ #include <linux/of_mdio.h>
+ #include <linux/phy.h>
+ #include <linux/platform_device.h>
++#include <linux/gpio/consumer.h>
++#include <linux/reset.h>
++#include <linux/clk.h>
+ 
+ #define MDIO_MODE_REG				0x40
+ #define MDIO_ADDR_REG				0x44
+@@ -31,8 +34,16 @@
+ #define IPQ4019_MDIO_TIMEOUT	10000
+ #define IPQ4019_MDIO_SLEEP		10
+ 
++/* MDIO clock source frequency is fixed to 100M */
++#define QCA_MDIO_CLK_RATE	100000000
++
++#define QCA_PHY_SET_DELAY_US	100000
++
+ struct ipq4019_mdio_data {
+ 	void __iomem	*membase;
++	void __iomem *eth_ldo_rdy;
++	struct reset_control *reset_ctrl;
++	struct clk *mdio_clk;
+ };
+ 
+ static int ipq4019_mdio_wait_busy(struct mii_bus *bus)
+@@ -171,10 +182,61 @@ static int ipq4019_mdio_write(struct mii_bus *bus, int mii_id, int regnum,
+ 	return 0;
+ }
+ 
++static int ipq_mdio_reset(struct mii_bus *bus)
++{
++	struct ipq4019_mdio_data *priv = bus->priv;
++	struct device *dev = bus->parent;
++	struct gpio_desc *reset_gpio;
++	u32 val;
++	int i, ret;
++
++	/* To indicate CMN_PLL that ethernet_ldo has been ready if needed */
++	if (!IS_ERR(priv->eth_ldo_rdy)) {
++		val = readl(priv->eth_ldo_rdy);
++		val |= BIT(0);
++		writel(val, priv->eth_ldo_rdy);
++		fsleep(QCA_PHY_SET_DELAY_US);
++	}
++
++	/* Reset GEPHY if need */
++	if (!IS_ERR(priv->reset_ctrl)) {
++		reset_control_assert(priv->reset_ctrl);
++		fsleep(QCA_PHY_SET_DELAY_US);
++		reset_control_deassert(priv->reset_ctrl);
++		fsleep(QCA_PHY_SET_DELAY_US);
++	}
++
++	/* Configure MDIO clock frequency */
++	if (!IS_ERR(priv->mdio_clk)) {
++		ret = clk_set_rate(priv->mdio_clk, QCA_MDIO_CLK_RATE);
++		if (ret)
++			return ret;
++
++		ret = clk_prepare_enable(priv->mdio_clk);
++		if (ret)
++			return ret;
++	}
++
++	/* Reset PHYs by gpio pins */
++	for (i = 0; i < gpiod_count(dev, "phy-reset"); i++) {
++		reset_gpio = gpiod_get_index_optional(dev, "phy-reset", i, GPIOD_OUT_HIGH);
++		if (IS_ERR(reset_gpio))
++			continue;
++		gpiod_set_value_cansleep(reset_gpio, 0);
++		fsleep(QCA_PHY_SET_DELAY_US);
++		gpiod_set_value_cansleep(reset_gpio, 1);
++		fsleep(QCA_PHY_SET_DELAY_US);
++		gpiod_put(reset_gpio);
++	}
++
++	return 0;
++}
++
+ static int ipq4019_mdio_probe(struct platform_device *pdev)
+ {
+ 	struct ipq4019_mdio_data *priv;
+ 	struct mii_bus *bus;
++	struct resource *res;
+ 	int ret;
+ 
+ 	bus = devm_mdiobus_alloc_size(&pdev->dev, sizeof(*priv));
+@@ -182,14 +244,23 @@ static int ipq4019_mdio_probe(struct platform_device *pdev)
+ 		return -ENOMEM;
+ 
+ 	priv = bus->priv;
++	priv->eth_ldo_rdy = IOMEM_ERR_PTR(-EINVAL);
+ 
+ 	priv->membase = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(priv->membase))
+ 		return PTR_ERR(priv->membase);
+ 
++	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
++	if (res)
++		priv->eth_ldo_rdy = devm_ioremap_resource(&pdev->dev, res);
++
++	priv->reset_ctrl = devm_reset_control_get_exclusive(&pdev->dev, "gephy_mdc_rst");
++	priv->mdio_clk = devm_clk_get(&pdev->dev, "gcc_mdio_ahb_clk");
++
+ 	bus->name = "ipq4019_mdio";
+ 	bus->read = ipq4019_mdio_read;
+ 	bus->write = ipq4019_mdio_write;
++	bus->reset = ipq_mdio_reset;
+ 	bus->parent = &pdev->dev;
+ 	snprintf(bus->id, MII_BUS_ID_SIZE, "%s%d", pdev->name, pdev->id);
+ 
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
-This doesn't really change anything to my issue though.
-
-"""
- - phy-names: from the *Generic PHY* bindings; supported names are "usb2-ph=
-y"
-        or "usb3-phy".
-"""
-
-The YAML binding has
-
-  phy-names:
-    minItems: 1
-    items:
-      - const: usb2-phy
-      - const: usb3-phy
-
-which means that only usb2-phy is accepted (and possibly usb2-phy,
-usb3-phy) but only usb3-phy isn't anymore, while it was valid according
-to the original binding and used in multiple DT across multiple vendors
-(arch/arm64/boot/dts/hisilicon/hi3660.dtsi,
-arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi)
-
-> > Let's rework the properties description to allow either one or two
-> > element picked with values either usb2-phy or usb3-phy. The rest of the
-> > tooling makes sure that we don't get any duplicate value, so this should
-> > be what we want.
->=20
-> Is it really valid to have only a USB3 PHY and what you want here? That=
-=20
-> would mean the USB3 phy also handles USB2, right?
-
-IIRC that's how it works for the H6 at least yes.
-
-Maxime
