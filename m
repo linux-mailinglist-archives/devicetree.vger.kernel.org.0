@@ -2,151 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68E223D9CC7
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 06:30:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75EAC3D9CF0
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jul 2021 06:56:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233798AbhG2Eaa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 00:30:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60560 "EHLO
+        id S233790AbhG2E4y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 00:56:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233796AbhG2Ea1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 00:30:27 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE928C061757
-        for <devicetree@vger.kernel.org>; Wed, 28 Jul 2021 21:30:24 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id c16so5423468plh.7
-        for <devicetree@vger.kernel.org>; Wed, 28 Jul 2021 21:30:24 -0700 (PDT)
+        with ESMTP id S233607AbhG2E4y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 00:56:54 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9CD2C061765
+        for <devicetree@vger.kernel.org>; Wed, 28 Jul 2021 21:56:50 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id n12so5187254wrr.2
+        for <devicetree@vger.kernel.org>; Wed, 28 Jul 2021 21:56:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20150623.gappssmtp.com; s=20150623;
-        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
-         :content-transfer-encoding;
-        bh=PPE0zooLgyR9UCdP8xX+4M+xn5NMefkRnT3Z8S+2rxo=;
-        b=jVAy9Axj38CP6qzQCubayURG3GC5N6GQpLn7DerOn3bVNLAo5e2aBMRAWBAlFMjEyZ
-         4472RxpG50pI67eMjOrpldqqqzhay6vk6Lb7CdtG0zE9KbIZhrZNpknQ7LG3XXrvYvvg
-         9+ZSD0KURwgn7rDsa3vOQIlvOF/4bvQlt3z85tXylMVwPsRRQu9cgVkI0mhelF7lUeAk
-         xQxAlcTZ1pz36ZJN1RENmEhvawUmrcKaMmggmRUkq9j6Rnz1lCCJOrjmn8RiIMw/CgQ1
-         oalmOGZtWH9kw2Qo/EmvQ1AVOxl6Sgao67e78xpQhmKEDKMDx0mtHp7NEy74QZ3RM8bG
-         +HfA==
+        d=brainfault-org.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=HgZ2ekjB2w4IATMge4zN6op9t2Z495TinwaLO8sLH0U=;
+        b=cFFqioRADT538UWHbhbK/gKFUBiIb2E+GS9adDnd+Y5FNNDFj8UksFsBUAjkbdXtd6
+         J/Q1lDxPGLM+Vg6I5wjdZwA5dcL8B5hNASh4M9zm0cWY/2ZVnctawbtYTlJxDgxADE9u
+         qrvw/n7Y9VFbYLrL0gCliCt8Li/MSsWyiQo2Ylgc9Nw9lFxpoRmd0xOenpI8bHO+VrxK
+         2U0sSdPlKvaxnAenqBccDx1sSZJoNZfohV7MvWjaAWPjKxRb3JoymN6LqHKgOAvReiMn
+         mOD0tsfs11KfI/1UCrGPVRNdy2XfmTwl8pLrqTsv8OxQbUhXz9tkRoOX7F6ok2u2xKQs
+         QYBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
-         :mime-version:content-transfer-encoding;
-        bh=PPE0zooLgyR9UCdP8xX+4M+xn5NMefkRnT3Z8S+2rxo=;
-        b=hyyw/RUHrcoq/Ulx5xYy44GoZf/s/MKmtwKaItxllT342+zOLVgy2oprOpmwHcA/U+
-         VT7+iI70OBD3hgrQXGBiatbQcyBc69dZyj/t3Yx8QfKPL6UlVEs5f5Q11ZRQooEXn1S8
-         jY/bBV6hQsP6jEzV3XlFVnPR+1n1c0d/U907B6oSzQ27cAOmhoEWdc9rSgoIhLUd93vZ
-         J2hNw6D+pgtjMGLT5xPlcJBxdM+xlCbKdZSMYbWredIfYSvzNGjxo9tHlFLSMSG6eXVy
-         qthajx+DORW1wEO6qlQc/7YoPBIv/XsRKEBEaZ7o/Vftj7cUTXMOFEDu5h1YJn68JbaU
-         E8Ow==
-X-Gm-Message-State: AOAM531gY9Pkmh8YwEzFSssNQTYSWwQZbX2FT0T0czR7LRIiRiRPgGvV
-        Ktpn93xJcxAxm3shQYJNk5KRKw==
-X-Google-Smtp-Source: ABdhPJxnCACwbpVayPk6V7fFVJvDGneCsIVO8qAKvIDi/fVY508+0MplapegPRHObLAXo+BVyVhlUA==
-X-Received: by 2002:a05:6a00:9a3:b029:355:d45b:ad9a with SMTP id u35-20020a056a0009a3b0290355d45bad9amr3098900pfg.73.1627533024171;
-        Wed, 28 Jul 2021 21:30:24 -0700 (PDT)
-Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
-        by smtp.gmail.com with ESMTPSA id z2sm1752300pgl.61.2021.07.28.21.30.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Jul 2021 21:30:23 -0700 (PDT)
-Date:   Wed, 28 Jul 2021 21:30:23 -0700 (PDT)
-X-Google-Original-Date: Wed, 28 Jul 2021 20:39:59 PDT (-0700)
-Subject:     Re: [RFC 0/5] Support non-coherent DMA on RISC-V using a global pool
-In-Reply-To: <20210723214031.3251801-1-atish.patra@wdc.com>
-CC:     linux-kernel@vger.kernel.org, Atish Patra <Atish.Patra@wdc.com>,
-        aou@eecs.berkeley.edu, Christoph Hellwig <hch@lst.de>,
-        devicetree@vger.kernel.org, dvyukov@google.com,
-        frowand.list@gmail.com, guoren@linux.alibaba.com,
-        iommu@lists.linux-foundation.org, linux-riscv@lists.infradead.org,
-        m.szyprowski@samsung.com, Paul Walmsley <paul.walmsley@sifive.com>,
-        robh+dt@kernel.org, robin.murphy@arm.com, tklauser@distanz.ch
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     Atish Patra <Atish.Patra@wdc.com>
-Message-ID: <mhng-11e1ab27-21eb-4b20-9185-c256fcaaab99@palmerdabbelt-glaptop>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=HgZ2ekjB2w4IATMge4zN6op9t2Z495TinwaLO8sLH0U=;
+        b=nmBkI/BB3GaS9N7rL/ON2BIV4Gh1MgyGIMwqYozlSMDNPy1Mvhpw7Fk/I078RpWfpC
+         QP0ET4BFlVFgKU3JsQdC740RWu8lyncnELMkA/pvQOCFPBeQ1sF2NrsolVUC6WTWjyQY
+         jpEMdOeAkqUpjDOVd/lX+5P4DWZ9kWtbqtSLof0uUiP7i66FNaNRNf9GTZQVbeeHi07B
+         mbQM4odHzB9dp57gepCiL7EXqOXImu8/5eK6TBsNmK4Fun5XHGXiLlXy7fXJyQNs8icy
+         dP8lWfliZ/c5UBd6hDByIclo7cS6Pyhno96/jIf8YhIEc2S8xibdXxWsz0fDOUDaxufX
+         x9KQ==
+X-Gm-Message-State: AOAM5303FFgA+S986YZLI2eULB5habJ7OajqoyMB5EjDBG5x99T4kLEB
+        ve9a2uinsRvP0+10Y2sHAa2Ck/nMYBwYnuTv+3xneQ==
+X-Google-Smtp-Source: ABdhPJy9zG4CjAQR/J6R19gfFDkrsm7e4WOPkyQ/kcxBrA8tFfhtF7n/4/gG7NkhctFeNwvdbA425f129B53LpKUKAE=
+X-Received: by 2002:a05:6000:2a1:: with SMTP id l1mr2525748wry.128.1627534609273;
+ Wed, 28 Jul 2021 21:56:49 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAAhSdy1rA9e2iCJWeVEQwKTRfTZZaRZVcMe1o8wMnFiWOOGW3w@mail.gmail.com>
+ <mhng-7fd3d454-cd80-4ede-baed-08003d66b3a4@palmerdabbelt-glaptop>
+In-Reply-To: <mhng-7fd3d454-cd80-4ede-baed-08003d66b3a4@palmerdabbelt-glaptop>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Thu, 29 Jul 2021 10:26:38 +0530
+Message-ID: <CAAhSdy0PsbAJdA=CX7fh=J8jaEh2XniXveQV8rhQWNzW=PBBwQ@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 00/11] Linux RISC-V ACLINT Support
+To:     Palmer Dabbelt <palmerdabbelt@google.com>
+Cc:     Marc Zyngier <maz@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Atish Patra <Atish.Patra@wdc.com>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Anup Patel <Anup.Patel@wdc.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 23 Jul 2021 14:40:26 PDT (-0700), Atish Patra wrote:
-> RISC-V privilege specification doesn't define an IOMMU or any method modify
-> PMA attributes or PTE entries to allow non-coherent mappings yet. In
-> the beginning, this approach was adopted assuming that most of the RISC-V
-> platforms would support full cache-coherent IO. Here is excerpt from the
-> priv spec section 3.6.5
+On Thu, Jul 29, 2021 at 10:00 AM Palmer Dabbelt
+<palmerdabbelt@google.com> wrote:
 >
-> "In RISC-V platforms, the use of hardware-incoherent regions is discouraged
-> due to software complexity, performance, and energy impacts."
+> On Mon, 26 Jul 2021 06:01:01 PDT (-0700), anup@brainfault.org wrote:
+> > Hi Marc,
+> >
+> > On Mon, Jul 26, 2021 at 8:02 PM Marc Zyngier <maz@kernel.org> wrote:
+> >>
+> >> On Mon, 26 Jul 2021 13:45:20 +0100,
+> >> Anup Patel <anup@brainfault.org> wrote:
+> >> >
+> >> > Hi Marc,
+> >> >
+> >> > I have taken the approach of IPI domains (like you suggested) in this series.
+> >> >
+> >> > What do you think ?
+> >>
+> >> I have commented on the irqchip driver.
+> >>
+> >> As for the RISC-V specific code, I'll let the architecture maintainers
+> >> look into it. I guess the elephant in the room is that this spec seems
+> >> to be evolving, and that there is no HW implementation (how this
+> >> driver maps on SF's CLINT is anybody's guess).
 >
-> While some of the RISC-V platforms adhere to the above suggestion, not all
-> platforms can afford to build to fully cache-coherent I/O devices. To
-> address DMA for non-coherent I/O devices, we need to mark a region of memory
-> as non-cacheable. Some of the platforms rely on a fixed region of uncached
-> memory that is remapped to the system memory while some other modify
-> the PTE entries to achieve that.
->
-> The patch3 solves the issue for the fist use case by using a global
-> pool of memory that is reserved for DMA. The device access the reserved area
-> of the region while corresponding CPU address will be from uncached region
-> As the uncached region is remapped to the beginning of the system ram, both
-> CPU and device get the same view.
->
-> To facilitate streaming DMA APIs, patch 1 introduces a set of generic
-> cache operations. Any platform can use the generic ops to provide platform
-> specific cache management operations. Once the standard RISC-V CMO extension
-> is available, it will also use these generic ops.
->
-> To address the second use case, Page Based Memory Attribute (PBMT) extension
-> is proposed. Once the extension is in good shape, we can leverage that
-> using CONFIG_DIRECT_REMAP. Currently, it is selected via a compile time config
-> option. We will probably need another arch specific hooks to know if the
-> platform supports direct remap at runtime. For RISC-V, it will check the
-> presence of PBMT extension while other arch function will simply return true
+> There's a long history of interrupt controller efforts from the RISC-V
+> foundation, and we've yet to have any of them result in hardware.
 
-IIUC this is another extension that's not yet frozen or implemented in 
-hardware?  Is this one compatible with what's in the c906, or is it 
-doing things its own way?
+The RISC-V AIA group was formed last year. Can you point me to which
+interrupt controller efforts you are referring to.
 
-> if DIRECT_REMAP is enabled. This is required as arious different config
-> (DIRECT_REMAP, GLOBAL_POOL) will be enabled in the defconfig so that a
-> unified kernel image can boot on all RISC-V platforms.
 >
-> This patch series depends on Christoph's global pool support series[1].
-> Tested on Qemu, HiFive unleashed and beagleV. This series is also available
-> at [2].
-> This series also solves the non-coherent DMA support on beagleV but requires
-> additional beagleV specific patches[3] which will be upstreamed soon.
+> > The SiFive CLINT is a more convoluted device and provides M-level
+> > timer functionality and M-level IPI functionality in one MMIO device.
+> >
+> > The RISC-V ACLINT specification is more modular and backward
+> > compatible with the SiFive CLINT. In fact, a SiFive CLINT device
+> > can be viewed as a ACLINT MSWI device + ACLINT MTIMER device.
+> > This means existing RISC-V boards having SiFive CLINT will be
+> > automatically compliant to the RISC-V ACLINT specification.
 >
->
-> [1] https://lists.linuxfoundation.org/pipermail/iommu/2021-July/057266.html
-> [2] https://github.com/atishp04/linux/tree/riscv_nc_global_pool
-> [3] https://github.com/atishp04/linux/tree/wip_beaglev_dma_nc_global
->
-> Atish Patra (5):
-> RISC-V: Implement arch_sync_dma* functions
-> of: Move of_dma_get_range to of_address.h
-> dma-mapping: Enable global non-coherent pool support for RISC-V
-> dma-direct: Allocate dma pages directly if global pool allocation
-> fails
-> RISC-V: Support a new config option for non-coherent DMA
->
-> arch/riscv/Kconfig                       |  8 +++
-> arch/riscv/include/asm/dma-noncoherent.h | 19 +++++++
-> arch/riscv/mm/Makefile                   |  1 +
-> arch/riscv/mm/dma-noncoherent.c          | 66 ++++++++++++++++++++++++
-> drivers/of/of_private.h                  | 10 ----
-> include/linux/of_address.h               | 12 +++++
-> kernel/dma/coherent.c                    | 49 +++++++++++++++---
-> kernel/dma/direct.c                      |  7 ++-
-> 8 files changed, 152 insertions(+), 20 deletions(-)
-> create mode 100644 arch/riscv/include/asm/dma-noncoherent.h
-> create mode 100644 arch/riscv/mm/dma-noncoherent.c
+> So is there any hardware that this new specification enables?  It seems
+> to be a more convoluted way to describe the same mess we're already in.
+> I'm not really inclined to take a bunch of code that just does the same
+> thing via a more complicated specification.
 
-Can you guys please make up your minds about how this is going to be 
-supported at the ISA level?  I get a different answer every day here: 
-sometimes it's that these systems are not compliant, sometimes that 
-Linux is the compliance suite, sometimes that we're doing an ISA 
-extension, and sometimes that we're doing the SBI stuff.
+Nope, it is much cleaner and modular compared to SiFive CLINT and
+it is also backward compatible to SiFive CLINT.
 
-I don't really care all that much about what the decision is, but it's 
-impossible to move forward without some semblance of a plan.
+Can you elaborate what part of the code you are not okay with ?
+
+>
+> > Here's the RISC-V ACLINT spec:
+> > https://github.com/riscv/riscv-aclint/blob/main/riscv-aclint.adoc
+> >
+> > The RISC-V ACLINT spec is quite stable and we are not seeing any
+> > further changes hence I sent out RFC PATCHes to get feedback. The
+> > RISC-V ACLINT spec will be frozen before 2021 end (i.e. before next
+> > RISC-V summit).
+>
+> Have you talked to the other ISA folks about that?
+
+This spec is being developed by the RISC-V AIA group based on the
+feedback from ISA folks and HW architects.
+
+>
+> As far as I can tell this new spec allows for multiple MTIME registers,
+> which seems to be in direct contradiction to the single -MTIME register
+> as defined in the ISA manual.  It also seems to be vaguely incompatible
+> WRT the definition of SSIP, but I'm not sure that one really matters all
+> that much as it's not like old software can write the new registers.
+
+The ACLINT spec clearly defines that if we have multiple MTIME registers
+then these registers must be synchronized to meet the architecture
+requirements. The spec also defines a software mechanism for MTIME
+synchronization. It is also possible for multiple MTIMER devices to share
+same MTIME register. Please refer to the latest ACLINT spec.
+
+>
+> I just talked to Krste and Andrew, they say they haven't heard of any of
+> this.  I don't know what's going on over there, but it's very hard to
+> review anything when I can't even tell where the ISA is defined.
+
+I am surprised by the respone you got because the ACLINT spec is
+being developed by a working group of RISC-V International. In fact,
+it is hosted on the RISC-V International GitHub. How can we host it on
+RISC-V GitHub if it is not an official spec being developed by RVI.
+
+Regards,
+Anup
+
+>
+> > The Linux NoMMU kernel (M-level) will use an ACLINT MSWI device
+> > for IPI support whereas the regular Linux MMU kernel (S-level) will
+> > use an ACLINT SSWI device for IPI support.
+> >
+> > The ACLINT SWI driver is a common IPI driver for both ACLINT
+> > MSWI (Linux NoMMU) and ACLINT SSWI (Linux MMU). In fact,
+> > the ACLINT SWI also works for IPI part (i.e. MSWI) of SiFive CLINT.
+> >
+> > Regards,
+> > Anup
+> >
+> >>
+> >>         M.
+> >>
+> >> --
+> >> Without deviation from the norm, progress is not possible.
