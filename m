@@ -2,106 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 45EA93DB98E
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 15:45:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0505F3DB9AB
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 15:53:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238992AbhG3NpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 09:45:14 -0400
-Received: from frasgout.his.huawei.com ([185.176.79.56]:3542 "EHLO
-        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238970AbhG3NpN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 09:45:13 -0400
-Received: from fraeml704-chm.china.huawei.com (unknown [172.18.147.201])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4GbpLq3j0vz6G9mJ;
-        Fri, 30 Jul 2021 21:35:47 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml704-chm.china.huawei.com (10.206.15.53) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2176.2; Fri, 30 Jul 2021 15:45:06 +0200
-Received: from localhost (10.47.1.48) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Fri, 30 Jul
- 2021 14:45:06 +0100
-Date:   Fri, 30 Jul 2021 14:44:39 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Hui Liu <hui.liu@mediatek.com>
-CC:     <robh+dt@kernel.org>, <jic23@kernel.org>, <lars@metafoo.de>,
-        <pmeerw@pmeerw.net>, <srv_heupstream@mediatek.com>,
-        <zhiyong.tao@mediatek.com>, <chun-hung.wu@mediatek.com>,
-        <yingjoe.chen@mediatek.com>, <seiya.wang@mediatek.com>,
-        <matthias.bgg@gmail.com>, <s.hauer@pengutronix.de>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-iio@vger.kernel.org>, <linux-mediatek@lists.infradead.org>
-Subject: Re: [PATCH v1] iio: mtk-auxadc: add mutex_destroy
-Message-ID: <20210730144439.00005e26@Huawei.com>
-In-Reply-To: <20210729080135.17436-2-hui.liu@mediatek.com>
-References: <20210729080135.17436-1-hui.liu@mediatek.com>
-        <20210729080135.17436-2-hui.liu@mediatek.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
+        id S239074AbhG3Nxr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 09:53:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59474 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239073AbhG3Nxr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 09:53:47 -0400
+X-Greylist: delayed 462 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 30 Jul 2021 06:53:42 PDT
+Received: from yawp.biot.com (yawp.biot.com [IPv6:2a01:4f8:10a:8e::fce2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFAADC06175F
+        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 06:53:42 -0700 (PDT)
+Received: from debian-spamd by yawp.biot.com with sa-checked (Exim 4.93)
+        (envelope-from <bert@biot.com>)
+        id 1m9Spp-006bSs-90
+        for devicetree@vger.kernel.org; Fri, 30 Jul 2021 15:45:57 +0200
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on yawp
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.4
+Received: from [2a02:578:460c:1:ae1f:6bff:fed1:9ca8] (helo=sumner.biot.com)
+        by yawp.biot.com with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <bert@biot.com>)
+        id 1m9Spp-006bSo-4C; Fri, 30 Jul 2021 15:45:57 +0200
+Received: from bert by sumner.biot.com with local (Exim 4.93)
+        (envelope-from <bert@biot.com>)
+        id 1m9Spo-003a0f-9I; Fri, 30 Jul 2021 15:45:56 +0200
+From:   Bert Vermeulen <bert@biot.com>
+To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Bert Vermeulen <bert@biot.com>, John Crispin <john@phrozen.org>,
+        Felix Fietkau <nbd@nbd.name>
+Subject: [PATCH 0/4] Add support for EcoNet EN7523 SoC
+Date:   Fri, 30 Jul 2021 15:45:47 +0200
+Message-Id: <20210730134552.853350-1-bert@biot.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.47.1.48]
-X-ClientProxiedBy: lhreml753-chm.china.huawei.com (10.201.108.203) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 29 Jul 2021 16:01:35 +0800
-Hui Liu <hui.liu@mediatek.com> wrote:
+This patchset adds support for the EcoNet EN7523 SoC, intended primarily
+for xPON/xDSL routers.
 
-> Add mutex_destroy when probe fail and remove device.
-> 
-> Signed-off-by: Hui Liu <hui.liu@mediatek.com>
+John Crispin (4):
+  dt-bindings: Add vendor prefix for EcoNet
+  dt-bindings: arm: econet: Add binding for EN7523 SoC and EVB
+  ARM: dts: Add basic support for EcoNet EN7523
+  ARM: Add basic support for EcoNet EN7523 SoC
 
-Hi Hui Liu,
+ .../devicetree/bindings/arm/econet.yaml       |  27 ++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm/Kconfig                              |  14 ++
+ arch/arm/Makefile                             |   1 +
+ arch/arm/boot/dts/Makefile                    |   2 +
+ arch/arm/boot/dts/en7523-evb.dts              |  17 +++
+ arch/arm/boot/dts/en7523.dtsi                 | 128 ++++++++++++++++++
+ 7 files changed, 191 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/econet.yaml
+ create mode 100644 arch/arm/boot/dts/en7523-evb.dts
+ create mode 100644 arch/arm/boot/dts/en7523.dtsi
 
-Two things here.
-
-1) You need to explain with a clear example flow when this would serve a
-   useful purpose.  As I explained before, we do no in general put mutex_destroy()
-   in remove paths as it is usually just noise.
-
-2) It's in the wrong order logically. mutex init is between the clk_prepare_enable
-   and iio_device_register, hence if we are going to have mutex destroy it must also
-   be in that that location (remove should be reverse of probe or there should be
-   a clear comment explaining why we need to do things in a different order.
-
-3) If touching this code at all, please move all of the probe / remove to devm_
-   managed code so that we don't need to get this ordering right at all because
-   it will be done automatically.
-
-So I won't apply this without 1 and even if I accepted the principle, it's
-still in the wrong place in remove.
-
-Jonathan
-
-> ---
->  drivers/iio/adc/mt6577_auxadc.c | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/iio/adc/mt6577_auxadc.c b/drivers/iio/adc/mt6577_auxadc.c
-> index 79c1dd68b909..d57243037ad6 100644
-> --- a/drivers/iio/adc/mt6577_auxadc.c
-> +++ b/drivers/iio/adc/mt6577_auxadc.c
-> @@ -289,6 +289,7 @@ static int mt6577_auxadc_probe(struct platform_device *pdev)
->  	ret = iio_device_register(indio_dev);
->  	if (ret < 0) {
->  		dev_err(&pdev->dev, "failed to register iio device\n");
-> +		mutex_destroy(&adc_dev->lock);
->  		goto err_power_off;
->  	}
->  
-> @@ -313,6 +314,7 @@ static int mt6577_auxadc_remove(struct platform_device *pdev)
->  			      0, MT6577_AUXADC_PDN_EN);
->  
->  	clk_disable_unprepare(adc_dev->adc_clk);
-> +	mutex_destroy(&adc_dev->lock);
->  
->  	return 0;
->  }
+-- 
+2.25.1
 
