@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B0E43DBB29
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 16:49:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0D793DBB36
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 16:49:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239426AbhG3Ots (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 10:49:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46512 "EHLO
+        id S239338AbhG3OuA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 10:50:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239508AbhG3Otk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 10:49:40 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CC37C061384
-        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 07:49:33 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id cf5so1994248edb.2
-        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 07:49:32 -0700 (PDT)
+        with ESMTP id S239464AbhG3Otq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 10:49:46 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A07A5C061389
+        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 07:49:34 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id ec13so13031302edb.0
+        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 07:49:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Ot32ht04BXO8SKhUwdTi6PwT+/ZyNLaqR53YTHmra28=;
-        b=CH1XwFDMONkRoS0L/kjL/lrkowO/ss3qdcPZnBTDvs9TyvKmuerCCsIOLDQ9whEtb6
-         LW4ewm6dUjJsvwEntmn+i8e6kPjj/FgSpYDhkxFjVmelJcH3ZhgN36FF0dxTD1qPnf6P
-         FBXuv+h7IKzdGuw8Uyr2ElP4rMeGixDfNhev/gZamNoxmF/aIMYvjdbjO3vcgi/079cy
-         07aaQRfBED4oskkILUpFNugLxcz+o6RS1BLFD4+OdlaR9aXEiIpedeZE8fE1ovYCH5R3
-         lxiDVpYXFudf4biV3k/60rOdqE665ZtCoAD4SoPrQtq8xxCqsIwIZU8i9D+EL4Q9Wbl8
-         KTcQ==
+        bh=/WRgr1XFp9FdAsbKP4Xd28JEjGpJQHHB0Nsl4r99ndU=;
+        b=Ttd3PD4SOkqmgJ56xmVxk5y/kZqfeZKwZjt5/WRIFeZZ2Yp0sjaFyhcBKhWKm4vcZx
+         JUFlWZh/n8JDtgEBEz/uJasK+IBWtqo8cGLyO3/QdS+pkzySyL7TOlJIwtw+5NftG3iw
+         9VAbPtSsUQBwtr2vnpoF4MQ5KDtlc/U0udCEOdKRQmgT8AJwnwo6lfCcfpwjFsNdSU5Q
+         vs20Ud3GX02VX6orIcQfu507dW+vwZ1xodAQySsSlVgXDioYkSfqV65APAW/wm0TSCM4
+         Sz+Bh4gLoAS9RmHv/IiNmQrOX3vw5D0UkHMisMzjRgYavzMewUkoFT33Wi/IifsWIi8z
+         lyRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Ot32ht04BXO8SKhUwdTi6PwT+/ZyNLaqR53YTHmra28=;
-        b=Mwg0RcSeRHileT+nS8UupxkDa0CngANhfit3GhFAzMdaCyh//EPc4sKDy04ZEGHGnZ
-         CIbof7JBuvhZuJBQ3L+gW+fZQspCgZln6PHfishXlBIicho3KonsxQdA+ScHmgJ+Nr0y
-         sXt98jlOeg3H4cz77bEWc6xBxikD83FPok5ZgSwcptpxv2QaTK9EpvB/tRIQromIkhPo
-         gOqcW6V7wcYkcTAYbI/vKiukGvTnrFChBY9i8sxYZcHDQEZPJFPz4LKEzWELwNPY/ycw
-         ewEjyHYRUdu9xTGesvigFskiOnw5oP9pzxr+SYzQm+8BOu93uHWTzh4SnFbeb6zQeF2L
-         7ETg==
-X-Gm-Message-State: AOAM531CyeYHuibGozrzgy0149SfrpFBYFg1A6+eFCP+tp1vhmTQReYY
-        5VS0vo+yP5gJsNRs9xsg8s9jvA==
-X-Google-Smtp-Source: ABdhPJzJHeG6sX0rfzJjBc24DJrsJii8Q6q/W+APtZpb/CrAtPhcTiGt4fyoTMLI3v8zLI+1ZAdKFA==
-X-Received: by 2002:aa7:df09:: with SMTP id c9mr3446384edy.379.1627656571652;
-        Fri, 30 Jul 2021 07:49:31 -0700 (PDT)
+        bh=/WRgr1XFp9FdAsbKP4Xd28JEjGpJQHHB0Nsl4r99ndU=;
+        b=rXC6kznudWQp86rFmnfvckY/DYErunjVsc6xGwWVkHoBULatjJVvCkdbFPPdKbK57U
+         MRXUQCA9H35e3HnlYvdpT9WmmumgrXLod6cJd5UU0A+HOv+lFwYXBMYd4xQPysojQII1
+         ZB8Pw2uy0f/1wx5qP0RSCwz6GiQKa9/GilVCFMQJC3rfQLvQ8jhi66kKyRb++PwuVDz3
+         EQUM/GryXLAL8rXAibt9n2EHp6OS+jHaLlMIBcznTMOQzOpCploOREZat62A54FGD/pH
+         0UIFJ/A62SVk1fZaQq81oDC+mv64aaSbf6XijMQQIQqjzfsb64BuQTBZHZeH75iRCvMl
+         xYlQ==
+X-Gm-Message-State: AOAM5331ojW8iytAErlv7tzFhaMKWG73s7RT/iL12tS/kV/Q8GVKTMF6
+        NBedwMcdC0PH3tcEqytAWoHefg==
+X-Google-Smtp-Source: ABdhPJzBSmfdN5A0qvfcANUH9LVf5OKoEj7QlJx+dWqloqv6bPK9IUvS+zWPucHVRgKRKYsQvYUV0w==
+X-Received: by 2002:a05:6402:49a:: with SMTP id k26mr3292136edv.279.1627656573161;
+        Fri, 30 Jul 2021 07:49:33 -0700 (PDT)
 Received: from localhost ([31.134.121.151])
-        by smtp.gmail.com with ESMTPSA id ks26sm639920ejb.58.2021.07.30.07.49.30
+        by smtp.gmail.com with ESMTPSA id i10sm784560edf.12.2021.07.30.07.49.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Jul 2021 07:49:31 -0700 (PDT)
+        Fri, 30 Jul 2021 07:49:32 -0700 (PDT)
 From:   Sam Protsenko <semen.protsenko@linaro.org>
 To:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
         Chanwoo Choi <cw00.choi@samsung.com>,
@@ -67,9 +67,9 @@ Cc:     Rob Herring <robh+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
         linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
         linux-serial@vger.kernel.org
-Subject: [PATCH 05/12] tty: serial: samsung: Fix driver data macros style
-Date:   Fri, 30 Jul 2021 17:49:15 +0300
-Message-Id: <20210730144922.29111-6-semen.protsenko@linaro.org>
+Subject: [PATCH 06/12] tty: serial: samsung: Add Exynos850 SoC data
+Date:   Fri, 30 Jul 2021 17:49:16 +0300
+Message-Id: <20210730144922.29111-7-semen.protsenko@linaro.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210730144922.29111-1-semen.protsenko@linaro.org>
 References: <20210730144922.29111-1-semen.protsenko@linaro.org>
@@ -79,34 +79,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Make checkpatch happy by fixing this error:
-
-    ERROR: Macros with complex values should be enclosed in parentheses
-
-Although this change is made to keep macros consistent with consequent
-patches (adding driver data for new SoC), it's intentionally added as a
-separate patch to ease possible porting efforts in future.
+Add serial driver data for Exynos850 SoC. This driver data is basically
+reusing EXYNOS_COMMON_SERIAL_DRV_DATA, which is common for all Exynos
+chips, but also enables USI init, which was added in previous commit:
+"tty: serial: samsung: Init USI to keep clocks running".
 
 Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
 ---
- drivers/tty/serial/samsung_tty.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/tty/serial/samsung_tty.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
 diff --git a/drivers/tty/serial/samsung_tty.c b/drivers/tty/serial/samsung_tty.c
-index 0f3cbd0b37e3..75ccbb08df4a 100644
+index 75ccbb08df4a..d059b516a0f4 100644
 --- a/drivers/tty/serial/samsung_tty.c
 +++ b/drivers/tty/serial/samsung_tty.c
-@@ -2817,8 +2817,8 @@ static struct s3c24xx_serial_drv_data exynos5433_serial_drv_data = {
+@@ -2814,11 +2814,19 @@ static struct s3c24xx_serial_drv_data exynos5433_serial_drv_data = {
+ 	.fifosize = { 64, 256, 16, 256 },
+ };
+ 
++static struct s3c24xx_serial_drv_data exynos850_serial_drv_data = {
++	EXYNOS_COMMON_SERIAL_DRV_DATA_USI(1),
++	.fifosize = { 0, },
++};
++
  #define EXYNOS4210_SERIAL_DRV_DATA ((kernel_ulong_t)&exynos4210_serial_drv_data)
  #define EXYNOS5433_SERIAL_DRV_DATA ((kernel_ulong_t)&exynos5433_serial_drv_data)
++#define EXYNOS850_SERIAL_DRV_DATA ((kernel_ulong_t)&exynos850_serial_drv_data)
++
  #else
--#define EXYNOS4210_SERIAL_DRV_DATA (kernel_ulong_t)NULL
--#define EXYNOS5433_SERIAL_DRV_DATA (kernel_ulong_t)NULL
-+#define EXYNOS4210_SERIAL_DRV_DATA ((kernel_ulong_t)NULL)
-+#define EXYNOS5433_SERIAL_DRV_DATA ((kernel_ulong_t)NULL)
+ #define EXYNOS4210_SERIAL_DRV_DATA ((kernel_ulong_t)NULL)
+ #define EXYNOS5433_SERIAL_DRV_DATA ((kernel_ulong_t)NULL)
++#define EXYNOS850_SERIAL_DRV_DATA ((kernel_ulong_t)NULL)
  #endif
  
  #ifdef CONFIG_ARCH_APPLE
+@@ -2874,6 +2882,9 @@ static const struct platform_device_id s3c24xx_serial_driver_ids[] = {
+ 	}, {
+ 		.name		= "s5l-uart",
+ 		.driver_data	= S5L_SERIAL_DRV_DATA,
++	}, {
++		.name		= "exynos850-uart",
++		.driver_data	= EXYNOS850_SERIAL_DRV_DATA,
+ 	},
+ 	{ },
+ };
+@@ -2897,6 +2908,8 @@ static const struct of_device_id s3c24xx_uart_dt_match[] = {
+ 		.data = (void *)EXYNOS5433_SERIAL_DRV_DATA },
+ 	{ .compatible = "apple,s5l-uart",
+ 		.data = (void *)S5L_SERIAL_DRV_DATA },
++	{ .compatible = "samsung,exynos850-uart",
++		.data = (void *)EXYNOS850_SERIAL_DRV_DATA },
+ 	{},
+ };
+ MODULE_DEVICE_TABLE(of, s3c24xx_uart_dt_match);
 -- 
 2.30.2
 
