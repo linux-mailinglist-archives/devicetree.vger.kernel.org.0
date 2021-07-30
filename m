@@ -2,134 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2232A3DBEA2
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 21:02:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90EEF3DBEAB
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 21:04:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230499AbhG3TCd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 15:02:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55982 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230455AbhG3TCa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 15:02:30 -0400
-Received: from mail-vk1-xa31.google.com (mail-vk1-xa31.google.com [IPv6:2607:f8b0:4864:20::a31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58F44C061765
-        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 12:02:24 -0700 (PDT)
-Received: by mail-vk1-xa31.google.com with SMTP id x11so2229161vke.1
-        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 12:02:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gBCAezsRz+diDpubea9ipqu5sk3T7ijBYsLpPq9JW6g=;
-        b=bDgWF2lqGMUdyCyKt7IN7yXqW3h+wIKUz+MPEaJhXXpzBEp0DfQjh9CuOEjG0CzTM/
-         d6go/2disbc51wRYj5T56dCFF7xi2Rz1b2FVK3dHv6J18v1pdUDD/alM4dyrmFzkPCVA
-         pP2PTVAS15KrTJIylWJrNUaLIw9s/j/JfrkmfrXlXajpC+0My7997AyW3R5J/44mKOOD
-         nrdt1iHUwHO5PLk/3S8/L/SSLcWT+jC4zfOY46O7rmUAcjmKFHEE6P0UkaKf0pB+CJ9J
-         X9SBMLKBTsJ+2Oq0jxxtMYwnzVaEmgz0h/cJoTjfTTFS3JhqVDJAxAVuUCMp6LLFiBD1
-         mfDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gBCAezsRz+diDpubea9ipqu5sk3T7ijBYsLpPq9JW6g=;
-        b=bhYa/mq+2kJD9R9HGsbYO7riFTEebkk2OETmQZApF9VJ/Wot0d1nHKDvLk/gycPMIC
-         TMCIVSWUR0aCLo4rwv5fdSglAyElc7XrxEJXp9rDx4VfN7ToCIDKYJ+idkUWv4zdy0T4
-         ng2GdqTeK9escOYZ2jeMl7a9ixqYJXeL7Ui0fJ05xpnTaeunC962ewhL4wJ2SCVvSEQY
-         +i0PtEMky3ayVqYpOKCdbtMXqd3arMnuYFxSQdOK8VsBXkOYFrVarJASY0+8iplGcuXJ
-         6anWO680jPoxdez82dRHK03ydlg7Bwi3texKHlK6ojDpaFK1GIU4r/ovnynKjHRMkDco
-         fiRA==
-X-Gm-Message-State: AOAM532ww8zI6+S+sBiuidmUeFVKFGos8rllo+z1IL0emzoievHOVppa
-        4vsVtIeGyofYXAYPtjKPde8yDzYX3HAgv3WKTcS4BQ==
-X-Google-Smtp-Source: ABdhPJy6d7W9hl2/7EtbdW42ci7f/PLQYOiCiB8PwC/au40+bBBTWt2EtWiXxIl/RIdt37Nw/MAlL2jVYoYJ1eEgjXE=
-X-Received: by 2002:a1f:3651:: with SMTP id d78mr3095853vka.0.1627671743462;
- Fri, 30 Jul 2021 12:02:23 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210730144922.29111-1-semen.protsenko@linaro.org>
- <5e35b0a7-13aa-3c62-ca49-14af2fcb2a08@canonical.com> <c3486111-0ec9-9679-d2a2-68b2f33a2450@canonical.com>
-In-Reply-To: <c3486111-0ec9-9679-d2a2-68b2f33a2450@canonical.com>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Fri, 30 Jul 2021 22:02:12 +0300
-Message-ID: <CAPLW+4kbnJEBkc0D=RWt59JxBan8X1uDy6sSXBiYAq8N9FDV6A@mail.gmail.com>
-Subject: Re: [PATCH 00/12] Add minimal support for Exynos850 SoC
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
+        id S230497AbhG3TEI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 15:04:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45278 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231124AbhG3TEH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Jul 2021 15:04:07 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2917660F4B;
+        Fri, 30 Jul 2021 19:04:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1627671842;
+        bh=zOGnjhKkN2kboqIf15L8awEjWTGdECV9Wk8eV4CT0iI=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=BWbMtYdr1e4orAi0AhIfLxTzTikGp6jegSZuSDY79Ug88WoJbJTgXZOgFD75pqzen
+         KeI/xW62UgsaqAtaUcE7wWClivboGItXaLcb+aSBDA5/DRqOEGpf5Hf2rfKj2xRQQd
+         M28VsvlYzTrqJFMOQ0wOIwUQj9cq6DSdC0+TcPTdVZgG3wsABDFACT2s8yAJRsL87C
+         V0xTa08UQkpW3UhsZ0XaybeBiOeT+Ai7P06twznG13PwvCcmr9RqHnoELnlA0BuM5t
+         8FGK5ymWlDXldBf8AVjdy8duPyxwF6UtWhK3LxzuaX+m+WjHdrQdgo2GNtFl0QlBhh
+         BKL+F2SUREVfQ==
+From:   Mark Brown <broonie@kernel.org>
+To:     Takashi Iwai <tiwai@suse.com>, Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
-        Ryu Euiyoul <ryu.real@samsung.com>,
-        Tom Gall <tom.gall@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Jaroslav Kysela <perex@perex.cz>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        alsa-devel@alsa-project.org, linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das@bp.renesas.com>, devicetree@vger.kernel.org
+Subject: Re: (subset) [PATCH v2 0/8] Add RZ/G2L Sound support
+Date:   Fri, 30 Jul 2021 20:03:38 +0100
+Message-Id: <162767143674.56427.1812897829636885311.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210719134040.7964-1-biju.das.jz@bp.renesas.com>
+References: <20210719134040.7964-1-biju.das.jz@bp.renesas.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On Mon, 19 Jul 2021 14:40:32 +0100, Biju Das wrote:
+> This patch series aims to add ASoC support on RZ/G2L SoC's.
+> 
+> It is based on the work done by Chris Brandt for RZ/A ASoC driver.
+> 
+> Biju Das (8):
+>   ASoC: dt-bindings: Document RZ/G2L bindings
+>   sound: soc: sh: Add RZ/G2L SSIF-2 driver
+>   arm64: dts: renesas: r9a07g044: Add external audio clock nodes
+>   arm64: dts: renesas: r9a07g044: Add SSI support
+>   arm64: defconfig: Enable ASoC sound support for RZ/G2L SoC
+>   ASoC: dt-bindings: sound: renesas,rz-ssi: Document DMA support
+>   sound: sh: rz-ssi: Add SSI DMAC support
+>   arm64: dts: renesas: r9a07g044: Add SSI DMA support
+> 
+> [...]
 
-On Fri, 30 Jul 2021 at 20:21, Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> On 30/07/2021 17:18, Krzysztof Kozlowski wrote:
-> > On 30/07/2021 16:49, Sam Protsenko wrote:
-> >> This patch series adds initial platform support for Samsung Exynos850
-> >> SoC [1]. With this patchset it's possible to run the kernel with BusyBox
-> >> rootfs as a RAM disk. More advanced platform support (like MMC driver
-> >> additions) will be added later. The idea is to keep the first submission
-> >> minimal to ease the review, and then build up on top of that.
-> >>
-> >> [1] https://www.samsung.com/semiconductor/minisite/exynos/products/mobileprocessor/exynos-850/
-> >>
-> >
-> > Great work!
-> >
+Applied to
 
-Thanks, Krzysztof! And thank you for reviewing the whole series.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-> > What's the SoC revision number (should be accessible via
-> > /sys/bus/soc/devices/soc0/)? Recent wrap in numbering of Exynos chips
-> > might bring confusion...
+Thanks!
 
-# cat /sys/devices/soc0/revision
-0
+[1/8] ASoC: dt-bindings: Document RZ/G2L bindings
+      commit: 2b761f476f3a6e0a212c8c88e7855f66edb177e0
+[6/8] ASoC: dt-bindings: sound: renesas,rz-ssi: Document DMA support
+      commit: 5df6dfbb6de815ba3a75c788a916865212fd5221
 
->
-> Judging by vendor's sources it is quite confusing. It looks mostly like
-> Exynos3830 but in few other cases it uses Exynos9 compatibles (Exynos9,
-> Exynos9820). Only in few places there is Exynos850. Marketing department
-> made it so confusing...  The revision embedded in SoC would be very
-> interesting.
->
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-As I understand, this SoC is called Exynos850 everywhere now.
-Exynos3830 is its old name, not used anymore. As you noticed from
-patch #2, it shares some definitions with Exynos9 SoC, so I guess some
-software is similar for both architectures. Not sure about hardware
-though, never worked with Exynos9 CPUs. Anyway, I asked Samsung
-representatives about naming, and it seems like we should stick to
-"Exynos850" name, even in code.
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-> Anyway, judging by current versioning, there is a risk Samsung will come
-> with a new chipset name conflicting with existing ones. It already
-> overflowed.
->
-> It's even worse with a thingy called "Exynos9 auto" which hides
-> numbering even more.
->
->
-> Best regards,
-> Krzysztof
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
