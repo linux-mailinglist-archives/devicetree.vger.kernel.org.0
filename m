@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D7C13DB5EB
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 11:32:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F6723DB5EE
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 11:32:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230359AbhG3JcI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 05:32:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50038 "EHLO
+        id S238095AbhG3JcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 05:32:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230462AbhG3JcH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 05:32:07 -0400
-Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A8C8C0613CF
-        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 02:32:03 -0700 (PDT)
-Received: by mail-io1-xd33.google.com with SMTP id n19so10752262ioz.0
-        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 02:32:03 -0700 (PDT)
+        with ESMTP id S238160AbhG3JcP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 05:32:15 -0400
+Received: from mail-il1-x136.google.com (mail-il1-x136.google.com [IPv6:2607:f8b0:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E080CC0613C1
+        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 02:32:10 -0700 (PDT)
+Received: by mail-il1-x136.google.com with SMTP id y4so8802137ilp.0
+        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 02:32:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=f8ZWMHHc2Lzy1so91uQOvvF+YHMcuXp3i590hglYW/0=;
-        b=Fx77fDgwTtiSAGHabutbrjOyCZjKbo7MH/4iCNF+bzQi2dSATPXmG9Vu8ojRPSJsed
-         IuEP5hk4WZWBzspgjApfNEshHGFbR7QT12J1ByuPTS5EIDGqT8xBg8tnTl95cIKGoNXp
-         vxkAaeOKzZx5FUFu4YT8Ad0RuBQqh8K4pMFEWlFBwcpNtI9wIOKwgcpXQKg19clZUrzz
-         9+LaqD2QqWicqMe4D6jCjRJlY9p9hcw+lYy6q6h7pXKkx9ev1mwqNzL+pCUEjNRQtCOL
-         3KmecR8yZL4z5Ng7535bbfigmn7rXXRTiIbuijeBjZvipdq5sD6fWp/FMKcOoDkfy2Dz
-         t5pg==
+        bh=QKbni/aqZ76egtkhHkdY0UN0LLkLh5aeXXQeCasUkGw=;
+        b=tsJk19gj3PkHmJlHLJBetwd4R6wBhJLLd/jqdoeSuniGamNJhUloHmn9Om5S6Xtb1F
+         aHESwW0AAwDpr4rE3MHELlyFuZgtOjXswiUzKTi5UF2y8bQwaDTccAtbqBTgdi6k0uLp
+         Xom+icaVuL6AmjU70Bs9WjQ00OyqCm1h5XHAOamMUzKmLWRIed7TJ97AsvC9QLS1k8Bx
+         5Cjdoq4OAW91rRhW089foyTtOwVoRPQ9dHGYvFquGDPqo2eg0PsC7ooG2eLZEZIv3WNg
+         vnuuBvVUnz0q5RFoU0Wale42c6jGEexWwBqS7Lb5bc4DJp2T7EvP8Y7znE1E95N+K0oW
+         JxOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=f8ZWMHHc2Lzy1so91uQOvvF+YHMcuXp3i590hglYW/0=;
-        b=F6Ob/zKRwl4OTACMGhF/JxoWlKxO2bfJjBKvLmvXn4dTLuS22yanpfUOuLlSITQzlw
-         pF0GU4Nxq9vP/j+OSjQ56P2NVv6kh32egUOjc10qFdcLrGTTidQ/rrjHUh2PEXxwYxNd
-         f3PQVAA9RmjPIrtSXFbImDHyd12kQawTkakC7lEYnHvmNOQDGhDtp1fEF8Sg58KdnIC9
-         t12da3Illt357Ewb27ZbyluiQvSDbISsnnKrXWumg/gavDmzDk5J2DyzcNuT8nFGsTQf
-         h6qJKofHr/FAlFCOqztQnzhy+802JghRM1WDMr14a4gewOy73woJ1BSXHQgaVk+kXHZl
-         2/5w==
-X-Gm-Message-State: AOAM532wlYmfBPo400/L64j9N25XvPFl2aEdzV8hYZpHxJ5yvXb0/YwI
-        M4WFS7/wZeoeTilpF+Pz+KW6Ijf+/Mn/nOdz2cShfg==
-X-Google-Smtp-Source: ABdhPJxqDTwLCydinawV1ga0hNzX7YN2mmLocrJgnBJXggjsSyMAMZ/u03ewHGOvI8jHRtI+RmlJVZQlQ8E5E5PrQJg=
-X-Received: by 2002:a02:7f12:: with SMTP id r18mr1435455jac.50.1627637522473;
- Fri, 30 Jul 2021 02:32:02 -0700 (PDT)
+        bh=QKbni/aqZ76egtkhHkdY0UN0LLkLh5aeXXQeCasUkGw=;
+        b=OieU56JLRxxt/DCBaBPm0iMv0JadH7aKvSRCQXscGW3liTQCuqivusqm7cyWCZqili
+         lkdjrbmSi8prAPop+J7aUfKeWW1lTrrpPqCNGmLlOgqZYkZ1JNsJ3c/nYAR6fpafI+60
+         aAnyX5GNPBKLOND28/vPutO0LnAPls59y8RqzeMVX3gGrhs2NS6/Qj9mURRbgwhtKDaN
+         aOGp/9q6OLoDrpy9NltF1YyjVwgUHD5P0RUdXa0K5gisBfDES6iB6LoeSGuLyyErZ/ab
+         Jrnrvdm4lkFQQc6zRTLFQ63cC06heUok+3qq1apeIar1lmFqHJfxf2UwnJocdxoceUb1
+         za9Q==
+X-Gm-Message-State: AOAM532O3gvC7kCqIwTaZx1UkVdaBnZVR/n4T66YYjwTPqlrJ+TIp2pF
+        uc3VpXCFiOt2JCi6MkWTEJ1ILeekcmWllF09D9/4pQ==
+X-Google-Smtp-Source: ABdhPJwZLOf5Uom5UUNk1V2tXMhgVFLbgGGQQUfIB7390G3ZNeOxSBTJlaBusk0ofIKvM2BK/hKZ296u0QH3MGgaERk=
+X-Received: by 2002:a92:b748:: with SMTP id c8mr1288763ilm.302.1627637530193;
+ Fri, 30 Jul 2021 02:32:10 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210727101051.24418-1-yunfei.dong@mediatek.com> <20210727101051.24418-2-yunfei.dong@mediatek.com>
-In-Reply-To: <20210727101051.24418-2-yunfei.dong@mediatek.com>
+References: <20210727101051.24418-1-yunfei.dong@mediatek.com> <20210727101051.24418-3-yunfei.dong@mediatek.com>
+In-Reply-To: <20210727101051.24418-3-yunfei.dong@mediatek.com>
 From:   Tzung-Bi Shih <tzungbi@google.com>
-Date:   Fri, 30 Jul 2021 17:31:51 +0800
-Message-ID: <CA+Px+wUXmpT6TBOvD9J6ircLQ_X5D=bByOotfk+L7U+sXev3nQ@mail.gmail.com>
-Subject: Re: [PATCH v3, 01/15] media: mtk-vcodec: Get numbers of register
- bases from DT
+Date:   Fri, 30 Jul 2021 17:31:59 +0800
+Message-ID: <CA+Px+wWBWsxL=5_QYA6_v18uuRwFyoO4gT5CEL6_On4GeY+jag@mail.gmail.com>
+Subject: Re: [PATCH v3, 02/15] media: mtk-vcodec: Align vcodec wake up
+ interrupt interface
 To:     Yunfei Dong <Yunfei.Dong@mediatek.com>
 Cc:     Alexandre Courbot <acourbot@chromium.org>,
         Hans Verkuil <hverkuil-cisco@xs4all.nl>,
@@ -73,16 +73,8 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 27, 2021 at 06:10:37PM +0800, Yunfei Dong wrote:
-> +static int mtk_vcodec_get_reg_bases(struct mtk_vcodec_dev *dev)
-> +{
-> +     struct platform_device *pdev = dev->plat_dev;
-> +     int reg_num, i, ret = 0;
-ret don't need to be initialized.
-
-> +     for (i = 0; i < reg_num; i++) {
-> +             dev->reg_base[i] = devm_platform_ioremap_resource(pdev, i);
-> +             if (IS_ERR((__force void *)dev->reg_base[i])) {
-> +                     return PTR_ERR((__force void *)dev->reg_base[i]);
-> +             }
-{ } can be removed.
+On Tue, Jul 27, 2021 at 06:10:38PM +0800, Yunfei Dong wrote:
+> Vdec and venc can use the same function to wake up interrupt event.
+>
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+Reviewed-by: Tzung-Bi Shih <tzungbi@google.com>
