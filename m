@@ -2,253 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B7FF43DB09F
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 03:28:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78B833DB099
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 03:23:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233701AbhG3B2F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 21:28:05 -0400
-Received: from mail-eopbgr60082.outbound.protection.outlook.com ([40.107.6.82]:21221
-        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
+        id S233855AbhG3BXN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 21:23:13 -0400
+Received: from mail-mw2nam10on2077.outbound.protection.outlook.com ([40.107.94.77]:55453
+        "EHLO NAM10-MW2-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229667AbhG3B2F (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Jul 2021 21:28:05 -0400
+        id S233516AbhG3BXM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Jul 2021 21:23:12 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cBtaJdbpYT6VK2EwqaHdTrj+nqQ/dzldw9E2wbTmm1546EViyEViLROTi5oGUCrDcfu85bURbLgtrFLdlQvCFoue6ltMFSJYWBvjbtOyuyJn4wTaExz7HQGs4JfAeCqW6jFyb9rF6CvmuXKjQv0Er2lodAPi6nnP4BtwymHu+MWkbYfFaRQituWFSYpidx1YNio/pjt+QFwITJiNSCyO7O2yOf+JhvpMisvtJb+p88sk3CZcIU7+7JhkVOAwiJW8DZUhK/t9TwqVMrcrasoD7Xe932Kqc5LGMrgGmYqB1u0KwIqXF33whpZFZpfrCJNB8TCdL1zxZnccm+izDaGvSg==
+ b=W6OAv4xTRdnDnrrc9eFSHjEzIFLET+ENZ0NKgJKS4GkcXB8qHUTCgpMOi9jRGA/INcPAFFtIVrOiz9E4W8453a95SEf9PlbNFM/YH6v9g7uXP1DFoKj65cgiEHSYA8hH9zg31CEFcB5Rcy+AHYHqMEsF6s/+ZK9Nw3box5HIMwj1Hu4staR8gnhLMgoWx1iIIzIQ3+lierqIO71SbV3TgxfZDcWx3Yz/kp69sO0b0/V73tCcgeZsgfyvFq6tLMg9BRwnDsjoOdvNQbHWic3xZon2KxEg6Gh5Z2QADceCeFU7YHA/J5Kyy8hb1JUMty00sgtJ8+drNu/hUx4jQ3ThJg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+AHGVZpPCm11Sun4BmLUjjMFYt7Pf6Y/7YBgjYrusFY=;
- b=DhqIVrflV6sr8ZeP/FNynQCCWRoOBg6VWlXsTJeR3VGu6MWfGx913HJhtjSWH7brNETPNZnOEdL/IykunMiBjSqv6KYB62oKS+kcXUVQvSItUAdyqSTvZ8vbHnfukZ+ipzGJ9VV0HXAYzdgCn6/3eUCnu4kz0SK5jw20zY8X5b4dlSNYMBJOrkOHOx7IN+zsxLLUXEDiUKM2ctxOHAaQom6vLXdSSJnZbCGItecEA3Gnhh6W454dSBSeQ7oyxVO0V17tIOg87xJrTlOnCEdEUcAz7Llr8MIG6++7eCEzxYnh+8o7bhLFFb4citIQE5lftMDQ7F8tcnxPqN7qkqbtPA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ bh=F1HoiVDlfNurHMXTqTtTCtGSCNxkPr7ROAQv+iTVSC8=;
+ b=Oq/NDfzS+4ahqZWP54EvJly+i/N/uMbec1tiRqRLMRnfFH27H/ZTQSavE9tY0sRjRlAHlFPJoZMqeKdBqbeppS3Dsb277To6S2t7fwLFFesFaO7jUOASLCLzpfl60mO2c+c+hPKpR+NpEwo6Zf/7PcpwndpG7TLgXbH5pwsR6kCazQ8/GcSPx9Y0nk0HNxmkyE3uqY6hRpYMhJWEjuUmH5m28o9U3+8OZv0sgelsuNLUkM3m10jFTWU+xwTkE0zvZ9e3DTUR9FcD/t3xzs1TvhgTDNEnhSTK8TX9YvTCvoKrJiN21FDDMso9tU3iilOKJewYT0Vviehf5yi6S8FvBg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.112.34) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+AHGVZpPCm11Sun4BmLUjjMFYt7Pf6Y/7YBgjYrusFY=;
- b=slrCTTzViJ2ieLu6FAH8cjTN7FCfNmQ776SECxoMytJqz1A3KThxuSi/J63Pt8IUUDh27w2niJ60oF/8G/AHn6z0+MzODEq8g35JFmgKE4ttKSoiw/6IHdLD8oJX6lZ/AuLG25HiBqDwKRqJv6zJ8HeBHHvOQo9beeb2Yc9ldUk=
-Received: from VI1PR04MB5853.eurprd04.prod.outlook.com (2603:10a6:803:e3::25)
- by VI1PR04MB4221.eurprd04.prod.outlook.com (2603:10a6:803:3e::20) with
+ bh=F1HoiVDlfNurHMXTqTtTCtGSCNxkPr7ROAQv+iTVSC8=;
+ b=XdetbWhcO8k4LMmy3pjxwUWW1nGRbDy/bWaZmkKSTAjAYBC8oMMXVgDKFqYOZTM9zSX9bpvdNxdqngoaqCCcwAIeBw1c7YIqax2rL3zTVEfUT5bKNFg4wbrhXASwX5d7OoMvY1Rakq9KUutCcPLY4wDiq1CBDzRDPQjI97scdEUiCHakJsJEn8Xj7phwTblIt9W+twhQmMfpnLFJsvK8Tc+sV8KJ3yJy3l1ahvHUtCbRY1ehidlt8s+712fk0aoAAHvusrSLqWscEsewYDC0MQ9ihRSaGKtjTUiBitkma3Rv12B9NBSAsrfH1NV4qJ8hrrLEzHOSpBWta4ICn+kgTg==
+Received: from DM6PR03CA0082.namprd03.prod.outlook.com (2603:10b6:5:333::15)
+ by MN2PR12MB3998.namprd12.prod.outlook.com (2603:10b6:208:16d::19) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.21; Fri, 30 Jul
- 2021 01:27:57 +0000
-Received: from VI1PR04MB5853.eurprd04.prod.outlook.com
- ([fe80::50a3:f548:9c83:b50d]) by VI1PR04MB5853.eurprd04.prod.outlook.com
- ([fe80::50a3:f548:9c83:b50d%7]) with mapi id 15.20.4373.021; Fri, 30 Jul 2021
- 01:27:57 +0000
-From:   Richard Zhu <hongxing.zhu@nxp.com>
-To:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        "tharvey@gateworks.com" <tharvey@gateworks.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        =?iso-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Subject: RE: [PATCH 0/6] Add IMX8M Mini PCI support
-Thread-Topic: [PATCH 0/6] Add IMX8M Mini PCI support
-Thread-Index: AQHXhIed1aByXd/Pa0GD1Q7Hp2a0Y6tauTPA
-Date:   Fri, 30 Jul 2021 01:27:57 +0000
-Message-ID: <VI1PR04MB58533AF76EA4DFD8AD6CDA158CEC9@VI1PR04MB5853.eurprd04.prod.outlook.com>
-References: <20210723204958.7186-1-tharvey@gateworks.com>
- <36070609-9f1f-00c8-ccf5-8ed7877b29da@pengutronix.de>
-In-Reply-To: <36070609-9f1f-00c8-ccf5-8ed7877b29da@pengutronix.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: pengutronix.de; dkim=none (message not signed)
- header.d=none;pengutronix.de; dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: c3d0fbae-368b-4aae-f0ab-08d952f942e0
-x-ms-traffictypediagnostic: VI1PR04MB4221:
-x-ld-processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR04MB4221A2EEA22D2C3908087DCA8CEC9@VI1PR04MB4221.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: eU56uub9HUteywGPWQQWbu4R//Vtkh1LoEzXASmTMZ+DcAUat2SwqZgohIkzMcLGL7wkV4Y3Ub6Kwnbq59rQdvX0d9zh1DX1CMNC1jwccjLfE+WQhFQNpNke93RnrQutANaGcOhKL+czwxXzJ5sazuAzGcXPUqLNSsShnZnoQoQ4D8GGTVSjOQkikjEChCPttV3xplAGNADsUqGJC515I8IsB8Mv5HJlctCWQR8jVstpgjJ0b3UJPHyyxF8PmjcIcVJVy1YeCeA+WzNSZArn9TGqiT+rX9pxmbIYZ2BciEfH9pwlhwSjhiuVNmMRwQOSjoiarFB/SkI+4Hnn0l1eCUc80B/nqbwWT9ZpZYlWQ5M2nbMS/xHIqSjvE7/oQ5Lu7zJaO3V5e8p94Q3GmBzSfLCUjXB05zMVzo9wviQcP7r5U5R9zUZAndF3V/GYURXQGhcC2saFXX7sk1MOAeNWXDcsH2zb494o58saDcdAWBjrBA//o7GoEvw6aEp7L6ttTTyDytr+cJWQQ5DeTL2dO/XJH9I+XVeb3F1H9R70tQgQsrGkPB6KaqvkNsEGv3gNwK6hZA0u3o4wUCqJXTlNz/AqNKo4XAewn2kmxyTzFH5eF4E9kNcKXvkU78zjRVo/w0YXllAdx+6/LDOxKiuAbNqOwn/Rq97jMhNjdTAvat6UxrxVSB6lvxrZtVvC5RH0sWfD19WVYeP9o3+CqYMYoDKunKXNjRZdWnY3gzddf6hTf/m5zZSFefXLvdplj0LAh/twmRUPbWKlqe4u+Gi7XHKX3y1nzG2q8dTBhedQTfFUmlGn8xzsDiulCBpO3OZ1vvY9P+6moFlXfedrAIaiDNj/fg9XK5O8OzlYbSeYAeTe0iQTzQxr+aLvcyJwAnqv
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5853.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(39850400004)(366004)(376002)(136003)(396003)(45080400002)(66446008)(64756008)(52536014)(26005)(8676002)(110136005)(86362001)(122000001)(38070700005)(71200400001)(38100700002)(76116006)(53546011)(5660300002)(7696005)(966005)(66946007)(478600001)(2906002)(66476007)(6506007)(921005)(8936002)(66556008)(186003)(316002)(33656002)(7416002)(9686003)(83380400001)(55016002)(32563001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-2?Q?nfso2gC1J9tCKr5YVa3ooFZYrP6uDbtQ2t8wWASYYdkL+XrEO/T5UCx9Hz?=
- =?iso-8859-2?Q?IYgJ04SjQGuAko1D52F7KaHfv90sOx/6Ks23WA1E1DOdSzFtCK1Qjd8VQY?=
- =?iso-8859-2?Q?Q/i3dqnfj0NvL5p5vXAkdMxzengUztYO5kD02ccm6Y73KxkYbki8J4r86V?=
- =?iso-8859-2?Q?S3RYkIckAg89jf3vxLnK7BHNKlE1OLQt2wcWv15OJe1wOnDm7VFKTuy2lp?=
- =?iso-8859-2?Q?5+PLUtbrWwf377NEqM8eqA0kKgQWbuYG/9pVxEeVTprTukGUYz8tos7BGi?=
- =?iso-8859-2?Q?yY8v2PwHvJsnhHkkXt7k6ZswO4zr2WKGnF7cZ8GoBatHjxHgEGwnLrNrtg?=
- =?iso-8859-2?Q?GgArTRhgx3C2embPdByiLeA40MHRPfzt4iLoC3eGr5gvIVRMeeO1H+RI7c?=
- =?iso-8859-2?Q?Ss847z+74jWnNkiOdXTjp+uyoHvOOBokwR9xk8RSqQbkUzok6eqJO1TBfO?=
- =?iso-8859-2?Q?UTFD9LwdYSzi2l0pkjrJ/1jKfWEkVc/1fFdnI38D9ApkPky3kQl8KHfTJ1?=
- =?iso-8859-2?Q?TOcDwK82iSTUR9SGkYHeZUWuRP9ajJ5C0uH+bmWmjU8yqAixdjkCBmt265?=
- =?iso-8859-2?Q?5VDzjRLHXKURaJIX0FFi9Pno20kSNrSXBNw/Mx0pEUnJHUo5Az9pegez/z?=
- =?iso-8859-2?Q?3MGrnPdUBUdCcn9QfBEtgR0lRYT+9c7Yn2H1zotIL2WvZyGTxTvtRlksyk?=
- =?iso-8859-2?Q?qwS5yshUvsbwccrcRBpgSgkwzgQsYBxvLLYTR4Sxr63wellvx57VMfly99?=
- =?iso-8859-2?Q?vdf0Jsv74tPZj7cIJBsUJEtp4pHhcdjthNgClwFbtppFLF9J0EL7N+ptpv?=
- =?iso-8859-2?Q?LjcayYm6ZFNKpigVKLi2V7eHpRJSIij42tvjLDk0YvYN2i7AlcMH/0vElA?=
- =?iso-8859-2?Q?P63N1CWwsrvyHDwgLWQwNUg2ByQdB6KrpteLUT+it0I4Gn8Z4wdmH3cnW2?=
- =?iso-8859-2?Q?1E0hyvD8OaDEXcb/ei3P+nRH3DKgfB4wTCOWNkwQ1XpmBftxn53OgigW3Z?=
- =?iso-8859-2?Q?CVMFvRctRhdL+WMkdqgHs17ztg1URdVCTkuNQS/LJGrQmH7VGpmepdL3sZ?=
- =?iso-8859-2?Q?JnsxSwsCwHs2aTWjmjA3gwpCFT5Ujtyap8tlCEXgGgEjpwZ31oxaMznSXZ?=
- =?iso-8859-2?Q?6Nn9GOILrIwNK3q5uA5Y41TZb7iNpzyNTMNcwUjuw7dLXUixH1PXJrOfbO?=
- =?iso-8859-2?Q?bkmyvYknhv7ZcbC5s98W4NLyeAy33OR8znDnT8hVW12l4Pdy+ILQqoVvS+?=
- =?iso-8859-2?Q?OSiP6hq7OtAeRtnfE+vSSHkkBrm7t6MC0mfroohWFMHKEvLiphLX9Ra+Zd?=
- =?iso-8859-2?Q?kf7qKAdq6S7yYbpkmGW9B8umK7yU2OESTFpPSeSWHxKHSvH8Ct4SDiAvMW?=
- =?iso-8859-2?Q?vjRaZaBjxh?=
-Content-Type: text/plain; charset="iso-8859-2"
-Content-Transfer-Encoding: quoted-printable
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.18; Fri, 30 Jul
+ 2021 01:23:06 +0000
+Received: from DM6NAM11FT058.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:333:cafe::e5) by DM6PR03CA0082.outlook.office365.com
+ (2603:10b6:5:333::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.20 via Frontend
+ Transport; Fri, 30 Jul 2021 01:23:06 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.34)
+ smtp.mailfrom=nvidia.com; vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.112.34 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.112.34; helo=mail.nvidia.com;
+Received: from mail.nvidia.com (216.228.112.34) by
+ DM6NAM11FT058.mail.protection.outlook.com (10.13.172.216) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.4373.18 via Frontend Transport; Fri, 30 Jul 2021 01:23:06 +0000
+Received: from [172.17.173.69] (172.20.187.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 30 Jul
+ 2021 01:23:05 +0000
+Subject: Re: [RFC 04/11] dt-bindings: Add HTE bindings
+To:     Linus Walleij <linus.walleij@linaro.org>
+CC:     "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Kent Gibson <warthog618@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+References: <20210625235532.19575-1-dipenp@nvidia.com>
+ <20210625235532.19575-5-dipenp@nvidia.com>
+ <CACRpkdbazcGqapWMLnj8=UShU0j002SkKRTxgpprfDeaP_nAQQ@mail.gmail.com>
+X-Nvconfidentiality: public
+From:   Dipen Patel <dipenp@nvidia.com>
+Message-ID: <4b313c41-2b1b-8498-e5dd-1f82b939fa6c@nvidia.com>
+Date:   Thu, 29 Jul 2021 18:32:05 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5853.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c3d0fbae-368b-4aae-f0ab-08d952f942e0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jul 2021 01:27:57.0788
+In-Reply-To: <CACRpkdbazcGqapWMLnj8=UShU0j002SkKRTxgpprfDeaP_nAQQ@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-Originating-IP: [172.20.187.5]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: e6af2362-34a5-482c-f0da-08d952f89596
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3998:
+X-Microsoft-Antispam-PRVS: <MN2PR12MB399808DBFF668BB2704715ECAEEC9@MN2PR12MB3998.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: SuvqXzHU/oYcn+Ruw2ZO1CpgfjBIKJUFcNa+xXCtxhNgMKS1c2xbsmR5FAIvqmKpUBubNwT7oHS6gJF9KZQBKFMY/4c33xPa1pvpX36Wns2P2VMWEGw9OB6s7HrUhv7cXaTzxihdJMe3+VMcw0pLJm5gtpwKdFkzx8GBQ5Sd3PToFb+lQySt1fxscPyKXTmCcw7tXdaJdNzoXRA6xzQtaZlTVeAkyqzwdo3GAzHC1Dp8eKWeX935w9wDSaEGAR9IBItQ38hA4ulNteGwYtj8NqxLXnJIrzPt57iDkCvYgnEw8CiFK1uao017CJLZoDcRcUkOT2sWYFSpaeamyWQHQq4ILwMYNZ1FeXdi0MulhUa+ia6BFsszjCTWNFoc3W8LUhncG6KXPwtXhw8MV2vgypbKnMKstSfwAlpq1+GKWGgI23yZrCSWMgL7/9MerLvIS4ZpeRoW4JeADlyjlcdL9qze2Wq2NTos9fUqxumEsZkvGEQtgmlADu4Oy0k95y7BlPfgmzoMP9m+cokPy9dek4ph5/ZweFRG/OytIR4aWnageXl882RNi0zRVI7jMiGXjvlYO70p6834nfEErj6st8WfZIKf1oct0yaJyS23+duuI7a9mQhuq46uHxM5vMNOE6BbPzDYTV2Y8wqpQ41GM8fS4WnNBU6oigptDh7ohSxL5NHWTK0H+vgPrCbaAbYAgfMqR9rCE9sr9la1Pg1XvQynPfztKAbXXfR2wQy0emgDBverLi2jzC+zEOfohB93L2Gt34sv/2rJGZeo9EUa/kwtD+UAqDNtm4sxoIRaD4gJ3pS5AlScLN7op4J5kB8m
+X-Forefront-Antispam-Report: CIP:216.228.112.34;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:schybrid03.nvidia.com;CAT:NONE;SFS:(4636009)(39860400002)(376002)(396003)(136003)(346002)(46966006)(36840700001)(316002)(8676002)(966005)(70206006)(6916009)(16576012)(2616005)(36860700001)(186003)(82310400003)(54906003)(70586007)(478600001)(36906005)(36756003)(16526019)(26005)(336012)(8936002)(2906002)(5660300002)(356005)(426003)(7636003)(47076005)(86362001)(4326008)(82740400003)(31686004)(53546011)(7416002)(31696002)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jul 2021 01:23:06.3380
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: vn9pAu+9T2mkjx9eUCxVEnuO7boxj5TZNqbcCv+7Qypxg0g4b6QmETpwY0bH5e4KQU3+yn5mxn/B16iu+cDtPA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4221
+X-MS-Exchange-CrossTenant-Network-Message-Id: e6af2362-34a5-482c-f0da-08d952f89596
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.112.34];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT058.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3998
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tim:
-Just as Ahmad mentioned, Lucas had issue one patch-set to support i.MX8MM P=
-CIe.
-Some comments in the review cycle.
-- One separate PHY driver should be used for i.MX8MM PCIe driver.
-- Schema file should be used I think, otherwise the .txt file in the dt-bin=
-ding.
 
-I'm preparing one patch-set, but it's relied on the yaml file exchanges and=
- power-domain changes(block control and so on).
-Up to now, I only walking on the first step, trying to exchange the dt-bind=
-ing files to schema yaml file.
+On 6/27/21 3:56 AM, Linus Walleij wrote:
+> Hi Dipen,
+>
+> thanks a lot for this very interesting patch set!
+>
+> I'm gonna try to review properly, just pointing out some conceptual
+> things to begin with. Bindings is a good place to start.
+>
+> On Sat, Jun 26, 2021 at 1:48 AM Dipen Patel <dipenp@nvidia.com> wrote:
+>
+>> +description: |
+>> +  HTE properties should be named "htes". The exact meaning of each htes
+>> +  property must be documented in the device tree binding for each device.
+>> +  An optional property "hte-names" may contain a list of strings to label
+>> +  each of the HTE devices listed in the "htes" property.
+> I think this is a bit over-abbreviated. IIO has:
+> io-channels =...
+> io-channel-names =...
+>
+> Given DT:s infatuation with using english plural I would opt for:
+> hardware-timestamps = ..
+> hardware-timestamp-names = ...
+I can change it to suggested names in next RFC series.
+>
+> The "engine" part is a bit of an nVidia:ism I think and a too generic
+> term. Could as well be "processor" or "automata" but nVidia just
+> happened to name it an engine. (DMA engine would be a precedent
+> though, so no hard preference from my side.)
+>
+> When reading this it is pretty intuitively evident what is going on.
+>
+> Other than that it looks really good!
+>
+>> +++ b/Documentation/devicetree/bindings/hte/hte.yaml
+> I would name this hardware-timestamp-common.yamp or so.
 
-Best Regards
-Richard Zhu
+Sure, but do I have to change hte-consumer and other hte named
 
-> -----Original Message-----
-> From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-> Sent: Thursday, July 29, 2021 10:40 PM
-> To: tharvey@gateworks.com; Richard Zhu <hongxing.zhu@nxp.com>; Lucas
-> Stach <l.stach@pengutronix.de>; Bjorn Helgaas <bhelgaas@google.com>;
-> Rob Herring <robh+dt@kernel.org>; Shawn Guo <shawnguo@kernel.org>;
-> Sascha Hauer <s.hauer@pengutronix.de>; Pengutronix Kernel Team
-> <kernel@pengutronix.de>; Fabio Estevam <festevam@gmail.com>;
-> dl-linux-imx <linux-imx@nxp.com>; linux-pci@vger.kernel.org;
-> linux-arm-kernel@lists.infradead.org; devicetree@vger.kernel.org;
-> linux-kernel@vger.kernel.org; Krzysztof Wilczy=F1ski <kw@linux.com>; Lore=
-nzo
-> Pieralisi <lorenzo.pieralisi@arm.com>
-> Subject: Re: [PATCH 0/6] Add IMX8M Mini PCI support
->=20
-> Hello Tim,
->=20
-> On 23.07.21 22:49, Tim Harvey wrote:
-> > The IMX8M Mini PCI controller shares much in common with the existing
-> > SoC's supported by the pci-imx6 driver.
-> >
-> > This series adds support for it. Driver changes came from the NXP
-> > downstream vendor kernel [1]
-> >
-> > This series depends on Lucas Stach's i.MX8MM GPC improvements and
-> > BLK_CTRL driver and is based on top of his v2 submission [2]
->=20
-> Are you aware of Lucas' patch series and Rob's remarks there?
-> https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flore.=
-ke
-> rnel.org%2Flinux-pci%2F20210510141509.929120-7-l.stach%40pengutronix.
-> de%2F&amp;data=3D04%7C01%7Chongxing.zhu%40nxp.com%7C21a3e2ba936
-> c443581ea08d9529ebf65%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7
-> C0%7C637631664036013517%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4
-> wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&a
-> mp;sdata=3Dblnp2JkmGAZ2w5JHZHJQoZJSuY1646KAT8cccaI5n%2Fw%3D&amp;
-> reserved=3D0
->=20
-> Cheers,
-> Ahmad
->=20
-> >
-> > The final patch adds PCIe support to the Tim [1]
-> > https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fsou=
-r
-> >
-> ce.codeaurora.org%2Fexternal%2Fimx%2Flinux-imx%2F&amp;data=3D04%7C0
-> 1%7Ch
-> >
-> ongxing.zhu%40nxp.com%7C21a3e2ba936c443581ea08d9529ebf65%7C686e
-> a1d3bc2
-> >
-> b4c6fa92cd99c5c301635%7C0%7C0%7C637631664036013517%7CUnknown
-> %7CTWFpbGZ
-> >
-> sb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6M
-> n0%3
-> >
-> D%7C1000&amp;sdata=3D5IiG4fnzWkcsV2JPnQJ8gAgMhZSuZypTOixD4lV%2BTf
-> g%3D&am
-> > p;reserved=3D0
-> > [2]
-> > https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fpat=
-c
-> >
-> hwork.kernel.org%2Fproject%2Flinux-arm-kernel%2Flist%2F%3Fseries%3D51
-> 9
-> >
-> 251&amp;data=3D04%7C01%7Chongxing.zhu%40nxp.com%7C21a3e2ba936c44
-> 3581ea08
-> >
-> d9529ebf65%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C63763
-> 166403601
-> >
-> 3517%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2lu
-> MzIiLCJBT
-> >
-> iI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3DM6%2FzPsxRPv%2Fv7a
-> ad7uqjDQY
-> > 8LhHOX%2B%2FLzxnuW1UrVgE%3D&amp;reserved=3D0
-> >
-> > Tim Harvey (6):
-> >   dt-bindings: imx6q-pcie: add compatible for IMX8MM support
-> >   dt-bindings: reset: imx8mq: add pcie reset
-> >   PCI: imx6: add IMX8MM support
-> >   reset: imx7: add resets for PCIe
-> >   arm64: dts: imx8mm: add PCIe support
-> >   arm64: dts: imx8mm: add gpc iomux compatible
-> >
-> >  .../bindings/pci/fsl,imx6q-pcie.txt           |   4 +-
-> >  arch/arm64/boot/dts/freescale/imx8mm.dtsi     |  38 ++++++-
-> >  drivers/pci/controller/dwc/pci-imx6.c         | 103
-> +++++++++++++++++-
-> >  drivers/reset/reset-imx7.c                    |   3 +
-> >  include/dt-bindings/reset/imx8mq-reset.h      |   3 +-
-> >  5 files changed, 147 insertions(+), 4 deletions(-)
-> >
->=20
->=20
-> --
-> Pengutronix e.K.                           |
-> |
-> Steuerwalder Str. 21                       |
-> https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fwww.p
-> engutronix.de%2F&amp;data=3D04%7C01%7Chongxing.zhu%40nxp.com%7C21
-> a3e2ba936c443581ea08d9529ebf65%7C686ea1d3bc2b4c6fa92cd99c5c3016
-> 35%7C0%7C0%7C637631664036013517%7CUnknown%7CTWFpbGZsb3d8ey
-> JWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D
-> %7C1000&amp;sdata=3DjynjjRJZyvooJFXwvz45OU9YB0xr5wA2y%2FkoweEtUq
-> U%3D&amp;reserved=3D0  |
-> 31137 Hildesheim, Germany                  | Phone:
-> +49-5121-206917-0    |
-> Amtsgericht Hildesheim, HRA 2686           | Fax:
-> +49-5121-206917-5555 |
+yaml as well in this directory? If yes, I am referring HTE everywhere  in the
+
+code (framework is named as hte itself), I hope that is fine and does not
+
+create any confusion.
+
+>
+>> +title: HTE providers
+> Spell this out: Hardware timestamp providers
+Can I do hardware timestamp engine provider instead?
+>
+>> +properties:
+>> +  $nodename:
+>> +    pattern: "^hte(@.*|-[0-9a-f])*$"
+> Likewise:
+> hardware-timestamp@ ...
+>
+> I think this is good because it is very unambiguous.
+>
+>> +examples:
+>> +  - |
+>> +    tegra_hte_aon: hte@c1e0000 {
+>> +              compatible = "nvidia,tegra194-gte-aon";
+>> +              reg = <0xc1e0000 0x10000>;
+>> +              interrupts = <0 13 0x4>;
+>> +              int-threshold = <1>;
+>> +              slices = <3>;
+>> +              #hte-cells = <1>;
+>> +    };
+> The examples can be kept to the tegra194 bindings I think, this
+> generic binding doesn't need an example as such.
+Ok, will remove it.
+>
+>> +$id: http://devicetree.org/schemas/hte/nvidia,tegra194-hte.yaml#
+> This one should be named like this, that is great.
+>
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Tegra194 on chip generic hardware timestamping engine (HTE)
+> This is clear and nice.
+>
+>> +  int-threshold:
+>> +    description:
+>> +      HTE device generates its interrupt based on this u32 FIFO threshold
+>> +      value. The recommended value is 1.
+>> +    minimum: 1
+>> +    maximum: 256
+> Does this mean a single timestamp in the FIFO will generate an IRQ?
+> Then spell that out so it is clear.
+In the description I said that.
+>
+>> +  slices:
+>> +   description:
+>> +    HTE lines are arranged in 32 bit slice where each bit represents different
+>> +    line/signal that it can enable/configure for the timestamp. It is u32
+>> +    property and depends on the HTE instance in the chip.
+>> +   oneOf:
+>> +    - items:
+>> +        - const: 3
+>> +    - items:
+>> +        - const: 11
+> Can't you just use
+> enum: [3, 11]
+> ?
+Sure, will change it.
+>
+>> +  '#hte-cells':
+>> +    const: 1
+> So IMO this would be something like
+> #hardware-timestamp-cells
+Sure.
+>
+> Other than this it overall looks very nice to me!
+>
+> Yours,
+> Linus Walleij
