@@ -2,131 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C33F23DBE7F
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 20:48:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2232A3DBEA2
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 21:02:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230246AbhG3Ssl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 14:48:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52514 "EHLO
+        id S230499AbhG3TCd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 15:02:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230094AbhG3Ssl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 14:48:41 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40722C06175F;
-        Fri, 30 Jul 2021 11:48:36 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id nd39so18514716ejc.5;
-        Fri, 30 Jul 2021 11:48:36 -0700 (PDT)
+        with ESMTP id S230455AbhG3TCa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 15:02:30 -0400
+Received: from mail-vk1-xa31.google.com (mail-vk1-xa31.google.com [IPv6:2607:f8b0:4864:20::a31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58F44C061765
+        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 12:02:24 -0700 (PDT)
+Received: by mail-vk1-xa31.google.com with SMTP id x11so2229161vke.1
+        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 12:02:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=uqEJ2tVk3zcOiShzikPvptoGMxHSTS5A52RutoFqS7U=;
-        b=VNTu8gtySpaaA9sS+BurTr8F6HP1kt3TtaG4MO5SiuRWtmvH7Sakptp3Na+wiVsa/s
-         2Y4mylYfnuM0mgcDzsgHIhomZVBtEHzHlkEeSaLecHZbynPSffYazJ8t0eP/i9csiEii
-         6JL9U9aRmmywVGZ+XCUSFeMacWg/AVZaUvGaYkUlJbZyrqOu1KeesnWEl++Kv+O86JLA
-         rPKlUEALxQp0A8anLlu/17bvg7zST/3nzp2t5YecKTzuyvXkoD7Wdv6XcNz2gL4SMQ7b
-         o6MkSsXFpIE1XNLLI4CvNGbcJWKdiKgsMrbFf5eW5kDMsmD7ZJajr+a7NJDISKaaxgO1
-         NLww==
+        bh=gBCAezsRz+diDpubea9ipqu5sk3T7ijBYsLpPq9JW6g=;
+        b=bDgWF2lqGMUdyCyKt7IN7yXqW3h+wIKUz+MPEaJhXXpzBEp0DfQjh9CuOEjG0CzTM/
+         d6go/2disbc51wRYj5T56dCFF7xi2Rz1b2FVK3dHv6J18v1pdUDD/alM4dyrmFzkPCVA
+         pP2PTVAS15KrTJIylWJrNUaLIw9s/j/JfrkmfrXlXajpC+0My7997AyW3R5J/44mKOOD
+         nrdt1iHUwHO5PLk/3S8/L/SSLcWT+jC4zfOY46O7rmUAcjmKFHEE6P0UkaKf0pB+CJ9J
+         X9SBMLKBTsJ+2Oq0jxxtMYwnzVaEmgz0h/cJoTjfTTFS3JhqVDJAxAVuUCMp6LLFiBD1
+         mfDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=uqEJ2tVk3zcOiShzikPvptoGMxHSTS5A52RutoFqS7U=;
-        b=razWqjpueQDKEs1y6NnhUjY249tbc2LiZcJjltg1zdO4d9mXoeLzaIljFiItRdWXbQ
-         9AuDgULLKGLtrPhzA9duUD0mQsxWBCE5sFbvBSBa/BIummwxPUvYwq7uvKqk5u9VU9UQ
-         piqGpIIa4RS9X0kQ8Eb2hDR8G5ie5OTPT/loZB2hBSQbVibxInAkF+E2bOrYujoFxTOW
-         8+21atvDhgzN1baf7bM4DUY8cIUCxJK1R8Q2ps96WniHTsorvz8AekDYgyv+YWecsovf
-         Mb38WMSsWBTXrohIAFKk0rTpf+souds4FoWRGeHfOJUCN2WBHCSekSI3cdZTi0RHMi4M
-         podQ==
-X-Gm-Message-State: AOAM533Yn9CyK1r8TSgZYTnpLXL3uuNy3eGJs8iFwrw9CrsnhqJwTRCX
-        +kljrw8b8YZuD8pNZaFNgzryT3CuhYpj+t/qXXg=
-X-Google-Smtp-Source: ABdhPJxgQtN17xHqQ9vhmBTo79gnekMn6vV9DVxYUb4Z8lYNCc/M1ZY0V2WSXXxuXrzrj3X0lwDN3T2Pea8nFfVmiLw=
-X-Received: by 2002:a17:907:7848:: with SMTP id lb8mr3992214ejc.494.1627670914923;
- Fri, 30 Jul 2021 11:48:34 -0700 (PDT)
+        bh=gBCAezsRz+diDpubea9ipqu5sk3T7ijBYsLpPq9JW6g=;
+        b=bhYa/mq+2kJD9R9HGsbYO7riFTEebkk2OETmQZApF9VJ/Wot0d1nHKDvLk/gycPMIC
+         TMCIVSWUR0aCLo4rwv5fdSglAyElc7XrxEJXp9rDx4VfN7ToCIDKYJ+idkUWv4zdy0T4
+         ng2GdqTeK9escOYZ2jeMl7a9ixqYJXeL7Ui0fJ05xpnTaeunC962ewhL4wJ2SCVvSEQY
+         +i0PtEMky3ayVqYpOKCdbtMXqd3arMnuYFxSQdOK8VsBXkOYFrVarJASY0+8iplGcuXJ
+         6anWO680jPoxdez82dRHK03ydlg7Bwi3texKHlK6ojDpaFK1GIU4r/ovnynKjHRMkDco
+         fiRA==
+X-Gm-Message-State: AOAM532ww8zI6+S+sBiuidmUeFVKFGos8rllo+z1IL0emzoievHOVppa
+        4vsVtIeGyofYXAYPtjKPde8yDzYX3HAgv3WKTcS4BQ==
+X-Google-Smtp-Source: ABdhPJy6d7W9hl2/7EtbdW42ci7f/PLQYOiCiB8PwC/au40+bBBTWt2EtWiXxIl/RIdt37Nw/MAlL2jVYoYJ1eEgjXE=
+X-Received: by 2002:a1f:3651:: with SMTP id d78mr3095853vka.0.1627671743462;
+ Fri, 30 Jul 2021 12:02:23 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210729201100.3994-1-linux.amoon@gmail.com> <20210729201100.3994-3-linux.amoon@gmail.com>
- <a360877260a877819ad8eef7f63c370e0c16c640.camel@pengutronix.de>
-In-Reply-To: <a360877260a877819ad8eef7f63c370e0c16c640.camel@pengutronix.de>
-From:   Anand Moon <linux.amoon@gmail.com>
-Date:   Sat, 31 Jul 2021 00:18:23 +0530
-Message-ID: <CANAwSgSHFfzq4BYZN4wRUWcfc8+G5X9MvTUJu86MGBGFfQPSYA@mail.gmail.com>
-Subject: Re: [PATCHv1 2/3] ARM: dts: meson: Use new reset id for reset controller
-To:     Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     netdev@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        devicetree <devicetree@vger.kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+References: <20210730144922.29111-1-semen.protsenko@linaro.org>
+ <5e35b0a7-13aa-3c62-ca49-14af2fcb2a08@canonical.com> <c3486111-0ec9-9679-d2a2-68b2f33a2450@canonical.com>
+In-Reply-To: <c3486111-0ec9-9679-d2a2-68b2f33a2450@canonical.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Fri, 30 Jul 2021 22:02:12 +0300
+Message-ID: <CAPLW+4kbnJEBkc0D=RWt59JxBan8X1uDy6sSXBiYAq8N9FDV6A@mail.gmail.com>
+Subject: Re: [PATCH 00/12] Add minimal support for Exynos850 SoC
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Emiliano Ingrassia <ingrassia@epigenesys.com>
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
+        Ryu Euiyoul <ryu.real@samsung.com>,
+        Tom Gall <tom.gall@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Philipp,
+Hi Krzysztof,
 
-Thanks for your review comments.
-
-On Fri, 30 Jul 2021 at 15:16, Philipp Zabel <p.zabel@pengutronix.de> wrote:
+On Fri, 30 Jul 2021 at 20:21, Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
 >
-> On Fri, 2021-07-30 at 01:40 +0530, Anand Moon wrote:
-> > Used new reset id for reset controller as it conflict
-> > with the core reset id.
+> On 30/07/2021 17:18, Krzysztof Kozlowski wrote:
+> > On 30/07/2021 16:49, Sam Protsenko wrote:
+> >> This patch series adds initial platform support for Samsung Exynos850
+> >> SoC [1]. With this patchset it's possible to run the kernel with BusyBox
+> >> rootfs as a RAM disk. More advanced platform support (like MMC driver
+> >> additions) will be added later. The idea is to keep the first submission
+> >> minimal to ease the review, and then build up on top of that.
+> >>
+> >> [1] https://www.samsung.com/semiconductor/minisite/exynos/products/mobileprocessor/exynos-850/
+> >>
 > >
-> > Fixes: b96446541d83 ("ARM: dts: meson8b: extend ethernet controller description")
+> > Great work!
 > >
-> > Cc: Jerome Brunet <jbrunet@baylibre.com>
-> > Cc: Neil Armstrong <narmstrong@baylibre.com>
-> > Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> > ---
-> >  arch/arm/boot/dts/meson8b.dtsi  | 2 +-
-> >  arch/arm/boot/dts/meson8m2.dtsi | 2 +-
-> >  2 files changed, 2 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-> > index c02b03cbcdf4..cb3a579d09ef 100644
-> > --- a/arch/arm/boot/dts/meson8b.dtsi
-> > +++ b/arch/arm/boot/dts/meson8b.dtsi
-> > @@ -511,7 +511,7 @@ &ethmac {
-> >       tx-fifo-depth = <2048>;
-> >
-> >       resets = <&reset RESET_ETHERNET>;
-> > -     reset-names = "stmmaceth";
-> > +     reset-names = "ethreset";
+
+Thanks, Krzysztof! And thank you for reviewing the whole series.
+
+> > What's the SoC revision number (should be accessible via
+> > /sys/bus/soc/devices/soc0/)? Recent wrap in numbering of Exynos chips
+> > might bring confusion...
+
+# cat /sys/devices/soc0/revision
+0
+
 >
-> This looks like an incompatible change. Is the "stmmaceth" reset not
-> used? It is documented as "MAC reset signal" in [1]. So a PHY reset
-> should be separate from this.
+> Judging by vendor's sources it is quite confusing. It looks mostly like
+> Exynos3830 but in few other cases it uses Exynos9 compatibles (Exynos9,
+> Exynos9820). Only in few places there is Exynos850. Marketing department
+> made it so confusing...  The revision embedded in SoC would be very
+> interesting.
 >
-> [1] Documentation/devicetree/bindings/net/snps,dwmac.yaml
+
+As I understand, this SoC is called Exynos850 everywhere now.
+Exynos3830 is its old name, not used anymore. As you noticed from
+patch #2, it shares some definitions with Exynos9 SoC, so I guess some
+software is similar for both architectures. Not sure about hardware
+though, never worked with Exynos9 CPUs. Anyway, I asked Samsung
+representatives about naming, and it seems like we should stick to
+"Exynos850" name, even in code.
+
+> Anyway, judging by current versioning, there is a risk Samsung will come
+> with a new chipset name conflicting with existing ones. It already
+> overflowed.
 >
-From the above device tree binding is been used below.
-  reset-names:
-    const: stmmaceth
-
-While testing new reset driver changes I was getting conflict with
-reset id, see the below links
-hence I opted for a new reset-names = "ethreset".
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/net/ethernet/stmicro/stmmac/stmmac.h?h=v5.14-rc3#n12
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c?h=v5.14-rc3#n598
-
-> regards
-> Philipp
-
-Thanks
-
--Anand
+> It's even worse with a thingy called "Exynos9 auto" which hides
+> numbering even more.
+>
+>
+> Best regards,
+> Krzysztof
