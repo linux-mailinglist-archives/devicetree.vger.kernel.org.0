@@ -2,104 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89E5C3DBDC5
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 19:33:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F5993DBDD1
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 19:37:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230378AbhG3RdK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 13:33:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33504 "EHLO
+        id S229761AbhG3Rh2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 13:37:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230355AbhG3RdJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 13:33:09 -0400
-Received: from mail-ua1-x92f.google.com (mail-ua1-x92f.google.com [IPv6:2607:f8b0:4864:20::92f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3B22C0613D3
-        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 10:33:04 -0700 (PDT)
-Received: by mail-ua1-x92f.google.com with SMTP id d6so4280437uav.2
-        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 10:33:04 -0700 (PDT)
+        with ESMTP id S229921AbhG3Rh1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 13:37:27 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7376CC061765;
+        Fri, 30 Jul 2021 10:37:22 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id g13so19322801lfj.12;
+        Fri, 30 Jul 2021 10:37:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=JaBel+Wk+Pmj/m/QWG3pSV0rzgtGPwsESburA6QnpC0=;
-        b=FhUt38mUtFIiLDdQIxIQoXNxNSSACz3P74Pvf9/7tfNd8lCP3n5L4F56oUZaI/XE5V
-         VcqKCElVfJuA/8oM6UGQK6sz7nMLW0t2jyS8v2hTI9ATj9QJ1Mm5j0IdoPtG8WGUTHri
-         bHCYKViNYMOvw9g/VW7ic19rZqIkUI4xxqyM0rO8XMhuczGIv7VRf2mcRAgVM7P9Gso2
-         OUkF/iq1VjVvWMFYpIS5oktLhycz5Jh6/HVhTj23eOvlu1NziMVqzv//yRtE05spLPIr
-         btZhS+eZkiePZdnRCNd74CRuy5GcuaHwzmLrhulokA1WpsDAY1yVDhkurmc+Nt7dKDHA
-         Z7yA==
+        d=gmail.com; s=20161025;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=YdD/cQbxE12roUQGUPlpfAtfifyzljBPvXuX8vTuNeQ=;
+        b=OHLEomAUDEdDieEdq+73CDWNR3GZ9sjoIWNZUB6G0iOgneOiKlsjmU2LKmepB4/7K4
+         K4LPYZOpdzackoANKPBCKPSia9gb8vn4s300ngs0LMWAIfTRrTDVJJhtJiOWg0nBfUPb
+         eKLSZuhYp9ZDHfBe3p6i88WWMPgoOuIJ0nMBpExQ3EdpgKYwqhFqIRaXm+fIkApaofk5
+         UzbdScesIb9d1IxiVfstMurv4iaCf4t2R3A/8tHkwUaUWhnfSdGRUu7RauPljNiFgCI5
+         5W2IGaPuJFZqxABEB8Yd0P8suhrCr+LhA5Hg6h+wlJ5AKv5ao5Dt7S/d0gSZUt95NG2P
+         mcrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JaBel+Wk+Pmj/m/QWG3pSV0rzgtGPwsESburA6QnpC0=;
-        b=ES1x7bF+/nvSW8Sj94WI0t1uewQK/yO+siroj3+3GXbD2gJJVHgpsSw+fLZGWaSiSX
-         jxWbDTXyMu20qJwbQKYQcqRKuwKY5VZzsXtE4J/AbJJ6nitFdvSdS+UuoZ8Zczgf5wDx
-         ACnD2gn8vo3WqbQ/wTXqk4kwronU3ddTkXF82stQTdcM0iB1Rhpx5I8ImhfxJAaulq03
-         9XeGwtWPGiBz7b45qkAYtwYHARqydXv/0hvrvCNMfOWj+WaSb4/rDFvwTDLMZ0caPpgw
-         09HMNqa8kqzIgXeaiCbDuRae9/vfwXA9ZaWq2dlzpFMSql+xO3JWB9f6HIUTov99Aw5p
-         fuSA==
-X-Gm-Message-State: AOAM533G6LTR1Nb0DZ2fA3vqlydkIehiJ7aXEc7DHwufu3ObOU2vFON5
-        pKsOy4qm25OAdRFkHMClflClkaQIigDbBuFDd1r73Q==
-X-Google-Smtp-Source: ABdhPJw43II2PhFksB0jmNqxACJZWx9bpShJeIvnmuKr7qKhtUKe+219lDwvOwfyXr4EiYyBAsjydof5yY2K1WxqSb8=
-X-Received: by 2002:ab0:6392:: with SMTP id y18mr3251539uao.139.1627666384076;
- Fri, 30 Jul 2021 10:33:04 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210730144922.29111-1-semen.protsenko@linaro.org>
- <20210730144922.29111-9-semen.protsenko@linaro.org> <CAHp75VcugLnV6D8xhkMHuW-X6LCtHDDnghD2G+vqwYmRvFP9Nw@mail.gmail.com>
- <8202e9f9-06f4-f1ba-4f30-e1a0c8340450@canonical.com>
-In-Reply-To: <8202e9f9-06f4-f1ba-4f30-e1a0c8340450@canonical.com>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Fri, 30 Jul 2021 20:32:52 +0300
-Message-ID: <CAPLW+4mB1NpswMDVThEiOgn0ce29xckV5ZHo=85+ia9d5=x-6A@mail.gmail.com>
-Subject: Re: [PATCH 08/12] MAINTAINERS: Cover Samsung clock YAML bindings
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=YdD/cQbxE12roUQGUPlpfAtfifyzljBPvXuX8vTuNeQ=;
+        b=TqWcts8+gxe9LRLh0RZW55s+NhxHXh8x8KNw6cHnKiLIQxZVWekzB+oF1WppBXeK+J
+         j7I4tAOgm7pxG8DxP0Hz+b95Ps19yPaM8uSJgmocF1kdo3h4UjKpKHhAh/gUGXLyU32z
+         Rdu4huvU28YLVQ2wfYHZFkFmZyjdbJ5JE6o+Z5vQ/bnVdoQQDqXuYq8Rh1b5KnMuc2lf
+         Lunk9gwqUGoJhC8gmwU8fg5rAq+OakctwjqStFxJUtfjP7XxvjvuuCbhj92I3NVb9ab6
+         uC/t+HcIl0pa+GBiXMx/sLk29Mpz+0sO3SpOEcpS5RyVNGasNkHfVALrVHffFb7yuChb
+         B7Mg==
+X-Gm-Message-State: AOAM5316h3VV0WN1kVWRFhMFnuIk+fys0Eb8bkIAN3Xlm39jRsTp0vKa
+        8gpp50Sa+cRrgOSijMZQn9c=
+X-Google-Smtp-Source: ABdhPJwy8rI9+LJQTi6lVK2rpSiGY4hRkUnXqyk7UBMJ1mSAW7CPTJaIXxKYe3Umh7FA/tCTkTv6FA==
+X-Received: by 2002:a05:6512:3e0b:: with SMTP id i11mr2517488lfv.221.1627666640891;
+        Fri, 30 Jul 2021 10:37:20 -0700 (PDT)
+Received: from [192.168.2.145] (94-29-39-114.dynamic.spd-mgts.ru. [94.29.39.114])
+        by smtp.googlemail.com with ESMTPSA id h34sm201080lfv.231.2021.07.30.10.37.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 30 Jul 2021 10:37:20 -0700 (PDT)
+Subject: Re: [PATCH v5 00/12] Add OTG mode support to Tegra USB PHY, SMB347
+ and Nexus 7
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Sebastian Reichel <sre@kernel.org>,
+        David Heidelberg <david@ixit.cz>
+Cc:     devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org, Thierry Reding <treding@nvidia.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
-        Ryu Euiyoul <ryu.real@samsung.com>,
-        Tom Gall <tom.gall@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>,
+        Peter Chen <peter.chen@kernel.org>,
+        Felipe Balbi <balbi@kernel.org>
+References: <20210717182134.30262-1-digetx@gmail.com>
+Message-ID: <ed3c2a5c-a916-2215-a767-5546fa8cd352@gmail.com>
+Date:   Fri, 30 Jul 2021 20:37:19 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+MIME-Version: 1.0
+In-Reply-To: <20210717182134.30262-1-digetx@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 30 Jul 2021 at 18:25, Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> On 30/07/2021 17:06, Andy Shevchenko wrote:
-> > On Fri, Jul 30, 2021 at 5:50 PM Sam Protsenko
-> > <semen.protsenko@linaro.org> wrote:
-> >>
-> >> New device tree bindings are usually added in YAML format. Fix "SAMSUNG
-> >> SOC CLOCK DRIVERS" entry to cover both txt and yaml docs for Exynos
-> >> clock drivers.
-> >
-> > Fixes tag?
->
-> No need because the pattern is correct at the moment. The patch does not
-> make sense on its own and should be squashed with the next one.
->
+17.07.2021 21:21, Dmitry Osipenko пишет:
+...
+>   power: supply: smb347-charger: Make smb347_set_writable() IRQ-safe
+>   power: supply: smb347-charger: Utilize generic regmap caching
+>   power: supply: smb347-charger: Implement USB VBUS regulator
 
-Nice catch. Will do in v2, thanks!
-
->
-> Best regards,
-> Krzysztof
+I noticed that charging doesn't work properly now, will fix it in v6.
