@@ -2,78 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C59B3DB44F
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 09:12:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB64D3DB475
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 09:26:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237403AbhG3HMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 03:12:41 -0400
-Received: from ni.piap.pl ([195.187.100.5]:37406 "EHLO ni.piap.pl"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237572AbhG3HMk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Jul 2021 03:12:40 -0400
-Received: from t19.piap.pl (OSB1819.piap.pl [10.0.9.19])
-        by ni.piap.pl (Postfix) with ESMTPSA id CAEDFC36956D;
-        Fri, 30 Jul 2021 09:12:33 +0200 (CEST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 ni.piap.pl CAEDFC36956D
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=piap.pl; s=mail;
-        t=1627629154; bh=tiyho+ksOuS7E+whKYZ8Awa+pPodo/HKYJgqPKeF7IQ=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=Pa9pOQrMvjBA9AnfMgkGxnMX19EAnsmY6+XVevJnziWyIEM+LF5x4fdJkfquKraM8
-         zmsUhFwDzAZ2rFJ/u/YHTshW9WUxMNSAYlgN5wYGrt135lKieJVMFeWhHjlAUaLu0z
-         3H7lvN0zXFC0N7dn4Kq3kYhriIIstAyPhyNyTxL4=
-From:   =?utf-8?Q?Krzysztof_Ha=C5=82asa?= <khalasa@piap.pl>
-To:     Sakari Ailus <sakari.ailus@iki.fi>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        devicetree@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC v3] dt-binding: media: document ON Semi AR0521 sensor
- bindings
-References: <m37dhkdrat.fsf@t19.piap.pl>
-        <YP9ccgd7WNpHuLgG@pendragon.ideasonboard.com>
-        <m3o8aoavrv.fsf@t19.piap.pl>
-        <20210727105830.GH3@valkosipuli.retiisi.eu>
-Sender: khalasa@piap.pl
-Date:   Fri, 30 Jul 2021 09:12:33 +0200
-In-Reply-To: <20210727105830.GH3@valkosipuli.retiisi.eu> (Sakari Ailus's
-        message of "Tue, 27 Jul 2021 13:58:30 +0300")
-Message-ID: <m3pmv09swu.fsf@t19.piap.pl>
+        id S237392AbhG3H0N convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 30 Jul 2021 03:26:13 -0400
+Received: from mslow1.mail.gandi.net ([217.70.178.240]:51605 "EHLO
+        mslow1.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230311AbhG3H0N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 03:26:13 -0400
+Received: from relay6-d.mail.gandi.net (unknown [217.70.183.198])
+        by mslow1.mail.gandi.net (Postfix) with ESMTP id EA204D1AC3
+        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 07:21:37 +0000 (UTC)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id D5C9FC0008;
+        Fri, 30 Jul 2021 07:21:14 +0000 (UTC)
+Date:   Fri, 30 Jul 2021 09:21:13 +0200
+From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Lee Jones <lee.jones@linaro.org>, Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Subject: Re: [PATCH 3/3] dt-bindings: mfd: add "syscon-smc" YAML description
+Message-ID: <20210730092113.25ce7f7c@fixe.home>
+In-Reply-To: <YQMbV3elkU0yp92D@robh.at.kernel.org>
+References: <20210723135239.388325-1-clement.leger@bootlin.com>
+        <20210723135239.388325-4-clement.leger@bootlin.com>
+        <YQMbV3elkU0yp92D@robh.at.kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-KLMS-Rule-ID: 1
-X-KLMS-Message-Action: clean
-X-KLMS-AntiSpam-Lua-Profiles: 165318 [Jul 30 2021]
-X-KLMS-AntiSpam-Version: 5.9.20.0
-X-KLMS-AntiSpam-Envelope-From: khalasa@piap.pl
-X-KLMS-AntiSpam-Rate: 0
-X-KLMS-AntiSpam-Status: not_detected
-X-KLMS-AntiSpam-Method: none
-X-KLMS-AntiSpam-Auth: dkim=pass header.d=piap.pl
-X-KLMS-AntiSpam-Info: LuaCore: 449 449 5db59deca4a4f5e6ea34a93b13bc730e229092f4, {Tracking_Text_ENG_RU_Has_Extended_Latin_Letters, eng}, {Tracking_marketers, three}, {Tracking_from_domain_doesnt_match_to}, piap.pl:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;t19.piap.pl:7.1.1
-X-MS-Exchange-Organization-SCL: -1
-X-KLMS-AntiSpam-Interceptor-Info: scan successful
-X-KLMS-AntiPhishing: Clean, bases: 2021/07/30 05:50:00
-X-KLMS-AntiVirus: Kaspersky Security for Linux Mail Server, version 8.0.3.30, bases: 2021/07/30 04:15:00 #16998356
-X-KLMS-AntiVirus-Status: Clean, skipped
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sakari, Laurent,
+Le Thu, 29 Jul 2021 15:19:19 -0600,
+Rob Herring <robh@kernel.org> a écrit :
 
-Sakari Ailus <sakari.ailus@iki.fi> writes:
+> On Fri, Jul 23, 2021 at 03:52:39PM +0200, Clément Léger wrote:
+> > This patch adds documentation for the "syscon-smc" compatible which
+> > describes a syscon using a SMC regmap instead of a MMIO one. This
+> > allows accessing system controllers that are set as secure by using
+> > SMC handled by the secure monitor.
+> > 
+> > Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> > ---
+> >  .../devicetree/bindings/mfd/syscon-smc.yaml   | 57
+> > +++++++++++++++++++ 1 file changed, 57 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/mfd/syscon-smc.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mfd/syscon-smc.yaml
+> > b/Documentation/devicetree/bindings/mfd/syscon-smc.yaml new file
+> > mode 100644 index 000000000000..6ce1392c5e7f
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mfd/syscon-smc.yaml
+> > @@ -0,0 +1,57 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/mfd/syscon-smc.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: System Controller Registers R/W via SMC Device Tree Bindings
+> > +
+> > +description: |
+> > +  System controller SMC node represents a register region
+> > containing a set
+> > +  of miscellaneous registers accessed through a secure monitor.
+> > +  The typical use-case is the same as the syscon one but when
+> > running with a
+> > +  secure monitor.
+> > +
+> > +maintainers:
+> > +  - Lee Jones <lee.jones@linaro.org>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    anyOf:
+> > +      - items:
+> > +          - enum:
+> > +              - atmel,sama5d2-sfr
+> > +
+> > +          - const: syscon-smc  
+> 
+> I regret having 'syscon' as a compatible, so nak on a 2nd flavor of
+> it. It's only purpose is a hint to Linux to automagically create a
+> regmap for you.
 
-> I think Laurent meant:
->
-> 	    bus-type:
-> 	      const: 4
+Indeed.
 
-Ok I found what it means :-)
---=20
-Krzysztof "Chris" Ha=C5=82asa
+> 
+> All you need is the specific compatible, atmel,sama5d2-sfr, and you
+> can imply the rest of this from it. That's assuming the conclusion is
+> a register read/write interface on SMC is a good idea, but I don't
+> think it is.
 
-Sie=C4=87 Badawcza =C5=81ukasiewicz
-Przemys=C5=82owy Instytut Automatyki i Pomiar=C3=B3w PIAP
-Al. Jerozolimskie 202, 02-486 Warszawa
+Ok noted, I'll try to find something else to implement that.
+
+Clément
+
+> 
+> Rob
+
