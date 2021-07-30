@@ -2,108 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5917C3DB372
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 08:21:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EA2D3DB397
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 08:29:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237360AbhG3GVu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 02:21:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60382 "EHLO
+        id S237452AbhG3G3U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 02:29:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230203AbhG3GVt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 02:21:49 -0400
-Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com [IPv6:2607:f8b0:4864:20::d30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D519C061765;
-        Thu, 29 Jul 2021 23:21:45 -0700 (PDT)
-Received: by mail-io1-xd30.google.com with SMTP id f11so10117793ioj.3;
-        Thu, 29 Jul 2021 23:21:45 -0700 (PDT)
+        with ESMTP id S237420AbhG3G3P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 02:29:15 -0400
+Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36CBEC0613C1;
+        Thu, 29 Jul 2021 23:29:10 -0700 (PDT)
+Received: by mail-ot1-x32e.google.com with SMTP id h63-20020a9d14450000b02904ce97efee36so8437032oth.7;
+        Thu, 29 Jul 2021 23:29:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8jRTUEqbao4IoCd5MtQKnQeYXbNJraxqvBMtXhFY36g=;
-        b=gn1ZuNQTiAX0wweGCWpGvaj+Kd7Cbh3c/JrHfJZ7Cv/lictBPpSuKOpZ8ieth2Q3ZS
-         eTL1CZzZ81fD6FNISG8Iw68x/PSV0RcRD9dwVVj6vIOoGHQyzspyKnyQhkqTYCPCQTEZ
-         4TUvEQE9iaSjkGhJPL04urdQeD0OIkPboAPltuehaqFay7ZgkpAKZUPWr3V6JMCc5rhd
-         hZEG+48qy6tF25a63zn1rOUL9fyUhXWWzajbrveujbG9RwF+tBFHc7qincjQqCuFYpK1
-         sWG147T4R9Qm5M50Z0IuJdeefVpaqyYMGeJmgBm7LNIGSuzAWgsfAveMFgKpWCijc6R7
-         edgA==
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=/YmkoeXmhmKuU8zgRSXd2MrrHRV9HDVXo1+GFiCPMV8=;
+        b=WEjBFvjcsm1P/5l6I/Qmr82R9ku/UZsPgDZ7xKDPmqWBlOefkBb4+hsnty4KbZ88gW
+         GefwZXnnSWwXsVy4VjEmXoupwW1UERK2MMSRO9aX4NnmOJuPzlJQAOlGWVyjbA9K5/Pe
+         m4xy8WX7DFtigEaayZe9XURNKZuLb2y59rYWtTJMBnwkc6mdnxOy2VXXFAYmaEGpcT5Q
+         PiRtEAyvh4GqDLSPRxpJkKgvVPLTe6JU6BEJfbTMSTK2UpEmUXUEYw6NiPLZ25i7NdlM
+         gwdInO7rlh8+B+5kOMuaiRFrS5qLUCVaJs4+VvxcnVRbwgAePF3c/y1DoqvNai2g5HkY
+         un8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8jRTUEqbao4IoCd5MtQKnQeYXbNJraxqvBMtXhFY36g=;
-        b=udYPiMkrVFRVQZasPBUEeMRpmGT9TApzygYtaFjmcoa5azSaC98pAbmWqxW+DO76pF
-         ByPZ0S2JdJ9n+xQCVAIdQLyVkq6+DFAIdJABSpzlYR7TskW5JuhkLQ7cl2nYSrDVlnoj
-         GYKoePWQQfTlgGoJw8zMGHsEFz1mle5McsPyKk0ZrP9Q/vAKsYlyFjJbjpZZlbsGu2kg
-         GT537hIcpsi8nu3gOLudtcM9tyeC/Hm7jUIUhm2dMLwJv1uiBCvbDXZDyxzTu3n4/uqd
-         fGAJdM8Q1lOWoGfifqqa9Kq+asQQjSpA6wWIYST4SiuNbF3/D927HkB1cKgLaW+OEkAj
-         pJCw==
-X-Gm-Message-State: AOAM531jOKCek8sUvSN6J9vOrUOX1GCVv3DJ6Be2wWabtnDflYizGHKq
-        Cboj7cuUa77SKBn+VQ2sdBFmfMViL6Hry94Oq7U=
-X-Google-Smtp-Source: ABdhPJwmJ4MnS45OOCpPvnsZIv/wX2oShFQBVukbf9XsGRae3NvLMx4rpHaQEi327sHAgLLUVN/kpMopD+hcVyfhMEc=
-X-Received: by 2002:a6b:490d:: with SMTP id u13mr1148667iob.176.1627626104912;
- Thu, 29 Jul 2021 23:21:44 -0700 (PDT)
+        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=/YmkoeXmhmKuU8zgRSXd2MrrHRV9HDVXo1+GFiCPMV8=;
+        b=FbfhHB+G0OKx4XjLUjlPXri3/4+d6d6YCd3gM7gx3vaGaJb/XflAcftP5Wjrjwm5Ym
+         0kXmj4np5PyzkwXmOwn75rFoqJwWk07LaRz8i0yI2a6feoRX4tiTorWXgKJGtPyGzdbz
+         Q1xMwpAnX6r4kbQn5QFTGgQnwn/C+pawX/3Baw3N13cB+t5zkK8OrcVtHj1/raCZYC+a
+         bHoIkRD0kGYHAFTlJxLvlk74uZnCFJBPpQa2ho3O0Y2krt3+67q115WNxRQyWz1quvS0
+         91UzUN9D0t11IOOy7OPkblBQiSDwt18dkC8ZHxKTsLIF8A2X/QNp4J2KU0tNiMNcW+V2
+         t+hg==
+X-Gm-Message-State: AOAM533q7+BLLv/DZ7jOYtWKMsERNvm9LZtUetaNTL6OnBshDTST+bx1
+        JVxrTplgqrd3sRghsWGTrty+iPekZd8=
+X-Google-Smtp-Source: ABdhPJznxKwtyj4BQFaa0HkanOt/oNuv3VsYcwyH0w0R6qkvLW2fXzBbkhdQeDL1fwz/e00lSNbQWQ==
+X-Received: by 2002:a9d:bb2:: with SMTP id 47mr906274oth.102.1627626549348;
+        Thu, 29 Jul 2021 23:29:09 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id bh3sm153111oib.30.2021.07.29.23.29.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Jul 2021 23:29:08 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: connector: Add pd-supported property
+To:     Kyle Tso <kyletso@google.com>, heikki.krogerus@linux.intel.com,
+        gregkh@linuxfoundation.org, robh+dt@kernel.org
+Cc:     badhri@google.com, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20210730061832.1927936-1-kyletso@google.com>
+ <20210730061832.1927936-2-kyletso@google.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Message-ID: <68732310-d53a-a86b-f43c-2ceb22051338@roeck-us.net>
+Date:   Thu, 29 Jul 2021 23:29:06 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <20210708115804.212-1-alistair@alistair23.me> <YPbjZdu7T9wFcvNz@google.com>
- <20210720152351.GC5042@sirena.org.uk> <YPb1Hs0EoZ1MikuX@google.com> <20210720202639.GE5042@sirena.org.uk>
-In-Reply-To: <20210720202639.GE5042@sirena.org.uk>
-From:   Alistair Francis <alistair23@gmail.com>
-Date:   Fri, 30 Jul 2021 16:21:18 +1000
-Message-ID: <CAKmqyKNUBzWuLSvLTqaCNhDpuficctvCgpk3ZEBVFuKeCrx86w@mail.gmail.com>
-Subject: Re: [PATCH v7 1/6] mfd: sy7636a: Initial commit
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Alistair Francis <alistair@alistair23.me>,
-        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210730061832.1927936-2-kyletso@google.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 21, 2021 at 6:26 AM Mark Brown <broonie@kernel.org> wrote:
->
-> On Tue, Jul 20, 2021 at 05:09:02PM +0100, Lee Jones wrote:
-> > On Tue, 20 Jul 2021, Mark Brown wrote:
->
-> > > At least the regulator probably shouldn't be - this is just a Linux
-> > > specific grouping of devices, it's not really directly a block in the
-> > > hardware in a way that's platform independent.
->
-> > I've seen (and authored) regulator support in DT before.
->
-> > What's changed?  They're controlled by registers, right?
->
-> Nothing's changed, I routinely push back on regulator drivers that have
-> a compatible string for a MFD subfunction like this.  I do miss them
-> sometimes but try not to.
+On 7/29/21 11:18 PM, Kyle Tso wrote:
+> Set "pd-unsupported" property if the Type-C connector has no power
+> delivery support.
+> 
 
-Sorry, I just want to clarify what I should do.
+subject is still wrong (it says pd-supported).
 
-Are you saying that I shouldn't add the regulator to the device tree?
-Should I leave it as part of `sy7636a_cells` then?
 
-Alistair
+> Signed-off-by: Kyle Tso <kyletso@google.com>
+> ---
+>   .../devicetree/bindings/connector/usb-connector.yaml          | 4 ++++
+>   1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> index 92b49bc37939..21ec470117a6 100644
+> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> @@ -111,6 +111,10 @@ properties:
+>         - 1.5A
+>         - 3.0A
+>   
+> +  pd-unsupported:
+> +    description: Set this property if the Type-C connector has no power delivery support.
+> +    type: boolean
+> +
+>     # The following are optional properties for "usb-c-connector" with power
+>     # delivery support.
+>     source-pdos:
+> 
 
->
-> > Is the problem that the registers are usually split?
->
-> It's just not really describing the hardware, it's encoding the way
-> Linux splits things up into the DT that adds no descriptive information.
-> We're not getting any information about where the IPs are in the device
-> or anything from the compatible, and typically it's describing a set of
-> disjoint IPs with minimal overlap in their configuration.  If it's a
-> binding for something like an individual LDO or DCDC and we've got
-> multiple instances of that within a single chip then it starts to get
-> more useful but that's not what something like this is doing.  We're not
-> gaining anything by putting a compatible string in there, all it does is
-> make the DT bigger and add some ABI.
->
-> Similar issues exist with CODEC subfunctions - those are usually
-> describing huge piles of different IPs but we happen to want to pull
-> them together for Linux, typically including some clocking which if we
-> were going down to the level of describing components of the MFD in the
-> DT should be being described using their own bindings.
