@@ -2,160 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BCD63DB53A
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 10:50:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C116B3DB577
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 10:53:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238127AbhG3Iu4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 04:50:56 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:41564 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S238137AbhG3Iuy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 04:50:54 -0400
-X-UUID: 075053a04ba54ba5ab4a7f7a47d8b2ca-20210730
-X-UUID: 075053a04ba54ba5ab4a7f7a47d8b2ca-20210730
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1362136745; Fri, 30 Jul 2021 16:50:46 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs06n2.mediatek.inc (172.21.101.130) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 30 Jul 2021 16:50:45 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 30 Jul 2021 16:50:45 +0800
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mathias Nyman <mathias.nyman@intel.com>
-CC:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-usb@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Eddie Hung <eddie.hung@mediatek.com>
-Subject: [PATCH 11/11] usb: xhci-mtk: modify the SOF/ITP interval for mt8195
-Date:   Fri, 30 Jul 2021 16:50:02 +0800
-Message-ID: <1627635002-24521-11-git-send-email-chunfeng.yun@mediatek.com>
-X-Mailer: git-send-email 1.8.1.1.dirty
-In-Reply-To: <1627635002-24521-1-git-send-email-chunfeng.yun@mediatek.com>
-References: <1627635002-24521-1-git-send-email-chunfeng.yun@mediatek.com>
+        id S238333AbhG3IyB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 04:54:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40604 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238307AbhG3Ix5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 04:53:57 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 646AFC0613C1
+        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 01:53:52 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id g13so16401103lfj.12
+        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 01:53:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=6/y2nst5DhRddrxH7FP8tT6A3puFF+bOoUQNQZh3zyA=;
+        b=Ma77ZMtAEMp3DCJI9CiJfurS2sz5X+vHLaWMtEIAYkRDx7/4tLDIJPi5r5sEXf20rX
+         vXyeOquE51nPkcdkrSdSEFx8YeYa5ZWUZ3y4CD0Rv76L4Enuazt1Lt+mIbQomhNHJ85S
+         vRgevcwq6/OdKXxDIhTf/1f22SSNYNNmDkIC4J35Z2TyO/wC7kUvgIYIqYuUOkvWWiuR
+         95tr1ADKF4hWaO+Yi2JbRspF1US0LkWNU5Vbg6kB/PIR8O3t+3eIzy0qpPmlWRwq2U3t
+         0AhL4JHC3FuLHB3zaLj9hwAKymG9c8rmY8+SaW3sSDMs/Tf62pRrUu1vSe3RlewNWre0
+         3JhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6/y2nst5DhRddrxH7FP8tT6A3puFF+bOoUQNQZh3zyA=;
+        b=Rkf8aNZHCxMJ9tEG3M594+vENYdVG3WgH8+XKBGN9idp28yQQ9Pg4DI/SMZWkngL7S
+         VgQtDYOaviKFBf0ft6TYww0UixaFkTODA7hhifm6kwkFMhqaw68dgtJzI1RrMeVfn7P8
+         h8Sqyz2DCbnhIXE5jqQy31dqdG6ajSx20qwk7AzYqaHcO1MV/9jLP65t5/IdrGGlb9Te
+         ves+mCmNLZ0SYfUwAZs+JDUMIRLxAFOeQdtFz2Do88i2419hkpRvMg7aiTnr0+Un1q8p
+         97W9lQD/eR6W3TW0qdkox73nWynGHaOJHNIVQEGqHslN36xDTcxeLNbjGETyT9SPPL6n
+         yxng==
+X-Gm-Message-State: AOAM5303UDJ05USXq2ymgkt8vea8gLOH7H2Sd0Q2jYagmJzPHSXq5wR0
+        NUAexoyCmBgOGaliFYHg8WaRkkK187ZgoqI+WXxJyh0ejzs=
+X-Google-Smtp-Source: ABdhPJx1bJcgu56msMl2K3E4iGpbHP52YHQs6+zU5WcFPdQq75FWE5Pw85EYQe6c/vgrClpLB+2LL/++Y8ZFcLVyUmU=
+X-Received: by 2002:a19:c7cd:: with SMTP id x196mr425452lff.465.1627635230350;
+ Fri, 30 Jul 2021 01:53:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+References: <20210707131453.24041-1-david@ixit.cz>
+In-Reply-To: <20210707131453.24041-1-david@ixit.cz>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 30 Jul 2021 10:53:39 +0200
+Message-ID: <CACRpkdZR0_cf=baNkDuAS_JT0OkKLufdspUut18=de7X0urckw@mail.gmail.com>
+Subject: Re: [PATCH v2] ARM: dts: qcom: apq8064: correct clock names
+To:     David Heidelberg <david@ixit.cz>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     MSM <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Brian Masney <masneyb@onstation.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are 4 USB controllers on MT8195, the controllers (IP1~IP3,
-exclude IP0) have a wrong default SOF/ITP interval which is
-calculated from the frame counter clock 24Mhz by default, but
-in fact, the frame counter clock is 48Mhz, so we should set
-the accurate interval according to 48Mhz for those controllers.
-Note: the first controller no need set it.
+On Wed, Jul 7, 2021 at 3:15 PM David Heidelberg <david@ixit.cz> wrote:
 
-Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
----
- drivers/usb/host/xhci-mtk.c | 65 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 65 insertions(+)
+> Since new code doesn't take old clk names in account, it does fixes
+> error:
+>
+> msm_dsi 4700000.mdss_dsi: dev_pm_opp_set_clkname: Couldn't find clock: -2
+>
+> and following kernel oops introduced by
+> b0530eb1191 ("drm/msm/dpu: Use OPP API to set clk/perf state").
+>
+> Also removes warning about deprecated clock names.
+>
+> Tested against linux-5.10.y LTS on Nexus 7 2013.
+>
+> Reviewed-by: Brian Masney <masneyb@onstation.org>
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> ---
+> - v2 improved commit message, added R-b
 
-diff --git a/drivers/usb/host/xhci-mtk.c b/drivers/usb/host/xhci-mtk.c
-index 12b691547438..7ff0cd707ba1 100644
---- a/drivers/usb/host/xhci-mtk.c
-+++ b/drivers/usb/host/xhci-mtk.c
-@@ -57,6 +57,27 @@
- /* u2_phy_pll register */
- #define CTRL_U2_FORCE_PLL_STB	BIT(28)
- 
-+/* xHCI CSR */
-+#define LS_EOF_CFG		0x930
-+#define LSEOF_OFFSET		0x89
-+
-+#define FS_EOF_CFG		0x934
-+#define FSEOF_OFFSET		0x2e
-+
-+#define SS_GEN1_EOF_CFG		0x93c
-+#define SSG1EOF_OFFSET		0x78
-+
-+#define HFCNTR_CFG		0x944
-+#define ITP_DELTA_CLK		(0xa << 1)
-+#define ITP_DELTA_CLK_MASK	GENMASK(5, 1)
-+#define FRMCNT_LEV1_RANG	(0x12b << 8)
-+#define FRMCNT_LEV1_RANG_MASK	GENMASK(19, 8)
-+
-+#define SS_GEN2_EOF_CFG		0x990
-+#define SSG2EOF_OFFSET		0x3c
-+
-+#define XSEOF_OFFSET_MASK	GENMASK(11, 0)
-+
- /* usb remote wakeup registers in syscon */
- 
- /* mt8173 etc */
-@@ -87,6 +108,46 @@ enum ssusb_uwk_vers {
- 	SSUSB_UWK_V1_2,		/* specific revision 1.2 */
- };
- 
-+/*
-+ * MT8195 has 4 controllers, the controller1~3's default SOF/ITP interval
-+ * is calculated from the frame counter clock 24M, but in fact, the clock
-+ * is 48M, add workaround for it.
-+ */
-+static void xhci_mtk_set_frame_interval(struct xhci_hcd_mtk *mtk)
-+{
-+	struct device *dev = mtk->dev;
-+	struct usb_hcd *hcd = mtk->hcd;
-+	u32 value;
-+
-+	if (!of_device_is_compatible(dev->of_node, "mediatek,mt8195-xhci"))
-+		return;
-+
-+	value = readl(hcd->regs + HFCNTR_CFG);
-+	value &= ~(ITP_DELTA_CLK_MASK | FRMCNT_LEV1_RANG_MASK);
-+	value |= (ITP_DELTA_CLK | FRMCNT_LEV1_RANG);
-+	writel(value, hcd->regs + HFCNTR_CFG);
-+
-+	value = readl(hcd->regs + LS_EOF_CFG);
-+	value &= ~XSEOF_OFFSET_MASK;
-+	value |= LSEOF_OFFSET;
-+	writel(value, hcd->regs + LS_EOF_CFG);
-+
-+	value = readl(hcd->regs + FS_EOF_CFG);
-+	value &= ~XSEOF_OFFSET_MASK;
-+	value |= FSEOF_OFFSET;
-+	writel(value, hcd->regs + FS_EOF_CFG);
-+
-+	value = readl(hcd->regs + SS_GEN1_EOF_CFG);
-+	value &= ~XSEOF_OFFSET_MASK;
-+	value |= SSG1EOF_OFFSET;
-+	writel(value, hcd->regs + SS_GEN1_EOF_CFG);
-+
-+	value = readl(hcd->regs + SS_GEN2_EOF_CFG);
-+	value &= ~XSEOF_OFFSET_MASK;
-+	value |= SSG2EOF_OFFSET;
-+	writel(value, hcd->regs + SS_GEN2_EOF_CFG);
-+}
-+
- static int xhci_mtk_host_enable(struct xhci_hcd_mtk *mtk)
- {
- 	struct mu3c_ippc_regs __iomem *ippc = mtk->ippc_regs;
-@@ -368,6 +429,9 @@ static int xhci_mtk_setup(struct usb_hcd *hcd)
- 		ret = xhci_mtk_ssusb_config(mtk);
- 		if (ret)
- 			return ret;
-+
-+		/* workaround only for mt8195 */
-+		xhci_mtk_set_frame_interval(mtk);
- 	}
- 
- 	ret = xhci_gen_setup(hcd, xhci_mtk_quirks);
-@@ -716,6 +780,7 @@ static const struct dev_pm_ops xhci_mtk_pm_ops = {
- 
- static const struct of_device_id mtk_xhci_of_match[] = {
- 	{ .compatible = "mediatek,mt8173-xhci"},
-+	{ .compatible = "mediatek,mt8195-xhci"},
- 	{ .compatible = "mediatek,mtk-xhci"},
- 	{ },
- };
--- 
-2.18.0
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
+I guess Bjorn will apply it?
+
+Yours,
+Linus Walleij
