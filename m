@@ -2,253 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DBCAB3DBF55
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 22:01:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 972393DBF5A
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 22:07:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231377AbhG3UBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 16:01:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42834 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230217AbhG3UBz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 16:01:55 -0400
-Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD883C06175F;
-        Fri, 30 Jul 2021 13:01:49 -0700 (PDT)
-Received: by mail-qt1-x830.google.com with SMTP id b1so7337904qtx.0;
-        Fri, 30 Jul 2021 13:01:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
-         :from:to:references:in-reply-to;
-        bh=ovjBFNSiawdQHcKdOlHtSlcBuEI3XhXWSoNsDsUz0us=;
-        b=pYKy0DKMYi0XVsBsDwixMFZSwPN2Aqik83vQ03BQEOR0IgGpUdT34Oi+NaYLLPs2KB
-         eIxWvTC5MdI0w8G2YrqYQD+CchRv6SMErcitvCBmn9NfsVMOMvLKRGrm8k9VOAJXuedn
-         prMBilQSGGI6L3yHudxEA84xlem8rZd/XtDzq6NpH2kThOi7nxcM8JBuuNGUteb7uibE
-         2mAd6wzpKokeUvBGPs1GLS2IMRbnLkJ3FKwhh/vjGH0mfQKvhwZLD1eSKvcT+HPQg3PJ
-         QjhwlO99ZtCwItvJ/3UPkqTML6aH72Cdpb1Nsa6N97VPWC/HayMAuRxJm08BkYEZGkaY
-         iTrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding:date
-         :message-id:cc:subject:from:to:references:in-reply-to;
-        bh=ovjBFNSiawdQHcKdOlHtSlcBuEI3XhXWSoNsDsUz0us=;
-        b=aK6pKYPRJIfn+E4Ny38LkKWsCEkRKUow3rH38kXmFpZeuGVjYrSRhhZJrQrD6YiPmz
-         NbRmf9MHVDhcJpJ3DwN0NvB8yc5+VI3sF/2SChLSG7NYe4K4MNzoalVNPP459Mxv2+a5
-         hSZhZFtfbbN5bWMYoWJKMF1DfiEW3oF4xDqmCCxpHCt5zyQuWJeGSp6FuqN8fgxb7/gq
-         payDQmNt2nHgQMH3QeruEzigibWgftAy69wagv8q3M8vBkbcDsvCtNP7pGX+pemmSrzc
-         ZiLFcIcRjQ5ldFDPm7vXwIBuaX5jmxe2PUvgKUDDt7LNVvkb81T3n7QB0mg7N66lOJct
-         otQw==
-X-Gm-Message-State: AOAM533ypzm9ZueWVLRi9MJ8gf8KD44HHeEqhjchFxkSc3p3fPNSwlko
-        JDNnSxIeUDyJoHhElAEVBdo=
-X-Google-Smtp-Source: ABdhPJwio/JGNcV3B3QQff9W+dNcWyW7PfN6RpV7tdZruURZOJJ8ajrB4ysZe5Dhuma7WWxBmJ7kBw==
-X-Received: by 2002:ac8:7452:: with SMTP id h18mr3905848qtr.206.1627675309051;
-        Fri, 30 Jul 2021 13:01:49 -0700 (PDT)
-Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
-        by smtp.gmail.com with ESMTPSA id f13sm1417357qkk.29.2021.07.30.13.01.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Jul 2021 13:01:48 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Fri, 30 Jul 2021 16:01:47 -0400
-Message-Id: <CD6QQPL9EHY9.YIM3VQZ89I9P@shaak>
-Cc:     <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
-Subject: Re: [PATCH v6 05/13] iio: afe: rescale: add INT_PLUS_{MICRO,NANO}
- support
-From:   "Liam Beguin" <liambeguin@gmail.com>
-To:     "Peter Rosin" <peda@axentia.se>, <jic23@kernel.org>,
-        <lars@metafoo.de>, <pmeerw@pmeerw.net>
-References: <20210721030613.3105327-1-liambeguin@gmail.com>
- <20210721030613.3105327-6-liambeguin@gmail.com>
- <c9d77dc0-7f4c-0df0-cce1-8cb30074e115@axentia.se>
- <CD4CE5OQT5TJ.2BFPBRYK7FCOW@shaak>
- <18f749be-284f-3342-a6d2-b42aa39fc13a@axentia.se>
- <CD5QWB9MW1H5.3SSPWGD5DR6J5@shaak>
- <a77e7a18-67dc-5bc5-427b-89d6b1e82b85@axentia.se>
- <8448cecb-16b3-96ff-dfa8-3933325ef946@axentia.se>
-In-Reply-To: <8448cecb-16b3-96ff-dfa8-3933325ef946@axentia.se>
+        id S230439AbhG3UHf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 16:07:35 -0400
+Received: from relay05.th.seeweb.it ([5.144.164.166]:38197 "EHLO
+        relay05.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230455AbhG3UHf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 16:07:35 -0400
+Received: from [192.168.1.59] (bband-dyn19.178-41-181.t-com.sk [178.41.181.19])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 6498E3EBD7;
+        Fri, 30 Jul 2021 22:07:26 +0200 (CEST)
+Date:   Fri, 30 Jul 2021 22:07:20 +0200
+From:   Martin Botka <martin.botka@somainline.org>
+Subject: Re: [RESEND PATCH v2 3/3] rpmcc: Add support for SM6125
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     martin.botka1@gmail.com, ~postmarketos/upstreaming@lists.sr.ht,
+        konrad.dybcio@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        paul.bouchara@somainline.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Message-Id: <8KQ2XQ.EMFL3KIC3SJX1@somainline.org>
+In-Reply-To: <162742239972.2368309.5551349117052770211@swboyd.mtv.corp.google.com>
+References: <20210629102624.194378-1-martin.botka@somainline.org>
+        <20210629102624.194378-4-martin.botka@somainline.org>
+        <162742239972.2368309.5551349117052770211@swboyd.mtv.corp.google.com>
+X-Mailer: geary/40.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri Jul 30, 2021 at 3:01 AM EDT, Peter Rosin wrote:
-> On 2021-07-30 08:49, Peter Rosin wrote:
-> > On 2021-07-29 17:56, Liam Beguin wrote:
-> >> On Wed Jul 28, 2021 at 3:19 AM EDT, Peter Rosin wrote:
-> >>> On 2021-07-28 02:21, Liam Beguin wrote:
-> >>>> On Fri Jul 23, 2021 at 5:16 PM EDT, Peter Rosin wrote:
-> >>>>> On 2021-07-21 05:06, Liam Beguin wrote:
-> >>>>>> From: Liam Beguin <lvb@xiphos.com>
-> >>>>>>
-> >>>>>> Some ADCs use IIO_VAL_INT_PLUS_{NANO,MICRO} scale types.
-> >>>>>> Add support for these to allow using the iio-rescaler with them.
-> >>>>>>
-> >>>>>> Signed-off-by: Liam Beguin <lvb@xiphos.com>
-> >>>>>> ---
-> >>>>>>  drivers/iio/afe/iio-rescale.c | 14 ++++++++++++++
-> >>>>>>  1 file changed, 14 insertions(+)
-> >>>>>>
-> >>>>>> diff --git a/drivers/iio/afe/iio-rescale.c b/drivers/iio/afe/iio-r=
-escale.c
-> >>>>>> index d0669fd8eac5..2b73047365cc 100644
-> >>>>>> --- a/drivers/iio/afe/iio-rescale.c
-> >>>>>> +++ b/drivers/iio/afe/iio-rescale.c
-> >>>>>> @@ -41,6 +41,20 @@ int rescale_process_scale(struct rescale *resca=
-le, int scale_type,
-> >>>>>>  		do_div(tmp, 1000000000LL);
-> >>>>>>  		*val =3D tmp;
-> >>>>>>  		return scale_type;
-> >>>>>> +	case IIO_VAL_INT_PLUS_NANO:
-> >>>>>> +		tmp =3D ((s64)*val * 1000000000LL + *val2) * rescale->numerator=
-;
-> >>>>>> +		tmp =3D div_s64(tmp, rescale->denominator);
-> >>>>>> +
-> >>>>>> +		*val =3D div_s64(tmp, 1000000000LL);
-> >>>>>> +		*val2 =3D tmp - *val * 1000000000LL;
-> >>>>>> +		return scale_type;
-> >>>>
-> >>>> Hi Peter,
-> >>>>
-> >>>>>
-> >>>>> Hi!
-> >>>>>
-> >>>>> My objection from v5 still stands. Did you forget or did you simply=
- send
-> >>>>> the
-> >>>>> wrong patch?
-> >>>>
-> >>>> Apologies, again I didn't mean to make it seem like I ignored your c=
-omments.
-> >>>> I tried your suggestion, but had issues when *val2 would overflow in=
-to
-> >>>> the integer part.
-> >>
-> >> Hi Peter,
-> >>
-> >>>
-> >>> Not saying anything about it not working does indeed make it seem lik=
-e
-> >>> you
-> >>> ignored it :-) Or did I just miss where you said this? Anyway, no
-> >>> problem,
-> >>> it can be a mess dealing with a string of commits when there are
-> >>> numerous
-> >>> things to take care of between each iteration. And it's very easy to
-> >>> burn
-> >>> out and just back away. Please don't do that!
-> >>
-> >> It was my mistake. Thanks for the encouragement :-)
-> >>
-> >>>
-> >>>> Even though what I has was more prone to integer overflow with the f=
-irst
-> >>>> multiplication, I thought it was still a valid solution as it passed=
- the
-> >>>> tests.
-> >>>
-> >>> I did state that you'd need to add overflow handling from the fractio=
-n
-> >>> calculation and handling for negative values, so it was no surprise t=
-hat
-> >>> my original sketchy suggestion didn't work as-is.
-> >>>
-> >>>>
-> >>>>>
-> >>>>> Untested suggestion, this time handling negative values and
-> >>>>> canonicalizing any
-> >>>>> overflow from the fraction calculation.
-> >>>>>
-> >>>>> neg =3D *val < 0 || *val2 < 0;
-> >>>>> tmp =3D (s64)abs(*val) * rescale->numerator;
-> >>>>> rem =3D do_div(tmp, rescale->denominator);
-> >>>>> *val =3D tmp;
-> >>>>> tmp =3D rem * 1000000000LL + (s64)abs(*val2) * rescale->numerator;
-> >>>>> do_div(tmp, rescale->denominator);
-> >>>>> *val2 =3D do_div(tmp, 1000000000LL);
-> >>>>> *val +=3D tmp;
-> >>>>> if (neg) {
-> >>>>> if (*val < 0)
-> >>>>> *val =3D -*val;
-> >>>>> else
-> >>>>> *val2 =3D -*val;
-> >>>
-> >>> This last line should of course be *val2 =3D -*val2;
-> >>> Sorry.
-> >>>
-> >>>>
-> >>>> I'll look into this suggestion.
-> >>>
-> >>> Thanks!
-> >>>
-> >>
-> >> Starting from what you suggested, here's what I came up with.
-> >> I also added a few test cases to cover corner cases.
-> >>
-> >> 	if (scale_type =3D=3D IIO_VAL_INT_PLUS_NANO)
-> >> 		mult =3D 1000000000LL;
-> >> 	else
-> >> 		mult =3D 1000000LL;
-> >> 	/*
-> >> 	 * For IIO_VAL_INT_PLUS_{MICRO,NANO} scale types if *val OR
-> >> 	 * *val2 is negative the schan scale is negative
-> >> 	 */
-> >> 	neg =3D *val < 0 || *val2 < 0;
-> >>
-> >> 	tmp =3D (s64)abs(*val) * (s32)abs(rescale->numerator);
-> >=20
-> > Small nit, but I think abs() returns a signed type compatible
-> > with the argument type. I.e. (s32)abs(rescale->...) where both
-> > numerator and denominator are already s32 could just as well
-> > be written without the cast as plain old abs(rescale->...)
-> >=20
-> >=20
-> >> 	*val =3D div_s64_rem(tmp, (s32)abs(rescale->denominator), &rem);
-> >>
-> >> 	tmp =3D (s64)rem * mult +
-> >> 		(s64)abs(*val2) * (s32)abs(rescale->numerator);
-> >> 	tmp =3D div_s64(tmp, (s32)abs(rescale->denominator));
-> >>
-> >> 	*val +=3D div_s64_rem(tmp, mult, val2);
-> >>
-> >> 	/*
-> >> 	 * If the schan scale or only one of the rescaler elements is
-> >> 	 * negative, the combined scale is negative.
-> >> 	 */
-> >> 	if (neg || ((rescale->numerator < 0) ^ (rescale->denominator < 0)))
->
-> Hang on, that's not right. If the value and only one of the rescaler
-> elements is negative, the result is positive. || is not the correct
-> logical operation.
->
-> >> 		*val =3D -*val;
-> >=20
-> > Unconditionally negating *val doesn't negate the combined value when
-> > *val is zero and *val2 isn't. My test "if (*val < 0)" above attempting
-> > to take care of this case is clearly not right. It should of course be
-> > "if (*val > 0)" since *val is not yet negated. Duh!
-> >=20
-> > In fact, I think a few tests scaling to/from the [-1,1] interval
-> > would be benefitial for this exact reason.
->
-> So, with both these issues taken care of:
->
-> if (neg ^ ((rescale->numerator < 0) ^ (rescale->denominator < 0))) {
-> if (*val > 0)
-> *val =3D -*val;
-> else
-> *val2 =3D -*val2;
-> }
->
-> (bitwise ^ is safe since all operands come from logical operations, i.e.
-> they are either zero or one and nothing else)
 
-You're right, this should've been a ^ from the start.
 
-Thanks,
-Liam
+On Tue, Jul 27 2021 at 02:46:39 PM -0700, Stephen Boyd 
+<sboyd@kernel.org> wrote:
+> Quoting Martin Botka (2021-06-29 03:26:23)
+>>  diff --git a/drivers/clk/qcom/clk-smd-rpm.c 
+>> b/drivers/clk/qcom/clk-smd-rpm.c
+>>  index 8200c26b968c..51458f740ba0 100644
+>>  --- a/drivers/clk/qcom/clk-smd-rpm.c
+>>  +++ b/drivers/clk/qcom/clk-smd-rpm.c
+>>  @@ -1059,6 +1059,61 @@ static const struct rpm_smd_clk_desc 
+>> rpm_clk_sdm660 = {
+>>          .num_clks = ARRAY_SIZE(sdm660_clks),
+>>   };
+>> 
+>>  +/* SM6125 */
+>>  +DEFINE_CLK_SMD_RPM_BRANCH(sm6125, bi_tcxo, bi_tcxo_ao,
+>>  +                                       QCOM_SMD_RPM_MISC_CLK, 0, 
+>> 19200000);
+>>  +DEFINE_CLK_SMD_RPM(sm6125, cnoc_clk, cnoc_a_clk, 
+>> QCOM_SMD_RPM_BUS_CLK, 1);
+>>  +DEFINE_CLK_SMD_RPM(sm6125, bimc_clk, bimc_a_clk, 
+>> QCOM_SMD_RPM_MEM_CLK, 0);
+> 
+> Can we use msm8916_bimc_clk?
+> 
+>>  +DEFINE_CLK_SMD_RPM(sm6125, snoc_clk, snoc_a_clk, 
+>> QCOM_SMD_RPM_BUS_CLK, 2);
+>>  +DEFINE_CLK_SMD_RPM_BRANCH(sm6125, qdss_clk, qdss_a_clk,
+>>  +                                       QCOM_SMD_RPM_MISC_CLK, 1, 
+>> 19200000);
+>>  +DEFINE_CLK_SMD_RPM(sm6125, ce1_clk, ce1_a_clk, 
+>> QCOM_SMD_RPM_CE_CLK, 0);
+> 
+> Can we use msm8992_ce1_clk?
+> 
+>>  +DEFINE_CLK_SMD_RPM(sm6125, ipa_clk, ipa_a_clk, 
+>> QCOM_SMD_RPM_IPA_CLK, 0);
+> 
+> Can we use msm8976_ipa_clk?
+> 
+>>  +DEFINE_CLK_SMD_RPM(sm6125, qup_clk, qup_a_clk, 
+>> QCOM_SMD_RPM_QUP_CLK, 0);
+>>  +DEFINE_CLK_SMD_RPM(sm6125, mmnrt_clk, mmnrt_a_clk, 
+>> QCOM_SMD_RPM_MMAXI_CLK, 0);
+>>  +DEFINE_CLK_SMD_RPM(sm6125, mmrt_clk, mmrt_a_clk, 
+>> QCOM_SMD_RPM_MMAXI_CLK, 1);
+>>  +DEFINE_CLK_SMD_RPM(sm6125, snoc_periph_clk, snoc_periph_a_clk,
+>>  +                                               
+>> QCOM_SMD_RPM_BUS_CLK, 0);
+>>  +DEFINE_CLK_SMD_RPM(sm6125, snoc_lpass_clk, snoc_lpass_a_clk,
+>>  +                                               
+>> QCOM_SMD_RPM_BUS_CLK, 5);
+>>  +
+>>  +/* SMD_XO_BUFFER */
+>>  +DEFINE_CLK_SMD_RPM_XO_BUFFER(sm6125, ln_bb_clk1, ln_bb_clk1_a, 1);
+> 
+> msm8916?
+> 
+>>  +DEFINE_CLK_SMD_RPM_XO_BUFFER(sm6125, ln_bb_clk2, ln_bb_clk2_a, 2);
+> 
+> msm8916?
+> 
+>>  +DEFINE_CLK_SMD_RPM_XO_BUFFER(sm6125, ln_bb_clk3, ln_bb_clk3_a, 3);
+> 
+> sdm660?
+> 
+>>  +DEFINE_CLK_SMD_RPM_XO_BUFFER(sm6125, rf_clk1, rf_clk1_a, 4);
+> 
+> msm8916?
+> 
+>>  +DEFINE_CLK_SMD_RPM_XO_BUFFER(sm6125, rf_clk2, rf_clk2_a, 5);
+> 
+> msm8916?
+> 
 
->
-> Cheers,
-> Peter
+Will do to all.
+
+>>  +
+>>  +static struct clk_smd_rpm *sm6125_clks[] = {
+>>  +       [RPM_SMD_XO_CLK_SRC] = &sm6125_bi_tcxo,
+>>  +       [RPM_SMD_XO_A_CLK_SRC] = &sm6125_bi_tcxo_ao,
+>>  +       [RPM_SMD_SNOC_CLK] = &sm6125_snoc_clk,
+>>  +       [RPM_SMD_SNOC_A_CLK] = &sm6125_snoc_a_clk,
+>>  +       [RPM_SMD_BIMC_CLK] = &sm6125_bimc_clk,
+>>  +       [RPM_SMD_BIMC_A_CLK] = &sm6125_bimc_a_clk,
+>>  +       [RPM_SMD_QDSS_CLK] = &sm6125_qdss_clk,
+>>  +       [RPM_SMD_QDSS_A_CLK] = &sm6125_qdss_a_clk,
+>>  +       [RPM_SMD_RF_CLK1] = &sm6125_rf_clk1,
+>>  +       [RPM_SMD_RF_CLK1_A] = &sm6125_rf_clk1_a,
+>>  +       [RPM_SMD_RF_CLK2] = &sm6125_rf_clk2,
+>>  +       [RPM_SMD_RF_CLK2_A] = &sm6125_rf_clk2_a,
+>>  +       [RPM_SMD_LN_BB_CLK1] = &sm6125_ln_bb_clk1,
+>>  +       [RPM_SMD_LN_BB_CLK1_A] = &sm6125_ln_bb_clk1_a,
+>>  +       [RPM_SMD_LN_BB_CLK2] = &sm6125_ln_bb_clk2,
+>>  +       [RPM_SMD_LN_BB_CLK2_A] = &sm6125_ln_bb_clk2_a,
+>>  +       [RPM_SMD_LN_BB_CLK3] = &sm6125_ln_bb_clk3,
+>>  +       [RPM_SMD_LN_BB_CLK3_A] = &sm6125_ln_bb_clk3_a,
+>>  +       [RPM_SMD_CNOC_CLK] = &sm6125_cnoc_clk,
+>>  +       [RPM_SMD_CNOC_A_CLK] = &sm6125_cnoc_a_clk,
+>>  +       [RPM_SMD_CE1_CLK] = &sm6125_ce1_clk,
+>>  +       [RPM_SMD_CE1_A_CLK] = &sm6125_ce1_a_clk,
+>>  +};
+>>  +
+>>  +static const struct rpm_smd_clk_desc rpm_clk_sm6125 = {
+>>  +       .clks = sm6125_clks,
+>>  +       .num_clks = ARRAY_SIZE(sm6125_clks),
+>>  +};
+>>  +
+>>   static const struct of_device_id rpm_smd_clk_match_table[] = {
+>>          { .compatible = "qcom,rpmcc-msm8916", .data = 
+>> &rpm_clk_msm8916 },
+>>          { .compatible = "qcom,rpmcc-msm8936", .data = 
+>> &rpm_clk_msm8936 },
+>>  diff --git a/include/linux/soc/qcom/smd-rpm.h 
+>> b/include/linux/soc/qcom/smd-rpm.h
+>>  index f2645ec52520..b737d7e456e4 100644
+>>  --- a/include/linux/soc/qcom/smd-rpm.h
+>>  +++ b/include/linux/soc/qcom/smd-rpm.h
+>>  @@ -28,6 +28,7 @@ struct qcom_smd_rpm;
+>>   #define QCOM_SMD_RPM_NCPA      0x6170636E
+>>   #define QCOM_SMD_RPM_NCPB      0x6270636E
+>>   #define QCOM_SMD_RPM_OCMEM_PWR 0x706d636f
+>>  +#define QCOM_SMD_RPM_QUP_CLK   0x00707571
+>>   #define QCOM_SMD_RPM_QPIC_CLK  0x63697071
+>>   #define QCOM_SMD_RPM_SMPA      0x61706d73
+>>   #define QCOM_SMD_RPM_SMPB      0x62706d73
+> 
+> Two patches are adding this in different places.
+
+Im aware. I will argue tho that adding it
+in alphabetical order is the correct way to go here.
+Thats how the rest is done except the last 4 defines
+in that block which probably should be moved into
+their alphabetical order as well
+(They do not follow address ordering).
+
+
+
+
 
