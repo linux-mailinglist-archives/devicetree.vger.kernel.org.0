@@ -2,156 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CCA463DBD52
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 18:50:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CC1B3DBD63
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 18:55:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229700AbhG3QvB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 12:51:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48832 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229479AbhG3Qu6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Jul 2021 12:50:58 -0400
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 59F1360E09;
-        Fri, 30 Jul 2021 16:50:53 +0000 (UTC)
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1m9Vil-0023AS-Ha; Fri, 30 Jul 2021 17:50:51 +0100
+        id S229773AbhG3QzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 12:55:25 -0400
+Received: from mout.kundenserver.de ([212.227.126.133]:56521 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229707AbhG3QzY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 12:55:24 -0400
+Received: from mail-wr1-f45.google.com ([209.85.221.45]) by
+ mrelayeu.kundenserver.de (mreue012 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1MxHLs-1n77cc1pTE-00xbBO; Fri, 30 Jul 2021 18:55:18 +0200
+Received: by mail-wr1-f45.google.com with SMTP id h14so12087408wrx.10;
+        Fri, 30 Jul 2021 09:55:18 -0700 (PDT)
+X-Gm-Message-State: AOAM531x36drL025206zfhSfsIdVNUVYtXIIdwh7tJXRkoxahAE6fFFe
+        5pch65HRs5BPODEUF4YRSt9avNT68PPACJ16s+4=
+X-Google-Smtp-Source: ABdhPJx8pRQBP+fRbShwuYvNiG34iB85ht3PkP357n80b2tOp0dc7/DUvny3sNOHPUMU7TLnQH+oHIK/GgO7nACZa6s=
+X-Received: by 2002:adf:f446:: with SMTP id f6mr4206493wrp.361.1627664118110;
+ Fri, 30 Jul 2021 09:55:18 -0700 (PDT)
 MIME-Version: 1.0
-Date:   Fri, 30 Jul 2021 17:50:51 +0100
-From:   Marc Zyngier <maz@kernel.org>
-To:     Sam Protsenko <semen.protsenko@linaro.org>
-Cc:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+References: <20210730134552.853350-1-bert@biot.com> <20210730134552.853350-5-bert@biot.com>
+ <CAK8P3a3OuJ3pMSdEA4Rt3aWvvuX2+_Bg5x7-kZ1++fvvJvgGxA@mail.gmail.com> <d5498cc1-f700-998f-4e98-918081f2ac66@phrozen.org>
+In-Reply-To: <d5498cc1-f700-998f-4e98-918081f2ac66@phrozen.org>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Fri, 30 Jul 2021 18:55:02 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a1c9bVjACjAN=2d+XiBn+yWgHHs9CEUmik7U61+3MzFhw@mail.gmail.com>
+Message-ID: <CAK8P3a1c9bVjACjAN=2d+XiBn+yWgHHs9CEUmik7U61+3MzFhw@mail.gmail.com>
+Subject: Re: [PATCH 4/5] ARM: Add basic support for EcoNet EN7523 SoC
+To:     John Crispin <john@phrozen.org>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Bert Vermeulen <bert@biot.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Russell King <linux@armlinux.org.uk>,
         Linus Walleij <linus.walleij@linaro.org>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
-        Ryu Euiyoul <ryu.real@samsung.com>,
-        Tom Gall <tom.gall@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-serial@vger.kernel.org
-Subject: Re: [PATCH 12/12] arm64: dts: exynos: Add Exynos850 SoC support
-In-Reply-To: <20210730144922.29111-13-semen.protsenko@linaro.org>
-References: <20210730144922.29111-1-semen.protsenko@linaro.org>
- <20210730144922.29111-13-semen.protsenko@linaro.org>
-User-Agent: Roundcube Webmail/1.4.11
-Message-ID: <15871f8ced3c757fad1ab3b6e62c4e64@misterjones.org>
-X-Sender: maz@kernel.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: semen.protsenko@linaro.org, s.nawrocki@samsung.com, cw00.choi@samsung.com, krzysztof.kozlowski@canonical.com, linus.walleij@linaro.org, tomasz.figa@gmail.com, robh+dt@kernel.org, sboyd@kernel.org, mturquette@baylibre.com, jirislaby@kernel.org, gregkh@linuxfoundation.org, ckeepax@opensource.wolfsonmicro.com, ryu.real@samsung.com, tom.gall@linaro.org, sumit.semwal@linaro.org, john.stultz@linaro.org, amit.pundir@linaro.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, linux-serial@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+        Andrew Morton <akpm@linux-foundation.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Anshuman Khandual <anshuman.khandual@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        YiFei Zhu <yifeifz2@illinois.edu>,
+        Mike Rapoport <rppt@kernel.org>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Kees Cook <keescook@chromium.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Felix Fietkau <nbd@nbd.name>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:Djm3HiGtPborGwABFKLa69C29V921SpSOe07xLTEUvN1ltcib6i
+ oU/7+2bli17JFsiITTU2UsrQHCJmRtJnoY+9zlZktzDif2QGD2dXiaFyoWQmdkMc4Yn9dvz
+ qq63H6S93Jzyzu4jS+tuYMPvIOpvPsrkTlP1ul+Z4mbsqZFt0YYJs53i4gPmF95zUdLdOsO
+ Oz61d1ljFEleqlOSPbCNg==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:gKgZSZRph+M=:9190HjctsZ8ZsfU/3fz5Zy
+ XcLcDmqmyjFh8xMVT/kyrd4nwiYHOx8vPve6q0MleNDzdMM3zW8jH6qQDS/Zhvk5/P90B717m
+ 8kFR9YakEvKAdj3dgaYyC9mdwjVNYlfPa4fshumIOzV9Ng5huI/M+TEs7HOq5slDWgVfxdwK8
+ vXpsWTkOke/BxCuYubNJlk06DKhovUgZ0Oa27GP2Z8cbPTUd44le8YRnh8UiHJwKINUZYS/Dy
+ 3qNeLeELScI8Mgxao9CWL3sQTTzwDxHrwcqvy/zWCCHEtu/GmzxGEZj2FLE17uD0s2TuPVkM/
+ M0Ammy4P3/4+zavBbnlh2+pJ6p+TUCWLq+AWUH7djVJJPFGzQVgnV3aumJB8M2vzmaSUgl3nQ
+ WZAz9N6OEvs7Mx9rZ9M7awuPRSsyvLf4PzKKjalNIqjEV1OlsRFWRCLZSwgaH37uQnExogVfI
+ +awAMCrZWXtldPs1yvMOXj5Vf+W+K42oLvAUibLTTxBqP5CDrau96Z/r0N2tDld244CP1NAq1
+ 4Qnksqd3n9GwzDid+vUU1OhjFnyN4SG88yZ1kz4Q5dvC/hWbrmGKBJbm3j7EJ2Mdm89HUcGdP
+ 7Y4X+TUEstGvKNz/xu1Qx16PS+72YrqzoWedbSEAAhL1hOB15Iy5tQxLCAqqSdU4CnldljMT1
+ Z8ezGMN7kEcA7PWFA1Z9Vha9m0KP2AF8t0Jlgy7pb55J7DoLVbHNuZA2CnaS1fyOBeGsdNH0A
+ i5/ZyrWprd6QxAxQpvAGf6GKoySxNQiKN5VrJQ7VqCFvW9yA5w2pbmCGu00eBzPDxh4eaRSNR
+ NVd9PswvNDIe8FKva1HPGIoociPuFQmH3wN47wvm6WSAT18B7Gl5bEahKAoRSIXceWA1Yb80k
+ Ex++Yo6sRmjecHpjyFpxpBXefdBwXsVemgc7LICKM=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-07-30 15:49, Sam Protsenko wrote:
-> Samsung Exynos850 is ARMv8-based mobile-oriented SoC.
-> 
-> Features:
->  * CPU: Cortex-A55 Octa (8 cores), up to 2 GHz
->  * Memory interface: LPDDR4/4x 2 channels (12.8 GB/s)
->  * SD/MMC: SD 3.0, eMMC5.1 DDR 8-bit
->  * Modem: 4G LTE, 3G, GSM/GPRS/EDGE
->  * RF: Quad GNSS, WiFi 5 (802.11ac), Bluetooth 5.0
->  * GPU: Mali-G52 MP1
->  * Codec: 1080p 60fps H64, HEVC, JPEG HW Codec
->  * Display: Full HD+ (2520x1080)@60fps LCD
->  * Camera: 16+5MP/13+8MP ISP, MIPI CSI 4/4/2, FD, DRC
->  * Connectivity: USB 2.0 DRD, USI (SPI/UART/I2C), HSI2C, I3C, ADC, 
-> Audio
-> 
-> This patch adds minimal SoC support. Particular board device tree files
-> can include exynos850.dtsi file to get SoC related nodes, and then
-> reference those nodes further as needed.
-> 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
->  .../boot/dts/exynos/exynos850-pinctrl.dtsi    | 782 ++++++++++++++++++
->  arch/arm64/boot/dts/exynos/exynos850-usi.dtsi |  30 +
->  arch/arm64/boot/dts/exynos/exynos850.dtsi     | 245 ++++++
->  3 files changed, 1057 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi
->  create mode 100644 arch/arm64/boot/dts/exynos/exynos850-usi.dtsi
->  create mode 100644 arch/arm64/boot/dts/exynos/exynos850.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi
-> b/arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi
-> new file mode 100644
-> index 000000000000..4cf0a22cc6db
+On Fri, Jul 30, 2021 at 5:16 PM John Crispin <john@phrozen.org> wrote:
+> On 30.07.21 16:48, Arnd Bergmann wrote:
+> > Given how closely related this probably is to MT7623/MT7622, should this
+> > perhaps just be part of arch/arm/mach-mediatek? According to
+> > https://wikidevi.wi-cat.ru/MediaTek#xPON, the older (mips based) MT752x
+> > chips are apparently just rebranded to EN752x after the business unit
+> > was spun off, but I guess they are still in the same family.
+>
+> Hi,
+>
+> ECNT (what was once known as trendchip) is now a subsidary of MTK (and
+> not a BU if I am understanding it correctly).
+>
+> the EN7523 is rather similar to the MT7622 for some parts, other parts
+> (spi, flash, wdt, gpio, .. drivers all needed to be rewritten and will
+> be part of the next series).
+>
+> the older MIPS silicon shares almost no IP with the current ARM silicon.
 
-[...]
+Ah, so I guess the old Trendchip parts were separately developed separately
+from the Ralink parts before the original acquisition, and then Ralink/Mediatek
+combined the two product lines before spinning off the dsl products into
+a new subsidiary.
 
-> +	gic: interrupt-controller@12a00000 {
-> +		compatible = "arm,cortex-a15-gic", "arm,cortex-a9-gic";
+> not really my call to decide which folder this should live in. it seemed
+> natural to just give it its own folder, as ECNT is not a BU of MTK.
+>
+> we can change that however if required.
 
-One thing for sure, it cannot be both. And given that it is
-an A55-based SoC, it isn't either. It is more likely a GIC400.
+My preference would be to have a common directory for both,
+but I'm not going to require that. From the kernel perspective the
+main question is actually not who makes the parts but who is going
+to maintain the code.
 
-> +		#interrupt-cells = <3>;
-> +		#address-cells = <0>;
-> +		interrupt-controller;
-> +		reg = <0x0 0x12a01000 0x1000>,
-> +		      <0x0 0x12a02000 0x1000>,
+Matthias is doing a good job taking care of the Mediatek parts,
+and he's familiar with the arm-soc process. If there is enough overlap
+between the Mediatek and EcoNet devices that we would expect
+either conflicts between binding/driver patches, or that you would want
+each other to review the patches for related parts, then it would
+make most sense to have a common directory and maintainer
+entry for both, with all patches going through the same git tree.
 
-This is wrong. It is architecturally set to 8kB.
+It would also be nice to have someone listed as second maintainer
+for mediatek, since Matthias is currently the only one listed there.
+(Doesn't have to be you, I don't mean to drag you into taking up
+more work if you don't want to).
 
-> +		      <0x0 0x12a04000 0x2000>,
-> +		      <0x0 0x12a06000 0x2000>;
-> +		interrupts = <GIC_PPI 9
-> +				(GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+Please discuss this between the three of you (Bert, John and
+Matthias), and let me know what you think works best for all of
+you.
 
-4? With 8 CPUs?
-
-I also find it curious that you went through the unusual
-(and IMO confusing) effort to allocate a name to each and
-every SPI in the system, but didn't do it for any on the PPIs...
-
-
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts = <GIC_PPI 13
-> +				(GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 14
-> +				(GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 11
-> +				(GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 10
-> +				(GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
-> +		clock-frequency = <26000000>;
-
-No, please. Fix the firmware to program CNTFRQ_EL0 on each
-and every CPU. This isn't 2012 anymore.
-
-You are also missing the hypervisor virtual timer interrupt.
-
-> +		use-clocksource-only;
-> +		use-physical-timer;
-
-Thankfully, these two properties do not exist.
-
-Thanks,
-
-         M.
--- 
-Jazz is not dead. It just smells funny...
+       Arnd
