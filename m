@@ -2,97 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90EEF3DBEAB
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 21:04:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80A0D3DBEAF
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 21:05:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230497AbhG3TEI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 15:04:08 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45278 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231124AbhG3TEH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Jul 2021 15:04:07 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2917660F4B;
-        Fri, 30 Jul 2021 19:04:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627671842;
-        bh=zOGnjhKkN2kboqIf15L8awEjWTGdECV9Wk8eV4CT0iI=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=BWbMtYdr1e4orAi0AhIfLxTzTikGp6jegSZuSDY79Ug88WoJbJTgXZOgFD75pqzen
-         KeI/xW62UgsaqAtaUcE7wWClivboGItXaLcb+aSBDA5/DRqOEGpf5Hf2rfKj2xRQQd
-         M28VsvlYzTrqJFMOQ0wOIwUQj9cq6DSdC0+TcPTdVZgG3wsABDFACT2s8yAJRsL87C
-         V0xTa08UQkpW3UhsZ0XaybeBiOeT+Ai7P06twznG13PwvCcmr9RqHnoELnlA0BuM5t
-         8FGK5ymWlDXldBf8AVjdy8duPyxwF6UtWhK3LxzuaX+m+WjHdrQdgo2GNtFl0QlBhh
-         BKL+F2SUREVfQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     Takashi Iwai <tiwai@suse.com>, Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        alsa-devel@alsa-project.org, linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das@bp.renesas.com>, devicetree@vger.kernel.org
-Subject: Re: (subset) [PATCH v2 0/8] Add RZ/G2L Sound support
-Date:   Fri, 30 Jul 2021 20:03:38 +0100
-Message-Id: <162767143674.56427.1812897829636885311.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210719134040.7964-1-biju.das.jz@bp.renesas.com>
-References: <20210719134040.7964-1-biju.das.jz@bp.renesas.com>
+        id S231163AbhG3TFP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 15:05:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56704 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231124AbhG3TFP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 15:05:15 -0400
+Received: from mail-ua1-x934.google.com (mail-ua1-x934.google.com [IPv6:2607:f8b0:4864:20::934])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF48FC0613CF
+        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 12:05:09 -0700 (PDT)
+Received: by mail-ua1-x934.google.com with SMTP id w11so4385260uar.4
+        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 12:05:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=lI7MSErWXqY8bqPMsLO7ItBW3m+DVtFHrgMs+xiZXJA=;
+        b=bD1vPWsa2lKCLWxXOLT+1UnDwNSAZJwXtAOcVDw+V/e40KbH2sue31nkHNrjIfFRB/
+         BslMGwza2qlB9k4lB4tO8GZi4lLygpVjJnrgAiTX9A7XBavBoVYpWz3C439RTw40hYb7
+         73WS9zbvN0I0GTONPEJId0bIjO6Zedp5S1f6UUSWvz+fMoo07JM1RVxe7VoY2BjtChkG
+         tINUW4cLZsSrQXDv/IC1J4t5H4sO1p60pLv1CLwlu7PZSlznBrwaq8HglsTegVI/57/i
+         EWGSpjcw2sq4qEWxwTHVfSifkhwulE/3Tp9P4dX00x66yvod5f/3IpJCqOX4iPM3SVa+
+         24Jw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=lI7MSErWXqY8bqPMsLO7ItBW3m+DVtFHrgMs+xiZXJA=;
+        b=tNMN0GmLJLmWj5ZeEq1akZBv0qVMWaKuoyyRl7anQkVBgOm3nZ4uOuYij31aE5VNUR
+         M+GtQy7eBmoC7c9MSAQb37jP5V6PJj/E+TD+RmOw55MSiQhJ326JN+KXB4bF9/iN1SLy
+         GaxA8oZlBya/k2gXKvvp/MiX7C857KhRJ6UI/XJUxRkQD0ia45QdPIWaNhQzrTkbFK93
+         JtCttTvxTIrLQ3pMZa3o3ZSQXtBSCXm1TcttW/BMjorJRy9cPmDdMjInfq1EpP5PvyLS
+         BRUswiUMjMmDmGBPRfijk3hnynvbw8Bw+kknCgZvg02LRdLvC7AWNPfeAjqOMz0Bbyp9
+         oDeg==
+X-Gm-Message-State: AOAM533ODKzsWv78/Fm0D6IxJaIcsW/b8SbCtWlAa5zGp/+zqX3OmFBl
+        jRmOF6J5PfBWBpmmQf4BrpleiQRddlIe1Nr6yDUaPg==
+X-Google-Smtp-Source: ABdhPJxKt0a6oYMaEe+KWlQ+pBTttefGnJsa9zMvoC3nKXiwFjF1SfuJWc7o7a7CAIlZOh6JUnBHXF86ZK2SwHk1TRQ=
+X-Received: by 2002:ab0:4e22:: with SMTP id g34mr3841963uah.17.1627671908951;
+ Fri, 30 Jul 2021 12:05:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20210730144922.29111-1-semen.protsenko@linaro.org>
+ <20210730144922.29111-8-semen.protsenko@linaro.org> <45da758c-d32d-293b-f4c7-12b58ebca8ac@canonical.com>
+In-Reply-To: <45da758c-d32d-293b-f4c7-12b58ebca8ac@canonical.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Fri, 30 Jul 2021 22:04:57 +0300
+Message-ID: <CAPLW+4=xa-cMR-oqOmEV=su6k=pWE8qSupYoq5evaDr=T26aEA@mail.gmail.com>
+Subject: Re: [PATCH 07/12] dt-bindings: serial: samsung: Add Exynos850 doc
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
+        Ryu Euiyoul <ryu.real@samsung.com>,
+        Tom Gall <tom.gall@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 19 Jul 2021 14:40:32 +0100, Biju Das wrote:
-> This patch series aims to add ASoC support on RZ/G2L SoC's.
-> 
-> It is based on the work done by Chris Brandt for RZ/A ASoC driver.
-> 
-> Biju Das (8):
->   ASoC: dt-bindings: Document RZ/G2L bindings
->   sound: soc: sh: Add RZ/G2L SSIF-2 driver
->   arm64: dts: renesas: r9a07g044: Add external audio clock nodes
->   arm64: dts: renesas: r9a07g044: Add SSI support
->   arm64: defconfig: Enable ASoC sound support for RZ/G2L SoC
->   ASoC: dt-bindings: sound: renesas,rz-ssi: Document DMA support
->   sound: sh: rz-ssi: Add SSI DMAC support
->   arm64: dts: renesas: r9a07g044: Add SSI DMA support
-> 
-> [...]
+On Fri, 30 Jul 2021 at 19:35, Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+>
+> On 30/07/2021 16:49, Sam Protsenko wrote:
+> > Add compatible string for Exynos850 SoC.
+> >
+> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> > ---
+> >  Documentation/devicetree/bindings/serial/samsung_uart.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+>
+> Thanks for the patches!
+>
+> Please put this one before other serial changes but does not have to be
+> first in the entire series.
+>
 
-Applied to
+Done. Will be present in v2.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/8] ASoC: dt-bindings: Document RZ/G2L bindings
-      commit: 2b761f476f3a6e0a212c8c88e7855f66edb177e0
-[6/8] ASoC: dt-bindings: sound: renesas,rz-ssi: Document DMA support
-      commit: 5df6dfbb6de815ba3a75c788a916865212fd5221
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>
+> Best regards,
+> Krzysztof
