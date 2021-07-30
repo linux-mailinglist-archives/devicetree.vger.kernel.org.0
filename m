@@ -2,257 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 441B03DBCA9
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 17:55:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 746A63DBCAE
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 17:56:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231683AbhG3P4A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 11:56:00 -0400
-Received: from mga12.intel.com ([192.55.52.136]:43992 "EHLO mga12.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231535AbhG3P4A (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Jul 2021 11:56:00 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10061"; a="192718228"
-X-IronPort-AV: E=Sophos;i="5.84,282,1620716400"; 
-   d="scan'208";a="192718228"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jul 2021 08:55:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,282,1620716400"; 
-   d="scan'208";a="582142918"
-Received: from kuha.fi.intel.com ([10.237.72.162])
-  by fmsmga001.fm.intel.com with SMTP; 30 Jul 2021 08:55:30 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 30 Jul 2021 18:55:30 +0300
-Date:   Fri, 30 Jul 2021 18:55:30 +0300
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Kyle Tso <kyletso@google.com>
-Cc:     linux@roeck-us.net, gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        badhri@google.com, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] usb: typec: tcpm: Support non-PD mode
-Message-ID: <YQQg8lQrVNAeJ1zX@kuha.fi.intel.com>
-References: <20210730124348.1986638-1-kyletso@google.com>
- <20210730124348.1986638-3-kyletso@google.com>
+        id S229773AbhG3P4R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 11:56:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36146 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231535AbhG3P4P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 11:56:15 -0400
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 291F9C06175F
+        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 08:56:11 -0700 (PDT)
+Received: by mail-ot1-x334.google.com with SMTP id 68-20020a9d0f4a0000b02904b1f1d7c5f4so9966455ott.9
+        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 08:56:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Xg5LLOd+ZVZa0FCK1UJtEwXy6lwS6Y0I8bC/j0Z8unY=;
+        b=YjwloqPi6qyqga2J8/GuErJH/XkpjZIRsODaSYhBoqd7SS1QKQEabbwKJCX24Vf1Yn
+         xJ4AipDGXaWEmwrtHSY8u7nSYP75B05IXUn3l92wuWJdjJeNyfIRfiOWGljf5rUPrEfR
+         SvI/aARaRS69Cx+svmYrLRozh2Ol0qIAB/mmjQtv/EUJHvdnT+nrjE39MnMOT2n6La7q
+         lezB4kG3b4KLJ8ThIbjU4PKXphn58UwJGSXRgWwzDcWmWWn/ddj2Fm370NpjrFUMFDUt
+         ceDAapf+xsxeiuvKWmMnf9au3FzChHLBw7V7aArnyWBFPZowIZaFjELkDJHIuXQJGxnX
+         TFFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Xg5LLOd+ZVZa0FCK1UJtEwXy6lwS6Y0I8bC/j0Z8unY=;
+        b=n9x0Y+rerj4c+9alAzhne9byIHjeJqyZq3nYnFps22Yqd1PahfP9fcXB/NKHnyIcTS
+         6c7LobepPdLomKeaubbrFldqFxoK+1VdGEzmB1ddIRChkpdm/AhY8d1wHM7tPdJX3AqT
+         cGRboT6/WorKbSuDpiOB3mDQEkPtAY6xKgKxhpFpiD+wlBHGiYKeuNyr+Wwx+AC2bqzn
+         NDr1lu93F17qtrWAvWhboWZ7ScaBfnPyePQM3zFj7cZgXYmkVN+xVcsSwl4dmcMQLwuC
+         XGxyaSC0zYFcGxTcwhwgjLnmz8XiwjgA9lHFKjDPn/xwQvgq9by86BPuLdH7Y8MBiNSf
+         zTEw==
+X-Gm-Message-State: AOAM533bspwY9PglHwzmdbsEeWAdPagrPnk5BepGBMfa0d20aXo4KDbn
+        3lPVRosc26zGi6xRphB4ldfaQw==
+X-Google-Smtp-Source: ABdhPJxQU7cVaBcuwAUjW5jYV/z2bowE9LH3Fqf1isF2WVeMYXsNhH1VdmY3+EpLQvuU3iYOTUSq9Q==
+X-Received: by 2002:a05:6830:1c65:: with SMTP id s5mr2542557otg.256.1627660570521;
+        Fri, 30 Jul 2021 08:56:10 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id t7sm353447otl.25.2021.07.30.08.56.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Jul 2021 08:56:09 -0700 (PDT)
+Date:   Fri, 30 Jul 2021 10:56:08 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Tinghan Shen <tinghan.shen@mediatek.com>
+Cc:     ohad@wizery.com, mathieu.poirier@linaro.org, robh+dt@kernel.org,
+        matthias.bgg@gmail.com, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        srv_heupstream@mediatek.com, tzungbi@google.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v4 3/4] dt-bindings: remoteproc: mediatek: Convert
+ mtk,scp to json-schema
+Message-ID: <YQQhGNeT/A5NLjdz@builder.lan>
+References: <20210728035859.5405-1-tinghan.shen@mediatek.com>
+ <20210728035859.5405-4-tinghan.shen@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210730124348.1986638-3-kyletso@google.com>
+In-Reply-To: <20210728035859.5405-4-tinghan.shen@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fri, Jul 30, 2021 at 08:43:48PM +0800, Kyle Tso kirjoitti:
-> Even if the Type-C controller supports PD, it is doable to disable PD
-> capabilities with the current state machine in TCPM. Without enabling RX
-> in low-level drivers and with skipping the power negotiation, the port
-> is eligible to be a non-PD Type-C port. Use new flags whose values are
-> populated from the device tree to decide the port PD capability. Adding
-> "pd-unsupported" property in device tree indicates that the port does
-> not support PD. If PD is not supported, the device tree property
-> "typec-power-opmode" shall be added to specify the advertised Rp value
-> if the port supports SRC role.
+On Tue 27 Jul 22:58 CDT 2021, Tinghan Shen wrote:
+
+> Convert the mtk,scp binding to DT schema format using json-schema.
 > 
-> Signed-off-by: Kyle Tso <kyletso@google.com>
-> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-
-Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
 > ---
-> Changes since v4:
-> - Added Reviewed-by
+>  .../bindings/remoteproc/mtk,scp.txt           | 41 ---------
+>  .../bindings/remoteproc/mtk,scp.yaml          | 85 +++++++++++++++++++
+>  2 files changed, 85 insertions(+), 41 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/remoteproc/mtk,scp.txt
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
 > 
->  drivers/usb/typec/tcpm/tcpm.c | 87 +++++++++++++++++++++++++++--------
->  1 file changed, 68 insertions(+), 19 deletions(-)
-> 
-> diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
-> index 5b22a1c931a9..faea1bf9dce0 100644
-> --- a/drivers/usb/typec/tcpm/tcpm.c
-> +++ b/drivers/usb/typec/tcpm/tcpm.c
-> @@ -316,6 +316,7 @@ struct tcpm_port {
->  	struct typec_partner *partner;
->  
->  	enum typec_cc_status cc_req;
-> +	enum typec_cc_status src_rp;	/* work only if pd_supported == false */
->  
->  	enum typec_cc_status cc1;
->  	enum typec_cc_status cc2;
-> @@ -323,6 +324,7 @@ struct tcpm_port {
->  
->  	bool attached;
->  	bool connected;
-> +	bool pd_supported;
->  	enum typec_port_type port_type;
->  
->  	/*
-> @@ -815,6 +817,9 @@ static enum typec_cc_status tcpm_rp_cc(struct tcpm_port *port)
->  	int nr_pdo = port->nr_src_pdo;
->  	int i;
->  
-> +	if (!port->pd_supported)
-> +		return port->src_rp;
-> +
->  	/*
->  	 * Search for first entry with matching voltage.
->  	 * It should report the maximum supported current.
-> @@ -3568,9 +3573,11 @@ static int tcpm_src_attach(struct tcpm_port *port)
->  	if (ret < 0)
->  		return ret;
->  
-> -	ret = port->tcpc->set_pd_rx(port->tcpc, true);
-> -	if (ret < 0)
-> -		goto out_disable_mux;
-> +	if (port->pd_supported) {
-> +		ret = port->tcpc->set_pd_rx(port->tcpc, true);
-> +		if (ret < 0)
-> +			goto out_disable_mux;
-> +	}
->  
->  	/*
->  	 * USB Type-C specification, version 1.2,
-> @@ -3600,7 +3607,8 @@ static int tcpm_src_attach(struct tcpm_port *port)
->  out_disable_vconn:
->  	tcpm_set_vconn(port, false);
->  out_disable_pd:
-> -	port->tcpc->set_pd_rx(port->tcpc, false);
-> +	if (port->pd_supported)
-> +		port->tcpc->set_pd_rx(port->tcpc, false);
->  out_disable_mux:
->  	tcpm_mux_set(port, TYPEC_STATE_SAFE, USB_ROLE_NONE,
->  		     TYPEC_ORIENTATION_NONE);
-> @@ -3804,6 +3812,20 @@ static enum typec_pwr_opmode tcpm_get_pwr_opmode(enum typec_cc_status cc)
->  	}
->  }
->  
-> +static enum typec_cc_status tcpm_pwr_opmode_to_rp(enum typec_pwr_opmode opmode)
-> +{
-> +	switch (opmode) {
-> +	case TYPEC_PWR_MODE_USB:
-> +		return TYPEC_CC_RP_DEF;
-> +	case TYPEC_PWR_MODE_1_5A:
-> +		return TYPEC_CC_RP_1_5;
-> +	case TYPEC_PWR_MODE_3_0A:
-> +	case TYPEC_PWR_MODE_PD:
-> +	default:
-> +		return TYPEC_CC_RP_3_0;
-> +	}
-> +}
-> +
->  static void run_state_machine(struct tcpm_port *port)
->  {
->  	int ret;
-> @@ -3914,6 +3936,10 @@ static void run_state_machine(struct tcpm_port *port)
->  		if (port->ams == POWER_ROLE_SWAP ||
->  		    port->ams == FAST_ROLE_SWAP)
->  			tcpm_ams_finish(port);
-> +		if (!port->pd_supported) {
-> +			tcpm_set_state(port, SRC_READY, 0);
-> +			break;
-> +		}
->  		port->upcoming_state = SRC_SEND_CAPABILITIES;
->  		tcpm_ams_start(port, POWER_NEGOTIATION);
->  		break;
-> @@ -4161,7 +4187,10 @@ static void run_state_machine(struct tcpm_port *port)
->  				current_lim = PD_P_SNK_STDBY_MW / 5;
->  			tcpm_set_current_limit(port, current_lim, 5000);
->  			tcpm_set_charge(port, true);
-> -			tcpm_set_state(port, SNK_WAIT_CAPABILITIES, 0);
-> +			if (!port->pd_supported)
-> +				tcpm_set_state(port, SNK_READY, 0);
-> +			else
-> +				tcpm_set_state(port, SNK_WAIT_CAPABILITIES, 0);
->  			break;
->  		}
->  		/*
-> @@ -4389,7 +4418,8 @@ static void run_state_machine(struct tcpm_port *port)
->  		tcpm_set_vbus(port, true);
->  		if (port->ams == HARD_RESET)
->  			tcpm_ams_finish(port);
-> -		port->tcpc->set_pd_rx(port->tcpc, true);
-> +		if (port->pd_supported)
-> +			port->tcpc->set_pd_rx(port->tcpc, true);
->  		tcpm_set_attached_state(port, true);
->  		tcpm_set_state(port, SRC_UNATTACHED, PD_T_PS_SOURCE_ON);
->  		break;
-> @@ -5898,6 +5928,7 @@ EXPORT_SYMBOL_GPL(tcpm_tcpc_reset);
->  static int tcpm_fw_get_caps(struct tcpm_port *port,
->  			    struct fwnode_handle *fwnode)
->  {
-> +	const char *opmode_str;
->  	const char *cap_str;
->  	int ret;
->  	u32 mw, frs_current;
-> @@ -5932,22 +5963,37 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
->  		return ret;
->  	port->typec_caps.type = ret;
->  	port->port_type = port->typec_caps.type;
-> +	port->pd_supported = !fwnode_property_read_bool(fwnode, "pd-unsupported");
->  
->  	port->slow_charger_loop = fwnode_property_read_bool(fwnode, "slow-charger-loop");
->  	if (port->port_type == TYPEC_PORT_SNK)
->  		goto sink;
->  
-> -	/* Get source pdos */
-> -	ret = fwnode_property_count_u32(fwnode, "source-pdos");
-> -	if (ret <= 0)
-> -		return -EINVAL;
-> +	/* Get Source PDOs for the PD port or Source Rp value for the non-PD port */
-> +	if (port->pd_supported) {
-> +		ret = fwnode_property_count_u32(fwnode, "source-pdos");
-> +		if (ret == 0)
-> +			return -EINVAL;
-> +		else if (ret < 0)
-> +			return ret;
->  
-> -	port->nr_src_pdo = min(ret, PDO_MAX_OBJECTS);
-> -	ret = fwnode_property_read_u32_array(fwnode, "source-pdos",
-> -					     port->src_pdo, port->nr_src_pdo);
-> -	if ((ret < 0) || tcpm_validate_caps(port, port->src_pdo,
-> -					    port->nr_src_pdo))
-> -		return -EINVAL;
-> +		port->nr_src_pdo = min(ret, PDO_MAX_OBJECTS);
-> +		ret = fwnode_property_read_u32_array(fwnode, "source-pdos",
-> +						     port->src_pdo, port->nr_src_pdo);
-> +		if (ret)
-> +			return ret;
-> +		ret = tcpm_validate_caps(port, port->src_pdo, port->nr_src_pdo);
-> +		if (ret)
-> +			return ret;
-> +	} else {
-> +		ret = fwnode_property_read_string(fwnode, "typec-power-opmode", &opmode_str);
-> +		if (ret)
-> +			return ret;
-> +		ret = typec_find_pwr_opmode(opmode_str);
-> +		if (ret < 0)
-> +			return ret;
-> +		port->src_rp = tcpm_pwr_opmode_to_rp(ret);
-> +	}
->  
->  	if (port->port_type == TYPEC_PORT_SRC)
->  		return 0;
-> @@ -5961,6 +6007,11 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
->  	if (port->typec_caps.prefer_role < 0)
->  		return -EINVAL;
->  sink:
-> +	port->self_powered = fwnode_property_read_bool(fwnode, "self-powered");
-> +
-> +	if (!port->pd_supported)
-> +		return 0;
-> +
->  	/* Get sink pdos */
->  	ret = fwnode_property_count_u32(fwnode, "sink-pdos");
->  	if (ret <= 0)
-> @@ -5977,9 +6028,7 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
->  		return -EINVAL;
->  	port->operating_snk_mw = mw / 1000;
->  
-> -	port->self_powered = fwnode_property_read_bool(fwnode, "self-powered");
+> diff --git a/Documentation/devicetree/bindings/remoteproc/mtk,scp.txt b/Documentation/devicetree/bindings/remoteproc/mtk,scp.txt
+> deleted file mode 100644
+> index 88f37dee7bca..000000000000
+> --- a/Documentation/devicetree/bindings/remoteproc/mtk,scp.txt
+> +++ /dev/null
+> @@ -1,41 +0,0 @@
+> -Mediatek SCP Bindings
+> -----------------------------------------
 > -
-> -	/* FRS can only be supported byb DRP ports */
-> +	/* FRS can only be supported by DRP ports */
->  	if (port->port_type == TYPEC_PORT_DRP) {
->  		ret = fwnode_property_read_u32(fwnode, "new-source-frs-typec-current",
->  					       &frs_current);
-> -- 
-> 2.32.0.554.ge1b32706d8-goog
+> -This binding provides support for ARM Cortex M4 Co-processor found on some
+> -Mediatek SoCs.
+> -
+> -Required properties:
+> -- compatible		Should be one of:
+> -				"mediatek,mt8183-scp"
+> -				"mediatek,mt8192-scp"
+> -				"mediatek,mt8195-scp"
+> -- reg			Should contain the address ranges for memory regions:
+> -			SRAM, CFG, and L1TCM.
+> -- reg-names		Contains the corresponding names for the memory regions:
+> -			"sram", "cfg", and "l1tcm".
+> -- clocks		Required by mt8183 and mt8192. Clock for co-processor
+> -			(See: ../clock/clock-bindings.txt)
+> -- clock-names		Required by mt8183 and mt8192. Contains the
+> -			corresponding name for the clock. This should be
+> -			named "main".
+> -
+> -Subnodes
+> ---------
+> -
+> -Subnodes of the SCP represent rpmsg devices. The names of the devices are not
+> -important. The properties of these nodes are defined by the individual bindings
+> -for the rpmsg devices - but must contain the following property:
+> -
+> -- mtk,rpmsg-name	Contains the name for the rpmsg device. Used to match
+> -			the subnode to rpmsg device announced by SCP.
+> -
+> -Example:
+> -
+> -	scp: scp@10500000 {
+> -		compatible = "mediatek,mt8183-scp";
+> -		reg = <0 0x10500000 0 0x80000>,
+> -		      <0 0x105c0000 0 0x5000>;
+> -		reg-names = "sram", "cfg";
+> -		clocks = <&infracfg CLK_INFRA_SCPSYS>;
+> -		clock-names = "main";
+> -	};
+> diff --git a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
+> new file mode 100644
+> index 000000000000..dc5fcbe65dae
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
+> @@ -0,0 +1,85 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/remoteproc/mtk,scp.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Mediatek SCP Bindings
+> +
+> +maintainers:
+> +  - Tinghan Shen <tinghan.shen@mediatek.com>
+> +
+> +description:
+> +  This binding provides support for ARM Cortex M4 Co-processor found on some
+> +  Mediatek SoCs.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - mediatek,mt8183-scp
+> +      - mediatek,mt8192-scp
+> +      - mediatek,mt8195-scp
+> +
+> +  reg:
+> +    description: |
 
--- 
-heikki
+The '|' means that you want to preserve the formatting of the text
+segment, there's no need for that.
+
+> +      Should contain the address ranges for memory regions SRAM and CFG,
+> +    maxItems: 2
+> +
+> +  reg-names:
+> +    description: |
+> +      Contains the corresponding names for the two memory regions. These
+> +      should be named "sram", "cfg".
+
+  reg-names:
+    items:
+      - sram
+      - cfg
+
+> +
+> +  clocks:
+> +    description: |
+> +        Clock for co-processor (see ../clock/clock-bindings.txt).
+> +        Required by mt8183 and mt8192.
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    description: |
+> +      Contains the corresponding name for the clock. This should be
+> +      named "main". Required by mt8183 and mt8192.
+
+  clock-names:
+    const: main
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+
+The old binding, and the comment about clocks above, says that clocks
+and clock-names are required for mt8183 and mt8192.
+
+> +
+> +patternProperties:
+> +  ".*":
+> +    if:
+> +      type: object
+> +    then:
+> +      description:
+> +        Subnodes of the SCP represent rpmsg devices. The names of the devices
+> +        are not important. The properties of these nodes are defined by the
+> +        individual bindings for the rpmsg devices.
+> +
+> +      properties:
+> +        mtk,rpmsg-name:
+> +          description:
+> +            Contains the name for the rpmsg device. Used to match
+> +            the subnode to rpmsg device announced by SCP.
+> +
+> +      required:
+> +        - mtk,rpmsg-name
+> +
+> +additionalProperties: true
+
+What additional properties do you expect?
+
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/mt8183-clk.h>
+> +
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+
+Skip soc and the two #-cells, and rewrite the reg to only use 1 address
+and size-cell.
+
+> +        scp: scp@10500000 {
+
+The label doesn't add value in the example, please skip this.
+
+> +            compatible = "mediatek,mt8183-scp";
+> +            reg = <0 0x10500000 0 0x80000>,
+> +                  <0 0x105c0000 0 0x5000>;
+> +            reg-names = "sram", "cfg";
+> +            clocks = <&infracfg CLK_INFRA_SCPSYS>;
+> +            clock-names = "main";
+
+Can you please also add a subnode, to capture that part of the binding
+as well?
+
+Regards,
+Bjorn
+
+> +        };
+> +    };
+> -- 
+> 2.18.0
+> 
