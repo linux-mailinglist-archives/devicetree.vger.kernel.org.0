@@ -2,113 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DD503DB879
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 14:18:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DB7C3DB8AD
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 14:36:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230325AbhG3MSm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 08:18:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49286 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238745AbhG3MSl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Jul 2021 08:18:41 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 15BF261074;
-        Fri, 30 Jul 2021 12:18:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627647516;
-        bh=xfVOdRGPI0p8bvTjQzrdr1McYn1rjKDlbhisGOum8GE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LuF6zMJ6dfL7TMZBi73lFlpB+FdR+5ckY/pjV8WLSQ2/LyqHdWq0dvO70cpPMyZWI
-         NSUbMoem02ehuRZWAWtbz81FG8UnrL5lfaHoicK6rUjZOzJHoQ7Wqwhr0Cx7QvEmce
-         HXQ0i02aJvP/UUuMhJINZh9au6V4yWxQdZ4K6mP4B3ECxFtC/EW5neaKcc2p8JjHHk
-         Xd6tXq4gIG84qm21e33ubyQ27r6f87nP22O90l7YawT3g2CooarltCyAMlvTB4t1Rw
-         d7m/A0QJs2HhBukm4OZCnk6S0mcWK6o90ZiRIuW8V4GWfolJk/ROKaKrh3Id1h4uDh
-         HRgkjLMKem9fA==
-Date:   Fri, 30 Jul 2021 13:18:31 +0100
-From:   Will Deacon <will@kernel.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Nicolin Chen <nicolinc@nvidia.com>,
-        Krishna Reddy <vdumpa@nvidia.com>, devicetree@vger.kernel.org,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [PATCH v2 2/5] iommu: Implement of_iommu_get_resv_regions()
-Message-ID: <20210730121831.GD23589@willie-the-truck>
-References: <20210423163234.3651547-1-thierry.reding@gmail.com>
- <20210423163234.3651547-3-thierry.reding@gmail.com>
- <bdc42077-d1f3-f561-2e4d-647b5fceb7b6@gmail.com>
- <CAL_Jsq+jSY-OLau3gLPsDL02AYaE_TySOGrd9-tNLFaYvLHZ6A@mail.gmail.com>
- <7f5c8094-6e4f-5a94-2257-1003a78ba92f@gmail.com>
+        id S238736AbhG3Mgd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 08:36:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40124 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238693AbhG3Mgc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 08:36:32 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E160BC0613CF
+        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 05:36:27 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id f18so17613161lfu.10
+        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 05:36:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=a6yoTwLjCZTcp5zCZT5VGKqs4hiUGuvsS21dwOFfXjs=;
+        b=lL/dGG0fbS/8In4v2Cc9/dZeUykOnpTSnf91B6+adKwx3DDjpEnWLyL+Gt492N1Gwf
+         Ca+al0GksCkCIKIgbVWeLACsrfR5kz9i+7PGn+33GcaHMulDwhGxHtFLVNbsHNuxAJwg
+         +os5OwFEp4kx/WsSP4ZbJ6y4lzfSKsRFu5JFdeA3uyf+ldOFDE6ELxKnMdb8ZJCHr7zC
+         AH1hL8Uqr/V+SXSRnQ+0dpggaVfLNsubj9g8D7kBiUtcs0ueIPrBfXl8TyUSf8oi4DuC
+         aQ+hbt1EIlMGvRSP6OpcePMFe0Xkrc92A0FLJiXrLOEPd0+Id9JIsWTo2yvxtOcHCRUX
+         FqKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=a6yoTwLjCZTcp5zCZT5VGKqs4hiUGuvsS21dwOFfXjs=;
+        b=Gxg7KtLF9cFiSxb1w+/CtCU04F/lGGqu0j2gh5e674TUBrsrk7bQM/qsQ+Ag5RBwVZ
+         P70fUHAbjgTL1QDJkjiIW+Tz1CMFkBennX43NboKD7iQpyEa/jlhFIdYF7eNc1MFVwHp
+         N1U5YRHdbinbWIoh7LmYKuem0KRBmTgvL2FUNiv3yyGTI3ByZKO/Xytdpcgo1fopxMIh
+         WI3t5u/mUwNsv1IwN+0fcU6eUt82OqHSPEyGXzCqkSzgRjgL7eKxULW1r2UR7sdMOqyT
+         t2IYBkp+1JDFjZSHLjvNbHqzGPG/p40IBtTb1v1Hu6JsgGhFGn+4AzJp39pea1yr9w0N
+         vtcQ==
+X-Gm-Message-State: AOAM5303iFBVZlCUpLfeLfLVBHpJHZ4l2jY3iZd5tje7Cz4DsASBasr6
+        kulWMCRQe7uAh7IB2MUQQzGU41+kehm2z/w58BZTkg==
+X-Google-Smtp-Source: ABdhPJw0ow6qke/HIvvIMSvtYtQwonfyTTyt6hR9ZCYWU00ixAHsUk61egoYmM2Ut2mEU62KOOmkc3/z5feFHxYzAbY=
+X-Received: by 2002:ac2:4c4c:: with SMTP id o12mr1698771lfk.157.1627648586302;
+ Fri, 30 Jul 2021 05:36:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7f5c8094-6e4f-5a94-2257-1003a78ba92f@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20210712194422.12405-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210712194422.12405-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20210712194422.12405-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 30 Jul 2021 14:36:15 +0200
+Message-ID: <CACRpkdZmQJMdnskELGvunBvXqobCdE5fRB_AnPscVY7-bxz66g@mail.gmail.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: pinctrl: renesas,rzg2l-pinctrl: Add
+ DT bindings for RZ/G2L pinctrl
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 17, 2021 at 02:07:12PM +0300, Dmitry Osipenko wrote:
-> 16.07.2021 17:41, Rob Herring пишет:
-> > On Fri, Jul 2, 2021 at 8:05 AM Dmitry Osipenko <digetx@gmail.com> wrote:
-> >>
-> >> 23.04.2021 19:32, Thierry Reding пишет:
-> >>> +void of_iommu_get_resv_regions(struct device *dev, struct list_head *list)
-> >>> +{
-> >>> +     struct of_phandle_iterator it;
-> >>> +     int err;
-> >>> +
-> >>> +     of_for_each_phandle(&it, err, dev->of_node, "memory-region", "#memory-region-cells", 0) {
-> >>> +             struct iommu_resv_region *region;
-> >>> +             struct of_phandle_args args;
-> >>> +             struct resource res;
-> >>> +
-> >>> +             args.args_count = of_phandle_iterator_args(&it, args.args, MAX_PHANDLE_ARGS);
-> >>> +
-> >>> +             err = of_address_to_resource(it.node, 0, &res);
-> >>> +             if (err < 0) {
-> >>> +                     dev_err(dev, "failed to parse memory region %pOF: %d\n",
-> >>> +                             it.node, err);
-> >>> +                     continue;
-> >>> +             }
-> >>> +
-> >>> +             if (args.args_count > 0) {
-> >>> +                     /*
-> >>> +                      * Active memory regions are expected to be accessed by hardware during
-> >>> +                      * boot and must therefore have an identity mapping created prior to the
-> >>> +                      * driver taking control of the hardware. This ensures that non-quiescent
-> >>> +                      * hardware doesn't cause IOMMU faults during boot.
-> >>> +                      */
-> >>> +                     if (args.args[0] & MEMORY_REGION_IDENTITY_MAPPING) {
-> >>> +                             region = iommu_alloc_resv_region(res.start, resource_size(&res),
-> >>> +                                                              IOMMU_READ | IOMMU_WRITE,
-> >>> +                                                              IOMMU_RESV_DIRECT_RELAXABLE);
-> >>> +                             if (!region)
-> >>> +                                     continue;
-> >>> +
-> >>> +                             list_add_tail(&region->list, list);
-> >>> +                     }
-> >>> +             }
-> >>> +     }
-> >>> +}
-> >>> +EXPORT_SYMBOL(of_iommu_get_resv_regions);
-> >>
-> >> Any reason why this is not EXPORT_SYMBOL_GPL? I'm curious what is the
-> >> logic behind the OF symbols in general since it looks like half of them
-> >> are GPL.
-> > 
-> > Generally, new ones are _GPL. Old ones probably predate _GPL.
-> > 
-> > This one is up to the IOMMU maintainers.
-> 
-> Thank you.
+On Mon, Jul 12, 2021 at 9:44 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
 
-I prefer EXPORT_SYMBOL_GPL(). That's aligned with the symbols exported by
-iommu.c, with the *single* exception of generic_iommu_put_resv_regions(),
-which I think should be changed to _GPL() as well.
+> Add device tree binding documentation and header file for Renesas
+> RZ/G2L pinctrl.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Will
+Looks good to me and I essentially trust Geert to review this
+driver and eventually merge it and send it by pull request
+as well.
+
+Yours,
+Linus Walleij
