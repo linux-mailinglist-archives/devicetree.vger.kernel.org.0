@@ -2,121 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 925CF3DBCCC
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 18:05:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BE8E3DBCFE
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 18:23:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229581AbhG3QFz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 12:05:55 -0400
-Received: from smtp-relay-canonical-1.canonical.com ([185.125.188.121]:38678
-        "EHLO smtp-relay-canonical-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229479AbhG3QFy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Jul 2021 12:05:54 -0400
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPS id 445043F243
-        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 16:05:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1627661148;
-        bh=ckOz90kE72EEodkfysirBp4bfPPhomkbsSq4zFCD8p4=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=ivOSwVeQ0XHeXJBn214ExMBSMaX2KvjrEqvC+7lTcxGxtfWL13XYfOQpgoFMqebyL
-         lKFXypmXXtKLme757tve6gpoWOI7zOxyYNZgqjALJxUvxOtTabZIWt4GCV8pH9pGNr
-         uH5TNdRyTINpmfX10QPA19OX2vYHPuTv2CtnFEes1iwLWMSsQiahHYyvamYA6K9VkG
-         JCF73vvZFCBmbl3EWPkbfzNPMXxtMj5mOxerhiQyBn4IsPLzPQ1lDzlub4DfgPLPZr
-         gv6YGzFsgOfDfMMAKTIXQdBY4PqKp7vH4tAPYitmmTgV5nXROYHrlFZ7jdbzpufSZT
-         jbATtbenVqPVg==
-Received: by mail-ej1-f70.google.com with SMTP id k21-20020a1709062a55b0290590e181cc34so2179191eje.3
-        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 09:05:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ckOz90kE72EEodkfysirBp4bfPPhomkbsSq4zFCD8p4=;
-        b=Y1DLymwkLckPRmMVFbFcNeFG4Xs85rQH8wFliXnGuHYkFGNyxdZ3ZRrurMshQuIYOb
-         cdCPj4JYSJ7x04SDWWxVpcgly1+Cc8vTQ2mg08T0hS0iJ5rgggqQy4fjQrt9VH7Yq4VY
-         e5RyDUdbYbQUqve5WSOL1fc+YpTqzYuZl2jW//zpEKAPXFbKOO8mFOua0cFCVFdiRzYT
-         av83iix/LX9ESotOAQSX3U2jb7cXcYZGsGeMFPg8qWESku5ZbIXZDPPiDzAF5SSsXNok
-         GZcRz6ck/Z8LngDsGTbXHSYUvkcLQ1ACBdTjawMcCu7jL2496dZj3P0+CIjTb1HROS2O
-         tteg==
-X-Gm-Message-State: AOAM5333oW4exEGdd07Opd0YjlxNuYhpbVHiuyWdffxDNGDBbf8f9xUA
-        vYtSzq5Hqnke4+GdCJfkeeuZ7m8xIIYYMQsWgLBof5+Lw8KdoW0f7UcdOVbE/pypo64fNyRLEaO
-        pZv43jf7CpqcjNASyjG2GkY4XOBCpcUYxRKqA11A=
-X-Received: by 2002:a17:906:c0cd:: with SMTP id bn13mr3270805ejb.251.1627661145661;
-        Fri, 30 Jul 2021 09:05:45 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJz7c3uXOvkRzFd+EjfGwOi9GkfnP6xyPWeV21oXtz+M8LxzO4q9ZXaaXNPEO6I0wjp44bYNLA==
-X-Received: by 2002:a17:906:c0cd:: with SMTP id bn13mr3270781ejb.251.1627661145512;
-        Fri, 30 Jul 2021 09:05:45 -0700 (PDT)
-Received: from [192.168.8.102] ([86.32.47.9])
-        by smtp.gmail.com with ESMTPSA id b3sm697246ejb.7.2021.07.30.09.05.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Jul 2021 09:05:45 -0700 (PDT)
-Subject: Re: [PATCH 06/12] tty: serial: samsung: Add Exynos850 SoC data
-To:     Sam Protsenko <semen.protsenko@linaro.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Tomasz Figa <tomasz.figa@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
-        Ryu Euiyoul <ryu.real@samsung.com>,
-        Tom Gall <tom.gall@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-serial@vger.kernel.org
-References: <20210730144922.29111-1-semen.protsenko@linaro.org>
- <20210730144922.29111-7-semen.protsenko@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <5826bc3e-e9e8-a9bb-4541-21c1b944a60e@canonical.com>
-Date:   Fri, 30 Jul 2021 18:05:43 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S229521AbhG3QX0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 12:23:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52390 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229477AbhG3QX0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Jul 2021 12:23:26 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id BDF9660F4B;
+        Fri, 30 Jul 2021 16:23:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1627662201;
+        bh=FW5LB4/droceMkapj9/opDRSSB08Hj67ZWxOidv6Bak=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=pi4Pi51yNSIBNhSaMwGePr9C1LErMMOjm7VEeu4XA+T1AoBJXCXLGmB8IrxI1e9M9
+         nQnmJWRnj1dEdcCOyUhUASV58lg6mp8Q9Ch3HUwvo+M1dye9AB0F+qXy56B2fcuIL/
+         7yekJ7i6GVA27N22fvtF6si8l9zFY4GT5rxgQq2NQAS5Dq0oMzhdZOivz31N74h7Nk
+         aHOOn63rsKKmynnbkepxhaPwWuzDvmlg+3JxANOZXAENVNOzRAfw28Hod0z5Ejznzw
+         M68M4cIHmzUAo0PYkJMwhcdiiHP27Sm3RhbIw2ew0QAaHWd8z7SZn4SYwA/sDM82Ju
+         Son813H1X1wtg==
+Received: by mail-ed1-f44.google.com with SMTP id p21so13934540edi.9;
+        Fri, 30 Jul 2021 09:23:21 -0700 (PDT)
+X-Gm-Message-State: AOAM532ZYV22ULwtX4p25ZZWyaSdFIeqnEx0DQndjaFGhfEc5/JPF203
+        /WcB2NwfJe8b5y2aoHe0RsbjCBmFUtbeJmgriA==
+X-Google-Smtp-Source: ABdhPJzMdtcUi1zO0dPd4SSrt2q34Yx/1YxBJlURSGlVXMthQEd0rhojXPsJpfAwWhNd3aUVC/s1oj1cE69g15qMsjo=
+X-Received: by 2002:a05:6402:718:: with SMTP id w24mr3884876edx.49.1627662200337;
+ Fri, 30 Jul 2021 09:23:20 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210730144922.29111-7-semen.protsenko@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <1627459111-2907-1-git-send-email-chunfeng.yun@mediatek.com> <1627459111-2907-7-git-send-email-chunfeng.yun@mediatek.com>
+In-Reply-To: <1627459111-2907-7-git-send-email-chunfeng.yun@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Sat, 31 Jul 2021 00:23:09 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_95Qpv-RjxzWteQ-+p=P0siC2c0vAQdkx-V7bfCwgn34g@mail.gmail.com>
+Message-ID: <CAAOTY_95Qpv-RjxzWteQ-+p=P0siC2c0vAQdkx-V7bfCwgn34g@mail.gmail.com>
+Subject: Re: [PATCH 7/9] phy: phy-mtk-hdmi: convert to devm_platform_ioremap_resource
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-phy@lists.infradead.org, DTML <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Eddie Hung <eddie.hung@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/07/2021 16:49, Sam Protsenko wrote:
-> Add serial driver data for Exynos850 SoC. This driver data is basically
-> reusing EXYNOS_COMMON_SERIAL_DRV_DATA, which is common for all Exynos
-> chips, but also enables USI init, which was added in previous commit:
-> "tty: serial: samsung: Init USI to keep clocks running".
-> 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+Hi, Chunfeng:
+
+Chunfeng Yun <chunfeng.yun@mediatek.com> =E6=96=BC 2021=E5=B9=B47=E6=9C=882=
+8=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=883:59=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+>
+> Use devm_platform_ioremap_resource to simplify code
+
+Acked-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+
+>
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 > ---
->  drivers/tty/serial/samsung_tty.c | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
-> diff --git a/drivers/tty/serial/samsung_tty.c b/drivers/tty/serial/samsung_tty.c
-> index 75ccbb08df4a..d059b516a0f4 100644
-> --- a/drivers/tty/serial/samsung_tty.c
-> +++ b/drivers/tty/serial/samsung_tty.c
-> @@ -2814,11 +2814,19 @@ static struct s3c24xx_serial_drv_data exynos5433_serial_drv_data = {
->  	.fifosize = { 64, 256, 16, 256 },
->  };
->  
-> +static struct s3c24xx_serial_drv_data exynos850_serial_drv_data = {
-> +	EXYNOS_COMMON_SERIAL_DRV_DATA_USI(1),
-> +	.fifosize = { 0, },
-
-This does not look correct. You rely on samsung,uart-fifosize property
-but it is optional.
-
-
-Best regards,
-Krzysztof
+>  drivers/phy/mediatek/phy-mtk-hdmi.c | 7 ++-----
+>  1 file changed, 2 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/phy/mediatek/phy-mtk-hdmi.c b/drivers/phy/mediatek/p=
+hy-mtk-hdmi.c
+> index 8ad8f717ef43..5fb4217fb8e0 100644
+> --- a/drivers/phy/mediatek/phy-mtk-hdmi.c
+> +++ b/drivers/phy/mediatek/phy-mtk-hdmi.c
+> @@ -100,7 +100,6 @@ static int mtk_hdmi_phy_probe(struct platform_device =
+*pdev)
+>  {
+>         struct device *dev =3D &pdev->dev;
+>         struct mtk_hdmi_phy *hdmi_phy;
+> -       struct resource *mem;
+>         struct clk *ref_clk;
+>         const char *ref_clk_name;
+>         struct clk_init_data clk_init =3D {
+> @@ -116,11 +115,9 @@ static int mtk_hdmi_phy_probe(struct platform_device=
+ *pdev)
+>         if (!hdmi_phy)
+>                 return -ENOMEM;
+>
+> -       mem =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> -       hdmi_phy->regs =3D devm_ioremap_resource(dev, mem);
+> -       if (IS_ERR(hdmi_phy->regs)) {
+> +       hdmi_phy->regs =3D devm_platform_ioremap_resource(pdev, 0);
+> +       if (IS_ERR(hdmi_phy->regs))
+>                 return PTR_ERR(hdmi_phy->regs);
+> -       }
+>
+>         ref_clk =3D devm_clk_get(dev, "pll_ref");
+>         if (IS_ERR(ref_clk)) {
+> --
+> 2.18.0
+>
