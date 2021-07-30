@@ -2,32 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F23A3DB304
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 07:55:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28A483DB309
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 07:57:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237168AbhG3Fzm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 01:55:42 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:13589 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236850AbhG3Fzl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Jul 2021 01:55:41 -0400
+        id S237112AbhG3F5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 01:57:47 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:13282 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236641AbhG3F5r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 01:57:47 -0400
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1627624537; h=Content-Transfer-Encoding: Content-Type:
+ s=smtp; t=1627624663; h=Content-Transfer-Encoding: Content-Type:
  In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=lYaNhuLnlPpaN4fXth6X4xr4/sxqYzupM5XAMywBIyc=; b=FcbjSPtA1fCqd9e35EV0pY9Zh9vlHCHfJ49UU/ZPPc3OeGd0mxI3GhU/32oW00LF7QaFUjp2
- YLYLgu6SsbHB09hZ1D5r50cBfdHJtwSikWuGF1fhR0WKnWOyW+aTmzx9yGlwRVvc6j+meDGf
- 10PmRx2PxJQQ9NM4a0n6OdcsvJ8=
-X-Mailgun-Sending-Ip: 69.72.43.7
+ Subject: Sender; bh=i8VV9v0a2gpBXLh/ROC+kMXxRYleXm1itqYFFkohULA=; b=uiR0ZUFYgLdq0WmH9ZjedP/Atnmu8P/+vxaEBTns1PDN0yZ86Z8+95Emm9OpBhjKso6UeCUS
+ esAOBer/Tl9kJhAlwquUtNxG9e0Xgf/Mpl1dh+whE+zJkbJWUyIWlPPBhvvu6BG5ptiEs/on
+ 3/fk0jjJM46UHGE5YkgxQuuXBw4=
+X-Mailgun-Sending-Ip: 198.61.254.9
 X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
- 61039454e31d882d18741910 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 30 Jul 2021 05:55:32
+ smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
+ 610394d34815712f3add5a54 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 30 Jul 2021 05:57:39
  GMT
 Sender: rnayak=codeaurora.org@mg.codeaurora.org
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 9B094C433F1; Fri, 30 Jul 2021 05:55:32 +0000 (UTC)
+        id D6D22C433F1; Fri, 30 Jul 2021 05:57:38 +0000 (UTC)
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
         aws-us-west-2-caf-mail-1.web.codeaurora.org
 X-Spam-Level: 
@@ -38,13 +38,13 @@ Received: from [192.168.1.100] (unknown [49.207.203.214])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
         (Authenticated sender: rnayak)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id CC915C433F1;
-        Fri, 30 Jul 2021 05:55:28 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org CC915C433F1
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id D19B3C4338A;
+        Fri, 30 Jul 2021 05:57:35 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org D19B3C4338A
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
-Subject: Re: [PATCH v2 2/3] nvmem: qfprom: sc7280: Handle the additional
- power-domains vote
+Subject: Re: [PATCH v2 1/3] dt-bindings: nvmem: qfprom: Add optional
+ power-domains property
 To:     Doug Anderson <dianders@chromium.org>
 Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -55,15 +55,15 @@ Cc:     Andy Gross <agross@kernel.org>,
         <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
         "Ravi Kumar Bokka (Temp)" <rbokka@codeaurora.org>
 References: <1627560036-1626-1-git-send-email-rnayak@codeaurora.org>
- <1627560036-1626-3-git-send-email-rnayak@codeaurora.org>
- <CAD=FV=Wy6iyrty0tmygY42GJdWSNqby9XePjpg6pKpce-9A7fg@mail.gmail.com>
+ <1627560036-1626-2-git-send-email-rnayak@codeaurora.org>
+ <CAD=FV=Vtp0HGFpoS4cdZOQ0GUBbhiyw=TuYxWNTGVAyMUKMhvQ@mail.gmail.com>
 From:   Rajendra Nayak <rnayak@codeaurora.org>
-Message-ID: <b9e7f3b9-6046-b1b2-5e8a-7036d54b5995@codeaurora.org>
-Date:   Fri, 30 Jul 2021 11:25:26 +0530
+Message-ID: <9e482bc2-59e0-0d30-aa7e-4e2a2bd594b4@codeaurora.org>
+Date:   Fri, 30 Jul 2021 11:27:33 +0530
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <CAD=FV=Wy6iyrty0tmygY42GJdWSNqby9XePjpg6pKpce-9A7fg@mail.gmail.com>
+In-Reply-To: <CAD=FV=Vtp0HGFpoS4cdZOQ0GUBbhiyw=TuYxWNTGVAyMUKMhvQ@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -72,84 +72,47 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 7/29/2021 9:37 PM, Doug Anderson wrote:
+On 7/29/2021 9:49 PM, Doug Anderson wrote:
 > Hi,
 > 
 > On Thu, Jul 29, 2021 at 5:01 AM Rajendra Nayak <rnayak@codeaurora.org> wrote:
 >>
->> On sc7280, to reliably blow fuses, we need an additional vote
->> on max performance state of 'MX' power-domain.
->> Add support for power-domain performance state voting in the
->> driver.
+>> qfprom devices on some SoCs need to vote on the performance state
+>> of a power-domain, so add the power-domains optional property to the
+>> bindings
 >>
 >> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
 >> ---
->>   drivers/nvmem/qfprom.c | 26 ++++++++++++++++++++++++++
->>   1 file changed, 26 insertions(+)
+>>   Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml | 3 +++
+>>   1 file changed, 3 insertions(+)
 >>
->> diff --git a/drivers/nvmem/qfprom.c b/drivers/nvmem/qfprom.c
->> index 81fbad5..b5f27df 100644
->> --- a/drivers/nvmem/qfprom.c
->> +++ b/drivers/nvmem/qfprom.c
->> @@ -12,6 +12,8 @@
->>   #include <linux/mod_devicetable.h>
->>   #include <linux/nvmem-provider.h>
->>   #include <linux/platform_device.h>
->> +#include <linux/pm_domain.h>
->> +#include <linux/pm_runtime.h>
->>   #include <linux/property.h>
->>   #include <linux/regulator/consumer.h>
+>> diff --git a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+>> index 861b205..a498a08 100644
+>> --- a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+>> +++ b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+>> @@ -51,6 +51,9 @@ properties:
+>>     vcc-supply:
+>>       description: Our power supply.
 >>
->> @@ -139,6 +141,9 @@ static void qfprom_disable_fuse_blowing(const struct qfprom_priv *priv,
->>   {
->>          int ret;
->>
->> +       dev_pm_genpd_set_performance_state(priv->dev, 0);
->> +       pm_runtime_put(priv->dev);
-> 
-> To me it feels as if this should be at the end of the function rather
-> than the beginning. I guess it doesn't matter (?), but it feels wrong
-> that we have writes to the register space after we're don't a
-> pm_runtime_put().
-
-Right, I was confused with this too when I saw that the other resources
-(regulator/clocks) were also turned off before we write into the
-register space. And then looking into the driver I realized its perhaps because
-the resources are needed only for the 'raw' writes and the 'conf'
-read/writes can happen regardless. I'll just fix that up and put the register
-writes before we really turn off any resources to avoid confusion.
-
-> 
-> 
->> @@ -420,6 +440,12 @@ static int qfprom_probe(struct platform_device *pdev)
->>                          econfig.reg_write = qfprom_reg_write;
->>          }
->>
->> +       ret = devm_add_action_or_reset(dev, qfprom_runtime_disable, dev);
->> +       if (ret)
->> +               return ret;
->> +
->> +       pm_runtime_enable(dev);
+>> +  power-domains:
+>> +    description: A phandle to a power domain node.
 >> +
 > 
-> Swap the order of the two. IOW first pm_runtime_enable(), then
-> devm_add_action_or_reset(). Specifically the "_or_reset" means that if
-> you fail to add the action (AKA devm_add_action() fails to allocate
-> the tiny amount of memory it needs) it will actually _call_ the
-> action. 
+> I'm trying to channel my inner Rob here by saying that this
+> description doesn't add anything and this should just be:
 
-Ah, I didn't know that, thanks, I'll fix the order up and repost.
+Thanks, I trust the inner Rob in you :), so I'll drop the description
+and repost.
 
-> That means that in your code if the memory allocation fails
-> you'll call pm_runtime_disable() without the corresponding
-> pm_runtime_enable().
 > 
+> power-domains:
+>    maxItems: 1
 > 
-> Other than those two issues this looks good to me. Feel free to add my
-> Reviewed-by when you fix them.
-
-Thanks.
-
+> Here's an example of Rob saying this:
+> 
+> https://lore.kernel.org/linux-devicetree/20210712151322.GA1931925@robh.at.kernel.org/
+> 
+> Other than that, feel free to add my "Reviewed-by" tag.
 > 
 > -Doug
 > 
