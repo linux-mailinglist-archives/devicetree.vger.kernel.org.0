@@ -2,104 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 81D913DC100
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jul 2021 00:20:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E2A93DC106
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jul 2021 00:28:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233146AbhG3WUz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 18:20:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48188 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232855AbhG3WUz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 18:20:55 -0400
-Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17A36C061765
-        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 15:20:49 -0700 (PDT)
-Received: by mail-qk1-x729.google.com with SMTP id t68so10920789qkf.8
-        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 15:20:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=X/ut0W8QWQzgc3+TFp0Zpab3f8ktnZebi671B/GRa1s=;
-        b=MyagQMiCCsM3Rrn6I1WUv92/Bb4Hoxpt54pGqOpfWtDctdM1tQkL6ciLcbY6UdDKg+
-         CHPIMI68YD94tESmrEfcGANjj5Cl0XwRrXRcwNL9k1ZbXaHmbVZH7THGiL7zV/RxUQ1c
-         g511pq+mPaWbOHjDMSUZoOWqY8Uja0Hq1ANig=
+        id S229604AbhG3W2S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 18:28:18 -0400
+Received: from mail-io1-f42.google.com ([209.85.166.42]:46706 "EHLO
+        mail-io1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229543AbhG3W2S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 18:28:18 -0400
+Received: by mail-io1-f42.google.com with SMTP id z7so12383289iog.13;
+        Fri, 30 Jul 2021 15:28:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=X/ut0W8QWQzgc3+TFp0Zpab3f8ktnZebi671B/GRa1s=;
-        b=gBQbGzOItXgVcy7OX8g+COKSLERrrM10mo9NQzWu+zNGM0Z+dnIvvgGqfpaVJ84zsz
-         DFG1bgxoovyLaaaO0rf/f9KlW1tXPlMtzFQo9wSUcNhnMwGoKffOKzRadMRnRn4asPOt
-         jN+rNaiNDYBmVQ2z3l+BHpE8Lgp3IYHqGRmETQEOK5kqKnVDwfwXo6/EzJ+gvqVD/hVs
-         jSyxbCnlPh4sbgx2WAOB4ST6R5cp7iMCsQBQHTtU7P4bk+/h/0bkON+XpMyGmuIxlp7B
-         t8GPnSSJeHdsTPKwiis2jvMH+evn/TXQAsJXpeERJJ/s1HdkKRpUq4A5ZJCmaaL7LXLE
-         GDCg==
-X-Gm-Message-State: AOAM532YfQa3hJJmJ8Dbe2Qplea3PYyXJ82JHkmjwbLaMQBaCUB3F61j
-        lAvPbb4d1X3FdE+nYKL7qkE/IqYZ7MH89A==
-X-Google-Smtp-Source: ABdhPJz71PK81nDQjyrH5yrq+dDlucl7IE0HbsmeWbqdB/W/JOmMyrq4k7BUGuZ3EjG2pgpivndmGA==
-X-Received: by 2002:a37:68d:: with SMTP id 135mr4535032qkg.253.1627683648040;
-        Fri, 30 Jul 2021 15:20:48 -0700 (PDT)
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
-        by smtp.gmail.com with ESMTPSA id q199sm1562635qka.112.2021.07.30.15.20.46
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Jul 2021 15:20:46 -0700 (PDT)
-Received: by mail-yb1-f181.google.com with SMTP id w17so18317770ybl.11
-        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 15:20:46 -0700 (PDT)
-X-Received: by 2002:a25:2904:: with SMTP id p4mr6090679ybp.276.1627683645881;
- Fri, 30 Jul 2021 15:20:45 -0700 (PDT)
-MIME-Version: 1.0
-References: <1620807083-5451-1-git-send-email-sibis@codeaurora.org> <1620807083-5451-3-git-send-email-sibis@codeaurora.org>
-In-Reply-To: <1620807083-5451-3-git-send-email-sibis@codeaurora.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 30 Jul 2021 15:20:34 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VfvW1PqJiR7Lh5RNyR6EQ1E8JK0N+KqJiB8DK49oUZ4A@mail.gmail.com>
-Message-ID: <CAD=FV=VfvW1PqJiR7Lh5RNyR6EQ1E8JK0N+KqJiB8DK49oUZ4A@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: sc7280: Add cpu OPP tables
-To:     Sibi Sankar <sibis@codeaurora.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=1SioxWYOB4GKQF75otjmPAgYQGJ4juMB4TymylBvulE=;
+        b=P0oOjp24LssnbVlPk3D5V1NeORXdoYw0NAbgnpFs3zBRQAUzC5OqCIUA5FEGXWfXSC
+         jtBE5lf9imS4oP7f6dBARdZ44IL1MaShg/6APgsop5KA7NdUYEpTQuNv61ePpXIZYp+/
+         wntmrXX1/lxxcK86eGdFAVbvdocNTWJcu0w6qcxPcPnu9YQqpf6GB70G35GBI6SsFQk7
+         dTHbtWz65RQsdcewEqMiMcy2bj5WU4425dZydAyhKc81XkwVTGOrfTBMP9SMtm+Uob9Y
+         yNksvrVoGsOxM/ZGkwUuIQPuvhujvZTYkRvGsgRjXkxh5klou8WIhW9tz18dXUug/70r
+         /uAQ==
+X-Gm-Message-State: AOAM530dv4Y0kUN7WRRr9UZJDnzVMhYrTnW3XcsEtTu3ZXNVe4MVM0g4
+        oB42/vJCkjV7z1WDgXD9IOPEcvF8xw==
+X-Google-Smtp-Source: ABdhPJw92Pxgc45lpYhnZL98mHP5QmwqnkzlX6tQ6SiGz6QcI3EsfiGGEi2BDOlTWCaMN4QVg4tTIA==
+X-Received: by 2002:a02:90cb:: with SMTP id c11mr3909371jag.53.1627684092766;
+        Fri, 30 Jul 2021 15:28:12 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id q1sm1887882ioi.42.2021.07.30.15.28.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Jul 2021 15:28:12 -0700 (PDT)
+Received: (nullmailer pid 3442792 invoked by uid 1000);
+        Fri, 30 Jul 2021 22:28:10 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     Andy Teng <andy.teng@mediatek.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20210730120937.1435204-3-hsinyi@chromium.org>
+References: <20210730120937.1435204-1-hsinyi@chromium.org> <20210730120937.1435204-3-hsinyi@chromium.org>
+Subject: Re: [PATCH v2 3/3] dt-bindings: mediatek: convert pinctrl to yaml
+Date:   Fri, 30 Jul 2021 16:28:10 -0600
+Message-Id: <1627684090.548356.3442791.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Wed, May 12, 2021 at 1:11 AM Sibi Sankar <sibis@codeaurora.org> wrote:
->
-> Add OPP tables required to scale DDR/L3 per freq-domain on SC7280 SoCs.
->
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
-> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+On Fri, 30 Jul 2021 20:09:37 +0800, Hsin-Yi Wang wrote:
+> Convert mt65xx, mt6796, mt7622, mt8183 bindings to yaml.
+> 
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
 > ---
->
-> V3:
->  * Rename cpu opp table nodes [Matthias]
->  * Rename opp phandles [Doug]
->
-> Depends on the following patch series:
-> L3 Provider Support: https://lore.kernel.org/lkml/1618556290-28303-1-git-send-email-okukatla@codeaurora.org/
-> CPUfreq Support: https://lore.kernel.org/lkml/1618020280-5470-2-git-send-email-tdas@codeaurora.org/
-> RPMH Provider Support: https://lore.kernel.org/lkml/1619517059-12109-1-git-send-email-okukatla@codeaurora.org/
->
-> It also depends on L3 and cpufreq dt nodes from the ^^ series to not have
-> overlapping memory regions.
->
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 215 +++++++++++++++++++++++++++++++++++
->  1 file changed, 215 insertions(+)
+> v1->v2:
+> - fix comments in v1.
+> - fix mt7622 where groups is not required for conf node.
+> ---
+>  .../pinctrl/mediatek,mt65xx-pinctrl.yaml      | 206 ++++++++
+>  .../pinctrl/mediatek,mt6797-pinctrl.yaml      | 173 +++++++
+>  .../pinctrl/mediatek,mt7622-pinctrl.yaml      | 416 +++++++++++++++
+>  .../pinctrl/mediatek,mt8183-pinctrl.yaml      | 228 ++++++++
+>  .../bindings/pinctrl/pinctrl-mt65xx.txt       | 156 ------
+>  .../bindings/pinctrl/pinctrl-mt6797.txt       |  83 ---
+>  .../bindings/pinctrl/pinctrl-mt7622.txt       | 490 ------------------
+>  .../bindings/pinctrl/pinctrl-mt8183.txt       | 132 -----
+>  8 files changed, 1023 insertions(+), 861 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt6797-pinctrl.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pinctrl.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt8183-pinctrl.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-mt65xx.txt
+>  delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-mt6797.txt
+>  delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-mt7622.txt
+>  delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-mt8183.txt
+> 
 
-I see patch #1 in mainline now. Does that mean it's time to land patch
-#2 in the Qualcomm tree now? ...or maybe it needs to be re-posted?
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
--Doug
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/pinctrl/mediatek,mt8183-pinctrl.example.dts:21:18: fatal error: dt-bindings/pinctrl/mt8183-pinfunc.h: No such file or directory
+   21 |         #include <dt-bindings/pinctrl/mt8183-pinfunc.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/pinctrl/mediatek,mt8183-pinctrl.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1419: dt_binding_check] Error 2
+\ndoc reference errors (make refcheckdocs):
+Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/pinctrl/pinctrl-mt65xx.txt
+Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/pinctrl/pinctrl-mt7622.txt
+MAINTAINERS: Documentation/devicetree/bindings/pinctrl/pinctrl-mt65xx.txt
+MAINTAINERS: Documentation/devicetree/bindings/pinctrl/pinctrl-mt7622.txt
+
+See https://patchwork.ozlabs.org/patch/1511632
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
