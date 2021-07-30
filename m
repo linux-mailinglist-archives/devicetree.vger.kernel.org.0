@@ -2,112 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04F673DBCB6
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 17:58:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 925CF3DBCCC
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 18:05:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231757AbhG3P6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 11:58:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36680 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230195AbhG3P6P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 11:58:15 -0400
-Received: from mail-oo1-xc2e.google.com (mail-oo1-xc2e.google.com [IPv6:2607:f8b0:4864:20::c2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39C47C061765
-        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 08:58:10 -0700 (PDT)
-Received: by mail-oo1-xc2e.google.com with SMTP id s21-20020a4ae5550000b02902667598672bso2560254oot.12
-        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 08:58:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=xXNqWSr/rOC4EQDcPG5tueBmU/blNavYsUX/3Rklcr8=;
-        b=TDxHet75+KJYPXBOyj4Qpsipf04ggYz4gNIiL7z5WeCaNCEbDWbw1ludfUUdIAwnWl
-         QELftxDKswIa8A3hXuESnq0jCFZVthL2BR0JI6HaeD3lRv42W+9LVTO//VJ4T1NM853T
-         ORYy1yyDaJHLj0a20bBy2HOXSkLPGzewxTAU7JEbvpQzabOxTg7cDCNVVXV6kiXVtewj
-         d0m2Aax3ksfa5nt2bjLkkU6+oWaj8MC0vGZMHyB3cVsUbh8mrvU0HV8YRVBkXsOamJ6Q
-         sm5hNuAcWgRt99OxxHE6bWTzukgLVRxjqOLPgz+9zzWfR3s3s9V0XZOn9GTY+p4uAM/D
-         OhiA==
+        id S229581AbhG3QFz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 12:05:55 -0400
+Received: from smtp-relay-canonical-1.canonical.com ([185.125.188.121]:38678
+        "EHLO smtp-relay-canonical-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229479AbhG3QFy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Jul 2021 12:05:54 -0400
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPS id 445043F243
+        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 16:05:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1627661148;
+        bh=ckOz90kE72EEodkfysirBp4bfPPhomkbsSq4zFCD8p4=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=ivOSwVeQ0XHeXJBn214ExMBSMaX2KvjrEqvC+7lTcxGxtfWL13XYfOQpgoFMqebyL
+         lKFXypmXXtKLme757tve6gpoWOI7zOxyYNZgqjALJxUvxOtTabZIWt4GCV8pH9pGNr
+         uH5TNdRyTINpmfX10QPA19OX2vYHPuTv2CtnFEes1iwLWMSsQiahHYyvamYA6K9VkG
+         JCF73vvZFCBmbl3EWPkbfzNPMXxtMj5mOxerhiQyBn4IsPLzPQ1lDzlub4DfgPLPZr
+         gv6YGzFsgOfDfMMAKTIXQdBY4PqKp7vH4tAPYitmmTgV5nXROYHrlFZ7jdbzpufSZT
+         jbATtbenVqPVg==
+Received: by mail-ej1-f70.google.com with SMTP id k21-20020a1709062a55b0290590e181cc34so2179191eje.3
+        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 09:05:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=xXNqWSr/rOC4EQDcPG5tueBmU/blNavYsUX/3Rklcr8=;
-        b=PRItvqtQOaFAE8An3eaBAqUbK78Qa3tgNb7k/V8IAU1VEIwPA/630YY2B4N/kIA59s
-         oWKQN/3H3Mu2rlytxyParUtSiiQFHUzI2v8F/z6dumnEfnAitdogHVgmSZfBW8Uy5036
-         buOX5suCffPtsGyKr0VV6uy+V2g8+OcefG+FwPfoOJoA/zuUj63FB9adWtJWAlsNzzbZ
-         u4ZhUN9Ycl7oSFmQWt6a1T9rcx7W/rMaKrU6tE7+iYb9X+XPNVREVwtyfhljcWnxA4YM
-         Y7ngyjK5G+PxKDvE97u9fVjZ1Q+beabuLPnaNBT7wEhYANAcPqtMB2/x6rKm9ETYgmYB
-         +v/w==
-X-Gm-Message-State: AOAM5315eitb44q868DLZFA2u59Sh6uAfAVwzF3s/ptNHZwWE80Z/8KJ
-        wrXYfjPftiBCUtnHnqaETGRAug==
-X-Google-Smtp-Source: ABdhPJxNj8jj5sY4NGuc2RO8NVr4KbyZYhV+2uDrbtcKs+ITXyvoyO/r+/cURV1f+got7YHENp8UZg==
-X-Received: by 2002:a4a:6042:: with SMTP id t2mr2154509oof.31.1627660688308;
-        Fri, 30 Jul 2021 08:58:08 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id z22sm282294ooz.20.2021.07.30.08.58.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Jul 2021 08:58:07 -0700 (PDT)
-Date:   Fri, 30 Jul 2021 10:58:06 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Tinghan Shen <tinghan.shen@mediatek.com>
-Cc:     ohad@wizery.com, mathieu.poirier@linaro.org, robh+dt@kernel.org,
-        matthias.bgg@gmail.com, linux-remoteproc@vger.kernel.org,
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=ckOz90kE72EEodkfysirBp4bfPPhomkbsSq4zFCD8p4=;
+        b=Y1DLymwkLckPRmMVFbFcNeFG4Xs85rQH8wFliXnGuHYkFGNyxdZ3ZRrurMshQuIYOb
+         cdCPj4JYSJ7x04SDWWxVpcgly1+Cc8vTQ2mg08T0hS0iJ5rgggqQy4fjQrt9VH7Yq4VY
+         e5RyDUdbYbQUqve5WSOL1fc+YpTqzYuZl2jW//zpEKAPXFbKOO8mFOua0cFCVFdiRzYT
+         av83iix/LX9ESotOAQSX3U2jb7cXcYZGsGeMFPg8qWESku5ZbIXZDPPiDzAF5SSsXNok
+         GZcRz6ck/Z8LngDsGTbXHSYUvkcLQ1ACBdTjawMcCu7jL2496dZj3P0+CIjTb1HROS2O
+         tteg==
+X-Gm-Message-State: AOAM5333oW4exEGdd07Opd0YjlxNuYhpbVHiuyWdffxDNGDBbf8f9xUA
+        vYtSzq5Hqnke4+GdCJfkeeuZ7m8xIIYYMQsWgLBof5+Lw8KdoW0f7UcdOVbE/pypo64fNyRLEaO
+        pZv43jf7CpqcjNASyjG2GkY4XOBCpcUYxRKqA11A=
+X-Received: by 2002:a17:906:c0cd:: with SMTP id bn13mr3270805ejb.251.1627661145661;
+        Fri, 30 Jul 2021 09:05:45 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJz7c3uXOvkRzFd+EjfGwOi9GkfnP6xyPWeV21oXtz+M8LxzO4q9ZXaaXNPEO6I0wjp44bYNLA==
+X-Received: by 2002:a17:906:c0cd:: with SMTP id bn13mr3270781ejb.251.1627661145512;
+        Fri, 30 Jul 2021 09:05:45 -0700 (PDT)
+Received: from [192.168.8.102] ([86.32.47.9])
+        by smtp.gmail.com with ESMTPSA id b3sm697246ejb.7.2021.07.30.09.05.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 30 Jul 2021 09:05:45 -0700 (PDT)
+Subject: Re: [PATCH 06/12] tty: serial: samsung: Add Exynos850 SoC data
+To:     Sam Protsenko <semen.protsenko@linaro.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Tomasz Figa <tomasz.figa@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
+        Ryu Euiyoul <ryu.real@samsung.com>,
+        Tom Gall <tom.gall@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Amit Pundir <amit.pundir@linaro.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        srv_heupstream@mediatek.com, tzungbi@google.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v4 4/4] remoteproc: mediatek: Support mt8195 scp
-Message-ID: <YQQhjuqAaT1xaIWM@builder.lan>
-References: <20210728035859.5405-1-tinghan.shen@mediatek.com>
- <20210728035859.5405-5-tinghan.shen@mediatek.com>
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-serial@vger.kernel.org
+References: <20210730144922.29111-1-semen.protsenko@linaro.org>
+ <20210730144922.29111-7-semen.protsenko@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <5826bc3e-e9e8-a9bb-4541-21c1b944a60e@canonical.com>
+Date:   Fri, 30 Jul 2021 18:05:43 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210728035859.5405-5-tinghan.shen@mediatek.com>
+In-Reply-To: <20210730144922.29111-7-semen.protsenko@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 27 Jul 22:58 CDT 2021, Tinghan Shen wrote:
-
-> The SCP clock design is changed on mt8195 that doesn't need to control
-> SCP clock on kernel side.
+On 30/07/2021 16:49, Sam Protsenko wrote:
+> Add serial driver data for Exynos850 SoC. This driver data is basically
+> reusing EXYNOS_COMMON_SERIAL_DRV_DATA, which is common for all Exynos
+> chips, but also enables USI init, which was added in previous commit:
+> "tty: serial: samsung: Init USI to keep clocks running".
 > 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
 > ---
->  drivers/remoteproc/mtk_scp.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+>  drivers/tty/serial/samsung_tty.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
 > 
-> diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
-> index 9679cc26895e..250cb946ea37 100644
-> --- a/drivers/remoteproc/mtk_scp.c
-> +++ b/drivers/remoteproc/mtk_scp.c
-> @@ -785,7 +785,7 @@ static int scp_probe(struct platform_device *pdev)
->  	if (ret)
->  		goto destroy_mutex;
->  
-> -	scp->clk = devm_clk_get(dev, "main");
-> +	scp->clk = devm_clk_get_optional(dev, "main");
-
-This makes the clock optional for mt8183 and mt8192 as well.
-
-How about using mtk_scp_of_data to denote if the clock should be
-acquired?
-
-Regards,
-Bjorn
-
->  	if (IS_ERR(scp->clk)) {
->  		dev_err(dev, "Failed to get clock\n");
->  		ret = PTR_ERR(scp->clk);
-> @@ -877,6 +877,7 @@ static const struct mtk_scp_of_data mt8192_of_data = {
->  static const struct of_device_id mtk_scp_of_match[] = {
->  	{ .compatible = "mediatek,mt8183-scp", .data = &mt8183_of_data },
->  	{ .compatible = "mediatek,mt8192-scp", .data = &mt8192_of_data },
-> +	{ .compatible = "mediatek,mt8195-scp", .data = &mt8192_of_data },
->  	{},
+> diff --git a/drivers/tty/serial/samsung_tty.c b/drivers/tty/serial/samsung_tty.c
+> index 75ccbb08df4a..d059b516a0f4 100644
+> --- a/drivers/tty/serial/samsung_tty.c
+> +++ b/drivers/tty/serial/samsung_tty.c
+> @@ -2814,11 +2814,19 @@ static struct s3c24xx_serial_drv_data exynos5433_serial_drv_data = {
+>  	.fifosize = { 64, 256, 16, 256 },
 >  };
->  MODULE_DEVICE_TABLE(of, mtk_scp_of_match);
-> -- 
-> 2.18.0
-> 
+>  
+> +static struct s3c24xx_serial_drv_data exynos850_serial_drv_data = {
+> +	EXYNOS_COMMON_SERIAL_DRV_DATA_USI(1),
+> +	.fifosize = { 0, },
+
+This does not look correct. You rely on samsung,uart-fifosize property
+but it is optional.
+
+
+Best regards,
+Krzysztof
