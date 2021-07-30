@@ -2,106 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5535D3DBF05
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 21:31:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A6643DBF1D
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 21:38:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231247AbhG3Tbn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 15:31:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35398 "EHLO
+        id S230455AbhG3Tin (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 15:38:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231214AbhG3Tbg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 15:31:36 -0400
-Received: from mail-vs1-xe32.google.com (mail-vs1-xe32.google.com [IPv6:2607:f8b0:4864:20::e32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D398EC0613D3
-        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 12:31:30 -0700 (PDT)
-Received: by mail-vs1-xe32.google.com with SMTP id ba4so3117092vsb.5
-        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 12:31:30 -0700 (PDT)
+        with ESMTP id S230335AbhG3Tin (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 15:38:43 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D54F1C061765
+        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 12:38:37 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id x90so14663051ede.8
+        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 12:38:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=sTwg3ftZdEkrZwjfbTZZgZqiWtz0ELEQs7iMOHDjt2g=;
-        b=HKmhgCdKit1ByfXm1vUXRBJaKei6NULPm63n6c2KVb9iuaElf59ZwnTL02wsd6NPws
-         QwRQhNvHf0+lQ+Gm8OYtFYztLcHhEC+X0QX5nkGRcXiFgCUyLlQdcPISgIvUJVytwgqD
-         kN8qBrat9s/S8OIvWKC1rRafR+WObVT5PuMa0/KFpXCOMnsGoimMqXEDfc9tWsKVSKMB
-         UEjF9O0ttCakSUWYdn/aWrDLBqz4LMcniW8wFEmsPP+JYrt/ghGxsyAclVeZYeGWMwlq
-         iEiN5NyiTS+2U5zr5EW3zLCTojChAVdXNSQzzW81jX1zjIBUVtdn8WQ66U3w5Q5Pm0M0
-         CvCA==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=sqq24+4MhdW8BcdPC+9dVyqVrbFpN6oyepTwHU0ZFuo=;
+        b=luJ9L0u00/a/tCxI5puBILnCWcq5X70mijAA1PVhp/xBmQXpSalZ2RboFk8sayhtuH
+         aQsD8i3M+fMEzreARhCsA7P5okOQsXWQo3yDuZ8xmx12Q+7xwDyEtlDIS8VyOVPh5lzt
+         ERGfZQ9e6retakzdh6LHBCfMd/cOW15NGu31qzp/EbntNUIEHqvzusv02eeW2KBaJR0C
+         H7cvpkt5lvDZZVgET9/uK48o6VcVJWvTqfp7EkHzkJ/F5rUiqSXRCnsAnLkU8MHM5ZfC
+         ZGZ4LDr9PdMSaH6DywQTZqSCPSAko4i58dH4CevrukVDRFOfNHIVP6lX7aqqLX46sfDj
+         Nl+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=sTwg3ftZdEkrZwjfbTZZgZqiWtz0ELEQs7iMOHDjt2g=;
-        b=FV4Le5dTWvPDY1Dfz8olEHrsuQJEPp8r2luuxvZW7jkfdnJWWRxThD7y5MojHnM6nE
-         x27J7lgGScpsFgzB3g2eAmeRyjC4g7tdOUHzaNaqDiXqxfyJ65ctb0reltt0hfrZrrUq
-         VVYHYg65sTh/5n/sBQ5bMpuO8L4RewuuLYV+3A9j3jHakikeQ5UWKpilbEd0lr4zSJfm
-         UuoVZa1GffjYX/DEWkyezlVLe835dseC1FCkcQK0wecN8ozhTquSorbwGwzZUhZzmZbK
-         KRFNr+NlkViueAV2MI6wy46hHAwX54VXSLd4tVhN09ybSHjOYddwF8oUrJ8XEH/pe3yD
-         mNZQ==
-X-Gm-Message-State: AOAM533lPqXkx7KU/WhifDhdFYhD412S09G3evAMbhgwGxrpGqGRkF7F
-        Wc0hpjtAOgWbhuOx+VmgdC0kGC1M/mUon3sujAloLg==
-X-Google-Smtp-Source: ABdhPJwzN5k9K9wcPdG8qks1LUn6IIYRhNxortw/xuZYWjsFGojdp/CFbFwlotzlaZrTcQ0+7fQjW+AwzT3YGLiK5+Y=
-X-Received: by 2002:a67:16c1:: with SMTP id 184mr3619118vsw.14.1627673489430;
- Fri, 30 Jul 2021 12:31:29 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=sqq24+4MhdW8BcdPC+9dVyqVrbFpN6oyepTwHU0ZFuo=;
+        b=flZNhWQSbqMc71f1E46kv0AAQMxSwi42ssnBj5QnsZuLkkVLulBOxtREEYQUnb+Zpt
+         BjZS219phyViNKZ397NHU0xFBHMaSobf49pt9iZptnDI9LotOmTup4B30h2KAOY0gOUL
+         Xuev1ziqu6JhmIOrOS1vXDp6c86kjY2n476shH65C1gco+/PhkmLeM7aT41JlEk/7XZ9
+         KarM4OyMnpzRYJMvvCRi/EkS1KfZOI1yjECPv6c4PbvWmr+QPkbnvIgAJNZpAYfFdwk9
+         ws5Ff7UU9dJqE0MqhiHuuKvGRAAYGelOQ57zV96AY5J6pxQtiool7FII82EGgO3FHlHK
+         H8gA==
+X-Gm-Message-State: AOAM530QkRKGVv1CQ+AkdWN1Ct8GXyIOoHmcu14D7y0d4GzF/+2ObRbu
+        igyYBnTF2cyTqprfrPL6KPk=
+X-Google-Smtp-Source: ABdhPJzoZNvWKwS8yyq1XzYiV6mjns/zTdeevPwq9NqWZkKo8Ae9Nq9K1PRkib/d4ahwfOL0vf4WHQ==
+X-Received: by 2002:a50:fb05:: with SMTP id d5mr4665354edq.5.1627673916483;
+        Fri, 30 Jul 2021 12:38:36 -0700 (PDT)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id b26sm616759edu.27.2021.07.30.12.38.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 30 Jul 2021 12:38:36 -0700 (PDT)
+Subject: Re: [PATCH 3/4] arm64: dts: rockchip: Add GPU node for rk3568
+To:     Ezequiel Garcia <ezequiel@collabora.com>,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@st.com>,
+        Peter Geis <pgwipeout@gmail.com>
+References: <20210730164515.83044-1-ezequiel@collabora.com>
+ <20210730164515.83044-4-ezequiel@collabora.com>
+From:   Johan Jonker <jbx6244@gmail.com>
+Message-ID: <b19aa876-f78b-f6af-39e9-ff37fc19f09a@gmail.com>
+Date:   Fri, 30 Jul 2021 21:38:35 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <20210730144922.29111-1-semen.protsenko@linaro.org>
- <20210730144922.29111-4-semen.protsenko@linaro.org> <61a6c636-6f72-d086-79b8-e87dbab6b456@canonical.com>
-In-Reply-To: <61a6c636-6f72-d086-79b8-e87dbab6b456@canonical.com>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Fri, 30 Jul 2021 22:31:18 +0300
-Message-ID: <CAPLW+4kCuFGYdrkTuXFaGgPy-EyENkBZMGV-BaY6qn2_j+ABTw@mail.gmail.com>
-Subject: Re: [PATCH 03/12] dt-bindings: pinctrl: samsung: Add Exynos850 doc
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
-        Ryu Euiyoul <ryu.real@samsung.com>,
-        Tom Gall <tom.gall@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210730164515.83044-4-ezequiel@collabora.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 30 Jul 2021 at 18:25, Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> On 30/07/2021 16:49, Sam Protsenko wrote:
-> > Document compatible string for Exynos850 SoC. Nothing else is changed,
-> > as Exynos850 SoC uses already existing samsung pinctrl driver.
-> >
-> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> > ---
-> >  Documentation/devicetree/bindings/pinctrl/samsung-pinctrl.txt | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
->
-> The patch should be first in the series - dt-bindings go at beginning.
-> Although no need to resend just for this.
-> If the resend happens, the fix ("pinctrl: samsung: Fix pinctrl bank pin
-> count") should be sent separately (no mixing fixes and new features)
-> because they are independent and usually easier for review.
->
+Hi Ezequiel,
 
-Thanks, will be done in v2. Also, just re-sent ("pinctrl: samsung: Fix
-pinctrl bank pin count") fix separately, as you recommended.
+Some comments. Have a look if it's useful.
 
->
-> Best regards,
-> Krzysztof
+On 7/30/21 6:45 PM, Ezequiel Garcia wrote:
+> Rockchip SoCs RK3566 and RK3568 have a Mali Gondul core
+> which is based on the Bifrost architecture. It has
+> one shader core and two execution engines.
+> 
+> Quoting the datasheet:
+> 
+> Mali-G52 1-Core-2EE
+> * Support 1600Mpix/s fill rate when 800MHz clock frequency
+> * Support 38.4GLOPs when 800MHz clock frequency
+> 
+> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 47 ++++++++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> index bef747fb1fe2..f4f400792659 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> @@ -121,6 +121,35 @@ opp-1800000000 {
+>  		};
+>  	};
+>  
+
+> +	gpu_opp_table: opp-table2 {
+
+	gpu_opp_table: gpu-opp-table {
+
+> +		compatible = "operating-points-v2";
+> +
+> +		opp-200000000 {
+> +			opp-hz = /bits/ 64 <200000000>;
+> +			opp-microvolt = <825000>;
+> +		};
+
+Similar to cpu0_opp_table keep the same style and add an empty line
+between nodes.
+
+> +		opp-300000000 {
+> +			opp-hz = /bits/ 64 <300000000>;
+> +			opp-microvolt = <825000>;
+> +		};
+> +		opp-400000000 {
+> +			opp-hz = /bits/ 64 <400000000>;
+> +			opp-microvolt = <825000>;
+> +		};
+> +		opp-600000000 {
+> +			opp-hz = /bits/ 64 <600000000>;
+> +			opp-microvolt = <825000>;
+> +		};
+> +		opp-700000000 {
+> +			opp-hz = /bits/ 64 <700000000>;
+> +			opp-microvolt = <900000>;
+> +		};
+> +		opp-800000000 {
+> +			opp-hz = /bits/ 64 <800000000>;
+> +			opp-microvolt = <1000000>;
+> +		};
+> +	};
+> +
+>  	firmware {
+>  		scmi: scmi {
+>  			compatible = "arm,scmi-smc";
+> @@ -332,6 +361,24 @@ power-domain@RK3568_PD_RKVENC {
+>  		};
+>  	};
+>  
+> +	gpu: gpu@fde60000 {
+> +		compatible = "rockchip,rk3568-mali", "arm,mali-bifrost";
+> +		reg = <0x0 0xfde60000 0x0 0x4000>;
+
+> +
+
+remove empty lines
+
+> +		interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "job", "mmu", "gpu";
+
+> +
+
+dito
+
+> +		clocks = <&scmi_clk 1>, <&cru CLK_GPU>;
+> +		clock-names = "core", "bus";
+
+Not sure if it's possible, but could you keep them all a little bit in
+the same order/style as arm,mali-400?
+
+From arm,mali-utgard.yaml:
+
+  clock-names:
+    items:
+      - const: bus
+      - const: core
+
+
+> +		operating-points-v2 = <&gpu_opp_table>;
+
+> +
+
+dito
+
+> +		#cooling-cells = <2>;
+> +		power-domains = <&power RK3568_PD_GPU>;
+> +		status = "disabled";
+> +	};
+> +
+>  	sdmmc2: mmc@fe000000 {
+>  		compatible = "rockchip,rk3568-dw-mshc", "rockchip,rk3288-dw-mshc";
+>  		reg = <0x0 0xfe000000 0x0 0x4000>;
+> 
