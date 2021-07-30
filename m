@@ -2,28 +2,29 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DEFE63DB634
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 11:42:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C9973DB642
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 11:46:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238359AbhG3Jmj convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 30 Jul 2021 05:42:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52934 "EHLO
+        id S238208AbhG3JqG convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 30 Jul 2021 05:46:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238320AbhG3Jmh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 05:42:37 -0400
+        with ESMTP id S238276AbhG3JqE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 05:46:04 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 407C4C0613D5
-        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 02:42:33 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C73A7C0613CF
+        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 02:45:59 -0700 (PDT)
 Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <p.zabel@pengutronix.de>)
-        id 1m9P26-0006mS-Mk; Fri, 30 Jul 2021 11:42:22 +0200
+        id 1m9P5U-0007Fl-DW; Fri, 30 Jul 2021 11:45:52 +0200
 Received: from pza by lupine with local (Exim 4.92)
         (envelope-from <p.zabel@pengutronix.de>)
-        id 1m9P23-0008QP-PV; Fri, 30 Jul 2021 11:42:19 +0200
-Message-ID: <54a74efe287e3bb673c958652946e38dfa8f3fea.camel@pengutronix.de>
-Subject: Re: [PATCHv1 1/3] arm64: dts: amlogic: add missing ethernet reset ID
+        id 1m9P5T-0000A9-03; Fri, 30 Jul 2021 11:45:51 +0200
+Message-ID: <a360877260a877819ad8eef7f63c370e0c16c640.camel@pengutronix.de>
+Subject: Re: [PATCHv1 2/3] ARM: dts: meson: Use new reset id for reset
+ controller
 From:   Philipp Zabel <p.zabel@pengutronix.de>
 To:     Anand Moon <linux.amoon@gmail.com>, netdev@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
@@ -42,10 +43,10 @@ Cc:     Jerome Brunet <jbrunet@baylibre.com>,
         Jakub Kicinski <kuba@kernel.org>,
         Maxime Coquelin <mcoquelin.stm32@gmail.com>,
         Emiliano Ingrassia <ingrassia@epigenesys.com>
-Date:   Fri, 30 Jul 2021 11:42:19 +0200
-In-Reply-To: <20210729201100.3994-2-linux.amoon@gmail.com>
+Date:   Fri, 30 Jul 2021 11:45:50 +0200
+In-Reply-To: <20210729201100.3994-3-linux.amoon@gmail.com>
 References: <20210729201100.3994-1-linux.amoon@gmail.com>
-         <20210729201100.3994-2-linux.amoon@gmail.com>
+         <20210729201100.3994-3-linux.amoon@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8BIT
 User-Agent: Evolution 3.30.5-1.1 
@@ -58,39 +59,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Anand,
-
 On Fri, 2021-07-30 at 01:40 +0530, Anand Moon wrote:
-> Add reset external reset of the ethernet mac controller,
-> used new reset id for reset controller as it conflict
+> Used new reset id for reset controller as it conflict
 > with the core reset id.
 > 
-> Fixes: f3362f0c1817 ("arm64: dts: amlogic: add missing ethernet reset ID")
+> Fixes: b96446541d83 ("ARM: dts: meson8b: extend ethernet controller description")
 > 
 > Cc: Jerome Brunet <jbrunet@baylibre.com>
 > Cc: Neil Armstrong <narmstrong@baylibre.com>
 > Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-axg.dtsi        | 2 ++
->  arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 2 ++
->  arch/arm64/boot/dts/amlogic/meson-gx.dtsi         | 3 +++
->  3 files changed, 7 insertions(+)
+>  arch/arm/boot/dts/meson8b.dtsi  | 2 +-
+>  arch/arm/boot/dts/meson8m2.dtsi | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> index 3f5254eeb47b..da3bf9f7c1c6 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> @@ -280,6 +280,8 @@ ethmac: ethernet@ff3f0000 {
->  				      "timing-adjustment";
->  			rx-fifo-depth = <4096>;
->  			tx-fifo-depth = <2048>;
-> +			resets = <&reset RESET_ETHERNET>;
-> +			reset-names = "ethreset";
+> diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
+> index c02b03cbcdf4..cb3a579d09ef 100644
+> --- a/arch/arm/boot/dts/meson8b.dtsi
+> +++ b/arch/arm/boot/dts/meson8b.dtsi
+> @@ -511,7 +511,7 @@ &ethmac {
+>  	tx-fifo-depth = <2048>;
+>  
+>  	resets = <&reset RESET_ETHERNET>;
+> -	reset-names = "stmmaceth";
+> +	reset-names = "ethreset";
 
-This is missing binding documentation. Also, is this reset name taken
-from the documentation? Otherwise, it would probably be better to call
-it "phy" for a PHY reset.
+This looks like an incompatible change. Is the "stmmaceth" reset not
+used? It is documented as "MAC reset signal" in [1]. So a PHY reset
+should be separate from this.
+
+[1] Documentation/devicetree/bindings/net/snps,dwmac.yaml
 
 regards
 Philipp
