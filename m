@@ -2,85 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E2A93DC106
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jul 2021 00:28:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B4EC3DC10B
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jul 2021 00:28:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229604AbhG3W2S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 18:28:18 -0400
-Received: from mail-io1-f42.google.com ([209.85.166.42]:46706 "EHLO
-        mail-io1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229543AbhG3W2S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 18:28:18 -0400
-Received: by mail-io1-f42.google.com with SMTP id z7so12383289iog.13;
-        Fri, 30 Jul 2021 15:28:13 -0700 (PDT)
+        id S233112AbhG3W2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 18:28:24 -0400
+Received: from mail-il1-f170.google.com ([209.85.166.170]:38565 "EHLO
+        mail-il1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231292AbhG3W2V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 18:28:21 -0400
+Received: by mail-il1-f170.google.com with SMTP id h18so10913598ilc.5;
+        Fri, 30 Jul 2021 15:28:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=1SioxWYOB4GKQF75otjmPAgYQGJ4juMB4TymylBvulE=;
-        b=P0oOjp24LssnbVlPk3D5V1NeORXdoYw0NAbgnpFs3zBRQAUzC5OqCIUA5FEGXWfXSC
-         jtBE5lf9imS4oP7f6dBARdZ44IL1MaShg/6APgsop5KA7NdUYEpTQuNv61ePpXIZYp+/
-         wntmrXX1/lxxcK86eGdFAVbvdocNTWJcu0w6qcxPcPnu9YQqpf6GB70G35GBI6SsFQk7
-         dTHbtWz65RQsdcewEqMiMcy2bj5WU4425dZydAyhKc81XkwVTGOrfTBMP9SMtm+Uob9Y
-         yNksvrVoGsOxM/ZGkwUuIQPuvhujvZTYkRvGsgRjXkxh5klou8WIhW9tz18dXUug/70r
-         /uAQ==
-X-Gm-Message-State: AOAM530dv4Y0kUN7WRRr9UZJDnzVMhYrTnW3XcsEtTu3ZXNVe4MVM0g4
-        oB42/vJCkjV7z1WDgXD9IOPEcvF8xw==
-X-Google-Smtp-Source: ABdhPJw92Pxgc45lpYhnZL98mHP5QmwqnkzlX6tQ6SiGz6QcI3EsfiGGEi2BDOlTWCaMN4QVg4tTIA==
-X-Received: by 2002:a02:90cb:: with SMTP id c11mr3909371jag.53.1627684092766;
-        Fri, 30 Jul 2021 15:28:12 -0700 (PDT)
+        bh=iRrLbfbqIS5aTyIlMg3Ddsn2aOpsLg2suPETUyCuhso=;
+        b=IiKJWRvYWnnNN2+YhVv19HPWGZSKC34dL6aKynVrcph6dxqNOHZwPxZH9pi+RX8MUz
+         8kcpG24N7KY4OG9PJO90VHVo4SkBGd2le3bZJ6lxuesNb47JfPmFlWjJ0kPlMu5H5r2v
+         8vSXl+qsP6LKbnZP4aO58NlHGEcBRxGNVYagyhSI8Yi6074t+Jx6HtfRiaymqK6fgg/Y
+         Vlzxm9J1bBp2RTMiXBajmGOopSeb1XOoN8SU0cCTP23Lu5L7jv5tvfiU8+za70ezUrtC
+         o2vezfmOUF1Ql4BoqtwxawfqSZr33b2QQ1H2HUvrOFq4XSBjxznKFv3FEv+YmiI/xNh5
+         1yfA==
+X-Gm-Message-State: AOAM533px7zstcl2sL4611bbMCBpUcYOb4csJQLlamSnsBRHSWrK+rC3
+        w4TY1omniUzzrcSt1fGenQ==
+X-Google-Smtp-Source: ABdhPJwlmKihwwXcD9Z4ajEH9RFsMbk1wE/qDHxqpqyY95ye8bwCTuw8fNL1ePMNWAQGTXnZRs0YIA==
+X-Received: by 2002:a92:7f03:: with SMTP id a3mr3431717ild.254.1627684095214;
+        Fri, 30 Jul 2021 15:28:15 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id q1sm1887882ioi.42.2021.07.30.15.28.11
+        by smtp.gmail.com with ESMTPSA id k9sm870727ioq.55.2021.07.30.15.28.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Jul 2021 15:28:12 -0700 (PDT)
-Received: (nullmailer pid 3442792 invoked by uid 1000);
+        Fri, 30 Jul 2021 15:28:14 -0700 (PDT)
+Received: (nullmailer pid 3442797 invoked by uid 1000);
         Fri, 30 Jul 2021 22:28:10 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     Andy Teng <andy.teng@mediatek.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-In-Reply-To: <20210730120937.1435204-3-hsinyi@chromium.org>
-References: <20210730120937.1435204-1-hsinyi@chromium.org> <20210730120937.1435204-3-hsinyi@chromium.org>
-Subject: Re: [PATCH v2 3/3] dt-bindings: mediatek: convert pinctrl to yaml
+To:     Dario Binacchi <dariobin@libero.it>
+Cc:     devicetree@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        netdev@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
+        linux-can@vger.kernel.org, Wolfgang Grandegger <wg@grandegger.com>
+In-Reply-To: <20210730171646.2406-1-dariobin@libero.it>
+References: <20210730171646.2406-1-dariobin@libero.it>
+Subject: Re: [PATCH v3] dt-bindings: net: can: c_can: convert to json-schema
 Date:   Fri, 30 Jul 2021 16:28:10 -0600
-Message-Id: <1627684090.548356.3442791.nullmailer@robh.at.kernel.org>
+Message-Id: <1627684090.574176.3442796.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 30 Jul 2021 20:09:37 +0800, Hsin-Yi Wang wrote:
-> Convert mt65xx, mt6796, mt7622, mt8183 bindings to yaml.
+On Fri, 30 Jul 2021 19:16:46 +0200, Dario Binacchi wrote:
+> Convert the Bosch C_CAN/D_CAN controller device tree binding
+> documentation to json-schema.
 > 
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> Document missing properties.
+> Remove "ti,hwmods" as it is no longer used in TI dts.
+> Make "clocks" required as it is used in all dts.
+> Correct nodename in the example.
+> 
+> Signed-off-by: Dario Binacchi <dariobin@libero.it>
+> 
 > ---
-> v1->v2:
-> - fix comments in v1.
-> - fix mt7622 where groups is not required for conf node.
-> ---
->  .../pinctrl/mediatek,mt65xx-pinctrl.yaml      | 206 ++++++++
->  .../pinctrl/mediatek,mt6797-pinctrl.yaml      | 173 +++++++
->  .../pinctrl/mediatek,mt7622-pinctrl.yaml      | 416 +++++++++++++++
->  .../pinctrl/mediatek,mt8183-pinctrl.yaml      | 228 ++++++++
->  .../bindings/pinctrl/pinctrl-mt65xx.txt       | 156 ------
->  .../bindings/pinctrl/pinctrl-mt6797.txt       |  83 ---
->  .../bindings/pinctrl/pinctrl-mt7622.txt       | 490 ------------------
->  .../bindings/pinctrl/pinctrl-mt8183.txt       | 132 -----
->  8 files changed, 1023 insertions(+), 861 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt6797-pinctrl.yaml
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pinctrl.yaml
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt8183-pinctrl.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-mt65xx.txt
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-mt6797.txt
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-mt7622.txt
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-mt8183.txt
+> 
+> Changes in v3:
+>  - Add type (phandle-array) and size (maxItems: 2) to syscon-raminit
+>    property.
+> 
+> Changes in v2:
+>  - Drop Documentation references.
+> 
+>  .../bindings/net/can/bosch,c_can.yaml         | 85 +++++++++++++++++++
+>  .../devicetree/bindings/net/can/c_can.txt     | 65 --------------
+>  2 files changed, 85 insertions(+), 65 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/net/can/bosch,c_can.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/net/can/c_can.txt
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -89,20 +85,11 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/pinctrl/mediatek,mt8183-pinctrl.example.dts:21:18: fatal error: dt-bindings/pinctrl/mt8183-pinfunc.h: No such file or directory
-   21 |         #include <dt-bindings/pinctrl/mt8183-pinfunc.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/pinctrl/mediatek,mt8183-pinctrl.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1419: dt_binding_check] Error 2
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/can/bosch,c_can.example.dt.yaml: can@0: syscon-raminit: [[4294967295, 1604, 1]] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/can/bosch,c_can.yaml
 \ndoc reference errors (make refcheckdocs):
-Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/pinctrl/pinctrl-mt65xx.txt
-Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/pinctrl/pinctrl-mt7622.txt
-MAINTAINERS: Documentation/devicetree/bindings/pinctrl/pinctrl-mt65xx.txt
-MAINTAINERS: Documentation/devicetree/bindings/pinctrl/pinctrl-mt7622.txt
 
-See https://patchwork.ozlabs.org/patch/1511632
+See https://patchwork.ozlabs.org/patch/1511753
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
