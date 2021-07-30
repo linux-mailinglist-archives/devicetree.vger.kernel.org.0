@@ -2,77 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85BF03DB863
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 14:11:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F0EB3DB86B
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 14:13:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238623AbhG3ML7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 08:11:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34018 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238698AbhG3ML7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 08:11:59 -0400
-Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com [IPv6:2607:f8b0:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE477C0613D3
-        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 05:11:53 -0700 (PDT)
-Received: by mail-il1-x12a.google.com with SMTP id j18so6131219ile.8
-        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 05:11:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4oJIeZcOcOPJ/i4mLzpMBQLS6AE+13Y8avAKoNcxP1k=;
-        b=b4hXRZsxrIvCyPKxJq3eohsD6mPpTgbVVsSl0RpV8nR1xxxbYJEKpZQ3dWayQpOsjA
-         vpGWfxPgwdMrJik+8vPk1we4h/If4ZARe17ciIzx61mMB4BrieDoxBOIq+5d9lt18jPE
-         ol/7Yy5zR0HV7uUPAwCLDNsgO1oVqqN4gXDNE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4oJIeZcOcOPJ/i4mLzpMBQLS6AE+13Y8avAKoNcxP1k=;
-        b=i+TFZeCwXEllrz2DCtPEkHoA8SL3gPH6SfrZiQPgey86YW6w+4AM5kBJSI60zuCx02
-         C8VvKJy3YxprJxINVC7XSmGwY+CW6ywOBtqk+xFjVuABF+BatgMiYe9iYxeEDqCTi4YB
-         R2Vs2+HGrl6wEo2Ma9wWihIlyeQDNUFU1wncGl1dj9XVl5N/xpQdlwA9cdagtU24X34Y
-         6YPk0qjn8c20G1ioYsBRQlE5UXlrLOzzNrRnQgG9lbDcXkx1DFKOlSly/VOvXwJjjYeI
-         ACuuzODpFdscEHmwXr7okCBEm6vrSJqqG8zp7OvBr2hgLPhozp9bBYAnY2BhRbKbWVUb
-         Q2PA==
-X-Gm-Message-State: AOAM531HwJDgZW1588SO6H5kDE/Jsld8/77zhGUg6AN2lPKDtVPy48Aq
-        4pUFjDUkhww24MO0sTSefTSLy2VZKPFbZR04ayB6eQ==
-X-Google-Smtp-Source: ABdhPJzdzY/EkBXtzNbk992cCacQT8oJznIwK+0lfo184G1dL4ZfQrzWixcBHtE9NkEBCuM0gHsmDH2Vwoch4Bq+ytI=
-X-Received: by 2002:a92:d441:: with SMTP id r1mr1209740ilm.106.1627647113059;
- Fri, 30 Jul 2021 05:11:53 -0700 (PDT)
+        id S238777AbhG3MNb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 08:13:31 -0400
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:33353 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230355AbhG3MNa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Jul 2021 08:13:30 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 46B16580A67;
+        Fri, 30 Jul 2021 08:13:25 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Fri, 30 Jul 2021 08:13:25 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
+         h=from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm1; bh=x45utzlm+I7LrH8ONZBODJozoR
+        9FeoJBITa/+rubT3U=; b=eo9zfwKlAVXNANjwmyhN7WFznBQ4fS7eYSfJGEEcmM
+        fFAbxuKuoZfNVRxqqRIuIZ/rt1m6NC+T6JcZUg7paU2FUieDo4GtLbY66w1s5OwF
+        evK3YL8p2ECWXsUDYHfDs4VUzIKuvYgbJjVznSEualkYUM/HE8rIXzsZexhMd3y9
+        JSMpMuq2/ibdmK2z74rzudwhqV6hSx4FR7Eu5kPkFTY2+5J2FAdrgF82VVHhAgOD
+        qmDpsD9J2GfFocN3BeU5x1r28Bxe5EdRE7RFHbPff1NTAcqEFphcBou9O9mc6Uxa
+        q6T5xsGITcOWiuU0xMe3CwPTsPjQoGICqcTF9Bfz3quQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=x45utzlm+I7LrH8ON
+        ZBODJozoR9FeoJBITa/+rubT3U=; b=LcUdOX3Pc9Azq97zQxEqR4AFItkJYY/zm
+        ds/MONvHH1WEh1A2eBNixHMDM3qwyYVE2KY5FP/Q5gtPZSfkAr39AklMJQk18akW
+        tj+NE5mWl40VGX4XncHUDoQrkiF8rs91+BNIy+66Ps2k+DgoMYIX174Wm8RFlrKZ
+        x/cyuA//VnHGP0H9AovSid85/FiIRAQZ6diPs9u4Y9Ij70Zo8ZtVlyi6UAxZK4t0
+        c7QJwS16eKxmmDmASsjWlx3aRZTk1+LMB4kX72F4JlsAxwum5pE1dhb/Lg2zib8+
+        kkvwLfyL8F+8ZTlXS8q8JbxlHxGSzKoQtuolS1tZEhjFeycaG/mcg==
+X-ME-Sender: <xms:4-wDYRcNbeXAJImrKVzm1ssXhJWPqq4yO_guaex22bOYuvTEx9Fvyg>
+    <xme:4-wDYfNYW_R_a6t0vzf_bCDX9ka5xFaqHuM6hXLvDBPsPLz_5f4FpzmN8vXLEqJ_Q
+    3ZuWn_nLdghg3-EN-U>
+X-ME-Received: <xmr:4-wDYaiJM87oHU5dELNL8Qx7ktsn1_ebPlgNnEBPIO-fnzOIOxLObdmsllB6z5-Qndcpsu9SboAWH6xE-dySiLsiGvzM435XXDtx5Hw7>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrheehgdeghecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomheptehlihhsthgrihhr
+    ucfhrhgrnhgtihhsuceorghlihhsthgrihhrsegrlhhishhtrghirhdvfedrmhgvqeenuc
+    ggtffrrghtthgvrhhnpefghfegkeejtddvfeekjeelgeffhefhvddvvddtvefgfffftdek
+    geeljeefvdeiudenucffohhmrghinhepvghinhhkrdgtohhmnecuvehluhhsthgvrhfuih
+    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghlihhsthgrihhrsegrlhhishht
+    rghirhdvfedrmhgv
+X-ME-Proxy: <xmx:4-wDYa_4YfXIKT7bHHOvDaK1h1eGPAab96Wa8aaw2UzrS9o17THhQQ>
+    <xmx:4-wDYdvgu78Mufgq-oS7IJRB0nGp3A3tP75FkFigv1znadG0xjxMdg>
+    <xmx:4-wDYZEbziNTM6ugR8dxegpBnO9je7QsVK4GwjbNaktwiYfUjo1qcw>
+    <xmx:5ewDYdNAov7PpYv9K5a8n32mD21GBPuWIVe47phUT6Wqt3xmUJAp-w>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 30 Jul 2021 08:13:17 -0400 (EDT)
+From:   Alistair Francis <alistair@alistair23.me>
+To:     robh+dt@kernel.org, thierry.reding@gmail.com, sam@ravnborg.org,
+        krzk@kernel.org, shawnguo@kernel.org, daniel@0x0f.com,
+        linux@rempel-privat.de, kuninori.morimoto.gx@renesas.com,
+        max.Merchel@tq-group.com, geert+renesas@glider.be,
+        airlied@linux.ie, daniel@ffwll.ch
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, alistair23@gmail.com,
+        Alistair Francis <alistair@alistair23.me>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v5] drm/panel: Add support for E Ink VB3300-KCA
+Date:   Fri, 30 Jul 2021 22:13:10 +1000
+Message-Id: <20210730121310.131-1-alistair@alistair23.me>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20210727110232.2503763-1-hsinyi@chromium.org> <20210727110232.2503763-3-hsinyi@chromium.org>
- <CAL_JsqJT1_TKc9QDxGKZ=WrK8_JGwke9MarMzjUvJJPJD8A5Jg@mail.gmail.com>
-In-Reply-To: <CAL_JsqJT1_TKc9QDxGKZ=WrK8_JGwke9MarMzjUvJJPJD8A5Jg@mail.gmail.com>
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Fri, 30 Jul 2021 20:11:27 +0800
-Message-ID: <CAJMQK-jnPg5bzPVRsq=9LEMooUN6CerdMqiXhgY5rZVkuB5UjQ@mail.gmail.com>
-Subject: Re: [PATCH 3/3] dt-bindings: mediatek: convert pinctrl to yaml
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Andy Teng <andy.teng@mediatek.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 28, 2021 at 11:17 PM Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Tue, Jul 27, 2021 at 5:02 AM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
-> >
-> > Convert mt65xx, mt6796, mt7622, mt8183 bindings to yaml.
-> >
-> > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> > ---
-<snip>
+Add support for the 10.3" E Ink panel described at:
+https://www.eink.com/product.html?type=productdetail&id=7
 
-thanks for reviewing. All comments addressed in v2.
+Signed-off-by: Alistair Francis <alistair@alistair23.me>
+Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+---
+v5:
+ - Add .connector_type
+
+ .../bindings/display/panel/panel-simple.yaml  |  2 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 ++
+ drivers/gpu/drm/panel/panel-simple.c          | 30 +++++++++++++++++++
+ 3 files changed, 34 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+index b3797ba2698b..799e20222551 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+@@ -128,6 +128,8 @@ properties:
+         # Emerging Display Technology Corp. WVGA TFT Display with capacitive touch
+       - edt,etm0700g0dh6
+       - edt,etm0700g0edh6
++        # E Ink VB3300-KCA
++      - eink,vb3300-kca
+         # Evervision Electronics Co. Ltd. VGG804821 5.0" WVGA TFT LCD Panel
+       - evervision,vgg804821
+         # Foxlink Group 5" WVGA TFT LCD panel
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 71da86e7b3a2..31745c45dd92 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -339,6 +339,8 @@ patternProperties:
+     description: eGalax_eMPIA Technology Inc
+   "^einfochips,.*":
+     description: Einfochips
++  "^eink,.*":
++    description: E Ink Corporation
+   "^elan,.*":
+     description: Elan Microelectronic Corp.
+   "^element14,.*":
+diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+index 21939d4352cf..90d96091f09f 100644
+--- a/drivers/gpu/drm/panel/panel-simple.c
++++ b/drivers/gpu/drm/panel/panel-simple.c
+@@ -2046,6 +2046,33 @@ static const struct panel_desc edt_etm0700g0bdh6 = {
+ 	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_DRIVE_POSEDGE,
+ };
+ 
++static const struct display_timing eink_vb3300_kca_timing = {
++	.pixelclock = { 40000000, 40000000, 40000000 },
++	.hactive = { 334, 334, 334 },
++	.hfront_porch = { 1, 1, 1 },
++	.hback_porch = { 1, 1, 1 },
++	.hsync_len = { 1, 1, 1 },
++	.vactive = { 1405, 1405, 1405 },
++	.vfront_porch = { 1, 1, 1 },
++	.vback_porch = { 1, 1, 1 },
++	.vsync_len = { 1, 1, 1 },
++	.flags = DISPLAY_FLAGS_HSYNC_LOW | DISPLAY_FLAGS_VSYNC_LOW |
++		 DISPLAY_FLAGS_DE_HIGH | DISPLAY_FLAGS_PIXDATA_POSEDGE,
++};
++
++static const struct panel_desc eink_vb3300_kca = {
++	.timings = &eink_vb3300_kca_timing,
++	.num_timings = 1,
++	.bpc = 6,
++	.size = {
++		.width = 157,
++		.height = 209,
++	},
++	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
++	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_DRIVE_POSEDGE,
++	.connector_type = DRM_MODE_CONNECTOR_DPI,
++};
++
+ static const struct display_timing evervision_vgg804821_timing = {
+ 	.pixelclock = { 27600000, 33300000, 50000000 },
+ 	.hactive = { 800, 800, 800 },
+@@ -4350,6 +4377,9 @@ static const struct of_device_id platform_of_match[] = {
+ 	}, {
+ 		.compatible = "edt,etm0700g0edh6",
+ 		.data = &edt_etm0700g0bdh6,
++	}, {
++		.compatible = "eink,vb3300-kca",
++		.data = &eink_vb3300_kca,
+ 	}, {
+ 		.compatible = "evervision,vgg804821",
+ 		.data = &evervision_vgg804821,
+-- 
+2.31.1
+
