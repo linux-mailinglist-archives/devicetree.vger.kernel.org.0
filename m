@@ -2,81 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE1F93DB7A4
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 13:13:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10D7D3DB7FC
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 13:45:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238576AbhG3LN6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 07:13:58 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33872 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238552AbhG3LN5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Jul 2021 07:13:57 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4A03560FE7;
-        Fri, 30 Jul 2021 11:13:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627643632;
-        bh=/KqZ04QBL6v2hnznT99rAqLNoGRggWAJw9cekzyiWc8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=OetvCozpPEm5G7NkPeSwK7YJfkkjMarYxO8kf7jAM5pQ8sjBMk1kqXX84C913rJus
-         IT6XROxWLAldHO9DD5qN143vLwaSdV9FqP+L8rIN9nzco0wzxRo9piOyy+dWf4yeSG
-         QFQKxyLzR02egW0S+/pHAaWn2tjrmhZkagV4tkElgD6maKTyVdY5UHmc1kvjBnYCAF
-         EMzjYuVnuvpmVnLZ2FTolkf9iz4qaR0Vz296O+WN3ShZG1ZyWSKaugBA7gKVJ39CDD
-         FobxoLGQvZPGCwiY7jQPcaZ55l/+K0Ut+pAa4MnNHBkpJdKTDzsKwicXvcy1CJE37m
-         KUAgzFClCCgcw==
-Date:   Fri, 30 Jul 2021 12:13:41 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Alistair Francis <alistair23@gmail.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Alistair Francis <alistair@alistair23.me>,
-        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v7 1/6] mfd: sy7636a: Initial commit
-Message-ID: <20210730111341.GX4670@sirena.org.uk>
-References: <20210708115804.212-1-alistair@alistair23.me>
- <YPbjZdu7T9wFcvNz@google.com>
- <20210720152351.GC5042@sirena.org.uk>
- <YPb1Hs0EoZ1MikuX@google.com>
- <20210720202639.GE5042@sirena.org.uk>
- <CAKmqyKNUBzWuLSvLTqaCNhDpuficctvCgpk3ZEBVFuKeCrx86w@mail.gmail.com>
+        id S238581AbhG3LpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 07:45:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55380 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230157AbhG3LpL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 07:45:11 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C1CEC061765;
+        Fri, 30 Jul 2021 04:45:07 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: eballetbo)
+        with ESMTPSA id 005DA1F41D20
+Subject: Re: [PATCH v5 0/6] Add Mediatek Soc DRM (vdosys0) support for mt8195
+To:     "jason-jh.lin" <jason-jh.lin@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>, fshao@chromium.org
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        hsinyi@chromium.org, Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        nancy.lin@mediatek.com, singo.chang@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+References: <20210729170737.21424-1-jason-jh.lin@mediatek.com>
+From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Message-ID: <a8ce9da7-21c2-f9ef-161a-647d3f8748f3@collabora.com>
+Date:   Fri, 30 Jul 2021 13:45:01 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="XbyeA6tlA6gsyQxQ"
-Content-Disposition: inline
-In-Reply-To: <CAKmqyKNUBzWuLSvLTqaCNhDpuficctvCgpk3ZEBVFuKeCrx86w@mail.gmail.com>
-X-Cookie: Vini, vidi, Linux!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210729170737.21424-1-jason-jh.lin@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Jason,
 
---XbyeA6tlA6gsyQxQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Thank you for your patch.
 
-On Fri, Jul 30, 2021 at 04:21:18PM +1000, Alistair Francis wrote:
+On 29/7/21 19:07, jason-jh.lin wrote:
+> The hardware path of vdosys0 with eDP panel output need to go through
+> by several modules, such as, OVL, RDMA, COLOR, CCORR, AAL, GAMMA,
+> DITHER, DSC and MERGE.
+> 
 
-> Are you saying that I shouldn't add the regulator to the device tree?
-> Should I leave it as part of `sy7636a_cells` then?
 
-Yes, that'd be better.
+You said in other discussions that vdosys0 has eDP panel output and vdosys1 has
+DP output. Is it possible to switch the outputs? What I am wondering is if this
+configuration is hardware specific or board specific, i.e it'll be possible to
+have another board that has DP output on vdosys0 and eDP output for vdosys1?
 
---XbyeA6tlA6gsyQxQ
-Content-Type: application/pgp-signature; name="signature.asc"
+Thanks,
+  Enric
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmED3uQACgkQJNaLcl1U
-h9CcVQf+InH1Nw+eXIoyA55xciCUKGvunG2l1LNZRDhtvtUocgxoM76Ri4X5tgn6
-OHchcDn5Sg+DhGll1PyqYHZtc7cFooyvsHWNVdaXXGJnZTL0ky1V1qFA7NdsV5RL
-AQUwi41kmMGFuz4Aj6xLJswzK/6BUIrR4/yvrJYaCTJqDrO0NAUBEZhe7vopgITc
-njGCAt8ZXJLk8n+WC84tzdRd5YdtyFZzPF4BbNPEARf58srdma3hndlhXwXbSrYT
-/3lwTmFmW+8ksqCJ91uP6nj8UcLFokF1GAwzvucdEPfCH4koinbgwXTXwRooST78
-KtRrrjIv1/efVg19J9kv/VaDcyGurw==
-=fm8W
------END PGP SIGNATURE-----
-
---XbyeA6tlA6gsyQxQ--
+> Change in v5:
+> - add power-domain property into vdosys0 and vdosys1 dts node.
+> - add MT8195 prifix and remove unused VDO1 define in mt8195-mmsys.h
+> 
+> Change in v4:
+> - extract dt-binding patches to another patch series
+>   https://patchwork.kernel.org/project/linux-mediatek/list/?series=519597
+> - squash DSC module into mtk_drm_ddp_comp.c
+> - add coment and simplify MERGE config function
+> 
+> Change in v3:
+> - change mmsys and display dt-bindings document from txt to yaml
+> - add MERGE additional description in display dt-bindings document
+> - fix mboxes-cells number of vdosys0 node in dts
+> - drop mutex eof convert define
+> - remove pm_runtime apis in DSC and MERGE
+> - change DSC and MERGE enum to alphabetic order
+> 
+> Change in v2:
+> - add DSC yaml file
+> - add mt8195 drm driver porting parts in to one patch
+> - remove useless define, variable, structure member and function
+> - simplify DSC and MERGE file and switch threre order
+> 
+> jason-jh.lin (6):
+>   arm64: dts: mt8195: add display node for vdosys0
+>   soc: mediatek: add mtk-mmsys support for mt8195 vdosys0
+>   soc: mediatek: add mtk-mutex support for mt8195 vdosys0
+>   drm/mediatek: add mediatek-drm of vdosys0 support for mt8195
+>   drm/mediatek: add DSC support for mt8195
+>   drm/mediatek: add MERGE support for mt8195
+> 
+>  arch/arm64/boot/dts/mediatek/mt8195.dtsi    | 112 ++++++++
+>  drivers/gpu/drm/mediatek/Makefile           |   1 +
+>  drivers/gpu/drm/mediatek/mtk_disp_drv.h     |   8 +
+>  drivers/gpu/drm/mediatek/mtk_disp_merge.c   | 277 ++++++++++++++++++++
+>  drivers/gpu/drm/mediatek/mtk_disp_rdma.c    |   6 +
+>  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c |  62 +++++
+>  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h |   2 +
+>  drivers/gpu/drm/mediatek/mtk_drm_drv.c      |  32 ++-
+>  drivers/gpu/drm/mediatek/mtk_drm_drv.h      |   1 +
+>  drivers/soc/mediatek/mt8195-mmsys.h         |  96 +++++++
+>  drivers/soc/mediatek/mtk-mmsys.c            |  11 +
+>  drivers/soc/mediatek/mtk-mutex.c            |  93 ++++++-
+>  include/linux/soc/mediatek/mtk-mmsys.h      |   9 +
+>  13 files changed, 706 insertions(+), 4 deletions(-)
+>  create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_merge.c
+>  create mode 100644 drivers/soc/mediatek/mt8195-mmsys.h
+> 
