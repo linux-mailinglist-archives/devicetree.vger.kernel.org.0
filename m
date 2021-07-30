@@ -2,120 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 117F63DB99A
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 15:49:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35F8D3DB9EB
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 16:02:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239015AbhG3Nta (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 09:49:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58340 "EHLO
+        id S231247AbhG3OCj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 10:02:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238971AbhG3Nt3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 09:49:29 -0400
-Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C5BDC061765
-        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 06:49:24 -0700 (PDT)
-Received: by mail-qt1-x82b.google.com with SMTP id w10so6418468qtj.3
-        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 06:49:24 -0700 (PDT)
+        with ESMTP id S231137AbhG3OCi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 10:02:38 -0400
+Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E249CC06175F;
+        Fri, 30 Jul 2021 07:02:33 -0700 (PDT)
+Received: by mail-qt1-x82c.google.com with SMTP id d2so6443466qto.6;
+        Fri, 30 Jul 2021 07:02:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=MKFVB3IPR9lkSCEivG2PKNtFQz06R+D8dqrPSZQVhIs=;
-        b=MEbABptqXJglM26bxbD6CXo+dI7tsy8Ef6mKgr0+/TMZtm6CaLpLI83wRe6CtDssMY
-         cGrKlT8wH4v18FxmQJ5UKSyQwjt7aPP5UxUNzNEQLXCLZk8BsgyYxmJcfjJSSJcjTnhh
-         +qe1EKdSoyzxiUawP0TyNaR3uCQQRcxX+DYLE=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=JXIfKSGWJ9mlCbWNNx/N/vTZPaRHrXle0JFg+o3znXk=;
+        b=IRORz5zxXvGhatsjJBkQeTsDqRAVIW2moZPm8a3A2FpA+x1l4SmqH6ZcDSJP/cTEvC
+         cLVXBlu0p5qrmxqqCshaq7Aookh/YLzmDEW/P4jSpL5CLrTalq++nsCmsInAGfL+jeLI
+         znCCkvmwEZeBAac05xmmBwPw+IWX4LTeNM7s3qov1HQsVVHd2S+u022c+sEEEJDBXSX7
+         Y6Aev2cXnjoReP5TUgkQj0CJ/eY9gOxGr46x6QY9LrDpkysFu3CUGBvjtu6S+X/Gg3gE
+         hi8djPx+7GbH7UKy3APsIyMqtm9oeNtEQg7zBrr5Lm+1iT6sjt3utYAsvqDjYRIhXEbl
+         1JpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MKFVB3IPR9lkSCEivG2PKNtFQz06R+D8dqrPSZQVhIs=;
-        b=NLZAjUWNjBBHTu5KV+ZAqyhSSXMa9nD9dP3YSTZ6LGVcy7cViQqnB4H82akpVAV67Q
-         p4e1zzDi0nEPeS8Qvyx0N+wI70Ldz8s8J6GyB2EyZmVa2/YKsjyVN74+9FJjNGkTi2za
-         kP+Eq3ovy3u00XlndcUNMHLmjf9HE2abu2GLmcweL17esLfsnd/CVaOB8qkWo0GKrBG7
-         ZhZrFlOwO3JinFgLS34Zf6aj6qCWJF1/An55qv0SQof9EzqRAGl3x07HvNfIQVyk+G/q
-         KSSRdKdGTTuRg4hR7RUejfjmyvbwRZhK+Y/lTth8n3kvWL9jX9LDPFLojSs5Z/qAEc6U
-         wxLg==
-X-Gm-Message-State: AOAM532lkgbbYvBOGYYyzGeyrtx1H9loKi7EPa95TYGTPcWOOC9dzg6I
-        10yPFzubzNAnrjEM+tBU1ZkXqEx4Ac1Zhw==
-X-Google-Smtp-Source: ABdhPJwDFqgkVC7hNuKjZOmQ3Jb671geu1tnal9SHncURi9oB6IGuSUsdhsLKdALxQgoED+26EUFvw==
-X-Received: by 2002:ac8:5e46:: with SMTP id i6mr2417510qtx.326.1627652963291;
-        Fri, 30 Jul 2021 06:49:23 -0700 (PDT)
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
-        by smtp.gmail.com with ESMTPSA id r5sm611445qtm.75.2021.07.30.06.49.22
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Jul 2021 06:49:22 -0700 (PDT)
-Received: by mail-yb1-f182.google.com with SMTP id d73so16048307ybc.10
-        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 06:49:22 -0700 (PDT)
-X-Received: by 2002:a25:6088:: with SMTP id u130mr3375680ybb.257.1627652961581;
- Fri, 30 Jul 2021 06:49:21 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=JXIfKSGWJ9mlCbWNNx/N/vTZPaRHrXle0JFg+o3znXk=;
+        b=Z+1CB/VR/oDEyfMuZrCW63PQQoa5eWpnR3KU6+3oCWs5n0/XUJT33YGS1b9cPiUMp1
+         Nkhv1xyTgfcBUr++IfaUByTIIpZ2U4QAgE26nPP4jMzjUcvc3eWHvu6SiBrBcfjdpMzz
+         9Obn1xjhQvPFghg+TFbt/cnu3xCfnXrUWYIze/rnInkxmdQW7askZ5ndMo6L9jFmhg6C
+         vEPu8hvawIiiP5l/V6QouWRzk69inDkkr/UQD5pQZOX4uxNO0RMfUQQsON4Dik42xEry
+         7FKVTVk24xFWRKhSv4WmODwWr1yBjBb2xreJStVrSr+//i71SQC/dla5wb1wBmY1CUJj
+         bkmw==
+X-Gm-Message-State: AOAM533RD34BqtvX/C+92Xeh0nHtZ6bEa5rhr5Hf7aQ+Twlzt1DJoza2
+        LzD9lQCG7aboEJbdP1AcRcc=
+X-Google-Smtp-Source: ABdhPJzpf3kEwfAPYGXdtI3m6k2LvxwAaDiSzmfIgXSx9Uiog8YtJdEewUXG65zxN4RxMlDDbgHhOQ==
+X-Received: by 2002:a05:622a:310:: with SMTP id q16mr2426708qtw.168.1627653752991;
+        Fri, 30 Jul 2021 07:02:32 -0700 (PDT)
+Received: from master-laptop.sparksnet ([2601:153:980:85b1:b33d:da64:8d94:ff34])
+        by smtp.gmail.com with ESMTPSA id r16sm948992qke.73.2021.07.30.07.02.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Jul 2021 07:02:32 -0700 (PDT)
+From:   Peter Geis <pgwipeout@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc:     Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: rockchip: add thermal fan control to rockpro64
+Date:   Fri, 30 Jul 2021 10:02:10 -0400
+Message-Id: <20210730140210.728367-1-pgwipeout@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <1627627573-32454-1-git-send-email-rnayak@codeaurora.org> <1627627573-32454-3-git-send-email-rnayak@codeaurora.org>
-In-Reply-To: <1627627573-32454-3-git-send-email-rnayak@codeaurora.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 30 Jul 2021 06:49:10 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=X9wzRu20xydjt3c6682rWocd6dik6qRc9N1t_Dq97ODw@mail.gmail.com>
-Message-ID: <CAD=FV=X9wzRu20xydjt3c6682rWocd6dik6qRc9N1t_Dq97ODw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/4] nvmem: qfprom: Fix up qfprom_disable_fuse_blowing()
- ordering
-To:     Rajendra Nayak <rnayak@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        "Ravi Kumar Bokka (Temp)" <rbokka@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+The rockpro64 had a fan node since
+commit 5882d65c1691 ("arm64: dts: rockchip: Add PWM fan for RockPro64")
+however it was never tied into the thermal driver for automatic control.
 
-On Thu, Jul 29, 2021 at 11:46 PM Rajendra Nayak <rnayak@codeaurora.org> wrote:
->
-> qfprom_disable_fuse_blowing() disables a bunch of resources,
-> and then does a few register writes in the 'conf' address
-> space.
-> It works perhaps because the resources are needed only for the
-> 'raw' register space writes, and that the 'conf' space allows
-> read/writes regardless.
-> However that makes the code look confusing, so just move the
-> register writes before turning off the resources in the
-> function.
->
-> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
-> ---
->  drivers/nvmem/qfprom.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/nvmem/qfprom.c b/drivers/nvmem/qfprom.c
-> index 81fbad5..b0ca4c6 100644
-> --- a/drivers/nvmem/qfprom.c
-> +++ b/drivers/nvmem/qfprom.c
-> @@ -139,6 +139,9 @@ static void qfprom_disable_fuse_blowing(const struct qfprom_priv *priv,
->  {
->         int ret;
->
-> +       writel(old->timer_val, priv->qfpconf + QFPROM_BLOW_TIMER_OFFSET);
-> +       writel(old->accel_val, priv->qfpconf + QFPROM_ACCEL_OFFSET);
-> +
->         /*
->          * This may be a shared rail and may be able to run at a lower rate
->          * when we're not blowing fuses.  At the moment, the regulator framework
-> @@ -159,9 +162,6 @@ static void qfprom_disable_fuse_blowing(const struct qfprom_priv *priv,
->                          "Failed to set clock rate for disable (ignoring)\n");
->
->         clk_disable_unprepare(priv->secclk);
-> -
-> -       writel(old->timer_val, priv->qfpconf + QFPROM_BLOW_TIMER_OFFSET);
-> -       writel(old->accel_val, priv->qfpconf + QFPROM_ACCEL_OFFSET);
->  }
+Add the links to the thermal node to permit the kernel to handle this
+automatically.
+Borrowed from the (rk3399-khadas-edge.dtsi).
 
-I think it doesn't matter since all of these resources are just needed
-for burning fuses, but I agree that what you have here makes more
-logical sense and makes the function less confusing.
+Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+---
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Changelog:
+v2:
+Adjusted fan setpoints for less noise
+
+ .../boot/dts/rockchip/rk3399-rockpro64.dtsi   | 57 +++++++++++++++++++
+ 1 file changed, 57 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+index 6bff8db7d33e..0d79e6ae1c3a 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+@@ -69,6 +69,7 @@ diy_led: led-1 {
+ 
+ 	fan: pwm-fan {
+ 		compatible = "pwm-fan";
++		cooling-levels = <0 100 150 200 255>;
+ 		#cooling-cells = <2>;
+ 		fan-supply = <&vcc12v_dcin>;
+ 		pwms = <&pwm1 0 50000 0>;
+@@ -245,6 +246,34 @@ &cpu_b1 {
+ 	cpu-supply = <&vdd_cpu_b>;
+ };
+ 
++&cpu_thermal {
++	trips {
++		cpu_warm: cpu_warm {
++			temperature = <55000>;
++			hysteresis = <2000>;
++			type = "active";
++		};
++
++		cpu_hot: cpu_hot {
++			temperature = <65000>;
++			hysteresis = <2000>;
++			type = "active";
++		};
++	};
++
++	cooling-maps {
++		map2 {
++			trip = <&cpu_warm>;
++			cooling-device = <&fan THERMAL_NO_LIMIT 1>;
++		};
++
++		map3 {
++			trip = <&cpu_hot>;
++			cooling-device = <&fan 2 THERMAL_NO_LIMIT>;
++		};
++	};
++};
++
+ &emmc_phy {
+ 	status = "okay";
+ };
+@@ -281,6 +310,34 @@ &gpu {
+ 	status = "okay";
+ };
+ 
++&gpu_thermal {
++	trips {
++		gpu_warm: gpu_warm {
++			temperature = <55000>;
++			hysteresis = <2000>;
++			type = "active";
++		};
++
++		gpu_hot: gpu_hot {
++			temperature = <65000>;
++			hysteresis = <2000>;
++			type = "active";
++		};
++	};
++
++	cooling-maps {
++		map1 {
++			trip = <&gpu_warm>;
++			cooling-device = <&fan THERMAL_NO_LIMIT 1>;
++		};
++
++		map2 {
++			trip = <&gpu_hot>;
++			cooling-device = <&fan 2 THERMAL_NO_LIMIT>;
++		};
++	};
++};
++
+ &i2c0 {
+ 	clock-frequency = <400000>;
+ 	i2c-scl-rising-time-ns = <168>;
+-- 
+2.25.1
+
