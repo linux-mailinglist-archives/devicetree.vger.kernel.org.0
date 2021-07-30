@@ -2,115 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 756733DBAA0
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 16:31:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32B4F3DBAA4
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 16:33:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239309AbhG3Obz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 10:31:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41420 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239288AbhG3Oby (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 10:31:54 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C4A5C061765
-        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 07:31:49 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id x7so12625702ljn.10
-        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 07:31:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=g9e2gORjPncqut/lk+rir6sVzd/s93Oq97n1N2vAdLQ=;
-        b=XGWUnR+AMlm5KbE7ohB//psgoZYeUKtPBYVg8mLRqZnYZ/LTos3O9DeFjsU1SjGYEM
-         1K7YRWmmPBWy5skTMvkp7mn9GriKGGrNZ/ATdpxXlPbwYONAmwx4psjv0tmN44DLHSsS
-         I6uvHTBzZKrwzWMgxf4DHmJeV11FTLFjupXkR7jRiL/G19Wh+r64t1HJrR9VI1kM0xa3
-         Adeb3/+ZZJI1eKbHh12FRkORlTei2CWkMx1Zj51QhyPjPQyHwuaVWBBg87IpuAOrhw50
-         ECZk00KdeT/AQvz7Oq9xJBtIc8KnKQmKQ6RAGNFEAAul7sLXmjgzx4B9mu2a8+jblkOr
-         MtOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=g9e2gORjPncqut/lk+rir6sVzd/s93Oq97n1N2vAdLQ=;
-        b=aRokEGCdsufM69Sw6slAVsN4GIuPYM5zQBHBoVX9CXCaiyfuIKSUJrZLvTH4Su7AOY
-         4fKhg22K6vYB7E0adk9dO1Tn8xgbAcqFEokeIiUJj8BtHA7OHwj0DuhKjriB89Mjx6o7
-         nFfAm0W0A6ul423pBfZr5nhRCbLAygd+LppT212cw6WmzY4ScmwoK0ZrPnZVlxQrGj2r
-         WXy0siqbnDMweAtD7QbJOYHyVyizTYohYzGLoFiKOUNOfP749vaqz242R99tgXs8a+uY
-         S4mfrn06za0+Sf2N59F4jkDPsWMchLdKhVxmZfsTc8aeo+dbWTEidpyn7R2VaqQI2bd/
-         lVHw==
-X-Gm-Message-State: AOAM5320NitqMzHSVZF1cFnu7kPKqc+V9d+vnWKzpFja+dGTSjP2fb/8
-        Q4dzQfpJo+pQLkKHJZas83rBQBx7+MOltFOFulf1Mg==
-X-Google-Smtp-Source: ABdhPJwUi6ruX2JvFdTxX3N//7AGHOcJenoElF/S1ILL5z+OMowHXbAfQoJ32ZPpcT2tJBoucpswDQEtQOdQPOsCKaU=
-X-Received: by 2002:a2e:bc14:: with SMTP id b20mr1876294ljf.200.1627655507652;
- Fri, 30 Jul 2021 07:31:47 -0700 (PDT)
+        id S239153AbhG3Odd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 10:33:33 -0400
+Received: from foss.arm.com ([217.140.110.172]:42832 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239042AbhG3Odd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Jul 2021 10:33:33 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5902D6D;
+        Fri, 30 Jul 2021 07:33:28 -0700 (PDT)
+Received: from [10.57.36.146] (unknown [10.57.36.146])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1FEBC3F70D;
+        Fri, 30 Jul 2021 07:33:26 -0700 (PDT)
+Subject: Re: [PATCH v2] arm64: dts: rockchip: add thermal fan control to
+ rockpro64
+To:     Peter Geis <pgwipeout@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20210730140210.728367-1-pgwipeout@gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <9bb0e700-eb12-af14-76d6-3a90d434339b@arm.com>
+Date:   Fri, 30 Jul 2021 15:33:18 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-References: <20210730134552.853350-1-bert@biot.com> <20210730134552.853350-4-bert@biot.com>
-In-Reply-To: <20210730134552.853350-4-bert@biot.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 30 Jul 2021 16:31:36 +0200
-Message-ID: <CACRpkdYvMtE8b-Xiy6=Aiz20jvY0M0Bz9XmcEQDHhqeS+LErEA@mail.gmail.com>
-Subject: Re: [PATCH 3/5] ARM: dts: Add basic support for EcoNet EN7523
-To:     Bert Vermeulen <bert@biot.com>, Marc Zyngier <maz@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        SoC Team <soc@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        John Crispin <john@phrozen.org>, Felix Fietkau <nbd@nbd.name>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210730140210.728367-1-pgwipeout@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Paging Marc Z and Catalin just so they can see this:
+Hi Peter,
 
-On Fri, Jul 30, 2021 at 3:49 PM Bert Vermeulen <bert@biot.com> wrote:
+On 2021-07-30 15:02, Peter Geis wrote:
+> The rockpro64 had a fan node since
+> commit 5882d65c1691 ("arm64: dts: rockchip: Add PWM fan for RockPro64")
+> however it was never tied into the thermal driver for automatic control.
+> 
+> Add the links to the thermal node to permit the kernel to handle this
+> automatically.
+> Borrowed from the (rk3399-khadas-edge.dtsi).
+> 
+> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+> ---
+> 
+> Changelog:
+> v2:
+> Adjusted fan setpoints for less noise
+> 
+>   .../boot/dts/rockchip/rk3399-rockpro64.dtsi   | 57 +++++++++++++++++++
+>   1 file changed, 57 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+> index 6bff8db7d33e..0d79e6ae1c3a 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
+> @@ -69,6 +69,7 @@ diy_led: led-1 {
+>   
+>   	fan: pwm-fan {
+>   		compatible = "pwm-fan";
+> +		cooling-levels = <0 100 150 200 255>;
+>   		#cooling-cells = <2>;
+>   		fan-supply = <&vcc12v_dcin>;
+>   		pwms = <&pwm1 0 50000 0>;
+> @@ -245,6 +246,34 @@ &cpu_b1 {
+>   	cpu-supply = <&vdd_cpu_b>;
+>   };
+>   
+> +&cpu_thermal {
+> +	trips {
+> +		cpu_warm: cpu_warm {
+> +			temperature = <55000>;
+> +			hysteresis = <2000>;
+> +			type = "active";
+> +		};
 
-> From: John Crispin <john@phrozen.org>
->
-> Add basic support for EcoNet EN7523, enough for booting to console.
->
-> The UART is basically 8250-compatible, except for the clock selection.
-> A clock-frequency value is synthesized to get this to run at 115200 bps.
->
-> Signed-off-by: John Crispin <john@phrozen.org>
-> Signed-off-by: Bert Vermeulen <bert@biot.com>
-(...)
-> +       gic: interrupt-controller@09000000 {
-> +               compatible = "arm,gic-v3";
-> +               interrupt-controller;
-> +               #interrupt-cells = <3>;
-> +               #address-cells = <1>;
-> +               #size-cells = <1>;
-> +               reg = <0x09000000 0x20000>,
-> +                         <0x09080000 0x80000>;
-> +               interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
+(Heh, it still tickles me to see these points I arbitrarily made up 
+being faithfully copied around - I guess that means I got them right!)
+
 > +
-> +               its: gic-its@09020000 {
-> +                       compatible = "arm,gic-v3-its";
-> +                       msi-controller;
-> +                       #msi-cell = <1>;
-> +                       reg = <0x090200000 0x20000>;
-> +               };
-> +       };
+> +		cpu_hot: cpu_hot {
+> +			temperature = <65000>;
+> +			hysteresis = <2000>;
+> +			type = "active";
+> +		};
+> +	};
+> +
+> +	cooling-maps {
+> +		map2 {
+> +			trip = <&cpu_warm>;
+> +			cooling-device = <&fan THERMAL_NO_LIMIT 1>;
+> +		};
+> +
+> +		map3 {
+> +			trip = <&cpu_hot>;
+> +			cooling-device = <&fan 2 THERMAL_NO_LIMIT>;
+> +		};
+> +	};
+> +};
+> +
+>   &emmc_phy {
+>   	status = "okay";
+>   };
+> @@ -281,6 +310,34 @@ &gpu {
+>   	status = "okay";
+>   };
+>   
+> +&gpu_thermal {
+> +	trips {
+> +		gpu_warm: gpu_warm {
+> +			temperature = <55000>;
+> +			hysteresis = <2000>;
+> +			type = "active";
+> +		};
+> +
+> +		gpu_hot: gpu_hot {
+> +			temperature = <65000>;
+> +			hysteresis = <2000>;
+> +			type = "active";
+> +		};
+> +	};
+> +
+> +	cooling-maps {
+> +		map1 {
+> +			trip = <&gpu_warm>;
+> +			cooling-device = <&fan THERMAL_NO_LIMIT 1>;
+> +		};
+> +
+> +		map2 {
+> +			trip = <&gpu_hot>;
+> +			cooling-device = <&fan 2 THERMAL_NO_LIMIT>;
+> +		};
+> +	};
+> +};
 
-Yup GICv3 on ARM32-only silicon.
+Unless something's changed since commit a793e19c15f2 ("arm64: dts: 
+rockchip: Fix NanoPC-T4 cooling maps"), multiple cooling maps don't 
+actually share a singe cooling device properly[1]. The Khadas Edge DT 
+dates from right around the same time so I guess it crossed over with 
+that discussion and never got fixed.
 
-> +       timer {
-> +               compatible = "arm,armv8-timer";
-> +               interrupt-parent = <&gic>;
-> +               interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> +                            <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> +                            <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> +                            <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-> +               clock-frequency = <25000000>;
-> +       };
+In hindsight, I do seem to remember my fan being a bit more jumpy around 
+the trip points than it is today, which may well have been the two maps 
+fighting each other...
 
-Also arm,armv8-timer on ARM32-only silicon.
+Robin.
 
-This is kind of a first.
+[1] 
+https://lore.kernel.org/linux-rockchip/55b9018e-672e-522b-d0a0-c5655be0f353@linaro.org/
 
-Yours,
-Linus Walleij
+> +
+>   &i2c0 {
+>   	clock-frequency = <400000>;
+>   	i2c-scl-rising-time-ns = <168>;
+> 
