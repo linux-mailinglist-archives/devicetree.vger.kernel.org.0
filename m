@@ -2,68 +2,322 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A63C93DAFFB
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 01:40:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3858E3DB055
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 02:35:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234443AbhG2Xkw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jul 2021 19:40:52 -0400
-Received: from mail-il1-f172.google.com ([209.85.166.172]:35355 "EHLO
-        mail-il1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229982AbhG2Xkw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jul 2021 19:40:52 -0400
-Received: by mail-il1-f172.google.com with SMTP id k3so7618241ilu.2;
-        Thu, 29 Jul 2021 16:40:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=oTWaRpGPgXYGZ0nxv3aypr2wXYk30fYpsL6awQ1L3ik=;
-        b=iHOlxNGi37ZqvC+qwtsNPQttbWYDyG2XW+lVDEN7hH6Wfjn5cvBUzIYN8TfqI4Zvuv
-         2ZraYw17abALs2uhujQyqIRJeA9gDNWGoUslUWMHKKqwvVU2zmwNJLNKsx8c1aT4tw1I
-         4kG+4ytqBWBGIIIZBri68ks8HEc+R7kLGOO8a0yCpe79UhY7EgGb1PAFp/tVEiF5ivLO
-         F8ojzSVriZZlhqxZoJ7sbGR0NTOB+77SQSYAJ7zICaNiLga9gGTSHnoJEMUWBF0cFH8m
-         cjUtYkhqsqQVBhoZFxmfS9HHzOEqt8yXIhJggx69Lgf+bFx+IjvcIC30QYpcd7u/WxDN
-         n8UA==
-X-Gm-Message-State: AOAM531NKeZRfJBUSTzR10zjWtiSlaBuYIGvcHV+B5KDEEmWwbb4ABVq
-        92fPxUOWUi6YtzrhW1uthg==
-X-Google-Smtp-Source: ABdhPJy+s4DqM6X4LI7vSIzdG0HB+/20GDhODztS2lTaljhGw7cu/Wa9hFsvPriogt1XQbpJAlFW5w==
-X-Received: by 2002:a05:6e02:1567:: with SMTP id k7mr5530259ilu.146.1627602048201;
-        Thu, 29 Jul 2021 16:40:48 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id k13sm2353455ilv.18.2021.07.29.16.40.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Jul 2021 16:40:47 -0700 (PDT)
-Received: (nullmailer pid 1130374 invoked by uid 1000);
-        Thu, 29 Jul 2021 23:40:46 -0000
-Date:   Thu, 29 Jul 2021 17:40:46 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     dri-devel@lists.freedesktop.org, Sam Ravnborg <sam@ravnborg.org>,
-        linux-kernel@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        devicetree@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: display: simple: Add AUO B133HAN05 &
- B140HAN06
-Message-ID: <YQM8fp1H/+xxkp23@robh.at.kernel.org>
-References: <20210726173300.432039-1-bjorn.andersson@linaro.org>
+        id S229970AbhG3Af5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jul 2021 20:35:57 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:59526 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229750AbhG3Af5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Jul 2021 20:35:57 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1627605353; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=R0UhK7a3bg9ekiagx1Hy4ZyEVupeQ95aYdHgxHWHBjM=; b=aBfnmHXRh78DXK533LtgSyYonK63N98TzPdL/Xu98MtqM/Wllqjlsz6MMgNXRpy/1tmUOj2s
+ Hb3dYirp6dut7E8cGNvPAAp+5uE9yWnj3cldv/LUU+s5ggGsOeTJ+CnN6O/YAMFLPwMOrPwj
+ FeQgWvnymB0qWKFji5tSWLDnnAA=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
+ 61034946290ea35ee6e09e70 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 30 Jul 2021 00:35:18
+ GMT
+Sender: tdas=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 52C61C433F1; Fri, 30 Jul 2021 00:35:17 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.0 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [192.168.0.101] (unknown [49.204.183.90])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: tdas)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7D68EC433F1;
+        Fri, 30 Jul 2021 00:35:12 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 7D68EC433F1
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=tdas@codeaurora.org
+Subject: Re: [PATCH v2 2/6] clk: qcom: Add new PLL type for SDX65
+To:     quic_vamslank@quicinc.com, agross@kernel.org,
+        bjorn.andersson@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, robh+dt@kernel.org, tglx@linutronix.de,
+        maz@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <cover.1626986805.git.quic_vamslank@quicinc.com>
+ <223a1d8020d50c35ff2621f95d69b4a626b6893b.1626986805.git.quic_vamslank@quicinc.com>
+From:   Taniya Das <tdas@codeaurora.org>
+Message-ID: <d16d6364-7596-1a88-59f0-b4662bd7fa93@codeaurora.org>
+Date:   Fri, 30 Jul 2021 06:05:09 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210726173300.432039-1-bjorn.andersson@linaro.org>
+In-Reply-To: <223a1d8020d50c35ff2621f95d69b4a626b6893b.1626986805.git.quic_vamslank@quicinc.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 26 Jul 2021 10:32:59 -0700, Bjorn Andersson wrote:
-> Add bindings for the two AUO panels B133HAN05 and B140HAN06, both
-> 1920x1080 panels with 16.7M colors, first being 13.3" and the latter
-> 14.0".
+
+
+On 7/23/2021 2:39 AM, quic_vamslank@quicinc.com wrote:
+> From: Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
 > 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Add a new PLL type for SDX65 SoC from Qualcomm.
+> 
+> Signed-off-by: Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
 > ---
->  .../devicetree/bindings/display/panel/panel-simple.yaml       | 4 ++++
->  1 file changed, 4 insertions(+)
+>   drivers/clk/qcom/clk-alpha-pll.c | 170 +++++++++++++++++++++++++++++++
+>   drivers/clk/qcom/clk-alpha-pll.h |   4 +
+>   2 files changed, 174 insertions(+)
+> 
+> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
+> index c6eb99169ddc..93c8917b7273 100644
+> --- a/drivers/clk/qcom/clk-alpha-pll.c
+> +++ b/drivers/clk/qcom/clk-alpha-pll.c
+> @@ -1,5 +1,6 @@
+>   // SPDX-License-Identifier: GPL-2.0
+>   /*
+> + * Copyright (c) 2021, Qualcomm Innovation Center, Inc. All rights reserved.
+>    * Copyright (c) 2015, 2018, The Linux Foundation. All rights reserved.
+>    */
+>   
+> @@ -126,6 +127,20 @@ const u8 clk_alpha_pll_regs[][PLL_OFF_MAX_REGS] = {
+>   		[PLL_OFF_TEST_CTL_U] = 0x1c,
+>   		[PLL_OFF_STATUS] = 0x2c,
+>   	},
+> +        [CLK_ALPHA_PLL_TYPE_LUCID_EVO] = {
+> +                [PLL_OFF_OPMODE] = 0x04,
+> +                [PLL_OFF_STATUS] = 0x0c,
+> +                [PLL_OFF_L_VAL] = 0x10,
+> +                [PLL_OFF_ALPHA_VAL] = 0x14,
+> +                [PLL_OFF_USER_CTL] = 0x18,
+> +                [PLL_OFF_USER_CTL_U] = 0x1c,
+> +                [PLL_OFF_CONFIG_CTL] = 0x20,
+> +                [PLL_OFF_CONFIG_CTL_U] = 0x24,
+> +                [PLL_OFF_CONFIG_CTL_U1] = 0x28,
+> +                [PLL_OFF_TEST_CTL] = 0x2c,
+> +                [PLL_OFF_TEST_CTL_U] = 0x30,
+> +                [PLL_OFF_TEST_CTL_U1] = 0x34,
+> +        },
+>   };
+>   EXPORT_SYMBOL_GPL(clk_alpha_pll_regs);
+>   
+> @@ -155,12 +170,14 @@ EXPORT_SYMBOL_GPL(clk_alpha_pll_regs);
+>   
+>   /* LUCID PLL specific settings and offsets */
+>   #define LUCID_PCAL_DONE		BIT(27)
+> +#define LUCID_EVO_PLL_L_VAL_MASK        GENMASK(15, 0)
+>   
+>   /* LUCID 5LPE PLL specific settings and offsets */
+>   #define LUCID_5LPE_PCAL_DONE		BIT(11)
+>   #define LUCID_5LPE_ALPHA_PLL_ACK_LATCH	BIT(13)
+>   #define LUCID_5LPE_PLL_LATCH_INPUT	BIT(14)
+>   #define LUCID_5LPE_ENABLE_VOTE_RUN	BIT(21)
+Please add a comment
+
+/* LUCID EVO PLL specific settings and offsets */
+> +#define LUCID_EVO_ENABLE_VOTE_RUN       BIT(25)
+>   
+>   #define pll_alpha_width(p)					\
+>   		((PLL_ALPHA_VAL_U(p) - PLL_ALPHA_VAL(p) == 4) ?	\
+> @@ -1777,3 +1794,156 @@ const struct clk_ops clk_alpha_pll_postdiv_lucid_5lpe_ops = {
+>   	.set_rate = clk_lucid_5lpe_pll_postdiv_set_rate,
+>   };
+>   EXPORT_SYMBOL(clk_alpha_pll_postdiv_lucid_5lpe_ops);
+> +
+> +static int alpha_pll_lucid_evo_enable(struct clk_hw *hw)
+> +{
+> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
+> +	u32 val;
+> +	int ret;
+> +
+> +	ret = regmap_read(pll->clkr.regmap, PLL_USER_CTL(pll), &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* If in FSM mode, just vote for it */
+> +	if (val & LUCID_EVO_ENABLE_VOTE_RUN) {
+> +		ret = clk_enable_regmap(hw);
+> +		if (ret)
+> +			return ret;
+> +		return wait_for_pll_enable_lock(pll);
+> +	}
+> +
+> +	/* Check if PLL is already enabled */
+> +	ret = trion_pll_is_enabled(pll, pll->clkr.regmap);
+> +	if (ret < 0)
+> +		return ret;
+> +	else if (ret) {
+> +		pr_warn("%s PLL is already enabled\n",
+> +				clk_hw_get_name(&pll->clkr.hw));
+> +		return 0;
+> +	}
+> +
+> +	ret = regmap_update_bits(pll->clkr.regmap, PLL_MODE(pll),
+> +			PLL_RESET_N, PLL_RESET_N);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Set operation mode to RUN */
+> +	regmap_write(pll->clkr.regmap, PLL_OPMODE(pll), PLL_RUN);
+> +
+> +	ret = wait_for_pll_enable_lock(pll);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Enable the PLL outputs */
+> +	ret = regmap_update_bits(pll->clkr.regmap, PLL_USER_CTL(pll),
+> +			PLL_OUT_MASK, PLL_OUT_MASK);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Enable the global PLL outputs */
+> +	ret = regmap_update_bits(pll->clkr.regmap, PLL_MODE(pll),
+> +			PLL_OUTCTRL, PLL_OUTCTRL);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Ensure that the write above goes through before returning. */
+> +	mb();
+> +	return ret;
+> +}
+> +
+> +static void alpha_pll_lucid_evo_disable(struct clk_hw *hw)
+> +{
+> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
+> +	u32 val;
+> +	int ret;
+> +
+> +	ret = regmap_read(pll->clkr.regmap, PLL_USER_CTL(pll), &val);
+> +	if (ret)
+> +		return;
+> +
+> +	/* If in FSM mode, just unvote it */
+> +	if (val & LUCID_EVO_ENABLE_VOTE_RUN) {
+> +		clk_disable_regmap(hw);
+> +		return;
+> +	}
+> +
+> +	/* Disable the global PLL output */
+> +	ret = regmap_update_bits(pll->clkr.regmap, PLL_MODE(pll),
+> +			PLL_OUTCTRL, 0);
+> +	if (ret)
+> +		return;
+> +
+> +	/* Disable the PLL outputs */
+> +	ret = regmap_update_bits(pll->clkr.regmap, PLL_USER_CTL(pll),
+> +			PLL_OUT_MASK, 0);
+> +	if (ret)
+> +		return;
+> +
+> +	/* Place the PLL mode in STANDBY */
+> +	regmap_write(pll->clkr.regmap, PLL_OPMODE(pll),
+> +			PLL_STANDBY);
+> +}
+> +
+> +static unsigned long alpha_pll_lucid_evo_recalc_rate(struct clk_hw *hw, unsigned long parent_rate)
+> +{
+> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
+> +	u32 l, frac;
+> +
+> +	regmap_read(pll->clkr.regmap, PLL_L_VAL(pll), &l);
+> +	l &= LUCID_EVO_PLL_L_VAL_MASK;
+> +	regmap_read(pll->clkr.regmap, PLL_ALPHA_VAL(pll), &frac);
+> +
+> +	return alpha_pll_calc_rate(parent_rate, l, frac, ALPHA_REG_16BIT_WIDTH);
+
+Can you please use "pll_alpha_width(pll)".
+
+> +}
+> +
+> +static int clk_lucid_evo_pll_postdiv_set_rate(struct clk_hw *hw,
+> +		unsigned long rate, unsigned long parent_rate)
+> +{
+> +	struct clk_alpha_pll_postdiv *pll = to_clk_alpha_pll_postdiv(hw);
+> +	int i, val = 0, div, ret;
+
+'val' not required to be initialized.
+
+> +
+> +	/*
+> +	 * If the PLL is in FSM mode, then treat set_rate callback as a
+> +	 * no-operation.
+> +	 */
+> +	ret = regmap_read(pll->clkr.regmap, PLL_USER_CTL(pll), &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (val & LUCID_EVO_ENABLE_VOTE_RUN)
+> +		return 0;
+> +
+> +	if (!pll->post_div_table) {
+> +		pr_err("Missing the post_div_table for the PLL\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	div = DIV_ROUND_UP_ULL((u64)parent_rate, rate);
+> +	for (i = 0; i < pll->num_post_div; i++) {
+> +		if (pll->post_div_table[i].div == div) {
+> +			val = pll->post_div_table[i].val;
+> +			break;
+> +		}
+> +	}
+> +
+> +	return regmap_update_bits(pll->clkr.regmap, PLL_USER_CTL(pll),
+> +			(BIT(pll->width) - 1) << pll->post_div_shift,
+> +			val << pll->post_div_shift);
+> +}
+> +
+> +const struct clk_ops clk_alpha_pll_fixed_lucid_evo_ops = {
+> +	.enable = alpha_pll_lucid_evo_enable,
+> +	.disable = alpha_pll_lucid_evo_disable,
+> +	.is_enabled = clk_trion_pll_is_enabled,
+> +	.recalc_rate = alpha_pll_lucid_evo_recalc_rate,
+> +	.round_rate = clk_alpha_pll_round_rate,
+> +};
+> +EXPORT_SYMBOL_GPL(clk_alpha_pll_fixed_lucid_evo_ops);
+> +
+> +const struct clk_ops clk_alpha_pll_postdiv_lucid_evo_ops = {
+> +	.recalc_rate = clk_alpha_pll_postdiv_fabia_recalc_rate,
+> +	.round_rate = clk_alpha_pll_postdiv_fabia_round_rate,
+> +	.set_rate = clk_lucid_evo_pll_postdiv_set_rate,
+> +};
+> +EXPORT_SYMBOL_GPL(clk_alpha_pll_postdiv_lucid_evo_ops);
+> diff --git a/drivers/clk/qcom/clk-alpha-pll.h b/drivers/clk/qcom/clk-alpha-pll.h
+> index 6943e933be0f..c42299bf6f6f 100644
+> --- a/drivers/clk/qcom/clk-alpha-pll.h
+> +++ b/drivers/clk/qcom/clk-alpha-pll.h
+> @@ -16,6 +16,7 @@ enum {
+>   	CLK_ALPHA_PLL_TYPE_TRION,
+>   	CLK_ALPHA_PLL_TYPE_LUCID = CLK_ALPHA_PLL_TYPE_TRION,
+>   	CLK_ALPHA_PLL_TYPE_AGERA,
+> +	CLK_ALPHA_PLL_TYPE_LUCID_EVO,
+>   	CLK_ALPHA_PLL_TYPE_MAX,
+>   };
+>   
+> @@ -148,6 +149,9 @@ extern const struct clk_ops clk_alpha_pll_lucid_5lpe_ops;
+>   extern const struct clk_ops clk_alpha_pll_fixed_lucid_5lpe_ops;
+>   extern const struct clk_ops clk_alpha_pll_postdiv_lucid_5lpe_ops;
+>   
+> +extern const struct clk_ops clk_alpha_pll_fixed_lucid_evo_ops;
+> +extern const struct clk_ops clk_alpha_pll_postdiv_lucid_evo_ops;
+> +
+>   void clk_alpha_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+>   			     const struct alpha_pll_config *config);
+>   void clk_fabia_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation.
+
+--
