@@ -2,128 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48CDE3DB298
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 07:09:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F23A3DB304
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 07:55:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229919AbhG3FJy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 01:09:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43734 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229696AbhG3FJy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 01:09:54 -0400
-Received: from mail-oo1-xc2d.google.com (mail-oo1-xc2d.google.com [IPv6:2607:f8b0:4864:20::c2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 522B8C061765;
-        Thu, 29 Jul 2021 22:09:47 -0700 (PDT)
-Received: by mail-oo1-xc2d.google.com with SMTP id n1-20020a4ac7010000b0290262f3c22a63so2156405ooq.9;
-        Thu, 29 Jul 2021 22:09:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=DtOXr89OzIUFPwE95nTmJSuToUjtwfHb2hL/EyTTeLc=;
-        b=XY33TRonS6iaFY857RRIQ5xAHb5O7L8Jrt4fQzW+qvvevuzod7Xg8is59dM5ETkBJ4
-         wYWWROpIyuB2L67wmNUMRY35h3FfSQeiVKCWaPWJcdc8/mvg4bF8W4iGiaGEvAvgKp0I
-         6GjooQqaU07rJv//dEwa75a8mjLFg/xo2ybK/5lUnMfeOGAfglml4Fa2I1tQjqwc5V3B
-         fUgF41r5dR96gDmnyiGArQGCFLH+dau1Dx3vHOZ4GZotNZXUDkKTs00VBtY6kKlTjavu
-         Pz37oaj2IsjpSq3R9Y2i6Nwddl/6b6nu9y1QxwqYsxv1l6wRSOQzzq5400YFKQZjbsu8
-         m4/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=DtOXr89OzIUFPwE95nTmJSuToUjtwfHb2hL/EyTTeLc=;
-        b=SJVW/Ejv3ai69Rq7D302F8uEeoGKPHfhn0dD3jPS+iY4KUuHyPH/54MuoV1rWxxpO9
-         Mvyc+kDQ2Oy9tCpr2OjKz6y3D65ybnqvtA9TgkZmgiBmFIzlYfe0FCnkMYN/OojCNn4g
-         oi0oTfmgDcWR+pNnkvkoTjKpycjIgeO9OVTW5Weox+rvgea5PIb7CkllK7EMiBLGgx3/
-         /RSKFbIelRbR44919wVP9ggFWmdHxjTQvQqW0SlLtwTeclp6RQH0QWbVpGorpNMApKip
-         p/7S8QG9BgRAqVvsbIWcqirctoOsmNT3rrZIESZD3gv3m0ptlB9i1bELGc7Jmc+AAPA8
-         ZVnA==
-X-Gm-Message-State: AOAM533+cAGXxbVgbdh3eUnWo/QI3LKGuJX78IzrckpujS0huE/WvSmt
-        jJPLPa6tXsTkXUNu/0oPZbI=
-X-Google-Smtp-Source: ABdhPJwfnmqbVIz/NnmIZ/LXSibJIG3tB+bMED54PtXcQRW60tZjj7o7wIbGMW91sxaKQT6whWsfFQ==
-X-Received: by 2002:a4a:7b4b:: with SMTP id l72mr473141ooc.9.1627621786751;
-        Thu, 29 Jul 2021 22:09:46 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id q186sm127995oib.31.2021.07.29.22.09.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Jul 2021 22:09:46 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Thu, 29 Jul 2021 22:09:44 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Christine Zhu <Christine.Zhu@mediatek.com>
-Cc:     wim@linux-watchdog.org, robh+dt@kernel.org, matthias.bgg@gmail.com,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        seiya.wang@mediatek.com,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Subject: Re: [v5,2/3] dt-bindings: reset: mt8195: add toprgu reset-controller
- head file
-Message-ID: <20210730050944.GA2111694@roeck-us.net>
-References: <20210628113730.26107-1-Christine.Zhu@mediatek.com>
- <20210628113730.26107-3-Christine.Zhu@mediatek.com>
+        id S237168AbhG3Fzm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 01:55:42 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:13589 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236850AbhG3Fzl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Jul 2021 01:55:41 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1627624537; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=lYaNhuLnlPpaN4fXth6X4xr4/sxqYzupM5XAMywBIyc=; b=FcbjSPtA1fCqd9e35EV0pY9Zh9vlHCHfJ49UU/ZPPc3OeGd0mxI3GhU/32oW00LF7QaFUjp2
+ YLYLgu6SsbHB09hZ1D5r50cBfdHJtwSikWuGF1fhR0WKnWOyW+aTmzx9yGlwRVvc6j+meDGf
+ 10PmRx2PxJQQ9NM4a0n6OdcsvJ8=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
+ 61039454e31d882d18741910 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 30 Jul 2021 05:55:32
+ GMT
+Sender: rnayak=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 9B094C433F1; Fri, 30 Jul 2021 05:55:32 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.0 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [192.168.1.100] (unknown [49.207.203.214])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rnayak)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id CC915C433F1;
+        Fri, 30 Jul 2021 05:55:28 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org CC915C433F1
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
+Subject: Re: [PATCH v2 2/3] nvmem: qfprom: sc7280: Handle the additional
+ power-domains vote
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        "Ravi Kumar Bokka (Temp)" <rbokka@codeaurora.org>
+References: <1627560036-1626-1-git-send-email-rnayak@codeaurora.org>
+ <1627560036-1626-3-git-send-email-rnayak@codeaurora.org>
+ <CAD=FV=Wy6iyrty0tmygY42GJdWSNqby9XePjpg6pKpce-9A7fg@mail.gmail.com>
+From:   Rajendra Nayak <rnayak@codeaurora.org>
+Message-ID: <b9e7f3b9-6046-b1b2-5e8a-7036d54b5995@codeaurora.org>
+Date:   Fri, 30 Jul 2021 11:25:26 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210628113730.26107-3-Christine.Zhu@mediatek.com>
+In-Reply-To: <CAD=FV=Wy6iyrty0tmygY42GJdWSNqby9XePjpg6pKpce-9A7fg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 28, 2021 at 07:37:30PM +0800, Christine Zhu wrote:
-> From: "Christine Zhu" <Christine.Zhu@mediatek.com>
+
+On 7/29/2021 9:37 PM, Doug Anderson wrote:
+> Hi,
 > 
-> Add toprgu reset-controller head file for MT8195 platform.
+> On Thu, Jul 29, 2021 at 5:01 AM Rajendra Nayak <rnayak@codeaurora.org> wrote:
+>>
+>> On sc7280, to reliably blow fuses, we need an additional vote
+>> on max performance state of 'MX' power-domain.
+>> Add support for power-domain performance state voting in the
+>> driver.
+>>
+>> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
+>> ---
+>>   drivers/nvmem/qfprom.c | 26 ++++++++++++++++++++++++++
+>>   1 file changed, 26 insertions(+)
+>>
+>> diff --git a/drivers/nvmem/qfprom.c b/drivers/nvmem/qfprom.c
+>> index 81fbad5..b5f27df 100644
+>> --- a/drivers/nvmem/qfprom.c
+>> +++ b/drivers/nvmem/qfprom.c
+>> @@ -12,6 +12,8 @@
+>>   #include <linux/mod_devicetable.h>
+>>   #include <linux/nvmem-provider.h>
+>>   #include <linux/platform_device.h>
+>> +#include <linux/pm_domain.h>
+>> +#include <linux/pm_runtime.h>
+>>   #include <linux/property.h>
+>>   #include <linux/regulator/consumer.h>
+>>
+>> @@ -139,6 +141,9 @@ static void qfprom_disable_fuse_blowing(const struct qfprom_priv *priv,
+>>   {
+>>          int ret;
+>>
+>> +       dev_pm_genpd_set_performance_state(priv->dev, 0);
+>> +       pm_runtime_put(priv->dev);
 > 
-> Signed-off-by: Christine Zhu <Christine.Zhu@mediatek.com>
-> ---
->  .../reset-controller/mt8195-resets.h          | 29 +++++++++++++++++++
+> To me it feels as if this should be at the end of the function rather
+> than the beginning. I guess it doesn't matter (?), but it feels wrong
+> that we have writes to the register space after we're don't a
+> pm_runtime_put().
 
-There is another patch pending which moves the mtk reset controller
-include files to another directory. See [1]. Maybe it would make
-sense to use the same directory for this file ?
+Right, I was confused with this too when I saw that the other resources
+(regulator/clocks) were also turned off before we write into the
+register space. And then looking into the driver I realized its perhaps because
+the resources are needed only for the 'raw' writes and the 'conf'
+read/writes can happen regardless. I'll just fix that up and put the register
+writes before we really turn off any resources to avoid confusion.
 
-Thanks,
-Guenter
-
->  1 file changed, 29 insertions(+)
->  create mode 100644 include/dt-bindings/reset-controller/mt8195-resets.h
 > 
-> diff --git a/include/dt-bindings/reset-controller/mt8195-resets.h b/include/dt-bindings/reset-controller/mt8195-resets.h
-> new file mode 100644
-> index 000000000000..7ec27a64afc7
-> --- /dev/null
-> +++ b/include/dt-bindings/reset-controller/mt8195-resets.h
-> @@ -0,0 +1,29 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (c) 2021 MediaTek Inc.
-> + * Author: Crystal Guo <crystal.guo@mediatek.com>
-> + */
-> +
-> +#ifndef _DT_BINDINGS_RESET_CONTROLLER_MT8195
-> +#define _DT_BINDINGS_RESET_CONTROLLER_MT8195
-> +
-> +#define MT8195_TOPRGU_CONN_MCU_SW_RST          0
-> +#define MT8195_TOPRGU_INFRA_GRST_SW_RST        1
-> +#define MT8195_TOPRGU_APU_SW_RST               2
-> +#define MT8195_TOPRGU_INFRA_AO_GRST_SW_RST     6
-> +#define MT8195_TOPRGU_MMSYS_SW_RST             7
-> +#define MT8195_TOPRGU_MFG_SW_RST               8
-> +#define MT8195_TOPRGU_VENC_SW_RST              9
-> +#define MT8195_TOPRGU_VDEC_SW_RST              10
-> +#define MT8195_TOPRGU_IMG_SW_RST               11
-> +#define MT8195_TOPRGU_APMIXEDSYS_SW_RST        13
-> +#define MT8195_TOPRGU_AUDIO_SW_RST             14
-> +#define MT8195_TOPRGU_CAMSYS_SW_RST            15
-> +#define MT8195_TOPRGU_EDPTX_SW_RST             16
-> +#define MT8195_TOPRGU_ADSPSYS_SW_RST           21
-> +#define MT8195_TOPRGU_DPTX_SW_RST              22
-> +#define MT8195_TOPRGU_SPMI_MST_SW_RST          23
-> +
-> +#define MT8195_TOPRGU_SW_RST_NUM               16
-> +
-> +#endif  /* _DT_BINDINGS_RESET_CONTROLLER_MT8195 */
+> 
+>> @@ -420,6 +440,12 @@ static int qfprom_probe(struct platform_device *pdev)
+>>                          econfig.reg_write = qfprom_reg_write;
+>>          }
+>>
+>> +       ret = devm_add_action_or_reset(dev, qfprom_runtime_disable, dev);
+>> +       if (ret)
+>> +               return ret;
+>> +
+>> +       pm_runtime_enable(dev);
+>> +
+> 
+> Swap the order of the two. IOW first pm_runtime_enable(), then
+> devm_add_action_or_reset(). Specifically the "_or_reset" means that if
+> you fail to add the action (AKA devm_add_action() fails to allocate
+> the tiny amount of memory it needs) it will actually _call_ the
+> action. 
 
-[1] https://patchwork.kernel.org/project/linux-watchdog/patch/20210714121116.v2.1.I514d9aafff3a062f751b37d3fea7402f67595b86@changeid/
+Ah, I didn't know that, thanks, I'll fix the order up and repost.
 
+> That means that in your code if the memory allocation fails
+> you'll call pm_runtime_disable() without the corresponding
+> pm_runtime_enable().
+> 
+> 
+> Other than those two issues this looks good to me. Feel free to add my
+> Reviewed-by when you fix them.
+
+Thanks.
+
+> 
+> -Doug
+> 
+
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
