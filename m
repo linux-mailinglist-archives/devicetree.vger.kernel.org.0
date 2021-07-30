@@ -2,99 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 920FF3DBB79
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 17:00:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 846C33DBB96
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 17:06:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239356AbhG3PAn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 11:00:43 -0400
-Received: from foss.arm.com ([217.140.110.172]:43280 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239519AbhG3O7L (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Jul 2021 10:59:11 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A1A441063;
-        Fri, 30 Jul 2021 07:59:06 -0700 (PDT)
-Received: from C02TD0UTHF1T.local (unknown [10.57.13.245])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 464EF3F66F;
-        Fri, 30 Jul 2021 07:59:04 -0700 (PDT)
-Date:   Fri, 30 Jul 2021 15:59:01 +0100
-From:   Mark Rutland <mark.rutland@arm.com>
-To:     Bert Vermeulen <bert@biot.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        John Crispin <john@phrozen.org>, Felix Fietkau <nbd@nbd.name>
-Subject: Re: [PATCH 3/5] ARM: dts: Add basic support for EcoNet EN7523
-Message-ID: <20210730145901.GC19569@C02TD0UTHF1T.local>
-References: <20210730134552.853350-1-bert@biot.com>
- <20210730134552.853350-4-bert@biot.com>
+        id S239537AbhG3PGd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 11:06:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50886 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239545AbhG3PG0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 11:06:26 -0400
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80488C061796;
+        Fri, 30 Jul 2021 08:06:17 -0700 (PDT)
+Received: by mail-pj1-x1033.google.com with SMTP id l19so15675389pjz.0;
+        Fri, 30 Jul 2021 08:06:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=j4ZgEJOfXo95728K0jGJfzXIz0FRfV/cneRN75qZrqQ=;
+        b=RYSukXXaDiTWFtkfzjGMnrY5AtjXo3ekM4msyBFRkvSH/TySNfOTHwCE/PhG9kdVJL
+         R1wnWFYftLZDkXbwiM9HrP5xrkcrqWL2C1H6mgL/4aCrF2sUWSCzUZ/SDFiw2Tm9koZV
+         tfbSSKWC8UHnq+p1aI60ONQmsygE/3kEFW8mV0pR6cNDGD9Crd7MUHw3KBIsLqjP/Izj
+         O86E1rGgmzXY/Esy3lPlCxYpHIdLPLrjS/8MXVyxqYsCRXbngYphM5XZiROupBcI5XQI
+         AivpQIYjHNVIA1REcQcEWf9My5E3hq9jzRtltxQqI8tWNG7hmvhwKWsS0zE25TPLseU0
+         um4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=j4ZgEJOfXo95728K0jGJfzXIz0FRfV/cneRN75qZrqQ=;
+        b=WDQ8jC5Db40b5zUunWCvLSI8RSbkGKA+bQv90L3jHdWFvimkBzkBjL2RuFgurhJN1s
+         p1kLnT+gfFPPrsIckCxMtb7Rzs2hxI2qc4K8QJmbx3snWOHR7keAGSIUgbhja3fFBRMj
+         Lm5XCwvFRNsRmkEZ8hTyjJtNX1zMwriHeA6JZCEO9bUrRgBYe9wNE2vJLyJUqHOHZDT1
+         agtIf2jWn1kDh0QAbQJllIR7H6hzKakapkYdgK/dQ63Dylfy9IInvPdNIY5BH/FBFmAk
+         jI/YZcxEhmzeI9Sn3Y4EHTnoqluLXFNSoK08L36r+lkYEDzkbuSX4xYHDWyKOOP7pPr4
+         kFXQ==
+X-Gm-Message-State: AOAM533JM9jwWRqq2dWGjZu4LKjzCNw0X7poehcV/z1nsy2MotUkxqGN
+        eSDFAOvG5grXYmSissAHx2pW/VhsypzjwavA9wU=
+X-Google-Smtp-Source: ABdhPJy/BIrSVXKqer4o5xhukF4lXZQz2FWdUUGvQfpUZDWhqRqB5m1fbC/n8w5fR4df3nx8XFgBh7lC/jIZxo28Khs=
+X-Received: by 2002:a17:902:ac90:b029:12c:e7a:c183 with SMTP id
+ h16-20020a170902ac90b029012c0e7ac183mr2963181plr.21.1627657576975; Fri, 30
+ Jul 2021 08:06:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210730134552.853350-4-bert@biot.com>
+References: <20210730144922.29111-1-semen.protsenko@linaro.org> <20210730144922.29111-7-semen.protsenko@linaro.org>
+In-Reply-To: <20210730144922.29111-7-semen.protsenko@linaro.org>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 30 Jul 2021 18:05:37 +0300
+Message-ID: <CAHp75Vfj8UZdNeU0Ghg9qac6Ks3S1SLZOfZOKTWKp2y2vrcA6A@mail.gmail.com>
+Subject: Re: [PATCH 06/12] tty: serial: samsung: Add Exynos850 SoC data
+To:     Sam Protsenko <semen.protsenko@linaro.org>
+Cc:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
+        Ryu Euiyoul <ryu.real@samsung.com>,
+        Tom Gall <tom.gall@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 30, 2021 at 03:45:50PM +0200, Bert Vermeulen wrote:
-> From: John Crispin <john@phrozen.org>
-> 
-> Add basic support for EcoNet EN7523, enough for booting to console.
-> 
-> The UART is basically 8250-compatible, except for the clock selection.
-> A clock-frequency value is synthesized to get this to run at 115200 bps.
-> 
-> Signed-off-by: John Crispin <john@phrozen.org>
-> Signed-off-by: Bert Vermeulen <bert@biot.com>
-> ---
->  arch/arm/boot/dts/Makefile       |   2 +
->  arch/arm/boot/dts/en7523-evb.dts |  17 ++++
->  arch/arm/boot/dts/en7523.dtsi    | 128 +++++++++++++++++++++++++++++++
->  3 files changed, 147 insertions(+)
->  create mode 100644 arch/arm/boot/dts/en7523-evb.dts
->  create mode 100644 arch/arm/boot/dts/en7523.dtsi
-> 
+On Fri, Jul 30, 2021 at 5:50 PM Sam Protsenko
+<semen.protsenko@linaro.org> wrote:
+>
+> Add serial driver data for Exynos850 SoC. This driver data is basically
+> reusing EXYNOS_COMMON_SERIAL_DRV_DATA, which is common for all Exynos
+> chips, but also enables USI init, which was added in previous commit:
+> "tty: serial: samsung: Init USI to keep clocks running".
 
-> +	cpus {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
+...
 
-> +		cpu0: cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a7";
-> +			reg = <0x0>;
-> +			enable-method = "psci";
-> +			clock-frequency = <80000000>;
-> +			next-level-cache = <&L2_0>;
-> +
-> +		};
+> +static struct s3c24xx_serial_drv_data exynos850_serial_drv_data = {
+> +       EXYNOS_COMMON_SERIAL_DRV_DATA_USI(1),
 
-> +	gic: interrupt-controller@09000000 {
-> +		compatible = "arm,gic-v3";
-> +		interrupt-controller;
-> +		#interrupt-cells = <3>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		reg = <0x09000000 0x20000>,
-> +			  <0x09080000 0x80000>;
-> +		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +		its: gic-its@09020000 {
-> +			compatible = "arm,gic-v3-its";
-> +			msi-controller;
-> +			#msi-cell = <1>;
+> +       .fifosize = { 0, },
 
-Missing 's' here for '#msi-cells'.
+0 is the default for static globally defined variables.
 
-> +			reg = <0x090200000 0x20000>;
-> +		};
-> +	};
+> +};
 
-Looking at this again, I was under the impression that Cortex-A7 only
-supported GICv2; is this actually a Cortex-A7 or a different CPU?
-
-Which revision is this?
-
-Thanks,
-Mark.
+-- 
+With Best Regards,
+Andy Shevchenko
