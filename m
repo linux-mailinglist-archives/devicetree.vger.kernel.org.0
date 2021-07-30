@@ -2,177 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 723E13DBE2A
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 20:14:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E37F3DBE49
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 20:24:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230335AbhG3SOi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 14:14:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44208 "EHLO
+        id S230239AbhG3SYM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 14:24:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230239AbhG3SOg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 14:14:36 -0400
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00C46C061765
-        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 11:14:32 -0700 (PDT)
-Received: by mail-oi1-x231.google.com with SMTP id 21so14323531oin.8
-        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 11:14:31 -0700 (PDT)
+        with ESMTP id S230184AbhG3SYL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 14:24:11 -0400
+Received: from mail-qv1-xf42.google.com (mail-qv1-xf42.google.com [IPv6:2607:f8b0:4864:20::f42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A9E8C0613C1
+        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 11:24:05 -0700 (PDT)
+Received: by mail-qv1-xf42.google.com with SMTP id js7so3116500qvb.4
+        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 11:24:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Rc/AVBrPvwRzL0X+38wuA19xK4WI9HXXJR3Jq5n4fXQ=;
-        b=xYJmqMzetizp0d//qDjERSNMBhxRyux6KG7YP2MFGsAsCLdzNYIxIGvLq72ICr6kA0
-         7NVEv8zMWEg31G6nLcqRW6+ZASOFyb+NpqFEIqCTn0zYr8WRcODGX7wv8M08ovyZb23C
-         sP9Qfy2ZXqsXXY5cY3P8Nq5RRwsJKifpeCn7Nv/TFYHERVQsVMbGAKxF7hHcAOVdrTei
-         Uc45+ONVn/6Ym/QqRYZnm2wdnwosEErgmclvVjGvkJCEPI7aGhJdyWn4qSDnjqtChTUL
-         t0BlCervYZbFqXQTNub2ob5yqo+q6D1gRnOoFGifZaHcIdACfCxm4dS0JE/Ny9Oixfgk
-         GDUA==
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=lpTj1qbBhUjsFO3ShCuhQlstpCRBWbI+98sXsatNNS0=;
+        b=nvoJbYYos3edtySrFC3sNrtYaePSz35pEA5Ucgp1us801EwDxgvhYHe5xNUt49wnQB
+         lDiR+WepP+JDWFGZN2Q/6QOTpDLIpexO3Zue5iOIOpHt2rKLkRCgpiThEhipLoyi5fLw
+         gJHy4qphNLyXadI5deevRbOP0hbFtDyzzryQlXAnSMtYnBQGJyU6WwAdKip701vZWNs+
+         CDs9NsrICj5g8BBPD2Kk5B05I9xoDzpcyrdomLOXdV/sF/dWZ/BSO50js90EXjZEmi+G
+         blAKza0sOUe2ubzjERyRsT5yt86446xj4z75KbGmQPytlq8V3KbHQNvL9U5E0IhyzoQU
+         jerA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Rc/AVBrPvwRzL0X+38wuA19xK4WI9HXXJR3Jq5n4fXQ=;
-        b=hmYyoEvryhV15bzBIbGXPfyEFZ6m/0Q/LyAsJ9uobfy4jlU+DI7OmsdiXY7JuPx8fb
-         K6198TlpWoEtjugrKoQ4tRd/Jzq1UaeqmcYdKCA47XXJhI/UONA9WHl3maa1TroV18Oj
-         NTti8V1fuO4LEtb3pJAYwQLwE8HuD06QSi6OMfbrp9uGSubp6iBqvem254b1N+7/3EPS
-         nqAxAq1+AjFq+AN+KyClTpDxNfU2lVsszikZJ94iPPxe3F8B38Exj3QR4LfE3DHVjEL/
-         fQ0qp7hbfFvDm+5YifIpDa3/PSP3B9eKeVuyR0mF1WSlNxC5J9mNXvw5HROlbjKNF6uk
-         FWMA==
-X-Gm-Message-State: AOAM5317sSlVZKtzrJfQEt2n5z/I69HMpnKCLjlBY4krcJGxVP2zZruk
-        RSATJg1nH3GVfgQH4aFaaCpXKQ==
-X-Google-Smtp-Source: ABdhPJyVl7na4KYIky1m9tZxqT+FUSR85EjHbfQ9B74ux1IwE7cz7uqU4l7VpSa8Qfwv+/C9/mFriQ==
-X-Received: by 2002:a05:6808:1807:: with SMTP id bh7mr2793707oib.52.1627668871361;
-        Fri, 30 Jul 2021 11:14:31 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id p10sm189286oop.46.2021.07.30.11.14.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Jul 2021 11:14:30 -0700 (PDT)
-Date:   Fri, 30 Jul 2021 13:14:28 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Sibi Sankar <sibis@codeaurora.org>
-Cc:     Matthias Kaehlcke <mka@chromium.org>, robh+dt@kernel.org,
-        will@kernel.org, saiprakash.ranjan@codeaurora.org, ohad@wizery.com,
-        agross@kernel.org, mathieu.poirier@linaro.org,
-        robin.murphy@arm.com, joro@8bytes.org, p.zabel@pengutronix.de,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, evgreen@chromium.org,
-        dianders@chromium.org, swboyd@chromium.org
-Subject: Re: [PATCH 9/9] arm64: dts: qcom: sc7280: Update Q6V5 MSS node
-Message-ID: <YQRBhOeHO7LMDdWu@builder.lan>
-References: <1624564058-24095-1-git-send-email-sibis@codeaurora.org>
- <1624564058-24095-10-git-send-email-sibis@codeaurora.org>
- <YNodaqE9n9+sQUFq@google.com>
- <c561f99cb281c28581d10e5805190df8@codeaurora.org>
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=lpTj1qbBhUjsFO3ShCuhQlstpCRBWbI+98sXsatNNS0=;
+        b=Q+HVAFYdThXk+gB+5K+uOXAJkHIzCFznpGVYGhLTKPqS8Ujpd9JbJJlnw3csmRDNDw
+         lUbdALHnBEEK6PxK1yfr7AbLMxwCmTO++llrrSjMTdjoMV8xhBxvd0GCI4zF1oKG01ik
+         S1bH51gNJTmeILY/XUCFaxEWP68EIMulSAg8prDOekghmfKAjBsWBYtTygi8445IIU7O
+         SQCmDwnPjF6MPf4wc1nnoW+ivQDDW5lFnbVdgSh84FxOF3yfBzvXHPwnvFKuH+ITjvqH
+         TIiI6aPUNCWXaFISVNds7LcGBSYmDai4ypu4mnM1WRNHYIC/ZUhfDuPMn1IDhYfAyuQ6
+         5JYw==
+X-Gm-Message-State: AOAM530Sm7q/7lUqoxg7i7HrZAT2CZIHEFXJnquI7+94aK/OIVnBErLM
+        g8nE8e3v+JJxLGwNspYDPsxjig28SyRzdCnvKn4=
+X-Google-Smtp-Source: ABdhPJw+y5SDv+Hi0+xbHWjkczzC5L1I5eDhwD8mikOK4YXyK9lP9vyXYvMJmMR4GdUWcr+TjpS87MY+IU8dfriy0vI=
+X-Received: by 2002:ad4:46ed:: with SMTP id h13mr4238934qvw.56.1627669444698;
+ Fri, 30 Jul 2021 11:24:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c561f99cb281c28581d10e5805190df8@codeaurora.org>
+Received: by 2002:a05:6214:625:0:0:0:0 with HTTP; Fri, 30 Jul 2021 11:24:04
+ -0700 (PDT)
+Reply-To: westernunion-claimcollector@collector.org
+From:   WESTERN UNION MONEY TRANSFER OFFICE <mr.grecadams@gmail.com>
+Date:   Fri, 30 Jul 2021 19:24:04 +0100
+Message-ID: <CAEjXcM37HNV7zUz9oiKGo7wMKpsWihjt_FJsSHQTzEZDX4bZFw@mail.gmail.com>
+Subject: THE MONEY HAS BEEN SENT, PLEASE CONFIRM
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 30 Jun 15:08 CDT 2021, Sibi Sankar wrote:
-
-> On 2021-06-29 00:35, Matthias Kaehlcke wrote:
-> > On Fri, Jun 25, 2021 at 01:17:38AM +0530, Sibi Sankar wrote:
-> > > Update MSS node to support MSA based modem boot on SC7280 SoCs.
-> > > 
-> > > Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/sc7280-idp.dts |  7 +++++++
-> > >  arch/arm64/boot/dts/qcom/sc7280.dtsi    | 19 ++++++++++++++++---
-> > >  2 files changed, 23 insertions(+), 3 deletions(-)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> > > b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> > > index 191e8a92d153..d66e3ca42ad5 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> > > +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> > > @@ -343,3 +343,10 @@
-> > >  		bias-pull-up;
-> > >  	};
-> > >  };
-> > > +
-> > > +&remoteproc_mpss {
-> > > +	status = "okay";
-> > > +	compatible = "qcom,sc7280-mss-pil";
-> > > +	iommus = <&apps_smmu 0x124 0x0>, <&apps_smmu 0x488 0x7>;
-> > > +	memory-region = <&mba_mem &mpss_mem>;
-> > > +};
-> > > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > index 56ea172f641f..6d3687744440 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > > @@ -586,7 +586,8 @@
-> > > 
-> > >  		remoteproc_mpss: remoteproc@4080000 {
-> > >  			compatible = "qcom,sc7280-mpss-pas";
-> > > -			reg = <0 0x04080000 0 0x10000>;
-> > > +			reg = <0 0x04080000 0 0x10000>, <0 0x04180000 0 0x48>;
-> > > +			reg-names = "qdsp6", "rmb";
-> > 
-> > Binding needs update?
-> > 
-> > Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml:
-> > 
-> >   reg:
-> >       maxItems: 1
-> > 
-> > > 
-> > >  			interrupts-extended = <&intc GIC_SPI 264 IRQ_TYPE_EDGE_RISING>,
-> > >  					      <&modem_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
-> > > @@ -597,8 +598,11 @@
-> > >  			interrupt-names = "wdog", "fatal", "ready", "handover",
-> > >  					  "stop-ack", "shutdown-ack";
-> > > 
-> > > -			clocks = <&rpmhcc RPMH_CXO_CLK>;
-> > > -			clock-names = "xo";
-> > > +			clocks = <&gcc GCC_MSS_CFG_AHB_CLK>,
-> > > +				 <&gcc GCC_MSS_OFFLINE_AXI_CLK>,
-> > > +				 <&gcc GCC_MSS_SNOC_AXI_CLK>,
-> > > +				 <&rpmhcc RPMH_CXO_CLK>;
-> > > +			clock-names = "iface", "offline", "snoc_axi", "xo";
-> > 
-> > Binding needs update?
-> > 
-> > Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml:
-> > 
-> >   clocks:
-> >     items:
-> >       - description: XO clock
-> >   clock-names:
-> >     items:
-> >       - const: xo
-> 
-> qcom,sc7280-mpss-pas compatible requires
-> just the xo clock and one reg space whereas
-> the qcom,sc7280-mss-pil compatible requires
-> the additional clks and reg spaces. We just
-> overload properties where re-use is possible
-> across boards. Hence it would be wrong to
-> list those clks/reg spaces as requirements
-> for the pas compatible.
-> 
-
-Our decision to describe the platform node as a superset of the
-resources needed by the pas and pil variants was never reflected in the
-DT bindings; resulting in the issue that the superset doesn't validate
-against the pas binding and both bindings are full of platform-specific
-conditionals.
-
-To resolve the two issues I think we should split the current binding(s)
-in a set of platform-centric bindings, that captures the idea of
-describing the superset.
-
-To reduce the duplication - that already exists between the two
-bindings - I think we should break those out in a common part.
+-- 
 
 
-I'm however fine with not delaying this series further, if we agree that
-the end result matches what we would put in a combined qcom,sc7280-mpss
-binding.
+Dear Beneficiary;
 
-Regards,
-Bjorn
+Our Operation Manager has extract your 1st payment of $5,000.00 out of
+your total fund of ($1.5million) We need your full  information for
+the transfer.
+
+We scheduled installment sums of USD $5,000.00 daily through the cash
+fast Western Union, payment at counter as directed and we have
+commenced the relevant programming and the documentations of the said
+fund, as we are instructed to make the first payment of USD$5,000.00
+MTCN available in your name upon the receipt of your information from
+you as follows.
+
+Your Name,
+
+Address,
+
+Telephone
+
+ID CARD
+
+Contact our Operational Manager,Mr WETAYEM MYSHEAR through our office
+email for more enlightenment on your money.
+
+Email (westernunion.collector@collector.org)
+
+Thanks
+
+Managnment
