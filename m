@@ -2,130 +2,243 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CC1B3DBD63
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 18:55:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A4D73DBD8B
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 19:16:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229773AbhG3QzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 12:55:25 -0400
-Received: from mout.kundenserver.de ([212.227.126.133]:56521 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229707AbhG3QzY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 12:55:24 -0400
-Received: from mail-wr1-f45.google.com ([209.85.221.45]) by
- mrelayeu.kundenserver.de (mreue012 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1MxHLs-1n77cc1pTE-00xbBO; Fri, 30 Jul 2021 18:55:18 +0200
-Received: by mail-wr1-f45.google.com with SMTP id h14so12087408wrx.10;
-        Fri, 30 Jul 2021 09:55:18 -0700 (PDT)
-X-Gm-Message-State: AOAM531x36drL025206zfhSfsIdVNUVYtXIIdwh7tJXRkoxahAE6fFFe
-        5pch65HRs5BPODEUF4YRSt9avNT68PPACJ16s+4=
-X-Google-Smtp-Source: ABdhPJx8pRQBP+fRbShwuYvNiG34iB85ht3PkP357n80b2tOp0dc7/DUvny3sNOHPUMU7TLnQH+oHIK/GgO7nACZa6s=
-X-Received: by 2002:adf:f446:: with SMTP id f6mr4206493wrp.361.1627664118110;
- Fri, 30 Jul 2021 09:55:18 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210730134552.853350-1-bert@biot.com> <20210730134552.853350-5-bert@biot.com>
- <CAK8P3a3OuJ3pMSdEA4Rt3aWvvuX2+_Bg5x7-kZ1++fvvJvgGxA@mail.gmail.com> <d5498cc1-f700-998f-4e98-918081f2ac66@phrozen.org>
-In-Reply-To: <d5498cc1-f700-998f-4e98-918081f2ac66@phrozen.org>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Fri, 30 Jul 2021 18:55:02 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a1c9bVjACjAN=2d+XiBn+yWgHHs9CEUmik7U61+3MzFhw@mail.gmail.com>
-Message-ID: <CAK8P3a1c9bVjACjAN=2d+XiBn+yWgHHs9CEUmik7U61+3MzFhw@mail.gmail.com>
-Subject: Re: [PATCH 4/5] ARM: Add basic support for EcoNet EN7523 SoC
-To:     John Crispin <john@phrozen.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Bert Vermeulen <bert@biot.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Anshuman Khandual <anshuman.khandual@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        YiFei Zhu <yifeifz2@illinois.edu>,
-        Mike Rapoport <rppt@kernel.org>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Kees Cook <keescook@chromium.org>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Felix Fietkau <nbd@nbd.name>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:Djm3HiGtPborGwABFKLa69C29V921SpSOe07xLTEUvN1ltcib6i
- oU/7+2bli17JFsiITTU2UsrQHCJmRtJnoY+9zlZktzDif2QGD2dXiaFyoWQmdkMc4Yn9dvz
- qq63H6S93Jzyzu4jS+tuYMPvIOpvPsrkTlP1ul+Z4mbsqZFt0YYJs53i4gPmF95zUdLdOsO
- Oz61d1ljFEleqlOSPbCNg==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:gKgZSZRph+M=:9190HjctsZ8ZsfU/3fz5Zy
- XcLcDmqmyjFh8xMVT/kyrd4nwiYHOx8vPve6q0MleNDzdMM3zW8jH6qQDS/Zhvk5/P90B717m
- 8kFR9YakEvKAdj3dgaYyC9mdwjVNYlfPa4fshumIOzV9Ng5huI/M+TEs7HOq5slDWgVfxdwK8
- vXpsWTkOke/BxCuYubNJlk06DKhovUgZ0Oa27GP2Z8cbPTUd44le8YRnh8UiHJwKINUZYS/Dy
- 3qNeLeELScI8Mgxao9CWL3sQTTzwDxHrwcqvy/zWCCHEtu/GmzxGEZj2FLE17uD0s2TuPVkM/
- M0Ammy4P3/4+zavBbnlh2+pJ6p+TUCWLq+AWUH7djVJJPFGzQVgnV3aumJB8M2vzmaSUgl3nQ
- WZAz9N6OEvs7Mx9rZ9M7awuPRSsyvLf4PzKKjalNIqjEV1OlsRFWRCLZSwgaH37uQnExogVfI
- +awAMCrZWXtldPs1yvMOXj5Vf+W+K42oLvAUibLTTxBqP5CDrau96Z/r0N2tDld244CP1NAq1
- 4Qnksqd3n9GwzDid+vUU1OhjFnyN4SG88yZ1kz4Q5dvC/hWbrmGKBJbm3j7EJ2Mdm89HUcGdP
- 7Y4X+TUEstGvKNz/xu1Qx16PS+72YrqzoWedbSEAAhL1hOB15Iy5tQxLCAqqSdU4CnldljMT1
- Z8ezGMN7kEcA7PWFA1Z9Vha9m0KP2AF8t0Jlgy7pb55J7DoLVbHNuZA2CnaS1fyOBeGsdNH0A
- i5/ZyrWprd6QxAxQpvAGf6GKoySxNQiKN5VrJQ7VqCFvW9yA5w2pbmCGu00eBzPDxh4eaRSNR
- NVd9PswvNDIe8FKva1HPGIoociPuFQmH3wN47wvm6WSAT18B7Gl5bEahKAoRSIXceWA1Yb80k
- Ex++Yo6sRmjecHpjyFpxpBXefdBwXsVemgc7LICKM=
+        id S229738AbhG3RRC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 13:17:02 -0400
+Received: from smtp-36.italiaonline.it ([213.209.10.36]:37926 "EHLO libero.it"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229919AbhG3RRB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Jul 2021 13:17:01 -0400
+Received: from passgat-Modern-14-A10M.homenet.telecomitalia.it
+ ([79.45.223.112])
+        by smtp-36.iol.local with ESMTPA
+        id 9W7tmvxuai9pC9W7xmkmuu; Fri, 30 Jul 2021 19:16:55 +0200
+x-libjamoibt: 1601
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=libero.it; s=s2021;
+        t=1627665415; bh=byHMCPhGZ+GTEHiz8XqPFAP8SrcBPUm0jTW9VfwGYOY=;
+        h=From;
+        b=Ben7FH+9T6DVWKZOGqC/MWsm5wIS4XKn54DitfWke9aeyEojXFhEOlqu6M20AM1KD
+         JbaQpdOfxOOtpfYwpdVj6iAuGXyjI/sOsP5TLWWvxRX21XXXNeqTPesIQIs5Mf5g6C
+         dBfoUipL16tuJVLA4s4f41C22AG9Hgzx0ccmDmmEITY58HZ7aDS1AygE8P6QXJgh+u
+         R19WwlxWx6OqGbv3Dom87u8fiBRjPKvs+QioXHKh2GGhyR2X+84WwVa0bVLpJ1bo8/
+         T86nSLUksveG3sBao4pJxCMBCcdCHRzqR+jlE6QDD9cn97q8MDVqHqnNt5tEwqGkq3
+         Uz/G1pyd1V5Bg==
+X-CNFS-Analysis: v=2.4 cv=RqYAkAqK c=1 sm=1 tr=0 ts=61043407 cx=a_exe
+ a=bNRYHniHET+FA3QFAnazSw==:117 a=bNRYHniHET+FA3QFAnazSw==:17 a=gEfo2CItAAAA:8
+ a=faqJUPsDrVUeZvGr8DYA:9 a=Sf5sUmNcCa837iNl:21 a=jsU-foglF0TQYXlV:21
+ a=sptkURWiP4Gy88Gu7hUp:22
+From:   Dario Binacchi <dariobin@libero.it>
+To:     linux-kernel@vger.kernel.org
+Cc:     Dario Binacchi <dariobin@libero.it>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        devicetree@vger.kernel.org, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org
+Subject: [PATCH v3] dt-bindings: net: can: c_can: convert to json-schema
+Date:   Fri, 30 Jul 2021 19:16:46 +0200
+Message-Id: <20210730171646.2406-1-dariobin@libero.it>
+X-Mailer: git-send-email 2.17.1
+X-CMAE-Envelope: MS4xfNEl38DIm46sYo5x2RN/cpQMMGVk1GQcqlOmoXyZIRQM6+rUaKxqIilWxWW/3wXJxChimr3dTLjccutauXzSnJAjrrRuLYRd3JVRHgy1Fk4JF5iIS1EJ
+ h/lqDBxiHdDd2u5G5X643k8ag0Z/i9+CGmL+uoSfsPXKk5Nc8JoOiFVRfPDH1OYTmK+g9C1S+vBlgeWSnHznmYukabZUXwr0JuSrxaP+zbK5L5LBCdf9qXp1
+ Ysp6yUTRuXjXlT3Yk9Mgp5Ypl+olmWHnxUJhPyfmf5AZEuGln+LIL0t0zuxBaxrM+M6WlIhh1nwzUQqdZ23BfxMe3bLtMifsPRgMqy9piR8kOAzX6od1+MO1
+ VrODlPpaYpYxUX1GOhb51aMVtAVXsNPjKh7h/nfwjB87YsAu0w9m8w+hmebudyyoYhY2HXr8lO3xVv76wY0vV6xGy9JdNgd00czyZrrKRK4S2J/EtUienJik
+ 4dlaMUzLTYXvMo3OYYobGFG21BAfVDGr6UtkiGdg1DdneSu31vv+8VD+yxo=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 30, 2021 at 5:16 PM John Crispin <john@phrozen.org> wrote:
-> On 30.07.21 16:48, Arnd Bergmann wrote:
-> > Given how closely related this probably is to MT7623/MT7622, should this
-> > perhaps just be part of arch/arm/mach-mediatek? According to
-> > https://wikidevi.wi-cat.ru/MediaTek#xPON, the older (mips based) MT752x
-> > chips are apparently just rebranded to EN752x after the business unit
-> > was spun off, but I guess they are still in the same family.
->
-> Hi,
->
-> ECNT (what was once known as trendchip) is now a subsidary of MTK (and
-> not a BU if I am understanding it correctly).
->
-> the EN7523 is rather similar to the MT7622 for some parts, other parts
-> (spi, flash, wdt, gpio, .. drivers all needed to be rewritten and will
-> be part of the next series).
->
-> the older MIPS silicon shares almost no IP with the current ARM silicon.
+Convert the Bosch C_CAN/D_CAN controller device tree binding
+documentation to json-schema.
 
-Ah, so I guess the old Trendchip parts were separately developed separately
-from the Ralink parts before the original acquisition, and then Ralink/Mediatek
-combined the two product lines before spinning off the dsl products into
-a new subsidiary.
+Document missing properties.
+Remove "ti,hwmods" as it is no longer used in TI dts.
+Make "clocks" required as it is used in all dts.
+Correct nodename in the example.
 
-> not really my call to decide which folder this should live in. it seemed
-> natural to just give it its own folder, as ECNT is not a BU of MTK.
->
-> we can change that however if required.
+Signed-off-by: Dario Binacchi <dariobin@libero.it>
 
-My preference would be to have a common directory for both,
-but I'm not going to require that. From the kernel perspective the
-main question is actually not who makes the parts but who is going
-to maintain the code.
+---
 
-Matthias is doing a good job taking care of the Mediatek parts,
-and he's familiar with the arm-soc process. If there is enough overlap
-between the Mediatek and EcoNet devices that we would expect
-either conflicts between binding/driver patches, or that you would want
-each other to review the patches for related parts, then it would
-make most sense to have a common directory and maintainer
-entry for both, with all patches going through the same git tree.
+Changes in v3:
+ - Add type (phandle-array) and size (maxItems: 2) to syscon-raminit
+   property.
 
-It would also be nice to have someone listed as second maintainer
-for mediatek, since Matthias is currently the only one listed there.
-(Doesn't have to be you, I don't mean to drag you into taking up
-more work if you don't want to).
+Changes in v2:
+ - Drop Documentation references.
 
-Please discuss this between the three of you (Bert, John and
-Matthias), and let me know what you think works best for all of
-you.
+ .../bindings/net/can/bosch,c_can.yaml         | 85 +++++++++++++++++++
+ .../devicetree/bindings/net/can/c_can.txt     | 65 --------------
+ 2 files changed, 85 insertions(+), 65 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/can/bosch,c_can.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/can/c_can.txt
 
-       Arnd
+diff --git a/Documentation/devicetree/bindings/net/can/bosch,c_can.yaml b/Documentation/devicetree/bindings/net/can/bosch,c_can.yaml
+new file mode 100644
+index 000000000000..416db97fbf9d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/can/bosch,c_can.yaml
+@@ -0,0 +1,85 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/can/bosch,c_can.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Bosch C_CAN/D_CAN controller Device Tree Bindings
++
++description: Bosch C_CAN/D_CAN controller for CAN bus
++
++maintainers:
++  - Dario Binacchi <dariobin@libero.it>
++
++allOf:
++  - $ref: can-controller.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - enum:
++          - bosch,c_can
++          - bosch,d_can
++          - ti,dra7-d_can
++          - ti,am3352-d_can
++      - items:
++          - enum:
++              - ti,am4372-d_can
++          - const: ti,am3352-d_can
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  power-domains:
++    description: |
++      Should contain a phandle to a PM domain provider node and an args
++      specifier containing the DCAN device id value. It's mandatory for
++      Keystone 2 66AK2G SoCs only.
++    maxItems: 1
++
++  clocks:
++    description: |
++      CAN functional clock phandle.
++    maxItems: 1
++
++  clock-names:
++    maxItems: 1
++
++  syscon-raminit:
++    description: |
++      Handle to system control region that contains the RAMINIT register,
++      register offset to the RAMINIT register and the CAN instance number (0
++      offset).
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    maxItems: 2
++
++required:
++ - compatible
++ - reg
++ - interrupts
++ - clocks
++
++additionalProperties: false
++
++examples:
++  - |
++    can@481d0000 {
++        compatible = "bosch,d_can";
++        reg = <0x481d0000 0x2000>;
++        interrupts = <55>;
++        interrupt-parent = <&intc>;
++        status = "disabled";
++    };
++  - |
++    can@0 {
++        compatible = "ti,am3352-d_can";
++        reg = <0x0 0x2000>;
++        clocks = <&dcan1_fck>;
++        clock-names = "fck";
++        syscon-raminit = <&scm_conf 0x644 1>;
++        interrupts = <55>;
++        status = "disabled";
++    };
+diff --git a/Documentation/devicetree/bindings/net/can/c_can.txt b/Documentation/devicetree/bindings/net/can/c_can.txt
+deleted file mode 100644
+index 366479806acb..000000000000
+--- a/Documentation/devicetree/bindings/net/can/c_can.txt
++++ /dev/null
+@@ -1,65 +0,0 @@
+-Bosch C_CAN/D_CAN controller Device Tree Bindings
+--------------------------------------------------
+-
+-Required properties:
+-- compatible		: Should be "bosch,c_can" for C_CAN controllers and
+-			  "bosch,d_can" for D_CAN controllers.
+-			  Can be "ti,dra7-d_can", "ti,am3352-d_can" or
+-			  "ti,am4372-d_can".
+-- reg			: physical base address and size of the C_CAN/D_CAN
+-			  registers map
+-- interrupts		: property with a value describing the interrupt
+-			  number
+-
+-The following are mandatory properties for DRA7x, AM33xx and AM43xx SoCs only:
+-- ti,hwmods		: Must be "d_can<n>" or "c_can<n>", n being the
+-			  instance number
+-
+-The following are mandatory properties for Keystone 2 66AK2G SoCs only:
+-- power-domains		: Should contain a phandle to a PM domain provider node
+-			  and an args specifier containing the DCAN device id
+-			  value. This property is as per the binding,
+-			  Documentation/devicetree/bindings/soc/ti/sci-pm-domain.yaml
+-- clocks		: CAN functional clock phandle. This property is as per the
+-			  binding,
+-			  Documentation/devicetree/bindings/clock/ti,sci-clk.yaml
+-
+-Optional properties:
+-- syscon-raminit	: Handle to system control region that contains the
+-			  RAMINIT register, register offset to the RAMINIT
+-			  register and the CAN instance number (0 offset).
+-
+-Note: "ti,hwmods" field is used to fetch the base address and irq
+-resources from TI, omap hwmod data base during device registration.
+-Future plan is to migrate hwmod data base contents into device tree
+-blob so that, all the required data will be used from device tree dts
+-file.
+-
+-Example:
+-
+-Step1: SoC common .dtsi file
+-
+-	dcan1: d_can@481d0000 {
+-		compatible = "bosch,d_can";
+-		reg = <0x481d0000 0x2000>;
+-		interrupts = <55>;
+-		interrupt-parent = <&intc>;
+-		status = "disabled";
+-	};
+-
+-(or)
+-
+-	dcan1: d_can@481d0000 {
+-		compatible = "bosch,d_can";
+-		ti,hwmods = "d_can1";
+-		reg = <0x481d0000 0x2000>;
+-		interrupts = <55>;
+-		interrupt-parent = <&intc>;
+-		status = "disabled";
+-	};
+-
+-Step 2: board specific .dts file
+-
+-	&dcan1 {
+-		status = "okay";
+-	};
+-- 
+2.17.1
+
