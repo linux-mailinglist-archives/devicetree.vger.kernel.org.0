@@ -2,95 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 268DB3DB9AD
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 15:53:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 117F63DB99A
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 15:49:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238993AbhG3Nxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 09:53:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59504 "EHLO
+        id S239015AbhG3Nta (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 09:49:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239073AbhG3Nxv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 09:53:51 -0400
-Received: from yawp.biot.com (yawp.biot.com [IPv6:2a01:4f8:10a:8e::fce2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0CE8C06175F
-        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 06:53:46 -0700 (PDT)
-Received: from debian-spamd by yawp.biot.com with sa-checked (Exim 4.93)
-        (envelope-from <bert@biot.com>)
-        id 1m9Sq3-006bVw-0W
-        for devicetree@vger.kernel.org; Fri, 30 Jul 2021 15:46:11 +0200
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on yawp
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.4
-Received: from [2a02:578:460c:1:ae1f:6bff:fed1:9ca8] (helo=sumner.biot.com)
-        by yawp.biot.com with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <bert@biot.com>)
-        id 1m9Sq2-006bVb-Sc; Fri, 30 Jul 2021 15:46:10 +0200
-Received: from bert by sumner.biot.com with local (Exim 4.93)
-        (envelope-from <bert@biot.com>)
-        id 1m9Sq2-003a3O-CA; Fri, 30 Jul 2021 15:46:10 +0200
-From:   Bert Vermeulen <bert@biot.com>
-To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Russell King <linux@armlinux.org.uk>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Arnd Bergmann <arnd@arndb.de>, Shawn Guo <shawnguo@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Olivier Moysan <olivier.moysan@st.com>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Lionel Debieve <lionel.debieve@st.com>,
-        Fabrice Gasnier <fabrice.gasnier@st.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     Bert Vermeulen <bert@biot.com>, John Crispin <john@phrozen.org>,
-        Felix Fietkau <nbd@nbd.name>
-Subject: [PATCH 5/5] ARM: multi_v7_defconfig: Add support for EcoNet EN7523 SoC
-Date:   Fri, 30 Jul 2021 15:45:52 +0200
-Message-Id: <20210730134552.853350-6-bert@biot.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210730134552.853350-1-bert@biot.com>
-References: <20210730134552.853350-1-bert@biot.com>
+        with ESMTP id S238971AbhG3Nt3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jul 2021 09:49:29 -0400
+Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C5BDC061765
+        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 06:49:24 -0700 (PDT)
+Received: by mail-qt1-x82b.google.com with SMTP id w10so6418468qtj.3
+        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 06:49:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=MKFVB3IPR9lkSCEivG2PKNtFQz06R+D8dqrPSZQVhIs=;
+        b=MEbABptqXJglM26bxbD6CXo+dI7tsy8Ef6mKgr0+/TMZtm6CaLpLI83wRe6CtDssMY
+         cGrKlT8wH4v18FxmQJ5UKSyQwjt7aPP5UxUNzNEQLXCLZk8BsgyYxmJcfjJSSJcjTnhh
+         +qe1EKdSoyzxiUawP0TyNaR3uCQQRcxX+DYLE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=MKFVB3IPR9lkSCEivG2PKNtFQz06R+D8dqrPSZQVhIs=;
+        b=NLZAjUWNjBBHTu5KV+ZAqyhSSXMa9nD9dP3YSTZ6LGVcy7cViQqnB4H82akpVAV67Q
+         p4e1zzDi0nEPeS8Qvyx0N+wI70Ldz8s8J6GyB2EyZmVa2/YKsjyVN74+9FJjNGkTi2za
+         kP+Eq3ovy3u00XlndcUNMHLmjf9HE2abu2GLmcweL17esLfsnd/CVaOB8qkWo0GKrBG7
+         ZhZrFlOwO3JinFgLS34Zf6aj6qCWJF1/An55qv0SQof9EzqRAGl3x07HvNfIQVyk+G/q
+         KSSRdKdGTTuRg4hR7RUejfjmyvbwRZhK+Y/lTth8n3kvWL9jX9LDPFLojSs5Z/qAEc6U
+         wxLg==
+X-Gm-Message-State: AOAM532lkgbbYvBOGYYyzGeyrtx1H9loKi7EPa95TYGTPcWOOC9dzg6I
+        10yPFzubzNAnrjEM+tBU1ZkXqEx4Ac1Zhw==
+X-Google-Smtp-Source: ABdhPJwDFqgkVC7hNuKjZOmQ3Jb671geu1tnal9SHncURi9oB6IGuSUsdhsLKdALxQgoED+26EUFvw==
+X-Received: by 2002:ac8:5e46:: with SMTP id i6mr2417510qtx.326.1627652963291;
+        Fri, 30 Jul 2021 06:49:23 -0700 (PDT)
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
+        by smtp.gmail.com with ESMTPSA id r5sm611445qtm.75.2021.07.30.06.49.22
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 30 Jul 2021 06:49:22 -0700 (PDT)
+Received: by mail-yb1-f182.google.com with SMTP id d73so16048307ybc.10
+        for <devicetree@vger.kernel.org>; Fri, 30 Jul 2021 06:49:22 -0700 (PDT)
+X-Received: by 2002:a25:6088:: with SMTP id u130mr3375680ybb.257.1627652961581;
+ Fri, 30 Jul 2021 06:49:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1627627573-32454-1-git-send-email-rnayak@codeaurora.org> <1627627573-32454-3-git-send-email-rnayak@codeaurora.org>
+In-Reply-To: <1627627573-32454-3-git-send-email-rnayak@codeaurora.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 30 Jul 2021 06:49:10 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=X9wzRu20xydjt3c6682rWocd6dik6qRc9N1t_Dq97ODw@mail.gmail.com>
+Message-ID: <CAD=FV=X9wzRu20xydjt3c6682rWocd6dik6qRc9N1t_Dq97ODw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/4] nvmem: qfprom: Fix up qfprom_disable_fuse_blowing()
+ ordering
+To:     Rajendra Nayak <rnayak@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        "Ravi Kumar Bokka (Temp)" <rbokka@codeaurora.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: John Crispin <john@phrozen.org>
+Hi,
 
-This enables basic bootup support for the EcoNet EN7523 SoC.
+On Thu, Jul 29, 2021 at 11:46 PM Rajendra Nayak <rnayak@codeaurora.org> wrote:
+>
+> qfprom_disable_fuse_blowing() disables a bunch of resources,
+> and then does a few register writes in the 'conf' address
+> space.
+> It works perhaps because the resources are needed only for the
+> 'raw' register space writes, and that the 'conf' space allows
+> read/writes regardless.
+> However that makes the code look confusing, so just move the
+> register writes before turning off the resources in the
+> function.
+>
+> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
+> ---
+>  drivers/nvmem/qfprom.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/nvmem/qfprom.c b/drivers/nvmem/qfprom.c
+> index 81fbad5..b0ca4c6 100644
+> --- a/drivers/nvmem/qfprom.c
+> +++ b/drivers/nvmem/qfprom.c
+> @@ -139,6 +139,9 @@ static void qfprom_disable_fuse_blowing(const struct qfprom_priv *priv,
+>  {
+>         int ret;
+>
+> +       writel(old->timer_val, priv->qfpconf + QFPROM_BLOW_TIMER_OFFSET);
+> +       writel(old->accel_val, priv->qfpconf + QFPROM_ACCEL_OFFSET);
+> +
+>         /*
+>          * This may be a shared rail and may be able to run at a lower rate
+>          * when we're not blowing fuses.  At the moment, the regulator framework
+> @@ -159,9 +162,6 @@ static void qfprom_disable_fuse_blowing(const struct qfprom_priv *priv,
+>                          "Failed to set clock rate for disable (ignoring)\n");
+>
+>         clk_disable_unprepare(priv->secclk);
+> -
+> -       writel(old->timer_val, priv->qfpconf + QFPROM_BLOW_TIMER_OFFSET);
+> -       writel(old->accel_val, priv->qfpconf + QFPROM_ACCEL_OFFSET);
+>  }
 
-Signed-off-by: Bert Vermeulen <bert@biot.com>
----
- arch/arm/configs/multi_v7_defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+I think it doesn't matter since all of these resources are just needed
+for burning fuses, but I agree that what you have here makes more
+logical sense and makes the function less confusing.
 
-diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-index d9abaae118dd..18a10ef6df5d 100644
---- a/arch/arm/configs/multi_v7_defconfig
-+++ b/arch/arm/configs/multi_v7_defconfig
-@@ -31,6 +31,7 @@ CONFIG_MACH_BERLIN_BG2=y
- CONFIG_MACH_BERLIN_BG2CD=y
- CONFIG_MACH_BERLIN_BG2Q=y
- CONFIG_ARCH_DIGICOLOR=y
-+CONFIG_ARCH_ECONET=y
- CONFIG_ARCH_EXYNOS=y
- CONFIG_ARCH_HIGHBANK=y
- CONFIG_ARCH_HISI=y
-@@ -983,6 +984,7 @@ CONFIG_STAGING_BOARD=y
- CONFIG_MFD_CROS_EC_DEV=m
- CONFIG_CROS_EC_I2C=m
- CONFIG_CROS_EC_SPI=m
-+CONFIG_COMMON_CLK_EN7523=y
- CONFIG_COMMON_CLK_MAX77686=y
- CONFIG_COMMON_CLK_RK808=m
- CONFIG_COMMON_CLK_SCMI=y
--- 
-2.25.1
-
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
