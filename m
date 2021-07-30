@@ -2,42 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BE8E3DBCFE
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 18:23:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCC713DBD06
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 18:24:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229521AbhG3QX0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 12:23:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52390 "EHLO mail.kernel.org"
+        id S229521AbhG3QYs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 12:24:48 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52928 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229477AbhG3QX0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Jul 2021 12:23:26 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id BDF9660F4B;
-        Fri, 30 Jul 2021 16:23:21 +0000 (UTC)
+        id S229479AbhG3QYs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Jul 2021 12:24:48 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 39D7A61052;
+        Fri, 30 Jul 2021 16:24:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627662201;
-        bh=FW5LB4/droceMkapj9/opDRSSB08Hj67ZWxOidv6Bak=;
+        s=k20201202; t=1627662283;
+        bh=rJGnm55O1tNTXXwwxOhfbNirfLkXYq7zue02n7Tdz6g=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=pi4Pi51yNSIBNhSaMwGePr9C1LErMMOjm7VEeu4XA+T1AoBJXCXLGmB8IrxI1e9M9
-         nQnmJWRnj1dEdcCOyUhUASV58lg6mp8Q9Ch3HUwvo+M1dye9AB0F+qXy56B2fcuIL/
-         7yekJ7i6GVA27N22fvtF6si8l9zFY4GT5rxgQq2NQAS5Dq0oMzhdZOivz31N74h7Nk
-         aHOOn63rsKKmynnbkepxhaPwWuzDvmlg+3JxANOZXAENVNOzRAfw28Hod0z5Ejznzw
-         M68M4cIHmzUAo0PYkJMwhcdiiHP27Sm3RhbIw2ew0QAaHWd8z7SZn4SYwA/sDM82Ju
-         Son813H1X1wtg==
-Received: by mail-ed1-f44.google.com with SMTP id p21so13934540edi.9;
-        Fri, 30 Jul 2021 09:23:21 -0700 (PDT)
-X-Gm-Message-State: AOAM532ZYV22ULwtX4p25ZZWyaSdFIeqnEx0DQndjaFGhfEc5/JPF203
-        /WcB2NwfJe8b5y2aoHe0RsbjCBmFUtbeJmgriA==
-X-Google-Smtp-Source: ABdhPJzMdtcUi1zO0dPd4SSrt2q34Yx/1YxBJlURSGlVXMthQEd0rhojXPsJpfAwWhNd3aUVC/s1oj1cE69g15qMsjo=
-X-Received: by 2002:a05:6402:718:: with SMTP id w24mr3884876edx.49.1627662200337;
- Fri, 30 Jul 2021 09:23:20 -0700 (PDT)
+        b=oiGzBHlg862uFecdCPxiopLytEgtT9H1q/AcThot49jQjIX0/d5bVk+dLn37KqRGH
+         BEJyH+6mdVrVF0tRLmWiO7o1PbM8jL0YVqZBN0Q4rgb8dRbSi6L1bRLPH1ocjzoirT
+         cp4r77MxFGSCqexTnykNH+UpxKj1SWzfg2c9j4wGfiHUB1Zsgm0+hrqZHFv/k3w0EC
+         brPZJ9F45MuY4VagEY4q4F5W3wJwcH4JZaEQn+s4lzkoQYAkZNpNUCoRGdaKecfPhc
+         mB7/zX7jbSUiVl6llFHL6nxGTUpZIzevCYu5z12RyOwZTDTUa7hkbcCp+FiAIJlPj0
+         rjsgnSxSRyVKg==
+Received: by mail-ed1-f49.google.com with SMTP id p21so13939817edi.9;
+        Fri, 30 Jul 2021 09:24:43 -0700 (PDT)
+X-Gm-Message-State: AOAM533ZtSQ8DHD9bHr7ylSgjQjBQVoiJlz9XUWiKEgFFeEfINwQOhuf
+        O9j3XOYrDDpe1M/PaXPhYPMOnfVzgKSRaS6i2Q==
+X-Google-Smtp-Source: ABdhPJyA06qzYSh+f7EEVqAUfFRLkrZuqD1G+Hvft9QlGEOSN9ieg2X5H3Hxms9/ORgFt0VU+fGNT3l+kVqqUAMyCdw=
+X-Received: by 2002:a50:d71e:: with SMTP id t30mr3917906edi.72.1627662281812;
+ Fri, 30 Jul 2021 09:24:41 -0700 (PDT)
 MIME-Version: 1.0
-References: <1627459111-2907-1-git-send-email-chunfeng.yun@mediatek.com> <1627459111-2907-7-git-send-email-chunfeng.yun@mediatek.com>
-In-Reply-To: <1627459111-2907-7-git-send-email-chunfeng.yun@mediatek.com>
+References: <1627459111-2907-1-git-send-email-chunfeng.yun@mediatek.com> <1627459111-2907-8-git-send-email-chunfeng.yun@mediatek.com>
+In-Reply-To: <1627459111-2907-8-git-send-email-chunfeng.yun@mediatek.com>
 From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Sat, 31 Jul 2021 00:23:09 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_95Qpv-RjxzWteQ-+p=P0siC2c0vAQdkx-V7bfCwgn34g@mail.gmail.com>
-Message-ID: <CAAOTY_95Qpv-RjxzWteQ-+p=P0siC2c0vAQdkx-V7bfCwgn34g@mail.gmail.com>
-Subject: Re: [PATCH 7/9] phy: phy-mtk-hdmi: convert to devm_platform_ioremap_resource
+Date:   Sat, 31 Jul 2021 00:24:31 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_8XCeWbiHziB9=2EdUFmOg1m6eOi1qTN1QppqRKaS07xA@mail.gmail.com>
+Message-ID: <CAAOTY_8XCeWbiHziB9=2EdUFmOg1m6eOi1qTN1QppqRKaS07xA@mail.gmail.com>
+Subject: Re: [PATCH 8/9] phy: phy-mtk-mipi-dsi: remove dummy assignment of
+ error number
 To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
 Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Chun-Kuang Hu <chunkuang.hu@kernel.org>,
@@ -63,45 +64,36 @@ Chunfeng Yun <chunfeng.yun@mediatek.com> =E6=96=BC 2021=E5=B9=B47=E6=9C=882=
 8=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=883:59=E5=AF=AB=E9=81=93=EF=
 =BC=9A
 >
-> Use devm_platform_ioremap_resource to simplify code
+> Return the error number directly without assignment
 
 Acked-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
 
 >
 > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 > ---
->  drivers/phy/mediatek/phy-mtk-hdmi.c | 7 ++-----
->  1 file changed, 2 insertions(+), 5 deletions(-)
+>  drivers/phy/mediatek/phy-mtk-mipi-dsi.c | 6 ++----
+>  1 file changed, 2 insertions(+), 4 deletions(-)
 >
-> diff --git a/drivers/phy/mediatek/phy-mtk-hdmi.c b/drivers/phy/mediatek/p=
-hy-mtk-hdmi.c
-> index 8ad8f717ef43..5fb4217fb8e0 100644
-> --- a/drivers/phy/mediatek/phy-mtk-hdmi.c
-> +++ b/drivers/phy/mediatek/phy-mtk-hdmi.c
-> @@ -100,7 +100,6 @@ static int mtk_hdmi_phy_probe(struct platform_device =
+> diff --git a/drivers/phy/mediatek/phy-mtk-mipi-dsi.c b/drivers/phy/mediat=
+ek/phy-mtk-mipi-dsi.c
+> index 01cf31633019..61c942fbf4a1 100644
+> --- a/drivers/phy/mediatek/phy-mtk-mipi-dsi.c
+> +++ b/drivers/phy/mediatek/phy-mtk-mipi-dsi.c
+> @@ -203,10 +203,8 @@ static int mtk_mipi_tx_probe(struct platform_device =
 *pdev)
->  {
->         struct device *dev =3D &pdev->dev;
->         struct mtk_hdmi_phy *hdmi_phy;
-> -       struct resource *mem;
->         struct clk *ref_clk;
->         const char *ref_clk_name;
->         struct clk_init_data clk_init =3D {
-> @@ -116,11 +115,9 @@ static int mtk_hdmi_phy_probe(struct platform_device=
- *pdev)
->         if (!hdmi_phy)
->                 return -ENOMEM;
+>         phy_set_drvdata(phy, mipi_tx);
 >
-> -       mem =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> -       hdmi_phy->regs =3D devm_ioremap_resource(dev, mem);
-> -       if (IS_ERR(hdmi_phy->regs)) {
-> +       hdmi_phy->regs =3D devm_platform_ioremap_resource(pdev, 0);
-> +       if (IS_ERR(hdmi_phy->regs))
->                 return PTR_ERR(hdmi_phy->regs);
+>         phy_provider =3D devm_of_phy_provider_register(dev, of_phy_simple=
+_xlate);
+> -       if (IS_ERR(phy_provider)) {
+> -               ret =3D PTR_ERR(phy_provider);
+> -               return ret;
 > -       }
+> +       if (IS_ERR(phy_provider))
+> +               return PTR_ERR(phy_provider);
 >
->         ref_clk =3D devm_clk_get(dev, "pll_ref");
->         if (IS_ERR(ref_clk)) {
+>         mipi_tx->dev =3D dev;
+>
 > --
 > 2.18.0
 >
