@@ -2,168 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F0EB3DB86B
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 14:13:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DD503DB879
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jul 2021 14:18:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238777AbhG3MNb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jul 2021 08:13:31 -0400
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:33353 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230355AbhG3MNa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Jul 2021 08:13:30 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 46B16580A67;
-        Fri, 30 Jul 2021 08:13:25 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Fri, 30 Jul 2021 08:13:25 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
-         h=from:to:cc:subject:date:message-id:mime-version
-        :content-transfer-encoding; s=fm1; bh=x45utzlm+I7LrH8ONZBODJozoR
-        9FeoJBITa/+rubT3U=; b=eo9zfwKlAVXNANjwmyhN7WFznBQ4fS7eYSfJGEEcmM
-        fFAbxuKuoZfNVRxqqRIuIZ/rt1m6NC+T6JcZUg7paU2FUieDo4GtLbY66w1s5OwF
-        evK3YL8p2ECWXsUDYHfDs4VUzIKuvYgbJjVznSEualkYUM/HE8rIXzsZexhMd3y9
-        JSMpMuq2/ibdmK2z74rzudwhqV6hSx4FR7Eu5kPkFTY2+5J2FAdrgF82VVHhAgOD
-        qmDpsD9J2GfFocN3BeU5x1r28Bxe5EdRE7RFHbPff1NTAcqEFphcBou9O9mc6Uxa
-        q6T5xsGITcOWiuU0xMe3CwPTsPjQoGICqcTF9Bfz3quQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=x45utzlm+I7LrH8ON
-        ZBODJozoR9FeoJBITa/+rubT3U=; b=LcUdOX3Pc9Azq97zQxEqR4AFItkJYY/zm
-        ds/MONvHH1WEh1A2eBNixHMDM3qwyYVE2KY5FP/Q5gtPZSfkAr39AklMJQk18akW
-        tj+NE5mWl40VGX4XncHUDoQrkiF8rs91+BNIy+66Ps2k+DgoMYIX174Wm8RFlrKZ
-        x/cyuA//VnHGP0H9AovSid85/FiIRAQZ6diPs9u4Y9Ij70Zo8ZtVlyi6UAxZK4t0
-        c7QJwS16eKxmmDmASsjWlx3aRZTk1+LMB4kX72F4JlsAxwum5pE1dhb/Lg2zib8+
-        kkvwLfyL8F+8ZTlXS8q8JbxlHxGSzKoQtuolS1tZEhjFeycaG/mcg==
-X-ME-Sender: <xms:4-wDYRcNbeXAJImrKVzm1ssXhJWPqq4yO_guaex22bOYuvTEx9Fvyg>
-    <xme:4-wDYfNYW_R_a6t0vzf_bCDX9ka5xFaqHuM6hXLvDBPsPLz_5f4FpzmN8vXLEqJ_Q
-    3ZuWn_nLdghg3-EN-U>
-X-ME-Received: <xmr:4-wDYaiJM87oHU5dELNL8Qx7ktsn1_ebPlgNnEBPIO-fnzOIOxLObdmsllB6z5-Qndcpsu9SboAWH6xE-dySiLsiGvzM435XXDtx5Hw7>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrheehgdeghecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomheptehlihhsthgrihhr
-    ucfhrhgrnhgtihhsuceorghlihhsthgrihhrsegrlhhishhtrghirhdvfedrmhgvqeenuc
-    ggtffrrghtthgvrhhnpefghfegkeejtddvfeekjeelgeffhefhvddvvddtvefgfffftdek
-    geeljeefvdeiudenucffohhmrghinhepvghinhhkrdgtohhmnecuvehluhhsthgvrhfuih
-    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghlihhsthgrihhrsegrlhhishht
-    rghirhdvfedrmhgv
-X-ME-Proxy: <xmx:4-wDYa_4YfXIKT7bHHOvDaK1h1eGPAab96Wa8aaw2UzrS9o17THhQQ>
-    <xmx:4-wDYdvgu78Mufgq-oS7IJRB0nGp3A3tP75FkFigv1znadG0xjxMdg>
-    <xmx:4-wDYZEbziNTM6ugR8dxegpBnO9je7QsVK4GwjbNaktwiYfUjo1qcw>
-    <xmx:5ewDYdNAov7PpYv9K5a8n32mD21GBPuWIVe47phUT6Wqt3xmUJAp-w>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 30 Jul 2021 08:13:17 -0400 (EDT)
-From:   Alistair Francis <alistair@alistair23.me>
-To:     robh+dt@kernel.org, thierry.reding@gmail.com, sam@ravnborg.org,
-        krzk@kernel.org, shawnguo@kernel.org, daniel@0x0f.com,
-        linux@rempel-privat.de, kuninori.morimoto.gx@renesas.com,
-        max.Merchel@tq-group.com, geert+renesas@glider.be,
-        airlied@linux.ie, daniel@ffwll.ch
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, alistair23@gmail.com,
-        Alistair Francis <alistair@alistair23.me>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v5] drm/panel: Add support for E Ink VB3300-KCA
-Date:   Fri, 30 Jul 2021 22:13:10 +1000
-Message-Id: <20210730121310.131-1-alistair@alistair23.me>
-X-Mailer: git-send-email 2.20.1
+        id S230325AbhG3MSm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jul 2021 08:18:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49286 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238745AbhG3MSl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Jul 2021 08:18:41 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 15BF261074;
+        Fri, 30 Jul 2021 12:18:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1627647516;
+        bh=xfVOdRGPI0p8bvTjQzrdr1McYn1rjKDlbhisGOum8GE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=LuF6zMJ6dfL7TMZBi73lFlpB+FdR+5ckY/pjV8WLSQ2/LyqHdWq0dvO70cpPMyZWI
+         NSUbMoem02ehuRZWAWtbz81FG8UnrL5lfaHoicK6rUjZOzJHoQ7Wqwhr0Cx7QvEmce
+         HXQ0i02aJvP/UUuMhJINZh9au6V4yWxQdZ4K6mP4B3ECxFtC/EW5neaKcc2p8JjHHk
+         Xd6tXq4gIG84qm21e33ubyQ27r6f87nP22O90l7YawT3g2CooarltCyAMlvTB4t1Rw
+         d7m/A0QJs2HhBukm4OZCnk6S0mcWK6o90ZiRIuW8V4GWfolJk/ROKaKrh3Id1h4uDh
+         HRgkjLMKem9fA==
+Date:   Fri, 30 Jul 2021 13:18:31 +0100
+From:   Will Deacon <will@kernel.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Nicolin Chen <nicolinc@nvidia.com>,
+        Krishna Reddy <vdumpa@nvidia.com>, devicetree@vger.kernel.org,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: Re: [PATCH v2 2/5] iommu: Implement of_iommu_get_resv_regions()
+Message-ID: <20210730121831.GD23589@willie-the-truck>
+References: <20210423163234.3651547-1-thierry.reding@gmail.com>
+ <20210423163234.3651547-3-thierry.reding@gmail.com>
+ <bdc42077-d1f3-f561-2e4d-647b5fceb7b6@gmail.com>
+ <CAL_Jsq+jSY-OLau3gLPsDL02AYaE_TySOGrd9-tNLFaYvLHZ6A@mail.gmail.com>
+ <7f5c8094-6e4f-5a94-2257-1003a78ba92f@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <7f5c8094-6e4f-5a94-2257-1003a78ba92f@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the 10.3" E Ink panel described at:
-https://www.eink.com/product.html?type=productdetail&id=7
+On Sat, Jul 17, 2021 at 02:07:12PM +0300, Dmitry Osipenko wrote:
+> 16.07.2021 17:41, Rob Herring пишет:
+> > On Fri, Jul 2, 2021 at 8:05 AM Dmitry Osipenko <digetx@gmail.com> wrote:
+> >>
+> >> 23.04.2021 19:32, Thierry Reding пишет:
+> >>> +void of_iommu_get_resv_regions(struct device *dev, struct list_head *list)
+> >>> +{
+> >>> +     struct of_phandle_iterator it;
+> >>> +     int err;
+> >>> +
+> >>> +     of_for_each_phandle(&it, err, dev->of_node, "memory-region", "#memory-region-cells", 0) {
+> >>> +             struct iommu_resv_region *region;
+> >>> +             struct of_phandle_args args;
+> >>> +             struct resource res;
+> >>> +
+> >>> +             args.args_count = of_phandle_iterator_args(&it, args.args, MAX_PHANDLE_ARGS);
+> >>> +
+> >>> +             err = of_address_to_resource(it.node, 0, &res);
+> >>> +             if (err < 0) {
+> >>> +                     dev_err(dev, "failed to parse memory region %pOF: %d\n",
+> >>> +                             it.node, err);
+> >>> +                     continue;
+> >>> +             }
+> >>> +
+> >>> +             if (args.args_count > 0) {
+> >>> +                     /*
+> >>> +                      * Active memory regions are expected to be accessed by hardware during
+> >>> +                      * boot and must therefore have an identity mapping created prior to the
+> >>> +                      * driver taking control of the hardware. This ensures that non-quiescent
+> >>> +                      * hardware doesn't cause IOMMU faults during boot.
+> >>> +                      */
+> >>> +                     if (args.args[0] & MEMORY_REGION_IDENTITY_MAPPING) {
+> >>> +                             region = iommu_alloc_resv_region(res.start, resource_size(&res),
+> >>> +                                                              IOMMU_READ | IOMMU_WRITE,
+> >>> +                                                              IOMMU_RESV_DIRECT_RELAXABLE);
+> >>> +                             if (!region)
+> >>> +                                     continue;
+> >>> +
+> >>> +                             list_add_tail(&region->list, list);
+> >>> +                     }
+> >>> +             }
+> >>> +     }
+> >>> +}
+> >>> +EXPORT_SYMBOL(of_iommu_get_resv_regions);
+> >>
+> >> Any reason why this is not EXPORT_SYMBOL_GPL? I'm curious what is the
+> >> logic behind the OF symbols in general since it looks like half of them
+> >> are GPL.
+> > 
+> > Generally, new ones are _GPL. Old ones probably predate _GPL.
+> > 
+> > This one is up to the IOMMU maintainers.
+> 
+> Thank you.
 
-Signed-off-by: Alistair Francis <alistair@alistair23.me>
-Acked-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
----
-v5:
- - Add .connector_type
+I prefer EXPORT_SYMBOL_GPL(). That's aligned with the symbols exported by
+iommu.c, with the *single* exception of generic_iommu_put_resv_regions(),
+which I think should be changed to _GPL() as well.
 
- .../bindings/display/panel/panel-simple.yaml  |  2 ++
- .../devicetree/bindings/vendor-prefixes.yaml  |  2 ++
- drivers/gpu/drm/panel/panel-simple.c          | 30 +++++++++++++++++++
- 3 files changed, 34 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-index b3797ba2698b..799e20222551 100644
---- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-@@ -128,6 +128,8 @@ properties:
-         # Emerging Display Technology Corp. WVGA TFT Display with capacitive touch
-       - edt,etm0700g0dh6
-       - edt,etm0700g0edh6
-+        # E Ink VB3300-KCA
-+      - eink,vb3300-kca
-         # Evervision Electronics Co. Ltd. VGG804821 5.0" WVGA TFT LCD Panel
-       - evervision,vgg804821
-         # Foxlink Group 5" WVGA TFT LCD panel
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 71da86e7b3a2..31745c45dd92 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -339,6 +339,8 @@ patternProperties:
-     description: eGalax_eMPIA Technology Inc
-   "^einfochips,.*":
-     description: Einfochips
-+  "^eink,.*":
-+    description: E Ink Corporation
-   "^elan,.*":
-     description: Elan Microelectronic Corp.
-   "^element14,.*":
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 21939d4352cf..90d96091f09f 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -2046,6 +2046,33 @@ static const struct panel_desc edt_etm0700g0bdh6 = {
- 	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_DRIVE_POSEDGE,
- };
- 
-+static const struct display_timing eink_vb3300_kca_timing = {
-+	.pixelclock = { 40000000, 40000000, 40000000 },
-+	.hactive = { 334, 334, 334 },
-+	.hfront_porch = { 1, 1, 1 },
-+	.hback_porch = { 1, 1, 1 },
-+	.hsync_len = { 1, 1, 1 },
-+	.vactive = { 1405, 1405, 1405 },
-+	.vfront_porch = { 1, 1, 1 },
-+	.vback_porch = { 1, 1, 1 },
-+	.vsync_len = { 1, 1, 1 },
-+	.flags = DISPLAY_FLAGS_HSYNC_LOW | DISPLAY_FLAGS_VSYNC_LOW |
-+		 DISPLAY_FLAGS_DE_HIGH | DISPLAY_FLAGS_PIXDATA_POSEDGE,
-+};
-+
-+static const struct panel_desc eink_vb3300_kca = {
-+	.timings = &eink_vb3300_kca_timing,
-+	.num_timings = 1,
-+	.bpc = 6,
-+	.size = {
-+		.width = 157,
-+		.height = 209,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
-+	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_DRIVE_POSEDGE,
-+	.connector_type = DRM_MODE_CONNECTOR_DPI,
-+};
-+
- static const struct display_timing evervision_vgg804821_timing = {
- 	.pixelclock = { 27600000, 33300000, 50000000 },
- 	.hactive = { 800, 800, 800 },
-@@ -4350,6 +4377,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "edt,etm0700g0edh6",
- 		.data = &edt_etm0700g0bdh6,
-+	}, {
-+		.compatible = "eink,vb3300-kca",
-+		.data = &eink_vb3300_kca,
- 	}, {
- 		.compatible = "evervision,vgg804821",
- 		.data = &evervision_vgg804821,
--- 
-2.31.1
-
+Will
