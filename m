@@ -2,303 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C0EB3DC5B4
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jul 2021 13:25:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AD9E3DC64C
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jul 2021 16:26:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232501AbhGaLZR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 31 Jul 2021 07:25:17 -0400
-Received: from mail-4319.protonmail.ch ([185.70.43.19]:24919 "EHLO
-        mail-4319.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232915AbhGaLZR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Jul 2021 07:25:17 -0400
-Date:   Sat, 31 Jul 2021 11:24:57 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail; t=1627730708;
-        bh=YMRJNg+Xty8j0U+NbDMFmLI6dusj412CfV8y58Nw4Dw=;
-        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
-        b=q7tkKJ0j9U4YRN6e8Hil49jHEd9ShCY129E4+a1FHbyjT8pr0RvLHZA1B+Lz8Gn8b
-         mdWs37iWHO40LKwxTquh+2SWDvuSKuhEblW6S6K93gM8QFCM9oCztoUElGXC4K8l5z
-         OJJePx32YToeCKoMAR+8Em0kTWvyt/nBuaegK0X8=
-To:     Michael Auchter <michael.auchter@ni.com>
-From:   Yassine Oudjana <y.oudjana@protonmail.com>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
-Subject: Re: [PATCH v2 1/3] extcon: usbc-tusb320: Add support for mode setting and reset
-Message-ID: <27V3XQ.2D0PFTDOHG4Q3@protonmail.com>
-In-Reply-To: <YQF0/P6ngk7pjSCH@xaphan>
-References: <Fz2Ehjftp2eVDCxfgd4j3TYcrmSf5ForizOdT7rngo@cp7-web-042.plabs.ch> <YQF0/P6ngk7pjSCH@xaphan>
+        id S232770AbhGaO0v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Jul 2021 10:26:51 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41928 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232752AbhGaO0v (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 31 Jul 2021 10:26:51 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A296F60F3A;
+        Sat, 31 Jul 2021 14:26:41 +0000 (UTC)
+Date:   Sat, 31 Jul 2021 15:29:21 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Liam Beguin <liambeguin@gmail.com>
+Cc:     lars@metafoo.de, Michael.Hennerich@analog.com,
+        charles-antoine.couret@essensium.com, Nuno.Sa@analog.com,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH v4 2/5] iio: adc: ad7949: fix spi messages on non 14-bit
+ controllers
+Message-ID: <20210731152921.2fcb53ab@jic23-huawei>
+In-Reply-To: <20210727232906.980769-3-liambeguin@gmail.com>
+References: <20210727232906.980769-1-liambeguin@gmail.com>
+        <20210727232906.980769-3-liambeguin@gmail.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 28 2021 at 19:17:16 +0400, Michael Auchter=20
-<michael.auchter@ni.com> wrote:
-> Hello Yassine,
->=20
-> On Tue, Jul 27, 2021 at 09:56:41AM +0000, Yassine Oudjana wrote:
->>  Reset the chip and set its mode to default (maintain mode set by=20
->> PORT pin)
->>  during probe to make sure it comes up in the default state.
->>=20
->>  Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
->>  ---
->>   drivers/extcon/extcon-usbc-tusb320.c | 111=20
->> +++++++++++++++++++++++----
->>   1 file changed, 97 insertions(+), 14 deletions(-)
->>=20
->>  diff --git a/drivers/extcon/extcon-usbc-tusb320.c=20
->> b/drivers/extcon/extcon-usbc-tusb320.c
->>  index 805af73b4152..c8d931abbf9f 100644
->>  --- a/drivers/extcon/extcon-usbc-tusb320.c
->>  +++ b/drivers/extcon/extcon-usbc-tusb320.c
->>  @@ -19,15 +19,32 @@
->>   #define TUSB320_REG9_ATTACHED_STATE_MASK=090x3
->>   #define TUSB320_REG9_CABLE_DIRECTION=09=09BIT(5)
->>   #define TUSB320_REG9_INTERRUPT_STATUS=09=09BIT(4)
->>  -#define TUSB320_ATTACHED_STATE_NONE=09=090x0
->>  -#define TUSB320_ATTACHED_STATE_DFP=09=090x1
->>  -#define TUSB320_ATTACHED_STATE_UFP=09=090x2
->>  -#define TUSB320_ATTACHED_STATE_ACC=09=090x3
->>  +
->>  +#define TUSB320_REGA=09=09=09=090xa
->>  +#define TUSB320_REGA_I2C_SOFT_RESET=09=09BIT(3)
->>  +#define TUSB320_REGA_MODE_SELECT_SHIFT=09=094
->>  +#define TUSB320_REGA_MODE_SELECT_MASK=09=090x3
->>  +
->>  +enum tusb320_attached_state {
->>  +=09TUSB320_ATTACHED_STATE_NONE,
->>  +=09TUSB320_ATTACHED_STATE_DFP,
->>  +=09TUSB320_ATTACHED_STATE_UFP,
->>  +=09TUSB320_ATTACHED_STATE_ACC,
->>  +};
->>  +
->>  +enum tusb320_mode {
->>  +=09TUSB320_MODE_PORT,
->>  +=09TUSB320_MODE_UFP,
->>  +=09TUSB320_MODE_DFP,
->>  +=09TUSB320_MODE_DRP,
->>  +};
->>=20
->>   struct tusb320_priv {
->>   =09struct device *dev;
->>   =09struct regmap *regmap;
->>   =09struct extcon_dev *edev;
->>  +
->>  +=09enum tusb320_attached_state state;
->>   };
->>=20
->>   static const char * const tusb_attached_states[] =3D {
->>  @@ -37,6 +54,13 @@ static const char * const tusb_attached_states[]=20
->> =3D {
->>   =09[TUSB320_ATTACHED_STATE_ACC]  =3D "accessory",
->>   };
->>=20
->>  +static const char * const tusb_modes[] =3D {
->>  +=09[TUSB320_MODE_PORT] =3D "maintain mode set by PORT pin",
->>  +=09[TUSB320_MODE_UFP]  =3D "upstream facing port",
->>  +=09[TUSB320_MODE_DFP]  =3D "downstream facing port",
->>  +=09[TUSB320_MODE_DRP]  =3D "dual role port",
->>  +};
->>  +
->>   static const unsigned int tusb320_extcon_cable[] =3D {
->>   =09EXTCON_USB,
->>   =09EXTCON_USB_HOST,
->>  @@ -62,26 +86,77 @@ static int tusb320_check_signature(struct=20
->> tusb320_priv *priv)
->>   =09return 0;
->>   }
->>=20
->>  +static int tusb320_set_mode(struct tusb320_priv *priv, enum=20
->> tusb320_mode mode)
->>  +{
->>  +=09int ret;
->>  +
->>  +=09/* Mode cannot be changed while cable is attached */
->>  +=09if(priv->state !=3D TUSB320_ATTACHED_STATE_NONE)
->>  +=09=09return -EBUSY;
->=20
-> When tusb320_set_mode() is called from probe() via tusb320_reset(),
-> priv->state will be always be 0 as it hasn't been read from the chip
-> yet.
+On Tue, 27 Jul 2021 19:29:03 -0400
+Liam Beguin <liambeguin@gmail.com> wrote:
 
-I'll move the call after the first tusb320_irq_handler() call to read=20
-the state first.
+> From: Liam Beguin <lvb@xiphos.com>
+> 
+> This driver supports devices with 14-bit and 16-bit sample sizes.
+> This is not always handled properly by spi controllers and can fail. To
+> work around this limitation, pad samples to 16-bit and split the sample
+> into two 8-bit messages in the event that only 8-bit messages are
+> supported by the controller.
+> 
+> Signed-off-by: Liam Beguin <lvb@xiphos.com>
+> ---
+>  drivers/iio/adc/ad7949.c | 62 ++++++++++++++++++++++++++++++++++------
+>  1 file changed, 54 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/ad7949.c b/drivers/iio/adc/ad7949.c
+> index 0b549b8bd7a9..f1702c54c8be 100644
+> --- a/drivers/iio/adc/ad7949.c
+> +++ b/drivers/iio/adc/ad7949.c
+> @@ -67,6 +67,7 @@ static const struct ad7949_adc_spec ad7949_adc_spec[] = {
+>   * @indio_dev: reference to iio structure
+>   * @spi: reference to spi structure
+>   * @resolution: resolution of the chip
+> + * @bits_per_word: number of bits per SPI word
+>   * @cfg: copy of the configuration register
+>   * @current_channel: current channel in use
+>   * @buffer: buffer to send / receive data to / from device
+> @@ -77,6 +78,7 @@ struct ad7949_adc_chip {
+>  	struct iio_dev *indio_dev;
+>  	struct spi_device *spi;
+>  	u8 resolution;
+> +	u8 bits_per_word;
+>  	u16 cfg;
+>  	unsigned int current_channel;
+>  	u16 buffer ____cacheline_aligned;
+> @@ -86,19 +88,34 @@ static int ad7949_spi_write_cfg(struct ad7949_adc_chip *ad7949_adc, u16 val,
+>  				u16 mask)
+>  {
+>  	int ret;
+> -	int bits_per_word = ad7949_adc->resolution;
+> -	int shift = bits_per_word - AD7949_CFG_REG_SIZE_BITS;
 
->=20
-> Also, per CodingStyle, please ensure there's a space between the "if"
-> and the opening paren (here and elsewhere in this patchset)
->=20
+The define for this was removed in patch 1.  I'll fix that up whilst applying by
+keeping it until this patch.  Please check build passes on intermediate points
+during a patch series as otherwise we may break bisectability and that's really
+annoying if you are bisecting!
 
-Noted.
+Jonathan
 
->>  +
->>  +=09/* Write mode */
->>  +=09ret =3D regmap_write_bits(priv->regmap, TUSB320_REGA,
->>  +=09=09TUSB320_REGA_MODE_SELECT_MASK << TUSB320_REGA_MODE_SELECT_SHIFT,
->>  +=09=09mode << TUSB320_REGA_MODE_SELECT_SHIFT);
->>  +=09if(ret) {
->>  +=09=09dev_err(priv->dev, "failed to write mode: %d\n", ret);
->>  +=09=09return ret;
->>  +=09}
->>  +
->>  +=09return 0;
->>  +}
->>  +
->>  +static int tusb320_reset(struct tusb320_priv *priv)
->>  +{
->>  +=09int ret;
->>  +
->>  +=09/* Set mode to default (follow PORT pin) */
->>  +=09ret =3D tusb320_set_mode(priv, TUSB320_MODE_PORT);
->>  +=09if(ret && ret !=3D -EBUSY) {
->>  +=09=09dev_err(priv->dev,
->>  +=09=09=09"failed to set mode to PORT: %d\n", ret);
->>  +=09=09return ret;
->>  +=09}
->>  +
->>  +=09/* Perform soft reset */
->>  +=09ret =3D regmap_write_bits(priv->regmap, TUSB320_REGA,
->>  +=09=09=09TUSB320_REGA_I2C_SOFT_RESET, 1);
->>  +=09if(ret) {
->>  +=09=09dev_err(priv->dev,
->>  +=09=09=09"failed to write soft reset bit: %d\n", ret);
->>  +=09=09return ret;
->>  +=09}
->>  +
->>  +=09return 0;
->>  +}
->>  +
->>   static irqreturn_t tusb320_irq_handler(int irq, void *dev_id)
->>   {
->>   =09struct tusb320_priv *priv =3D dev_id;
->>  -=09int state, polarity;
->>  -=09unsigned reg;
->>  +=09int state, polarity, mode;
->>  +=09unsigned reg9, rega;
->>  +
->>  +=09if (regmap_read(priv->regmap, TUSB320_REG9, &reg9)) {
->>  +=09=09dev_err(priv->dev, "error during register 0x9 i2c read!\n");
->>  +=09=09return IRQ_NONE;
->>  +=09}
->>=20
->>  -=09if (regmap_read(priv->regmap, TUSB320_REG9, &reg)) {
->>  -=09=09dev_err(priv->dev, "error during i2c read!\n");
->>  +=09if (regmap_read(priv->regmap, TUSB320_REGA, &rega)) {
->>  +=09=09dev_err(priv->dev, "error during register 0xa i2c read!\n");
->=20
-> Why is this register being read in the interrupt handler? The
-> datasheet's documentation for the INTERRUPT_STATUS register says that=20
-> an
-> interrupt will be generated "whenever a CSR with RU in [the] Access=20
-> field
-> changes" (i.e., whenever hardware has autonomously updated a value).=20
-> As
-> far as I can see, there are no RU registers here.
-
-My chip had its mode set to UFP by default which contradicted the=20
-datasheet where
-it's stated that the default is to follow the PORT pin, so I thought it=20
-was being
-changed on its own somehow, so I read the register here to debug. But=20
-thinking
-about it now, it's probably being set to UFP by the bootloader since as=20
-you said
-the chip doesn't change its mode on its own. I'll just remove this=20
-change.
-
->=20
->>   =09=09return IRQ_NONE;
->>   =09}
->>=20
->>  -=09if (!(reg & TUSB320_REG9_INTERRUPT_STATUS))
->>  +=09if (!(reg9 & TUSB320_REG9_INTERRUPT_STATUS))
->>   =09=09return IRQ_NONE;
->>=20
->>  -=09state =3D (reg >> TUSB320_REG9_ATTACHED_STATE_SHIFT) &
->>  +=09state =3D (reg9 >> TUSB320_REG9_ATTACHED_STATE_SHIFT) &
->>   =09=09TUSB320_REG9_ATTACHED_STATE_MASK;
->>  -=09polarity =3D !!(reg & TUSB320_REG9_CABLE_DIRECTION);
->>  +=09polarity =3D !!(reg9 & TUSB320_REG9_CABLE_DIRECTION);
->>  +=09mode =3D (rega >> TUSB320_REGA_MODE_SELECT_SHIFT) &
->>  +=09=09TUSB320_REGA_MODE_SELECT_MASK;
->>=20
->>  -=09dev_dbg(priv->dev, "attached state: %s, polarity: %d\n",
->>  -=09=09tusb_attached_states[state], polarity);
->>  +=09dev_dbg(priv->dev, "mode: %s, attached state: %s, polarity: %d\n",
->>  +=09=09tusb_modes[mode], tusb_attached_states[state], polarity);
->=20
-> What's the purpose of tracing the mode here? Since the chip does not
-> change the mode on its own, it should always be whatever it was last=20
-> set
-> to, correct?
-
-Same answer as question above.
-
->=20
->>   =09extcon_set_state(priv->edev, EXTCON_USB,
->>   =09=09=09 state =3D=3D TUSB320_ATTACHED_STATE_UFP);
->>  @@ -96,7 +171,10 @@ static irqreturn_t tusb320_irq_handler(int irq,=20
->> void *dev_id)
->>   =09extcon_sync(priv->edev, EXTCON_USB);
->>   =09extcon_sync(priv->edev, EXTCON_USB_HOST);
->>=20
->>  -=09regmap_write(priv->regmap, TUSB320_REG9, reg);
->>  +=09priv->state =3D state;
->>  +
->>  +=09regmap_write(priv->regmap, TUSB320_REG9, reg9);
->>  +=09regmap_write(priv->regmap, TUSB320_REGA, rega);
->=20
-> The write to REG9 is required in order to clear the INTERRUPT_STATUS
-> bit, but I do not see a need to write back to REGA...
-
-I didn't figure out the reason for this write actually so I got=20
-confused. I'll remove
-this along with reading REGA and tracing the mode.
-
->=20
->>=20
->>   =09return IRQ_HANDLED;
->>   }
->>  @@ -137,6 +215,11 @@ static int tusb320_extcon_probe(struct=20
->> i2c_client *client,
->>   =09=09return ret;
->>   =09}
->>=20
->>  +=09/* Reset chip to its default state */
->>  +=09ret =3D tusb320_reset(priv);
->>  +=09if(ret)
->>  +=09=09dev_warn(priv->dev, "failed to reset chip: %d\n", ret);
->>  +
->=20
-> As mentioned above, the tusb320_reset() should be probably be done=20
-> after
-> the call to tusb320_irq_handler(), which will read and update the
-> attached state.
->=20
->>   =09extcon_set_property_capability(priv->edev, EXTCON_USB,
->>   =09=09=09=09       EXTCON_PROP_USB_TYPEC_POLARITY);
->>   =09extcon_set_property_capability(priv->edev, EXTCON_USB_HOST,
->>  --
->>  2.32.0
->>=20
->>=20
->=20
-> Thanks,
->  Michael
-
-Regards,
-Yassine
-
+>  	struct spi_message msg;
+>  	struct spi_transfer tx[] = {
+>  		{
+>  			.tx_buf = &ad7949_adc->buffer,
+>  			.len = 2,
+> -			.bits_per_word = bits_per_word,
+> +			.bits_per_word = ad7949_adc->bits_per_word,
+>  		},
+>  	};
+>  
+> +	ad7949_adc->buffer = 0;
+>  	ad7949_adc->cfg = (val & mask) | (ad7949_adc->cfg & ~mask);
+> -	ad7949_adc->buffer = ad7949_adc->cfg << shift;
+> +
+> +	switch (ad7949_adc->bits_per_word) {
+> +	case 16:
+> +		ad7949_adc->buffer = ad7949_adc->cfg << 2;
+> +		break;
+> +	case 14:
+> +		ad7949_adc->buffer = ad7949_adc->cfg;
+> +		break;
+> +	case 8:
+> +		/* Here, type is big endian as it must be sent in two transfers */
+> +		ad7949_adc->buffer = (u16)cpu_to_be16(ad7949_adc->cfg << 2);
+> +		break;
+> +	default:
+> +		dev_err(&ad7949_adc->indio_dev->dev, "unsupported BPW\n");
+> +		return -EINVAL;
+> +	}
+> +
+>  	spi_message_init_with_transfers(&msg, tx, 1);
+>  	ret = spi_sync(ad7949_adc->spi, &msg);
+>  
+> @@ -115,14 +132,12 @@ static int ad7949_spi_read_channel(struct ad7949_adc_chip *ad7949_adc, int *val,
+>  {
+>  	int ret;
+>  	int i;
+> -	int bits_per_word = ad7949_adc->resolution;
+> -	int mask = GENMASK(ad7949_adc->resolution - 1, 0);
+>  	struct spi_message msg;
+>  	struct spi_transfer tx[] = {
+>  		{
+>  			.rx_buf = &ad7949_adc->buffer,
+>  			.len = 2,
+> -			.bits_per_word = bits_per_word,
+> +			.bits_per_word = ad7949_adc->bits_per_word,
+>  		},
+>  	};
+>  
+> @@ -157,7 +172,25 @@ static int ad7949_spi_read_channel(struct ad7949_adc_chip *ad7949_adc, int *val,
+>  
+>  	ad7949_adc->current_channel = channel;
+>  
+> -	*val = ad7949_adc->buffer & mask;
+> +	switch (ad7949_adc->bits_per_word) {
+> +	case 16:
+> +		*val = ad7949_adc->buffer;
+> +		/* Shift-out padding bits */
+> +		*val >>= 16 - ad7949_adc->resolution;
+> +		break;
+> +	case 14:
+> +		*val = ad7949_adc->buffer & GENMASK(13, 0);
+> +		break;
+> +	case 8:
+> +		/* Here, type is big endian as data was sent in two transfers */
+> +		*val = be16_to_cpu(ad7949_adc->buffer);
+> +		/* Shift-out padding bits */
+> +		*val >>= 16 - ad7949_adc->resolution;
+> +		break;
+> +	default:
+> +		dev_err(&ad7949_adc->indio_dev->dev, "unsupported BPW\n");
+> +		return -EINVAL;
+> +	}
+>  
+>  	return 0;
+>  }
+> @@ -265,6 +298,7 @@ static int ad7949_spi_init(struct ad7949_adc_chip *ad7949_adc)
+>  
+>  static int ad7949_spi_probe(struct spi_device *spi)
+>  {
+> +	u32 spi_ctrl_mask = spi->controller->bits_per_word_mask;
+>  	struct device *dev = &spi->dev;
+>  	const struct ad7949_adc_spec *spec;
+>  	struct ad7949_adc_chip *ad7949_adc;
+> @@ -291,6 +325,18 @@ static int ad7949_spi_probe(struct spi_device *spi)
+>  	indio_dev->num_channels = spec->num_channels;
+>  	ad7949_adc->resolution = spec->resolution;
+>  
+> +	/* Set SPI bits per word */
+> +	if (spi_ctrl_mask & SPI_BPW_MASK(ad7949_adc->resolution)) {
+> +		ad7949_adc->bits_per_word = ad7949_adc->resolution;
+> +	} else if (spi_ctrl_mask == SPI_BPW_MASK(16)) {
+> +		ad7949_adc->bits_per_word = 16;
+> +	} else if (spi_ctrl_mask == SPI_BPW_MASK(8)) {
+> +		ad7949_adc->bits_per_word = 8;
+> +	} else {
+> +		dev_err(dev, "unable to find common BPW with spi controller\n");
+> +		return -EINVAL;
+> +	}
+> +
+>  	ad7949_adc->vref = devm_regulator_get(dev, "vref");
+>  	if (IS_ERR(ad7949_adc->vref)) {
+>  		dev_err(dev, "fail to request regulator\n");
 
