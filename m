@@ -2,143 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EFD833DC88B
-	for <lists+devicetree@lfdr.de>; Sun,  1 Aug 2021 00:05:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CBCC3DC8BC
+	for <lists+devicetree@lfdr.de>; Sun,  1 Aug 2021 00:50:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229958AbhGaWFh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 31 Jul 2021 18:05:37 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:55516 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229560AbhGaWFh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 31 Jul 2021 18:05:37 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=MXXfRvh2b8PuxEin99HbUG03NW+7u7VDu/JhwY7Oahw=; b=JDDyCJR0fdSb+1ODOJF5+hSOnT
-        v11BkeW3mVAMkJ2EPrwQ92ONytPZrg7bc7/3Twl3CDkS2N5XpKVLX3jmuncT5/1OmjZQ+6dKQZziV
-        gusFgRTyA3EW+I6bENx3UlNUEFk51iNsgXUq/b2NYT5m6zgtCW+nJc4VqP+kzFHT1EhE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1m9x6a-00Ff1q-2F; Sun, 01 Aug 2021 00:05:16 +0200
-Date:   Sun, 1 Aug 2021 00:05:16 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>,
-        netdev@vger.kernel.org, robh+dt@kernel.org,
-        UNGLinuxDriver@microchip.com, Woojung.Huh@microchip.com,
-        hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
-        kuba@kernel.org, linux-kernel@vger.kernel.org,
-        vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 net-next 05/10] net: dsa: microchip: add DSA support
- for microchip lan937x
-Message-ID: <YQXJHA+z+hXjxe6+@lunn.ch>
-References: <20210723173108.459770-1-prasanna.vengateshan@microchip.com>
- <20210723173108.459770-6-prasanna.vengateshan@microchip.com>
- <20210731150416.upe5nwkwvwajhwgg@skbuf>
+        id S229505AbhGaWvD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Jul 2021 18:51:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46066 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229560AbhGaWvD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Jul 2021 18:51:03 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A443C0613CF;
+        Sat, 31 Jul 2021 15:50:56 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id j1so20325479pjv.3;
+        Sat, 31 Jul 2021 15:50:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5ccOmKGqAMkhwq31OLMcVjOhchprcLxq6RDKgsBdQFs=;
+        b=mZWaMTj3EpxN8tSLODH97h8uPSbvNy45r4BNkaTAqVdZo+5//hJB/BLP0CVeV/ppit
+         FUEFAuG0avqzBQ3hj862RvEh+FvFOxG3tadrhFD+tkc9peaSAUKbbnsRKCZsBdZHSo7u
+         /zuoRbBgF2sd22FsvNXwCSSrbvejB55Oc1vA0Wp3or+qc+otCTJ71WD2td/u1TnUg8gf
+         Ihb4OOFtMTknD/i0fe+sDuTH3oGJ6tGtGcbiSqY7JIeMvHIeJYt3EtTdP2PrAHchlUsI
+         itChO72DNemc2uUKbCgbf6iS9vGE8mwGsLJmK3dXW7mnyY4JBQvKTWWoTAN8/NgUHY8S
+         klGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5ccOmKGqAMkhwq31OLMcVjOhchprcLxq6RDKgsBdQFs=;
+        b=X83xz7YcY2vGot1VgR0SzveEESMXbm1uqmSCJ8ExCb9KzUCPpmic+4/bVN+85Vnl1y
+         a++ccVaUjxh1KCcDSpNIo9sjf9Son4L7CV97E+aZAgOTeE87PpoGwXZivSpF7rwAgHMH
+         pYPd53QGjEk5vbTo5tI8Fjzn5N4a09nFYFEFXv11avmJpRgqQVxX14n3fzTULQYdcklU
+         f4e5kyDRMCG4aQh9X/Mg+Yc09+QmgHtPmt2f5veImoyu8+EP3sZBdCS5zZP4qdnBq5Rr
+         ESrndXvNnPTsY/6P9MRWqLAe7vcw9A3PwnH40Ie2MGqZeDdmXvcXkrnAM/k2ARSThua2
+         fWag==
+X-Gm-Message-State: AOAM531UDFH6OW8YBGK7MHRg2lH4jeoXjMu08qSidgu59jB0PDlP9i1O
+        0edlASnDKo21JYrVCg8ccOY=
+X-Google-Smtp-Source: ABdhPJzELZqnT2vtdNh6hTPdTJ8H1uP75TJks3eb6I+eDIx/P+FExZ0KF/DrCjmkrKMEbpTIJ3vtng==
+X-Received: by 2002:a17:902:e804:b029:12c:af3b:b172 with SMTP id u4-20020a170902e804b029012caf3bb172mr587680plg.2.1627771855477;
+        Sat, 31 Jul 2021 15:50:55 -0700 (PDT)
+Received: from localhost.localdomain ([125.62.118.205])
+        by smtp.googlemail.com with ESMTPSA id 20sm6980578pfi.170.2021.07.31.15.50.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 31 Jul 2021 15:50:54 -0700 (PDT)
+From:   Puranjay Mohan <puranjay12@gmail.com>
+To:     Michael.Hennerich@analog.com, alexandru.ardelean@analog.com,
+        jic23@kernel.org, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        lars@metafoo.de, Dragos.Bogdan@analog.com, Darius.Berghe@analog.com
+Cc:     Puranjay Mohan <puranjay12@gmail.com>
+Subject: [PATCH v7 0/3] iio: accel: add support for ADXL355
+Date:   Sun,  1 Aug 2021 04:20:42 +0530
+Message-Id: <20210731225045.399445-1-puranjay12@gmail.com>
+X-Mailer: git-send-email 2.30.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210731150416.upe5nwkwvwajhwgg@skbuf>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > +void lan937x_mac_config(struct ksz_device *dev, int port,
-> > +			phy_interface_t interface)
-> > +{
-> > +	u8 data8;
-> > +
-> > +	lan937x_pread8(dev, port, REG_PORT_XMII_CTRL_1, &data8);
-> > +
-> > +	/* clear MII selection & set it based on interface later */
-> > +	data8 &= ~PORT_MII_SEL_M;
-> > +
-> > +	/* configure MAC based on interface */
-> > +	switch (interface) {
-> > +	case PHY_INTERFACE_MODE_MII:
-> > +		lan937x_config_gbit(dev, false, &data8);
-> > +		data8 |= PORT_MII_SEL;
-> > +		break;
-> > +	case PHY_INTERFACE_MODE_RMII:
-> > +		lan937x_config_gbit(dev, false, &data8);
-> > +		data8 |= PORT_RMII_SEL;
-> > +		break;
-> > +	case PHY_INTERFACE_MODE_RGMII:
-> > +	case PHY_INTERFACE_MODE_RGMII_ID:
-> > +	case PHY_INTERFACE_MODE_RGMII_TXID:
-> > +	case PHY_INTERFACE_MODE_RGMII_RXID:
-> > +		lan937x_config_gbit(dev, true, &data8);
-> > +		data8 |= PORT_RGMII_SEL;
-> > +
-> > +		/* Add RGMII internal delay for cpu port*/
-> > +		if (dsa_is_cpu_port(dev->ds, port)) {
-> 
-> Why only for the CPU port? I would like Andrew/Florian to have a look
-> here, I guess the assumption is that if the port has a phy-handle, the
-> RGMII delays should be dealt with by the PHY, but the logic seems to be
-> "is a CPU port <=> has a phy-handle / isn't a CPU port <=> doesn't have
-> a phy-handle"? What if it's a fixed-link port connected to a downstream
-> switch, for which this one is a DSA master?
+Add the dt-bindings and the driver for ADXL355 3-axis MEMS Accelerometer.
 
-The marvell driver applies delays unconditionally. And as far as i
-remember, it is only used in the use case you suggest, a DSA link,
-which is using RGMII. For marvell switches, that is pretty unusual,
-most boards use 1000BaseX or higher SERDES speeds for links between
-switches.
+Changes since v6:
+1. Use interrupt-names property in device tree document.
+2. Add triggered buffer support.
+3. Use a static table for offset and data registers.
+4. Fix coding style issues.
+5. move defines from header to c file.
 
-I'm not sure if we have the case of an external PHY using RGMII. I
-suspect it might actually be broken, because i think both the MAC and
-the PHY might add the same delay. For phylib in general, if the MAC
-applies the delays, it needs to manipulate the value passed to the PHY
-so it also does not add delays. And i'm not sure DSA does that.
+Changes since v5:
+1. Used get_unaligned_be24() and  get_unaligned_be16() to parse
+acceleration and temperature data. This solves sparse errors and also
+make the code more understandable.
 
-So limiting RGMII delays to only the CPU port is not
-unreasonable. However, i suspect you are correct about chained
-switches not working.
+Changes since v4:
+1. Fix errors reported by sparse.
 
-We might need to look at this at a higher level, when the PHY is
-connected to the MAC and what mode gets passed to it.
- 
-> > +			if (interface == PHY_INTERFACE_MODE_RGMII_ID ||
-> > +			    interface == PHY_INTERFACE_MODE_RGMII_RXID)
-> > +				data8 |= PORT_RGMII_ID_IG_ENABLE;
-> > +
-> > +			if (interface == PHY_INTERFACE_MODE_RGMII_ID ||
-> > +			    interface == PHY_INTERFACE_MODE_RGMII_TXID)
-> > +				data8 |= PORT_RGMII_ID_EG_ENABLE;
-> > +		}
-> > +		break;
-> > +	default:
-> > +		dev_err(dev->dev, "Unsupported interface '%s' for port %d\n",
-> > +			phy_modes(interface), port);
-> > +		return;
-> > +	}
-> > +
-> > +	/* Write the updated value */
-> > +	lan937x_pwrite8(dev, port, REG_PORT_XMII_CTRL_1, data8);
-> > +}
-> 
-> > +static int lan937x_mdio_register(struct dsa_switch *ds)
-> > +{
-> > +	struct ksz_device *dev = ds->priv;
-> > +	int ret;
-> > +
-> > +	dev->mdio_np = of_get_child_by_name(ds->dev->of_node, "mdio");
-> 
-> So you support both the cases where an internal PHY is described using
-> OF bindings, and where the internal PHY is implicitly accessed using the
-> slave_mii_bus of the switch, at a PHY address equal to the port number,
-> and with no phy-handle or fixed-link device tree property for that port?
-> 
-> Do you need both alternatives? The first is already more flexible than
-> the second.
+Changes since v3:
+1. Fix errors in yaml DT doc.
+2. Change SPDX-License-Identifier to GPL-2.0-only OR BSD-2-Clause
 
-The first is also much more verbose in DT, and the second generally
-just works without any DT. What can be tricky with the second is
-getting PHY interrupts to work, but it is possible, the mv88e6xxx does
-it.
+Changes since v2:
+1. Add separate DT binding doc in yaml.
+2. Use ____cacheline_aligned buffer for regmap_bulk_read/write calls.
+3. Make code consistent by using same style in switch case.
+4. Use FIELD_PREP in place of custom macros.
+5. Make Kconfig description more informative.
 
-	Andrew
+Changes since v1:
+1. Remove the declarations for static regmap structures from adxl355.h.
+This was missed in the v1 and caused errors.
+2. Make switch case statements consistent by directly returning from
+each case rather than saving the return in a variable.
+3. Some coding style changes.
+
+Changes since v0:
+1. Move adxl355_hpf_3db_table to adxl355_data structure. This is done to make
+sure that each device gets its own table.
+2. Make local regmap definitions private to adxl355_core.c.
+3. Other minor coding style changes.
+
+Puranjay Mohan (3):
+  dt-bindings: iio: accel: Add DT binding doc for ADXL355
+  iio: accel: Add driver support for ADXL355
+  iio: accel: adxl355: Add triggered buffer support
+
+ .../bindings/iio/accel/adi,adxl355.yaml       |  88 +++
+ MAINTAINERS                                   |   7 +
+ drivers/iio/accel/Kconfig                     |  29 +
+ drivers/iio/accel/Makefile                    |   3 +
+ drivers/iio/accel/adxl355.h                   |  19 +
+ drivers/iio/accel/adxl355_core.c              | 682 ++++++++++++++++++
+ drivers/iio/accel/adxl355_i2c.c               |  65 ++
+ drivers/iio/accel/adxl355_spi.c               |  67 ++
+ 8 files changed, 960 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adxl355.yaml
+ create mode 100644 drivers/iio/accel/adxl355.h
+ create mode 100644 drivers/iio/accel/adxl355_core.c
+ create mode 100644 drivers/iio/accel/adxl355_i2c.c
+ create mode 100644 drivers/iio/accel/adxl355_spi.c
+
+-- 
+2.30.1
+
