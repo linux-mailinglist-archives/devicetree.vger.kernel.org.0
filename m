@@ -2,151 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8263E3DC84C
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jul 2021 23:38:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFD833DC88B
+	for <lists+devicetree@lfdr.de>; Sun,  1 Aug 2021 00:05:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231774AbhGaVik (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 31 Jul 2021 17:38:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56798 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231768AbhGaVij (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Jul 2021 17:38:39 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB02CC0613CF
-        for <devicetree@vger.kernel.org>; Sat, 31 Jul 2021 14:38:32 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id z2so25836934lft.1
-        for <devicetree@vger.kernel.org>; Sat, 31 Jul 2021 14:38:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=YVpV8/vvaY59r2A1osNnhfzz9lEm81RglXyawlMfFVs=;
-        b=uwP00Qp0fTpTjjVrQ+JdVjl/XLYQC60YKVVorf0eEHF4HQbh4U08lHxJp/5EthwAn7
-         +2A3xL4PrhZHmczDE8NsbuZc9IZMA4+dT2qgYEndo9b3hoyv1vo7SVlhD5SiqxzXTVqt
-         ur59AEo7oCCHcnJhW6wVsmYC7RIyFEiBNYYtQhU9975oJ+q1dz4A+5T9NWX9WFZxc7hb
-         HOKH+cmb6BkxKwYiJYWYO7Dv82iMRTn1VRkH8hOc9WBpjXYz2wJP9WLD5+jp0MBI2t85
-         b77ohLQ9CBpiUuEFuuFuBuZY62cxU7JTA3CFBLiJp8fnwsnXE5pXLDUF3MDztHS31sqS
-         AdUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=YVpV8/vvaY59r2A1osNnhfzz9lEm81RglXyawlMfFVs=;
-        b=D1yUtSxRUPpTuDlBZetM5cBtzAblplEWSdeqLR0uZNbElAIvNn7yUPENuah3/RDCYf
-         Et271XjDdopxVWk4QckWC3y9UNi7EAcYqtKdB1OCj27kKNbtXM/anwnQoZ1G2AIRIpQs
-         AWZSjUWJQKSelGCi8RAGYJqVuOkb4kbwKz8jX0mUTmTtKJfEvCg6xvSSAA7e7LS25IHg
-         PZM6uHb/6gG6bEr55iAxdFfdJ1JTNLZ4qiHFYlsgN8USB5xQqhezvMcjC8jIzdJZjLOI
-         NqCeHsg354/bQluhXtMpx8rSFBu+B8aT0F3rLSARax/twY7jBdQ4q9bIfN4cVt4zF9ir
-         xcrg==
-X-Gm-Message-State: AOAM530P8gm+Wp8lSmIvecbk8O9Bnbip34OjK9fqeq3/uyOSfqpKBQBR
-        rNIvEUf1yf/O/XZpsJFqM0T4rA==
-X-Google-Smtp-Source: ABdhPJzLixD4oy8KuFmTMFF3ePfGpisk3L0YN6JPpCHxYJFkrunG0zDFmX8iZ2Nm3FRrmpW4V1PKZA==
-X-Received: by 2002:a05:6512:3691:: with SMTP id d17mr2718377lfs.222.1627767511146;
-        Sat, 31 Jul 2021 14:38:31 -0700 (PDT)
-Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
-        by smtp.gmail.com with ESMTPSA id t17sm440430ljk.102.2021.07.31.14.38.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 31 Jul 2021 14:38:30 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Jens Axboe <axboe@kernel.dk>, linux-ide@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Imre Kaloz <kaloz@openwrt.org>,
-        Krzysztof Halasa <khalasa@piap.pl>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        id S229958AbhGaWFh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Jul 2021 18:05:37 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:55516 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229560AbhGaWFh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 31 Jul 2021 18:05:37 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=MXXfRvh2b8PuxEin99HbUG03NW+7u7VDu/JhwY7Oahw=; b=JDDyCJR0fdSb+1ODOJF5+hSOnT
+        v11BkeW3mVAMkJ2EPrwQ92ONytPZrg7bc7/3Twl3CDkS2N5XpKVLX3jmuncT5/1OmjZQ+6dKQZziV
+        gusFgRTyA3EW+I6bENx3UlNUEFk51iNsgXUq/b2NYT5m6zgtCW+nJc4VqP+kzFHT1EhE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1m9x6a-00Ff1q-2F; Sun, 01 Aug 2021 00:05:16 +0200
+Date:   Sun, 1 Aug 2021 00:05:16 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>,
+        netdev@vger.kernel.org, robh+dt@kernel.org,
+        UNGLinuxDriver@microchip.com, Woojung.Huh@microchip.com,
+        hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
+        kuba@kernel.org, linux-kernel@vger.kernel.org,
+        vivien.didelot@gmail.com, f.fainelli@gmail.com,
         devicetree@vger.kernel.org
-Subject: [PATCH 4/5 v2] pata: ixp4xx: Add DT bindings
-Date:   Sat, 31 Jul 2021 23:35:54 +0200
-Message-Id: <20210731213555.2965356-4-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210731213555.2965356-1-linus.walleij@linaro.org>
-References: <20210731213555.2965356-1-linus.walleij@linaro.org>
+Subject: Re: [PATCH v3 net-next 05/10] net: dsa: microchip: add DSA support
+ for microchip lan937x
+Message-ID: <YQXJHA+z+hXjxe6+@lunn.ch>
+References: <20210723173108.459770-1-prasanna.vengateshan@microchip.com>
+ <20210723173108.459770-6-prasanna.vengateshan@microchip.com>
+ <20210731150416.upe5nwkwvwajhwgg@skbuf>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210731150416.upe5nwkwvwajhwgg@skbuf>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds device tree bindings for the Intel IXP4xx compact flash card
-interface.
+> > +void lan937x_mac_config(struct ksz_device *dev, int port,
+> > +			phy_interface_t interface)
+> > +{
+> > +	u8 data8;
+> > +
+> > +	lan937x_pread8(dev, port, REG_PORT_XMII_CTRL_1, &data8);
+> > +
+> > +	/* clear MII selection & set it based on interface later */
+> > +	data8 &= ~PORT_MII_SEL_M;
+> > +
+> > +	/* configure MAC based on interface */
+> > +	switch (interface) {
+> > +	case PHY_INTERFACE_MODE_MII:
+> > +		lan937x_config_gbit(dev, false, &data8);
+> > +		data8 |= PORT_MII_SEL;
+> > +		break;
+> > +	case PHY_INTERFACE_MODE_RMII:
+> > +		lan937x_config_gbit(dev, false, &data8);
+> > +		data8 |= PORT_RMII_SEL;
+> > +		break;
+> > +	case PHY_INTERFACE_MODE_RGMII:
+> > +	case PHY_INTERFACE_MODE_RGMII_ID:
+> > +	case PHY_INTERFACE_MODE_RGMII_TXID:
+> > +	case PHY_INTERFACE_MODE_RGMII_RXID:
+> > +		lan937x_config_gbit(dev, true, &data8);
+> > +		data8 |= PORT_RGMII_SEL;
+> > +
+> > +		/* Add RGMII internal delay for cpu port*/
+> > +		if (dsa_is_cpu_port(dev->ds, port)) {
+> 
+> Why only for the CPU port? I would like Andrew/Florian to have a look
+> here, I guess the assumption is that if the port has a phy-handle, the
+> RGMII delays should be dealt with by the PHY, but the logic seems to be
+> "is a CPU port <=> has a phy-handle / isn't a CPU port <=> doesn't have
+> a phy-handle"? What if it's a fixed-link port connected to a downstream
+> switch, for which this one is a DSA master?
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-ChangeLog v1->v2:
-- Itemize the registers
-- Drop the epansion bus set-up to alleviate warnings
----
- .../ata/intel,ixp4xx-compact-flash.yaml       | 61 +++++++++++++++++++
- 1 file changed, 61 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/ata/intel,ixp4xx-compact-flash.yaml
+The marvell driver applies delays unconditionally. And as far as i
+remember, it is only used in the use case you suggest, a DSA link,
+which is using RGMII. For marvell switches, that is pretty unusual,
+most boards use 1000BaseX or higher SERDES speeds for links between
+switches.
 
-diff --git a/Documentation/devicetree/bindings/ata/intel,ixp4xx-compact-flash.yaml b/Documentation/devicetree/bindings/ata/intel,ixp4xx-compact-flash.yaml
-new file mode 100644
-index 000000000000..52e18600ecff
---- /dev/null
-+++ b/Documentation/devicetree/bindings/ata/intel,ixp4xx-compact-flash.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/ata/intel,ixp4xx-compact-flash.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Intel IXP4xx CompactFlash Card Controller
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description: |
-+  The IXP4xx network processors have a CompactFlash interface that presents
-+  a CompactFlash card to the system as a true IDE (parallel ATA) device. The
-+  device is always connected to the expansion bus of the IXP4xx SoCs using one
-+  or two chip select areas and address translating logic on the board. The
-+  node must be placed inside a chip select node on the IXP4xx expansion bus.
-+
-+properties:
-+  compatible:
-+    const: intel,ixp4xx-compact-flash
-+
-+  reg:
-+    items:
-+      - description: Command interface registers
-+      - description: Control interface registers
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+allOf:
-+  - $ref: pata-common.yaml#
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    bus@c4000000 {
-+      compatible = "intel,ixp43x-expansion-bus-controller", "syscon";
-+      reg = <0xc4000000 0x1000>;
-+      native-endian;
-+      #address-cells = <2>;
-+      #size-cells = <1>;
-+      ranges = <0 0x0 0x50000000 0x01000000>, <1 0x0 0x51000000 0x01000000>;
-+      dma-ranges = <0 0x0 0x50000000 0x01000000>, <1 0x0 0x51000000 0x01000000>;
-+      ide@1,0 {
-+        compatible = "intel,ixp4xx-compact-flash";
-+        reg = <1 0x00000000 0x1000>, <1 0x00040000 0x1000>;
-+        interrupt-parent = <&gpio0>;
-+        interrupts = <12 IRQ_TYPE_EDGE_RISING>;
-+      };
-+    };
-+
-+...
--- 
-2.31.1
+I'm not sure if we have the case of an external PHY using RGMII. I
+suspect it might actually be broken, because i think both the MAC and
+the PHY might add the same delay. For phylib in general, if the MAC
+applies the delays, it needs to manipulate the value passed to the PHY
+so it also does not add delays. And i'm not sure DSA does that.
 
+So limiting RGMII delays to only the CPU port is not
+unreasonable. However, i suspect you are correct about chained
+switches not working.
+
+We might need to look at this at a higher level, when the PHY is
+connected to the MAC and what mode gets passed to it.
+ 
+> > +			if (interface == PHY_INTERFACE_MODE_RGMII_ID ||
+> > +			    interface == PHY_INTERFACE_MODE_RGMII_RXID)
+> > +				data8 |= PORT_RGMII_ID_IG_ENABLE;
+> > +
+> > +			if (interface == PHY_INTERFACE_MODE_RGMII_ID ||
+> > +			    interface == PHY_INTERFACE_MODE_RGMII_TXID)
+> > +				data8 |= PORT_RGMII_ID_EG_ENABLE;
+> > +		}
+> > +		break;
+> > +	default:
+> > +		dev_err(dev->dev, "Unsupported interface '%s' for port %d\n",
+> > +			phy_modes(interface), port);
+> > +		return;
+> > +	}
+> > +
+> > +	/* Write the updated value */
+> > +	lan937x_pwrite8(dev, port, REG_PORT_XMII_CTRL_1, data8);
+> > +}
+> 
+> > +static int lan937x_mdio_register(struct dsa_switch *ds)
+> > +{
+> > +	struct ksz_device *dev = ds->priv;
+> > +	int ret;
+> > +
+> > +	dev->mdio_np = of_get_child_by_name(ds->dev->of_node, "mdio");
+> 
+> So you support both the cases where an internal PHY is described using
+> OF bindings, and where the internal PHY is implicitly accessed using the
+> slave_mii_bus of the switch, at a PHY address equal to the port number,
+> and with no phy-handle or fixed-link device tree property for that port?
+> 
+> Do you need both alternatives? The first is already more flexible than
+> the second.
+
+The first is also much more verbose in DT, and the second generally
+just works without any DT. What can be tricky with the second is
+getting PHY interrupts to work, but it is possible, the mv88e6xxx does
+it.
+
+	Andrew
