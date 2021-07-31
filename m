@@ -2,627 +2,720 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 98C9A3DC6F7
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jul 2021 18:36:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6C0B3DC715
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jul 2021 19:09:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229449AbhGaQhA convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sat, 31 Jul 2021 12:37:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39976 "EHLO mail.kernel.org"
+        id S229811AbhGaRJQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Jul 2021 13:09:16 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42848 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229685AbhGaQhA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 31 Jul 2021 12:37:00 -0400
+        id S229449AbhGaRJP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 31 Jul 2021 13:09:15 -0400
 Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 35C3C6044F;
-        Sat, 31 Jul 2021 16:36:47 +0000 (UTC)
-Date:   Sat, 31 Jul 2021 17:39:28 +0100
+        by mail.kernel.org (Postfix) with ESMTPSA id E07BC60F3A;
+        Sat, 31 Jul 2021 17:09:03 +0000 (UTC)
+Date:   Sat, 31 Jul 2021 18:11:42 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Andreas Klinger <ak@it-klinger.de>
-Cc:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
         Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Jiri Kosina <trivial@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        Slawomir Stepien <sst@poczta.fm>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Vadim Pasternak <vadimp@nvidia.com>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>,
-        linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
-        Tomasz Duszynski <tomasz.duszynski@octakon.com>
-Subject: Re: [PATCH 2/2] iio: chemical: Add driver support for sgp40
-Message-ID: <20210731173928.08d6812f@jic23-huawei>
-In-Reply-To: <20210727163517.GA3468@arbad>
-References: <20210727163517.GA3468@arbad>
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Alexandru Ardelean <aardelean@deviqon.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH v3 2/3] iio: adc: Add driver for Renesas RZ/G2L A/D
+ converter
+Message-ID: <20210731181142.430c50f8@jic23-huawei>
+In-Reply-To: <20210726182850.14328-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20210726182850.14328-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <20210726182850.14328-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 27 Jul 2021 18:35:19 +0200
-Andreas Klinger <ak@it-klinger.de> wrote:
+On Mon, 26 Jul 2021 19:28:49 +0100
+Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
 
-> sgp40 is a gas sensor used for measuring the air quality.
+> Add ADC driver support for Renesas RZ/G2L A/D converter in SW
+> trigger mode.
 > 
-> This driver is reading the raw resistance value which can be passed to
-> a userspace algorithm for further calculation.
+> A/D Converter block is a successive approximation analog-to-digital
+> converter with a 12-bit accuracy and supports a maximum of 8 input
+> channels.
 > 
-> The raw value is also used to calculate an estimated absolute voc index
-> in the range from 0 to 500. For this purpose the raw_mean value of the
-> resistance for which the index value is 250 might be set up as a
-> calibration step.
-> 
-> Compensation of relative humidity and temperature is supported and can
-> be used by writing to device attributes of the driver.
-> 
-> There is a predecesor sensor type (sgp30) already existing. This driver
-> module was not extended because the new sensor is quite different in its
-> i2c telegrams.
-> 
-> Signed-off-by: Andreas Klinger <ak@it-klinger.de>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Hi Andreas,
+Hi Lad,
 
-Non standard ABI in here, so we are missing documentation in Documentation/ABI/testing/sysfs-bus-iio-*
-
-Otherwise a few suggestions inline.
+A few additional comments inline,
 
 Thanks,
 
 Jonathan
 
-
 > ---
->  MAINTAINERS                   |   5 +
->  drivers/iio/chemical/Kconfig  |  11 +
->  drivers/iio/chemical/Makefile |   1 +
->  drivers/iio/chemical/sgp40.c  | 413 ++++++++++++++++++++++++++++++++++
->  4 files changed, 430 insertions(+)
->  create mode 100644 drivers/iio/chemical/sgp40.c
+>  MAINTAINERS                 |   8 +
+>  drivers/iio/adc/Kconfig     |  10 +
+>  drivers/iio/adc/Makefile    |   1 +
+>  drivers/iio/adc/rzg2l_adc.c | 595 ++++++++++++++++++++++++++++++++++++
+>  4 files changed, 614 insertions(+)
+>  create mode 100644 drivers/iio/adc/rzg2l_adc.c
 > 
 > diff --git a/MAINTAINERS b/MAINTAINERS
-> index 19135a9d778e..ed8aae16559d 100644
+> index 6c8be735cc91..6a52f9f4604c 100644
 > --- a/MAINTAINERS
 > +++ b/MAINTAINERS
-> @@ -16707,6 +16707,11 @@ F:	drivers/iio/chemical/scd30_core.c
->  F:	drivers/iio/chemical/scd30_i2c.c
->  F:	drivers/iio/chemical/scd30_serial.c
->  
-> +SENSIRION SGP40 GAS SENSOR DRIVER
-> +M:	Andreas Klinger <ak@it-klinger.de>
-> +S:	Maintained
-> +F:	drivers/iio/chemical/sgp40.c
-> +
->  SENSIRION SPS30 AIR POLLUTION SENSOR DRIVER
->  M:	Tomasz Duszynski <tduszyns@gmail.com>
+> @@ -15839,6 +15839,14 @@ L:	linux-renesas-soc@vger.kernel.org
 >  S:	Maintained
-> diff --git a/drivers/iio/chemical/Kconfig b/drivers/iio/chemical/Kconfig
-> index a4920646e9be..c03667e62732 100644
-> --- a/drivers/iio/chemical/Kconfig
-> +++ b/drivers/iio/chemical/Kconfig
-> @@ -131,6 +131,17 @@ config SENSIRION_SGP30
->  	  To compile this driver as module, choose M here: the
->  	  module will be called sgp30.
+>  F:	drivers/phy/renesas/phy-rcar-gen3-usb*.c
 >  
-> +config SENSIRION_SGP40
-> +	tristate "Sensirion SGP40 gas sensor"
-> +	depends on I2C
-> +	select CRC8
+> +RENESAS RZ/G2L A/D DRIVER
+> +M:	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> +L:	linux-iio@vger.kernel.org
+> +L:	linux-renesas-soc@vger.kernel.org
+> +S:	Supported
+> +F:	Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
+> +F:	drivers/iio/adc/rzg2l_adc.c
+> +
+>  RESET CONTROLLER FRAMEWORK
+>  M:	Philipp Zabel <p.zabel@pengutronix.de>
+>  S:	Maintained
+> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+> index db0c8fb60515..af168e1c9fdb 100644
+> --- a/drivers/iio/adc/Kconfig
+> +++ b/drivers/iio/adc/Kconfig
+> @@ -887,6 +887,16 @@ config ROCKCHIP_SARADC
+>  	  To compile this driver as a module, choose M here: the
+>  	  module will be called rockchip_saradc.
+>  
+> +config RZG2L_ADC
+> +	tristate "Renesas RZ/G2L ADC driver"
+> +	depends on ARCH_R9A07G044 || COMPILE_TEST
 > +	help
-> +	  Say Y here to build I2C interface to support Sensirion SGP40 gas
-> +	  sensor
+> +	  Say yes here to build support for the ADC found in Renesas
+> +	  RZ/G2L family.
 > +
-> +	  To compile this driver as module, choose M here: the
-> +	  module will be called sgp40.
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called rzg2l_adc.
 > +
->  config SPS30
->  	tristate
->  	select IIO_BUFFER
-> diff --git a/drivers/iio/chemical/Makefile b/drivers/iio/chemical/Makefile
-> index 4898690cc155..d07af581f234 100644
-> --- a/drivers/iio/chemical/Makefile
-> +++ b/drivers/iio/chemical/Makefile
-> @@ -16,6 +16,7 @@ obj-$(CONFIG_SCD30_CORE) += scd30_core.o
->  obj-$(CONFIG_SCD30_I2C) += scd30_i2c.o
->  obj-$(CONFIG_SCD30_SERIAL) += scd30_serial.o
->  obj-$(CONFIG_SENSIRION_SGP30)	+= sgp30.o
-> +obj-$(CONFIG_SENSIRION_SGP40)	+= sgp40.o
->  obj-$(CONFIG_SPS30) += sps30.o
->  obj-$(CONFIG_SPS30_I2C) += sps30_i2c.o
->  obj-$(CONFIG_SPS30_SERIAL) += sps30_serial.o
-> diff --git a/drivers/iio/chemical/sgp40.c b/drivers/iio/chemical/sgp40.c
+>  config SC27XX_ADC
+>  	tristate "Spreadtrum SC27xx series PMICs ADC"
+>  	depends on MFD_SC27XX_PMIC || COMPILE_TEST
+> diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
+> index f70d877c555a..d68550f493e3 100644
+> --- a/drivers/iio/adc/Makefile
+> +++ b/drivers/iio/adc/Makefile
+> @@ -82,6 +82,7 @@ obj-$(CONFIG_QCOM_PM8XXX_XOADC) += qcom-pm8xxx-xoadc.o
+>  obj-$(CONFIG_RCAR_GYRO_ADC) += rcar-gyroadc.o
+>  obj-$(CONFIG_RN5T618_ADC) += rn5t618-adc.o
+>  obj-$(CONFIG_ROCKCHIP_SARADC) += rockchip_saradc.o
+> +obj-$(CONFIG_RZG2L_ADC) += rzg2l_adc.o
+>  obj-$(CONFIG_SC27XX_ADC) += sc27xx_adc.o
+>  obj-$(CONFIG_SPEAR_ADC) += spear_adc.o
+>  obj-$(CONFIG_STX104) += stx104.o
+> diff --git a/drivers/iio/adc/rzg2l_adc.c b/drivers/iio/adc/rzg2l_adc.c
 > new file mode 100644
-> index 000000000000..7072c5f3c28d
+> index 000000000000..d05a3208ff9d
 > --- /dev/null
-> +++ b/drivers/iio/chemical/sgp40.c
-> @@ -0,0 +1,413 @@
-> +// SPDX-License-Identifier: GPL-2.0+
+> +++ b/drivers/iio/adc/rzg2l_adc.c
+> @@ -0,0 +1,595 @@
+> +// SPDX-License-Identifier: GPL-2.0
 > +/*
-> + * sgp40.c - Support for Sensirion SGP40 Gas Sensors
+> + * RZ/G2L A/D Converter driver
 > + *
-> + * Copyright (C) 2021 Andreas Klinger <ak@it-klinger.de>
+> + *  Copyright (c) 2021 Renesas Electronics Europe GmbH
 > + *
-> + * I2C slave address: 0x59
-> + *
-> + * Datasheets:
-> + * https://www.sensirion.com/file/datasheet_sgp40
-> + *
-> + * There are two functionalities supported:
-> + * 1) read raw logarithmic resistance value from sensor
-> + *    --> useful to pass it to the algorithm of the sensor vendor for
-> + *    measuring deteriorations and improvements of air quality.
-> + * 2) calculate an estimated absolute voc index (0 - 500 index points) for
-> + *    measuring the air quality.
-> + *    For this purpose the mean value of the resistance can be set up using
-> + *    a device attribute
-
-The info on that ABI also needs to be in ABI docs.  Is it effectively a calibration
-offset?  If so, we have calibbias which might be appropriate.
-
-> + *
-> + * Compensation of relative humidity and temperature can be used by device
-> + * attributes.
+> + * Author: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > + */
 > +
-> +#include <linux/module.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/iio/sysfs.h>
+> +#include <linux/clk.h>
+> +#include <linux/completion.h>
 > +#include <linux/delay.h>
-> +#include <linux/mutex.h>
-> +#include <linux/i2c.h>
-> +#include <linux/crc8.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/io.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/reset.h>
 > +
-> +#define SGP40_CRC8_POLYNOMIAL			0x31
-> +#define SGP40_CRC8_INIT				0xff
-> +
-> +static u8 sgp40_measure_raw_tg[] = {0x26, 0x0F};
+> +#define DRIVER_NAME		"rzg2l-adc"
 
-Only used in one place, I'd just put it down there directly.
+As only used in one place, just put it inline there so we don't need
+to go find if we want to know the value - I'm lazy.
 
 > +
-> +DECLARE_CRC8_TABLE(sgp40_crc8_table);
+> +#define RZG2L_ADM(n)			((n) * 0x4)
+> +#define RZG2L_ADM0_ADCE			BIT(0)
+> +#define RZG2L_ADM0_ADBSY		BIT(1)
+> +#define RZG2L_ADM0_PWDWNB		BIT(2)
+> +#define RZG2L_ADM0_SRESB		BIT(15)
+> +#define RZG2L_ADM1_TRG			BIT(0)
+> +#define RZG2L_ADM1_MS			BIT(2)
+> +#define RZG2L_ADM1_BS			BIT(4)
+> +#define RZG2L_ADM1_EGA_MASK		GENMASK(13, 12)
+> +#define RZG2L_ADM2_CHSEL_MASK		GENMASK(7, 0)
+> +#define RZG2L_ADM3_ADIL_MASK		GENMASK(31, 24)
+> +#define RZG2L_ADM3_ADCMP_MASK		GENMASK(23, 16)
+> +#define RZG2L_ADM3_ADCMP_E		FIELD_PREP(RZG2L_ADM3_ADCMP_MASK, 0xe)
+> +#define RZG2L_ADM3_ADSMP_MASK		GENMASK(15, 0)
 > +
-> +struct sgp40_data {
-> +	struct device		*dev;
-> +	struct i2c_client	*client;
-> +	int			rel_humidity;
-> +	int			temperature;
-> +	int			raw_mean;
-> +	struct mutex		lock;
+> +#define RZG2L_ADINT			0x20
+> +#define RZG2L_ADINT_INTEN_MASK		GENMASK(7, 0)
+> +#define RZG2L_ADINT_CSEEN		BIT(16)
+> +#define RZG2L_ADINT_INTS		BIT(31)
+> +
+> +#define RZG2L_ADSTS			0x24
+> +#define RZG2L_ADSTS_CSEST		BIT(16)
+> +#define RZG2L_ADSTS_INTST_MASK		GENMASK(7, 0)
+> +
+> +#define RZG2L_ADIVC			0x28
+> +#define RZG2L_ADIVC_DIVADC_MASK		GENMASK(8, 0)
+> +#define RZG2L_ADIVC_DIVADC_4		FIELD_PREP(RZG2L_ADIVC_DIVADC_MASK, 0x4)
+> +
+> +#define RZG2L_ADFIL			0x2c
+> +
+> +#define RZG2L_ADCR(n)			(0x30 + ((n) * 0x4))
+> +#define RZG2L_ADCR_AD_MASK		GENMASK(11, 0)
+> +
+> +#define RZG2L_ADSMP_DEFUALT_SAMPLING	0x578
+> +
+> +#define RZG2L_ADC_MAX_CHANNELS		8
+> +#define RZG2L_ADC_CHN_MASK		0x7
+> +#define RZG2L_ADC_TIMEOUT		usecs_to_jiffies(1 * 4)
+> +
+> +struct rzg2l_adc_data {
+> +	const struct iio_chan_spec *channels;
+> +	u8 num_channels;
 > +};
 > +
-> +static const struct iio_chan_spec sgp40_channels[] = {
-> +	{
-> +		.type = IIO_CONCENTRATION,
-> +		.channel2 = IIO_MOD_VOC,
-> +		.info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED),
-> +	},
-> +	{
-> +		.type = IIO_RESISTANCE,
-> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
-> +	},
+> +struct rzg2l_adc {
+> +	void __iomem *base;
+> +	struct clk *pclk;
+> +	struct clk *adclk;
+> +	struct reset_control *presetn;
+> +	struct reset_control *adrstn;
+> +	struct completion completion;
+> +	const struct rzg2l_adc_data *data;
+> +	u16 last_val[RZG2L_ADC_MAX_CHANNELS];
 > +};
 > +
-> +/*
-> + * calculate e^x where n is the exponent multiplied with 100
-> + *
-> + * use taylor approximation which is accurate enough for the purpose of
-> + * coming out with just 500 index points.
-> + */
-> +int sqp40_exp100(int n)
+> +static const char * const rzg2l_adc_channel_name[] = {
+> +	"adc0",
+> +	"adc1",
+> +	"adc2",
+> +	"adc3",
+> +	"adc4",
+> +	"adc5",
+> +	"adc6",
+> +	"adc7",
+> +};
+> +
+> +static unsigned int rzg2l_adc_readl(struct rzg2l_adc *adc, u32 reg)
 > +{
-> +	int x, xn, y, z;
-> +	int s = 1;
+> +	return readl(adc->base + reg);
+> +}
 > +
-> +	if (n < 0) {
-> +		s = -1;
-> +		n *= -1;
-> +	}
+> +static void rzg2l_adc_writel(struct rzg2l_adc *adc, unsigned int reg, u32 val)
+> +{
+> +	writel(val, adc->base + reg);
+> +}
 > +
-> +	x = n;
+> +static void rzg2l_adc_pwr(struct rzg2l_adc *adc, bool on)
+> +{
+> +	u32 reg;
 > +
-> +	y = 100 + x;
-> +	xn = x * x;
-> +	y += xn / 2 / 100;
-> +	xn = x * x * x;
-> +	y += xn / 6 / 10000;
-> +	xn = x * x * x * x;
-> +	y += xn / 24 / 1000000;
-> +
-> +	if (s == -1)
-> +		z = 10000 / y;
+> +	reg = rzg2l_adc_readl(adc, RZG2L_ADM(0));
+> +	if (on)
+> +		reg |= RZG2L_ADM0_PWDWNB;
 > +	else
-> +		z = y;
-> +
-> +	return z;
+> +		reg &= ~RZG2L_ADM0_PWDWNB;
+> +	rzg2l_adc_writel(adc, RZG2L_ADM(0), reg);
+> +	udelay(2);
 > +}
 > +
-> +static int sgp40_calc_voc(struct sgp40_data *data, u16 raw, int *voc)
+> +static void rzg2l_adc_start_stop(struct rzg2l_adc *adc, bool start)
 > +{
-> +	int x;
-> +	int ex = 0;
+> +	int timeout = 5;
+> +	u32 reg;
 > +
-> +	/* we calculate in 100's */
-> +	x = ((int)raw - data->raw_mean) * 65 / 100;
-> +
-> +	/* voc = 500 / (1 + e^x) */
-> +	if (x < -800)
-> +		*voc = 500;
-> +	else if (x > 800)
-> +		*voc = 0;
-> +	else {
-> +		ex = sqp40_exp100(x);
-> +		*voc = 50000 / (100 + ex);
+> +	/* stop A/D conversion */
 
-Does it make sense to provide more precision by not returning a single integer?
-IIO_VAL_INT_PLUS_MICRO perhaps?
+This comment seems odd.  If it is stopping conversion, how is this function
+used to start conversion?  Perhaps some more details.
 
-> +	}
+> +	reg = rzg2l_adc_readl(adc, RZG2L_ADM(0));
+> +	if (start)
+> +		reg |= RZG2L_ADM0_ADCE;
+> +	else
+> +		reg &= ~RZG2L_ADM0_ADCE;
+> +	rzg2l_adc_writel(adc, RZG2L_ADM(0), reg);
 > +
-> +	dev_dbg(data->dev, "raw: %d raw_mean: %d x: %d ex: %d voc: %d\n",
-> +						raw, data->raw_mean, x, ex, *voc);
+> +	if (start)
+> +		return;
+> +
+> +	do {
+> +		usleep_range(100, 200);
+> +		reg = rzg2l_adc_readl(adc, RZG2L_ADM(0));
+> +		timeout--;
+> +		if (!timeout) {
+> +			pr_err("%s stopping ADC timed out\n", __func__);
+> +			break;
+> +		}
+> +	} while (((reg & RZG2L_ADM0_ADBSY) || (reg & RZG2L_ADM0_ADCE)));
+> +}
+> +
+> +static void rzg2l_set_trigger(struct rzg2l_adc *adc)
+> +{
+> +	u32 reg;
+> +
+> +	/*
+> +	 * Setup ADM1 for SW trigger
+> +	 * EGA[13:12] - Set 00 to indicate hardware trigger is invalid
+> +	 * BS[4] - Enable 1-buffer mode
+> +	 * MS[1] - Enable Select mode
+> +	 * TRG[0] - Enable software trigger mode
+> +	 */
+> +	reg = rzg2l_adc_readl(adc, RZG2L_ADM(1));
+> +	reg &= ~RZG2L_ADM1_EGA_MASK;
+> +	reg &= ~RZG2L_ADM1_BS;
+> +	reg &= ~RZG2L_ADM1_TRG;
+> +	reg |= RZG2L_ADM1_MS;
+> +	rzg2l_adc_writel(adc, RZG2L_ADM(1), reg);
+> +}
+> +
+> +static int rzg2l_adc_conversion_setup(struct rzg2l_adc *adc, u8 ch)
+> +{
+> +	u32 reg;
+> +
+> +	if (rzg2l_adc_readl(adc, RZG2L_ADM(0)) & RZG2L_ADM0_ADBSY)
+> +		return -EBUSY;
+> +
+> +	rzg2l_set_trigger(adc);
+> +
+> +	/* Select analog input channel subjected to conversion. */
+> +	reg = rzg2l_adc_readl(adc, RZG2L_ADM(2));
+> +	reg &= ~RZG2L_ADM2_CHSEL_MASK;
+> +	reg |= BIT(ch);
+> +	rzg2l_adc_writel(adc, RZG2L_ADM(2), reg);
+> +
+> +	/*
+> +	 * Setup ADINT
+> +	 * INTS[31] - Select pulse signal
+> +	 * CSEEN[16] - Enable channel select error interrupt
+> +	 * INTEN[7:0] - Select channel interrupt
+> +	 */
+> +	reg = rzg2l_adc_readl(adc, RZG2L_ADINT);
+> +	reg &= ~RZG2L_ADINT_INTS;
+> +	reg &= ~RZG2L_ADINT_INTEN_MASK;
+> +	reg |= (RZG2L_ADINT_CSEEN | BIT(ch));
+> +	rzg2l_adc_writel(adc, RZG2L_ADINT, reg);
 > +
 > +	return 0;
 > +}
 > +
-> +static int sgp40_measure_raw(struct sgp40_data *data, u16 *raw)
+> +static int rzg2l_adc_set_power(struct iio_dev *indio_dev, bool on)
+> +{
+> +	struct device *dev = indio_dev->dev.parent;
+> +
+> +	if (on)
+> +		return pm_runtime_resume_and_get(dev);
+> +
+> +	return pm_runtime_put_sync(dev);
+> +}
+> +
+> +static int rzg2l_adc_conversion(struct iio_dev *indio_dev, struct rzg2l_adc *adc, u8 ch)
 > +{
 > +	int ret;
-> +	struct i2c_client *client = data->client;
-> +	u16 buf_be16; 
-
-If it is be, then use the big endian types.  Also run sparse over
-your code before submitting as it will complain about this.
-
-> +	u8 buf[3];
-> +	u8 tg[8];
-> +	u32 ticks;
-> +	u8 crc;
 > +
-> +	memcpy(tg, sgp40_measure_raw_tg, 2);
-
-It looks like this would benefit from a packed structure into which we
-can directly assign the various parts - something like
-
-struct {
-	u8 command[2];
-	__be16 rel_humidity_ticks;
-	u8 rht_crc;
-	__be16 temp_ticks;
-	u8 temp_crc;
-} __packed tg;
-
-> +
-> +	ticks = (data->rel_humidity / 10) * 65535 / 10000;
-> +	buf_be16 = cpu_to_be16((u16)ticks);
-
-It's not immediately obvious ticks won't overflow a u16, so may be best to
-use clamp() to ensure it doesn't.
-
-> +	memcpy(&tg[2], &buf_be16, 2);
-> +	tg[4] = crc8(sgp40_crc8_table, &tg[2], 2, SGP40_CRC8_INIT);
-> +
-> +	ticks = ((data->temperature + 45000) / 10) * 65535 / 17500;
-> +	buf_be16 = cpu_to_be16((u16)ticks);
-> +	memcpy(&tg[5], &buf_be16, 2);
-> +	tg[7] = crc8(sgp40_crc8_table, &tg[5], 2, SGP40_CRC8_INIT);
-> +
-> +	ret = i2c_master_send(client, (const char *)tg, sizeof(tg));
-> +	if (ret != sizeof(tg)) {
-> +		dev_warn(data->dev, "i2c_master_send ret: %d sizeof: %d\n", ret, sizeof(tg));
-> +		return -EIO;
-> +	}
-> +	msleep(30);
-> +
-> +	ret = i2c_master_recv(client, buf, sizeof(buf));
-> +	if (ret < 0)
+> +	ret = rzg2l_adc_set_power(indio_dev, true);
+> +	if (ret)
 > +		return ret;
-> +	if (ret != sizeof(buf)) {
-> +		dev_warn(data->dev, "i2c_master_recv ret: %d sizeof: %d\n", ret, sizeof(buf));
-> +		return -EIO;
+> +
+> +	ret = rzg2l_adc_conversion_setup(adc, ch);
+> +	if (ret) {
+> +		rzg2l_adc_set_power(indio_dev, false);
+> +		return ret;
 > +	}
 > +
-> +	crc = crc8(sgp40_crc8_table, buf, 2, SGP40_CRC8_INIT);
-> +	if (crc != buf[2]) {
-> +		dev_err(data->dev, "CRC error while measure-raw\n");
-> +		return -EIO;
+> +	reinit_completion(&adc->completion);
+> +
+> +	rzg2l_adc_start_stop(adc, true);
+> +
+> +	if (!wait_for_completion_timeout(&adc->completion, RZG2L_ADC_TIMEOUT)) {
+> +		rzg2l_adc_writel(adc, RZG2L_ADINT,
+> +				 rzg2l_adc_readl(adc, RZG2L_ADINT) & ~RZG2L_ADINT_INTEN_MASK);
+> +		rzg2l_adc_start_stop(adc, false);
+> +		rzg2l_adc_set_power(indio_dev, false);
+> +		return -ETIMEDOUT;
 > +	}
 > +
-> +	memcpy(&buf_be16, buf, sizeof(buf_be16));
-> +	*raw = be16_to_cpu(buf_be16);
-> +
-> +	return 0;
+> +	return rzg2l_adc_set_power(indio_dev, false);
 > +}
 > +
-> +static int sgp40_read_raw(struct iio_dev *indio_dev,
-> +			struct iio_chan_spec const *chan, int *val,
-> +			int *val2, long mask)
+> +static int rzg2l_adc_read_raw(struct iio_dev *indio_dev,
+> +			      struct iio_chan_spec const *chan,
+> +			      int *val, int *val2, long mask)
 > +{
-> +	struct sgp40_data *data = iio_priv(indio_dev);
+> +	struct rzg2l_adc *adc = iio_priv(indio_dev);
 > +	int ret;
-> +	u16 raw;
-> +	int voc;
+> +	u8 ch;
 > +
 > +	switch (mask) {
 > +	case IIO_CHAN_INFO_RAW:
-> +		mutex_lock(&data->lock);
-> +		ret = sgp40_measure_raw(data, &raw);
+> +		if (chan->type != IIO_VOLTAGE)
+> +			return -EINVAL;
+> +
+> +		ret = iio_device_claim_direct_mode(indio_dev);
+> +		if (ret)
+> +			return ret;
+> +
+> +		ch = chan->channel & RZG2L_ADC_CHN_MASK;
+> +		ret = rzg2l_adc_conversion(indio_dev, adc, ch);
 > +		if (ret) {
-> +			mutex_unlock(&data->lock);
+> +			iio_device_release_direct_mode(indio_dev);
 > +			return ret;
 > +		}
-> +		*val = raw;
-> +		ret = IIO_VAL_INT;
-> +		mutex_unlock(&data->lock);
-> +		break;
-> +	case IIO_CHAN_INFO_PROCESSED:
-> +		mutex_lock(&data->lock);
-> +		ret = sgp40_measure_raw(data, &raw);
-> +		if (ret) {
-> +			mutex_unlock(&data->lock);
-> +			return ret;
-> +		}
-> +		ret = sgp40_calc_voc(data, raw, &voc);
-> +		if (ret) {
-> +			mutex_unlock(&data->lock);
-> +			return ret;
-> +		}
-> +		*val = voc;
-> +		ret = IIO_VAL_INT;
-> +		mutex_unlock(&data->lock);
+> +		*val = adc->last_val[ch];
 
-You are holding the lock longer than needed - it would be good
-to reduce this, hopefully removing the need for unlocking separately
-in each of the error paths.
+You should not rely on implementation details of iio_device_claim_direct_mode()
+to protect your driver specific data structures. Use your own lock.
+Those calls are intended for safe operation when buffered mode in IIO is supported
+and currently your driver doesn't support that at all so please remove them.
 
-> +		break;
+> +		iio_device_release_direct_mode(indio_dev);
+> +
+> +		return IIO_VAL_INT;
+> +
 > +	default:
 > +		return -EINVAL;
 > +	}
-> +
-> +	return ret;
-
-Drop this as you can't get here.
-
 > +}
 > +
-> +static ssize_t rel_humidity_comp_store(struct device *dev,
-> +				       struct device_attribute *attr,
-> +				       const char *buf, size_t len)
+> +static int rzg2l_adc_read_label(struct iio_dev *iio_dev,
+> +				const struct iio_chan_spec *chan,
+> +				char *label)
 > +{
-> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-> +	struct sgp40_data *data = iio_priv(indio_dev);
-> +	int ret;
-> +	u32 val;
-> +
-> +	ret = kstrtouint(buf, 10, &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (val > 100000)
+> +	if (chan->channel >= RZG2L_ADC_MAX_CHANNELS)
 > +		return -EINVAL;
 > +
-> +	mutex_lock(&data->lock);
-> +	data->rel_humidity = val;
-> +	mutex_unlock(&data->lock);
-> +
-> +	return len;
+> +	return sysfs_emit(label, "%s\n", rzg2l_adc_channel_name[chan->channel]);
 > +}
 > +
-> +static ssize_t rel_humidity_comp_show(struct device *dev,
-> +				      struct device_attribute *attr,
-> +				      char *buf)
-> +{
-> +	int ret;
-> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-> +	struct sgp40_data *data = iio_priv(indio_dev);
-> +
-> +	mutex_lock(&data->lock);
-> +	ret = snprintf(buf, PAGE_SIZE, "%d\n", data->rel_humidity);
-> +	mutex_unlock(&data->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static ssize_t temperature_comp_store(struct device *dev,
-> +				       struct device_attribute *attr,
-> +				       const char *buf, size_t len)
-> +{
-> +	int ret;
-> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-> +	struct sgp40_data *data = iio_priv(indio_dev);
-> +	int val;
-> +
-> +	ret = kstrtoint(buf, 10, &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if ((val < -45000) || (val > 130000))
-> +		return -EINVAL;
-> +
-> +	mutex_lock(&data->lock);
-> +	data->temperature = val;
-> +	mutex_unlock(&data->lock);
-> +
-> +	return len;
-> +}
-> +
-> +static ssize_t temperature_comp_show(struct device *dev,
-> +				      struct device_attribute *attr,
-> +				      char *buf)
-> +{
-> +	int ret;
-> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-> +	struct sgp40_data *data = iio_priv(indio_dev);
-> +
-> +	mutex_lock(&data->lock);
-> +	ret = snprintf(buf, PAGE_SIZE, "%d\n", data->temperature);
-> +	mutex_unlock(&data->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static ssize_t raw_mean_store(struct device *dev,
-> +				       struct device_attribute *attr,
-> +				       const char *buf, size_t len)
-> +{
-> +	int ret;
-> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-> +	struct sgp40_data *data = iio_priv(indio_dev);
-> +	u32 val;
-> +
-> +	ret = kstrtouint(buf, 10, &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if ((val < 20000) || (val > 52768))
-> +		return -EINVAL;
-> +
-> +	mutex_lock(&data->lock);
-> +	data->raw_mean = val;
-
-Huh.  That is definitely not what I was expecting.  You are writing
-the mean?  That's odd. Docs needed.
-
-> +	mutex_unlock(&data->lock);
-> +
-> +	return len;
-> +}
-> +
-> +static ssize_t raw_mean_show(struct device *dev,
-> +				      struct device_attribute *attr,
-> +				      char *buf)
-> +{
-> +	int ret;
-> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-> +	struct sgp40_data *data = iio_priv(indio_dev);
-> +
-> +	mutex_lock(&data->lock);
-> +	ret = snprintf(buf, PAGE_SIZE, "%d\n", data->raw_mean);
-> +	mutex_unlock(&data->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static IIO_DEVICE_ATTR_RW(rel_humidity_comp, 0);
-> +static IIO_DEVICE_ATTR_RW(temperature_comp, 0);
-> +static IIO_DEVICE_ATTR_RW(raw_mean, 0);
-> +
-> +static struct attribute *sgp40_attrs[] = {
-> +	&iio_dev_attr_rel_humidity_comp.dev_attr.attr,
-> +	&iio_dev_attr_temperature_comp.dev_attr.attr,
-
-I'm somewhat guessing on what exactly these two are, but assuming they
-are meant as place you push in the temperature and relative humidity that
-then gets used in some calculations...
-
-To avoid adding ABI for these cases, what we have often done before
-is specified them as 'output' channels.  In some sense we are telling the
-sensor what the temperature is for example, so this mapping isn't too
-unexpected or unintuitive.  It's not perfect, but it's better than defining
-new ABI without clear units etc.
-
-> +	&iio_dev_attr_raw_mean.dev_attr.attr,
-
-We have *_mean_raw as standard (though not often used) ABI.
-Does that map to what you have here?
-You would need to add a channel specific line in the ABI docs though.
-
-> +	NULL
+> +static const struct iio_info rzg2l_adc_iio_info = {
+> +	.read_raw = rzg2l_adc_read_raw,
+> +	.read_label = rzg2l_adc_read_label,
 > +};
 > +
-> +static const struct attribute_group sgp40_attr_group = {
-> +	.attrs = sgp40_attrs,
-> +};
-> +
-> +static const struct iio_info sgp40_info = {
-> +	.attrs		= &sgp40_attr_group,
-> +	.read_raw	= sgp40_read_raw,
-> +};
-> +
-> +static int sgp40_probe(struct i2c_client *client,
-> +		     const struct i2c_device_id *id)
+> +static irqreturn_t rzg2l_adc_isr(int irq, void *dev_id)
 > +{
-> +	struct device *dev = &client->dev;
-> +	struct iio_dev *indio_dev;
-> +	struct sgp40_data *data;
-> +	int ret;
+> +	struct rzg2l_adc *adc = (struct rzg2l_adc *)dev_id;
+
+No need for explicit cast from void * to another pointer type.
+This is always valid without in C.
+
+> +	unsigned long intst;
+> +	u32 reg;
+> +	int ch;
 > +
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
-> +	if (!indio_dev)
+> +	reg = rzg2l_adc_readl(adc, RZG2L_ADSTS);
+> +
+> +	/* A/D conversion channel select error interrupt */
+> +	if (reg & RZG2L_ADSTS_CSEST) {
+> +		rzg2l_adc_writel(adc, RZG2L_ADSTS, reg);
+> +		return IRQ_HANDLED;
+> +	}
+> +
+> +	intst = reg & RZG2L_ADSTS_INTST_MASK;
+> +	if (!intst)
+> +		return IRQ_NONE;
+> +
+> +	for_each_set_bit(ch, &intst, RZG2L_ADC_MAX_CHANNELS) {
+> +		if (intst & BIT(ch))
+
+I'm missing how this if can fail given we only end up in here when the bit is
+set.
+
+> +			adc->last_val[ch] = rzg2l_adc_readl(adc, RZG2L_ADCR(ch)) &
+> +					    RZG2L_ADCR_AD_MASK;
+> +	}
+> +
+> +	/* clear the channel interrupt */
+> +	rzg2l_adc_writel(adc, RZG2L_ADSTS, reg);
+> +
+> +	complete(&adc->completion);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int rzg2l_adc_parse_properties(struct platform_device *pdev, struct rzg2l_adc *adc)
+> +{
+> +	struct iio_chan_spec *chan_array;
+> +	struct fwnode_handle *fwnode;
+> +	struct rzg2l_adc_data *data;
+> +	unsigned int channel;
+> +	int num_channels;
+> +	int ret;
+> +	u8 i;
+> +
+> +	data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
+> +	if (!data)
 > +		return -ENOMEM;
 > +
-> +	data = iio_priv(indio_dev);
-> +	i2c_set_clientdata(client, indio_dev);
-
-Not used, so don't set it until it is used in some future patch.
-
-> +	data->client = client;
-> +	data->dev = dev;
-> +
-> +	crc8_populate_msb(sgp40_crc8_table, SGP40_CRC8_POLYNOMIAL);
-> +
-> +	mutex_init(&data->lock);
-> +
-> +	/* set default values */
-> +	data->rel_humidity = 50000;	/* 50 % */
-> +	data->temperature = 25000;	/* 25 °C */
-> +	data->raw_mean = 30000;		/* resistance raw value for voc index of 250 */
-> +
-> +	indio_dev->info = &sgp40_info;
-> +	indio_dev->name = id->name;
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +	indio_dev->channels = sgp40_channels;
-> +	indio_dev->num_channels = ARRAY_SIZE(sgp40_channels);
-> +
-> +	ret = devm_iio_device_register(dev, indio_dev);
-> +	if (ret) {
-> +		dev_err(dev, "failed to register iio device\n");
-> +		return ret;
+> +	num_channels = device_get_child_node_count(&pdev->dev);
+> +	if (!num_channels) {
+> +		dev_err(&pdev->dev, "no channel children\n");
+> +		return -ENODEV;
 > +	}
-
-Given the device register will probably always be last so we aren't avoiding
-code churn with this structure, I would suggest you instead do
-
-	if (ret)
-		dev_err(dev,..)
-
-	return ret;
-
+> +
+> +	if (num_channels > RZG2L_ADC_MAX_CHANNELS) {
+> +		dev_err(&pdev->dev, "num of channel children out of range\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	chan_array = devm_kcalloc(&pdev->dev, num_channels, sizeof(*chan_array),
+> +				  GFP_KERNEL);
+> +	if (!chan_array)
+> +		return -ENOMEM;
+> +
+> +	i = 0;
+> +	device_for_each_child_node(&pdev->dev, fwnode) {
+> +		ret = fwnode_property_read_u32(fwnode, "reg", &channel);
+> +		if (ret)
+> +			return ret;
+> +
+> +		if (channel >= RZG2L_ADC_MAX_CHANNELS)
+> +			return -EINVAL;
+> +
+> +		chan_array[i].type = IIO_VOLTAGE;
+> +		chan_array[i].indexed = 1;
+> +		chan_array[i].channel = channel;
+> +		chan_array[i].info_mask_separate = BIT(IIO_CHAN_INFO_RAW);
+> +		chan_array[i].datasheet_name = rzg2l_adc_channel_name[channel];
+> +		i++;
+> +	}
+> +
+> +	data->num_channels = num_channels;
+> +	data->channels = chan_array;
+> +	adc->data = data;
 > +
 > +	return 0;
 > +}
 > +
-> +static const struct i2c_device_id sgp40_id[] = {
-> +	{ "sgp40" },
-> +	{ }
-> +};
+> +static int rzg2l_adc_hw_init(struct rzg2l_adc *adc)
+> +{
+> +	int timeout = 5;
+> +	u32 reg;
+> +	int ret;
 > +
-> +MODULE_DEVICE_TABLE(i2c, sgp40_id);
+> +	ret = clk_prepare_enable(adc->pclk);
+> +	if (ret)
+> +		return ret;
 > +
-> +static const struct of_device_id sgp40_dt_ids[] = {
-> +	{ .compatible = "sensirion,sgp40" },
-> +	{ }
-> +};
+> +	/* SW reset */
+> +	reg = rzg2l_adc_readl(adc, RZG2L_ADM(0));
+> +	reg |= RZG2L_ADM0_SRESB;
+> +	rzg2l_adc_writel(adc, RZG2L_ADM(0), reg);
 > +
-> +MODULE_DEVICE_TABLE(of, sgp40_dt_ids);
+> +	while (!(rzg2l_adc_readl(adc, RZG2L_ADM(0)) & RZG2L_ADM0_SRESB)) {
+> +		if (!timeout) {
+> +			ret = -EBUSY;
+> +			goto exit_hw_init;
+> +		}
+> +		timeout--;
+> +		usleep_range(100, 200);
+> +	}
 > +
-> +static struct i2c_driver sgp40_driver = {
-> +	.driver = {
-> +		.name = "sgp40",
-> +		.of_match_table = sgp40_dt_ids,
-> +	},
-> +	.probe = sgp40_probe,
-> +	.id_table = sgp40_id,
-> +};
-> +module_i2c_driver(sgp40_driver);
+> +	/* Only division by 4 can be set */
+> +	reg = rzg2l_adc_readl(adc, RZG2L_ADIVC);
+> +	reg &= ~RZG2L_ADIVC_DIVADC_MASK;
+> +	reg |= RZG2L_ADIVC_DIVADC_4;
+> +	rzg2l_adc_writel(adc, RZG2L_ADIVC, reg);
 > +
-> +MODULE_AUTHOR("Andreas Klinger <ak@it-klinger.de>");
-> +MODULE_DESCRIPTION("Sensirion SGP40 gas sensors");
-> +MODULE_LICENSE("GPL v2");
+> +	/*
+> +	 * Setup AMD3
+> +	 * ADIL[31:24] - Should be always set to 0
+> +	 * ADCMP[23:16] - Should be always set to 0xe
+> +	 * ADSMP[15:0] - Set default (0x578) sampling period
+> +	 */
+> +	reg = rzg2l_adc_readl(adc, RZG2L_ADM(3));
+> +	reg &= ~RZG2L_ADM3_ADIL_MASK;
+> +	reg &= ~RZG2L_ADM3_ADCMP_MASK;
+> +	reg &= ~RZG2L_ADM3_ADSMP_MASK;
+> +	reg |= (RZG2L_ADM3_ADCMP_E | RZG2L_ADSMP_DEFUALT_SAMPLING);
+> +	rzg2l_adc_writel(adc, RZG2L_ADM(3), reg);
+> +
+> +exit_hw_init:
+> +	clk_disable_unprepare(adc->pclk);
+> +
+> +	return 0;
+> +}
+> +
+> +static void rzg2l_adc_pm_runtime_disable(void *data)
+> +{
+> +	struct iio_dev *indio_dev = data;
 
+Register the devm call with the dev instead of the iio_dev.
+As this should be right next to the enable, it will be obvious
+what it should be.
+
+> +
+> +	pm_runtime_disable(indio_dev->dev.parent);
+> +}
+> +
+> +static void rzg2l_adc_reset_assert(void *data)
+> +{
+> +	struct reset_control *reset = data;
+Why do we need the local variable?
+
+	reset_control_assert(data);
+
+is fine.
+
+> +
+> +	reset_control_assert(reset);
+> +}
+> +
+> +static int rzg2l_adc_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct iio_dev *indio_dev;
+> +	struct rzg2l_adc *adc;
+> +	int ret;
+> +	int irq;
+> +
+> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*adc));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	adc = iio_priv(indio_dev);
+> +
+> +	ret = rzg2l_adc_parse_properties(pdev, adc);
+> +	if (ret)
+> +		return ret;
+> +
+> +	adc->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(adc->base))
+> +		return PTR_ERR(adc->base);
+> +
+> +	irq = platform_get_irq(pdev, 0);
+
+Please group things together, so we 'get' whatever it is next to where
+we use it.  It might make the error handling a tiny bit more complex, but
+it makes the code easier to review as we don't have to jump backwards and forwards
+all the time. With devm_ in heavy use as you have here, that's all magic
+in the error paths anyway :)
+
+> +	if (irq < 0) {
+> +		dev_err(dev, "no irq resource\n");
+> +		return irq;
+> +	}
+> +
+> +	adc->pclk = devm_clk_get(dev, "pclk");
+> +	if (IS_ERR(adc->pclk)) {
+> +		dev_err(dev, "Failed to get pclk");
+> +		return PTR_ERR(adc->pclk);
+> +	}
+> +
+> +	adc->adclk = devm_clk_get(dev, "adclk");
+> +	if (IS_ERR(adc->adclk)) {
+> +		dev_err(dev, "Failed to get adclk");
+> +		return PTR_ERR(adc->adclk);
+> +	}
+> +
+> +	adc->adrstn = devm_reset_control_get_exclusive(dev, "adrst-n");
+> +	if (IS_ERR(adc->adrstn)) {
+> +		dev_err(dev, "failed to get adrstn\n");
+> +		return PTR_ERR(adc->adrstn);
+> +	}
+> +
+> +	ret = devm_add_action_or_reset(&pdev->dev,
+> +				       rzg2l_adc_reset_assert, adc->adrstn);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "failed to register adrstn assert devm action, %d\n",
+> +			ret);
+> +		return ret;
+> +	}
+> +
+> +	adc->presetn = devm_reset_control_get_exclusive(dev, "presetn");
+> +	if (IS_ERR(adc->presetn)) {
+> +		dev_err(dev, "failed to get presetn\n");
+> +		return PTR_ERR(adc->presetn);
+> +	}
+> +
+> +	ret = devm_add_action_or_reset(&pdev->dev,
+> +				       rzg2l_adc_reset_assert, adc->presetn);
+
+As already raised, wrong place.
+
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "failed to register presetn assert devm action, %d\n",
+> +			ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = reset_control_deassert(adc->adrstn);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "failed to deassert adrstn pin, %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = reset_control_deassert(adc->presetn);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "failed to deassert presetn pin, %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = rzg2l_adc_hw_init(adc);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "failed to initialize ADC HW, %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = devm_request_irq(dev, irq, rzg2l_adc_isr,
+> +			       0, dev_name(dev), adc);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	init_completion(&adc->completion);
+> +
+> +	platform_set_drvdata(pdev, indio_dev);
+> +
+> +	indio_dev->name = DRIVER_NAME;
+> +	indio_dev->info = &rzg2l_adc_iio_info;
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +	indio_dev->channels = adc->data->channels;
+> +	indio_dev->num_channels = adc->data->num_channels;
+> +
+> +	pm_runtime_enable(dev);
+
+I think you also want to set the state to suspended to ensure the resume is
+called on get.
+
+> +	ret = devm_add_action_or_reset(&pdev->dev,
+> +				       rzg2l_adc_pm_runtime_disable, indio_dev);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "failed to register pm_runtime_disable devm action, %d\n",
+> +			ret);
+
+This is vanishingly unlikely as it's a tiny memory allocation.  So I would dropt he error
+print in the interests of simplicity.  Some of the other items above we don't print
+on are more likely to fail.
+
+> +		return ret;
+> +	}
+> +
+> +	return devm_iio_device_register(dev, indio_dev);
+> +}
