@@ -2,32 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BC933DC71B
-	for <lists+devicetree@lfdr.de>; Sat, 31 Jul 2021 19:12:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FAEF3DC72D
+	for <lists+devicetree@lfdr.de>; Sat, 31 Jul 2021 19:24:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229475AbhGaRM7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 31 Jul 2021 13:12:59 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43148 "EHLO mail.kernel.org"
+        id S229694AbhGaRYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Jul 2021 13:24:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44596 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229449AbhGaRM6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 31 Jul 2021 13:12:58 -0400
+        id S229647AbhGaRYq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 31 Jul 2021 13:24:46 -0400
 Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C362A60F94;
-        Sat, 31 Jul 2021 17:12:48 +0000 (UTC)
-Date:   Sat, 31 Jul 2021 18:15:28 +0100
+        by mail.kernel.org (Postfix) with ESMTPSA id E763D61042;
+        Sat, 31 Jul 2021 17:24:34 +0000 (UTC)
+Date:   Sat, 31 Jul 2021 18:27:14 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Christophe Branchereau <cbranchereau@gmail.com>
-Cc:     lars@metafoo.de, linux-mips@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org, linux@roeck-us.net,
-        contact@artur-rojek.eu, paul@crapouillou.net
-Subject: Re: [PATCH v4 0/5] iio/adc: ingenic: add support for the JZ4760(B)
- Socs to the ingenic sadc driver
-Message-ID: <20210731181528.5fe57c57@jic23-huawei>
-In-Reply-To: <20210726082033.351533-1-cbranchereau@gmail.com>
-References: <20210726082033.351533-1-cbranchereau@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Billy Tsai <billy_tsai@aspeedtech.com>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        "lars@metafoo.de" <lars@metafoo.de>,
+        "pmeerw@pmeerw.net" <pmeerw@pmeerw.net>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        BMC-SW <BMC-SW@aspeedtech.com>
+Subject: Re: [v2 1/8] dt-bindings: iio: adc: rename the aspeed adc yaml
+Message-ID: <20210731182714.7197bdcc@jic23-huawei>
+In-Reply-To: <YQMQJ15KpM0eeLIb@robh.at.kernel.org>
+References: <20210723081621.29477-1-billy_tsai@aspeedtech.com>
+        <20210723081621.29477-2-billy_tsai@aspeedtech.com>
+        <20210723154456.00006744@Huawei.com>
+        <E650AFD8-FFD1-4D87-87B0-42D20D9C3BB4@aspeedtech.com>
+        <YQMQJ15KpM0eeLIb@robh.at.kernel.org>
 X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -36,35 +49,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 26 Jul 2021 10:20:28 +0200
-Christophe Branchereau <cbranchereau@gmail.com> wrote:
+On Thu, 29 Jul 2021 14:31:35 -0600
+Rob Herring <robh@kernel.org> wrote:
 
-> This is a set of patches to add support to the JZ4760(B) socs found in numerous gaming handhelds and some
-> mp3 players to the ingenic-sadc driver.
+> On Mon, Jul 26, 2021 at 06:53:07AM +0000, Billy Tsai wrote:
+> > Hi Jonathan,
+> > 
+> > On 2021/7/23, 10:45 PM, "Jonathan Cameron" <Jonathan.Cameron@Huawei.com> wrote:
+> > 
+> >     On Fri, 23 Jul 2021 16:16:14 +0800
+> >     Billy Tsai <billy_tsai@aspeedtech.com> wrote:
+> >   
+> >     >   > The aspeed,ast2400-adc.yaml not only descriptor the bindings of ast2400.
+> >     >   > Rename it to aspeed,adc.yaml for all of the aspeed adc bindings.
+> >     >   > 
+> >     >   > Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>  
+> >   
+> >     >   We try to avoid 'wild' card type namings most of the time and instead
+> >     >   name after a particular part number.  I say try because clearly
+> >     >   we let a few in over the years :(  
+> >   
+> >     >   It is very hard to know if this binding will apply to 'all' future
+> >     >   aspeed ADCs.  
+> >   
+> >     >   As such I'm not sure this particular rename makes sense.  
+> > 
+> > If I want to extend the yaml file to compatible more versions of the aspeed adc.
+> > Would you suggest to add new files call aspeed,ast2600-adc.yaml or just append it
+> > to the aspeed,ast2400-adc.yaml?  
 > 
-> Changelog for this v4:
-> 
-> Fix patch 4/5 that was missing the .compatible string for the jz4760b.
+> If 2600 is not backwards compatible with 2400, then probably a new 
+> schema file. Given you are adding new properties (which only apply to 
+> 2600?), then most likely a new schema file. Depends at which point there 
+> are too many conditional (if/then/else) schemas.
 
-Series applied to the togreg branch of iio.git which will first be pushed out as testing
-to see if 0-day can find anything we missed.
+Agreed.  It's a judgement call you need to make on when it is worth the new file.
+Note that doesn't have anything to do with splitting the driver.  We have mulitple
+binding files for single drivers and for that matter multiple drivers for single binding
+files.
 
-Thanks,
+If it is 'compatible' enough to not make the file to complex, then add to the existing
+ast2400 file without renaming.
 
 Jonathan
 
 > 
-> Christophe Branchereau (5):
->   iio/adc: ingenic: rename has_aux2 to has_aux_md
->   dt-bindings: iio/adc: add an INGENIC_ADC_AUX0 entry
->   iio/adc: ingenic: add JZ4760 support to the sadc driver
->   iio/adc: ingenic: add JZ4760B support to the sadc driver
->   dt-bindings: iio/adc: ingenic: add the JZ4760(B) socs to the sadc
->     Documentation
-> 
->  .../bindings/iio/adc/ingenic,adc.yaml         |  19 ++++
->  drivers/iio/adc/ingenic-adc.c                 | 102 ++++++++++++++++--
->  include/dt-bindings/iio/adc/ingenic,adc.h     |   1 +
->  3 files changed, 113 insertions(+), 9 deletions(-)
-> 
+> Rob
 
