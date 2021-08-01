@@ -2,18 +2,18 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A46B93DCB9E
+	by mail.lfdr.de (Postfix) with ESMTP id ED51C3DCB9F
 	for <lists+devicetree@lfdr.de>; Sun,  1 Aug 2021 14:29:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231546AbhHAM3u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S231766AbhHAM3u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Sun, 1 Aug 2021 08:29:50 -0400
-Received: from mout.kundenserver.de ([212.227.126.131]:50151 "EHLO
+Received: from mout.kundenserver.de ([212.227.126.130]:42481 "EHLO
         mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231461AbhHAM3u (ORCPT
+        with ESMTP id S231527AbhHAM3u (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sun, 1 Aug 2021 08:29:50 -0400
 Received: from localhost.localdomain ([37.4.249.97]) by
  mrelayeu.kundenserver.de (mreue009 [212.227.15.167]) with ESMTPSA (Nemesis)
- id 1N95mR-1nCjw13Odz-0167TS; Sun, 01 Aug 2021 14:29:26 +0200
+ id 1MPGJh-1mXbha19Tx-00Paey; Sun, 01 Aug 2021 14:29:27 +0200
 From:   Stefan Wahren <stefan.wahren@i2se.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Nicolas Saenz Julienne <nsaenz@kernel.org>,
@@ -24,70 +24,57 @@ Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
         linux-rpi-kernel@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org,
         Stefan Wahren <stefan.wahren@i2se.com>
-Subject: [PATCH 0/9] ARM: dts: Add Raspberry Pi CM4 & CM4 IO Board support
-Date:   Sun,  1 Aug 2021 14:28:43 +0200
-Message-Id: <1627820932-7247-1-git-send-email-stefan.wahren@i2se.com>
+Subject: [PATCH 1/9] ARM: dts: bcm2711: fix emmc2bus node name
+Date:   Sun,  1 Aug 2021 14:28:44 +0200
+Message-Id: <1627820932-7247-2-git-send-email-stefan.wahren@i2se.com>
 X-Mailer: git-send-email 2.7.4
-X-Provags-ID: V03:K1:obN736lh9IFOAIPl9RjKScbf7+dQFS5ORCRoDfDaVPmX6GpNSAj
- HnMvF4RP8rZ0B11ZnWq/gAMJ+XXc4VK7nImTbvfSUaeJjDPu2oDqFFyjttuaRyO3I7bXWx6
- 38OCwsNwulZHhFHUAPE87D3ecsFM7qab/TptU94tf0oNfFY2b2kQt0MrDoHAzj94H5RDofM
- K4ydYnJcRuoEogHFFmknA==
+In-Reply-To: <1627820932-7247-1-git-send-email-stefan.wahren@i2se.com>
+References: <1627820932-7247-1-git-send-email-stefan.wahren@i2se.com>
+X-Provags-ID: V03:K1:u3d4KfjkuCAUpaKkH60kIvfSIJ9bak1/NGTsSBhknVbeCaVkICC
+ JcmFRNJR37KoGpCIjd84iyjQdRgx2IMIFtEd1WNGke5wokUNNqjfE2ZyUJ2+GVIBdi9s0AC
+ j1QPDzOffUaodNbE9s7rZp/5374XZhkGHtvzIVS9u09gm+hFxqddUAZoPeRM1dpzzdA1LDH
+ OTy99hUEhVUjOcYuJ6Fow==
 X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:JkjUx2X5hJU=:Tt24/z/WZtHd3B0REjbvlX
- 75ZrzjE+IMiE4PRmwnM74WWyQ63NWRaJzPztlbm1gAbzihY0E5FxDU9WulBzGl3pHdR0Nyvep
- 0/FW+mG7Dy4SSLC+lf9l0uubc5msIdwTucOVUFxL1zlDN+h0pt7WjYk4oyUIfvrIOb92Mjj6J
- D/eoqO6ztQZ4GV/pyqLVo0x+obTLzQUmFg87DLSyNe1vrDzv2Eiek3OYevcnt+sNVxwzKqXFQ
- KlHXo6GwZlfFRo3VnJR1+ZKj3TZwkwcUgVZqwhNVTcoTMWV7T0xgPrGx+7nChLKfxtxx53Sa6
- zTIWRypXCbGRpBTY7w1DqXJBvqS3lLaMVXATAsYhccc5yjpztSfsF//+hojH/CSkS1+/kGfrb
- tu6DcRQNDq+3pBsqcPSJws7XN/b+IwZARouDhOmN/lMLw8GDZqR6H32E5E9/ZDgdnSFYRYPvp
- y6A0n3+sTVQz1RHZobGnW+wROpZFVHUUxJNmvBU/fbs/FECQut/9x/lwi+YNiqc6obqWc2y9p
- A8bWSV3le2QzukLboJvO+ioD5yHVGepP60BqdwQGpnEn73ixNswRVD1rhf4p8XQ0MWRkDQMqA
- bkvhXjgHK0TitsW4kVGaNYSkp96yB9f4fqsro5oT3hRKcHyJXtim5xJobzUS5+7bf7IvyPC6x
- XOb7clGIIHlpw40e94mVBkz2KIhR8buaOArp+H/fBtAlNrsDOFYIy3Owynylq1hRsfIPkqbvP
- FajBAfbCjvwLTLWGZtG9X5J/DSaTnleBZSkGC3AaiwQzDEElREz0IId1KoB2oUZtOm1Z0mwxy
- AXT41TzzOUPIr7FrvhqFC1ZhSY5VobJrxFtmHCurXoG+oxybzDDRF6ixF9vjjae/y5kl1cyow
- ALlu2e0PlDH4O6V5eYAA==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:/+0qUl4udEo=:kIqtOfdCXzfD4THwpzaoDt
+ D2zKUviCrDPI4pE3wGa7inxFvEuxQJ14gc/2TAxsy7+HsDZbKITnY3FOO9Cv8zmX/uWho1gMQ
+ 6XgX0A1f1YvUQavvj3zY9yTe+GNS24aQKdFUGtUjw6eItkgC/nH8gDTEiGyBs68zo2M+j7tly
+ grkZCvc+pCNanmbOQCzpvNdeU/4HgKf6fgAKGfZ/7InKxp0UyzzbWVXoUrHN5B+5vFrW5LToS
+ W40UUsi62aMHjgMuk12FaNYW1ffX1MNh0IRsyW2ulQDoDVBcHMRChktsFQyC2HBP8DRoAdStL
+ HRgZ3Ip5SQJmKuoz27cl53mLpBgX6fktsNebjvnQiK0Jpxpmg5/ceMzwwjAD+3ZwTfPCvs23C
+ B/5v126caib2TWQ63ws4rsjFfIWq7q7VnzULhySxoV0mgNPNnlHM3akKrt/tAywBwJDoSAljk
+ K8Wi7j/pcVJ2Nvcb6RhsbrZodJU60rxneewl/PrMmLkelu3Yd/TCYwr6bOLltsg1tTW5Ma4GP
+ sYIamZWY2HEBGiTSSvlNr3WcffO2tUEtrEqxaTdQwcmG5aq/CpaE8OfLWdBtOwX35EsvjehuD
+ NJemH4m2GQ8hHw1gLj7j9ouWoLnrBr6zArr90CsmyI6RVetIMMe0M7Q7AXcgu73GsDMerRJ2s
+ 4wNFhLLuXBKsVFDmZYw+J9VD0Zrm27qaeIueHbnmFCyF5J4a7nnF838eN4o9F+U7CyRDivzpm
+ Yf/3PYSX8yUOcsX8n1HFu/vQ1nSuwOrlMOIqpWRaiCz1OYH8URXqp1tEQoVjXZpFMoFEmnWYK
+ zYmU2N3t4T7DwabwCyhHQzJfdcFt1n35IVotTy6HtON6m8ERXEbux+MTobN5m0is0vgAmWGiE
+ hF2sXj/F3sGP9kXkouJQ==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series add support for the Raspberry Pi Compute Module 4 and its
-IO board.
+Fix the node name to get the rid of the following DT schema warning:
+'emmc2bus' does not match '^([a-z][a-z0-9\\-]+-bus|bus|soc|axi|ahb|apb)
+(@[0-9a-f]+)?$'
 
-Stefan Wahren (9):
-  ARM: dts: bcm2711: fix emmc2bus node name
-  ARM: dts: bcm2711: fix MDIO #address- and #size-cells
-  ARM: dts: bcm2711-rpi-4-b: fix sd_io_1v8_reg regulator states
-  dt-bindings: display: bcm2835: add optional property power-domains
-  ARM: dts: bcm283x-rpi: Move Wifi/BT into separate dtsi
-  dt-bindings: arm: bcm2835: Add Raspberry Pi Compute Module 4
-  ARM: dts: Add Raspberry Pi Compute Module 4
-  ARM: dts: Add Raspberry Pi Compute Module 4 IO Board
-  arm64: dts: broadcom: Add reference to RPi CM4 IO Board
+Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+---
+ arch/arm/boot/dts/bcm2711.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- .../devicetree/bindings/arm/bcm/bcm2835.yaml       |   1 +
- .../bindings/display/brcm,bcm2835-dsi0.yaml        |   3 +
- .../bindings/display/brcm,bcm2835-hdmi.yaml        |   3 +
- .../bindings/display/brcm,bcm2835-v3d.yaml         |   3 +
- .../bindings/display/brcm,bcm2835-vec.yaml         |   3 +
- arch/arm/boot/dts/Makefile                         |   1 +
- arch/arm/boot/dts/bcm2711-rpi-4-b.dts              |  42 ++-----
- arch/arm/boot/dts/bcm2711-rpi-cm4-io.dts           | 138 +++++++++++++++++++++
- arch/arm/boot/dts/bcm2711-rpi-cm4.dtsi             | 112 +++++++++++++++++
- arch/arm/boot/dts/bcm2711.dtsi                     |   6 +-
- arch/arm/boot/dts/bcm2835-rpi-zero-w.dts           |  31 ++---
- arch/arm/boot/dts/bcm2837-rpi-3-a-plus.dts         |  36 ++----
- arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts         |  36 ++----
- arch/arm/boot/dts/bcm2837-rpi-3-b.dts              |  36 ++----
- arch/arm/boot/dts/bcm283x-rpi-wifi-bt.dtsi         |  34 +++++
- arch/arm64/boot/dts/broadcom/Makefile              |   1 +
- .../arm64/boot/dts/broadcom/bcm2711-rpi-cm4-io.dts |   2 +
- 17 files changed, 346 insertions(+), 142 deletions(-)
- create mode 100644 arch/arm/boot/dts/bcm2711-rpi-cm4-io.dts
- create mode 100644 arch/arm/boot/dts/bcm2711-rpi-cm4.dtsi
- create mode 100644 arch/arm/boot/dts/bcm283x-rpi-wifi-bt.dtsi
- create mode 100644 arch/arm64/boot/dts/broadcom/bcm2711-rpi-cm4-io.dts
-
+diff --git a/arch/arm/boot/dts/bcm2711.dtsi b/arch/arm/boot/dts/bcm2711.dtsi
+index b8a4096..afe0ef8 100644
+--- a/arch/arm/boot/dts/bcm2711.dtsi
++++ b/arch/arm/boot/dts/bcm2711.dtsi
+@@ -405,7 +405,7 @@
+ 	 * The firmware will find whether the emmc2bus alias is defined, and if
+ 	 * so, it'll edit the dma-ranges property below accordingly.
+ 	 */
+-	emmc2bus: emmc2bus {
++	emmc2bus: emmc2-bus {
+ 		compatible = "simple-bus";
+ 		#address-cells = <2>;
+ 		#size-cells = <1>;
 -- 
 2.7.4
 
