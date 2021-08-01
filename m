@@ -2,188 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 534DB3DCD7B
-	for <lists+devicetree@lfdr.de>; Sun,  1 Aug 2021 21:51:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD91D3DCD95
+	for <lists+devicetree@lfdr.de>; Sun,  1 Aug 2021 22:11:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229955AbhHATvy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Aug 2021 15:51:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37720 "EHLO
+        id S230230AbhHAULN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Aug 2021 16:11:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229497AbhHATvx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Aug 2021 15:51:53 -0400
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70CF4C06175F;
-        Sun,  1 Aug 2021 12:51:45 -0700 (PDT)
-Received: by mail-yb1-xb32.google.com with SMTP id x192so25338031ybe.0;
-        Sun, 01 Aug 2021 12:51:45 -0700 (PDT)
+        with ESMTP id S229955AbhHAULM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Aug 2021 16:11:12 -0400
+Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D6B7C06175F;
+        Sun,  1 Aug 2021 13:11:04 -0700 (PDT)
+Received: by mail-qk1-x735.google.com with SMTP id 184so14817505qkh.1;
+        Sun, 01 Aug 2021 13:11:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=I3qD/rZ0V+eZxmDbUBpM/NiZcHDu60IOJgfYrVNP/bc=;
-        b=UWZRTpPfyQpQkOBjIXupYutSmPKNEtqcuw6cbNPojUx31DAVFmaM0uGVfD3dbyM5kL
-         xwkt1AzcELfRrRG3897H9Q7uI3ynoyzYthmQy90EknruW110MEwQz7VRkjqmMbohobgw
-         UCm0MQKk6ALPCOPq1e6pnHKsxggW68EAH7J/R7US5ownOQbWEnviDhEQmD5d9kqPT1X1
-         1MK2MEhZEu1FeP+jwwjsDVXnarSVa9kOV42srcfQ5LIEsCrNGaLlrnBB4csawJDVEXfO
-         PHsEj4ey+CAQW9ENMd4mX6GciukrqgjYVdjwYqJK1Ji4CvrFqf1zRZARFI7pVVAG0fHi
-         +1fA==
+        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
+         :from:to:references:in-reply-to;
+        bh=mnpTQOh73vq6DtXpVHwiPk+Fj3l7/WyOJGm0/gTGsLI=;
+        b=U8MI2y4eFw7qa6QYbdViBYlCqYzz+7WsJ5KZITaAxWr8HC2zd5lP8uoSuuVC5M0FwH
+         zlUPAvIrSGazyrte6D83kmQedExoU8B43zmmaYl4X8XJicdIlm0CrS7YY6xFg3ssSXIT
+         NjfDb+NM5uMdxdVToSP17ZONCPuGNTmYBm33nsLCMO3eN7893LwXzNJsz67mMrYD6lXE
+         7KONUL1DGQA+B1JauV+a+K9+0oPDRR1k0x/EhLo9c8tiQ8Jl0MypXZW6s164pAsIpGxD
+         +l1E9Hrk54BqAFw2H+Ly6cc0wh4g/O3aLDVxGojnFCsigdZM5SbBMUr44V0q9waqIgDV
+         jQLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=I3qD/rZ0V+eZxmDbUBpM/NiZcHDu60IOJgfYrVNP/bc=;
-        b=p9G8IKIis2Tsz9l6cIUWzaIrK/pSvMc4l25tOPFuwPUjoPXNVvifU/TIxSVQernCV7
-         MQg8Zhbc4/FhUWdCgDGoAb6KcdA88NkswkRzsadHb6/DbfYKbDYDSQbM/fKGP3V4DTwX
-         OT9KFwnZ0zuPs4xegEApAPOejqnObx3G4+EsBfVTr06l6qH8yuX/W9+hgGnlctzIMDyp
-         uCjuIylKkHzNvwTkI2MTMUQycIzMHKkra0SnGk/Zri6msLXv8YVDYHkUVuPCG+Urf+OX
-         PLpfc25dUfA//DdeCVGTehg+usmQdVnB2LQBtEcxZGVp638WYqy3XNutIzY9cquMflNW
-         jNMg==
-X-Gm-Message-State: AOAM531yh8PcbSMaIX30/EZL0howxVk0WSURhZb+ndy4faZFb8cXjStN
-        kavSnieVFECDWSIK9RK6o0zd6xXzoqqzldgYln8=
-X-Google-Smtp-Source: ABdhPJw7LS93H0i4bkzbrHg6bKZWyyhnvXHEnxMWG27SMcjNvQR5TGwBcMoCWf19lZaiXTiRlFhcOLADHqjJNSZQycE=
-X-Received: by 2002:a25:dad7:: with SMTP id n206mr16449292ybf.119.1627847504684;
- Sun, 01 Aug 2021 12:51:44 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210726182850.14328-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20210726182850.14328-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20210731181142.430c50f8@jic23-huawei> <CA+V-a8vMdFrrcw3iqbSzd4oN_x6CijOwYo7eSFuf8LhfB6SFRg@mail.gmail.com>
- <20210801175947.2b49878d@jic23-huawei>
-In-Reply-To: <20210801175947.2b49878d@jic23-huawei>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Sun, 1 Aug 2021 20:51:18 +0100
-Message-ID: <CA+V-a8ukR39BsvUd055p8w-kafZ-SQDXydkJXag7c+7m3MEihg@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] iio: adc: Add driver for Renesas RZ/G2L A/D converter
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Alexandru Ardelean <aardelean@deviqon.com>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:cc:subject:from:to:references:in-reply-to;
+        bh=mnpTQOh73vq6DtXpVHwiPk+Fj3l7/WyOJGm0/gTGsLI=;
+        b=tQC+N7LyUrqR5VBBQe8K3Ll+YoPHBSfD8rKC+EpfgnDTO1IxuDF7DIi/KAsrzcDqKr
+         IdSu6gnEKHUbDASIv8SLB9vVAvHs7gszkDXXkrHadFtOlxRY7K4fRPZMp0AqNrOn7nO8
+         VXD9IB/qjpOAkuSuzQepnSky4/9j9Vc/AuUM+nXksrvEuujV2tOfnrtgfuNkWUgqgbqO
+         9IqtPxqe0ifkRQxmM6UyQtZYjUQufTTOMnkWTZEar+Ts8oM3qBD2DMxaAgWMvI/CGBMH
+         kFKAnA7xBT7orVu+myfC4QqZKB7Sd66cvpvrgk38lqP0hKCwNdlJ7jopWF8SLFxYK/+L
+         2aNA==
+X-Gm-Message-State: AOAM530ScfU309O6mvJ36Ph2eHzfmGLsUlYXHRsc/4YVshL9huVK5XbA
+        ei68a3KX4mhZOsnm7J9QooM=
+X-Google-Smtp-Source: ABdhPJwEI5vPy8HQCTFouvTYVW2D0JqZ4iFzV8GhxRVf++LhlDw7kcMoIeRW3PQ9zZmPWL/z6TWWfg==
+X-Received: by 2002:a05:620a:204c:: with SMTP id d12mr12546434qka.417.1627848663405;
+        Sun, 01 Aug 2021 13:11:03 -0700 (PDT)
+Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
+        by smtp.gmail.com with ESMTPSA id u36sm3634231qtc.71.2021.08.01.13.11.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 01 Aug 2021 13:11:02 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Sun, 01 Aug 2021 16:11:01 -0400
+Message-Id: <CD8G6VGMUEZS.1XZMKLFSD4MA9@shaak>
+Cc:     <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
+        <charles-antoine.couret@essensium.com>, <Nuno.Sa@analog.com>,
+        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
+Subject: Re: [PATCH v4 2/5] iio: adc: ad7949: fix spi messages on non 14-bit
+ controllers
+From:   "Liam Beguin" <liambeguin@gmail.com>
+To:     "Jonathan Cameron" <jic23@kernel.org>
+References: <20210727232906.980769-1-liambeguin@gmail.com>
+ <20210727232906.980769-3-liambeguin@gmail.com>
+ <20210731152921.2fcb53ab@jic23-huawei>
+In-Reply-To: <20210731152921.2fcb53ab@jic23-huawei>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat Jul 31, 2021 at 10:29 AM EDT, Jonathan Cameron wrote:
+> On Tue, 27 Jul 2021 19:29:03 -0400
+> Liam Beguin <liambeguin@gmail.com> wrote:
+>
+> > From: Liam Beguin <lvb@xiphos.com>
+> >=20
+> > This driver supports devices with 14-bit and 16-bit sample sizes.
+> > This is not always handled properly by spi controllers and can fail. To
+> > work around this limitation, pad samples to 16-bit and split the sample
+> > into two 8-bit messages in the event that only 8-bit messages are
+> > supported by the controller.
+> >=20
+> > Signed-off-by: Liam Beguin <lvb@xiphos.com>
+> > ---
+> >  drivers/iio/adc/ad7949.c | 62 ++++++++++++++++++++++++++++++++++------
+> >  1 file changed, 54 insertions(+), 8 deletions(-)
+> >=20
+> > diff --git a/drivers/iio/adc/ad7949.c b/drivers/iio/adc/ad7949.c
+> > index 0b549b8bd7a9..f1702c54c8be 100644
+> > --- a/drivers/iio/adc/ad7949.c
+> > +++ b/drivers/iio/adc/ad7949.c
+> > @@ -67,6 +67,7 @@ static const struct ad7949_adc_spec ad7949_adc_spec[]=
+ =3D {
+> >   * @indio_dev: reference to iio structure
+> >   * @spi: reference to spi structure
+> >   * @resolution: resolution of the chip
+> > + * @bits_per_word: number of bits per SPI word
+> >   * @cfg: copy of the configuration register
+> >   * @current_channel: current channel in use
+> >   * @buffer: buffer to send / receive data to / from device
+> > @@ -77,6 +78,7 @@ struct ad7949_adc_chip {
+> >  	struct iio_dev *indio_dev;
+> >  	struct spi_device *spi;
+> >  	u8 resolution;
+> > +	u8 bits_per_word;
+> >  	u16 cfg;
+> >  	unsigned int current_channel;
+> >  	u16 buffer ____cacheline_aligned;
+> > @@ -86,19 +88,34 @@ static int ad7949_spi_write_cfg(struct ad7949_adc_c=
+hip *ad7949_adc, u16 val,
+> >  				u16 mask)
+> >  {
+> >  	int ret;
+> > -	int bits_per_word =3D ad7949_adc->resolution;
+> > -	int shift =3D bits_per_word - AD7949_CFG_REG_SIZE_BITS;
+
 Hi Jonathan,
 
-On Sun, Aug 1, 2021 at 5:57 PM Jonathan Cameron <jic23@kernel.org> wrote:
 >
-> On Sat, 31 Jul 2021 19:31:52 +0100
-> "Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
->
-> > Hi Jonathan,
-> >
-> > Thank you for the review.
-> >
->
-> ...
->
-> > > > +#define DRIVER_NAME          "rzg2l-adc"
-> > >
-> > > As only used in one place, just put it inline there so we don't need
-> > > to go find if we want to know the value - I'm lazy.
-> > >
-> > Its being used in two places
-> > 1: indio_dev->name = DRIVER_NAME #In probe call
-> > 2: .name = DRIVER_NAME # In platform_driver struct
-> >
-> > Let me know if you want me to replace them inline and drop the above macro.
->
-> oops.  Searching apparently failed me ;)  Fine as is.
->
-> ...
->
->
-> > > > +static const struct iio_info rzg2l_adc_iio_info = {
-> > > > +     .read_raw = rzg2l_adc_read_raw,
-> > > > +     .read_label = rzg2l_adc_read_label,
-> > > > +};
-> > > > +
-> > > > +static irqreturn_t rzg2l_adc_isr(int irq, void *dev_id)
-> > > > +{
-> > > > +     struct rzg2l_adc *adc = (struct rzg2l_adc *)dev_id;
-> > >
-> > > No need for explicit cast from void * to another pointer type.
-> > > This is always valid without in C.
-> > >
-> > Agreed.
-> >
-> > > > +     unsigned long intst;
-> > > > +     u32 reg;
-> > > > +     int ch;
-> > > > +
-> > > > +     reg = rzg2l_adc_readl(adc, RZG2L_ADSTS);
-> > > > +
-> > > > +     /* A/D conversion channel select error interrupt */
-> > > > +     if (reg & RZG2L_ADSTS_CSEST) {
-> > > > +             rzg2l_adc_writel(adc, RZG2L_ADSTS, reg);
-> > > > +             return IRQ_HANDLED;
-> > > > +     }
-> > > > +
-> > > > +     intst = reg & RZG2L_ADSTS_INTST_MASK;
-> > > > +     if (!intst)
-> > > > +             return IRQ_NONE;
-> > > > +
-> > > > +     for_each_set_bit(ch, &intst, RZG2L_ADC_MAX_CHANNELS) {
-> > > > +             if (intst & BIT(ch))
-> > >
-> > > I'm missing how this if can fail given we only end up in here when the bit is
-> > > set.
-> > >
-> > ADC has 8 channels RZG2L_ADSTS register bits [0:7] will be set to 1
-> > when the given channel ADC conversion has been completed. So the above
-> > if condition checks if the bit is set to 1 and then reads the
-> > corresponding value of that channel.
->
-> Just looking at the two lines of code above
-> for_each_set_bit(ch, &intst, RZG2L_ADC_MAX_CHANNELS)
-> will only call the the next line if the bit is set.  E.g. It will only call
-> it
-> if (intst & BIT(ch))
->
-> So you can only get into the body of the for loop if this bit is set and the
-> condition is always true.  Hence drop
-> if (intst & BIT(ch))
->
-Agreed can be dropped.
+> The define for this was removed in patch 1. I'll fix that up whilst
+> applying by
+> keeping it until this patch. Please check build passes on intermediate
+> points
+> during a patch series as otherwise we may break bisectability and that's
+> really
+> annoying if you are bisecting!
 
-> >
-> > > > +                     adc->last_val[ch] = rzg2l_adc_readl(adc, RZG2L_ADCR(ch)) &
-> > > > +                                         RZG2L_ADCR_AD_MASK;
-> > > > +     }
-> > > > +
-> > > > +     /* clear the channel interrupt */
-> > > > +     rzg2l_adc_writel(adc, RZG2L_ADSTS, reg);
-> > > > +
-> > > > +     complete(&adc->completion);
-> > > > +
-> > > > +     return IRQ_HANDLED;
-> > > > +}
-> > > > +
->
-> ...
->
-> > > > +
-> > > > +     pm_runtime_enable(dev);
-> > >
-> > > I think you also want to set the state to suspended to ensure the resume is
-> > > called on get.
-> > >
-> > pm_runtime_set_suspended() should only be called when runtime is
-> > disabled or is it that I am missing something ?
->
-> If you want the runtime pm code to assume your device is suspended initially
-> then you set the state before you call pm_runtime_enable(dev).
->
-OK will call pm_runtime_set_suspended() before enabling.
+Apologies for that. I'll make sure to add at least a `git rebase -x` to
+my checks.
+I'll fix it before sending the next version of this series.
 
-Cheers,
-Prabhakar
+Thanks,
+Liam
+
+>
+> Jonathan
+>
+> >  	struct spi_message msg;
+> >  	struct spi_transfer tx[] =3D {
+> >  		{
+> >  			.tx_buf =3D &ad7949_adc->buffer,
+> >  			.len =3D 2,
+> > -			.bits_per_word =3D bits_per_word,
+> > +			.bits_per_word =3D ad7949_adc->bits_per_word,
+> >  		},
+> >  	};
+> > =20
+> > +	ad7949_adc->buffer =3D 0;
+> >  	ad7949_adc->cfg =3D (val & mask) | (ad7949_adc->cfg & ~mask);
+> > -	ad7949_adc->buffer =3D ad7949_adc->cfg << shift;
+> > +
+> > +	switch (ad7949_adc->bits_per_word) {
+> > +	case 16:
+> > +		ad7949_adc->buffer =3D ad7949_adc->cfg << 2;
+> > +		break;
+> > +	case 14:
+> > +		ad7949_adc->buffer =3D ad7949_adc->cfg;
+> > +		break;
+> > +	case 8:
+> > +		/* Here, type is big endian as it must be sent in two transfers */
+> > +		ad7949_adc->buffer =3D (u16)cpu_to_be16(ad7949_adc->cfg << 2);
+> > +		break;
+> > +	default:
+> > +		dev_err(&ad7949_adc->indio_dev->dev, "unsupported BPW\n");
+> > +		return -EINVAL;
+> > +	}
+> > +
+> >  	spi_message_init_with_transfers(&msg, tx, 1);
+> >  	ret =3D spi_sync(ad7949_adc->spi, &msg);
+> > =20
+> > @@ -115,14 +132,12 @@ static int ad7949_spi_read_channel(struct ad7949_=
+adc_chip *ad7949_adc, int *val,
+> >  {
+> >  	int ret;
+> >  	int i;
+> > -	int bits_per_word =3D ad7949_adc->resolution;
+> > -	int mask =3D GENMASK(ad7949_adc->resolution - 1, 0);
+> >  	struct spi_message msg;
+> >  	struct spi_transfer tx[] =3D {
+> >  		{
+> >  			.rx_buf =3D &ad7949_adc->buffer,
+> >  			.len =3D 2,
+> > -			.bits_per_word =3D bits_per_word,
+> > +			.bits_per_word =3D ad7949_adc->bits_per_word,
+> >  		},
+> >  	};
+> > =20
+> > @@ -157,7 +172,25 @@ static int ad7949_spi_read_channel(struct ad7949_a=
+dc_chip *ad7949_adc, int *val,
+> > =20
+> >  	ad7949_adc->current_channel =3D channel;
+> > =20
+> > -	*val =3D ad7949_adc->buffer & mask;
+> > +	switch (ad7949_adc->bits_per_word) {
+> > +	case 16:
+> > +		*val =3D ad7949_adc->buffer;
+> > +		/* Shift-out padding bits */
+> > +		*val >>=3D 16 - ad7949_adc->resolution;
+> > +		break;
+> > +	case 14:
+> > +		*val =3D ad7949_adc->buffer & GENMASK(13, 0);
+> > +		break;
+> > +	case 8:
+> > +		/* Here, type is big endian as data was sent in two transfers */
+> > +		*val =3D be16_to_cpu(ad7949_adc->buffer);
+> > +		/* Shift-out padding bits */
+> > +		*val >>=3D 16 - ad7949_adc->resolution;
+> > +		break;
+> > +	default:
+> > +		dev_err(&ad7949_adc->indio_dev->dev, "unsupported BPW\n");
+> > +		return -EINVAL;
+> > +	}
+> > =20
+> >  	return 0;
+> >  }
+> > @@ -265,6 +298,7 @@ static int ad7949_spi_init(struct ad7949_adc_chip *=
+ad7949_adc)
+> > =20
+> >  static int ad7949_spi_probe(struct spi_device *spi)
+> >  {
+> > +	u32 spi_ctrl_mask =3D spi->controller->bits_per_word_mask;
+> >  	struct device *dev =3D &spi->dev;
+> >  	const struct ad7949_adc_spec *spec;
+> >  	struct ad7949_adc_chip *ad7949_adc;
+> > @@ -291,6 +325,18 @@ static int ad7949_spi_probe(struct spi_device *spi=
+)
+> >  	indio_dev->num_channels =3D spec->num_channels;
+> >  	ad7949_adc->resolution =3D spec->resolution;
+> > =20
+> > +	/* Set SPI bits per word */
+> > +	if (spi_ctrl_mask & SPI_BPW_MASK(ad7949_adc->resolution)) {
+> > +		ad7949_adc->bits_per_word =3D ad7949_adc->resolution;
+> > +	} else if (spi_ctrl_mask =3D=3D SPI_BPW_MASK(16)) {
+> > +		ad7949_adc->bits_per_word =3D 16;
+> > +	} else if (spi_ctrl_mask =3D=3D SPI_BPW_MASK(8)) {
+> > +		ad7949_adc->bits_per_word =3D 8;
+> > +	} else {
+> > +		dev_err(dev, "unable to find common BPW with spi controller\n");
+> > +		return -EINVAL;
+> > +	}
+> > +
+> >  	ad7949_adc->vref =3D devm_regulator_get(dev, "vref");
+> >  	if (IS_ERR(ad7949_adc->vref)) {
+> >  		dev_err(dev, "fail to request regulator\n");
+
