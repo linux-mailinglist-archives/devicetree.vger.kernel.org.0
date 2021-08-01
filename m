@@ -2,145 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 937CC3DCCCB
-	for <lists+devicetree@lfdr.de>; Sun,  1 Aug 2021 18:58:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 832D33DCD0C
+	for <lists+devicetree@lfdr.de>; Sun,  1 Aug 2021 20:01:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229596AbhHAQ6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Aug 2021 12:58:45 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45920 "EHLO mail.kernel.org"
+        id S229851AbhHASBz convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sun, 1 Aug 2021 14:01:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58612 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229575AbhHAQ6p (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 1 Aug 2021 12:58:45 -0400
+        id S230146AbhHASBy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 1 Aug 2021 14:01:54 -0400
 Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A7B3960EB5;
-        Sun,  1 Aug 2021 16:58:31 +0000 (UTC)
-Date:   Sun, 1 Aug 2021 18:01:11 +0100
+        by mail.kernel.org (Postfix) with ESMTPSA id D86B160E76;
+        Sun,  1 Aug 2021 18:01:43 +0000 (UTC)
+Date:   Sun, 1 Aug 2021 19:04:22 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Andreas Klinger <ak@it-klinger.de>, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Jiri Kosina <trivial@kernel.org>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        Slawomir Stepien <sst@poczta.fm>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Vadim Pasternak <vadimp@nvidia.com>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>,
-        linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
-        Tomasz Duszynski <tomasz.duszynski@octakon.com>
-Subject: Re: [PATCH 2/2] iio: chemical: Add driver support for sgp40
-Message-ID: <20210801180111.28a1c4d1@jic23-huawei>
-In-Reply-To: <42e31edc-445c-06ac-dd3a-80db1b439996@roeck-us.net>
-References: <20210727163517.GA3468@arbad>
-        <20210731173928.08d6812f@jic23-huawei>
-        <42e31edc-445c-06ac-dd3a-80db1b439996@roeck-us.net>
+To:     Lucas Stankus <lucas.p.stankus@gmail.com>
+Cc:     lars@metafoo.de, Michael.Hennerich@analog.com, robh+dt@kernel.org,
+        Dragos.Bogdan@analog.com, Darius.Berghe@analog.com,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: iio: accel: Add binding documentation
+ for ADXL313
+Message-ID: <20210801190422.28fd5334@jic23-huawei>
+In-Reply-To: <1e652b88a367824e58fb71896b4a660204bd7a88.1627709571.git.lucas.p.stankus@gmail.com>
+References: <cover.1627709571.git.lucas.p.stankus@gmail.com>
+        <1e652b88a367824e58fb71896b4a660204bd7a88.1627709571.git.lucas.p.stankus@gmail.com>
 X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 31 Jul 2021 11:06:25 -0700
-Guenter Roeck <linux@roeck-us.net> wrote:
+On Sat, 31 Jul 2021 17:36:31 -0300
+Lucas Stankus <lucas.p.stankus@gmail.com> wrote:
 
-> On 7/31/21 9:39 AM, Jonathan Cameron wrote:
-> > On Tue, 27 Jul 2021 18:35:19 +0200
-> > Andreas Klinger <ak@it-klinger.de> wrote:
-> >   
-> >> sgp40 is a gas sensor used for measuring the air quality.
-> >>
-> >> This driver is reading the raw resistance value which can be passed to
-> >> a userspace algorithm for further calculation.
-> >>
-> >> The raw value is also used to calculate an estimated absolute voc index
-> >> in the range from 0 to 500. For this purpose the raw_mean value of the
-> >> resistance for which the index value is 250 might be set up as a
-> >> calibration step.
-> >>
-> >> Compensation of relative humidity and temperature is supported and can
-> >> be used by writing to device attributes of the driver.
-> >>
-> >> There is a predecesor sensor type (sgp30) already existing. This driver
-> >> module was not extended because the new sensor is quite different in its
-> >> i2c telegrams.
-> >>
-> >> Signed-off-by: Andreas Klinger <ak@it-klinger.de>  
-> > 
-> > Hi Andreas,
-> > 
-> > Non standard ABI in here, so we are missing documentation in Documentation/ABI/testing/sysfs-bus-iio-*
-> > 
-> > Otherwise a few suggestions inline.
-> > 
-> > Thanks,
-> > 
-> > Jonathan
-> > 
-> >   
-> >> ---  
-> [ ... ]
+> Add device tree binding documentation for ADXL313 3-axis accelerometer.
 > 
-> >> +static int sgp40_read_raw(struct iio_dev *indio_dev,
-> >> +			struct iio_chan_spec const *chan, int *val,
-> >> +			int *val2, long mask)
-> >> +{
-> >> +	struct sgp40_data *data = iio_priv(indio_dev);
-> >> +	int ret;
-> >> +	u16 raw;
-> >> +	int voc;
-> >> +
-> >> +	switch (mask) {
-> >> +	case IIO_CHAN_INFO_RAW:
-> >> +		mutex_lock(&data->lock);
-> >> +		ret = sgp40_measure_raw(data, &raw);
-> >> +		if (ret) {
-> >> +			mutex_unlock(&data->lock);
-> >> +			return ret;
-> >> +		}
-> >> +		*val = raw;
-> >> +		ret = IIO_VAL_INT;
-> >> +		mutex_unlock(&data->lock);
-> >> +		break;
-> >> +	case IIO_CHAN_INFO_PROCESSED:
-> >> +		mutex_lock(&data->lock);
-> >> +		ret = sgp40_measure_raw(data, &raw);
-> >> +		if (ret) {
-> >> +			mutex_unlock(&data->lock);
-> >> +			return ret;
-> >> +		}
-> >> +		ret = sgp40_calc_voc(data, raw, &voc);
-> >> +		if (ret) {
-> >> +			mutex_unlock(&data->lock);
-> >> +			return ret;
-> >> +		}
-> >> +		*val = voc;
-> >> +		ret = IIO_VAL_INT;
-> >> +		mutex_unlock(&data->lock);  
-> > 
-> > You are holding the lock longer than needed - it would be good
-> > to reduce this, hopefully removing the need for unlocking separately
-> > in each of the error paths.
-> >   
-> >> +		break;
-> >> +	default:
-> >> +		return -EINVAL;
-> >> +	}
-> >> +
-> >> +	return ret;  
-> > 
-> > Drop this as you can't get here.
-> >   
-> 
-> Are you sure ? I see several "break;" above.
+> Signed-off-by: Lucas Stankus <lucas.p.stankus@gmail.com>
 
-Doh! In that case, return directly where it has break above so we don't
-need to go see if anything else happens in those paths.
+Hi Lucas, 
 
+A few minor requests for additions inline, so we include everything
+that is likely to be used by the driver in the longer term.
+
+> ---
+>  .../bindings/iio/accel/adi,adxl313.yaml       | 75 +++++++++++++++++++
+>  1 file changed, 75 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml
 > 
-> Guenter
+> diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml
+> new file mode 100644
+> index 000000000000..31f11d7eaaae
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml
+> @@ -0,0 +1,75 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/accel/adi,adxl313.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices ADXL313 3-Axis Digital Accelerometer
+> +
+> +maintainers:
+> +  - Lucas Stankus <lucas.p.stankus@gmail.com>
+> +
+> +description: |
+> +  Analog Devices ADXL313 3-Axis Digital Accelerometer that supports
+> +  both I2C & SPI interfaces.
+> +    https://www.analog.com/en/products/adxl313.html
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,adxl313
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-3wire: true
+> +
+> +  spi-cpha: true
+> +
+> +  spi-cpol: true
+> +
+> +  spi-max-frequency: true
+> +
+> +  interrupts:
+> +    maxItems: 2
+
+As board designers have an annoying habit of wiring up the second
+interrupt only, please also provide interrupt-names so we can
+know which one is connected if it's only one.
+
+From a quick glance at the datasheet, I see this also has two powersupplies.
+Please include
+vddio-supply
+vs-supply - annoyingly the s just stands for supply, but v-supply seems a bit to minimal.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c0 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        /* Example for a I2C device node */
+> +        accelerometer@53 {
+> +            compatible = "adi,adxl313";
+> +            reg = <0x53>;
+> +            interrupt-parent = <&gpio0>;
+> +            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+> +        };
+> +    };
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        /* Example for a SPI device node */
+> +        accelerometer@0 {
+> +            compatible = "adi,adxl313";
+> +            reg = <0>;
+> +            spi-max-frequency = <5000000>;
+> +            spi-cpol;
+> +            spi-cpha;
+> +            interrupt-parent = <&gpio0>;
+> +            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+> +        };
+> +    };
 
