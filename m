@@ -2,140 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A0E33DC91E
-	for <lists+devicetree@lfdr.de>; Sun,  1 Aug 2021 02:32:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B573F3DC925
+	for <lists+devicetree@lfdr.de>; Sun,  1 Aug 2021 02:37:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229958AbhHAAcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 31 Jul 2021 20:32:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42140 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230168AbhHAAcL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Jul 2021 20:32:11 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04822C061798
-        for <devicetree@vger.kernel.org>; Sat, 31 Jul 2021 17:32:00 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id f12so18720773ljn.1
-        for <devicetree@vger.kernel.org>; Sat, 31 Jul 2021 17:32:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=2L3zqMoEN0w93t8aXl7IFgGCX2iAcHglMaP4nZ8ctSY=;
-        b=y7e1B3fQA3oBbsmb6Z9mqvMhwd1C3RPDyREPH7bd2n7yzHeDNlalEAqxF6KRU6NV6U
-         r8inAJ6sVfaBWMv6+k9Y0TMKbjCxwCY02DdCtcTpoRKPlKu6F22Mp8BPuT8PIthm9/MF
-         eBmLVXgz4oCNMbuGiDM5weCWnY9CLgLeMxZMPcav2OREzw/FB85j8uwIFrojhP23vPFS
-         2GKKHfRtd0P+AQWCwpMqYgKHybUJpEOHZGmK4Y1oa5XhpUhVF34uOQeZYzWuwZHOC6RB
-         mJEswIVsxdVtNEDp6L2LY6uWNWcfV2LGJ+SNrXoHAwTdMXR+7MtHCjHIDIBkdbypCaSl
-         2JFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=2L3zqMoEN0w93t8aXl7IFgGCX2iAcHglMaP4nZ8ctSY=;
-        b=CqNW2z3e3+0EEGXfYq1VzInwQxRiQW1E1Vl55hEN8JHgT1gDW1gyWqWygJakAQZydv
-         gmWE5oEjPalL/zbrhgqcLbYNx+6P2g4lNuE9RpAAJuVaD8/HADeXpvbRy62Lr3HNbRAG
-         hhSpY0xV4I9CpQeBbnFGJN4QUpmjuUi/khspVifMBOVrrcR1Ib5jEG4utvOjmvNznt+W
-         oFQC9/kaaR/feYEER6O4jhfgCnJp1/6opP1mtrHFtLdIMdqmUTD/NpnXCNO9mkYuH90g
-         JNxPQ5s9aVfAFoXX4rVQeOhbiUIkMmwNfrFrBxa6lprAEjbJJugeh1Fc6biY85jSXJKO
-         AHDg==
-X-Gm-Message-State: AOAM530Amsg3ezaR5E7UKQ2SnYFIsErLihzIQv7qaLKaquflnnNvASWL
-        V8u2jjBXlJBbn1CJxwsgIambuQ==
-X-Google-Smtp-Source: ABdhPJxSRJ7YrhcdiDDqAugoBonIOkD4I22a2BHeZCwN+bY7kwDcvsjG89iL4hAV7j81NDBECUk80A==
-X-Received: by 2002:a2e:9cc3:: with SMTP id g3mr6599789ljj.83.1627777919339;
-        Sat, 31 Jul 2021 17:31:59 -0700 (PDT)
-Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
-        by smtp.gmail.com with ESMTPSA id r6sm485255ljk.76.2021.07.31.17.31.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 31 Jul 2021 17:31:59 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     netdev@vger.kernel.org, "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>
-Cc:     Imre Kaloz <kaloz@openwrt.org>, Krzysztof Halasa <khalasa@piap.pl>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>
-Subject: [PATCH net-next 5/6] ixp4xx_eth: Add devicetree bindings
-Date:   Sun,  1 Aug 2021 02:27:36 +0200
-Message-Id: <20210801002737.3038741-6-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210801002737.3038741-1-linus.walleij@linaro.org>
-References: <20210801002737.3038741-1-linus.walleij@linaro.org>
+        id S229467AbhHAAhS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Jul 2021 20:37:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34826 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229449AbhHAAhN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 31 Jul 2021 20:37:13 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B3F9D61076;
+        Sun,  1 Aug 2021 00:37:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1627778226;
+        bh=3JavNvosscnPl0cKpKchPRZKHTqWBRvdfJhDj49Ch9I=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=mGqrD+PcCAJ1zGEBOw+Sw41cTTUqJY9sdcjy3hA6W1IOrlv7KFp4nkUgj/TFi0uQO
+         dY76R3R5/v/6YloJBbFnJLV64cCTJWT/2HimfHtfV4W+4ZGqgtEAcsvgg6Gy9orJx7
+         l7MS8sw+9ODs5bMUy4OfwwGZ/jqGqn1rf1Eq1mS9b7cUOF+sAdXG8wXL+BHSleS2tj
+         zojEsDwU++BLlZzygd1gwdMM9iMbYYbnUreA+VmxrzQZxDTiWpjDZ34fRIdNEbvsxl
+         62ziqL/svpYbpcfEAw5ppNtOKeKS9D32H/aPwsOKty2uk0dzmNN5/6q+EiEgXhgL2L
+         JL8fFoOvj6hzg==
+Received: by mail-ed1-f44.google.com with SMTP id ec13so18676558edb.0;
+        Sat, 31 Jul 2021 17:37:06 -0700 (PDT)
+X-Gm-Message-State: AOAM5337K3hJY8gzfUmnb3LV+r8rCg3lu0cVstG62BFoL77fqJc7SgzA
+        ahTXurJ+mjWfNTV/QCKPM1vyxK2ru2nqvUzHtA==
+X-Google-Smtp-Source: ABdhPJwGejZmn+ir4WLj0iJxidWR2q1q2GQkCkoU8d81JhftGj7k3aKFDFGlAWds7B1EA+JK8Gd2VPe/dvPyFj2Eddw=
+X-Received: by 2002:a50:d71e:: with SMTP id t30mr11285964edi.72.1627778225214;
+ Sat, 31 Jul 2021 17:37:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210729170737.21424-1-jason-jh.lin@mediatek.com> <20210729170737.21424-2-jason-jh.lin@mediatek.com>
+In-Reply-To: <20210729170737.21424-2-jason-jh.lin@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Sun, 1 Aug 2021 08:36:54 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_9sasTb=W3Kkhx-UZ-ATSe_ge8A14pmOHFCOQjag89r0Q@mail.gmail.com>
+Message-ID: <CAAOTY_9sasTb=W3Kkhx-UZ-ATSe_ge8A14pmOHFCOQjag89r0Q@mail.gmail.com>
+Subject: Re: [PATCH v5 1/6] arm64: dts: mt8195: add display node for vdosys0
+To:     "jason-jh.lin" <jason-jh.lin@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        fshao@chromium.org, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        Nancy Lin <nancy.lin@mediatek.com>, singo.chang@mediatek.com,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds device tree bindings for the IXP46x PTP Timer, a companion
-to the IXP4xx ethernet in newer platforms.
+Hi, Jason:
 
-Cc: devicetree@vger.kernel.org
-Cc: Arnd Bergmann <arnd@arndb.de>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- .../bindings/net/intel,ixp46x-ptp-timer.yaml  | 54 +++++++++++++++++++
- 1 file changed, 54 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/intel,ixp46x-ptp-timer.yaml
+jason-jh.lin <jason-jh.lin@mediatek.com> =E6=96=BC 2021=E5=B9=B47=E6=9C=883=
+0=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8A=E5=8D=881:07=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+>
+> Add display node for vdosys0.
+>
+> Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
+> ---
+> This patch is based on [1][2][3][4]
+>
+> [1]arm64: dts: Add Mediatek SoC MT8195 and evaluation board dts and Makef=
+ile
+> - https://patchwork.kernel.org/project/linux-mediatek/patch/2021060107535=
+0.31515-2-seiya.wang@mediatek.com/
+> [2]arm64: dts: mt8195: add IOMMU and smi nodes
+> - https://patchwork.kernel.org/project/linux-mediatek/patch/2021061517323=
+3.26682-15-tinghan.shen@mediatek.com/
+> [3]arm64: dts: mt8195: add gce node
+> - https://patchwork.kernel.org/project/linux-mediatek/patch/2021070505342=
+9.4380-4-jason-jh.lin@mediatek.com/
+> [4]add mt8195 SoC DRM binding
+> - https://patchwork.kernel.org/project/linux-mediatek/list/?series=3D5195=
+97
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8195.dtsi | 112 +++++++++++++++++++++++
+>  1 file changed, 112 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/d=
+ts/mediatek/mt8195.dtsi
+> index 04d3e95175fa..4fa47cb2bede 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> @@ -1155,9 +1155,121 @@
+>                         #clock-cells =3D <1>;
+>                 };
+>
 
-diff --git a/Documentation/devicetree/bindings/net/intel,ixp46x-ptp-timer.yaml b/Documentation/devicetree/bindings/net/intel,ixp46x-ptp-timer.yaml
-new file mode 100644
-index 000000000000..8b9b3f915d92
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/intel,ixp46x-ptp-timer.yaml
-@@ -0,0 +1,54 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2018 Linaro Ltd.
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/net/intel,ixp46x-ptp-timer.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Intel IXP46x PTP Timer (TSYNC)
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description: |
-+  The Intel IXP46x PTP timer is known in the manual as IEEE1588 Hardware
-+  Assist and Time Synchronization Hardware Assist TSYNC provides a PTP
-+  timer. It exists in the Intel IXP45x and IXP46x XScale SoCs.
-+
-+properties:
-+  compatible:
-+    const: intel,ixp46x-ptp-timer
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    items:
-+      - description: Interrupt to trigger master mode snapshot from the
-+          PRP timer, usually a GPIO interrupt.
-+      - description: Interrupt to trigger slave mode snapshot from the
-+          PRP timer, usually a GPIO interrupt.
-+
-+  interrupt-names:
-+    items:
-+      - const: master
-+      - const: slave
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    ptp-timer@c8010000 {
-+        compatible = "intel,ixp46x-ptp-timer";
-+        reg = <0xc8010000 0x1000>;
-+        interrupt-parent = <&gpio0>;
-+        interrupts = <8 IRQ_TYPE_EDGE_FALLING>, <7 IRQ_TYPE_EDGE_FALLING>;
-+        interrupt-names = "master", "slave";
-+    };
--- 
-2.31.1
+[snip]
 
+> +
+> +               merge0: disp_vpp_merge0@1c014000 {
+> +                       compatible =3D "mediatek,mt8195-disp-merge";
+> +                       reg =3D <0 0x1c014000 0 0x1000>;
+> +                       interrupts =3D <GIC_SPI 656 IRQ_TYPE_LEVEL_HIGH 0=
+>;
+> +                       power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSY=
+S0>;
+> +                       clocks =3D <&vdosys0 CLK_VDO0_VPP_MERGE0>;
+
+Why this merge has no async clock?
+
+Regards,
+Chun-Kuang.
+
+> +                       mediatek,gce-client-reg =3D
+> +                                <&gce1 SUBSYS_1c01XXXX 0x4000 0x1000>;
+> +               };
+> +
