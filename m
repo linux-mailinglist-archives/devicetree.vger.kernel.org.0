@@ -2,226 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF36F3DCC60
-	for <lists+devicetree@lfdr.de>; Sun,  1 Aug 2021 17:25:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C00B3DCC99
+	for <lists+devicetree@lfdr.de>; Sun,  1 Aug 2021 18:09:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232331AbhHAPZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Aug 2021 11:25:55 -0400
-Received: from mail-4325.protonmail.ch ([185.70.43.25]:28761 "EHLO
-        mail-4325.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232291AbhHAPZz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Aug 2021 11:25:55 -0400
-X-Greylist: delayed 19108 seconds by postgrey-1.27 at vger.kernel.org; Sun, 01 Aug 2021 11:25:53 EDT
-Date:   Sun, 01 Aug 2021 15:25:40 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail; t=1627831542;
-        bh=bjcoQKv2TwfcSY5aAE1EYs9d4DrtS5AecOza1BPOH1M=;
-        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
-        b=unXaghBuhnjL4ngqJ5Q20BmdNO3PsVRWb1TDB1oEL1uxZUu7iU0BNIlk2pJ7A6s5s
-         fBqv8dZmBF+UJPGMZ7n7Eus82lYcbGwgF26TUv1zdjEdRU7QXI3k8MBW3cAqKKpMah
-         jCqU61fXDADs3Zjy0jlC4gP5Okax6ijbARFklaiw=
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
+        id S230132AbhHAQJt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Aug 2021 12:09:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38394 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229777AbhHAQJs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Aug 2021 12:09:48 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADB5EC06175F;
+        Sun,  1 Aug 2021 09:09:39 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id a192-20020a1c7fc90000b0290253b32e8796so9839637wmd.0;
+        Sun, 01 Aug 2021 09:09:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2/UTQa4zt36thXiOuOdpLGy6sVJQ/GEiwMyfa9IyL5Y=;
+        b=OLsxF0o7gj+epV4zaUFCFkv22espHpNo4Kp9fthy9GrtF2HcYirlP1XucQnEiTMpQy
+         fqXjCtrXsTQAGGrOks2ZwOM+KbzMGH+doAEDytrSDs0X6iQPtoCAUr8vsRdQdm5sE2Lc
+         ioYyWgXYg5BlvHlNyiEsXpAVdRpyPN1JbwsHeCEjDft/84aSjj1dFK8Il0u0a426LmqP
+         yvE75m9HRlqINcX+Hp/wcjFSGz3SDIS2ceE00+JkL/eE1d6Ced54jErQUiK1Y80cJJ/c
+         2XKt1mQFSkGBcKXCqRPJqg2goXeH27rUQKjfwh4Q8zLpHwy4lIVY5+Jf4UOZm5boPHh8
+         k/9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2/UTQa4zt36thXiOuOdpLGy6sVJQ/GEiwMyfa9IyL5Y=;
+        b=CTV7wDzhcF0tbDKhsdO+pxw/k100uL4grQ0UcHqIcPZmI6tz59IOgDfAC0aw/JgZNn
+         d7KFsd9kJ0YA7HWDShmx4FiF0rdHICbjEUp5LtVY5ZIBunS/Fr+wE8LAIZW1NML63mUs
+         ot3Bvtn0uYXaOGCLK8SQBIpT2Z2BFRTzCCfHYgwqMp/4PjZVGcWWwwSQEMFq5ql/4a3g
+         ju0tkKc/8pI30fDYHmxHJ7/aJI+zFHY4ZavklErORgu0SCitxur4gPpV19jMTcFhQ7w+
+         Gpxwutn6iYsxwCAUbGjXi2onWNBxbmVgj/3g7laP3Xf/aVOUuorjc1YK0wkVpWJb6qtT
+         4STw==
+X-Gm-Message-State: AOAM530b/SNI/GLqsBfSUSC+c4dAjndeGnDBAa50p5dSI7WeWkgE465D
+        LNyElZzkqL9MTDrznVxqXg9gMMJHFso=
+X-Google-Smtp-Source: ABdhPJym/91+S5eiTdwzNhDwb/YcpbUmEaBPUhi79G14S/ksod7sHwNKC0wp5W2dMDumtFmS3XB9MQ==
+X-Received: by 2002:a1c:4602:: with SMTP id t2mr12621844wma.87.1627834178138;
+        Sun, 01 Aug 2021 09:09:38 -0700 (PDT)
+Received: from debby (176-141-241-253.abo.bbox.fr. [176.141.241.253])
+        by smtp.gmail.com with ESMTPSA id p4sm7979656wre.83.2021.08.01.09.09.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 01 Aug 2021 09:09:37 -0700 (PDT)
+From:   Romain Perier <romain.perier@gmail.com>
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Daniel Palmer <daniel@0x0f.com>,
         Rob Herring <robh+dt@kernel.org>
-From:   Yassine Oudjana <y.oudjana@protonmail.com>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
-Subject: [PATCH v2 6/6] arm64: dts: qcom: msm8996: Add interconnect support
-Message-ID: <20210801152427.475547-7-y.oudjana@protonmail.com>
-In-Reply-To: <20210801152427.475547-1-y.oudjana@protonmail.com>
-References: <20210801152427.475547-1-y.oudjana@protonmail.com>
+Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 0/3] Add RTC for MStar SoCs
+Date:   Sun,  1 Aug 2021 18:09:18 +0200
+Message-Id: <20210801160921.233081-1-romain.perier@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add interconnect providers for the multiple NoCs available on the platform,
-and assign interconnects used by some blocks.
+This patches series adds a new driver for the RTC found in the Mstar
+MSC313e SoCs and newer. It adds a basic rtc driver, the corresponding
+devicetree bindings and its documentation.
 
-Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
----
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 84 +++++++++++++++++++++++++++
- 1 file changed, 84 insertions(+)
+The rtctest (from selftests) has been passed on this driver, with the
+following output:
+$ rtctest 
+TAP version 13
+1..7
+# Starting 7 tests from 2 test cases.
+#  RUN           rtc.date_read ...
+# rtctest.c:47:date_read:Current RTC date/time is 01/01/1970 00:02:03.
+#            OK  rtc.date_read
+ok 1 rtc.date_read
+#  RUN           rtc.uie_read ...
+#            OK  rtc.uie_read
+ok 2 rtc.uie_read
+#  RUN           rtc.uie_select ...
+#            OK  rtc.uie_select
+ok 3 rtc.uie_select
+#  RUN           rtc.alarm_alm_set ...
+# rtctest.c:136:alarm_alm_set:Alarm time now set to 00:02:12.
+# rtctest.c:156:alarm_alm_set:data: 1a0
+#            OK  rtc.alarm_alm_set
+ok 4 rtc.alarm_alm_set
+#  RUN           rtc.alarm_wkalm_set ...
+# rtctest.c:192:alarm_wkalm_set:Alarm time now set to 01/01/1970 00:02:15.
+#            OK  rtc.alarm_wkalm_set
+ok 5 rtc.alarm_wkalm_set
+#  RUN           rtc.alarm_alm_set_minute ...
+# rtctest.c:238:alarm_alm_set_minute:Alarm time now set to 00:03:00.
+# rtctest.c:258:alarm_alm_set_minute:data: 1a0
+#            OK  rtc.alarm_alm_set_minute
+ok 6 [  180.545015] random: fast init done
+rtc.alarm_alm_set_minute
+#  RUN           rtc.alarm_wkalm_set_minute ...
+# rtctest.c:294:alarm_wkalm_set_minute:Alarm time now set to 01/01/1970 00:04:00.
+#            OK  rtc.alarm_wkalm_set_minute
+ok 7 rtc.alarm_wkalm_set_minute
+# PASSED: 7 / 7 tests passed.
+# Totals: pass:7 fail:0 xfail:0 xpass:0 skip:0 error:0
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qc=
-om/msm8996.dtsi
-index 017c94e88c21..85055b9dd086 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -7,6 +7,7 @@
- #include <dt-bindings/clock/qcom,mmcc-msm8996.h>
- #include <dt-bindings/clock/qcom,rpmcc.h>
- #include <dt-bindings/power/qcom-rpmpd.h>
-+#include <dt-bindings/interconnect/qcom,msm8996.h>
- #include <dt-bindings/soc/qcom,apr.h>
- #include <dt-bindings/thermal/thermal.h>
-=20
-@@ -47,6 +48,7 @@ CPU0: cpu@0 {
- =09=09=09capacity-dmips-mhz =3D <1024>;
- =09=09=09clocks =3D <&kryocc 0>;
- =09=09=09operating-points-v2 =3D <&cluster0_opp>;
-+=09=09=09interconnects =3D <&bimc MASTER_AMPSS_M0 &bimc SLAVE_EBI_CH0>;
- =09=09=09#cooling-cells =3D <2>;
- =09=09=09next-level-cache =3D <&L2_0>;
- =09=09=09L2_0: l2-cache {
-@@ -64,6 +66,7 @@ CPU1: cpu@1 {
- =09=09=09capacity-dmips-mhz =3D <1024>;
- =09=09=09clocks =3D <&kryocc 0>;
- =09=09=09operating-points-v2 =3D <&cluster0_opp>;
-+=09=09=09interconnects =3D <&bimc MASTER_AMPSS_M0 &bimc SLAVE_EBI_CH0>;
- =09=09=09#cooling-cells =3D <2>;
- =09=09=09next-level-cache =3D <&L2_0>;
- =09=09};
-@@ -77,6 +80,7 @@ CPU2: cpu@100 {
- =09=09=09capacity-dmips-mhz =3D <1024>;
- =09=09=09clocks =3D <&kryocc 1>;
- =09=09=09operating-points-v2 =3D <&cluster1_opp>;
-+=09=09=09interconnects =3D <&bimc MASTER_AMPSS_M0 &bimc SLAVE_EBI_CH0>;
- =09=09=09#cooling-cells =3D <2>;
- =09=09=09next-level-cache =3D <&L2_1>;
- =09=09=09L2_1: l2-cache {
-@@ -94,6 +98,7 @@ CPU3: cpu@101 {
- =09=09=09capacity-dmips-mhz =3D <1024>;
- =09=09=09clocks =3D <&kryocc 1>;
- =09=09=09operating-points-v2 =3D <&cluster1_opp>;
-+=09=09=09interconnects =3D <&bimc MASTER_AMPSS_M0 &bimc SLAVE_EBI_CH0>;
- =09=09=09#cooling-cells =3D <2>;
- =09=09=09next-level-cache =3D <&L2_1>;
- =09=09};
-@@ -904,6 +909,15 @@ gcc: clock-controller@300000 {
- =09=09=09clock-names =3D "cxo2";
- =09=09};
-=20
-+=09=09bimc: interconnect@408000 {
-+=09=09=09compatible =3D "qcom,msm8996-bimc";
-+=09=09=09reg =3D <0x00408000 0x5a000>;
-+=09=09=09#interconnect-cells =3D <1>;
-+=09=09=09clock-names =3D "bus", "bus_a";
-+=09=09=09clocks =3D <&rpmcc RPM_SMD_BIMC_CLK>,
-+=09=09=09=09 <&rpmcc RPM_SMD_BIMC_A_CLK>;
-+=09=09};
-+
- =09=09tsens0: thermal-sensor@4a9000 {
- =09=09=09compatible =3D "qcom,msm8996-tsens", "qcom,tsens-v2";
- =09=09=09reg =3D <0x004a9000 0x1000>, /* TM */
-@@ -926,6 +940,61 @@ tsens1: thermal-sensor@4ad000 {
- =09=09=09#thermal-sensor-cells =3D <1>;
- =09=09};
-=20
-+=09=09cnoc: interconnect@500000 {
-+=09=09=09compatible =3D "qcom,msm8996-cnoc";
-+=09=09=09reg =3D <0x00500000 0x1000>;
-+=09=09=09#interconnect-cells =3D <1>;
-+=09=09=09clock-names =3D "bus", "bus_a";
-+=09=09=09clocks =3D <&rpmcc RPM_SMD_CNOC_CLK>,
-+=09=09=09=09 <&rpmcc RPM_SMD_CNOC_A_CLK>;
-+=09=09};
-+
-+=09=09snoc: interconnect@524000 {
-+=09=09=09compatible =3D "qcom,msm8996-snoc";
-+=09=09=09reg =3D <0x00524000 0x1c000>;
-+=09=09=09#interconnect-cells =3D <1>;
-+=09=09=09clock-names =3D "bus", "bus_a";
-+=09=09=09clocks =3D <&rpmcc RPM_SMD_SNOC_CLK>,
-+=09=09=09=09 <&rpmcc RPM_SMD_SNOC_A_CLK>;
-+=09=09};
-+
-+=09=09a1noc: interconnect@562000 {
-+=09=09=09compatible =3D "qcom,msm8996-a1noc";
-+=09=09=09reg =3D <0x00562000 0x5000>;
-+=09=09=09#interconnect-cells =3D <1>;
-+=09=09=09clock-names =3D "bus", "bus_a";
-+=09=09=09clocks =3D <&rpmcc RPM_SMD_AGGR1_NOC_CLK>,
-+=09=09=09=09 <&rpmcc RPM_SMD_AGGR1_NOC_A_CLK>;
-+=09=09};
-+
-+=09=09a2noc: interconnect@583000 {
-+=09=09=09compatible =3D "qcom,msm8996-a2noc";
-+=09=09=09reg =3D <0x00583000 0x7000>;
-+=09=09=09#interconnect-cells =3D <1>;
-+=09=09=09clock-names =3D "bus", "bus_a";
-+=09=09=09clocks =3D <&rpmcc RPM_SMD_AGGR2_NOC_CLK>,
-+=09=09=09=09 <&rpmcc RPM_SMD_AGGR2_NOC_A_CLK>;
-+=09=09};
-+
-+=09=09mnoc: interconnect@5a4000 {
-+=09=09=09compatible =3D "qcom,msm8996-mnoc";
-+=09=09=09reg =3D <0x005a4000 0x1c000>;
-+=09=09=09#interconnect-cells =3D <1>;
-+=09=09=09clock-names =3D "bus", "bus_a", "iface";
-+=09=09=09clocks =3D <&rpmcc RPM_SMD_MMAXI_CLK>,
-+=09=09=09=09 <&rpmcc RPM_SMD_MMAXI_A_CLK>,
-+=09=09=09=09 <&mmcc AHB_CLK_SRC>;
-+=09=09};
-+
-+=09=09pnoc: interconnect@5c0000 {
-+=09=09=09compatible =3D "qcom,msm8996-pnoc";
-+=09=09=09reg =3D <0x005c0000 0x3000>;
-+=09=09=09#interconnect-cells =3D <1>;
-+=09=09=09clock-names =3D "bus", "bus_a";
-+=09=09=09clocks =3D <&rpmcc RPM_SMD_PCNOC_CLK>,
-+=09=09=09=09 <&rpmcc RPM_SMD_PCNOC_A_CLK>;
-+=09=09};
-+
- =09=09tcsr_mutex_regs: syscon@740000 {
- =09=09=09compatible =3D "syscon";
- =09=09=09reg =3D <0x00740000 0x40000>;
-@@ -1005,6 +1074,11 @@ mdp: mdp@901000 {
- =09=09=09=09assigned-clock-rates =3D <300000000>,
- =09=09=09=09=09 <19200000>;
-=20
-+=09=09=09=09interconnects =3D <&mnoc MASTER_MDP_PORT0 &bimc SLAVE_EBI_CH0>=
-,
-+=09=09=09=09=09=09<&mnoc MASTER_MDP_PORT1 &bimc SLAVE_EBI_CH0>,
-+=09=09=09=09=09=09<&mnoc MASTER_ROTATOR &bimc SLAVE_EBI_CH0>;
-+=09=09=09=09interconnect-names =3D "mdp0-mem", "mdp1-mem", "rotator-mem";
-+
- =09=09=09=09ports {
- =09=09=09=09=09#address-cells =3D <1>;
- =09=09=09=09=09#size-cells =3D <0>;
-@@ -1266,6 +1340,9 @@ gpu: gpu@b00000 {
- =09=09=09=09"mem",
- =09=09=09=09"mem_iface";
-=20
-+=09=09=09interconnects =3D <&bimc MASTER_GRAPHICS_3D &bimc SLAVE_EBI_CH0>;
-+=09=09=09interconnect-names =3D "gfx-mem";
-+
- =09=09=09power-domains =3D <&mmcc GPU_GX_GDSC>;
- =09=09=09iommus =3D <&adreno_smmu 0>;
-=20
-@@ -2289,6 +2366,9 @@ venus: video-codec@c00000 {
- =09=09=09=09 <&mmcc VIDEO_AXI_CLK>,
- =09=09=09=09 <&mmcc VIDEO_MAXI_CLK>;
- =09=09=09clock-names =3D "core", "iface", "bus", "mbus";
-+=09=09=09interconnects =3D <&mnoc MASTER_VIDEO_P0 &bimc SLAVE_EBI_CH0>,
-+=09=09=09=09=09<&bimc MASTER_AMPSS_M0 &mnoc SLAVE_VENUS_CFG>;
-+=09=09=09interconnect-names =3D "video-mem", "cpu-cfg";
- =09=09=09iommus =3D <&venus_smmu 0x00>,
- =09=09=09=09 <&venus_smmu 0x01>,
- =09=09=09=09 <&venus_smmu 0x0a>,
-@@ -3004,6 +3084,10 @@ usb3: usb@6af8800 {
- =09=09=09=09=09  <&gcc GCC_USB30_MASTER_CLK>;
- =09=09=09assigned-clock-rates =3D <19200000>, <120000000>;
-=20
-+=09=09=09interconnects =3D <&a2noc MASTER_USB3 &bimc SLAVE_EBI_CH0>,
-+=09=09=09=09=09<&bimc MASTER_AMPSS_M0 &snoc SLAVE_USB3>;
-+=09=09=09interconnect-names =3D "usb-ddr", "apps-usb";
-+
- =09=09=09power-domains =3D <&gcc USB30_GDSC>;
- =09=09=09status =3D "disabled";
-=20
---=20
-2.32.0
 
+Changes since v1:
+- Fixed the DT bindings documentation and fixed dt_binding_check (an
+  include was missing)
+- Added || COMPILE_TEST to kconfig
+- Removed rtc_valid_tm from msc313_rtc_read_time()
+- Removed the last write of the msc313_rtc_set_time() function (not
+  required) and improved comments
+- Replaced the relaxed io by normal io in msc313_rtc_interrupt()
+- Added checks to be sure that the alarm fired in msc313_rtc_interrupt()
+- Removed msc313_rtc_remove() (replaced by devm_add_action_or_reset)
+- Removed unnecessary software reset of the IP in the probe function
+  (the soft reset is never executed, it is a mistake from the initial
+  refactoring)
+- Switched to devm_rtc_allocate_device() and devm_rtc_register_device(),
+  and dropped the error message related to the rtc device allocation
+- Added an RTC range by setting .range_min and .range_max
+- Added the "start-year" property to the DT bindings documentation
+
+
+Daniel Palmer (1):
+  rtc: Add support for the MSTAR MSC313 RTC
+
+Romain Perier (2):
+  dt-bindings: rtc: Add Mstar MSC313e RTC devicetree bindings
+    documentation
+  ARM: dts: mstar: Add rtc device node
+
+ .../bindings/rtc/mstar,msc313-rtc.yaml        |  49 ++++
+ MAINTAINERS                                   |   1 +
+ arch/arm/boot/dts/mstar-v7.dtsi               |   7 +
+ drivers/rtc/Kconfig                           |  10 +
+ drivers/rtc/Makefile                          |   1 +
+ drivers/rtc/rtc-msc313.c                      | 246 ++++++++++++++++++
+ 6 files changed, 314 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/mstar,msc313-rtc.yaml
+ create mode 100644 drivers/rtc/rtc-msc313.c
+
+-- 
+2.30.2
 
