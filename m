@@ -2,78 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 067C53DC98F
-	for <lists+devicetree@lfdr.de>; Sun,  1 Aug 2021 06:06:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 492953DCA8A
+	for <lists+devicetree@lfdr.de>; Sun,  1 Aug 2021 09:38:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229736AbhHAEGa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Aug 2021 00:06:30 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:6443 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229491AbhHAEGa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Aug 2021 00:06:30 -0400
-X-UUID: a75e0143f8a2404fa033d902be4dc94c-20210801
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=tVl842wftAnMAO9fwQ64B34pCPAJw05tuHgSke2JKe4=;
-        b=V7x4lR2wEadoplFzF4wIcrDWb1gb1tgNB79eydi28JSz8TdVoJhSW6ZQJuTsn+gnzyib6M40L/mK4FGh0WceccKdvO1S++iFvnev5AITtHMTZj0z7NpG29flygqKF+PRP+lfnllummKzuYEUhzSvkz71AGvISRq9Rq41VFBOcqk=;
-X-UUID: a75e0143f8a2404fa033d902be4dc94c-20210801
-Received: from mtkmrs31.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <jitao.shi@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 461988250; Sun, 01 Aug 2021 12:06:16 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS33N1.mediatek.inc
- (172.27.4.75) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sun, 1 Aug
- 2021 12:06:14 +0800
-Received: from mszsdclx1018.gcn.mediatek.inc (10.16.6.18) by
- MTKCAS36.mediatek.inc (172.27.4.170) with Microsoft SMTP Server id
- 15.0.1497.2 via Frontend Transport; Sun, 1 Aug 2021 12:06:13 +0800
-From:   Jitao Shi <jitao.shi@mediatek.com>
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>
-CC:     <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <ck.hu@mediatek.com>,
-        <stonea168@163.com>, <huijuan.xie@mediatek.com>,
-        <rex-bc.chen@mediatek.com>, <shuijing.li@mediatek.com>,
-        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        Jitao Shi <jitao.shi@mediatek.com>
-Subject: [PATCH v4 2/2] dt-bindings: mediatek: add force_dsi_end_without_null
-Date:   Sun, 1 Aug 2021 12:05:44 +0800
-Message-ID: <20210801040544.104135-2-jitao.shi@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210801040544.104135-1-jitao.shi@mediatek.com>
-References: <20210801040544.104135-1-jitao.shi@mediatek.com>
+        id S230260AbhHAHih (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Aug 2021 03:38:37 -0400
+Received: from 82-65-109-163.subs.proxad.net ([82.65.109.163]:60414 "EHLO
+        luna.linkmauve.fr" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229505AbhHAHih (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Aug 2021 03:38:37 -0400
+Received: by luna.linkmauve.fr (Postfix, from userid 1000)
+        id 29841F40868; Sun,  1 Aug 2021 09:38:25 +0200 (CEST)
+From:   Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+To:     Rob Herring <robh+dt@kernel.org>, linuxppc-dev@lists.ozlabs.org,
+        devicetree@vger.kernel.org
+Cc:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
+        Ash Logan <ash@heyquark.com>,
+        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.ne@posteo.net>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>, linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/5] nvmem: nintendo-otp: Add new driver for the Wii and Wii U OTP
+Date:   Sun,  1 Aug 2021 09:38:17 +0200
+Message-Id: <20210801073822.12452-1-linkmauve@linkmauve.fr>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20210701225743.14631-1-linkmauve@linkmauve.fr>
+References: <20210701225743.14631-1-linkmauve@linkmauve.fr>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: 274FAD2CEAB345486A9ACF4D6C3725599FB588F1E24F37B11444DDF0626652F32000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-VGhlIGZvcmNlX2RzaV9lbmRfd2l0aG91dF9udWxsIHJlcXVpcmVzIHRoZSBkc2kgaG9zdCBlbnQg
-YXQNCnRoZSBzYW1lIHRpbWUgaW4gbGluZS4NCg0KU2lnbmVkLW9mZi1ieTogSml0YW8gU2hpIDxq
-aXRhby5zaGlAbWVkaWF0ZWsuY29tPg0KLS0tDQogLi4uL2JpbmRpbmdzL2Rpc3BsYXkvYnJpZGdl
-L2FuYWxvZ2l4LGFueDc2MjUueWFtbCAgICAgICAgICAgfCA2ICsrKysrKw0KIDEgZmlsZSBjaGFu
-Z2VkLCA2IGluc2VydGlvbnMoKykNCg0KZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNl
-dHJlZS9iaW5kaW5ncy9kaXNwbGF5L2JyaWRnZS9hbmFsb2dpeCxhbng3NjI1LnlhbWwgYi9Eb2N1
-bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9icmlkZ2UvYW5hbG9naXgsYW54
-NzYyNS55YW1sDQppbmRleCBhYjQ4YWIyZjQyNDAuLjhiODY4YTZhM2Q2MCAxMDA2NDQNCi0tLSBh
-L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L2JyaWRnZS9hbmFsb2dp
-eCxhbng3NjI1LnlhbWwNCisrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9k
-aXNwbGF5L2JyaWRnZS9hbmFsb2dpeCxhbng3NjI1LnlhbWwNCkBAIC00Myw2ICs0MywxMSBAQCBw
-cm9wZXJ0aWVzOg0KICAgdmRkMzMtc3VwcGx5Og0KICAgICBkZXNjcmlwdGlvbjogUmVndWxhdG9y
-IHRoYXQgcHJvdmlkZXMgdGhlIHN1cHBseSAzLjNWIHBvd2VyLg0KIA0KKyAgZm9yY2VfZHNpX2Vu
-ZF93aXRob3V0X251bGw6DQorICAgIGRlc2NyaXB0aW9uOiB8DQorICAgICAgUmVxdWlyZXMgdGhl
-IGRzaSBob3N0IHNlbmQgdGhlIGRzaSBwYWNrZXRzIG9uIGFsbCBsYW5lcyBhbGlnbmVkDQorICAg
-ICAgYXQgdGhlIGVuZC4NCisNCiAgIHBvcnRzOg0KICAgICAkcmVmOiAvc2NoZW1hcy9ncmFwaC55
-YW1sIy9wcm9wZXJ0aWVzL3BvcnRzDQogDQpAQCAtODcsNiArOTIsNyBAQCBleGFtcGxlczoNCiAg
-ICAgICAgICAgICB2ZGQxMC1zdXBwbHkgPSA8JnBwMTAwMF9taXBpYnJkZz47DQogICAgICAgICAg
-ICAgdmRkMTgtc3VwcGx5ID0gPCZwcDE4MDBfbWlwaWJyZGc+Ow0KICAgICAgICAgICAgIHZkZDMz
-LXN1cHBseSA9IDwmcHAzMzAwX21pcGlicmRnPjsNCisgICAgICAgICAgICBmb3JjZV9kc2lfZW5k
-X3dpdGhvdXRfbnVsbDsNCiANCiAgICAgICAgICAgICBwb3J0cyB7DQogICAgICAgICAgICAgICAg
-ICNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KLS0gDQoyLjI1LjENCg==
+The OTP is a read-only memory area which contains various keys and
+signatures used to decrypt, encrypt or verify various pieces of storage.
+
+Its size depends on the console, it is 128 bytes on the Wii and
+1024 bytes on the Wii U (split into eight 128 bytes banks).
+
+It can be used directly by writing into one register and reading from
+the other one, without any additional synchronisation.
+
+This series has been tested on both the Wii U (using my downstream
+master-wiiu branch[1]), as well as on the Wii on mainline.
+
+[1] https://gitlab.com/linkmauve/linux-wiiu/-/commits/master-wiiu
+
+Changes since v1:
+- Fixed the commit messages so they can be accepted by other email
+  servers, sorry about that.
+
+Changes since v2:
+- Switched the dt binding documentation to YAML.
+- Used more obvious register arithmetic, and tested that gcc (at -O1 and
+  above) outputs the exact same rlwinm instructions for them.
+- Use more #defines to make the code easier to read.
+- Include some links to the reversed documentation.
+- Avoid overlapping dt regions by changing the existing control@d800100
+  node to end before the OTP registers, with some bigger dt refactoring
+  left for a future series.
+
+Changes since v3:
+- Relicense the dt-binding documentation under GPLv2-only or
+  BSD-2-clauses.
+
+Emmanuel Gil Peyrot (5):
+  nvmem: nintendo-otp: Add new driver for the Wii and Wii U OTP
+  dt-bindings: nintendo-otp: Document the Wii and Wii U OTP support
+  powerpc: wii.dts: Reduce the size of the control area
+  powerpc: wii.dts: Expose the OTP on this platform
+  powerpc: wii_defconfig: Enable OTP by default
+
+ .../bindings/nvmem/nintendo-otp.yaml          |  44 +++++++
+ arch/powerpc/boot/dts/wii.dts                 |  13 +-
+ arch/powerpc/configs/wii_defconfig            |   1 +
+ drivers/nvmem/Kconfig                         |  11 ++
+ drivers/nvmem/Makefile                        |   2 +
+ drivers/nvmem/nintendo-otp.c                  | 124 ++++++++++++++++++
+ 6 files changed, 194 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/nintendo-otp.yaml
+ create mode 100644 drivers/nvmem/nintendo-otp.c
+
+-- 
+2.32.0
 
