@@ -2,99 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 988303DC92B
-	for <lists+devicetree@lfdr.de>; Sun,  1 Aug 2021 02:49:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC3E93DC98C
+	for <lists+devicetree@lfdr.de>; Sun,  1 Aug 2021 06:06:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229467AbhHAAtJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 31 Jul 2021 20:49:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46216 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230033AbhHAAtI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Jul 2021 20:49:08 -0400
-Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC279C0613D5;
-        Sat, 31 Jul 2021 17:48:58 -0700 (PDT)
-Received: by mail-io1-xd34.google.com with SMTP id f6so10300801ioc.6;
-        Sat, 31 Jul 2021 17:48:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=dIcKvSDUxKhGQLJXFjHOTdn0zd4fY2Y+EtuO71E/gQw=;
-        b=PtfYOsTDptsYy0YIEKDi64pNVZlu86W9/g3MGWNO9D4F0+kSIkJTZx51cIq/pAIPry
-         FGLT3O2GOQByLQ/TZ7jCdA90M2IYoEoQ80inY+/mWzFZFqxzRUAtzHOVabEGyYaA/weC
-         Ra+RFN80VoBK1uzt+PtmaFaeyU8hMO2aXDsGIENuSfmLt9ajY3KcOtEgiDFASb6VnCnX
-         NefCtlsCttcKDS71HfPA2CVQnRMsevxLMBVLtHBYWfBvq87e0xM9ZtI6HGDR84QYf88R
-         DYWKqz7RRnkJccRlrZDo/dMm9CWjJFlFwjU5+oew+qOuAiXFF8SeRHeUT6ELFMT3pmAR
-         mhyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dIcKvSDUxKhGQLJXFjHOTdn0zd4fY2Y+EtuO71E/gQw=;
-        b=laWmAgyebFyrBvk8ncEAFNm4zBRl5E1EdgKVh4sUrv8m1KZR7eaOBGBjs284kC2FVq
-         FO97KhC4f43ZbiMEBtX8ZcFHeqncyegw/vOnke/RFEuJB3nCpAGzYy4yytVqA4yzXYpn
-         5limo7BiQjXEm5ES/Z1Lpp+1WLV3dXonKkvhuE5yr0j2xsQyfcqEb7ABqtSdr8AV7YWP
-         j7O/OH2mbREHdd9zCkIrIUsf3dWfIdD7WQWUuis16R0bkFtwW8ZdYkFdKThgOOySpK7X
-         xoL1+r5sDb1BoDNlAIEzXQlxV9FmKQLpMDsbvJgE9JtqnUW0SbFn3MKd0jtd49zf330c
-         h2Aw==
-X-Gm-Message-State: AOAM533hz6BtZ++cLGapfcebQ2Qo5jIW/kSJ3hNQTZX9ajZKpmpu+c33
-        g5leM91NAXvqLev0KgkU+qTqwyqRXplyq3Q8kpA=
-X-Google-Smtp-Source: ABdhPJy6l5NQD1s1nsQCCad4HUdJ1fLYJkA3RRZGX5nEjYID7/ogMW80Fv49iGIGOGYA1cjXJq6cyMw6hS6YEGByPqU=
-X-Received: by 2002:a5d:8541:: with SMTP id b1mr2090135ios.105.1627778938146;
- Sat, 31 Jul 2021 17:48:58 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210730121310.131-1-alistair@alistair23.me> <YQWV54S1nkJdcgce@ravnborg.org>
-In-Reply-To: <YQWV54S1nkJdcgce@ravnborg.org>
-From:   Alistair Francis <alistair23@gmail.com>
-Date:   Sun, 1 Aug 2021 10:48:31 +1000
-Message-ID: <CAKmqyKM2CRfP_jKXUPEWQS0vCBLf0bVBQ1EE4gBer_F8Nv=A4A@mail.gmail.com>
-Subject: Re: [PATCH v5] drm/panel: Add support for E Ink VB3300-KCA
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     Alistair Francis <alistair@alistair23.me>,
-        Rob Herring <robh+dt@kernel.org>, thierry.reding@gmail.com,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Daniel Palmer <daniel@0x0f.com>, linux@rempel-privat.de,
-        kuninori.morimoto.gx@renesas.com, max.Merchel@tq-group.com,
-        geert+renesas@glider.be, airlied@linux.ie,
+        id S229576AbhHAEGV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Aug 2021 00:06:21 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:48109 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229491AbhHAEGV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Aug 2021 00:06:21 -0400
+X-UUID: c0a184bf8ca04392a4dc94520dfad349-20210801
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=c7qAG0km9s8UfLDAudvX69W67QH1Jy3xeC2kKUw1eTc=;
+        b=p5ClV3oGYWHXiUTG4P2YkRWXzMMgdxO8A1TBu1LSHxjK/pe6L4x339t1HR0k+uywAydmoinCirsH3Snixz8iYpuqRe989b/etUwKsXaBvk8/z4Ey8+maRs9RYmbMglnRpFEvYOTN6RK7+vE6taz2wwalHE6DdZq2m/J7z7M45ow=;
+X-UUID: c0a184bf8ca04392a4dc94520dfad349-20210801
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <jitao.shi@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 458207670; Sun, 01 Aug 2021 12:06:10 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS33N2.mediatek.inc
+ (172.27.4.76) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sun, 1 Aug
+ 2021 12:06:05 +0800
+Received: from mszsdclx1018.gcn.mediatek.inc (10.16.6.18) by
+ MTKCAS36.mediatek.inc (172.27.4.170) with Microsoft SMTP Server id
+ 15.0.1497.2 via Frontend Transport; Sun, 1 Aug 2021 12:06:04 +0800
+From:   Jitao Shi <jitao.shi@mediatek.com>
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         Daniel Vetter <daniel@ffwll.ch>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        David Airlie <airlied@linux.ie>,
+        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>
+CC:     <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <ck.hu@mediatek.com>,
+        <stonea168@163.com>, <huijuan.xie@mediatek.com>,
+        <rex-bc.chen@mediatek.com>, <shuijing.li@mediatek.com>,
+        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        Jitao Shi <jitao.shi@mediatek.com>
+Subject: [PATCH v4 1/2] drm/mediatek: force hsa hbp hfp packets multiple of lanenum to avoid screen shift
+Date:   Sun, 1 Aug 2021 12:05:43 +0800
+Message-ID: <20210801040544.104135-1-jitao.shi@mediatek.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-TM-SNTS-SMTP: BC15D500DEC9D58CBE5FB134A9971573A631EA12E984F2BAB0B2E7A33414CDA12000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Aug 1, 2021 at 4:26 AM Sam Ravnborg <sam@ravnborg.org> wrote:
->
-> Hi Alistair,
->
-> On Fri, Jul 30, 2021 at 10:13:10PM +1000, Alistair Francis wrote:
-> > Add support for the 10.3" E Ink panel described at:
-> > https://www.eink.com/product.html?type=productdetail&id=7
-> >
-> > Signed-off-by: Alistair Francis <alistair@alistair23.me>
-> > Acked-by: Rob Herring <robh@kernel.org>
-> > Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
-> > ---
-> > v5:
-> >  - Add .connector_type
->
-> I missed this revision before sending my last mail.
-> I tried to apply this patch but every patch confliced due to other
-> changes since the kernel this is based on.
->
-> I need you to generate a new patch on top of drm-misc-next,
-> or as an alternative on top of linux-next.
-> You are in a much better position to do this right than I am.
->
-> Sorry for the troubles!
+VGhlIGJyaWRnZSBjaGlwIEFOWDc2MjUgcmVxdWlyZXMgdGhlIHBhY2tldHMgb24gbGFuZXMgYWxp
+Z25lZCBhdCB0aGUgZW5kLA0Kb3IgQU5YNzYyNSB3aWxsIHNoaWZ0IHRoZSBzY3JlZW4uDQoNClNp
+Z25lZC1vZmYtYnk6IEppdGFvIFNoaSA8aml0YW8uc2hpQG1lZGlhdGVrLmNvbT4NCi0tLQ0KIGRy
+aXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHNpLmMgfCAxMyArKysrKysrKysrKysrDQogMSBm
+aWxlIGNoYW5nZWQsIDEzIGluc2VydGlvbnMoKykNCg0KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS9tZWRpYXRlay9tdGtfZHNpLmMgYi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2Rz
+aS5jDQppbmRleCBhZTQwM2M2N2NiZDkuLjQ3MzVlMDA5MmZmZSAxMDA2NDQNCi0tLSBhL2RyaXZl
+cnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHNpLmMNCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9tZWRp
+YXRlay9tdGtfZHNpLmMNCkBAIC0xOTQsNiArMTk0LDggQEAgc3RydWN0IG10a19kc2kgew0KIAlz
+dHJ1Y3QgY2xrICpoc19jbGs7DQogDQogCXUzMiBkYXRhX3JhdGU7DQorCS8qIGZvcmNlIGRzaSBs
+aW5lIGVuZCB3aXRob3V0IGRzaV9udWxsIGRhdGEgKi8NCisJYm9vbCBmb3JjZV9kc2lfZW5kX3dp
+dGhvdXRfbnVsbDsNCiANCiAJdW5zaWduZWQgbG9uZyBtb2RlX2ZsYWdzOw0KIAllbnVtIG1pcGlf
+ZHNpX3BpeGVsX2Zvcm1hdCBmb3JtYXQ7DQpAQCAtNDk5LDYgKzUwMSwxMyBAQCBzdGF0aWMgdm9p
+ZCBtdGtfZHNpX2NvbmZpZ192ZG9fdGltaW5nKHN0cnVjdCBtdGtfZHNpICpkc2kpDQogCQlEUk1f
+V0FSTigiSEZQICsgSEJQIGxlc3MgdGhhbiBkLXBoeSwgRlBTIHdpbGwgdW5kZXIgNjBIelxuIik7
+DQogCX0NCiANCisJaWYgKGRzaS0+Zm9yY2VfZHNpX2VuZF93aXRob3V0X251bGwpIHsNCisJCWhv
+cml6b250YWxfc3luY19hY3RpdmVfYnl0ZSA9IHJvdW5kdXAoaG9yaXpvbnRhbF9zeW5jX2FjdGl2
+ZV9ieXRlLCBkc2ktPmxhbmVzKSAtIDI7DQorCQlob3Jpem9udGFsX2Zyb250cG9yY2hfYnl0ZSA9
+IHJvdW5kdXAoaG9yaXpvbnRhbF9mcm9udHBvcmNoX2J5dGUsIGRzaS0+bGFuZXMpIC0gMjsNCisJ
+CWhvcml6b250YWxfYmFja3BvcmNoX2J5dGUgPSByb3VuZHVwKGhvcml6b250YWxfYmFja3BvcmNo
+X2J5dGUsIGRzaS0+bGFuZXMpIC0gMjsNCisJCWhvcml6b250YWxfYmFja3BvcmNoX2J5dGUgLT0g
+KHZtLT5oYWN0aXZlICogZHNpX3RtcF9idWZfYnBwICsgMikgJSBkc2ktPmxhbmVzOw0KKwl9DQor
+DQogCXdyaXRlbChob3Jpem9udGFsX3N5bmNfYWN0aXZlX2J5dGUsIGRzaS0+cmVncyArIERTSV9I
+U0FfV0MpOw0KIAl3cml0ZWwoaG9yaXpvbnRhbF9iYWNrcG9yY2hfYnl0ZSwgZHNpLT5yZWdzICsg
+RFNJX0hCUF9XQyk7DQogCXdyaXRlbChob3Jpem9udGFsX2Zyb250cG9yY2hfYnl0ZSwgZHNpLT5y
+ZWdzICsgRFNJX0hGUF9XQyk7DQpAQCAtMTA5NSw2ICsxMTA0LDEwIEBAIHN0YXRpYyBpbnQgbXRr
+X2RzaV9wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQ0KIAlkc2ktPmJyaWRnZS5v
+Zl9ub2RlID0gZGV2LT5vZl9ub2RlOw0KIAlkc2ktPmJyaWRnZS50eXBlID0gRFJNX01PREVfQ09O
+TkVDVE9SX0RTSTsNCiANCisJaWYgKGRzaS0+bmV4dF9icmlkZ2UpDQorCQlkc2ktPmZvcmNlX2Rz
+aV9lbmRfd2l0aG91dF9udWxsID0gb2ZfcHJvcGVydHlfcmVhZF9ib29sKGRzaS0+bmV4dF9icmlk
+Z2UtPm9mX25vZGUsDQorCQkJCQkJCQkJImZvcmNlX2RzaV9lbmRfd2l0aG91dF9udWxsIik7DQor
+DQogCWRybV9icmlkZ2VfYWRkKCZkc2ktPmJyaWRnZSk7DQogDQogCXJldCA9IGNvbXBvbmVudF9h
+ZGQoJnBkZXYtPmRldiwgJm10a19kc2lfY29tcG9uZW50X29wcyk7DQotLSANCjIuMjUuMQ0K
 
-No worries! Just sent a v6 rebased on linux-next.
-
-I am never sure if my patches should be based on master or linux-next.
-Sorry for the conflicts.
-
-Alistair
