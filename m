@@ -2,73 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ACEA73DCB8F
-	for <lists+devicetree@lfdr.de>; Sun,  1 Aug 2021 14:16:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B138F3DCB92
+	for <lists+devicetree@lfdr.de>; Sun,  1 Aug 2021 14:19:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231461AbhHAMQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Aug 2021 08:16:34 -0400
-Received: from mail-lf1-f49.google.com ([209.85.167.49]:44938 "EHLO
-        mail-lf1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231791AbhHAMQe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Aug 2021 08:16:34 -0400
-Received: by mail-lf1-f49.google.com with SMTP id a26so28345998lfr.11;
-        Sun, 01 Aug 2021 05:16:26 -0700 (PDT)
+        id S231527AbhHAMTd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Aug 2021 08:19:33 -0400
+Received: from mail-lf1-f43.google.com ([209.85.167.43]:45964 "EHLO
+        mail-lf1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231461AbhHAMTc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Aug 2021 08:19:32 -0400
+Received: by mail-lf1-f43.google.com with SMTP id g13so28364556lfj.12
+        for <devicetree@vger.kernel.org>; Sun, 01 Aug 2021 05:19:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
          :from:date:message-id:subject:to:cc;
-        bh=I5TxH9Dz7wUsp7F7REERcqwAt5FskLKXNhEpcILLzD0=;
-        b=QLf3jYzW30j/gXjeSauqPJQ3FcUrVSCQUDftBCdAA9x+4V1OzSJTBmCrtVyXU7jM43
-         AgTj9DZ42e2yNIxyYj0qxfF2HR3FXrBRNR6mFt57sLQWVgKep+jUR22XcixJBAROSgJ7
-         +dq6who6m+jXkMlPg41OhhkF2VbgZxkr2c5ffObCRqSbC0sh1lqdulWTSyXM1j+B+gWh
-         BGPeSvBMUeY9anwXoCjQwnsvlmD/Xj57Q6k2xOw80ld/rQIWoe4fa0ogtrAC/7eahR3V
-         bKvIVRdHbrCchmRqB4lQJJ+Z+6bMsB7KSKlesVfkdsTzOVLFsGDnXYOAew3f9fHj9ebd
-         1d3g==
-X-Gm-Message-State: AOAM533e8YjmOHIGUNXv5Zar5F+4zCjr7hHsb9XRgEXD2zeV5XPdqwPM
-        shUsECjzrBRjENG53FF7KG4I0UXmy54/5A==
-X-Google-Smtp-Source: ABdhPJxvjjj9Ywcb/zMes+J49NP5TwlqFvmKvP5lrfmwbDNf4EqOWvaYponIX0nXTGzXJ6yuNxajwQ==
-X-Received: by 2002:ac2:52a4:: with SMTP id r4mr960270lfm.419.1627820185252;
-        Sun, 01 Aug 2021 05:16:25 -0700 (PDT)
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com. [209.85.208.180])
-        by smtp.gmail.com with ESMTPSA id c10sm621516ljn.11.2021.08.01.05.16.24
+        bh=jsv+XYE6iNe056BpjTVTAYrFxmzRxJE5z629nbYbMp8=;
+        b=htoF/Qj7SGz/lCtGsMqYEDuqpQkYOXyB/QIuI2B/OqjR+rwBWpH9Remw7W3qA9BVee
+         BQwfd2YY08x2zTMl6ZDKlSiEV1Wn+EzlylkYPaSdp+JNGg/d0KHI7TkoPyZv4xI4VQKu
+         u4B/JTOnIWLpUfIBn0ryOjuANyp5tTrZu1ZA6Hl+hXeGJl0HLz4pnpyVX2GBkFP6+Dof
+         7qJPwG7DsFwQlSHYKzUs17LrhiE6krAMNMLtdplB/b+7fBLxYIfNWUfutg1FIrejAfVv
+         ClKI61Zx1sic8mjdOCOrSz84eaZzCGwqp3qMyaaC1hh9lkUckS/W2uhWvNAyt2MxSsta
+         OrBA==
+X-Gm-Message-State: AOAM533lfZtVSebmy2RY6oiCPBRgmoe6t/BwEZ8jwmQ8L30UiCTC0JI2
+        vdAznq4CfUOXTtHyg0o4tP1atUdOtDjThQ==
+X-Google-Smtp-Source: ABdhPJwj6cD70HARNp/yaTYNLZQdCrXZjt6sHF8rz+zsFirBIpBvV+nJGZgH7u7A6EIX35TjJC3oUQ==
+X-Received: by 2002:ac2:4a78:: with SMTP id q24mr8649416lfp.207.1627820362908;
+        Sun, 01 Aug 2021 05:19:22 -0700 (PDT)
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com. [209.85.167.48])
+        by smtp.gmail.com with ESMTPSA id j26sm663371lfh.57.2021.08.01.05.19.22
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 01 Aug 2021 05:16:24 -0700 (PDT)
-Received: by mail-lj1-f180.google.com with SMTP id a7so20161550ljq.11;
-        Sun, 01 Aug 2021 05:16:24 -0700 (PDT)
-X-Received: by 2002:a2e:321a:: with SMTP id y26mr7975789ljy.463.1627820184577;
- Sun, 01 Aug 2021 05:16:24 -0700 (PDT)
+        Sun, 01 Aug 2021 05:19:22 -0700 (PDT)
+Received: by mail-lf1-f48.google.com with SMTP id y34so28417145lfa.8
+        for <devicetree@vger.kernel.org>; Sun, 01 Aug 2021 05:19:22 -0700 (PDT)
+X-Received: by 2002:a05:6512:ea8:: with SMTP id bi40mr1012863lfb.303.1627820362125;
+ Sun, 01 Aug 2021 05:19:22 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210721140424.725744-1-maxime@cerno.tech> <20210721140424.725744-29-maxime@cerno.tech>
-In-Reply-To: <20210721140424.725744-29-maxime@cerno.tech>
+References: <20210721140424.725744-1-maxime@cerno.tech> <20210721140424.725744-47-maxime@cerno.tech>
+In-Reply-To: <20210721140424.725744-47-maxime@cerno.tech>
 Reply-To: wens@csie.org
 From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Sun, 1 Aug 2021 20:16:12 +0800
-X-Gmail-Original-Message-ID: <CAGb2v67QnD+nFG6QtLy332k_0W6kELTJEqtui_sf7Qf5nMxCmQ@mail.gmail.com>
-Message-ID: <CAGb2v67QnD+nFG6QtLy332k_0W6kELTJEqtui_sf7Qf5nMxCmQ@mail.gmail.com>
-Subject: Re: [linux-sunxi] [PATCH 28/54] dt-bindings: power: supply: axp20x:
- Add AXP803 compatible
+Date:   Sun, 1 Aug 2021 20:19:09 +0800
+X-Gmail-Original-Message-ID: <CAGb2v67jQR9=4Ants6NX_YU9rEq0p5zjFdX9N3nLVph5z7rJrQ@mail.gmail.com>
+Message-ID: <CAGb2v67jQR9=4Ants6NX_YU9rEq0p5zjFdX9N3nLVph5z7rJrQ@mail.gmail.com>
+Subject: Re: [linux-sunxi] [PATCH 46/54] ARM: dts: cubieboard4: Remove the
+ dumb-vga-dac compatible
 To:     Maxime Ripard <maxime@cerno.tech>
 Cc:     Jernej Skrabec <jernej.skrabec@siol.net>,
         devicetree <devicetree@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
         linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        Sebastian Reichel <sre@kernel.org>
+        linux-sunxi <linux-sunxi@googlegroups.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 21, 2021 at 10:05 PM Maxime Ripard <maxime@cerno.tech> wrote:
+On Wed, Jul 21, 2021 at 10:06 PM Maxime Ripard <maxime@cerno.tech> wrote:
 >
-> The AXP803 compatible was introduced recently with a fallback to the
-> AXP813, but it was never documented.
+> The dumb-vga-dac and adi,adv7123 compatibles are not supposed to be used
+> together according to the binding.
 >
-> Cc: Chen-Yu Tsai <wens@csie.org>
-> Cc: linux-pm@vger.kernel.org
-> Cc: Sebastian Reichel <sre@kernel.org>
+> Since the corpro gm7123 is a drop-in replacement for the adv7123, let's
+> remove dumb-vga-dac from our compatible list.
+>
 > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 
 Reviewed-by: Chen-Yu Tsai <wens@csie.org>
