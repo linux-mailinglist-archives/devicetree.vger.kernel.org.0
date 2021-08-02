@@ -2,79 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E6EB3DCED1
-	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 04:59:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 838B83DCEEC
+	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 05:28:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229915AbhHBC7L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Aug 2021 22:59:11 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:48960 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229908AbhHBC7L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Aug 2021 22:59:11 -0400
-X-UUID: b176d6987eda4daf8cfda47e7ba66034-20210802
-X-UUID: b176d6987eda4daf8cfda47e7ba66034-20210802
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <chun-jie.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1248123756; Mon, 02 Aug 2021 10:58:58 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 2 Aug 2021 10:58:56 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 2 Aug 2021 10:58:56 +0800
-From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>
-Subject: [v15] dt-bindings: ARM: Mediatek: Add mmsys document binding for MT8192
-Date:   Mon, 2 Aug 2021 10:58:39 +0800
-Message-ID: <20210802025839.16763-1-chun-jie.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+        id S231898AbhHBD23 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Aug 2021 23:28:29 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:44603 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231897AbhHBD23 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Aug 2021 23:28:29 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1627874900; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=JCB8vVm40Ygev3lb2qOV67F7cVZ3peAJ9oCE0yR1aSk=;
+ b=PKAglxBayoUIOW50DiKGqsR8gSQxrUiR9/9Aj7Xe1LMLFRXg/T6i/BhMoO/wK+KHIGmu2Pie
+ 29XqHk2bqqvccilLN0T1MdMxQI4JZXaETT1+bbEKPbU0dWYpiXgyuCoUzpOhivuQnUHBXMCf
+ sA1n9ElISQLJJ8CvK13KkK2JylQ=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
+ 610766529771b05b24beec48 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 02 Aug 2021 03:28:18
+ GMT
+Sender: sibis=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 3CF53C43460; Mon,  2 Aug 2021 03:28:18 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7BC38C433F1;
+        Mon,  2 Aug 2021 03:28:17 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 02 Aug 2021 08:58:17 +0530
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>
+Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: sc7280: Add cpu OPP tables
+In-Reply-To: <CAD=FV=VfvW1PqJiR7Lh5RNyR6EQ1E8JK0N+KqJiB8DK49oUZ4A@mail.gmail.com>
+References: <1620807083-5451-1-git-send-email-sibis@codeaurora.org>
+ <1620807083-5451-3-git-send-email-sibis@codeaurora.org>
+ <CAD=FV=VfvW1PqJiR7Lh5RNyR6EQ1E8JK0N+KqJiB8DK49oUZ4A@mail.gmail.com>
+Message-ID: <db28cb8d8f3057958bb2e059b8ac90ba@codeaurora.org>
+X-Sender: sibis@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds the mmsys document binding for MT8192 SoC.
+On 2021-07-31 03:50, Doug Anderson wrote:
+> Hi,
+> 
+> On Wed, May 12, 2021 at 1:11 AM Sibi Sankar <sibis@codeaurora.org> 
+> wrote:
+>> 
+>> Add OPP tables required to scale DDR/L3 per freq-domain on SC7280 
+>> SoCs.
+>> 
+>> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+>> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+>> ---
+>> 
+>> V3:
+>>  * Rename cpu opp table nodes [Matthias]
+>>  * Rename opp phandles [Doug]
+>> 
+>> Depends on the following patch series:
+>> L3 Provider Support: 
+>> https://lore.kernel.org/lkml/1618556290-28303-1-git-send-email-okukatla@codeaurora.org/
+>> CPUfreq Support: 
+>> https://lore.kernel.org/lkml/1618020280-5470-2-git-send-email-tdas@codeaurora.org/
+>> RPMH Provider Support: 
+>> https://lore.kernel.org/lkml/1619517059-12109-1-git-send-email-okukatla@codeaurora.org/
+>> 
 
-Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
-Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-Acked-by: Rob Herring <robh@kernel.org>
----
-This patch is based on 5.14-rc1 and [1].
+Doug,
 
-Due to mmsys binding document has been converted to YAML format in [1],
-so resend the patch in [2].
+2 of the above 3 dependencies have
+landed. L3 provider still needs a
+re-spin.
 
-[1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=485165
-[2] https://patchwork.kernel.org/project/linux-mediatek/patch/20210726105719.15793-3-chun-jie.chen@mediatek.com/
----
- .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml         | 1 +
- 1 file changed, 1 insertion(+)
+https://patchwork.kernel.org/project/linux-arm-msm/cover/1627581885-32165-1-git-send-email-sibis@codeaurora.org/
 
-diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-index 2d4ff0ce387b..f9ffa5b703a5 100644
---- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-+++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
-@@ -29,6 +29,7 @@ properties:
-               - mediatek,mt8167-mmsys
-               - mediatek,mt8173-mmsys
-               - mediatek,mt8183-mmsys
-+              - mediatek,mt8192-mmsys
-               - mediatek,mt8365-mmsys
-           - const: syscon
-       - items:
+We also have a new series ^^ on the
+list which will affect #2 merge.
+
+
+>> It also depends on L3 and cpufreq dt nodes from the ^^ series to not 
+>> have
+>> overlapping memory regions.
+>> 
+>>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 215 
+>> +++++++++++++++++++++++++++++++++++
+>>  1 file changed, 215 insertions(+)
+> 
+> I see patch #1 in mainline now. Does that mean it's time to land patch
+> #2 in the Qualcomm tree now? ...or maybe it needs to be re-posted?
+> 
+
+> -Doug
+
 -- 
-2.18.0
-
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project.
