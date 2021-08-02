@@ -2,93 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8549B3DD75C
-	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 15:39:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C17A03DDA6F
+	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 16:14:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233994AbhHBNkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Aug 2021 09:40:06 -0400
-Received: from mail-il1-f179.google.com ([209.85.166.179]:43686 "EHLO
-        mail-il1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234032AbhHBNkF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 09:40:05 -0400
-Received: by mail-il1-f179.google.com with SMTP id x7so13111533ilh.10;
-        Mon, 02 Aug 2021 06:39:54 -0700 (PDT)
+        id S237084AbhHBOOE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Aug 2021 10:14:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43446 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236412AbhHBONL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 10:13:11 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2A66C044027;
+        Mon,  2 Aug 2021 06:59:14 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id h9so15601933ejs.4;
+        Mon, 02 Aug 2021 06:59:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=MihKPbXWLuAHmHFbjCvlbQGWvDP7j/7zWzZnY5mOiqw=;
+        b=sFa9Aa4INuqL14NQ4sv3j2caM780TjKWwuEefU4xzCpXWpu96Ssp6nDWTdUlPfwGbh
+         1cTuMDghaIdyd7FwqZ++36zWyw+6K1PDjIyiK6haw4Ik+TZtWynM4Q9+xe7bG53WnSip
+         r0rP/SIf2Tc/sY8ipxIe5amaIQJt4M7JRDTz6NKbcDJATQAGXC+Y0eAMZhy2UEj3cyuq
+         Eb222JnZifkoCTGlRWD8IMMDx0uPaNHEjzf1SFvldkZHfQODOWhB3P4Z9WIivIDgPZJO
+         60wjSOqdTVnb59O8vl9fXLqE9Bsy6gR7lDK1CrI2/7OqcoLbdfA/041kBi/dgadWF447
+         7GFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=TENNApnA3pRK87RRsfp5wpxG2YcnGhsJlA20WbVifLk=;
-        b=HswowOqsvG5bejucUm8i5rR1YCKkLAOALcRD/UyxWYWC0C+qwwrScFgG6BjiLmdR3X
-         j58yRYfI78iLnIRZbZoZbil39ORVlTz2qKWdzb2NKiJIF4jFMwmSF0Pa13/XVFtZHLSX
-         X67h7TrjzEMB7AwuK4RM4VqIHClHiUnLVCA9MWxPA/LTNuIL/UQxCgt4exyru4gvEMbS
-         j+KiRm6wHq+c6xQcWYBgxd+mWxL3YeNSoUwnZD+Q18wLMMJeDceHMH5eBZp2HMG+3gcs
-         td29jC0BqQVseq0WodkearWjjZY2YYhUGdLWHDrUDHCkfT6j+z94zB5ui3p+2h6KeBrp
-         6Tmw==
-X-Gm-Message-State: AOAM533mnS140ohCI+HTaPtFd2mzKlwRs4ENUJv9EO0CstVDPCeePr90
-        Wf5aHIWZmnnDrshaApxPFw==
-X-Google-Smtp-Source: ABdhPJzfosP56bJdNxD4Ijzp2ZlTM+40hrVsN+FY9mSl/e1GMizabh/TW6EXI++5V3KCEafHRE7mkw==
-X-Received: by 2002:a05:6e02:1bcc:: with SMTP id x12mr1141093ilv.275.1627911594639;
-        Mon, 02 Aug 2021 06:39:54 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id q7sm7459028iow.12.2021.08.02.06.39.53
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=MihKPbXWLuAHmHFbjCvlbQGWvDP7j/7zWzZnY5mOiqw=;
+        b=WcSnP3EVMt8Mw6TZ3+jpemvTI+COovu//LUn+IF6Pbf1JQG6beqy+pEge6cx9MbZKU
+         rw10apYIZig6vsH4UmaVkCO4fx9y2McXhpVnka86SnutF3euJyw53BA7rJonAYMuFuHZ
+         7KoHnsXWVGrrZYC6J/Bk+nwe5/H3uYGDTSTxw2jQ0ke4GAMFVDXqMdWVtD9HtSBtGB4B
+         Qs0kGCBAVY05QancFbMJLL9XnsRw7of0V/4fbfJpCL9gIZ82Va/PTFXLbZyVv5Y7GwZE
+         5p7Ut3zwKno0mdGO8x5PEKqOFtx7+iGfwXF+tkjRLS0+7dJDGlaoNq1EP2PsaZfx6Anx
+         Y68g==
+X-Gm-Message-State: AOAM531H9jTz8QP8T7i0IpCFMJ/PXRapR26QLbXQKXn+hwgaOqWyisk4
+        Fwyne7Sf97r/uCDlbkMIyxs=
+X-Google-Smtp-Source: ABdhPJwpH+ntlOKfXt+DPJwa1ewViuJFhyfswfqjMUWJyaJWoA2ecLH0HFCLb8zfOP7fYTF0lPfUZg==
+X-Received: by 2002:a17:906:309a:: with SMTP id 26mr15651618ejv.153.1627912753220;
+        Mon, 02 Aug 2021 06:59:13 -0700 (PDT)
+Received: from skbuf ([188.25.144.60])
+        by smtp.gmail.com with ESMTPSA id n17sm6102896edr.84.2021.08.02.06.59.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Aug 2021 06:39:54 -0700 (PDT)
-Received: (nullmailer pid 918766 invoked by uid 1000);
-        Mon, 02 Aug 2021 13:39:43 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Iskren Chernev <iskren.chernev@gmail.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org
-In-Reply-To: <20210801103448.3329333-2-iskren.chernev@gmail.com>
-References: <20210801103448.3329333-1-iskren.chernev@gmail.com> <20210801103448.3329333-2-iskren.chernev@gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: clk: qcom: gcc-sm6115: Document SM6115 GCC
-Date:   Mon, 02 Aug 2021 07:39:43 -0600
-Message-Id: <1627911583.087441.918765.nullmailer@robh.at.kernel.org>
+        Mon, 02 Aug 2021 06:59:12 -0700 (PDT)
+Date:   Mon, 2 Aug 2021 16:59:11 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>,
+        netdev@vger.kernel.org, robh+dt@kernel.org,
+        UNGLinuxDriver@microchip.com, Woojung.Huh@microchip.com,
+        hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
+        kuba@kernel.org, linux-kernel@vger.kernel.org,
+        vivien.didelot@gmail.com, f.fainelli@gmail.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 net-next 05/10] net: dsa: microchip: add DSA support
+ for microchip lan937x
+Message-ID: <20210802135911.inpu6khavvwsfjsp@skbuf>
+References: <20210723173108.459770-1-prasanna.vengateshan@microchip.com>
+ <20210723173108.459770-6-prasanna.vengateshan@microchip.com>
+ <20210731150416.upe5nwkwvwajhwgg@skbuf>
+ <49678cce02ac03edc6bbbd1afb5f67606ac3efc2.camel@microchip.com>
+ <20210802121550.gqgbipqdvp5x76ii@skbuf>
+ <YQfvXTEbyYFMLH5u@lunn.ch>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YQfvXTEbyYFMLH5u@lunn.ch>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 01 Aug 2021 13:34:47 +0300, Iskren Chernev wrote:
-> Add device tree bindings for global clock controller on SM6115 and
-> SM4250 SoCs (pin and software compatible).
+On Mon, Aug 02, 2021 at 03:13:01PM +0200, Andrew Lunn wrote:
+> In general, the MAC does nothing, and passes the value to the PHY. The
+> PHY inserts delays as requested. To address Vladimir point,
+> PHY_INTERFACE_MODE_RGMII_TXID would mean the PHY adds delay in the TX
+> direction, and assumes the RX delay comes from somewhere else,
+> probably the PCB.
+
+For the PHY, that is the only portion where things are clear.
+
+> I only recommend the MAC adds delays when the PHY cannot, or there is
+> no PHY, e.g. SoC to switch, or switch to switch link. There are a few
+> MAC drivers that do add delays, mostly because that is how the vendor
+> crap tree does it.
 > 
-> Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
-> ---
->  .../bindings/clock/qcom,gcc-sm6115.yaml       |  74 +++++++
->  include/dt-bindings/clock/qcom,gcc-sm6115.h   | 201 ++++++++++++++++++
->  2 files changed, 275 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sm6115.yaml
->  create mode 100644 include/dt-bindings/clock/qcom,gcc-sm6115.h
-> 
+> So as i said, what you propose is O.K, it follows this general rule of
+> thumb.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+The "rule of thumb" for a MAC driver is actually applied in reverse by
+most MAC drivers compared to what Russell described should be happening.
+For example, mv88e6xxx_port_set_rgmii_delay():
 
-yamllint warnings/errors:
+	switch (mode) {
+	case PHY_INTERFACE_MODE_RGMII_RXID:
+		reg |= MV88E6XXX_PORT_MAC_CTL_RGMII_DELAY_RXCLK;
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/qcom,gcc-sm6115.example.dt.yaml: clock-controller@1400000: clocks: [[4294967295, 0], [4294967295]] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/qcom,gcc-sm6115.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/qcom,gcc-sm6115.example.dt.yaml: clock-controller@1400000: clock-names: ['bi_tcxo', 'sleep_clk'] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/qcom,gcc-sm6115.yaml
-\ndoc reference errors (make refcheckdocs):
+The mv88e6xxx is a MAC, so when it has a phy-mode = "rgmii-rxid", it
+should assume it is connected to a link partner (PHY or otherwise) that
+has applied the RXCLK delay already. So it should only be concerned with
+the TXCLK delay. That is my point. I am just trying to lay out the
+points to Prasanna that would make a sane system going forward. I am not
+sure that we actually have an in-tree driver that is sane in that
+regard.
 
-See https://patchwork.ozlabs.org/patch/1512028
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+That discussion, and Russell's point, was here, btw:
+https://patchwork.ozlabs.org/project/netdev/patch/20200616074955.GA9092@laureti-dev/#2461123
