@@ -2,199 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ACFB43DD113
-	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 09:20:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A42A33DD151
+	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 09:40:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232481AbhHBHUV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Aug 2021 03:20:21 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:63521 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232455AbhHBHUU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 03:20:20 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1627888811; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=FJaar6n31/KsrmSPJWQ9jmxpQoRbAsgaDgmJ7zbo9Ow=;
- b=oRyciijjTvFzzz5DspXFPD+ytRQIuQ6Vgt+lLp8Bh7X3oSKcxfbdnFgQ4KW5IwOlY8FgkdX4
- xPmzM28kbQH5G41Kw/qK+bLUUTSoQsGzKPq7zQJEh9tLPgSp1KKpqTHgMJEtlSr91rUkzMAS
- j8+o007zlQr988vMhGg+c6BcEOw=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
- 61079c97b653fbdadd75f069 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 02 Aug 2021 07:19:51
- GMT
-Sender: luoj=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id AA122C4323A; Mon,  2 Aug 2021 07:19:49 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: luoj)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 43F96C433D3;
-        Mon,  2 Aug 2021 07:19:48 +0000 (UTC)
+        id S232549AbhHBHkm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Aug 2021 03:40:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32954 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232520AbhHBHkl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 03:40:41 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94461C0613D5
+        for <devicetree@vger.kernel.org>; Mon,  2 Aug 2021 00:40:30 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id h13so6829261wrp.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Aug 2021 00:40:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=Sx9QXrg4ZNFSGE92YcBO2jMOLGSWdnZV3pnibrZPh18=;
+        b=tjPY7t2oR2UaAFYwIndaYLJrxtKaLgx0xJHGU690X/w0JyP0SJVTWiDBbUtaidytVs
+         Ba7i1xxBjGDw/FYNL0WWyTKW7N/jYfcO5MhIiE9KgX8mpzZkotAX7dZHhm35ebvLaM+s
+         FoNIkvTQc/nctsx1iucIKw9tk+C+SCjF4iEEjoQhwQt5EXRAz5BXWAathnoIRYbBmknp
+         hd81KqsKFs3D6GQ4zPiMvs/PtYoYQ53Ug3qkukoCn1MQzjryBW6EMvl6o7O/uif8FhkD
+         lR+8adTcSJq1Q+pb8tP8j8RaOjfbrnZ4NR3hesMGtXobwidLlf04R7UadvEdISDLoBVp
+         acVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=Sx9QXrg4ZNFSGE92YcBO2jMOLGSWdnZV3pnibrZPh18=;
+        b=JJh8pT082bfKMap0UXEcuQWk2wbhUrZRHBlhSziK4y6fNO77SCl/PLADaY6cTU/tGv
+         +1F5E2oGMhBEAhvJRhmw7vnpfSv9Yhx/tn6DuFeMz1/Ac3WALA3oCB806Y/3r0FX1lnP
+         qCTmyDiiNM4NYQHJT5RjmgCjEgh145eD4vTv65dkcTEJ0hKDbfj5RepYiT3SRgB2QjOp
+         xTs6H+V63at16CkUNNGiJAk5FJih+3yWgoCX65Qr1g9Yx1wNwODbZz71wOK9YjRcnVQM
+         X/LtmbvUcXFmnpWjftGArCXrD/lLKHsPp0W3iQVW9s26YN7IZSe5e707gum2u4FmdrcX
+         mqjQ==
+X-Gm-Message-State: AOAM5300jJQlAjdrOfN0fJp5PcYBhWHZqCKHR5yCGkGRYsaaoIofOauA
+        aiK4Mr6hoX7RszCDUWVqSSX/Lg==
+X-Google-Smtp-Source: ABdhPJwzsCg4tOXIFL2wAorTekhNfCSV3oJxRI6RVF//Uj3BHQ5IEzgTt52YzmGvSSSOzWlDua+sxA==
+X-Received: by 2002:a05:6000:1867:: with SMTP id d7mr8862526wri.393.1627890029108;
+        Mon, 02 Aug 2021 00:40:29 -0700 (PDT)
+Received: from google.com ([109.180.115.228])
+        by smtp.gmail.com with ESMTPSA id o22sm2087782wmq.3.2021.08.02.00.40.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Aug 2021 00:40:28 -0700 (PDT)
+Date:   Mon, 2 Aug 2021 08:40:26 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Rob Herring <robh@kernel.org>, Icenowy Zheng <icenowy@aosc.io>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Ondrej Jirman <megous@megous.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v9 01/11] dt-bindings: mfd: axp20x: Add AXP305 compatible
+ (plus optional IRQ)
+Message-ID: <YQehakgWk/sp92to@google.com>
+References: <20210802003952.19942-1-andre.przywara@arm.com>
+ <20210802003952.19942-2-andre.przywara@arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 02 Aug 2021 15:19:48 +0800
-From:   luoj@codeaurora.org
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        David Miller <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Gross, Andy" <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Robert Marko <robert.marko@sartura.hr>,
-        netdev <netdev@vger.kernel.org>, linux-kernel@vger.kernel.org,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        devicetree@vger.kernel.org, Sricharan <sricharan@codeaurora.org>
-Subject: Re: [PATCH 3/3] dt-bindings: net: rename Qualcomm IPQ MDIO bindings
-In-Reply-To: <CAL_Jsq+=Vyy7_EQ_A7JW4ZfqpPU=6eCyUYMnPORChGvefw-yTA@mail.gmail.com>
-References: <20210729125358.5227-1-luoj@codeaurora.org>
- <20210729125358.5227-3-luoj@codeaurora.org>
- <CAL_Jsq+=Vyy7_EQ_A7JW4ZfqpPU=6eCyUYMnPORChGvefw-yTA@mail.gmail.com>
-Message-ID: <7873e70dcf4fe749521bd9c985571742@codeaurora.org>
-X-Sender: luoj@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210802003952.19942-2-andre.przywara@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-07-30 01:29, Rob Herring wrote:
-> On Thu, Jul 29, 2021 at 6:54 AM Luo Jie <luoj@codeaurora.org> wrote:
->> 
->> rename ipq4019-mdio.yaml to ipq-mdio.yaml for supporting more
->> ipq boards such as ipq40xx, ipq807x, ipq60xx and ipq50xx.
->> 
->> Signed-off-by: Luo Jie <luoj@codeaurora.org>
->> ---
->>  ...m,ipq4019-mdio.yaml => qcom,ipq-mdio.yaml} | 32 
->> ++++++++++++++++---
->>  1 file changed, 28 insertions(+), 4 deletions(-)
->>  rename Documentation/devicetree/bindings/net/{qcom,ipq4019-mdio.yaml 
->> => qcom,ipq-mdio.yaml} (58%)
->> 
->> diff --git 
->> a/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml 
->> b/Documentation/devicetree/bindings/net/qcom,ipq-mdio.yaml
->> similarity index 58%
->> rename from 
->> Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
->> rename to Documentation/devicetree/bindings/net/qcom,ipq-mdio.yaml
->> index 0c973310ada0..5bdeb461523b 100644
->> --- a/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
->> +++ b/Documentation/devicetree/bindings/net/qcom,ipq-mdio.yaml
->> @@ -1,10 +1,10 @@
->>  # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>  %YAML 1.2
->>  ---
->> -$id: http://devicetree.org/schemas/net/qcom,ipq4019-mdio.yaml#
->> +$id: http://devicetree.org/schemas/net/qcom,ipq-mdio.yaml#
->>  $schema: http://devicetree.org/meta-schemas/core.yaml#
->> 
->> -title: Qualcomm IPQ40xx MDIO Controller Device Tree Bindings
->> +title: Qualcomm IPQ MDIO Controller Device Tree Bindings
->> 
->>  maintainers:
->>    - Robert Marko <robert.marko@sartura.hr>
->> @@ -14,7 +14,9 @@ allOf:
->> 
->>  properties:
->>    compatible:
->> -    const: qcom,ipq4019-mdio
->> +    oneOf:
->> +      - const: qcom,ipq4019-mdio
->> +      - const: qcom,ipq-mdio
+On Mon, 02 Aug 2021, Andre Przywara wrote:
+
+> The AXP305 PMIC used on many boards with the H616 SoC seems to be fully
+> compatible to the AXP805 PMIC, so add the proper chain of compatible
+> strings.
 > 
-> This is more than the commit log suggests. A generic compatible by
-> itself is not sufficient. If other chips have the same block, just use
-> 'qcom,ipq4019-mdio'. They should also have a compatible for the new
-> SoC in case it's not 'the same'.
+> Also at least on one board (Orangepi Zero2) there is no interrupt line
+> connected to the CPU, so make the "interrupts" property optional.
 > 
-> Also, use 'enum' rather than oneOf plus const.
-> 
-> Hi Rob
-> Thanks for the comments, will keep the compatible "qcom,ipq4019-mdio" 
-> unchanged,
-> and add the new compatible name by using 'enum' in the next patch set.
-> the commit log will be updated in the next patch set.
->> 
->>    "#address-cells":
->>      const: 1
->> @@ -23,7 +25,29 @@ properties:
->>      const: 0
->> 
->>    reg:
->> -    maxItems: 1
->> +    maxItems: 2
-> 
-> This breaks compatibility because now 1 entry is not valid.
-> 
-> will update it by using "minItems: 1, maxItems: 2" in the next patch 
-> set.
-> 
->> +
->> +  clocks:
->> +    items:
->> +      - description: MDIO clock
->> +
->> +  clock-names:
->> +    items:
->> +      - const: gcc_mdio_ahb_clk
->> +
->> +  resets:
->> +    items:
->> +      - description: MDIO reset & GEPHY hardware reset
->> +
->> +  reset-names:
->> +    items:
->> +      - const: gephy_mdc_rst
-> 
-> These all now apply to 'qcom,ipq4019-mdio'. The h/w had no clocks or
-> resets and now does?
-> 
-> You don't need *-names when there is only 1.
-> 
-> Hi Rob
-> thanks for the comment, clocks is for configuring the source clock of 
-> MDIO bus,
-> which is apply to ipq4019 and the new chip set such as ipq807x, ipq50xx 
-> and ipq60xx,
-> which is not configured because of uboot configuring it, kernel should 
-> not depends on
-> the configuration of uboot, so i add it.
-> will remove the *-name in the next patch set.
-> 
->> +  phy-reset-gpios:
->> +    maxItems: 3
->> +    description:
->> +      The phandle and specifier for the GPIO that controls the RESET
->> +      lines of PHY devices on that MDIO bus.
-> 
-> This belongs in the phy node since the reset is connected to the phy.
-> 
-> since the phylib code can't satisfy resetting PHY in IPQ chipset, 
-> phylib resets phy by
-> configuring GPIO output value to 1, then to 0. however the PHY reset in 
-> IPQ chipset need
-> to configuring GPIO output value to 0, then to 1 for the PHY reset, so 
-> i put the phy-reset-gpios here.
-> 
->> 
->>  required:
->>    - compatible
->> --
->> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora 
->> Forum,
->> a Linux Foundation Collaborative Project
->> 
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> Acked-by: Rob Herring <robh@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/mfd/axp20x.txt | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+
+Applied, thanks.
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
