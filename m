@@ -2,123 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4245B3DD641
-	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 14:59:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85A6E3DD6B2
+	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 15:13:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233744AbhHBNAG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Aug 2021 09:00:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54576 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233786AbhHBNAF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 09:00:05 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46F0BC06175F
-        for <devicetree@vger.kernel.org>; Mon,  2 Aug 2021 05:59:56 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1mAXXl-0001w6-BG; Mon, 02 Aug 2021 14:59:45 +0200
-Received: from pengutronix.de (unknown [IPv6:2a02:810a:8940:aa0:1a4:7dc:3804:a9bc])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 3E8D365EB3D;
-        Mon,  2 Aug 2021 12:59:42 +0000 (UTC)
-Date:   Mon, 2 Aug 2021 14:59:40 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Nishanth Menon <nm@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Faiz Abbas <faiz_abbas@ti.com>
-Subject: Re: [PATCH v2 1/6] arm64: dts: ti: k3-am65-mcu: Add Support for MCAN
-Message-ID: <20210802125940.w2djzwuwysco566p@pengutronix.de>
-References: <20210726101012.26983-1-a-govindraju@ti.com>
- <20210726101012.26983-2-a-govindraju@ti.com>
+        id S233719AbhHBNNY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Aug 2021 09:13:24 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:57120 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233646AbhHBNNX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Aug 2021 09:13:23 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+        In-Reply-To:References; bh=T2IAzdUQovydbbmh506kT2JFY/1lImBNxuW1tWg0QTk=; b=tC
+        rpN3yfQsRPLJ8Ta6LfwE+sz7d6YV4AMopZ/L2AxHoPl5dKf0FRXzqLq6q0PzD/9fq+dqxFDIHjCOT
+        tQQiFQoX5YL/krL8hFoLB2QROPnroxW3MQMFzNC9NwlYImEY2Twpqqx5khpBAVhE1BhR9NAwuWK3r
+        QhVD9IWohkc/Dgc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mAXkb-00Fp0B-VY; Mon, 02 Aug 2021 15:13:01 +0200
+Date:   Mon, 2 Aug 2021 15:13:01 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>,
+        netdev@vger.kernel.org, robh+dt@kernel.org,
+        UNGLinuxDriver@microchip.com, Woojung.Huh@microchip.com,
+        hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
+        kuba@kernel.org, linux-kernel@vger.kernel.org,
+        vivien.didelot@gmail.com, f.fainelli@gmail.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 net-next 05/10] net: dsa: microchip: add DSA support
+ for microchip lan937x
+Message-ID: <YQfvXTEbyYFMLH5u@lunn.ch>
+References: <20210723173108.459770-1-prasanna.vengateshan@microchip.com>
+ <20210723173108.459770-6-prasanna.vengateshan@microchip.com>
+ <20210731150416.upe5nwkwvwajhwgg@skbuf>
+ <49678cce02ac03edc6bbbd1afb5f67606ac3efc2.camel@microchip.com>
+ <20210802121550.gqgbipqdvp5x76ii@skbuf>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="xdpgrz6pysvgzjon"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20210726101012.26983-2-a-govindraju@ti.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210802121550.gqgbipqdvp5x76ii@skbuf>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Aug 02, 2021 at 03:15:50PM +0300, Vladimir Oltean wrote:
+> On Mon, Aug 02, 2021 at 04:15:08PM +0530, Prasanna Vengateshan wrote:
+> > On Sat, 2021-07-31 at 18:04 +0300, Vladimir Oltean wrote:
+> > > > +void lan937x_mac_config(struct ksz_device *dev, int port,
+> > > > +                     phy_interface_t interface)
+> > > > +{
+> > > > +     u8 data8;
+> > > > +
+> > > > +     lan937x_pread8(dev, port, REG_PORT_XMII_CTRL_1, &data8);
+> > > > +
+> > > > +     /* clear MII selection & set it based on interface later */
+> > > > +     data8 &= ~PORT_MII_SEL_M;
+> > > > +
+> > > > +     /* configure MAC based on interface */
+> > > > +     switch (interface) {
+> > > > +     case PHY_INTERFACE_MODE_MII:
+> > > > +             lan937x_config_gbit(dev, false, &data8);
+> > > > +             data8 |= PORT_MII_SEL;
+> > > > +             break;
+> > > > +     case PHY_INTERFACE_MODE_RMII:
+> > > > +             lan937x_config_gbit(dev, false, &data8);
+> > > > +             data8 |= PORT_RMII_SEL;
+> > > > +             break;
+> > > > +     case PHY_INTERFACE_MODE_RGMII:
+> > > > +     case PHY_INTERFACE_MODE_RGMII_ID:
+> > > > +     case PHY_INTERFACE_MODE_RGMII_TXID:
+> > > > +     case PHY_INTERFACE_MODE_RGMII_RXID:
+> > > > +             lan937x_config_gbit(dev, true, &data8);
+> > > > +             data8 |= PORT_RGMII_SEL;
+> > > > +
+> > > > +             /* Add RGMII internal delay for cpu port*/
+> > > > +             if (dsa_is_cpu_port(dev->ds, port)) {
+> > >
+> > > Why only for the CPU port? I would like Andrew/Florian to have a look
+> > > here, I guess the assumption is that if the port has a phy-handle, the
+> > > RGMII delays should be dealt with by the PHY, but the logic seems to be
+> > > "is a CPU port <=> has a phy-handle / isn't a CPU port <=> doesn't have
+> > > a phy-handle"? What if it's a fixed-link port connected to a downstream
+> > > switch, for which this one is a DSA master?
+> >
+> > Thanks for reviewing the patches. My earlier proposal here was to check if there
+> > is no phydev (dp->slave->phydev) or if PHY is genphy, then apply RGMII delays
+> > assuming delays should be dealt with the phy driver if available. What do you
+> > think of that?
+> 
+> I don't know what to suggest, this is a bit of a minefield.
 
---xdpgrz6pysvgzjon
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In general, the MAC does nothing, and passes the value to the PHY. The
+PHY inserts delays as requested. To address Vladimir point,
+PHY_INTERFACE_MODE_RGMII_TXID would mean the PHY adds delay in the TX
+direction, and assumes the RX delay comes from somewhere else,
+probably the PCB.
 
-On 26.07.2021 15:40:07, Aswath Govindraju wrote:
-> From: Faiz Abbas <faiz_abbas@ti.com>
->=20
-> Add Support for two MCAN controllers present on the am65x SOC. Both suppo=
-rt
-> classic CAN messages as well as CAN-FD.
->=20
-> Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi | 30 +++++++++++++++++++++++++
->  1 file changed, 30 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi b/arch/arm64/boot/dt=
-s/ti/k3-am65-mcu.dtsi
-> index c93ff1520a0e..6445f2d976e8 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-> @@ -159,6 +159,36 @@
->  		};
->  	};
-> =20
-> +	m_can0: mcan@40528000 {
-> +		compatible =3D "bosch,m_can";
-> +		reg =3D <0x0 0x40528000 0x0 0x400>,
-> +		      <0x0 0x40500000 0x0 0x4400>;
-> +		reg-names =3D "m_can", "message_ram";
-> +		power-domains =3D <&k3_pds 102 TI_SCI_PD_EXCLUSIVE>;
-> +		clocks =3D <&k3_clks 102 0>, <&k3_clks 102 5>;
-> +		clock-names =3D "cclk", "hclk";
+I only recommend the MAC adds delays when the PHY cannot, or there is
+no PHY, e.g. SoC to switch, or switch to switch link. There are a few
+MAC drivers that do add delays, mostly because that is how the vendor
+crap tree does it.
 
-The binding says the first should be hclk.
+So as i said, what you propose is O.K, it follows this general rule of
+thumb.
 
-|  clock-names:
-|    items:
-|      - const: hclk
-|      - const: cclk
-
-Please also fix in the other dts files.
-
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---xdpgrz6pysvgzjon
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAmEH7DoACgkQqclaivrt
-76kxjwf9Gmlc6XvgdcEz4U7PNHFbVNMc1088UadMxSH07/kQAaRW90wlWXKlQTG2
-tVFCdoj5cPqT4PVeqf1k5F/N/WicVa8SHTKZcpLQz1GZLVbXmVgI6zRKJOHVtGfI
-32g9po0Xol0E5kPtMusw954W0elkTGO2CuWkhQ5DwODL3GElegqKfrz3IWueiR7E
-Zk8GjJRdmP1BqFiokaT+/TEOSWMrzHNXO2EYahaEO6YEoc7CjA66eP+4tmH560rs
-Kgr56k7Rghl5uF843geaZinyWPJLfH04K0yDnaKIltW9aLuavAABcHITJhsNO2fS
-fjR/9fVIdGaorFu77/7WjEgeFw/51A==
-=O+hV
------END PGP SIGNATURE-----
-
---xdpgrz6pysvgzjon--
+	Andrew
