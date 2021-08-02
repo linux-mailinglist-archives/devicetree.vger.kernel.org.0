@@ -2,113 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85A6E3DD6B2
-	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 15:13:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 200133DD6D2
+	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 15:19:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233719AbhHBNNY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Aug 2021 09:13:24 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:57120 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233646AbhHBNNX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Aug 2021 09:13:23 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-        In-Reply-To:References; bh=T2IAzdUQovydbbmh506kT2JFY/1lImBNxuW1tWg0QTk=; b=tC
-        rpN3yfQsRPLJ8Ta6LfwE+sz7d6YV4AMopZ/L2AxHoPl5dKf0FRXzqLq6q0PzD/9fq+dqxFDIHjCOT
-        tQQiFQoX5YL/krL8hFoLB2QROPnroxW3MQMFzNC9NwlYImEY2Twpqqx5khpBAVhE1BhR9NAwuWK3r
-        QhVD9IWohkc/Dgc=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mAXkb-00Fp0B-VY; Mon, 02 Aug 2021 15:13:01 +0200
-Date:   Mon, 2 Aug 2021 15:13:01 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>,
-        netdev@vger.kernel.org, robh+dt@kernel.org,
-        UNGLinuxDriver@microchip.com, Woojung.Huh@microchip.com,
-        hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
-        kuba@kernel.org, linux-kernel@vger.kernel.org,
-        vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 net-next 05/10] net: dsa: microchip: add DSA support
- for microchip lan937x
-Message-ID: <YQfvXTEbyYFMLH5u@lunn.ch>
-References: <20210723173108.459770-1-prasanna.vengateshan@microchip.com>
- <20210723173108.459770-6-prasanna.vengateshan@microchip.com>
- <20210731150416.upe5nwkwvwajhwgg@skbuf>
- <49678cce02ac03edc6bbbd1afb5f67606ac3efc2.camel@microchip.com>
- <20210802121550.gqgbipqdvp5x76ii@skbuf>
+        id S233778AbhHBNTj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Aug 2021 09:19:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59486 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233621AbhHBNTi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 09:19:38 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF9ECC06175F
+        for <devicetree@vger.kernel.org>; Mon,  2 Aug 2021 06:19:28 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id a7so23851151ljq.11
+        for <devicetree@vger.kernel.org>; Mon, 02 Aug 2021 06:19:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hJM5ZCvKgC8eQ0kPpge6XKSN4iTKO7yNBaLGlM9S+lM=;
+        b=e1LoWT/8fsnaMq8nG6pnHW7pRXYn5rICiBbIuelEsEjW4akkXOPidg0GF/kMuPJoDS
+         Vy2kXHulT6QVOzM6G2IVkxUsXTseKxqjfjbxG4vXRVWulPxYL2CfWf8YQEdYd9rv4aW2
+         j8LhLSoR2S45HNOoZDoMFGNw2M6r7l3bENzCkgvL/dKjekAV+a5XsRSZ7MCYy5ht37YK
+         9cUA8Em5tXssSxODfjLaRZdP2JzR4A60atnvIaEvnosVBEQguHmzSbI6oFNSi1O7yKeO
+         3ouxgZKRpwq0wgNIzj5rUfYWIMRJVeWTXx0YfL4tZbTiLZuWbyExAE5OlNem3byQIVaH
+         LeXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hJM5ZCvKgC8eQ0kPpge6XKSN4iTKO7yNBaLGlM9S+lM=;
+        b=BzmvpfCXCkJ6Min+s5nRwjFaTTUyh0siJzmSxhNV+83ON+uXSH3ukxWscRxkZHow76
+         Uv3V5AE0yBODGLKLqiIO7TyyZStAKKEQMALLi5q5dTmlLBYUsACjercVrRezYuy5tD1X
+         x+2v+OZAgqFsMujG6poOWh+7iwQfiJsjlTzZFnh9LrvMuK0hTlzqEFmAEOCdxjNOS2Xb
+         epkfgL9CziKSrkGVzqyWPwr/ikkhyahtlPIxeTKenP0i8jjaxAK3MSAAf24rXTs2NIOF
+         BZkbElR/KHYxlXFH91lc4G4WWXhdPc3Y3fiuH0AmLNu2Qnn2Oi5wmGVW+gLUQ4CAwsJp
+         Bt2A==
+X-Gm-Message-State: AOAM531QkGA8qeD+09G6NGCdlf/FNxxqGgiq3Y2/+m7w3PU5YnDQ51or
+        HdnVxckekZLvYHqpfQWjam6oCQFk9AbuiqlNDtzp1Q==
+X-Google-Smtp-Source: ABdhPJwU0SPMw8r5qBhku5qCgwvkuKIVBr4Voxz2sci0C63jCAhPlLwVqSAwS7/OIGWp4o7fddK707JvTiltM0kff2o=
+X-Received: by 2002:a2e:b04e:: with SMTP id d14mr11727782ljl.74.1627910367088;
+ Mon, 02 Aug 2021 06:19:27 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210802121550.gqgbipqdvp5x76ii@skbuf>
+References: <1626868353-96475-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+ <1626868353-96475-5-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+ <YQMIhBPwcNw1YqMq@robh.at.kernel.org> <CACRpkdYrHTMLL_CQi0BoNZsXV3=2dBK38pkvd+EEkuPrzoG_Cw@mail.gmail.com>
+ <2f5d9197-4a5e-08b5-7e47-595d337478d2@xilinx.com>
+In-Reply-To: <2f5d9197-4a5e-08b5-7e47-595d337478d2@xilinx.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 2 Aug 2021 15:19:15 +0200
+Message-ID: <CACRpkdZu2-EE1hqJ4nVA5uxaPuJRGWDH_ciKxRvrNncQ2Pyd5w@mail.gmail.com>
+Subject: Re: [PATCH 4/4] arm: dts: zynq: Replace 'io-standard' with
+ 'power-source' property
+To:     Michal Simek <michal.simek@xilinx.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        git <git@xilinx.com>, saikrishna12468@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 02, 2021 at 03:15:50PM +0300, Vladimir Oltean wrote:
-> On Mon, Aug 02, 2021 at 04:15:08PM +0530, Prasanna Vengateshan wrote:
-> > On Sat, 2021-07-31 at 18:04 +0300, Vladimir Oltean wrote:
-> > > > +void lan937x_mac_config(struct ksz_device *dev, int port,
-> > > > +                     phy_interface_t interface)
-> > > > +{
-> > > > +     u8 data8;
-> > > > +
-> > > > +     lan937x_pread8(dev, port, REG_PORT_XMII_CTRL_1, &data8);
-> > > > +
-> > > > +     /* clear MII selection & set it based on interface later */
-> > > > +     data8 &= ~PORT_MII_SEL_M;
-> > > > +
-> > > > +     /* configure MAC based on interface */
-> > > > +     switch (interface) {
-> > > > +     case PHY_INTERFACE_MODE_MII:
-> > > > +             lan937x_config_gbit(dev, false, &data8);
-> > > > +             data8 |= PORT_MII_SEL;
-> > > > +             break;
-> > > > +     case PHY_INTERFACE_MODE_RMII:
-> > > > +             lan937x_config_gbit(dev, false, &data8);
-> > > > +             data8 |= PORT_RMII_SEL;
-> > > > +             break;
-> > > > +     case PHY_INTERFACE_MODE_RGMII:
-> > > > +     case PHY_INTERFACE_MODE_RGMII_ID:
-> > > > +     case PHY_INTERFACE_MODE_RGMII_TXID:
-> > > > +     case PHY_INTERFACE_MODE_RGMII_RXID:
-> > > > +             lan937x_config_gbit(dev, true, &data8);
-> > > > +             data8 |= PORT_RGMII_SEL;
-> > > > +
-> > > > +             /* Add RGMII internal delay for cpu port*/
-> > > > +             if (dsa_is_cpu_port(dev->ds, port)) {
-> > >
-> > > Why only for the CPU port? I would like Andrew/Florian to have a look
-> > > here, I guess the assumption is that if the port has a phy-handle, the
-> > > RGMII delays should be dealt with by the PHY, but the logic seems to be
-> > > "is a CPU port <=> has a phy-handle / isn't a CPU port <=> doesn't have
-> > > a phy-handle"? What if it's a fixed-link port connected to a downstream
-> > > switch, for which this one is a DSA master?
-> >
-> > Thanks for reviewing the patches. My earlier proposal here was to check if there
-> > is no phydev (dp->slave->phydev) or if PHY is genphy, then apply RGMII delays
-> > assuming delays should be dealt with the phy driver if available. What do you
-> > think of that?
-> 
-> I don't know what to suggest, this is a bit of a minefield.
+On Fri, Jul 30, 2021 at 2:46 PM Michal Simek <michal.simek@xilinx.com> wrote:
 
-In general, the MAC does nothing, and passes the value to the PHY. The
-PHY inserts delays as requested. To address Vladimir point,
-PHY_INTERFACE_MODE_RGMII_TXID would mean the PHY adds delay in the TX
-direction, and assumes the RX delay comes from somewhere else,
-probably the PCB.
+> Linux Zynq pinctrl driver and in tree dts files are using io-standard
+> properties at least from 2015.
 
-I only recommend the MAC adds delays when the PHY cannot, or there is
-no PHY, e.g. SoC to switch, or switch to switch link. There are a few
-MAC drivers that do add delays, mostly because that is how the vendor
-crap tree does it.
+Ooops my wrong.
 
-So as i said, what you propose is O.K, it follows this general rule of
-thumb.
+What about supporting both the new property and io-standard as
+a fallback, simply?
 
-	Andrew
+Yours,
+Linus Walleij
