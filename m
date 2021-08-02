@@ -2,63 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A80143DD757
-	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 15:39:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8549B3DD75C
+	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 15:39:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234029AbhHBNkB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Aug 2021 09:40:01 -0400
-Received: from mail-io1-f44.google.com ([209.85.166.44]:46628 "EHLO
-        mail-io1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233742AbhHBNkA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 09:40:00 -0400
-Received: by mail-io1-f44.google.com with SMTP id z7so19451841iog.13
-        for <devicetree@vger.kernel.org>; Mon, 02 Aug 2021 06:39:50 -0700 (PDT)
+        id S233994AbhHBNkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Aug 2021 09:40:06 -0400
+Received: from mail-il1-f179.google.com ([209.85.166.179]:43686 "EHLO
+        mail-il1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234032AbhHBNkF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 09:40:05 -0400
+Received: by mail-il1-f179.google.com with SMTP id x7so13111533ilh.10;
+        Mon, 02 Aug 2021 06:39:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=wQWG6C+/bJD52kYYkLGDWnROUo6h5NbI01yufBYyFP4=;
-        b=KK6JSTkQ9mNT2OE2ZMs8yOgME7X/SbnDzxqrpO/v7ubzBCTBuEBJzWm2FCOHfof/f0
-         /EAThw2bDqeGc4cQCssRR3kIkoqGArJYO65pvsYo29k1Id9Vu/UkMQHFSrAMvPim+X6f
-         PfTd+xwQwaj0WjXGzqIKucLz43xPeqCcry/pEGzAeHANhIwYekNLddW03GtbsxaK5hI+
-         2lAigzTfvT2BlC7mZaRZwY3RXMlPOONmtSBa9tmVG+0tkJBA4IIiG2jpew/OMBduYu+G
-         wh/XQFH/1K61JWq6YDWzmvhWSSL409Ygp3vKhwKahhIgGtFUQqTPDfUdLvbKwDlOGKsU
-         N+dA==
-X-Gm-Message-State: AOAM5336N7W8CDbqLYa2kR971LRZ1pNtFdKkQM5mQnf1OUBF/IQ1yRxk
-        UbHuXfddtnXwOPinkhbfoA==
-X-Google-Smtp-Source: ABdhPJzSxOv3oKdACMK8NKW42LCfv4rEJ9FvV+25JYgxEicbQufmp6OjCN+8+LUj0js3Wqw4lkdLAQ==
-X-Received: by 2002:a6b:e417:: with SMTP id u23mr1057682iog.91.1627911590237;
-        Mon, 02 Aug 2021 06:39:50 -0700 (PDT)
+        bh=TENNApnA3pRK87RRsfp5wpxG2YcnGhsJlA20WbVifLk=;
+        b=HswowOqsvG5bejucUm8i5rR1YCKkLAOALcRD/UyxWYWC0C+qwwrScFgG6BjiLmdR3X
+         j58yRYfI78iLnIRZbZoZbil39ORVlTz2qKWdzb2NKiJIF4jFMwmSF0Pa13/XVFtZHLSX
+         X67h7TrjzEMB7AwuK4RM4VqIHClHiUnLVCA9MWxPA/LTNuIL/UQxCgt4exyru4gvEMbS
+         j+KiRm6wHq+c6xQcWYBgxd+mWxL3YeNSoUwnZD+Q18wLMMJeDceHMH5eBZp2HMG+3gcs
+         td29jC0BqQVseq0WodkearWjjZY2YYhUGdLWHDrUDHCkfT6j+z94zB5ui3p+2h6KeBrp
+         6Tmw==
+X-Gm-Message-State: AOAM533mnS140ohCI+HTaPtFd2mzKlwRs4ENUJv9EO0CstVDPCeePr90
+        Wf5aHIWZmnnDrshaApxPFw==
+X-Google-Smtp-Source: ABdhPJzfosP56bJdNxD4Ijzp2ZlTM+40hrVsN+FY9mSl/e1GMizabh/TW6EXI++5V3KCEafHRE7mkw==
+X-Received: by 2002:a05:6e02:1bcc:: with SMTP id x12mr1141093ilv.275.1627911594639;
+        Mon, 02 Aug 2021 06:39:54 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id z11sm7007920ioh.14.2021.08.02.06.39.49
+        by smtp.gmail.com with ESMTPSA id q7sm7459028iow.12.2021.08.02.06.39.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Aug 2021 06:39:49 -0700 (PDT)
-Received: (nullmailer pid 918768 invoked by uid 1000);
+        Mon, 02 Aug 2021 06:39:54 -0700 (PDT)
+Received: (nullmailer pid 918766 invoked by uid 1000);
         Mon, 02 Aug 2021 13:39:43 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Matt Johnston <matt@codeconstruct.com.au>
-Cc:     Wolfram Sang <wsa@kernel.org>, devicetree@vger.kernel.org,
-        Jeremy Kerr <jk@codeconstruct.com.au>
-In-Reply-To: <20210802040458.334732-3-matt@codeconstruct.com.au>
-References: <20210802040458.334732-1-matt@codeconstruct.com.au> <20210802040458.334732-3-matt@codeconstruct.com.au>
-Subject: Re: [RFC PATCH 2/2] dt-bindings: net: Add mctp-i2c bus-attach property
+To:     Iskren Chernev <iskren.chernev@gmail.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org
+In-Reply-To: <20210801103448.3329333-2-iskren.chernev@gmail.com>
+References: <20210801103448.3329333-1-iskren.chernev@gmail.com> <20210801103448.3329333-2-iskren.chernev@gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: clk: qcom: gcc-sm6115: Document SM6115 GCC
 Date:   Mon, 02 Aug 2021 07:39:43 -0600
-Message-Id: <1627911583.098664.918767.nullmailer@robh.at.kernel.org>
+Message-Id: <1627911583.087441.918765.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 02 Aug 2021 12:04:58 +0800, Matt Johnston wrote:
-> Allows attaching multiple child busses in a mux topology
-> to an mctp-i2c instance on the root bus. In general I2C
-> slave mode does not make sense for mux busses, but the MCTP
-> request/response protocol means the the root can switch
-> between child muxes for incoming I2C messages.
+On Sun, 01 Aug 2021 13:34:47 +0300, Iskren Chernev wrote:
+> Add device tree bindings for global clock controller on SM6115 and
+> SM4250 SoCs (pin and software compatible).
 > 
-> Signed-off-by: Matt Johnston <matt@codeconstruct.com.au>
+> Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
 > ---
->  .../devicetree/bindings/net/mctp-i2c.yaml     | 42 +++++++++++++++++--
->  1 file changed, 38 insertions(+), 4 deletions(-)
+>  .../bindings/clock/qcom,gcc-sm6115.yaml       |  74 +++++++
+>  include/dt-bindings/clock/qcom,gcc-sm6115.h   | 201 ++++++++++++++++++
+>  2 files changed, 275 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sm6115.yaml
+>  create mode 100644 include/dt-bindings/clock/qcom,gcc-sm6115.h
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -67,10 +73,13 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/net/mctp-i2c.example.dt.yaml:0:0: /example-0/i2cmux0: failed to match any schema with compatible: ['i2c-mux-gpio']
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/qcom,gcc-sm6115.example.dt.yaml: clock-controller@1400000: clocks: [[4294967295, 0], [4294967295]] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/qcom,gcc-sm6115.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/qcom,gcc-sm6115.example.dt.yaml: clock-controller@1400000: clock-names: ['bi_tcxo', 'sleep_clk'] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/qcom,gcc-sm6115.yaml
 \ndoc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1512253
+See https://patchwork.ozlabs.org/patch/1512028
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
