@@ -2,110 +2,308 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C17A03DDA6F
-	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 16:14:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 895323DDADE
+	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 16:22:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237084AbhHBOOE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Aug 2021 10:14:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43446 "EHLO
+        id S236196AbhHBOXG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Aug 2021 10:23:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236412AbhHBONL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 10:13:11 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2A66C044027;
-        Mon,  2 Aug 2021 06:59:14 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id h9so15601933ejs.4;
-        Mon, 02 Aug 2021 06:59:14 -0700 (PDT)
+        with ESMTP id S236175AbhHBOW5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 10:22:57 -0400
+Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45B8AC07720F;
+        Mon,  2 Aug 2021 07:10:49 -0700 (PDT)
+Received: by mail-qt1-x836.google.com with SMTP id d2so11687823qto.6;
+        Mon, 02 Aug 2021 07:10:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=MihKPbXWLuAHmHFbjCvlbQGWvDP7j/7zWzZnY5mOiqw=;
-        b=sFa9Aa4INuqL14NQ4sv3j2caM780TjKWwuEefU4xzCpXWpu96Ssp6nDWTdUlPfwGbh
-         1cTuMDghaIdyd7FwqZ++36zWyw+6K1PDjIyiK6haw4Ik+TZtWynM4Q9+xe7bG53WnSip
-         r0rP/SIf2Tc/sY8ipxIe5amaIQJt4M7JRDTz6NKbcDJATQAGXC+Y0eAMZhy2UEj3cyuq
-         Eb222JnZifkoCTGlRWD8IMMDx0uPaNHEjzf1SFvldkZHfQODOWhB3P4Z9WIivIDgPZJO
-         60wjSOqdTVnb59O8vl9fXLqE9Bsy6gR7lDK1CrI2/7OqcoLbdfA/041kBi/dgadWF447
-         7GFA==
+        h=mime-version:content-transfer-encoding:date:message-id:from:to:cc
+         :subject:references:in-reply-to;
+        bh=2X+kvVIkTXeU3G/rutGby/mSqVSEzt5UnQ7WKMI/d2I=;
+        b=Xv2UKFyUvbz+5h8eFQvVKZN36IG/7D4mrKmUQCy73IgqhpOtwtYtLZl3PP07PCRFg4
+         ctwlRebDWPg4r2+TxBOIibZjguq+pWw7AwqgQpu/egFKCK3udg0R4WYHG3pQb9lTbxuP
+         Rs4IbvJivNxX248IjAESaoh4nioL23y8kdZRW3Fsm2sTUvGnWqwKrZO5l0YZB85rzg0s
+         GoqYu/dQEGpGUgQMIayKaZWLLfgAkHG5nL7LKLBuPjvjwB7eEs8F9Gm4xtcFKplygcZN
+         le9O4r061wb4KEHMoiGefmluIhrkgXvJ/UT/TqXYUsEwbg935XPFMIIr+M39IKTWGmhB
+         6R/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=MihKPbXWLuAHmHFbjCvlbQGWvDP7j/7zWzZnY5mOiqw=;
-        b=WcSnP3EVMt8Mw6TZ3+jpemvTI+COovu//LUn+IF6Pbf1JQG6beqy+pEge6cx9MbZKU
-         rw10apYIZig6vsH4UmaVkCO4fx9y2McXhpVnka86SnutF3euJyw53BA7rJonAYMuFuHZ
-         7KoHnsXWVGrrZYC6J/Bk+nwe5/H3uYGDTSTxw2jQ0ke4GAMFVDXqMdWVtD9HtSBtGB4B
-         Qs0kGCBAVY05QancFbMJLL9XnsRw7of0V/4fbfJpCL9gIZ82Va/PTFXLbZyVv5Y7GwZE
-         5p7Ut3zwKno0mdGO8x5PEKqOFtx7+iGfwXF+tkjRLS0+7dJDGlaoNq1EP2PsaZfx6Anx
-         Y68g==
-X-Gm-Message-State: AOAM531H9jTz8QP8T7i0IpCFMJ/PXRapR26QLbXQKXn+hwgaOqWyisk4
-        Fwyne7Sf97r/uCDlbkMIyxs=
-X-Google-Smtp-Source: ABdhPJwpH+ntlOKfXt+DPJwa1ewViuJFhyfswfqjMUWJyaJWoA2ecLH0HFCLb8zfOP7fYTF0lPfUZg==
-X-Received: by 2002:a17:906:309a:: with SMTP id 26mr15651618ejv.153.1627912753220;
-        Mon, 02 Aug 2021 06:59:13 -0700 (PDT)
-Received: from skbuf ([188.25.144.60])
-        by smtp.gmail.com with ESMTPSA id n17sm6102896edr.84.2021.08.02.06.59.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Aug 2021 06:59:12 -0700 (PDT)
-Date:   Mon, 2 Aug 2021 16:59:11 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>,
-        netdev@vger.kernel.org, robh+dt@kernel.org,
-        UNGLinuxDriver@microchip.com, Woojung.Huh@microchip.com,
-        hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
-        kuba@kernel.org, linux-kernel@vger.kernel.org,
-        vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 net-next 05/10] net: dsa: microchip: add DSA support
- for microchip lan937x
-Message-ID: <20210802135911.inpu6khavvwsfjsp@skbuf>
-References: <20210723173108.459770-1-prasanna.vengateshan@microchip.com>
- <20210723173108.459770-6-prasanna.vengateshan@microchip.com>
- <20210731150416.upe5nwkwvwajhwgg@skbuf>
- <49678cce02ac03edc6bbbd1afb5f67606ac3efc2.camel@microchip.com>
- <20210802121550.gqgbipqdvp5x76ii@skbuf>
- <YQfvXTEbyYFMLH5u@lunn.ch>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YQfvXTEbyYFMLH5u@lunn.ch>
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:from:to:cc:subject:references:in-reply-to;
+        bh=2X+kvVIkTXeU3G/rutGby/mSqVSEzt5UnQ7WKMI/d2I=;
+        b=IhngyNvYyT0b0BBM1MmeNGw1QTVGhECSxEt+6PN1PXT/Wh0Yo+FIjNK7yRzVyWWvx3
+         TDIrH+WNFIM1+6EEI9M3CDpM70XCmz66fkrKj487AXd829Pfiwsr08GqAszxvVmrkINs
+         ktuaE1vnAqGkeBkhT/MfxV0tJ3iPFRNXrKpB6jEKKGkLO/FcyqHsSY1t8fqxA+2hchc1
+         IuT+GfpQ/q+kyyZmMfeXKr5vgEIFcoD/vMDWXZsHdkYKroBYVPyPq4qGtuWvKg0Abpz1
+         MpVDJTg60niDi2RCcaex6djChunCczN1Jlx0I2DNKjgMyESvhweE3MSBmrVkdyjrKfUF
+         dRYg==
+X-Gm-Message-State: AOAM5305Xn6QDXKm8alNqM0jx39A8/zz/NSBrx41zNgqV8yCyAfCClqe
+        fmCvkN/6r/1kBbH/LMOFUmc=
+X-Google-Smtp-Source: ABdhPJz9VTtHXR8ZvRkE9nbzG8r6HlFBgzDOgT4z+BCx8yj0ke68eM7zetabzXbvrZ7pIsG23m423Q==
+X-Received: by 2002:a05:622a:2cc:: with SMTP id a12mr14339747qtx.115.1627913448421;
+        Mon, 02 Aug 2021 07:10:48 -0700 (PDT)
+Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
+        by smtp.gmail.com with ESMTPSA id m19sm4617639qtx.84.2021.08.02.07.10.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Aug 2021 07:10:47 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Mon, 02 Aug 2021 10:10:46 -0400
+Message-Id: <CD935LAT054Y.3JBJYUHXE55WA@shaak>
+From:   "Liam Beguin" <liambeguin@gmail.com>
+To:     "Jonathan Cameron" <Jonathan.Cameron@huawei.com>
+Cc:     "Jonathan Cameron" <jic23@kernel.org>, <lars@metafoo.de>,
+        <Michael.Hennerich@analog.com>,
+        <charles-antoine.couret@essensium.com>, <Nuno.Sa@analog.com>,
+        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
+Subject: Re: [PATCH v4 2/5] iio: adc: ad7949: fix spi messages on non 14-bit
+ controllers
+References: <20210727232906.980769-1-liambeguin@gmail.com>
+ <20210727232906.980769-3-liambeguin@gmail.com>
+ <20210731152921.2fcb53ab@jic23-huawei>
+ <20210731155228.5cf77479@jic23-huawei> <CD8JT5A4TPLB.33HN2VCYJXKSS@shaak>
+ <20210802112013.00000ff4@Huawei.com>
+In-Reply-To: <20210802112013.00000ff4@Huawei.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 02, 2021 at 03:13:01PM +0200, Andrew Lunn wrote:
-> In general, the MAC does nothing, and passes the value to the PHY. The
-> PHY inserts delays as requested. To address Vladimir point,
-> PHY_INTERFACE_MODE_RGMII_TXID would mean the PHY adds delay in the TX
-> direction, and assumes the RX delay comes from somewhere else,
-> probably the PCB.
+On Mon Aug 2, 2021 at 6:20 AM EDT, Jonathan Cameron wrote:
+> On Sun, 01 Aug 2021 19:01:10 -0400
+> "Liam Beguin" <liambeguin@gmail.com> wrote:
+>
+> > On Sat Jul 31, 2021 at 10:52 AM EDT, Jonathan Cameron wrote:
+> > > On Sat, 31 Jul 2021 15:29:21 +0100
+> > > Jonathan Cameron <jic23@kernel.org> wrote:
+> > > =20
+> > > > On Tue, 27 Jul 2021 19:29:03 -0400
+> > > > Liam Beguin <liambeguin@gmail.com> wrote:
+> > > >  =20
+> > > > > From: Liam Beguin <lvb@xiphos.com>
+> > > > >=20
+> > > > > This driver supports devices with 14-bit and 16-bit sample sizes.
+> > > > > This is not always handled properly by spi controllers and can fa=
+il. To
+> > > > > work around this limitation, pad samples to 16-bit and split the =
+sample
+> > > > > into two 8-bit messages in the event that only 8-bit messages are
+> > > > > supported by the controller.
+> > > > >=20
+> > > > > Signed-off-by: Liam Beguin <lvb@xiphos.com>
+> > > > > ---
+> > > > >  drivers/iio/adc/ad7949.c | 62 ++++++++++++++++++++++++++++++++++=
+------
+> > > > >  1 file changed, 54 insertions(+), 8 deletions(-)
+> > > > >=20
+> > > > > diff --git a/drivers/iio/adc/ad7949.c b/drivers/iio/adc/ad7949.c
+> > > > > index 0b549b8bd7a9..f1702c54c8be 100644
+> > > > > --- a/drivers/iio/adc/ad7949.c
+> > > > > +++ b/drivers/iio/adc/ad7949.c
+> > > > > @@ -67,6 +67,7 @@ static const struct ad7949_adc_spec ad7949_adc_=
+spec[] =3D {
+> > > > >   * @indio_dev: reference to iio structure
+> > > > >   * @spi: reference to spi structure
+> > > > >   * @resolution: resolution of the chip
+> > > > > + * @bits_per_word: number of bits per SPI word
+> > > > >   * @cfg: copy of the configuration register
+> > > > >   * @current_channel: current channel in use
+> > > > >   * @buffer: buffer to send / receive data to / from device
+> > > > > @@ -77,6 +78,7 @@ struct ad7949_adc_chip {
+> > > > >  	struct iio_dev *indio_dev;
+> > > > >  	struct spi_device *spi;
+> > > > >  	u8 resolution;
+> > > > > +	u8 bits_per_word;
+> > > > >  	u16 cfg;
+> > > > >  	unsigned int current_channel;
+> > > > >  	u16 buffer ____cacheline_aligned;
+> > > > > @@ -86,19 +88,34 @@ static int ad7949_spi_write_cfg(struct ad7949=
+_adc_chip *ad7949_adc, u16 val,
+> > > > >  				u16 mask)
+> > > > >  {
+> > > > >  	int ret;
+> > > > > -	int bits_per_word =3D ad7949_adc->resolution;
+> > > > > -	int shift =3D bits_per_word - AD7949_CFG_REG_SIZE_BITS;   =20
+> > > >=20
+> > > > The define for this was removed in patch 1.  I'll fix that up whils=
+t applying by
+> > > > keeping it until this patch.  Please check build passes on intermed=
+iate points
+> > > > during a patch series as otherwise we may break bisectability and t=
+hat's really
+> > > > annoying if you are bisecting!
+> > > >=20
+> > > > Jonathan
+> > > >  =20
+> > > > >  	struct spi_message msg;
+> > > > >  	struct spi_transfer tx[] =3D {
+> > > > >  		{
+> > > > >  			.tx_buf =3D &ad7949_adc->buffer,
+> > > > >  			.len =3D 2,
+> > > > > -			.bits_per_word =3D bits_per_word,
+> > > > > +			.bits_per_word =3D ad7949_adc->bits_per_word,
+> > > > >  		},
+> > > > >  	};
+> > > > > =20
+> > > > > +	ad7949_adc->buffer =3D 0;
+> > > > >  	ad7949_adc->cfg =3D (val & mask) | (ad7949_adc->cfg & ~mask);
+> > > > > -	ad7949_adc->buffer =3D ad7949_adc->cfg << shift;
+> > > > > +
+> > > > > +	switch (ad7949_adc->bits_per_word) {
+> > > > > +	case 16:
+> > > > > +		ad7949_adc->buffer =3D ad7949_adc->cfg << 2;
+> > > > > +		break;
+> > > > > +	case 14:
+> > > > > +		ad7949_adc->buffer =3D ad7949_adc->cfg;
+> > > > > +		break;
+> > > > > +	case 8:
+> > > > > +		/* Here, type is big endian as it must be sent in two transfer=
+s */
+> > > > > +		ad7949_adc->buffer =3D (u16)cpu_to_be16(ad7949_adc->cfg << 2);=
+ =20
+> > >
+> > > Gah, I wasn't thinking clearly when I suggested this. Sparse warns on
+> > > the
+> > > endian conversion
+> > >
+> > > One option is to resort to ignoring the fact we know it's aligned and
+> > > use the put_unaligned_be16() and get_unaligned_be16 calls which spars=
+e
+> > > seems to be
+> > > happy with. Alternative would be to just have a be16 buffer after the
+> > > existing
+> > > one in the iio_priv structure. Then you will have to change the vario=
+us
+> > > users
+> > > of iio_priv()->buffer to point to the new value if we are doing 8 bit
+> > > transfers.
+> > >
+> > > Whilst more invasive, this second option is the one I'd suggest. =20
+> >=20
+> > Understood, I'll go with your suggestion.
+> >=20
+> > Out of curiosity, other that being more explicit, is there another
+> > we'd rather not use {get,put}_unaligned_be16()?
+>
+> We know it is aligned (as u16) so on a big endian platform that happens
+> to not handle unaligned accesses we will now be doing work which
+> wouldn't
+> be needed if there was a get_aligned_be16() that was more relaxed about
+> types than cpu_to_be16() etc.
+>
+> So basically it looks odd and we will will be hiding that we are
+> smashing
+> data of potentially different ordering into the same structure field.
 
-For the PHY, that is the only portion where things are clear.
+Got it! Thanks for the explanation.
 
-> I only recommend the MAC adds delays when the PHY cannot, or there is
-> no PHY, e.g. SoC to switch, or switch to switch link. There are a few
-> MAC drivers that do add delays, mostly because that is how the vendor
-> crap tree does it.
-> 
-> So as i said, what you propose is O.K, it follows this general rule of
-> thumb.
+Liam
 
-The "rule of thumb" for a MAC driver is actually applied in reverse by
-most MAC drivers compared to what Russell described should be happening.
-For example, mv88e6xxx_port_set_rgmii_delay():
+>
+> >=20
+> > > Note that there will be no need to add an __cacheline_aligned marking=
+ to
+> > > this
+> > > new element because it will be in a cachline that is only used for DM=
+A
+> > > simply being
+> > > after the other buffer element which is force to start on a new
+> > > cacheline. =20
+> >=20
+> > Noted, Thanks for taking the time to explaining this.
+> >=20
+> > Liam
+> >=20
+> > >
+> > > Jonathan
+> > >   =20
+> > > > > +		break;
+> > > > > +	default:
+> > > > > +		dev_err(&ad7949_adc->indio_dev->dev, "unsupported BPW\n");
+> > > > > +		return -EINVAL;
+> > > > > +	}
+> > > > > +
+> > > > >  	spi_message_init_with_transfers(&msg, tx, 1);
+> > > > >  	ret =3D spi_sync(ad7949_adc->spi, &msg);
+> > > > > =20
+> > > > > @@ -115,14 +132,12 @@ static int ad7949_spi_read_channel(struct a=
+d7949_adc_chip *ad7949_adc, int *val,
+> > > > >  {
+> > > > >  	int ret;
+> > > > >  	int i;
+> > > > > -	int bits_per_word =3D ad7949_adc->resolution;
+> > > > > -	int mask =3D GENMASK(ad7949_adc->resolution - 1, 0);
+> > > > >  	struct spi_message msg;
+> > > > >  	struct spi_transfer tx[] =3D {
+> > > > >  		{
+> > > > >  			.rx_buf =3D &ad7949_adc->buffer,
+> > > > >  			.len =3D 2,
+> > > > > -			.bits_per_word =3D bits_per_word,
+> > > > > +			.bits_per_word =3D ad7949_adc->bits_per_word,
+> > > > >  		},
+> > > > >  	};
+> > > > > =20
+> > > > > @@ -157,7 +172,25 @@ static int ad7949_spi_read_channel(struct ad=
+7949_adc_chip *ad7949_adc, int *val,
+> > > > > =20
+> > > > >  	ad7949_adc->current_channel =3D channel;
+> > > > > =20
+> > > > > -	*val =3D ad7949_adc->buffer & mask;
+> > > > > +	switch (ad7949_adc->bits_per_word) {
+> > > > > +	case 16:
+> > > > > +		*val =3D ad7949_adc->buffer;
+> > > > > +		/* Shift-out padding bits */
+> > > > > +		*val >>=3D 16 - ad7949_adc->resolution;
+> > > > > +		break;
+> > > > > +	case 14:
+> > > > > +		*val =3D ad7949_adc->buffer & GENMASK(13, 0);
+> > > > > +		break;
+> > > > > +	case 8:
+> > > > > +		/* Here, type is big endian as data was sent in two transfers =
+*/
+> > > > > +		*val =3D be16_to_cpu(ad7949_adc->buffer);
+> > > > > +		/* Shift-out padding bits */
+> > > > > +		*val >>=3D 16 - ad7949_adc->resolution;
+> > > > > +		break;
+> > > > > +	default:
+> > > > > +		dev_err(&ad7949_adc->indio_dev->dev, "unsupported BPW\n");
+> > > > > +		return -EINVAL;
+> > > > > +	}
+> > > > > =20
+> > > > >  	return 0;
+> > > > >  }
+> > > > > @@ -265,6 +298,7 @@ static int ad7949_spi_init(struct ad7949_adc_=
+chip *ad7949_adc)
+> > > > > =20
+> > > > >  static int ad7949_spi_probe(struct spi_device *spi)
+> > > > >  {
+> > > > > +	u32 spi_ctrl_mask =3D spi->controller->bits_per_word_mask;
+> > > > >  	struct device *dev =3D &spi->dev;
+> > > > >  	const struct ad7949_adc_spec *spec;
+> > > > >  	struct ad7949_adc_chip *ad7949_adc;
+> > > > > @@ -291,6 +325,18 @@ static int ad7949_spi_probe(struct spi_devic=
+e *spi)
+> > > > >  	indio_dev->num_channels =3D spec->num_channels;
+> > > > >  	ad7949_adc->resolution =3D spec->resolution;
+> > > > > =20
+> > > > > +	/* Set SPI bits per word */
+> > > > > +	if (spi_ctrl_mask & SPI_BPW_MASK(ad7949_adc->resolution)) {
+> > > > > +		ad7949_adc->bits_per_word =3D ad7949_adc->resolution;
+> > > > > +	} else if (spi_ctrl_mask =3D=3D SPI_BPW_MASK(16)) {
+> > > > > +		ad7949_adc->bits_per_word =3D 16;
+> > > > > +	} else if (spi_ctrl_mask =3D=3D SPI_BPW_MASK(8)) {
+> > > > > +		ad7949_adc->bits_per_word =3D 8;
+> > > > > +	} else {
+> > > > > +		dev_err(dev, "unable to find common BPW with spi controller\n"=
+);
+> > > > > +		return -EINVAL;
+> > > > > +	}
+> > > > > +
+> > > > >  	ad7949_adc->vref =3D devm_regulator_get(dev, "vref");
+> > > > >  	if (IS_ERR(ad7949_adc->vref)) {
+> > > > >  		dev_err(dev, "fail to request regulator\n");   =20
+> > > >  =20
+> >=20
 
-	switch (mode) {
-	case PHY_INTERFACE_MODE_RGMII_RXID:
-		reg |= MV88E6XXX_PORT_MAC_CTL_RGMII_DELAY_RXCLK;
-
-The mv88e6xxx is a MAC, so when it has a phy-mode = "rgmii-rxid", it
-should assume it is connected to a link partner (PHY or otherwise) that
-has applied the RXCLK delay already. So it should only be concerned with
-the TXCLK delay. That is my point. I am just trying to lay out the
-points to Prasanna that would make a sane system going forward. I am not
-sure that we actually have an in-tree driver that is sane in that
-regard.
-
-That discussion, and Russell's point, was here, btw:
-https://patchwork.ozlabs.org/project/netdev/patch/20200616074955.GA9092@laureti-dev/#2461123
