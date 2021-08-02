@@ -2,251 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ECC493DE2A3
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 00:43:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 048C43DE2A7
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 00:44:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231920AbhHBWnz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Aug 2021 18:43:55 -0400
-Received: from mail-io1-f53.google.com ([209.85.166.53]:44771 "EHLO
-        mail-io1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231126AbhHBWny (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 18:43:54 -0400
-Received: by mail-io1-f53.google.com with SMTP id l18so22137650ioh.11;
-        Mon, 02 Aug 2021 15:43:43 -0700 (PDT)
+        id S232333AbhHBWow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Aug 2021 18:44:52 -0400
+Received: from mail-qt1-f170.google.com ([209.85.160.170]:36626 "EHLO
+        mail-qt1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231126AbhHBWow (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 18:44:52 -0400
+Received: by mail-qt1-f170.google.com with SMTP id w10so12793764qtj.3;
+        Mon, 02 Aug 2021 15:44:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=dZQeOSXFojQ/l1coeyz3v+7kw8mcB04qq43zWtA+pMw=;
-        b=qZ7/ye2bjvmbD8GUum3SzhG/lJ6cRVsHC6Zw8AD2pTsXF1X1b7BrVA9cr2ded3HCf8
-         /ajazY+JyqsJzqqz5lqs3d25TfIxCXWO9A17kMFZSW/22KZWMgu+L6fiqll1hXqGsNCo
-         40lGbDdMLdREKIlPIRtNMe/enlaHt1RL6VMWKI46yFPVlCxNUxrwq8bByrdgMHG1AvML
-         SGOhv5Kg959hOJIJErpptnxthBuO2YCrsJxLSbespD0ukSJIsAi2HsU/Z6IgyQgJ0dB1
-         vExO0X+3f1v+uU92bnRDBtGNri5h6sKj6HAvRTBE7D+s5cuvuTA7O7XgD3EEq/h5+aE3
-         EKxw==
-X-Gm-Message-State: AOAM531yQchyQLoRAKPDpMV3iWFyolNXBWqol4dXNvfqmqk87/770C29
-        EqNtzxIEOFYfROozlqXp7Q==
-X-Google-Smtp-Source: ABdhPJzdYveVfBh6D9LQLlOIs/01MNBaaTgLMR6kAzQmBq3kcjvUwXmFQCrwbYglsuJAVrmMgx27KA==
-X-Received: by 2002:a02:90cb:: with SMTP id c11mr17116289jag.53.1627944223297;
-        Mon, 02 Aug 2021 15:43:43 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id b13sm456691ilc.33.2021.08.02.15.43.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Aug 2021 15:43:42 -0700 (PDT)
-Received: (nullmailer pid 1760143 invoked by uid 1000);
-        Mon, 02 Aug 2021 22:43:40 -0000
-Date:   Mon, 2 Aug 2021 16:43:40 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     shruthi.sanil@intel.com
-Cc:     daniel.lezcano@linaro.org, tglx@linutronix.de,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        andriy.shevchenko@linux.intel.com, kris.pan@linux.intel.com,
-        mgross@linux.intel.com, srikanth.thokala@intel.com,
-        lakshmi.bai.raja.subramanian@intel.com,
-        mallikarjunappa.sangannavar@intel.com
-Subject: Re: [PATCH v5 1/2] dt-bindings: timer: Add bindings for Intel Keem
- Bay SoC Timer
-Message-ID: <YQh1HMMkJyO8g/RP@robh.at.kernel.org>
-References: <20210729053937.20281-1-shruthi.sanil@intel.com>
- <20210729053937.20281-2-shruthi.sanil@intel.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=pZpEUuMrd4GatuNwSTb1C/8V/y6Tmj4WRl8BBaTN31A=;
+        b=YR9yEPPIk08sI3US8+XqoaWvrCTQrDon6z3R0QlLl69ZziWp4ni0omi451a+5lRsGw
+         q2qtPrentbuoAh6wuIS5kfzmYYS8dCWgY784l79veZs7nJMJrZN9/WS9Y92Ka5loZK/q
+         uGhbmobkrB+lKB780Im1KQHh6zLbZ0pRyj7J2L08MEzUK/SqsEKCrAl472kmOIGqoqXH
+         eCosEaoqX3CJY6IdJJbJ3T0wnU5RU6ou/MWhZkRUIQad+KP6OeDd5hGvdPY2B4eAamNM
+         e5nIYHwW9BBI7zEEHWu04ThnApX0IfVTad6Ofnp+jCeCSFW64PZGp027ZjhwRA4MdQk4
+         rCig==
+X-Gm-Message-State: AOAM533co0zYYXXqCGF0KFK36RLTKuzZtqY9n665oSu8Ueak/y1eZCxe
+        55t9pJXy//X8Qo4Nnvu8sfl29oXN5TQ=
+X-Google-Smtp-Source: ABdhPJzmttkq5ye43bf7BNv43Qo+i3AZHFslVgMz2Za2LoZ1duNU+Dv9TrRFxX4lhXprC4qGs8MWuw==
+X-Received: by 2002:ac8:4545:: with SMTP id z5mr16357832qtn.198.1627944281739;
+        Mon, 02 Aug 2021 15:44:41 -0700 (PDT)
+Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com. [209.85.219.48])
+        by smtp.gmail.com with ESMTPSA id o63sm6757558qkf.4.2021.08.02.15.44.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Aug 2021 15:44:40 -0700 (PDT)
+Received: by mail-qv1-f48.google.com with SMTP id em4so4848284qvb.0;
+        Mon, 02 Aug 2021 15:44:40 -0700 (PDT)
+X-Received: by 2002:ad4:58cb:: with SMTP id dh11mr18599135qvb.29.1627944280772;
+ Mon, 02 Aug 2021 15:44:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210729053937.20281-2-shruthi.sanil@intel.com>
+References: <1627927742-8675-1-git-send-email-raagjadav@gmail.com>
+In-Reply-To: <1627927742-8675-1-git-send-email-raagjadav@gmail.com>
+From:   Li Yang <leoyang.li@nxp.com>
+Date:   Mon, 2 Aug 2021 17:44:29 -0500
+X-Gmail-Original-Message-ID: <CADRPPNQ2M1N1pV2brfFRXOf1ASK2bhiZpQivNhNws_+RUfCT-g@mail.gmail.com>
+Message-ID: <CADRPPNQ2M1N1pV2brfFRXOf1ASK2bhiZpQivNhNws_+RUfCT-g@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: ls1046a: fix eeprom entries
+To:     Raag Jadav <raagjadav@gmail.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 29, 2021 at 11:09:36AM +0530, shruthi.sanil@intel.com wrote:
-> From: Shruthi Sanil <shruthi.sanil@intel.com>
-> 
-> Add Device Tree bindings for the Timer IP, which can be used as
-> clocksource and clockevent device in the Intel Keem Bay SoC.
-> 
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-> Signed-off-by: Shruthi Sanil <shruthi.sanil@intel.com>
+On Mon, Aug 2, 2021 at 1:10 PM Raag Jadav <raagjadav@gmail.com> wrote:
+>
+> ls1046afrwy and ls1046ardb boards have CAT24C04[1] and CAT24C05[2]
+> eeproms respectively. Both are 4Kb (512 bytes) in size.
+
+These part names are from onsemi instead of atmel.  Are there same
+part names from atmel which are also compatible with the onsemi parts?
+ If we want to use onsemi only part names, probably we will need two
+compatible strings with the first one from onsemi and the second from
+atmel.  Although the binding doesn't support onsemi prefix yet.
+
+> Remove multi-address entries, as we have auto-rollover support
+> in at24 driver.
+
+The device tree should describe hardware instead of matching how
+driver deal with it.  Is the board really using a single chip or
+multiple chips here?
+
+>
+> [1] https://www.onsemi.com/pdf/datasheet/cat24c01-d.pdf
+> [2] https://www.onsemi.com/pdf/datasheet/cat24c03-d.pdf
+>
+> Signed-off-by: Raag Jadav <raagjadav@gmail.com>
 > ---
->  .../bindings/timer/intel,keembay-timer.yaml   | 166 ++++++++++++++++++
->  1 file changed, 166 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/timer/intel,keembay-timer.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/timer/intel,keembay-timer.yaml b/Documentation/devicetree/bindings/timer/intel,keembay-timer.yaml
-> new file mode 100644
-> index 000000000000..b2eb2459d09b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/timer/intel,keembay-timer.yaml
-> @@ -0,0 +1,166 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/timer/intel,keembay-timer.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Intel Keem Bay SoC Timers
-> +
-> +maintainers:
-> +  - Shruthi Sanil <shruthi.sanil@intel.com>
-> +
-> +description: |
-> +  The Intel Keem Bay timer driver supports 1 free running counter and 8 timers.
-> +  Each timer is capable of generating inividual interrupt.
-> +  Both the features are enabled through the timer general config register.
-> +
-> +  The parent node represents the common general configuration details and
-> +  the child nodes represents the counter and timers.
-> +
-> +properties:
-
-You need a 'compatible' here. Otherwise, how does one know what 
-'reg' contains. Also, without it, this schema will never be applied.
-
-> +  reg:
-> +    description: General configuration register address and length.
-> +    maxItems: 1
-> +
-> +  ranges: true
-> +
-> +  "#address-cells":
-> +    const: 2
-> +
-> +  "#size-cells":
-> +    const: 2
-> +
-> +required:
-> +  - reg
-> +  - ranges
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +
-> +patternProperties:
-> +  "^counter@[0-9a-f]+$":
-> +    type: object
-> +    description: Properties for Intel Keem Bay counter
-> +
-> +    properties:
-> +      compatible:
-> +        enum:
-> +          - intel,keembay-counter
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +      clocks:
-> +        maxItems: 1
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - clocks
-> +
-> +  "^timer@[0-9a-f]+$":
-> +    type: object
-> +    description: Properties for Intel Keem Bay timer
-> +
-> +    properties:
-> +      compatible:
-> +        enum:
-> +          - intel,keembay-timer
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +      interrupts:
-> +        maxItems: 1
-> +
-> +      clocks:
-> +        maxItems: 1
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - interrupts
-> +      - clocks
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #define KEEM_BAY_A53_TIM
-> +
-> +    soc {
-> +        #address-cells = <0x2>;
-> +        #size-cells = <0x2>;
-> +
-> +        gpt@20331000 {
-> +            reg = <0x0 0x20331000 0x0 0xc>;
-> +            ranges = <0x0 0x0 0x20330000 0xF0>;
-> +            #address-cells = <0x1>;
-> +            #size-cells = <0x1>;
-> +
-> +            counter@e8 {
-> +                compatible = "intel,keembay-counter";
-> +                reg = <0xe8 0x8>;
-> +                clocks = <&scmi_clk KEEM_BAY_A53_TIM>;
-> +            };
-> +
-> +            timer@10 {
-> +                compatible = "intel,keembay-timer";
-> +                reg = <0x10 0xc>;
-> +                interrupts = <GIC_SPI 0x3 IRQ_TYPE_LEVEL_HIGH>;
-> +                clocks = <&scmi_clk KEEM_BAY_A53_TIM>;
-> +            };
-> +
-> +            timer@20 {
-> +                compatible = "intel,keembay-timer";
-> +                reg = <0x20 0xc>;
-> +                interrupts = <GIC_SPI 0x4 IRQ_TYPE_LEVEL_HIGH>;
-> +                clocks = <&scmi_clk KEEM_BAY_A53_TIM>;
-> +            };
-> +
-> +            timer@30 {
-> +                compatible = "intel,keembay-timer";
-> +                reg = <0x30 0xc>;
-> +                interrupts = <GIC_SPI 0x5 IRQ_TYPE_LEVEL_HIGH>;
-> +                clocks = <&scmi_clk KEEM_BAY_A53_TIM>;
-> +            };
-> +
-> +            timer@40 {
-> +                compatible = "intel,keembay-timer";
-> +                reg = <0x40 0xc>;
-> +                interrupts = <GIC_SPI 0x6 IRQ_TYPE_LEVEL_HIGH>;
-> +                clocks = <&scmi_clk KEEM_BAY_A53_TIM>;
-> +            };
-> +
-> +            timer@50 {
-> +                compatible = "intel,keembay-timer";
-> +                reg = <0x50 0xc>;
-> +                interrupts = <GIC_SPI 0x7 IRQ_TYPE_LEVEL_HIGH>;
-> +                clocks = <&scmi_clk KEEM_BAY_A53_TIM>;
-> +            };
-> +
-> +            timer@60 {
-> +                compatible = "intel,keembay-timer";
-> +                reg = <0x60 0xc>;
-> +                interrupts = <GIC_SPI 0x8 IRQ_TYPE_LEVEL_HIGH>;
-> +                clocks = <&scmi_clk KEEM_BAY_A53_TIM>;
-> +            };
-> +
-> +            timer@70 {
-> +                compatible = "intel,keembay-timer";
-> +                reg = <0x70 0xc>;
-> +                interrupts = <GIC_SPI 0x9 IRQ_TYPE_LEVEL_HIGH>;
-> +                clocks = <&scmi_clk KEEM_BAY_A53_TIM>;
-> +            };
-> +
-> +            timer@80 {
-> +                compatible = "intel,keembay-timer";
-> +                reg = <0x80 0xc>;
-> +                interrupts = <GIC_SPI 0xa IRQ_TYPE_LEVEL_HIGH>;
-> +                clocks = <&scmi_clk KEEM_BAY_A53_TIM>;
-> +            };
-> +        };
-> +    };
-> +
-> +...
-> -- 
-> 2.17.1
-> 
-> 
+>  arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dts | 8 +-------
+>  arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts  | 7 +------
+>  2 files changed, 2 insertions(+), 13 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dts b/arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dts
+> index db3d303..83afe21 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dts
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dts
+> @@ -83,15 +83,9 @@
+>                         };
+>
+>                         eeprom@52 {
+> -                               compatible = "atmel,24c512";
+> +                               compatible = "atmel,24c04";
+>                                 reg = <0x52>;
+>                         };
+> -
+> -                       eeprom@53 {
+> -                               compatible = "atmel,24c512";
+> -                               reg = <0x53>;
+> -                       };
+> -
+>                 };
+>         };
+>  };
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
+> index 60acdf0..d220f98 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
+> @@ -59,14 +59,9 @@
+>         };
+>
+>         eeprom@52 {
+> -               compatible = "atmel,24c512";
+> +               compatible = "atmel,24c04";
+>                 reg = <0x52>;
+>         };
+> -
+> -       eeprom@53 {
+> -               compatible = "atmel,24c512";
+> -               reg = <0x53>;
+> -       };
+>  };
+>
+>  &i2c3 {
+> --
+> 2.7.4
+>
