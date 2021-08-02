@@ -2,104 +2,264 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 713603DD205
-	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 10:31:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DCFE3DD23B
+	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 10:46:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232600AbhHBIb6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Aug 2021 04:31:58 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:44940 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229595AbhHBIb5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 04:31:57 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1728VXJE010222;
-        Mon, 2 Aug 2021 03:31:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1627893093;
-        bh=pSAZGmb9+ZZIRIq5mLynkHawfEAYvLAK0jyf9EHdzDA=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=bnwTqOM4baLr/jbQA2G3WkNOsl589ZmsX3fYPkA3r6dXSkAgdyq5p948ExrWHk+Wa
-         kgY4d3KGh4uqTWUE8FVGEnMgih58mZRGWZcWVC3LWY0OOq8cAGFFP7+yRRZkqmEXnR
-         KBa2Win/U3byICEerGMHJvJtEAXeV72p1cDY85bI=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1728VXb7024136
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 2 Aug 2021 03:31:33 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 2 Aug
- 2021 03:31:33 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Mon, 2 Aug 2021 03:31:33 -0500
-Received: from [10.250.232.46] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1728VR7D078697;
-        Mon, 2 Aug 2021 03:31:28 -0500
-Subject: Re: [PATCH] dt-bindings: net: can: Document power-domains property
-To:     Marc Kleine-Budde <mkl@pengutronix.de>
-CC:     Lokesh Vutla <lokeshvutla@ti.com>, Nishanth Menon <nm@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sriram Dash <sriram.dash@samsung.com>,
-        <linux-can@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20210731045138.29912-1-a-govindraju@ti.com>
- <20210802071047.n6mxecdohahhzifr@pengutronix.de>
-From:   Aswath Govindraju <a-govindraju@ti.com>
-Message-ID: <a38447f6-c7c6-751f-b8ff-ae2b1077cccc@ti.com>
-Date:   Mon, 2 Aug 2021 14:01:26 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S232758AbhHBIqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Aug 2021 04:46:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48876 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232433AbhHBIqM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 04:46:12 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F4B6C0613D5
+        for <devicetree@vger.kernel.org>; Mon,  2 Aug 2021 01:46:02 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id b128so9903898wmb.4
+        for <devicetree@vger.kernel.org>; Mon, 02 Aug 2021 01:46:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=LtciZxp17HmQgiYPvS7Iz8YEieUC8YD4X+GP7Ju1Ha4=;
+        b=HRsdiXIIkwCowPTVIIqo3ZeWlvN8bUQE0S3t2derX3IX+S0ZdcqaaRQ4I/6rXXRrE6
+         zJsSKFpTpGGa1JcIFgGyBQewTUMJCFoAUz41TyrGwjN7QcExYKZGo3eYyhHdBkn9610i
+         06V9c38SgzHEi3+81Lc/rtbOMUBhZYeg5fsom6CvkZvEsM0oz5xAFCEagt7VthDcKtJP
+         IRAnhNTd9Zops5aXdIiMHNjfc2qxgWZE4e+fYohoPkUcosKFx18IGyhQCLDM1Rqcz/rd
+         O4TtkjWwSEE1GVyuj8+zqH316vt2gR859VfungKjShxvgB5kvO3KS1bn0Vduion3QyUe
+         GOYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=LtciZxp17HmQgiYPvS7Iz8YEieUC8YD4X+GP7Ju1Ha4=;
+        b=GeJbA9/WZyMlQnk/x39ukbuBsQs6/m2Hbof78P9BpfPSZk3EuqjkWRvtEW7h9FjNvX
+         GPcnzIFB5SjxRndtNXpIgqs6/GJuPvnjFu7dErOJcwtJmAExkQcN81h1VMoLs7nyPQvB
+         OpyVidc7GKbvdM8KMtNZW2WX5gNVUcgc3zkuhoQ69y2/f7qtlyYR4rbIXD+GHr0ZmyM1
+         ztx/fq84gTjqYQgjM7NaOi54j8ONWDJ4jdimEkFoOpJViYwyq0MwMDuTqLnm3hZUV+fY
+         yvFULYJBS4MNfaMNMikZAREaX8rSJ4jdPDsAvCJicXAdLbZ37h2IuWQXoq8tmo7ou7q4
+         gF3Q==
+X-Gm-Message-State: AOAM530nUjG0vGpM7L0gUsyxXXDuHcxlWXleCPqk56Cmq0UMht5+Bw8U
+        elIq/445t2ntHf7KZA96zdJSCg==
+X-Google-Smtp-Source: ABdhPJz3pu2dHxQGkDCWH16ushT5GrFzHuzVtjxGH5KCxBV5Awy22EJ4s/38sj+4YJG5NnuuPgUuGw==
+X-Received: by 2002:a05:600c:3590:: with SMTP id p16mr14418119wmq.75.1627893960817;
+        Mon, 02 Aug 2021 01:46:00 -0700 (PDT)
+Received: from google.com ([109.180.115.228])
+        by smtp.gmail.com with ESMTPSA id s14sm9361259wmc.25.2021.08.02.01.45.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Aug 2021 01:46:00 -0700 (PDT)
+Date:   Mon, 2 Aug 2021 09:45:58 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Alistair Francis <alistair23@gmail.com>
+Cc:     Alistair Francis <alistair@alistair23.me>,
+        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
+        Mark Brown <broonie@kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v6 2/5] mfd: sy7636a: Initial commit
+Message-ID: <YQewxp9UKpgmWF6Z@google.com>
+References: <20210615103400.946-1-alistair@alistair23.me>
+ <20210615103400.946-2-alistair@alistair23.me>
+ <YMnY7RLW6ml4Tq0g@dell>
+ <CAKmqyKNs+Ebvd5MwtoKfKhNrMJVhTsBLjDhLXRuK8C+gs5MCcQ@mail.gmail.com>
+ <YMsTy3QnYzjrFSFg@dell>
+ <CAKmqyKODRkahuUL+SFj8RQYq2rvj=nLgseozAyiwkDmtD8JE+g@mail.gmail.com>
+ <YObzzE8y2tyiMg5p@google.com>
+ <CAKmqyKN-wnTHrRYTxw3R6h=rcrbSUSF0vh3pwvt5ByaDzEiFMQ@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210802071047.n6mxecdohahhzifr@pengutronix.de>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAKmqyKN-wnTHrRYTxw3R6h=rcrbSUSF0vh3pwvt5ByaDzEiFMQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marc,
+On Wed, 28 Jul 2021, Alistair Francis wrote:
 
-On 02/08/21 12:40 pm, Marc Kleine-Budde wrote:
-> On 31.07.2021 10:21:38, Aswath Govindraju wrote:
->> Document power-domains property for adding the Power domain provider.
->>
->> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
->> ---
->>  Documentation/devicetree/bindings/net/can/bosch,m_can.yaml | 7 +++++++
->>  1 file changed, 7 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml b/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
->> index a7b5807c5543..d633fe1da870 100644
->> --- a/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
->> +++ b/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
->> @@ -104,6 +104,13 @@ properties:
->>            maximum: 32
->>      maxItems: 1
->>  
->> +  power-domains:
->> +    description:
->> +      Power domain provider node and an args specifier containing
->> +      the can device id value. Please see,
->> +      Documentation/devicetree/bindings/soc/ti/sci-pm-domain.yaml
+> On Thu, Jul 8, 2021 at 10:47 PM Lee Jones <lee.jones@linaro.org> wrote:
+> >
+> > On Thu, 08 Jul 2021, Alistair Francis wrote:
+> >
+> > > On Thu, Jun 17, 2021 at 7:20 PM Lee Jones <lee.jones@linaro.org> wrote:
+> > > >
+> > > > On Thu, 17 Jun 2021, Alistair Francis wrote:
+> > > >
+> > > > > On Wed, Jun 16, 2021 at 8:56 PM Lee Jones <lee.jones@linaro.org> wrote:
+> > > > > >
+> > > > > > On Tue, 15 Jun 2021, Alistair Francis wrote:
+> > > > > >
+> > > > > > > Initial support for the Silergy SY7636A Power Management chip.
+> > > > > > >
+> > > > > > > Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> > > > > > > ---
+> > > > > > >  drivers/mfd/Kconfig         |  9 ++++
+> > > > > > >  drivers/mfd/Makefile        |  1 +
+> > > > > > >  drivers/mfd/sy7636a.c       | 82 +++++++++++++++++++++++++++++++++++++
+> > > > > > >  include/linux/mfd/sy7636a.h | 47 +++++++++++++++++++++
+> > > > > > >  4 files changed, 139 insertions(+)
+> > > > > > >  create mode 100644 drivers/mfd/sy7636a.c
+> > > > > > >  create mode 100644 include/linux/mfd/sy7636a.h
+> > > > > > >
+> > > > > > > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> > > > > > > index 5c7f2b100191..7d6cf32b1549 100644
+> > > > > > > --- a/drivers/mfd/Kconfig
+> > > > > > > +++ b/drivers/mfd/Kconfig
+> > > > > > > @@ -1339,6 +1339,15 @@ config MFD_SYSCON
+> > > > > > >         Select this option to enable accessing system control registers
+> > > > > > >         via regmap.
+> > > > > > >
+> > > > > > > +config MFD_SY7636A
+> > > > > > > +     tristate "Silergy SY7636A Power Management chip"
+> > > > > > > +     select MFD_CORE
+> > > > > > > +     select REGMAP_I2C
+> > > > > > > +     depends on I2C
+> > > > > > > +     help
+> > > > > > > +       Select this option to enable support for the Silergy SY7636A
+> > > > > > > +       Power Management chip.
+> > > > > > > +
+> > > > > > >  config MFD_DAVINCI_VOICECODEC
+> > > > > > >       tristate
+> > > > > > >       select MFD_CORE
+> > > > > > > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> > > > > > > index 4f6d2b8a5f76..f95e1e725a95 100644
+> > > > > > > --- a/drivers/mfd/Makefile
+> > > > > > > +++ b/drivers/mfd/Makefile
+> > > > > > > @@ -265,6 +265,7 @@ obj-$(CONFIG_MFD_STMFX)   += stmfx.o
+> > > > > > >  obj-$(CONFIG_MFD_KHADAS_MCU)         += khadas-mcu.o
+> > > > > > >  obj-$(CONFIG_MFD_ACER_A500_EC)       += acer-ec-a500.o
+> > > > > > >
+> > > > > > > +obj-$(CONFIG_MFD_SY7636A)    += sy7636a.o
+> > > > > > >  obj-$(CONFIG_SGI_MFD_IOC3)   += ioc3.o
+> > > > > > >  obj-$(CONFIG_MFD_SIMPLE_MFD_I2C)     += simple-mfd-i2c.o
+> > > > > > >  obj-$(CONFIG_MFD_INTEL_M10_BMC)   += intel-m10-bmc.o
+> > > > > > > diff --git a/drivers/mfd/sy7636a.c b/drivers/mfd/sy7636a.c
+> > > > > > > new file mode 100644
+> > > > > > > index 000000000000..e08f29ea63f8
+> > > > > > > --- /dev/null
+> > > > > > > +++ b/drivers/mfd/sy7636a.c
+> > > > > > > @@ -0,0 +1,82 @@
+> > > > > > > +// SPDX-License-Identifier: GPL-2.0+
+> > > > > > > +//
+> > > > > >
+> > > > > > Only the SPDX with C++ style comments please.
+> > > > > >
+> > > > > > > +// MFD parent driver for SY7636A chip
+> > > > > >
+> > > > > > Drop the MFD part.  It's a Linuxisum that doesn't really exist.
+> > > > > >
+> > > > > > > +// Copyright (C) 2021 reMarkable AS - http://www.remarkable.com/
+> > > > > > > +//
+> > > > > > > +// Authors: Lars Ivar Miljeteig <lars.ivar.miljeteig@remarkable.com>
+> > > > > > > +//          Alistair Francis <alistair@alistair23.me>
+> > > > > > > +//
+> > > > > > > +// Based on the lp87565 driver by Keerthy <j-keerthy@ti.com>
+> > > > > > > +
+> > > > > > > +#include <linux/interrupt.h>
+> > > > > > > +#include <linux/mfd/core.h>
+> > > > > > > +#include <linux/module.h>
+> > > > > > > +#include <linux/of_device.h>
+> > > > > > > +
+> > > > > > > +#include <linux/mfd/sy7636a.h>
+> > > > > > > +
+> > > > > > > +static const struct regmap_config sy7636a_regmap_config = {
+> > > > > > > +     .reg_bits = 8,
+> > > > > > > +     .val_bits = 8,
+> > > > > > > +};
+> > > > > > > +
+> > > > > > > +static const struct mfd_cell sy7636a_cells[] = {
+> > > > > > > +     { .name = "sy7636a-regulator", },
+> > > > > > > +     { .name = "sy7636a-temperature", },
+> > > > > > > +     { .name = "sy7636a-thermal", },
+> > > > > > > +};
+> > > > > > > +
+> > > > > > > +static const struct of_device_id of_sy7636a_match_table[] = {
+> > > > > > > +     { .compatible = "silergy,sy7636a", },
+> > > > > > > +     {}
+> > > > > > > +};
+> > > > > > > +MODULE_DEVICE_TABLE(of, of_sy7636a_match_table);
+> > > > > >
+> > > > > > Hold on.  This driver doesn't really do anything.  If you create OF
+> > > > > > nodes for all the sub-devices, you can use simple-mfd-i2c.
+> > > > > >
+> > > > > > Any reason you can't do that?
+> > > > >
+> > > > > Just to confirm, you mean something like this?
+> > > > >
+> > > > > diff --git a/arch/arm/boot/dts/imx7d-remarkable2.dts
+> > > > > b/arch/arm/boot/dts/imx7d-remarkable2.dts
+> > > > > index 9327d1c06c96..3577104b3853 100644
+> > > > > --- a/arch/arm/boot/dts/imx7d-remarkable2.dts
+> > > > > +++ b/arch/arm/boot/dts/imx7d-remarkable2.dts
+> > > > > @@ -382,6 +382,21 @@ epd_pmic: sy7636a@62 {
+> > > > >                 pinctrl-0 = <&pinctrl_epdpmic>;
+> > > > >                 #thermal-sensor-cells = <0>;
+> > > > >
+> > > > > +               regulator@0 {
+> > > > > +                       compatible = "sy7636a-regulator";
+> > > > > +                       reg = <0>;
+> > > > > +               };
+> > > > > +
+> > > > > +               temperature@0 {
+> > > > > +                       compatible = "sy7636a-temperature";
+> > > > > +                       reg = <0>;
+> > > > > +               };
+> > > > > +
+> > > > > +               thermal@0 {
+> > > > > +                       compatible = "sy7636a-thermal";
+> > > > > +                       reg = <0>;
+> > > > > +               };
+> > > > > +
+> > > > >                 regulators {
+> > > > >                         compatible = "silergy,sy7636a-regulator";
+> > > > > diff --git a/drivers/mfd/simple-mfd-i2c.c b/drivers/mfd/simple-mfd-i2c.c
+> > > > > index 87f684cff9a1..622a05318cff 100644
+> > > > > --- a/drivers/mfd/simple-mfd-i2c.c
+> > > > > +++ b/drivers/mfd/simple-mfd-i2c.c
+> > > > > @@ -39,6 +39,7 @@ static int simple_mfd_i2c_probe(struct i2c_client *i2c)
+> > > > >
+> > > > >  static const struct of_device_id simple_mfd_i2c_of_match[] = {
+> > > > >         { .compatible = "kontron,sl28cpld" },
+> > > > > +       { .compatible = "silergy,sy7636a" },
+> > > > >         {}
+> > > > >  };
+> > > > >  MODULE_DEVICE_TABLE(of, simple_mfd_i2c_of_match);
+> > > >
+> > > > Essentially.  Take a look at how the other users are implementing.
+> > > >
+> > > > The reg entries look bogus to me though.  Maybe just leave them out?
+> > >
+> > > So I tried this and didn't have any luck.
+> > >
+> > > After some Kconfig changes to allow it to build, I managed to get it
+> > > probing, but I never got it to power up. It doesn't seem to be the
+> > > same.
+> >
+> > I need a more technical reason why this is not the correct approach
+> > for you.  "I can't get it to work" doesn't quite reach the quality
+> > line I'm afraid.
 > 
-> Why are you referring to a TI specific file in a generic binding?
+> Yep, so one thing that we need that the simple-mfd-i2c doesn't do is
+> the epd-pwr-good-gpios GPIO. This is a GPIO line from the mfd that the
+> regulator uses.
+
+Can this be obtained from anywhere else?
+
+Like in the regulator driver for instance.
+
+> > Did you try enabling the debug prints in of_platform_bus_create() and
+> > friends to see if your devices are probing correctly?
 > 
-
-I was trying to refer to an example. If it shouldn't be referred then I
-will remove it an post a post a respin.
-
-Thanks,
-Aswath
-
-> Marc
+> I think I did, but I can have another look and see if I can get it working.
 > 
+> Alistair
+> 
+> >
 
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
