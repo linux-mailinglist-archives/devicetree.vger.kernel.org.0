@@ -2,118 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 792633DDEED
-	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 20:09:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAC683DDF08
+	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 20:22:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229551AbhHBSJZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Aug 2021 14:09:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47988 "EHLO
+        id S229567AbhHBSXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Aug 2021 14:23:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229537AbhHBSJY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 14:09:24 -0400
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76242C06175F;
-        Mon,  2 Aug 2021 11:09:14 -0700 (PDT)
-Received: by mail-pl1-x62e.google.com with SMTP id e21so20577631pla.5;
-        Mon, 02 Aug 2021 11:09:14 -0700 (PDT)
+        with ESMTP id S229537AbhHBSXD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 14:23:03 -0400
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47E87C061760
+        for <devicetree@vger.kernel.org>; Mon,  2 Aug 2021 11:22:54 -0700 (PDT)
+Received: by mail-yb1-xb30.google.com with SMTP id z128so3442881ybc.10
+        for <devicetree@vger.kernel.org>; Mon, 02 Aug 2021 11:22:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=T2v/c84JGgZj8frH8nCtCcL6naJ0wiQBy76zvSdrpt0=;
-        b=JlNE/WLk87Wu2Wsfx1md0X2XnnGc4XtjkXVv1c0A/uyB8pMdhhlq/JHomOX/IqskPU
-         p7jbBxco4djceLFb7pfxzFqpKFqRf5cGAwMx656yWmrO/RKUVyd9hsi67sruX0OeJX7b
-         /YSdpnlmREUD/x4E5HmoZ2Zbwm/bjEgb/564reAIYjdU0Zvvce9bMylGCQlaB+BZO+/x
-         jIYVDR66XhlMGKLgJxF1fU5wNQV50wvzLrJv1gg5qmBmF8UNGbX6kaEzAT+r/Exk47BI
-         oUxORf2S9ji7xJYEiyJ1VMp1oyd36mJx45zjmltU1BJETwWu1bGghRWloO9srbsjZTbV
-         qGYQ==
+        d=atishpatra.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=WpAP0boYKgMSl+EEAfMqGAcS1DBVrnYXR6p3McRuuF8=;
+        b=KlMxq4MfUxuE4wxvHzy/b64JIYB/khWpUguGIPzgKEmNeHHmr5FP9tLSQwLDHvPx0w
+         +x0/5c2lijkljpgCsjjcQDt4QDKuZuv5UY3N4tLODMVHOqjtqHyJqJqMoKjhwD+8gYsw
+         f5f6DaG0rlmzwPVYqNg3BSwoYkx90Nnb5bHKs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=T2v/c84JGgZj8frH8nCtCcL6naJ0wiQBy76zvSdrpt0=;
-        b=KazcSCraZ+isItBLI0l+lZVr1SeDQXz+QQxBjL0nxd4Pw0uXIM8hO//42dLhrstKop
-         P3shGLNLzTdhPnJgw1GRb2f5M1FYNFOP6N/4jfuV7+QTS+LGdXwad0DQSMe0TzwCytjT
-         n93t1CMWIrIBGC9Fa9kEw3zK3eWkNtwqej4btwGOwqLJa+TJsQkiRjOIl4yNcIkRRZGr
-         ddlJSIsAYqrYKMIcNbqpIcWzw+bhCdpRW/UeFmez4hONuqjzWCRC841kLRmpudoP9Ban
-         dGLeVMjCwHU8597K89Wnvow7+qBGgZinhpoTytimXI5gEYPT+vIKegwiz4NXY8MoSNcu
-         9h+Q==
-X-Gm-Message-State: AOAM533BWYIEyHAMAhJEXNoaXGCPi79pNDSOhj9CpVaLhMZ1BcomTBAx
-        5WQJhSdfOM3GX5/6Qbn7gZQ=
-X-Google-Smtp-Source: ABdhPJwlOQXf/tuXtqwaHwV52O2Rnw9+gwyxKG+X4MW5FvmW0aAMt6vDnC8Y3faKtiuOVlOlE4H9AQ==
-X-Received: by 2002:a63:f62:: with SMTP id 34mr2460375pgp.159.1627927754057;
-        Mon, 02 Aug 2021 11:09:14 -0700 (PDT)
-Received: from localhost.localdomain ([49.36.83.2])
-        by smtp.gmail.com with ESMTPSA id d2sm14333379pgk.57.2021.08.02.11.09.11
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 02 Aug 2021 11:09:13 -0700 (PDT)
-From:   Raag Jadav <raagjadav@gmail.com>
-To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WpAP0boYKgMSl+EEAfMqGAcS1DBVrnYXR6p3McRuuF8=;
+        b=Q7mNzvoQ2y4iKT+ptYo1dwx8Utctkn4dZk9u69uMHoxqn/weGQ7czOdA9ciI+Syox7
+         BWCbfG949/UIRe5ZI3Nom6ex0HVUIYZhi+8uPUFxyXEdG/pQEunSoy4c4nCBWloPJpW3
+         XvwUIxw5kGtaxzEUl6bbJeRmWor0776+B01YpeFCDW5lC8XFgSzJZmKkzoIxG5kXRbbE
+         pVWJ81UpPI4LSKOXaXzwLHn8/4JGVIpuV0FC+TNUJf+FhCZC7GeXwjYSVk5PfEi8N7qX
+         j6gfSm9HHXw7e/BjA5HSMOiIIZ28LijCZ+KoGWc3J3q8EwaItKscGeAqABbBXTuLLbcl
+         qQZA==
+X-Gm-Message-State: AOAM533WMvrrsAsxZeQ9ztg+mBxqYRF06O6/Igw1Dc7tYlK2rYwzfuz5
+        h+zuimNxgmSgD2hr6gXdfl5TakYH9QfYAs5iVxdU
+X-Google-Smtp-Source: ABdhPJynNZIyUvDVGGyRh+IbdUlssdg8o1eWgR0yeR8vNlVh2L5U96YBAQGX7dRj9k0KPeGehWEsCQ07LvSHzf9+hAY=
+X-Received: by 2002:a25:84c7:: with SMTP id x7mr21646394ybm.447.1627928573559;
+ Mon, 02 Aug 2021 11:22:53 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210723214031.3251801-1-atish.patra@wdc.com> <20210723214031.3251801-4-atish.patra@wdc.com>
+ <20210726070030.GB9035@lst.de> <CAOnJCU+qRznBTn9Mt6t_DE6UUz6_LuaBBuOmnURS2Yh3pmpjvg@mail.gmail.com>
+ <20210727085244.GA20609@lst.de>
+In-Reply-To: <20210727085244.GA20609@lst.de>
+From:   Atish Patra <atishp@atishpatra.org>
+Date:   Mon, 2 Aug 2021 11:22:42 -0700
+Message-ID: <CAOnJCUJgCHOR5nifNVjkQawKniGf81Zvsh226brdAPuLNkXAdQ@mail.gmail.com>
+Subject: Re: [RFC 3/5] dma-mapping: Enable global non-coherent pool support
+ for RISC-V
+To:     Christoph Hellwig <hch@lst.de>
+Cc:     Atish Patra <atish.patra@wdc.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Tobias Klauser <tklauser@distanz.ch>,
+        Robin Murphy <robin.murphy@arm.com>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Raag Jadav <raagjadav@gmail.com>
-Subject: [PATCH] arm64: dts: ls1046a: fix eeprom entries
-Date:   Mon,  2 Aug 2021 23:39:02 +0530
-Message-Id: <1627927742-8675-1-git-send-email-raagjadav@gmail.com>
-X-Mailer: git-send-email 2.7.4
+        iommu@lists.linux-foundation.org,
+        Guo Ren <guoren@linux.alibaba.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Dmitry Vyukov <dvyukov@google.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ls1046afrwy and ls1046ardb boards have CAT24C04[1] and CAT24C05[2]
-eeproms respectively. Both are 4Kb (512 bytes) in size.
-Remove multi-address entries, as we have auto-rollover support
-in at24 driver.
+On Tue, Jul 27, 2021 at 1:52 AM Christoph Hellwig <hch@lst.de> wrote:
+>
+> On Mon, Jul 26, 2021 at 03:47:54PM -0700, Atish Patra wrote:
+> > arch_dma_set_uncached works as well in this case. However, mips,
+> > niops2 & xtensa uses a
+> > fixed (via config) value for the offset. Similar approach can't be
+> > used here because the platform specific
+> > offset value has to be determined at runtime so that a single kernel
+> > image can boot on all platforms.
+>
+> Nothing in the interface requires a fixed offset.  And using the offset
+> has one enormous advantage in that there is no need to declare a
+> statically sized pool - allocations are fully dynamic.  And any kind of
+> fixed pool tends to cause huge problems.
+>
+> > 1. a new DT property so that arch specific code is aware of the
+> > non-cacheable window offset.
+>
+> Yes.
+>
+> > individual device if a per-device non-cacheable
+> >    window support is required in future. As of now, the beagleV memory
+>
+> If you require a per-device noncachable area you can use the per-device
+> coherent pools.  But why would you want that?
+>
+> > region lies in 0x10_0000_00000 - x17_FFFF_FFFF
+> >    which is mapped to start of DRAM 0x80000000. All of the
+> > non-coherent devices can do 32bit DMA only.
+>
+> Adjust ZONE_DMA32 so that it takes the uncached offset into account.
+>
+> > > > -     mem = dma_init_coherent_memory(phys_addr, phys_addr, size, true);
+> > > > +     if (phys_addr == device_addr)
+> > > > +             mem = dma_init_coherent_memory(phys_addr, device_addr, size, true);
+> > > > +     else
+> > > > +             mem = dma_init_coherent_memory(phys_addr, device_addr, size, false);
+> > >
+> > > Nak.  The phys_addr != device_addr support is goign away.  This needs
+> >
+> > ok.
+> >
+> > > to be filled in using dma-ranges property hanging of the struct device.
+> >
+> > struct device is only accessible in rmem_dma_device_init. I couldn't
+> > find a proper way to access it during
+> > dma_reserved_default_memory setup under global pool.
+> >
+> > Does that mean we should use a per-device memory pool instead of a
+> > global non-coherent pool ?
+>
+> Indeed, that would be a problem in this case.  But if we can just
+> use the uncached offset directly I think everything will be much
+> simpler.
 
-[1] https://www.onsemi.com/pdf/datasheet/cat24c01-d.pdf
-[2] https://www.onsemi.com/pdf/datasheet/cat24c03-d.pdf
+Yes. I was planning to change this to use an uncached offset.
+However, the planned mass production for beaglev starlight sbc is
+cancelled now [1].
+As there is no other board that requires an uncached offset, I don't
+think there is no usecase
+for adding uncached offset support for RISC-V right now. I will
+revisit(hopefully we don't have to)
+this in case any platform implements uncached window support in future.
 
-Signed-off-by: Raag Jadav <raagjadav@gmail.com>
----
- arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dts | 8 +-------
- arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts  | 7 +------
- 2 files changed, 2 insertions(+), 13 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dts b/arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dts
-index db3d303..83afe21 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dts
-@@ -83,15 +83,9 @@
- 			};
- 
- 			eeprom@52 {
--				compatible = "atmel,24c512";
-+				compatible = "atmel,24c04";
- 				reg = <0x52>;
- 			};
--
--			eeprom@53 {
--				compatible = "atmel,24c512";
--				reg = <0x53>;
--			};
--
- 		};
- 	};
- };
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
-index 60acdf0..d220f98 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
-@@ -59,14 +59,9 @@
- 	};
- 
- 	eeprom@52 {
--		compatible = "atmel,24c512";
-+		compatible = "atmel,24c04";
- 		reg = <0x52>;
- 	};
--
--	eeprom@53 {
--		compatible = "atmel,24c512";
--		reg = <0x53>;
--	};
- };
- 
- &i2c3 {
+[1] https://www.cnx-software.com/2021/07/31/beaglev-starlight-sbc-wont-be-mass-manufactured-redesigned-beaglev-risc-v-sbc-expected-in-q1-2022/
 -- 
-2.7.4
-
+Regards,
+Atish
