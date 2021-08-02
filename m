@@ -2,73 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A781A3DE2BA
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 00:54:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 448F93DE2CA
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 01:00:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232469AbhHBWyY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Aug 2021 18:54:24 -0400
-Received: from mail-il1-f181.google.com ([209.85.166.181]:39865 "EHLO
-        mail-il1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231126AbhHBWyU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 18:54:20 -0400
-Received: by mail-il1-f181.google.com with SMTP id r1so17933288iln.6;
-        Mon, 02 Aug 2021 15:54:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Ws7DlLtnnswMnz4Iv79PgHKEEMwGY+Hyjh4kHnupODQ=;
-        b=T9BBnnXgg7Uz3FTRybQ1tIozJMbDV6yo4ie+/LC6ENaRWaMlvZqFkIhWwstwRcUcm5
-         cpLquYBedVtJlm3VELIPMQYvgA0mFvrCH4EzvFYJuFjIZ3qj6kM4cIPIudMq6EKwXqXZ
-         U4N5DUGsPk3vjJ0bew9X/gid0EX8ikDF+CoB6iW0SUpfjtV8+BnlR9lIvnwkfL9TbbDF
-         p/3OM3ZN22AjqOla8en7aMqabWb4VXwP9oxLKP5XQCP9CRN56RMeNTCLW+/BE0ODJDbh
-         ktOtG/+TaAs7vwodcT0HWiEuKw/kSltFGe3b267g0AdPX68zE85M6pRkGmXk6dBUcJXp
-         rwEw==
-X-Gm-Message-State: AOAM532bmZevb6wfnFhMUvWChZ1ZfoUUMTKCgNrvLxTUoB6E4rPHUeFk
-        gBk1o7AKytj1v1nuhftYAA==
-X-Google-Smtp-Source: ABdhPJxR+DvEPJiW5Ohrap4Z45QueUlCz6siPp+LC7c3y/KSGP97bxFsq9mhb7deasgXjUf0AOOfrg==
-X-Received: by 2002:a92:cb52:: with SMTP id f18mr2529805ilq.97.1627944849513;
-        Mon, 02 Aug 2021 15:54:09 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id t24sm8106777ioh.24.2021.08.02.15.54.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Aug 2021 15:54:08 -0700 (PDT)
-Received: (nullmailer pid 1776439 invoked by uid 1000);
-        Mon, 02 Aug 2021 22:54:06 -0000
-Date:   Mon, 2 Aug 2021 16:54:06 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Cc:     marijn.suijten@somainline.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, rjw@rjwysocki.net,
-        bartosz.dudziak@snejp.pl, bjorn.andersson@linaro.org,
-        jeffrey.l.hugo@gmail.com, martin.botka@somainline.org,
-        agross@kernel.org, konrad.dybcio@somainline.org,
-        jami.kettunen@somainline.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        linux-kernel@vger.kernel.org, stephan@gerhold.net,
-        linux-arm-msm@vger.kernel.org, daniel.lezcano@linaro.org
-Subject: Re: [PATCH v8 5/5] dt-bindings: soc: qcom: spm: Document SDM660 and
- MSM8998 compatibles
-Message-ID: <YQh3jjIUTnmHyzft@robh.at.kernel.org>
-References: <20210729155609.608159-1-angelogioacchino.delregno@somainline.org>
- <20210729155609.608159-6-angelogioacchino.delregno@somainline.org>
+        id S231920AbhHBXBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Aug 2021 19:01:00 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53720 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231126AbhHBXBA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Aug 2021 19:01:00 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6557D60D07;
+        Mon,  2 Aug 2021 23:00:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1627945250;
+        bh=e822VuDx6z8sMZ4u2JoN2zmm7TSpCXSrlQ2PRMcE4RA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=JxOIrHwDEsSnb0iq0rIpsYlOLoG24P4miwqyD1FG7n4FWHzwDNfy/NHjYdDMu5Qji
+         kXPSkX44FzNpdxEJtmmIARGgMRDYC9iIdUV2TyjtD0Sq+Kg/QNdoUV6RLsJm3/acl7
+         25pdODPscvgAAJXGUOgPzTBKvkfiDzgA/ato56Vb671pWbF2IJGQzrlpL81XqgcdW3
+         pRcpknNaL3LOwPZKRRkwGd2LdUK2o8yDLvrlVmcOBcoyoiz7VZp8vqJysP6tbh3Cse
+         8+95COQy5cbA3qCXkRhDTUyY/YfbD6G1rfhrCL41k18t2xk1f7jCngE/ya9GL8S5ER
+         FfHzzKXcHrclw==
+Received: by mail-ed1-f52.google.com with SMTP id n2so26585463eda.10;
+        Mon, 02 Aug 2021 16:00:50 -0700 (PDT)
+X-Gm-Message-State: AOAM530l68U0ARElBsVYDOR4IUYkvt9fboaELtpiTOxi8cRAB/Wc5w1A
+        BB3DeG/PyyO3L7DJ6pP2iVW/SsozrZpLVy8o7A==
+X-Google-Smtp-Source: ABdhPJx6Gl9WihqORzSylHXdbZm8MM0D7sQz2BcZWhMz275j1ol0e9w/UzfEvJ6WuteyWfPe8BLhoqmL0forF5o0OZA=
+X-Received: by 2002:a05:6402:718:: with SMTP id w24mr21831525edx.49.1627945249057;
+ Mon, 02 Aug 2021 16:00:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210729155609.608159-6-angelogioacchino.delregno@somainline.org>
+References: <1626762588-6020-1-git-send-email-yongqiang.niu@mediatek.com> <1626762588-6020-2-git-send-email-yongqiang.niu@mediatek.com>
+In-Reply-To: <1626762588-6020-2-git-send-email-yongqiang.niu@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Tue, 3 Aug 2021 07:00:37 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_9ynURx3Arevk_Tdc2V2uobJbeRA_2JjmZtsc=wT2V6aA@mail.gmail.com>
+Message-ID: <CAAOTY_9ynURx3Arevk_Tdc2V2uobJbeRA_2JjmZtsc=wT2V6aA@mail.gmail.com>
+Subject: Re: [PATCH v5] drm/mediatek: add dither 6 setting
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Hsin-Yi Wang <hsinyi@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 29 Jul 2021 17:56:09 +0200, AngeloGioacchino Del Regno wrote:
-> The driver was updated to add SAW2 v4.1 support for new SoCs: document
-> the new compatibles.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> ---
->  .../bindings/soc/qcom/qcom,spm.yaml           | 22 +++++++++++++++++++
->  1 file changed, 22 insertions(+)
-> 
+Hi, Yongqiang:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2021=E5=B9=B47=E6=9C=
+=8820=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=882:30=E5=AF=AB=E9=81=93=
+=EF=BC=9A
+>
+> dither 6 setting is missed in a6b7c98afdca
+> bit 1 is lfsr_en( "Enables LFSR-type dithering"), need enable
+> bit 2 is rdither_en(Enables running order dithering), need disable
+>
+> Fixes: a6b7c98afdca(drm/mediatek: add mtk_dither_set_common())
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/dr=
+m/mediatek/mtk_drm_ddp_comp.c
+> index 99cbf44..7dd8e05 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> @@ -26,6 +26,7 @@
+>  #define DISP_OD_CFG                            0x0020
+>  #define DISP_OD_SIZE                           0x0030
+>  #define DISP_DITHER_5                          0x0114
+> +#define DISP_DITHER_6                          0x0118
+>  #define DISP_DITHER_7                          0x011c
+>  #define DISP_DITHER_15                         0x013c
+>  #define DISP_DITHER_16                         0x0140
+> @@ -135,6 +136,7 @@ void mtk_dither_set_common(void __iomem *regs, struct=
+ cmdq_client_reg *cmdq_reg,
+>
+>         if (bpc >=3D MTK_MIN_BPC) {
+>                 mtk_ddp_write(cmdq_pkt, 0, cmdq_reg, regs, DISP_DITHER_5)=
+;
+> +               mtk_ddp_write(cmdq_pkt, 0x3002, cmdq_reg, regs, DISP_DITH=
+ER_6);
+
+Symbolized 0x3002. BIT(1) is lfsr_en.
+
+Regards,
+Chun-Kuang.
+
+>                 mtk_ddp_write(cmdq_pkt, 0, cmdq_reg, regs, DISP_DITHER_7)=
+;
+>                 mtk_ddp_write(cmdq_pkt,
+>                               DITHER_LSB_ERR_SHIFT_R(MTK_MAX_BPC - bpc) |
+> --
+> 1.8.1.1.dirty
+>
