@@ -2,63 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CAF983DD753
-	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 15:39:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C99EE3DD759
+	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 15:39:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233995AbhHBNj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Aug 2021 09:39:58 -0400
-Received: from mail-il1-f175.google.com ([209.85.166.175]:35404 "EHLO
-        mail-il1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233742AbhHBNj6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 09:39:58 -0400
-Received: by mail-il1-f175.google.com with SMTP id k3so16455624ilu.2;
-        Mon, 02 Aug 2021 06:39:48 -0700 (PDT)
+        id S234019AbhHBNkF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Aug 2021 09:40:05 -0400
+Received: from mail-il1-f177.google.com ([209.85.166.177]:36424 "EHLO
+        mail-il1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233891AbhHBNkB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 09:40:01 -0400
+Received: by mail-il1-f177.google.com with SMTP id c3so16442542ilh.3;
+        Mon, 02 Aug 2021 06:39:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=lMmS75BBYZrZwVcj5qdcK5fUdGJveeoFTuyQ8W/piWQ=;
-        b=oF/UliNQKvfHIuEpwFIVDHIVlW5EDp8UkQHKRuu7G7icDaNdUT1H84/4FN/IFMiHXY
-         joUvg3Etvu44jnm1tbNvijO39d6ySc+mG6HhdHPq4FGz8F2FSVXgpCEVRDBN2Dp89PwQ
-         iQZybJluG3OwNlqUl0s5QhVkuQwiNXh7EYFQwWzHbmsexPdq6h3hNLLUsa2dP1iCgZiB
-         xJSi2He91lxLEnRgmadDHFjRPK4ZNqCbIZ5KuV7Fkh+ddtinq4O+1M5+/m2Q77ca8VMV
-         9ytHHxaGk0YY2TIgkxHpP4Lo0dC24tGvcCizzEVnt9c0Pe5TK/RwuW2V4/Vs87n2jmlX
-         LYOQ==
-X-Gm-Message-State: AOAM531Y2pGxFYPGIfOtFNlfbKauMOz4LUQRv+P5k1y49YI4sNAeXbaO
-        RLWNbSBoL7r+J71tvV6f2Q==
-X-Google-Smtp-Source: ABdhPJxf0ZYJw/fZMjM13lKgISlILvCh3tx8qSjPrDlSPJvoPKdLXZWuZRtIDYY0v4IMl6TM5bc5uw==
-X-Received: by 2002:a92:ca8f:: with SMTP id t15mr617420ilo.262.1627911588427;
-        Mon, 02 Aug 2021 06:39:48 -0700 (PDT)
+        bh=TPqCih5l0C6m1DSrhG/f6ntG5cMzvXrUGP57eGfjKMk=;
+        b=U3+46W7TlhMWrA0pVpuBCHyun8uWWGjoCk/SNE3ty+Z9zgmHftfO/it8OCmirVtbsE
+         eYVK0S/JsKJeWM+HvXO6f1gwbsdgpFEo2ceNRqXQADmQLPvrw98DJ3wKHhP0OZ+7rhZh
+         hJ+CxIOEUXRmyxw1u8lhaIP1x9Ni/efW3Xw4VY6//a34G6g3T5UDsJxtiUxCp00ifRmt
+         WDjZM/VzOtKe+2mY3Wui+uiDtLL9n9jbZT9M7QSKGIfS7L/burRqmiemx7tt3CQ6L/h0
+         MjjeTzzwOOSrN8jnPJxaf3YXrOh9D9F6qZUFjwj5c/YaJAamYXtor5QtHg6YXZzqxk99
+         qZ/g==
+X-Gm-Message-State: AOAM531uVkPrDIZEPx+H7OHdHzWhjOb48aca70E0WkFXT3oA2CTdG48v
+        SGP4a4UE/S/VH7i9LYJBmw==
+X-Google-Smtp-Source: ABdhPJzq2T8/91Rx7eO2vo6nY+3+tkdKu1Q0poPZmFXxr1CH+isnHEZbbaEntg25kJRXNflcW5epEg==
+X-Received: by 2002:a92:c524:: with SMTP id m4mr4070980ili.42.1627911592227;
+        Mon, 02 Aug 2021 06:39:52 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id i7sm5609333ilk.7.2021.08.02.06.39.46
+        by smtp.gmail.com with ESMTPSA id w17sm7215374iom.20.2021.08.02.06.39.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Aug 2021 06:39:47 -0700 (PDT)
-Received: (nullmailer pid 918762 invoked by uid 1000);
+        Mon, 02 Aug 2021 06:39:51 -0700 (PDT)
+Received: (nullmailer pid 918764 invoked by uid 1000);
         Mon, 02 Aug 2021 13:39:43 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Lucas Stankus <lucas.p.stankus@gmail.com>
-Cc:     Dragos.Bogdan@analog.com, robh+dt@kernel.org,
-        linux-iio@vger.kernel.org, lars@metafoo.de,
-        Darius.Berghe@analog.com, Michael.Hennerich@analog.com,
-        devicetree@vger.kernel.org, jic23@kernel.org,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <1e652b88a367824e58fb71896b4a660204bd7a88.1627709571.git.lucas.p.stankus@gmail.com>
-References: <cover.1627709571.git.lucas.p.stankus@gmail.com> <1e652b88a367824e58fb71896b4a660204bd7a88.1627709571.git.lucas.p.stankus@gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: accel: Add binding documentation for ADXL313
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Jens Axboe <axboe@kernel.dk>, Krzysztof Halasa <khalasa@piap.pl>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Imre Kaloz <kaloz@openwrt.org>, linux-ide@vger.kernel.org
+In-Reply-To: <20210731213555.2965356-4-linus.walleij@linaro.org>
+References: <20210731213555.2965356-1-linus.walleij@linaro.org> <20210731213555.2965356-4-linus.walleij@linaro.org>
+Subject: Re: [PATCH 4/5 v2] pata: ixp4xx: Add DT bindings
 Date:   Mon, 02 Aug 2021 07:39:43 -0600
-Message-Id: <1627911583.064913.918761.nullmailer@robh.at.kernel.org>
+Message-Id: <1627911583.076118.918763.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 31 Jul 2021 17:36:31 -0300, Lucas Stankus wrote:
-> Add device tree binding documentation for ADXL313 3-axis accelerometer.
+On Sat, 31 Jul 2021 23:35:54 +0200, Linus Walleij wrote:
+> This adds device tree bindings for the Intel IXP4xx compact flash card
+> interface.
 > 
-> Signed-off-by: Lucas Stankus <lucas.p.stankus@gmail.com>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
->  .../bindings/iio/accel/adi,adxl313.yaml       | 75 +++++++++++++++++++
->  1 file changed, 75 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml
+> ChangeLog v1->v2:
+> - Itemize the registers
+> - Drop the epansion bus set-up to alleviate warnings
+> ---
+>  .../ata/intel,ixp4xx-compact-flash.yaml       | 61 +++++++++++++++++++
+>  1 file changed, 61 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/ata/intel,ixp4xx-compact-flash.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -67,13 +71,10 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/accel/adi,adxl313.example.dt.yaml: accelerometer@53: interrupts: [[0, 4]] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/accel/adi,adxl313.example.dt.yaml: accelerometer@0: interrupts: [[0, 4]] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml
+Documentation/devicetree/bindings/ata/intel,ixp4xx-compact-flash.example.dt.yaml:0:0: /example-0/bus@c4000000: failed to match any schema with compatible: ['intel,ixp43x-expansion-bus-controller', 'syscon']
 \ndoc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1511954
+See https://patchwork.ozlabs.org/patch/1511976
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
