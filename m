@@ -2,35 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F3F33DD178
-	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 09:46:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68AF03DD18E
+	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 09:53:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232598AbhHBHrB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Aug 2021 03:47:01 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:33506 "EHLO
+        id S232544AbhHBHxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Aug 2021 03:53:12 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:42434 "EHLO
         mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S232482AbhHBHrB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 03:47:01 -0400
-X-UUID: 482f44db113b442dbcb71c84c28f9bf5-20210802
-X-UUID: 482f44db113b442dbcb71c84c28f9bf5-20210802
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
+        with ESMTP id S232531AbhHBHxM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 03:53:12 -0400
+X-UUID: f6ec4a7f6a144ad5b3480e195b80e414-20210802
+X-UUID: f6ec4a7f6a144ad5b3480e195b80e414-20210802
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
         (envelope-from <yongqiang.niu@mediatek.com>)
         (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1255673420; Mon, 02 Aug 2021 15:46:49 +0800
+        with ESMTP id 653899945; Mon, 02 Aug 2021 15:53:00 +0800
 Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 2 Aug 2021 15:46:47 +0800
+ mtkmbs02n2.mediatek.inc (172.21.101.101) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 2 Aug 2021 15:52:58 +0800
 Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 2 Aug 2021 15:46:40 +0800
+ Transport; Mon, 2 Aug 2021 15:52:57 +0800
 From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>
 CC:     Rob Herring <robh+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
         Philipp Zabel <p.zabel@pengutronix.de>,
         David Airlie <airlied@linux.ie>,
         Daniel Vetter <daniel@ffwll.ch>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
         Yongqiang Niu <yongqiang.niu@mediatek.com>,
         Fabien Parent <fparent@baylibre.com>,
         Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
@@ -40,12 +40,10 @@ CC:     Rob Herring <robh+dt@kernel.org>,
         <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
         <Project_Global_Chrome_Upstream_Group@mediatek.com>,
         Hsin-Yi Wang <hsinyi@chromium.org>
-Subject: [PATCH v6, 3/3] mailbox: cmdq: add mt8192 support
-Date:   Mon, 2 Aug 2021 15:46:05 +0800
-Message-ID: <1627890365-22992-4-git-send-email-yongqiang.niu@mediatek.com>
+Subject: [PATCH v3] soc: mediatek: cmdq: add address shift in jump
+Date:   Mon, 2 Aug 2021 15:52:26 +0800
+Message-ID: <1627890746-23165-1-git-send-email-yongqiang.niu@mediatek.com>
 X-Mailer: git-send-email 1.8.1.1.dirty
-In-Reply-To: <1627890365-22992-1-git-send-email-yongqiang.niu@mediatek.com>
-References: <1627890365-22992-1-git-send-email-yongqiang.niu@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-MTK:  N
@@ -53,72 +51,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add mt8192 support
+Add address shift when compose jump instruction
+to compatible with 35bit format.
+
+Fixes: 0858fde496f8 ("mailbox: cmdq: variablize address shift in platform")
 
 Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+Reviewed-by: Nicolas Boichat <drinkcat@chromium.org>
 ---
- drivers/mailbox/mtk-cmdq-mailbox.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/mailbox/mtk-cmdq-mailbox.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/mailbox/mtk-cmdq-mailbox.c b/drivers/mailbox/mtk-cmdq-mailbox.c
-index 67a42b5..8d39b98 100644
+index 8d39b98..d03bfaf 100644
 --- a/drivers/mailbox/mtk-cmdq-mailbox.c
 +++ b/drivers/mailbox/mtk-cmdq-mailbox.c
-@@ -36,6 +36,8 @@
- #define CMDQ_THR_WAIT_TOKEN		0x30
- #define CMDQ_THR_PRIORITY		0x40
- 
-+#define GCE_GCTL_VALUE			0x48
-+
- #define CMDQ_THR_ACTIVE_SLOT_CYCLES	0x3200
- #define CMDQ_THR_ENABLED		0x1
- #define CMDQ_THR_DISABLED		0x0
-@@ -76,11 +78,13 @@ struct cmdq {
- 	struct clk		*clock;
- 	bool			suspended;
- 	u8			shift_pa;
-+	bool			control_by_sw;
- };
- 
- struct gce_plat {
- 	u32 thread_nr;
- 	u8 shift;
-+	bool control_by_sw;
- };
- 
- u8 cmdq_get_shift_pa(struct mbox_chan *chan)
-@@ -121,6 +125,8 @@ static void cmdq_init(struct cmdq *cmdq)
- 	int i;
- 
- 	WARN_ON(clk_enable(cmdq->clock) < 0);
-+	if (cmdq->control_by_sw)
-+		writel(0x7, cmdq->base + GCE_GCTL_VALUE);
- 	writel(CMDQ_THR_ACTIVE_SLOT_CYCLES, cmdq->base + CMDQ_THR_SLOT_CYCLES);
- 	for (i = 0; i <= CMDQ_MAX_EVENT; i++)
- 		writel(i, cmdq->base + CMDQ_SYNC_TOKEN_UPDATE);
-@@ -540,6 +546,7 @@ static int cmdq_probe(struct platform_device *pdev)
- 
- 	cmdq->thread_nr = plat_data->thread_nr;
- 	cmdq->shift_pa = plat_data->shift;
-+	cmdq->control_by_sw = plat_data->control_by_sw;
- 	cmdq->irq_mask = GENMASK(cmdq->thread_nr - 1, 0);
- 	err = devm_request_irq(dev, cmdq->irq, cmdq_irq_handler, IRQF_SHARED,
- 			       "mtk_cmdq", cmdq);
-@@ -605,11 +612,14 @@ static int cmdq_probe(struct platform_device *pdev)
- static const struct gce_plat gce_plat_v2 = {.thread_nr = 16};
- static const struct gce_plat gce_plat_v3 = {.thread_nr = 24};
- static const struct gce_plat gce_plat_v4 = {.thread_nr = 24, .shift = 3};
-+static const struct gce_plat gce_plat_v5 = {.thread_nr = 24, .shift = 3,
-+					    .control_by_sw = true};
- 
- static const struct of_device_id cmdq_of_ids[] = {
- 	{.compatible = "mediatek,mt8173-gce", .data = (void *)&gce_plat_v2},
- 	{.compatible = "mediatek,mt8183-gce", .data = (void *)&gce_plat_v3},
- 	{.compatible = "mediatek,mt6779-gce", .data = (void *)&gce_plat_v4},
-+	{.compatible = "mediatek,mt8192-gce", .data = (void *)&gce_plat_v5},
- 	{}
- };
+@@ -174,7 +174,8 @@ static void cmdq_task_insert_into_thread(struct cmdq_task *task)
+ 	dma_sync_single_for_cpu(dev, prev_task->pa_base,
+ 				prev_task->pkt->cmd_buf_size, DMA_TO_DEVICE);
+ 	prev_task_base[CMDQ_NUM_CMD(prev_task->pkt) - 1] =
+-		(u64)CMDQ_JUMP_BY_PA << 32 | task->pa_base;
++		(u64)CMDQ_JUMP_BY_PA << 32 |
++		(task->pa_base >> task->cmdq->shift_pa);
+ 	dma_sync_single_for_device(dev, prev_task->pa_base,
+ 				   prev_task->pkt->cmd_buf_size, DMA_TO_DEVICE);
  
 -- 
 1.8.1.1.dirty
