@@ -2,112 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 570FF3DD44D
-	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 12:48:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C64803DD4C4
+	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 13:38:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233341AbhHBKsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Aug 2021 06:48:54 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:55485 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233218AbhHBKsx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 06:48:53 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1627901324; x=1659437324;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=TK416wLbqT9UDE6WEJeilEIagVGG4FyRZEIJ5bkTLTE=;
-  b=CYzuZLmTOdEHM1BefFg3IYG+c5wvivF/f4TabZbtuXYR4mJhmdlKinw8
-   uKmFNhWu+6x1T8txzp3ehWE4EiDypbW2D2g8jt1lWTvzwDPdeAg7rS1gv
-   mchQ2TEuH2b9IdJrMAhANaaFOwS7aGKOeE/xEC4z/SIK4TJP3/Vyp8mVV
-   SFpvbItP8mY1b/cqEVivCUFBz+QMNeU+O53AjWsbq2nikUNjI4uPoCALh
-   yqlskk3R9EOitVX5Bo3vtwWr0G/LaKeV7d2VTnqL59WgzAv+fjFwmLw5/
-   qDhoP/8tP+FKAIou4v0ekPLvLjEdLEBFLqzGphyBZKDqEyjwY2JrD9cHm
-   w==;
-IronPort-SDR: 2r7+p/05xC0erTJhj4ITNbSEouGfSKMFZ68M4EJ0IPYH/X3wXAPJtDjhOoBNj6kZ/fKTpJeOIe
- lb3pIYsT0P9ZqDWjNqt5bNTmJS46MiLwu4N7n0Gs5jd8zJu+UfH3Q64jZEEp9w2V1ByvZwd7/q
- /3kUSoSgUzRk2OcowlcwO0bnmZdZth3ijoMNoSvdzByJDnzd7kB4684hhyKZpVUsMaGvav1hns
- /vACv1X8s/tAyg/gNftC3DQ9gmr4UYsbdE8bh8Hql1eLJMBxUo0B/a7GtYY9LC1osHJ51PXWVT
- Vi08I2Di1DpeuJTZABgFIeQ5
-X-IronPort-AV: E=Sophos;i="5.84,288,1620716400"; 
-   d="scan'208";a="138413805"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 02 Aug 2021 03:48:44 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Mon, 2 Aug 2021 03:48:43 -0700
-Received: from CHE-LT-I21427LX.microchip.com (10.10.115.15) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Mon, 2 Aug 2021 03:48:38 -0700
-Message-ID: <16d7c1fd8ecaa10ed040e04261045274231ca654.camel@microchip.com>
-Subject: Re: [PATCH v3 net-next 10/10] net: dsa: microchip: add support for
- vlan operations
-From:   Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-To:     Vladimir Oltean <olteanv@gmail.com>
-CC:     <andrew@lunn.ch>, <netdev@vger.kernel.org>, <robh+dt@kernel.org>,
-        <UNGLinuxDriver@microchip.com>, <Woojung.Huh@microchip.com>,
-        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-        <davem@davemloft.net>, <kuba@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <vivien.didelot@gmail.com>,
-        <f.fainelli@gmail.com>, <devicetree@vger.kernel.org>
-Date:   Mon, 2 Aug 2021 16:18:36 +0530
-In-Reply-To: <20210731150838.2pigkik3iaeguflz@skbuf>
-References: <20210723173108.459770-1-prasanna.vengateshan@microchip.com>
-         <20210723173108.459770-11-prasanna.vengateshan@microchip.com>
-         <20210731150838.2pigkik3iaeguflz@skbuf>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.1-1 
+        id S233511AbhHBLiz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Aug 2021 07:38:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34610 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233483AbhHBLiw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 07:38:52 -0400
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82E7CC06175F
+        for <devicetree@vger.kernel.org>; Mon,  2 Aug 2021 04:38:42 -0700 (PDT)
+Received: by mail-oi1-x234.google.com with SMTP id o20so23700726oiw.12
+        for <devicetree@vger.kernel.org>; Mon, 02 Aug 2021 04:38:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=7SAJNLwKuybUhm2YpoBnegjDu+Xs6hzDflfVcI/48tI=;
+        b=MJkv6hFQ3yed68KWWLQt4dwfwHJ9dy4dxD20qWYmHvcRnJyFSwR5iktIhuo395GJzK
+         X5BveXjNLxzSeqYU5YLt4gItU9DWdfahMM/Hifu0AQYtYYpz7puoHlIbh1bzXj5UZKnN
+         CLQB4TaZ6tlkfUTQkbKiBvc6YSgSv20vJsXFb0B9t2qFcPB2QdoaioGPCh0LzSCmz2T5
+         l1IWKmHAX4tYM+bKtVC+EBSYGWzlR5QMv8FLe0lw2xmAjXbYlXHrcVoCurlTaBMoJVLl
+         scnrHx26MV5Fthrit2RGGcP/uEgwNehiZZh4xc0dLKvJphWvgyMRkc3JXl7hRIM7JGLY
+         SBwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=7SAJNLwKuybUhm2YpoBnegjDu+Xs6hzDflfVcI/48tI=;
+        b=uMiOy3HOWPxRsA5FvQmqmwzdON/AkmKTyttXn/Q2xYREPLDFayBdqeIsupOvG9t4T9
+         MmDpnYXW6AOmiIriALG+nHYLRrqyrHQbF0mlCOen89yPN9QrVV+1xol6OOTksmdN8ShX
+         QhaYK4Cj9L05B09SKqh5yhZHb9BjUBcnZ/MOQ3M1M02uT92Adm4AhVz7fHp0aJje7HOW
+         hGSW42eiqH/g2lmqO/1r+EABVhxEH/9auRNk5FVfacAuBOh2A5dhJ8H3twkPIB0I+d/i
+         zBPAzdw6uGsuY6iKi9toab107BwTtPqKBP6gfFPoT01XNjNjVe62tscZI7HwjaUbPJPm
+         8uPQ==
+X-Gm-Message-State: AOAM531MQLgETZQJ8LmLP+mYJlWrCby5+98vNZDZ0VSnF/sHWYa2f/LT
+        dS1Rk8njEvk9XCzDKGAtyKNIVnY1T1sIe76WONg=
+X-Google-Smtp-Source: ABdhPJwQb5ujGVbIprMNxleBtw7yFrfuzpH0j1zz6SrD3pDKasqDJmw8QmjVe2AFrK2V54vyqTmp+E2lJePBbP526Ck=
+X-Received: by 2002:aca:f54e:: with SMTP id t75mr9935563oih.142.1627904321915;
+ Mon, 02 Aug 2021 04:38:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210715082536.1882077-1-aisheng.dong@nxp.com>
+ <20210715082536.1882077-6-aisheng.dong@nxp.com> <20210722024948.GA3198597@robh.at.kernel.org>
+In-Reply-To: <20210722024948.GA3198597@robh.at.kernel.org>
+From:   Dong Aisheng <dongas86@gmail.com>
+Date:   Mon, 2 Aug 2021 19:36:20 +0800
+Message-ID: <CAA+hA=TwGGwZi2HzZSLSZHYWEi8Pp6AnHeRpfDhD0pUfY_xPSQ@mail.gmail.com>
+Subject: Re: [PATCH 5/7] dt-bindings: soc: imx: add missing anatop binding
+To:     Rob Herring <robh@kernel.org>
+Cc:     Dong Aisheng <aisheng.dong@nxp.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 2021-07-31 at 18:08 +0300, Vladimir Oltean wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know the
-> content is safe
-> 
-> On Fri, Jul 23, 2021 at 11:01:08PM +0530, Prasanna Vengateshan wrote:
-> > +static int lan937x_port_vlan_add(struct dsa_switch *ds, int port,
-> > +                              const struct switchdev_obj_port_vlan *vlan,
-> > +                              struct netlink_ext_ack *extack)
-> > +{
-> > +     bool untagged = vlan->flags & BRIDGE_VLAN_INFO_UNTAGGED;
-> > +     struct ksz_device *dev = ds->priv;
-> > +     struct lan937x_vlan vlan_entry;
-> > +     int ret;
+Hi Rob,
+
+On Thu, Jul 22, 2021 at 10:49 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Thu, Jul 15, 2021 at 04:25:34PM +0800, Dong Aisheng wrote:
+> > Anatop is a system combo module which supports various analog functions
+> > like PLL, Regulators, LDOs, Sensors and etc.
+> > This binding doc is generated based on the exist usage in dts
+> > in order to fix dt schema check failures.
+> >
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: Shawn Guo <shawnguo@kernel.org>
+> > Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
+> > ---
+> >  .../bindings/soc/imx/fsl,anatop.yaml          | 68 +++++++++++++++++++
+> >  1 file changed, 68 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,anatop.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,anatop.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,anatop.yaml
+> > new file mode 100644
+> > index 000000000000..f379d960f527
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/soc/imx/fsl,anatop.yaml
+> > @@ -0,0 +1,68 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/soc/imx/fsl,anatop.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > > +
-> > +     ret = lan937x_get_vlan_table(dev, vlan->vid, &vlan_entry);
-> > +     if (ret < 0) {
-> > +             NL_SET_ERR_MSG_MOD(extack, "Failed to get vlan table\n");
-> 
-> The NL_SET_ERR_MSG_MOD function already adds the \n at the end.
-
-i will remove \n from other places as well for NL_SET_ERR_MSG_MOD.
-
-> 
-> > +             return ret;
-> > 
+> > +title: Freescale Anatop binding
 > > +
-> > +     /* change PVID */
-> > +     if (vlan->flags & BRIDGE_VLAN_INFO_PVID) {
-> > +             ret = lan937x_pwrite16(dev, port, REG_PORT_DEFAULT_VID,
-> > +                                    vlan->vid);
-> > +             if (ret < 0) {
-> > +                     NL_SET_ERR_MSG_MOD(extack, "Failed to set pvid\n");
-> > +                     return ret;
-> > +             }
-> > +     }
+> > +maintainers:
+> > +  - Dong Aisheng <aisheng.dong@nxp.com>
 > > +
-> > +     return 0;
-> > +}
-> 
-> Side question: do you think the ds->configure_vlan_while_not_filtering = false
-> from ksz9477.c and ksz8795.c serve any purpose, considering that you did
-> not need this setting for lan937x? If not, could you please send a patch
-> to remove that setting from those 2 other KSZ drivers? Thanks.
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - items:
+> > +          - const: fsl,imx6q-anatop
+> > +          - const: syscon
+> > +          - const: simple-mfd
+> > +      - items:
+> > +          - enum:
+> > +              - fsl,imx6sl-anatop
+> > +              - fsl,imx6sll-anatop
+> > +              - fsl,imx6sx-anatop
+> > +              - fsl,imx6ul-anatop
+> > +              - fsl,imx7d-anatop
+> > +          - const: fsl,imx6q-anatop
+> > +          - const: syscon
+> > +          - const: simple-mfd
+> > +      - items:
+> > +          - enum:
+> > +              - fsl,imx8mq-anatop
+> > +              - fsl,imx8mm-anatop
+> > +              - fsl,vf610-anatop
+> > +          - const: syscon
+> > +      - items:
+> > +          - enum:
+> > +              - fsl,imx8mn-anatop
+> > +              - fsl,imx8mp-anatop
+> > +          - const: fsl,imx8mm-anatop
+> > +          - const: syscon
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    items:
+> > +      - description: Temperature Sensor
+> > +      - description: PMU interrupt 1
+> > +      - description: PMU interrupt 2
+> > +    minItems: 1
+> > +    maxItems: 3
+>
+> Don't need maxItems.
+>
 
-Sure, I will add this patch in my next submission.
+Got it
 
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +additionalProperties: true
+>
+> This should be the case only for common schemas used by other schemas.
+>
 
+Like iomuxc-gpr in patch 6, the problem is that for those nodes with
+simple-mfd backwards compatibility,
+there could be possibly some random subnodes since there're generic
+combo registers.
+That's why i use additionalProperties true to cover it.
+Do you think it's ok?
+
+e.g.
+anatop: anatop@20c8000 {
+        compatible = "fsl,imx6q-anatop", "syscon", "simple-mfd";
+        reg = <0x020c8000 0x1000>;
+        interrupts = <0 49 IRQ_TYPE_LEVEL_HIGH>,
+                     <0 54 IRQ_TYPE_LEVEL_HIGH>,
+                     <0 127 IRQ_TYPE_LEVEL_HIGH>;
+
+        reg_vdd1p1: regulator-1p1 {
+                compatible = "fsl,anatop-regulator";
+                regulator-name = "vdd1p1";
+                regulator-min-microvolt = <1000000>;
+                regulator-max-microvolt = <1200000>;
+                ...
+        };
+
+        tempmon: tempmon {
+                compatible = "fsl,imx6q-tempmon";
+                interrupt-parent = <&gpc>;
+                interrupts = <0 49 IRQ_TYPE_LEVEL_HIGH>;
+                fsl,tempmon = <&anatop>;
+                nvmem-cells = <&tempmon_calib>, <&tempmon_temp_grade>;
+                nvmem-cell-names = "calib", "temp_grade";
+                clocks = <&clks IMX6QDL_CLK_PLL3_USB_OTG>;
+                #thermal-sensor-cells = <0>;
+        };
+};
+
+gpr: iomuxc-gpr@20e0000 {
+        compatible = "fsl,imx6q-iomuxc-gpr", "syscon", "simple-mfd";
+        reg = <0x20e0000 0x38>;
+
+        mux: mux-controller {
+                compatible = "mmio-mux";
+                #mux-control-cells = <1>;
+        };
+};
+
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +    anatop: anatop@20c8000 {
+>
+
+Got it
+
+Regards
+Aisheng
+
+> Drop unused labels.
+>
+> > +        compatible = "fsl,imx6q-anatop", "syscon", "simple-mfd";
+> > +        reg = <0x020c8000 0x1000>;
+> > +        interrupts = <0 49 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <0 54 IRQ_TYPE_LEVEL_HIGH>,
+> > +                     <0 127 IRQ_TYPE_LEVEL_HIGH>;
+> > +        };
+> > --
+> > 2.25.1
+> >
+> >
