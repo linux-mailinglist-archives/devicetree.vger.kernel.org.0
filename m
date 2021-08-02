@@ -2,78 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 925ED3DE11D
-	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 22:56:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A8933DE121
+	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 22:57:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231523AbhHBU4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Aug 2021 16:56:21 -0400
-Received: from mail-io1-f51.google.com ([209.85.166.51]:39560 "EHLO
-        mail-io1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231194AbhHBU4U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 16:56:20 -0400
-Received: by mail-io1-f51.google.com with SMTP id f6so16051014ioc.6;
-        Mon, 02 Aug 2021 13:56:10 -0700 (PDT)
+        id S231397AbhHBU6E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Aug 2021 16:58:04 -0400
+Received: from mail-io1-f48.google.com ([209.85.166.48]:37667 "EHLO
+        mail-io1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231194AbhHBU6E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 16:58:04 -0400
+Received: by mail-io1-f48.google.com with SMTP id r18so21915937iot.4;
+        Mon, 02 Aug 2021 13:57:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=RXpLWT2dYimgWZeFIoJm103crGanx3fTeHn26441P4Y=;
-        b=ZPUGYhWw+l9agD28FATbVa7z6/O/aUhxdCVvPazR/tKaDXiDkPCOHoAlZ7ppn2jV7A
-         4gDpXCE2VCOD8+Nd5SIN6ij+MAWUgoWnJ5q8eZyL+LI798CRG1PJuTiIXI/UoSz05Y0y
-         JcG+YrHiP+SBLANMFPe/a1Vs4YdDb/2vEAi4yJW7PsKokY1+z06aGg/Qj6JTxN11EYxv
-         6PWeHeunghUoDeJZxG11avgxk3pviRqzj8rB831WU76eHIktbKz0Jd78x0ZwkvL/gx5P
-         tDoXhEsEA4TNVoy4hMzwvqqBt8DNlfzfoPfGFxQfSoXfSx/KZ5t+r1LcQY3a6iGBnUxD
-         4YYg==
-X-Gm-Message-State: AOAM533slSjVko20W+Yjk6alBrrdC6moJBwpQakjN7xxLhN4ALRCHHEH
-        zWHvB84xIc+o0cTZqZeXrW9hFob/aw==
-X-Google-Smtp-Source: ABdhPJzGjud67K2ExwO/Pyr5iuExgA8eKOWi2kBVjRCiIH66/x6u6Aq8OQoBzg45BYOYuVHPIw3GJA==
-X-Received: by 2002:a02:6983:: with SMTP id e125mr9365456jac.112.1627937770422;
-        Mon, 02 Aug 2021 13:56:10 -0700 (PDT)
+        bh=Hv9R9uX/9Exwcr0vk3gW4fJPMgYHDULDKeCFcu/R1KM=;
+        b=kmU9Tc9voZMV3VoO2dAN86grqQi/SedWcrUfCSnmJFp+hR/5a1RMZqyOKIY8UbDbW8
+         Nyk4zk44bGEkcVC/Pxm8YVkxr49ATmiicdp41sV8scYJBN4btKQrsxaSoVWL26J2Y+ac
+         pK/wX3bdkx/YzKdUiHt6m0Mg2AceT5M2FpgXnyMyrf5+Xu/UekEtgGcaGpJy/des4xEe
+         r+N+ETFhdHmRl0sHjxMrkNx/j1qYIgX3vidJIukncVSxcxji4LpGMO4yNpjcv9oliD2R
+         QM+A1XzALpaqqJY/cppXFdFCzBeF18XBZCbvdWSYnv7WyQIXFplFaV76j6LjPNiJnmQs
+         /LZw==
+X-Gm-Message-State: AOAM5304z/MudEIWln5LDB8ifRjgoEENT3G3hNfq150P5fCAckD362vL
+        g85I757WQNdCUpU8t+fPnwahKNBXMA==
+X-Google-Smtp-Source: ABdhPJzixwLjci4+iW7Ky6PRSd/rUvs5wjNDYhhd29hWdI5dE8PIPAqhPrVTQtWnhpRdzTVupn7DFw==
+X-Received: by 2002:a02:ca19:: with SMTP id i25mr16481252jak.78.1627937873930;
+        Mon, 02 Aug 2021 13:57:53 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id u16sm7591156iob.41.2021.08.02.13.56.08
+        by smtp.gmail.com with ESMTPSA id o13sm6285739ilq.58.2021.08.02.13.57.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Aug 2021 13:56:09 -0700 (PDT)
-Received: (nullmailer pid 1595195 invoked by uid 1000);
-        Mon, 02 Aug 2021 20:56:07 -0000
-Date:   Mon, 2 Aug 2021 14:56:07 -0600
+        Mon, 02 Aug 2021 13:57:52 -0700 (PDT)
+Received: (nullmailer pid 1597856 invoked by uid 1000);
+        Mon, 02 Aug 2021 20:57:50 -0000
+Date:   Mon, 2 Aug 2021 14:57:50 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-usb@vger.kernel.org,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     Peter Korsgaard <peter.korsgaard@barco.com>,
+        Peter Korsgaard <peter@korsgaard.com>,
+        linux-serial@vger.kernel.org,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: Re: [PATCH v5 5/6] dt-bindings: usb: renesas,usbhs: Document RZ/G2L
- bindings
-Message-ID: <YQhb59/Aj6wwGTdA@robh.at.kernel.org>
-References: <20210727185527.19907-1-biju.das.jz@bp.renesas.com>
- <20210727185527.19907-6-biju.das.jz@bp.renesas.com>
+        Michal Simek <michal.simek@xilinx.com>,
+        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
+        Alexander Sverdlin <alexander.sverdlin@nokia.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: serial: uartlite: Convert to
+ json-schema
+Message-ID: <YQhcTmq9NIiOkaMS@robh.at.kernel.org>
+References: <20210727221740.1997731-1-sean.anderson@seco.com>
+ <20210727221740.1997731-2-sean.anderson@seco.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210727185527.19907-6-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20210727221740.1997731-2-sean.anderson@seco.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 27 Jul 2021 19:55:26 +0100, Biju Das wrote:
-> Document RZ/G2L (R9A07G044L) SoC bindings.
+On Tue, Jul 27, 2021 at 06:17:37PM -0400, Sean Anderson wrote:
+> This converts the existing documentation for the uartlite binding to
+> json-schema.
 > 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
 > ---
-> v4->v5:
->  * Added interrupts maxitems=1 for SoC's other than RZ/G2L.
-> v3->v4:
->  * Added maxitems in interrupt property as per Rob's suggestion.
-> v3:
->  * Updated the bindings as per the USBPHY control IP.
-> ---
->  .../bindings/usb/renesas,usbhs.yaml           | 26 +++++++++++++++++--
->  1 file changed, 24 insertions(+), 2 deletions(-)
 > 
+> (no changes since v1)
+> 
+>  .../bindings/serial/xlnx,opb-uartlite.txt     | 23 --------
+>  .../bindings/serial/xlnx,opb-uartlite.yaml    | 53 +++++++++++++++++++
+>  2 files changed, 53 insertions(+), 23 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.txt
+>  create mode 100644 Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.txt b/Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.txt
+> deleted file mode 100644
+> index c37deb44dead..000000000000
+> --- a/Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.txt
+> +++ /dev/null
+> @@ -1,23 +0,0 @@
+> -Xilinx Axi Uartlite controller Device Tree Bindings
+> ----------------------------------------------------------
+> -
+> -Required properties:
+> -- compatible		: Can be either of
+> -				"xlnx,xps-uartlite-1.00.a"
+> -				"xlnx,opb-uartlite-1.00.b"
+> -- reg			: Physical base address and size of the Axi Uartlite
+> -			  registers map.
+> -- interrupts		: Should contain the UART controller interrupt.
+> -
+> -Optional properties:
+> -- port-number		: Set Uart port number
+> -- clock-names		: Should be "s_axi_aclk"
+> -- clocks		: Input clock specifier. Refer to common clock bindings.
+> -
+> -Example:
+> -serial@800c0000 {
+> -	compatible = "xlnx,xps-uartlite-1.00.a";
+> -	reg = <0x0 0x800c0000 0x10000>;
+> -	interrupts = <0x0 0x6e 0x1>;
+> -	port-number = <0>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml b/Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml
+> new file mode 100644
+> index 000000000000..4ef29784ae97
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/serial/xlnx,opb-uartlite.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Xilinx Axi Uartlite
+> +
+> +maintainers:
+> +  - Peter Korsgaard <jacmet@sunsite.dk>
+> +
+> +properties:
+> +  compatible:
+> +    contains:
+> +      enum:
+> +        - xlnx,xps-uartlite-1.00.a
+> +        - xlnx,opb-uartlite-1.00.b
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  port-number:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Set Uart port number
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    const: s_axi_aclk
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +allOf:
+> +  - $ref: /schemas/serial.yaml#
+> +
+> +additionalProperties: true
+
+unevaluatedProperties: false
+
+With that,
 
 Reviewed-by: Rob Herring <robh@kernel.org>
+
+> +
+> +examples:
+> +  - |
+> +      serial@800c0000 {
+> +        compatible = "xlnx,xps-uartlite-1.00.a";
+> +        reg = <0x800c0000 0x10000>;
+> +        interrupts = <0x0 0x6e 0x1>;
+> +        port-number = <0>;
+> +      };
+> +...
+> -- 
+> 2.25.1
+> 
+> 
