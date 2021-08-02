@@ -2,117 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D83423DD41E
-	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 12:42:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0B033DD426
+	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 12:45:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231357AbhHBKnC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Aug 2021 06:43:02 -0400
-Received: from frasgout.his.huawei.com ([185.176.79.56]:3549 "EHLO
-        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233081AbhHBKnC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 06:43:02 -0400
-Received: from fraeml705-chm.china.huawei.com (unknown [172.18.147.206])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4GdZMl5dgYz6F87n;
-        Mon,  2 Aug 2021 18:42:43 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml705-chm.china.huawei.com (10.206.15.54) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2176.2; Mon, 2 Aug 2021 12:42:51 +0200
-Received: from localhost (10.47.9.82) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Mon, 2 Aug 2021
- 11:42:50 +0100
-Date:   Mon, 2 Aug 2021 11:42:22 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Simon Xue <xxm@rock-chips.com>
-CC:     Jonathan Cameron <jic23@kernel.org>,
-        <linux-rockchip@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <robh+dt@kernel.org>, Johan Jonker <jbx6244@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        <linux-iio@vger.kernel.org>, David Wu <david.wu@rock-chips.com>
-Subject: Re: [PATCH] iio: adc: rockchip_saradc: just get referenced voltage
- once at probe
-Message-ID: <20210802114222.00004f3d@Huawei.com>
-In-Reply-To: <20210802090929.37970-1-xxm@rock-chips.com>
-References: <20210802090929.37970-1-xxm@rock-chips.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
+        id S233303AbhHBKpZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Aug 2021 06:45:25 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:47448 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233167AbhHBKpY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 06:45:24 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1627901115; x=1659437115;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=EEwPONufhL25fB2V+5qBq+1fXifp8TxhPLMCs/6oDdI=;
+  b=fDDWFH/ikoYXs9og9C5GKInutvnVKHvTqUHYIZyL7m//0SCNMiB24otk
+   5t1a4mQsDm911Z5UkTkYJ3yhMLhHmcqsYHm0gVuLZGL+bbjJj8aMKX7mf
+   TFVDbX5smeWULLR0W1R6RaL93eqVQN7tat/FqnVUeHnmPZrWFv7Me71l3
+   fp4eIDAKE5dNf/cl53/6n9qn8hbkF4qFU+2WPRxtszXhefSs2PdESxk5k
+   JSnHvXOoOwvnrkDhK+stGfUoOseB5qhI5drCVSFEyARLggY2S6dumEnLm
+   9XdXQZI+85cQBoyzjolhStoHxGgVIbvsLImeXxvYelMy2lIK3DdrT/ZVe
+   A==;
+IronPort-SDR: CxiUi0mRRP5lEJwDFT7WjTTQ4nTVF85J9Xq6ujRM7pWz8S2NJ+akKeD1/wZedIRwmlmDOfT7G2
+ pLpC5LFKNon/lNOPCsfirY3EDTJCaFK7wRfpIIAU59pAOuck+oNDNmchCLpD4okoKvNmDk2zY6
+ oIMcIL7uMe+2/oAgaKiO3iwG12LrGZb/MuVbpiGRTzHZDl4xRwRzCgRWgaa+qRpvtbuuoatx6T
+ W0I+zm+JISTW6MwrHsRA5dmIqAMNDmPCOuu+5ss/sONTmH/A37ozqKukJoeQoFyyQQQqoYgzBv
+ o70n2XJyUXk6HI0OqStxZ3KN
+X-IronPort-AV: E=Sophos;i="5.84,288,1620716400"; 
+   d="scan'208";a="64382098"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 02 Aug 2021 03:45:14 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Mon, 2 Aug 2021 03:45:14 -0700
+Received: from CHE-LT-I21427LX.microchip.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2176.2 via Frontend Transport; Mon, 2 Aug 2021 03:45:09 -0700
+Message-ID: <49678cce02ac03edc6bbbd1afb5f67606ac3efc2.camel@microchip.com>
+Subject: Re: [PATCH v3 net-next 05/10] net: dsa: microchip: add DSA support
+ for microchip lan937x
+From:   Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
+To:     Vladimir Oltean <olteanv@gmail.com>
+CC:     <andrew@lunn.ch>, <netdev@vger.kernel.org>, <robh+dt@kernel.org>,
+        <UNGLinuxDriver@microchip.com>, <Woojung.Huh@microchip.com>,
+        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
+        <davem@davemloft.net>, <kuba@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <vivien.didelot@gmail.com>,
+        <f.fainelli@gmail.com>, <devicetree@vger.kernel.org>
+Date:   Mon, 2 Aug 2021 16:15:08 +0530
+In-Reply-To: <20210731150416.upe5nwkwvwajhwgg@skbuf>
+References: <20210723173108.459770-1-prasanna.vengateshan@microchip.com>
+         <20210723173108.459770-6-prasanna.vengateshan@microchip.com>
+         <20210731150416.upe5nwkwvwajhwgg@skbuf>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.1-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.47.9.82]
-X-ClientProxiedBy: lhreml743-chm.china.huawei.com (10.201.108.193) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2 Aug 2021 17:09:29 +0800
-Simon Xue <xxm@rock-chips.com> wrote:
-
-> From: David Wu <david.wu@rock-chips.com>
+On Sat, 2021-07-31 at 18:04 +0300, Vladimir Oltean wrote:
+> EXTERNAL EMAIL: Do not click links or open attachments unless you know the
+> content is safe
+> > 
+> > +void lan937x_mac_config(struct ksz_device *dev, int port,
+> > +                     phy_interface_t interface)
+> > +{
+> > +     u8 data8;
+> > +
+> > +     lan937x_pread8(dev, port, REG_PORT_XMII_CTRL_1, &data8);
+> > +
+> > +     /* clear MII selection & set it based on interface later */
+> > +     data8 &= ~PORT_MII_SEL_M;
+> > +
+> > +     /* configure MAC based on interface */
+> > +     switch (interface) {
+> > +     case PHY_INTERFACE_MODE_MII:
+> > +             lan937x_config_gbit(dev, false, &data8);
+> > +             data8 |= PORT_MII_SEL;
+> > +             break;
+> > +     case PHY_INTERFACE_MODE_RMII:
+> > +             lan937x_config_gbit(dev, false, &data8);
+> > +             data8 |= PORT_RMII_SEL;
+> > +             break;
+> > +     case PHY_INTERFACE_MODE_RGMII:
+> > +     case PHY_INTERFACE_MODE_RGMII_ID:
+> > +     case PHY_INTERFACE_MODE_RGMII_TXID:
+> > +     case PHY_INTERFACE_MODE_RGMII_RXID:
+> > +             lan937x_config_gbit(dev, true, &data8);
+> > +             data8 |= PORT_RGMII_SEL;
+> > +
+> > +             /* Add RGMII internal delay for cpu port*/
+> > +             if (dsa_is_cpu_port(dev->ds, port)) {
 > 
-> The referenced voltage is not changed after initiation, so just only
-> get referenced voltage once.
-Hi David,
+> Why only for the CPU port? I would like Andrew/Florian to have a look
+> here, I guess the assumption is that if the port has a phy-handle, the
+> RGMII delays should be dealt with by the PHY, but the logic seems to be
+> "is a CPU port <=> has a phy-handle / isn't a CPU port <=> doesn't have
+> a phy-handle"? What if it's a fixed-link port connected to a downstream
+> switch, for which this one is a DSA master?
+> > 
 
-Isn't this an external reference voltage?  If so how do you know
-it is not changed at runtime?  It might be unlikely and not happen
-on particular platforms, but that's not he same as saying it can never
-happen.  Clearly it's racey anyway if that does happen, but we definitely
-don't expect frequent voltage changes.
 
-Jonathan
-
-> 
-> Signed-off-by: Simon Xue <xxm@rock-chips.com>
-> Signed-off-by: David Wu <david.wu@rock-chips.com>
-> ---
->  drivers/iio/adc/rockchip_saradc.c | 16 +++++++++-------
->  1 file changed, 9 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/rockchip_saradc.c b/drivers/iio/adc/rockchip_saradc.c
-> index f3eb8d2e50dc..cd33c0b9d3eb 100644
-> --- a/drivers/iio/adc/rockchip_saradc.c
-> +++ b/drivers/iio/adc/rockchip_saradc.c
-> @@ -49,6 +49,7 @@ struct rockchip_saradc {
->  	struct clk		*clk;
->  	struct completion	completion;
->  	struct regulator	*vref;
-> +	int			uv_vref;
->  	struct reset_control	*reset;
->  	const struct rockchip_saradc_data *data;
->  	u16			last_val;
-> @@ -105,13 +106,7 @@ static int rockchip_saradc_read_raw(struct iio_dev *indio_dev,
->  		mutex_unlock(&indio_dev->mlock);
->  		return IIO_VAL_INT;
->  	case IIO_CHAN_INFO_SCALE:
-> -		ret = regulator_get_voltage(info->vref);
-> -		if (ret < 0) {
-> -			dev_err(&indio_dev->dev, "failed to get voltage\n");
-> -			return ret;
-> -		}
-> -
-> -		*val = ret / 1000;
-> +		*val = info->uv_vref / 1000;
->  		*val2 = chan->scan_type.realbits;
->  		return IIO_VAL_FRACTIONAL_LOG2;
->  	default:
-> @@ -410,6 +405,13 @@ static int rockchip_saradc_probe(struct platform_device *pdev)
->  		return ret;
->  	}
->  
-> +	info->uv_vref = regulator_get_voltage(info->vref);
-> +	if (info->uv_vref < 0) {
-> +		dev_err(&pdev->dev, "failed to get voltage\n");
-> +		ret = info->uv_vref;
-> +		return ret;
-> +	}
-> +
->  	ret = clk_prepare_enable(info->pclk);
->  	if (ret < 0) {
->  		dev_err(&pdev->dev, "failed to enable pclk\n");
+Thanks for reviewing the patches. My earlier proposal here was to check if there
+is no phydev (dp->slave->phydev) or if PHY is genphy, then apply RGMII delays
+assuming delays should be dealt with the phy driver if available. What do you
+think of that?
 
