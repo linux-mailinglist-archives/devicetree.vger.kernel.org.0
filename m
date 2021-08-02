@@ -2,162 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 828123DE308
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 01:27:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3F1B3DE314
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 01:30:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232208AbhHBX2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Aug 2021 19:28:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41330 "EHLO
+        id S232514AbhHBXad (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Aug 2021 19:30:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232463AbhHBX2H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 19:28:07 -0400
-Received: from mail-vs1-xe33.google.com (mail-vs1-xe33.google.com [IPv6:2607:f8b0:4864:20::e33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2C69C061764
-        for <devicetree@vger.kernel.org>; Mon,  2 Aug 2021 16:27:56 -0700 (PDT)
-Received: by mail-vs1-xe33.google.com with SMTP id k24so2474711vsg.9
-        for <devicetree@vger.kernel.org>; Mon, 02 Aug 2021 16:27:56 -0700 (PDT)
+        with ESMTP id S232662AbhHBXac (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 19:30:32 -0400
+Received: from mail-io1-xd35.google.com (mail-io1-xd35.google.com [IPv6:2607:f8b0:4864:20::d35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B34BC0613D5
+        for <devicetree@vger.kernel.org>; Mon,  2 Aug 2021 16:30:22 -0700 (PDT)
+Received: by mail-io1-xd35.google.com with SMTP id r6so13967935ioj.8
+        for <devicetree@vger.kernel.org>; Mon, 02 Aug 2021 16:30:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=QlzAmryyyeDSDQ1srUNZEgdUE1Lb18Ti4rrmaegWVkw=;
-        b=Ajmr1ho9O5wL+Ew02Av/bUFYn8XmF5TlaNe9PnsD4qjKZxYPBh8Ge6NcYutRfxIzUc
-         JzKbAgn+JG95Zms5Z5w0a2ZuyOjUQWCuyc9IxcYp61b9ECvW9FXLrqERM7GgSVg8cNHW
-         zOJHKvgJHXFIZAc7W7wvYHcGLp3zh5CaIo49Ttue+NXQGnSzoEWNn5lQSeOtryypEVU7
-         B/RKTe48HxHJspuGTebmsxIS1Wg/+LaA22N5jp/iqCGfOvsWgWY2BRLf/F33Bivk3UBt
-         2+f/FYN/8cvKYlCMFXDkVTvCA/ocfTaDlhP7x+uxHc+w6C7WVl0L13Zk6bdrEHKgsX4C
-         gC9A==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=op3PyaJRoHyyueBpTrCno9Zdd5F5AqkxWOll78YzH7I=;
+        b=CBNttCRZfwAae3XbPFiOhRaWKcN9FIfxVNyj4IvT4tQxmPDx2Cyd4G4h1Y8mmY5cxV
+         bCvPBsBu3mmz4F9koOqS0kAlYaZiexAFCMpfvpSqlzFjTTLDyYBfu2gQsmeJr727lWc8
+         w4BNFKl9Y6J+xKIeHMwORkLHUEbwXp+dqfEzUol+4EYQEPG8C/u+X2gU3AAhR3zPFDsn
+         AP7B7V6q1Xd/+F+nL8Yikilg+1Ljm35rK8WBPsC15I1zdCUse/IhMdrkdm1+aEstYsfA
+         lZ/10PcAc9tvEw+AkydPJRsi+yzQueyfLcr4gX2Xneqhk+VF0xiQTu2+TYh8aBKozVP9
+         /b2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=QlzAmryyyeDSDQ1srUNZEgdUE1Lb18Ti4rrmaegWVkw=;
-        b=RKZytAExETVyyzC9RNsk86LSxxSIEe0wGj7CiO3ejd6cilsqTRraWI+Grb6QQDYWTo
-         3N2ErP+aeAUJmWj3tMpSm/LmkL+mrSonq/ypNUNn7TuqORaNLFjWWF3QE/2cDa5dZpPL
-         nFzQQpeqmTphOSAh46KYDGbl5v8LEXVOzoao6cRO1jQBDsLk21XtkhUItUHxGdvgMKBv
-         RKVzC/1uRxGHFXQqPzrlEm77GF92BYTtlrGC0+7ya9gt4ZslMHW1d6O4suEApJC7PS0s
-         xOoFEEsvgCcjUIpiw1JH5HOCIUps4/am2GErBvWcsIbKPce9NKuka+wZ6f2TGtvO9tl2
-         1HjA==
-X-Gm-Message-State: AOAM532VNiMQOW5/6h9wAe2FahI8cfW1HB2Zk4SKqdMubBd3Sn3zJLUy
-        MVGH1msutqApJZb0ARv/HHC4Nh2KJ4ia9jQfvgytJQ==
-X-Google-Smtp-Source: ABdhPJzJ3U5wtXY2YCtx/k4DqUJTlrgpZ48cDKUw9DVG41O8Yu+2eqmJVsghdHYCgAijN2Q95YtCA/yFaRSlHV3vfbA=
-X-Received: by 2002:a67:f60e:: with SMTP id k14mr12216795vso.30.1627946875840;
- Mon, 02 Aug 2021 16:27:55 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=op3PyaJRoHyyueBpTrCno9Zdd5F5AqkxWOll78YzH7I=;
+        b=cgkLhTMxu2ocg4r2DtEGmeK+jbKIt76tIHMS11JEdD4opmRWZ/5aPeaglRB3jBS514
+         0azyBQG3J/Nb30AblwL0rpAFqr1VfYxZUcODR9+ekkzTXq/4xIBYrllT8q7Y+7zX9xcN
+         xww2dbYEiUFuiJXnK2vlShhnvshdOXREwUKIQqG1J2kTplnQOolK/18kbkSXpGvjPMpO
+         ffzqiqbaU9DBb+MhpKGj9f+bAl0i/y3vJ7AdtLxlxq8KYBTJtKnbdYFmg/cdA/K5v0id
+         xeW3RVXG+W9nl43QfdgNEnRILAx5KlaTtWrOAUP+GCwZBLEn76yEsKlA9BP6OVF8HMgO
+         Z4FQ==
+X-Gm-Message-State: AOAM532yPG20CjrjuO0rUEpGqCM80ZDE1F9eC43szBHafiNaRZ9fqJh3
+        f31v7VdhSKf+PY8bpJLjPirDxA==
+X-Google-Smtp-Source: ABdhPJx1fsU0oGnfzWvUepv8E3UYK7bcTVPwR54Lput3O9xuMtSjgvYVhjLSJfSMh6Ttp6/qkTuo7g==
+X-Received: by 2002:a05:6638:381e:: with SMTP id i30mr16990000jav.17.1627947022075;
+        Mon, 02 Aug 2021 16:30:22 -0700 (PDT)
+Received: from presto.localdomain (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
+        by smtp.gmail.com with ESMTPSA id y17sm460883ilm.0.2021.08.02.16.30.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Aug 2021 16:30:21 -0700 (PDT)
+From:   Alex Elder <elder@linaro.org>
+To:     davem@davemloft.net, kuba@kernel.org
+Cc:     robh+dt@kernel.org, bjorn.andersson@linaro.org, agross@kernel.org,
+        evgreen@chromium.org, cpratapa@codeaurora.org,
+        subashab@codeaurora.org, elder@kernel.org,
+        linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH net-next 0/1] REVERT: arm64: dts: qcom: DTS updates
+Date:   Mon,  2 Aug 2021 18:30:18 -0500
+Message-Id: <20210802233019.800250-1-elder@linaro.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <20210730144922.29111-1-semen.protsenko@linaro.org>
- <5e35b0a7-13aa-3c62-ca49-14af2fcb2a08@canonical.com> <c3486111-0ec9-9679-d2a2-68b2f33a2450@canonical.com>
- <CAPLW+4kbnJEBkc0D=RWt59JxBan8X1uDy6sSXBiYAq8N9FDV6A@mail.gmail.com>
- <13f166bb-7103-25d5-35a6-8ec53a1f1817@canonical.com> <2dacc205-04ce-c206-a393-50ba0d5aa1a7@canonical.com>
-In-Reply-To: <2dacc205-04ce-c206-a393-50ba0d5aa1a7@canonical.com>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Tue, 3 Aug 2021 02:27:44 +0300
-Message-ID: <CAPLW+4=1Anr6rCWEBL04D81aEAEVKD5cGE+ObXH3q-HNHce07w@mail.gmail.com>
-Subject: Re: [PATCH 00/12] Add minimal support for Exynos850 SoC
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
-        Ryu Euiyoul <ryu.real@samsung.com>,
-        Tom Gall <tom.gall@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 31 Jul 2021 at 11:12, Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> On 31/07/2021 09:29, Krzysztof Kozlowski wrote:
-> > On 30/07/2021 21:02, Sam Protsenko wrote:
-> >> Hi Krzysztof,
-> >>
-> >> On Fri, 30 Jul 2021 at 20:21, Krzysztof Kozlowski
-> >> <krzysztof.kozlowski@canonical.com> wrote:
-> >>>
-> >>> On 30/07/2021 17:18, Krzysztof Kozlowski wrote:
-> >>>> On 30/07/2021 16:49, Sam Protsenko wrote:
-> >>>>> This patch series adds initial platform support for Samsung Exynos850
-> >>>>> SoC [1]. With this patchset it's possible to run the kernel with BusyBox
-> >>>>> rootfs as a RAM disk. More advanced platform support (like MMC driver
-> >>>>> additions) will be added later. The idea is to keep the first submission
-> >>>>> minimal to ease the review, and then build up on top of that.
-> >>>>>
-> >>>>> [1] https://www.samsung.com/semiconductor/minisite/exynos/products/mobileprocessor/exynos-850/
-> >>>>>
-> >>>>
-> >>>> Great work!
-> >>>>
-> >>
-> >> Thanks, Krzysztof! And thank you for reviewing the whole series.
-> >>
-> >>>> What's the SoC revision number (should be accessible via
-> >>>> /sys/bus/soc/devices/soc0/)? Recent wrap in numbering of Exynos chips
-> >>>> might bring confusion...
-> >>
-> >> # cat /sys/devices/soc0/revision
-> >> 0
-> >
-> > soc_id but you're right it won't be set for unknown SoCs. You need to
-> > extend drivers/soc/samsung/exynos-chipid.c to parse new values (E3830000
-> > for product ID) and maybe new register offsets (previous offset is 0x0,
-> > for 3830 is 0x10 I think). Also revision mask might change.
-> >
-> >>> Judging by vendor's sources it is quite confusing. It looks mostly like
-> >>> Exynos3830 but in few other cases it uses Exynos9 compatibles (Exynos9,
-> >>> Exynos9820). Only in few places there is Exynos850. Marketing department
-> >>> made it so confusing...  The revision embedded in SoC would be very
-> >>> interesting.
-> >>>
-> >>
-> >> As I understand, this SoC is called Exynos850 everywhere now.
-> >> Exynos3830 is its old name, not used anymore. As you noticed from
-> >> patch #2, it shares some definitions with Exynos9 SoC, so I guess some
-> >> software is similar for both architectures. Not sure about hardware
-> >> though, never worked with Exynos9 CPUs. Anyway, I asked Samsung
-> >> representatives about naming, and it seems like we should stick to
-> >> "Exynos850" name, even in code.
-> >
-> >
-> > Since the chip identifies itself as E3830000, I would prefer naming
-> > matching real product ID instead of what is pushed by marketing or sales
-> > representatives. The marketing names don't have to follow any
-> > engineering rules, they can be changed and renamed. Sales follows rather
-> > money and corporate rules, not consistency for upstream project.
->
-> On the other hand we have already two exceptions for naming
-> inconsistency - Exynos3250 identifies itself as 3472 (which is confusing
-> because 3250 is two core and there is a separate quad-core
-> Exyons3472...) and Exynos5800 is actually marketing name for a revision
-> of Exynos5422. Maybe indeed will be easier to go with the branded name
-> 850...
->
+David, Jakub, I'd like for three patches merged into net-next to
+be reverted.  Bjorn Andersson requested this without success a while
+back (and I followed up on his message).
+  https://lore.kernel.org/netdev/YPby3eJmDmNlESC8@yoga/
+I'm now trying it this way, hoping this is the easiest way to get it
+done.
 
-Well, chip engraving says "3830", but I was specifically told to stick
-to "850" in upstream kernel. I can presume there was some mix ups with
-this naming, and it might be the case it's better to stick to "850"
-exactly to avoid further confusion. Yes, I can see that
-EXYNOS3830_SOC_ID = 0xE3830000 in chipid driver, but we can return
-"EXYNOS850" string for that const, right? If you google "Exynos850"
-and "Exynos3830", it's obvious everybody uses the former, so I'd
-appreciate if we can stick to "850" in the end.
+If you prefer doing this differently, please let me know how.
 
->
-> Best regards,
-> Krzysztof
+Thank you.
+
+					-Alex
+
+Alex Elder (1):
+  Revert "Merge branch 'qcom-dts-updates'"
+
+ .../devicetree/bindings/net/qcom,ipa.yaml     | 18 ++++----
+ arch/arm64/boot/dts/qcom/sc7180.dtsi          |  5 ---
+ arch/arm64/boot/dts/qcom/sc7280.dtsi          | 43 -------------------
+ 3 files changed, 8 insertions(+), 58 deletions(-)
+
+-- 
+2.27.0
+
