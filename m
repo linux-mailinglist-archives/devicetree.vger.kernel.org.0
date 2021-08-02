@@ -2,112 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 892F53DD080
-	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 08:29:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E650F3DD0A2
+	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 08:36:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229792AbhHBGaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Aug 2021 02:30:03 -0400
-Received: from smtpbg587.qq.com ([113.96.223.105]:34185 "EHLO smtpbg587.qq.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229734AbhHBGaC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Aug 2021 02:30:02 -0400
-X-Greylist: delayed 394 seconds by postgrey-1.27 at vger.kernel.org; Mon, 02 Aug 2021 02:30:01 EDT
-X-QQ-Spam: true
-X-QQ-mid: bizesmtp41t1627885392twhm8kke
+        id S231410AbhHBGg3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Aug 2021 02:36:29 -0400
+Received: from smtpbg127.qq.com ([109.244.180.96]:28809 "EHLO smtpbg.qq.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229734AbhHBGg0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Aug 2021 02:36:26 -0400
+X-QQ-mid: bizesmtp54t1627886151tn328rmd
 Received: from localhost.localdomain (unknown [113.89.245.207])
         by esmtp6.qq.com (ESMTP) with 
-        id ; Mon, 02 Aug 2021 14:23:11 +0800 (CST)
-X-QQ-SSF: 01100000002000206000B00A0000000
+        id ; Mon, 02 Aug 2021 14:35:50 +0800 (CST)
+X-QQ-SSF: 01100000002000208000D00A0000000
+X-QQ-FEAT: DoD8xN2rKozcOGDwtQmNGfBMZ4UEoqYYCItVoT8BP0ehgIcHrcwy8XO/zICNf
+        hezuQEncJJkzXRt2FRLGqaRd0iyduY8fQM7gA8qOspLjf29L5ww2Y8t0/5CYFXDb9ng9bzJ
+        Er1jDbcUUdDN6NJRFQg0ftZ72JOnZwzT1IZjZ4759YAg4VC/GKqaAL4KxMCsIx1gHij8gCs
+        UMQMcL2pDeqo0H83vO1lDw1EzdD1SuVPKKT+zncroCdYeo4DpXEaUxWAXuUQtqirxaYLsoo
+        B9J23bSdkIjdXRqHssRb0X+BFsk3o2Ko7jkQYQ9esTORcMtCLNR5gFrgfummGdgj1Zr5i8b
+        cGa+qKLkpZSstC3fmk=
+X-QQ-GoodBg: 0
 From:   Icenowy Zheng <icenowy@sipeed.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Samuel Holland <samuel@sholland.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        Icenowy Zheng <icenowy@sipeed.com>
-Subject: [PATCH 17/17] arm64: allwinner: dts: r329: add support for Sipeed MaixSense
-Date:   Mon,  2 Aug 2021 14:22:12 +0800
-Message-Id: <20210802062212.73220-18-icenowy@sipeed.com>
+To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Icenowy Zheng <icenowy@sipeed.com>
+Subject: [PATCH 0/4] Add simple-dbi tinydrm driver
+Date:   Mon,  2 Aug 2021 14:35:34 +0800
+Message-Id: <20210802063538.75583-1-icenowy@sipeed.com>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210802062212.73220-1-icenowy@sipeed.com>
-References: <20210802062212.73220-1-icenowy@sipeed.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:sipeed.com:qybgspam:qybgspam3
+Feedback-ID: bizesmtp:sipeed.com:qybgspam:qybgspam1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sipeed MaixSense is a R329 devkit based on Maix IIA SoM.
+This patchset adds a tinydrm driver called simple-dbi, which is a driver
+that utilizes only standardized commands in MIPI DCS to activate a MIPI
+DBI panel that requires no extra configuration, usually because the
+configuration is pre-programmed into the OTP of the LCD controller.
 
-Add support for it.
+Icenowy Zheng (4):
+  dt-bindings: vendor-prefixes: add Zhishengxin
+  dt-bindings: display: add binding for simple-dbi panels
+  drm/tiny: add simple-dbi driver
+  MAINTAINERS: add simple-dbi driver
 
-Signed-off-by: Icenowy Zheng <icenowy@sipeed.com>
----
- arch/arm64/boot/dts/allwinner/Makefile        |  1 +
- .../dts/allwinner/sun50i-r329-maixsense.dts   | 37 +++++++++++++++++++
- 2 files changed, 38 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-r329-maixsense.dts
+ .../bindings/display/simple-dbi.yaml          |  72 ++++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   7 +
+ drivers/gpu/drm/tiny/Kconfig                  |  12 +
+ drivers/gpu/drm/tiny/Makefile                 |   1 +
+ drivers/gpu/drm/tiny/simple-dbi.c             | 244 ++++++++++++++++++
+ 6 files changed, 338 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/simple-dbi.yaml
+ create mode 100644 drivers/gpu/drm/tiny/simple-dbi.c
 
-diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-index a96d9d2d8dd8..80a336d480ac 100644
---- a/arch/arm64/boot/dts/allwinner/Makefile
-+++ b/arch/arm64/boot/dts/allwinner/Makefile
-@@ -37,3 +37,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-one-plus.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-model-b.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
-+dtb-$(CONFIG_ARCH_SUNXI) += sun50i-r329-maixsense.dtb
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-r329-maixsense.dts b/arch/arm64/boot/dts/allwinner/sun50i-r329-maixsense.dts
-new file mode 100644
-index 000000000000..1876b9d0b080
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-r329-maixsense.dts
-@@ -0,0 +1,37 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+// Copyright (c) 2021 Sipeed
-+
-+/dts-v1/;
-+
-+#include "sun50i-r329-maix-iia.dtsi"
-+
-+/ {
-+	model = "Sipeed MaixSense";
-+	compatible = "sipeed,maixsense", "sipeed,maix-iia",
-+		     "allwinner,sun50i-r329";
-+
-+	aliases {
-+		serial0 = &uart0;
-+		mmc0 = &mmc0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+&mmc0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mmc0_pf_pins>;
-+
-+	vmmc-supply = <&reg_vcc3v3>;
-+	bus-width = <4>;
-+	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
-+	status = "okay";
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_pb_pins>;
-+	status = "okay";
-+};
 -- 
 2.30.2
 
