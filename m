@@ -2,280 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 478F03DDBAA
-	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 16:56:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B8463DDBC2
+	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 17:02:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234345AbhHBO4c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Aug 2021 10:56:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54488 "EHLO mail.kernel.org"
+        id S234645AbhHBPCW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Aug 2021 11:02:22 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57086 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234227AbhHBO4b (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Aug 2021 10:56:31 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 42FE760F9E;
-        Mon,  2 Aug 2021 14:56:22 +0000 (UTC)
+        id S234651AbhHBPCS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Aug 2021 11:02:18 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0C190610FD
+        for <devicetree@vger.kernel.org>; Mon,  2 Aug 2021 15:02:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627916182;
-        bh=KsE+lIG2EnoZ7ZovXs4XjVtdiZlJ/+tn9HBYRxJuidY=;
+        s=k20201202; t=1627916529;
+        bh=24hp/ZyqmbccsclVib+lhMMKYYp+1XDaihWTuYhTKKM=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=gwR+eIFMtIjEpPzhPvJxYWKdWFNHEnKyBoY5Wl4rT2xqtkUPmde1/edUJA7Lhf0VZ
-         tJwfHA++0GOoAcixHFC0WceeV2WkcFqw+Ej1ONeSS2Mpy0oGt9UybdHBgKPUi7z2XO
-         +43nLcRL2nyva6zvewC7Dcw1Enrj1BHBRMO8mMFUxOThtTpuJ/KVC3JIwVebQL9xje
-         6utOOg1BTvfSm9BcRZYUhyF3431gzi+5UORpg1kKR5OqfSvgkJ2BPJjmp2Q0e+G4Cm
-         PbR2L0yHVgWOitGr4Fb5j8ymK6/inYLALLj8XZkP0hrlSPJdHOABCgmKidQraFWUH1
-         /YIClQ2DBdqfA==
-Received: by mail-lf1-f49.google.com with SMTP id h14so34190365lfv.7;
-        Mon, 02 Aug 2021 07:56:22 -0700 (PDT)
-X-Gm-Message-State: AOAM530hqHw787ZJqnNmvz+PjdxAWhfP5vGCrIOpVu6emEKS2DeSYOic
-        3oaebGuXRs14RHkoDCfeZp2ByyPh06C97/OFdA==
-X-Google-Smtp-Source: ABdhPJyJrEyjrOdrITCgsnEo8nW14bmCCMANnitM9MlIaaaRSPL7c9xkbdvH/F1rz4v6F2CGNtlg/gwTvFgM5e8wgaI=
-X-Received: by 2002:aa7:cb19:: with SMTP id s25mr20049107edt.194.1627916169555;
- Mon, 02 Aug 2021 07:56:09 -0700 (PDT)
+        b=IY4uZ55CHqEwkavuvt1zZk1KPdjNYT3N/L3EEDZefWLNPmdn5sTC0z1ClX418Oyl2
+         7sPDmFJ77gtqWfrmo85OnCgKj+ET6tIhssNPTkXyFmqwgUv35rWYYHYmnEa15oAY6S
+         HJB3Za2jEYpGCok0jdD5Onynp0Cevyx7eOUGiG+2ROaUdN+1X0cqcSXNPH7lHU7QQK
+         7+lz0lpYxipR/oDED2hStShsZRvh6+CskvuKjeF0uiqw/Kv/D/9UTHofZxAUB2gm7J
+         HeK/3z0llTOe8Snep1aTqGagKdBKNDRRlMMw6eJzEXSIUhzFCHycfrGqfmHwEKvLgD
+         RNKIb4DaAGnqQ==
+Received: by mail-ej1-f53.google.com with SMTP id hs10so22723895ejc.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Aug 2021 08:02:08 -0700 (PDT)
+X-Gm-Message-State: AOAM532r41aZKQ1g2sNMAfAAiZwl4+iHWXOAdo38oqHrI5OeMsXQnHgG
+        07eFvFIxefDm56MXgkshJnEqM+eyojqEiGKMzg==
+X-Google-Smtp-Source: ABdhPJxMhxjR2Ydlg0Cp7bNg/W7DfWSC26RcG9jU6gkFqbqA7dYX1RnU9CmW07iWXaUHyXEg7kuHR+HpztlWfADNzL8=
+X-Received: by 2002:a17:906:3495:: with SMTP id g21mr16061013ejb.359.1627916527493;
+ Mon, 02 Aug 2021 08:02:07 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210802063737.22733-1-rppt@kernel.org>
-In-Reply-To: <20210802063737.22733-1-rppt@kernel.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 2 Aug 2021 08:55:57 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+i17C=+9bg=XPattuHe+M8NE3B29+FCg4p3-bPDgSaKw@mail.gmail.com>
-Message-ID: <CAL_Jsq+i17C=+9bg=XPattuHe+M8NE3B29+FCg4p3-bPDgSaKw@mail.gmail.com>
-Subject: Re: [PATCH v2] memblock: make memblock_find_in_range method private
-To:     Mike Rapoport <rppt@kernel.org>
-Cc:     Andrew Morton <akpm@linux-foundation.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Andy Lutomirski <luto@kernel.org>,
-        Borislav Petkov <bp@alien8.de>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Christian Borntraeger <borntraeger@de.ibm.com>,
-        Dave Hansen <dave.hansen@linux.intel.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "H. Peter Anvin" <hpa@zytor.com>,
-        Heiko Carstens <hca@linux.ibm.com>,
-        Ingo Molnar <mingo@redhat.com>,
-        "Kirill A. Shutemov" <kirill@shutemov.name>,
-        Len Brown <lenb@kernel.org>, Marc Zyngier <maz@kernel.org>,
-        Mike Rapoport <rppt@linux.ibm.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Peter Zijlstra <peterz@infradead.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Russell King <linux@armlinux.org.uk>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Vasily Gorbik <gor@linux.ibm.com>,
-        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-        "open list:KERNEL VIRTUAL MACHINE FOR ARM64 (KVM/arm64)" 
-        <kvmarm@lists.cs.columbia.edu>,
-        "open list:ACPI FOR ARM64 (ACPI/arm64)" <linux-acpi@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        linux-mm <linux-mm@kvack.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        linux-s390@vger.kernel.org, X86 ML <x86@kernel.org>
+References: <20210715082536.1882077-1-aisheng.dong@nxp.com>
+ <20210715082536.1882077-6-aisheng.dong@nxp.com> <20210722024948.GA3198597@robh.at.kernel.org>
+ <CAA+hA=TwGGwZi2HzZSLSZHYWEi8Pp6AnHeRpfDhD0pUfY_xPSQ@mail.gmail.com>
+In-Reply-To: <CAA+hA=TwGGwZi2HzZSLSZHYWEi8Pp6AnHeRpfDhD0pUfY_xPSQ@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 2 Aug 2021 09:01:55 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+4247uCgu5pDAEqO9Nn=9deeJBkiOrG3fTwdqPO+6J2w@mail.gmail.com>
+Message-ID: <CAL_Jsq+4247uCgu5pDAEqO9Nn=9deeJBkiOrG3fTwdqPO+6J2w@mail.gmail.com>
+Subject: Re: [PATCH 5/7] dt-bindings: soc: imx: add missing anatop binding
+To:     Dong Aisheng <dongas86@gmail.com>
+Cc:     Dong Aisheng <aisheng.dong@nxp.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 2, 2021 at 12:37 AM Mike Rapoport <rppt@kernel.org> wrote:
+On Mon, Aug 2, 2021 at 5:38 AM Dong Aisheng <dongas86@gmail.com> wrote:
 >
-> From: Mike Rapoport <rppt@linux.ibm.com>
+> Hi Rob,
 >
-> There are a lot of uses of memblock_find_in_range() along with
-> memblock_reserve() from the times memblock allocation APIs did not exist.
+> On Thu, Jul 22, 2021 at 10:49 AM Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Thu, Jul 15, 2021 at 04:25:34PM +0800, Dong Aisheng wrote:
+> > > Anatop is a system combo module which supports various analog functions
+> > > like PLL, Regulators, LDOs, Sensors and etc.
+> > > This binding doc is generated based on the exist usage in dts
+> > > in order to fix dt schema check failures.
+> > >
+> > > Cc: Rob Herring <robh+dt@kernel.org>
+> > > Cc: Shawn Guo <shawnguo@kernel.org>
+> > > Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
+> > > ---
+> > >  .../bindings/soc/imx/fsl,anatop.yaml          | 68 +++++++++++++++++++
+> > >  1 file changed, 68 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,anatop.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,anatop.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,anatop.yaml
+> > > new file mode 100644
+> > > index 000000000000..f379d960f527
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/soc/imx/fsl,anatop.yaml
+> > > @@ -0,0 +1,68 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/soc/imx/fsl,anatop.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Freescale Anatop binding
+> > > +
+> > > +maintainers:
+> > > +  - Dong Aisheng <aisheng.dong@nxp.com>
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    oneOf:
+> > > +      - items:
+> > > +          - const: fsl,imx6q-anatop
+> > > +          - const: syscon
+> > > +          - const: simple-mfd
+> > > +      - items:
+> > > +          - enum:
+> > > +              - fsl,imx6sl-anatop
+> > > +              - fsl,imx6sll-anatop
+> > > +              - fsl,imx6sx-anatop
+> > > +              - fsl,imx6ul-anatop
+> > > +              - fsl,imx7d-anatop
+> > > +          - const: fsl,imx6q-anatop
+> > > +          - const: syscon
+> > > +          - const: simple-mfd
+> > > +      - items:
+> > > +          - enum:
+> > > +              - fsl,imx8mq-anatop
+> > > +              - fsl,imx8mm-anatop
+> > > +              - fsl,vf610-anatop
+> > > +          - const: syscon
+> > > +      - items:
+> > > +          - enum:
+> > > +              - fsl,imx8mn-anatop
+> > > +              - fsl,imx8mp-anatop
+> > > +          - const: fsl,imx8mm-anatop
+> > > +          - const: syscon
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  interrupts:
+> > > +    items:
+> > > +      - description: Temperature Sensor
+> > > +      - description: PMU interrupt 1
+> > > +      - description: PMU interrupt 2
+> > > +    minItems: 1
+> > > +    maxItems: 3
+> >
+> > Don't need maxItems.
+> >
 >
-> memblock_find_in_range() is the very core of memblock allocations, so any
-> future changes to its internal behaviour would mandate updates of all the
-> users outside memblock.
+> Got it
 >
-> Replace the calls to memblock_find_in_range() with an equivalent calls to
-> memblock_phys_alloc() and memblock_phys_alloc_range() and make
-> memblock_find_in_range() private method of memblock.
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +
+> > > +additionalProperties: true
+> >
+> > This should be the case only for common schemas used by other schemas.
+> >
 >
-> This simplifies the callers, ensures that (unlikely) errors in
-> memblock_reserve() are handled and improves maintainability of
-> memblock_find_in_range().
->
-> Signed-off-by: Mike Rapoport <rppt@linux.ibm.com>
-> ---
-> v2: don't change error message in arm::reserve_crashkernel(), per Russell
-> v1: https://lore.kernel.org/lkml/20210730104039.7047-1-rppt@kernel.org
->
->  arch/arm/kernel/setup.c           | 18 +++++--------
->  arch/arm64/kvm/hyp/reserved_mem.c |  9 +++----
->  arch/arm64/mm/init.c              | 36 ++++++++-----------------
->  arch/mips/kernel/setup.c          | 14 +++++-----
->  arch/riscv/mm/init.c              | 44 ++++++++++---------------------
->  arch/s390/kernel/setup.c          | 10 ++++---
->  arch/x86/kernel/aperture_64.c     |  5 ++--
->  arch/x86/mm/init.c                | 21 +++++++++------
->  arch/x86/mm/numa.c                |  5 ++--
->  arch/x86/mm/numa_emulation.c      |  5 ++--
->  arch/x86/realmode/init.c          |  2 +-
->  drivers/acpi/tables.c             |  5 ++--
->  drivers/base/arch_numa.c          |  5 +---
->  drivers/of/of_reserved_mem.c      | 12 ++++++---
->  include/linux/memblock.h          |  2 --
->  mm/memblock.c                     |  2 +-
->  16 files changed, 78 insertions(+), 117 deletions(-)
->
-> diff --git a/arch/arm/kernel/setup.c b/arch/arm/kernel/setup.c
-> index f97eb2371672..67f5421b2af7 100644
-> --- a/arch/arm/kernel/setup.c
-> +++ b/arch/arm/kernel/setup.c
-> @@ -1012,31 +1012,25 @@ static void __init reserve_crashkernel(void)
->                 unsigned long long lowmem_max = __pa(high_memory - 1) + 1;
->                 if (crash_max > lowmem_max)
->                         crash_max = lowmem_max;
-> -               crash_base = memblock_find_in_range(CRASH_ALIGN, crash_max,
-> -                                                   crash_size, CRASH_ALIGN);
-> +
-> +               crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
-> +                                                      CRASH_ALIGN, crash_max);
->                 if (!crash_base) {
->                         pr_err("crashkernel reservation failed - No suitable area found.\n");
->                         return;
->                 }
->         } else {
-> +               unsigned long long crash_max = crash_base + crash_size;
->                 unsigned long long start;
->
-> -               start = memblock_find_in_range(crash_base,
-> -                                              crash_base + crash_size,
-> -                                              crash_size, SECTION_SIZE);
-> +               start = memblock_phys_alloc_range(crash_size, SECTION_SIZE,
-> +                                                 crash_base, crash_max);
->                 if (start != crash_base) {
+> Like iomuxc-gpr in patch 6, the problem is that for those nodes with
+> simple-mfd backwards compatibility,
+> there could be possibly some random subnodes since there're generic
+> combo registers.
+> That's why i use additionalProperties true to cover it.
+> Do you think it's ok?
 
-If this is true and start is non-zero, then you need an
-memblock_free(). However, since the range is equal to the size, then
-that can never happen and just checking !start is sufficient.
+No, because all that should be reviewed rather than random subnodes.
+Otherwise, how do we validate them?
 
->                         pr_err("crashkernel reservation failed - memory is in use.\n");
->                         return;
->                 }
->         }
->
-> -       ret = memblock_reserve(crash_base, crash_size);
-> -       if (ret < 0) {
-> -               pr_warn("crashkernel reservation failed - memory is in use (0x%lx)\n",
-> -                       (unsigned long)crash_base);
-> -               return;
-> -       }
-> -
->         pr_info("Reserving %ldMB of memory at %ldMB for crashkernel (System RAM: %ldMB)\n",
->                 (unsigned long)(crash_size >> 20),
->                 (unsigned long)(crash_base >> 20),
-> diff --git a/arch/arm64/kvm/hyp/reserved_mem.c b/arch/arm64/kvm/hyp/reserved_mem.c
-> index d654921dd09b..578670e3f608 100644
-> --- a/arch/arm64/kvm/hyp/reserved_mem.c
-> +++ b/arch/arm64/kvm/hyp/reserved_mem.c
-> @@ -92,12 +92,10 @@ void __init kvm_hyp_reserve(void)
->          * this is unmapped from the host stage-2, and fallback to PAGE_SIZE.
->          */
->         hyp_mem_size = hyp_mem_pages << PAGE_SHIFT;
-> -       hyp_mem_base = memblock_find_in_range(0, memblock_end_of_DRAM(),
-> -                                             ALIGN(hyp_mem_size, PMD_SIZE),
-> -                                             PMD_SIZE);
-> +       hyp_mem_base = memblock_phys_alloc(ALIGN(hyp_mem_size, PMD_SIZE),
-> +                                          PMD_SIZE);
->         if (!hyp_mem_base)
-> -               hyp_mem_base = memblock_find_in_range(0, memblock_end_of_DRAM(),
-> -                                                     hyp_mem_size, PAGE_SIZE);
-> +               hyp_mem_base = memblock_phys_alloc(hyp_mem_size, PAGE_SIZE);
->         else
->                 hyp_mem_size = ALIGN(hyp_mem_size, PMD_SIZE);
->
-> @@ -105,7 +103,6 @@ void __init kvm_hyp_reserve(void)
->                 kvm_err("Failed to reserve hyp memory\n");
->                 return;
->         }
-> -       memblock_reserve(hyp_mem_base, hyp_mem_size);
->
->         kvm_info("Reserved %lld MiB at 0x%llx\n", hyp_mem_size >> 20,
->                  hyp_mem_base);
-> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
-> index 8490ed2917ff..d566478a06dd 100644
-> --- a/arch/arm64/mm/init.c
-> +++ b/arch/arm64/mm/init.c
-> @@ -74,6 +74,7 @@ phys_addr_t arm64_dma_phys_limit __ro_after_init;
->  static void __init reserve_crashkernel(void)
->  {
->         unsigned long long crash_base, crash_size;
-> +       unsigned long crash_max = arm64_dma_phys_limit;
-
-It all works out to the same size, but it doesn't make sense that
-crash_base and crash_size are long long and crash_max is long.
-
->         int ret;
->
->         ret = parse_crashkernel(boot_command_line, memblock_phys_mem_size(),
-> @@ -84,33 +85,18 @@ static void __init reserve_crashkernel(void)
->
->         crash_size = PAGE_ALIGN(crash_size);
->
-> -       if (crash_base == 0) {
-> -               /* Current arm64 boot protocol requires 2MB alignment */
-> -               crash_base = memblock_find_in_range(0, arm64_dma_phys_limit,
-> -                               crash_size, SZ_2M);
-> -               if (crash_base == 0) {
-> -                       pr_warn("cannot allocate crashkernel (size:0x%llx)\n",
-> -                               crash_size);
-> -                       return;
-> -               }
-> -       } else {
-> -               /* User specifies base address explicitly. */
-> -               if (!memblock_is_region_memory(crash_base, crash_size)) {
-> -                       pr_warn("cannot reserve crashkernel: region is not memory\n");
-> -                       return;
-> -               }
-> +       /* User specifies base address explicitly. */
-> +       if (crash_base)
-> +               crash_max = crash_base + crash_size;
->
-> -               if (memblock_is_region_reserved(crash_base, crash_size)) {
-> -                       pr_warn("cannot reserve crashkernel: region overlaps reserved memory\n");
-> -                       return;
-> -               }
-> -
-> -               if (!IS_ALIGNED(crash_base, SZ_2M)) {
-> -                       pr_warn("cannot reserve crashkernel: base address is not 2MB aligned\n");
-> -                       return;
-
-We've lost the alignment check.
-
-Perhaps memblock_phys_alloc_range() should check that the start
-matches the alignment. That would simplify the return handling as it
-seems NULL is not the only error case.
-
-> -               }
-> +       /* Current arm64 boot protocol requires 2MB alignment */
-> +       crash_base = memblock_phys_alloc_range(crash_size, SZ_2M,
-> +                                              crash_base, crash_max);
-> +       if (!crash_base) {
-> +               pr_warn("cannot allocate crashkernel (size:0x%llx)\n",
-> +                       crash_size);
-> +               return;
->         }
-> -       memblock_reserve(crash_base, crash_size);
->
->         pr_info("crashkernel reserved: 0x%016llx - 0x%016llx (%lld MB)\n",
->                 crash_base, crash_base + crash_size, crash_size >> 20);
-
-[...]
-
-> diff --git a/arch/x86/realmode/init.c b/arch/x86/realmode/init.c
-> index 6534c92d0f83..31b5856010cb 100644
-> --- a/arch/x86/realmode/init.c
-> +++ b/arch/x86/realmode/init.c
-> @@ -28,7 +28,7 @@ void __init reserve_real_mode(void)
->         WARN_ON(slab_is_available());
->
->         /* Has to be under 1M so we can execute real-mode AP code. */
-> -       mem = memblock_find_in_range(0, 1<<20, size, PAGE_SIZE);
-> +       mem = memblock_phys_alloc_range(size, PAGE_SIZE, 0, 1<<20);
->         if (!mem)
->                 pr_info("No sub-1M memory is available for the trampoline\n");
->         else
-
-Don't you need to drop the memblock_reserve() after this?
+Rob
