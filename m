@@ -2,293 +2,361 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F5C53DDC8D
-	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 17:37:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 299033DDCD4
+	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 17:54:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235102AbhHBPhY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Aug 2021 11:37:24 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46382 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235059AbhHBPhX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Aug 2021 11:37:23 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 02B5A610A8;
-        Mon,  2 Aug 2021 15:37:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627918634;
-        bh=KbDcPFeTY6MZZybLD6Q3+qK9vhOUrcFoqm0L4COvzKY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SDR1PWPIhKnU7k6XlsLHL5m+lr3GGEFKMTZ9HbvB+P0DySQEGSfLTP0Eu3OSNiN7f
-         j6jF6WKW7Y0YjQHtslIucDoRj1//G6hYyimo/ePkifEkZ8R9Ea0sdaKeL1HbfArRBd
-         KqvWJx+vNRi4FkgSjRB/wJCOUpKGHxzyiFoPz1EjlpyHV6YS0oP/UZNiGgrWjCle5L
-         CLeodhdVI2VMvA/JGiIZkJfrvH8K4t/n8KLcrb6yomn3lFLBXFhUhJeh5rn2SshGDL
-         vNrUW4HYSVbCz9Ni4upPqcjj6uuvh/wvfglyZloXgX6r3TiWk6t0DqX78cXKpR/fP5
-         8yeD+9fiPzJ1g==
-Date:   Mon, 2 Aug 2021 18:37:00 +0300
-From:   Mike Rapoport <rppt@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Andrew Morton <akpm@linux-foundation.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Andy Lutomirski <luto@kernel.org>,
-        Borislav Petkov <bp@alien8.de>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Christian Borntraeger <borntraeger@de.ibm.com>,
-        Dave Hansen <dave.hansen@linux.intel.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "H. Peter Anvin" <hpa@zytor.com>,
-        Heiko Carstens <hca@linux.ibm.com>,
-        Ingo Molnar <mingo@redhat.com>,
-        "Kirill A. Shutemov" <kirill@shutemov.name>,
-        Len Brown <lenb@kernel.org>, Marc Zyngier <maz@kernel.org>,
-        Mike Rapoport <rppt@linux.ibm.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Peter Zijlstra <peterz@infradead.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Russell King <linux@armlinux.org.uk>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Vasily Gorbik <gor@linux.ibm.com>,
-        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-        "open list:KERNEL VIRTUAL MACHINE FOR ARM64 (KVM/arm64)" 
-        <kvmarm@lists.cs.columbia.edu>,
-        "open list:ACPI FOR ARM64 (ACPI/arm64)" <linux-acpi@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        linux-mm <linux-mm@kvack.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        linux-s390@vger.kernel.org, X86 ML <x86@kernel.org>
-Subject: Re: [PATCH v2] memblock: make memblock_find_in_range method private
-Message-ID: <YQgRHNLt+8Swein9@kernel.org>
-References: <20210802063737.22733-1-rppt@kernel.org>
- <CAL_Jsq+i17C=+9bg=XPattuHe+M8NE3B29+FCg4p3-bPDgSaKw@mail.gmail.com>
+        id S234782AbhHBPyv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Aug 2021 11:54:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42014 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229979AbhHBPyv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 11:54:51 -0400
+Received: from mail-ua1-x92d.google.com (mail-ua1-x92d.google.com [IPv6:2607:f8b0:4864:20::92d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD505C06175F
+        for <devicetree@vger.kernel.org>; Mon,  2 Aug 2021 08:54:41 -0700 (PDT)
+Received: by mail-ua1-x92d.google.com with SMTP id d22so7150928uaw.11
+        for <devicetree@vger.kernel.org>; Mon, 02 Aug 2021 08:54:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=bOHjsgsD2KdQNZhj/X5isibZlyiTR/fOFK93D80plwc=;
+        b=r5JUSa8om3a2IqrDpjkld41fhuxUws2xnvEyOIPhBF7HzWydcqePba+WNnvb4bJDUt
+         5wdjOe31hgk6aFtusxeGh5+kD64l249eO1cyWWFwDKiXi3L4jg+NJckJg/ZU22MbMtW3
+         o8NJM5hlGV/4szaeU2LFVOkjosNQFl6+pOtD+rZnDsEY35iIt6BzXZ8oYo6l0q+aIxop
+         S9Jx99Fv7Y14tXmvYuT2rLXqzSPSEPDdBjTDcSkSZ9Nmo6a9qLZoyBpOdTK8O+cGGIlE
+         YJUaZpRJE2F4A3P7dUMIFGi4hafm8QWQjZu8+FwyapCV2NN5Qz6lbUfyxaAKNdsYWJPq
+         VqJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bOHjsgsD2KdQNZhj/X5isibZlyiTR/fOFK93D80plwc=;
+        b=YZ+EOjsC11YM5pRQrr2bS81Ek4HgyuKZmUKXZk1u9SZaYmWQebnVXCIU3OocjiQ3l6
+         aGUzemmWrMVm3Rr5eHC7fPdGqPHW08CH+Nv0FnncrBlPiJXwQ6j/ubDCoH0Bv/WgDBdJ
+         puR3egtpAjJndcCgYpOCSaZwAg5Bwl3dfEpX+y7T3cOpplVNeL5nyMeBw+u88jmnubDA
+         LhvOnl3l/4mVVzazLlwpAQvDDd0zGm85mh8309lR0Hzj89i217Uk0N1uhcP8chA27cBI
+         52ivrpjnBOG202JXv79QErVyRCjyTfnmm67f/zxQDjnymj63TGPy+Kk9NgSdrPt5iEd3
+         3vpw==
+X-Gm-Message-State: AOAM532pLWjzi0qq0GTjEUZ/XodVm6Bom8TyGVOgyEVmYLS5E+Aqdqhk
+        4zwxlfKIWXv5bsewIxy39KvyihSWs19+Q/xohGQi9A==
+X-Google-Smtp-Source: ABdhPJwwFeotl04CyVWoVwYJL+BLVjqfP1mwENz8wyrC099+592Gy8L4lxTA4UG3x5KSJX/W1GWpZxmNvh1fX5bxXBk=
+X-Received: by 2002:ab0:6f4b:: with SMTP id r11mr1912984uat.104.1627919680833;
+ Mon, 02 Aug 2021 08:54:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+i17C=+9bg=XPattuHe+M8NE3B29+FCg4p3-bPDgSaKw@mail.gmail.com>
+References: <20210720231837.1576130-1-linus.walleij@linaro.org>
+In-Reply-To: <20210720231837.1576130-1-linus.walleij@linaro.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 2 Aug 2021 17:54:04 +0200
+Message-ID: <CAPDyKFqSZiHubLDJaQmLtPjLxvU2N9iGY--Yc2ghhyBhcLaqJQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2 v2] dt-bindings: clock: u8500: Rewrite in YAML and extend
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Wed, 21 Jul 2021 at 01:20, Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> This rewrites the ux500/u8500 clock bindings in YAML schema and extends them
+> with the PRCC reset controller.
+>
+> The bindings are a bit idiomatic but it just reflects their age, the ux500
+> platform was used as guinea pig for early device tree conversion of platforms
+> in 2015. The new subnode for the reset controller follows the pattern of the
+> old bindings and adds a node with reset-cells for this.
+>
+> Cc: devicetree@vger.kernel.org
+> Cc: Philipp Zabel <p.zabel@pengutronix.de>
+> Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 
-On Mon, Aug 02, 2021 at 08:55:57AM -0600, Rob Herring wrote:
-> On Mon, Aug 2, 2021 at 12:37 AM Mike Rapoport <rppt@kernel.org> wrote:
-> >
-> > From: Mike Rapoport <rppt@linux.ibm.com>
-> >
-> > There are a lot of uses of memblock_find_in_range() along with
-> > memblock_reserve() from the times memblock allocation APIs did not exist.
-> >
-> > memblock_find_in_range() is the very core of memblock allocations, so any
-> > future changes to its internal behaviour would mandate updates of all the
-> > users outside memblock.
-> >
-> > Replace the calls to memblock_find_in_range() with an equivalent calls to
-> > memblock_phys_alloc() and memblock_phys_alloc_range() and make
-> > memblock_find_in_range() private method of memblock.
-> >
-> > This simplifies the callers, ensures that (unlikely) errors in
-> > memblock_reserve() are handled and improves maintainability of
-> > memblock_find_in_range().
-> >
-> > Signed-off-by: Mike Rapoport <rppt@linux.ibm.com>
-> > ---
-> > v2: don't change error message in arm::reserve_crashkernel(), per Russell
-> > v1: https://lore.kernel.org/lkml/20210730104039.7047-1-rppt@kernel.org
-> >
-> >  arch/arm/kernel/setup.c           | 18 +++++--------
-> >  arch/arm64/kvm/hyp/reserved_mem.c |  9 +++----
-> >  arch/arm64/mm/init.c              | 36 ++++++++-----------------
-> >  arch/mips/kernel/setup.c          | 14 +++++-----
-> >  arch/riscv/mm/init.c              | 44 ++++++++++---------------------
-> >  arch/s390/kernel/setup.c          | 10 ++++---
-> >  arch/x86/kernel/aperture_64.c     |  5 ++--
-> >  arch/x86/mm/init.c                | 21 +++++++++------
-> >  arch/x86/mm/numa.c                |  5 ++--
-> >  arch/x86/mm/numa_emulation.c      |  5 ++--
-> >  arch/x86/realmode/init.c          |  2 +-
-> >  drivers/acpi/tables.c             |  5 ++--
-> >  drivers/base/arch_numa.c          |  5 +---
-> >  drivers/of/of_reserved_mem.c      | 12 ++++++---
-> >  include/linux/memblock.h          |  2 --
-> >  mm/memblock.c                     |  2 +-
-> >  16 files changed, 78 insertions(+), 117 deletions(-)
-> >
-> > diff --git a/arch/arm/kernel/setup.c b/arch/arm/kernel/setup.c
-> > index f97eb2371672..67f5421b2af7 100644
-> > --- a/arch/arm/kernel/setup.c
-> > +++ b/arch/arm/kernel/setup.c
-> > @@ -1012,31 +1012,25 @@ static void __init reserve_crashkernel(void)
-> >                 unsigned long long lowmem_max = __pa(high_memory - 1) + 1;
-> >                 if (crash_max > lowmem_max)
-> >                         crash_max = lowmem_max;
-> > -               crash_base = memblock_find_in_range(CRASH_ALIGN, crash_max,
-> > -                                                   crash_size, CRASH_ALIGN);
-> > +
-> > +               crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
-> > +                                                      CRASH_ALIGN, crash_max);
-> >                 if (!crash_base) {
-> >                         pr_err("crashkernel reservation failed - No suitable area found.\n");
-> >                         return;
-> >                 }
-> >         } else {
-> > +               unsigned long long crash_max = crash_base + crash_size;
-> >                 unsigned long long start;
-> >
-> > -               start = memblock_find_in_range(crash_base,
-> > -                                              crash_base + crash_size,
-> > -                                              crash_size, SECTION_SIZE);
-> > +               start = memblock_phys_alloc_range(crash_size, SECTION_SIZE,
-> > +                                                 crash_base, crash_max);
-> >                 if (start != crash_base) {
-> 
-> If this is true and start is non-zero, then you need an
-> memblock_free(). However, since the range is equal to the size, then
-> that can never happen and just checking !start is sufficient.
+Apologies for the delay! At some point we should also extend these
+bindings by adding a power-domain consumer binding, as each PRCC block
+belongs to the core power domain.
 
-Agree. Will update.
- 
-> >                         pr_err("crashkernel reservation failed - memory is in use.\n");
-> >                         return;
-> >                 }
-> >         }
-> >
-> > -       ret = memblock_reserve(crash_base, crash_size);
-> > -       if (ret < 0) {
-> > -               pr_warn("crashkernel reservation failed - memory is in use (0x%lx)\n",
-> > -                       (unsigned long)crash_base);
-> > -               return;
-> > -       }
-> > -
-> >         pr_info("Reserving %ldMB of memory at %ldMB for crashkernel (System RAM: %ldMB)\n",
-> >                 (unsigned long)(crash_size >> 20),
-> >                 (unsigned long)(crash_base >> 20),
-> > diff --git a/arch/arm64/kvm/hyp/reserved_mem.c b/arch/arm64/kvm/hyp/reserved_mem.c
-> > index d654921dd09b..578670e3f608 100644
-> > --- a/arch/arm64/kvm/hyp/reserved_mem.c
-> > +++ b/arch/arm64/kvm/hyp/reserved_mem.c
-> > @@ -92,12 +92,10 @@ void __init kvm_hyp_reserve(void)
-> >          * this is unmapped from the host stage-2, and fallback to PAGE_SIZE.
-> >          */
-> >         hyp_mem_size = hyp_mem_pages << PAGE_SHIFT;
-> > -       hyp_mem_base = memblock_find_in_range(0, memblock_end_of_DRAM(),
-> > -                                             ALIGN(hyp_mem_size, PMD_SIZE),
-> > -                                             PMD_SIZE);
-> > +       hyp_mem_base = memblock_phys_alloc(ALIGN(hyp_mem_size, PMD_SIZE),
-> > +                                          PMD_SIZE);
-> >         if (!hyp_mem_base)
-> > -               hyp_mem_base = memblock_find_in_range(0, memblock_end_of_DRAM(),
-> > -                                                     hyp_mem_size, PAGE_SIZE);
-> > +               hyp_mem_base = memblock_phys_alloc(hyp_mem_size, PAGE_SIZE);
-> >         else
-> >                 hyp_mem_size = ALIGN(hyp_mem_size, PMD_SIZE);
-> >
-> > @@ -105,7 +103,6 @@ void __init kvm_hyp_reserve(void)
-> >                 kvm_err("Failed to reserve hyp memory\n");
-> >                 return;
-> >         }
-> > -       memblock_reserve(hyp_mem_base, hyp_mem_size);
-> >
-> >         kvm_info("Reserved %lld MiB at 0x%llx\n", hyp_mem_size >> 20,
-> >                  hyp_mem_base);
-> > diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
-> > index 8490ed2917ff..d566478a06dd 100644
-> > --- a/arch/arm64/mm/init.c
-> > +++ b/arch/arm64/mm/init.c
-> > @@ -74,6 +74,7 @@ phys_addr_t arm64_dma_phys_limit __ro_after_init;
-> >  static void __init reserve_crashkernel(void)
-> >  {
-> >         unsigned long long crash_base, crash_size;
-> > +       unsigned long crash_max = arm64_dma_phys_limit;
-> 
-> It all works out to the same size, but it doesn't make sense that
-> crash_base and crash_size are long long and crash_max is long.
+FWIW:
+Acked-by: Ulf Hansson <ulf.hansson@linaro.org>
 
-Indeed, thanks.
- 
-> >         int ret;
-> >
-> >         ret = parse_crashkernel(boot_command_line, memblock_phys_mem_size(),
-> > @@ -84,33 +85,18 @@ static void __init reserve_crashkernel(void)
-> >
-> >         crash_size = PAGE_ALIGN(crash_size);
-> >
-> > -       if (crash_base == 0) {
-> > -               /* Current arm64 boot protocol requires 2MB alignment */
-> > -               crash_base = memblock_find_in_range(0, arm64_dma_phys_limit,
-> > -                               crash_size, SZ_2M);
-> > -               if (crash_base == 0) {
-> > -                       pr_warn("cannot allocate crashkernel (size:0x%llx)\n",
-> > -                               crash_size);
-> > -                       return;
-> > -               }
-> > -       } else {
-> > -               /* User specifies base address explicitly. */
-> > -               if (!memblock_is_region_memory(crash_base, crash_size)) {
-> > -                       pr_warn("cannot reserve crashkernel: region is not memory\n");
-> > -                       return;
-> > -               }
-> > +       /* User specifies base address explicitly. */
-> > +       if (crash_base)
-> > +               crash_max = crash_base + crash_size;
-> >
-> > -               if (memblock_is_region_reserved(crash_base, crash_size)) {
-> > -                       pr_warn("cannot reserve crashkernel: region overlaps reserved memory\n");
-> > -                       return;
-> > -               }
-> > -
-> > -               if (!IS_ALIGNED(crash_base, SZ_2M)) {
-> > -                       pr_warn("cannot reserve crashkernel: base address is not 2MB aligned\n");
-> > -                       return;
-> 
-> We've lost the alignment check.
-> 
-> Perhaps memblock_phys_alloc_range() should check that the start
-> matches the alignment. That would simplify the return handling as it
-> seems NULL is not the only error case.
+Kind regards
+Uffe
 
-We only lost pr_warn() about the alignment check. When crash_base != 0, we
-are trying to allocate the exact [base, base + size) region aligned at 2M.
-If it is free we get the address, if not we get 0.
- 
-> > -               }
-> > +       /* Current arm64 boot protocol requires 2MB alignment */
-> > +       crash_base = memblock_phys_alloc_range(crash_size, SZ_2M,
-> > +                                              crash_base, crash_max);
-> > +       if (!crash_base) {
-> > +               pr_warn("cannot allocate crashkernel (size:0x%llx)\n",
-> > +                       crash_size);
-> > +               return;
-> >         }
-> > -       memblock_reserve(crash_base, crash_size);
-> >
-> >         pr_info("crashkernel reserved: 0x%016llx - 0x%016llx (%lld MB)\n",
-> >                 crash_base, crash_base + crash_size, crash_size >> 20);
-> 
-> [...]
-> 
-> > diff --git a/arch/x86/realmode/init.c b/arch/x86/realmode/init.c
-> > index 6534c92d0f83..31b5856010cb 100644
-> > --- a/arch/x86/realmode/init.c
-> > +++ b/arch/x86/realmode/init.c
-> > @@ -28,7 +28,7 @@ void __init reserve_real_mode(void)
-> >         WARN_ON(slab_is_available());
-> >
-> >         /* Has to be under 1M so we can execute real-mode AP code. */
-> > -       mem = memblock_find_in_range(0, 1<<20, size, PAGE_SIZE);
-> > +       mem = memblock_phys_alloc_range(size, PAGE_SIZE, 0, 1<<20);
-> >         if (!mem)
-> >                 pr_info("No sub-1M memory is available for the trampoline\n");
-> >         else
-> 
-> Don't you need to drop the memblock_reserve() after this?
-
-Nope, it reserves the entire first 1M, which is more than we allocated
-here. The call to memblock_reserve() in memblock_phys_alloc_range() will be
-redundant here, but IMHO it's clearer this way.
-
--- 
-Sincerely yours,
-Mike.
+> ---
+> ChangeLog v1->v2:
+> - Use an enum for compatible.
+> - Mark the reset controller as object (node)
+> - Mandate 2 #reset-cells on the reset controller.
+> - Small blurb that PRCC 4 does not exist.
+> - Rebase on v5.14-rc1
+> - Cc Philipp Zabel
+> ---
+>  .../bindings/clock/stericsson,u8500-clks.yaml | 121 ++++++++++++++++++
+>  .../devicetree/bindings/clock/ux500.txt       |  64 ---------
+>  .../reset/stericsson,db8500-prcc-reset.h      |  51 ++++++++
+>  3 files changed, 172 insertions(+), 64 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/clock/ux500.txt
+>  create mode 100644 include/dt-bindings/reset/stericsson,db8500-prcc-reset.h
+>
+> diff --git a/Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml b/Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml
+> new file mode 100644
+> index 000000000000..9bc95a308477
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml
+> @@ -0,0 +1,121 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/stericsson,u8500-clks.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ST-Ericsson DB8500 (U8500) clocks
+> +
+> +maintainers:
+> +  - Ulf Hansson <ulf.hansson@linaro.org>
+> +  - Linus Walleij <linus.walleij@linaro.org>
+> +
+> +description: While named "U8500 clocks" these clocks are inside the
+> +  DB8500 digital baseband system-on-chip and its siblings such as
+> +  DB8520. These bindings consider the clocks present in the SoC
+> +  itself, not off-chip clocks. There are four different on-chip
+> +  clocks - RTC (32 kHz), CPU clock (SMP TWD), PRCMU (power reset and
+> +  control management unit) clocks and PRCC (peripheral reset and
+> +  clock controller) clocks. For some reason PRCC 4 does not exist so
+> +  the itemization can be a bit unintuitive.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - stericsson,u8500-clks
+> +      - stericsson,u8540-clks
+> +      - stericsson,u9540-clks
+> +
+> +  reg:
+> +    items:
+> +      - description: PRCC 1 register area
+> +      - description: PRCC 2 register area
+> +      - description: PRCC 3 register area
+> +      - description: PRCC 5 register area
+> +      - description: PRCC 6 register area
+> +
+> +  prcmu-clock:
+> +    description: A subnode with one clock cell for PRCMU (power, reset, control
+> +      management unit) clocks. The cell indicates which PRCMU clock in the
+> +      prcmu-clock node the consumer wants to use.
+> +    type: object
+> +
+> +    properties:
+> +      '#clock-cells':
+> +        const: 1
+> +
+> +    additionalProperties: false
+> +
+> +  prcc-periph-clock:
+> +    description: A subnode with two clock cells for PRCC (peripheral
+> +      reset and clock controller) peripheral clocks. The first cell indicates
+> +      which PRCC block the consumer wants to use, possible values are 1, 2, 3,
+> +      5, 6. The second cell indicates which clock inside the PRCC block it
+> +      wants, possible values are 0 thru 31.
+> +    type: object
+> +
+> +    properties:
+> +      '#clock-cells':
+> +        const: 2
+> +
+> +    additionalProperties: false
+> +
+> +  prcc-kernel-clock:
+> +    description: A subnode with two clock cells for PRCC (peripheral reset
+> +      and clock controller) kernel clocks. The first cell indicates which PRCC
+> +      block the consumer wants to use, possible values are 1, 2, 3, 5, 6. The
+> +      second cell indicates which clock inside the PRCC block it wants, possible
+> +      values are 0 thru 31.
+> +    type: object
+> +
+> +    properties:
+> +      '#clock-cells':
+> +        const: 2
+> +
+> +    additionalProperties: false
+> +
+> +  prcc-reset-controller:
+> +    description: A subnode with two reset cells for the reset portions of the
+> +      PRCC (peripheral reset and clock controller). The first cell indicates
+> +      which PRCC block the consumer wants to use, possible values are 1, 2, 3
+> +      5 and 6. The second cell indicates which reset line inside the PRCC block
+> +      it wants to control, possible values are 0 thru 31.
+> +    type: object
+> +
+> +    properties:
+> +      '#reset-cells':
+> +        const: 2
+> +
+> +    additionalProperties: false
+> +
+> +  rtc32k-clock:
+> +    description: A subnode with zero clock cells for the 32kHz RTC clock.
+> +    type: object
+> +
+> +    properties:
+> +      '#clock-cells':
+> +        const: 0
+> +
+> +    additionalProperties: false
+> +
+> +  smp-twd-clock:
+> +    description: A subnode for the ARM SMP Timer Watchdog cluster with zero
+> +      clock cells.
+> +    type: object
+> +
+> +    properties:
+> +      '#clock-cells':
+> +        const: 0
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - prcmu-clock
+> +  - prcc-periph-clock
+> +  - prcc-kernel-clock
+> +  - rtc32k-clock
+> +  - smp-twd-clock
+> +
+> +additionalProperties: false
+> diff --git a/Documentation/devicetree/bindings/clock/ux500.txt b/Documentation/devicetree/bindings/clock/ux500.txt
+> deleted file mode 100644
+> index e52bd4b72348..000000000000
+> --- a/Documentation/devicetree/bindings/clock/ux500.txt
+> +++ /dev/null
+> @@ -1,64 +0,0 @@
+> -Clock bindings for ST-Ericsson Ux500 clocks
+> -
+> -Required properties :
+> -- compatible : shall contain only one of the following:
+> -  "stericsson,u8500-clks"
+> -  "stericsson,u8540-clks"
+> -  "stericsson,u9540-clks"
+> -- reg : shall contain base register location and length for
+> -  CLKRST1, 2, 3, 5, and 6 in an array. Note the absence of
+> -  CLKRST4, which does not exist.
+> -
+> -Required subnodes:
+> -- prcmu-clock: a subnode with one clock cell for PRCMU (power,
+> -  reset, control unit) clocks. The cell indicates which PRCMU
+> -  clock in the prcmu-clock node the consumer wants to use.
+> -- prcc-periph-clock: a subnode with two clock cells for
+> -  PRCC (programmable reset- and clock controller) peripheral clocks.
+> -  The first cell indicates which PRCC block the consumer
+> -  wants to use, possible values are 1, 2, 3, 5, 6. The second
+> -  cell indicates which clock inside the PRCC block it wants,
+> -  possible values are 0 thru 31.
+> -- prcc-kernel-clock: a subnode with two clock cells for
+> -  PRCC (programmable reset- and clock controller) kernel clocks
+> -  The first cell indicates which PRCC block the consumer
+> -  wants to use, possible values are 1, 2, 3, 5, 6. The second
+> -  cell indicates which clock inside the PRCC block it wants,
+> -  possible values are 0 thru 31.
+> -- rtc32k-clock: a subnode with zero clock cells for the 32kHz
+> -  RTC clock.
+> -- smp-twd-clock: a subnode for the ARM SMP Timer Watchdog cluster
+> -  with zero clock cells.
+> -
+> -Example:
+> -
+> -clocks {
+> -       compatible = "stericsson,u8500-clks";
+> -       /*
+> -        * Registers for the CLKRST block on peripheral
+> -        * groups 1, 2, 3, 5, 6,
+> -        */
+> -       reg = <0x8012f000 0x1000>, <0x8011f000 0x1000>,
+> -           <0x8000f000 0x1000>, <0xa03ff000 0x1000>,
+> -           <0xa03cf000 0x1000>;
+> -
+> -       prcmu_clk: prcmu-clock {
+> -               #clock-cells = <1>;
+> -       };
+> -
+> -       prcc_pclk: prcc-periph-clock {
+> -               #clock-cells = <2>;
+> -       };
+> -
+> -       prcc_kclk: prcc-kernel-clock {
+> -               #clock-cells = <2>;
+> -       };
+> -
+> -       rtc_clk: rtc32k-clock {
+> -               #clock-cells = <0>;
+> -       };
+> -
+> -       smp_twd_clk: smp-twd-clock {
+> -               #clock-cells = <0>;
+> -       };
+> -};
+> diff --git a/include/dt-bindings/reset/stericsson,db8500-prcc-reset.h b/include/dt-bindings/reset/stericsson,db8500-prcc-reset.h
+> new file mode 100644
+> index 000000000000..ea906896c70f
+> --- /dev/null
+> +++ b/include/dt-bindings/reset/stericsson,db8500-prcc-reset.h
+> @@ -0,0 +1,51 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +
+> +#ifndef _DT_BINDINGS_STE_PRCC_RESET
+> +#define _DT_BINDINGS_STE_PRCC_RESET
+> +
+> +#define DB8500_PRCC_1                          1
+> +#define DB8500_PRCC_2                          2
+> +#define DB8500_PRCC_3                          3
+> +#define DB8500_PRCC_6                          6
+> +
+> +/* Reset lines on PRCC 1 */
+> +#define DB8500_PRCC_1_RESET_UART0              0
+> +#define DB8500_PRCC_1_RESET_UART1              1
+> +#define DB8500_PRCC_1_RESET_I2C1               2
+> +#define DB8500_PRCC_1_RESET_MSP0               3
+> +#define DB8500_PRCC_1_RESET_MSP1               4
+> +#define DB8500_PRCC_1_RESET_SDI0               5
+> +#define DB8500_PRCC_1_RESET_I2C2               6
+> +#define DB8500_PRCC_1_RESET_SPI3               7
+> +#define DB8500_PRCC_1_RESET_SLIMBUS0           8
+> +#define DB8500_PRCC_1_RESET_I2C4               9
+> +#define DB8500_PRCC_1_RESET_MSP3               10
+> +#define DB8500_PRCC_1_RESET_PER_MSP3           11
+> +#define DB8500_PRCC_1_RESET_PER_MSP1           12
+> +#define DB8500_PRCC_1_RESET_PER_MSP0           13
+> +#define DB8500_PRCC_1_RESET_PER_SLIMBUS                14
+> +
+> +/* Reset lines on PRCC 2 */
+> +#define DB8500_PRCC_2_RESET_I2C3               0
+> +#define DB8500_PRCC_2_RESET_PWL                        1
+> +#define DB8500_PRCC_2_RESET_SDI4               2
+> +#define DB8500_PRCC_2_RESET_MSP2               3
+> +#define DB8500_PRCC_2_RESET_SDI1               4
+> +#define DB8500_PRCC_2_RESET_SDI3               5
+> +#define DB8500_PRCC_2_RESET_HSIRX              6
+> +#define DB8500_PRCC_2_RESET_HSITX              7
+> +#define DB8500_PRCC_1_RESET_PER_MSP2           8
+> +
+> +/* Reset lines on PRCC 3 */
+> +#define DB8500_PRCC_3_RESET_SSP0               1
+> +#define DB8500_PRCC_3_RESET_SSP1               2
+> +#define DB8500_PRCC_3_RESET_I2C0               3
+> +#define DB8500_PRCC_3_RESET_SDI2               4
+> +#define DB8500_PRCC_3_RESET_SKE                        5
+> +#define DB8500_PRCC_3_RESET_UART2              6
+> +#define DB8500_PRCC_3_RESET_SDI5               7
+> +
+> +/* Reset lines on PRCC 6 */
+> +#define DB8500_PRCC_3_RESET_RNG                        0
+> +
+> +#endif
+> --
+> 2.31.1
+>
