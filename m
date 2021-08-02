@@ -2,132 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A39A3DE0F6
-	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 22:46:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EB103DE0FD
+	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 22:47:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232391AbhHBUqT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Aug 2021 16:46:19 -0400
-Received: from mail-il1-f174.google.com ([209.85.166.174]:34530 "EHLO
-        mail-il1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232124AbhHBUqQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 16:46:16 -0400
-Received: by mail-il1-f174.google.com with SMTP id a14so17693818ila.1;
-        Mon, 02 Aug 2021 13:46:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=PwNLwfql2TFidgftm+20PqZGJxrE90FZO8vc6Q4OqWU=;
-        b=LgunEat+spKDd4siEU5NRB4gkyMIi6wehkM8irtmZSHEKPvw2JXZ3FSqWKnK9wnf6P
-         30kqwSIC3bm3AYJqGccrnoiinnKuGLUC2tXrVkxEn23o1SdT6Htf0i6FcxeamzewrmBA
-         /fYTlfRWD2do74PnoGDnk6NN3kJR7zSZG+sTXccLjRmDqWhcWzvr9tVziNNAI4HR2Y+G
-         76s/VMZIVQdVKaprjVEwty6R/gc8KWvLlq1M9IFShWbnJuhhQYSOnCNxeJPJoPJdzi/Z
-         N5Ekcwl8fVbEqud7vr2+btfF1J7mXIeETVCHdgzWEELTE3Rj9OLsMPWrnG6v4uZVNn1r
-         ryIg==
-X-Gm-Message-State: AOAM531spAOdrFVC1ADSMAM1vHwGk3vHHfF4FIdCJAK7TePF0H3RzNik
-        XFvo0aGf1rL5K4+XArdI1g==
-X-Google-Smtp-Source: ABdhPJyKUZPKMxPr44uq64bPWQISlXw3RSM+CNofGBCMC54z+helrxqXvtUGIn8Db0zpdGeL1L7cFg==
-X-Received: by 2002:a92:d8d1:: with SMTP id l17mr867040ilo.187.1627937164802;
-        Mon, 02 Aug 2021 13:46:04 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id x11sm6293473ilu.3.2021.08.02.13.46.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Aug 2021 13:46:04 -0700 (PDT)
-Received: (nullmailer pid 1578674 invoked by uid 1000);
-        Mon, 02 Aug 2021 20:46:02 -0000
-Date:   Mon, 2 Aug 2021 14:46:02 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Eddie James <eajames@linux.ibm.com>
-Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, peda@axentia.se
-Subject: Re: [PATCH v2 2/2] i2c: mux: pca954x: Support multiple devices on a
- single reset line
-Message-ID: <YQhZimPDbNJk5nbR@robh.at.kernel.org>
-References: <20210727160315.15575-1-eajames@linux.ibm.com>
- <20210727160315.15575-3-eajames@linux.ibm.com>
+        id S231433AbhHBUrf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Aug 2021 16:47:35 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:58228 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231338AbhHBUrf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Aug 2021 16:47:35 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=2c8Ena5R3BasIbqSY8iZVBqPVlAVm8oJ3q3YTA5edsU=; b=VCAYf0Twr8zxnPjdGby6VjDJ5p
+        ujPHig79n8hDrURXQjWNa9UyrnAJbcWjvWwJtaXtrq6jogOFC5kqKGFGDQRxfhRocbeinRQL8tlC2
+        agTfH9S/X7KvrNCM/LHRGV6zmbhP8qgOzkFo/nhQLRPOTssbb0fOyMTe557QHgMAf2KI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mAeqC-00FsKE-Rb; Mon, 02 Aug 2021 22:47:16 +0200
+Date:   Mon, 2 Aug 2021 22:47:16 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>,
+        netdev@vger.kernel.org, robh+dt@kernel.org,
+        UNGLinuxDriver@microchip.com, Woojung.Huh@microchip.com,
+        hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
+        kuba@kernel.org, linux-kernel@vger.kernel.org,
+        vivien.didelot@gmail.com, f.fainelli@gmail.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 net-next 05/10] net: dsa: microchip: add DSA support
+ for microchip lan937x
+Message-ID: <YQhZ1FOofUNCO53P@lunn.ch>
+References: <20210723173108.459770-1-prasanna.vengateshan@microchip.com>
+ <20210723173108.459770-6-prasanna.vengateshan@microchip.com>
+ <20210731150416.upe5nwkwvwajhwgg@skbuf>
+ <49678cce02ac03edc6bbbd1afb5f67606ac3efc2.camel@microchip.com>
+ <20210802121550.gqgbipqdvp5x76ii@skbuf>
+ <YQfvXTEbyYFMLH5u@lunn.ch>
+ <20210802135911.inpu6khavvwsfjsp@skbuf>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210727160315.15575-3-eajames@linux.ibm.com>
+In-Reply-To: <20210802135911.inpu6khavvwsfjsp@skbuf>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 27, 2021 at 11:03:15AM -0500, Eddie James wrote:
-> Some systems connect several PCA954x devices to a single reset GPIO. For
-> these devices to get out of reset and probe successfully, each device must
-> defer the probe until the GPIO has been hogged. Accomplish this by
-> attempting to grab a new "reset-shared-hogged" devicetree property, but
-> expect it to fail with EPROBE_DEFER or EBUSY.
+On Mon, Aug 02, 2021 at 04:59:11PM +0300, Vladimir Oltean wrote:
+> On Mon, Aug 02, 2021 at 03:13:01PM +0200, Andrew Lunn wrote:
+> > In general, the MAC does nothing, and passes the value to the PHY. The
+> > PHY inserts delays as requested. To address Vladimir point,
+> > PHY_INTERFACE_MODE_RGMII_TXID would mean the PHY adds delay in the TX
+> > direction, and assumes the RX delay comes from somewhere else,
+> > probably the PCB.
 > 
-> Signed-off-by: Eddie James <eajames@linux.ibm.com>
-> ---
->  drivers/i2c/muxes/i2c-mux-pca954x.c | 46 +++++++++++++++++++++++------
->  1 file changed, 37 insertions(+), 9 deletions(-)
+> For the PHY, that is the only portion where things are clear.
 > 
-> diff --git a/drivers/i2c/muxes/i2c-mux-pca954x.c b/drivers/i2c/muxes/i2c-mux-pca954x.c
-> index 4ad665757dd8..376b54ffb590 100644
-> --- a/drivers/i2c/muxes/i2c-mux-pca954x.c
-> +++ b/drivers/i2c/muxes/i2c-mux-pca954x.c
-> @@ -434,15 +434,43 @@ static int pca954x_probe(struct i2c_client *client,
->  	i2c_set_clientdata(client, muxc);
->  	data->client = client;
->  
-> -	/* Reset the mux if a reset GPIO is specified. */
-> -	gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-> -	if (IS_ERR(gpio))
-> -		return PTR_ERR(gpio);
-> -	if (gpio) {
-> -		udelay(1);
-> -		gpiod_set_value_cansleep(gpio, 0);
-> -		/* Give the chip some time to recover. */
-> -		udelay(1);
-> +	/*
-> +	 * Grab the shared, hogged gpio that controls the mux reset. We expect
-> +	 * this to fail with either EPROBE_DEFER or EBUSY. The only purpose of
-> +	 * trying to get it is to make sure the gpio controller has probed up
-> +	 * and hogged the line to take the mux out of reset, meaning that the
-> +	 * mux is ready to be probed up. Don't try and set the line any way; in
-> +	 * the event we actually successfully get the line (if it wasn't
-> +	 * hogged) then we immediately release it, since there is no way to
-> +	 * sync up the line between muxes.
-> +	 */
-> +	gpio = gpiod_get_optional(dev, "reset-shared-hogged", 0);
-> +	if (IS_ERR(gpio)) {
-> +		ret = PTR_ERR(gpio);
-> +		if (ret != -EBUSY)
-> +			return ret;
+> > I only recommend the MAC adds delays when the PHY cannot, or there is
+> > no PHY, e.g. SoC to switch, or switch to switch link. There are a few
+> > MAC drivers that do add delays, mostly because that is how the vendor
+> > crap tree does it.
+> > 
+> > So as i said, what you propose is O.K, it follows this general rule of
+> > thumb.
+> 
+> The "rule of thumb" for a MAC driver is actually applied in reverse by
+> most MAC drivers compared to what Russell described should be happening.
+> For example, mv88e6xxx_port_set_rgmii_delay():
+> 
+> 	switch (mode) {
+> 	case PHY_INTERFACE_MODE_RGMII_RXID:
+> 		reg |= MV88E6XXX_PORT_MAC_CTL_RGMII_DELAY_RXCLK;
+> 
+> The mv88e6xxx is a MAC, so when it has a phy-mode = "rgmii-rxid", it
+> should assume it is connected to a link partner (PHY or otherwise) that
+> has applied the RXCLK delay already. So it should only be concerned with
+> the TXCLK delay. That is my point. I am just trying to lay out the
+> points to Prasanna that would make a sane system going forward. I am not
+> sure that we actually have an in-tree driver that is sane in that
+> regard.
 
-Why can't you just do this with the existing 'reset-gpios' property? 
-What's the usecase where you'd want to fail probe because EBUSY other 
-than an error in your DT.
+It is a can or worms. For the used use case for the mv88e6xxx, it is a
+DSA link, so there isn't really one side MAC and the other side
+PHY. And if i remember correctly, both sides use rgmii-rxid.
 
-> +	} else {
-> +		if (gpio) {
-> +			/* This is really a problem since now we don't know the
-> +			 * state of the gpio. Log a warning and keep trying to
-> +			 * probe the mux just in case it works.
-> +			 */
-> +			dev_warn(dev, "got hogged reset line, expect error\n");
-> +			gpiod_put(gpio);
-> +		} else {
-> +			/* Reset the mux if a reset GPIO is specified. */
-> +			gpio = devm_gpiod_get_optional(dev, "reset",
-> +						       GPIOD_OUT_HIGH);
-> +			if (IS_ERR(gpio))
-> +				return PTR_ERR(gpio);
-> +
-> +			if (gpio) {
-> +				udelay(1);
-> +				gpiod_set_value_cansleep(gpio, 0);
-> +				/* Give the chip some time to recover. */
-> +				udelay(1);
-> +			}
-> +		}
->  	}
->  
->  	data->chip = device_get_match_data(dev);
-> -- 
-> 2.27.0
-> 
-> 
+     Andrew
