@@ -2,193 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEC953DD555
-	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 14:12:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54CD33DD577
+	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 14:15:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233616AbhHBMMq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Aug 2021 08:12:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42874 "EHLO
+        id S233605AbhHBMQD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Aug 2021 08:16:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233604AbhHBMMn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 08:12:43 -0400
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40E7DC061799
-        for <devicetree@vger.kernel.org>; Mon,  2 Aug 2021 05:12:33 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id g76so28154513ybf.4
-        for <devicetree@vger.kernel.org>; Mon, 02 Aug 2021 05:12:33 -0700 (PDT)
+        with ESMTP id S233498AbhHBMQD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 08:16:03 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB46EC06175F;
+        Mon,  2 Aug 2021 05:15:53 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id p21so24160102edi.9;
+        Mon, 02 Aug 2021 05:15:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=FkCp4kdPQ6v+pD/rtKzXxvtpigTWSSTz78u5tHl7Xw0=;
-        b=oW3C6jQOKtE2Ij6HWnrX36JyH29DLnGDBkzqnseCD3B7Sg45+lwtJoAJZ6sE1xwsBV
-         1uBHXVrgz4+y/kx88AZx4qgoDD2KPTmkBnKw+/OWNDXkL0mWqawKi4O+O5aykFa1JYsh
-         OGVPL6HQPx5AECzgnWCey3MdUAHaOsAFWBpK9JJwxRnr2cv4E0UwqHZS2mvcAHDSXbGy
-         G7/4O+2vt9i5Agaj6h56yWKGWaoep+YCpCW5Q/CDVe3ce1xuv8YzU4KuFO0KKYSykm+8
-         /pRoi3FaG/XftwBg2ylo1IwT7R2sGyysK4tkr1v3bWyHZ2/+V/fqiEhBhliFfjUwg+/w
-         u4EA==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=g6sicWaMVJjqloudI94E/2JlPDwE+Z7jMXMl0fRhNw0=;
+        b=ewMZbgdPI2zyQJAs5SyT5VDE8O/dCbhrt3iVxsSQmE9CJch2coeQNM4VwfzGxgvA+B
+         YA6WrZ+Kua9jlPIbjRGIZycnSSvO3BkbMgFuxhzmPkfqPBHI+FlV+a25A06hBnNDKiM6
+         6VvuPTMd4h9blfO4eg5vty+eeIla6VXAupvIoCk34rITpf/VUf79RVM4oOEyYDfZirmt
+         d8Zj/HvBMtEciEI0COsv/jj100Y7PAnS2VOrDSZuxl5mTCnkJIgQ09Ve5FoZTnIxrQQd
+         3efh4rEkDX1rrHK3iklKroLx5eqTJUYD+aRQkIFA9r9IighvXSuzliNyYzpRNoN9TRF0
+         e+VA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=FkCp4kdPQ6v+pD/rtKzXxvtpigTWSSTz78u5tHl7Xw0=;
-        b=fbpmNhz8Lj4jI4rjzTMiXvmFHeTYwPKh1ZGwU0AKFCIQvBAh8ON98bn5qtwgUTBVUZ
-         K8OtwcfW+b9MDkuCKtaNQTZpMksuW7u/DjDmSGlHcZxszKaFaLM3if1Fh/7FDXHhdtG7
-         D+3rVB9+2N2Y9G86VG87ZSd7zDx+kZfCi4ASdcVZS0XtlEzMAA7RJHj2t8eumCd/7HLI
-         /sVxBy/iT4Q4fjfL68HgDB0gjEIbf4S45wzTf9TP2jh9luJrVxm5hika6PRAy/e9tjdI
-         K5mndjV2iRLkXnC+S02R/I+kwxPACzwV1P3x2cbXePzNXlSoP+ZKXNcgcHOCeb4i2Ggg
-         lPcg==
-X-Gm-Message-State: AOAM533F5LElezK0ZlkUc762VuNhgNLmZ3rTHbiWljiKUUPgWFrv4LEq
-        z0oIo1bPXeyO2mHANvRTjilIZzrux9PL8tdtTJwxgg==
-X-Google-Smtp-Source: ABdhPJy6a5HZVxB9QkM1YtlwtQkCC0+Bz2t7K/BwPm0KVMjX6zhDgVGwtwfL/HS+j98n5oZ4L6lpPPFQBXirLB10Zn8=
-X-Received: by 2002:a25:48c7:: with SMTP id v190mr20238398yba.312.1627906352461;
- Mon, 02 Aug 2021 05:12:32 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=g6sicWaMVJjqloudI94E/2JlPDwE+Z7jMXMl0fRhNw0=;
+        b=GBlQWXnQYQDtmfRK4FL1SaR6clBLo3vWX1EJ4RtIdZwEG0OmQsiIlzAXboQ9L1qNfH
+         fL1ptoRfoF3TuxGj+ZYrSIfekuFmQs+ke9Q7gR+2WimyGWNhsy/O2in0gv5pyX5RCMSO
+         MUVtMQt1ax6WqbIAgzMI89FzZ5T3PPEca0QNSmSNNxVFldnNp3vChZg+ikxZENsKuHDT
+         G5zhni7OFgxFuMlGZjwYh4DVyezwVCIjN0u2UzxIt+XdrGk/fom+nyl+DZF0l3fZLlzz
+         0tXF83UyejHxs3tQpykRUSRQW3yFRqwItPGZUREKIr5D71oFdoh+qrllO2FX8mHAcKOJ
+         aHAA==
+X-Gm-Message-State: AOAM532e0rotctzhS1eJhEkYgpmmgyE8yq/iwBSoA54bhMGhus4e3H40
+        IHhBEwO25HMgSfM+2SZ1B5c=
+X-Google-Smtp-Source: ABdhPJzk3RyCDmqdY96tXhSYWpFmvlY3W7H0A21UbdWCNFyVnC6CsKyemEwt6fvLrSq3KgOFfoZjfw==
+X-Received: by 2002:a05:6402:152:: with SMTP id s18mr18744111edu.221.1627906552301;
+        Mon, 02 Aug 2021 05:15:52 -0700 (PDT)
+Received: from skbuf ([188.25.144.60])
+        by smtp.gmail.com with ESMTPSA id c6sm4495354eje.105.2021.08.02.05.15.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Aug 2021 05:15:51 -0700 (PDT)
+Date:   Mon, 2 Aug 2021 15:15:50 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
+Cc:     andrew@lunn.ch, netdev@vger.kernel.org, robh+dt@kernel.org,
+        UNGLinuxDriver@microchip.com, Woojung.Huh@microchip.com,
+        hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
+        kuba@kernel.org, linux-kernel@vger.kernel.org,
+        vivien.didelot@gmail.com, f.fainelli@gmail.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 net-next 05/10] net: dsa: microchip: add DSA support
+ for microchip lan937x
+Message-ID: <20210802121550.gqgbipqdvp5x76ii@skbuf>
+References: <20210723173108.459770-1-prasanna.vengateshan@microchip.com>
+ <20210723173108.459770-6-prasanna.vengateshan@microchip.com>
+ <20210731150416.upe5nwkwvwajhwgg@skbuf>
+ <49678cce02ac03edc6bbbd1afb5f67606ac3efc2.camel@microchip.com>
 MIME-Version: 1.0
-References: <20210716221744.5445-1-robert.marko@sartura.hr> <CAMpxmJXy1L-OC7k+h6pOwFGNS8WntNSMjP1Kvu7tnCQvGNwnRw@mail.gmail.com>
-In-Reply-To: <CAMpxmJXy1L-OC7k+h6pOwFGNS8WntNSMjP1Kvu7tnCQvGNwnRw@mail.gmail.com>
-From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Mon, 2 Aug 2021 14:12:21 +0200
-Message-ID: <CAMpxmJVJzaRRe5XyyZM6qOzpi2t36hSbsTec=M3EUk9w17W4qQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] gpio: tn48m: Add support for Delta TN4810M CPLD
-To:     Robert Marko <robert.marko@sartura.hr>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-gpio <linux-gpio@vger.kernel.org>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>, luka.perkov@sartura.hr
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <49678cce02ac03edc6bbbd1afb5f67606ac3efc2.camel@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 2, 2021 at 2:10 PM Bartosz Golaszewski
-<bgolaszewski@baylibre.com> wrote:
+On Mon, Aug 02, 2021 at 04:15:08PM +0530, Prasanna Vengateshan wrote:
+> On Sat, 2021-07-31 at 18:04 +0300, Vladimir Oltean wrote:
+> > > +void lan937x_mac_config(struct ksz_device *dev, int port,
+> > > +                     phy_interface_t interface)
+> > > +{
+> > > +     u8 data8;
+> > > +
+> > > +     lan937x_pread8(dev, port, REG_PORT_XMII_CTRL_1, &data8);
+> > > +
+> > > +     /* clear MII selection & set it based on interface later */
+> > > +     data8 &= ~PORT_MII_SEL_M;
+> > > +
+> > > +     /* configure MAC based on interface */
+> > > +     switch (interface) {
+> > > +     case PHY_INTERFACE_MODE_MII:
+> > > +             lan937x_config_gbit(dev, false, &data8);
+> > > +             data8 |= PORT_MII_SEL;
+> > > +             break;
+> > > +     case PHY_INTERFACE_MODE_RMII:
+> > > +             lan937x_config_gbit(dev, false, &data8);
+> > > +             data8 |= PORT_RMII_SEL;
+> > > +             break;
+> > > +     case PHY_INTERFACE_MODE_RGMII:
+> > > +     case PHY_INTERFACE_MODE_RGMII_ID:
+> > > +     case PHY_INTERFACE_MODE_RGMII_TXID:
+> > > +     case PHY_INTERFACE_MODE_RGMII_RXID:
+> > > +             lan937x_config_gbit(dev, true, &data8);
+> > > +             data8 |= PORT_RGMII_SEL;
+> > > +
+> > > +             /* Add RGMII internal delay for cpu port*/
+> > > +             if (dsa_is_cpu_port(dev->ds, port)) {
+> >
+> > Why only for the CPU port? I would like Andrew/Florian to have a look
+> > here, I guess the assumption is that if the port has a phy-handle, the
+> > RGMII delays should be dealt with by the PHY, but the logic seems to be
+> > "is a CPU port <=> has a phy-handle / isn't a CPU port <=> doesn't have
+> > a phy-handle"? What if it's a fixed-link port connected to a downstream
+> > switch, for which this one is a DSA master?
 >
-> On Sat, Jul 17, 2021 at 12:17 AM Robert Marko <robert.marko@sartura.hr> wrote:
-> >
-> > Delta TN4810M uses a similar CPLD GPIO expander
-> > like the TN48M, but it has pins for 48 SFP+ ports,
-> > making a total of 192 pins.
-> > It also provides the TX fault pins which the TN48M
-> > does not.
-> >
-> > Only TX disable pins like on the TN48M are output
-> > ones.
-> >
-> > Thankfully, regmap GPIO allows for the driver to be
-> > easily extended to support the TN4810M.
-> >
-> > Note that this patch depends on the following series:
-> > https://patchwork.ozlabs.org/project/linux-gpio/list/?series=247538
-> >
-> > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> > ---
-> >  drivers/gpio/gpio-tn48m.c | 56 ++++++++++++++++++++++++++++++++++++---
-> >  1 file changed, 52 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/drivers/gpio/gpio-tn48m.c b/drivers/gpio/gpio-tn48m.c
-> > index b12a6b4bc4b3..e429e7ade941 100644
-> > --- a/drivers/gpio/gpio-tn48m.c
-> > +++ b/drivers/gpio/gpio-tn48m.c
-> > @@ -19,6 +19,10 @@ enum tn48m_gpio_type {
-> >         TN48M_SFP_TX_DISABLE = 1,
-> >         TN48M_SFP_PRESENT,
-> >         TN48M_SFP_LOS,
-> > +       TN4810M_SFP_TX_DISABLE,
-> > +       TN4810M_SFP_TX_FAULT,
-> > +       TN4810M_SFP_PRESENT,
-> > +       TN4810M_SFP_LOS,
-> >  };
-> >
-> >  static int tn48m_gpio_probe(struct platform_device *pdev)
-> > @@ -46,17 +50,36 @@ static int tn48m_gpio_probe(struct platform_device *pdev)
-> >
-> >         config.regmap = regmap;
-> >         config.parent = &pdev->dev;
-> > -       config.ngpio = 4;
-> > +       config.ngpio_per_reg = 8;
-> >
-> >         switch (type) {
-> >         case TN48M_SFP_TX_DISABLE:
-> >                 config.reg_set_base = base;
-> > +               config.ngpio = 4;
-> >                 break;
-> >         case TN48M_SFP_PRESENT:
-> >                 config.reg_dat_base = base;
-> > +               config.ngpio = 4;
-> >                 break;
-> >         case TN48M_SFP_LOS:
-> >                 config.reg_dat_base = base;
-> > +               config.ngpio = 4;
-> > +               break;
-> > +       case TN4810M_SFP_TX_DISABLE:
-> > +               config.reg_set_base = base;
-> > +               config.ngpio = 48;
-> > +               break;
-> > +       case TN4810M_SFP_TX_FAULT:
-> > +               config.reg_dat_base = base;
-> > +               config.ngpio = 48;
-> > +               break;
-> > +       case TN4810M_SFP_PRESENT:
-> > +               config.reg_dat_base = base;
-> > +               config.ngpio = 48;
-> > +               break;
-> > +       case TN4810M_SFP_LOS:
-> > +               config.reg_dat_base = base;
-> > +               config.ngpio = 48;
-> >                 break;
-> >         default:
-> >                 dev_err(&pdev->dev, "unknown type %d\n", type);
-> > @@ -67,9 +90,34 @@ static int tn48m_gpio_probe(struct platform_device *pdev)
-> >  }
-> >
-> >  static const struct of_device_id tn48m_gpio_of_match[] = {
-> > -       { .compatible = "delta,tn48m-gpio-sfp-tx-disable", .data = (void *)TN48M_SFP_TX_DISABLE },
-> > -       { .compatible = "delta,tn48m-gpio-sfp-present", .data = (void *)TN48M_SFP_PRESENT },
-> > -       { .compatible = "delta,tn48m-gpio-sfp-los", .data = (void *)TN48M_SFP_LOS },
-> > +       {
-> > +               .compatible = "delta,tn48m-gpio-sfp-tx-disable",
-> > +               .data = (void *)TN48M_SFP_TX_DISABLE
-> > +       },
-> > +       {
-> > +               .compatible = "delta,tn48m-gpio-sfp-present",
-> > +               .data = (void *)TN48M_SFP_PRESENT
-> > +       },
-> > +       {
-> > +               .compatible = "delta,tn48m-gpio-sfp-los",
-> > +               .data = (void *)TN48M_SFP_LOS
-> > +       },
-> > +       {
-> > +               .compatible = "delta,tn4810m-gpio-sfp-tx-disable",
-> > +               .data = (void *)TN4810M_SFP_TX_DISABLE
-> > +       },
-> > +       {
-> > +               .compatible = "delta,tn4810m-gpio-sfp-tx-fault",
-> > +               .data = (void *)TN4810M_SFP_TX_FAULT
-> > +       },
-> > +       {
-> > +               .compatible = "delta,tn4810m-gpio-sfp-present",
-> > +               .data = (void *)TN4810M_SFP_PRESENT
-> > +       },
-> > +       {
-> > +               .compatible = "delta,tn4810m-gpio-sfp-los",
-> > +               .data = (void *)TN4810M_SFP_LOS
-> > +       },
-> >         { }
-> >  };
-> >  MODULE_DEVICE_TABLE(of, tn48m_gpio_of_match);
-> > --
-> > 2.31.1
-> >
->
-> This looks good to me. I suppose the other patches are going in
-> through the MFD tree. I don't see anything that can fail here at
-> build-time - can you confirm that I can pick these patches up
-> separately for v5.15?
->
-> Bartosz
+> Thanks for reviewing the patches. My earlier proposal here was to check if there
+> is no phydev (dp->slave->phydev) or if PHY is genphy, then apply RGMII delays
+> assuming delays should be dealt with the phy driver if available. What do you
+> think of that?
 
-Scratch that, I now saw Linus' comment about the special purpose pins
-under the other series. Let's clear that up first.
+I don't know what to suggest, this is a bit of a minefield.
+A while ago and in a different thread, Russell King said that
+PHY_INTERFACE_MODE_RGMII_TXID means that the MAC should behave as if it
+is connected to a PHY which has applied RGMII delays in the TX direction,
+regardless of whether it is in fixed-link or not. So if the MAC was to
+add any internal delays in PHY_INTERFACE_MODE_RGMII_TXID mode, those
+would have to be RX delays, because the phy-mode specifies what was
+already added and nothing more.
+However, that is yet another problem. "what is already added" does not
+mean "what more needs to be added". The fact that internal delays were
+added in the TX direction doesn't necessarily mean that they still need
+to be added in the RX direction. If you have a PHY which can only delay
+the clock that it drives (the RX clock), and this is connected to a MAC
+that cannot add any delays of its own, then you would end up adding PCB
+traces on the board in the TX direction. But if you specify the phy-mode
+as "rgmii-rxid", the MAC driver would complain that it can't add delays
+in the TX direction (under the assumption that these are needed to work),
+and if you specify the phy-mode as "rgmii-id", the PHY driver would
+complain that it can't add delays in the TX direction.
+So you'd have a system that works from a hardware PoV, but you wouldn't
+have any way to describe it to Linux, which sucks.
 
-Bart
+I think the only way to do things correctly today and have a way to
+describe any possible hardware setup is to parse the explicit
+rx-internal-delay-ps and tx-internal-delay-ps properties in the MAC
+driver, as defined in Documentation/bindings/net/ethernet-controller.yaml.
+Then only let the MAC add the internal delays if the device tree has
+added those properties, leave nothing down to assumptions.
