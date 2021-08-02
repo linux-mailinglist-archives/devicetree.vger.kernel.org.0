@@ -2,119 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 304283DCF27
-	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 06:12:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 434DB3DCF1E
+	for <lists+devicetree@lfdr.de>; Mon,  2 Aug 2021 06:07:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229792AbhHBENA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Aug 2021 00:13:00 -0400
-Received: from pi.codeconstruct.com.au ([203.29.241.158]:37312 "EHLO
-        codeconstruct.com.au" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229637AbhHBEM7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 00:12:59 -0400
-Received: by codeconstruct.com.au (Postfix, from userid 10001)
-        id 5AB022094C; Mon,  2 Aug 2021 12:05:04 +0800 (AWST)
-From:   Matt Johnston <matt@codeconstruct.com.au>
-To:     devicetree@vger.kernel.org
-Cc:     Wolfram Sang <wsa@kernel.org>,
-        Jeremy Kerr <jk@codeconstruct.com.au>,
-        Matt Johnston <matt@codeconstruct.com.au>
-Subject: [RFC PATCH 2/2] dt-bindings: net: Add mctp-i2c bus-attach property
-Date:   Mon,  2 Aug 2021 12:04:58 +0800
-Message-Id: <20210802040458.334732-3-matt@codeconstruct.com.au>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210802040458.334732-1-matt@codeconstruct.com.au>
-References: <20210802040458.334732-1-matt@codeconstruct.com.au>
+        id S230417AbhHBEIA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Aug 2021 00:08:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39918 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229500AbhHBEIA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 00:08:00 -0400
+Received: from mail-io1-xd43.google.com (mail-io1-xd43.google.com [IPv6:2607:f8b0:4864:20::d43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55ACDC06175F
+        for <devicetree@vger.kernel.org>; Sun,  1 Aug 2021 21:07:50 -0700 (PDT)
+Received: by mail-io1-xd43.google.com with SMTP id y200so18818019iof.1
+        for <devicetree@vger.kernel.org>; Sun, 01 Aug 2021 21:07:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=GvSEm2IhMBJ052xe9DI9VvCgaL6z88P134FZp7B8Jpk=;
+        b=UR0RiH3uIWtUqCop1tEuhAqZSYcjn4UXhXVlHdYPSzVkYAS8tmbK825WhPmzRbmoy3
+         ef/nLLSmFPYwwaaP/HBFBlToEY3aUQju4pry0wI6Uvb3R4dOAbdfiuU6GYBGqvC+bYjy
+         6gDoysPgp8HyKG/7lPzaG/Ab7lW07owyLKFgQez6ghdVLNvOt0hbPGJAA2MXoqL18da3
+         oO/Q6FamnZkmWvxb6uSbCsy/eTlgeCgBnfY8qZZGwBivLET0sr3f1qjTlZfpVSf4nSaT
+         rNctfvy4dFL5YnQb/hI6EvInEswfxIjlGZEIgbXitCbxhTid5ltYL3G51l97uMbR3WJC
+         aLpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=GvSEm2IhMBJ052xe9DI9VvCgaL6z88P134FZp7B8Jpk=;
+        b=f2cOlQ+5xkweqPjM87ka82fq1mQRadSlCsYuFT/aEVo8F6+1nVud6b7T7eI29dOOEW
+         wAXJ+yJHo3A6BawbvLIz3EDp46USXq9iasEkgIk4qxnkBkwPLLQQjhmI7vlRBafJ8MZO
+         2tdw30XmJRPkSnk1oFryiNyPS+uienyFT4n/TpRjpnA/rZy9HCM/Y+x5dPCm/Emt8wHH
+         b6d7NG7Rta0L8j+wtALwMIUhR8DR6wnbijsKJXYKlcTLW5MNxCxTimmJO7K5bCwkZwqR
+         8dII+EUbUcgqSEH7DtuUx53Lm1Ja/uFJmdyIDp3mpdxXq6BuMhl+LnNWZ20fNswxTTDC
+         CnSA==
+X-Gm-Message-State: AOAM532j6T35thV2tr2QpWKACOEQBz+HgyDnJxUmylTNS27XzSV5hWKy
+        X/ZBtZjSJWC+Fz3cPQfDAQRZDc8NdPCsNDIVNNk=
+X-Google-Smtp-Source: ABdhPJzpoIZg71X/5Es/h6Zt2F/v0D4QavsAJ2/fi28bc2r51YIe/EEtaKn+TXQPk6/LX1dI2vGXk4g36jlAIWkgawo=
+X-Received: by 2002:a05:6602:2e8f:: with SMTP id m15mr563816iow.80.1627877269871;
+ Sun, 01 Aug 2021 21:07:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: by 2002:a02:b157:0:0:0:0:0 with HTTP; Sun, 1 Aug 2021 21:07:49 -0700 (PDT)
+Reply-To: ablahikazabl67@gmail.com
+From:   Abdoulahi Kazim <aishagaddafi.lpw.ag@gmail.com>
+Date:   Mon, 2 Aug 2021 05:07:49 +0100
+Message-ID: <CAEax+HFO_RtXV7gUXOPz2gY7axnuZZ95hmU5xoOi6K2i=gvGkA@mail.gmail.com>
+Subject: More Authentic Information
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allows attaching multiple child busses in a mux topology
-to an mctp-i2c instance on the root bus. In general I2C
-slave mode does not make sense for mux busses, but the MCTP
-request/response protocol means the the root can switch
-between child muxes for incoming I2C messages.
-
-Signed-off-by: Matt Johnston <matt@codeconstruct.com.au>
----
- .../devicetree/bindings/net/mctp-i2c.yaml     | 42 +++++++++++++++++--
- 1 file changed, 38 insertions(+), 4 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/net/mctp-i2c.yaml b/Documentation/devicetree/bindings/net/mctp-i2c.yaml
-index f9378cd845d4..45429cbcc6a1 100644
---- a/Documentation/devicetree/bindings/net/mctp-i2c.yaml
-+++ b/Documentation/devicetree/bindings/net/mctp-i2c.yaml
-@@ -12,11 +12,10 @@ maintainers:
- description:
-   The MCTP I2C binding defines an MCTP endpoint on the I2C bus to
-   communicate with I2C peripherals using MCTP (DMTF specification DSP0237).
--
--  An mctp-i2c device must be attached to a hardware bus adapter which supports
-+  A single binding node can attach to multiple child busses in a mux topology.
-+  An mctp-i2c node's parent must be a hardware bus adapter which supports
-   slave functionality. The reg address must include I2C_OWN_SLAVE_ADDRESS.
- 
--
- properties:
-   compatible:
-     const: mctp-i2c
-@@ -24,6 +23,17 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  bus-attach:
-+    $ref: "/schemas/types.yaml#/definitions/phandle-array"
-+    description: |
-+      List of phandles of I2C busses to attach to. I2C mux busses may only
-+      be attached to an mctp-i2c binding on their parent root adapter in the
-+      mux topology.
-+      If no bus-attach property is specified then only the direct parent
-+      I2C bus is attached. Otherwise to include a direct parent bus it
-+      must be included in the bus-attach list if needed.
-+
-+
- additionalProperties: true
- 
- required:
-@@ -33,12 +43,36 @@ required:
- examples:
-   - |
-     #include <dt-bindings/i2c/i2c.h>
--    i2c {
-+
-+    // simple attaching to a root adapter i2c0
-+    i2c0: i2cbus0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        mctp@50 {
-+            compatible = "mctp-i2c";
-+            reg = <(0x50 | I2C_OWN_SLAVE_ADDRESS)>;
-+        };
-+    };
-+
-+    // attaching to a root adapter i2c5 and a child mux bus i2c14
-+    i2c5: i2cbus5 {
-         #address-cells = <1>;
-         #size-cells = <0>;
- 
-         mctp@50 {
-             compatible = "mctp-i2c";
-             reg = <(0x50 | I2C_OWN_SLAVE_ADDRESS)>;
-+            attach-bus = <&i2c5 &i2c14>;
-         };
-     };
-+
-+    i2cmux0 {
-+      compatible = "i2c-mux-gpio";
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      i2c-parent = <&i2c0>;
-+      i2c14: i2c@5 {
-+        reg = <0>;
-+      };
-+    };
 -- 
-2.30.2
+Dear Partner,
 
+I am soliciting your partnership to relocate $12.5 Million to your
+country for investment on my behalf and you will be entitled to 30% of
+the sum once the transaction is successful made.
+
+ Please indicate your genuine interest if you are capable so that i
+will send you the authentic details and documents of the transaction
+in awareness with some of my fellow Directors in the bank.
+If you are interested, here is my private Email address: (
+ablahikazabl67@gmail.com )
+For more authentic and legit information.
+
+
+Regards : Abdoulahi Kazim
