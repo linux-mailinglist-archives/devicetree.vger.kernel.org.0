@@ -2,81 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E9823DEA98
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 12:13:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D47F3DEAB6
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 12:17:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235373AbhHCKN7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 06:13:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51392 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235349AbhHCKN4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 06:13:56 -0400
-Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85232C06179E;
-        Tue,  3 Aug 2021 03:13:36 -0700 (PDT)
-Received: by mail-vs1-xe31.google.com with SMTP id k24so3091470vsg.9;
-        Tue, 03 Aug 2021 03:13:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=JUIVZgPBYOYpuCEk1uAi8VzRGhVQKeMfw4ERDH3V0C0=;
-        b=WAqlrFc7YoxRtZ2tJ+dLteZQQpk9TtrC7IYif8k/7+wY3T3iAFHMtqKtUj/3DfI0oG
-         FSxIuD5QXbz1XDF42sy/tOR7zKUXFSJVlWGKEUJVQG0lUwJRIQsNbZVxTyjdX798+kSQ
-         L555gTL117Zc+Gz5e79rwWWFBjnhjKp4+xFoGfPXJ8kficUq+cjI2jJXSm3Mq5ffyMXo
-         6GrvKb4V0wlzCwHRjZiWdK4zFzzk3HgZ1vZfHFnn7+/j4RG8O8eqSCCX8SbJgm7VuxGO
-         Go0hEUmQLVatmTnKK8F0eQxD9PJOIb5CImpOdYMGtYc2FdZvsPR6s+EjoQaZkY55Y81U
-         xt3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=JUIVZgPBYOYpuCEk1uAi8VzRGhVQKeMfw4ERDH3V0C0=;
-        b=fd7tCm6nsInQiJ39L5I11XmehT+MhHgINf2Ah9n5Udz10E3P76dl+uNd3gW8APB6n0
-         ZY7prJahes5TcNfc2CtvB8OnQ/muXYSH7dvJhjvO5wvLfvbZuOdiXU8yCFoApl+5d9mW
-         rUFczOq2WiMrJtHVok/QQV1tJXzoxA94dLBogrLk/Z3yORdSJFmfTclANI2VsW9AIx2F
-         rU98JMV0fL+nfgibgHnjzYlskAw9Q7OJS0Ifdwnox1WKmPuoZ9TTUMGKTPu3OBkzyQow
-         ekH6qajD48G8mtvANNg+7BlPKXqMsIcgroIEPho0Fj33WinxIJbdEOp36eB4gN6Bo4Y+
-         S5Jw==
-X-Gm-Message-State: AOAM531jfSv+rl4H7TJPSQzZF0MTqFZWIy09zIHKtlbdTxq09Pa/jpm+
-        2lBT4qNxkKtPq4GkU8dKxMazJ/Wzfh5PtBELQ6k=
-X-Google-Smtp-Source: ABdhPJzqyw93wm1d8X3oyH9dqTEIAPHfo1xN904AEQN8R0Fqdu8SCR+QTrGIz0LpUoLPCSlKiQ7ibC9mMf48faYVcTA=
-X-Received: by 2002:a05:6102:3a5a:: with SMTP id c26mr13002221vsu.20.1627985615654;
- Tue, 03 Aug 2021 03:13:35 -0700 (PDT)
+        id S235287AbhHCKRp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 06:17:45 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:44304 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235373AbhHCKRp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 06:17:45 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 173AHSoW091963;
+        Tue, 3 Aug 2021 05:17:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1627985848;
+        bh=wiSccX59p4oWXM6CGtP36vtA86aZv/+iD4t+2GKMTmg=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=YAqvvszk4zil8PSvF5PuhAKIVxr+E+7gfOdqnIPMvzldlTZ9xrN7dg6VY+h+HSh3w
+         ef7k9QmLfhOSx5FjE8QnPeiCSlceoi/t/SOjvLplp9V1jUoFuD+5jj3sewP6sfPy6H
+         05OAOwM44SJdNouunNpXa6LPfqJUmB5QXzFiUDaw=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 173AHS7c089590
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 3 Aug 2021 05:17:28 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 3 Aug
+ 2021 05:17:28 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 3 Aug 2021 05:17:27 -0500
+Received: from [10.250.100.73] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 173AHP2g033253;
+        Tue, 3 Aug 2021 05:17:25 -0500
+Subject: Re: [PATCH] dt-bindings: soc: ti: pruss: Add dma-coherent property
+To:     Suman Anna <s-anna@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+References: <20210730031901.26243-1-s-anna@ti.com>
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+Message-ID: <60d2172e-92cc-85b4-f0d1-c64724e5a42f@ti.com>
+Date:   Tue, 3 Aug 2021 13:17:23 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <20210717045627.1739959-1-daniel@0x0f.com> <20210717045627.1739959-6-daniel@0x0f.com>
- <CACRpkdaEMeYieH=g+3jveWgPS_8CXSgC-iryzbsoZp7LLrkzKA@mail.gmail.com>
-In-Reply-To: <CACRpkdaEMeYieH=g+3jveWgPS_8CXSgC-iryzbsoZp7LLrkzKA@mail.gmail.com>
-From:   Romain Perier <romain.perier@gmail.com>
-Date:   Tue, 3 Aug 2021 12:13:24 +0200
-Message-ID: <CABgxDo+BrfwahXW7eui1J5tLhQSx8=TB7o6TATLLS4G+HtxYXA@mail.gmail.com>
-Subject: Re: [PATCH 05/10] ARM: dts: mstar: Set gpio compatible for ssd20xd
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Daniel Palmer <daniel@0x0f.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210730031901.26243-1-s-anna@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le ven. 30 juil. 2021 =C3=A0 12:11, Linus Walleij
-<linus.walleij@linaro.org> a =C3=A9crit :
->
-> On Sat, Jul 17, 2021 at 6:56 AM Daniel Palmer <daniel@0x0f.com> wrote:
->
-> > Now there is gpio support for ssd20xd set the right compatible in the g=
-pio node.
-> >
-> > Signed-off-by: Daniel Palmer <daniel@0x0f.com>
->
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-Reviewed-by: Romain Perier <romain.perier@gmail.com>
 
-Regards,
-Romain
+
+On 30/07/2021 06:19, Suman Anna wrote:
+> Update the PRUSS schema file to include the dma-coherent property
+> that indicates the coherency of the IP. The PRUSS IPs on 66AK2G
+> SoCs do use this property.
+> 
+> Signed-off-by: Suman Anna <s-anna@ti.com>
+> ---
+> Hi Santosh,
+> 
+> This patch updates the PRUSS binding in preparation for adding the
+> PRUSS nodes for 66AK2G SoCs. Without this, the dtbs_check would
+> complain about the undefined dma-coherent property. Patch is top
+> of the AM64 ICSSG binding update patch [1].
+> 
+> regards
+> Suman
+> 
+> [1] https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210623165032.31223-2-s-anna@ti.com/
+> 
+>   .../devicetree/bindings/soc/ti/ti,pruss.yaml  | 37 +++++++++++++------
+>   1 file changed, 25 insertions(+), 12 deletions(-)
+> 
+Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
+
+-- 
+Best regards,
+grygorii
