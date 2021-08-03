@@ -2,85 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B45E3DF0A5
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 16:48:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90D2D3DF0D1
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 16:55:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236022AbhHCOsi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 10:48:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34698 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235860AbhHCOsf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 10:48:35 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B303BC06175F
-        for <devicetree@vger.kernel.org>; Tue,  3 Aug 2021 07:48:22 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id n28-20020a05600c3b9cb02902552e60df56so2330993wms.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Aug 2021 07:48:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=VzEPllnJibLq3zcdzHAkqTLkXaVEqNj1xd8dTfaBHUw=;
-        b=dahT4bqfaFsRU6p8agqQoaLw5OhT+j8m0V/FuMDWSny/S1HS5LUVFYF+QAv1NHoTQY
-         idWyjLIdv+K2T6jUlpI6MBIlqvLQzoEG3pXk77gmlfb42MqPa8Kj21pVHt5CQLM8ppwp
-         beBZ1f9L7z8CXZ9AWFDOf7B9dgJsnYgDJsji40GDvwLLSguPqXkI58EHIltrVMUpOwHq
-         j1y+dLCrsliHPyAUfS/moEF5ULRk+ck6EfTszolG2tNDB3v/rlx+0+LifkcrbkX6nMSv
-         8t7H/Uccvwu0ZXvcQFKRtpXrlBBtdDrhnufBH6LH1owJylgtFgcaM0D57Tsm0p0+OuAi
-         4y6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=VzEPllnJibLq3zcdzHAkqTLkXaVEqNj1xd8dTfaBHUw=;
-        b=DIWJFsLeem/coeiGxnWtqjR2RdpgGqDcAOBoIHvz+zeNDvXzQhjmRXBt5mzxhI3WmK
-         WKkjz17x3OgoNrXbYWMyTAnAXnQ7NUp7TNeia1tAvgO7hvBlzuKa70PqXhWP9PiMX1MB
-         XA1JI+Tqt3U2BFW7b6lFrcqBAKUAzZBY+bYRyuJyK7gsRPYE9UhLprUakuaxI08rYmPB
-         ibeduoIWZgcUg/7ZIFlICksPiy7uJOjncMYRhTt1C53E0WA0eIfOjIK46BOXCqbr7wRx
-         H3CXnEbBkOJSUZaTQ8iURiL28vtqGnXW6b+ELMGspeloVGi8jLr+ZiUQ1cOC3Y/Go7Up
-         62UA==
-X-Gm-Message-State: AOAM530mUkodBvPc5vKnoO0OZa4nz9I/E6izjudKnTodrVAuhISQJtG/
-        Jh/4R9UxjjYxwz9W6Cwf3GRY8Q==
-X-Google-Smtp-Source: ABdhPJy1AUqHvbe8ohorldpBn23AvFXXQiXP9EbNZTiN40o0TOJssr+qXeXmC7vukYki0/V3rxUvjw==
-X-Received: by 2002:a05:600c:ad6:: with SMTP id c22mr22852904wmr.114.1628002101389;
-        Tue, 03 Aug 2021 07:48:21 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id g12sm7866397wri.49.2021.08.03.07.48.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Aug 2021 07:48:20 -0700 (PDT)
-Subject: Re: [PATCH v3 14/20] ASoC: qdsp6: audioreach: add q6apm support
-To:     =?UTF-8?Q?Amadeusz_S=c5=82awi=c5=84ski?= 
-        <amadeuszx.slawinski@linux.intel.com>, bjorn.andersson@linaro.org,
-        broonie@kernel.org, robh@kernel.org
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        bgoswami@codeaurora.org, tiwai@suse.de, plai@codeaurora.org,
-        lgirdwood@gmail.com
-References: <20210803125411.28066-1-srinivas.kandagatla@linaro.org>
- <20210803125411.28066-15-srinivas.kandagatla@linaro.org>
- <111d4d4f-06f0-b7ca-579a-316e87f24f86@linux.intel.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <85611b3d-1a6d-4fb8-0ac0-6035049884e2@linaro.org>
-Date:   Tue, 3 Aug 2021 15:48:19 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S235486AbhHCOzP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 10:55:15 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35148 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234206AbhHCOzO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Aug 2021 10:55:14 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D391C60EB7;
+        Tue,  3 Aug 2021 14:55:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1628002503;
+        bh=DRuO5cfsBSAF+iYWFud7iNIH4PmO8sgoaJdiS0nJyGo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=tH973fCua+p9oBH6RvfFvQbdSi2vNr/Rp2EDqcYJ3u/fN0Pfff+HAtHBvsec8IwB8
+         yRXp3m6wMZDvbiiK26MH09JvMwy5KNIg//hZzbPpiP3mUV2UXm3M/1iHzCwkpMPx/P
+         k0LxD16I3oT0w122yfFd1GvMMP4/pLYe4ZVpqRLWq9+75fgicATh5X5hK3q5TuucNl
+         DNaCyD3y5xTh5q4y0Yp6KnPykWboe1BwbsiFVFEEn5L0R4ELkN9+3dI+HEeEPT/rfR
+         bCRuyxciaI8ry0bcs8XVRMcSpJt9HV9P+q8rOFKrr6p8a5jtWTIusOl5hhPj7tECp1
+         DSdDZ+zlrx9tA==
+Received: by mail-ed1-f46.google.com with SMTP id z11so6913673edb.11;
+        Tue, 03 Aug 2021 07:55:03 -0700 (PDT)
+X-Gm-Message-State: AOAM533L4DmyK4tnzusxbMVrTiI0jf/m3mjQonEiS4C1X0LkITYF7jFD
+        DPnIOVajYzW5x4LT867bsKYqBBtBdDoeaLT1ug==
+X-Google-Smtp-Source: ABdhPJx1mfvWAIa8Gzwj7redo7OPRL41TR54YoEAvn/Pb97SizGwd3m59UMsPWWCkCPr5eL+6Ekyw1g8j/oB9veO4yA=
+X-Received: by 2002:aa7:cb19:: with SMTP id s25mr26400510edt.194.1628002502460;
+ Tue, 03 Aug 2021 07:55:02 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <111d4d4f-06f0-b7ca-579a-316e87f24f86@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20210803051318.2570994-1-hsinyi@chromium.org> <20210803051318.2570994-3-hsinyi@chromium.org>
+ <1627999172.502726.3179055.nullmailer@robh.at.kernel.org>
+In-Reply-To: <1627999172.502726.3179055.nullmailer@robh.at.kernel.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 3 Aug 2021 08:54:49 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJOppSJx+rNvqtz9LGM_GFwjy9xCF1+On3-K1b8fOmuyg@mail.gmail.com>
+Message-ID: <CAL_JsqJOppSJx+rNvqtz9LGM_GFwjy9xCF1+On3-K1b8fOmuyg@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] dt-bindings: mediatek: convert pinctrl to yaml
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>, devicetree@vger.kernel.org,
+        Andy Teng <andy.teng@mediatek.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Sean Wang <sean.wang@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Aug 3, 2021 at 7:59 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, 03 Aug 2021 13:13:19 +0800, Hsin-Yi Wang wrote:
+> > Convert mt65xx, mt6796, mt7622, mt8183 bindings to yaml.
+> >
+> > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> > ---
+> > v2->v3:
+> > fix comments in v2.
+> > ---
+> >  .../pinctrl/mediatek,mt65xx-pinctrl.yaml      | 206 ++++++++
+> >  .../pinctrl/mediatek,mt6797-pinctrl.yaml      | 173 +++++++
+> >  .../pinctrl/mediatek,mt7622-pinctrl.yaml      | 373 +++++++++++++
+> >  .../pinctrl/mediatek,mt8183-pinctrl.yaml      | 228 ++++++++
+> >  .../bindings/pinctrl/pinctrl-mt65xx.txt       | 156 ------
+> >  .../bindings/pinctrl/pinctrl-mt6797.txt       |  83 ---
+> >  .../bindings/pinctrl/pinctrl-mt7622.txt       | 490 ------------------
+> >  .../bindings/pinctrl/pinctrl-mt8183.txt       | 132 -----
+> >  8 files changed, 980 insertions(+), 861 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt6797-pinctrl.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pinctrl.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt8183-pinctrl.yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-mt65xx.txt
+> >  delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-mt6797.txt
+> >  delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-mt7622.txt
+> >  delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-mt8183.txt
+> >
+>
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>
+> yamllint warnings/errors:
+>
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/pinctrl/mediatek,mt8183-pinctrl.example.dts:21:18: fatal error: dt-bindings/pinctrl/mt8183-pinfunc.h: No such file or directory
+>    21 |         #include <dt-bindings/pinctrl/mt8183-pinfunc.h>
+>       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> compilation terminated.
+> make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/pinctrl/mediatek,mt8183-pinctrl.example.dt.yaml] Error 1
+> make[1]: *** Waiting for unfinished jobs....
+> make: *** [Makefile:1419: dt_binding_check] Error 2
+> \ndoc reference errors (make refcheckdocs):
+> MAINTAINERS: Documentation/devicetree/bindings/pinctrl/pinctrl-mt65xx.txt
+> MAINTAINERS: Documentation/devicetree/bindings/pinctrl/pinctrl-mt7622.txt
 
+Not sure why the header patch is not getting applied, so ignore that.
+But these MAINTAINERS references need to be fixed.
 
-On 03/08/2021 15:20, Amadeusz Sławiński wrote:
->> +    /* Assuming Linear Graphs only for now! */
->> +    graph->graph = audioreach_alloc_graph_pkt(apm, &info->sg_list, 
->> graph_id);
->> +    if (IS_ERR(graph->graph))
->> +        return ERR_PTR(-ENOMEM);
-> Shouldn't graph be freed before returning here?
-yes, it should be Its now fixed.
-
---srini
+Rob
