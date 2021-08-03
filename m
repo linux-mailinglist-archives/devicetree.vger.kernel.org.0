@@ -2,81 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0896A3DF1C6
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 17:47:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE9E43DF271
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 18:27:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237011AbhHCPsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 11:48:08 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46396 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236994AbhHCPsH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Aug 2021 11:48:07 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 99A5A60EFD;
-        Tue,  3 Aug 2021 15:47:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1628005676;
-        bh=MG4fAieao0UPi4ffT0mbv01ftN/DNkPTsgdtYW/U3b0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=JMxzV8817ns0XcLosSwn1TLOGdXCxTTb3nBhRBb1PdBUrW5Nnd/7xx/D7oh3eGvTM
-         WK1nrMfIGlBgj7eHwljrNB2a1OnkfMJy7eONBxFJhrggHMOCOUN1B5BN/95IaHuFIu
-         bKsNYve1kUpE/mRsq7C2W9RwB3aJbpS5fWCspPTpUnYsLDtpNQ+6joNtsFAUvZpFiS
-         Nn4D8Ebal1JPMuyTxipY5u6vuLpi6GcF7JPCcO1X6WZLcUGk2fanMfHA/k8pSD8xs5
-         e2NoXPjBkwojqn0SEcGmhOWB4eimT/NVQe+KT65xA4lDP1+U9wKRypiL6AY0r2p3m1
-         r3tLen9j4PnBg==
-Received: by mail-ed1-f51.google.com with SMTP id x90so29529755ede.8;
-        Tue, 03 Aug 2021 08:47:56 -0700 (PDT)
-X-Gm-Message-State: AOAM533wiHrQL0uvpBzbRiHK6anfO79FkzfhOAQ1prFHMycVL9n+HKem
-        H+Y7hEIFc4B67nvguEUkT+fppZkQMNd/YuHy2A==
-X-Google-Smtp-Source: ABdhPJzuBnfkNQtqqLg2h9sTkUQTkdyCINtgxA59VUetynvl9LB1QKx942SZoaOuOW2U1PMG/KLxk/DqtQdWvGwL0ik=
-X-Received: by 2002:a05:6402:2043:: with SMTP id bc3mr26352466edb.62.1628005675201;
- Tue, 03 Aug 2021 08:47:55 -0700 (PDT)
+        id S233430AbhHCQ1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 12:27:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60578 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233408AbhHCQ1R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 12:27:17 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5A0FC061757;
+        Tue,  3 Aug 2021 09:27:05 -0700 (PDT)
+Received: from localhost.localdomain (unknown [IPv6:2804:14c:1a9:2434:b693:c9:5cb6:b688])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id E52D11F423A5;
+        Tue,  3 Aug 2021 17:26:57 +0100 (BST)
+From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
+        <nfraprado@collabora.com>
+To:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc:     linux-leds@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Brian Masney <masneyb@onstation.org>,
+        Luca Weiss <luca@z3ntu.xyz>,
+        Russell King <linux@armlinux.org.uk>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, ~lkcamp/patches@lists.sr.ht,
+        =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@collabora.com>,
+        kernel@collabora.com
+Subject: [PATCH v3 0/5] Add support for QCOM SPMI Flash LEDs
+Date:   Tue,  3 Aug 2021 13:26:36 -0300
+Message-Id: <20210803162641.1525980-1-nfraprado@collabora.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-References: <cover.1627362340.git.viresh.kumar@linaro.org> <acf7402ef4aabc0ad6295c32846f2bef1cd9b56a.1627362340.git.viresh.kumar@linaro.org>
- <YQhKKyPmOUE8z+US@robh.at.kernel.org> <20210803043014.paskwghdio6azplp@vireshk-i7>
-In-Reply-To: <20210803043014.paskwghdio6azplp@vireshk-i7>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 3 Aug 2021 09:47:42 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ6_ktTQKiy_xx9DhjQ3=imfvSZpBem5fXwVY7O49EgCw@mail.gmail.com>
-Message-ID: <CAL_JsqJ6_ktTQKiy_xx9DhjQ3=imfvSZpBem5fXwVY7O49EgCw@mail.gmail.com>
-Subject: Re: [PATCH V4 3/5] dt-bindings: gpio: Add bindings for gpio-virtio
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Jason Wang <jasowang@redhat.com>,
-        "Michael S. Tsirkin" <mst@redhat.com>,
-        Arnd Bergmann <arnd@kernel.org>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Bill Mills <bill.mills@linaro.org>,
-        =?UTF-8?B?QWxleCBCZW5uw6ll?= <alex.bennee@linaro.org>,
-        "Enrico Weigelt, metux IT consult" <info@metux.net>,
-        Jie Deng <jie.deng@intel.com>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE" 
-        <virtualization@lists.linux-foundation.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-n Mon, Aug 2, 2021 at 10:30 PM Viresh Kumar <viresh.kumar@linaro.org> wrote:
->
-> On 02-08-21, 13:40, Rob Herring wrote:
-> > Humm, how does one implement interrupts without a parent interrupt? It
-> > uses the parent virtio,mmio interrupt?
->
-> Kind of, yeah, but not necessarily.
->
-> The interrupt information is passed over buffers shared between host and guest.
-> Now the guest may process the buffers when it receives a notification from the
-> host, that will be at downpath of an interrupt for virtio,mmio. Or the guest may
-> poll on the virtqueue and process any buffers as soon as they are made
-> available, no interrupts then.
+Hi,
 
-Okay, thanks for the explanation.
+this patch series adds support for Qualcomm's SPMI Flash LEDs present in the
+PM8941 PMIC. It is used as part of MSM8974 based devices, like the Nexus 5
+(hammerhead), as a camera flash or as a lantern when in torch mode.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+The driver code is based on the parts of the QPNP LEDs driver from downstream
+[1] that handled the flash LED.
 
-Rob
+This hardware doesn't have any publicly available documentation, so all my
+knowledge about its behavior came from reading the downstream driver code and
+from inspecting the SPMI registers used for the LED operations. I have collected
+my findings at [2].
+
+Bjorn, Jacek and Pavel, big thanks for your review in v2. I didn't answer the
+emails but I believe I addressed all of the feedback you gave me. Sorry for the
+long delay, I'll try to actually answer the feedback this time, and in a timely
+manner too.
+
+The changes in this v3 are too many to list, but the biggest ones were:
+- The two LEDs can now be operated independently even when in torch mode
+- The flashes can now strobe consecutive times without needing to manually
+  disable them between strobes
+- Implemented strobe_get()
+- Moved dt parsing to a separate function
+- Split multiplexed torch/flash on/off and torch/flash regulator on/off
+  functions
+- Removed configurations from the dt-binding that didn't have any visible
+  impact, instead hardcoding them inside the driver
+- Moved LED dt nodes configuration to hammerhead dts
+- Set current on brightness callback and timeout on timeout callback, instead of
+  setting everything every time when strobing/turning torch on
+
+Fault detection and V4L2 flash wrapper support are still missing but, as others
+have pointed out before, they can be implemented later if desired.
+
+Thanks,
+Nícolas
+
+v2: https://lore.kernel.org/linux-arm-msm/20210126140240.1517044-1-nfraprado@protonmail.com/
+v1 RFC: https://lore.kernel.org/linux-arm-msm/20201106165737.1029106-1-nfraprado@protonmail.com/
+
+[1] https://github.com/AICP/kernel_lge_hammerhead/blob/n7.1/drivers/leds/leds-qpnp.c
+[2] https://gitlab.collabora.com/nfraprado/linux/-/wikis/PM8941-Flash-LEDs
+
+Nícolas F. R. A. Prado (5):
+  dt-bindings: leds: Add binding for qcom-spmi-flash
+  leds: Add driver for QCOM SPMI Flash LEDs
+  ARM: qcom_defconfig: Enable QCOM SPMI Flash LEDs
+  ARM: dts: qcom: pm8941: Add nodes for QCOM SPMI Flash LEDs
+  ARM: dts: qcom: msm8974-hammerhead: Enable and configure flash LED
+    node
+
+ .../bindings/leds/leds-qcom-spmi-flash.yaml   |   93 ++
+ .../qcom-msm8974-lge-nexus5-hammerhead.dts    |   20 +
+ arch/arm/boot/dts/qcom-pm8941.dtsi            |   25 +
+ arch/arm/configs/qcom_defconfig               |    2 +
+ drivers/leds/flash/Kconfig                    |    8 +
+ drivers/leds/flash/Makefile                   |    1 +
+ drivers/leds/flash/leds-qcom-spmi-flash.c     | 1251 +++++++++++++++++
+ 7 files changed, 1400 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-qcom-spmi-flash.yaml
+ create mode 100644 drivers/leds/flash/leds-qcom-spmi-flash.c
+
+-- 
+2.32.0
+
