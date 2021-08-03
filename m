@@ -2,598 +2,559 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CBEE73DE6D4
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 08:42:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B4C33DE70D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 09:13:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234055AbhHCGmm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 02:42:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44288 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234036AbhHCGmm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Aug 2021 02:42:42 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8B5F460F93;
-        Tue,  3 Aug 2021 06:42:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1627972951;
-        bh=1pXoEvbn+uAAOF2APebVUSgYzT5cl/mUdR4SchffRRo=;
-        h=From:To:Cc:Subject:Date:From;
-        b=iXAHxJTNp/KsENk1ZuDRtl2m3HjNn/2Y7PTPPtc+3ubXi0qsbMk0blyL8Q7f1y08u
-         jsAoHD5x5dpz0/syn7VzTVlfspMSN03cV+4H51FYni8FCwnZ27WMmrViAXf9f8S/P9
-         zDuYGp6AxbhTV2eeJYYt2uAUcwKdy2aycx9TlwDNTdaiaHy/fO0zw08DYMj7fz5iF6
-         zJQkS2k2zlfkm1RwULqIJ3mqQM8Tmiaj5T4UImIGRBX7TT6pg8Dm7Dbx4sYw+4lSyE
-         6dJjBZulKO8Zxm9+KGC97kaV4gcrNmUlcgTRJtyra/xMmksTcaVIgk1A4yfxJL15gS
-         yu0BvXik0gfHg==
-From:   Mike Rapoport <rppt@kernel.org>
-To:     Andrew Morton <akpm@linux-foundation.org>
-Cc:     Albert Ou <aou@eecs.berkeley.edu>,
-        Andy Lutomirski <luto@kernel.org>,
-        Borislav Petkov <bp@alien8.de>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Christian Borntraeger <borntraeger@de.ibm.com>,
-        Dave Hansen <dave.hansen@linux.intel.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "H. Peter Anvin" <hpa@zytor.com>,
-        Heiko Carstens <hca@linux.ibm.com>,
-        Ingo Molnar <mingo@redhat.com>,
-        "Kirill A. Shutemov" <kirill@shutemov.name>,
-        Len Brown <lenb@kernel.org>, Marc Zyngier <maz@kernel.org>,
-        Mike Rapoport <rppt@kernel.org>,
-        Mike Rapoport <rppt@linux.ibm.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Peter Zijlstra <peterz@infradead.org>,
+        id S234192AbhHCHNQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 03:13:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34972 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234164AbhHCHNP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 03:13:15 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AC11C0613D5
+        for <devicetree@vger.kernel.org>; Tue,  3 Aug 2021 00:13:05 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id k4-20020a17090a5144b02901731c776526so2564708pjm.4
+        for <devicetree@vger.kernel.org>; Tue, 03 Aug 2021 00:13:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=AJnO/q9aMYt2BAZNZXSA0urhOrU1UN7gjNrdhJYojBM=;
+        b=Gs2yCCo/Uz2BlS91VnZxNnyU6UvZsn45TY0xHAshUYpyez8nIZA7AvqD6ey1YBgiZg
+         +V3UFUtxP8FyOCVTF9OGu0klWjSB5tjyI8kTipqWT8ACjyOtygnwojFc9R64WKGkBytG
+         Ojh5tQkU4RzJLY2xQw4VkML2dsDaQ4nqTGKEzfuBeECnVv5nlubAnT5G1AuTI33mBCo/
+         HR5jDVCfDZlYa9pfr5k+/npz/BTfM+gzag9u7kdHHNDVnic8aq91BsiknUaAB+Dd95hs
+         DwBBFIz5L3YK9/PghFhJb+l3mh5iejxx1lOKeKFFkL+cv1Bpy8kF3tHopng7ZDzuigUZ
+         ODwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=AJnO/q9aMYt2BAZNZXSA0urhOrU1UN7gjNrdhJYojBM=;
+        b=N2M8dmmEa5I8pYiQfWqeebacOVSipKIwNEJ0ufYtdi+X/b/yVHBrjIT3f/UfCdeMJF
+         9Ed2Qp3V6uurIuXj8y/I54wfO0xx68HAMJ/aDayGf+yMtgsUKFDlh3nJQo2fc7Rsz4kX
+         iBst3f1RXwRo02eG00MFYtrZJycvRtYOFyqGDFwyKpDq8phu7TFgV1u5LLvDD57TdUR5
+         h75ggQLFNVXDTS4x0NuJ7TNE+OexX0pf7Lm9IsIxnOn9XfU/KY6GW0GJDQRbDm8UFtq1
+         8LR+QeiiFip+gauQNBBPyY/kzVnlZDh+TIZtr6sF/dcJ/E2ieWH0iUUzEq96jlcUE/Vd
+         o7FQ==
+X-Gm-Message-State: AOAM531aPrC5oVn2Xkm+1aIdm5PYLSampUsxbq3j71kqLzpOOklQA3gG
+        sBTqnADoKDiVTPXvXCZI4+BHgQ==
+X-Google-Smtp-Source: ABdhPJwbuIeGfRdVfbCDpH/YKMFhjYkxEYzlq7BvsicneEXmLBZnQmK/h7FJc+7i1q3LpRy10WtzIg==
+X-Received: by 2002:a05:6a00:aca:b029:392:9c79:3a39 with SMTP id c10-20020a056a000acab02903929c793a39mr20820209pfl.57.1627974784741;
+        Tue, 03 Aug 2021 00:13:04 -0700 (PDT)
+Received: from localhost ([122.172.201.85])
+        by smtp.gmail.com with ESMTPSA id c24sm16694621pgj.11.2021.08.03.00.13.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Aug 2021 00:13:04 -0700 (PDT)
+Date:   Tue, 3 Aug 2021 12:43:02 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Hector Yuan <hector.yuan@mediatek.com>
+Cc:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
         "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Vasily Gorbik <gor@linux.ibm.com>,
-        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-        kvmarm@lists.cs.columbia.edu, linux-acpi@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-mm@kvack.org,
-        linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
-        x86@kernel.org
-Subject: [PATCH v3] memblock: make memblock_find_in_range method private
-Date:   Tue,  3 Aug 2021 09:42:18 +0300
-Message-Id: <20210803064218.6611-1-rppt@kernel.org>
-X-Mailer: git-send-email 2.28.0
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, wsd_upstream@mediatek.com
+Subject: Re: [PATCH v13 2/2] cpufreq: mediatek-hw: Add support for CPUFREQ HW
+Message-ID: <20210803071302.b4ttoqgqdq4dfmwe@vireshk-i7>
+References: <1627574891-26514-1-git-send-email-hector.yuan@mediatek.com>
+ <1627574891-26514-3-git-send-email-hector.yuan@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1627574891-26514-3-git-send-email-hector.yuan@mediatek.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Mike Rapoport <rppt@linux.ibm.com>
+On 30-07-21, 00:08, Hector Yuan wrote:
+> From: "Hector.Yuan" <hector.yuan@mediatek.com>
+> 
+> Add cpufreq HW support
 
-There are a lot of uses of memblock_find_in_range() along with
-memblock_reserve() from the times memblock allocation APIs did not exist.
+Please write a proper commit log, what you are adding and which SoCs
+it will apply to. Also add a full stop (.) at the end.
 
-memblock_find_in_range() is the very core of memblock allocations, so any
-future changes to its internal behaviour would mandate updates of all the
-users outside memblock.
+> Signed-off-by: Hector.Yuan <hector.yuan@mediatek.com>
+> ---
+>  drivers/cpufreq/Kconfig.arm           |   12 ++
+>  drivers/cpufreq/Makefile              |    1 +
+>  drivers/cpufreq/mediatek-cpufreq-hw.c |  357 +++++++++++++++++++++++++++++++++
+>  include/linux/cpufreq.h               |   39 ++++
 
-Replace the calls to memblock_find_in_range() with an equivalent calls to
-memblock_phys_alloc() and memblock_phys_alloc_range() and make
-memblock_find_in_range() private method of memblock.
+The changes to cpufreq.h should be done in a separate patch.
 
-This simplifies the callers, ensures that (unlikely) errors in
-memblock_reserve() are handled and improves maintainability of
-memblock_find_in_range().
+> diff --git a/drivers/cpufreq/mediatek-cpufreq-hw.c b/drivers/cpufreq/mediatek-cpufreq-hw.c
+> new file mode 100644
+> index 0000000..ca50a3a
+> --- /dev/null
+> +++ b/drivers/cpufreq/mediatek-cpufreq-hw.c
+> @@ -0,0 +1,357 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2020 MediaTek Inc.
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/cpufreq.h>
+> +#include <linux/energy_model.h>
+> +#include <linux/init.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of_address.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/pm_qos.h>
+> +#include <linux/slab.h>
+> +
+> +#define LUT_MAX_ENTRIES			32U
+> +#define LUT_FREQ			GENMASK(11, 0)
+> +#define LUT_ROW_SIZE			0x4
+> +#define CPUFREQ_HW_STATUS		BIT(0)
+> +#define SVS_HW_STATUS			BIT(1)
+> +#define POLL_USEC			1000
+> +#define TIMEOUT_USEC			300000
+> +
+> +enum {
+> +	REG_FREQ_LUT_TABLE,
+> +	REG_FREQ_ENABLE,
+> +	REG_FREQ_PERF_STATE,
+> +	REG_FREQ_HW_STATE,
+> +	REG_EM_POWER_TBL,
+> +	REG_FREQ_LATENCY,
+> +
+> +	REG_ARRAY_SIZE,
+> +};
+> +
+> +struct cpufreq_mtk {
+> +	struct cpufreq_frequency_table *table;
+> +	void __iomem *reg_bases[REG_ARRAY_SIZE];
+> +	int nr_opp;
+> +	cpumask_t related_cpus;
+> +};
+> +
+> +static const u16 cpufreq_mtk_offsets[REG_ARRAY_SIZE] = {
+> +	[REG_FREQ_LUT_TABLE]	= 0x0,
+> +	[REG_FREQ_ENABLE]	= 0x84,
+> +	[REG_FREQ_PERF_STATE]	= 0x88,
+> +	[REG_FREQ_HW_STATE]	= 0x8c,
+> +	[REG_EM_POWER_TBL]	= 0x90,
+> +	[REG_FREQ_LATENCY]	= 0x110,
+> +};
+> +
+> +static struct cpufreq_mtk *mtk_freq_domain_map[NR_CPUS];
+> +
+> +static int __maybe_unused
+> +mtk_cpufreq_get_cpu_power(unsigned long *mW,
+> +			  unsigned long *KHz, struct device *cpu_dev)
+> +{
+> +	struct cpufreq_mtk *c;
+> +	struct cpufreq_policy *policy;
+> +	int i;
+> +
+> +	policy = cpufreq_cpu_get_raw(cpu_dev->id);
+> +	if (!policy)
+> +		return 0;
+> +
+> +	c = mtk_freq_domain_map[policy->cpu];
+> +
+> +	for (i = 0; i < c->nr_opp; i++) {
+> +		if (c->table[i].frequency < *KHz)
+> +			break;
+> +	}
+> +	i--;
+> +
+> +	*KHz = c->table[i].frequency;
+> +	*mW = readl_relaxed(c->reg_bases[REG_EM_POWER_TBL] +
+> +			    i * LUT_ROW_SIZE) / 1000;
+> +
+> +	return 0;
+> +}
+> +
+> +static int mtk_cpufreq_hw_target_index(struct cpufreq_policy *policy,
+> +				       unsigned int index)
+> +{
+> +	struct cpufreq_mtk *c = policy->driver_data;
+> +
+> +	writel_relaxed(index, c->reg_bases[REG_FREQ_PERF_STATE]);
+> +
+> +	return 0;
+> +}
+> +
+> +static unsigned int mtk_cpufreq_hw_get(unsigned int cpu)
+> +{
+> +	struct cpufreq_mtk *c;
+> +	struct cpufreq_policy *policy;
+> +	unsigned int index;
+> +
+> +	policy = cpufreq_cpu_get_raw(cpu);
+> +	if (!policy)
+> +		return 0;
+> +
+> +	c = mtk_freq_domain_map[policy->cpu];
+> +
+> +	index = readl_relaxed(c->reg_bases[REG_FREQ_PERF_STATE]);
+> +	index = min(index, LUT_MAX_ENTRIES - 1);
+> +
+> +	return c->table[index].frequency;
+> +}
+> +
+> +static unsigned int mtk_cpufreq_hw_fast_switch(struct cpufreq_policy *policy,
+> +					       unsigned int target_freq)
+> +{
+> +	struct cpufreq_mtk *c = policy->driver_data;
+> +	unsigned int index;
+> +
+> +	index = cpufreq_table_find_index_dl(policy, target_freq);
+> +
+> +	writel_relaxed(index, c->reg_bases[REG_FREQ_PERF_STATE]);
+> +
+> +	return policy->freq_table[index].frequency;
+> +}
+> +
+> +static int mtk_cpu_create_freq_table(struct platform_device *pdev,
+> +				     struct cpufreq_mtk *c)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	void __iomem *base_table;
+> +	u32 data, i, freq, prev_freq = 0;
+> +
+> +	c->table = devm_kcalloc(dev, LUT_MAX_ENTRIES + 1,
+> +				sizeof(*c->table), GFP_KERNEL);
+> +	if (!c->table)
+> +		return -ENOMEM;
+> +
+> +	base_table = c->reg_bases[REG_FREQ_LUT_TABLE];
+> +
+> +	for (i = 0; i < LUT_MAX_ENTRIES; i++) {
+> +		data = readl_relaxed(base_table + (i * LUT_ROW_SIZE));
+> +		freq = FIELD_GET(LUT_FREQ, data) * 1000;
+> +
+> +		if (freq == prev_freq)
+> +			break;
+> +
+> +		c->table[i].frequency = freq;
+> +
+> +		dev_dbg(dev, "index=%d freq=%d\n",
+> +			i, c->table[i].frequency);
 
-Signed-off-by: Mike Rapoport <rppt@linux.ibm.com>
----
-v3:
-* simplify check for exact crash kerenl allocation on arm, per Rob
-* make crash_max unsigned long long on arm64, per Rob
- 
-v2: https://lore.kernel.org/lkml/20210802063737.22733-1-rppt@kernel.org 
-* don't change error message in arm::reserve_crashkernel(), per Russell
+Won't this fit in a single line ?
 
-v1: https://lore.kernel.org/lkml/20210730104039.7047-1-rppt@kernel.org
+> +
+> +		prev_freq = freq;
+> +	}
+> +
+> +	c->table[i].frequency = CPUFREQ_TABLE_END;
+> +	c->nr_opp = i;
+> +
+> +	return 0;
+> +}
+> +
+> +static int mtk_cpu_resources_init(struct platform_device *pdev,
+> +				  unsigned int cpu, int index,
+> +				  const u16 *offsets)
+> +{
+> +	struct cpufreq_mtk *c;
+> +	struct device *dev = &pdev->dev;
+> +	int ret, i;
+> +	void __iomem *base;
+> +
+> +	if (mtk_freq_domain_map[cpu])
 
- arch/arm/kernel/setup.c           | 20 +++++---------
- arch/arm64/kvm/hyp/reserved_mem.c |  9 +++----
- arch/arm64/mm/init.c              | 36 ++++++++-----------------
- arch/mips/kernel/setup.c          | 14 +++++-----
- arch/riscv/mm/init.c              | 44 ++++++++++---------------------
- arch/s390/kernel/setup.c          | 10 ++++---
- arch/x86/kernel/aperture_64.c     |  5 ++--
- arch/x86/mm/init.c                | 21 +++++++++------
- arch/x86/mm/numa.c                |  5 ++--
- arch/x86/mm/numa_emulation.c      |  5 ++--
- arch/x86/realmode/init.c          |  2 +-
- drivers/acpi/tables.c             |  5 ++--
- drivers/base/arch_numa.c          |  5 +---
- drivers/of/of_reserved_mem.c      | 12 ++++++---
- include/linux/memblock.h          |  2 --
- mm/memblock.c                     |  2 +-
- 16 files changed, 79 insertions(+), 118 deletions(-)
+This should not happen anymore, isn't it ?
 
-diff --git a/arch/arm/kernel/setup.c b/arch/arm/kernel/setup.c
-index f97eb2371672..284a80c0b6e1 100644
---- a/arch/arm/kernel/setup.c
-+++ b/arch/arm/kernel/setup.c
-@@ -1012,31 +1012,25 @@ static void __init reserve_crashkernel(void)
- 		unsigned long long lowmem_max = __pa(high_memory - 1) + 1;
- 		if (crash_max > lowmem_max)
- 			crash_max = lowmem_max;
--		crash_base = memblock_find_in_range(CRASH_ALIGN, crash_max,
--						    crash_size, CRASH_ALIGN);
-+
-+		crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
-+						       CRASH_ALIGN, crash_max);
- 		if (!crash_base) {
- 			pr_err("crashkernel reservation failed - No suitable area found.\n");
- 			return;
- 		}
- 	} else {
-+		unsigned long long crash_max = crash_base + crash_size;
- 		unsigned long long start;
- 
--		start = memblock_find_in_range(crash_base,
--					       crash_base + crash_size,
--					       crash_size, SECTION_SIZE);
--		if (start != crash_base) {
-+		start = memblock_phys_alloc_range(crash_size, SECTION_SIZE,
-+						  crash_base, crash_max);
-+		if (!start) {
- 			pr_err("crashkernel reservation failed - memory is in use.\n");
- 			return;
- 		}
- 	}
- 
--	ret = memblock_reserve(crash_base, crash_size);
--	if (ret < 0) {
--		pr_warn("crashkernel reservation failed - memory is in use (0x%lx)\n",
--			(unsigned long)crash_base);
--		return;
--	}
--
- 	pr_info("Reserving %ldMB of memory at %ldMB for crashkernel (System RAM: %ldMB)\n",
- 		(unsigned long)(crash_size >> 20),
- 		(unsigned long)(crash_base >> 20),
-diff --git a/arch/arm64/kvm/hyp/reserved_mem.c b/arch/arm64/kvm/hyp/reserved_mem.c
-index d654921dd09b..578670e3f608 100644
---- a/arch/arm64/kvm/hyp/reserved_mem.c
-+++ b/arch/arm64/kvm/hyp/reserved_mem.c
-@@ -92,12 +92,10 @@ void __init kvm_hyp_reserve(void)
- 	 * this is unmapped from the host stage-2, and fallback to PAGE_SIZE.
- 	 */
- 	hyp_mem_size = hyp_mem_pages << PAGE_SHIFT;
--	hyp_mem_base = memblock_find_in_range(0, memblock_end_of_DRAM(),
--					      ALIGN(hyp_mem_size, PMD_SIZE),
--					      PMD_SIZE);
-+	hyp_mem_base = memblock_phys_alloc(ALIGN(hyp_mem_size, PMD_SIZE),
-+					   PMD_SIZE);
- 	if (!hyp_mem_base)
--		hyp_mem_base = memblock_find_in_range(0, memblock_end_of_DRAM(),
--						      hyp_mem_size, PAGE_SIZE);
-+		hyp_mem_base = memblock_phys_alloc(hyp_mem_size, PAGE_SIZE);
- 	else
- 		hyp_mem_size = ALIGN(hyp_mem_size, PMD_SIZE);
- 
-@@ -105,7 +103,6 @@ void __init kvm_hyp_reserve(void)
- 		kvm_err("Failed to reserve hyp memory\n");
- 		return;
- 	}
--	memblock_reserve(hyp_mem_base, hyp_mem_size);
- 
- 	kvm_info("Reserved %lld MiB at 0x%llx\n", hyp_mem_size >> 20,
- 		 hyp_mem_base);
-diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
-index 8490ed2917ff..0bffd2d1854f 100644
---- a/arch/arm64/mm/init.c
-+++ b/arch/arm64/mm/init.c
-@@ -74,6 +74,7 @@ phys_addr_t arm64_dma_phys_limit __ro_after_init;
- static void __init reserve_crashkernel(void)
- {
- 	unsigned long long crash_base, crash_size;
-+	unsigned long long crash_max = arm64_dma_phys_limit;
- 	int ret;
- 
- 	ret = parse_crashkernel(boot_command_line, memblock_phys_mem_size(),
-@@ -84,33 +85,18 @@ static void __init reserve_crashkernel(void)
- 
- 	crash_size = PAGE_ALIGN(crash_size);
- 
--	if (crash_base == 0) {
--		/* Current arm64 boot protocol requires 2MB alignment */
--		crash_base = memblock_find_in_range(0, arm64_dma_phys_limit,
--				crash_size, SZ_2M);
--		if (crash_base == 0) {
--			pr_warn("cannot allocate crashkernel (size:0x%llx)\n",
--				crash_size);
--			return;
--		}
--	} else {
--		/* User specifies base address explicitly. */
--		if (!memblock_is_region_memory(crash_base, crash_size)) {
--			pr_warn("cannot reserve crashkernel: region is not memory\n");
--			return;
--		}
-+	/* User specifies base address explicitly. */
-+	if (crash_base)
-+		crash_max = crash_base + crash_size;
- 
--		if (memblock_is_region_reserved(crash_base, crash_size)) {
--			pr_warn("cannot reserve crashkernel: region overlaps reserved memory\n");
--			return;
--		}
--
--		if (!IS_ALIGNED(crash_base, SZ_2M)) {
--			pr_warn("cannot reserve crashkernel: base address is not 2MB aligned\n");
--			return;
--		}
-+	/* Current arm64 boot protocol requires 2MB alignment */
-+	crash_base = memblock_phys_alloc_range(crash_size, SZ_2M,
-+					       crash_base, crash_max);
-+	if (!crash_base) {
-+		pr_warn("cannot allocate crashkernel (size:0x%llx)\n",
-+			crash_size);
-+		return;
- 	}
--	memblock_reserve(crash_base, crash_size);
- 
- 	pr_info("crashkernel reserved: 0x%016llx - 0x%016llx (%lld MB)\n",
- 		crash_base, crash_base + crash_size, crash_size >> 20);
-diff --git a/arch/mips/kernel/setup.c b/arch/mips/kernel/setup.c
-index 23a140327a0b..f979adfd4fc2 100644
---- a/arch/mips/kernel/setup.c
-+++ b/arch/mips/kernel/setup.c
-@@ -452,8 +452,9 @@ static void __init mips_parse_crashkernel(void)
- 		return;
- 
- 	if (crash_base <= 0) {
--		crash_base = memblock_find_in_range(CRASH_ALIGN, CRASH_ADDR_MAX,
--							crash_size, CRASH_ALIGN);
-+		crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
-+						       CRASH_ALIGN,
-+						       CRASH_ADDR_MAX);
- 		if (!crash_base) {
- 			pr_warn("crashkernel reservation failed - No suitable area found.\n");
- 			return;
-@@ -461,8 +462,9 @@ static void __init mips_parse_crashkernel(void)
- 	} else {
- 		unsigned long long start;
- 
--		start = memblock_find_in_range(crash_base, crash_base + crash_size,
--						crash_size, 1);
-+		start = memblock_phys_alloc_range(crash_size, 1,
-+						  crash_base,
-+						  crash_base + crash_size);
- 		if (start != crash_base) {
- 			pr_warn("Invalid memory region reserved for crash kernel\n");
- 			return;
-@@ -656,10 +658,6 @@ static void __init arch_mem_init(char **cmdline_p)
- 	mips_reserve_vmcore();
- 
- 	mips_parse_crashkernel();
--#ifdef CONFIG_KEXEC
--	if (crashk_res.start != crashk_res.end)
--		memblock_reserve(crashk_res.start, resource_size(&crashk_res));
--#endif
- 	device_tree_init();
- 
- 	/*
-diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
-index a14bf3910eec..88649337c568 100644
---- a/arch/riscv/mm/init.c
-+++ b/arch/riscv/mm/init.c
-@@ -812,38 +812,22 @@ static void __init reserve_crashkernel(void)
- 
- 	crash_size = PAGE_ALIGN(crash_size);
- 
--	if (crash_base == 0) {
--		/*
--		 * Current riscv boot protocol requires 2MB alignment for
--		 * RV64 and 4MB alignment for RV32 (hugepage size)
--		 */
--		crash_base = memblock_find_in_range(search_start, search_end,
--						    crash_size, PMD_SIZE);
--
--		if (crash_base == 0) {
--			pr_warn("crashkernel: couldn't allocate %lldKB\n",
--				crash_size >> 10);
--			return;
--		}
--	} else {
--		/* User specifies base address explicitly. */
--		if (!memblock_is_region_memory(crash_base, crash_size)) {
--			pr_warn("crashkernel: requested region is not memory\n");
--			return;
--		}
--
--		if (memblock_is_region_reserved(crash_base, crash_size)) {
--			pr_warn("crashkernel: requested region is reserved\n");
--			return;
--		}
--
-+	if (crash_base) {
-+		search_start = crash_base;
-+		search_end = crash_base + crash_size;
-+	}
- 
--		if (!IS_ALIGNED(crash_base, PMD_SIZE)) {
--			pr_warn("crashkernel: requested region is misaligned\n");
--			return;
--		}
-+	/*
-+	 * Current riscv boot protocol requires 2MB alignment for
-+	 * RV64 and 4MB alignment for RV32 (hugepage size)
-+	 */
-+	crash_base = memblock_phys_alloc_range(crash_size, PMD_SIZE,
-+					       search_start, search_end);
-+	if (crash_base == 0) {
-+		pr_warn("crashkernel: couldn't allocate %lldKB\n",
-+			crash_size >> 10);
-+		return;
- 	}
--	memblock_reserve(crash_base, crash_size);
- 
- 	pr_info("crashkernel: reserved 0x%016llx - 0x%016llx (%lld MB)\n",
- 		crash_base, crash_base + crash_size, crash_size >> 20);
-diff --git a/arch/s390/kernel/setup.c b/arch/s390/kernel/setup.c
-index ff0f9e838916..3d9efee0f43c 100644
---- a/arch/s390/kernel/setup.c
-+++ b/arch/s390/kernel/setup.c
-@@ -626,8 +626,9 @@ static void __init reserve_crashkernel(void)
- 			return;
- 		}
- 		low = crash_base ?: low;
--		crash_base = memblock_find_in_range(low, high, crash_size,
--						    KEXEC_CRASH_MEM_ALIGN);
-+		crash_base = memblock_phys_alloc_range(crash_size,
-+						       KEXEC_CRASH_MEM_ALIGN,
-+						       low, high);
- 	}
- 
- 	if (!crash_base) {
-@@ -636,14 +637,15 @@ static void __init reserve_crashkernel(void)
- 		return;
- 	}
- 
--	if (register_memory_notifier(&kdump_mem_nb))
-+	if (register_memory_notifier(&kdump_mem_nb)) {
-+		memblock_free(crash_base, crash_size);
- 		return;
-+	}
- 
- 	if (!OLDMEM_BASE && MACHINE_IS_VM)
- 		diag10_range(PFN_DOWN(crash_base), PFN_DOWN(crash_size));
- 	crashk_res.start = crash_base;
- 	crashk_res.end = crash_base + crash_size - 1;
--	memblock_remove(crash_base, crash_size);
- 	pr_info("Reserving %lluMB of memory at %lluMB "
- 		"for crashkernel (System RAM: %luMB)\n",
- 		crash_size >> 20, crash_base >> 20,
-diff --git a/arch/x86/kernel/aperture_64.c b/arch/x86/kernel/aperture_64.c
-index 294ed4392a0e..10562885f5fc 100644
---- a/arch/x86/kernel/aperture_64.c
-+++ b/arch/x86/kernel/aperture_64.c
-@@ -109,14 +109,13 @@ static u32 __init allocate_aperture(void)
- 	 * memory. Unfortunately we cannot move it up because that would
- 	 * make the IOMMU useless.
- 	 */
--	addr = memblock_find_in_range(GART_MIN_ADDR, GART_MAX_ADDR,
--				      aper_size, aper_size);
-+	addr = memblock_phys_alloc_range(aper_size, aper_size,
-+					 GART_MIN_ADDR, GART_MAX_ADDR);
- 	if (!addr) {
- 		pr_err("Cannot allocate aperture memory hole [mem %#010lx-%#010lx] (%uKB)\n",
- 		       addr, addr + aper_size - 1, aper_size >> 10);
- 		return 0;
- 	}
--	memblock_reserve(addr, aper_size);
- 	pr_info("Mapping aperture over RAM [mem %#010lx-%#010lx] (%uKB)\n",
- 		addr, addr + aper_size - 1, aper_size >> 10);
- 	register_nosave_region(addr >> PAGE_SHIFT,
-diff --git a/arch/x86/mm/init.c b/arch/x86/mm/init.c
-index 75ef19aa8903..1152a29ce109 100644
---- a/arch/x86/mm/init.c
-+++ b/arch/x86/mm/init.c
-@@ -26,6 +26,7 @@
- #include <asm/pti.h>
- #include <asm/text-patching.h>
- #include <asm/memtype.h>
-+#include <xen/xen.h>
- 
- /*
-  * We need to define the tracepoints somewhere, and tlb.c
-@@ -127,14 +128,12 @@ __ref void *alloc_low_pages(unsigned int num)
- 		unsigned long ret = 0;
- 
- 		if (min_pfn_mapped < max_pfn_mapped) {
--			ret = memblock_find_in_range(
-+			ret = memblock_phys_alloc_range(
-+					PAGE_SIZE * num, PAGE_SIZE,
- 					min_pfn_mapped << PAGE_SHIFT,
--					max_pfn_mapped << PAGE_SHIFT,
--					PAGE_SIZE * num , PAGE_SIZE);
-+					max_pfn_mapped << PAGE_SHIFT);
- 		}
--		if (ret)
--			memblock_reserve(ret, PAGE_SIZE * num);
--		else if (can_use_brk_pgt)
-+		if (!ret && can_use_brk_pgt)
- 			ret = __pa(extend_brk(PAGE_SIZE * num, PAGE_SIZE));
- 
- 		if (!ret)
-@@ -610,9 +609,15 @@ static void __init memory_map_top_down(unsigned long map_start,
- 	unsigned long addr;
- 	unsigned long mapped_ram_size = 0;
- 
-+	real_end = ALIGN_DOWN(map_end, PMD_SIZE);
-+
- 	/* xen has big range in reserved near end of ram, skip it at first.*/
--	addr = memblock_find_in_range(map_start, map_end, PMD_SIZE, PMD_SIZE);
--	real_end = addr + PMD_SIZE;
-+	if (xen_domain()) {
-+		addr = memblock_phys_alloc_range(PMD_SIZE, PMD_SIZE,
-+						 map_start, map_end);
-+		memblock_free(addr, PMD_SIZE);
-+		real_end = addr + PMD_SIZE;
-+	}
- 
- 	/* step_size need to be small so pgt_buf from BRK could cover it */
- 	step_size = PMD_SIZE;
-diff --git a/arch/x86/mm/numa.c b/arch/x86/mm/numa.c
-index e94da744386f..a1b5c71099e6 100644
---- a/arch/x86/mm/numa.c
-+++ b/arch/x86/mm/numa.c
-@@ -376,15 +376,14 @@ static int __init numa_alloc_distance(void)
- 	cnt++;
- 	size = cnt * cnt * sizeof(numa_distance[0]);
- 
--	phys = memblock_find_in_range(0, PFN_PHYS(max_pfn_mapped),
--				      size, PAGE_SIZE);
-+	phys = memblock_phys_alloc_range(size, PAGE_SIZE, 0,
-+					 PFN_PHYS(max_pfn_mapped));
- 	if (!phys) {
- 		pr_warn("Warning: can't allocate distance table!\n");
- 		/* don't retry until explicitly reset */
- 		numa_distance = (void *)1LU;
- 		return -ENOMEM;
- 	}
--	memblock_reserve(phys, size);
- 
- 	numa_distance = __va(phys);
- 	numa_distance_cnt = cnt;
-diff --git a/arch/x86/mm/numa_emulation.c b/arch/x86/mm/numa_emulation.c
-index 87d77cc52f86..737491b13728 100644
---- a/arch/x86/mm/numa_emulation.c
-+++ b/arch/x86/mm/numa_emulation.c
-@@ -447,13 +447,12 @@ void __init numa_emulation(struct numa_meminfo *numa_meminfo, int numa_dist_cnt)
- 	if (numa_dist_cnt) {
- 		u64 phys;
- 
--		phys = memblock_find_in_range(0, PFN_PHYS(max_pfn_mapped),
--					      phys_size, PAGE_SIZE);
-+		phys = memblock_phys_alloc_range(phys_size, PAGE_SIZE, 0,
-+						 PFN_PHYS(max_pfn_mapped));
- 		if (!phys) {
- 			pr_warn("NUMA: Warning: can't allocate copy of distance table, disabling emulation\n");
- 			goto no_emu;
- 		}
--		memblock_reserve(phys, phys_size);
- 		phys_dist = __va(phys);
- 
- 		for (i = 0; i < numa_dist_cnt; i++)
-diff --git a/arch/x86/realmode/init.c b/arch/x86/realmode/init.c
-index 6534c92d0f83..31b5856010cb 100644
---- a/arch/x86/realmode/init.c
-+++ b/arch/x86/realmode/init.c
-@@ -28,7 +28,7 @@ void __init reserve_real_mode(void)
- 	WARN_ON(slab_is_available());
- 
- 	/* Has to be under 1M so we can execute real-mode AP code. */
--	mem = memblock_find_in_range(0, 1<<20, size, PAGE_SIZE);
-+	mem = memblock_phys_alloc_range(size, PAGE_SIZE, 0, 1<<20);
- 	if (!mem)
- 		pr_info("No sub-1M memory is available for the trampoline\n");
- 	else
-diff --git a/drivers/acpi/tables.c b/drivers/acpi/tables.c
-index a37a1532a575..f9383736fa0f 100644
---- a/drivers/acpi/tables.c
-+++ b/drivers/acpi/tables.c
-@@ -583,8 +583,8 @@ void __init acpi_table_upgrade(void)
- 	}
- 
- 	acpi_tables_addr =
--		memblock_find_in_range(0, ACPI_TABLE_UPGRADE_MAX_PHYS,
--				       all_tables_size, PAGE_SIZE);
-+		memblock_phys_alloc_range(all_tables_size, PAGE_SIZE,
-+					  0, ACPI_TABLE_UPGRADE_MAX_PHYS);
- 	if (!acpi_tables_addr) {
- 		WARN_ON(1);
- 		return;
-@@ -599,7 +599,6 @@ void __init acpi_table_upgrade(void)
- 	 * Both memblock_reserve and e820__range_add (via arch_reserve_mem_area)
- 	 * works fine.
- 	 */
--	memblock_reserve(acpi_tables_addr, all_tables_size);
- 	arch_reserve_mem_area(acpi_tables_addr, all_tables_size);
- 
- 	/*
-diff --git a/drivers/base/arch_numa.c b/drivers/base/arch_numa.c
-index 4cc4e117727d..46c503486e96 100644
---- a/drivers/base/arch_numa.c
-+++ b/drivers/base/arch_numa.c
-@@ -279,13 +279,10 @@ static int __init numa_alloc_distance(void)
- 	int i, j;
- 
- 	size = nr_node_ids * nr_node_ids * sizeof(numa_distance[0]);
--	phys = memblock_find_in_range(0, PFN_PHYS(max_pfn),
--				      size, PAGE_SIZE);
-+	phys = memblock_phys_alloc_range(size, PAGE_SIZE, 0, PFN_PHYS(max_pfn));
- 	if (WARN_ON(!phys))
- 		return -ENOMEM;
- 
--	memblock_reserve(phys, size);
--
- 	numa_distance = __va(phys);
- 	numa_distance_cnt = nr_node_ids;
- 
-diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-index fd3964d24224..59c1390cdf42 100644
---- a/drivers/of/of_reserved_mem.c
-+++ b/drivers/of/of_reserved_mem.c
-@@ -33,18 +33,22 @@ static int __init early_init_dt_alloc_reserved_memory_arch(phys_addr_t size,
- 	phys_addr_t *res_base)
- {
- 	phys_addr_t base;
-+	int err = 0;
- 
- 	end = !end ? MEMBLOCK_ALLOC_ANYWHERE : end;
- 	align = !align ? SMP_CACHE_BYTES : align;
--	base = memblock_find_in_range(start, end, size, align);
-+	base = memblock_phys_alloc_range(size, align, start, end);
- 	if (!base)
- 		return -ENOMEM;
- 
- 	*res_base = base;
--	if (nomap)
--		return memblock_mark_nomap(base, size);
-+	if (nomap) {
-+		err = memblock_mark_nomap(base, size);
-+		if (err)
-+			memblock_free(base, size);
-+	}
- 
--	return memblock_reserve(base, size);
-+	return err;
- }
- 
- /*
-diff --git a/include/linux/memblock.h b/include/linux/memblock.h
-index 4a53c3ca86bd..b066024c62e3 100644
---- a/include/linux/memblock.h
-+++ b/include/linux/memblock.h
-@@ -99,8 +99,6 @@ void memblock_discard(void);
- static inline void memblock_discard(void) {}
- #endif
- 
--phys_addr_t memblock_find_in_range(phys_addr_t start, phys_addr_t end,
--				   phys_addr_t size, phys_addr_t align);
- void memblock_allow_resize(void);
- int memblock_add_node(phys_addr_t base, phys_addr_t size, int nid);
- int memblock_add(phys_addr_t base, phys_addr_t size);
-diff --git a/mm/memblock.c b/mm/memblock.c
-index de7b553baa50..28a813d9e955 100644
---- a/mm/memblock.c
-+++ b/mm/memblock.c
-@@ -315,7 +315,7 @@ static phys_addr_t __init_memblock memblock_find_in_range_node(phys_addr_t size,
-  * Return:
-  * Found address on success, 0 on failure.
-  */
--phys_addr_t __init_memblock memblock_find_in_range(phys_addr_t start,
-+static phys_addr_t __init_memblock memblock_find_in_range(phys_addr_t start,
- 					phys_addr_t end, phys_addr_t size,
- 					phys_addr_t align)
- {
+> +		return 0;
+> +
+> +	c = devm_kzalloc(dev, sizeof(*c), GFP_KERNEL);
+> +	if (!c)
+> +		return -ENOMEM;
+> +
+> +	base = devm_platform_ioremap_resource(pdev, index);
+> +	if (IS_ERR(base))
+> +		return PTR_ERR(base);
+> +
+> +	for (i = REG_FREQ_LUT_TABLE; i < REG_ARRAY_SIZE; i++)
+> +		c->reg_bases[i] = base + offsets[i];
+> +
+> +	ret = of_perf_domain_get_sharing_cpumask(index, "performance-domains",
 
-base-commit: ff1176468d368232b684f75e82563369208bc371
+Instead of parsing parsing "performance-domains" twice, I would rather
+pass a CPU number here instead of index.
+
+> +						 "#performance-domain-cells",
+> +						 &c->related_cpus);
+
+You could have directly passed policy->cpus here instead.
+
+> +	if (ret) {
+> +		dev_info(dev, "Domain-%d failed to get related CPUs\n", index);
+> +		return ret;
+> +	}
+> +
+> +	ret = mtk_cpu_create_freq_table(pdev, c);
+> +	if (ret) {
+> +		dev_info(dev, "Domain-%d failed to create freq table\n", index);
+> +		return ret;
+> +	}
+> +
+> +	mtk_freq_domain_map[cpu] = c;
+
+I will rather use policy->driver_data to store this now.
+
+> +
+> +	return 0;
+> +}
+> +
+> +static int mtk_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
+> +{
+> +	struct platform_device *pdev = cpufreq_get_driver_data();
+> +	struct cpufreq_mtk *c;
+> +	struct device *cpu_dev;
+> +	struct em_data_callback em_cb = EM_DATA_CB(mtk_cpufreq_get_cpu_power);
+> +	struct pm_qos_request *qos_request;
+> +	struct device_node *cpu_np;
+> +	struct of_phandle_args args;
+> +	const u16 *offsets;
+> +	unsigned int latency;
+> +	int sig, pwr_hw = CPUFREQ_HW_STATUS | SVS_HW_STATUS;
+> +	int ret;
+
+It looks much more organized when the variable definitions are in
+decreasing order of their length, instead of the random order as it is
+right now.
+
+> +
+> +	offsets = of_device_get_match_data(&pdev->dev);
+> +	if (!offsets)
+> +		return -EINVAL;
+> +
+> +	cpu_np = of_cpu_device_node_get(policy->cpu);
+> +	if (!cpu_np) {
+> +		dev_info(&pdev->dev, "Failed to get cpu %d device\n",
+> +			 policy->cpu);
+> +		return -ENODEV;
+> +	}
+> +
+> +	ret = of_parse_phandle_with_args(cpu_np, "performance-domains",
+> +					 "#performance-domain-cells", 0,
+> +					 &args);
+> +	if (ret < 0)
+
+What about dropping cpu_np and same later in the code as well ?
+
+> +		return ret;
+> +
+> +	/* Get the bases of cpufreq for domains */
+> +	ret = mtk_cpu_resources_init(pdev, policy->cpu, args.args[0], offsets);
+> +	if (ret) {
+> +		dev_info(&pdev->dev, "CPUFreq resource init failed\n");
+> +		return ret;
+> +	}
+> +
+> +	cpu_dev = get_cpu_device(policy->cpu);
+> +	if (!cpu_dev) {
+> +		pr_err("failed to get cpu%d device\n", policy->cpu);
+> +		return -ENODEV;
+> +	}
+> +
+> +	c = mtk_freq_domain_map[policy->cpu];
+> +	if (!c) {
+> +		pr_err("No scaling support for CPU%d\n", policy->cpu);
+> +		return -ENODEV;
+> +	}
+> +
+> +	cpumask_copy(policy->cpus, &c->related_cpus);
+> +
+> +	policy->freq_table = c->table;
+> +	policy->driver_data = c;
+
+Oh you already do this, you can remove mtk_freq_domain_map array now.
+
+> +
+> +	latency = readl_relaxed(c->reg_bases[REG_FREQ_LATENCY]);
+> +	if (!latency)
+> +		latency = CPUFREQ_ETERNAL;
+> +
+> +	/* us convert to ns */
+> +	policy->cpuinfo.transition_latency = latency * 1000;
+
+You want to multiple CPUFREQ_ETERNAL too ?
+
+> +
+> +	policy->fast_switch_possible = true;
+> +
+> +	qos_request = kzalloc(sizeof(*qos_request), GFP_KERNEL);
+
+This is a small structure, why not allocate it on stack instead ?
+
+> +	if (!qos_request)
+> +		return -ENOMEM;
+> +
+> +	/* Let CPUs leave idle-off state for SVS CPU initializing */
+> +	cpu_latency_qos_add_request(qos_request, 0);
+> +
+> +	/* HW should be in enabled state to proceed now */
+> +	writel_relaxed(0x1, c->reg_bases[REG_FREQ_ENABLE]);
+> +
+> +	if (readl_poll_timeout(c->reg_bases[REG_FREQ_HW_STATE], sig,
+> +			       (sig & pwr_hw) == pwr_hw, POLL_USEC,
+> +			       TIMEOUT_USEC)) {
+> +		if (!(sig & CPUFREQ_HW_STATUS)) {
+> +			pr_info("cpufreq hardware of CPU%d is not enabled\n",
+> +				policy->cpu);
+> +			return -ENODEV;
+> +		}
+> +
+> +		pr_info("SVS of CPU%d is not enabled\n", policy->cpu);
+> +	}
+> +
+> +	cpu_latency_qos_remove_request(qos_request);
+> +
+> +	em_dev_register_perf_domain(cpu_dev, c->nr_opp, &em_cb, policy->cpus, true);
+> +
+> +	kfree(qos_request);
+
+Why free after registering for em ? And also move the entire qos thing
+into a separate routine instead of adding it to ->init().
+
+> +
+> +	return 0;
+> +}
+> +
+> +static int mtk_cpufreq_hw_cpu_exit(struct cpufreq_policy *policy)
+> +{
+> +	struct cpufreq_mtk *c;
+> +
+> +	c = mtk_freq_domain_map[policy->cpu];
+> +
+> +	/* HW should be in paused state now */
+> +	writel_relaxed(0x0, c->reg_bases[REG_FREQ_ENABLE]);
+
+Please make sure each and every resource is freed here and in probe on
+failures.
+
+> +
+> +	return 0;
+> +}
+> +
+> +static struct cpufreq_driver cpufreq_mtk_hw_driver = {
+> +	.flags		= CPUFREQ_NEED_INITIAL_FREQ_CHECK |
+> +			  CPUFREQ_HAVE_GOVERNOR_PER_POLICY |
+> +			  CPUFREQ_IS_COOLING_DEV,
+> +	.verify		= cpufreq_generic_frequency_table_verify,
+> +	.target_index	= mtk_cpufreq_hw_target_index,
+> +	.get		= mtk_cpufreq_hw_get,
+> +	.init		= mtk_cpufreq_hw_cpu_init,
+> +	.exit		= mtk_cpufreq_hw_cpu_exit,
+> +	.fast_switch	= mtk_cpufreq_hw_fast_switch,
+> +	.name		= "mtk-cpufreq-hw",
+> +	.attr		= cpufreq_generic_attr,
+> +};
+> +
+> +static int mtk_cpufreq_hw_driver_probe(struct platform_device *pdev)
+> +{
+> +	int ret;
+> +
+> +	cpufreq_mtk_hw_driver.driver_data = pdev;
+> +
+> +	ret = cpufreq_register_driver(&cpufreq_mtk_hw_driver);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "CPUFreq HW driver failed to register\n");
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+
+You can do return ret here and drop the earlier return and its {}.
+
+> +}
+> +
+> +static int mtk_cpufreq_hw_driver_remove(struct platform_device *pdev)
+> +{
+> +	return cpufreq_unregister_driver(&cpufreq_mtk_hw_driver);
+> +}
+> +
+> +static const struct of_device_id mtk_cpufreq_hw_match[] = {
+> +	{ .compatible = "mediatek,cpufreq-hw", .data = &cpufreq_mtk_offsets },
+> +	{}
+> +};
+> +
+> +static struct platform_driver mtk_cpufreq_hw_driver = {
+> +	.probe = mtk_cpufreq_hw_driver_probe,
+> +	.remove = mtk_cpufreq_hw_driver_remove,
+> +	.driver = {
+> +		.name = "mtk-cpufreq-hw",
+> +		.of_match_table = mtk_cpufreq_hw_match,
+> +	},
+> +};
+> +module_platform_driver(mtk_cpufreq_hw_driver);
+> +
+> +MODULE_DESCRIPTION("Mediatek cpufreq-hw driver");
+> +MODULE_LICENSE("GPL v2");
+
+You can add Module-author as well here if you want.
+
+> diff --git a/include/linux/cpufreq.h b/include/linux/cpufreq.h
+> index 9fd7194..4916d70 100644
+> --- a/include/linux/cpufreq.h
+> +++ b/include/linux/cpufreq.h
+> @@ -13,6 +13,8 @@
+>  #include <linux/completion.h>
+>  #include <linux/kobject.h>
+>  #include <linux/notifier.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+>  #include <linux/pm_qos.h>
+>  #include <linux/spinlock.h>
+>  #include <linux/sysfs.h>
+> @@ -1036,6 +1038,43 @@ void arch_set_freq_scale(const struct cpumask *cpus,
+>  }
+>  #endif
+>  
+> +#ifdef CONFIG_CPU_FREQ
+
+There is another CONFIG_CPU_FREQ a few lines above, please use the
+same block for this routine as well.
+
+> +static inline int of_perf_domain_get_sharing_cpumask(int index, const char *list_name,
+> +						     const char *cell_name,
+> +						     struct cpumask *cpumask)
+> +{
+> +	struct device_node *cpu_np;
+> +	struct of_phandle_args args;
+> +	int cpu, ret;
+> +
+> +	for_each_possible_cpu(cpu) {
+> +		cpu_np = of_cpu_device_node_get(cpu);
+> +		if (!cpu_np)
+> +			continue;
+> +
+> +		ret = of_parse_phandle_with_args(cpu_np, list_name,
+> +						 cell_name, 0,
+> +						 &args);
+> +
+> +		of_node_put(cpu_np);
+> +		if (ret < 0)
+> +			continue;
+> +
+> +		if (index == args.args[0])
+> +			cpumask_set_cpu(cpu, cpumask);
+> +	}
+> +
+> +	return 0;
+> +}
+> +#else
+> +static inline int of_perf_domain_get_sharing_cpumask(int index, const char *list_name,
+> +						     const char *cell_name,
+> +						     struct cpumask *cpumask)
+> +{
+> +	return 0;
+
+	return -EOPNOTSUPP;
+
+> +}
+> +#endif
+
 -- 
-2.28.0
-
+viresh
