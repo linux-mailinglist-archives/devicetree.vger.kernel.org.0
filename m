@@ -2,170 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 08AC53DF3AF
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 19:16:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 326753DF3CD
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 19:18:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237808AbhHCRQm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 13:16:42 -0400
-Received: from mout.gmx.net ([212.227.17.21]:54319 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237864AbhHCRQY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Aug 2021 13:16:24 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1628010948;
-        bh=dCJAv9vYWkTYWaiwSK/+b0SL2G2WQhBtdtJ5pV7ILXA=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=FdJ3+lq26JPK4sjOBdkQbQcMGS/IA0JWMonWIDr2iDhxqQjpZnzJmyB85za40bFA9
-         WVtTmYE1Iqdy9xsvjurI7bj4sEnjg6p//hSY8M1jWF/0SLqlABJN2pCkkP0veZ0CMG
-         2pJbespqfcCKuy1JV9rf7OfwcnpCFOfqC6d9KFN4=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [217.61.158.209] ([217.61.158.209]) by web-mail.gmx.net
- (3c-app-gmx-bs54.server.lan [172.19.170.138]) (via HTTP); Tue, 3 Aug 2021
- 19:15:48 +0200
+        id S237804AbhHCRTE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 13:19:04 -0400
+Received: from frasgout.his.huawei.com ([185.176.79.56]:3573 "EHLO
+        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237741AbhHCRTC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 13:19:02 -0400
+Received: from fraeml701-chm.china.huawei.com (unknown [172.18.147.201])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4GfM652nYgz6DJsk;
+        Wed,  4 Aug 2021 01:18:37 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml701-chm.china.huawei.com (10.206.15.50) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2176.2; Tue, 3 Aug 2021 19:18:47 +0200
+Received: from localhost (10.210.169.87) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Tue, 3 Aug 2021
+ 18:18:46 +0100
+Date:   Tue, 3 Aug 2021 18:18:18 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Lucas Stankus <lucas.p.stankus@gmail.com>
+CC:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        "Hennerich, Michael" <Michael.Hennerich@analog.com>,
+        <robh+dt@kernel.org>, "Bogdan, Dragos" <Dragos.Bogdan@analog.com>,
+        "Berghe, Darius" <Darius.Berghe@analog.com>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/2] iio: accel: Add driver support for ADXL313
+Message-ID: <20210803181818.00001743@Huawei.com>
+In-Reply-To: <CACKVXZD9nnAYb1bHNp32dzoGE3xnBPd6NR=9PNXkPVBSaPpaKw@mail.gmail.com>
+References: <cover.1627709571.git.lucas.p.stankus@gmail.com>
+        <8f13da2603ebede1c8c2d89f4ec2d9900a331250.1627709571.git.lucas.p.stankus@gmail.com>
+        <20210801191210.19044c90@jic23-huawei>
+        <CACKVXZD9nnAYb1bHNp32dzoGE3xnBPd6NR=9PNXkPVBSaPpaKw@mail.gmail.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
 MIME-Version: 1.0
-Message-ID: <trinity-0f9449b8-5114-46e5-9a4f-00b62155a938-1628010948338@3c-app-gmx-bs54>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Sungbo Eo <mans0n@gorani.run>
-Cc:     linux-mediatek@lists.infradead.org,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Min Guo <min.guo@mediatek.com>, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Sungbo Eo <mans0n@gorani.run>
-Subject: Aw: [PATCH 0/2] Add MUSB for MT7623
-Content-Type: text/plain; charset=UTF-8
-Date:   Tue, 3 Aug 2021 19:15:48 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <20210803151320.71531-1-mans0n@gorani.run>
-References: <20210803151320.71531-1-mans0n@gorani.run>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:+x7Po+to3M3ZmemoEJPeIaz/yToRmM77Y8roaUamiJB5bHZ9lcF8YCvW8QPjr6E1Y8xb1
- pvYshKflbK9f/JSMfAzqalhvzJBDx+Hex7cOF8IDdH1Py6xfEtzZRJqJZDd/qFW+YmkPUjwtE6OM
- 5XVinLUdJkG8zB59VzQFU0Zt/gwYN1UuKBt2Vhm1+eX0ekpdLUdwb8+9drpdk0CpOSj5PNg7+dgW
- /st6ZkIeppKKLJxkDFZ7ToE/dKhlTE0Acc9UlhKNlAE+8+UF0e6Rl9HNSQpQQbNxm5h3U5Mffvdt
- 1g=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:Fu8vFzkOtVI=:L1rPZNcoU/50dnRWKL4Wzt
- Hq6raVPuRSDGLAWdfqbq9DhWTYl5AZG/6lYejiG+K6oM/LnGrkICKDjDYVD5/+SZGUPvCEx6X
- wvwxccElGNQ0IMiCwc0N+0rrkCauPQn/ExFbSrAGAG1+glfN2Oegjgna/Riowq1DdPMpRwNYE
- v13UoIpvXXyI8Yz3udFp/Ac9DycAT1CekTnAXqp1b6SecrJ7RO9TFvMtgzAU3za1ZgeZ+gPl5
- lMDvbzDBxy9uG7g9JhdrLnZzc+Kg2bQ8wWms2xuiJu7/0YpG90xHr7hK2Xol3kmPeOk7VNcYU
- p+n8v3eXKDwGJ5+jwd2C6tF166Md03V1ef+a4t5tcjqHSCRSeuyvSUstvU5pOh9whdd5yAlYy
- nsYJZfQxBaIbsRjpwuX+palyzkGWlsE0w6M/iU0sK243wOQBvkDtaLxyLhlUTIJ4WBLDMN/uQ
- ItsJP7VGfk4t96OXRIbYld8hHC+lrWf8o/4Y2vRT0IxpURCFdkYNxGjNriO6DC53IbAwBlOAG
- hGQoNabU5xvgCNfc4xx6KbrGmE6ZWbUTXyIq0cO3SeezQhJUpK30dobkFx4B1MvM2kRtZH8FU
- RjaR+B2z7Qt+QvEC8KrCavWzWD2sBZRGUNFP03+1BflP9BFuQKBvncGbg7erLmVWuWfXmdGXY
- I7+HaVskRzPPRmSYic5ZW4+TszYEAGinlQzigTiXC4uqdZ82u9MGO6QUrLzaJpuXNsLomuOBb
- n8u8VOdQEcc7V9uH34O9Jj3xvZZl/R8PZ1TLg69EsG20iR3KVN0oP/ylEkNlbrPG5125njHdu
- 1lEw87Qr2YxA1aJNyNTH0z2ve9GOfgwifTUPASwHjCIS4muLDw=
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.210.169.87]
+X-ClientProxiedBy: lhreml714-chm.china.huawei.com (10.201.108.65) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon, 2 Aug 2021 14:15:53 -0300
+Lucas Stankus <lucas.p.stankus@gmail.com> wrote:
 
-> Gesendet: Dienstag, 03. August 2021 um 17:13 Uhr
-> Von: "Sungbo Eo" <mans0n@gorani.run>
-> An: linux-mediatek@lists.infradead.org
-> Cc: "Chunfeng Yun" <chunfeng.yun@mediatek.com>, "Greg Kroah-Hartman" <gr=
-egkh@linuxfoundation.org>, "Rob Herring" <robh+dt@kernel.org>, "Matthias B=
-rugger" <matthias.bgg@gmail.com>, "Min Guo" <min.guo@mediatek.com>, "Frank=
- Wunderlich" <frank-w@public-files.de>, devicetree@vger.kernel.org, linux-=
-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vg=
-er.kernel.org, "Sungbo Eo" <mans0n@gorani.run>
-> Betreff: [PATCH 0/2] Add MUSB for MT7623
->
-> These patches add support for the MUSB controller on Mediatek MT7623.
-> Tested on Mercury RUSH-318AC Wi-Fi router.
->
-> I got to know this from a BPI-R2 forum post [1], and managed to make it =
-work on OpenWrt snapshot.
-> I'd like to know if this also works on BPI-R2, I can happily share the d=
-etails if needed.
-> And I've just copy & pasted nodes from mt2701, please let me know if I m=
-issed some big differences between SoCs...
->
-> [1] http://forum.banana-pi.org/t/bpi-r2-otg-port/10551
+> On Sun, Aug 1, 2021 at 3:09 PM Jonathan Cameron <jic23@kernel.org> wrote:
+> >
+> > On Sat, 31 Jul 2021 17:36:48 -0300
+> > Lucas Stankus <lucas.p.stankus@gmail.com> wrote:
+> >  
+> > > ADXL313 is a small, thin, low power, 3-axis accelerometer with high
+> > > resolution measurement up to +/-4g. It includes an integrated 32-level
+> > > FIFO and has activity and inactivity sensing capabilities.
+> > >
+> > > Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/ADXL313.pdf
+> > >
+> > > Signed-off-by: Lucas Stankus <lucas.p.stankus@gmail.com>  
+> >
+> > Very nice.  A few really minor things inline.
+> >
+> > Jonathan
+> >  
+> 
+> Thanks for the feedback!
+> 
+> I'll change the minor things for the v2.
+> 
 
-thanks for working on it. do both otg-roles (host/client) work on your dev=
-ice?
+...
 
-unfortunately at least host-mode does not work (do not know how to test cl=
-ient mode). i guess because iddig and vusb nodes are missing.
+> > > +
+> > > +static int adxl313_setup(struct device *dev, struct adxl313_data *data)
+> > > +{
+> > > +     unsigned int regval;
+> > > +     int ret;
+> > > +
+> > > +     /* Ensures the device is in a consistent state after start up */
+> > > +     ret = regmap_write(data->regmap, ADXL313_REG_SOFT_RESET,
+> > > +                        ADXL313_SOFT_RESET);
+> > > +     if (ret)
+> > > +             return ret;
+> > > +
+> > > +     if (device_property_read_bool(dev, "spi-3wire")) {  
+> >
+> > Rather odd to see spi specific stuff in here.  Perhaps provide a callback to
+> > common probe if it needs to be done at this point in bringing the device up.
+> > However, I think you can just do this before calling the common_probe()
+> >  
+> 
+> I'm doing this here because of the device reset, so whatever I write
+> to the register before it would be overwritten in setup. The datasheet
+> doesn't say that resetting the device is strictly necessary, but I
+> figured it would be better to do so to force consistency.
+> 
+> If I drop the reset, I'd be able to do it before the core probe call
+> and, from what I'm seeing here, the startup seems to be consistent
+> without it. Do you think it's best to drop the device reset?
+Ah. I'd missed that.  Fair enough.
 
-i took your Patchset and enabled the usb-node for bpi-r2.
+In this case, I'd pass in a function pointer from the spi module. If the
+function pointer is provided, call it to spi specific setup, if NULL
+don't call it (so we don't need to provide an empty stub in the i2c side of things).
 
-+&usb3 {
-+       status =3D "okay";
-+};
+> 
+> > > +             ret = regmap_write(data->regmap, ADXL313_REG_DATA_FORMAT,
+> > > +                                ADXL313_SPI_3WIRE);
+> > > +             if (ret)
+> > > +                     return ret;
+> > > +     }
+> > > +
+> > > +     ret = regmap_read(data->regmap, ADXL313_REG_DEVID0, &regval);
+> > > +     if (ret)
+> > > +             return ret;
+> > > +
+> > > +     if (regval != ADXL313_DEVID0) {
+> > > +             dev_err(dev, "Invalid manufacturer ID: 0x%02x\n", regval);
+> > > +             return -ENODEV;
+> > > +     }
+> > > +
+> > > +     ret = regmap_read(data->regmap, ADXL313_REG_DEVID1, &regval);
+> > > +     if (ret)
+> > > +             return ret;
+> > > +
 
-and added these config-symbols:
+...
 
-+CONFIG_USB_CONN_GPIO=3Dy
-+CONFIG_USB_MUSB_HDRC=3Dy
-+CONFIG_USB_MUSB_MEDIATEK=3Dy
-+CONFIG_NOP_USB_XCEIV=3Dy
-+CONFIG_USB_CONFIGFS=3Dy
-+#CONFIG_USB_CONFIGFS_MASS_STORAGE=3Dy
-+#CONFIG_PHY_MTK_TPHY=3Dy
-+CONFIG_USB_GADGET=3Dy
-+CONFIG_USB_MUSB_DUAL_ROLE=3Dy
-+CONFIG_USB_INVENTRA_DMA=3Dy
+> > > diff --git a/drivers/iio/accel/adxl313_spi.c b/drivers/iio/accel/adxl313_spi.c
+> > > new file mode 100644
+> > > index 000000000000..7c58c9ff8985
+> > > --- /dev/null
+> > > +++ b/drivers/iio/accel/adxl313_spi.c
+> > > @@ -0,0 +1,74 @@
+> > > +// SPDX-License-Identifier: GPL-2.0-only
+> > > +/*
+> > > + * ADXL313 3-Axis Digital Accelerometer
+> > > + *
+> > > + * Copyright (c) 2021 Lucas Stankus <lucas.p.stankus@gmail.com>
+> > > + *
+> > > + * Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/ADXL313.pdf
+> > > + */
+> > > +
+> > > +#include <linux/module.h>
+> > > +#include <linux/regmap.h>
+> > > +#include <linux/spi/spi.h>
+> > > +
+> > > +#include "adxl313.h"
+> > > +
+> > > +static const struct regmap_config adxl313_spi_regmap_config = {
+> > > +     .reg_bits       = 8,
+> > > +     .val_bits       = 8,
+> > > +     .rd_table       = &adxl313_readable_regs_table,
+> > > +     .wr_table       = &adxl313_writable_regs_table,
+> > > +     .max_register   = 0x39,
+> > > +      /* Setting bits 7 and 6 enables multiple-byte read */
+> > > +     .read_flag_mask = BIT(7) | BIT(6)
+> > > +};
+> > > +
+> > > +static int adxl313_spi_probe(struct spi_device *spi)
+> > > +{
+> > > +     const struct spi_device_id *id = spi_get_device_id(spi);
+> > > +     struct regmap *regmap;
+> > > +     int ret;
+> > > +
+> > > +     regmap = devm_regmap_init_spi(spi, &adxl313_spi_regmap_config);
+> > > +     if (IS_ERR(regmap)) {
+> > > +             dev_err(&spi->dev, "Error initializing spi regmap: %ld\n",
+> > > +                     PTR_ERR(regmap));
+> > > +             return PTR_ERR(regmap);
+> > > +     }
+> > > +
+> > > +     ret = adxl313_core_probe(&spi->dev, regmap, id->name);
+> > > +     if (ret < 0)
+> > > +             return ret;
+> > > +
+> > > +     return regmap_update_bits(regmap, ADXL313_REG_POWER_CTL,
+> > > +                               ADXL313_I2C_DISABLE, ADXL313_I2C_DISABLE);  
+> >
+> > Why is this only done after the rest of probe?  Needs a comment perhaps.
+> > Normally I'd expect the core probe and hence exposure of the device
+> > to userspace etc to be the last thing done.
+> >  
+> 
+> I'm doing this here for the same reason as for the spi-3wire setup. So
+> if I drop the reset in the probe, the bits could be updated before it.
 
-btw. imho otg-node should be named usb0 as other dts (kernel 4.4) also use=
- usb0, else i think it's confusing.
+Put that in the function that you pass as a pointer to core_probe() - then you
+can do them both at the same time and at an appropriate point.
 
-in my last attempt i had these below usb-node in boards devicetree:
 
-+       usb_vbus: regulator@0 {
-+               compatible =3D "regulator-fixed";
-+               regulator-name =3D "usb_vbus";
-+               regulator-min-microvolt =3D <5000000>;
-+               regulator-max-microvolt =3D <5000000>;
-+               gpio =3D <&pio 237 GPIO_ACTIVE_HIGH>;
-+               enable-active-high;
-+       };
-+
-+       connector{
-+               compatible =3D "gpio-usb-b-connector", "usb-b-connector";
-+               type =3D "micro";
-+               id-gpios =3D <&pio 44 GPIO_ACTIVE_HIGH>;
-+               vbus-supply =3D <&usb_vbus>;
-+       };
-
-after adding these i see the connection of otg-cable with usb-stick in dme=
-sg:
-
-[   53.656304] usb-conn-gpio 11200000.usb:connector: repeated rot
-[   53.696324] usb-conn-gpio 11200000.usb:connector: repeated role: host
-
-but usb-stick is not powered (led of the stick is off) and of course i see=
- no mass-storage device.
-
-and now i'm back on the traceback on power down i've reported Author of mu=
-sb driver some time ago
-
-[  156.785185] WARNING: CPU: 0 PID: 1 at drivers/power/reset/mt6323-powero=
-ff.c:4
-[  156.795156] Unable to power off system
-
-[  156.884496] [<c0cca1ec>] (warn_slowpath_fmt) from [<c090562c>] (mt6323_=
-do_pw)
-[  156.893203]  r8:c3296d40 r7:00000024 r6:0ccccb60 r5:c10fe3d8 r4:0000000=
-0
-[  156.900030] [<c09054b0>] (mt6323_do_pwroff) from [<c010ba68>] (machine_=
-power)
-[  156.908558]  r8:fee1dead r7:c1312590 r6:92f61d00 r5:00000000 r4:4321fed=
-c
-[  156.915385] [<c010ba34>] (machine_power_off) from [<c01524bc>] (kernel_=
-power)
-
-i guess it's related to the usb_vbus.
-
-regards Frank
-
+Jonathan
