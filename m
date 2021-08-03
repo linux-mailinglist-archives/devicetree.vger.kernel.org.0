@@ -2,148 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F2673DF7BA
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 00:20:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4614B3DF7C3
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 00:22:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232355AbhHCWUu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 18:20:50 -0400
-Received: from mail-qt1-f176.google.com ([209.85.160.176]:43716 "EHLO
-        mail-qt1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229663AbhHCWUu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 18:20:50 -0400
-Received: by mail-qt1-f176.google.com with SMTP id k13so185371qth.10;
-        Tue, 03 Aug 2021 15:20:38 -0700 (PDT)
+        id S232604AbhHCWXI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 18:23:08 -0400
+Received: from mail-io1-f53.google.com ([209.85.166.53]:39646 "EHLO
+        mail-io1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229663AbhHCWXH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 18:23:07 -0400
+Received: by mail-io1-f53.google.com with SMTP id f6so221670ioc.6;
+        Tue, 03 Aug 2021 15:22:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=EwbBrIO14cWrGFlqXqpRuBpDy0CP5afPXaLjh9xefQM=;
-        b=ljKRAZzxux7Mtyl/x0cBE1OxeJCvOwN8wERhN7uGcOP95N74UQMCTJnatzd4N+YRNh
-         OHsDE6/AqZ4mB5HnacX/dYETw4WGOPholRg9cbCjcNqtQS/IilEVqJPtgQ2/QQYjFZyf
-         BZDjtmLMcBsNBCRcrmEs832oKvXJ9+5uTQ5zo9S5zn15lsk6bhfwovgBKhfxUFSbVUAa
-         CQeJKmdPVPiLqbNpQ8To7FKVq/0xidAEYCi2H7Cnb/hcO//QoUyKdYJtD6+g9J7fPd5V
-         ViFrqBPMPfho3AP6C3rruHDLIJ/pN83CWgoaRWSxAVt6UiLt3lm1NWvsvZ4Am+B4Qygc
-         9czg==
-X-Gm-Message-State: AOAM533pJiogg7iBKk25Mu/dHk3AB981lcNV7agsC5wjXiVlXd2JkSgc
-        yUgrTh6+n3f1EL7HfgFLYJ0CTHpdR9k=
-X-Google-Smtp-Source: ABdhPJyqqs1c3WywfIrdVuuCMMr3TwsNcYkuMe1E3+xiCyy5EEYTz++ED75z1cOa4MCYcYQ1rP6j6A==
-X-Received: by 2002:ac8:7305:: with SMTP id x5mr20507532qto.270.1628029237953;
-        Tue, 03 Aug 2021 15:20:37 -0700 (PDT)
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com. [209.85.222.175])
-        by smtp.gmail.com with ESMTPSA id f62sm172414qke.135.2021.08.03.15.20.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Aug 2021 15:20:37 -0700 (PDT)
-Received: by mail-qk1-f175.google.com with SMTP id e14so960106qkg.3;
-        Tue, 03 Aug 2021 15:20:37 -0700 (PDT)
-X-Received: by 2002:a37:9f0c:: with SMTP id i12mr3900923qke.273.1628029236841;
- Tue, 03 Aug 2021 15:20:36 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=8vjGdtgOlhKD6T/Y7y+vqQm8JON196rARUlkKY8t6Xc=;
+        b=sap1TsKD5gcb5wKFplVtoM6hueg59GZdOzmGb/YOVTa3G0AwiMvGvXi5UAheQEffmq
+         WpJUogkD+P6pJASAqFYJA/FKjjx3XHbypOvu7h5aVmbr6vS6+mwmGuZbg6buW0l/7VO6
+         eBRhvHy3aHfuWvosrxCmhk4Z48uJGJPvp+Be5TnwzgSytqBdstPocvmMaLDV3TjD4f09
+         Cwyra9xyYC51wOI0k55heeNurNiRv/Qk+bDOTnvQNGYMdg6rxTSCKSaZ9EP2Wzz7a8Lu
+         9l0bNZS4OJ7TtcqLRj2wgA6I5iKp1dSqSCH2OHuY8aQdcm0AaMKqchK5CqjAq+xN6Osr
+         lZ3w==
+X-Gm-Message-State: AOAM5301GSiYJYUJlKyFKs9/dORQB6OuYFw51RCq2011apsx0p9f1uy0
+        zlpaIEnZpMPWIMpdasJofqNULGbsZg==
+X-Google-Smtp-Source: ABdhPJyKKzVfEwjBGSMSfFidncWQsibFwTzulMUmOpTrvtt9JIlwsG2TDBPZI3CK0+hyN+cuB7hKwQ==
+X-Received: by 2002:a5d:925a:: with SMTP id e26mr698551iol.195.1628029375748;
+        Tue, 03 Aug 2021 15:22:55 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id l5sm249272ion.44.2021.08.03.15.22.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Aug 2021 15:22:55 -0700 (PDT)
+Received: (nullmailer pid 3835626 invoked by uid 1000);
+        Tue, 03 Aug 2021 22:22:53 -0000
+Date:   Tue, 3 Aug 2021 16:22:53 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>, linuxarm@huawei.com,
+        mauro.chehab@huawei.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-pci@vger.kernel.org
+Subject: Re: [PATCH v3 1/4] dt-bindings: PCI: kirin: Fix compatible string
+Message-ID: <YQnBvbXK6p9t7jxh@robh.at.kernel.org>
+References: <cover.1627965261.git.mchehab+huawei@kernel.org>
+ <3e3e29a88f8e71eb228edf33d70cbe70db431408.1627965261.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
-References: <1627927742-8675-1-git-send-email-raagjadav@gmail.com>
- <CADRPPNQ2M1N1pV2brfFRXOf1ASK2bhiZpQivNhNws_+RUfCT-g@mail.gmail.com> <20210803194454.GA9471@localhost>
-In-Reply-To: <20210803194454.GA9471@localhost>
-From:   Li Yang <leoyang.li@nxp.com>
-Date:   Tue, 3 Aug 2021 17:20:25 -0500
-X-Gmail-Original-Message-ID: <CADRPPNSbzpqs2VOV6DMUF5VP1Gx=W9-2W91Rt9ELEZxT+xsgvA@mail.gmail.com>
-Message-ID: <CADRPPNSbzpqs2VOV6DMUF5VP1Gx=W9-2W91Rt9ELEZxT+xsgvA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: ls1046a: fix eeprom entries
-To:     Raag Jadav <raagjadav@gmail.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3e3e29a88f8e71eb228edf33d70cbe70db431408.1627965261.git.mchehab+huawei@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 3, 2021 at 2:45 PM Raag Jadav <raagjadav@gmail.com> wrote:
->
-> On Mon, Aug 02, 2021 at 05:44:29PM -0500, Li Yang wrote:
-> > On Mon, Aug 2, 2021 at 1:10 PM Raag Jadav <raagjadav@gmail.com> wrote:
-> > >
-> > > ls1046afrwy and ls1046ardb boards have CAT24C04[1] and CAT24C05[2]
-> > > eeproms respectively. Both are 4Kb (512 bytes) in size.
-> >
-> > These part names are from onsemi instead of atmel.  Are there same
-> > part names from atmel which are also compatible with the onsemi parts?
->
-> The part names are different, but they are functionally compatible.
->
-> >  If we want to use onsemi only part names, probably we will need two
-> > compatible strings with the first one from onsemi and the second from
-> > atmel.  Although the binding doesn't support onsemi prefix yet.
->
-> Should I add it to the at24 binding document with atmel as a fallback?
+On Tue, 03 Aug 2021 06:38:55 +0200, Mauro Carvalho Chehab wrote:
+> The pcie-kirin driver doesn't declare a hisilicon,kirin-pcie.
+> Also, remove the useless comment after the description, as other
+> compat will be supported by the same driver in the future.
+> 
+> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/pci/kirin-pcie.txt | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
 
-I think that will be the best.
-
->
-> >
-> > > Remove multi-address entries, as we have auto-rollover support
-> > > in at24 driver.
-> >
-> > The device tree should describe hardware instead of matching how
-> > driver deal with it.  Is the board really using a single chip or
-> > multiple chips here?
->
-> Yes, both the boards have a single chip each.
-
-Then I am fine with the change, but please make it clear in the description.
-
->
-> >
-> > >
-> > > [1] https://www.onsemi.com/pdf/datasheet/cat24c01-d.pdf
-> > > [2] https://www.onsemi.com/pdf/datasheet/cat24c03-d.pdf
-> > >
-> > > Signed-off-by: Raag Jadav <raagjadav@gmail.com>
-> > > ---
-> > >  arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dts | 8 +-------
-> > >  arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts  | 7 +------
-> > >  2 files changed, 2 insertions(+), 13 deletions(-)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dts b/arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dts
-> > > index db3d303..83afe21 100644
-> > > --- a/arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dts
-> > > +++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dts
-> > > @@ -83,15 +83,9 @@
-> > >                         };
-> > >
-> > >                         eeprom@52 {
-> > > -                               compatible = "atmel,24c512";
-> > > +                               compatible = "atmel,24c04";
-> > >                                 reg = <0x52>;
-> > >                         };
-> > > -
-> > > -                       eeprom@53 {
-> > > -                               compatible = "atmel,24c512";
-> > > -                               reg = <0x53>;
-> > > -                       };
-> > > -
-> > >                 };
-> > >         };
-> > >  };
-> > > diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
-> > > index 60acdf0..d220f98 100644
-> > > --- a/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
-> > > +++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
-> > > @@ -59,14 +59,9 @@
-> > >         };
-> > >
-> > >         eeprom@52 {
-> > > -               compatible = "atmel,24c512";
-> > > +               compatible = "atmel,24c04";
-> > >                 reg = <0x52>;
-> > >         };
-> > > -
-> > > -       eeprom@53 {
-> > > -               compatible = "atmel,24c512";
-> > > -               reg = <0x53>;
-> > > -       };
-> > >  };
-> > >
-> > >  &i2c3 {
-> > > --
-> > > 2.7.4
-> > >
+Applied, thanks!
