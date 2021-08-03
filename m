@@ -2,194 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 16C063DE4E1
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 06:07:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58F0B3DE4E4
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 06:07:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229544AbhHCEHT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 00:07:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48610 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229498AbhHCEHS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 00:07:18 -0400
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEDF1C06175F
-        for <devicetree@vger.kernel.org>; Mon,  2 Aug 2021 21:07:06 -0700 (PDT)
-Received: by mail-ot1-x329.google.com with SMTP id 68-20020a9d0f4a0000b02904b1f1d7c5f4so19559681ott.9
-        for <devicetree@vger.kernel.org>; Mon, 02 Aug 2021 21:07:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Ed5JmzXEsSlRBxaquaxIRAQrvjn353FcdpZeUSfWte8=;
-        b=tB/1PZ5rcHEE5WPoU9EPd9oLNvU2uRKt4/44EYG/2SjWzzSb68eM/j+Kwkz6BUyHvJ
-         YWUbheXwe9SQHh5XV2DmS6u54AWU1rNHbMihOUGiLDM/HstbeTATz/WyVp0CnQYybLkJ
-         5PhwM5CNfnfs1QBZUTO4xWJuEocw4SU1DYUNIWc+igCk5wSrYWHoLqWQLP2xIw7Y653h
-         9Ju/9aIFxq6uNHVhV2w6IR2SZWpIyO8C+tdtTQN//d0sVJcgLH3QxzJzm6p6vFCArWiW
-         M8tAAfj3U9vGp74JtM+Tc/lOiyedQpYvMqROhVHlfp1h2U5761sLLag+9+CtX1snkMSI
-         4OhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Ed5JmzXEsSlRBxaquaxIRAQrvjn353FcdpZeUSfWte8=;
-        b=VufyA5ZMg0Oc3R8zUhiEScoyyrbpxJc9o4Gj2RGJA/szhBKSO6oO5I3w7RWPjAcphY
-         vy5UBjWzpUToFnFSPjbJd9kWXOsffaWDnPLj/lXLPO052fiauxXltkN+X7D38QX2ZiLF
-         THbqPMUYfOYFaK8oyA8bJl3MDkrCF6QNNw6NK4J+fV4UqRbDSUmGZOcTuLoOkkFiHCyS
-         Hna0cJE7Hq1Hwk1ic3Ko78NthuGcLQtQwVcC0sb9N8UfcGXp12N4NSucxG4HwPbMrYar
-         ch9dSFcGFTHdlYE4B1yAcSG4JDjxthn788XJ+Itw/O921Paj+P4BoZe/RockWrSRWj0r
-         VUbw==
-X-Gm-Message-State: AOAM533j1QcEZwq16HJiOEfgjjMWSYfFi9RkoBGCbDEGq5LJs5V1t/6c
-        XBnCcqE1rV3ngEI75S4MIAKaIHzTChTkPIHh4ms=
-X-Google-Smtp-Source: ABdhPJwBcXzRzX9//S0p5eOhIKJEyfN70ej7bQxX6WMt2A6YR+Dd70a9z9AefTws4WZ3NkwTu3+suy3ObyJUy93qRWk=
-X-Received: by 2002:a9d:202d:: with SMTP id n42mr360017ota.52.1627963626206;
- Mon, 02 Aug 2021 21:07:06 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210715082536.1882077-1-aisheng.dong@nxp.com>
- <20210715082536.1882077-6-aisheng.dong@nxp.com> <20210722024948.GA3198597@robh.at.kernel.org>
- <CAA+hA=TwGGwZi2HzZSLSZHYWEi8Pp6AnHeRpfDhD0pUfY_xPSQ@mail.gmail.com> <CAL_Jsq+4247uCgu5pDAEqO9Nn=9deeJBkiOrG3fTwdqPO+6J2w@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+4247uCgu5pDAEqO9Nn=9deeJBkiOrG3fTwdqPO+6J2w@mail.gmail.com>
-From:   Dong Aisheng <dongas86@gmail.com>
-Date:   Tue, 3 Aug 2021 12:04:44 +0800
-Message-ID: <CAA+hA=RQdpjMCivgBq2fBHD2NFqK5_8pSDgqmxGJohRiGac2wQ@mail.gmail.com>
-Subject: Re: [PATCH 5/7] dt-bindings: soc: imx: add missing anatop binding
-To:     Rob Herring <robh@kernel.org>
-Cc:     Dong Aisheng <aisheng.dong@nxp.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        id S229566AbhHCEHl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 00:07:41 -0400
+Received: from wnew4-smtp.messagingengine.com ([64.147.123.18]:50127 "EHLO
+        wnew4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229498AbhHCEHl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 00:07:41 -0400
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+        by mailnew.west.internal (Postfix) with ESMTP id E90DD2B0114E;
+        Tue,  3 Aug 2021 00:07:29 -0400 (EDT)
+Received: from imap43 ([10.202.2.93])
+  by compute2.internal (MEProxy); Tue, 03 Aug 2021 00:07:30 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm3; bh=Ppnjgn9uT3nmuKcO7tOFj+ln9O4wmRR
+        NvfgdBYB7dI8=; b=OKHYuR8QZZlGqTrvGubS+4e0MQo1R70rVcET9ytidu7sxph
+        yJt4i/gOXrrca9QRlpLIr4NrWiEI+dNx6aWV9jbF+t1pifDlnWZWYwFWzq08FP6W
+        JFnZJs+QcTR339vXltq9ATJN9WIS1nsQSOp+/2CVnsTDqxX14GwcVRVtjyw0y+7a
+        MUZyOiTBN6/MpcHwhtwT4T8D14ZU3McUGXMZWwvr9A929IDxtdoUcu5aFh3A/B9E
+        DD1EqRncPBaRp+nm9eevBS3dkRBzH2z0RcMm1rXrSaq7cEum+BYVbs2778qA9WWb
+        CxNXl+f2uix6CeRXubuWw6FoDVLukJAbSkw47Qg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=Ppnjgn
+        9uT3nmuKcO7tOFj+ln9O4wmRRNvfgdBYB7dI8=; b=eaIYKV3Y5GoVbgReKh+RM2
+        JGBu+L4Afj8EUiBJI3cDyRe3Jryb23kYKJMZRIJGkEfYaGy1jhvCaSaJKdwRAjps
+        nC6lYM4h37UnmrhFIZJk67D1AtRO4xDJcmwbQcUZw98bbv6tSBap2Jhw9oZc3ndD
+        jG843fceNArsjNPKqsa89HzJ6gujxDdjLYPRP7AH1RDlGBjH5FqbWvyLl9PaK/qx
+        oa3tPvSvToJc/T+uj5LO+NKzgnvi22EKyGxMIKuhS+sA6OqGd/QtzXSIFYNbsNsY
+        DCri3zyPwqWOw26Nl434ybU6EeX3LB+PgEWBj4jgmryZugkwrhvglX3/VipwmYDA
+        ==
+X-ME-Sender: <xms:AMEIYVLjt93FybOWFgADOALilosXVsR4f5JrWUspOxDvlhUL35q_Sg>
+    <xme:AMEIYRKSFZGOCubEzXBIftEsnTEQZdSkUfiNTOilAhzQBjO-Exn9v9y4NFsArGkh7
+    k_TgDlCDDdsJe0tnQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrieefgdejtdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedftehnughr
+    vgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucggtffrrg
+    htthgvrhhnpeehhfefkefgkeduveehffehieehudejfeejveejfedugfefuedtuedvhefh
+    veeuffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    grnhgurhgvfiesrghjrdhiugdrrghu
+X-ME-Proxy: <xmx:AMEIYdu1Y2NPjTkklOrZaN2uA00iHraj7UGZ4WR0bVrM8OC4tnoBcQ>
+    <xmx:AMEIYWacnrv6Yz8o-MtOdRkAnWaMIgzj13hQNDaMUWMlMoVahMIAWw>
+    <xmx:AMEIYcb_V0H3WIDP4K4Pb4F4YMTBu8uAWnxU6C2YZfijNAuGsp-Pfw>
+    <xmx:AcEIYamiyxvRIf1TCYYqtGn9mUAjzZhuewuQ_42ivabLuCy-wfVw_wXguRs>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id EEF55AC0DD0; Tue,  3 Aug 2021 00:07:27 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-548-g3a0b1fef7b-fm-20210802.001-g3a0b1fef
+Mime-Version: 1.0
+Message-Id: <50aaf381-8cda-4656-9222-f23fda75d3bc@www.fastmail.com>
+In-Reply-To: <CAHp75Vdx9QA7dmSWK8GHxBBxP0uYjrz=Gm=75yqaWbBX6k3v=w@mail.gmail.com>
+References: <20210723075858.376378-1-andrew@aj.id.au>
+ <CAHp75VeQML7njMZ6x8kC-ZJVexC1xJ6n1cB3JneVMAVfuOJgWw@mail.gmail.com>
+ <d019990e-a725-4ef5-bb54-aadee9d18b86@www.fastmail.com>
+ <CAHp75Vc2W+WmwNj1AvH6EiT_80c+5gADV9QzK+asHxpd1Ucppw@mail.gmail.com>
+ <6cc64039-f82a-4c1e-ad2c-16fad7aa3178@www.fastmail.com>
+ <CAHp75Vdx9QA7dmSWK8GHxBBxP0uYjrz=Gm=75yqaWbBX6k3v=w@mail.gmail.com>
+Date:   Tue, 03 Aug 2021 13:37:07 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Andy Shevchenko" <andy.shevchenko@gmail.com>
+Cc:     "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        =?UTF-8?Q?C=C3=A9dric_Le_Goater?= <clg@kaod.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Joel Stanley" <joel@jms.id.au>, "Pavel Machek" <pavel@ucw.cz>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH 0/6] leds: Fix pca955x GPIO pin mappings
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 2, 2021 at 11:02 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Mon, Aug 2, 2021 at 5:38 AM Dong Aisheng <dongas86@gmail.com> wrote:
-> >
-> > Hi Rob,
-> >
-> > On Thu, Jul 22, 2021 at 10:49 AM Rob Herring <robh@kernel.org> wrote:
+
+
+On Thu, 29 Jul 2021, at 17:10, Andy Shevchenko wrote:
+> On Thu, Jul 29, 2021 at 3:39 AM Andrew Jeffery <andrew@aj.id.au> wrote:
+> > On Wed, 28 Jul 2021, at 18:43, Andy Shevchenko wrote:
+> > > On Wed, Jul 28, 2021 at 8:43 AM Andrew Jeffery <andrew@aj.id.au> wrote:
+> > > > However, userspace would never have
+> > > > got the results it expected with the existing driver implementation, so
+> > > > I guess you could argue that no such (useful) userspace exists. Given
+> > > > that, we could adopt the strategy of always defining a gpiochip
+> > > > covering the whole pin space, and parts of the devicetree binding just
+> > > > become redundant.
 > > >
-> > > On Thu, Jul 15, 2021 at 04:25:34PM +0800, Dong Aisheng wrote:
-> > > > Anatop is a system combo module which supports various analog functions
-> > > > like PLL, Regulators, LDOs, Sensors and etc.
-> > > > This binding doc is generated based on the exist usage in dts
-> > > > in order to fix dt schema check failures.
-> > > >
-> > > > Cc: Rob Herring <robh+dt@kernel.org>
-> > > > Cc: Shawn Guo <shawnguo@kernel.org>
-> > > > Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
-> > > > ---
-> > > >  .../bindings/soc/imx/fsl,anatop.yaml          | 68 +++++++++++++++++++
-> > > >  1 file changed, 68 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,anatop.yaml
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,anatop.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,anatop.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..f379d960f527
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/soc/imx/fsl,anatop.yaml
-> > > > @@ -0,0 +1,68 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/soc/imx/fsl,anatop.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Freescale Anatop binding
-> > > > +
-> > > > +maintainers:
-> > > > +  - Dong Aisheng <aisheng.dong@nxp.com>
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    oneOf:
-> > > > +      - items:
-> > > > +          - const: fsl,imx6q-anatop
-> > > > +          - const: syscon
-> > > > +          - const: simple-mfd
-> > > > +      - items:
-> > > > +          - enum:
-> > > > +              - fsl,imx6sl-anatop
-> > > > +              - fsl,imx6sll-anatop
-> > > > +              - fsl,imx6sx-anatop
-> > > > +              - fsl,imx6ul-anatop
-> > > > +              - fsl,imx7d-anatop
-> > > > +          - const: fsl,imx6q-anatop
-> > > > +          - const: syscon
-> > > > +          - const: simple-mfd
-> > > > +      - items:
-> > > > +          - enum:
-> > > > +              - fsl,imx8mq-anatop
-> > > > +              - fsl,imx8mm-anatop
-> > > > +              - fsl,vf610-anatop
-> > > > +          - const: syscon
-> > > > +      - items:
-> > > > +          - enum:
-> > > > +              - fsl,imx8mn-anatop
-> > > > +              - fsl,imx8mp-anatop
-> > > > +          - const: fsl,imx8mm-anatop
-> > > > +          - const: syscon
-> > > > +
-> > > > +  reg:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  interrupts:
-> > > > +    items:
-> > > > +      - description: Temperature Sensor
-> > > > +      - description: PMU interrupt 1
-> > > > +      - description: PMU interrupt 2
-> > > > +    minItems: 1
-> > > > +    maxItems: 3
-> > >
-> > > Don't need maxItems.
-> > >
+> > > I'm lost now. GPIO has its own userspace ABI, how does it work right
+> > > now in application to this chip?
 > >
-> > Got it
-> >
-> > > > +
-> > > > +required:
-> > > > +  - compatible
-> > > > +  - reg
-> > > > +
-> > > > +additionalProperties: true
-> > >
-> > > This should be the case only for common schemas used by other schemas.
-> > >
-> >
-> > Like iomuxc-gpr in patch 6, the problem is that for those nodes with
-> > simple-mfd backwards compatibility,
-> > there could be possibly some random subnodes since there're generic
-> > combo registers.
-> > That's why i use additionalProperties true to cover it.
-> > Do you think it's ok?
->
-> No, because all that should be reviewed rather than random subnodes.
-> Otherwise, how do we validate them?
+> > As above, it "works" if the GPIOs specified in the devicetree are
+> > contiguous from line 0. It's broken if they're not.
+> 
+> So, "it never works" means there is no bug. Now, what we need is to
+> keep the same enumeration scheme, but if you wish to be used half/half
+> (or any other ratio), the driver should do like the above mentioned
+> PWM, i.e. register entire space and depending on the requestor either
+> proceed with a line or mark it as BUSY.
+> 
+> Ideally, looking into what the chip can do, this should be indeed
+> converted to some like pin control + PWM + LED + GPIO drivers. Then
+> the function in pin mux configuration can show what exactly is enabled
+> on the certain line(s).
 
-anatop and iomuxc-gpr are not simple mfd devices as they're misc
-registers and could contain
-various sub misc functions. And those sub functions usually have a
-separate dt binding doc which
-already covers them and does validation.
-The binding here is addressing validation itself. It does not limit
-the possible various sub function nodes
-which already have a binding doc. Just like a bus node.
+So just to clarify, you want both solutions here?
 
-If we define them now, it means we may need to keep updating schema when new
-user node appear as current dts may not use all possible sub functions.
+1. A gpiochip that covers the entire pin space
+2. A pinmux implementation that manages pin allocation to the different drivers
 
-However, i do agree that defining them all (and may need add more in
-the future) helps validation.
-But i'm not sure if it's worthy to do it for such cases for a 'bus' node?
+In that case we can largely leave this series as is? We only need to 
+adjust how we configure the gpiochip by dropping the pin-mapping 
+implementation?
 
-Could you help clarify a bit more?
+I don't have a need to implement a PWM driver for it right now but that 
+would make sense to do at some point.
 
-Regards
-Aisheng
-
->
-> Rob
+Andrew
