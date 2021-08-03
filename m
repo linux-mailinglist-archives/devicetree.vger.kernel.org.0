@@ -2,97 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 065E33DF10F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 17:05:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A5963DF12A
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 17:14:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235607AbhHCPFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 11:05:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39320 "EHLO
+        id S235674AbhHCPOb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 11:14:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234206AbhHCPFo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 11:05:44 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E2CBC061757;
-        Tue,  3 Aug 2021 08:05:32 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id hs10so28183504ejc.0;
-        Tue, 03 Aug 2021 08:05:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=r0FQ7Uc64i2oRVeUtFLzokR1HqzuLG7+aDF/yA5eX4M=;
-        b=coGMZnEccQZlJTls9FK4PV3Fnmm0Y5yzVVFAB8l4/Ff2aOyAmNbTHGTJ/gm89hYw0F
-         OnwP6qBbeUa4GSa25hJLoWOsFUQEjIliSbxhOtptkdG/C4ePagilGevFk0n+bFuGpuMc
-         ZIRibIY/+FiQ37xc7rQuokgT16s5ouV6cltQ/Edqxdrg/QbXjNFK5jWruR89cprhSxn/
-         B/mWJ06h/1Xsj1elOKjMaWHjcPSCRZP/DRCdzUZ64y4r6PueI/yGTPoiOdAUB5gLCx+4
-         6FTY+xds1q5wRG5UWz71S7ho9jo/eVLuBLL+1HqYv0ilg+bXVi/YHEUO88LJhSmZmWOY
-         ylUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=r0FQ7Uc64i2oRVeUtFLzokR1HqzuLG7+aDF/yA5eX4M=;
-        b=Moo4s1UeSMTZG0MK9+WmwUn2jYzNCP/YQUQM7UUQ1aa6AUOvkycgcm7vdC+P/v6usW
-         1Qk7dYPzH3tbQ2PzRNE+adzwUcjCM4ligC8NnY+Qjc0ulCwJ1yabKjqd7k08n8oE8n91
-         cbB3G00jDrxOAFpeJuNaBMM+iSNpKzlt38khv9Gn/z9aSL+ANxacuhZFNfRjv+NGrOFl
-         ZpIo8frBWBe/LWBD+pE5w4HsWTMc0T0NBfrcwbIu1pq6LHoUMhWKsPY5KCJGeA9eeV6r
-         CICzWKX+auSSaOa8cYg5/dn/UyHYr2Rss1HpSLrPZ8i0pJwaJOre43DIs+8//qH41hQn
-         wsIA==
-X-Gm-Message-State: AOAM533gTi4Y5q2uPtRxdPVAOGrj6MxxLX2vH4DcwYOKAih6rCqb4qem
-        GUAD/UbbsbZS37W5dUjdW5Y=
-X-Google-Smtp-Source: ABdhPJxP1WfDh/SKp57yUJkwWaSPOs717d15hTVJGJ9P7zfkIDZ+IovWwaIDCd2MVfHUUsu5WL89gQ==
-X-Received: by 2002:a17:906:31cf:: with SMTP id f15mr21305332ejf.272.1628003131123;
-        Tue, 03 Aug 2021 08:05:31 -0700 (PDT)
-Received: from skbuf ([188.25.144.60])
-        by smtp.gmail.com with ESMTPSA id n2sm8407071edi.32.2021.08.03.08.05.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Aug 2021 08:05:30 -0700 (PDT)
-Date:   Tue, 3 Aug 2021 18:05:29 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>,
-        netdev@vger.kernel.org, robh+dt@kernel.org,
-        UNGLinuxDriver@microchip.com, Woojung.Huh@microchip.com,
-        hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
-        kuba@kernel.org, linux-kernel@vger.kernel.org,
-        vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 net-next 05/10] net: dsa: microchip: add DSA support
- for microchip lan937x
-Message-ID: <20210803150529.o2whe4jw6arpdm7d@skbuf>
-References: <20210723173108.459770-1-prasanna.vengateshan@microchip.com>
- <20210723173108.459770-6-prasanna.vengateshan@microchip.com>
- <20210731150416.upe5nwkwvwajhwgg@skbuf>
- <YQXJHA+z+hXjxe6+@lunn.ch>
- <20210802213353.qu5j3gn4753xlj43@skbuf>
- <YQlWAHSTQ4K3/zet@lunn.ch>
+        with ESMTP id S235607AbhHCPOa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 11:14:30 -0400
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [IPv6:2001:67c:2050::465:102])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BF9DC061757;
+        Tue,  3 Aug 2021 08:14:19 -0700 (PDT)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:105:465:1:1:0])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4GfJLb6TSyzQk1r;
+        Tue,  3 Aug 2021 17:14:15 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at heinlein-support.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gorani.run; s=MBO0001;
+        t=1628003653;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=Jpnrv079HohfYHZxHFOih7cazCqNwznCHGvgjVDV5OI=;
+        b=cPSRzG5fVE5ANJTePkpxHl2VaB6rm+S7H32l68zL0PeiJ3pUG7IcAkHjCICir+jPJ+D8yp
+        BwVW8r15/M6T0RJnyHVDEMIQvtVmUvPMyikjhFbxNsb1puF5Yi3zEHQJzRRsplkAvDDZC6
+        MM5U41bztqUj6wFJ3P35dP/T2CWTBmwes7oZZYvFGxg76IKkrgRXqfUg8oO3OMgKdqR0kk
+        P+/+EXvUPz3BmGQ0E4ogzwoyD/R9hMsrHFOoQX36+4RCUjJOPsyKYLyMGmz9S5kIOCJ/8u
+        PKW/bbrPWTNrpiaa8nDBVEmlgiZ5oFyw2Oiru+sZT27nMrKZTJmeGEEKu9XCpA==
+Received: from smtp1.mailbox.org ([80.241.60.240])
+        by spamfilter04.heinlein-hosting.de (spamfilter04.heinlein-hosting.de [80.241.56.122]) (amavisd-new, port 10030)
+        with ESMTP id eYw7Q2qDqF7P; Tue,  3 Aug 2021 17:14:12 +0200 (CEST)
+From:   Sungbo Eo <mans0n@gorani.run>
+To:     linux-mediatek@lists.infradead.org
+Cc:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Min Guo <min.guo@mediatek.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Sungbo Eo <mans0n@gorani.run>
+Subject: [PATCH 0/2] Add MUSB for MT7623
+Date:   Wed,  4 Aug 2021 00:13:18 +0900
+Message-Id: <20210803151320.71531-1-mans0n@gorani.run>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YQlWAHSTQ4K3/zet@lunn.ch>
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 887F618BC
+X-Rspamd-UID: ef8fb2
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 03, 2021 at 04:43:12PM +0200, Andrew Lunn wrote:
-> There are good reasons to use an explicit phy-handle, and i would
-> never block such code. However, implicit is historically how it was
-> done. There are many DT blobs which assume it works. So implicit is
-> not going away.
-> 
-> If you want to only support explicit in U-Boot, that is fine. I would
-> suggest making this clear in the U-Boot documentation.
+These patches add support for the MUSB controller on Mediatek MT7623.
+Tested on Mercury RUSH-318AC Wi-Fi router.
 
-I am happy that Prasanna made it possible for OF-based descriptions of
-the internal PHYs to be written for the lan937x generation. I did take a
-look at the bindings that Prasanna proposed and I think they would work
-with what DM_DSA can parse too. The work that Tim Harvey did was for
-ksz9897, and it is slightly different: the MDIO controller node has a
-compatible string of "microchip,ksz-mdio", and a parent container node
-of "mdios".
-https://source.denx.de/u-boot/u-boot/-/blob/master/arch/arm/dts/imx8mm-venice-gw7901.dts#L634
-However, since the lan937x would probably have a different driver even
-in U-Boot, 100% binding consistency between lan937x and ksz9897 is
-probably not necessary, since some of that can boil down to driver
-author choice too. As long as an OF based choice is available I'm
-absolutely fine.
+I got to know this from a BPI-R2 forum post [1], and managed to make it work on OpenWrt snapshot.
+I'd like to know if this also works on BPI-R2, I can happily share the details if needed.
+And I've just copy & pasted nodes from mt2701, please let me know if I missed some big differences between SoCs...
+
+[1] http://forum.banana-pi.org/t/bpi-r2-otg-port/10551
+
+Sungbo Eo (2):
+  dt-bindings: usb: mtk-musb: add MT7623 compatible
+  arm: dts: mt7623: add musb device nodes
+
+ .../bindings/usb/mediatek,musb.yaml           |  1 +
+ arch/arm/boot/dts/mt7623.dtsi                 | 34 +++++++++++++++++++
+ arch/arm/boot/dts/mt7623a.dtsi                |  4 +++
+ 3 files changed, 39 insertions(+)
+
+-- 
+2.32.0
+
