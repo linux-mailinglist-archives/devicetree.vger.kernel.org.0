@@ -2,105 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE9C83DE778
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 09:49:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F4553DE7B1
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 09:59:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234238AbhHCHt6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 03:49:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43670 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234123AbhHCHt5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 03:49:57 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB2ECC061796
-        for <devicetree@vger.kernel.org>; Tue,  3 Aug 2021 00:49:46 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id n11so11884771wmd.2
-        for <devicetree@vger.kernel.org>; Tue, 03 Aug 2021 00:49:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=olV9WA7qn9JXM9Zr1zOTL5eTwtsnMh9ztbodG7vQpFw=;
-        b=aEVArW1QkUe7FYeYyaPKB3VIMJoTvfuFgc1uZTiBqzJ2V5hNlfiVMVVsjEiF5cziV+
-         q8+mQCNShmms13eeDvQnq0uwsnrBa7NL+SzEsFuS2wuxsQUv5QihPm7YhA2Gx9sieOQA
-         Q3adYXZBRXhqX7HImQzcErqKgC8lEQD0FrQqy2C9WlYpL3KwR9+Gvuz0zeCNQ3GA969E
-         Snb7JajiIyUz5+4qzPRu+2A/XvNEP41F6w7As1BCAmwfM5dp2I0gwJf52Yku505CBece
-         /AX2BRvQGU8fvHVjtU+TW23mR/umKGR+aFteeZolPKjN+/KrlJlRBCemStgiSo9hyeiA
-         trlg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=olV9WA7qn9JXM9Zr1zOTL5eTwtsnMh9ztbodG7vQpFw=;
-        b=uLDUjKJD7f2Z6fpdtd08p54s7fHGEDCeayA8dP11YFScDcnQAXfhNPtM1my4XQOQEa
-         uTYu86fzF8/OIddc++yaj4MOa2AeF0R4Y6w40ojyU4eAgmvREgI1D6pJ/aWko2XxKGKj
-         gYSHXrlh7vYjD/82SpdWapummo1JNv3aIwngHvurt+x1Zhw2go6PSWMc577VOZFi7cJ9
-         MGnsuCDMu3Ir4OqLZHxOaKH8ZieDd7Qaoi2f5iQEPOexeF+GcEWmvG+fK4azhdy9Uq6o
-         T4L04P9AjiZGHqjdi88T15VHFzixKTVeYVyjFg7RDDJS612cnpM/TCPqgWCduEiMBkmD
-         gjVQ==
-X-Gm-Message-State: AOAM532zAfWNMCSQJhVZ9KHD6Hy1oEdOhV8NBFB7Hw3P/phCh+H0xYi6
-        dMBJrmlxOlVUf9S6A1nY2XVbIA==
-X-Google-Smtp-Source: ABdhPJxDnLCFN1pccysx/SKvMPBNDxfhcCF0B0cYPAeIk61rZ06he6Pgi5l6+Ow0W5TjGSSuX0Qk2w==
-X-Received: by 2002:a1c:4b12:: with SMTP id y18mr2752711wma.67.1627976985341;
-        Tue, 03 Aug 2021 00:49:45 -0700 (PDT)
-Received: from google.com ([109.180.115.228])
-        by smtp.gmail.com with ESMTPSA id 104sm14068498wrc.4.2021.08.03.00.49.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Aug 2021 00:49:44 -0700 (PDT)
-Date:   Tue, 3 Aug 2021 08:49:43 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     satya priya <skakit@codeaurora.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        bhupesh.sharma@linaro.org, Das Srinagesh <gurus@codeaurora.org>,
-        kgunda@codeaurora.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [RESEND PATCH V7 1/3] dt-bindings: mfd: pm8008: Add gpio-ranges
- and spmi-gpio compatible
-Message-ID: <YQj1FwSyxpblwaxj@google.com>
-References: <1627910464-19363-1-git-send-email-skakit@codeaurora.org>
- <1627910464-19363-2-git-send-email-skakit@codeaurora.org>
+        id S234399AbhHCH7l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 03:59:41 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:47252 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S234232AbhHCH7i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 03:59:38 -0400
+X-UUID: aa25236731944877b91e2a07cf8c10d1-20210803
+X-UUID: aa25236731944877b91e2a07cf8c10d1-20210803
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <tinghan.shen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1797761599; Tue, 03 Aug 2021 15:59:25 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 3 Aug 2021 15:59:23 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 3 Aug 2021 15:59:23 +0800
+From:   Tinghan Shen <tinghan.shen@mediatek.com>
+To:     <ohad@wizery.com>, <bjorn.andersson@linaro.org>,
+        <mathieu.poirier@linaro.org>, <robh+dt@kernel.org>,
+        <matthias.bgg@gmail.com>, <krzysztof.kozlowski@canonical.com>,
+        <shawnguo@kernel.org>, <sam@ravnborg.org>,
+        <linux@rempel-privat.de>, <daniel@0x0f.com>,
+        <Max.Merchel@tq-group.com>, <geert+renesas@glider.be>,
+        <fanghao11@huawei.com>
+CC:     <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Tinghan Shen <tinghan.shen@mediatek.com>
+Subject: [PATCH v5 0/5] Mediatek MT8195 SCP support
+Date:   Tue, 3 Aug 2021 15:59:17 +0800
+Message-ID: <20210803075922.11611-1-tinghan.shen@mediatek.com>
+X-Mailer: git-send-email 2.15.GIT
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1627910464-19363-2-git-send-email-skakit@codeaurora.org>
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 02 Aug 2021, satya priya wrote:
+Changes since v4:
+- Move clock acquirement to mtk_scp_of_data
+- Add new vendor-prefix for Mediatek SCP
+- Refine mtk,scp.yaml
+  - Remove '|' in 'description'
+  - Add 'items' to replace 'description' in reg-names property
+  - Add 'const' to replace 'description' in clock-names property
+  - Add optional required property for mt8183 and mt8192
+  - Rewrite 'patternProperties' by 'additionalProperties'
+  - Rewrite example with 1 address and size-cell.
+  - Drop dts label from example 
 
-> Add gpio-ranges and "qcom,spmi-gpio" compatible to match with the
-> parent qcom,pmic-gpio.yaml binding.
-> 
-> Signed-off-by: satya priya <skakit@codeaurora.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Reviewed-by: Guru Das Srinagesh <gurus@codeaurora.org>
-> ---
-> Changes in V7:
->  - This is newly added in V7 to resolve below error.
->  dtschema/dtc warnings/errors:
->  /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/qcom,pm8008.example.dt.yaml: gpio@c000: compatible: ['qcom,pm8008-gpio'] is too short
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
->  /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/qcom,pm8008.example.dt.yaml: gpio@c000: 'gpio-ranges' is a required property
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-> 
-> Changes in RESEND V7:
->  - Rebased on linux-next.
-> 
->  Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml | 13 ++++++++++---
->  1 file changed, 10 insertions(+), 3 deletions(-)
+Changes since v3:
+- Add missing patch version in mail subject
+- No change to patches.
 
-Applied, thanks.
+Changes since v2:
+- Add compatible for mt8192
+- Convert mtk,scp.txt to mtk,scp.yaml 
+- Refine clock checking method
+
+Changes since v1:
+- Fix missing 'compatible' line in binding document
+
+Tinghan Shen (5):
+  dt-bindings: remoteproc: mediatek: Add binding for mt8195 scp
+  dt-bindings: remoteproc: mediatek: Add binding for mt8192 scp
+  dt-bindings: vendor-prefixes: Add another prefix for Mediatek Co.
+  dt-bindings: remoteproc: mediatek: Convert mtk,scp to json-schema
+  remoteproc: mediatek: Support mt8195 scp
+
+ .../bindings/remoteproc/mtk,scp.txt           | 36 --------
+ .../bindings/remoteproc/mtk,scp.yaml          | 92 +++++++++++++++++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+ drivers/remoteproc/mtk_common.h               |  1 +
+ drivers/remoteproc/mtk_scp.c                  | 48 +++++++++-
+ 5 files changed, 138 insertions(+), 41 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/remoteproc/mtk,scp.txt
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
 
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.18.0
+
