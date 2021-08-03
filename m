@@ -2,126 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E9C473DF7C9
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 00:29:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE79A3DF7ED
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 00:36:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232950AbhHCW3Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 18:29:16 -0400
-Received: from mail-io1-f47.google.com ([209.85.166.47]:47014 "EHLO
-        mail-io1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232940AbhHCW3P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 18:29:15 -0400
-Received: by mail-io1-f47.google.com with SMTP id z7so198440iog.13;
-        Tue, 03 Aug 2021 15:29:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=EIElEyRSM53MLE3+1DvYpQLnAdfHbUBM8sLtZAJMDa8=;
-        b=ucLkj9pNLIy6BsPXV1wE1mBzwHBnd+z8FKDqQmoDPnKpeIclZ9J7l1ivE8yx9Dp8PZ
-         KXJ1VixyruGUBnn/wiwf4AyqM4UHSWvpNBTBee6+g4IqsMsXSLiEf0fWgmx+K/OX/C5i
-         qxuxyCz//dER+PtOPM5sVhM+36z+IQ8OEPb9G7J/TbyJ9LaXZHzfbGDHBFNxjXD7d1ho
-         dj7VVOGY7qEqAoX65sbpxL7BVZeqf+y44oyeXsSPiLqzjcPlUnlbUqRtZLXB07GczdbU
-         obhjgeDWIFH4pTNWTDKxrSI5O1KI5Td6tpPlUbfB52fv25k5fr0La802brHuB+SdNEy1
-         YrUw==
-X-Gm-Message-State: AOAM533WBeOLO1KMkKR601DoHgo+tQE9k/VguGgcUjhmvZv1cyozsDpR
-        pxs8sC+SPgDtczOmnDt4Lg==
-X-Google-Smtp-Source: ABdhPJzC/sOjRlF3AqPXMRIf3nwj9myK7PMuHWJzsHWxC2L4m8Q4yn24FuoLuAd2V6EtStJc3TFR/g==
-X-Received: by 2002:a5d:9ac1:: with SMTP id x1mr629577ion.191.1628029742852;
-        Tue, 03 Aug 2021 15:29:02 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id v5sm155949ilu.19.2021.08.03.15.29.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Aug 2021 15:29:02 -0700 (PDT)
-Received: (nullmailer pid 3843862 invoked by uid 1000);
-        Tue, 03 Aug 2021 22:29:00 -0000
-Date:   Tue, 3 Aug 2021 16:29:00 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
-Subject: Re: [PATCH v3 4/4] dt-bindings: phy: Add bindings for HiKey 970 PCIe
- PHY
-Message-ID: <YQnDLFmvV3AtihBy@robh.at.kernel.org>
-References: <cover.1627965261.git.mchehab+huawei@kernel.org>
- <b5809d8acf257834dd84807aa0474f68a94d8084.1627965261.git.mchehab+huawei@kernel.org>
+        id S233352AbhHCWgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 18:36:19 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53530 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233273AbhHCWgS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Aug 2021 18:36:18 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6CEE960F22;
+        Tue,  3 Aug 2021 22:36:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1628030167;
+        bh=asQGxyx3ZQN4Q8Miaysp1gcVWV+6cQfAcxrxVEvCo+E=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=HhxuQomV0wCq1Jjb+mXjx/qWoagW9G9af6iUrIcAi3rsKvSemsFwgxWXs0oxd7KYj
+         9QIGkbAp8SUQmFHc+3aU6eViq6Lwr7kN+ucBiLli2KXcXXmJc5ZBCzlIEoD7gEJF65
+         AN6aTUj4+T3Dj43fBSA2b6sJs/fVZOZ6WhlABdbgbX6xftHCy3oJ6lRk7hkWNAw8c5
+         J03Nou2NqD958V/Tj71VTMNuuZK4WCZfnMp7oZgunIjBGPNOtBjvH7j4COR+ZWv862
+         evOq/5CE1auJ9TQSdqwTz5BnLNqKQNwFco4QA9fFzffWtoUuRpQYSmee/eOfd3MRMG
+         RHkYTy+G1tiQg==
+From:   Mark Brown <broonie@kernel.org>
+To:     kernel@pengutronix.de, lee.jones@linaro.org, robh+dt@kernel.org,
+        lgirdwood@gmail.com, Alistair Francis <alistair@alistair23.me>,
+        linux-imx@nxp.com
+Cc:     Mark Brown <broonie@kernel.org>, alistair23@gmail.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH v8 01/11] dt-bindings: mfd: Initial commit of silergy,sy7636a.yaml
+Date:   Tue,  3 Aug 2021 23:35:33 +0100
+Message-Id: <162803004553.42325.11270112719956797147.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210803084456.198-1-alistair@alistair23.me>
+References: <20210803084456.198-1-alistair@alistair23.me>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b5809d8acf257834dd84807aa0474f68a94d8084.1627965261.git.mchehab+huawei@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 03, 2021 at 06:38:58AM +0200, Mauro Carvalho Chehab wrote:
-> Document the bindings for HiKey 970 (hi3670) PCIe PHY
-> interface, supported via the pcie-kirin driver.
-> 
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> ---
->  .../phy/hisilicon,phy-hi3670-pcie.yaml        | 86 +++++++++++++++++++
->  1 file changed, 86 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/hisilicon,phy-hi3670-pcie.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/hisilicon,phy-hi3670-pcie.yaml b/Documentation/devicetree/bindings/phy/hisilicon,phy-hi3670-pcie.yaml
-> new file mode 100644
-> index 000000000000..1e0153e4f4a5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/hisilicon,phy-hi3670-pcie.yaml
-> @@ -0,0 +1,86 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/hisilicon,phy-hi3670-pcie.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: HiSilicon Kirin970 PCIe PHY
-> +
-> +maintainers:
-> +  - Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> +
-> +description: |+
-> +  Bindings for PCIe PHY on HiSilicon Kirin 970.
-> +
-> +properties:
-> +  compatible:
-> +    const: hisilicon,hi970-pcie-phy
-> +
-> +  "#phy-cells":
-> +    const: 0
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: PHY Control registers
-> +
-> +  phy-supply:
-> +    description: The PCIe PHY power supply
-> +
-> +  clocks:
-> +    items:
-> +      - description: PCIe PHY clock
-> +      - description: PCIe AUX clock
-> +      - description: PCIe APB PHY clock
-> +      - description: PCIe APB SYS clock
-> +      - description: PCIe ACLK clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: phy_ref
-> +      - const: aux
-> +      - const: apb_phy
-> +      - const: apb_sys
-> +      - const: aclk
-> +
-> +  clkreq-gpios:
-> +    description: Clock request GPIOs
-> +    maxItems: 3
+On Tue, 3 Aug 2021 18:44:48 +1000, Alistair Francis wrote:
+> Initial support for the Silergy SY7636A Power Management chip
+> and regulator.
 
-This can be dropped now?
+Applied to
 
-If not, at least use the same property name. (But really, why duplicate 
-information in DT).
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
-Rob
+Thanks!
+
+[05/11] regulator: sy7636a: Remove the poll_enable_time
+        commit: e5dad32d90e0e9b006f5c330e92fa0ec9042ae79
+[06/11] regulator: sy7636a: Use the parent driver data
+        commit: 4cafe1aeb5fb4eb1778d5e1b91d50a078369dbe1
+[07/11] regulator: sy7636a: Store the epd-pwr-good GPIO locally
+        commit: d38d49b140043bba3ea27b89cca5fefaf08e2034
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
