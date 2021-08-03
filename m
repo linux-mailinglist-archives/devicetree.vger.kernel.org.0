@@ -2,75 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AB643DF529
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 21:13:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C2473DF545
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 21:17:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238920AbhHCTN5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 15:13:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44846 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239445AbhHCTN4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 15:13:56 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17AEAC0613D5
-        for <devicetree@vger.kernel.org>; Tue,  3 Aug 2021 12:13:45 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id mz5-20020a17090b3785b0290176ecf64922so5274500pjb.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Aug 2021 12:13:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=51jbt1FVT8IlO6u6Cwrs29BEgDlHbe6XQ3u3nFa/JfM=;
-        b=ad2Yhve4zPtnMlQA1kQYZvgF/VOj4cc3VR6lgNzpoTCOSNd8h91YOig3aVFrlNOlba
-         dQD4tBLo15gSXN6IpWWIGkJh+xMc947AR/PbIe6sv+qGLnv8n0DwTiQsNfgHeVdGTxYj
-         dn/MeQ1UbBT14RiwYG82GP70rlJwO7Y54T0Xw=
+        id S239473AbhHCTRq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 15:17:46 -0400
+Received: from mail-il1-f176.google.com ([209.85.166.176]:34451 "EHLO
+        mail-il1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238111AbhHCTRp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 15:17:45 -0400
+Received: by mail-il1-f176.google.com with SMTP id a14so20505202ila.1;
+        Tue, 03 Aug 2021 12:17:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=51jbt1FVT8IlO6u6Cwrs29BEgDlHbe6XQ3u3nFa/JfM=;
-        b=G2tUkc6NPMoy2z9RNSc7cKFrgiulVLTcJzp+xP3dIvhYK19LU5k1zQVg/lovgZEHYE
-         ah/ABZpREE2NJ+5tkdbVCx0UHWgTl1JUlaWVEIqIMw7mkxpx5wA54y1pR8gxQT7C+WaF
-         NU9+piEItQprr0tcoSe6eBTN9rTS4r0DXLu495btKtJwru4H8oHl85zHeCkDpgvCV/SX
-         7ZoetB3L9eVPAuwnNhAjtH1/gQx74q4AuCZIqjOdKLZSpQuXFBCyPP4jvMc7wtzN8gvZ
-         dcKgJQ8fngkhHBWnjW/f7hqu6EODRDnHXHBO3QWrn/CQQ/0rGPeTjgKuPx+ApYM8KmjI
-         8Bqg==
-X-Gm-Message-State: AOAM531kVE+hChGr/eFo/k0XRq/ehKUftLPIqoUQMod5rQ2fTRe6rInA
-        b7sIKDE48FEn/0UbHNJYYqsK3g==
-X-Google-Smtp-Source: ABdhPJwEEsxEiREkDX7Q13hRVmVm5y2g4E2WGMU7w7iJxiCZoPqfwWG/qUn0MjYFfkB6dhrzfE2h7A==
-X-Received: by 2002:a63:d104:: with SMTP id k4mr1253803pgg.196.1628018024608;
-        Tue, 03 Aug 2021 12:13:44 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:9afe:3b52:1da2:825d])
-        by smtp.gmail.com with UTF8SMTPSA id q14sm16600910pfn.73.2021.08.03.12.13.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Aug 2021 12:13:44 -0700 (PDT)
-Date:   Tue, 3 Aug 2021 12:13:42 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Sandeep Maheswaram <sanm@codeaurora.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Pratham Pratap <prathampratap@codeaurora.org>
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Add interconnect properties
- for USB
-Message-ID: <YQmVZk42Fq+7GMST@google.com>
-References: <1627880576-22391-1-git-send-email-sanm@codeaurora.org>
+        bh=X1PN+FXcllZposMsv/wBmiMU+F0yrr+LYFew9Nm0w9I=;
+        b=NPd1w4M0XJy5rA/ePl01hqXUOMrEjvbDNKfwQ7TYtXsHKg5on1fKSEGOIPuOZCvVoc
+         JbpSnlQehbxuvDBNVsQBNQNGMZLj9cs60NHaww4tjiKxSp0RWIi5noIeguNfpwbu9p9H
+         DB1efoErKmBmcnZ1nSxJiZnyIeEKd3kXFTsn3DNLbzPJoa+HW8Wdw/Vh4UPQ5AbuHxXF
+         Sm2aUQeeu21Kd/HhEecM6OPMnC3tWkNWd9wjsz5AN09f0PURzr8QPQJg3buGqxjOdCOB
+         Rw3ObrSz1LeXDovsYBWwpej6NdRXtsYdXgW1d8KVock1BHVIijQO0tAJJWa44w9nZsAI
+         0kBg==
+X-Gm-Message-State: AOAM530GE+0IVIsfXK72vihZaVaKXxZX9qvEPcStmFPaKjYR2eBWV6eL
+        RyvjlqkymbwNB2+DTnJSjg==
+X-Google-Smtp-Source: ABdhPJzhu2esfDB7VNUpLzlnS6yiTNM/VUqJ7WfIVheAbGPrU6X0bxACS+OMP9w+D/qBxhD93aOWZQ==
+X-Received: by 2002:a92:de07:: with SMTP id x7mr1911620ilm.293.1628018253359;
+        Tue, 03 Aug 2021 12:17:33 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id s195sm10469384ios.38.2021.08.03.12.17.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Aug 2021 12:17:32 -0700 (PDT)
+Received: (nullmailer pid 3587156 invoked by uid 1000);
+        Tue, 03 Aug 2021 19:17:30 -0000
+Date:   Tue, 3 Aug 2021 13:17:30 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Hector Yuan <hector.yuan@mediatek.com>,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        wsd_upstream@mediatek.com
+Subject: Re: [PATCH v13 1/2] dt-bindings: cpufreq: add bindings for MediaTek
+ cpufreq HW
+Message-ID: <YQmWSj0g9ZcZGHtg@robh.at.kernel.org>
+References: <1627574891-26514-1-git-send-email-hector.yuan@mediatek.com>
+ <1627574891-26514-2-git-send-email-hector.yuan@mediatek.com>
+ <20210803050538.g6aj2zsep735ywqv@vireshk-i7>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1627880576-22391-1-git-send-email-sanm@codeaurora.org>
+In-Reply-To: <20210803050538.g6aj2zsep735ywqv@vireshk-i7>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 02, 2021 at 10:32:56AM +0530, Sandeep Maheswaram wrote:
-> Add interconnect properties in USB DT nodes for sc7280.
+On Tue, Aug 03, 2021 at 10:35:38AM +0530, Viresh Kumar wrote:
+> On 30-07-21, 00:08, Hector Yuan wrote:
+> > From: "Hector.Yuan" <hector.yuan@mediatek.com>
+> > 
+> > Add devicetree bindings for MediaTek HW driver.
+> > 
+> > Signed-off-by: Hector.Yuan <hector.yuan@mediatek.com>
+> > ---
+> >  .../bindings/cpufreq/cpufreq-mediatek-hw.yaml      |   70 ++++++++++++++++++++
+> >  1 file changed, 70 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
+> > new file mode 100644
+> > index 0000000..6bb2c97
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.yaml
+> > @@ -0,0 +1,70 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/cpufreq/cpufreq-mediatek-hw.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: MediaTek's CPUFREQ Bindings
+> > +
+> > +maintainers:
+> > +  - Hector Yuan <hector.yuan@mediatek.com>
+> > +
+> > +description:
+> > +  CPUFREQ HW is a hardware engine used by MediaTek
+> > +  SoCs to manage frequency in hardware. It is capable of controlling frequency
+> > +  for multiple clusters.
+> > +
 > 
-> Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
+> Should this somewhere have a reference to
+> Documentation/devicetree/bindings/dvfs/performance-domain.yaml ?
+> 
+> > +properties:
+> > +  compatible:
+> > +    const: mediatek,cpufreq-hw
+> > +
+> > +  reg:
+> > +    minItems: 1
+> > +    maxItems: 2
+> > +    description: |
+> > +      Addresses and sizes for the memory of the
+> > +      HW bases in each frequency domain.
+> > +
+> > +  "#performance-domain-cells":
+> > +    description:
+> > +      Number of cells in a performance domain specifier. Typically 1 for nodes
+> > +      providing multiple performance domains (e.g. performance controllers),
+> > +      but can be any value as specified by device tree binding documentation
+> > +      of particular provider.
+> 
+> You say this can have any value, 1 or more, but then ...
+> 
+> > +    const: 1
+> 
+> You fix it to 1 ?
+> 
+> Perhaps you should add a reference to the performance-domain.yaml here
+> as well, and say const 1 here and describe how the parameter is going
+> to be used. You should only explain it in respect to your SoC.
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+Correct in terms of what should be described, but no need to reference 
+performance-domain.yaml.
+
+Rob
