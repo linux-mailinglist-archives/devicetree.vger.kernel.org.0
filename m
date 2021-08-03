@@ -2,170 +2,285 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B9C53DF0E2
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 16:57:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9006B3DF0F6
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 17:00:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235982AbhHCO5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 10:57:33 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:46450 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236022AbhHCO5c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 10:57:32 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 173Euqjp051587;
-        Tue, 3 Aug 2021 09:56:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1628002612;
-        bh=+Xji1zKIuLogX0B+kK6j4X2dEkjBXwuwPZRCCqTYn94=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=hfy2ciXNXPYLOeWd5Rgr0vwK6t5j4Ywtiq8rv5tnPhp/Hi33vvUtdM5b5EKe6Ybb2
-         x/+A1Almuf8Co17KmPyhthoPXcM7ZZh0PFl4pFDHM4yQJnaoLuPMKi1vAtrdJdeb0k
-         w/iELA9P0/DoMh1ej4YYg3XR1zOSqBnlcHwvyE0g=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 173EuqjM065661
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 3 Aug 2021 09:56:52 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 3 Aug
- 2021 09:56:52 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Tue, 3 Aug 2021 09:56:52 -0500
-Received: from [10.250.232.234] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 173Euia3020120;
-        Tue, 3 Aug 2021 09:56:45 -0500
-Subject: Re: [PATCH v7 5/7] PCI: cadence: Add support to configure virtual
- functions
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-CC:     Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tom Joseph <tjoseph@cadence.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        <linux-pci@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-renesas-soc@vger.kernel.org>,
-        <linux-rockchip@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>
-References: <20210803050310.27122-1-kishon@ti.com>
- <20210803050310.27122-6-kishon@ti.com> <20210803114530.GE11252@lpieralisi>
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-Message-ID: <be907fe7-4095-e28b-5575-76629edc30f0@ti.com>
-Date:   Tue, 3 Aug 2021 20:26:42 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S235607AbhHCPAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 11:00:30 -0400
+Received: from mga05.intel.com ([192.55.52.43]:31797 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235368AbhHCPAa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Aug 2021 11:00:30 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10065"; a="299295820"
+X-IronPort-AV: E=Sophos;i="5.84,291,1620716400"; 
+   d="scan'208";a="299295820"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Aug 2021 08:00:16 -0700
+X-IronPort-AV: E=Sophos;i="5.84,291,1620716400"; 
+   d="scan'208";a="521282556"
+Received: from vmustya-mobl1.amr.corp.intel.com (HELO [10.213.171.71]) ([10.213.171.71])
+  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Aug 2021 08:00:14 -0700
+Subject: Re: [PATCH v3 00/20] ASoC: qcom: Add AudioReach support
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, tiwai@suse.de, plai@codeaurora.org,
+        lgirdwood@gmail.com
+References: <20210803125411.28066-1-srinivas.kandagatla@linaro.org>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Message-ID: <0e6e4e03-c92a-be27-ba9d-e0993ced1ba6@linux.intel.com>
+Date:   Tue, 3 Aug 2021 10:00:10 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <20210803114530.GE11252@lpieralisi>
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <20210803125411.28066-1-srinivas.kandagatla@linaro.org>
+Content-Type: multipart/mixed;
+ boundary="------------91820860E6B26CFB2718542F"
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lorenzo,
+This is a multi-part message in MIME format.
+--------------91820860E6B26CFB2718542F
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
-On 03/08/21 5:15 pm, Lorenzo Pieralisi wrote:
-> On Tue, Aug 03, 2021 at 10:33:08AM +0530, Kishon Vijay Abraham I wrote:
->> Now that support for SR-IOV is added in PCIe endpoint core, add support
->> to configure virtual functions in the Cadence PCIe EP driver.
->>
->> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
->> Acked-by: Tom Joseph <tjoseph@cadence.com>
->> ---
->>  .../pci/controller/cadence/pcie-cadence-ep.c  | 241 +++++++++++++++---
->>  drivers/pci/controller/cadence/pcie-cadence.h |   7 +
->>  2 files changed, 217 insertions(+), 31 deletions(-)
->>
->> diff --git a/drivers/pci/controller/cadence/pcie-cadence-ep.c b/drivers/pci/controller/cadence/pcie-cadence-ep.c
->> index 912a15be8bfd..791915054ff4 100644
->> --- a/drivers/pci/controller/cadence/pcie-cadence-ep.c
->> +++ b/drivers/pci/controller/cadence/pcie-cadence-ep.c
->> @@ -20,7 +20,18 @@ static int cdns_pcie_ep_write_header(struct pci_epc *epc, u8 fn, u8 vfn,
->>  				     struct pci_epf_header *hdr)
->>  {
->>  	struct cdns_pcie_ep *ep = epc_get_drvdata(epc);
->> +	u32 cap = CDNS_PCIE_EP_FUNC_SRIOV_CAP_OFFSET;
->>  	struct cdns_pcie *pcie = &ep->pcie;
->> +	u32 reg;
->> +
->> +	if (vfn > 1) {
->> +		dev_dbg(&epc->dev, "Only Virtual Function #1 has deviceID\n");
->> +		return 0;
-> 
-> Shouldn't this return an error ?
+There are quite a few cppcheck warnings due to unnecessary
+initializations for loop variables, see suggested patch below.
 
-Since the same function driver could be used for physical function and
-virtual function, I tried to avoid adding any additional case specific
-for virtual function in the function driver.
+And a number of renames that were missed.
 
-If we want to return an error here, then the function driver should be
-modified to not invoke writeheader for vfn > 1.
-> 
->> +	} else if (vfn == 1) {
->> +		reg = cap + PCI_SRIOV_VF_DID;
->> +		cdns_pcie_ep_fn_writew(pcie, fn, reg, hdr->deviceid);
->> +		return 0;
->> +	}
->>  
->>  	cdns_pcie_ep_fn_writew(pcie, fn, PCI_DEVICE_ID, hdr->deviceid);
->>  	cdns_pcie_ep_fn_writeb(pcie, fn, PCI_REVISION_ID, hdr->revid);
->> @@ -51,12 +62,14 @@ static int cdns_pcie_ep_set_bar(struct pci_epc *epc, u8 fn, u8 vfn,
->>  				struct pci_epf_bar *epf_bar)
->>  {
->>  	struct cdns_pcie_ep *ep = epc_get_drvdata(epc);
->> +	u32 cap = CDNS_PCIE_EP_FUNC_SRIOV_CAP_OFFSET;
->>  	struct cdns_pcie_epf *epf = &ep->epf[fn];
->>  	struct cdns_pcie *pcie = &ep->pcie;
->>  	dma_addr_t bar_phys = epf_bar->phys_addr;
->>  	enum pci_barno bar = epf_bar->barno;
->>  	int flags = epf_bar->flags;
->>  	u32 addr0, addr1, reg, cfg, b, aperture, ctrl;
->> +	u32 first_vf_offset, stride;
->>  	u64 sz;
->>  
->>  	/* BAR size is 2^(aperture + 7) */
->> @@ -92,26 +105,50 @@ static int cdns_pcie_ep_set_bar(struct pci_epc *epc, u8 fn, u8 vfn,
->>  
->>  	addr0 = lower_32_bits(bar_phys);
->>  	addr1 = upper_32_bits(bar_phys);
->> +
->> +	if (vfn == 1) {
->> +		/* All virtual functions use the same BAR config */
->> +		if (bar < BAR_4) {
->> +			reg = CDNS_PCIE_LM_EP_VFUNC_BAR_CFG0(fn);
->> +			b = bar;
->> +		} else {
->> +			reg = CDNS_PCIE_LM_EP_VFUNC_BAR_CFG1(fn);
->> +			b = bar - BAR_4;
->> +		}
->> +	} else if (vfn == 0) {
->> +		/* BAR configuration for physical function */
->> +		if (bar < BAR_4) {
->> +			reg = CDNS_PCIE_LM_EP_FUNC_BAR_CFG0(fn);
->> +			b = bar;
->> +		} else {
->> +			reg = CDNS_PCIE_LM_EP_FUNC_BAR_CFG1(fn);
->> +			b = bar - BAR_4;
->> +		}
->> +	}
-> 
-> Code in both branches is almost identical except for what is
-> assigned to reg, it is not fundamental but maybe it can be rewritten
-> more concisely.
+cppcheck --platform=unix64 --force --max-configs=1024 --inconclusive
+--enable=all --suppress=variableScope --suppress=shiftTooManyBitsSigned
+--suppress=arithOperationsOnVoidPointer --suppress=bitwiseOnBoolean
+sound/soc/qcom/qdsp6/
 
-okay.. let me think.
 
-Thanks
-Kishon
+Checking sound/soc/qcom/qdsp6/audioreach.c ...
+sound/soc/qcom/qdsp6/audioreach.c:248:32: style:inconclusive: Function
+'audioreach_alloc_pkt' argument 1 names different: declaration
+'pkt_size' definition 'payload_size'. [funcArgNamesDifferent]
+void *audioreach_alloc_pkt(int payload_size, uint32_t opcode,
+                               ^
+sound/soc/qcom/qdsp6/audioreach.h:657:32: note: Function
+'audioreach_alloc_pkt' argument 1 names different: declaration
+'pkt_size' definition 'payload_size'.
+void *audioreach_alloc_pkt(int pkt_size, uint32_t opcode, uint32_t token,
+                               ^
+sound/soc/qcom/qdsp6/audioreach.c:248:32: note: Function
+'audioreach_alloc_pkt' argument 1 names different: declaration
+'pkt_size' definition 'payload_size'.
+void *audioreach_alloc_pkt(int payload_size, uint32_t opcode,
+                               ^
+sound/soc/qcom/qdsp6/audioreach.c:265:36: style:inconclusive: Function
+'audioreach_alloc_cmd_pkt' argument 1 names different: declaration
+'pkt_size' definition 'payload_size'. [funcArgNamesDifferent]
+void *audioreach_alloc_cmd_pkt(int payload_size, uint32_t opcode,
+                                   ^
+sound/soc/qcom/qdsp6/audioreach.h:653:36: note: Function
+'audioreach_alloc_cmd_pkt' argument 1 names different: declaration
+'pkt_size' definition 'payload_size'.
+void *audioreach_alloc_cmd_pkt(int pkt_size, uint32_t opcode, uint32_t
+token,
+                                   ^
+sound/soc/qcom/qdsp6/audioreach.c:265:36: note: Function
+'audioreach_alloc_cmd_pkt' argument 1 names different: declaration
+'pkt_size' definition 'payload_size'.
+void *audioreach_alloc_cmd_pkt(int payload_size, uint32_t opcode,
+                                   ^
+sound/soc/qcom/qdsp6/q6apm.c:326:16: style:inconclusive: Function
+'q6apm_map_memory_regions' argument 4 names different: declaration
+'bufsz' definition 'period_sz'. [funcArgNamesDifferent]
+        size_t period_sz, unsigned int periods)
+               ^
+sound/soc/qcom/qdsp6/q6apm.h:137:16: note: Function
+'q6apm_map_memory_regions' argument 4 names different: declaration
+'bufsz' definition 'period_sz'.
+        size_t bufsz, unsigned int bufcnt);
+               ^
+sound/soc/qcom/qdsp6/q6apm.c:326:16: note: Function
+'q6apm_map_memory_regions' argument 4 names different: declaration
+'bufsz' definition 'period_sz'.
+        size_t period_sz, unsigned int periods)
+               ^
+sound/soc/qcom/qdsp6/q6apm.c:326:40: style:inconclusive: Function
+'q6apm_map_memory_regions' argument 5 names different: declaration
+'bufcnt' definition 'periods'. [funcArgNamesDifferent]
+        size_t period_sz, unsigned int periods)
+                                       ^
+sound/soc/qcom/qdsp6/q6apm.h:137:36: note: Function
+'q6apm_map_memory_regions' argument 5 names different: declaration
+'bufcnt' definition 'periods'.
+        size_t bufsz, unsigned int bufcnt);
+                                   ^
+sound/soc/qcom/qdsp6/q6apm.c:326:40: note: Function
+'q6apm_map_memory_regions' argument 5 names different: declaration
+'bufcnt' definition 'periods'.
+        size_t period_sz, unsigned int periods)
+                                       ^
+sound/soc/qcom/qdsp6/q6apm.c:471:35: style:inconclusive: Function
+'q6apm_write_async' argument 5 names different: declaration 'flags'
+definition 'wflags'. [funcArgNamesDifferent]
+        uint32_t lsw_ts, uint32_t wflags)
+                                  ^
+sound/soc/qcom/qdsp6/q6apm.h:131:36: note: Function 'q6apm_write_async'
+argument 5 names different: declaration 'flags' definition 'wflags'.
+         uint32_t lsw_ts, uint32_t flags);
+                                   ^
+sound/soc/qcom/qdsp6/q6apm.c:471:35: note: Function 'q6apm_write_async'
+argument 5 names different: declaration 'flags' definition 'wflags'.
+        uint32_t lsw_ts, uint32_t wflags)
+                                  ^
+
+Checking sound/soc/qcom/qdsp6/q6prm.c ...
+sound/soc/qcom/qdsp6/q6prm.c:158:63: style:inconclusive: Function
+'q6prm_set_lpass_clock' argument 3 names different: declaration 'attri'
+definition 'clk_attr'. [funcArgNamesDifferent]
+int q6prm_set_lpass_clock(struct device *dev, int clk_id, int clk_attr,
+                                                              ^
+sound/soc/qcom/qdsp6/q6prm.h:72:63: note: Function
+'q6prm_set_lpass_clock' argument 3 names different: declaration 'attri'
+definition 'clk_attr'.
+int q6prm_set_lpass_clock(struct device *dev, int clk_id, int attri,
+                                                              ^
+sound/soc/qcom/qdsp6/q6prm.c:158:63: note: Function
+'q6prm_set_lpass_clock' argument 3 names different: declaration 'attri'
+definition 'clk_attr'.
+int q6prm_set_lpass_clock(struct device *dev, int clk_id, int clk_attr,
+                                                              ^
+
+--------------91820860E6B26CFB2718542F
+Content-Type: text/x-patch; charset=UTF-8;
+ name="qcom.patch"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="qcom.patch"
+
+diff --git a/sound/soc/qcom/qdsp6/audioreach.c b/sound/soc/qcom/qdsp6/audioreach.c
+index cd029e59a421..5aeb26ee2a6c 100644
+--- a/sound/soc/qcom/qdsp6/audioreach.c
++++ b/sound/soc/qcom/qdsp6/audioreach.c
+@@ -361,7 +361,7 @@ static void apm_populate_module_prop_obj(struct apm_mod_prop_obj *obj,
+ struct audioreach_module *audioreach_get_container_last_module(
+ 				struct audioreach_container *container)
+ {
+-	struct audioreach_module *module = NULL;
++	struct audioreach_module *module;
+ 
+ 	list_for_each_entry(module, &container->modules_list, node) {
+ 		if (module->dst_mod_inst_id == 0)
+@@ -374,7 +374,7 @@ struct audioreach_module *audioreach_get_container_last_module(
+ static bool is_module_in_container(struct audioreach_container *container, int
+ 				   module_iid)
+ {
+-	struct audioreach_module *module = NULL;
++	struct audioreach_module *module;
+ 
+ 	list_for_each_entry(module, &container->modules_list, node) {
+ 		if (module->instance_id == module_iid)
+@@ -386,7 +386,7 @@ static bool is_module_in_container(struct audioreach_container *container, int
+ struct audioreach_module *audioreach_get_container_first_module(
+ 				struct audioreach_container *container)
+ {
+-	struct audioreach_module *module = NULL;
++	struct audioreach_module *module;
+ 
+ 	list_for_each_entry(module, &container->modules_list, node) {
+ 		if (module->src_mod_inst_id == 0 ||
+@@ -401,7 +401,7 @@ struct audioreach_module *audioreach_get_container_next_module(
+ 				struct audioreach_module *module)
+ {
+ 	int nmodule_iid = module->dst_mod_inst_id;
+-	struct audioreach_module *nmodule = NULL;
++	struct audioreach_module *nmodule;
+ 
+ 	list_for_each_entry(nmodule, &container->modules_list, node) {
+ 		if (nmodule->instance_id == nmodule_iid)
+@@ -439,13 +439,13 @@ static void audioreach_populate_graph(struct apm_graph_open_params *open,
+ 	struct apm_prop_list_params *mp_data = open->mod_prop_data;
+ 	struct apm_mod_conn_list_params *mc_data = open->mod_conn_list_data;
+ 	struct apm_container_obj *cobj;
+-	struct audioreach_container *container = NULL;
++	struct audioreach_container *container;
+ 	struct audioreach_module *module;
+ 	struct apm_mod_list_obj *mlobj;
+ 	struct apm_mod_prop_obj *module_prop_obj;
+ 	struct apm_module_conn_obj *conn_obj;
+ 	int ncontainer = 0, nmodule = 0, nconn = 0;
+-	struct audioreach_sub_graph *sg = NULL;
++	struct audioreach_sub_graph *sg;
+ 	int i = 0;
+ 
+ 	mlobj = &ml_data->mod_list_obj[0];
+@@ -496,14 +496,14 @@ void *audioreach_alloc_graph_pkt(struct q6apm *apm,
+ 	struct gpr_pkt *pkt;
+ 	struct apm_graph_open_params params;
+ 	struct apm_module_param_data  *param_data;
+-	struct audioreach_container *container = NULL;
++	struct audioreach_container *container;
+ 	int num_containers = 0;
+ 	int num_modules = 0;
+ 	int num_modules_list;
+ 	int num_modules_per_list;
+ 	int num_connections = 0;
+ 	int num_sub_graphs = 0;
+-	struct audioreach_sub_graph *sgs = NULL;
++	struct audioreach_sub_graph *sgs;
+ 	struct audioreach_module *module;
+ 
+ 	list_for_each_entry(sgs, sg_list, node) {
+diff --git a/sound/soc/qcom/qdsp6/q6apm.c b/sound/soc/qcom/qdsp6/q6apm.c
+index e3d18622415b..fdf687494210 100644
+--- a/sound/soc/qcom/qdsp6/q6apm.c
++++ b/sound/soc/qcom/qdsp6/q6apm.c
+@@ -129,7 +129,7 @@ static int audioreach_graph_mgmt_cmd(struct audioreach_graph *graph,
+ 	int num_sub_graphs = info->num_sub_graphs;
+ 	struct apm_graph_mgmt_cmd *mgmt_cmd;
+ 	struct apm_module_param_data *param_data;
+-	struct audioreach_sub_graph *sg = NULL;
++	struct audioreach_sub_graph *sg;
+ 
+ 	payload_size = APM_GRAPH_MGMT_PSIZE(num_sub_graphs);
+ 
+@@ -197,9 +197,9 @@ static struct audioreach_module *__q6apm_find_module_by_mid(struct q6apm *apm,
+ 					     struct audioreach_graph_info *info,
+ 					     uint32_t mid)
+ {
+-	struct audioreach_sub_graph *sgs = NULL;
+-	struct audioreach_container *container = NULL;
+-	struct audioreach_module *module = NULL;
++	struct audioreach_sub_graph *sgs;
++	struct audioreach_container *container;
++	struct audioreach_module *module;
+ 
+ 	list_for_each_entry(sgs, &info->sg_list, node) {
+ 		list_for_each_entry(container, &sgs->container_list, node) {
+@@ -421,9 +421,9 @@ int q6apm_graph_media_format_pcm(struct q6apm_graph *graph,
+ 				 struct audioreach_module_config *cfg)
+ {
+ 	struct audioreach_graph_info *info = graph->info;
+-	struct audioreach_sub_graph *sgs = NULL;
+-	struct audioreach_container *container = NULL;
+-	struct audioreach_module *module = NULL;
++	struct audioreach_sub_graph *sgs;
++	struct audioreach_container *container;
++	struct audioreach_module *module;
+ 
+ 	list_for_each_entry(sgs, &info->sg_list, node) {
+ 		list_for_each_entry(container, &sgs->container_list, node) {
+diff --git a/sound/soc/qcom/qdsp6/topology.c b/sound/soc/qcom/qdsp6/topology.c
+index 409e19486d57..1a62f159ffdf 100644
+--- a/sound/soc/qcom/qdsp6/topology.c
++++ b/sound/soc/qcom/qdsp6/topology.c
+@@ -853,7 +853,7 @@ static struct audioreach_module *audioreach_find_widget(struct snd_soc_component
+ 							const char *name)
+ {
+ 	struct q6apm *apm = dev_get_drvdata(comp->dev);
+-	struct audioreach_module *module = NULL;
++	struct audioreach_module *module;
+ 	int id = 0;
+ 
+ 	idr_for_each_entry(&apm->modules_idr, module, id) {
+
+--------------91820860E6B26CFB2718542F--
