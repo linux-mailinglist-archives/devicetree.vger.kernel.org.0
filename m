@@ -2,112 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 213A63DEF79
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 15:59:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B1BF3DEFB3
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 16:06:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236138AbhHCN7t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 09:59:49 -0400
-Received: from mail-il1-f182.google.com ([209.85.166.182]:35788 "EHLO
-        mail-il1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236045AbhHCN7s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 09:59:48 -0400
-Received: by mail-il1-f182.google.com with SMTP id k3so19579880ilu.2;
-        Tue, 03 Aug 2021 06:59:36 -0700 (PDT)
+        id S236399AbhHCOGR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 10:06:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52256 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236045AbhHCOGR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 10:06:17 -0400
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79A8AC061757;
+        Tue,  3 Aug 2021 07:06:05 -0700 (PDT)
+Received: by mail-ot1-x332.google.com with SMTP id v9-20020a9d60490000b02904f06fc590dbso1853615otj.4;
+        Tue, 03 Aug 2021 07:06:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=9LHsCD6sz9wNhH1vtkCQf1FqbNJPwvaCAE0YJ0j2R7w=;
+        b=VkVA03WnvIbU0w5pAkJxucEhOVmMyPIGopV+A5nTR9MbOLToC0njzoLMEveUubTb00
+         5n43SlXrmkzTVH2FxxhHBnE8cMEXpFC91Tj8Q7YFfDvxgsMNGyhR5Mdyw4vYwsen9ZGO
+         UQpWB0FivMf8gerZ9TlcnsnwAh+yNwZq26EBgOkZlGCwKUjN9uDuONWhoaek4AHadkb6
+         4EhelpCPYNmwBwYFBokq6Fb8qWTKdXVQokT2/+Aebyd4dz9NgbpJ9gqNkxDDdWAEo0WV
+         4EPre3e9tdQrCnJ9zz2xBPaPYF3mhVfDxCZv2ea7VeZbuaPAXwZ9iQjV4sqEtQkNJaR5
+         lmCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=YJEwfvXxEQoCSvi3Imkoy2A3S44+KPxOIY3UOxwGxYQ=;
-        b=hDF5TTvJm6RMl6lMIiIAi27zZIFhspe8JBB42RXhRkwobWToDSSV9ygdLV0qBw1Bzl
-         By/sfNztFmoyrU3LyFnn/PDyku84v27lmeMHb7Dez62+HsM6KbD4B69fj/xuvcKF7W6s
-         bmIM6X8emE6yLugatcGjs7PDChRVq0Le+ELN53TtSiR3w6Tyy+yng3YyFeVBiaDLoTXW
-         CgJ/078qJmWXc3lY97/nNnAZdcCk+lbqDOioiVY033OmLUjhiptapg2xbbYChjpzuqlS
-         wbv1EqUHPQlMAbGMdKm6eLKrw1rBPvaJjuplmPQngwdcLDx9CuMwKNjFdftd0DCPN7/I
-         a/DA==
-X-Gm-Message-State: AOAM532uxRERaitgsxwyWs5jf0VkcrOxW1fAmdpgEf/v31J1Kwin7/n1
-        tX7AIevLVZERuDBWrLhnpg==
-X-Google-Smtp-Source: ABdhPJydosHbUMC3l3Q5iokZVtVDy0/O4JeNWAppyEHHOo14g7SwbkcNcU6C2ZSn78b0VCB1rUrOgw==
-X-Received: by 2002:a92:c043:: with SMTP id o3mr876190ilf.189.1627999176150;
-        Tue, 03 Aug 2021 06:59:36 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id d9sm7561292ilu.9.2021.08.03.06.59.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Aug 2021 06:59:34 -0700 (PDT)
-Received: (nullmailer pid 3179056 invoked by uid 1000);
-        Tue, 03 Aug 2021 13:59:32 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        Andy Teng <andy.teng@mediatek.com>, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Sean Wang <sean.wang@kernel.org>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=9LHsCD6sz9wNhH1vtkCQf1FqbNJPwvaCAE0YJ0j2R7w=;
+        b=qKp+rOvBhQCBlbIDTrNRmTIpB3+1/ONXln5Mp6eFL985v0Fo8dXPKtG2sQejrE0pH9
+         KkLUf6QhGcQ6S2ncy6kkivaoFB+XBuZ5Fjirts/HPigLG7jae2PNu1AsaDM6m6quY5t1
+         GjgZgD+6G1Sdm/PCIKZKNO7wnUxZ0LBaZxDJ9xUO9xZx5KYF3cpcnmwrTpUrTa/9J/aD
+         YY4L1m4DlgGPXO9WxVgyT1RxdXGHHwoKE7BRMFFCtMrbwYxPkNLuzHOp+hE5+dHPtVrE
+         eguJQZDQb1y1SfIMMYozNew64G+/wUG2EMMKwbejNGzPQ+EXCjaJzyqsb72yybq0u7fg
+         uEZQ==
+X-Gm-Message-State: AOAM532SSowr6SB9Ql0peC32yeH/AY2UnpaKFmjXnimU4mg7OC5AgkY6
+        +131uYwjofsp0aDl1lhN0m5xgmUaUWt6ei8Yb4I=
+X-Google-Smtp-Source: ABdhPJyq0t9mj746XFxQEg/6h07dFt3yj6h2kE9c/bL6DGsWC0yDBuUvcbX9JdQPNtK2bJ/ItJgUIgD1m8JMTA7+XfM=
+X-Received: by 2002:a9d:27a4:: with SMTP id c33mr15976408otb.281.1627999564866;
+ Tue, 03 Aug 2021 07:06:04 -0700 (PDT)
+MIME-Version: 1.0
+References: <1627894773-23872-1-git-send-email-yongqiang.niu@mediatek.com> <1627894773-23872-3-git-send-email-yongqiang.niu@mediatek.com>
+In-Reply-To: <1627894773-23872-3-git-send-email-yongqiang.niu@mediatek.com>
+From:   Enric Balletbo Serra <eballetbo@gmail.com>
+Date:   Tue, 3 Aug 2021 16:05:53 +0200
+Message-ID: <CAFqH_50eD=KihDrE3Vi0w+qEh6USF-sZTD+ZBjUeCiwXz4HD8Q@mail.gmail.com>
+Subject: Re: [PATCH v8, 2/2] soc: mediatek: mmsys: Add mt8192 mmsys routing table
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-In-Reply-To: <20210803051318.2570994-3-hsinyi@chromium.org>
-References: <20210803051318.2570994-1-hsinyi@chromium.org> <20210803051318.2570994-3-hsinyi@chromium.org>
-Subject: Re: [PATCH v3 3/3] dt-bindings: mediatek: convert pinctrl to yaml
-Date:   Tue, 03 Aug 2021 07:59:32 -0600
-Message-Id: <1627999172.502726.3179055.nullmailer@robh.at.kernel.org>
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Hsin-Yi Wang <hsinyi@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 03 Aug 2021 13:13:19 +0800, Hsin-Yi Wang wrote:
-> Convert mt65xx, mt6796, mt7622, mt8183 bindings to yaml.
-> 
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+Hi Yongqiang,
+
+Thank you for your patch
+
+Missatge de Yongqiang Niu <yongqiang.niu@mediatek.com> del dia dl., 2
+d=E2=80=99ag. 2021 a les 11:00:
+>
+> mt8192 has different routing registers than mt8183
+>
+
+... than mt8183 and other Mediatek SoC's I guess ;-)
+
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+
+Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+
+Thanks,
+   Enric
+
+
 > ---
-> v2->v3:
-> fix comments in v2.
-> ---
->  .../pinctrl/mediatek,mt65xx-pinctrl.yaml      | 206 ++++++++
->  .../pinctrl/mediatek,mt6797-pinctrl.yaml      | 173 +++++++
->  .../pinctrl/mediatek,mt7622-pinctrl.yaml      | 373 +++++++++++++
->  .../pinctrl/mediatek,mt8183-pinctrl.yaml      | 228 ++++++++
->  .../bindings/pinctrl/pinctrl-mt65xx.txt       | 156 ------
->  .../bindings/pinctrl/pinctrl-mt6797.txt       |  83 ---
->  .../bindings/pinctrl/pinctrl-mt7622.txt       | 490 ------------------
->  .../bindings/pinctrl/pinctrl-mt8183.txt       | 132 -----
->  8 files changed, 980 insertions(+), 861 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt65xx-pinctrl.yaml
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt6797-pinctrl.yaml
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt7622-pinctrl.yaml
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt8183-pinctrl.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-mt65xx.txt
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-mt6797.txt
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-mt7622.txt
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-mt8183.txt
-> 
-
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/pinctrl/mediatek,mt8183-pinctrl.example.dts:21:18: fatal error: dt-bindings/pinctrl/mt8183-pinfunc.h: No such file or directory
-   21 |         #include <dt-bindings/pinctrl/mt8183-pinfunc.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/pinctrl/mediatek,mt8183-pinctrl.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1419: dt_binding_check] Error 2
-\ndoc reference errors (make refcheckdocs):
-MAINTAINERS: Documentation/devicetree/bindings/pinctrl/pinctrl-mt65xx.txt
-MAINTAINERS: Documentation/devicetree/bindings/pinctrl/pinctrl-mt7622.txt
-
-See https://patchwork.ozlabs.org/patch/1512734
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+>  drivers/soc/mediatek/mt8192-mmsys.h | 67 +++++++++++++++++++++++++++++++=
+++++++
+>  drivers/soc/mediatek/mtk-mmsys.c    | 11 ++++++
+>  2 files changed, 78 insertions(+)
+>  create mode 100644 drivers/soc/mediatek/mt8192-mmsys.h
+>
+> diff --git a/drivers/soc/mediatek/mt8192-mmsys.h b/drivers/soc/mediatek/m=
+t8192-mmsys.h
+> new file mode 100644
+> index 0000000..0e4b233
+> --- /dev/null
+> +++ b/drivers/soc/mediatek/mt8192-mmsys.h
+> @@ -0,0 +1,67 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +
+> +#ifndef __SOC_MEDIATEK_MT8192_MMSYS_H
+> +#define __SOC_MEDIATEK_MT8192_MMSYS_H
+> +
+> +#define MT8192_MMSYS_OVL_MOUT_EN               0xf04
+> +#define MT8192_DISP_OVL1_2L_MOUT_EN            0xf08
+> +#define MT8192_DISP_OVL0_2L_MOUT_EN            0xf18
+> +#define MT8192_DISP_OVL0_MOUT_EN               0xf1c
+> +#define MT8192_DISP_RDMA0_SEL_IN               0xf2c
+> +#define MT8192_DISP_RDMA0_SOUT_SEL             0xf30
+> +#define MT8192_DISP_CCORR0_SOUT_SEL            0xf34
+> +#define MT8192_DISP_AAL0_SEL_IN                        0xf38
+> +#define MT8192_DISP_DITHER0_MOUT_EN            0xf3c
+> +#define MT8192_DISP_DSI0_SEL_IN                        0xf40
+> +#define MT8192_DISP_OVL2_2L_MOUT_EN            0xf4c
+> +
+> +#define MT8192_DISP_OVL0_GO_BLEND                      BIT(0)
+> +#define MT8192_DITHER0_MOUT_IN_DSI0                    BIT(0)
+> +#define MT8192_OVL0_MOUT_EN_DISP_RDMA0                 BIT(0)
+> +#define MT8192_OVL2_2L_MOUT_EN_RDMA4                   BIT(0)
+> +#define MT8192_DISP_OVL0_GO_BG                         BIT(1)
+> +#define MT8192_DISP_OVL0_2L_GO_BLEND                   BIT(2)
+> +#define MT8192_DISP_OVL0_2L_GO_BG                      BIT(3)
+> +#define MT8192_OVL1_2L_MOUT_EN_RDMA1                   BIT(4)
+> +#define MT8192_OVL0_MOUT_EN_OVL0_2L                    BIT(4)
+> +#define MT8192_RDMA0_SEL_IN_OVL0_2L                    0x3
+> +#define MT8192_RDMA0_SOUT_COLOR0                       0x1
+> +#define MT8192_CCORR0_SOUT_AAL0                                0x1
+> +#define MT8192_AAL0_SEL_IN_CCORR0                      0x1
+> +#define MT8192_DSI0_SEL_IN_DITHER0                     0x1
+> +
+> +static const struct mtk_mmsys_routes mmsys_mt8192_routing_table[] =3D {
+> +       {
+> +               DDP_COMPONENT_OVL_2L0, DDP_COMPONENT_RDMA0,
+> +               MT8192_DISP_OVL0_2L_MOUT_EN, MT8192_OVL0_MOUT_EN_DISP_RDM=
+A0,
+> +       }, {
+> +               DDP_COMPONENT_OVL_2L2, DDP_COMPONENT_RDMA4,
+> +               MT8192_DISP_OVL2_2L_MOUT_EN, MT8192_OVL2_2L_MOUT_EN_RDMA4
+> +       }, {
+> +               DDP_COMPONENT_DITHER, DDP_COMPONENT_DSI0,
+> +               MT8192_DISP_DITHER0_MOUT_EN, MT8192_DITHER0_MOUT_IN_DSI0
+> +       }, {
+> +               DDP_COMPONENT_OVL_2L0, DDP_COMPONENT_RDMA0,
+> +               MT8192_DISP_RDMA0_SEL_IN, MT8192_RDMA0_SEL_IN_OVL0_2L
+> +       }, {
+> +               DDP_COMPONENT_CCORR, DDP_COMPONENT_AAL0,
+> +               MT8192_DISP_AAL0_SEL_IN, MT8192_AAL0_SEL_IN_CCORR0
+> +       }, {
+> +               DDP_COMPONENT_DITHER, DDP_COMPONENT_DSI0,
+> +               MT8192_DISP_DSI0_SEL_IN, MT8192_DSI0_SEL_IN_DITHER0
+> +       }, {
+> +               DDP_COMPONENT_RDMA0, DDP_COMPONENT_COLOR0,
+> +               MT8192_DISP_RDMA0_SOUT_SEL, MT8192_RDMA0_SOUT_COLOR0
+> +       }, {
+> +               DDP_COMPONENT_CCORR, DDP_COMPONENT_AAL0,
+> +               MT8192_DISP_CCORR0_SOUT_SEL, MT8192_CCORR0_SOUT_AAL0
+> +       }, {
+> +               DDP_COMPONENT_OVL0, DDP_COMPONENT_OVL_2L0,
+> +               MT8192_MMSYS_OVL_MOUT_EN, MT8192_DISP_OVL0_GO_BG,
+> +       }, {
+> +               DDP_COMPONENT_OVL_2L0, DDP_COMPONENT_RDMA0,
+> +               MT8192_MMSYS_OVL_MOUT_EN, MT8192_DISP_OVL0_2L_GO_BLEND,
+> +       }
+> +};
+> +
+> +#endif /* __SOC_MEDIATEK_MT8192_MMSYS_H */
+> diff --git a/drivers/soc/mediatek/mtk-mmsys.c b/drivers/soc/mediatek/mtk-=
+mmsys.c
+> index 080660e..de7b122 100644
+> --- a/drivers/soc/mediatek/mtk-mmsys.c
+> +++ b/drivers/soc/mediatek/mtk-mmsys.c
+> @@ -13,6 +13,7 @@
+>  #include "mtk-mmsys.h"
+>  #include "mt8167-mmsys.h"
+>  #include "mt8183-mmsys.h"
+> +#include "mt8192-mmsys.h"
+>
+>  static const struct mtk_mmsys_driver_data mt2701_mmsys_driver_data =3D {
+>         .clk_driver =3D "clk-mt2701-mm",
+> @@ -52,6 +53,12 @@
+>         .num_routes =3D ARRAY_SIZE(mmsys_mt8183_routing_table),
+>  };
+>
+> +static const struct mtk_mmsys_driver_data mt8192_mmsys_driver_data =3D {
+> +       .clk_driver =3D "clk-mt8192-mm",
+> +       .routes =3D mmsys_mt8192_routing_table,
+> +       .num_routes =3D ARRAY_SIZE(mmsys_mt8192_routing_table),
+> +};
+> +
+>  struct mtk_mmsys {
+>         void __iomem *regs;
+>         const struct mtk_mmsys_driver_data *data;
+> @@ -157,6 +164,10 @@ static int mtk_mmsys_probe(struct platform_device *p=
+dev)
+>                 .compatible =3D "mediatek,mt8183-mmsys",
+>                 .data =3D &mt8183_mmsys_driver_data,
+>         },
+> +       {
+> +               .compatible =3D "mediatek,mt8192-mmsys",
+> +               .data =3D &mt8192_mmsys_driver_data,
+> +       },
+>         { }
+>  };
+>
+> --
+> 1.8.1.1.dirty
+>
