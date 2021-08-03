@@ -2,202 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 326753DF3CD
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 19:18:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86AE63DF41A
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 19:51:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237804AbhHCRTE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 13:19:04 -0400
-Received: from frasgout.his.huawei.com ([185.176.79.56]:3573 "EHLO
-        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237741AbhHCRTC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 13:19:02 -0400
-Received: from fraeml701-chm.china.huawei.com (unknown [172.18.147.201])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4GfM652nYgz6DJsk;
-        Wed,  4 Aug 2021 01:18:37 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml701-chm.china.huawei.com (10.206.15.50) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2176.2; Tue, 3 Aug 2021 19:18:47 +0200
-Received: from localhost (10.210.169.87) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Tue, 3 Aug 2021
- 18:18:46 +0100
-Date:   Tue, 3 Aug 2021 18:18:18 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Lucas Stankus <lucas.p.stankus@gmail.com>
-CC:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        "Hennerich, Michael" <Michael.Hennerich@analog.com>,
-        <robh+dt@kernel.org>, "Bogdan, Dragos" <Dragos.Bogdan@analog.com>,
-        "Berghe, Darius" <Darius.Berghe@analog.com>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] iio: accel: Add driver support for ADXL313
-Message-ID: <20210803181818.00001743@Huawei.com>
-In-Reply-To: <CACKVXZD9nnAYb1bHNp32dzoGE3xnBPd6NR=9PNXkPVBSaPpaKw@mail.gmail.com>
-References: <cover.1627709571.git.lucas.p.stankus@gmail.com>
-        <8f13da2603ebede1c8c2d89f4ec2d9900a331250.1627709571.git.lucas.p.stankus@gmail.com>
-        <20210801191210.19044c90@jic23-huawei>
-        <CACKVXZD9nnAYb1bHNp32dzoGE3xnBPd6NR=9PNXkPVBSaPpaKw@mail.gmail.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
-MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.210.169.87]
-X-ClientProxiedBy: lhreml714-chm.china.huawei.com (10.201.108.65) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
+        id S238401AbhHCRvg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 13:51:36 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:40647 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S238316AbhHCRvg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 13:51:36 -0400
+X-IronPort-AV: E=Sophos;i="5.84,292,1620658800"; 
+   d="scan'208";a="89707983"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 04 Aug 2021 02:51:23 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 5C7FA40BF58E;
+        Wed,  4 Aug 2021 02:51:21 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [RFC PATCH 0/4] Renesas RZ/G2L IRQC support
+Date:   Tue,  3 Aug 2021 18:51:05 +0100
+Message-Id: <20210803175109.1729-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2 Aug 2021 14:15:53 -0300
-Lucas Stankus <lucas.p.stankus@gmail.com> wrote:
+Hi All,
 
-> On Sun, Aug 1, 2021 at 3:09 PM Jonathan Cameron <jic23@kernel.org> wrote:
-> >
-> > On Sat, 31 Jul 2021 17:36:48 -0300
-> > Lucas Stankus <lucas.p.stankus@gmail.com> wrote:
-> >  
-> > > ADXL313 is a small, thin, low power, 3-axis accelerometer with high
-> > > resolution measurement up to +/-4g. It includes an integrated 32-level
-> > > FIFO and has activity and inactivity sensing capabilities.
-> > >
-> > > Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/ADXL313.pdf
-> > >
-> > > Signed-off-by: Lucas Stankus <lucas.p.stankus@gmail.com>  
-> >
-> > Very nice.  A few really minor things inline.
-> >
-> > Jonathan
-> >  
-> 
-> Thanks for the feedback!
-> 
-> I'll change the minor things for the v2.
-> 
+The RZ/G2L Interrupt Controller is a front-end for the GIC found on
+Renesas RZ/G2L SoC's with below pins:
+- IRQ sense select for 8 external interrupts, mapped to 8 GIC SPI interrupts
+- GPIO pins used as external interrupt input pins out of GPIOINT0-122 a
+  maximum of only 32 can be mapped to 32 GIC SPI interrupts,
+- NMI edge select.
 
-...
+                                                                _____________
+                                                                |    GIC     |
+                                                                |  ________  |
+                                         ____________           | |        | |
+NMI ------------------------------------>|          |  SPI0-479 | | GIC-600| |
+                _______                  |          |------------>|        | |
+                |      |                 |          |  PPI16-31 | |        | |
+                |      | IRQ0-IRQ8       |   IRQC   |------------>|        | |
+P0_P48_4 ------>| GPIO |---------------->|          |           | |________| |
+                |      |GPIOINT0-122     |          |           |            |
+                |      |---------------->| TINT0-31 |           |            |
+                |______|                 |__________|           |____________|
 
-> > > +
-> > > +static int adxl313_setup(struct device *dev, struct adxl313_data *data)
-> > > +{
-> > > +     unsigned int regval;
-> > > +     int ret;
-> > > +
-> > > +     /* Ensures the device is in a consistent state after start up */
-> > > +     ret = regmap_write(data->regmap, ADXL313_REG_SOFT_RESET,
-> > > +                        ADXL313_SOFT_RESET);
-> > > +     if (ret)
-> > > +             return ret;
-> > > +
-> > > +     if (device_property_read_bool(dev, "spi-3wire")) {  
-> >
-> > Rather odd to see spi specific stuff in here.  Perhaps provide a callback to
-> > common probe if it needs to be done at this point in bringing the device up.
-> > However, I think you can just do this before calling the common_probe()
-> >  
-> 
-> I'm doing this here because of the device reset, so whatever I write
-> to the register before it would be overwritten in setup. The datasheet
-> doesn't say that resetting the device is strictly necessary, but I
-> figured it would be better to do so to force consistency.
-> 
-> If I drop the reset, I'd be able to do it before the core probe call
-> and, from what I'm seeing here, the startup seems to be consistent
-> without it. Do you think it's best to drop the device reset?
-Ah. I'd missed that.  Fair enough.
+The proposed RFC patches, add the IRQ domains in GPIO (pinctrl driver) and the
+IRQC driver. The IRQC domain handles the actual SPI interrupt and upon reception
+of the interrupt it propagates to the GPIO IRQ domain to handle virq.
+Out of GPIOINT0-122 only 32 can be mapped to GIC SPI, this mapping is handled by
+the IRQC driver.
 
-In this case, I'd pass in a function pointer from the spi module. If the
-function pointer is provided, call it to spi specific setup, if NULL
-don't call it (so we don't need to provide an empty stub in the i2c side of things).
+GPIO interrupts TINT0-T31 support rising/falling/high/low trigger, support for
+both falling/rising edges is handled by the SW by toggling the RISING/FALLING
+(we might loose interrupts, I have done limited testing for SD card detection
+where interrupt is requested for both rising and falling edge).
 
-> 
-> > > +             ret = regmap_write(data->regmap, ADXL313_REG_DATA_FORMAT,
-> > > +                                ADXL313_SPI_3WIRE);
-> > > +             if (ret)
-> > > +                     return ret;
-> > > +     }
-> > > +
-> > > +     ret = regmap_read(data->regmap, ADXL313_REG_DEVID0, &regval);
-> > > +     if (ret)
-> > > +             return ret;
-> > > +
-> > > +     if (regval != ADXL313_DEVID0) {
-> > > +             dev_err(dev, "Invalid manufacturer ID: 0x%02x\n", regval);
-> > > +             return -ENODEV;
-> > > +     }
-> > > +
-> > > +     ret = regmap_read(data->regmap, ADXL313_REG_DEVID1, &regval);
-> > > +     if (ret)
-> > > +             return ret;
-> > > +
+Please share your valuable comments on the above implementation.
 
-...
+Cheers,
+Prabhakar
 
-> > > diff --git a/drivers/iio/accel/adxl313_spi.c b/drivers/iio/accel/adxl313_spi.c
-> > > new file mode 100644
-> > > index 000000000000..7c58c9ff8985
-> > > --- /dev/null
-> > > +++ b/drivers/iio/accel/adxl313_spi.c
-> > > @@ -0,0 +1,74 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > +/*
-> > > + * ADXL313 3-Axis Digital Accelerometer
-> > > + *
-> > > + * Copyright (c) 2021 Lucas Stankus <lucas.p.stankus@gmail.com>
-> > > + *
-> > > + * Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/ADXL313.pdf
-> > > + */
-> > > +
-> > > +#include <linux/module.h>
-> > > +#include <linux/regmap.h>
-> > > +#include <linux/spi/spi.h>
-> > > +
-> > > +#include "adxl313.h"
-> > > +
-> > > +static const struct regmap_config adxl313_spi_regmap_config = {
-> > > +     .reg_bits       = 8,
-> > > +     .val_bits       = 8,
-> > > +     .rd_table       = &adxl313_readable_regs_table,
-> > > +     .wr_table       = &adxl313_writable_regs_table,
-> > > +     .max_register   = 0x39,
-> > > +      /* Setting bits 7 and 6 enables multiple-byte read */
-> > > +     .read_flag_mask = BIT(7) | BIT(6)
-> > > +};
-> > > +
-> > > +static int adxl313_spi_probe(struct spi_device *spi)
-> > > +{
-> > > +     const struct spi_device_id *id = spi_get_device_id(spi);
-> > > +     struct regmap *regmap;
-> > > +     int ret;
-> > > +
-> > > +     regmap = devm_regmap_init_spi(spi, &adxl313_spi_regmap_config);
-> > > +     if (IS_ERR(regmap)) {
-> > > +             dev_err(&spi->dev, "Error initializing spi regmap: %ld\n",
-> > > +                     PTR_ERR(regmap));
-> > > +             return PTR_ERR(regmap);
-> > > +     }
-> > > +
-> > > +     ret = adxl313_core_probe(&spi->dev, regmap, id->name);
-> > > +     if (ret < 0)
-> > > +             return ret;
-> > > +
-> > > +     return regmap_update_bits(regmap, ADXL313_REG_POWER_CTL,
-> > > +                               ADXL313_I2C_DISABLE, ADXL313_I2C_DISABLE);  
-> >
-> > Why is this only done after the rest of probe?  Needs a comment perhaps.
-> > Normally I'd expect the core probe and hence exposure of the device
-> > to userspace etc to be the last thing done.
-> >  
-> 
-> I'm doing this here for the same reason as for the spi-3wire setup. So
-> if I drop the reset in the probe, the bits could be updated before it.
+Lad Prabhakar (4):
+  dt-bindings: interrupt-controller: Add Renesas RZ/G2L Interrupt
+    Controller
+  irqchip: Add RZ/G2L IA55 Interrupt Controller driver
+  pinctrl: renesas: pinctrl-rzg2l: Add IRQ domain to handle GPIO
+    interrupt
+  arm64: dts: renesas: r9a07g044: Add IRQC node to SoC DTSI
 
-Put that in the function that you pass as a pointer to core_probe() - then you
-can do them both at the same time and at an appropriate point.
+ .../renesas,rzg2l-irqc.yaml                   | 129 ++++
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi    |  58 ++
+ drivers/irqchip/Kconfig                       |   8 +
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/irq-renesas-rzg2l.c           | 557 ++++++++++++++++++
+ drivers/pinctrl/renesas/pinctrl-rzg2l.c       | 205 +++++++
+ drivers/soc/renesas/Kconfig                   |   1 +
+ 7 files changed, 959 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
+ create mode 100644 drivers/irqchip/irq-renesas-rzg2l.c
 
+-- 
+2.17.1
 
-Jonathan
