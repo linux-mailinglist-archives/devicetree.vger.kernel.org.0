@@ -2,214 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D78D43DE5B2
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 06:49:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 010273DE5D2
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 07:03:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233710AbhHCEt0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 00:49:26 -0400
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:35815 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233740AbhHCEtZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 00:49:25 -0400
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 5CF67580ACA;
-        Tue,  3 Aug 2021 00:49:14 -0400 (EDT)
-Received: from imap43 ([10.202.2.93])
-  by compute2.internal (MEProxy); Tue, 03 Aug 2021 00:49:14 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm3; bh=Wl85h6bg4MSlv1M5FS0LFGeSsIE5nFs
-        rQ2n2j7b6l98=; b=F9La31nE4Ln4oZyhaSQ4UbuRlMQA6YW2qhPgizEx7m8YpQ/
-        BTkBuWgIEmkjeXwx4SV4ibq65KLuB0b1gp5oy35HsOs0NTC1+cHVF2Wxv22I8d7n
-        o7RnT79CY7+xetGJ9oMlRVUYuFbKqdrlCm5G4gUA3D9EmUW5sGWaY+3MFGk5LSoL
-        4XHxdgBuDxDOIHfZdHNKiisCLCx6QD+Hpsb6yIbtNzdc+xmEax383WVguCFcE03B
-        +XbKkM5UiyieA/++zcDd7W3kpLXLbeQgUOQ1culTo6507nWTT19sn+jp0gWJWiSB
-        Kv766FD6ADN11GyOyi6p2CqK0DSNkJKr1uzT0XQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=Wl85h6
-        bg4MSlv1M5FS0LFGeSsIE5nFsrQ2n2j7b6l98=; b=DQhxKcAc9Vem3+lknEXU7z
-        oy9hga9H96N/PjcSb0VUoVQ+4GQkUQNEl3jvAe5PFfOERL3b6qJEhBTir3SEB1iO
-        adoTBSLn/FesNvDPOGjnmIlINH4wi1iq/xGVG2svcSttzyB5UBrekPmTHh72QQxA
-        CLvjLeTBkbnlSgTeJCKE/yK9vclcZ4J8epKvLJzeJPcpSOJNPxoCbJXyImx7juKE
-        c3GwIboIC90yCtCK55wbNzYvC+fDekJIV2Lb8LmCc3bu+3G090zOzMBXfj++H793
-        h/S4/8Jx787BrMrMH3n5ULmo+yy7Ux19yyJU4S65fSZs5h8VbdJLwgKLLb1xiKGQ
-        ==
-X-ME-Sender: <xms:yMoIYYNYTY8oezsS5chwfrmbr3hS7vK4rd2yhcWNk51uTmg7cffmbQ>
-    <xme:yMoIYe99LvyJ3PBQ8Z3hmwbwrIUoAXB6zyQhW08Q1woBYvoJZztvqfDiifoKq4t9Q
-    59oIeMqn5MNd-jgEg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrieefgdejkecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedftehnughr
-    vgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucggtffrrg
-    htthgvrhhnpeehhfefkefgkeduveehffehieehudejfeejveejfedugfefuedtuedvhefh
-    veeuffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    grnhgurhgvfiesrghjrdhiugdrrghu
-X-ME-Proxy: <xmx:yMoIYfSwpHZi0w7BQpbp74gOJF5chKPYx3fsmMLzwFVftonQSSzMWg>
-    <xmx:yMoIYQv87XjcqR7slrnUb0LZmUG11CSnuMWGyaXNl9wKpJiYkXmY5A>
-    <xmx:yMoIYQf3LW4Qxk4FIfqwlSDM0D3cYTW5nN51KtyFrDfy8Fn18rP9sg>
-    <xmx:ysoIYRVZLHVokGFVwUmRCNDIihlHTiVBByqRvLzhzNC3nnIortAR9A>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 65E2EAC0DD0; Tue,  3 Aug 2021 00:49:12 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-548-g3a0b1fef7b-fm-20210802.001-g3a0b1fef
-Mime-Version: 1.0
-Message-Id: <58256e8f-6c9a-4ad4-b51e-4048b6feb42a@www.fastmail.com>
-In-Reply-To: <CAMpxmJU4jN-hpNYPLHLbjx4uZ6vDqcyuMVQXhHg1BWXOqyS22A@mail.gmail.com>
-References: <20210712100317.23298-1-steven_lee@aspeedtech.com>
- <CAMpxmJXfUterUdaGHOJT5hwcVJ+3cqgSQVdp-6Atuyyo36FxfQ@mail.gmail.com>
- <20210723031615.GA10457@aspeedtech.com>
- <CAMpxmJU4jN-hpNYPLHLbjx4uZ6vDqcyuMVQXhHg1BWXOqyS22A@mail.gmail.com>
-Date:   Tue, 03 Aug 2021 14:18:51 +0930
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Bartosz Golaszewski" <bgolaszewski@baylibre.com>,
-        "Steven Lee" <steven_lee@aspeedtech.com>,
-        "Joel Stanley" <joel@jms.id.au>
-Cc:     "Linus Walleij" <linus.walleij@linaro.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-aspeed@lists.ozlabs.org>,
-        "open list" <linux-kernel@vger.kernel.org>,
-        "Hongwei Zhang" <Hongweiz@ami.com>,
-        "Ryan Chen" <ryan_chen@aspeedtech.com>,
-        "Billy Tsai" <billy_tsai@aspeedtech.com>
-Subject: Re: [PATCH v6 0/9] ASPEED sgpio driver enhancement.
+        id S229753AbhHCFD7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 01:03:59 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:51332 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233758AbhHCFD6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 01:03:58 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 17353JLr093182;
+        Tue, 3 Aug 2021 00:03:19 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1627966999;
+        bh=xPLECnhwE7VAbRQb07SbvYiefpvIipORqzNtsCbzOA4=;
+        h=From:To:CC:Subject:Date;
+        b=m+GzT8Y+oZox0RdDDVu+ZHPGV1TaQBrfwIIJ0vwLRoDpu+H8ESbz0u1bB9pCPjTmL
+         DiTNmKYXD/KErd5DjZnyGCDxJDf8bZfl+5g5JwvyeycolFmikuDyZQCzkALDrGhYk+
+         WSlFSyuktjJtK/BJw77NwbjxwvJ8oNMBmLhKaZYg=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 17353I6I065316
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 3 Aug 2021 00:03:18 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 3 Aug
+ 2021 00:03:18 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 3 Aug 2021 00:03:18 -0500
+Received: from a0393678-ssd.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 17353BeQ090231;
+        Tue, 3 Aug 2021 00:03:11 -0500
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tom Joseph <tjoseph@cadence.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Heiko Stuebner <heiko@sntech.de>
+CC:     Jonathan Corbet <corbet@lwn.net>, Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        <linux-pci@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-renesas-soc@vger.kernel.org>,
+        <linux-rockchip@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <kishon@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+Subject: [PATCH v7 0/7] Add SR-IOV support in PCIe Endpoint Core
+Date:   Tue, 3 Aug 2021 10:33:03 +0530
+Message-ID: <20210803050310.27122-1-kishon@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
 Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Patch series
+*) Adds support to add virtual functions to enable endpoint controller
+   which supports SR-IOV capability
+*) Add support in Cadence endpoint driver to configure virtual functions
+*) Enable pci_endpoint_test driver to create pci_device for virtual
+   functions
 
+v1 of the patch series can be found at [1]
+v2 of the patch series can be found at [2]
+v3 of the patch series can be found at [3]
+v4 of the patch series can be found at [4]
+v5 of the patch series can be found at [5]
+v6 of the patch series can be found at [6]
 
-On Fri, 23 Jul 2021, at 17:00, Bartosz Golaszewski wrote:
-> On Fri, Jul 23, 2021 at 5:16 AM Steven Lee <steven_lee@aspeedtech.com> wrote:
-> >
-> > The 07/21/2021 21:27, Bartosz Golaszewski wrote:
-> > > On Mon, Jul 12, 2021 at 12:03 PM Steven Lee <steven_lee@aspeedtech.com> wrote:
-> > > >
-> > > > AST2600 SoC has 2 SGPIO master interfaces one with 128 pins another one
-> > > > with 80 pins, AST2500/AST2400 SoC has 1 SGPIO master interface that
-> > > > supports up to 80 pins.
-> > > > In the current driver design, the max number of sgpio pins is hardcoded
-> > > > in macro MAX_NR_HW_SGPIO and the value is 80.
-> > > >
-> > > > For supporting sgpio master interfaces of AST2600 SoC, the patch series
-> > > > contains the following enhancement:
-> > > > - Convert txt dt-bindings to yaml.
-> > > > - Update aspeed-g6 dtsi to support the enhanced sgpio.
-> > > > - Support muiltiple SGPIO master interfaces.
-> > > > - Support up to 128 pins by dts ngpios property.
-> > > > - Pair input/output GPIOs instead of using 0 as GPIO input pin base and
-> > > >   MAX_NR_HW_SGPIO as GPIO output pin base.
-> > > > - Support wdt reset tolerance.
-> > > > - Fix irq_chip issues which causes multiple sgpio devices use the same
-> > > >   irq_chip data.
-> > > > - Replace all of_*() APIs with device_*().
-> > > >
-> > > > Changes from v5:
-> > > > * Squash v5 patch-05 and patch-06 to one patch.
-> > > > * Remove MAX_NR_HW_SGPIO and corresponding design to make the gpio
-> > > >   input/output pin base are determined by ngpios.
-> > > >   For example, if MAX_NR_HW_SGPIO is 80 and ngpios is 10, the original
-> > > >   pin order is as follows:
-> > > >     Input:
-> > > >     0 1 2 3 ... 9
-> > > >     Output:
-> > > >     80 81 82 ... 89
-> > > >
-> > > >   With the new design, pin order is changed as follows:
-> > > >     Input:
-> > > >     0 2 4 6 ... 18(ngpios * 2 - 2)
-> > > >     Output:
-> > > >     1 3 5 7 ... 19(ngpios * 2 - 1)
-> > > > * Replace ast2600-sgpiom-128 and ast2600-sgpiom-80 compatibles by
-> > > >   ast2600-sgpiom.
-> > > > * Fix coding style issues.
-> > > >
-> > > > Changes from v4:
-> > > > * Remove ngpios from dtsi
-> > > > * Add ast2400 and ast2500 platform data.
-> > > > * Remove unused macros.
-> > > > * Add ngpios check in a separate patch.
-> > > > * Fix coding style issues.
-> > > >
-> > > > Changes from v3:
-> > > > * Split dt-bindings patch to 2 patches
-> > > > * Rename ast2600-sgpiom1 compatible with ast2600-sgiom-128
-> > > > * Rename ast2600-sgpiom2 compatible with ast2600-sgiom-80
-> > > > * Correct the typo in commit messages.
-> > > > * Fix coding style issues.
-> > > > * Replace all of_*() APIs with device_*().
-> > > >
-> > > > Changes from v2:
-> > > > * Remove maximum/minimum of ngpios from bindings.
-> > > > * Remove max-ngpios from bindings and dtsi.
-> > > > * Remove ast2400-sgpiom and ast2500-sgpiom compatibles from dts and
-> > > >   driver.
-> > > > * Add ast2600-sgpiom1 and ast2600-sgpiom2 compatibles as their max
-> > > >   number of available gpio pins are different.
-> > > > * Modify functions to pass aspeed_sgpio struct instead of passing
-> > > >   max_ngpios.
-> > > > * Split sgpio driver patch to 3 patches
-> > > >
-> > > > Changes from v1:
-> > > > * Fix yaml format issues.
-> > > > * Fix issues reported by kernel test robot.
-> > > >
-> > > > Please help to review.
-> > > >
-> > > > Thanks,
-> > > > Steven
-> > > >
-> > > > Steven Lee (9):
-> > > >   dt-bindings: aspeed-sgpio: Convert txt bindings to yaml.
-> > > >   dt-bindings: aspeed-sgpio: Add ast2600 sgpio
-> > > >   ARM: dts: aspeed-g6: Add SGPIO node.
-> > > >   ARM: dts: aspeed-g5: Remove ngpios from sgpio node.
-> > > >   gpio: gpio-aspeed-sgpio: Add AST2600 sgpio support
-> > > >   gpio: gpio-aspeed-sgpio: Add set_config function
-> > > >   gpio: gpio-aspeed-sgpio: Move irq_chip to aspeed-sgpio struct
-> > > >   gpio: gpio-aspeed-sgpio: Use generic device property APIs
-> > > >   gpio: gpio-aspeed-sgpio: Return error if ngpios is not multiple of 8.
-> > > >
-> > > >  .../bindings/gpio/aspeed,sgpio.yaml           |  77 ++++++++
-> > > >  .../devicetree/bindings/gpio/sgpio-aspeed.txt |  46 -----
-> > > >  arch/arm/boot/dts/aspeed-g5.dtsi              |   1 -
-> > > >  arch/arm/boot/dts/aspeed-g6.dtsi              |  28 +++
-> > > >  drivers/gpio/gpio-aspeed-sgpio.c              | 178 +++++++++++-------
-> > > >  5 files changed, 215 insertions(+), 115 deletions(-)
-> > > >  create mode 100644 Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml
-> > > >  delete mode 100644 Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
-> > > >
-> > > > --
-> > > > 2.17.1
-> > > >
-> > >
-> > > The series looks good to me. Can the DTS and GPIO patches go into
-> > > v5.15 separately?
-> > >
-> >
-> > Hi Bart,
-> >
-> > Thanks for the review.
-> > Shall we do anything to make the patches go into v5.15 or wait for picking-up?
-> >
-> > Steven
-> >
-> > > Bart
-> 
-> It's more of a question to the relevant SoC maintainers.
-> 
-> Joel, Andrew: can I take the GPIO patches through the GPIO tree and
-> you'll take the ARM patches separately into v5.15?
+Here both physical functions and virtual functions use the same
+pci_endpoint_test driver and existing pcitest utility can be used
+to test virtual functions as well.
 
-I think that should be okay. I'll poke Joel.
+Changes from v6:
+*) Rebased to 5.13-rc4
 
-Andrew
+Changes from v5:
+*) Rebased to 5.13-rc1
+
+Changes from v4:
+*) Added a fix in Cadence driver which was overwriting BAR configuration
+   of physical function.
+*) Didn't include Tom's Acked-by since Cadence driver is modified in
+   this revision.
+
+Changes from v3:
+*) Fixed Rob's comment and added his Reviewed-by as suggested by him.
+
+Changes from v2:
+*) Fixed DT binding documentation comment by Rob
+*) Fixed the error check in pci-epc-core.c
+
+Changes from v1:
+*) Re-based and Re-worked to latest kernel 5.10.0-rc2+ (now has generic
+   binding for EP)
+
+[1] -> http://lore.kernel.org/r/20191231113534.30405-1-kishon@ti.com
+[2] -> http://lore.kernel.org/r/20201112175358.2653-1-kishon@ti.com
+[3] -> https://lore.kernel.org/r/20210305050410.9201-1-kishon@ti.com
+[4] -> http://lore.kernel.org/r/20210310160943.7606-1-kishon@ti.com
+[5] -> https://lore.kernel.org/r/20210419083401.31628-1-kishon@ti.com
+[6] -> http://lore.kernel.org/r/20210517074723.10212-1-kishon@ti.com
+
+Kishon Vijay Abraham I (7):
+  dt-bindings: PCI: pci-ep: Add binding to specify virtual function
+  PCI: endpoint: Add support to add virtual function in endpoint core
+  PCI: endpoint: Add support to link a physical function to a virtual
+    function
+  PCI: endpoint: Add virtual function number in pci_epc ops
+  PCI: cadence: Add support to configure virtual functions
+  misc: pci_endpoint_test: Populate sriov_configure ops to configure
+    SR-IOV device
+  Documentation: PCI: endpoint/pci-endpoint-cfs: Guide to use SR-IOV
+
+ .../PCI/endpoint/pci-endpoint-cfs.rst         |  12 +-
+ .../devicetree/bindings/pci/pci-ep.yaml       |   7 +
+ drivers/misc/pci_endpoint_test.c              |   1 +
+ .../pci/controller/cadence/pcie-cadence-ep.c  | 285 ++++++++++++++----
+ drivers/pci/controller/cadence/pcie-cadence.h |   7 +
+ .../pci/controller/dwc/pcie-designware-ep.c   |  36 +--
+ drivers/pci/controller/pcie-rcar-ep.c         |  19 +-
+ drivers/pci/controller/pcie-rockchip-ep.c     |  18 +-
+ drivers/pci/endpoint/functions/pci-epf-ntb.c  |  79 +++--
+ drivers/pci/endpoint/functions/pci-epf-test.c |  66 ++--
+ drivers/pci/endpoint/pci-ep-cfs.c             |  24 ++
+ drivers/pci/endpoint/pci-epc-core.c           | 130 +++++---
+ drivers/pci/endpoint/pci-epf-core.c           | 144 ++++++++-
+ include/linux/pci-epc.h                       |  57 ++--
+ include/linux/pci-epf.h                       |  16 +-
+ 15 files changed, 684 insertions(+), 217 deletions(-)
+
+-- 
+2.17.1
+
