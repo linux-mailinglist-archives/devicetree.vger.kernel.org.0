@@ -2,169 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E25263DF304
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 18:42:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D71683DF355
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 18:54:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234603AbhHCQmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 12:42:54 -0400
-Received: from mail-sn1anam02on2056.outbound.protection.outlook.com ([40.107.96.56]:25031
-        "EHLO NAM02-SN1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S234271AbhHCQmx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Aug 2021 12:42:53 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UEajfggEKDTfbN8FHxKOncQcxHBsi4+ZAGXor2JvEs/geYwMCsc3Ols/kNMVj4mYgXwys8SduOszendV71SjNtk6DZCED0ljazsIuHjbQM0dqh/inFerfCc3FOo1l+lz7k/PwogvmVhJjY5qrK03g8VZqvDbMcLucJTXAO0aB2se6gNFCNUmoqD+obDmLJu4gc6ywbSkMlsWlUzTXuivuvfiXBIY4q+JIscCDljrLwiQHRmpz2YwvrtaQ9B4v/LFfPZHADjd2DsKjRsb1wWdjXTCXNSHfcDNSVmqb0wWGvSCIFHCdFTDQyebY8cLXmETgQsK4Fjgjph2G2JNwCOC7g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NYAxFss/rHV0AyqyoZ8N3Hyzhw5w+9NpH1zIm6LWCL4=;
- b=fSPlQJyaWJ4tyk3zzXKy4t/xbVTgfRvtcgeu6no9q+niPvcyhpw5DOcojIk5qHCIwtPU6WJSUWo+jRoy6E2DE8p6U2nNaffTvULKHTXuS+tKcH1meNBIo8/geY3j39F43F7Yj5HlyIQXGYvDBoI9SFcSEhrffBeVEgABpqLkGuYyY6AoQU88rLjjjrT5isFw/vy3H6j050u+JPV8CXuL6FwW4wSijjfmyjR6GO1KrMYoVgxY9Q5qCa+C9hNxRvT54UZEkgRP3Lk17+2RZJPKjQ396efq9HziufBLHXjhL4Bpk3iVMA8cZJPj/XM7fiz6XEgTdiwELrN0PH0pwNvr8A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.112.32) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NYAxFss/rHV0AyqyoZ8N3Hyzhw5w+9NpH1zIm6LWCL4=;
- b=pLbFLHvyYTPEL8nzAPDKzOwxcVl29jOZX/Yo5crCS9Aa8UWsaiZ8q9SFLWszhSo/uSACUXS+uc9a/nV7Bdpzg1GIqKXLiDOtZom9rOkgP/+k/6gk6kPdPDacYcppxqt3uP97j6J6L78tew/80yGGEizNlA5qkgOZkTmjLBmmGGWhCJmOFViHZ0zv9m0Cav5mzRjO0nSafFx5fU2nh2G7jV8CprJ5NLM5rx6V93qfzy3kAWzKnaRWPheQJfkr+VEKafGLd5Yp8wN29a+jveXm1LIjGhXLDK8U3hSqU0msRh7FZcCv/OM1n7XFlqfMSJeAkP/4oc0q8lyOjk8ouzBS2A==
-Received: from DM5PR20CA0004.namprd20.prod.outlook.com (2603:10b6:3:93::14) by
- DM4PR12MB5197.namprd12.prod.outlook.com (2603:10b6:5:394::24) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4373.19; Tue, 3 Aug 2021 16:42:40 +0000
-Received: from DM6NAM11FT067.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:93:cafe::8e) by DM5PR20CA0004.outlook.office365.com
- (2603:10b6:3:93::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.15 via Frontend
- Transport; Tue, 3 Aug 2021 16:42:40 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.32)
- smtp.mailfrom=nvidia.com; kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.112.32 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.112.32; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (216.228.112.32) by
- DM6NAM11FT067.mail.protection.outlook.com (10.13.172.76) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.4373.18 via Frontend Transport; Tue, 3 Aug 2021 16:42:40 +0000
-Received: from DRHQMAIL107.nvidia.com (10.27.9.16) by HQMAIL109.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 3 Aug
- 2021 09:42:40 -0700
-Received: from [10.2.59.40] (172.20.187.6) by DRHQMAIL107.nvidia.com
- (10.27.9.16) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 3 Aug 2021
- 16:42:39 +0000
-Subject: Re: [RFC 08/11] gpiolib: cdev: Add hardware timestamp clock type
-To:     Dipen Patel <dipenp@nvidia.com>, <thierry.reding@gmail.com>,
-        <linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <linus.walleij@linaro.org>,
-        <bgolaszewski@baylibre.com>, <warthog618@gmail.com>,
-        <devicetree@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <robh+dt@kernel.org>
-References: <20210625235532.19575-1-dipenp@nvidia.com>
- <20210625235532.19575-9-dipenp@nvidia.com>
- <7e49e6a9-bd7c-1b97-50e6-bc803addc27f@nvidia.com>
- <65bf01e1-66e1-7eec-0052-4d707f4a3f6b@nvidia.com>
-From:   Jon Hunter <jonathanh@nvidia.com>
-Message-ID: <8d3257f3-54b1-e658-245d-3a070aba44c4@nvidia.com>
-Date:   Tue, 3 Aug 2021 17:42:37 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S237403AbhHCQyr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 12:54:47 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:6977 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232290AbhHCQyr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 12:54:47 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1628009676; x=1659545676;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=uYIt3x/8UHN6h9hCPScdrOwlr7B4rNtt+KlMSwn88bw=;
+  b=oJtdk9/02wgZSRwrSrqSvQqezegiqZ22ujMy1QyisbyKO/zjeWpquBgs
+   pDVIK0vQZsmt4ZBQzFmQlgiE7Ce1xgvYnAbiB9L+iZ/MEh1DUopCSFH5J
+   kQrVPeXOW3Hnt70tqVgyMVHrhiFy4gRkU9IMYFq3ra6+mLUPYDoNdqeJo
+   2cxVEGGQQ6yvQuRmliArP8P4v0XwS37V1DSKJJu1zZVu0KAycXzSbRsog
+   tfhbHptb8bz/33yn2u8fT2YrlPvWl0eVqHOyXreAPnFrgTY0MgVzwRkMH
+   wgPYifR5NU/3NStzPRvNB2Z0zQxDYSCEIyp8Q3Mubg4kitqTKfGzpw2m2
+   g==;
+IronPort-SDR: QbaPTeX+b/60wgqTxQHWWt9ose+3MWMZqr0EDkgGtmht1tChGwp++QPcZqH3jBEBT7HXzVoDAC
+ GZgUA1INXoBc+sWmQ2TAQHG99V5j7OzVcktq9TfbDHEA/fb0K0jxzqixh4ecgUMXbR266O2clL
+ 2yxqIw1lNoASjVijRyw6lE9NRw0zNqKsuvVi6YIEfiSwM159J2wMGxfwkVEQZq1rEpgZ8lLBwP
+ xkzWzd33jmJZ1mHDIxxI+773r0ICLQYHEkN91UOW/RmsiC4NTGZEscWTRzWR1Wr9r63pu+wdUm
+ Mmcq9raeUDwtPHgIbciU11fJ
+X-IronPort-AV: E=Sophos;i="5.84,292,1620716400"; 
+   d="scan'208";a="130883369"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 03 Aug 2021 09:54:35 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Tue, 3 Aug 2021 09:54:34 -0700
+Received: from CHE-LT-I21427LX.microchip.com (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2176.2 via Frontend Transport; Tue, 3 Aug 2021 09:54:28 -0700
+Message-ID: <50eb24a1e407b651eda7aeeff26d82d3805a6a41.camel@microchip.com>
+Subject: Re: [PATCH v3 net-next 05/10] net: dsa: microchip: add DSA support
+ for microchip lan937x
+From:   Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
+To:     Vladimir Oltean <olteanv@gmail.com>, Andrew Lunn <andrew@lunn.ch>
+CC:     <netdev@vger.kernel.org>, <robh+dt@kernel.org>,
+        <UNGLinuxDriver@microchip.com>, <Woojung.Huh@microchip.com>,
+        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
+        <davem@davemloft.net>, <kuba@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <vivien.didelot@gmail.com>,
+        <f.fainelli@gmail.com>, <devicetree@vger.kernel.org>
+Date:   Tue, 3 Aug 2021 22:24:27 +0530
+In-Reply-To: <20210802135911.inpu6khavvwsfjsp@skbuf>
+References: <20210723173108.459770-1-prasanna.vengateshan@microchip.com>
+         <20210723173108.459770-6-prasanna.vengateshan@microchip.com>
+         <20210731150416.upe5nwkwvwajhwgg@skbuf>
+         <49678cce02ac03edc6bbbd1afb5f67606ac3efc2.camel@microchip.com>
+         <20210802121550.gqgbipqdvp5x76ii@skbuf> <YQfvXTEbyYFMLH5u@lunn.ch>
+         <20210802135911.inpu6khavvwsfjsp@skbuf>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.1-1 
 MIME-Version: 1.0
-In-Reply-To: <65bf01e1-66e1-7eec-0052-4d707f4a3f6b@nvidia.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [172.20.187.6]
-X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
- DRHQMAIL107.nvidia.com (10.27.9.16)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0dcc4978-3157-4870-a5fc-08d9569db5bb
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5197:
-X-Microsoft-Antispam-PRVS: <DM4PR12MB519745CBD4D3C998294C04F6D9F09@DM4PR12MB5197.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ItN4P9u1dP25ftP39RGx3+v5HPVQv0HGmG0cPlCbkAQsxupHrxO+zUDdh31cAB17VoTrlScycYadgi42fU7BeCFswxaJ66D80h9zZy8hXnWVOg2AN+1CDlT4q165bfOVs7Db/jBYBvdy9MqFHHwVwkF+ZJDC1lzUOHf0tDj6zcY3GUVzJa8YTLfrJjosDY99TRaOT4KxfeymDjYriOSZSNtv2oZVlzJYSArkZXaKHEPDWrMOGyjSm4fpkdaoehPd3b+SxkZ980PK4NBlcneuVIedfYL7ZOkcM+y+EB94uspW7gq2sFsZH5gyrEYjslg4/xkevm9EXyYaZz7hW4LhLlTzlAy10du7Hxz284qya4v8KA9VuxkAaS9hvzWeloDXFyn9Xl/EW0wh6ZqtpbvOlG3tuJPgLytGwvkiRVqkW8i6aMkZd2cnw8GXX4cU3Z5Jq7M8uVl7Nblj2rD3HqYafactQ1GCeaT6PpMdqJ1mpmoGUcBcmz0+M4vHmIRhovhGDcWJ3mF03O+wNRm0l5H1uocBeEafFRn2urQdJvggb32oAlKfxB67nO6tBjlvJxeABqFAAUppmEwwAmZVTI04Ji1xkrR+bwGU9g4ysLt6okLwCx+vYu+2F7U0Zv7up76bVfd6G/pzL8Hp9B7K5vfH+egN9qpRVEsc7mCwg/gHk/S+1gki+AQ0Ut/ti/zEDMq4dDS9RxdQbH0OSXhgfUGMGk3wRlX+W6dG3iaa6l7Vqol7Ee5QDdrW96gngPCLQ9RJg7RkY7tccudHv/E9gBBHt8B5ppUjxm6TOEociEtrcjc=
-X-Forefront-Antispam-Report: CIP:216.228.112.32;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:schybrid01.nvidia.com;CAT:NONE;SFS:(4636009)(39860400002)(346002)(376002)(396003)(136003)(46966006)(36840700001)(921005)(82310400003)(70206006)(426003)(8936002)(26005)(7416002)(356005)(83380400001)(8676002)(16576012)(316002)(2616005)(86362001)(70586007)(36860700001)(16526019)(110136005)(186003)(36756003)(53546011)(82740400003)(5660300002)(47076005)(336012)(478600001)(2906002)(7636003)(31696002)(31686004)(43740500002)(83996005)(2101003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Aug 2021 16:42:40.7394
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0dcc4978-3157-4870-a5fc-08d9569db5bb
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.112.32];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT067.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5197
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 30/07/2021 03:33, Dipen Patel wrote:
+On Mon, 2021-08-02 at 16:59 +0300, Vladimir Oltean wrote:
+> EXTERNAL EMAIL: Do not click links or open attachments unless you know the
+> content is safe
 > 
-> On 7/9/21 1:30 AM, Jon Hunter wrote:
->> On 26/06/2021 00:55, Dipen Patel wrote:
->>> This patch adds new clock type for the GPIO controller which can
->>> timestamp gpio lines using hardware means. To expose such
->>> functionalities to the userspace, code has been added in this patch
->>> where during line create call, it checks for new clock type and if
->>> requested, calls hardware timestamp related API from gpiolib.c.
->>> During line change event, it retrieves timestamp in nano seconds by
->>> calling gpiod_get_hw_timestamp API from gpiolib.c. At the line release,
->>> it disables this functionality by calling gpiod_hw_timestamp_control.
->>>
->>> Signed-off-by: Dipen Patel <dipenp@nvidia.com>
->>> ---
->>>   drivers/gpio/gpiolib-cdev.c | 65 +++++++++++++++++++++++++++++++++++--
->>>   include/uapi/linux/gpio.h   |  1 +
->>>   2 files changed, 64 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/gpio/gpiolib-cdev.c b/drivers/gpio/gpiolib-cdev.c
->>> index 1631727bf0da..9f98c727e937 100644
->>> --- a/drivers/gpio/gpiolib-cdev.c
->>> +++ b/drivers/gpio/gpiolib-cdev.c
->>> @@ -518,6 +518,7 @@ struct linereq {
->>>   	 GPIO_V2_LINE_DRIVE_FLAGS | \
->>>   	 GPIO_V2_LINE_EDGE_FLAGS | \
->>>   	 GPIO_V2_LINE_FLAG_EVENT_CLOCK_REALTIME | \
->>> +	 GPIO_V2_LINE_FLAG_EVENT_CLOCK_HARDWARE | \
->>>   	 GPIO_V2_LINE_BIAS_FLAGS)
->>>   
->>>   static void linereq_put_event(struct linereq *lr,
->>> @@ -540,9 +541,20 @@ static void linereq_put_event(struct linereq *lr,
->>>   
->>>   static u64 line_event_timestamp(struct line *line)
->>>   {
->>> +	bool block;
->>> +
->>>   	if (test_bit(FLAG_EVENT_CLOCK_REALTIME, &line->desc->flags))
->>>   		return ktime_get_real_ns();
->>>   
->>> +	if (test_bit(FLAG_EVENT_CLOCK_HARDWARE, &line->desc->flags)) {
->>> +		if (irq_count())
->>> +			block = false;
->>> +		else
->>> +			block = true;
->>> +
->>> +		return gpiod_get_hw_timestamp(line->desc, block);
->>> +	}
->>> +
->>>   	return ktime_get_ns();
->>>   }
->>
->> Looking at line_event_timestamp() and the callers of this function, it
->> appears that this should always return nanoseconds. Does
->> gpiod_get_hw_timestamp() return nanoseconds?
-> Yes, it returns in ns to align with line_event_timestamp.
+> On Mon, Aug 02, 2021 at 03:13:01PM +0200, Andrew Lunn wrote:
+> > In general, the MAC does nothing, and passes the value to the PHY. The
+> > PHY inserts delays as requested. To address Vladimir point,
+> > PHY_INTERFACE_MODE_RGMII_TXID would mean the PHY adds delay in the TX
+> > direction, and assumes the RX delay comes from somewhere else,
+> > probably the PCB.
+> 
+> For the PHY, that is the only portion where things are clear.
+> 
+> > I only recommend the MAC adds delays when the PHY cannot, or there is
+> > no PHY, e.g. SoC to switch, or switch to switch link. There are a few
+> > MAC drivers that do add delays, mostly because that is how the vendor
+> > crap tree does it.
+> > 
+> > So as i said, what you propose is O.K, it follows this general rule of
+> > thumb.
+> 
+> The "rule of thumb" for a MAC driver is actually applied in reverse by
+> most MAC drivers compared to what Russell described should be happening.
+> For example, mv88e6xxx_port_set_rgmii_delay():
+> 
+>         switch (mode) {
+>         case PHY_INTERFACE_MODE_RGMII_RXID:
+>                 reg |= MV88E6XXX_PORT_MAC_CTL_RGMII_DELAY_RXCLK;
+> 
+> The mv88e6xxx is a MAC, so when it has a phy-mode = "rgmii-rxid", it
+> should assume it is connected to a link partner (PHY or otherwise) that
+> has applied the RXCLK delay already. So it should only be concerned with
+> the TXCLK delay. That is my point. I am just trying to lay out the
+> points to Prasanna that would make a sane system going forward. I am not
+> sure that we actually have an in-tree driver that is sane in that
+> regard.
+> 
+> That discussion, and Russell's point, was here, btw:
+> https://patchwork.ozlabs.org/project/netdev/patch/20200616074955.GA9092@laureti-dev/#2461123
 
+Thanks Vladimir & Andrew for the right pointers and info. The thread talks about
+"rgmii-*" are going to be applied by the PHY only as per the doc. For fixed-
+link, MAC needs to add the delay. This fixed-link can be No-PHY or MAC-MAC or
+MAC to in-accessible PHY. In such case, i am not convinced in using rgmii-tx-
+delay-ps & rgmii-rx-delay-ps on the MAC side and apply delay. I still think
+proposed code in earlier mail thread should still be okay. 
 
-It might be worth updating the function name to 
-gpiod_get_hw_timestamp_ns() so that this is clear.
-
-Jon
-
---
-nvpublic
