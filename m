@@ -2,186 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 390633DF104
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 17:03:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 065E33DF10F
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 17:05:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236631AbhHCPDv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 11:03:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38798 "EHLO
+        id S235607AbhHCPFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 11:05:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236645AbhHCPDt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 11:03:49 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E288BC061799
-        for <devicetree@vger.kernel.org>; Tue,  3 Aug 2021 08:03:37 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id p5so25679965wro.7
-        for <devicetree@vger.kernel.org>; Tue, 03 Aug 2021 08:03:37 -0700 (PDT)
+        with ESMTP id S234206AbhHCPFo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 11:05:44 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E2CBC061757;
+        Tue,  3 Aug 2021 08:05:32 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id hs10so28183504ejc.0;
+        Tue, 03 Aug 2021 08:05:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=MLcnQRQ3HG/oUU50Ea/zscPi9zN/+argRjQJApZeFtQ=;
-        b=OulZ+skW/jbW+6RQJ4tiZbbdHB+a6JC9HT1Dty7Aq0iJERpp68bK8zfQ8uUrNPSrIR
-         zEq5CkxWW/SRFREk9hBYcfR9GQ4XTIwSwDU3aS687qp62R6PIlZz7HgJ3D5Xl9aVsnMD
-         95w6HXBPJLblvP+j19CD7hAb/MzI/9HTmhAyT1W/ILIk6ue4dhK6EQC9K5u5yhlejU5Q
-         BgLWbVLoPhLrdXx+8xfyFvIPx8ZFazuGLubVv0/hhxoaUUt3dkIqiqXnK/Pkwuhe63Nf
-         Ou2CUNkVE/uQs/WYBkFkc+gL6HGFybsdFCXpWBumX6BKkySYAaoqUi22lKiPonlYx5y0
-         YJ3w==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=r0FQ7Uc64i2oRVeUtFLzokR1HqzuLG7+aDF/yA5eX4M=;
+        b=coGMZnEccQZlJTls9FK4PV3Fnmm0Y5yzVVFAB8l4/Ff2aOyAmNbTHGTJ/gm89hYw0F
+         OnwP6qBbeUa4GSa25hJLoWOsFUQEjIliSbxhOtptkdG/C4ePagilGevFk0n+bFuGpuMc
+         ZIRibIY/+FiQ37xc7rQuokgT16s5ouV6cltQ/Edqxdrg/QbXjNFK5jWruR89cprhSxn/
+         B/mWJ06h/1Xsj1elOKjMaWHjcPSCRZP/DRCdzUZ64y4r6PueI/yGTPoiOdAUB5gLCx+4
+         6FTY+xds1q5wRG5UWz71S7ho9jo/eVLuBLL+1HqYv0ilg+bXVi/YHEUO88LJhSmZmWOY
+         ylUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=MLcnQRQ3HG/oUU50Ea/zscPi9zN/+argRjQJApZeFtQ=;
-        b=tE6EchBxe6YoJhD9of4i4wkUzRjacI6uoaPbj5arpvRw2wGw0zHrBL5Z4arSZ/acxN
-         mXj1Oh/HeJZHjO/+31edF9/bQ5fZ2ShD4RVMZfJsIiVm5lDBdD9UXHp2oMY5h/DDYFe4
-         VG2SOl9x4Ti6NWhUndPbsH+i39gZECxmJdFdDvLNcD4a0QF+WrlkxApyZHBqkfjqU9GB
-         Z9/6ki3j3oUG85GefE1vvUuma/nvw0fqOVkO0yBtpyTNGMZaErC4Ox/HNOLw0MMv08tD
-         ehWFFZuY7HhgReWD5B4+fdg8NHPPHbSRnhjujql5HI97jyywDAj077af/VAQVFgpPLo0
-         0LBA==
-X-Gm-Message-State: AOAM533V/XxaNNpnuMleyrnEWxRs8YUijQyviESFyqqHNmQSxqyx0JXA
-        ACLjAusbxMmLAz+JIqe5WHrgrA==
-X-Google-Smtp-Source: ABdhPJzGIpULgTwFL85kuSrkEfqQCTjDhcOoK6n5pTb6hxtX6ju7JQSRL+UtHUEbRp4pSzcOb1GW4A==
-X-Received: by 2002:a5d:488f:: with SMTP id g15mr24423704wrq.98.1628003016485;
-        Tue, 03 Aug 2021 08:03:36 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id g11sm8272964wrd.97.2021.08.03.08.03.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Aug 2021 08:03:36 -0700 (PDT)
-Subject: Re: [PATCH v3 00/20] ASoC: qcom: Add AudioReach support
-To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        bjorn.andersson@linaro.org, broonie@kernel.org, robh@kernel.org
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        bgoswami@codeaurora.org, tiwai@suse.de, plai@codeaurora.org,
-        lgirdwood@gmail.com
-References: <20210803125411.28066-1-srinivas.kandagatla@linaro.org>
- <0e6e4e03-c92a-be27-ba9d-e0993ced1ba6@linux.intel.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <e55596cc-9e2b-109b-19de-3bb95b1157ce@linaro.org>
-Date:   Tue, 3 Aug 2021 16:03:35 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=r0FQ7Uc64i2oRVeUtFLzokR1HqzuLG7+aDF/yA5eX4M=;
+        b=Moo4s1UeSMTZG0MK9+WmwUn2jYzNCP/YQUQM7UUQ1aa6AUOvkycgcm7vdC+P/v6usW
+         1Qk7dYPzH3tbQ2PzRNE+adzwUcjCM4ligC8NnY+Qjc0ulCwJ1yabKjqd7k08n8oE8n91
+         cbB3G00jDrxOAFpeJuNaBMM+iSNpKzlt38khv9Gn/z9aSL+ANxacuhZFNfRjv+NGrOFl
+         ZpIo8frBWBe/LWBD+pE5w4HsWTMc0T0NBfrcwbIu1pq6LHoUMhWKsPY5KCJGeA9eeV6r
+         CICzWKX+auSSaOa8cYg5/dn/UyHYr2Rss1HpSLrPZ8i0pJwaJOre43DIs+8//qH41hQn
+         wsIA==
+X-Gm-Message-State: AOAM533gTi4Y5q2uPtRxdPVAOGrj6MxxLX2vH4DcwYOKAih6rCqb4qem
+        GUAD/UbbsbZS37W5dUjdW5Y=
+X-Google-Smtp-Source: ABdhPJxP1WfDh/SKp57yUJkwWaSPOs717d15hTVJGJ9P7zfkIDZ+IovWwaIDCd2MVfHUUsu5WL89gQ==
+X-Received: by 2002:a17:906:31cf:: with SMTP id f15mr21305332ejf.272.1628003131123;
+        Tue, 03 Aug 2021 08:05:31 -0700 (PDT)
+Received: from skbuf ([188.25.144.60])
+        by smtp.gmail.com with ESMTPSA id n2sm8407071edi.32.2021.08.03.08.05.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Aug 2021 08:05:30 -0700 (PDT)
+Date:   Tue, 3 Aug 2021 18:05:29 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>,
+        netdev@vger.kernel.org, robh+dt@kernel.org,
+        UNGLinuxDriver@microchip.com, Woojung.Huh@microchip.com,
+        hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
+        kuba@kernel.org, linux-kernel@vger.kernel.org,
+        vivien.didelot@gmail.com, f.fainelli@gmail.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 net-next 05/10] net: dsa: microchip: add DSA support
+ for microchip lan937x
+Message-ID: <20210803150529.o2whe4jw6arpdm7d@skbuf>
+References: <20210723173108.459770-1-prasanna.vengateshan@microchip.com>
+ <20210723173108.459770-6-prasanna.vengateshan@microchip.com>
+ <20210731150416.upe5nwkwvwajhwgg@skbuf>
+ <YQXJHA+z+hXjxe6+@lunn.ch>
+ <20210802213353.qu5j3gn4753xlj43@skbuf>
+ <YQlWAHSTQ4K3/zet@lunn.ch>
 MIME-Version: 1.0
-In-Reply-To: <0e6e4e03-c92a-be27-ba9d-e0993ced1ba6@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YQlWAHSTQ4K3/zet@lunn.ch>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pierre,
-Thanks,
+On Tue, Aug 03, 2021 at 04:43:12PM +0200, Andrew Lunn wrote:
+> There are good reasons to use an explicit phy-handle, and i would
+> never block such code. However, implicit is historically how it was
+> done. There are many DT blobs which assume it works. So implicit is
+> not going away.
+> 
+> If you want to only support explicit in U-Boot, that is fine. I would
+> suggest making this clear in the U-Boot documentation.
 
-I did run cppcheck --enable=all  before sending this out,
-
-
-On 03/08/2021 16:00, Pierre-Louis Bossart wrote:
-> There are quite a few cppcheck warnings due to unnecessary
-> initializations for loop variables, see suggested patch below.
-> 
-> And a number of renames that were missed.
-> 
-> cppcheck --platform=unix64 --force --max-configs=1024 --inconclusive
-> --enable=all --suppress=variableScope --suppress=shiftTooManyBitsSigned
-> --suppress=arithOperationsOnVoidPointer --suppress=bitwiseOnBoolean
-> sound/soc/qcom/qdsp6/
-
-I will try these ones and fix all the warnings before next spin!
-
---srini
-> 
-> 
-> Checking sound/soc/qcom/qdsp6/audioreach.c ...
-> sound/soc/qcom/qdsp6/audioreach.c:248:32: style:inconclusive: Function
-> 'audioreach_alloc_pkt' argument 1 names different: declaration
-> 'pkt_size' definition 'payload_size'. [funcArgNamesDifferent]
-> void *audioreach_alloc_pkt(int payload_size, uint32_t opcode,
->                                 ^
-> sound/soc/qcom/qdsp6/audioreach.h:657:32: note: Function
-> 'audioreach_alloc_pkt' argument 1 names different: declaration
-> 'pkt_size' definition 'payload_size'.
-> void *audioreach_alloc_pkt(int pkt_size, uint32_t opcode, uint32_t token,
->                                 ^
-> sound/soc/qcom/qdsp6/audioreach.c:248:32: note: Function
-> 'audioreach_alloc_pkt' argument 1 names different: declaration
-> 'pkt_size' definition 'payload_size'.
-> void *audioreach_alloc_pkt(int payload_size, uint32_t opcode,
->                                 ^
-> sound/soc/qcom/qdsp6/audioreach.c:265:36: style:inconclusive: Function
-> 'audioreach_alloc_cmd_pkt' argument 1 names different: declaration
-> 'pkt_size' definition 'payload_size'. [funcArgNamesDifferent]
-> void *audioreach_alloc_cmd_pkt(int payload_size, uint32_t opcode,
->                                     ^
-> sound/soc/qcom/qdsp6/audioreach.h:653:36: note: Function
-> 'audioreach_alloc_cmd_pkt' argument 1 names different: declaration
-> 'pkt_size' definition 'payload_size'.
-> void *audioreach_alloc_cmd_pkt(int pkt_size, uint32_t opcode, uint32_t
-> token,
->                                     ^
-> sound/soc/qcom/qdsp6/audioreach.c:265:36: note: Function
-> 'audioreach_alloc_cmd_pkt' argument 1 names different: declaration
-> 'pkt_size' definition 'payload_size'.
-> void *audioreach_alloc_cmd_pkt(int payload_size, uint32_t opcode,
->                                     ^
-> sound/soc/qcom/qdsp6/q6apm.c:326:16: style:inconclusive: Function
-> 'q6apm_map_memory_regions' argument 4 names different: declaration
-> 'bufsz' definition 'period_sz'. [funcArgNamesDifferent]
->          size_t period_sz, unsigned int periods)
->                 ^
-> sound/soc/qcom/qdsp6/q6apm.h:137:16: note: Function
-> 'q6apm_map_memory_regions' argument 4 names different: declaration
-> 'bufsz' definition 'period_sz'.
->          size_t bufsz, unsigned int bufcnt);
->                 ^
-> sound/soc/qcom/qdsp6/q6apm.c:326:16: note: Function
-> 'q6apm_map_memory_regions' argument 4 names different: declaration
-> 'bufsz' definition 'period_sz'.
->          size_t period_sz, unsigned int periods)
->                 ^
-> sound/soc/qcom/qdsp6/q6apm.c:326:40: style:inconclusive: Function
-> 'q6apm_map_memory_regions' argument 5 names different: declaration
-> 'bufcnt' definition 'periods'. [funcArgNamesDifferent]
->          size_t period_sz, unsigned int periods)
->                                         ^
-> sound/soc/qcom/qdsp6/q6apm.h:137:36: note: Function
-> 'q6apm_map_memory_regions' argument 5 names different: declaration
-> 'bufcnt' definition 'periods'.
->          size_t bufsz, unsigned int bufcnt);
->                                     ^
-> sound/soc/qcom/qdsp6/q6apm.c:326:40: note: Function
-> 'q6apm_map_memory_regions' argument 5 names different: declaration
-> 'bufcnt' definition 'periods'.
->          size_t period_sz, unsigned int periods)
->                                         ^
-> sound/soc/qcom/qdsp6/q6apm.c:471:35: style:inconclusive: Function
-> 'q6apm_write_async' argument 5 names different: declaration 'flags'
-> definition 'wflags'. [funcArgNamesDifferent]
->          uint32_t lsw_ts, uint32_t wflags)
->                                    ^
-> sound/soc/qcom/qdsp6/q6apm.h:131:36: note: Function 'q6apm_write_async'
-> argument 5 names different: declaration 'flags' definition 'wflags'.
->           uint32_t lsw_ts, uint32_t flags);
->                                     ^
-> sound/soc/qcom/qdsp6/q6apm.c:471:35: note: Function 'q6apm_write_async'
-> argument 5 names different: declaration 'flags' definition 'wflags'.
->          uint32_t lsw_ts, uint32_t wflags)
->                                    ^
-> 
-> Checking sound/soc/qcom/qdsp6/q6prm.c ...
-> sound/soc/qcom/qdsp6/q6prm.c:158:63: style:inconclusive: Function
-> 'q6prm_set_lpass_clock' argument 3 names different: declaration 'attri'
-> definition 'clk_attr'. [funcArgNamesDifferent]
-> int q6prm_set_lpass_clock(struct device *dev, int clk_id, int clk_attr,
->                                                                ^
-> sound/soc/qcom/qdsp6/q6prm.h:72:63: note: Function
-> 'q6prm_set_lpass_clock' argument 3 names different: declaration 'attri'
-> definition 'clk_attr'.
-> int q6prm_set_lpass_clock(struct device *dev, int clk_id, int attri,
->                                                                ^
-> sound/soc/qcom/qdsp6/q6prm.c:158:63: note: Function
-> 'q6prm_set_lpass_clock' argument 3 names different: declaration 'attri'
-> definition 'clk_attr'.
-> int q6prm_set_lpass_clock(struct device *dev, int clk_id, int clk_attr,
->                                                                ^
-> 
+I am happy that Prasanna made it possible for OF-based descriptions of
+the internal PHYs to be written for the lan937x generation. I did take a
+look at the bindings that Prasanna proposed and I think they would work
+with what DM_DSA can parse too. The work that Tim Harvey did was for
+ksz9897, and it is slightly different: the MDIO controller node has a
+compatible string of "microchip,ksz-mdio", and a parent container node
+of "mdios".
+https://source.denx.de/u-boot/u-boot/-/blob/master/arch/arm/dts/imx8mm-venice-gw7901.dts#L634
+However, since the lan937x would probably have a different driver even
+in U-Boot, 100% binding consistency between lan937x and ksz9897 is
+probably not necessary, since some of that can boil down to driver
+author choice too. As long as an OF based choice is available I'm
+absolutely fine.
