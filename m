@@ -2,95 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E17033DF694
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 22:48:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BC133DF6DE
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 23:30:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231193AbhHCUsS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 16:48:18 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:38978 "EHLO gloria.sntech.de"
+        id S232198AbhHCVaS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 17:30:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47086 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229551AbhHCUsS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Aug 2021 16:48:18 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1mB1KX-0003f1-Ks; Tue, 03 Aug 2021 22:48:05 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Michael Riesch <michael.riesch@wolfvision.net>
-Cc:     Rob Herring <robh+dt@kernel.org>, Liang Chen <cl@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Simon Xue <xxm@rock-chips.com>
-Subject: Re: [PATCH 5/5] arm64: dts: rockchip: rk3568-evb1-v10: add node for sd card
-Date:   Tue, 03 Aug 2021 22:48:04 +0200
-Message-ID: <2936848.7s5MMGUR32@diego>
-In-Reply-To: <20210803185309.10013-6-michael.riesch@wolfvision.net>
-References: <20210803185309.10013-1-michael.riesch@wolfvision.net> <20210803185309.10013-6-michael.riesch@wolfvision.net>
+        id S232180AbhHCVaR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Aug 2021 17:30:17 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPS id 42A9360F70;
+        Tue,  3 Aug 2021 21:30:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1628026206;
+        bh=W/EVXLollsvrkFRDiPsMPxdPF0VursJRbdgMO8+pHYc=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=E/kRqC0nO8QerfDen4mjNi3AbFfflC0Qor/onjpxpna3oVNnYEmxytqmMt6V8UFm5
+         yqfnlJLCo/J/E4slpGiplPQ93SAsgTQG+x8Se5jljbpg5sXtNsXu4n7tpwOjlqYgxY
+         Po1AoVSU4/okQ+YfgOcu4YKz+hdNq5U7+mSRg8E2+Tj8LHjUQeGLzeN5SVI2E86Gql
+         3eizcSwk/rEiDlv9Zspgy+rOBqaP6RpSlA0XAu1PThZYSGAxJoilZEWFLgjj35Xp+x
+         B3TPxBZNo+Li5QRfhcilpY/XTNw3Mq5Uh6aIUnCjMIHRz/V28zK/ShMZUhd+GAZSF2
+         wUhYEMHmHp4cA==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 3402160A6D;
+        Tue,  3 Aug 2021 21:30:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next 0/1] REVERT: arm64: dts: qcom: DTS updates
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <162802620620.14199.10157855065946369228.git-patchwork-notify@kernel.org>
+Date:   Tue, 03 Aug 2021 21:30:06 +0000
+References: <20210802233019.800250-1-elder@linaro.org>
+In-Reply-To: <20210802233019.800250-1-elder@linaro.org>
+To:     Alex Elder <elder@linaro.org>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        bjorn.andersson@linaro.org, agross@kernel.org,
+        evgreen@chromium.org, cpratapa@codeaurora.org,
+        subashab@codeaurora.org, elder@kernel.org,
+        linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, 3. August 2021, 20:53:09 CEST schrieb Michael Riesch:
-> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
+Hello:
+
+This patch was applied to netdev/net-next.git (refs/heads/master):
+
+On Mon,  2 Aug 2021 18:30:18 -0500 you wrote:
+> David, Jakub, I'd like for three patches merged into net-next to
+> be reverted.  Bjorn Andersson requested this without success a while
+> back (and I followed up on his message).
+>   https://lore.kernel.org/netdev/YPby3eJmDmNlESC8@yoga/
+> I'm now trying it this way, hoping this is the easiest way to get it
+> done.
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-> index 3ac70a8183c4..b0f5aa8c979c 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-> @@ -17,6 +17,7 @@
->  		ethernet0 = &gmac0;
->  		ethernet1 = &gmac1;
->  		emmc = &sdhci;
-> +		sd = &sdmmc0;
+> [...]
 
-same thing as in the previous patch.
+Here is the summary with links:
+  - [net-next,1/1] Revert "Merge branch 'qcom-dts-updates'"
+    https://git.kernel.org/netdev/net-next/c/a0221a0f9ba5
 
-I guess you may want something like
-
-	mmc0 = &sdhci;
-	mmc1 = &sdmmc0;
-
-maybe?
-
-
-Heiko
-
->  	};
->  
->  	chosen: chosen {
-> @@ -353,6 +354,20 @@
->  	status = "okay";
->  };
->  
-> +&sdmmc0 {
-> +	bus-width = <4>;
-> +	cap-sd-highspeed;
-> +	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
-> +	disable-wp;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd &sdmmc0_det>;
-> +	sd-uhs-sdr104;
-> +	supports-sd;
-> +	vmmc-supply = <&vcc3v3_sd>;
-> +	vqmmc-supply = <&vccio_sd>;
-> +	status = "okay";
-> +};
-> +
->  &uart2 {
->  	status = "okay";
->  };
-> 
-
-
+You are awesome, thank you!
+--
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
 
