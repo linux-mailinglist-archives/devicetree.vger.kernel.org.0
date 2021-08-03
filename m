@@ -2,160 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B45A23DE63A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 07:37:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 453E83DE640
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 07:38:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229507AbhHCFhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 01:37:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41166 "EHLO
+        id S233891AbhHCFiP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 01:38:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231386AbhHCFhW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 01:37:22 -0400
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E831C061764
-        for <devicetree@vger.kernel.org>; Mon,  2 Aug 2021 22:37:12 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id k2so4792902plk.13
-        for <devicetree@vger.kernel.org>; Mon, 02 Aug 2021 22:37:12 -0700 (PDT)
+        with ESMTP id S233872AbhHCFiO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 01:38:14 -0400
+Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A58CC06175F
+        for <devicetree@vger.kernel.org>; Mon,  2 Aug 2021 22:38:03 -0700 (PDT)
+Received: by mail-io1-xd32.google.com with SMTP id f6so17188041ioc.6
+        for <devicetree@vger.kernel.org>; Mon, 02 Aug 2021 22:38:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=google.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=TzgmYchbci/zhvlgXLAGmYsl7UzG8nnyQecH+/1YGbQ=;
-        b=ES55ynagZ88pg0GPjV6f9YmdPOu1QNR8D/oRa8bNQ/T4u9Nxk+qPpJ5UcbEoQilUyZ
-         u3+F/HwsLgeupDpIDbgs1unBMYXyLlltf0CudKw6Ac1QXWjntXx+kNos74b2LiMtNEcv
-         es9C9D3nxwbVWjEvI1IPePrzDYu2Oqq5AJMmU=
+        bh=vi76Iy2+G7lRArH6vuam1Hfh2GEzigTGHE+mXu3eEQw=;
+        b=qLj1y6fObSImVY0F0di8u/IF17wANqqqgvULYkhwRpKAGIdln28rEco4Riz8tMS4z+
+         3ZfBL+GTgm0I3uYsrPqR38H1ZePcnoxJJA5jHljoEUgk57jKKhKJvmj1uXlK8Fcrcnfw
+         IYoUcNNbQStu/smuDcK/AU7hIRpe5mCbAHIJtLG4wBYq1OiM5cIO1KCjwMHyu3O6SzwR
+         VSrTFDVzKDqdZwOqIY+qk3GT8nxZWCAXeKQiVxkNrWwQKgihwE1nYU1//j0WTbUzxCiw
+         GlEZZTBXyEK8nzark4WGWGiA/azDDniWdirEvCdMJ9NtpU6nygtVUuN0+rQgaX56lt0I
+         pD5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=TzgmYchbci/zhvlgXLAGmYsl7UzG8nnyQecH+/1YGbQ=;
-        b=WQJNZ8v37te6oPcYguYWMBDQBhgtNwRsuzzmGuPTGA2leqbxEc7Pv3umuU+YPgidUc
-         exgQ25pDJTLb4nG4242JrwSXZYtxbm/EhQ4ogRAZS4vZWmGIZJq6VrQK1KdmC/WDWHDX
-         3ocD+J5g0TdhSrAV1mOx/NcpoNIG2B5MA9Oc/rDrlXY9DNer6zoQv4RaBCJjjkUGxsRf
-         tWHdqus04IgZBC1XTYnxkiq+G8ccyH8gwwTQIpUJk5eQc3aIXYxFkcRdusm4v7neTRlh
-         ciCadkcXu2yb9zsB+UX6xqe5xhWYMKCkTbOvnTwE2vi7vj5ACDgd7MExQRBLa3emkfc2
-         F10g==
-X-Gm-Message-State: AOAM530rmi9PS4sTYvcjlonj5CinuiopmlpDBpQdvNJYBBBwXKT0VD7B
-        6ybwgHBxDi9JtOo6Z3toLvCGw2Fg+AKCfKM/JzsUXg==
-X-Google-Smtp-Source: ABdhPJwy22hM/0nLperLTs7oqlOkW3eLaO6jLCVztbfyp37svS9AhfV/dPAYrDNKRL8a0yAc2zvp451Ro7v8cSdVagE=
-X-Received: by 2002:a17:902:b788:b029:12c:2888:9589 with SMTP id
- e8-20020a170902b788b029012c28889589mr17319543pls.60.1627969031860; Mon, 02
- Aug 2021 22:37:11 -0700 (PDT)
+        bh=vi76Iy2+G7lRArH6vuam1Hfh2GEzigTGHE+mXu3eEQw=;
+        b=mGWxpj3dvZGH2pv1AAr1pJ03q+w8Ggo793z2vK93zZFqnFY7wIdkl7oOOHtWyX8tGs
+         x+3Bmsyxg45RuwHO9C+xX1lYWZn0NJqz5QBv7mjLdDZFJhFJ5cJwmoCYUqT8KZwrdJ8A
+         mQ2Xy+fsOLy0urDd1XgONTEPFuM0KR2gZ2MX6ynoUBKDpyWZ3qX22fua16J8nbEc+6os
+         t0Rp2UczqeCCl5hwiWBaulg/jBtjn1krI8pvF9S/kJV+3NO9r6smte/Z46PgDcY4ChaB
+         PUrrCYEaxL1nEKxS1GY2kP0p0EI+CrbRqg4B5CT1fWkxAFlbx5tgDfzuETRc6UOgaSed
+         Aygg==
+X-Gm-Message-State: AOAM533TXOueXMB9UlvjMbPjkc3NT2pxgbzKIJKoyhKhEaM79x4dXf+z
+        i78Bw8n29adn7rIUGAjcd2/VsX3Tl34wilgWaWxWPg==
+X-Google-Smtp-Source: ABdhPJw/2YigJyn4JYO2+qd6bLRkOERLsf4W8mUBRLblDDC0N6ey6KPmqUc7erPS6iYqy2aN3qVsIE+0gB6rMCfF710=
+X-Received: by 2002:a02:ba87:: with SMTP id g7mr11453418jao.110.1627969081709;
+ Mon, 02 Aug 2021 22:38:01 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210715121209.31024-1-yong.wu@mediatek.com> <20210715121209.31024-12-yong.wu@mediatek.com>
- <CAATdQgAfo9oNR5=ogEottHajODngi1ahvKUnEOUczzjreYpPcQ@mail.gmail.com>
- <1626935902.27875.7.camel@mhfsdcap03> <1627540902.13818.3.camel@mhfsdcap03>
-In-Reply-To: <1627540902.13818.3.camel@mhfsdcap03>
-From:   Ikjoon Jang <ikjn@chromium.org>
-Date:   Tue, 3 Aug 2021 13:37:01 +0800
-Message-ID: <CAATdQgCf2sNwZWBKOC=HJU7Ur+7J6+uc75UD6xjfMF71Dxr18Q@mail.gmail.com>
-Subject: Re: [PATCH v2 11/11] memory: mtk-smi: mt8195: Add initial setting for smi-larb
-To:     Yong Wu <yong.wu@mediatek.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        iommu@lists.linux-foundation.org
+References: <20210726122901.12195-1-Christine.Zhu@mediatek.com> <20210726122901.12195-2-Christine.Zhu@mediatek.com>
+In-Reply-To: <20210726122901.12195-2-Christine.Zhu@mediatek.com>
+From:   Tzung-Bi Shih <tzungbi@google.com>
+Date:   Tue, 3 Aug 2021 13:37:50 +0800
+Message-ID: <CA+Px+wX+gy4hV3BsTU81ThS=FUe0HidUV-iZZvQ3qm4WxKXGxQ@mail.gmail.com>
+Subject: Re: [v7,1/3] dt-bindings: mediatek: mt8195: update mtk-wdt document
+To:     Christine Zhu <christine.zhu@mediatek.com>
+Cc:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
+        matthias.bgg@gmail.com, srv_heupstream@mediatek.com,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        seiya.wang@mediatek.com
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Thu, Jul 29, 2021 at 2:41 PM Yong Wu <yong.wu@mediatek.com> wrote:
->
-> Hi Ikjoon,
->
-> Just a ping.
->
-> On Thu, 2021-07-22 at 14:38 +0800, Yong Wu wrote:
-> > On Wed, 2021-07-21 at 21:40 +0800, Ikjoon Jang wrote:
-> > > On Thu, Jul 15, 2021 at 8:23 PM Yong Wu <yong.wu@mediatek.com> wrote:
-> > > >
-> > > > To improve the performance, We add some initial setting for smi larbs.
-> > > > there are two part:
-> > > > 1), Each port has the special ostd(outstanding) value in each larb.
-> > > > 2), Two general setting for each larb.
-
-Honestly, I think nobody outside Mediatek will understand this.
-Can you please update this to be more generic?
-Like "Apply default bus settings for mt8195, without this, XXX
-problems can happen.. "?
-
-Or for example, adding brief descriptions on what
-MTK_SMI_FLAG_LARB_THRT_EN, MTK_SMI_FLAG_LARB_SW_FLAG,
-and MTK_SMI_FLAG_LARB_SW_FLAG[] are for would be better if it's available.
-
-> > > >
-> > > > In some SoC, this setting maybe changed dynamically for some special case
-> > > > like 4K, and this initial setting is enough in mt8195.
-> > > >
-> > > > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> > > > ---
-> > [...]
-> > > >  struct mtk_smi {
-> > > > @@ -213,12 +228,22 @@ static void mtk_smi_larb_config_port_mt8173(struct device *dev)
-> > > >  static void mtk_smi_larb_config_port_gen2_general(struct device *dev)
-> > > >  {
-> > > >         struct mtk_smi_larb *larb = dev_get_drvdata(dev);
-> > > > -       u32 reg;
-> > > > +       u32 reg, flags_general = larb->larb_gen->flags_general;
-> > > > +       const u8 *larbostd = larb->larb_gen->ostd[larb->larbid];
-> > > >         int i;
-> > > >
-> > > >         if (BIT(larb->larbid) & larb->larb_gen->larb_direct_to_common_mask)
-> > > >                 return;
-> > > >
-> > > > +       if (MTK_SMI_CAPS(flags_general, MTK_SMI_FLAG_LARB_THRT_EN))
-> > > > +               writel_relaxed(SMI_LARB_THRT_EN, larb->base + SMI_LARB_CMD_THRT_CON);
-> > > > +
-> > > > +       if (MTK_SMI_CAPS(flags_general, MTK_SMI_FLAG_LARB_SW_FLAG))
-> > > > +               writel_relaxed(SMI_LARB_SW_FLAG_1, larb->base + SMI_LARB_SW_FLAG);
-> > > > +
-> > > > +       for (i = 0; i < SMI_LARB_PORT_NR_MAX && larbostd && !!larbostd[i]; i++)
-> > > > +               writel_relaxed(larbostd[i], larb->base + SMI_LARB_OSTDL_PORTx(i));
-> > >
-> > > All other mtk platform's larbs have the same format for SMI_LARB_OSTDL_PORTx()
-> > > registers at the same offset? or is this unique feature for mt8195?
-> >
-> > All the other Platform's larbs have the same format at the same offset.
->
-> In this case, Do you have some other further comment? If no, I will keep
-> the current solution for this.
-
-Sorry for the late response,
-I have no further comments or any objections on here. Please go ahead for v3.
-I just had no idea on the register definitions and wanted to be sure that
-newly added register definitions are common to all MTK platforms.
-
-Thanks!
-
->
-> Thanks.
->
-> >
-> > >
-> > > > +
-> > > >         for_each_set_bit(i, (unsigned long *)larb->mmu, 32) {
-> > > >                 reg = readl_relaxed(larb->base + SMI_LARB_NONSEC_CON(i));
-> > > >                 reg |= F_MMU_EN;
-> > > > @@ -227,6 +252,51 @@ static void mtk_smi_larb_config_port_gen2_general(struct device *dev)
-> > > >         }
-> > > >  }
-> > > >
-> >
-> > [...]
-> >
->
+On Mon, Jul 26, 2021 at 8:30 PM Christine Zhu
+<Christine.Zhu@mediatek.com> wrote:
+> @@ -13,6 +13,7 @@ Required properties:
+>         "mediatek,mt8183-wdt": for MT8183
+>         "mediatek,mt8516-wdt", "mediatek,mt6589-wdt": for MT8516
+>         "mediatek,mt8192-wdt": for MT8192
+> +       "mediatek,mt8195-wdt": for MT8195
+Just realized the patch has been applied in commit b326f2c85f3d
+("dt-bindings: watchdog: Add compatible for Mediatek MT8195").  Could
+you rebase the series to the latest tree and resend?
