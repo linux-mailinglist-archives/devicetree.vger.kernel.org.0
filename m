@@ -2,71 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BC133DF6DE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 23:30:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B2C23DF72D
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 00:01:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232198AbhHCVaS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 17:30:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47086 "EHLO mail.kernel.org"
+        id S231637AbhHCWBF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 18:01:05 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34740 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232180AbhHCVaR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Aug 2021 17:30:17 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPS id 42A9360F70;
-        Tue,  3 Aug 2021 21:30:06 +0000 (UTC)
+        id S230124AbhHCWBE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Aug 2021 18:01:04 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2DEAB60FA0;
+        Tue,  3 Aug 2021 22:00:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1628026206;
-        bh=W/EVXLollsvrkFRDiPsMPxdPF0VursJRbdgMO8+pHYc=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=E/kRqC0nO8QerfDen4mjNi3AbFfflC0Qor/onjpxpna3oVNnYEmxytqmMt6V8UFm5
-         yqfnlJLCo/J/E4slpGiplPQ93SAsgTQG+x8Se5jljbpg5sXtNsXu4n7tpwOjlqYgxY
-         Po1AoVSU4/okQ+YfgOcu4YKz+hdNq5U7+mSRg8E2+Tj8LHjUQeGLzeN5SVI2E86Gql
-         3eizcSwk/rEiDlv9Zspgy+rOBqaP6RpSlA0XAu1PThZYSGAxJoilZEWFLgjj35Xp+x
-         B3TPxBZNo+Li5QRfhcilpY/XTNw3Mq5Uh6aIUnCjMIHRz/V28zK/ShMZUhd+GAZSF2
-         wUhYEMHmHp4cA==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 3402160A6D;
-        Tue,  3 Aug 2021 21:30:06 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        s=k20201202; t=1628028053;
+        bh=YgcQRaQCrh6jgIsmUNwvtzQmhCjaAmndO3t2iNcKXog=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=L2cypB+HhtX5Wp44qIe7fI0F+C750ap/8QDy61pJcNeG/JOKteHQmpdhU9PUlRuKt
+         r/Ribms34YmPfCd4sD4oVyZ42MB3V18EM+aF85i7aN4hfD+izcr6NMig/A6jUcE/b0
+         uc4M4ki5kRdM9nwq8HJcZgRwSjdJrz9GbEZfdLx1qB2vaSyucyNUe8to5B/zsBuDjB
+         j94NJQjMZ+O8ozpEQMVtqqIEPOikGCdeR6WueYMJ4FA63pi8CFk6YMGZrsx6s867v8
+         MPAOmBoCu9cj6eaq1j1eSt4lt1BUYb7ydxoer5C7CTbjZ8k1qSzkwnorSeiHi01QPP
+         023xqPuZTOX9w==
+Received: by mail-ej1-f41.google.com with SMTP id x11so729928ejj.8;
+        Tue, 03 Aug 2021 15:00:53 -0700 (PDT)
+X-Gm-Message-State: AOAM532upCp58cKyMd05dmabhwcR1nyq1RSmxd3cn3hW7NhpR+yT+dgy
+        zrYi97AcdGDhJ1Hd9GKya9l/2aJihYxwa4ZKTg==
+X-Google-Smtp-Source: ABdhPJwz4h8NNTRdPM7c3ps1AwTtRoK6yY7hOTk68sydmHZ3zrBBq8RyD3UC5zFzAt+5LtmRdAf8E9Roeeom0WxvZy8=
+X-Received: by 2002:a17:906:4917:: with SMTP id b23mr23545434ejq.468.1628028051689;
+ Tue, 03 Aug 2021 15:00:51 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next 0/1] REVERT: arm64: dts: qcom: DTS updates
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <162802620620.14199.10157855065946369228.git-patchwork-notify@kernel.org>
-Date:   Tue, 03 Aug 2021 21:30:06 +0000
-References: <20210802233019.800250-1-elder@linaro.org>
-In-Reply-To: <20210802233019.800250-1-elder@linaro.org>
-To:     Alex Elder <elder@linaro.org>
-Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        bjorn.andersson@linaro.org, agross@kernel.org,
-        evgreen@chromium.org, cpratapa@codeaurora.org,
-        subashab@codeaurora.org, elder@kernel.org,
-        linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <440bd70a-81c4-357d-9fb5-1f45fca17148@gmail.com>
+In-Reply-To: <440bd70a-81c4-357d-9fb5-1f45fca17148@gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 3 Aug 2021 16:00:39 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKd9Yz=pEdv7bjRcvQnio1nPJzBVxz9rexmQ-u00REQYA@mail.gmail.com>
+Message-ID: <CAL_JsqKd9Yz=pEdv7bjRcvQnio1nPJzBVxz9rexmQ-u00REQYA@mail.gmail.com>
+Subject: Re: PCI DT regressions affecting Northstar (iproc driver)
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     PCI <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Srinath Mannam <srinath.mannam@broadcom.com>,
+        Roman Bacik <roman.bacik@broadcom.com>,
+        Bharat Gooty <bharat.gooty@broadcom.com>,
+        Abhishek Shah <abhishek.shah@broadcom.com>,
+        Jitendra Bhivare <jitendra.bhivare@broadcom.com>,
+        Ray Jui <ray.jui@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        BCM Kernel Feedback <bcm-kernel-feedback-list@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+On Tue, Aug 3, 2021 at 1:45 PM Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail.com> w=
+rote:
+>
+> Hi,
+>
+> I normally stick to LTS kernel releases and I just late-found 2
+> regressions while switching from 5.4 to the 5.10.
+>
+> The whole thing is about Broadcom's Northstar platform and a bit quirky
+> iproc PCI driver (precisely: pcie-iproc-bcma part). The iproc PCI driver
+> supports both: platform device (based on DT) and bcma device.
+>
+> Northstar support uses a mix of DT and bcma. The later is a bus with
+> EEPROM containing platform devices info. Its history is decades old and
+> that design comes from pre-DT times. In any case:
+> 1. Northstar PCI controllers are bcma devices with minimalistic DT nodes
+> 2. Everything worked great with 5.4 and quite OK with 5.8
+>
+> Reference:
+> * arch/arm/boot/dts/bcm5301x.dtsi
+> * drivers/pci/controller/pcie-iproc-bcma.c
+>
+> Could you look at those problems and check if it's possible to fix them
+> in some easy way (without a big refactoring) please?
 
-This patch was applied to netdev/net-next.git (refs/heads/master):
+I just sent some untested fixes.
 
-On Mon,  2 Aug 2021 18:30:18 -0500 you wrote:
-> David, Jakub, I'd like for three patches merged into net-next to
-> be reverted.  Bjorn Andersson requested this without success a while
-> back (and I followed up on his message).
->   https://lore.kernel.org/netdev/YPby3eJmDmNlESC8@yoga/
-> I'm now trying it this way, hoping this is the easiest way to get it
-> done.
-> 
-> [...]
-
-Here is the summary with links:
-  - [net-next,1/1] Revert "Merge branch 'qcom-dts-updates'"
-    https://git.kernel.org/netdev/net-next/c/a0221a0f9ba5
-
-You are awesome, thank you!
---
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+Rob
