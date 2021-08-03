@@ -2,129 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 264623DEAB4
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 12:17:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E9823DEA98
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 12:13:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235223AbhHCKRm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 06:17:42 -0400
-Received: from mailout1.samsung.com ([203.254.224.24]:30997 "EHLO
-        mailout1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235135AbhHCKRl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 06:17:41 -0400
-Received: from epcas1p3.samsung.com (unknown [182.195.41.47])
-        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20210803101729epoutp015e19760435806887a1ca5b93779a0832~XxIEg52kW1965319653epoutp01U
-        for <devicetree@vger.kernel.org>; Tue,  3 Aug 2021 10:17:29 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20210803101729epoutp015e19760435806887a1ca5b93779a0832~XxIEg52kW1965319653epoutp01U
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1627985849;
-        bh=Pz14cy8nzznFI/F+SJ3lMWu3jOf+dw4UrbmQOOsf9m0=;
-        h=From:To:Cc:Subject:Date:References:From;
-        b=Nb0wkJDAhRboUPq/Fxjqbh+Jwjip2jQ5CQJl+784OyU0dI3U9ftU4bxMKYUqyUU94
-         ppO1TF8kH87QSp3ZY34H5pFwwdGv6gs9MVnRh6EaTucwaxemgNPbvksek09Pn26P5b
-         qrImDrtHfgPTzaiXVtUpDhaAXxqq9Qek3Qe82r+M=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-        epcas1p3.samsung.com (KnoxPortal) with ESMTP id
-        20210803101728epcas1p387845c4a6687b18128f5c1111c98342f~XxID84_Fm1389813898epcas1p34;
-        Tue,  3 Aug 2021 10:17:28 +0000 (GMT)
-Received: from epsmges1p1.samsung.com (unknown [182.195.40.161]) by
-        epsnrtp1.localdomain (Postfix) with ESMTP id 4Gf9m749B2z4x9Pp; Tue,  3 Aug
-        2021 10:17:27 +0000 (GMT)
-Received: from epcas1p1.samsung.com ( [182.195.41.45]) by
-        epsmges1p1.samsung.com (Symantec Messaging Gateway) with SMTP id
-        CC.85.09952.7B719016; Tue,  3 Aug 2021 19:17:27 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20210803101726epcas1p257df1a6ab948c39304f4246a95d039c3~XxICcIlXm1823818238epcas1p2u;
-        Tue,  3 Aug 2021 10:17:26 +0000 (GMT)
-Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20210803101726epsmtrp1f196b6b5cbccab018a1aafacad201690~XxICayDk41225712257epsmtrp1o;
-        Tue,  3 Aug 2021 10:17:26 +0000 (GMT)
-X-AuditID: b6c32a35-447ff700000026e0-d7-610917b7bb8b
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        3A.CD.08289.6B719016; Tue,  3 Aug 2021 19:17:26 +0900 (KST)
-Received: from localhost.localdomain (unknown [10.253.98.78]) by
-        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20210803101726epsmtip2e7e23676e29d563e1721242b879e10c5~XxICPE5r50835608356epsmtip2U;
-        Tue,  3 Aug 2021 10:17:26 +0000 (GMT)
-From:   Ohhoon Kwon <ohoono.kwon@samsung.com>
-To:     robh+dt@kernel.org, frowand.list@gmail.com
-Cc:     ohoono.kwon@samsung.com, ohkwon1043@gmail.com, nathan@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] of: fdt: do not update local variable after use
-Date:   Tue,  3 Aug 2021 19:13:09 +0900
-Message-Id: <20210803101309.904-1-ohoono.kwon@samsung.com>
-X-Mailer: git-send-email 2.32.0
+        id S235373AbhHCKN7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 06:13:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51392 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235349AbhHCKN4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 06:13:56 -0400
+Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85232C06179E;
+        Tue,  3 Aug 2021 03:13:36 -0700 (PDT)
+Received: by mail-vs1-xe31.google.com with SMTP id k24so3091470vsg.9;
+        Tue, 03 Aug 2021 03:13:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=JUIVZgPBYOYpuCEk1uAi8VzRGhVQKeMfw4ERDH3V0C0=;
+        b=WAqlrFc7YoxRtZ2tJ+dLteZQQpk9TtrC7IYif8k/7+wY3T3iAFHMtqKtUj/3DfI0oG
+         FSxIuD5QXbz1XDF42sy/tOR7zKUXFSJVlWGKEUJVQG0lUwJRIQsNbZVxTyjdX798+kSQ
+         L555gTL117Zc+Gz5e79rwWWFBjnhjKp4+xFoGfPXJ8kficUq+cjI2jJXSm3Mq5ffyMXo
+         6GrvKb4V0wlzCwHRjZiWdK4zFzzk3HgZ1vZfHFnn7+/j4RG8O8eqSCCX8SbJgm7VuxGO
+         Go0hEUmQLVatmTnKK8F0eQxD9PJOIb5CImpOdYMGtYc2FdZvsPR6s+EjoQaZkY55Y81U
+         xt3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=JUIVZgPBYOYpuCEk1uAi8VzRGhVQKeMfw4ERDH3V0C0=;
+        b=fd7tCm6nsInQiJ39L5I11XmehT+MhHgINf2Ah9n5Udz10E3P76dl+uNd3gW8APB6n0
+         ZY7prJahes5TcNfc2CtvB8OnQ/muXYSH7dvJhjvO5wvLfvbZuOdiXU8yCFoApl+5d9mW
+         rUFczOq2WiMrJtHVok/QQV1tJXzoxA94dLBogrLk/Z3yORdSJFmfTclANI2VsW9AIx2F
+         rU98JMV0fL+nfgibgHnjzYlskAw9Q7OJS0Ifdwnox1WKmPuoZ9TTUMGKTPu3OBkzyQow
+         ekH6qajD48G8mtvANNg+7BlPKXqMsIcgroIEPho0Fj33WinxIJbdEOp36eB4gN6Bo4Y+
+         S5Jw==
+X-Gm-Message-State: AOAM531jfSv+rl4H7TJPSQzZF0MTqFZWIy09zIHKtlbdTxq09Pa/jpm+
+        2lBT4qNxkKtPq4GkU8dKxMazJ/Wzfh5PtBELQ6k=
+X-Google-Smtp-Source: ABdhPJzqyw93wm1d8X3oyH9dqTEIAPHfo1xN904AEQN8R0Fqdu8SCR+QTrGIz0LpUoLPCSlKiQ7ibC9mMf48faYVcTA=
+X-Received: by 2002:a05:6102:3a5a:: with SMTP id c26mr13002221vsu.20.1627985615654;
+ Tue, 03 Aug 2021 03:13:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrNKsWRmVeSWpSXmKPExsWy7bCmru52cc5Egxd/5C3mHznHajHzzX82
-        i8u75rBZtK98ymaxd7+vxa6fK5gtWvceYXdg99g56y67x6ZVnWwefVtWMXp83iQXwBKVY5OR
-        mpiSWqSQmpecn5KZl26r5B0c7xxvamZgqGtoaWGupJCXmJtqq+TiE6DrlpkDdICSQlliTilQ
-        KCCxuFhJ386mKL+0JFUhI7+4xFYptSAlp8DQoECvODG3uDQvXS85P9fK0MDAyBSoMiEnY8b+
-        vewFHWwVH5ZfY29gPMTSxcjJISFgIvHk3hvWLkYuDiGBHYwSz2/vZQNJCAl8YpRY9sAJIvGZ
-        UeL3ug3MMB37NhxmgkjsYpTYu7MNqh2oo2NBNztIFZuAtsT+3hNgHSICehJ770xhASliFmhg
-        lDi2bQMjSEJYwEHif8cTsCIWAVWJ5fcvMYHYvAJWErd+PmeHWCcvcWrZQai4oMTJmU/ADmcG
-        ijdvnc0MMlRC4BS7xI0pi9ggGlwklr9dCfWdsMSr41ugBklJvOxvY4do6GeUONS3nRXCmcAo
-        sb6rESjDAeTYS7y/ZAFiMgtoSqzfpQ/Rqyix8/dcRojFfBLvvvawQlTzSnS0CUGYqhLLfntA
-        VEtL9E2/DHWNh8SsNX2skCCNldizcgrzBEb5WUi+mYXkm1kIexcwMq9iFEstKM5NTy02LDBE
-        jtVNjOBUqGW6g3Hi2w96hxiZOBgPMUpwMCuJ8Ibe4EgU4k1JrKxKLcqPLyrNSS0+xGgKDN+J
-        zFKiyfnAZJxXEm9oamRsbGxhYmZuZmqsJM77LfZrgpBAemJJanZqakFqEUwfEwenVANT5cH1
-        U6ScGhlcF6/b2JDB8OjeriPz2yT9zhfddLI56/67d8mTJ+6TEg/MkQ53OicfdM/OZ/L09tak
-        Kh/3/u99r+4XqXVztM6x8vJ5dveAQdNtL6uPjfm9+9SKHSZzsTbGBu54Pj+v/f5F65O5r27b
-        Lvuot9PB4UdD8pdZt54qX3dleizjLlM080pPS+Cie0wf0lRtL3X3aU3anMtsP+fbpyUruTW/
-        vNLfdk3caNK1+qXHPHq0RCInXBVfkLH64glRIUVXkf3Xnrx6tGPB6qXXlHc+7udR4nv3Xupn
-        +sKDf+ZwuTwP3m7L5irNw+VXf+jfjInp7+eznio+m/W71kNdqrVJ4ChHyxHX+96zDM4eU2Ip
-        zkg01GIuKk4EAKZe/nUOBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrBLMWRmVeSWpSXmKPExsWy7bCSvO42cc5Eg+l/TC3mHznHajHzzX82
-        i8u75rBZtK98ymaxd7+vxa6fK5gtWvceYXdg99g56y67x6ZVnWwefVtWMXp83iQXwBLFZZOS
-        mpNZllqkb5fAlTFj/172gg62ig/Lr7E3MB5i6WLk5JAQMJHYt+EwE4gtJLCDUeLOFTGIuLTE
-        0xe7gGo4gGxhicOHi7sYuYBKPjBKfNl+nx2khk1AW2J/7wlmEFtEwECipekzK0gRs0Abo8TU
-        /9fAEsICDhL/O56A2SwCqhLL718CW8YrYCVx6+dzdohl8hKnlh2EigtKnJz5BOw4ZqB489bZ
-        zBMY+WYhSc1CklrAyLSKUTK1oDg3PbfYsMAoL7Vcrzgxt7g0L10vOT93EyM4MLW0djDuWfVB
-        7xAjEwfjIUYJDmYlEd7QGxyJQrwpiZVVqUX58UWlOanFhxilOViUxHkvdJ2MFxJITyxJzU5N
-        LUgtgskycXBKNTDN7eg/wrKcc/tNwWe8Ri92dwe379wkqJd89+DEA5H3o54yBL/pvroj80HP
-        34LSR/y3Vu0pDrojsun3Gc2Fyg9WLDytW3ngz7trtpM27kjv7JU+rG3zN9h3t9GBQg3DI2fu
-        30w++0A+9EsZu9uc6QsP/tPOt0zPn7j1TvqDjsnrr3qxJ55iWnpeZH/NDHa+KVMmmN9jmh4j
-        MGO+0ff5ZkcDvq+5rV716s6/rYcTX0Xpbg+rX6K0eNrhl361n5uNhb03fnRLD9oaeEv/cVRz
-        Zm7V1NtHJuawcs+Q2JM/s7Nf70rZVfU9m5+yqZ95/f7Bxn2dy5/JCBS0fT4t1tjXZ7Z/2sMl
-        ryw/taxgaLrO3n/kkpsSS3FGoqEWc1FxIgDWJfU5uwIAAA==
-X-CMS-MailID: 20210803101726epcas1p257df1a6ab948c39304f4246a95d039c3
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: SVC_REQ_APPROVE
-CMS-TYPE: 101P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20210803101726epcas1p257df1a6ab948c39304f4246a95d039c3
-References: <CGME20210803101726epcas1p257df1a6ab948c39304f4246a95d039c3@epcas1p2.samsung.com>
+References: <20210717045627.1739959-1-daniel@0x0f.com> <20210717045627.1739959-6-daniel@0x0f.com>
+ <CACRpkdaEMeYieH=g+3jveWgPS_8CXSgC-iryzbsoZp7LLrkzKA@mail.gmail.com>
+In-Reply-To: <CACRpkdaEMeYieH=g+3jveWgPS_8CXSgC-iryzbsoZp7LLrkzKA@mail.gmail.com>
+From:   Romain Perier <romain.perier@gmail.com>
+Date:   Tue, 3 Aug 2021 12:13:24 +0200
+Message-ID: <CABgxDo+BrfwahXW7eui1J5tLhQSx8=TB7o6TATLLS4G+HtxYXA@mail.gmail.com>
+Subject: Re: [PATCH 05/10] ARM: dts: mstar: Set gpio compatible for ssd20xd
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Daniel Palmer <daniel@0x0f.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix the below warning:
-drivers/of/fdt.c:196:4: warning: Value stored to 'pprev' is never read
-[clang-analyzer-deadcode.DeadStores]
-             pprev      = &pp->next;
-             ^            ~~~~~~~~~
+Le ven. 30 juil. 2021 =C3=A0 12:11, Linus Walleij
+<linus.walleij@linaro.org> a =C3=A9crit :
+>
+> On Sat, Jul 17, 2021 at 6:56 AM Daniel Palmer <daniel@0x0f.com> wrote:
+>
+> > Now there is gpio support for ssd20xd set the right compatible in the g=
+pio node.
+> >
+> > Signed-off-by: Daniel Palmer <daniel@0x0f.com>
+>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Reviewed-by: Romain Perier <romain.perier@gmail.com>
 
-Signed-off-by: Ohhoon Kwon <ohoono.kwon@samsung.com>
----
- drivers/of/fdt.c | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index bd35ba56aa96..5dc0b0310d7c 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -193,7 +193,6 @@ static void populate_properties(const void *blob,
- 			pp->length = len;
- 			pp->value  = pp + 1;
- 			*pprev     = pp;
--			pprev      = &pp->next;
- 			memcpy(pp->value, ps, len - 1);
- 			((char *)pp->value)[len - 1] = 0;
- 			pr_debug("fixed up name for %s -> %s\n",
--- 
-2.32.0
-
+Regards,
+Romain
