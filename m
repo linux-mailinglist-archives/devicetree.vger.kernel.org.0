@@ -2,264 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7A8E3DED9F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 14:09:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB5FA3DEDB7
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 14:17:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235309AbhHCMJz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 08:09:55 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:22766 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S233906AbhHCMJy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 08:09:54 -0400
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 173C7Kx6008225;
-        Tue, 3 Aug 2021 14:09:35 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=aYSWEcURB8BtPp5N5TZSHnzVK8P43wEB0RJvLkkwXoQ=;
- b=qbYI69LiXMlQ2/qS7JXpcOhCx3EtJyrhnLNF6SJWAPtg7+JLRLnlixA2RgBhFL0DmYPI
- 8GmR44Sba2nVgHBHStkDxf5OTW6F1Xg/b1fU1QbI0G1G7Qq0Ij55ollcPcWUpGCgd1mU
- I7lilGZ/2BxliIFkRo5k4vd8rDgOfpxgFLKTMBD0El4o20IIH1tkbKKwGZ0Jqi51edoK
- CKyAfpuiADQvAbEx4Q1U5pH1CZA6vVzVeB8MPrg6UIEDuO30WKYV09j1nrcVd+CTXCCT
- ZqBh6har34lLeWO1PIYSsJ6ibzumUUuFaHl1Q2a5bpLTP+GesNjz3gWC/fpBHUYk6+GW 9g== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 3a74mx88k7-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 03 Aug 2021 14:09:34 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 6FE6D10002A;
-        Tue,  3 Aug 2021 14:09:34 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 62E28220F52;
-        Tue,  3 Aug 2021 14:09:34 +0200 (CEST)
-Received: from lmecxl0573.lme.st.com (10.75.127.45) by SFHDAG2NODE3.st.com
- (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 3 Aug
- 2021 14:09:33 +0200
-Subject: Re: [PATCH v3 13/13] ARM: dts: sti: Introduce 4KOpen (stih418-b2264)
- board
-To:     Alain Volmat <avolmat@me.com>, Rob Herring <robh+dt@kernel.org>
-CC:     Arnd Bergmann <arnd@arndb.de>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20210331204228.26107-1-avolmat@me.com>
- <20210331204228.26107-14-avolmat@me.com>
-From:   Patrice CHOTARD <patrice.chotard@foss.st.com>
-Message-ID: <7dcac1f0-8eda-1a62-3328-c8daac8daddf@foss.st.com>
-Date:   Tue, 3 Aug 2021 14:09:33 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S235269AbhHCMRX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 08:17:23 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:34795 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S235007AbhHCMRW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 08:17:22 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 59AE9580889;
+        Tue,  3 Aug 2021 08:17:11 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Tue, 03 Aug 2021 08:17:11 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm2; bh=7rZfd/qsnUKLmSz/pSyi1ygYlA
+        c/GUtTlDvVD6X1U0s=; b=Rhxl65r/LKhG1oEfcoJMMORE347EqyXwUFvtRemlOA
+        wD3q0q5RQ+aUt6M5VcSAdPxa1kNmWNuA0w2Lz4AddLF8n0GoDg6s2gB3ocng8AmX
+        Pdpy2XmCB0bB4ogn36HLYvbj0Z+Yjgl8al/B7NxlGwKISU5VMll4rQVdYkEEtHJ4
+        AKWYMRC2KjI1BnU/CZ+v84vV2AI3PHc2QGL+3pXMp4ZhZbKDTdCc9elAgM14qZRc
+        LKCTXd1atSVOl+tKDwS2XLbZ5NYSVFcLt/KcnRZjZapde7gP83aVpzuwvnDJGS6c
+        kNuv73G/nHD8J0OGacHBtPo7FWiwL/DPWACMtdZUa80w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=7rZfd/qsnUKLmSz/p
+        Syi1ygYlAc/GUtTlDvVD6X1U0s=; b=UAb11ZjK/DE5+YvuELxIzRHQLNX8EfRwb
+        tE5k+UvkfontHOGM1ix25VPJT5GY9DFnMMJ6SCQSf6PsSKCUDO54ezjuN6vdqkhK
+        G+VnGr185+o2KptQe0iSicz4gB1xDlrLjjTURbdexuRZfxDig2h4hE/FvmrWIrB/
+        MF3NreEJ4oCBP++UQxl3kUQtDYg+lZqk1dYK1VXiYP7cLSeDUo3ygWshUv/b5j/K
+        W2/9Xmca3pXXH/qxQqS7AV+sVhkt4F+qA1wqlRwsqIrD7quUERwwY+3QW8iuUhMW
+        cE4ZLa2VnaxqliiU4BCKQ0qjZLehEdTvxw3FCPs6OPSA3QyxcH2FA==
+X-ME-Sender: <xms:xTMJYQnGvpxPw6VC9NJtTx5iC6QrkJ2HGsEAVqvcvo6YiF7d3dcrNA>
+    <xme:xTMJYf2DaMkCE_NpTIhRUdYJ8aD_31RT80k48jAdOodReT_KDZecbEpra3qt4bIM8
+    5CcbNhsYnSgzrnvp-4>
+X-ME-Received: <xmr:xTMJYerYsbJB9ZIk-_xu2wTNbRUra-wkNNdS17DBhe1So0aXlE8Y_RamzzXckn9uBr63zzNiBE3MIN4H5A39_Ci28t8tanVDN2s5Nw2C3z6U67KamZx-iS4>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrieeggdegkecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomhepufhvvghnucfrvght
+    vghruceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrghtthgvrhhnpe
+    dvffeileefkeetuedvjedvudetheefieejfeekveetheeugeevledtheekffejjeenucff
+    ohhmrghinheprghsrghhihhlihhnuhigrdhorhhgpdhkvghrnhgvlhdrohhrghdpghhith
+    hhuhgsrdgtohhmnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhf
+    rhhomhepshhvvghnsehsvhgvnhhpvghtvghrrdguvghv
+X-ME-Proxy: <xmx:xTMJYckDNwf156MpuFJSUE5NYtbtTL0kJ6imxw4MST5JxQqLAbr6Ng>
+    <xmx:xTMJYe32YofgHt1qTcCEdqQwKvOU6xL0KNJdpQuM25-iZpbMm4BFnw>
+    <xmx:xTMJYTutXjhYJlC1USQdcbKEWJJxSZod4STHuz8lfz2sezRWZSD_Tg>
+    <xmx:xzMJYXGGckW0o2LvidAqfZzCbfa77MUlzNSNLas6WBUvQmCo_oYgdQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 3 Aug 2021 08:17:06 -0400 (EDT)
+From:   Sven Peter <sven@svenpeter.dev>
+To:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>
+Cc:     Sven Peter <sven@svenpeter.dev>, Arnd Bergmann <arnd@kernel.org>,
+        devicetree@vger.kernel.org, Hector Martin <marcan@marcan.st>,
+        linux-kernel@vger.kernel.org, Marc Zyngier <maz@kernel.org>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        iommu@lists.linux-foundation.org, Alexander Graf <graf@amazon.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Rob Herring <robh+dt@kernel.org>, r.czerwinski@pengutronix.de
+Subject: [PATCH v5 0/3] Apple M1 DART IOMMU driver
+Date:   Tue,  3 Aug 2021 14:16:48 +0200
+Message-Id: <20210803121651.61594-1-sven@svenpeter.dev>
+X-Mailer: git-send-email 2.30.1 (Apple Git-130)
 MIME-Version: 1.0
-In-Reply-To: <20210331204228.26107-14-avolmat@me.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.45]
-X-ClientProxiedBy: SFHDAG1NODE3.st.com (10.75.127.3) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
- definitions=2021-08-03_02:2021-08-03,2021-08-03 signatures=0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alain
+Hi,
 
-On 3/31/21 10:42 PM, Alain Volmat wrote:
-> 4KOpen (B2264) is a board based on the STMicroelectronics STiH418 soc:
->   - 2GB DDR
->   - HDMI
->   - Ethernet 1000-BaseT
->   - PCIe (mini PCIe connector)
->   - MicroSD slot
->   - USB2 and USB3 connectors
->   - Sata
->   - 40 pins GPIO header
-> 
-> Signed-off-by: Alain Volmat <avolmat@me.com>
-> ---
-> v3: add 300MHz opp, add led, add ethernet pinctrl
-> v2: fix bootargs (removal of console=)
->     removal of rng11 node, moved into stih418.dtsi
-> 
->  arch/arm/boot/dts/Makefile          |   3 +-
->  arch/arm/boot/dts/stih418-b2264.dts | 151 ++++++++++++++++++++++++++++
->  2 files changed, 153 insertions(+), 1 deletion(-)
->  create mode 100644 arch/arm/boot/dts/stih418-b2264.dts
-> 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 8e5d4ab4e75e..3c1877627e91 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -1061,7 +1061,8 @@ dtb-$(CONFIG_ARCH_STI) += \
->  	stih407-b2120.dtb \
->  	stih410-b2120.dtb \
->  	stih410-b2260.dtb \
-> -	stih418-b2199.dtb
-> +	stih418-b2199.dtb \
-> +	stih418-b2264.dtb
->  dtb-$(CONFIG_ARCH_STM32) += \
->  	stm32f429-disco.dtb \
->  	stm32f469-disco.dtb \
-> diff --git a/arch/arm/boot/dts/stih418-b2264.dts b/arch/arm/boot/dts/stih418-b2264.dts
-> new file mode 100644
-> index 000000000000..a99604bebf8c
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/stih418-b2264.dts
-> @@ -0,0 +1,151 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2021 STMicroelectronics
-> + * Author: Alain Volmat <avolmat@me.com>
-> + */
-> +/dts-v1/;
-> +#include "stih418.dtsi"
-> +#include <dt-bindings/gpio/gpio.h>
-> +/ {
-> +	model = "STiH418 B2264";
-> +	compatible = "st,stih418-b2264", "st,stih418";
-> +
-> +	chosen {
-> +		stdout-path = &sbc_serial0;
-> +	};
-> +
-> +	memory@40000000 {
-> +		device_type = "memory";
-> +		reg = <0x40000000 0xc0000000>;
-> +	};
-> +
-> +	cpus {
-> +		cpu@0 {
-> +			operating-points-v2 = <&cpu_opp_table>;
-> +			/* u-boot puts hpen in SBC dmem at 0xb8 offset */
-> +			cpu-release-addr = <0x94100b8>;
-> +		};
-> +		cpu@1 {
-> +			operating-points-v2 = <&cpu_opp_table>;
-> +			/* u-boot puts hpen in SBC dmem at 0xb8 offset */
-> +			cpu-release-addr = <0x94100b8>;
-> +		};
-> +		cpu@2 {
-> +			operating-points-v2 = <&cpu_opp_table>;
-> +			/* u-boot puts hpen in SBC dmem at 0xb8 offset */
-> +			cpu-release-addr = <0x94100b8>;
-> +		};
-> +		cpu@3 {
-> +			operating-points-v2 = <&cpu_opp_table>;
-> +			/* u-boot puts hpen in SBC dmem at 0xb8 offset */
-> +			cpu-release-addr = <0x94100b8>;
-> +		};
-> +	};
-> +
-> +	cpu_opp_table: opp_table {
-> +		compatible = "operating-points-v2";
-> +		opp-shared;
-> +
-> +		opp00 {
-> +			opp-hz = /bits/ 64 <300000000>;
-> +			opp-microvolt = <784000>;
-> +		};
-> +		opp01 {
-> +			opp-hz = /bits/ 64 <500000000>;
-> +			opp-microvolt = <784000>;
-> +		};
-> +		opp02 {
-> +			opp-hz = /bits/ 64 <800000000>;
-> +			opp-microvolt = <784000>;
-> +		};
-> +		opp03 {
-> +			opp-hz = /bits/ 64 <1200000000>;
-> +			opp-microvolt = <784000>;
-> +		};
-> +		opp04 {
-> +			opp-hz = /bits/ 64 <1500000000>;
-> +			opp-microvolt = <784000>;
-> +		};
-> +	};
-> +
-> +	aliases {
-> +		ttyAS0 = &sbc_serial0;
-> +		ethernet0 = &ethernet0;
-> +	};
-> +
-> +	soc {
-> +		leds {
-> +			compatible = "gpio-leds";
-> +			green {
-> +				gpios = <&pio1 3 GPIO_ACTIVE_HIGH>;
-> +				default-state = "off";
-> +			};
-> +		};
-> +
-> +		pin-controller-sbc@961f080 {
-> +			gmac1 {
-> +				rgmii1-0 {
-> +					st,pins {
-> +						rxd0 = <&pio1 4 ALT1 IN DE_IO 300 CLK_A>;
-> +						rxd1 = <&pio1 5 ALT1 IN DE_IO 300 CLK_A>;
-> +						rxd2 = <&pio1 6 ALT1 IN DE_IO 300 CLK_A>;
-> +						rxd3 = <&pio1 7 ALT1 IN DE_IO 300 CLK_A>;
-> +						rxdv = <&pio2 0 ALT1 IN DE_IO 300 CLK_A>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +	};
-> +};
-> +
-> +&ehci0 {
-> +	status = "okay";
-> +};
-> +
-> +&ethernet0 {
-> +	phy-mode = "rgmii";
-> +	pinctrl-0 = <&pinctrl_rgmii1 &pinctrl_rgmii1_mdio_1>;
-> +	st,tx-retime-src = "clkgen";
-> +
-> +	snps,reset-gpio = <&pio0 7 0>;
-> +	snps,reset-active-low;
-> +	snps,reset-delays-us = <0 10000 1000000>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&miphy28lp_phy {
-> +	phy_port0: port@9b22000 {
-> +		st,sata-gen = <2>; /* SATA GEN3 */
-> +		st,osc-rdy;
-> +	};
-> +};
-> +
-> +&mmc0 {
-> +	status = "okay";
-> +};
-> +
-> +&ohci1 {
-> +	status = "okay";
-> +};
-> +
-> +&pwm1 {
-> +	status = "okay";
-> +};
-> +
-> +&sata0 {
-> +	status = "okay";
-> +};
-> +
-> +&sbc_serial0 {
-> +	status = "okay";
-> +};
-> +
-> +&spifsm {
-> +	status = "okay";
-> +};
-> +
-> +&st_dwc3 {
-> +	status = "okay";
-> +};
-> 
-Reviewed-by: Patrice Chotard <patrice.chotard@foss.st.com>
+This is v5 of my Apple M1 DART IOMMU driver series as a follow up to the previous
+versions [1][2][3][7].
 
-Thanks
-Patrice
+Short summary: this series adds support for the iommu found in Apple's new M1
+SoC which is required to use DMA on most peripherals like the display controller,
+the USB ports or the internal PCIe bus (which is used for WiFi, Ethernet and
+more USB ports).
+So far this code has been tested by multiple people with dwc3 in host and
+device mode (which both only require changes to the device tree after this
+patchset) and PCIe (using a yet to be finalized patchset).
+
+Note that this version has to be applied on top of iommu/core or iommu/next since
+it now uses the new map_pages/unmap_pages API.
+
+
+== Testing this patchset with the USB-C controller == 
+
+The two USB-C ports on the M1 machines are exposed as two separate dwc3
+controllers which are behind a DART. Now that my USB phy bringup code has been
+merged into our bootloader m1n1 you can easily test this patchset yourself:
+
+1) Follow the instructions at [4] to setup our bootloader m1n1 on your M1
+   machine which will allow you to boot kernels using a normal USB cable.
+   Note that you'll still need a special setup to expose the UART for very
+   low-level debugging.
+
+2) Apply this patchset and add the DART and dwc3 nodes as done in e.g. [5].
+
+3) Boot the kernel through our bootloader m1n1. You'll need a version after
+   commit [6] which enables the USB PHY and the USB PD chip.
+
+Note that the dwc3 controller has a quirk where each root port can only be used
+once right now. The most stable way to test is to already connected the USB
+device(s) before booting the kernel.
+
+It's also possible to test the PCIe bus but this requires a more complex setup
+for now. I can write a quick howto if anyone is interested though.
+(tl;dr: Mark Kettenis has a u-boot fork that includes PCIe bringup code and
+Marc Zyngier has a WIP patchset to add a PCIe driver)
+
+== Project Blurb ==
+
+Asahi Linux is an open community project dedicated to developing and
+maintaining mainline support for Apple Silicon on Linux. Feel free to
+drop by #asahi and #asahi-dev on OFTC to chat with us, or check
+our website for more information on the project:
+
+https://asahilinux.org/
+
+== Changes ==
+
+Changes for v5:
+ - Added reviewed-by and tested-by tags (thanks!)
+ - Rebased on top of iommu/core and replaced map/unmap with map_pages/unmap_pages
+ - Removed software bypass hacks: I've tried a few different variants now
+   and they all have drawbacks or incompatibilities that I am not comfortable
+   with. This means that PCIe devices (for which there is no kernel support yet
+   anyway) will not work correctly for now on 4K kernels. I plan to address this
+   in a follow-up series where I want to modify the dma-iommu layer to support
+   pagesize mismatches.
+ - Removed reference to ARM from the constants for the io-pgtable code
+ - Addressed the following comments by Robin Murphy, which resulted in some major
+   changes to apple-dart.c
+   - Correctly assign iommu_groups in apple_dart_device_group
+   - Get rid of the fwspec-inspired of_xlate linked lists and replaced them with
+     a simple static array with a streamid bitmap covering all known cases
+   - Relax locking: Now only a single spinlock around TLB flushes and a mutex
+     around domain initialization are required. attach_dev/detach_dev uses
+     atomic64_t.
+   - Set .suppress_bind_attrs to prevent manual unbinding
+   - Get rid of .shutdown since there's no real need to clean anything up
+   - Manage interrupts manually instead of using devm_* to prevent situations
+     where a shared interrupt could trigger while clocks are disabled
+   - apple_dart_irq now prints "unknown" when more than a single error bit
+     has been set.
+   - Use DL_FLAG_AUTOREMOVE_SUPPLIER so that there's no need to keep track
+     of the pointer
+   - Ignore any unknown protection flags instead of failing
+   - Use dev_err_ratelimited and clk_bulk_disable_unprepare instead of
+     open-coding them
+   - Correctly set and clear iommu_bus_ops
+   - Removed unhelpful WARN_ONs and duplicate sanity checks
+   - Removed unnecessary identity stream map reset code 
+   - Renamed apple-dart-iommu.c to apple-dart.c
+   - Fixed commit style to use the correct subsystem style
+ - Possibly some smaller fixes I forgot about
+
+Changes for v4:
+ - Addressed Rob Herring's remark about the incorrect phandles in the device
+   tree binding example and added his reviewed-by tag
+ - Take the software linear mapping range from the bus instead of hardcoding
+   it in the driver
+ - Use def_domain_type to force bypass mode if there's a pagesize mismatch
+   between the DART (hardwired to 16KB) and the kernel (may use 4K)
+ - Added lockdep_assert_held instead of comments as suggested by Rouven Czerwinski
+ - rebased on 5.13-rc7
+
+Changes for v3:
+ - fixed name of the iommu node in the device tree binding example
+   pointed out by Arnd Bergmann
+ - remove hardware specific checks from io-pgtable.c  as pointed out by
+   Will Deacon
+ - introduced a fake bypass mode by programming static linear pagetables
+   if the DART does not support regular bypass mode as proposed by Alex
+   Graf
+ - added checks to enforce bypass mode if there is a pagesize mismatch
+   between the DART HW and the CPU.
+ - fixed usage of GFP_KERNEL during a held spinlock found by Julia Lawall
+ - rebased on v5.13-rc3
+
+Changes for v2:
+ - fixed devicetree binding linting issues pointed out by Rob Herring and
+   reworked that file.
+ - made DART-specific code in io-pgtable.c unconditional and removed flag from
+   Kconfig as proposed by Robin Murphy.
+ - allowed multiple DART nodes in the "iommus" property as proposed by
+   Rob Herring and Robin Murphy. this resulted in significant changes
+   to apple-iommu-dart.c.
+ - the domain aperture is now forced to 32bit if translation is enabled after
+   the original suggestion to limit the aperture by Mark Kettenis and the
+   follow-up discussion and investigation with Mark Kettenis, Arnd Bergmann,
+   Robin Murphy and Rob Herring. This change also simplified the code
+   in io-pgtable.c and made some of the improvements suggested during review
+   not apply anymore.
+ - added support for bypassed and isolated domain modes.
+ - reject IOMMU_MMIO and IOMMU_NOEXEC since it's unknown how to set these up
+   for now or if the hardware even supports these flags.
+ - renamed some registers to be less confusing (mainly s/DOMAIN/STREAM/ to
+   prevent confusion with linux's iommu domain concept).
+
+
+[1] https://lore.kernel.org/linux-iommu/20210320151903.60759-1-sven@svenpeter.dev/
+[2] https://lore.kernel.org/linux-iommu/20210328074009.95932-1-sven@svenpeter.dev/
+[3] https://lore.kernel.org/linux-iommu/20210603085003.50465-1-sven@svenpeter.dev/
+[4] https://github.com/AsahiLinux/docs/wiki/Developer-Quickstart
+[5] https://github.com/AsahiLinux/linux/commit/7d4ebb0b22e9bfec849e2af86ddeb46ec29d7feb
+[6] https://github.com/AsahiLinux/m1n1/commit/9529ec2b4fd6550f9cfd66d9f2448b90804699a1
+[7] https://lore.kernel.org/linux-iommu/20210627143405.77298-1-sven@svenpeter.dev/
+
+Sven Peter (3):
+  iommu/io-pgtable: Add DART pagetable format
+  dt-bindings: iommu: add DART iommu bindings
+  iommu/dart: Add DART iommu driver
+
+ .../devicetree/bindings/iommu/apple,dart.yaml |  81 ++
+ MAINTAINERS                                   |   7 +
+ drivers/iommu/Kconfig                         |  14 +
+ drivers/iommu/Makefile                        |   1 +
+ drivers/iommu/apple-dart.c                    | 923 ++++++++++++++++++
+ drivers/iommu/io-pgtable-arm.c                |  63 ++
+ drivers/iommu/io-pgtable.c                    |   1 +
+ include/linux/io-pgtable.h                    |   7 +
+ 8 files changed, 1097 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iommu/apple,dart.yaml
+ create mode 100644 drivers/iommu/apple-dart.c
+
+-- 
+2.25.1
+
