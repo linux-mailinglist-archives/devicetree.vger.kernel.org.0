@@ -2,73 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 453E83DE640
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 07:38:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CDAA03DE66A
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 07:58:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233891AbhHCFiP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 01:38:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41378 "EHLO
+        id S233734AbhHCF6O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 01:58:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233872AbhHCFiO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 01:38:14 -0400
-Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A58CC06175F
-        for <devicetree@vger.kernel.org>; Mon,  2 Aug 2021 22:38:03 -0700 (PDT)
-Received: by mail-io1-xd32.google.com with SMTP id f6so17188041ioc.6
-        for <devicetree@vger.kernel.org>; Mon, 02 Aug 2021 22:38:03 -0700 (PDT)
+        with ESMTP id S233677AbhHCF6M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 01:58:12 -0400
+Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69A0CC061764;
+        Mon,  2 Aug 2021 22:58:02 -0700 (PDT)
+Received: by mail-qt1-x82e.google.com with SMTP id a12so13281579qtb.2;
+        Mon, 02 Aug 2021 22:58:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
+        d=jms.id.au; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=vi76Iy2+G7lRArH6vuam1Hfh2GEzigTGHE+mXu3eEQw=;
-        b=qLj1y6fObSImVY0F0di8u/IF17wANqqqgvULYkhwRpKAGIdln28rEco4Riz8tMS4z+
-         3ZfBL+GTgm0I3uYsrPqR38H1ZePcnoxJJA5jHljoEUgk57jKKhKJvmj1uXlK8Fcrcnfw
-         IYoUcNNbQStu/smuDcK/AU7hIRpe5mCbAHIJtLG4wBYq1OiM5cIO1KCjwMHyu3O6SzwR
-         VSrTFDVzKDqdZwOqIY+qk3GT8nxZWCAXeKQiVxkNrWwQKgihwE1nYU1//j0WTbUzxCiw
-         GlEZZTBXyEK8nzark4WGWGiA/azDDniWdirEvCdMJ9NtpU6nygtVUuN0+rQgaX56lt0I
-         pD5g==
+        bh=A8r1SOnghP/MBO4ignCwnrhJci8PgXDgxCYfoAoBqoM=;
+        b=diBrfg3sOAjAdEgR2fwx5obH5BQMLqcZg+0HoS3Mm+v0wWlsTHJim4DrIaVp+06oco
+         yq8pEbh/ioAUlzrWbFtle+fHa9D23Uu1hCDfgRSrZjQ1cjtEz/Q+ITDYifLNb1YWLoMo
+         Qktc+tzAtpyX4SIqgjp/anumj2joR8zCF00co=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=vi76Iy2+G7lRArH6vuam1Hfh2GEzigTGHE+mXu3eEQw=;
-        b=mGWxpj3dvZGH2pv1AAr1pJ03q+w8Ggo793z2vK93zZFqnFY7wIdkl7oOOHtWyX8tGs
-         x+3Bmsyxg45RuwHO9C+xX1lYWZn0NJqz5QBv7mjLdDZFJhFJ5cJwmoCYUqT8KZwrdJ8A
-         mQ2Xy+fsOLy0urDd1XgONTEPFuM0KR2gZ2MX6ynoUBKDpyWZ3qX22fua16J8nbEc+6os
-         t0Rp2UczqeCCl5hwiWBaulg/jBtjn1krI8pvF9S/kJV+3NO9r6smte/Z46PgDcY4ChaB
-         PUrrCYEaxL1nEKxS1GY2kP0p0EI+CrbRqg4B5CT1fWkxAFlbx5tgDfzuETRc6UOgaSed
-         Aygg==
-X-Gm-Message-State: AOAM533TXOueXMB9UlvjMbPjkc3NT2pxgbzKIJKoyhKhEaM79x4dXf+z
-        i78Bw8n29adn7rIUGAjcd2/VsX3Tl34wilgWaWxWPg==
-X-Google-Smtp-Source: ABdhPJw/2YigJyn4JYO2+qd6bLRkOERLsf4W8mUBRLblDDC0N6ey6KPmqUc7erPS6iYqy2aN3qVsIE+0gB6rMCfF710=
-X-Received: by 2002:a02:ba87:: with SMTP id g7mr11453418jao.110.1627969081709;
- Mon, 02 Aug 2021 22:38:01 -0700 (PDT)
+        bh=A8r1SOnghP/MBO4ignCwnrhJci8PgXDgxCYfoAoBqoM=;
+        b=dZxCciG3kmJcyDjyM1gxuA+/dEFmSggsCpvLSiedKkR/N7kuf1CbAWTYHce+91fBkv
+         q2iNuw26G6/wcvsklphzugkGeK2s028pXRQHNp8jWL+wsIj9cq2q9hmliawJVbsp1tn9
+         Zf2DvaT9mbkdA9G/CVW8+RrkSmsueYQEJw0XvvGJOrRtrQ+rJSBGULt6QDFOKa+IeQ+M
+         kOGcf9/lIm8lJszqpSq3z3ETWb0QW1LF00+uxB2pSoxs2fm5JbNDECQsIE3ztYMbqZW7
+         MrdSAt366MW3Nk+hn3al5lSkR9KuQS3NsLJR/mEzQw0sX7XzQArQel8xi05pj7HBgbP+
+         u5jg==
+X-Gm-Message-State: AOAM533OqqK1fmTNWLad0bpdL/9i74V3eL3vT449/muaQK7sgbHEXzqJ
+        4kGMkQU2aWC1pekBoINdifuUS6PnaoDkWUt9JksIWSx8
+X-Google-Smtp-Source: ABdhPJxqNKg77SS3jHcROLjxWjGxNdgL8Z+BYVHbG4gOIjY5GnEIA0nxzuTN50vPMyHjoExsVMAkoBiep3qlFYYYuHA=
+X-Received: by 2002:ac8:6697:: with SMTP id d23mr16993913qtp.135.1627970281534;
+ Mon, 02 Aug 2021 22:58:01 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210726122901.12195-1-Christine.Zhu@mediatek.com> <20210726122901.12195-2-Christine.Zhu@mediatek.com>
-In-Reply-To: <20210726122901.12195-2-Christine.Zhu@mediatek.com>
-From:   Tzung-Bi Shih <tzungbi@google.com>
-Date:   Tue, 3 Aug 2021 13:37:50 +0800
-Message-ID: <CA+Px+wX+gy4hV3BsTU81ThS=FUe0HidUV-iZZvQ3qm4WxKXGxQ@mail.gmail.com>
-Subject: Re: [v7,1/3] dt-bindings: mediatek: mt8195: update mtk-wdt document
-To:     Christine Zhu <christine.zhu@mediatek.com>
-Cc:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
-        matthias.bgg@gmail.com, srv_heupstream@mediatek.com,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        seiya.wang@mediatek.com
+References: <20210712100317.23298-1-steven_lee@aspeedtech.com>
+ <CAMpxmJXfUterUdaGHOJT5hwcVJ+3cqgSQVdp-6Atuyyo36FxfQ@mail.gmail.com>
+ <20210723031615.GA10457@aspeedtech.com> <CAMpxmJU4jN-hpNYPLHLbjx4uZ6vDqcyuMVQXhHg1BWXOqyS22A@mail.gmail.com>
+ <58256e8f-6c9a-4ad4-b51e-4048b6feb42a@www.fastmail.com>
+In-Reply-To: <58256e8f-6c9a-4ad4-b51e-4048b6feb42a@www.fastmail.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Tue, 3 Aug 2021 05:57:49 +0000
+Message-ID: <CACPK8XdfisvSzr3uWYmfd+u1UtM5+cyMBMvcDZJ+jQ38A1BSXg@mail.gmail.com>
+Subject: Re: [PATCH v6 0/9] ASPEED sgpio driver enhancement.
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Steven Lee <steven_lee@aspeedtech.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Hongwei Zhang <Hongweiz@ami.com>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        Billy Tsai <billy_tsai@aspeedtech.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 26, 2021 at 8:30 PM Christine Zhu
-<Christine.Zhu@mediatek.com> wrote:
-> @@ -13,6 +13,7 @@ Required properties:
->         "mediatek,mt8183-wdt": for MT8183
->         "mediatek,mt8516-wdt", "mediatek,mt6589-wdt": for MT8516
->         "mediatek,mt8192-wdt": for MT8192
-> +       "mediatek,mt8195-wdt": for MT8195
-Just realized the patch has been applied in commit b326f2c85f3d
-("dt-bindings: watchdog: Add compatible for Mediatek MT8195").  Could
-you rebase the series to the latest tree and resend?
+On Tue, 3 Aug 2021 at 04:49, Andrew Jeffery <andrew@aj.id.au> wrote:
+> On Fri, 23 Jul 2021, at 17:00, Bartosz Golaszewski wrote:
+> > Joel, Andrew: can I take the GPIO patches through the GPIO tree and
+> > you'll take the ARM patches separately into v5.15?
+>
+> I think that should be okay. I'll poke Joel.
+
+Yes, that's fine. I have merged the first four patches into the aspeed tree.
+
+Cheers,
+
+Joel
