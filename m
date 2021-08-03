@@ -2,159 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03C1A3DEEEE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 15:16:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BC3F3DEF18
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 15:30:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236150AbhHCNQw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 09:16:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40408 "EHLO
+        id S236451AbhHCNaQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 09:30:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236138AbhHCNQw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 09:16:52 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 329F1C06175F
-        for <devicetree@vger.kernel.org>; Tue,  3 Aug 2021 06:16:41 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id b13so14416687wrs.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Aug 2021 06:16:41 -0700 (PDT)
+        with ESMTP id S236440AbhHCNaO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 09:30:14 -0400
+Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEBDBC061764
+        for <devicetree@vger.kernel.org>; Tue,  3 Aug 2021 06:30:02 -0700 (PDT)
+Received: by mail-qv1-xf2a.google.com with SMTP id js7so7988580qvb.4
+        for <devicetree@vger.kernel.org>; Tue, 03 Aug 2021 06:30:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=LY4ajhYYjBKNdvsHnzBXr58vU15+CDEnGQoQuQpIjrY=;
-        b=Bo3krVhGkUb9iZzYD0LaPXEd677pZRw4pcUbpAy1L7wJiwJY++nLFBkXKEc4Hq5SMp
-         3lOHGOlgdTqZHFk+lzT58stF2g7kcuzOpLXpvalxe9M2x4kcwVxHRc78nf0n4TJorPgI
-         9NDNMlmGYNlEBh1k6mYJAiSWr2aGbhryQsCZWH3OxX94w8qFuoT+kjyifvKy9rpQxcnO
-         xVLKJ3T3LF1NjCTNNWrf5894BHWt4RIozT5+oaZARyPmTWpPy4dRaAtzj3Z7n4Kvu62M
-         4QepXSRg9SuTzFRI0yAE7ExCHdi7bCWv1XVQva0dsJ4hqGh2Hh4rapCtxKKdLlT3GF0h
-         2OMQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=T5LWJvLNPFvrsP+8rTSctWTnBPUV+sbu54F2/XzyL04=;
+        b=E6R+q4WD1t1XqkKiv21e6XxoY3rFhv0SUhabTeyBnlgtYjYkcuLEL2myi7zpIuFI83
+         0JaWLF5/xzmhLU/qAQeCbCFjodX3T8KK2qtxtj8uLvgrSP82TlPHQkDLcKL3Xb7Nn8m+
+         yZYTnDb8nSQJz43u71xWnFYk0OlWdf1+jMb8rMTl2Akyu/QeulcJHs2hbG+RaQH8h21z
+         hSnhqu8cocPiEDi1rAyTJgb0lYgW26KuwQHbWeAaYxl3EkacCTGQknHBCBqcN5VAsVLa
+         6MfptddAV/eaZXWdiEgJ6u7UYk0HqMdidvm98aRF7DA83RUDOTsgE8k3D8FpiarUSIXr
+         q6gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=LY4ajhYYjBKNdvsHnzBXr58vU15+CDEnGQoQuQpIjrY=;
-        b=Kq79nIESSFXmGaxdHOsxB0iJ+joQbudGf5V4lAxgX66dOCxNYfkFl5lEP1BIVhXoWw
-         c5J/mqLI3yCG9yzEfmyUzGGwvK5WSMR2v9o23raA/jFleeXb0Kbr3MxKrnUr7baJ9CdD
-         3TQufqsWJOInIKP6EDd9381UlsYdMuVvBQPg4JzEtcQrpa7l01vNcgGgm7DSLaSA3F0F
-         B2OOP09Mv/+LGLxaKQsNxwOFPFnvfoI8VYnGSfzbmDtvM3i1DRWNS23BDqwGRlF8AqiZ
-         nzL62/Mc4cKZGce1ahcyjqLxtw6Lrggb4hsm/mXShvTrdGSK5exBjRVHzC53xguHtPft
-         9+8Q==
-X-Gm-Message-State: AOAM531pjywU8iOPn6u3mNT0JoiVOeaYPuXZnUJUwEhlKBAcM/VQS4gk
-        ky0igJ+BV08mr11OMKIdXHYPgQ==
-X-Google-Smtp-Source: ABdhPJzU/OufZtp4hvQqfr8/P1Mac8bTSvwq0I8OeJ0OSDvThVu99FhN0auH+PrAGbUsSzQrv6la0w==
-X-Received: by 2002:adf:f046:: with SMTP id t6mr23699153wro.266.1627996599750;
-        Tue, 03 Aug 2021 06:16:39 -0700 (PDT)
-Received: from google.com ([109.180.115.228])
-        by smtp.gmail.com with ESMTPSA id c12sm14820845wrm.29.2021.08.03.06.16.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Aug 2021 06:16:39 -0700 (PDT)
-Date:   Tue, 3 Aug 2021 14:16:37 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Alistair Francis <alistair@alistair23.me>
-Cc:     robh+dt@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-        linux-imx@nxp.com, kernel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alistair23@gmail.com
-Subject: Re: [PATCH v8 02/11] mfd: sy7636a: Initial commit
-Message-ID: <YQlBtQDrVHqh3N5D@google.com>
-References: <20210803084456.198-1-alistair@alistair23.me>
- <20210803084456.198-2-alistair@alistair23.me>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=T5LWJvLNPFvrsP+8rTSctWTnBPUV+sbu54F2/XzyL04=;
+        b=L/NtLxH9SsTEZ+qwp++sKatkKRaaJkUtset6VUvbhxcCdH3mObzodc2NEJkkPLqZvV
+         +c75wXRL6Le3TNip+QvZVJd2nLw0Ws3FibADPKayQTNHMhCpwGTdhAmP6uKKEhJHptCV
+         jqtxD2577wUEycahA0neEXozxbg6+/0DUKdhAIWddKw4yXER9opl+rJzevYmrxxerYk8
+         OXkmJI5QLBSbiekwVvlfEZmGE0LpbM+sbRvb2Bow2d7AYrWIpucqQazspHHTo8soE6nB
+         wX8VAeceF6vEq364IwajYcHS+Em2U1XtNwh0Gr1aDkahIj13NUAFyV/et6Jcd0E0MVLZ
+         mDfQ==
+X-Gm-Message-State: AOAM532FzAimXSLTcnZ+RJjCjaTKEkzyvgk1hMCqmZ3i+1LiS2UstI4V
+        agSWcS7flWLLCo8ydqLc3FeJj1lROhdaiB8+sCdfxw==
+X-Google-Smtp-Source: ABdhPJx51VqlQMR3Ad0jd5YW0uaLDMWfS3K+CFXKdlzNGEDquQFkMceVecHmwQWoRFCePUdCzX792/HbKXHewVIIelA=
+X-Received: by 2002:a05:6214:1021:: with SMTP id k1mr21594531qvr.4.1627997401968;
+ Tue, 03 Aug 2021 06:30:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210803084456.198-2-alistair@alistair23.me>
+References: <1627987307-29347-1-git-send-email-kalyan_t@codeaurora.org>
+In-Reply-To: <1627987307-29347-1-git-send-email-kalyan_t@codeaurora.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Tue, 3 Aug 2021 16:29:51 +0300
+Message-ID: <CAA8EJpotuiBFDXvNP3BRKYGmjMt0MzduggXJye__jYbAshfLUA@mail.gmail.com>
+Subject: Re: [v2] drm/msm/disp/dpu1: add safe lut config in dpu driver
+To:     Kalyan Thota <kalyan_t@codeaurora.org>
+Cc:     "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <dri-devel@lists.freedesktop.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        Krishna Manikandan <mkrishn@codeaurora.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>, stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 03 Aug 2021, Alistair Francis wrote:
+On Tue, 3 Aug 2021 at 13:42, Kalyan Thota <kalyan_t@codeaurora.org> wrote:
+>
+> Add safe lut configuration for all the targets in dpu
+> driver as per QOS recommendation.
+>
+> Issue reported on SC7280:
+>
+> With wait-for-safe feature in smmu enabled, RT client
+> buffer levels are checked to be safe before smmu invalidation.
+> Since display was always set to unsafe it was delaying the
+> invalidaiton process thus impacting the performance on NRT clients
+> such as eMMC and NVMe.
+>
+> Validated this change on SC7280, With this change eMMC performance
+> has improved significantly.
+>
+> Changes in v1:
+> - Add fixes tag (Sai)
+> - CC stable kernel (Dimtry)
+>
+> Fixes: cfacf946a464d4(drm/msm/disp/dpu1: add support for display for SC7280 target)
+> Signed-off-by: Kalyan Thota <kalyan_t@codeaurora.org>
+> Tested-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org> (sc7280, sc7180)
 
-> Initial support for the Silergy SY7636A Power Management chip.
-> 
-> Signed-off-by: Alistair Francis <alistair@alistair23.me>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
 > ---
->  drivers/mfd/Kconfig         |  9 +++++
->  drivers/mfd/Makefile        |  1 +
->  drivers/mfd/sy7636a.c       | 72 +++++++++++++++++++++++++++++++++++++
->  include/linux/mfd/sy7636a.h | 45 +++++++++++++++++++++++
->  4 files changed, 127 insertions(+)
->  create mode 100644 drivers/mfd/sy7636a.c
->  create mode 100644 include/linux/mfd/sy7636a.h
-> 
-> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> index 6a3fd2d75f96..b82208f0c79c 100644
-> --- a/drivers/mfd/Kconfig
-> +++ b/drivers/mfd/Kconfig
-> @@ -1352,6 +1352,15 @@ config MFD_SYSCON
->  	  Select this option to enable accessing system control registers
->  	  via regmap.
->  
-> +config MFD_SY7636A
-> +	tristate "Silergy SY7636A Power Management IC"
-> +	select MFD_CORE
-> +	select REGMAP_I2C
-> +	depends on I2C
-> +	help
-> +	  Select this option to enable support for the Silergy SY7636A
-> +	  Power Management IC.
-> +
->  config MFD_DAVINCI_VOICECODEC
->  	tristate
->  	select MFD_CORE
-> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> index 8116c19d5fd4..cbe581e87fa9 100644
-> --- a/drivers/mfd/Makefile
-> +++ b/drivers/mfd/Makefile
-> @@ -266,6 +266,7 @@ obj-$(CONFIG_MFD_KHADAS_MCU) 	+= khadas-mcu.o
->  obj-$(CONFIG_MFD_ACER_A500_EC)	+= acer-ec-a500.o
->  obj-$(CONFIG_MFD_QCOM_PM8008)	+= qcom-pm8008.o
->  
-> +obj-$(CONFIG_MFD_SY7636A)	+= sy7636a.o
->  obj-$(CONFIG_SGI_MFD_IOC3)	+= ioc3.o
->  obj-$(CONFIG_MFD_SIMPLE_MFD_I2C)	+= simple-mfd-i2c.o
->  obj-$(CONFIG_MFD_INTEL_M10_BMC)   += intel-m10-bmc.o
-> diff --git a/drivers/mfd/sy7636a.c b/drivers/mfd/sy7636a.c
-> new file mode 100644
-> index 000000000000..f3ff93c7395d
-> --- /dev/null
-> +++ b/drivers/mfd/sy7636a.c
-> @@ -0,0 +1,72 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * MFD parent driver for SY7636A chip
-> + *
-> + * Copyright (C) 2021 reMarkable AS - http://www.remarkable.com/
-> + *
-> + * Authors: Lars Ivar Miljeteig <lars.ivar.miljeteig@remarkable.com>
-> + *          Alistair Francis <alistair@alistair23.me>
-> + *
-> + * Based on the lp87565 driver by Keerthy <j-keerthy@ti.com>
-> + */
-> +
-> +#include <linux/interrupt.h>
-> +#include <linux/mfd/core.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +
-> +#include <linux/mfd/sy7636a.h>
-> +
-> +static const struct regmap_config sy7636a_regmap_config = {
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +};
-> +
-> +static const struct mfd_cell sy7636a_cells[] = {
-> +	{ .name = "sy7636a-regulator", },
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+> index d01c4c9..2e482cd 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+> @@ -974,6 +974,7 @@ static const struct dpu_perf_cfg sdm845_perf_data = {
+>         .amortizable_threshold = 25,
+>         .min_prefill_lines = 24,
+>         .danger_lut_tbl = {0xf, 0xffff, 0x0},
+> +       .safe_lut_tbl = {0xfff0, 0xf000, 0xffff},
+>         .qos_lut_tbl = {
+>                 {.nentry = ARRAY_SIZE(sdm845_qos_linear),
+>                 .entries = sdm845_qos_linear
+> @@ -1001,6 +1002,7 @@ static const struct dpu_perf_cfg sc7180_perf_data = {
+>         .min_dram_ib = 1600000,
+>         .min_prefill_lines = 24,
+>         .danger_lut_tbl = {0xff, 0xffff, 0x0},
+> +       .safe_lut_tbl = {0xfff0, 0xff00, 0xffff},
+>         .qos_lut_tbl = {
+>                 {.nentry = ARRAY_SIZE(sc7180_qos_linear),
+>                 .entries = sc7180_qos_linear
+> @@ -1028,6 +1030,7 @@ static const struct dpu_perf_cfg sm8150_perf_data = {
+>         .min_dram_ib = 800000,
+>         .min_prefill_lines = 24,
+>         .danger_lut_tbl = {0xf, 0xffff, 0x0},
+> +       .safe_lut_tbl = {0xfff8, 0xf000, 0xffff},
+>         .qos_lut_tbl = {
+>                 {.nentry = ARRAY_SIZE(sm8150_qos_linear),
+>                 .entries = sm8150_qos_linear
+> @@ -1056,6 +1059,7 @@ static const struct dpu_perf_cfg sm8250_perf_data = {
+>         .min_dram_ib = 800000,
+>         .min_prefill_lines = 35,
+>         .danger_lut_tbl = {0xf, 0xffff, 0x0},
+> +       .safe_lut_tbl = {0xfff0, 0xff00, 0xffff},
+>         .qos_lut_tbl = {
+>                 {.nentry = ARRAY_SIZE(sc7180_qos_linear),
+>                 .entries = sc7180_qos_linear
+> @@ -1084,6 +1088,7 @@ static const struct dpu_perf_cfg sc7280_perf_data = {
+>         .min_dram_ib = 1600000,
+>         .min_prefill_lines = 24,
+>         .danger_lut_tbl = {0xffff, 0xffff, 0x0},
+> +       .safe_lut_tbl = {0xff00, 0xff00, 0xffff},
+>         .qos_lut_tbl = {
+>                 {.nentry = ARRAY_SIZE(sc7180_qos_macrotile),
+>                 .entries = sc7180_qos_macrotile
+> --
+> 2.7.4
+>
 
-What kind of regulator is 'vcom'? LDO? DCDC?
-
-> +	{ .name = "sy7636a-temperature", },
-> +	{ .name = "sy7636a-thermal", },
-> +};
 
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+With best wishes
+Dmitry
