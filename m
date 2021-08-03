@@ -2,151 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68CF83DE627
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 07:27:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B45A23DE63A
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 07:37:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233436AbhHCF1Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 01:27:25 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:47176 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229507AbhHCF1Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 01:27:25 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1735R7xT081485;
-        Tue, 3 Aug 2021 00:27:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1627968427;
-        bh=3GymSx5fuQhs/15Zd9CuB3vkNv8nNT+a9AI+QPpxCyQ=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=WDAAJ7MotOnmaj14mbtTpbefjyXXM02gXxzxgjaSz4Nf5Jdi+IABNlK3Sel0KH2AE
-         ZhwpeeRJ6HasiZQhizT0gCB6Ig2aUwjddFoR47+8xnkKZHqShMAo/B0k4EIi2Z4LRN
-         7NSqXRs3PUZfblU9CdXuHL/1Kr5+aUWOWDhniwnc=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1735R7KX002559
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 3 Aug 2021 00:27:07 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 3 Aug
- 2021 00:27:07 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Tue, 3 Aug 2021 00:27:07 -0500
-Received: from [10.250.232.99] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1735R1V1115154;
-        Tue, 3 Aug 2021 00:27:02 -0500
-Subject: Re: [PATCH v7 0/3] Add Qualcomm PCIe Endpoint driver support
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
-        <robh@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <hemantk@codeaurora.org>, <smohanad@codeaurora.org>,
-        <bjorn.andersson@linaro.org>, <sallenki@codeaurora.org>,
-        <skananth@codeaurora.org>, <vpernami@codeaurora.org>,
-        <vbadigan@codeaurora.org>
-References: <20210722121242.47838-1-manivannan.sadhasivam@linaro.org>
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-Message-ID: <2a0b7f85-dcd7-fc87-8e02-37725f66b9cf@ti.com>
-Date:   Tue, 3 Aug 2021 10:57:00 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S229507AbhHCFhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 01:37:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41166 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231386AbhHCFhW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 01:37:22 -0400
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E831C061764
+        for <devicetree@vger.kernel.org>; Mon,  2 Aug 2021 22:37:12 -0700 (PDT)
+Received: by mail-pl1-x635.google.com with SMTP id k2so4792902plk.13
+        for <devicetree@vger.kernel.org>; Mon, 02 Aug 2021 22:37:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=TzgmYchbci/zhvlgXLAGmYsl7UzG8nnyQecH+/1YGbQ=;
+        b=ES55ynagZ88pg0GPjV6f9YmdPOu1QNR8D/oRa8bNQ/T4u9Nxk+qPpJ5UcbEoQilUyZ
+         u3+F/HwsLgeupDpIDbgs1unBMYXyLlltf0CudKw6Ac1QXWjntXx+kNos74b2LiMtNEcv
+         es9C9D3nxwbVWjEvI1IPePrzDYu2Oqq5AJMmU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=TzgmYchbci/zhvlgXLAGmYsl7UzG8nnyQecH+/1YGbQ=;
+        b=WQJNZ8v37te6oPcYguYWMBDQBhgtNwRsuzzmGuPTGA2leqbxEc7Pv3umuU+YPgidUc
+         exgQ25pDJTLb4nG4242JrwSXZYtxbm/EhQ4ogRAZS4vZWmGIZJq6VrQK1KdmC/WDWHDX
+         3ocD+J5g0TdhSrAV1mOx/NcpoNIG2B5MA9Oc/rDrlXY9DNer6zoQv4RaBCJjjkUGxsRf
+         tWHdqus04IgZBC1XTYnxkiq+G8ccyH8gwwTQIpUJk5eQc3aIXYxFkcRdusm4v7neTRlh
+         ciCadkcXu2yb9zsB+UX6xqe5xhWYMKCkTbOvnTwE2vi7vj5ACDgd7MExQRBLa3emkfc2
+         F10g==
+X-Gm-Message-State: AOAM530rmi9PS4sTYvcjlonj5CinuiopmlpDBpQdvNJYBBBwXKT0VD7B
+        6ybwgHBxDi9JtOo6Z3toLvCGw2Fg+AKCfKM/JzsUXg==
+X-Google-Smtp-Source: ABdhPJwy22hM/0nLperLTs7oqlOkW3eLaO6jLCVztbfyp37svS9AhfV/dPAYrDNKRL8a0yAc2zvp451Ro7v8cSdVagE=
+X-Received: by 2002:a17:902:b788:b029:12c:2888:9589 with SMTP id
+ e8-20020a170902b788b029012c28889589mr17319543pls.60.1627969031860; Mon, 02
+ Aug 2021 22:37:11 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210722121242.47838-1-manivannan.sadhasivam@linaro.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20210715121209.31024-1-yong.wu@mediatek.com> <20210715121209.31024-12-yong.wu@mediatek.com>
+ <CAATdQgAfo9oNR5=ogEottHajODngi1ahvKUnEOUczzjreYpPcQ@mail.gmail.com>
+ <1626935902.27875.7.camel@mhfsdcap03> <1627540902.13818.3.camel@mhfsdcap03>
+In-Reply-To: <1627540902.13818.3.camel@mhfsdcap03>
+From:   Ikjoon Jang <ikjn@chromium.org>
+Date:   Tue, 3 Aug 2021 13:37:01 +0800
+Message-ID: <CAATdQgCf2sNwZWBKOC=HJU7Ur+7J6+uc75UD6xjfMF71Dxr18Q@mail.gmail.com>
+Subject: Re: [PATCH v2 11/11] memory: mtk-smi: mt8195: Add initial setting for smi-larb
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        iommu@lists.linux-foundation.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Manivannan,
+Hi,
 
-On 22/07/21 5:42 pm, Manivannan Sadhasivam wrote:
-> Hello,
-> 
-> This series adds support for Qualcomm PCIe Endpoint controller found
-> in platforms like SDX55. The Endpoint controller is based on the designware
-> core with additional Qualcomm wrappers around the core.
-> 
-> The driver is added separately unlike other Designware based drivers that
-> combine RC and EP in a single driver. This is done to avoid complexity and
-> to maintain this driver autonomously.
-> 
-> The driver has been validated with an out of tree MHI function driver on
-> SDX55 based Telit FN980 EVB connected to x86 host machine over PCIe.
+On Thu, Jul 29, 2021 at 2:41 PM Yong Wu <yong.wu@mediatek.com> wrote:
+>
+> Hi Ikjoon,
+>
+> Just a ping.
+>
+> On Thu, 2021-07-22 at 14:38 +0800, Yong Wu wrote:
+> > On Wed, 2021-07-21 at 21:40 +0800, Ikjoon Jang wrote:
+> > > On Thu, Jul 15, 2021 at 8:23 PM Yong Wu <yong.wu@mediatek.com> wrote:
+> > > >
+> > > > To improve the performance, We add some initial setting for smi larbs.
+> > > > there are two part:
+> > > > 1), Each port has the special ostd(outstanding) value in each larb.
+> > > > 2), Two general setting for each larb.
 
-Can you also validate it with in-kernel pci-endpoint-test?
+Honestly, I think nobody outside Mediatek will understand this.
+Can you please update this to be more generic?
+Like "Apply default bus settings for mt8195, without this, XXX
+problems can happen.. "?
 
-It would also help if you can test your patches after
-https://lore.kernel.org/r/20210803050310.27122-1-kishon@ti.com
+Or for example, adding brief descriptions on what
+MTK_SMI_FLAG_LARB_THRT_EN, MTK_SMI_FLAG_LARB_SW_FLAG,
+and MTK_SMI_FLAG_LARB_SW_FLAG[] are for would be better if it's available.
 
-Not expecting any dependencies but just to cross check.
+> > > >
+> > > > In some SoC, this setting maybe changed dynamically for some special case
+> > > > like 4K, and this initial setting is enough in mt8195.
+> > > >
+> > > > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> > > > ---
+> > [...]
+> > > >  struct mtk_smi {
+> > > > @@ -213,12 +228,22 @@ static void mtk_smi_larb_config_port_mt8173(struct device *dev)
+> > > >  static void mtk_smi_larb_config_port_gen2_general(struct device *dev)
+> > > >  {
+> > > >         struct mtk_smi_larb *larb = dev_get_drvdata(dev);
+> > > > -       u32 reg;
+> > > > +       u32 reg, flags_general = larb->larb_gen->flags_general;
+> > > > +       const u8 *larbostd = larb->larb_gen->ostd[larb->larbid];
+> > > >         int i;
+> > > >
+> > > >         if (BIT(larb->larbid) & larb->larb_gen->larb_direct_to_common_mask)
+> > > >                 return;
+> > > >
+> > > > +       if (MTK_SMI_CAPS(flags_general, MTK_SMI_FLAG_LARB_THRT_EN))
+> > > > +               writel_relaxed(SMI_LARB_THRT_EN, larb->base + SMI_LARB_CMD_THRT_CON);
+> > > > +
+> > > > +       if (MTK_SMI_CAPS(flags_general, MTK_SMI_FLAG_LARB_SW_FLAG))
+> > > > +               writel_relaxed(SMI_LARB_SW_FLAG_1, larb->base + SMI_LARB_SW_FLAG);
+> > > > +
+> > > > +       for (i = 0; i < SMI_LARB_PORT_NR_MAX && larbostd && !!larbostd[i]; i++)
+> > > > +               writel_relaxed(larbostd[i], larb->base + SMI_LARB_OSTDL_PORTx(i));
+> > >
+> > > All other mtk platform's larbs have the same format for SMI_LARB_OSTDL_PORTx()
+> > > registers at the same offset? or is this unique feature for mt8195?
+> >
+> > All the other Platform's larbs have the same format at the same offset.
+>
+> In this case, Do you have some other further comment? If no, I will keep
+> the current solution for this.
 
-Thanks
-Kishon
+Sorry for the late response,
+I have no further comments or any objections on here. Please go ahead for v3.
+I just had no idea on the register definitions and wanted to be sure that
+newly added register definitions are common to all MTK platforms.
 
-> 
-> Thanks,
-> Mani
-> 
-> Changes in v7:
-> 
-> * Used existing naming convention for callback functions
-> * Used active low state for PERST# gpio
-> 
-> Changes in v6:
-> 
-> * Removed status property in DT and added reviewed tag from Rob
-> * Switched to _relaxed variants as suggested by Rob
-> 
-> Changes in v5:
-> 
-> * Removed the DBI register settings that are not needed
-> * Used the standard definitions available in pci_regs.h
-> * Added defines for all the register fields
-> * Removed the left over code from previous iteration
-> 
-> Changes in v4:
-> 
-> * Removed the active_config settings needed for IPA integration
-> * Switched to writel for couple of relaxed versions that sneaked in
-> 
-> Changes in v3:
-> 
-> * Lot of minor cleanups to the driver patch based on review from Bjorn and Stan.
-> * Noticeable changes are:
->   - Got rid of _relaxed calls and used readl/writel
->   - Got rid of separate TCSR memory region and used syscon for getting the
->     register offsets for Perst registers
->   - Changed the wake gpio handling logic
->   - Added remove() callback and removed "suppress_bind_attrs"
->   - stop_link() callback now just disables PERST IRQ
-> * Added MMIO region and doorbell interrupt to the binding
-> * Added logic to write MMIO physicall address to MHI base address as it is
->   for the function driver to work
-> 
-> Changes in v2:
-> 
-> * Addressed the comments from Rob on bindings patch
-> * Modified the driver as per binding change
-> * Fixed the warnings reported by Kbuild bot
-> * Removed the PERST# "enable_irq" call from probe()
-> 
-> Manivannan Sadhasivam (3):
->   dt-bindings: pci: Add devicetree binding for Qualcomm PCIe EP
->     controller
->   PCI: qcom-ep: Add Qualcomm PCIe Endpoint controller driver
->   MAINTAINERS: Add entry for Qualcomm PCIe Endpoint driver and binding
-> 
->  .../devicetree/bindings/pci/qcom,pcie-ep.yaml | 158 ++++
->  MAINTAINERS                                   |  10 +-
->  drivers/pci/controller/dwc/Kconfig            |  10 +
->  drivers/pci/controller/dwc/Makefile           |   1 +
->  drivers/pci/controller/dwc/pcie-qcom-ep.c     | 710 ++++++++++++++++++
->  5 files changed, 888 insertions(+), 1 deletion(-)
->  create mode 100644 Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
->  create mode 100644 drivers/pci/controller/dwc/pcie-qcom-ep.c
-> 
+Thanks!
+
+>
+> Thanks.
+>
+> >
+> > >
+> > > > +
+> > > >         for_each_set_bit(i, (unsigned long *)larb->mmu, 32) {
+> > > >                 reg = readl_relaxed(larb->base + SMI_LARB_NONSEC_CON(i));
+> > > >                 reg |= F_MMU_EN;
+> > > > @@ -227,6 +252,51 @@ static void mtk_smi_larb_config_port_gen2_general(struct device *dev)
+> > > >         }
+> > > >  }
+> > > >
+> >
+> > [...]
+> >
+>
