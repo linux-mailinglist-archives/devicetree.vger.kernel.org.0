@@ -2,83 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BB3E3DEE14
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 14:45:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E3DA3DEE39
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 14:51:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236047AbhHCMpn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 08:45:43 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:43050 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S236001AbhHCMpm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 08:45:42 -0400
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 173Cfude029523;
-        Tue, 3 Aug 2021 14:45:22 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=selector1;
- bh=t33nap2m+wTs8JCQipvrVQGIr/dqZ3SB4X0QkZjBKfc=;
- b=BUoUMmLXE8nH1PLGUyilUAednM8S59P8TLA/a4paDd60ySqy7Iiv9p0mqoK9YJRmhZWD
- R0SMK00Mg9+nmt7sDFn9o5whY2WboRVVEMXkL0H9yzeWke14iC2K4KNl2FCnccMWhUB4
- s4FphflfWdqLxJxtiUxHljMgvUx6WD5BK5+H28jtr4+Fk1s03z/Nz+gOQRDOt2Snjqoe
- Sn+RKDniNMYgNr3WHwf7rvbcBJBJIE3zfqxHmnByOWf3SRABd3uIoPUYNDmCneUgOnlG
- CFM0KsfU3AVvVa3Vy4iUpdGVEaskEn4RD2ipDBpAbvIFcgfksmT/9XN1arHTLuuOzItK YA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 3a70js1utg-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 03 Aug 2021 14:45:22 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4AC87100034;
-        Tue,  3 Aug 2021 14:45:22 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 3F30A222C87;
-        Tue,  3 Aug 2021 14:45:22 +0200 (CEST)
-Received: from localhost (10.75.127.47) by SFHDAG2NODE3.st.com (10.75.127.6)
- with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 3 Aug 2021 14:45:21
- +0200
-From:   <patrice.chotard@foss.st.com>
-To:     <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <linux@armlinux.org.uk>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     <patrice.chotard@foss.st.com>, <soc@kernel.org>
-Subject: [PATCH 4/4] ARM: dts: sti: remove clk_ignore_unused from bootargs for stih410-b2260
-Date:   Tue, 3 Aug 2021 14:45:06 +0200
-Message-ID: <20210803124506.23365-5-patrice.chotard@foss.st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210803124506.23365-1-patrice.chotard@foss.st.com>
-References: <20210803124506.23365-1-patrice.chotard@foss.st.com>
+        id S235926AbhHCMwH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 08:52:07 -0400
+Received: from frasgout.his.huawei.com ([185.176.79.56]:3572 "EHLO
+        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235877AbhHCMwG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 08:52:06 -0400
+Received: from fraeml703-chm.china.huawei.com (unknown [172.18.147.226])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4GfFB83cX2z6GD14;
+        Tue,  3 Aug 2021 20:51:44 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml703-chm.china.huawei.com (10.206.15.52) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2176.2; Tue, 3 Aug 2021 14:51:54 +0200
+Received: from localhost (10.210.169.87) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Tue, 3 Aug 2021
+ 13:51:53 +0100
+Date:   Tue, 3 Aug 2021 13:51:24 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     David Wu <david.wu@rock-chips.com>
+CC:     Simon Xue <xxm@rock-chips.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        <linux-rockchip@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <robh+dt@kernel.org>, Johan Jonker <jbx6244@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        "Peter Meerwald-Stadler" <pmeerw@pmeerw.net>,
+        <linux-iio@vger.kernel.org>
+Subject: Re: [PATCH] iio: adc: rockchip_saradc: just get referenced voltage
+ once at probe
+Message-ID: <20210803135124.000072fe@Huawei.com>
+In-Reply-To: <36f6284f-6bc9-d5a4-aac8-5db8b1ecaae1@rock-chips.com>
+References: <20210802090929.37970-1-xxm@rock-chips.com>
+        <20210802114222.00004f3d@Huawei.com>
+        <36f6284f-6bc9-d5a4-aac8-5db8b1ecaae1@rock-chips.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.47]
-X-ClientProxiedBy: SFHDAG1NODE3.st.com (10.75.127.3) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
- definitions=2021-08-03_02:2021-08-03,2021-08-03 signatures=0
+Content-Type: text/plain; charset="gbk"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.210.169.87]
+X-ClientProxiedBy: lhreml714-chm.china.huawei.com (10.201.108.65) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Patrice Chotard <patrice.chotard@foss.st.com>
+On Tue, 3 Aug 2021 11:09:47 +0800
+David Wu <david.wu@rock-chips.com> wrote:
 
-Remove clk_ignore_unused from bootargs as it's no more needed.
+> Hi Jonathan,
+> 
+> ÔÚ 2021/8/2 ÏÂÎç6:42, Jonathan Cameron Ð´µÀ:
+> > On Mon, 2 Aug 2021 17:09:29 +0800
+> > Simon Xue <xxm@rock-chips.com> wrote:
+> >   
+> >> From: David Wu <david.wu@rock-chips.com>
+> >>
+> >> The referenced voltage is not changed after initiation, so just only
+> >> get referenced voltage once.  
+> > Hi David,
+> > 
+> > Isn't this an external reference voltage?  If so how do you know
+> > it is not changed at runtime?  It might be unlikely and not happen
+> > on particular platforms, but that's not he same as saying it can never
+> > happen.  Clearly it's racey anyway if that does happen, but we definitely
+> > don't expect frequent voltage changes.
+> >   
+> 
+> The current regulator is not changed and not subject to external 
+> changes, this can reduce the getting voltage. Assuming that there will 
+> be changes in the future, we then add the notify of the regulator, so 
+> that the voltage change can be obtained.
 
-Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
----
- arch/arm/boot/dts/stih410-b2260.dts | 1 -
- 1 file changed, 1 deletion(-)
+If this patch added the notifier that would be a nice solution, but
+right now it potentially introduced a regression. You have made me a little curious...
+Are you seeing a significant cost to querying that regulator voltage?
+If so, I'd imagine it's a lack of caching in the regulator driver or similar.
+Scale readback via sysfs shouldn't be in a fast path anyway.
 
-diff --git a/arch/arm/boot/dts/stih410-b2260.dts b/arch/arm/boot/dts/stih410-b2260.dts
-index e2bb59783146..9d579c16c295 100644
---- a/arch/arm/boot/dts/stih410-b2260.dts
-+++ b/arch/arm/boot/dts/stih410-b2260.dts
-@@ -12,7 +12,6 @@
- 	compatible = "st,stih410-b2260", "st,stih410";
- 
- 	chosen {
--		bootargs = "clk_ignore_unused";
- 		stdout-path = &uart1;
- 	};
- 
--- 
-2.17.1
+You can't depend on what boards today do, because someone with a board
+built tomorrow may well use an old kernel which supports the voltage
+changing, and then see a regression when they upgrade to the kernel
+containing this patch.
+
+Jonathan
+
+> 
+> > Jonathan
+> >   
+> >>
+> >> Signed-off-by: Simon Xue <xxm@rock-chips.com>
+> >> Signed-off-by: David Wu <david.wu@rock-chips.com>
+> >> ---
+> >>   drivers/iio/adc/rockchip_saradc.c | 16 +++++++++-------
+> >>   1 file changed, 9 insertions(+), 7 deletions(-)
+> >>
+> >> diff --git a/drivers/iio/adc/rockchip_saradc.c b/drivers/iio/adc/rockchip_saradc.c
+> >> index f3eb8d2e50dc..cd33c0b9d3eb 100644
+> >> --- a/drivers/iio/adc/rockchip_saradc.c
+> >> +++ b/drivers/iio/adc/rockchip_saradc.c
+> >> @@ -49,6 +49,7 @@ struct rockchip_saradc {
+> >>   	struct clk		*clk;
+> >>   	struct completion	completion;
+> >>   	struct regulator	*vref;
+> >> +	int			uv_vref;
+> >>   	struct reset_control	*reset;
+> >>   	const struct rockchip_saradc_data *data;
+> >>   	u16			last_val;
+> >> @@ -105,13 +106,7 @@ static int rockchip_saradc_read_raw(struct iio_dev *indio_dev,
+> >>   		mutex_unlock(&indio_dev->mlock);
+> >>   		return IIO_VAL_INT;
+> >>   	case IIO_CHAN_INFO_SCALE:
+> >> -		ret = regulator_get_voltage(info->vref);
+> >> -		if (ret < 0) {
+> >> -			dev_err(&indio_dev->dev, "failed to get voltage\n");
+> >> -			return ret;
+> >> -		}
+> >> -
+> >> -		*val = ret / 1000;
+> >> +		*val = info->uv_vref / 1000;
+> >>   		*val2 = chan->scan_type.realbits;
+> >>   		return IIO_VAL_FRACTIONAL_LOG2;
+> >>   	default:
+> >> @@ -410,6 +405,13 @@ static int rockchip_saradc_probe(struct platform_device *pdev)
+> >>   		return ret;
+> >>   	}
+> >>   
+> >> +	info->uv_vref = regulator_get_voltage(info->vref);
+> >> +	if (info->uv_vref < 0) {
+> >> +		dev_err(&pdev->dev, "failed to get voltage\n");
+> >> +		ret = info->uv_vref;
+> >> +		return ret;
+> >> +	}
+> >> +
+> >>   	ret = clk_prepare_enable(info->pclk);
+> >>   	if (ret < 0) {
+> >>   		dev_err(&pdev->dev, "failed to enable pclk\n");  
+> > 
+> > 
+> > 
+> >   
+> 
+> 
 
