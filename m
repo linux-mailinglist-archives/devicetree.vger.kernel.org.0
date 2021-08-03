@@ -2,65 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 027953DF5D7
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 21:39:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11B253DF5DA
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 21:39:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240131AbhHCTjT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 15:39:19 -0400
-Received: from mail-il1-f176.google.com ([209.85.166.176]:44698 "EHLO
-        mail-il1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240141AbhHCTjT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 15:39:19 -0400
-Received: by mail-il1-f176.google.com with SMTP id i13so8632491ilm.11;
-        Tue, 03 Aug 2021 12:39:06 -0700 (PDT)
+        id S240196AbhHCTkA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 15:40:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51562 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240175AbhHCTj4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 15:39:56 -0400
+Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCE66C0617BF;
+        Tue,  3 Aug 2021 12:39:34 -0700 (PDT)
+Received: by mail-ot1-x32e.google.com with SMTP id 68-20020a9d0f4a0000b02904b1f1d7c5f4so21773285ott.9;
+        Tue, 03 Aug 2021 12:39:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=V4vipJEwRDwHM4259+MlHhYFZKy0AF5AfY/rL666hI0=;
+        b=gP2AWen6BuDUXo1SqKbvrPqjHYThh1x6YXxD7ykh8cqEfdx+HK5AgGNuoJGAJNsm/E
+         4iTaF8s8H88Witb9rbDytdVr34FXrMruJmYu4UPMyHg7JRZNrUXEmlC61VJMXU3dRcD7
+         6Z2Ly6OqLllaFBuvTf+KkqFEM2fQvwZICKJ8+Ana0OT3ED621f7KGuOkJJF/zZug2H9z
+         9kljfcCtvsnDjX/FyCJ5HNwvFcwmPHNiqpz6ocoJTRQuGBUVYU1cXi5JQ6G4DwrkRrqg
+         +MmjqPfsyo7EgyEg38hiRT6idpG2LgrL5U6/zpijo7iPBMO+sdGTSEQmJrdPUDaF2bRC
+         zMCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=9d7Nsy8vIgaqzKWJd0frDxnN4W4+2XNOR6Rw6MLP7lc=;
-        b=AMNcmzfRaMNwzgnXDKD5gTtTHWBRMXe0wtYYBxQgYuv67MM0kRGsuXEB/RVpSXilPO
-         7i86dB4MFLicNMb5XKQGN5nZiB1jlGW5U4AfrfEeMGfipGgeyTqq13dw2LjRTZNJToBz
-         gj3CrYRxQtZyB8x52/0W/EQkyTlxNGYfpC8tZIHhko4FmJriIQMK+xWkmgzlWDGBvNNU
-         ArekUzC891/JjOvU9yxToFw52yCVM1m1n4y363gS5vMKGVG+KlZvDD77OmSoJEcUj2ae
-         AyX+Rk4GotzR1IGeYKd/ulaDJR853HAchHZrGuz6RwRKZbepl2Gxgzfve8RqJjuyuAyb
-         S1Ng==
-X-Gm-Message-State: AOAM531dULGWk0CfRmTGESxFBPX6kHZWp78C0TUm0W2ZXPvAMsaGIRUU
-        LmNmoGu2YeZjxXiLj8r4sQ==
-X-Google-Smtp-Source: ABdhPJzT8M9UawMmeGyv4En4ZE287YQdMrdHlfDjny5V9ZaGYTzyb+y8uZ8fltBxT6amUkpCsUTq/Q==
-X-Received: by 2002:a05:6e02:1a6d:: with SMTP id w13mr218949ilv.299.1628019546458;
-        Tue, 03 Aug 2021 12:39:06 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id a17sm11643ios.36.2021.08.03.12.39.04
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=V4vipJEwRDwHM4259+MlHhYFZKy0AF5AfY/rL666hI0=;
+        b=RWM9mVXxXqBeRjWxxV6HENdvjWD6SdfnSb0hpYskrYF82LZ3TdVxX/J/p3jlWQBWm0
+         +j989gwhcptu9lPESqnlOiI0F1Eco8gsBJ2fMKczacreGHjTCGYiIQwpvdJTynb2j3Q7
+         9TRoXftVGscS21PoOp1N/8m/xBYXa6r0rg2NYHZedxi9L7leHJ0Czo76MHXh42EIQ3UH
+         b8IpVyBWO7+4rqPo24wCkl0WmJOl1sGKoDLXRegWHDcTOLtOZguubgqqTdOY52gZHA2m
+         xQHwEVd7x85VTN0OAFWERuPpf46IX5tMfdzdLylCbtHeOJ9dPry7p2JokTUdYqtBViTx
+         b1kg==
+X-Gm-Message-State: AOAM532eV0oQUS7ekEHyJI45SYNLk2OHuoY2q5o5USXyZoa60VF3MD1G
+        2rlZNL4zuqmblgEJdk52p+M=
+X-Google-Smtp-Source: ABdhPJwYyKPPT9p/GInHz0roMUDO5XFvdCr9ZmDHuvR2OGtgCyYgsq4Sjv/IEXPrJ+LkIcZcCZBpVA==
+X-Received: by 2002:a05:6830:128b:: with SMTP id z11mr17101494otp.124.1628019574292;
+        Tue, 03 Aug 2021 12:39:34 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id z22sm2361140ooz.20.2021.08.03.12.39.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Aug 2021 12:39:05 -0700 (PDT)
-Received: (nullmailer pid 3615314 invoked by uid 1000);
-        Tue, 03 Aug 2021 19:39:03 -0000
-Date:   Tue, 3 Aug 2021 13:39:03 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, linux-media@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH v4] dt-binding: media: document ON Semi AR0521 sensor
- bindings
-Message-ID: <YQmbV8BNvHZR55lV@robh.at.kernel.org>
-References: <m3lf5o9s9l.fsf@t19.piap.pl>
+        Tue, 03 Aug 2021 12:39:33 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Tue, 3 Aug 2021 12:39:32 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Jean Delvare <jdelvare@suse.com>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: Add bindings for Winbond W83781D
+Message-ID: <20210803193932.GA3055806@roeck-us.net>
+References: <20210729230543.2853485-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <m3lf5o9s9l.fsf@t19.piap.pl>
+In-Reply-To: <20210729230543.2853485-1-linus.walleij@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 30 Jul 2021 09:26:30 +0200, Krzysztof Hałasa wrote:
-> This file documents DT bindings for the AR0521 camera sensor driver.
+On Fri, Jul 30, 2021 at 01:05:42AM +0200, Linus Walleij wrote:
+> This adds a device tree binding for the Winbond W83781D and its
+> sibling HW monitoring ICs. This is used in for example the Freecom
+> FSG-3 router/NAS.
 > 
-> Signed-off-by: Krzysztof Hałasa <khalasa@piap.pl>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> 
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Applied.
+
+Thanks,
+Guenter
