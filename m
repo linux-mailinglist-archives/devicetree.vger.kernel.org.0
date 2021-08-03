@@ -2,110 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 595E33DEB27
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 12:42:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A113E3DEBC5
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 13:32:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235341AbhHCKmj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 06:42:39 -0400
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:20922 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235306AbhHCKmi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 06:42:38 -0400
-Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
-  by alexa-out.qualcomm.com with ESMTP; 03 Aug 2021 03:42:28 -0700
-X-QCInternal: smtphost
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 03 Aug 2021 03:42:25 -0700
-X-QCInternal: smtphost
-Received: from kalyant-linux.qualcomm.com ([10.204.66.210])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 03 Aug 2021 16:11:50 +0530
-Received: by kalyant-linux.qualcomm.com (Postfix, from userid 94428)
-        id 904134BA3; Tue,  3 Aug 2021 03:41:48 -0700 (PDT)
-From:   Kalyan Thota <kalyan_t@codeaurora.org>
-To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     Kalyan Thota <kalyan_t@codeaurora.org>,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, mkrishn@codeaurora.org,
-        saiprakash.ranjan@codeaurora.org, rnayak@codeaurora.org,
-        stable@vger.kernel.org
-Subject: [v2] drm/msm/disp/dpu1: add safe lut config in dpu driver
-Date:   Tue,  3 Aug 2021 03:41:47 -0700
-Message-Id: <1627987307-29347-1-git-send-email-kalyan_t@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+        id S235443AbhHCLdC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 07:33:02 -0400
+Received: from mga06.intel.com ([134.134.136.31]:18035 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235329AbhHCLdB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Aug 2021 07:33:01 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10064"; a="274715825"
+X-IronPort-AV: E=Sophos;i="5.84,291,1620716400"; 
+   d="scan'208";a="274715825"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Aug 2021 04:32:50 -0700
+X-IronPort-AV: E=Sophos;i="5.84,291,1620716400"; 
+   d="scan'208";a="511166743"
+Received: from jdanieck-mobl1.ger.corp.intel.com (HELO localhost) ([10.249.128.99])
+  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Aug 2021 04:32:43 -0700
+From:   Iwona Winiarska <iwona.winiarska@intel.com>
+To:     linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     x86@kernel.org, devicetree@vger.kernel.org,
+        linux-aspeed@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org,
+        linux-doc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Andy Lutomirski <luto@kernel.org>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        Yazen Ghannam <yazen.ghannam@amd.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Tony Luck <tony.luck@intel.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Zev Weiss <zweiss@equinix.com>,
+        David Muller <d.mueller@elsoft.ch>,
+        Iwona Winiarska <iwona.winiarska@intel.com>
+Subject: [PATCH v2 00/15] Introduce PECI subsystem
+Date:   Tue,  3 Aug 2021 13:31:19 +0200
+Message-Id: <20210803113134.2262882-1-iwona.winiarska@intel.com>
+X-Mailer: git-send-email 2.31.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add safe lut configuration for all the targets in dpu
-driver as per QOS recommendation.
+Hi Greg,
 
-Issue reported on SC7280:
+This is a second round of patches introducing PECI subsystem.
+I don't think it is ready to be applied right away (we're still
+missing r-b's), but I hope we have chance to complete discussion in
+the 5.15 development cycle. I would appreciate if you could take
+a look.
 
-With wait-for-safe feature in smmu enabled, RT client
-buffer levels are checked to be safe before smmu invalidation.
-Since display was always set to unsafe it was delaying the
-invalidaiton process thus impacting the performance on NRT clients
-such as eMMC and NVMe.
+Note: All changes to arch/x86 are contained within patches 01-02, plus
+small Kconfig change adding "depends on PECI" to GENERIC_LIB_X86
+Kconfig in patch 10.
 
-Validated this change on SC7280, With this change eMMC performance
-has improved significantly.
+The Platform Environment Control Interface (PECI) is a communication
+interface between Intel processors and management controllers (e.g.
+Baseboard Management Controller, BMC).
 
-Changes in v1:
-- Add fixes tag (Sai)
-- CC stable kernel (Dimtry)
+This series adds a PECI subsystem and introduces drivers which run in
+the Linux instance on the management controller (not the main Intel
+processor) and is intended to be used by the OpenBMC [1], a Linux
+distribution for BMC devices.
+The information exposed over PECI (like processor and DIMM
+temperature) refers to the Intel processor and can be consumed by
+daemons running on the BMC to, for example, display the processor
+temperature in its web interface.
 
-Fixes: cfacf946a464d4(drm/msm/disp/dpu1: add support for display for SC7280 target)
-Signed-off-by: Kalyan Thota <kalyan_t@codeaurora.org>
-Tested-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org> (sc7280, sc7180)
----
- drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c | 5 +++++
- 1 file changed, 5 insertions(+)
+The PECI bus is collection of code that provides interface support
+between PECI devices (that actually represent processors) and PECI
+controllers (such as the "peci-aspeed" controller) that allow to
+access physical PECI interface. PECI devices are bound to PECI
+drivers that provides access to PECI services. This series introduces
+a generic "peci-cpu" driver that exposes hardware monitoring "cputemp"
+and "dimmtemp" using the auxiliary bus.
 
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-index d01c4c9..2e482cd 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-@@ -974,6 +974,7 @@ static const struct dpu_perf_cfg sdm845_perf_data = {
- 	.amortizable_threshold = 25,
- 	.min_prefill_lines = 24,
- 	.danger_lut_tbl = {0xf, 0xffff, 0x0},
-+	.safe_lut_tbl = {0xfff0, 0xf000, 0xffff},
- 	.qos_lut_tbl = {
- 		{.nentry = ARRAY_SIZE(sdm845_qos_linear),
- 		.entries = sdm845_qos_linear
-@@ -1001,6 +1002,7 @@ static const struct dpu_perf_cfg sc7180_perf_data = {
- 	.min_dram_ib = 1600000,
- 	.min_prefill_lines = 24,
- 	.danger_lut_tbl = {0xff, 0xffff, 0x0},
-+	.safe_lut_tbl = {0xfff0, 0xff00, 0xffff},
- 	.qos_lut_tbl = {
- 		{.nentry = ARRAY_SIZE(sc7180_qos_linear),
- 		.entries = sc7180_qos_linear
-@@ -1028,6 +1030,7 @@ static const struct dpu_perf_cfg sm8150_perf_data = {
- 	.min_dram_ib = 800000,
- 	.min_prefill_lines = 24,
- 	.danger_lut_tbl = {0xf, 0xffff, 0x0},
-+	.safe_lut_tbl = {0xfff8, 0xf000, 0xffff},
- 	.qos_lut_tbl = {
- 		{.nentry = ARRAY_SIZE(sm8150_qos_linear),
- 		.entries = sm8150_qos_linear
-@@ -1056,6 +1059,7 @@ static const struct dpu_perf_cfg sm8250_perf_data = {
- 	.min_dram_ib = 800000,
- 	.min_prefill_lines = 35,
- 	.danger_lut_tbl = {0xf, 0xffff, 0x0},
-+	.safe_lut_tbl = {0xfff0, 0xff00, 0xffff},
- 	.qos_lut_tbl = {
- 		{.nentry = ARRAY_SIZE(sc7180_qos_linear),
- 		.entries = sc7180_qos_linear
-@@ -1084,6 +1088,7 @@ static const struct dpu_perf_cfg sc7280_perf_data = {
- 	.min_dram_ib = 1600000,
- 	.min_prefill_lines = 24,
- 	.danger_lut_tbl = {0xffff, 0xffff, 0x0},
-+	.safe_lut_tbl = {0xff00, 0xff00, 0xffff},
- 	.qos_lut_tbl = {
- 		{.nentry = ARRAY_SIZE(sc7180_qos_macrotile),
- 		.entries = sc7180_qos_macrotile
+Exposing "raw" PECI to userspace, either to write userspace drivers or
+for debug/testing purpose was left out of this series to encourage
+writing kernel drivers instead, but may be pursued in the future.
+
+Introducing PECI to upstream Linux was already attempted before [2].
+Since it's been over a year since last revision, and the series
+changed quite a bit in the meantime, I've decided to start from v1.
+
+I would also like to give credit to everyone who helped me with
+different aspects of preliminary review:
+- Pierre-Louis Bossart,
+- Tony Luck, 
+- Andy Shevchenko,
+- Dave Hansen.
+
+[1] https://github.com/openbmc/openbmc
+[2] https://lore.kernel.org/openbmc/20191211194624.2872-1-jae.hyun.yoo@linux.intel.com/
+
+Changes v1 -> v2:
+
+Biggest changes when it comes to diffstat are locking in HWMON
+(I decided to clean things up a bit while adding it), switching to
+devres usage in more places and exposing sysfs interface in separate patch.
+
+* Moved extending X86 ARCHITECTURE MAINTAINERS earlier in series (Dan)
+* Removed "default n" for GENERIC_LIB_X86 (Dan)
+* Added vendor prefix for peci-aspeed specific properties (Rob)
+* Refactored PECI to use devres consistently (Dan)
+* Added missing sysfs documentation and excluded adding peci-sysfs to
+  separate patch (Dan)
+* Used module_init() instead of subsys_init() for peci module initialization (Dan)
+* Removed redundant struct peci_device member (Dan)
+* Improved PECI Kconfig help (Randy/Dan)
+* Fixed/removed log messages (Dan, Guenter)
+* Refactored peci-cputemp and peci-dimmtemp and added missing locks (Guenter)
+* Removed unused dev_set_drvdata() in peci-cputemp and peci-dimmtemp (Guenter)
+* Fixed used types, names, fixed broken and added additional comments
+  to peci-hwmon (Guenter, Zev)
+* Refactored peci-dimmtemp to not return -ETIMEDOUT (Guenter)
+* Added sanity check for min_peci_revision in peci-hwmon drivers (Zev)
+* Added assert for DIMM_NUMS_MAX and additional warning in peci-dimmtemp (Zev)
+* Fixed macro names in peci-aspeed (Zev)
+* Refactored peci-aspeed sanitizing properties to a single helper function (Zev)
+* Fixed peci_cpu_device_ids definition for Broadwell Xeon D (David)
+* Refactor peci_request to use a single allocation (Zev)
+* Used min_t() to improve code readability (Zev)
+* Added macro for PECI_RDENDPTCFG_MMIO_WR_LEN_BASE and fixed adev type
+  array name to more descriptive (Zev)
+* Fixed peci-hwmon commit-msg and documentation (Zev)
+
+Thanks
+-Iwona
+
+Iwona Winiarska (13):
+  x86/cpu: Move intel-family to arch-independent headers
+  x86/cpu: Extract cpuid helpers to arch-independent
+  dt-bindings: Add generic bindings for PECI
+  dt-bindings: Add bindings for peci-aspeed
+  ARM: dts: aspeed: Add PECI controller nodes
+  peci: Add core infrastructure
+  peci: Add device detection
+  peci: Add sysfs interface for PECI bus
+  peci: Add support for PECI device drivers
+  peci: Add peci-cpu driver
+  hwmon: peci: Add cputemp driver
+  hwmon: peci: Add dimmtemp driver
+  docs: Add PECI documentation
+
+Jae Hyun Yoo (2):
+  peci: Add peci-aspeed controller driver
+  docs: hwmon: Document PECI drivers
+
+ Documentation/ABI/testing/sysfs-bus-peci      |  16 +
+ .../devicetree/bindings/peci/peci-aspeed.yaml | 109 ++++
+ .../bindings/peci/peci-controller.yaml        |  33 +
+ Documentation/hwmon/index.rst                 |   2 +
+ Documentation/hwmon/peci-cputemp.rst          |  90 +++
+ Documentation/hwmon/peci-dimmtemp.rst         |  57 ++
+ Documentation/index.rst                       |   1 +
+ Documentation/peci/index.rst                  |  16 +
+ Documentation/peci/peci.rst                   |  48 ++
+ MAINTAINERS                                   |  32 +
+ arch/arm/boot/dts/aspeed-g4.dtsi              |  14 +
+ arch/arm/boot/dts/aspeed-g5.dtsi              |  14 +
+ arch/arm/boot/dts/aspeed-g6.dtsi              |  14 +
+ arch/x86/Kconfig                              |   1 +
+ arch/x86/include/asm/cpu.h                    |   3 -
+ arch/x86/include/asm/intel-family.h           | 141 +---
+ arch/x86/include/asm/microcode.h              |   2 +-
+ arch/x86/kvm/cpuid.h                          |   3 +-
+ arch/x86/lib/Makefile                         |   2 +-
+ drivers/Kconfig                               |   3 +
+ drivers/Makefile                              |   1 +
+ drivers/edac/mce_amd.c                        |   3 +-
+ drivers/hwmon/Kconfig                         |   2 +
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/peci/Kconfig                    |  31 +
+ drivers/hwmon/peci/Makefile                   |   7 +
+ drivers/hwmon/peci/common.h                   |  58 ++
+ drivers/hwmon/peci/cputemp.c                  | 591 +++++++++++++++++
+ drivers/hwmon/peci/dimmtemp.c                 | 614 ++++++++++++++++++
+ drivers/peci/Kconfig                          |  37 ++
+ drivers/peci/Makefile                         |  10 +
+ drivers/peci/controller/Kconfig               |  16 +
+ drivers/peci/controller/Makefile              |   3 +
+ drivers/peci/controller/peci-aspeed.c         | 445 +++++++++++++
+ drivers/peci/core.c                           | 238 +++++++
+ drivers/peci/cpu.c                            | 344 ++++++++++
+ drivers/peci/device.c                         | 221 +++++++
+ drivers/peci/internal.h                       | 137 ++++
+ drivers/peci/request.c                        | 477 ++++++++++++++
+ drivers/peci/sysfs.c                          |  82 +++
+ include/linux/peci-cpu.h                      |  38 ++
+ include/linux/peci.h                          | 110 ++++
+ include/linux/x86/cpu.h                       |   9 +
+ include/linux/x86/intel-family.h              | 146 +++++
+ lib/Kconfig                                   |   4 +
+ lib/Makefile                                  |   2 +
+ lib/x86/Makefile                              |   3 +
+ {arch/x86/lib => lib/x86}/cpu.c               |   2 +-
+ 48 files changed, 4084 insertions(+), 149 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-peci
+ create mode 100644 Documentation/devicetree/bindings/peci/peci-aspeed.yaml
+ create mode 100644 Documentation/devicetree/bindings/peci/peci-controller.yaml
+ create mode 100644 Documentation/hwmon/peci-cputemp.rst
+ create mode 100644 Documentation/hwmon/peci-dimmtemp.rst
+ create mode 100644 Documentation/peci/index.rst
+ create mode 100644 Documentation/peci/peci.rst
+ create mode 100644 drivers/hwmon/peci/Kconfig
+ create mode 100644 drivers/hwmon/peci/Makefile
+ create mode 100644 drivers/hwmon/peci/common.h
+ create mode 100644 drivers/hwmon/peci/cputemp.c
+ create mode 100644 drivers/hwmon/peci/dimmtemp.c
+ create mode 100644 drivers/peci/Kconfig
+ create mode 100644 drivers/peci/Makefile
+ create mode 100644 drivers/peci/controller/Kconfig
+ create mode 100644 drivers/peci/controller/Makefile
+ create mode 100644 drivers/peci/controller/peci-aspeed.c
+ create mode 100644 drivers/peci/core.c
+ create mode 100644 drivers/peci/cpu.c
+ create mode 100644 drivers/peci/device.c
+ create mode 100644 drivers/peci/internal.h
+ create mode 100644 drivers/peci/request.c
+ create mode 100644 drivers/peci/sysfs.c
+ create mode 100644 include/linux/peci-cpu.h
+ create mode 100644 include/linux/peci.h
+ create mode 100644 include/linux/x86/cpu.h
+ create mode 100644 include/linux/x86/intel-family.h
+ create mode 100644 lib/x86/Makefile
+ rename {arch/x86/lib => lib/x86}/cpu.c (95%)
+
 -- 
-2.7.4
+2.31.1
 
