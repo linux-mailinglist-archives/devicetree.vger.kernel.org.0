@@ -2,95 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 178F73DE734
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 09:30:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EF3A3DE747
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 09:37:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234082AbhHCHaS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 03:30:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38970 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234173AbhHCHaR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 03:30:17 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9CFCC06175F
-        for <devicetree@vger.kernel.org>; Tue,  3 Aug 2021 00:30:06 -0700 (PDT)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1mAosC-00051A-OX; Tue, 03 Aug 2021 09:30:00 +0200
-Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1mAosB-0001GX-OK; Tue, 03 Aug 2021 09:29:59 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-Subject: [PATCH v1] dt-bindings: timer: fsl,imxgpt: add optional osc_per clock
-Date:   Tue,  3 Aug 2021 09:29:58 +0200
-Message-Id: <20210803072958.4815-1-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
+        id S234214AbhHCHiC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 03:38:02 -0400
+Received: from smtp-relay-canonical-1.canonical.com ([185.125.188.121]:48358
+        "EHLO smtp-relay-canonical-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234065AbhHCHiC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 03:38:02 -0400
+Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com [209.85.218.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPS id 221493F35D
+        for <devicetree@vger.kernel.org>; Tue,  3 Aug 2021 07:37:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1627976271;
+        bh=HMiKxFSYa20UfSETkthFhrIjVbst/OK+au8qKZgzUks=;
+        h=To:Cc:References:From:Subject:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=tZPpox8+0BquNgSZ6ecGhH7CeD6Gfbvs8fSbHlXERoCPYAgrhBx0xV+eqLRUCk7dd
+         4s0XBWSKA3EWT4F6raOkB/wPlEJCAIVKHN9iJeN4YluKq5kil8flQDBO4IUOUQeApJ
+         dKtNloUtPxbD7QsOyvmdXXY3ZnGGRa0uhKLdiws/JRty/qpemQqor8EMDDhp78xFNC
+         SDsVuB0FCthYlZS6/+NEIFInmL/GlRaZu7xpGzkIw0569HElsijNyAThfKZEZC0y1V
+         SVMP1i0bkrAhPMAa0O+AY+r4rOsbYaTl2yaoEnYocmFw85Txf7sNnm27gJ8IgGlwSW
+         nWrvRf1uMKOHQ==
+Received: by mail-ej1-f72.google.com with SMTP id g19-20020a1709065953b02905a4506b6d92so266831ejr.7
+        for <devicetree@vger.kernel.org>; Tue, 03 Aug 2021 00:37:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=HMiKxFSYa20UfSETkthFhrIjVbst/OK+au8qKZgzUks=;
+        b=OatuKFCBi0a2bAxbcq1LlM7yDEtYEdEWIoXFMBocGGRJPCg2g1usdsJ64Bv9Grzw8C
+         2qaFgMJiGJcyQpnwlZvnCEsb8tvcKaoye7JnJA+GMCFBsK+wFl/dndbcWhTkz2bZM6J1
+         +yYh2DIqur8Gww4Bn8fPy/lrzdOCIjDdcKJLlYRLqrpTo0fdGYusoxShK7jl/IEEzham
+         I6zsrKacAWKzGthIM11i55YA5OKCA+94zlVXsjuM34bBFL/5/+3q6kw5e1um0PE7KNv9
+         OgrHoTxYymkrEnT7sPPAfQMeazAYmNuKgXHjW0gEKttsa3nqKm6GxNulcuGY1wWHVNCA
+         36tA==
+X-Gm-Message-State: AOAM533hv/j2yrwyodXildkHGYJ4AX3eh+n6XafuISZyPnpjCJWA41os
+        Mcv7Vf1a/5VDJZTuqYcHadhmyS0sXmd95KERPlSo1tVpMwaqImuKph/lirgYzjHfPZzwVpj/vp5
+        YeZtddiYOIkx8rq2XoWcL+hsaa6csDUEWD/dKu08=
+X-Received: by 2002:a17:906:350c:: with SMTP id r12mr19518833eja.44.1627976270903;
+        Tue, 03 Aug 2021 00:37:50 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzyFBe5dbNxwlXlBXERsGZZkwqR37lHAwmEzaRMwA5uBHV4D/DUtM//HZhRsSt8v4oHJ3em0g==
+X-Received: by 2002:a17:906:350c:: with SMTP id r12mr19518821eja.44.1627976270751;
+        Tue, 03 Aug 2021 00:37:50 -0700 (PDT)
+Received: from [192.168.8.102] ([86.32.43.172])
+        by smtp.gmail.com with ESMTPSA id fi23sm4651493ejc.83.2021.08.03.00.37.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Aug 2021 00:37:49 -0700 (PDT)
+To:     Sam Protsenko <semen.protsenko@linaro.org>
+Cc:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
+        Ryu Euiyoul <ryu.real@samsung.com>,
+        Tom Gall <tom.gall@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+References: <20210730144922.29111-1-semen.protsenko@linaro.org>
+ <20210730144922.29111-5-semen.protsenko@linaro.org>
+ <a1701931-136e-235c-8392-a3f64c050d74@canonical.com>
+ <CAPLW+4mMCzzyqqJTse-UEpjQoVu1b-9Xz3_3L=nmg63uKYFnGw@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Subject: Re: [PATCH 04/12] tty: serial: samsung: Init USI to keep clocks
+ running
+Message-ID: <7364ccb2-70da-6400-ae6d-6a30171b6678@canonical.com>
+Date:   Tue, 3 Aug 2021 09:37:47 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
+In-Reply-To: <CAPLW+4mMCzzyqqJTse-UEpjQoVu1b-9Xz3_3L=nmg63uKYFnGw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add optional osc_per and fix dts validation warnings on imx6 SoCs.
+On 03/08/2021 01:06, Sam Protsenko wrote:
 
-Fixes: df8cad689eae ("dt-bindings: timer: Convert i.MX GPT to json-schema")
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
- .../devicetree/bindings/timer/fsl,imxgpt.yaml   | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+(...)
 
-diff --git a/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml b/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
-index a4f51f46b7a1..e496dd9f4988 100644
---- a/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
-+++ b/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
-@@ -43,11 +43,15 @@ properties:
-     items:
-       - description: SoC GPT ipg clock
-       - description: SoC GPT per clock
-+      - description: optional SoC GPT oscillator
-+    minItems: 2
- 
-   clock-names:
-     items:
-       - const: ipg
-       - const: per
-+      - const: osc_per
-+    minItems: 2
- 
- required:
-   - compatible
-@@ -70,3 +74,16 @@ examples:
-                  <&clks IMX27_CLK_PER1_GATE>;
-         clock-names = "ipg", "per";
-     };
-+
-+  - |
-+    #include <dt-bindings/clock/imx6qdl-clock.h>
-+
-+    timer@2098000 {
-+        compatible = "fsl,imx6q-gpt", "fsl,imx31-gpt";
-+        reg = <0x02098000 0x4000>;
-+        interrupts = <26>;
-+        clocks = <&clks IMX6QDL_CLK_GPT_IPG>,
-+                 <&clks IMX6QDL_CLK_GPT_IPG_PER>,
-+                 <&clks IMX6QDL_CLK_GPT_3M>;
-+        clock-names = "ipg", "per", "osc_per";
-+    };
--- 
-2.30.2
+>>> diff --git a/include/linux/serial_s3c.h b/include/linux/serial_s3c.h
+>>> index f6c3323fc4c5..013c2646863e 100644
+>>> --- a/include/linux/serial_s3c.h
+>>> +++ b/include/linux/serial_s3c.h
+>>> @@ -28,6 +28,15 @@
+>>>  #define S3C2410_UFSTAT         (0x18)
+>>>  #define S3C2410_UMSTAT         (0x1C)
+>>>
+>>> +/* USI Control Register offset */
+>>> +#define USI_CON                      (0xC4)
+>>> +/* USI Option Register offset */
+>>> +#define USI_OPTION           (0xC8)
+>>> +/* USI_CON[0] = 0b0: clear USI global software reset (Active High) */
+>>> +#define USI_RESET            (0<<0)
+>>
+>> Just 0x0. I understand you wanted to hint it is a bit field, but the
+>> shift of 0 actually creates more questions.
+>>
+> 
+> After some consideration I decided to adhere to existing style and do
+> something like this (in v2):
+> 
+> 8<--------------------------------------------------------------------->8
+> #define USI_CON          (0xC4)
+> #define USI_OPTION      (0xC8)
+> 
+> #define USI_CON_RESET_CLEAR        (0<<0)
+> #define USI_CON_RESET_SET        (1<<0)
+> #define USI_CON_RESET_MASK        (1<<0)
+> 
+> #define USI_OPTION_HWACG_CLKREQ_ON    (1<<1)
+> #define USI_OPTION_HWACG_CLKSTOP_ON    (1<<2)
+> #define USI_OPTION_HWACG_MASK        (3<<1)
+> 8<--------------------------------------------------------------------->8
+> 
+> The whole reason for those comments was missing public TRM. But in the
+> end I decided it just looks ugly. Also, this way I can do RMW
+> operation (discussed above) in more logical way.
+> 
+> Please let me know if code snippets above look good to you.
 
+Please skip the USI_CON_RESET_CLEAR. There is no such pattern in the
+code. Clearing bit is an obvious operation and such code is already
+everywhere:
+    val &= ~USI_CON_RESET
+
+(or &= ~USI_RESET_MASK)
+
+Therefore for USI_CON_RESET only:
+    #define USI_CON_RESET             (1<<0)
+    #define USI_CON_RESET_MASK        (1<<0)
+
+
+Best regards,
+Krzysztof
