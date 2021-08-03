@@ -2,70 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 950473DE9DC
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 11:42:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 264623DEAB4
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 12:17:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235225AbhHCJmQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 05:42:16 -0400
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:47522 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234998AbhHCJmD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 05:42:03 -0400
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 1739aVVX016754;
-        Tue, 3 Aug 2021 05:39:26 -0400
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com with ESMTP id 3a6ep8ufyk-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 03 Aug 2021 05:39:26 -0400
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 1739dPDO022658
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 3 Aug 2021 05:39:25 -0400
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.5; Tue, 3 Aug 2021
- 05:39:24 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.858.5 via Frontend Transport;
- Tue, 3 Aug 2021 05:39:24 -0400
-Received: from localhost.localdomain ([10.48.65.12])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 1739dJlM012491;
-        Tue, 3 Aug 2021 05:39:20 -0400
-From:   <alexandru.tachici@analog.com>
-To:     <o.rempel@pengutronix.de>
-CC:     <alexandru.tachici@analog.com>, <andrew@lunn.ch>,
-        <davem@davemloft.net>, <devicetree@vger.kernel.org>,
-        <hkallweit1@gmail.com>, <kuba@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux@armlinux.org.uk>,
-        <netdev@vger.kernel.org>, <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 0/7] net: phy: adin1100: Add initial support for ADIN1100 industrial PHY
-Date:   Tue, 3 Aug 2021 12:47:15 +0300
-Message-ID: <20210803094715.9743-1-alexandru.tachici@analog.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210723173257.66g3epaszn7qwrvd@pengutronix.de>
-References: <20210723173257.66g3epaszn7qwrvd@pengutronix.de>
+        id S235223AbhHCKRm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 06:17:42 -0400
+Received: from mailout1.samsung.com ([203.254.224.24]:30997 "EHLO
+        mailout1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235135AbhHCKRl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 06:17:41 -0400
+Received: from epcas1p3.samsung.com (unknown [182.195.41.47])
+        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20210803101729epoutp015e19760435806887a1ca5b93779a0832~XxIEg52kW1965319653epoutp01U
+        for <devicetree@vger.kernel.org>; Tue,  3 Aug 2021 10:17:29 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20210803101729epoutp015e19760435806887a1ca5b93779a0832~XxIEg52kW1965319653epoutp01U
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1627985849;
+        bh=Pz14cy8nzznFI/F+SJ3lMWu3jOf+dw4UrbmQOOsf9m0=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=Nb0wkJDAhRboUPq/Fxjqbh+Jwjip2jQ5CQJl+784OyU0dI3U9ftU4bxMKYUqyUU94
+         ppO1TF8kH87QSp3ZY34H5pFwwdGv6gs9MVnRh6EaTucwaxemgNPbvksek09Pn26P5b
+         qrImDrtHfgPTzaiXVtUpDhaAXxqq9Qek3Qe82r+M=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+        epcas1p3.samsung.com (KnoxPortal) with ESMTP id
+        20210803101728epcas1p387845c4a6687b18128f5c1111c98342f~XxID84_Fm1389813898epcas1p34;
+        Tue,  3 Aug 2021 10:17:28 +0000 (GMT)
+Received: from epsmges1p1.samsung.com (unknown [182.195.40.161]) by
+        epsnrtp1.localdomain (Postfix) with ESMTP id 4Gf9m749B2z4x9Pp; Tue,  3 Aug
+        2021 10:17:27 +0000 (GMT)
+Received: from epcas1p1.samsung.com ( [182.195.41.45]) by
+        epsmges1p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+        CC.85.09952.7B719016; Tue,  3 Aug 2021 19:17:27 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20210803101726epcas1p257df1a6ab948c39304f4246a95d039c3~XxICcIlXm1823818238epcas1p2u;
+        Tue,  3 Aug 2021 10:17:26 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20210803101726epsmtrp1f196b6b5cbccab018a1aafacad201690~XxICayDk41225712257epsmtrp1o;
+        Tue,  3 Aug 2021 10:17:26 +0000 (GMT)
+X-AuditID: b6c32a35-447ff700000026e0-d7-610917b7bb8b
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        3A.CD.08289.6B719016; Tue,  3 Aug 2021 19:17:26 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.253.98.78]) by
+        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20210803101726epsmtip2e7e23676e29d563e1721242b879e10c5~XxICPE5r50835608356epsmtip2U;
+        Tue,  3 Aug 2021 10:17:26 +0000 (GMT)
+From:   Ohhoon Kwon <ohoono.kwon@samsung.com>
+To:     robh+dt@kernel.org, frowand.list@gmail.com
+Cc:     ohoono.kwon@samsung.com, ohkwon1043@gmail.com, nathan@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] of: fdt: do not update local variable after use
+Date:   Tue,  3 Aug 2021 19:13:09 +0900
+Message-Id: <20210803101309.904-1-ohoono.kwon@samsung.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: neMO3aY1U-BMEwP254Cn9ExAY4juW0r1
-X-Proofpoint-GUID: neMO3aY1U-BMEwP254Cn9ExAY4juW0r1
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
- definitions=2021-08-03_02:2021-08-03,2021-08-03 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 mlxscore=0
- spamscore=0 clxscore=1011 phishscore=0 mlxlogscore=718 adultscore=0
- priorityscore=1501 bulkscore=0 suspectscore=0 lowpriorityscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2107140000 definitions=main-2108030065
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrNKsWRmVeSWpSXmKPExsWy7bCmru52cc5Egxd/5C3mHznHajHzzX82
+        i8u75rBZtK98ymaxd7+vxa6fK5gtWvceYXdg99g56y67x6ZVnWwefVtWMXp83iQXwBKVY5OR
+        mpiSWqSQmpecn5KZl26r5B0c7xxvamZgqGtoaWGupJCXmJtqq+TiE6DrlpkDdICSQlliTilQ
+        KCCxuFhJ386mKL+0JFUhI7+4xFYptSAlp8DQoECvODG3uDQvXS85P9fK0MDAyBSoMiEnY8b+
+        vewFHWwVH5ZfY29gPMTSxcjJISFgIvHk3hvWLkYuDiGBHYwSz2/vZQNJCAl8YpRY9sAJIvGZ
+        UeL3ug3MMB37NhxmgkjsYpTYu7MNqh2oo2NBNztIFZuAtsT+3hNgHSICehJ770xhASliFmhg
+        lDi2bQMjSEJYwEHif8cTsCIWAVWJ5fcvMYHYvAJWErd+PmeHWCcvcWrZQai4oMTJmU/ADmcG
+        ijdvnc0MMlRC4BS7xI0pi9ggGlwklr9dCfWdsMSr41ugBklJvOxvY4do6GeUONS3nRXCmcAo
+        sb6rESjDAeTYS7y/ZAFiMgtoSqzfpQ/Rqyix8/dcRojFfBLvvvawQlTzSnS0CUGYqhLLfntA
+        VEtL9E2/DHWNh8SsNX2skCCNldizcgrzBEb5WUi+mYXkm1kIexcwMq9iFEstKM5NTy02LDBE
+        jtVNjOBUqGW6g3Hi2w96hxiZOBgPMUpwMCuJ8Ibe4EgU4k1JrKxKLcqPLyrNSS0+xGgKDN+J
+        zFKiyfnAZJxXEm9oamRsbGxhYmZuZmqsJM77LfZrgpBAemJJanZqakFqEUwfEwenVANT5cH1
+        U6ScGhlcF6/b2JDB8OjeriPz2yT9zhfddLI56/67d8mTJ+6TEg/MkQ53OicfdM/OZ/L09tak
+        Kh/3/u99r+4XqXVztM6x8vJ5dveAQdNtL6uPjfm9+9SKHSZzsTbGBu54Pj+v/f5F65O5r27b
+        Lvuot9PB4UdD8pdZt54qX3dleizjLlM080pPS+Cie0wf0lRtL3X3aU3anMtsP+fbpyUruTW/
+        vNLfdk3caNK1+qXHPHq0RCInXBVfkLH64glRIUVXkf3Xnrx6tGPB6qXXlHc+7udR4nv3Xupn
+        +sKDf+ZwuTwP3m7L5irNw+VXf+jfjInp7+eznio+m/W71kNdqrVJ4ChHyxHX+96zDM4eU2Ip
+        zkg01GIuKk4EAKZe/nUOBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrBLMWRmVeSWpSXmKPExsWy7bCSvO42cc5Eg+l/TC3mHznHajHzzX82
+        i8u75rBZtK98ymaxd7+vxa6fK5gtWvceYXdg99g56y67x6ZVnWwefVtWMXp83iQXwBLFZZOS
+        mpNZllqkb5fAlTFj/172gg62ig/Lr7E3MB5i6WLk5JAQMJHYt+EwE4gtJLCDUeLOFTGIuLTE
+        0xe7gGo4gGxhicOHi7sYuYBKPjBKfNl+nx2khk1AW2J/7wlmEFtEwECipekzK0gRs0Abo8TU
+        /9fAEsICDhL/O56A2SwCqhLL718CW8YrYCVx6+dzdohl8hKnlh2EigtKnJz5BOw4ZqB489bZ
+        zBMY+WYhSc1CklrAyLSKUTK1oDg3PbfYsMAoL7Vcrzgxt7g0L10vOT93EyM4MLW0djDuWfVB
+        7xAjEwfjIUYJDmYlEd7QGxyJQrwpiZVVqUX58UWlOanFhxilOViUxHkvdJ2MFxJITyxJzU5N
+        LUgtgskycXBKNTDN7eg/wrKcc/tNwWe8Ri92dwe379wkqJd89+DEA5H3o54yBL/pvroj80HP
+        34LSR/y3Vu0pDrojsun3Gc2Fyg9WLDytW3ngz7trtpM27kjv7JU+rG3zN9h3t9GBQg3DI2fu
+        30w++0A+9EsZu9uc6QsP/tPOt0zPn7j1TvqDjsnrr3qxJ55iWnpeZH/NDHa+KVMmmN9jmh4j
+        MGO+0ff5ZkcDvq+5rV716s6/rYcTX0Xpbg+rX6K0eNrhl361n5uNhb03fnRLD9oaeEv/cVRz
+        Zm7V1NtHJuawcs+Q2JM/s7Nf70rZVfU9m5+yqZ95/f7Bxn2dy5/JCBS0fT4t1tjXZ7Z/2sMl
+        ryw/taxgaLrO3n/kkpsSS3FGoqEWc1FxIgDWJfU5uwIAAA==
+X-CMS-MailID: 20210803101726epcas1p257df1a6ab948c39304f4246a95d039c3
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: SVC_REQ_APPROVE
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20210803101726epcas1p257df1a6ab948c39304f4246a95d039c3
+References: <CGME20210803101726epcas1p257df1a6ab948c39304f4246a95d039c3@epcas1p2.samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Managed to get some answears form the HW team.
+Fix the below warning:
+drivers/of/fdt.c:196:4: warning: Value stored to 'pprev' is never read
+[clang-analyzer-deadcode.DeadStores]
+             pprev      = &pp->next;
+             ^            ~~~~~~~~~
 
-From a safety perspective: in Explosive environments
-only 1.0 V is allowed.
+Signed-off-by: Ohhoon Kwon <ohoono.kwon@samsung.com>
+---
+ drivers/of/fdt.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-Tests showed that 1.0 V shows spurs around 200m and
-2.4V works for up to 1.3 Km.
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index bd35ba56aa96..5dc0b0310d7c 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -193,7 +193,6 @@ static void populate_properties(const void *blob,
+ 			pp->length = len;
+ 			pp->value  = pp + 1;
+ 			*pprev     = pp;
+-			pprev      = &pp->next;
+ 			memcpy(pp->value, ps, len - 1);
+ 			((char *)pp->value)[len - 1] = 0;
+ 			pr_debug("fixed up name for %s -> %s\n",
+-- 
+2.32.0
 
