@@ -2,103 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 221B93DF08B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 16:43:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E9ED3DF0A4
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 16:48:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236514AbhHCOn7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 10:43:59 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:60056 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234360AbhHCOnd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Aug 2021 10:43:33 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=ACG/s8bQyXMAoKivsxoVT6bV/5aODUI1FE4W/+TE7Po=; b=u9tMLfCgSHBBxy+9+7rKPi9g/W
-        TOqN+109lJMs5yOmt1Hj3kMEm+PXC+li+8Imm24m2ctMG+Iy2LJO4x5WbRxYmSjgJiFQprP1KOCC5
-        SbDmI7fxD1lWXo3oBT41FaNra1U10i5h1k2RQMssR5r/AUFXQHw+5OG9su517YxokOIs=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mAvdQ-00Fyig-Vw; Tue, 03 Aug 2021 16:43:12 +0200
-Date:   Tue, 3 Aug 2021 16:43:12 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>,
-        netdev@vger.kernel.org, robh+dt@kernel.org,
-        UNGLinuxDriver@microchip.com, Woojung.Huh@microchip.com,
-        hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
-        kuba@kernel.org, linux-kernel@vger.kernel.org,
-        vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 net-next 05/10] net: dsa: microchip: add DSA support
- for microchip lan937x
-Message-ID: <YQlWAHSTQ4K3/zet@lunn.ch>
-References: <20210723173108.459770-1-prasanna.vengateshan@microchip.com>
- <20210723173108.459770-6-prasanna.vengateshan@microchip.com>
- <20210731150416.upe5nwkwvwajhwgg@skbuf>
- <YQXJHA+z+hXjxe6+@lunn.ch>
- <20210802213353.qu5j3gn4753xlj43@skbuf>
+        id S236685AbhHCOsL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 10:48:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34522 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236713AbhHCOsD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 10:48:03 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 197D7C061799
+        for <devicetree@vger.kernel.org>; Tue,  3 Aug 2021 07:47:51 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id a192-20020a1c7fc90000b0290253b32e8796so2062124wmd.0
+        for <devicetree@vger.kernel.org>; Tue, 03 Aug 2021 07:47:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=zXJUlnoBGlagmYAr+XexyzecT51mX+H3pwaFkbjlB08=;
+        b=aj6EY8cTMKDszh3T98BODTFy9mWLgriGn/i2VCnHFI8ZxCeJe5CMvI2KXDc3T5N+Fn
+         F1MhInPfqilH/ul4w1jolbeKqPimOJds2qHAZR7gxpkeK+aVCYTUiKh9UxnHIrStJBaM
+         BPEc1DzNzvA9lOHcXdTEN+sN/ajPpQQMpbrRxfmxTkhalKYNyOBFLP/8QLnqYUSdJw3V
+         UKX2oHlCOg70vWkKVD+cn8VknSy2MBXqV4BoX2LH1JH1XmCAgYG6DymjIQldlgVSsDw3
+         f06R6edeoBLjXygCYcERSbj66//u0oBei3ty2fF81gB+0qUtzQ56cmMQaVEmi5xr5n/W
+         c55Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=zXJUlnoBGlagmYAr+XexyzecT51mX+H3pwaFkbjlB08=;
+        b=tEl6H9o5VQ1+QdukvNge2jQCCRs+kJ4tHF8Feo4/woZCXt5fw+VJUP50fFfTk2kjpq
+         JyrrB/gGwjVxEtFigtlghBJU4qD4pZhZU9i2gV+BWOWaPsRNRPWOkm9JRApizwUde/sE
+         3wXd9DSYKYDGlw0Qb0oQF/YZWo+WNi49WItXsxfgOM0tHjbLz8Kws8yLSIUELZdXmTjM
+         LgXeffI5G2Vzo7x3JY0A30tPh2LE5l4mg9v370f+NcxcMYLj0ptvcFYbkiBhuzOXZC30
+         ShkoKuOLzvNLzD13XZsJ0ZPUKJacyt1ruY0dVaB3Vn7FhaVUHs+Ubw7MhTavzTJgPIRF
+         h8Ug==
+X-Gm-Message-State: AOAM530Df/AYDHqX+eHcm+5DSh0ovSFcoe81rrCC7ZW+RRgxpxkMoZw2
+        bXBOywyKm+1JfxBLzhEHbKYtUA==
+X-Google-Smtp-Source: ABdhPJycOIACXhoY9Jt9L7t4p0koUKqZn+NXs/WRiqFAKK5i/TARsy/DjyqzpSibm8xAmLOwywcXNQ==
+X-Received: by 2002:a1c:238e:: with SMTP id j136mr22655586wmj.91.1628002069739;
+        Tue, 03 Aug 2021 07:47:49 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id x21sm2754394wmi.46.2021.08.03.07.47.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Aug 2021 07:47:49 -0700 (PDT)
+Subject: Re: [PATCH v3 16/20] ASoC: qdsp6: audioreach: add topology support
+To:     =?UTF-8?Q?Amadeusz_S=c5=82awi=c5=84ski?= 
+        <amadeuszx.slawinski@linux.intel.com>, bjorn.andersson@linaro.org,
+        broonie@kernel.org, robh@kernel.org
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, tiwai@suse.de, plai@codeaurora.org,
+        lgirdwood@gmail.com
+References: <20210803125411.28066-1-srinivas.kandagatla@linaro.org>
+ <20210803125411.28066-17-srinivas.kandagatla@linaro.org>
+ <05f85ed8-01ce-632b-c744-3fe8995bd17a@linux.intel.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <52c3078b-3d80-3802-ad58-0574d6ce3edc@linaro.org>
+Date:   Tue, 3 Aug 2021 15:47:48 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210802213353.qu5j3gn4753xlj43@skbuf>
+In-Reply-To: <05f85ed8-01ce-632b-c744-3fe8995bd17a@linux.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 03, 2021 at 12:33:53AM +0300, Vladimir Oltean wrote:
-> On Sun, Aug 01, 2021 at 12:05:16AM +0200, Andrew Lunn wrote:
-> > > So you support both the cases where an internal PHY is described using
-> > > OF bindings, and where the internal PHY is implicitly accessed using the
-> > > slave_mii_bus of the switch, at a PHY address equal to the port number,
-> > > and with no phy-handle or fixed-link device tree property for that port?
-> > > 
-> > > Do you need both alternatives? The first is already more flexible than
-> > > the second.
-> > 
-> > The first is also much more verbose in DT, and the second generally
-> > just works without any DT. What can be tricky with the second is
-> > getting PHY interrupts to work, but it is possible, the mv88e6xxx does
-> > it.
-> 
-> - The explicit phy-handle is more verbose as far as the DT description
->   goes for one particular use case of indirect internal PHY access, but
->   it also leads to less complex code (more uniform with other usage
->   patterns in the kernel). What is tricky with an implicit phy-handle is
->   trivial without it. This makes a difference with DM_DSA in U-Boot,
->   where I would really like to avoid bloating the code and just support
->   2 options for a DSA switch port: either a phy-handle or a fixed-link.
->   These two are already "Turing-complete" (they can describe any system)
->   so I only see the implicit phy-handle as a helping hand for a few lazy
->   DT writers. Since I have been pushing back that we shouldn't bloat
->   U-Boot with implicit phy-handle logic when it doesn't give a concrete
->   benefit, and have gotten a push back in return that Linux does allow
->   it and it would be desirable for one DT binding to cover all, I now
->   need to promote the more generic approach for Linux going forward too.
-> 
-> - If the switch has the ability for its internal PHYs to be accessed
->   directly over MDIO pins instead of using indirect SPI transfers, using
->   a phy-handle is a generic way to handle both cases, while the implicit
->   phy-handle does not give you that option.
-> 
-> - If there is complex pinmuxing in the SoC and one port can either be
->   connected to an internal 100base-T1 or to a 100base-TX PHY, and this
->   is not detectable by software, this cannot be dealt with using an
->   implicit phy-handle if the 100base-T1 and 100base-TX PHYs are not at
->   the same address.
-> 
-> - In general, if the internal PHYs are not at an MDIO address equal to
->   the port number, this cannot be dealt with using the implicit
->   phy-handle method.
 
-There are good reasons to use an explicit phy-handle, and i would
-never block such code. However, implicit is historically how it was
-done. There are many DT blobs which assume it works. So implicit is
-not going away.
+Thanks Amadeusz for quick review,
 
-If you want to only support explicit in U-Boot, that is fine. I would
-suggest making this clear in the U-Boot documentation.
+On 03/08/2021 15:21, Amadeusz Sławiński wrote:
+> On 8/3/2021 2:54 PM, Srinivas Kandagatla wrote:
+>> Add ASoC topology support in audioreach
+>>
+>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>> ---
+> 
+> ...
+> 
+>> +
+>> +/* DAI Tokens */
+>> +#define AR_TKN_DAI_INDEX            1
+>> +/* SUB GRAPH Tokens */
+>> +#define AR_TKN_U32_SUB_GRAPH_INSTANCE_ID    2
+>> +#define AR_TKN_U32_SUB_GRAPH_PERF_MODE        3
+>> +#define AR_TKN_U32_SUB_GRAPH_DIRECTION        4
+>> +#define AR_TKN_U32_SUB_GRAPH_SCENARIO_ID    5
+>> +
+>> +/* Container Tokens */
+>> +#define AR_TKN_U32_CONAINER_INSTANCE_ID        100
+>> +#define AR_TKN_U32_CONAINER_CAPABILITY_ID    101
+>> +#define AR_TKN_U32_CONAINER_STACK_SIZE        102
+>> +#define AR_TKN_U32_CONAINER_GRAPH_POS        103
+>> +#define AR_TKN_U32_CONAINER_PROC_DOMAIN        104
+> 
+> typo in all of the above and in comment documenting them
+> AR_TKN_U32_CONTAINER_ *
+> 
+.. Not sure how i missed this one.. Its not fixed.
 
-	Andrew
+> 
+>>   #define APM_AUDIO_DRV_NAME "q6apm-audio"
+>> diff --git a/sound/soc/qcom/qdsp6/topology.c 
+>> b/sound/soc/qcom/qdsp6/topology.c
+>> new file mode 100644
+>> index 000000000000..409e19486d57
+>> --- /dev/null
+>> +++ b/sound/soc/qcom/qdsp6/topology.c
+>> @@ -0,0 +1,1114 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +// Copyright (c) 2020, Linaro Limited
+>> +
+>> +#include <sound/soc.h>
+>> +#include <sound/soc-dapm.h>
+>> +#include <sound/pcm.h>
+>> +#include <sound/control.h>
+>> +#include <sound/asound.h>
+>> +#include <linux/firmware.h>
+>> +#include <sound/soc-topology.h>
+>> +#include <sound/soc-dpcm.h>
+>> +#include <uapi/sound/snd_ar_tokens.h>
+>> +#include <linux/kernel.h>
+>> +#include <linux/wait.h>
+>> +#include "q6apm.h"
+>> +#include "audioreach.h"
+>> +
+>> +struct snd_ar_control {
+>> +    u32 sgid; /* Sub Graph ID */
+>> +    struct snd_soc_component *scomp;
+>> +};
+>> +
+>> +static struct audioreach_graph_info *audioreach_tplg_alloc_graph_info(
+>> +                    struct q6apm *apm, uint32_t graph_id,
+>> +                    bool *found)
+>> +{
+>> +    struct audioreach_graph_info *info;
+>> +    int ret;
+>> +
+>> +    spin_lock(&apm->lock);
+>> +    info = idr_find(&apm->graph_info_idr, graph_id);
+>> +    spin_unlock(&apm->lock);
+>> +
+>> +    if (info) {
+>> +        *found = true;
+>> +        return info;
+>> +    }
+>> +
+>> +    *found = false;
+>> +    info = kzalloc(sizeof(*info), GFP_KERNEL);
+>> +    if (!info)
+>> +        return ERR_PTR(-ENOMEM);
+>> +
+>> +
+>> +    INIT_LIST_HEAD(&info->sg_list);
+>> +    spin_lock_init(&info->sg_list_lock);
+>> +
+>> +    spin_lock(&apm->lock);
+>> +    ret = idr_alloc(&apm->graph_info_idr, info, graph_id,
+>> +            graph_id + 1, GFP_ATOMIC);
+>> +    spin_unlock(&apm->lock);
+>> +
+>> +    if (ret < 0) {
+>> +        dev_err(apm->dev, "Failed to allocate Graph ID (%x)\n", 
+>> graph_id);
+>> +        return ERR_PTR(ret);
+>> +    }
+> need to free info here?
+
+All such instances are now fixed, thanks for spotting these!
+
+--srini
