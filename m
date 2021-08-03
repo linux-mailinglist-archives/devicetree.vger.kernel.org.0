@@ -2,93 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C8EF3DF88C
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 01:35:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D64DA3DF8A6
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 01:54:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234204AbhHCXfP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 19:35:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50244 "EHLO
+        id S234671AbhHCXyS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 19:54:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234178AbhHCXfP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 19:35:15 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 469C3C061757
-        for <devicetree@vger.kernel.org>; Tue,  3 Aug 2021 16:35:03 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id t9so1327903lfc.6
-        for <devicetree@vger.kernel.org>; Tue, 03 Aug 2021 16:35:03 -0700 (PDT)
+        with ESMTP id S234668AbhHCXyR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 19:54:17 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C8C0C061757;
+        Tue,  3 Aug 2021 16:54:04 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id go31so1072009ejc.6;
+        Tue, 03 Aug 2021 16:54:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=OboK+DP1GLQ7qO1X6SFXHJeqsxmRJzLpz1cmFRfRtvg=;
-        b=STceXaC5PfzZq/z5cCZaqDSKX8eNoQ2p/qIKEt8D5BChje8N2mJqZfrVcp7obJ01FP
-         mldMZo6j87cICbQypMXnTk2SmPoMt3q5xG669bjhGQ8WxSqhyd/wfnwXq8DbGh753X/B
-         o7+6VHtZLsjsgt6AGtQmvvvoZzCeyuLvIPrIInG2w2RN7Ypr1DgebD3tJcXuMLWIb2RA
-         qgYBY6lbkp1BRWqHWC8+ZKkQRMmmdXY9Zc6Vx1tWykRE0Zkawy9z+8YAaQS4l7DJ/98J
-         pbodWBxEKltkBkDGLKlmeRbl0rJK5zG6GVxJF7OQxWkN9tF2zFfiJ06t7sJCZvGrCe4Z
-         d13A==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=YPFmNIw+yrL6Vwys09qoiCZ82cjs0qJnM22rwsvosfE=;
+        b=GFYk9iIHpdjVstQ495pERkDGjlm06eekiz7uUxtdEcY70Ge1H1IS3RFSpYfpzRkjKX
+         s4te386ArHsulQtxLv07zy24CjPV6sNfbBgOb7PyUvj3e8nBdU/uiAT0RWlQbf0rqiz0
+         ETgDuwnc2G3R7NGLB9TT7+AyshlrBtexhmimZoYUALM7126hewFdwbuRn3LjqP3SN1XO
+         3LhMq/isuf3zdL5RH5Kit0w70YLgYYRWVjZkC/1Byo5G9bo3JeTTgjurVNgA1GBHdcQY
+         dYOFSWjWvXQUaeONozw+fva3cIgVqfpZ2djWWsADacELHDNABTlBGI0VRCTzQMPNlcDo
+         Ku3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OboK+DP1GLQ7qO1X6SFXHJeqsxmRJzLpz1cmFRfRtvg=;
-        b=VIye0g+auKovy+N+cQx4JfenJP0tk5vdDM1EjuDDLrKarHEz4gX9U2ZUR15zvSlJaZ
-         x8xxSxnFoRx7uc1PkZa8Qy4GjWZxw4VeU7ujvKUJa3soiw//O+LAfzFGhnL1djHxU/Fq
-         XUv4p9c76Oeq5vIHjbNG3brwd3qSofN6b9FvjFTLKcR+pFNjSl+PqTpWnMQwxHCdj5fp
-         zNuNyn7ddXHCw/YpVY/EGYex3YlLE6IFPCeYQplfEkQ4NSs83VwhiZvUHwrJhNakK1ha
-         0WfGZgkuGPrXi1eGlC5iMnkkVGCHjJI8J1l+83ytC5UrIG9ZYq1vSwA/GIFwLNJ3uU/y
-         hBtg==
-X-Gm-Message-State: AOAM531xzAQg8qnEwg0RCP3FozXLCo2bxN3ATtW/jPJwMIXTJWsF/OXI
-        jEtfqj4CCLRBOj0OS/hARpqo6chqsaOLJMZ1hgJwMg==
-X-Google-Smtp-Source: ABdhPJymjavPtkVqjxK9gWwdsr0cwgOPwoR9crWUlQrL7fb/5sa+YFl7A0NQ2p7gam0sNyYEnLxEs3r4HWOWYf4Xd5I=
-X-Received: by 2002:ac2:4c4c:: with SMTP id o12mr17755451lfk.157.1628033701692;
- Tue, 03 Aug 2021 16:35:01 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=YPFmNIw+yrL6Vwys09qoiCZ82cjs0qJnM22rwsvosfE=;
+        b=miCeHPsji/zupsbfFKC+X0DJjIhVh+gEk65Ps2wNV6gHvgGY/yqVXptjE7b7iHX4oo
+         DH5tURnV9oP24bUqqJ19LV4OHBCoigWZuu5P9Km8jTGVot/CRRFFHwhFLuQ/K6XZXVQZ
+         Q0GyM5G0XO2jDzLB7IcE2un6chr27LgJoPYyspzOCHOT/E7w7PGpjK2klqGF7F7I/AJZ
+         fw3QEGfpH0YZCc68mycdL85t/q8H8wb0EGTPsFM3Uz8Gn2elNEKraevNix1hPxi/fti+
+         dlUbYuufRcr0iWgKhI6jytcq8pg54/Qs347E7XFpiCq8nIKW54mhqyNKTDH/CozstEi9
+         e3WA==
+X-Gm-Message-State: AOAM533UeRDpnGDtVAO5RRL0L1ZTT5h4uzQY8ceWUwVS/EpWdb6zu/mK
+        A+82aTOCgCQil8bp8jCzqC4=
+X-Google-Smtp-Source: ABdhPJyECHP/nQBnn8BFsok2EET3ndAWnGt+qeys3LYWL6o4NcQPJmun6pvxaa9zJX13fiIKMBufVg==
+X-Received: by 2002:a17:906:a08d:: with SMTP id q13mr22838074ejy.465.1628034842827;
+        Tue, 03 Aug 2021 16:54:02 -0700 (PDT)
+Received: from skbuf ([188.25.144.60])
+        by smtp.gmail.com with ESMTPSA id x42sm212236edy.86.2021.08.03.16.54.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Aug 2021 16:54:02 -0700 (PDT)
+Date:   Wed, 4 Aug 2021 02:54:01 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org,
+        robh+dt@kernel.org, UNGLinuxDriver@microchip.com,
+        Woojung.Huh@microchip.com, hkallweit1@gmail.com,
+        linux@armlinux.org.uk, davem@davemloft.net, kuba@kernel.org,
+        linux-kernel@vger.kernel.org, vivien.didelot@gmail.com,
+        f.fainelli@gmail.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 net-next 05/10] net: dsa: microchip: add DSA support
+ for microchip lan937x
+Message-ID: <20210803235401.rctfylazg47cjah5@skbuf>
+References: <20210723173108.459770-1-prasanna.vengateshan@microchip.com>
+ <20210723173108.459770-6-prasanna.vengateshan@microchip.com>
+ <20210731150416.upe5nwkwvwajhwgg@skbuf>
+ <49678cce02ac03edc6bbbd1afb5f67606ac3efc2.camel@microchip.com>
+ <20210802121550.gqgbipqdvp5x76ii@skbuf>
+ <YQfvXTEbyYFMLH5u@lunn.ch>
+ <20210802135911.inpu6khavvwsfjsp@skbuf>
+ <50eb24a1e407b651eda7aeeff26d82d3805a6a41.camel@microchip.com>
 MIME-Version: 1.0
-References: <20210802155657.102766-1-stephan@gerhold.net> <20210802155657.102766-4-stephan@gerhold.net>
-In-Reply-To: <20210802155657.102766-4-stephan@gerhold.net>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 4 Aug 2021 01:34:50 +0200
-Message-ID: <CACRpkdZO9_Z+3UCgKgGkERqV2aK=1GbdDEDzVaKt1ejzBmrG9A@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] iio: accel: bmc150: Make it possible to configure
- INT2 instead of INT1
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
-        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>, Andy
-        Shevchenko <andy.shevchenko@gmail.com>," 
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        Nikita Travkin <nikita@trvn.ru>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <50eb24a1e407b651eda7aeeff26d82d3805a6a41.camel@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 2, 2021 at 5:57 PM Stephan Gerhold <stephan@gerhold.net> wrote:
+On Tue, Aug 03, 2021 at 10:24:27PM +0530, Prasanna Vengateshan wrote:
+> Thanks Vladimir & Andrew for the right pointers and info. The thread talks about
+> "rgmii-*" are going to be applied by the PHY only as per the doc. For fixed-
+> link, MAC needs to add the delay. This fixed-link can be No-PHY or MAC-MAC or
+> MAC to in-accessible PHY. In such case, i am not convinced in using rgmii-tx-
+> delay-ps & rgmii-rx-delay-ps on the MAC side and apply delay. I still think
+> proposed code in earlier mail thread should still be okay.
 
-> Some Bosch accelerometers have two interrupt pins (INT1 and INT2).
-> At the moment, the driver uses only the first one, which is fine for
-> most situations. However, some boards might only have INT2 connected
-> for some reason.
->
-> Add the necessary bits and configuration to set up INT2. Then try
-> to detect this situation at least for device tree setups by checking
-> if the first interrupt (the one picked by the I2C/SPI core) is actually
-> named "INT2" using the interrupt-names property.
->
-> of_irq_get_byname() returns either 0 or some error code in case
-> the driver probed without device tree, so in all other cases we fall
-> back to configuring INT1 as before.
->
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+Why? I genuinely do not understand your reasoning
 
-Looks good
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+  - I read a thread that brings some arguments for which MACs should not
+    add delays based on the delay type in the "rgmii-*" phy-mode string
+    [ but based on explicit rgmii-tx-delay-ps and rgmii-rx-delay-ps
+    properties under the MAC OF node; this is written in the same
+    message as the quote that you chose ]
 
-Yours,
-Linus Walleij
+  - I acknowledge that in certain configurations I need the MAC to apply
+    internal delays.
+
+  => I disagree that I should parse the rgmii-tx-delay-ps and
+     rgmii-rx-delay-ps OF properties of the MAC, just apply RGMII delays
+     based on the "rgmii-*" phy-mode string value, when I am a DSA CPU
+     port and in no other circumstance
+
+?!
+
+I mean, feel free to feel convinced or not, but you have not actually
+brought any argument to the table here, or I'm not seeing it.
+
+Anyway, I don't believe that whatever you decide to do with the RGMII
+delays is likely to be a decisive factor in whether the patches are
+accepted or not, considering the fact that traditionally, everyone did
+what suited their board best and that's about it; I will stop pushing back.
+
+I have a theory that all the RGMII setups driven by the Linux PHY
+library cannot all work at the same time, with the same code base.
+Someone will sooner or later come and change a driver to make it do what
+they need, which will break what the original author intended, which
+will then be again patched, which will again break ..., which ....
+
+If a perpetual motion device will ever be built by mankind, I am sure it
+will be powered by RGMII delays.
