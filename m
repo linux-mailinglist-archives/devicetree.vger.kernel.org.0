@@ -2,78 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE79A3DF7ED
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 00:36:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 839BB3DF804
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 00:38:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233352AbhHCWgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 18:36:19 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53530 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233273AbhHCWgS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Aug 2021 18:36:18 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6CEE960F22;
-        Tue,  3 Aug 2021 22:36:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1628030167;
-        bh=asQGxyx3ZQN4Q8Miaysp1gcVWV+6cQfAcxrxVEvCo+E=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=HhxuQomV0wCq1Jjb+mXjx/qWoagW9G9af6iUrIcAi3rsKvSemsFwgxWXs0oxd7KYj
-         9QIGkbAp8SUQmFHc+3aU6eViq6Lwr7kN+ucBiLli2KXcXXmJc5ZBCzlIEoD7gEJF65
-         AN6aTUj4+T3Dj43fBSA2b6sJs/fVZOZ6WhlABdbgbX6xftHCy3oJ6lRk7hkWNAw8c5
-         J03Nou2NqD958V/Tj71VTMNuuZK4WCZfnMp7oZgunIjBGPNOtBjvH7j4COR+ZWv862
-         evOq/5CE1auJ9TQSdqwTz5BnLNqKQNwFco4QA9fFzffWtoUuRpQYSmee/eOfd3MRMG
-         RHkYTy+G1tiQg==
-From:   Mark Brown <broonie@kernel.org>
-To:     kernel@pengutronix.de, lee.jones@linaro.org, robh+dt@kernel.org,
-        lgirdwood@gmail.com, Alistair Francis <alistair@alistair23.me>,
-        linux-imx@nxp.com
-Cc:     Mark Brown <broonie@kernel.org>, alistair23@gmail.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v8 01/11] dt-bindings: mfd: Initial commit of silergy,sy7636a.yaml
-Date:   Tue,  3 Aug 2021 23:35:33 +0100
-Message-Id: <162803004553.42325.11270112719956797147.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210803084456.198-1-alistair@alistair23.me>
-References: <20210803084456.198-1-alistair@alistair23.me>
+        id S229800AbhHCWix (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 18:38:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37038 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233459AbhHCWi0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 18:38:26 -0400
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAE3EC061757;
+        Tue,  3 Aug 2021 15:38:13 -0700 (PDT)
+Received: by mail-pl1-x634.google.com with SMTP id d1so864341pll.1;
+        Tue, 03 Aug 2021 15:38:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=mtMk8/id55tqF/zH96Hx9KDINyNpzaA5iOGXRjHT2Ag=;
+        b=jleiWgAB+ErOvppHrQTI6/6LNUqK5nTuAAsk807AE73YrDfBinh5rbszK868ED/peS
+         GLy2HCBng6nFc7zfdRHugPswGeAdXhun3S6JJqmf8qI1QGz4CvMw4PEcKg1mn8vaj5kQ
+         +p7ALCHjNLtOB9bbpVLBolZ1qao1nuiGmPFQFk6JOYFM9HXLw+Uu8/MsGSsyH7PWaset
+         b3n5c/rqQEc2uvhUHqAZXUqx0kIfOiWqJjm4rYNuybq8eYOjkxdX8THxlssEuf7Azu/u
+         M8n2wSq3LFvMRVWltVD34WmwsI/nWrD5UAFhP2UdnuUBlpM1ruMnkAQNssWnWsm0KcMl
+         FORA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=mtMk8/id55tqF/zH96Hx9KDINyNpzaA5iOGXRjHT2Ag=;
+        b=flySSOElmr0oCgyNJAuYrYgpFRc81+8rgTWsKlbGOeS7MwIi6as2z0TLejCdXt5saI
+         nvxcFoLXda5V77OaAfKxbn8KzQree8jwx1y/nE5Iv0qCtbipzPGGXYaE8v7esas5m3iS
+         gPw808noc6+GRqqE63h+dEuBHXx1ExsBfUJ5Vuo7YZZuIlEoOnLzu/GdSEeLqZ+DW4RI
+         v4992rwnTKPX90561p6tiXAcmVVtgZyFiDLCjODlk3Bz4CHWIbrl31b/H/WbtSkDyo+M
+         aK7noYoZJosVKvQjCkKtwGJIktJrAarVD+WIWJJH+nuWHKnGcfDRe6S8dO6/oHSpDdJQ
+         LuEA==
+X-Gm-Message-State: AOAM533PmZ3OkaJGcCTU9aM6kYIajJiCEepMa22jKtrXmZExZKk/TCQH
+        z9ushqLg+4b97CyqyE5nrec=
+X-Google-Smtp-Source: ABdhPJz/24XejeMFwYlrbJbo/3K6SkKR/MpUdvnaGZ5Cz9m67paQR1r/TT1DZIYvou03g8MiNpktjg==
+X-Received: by 2002:a17:90a:3489:: with SMTP id p9mr6676048pjb.197.1628030293220;
+        Tue, 03 Aug 2021 15:38:13 -0700 (PDT)
+Received: from sol (106-69-177-173.dyn.iinet.net.au. [106.69.177.173])
+        by smtp.gmail.com with ESMTPSA id mr18sm207607pjb.39.2021.08.03.15.38.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Aug 2021 15:38:12 -0700 (PDT)
+Date:   Wed, 4 Aug 2021 06:38:05 +0800
+From:   Kent Gibson <warthog618@gmail.com>
+To:     Dipen Patel <dipenp@nvidia.com>
+Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
+        bgolaszewski@baylibre.com, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org, robh+dt@kernel.org,
+        andriy.shevchenko@linux.intel.com
+Subject: Re: [RFC 08/11] gpiolib: cdev: Add hardware timestamp clock type
+Message-ID: <20210803223805.GA5020@sol>
+References: <20210625235532.19575-1-dipenp@nvidia.com>
+ <20210625235532.19575-9-dipenp@nvidia.com>
+ <20210701142433.GC34285@sol>
+ <ba32de51-0639-36e2-3575-1f7915542a19@nvidia.com>
+ <20210731060556.GA11043@sol>
+ <1102e1b2-9d53-fc93-b7c5-bfeb9eb2e18d@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1102e1b2-9d53-fc93-b7c5-bfeb9eb2e18d@nvidia.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 3 Aug 2021 18:44:48 +1000, Alistair Francis wrote:
-> Initial support for the Silergy SY7636A Power Management chip
-> and regulator.
+On Tue, Aug 03, 2021 at 03:41:56PM -0700, Dipen Patel wrote:
+> 
+> On 7/30/21 11:05 PM, Kent Gibson wrote:
+> > On Thu, Jul 29, 2021 at 08:07:15PM -0700, Dipen Patel wrote:
+> >> On 7/1/21 7:24 AM, Kent Gibson wrote:
+> > <snip>
+> >>>>  			ret = gpiod_direction_output(desc, val);
+> >>>>  			if (ret)
+> >>>>  				return ret;
+> >>>> @@ -1152,6 +1186,13 @@ static long linereq_set_config_unlocked(struct linereq *lr,
+> >>>>  					polarity_change);
+> >>>>  			if (ret)
+> >>>>  				return ret;
+> >>>> +
+> >>>> +			/* Check if new config sets hardware assisted clock */
+> >>>> +			if (flags & GPIO_V2_LINE_FLAG_EVENT_CLOCK_HARDWARE) {
+> >>>> +				ret = gpiod_hw_timestamp_control(desc, true);
+> >>>> +				if (ret)
+> >>>> +					return ret;
+> >>>> +			}
+> >>>>  		}
+> >>>>  
+> >>> The error code here can come from the pinctrl timestamp_control(), so it
+> >>> should be sanitised before being returned to userspace.
+> >> I do not understand what do you mean by sanitise. I just followed what
+> >>
+> >> gpiod_direction_output did just above which also returns ret from gpio
+> >>
+> >> driver code similar to timestamp_control API.
+> >>
+> > In this context, sanitise means convert any kernel internal error codes
+> > to their userspace equivalent before returning them to userspace.
+> >
+> > Fair enough with the gpiod_direction_output() comparison.  I was thinking
+> > of a patch Andy recently submitted[1] to sanitise gpiod_request(), which
+> > can sometimes return EPROBE_DEFER.  But I guess we can wait until we find
+> > a case of a driver returning an internal error code and add a sanitiser
+> > then.
+> Make sense, I will add sanity check
+> >
 
-Applied to
+But I said don't bother yet.  And you need to know what errors to sanitise
+before you sanitise them - unless you want to run through all the
+possibilities that can be returned to userspace.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+Cheers,
+Kent.
 
-Thanks!
-
-[05/11] regulator: sy7636a: Remove the poll_enable_time
-        commit: e5dad32d90e0e9b006f5c330e92fa0ec9042ae79
-[06/11] regulator: sy7636a: Use the parent driver data
-        commit: 4cafe1aeb5fb4eb1778d5e1b91d50a078369dbe1
-[07/11] regulator: sy7636a: Store the epd-pwr-good GPIO locally
-        commit: d38d49b140043bba3ea27b89cca5fefaf08e2034
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
