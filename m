@@ -2,109 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F44D3DEEFB
-	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 15:20:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E39F3DE4A3
+	for <lists+devicetree@lfdr.de>; Tue,  3 Aug 2021 05:18:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236238AbhHCNUb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 09:20:31 -0400
-Received: from mga04.intel.com ([192.55.52.120]:49599 "EHLO mga04.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236045AbhHCNUb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Aug 2021 09:20:31 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10064"; a="211817657"
-X-IronPort-AV: E=Sophos;i="5.84,291,1620716400"; 
-   d="scan'208";a="211817657"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Aug 2021 06:20:20 -0700
-X-IronPort-AV: E=Sophos;i="5.84,291,1620716400"; 
-   d="scan'208";a="521246523"
-Received: from vmustya-mobl1.amr.corp.intel.com (HELO [10.213.171.71]) ([10.213.171.71])
-  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Aug 2021 06:20:19 -0700
-Subject: Re: [PATCH v3 2/4] ASoC: codecs: wcd: add multi button Headset
- detection support
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        broonie@kernel.org
-Cc:     robh@kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        lgirdwood@gmail.com
-References: <20210604115230.23259-1-srinivas.kandagatla@linaro.org>
- <20210604115230.23259-3-srinivas.kandagatla@linaro.org>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Message-ID: <139e6867-2d29-09e0-d059-399917e5962d@linux.intel.com>
-Date:   Mon, 2 Aug 2021 19:03:19 -0500
+        id S233537AbhHCDSO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Aug 2021 23:18:14 -0400
+Received: from regular1.263xmail.com ([211.150.70.205]:41550 "EHLO
+        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233436AbhHCDSN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Aug 2021 23:18:13 -0400
+X-Greylist: delayed 487 seconds by postgrey-1.27 at vger.kernel.org; Mon, 02 Aug 2021 23:18:12 EDT
+Received: from localhost (unknown [192.168.167.70])
+        by regular1.263xmail.com (Postfix) with ESMTP id B2FEA947;
+        Tue,  3 Aug 2021 11:09:48 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-SKE-CHECKED: 1
+X-ABS-CHECKED: 1
+X-ANTISPAM-LEVEL: 2
+Received: from [172.16.12.8] (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P4991T139770963339008S1627960187187438_;
+        Tue, 03 Aug 2021 11:09:47 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <65d4135603dfef771ba2a7a9f4dcf93d>
+X-RL-SENDER: david.wu@rock-chips.com
+X-SENDER: wdc@rock-chips.com
+X-LOGIN-NAME: david.wu@rock-chips.com
+X-FST-TO: linux-iio@vger.kernel.org
+X-RCPT-COUNT: 11
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+Subject: Re: [PATCH] iio: adc: rockchip_saradc: just get referenced voltage
+ once at probe
+To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
+        Simon Xue <xxm@rock-chips.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, Johan Jonker <jbx6244@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-iio@vger.kernel.org
+References: <20210802090929.37970-1-xxm@rock-chips.com>
+ <20210802114222.00004f3d@Huawei.com>
+From:   David Wu <david.wu@rock-chips.com>
+Message-ID: <36f6284f-6bc9-d5a4-aac8-5db8b1ecaae1@rock-chips.com>
+Date:   Tue, 3 Aug 2021 11:09:47 +0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.11.0
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <20210604115230.23259-3-srinivas.kandagatla@linaro.org>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20210802114222.00004f3d@Huawei.com>
+Content-Type: text/plain; charset=gbk; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Srinivas,
-cppcheck reports an issue with the use of 'hphpa_on' below
+Hi Jonathan,
 
-> +static irqreturn_t wcd_mbhc_adc_hs_rem_irq(int irq, void *data)
-> +{
-> +	struct wcd_mbhc *mbhc = data;
-> +	unsigned long timeout;
-> +	int adc_threshold, output_mv, retry = 0;
-> +	bool hphpa_on = false;
+ÔÚ 2021/8/2 ÏÂÎç6:42, Jonathan Cameron Ð´µÀ:
+> On Mon, 2 Aug 2021 17:09:29 +0800
+> Simon Xue <xxm@rock-chips.com> wrote:
+> 
+>> From: David Wu <david.wu@rock-chips.com>
+>>
+>> The referenced voltage is not changed after initiation, so just only
+>> get referenced voltage once.
+> Hi David,
+> 
+> Isn't this an external reference voltage?  If so how do you know
+> it is not changed at runtime?  It might be unlikely and not happen
+> on particular platforms, but that's not he same as saying it can never
+> happen.  Clearly it's racey anyway if that does happen, but we definitely
+> don't expect frequent voltage changes.
+> 
 
-assigned here
+The current regulator is not changed and not subject to external 
+changes, this can reduce the getting voltage. Assuming that there will 
+be changes in the future, we then add the notify of the regulator, so 
+that the voltage change can be obtained.
 
-> +
-> +	mutex_lock(&mbhc->lock);
-> +	timeout = jiffies + msecs_to_jiffies(WCD_FAKE_REMOVAL_MIN_PERIOD_MS);
-> +	adc_threshold = wcd_mbhc_adc_get_hs_thres(mbhc);
-> +
-> +	do {
-> +		retry++;
-> +		/*
-> +		 * read output_mv every 10ms to look for
-> +		 * any change in IN2_P
-> +		 */
-> +		usleep_range(10000, 10100);
-> +		output_mv = wcd_measure_adc_once(mbhc, MUX_CTL_IN2P);
-> +
-> +		/* Check for fake removal */
-> +		if ((output_mv <= adc_threshold) && retry > FAKE_REM_RETRY_ATTEMPTS)
-> +			goto exit;
-> +	} while (!time_after(jiffies, timeout));
-> +
-> +	/*
-> +	 * ADC COMPLETE and ELEC_REM interrupts are both enabled for
-> +	 * HEADPHONE, need to reject the ADC COMPLETE interrupt which
-> +	 * follows ELEC_REM one when HEADPHONE is removed.
-> +	 */
-> +	if (mbhc->current_plug == MBHC_PLUG_TYPE_HEADPHONE)
-> +		mbhc->extn_cable_hph_rem = true;
-> +
-> +	wcd_mbhc_write_field(mbhc, WCD_MBHC_DETECTION_DONE, 0);
-> +	wcd_mbhc_write_field(mbhc, WCD_MBHC_ADC_MODE, 0);
-> +	wcd_mbhc_write_field(mbhc, WCD_MBHC_ADC_EN, 0);
-> +	wcd_mbhc_elec_hs_report_unplug(mbhc);
-> +	wcd_mbhc_write_field(mbhc, WCD_MBHC_BTN_ISRC_CTL, 0);
+> Jonathan
+> 
+>>
+>> Signed-off-by: Simon Xue <xxm@rock-chips.com>
+>> Signed-off-by: David Wu <david.wu@rock-chips.com>
+>> ---
+>>   drivers/iio/adc/rockchip_saradc.c | 16 +++++++++-------
+>>   1 file changed, 9 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/drivers/iio/adc/rockchip_saradc.c b/drivers/iio/adc/rockchip_saradc.c
+>> index f3eb8d2e50dc..cd33c0b9d3eb 100644
+>> --- a/drivers/iio/adc/rockchip_saradc.c
+>> +++ b/drivers/iio/adc/rockchip_saradc.c
+>> @@ -49,6 +49,7 @@ struct rockchip_saradc {
+>>   	struct clk		*clk;
+>>   	struct completion	completion;
+>>   	struct regulator	*vref;
+>> +	int			uv_vref;
+>>   	struct reset_control	*reset;
+>>   	const struct rockchip_saradc_data *data;
+>>   	u16			last_val;
+>> @@ -105,13 +106,7 @@ static int rockchip_saradc_read_raw(struct iio_dev *indio_dev,
+>>   		mutex_unlock(&indio_dev->mlock);
+>>   		return IIO_VAL_INT;
+>>   	case IIO_CHAN_INFO_SCALE:
+>> -		ret = regulator_get_voltage(info->vref);
+>> -		if (ret < 0) {
+>> -			dev_err(&indio_dev->dev, "failed to get voltage\n");
+>> -			return ret;
+>> -		}
+>> -
+>> -		*val = ret / 1000;
+>> +		*val = info->uv_vref / 1000;
+>>   		*val2 = chan->scan_type.realbits;
+>>   		return IIO_VAL_FRACTIONAL_LOG2;
+>>   	default:
+>> @@ -410,6 +405,13 @@ static int rockchip_saradc_probe(struct platform_device *pdev)
+>>   		return ret;
+>>   	}
+>>   
+>> +	info->uv_vref = regulator_get_voltage(info->vref);
+>> +	if (info->uv_vref < 0) {
+>> +		dev_err(&pdev->dev, "failed to get voltage\n");
+>> +		ret = info->uv_vref;
+>> +		return ret;
+>> +	}
+>> +
+>>   	ret = clk_prepare_enable(info->pclk);
+>>   	if (ret < 0) {
+>>   		dev_err(&pdev->dev, "failed to enable pclk\n");
+> 
+> 
+> 
+> 
 
-not used, so hphpa_on == false
 
-> +	if (hphpa_on) {
-> +		hphpa_on = false;
-> +		wcd_mbhc_write_field(mbhc, WCD_MBHC_HPH_PA_EN, 3);
-> +	}
-
-And this branch is never taken.
-
-Is there a missing hphpa = true assignment somewhere?
-
-
-There's an additional issue while I am at it:
-
-sound/soc/codecs/wcd-mbhc-v2.c:1225:17: style: Variable 'clamp_state' is
-assigned a value that is never used. [unreadVariable]
- u8 clamp_state = 0;
-                ^
-
--Pierre
