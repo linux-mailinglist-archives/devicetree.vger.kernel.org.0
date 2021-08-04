@@ -2,22 +2,22 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 08A533E0614
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 18:42:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2C023E0621
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 18:46:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229862AbhHDQmb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 12:42:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57944 "EHLO
+        id S239629AbhHDQqi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 12:46:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229713AbhHDQmb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 12:42:31 -0400
+        with ESMTP id S230021AbhHDQqh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 12:46:37 -0400
 Received: from yawp.biot.com (yawp.biot.com [IPv6:2a01:4f8:10a:8e::fce2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC62BC0613D5
-        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 09:42:18 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23D5FC0613D5
+        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 09:46:25 -0700 (PDT)
 Received: from debian-spamd by yawp.biot.com with sa-checked (Exim 4.93)
         (envelope-from <bert@biot.com>)
-        id 1mBJyC-007EuF-Nk
-        for devicetree@vger.kernel.org; Wed, 04 Aug 2021 18:42:16 +0200
+        id 1mBK2B-007EzF-3U
+        for devicetree@vger.kernel.org; Wed, 04 Aug 2021 18:46:23 +0200
 X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on yawp
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
@@ -26,22 +26,37 @@ Received: from [2a02:578:460c:1:ae1f:6bff:fed1:9ca8]
         by yawp.biot.com with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
         (Exim 4.93)
         (envelope-from <bert@biot.com>)
-        id 1mBJxs-007Esc-7G; Wed, 04 Aug 2021 18:41:56 +0200
-Subject: Re: [PATCH 3/5] ARM: dts: Add basic support for EcoNet EN7523
-To:     Mark Rutland <mark.rutland@arm.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        John Crispin <john@phrozen.org>, Felix Fietkau <nbd@nbd.name>
+        id 1mBJzQ-007Euu-Vc; Wed, 04 Aug 2021 18:43:33 +0200
+Subject: Re: [PATCH 4/5] ARM: Add basic support for EcoNet EN7523 SoC
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Anshuman Khandual <anshuman.khandual@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        John Crispin <john@phrozen.org>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        YiFei Zhu <yifeifz2@illinois.edu>,
+        Mike Rapoport <rppt@kernel.org>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Kees Cook <keescook@chromium.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Felix Fietkau <nbd@nbd.name>
 References: <20210730134552.853350-1-bert@biot.com>
- <20210730134552.853350-4-bert@biot.com>
- <20210730144627.GB19569@C02TD0UTHF1T.local>
+ <20210730134552.853350-5-bert@biot.com>
+ <CAK8P3a3OuJ3pMSdEA4Rt3aWvvuX2+_Bg5x7-kZ1++fvvJvgGxA@mail.gmail.com>
 From:   Bert Vermeulen <bert@biot.com>
-Message-ID: <d0ff051b-280c-4021-f4ee-7bfda5e356d3@biot.com>
-Date:   Wed, 4 Aug 2021 18:41:55 +0200
+Message-ID: <1e3070fe-b5da-0acc-f50b-b0986a1045cd@biot.com>
+Date:   Wed, 4 Aug 2021 18:43:32 +0200
 MIME-Version: 1.0
-In-Reply-To: <20210730144627.GB19569@C02TD0UTHF1T.local>
+In-Reply-To: <CAK8P3a3OuJ3pMSdEA4Rt3aWvvuX2+_Bg5x7-kZ1++fvvJvgGxA@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
@@ -49,37 +64,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/30/21 4:46 PM, Mark Rutland wrote:
-> On Fri, Jul 30, 2021 at 03:45:50PM +0200, Bert Vermeulen wrote:
->> +	timer {
->> +		compatible = "arm,armv8-timer";
+On 7/30/21 4:48 PM, Arnd Bergmann wrote:
+> On Fri, Jul 30, 2021 at 3:45 PM Bert Vermeulen <bert@biot.com> wrote:
+>> diff --git a/arch/arm/Makefile b/arch/arm/Makefile
+>> index 173da685a52e..1bff0aa29c07 100644
+>> --- a/arch/arm/Makefile
+>> +++ b/arch/arm/Makefile
+>> @@ -152,6 +152,7 @@ textofs-$(CONFIG_ARCH_MSM8X60) := 0x00208000
+>>  textofs-$(CONFIG_ARCH_MSM8960) := 0x00208000
+>>  textofs-$(CONFIG_ARCH_MESON) := 0x00208000
+>>  textofs-$(CONFIG_ARCH_AXXIA) := 0x00308000
+>> +textofs-$(CONFIG_ARCH_ECONET) := 0x00088000
 > 
-> This should be "arm,armv7-timer".
+> Why is this needed?
 > 
->> +		interrupt-parent = <&gic>;
->> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
->> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
->> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
->> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-> 
-> GICv3 doesn't have a cpumask in its PPI description, so the
-> GIC_CPU_MASK_SIMPLE() bits should be removed.
+> Note also the comment directly above it exlaining
+> # Text offset. This list is sorted numerically by address in order to
+> # provide a means to avoid/resolve conflicts in multi-arch kernels.
 
-Ok, will fix.
-
->> +		clock-frequency = <25000000>;
-> 
-> Please have your FW configure CNTFRQ on each CPU; the clock-frequency
-> property in the DT is a workaround for broken FW, and it's *vastly*
-> preferable for FW to configure this correctly (e.g. as it means VMs
-> should "just work").
-
-I've since got hold of the modified U-Boot that runs on my eval board, and 
-indeed it doesn't set CNTFRQ. So the kernel does need this, for the moment.
-
-I may get a chance to upstream support for this SoC in U-Boot, but I can't 
-control what people are going to ship with their board. Is it ok to leave 
-this in?
+I didn't make that patch, but it turns out it's needed to get PSCI working; 
+detection hangs without it. That makes no sense to me, but I'll examine further.
 
 
 -- 
