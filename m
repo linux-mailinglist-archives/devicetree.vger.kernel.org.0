@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D14513E0290
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 16:00:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DFBD3E02A0
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 16:03:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238053AbhHDOAu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 10:00:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48116 "EHLO
+        id S238544AbhHDODS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 10:03:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238005AbhHDOAs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 10:00:48 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26D76C0613D5;
-        Wed,  4 Aug 2021 07:00:35 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id m12so2348951wru.12;
-        Wed, 04 Aug 2021 07:00:35 -0700 (PDT)
+        with ESMTP id S238536AbhHDODQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 10:03:16 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1B1DC0613D5;
+        Wed,  4 Aug 2021 07:03:03 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id l18so2394575wrv.5;
+        Wed, 04 Aug 2021 07:03:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id;
-        bh=UQh0XuwEqlgV75Ps3B/F3ylifl0qiT4/8PBf3CQWjYw=;
-        b=eOyvHSKNYGyaO+vNyt8TYAy1znDJI8bWYgVrTFZz5Bh49tY0KEY5Vic1ZUjMTCQ6Yl
-         UI31ZFXG4+EiUC3ZBUz8GiMzvh8S1gGc+zUG/ytz21FqPFlmcYtaLyyxR/M0KN/pmzzo
-         rM5gOufWNkQvVvbbpKWbLqJygPdhOE9jxfriqlmd0j2OzS2+TmgAM9eYLVZz04EnCiku
-         OpqN3IitHJxMHd3XBRR6n9h2M0vrDdfe8YhC7GyyDQkVC+/U7JlkXVzfkurVPwfPHnoV
-         sAEvF+dCFHI/LLkvDOr0dejQSrPCGh9uEy10GzfLbWywyPBRPsVReY5ogQoIaBehq0iC
-         8UjA==
+        bh=19plOpPW+WVmw0cGjj3q24slWnf3YHJuW1TftKQHmww=;
+        b=FDUQYip0F00orvtkAkIcR8qVk3zv/e3ZQ5O0oxkQ72xrb2I84rrvuEftw3nY8nyu8I
+         n4kmGGki9xlL4IqZZC2CXDbb1X1f0teTyHkAH+pbrxXkeNu0DMild6XLdq4QvT+vbQxO
+         u2gsNHlCQU6i6o6b7/PXHu9dxM3JovsXf6zAoC3UGJx82OHEHLEn5Tbsz333HhuWf1rW
+         eRZGk6qsgJ5FrAhZnGK10g9hUnWyxoidZ8sgnhHzMqixSaDndmpgq9DIpVHidSOstYL4
+         VILszrfoqM1wIa3bwB/Vi/rEocfZh2eTWAYDz0/R2QiLZ7ruV68242mLf+Ptufrm9Buc
+         09qA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=UQh0XuwEqlgV75Ps3B/F3ylifl0qiT4/8PBf3CQWjYw=;
-        b=EbQTiklrTyGtRQKlX9lGu+hysj6BKVrkMI7wTUk7XZfRVrYXtWe9E1adkakMCcrYFQ
-         rGrh2sdSGOSU66CYbN31zRA5uQfo3HYVNUVV23UoGrjirC4MIw2D+xj9JBWm8RH2F2km
-         ooNqPGGiXyGolrhbviqnSKkyCLnE7g6R8zHfXXgntJPzgNplzwS64MuCapkruAiHPPs6
-         y2Jb+kfg3fRSWcrtOdlYLz8lrbi+nbNWs69vukpeJxtW+Zt5Nr3RWEUQPnNKeqamCyq+
-         4NrlU6ImjCnbRpzuVpHIyI/nTbnsgzGGd/JIrlPEPuMCHiVISJxXbtR3wEXgvp3V0iO9
-         oE7w==
-X-Gm-Message-State: AOAM532Wou+l+2/x8R6HTTTv/bRZWSNgvxz9alGqEHXESiswaqFQn2R1
-        BtoTTaQzP513L6krS5pvyDY=
-X-Google-Smtp-Source: ABdhPJzllF+zFHrspGUKzLn3qA7J6fHTwUA8j7nohSTy8ysuKuNFdqGA5vH04F7Jcz/A/DMK8TJUFA==
-X-Received: by 2002:a5d:6904:: with SMTP id t4mr28597192wru.187.1628085633684;
-        Wed, 04 Aug 2021 07:00:33 -0700 (PDT)
+        bh=19plOpPW+WVmw0cGjj3q24slWnf3YHJuW1TftKQHmww=;
+        b=PLZVAYwONrKtgerY7hvJ4nAAvh8IGe8pvWTGo6CSIh9iPTbPXab5D4G4DK8H0NIOEH
+         i2qE+FnggllsAQAwvWEkGeqwSVSFLVHskQOuM7hfz7hiWgMgT0b5D5P+4OMPVxg3oowR
+         TLye9bOsa7p2OOmmZ23fFTS7vUr6fTVSLOA/3XOmy0i41rbFTMrU3WfNW28jyx8vO3jT
+         MruFMkud5rwwHt1KKKCTZvGJsOMhBinGntFSDg3wycfhmOR7iovtOJyXG6TlH2aveN2F
+         vw62Hl5aHthTcyRH1LxYGAO+ykry3usCfqq5aWpfO/0fiUKPpq5v/SCF0auz+s6cVucA
+         dwfg==
+X-Gm-Message-State: AOAM533FdxbkOVelaWvUMPOOZvrNrH6ttaseRQhe/Vtr1ouGfCPMGpeE
+        6PJnWD8NrLXHAtwkbM/HIss=
+X-Google-Smtp-Source: ABdhPJzrgSNIUtASBt18jfFqj4fSRQ5BFiwT4yllI7pX4XWLIC3af4Re6vBNJy6vUhU0ie7Hqhmc3w==
+X-Received: by 2002:a5d:540d:: with SMTP id g13mr28634456wrv.329.1628085782448;
+        Wed, 04 Aug 2021 07:03:02 -0700 (PDT)
 Received: from localhost.localdomain ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id k1sm2812902wrz.61.2021.08.04.07.00.31
+        by smtp.gmail.com with ESMTPSA id f5sm2752654wrs.5.2021.08.04.07.03.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Aug 2021 07:00:33 -0700 (PDT)
+        Wed, 04 Aug 2021 07:03:01 -0700 (PDT)
 From:   Christian Hewitt <christianshewitt@gmail.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -52,9 +52,9 @@ To:     Rob Herring <robh+dt@kernel.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 Cc:     Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH] arm64: dts: meson: add audio playback to nexbox-a1
-Date:   Wed,  4 Aug 2021 14:00:29 +0000
-Message-Id: <20210804140029.4445-1-christianshewitt@gmail.com>
+Subject: [PATCH] arm64: dts: meson: add audio playback to vega-s95 dtsi
+Date:   Wed,  4 Aug 2021 14:02:58 +0000
+Message-Id: <20210804140258.4666-1-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -62,24 +62,25 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Add initial support limited to HDMI i2s and SPDIF (LPCM).
 
+Tested-by: Oleg Ivanov <150balbes@yandex.ru>
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- .../boot/dts/amlogic/meson-gxm-nexbox-a1.dts  | 61 +++++++++++++++++++
+ .../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi | 61 +++++++++++++++++++
  1 file changed, 61 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
-index dfa7a37a1281..236c0a144142 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
-@@ -10,6 +10,7 @@
- /dts-v1/;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
+index 9b0b81f191f1..66daf3af34c3 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
+@@ -4,6 +4,7 @@
+  */
  
- #include "meson-gxm.dtsi"
+ #include "meson-gxbb.dtsi"
 +#include <dt-bindings/sound/meson-aiu.h>
  
  / {
- 	compatible = "nexbox,a1", "amlogic,s912", "amlogic,meson-gxm";
-@@ -24,6 +25,13 @@
+ 	compatible = "tronsmart,vega-s95", "amlogic,meson-gxbb";
+@@ -17,6 +18,13 @@
  		stdout-path = "serial0:115200n8";
  	};
  
@@ -90,17 +91,17 @@ index dfa7a37a1281..236c0a144142 100644
 +		sound-name-prefix = "DIT";
 +	};
 +
- 	memory@0 {
- 		device_type = "memory";
- 		reg = <0x0 0x0 0x0 0x80000000>;
-@@ -75,6 +83,59 @@
- 			};
- 		};
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+@@ -97,6 +105,59 @@
+ 		clocks = <&wifi32k>;
+ 		clock-names = "ext_clock";
  	};
 +
 +	sound {
 +		compatible = "amlogic,gx-sound-card";
-+		model = "NEXBOX-A1";
++		model = "VEGA-S95";
 +		assigned-clocks = <&clkc CLKID_MPLL0>,
 +				  <&clkc CLKID_MPLL1>,
 +				  <&clkc CLKID_MPLL2>;
@@ -148,7 +149,7 @@ index dfa7a37a1281..236c0a144142 100644
 +
 +&aiu {
 +	status = "okay";
-+	pinctrl-0 = <&spdif_out_h_pins>;
++	pinctrl-0 = <&spdif_out_y_pins>;
 +	pinctrl-names = "default";
  };
  
