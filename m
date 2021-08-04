@@ -2,186 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B9D03E0430
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 17:29:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 907513E04A2
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 17:46:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239045AbhHDP3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 11:29:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40576 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239098AbhHDP3e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 11:29:34 -0400
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26E6BC0617A1
-        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 08:28:39 -0700 (PDT)
-Received: by mail-pj1-x1031.google.com with SMTP id ca5so3483855pjb.5
-        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 08:28:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ABQinGThgXjQH4ldJXoDYT9bEE6sztnsLgaWTHXyf1I=;
-        b=bTMb9Bwz65pSpUsI5Q5vTUk7YbFv5GItIndqJOyf0xn3pF382FMPog7rjUbM62Rec6
-         yxadZgJOJUZ2MOJAInGMwhm7qIhq3GnAkVsCaOcJun+Jdhk/kxrEnUMz6AcsoyuSHcSv
-         BvYpMblyFOL56LS9pYJlNWuDNY2MRae3MDJnEzrIuYYIO5mBaj5zRo0Z38gYiwLXp+VD
-         JJ2HHAsSllFYf4VY3v3lQG+VSP36E4VFQE2rt8L+sOu3ONLQM2MiQGmw6CCgJAD8XSsY
-         g0McvEvZ2Q2JN+qzD2YWk95GRXurSRqVAtLaCsvp7e9v7RwndcgcsJJbdg74haRfVZtS
-         IoRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ABQinGThgXjQH4ldJXoDYT9bEE6sztnsLgaWTHXyf1I=;
-        b=pGo5NWR8y2Nndb0u5O2/ixPG2j3Qk7fVI1OY1TMPGxz9tr/o6jrARYBuFfopDjJkar
-         rEfpaRWLstgaltHzOPD43vZZbyyOJhXm95MLoq6mh3WillSGwnUKHwjJpk+m4dsTVxjA
-         5tH5REEs41jK4y2xGByzU42nUWH7wGyZVqCmbZ+X1mGZuJpVjUXjn3OsprPNXfeatP5A
-         YX8t4CqwBN5Ia9P3T3rHVB2pMjeq76VP8WBjUdV13cxOa4D7uXKihHz8SbxhLqTMig+6
-         /WDhTSZ+cxvtI9c5IgpBrQ06pyxXdss5r/FYdxarlwOoG2fttf2UOg79NglCqeIM9s6L
-         89lQ==
-X-Gm-Message-State: AOAM532OJplUWXDKGmSjpVgTw0VS7TjwxJ/tgVdbJ72mQtTCV392du6Y
-        AfGvS6xnC9jfNvHPDefxczX9YQ==
-X-Google-Smtp-Source: ABdhPJxCRBnR8iM8jyZmuXvcXU3+BVIWG9EG+G5PUdy9yAdeHQClC+LOnBgdO+YhqTmLZLajqAQhzg==
-X-Received: by 2002:a63:5815:: with SMTP id m21mr488033pgb.363.1628090918593;
-        Wed, 04 Aug 2021 08:28:38 -0700 (PDT)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id k4sm4025561pgh.9.2021.08.04.08.28.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Aug 2021 08:28:37 -0700 (PDT)
-Date:   Wed, 4 Aug 2021 09:28:35 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Tinghan Shen <tinghan.shen@mediatek.com>
-Cc:     ohad@wizery.com, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        matthias.bgg@gmail.com, krzysztof.kozlowski@canonical.com,
-        shawnguo@kernel.org, sam@ravnborg.org, linux@rempel-privat.de,
-        daniel@0x0f.com, Max.Merchel@tq-group.com, geert+renesas@glider.be,
-        fanghao11@huawei.com, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 5/5] remoteproc: mediatek: Support mt8195 scp
-Message-ID: <20210804152835.GA3145709@p14s>
-References: <20210803075922.11611-1-tinghan.shen@mediatek.com>
- <20210803075922.11611-6-tinghan.shen@mediatek.com>
+        id S239132AbhHDPqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 11:46:33 -0400
+Received: from mout.kundenserver.de ([212.227.126.133]:47331 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239114AbhHDPqd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 11:46:33 -0400
+Received: from localhost ([31.220.117.74]) by mrelayeu.kundenserver.de
+ (mreue011 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1MFbFW-1mMo4q39oM-00HAZQ; Wed, 04 Aug 2021 17:45:30 +0200
+Date:   Wed, 4 Aug 2021 17:45:28 +0200
+From:   Andreas Klinger <ak@it-klinger.de>
+To:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>
+Cc:     Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Jiri Kosina <trivial@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Slawomir Stepien <sst@poczta.fm>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Vadim Pasternak <vadimp@nvidia.com>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>,
+        linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+        Tomasz Duszynski <tomasz.duszynski@octakon.com>
+Subject: [PATCH v2 0/2] iio: chemical: Add support for sgp40 gas sensor
+Message-ID: <20210804154526.GA3207@arbad>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210803075922.11611-6-tinghan.shen@mediatek.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Provags-ID: V03:K1:h1Ad/GJR8B0E6z5jsKRm1/B98CL151ul96gdS5ZJNAowTXJZm/1
+ IaA5vjeJsNWMdyxQAWPfHG/m+1Heq+YxmpjJ1GmhfGVHgquBU2zAmrB5jy1VqJ0BYLShpa5
+ aqtPfEP8ssjHrA/VRs3dYIpSvhMLoQ1EZvS3TI9s0tXD3qMOA6BTZUrWXQXtYh2j23xXEVd
+ E+HWkANUp6+OIryeGJv7A==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:FbfamShZD4I=:1RLz8ycCkdbfviYcUAmZbI
+ SFvRmTvZWfKrDtmsR2d3JpfxDX5J/2XPgE2YUB1WcEITQkF3VkqRCfPNFZpHFaGI2Ton0RLw/
+ snGi29zEhzs2ymxEUa+93aMK//vorQfUYq4Mhd7QLoF+uKcky1D5o+B6+AvZsgsM7HlrbuAJk
+ uS/BWwDV9YCVPgpGh0ud0mgPSXA1ZO+X/dWj5rH8wwxA2qso+1gjXSHP6Ha3r0qqGQuCQ0zyZ
+ 6e2E3sGLEzGPvQvgq6nTOaLGJtbU5QWtiepZghnPSVmtQWgYdqdFn6pQY/bTdXwMeQut+Up9d
+ 2/p+axZi8dtrvhYQzNGOODyR2EBSvgLL/UCtZFTpIjW9ts6k+jqSc7x56bcClpmZTeWpy2VN3
+ URY56ZwK2PmCw6A9EYMbCzKkeJ1eFgV5CMXLUoaYjksWqtI2Y9DMrtQGf6Gnp7fsALI/Gi5Ha
+ zov0pBGMmcPJpOmIIGdEvddHVCPFx/ta5Au4+11jKr1nOCeZopH5ztcTgX15blP40AE41ROp2
+ Um9p+41LdE2GPpnZQVTSExmR67rW54D5syfro9Xb6hCuvQi2MwsF8nHV2FhDZ1aZtj3U2fByr
+ L9GMuCcVFz3suZHSTHd6MkvR8cNuAgsiAubO1DBn1epKiBHPowosZpQ3gucfH2R9lM5BP+5SQ
+ 7PoPz4Mf6qrgw4sJkidNmprLQtn5avRMbBGQFLaPJhFzIf6flhW+Xqq/x6V3qGI2yoMS52sxQ
+ 1OqSrTgQGwarQKSXH25YoMDuli/Jwi4ztn2to+2iOZ98ADwnxfXT1SZWPoJR7j1FC9ouWdpTM
+ Pd1LmnlDzil/Y3XFkZQtRwnvEc9Ph3dsQ25nv4oR5C5aXBdS1yj58o9iJZ1P2YuasbEsJoG
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 03, 2021 at 03:59:22PM +0800, Tinghan Shen wrote:
-> The SCP clock design is changed on mt8195 that doesn't need to control
-> SCP clock on kernel side.
-> 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> ---
->  drivers/remoteproc/mtk_common.h |  1 +
->  drivers/remoteproc/mtk_scp.c    | 48 +++++++++++++++++++++++++++++----
->  2 files changed, 44 insertions(+), 5 deletions(-)
->
+This patch set adds support for sensirion sgp40 gas sensor.
 
-Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+Many thanks for the in-depth reviews, especially of Jonathan who triggered
+some important improvements for v2:
+- provide more precision for voc value; this in turn triggered the folling
+  point:
+- rework of e^x calculation with an optimization on the interesting range
+  between e^(-6) and e^6
+- restructure use of endian types
+- use __packed structures for sent telegrams
+- optimize usage of mutex
+- optimize switch-cases
+- replace attributes by read_raw() and write_raw() values
+- add documentation in Documentation/ABI/testing/sysfs-bus-iio-sgp40 as
+  well as in the source code
 
-> diff --git a/drivers/remoteproc/mtk_common.h b/drivers/remoteproc/mtk_common.h
-> index 61901f5efa05..5ff3867c72f3 100644
-> --- a/drivers/remoteproc/mtk_common.h
-> +++ b/drivers/remoteproc/mtk_common.h
-> @@ -72,6 +72,7 @@ struct scp_ipi_desc {
->  struct mtk_scp;
->  
->  struct mtk_scp_of_data {
-> +	int (*scp_clk_get)(struct mtk_scp *scp);
->  	int (*scp_before_load)(struct mtk_scp *scp);
->  	void (*scp_irq_handler)(struct mtk_scp *scp);
->  	void (*scp_reset_assert)(struct mtk_scp *scp);
-> diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
-> index 9679cc26895e..36e48cf58ed6 100644
-> --- a/drivers/remoteproc/mtk_scp.c
-> +++ b/drivers/remoteproc/mtk_scp.c
-> @@ -312,6 +312,32 @@ static int scp_elf_read_ipi_buf_addr(struct mtk_scp *scp,
->  	return -ENOENT;
->  }
->  
-> +static int mt8183_scp_clk_get(struct mtk_scp *scp)
-> +{
-> +	struct device *dev = scp->dev;
-> +	int ret = 0;
-> +
-> +	scp->clk = devm_clk_get(dev, "main");
-> +	if (IS_ERR(scp->clk)) {
-> +		dev_err(dev, "Failed to get clock\n");
-> +		ret = PTR_ERR(scp->clk);
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int mt8192_scp_clk_get(struct mtk_scp *scp)
-> +{
-> +	return mt8183_scp_clk_get(scp);
-> +}
-> +
-> +static int mt8195_scp_clk_get(struct mtk_scp *scp)
-> +{
-> +	scp->clk = NULL;
-> +
-> +	return 0;
-> +}
-> +
->  static int mt8183_scp_before_load(struct mtk_scp *scp)
->  {
->  	/* Clear SCP to host interrupt */
-> @@ -785,12 +811,9 @@ static int scp_probe(struct platform_device *pdev)
->  	if (ret)
->  		goto destroy_mutex;
->  
-> -	scp->clk = devm_clk_get(dev, "main");
-> -	if (IS_ERR(scp->clk)) {
-> -		dev_err(dev, "Failed to get clock\n");
-> -		ret = PTR_ERR(scp->clk);
-> +	ret = scp->data->scp_clk_get(scp);
-> +	if (ret)
->  		goto release_dev_mem;
-> -	}
->  
->  	/* register SCP initialization IPI */
->  	ret = scp_ipi_register(scp, SCP_IPI_INIT, scp_init_ipi_handler, scp);
-> @@ -852,6 +875,7 @@ static int scp_remove(struct platform_device *pdev)
->  }
->  
->  static const struct mtk_scp_of_data mt8183_of_data = {
-> +	.scp_clk_get = mt8183_scp_clk_get,
->  	.scp_before_load = mt8183_scp_before_load,
->  	.scp_irq_handler = mt8183_scp_irq_handler,
->  	.scp_reset_assert = mt8183_scp_reset_assert,
-> @@ -864,6 +888,19 @@ static const struct mtk_scp_of_data mt8183_of_data = {
->  };
->  
->  static const struct mtk_scp_of_data mt8192_of_data = {
-> +	.scp_clk_get = mt8192_scp_clk_get,
-> +	.scp_before_load = mt8192_scp_before_load,
-> +	.scp_irq_handler = mt8192_scp_irq_handler,
-> +	.scp_reset_assert = mt8192_scp_reset_assert,
-> +	.scp_reset_deassert = mt8192_scp_reset_deassert,
-> +	.scp_stop = mt8192_scp_stop,
-> +	.scp_da_to_va = mt8192_scp_da_to_va,
-> +	.host_to_scp_reg = MT8192_GIPC_IN_SET,
-> +	.host_to_scp_int_bit = MT8192_HOST_IPC_INT_BIT,
-> +};
-> +
-> +static const struct mtk_scp_of_data mt8195_of_data = {
-> +	.scp_clk_get = mt8195_scp_clk_get,
->  	.scp_before_load = mt8192_scp_before_load,
->  	.scp_irq_handler = mt8192_scp_irq_handler,
->  	.scp_reset_assert = mt8192_scp_reset_assert,
-> @@ -877,6 +914,7 @@ static const struct mtk_scp_of_data mt8192_of_data = {
->  static const struct of_device_id mtk_scp_of_match[] = {
->  	{ .compatible = "mediatek,mt8183-scp", .data = &mt8183_of_data },
->  	{ .compatible = "mediatek,mt8192-scp", .data = &mt8192_of_data },
-> +	{ .compatible = "mediatek,mt8195-scp", .data = &mt8195_of_data },
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, mtk_scp_of_match);
-> -- 
-> 2.18.0
-> 
+Andreas Klinger (2):
+  dt-bindings: iio: chemical: Add trivial DT binding for sgp40
+  iio: chemical: Add driver support for sgp40
+
+ .../ABI/testing/sysfs-bus-iio-chemical-sgp40  |  31 ++
+ .../devicetree/bindings/trivial-devices.yaml  |   2 +
+ MAINTAINERS                                   |   6 +
+ drivers/iio/chemical/Kconfig                  |  11 +
+ drivers/iio/chemical/Makefile                 |   1 +
+ drivers/iio/chemical/sgp40.c                  | 372 ++++++++++++++++++
+ 6 files changed, 423 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-chemical-sgp40
+ create mode 100644 drivers/iio/chemical/sgp40.c
+
+-- 
+2.20.1
