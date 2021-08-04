@@ -2,112 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3987C3E0952
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 22:25:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23F9F3E0967
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 22:33:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240867AbhHDUZd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 16:25:33 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:61567 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S240870AbhHDUZb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 16:25:31 -0400
-X-IronPort-AV: E=Sophos;i="5.84,295,1620658800"; 
-   d="scan'208";a="89824516"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 05 Aug 2021 05:25:17 +0900
-Received: from localhost.localdomain (unknown [10.226.36.204])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 1E96740E2584;
-        Thu,  5 Aug 2021 05:25:14 +0900 (JST)
-From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Alexandru Ardelean <aardelean@deviqon.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v4 3/3] arm64: dts: renesas: r9a07g044: Add ADC node
-Date:   Wed,  4 Aug 2021 21:21:18 +0100
-Message-Id: <20210804202118.25745-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210804202118.25745-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20210804202118.25745-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        id S240898AbhHDUde (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 16:33:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53896 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240895AbhHDUde (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 16:33:34 -0400
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59F33C061798
+        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 13:33:21 -0700 (PDT)
+Received: by mail-pj1-x102d.google.com with SMTP id cl16-20020a17090af690b02901782c35c4ccso1534834pjb.5
+        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 13:33:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dabbelt-com.20150623.gappssmtp.com; s=20150623;
+        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9jQSxiBXPSYpBentqMXnvaUC1NOgte9Rxg3a1FtMxcw=;
+        b=hcPMacNw6WfolBanCxdZGJZN/LfXdr/RCeSdcdBwAFgjwqJ+ERyixtB2YmseRY7wc7
+         POjN/DXg/PCRTfT0TmhvBXMn2hjWRvP0t89+yoC+R4m2fPg+a79dAaUwSy8g6eX4n8DT
+         57B+WgktPz73q0fRcWRjAYnN8urAP+yhedwkzI7LRUuFmSy1NqWC6ofiEWONs453lo9s
+         vtDydrpRXqEICilI5IGgE9B5YaqROsTaQOWEnCk31feag0LSbZhvMr5wu9sdTb2uj/u7
+         Oz8aph2WKKr2bY5Fi5Km1MHF2ZbzyWFzjdMDsNS4IjQ5o9ApF71pSIvxnw2zpGnfuoZp
+         cecQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=9jQSxiBXPSYpBentqMXnvaUC1NOgte9Rxg3a1FtMxcw=;
+        b=D36pK17T2kieWknyMUJ7Ctfwr0b4ffcjTH6aH6Vfpf52/5exPuIhmtNF7dv5GzGyys
+         blJvkUq1c0LaMdbblBIEhawxgvqJ3oMhNLShRBkLXf070mGyl0zD0OjImTaNdpuUPWX1
+         uHQ695R0hYE7/ktsLg4NoKq6q/zYo8sPPNZvmrEGNpNpA+pkVT7aSJpMc8Y7FK0EiRJH
+         JOl6N42+71mvhRLSgqQVSv30E2A1Lrt4gaOInWjOL4zadiskdXtzdj1/wpHGyYGkIr5p
+         2RWL/14x9XZv2N7fMVDUQrVC+ENJJD5wn/VUruCNdccut1cQNOo6bmbQuiquZtipgdkK
+         BQqQ==
+X-Gm-Message-State: AOAM5305vCYr5TUweHwROMnLzAcPkx5uvu+NcAQmV8K1pK7RVnWR2vpk
+        27b7BS+xoCeOL0YwVACrd8gK5A==
+X-Google-Smtp-Source: ABdhPJzLGzAMkXce7rZjO9cIkPd20NGu7qwRzflC1x3fa+aiv6t02p5ioOEgezqi0ugBfFdGI4C6kQ==
+X-Received: by 2002:a17:90a:8b07:: with SMTP id y7mr11220401pjn.133.1628109200707;
+        Wed, 04 Aug 2021 13:33:20 -0700 (PDT)
+Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
+        by smtp.gmail.com with ESMTPSA id i1sm3864881pfo.37.2021.08.04.13.33.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Aug 2021 13:33:20 -0700 (PDT)
+Date:   Wed, 04 Aug 2021 13:33:20 -0700 (PDT)
+X-Google-Original-Date: Wed, 04 Aug 2021 13:23:27 PDT (-0700)
+Subject:     Re: [PATCH v4] dt-bindings: riscv: add starfive jh7100 bindings
+In-Reply-To: <CAEUhbmUg0DX__jSzjm1X_eCiHnkjHVXeq7CYLbW4xpydPS1G3g@mail.gmail.com>
+CC:     drew@beagleboard.org, robh+dt@kernel.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        michael.zhu@starfivetech.com, tekkamanninja@gmail.com,
+        jack.zhu@starfivetech.com, leyfoon.tan@starfivetech.com,
+        geert@linux-m68k.org, kernel@esmil.dk, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     bmeng.cn@gmail.com
+Message-ID: <mhng-a2fd6094-0ae8-4f7b-9dee-fd71b85b29f1@palmerdabbelt-glaptop>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add ADC node to R9A07G044 (RZ/G2L) SoC DTSI.
+On Thu, 15 Jul 2021 19:17:23 PDT (-0700), bmeng.cn@gmail.com wrote:
+> On Tue, Jul 13, 2021 at 2:34 PM Drew Fustini <drew@beagleboard.org> wrote:
+>>
+>> Add DT binding documentation for the StarFive JH7100 Soc [1] and the
+>> BeagleV Starlight JH7100 board [2].
+>>
+>> [1] https://github.com/starfive-tech/beaglev_doc
+>> [2] https://github.com/beagleboard/beaglev-starlight
+>>
+>> Signed-off-by: Drew Fustini <drew@beagleboard.org>
+>> ---
+>> v4 changes:
+>> - removed JH7100 SoC revision number after discussion with Geert
+>>
+>> v3 changes:
+>> - added revision number for the board and soc after question from Palmer
+>>
+>> v2 changes:
+>> - removed "items:" entry that only had "const: starfive,jh7100"
+>> - correct typo in Description:
+>>
+>> Results of running checks:
+>>   $ make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- dt_binding_check \
+>>     DT_SCHEMA_FILES=Documentation/devicetree/bindings/riscv/starfive.yaml
+>>     CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
+>>     DTEX    Documentation/devicetree/bindings/riscv/starfive.example.dts
+>>     SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
+>>     DTC     Documentation/devicetree/bindings/riscv/starfive.example.dt.yaml
+>>     CHECK   Documentation/devicetree/bindings/riscv/starfive.example.dt.yaml
+>>   $ make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- dtbs_check \
+>>     DT_SCHEMA_FILES=Documentation/devicetree/bindings/riscv/starfive.yaml
+>>     SYNC    include/config/auto.conf.cmd
+>>     UPD     include/config/kernel.release
+>>     SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+>>     DTC     arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dtb
+>>     DTC     arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dt.yaml
+>>     DTC     arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dt.yaml
+>>     DTC     arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dt.yaml
+>>     CHECK   arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dt.yaml
+>>     CHECK   arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dt.yaml
+>>     CHECK   arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dt.yaml
+>>
+>> The dts file is from vendor repo and is being cleaned up right now in
+>> preperation for submitting to the mailing list:
+>> https://github.com/starfive-tech/linux/tree/beaglev/arch/riscv/boot/dts/starfive
+>>
+>>  .../devicetree/bindings/riscv/starfive.yaml   | 27 +++++++++++++++++++
+>>  1 file changed, 27 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/riscv/starfive.yaml
+>>
+>
+> Reviewed-by: Bin Meng <bmeng.cn@gmail.com>
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v3-->v4: unchanged
-
-This patch applies on top of https://git.kernel.org/pub/scm/linux/kernel/
-git/geert/renesas-devel.git/log/?h=renesas-arm-dt-for-v5.15
----
- arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 42 ++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-index 9a7489dc70d1..28aafa34d583 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-@@ -169,6 +169,48 @@
- 			status = "disabled";
- 		};
- 
-+		adc: adc@10059000 {
-+			compatible = "renesas,r9a07g044-adc", "renesas,rzg2l-adc";
-+			reg = <0 0x10059000 0 0x400>;
-+			interrupts = <GIC_SPI 347  IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&cpg CPG_MOD R9A07G044_ADC_ADCLK>,
-+				 <&cpg CPG_MOD R9A07G044_ADC_PCLK>;
-+			clock-names = "adclk", "pclk";
-+			resets = <&cpg R9A07G044_ADC_PRESETN>,
-+				 <&cpg R9A07G044_ADC_ADRST_N>;
-+			reset-names = "presetn", "adrst-n";
-+			power-domains = <&cpg>;
-+			status = "disabled";
-+
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			channel@0 {
-+				reg = <0>;
-+			};
-+			channel@1 {
-+				reg = <1>;
-+			};
-+			channel@2 {
-+				reg = <2>;
-+			};
-+			channel@3 {
-+				reg = <3>;
-+			};
-+			channel@4 {
-+				reg = <4>;
-+			};
-+			channel@5 {
-+				reg = <5>;
-+			};
-+			channel@6 {
-+				reg = <6>;
-+			};
-+			channel@7 {
-+				reg = <7>;
-+			};
-+		};
-+
- 		cpg: clock-controller@11010000 {
- 			compatible = "renesas,r9a07g044-cpg";
- 			reg = <0 0x11010000 0 0x10000>;
--- 
-2.17.1
-
+Thanks.  This is on for-next, as Rob suggested taking it via the RISC-V 
+tree.
