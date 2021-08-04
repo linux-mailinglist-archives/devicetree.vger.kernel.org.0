@@ -2,235 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A35E3E03EF
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 17:12:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D69F3E03F8
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 17:13:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238757AbhHDPMg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 11:12:36 -0400
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:22686 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S237114AbhHDPMf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 11:12:35 -0400
-Received: from pps.filterd (m0098409.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 174F5Quj023733;
-        Wed, 4 Aug 2021 11:12:20 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : subject :
- from : to : cc : date : in-reply-to : references : content-type :
- mime-version : content-transfer-encoding; s=pp1;
- bh=SbLA99YBkCDTvYoRyCg6c+QYBqoK+BM9HakRz7VEmRw=;
- b=Ye7xtzYcYzf//cmJqEejPyfe3duVuY25ZhaHKVxmEc5FJZYI0TY1fFSbdFfDQh1PxpZo
- 92a9422Wb9TUO/URuR8jK/fTwbmha5/6I9fPw6RpCroneTIK59uWFtMDws0BQvl2X51b
- P+7HIs7aGl/V7tbGO8Pba6EFuw6iwdPRH2OneaCyg/bna8tL6BJQWgw6buMAizt1KAMo
- iZlkC76g/Lgl24HIMujllrmfprJaIB5P09FgtrO0tRvrkLllBpDtTGG0ewAfnpvy0qi/
- LljBUKuF2OqLZReRt/L+wb8TQ2Agdw56oXhtrTwLxLxZW3wMcJYIF8j60Rg6aGTsuzRg Sg== 
-Received: from ppma02wdc.us.ibm.com (aa.5b.37a9.ip4.static.sl-reverse.com [169.55.91.170])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 3a76r6bscc-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 04 Aug 2021 11:12:19 -0400
-Received: from pps.filterd (ppma02wdc.us.ibm.com [127.0.0.1])
-        by ppma02wdc.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 174F2ZMk027928;
-        Wed, 4 Aug 2021 15:12:18 GMT
-Received: from b03cxnp08025.gho.boulder.ibm.com (b03cxnp08025.gho.boulder.ibm.com [9.17.130.17])
-        by ppma02wdc.us.ibm.com with ESMTP id 3a6nhw7xg5-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 04 Aug 2021 15:12:18 +0000
-Received: from b03ledav003.gho.boulder.ibm.com (b03ledav003.gho.boulder.ibm.com [9.17.130.234])
-        by b03cxnp08025.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 174FCHsl47251822
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 4 Aug 2021 15:12:17 GMT
-Received: from b03ledav003.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 7716C6A061;
-        Wed,  4 Aug 2021 15:12:17 +0000 (GMT)
-Received: from b03ledav003.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 2B54B6A057;
-        Wed,  4 Aug 2021 15:12:17 +0000 (GMT)
-Received: from v0005c16 (unknown [9.211.39.200])
-        by b03ledav003.gho.boulder.ibm.com (Postfix) with ESMTP;
-        Wed,  4 Aug 2021 15:12:16 +0000 (GMT)
-Message-ID: <8b4fc37178449e99c2f7a9d23429b7fb4bc13de4.camel@linux.ibm.com>
-Subject: Re: [PATCH v2 2/2] i2c: mux: pca954x: Support multiple devices on a
- single reset line
-From:   Eddie James <eajames@linux.ibm.com>
-To:     Rob Herring <robh@kernel.org>, Peter Rosin <peda@axentia.se>
-Cc:     Linux I2C <linux-i2c@vger.kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Date:   Wed, 04 Aug 2021 10:12:16 -0500
-In-Reply-To: <CAL_JsqLFC7vjMvZ3o6ey=thf=ZHsqApdT69e6akLvs0ceb8m1w@mail.gmail.com>
-References: <20210727160315.15575-1-eajames@linux.ibm.com>
-         <20210727160315.15575-3-eajames@linux.ibm.com>
-         <YQhZimPDbNJk5nbR@robh.at.kernel.org>
-         <29d72be98ebe3e5761f4c3da7b4daf2f05fbbf3b.camel@linux.ibm.com>
-         <209d9f68-e6c4-68c9-d495-d7e3f5050440@axentia.se>
-         <CAL_JsqLFC7vjMvZ3o6ey=thf=ZHsqApdT69e6akLvs0ceb8m1w@mail.gmail.com>
-Organization: IBM
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5 (3.28.5-16.el8) 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: DrjR7rERvU23V8m3m24PuiNQmExExjoy
-X-Proofpoint-ORIG-GUID: DrjR7rERvU23V8m3m24PuiNQmExExjoy
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
- definitions=2021-08-04_03:2021-08-04,2021-08-04 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 impostorscore=0
- mlxlogscore=999 spamscore=0 lowpriorityscore=0 mlxscore=0 bulkscore=0
- clxscore=1015 priorityscore=1501 adultscore=0 malwarescore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2107140000 definitions=main-2108040085
+        id S238860AbhHDPN4 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 4 Aug 2021 11:13:56 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42176 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237114AbhHDPNy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Aug 2021 11:13:54 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1257161004;
+        Wed,  4 Aug 2021 15:13:42 +0000 (UTC)
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mBIaS-002win-2M; Wed, 04 Aug 2021 16:13:40 +0100
+Date:   Wed, 04 Aug 2021 16:13:39 +0100
+Message-ID: <87h7g5w8d8.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Tom Joseph <tjoseph@cadence.com>, <linux-omap@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+Subject: Re: [PATCH v2 2/3] PCI: j721e: Add PCI legacy interrupt support for J721E
+In-Reply-To: <20210804132912.30685-3-kishon@ti.com>
+References: <20210804132912.30685-1-kishon@ti.com>
+        <20210804132912.30685-3-kishon@ti.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: kishon@ti.com, bhelgaas@google.com, robh+dt@kernel.org, lorenzo.pieralisi@arm.com, tjoseph@cadence.com, linux-omap@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, lokeshvutla@ti.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2021-08-04 at 07:28 -0600, Rob Herring wrote:
-> On Wed, Aug 4, 2021 at 1:50 AM Peter Rosin <peda@axentia.se> wrote:
-> > On 2021-08-02 23:51, Eddie James wrote:
-> > > On Mon, 2021-08-02 at 14:46 -0600, Rob Herring wrote:
-> > > > On Tue, Jul 27, 2021 at 11:03:15AM -0500, Eddie James wrote:
-> > > > > Some systems connect several PCA954x devices to a single
-> > > > > reset
-> > > > > GPIO. For
-> > > > > these devices to get out of reset and probe successfully,
-> > > > > each
-> > > > > device must
-> > > > > defer the probe until the GPIO has been hogged. Accomplish
-> > > > > this by
-> > > > > attempting to grab a new "reset-shared-hogged" devicetree
-> > > > > property,
-> > > > > but
-> > > > > expect it to fail with EPROBE_DEFER or EBUSY.
-> > > > > 
-> > > > > Signed-off-by: Eddie James <eajames@linux.ibm.com>
-> > > > > ---
-> > > > >  drivers/i2c/muxes/i2c-mux-pca954x.c | 46
-> > > > > +++++++++++++++++++++++
-> > > > > ------
-> > > > >  1 file changed, 37 insertions(+), 9 deletions(-)
-> > > > > 
-> > > > > diff --git a/drivers/i2c/muxes/i2c-mux-pca954x.c
-> > > > > b/drivers/i2c/muxes/i2c-mux-pca954x.c
-> > > > > index 4ad665757dd8..376b54ffb590 100644
-> > > > > --- a/drivers/i2c/muxes/i2c-mux-pca954x.c
-> > > > > +++ b/drivers/i2c/muxes/i2c-mux-pca954x.c
-> > > > > @@ -434,15 +434,43 @@ static int pca954x_probe(struct
-> > > > > i2c_client
-> > > > > *client,
-> > > > >     i2c_set_clientdata(client, muxc);
-> > > > >     data->client = client;
-> > > > > 
-> > > > > -   /* Reset the mux if a reset GPIO is specified. */
-> > > > > -   gpio = devm_gpiod_get_optional(dev, "reset",
-> > > > > GPIOD_OUT_HIGH);
-> > > > > -   if (IS_ERR(gpio))
-> > > > > -           return PTR_ERR(gpio);
-> > > > > -   if (gpio) {
-> > > > > -           udelay(1);
-> > > > > -           gpiod_set_value_cansleep(gpio, 0);
-> > > > > -           /* Give the chip some time to recover. */
-> > > > > -           udelay(1);
-> > > > > +   /*
-> > > > > +    * Grab the shared, hogged gpio that controls the mux
-> > > > > reset. We
-> > > > > expect
-> > > > > +    * this to fail with either EPROBE_DEFER or EBUSY. The
-> > > > > only
-> > > > > purpose of
-> > > > > +    * trying to get it is to make sure the gpio controller
-> > > > > has
-> > > > > probed up
-> > > > > +    * and hogged the line to take the mux out of reset,
-> > > > > meaning
-> > > > > that the
-> > > > > +    * mux is ready to be probed up. Don't try and set the
-> > > > > line any
-> > > > > way; in
-> > > > > +    * the event we actually successfully get the line (if it
-> > > > > wasn't
-> > > > > +    * hogged) then we immediately release it, since there is
-> > > > > no
-> > > > > way to
-> > > > > +    * sync up the line between muxes.
-> > > > > +    */
-> > > > > +   gpio = gpiod_get_optional(dev, "reset-shared-hogged", 0);
-> > > > > +   if (IS_ERR(gpio)) {
-> > > > > +           ret = PTR_ERR(gpio);
-> > > > > +           if (ret != -EBUSY)
-> > > > > +                   return ret;
-> > > > 
-> > > > Why can't you just do this with the existing 'reset-gpios'
-> > > > property?
-> > > > What's the usecase where you'd want to fail probe because EBUSY
-> > > > other
-> > > > than an error in your DT.
-> > > 
-> > > Hi, thanks for the reply.
-> > > 
-> > > Are you suggesting I use "reset-gpios" and change the driver to
-> > > ignore
-> > > EBUSY? I don't know any other usecase, I just didn't think it
-> > > would be
-> > > acceptable to ignore EBUSY on that, but perhaps it is a better
-> > > solution.
-> > 
-> > Hi!
-> > 
-> > From a device-tree point of view that might seem simple. But it
-> > becomes
-> > a mess when several driver instances need to coordinate. If one
-> > instance
-> > is grabbing the reset line but is then stalled while other
-> > instances
-> > race ahead, they might be clobbered by a late reset from the
-> > stalled
-> > first instance.
+On Wed, 04 Aug 2021 14:29:11 +0100,
+Kishon Vijay Abraham I <kishon@ti.com> wrote:
+> 
+> Add PCI legacy interrupt support for J721E. J721E has a single HW
+> interrupt line for all the four legacy interrupts INTA/INTB/INTC/INTD.
+> The HW interrupt line connected to GIC is a pulse interrupt whereas
+> the legacy interrupts by definition is level interrupt. In order to
+> provide level interrupt functionality to edge interrupt line, PCIe
+> in J721E has provided IRQ_EOI register.
+> 
+> However due to Errata ID #i2094 ([1]), EOI feature is not enabled in HW
+> and only a single pulse interrupt will be generated for every
+> ASSERT_INTx/DEASSERT_INTx.
 
-Hi,
-
-Well this isn't a concern if the line is hogged - once it's hogged it
-shouldn't change, and all driver instances should get the same thing -
-EBUSY. Before it's hogged all driver instances should get EPROBE_DEFER.
-
-> > 
-> > And while it might be possible to arrange the code such that those
-> > dragons
-> > are dodged and that the reset is properly coordinated, what if the
-> > gpio is
-> > supposed to be shared with some other totally unrelated driver? It
-> > might
-> > seem to work when everything is normal, but as soon as anything out
-> > of the
-> > ordinary happens, all bets are off. I expect subtle problems in the
-> > furture.
-
-Unless another driver uses the non-exclusive flag (which can cause many
-subtle problems in all sorts of areas anyway), the GPIO shouldn't
-change. Now, the driver that does the GPIO hogging might go away, which
-definitely would be a problem. I suppose I feel it's an error path
-anyway, so all bets are off for dependent devices.
+So my earlier remark stands. If you get a single edge, how do you
+handle a level that is still high after having handled the interrupt
+on hardware that has this bug?
 
 > 
-> All of this is true, but a different reset GPIO property name does
-> nothing to solve it.
-
-This is part of why I chose a new property that specifically indicates
-that it's hogged.
-
+> [1] -> J721E DRA829/TDA4VM Processors Silicon Revision 1.1/1.0 SPRZ455A –
+>        DECEMBER 2020 – REVISED AUGUST 2021
+>        (https://www.ti.com/lit/er/sprz455a/sprz455a.pdf)
 > 
-> > I see no simple solution to this, and I also expect that if gpios
-> > need
-> > to be shared, there will eventually need to be some kind of layer
-> > that
-> > helps with coordination such that it becomes explicit rather than
-> > implicit and fragile.
+> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> ---
+>  drivers/pci/controller/cadence/pci-j721e.c | 85 ++++++++++++++++++++++
+>  1 file changed, 85 insertions(+)
 > 
-> Yes, like making the reset subsystem handle 'reset-gpios' properties
-> as I suggested.
+> diff --git a/drivers/pci/controller/cadence/pci-j721e.c b/drivers/pci/controller/cadence/pci-j721e.c
+> index 2ec037c43bd5..c2e7a78dc31f 100644
+> --- a/drivers/pci/controller/cadence/pci-j721e.c
+> +++ b/drivers/pci/controller/cadence/pci-j721e.c
+> @@ -29,6 +29,13 @@
+>  #define LINK_DOWN		BIT(1)
+>  #define J7200_LINK_DOWN		BIT(10)
+>  
+> +#define EOI_REG			0x10
+> +
+> +#define ENABLE_REG_SYS_0	0x100
+> +#define STATUS_REG_SYS_0	0x500
+> +#define STATUS_CLR_REG_SYS_0	0x700
+> +#define INTx_EN(num)		(1 << (num))
+> +
+>  #define J721E_PCIE_USER_CMD_STATUS	0x4
+>  #define LINK_TRAINING_ENABLE		BIT(0)
+>  
+> @@ -59,6 +66,7 @@ struct j721e_pcie {
+>  	void __iomem		*user_cfg_base;
+>  	void __iomem		*intd_cfg_base;
+>  	u32			linkdown_irq_regfield;
+> +	struct irq_domain	*legacy_irq_domain;
+>  };
+>  
+>  enum j721e_pcie_mode {
+> @@ -121,6 +129,79 @@ static void j721e_pcie_config_link_irq(struct j721e_pcie *pcie)
+>  	j721e_pcie_intd_writel(pcie, ENABLE_REG_SYS_2, reg);
+>  }
+>  
+> +static void j721e_pcie_v1_legacy_irq_handler(struct irq_desc *desc)
+> +{
+> +	struct j721e_pcie *pcie = irq_desc_get_handler_data(desc);
+> +	struct irq_chip *chip = irq_desc_get_chip(desc);
+> +	int i, virq;
+> +	u32 reg;
+> +
+> +	chained_irq_enter(chip, desc);
+> +
+> +	for (i = 0; i < PCI_NUM_INTX; i++) {
+> +		reg = j721e_pcie_intd_readl(pcie, STATUS_REG_SYS_0);
+> +		if (!(reg & INTx_EN(i)))
+> +			continue;
 
-That would be nice... if anyone has the time for such an extensive
-addition :(
+Why do you need to perform multiple reads? Surely reg contains all the
+bits you need, doesn't it?
+
+> +
+> +		virq = irq_find_mapping(pcie->legacy_irq_domain, 3 - i);
+> +		generic_handle_irq(virq);
+
+Please combine both lines into a single generic_handle_domain_irq()
+call.
+
+> +		j721e_pcie_intd_writel(pcie, STATUS_CLR_REG_SYS_0, INTx_EN(i));
+
+What is the purpose of this write? It feels like this should be a
+irq_eoi callback.
+
+> +	}
+> +
+> +	chained_irq_exit(chip, desc);
+> +}
+> +
+> +static int j721e_pcie_intx_map(struct irq_domain *domain, unsigned int irq, irq_hw_number_t hwirq)
+> +{
+> +	irq_set_chip_and_handler(irq, &dummy_irq_chip, handle_simple_irq);
+
+An INTx interrupt is a level interrupt. Please use the corresponding flow.
+
+> +	irq_set_chip_data(irq, domain->host_data);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct irq_domain_ops j721e_pcie_intx_domain_ops = {
+> +	.map = j721e_pcie_intx_map,
+> +};
+> +
+> +static int j721e_pcie_config_legacy_irq(struct j721e_pcie *pcie)
+> +{
+> +	struct irq_domain *legacy_irq_domain;
+> +	struct device *dev = pcie->dev;
+> +	struct device_node *node = dev->of_node;
+> +	struct device_node *intc_node;
+> +	int irq, i;
+> +	u32 reg;
+> +
+> +	intc_node = of_get_child_by_name(node, "interrupt-controller");
+> +	if (!intc_node) {
+> +		dev_dbg(dev, "interrupt-controller node is absent. Legacy INTR not supported\n");
+> +		return 0;
+> +	}
+> +
+> +	irq = irq_of_parse_and_map(intc_node, 0);
+> +	if (!irq) {
+> +		dev_err(dev, "Failed to parse and map legacy irq\n");
+> +		return -EINVAL;
+> +	}
+> +	irq_set_chained_handler_and_data(irq, j721e_pcie_v1_legacy_irq_handler, pcie);
+> +
+> +	legacy_irq_domain = irq_domain_add_linear(intc_node, PCI_NUM_INTX,
+> +						  &j721e_pcie_intx_domain_ops, pcie);
+> +	if (!legacy_irq_domain) {
+> +		dev_err(dev, "Failed to add irq domain for legacy irqs\n");
+> +		return -EINVAL;
+> +	}
+> +	pcie->legacy_irq_domain = legacy_irq_domain;
+> +
+> +	for (i = 0; i < PCI_NUM_INTX; i++) {
+> +		reg = j721e_pcie_intd_readl(pcie, ENABLE_REG_SYS_0);
+> +		reg |= INTx_EN(i);
+> +		j721e_pcie_intd_writel(pcie, ENABLE_REG_SYS_0, reg);
+> +	}
+
+This should be moved to the irq_unmask() callback.
 
 Thanks,
-Eddie
 
-> 
-> Rob
+	M.
 
+-- 
+Without deviation from the norm, progress is not possible.
