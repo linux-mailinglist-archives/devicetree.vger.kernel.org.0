@@ -2,163 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E05123DFC5E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 09:59:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1B173DFC80
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 10:11:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235983AbhHDH7Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 03:59:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49612 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235977AbhHDH7Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 03:59:24 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AC27C0613D5
-        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 00:59:12 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1mBBnq-0002Ia-J2; Wed, 04 Aug 2021 09:59:02 +0200
-Received: from pengutronix.de (unknown [IPv6:2a02:810a:8940:aa0:e44:2d7c:bf4a:7b36])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 347056605ED;
-        Wed,  4 Aug 2021 07:58:57 +0000 (UTC)
-Date:   Wed, 4 Aug 2021 09:58:55 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH v4 3/3] arm64: dts: renesas: r9a07g044: Add CANFD node
-Message-ID: <20210804075855.2vjvfb67kufiibqx@pengutronix.de>
-References: <20210727133022.634-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20210727133022.634-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        id S236065AbhHDILi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 04:11:38 -0400
+Received: from mout.gmx.net ([212.227.17.20]:55529 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236102AbhHDILi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Aug 2021 04:11:38 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1628064669;
+        bh=YvEcXrHPBfYzp2tdYOHNvNnbANlyDTHvf2AxPW3et7M=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=Fy/Egp/3GARYqkIFltMKbJNDvxrQxAdZPd/FG+EPOeOPvcj5lDTc+2cyPjQ+rPcAh
+         F+DRAdGc3p50UCEcZ84vi68k7TA2saYSj0wA0jf/pWtxOHfcLED1ILm3LKUvFlHQe+
+         sJoNVLOemd4yH7Qax7tBT/ryvWmflmFxrIgLH+8s=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [217.61.147.17] ([217.61.147.17]) by web-mail.gmx.net
+ (3c-app-gmx-bap67.server.lan [172.19.172.67]) (via HTTP); Wed, 4 Aug 2021
+ 10:11:08 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ze4ynsr3mhucbku3"
-Content-Disposition: inline
-In-Reply-To: <20210727133022.634-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Message-ID: <trinity-8910c659-6e4e-4979-a6d0-eaf5b8bee213-1628064668849@3c-app-gmx-bap67>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Sungbo Eo <mans0n@gorani.run>
+Cc:     linux-mediatek@lists.infradead.org,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Min Guo <min.guo@mediatek.com>, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Aw: Re:  [PATCH 0/2] Add MUSB for MT7623
+Content-Type: text/plain; charset=UTF-8
+Date:   Wed, 4 Aug 2021 10:11:08 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <f3607979-ea50-fc1c-0afe-a55881aa24f0@gorani.run>
+References: <20210803151320.71531-1-mans0n@gorani.run>
+ <trinity-0f9449b8-5114-46e5-9a4f-00b62155a938-1628010948338@3c-app-gmx-bs54>
+ <f3607979-ea50-fc1c-0afe-a55881aa24f0@gorani.run>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:KDWodkr75906Bt6g62XmHQa9PoCrBrWNqNZQVvojYAf8r83q+NlJOQdWStEWgAwcp5Xsk
+ UBrdYAoLIWiKBUNCkshM22OkDenDDKkXTdCGpNPHsRpT4Wx7NpCSfylBw3DGvsJI4iQBxUx3rFzg
+ r5tr9NAliXV9Oz3JwDUN075FmTSILzA/ad/BSHs/OMYst7FzkqUB276NgPqNvZN4UtUbsXp71uhR
+ cUGSp3BaI8LIYuB9lmspvlNrBFy6dCjcxg7VSUEUz63oilokVa9noH32eIIZ0jjs7CTnsx8PUGhj
+ hY=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:2BPuurnNY30=:oEguZKWjzcVKUemXYbFOBL
+ qPt7dgNXyh4CiAnPe58jGKgbqpjJHmKk28h6ywQZiTkGw/2ijp0pXmY3Pd9BWnsNcODMOGcmW
+ 0+rkY3QRC7its2+Zh50j7bTrpvK5vu+mbqy334oM/S1rx9s/SMqRqkTFs16GwwSyAcaz17Ev1
+ 6K8Jkcy69W4GP/r7n9QtSinrHqqIY40ybdeVRYQVAa7w0qh+H7wwx9FEtd6X7+yUcGC6TryrX
+ 3qYLxMwyEz2svfG73RII2ks1B+7du3W8H+/66i50EBWSq3PJRaWoxSrh3Kqphpeduby2MfWqt
+ 7DiEDvbOKEQTzkqVLchJ3Aywuh1PPhLjTEMwAeTdsK4tjAM3NQqakUYWYITPpLTE2jfh5rR8e
+ ovZmTOANBXXjFgFrJdLJznQvEaQ9rf4SmDel2dqrz57ODup77jFvX+F0BrxuU0wqANp2MYv5y
+ ZtyzuyYRcGBkMCA0CfNSJ2xxDQRGEJ3chwGKAkNLVcs+HnfldVerRPecgj+RWQRptCoSsIWGD
+ d5s2llHpqJrhGqrQM/Aq5jSihhW/6iARd/AwdW3tanMQQ6xksGpZIBqU8Aem/0B/dNOg5JuAF
+ Nk64jvRBiF0/njrbEZsohO5rqb7nxWqX7bTV3+WMmfv7cxTElsURxCnLhpQ+tigo47vvKEbkW
+ ATKEkpKzvu2k9ldzczf36Myc97SZVe07nMa6FoCnUSG4V/BQVfIQvTFSsAewqF7e2qWTQl3EX
+ cROVamWwDr/Gt7pSJf7OdssHxUhfahXxi8Fy04IkvtkOvY5Rz8MAhRz/TnBhmZjLlvSo5zyVe
+ o9TO4Xg4FX/pEc/f4+YrT/mtN36ZvBZFv3SqVaLjQrRUNjmp8k=
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+> Gesendet: Mittwoch, 04. August 2021 um 02:14 Uhr
+> Von: "Sungbo Eo" <mans0n@gorani.run>
 
---ze4ynsr3mhucbku3
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> > thanks for working on it. do both otg-roles (host/client) work on your=
+ device?
+>
+> Yes, I tested it with host mode and device mode.
+> I also tried manual role-switch via sysfs and it worked with some prior =
+setup.
+> Note that my device has a USB Type-A connector and not micro B, so I can=
+'t help with id pin stuff...
 
-On 27.07.2021 14:30:22, Lad Prabhakar wrote:
-> Add CANFD node to R9A07G044 (RZ/G2L) SoC DTSI.
->=20
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
->  arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 41 ++++++++++++++++++++++
->  1 file changed, 41 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot=
-/dts/renesas/r9a07g044.dtsi
-> index 9a7489dc70d1..51655c09f1f8 100644
-> --- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-> @@ -13,6 +13,13 @@
->  	#address-cells =3D <2>;
->  	#size-cells =3D <2>;
-> =20
-> +	/* External CAN clock - to be overridden by boards that provide it */
-> +	can_clk: can {
-> +		compatible =3D "fixed-clock";
-> +		#clock-cells =3D <0>;
-> +		clock-frequency =3D <0>;
-> +	};
+> > but usb-stick is not powered (led of the stick is off) and of course i=
+ see no mass-storage device.
+>
+> I observed the same symptom (but different error log).
+>
+> [    2.722253] musb-hdrc musb-hdrc.1.auto: VBUS_ERROR in a_idle (80, <Se=
+ssEnd), retry #0, port1 00000104
+>
+> In my case adding `regulator-always-on;` in the regulator node solved th=
+e problem temporarily.
+> But after that I switched to relying on pinctrl.
+
+i've found out that usb-stick is powered if i first connect otg-cable and =
+then the stick to the cable...regulator always on does not change anything=
+ for me (only supporess "disabling vusb" message on boot). traceback on po=
+weroff is still there.
+
+role switch happen on inserting stick into cable, not before (insert cable=
+ into r2) as i expected.
+
+need to figure out which CONFIG options i need to get USB-Stick as mass st=
+orage working.
+
+i wonder why it works on your board without the vusb/connector subnodes
+
+> +&pio {
+> +       musb_pins: musb {
+> +               pins-musb {
+> +                       pinmux =3D <MT7623_PIN_237_EXT_SDIO2_FUNC_DRV_VB=
+US>;
+> +               };
+> +       };
+> +};
+
+imho it's the same gpio used for regulator, right? whats the difference?
+i tried this instead of the regulator-node =3D> not powered (cable first, =
+then stick).
+
+> +&usb3 {
+> +       pinctrl-names =3D "default";
+> +       pinctrl-0 =3D <&musb_pins>;
+> +       status =3D "okay";
 > +
->  	/* clock can be either from exclk or crystal oscillator (XIN/XOUT) */
->  	extal_clk: extal {
->  		compatible =3D "fixed-clock";
-> @@ -89,6 +96,40 @@
->  			status =3D "disabled";
->  		};
-> =20
-> +		canfd: can@10050000 {
-> +			compatible =3D "renesas,r9a07g044-canfd", "renesas,rzg2l-canfd";
-> +			reg =3D <0 0x10050000 0 0x8000>;
-> +			interrupts =3D <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 427 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 428 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 429 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names =3D "g_err", "g_recc",
-> +					  "ch0_err", "ch0_rec", "ch0_trx",
-> +					  "ch1_err", "ch1_rec", "ch1_trx";
-> +			clocks =3D <&cpg CPG_MOD R9A07G044_CANFD_PCLK>,
-> +				 <&cpg CPG_CORE R9A07G044_CLK_P0_DIV2>,
-> +				 <&can_clk>;
-> +			clock-names =3D "fck", "canfd", "can_clk";
-> +			assigned-clocks =3D <&cpg CPG_CORE R9A07G044_CLK_P0_DIV2>;
-> +			assigned-clock-rates =3D <50000000>;
-> +			resets =3D <&cpg R9A07G044_CANFD_RSTP_N>,
-> +				 <&cpg R9A07G044_CANFD_RSTC_N>;
-> +			reset-names =3D "rstp_n", "rstc_n";
-> +			power-domains =3D <&cpg>;
-> +			status =3D "disabled";
+> +       dr_mode =3D "host";
 > +
-> +			channel0 {
-> +				status =3D "disabled";
-> +			};
-> +			channel1 {
-> +				status =3D "disabled";
-> +			};
-> +		};
-> +
->  		i2c0: i2c@10058000 {
->  			#address-cells =3D <1>;
->  			#size-cells =3D <0>;
-
-This doesn't apply to net-next/master, the r9a07g044.dtsi doesn't have a
-i2c0 node at all. There isn't a i2c0 node in Linus' master branch, yet.
-
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---ze4ynsr3mhucbku3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAmEKSLwACgkQqclaivrt
-76kwigf/Q3643nBF+tEaWkQKOY+e+2zNCqq8EEB0xZM/x6lVE3TVQnt/TGWl+5sK
-QI3WuAC41jnIVEKYDVv6ZdcqIMOFR6c7baygWW/VpL2hIhhJ9pWwJZPgsZnL38o9
-c32rg8mkSrhZCmuVRDLJi/PQiV/t8CV+h2LMwYoNE+dOSqq5rBk6MUWZbxanTyCU
-+x0T5k0NmcN6ewN+/azYNX9Wg1+J3f4sVcjEw5fuejPyhs1nsz59S97smT5Pp0KO
-cD26J88VlNzIeLAuXnqZXZRdprKeDpIrpK0gp+r8Kcjh6/Tu2Oxnr7W0+WxWmFIa
-yjVUQ1jg06lS7QpCBmR5QiRtKveqnQ==
-=uMmw
------END PGP SIGNATURE-----
-
---ze4ynsr3mhucbku3--
+> +       connector {
+> +               compatible =3D "usb-a-connector";
+> +       };
+> +};
+>
+> root@OpenWrt:~# lsusb -t
+> /:  Bus 03.Port 1: Dev 1, Class=3Droot_hub, Driver=3Dmusb-hdrc/1p, 480M
+>     |__ Port 1: Dev 2, If 0, Class=3D, Driver=3Dusb-storage, 480M
+> /:  Bus 02.Port 1: Dev 1, Class=3Droot_hub, Driver=3Dxhci-mtk/1p, 5000M
+> /:  Bus 01.Port 1: Dev 1, Class=3Droot_hub, Driver=3Dxhci-mtk/1p, 480M
+>
+> I tested device mode with legacy CDC composite device module.
+> You can also take more complicated configfs approach, though.
+> https://elinux.org/images/e/ef/USB_Gadget_Configfs_API_0.pdf
+>
+> +       dr_mode =3D "host";
+> -       dr_mode =3D "peripheral";
+>
+> root@OpenWrt:/# insmod g_cdc
+> [   64.565254] using random self ethernet address
+> [   64.569711] using random host ethernet address
+> [   64.575966] usb0: HOST MAC 26:36:2d:e5:8f:6f
+> [   64.580501] usb0: MAC 92:d7:f9:c7:88:01
+> [   64.584409] g_cdc gadget: CDC Composite Gadget, version: King Kameham=
+eha Day 2008
+> [   64.592454] g_cdc gadget: g_cdc ready
+>
+> I also tried usb-role-switch,
+>
+> -       dr_mode =3D "host";
+> +       usb-role-switch;
+>
+> After boot the initial mode of musb is "none", and it did not turn vbus =
+on even if I set it to host mode.
+> Later I found out that I need to load any gadget driver before setting i=
+t to host mode.
+>
+> # echo peripheral > /sys/devices/platform/11200000.usb/musb-hdrc.1.auto/=
+mode
+> # insmod g_cdc
+> # echo host > /sys/devices/platform/11200000.usb/musb-hdrc.1.auto/mode
+>
+> That's all I know. Please let me know if I skipped some details.
+> Thanks.
+>
+> >
+> > and now i'm back on the traceback on power down i've reported Author o=
+f musb driver some time ago
+> >
+> > [  156.785185] WARNING: CPU: 0 PID: 1 at drivers/power/reset/mt6323-po=
+weroff.c:4
+> > [  156.795156] Unable to power off system
+> >
+> > [  156.884496] [<c0cca1ec>] (warn_slowpath_fmt) from [<c090562c>] (mt6=
+323_do_pw)
+> > [  156.893203]  r8:c3296d40 r7:00000024 r6:0ccccb60 r5:c10fe3d8 r4:000=
+00000
+> > [  156.900030] [<c09054b0>] (mt6323_do_pwroff) from [<c010ba68>] (mach=
+ine_power)
+> > [  156.908558]  r8:fee1dead r7:c1312590 r6:92f61d00 r5:00000000 r4:432=
+1fedc
+> > [  156.915385] [<c010ba34>] (machine_power_off) from [<c01524bc>] (ker=
+nel_power)
+> >
+> > i guess it's related to the usb_vbus.
+> >
+> > regards Frank
+> >
+>
