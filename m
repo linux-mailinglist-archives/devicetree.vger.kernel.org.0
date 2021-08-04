@@ -2,182 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F0D53E005B
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 13:40:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9B7F3E008F
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 13:55:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237725AbhHDLkr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 07:40:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44412 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237759AbhHDLkr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 07:40:47 -0400
-Received: from mail-vk1-xa33.google.com (mail-vk1-xa33.google.com [IPv6:2607:f8b0:4864:20::a33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A7C8C061798
-        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 04:40:33 -0700 (PDT)
-Received: by mail-vk1-xa33.google.com with SMTP id k124so383809vke.5
-        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 04:40:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=N7aTfCxAKJ2/XU/on5/jv3kZr0ZUiaYr+3A3j6P4Pxo=;
-        b=F58Cvd96+VeMEyWQZWIhBEZM7Vhgt/eKNvvl5M3d6yxCe4oWUtOM5+UiJ5F/4wyubz
-         HAbgd+EExQL8lCLg0LqPWO/RE19sOT2PtiKwzNHgp2Ag5H0YXnZbS47iQz8/ARPveUf2
-         L1begTuBFdnQ9JaDlkFITHE1gi3CKxf8d20ob4G6hMnHLiyXzyvTGzpS13LQRZZx7bz1
-         XgWA86Skwuh43dTiStAjaTUC+M7VH+w6k2IlKdAGkdwL/20XNaADZ391zeWPbvBJ40pR
-         8dXOIu7xU889d8ai1rVE45XAPWJfjrhb2LgXCo+BsvhnxHh1F2HKZntXuY/AsHoJ77fV
-         s71Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=N7aTfCxAKJ2/XU/on5/jv3kZr0ZUiaYr+3A3j6P4Pxo=;
-        b=aXh8NiP7tQ4vpT9bZv2fBL5ByQCgduf3MubuDH2sEUfeyHv48p1i23Z/OXJ7kbxsCY
-         1KUfR/oclSCXgBcjMT5zTA2aMqXX1QHJfTxGqG4V0PyrpSs9QUDsqaCz3vArD/wjlfH1
-         G0UOOGpQtm47FuDJVTKcH6sap+kKmrMzAUhtVJ4Daf9DpQh6KCSqAgS2DMOLYc2qWN0M
-         eVP0MR3nG7igDpj794QQx8nNmeI/56+T47u9yl1ge3u0JqCMY4HPAjHPzz+FPji18oc6
-         1sbFMZ0Uwv9cTkLcqrpEm4uf2oSiTLBN0L96BnimI2WBkt8aTdy4oeJvw00CM2164Pc4
-         5RXQ==
-X-Gm-Message-State: AOAM53081EY5vZBmX/yadn2dOWrcncWzgc4eQshEcNBcX3k8XYwjxi9N
-        ffizlV+rr7vCs4VGslGjzz7T7ojj09rd6RkyBHRzJQ==
-X-Google-Smtp-Source: ABdhPJwd7X+yAh+jm61MAYmQnQU0NWt09TvXYK9U3lvNwCskd5VyvewblGteqgYoLsoVAlGrwuIhaqntzGyE3/mMCsk=
-X-Received: by 2002:a1f:cf47:: with SMTP id f68mr16089473vkg.7.1628077232121;
- Wed, 04 Aug 2021 04:40:32 -0700 (PDT)
+        id S237858AbhHDLz1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 07:55:27 -0400
+Received: from foss.arm.com ([217.140.110.172]:59802 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237816AbhHDLz1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Aug 2021 07:55:27 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3AAA113D5;
+        Wed,  4 Aug 2021 04:55:14 -0700 (PDT)
+Received: from lpieralisi (e121166-lin.cambridge.arm.com [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E14F83F719;
+        Wed,  4 Aug 2021 04:55:12 -0700 (PDT)
+Date:   Wed, 4 Aug 2021 12:55:06 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+        Richard Zhu <hongxing.zhu@nxp.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        PCI <linux-pci@vger.kernel.org>, devicetree@vger.kernel.org,
+        Sascha Hauer <kernel@pengutronix.de>,
+        patchwork-lst@pengutronix.de
+Subject: Re: [PATCH 3/7] PCI: imx6: Rework PHY search and mapping
+Message-ID: <20210804115506.GA32406@lpieralisi>
+References: <20210510141509.929120-1-l.stach@pengutronix.de>
+ <20210510141509.929120-3-l.stach@pengutronix.de>
+ <20210510170510.GA276768@robh.at.kernel.org>
+ <854ec10d9a32df97d1f53a784dffca4e5036b059.camel@pengutronix.de>
+ <CAL_Jsq+dkJ+bbuQDQieHdocjLoNKN2vib8scJsdGnCnffSGAcA@mail.gmail.com>
+ <2ea9546c7dc1644376576db2cb01005fb041f349.camel@pengutronix.de>
 MIME-Version: 1.0
-References: <1626764876-10229-1-git-send-email-rnayak@codeaurora.org>
- <1626764876-10229-2-git-send-email-rnayak@codeaurora.org> <CAPDyKFrzHD6rXP5TnqrAVnrZExc2JLFe3HoGF+yM_tsaZYwh8g@mail.gmail.com>
- <35950d34-5cab-1b09-9864-49217a83f68d@codeaurora.org> <6fe7d326-1822-5a49-cca7-df9a2739dca8@codeaurora.org>
-In-Reply-To: <6fe7d326-1822-5a49-cca7-df9a2739dca8@codeaurora.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 4 Aug 2021 13:39:55 +0200
-Message-ID: <CAPDyKFrTQ0jy_u_oPN3kAXkd+FYMpHmStuU2pm8FHLa_OvXzBA@mail.gmail.com>
-Subject: Re: [PATCH v5 1/2] PM / Domains: Add support for 'required-opps' to
- set default perf state
-To:     Rajendra Nayak <rnayak@codeaurora.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Roja Rani Yarubandi <rojay@codeaurora.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2ea9546c7dc1644376576db2cb01005fb041f349.camel@pengutronix.de>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 4 Aug 2021 at 13:08, Rajendra Nayak <rnayak@codeaurora.org> wrote:
->
->
-> On 8/3/2021 10:08 AM, Rajendra Nayak wrote:
-> >
-> > On 8/2/2021 6:29 PM, Ulf Hansson wrote:
-> >> On Tue, 20 Jul 2021 at 09:12, Rajendra Nayak <rnayak@codeaurora.org> wrote:
-> >>>
-> >>> Some devices within power domains with performance states do not
-> >>> support DVFS, but still need to vote on a default/static state
-> >>> while they are active. They can express this using the 'required-opps'
-> >>> property in device tree, which points to the phandle of the OPP
-> >>> supported by the corresponding power-domains.
-> >>>
-> >>> Add support to parse this information from DT and then set the
-> >>> specified performance state during attach and drop it on detach.
-> >>> runtime suspend/resume callbacks already have logic to drop/set
-> >>> the vote as needed and should take care of dropping the default
-> >>> perf state vote on runtime suspend and restore it back on runtime
-> >>> resume.
-> >>>
-> >>> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
-> >>> ---
-> >>>   drivers/base/power/domain.c | 28 +++++++++++++++++++++++++---
-> >>>   include/linux/pm_domain.h   |  1 +
-> >>>   2 files changed, 26 insertions(+), 3 deletions(-)
-> >>>
-> >>> diff --git a/drivers/base/power/domain.c b/drivers/base/power/domain.c
-> >>> index a934c67..f454031 100644
-> >>> --- a/drivers/base/power/domain.c
-> >>> +++ b/drivers/base/power/domain.c
-> >>> @@ -2598,6 +2598,12 @@ static void genpd_dev_pm_detach(struct device *dev, bool power_off)
-> >>>
-> >>>          dev_dbg(dev, "removing from PM domain %s\n", pd->name);
-> >>>
-> >>> +       /* Drop the default performance state */
-> >>> +       if (dev_gpd_data(dev)->default_pstate) {
-> >>> +               dev_pm_genpd_set_performance_state(dev, 0);
-> >>> +               dev_gpd_data(dev)->default_pstate = 0;
-> >>> +       }
-> >>> +
-> >>>          for (i = 1; i < GENPD_RETRY_MAX_MS; i <<= 1) {
-> >>>                  ret = genpd_remove_device(pd, dev);
-> >>>                  if (ret != -EAGAIN)
-> >>> @@ -2635,9 +2641,10 @@ static void genpd_dev_pm_sync(struct device *dev)
-> >>>   static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
-> >>>                                   unsigned int index, bool power_on)
-> >>>   {
-> >>> +       struct device_node *np;
-> >>>          struct of_phandle_args pd_args;
-> >>>          struct generic_pm_domain *pd;
-> >>> -       int ret;
-> >>> +       int ret, pstate;
-> >>>
-> >>>          ret = of_parse_phandle_with_args(dev->of_node, "power-domains",
-> >>>                                  "#power-domain-cells", index, &pd_args);
-> >>> @@ -2675,10 +2682,25 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
-> >>>                  genpd_unlock(pd);
-> >>>          }
-> >>>
-> >>> -       if (ret)
-> >>> +       if (ret) {
-> >>>                  genpd_remove_device(pd, dev);
-> >>> +               return -EPROBE_DEFER;
-> >>> +       }
-> >>> +
-> >>> +       /* Set the default performance state */
-> >>> +       np = base_dev->of_node;
-> >>
-> >> Please use dev->of_node instead (it is set to the same of_node as
-> >> base_dev by the callers of __genpd_dev_pm_attach) as it's more
-> >> consistent with existing code.
-> >>
-> >>> +       if (of_parse_phandle(np, "required-opps", index)) {
-> >>> +               pstate = of_get_required_opp_performance_state(np, index);
-> >>> +               if (pstate < 0) {
-> >>> +                       ret = pstate;
-> >>> +                       dev_err(dev, "failed to set required performance state for power-domain %s: %d\n",
-> >>> +                               pd->name, ret);
-> >>> +               }
-> >>> +               dev_pm_genpd_set_performance_state(dev, pstate);
-> >>> +               dev_gpd_data(dev)->default_pstate = pstate;
-> >>
-> >> This doesn't look entirely correct to me. If we fail to translate a
-> >> required opp to a performance state, we shouldn't try to set it.
-> >
-> > yeah, that does not seem right at all :(
-> >
-> >> Perhaps it's also easier to call
-> >> of_get_required_opp_performance_state() unconditionally of whether a
-> >> "required-opps" specifier exists. If it fails with the translation,
-> >> then we just skip setting a default state and continue with returning
-> >> 1.
-> >>
-> >> Would that work?
->
-> Looks like calling of_get_required_opp_performance_state() unconditionally
-> makes it spit out a pr_err() in case the node is missing "required-opps" property,
-> so I posted a v6 [1] with the check in place and adding the missing else
-> condition.
+On Tue, May 11, 2021 at 04:54:08PM +0200, Lucas Stach wrote:
+> Am Dienstag, dem 11.05.2021 um 09:21 -0500 schrieb Rob Herring:
+> > On Tue, May 11, 2021 at 3:11 AM Lucas Stach <l.stach@pengutronix.de> wrote:
+> > > 
+> > > Am Montag, dem 10.05.2021 um 12:05 -0500 schrieb Rob Herring:
+> > > > On Mon, May 10, 2021 at 04:15:05PM +0200, Lucas Stach wrote:
+> > > > > We don't need to have a phandle of the PHY, as we know the compatible
+> > > > > of the node we are looking for. This will make it easier to put add
+> > > > > more PHY handling for new generations later on, where the
+> > > > > "fsl,imx7d-pcie-phy" phandle would be a misnomer.
+> > > > > 
+> > > > > Also we can use a helper function to get the resource for us,
+> > > > > simplifying out driver code a bit.
+> > > > 
+> > > > Better yes, but really all the phy handling should be split out to
+> > > > its own driver even in the older h/w with shared phy registers.
+> > > > 
+> > > That would be a quite massive DT binding changing break, possibly even
+> > > a separate driver. Maybe it's time to do this for i.MX8MM, as the
+> > > current driver just kept piling on special cases for "almost the same"
+> > > hardware that by now looks quite different to the original i.MX6 PCIe
+> > > integration this driver was supposed to handle.
+> > 
+> > No, you don't need to change DT, and a DT change adding a phy node
+> > wouldn't even be correct modeling of the h/w IMO. For the i.MX6 phy, a
+> > separate PHY driver would have to create its own platform device in
+> > its initcall (if the iMX6 PCI compatible is found). Then the PCI
+> > driver would need to use a non-DT based phy_get() lookup. For the
+> > cases with a phandle to the phy, I'd assume a phy driver could be
+> > instantiated for that node. You'll again need a non-DT phy_get() if
+> > not using the phy binding.
+> 
+> The original i.MX6 PCIe with the internal PHY is the easy case, as you
+> laid out above.
+> 
+> What I'm more concerned about is the i.MX7 and i.MX8MQ, where we have a
+> MMIO mapped PHY and quite a bit of the clocks/reset/GPR handling would
+> need to move from the controller to the PHY driver. Without a binding
+> change I fear that we end up in a worst of both worlds situation, where
+> we have lots of code in the driver to separate resources that are
+> currently all attached to the PCIe controller node in the DT, without a
+> real gain in making the driver any simpler or easier to maintain.
+> 
+> But right now that's all speculation. Maybe I need to type something up
+> and see where it falls on the shiny/horrible scale.
 
-I see.
+Hi Lucas,
 
-Viresh, would it make sense to remove that print? I mean, the
-required-opps property could be considered as optional and it seems a
-bit silly that a pre-parsing of the property is needed to figure that
-out.
+given the feedback I will mark this series as "Changes requested"
+waiting with what follows, please let me know if that's what you
+expected.
 
->
-> [1] https://lore.kernel.org/patchwork/project/lkml/list/?series=510727
-
-Kind regards
-Uffe
+Thanks,
+Lorenzo
