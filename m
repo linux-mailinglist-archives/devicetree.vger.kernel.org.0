@@ -2,141 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B97103DFE22
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 11:38:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1ED943DFE31
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 11:41:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237113AbhHDJiy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 05:38:54 -0400
-Received: from mail-eopbgr1400110.outbound.protection.outlook.com ([40.107.140.110]:36640
-        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S237071AbhHDJiy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 4 Aug 2021 05:38:54 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ltAwU5iPj401+cpivAO4z1xvkrLEeM3q4/VNIhtP19Nxpifqx/kb6kP/xjTTvlUbRHnG58c/zY1gWn58jViT0ebD/5qFrzWbgBS5RZ0fZSSHn8q3v3Dbrs2+brOcYo53O836TdZO3V0ZpwvAMCBMLzbPJ3SSvl32QrEF48Ispcb8sH5ZHwi8zeBFPCS+1TC9019aLyFdxxzX2p3+RltAWeYvX8PXx7pa9TTZW0l8P1heZoKWLs3cDtuUBnYxZtdQFVUXXe8/OLsSk/k8JfG+BhP6BojfM/pARVzEXdbttNFeRhc0h2bFvQAbaiwvXTsSaIwFgy+Hed6Grm39Stul2A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RxkGHeWYKsznXRtw7JdxZiZA9EbZ2bEoFWbvicoGQx0=;
- b=jY3yNm26dZf+cu1hb0vjSvXosMyBetgHYS+hLeWvOZdjwq5oadwxLr9+c7tCqwPynwHhFgkcR/amxgiPHvmlm7zMWx/4A5RemIGwuMsZIup4zX4incyDMMtzLFMdqM9JP1CZOX1U/cw546PP7UaIdJ56egIesaCyR0Zaey/a89D/20VhIUVpJMh3nKLMm4ba8DaWcOxbqyFmUpAmswn6bbBFrLvpS0CorPgUDwpYx7iPkCUBTNBzhYgpFPZZFqDEDJzEAIf7isWOd1bQWj0Vumeo4cGxwxlVnMWaA/+LSkpzmc2y3qaFjfh36RlGZSJKOWWWxLwYcTt9y73OX9JAMg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RxkGHeWYKsznXRtw7JdxZiZA9EbZ2bEoFWbvicoGQx0=;
- b=fZCijuR2eG639o6WskJkYlTPZoGLcn8bdO6HEf2llyNQVSVZezz3e0+mf2moruDtEdu6oQTxjUA89xZGT/8nJ1kmu4yrBlD90YXJYTZ8Qs/AiLrU8+loqcH0vGLJcA2rIOf1Sa0MxELbUgGLxPxS16iE79W9myEv/DI4X9utTe4=
-Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com (2603:1096:404:d5::22)
- by TYXPR01MB1552.jpnprd01.prod.outlook.com (2603:1096:403:11::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.20; Wed, 4 Aug
- 2021 09:38:39 +0000
-Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com
- ([fe80::7db6:310f:a5ed:82f6]) by TY2PR01MB3692.jpnprd01.prod.outlook.com
- ([fe80::7db6:310f:a5ed:82f6%3]) with mapi id 15.20.4373.027; Wed, 4 Aug 2021
- 09:38:39 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v5 2/6] dt-bindings: phy: renesas,usb2-phy: Document
- RZ/G2L phy bindings
-Thread-Topic: [PATCH v5 2/6] dt-bindings: phy: renesas,usb2-phy: Document
- RZ/G2L phy bindings
-Thread-Index: AQHXgxkAw3mBso2vnEKBMhI9TQt7CatjIgpQ
-Date:   Wed, 4 Aug 2021 09:38:39 +0000
-Message-ID: <TY2PR01MB3692AD87163F3C1FAD471FBAD8F19@TY2PR01MB3692.jpnprd01.prod.outlook.com>
-References: <20210727185527.19907-1-biju.das.jz@bp.renesas.com>
- <20210727185527.19907-3-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20210727185527.19907-3-biju.das.jz@bp.renesas.com>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: bp.renesas.com; dkim=none (message not signed)
- header.d=none;bp.renesas.com; dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 79630e6c-109c-48ec-953a-08d9572ba3e1
-x-ms-traffictypediagnostic: TYXPR01MB1552:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <TYXPR01MB15521D37D5648DE65A9F278CD8F19@TYXPR01MB1552.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2733;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: k61YAlMHhxXJb4mCDq4rDape0cmduEQD/lQRMJIM2mjvhgsb44vzJiKasWE9AGWCr0bB4Lrc6hZe/3KjTYFGdUbc7yEXfWbaAgjZ0KetzbwEa1q81T2KCKCj20zLOj1MNW45572vyCEeX/OSKvaQbxfiXgXEpft4D8dRkNsajY1OEtVBhbcW9mlUGQSuUzu8FgfqcGmfMiz/qAfPo16dDXS+GZgUyrF0M9QMhmRVFhiZAol8Qm07APFY04yoH83NAtqVYSBZLsl0dktIprnYxiS8sesw4iuGmBTbyoro9rJRU7J0iROW7Xv2n8tjuiiQEVg+T2389PAGUCxp4JEx+mhAnKLetgLOsKjgQt6Orvr0/6GzvA0uktHwPJUGVtVenVcIRjmZXtIqAdj/yYdFORYN+kcQqTv99MC2hEu+9CLMGj5x0xNsupZZv4SOdUy2hJMP6Ent0r2nU1HYjAvPwfcSvZv3SMT3bB3BUSuaGLKycDrJNV8W7+2SAygjOaM3qk4/GqfZEtVJ64gMTiSepA6uxf/4nZHqHtp66rTW6p2JHiReQa1ccrCsu7VM5AxOCxu8IPXxsAvPtvaRjqt8nRx1/V7b7egm2gzWY6so2365Lsr2ZXH3SJtJ5ZdBhC8QDzuUuJsl2LKDGzzJHArZgwxW9qcAQCW5MQouzEQxMdlIoN9v1toYJH2Mt0p16b59BUoFyGvnXV2VkKj+uAQjxg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PR01MB3692.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(54906003)(4744005)(5660300002)(508600001)(9686003)(110136005)(86362001)(55236004)(2906002)(122000001)(186003)(7696005)(6506007)(38100700002)(33656002)(52536014)(316002)(71200400001)(76116006)(66556008)(66476007)(66946007)(55016002)(26005)(64756008)(8936002)(38070700005)(4326008)(8676002)(66446008);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Q4z5Eqtfb+BRXIkgtJYZml83mMlyep4UgMoWbkw2oxiGq8gSkTGeuzIjelQ7?=
- =?us-ascii?Q?XJHuQq6hKLZlaD0nze+3PSRwaYUInw3Sj5HQpziRlVvdYEvgj054DNgOSn0m?=
- =?us-ascii?Q?KaCTh1U2hRJVpbkD1elUR5R3ZEbjnvvXuQURRkKFIGIEK70Un7+oJAs0o0Tf?=
- =?us-ascii?Q?HN0K6qy68P0DtMQMzRVZ0rKbCLpBrctJmx+zaL6FPvxoHz1bep4JOlio0Duh?=
- =?us-ascii?Q?ICP9QRHQaPt1rNBP3HPBNADv9H7IxTqeS5NN3u/91/EJnoYeRutlnRgrOqJ5?=
- =?us-ascii?Q?hGKU5DF9QHq06+rirffCbnDiy5Z8Gmcne4O3xos0HjnpiA4Tz7kFFwO0Pkzg?=
- =?us-ascii?Q?OEnsQSKkMNUNJw0v6huE6doamZcOlwcc96RwVknsxNuVvAsDWfOQ45AbBsVw?=
- =?us-ascii?Q?qKsj9CkNQgFCS+ILIiaRfA6MigckTXSFzC0kkrdS+UQNw8Ki6Cxq+Fpz0Kmk?=
- =?us-ascii?Q?mrUnq6dT1403WAv7Z4s/fUsqKOson5Z46dxERJkphgFgH65oTTn5R+dGw1Db?=
- =?us-ascii?Q?mnnsEIa05BbXu/xFGbyVD7Wzdho78O+bVZ9elLI8wEbCWAC9vw8aYUqcVxGA?=
- =?us-ascii?Q?UDyeWVEj7KQCs0ZMHV/MoR1DFhQx9x670uMgVxMQfXc1S7ZO1/2cQl95gNBP?=
- =?us-ascii?Q?7G/jxx9Eur3o3XjckxBa02LarbCod+Xva7Ioi13KGn8bFvlQDqJ9lWUo19FQ?=
- =?us-ascii?Q?2jqw3Bi3OxDOl5Rzl1YnhvHLNqxlWzDjXMcRNrSAAL8W04yVcHWSCVNZPF+t?=
- =?us-ascii?Q?/9SqhH64GY9zdZ9JqN8QGQxkTnwIEvzMuctGmb70Dk314X6WzdLcsOLzQN67?=
- =?us-ascii?Q?WyOvzCtfSdEbz4q7ITATWy7oCpLEpnSRWHlg9rq+0qufgMYs8HtPoGr5RKIe?=
- =?us-ascii?Q?EuS/Owv/s20wHzHCe4D0tbCzznVzWjVnuuep90OhrYOY53YIzQ3Pwc8oxgU5?=
- =?us-ascii?Q?D6ciYQTE26qoZVze4kfUezhKoA/+qaU1YHktmGYRjjgJmVnZJo/TQ49d2u/M?=
- =?us-ascii?Q?fsyXHammud60ZAB/lpYiuThpOGkiOSEHVM9r60o7k3i2e5qN5dus/eesFcJ/?=
- =?us-ascii?Q?+cca8nS6epYiPSRkUD6pbBpcyKeqVPCntq0kCJUK5SLhPHnI1C77/ddtk01u?=
- =?us-ascii?Q?GCyT1Obz8g9aG6xiF4Cb3amwzPnb9BvCEt+iSD5Z8vWtFetewyRq7cle5Eif?=
- =?us-ascii?Q?2uGhipyekbPAi7GfqJbHz03HsxFU8hJgLPXmTs6b0tzPXPjKxI9ZqURJeg+O?=
- =?us-ascii?Q?8T58rGwt/46S4di9MH6sjSzcJ1u/PsyT4vk9rA97mpJmVDkbdZEqRuxPXm46?=
- =?us-ascii?Q?tkA2F/J7MzzqKUys0gdPhxhS?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY2PR01MB3692.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 79630e6c-109c-48ec-953a-08d9572ba3e1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Aug 2021 09:38:39.2617
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: +l3sAggNM1gMZ6Nk+tc2eFClpllRFrjbDtfoVKt96/DX475ZfWsv92/fsG2gBMedmKNgBSbyNtRQln5ueoMUfoCkPUWqw2ZQESJ5t7IW+5x79thSohjwuxnqPIyuz+Ud
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYXPR01MB1552
+        id S236545AbhHDJlX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 05:41:23 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:10843 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236511AbhHDJlW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 05:41:22 -0400
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 04 Aug 2021 02:41:10 -0700
+X-QCInternal: smtphost
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 04 Aug 2021 02:41:08 -0700
+X-QCInternal: smtphost
+Received: from kalyant-linux.qualcomm.com ([10.204.66.210])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 04 Aug 2021 15:10:31 +0530
+Received: by kalyant-linux.qualcomm.com (Postfix, from userid 94428)
+        id 244B54C65; Wed,  4 Aug 2021 02:40:30 -0700 (PDT)
+From:   Kalyan Thota <kalyan_t@codeaurora.org>
+To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     Kalyan Thota <kalyan_t@codeaurora.org>,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        dianders@chromium.org, mkrishn@codeaurora.org,
+        saiprakash.ranjan@codeaurora.org, rnayak@codeaurora.org,
+        stable@vger.kernel.org
+Subject: [Resend v3] drm/msm/disp/dpu1: add safe lut config in dpu driver
+Date:   Wed,  4 Aug 2021 02:40:28 -0700
+Message-Id: <1628070028-2616-1-git-send-email-kalyan_t@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju-san,
+Add safe lut configuration for all the targets in dpu
+driver as per QOS recommendation.
 
-> From: Biju Das, Sent: Wednesday, July 28, 2021 3:55 AM
->=20
-> Document USB phy bindings for RZ/G2L SoC.
->=20
-> RZ/G2L USB2.0 phy uses line ctrl register for OTG_ID pin changes. It uses
-> a different OTG-BC interrupt bit for device recognition. Apart from this,
-> the PHY reset is controlled by USBPHY control IP and Document reset is a
-> required property.
->=20
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Issue reported on SC7280:
 
-Thank you for the patch!
+With wait-for-safe feature in smmu enabled, RT client
+buffer levels are checked to be safe before smmu invalidation.
+Since display was always set to unsafe it was delaying the
+invalidaiton process thus impacting the performance on NRT clients
+such as eMMC and NVMe.
 
-Reviewed-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Validated this change on SC7280, With this change eMMC performance
+has improved significantly.
 
-Best regards,
-Yoshihiro Shimoda
+Changes in v2:
+- Add fixes tag (Sai)
+- CC stable kernel (Dimtry)
+
+Changes in v3:
+- Correct fixes tag with appropriate hash (stephen)
+- Resend patch adding reviewed by tag
+- Resend patch adding correct format for pushing into stable tree (Greg)
+
+Fixes: 591e34a091d1 ("drm/msm/disp/dpu1: add support for display for SC7280 target")
+Cc: stable@vger.kernel.org
+Signed-off-by: Kalyan Thota <kalyan_t@codeaurora.org>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Tested-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org> (sc7280, sc7180)
+---
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+index d01c4c9..2e482cd 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+@@ -974,6 +974,7 @@ static const struct dpu_perf_cfg sdm845_perf_data = {
+ 	.amortizable_threshold = 25,
+ 	.min_prefill_lines = 24,
+ 	.danger_lut_tbl = {0xf, 0xffff, 0x0},
++	.safe_lut_tbl = {0xfff0, 0xf000, 0xffff},
+ 	.qos_lut_tbl = {
+ 		{.nentry = ARRAY_SIZE(sdm845_qos_linear),
+ 		.entries = sdm845_qos_linear
+@@ -1001,6 +1002,7 @@ static const struct dpu_perf_cfg sc7180_perf_data = {
+ 	.min_dram_ib = 1600000,
+ 	.min_prefill_lines = 24,
+ 	.danger_lut_tbl = {0xff, 0xffff, 0x0},
++	.safe_lut_tbl = {0xfff0, 0xff00, 0xffff},
+ 	.qos_lut_tbl = {
+ 		{.nentry = ARRAY_SIZE(sc7180_qos_linear),
+ 		.entries = sc7180_qos_linear
+@@ -1028,6 +1030,7 @@ static const struct dpu_perf_cfg sm8150_perf_data = {
+ 	.min_dram_ib = 800000,
+ 	.min_prefill_lines = 24,
+ 	.danger_lut_tbl = {0xf, 0xffff, 0x0},
++	.safe_lut_tbl = {0xfff8, 0xf000, 0xffff},
+ 	.qos_lut_tbl = {
+ 		{.nentry = ARRAY_SIZE(sm8150_qos_linear),
+ 		.entries = sm8150_qos_linear
+@@ -1056,6 +1059,7 @@ static const struct dpu_perf_cfg sm8250_perf_data = {
+ 	.min_dram_ib = 800000,
+ 	.min_prefill_lines = 35,
+ 	.danger_lut_tbl = {0xf, 0xffff, 0x0},
++	.safe_lut_tbl = {0xfff0, 0xff00, 0xffff},
+ 	.qos_lut_tbl = {
+ 		{.nentry = ARRAY_SIZE(sc7180_qos_linear),
+ 		.entries = sc7180_qos_linear
+@@ -1084,6 +1088,7 @@ static const struct dpu_perf_cfg sc7280_perf_data = {
+ 	.min_dram_ib = 1600000,
+ 	.min_prefill_lines = 24,
+ 	.danger_lut_tbl = {0xffff, 0xffff, 0x0},
++	.safe_lut_tbl = {0xff00, 0xff00, 0xffff},
+ 	.qos_lut_tbl = {
+ 		{.nentry = ARRAY_SIZE(sc7180_qos_macrotile),
+ 		.entries = sc7180_qos_macrotile
+-- 
+2.7.4
 
