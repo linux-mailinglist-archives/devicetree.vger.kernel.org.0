@@ -2,110 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A04CA3E0504
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 17:56:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E16ED3E059D
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 18:13:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232238AbhHDP40 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 11:56:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47242 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233630AbhHDP4Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 11:56:24 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0246FC0613D5;
-        Wed,  4 Aug 2021 08:56:11 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id c9so2792815wri.8;
-        Wed, 04 Aug 2021 08:56:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=gRPELMyvF9vRYWRJ3xMQSU8Idzl0x4DGYrIx0j0yc8g=;
-        b=XDrLsgF8UjhNK1nH1zHBglqcihcCEbFJ5ETncYdXTQeOatntskwOoA6XwGhq+Wd5A9
-         h2I0IVd7r+WjlvPOLzwjN7P5TcXeixdsCC1q7hSiF/mWS5WkUz9Po7UAscOWT4c0NRCW
-         P5SaUDtp3uQMoF7dgIjgFEUB68q/5Lte1ug6zicLGVMO6uZD2n1j9YvgCRvXRNpEEObJ
-         ElntYrOX1XsedwvKCRpi79IYbrjsE52/feIsQVUwkufZFEXJ1fpdZblg2XFrVGoVHEHg
-         iZmNfusXWGm+dgXSGOZUTqYI7J1oRXilpQ7aVND4Dtur+qEaSje8KdYFkwcEsX2XPmmn
-         gdPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=gRPELMyvF9vRYWRJ3xMQSU8Idzl0x4DGYrIx0j0yc8g=;
-        b=QJme+p9SEClaOh55/oj1IYMyMKFMj9DqDOYoQ48s6OKf8bY/N7xBCV6htIJluwW5IK
-         2oEVHlQLVyB352Z4+dRHs1tPlpEo/Ze+/qjZRLFJYwZfYBojNZROuDWNaNABy2Q8VDN7
-         Xste9YajnOPikV4lWDOM2xEPoaYIDyyFaPZ6MzVCZsD3ltw+j3Omjk79nRpHnRVxM/VD
-         aVY47Kvt1OUWWfEuzuaMJqkAL7k3DO9bLOyRb4tuY7430k8dogckPjWHS2u3txPQbBVF
-         rhqfIIdruZq5XeC9GFnr21xtOTDIa356WQYVbN/pYqOvm5DWl/sJbLRdnSAQgvWSs4mD
-         jqtA==
-X-Gm-Message-State: AOAM533WPFeIcodcU43zis3Odb76wDcigDYcYAnBSArBvQqx6uJ8tK6u
-        GEFSo+c+7nRPg/gDXzJVpGG+bZwewU2B9Q==
-X-Google-Smtp-Source: ABdhPJzT0RsZE0QP/IGJleF9Q/yp0CofsPObSNSKu1mCiX7KGz2wisGPE0W0Y8jIxdNUmg9Ui6IRbg==
-X-Received: by 2002:a5d:4521:: with SMTP id j1mr85665wra.44.1628092569603;
-        Wed, 04 Aug 2021 08:56:09 -0700 (PDT)
-Received: from ziggy.stardust (static-55-132-6-89.ipcom.comunitel.net. [89.6.132.55])
-        by smtp.gmail.com with ESMTPSA id g5sm6132769wmh.31.2021.08.04.08.56.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Aug 2021 08:56:09 -0700 (PDT)
-Subject: Re: [PATCH v2 2/2] arm64: dts: mt8173: elm: Use aliases to mmc nodes
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        eizan@chromium.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20210727111502.2506311-1-hsinyi@chromium.org>
- <20210727111502.2506311-2-hsinyi@chromium.org>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <044b85f1-dd05-19c9-f9ee-17e620699733@gmail.com>
-Date:   Wed, 4 Aug 2021 17:56:08 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
-MIME-Version: 1.0
-In-Reply-To: <20210727111502.2506311-2-hsinyi@chromium.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S233244AbhHDQNq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 12:13:46 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:16292 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S233239AbhHDQNq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 12:13:46 -0400
+X-IronPort-AV: E=Sophos;i="5.84,294,1620658800"; 
+   d="scan'208";a="89832262"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 05 Aug 2021 01:13:31 +0900
+Received: from localhost.localdomain (unknown [10.226.92.204])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id AA1754010DEA;
+        Thu,  5 Aug 2021 01:13:29 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v3 0/2] Document RZ/G2L SDHI controller bindings.
+Date:   Wed,  4 Aug 2021 17:13:23 +0100
+Message-Id: <20210804161325.26996-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch series aims to document RZ/G2L SDHI controller bindings.
 
+v2->v3:
+ * Created a seperate patch to fix the dtbs-warning check reported by [1].
+ * RZ/G2L SDHI binding patch depends up on the above the patch.
+ [1] https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20210804091940.23983-1-biju.das.jz@bp.renesas.com/
+v1->v2:
+ * Fixed dtbs-check issue for RZ/A{1,2} platforms.
 
-On 27/07/2021 13:15, Hsin-Yi Wang wrote:
-> fa2d0aa96941 ("mmc: core: Allow setting slot index via device tree alias")
-> allows the use of aliases to number SD/MMC slots. This patch use aliases
-> to mmc nodes so the partition name for eMMC and SD card will be consistent
-> across boots.
-> 
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-> ---
->  arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-> index 21452c51a20a8..d5a2cad39c9c7 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-> @@ -10,6 +10,12 @@
->  #include "mt8173.dtsi"
->  
->  / {
-> +	aliases {
-> +		mmc0 = &mmc0;
-> +		mmc1 = &mmc1;
-> +		mmc2 = &mmc3;
-> +	};
+v1->
+ * newpatch
 
-I overwrote v1 of this patch with this one. Both of the series are now in
-v5.14-next/dts64
+Biju Das (2):
+  dt-bindings: mmc: renesas,sdhi: Fix dtbs-check warning
+  dt-bindings: mmc: renesas,sdhi: Document RZ/G2L bindings
 
-Thanks
+ .../devicetree/bindings/mmc/renesas,sdhi.yaml | 119 ++++++++++++------
+ 1 file changed, 79 insertions(+), 40 deletions(-)
 
-> +
->  	memory@40000000 {
->  		device_type = "memory";
->  		reg = <0 0x40000000 0 0x80000000>;
-> 
+-- 
+2.17.1
+
