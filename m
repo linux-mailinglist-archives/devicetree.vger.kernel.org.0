@@ -2,193 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E2B33E0A04
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 23:30:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC12B3E0A2C
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 23:58:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231635AbhHDVbD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 17:31:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38684 "EHLO
+        id S232779AbhHDV6t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 17:58:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230438AbhHDVbC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 17:31:02 -0400
-Received: from mail-vs1-xe2c.google.com (mail-vs1-xe2c.google.com [IPv6:2607:f8b0:4864:20::e2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43839C06179A
-        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 14:30:48 -0700 (PDT)
-Received: by mail-vs1-xe2c.google.com with SMTP id a1so1829827vsd.12
-        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 14:30:48 -0700 (PDT)
+        with ESMTP id S229479AbhHDV6t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 17:58:49 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CA8EC0613D5;
+        Wed,  4 Aug 2021 14:58:35 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id hs10so6034309ejc.0;
+        Wed, 04 Aug 2021 14:58:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=googlemail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=dxaJFL8Y5c22Jta0cMEZC2iEw41WS8AsvJV/yCHApHU=;
-        b=aFm4foLY/Ah5O7HrLETjBorHA/Cbd4vqMKInq5ZltFuYyRmeKeRRProzZ+QYj1F0ki
-         L2nCrSrSWq1ivhi/Sz+Tvs0z70lHYq8V5kPuzV4lb/KmyuYPEesHqj9zGjfXp81gNjwk
-         Hc8Y8XbiQQygnK8nDxfxY4Ea+ILEnS2D8ZLh6V01K3pd1mGl3frQ7WWWlHFzRfyNTfGU
-         j9IzlCghKlDvyGKZMPPu+sM+kackw0OGiBzo3/kNfT8KUCGiNk/ALNyTSEBJ8sZHhQ6i
-         t2uCyKv4JHyjy++JVm1Phmm+hJCtaJj8F1RV4pEnOFs9kYHFlXCAi4Rzj/26hZfjQ9OI
-         vPxA==
+        bh=UDFP+Kh/RXp5326ifRvFQhSNe6psMCNDhU/dD1rM8SA=;
+        b=aJO8jUZNJLtuyY3pbXnWfLurE2o2BUbvMDRodBpaALLIZ2vk5/obf8tI5CyYpMWTl4
+         S5XUXdJF3PHtTAjg1DnFFgd/mL0mQPgOyIfSKCMBkE3duy8WCvdniyRU3ptJt6GCKL4I
+         AmFaCUzJ4/DmqYkLrHG+EIqPrkKkmjWYETYbTwpidM68uG/HOw2hgTJMXL1IsS1iPgXJ
+         gu6v4/zddwPtMK9qctadVp9lM8/aFvqZF/tklCEWR1KjObJTv+twR7GK4pTmy5nR2Uac
+         aoh16hY5LSJeQccnLabchOIf2UooX6zYGnswmEMOHR9ZBaIFCgYCc1l/WXNjd/jPragF
+         3zIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=dxaJFL8Y5c22Jta0cMEZC2iEw41WS8AsvJV/yCHApHU=;
-        b=qWXlCSO8MtLytNF/IKYAOKXKUBDbc4xBsQP9c0lFOndXsOz2x4xjCCHfX9YbEo5N23
-         Q3yaQYammgbJc8AXrHRkMviLfoqUjVTYjdOEFvzX4S67QdafV0WDK/n5TdtMvhSwZ7cv
-         VxJYTwOki54AzpIS7ESQKfKujgkMtLqilhy+fpY77qcg3Rq7drfAmHXm9xpUBbAZWCi3
-         n5XBqBuO9IvNgNom4PgeM1DgD10lCoErlVTvhjhATw+0V3/uvva8Q0Z5yB42Q/CvV6Z9
-         jJszQoeAz97tIli3I5by09qkIEp8ZB4v5Z17ht9jki+KgfWK7sT1VQO2MIIIWlXHnLBF
-         JIhA==
-X-Gm-Message-State: AOAM530Lo/sqTZZebrFYnPxp3yGfEYWGX3dVJEXiJFmFJsjQBvNq7VI9
-        wXXeQMWqARQG76vYM6zfHbOSr5uItXslMTDHNZiT0A==
-X-Google-Smtp-Source: ABdhPJxs3KtlDburhMJ7hb4H+QMZ+qFnQt7AfD5vKDnUEhepBfw+rufW06PMmUaJ+YMjNVp0Vvi4JO3VVZ/yl7ndwcc=
-X-Received: by 2002:a67:de06:: with SMTP id q6mr2048185vsk.57.1628112646443;
- Wed, 04 Aug 2021 14:30:46 -0700 (PDT)
+        bh=UDFP+Kh/RXp5326ifRvFQhSNe6psMCNDhU/dD1rM8SA=;
+        b=jkeD0RDNW0nocveiyjbYBBX/POk/LqmbZUaPvA3mqMqjF1+QJQtNm0/oYuhW15U/1b
+         s/xdzouxuwXxxqhIL5XeEq5L8xfICIPbgpK20lu1TStRzhkCi7e8qxqaYUecAgmirOhE
+         v6doySSOJ2EQdrC7WY+OHuxZqpCuGXmpgXOT6K2kal56UfkmUYkpwYhI7tPhAfX/WU7s
+         ZeqRuhYKRtxHFFPL7vlPYobbmhRhsxlZHTM75H2mpzWMhbuxGYSRxKy06TxcqFPpcB/d
+         bLyomuxlCStHmct8Xt/BC3pTxAeLzcQSdezYPvVFEmuf6IJvMvvnpn/x/XZOAN+HniXW
+         UW7g==
+X-Gm-Message-State: AOAM531v62pa0LYU00tkkV2o3f6H7vUWabpgQ8cegtY+UlKLflQqLJnY
+        PEeUes8mXgO6XylwZYcrd3vdeUMT90LW4su+JoM=
+X-Google-Smtp-Source: ABdhPJy+1zg5ha6tdssaaLOTO5ub8yD6ePygjh/AQXLvSk2ersQk/TktWkm2YuWkuPfs+j45CXhQuk4L7keHv/Dy1cE=
+X-Received: by 2002:a17:906:b0c5:: with SMTP id bk5mr1228728ejb.428.1628114314016;
+ Wed, 04 Aug 2021 14:58:34 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210730144922.29111-1-semen.protsenko@linaro.org>
- <20210730144922.29111-13-semen.protsenko@linaro.org> <15871f8ced3c757fad1ab3b6e62c4e64@misterjones.org>
- <CAPLW+4=v4bDcuxGVqs06mobGj34At4cD+vg48b4dPujarS07Tg@mail.gmail.com> <bf21badb-804f-45f0-c02b-80ff57ab9931@canonical.com>
-In-Reply-To: <bf21badb-804f-45f0-c02b-80ff57ab9931@canonical.com>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Thu, 5 Aug 2021 00:30:34 +0300
-Message-ID: <CAPLW+4nY=hozOR+B_0sPZODrk9PXaXg+NB-9pVhDbAjEy7yjhg@mail.gmail.com>
-Subject: Re: [PATCH 12/12] arm64: dts: exynos: Add Exynos850 SoC support
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Marc Zyngier <maz@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
+References: <20210716103651.1455-1-linux.amoon@gmail.com> <20210716103651.1455-2-linux.amoon@gmail.com>
+ <CAFBinCDeqauw_V-Vn9cat9HaCXj6HEMz6G+G+VbqCNtGEFGYzg@mail.gmail.com>
+ <CANAwSgQ5PDGUWMH-jxnz5wwutUVniTn7RAe=4J=8-jbmqxYRRg@mail.gmail.com>
+ <CAFBinCBhg+dije+3DvV_V_kqHv9q+r4EPxXCYFti6KuA4mK7KQ@mail.gmail.com>
+ <CANAwSgT9-5zGr67aGzBmW6WDBfeiAvjv_zv2UbRC+YbgAGg==A@mail.gmail.com>
+ <CAFBinCCGA0b=LVjbQood+iN+DHLodY0RJ-GrSOcgdzrDFJ25pQ@mail.gmail.com> <CAFBinCAohjxcsY3D1rdAiYVGL+==cnjzZxg1GmYxSNVhxSTDoA@mail.gmail.com>
+In-Reply-To: <CAFBinCAohjxcsY3D1rdAiYVGL+==cnjzZxg1GmYxSNVhxSTDoA@mail.gmail.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Wed, 4 Aug 2021 23:58:23 +0200
+Message-ID: <CAFBinCAP_DDvPLn4h1yQKEdU_x1ovokHUTPeq3vNV_sDF8PcWg@mail.gmail.com>
+Subject: Re: [PATCHv2 1/4] ARM: dts: meson8b: odroidc1: Add usb phy power node
+To:     Anand Moon <linux.amoon@gmail.com>
+Cc:     linux-phy@lists.infradead.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org,
+        Linux Kernel <linux-kernel@vger.kernel.org>,
+        Matt Corallo <oc2udbzfd@mattcorallo.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
-        Ryu Euiyoul <ryu.real@samsung.com>,
-        Tom Gall <tom.gall@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Emiliano Ingrassia <ingrassia@epigenesys.com>,
+        devicetree <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 4 Aug 2021 at 21:36, Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
+On Sun, Jul 18, 2021 at 9:09 PM Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
 >
-> On 04/08/2021 16:39, Sam Protsenko wrote:
-> > Hi Marc,
+> Hi Anand,
+>
+> On Sun, Jul 18, 2021 at 4:01 PM Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+> [...]
+> > > From the schematics [1]
+> > > https://dn.odroid.com/S805/Schematics/odroid-c1+_rev0.4_20160226.pdf
+> > >
+> > > You could find references to PWREN  <--- GPIOAO.BIT5
+> > > The second reference is USB HOST Power Switch
+> > > The third reference is USB HOST POWER.
+> > >
+> > > Hope I am clean in my thought process now.
+> > Can you please point out the page numbers for me?
 > >
-> > On Fri, 30 Jul 2021 at 19:50, Marc Zyngier <maz@kernel.org> wrote:
-> >>
-> >> On 2021-07-30 15:49, Sam Protsenko wrote:
-> >>> Samsung Exynos850 is ARMv8-based mobile-oriented SoC.
-> >>>
-> >>> Features:
-> >>>  * CPU: Cortex-A55 Octa (8 cores), up to 2 GHz
-> >>>  * Memory interface: LPDDR4/4x 2 channels (12.8 GB/s)
-> >>>  * SD/MMC: SD 3.0, eMMC5.1 DDR 8-bit
-> >>>  * Modem: 4G LTE, 3G, GSM/GPRS/EDGE
-> >>>  * RF: Quad GNSS, WiFi 5 (802.11ac), Bluetooth 5.0
-> >>>  * GPU: Mali-G52 MP1
-> >>>  * Codec: 1080p 60fps H64, HEVC, JPEG HW Codec
-> >>>  * Display: Full HD+ (2520x1080)@60fps LCD
-> >>>  * Camera: 16+5MP/13+8MP ISP, MIPI CSI 4/4/2, FD, DRC
-> >>>  * Connectivity: USB 2.0 DRD, USI (SPI/UART/I2C), HSI2C, I3C, ADC,
-> >>> Audio
-> >>>
-> >>> This patch adds minimal SoC support. Particular board device tree files
-> >>> can include exynos850.dtsi file to get SoC related nodes, and then
-> >>> reference those nodes further as needed.
-> >>>
-> >>> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> >>> ---
-> >>>  .../boot/dts/exynos/exynos850-pinctrl.dtsi    | 782 ++++++++++++++++++
-> >>>  arch/arm64/boot/dts/exynos/exynos850-usi.dtsi |  30 +
-> >>>  arch/arm64/boot/dts/exynos/exynos850.dtsi     | 245 ++++++
-> >>>  3 files changed, 1057 insertions(+)
-> >>>  create mode 100644 arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi
-> >>>  create mode 100644 arch/arm64/boot/dts/exynos/exynos850-usi.dtsi
-> >>>  create mode 100644 arch/arm64/boot/dts/exynos/exynos850.dtsi
-> >>>
-> >>> diff --git a/arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi
-> >>> b/arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi
-> >>> new file mode 100644
-> >>> index 000000000000..4cf0a22cc6db
-> >>
-> >> [...]
-> >>
-> >>> +     gic: interrupt-controller@12a00000 {
-> >>> +             compatible = "arm,cortex-a15-gic", "arm,cortex-a9-gic";
-> >>
-> >> One thing for sure, it cannot be both. And given that it is
-> >> an A55-based SoC, it isn't either. It is more likely a GIC400.
-> >>
-> >
-> > Yes, it's GIC-400, thanks for pointing that out. Will fix that in v2.
-> >
-> >>> +             #interrupt-cells = <3>;
-> >>> +             #address-cells = <0>;
-> >>> +             interrupt-controller;
-> >>> +             reg = <0x0 0x12a01000 0x1000>,
-> >>> +                   <0x0 0x12a02000 0x1000>,
-> >>
-> >> This is wrong. It is architecturally set to 8kB.
-> >>
-> >
-> > Nice catch! Actually there is an error (typo?) in SoC's TRM, saying
-> > that Virtual Interface Control Register starts at 0x3000 offset (from
-> > 0x12a00000), where it obviously should be 0x4000, that's probably
-> > where this dts error originates from. Btw, I'm also seeing the same
-> > error in exynos7.dtsi.
+> > What I am seeing on page 1 is:
+> > GPIOAO_5 (called GPIOAO.BIT5) is connected as an INPUT to the USB_OTG
+> > PWREN signal (that's the green box with the label "USB_OTG.SchDoc"
+> > above it).
+> I unfortunately missed your question on IRC on this topic:
+> <armoon> xdarklight: just want to understand the confusion on PWREN,
+> either is INPUT / OTPUT to usb hub am I correct
+> My understanding of the INPUT/OUTPUT direction in the Odroid-C1
+> schematics (which you linked) above is that the arrow direction shows
+> whether it's an input or output.
+> For example (all on page one):
+> - HDMI_HPD is an input to the Meson8b SoC, arrow direction is: HDMI => S805
+> - IR_IN is an input to the Meson8b SoC, arrow direction is: S805 <=
+> GPIOAO.BIT7 IR_IN
+> - PWM is an output, arrow direction is: S805 => PWM.C VCCK_PWM
+> - 3.3V/1.8V switch for the SD card is an output, arrow direction is:
+> S805 => GPIOAO.BIT3 TF_3V3N_1V8_EN
 >
-> What's the error exactly? The "Virtual interface control register"
-> offset (3rd region) is set properly to 0x4000 on Exynos7. Also one for
-> the Exynos5433 looks correct.
+> That tells me: the arrow direction shows which connections are inputs
+> or outputs.
+> Some pins can be input and output at the same time (HDMI_CEC). But
+> let's keep it simple for now any only look at inputs/output.
 >
-
-The issue is that 2nd region's size is 0x1000, but it must be 0x2000.
-It's defined by GIC-400 architecture, as I understand. Please look at
-[1], table 3-1 has very specific offsets and sizes for each functional
-block, and each particular SoC must adhere to that spec. So having
-0x1000 for 2nd region can't be correct. And because exynos7.dtsi has
-GIC-400 as well, and 0x1000 is specified there for 2nd region size
-too, so I presume there is the same mistake there.
-
-Can you please check the TRM for Exynos7 SoC (if you have one in your
-possession), and see if there is a typo there? E.g. in case of
-Exynos850 TRM I can see that in "Register Map Summary" section the
-offset for the first register (GICH_HCR) in "Virtual Interface Control
-Register" region is specified as 0x3000, where it should be 0x4000, so
-it's probably a typo. But the register description is correct, saying
-that: "Address = Base Address + 0x4000".
-
-[1] https://developer.arm.com/documentation/ddi0471/b/programmers-model/gic-400-register-map
-
-> > Though I don't have a TRM for Exynos7 SoCs, so
-> > not sure if I should go ahead and fix that too. Anyway, for Exynos850,
-> > I'll fix that in v2 series.
+> Based on this information I am looking at the arrow direction for
+> USB_OTG: GPIOAO.BIT5 PWREN <= S805
+> So this confirms that GPIOAO_5 is an output to the SoC.
+> Please note though that this part is not linked with any USB host
+> connector, it's only linked to the USB OTG path.
 >
->
-> However while we are at addresses - why are you using address-cells 2?
-> It adds everywhere additional 0x0 before actual address.
->
+> For the next part the S805 SoC is not involved:
+> USB1 USB_HOST_PWR_SW PWREN <= PWREN USB_HUB_GL852G
+> USB2 USB_HOST_PWR_SW PWREN <= PWREN USB_HUB_GL852G
+> This tells me that the PWREN signal for the two USB_HOST_PWR_SW (USB
+> host power switches / current limiters) is driven by the GL852G USB
+> hub.
+Hardkernel team responded on the Odroid forums to the request from Anand:
+"Power-Enable signal to the USB load switch ICs is connected to the
+USB hub controller.
+It is not connected the CPU GPIO."
 
-Right. For "cpus" node I'll change the address-cells to 1 in my v2
-series. I'll keep address-cells=2 for the root node, but I'm going to
-encapsulate some nodes into soc node (as you suggested earlier), where
-I'll make address-cells=1. That's pretty much how it's done in
-exynos7.dtsi and in exynos5433.dtsi, so I guess that's should be fine
-(to get rid of superfluous 0x0 and conform with other Exynos DTs)?
+The regulator from Anand's patch is therefore connected to the micro USB port.
+This means that the patch needs updating in case Anand wants to have
+it included.
 
->
-> Best regards,
-> Krzysztof
+
+Best regards,
+Martin
+
+
+[0] https://forum.odroid.com/viewtopic.php?p=332217#p332217
