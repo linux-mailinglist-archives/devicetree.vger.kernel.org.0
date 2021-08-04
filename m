@@ -2,137 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 008973E09AC
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 22:54:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 267D73E09B9
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 23:02:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238022AbhHDUyn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 16:54:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58786 "EHLO
+        id S238706AbhHDVCc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 17:02:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237866AbhHDUym (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 16:54:42 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EF5EC0613D5
-        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 13:54:29 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id i10-20020a05600c354ab029025a0f317abfso4754336wmq.3
-        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 13:54:28 -0700 (PDT)
+        with ESMTP id S238592AbhHDVCc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 17:02:32 -0400
+Received: from mail-il1-x130.google.com (mail-il1-x130.google.com [IPv6:2607:f8b0:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32E34C061799
+        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 14:02:19 -0700 (PDT)
+Received: by mail-il1-x130.google.com with SMTP id x7so2916223ilh.10
+        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 14:02:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=atishpatra.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=oTlzgcaP7CJ5Drm1mPHCLgsz9Hlf36Or5slblqneVQM=;
-        b=c6BgCdohRV0iWQqB58O5ALsq1I8vbunpNRAQDwOWwmENdtxXYrWH0J/NxQh6iEBnih
-         FMaeXBSly9wJj7YxMacQWOGfK6z5Zp3Un1wmTpyL0Toq2FRSPO6EZSvAOcBlBVRF2VVK
-         hhXk3mJX3uKYdV7Msd4L0C3DKjmGfoDICnhpk=
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=dX/WvZ71vHWRGig7P/Gktxx0GWORbXUaLwjhx4396BU=;
+        b=hVR0dnLKbZG1a54aqWJZVm6vL47u/5T9drt1m6xd6uvOE0t7xtSGCTK/FiCdBVKSmR
+         XoTgUIDut3i5gDpkES6sYtSNU+Lhw7vM6IOQs6nPTc3xo/A/DNM1Q8ReP3691gPELg2K
+         Ynii5j1uYAro2tIfa0oIS4Nec1AzLocZbCOEihgg0Y5htogVq0AF9wwjA7BwGuTTreMj
+         gcYoAqncvEspqp0ZI4G10XaMrRSafCCPDLNhhzO3WVyHqn7tX0o6ow3SZPmJsDRr/tjq
+         /iP2ii3M+ivM0sUFF86xo02FJfEviVIBf2maIoEDfrdhjuV/GpVJ9eHEYlK6/ZWAoDho
+         RL5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=oTlzgcaP7CJ5Drm1mPHCLgsz9Hlf36Or5slblqneVQM=;
-        b=OzXmNPjHvwWKe3mg3vgOtow5OkuC2VpbYv4osAxU1uJ+d3mLN2+ZvMcLEJ8hiTseaD
-         cydH1IfQhLiXSX1hcBixdwMDD8F5gEU2XACAHoTYbqCkXdAxoOImhEENMXmLrpjlB9Jy
-         5tTSFNwZTp7J1pWIZfVeWlYyFBVX4fkEinaKP4SIiKSwwil2J3qjPN7ydoryQsSZrIJg
-         Hx4XXILEi2JIHgRsaHbFSrkPZrcZPgRMdVga9e7wuQBu2DEj5LS5bKjw1sAbwfQUwlgU
-         JyA4Co/XwugyX7toSLs2cQlRtQEDc5ueyoE3QXXUHetJOb902ULbIKC6t9hv5B3oEACW
-         xXiw==
-X-Gm-Message-State: AOAM533rgtYcjj+Yu0TtOqhukdBpKZ1h9yJCCQS6FHEQJeSn/a1FKvuv
-        lYvDDGRm+m9x9v8IvUCJKqAosmCX4zQ64WQ+tgMe
-X-Google-Smtp-Source: ABdhPJzFcX4DJR524QVh9tXD3+bk4SgtYMhEgErLPZNSn3oe5dfHlCAkP0/FSmqZixbsxDX/qk8QR3fTG7jVJ8Qr3ds=
-X-Received: by 2002:a1c:413:: with SMTP id 19mr1327972wme.74.1628110467680;
- Wed, 04 Aug 2021 13:54:27 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=dX/WvZ71vHWRGig7P/Gktxx0GWORbXUaLwjhx4396BU=;
+        b=BpbrGNed4WuXNtJbhvosdH0VexvoDIfM8pyOHRQHBXhMJYVoiXtv/NNBaRxlldTUqE
+         KYMceFmC2d1x90/su9VKZxj7njqZCU1E+0DmIhhSbgQnb7TCfqbB6tIUFMl4sFSD9ckt
+         PNLcdxit50cxBQAbSNOX2Su7O1Eq1iPpKInVxnqwTNUgij1f0rRqlTfdU3l5j3FD1FTv
+         N45wxxdG+cxczjAGppCl0iI65YLNnr6WXbieuuaQt3Z9at5RtBKdHOXaH2lhDHA/jinm
+         nwNVERa6PNUExvH22WTbAm+vrNR3iIegFqqunEK5H53gwonV4z/YrdVy+quQPS7A7FfQ
+         u7wA==
+X-Gm-Message-State: AOAM5320b7s723AoPl++Vz1AbQWO8Uf3zJ9gha7WBhtEcKthDliAw7Vw
+        +OktaKVpFg62Zx5bdXT+7IyuHg==
+X-Google-Smtp-Source: ABdhPJzZWpDzmXe2TvYVNgx8qkqOVHqoq0iJQa56rhS/trE3dRhPSA8q9VtdSh5VgAS0evCePq9YHw==
+X-Received: by 2002:a92:b112:: with SMTP id t18mr567725ilh.36.1628110938400;
+        Wed, 04 Aug 2021 14:02:18 -0700 (PDT)
+Received: from presto.localdomain (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
+        by smtp.gmail.com with ESMTPSA id d18sm1687396ile.32.2021.08.04.14.02.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Aug 2021 14:02:17 -0700 (PDT)
+From:   Alex Elder <elder@linaro.org>
+To:     bjorn.andersson@linaro.org, agross@kernel.org
+Cc:     robh+dt@kernel.org, elder@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/4] arm64: dts: qcom: IPA-related DTS updates
+Date:   Wed,  4 Aug 2021 16:02:10 -0500
+Message-Id: <20210804210214.1891755-1-elder@linaro.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <CAEUhbmUg0DX__jSzjm1X_eCiHnkjHVXeq7CYLbW4xpydPS1G3g@mail.gmail.com>
- <mhng-a2fd6094-0ae8-4f7b-9dee-fd71b85b29f1@palmerdabbelt-glaptop>
-In-Reply-To: <mhng-a2fd6094-0ae8-4f7b-9dee-fd71b85b29f1@palmerdabbelt-glaptop>
-From:   Atish Patra <atishp@atishpatra.org>
-Date:   Wed, 4 Aug 2021 13:54:16 -0700
-Message-ID: <CAOnJCUL9uU5G1LOgfYPz9Ny77yFYaP5sgtdxG3_w=Zcsi+f96Q@mail.gmail.com>
-Subject: Re: [PATCH v4] dt-bindings: riscv: add starfive jh7100 bindings
-To:     Palmer Dabbelt <palmer@dabbelt.com>
-Cc:     Bin Meng <bmeng.cn@gmail.com>, Drew Fustini <drew@beagleboard.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        michael.zhu@starfivetech.com, Wei Fu <tekkamanninja@gmail.com>,
-        jack.zhu@starfivetech.com, leyfoon.tan@starfivetech.com,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Emil Renner Berhing <kernel@esmil.dk>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 4, 2021 at 1:33 PM Palmer Dabbelt <palmer@dabbelt.com> wrote:
->
-> On Thu, 15 Jul 2021 19:17:23 PDT (-0700), bmeng.cn@gmail.com wrote:
-> > On Tue, Jul 13, 2021 at 2:34 PM Drew Fustini <drew@beagleboard.org> wrote:
-> >>
-> >> Add DT binding documentation for the StarFive JH7100 Soc [1] and the
-> >> BeagleV Starlight JH7100 board [2].
-> >>
-> >> [1] https://github.com/starfive-tech/beaglev_doc
-> >> [2] https://github.com/beagleboard/beaglev-starlight
-> >>
-> >> Signed-off-by: Drew Fustini <drew@beagleboard.org>
-> >> ---
-> >> v4 changes:
-> >> - removed JH7100 SoC revision number after discussion with Geert
-> >>
-> >> v3 changes:
-> >> - added revision number for the board and soc after question from Palmer
-> >>
-> >> v2 changes:
-> >> - removed "items:" entry that only had "const: starfive,jh7100"
-> >> - correct typo in Description:
-> >>
-> >> Results of running checks:
-> >>   $ make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- dt_binding_check \
-> >>     DT_SCHEMA_FILES=Documentation/devicetree/bindings/riscv/starfive.yaml
-> >>     CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
-> >>     DTEX    Documentation/devicetree/bindings/riscv/starfive.example.dts
-> >>     SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
-> >>     DTC     Documentation/devicetree/bindings/riscv/starfive.example.dt.yaml
-> >>     CHECK   Documentation/devicetree/bindings/riscv/starfive.example.dt.yaml
-> >>   $ make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- dtbs_check \
-> >>     DT_SCHEMA_FILES=Documentation/devicetree/bindings/riscv/starfive.yaml
-> >>     SYNC    include/config/auto.conf.cmd
-> >>     UPD     include/config/kernel.release
-> >>     SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-> >>     DTC     arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dtb
-> >>     DTC     arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dt.yaml
-> >>     DTC     arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dt.yaml
-> >>     DTC     arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dt.yaml
-> >>     CHECK   arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dt.yaml
-> >>     CHECK   arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dt.yaml
-> >>     CHECK   arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dt.yaml
-> >>
-> >> The dts file is from vendor repo and is being cleaned up right now in
-> >> preperation for submitting to the mailing list:
-> >> https://github.com/starfive-tech/linux/tree/beaglev/arch/riscv/boot/dts/starfive
-> >>
-> >>  .../devicetree/bindings/riscv/starfive.yaml   | 27 +++++++++++++++++++
-> >>  1 file changed, 27 insertions(+)
-> >>  create mode 100644 Documentation/devicetree/bindings/riscv/starfive.yaml
-> >>
-> >
-> > Reviewed-by: Bin Meng <bmeng.cn@gmail.com>
->
-> Thanks.  This is on for-next, as Rob suggested taking it via the RISC-V
-> tree.
->
-Given that beagleV starlight mass production is cancelled [1], are we
-still upstreaming the support for this ?
+This series includes four updates to DTS files for Qualcomm SoCs
+that include IPA.
 
-[1] https://www.cnx-software.com/2021/07/31/beaglev-starlight-sbc-wont-be-mass-manufactured-redesigned-beaglev-risc-v-sbc-expected-in-q1-2022/
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Most of this series was posted once before, and accepted into the
+net-next/master branch by David Miller:
+  https://lore.kernel.org/netdev/20210719212456.3176086-1-elder@linaro.org/
 
+That series got reverted yesterday, meaning these patches can be
+taken in through the Qualcomm tree as intended:
+  https://lore.kernel.org/netdev/20210802233019.800250-1-elder@linaro.org/
 
+The first patch defines IPA information for the SC7280 SoC.  The
+second enables IPA for the SC7280 IDP platform, indicating the
+modem should perform early IPA initialization.
+
+The third patch adds the definition of a reserved memory area to
+hold IPA firmware for the SC7180 SoC; this is used if the modem does
+*not* do early IPA initialization.
+
+And the last patch fixes the definitions used for interconnects for
+the SM8350 SoC.  A corresponding update to the configuration data
+(IPA code) was posted earlier today:
+  https://lore.kernel.org/netdev/20210804135407.1358606-1-elder@linaro.org
+
+  					-Alex
+
+Alex Elder (4):
+  arm64: dts: qcom: sc7280: add IPA information
+  arm64: dts: qcom: sc7280: enable IPA for sc7280-idp
+  arm64: dts: qcom: sc7180: define ipa_fw_mem node
+  arm64: dts: qcom: sm8350: fix IPA interconnects
+
+ arch/arm64/boot/dts/qcom/sc7180.dtsi    |  5 +++
+ arch/arm64/boot/dts/qcom/sc7280-idp.dts |  5 +++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi    | 42 +++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8350.dtsi    |  8 ++---
+ 4 files changed, 55 insertions(+), 5 deletions(-)
 
 -- 
-Regards,
-Atish
+2.27.0
+
