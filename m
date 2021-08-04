@@ -2,178 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 792563DFFEF
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 13:08:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 421A83E0021
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 13:25:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236964AbhHDLIq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 07:08:46 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:21351 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236677AbhHDLIp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 07:08:45 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1628075313; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: References: Cc: To: From:
- Subject: Sender; bh=UVTxmTbmqtIP0faK96taKsK1cEYi8KSQOq1LNUgnXtI=; b=BMzdqPUR7evp2oEhCoev/jQ5Algkeita6k6oOTu3ByCx4rYpE3BWPeAv6mhKc8pk3hL3slUH
- 6r0j+s7yPdjwXlP3xsRljGwVS5JxUVicLZsTc1VTaJyA3VyPLJd+3zYXEaOwJHopqvG6FhXP
- QQXS58ijdAXRFiqAKhEhCdT6SBQ=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
- 610a75205c73bba6fb3a57dd (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 04 Aug 2021 11:08:16
- GMT
-Sender: rnayak=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id E6450C43217; Wed,  4 Aug 2021 11:08:15 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.0 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [192.168.1.102] (unknown [49.207.203.214])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: rnayak)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id F06DDC433D3;
-        Wed,  4 Aug 2021 11:08:11 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org F06DDC433D3
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
-Subject: Re: [PATCH v5 1/2] PM / Domains: Add support for 'required-opps' to
- set default perf state
-From:   Rajendra Nayak <rnayak@codeaurora.org>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Roja Rani Yarubandi <rojay@codeaurora.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-References: <1626764876-10229-1-git-send-email-rnayak@codeaurora.org>
- <1626764876-10229-2-git-send-email-rnayak@codeaurora.org>
- <CAPDyKFrzHD6rXP5TnqrAVnrZExc2JLFe3HoGF+yM_tsaZYwh8g@mail.gmail.com>
- <35950d34-5cab-1b09-9864-49217a83f68d@codeaurora.org>
-Message-ID: <6fe7d326-1822-5a49-cca7-df9a2739dca8@codeaurora.org>
-Date:   Wed, 4 Aug 2021 16:38:09 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+        id S237104AbhHDLZs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 07:25:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40922 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237603AbhHDLZr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 07:25:47 -0400
+Received: from mail-vs1-xe2d.google.com (mail-vs1-xe2d.google.com [IPv6:2607:f8b0:4864:20::e2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3F7DC061798
+        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 04:25:34 -0700 (PDT)
+Received: by mail-vs1-xe2d.google.com with SMTP id a1so795249vsd.12
+        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 04:25:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=BRcASZ3r4m78SiEn9llZCC+xHa2OVesqEZ2kZNcyF+0=;
+        b=R5Z8/Oydbv1DFgn8j2y86z75E7K0sgshC0AiuLpz/gXjctZZXH98alk93grLkC+3Yb
+         ArE5iD44erF8OU1rN9zUSUYjtOV1CxMzrnO9UBK560P43Y0I5+vAv7wS6fn0Q25NLDHn
+         XE98JEAWNsXf9e0jyyDj8c4kXptlXMPdmnABFMIT7kC1ZklVQ3x6ENHmzoLi+eok3rKA
+         ChUJtFlanWvI4SGnSdBxpEOJIZuwCjgLtbaRTYIN6At0Eb65aVArjqMN0gW/3LAoeQIv
+         Vu+6cBjo+nTXivlzHoACFPmbjg3ToMlHmDiaeAZHbJbW+xK123H+r+XWI12WZ23bmOcx
+         b82Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=BRcASZ3r4m78SiEn9llZCC+xHa2OVesqEZ2kZNcyF+0=;
+        b=mdFjBo1yMCjGCNkQVWP6ixeUFipaSumtR4Qs8GOqRtlkO6FKm9Vwma4/oeDToI7Qpg
+         Ezfit2MWSUH37LET5UAuGyIgRw065lq6pIArQooZaU7yYwTj4VRcKKip9qYTcqgFl5ai
+         7NObzjoS3q8ObfiWb3XsPYbkaTbJragNRw5b7HTEOdfrp61bMpHUaSBnDjbAH6ROdYgJ
+         DXz2xz9+uGbSMNMNkajVGw4eJu34oIXfkFsooWhgnE6iwH/hrhMVyzO0haPRscJdwm7+
+         s6hcSvmuKzRKIFsjkQcJLSqE0dR/JbujfMDYcG2HeJCUGG9RlBXN2VvFuKNikXRMcGbM
+         nxpQ==
+X-Gm-Message-State: AOAM532gvMGPYEFCjRLvMXO15zePCyJ6fKf59aQF5li2ynP1c5Tvwlfe
+        w8qusEQVxTnjOFxt3puDsLkXH2UB6uB1YyoY3k17Hg==
+X-Google-Smtp-Source: ABdhPJwig6I24W8HDdZeZnOfWowvG1PB4luybcJODAJTfb7WUf1LZR2JsC2EWkttRkxulCzH4iNjnoVBAiBF7Gz/a58=
+X-Received: by 2002:a67:f6d8:: with SMTP id v24mr18645111vso.48.1628076333900;
+ Wed, 04 Aug 2021 04:25:33 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <35950d34-5cab-1b09-9864-49217a83f68d@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20210721140424.725744-1-maxime@cerno.tech> <20210721140424.725744-26-maxime@cerno.tech>
+ <20210723215724.GA2661499@robh.at.kernel.org>
+In-Reply-To: <20210723215724.GA2661499@robh.at.kernel.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 4 Aug 2021 13:24:57 +0200
+Message-ID: <CAPDyKFr8-+zqhZfALux8p6XaDbR2T-DSP=_Kx_6p_LqdCrmCAA@mail.gmail.com>
+Subject: Re: [PATCH 25/54] dt-bindings: mmc: Convert MMC Card binding to a schema
+To:     Rob Herring <robh@kernel.org>, Maxime Ripard <maxime@cerno.tech>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        DTML <devicetree@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        linux-mmc <linux-mmc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 23 Jul 2021 at 23:57, Rob Herring <robh@kernel.org> wrote:
+>
+> On Wed, Jul 21, 2021 at 04:03:55PM +0200, Maxime Ripard wrote:
+> > MMC Cards can have an optional Device Tree binding to add
+> > non-discoverable properties.
+> >
+> > Now that we have the DT validation in place, let's convert the device
+> > tree bindings for that driver over to a YAML schema.
+> >
+> > Some of these properties were already described in the MMC controller
+> > binding, even though they are not generic and do not apply to any
+> > device, so we took the occasion to fix this.
+> >
+> > Cc: linux-mmc@vger.kernel.org
+> > Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> > ---
+> >  .../devicetree/bindings/mmc/mmc-card.txt      | 30 ------------
+> >  .../devicetree/bindings/mmc/mmc-card.yaml     | 48 +++++++++++++++++++
+> >  .../bindings/mmc/mmc-controller.yaml          |  6 ---
+> >  3 files changed, 48 insertions(+), 36 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/mmc/mmc-card.txt
+> >  create mode 100644 Documentation/devicetree/bindings/mmc/mmc-card.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/mmc/mmc-card.txt b/Documentation/devicetree/bindings/mmc/mmc-card.txt
+> > deleted file mode 100644
+> > index 8d2d71758907..000000000000
+> > --- a/Documentation/devicetree/bindings/mmc/mmc-card.txt
+> > +++ /dev/null
+> > @@ -1,30 +0,0 @@
+> > -mmc-card / eMMC bindings
+> > -------------------------
+> > -
+> > -This documents describes the devicetree bindings for a mmc-host controller
+> > -child node describing a mmc-card / an eMMC, see "Use of Function subnodes"
+> > -in mmc.txt
+> > -
+> > -Required properties:
+> > --compatible : Must be "mmc-card"
+> > --reg        : Must be <0>
+> > -
+> > -Optional properties:
+> > --broken-hpi : Use this to indicate that the mmc-card has a broken hpi
+> > -              implementation, and that hpi should not be used
+> > -
+> > -Example:
+> > -
+> > -&mmc2 {
+> > -     pinctrl-names = "default";
+> > -     pinctrl-0 = <&mmc2_pins_a>;
+> > -     vmmc-supply = <&reg_vcc3v3>;
+> > -     bus-width = <8>;
+> > -     non-removable;
+> > -
+> > -     mmccard: mmccard@0 {
+> > -             reg = <0>;
+> > -             compatible = "mmc-card";
+> > -             broken-hpi;
+> > -     };
+> > -};
+> > diff --git a/Documentation/devicetree/bindings/mmc/mmc-card.yaml b/Documentation/devicetree/bindings/mmc/mmc-card.yaml
+> > new file mode 100644
+> > index 000000000000..aefdd8748b72
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mmc/mmc-card.yaml
+> > @@ -0,0 +1,48 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/mmc/mmc-card.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: MMC Card / eMMC Generic Device Tree Bindings
+> > +
+> > +maintainers:
+> > +  - Ulf Hansson <ulf.hansson@linaro.org>
+> > +
+> > +description: |
+> > +  This documents describes the devicetree bindings for a mmc-host controller
+> > +  child node describing a mmc-card / an eMMC.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: mmc-card
+> > +
+> > +  reg:
+> > +    const: 0
+> > +
+> > +  broken-hpi:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+> > +    description:
+> > +      Use this to indicate that the mmc-card has a broken hpi
+> > +      implementation, and that hpi should not be used.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +additionalProperties: true
+>
+> Like what? If there's other properties, then there should really be a
+> specific compatible.
 
-On 8/3/2021 10:08 AM, Rajendra Nayak wrote:
-> 
-> On 8/2/2021 6:29 PM, Ulf Hansson wrote:
->> On Tue, 20 Jul 2021 at 09:12, Rajendra Nayak <rnayak@codeaurora.org> wrote:
->>>
->>> Some devices within power domains with performance states do not
->>> support DVFS, but still need to vote on a default/static state
->>> while they are active. They can express this using the 'required-opps'
->>> property in device tree, which points to the phandle of the OPP
->>> supported by the corresponding power-domains.
->>>
->>> Add support to parse this information from DT and then set the
->>> specified performance state during attach and drop it on detach.
->>> runtime suspend/resume callbacks already have logic to drop/set
->>> the vote as needed and should take care of dropping the default
->>> perf state vote on runtime suspend and restore it back on runtime
->>> resume.
->>>
->>> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
->>> ---
->>>   drivers/base/power/domain.c | 28 +++++++++++++++++++++++++---
->>>   include/linux/pm_domain.h   |  1 +
->>>   2 files changed, 26 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/drivers/base/power/domain.c b/drivers/base/power/domain.c
->>> index a934c67..f454031 100644
->>> --- a/drivers/base/power/domain.c
->>> +++ b/drivers/base/power/domain.c
->>> @@ -2598,6 +2598,12 @@ static void genpd_dev_pm_detach(struct device *dev, bool power_off)
->>>
->>>          dev_dbg(dev, "removing from PM domain %s\n", pd->name);
->>>
->>> +       /* Drop the default performance state */
->>> +       if (dev_gpd_data(dev)->default_pstate) {
->>> +               dev_pm_genpd_set_performance_state(dev, 0);
->>> +               dev_gpd_data(dev)->default_pstate = 0;
->>> +       }
->>> +
->>>          for (i = 1; i < GENPD_RETRY_MAX_MS; i <<= 1) {
->>>                  ret = genpd_remove_device(pd, dev);
->>>                  if (ret != -EAGAIN)
->>> @@ -2635,9 +2641,10 @@ static void genpd_dev_pm_sync(struct device *dev)
->>>   static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
->>>                                   unsigned int index, bool power_on)
->>>   {
->>> +       struct device_node *np;
->>>          struct of_phandle_args pd_args;
->>>          struct generic_pm_domain *pd;
->>> -       int ret;
->>> +       int ret, pstate;
->>>
->>>          ret = of_parse_phandle_with_args(dev->of_node, "power-domains",
->>>                                  "#power-domain-cells", index, &pd_args);
->>> @@ -2675,10 +2682,25 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
->>>                  genpd_unlock(pd);
->>>          }
->>>
->>> -       if (ret)
->>> +       if (ret) {
->>>                  genpd_remove_device(pd, dev);
->>> +               return -EPROBE_DEFER;
->>> +       }
->>> +
->>> +       /* Set the default performance state */
->>> +       np = base_dev->of_node;
->>
->> Please use dev->of_node instead (it is set to the same of_node as
->> base_dev by the callers of __genpd_dev_pm_attach) as it's more
->> consistent with existing code.
->>
->>> +       if (of_parse_phandle(np, "required-opps", index)) {
->>> +               pstate = of_get_required_opp_performance_state(np, index);
->>> +               if (pstate < 0) {
->>> +                       ret = pstate;
->>> +                       dev_err(dev, "failed to set required performance state for power-domain %s: %d\n",
->>> +                               pd->name, ret);
->>> +               }
->>> +               dev_pm_genpd_set_performance_state(dev, pstate);
->>> +               dev_gpd_data(dev)->default_pstate = pstate;
->>
->> This doesn't look entirely correct to me. If we fail to translate a
->> required opp to a performance state, we shouldn't try to set it.
-> 
-> yeah, that does not seem right at all :(
-> 
->> Perhaps it's also easier to call
->> of_get_required_opp_performance_state() unconditionally of whether a
->> "required-opps" specifier exists. If it fails with the translation,
->> then we just skip setting a default state and continue with returning
->> 1.
->>
->> Would that work?
+I agree.
 
-Looks like calling of_get_required_opp_performance_state() unconditionally
-makes it spit out a pr_err() in case the node is missing "required-opps" property,
-so I posted a v6 [1] with the check in place and adding the missing else
-condition.
+Maxime, thanks for working on this. I assume you will be sending a new
+version that I can pick up?
 
-[1] https://lore.kernel.org/patchwork/project/lkml/list/?series=510727
+[...]
 
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+Kind regards
+Uffe
