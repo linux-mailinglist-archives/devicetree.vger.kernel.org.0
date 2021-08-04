@@ -2,105 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E73A3E0AB1
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 01:02:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3CC23E0ABE
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 01:11:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230445AbhHDXC0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 19:02:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59204 "EHLO
+        id S230022AbhHDXMG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 19:12:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229987AbhHDXCY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 19:02:24 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FDCDC061798
-        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 16:02:11 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id o10so4511416ljp.0
-        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 16:02:11 -0700 (PDT)
+        with ESMTP id S235290AbhHDXMF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 19:12:05 -0400
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F866C061799
+        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 16:11:51 -0700 (PDT)
+Received: by mail-oi1-x22d.google.com with SMTP id o20so4834328oiw.12
+        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 16:11:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=SWwfAxfR7c4JrRsq35ex9D7DmgW1MFN8V1BR9OdGE3s=;
-        b=Keuv9rmwBrPD0mImQNgZzTd90sUsS01XNQNiwlt6tUctK265kK/0g+VQw++Z0LJ8qV
-         GA4DWAfZNHOkzruKioaUUOXybY/N3gQn6kkN3XLaOSBakIKXZndZXC2tiRDeFktVD7Nj
-         U0Lm5nC5tMADC75PQ/9NHb8NooglHWqHmvM+OHuDYnUSML3W4AbM0TTOy2LNgvhKuSei
-         lf/5OI2gFbsAb20Sh2cs5P7osRk0xkL/MEsxQKRh+GvSwbLa/5U+6VT+VQd2vAdi3xPY
-         H4PSSHtVkLqf95+zWzC9dGeT086BV7ACrUGMssBe6ycVsdo1gmnobhnCi4EAlC7j/Kgp
-         D28A==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=TaWq51EqywyuKb/DYdfCbIFAEoPpPDGd0uhGmHXUj0A=;
+        b=QQOAum8eTzRYtMGTKCUzlhfYrrHG+LFJpDkyNcTh2ZGR2PvgVcwX0msgO9Z+kFAaax
+         jrjisKpNSlCdwHTDeH84VeaDyJ0Ar546tPGnwVYGsvnB86KDIH6ofSR/ZNAR89jBM3qs
+         KbgRASuSGueGYICoRHoJHg7U/qKKccA2opcHuSfCob6xvsi/72/HeN+ll2gXRzXriMth
+         LG/GdxjYrqQGMbD/0Gk83BfuuH0BbWRLbyPPyBpEdu/2I2zlZ4so6aNV9Mvk5TUKEX+k
+         4pHiKCRt7fr3/kjFEjbxCyauhU7+0TPZG1bYxK9FozGe/DKk9A9vlQqKpthhd+x67xEW
+         Ysbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=SWwfAxfR7c4JrRsq35ex9D7DmgW1MFN8V1BR9OdGE3s=;
-        b=TAl69tt4H0SHmkOpp1IW+vvjti2T8h9ODXVhVFHqn5VQcJZbJW+rHEs1xDzRyl3SRd
-         LqlUN1gyu4ZK1F37NvBpsBhf0Tqo8RkFx26n6feT2trsZChY7q/0DeImf6dodEs5QQrV
-         Yuj4uJ8XZqLrMCV1/hmnqcCLmmXI5R4DYbm9x/HL1Hdmg6cwr5GuNF2s9fIILP0eShOR
-         Avt+Hzt6MFI3B5w5kP8J9S1mCPvLkS2GlkCZBLlA1N/Zb/LJzzSAAcwGtGFycw797Bl4
-         6tr9wC2lLI25mwF39HIobrh/flYyh8Ds8BekKVITR5vTTwT6YGobcM0VeSzXiAqgSPIM
-         nQ0w==
-X-Gm-Message-State: AOAM531fks40JNCt5QphXOJHCcpyyDYDVY4/JmCcUAMUeqzFZ9VDRuTw
-        MGz+vW6246egDcsk//KQa9V+XTK1YyI62jk11HCqcQ==
-X-Google-Smtp-Source: ABdhPJz61O47mzHH9624bGfk/bfpBA1SJ3dnMpXd9CQG2hHPT+eKzKSoE6RiH7zQjaw6hJgUxRPNoePE54zpybhVLJI=
-X-Received: by 2002:a2e:7c04:: with SMTP id x4mr1038597ljc.273.1628118129818;
- Wed, 04 Aug 2021 16:02:09 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=TaWq51EqywyuKb/DYdfCbIFAEoPpPDGd0uhGmHXUj0A=;
+        b=jsSK6wFT/zhUhMQSaS4sOzv6CZ3kGekDwjcN+rBju8gvHFOLbFhzhKLdQY/X/5iwKD
+         F/kGwCe0T+XszHTnNfCpRKd1SPmKIZeYdW0wMhh3wC5tzOig4jHuxusPFtE6YjaM8xFF
+         zlllh4JJjP8jKX9krmOjBs3S3UNiT51HOiytElGnz3XLzZZEtU7sX6TLLrhlq0uEk6PG
+         pYDjxjkpEXn1cmz4LMb7H8FUe/qqxuewyohhhSQXaiOMFP1eUekLZrTCtp1usYsPTK0g
+         pE+jvopAILubQKDHOl1bUO1by9zbmLGp203waTpMRVkCE6cmY1xFrrfbhumiM++FNB4Y
+         kXMQ==
+X-Gm-Message-State: AOAM5328E/QJckJ5Jq4JmVPEe879r0r4TVeCLtyA1Y5EOIbDW3labtfZ
+        ITc6Oa8Am8XnJ0WndyjzojkZ1g==
+X-Google-Smtp-Source: ABdhPJwUZLe2IQMgeO//fmZvAc15YbwcKsnB78yHqFio6xKY3oH/0UdbPuQfHF9jaAiV2v6HEloYoA==
+X-Received: by 2002:a05:6808:4d0:: with SMTP id a16mr1240203oie.166.1628118710409;
+        Wed, 04 Aug 2021 16:11:50 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id u18sm748726oif.9.2021.08.04.16.11.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Aug 2021 16:11:49 -0700 (PDT)
+Date:   Wed, 4 Aug 2021 18:11:48 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Sibi Sankar <sibis@codeaurora.org>
+Cc:     sboyd@kernel.org, robh+dt@kernel.org, mka@chromium.org,
+        viresh.kumar@linaro.org, agross@kernel.org, rjw@rjwysocki.net,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        dianders@chromium.org, tdas@codeaurora.org
+Subject: Re: [PATCH 2/4] cpufreq: qcom: Re-arrange register offsets to
+ support per core L3 DCVS
+Message-ID: <YQsetKGjlmQRxytX@builder.lan>
+References: <1627581885-32165-1-git-send-email-sibis@codeaurora.org>
+ <1627581885-32165-3-git-send-email-sibis@codeaurora.org>
 MIME-Version: 1.0
-References: <20210710081722.1828-1-zhiyong.tao@mediatek.com>
- <20210710081722.1828-2-zhiyong.tao@mediatek.com> <CAGXv+5GXg0RuOQkh4vaRmcLpehZiXnEUXBvEaObiatAa1sXvaA@mail.gmail.com>
- <1626940470.29611.9.camel@mhfsdcap03> <CAGXv+5F_-W4aNt0WVSDBGLo_t8orNUq59GMKk_4xVr+hMb9Ctg@mail.gmail.com>
- <07388dac4e25e0f260725e8f80ba099d5aa80949.camel@mediatek.com> <CAGXv+5EagmhYYpri+nzo6WgGz8A=oiU3Vy+2AVjho=eo6Z+DLw@mail.gmail.com>
-In-Reply-To: <CAGXv+5EagmhYYpri+nzo6WgGz8A=oiU3Vy+2AVjho=eo6Z+DLw@mail.gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 5 Aug 2021 01:01:58 +0200
-Message-ID: <CACRpkdZ4k9Km3vBtdN6AnBM89c4355GtPMzCQ0_YHaTb4V5cKA@mail.gmail.com>
-Subject: Re: [PATCH v10 1/2] dt-bindings: pinctrl: mt8195: add rsel define
-To:     Chen-Yu Tsai <wenst@chromium.org>
-Cc:     "zhiyong.tao" <zhiyong.tao@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        hui.liu@mediatek.com, Eddie Huang <eddie.huang@mediatek.com>,
-        Light Hsieh <light.hsieh@mediatek.com>,
-        Biao Huang <biao.huang@mediatek.com>,
-        Hongzhou Yang <hongzhou.yang@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Seiya Wang <seiya.wang@mediatek.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1627581885-32165-3-git-send-email-sibis@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 29, 2021 at 11:43 AM Chen-Yu Tsai <wenst@chromium.org> wrote:
-> On Thu, Jul 29, 2021 at 4:23 PM zhiyong.tao <zhiyong.tao@mediatek.com> wrote:
+On Thu 29 Jul 13:04 CDT 2021, Sibi Sankar wrote:
 
-> > The rsel actual bias resistance of each setting is different in
-> > different IC. we think that the define "MTK_PULL_SET_RSEL_000" is more
-> > common for all different IC.
->
-> I see. I personally prefer having things clearly described. I can
-> understand this might be an extra burden to support different chips
-> with different parameters, though this should be fairly straightforward
-> with lookup tables tied to the compatible strings.
->
-> Let's see if Rob and Linus have anything to add.
+> Qualcomm SoCs (starting with SM8350) support per core voting for L3 cache
+> frequency. So, re-arrange the cpufreq register offsets to allow access for
+> the L3 interconnect to implement per core control. Also prevent binding
+> breakage caused by register offset shuffling by using the SM8250/SM8350
+> EPSS compatible.
+> 
+> Fixes: 7dbd121a2c58 ("arm64: dts: qcom: sc7280: Add cpufreq hw node")
+> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+> ---
+>  drivers/cpufreq/qcom-cpufreq-hw.c | 23 +++++++++++++++++++----
+>  1 file changed, 19 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c b/drivers/cpufreq/qcom-cpufreq-hw.c
+> index f86859bf76f1..74ef3b38343b 100644
+> --- a/drivers/cpufreq/qcom-cpufreq-hw.c
+> +++ b/drivers/cpufreq/qcom-cpufreq-hw.c
+> @@ -28,6 +28,7 @@ struct qcom_cpufreq_soc_data {
+>  	u32 reg_volt_lut;
+>  	u32 reg_perf_state;
+>  	u8 lut_row_size;
+> +	bool skip_enable;
 
-Not much. We have "soft pushed" for this to be described as generic
-as possible, using SI units (ohms). But we also allow vendor-specific
-numbers in this attribute. Especially when reverse engineering SoCs
-that the contributor don't really have specs on (example M1 Mac).
+This should probably be called "skip_enable_check".
 
-The intent with the SI units is especially for people like you folks working
-with Chromium to be able to use different SoCs and not feel lost
-to a forest of different ways of doing things and associated
-mistakes because vendors have hopelessly idiomatic pin configs.
+>  };
+>  
+>  struct qcom_cpufreq_data {
+> @@ -257,19 +258,31 @@ static const struct qcom_cpufreq_soc_data qcom_soc_data = {
+>  	.reg_volt_lut = 0x114,
+>  	.reg_perf_state = 0x920,
+>  	.lut_row_size = 32,
+> +	.skip_enable = false,
+>  };
+>  
+>  static const struct qcom_cpufreq_soc_data epss_soc_data = {
+> +	.reg_freq_lut = 0x0,
+> +	.reg_volt_lut = 0x100,
+> +	.reg_perf_state = 0x220,
+> +	.lut_row_size = 4,
+> +	.skip_enable = true,
 
-Yours,
-Linus Walleij
+This change is not compatible with existing DTBs.
+
+Regards,
+Bjorn
+
+> +};
+> +
+> +static const struct qcom_cpufreq_soc_data epss_sm8250_soc_data = {
+>  	.reg_enable = 0x0,
+>  	.reg_freq_lut = 0x100,
+>  	.reg_volt_lut = 0x200,
+>  	.reg_perf_state = 0x320,
+>  	.lut_row_size = 4,
+> +	.skip_enable = false,
+>  };
+>  
+>  static const struct of_device_id qcom_cpufreq_hw_match[] = {
+>  	{ .compatible = "qcom,cpufreq-hw", .data = &qcom_soc_data },
+>  	{ .compatible = "qcom,cpufreq-epss", .data = &epss_soc_data },
+> +	{ .compatible = "qcom,sm8250-cpufreq-epss", .data = &epss_sm8250_soc_data },
+> +	{ .compatible = "qcom,sm8350-cpufreq-epss", .data = &epss_sm8250_soc_data },
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, qcom_cpufreq_hw_match);
+> @@ -334,10 +347,12 @@ static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
+>  	data->res = res;
+>  
+>  	/* HW should be in enabled state to proceed */
+> -	if (!(readl_relaxed(base + data->soc_data->reg_enable) & 0x1)) {
+> -		dev_err(dev, "Domain-%d cpufreq hardware not enabled\n", index);
+> -		ret = -ENODEV;
+> -		goto error;
+> +	if (!data->soc_data->skip_enable) {
+> +		if (!(readl_relaxed(base + data->soc_data->reg_enable) & 0x1)) {
+> +			dev_err(dev, "Domain-%d cpufreq hardware not enabled\n", index);
+> +			ret = -ENODEV;
+> +			goto error;
+> +		}
+>  	}
+>  
+>  	qcom_get_related_cpus(index, policy->cpus);
+> -- 
+> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+> a Linux Foundation Collaborative Project
+> 
