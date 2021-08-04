@@ -2,130 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 487AF3E01BC
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 15:13:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6D813E01EA
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 15:28:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237970AbhHDNOH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 09:14:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37360 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237934AbhHDNOH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 09:14:07 -0400
-Received: from mail-il1-x136.google.com (mail-il1-x136.google.com [IPv6:2607:f8b0:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97492C061799
-        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 06:13:54 -0700 (PDT)
-Received: by mail-il1-x136.google.com with SMTP id j18so1611872ile.8
-        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 06:13:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=16q7EqqyfEhwetWb0XYAPotm+XuJAb7KckeFFuyZn6k=;
-        b=URaICnYo2fzFjMRGWMjcx7FktVrKjirxd33+rMnDvTa5e29Yg/KDItyfGl0UHCFwJh
-         /8Vh0SrA2SXk46h4aix1i4Pm8GqdE4i9KC8V8xQo0VSoahukzJGk42RU+2XwGLOx2srk
-         25ULQrAKKMTA89tgkVVUYFKRKpvNGzqqnz5R4HqeDzWjtt60+ENg5pcGS+tuqUt4rMpk
-         3QE7N2bAimMjO3Bbg2BMMfbp+uUJxIwqZJ+ESRlbs0bLiwtdIomEu46BiYCzlAW6yKTg
-         J5VmjAPy6rg5wDzBzQSI3+JEaJx6WnYfvNsYzyygO6B6J+lAJDC2oUFhyr2xMBAQHpw6
-         X4aA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=16q7EqqyfEhwetWb0XYAPotm+XuJAb7KckeFFuyZn6k=;
-        b=N7aqjfcsLsRGy1/xK7rNPF2t4zSfYI8qkTkulziQdZd1wP1La3yqzZP6wIf3ND2iwB
-         eU1E+ojUzYww10HViHsQCp0xRPiyyfMqmgo3pssSxMmxoEHxEWDMMNzDqh4TZDQERbUo
-         BA/BnhV5qjHhhJDc8568AJdv9pl3nten5ZijYIkqDThNL+2IDtv7zZjq3LwPIFLtK5L2
-         NAruEoveJZlHVInKuBUYADhDWHzlMkrKtbxgOJ2yA29MSr6ps+xNweX1o4JHql2p1rV6
-         omp26DSgWv/6JotVBeslgEK4TKp+4OCPH4cG0W7tvgIpFbtrAlMqMajwA4scKnn03GJb
-         Gknw==
-X-Gm-Message-State: AOAM533xgSbg13m1sAe4JR8ngSQ5hWDxe4PwPnOm+lKXToSSrBGmMwQD
-        1ufzuDrXWKb/zvm1isbdxvdHUg==
-X-Google-Smtp-Source: ABdhPJwTrepWzQ7jGOdI0Mb9wms6UHeS7O+Km+3F27wf2nrd8WPKgG2Mn3DWoUXO0NGlImWihwW7vA==
-X-Received: by 2002:a05:6e02:1561:: with SMTP id k1mr404140ilu.25.1628082833939;
-        Wed, 04 Aug 2021 06:13:53 -0700 (PDT)
-Received: from presto.localdomain (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
-        by smtp.gmail.com with ESMTPSA id q11sm1073012ile.71.2021.08.04.06.13.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Aug 2021 06:13:53 -0700 (PDT)
-From:   Alex Elder <elder@linaro.org>
-To:     robh+dt@kernel.org, bjorn.andersson@linaro.org, agross@kernel.org
-Cc:     elder@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: net: qcom,ipa: make imem interconnect optional
-Date:   Wed,  4 Aug 2021 08:13:49 -0500
-Message-Id: <20210804131349.1179832-1-elder@linaro.org>
-X-Mailer: git-send-email 2.27.0
+        id S238173AbhHDN2g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 09:28:36 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42430 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238119AbhHDN2f (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Aug 2021 09:28:35 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 1C91260F6F;
+        Wed,  4 Aug 2021 13:28:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1628083703;
+        bh=Wfd7R0ApGgOmwN9wt/25NVYqDvQ1vR7xSRygDH3CUiM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=umiYsv1CPiaiJY5d8zSjVtGl+d0rOPGpcC2Ki7x09LSxg4dp54MzfqO7pj6wkd8Y1
+         +a8eKVnvyKAJCnbLU948OhVMTP7tbDs5VbvW65b17dEcR214GzXDfB1Q0ZlnOeHB0x
+         XPNEIL/1rgUQZstW/oG1i/JHdq3nR2MJyBWfpHur1TV1iOc6W8kX3+O65gzlP2Rxv/
+         KfvR7E5w/RgPDc4oDDqNzrNX35Oxh2xUqVeW6M7dM5+t5HOVDK91vLmzJfBXOe0vVJ
+         zjhTMMJjKmbJ5h4bZWCSAQqT5Q7WUBORUMAhH+RawS2MpfNDj/NmF4J84ILPEvCyu2
+         xHElTJfHl9cWw==
+Received: by mail-ej1-f43.google.com with SMTP id h9so3732555ejs.4;
+        Wed, 04 Aug 2021 06:28:23 -0700 (PDT)
+X-Gm-Message-State: AOAM5336NcVPbVb2sufIfaSfvbVEhdv7P48bplbEYVqI1iEFdlcRaAIq
+        Wf4iDz5vs9Se8v+LbPHVG6OuXwomwOyg4z2dMA==
+X-Google-Smtp-Source: ABdhPJwyzYTN5irKM6Kf8VGRNhMvW6JRknZ7L0BMgKHrrmuupnTr74hdq3bN+HWkO8eDLdIzsTHpyAF6HgWykC1PzaQ=
+X-Received: by 2002:a17:907:766c:: with SMTP id kk12mr25096464ejc.525.1628083701595;
+ Wed, 04 Aug 2021 06:28:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210727160315.15575-1-eajames@linux.ibm.com> <20210727160315.15575-3-eajames@linux.ibm.com>
+ <YQhZimPDbNJk5nbR@robh.at.kernel.org> <29d72be98ebe3e5761f4c3da7b4daf2f05fbbf3b.camel@linux.ibm.com>
+ <209d9f68-e6c4-68c9-d495-d7e3f5050440@axentia.se>
+In-Reply-To: <209d9f68-e6c4-68c9-d495-d7e3f5050440@axentia.se>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 4 Aug 2021 07:28:09 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLFC7vjMvZ3o6ey=thf=ZHsqApdT69e6akLvs0ceb8m1w@mail.gmail.com>
+Message-ID: <CAL_JsqLFC7vjMvZ3o6ey=thf=ZHsqApdT69e6akLvs0ceb8m1w@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] i2c: mux: pca954x: Support multiple devices on a
+ single reset line
+To:     Peter Rosin <peda@axentia.se>
+Cc:     Eddie James <eajames@linux.ibm.com>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On some newer SoCs, the interconnect between IPA and SoC internal
-memory (imem) is not used.  Update the binding to indicate that
-having just the memory and config interconnects is another allowed
-configuration.
+On Wed, Aug 4, 2021 at 1:50 AM Peter Rosin <peda@axentia.se> wrote:
+>
+> On 2021-08-02 23:51, Eddie James wrote:
+> > On Mon, 2021-08-02 at 14:46 -0600, Rob Herring wrote:
+> >> On Tue, Jul 27, 2021 at 11:03:15AM -0500, Eddie James wrote:
+> >>> Some systems connect several PCA954x devices to a single reset
+> >>> GPIO. For
+> >>> these devices to get out of reset and probe successfully, each
+> >>> device must
+> >>> defer the probe until the GPIO has been hogged. Accomplish this by
+> >>> attempting to grab a new "reset-shared-hogged" devicetree property,
+> >>> but
+> >>> expect it to fail with EPROBE_DEFER or EBUSY.
+> >>>
+> >>> Signed-off-by: Eddie James <eajames@linux.ibm.com>
+> >>> ---
+> >>>  drivers/i2c/muxes/i2c-mux-pca954x.c | 46 +++++++++++++++++++++++
+> >>> ------
+> >>>  1 file changed, 37 insertions(+), 9 deletions(-)
+> >>>
+> >>> diff --git a/drivers/i2c/muxes/i2c-mux-pca954x.c
+> >>> b/drivers/i2c/muxes/i2c-mux-pca954x.c
+> >>> index 4ad665757dd8..376b54ffb590 100644
+> >>> --- a/drivers/i2c/muxes/i2c-mux-pca954x.c
+> >>> +++ b/drivers/i2c/muxes/i2c-mux-pca954x.c
+> >>> @@ -434,15 +434,43 @@ static int pca954x_probe(struct i2c_client
+> >>> *client,
+> >>>     i2c_set_clientdata(client, muxc);
+> >>>     data->client = client;
+> >>>
+> >>> -   /* Reset the mux if a reset GPIO is specified. */
+> >>> -   gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
+> >>> -   if (IS_ERR(gpio))
+> >>> -           return PTR_ERR(gpio);
+> >>> -   if (gpio) {
+> >>> -           udelay(1);
+> >>> -           gpiod_set_value_cansleep(gpio, 0);
+> >>> -           /* Give the chip some time to recover. */
+> >>> -           udelay(1);
+> >>> +   /*
+> >>> +    * Grab the shared, hogged gpio that controls the mux reset. We
+> >>> expect
+> >>> +    * this to fail with either EPROBE_DEFER or EBUSY. The only
+> >>> purpose of
+> >>> +    * trying to get it is to make sure the gpio controller has
+> >>> probed up
+> >>> +    * and hogged the line to take the mux out of reset, meaning
+> >>> that the
+> >>> +    * mux is ready to be probed up. Don't try and set the line any
+> >>> way; in
+> >>> +    * the event we actually successfully get the line (if it
+> >>> wasn't
+> >>> +    * hogged) then we immediately release it, since there is no
+> >>> way to
+> >>> +    * sync up the line between muxes.
+> >>> +    */
+> >>> +   gpio = gpiod_get_optional(dev, "reset-shared-hogged", 0);
+> >>> +   if (IS_ERR(gpio)) {
+> >>> +           ret = PTR_ERR(gpio);
+> >>> +           if (ret != -EBUSY)
+> >>> +                   return ret;
+> >>
+> >> Why can't you just do this with the existing 'reset-gpios' property?
+> >> What's the usecase where you'd want to fail probe because EBUSY
+> >> other
+> >> than an error in your DT.
+> >
+> > Hi, thanks for the reply.
+> >
+> > Are you suggesting I use "reset-gpios" and change the driver to ignore
+> > EBUSY? I don't know any other usecase, I just didn't think it would be
+> > acceptable to ignore EBUSY on that, but perhaps it is a better
+> > solution.
+>
+> Hi!
+>
+> From a device-tree point of view that might seem simple. But it becomes
+> a mess when several driver instances need to coordinate. If one instance
+> is grabbing the reset line but is then stalled while other instances
+> race ahead, they might be clobbered by a late reset from the stalled
+> first instance.
+>
+> And while it might be possible to arrange the code such that those dragons
+> are dodged and that the reset is properly coordinated, what if the gpio is
+> supposed to be shared with some other totally unrelated driver? It might
+> seem to work when everything is normal, but as soon as anything out of the
+> ordinary happens, all bets are off. I expect subtle problems in the
+> furture.
 
-Signed-off-by: Alex Elder <elder@linaro.org>
----
-Rob, Bjorn, Andy:
+All of this is true, but a different reset GPIO property name does
+nothing to solve it.
 
-This was posted as part of a small series once before, and accepted
-into the net-next/master branch by David Miller:
-  https://lore.kernel.org/netdev/20210719212456.3176086-1-elder@linaro.org/
+> I see no simple solution to this, and I also expect that if gpios need
+> to be shared, there will eventually need to be some kind of layer that
+> helps with coordination such that it becomes explicit rather than
+> implicit and fragile.
 
-That series got reverted yesterday:
-  https://lore.kernel.org/netdev/20210802233019.800250-1-elder@linaro.org/
+Yes, like making the reset subsystem handle 'reset-gpios' properties
+as I suggested.
 
-Now I'm posting this patch again (by itself, and a little different
-this time based on input from Rob) so that this patch can be taken
-through the Qualcomm repository.  I will be posting other updates to
-DTS files in a separate series shortly.
-
-I didn't copy networking addressees this time...
-
-					-Alex
-
- .../devicetree/bindings/net/qcom,ipa.yaml     | 24 ++++++++++++-------
- 1 file changed, 16 insertions(+), 8 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/net/qcom,ipa.yaml b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-index ed88ba4b94df5..b8a0b392b24ea 100644
---- a/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-+++ b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-@@ -87,16 +87,24 @@ properties:
-       - const: ipa-setup-ready
- 
-   interconnects:
--    items:
--      - description: Interconnect path between IPA and main memory
--      - description: Interconnect path between IPA and internal memory
--      - description: Interconnect path between IPA and the AP subsystem
-+    oneOf:
-+      - items:
-+          - description: Path leading to system memory
-+          - description: Path between the AP and IPA config space
-+      - items:
-+          - description: Path leading to system memory
-+          - description: Path leading to internal memory
-+          - description: Path between the AP and IPA config space
- 
-   interconnect-names:
--    items:
--      - const: memory
--      - const: imem
--      - const: config
-+    oneOf:
-+      - items:
-+          - const: memory
-+          - const: config
-+      - items:
-+          - const: memory
-+          - const: imem
-+          - const: config
- 
-   qcom,smem-states:
-     $ref: /schemas/types.yaml#/definitions/phandle-array
--- 
-2.27.0
-
+Rob
