@@ -2,74 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 760A53E02F8
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 16:22:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8BA63E02FF
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 16:23:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237823AbhHDOWn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 10:22:43 -0400
-Received: from guitar.tcltek.co.il ([192.115.133.116]:32812 "EHLO
-        mx.tkos.co.il" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237114AbhHDOWm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 4 Aug 2021 10:22:42 -0400
-Received: from tarshish (unknown [10.0.8.3])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx.tkos.co.il (Postfix) with ESMTPS id 4895544011A;
-        Wed,  4 Aug 2021 17:22:08 +0300 (IDT)
-References: <3d86f45004fe2fcbae0a2cd197df81a1fd076a1e.1628085910.git.baruch@tkos.co.il>
- <0e99e3d453547ad2a8f4541090a03f3c80b80332.1628085910.git.baruch@tkos.co.il>
- <87lf5h5mc2.fsf@kernel.org>
-User-agent: mu4e 1.4.15; emacs 27.1
-From:   Baruch Siach <baruch@tkos.co.il>
-To:     Felipe Balbi <balbi@kernel.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S238708AbhHDOXj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 10:23:39 -0400
+Received: from mail-il1-f182.google.com ([209.85.166.182]:38903 "EHLO
+        mail-il1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238701AbhHDOXg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 10:23:36 -0400
+Received: by mail-il1-f182.google.com with SMTP id h18so1824876ilc.5;
+        Wed, 04 Aug 2021 07:23:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=lTaA7ZYHhzmYfTmfzRRp4FRXAEfJEDOsTjIWl9+Hssc=;
+        b=YLtZgc35NlAuLyosqUcsQRbPN4nZjASQjUs7COIgJGqT98Mo84zDjN9tAXrwF1GBtK
+         zvuiP8J+GzcD6Ojsyo1mH5dWsLuMYsiaQ69k1W42Fy0ur/0amJyUPST+pOwsbnkDTEoI
+         LdsrIM48M2hV+6slwx9OH4+okR3qBy8qpOUAhPxkfveSjLL+WAJXps7akpvH6/fGmQV3
+         cgMZcPIg35OJyNRGALFcd+92M114v2/+QIrwPDRJj484p6yoVPRR3fUTYdP/6oPSeofn
+         j4OCR8J+69vrXwneZ+o1w0NfdGIVaBLPrTTzNnoer/Irfo8TJeCnvMqItc6lR8NeAasf
+         Zisw==
+X-Gm-Message-State: AOAM531oRzASzd3fsBIBwiqST7nuwJWMOiQhKSo0uRMHoFdwh4OVqS/u
+        YkypOMdVIP6QNggZcrAFMw==
+X-Google-Smtp-Source: ABdhPJzw3DsMPyrOtt1yGTBwjo1oUxTt8cIFbawDLIaXsTRb7KTM34+LDbsZ+0MZzsQgAzDoMmW6QA==
+X-Received: by 2002:a92:d3cb:: with SMTP id c11mr409039ilh.178.1628086997189;
+        Wed, 04 Aug 2021 07:23:17 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id g11sm1151785ilc.83.2021.08.04.07.23.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Aug 2021 07:23:16 -0700 (PDT)
+Received: (nullmailer pid 1148630 invoked by uid 1000);
+        Wed, 04 Aug 2021 14:23:14 -0000
+Date:   Wed, 4 Aug 2021 08:23:14 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Xiaowei Song <songxiaowei@hisilicon.com>,
+        Binghui Wang <wangbinghui@hisilicon.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mauro.chehab@huawei.com,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "Balaji Prakash J" <bjagadee@codeaurora.org>,
-        Kathiravan T <kathirav@codeaurora.org>,
-        Jack Pham <jackp@codeaurora.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 4/6] usb: dwc3: reference clock period configuration
-In-reply-to: <87lf5h5mc2.fsf@kernel.org>
-Date:   Wed, 04 Aug 2021 17:22:27 +0300
-Message-ID: <87v94lxpb0.fsf@tarshish>
+        Jingoo Han <jingoohan1@gmail.com>, linuxarm@huawei.com
+Subject: Re: [PATCH v4 2/4] dt-bindings: PCI: kirin: Convert kirin-pcie.txt
+ to yaml
+Message-ID: <YQqi0ke6Q7CfShcC@robh.at.kernel.org>
+References: <cover.1628061310.git.mchehab+huawei@kernel.org>
+ <081c179ef2e0ddf11566144cd5967b15268565b4.1628061310.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <081c179ef2e0ddf11566144cd5967b15268565b4.1628061310.git.mchehab+huawei@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Felipe,
+On Wed, 04 Aug 2021 09:18:55 +0200, Mauro Carvalho Chehab wrote:
+> Convert the file into a JSON description at the yaml format.
+> 
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> ---
+>  .../bindings/pci/hisilicon,kirin-pcie.yaml    | 86 +++++++++++++++++++
+>  .../devicetree/bindings/pci/kirin-pcie.txt    | 50 -----------
+>  .../devicetree/bindings/pci/snps,dw-pcie.yaml |  2 +-
+>  MAINTAINERS                                   |  2 +-
+>  4 files changed, 88 insertions(+), 52 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/pci/kirin-pcie.txt
+> 
 
-On Wed, Aug 04 2021, Felipe Balbi wrote:
-> Baruch Siach <baruch@tkos.co.il> writes:
->> @@ -1371,6 +1398,8 @@ static void dwc3_get_properties(struct dwc3 *dwc)
->>  				    &dwc->hsphy_interface);
->>  	device_property_read_u32(dev, "snps,quirk-frame-length-adjustment",
->>  				 &dwc->fladj);
->> +	device_property_read_u32(dev, "snps,ref-clock-period",
->> +				 &dwc->ref_clk_per);
->
-> I wonder if it would make more sense to pass an actual clock reference
-> here. If valid, then reconfigure the period to the value returned by
-> clk_get_rate(). It would avoid yet another DT binding. If we make the
-> clock optional, then we won't affect any other platforms. The clock
-> itself could be a regular fixed clock node.
-
-Thinh Nguyen asked to add a dedicated DT property. He explained that
-clk_get_rate() does not work for PCI hosted dwc3. This is the most
-complete summary of the discussion:
-
-  https://lore.kernel.org/r/c797e9cb-cae6-c0b6-5714-169c2ad79d32@synopsys.com
-
-baruch
-
--- 
-                                                     ~. .~   Tk Open Systems
-=}------------------------------------------------ooO--U--Ooo------------{=
-   - baruch@tkos.co.il - tel: +972.52.368.4656, http://www.tkos.co.il -
+Applied, thanks!
