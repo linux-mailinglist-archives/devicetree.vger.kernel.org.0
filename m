@@ -2,79 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 209BD3DFDB2
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 11:10:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E7CE3DFDD1
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 11:19:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236999AbhHDJKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 05:10:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53482 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236979AbhHDJKW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 4 Aug 2021 05:10:22 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5787E60240;
-        Wed,  4 Aug 2021 09:10:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1628068209;
-        bh=9X4hL8TfLuspjEJ70He/hj+tn4fH/H3eNlS2f2ndoxM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=rXGa+WHPnySCeMTNtLIsO/kdHKYiEZq1T6/faJZEnj+zhHUAyq7pWT+Z3fJxMBEtM
-         IHh+amcv6TJagOcUhRdnb2Uz3kx5ZH2lH8zztQF3hk1Xi0VHDkrHV5aa+GXCn++0KC
-         /9DlvY0Uw7IBsSwlM8FwcztWIceVscmOQU/BtPJE=
-Date:   Wed, 4 Aug 2021 11:10:06 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Kalyan Thota <kalyan_t@codeaurora.org>
-Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, mkrishn@codeaurora.org,
-        saiprakash.ranjan@codeaurora.org, rnayak@codeaurora.org,
-        stable@vger.kernel.org
-Subject: Re: [v3] drm/msm/disp/dpu1: add safe lut config in dpu driver
-Message-ID: <YQpZbosqlBo9EkG6@kroah.com>
-References: <1628064990-6990-1-git-send-email-kalyan_t@codeaurora.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1628064990-6990-1-git-send-email-kalyan_t@codeaurora.org>
+        id S235714AbhHDJUA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 05:20:00 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:57742 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S235443AbhHDJUA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 05:20:00 -0400
+X-IronPort-AV: E=Sophos;i="5.84,293,1620658800"; 
+   d="scan'208";a="89801999"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 04 Aug 2021 18:19:46 +0900
+Received: from localhost.localdomain (unknown [10.226.92.204])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 1308E42389D2;
+        Wed,  4 Aug 2021 18:19:43 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: mmc: renesas,sdhi: Document RZ/G2L bindings
+Date:   Wed,  4 Aug 2021 10:19:40 +0100
+Message-Id: <20210804091940.23983-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 04, 2021 at 01:16:30AM -0700, Kalyan Thota wrote:
-> Add safe lut configuration for all the targets in dpu
-> driver as per QOS recommendation.
-> 
-> Issue reported on SC7280:
-> 
-> With wait-for-safe feature in smmu enabled, RT client
-> buffer levels are checked to be safe before smmu invalidation.
-> Since display was always set to unsafe it was delaying the
-> invalidaiton process thus impacting the performance on NRT clients
-> such as eMMC and NVMe.
-> 
-> Validated this change on SC7280, With this change eMMC performance
-> has improved significantly.
-> 
-> Changes in v1:
-> - Add fixes tag (Sai)
-> - CC stable kernel (Dimtry)
-> 
-> Changes in v2:
-> - Correct fixes tag with appropriate hash (stephen)
-> 
-> Fixes: 591e34a091d1 (drm/msm/disp/dpu1: add support for display
-> for SC7280 target)
-> Signed-off-by: Kalyan Thota <kalyan_t@codeaurora.org>
-> Tested-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org> (sc7280, sc7180)
-> ---
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c | 5 +++++
->  1 file changed, 5 insertions(+)
+Document RZ/G2L SDHI controller bindings.
 
-<formletter>
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+---
+v1->v2:
+ * Fixed dtbs-check issue for RZ/A{1,2} platforms.
+---
+ .../devicetree/bindings/mmc/renesas,sdhi.yaml | 95 ++++++++++++-------
+ 1 file changed, 60 insertions(+), 35 deletions(-)
 
-This is not the correct way to submit patches for inclusion in the
-stable kernel tree.  Please read:
-    https://www.kernel.org/doc/html/latest/process/stable-kernel-rules.html
-for how to do this properly.
+diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+index 677989bc5924..3a90dd447e17 100644
+--- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
++++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+@@ -9,9 +9,6 @@ title: Renesas SDHI SD/MMC controller
+ maintainers:
+   - Wolfram Sang <wsa+renesas@sang-engineering.com>
+ 
+-allOf:
+-  - $ref: "mmc-controller.yaml"
+-
+ properties:
+   compatible:
+     oneOf:
+@@ -47,19 +44,20 @@ properties:
+           - const: renesas,sdhi-mmc-r8a77470 # RZ/G1C (SDHI/MMC IP)
+       - items:
+           - enum:
+-              - renesas,sdhi-r8a774a1 # RZ/G2M
+-              - renesas,sdhi-r8a774b1 # RZ/G2N
+-              - renesas,sdhi-r8a774c0 # RZ/G2E
+-              - renesas,sdhi-r8a774e1 # RZ/G2H
+-              - renesas,sdhi-r8a7795  # R-Car H3
+-              - renesas,sdhi-r8a7796  # R-Car M3-W
+-              - renesas,sdhi-r8a77961 # R-Car M3-W+
+-              - renesas,sdhi-r8a77965 # R-Car M3-N
+-              - renesas,sdhi-r8a77970 # R-Car V3M
+-              - renesas,sdhi-r8a77980 # R-Car V3H
+-              - renesas,sdhi-r8a77990 # R-Car E3
+-              - renesas,sdhi-r8a77995 # R-Car D3
+-              - renesas,sdhi-r8a779a0 # R-Car V3U
++              - renesas,sdhi-r8a774a1  # RZ/G2M
++              - renesas,sdhi-r8a774b1  # RZ/G2N
++              - renesas,sdhi-r8a774c0  # RZ/G2E
++              - renesas,sdhi-r8a774e1  # RZ/G2H
++              - renesas,sdhi-r8a7795   # R-Car H3
++              - renesas,sdhi-r8a7796   # R-Car M3-W
++              - renesas,sdhi-r8a77961  # R-Car M3-W+
++              - renesas,sdhi-r8a77965  # R-Car M3-N
++              - renesas,sdhi-r8a77970  # R-Car V3M
++              - renesas,sdhi-r8a77980  # R-Car V3H
++              - renesas,sdhi-r8a77990  # R-Car E3
++              - renesas,sdhi-r8a77995  # R-Car D3
++              - renesas,sdhi-r8a779a0  # R-Car V3U
++              - renesas,sdhi-r9a07g044 # RZ/G2{L,LC}
+           - const: renesas,rcar-gen3-sdhi # R-Car Gen3 or RZ/G2
+ 
+   reg:
+@@ -71,13 +69,11 @@ properties:
+ 
+   clocks:
+     minItems: 1
+-    maxItems: 2
++    maxItems: 4
+ 
+   clock-names:
+     minItems: 1
+-    items:
+-      - const: core
+-      - const: cd
++    maxItems: 4
+ 
+   dmas:
+     minItems: 4
+@@ -112,6 +108,50 @@ properties:
+ 
+   max-frequency: true
+ 
++allOf:
++  - $ref: "mmc-controller.yaml"
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - renesas,sdhi-r7s72100
++              - renesas,sdhi-r7s9210
++    then:
++      properties:
++        clocks:
++          maxItems: 2
++        clock-names:
++          items:
++            - const: core
++            - const: cd
++      required:
++        - clock-names
++      description:
++        The internal card detection logic that exists in these controllers is
++        sectioned off to be run by a separate second clock source to allow
++        the main core clock to be turned off to save power.
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: renesas,sdhi-r9a07g044
++    then:
++      properties:
++        clocks:
++          items:
++            - description: IMCLK, SDHI channel main clock1.
++            - description: IMCLK2, SDHI channel main clock2. When this clock is
++                           turned off, external SD card detection cannot be
++                           detected.
++            - description: CLK_HS, SDHI channel High speed clock which operates
++                           4 times that of SDHI channel main clock1.
++            - description: ACLK, SDHI channel bus clock.
++      required:
++        - resets
++
+ required:
+   - compatible
+   - reg
+@@ -119,21 +159,6 @@ required:
+   - clocks
+   - power-domains
+ 
+-if:
+-  properties:
+-    compatible:
+-      contains:
+-        enum:
+-          - renesas,sdhi-r7s72100
+-          - renesas,sdhi-r7s9210
+-then:
+-  required:
+-    - clock-names
+-  description:
+-    The internal card detection logic that exists in these controllers is
+-    sectioned off to be run by a separate second clock source to allow
+-    the main core clock to be turned off to save power.
+-
+ unevaluatedProperties: false
+ 
+ examples:
+-- 
+2.17.1
 
-</formletter>
