@@ -2,97 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EEDD53E09C3
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 23:02:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CE6A3E09E5
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 23:13:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240005AbhHDVCj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 17:02:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60550 "EHLO
+        id S229762AbhHDVOC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 17:14:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239948AbhHDVCi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 17:02:38 -0400
-Received: from mail-il1-x135.google.com (mail-il1-x135.google.com [IPv6:2607:f8b0:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 600B0C06179C
-        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 14:02:22 -0700 (PDT)
-Received: by mail-il1-x135.google.com with SMTP id y4so2975589ilp.0
-        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 14:02:22 -0700 (PDT)
+        with ESMTP id S229743AbhHDVOB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 17:14:01 -0400
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0D65C061798
+        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 14:13:48 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id j3so4483417plx.4
+        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 14:13:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=GAu8p3tjcesj9ZyybBwKeN/jK2mgfz8zSdEerPn6tnU=;
-        b=z1zArIZFGyTmlE8814DCuSz/67i54nj56oZbf8w0ApKZEXhoFwSJv6Pk1HeNsH8d4o
-         vvPlYadKMU/zjR/obYqS69yRuc6HJn9He4NY3m06vVmcVW6C1yzcYwN5a8Pl5+pjSJh0
-         PstfNXx/2IXxcd3JlfGk1yHcl3eailMZaybSZgCw8BahzHAZPiXBm19pDCAleYrXrSb6
-         WNKQimFgV6vcY7p56MrygixapbJO7/aub86P4ldYU3vcxxATo8HaLWb5oE5KZCiD+QFk
-         pX9BH6yiS675HpRSqRmu2nlStBUuv15Q5OFnq6JKf08hu94I99Ftzn+LHyWeNa3iWaXv
-         jtrA==
+        d=dabbelt-com.20150623.gappssmtp.com; s=20150623;
+        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
+         :content-transfer-encoding;
+        bh=pWeVOPuGe2rwR/ROAXUfTRwXClu2H2NNWD6p4NOstS8=;
+        b=PwQjaVNp8FyJDWyiUT0Z8kpUGe8+CNzROVRPRHgR/dDii1HFfBEbPrU/LViRYGNseN
+         Goj+KxfWobnXG2w+YLWviBprLG/E4CYFs5ur6vBD4C4FjyBuhWYZBwdt9yS3hFRCov+O
+         05y8JHO7qSM6VF8APQ8FAENHjfM94RLB7TQbg2uSgzLFH1T75yxAq5MnrBIBQ/5i4OYl
+         EyjjbTHapBQVbJdkZoqYsUsEvzG2fwFK+Ua9xM1bWcClktpFT34aEgwdnOq3Zj2ivvXm
+         D6PIGidNR5JuWZWtkjLpC/B+UNKt/GVXYwGP4jiAiWFmcJ89K5kB9YCQV3nh5LJ/EoUS
+         +A2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=GAu8p3tjcesj9ZyybBwKeN/jK2mgfz8zSdEerPn6tnU=;
-        b=ddOgilvlTpKzDNtYEDJsz2+8OLjvxX7+J//IW4LWZYwQxGKTw+Rovohev9d1XPtWxo
-         WuFu0/solhh+koIDoef9kduck4372EnPENGoV5Yu9oiFEBZEXnkkMj5UHYrGatB0nf7D
-         pLX86gYbAGHZeYmZFlIq/6YH6084uKwLpLYDj+2aL3WMVQ9kKdMLeIOAcCaic/MrXtVD
-         7ntoD87mq4PMlwyI5Ue2yzu6xpUaP7y2xex0MHyMwFKLpPUo6ZcekurFy8hfLxtVENxl
-         TU9UrIWt0XRMoHBDwXlpiTEgv9kmFc2VEI4urr9Radva2R/QM0GXQKSMNVtPeMywurq0
-         UkdQ==
-X-Gm-Message-State: AOAM532g2d9ktAVdSku+l7EYhzyDT/v8IA7I6a3wbSTck85FVnahisvK
-        mYek0SMPsxzXzpiWqgvCPKKCXA==
-X-Google-Smtp-Source: ABdhPJy98vvmzjTpgGFOJCBn3onNvtO3ZY488DPqIqJMIfHhpAjcR/EXFN6lyws1OrGSArZHa32igA==
-X-Received: by 2002:a92:6909:: with SMTP id e9mr748365ilc.231.1628110941870;
-        Wed, 04 Aug 2021 14:02:21 -0700 (PDT)
-Received: from presto.localdomain (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
-        by smtp.gmail.com with ESMTPSA id d18sm1687396ile.32.2021.08.04.14.02.21
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=pWeVOPuGe2rwR/ROAXUfTRwXClu2H2NNWD6p4NOstS8=;
+        b=lNIHfbXYCE1devCDDAPFOHFq4pX5ZN7MHKBTxZP50uIdyBFKwi0n5W1xjzagckW9Ld
+         aHojn0lSJUlwEl8IeDlR2EMSMe/1P/WXD64X6jO7tegKC/GSLNevAN4do5Qun3xhkfkq
+         nuppQb66Dy9D6XC80j6EhyI6aTrNpi50nge3WuP29ufH1cI7Us8Ggp0Mr5xW6nYZqKp8
+         1QkLsPrJUOYqTqrLuiEK8qDxAObHCS3rltjDLlBIPVmscWIttg+n/alsGoE7jBoEERks
+         g+ra1/qrUglb8GMAwpFIfMUMSf19sdwSIOtf+p/A6i7HPiV60Nu0i1VrlgGdnafWuqaa
+         JG2Q==
+X-Gm-Message-State: AOAM531pbiSTlgNwsHC82+qWzrKyvv6u7iAWwrYvdFzxR27WuYeYyFww
+        yvUt5esp9+561WGJ3VdtldUlkg==
+X-Google-Smtp-Source: ABdhPJxmNRnC1qh7wzjVxVKaFhVi5Z3hxxqwFofh38QlmmnLtXqmkYyJ4V9kVrsfo+kv7/42Wvm31A==
+X-Received: by 2002:a62:1d06:0:b029:3ab:9703:b6b8 with SMTP id d6-20020a621d060000b02903ab9703b6b8mr1372593pfd.0.1628111628112;
+        Wed, 04 Aug 2021 14:13:48 -0700 (PDT)
+Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
+        by smtp.gmail.com with ESMTPSA id w15sm3279146pjc.45.2021.08.04.14.13.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Aug 2021 14:02:21 -0700 (PDT)
-From:   Alex Elder <elder@linaro.org>
-To:     bjorn.andersson@linaro.org, agross@kernel.org
-Cc:     robh+dt@kernel.org, elder@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 4/4] arm64: dts: qcom: sm8350: fix IPA interconnects
-Date:   Wed,  4 Aug 2021 16:02:14 -0500
-Message-Id: <20210804210214.1891755-5-elder@linaro.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210804210214.1891755-1-elder@linaro.org>
-References: <20210804210214.1891755-1-elder@linaro.org>
-MIME-Version: 1.0
+        Wed, 04 Aug 2021 14:13:47 -0700 (PDT)
+Date:   Wed, 04 Aug 2021 14:13:47 -0700 (PDT)
+X-Google-Original-Date: Wed, 04 Aug 2021 14:13:46 PDT (-0700)
+Subject:     Re: [PATCH v4] dt-bindings: riscv: add starfive jh7100 bindings
+In-Reply-To: <CAOnJCUL9uU5G1LOgfYPz9Ny77yFYaP5sgtdxG3_w=Zcsi+f96Q@mail.gmail.com>
+CC:     bmeng.cn@gmail.com, robh+dt@kernel.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        michael.zhu@starfivetech.com, tekkamanninja@gmail.com,
+        jack.zhu@starfivetech.com, leyfoon.tan@starfivetech.com,
+        geert@linux-m68k.org, kernel@esmil.dk, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     atishp@atishpatra.org, drew@beagleboard.org
+Message-ID: <mhng-c9300c9e-6877-492f-a290-7c51066d3920@palmerdabbelt-glaptop>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There should only be two interconnects defined for IPA on the
-QUalcomm SM8350 SoC.  The names should also match those specified by
-the IPA Device Tree binding.
+On Wed, 04 Aug 2021 13:54:16 PDT (-0700), atishp@atishpatra.org wrote:
+> On Wed, Aug 4, 2021 at 1:33 PM Palmer Dabbelt <palmer@dabbelt.com> wrote:
+>>
+>> On Thu, 15 Jul 2021 19:17:23 PDT (-0700), bmeng.cn@gmail.com wrote:
+>> > On Tue, Jul 13, 2021 at 2:34 PM Drew Fustini <drew@beagleboard.org> wrote:
+>> >>
+>> >> Add DT binding documentation for the StarFive JH7100 Soc [1] and the
+>> >> BeagleV Starlight JH7100 board [2].
+>> >>
+>> >> [1] https://github.com/starfive-tech/beaglev_doc
+>> >> [2] https://github.com/beagleboard/beaglev-starlight
+>> >>
+>> >> Signed-off-by: Drew Fustini <drew@beagleboard.org>
+>> >> ---
+>> >> v4 changes:
+>> >> - removed JH7100 SoC revision number after discussion with Geert
+>> >>
+>> >> v3 changes:
+>> >> - added revision number for the board and soc after question from Palmer
+>> >>
+>> >> v2 changes:
+>> >> - removed "items:" entry that only had "const: starfive,jh7100"
+>> >> - correct typo in Description:
+>> >>
+>> >> Results of running checks:
+>> >>   $ make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- dt_binding_check \
+>> >>     DT_SCHEMA_FILES=Documentation/devicetree/bindings/riscv/starfive.yaml
+>> >>     CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
+>> >>     DTEX    Documentation/devicetree/bindings/riscv/starfive.example.dts
+>> >>     SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
+>> >>     DTC     Documentation/devicetree/bindings/riscv/starfive.example.dt.yaml
+>> >>     CHECK   Documentation/devicetree/bindings/riscv/starfive.example.dt.yaml
+>> >>   $ make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- dtbs_check \
+>> >>     DT_SCHEMA_FILES=Documentation/devicetree/bindings/riscv/starfive.yaml
+>> >>     SYNC    include/config/auto.conf.cmd
+>> >>     UPD     include/config/kernel.release
+>> >>     SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+>> >>     DTC     arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dtb
+>> >>     DTC     arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dt.yaml
+>> >>     DTC     arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dt.yaml
+>> >>     DTC     arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dt.yaml
+>> >>     CHECK   arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dt.yaml
+>> >>     CHECK   arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dt.yaml
+>> >>     CHECK   arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dt.yaml
+>> >>
+>> >> The dts file is from vendor repo and is being cleaned up right now in
+>> >> preperation for submitting to the mailing list:
+>> >> https://github.com/starfive-tech/linux/tree/beaglev/arch/riscv/boot/dts/starfive
+>> >>
+>> >>  .../devicetree/bindings/riscv/starfive.yaml   | 27 +++++++++++++++++++
+>> >>  1 file changed, 27 insertions(+)
+>> >>  create mode 100644 Documentation/devicetree/bindings/riscv/starfive.yaml
+>> >>
+>> >
+>> > Reviewed-by: Bin Meng <bmeng.cn@gmail.com>
+>>
+>> Thanks.  This is on for-next, as Rob suggested taking it via the RISC-V
+>> tree.
+>>
+> Given that beagleV starlight mass production is cancelled [1], are we
+> still upstreaming the support for this ?
 
-Signed-off-by: Alex Elder <elder@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8350.dtsi | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+I'm not sure, but I wasn't quite sure where to have that discussion.  I 
+figured that the boards exist so there's no reason to shoot this down, 
+given that it's just the vendor DT list.  At a bare minimum there's out 
+of tree support for this, so having the DT strings defined seems sane as 
+that's a defacto interface with bootloaders.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index a631d58166b1c..01f60a3bd1c14 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -666,12 +666,10 @@ ipa: ipa@1e40000 {
- 			clocks = <&rpmhcc RPMH_IPA_CLK>;
- 			clock-names = "core";
- 
--			interconnects = <&aggre2_noc MASTER_IPA &gem_noc SLAVE_LLCC>,
--					<&mc_virt MASTER_LLCC &mc_virt SLAVE_EBI1>,
-+			interconnects = <&aggre2_noc MASTER_IPA &mc_virt SLAVE_EBI1>,
- 					<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_IPA_CFG>;
--			interconnect-names = "ipa_to_llcc",
--					     "llcc_to_ebi1",
--					     "appss_to_ipa";
-+			interconnect-names = "memory",
-+					     "config";
- 
- 			qcom,smem-states = <&ipa_smp2p_out 0>,
- 					   <&ipa_smp2p_out 1>;
--- 
-2.27.0
+Maybe this is more of a question for Drew: I think we were all OK 
+working through the issues with the first-run chip when there was going 
+to be a lot of them, but with such a small number produced I'm not sure 
+if there's going to be enough interested to take on all that effort.  
 
+I'm not quite sure where we stand on support for this: at some point 
+there were some ideas floating around as to a way to support it without 
+major software changes (allocating into the non-caching regions).  If 
+that pans out then I'm fine handling this, at least from the RISC-V 
+side, but if we're going to have to go through all the ISA/SBI stuff 
+then it's probably not worth it.  Also not sure if there are a bunch of 
+starfive-specific drivers that would be needed to make this boot, in 
+which case it's probably best to wait for whatever comes next.
+
+>
+> [1] https://www.cnx-software.com/2021/07/31/beaglev-starlight-sbc-wont-be-mass-manufactured-redesigned-beaglev-risc-v-sbc-expected-in-q1-2022/
+>> _______________________________________________
+>> linux-riscv mailing list
+>> linux-riscv@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-riscv
