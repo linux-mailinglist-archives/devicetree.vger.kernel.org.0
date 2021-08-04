@@ -2,100 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC7673E03CD
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 17:01:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C827D3E03DC
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 17:05:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238823AbhHDPBm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 11:01:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34190 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238826AbhHDPBl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 11:01:41 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2E53C0613D5;
-        Wed,  4 Aug 2021 08:01:27 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id k4so2655010wrc.0;
-        Wed, 04 Aug 2021 08:01:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=b/CGPGKAIJdU81c9VKQNODFZgreiXcLnh2tcMHBfuZM=;
-        b=HpKqdQAoj25mhjTtSvf7761Z6DAeK91j7qgoD2Xp7GxroakkEZsXbCvN6pO7F+Lqnu
-         7MZk7nRZkIM/kSoEepSC9DW/KjZUlVEpC8yTJhYIBFeW8+SPH2jzSmiFfncFLT32zWrO
-         APamyL5VaHn/njXG12sVKlUzDiEYe4ESGPmz3nm7UfJlz19VLu2EBKKINlbQLbokeZAF
-         K48scpqfuq6Y6D+W51wVGs2dl1LSOfC49220MXexYKgxLaoXvX5yV712fWFR+C7xyTMW
-         Vme6E8g/34yZld/s3Z9xM0wkzvcONsE+0xPe/igBPe3vSnmRshE2p94FXe0ohY8iDgfs
-         lDSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=b/CGPGKAIJdU81c9VKQNODFZgreiXcLnh2tcMHBfuZM=;
-        b=JE0PkpWoAhZnsIJ+kL+m1ezrD4TWBX25SQDMYBUEDZCXPjUjuqJKMoLz8XfGEvx8e8
-         aH/XuW//guC95NPwB5duEIlu374NKiW5YXS92D01ULRp5TrDqjtJuXdoi7LdzN5HGvJk
-         sLIN0YqN7L+BvzHwpppLCMJLKRXdYPxKzzikNzH9VPpHh0oDrV8Nvi6ncXGfJlVxmNf+
-         1yP/13tfo+0kE5AM1oDuFQYBBV/+3GxopQZqlgzbMKIYessAVBGPdjME5do7+PeZs+bc
-         uWyVHXVVv/U3uK79wjw9UDUZiOZzF7aIx7t9xu7OJMSxz++IVyjGDEi+Zz7Hr8fOhHyG
-         645w==
-X-Gm-Message-State: AOAM531ZcmRd1Umcmel6HbI7OADHk6SsUMgq8jDtyKOP1toQexpEKuHE
-        ZsLnR/GoIXCL5z6UyZxLB3561gVXXn0ayA==
-X-Google-Smtp-Source: ABdhPJz1VngK4KyOLmBahayZ/13L7txbqaR776m8lVaezd/WsyTRfY1khzKVSoMshxjY5e6l520jKQ==
-X-Received: by 2002:a5d:4e91:: with SMTP id e17mr29179159wru.7.1628089286553;
-        Wed, 04 Aug 2021 08:01:26 -0700 (PDT)
-Received: from ziggy.stardust (static-55-132-6-89.ipcom.comunitel.net. [89.6.132.55])
-        by smtp.gmail.com with ESMTPSA id g11sm3005787wrd.97.2021.08.04.08.01.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Aug 2021 08:01:25 -0700 (PDT)
-Subject: Re: [PATCH 1/2] dt-bindings: usb: mtk-musb: add MT7623 compatible
-To:     Sungbo Eo <mans0n@gorani.run>, linux-mediatek@lists.infradead.org
-Cc:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        id S231272AbhHDPFn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 11:05:43 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37494 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237601AbhHDPFk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Aug 2021 11:05:40 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 318D560F0F;
+        Wed,  4 Aug 2021 15:05:28 +0000 (UTC)
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mBISU-002wco-BN; Wed, 04 Aug 2021 16:05:26 +0100
+Date:   Wed, 04 Aug 2021 16:05:25 +0100
+Message-ID: <87im0lw8qy.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Min Guo <min.guo@mediatek.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20210803151320.71531-1-mans0n@gorani.run>
- <20210803151320.71531-2-mans0n@gorani.run>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <353c79de-2dab-0367-32e8-63b0fd89900d@gmail.com>
-Date:   Wed, 4 Aug 2021 17:01:24 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
-MIME-Version: 1.0
-In-Reply-To: <20210803151320.71531-2-mans0n@gorani.run>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Tom Joseph <tjoseph@cadence.com>, <linux-omap@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: PCI: ti,j721e: Add bindings to specify legacy interrupts
+In-Reply-To: <20210804132912.30685-2-kishon@ti.com>
+References: <20210804132912.30685-1-kishon@ti.com>
+        <20210804132912.30685-2-kishon@ti.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: kishon@ti.com, bhelgaas@google.com, robh+dt@kernel.org, lorenzo.pieralisi@arm.com, tjoseph@cadence.com, linux-omap@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, lokeshvutla@ti.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 03/08/2021 17:13, Sungbo Eo wrote:
-> Document MT7623 compatible for mtk-musb.
+On Wed, 04 Aug 2021 14:29:10 +0100,
+Kishon Vijay Abraham I <kishon@ti.com> wrote:
 > 
-> Signed-off-by: Sungbo Eo <mans0n@gorani.run>
-
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-
+> Add bindings to specify interrupt controller for legacy interrupts.
+> 
+> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
 > ---
->  Documentation/devicetree/bindings/usb/mediatek,musb.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../bindings/pci/ti,j721e-pci-host.yaml           | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/mediatek,musb.yaml b/Documentation/devicetree/bindings/usb/mediatek,musb.yaml
-> index 84ddacfdbe9b..03d62d60ce5f 100644
-> --- a/Documentation/devicetree/bindings/usb/mediatek,musb.yaml
-> +++ b/Documentation/devicetree/bindings/usb/mediatek,musb.yaml
-> @@ -19,6 +19,7 @@ properties:
->        - enum:
->            - mediatek,mt8516-musb
->            - mediatek,mt2701-musb
-> +          - mediatek,mt7623-musb
->        - const: mediatek,mtk-musb
+> diff --git a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+> index cc900202df29..f461d7b4c0cc 100644
+> --- a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+> +++ b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+> @@ -74,6 +74,11 @@ properties:
 >  
->    reg:
-> 
+>    msi-map: true
+>  
+> +patternProperties:
+> +  "interrupt-controller":
+> +    type: object
+> +    description: interrupt controller to handle legacy interrupts.
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -97,6 +102,8 @@ unevaluatedProperties: false
+>  
+>  examples:
+>    - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+>      #include <dt-bindings/soc/ti,sci_pm_domain.h>
+>      #include <dt-bindings/gpio/gpio.h>
+>  
+> @@ -131,5 +138,13 @@ examples:
+>              ranges = <0x01000000 0x0 0x10001000  0x00 0x10001000  0x0 0x0010000>,
+>                       <0x02000000 0x0 0x10011000  0x00 0x10011000  0x0 0x7fef000>;
+>              dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
+> +
+> +
+> +            pcie0_intc: interrupt-controller {
+> +                    interrupt-controller;
+> +                    #interrupt-cells = <1>;
+> +                    interrupt-parent = <&gic500>;
+> +                    interrupts = <GIC_SPI 312 IRQ_TYPE_EDGE_RISING>;
+
+Are you sure about the edge signalling? How is the interrupt
+retriggered when the input is still high, which could well be the case
+for shared INTx?
+
+Thanks,
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
