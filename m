@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA40F3DFAA0
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 06:35:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20A563DFA99
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 06:34:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234565AbhHDEfR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 00:35:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60878 "EHLO
+        id S229950AbhHDEfF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 00:35:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234591AbhHDEfQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 00:35:16 -0400
+        with ESMTP id S229562AbhHDEfE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 00:35:04 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66BFBC061799
-        for <devicetree@vger.kernel.org>; Tue,  3 Aug 2021 21:35:04 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7551C0613D5
+        for <devicetree@vger.kernel.org>; Tue,  3 Aug 2021 21:34:52 -0700 (PDT)
 Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1mB8c6-0006Ov-SG; Wed, 04 Aug 2021 06:34:42 +0200
+        id 1mB8c6-0006Ow-SG; Wed, 04 Aug 2021 06:34:42 +0200
 Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1mB8c5-00034k-WF; Wed, 04 Aug 2021 06:34:42 +0200
+        id 1mB8c6-00034u-ES; Wed, 04 Aug 2021 06:34:42 +0200
 From:   Oleksij Rempel <o.rempel@pengutronix.de>
 To:     Arnd Bergmann <arnd@arndb.de>, Daniel Vetter <daniel@ffwll.ch>,
         David Airlie <airlied@linux.ie>,
@@ -35,9 +35,9 @@ Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         dri-devel@lists.freedesktop.org, Sam Ravnborg <sam@ravnborg.org>
-Subject: [PATCH v4 1/3] dt-bindings: vendor-prefixes: Add an entry for SKOV A/S
-Date:   Wed,  4 Aug 2021 06:34:37 +0200
-Message-Id: <20210804043439.11757-2-o.rempel@pengutronix.de>
+Subject: [PATCH v4 2/3] dt-bindings: arm: fsl: add SKOV imx6q and imx6dl based boards
+Date:   Wed,  4 Aug 2021 06:34:38 +0200
+Message-Id: <20210804043439.11757-3-o.rempel@pengutronix.de>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210804043439.11757-1-o.rempel@pengutronix.de>
 References: <20210804043439.11757-1-o.rempel@pengutronix.de>
@@ -51,26 +51,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add "skov" entry for the SKOV A/S: https://www.skov.com/en/
+Add SKOV imx6q/dl LT2, LT6 and mi1010ait-1cp1 boards.
 
 Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/arm/fsl.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 62cb1d9341f5..738d4f44f0de 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1068,6 +1068,8 @@ patternProperties:
-     description: Silicon Integrated Systems Corp.
-   "^sitronix,.*":
-     description: Sitronix Technology Corporation
-+  "^skov,.*":
-+    description: SKOV A/S
-   "^skyworks,.*":
-     description: Skyworks Solutions, Inc.
-   "^smartlabs,.*":
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index e2097011c4b0..600dfe984ab3 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -221,6 +221,9 @@ properties:
+               - prt,prti6q                # Protonic PRTI6Q board
+               - prt,prtwd2                # Protonic WD2 board
+               - rex,imx6q-rex-pro         # Rex Pro i.MX6 Quad Board
++              - skov,imx6q-skov-revc-lt2  # SKOV IMX6 CPU QuadCore lt2
++              - skov,imx6q-skov-revc-lt6  # SKOV IMX6 CPU QuadCore lt6
++              - skov,imx6q-skov-reve-mi1010ait-1cp1 # SKOV IMX6 CPU QuadCore mi1010ait-1cp1
+               - solidrun,cubox-i/q        # SolidRun Cubox-i Dual/Quad
+               - solidrun,hummingboard/q
+               - solidrun,hummingboard2/q
+@@ -378,6 +381,8 @@ properties:
+               - prt,prtvt7                # Protonic VT7 board
+               - rex,imx6dl-rex-basic      # Rex Basic i.MX6 Dual Lite Board
+               - riot,imx6s-riotboard      # RIoTboard i.MX6S
++              - skov,imx6dl-skov-revc-lt2 # SKOV IMX6 CPU SoloCore lt2
++              - skov,imx6dl-skov-revc-lt6 # SKOV IMX6 CPU SoloCore lt6
+               - solidrun,cubox-i/dl            # SolidRun Cubox-i Solo/DualLite
+               - solidrun,hummingboard/dl
+               - solidrun,hummingboard2/dl      # SolidRun HummingBoard2 Solo/DualLite
 -- 
 2.30.2
 
