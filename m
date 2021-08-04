@@ -2,79 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 948653DFDEC
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 11:23:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7688B3DFDF6
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 11:24:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237062AbhHDJXV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 05:23:21 -0400
-Received: from mo-csw1115.securemx.jp ([210.130.202.157]:48868 "EHLO
-        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236401AbhHDJXT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 05:23:19 -0400
-Received: by mo-csw.securemx.jp (mx-mo-csw1115) id 1749MpiP002330; Wed, 4 Aug 2021 18:22:52 +0900
-X-Iguazu-Qid: 2wHHa7GsNT0uX9uM8B
-X-Iguazu-QSIG: v=2; s=0; t=1628068971; q=2wHHa7GsNT0uX9uM8B; m=vlGExLCQ7QogF06Y+4mZP3ppb9dTjhNa5jRdqtpR3Bw=
-Received: from imx12-a.toshiba.co.jp (imx12-a.toshiba.co.jp [61.202.160.135])
-        by relay.securemx.jp (mx-mr1113) id 1749Mmnt013386
-        (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
-        Wed, 4 Aug 2021 18:22:50 +0900
-Received: from enc02.toshiba.co.jp (enc02.toshiba.co.jp [61.202.160.51])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by imx12-a.toshiba.co.jp (Postfix) with ESMTPS id 130B910011D;
-        Wed,  4 Aug 2021 18:22:48 +0900 (JST)
-Received: from hop101.toshiba.co.jp ([133.199.85.107])
-        by enc02.toshiba.co.jp  with ESMTP id 1749MlD9014994;
-        Wed, 4 Aug 2021 18:22:47 +0900
-From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Subject: [PATCH v4 4/4] MAINTAINERS: Add entries for Toshiba Visconti PLL and clock controller
-Date:   Wed,  4 Aug 2021 18:22:44 +0900
-X-TSB-HOP: ON
-Message-Id: <20210804092244.390376-5-nobuhiro1.iwamatsu@toshiba.co.jp>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210804092244.390376-1-nobuhiro1.iwamatsu@toshiba.co.jp>
-References: <20210804092244.390376-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+        id S236288AbhHDJZA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 05:25:00 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60940 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236201AbhHDJZA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Aug 2021 05:25:00 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6E68C60F10;
+        Wed,  4 Aug 2021 09:24:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1628069087;
+        bh=yQJCXaJ1lIc6b4NIqDbXBzU5JPz5Orkw2H0bU7FU6KM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=iqCspnjABZIx5TMYxdBQNbESMsbGjnJsqVzuZxEOCADtG0vVdl0tb0itsb0UcE2zB
+         2bFu0rVuchVIuBsheyyXPz/wNXcC6UIrIdOWTOzDkxyrq7OuDSP/zjVGPdOADTV/cb
+         ub6gP0Xmd31cV8H7158/OrQdYkFXnV3zLwD7bC6dtkgJvV//bGhI8TzEkT/WvDpXqb
+         FU+jhfJKZEyvSi8ayp76garNBRuTxcLHLzNmm8Z/2NTdAnifo+oM4TIEUY68ZzPvc6
+         xpnHkvH2bMAF0IbyFXL1hnN3x/PhtoTMaNPl8cZhPWTNBLt7iecMCwyUUcfi+EOD5U
+         UQb/7dVmmwEHg==
+Date:   Wed, 4 Aug 2021 17:24:42 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Tim Harvey <tharvey@gateworks.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/5] arm64: dts: imx8mm-venice-gw700x: fix mp5416 pmic
+ config
+Message-ID: <20210804092441.GD30984@dragon>
+References: <20210727161101.32267-1-tharvey@gateworks.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210727161101.32267-1-tharvey@gateworks.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add entries for Toshiba Visconti PLL and clock controller binding and
-driver.
+On Tue, Jul 27, 2021 at 09:10:57AM -0700, Tim Harvey wrote:
+> Fix various MP5416 PMIC configurations:
+>  - Update regulator names per dt-bindings
+>  - ensure values fit among valid register values
+>  - add required regulator-max-microamp property
+>  - add regulator-always-on prop
+> 
+> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
 
-Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
----
- MAINTAINERS | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index bd7aff0c120f..334d482810e7 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2661,11 +2661,14 @@ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- S:	Supported
- T:	git git://git.kernel.org/pub/scm/linux/kernel/git/iwamatsu/linux-visconti.git
- F:	Documentation/devicetree/bindings/arm/toshiba.yaml
-+F:	Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pipllct.yaml
-+F:	Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pismu.yaml
- F:	Documentation/devicetree/bindings/net/toshiba,visconti-dwmac.yaml
- F:	Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
- F:	Documentation/devicetree/bindings/pinctrl/toshiba,tmpv7700-pinctrl.yaml
- F:	Documentation/devicetree/bindings/watchdog/toshiba,visconti-wdt.yaml
- F:	arch/arm64/boot/dts/toshiba/
-+F:	drivers/clk/visconti/
- F:	drivers/net/ethernet/stmicro/stmmac/dwmac-visconti.c
- F:	drivers/gpio/gpio-visconti.c
- F:	drivers/pinctrl/visconti/
--- 
-2.32.0
-
-
+Applied all, thanks!
