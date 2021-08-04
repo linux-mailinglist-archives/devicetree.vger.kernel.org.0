@@ -2,98 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A9313DFC1B
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 09:30:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74E3F3DFC32
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 09:39:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235916AbhHDHa7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 03:30:59 -0400
-Received: from mout.gmx.net ([212.227.17.21]:49923 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235817AbhHDHa6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 4 Aug 2021 03:30:58 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1628062222;
-        bh=P4wBvc85h3fXlWdQcXelaLmQpD4A4GD47g72UVNj57I=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=MY1RIEdV/YTZijOtU6ffuHajpvE/20+zoOy4oMIA9PMA3e8aXwTzaWPC7MBwPQv9v
-         zxZzXV80UaXChtfhqATFIYAKu67BsJ6Bz3v1inyeOEs2eNHmfydh/xW8GT3DvjbbGy
-         U9jSZDDOEcU1R6ZK2AfZFBmrKJZJ899NQx7CctXU=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [217.61.147.17] ([217.61.147.17]) by web-mail.gmx.net
- (3c-app-gmx-bap67.server.lan [172.19.172.67]) (via HTTP); Wed, 4 Aug 2021
- 09:30:21 +0200
+        id S235658AbhHDHjM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 03:39:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45188 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235619AbhHDHjM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 03:39:12 -0400
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0762EC0613D5;
+        Wed,  4 Aug 2021 00:38:59 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id z3so2073084plg.8;
+        Wed, 04 Aug 2021 00:38:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=/1fnGxDd0u/KO3OYmBt1hqVEy3ZVm3ezsLmdUm+AT1k=;
+        b=t2al545lGWXDE+IrBUj6kjABFhNlXPKjpi56OsfM7nDToutk0x/+13Lf3lB9dk921F
+         NgunzaL3NJsp0ssYMW3cYYlTgmkvmPbi7yuUDgvMXpxMCR22qHZWp+5AXHJm8UHDEEdO
+         mmpSwMxWuTn8qexitJAZLwt6O71r6tX1Froe+sCz4tVhTPTUaRH1KQ6qn5JN6aGf0aJ6
+         DTAPDpmZE83qkcV+ELy/p3jZao1eb7RovcdF8KxC1QZkcSqvVC84A7uN0gPY7RGVcuiZ
+         nm8+X2tmEjWwYJQ2AChm0AvKiEVfkAyNsCquLqeP88hVZA44cOIpnxNNlcTXVlZy5C/w
+         KEDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=/1fnGxDd0u/KO3OYmBt1hqVEy3ZVm3ezsLmdUm+AT1k=;
+        b=sqV875GEEtTkMfaTqV5/W4DsfUxBxvv1TBUO6Ko2cHxmkNzoFlUSFvjy7rpTJNo6EF
+         wQ89zS/fx/ezgIICqe7Ux4pcCJedTT/rYIFGrrwxYNWLBl9jUZZFNA8Havzg8/aXEFl+
+         8v2L9VVN/4Hmodn6w/n2nEbPI6242Skos8m7HF2ZBc+Y2mCO44gBp0gzYXKOHk+h/gXS
+         9AkBFGhODi6bwUa7VXqgIq/oJrERX3hUGmUavo/sK006xuYujr3lDJ37YVoT6R9KStky
+         NIy77e3q16pgdls4HCO4is5Dkc3tZrAYAqCrKnlWXq3YVT+yRg6+4tL6c3X+0O1UOf1R
+         CuCg==
+X-Gm-Message-State: AOAM531l7FMvK2fTIQt0Kx+J+3QJLxFKlovonIHJcrMBE+21XboN/BiU
+        yIaUa2yx6RjDKAfUO4olYOFpvOprmBrV80rxFjU=
+X-Google-Smtp-Source: ABdhPJyo6k11qe9mgZUkeiX2Z9vHXhC8pf9bZuDidjcgojlx9+1dWKRxa087OehLD6AqCLTzmoD9XaA+RTZC00T0z20=
+X-Received: by 2002:a17:902:b713:b029:12b:b249:693f with SMTP id
+ d19-20020a170902b713b029012bb249693fmr5415074pls.17.1628062738544; Wed, 04
+ Aug 2021 00:38:58 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID: <trinity-a5eeacb8-1625-4111-b613-19ee1609b902-1628062221917@3c-app-gmx-bap67>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Hsin-Yi Wang <hsinyi@chromium.org>
-Subject: Aw: [PATCH v8, 2/2] soc: mediatek: mmsys: Add mt8192 mmsys routing
- table
-Content-Type: text/plain; charset=UTF-8
-Date:   Wed, 4 Aug 2021 09:30:21 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <1627894773-23872-3-git-send-email-yongqiang.niu@mediatek.com>
-References: <1627894773-23872-1-git-send-email-yongqiang.niu@mediatek.com>
- <1627894773-23872-3-git-send-email-yongqiang.niu@mediatek.com>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:FTFMR063lUiqNFEXMYKR9Nt6kBJb+tvRQII2gEh1asf4eB17tIoXkk2zLgq9ZD1OfoZwa
- zwQa5mpCvFQBtgET6CZ/J7NtfPT9Bk8eILs7hs9zUEJ356V/YkowKCFFYgFuC5vh804RgGRtvI7S
- nN/4NVGY4SKwh3JwOyAbL5N6eyxGAapF+Qt7UbVMzOun+eMRCx/q2qjqlGp3A92+tmr3Oxt4iFpr
- WxfpR8duyZViNpCMnmrdQSeLBnDM9/A+UnMfbmH4lXNI18H4pcGPM373s5b5GEWpkg89+mJ5Ihsq
- mQ=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:pe3B7hYMLN8=:xYFKFGHPzPUBrVYDFk7erl
- jCyPvToDYyqeGdTfuO5erRCplUODZQ2TuJJTXrNllkHHVX+Q/xgVq0GKWHQV3KLGEreWxpo7d
- XuU/FRHqPq7uKnltpXonljHTWVPtSv+lp2tPV0+wDrTSU5vYIsrnacPtTmNg2KfT2xbuSKBIJ
- g35lTXsvY70UqFgAtB5vAwdu6cvSdM1vEZFeBpbdJDDdPdVRnh77ajOPurEJTqVU+MO3PlP6e
- VkRPJx0RikfPKW7fd6qRXqGal/KDecSIIxzjFCltzjLYdiYF+XRYwOzKeSGR95hMMMggCdMz8
- iYtXCF1kkmI1b/gGBNPqktDysHJYfO6xC1mUr7zdhtpxS70PkdPdSKP/S/Q2PmzlrXpIPaPdv
- 7F3/a30PnTmhxNZElXqCoFQJbFirK3s7LfuzbysOw5tuaTZpqF122rvWqEY6z/RdKlKIxsYKW
- wPieYJYeNVnxgFZkdRfMjwEANhdYzIJkXUaiFwOKT4OydA9m1lie++9HLB7/ew7Irdhr/+2rI
- 7xhz9zJtLT2d4i/64rW2kLhXWhraE7ZVKhbJtN21MRQ2eGC/VjY1ItEqfKl14UyNEL/CA/1ps
- FlNKtiSJATQq/OkmLx0fiub23Mve1SBSNWj3XfP8ZsLlAIXg86oaBmnaaTyK3av+huAJ2RRtC
- uZCpWZVNQUG02nrYcaOWBMtHWW3s4s/QfEcDp6rD05SgwQxnB04FXWgv3u8pDFGevUh4Xiu71
- iiUOreyBgptkJa63QoxIL6RfHndWbwa8g8Cu+gMb6g4gxL2i7vV5zVXWV2oln6MXZt5fAtt5a
- Dbie10PssSR6fDvZdVRpeDDnnoQ4EbTxssHUiZY1tjOlujPB48=
+References: <20210729053937.20281-1-shruthi.sanil@intel.com>
+ <20210729053937.20281-2-shruthi.sanil@intel.com> <YQh1HMMkJyO8g/RP@robh.at.kernel.org>
+ <BYAPR11MB31281638EBA0C2B815DF56F9F1F19@BYAPR11MB3128.namprd11.prod.outlook.com>
+In-Reply-To: <BYAPR11MB31281638EBA0C2B815DF56F9F1F19@BYAPR11MB3128.namprd11.prod.outlook.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Wed, 4 Aug 2021 10:38:22 +0300
+Message-ID: <CAHp75VeAnm-9oy5BinY8DU5tRj0EhU_vVxkvcp0M+wXPSv8Wdw@mail.gmail.com>
+Subject: Re: [PATCH v5 1/2] dt-bindings: timer: Add bindings for Intel Keem
+ Bay SoC Timer
+To:     "Sanil, Shruthi" <shruthi.sanil@intel.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "kris.pan@linux.intel.com" <kris.pan@linux.intel.com>,
+        "mgross@linux.intel.com" <mgross@linux.intel.com>,
+        "Thokala, Srikanth" <srikanth.thokala@intel.com>,
+        "Raja Subramanian, Lakshmi Bai" 
+        <lakshmi.bai.raja.subramanian@intel.com>,
+        "Sangannavar, Mallikarjunappa" 
+        <mallikarjunappa.sangannavar@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+On Wed, Aug 4, 2021 at 8:35 AM Sanil, Shruthi <shruthi.sanil@intel.com> wro=
+te:
+> > From: Rob Herring <robh@kernel.org>
+> > Sent: Tuesday, August 3, 2021 4:14 AM
 
-can you please test if your device still work after applying this
+...
 
-https://patchwork.kernel.org/project/linux-mediatek/patch/20210729070549.5514-1-linux@fw-web.de/
+> > > +properties:
+> >
+> > You need a 'compatible' here. Otherwise, how does one know what 'reg'
+> > contains. Also, without it, this schema will never be applied.
+> >
+>
+> This is a parent block that has the common configuration register address=
+ defined which we would need during the initialization of the child nodes. =
+This block in itself is not doing anything. We have this because, we have a=
+ common register that is required to be accessed during all the timers and =
+counter initialization.
+> The child nodes have the compatible string, which is used in the driver. =
+I have validated this on the Keem Bay HW and see that the timer probes are =
+being called and the timers are functional as expected.
 
-and
+I think I understand now. The problem is that the current state of
+affairs with this block is incorrect software representation. What you
+need is to create an MFD device driver (for which the compatible will
+exactly the one Rob is telling about) and from it you register the
+rest of your drivers. The existing drivers for this block should be
+converted to MFD schema.
 
-duplicate value constants in your routes?
-
-e.g. changing
-
-+		DDP_COMPONENT_OVL_2L0, DDP_COMPONENT_RDMA0,
-+		MT8192_DISP_OVL0_2L_MOUT_EN, MT8192_OVL0_MOUT_EN_DISP_RDMA0,
-
-to
-
-+		DDP_COMPONENT_OVL_2L0, DDP_COMPONENT_RDMA0,
-+		MT8192_DISP_OVL0_2L_MOUT_EN, MT8192_OVL0_MOUT_EN_DISP_RDMA0,
-+		MT8192_OVL0_MOUT_EN_DISP_RDMA0
-
-regards Frank
+--=20
+With Best Regards,
+Andy Shevchenko
