@@ -2,189 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E7CE3DFDD1
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 11:19:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7073E3DFDE5
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 11:23:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235714AbhHDJUA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 05:20:00 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:57742 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S235443AbhHDJUA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 05:20:00 -0400
-X-IronPort-AV: E=Sophos;i="5.84,293,1620658800"; 
-   d="scan'208";a="89801999"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 04 Aug 2021 18:19:46 +0900
-Received: from localhost.localdomain (unknown [10.226.92.204])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 1308E42389D2;
-        Wed,  4 Aug 2021 18:19:43 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        id S236458AbhHDJXS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 05:23:18 -0400
+Received: from mo-csw1514.securemx.jp ([210.130.202.153]:49114 "EHLO
+        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236335AbhHDJXR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 05:23:17 -0400
+Received: by mo-csw.securemx.jp (mx-mo-csw1514) id 1749MnUk003666; Wed, 4 Aug 2021 18:22:49 +0900
+X-Iguazu-Qid: 34tr8rsmplAFb8DW5K
+X-Iguazu-QSIG: v=2; s=0; t=1628068969; q=34tr8rsmplAFb8DW5K; m=3WCU0AJIjs6jEOfrFboTTCoKRWn+QnzA6S4cxWAXIlQ=
+Received: from imx12-a.toshiba.co.jp (imx12-a.toshiba.co.jp [61.202.160.135])
+        by relay.securemx.jp (mx-mr1510) id 1749MlDJ008934
+        (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
+        Wed, 4 Aug 2021 18:22:48 +0900
+Received: from enc02.toshiba.co.jp (enc02.toshiba.co.jp [61.202.160.51])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by imx12-a.toshiba.co.jp (Postfix) with ESMTPS id 88195100114;
+        Wed,  4 Aug 2021 18:22:47 +0900 (JST)
+Received: from hop101.toshiba.co.jp ([133.199.85.107])
+        by enc02.toshiba.co.jp  with ESMTP id 1749MlD7014994;
+        Wed, 4 Aug 2021 18:22:47 +0900
+From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: mmc: renesas,sdhi: Document RZ/G2L bindings
-Date:   Wed,  4 Aug 2021 10:19:40 +0100
-Message-Id: <20210804091940.23983-1-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Subject: [PATCH v4 0/4] clk: visconti: Add support common clock driver and reset driver
+Date:   Wed,  4 Aug 2021 18:22:40 +0900
+X-TSB-HOP: ON
+Message-Id: <20210804092244.390376-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document RZ/G2L SDHI controller bindings.
+Hi,
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-v1->v2:
- * Fixed dtbs-check issue for RZ/A{1,2} platforms.
----
- .../devicetree/bindings/mmc/renesas,sdhi.yaml | 95 ++++++++++++-------
- 1 file changed, 60 insertions(+), 35 deletions(-)
+This series is PLL, clock and reset driver for Toshiba's ARM SoC, Visconti[0].
+Since the clock driver and reset driver are provided as one function, they are
+provided in cooperation with the clock driver.
 
-diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-index 677989bc5924..3a90dd447e17 100644
---- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-+++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-@@ -9,9 +9,6 @@ title: Renesas SDHI SD/MMC controller
- maintainers:
-   - Wolfram Sang <wsa+renesas@sang-engineering.com>
- 
--allOf:
--  - $ref: "mmc-controller.yaml"
--
- properties:
-   compatible:
-     oneOf:
-@@ -47,19 +44,20 @@ properties:
-           - const: renesas,sdhi-mmc-r8a77470 # RZ/G1C (SDHI/MMC IP)
-       - items:
-           - enum:
--              - renesas,sdhi-r8a774a1 # RZ/G2M
--              - renesas,sdhi-r8a774b1 # RZ/G2N
--              - renesas,sdhi-r8a774c0 # RZ/G2E
--              - renesas,sdhi-r8a774e1 # RZ/G2H
--              - renesas,sdhi-r8a7795  # R-Car H3
--              - renesas,sdhi-r8a7796  # R-Car M3-W
--              - renesas,sdhi-r8a77961 # R-Car M3-W+
--              - renesas,sdhi-r8a77965 # R-Car M3-N
--              - renesas,sdhi-r8a77970 # R-Car V3M
--              - renesas,sdhi-r8a77980 # R-Car V3H
--              - renesas,sdhi-r8a77990 # R-Car E3
--              - renesas,sdhi-r8a77995 # R-Car D3
--              - renesas,sdhi-r8a779a0 # R-Car V3U
-+              - renesas,sdhi-r8a774a1  # RZ/G2M
-+              - renesas,sdhi-r8a774b1  # RZ/G2N
-+              - renesas,sdhi-r8a774c0  # RZ/G2E
-+              - renesas,sdhi-r8a774e1  # RZ/G2H
-+              - renesas,sdhi-r8a7795   # R-Car H3
-+              - renesas,sdhi-r8a7796   # R-Car M3-W
-+              - renesas,sdhi-r8a77961  # R-Car M3-W+
-+              - renesas,sdhi-r8a77965  # R-Car M3-N
-+              - renesas,sdhi-r8a77970  # R-Car V3M
-+              - renesas,sdhi-r8a77980  # R-Car V3H
-+              - renesas,sdhi-r8a77990  # R-Car E3
-+              - renesas,sdhi-r8a77995  # R-Car D3
-+              - renesas,sdhi-r8a779a0  # R-Car V3U
-+              - renesas,sdhi-r9a07g044 # RZ/G2{L,LC}
-           - const: renesas,rcar-gen3-sdhi # R-Car Gen3 or RZ/G2
- 
-   reg:
-@@ -71,13 +69,11 @@ properties:
- 
-   clocks:
-     minItems: 1
--    maxItems: 2
-+    maxItems: 4
- 
-   clock-names:
-     minItems: 1
--    items:
--      - const: core
--      - const: cd
-+    maxItems: 4
- 
-   dmas:
-     minItems: 4
-@@ -112,6 +108,50 @@ properties:
- 
-   max-frequency: true
- 
-+allOf:
-+  - $ref: "mmc-controller.yaml"
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - renesas,sdhi-r7s72100
-+              - renesas,sdhi-r7s9210
-+    then:
-+      properties:
-+        clocks:
-+          maxItems: 2
-+        clock-names:
-+          items:
-+            - const: core
-+            - const: cd
-+      required:
-+        - clock-names
-+      description:
-+        The internal card detection logic that exists in these controllers is
-+        sectioned off to be run by a separate second clock source to allow
-+        the main core clock to be turned off to save power.
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,sdhi-r9a07g044
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: IMCLK, SDHI channel main clock1.
-+            - description: IMCLK2, SDHI channel main clock2. When this clock is
-+                           turned off, external SD card detection cannot be
-+                           detected.
-+            - description: CLK_HS, SDHI channel High speed clock which operates
-+                           4 times that of SDHI channel main clock1.
-+            - description: ACLK, SDHI channel bus clock.
-+      required:
-+        - resets
-+
- required:
-   - compatible
-   - reg
-@@ -119,21 +159,6 @@ required:
-   - clocks
-   - power-domains
- 
--if:
--  properties:
--    compatible:
--      contains:
--        enum:
--          - renesas,sdhi-r7s72100
--          - renesas,sdhi-r7s9210
--then:
--  required:
--    - clock-names
--  description:
--    The internal card detection logic that exists in these controllers is
--    sectioned off to be run by a separate second clock source to allow
--    the main core clock to be turned off to save power.
--
- unevaluatedProperties: false
- 
- examples:
+This provides DT binding documentation, device driver, MAINTAINER files.
+
+Best regards,
+  Nobuhiro
+
+[0]:
+https://toshiba.semicon-storage.com/ap-en/semiconductor/product/image-recognition-processors-visconti.html
+
+  clk: visconti: Add support common clock driver and reset driver
+    v3 -> v4:
+       - Remove osc2 clock's code. Move to DT.
+    v2 -> v3:
+       - Fix return value in visconti_register_pll().
+       - Remove initialization of flags used by spin_lock_irqsave().
+       - - Change function name from *7708* to *770x*.
+       - Fix some coding style.
+    v1 -> v2:
+       - Fix warning with W=1
+
+  dt-bindings: clock: Add DT bindings for PLL of Toshiba Visconti TMPV7708 SoC
+    v3 -> v4:
+       - Fix node name to clock-controller.
+       - Remove osc2-clk-frequency, and this defines to DT as fixed-clock.
+       - Add clocks.
+    v2 -> v3:
+       - Change file name.
+    v1 -> v2:
+       - Update subject.
+
+  dt-bindings: clock: Add DT bindings for SMU of Toshiba Visconti TMPV7708 SoC
+    v3 -> v4:
+      - Move reset dt-binding header file.
+      - Move clock dt-binding header file.
+      - Change dt-binding header's License to 'GPL-2.0-only OR BSD-2-Clause'
+      - Fix node name to clock-controller.
+    v2 -> v3:
+       - Change file name.
+    v1 -> v2:
+       - Update subject.
+
+  MAINTAINERS: Add entries for Toshiba Visconti PLL and clock controller
+    v3 -> v4:
+       - no update.
+    v2 -> v3:
+       - Change path of DT binding files.
+    v1 -> v2:
+       - no update.
+
+Nobuhiro Iwamatsu (4):
+  dt-bindings: clock: Add DT bindings for PLL of Toshiba Visconti TMPV770x SoC
+  dt-bindings: clock: Add DT bindings for SMU of Toshiba Visconti TMPV770x SoC
+  clk: visconti: Add support common clock driver and reset driver
+  MAINTAINERS: Add entries for Toshiba Visconti PLL and clock controller
+
+ .../clock/toshiba,tmpv770x-pipllct.yaml       |  57 +++
+ .../clock/toshiba,tmpv770x-pismu.yaml         |  50 +++
+ MAINTAINERS                                   |   3 +
+ drivers/clk/Makefile                          |   1 +
+ drivers/clk/visconti/Makefile                 |   5 +
+ drivers/clk/visconti/clkc-tmpv770x.c          | 232 +++++++++++
+ drivers/clk/visconti/clkc.c                   | 220 +++++++++++
+ drivers/clk/visconti/clkc.h                   |  75 ++++
+ drivers/clk/visconti/pll-tmpv770x.c           |  85 ++++
+ drivers/clk/visconti/pll.c                    | 369 ++++++++++++++++++
+ drivers/clk/visconti/pll.h                    |  63 +++
+ drivers/clk/visconti/reset.c                  | 111 ++++++
+ drivers/clk/visconti/reset.h                  |  35 ++
+ include/dt-bindings/clock/toshiba,tmpv770x.h  | 181 +++++++++
+ include/dt-bindings/reset/toshiba,tmpv770x.h  |  41 ++
+ 15 files changed, 1528 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pipllct.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pismu.yaml
+ create mode 100644 drivers/clk/visconti/Makefile
+ create mode 100644 drivers/clk/visconti/clkc-tmpv770x.c
+ create mode 100644 drivers/clk/visconti/clkc.c
+ create mode 100644 drivers/clk/visconti/clkc.h
+ create mode 100644 drivers/clk/visconti/pll-tmpv770x.c
+ create mode 100644 drivers/clk/visconti/pll.c
+ create mode 100644 drivers/clk/visconti/pll.h
+ create mode 100644 drivers/clk/visconti/reset.c
+ create mode 100644 drivers/clk/visconti/reset.h
+ create mode 100644 include/dt-bindings/clock/toshiba,tmpv770x.h
+ create mode 100644 include/dt-bindings/reset/toshiba,tmpv770x.h
+
 -- 
-2.17.1
+2.32.0
+
 
