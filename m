@@ -2,93 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B87283E0423
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 17:26:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B9D03E0430
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 17:29:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238973AbhHDP0c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 11:26:32 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:13424 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S238988AbhHDP0Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 11:26:24 -0400
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 174FLTf9002630;
-        Wed, 4 Aug 2021 17:25:47 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=S9ert6QnYVEygDRWb10g0bL7/eEDQa3oDWEm42+oZ6s=;
- b=UylDzC2ymHe/7lMboKLJCiD1HFOUNh83+4hWNfiK7WpdZyR2CLuujZSu3XNrV6Tt3E3x
- BRCHQvGYH6//NI6qXtKNivNjXWnJnEbWXMBV9MMWmnisQNVNrqd72FeMZMztpnXsUR2z
- q9WwYQl2tLjcRD++azgWr32uv488g5j5ustfnpCg8oslT4bLzowgBJigY0hpoUiZ0uJb
- itPx53GK4gPzA8uUVdBpK/dE1QQx4K+fAyPENdUr1L09T03uWi9geaze7557Zz0ULtT0
- 3wvUdUgQe1FhP5sU7eIDtrhL9T8kwT0tpXY69FiM7EBFtwI1ym9aVqs1JgtZUc99j7fq hw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 3a7ruwskhb-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 04 Aug 2021 17:25:47 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 21AC410002A;
-        Wed,  4 Aug 2021 17:25:46 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id F178522D16E;
-        Wed,  4 Aug 2021 17:25:45 +0200 (CEST)
-Received: from lmecxl0573.lme.st.com (10.75.127.46) by SFHDAG2NODE3.st.com
- (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 4 Aug
- 2021 17:25:45 +0200
-Subject: Re: [PATCH 0/4] ARM: dts: sti: remove clk_ignore_unused from bootargs
-To:     Arnd Bergmann <arnd@arndb.de>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Russell King - ARM Linux <linux@armlinux.org.uk>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>, SoC Team <soc@kernel.org>
-References: <20210803124506.23365-1-patrice.chotard@foss.st.com>
- <CAK8P3a06_vUXghtvp4jTMEc4jV7RW8XmbUmgfrsoH_BSZ+awJQ@mail.gmail.com>
-From:   Patrice CHOTARD <patrice.chotard@foss.st.com>
-Message-ID: <09ee0256-5f51-513c-52f2-441e0e41aea9@foss.st.com>
-Date:   Wed, 4 Aug 2021 17:25:45 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S239045AbhHDP3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 11:29:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40576 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239098AbhHDP3e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 11:29:34 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26E6BC0617A1
+        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 08:28:39 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id ca5so3483855pjb.5
+        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 08:28:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ABQinGThgXjQH4ldJXoDYT9bEE6sztnsLgaWTHXyf1I=;
+        b=bTMb9Bwz65pSpUsI5Q5vTUk7YbFv5GItIndqJOyf0xn3pF382FMPog7rjUbM62Rec6
+         yxadZgJOJUZ2MOJAInGMwhm7qIhq3GnAkVsCaOcJun+Jdhk/kxrEnUMz6AcsoyuSHcSv
+         BvYpMblyFOL56LS9pYJlNWuDNY2MRae3MDJnEzrIuYYIO5mBaj5zRo0Z38gYiwLXp+VD
+         JJ2HHAsSllFYf4VY3v3lQG+VSP36E4VFQE2rt8L+sOu3ONLQM2MiQGmw6CCgJAD8XSsY
+         g0McvEvZ2Q2JN+qzD2YWk95GRXurSRqVAtLaCsvp7e9v7RwndcgcsJJbdg74haRfVZtS
+         IoRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ABQinGThgXjQH4ldJXoDYT9bEE6sztnsLgaWTHXyf1I=;
+        b=pGo5NWR8y2Nndb0u5O2/ixPG2j3Qk7fVI1OY1TMPGxz9tr/o6jrARYBuFfopDjJkar
+         rEfpaRWLstgaltHzOPD43vZZbyyOJhXm95MLoq6mh3WillSGwnUKHwjJpk+m4dsTVxjA
+         5tH5REEs41jK4y2xGByzU42nUWH7wGyZVqCmbZ+X1mGZuJpVjUXjn3OsprPNXfeatP5A
+         YX8t4CqwBN5Ia9P3T3rHVB2pMjeq76VP8WBjUdV13cxOa4D7uXKihHz8SbxhLqTMig+6
+         /WDhTSZ+cxvtI9c5IgpBrQ06pyxXdss5r/FYdxarlwOoG2fttf2UOg79NglCqeIM9s6L
+         89lQ==
+X-Gm-Message-State: AOAM532OJplUWXDKGmSjpVgTw0VS7TjwxJ/tgVdbJ72mQtTCV392du6Y
+        AfGvS6xnC9jfNvHPDefxczX9YQ==
+X-Google-Smtp-Source: ABdhPJxCRBnR8iM8jyZmuXvcXU3+BVIWG9EG+G5PUdy9yAdeHQClC+LOnBgdO+YhqTmLZLajqAQhzg==
+X-Received: by 2002:a63:5815:: with SMTP id m21mr488033pgb.363.1628090918593;
+        Wed, 04 Aug 2021 08:28:38 -0700 (PDT)
+Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id k4sm4025561pgh.9.2021.08.04.08.28.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Aug 2021 08:28:37 -0700 (PDT)
+Date:   Wed, 4 Aug 2021 09:28:35 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Tinghan Shen <tinghan.shen@mediatek.com>
+Cc:     ohad@wizery.com, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        matthias.bgg@gmail.com, krzysztof.kozlowski@canonical.com,
+        shawnguo@kernel.org, sam@ravnborg.org, linux@rempel-privat.de,
+        daniel@0x0f.com, Max.Merchel@tq-group.com, geert+renesas@glider.be,
+        fanghao11@huawei.com, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 5/5] remoteproc: mediatek: Support mt8195 scp
+Message-ID: <20210804152835.GA3145709@p14s>
+References: <20210803075922.11611-1-tinghan.shen@mediatek.com>
+ <20210803075922.11611-6-tinghan.shen@mediatek.com>
 MIME-Version: 1.0
-In-Reply-To: <CAK8P3a06_vUXghtvp4jTMEc4jV7RW8XmbUmgfrsoH_BSZ+awJQ@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.46]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
- definitions=2021-08-04_03:2021-08-04,2021-08-04 signatures=0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210803075922.11611-6-tinghan.shen@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Arnd
-
-On 8/4/21 3:50 PM, Arnd Bergmann wrote:
-> On Tue, Aug 3, 2021 at 2:45 PM <patrice.chotard@foss.st.com> wrote:
->>
->> From: Patrice Chotard <patrice.chotard@foss.st.com>
->>
->> Remove clk_ignore_unused from bootargs from STi boards DT.
+On Tue, Aug 03, 2021 at 03:59:22PM +0800, Tinghan Shen wrote:
+> The SCP clock design is changed on mt8195 that doesn't need to control
+> SCP clock on kernel side.
 > 
-> The patches look good to me, but I'm not sure what you expect me to do
-> here, as you have added soc@kernel.org to Cc:, and other addresses to To:
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> ---
+>  drivers/remoteproc/mtk_common.h |  1 +
+>  drivers/remoteproc/mtk_scp.c    | 48 +++++++++++++++++++++++++++++----
+>  2 files changed, 44 insertions(+), 5 deletions(-)
+>
 
-Sorry, i wasn't aware that soc@kernel.org must only be used for pull request.
+Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
 
+> diff --git a/drivers/remoteproc/mtk_common.h b/drivers/remoteproc/mtk_common.h
+> index 61901f5efa05..5ff3867c72f3 100644
+> --- a/drivers/remoteproc/mtk_common.h
+> +++ b/drivers/remoteproc/mtk_common.h
+> @@ -72,6 +72,7 @@ struct scp_ipi_desc {
+>  struct mtk_scp;
+>  
+>  struct mtk_scp_of_data {
+> +	int (*scp_clk_get)(struct mtk_scp *scp);
+>  	int (*scp_before_load)(struct mtk_scp *scp);
+>  	void (*scp_irq_handler)(struct mtk_scp *scp);
+>  	void (*scp_reset_assert)(struct mtk_scp *scp);
+> diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
+> index 9679cc26895e..36e48cf58ed6 100644
+> --- a/drivers/remoteproc/mtk_scp.c
+> +++ b/drivers/remoteproc/mtk_scp.c
+> @@ -312,6 +312,32 @@ static int scp_elf_read_ipi_buf_addr(struct mtk_scp *scp,
+>  	return -ENOENT;
+>  }
+>  
+> +static int mt8183_scp_clk_get(struct mtk_scp *scp)
+> +{
+> +	struct device *dev = scp->dev;
+> +	int ret = 0;
+> +
+> +	scp->clk = devm_clk_get(dev, "main");
+> +	if (IS_ERR(scp->clk)) {
+> +		dev_err(dev, "Failed to get clock\n");
+> +		ret = PTR_ERR(scp->clk);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static int mt8192_scp_clk_get(struct mtk_scp *scp)
+> +{
+> +	return mt8183_scp_clk_get(scp);
+> +}
+> +
+> +static int mt8195_scp_clk_get(struct mtk_scp *scp)
+> +{
+> +	scp->clk = NULL;
+> +
+> +	return 0;
+> +}
+> +
+>  static int mt8183_scp_before_load(struct mtk_scp *scp)
+>  {
+>  	/* Clear SCP to host interrupt */
+> @@ -785,12 +811,9 @@ static int scp_probe(struct platform_device *pdev)
+>  	if (ret)
+>  		goto destroy_mutex;
+>  
+> -	scp->clk = devm_clk_get(dev, "main");
+> -	if (IS_ERR(scp->clk)) {
+> -		dev_err(dev, "Failed to get clock\n");
+> -		ret = PTR_ERR(scp->clk);
+> +	ret = scp->data->scp_clk_get(scp);
+> +	if (ret)
+>  		goto release_dev_mem;
+> -	}
+>  
+>  	/* register SCP initialization IPI */
+>  	ret = scp_ipi_register(scp, SCP_IPI_INIT, scp_init_ipi_handler, scp);
+> @@ -852,6 +875,7 @@ static int scp_remove(struct platform_device *pdev)
+>  }
+>  
+>  static const struct mtk_scp_of_data mt8183_of_data = {
+> +	.scp_clk_get = mt8183_scp_clk_get,
+>  	.scp_before_load = mt8183_scp_before_load,
+>  	.scp_irq_handler = mt8183_scp_irq_handler,
+>  	.scp_reset_assert = mt8183_scp_reset_assert,
+> @@ -864,6 +888,19 @@ static const struct mtk_scp_of_data mt8183_of_data = {
+>  };
+>  
+>  static const struct mtk_scp_of_data mt8192_of_data = {
+> +	.scp_clk_get = mt8192_scp_clk_get,
+> +	.scp_before_load = mt8192_scp_before_load,
+> +	.scp_irq_handler = mt8192_scp_irq_handler,
+> +	.scp_reset_assert = mt8192_scp_reset_assert,
+> +	.scp_reset_deassert = mt8192_scp_reset_deassert,
+> +	.scp_stop = mt8192_scp_stop,
+> +	.scp_da_to_va = mt8192_scp_da_to_va,
+> +	.host_to_scp_reg = MT8192_GIPC_IN_SET,
+> +	.host_to_scp_int_bit = MT8192_HOST_IPC_INT_BIT,
+> +};
+> +
+> +static const struct mtk_scp_of_data mt8195_of_data = {
+> +	.scp_clk_get = mt8195_scp_clk_get,
+>  	.scp_before_load = mt8192_scp_before_load,
+>  	.scp_irq_handler = mt8192_scp_irq_handler,
+>  	.scp_reset_assert = mt8192_scp_reset_assert,
+> @@ -877,6 +914,7 @@ static const struct mtk_scp_of_data mt8192_of_data = {
+>  static const struct of_device_id mtk_scp_of_match[] = {
+>  	{ .compatible = "mediatek,mt8183-scp", .data = &mt8183_of_data },
+>  	{ .compatible = "mediatek,mt8192-scp", .data = &mt8192_of_data },
+> +	{ .compatible = "mediatek,mt8195-scp", .data = &mt8195_of_data },
+>  	{},
+>  };
+>  MODULE_DEVICE_TABLE(of, mtk_scp_of_match);
+> -- 
+> 2.18.0
 > 
-> I have dropped them from patchwork for the moment. When you want
-> them to be applied to the soc tree, please resend or send a pull request
-> to:soc@kernel.org, until then, please leave out that address so it does
-> not get into patchwork.
-> 
->       Arnd
-> 
-
-Yes my intention is to submit a STi pull request with this patchset and another one.
-
-Thanks
-Patrice
