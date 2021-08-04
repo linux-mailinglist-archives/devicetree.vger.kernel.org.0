@@ -2,332 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 469283E0386
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 16:41:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BD113E03B6
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 16:51:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237906AbhHDOmC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 10:42:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57834 "EHLO
+        id S238713AbhHDOwF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 10:52:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237523AbhHDOmC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 10:42:02 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A69EC0613D5;
-        Wed,  4 Aug 2021 07:41:49 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id gs8so4028225ejc.13;
-        Wed, 04 Aug 2021 07:41:49 -0700 (PDT)
+        with ESMTP id S234423AbhHDOwE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 10:52:04 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23FB5C0613D5;
+        Wed,  4 Aug 2021 07:51:51 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id cf5so3905742edb.2;
+        Wed, 04 Aug 2021 07:51:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=FsND2VD1tfMjTxIruUVsPqPLwbrqDp/vXALMQ2gLNXw=;
-        b=Qgrh+VwFVjTb7JMPVBtjd/nBXsYzCBzHLSG1oQpLBh8KQxO8+X1rOWXCcn8BY6nxHZ
-         phvZGNlnT656A0kVfKOEpx441670TEVhWZEq4C5LPy66ndIJs9XzMMlsvZdyS8PjxiPS
-         kpIZIqtYj+BpXzMFPZTxJCdEwktWm7zakxi87+Sh3QKlu3gbyew9yxEVR/IjNXZYcJmW
-         hLYIwlTHJLrDtB+3azZLbtvf/19kZvRF7nEtM0cB+4I13VxCKwDs+Psvwgc13rSdtxEu
-         yFFqik/ZELWC9sgMWe6QzcUBbknvaKtnUUgd79mmEmruXnarLtGBg6Tw2lGtR5YSNrrx
-         fQ0Q==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=SECr+Us9Cf/Gvs+9Axv6k/jT6yduvmzCSZPno/cMwXg=;
+        b=U3stkZoVI7t/beAJKpSu3LM6JqYlv8YCenMMQQcY8tf+fvXDa89atBkfPWEEavOhH3
+         MhcVouky8a1GuUi9nK8T/rYY+iJP0T2LuzUQM07LI2baUg1LbUadbBbIwzDl2HF4h78v
+         mdLl8lQXPGRvo/0Tf8phhVw5ZH7CKGcuWDS2cso3VGG5Ke591qxHdVxZy4SXVkwMv5HE
+         Jzc99sefhCEDFpYcl0ghjmJ/0Zq1n9aiIQ63L7NyNka+NOK6AHcECVUJntxxiDyH8Go+
+         Kwwv0mFS3URX1g9BgMmtUk7rlBMq+GqdUbtqxsXTdifSZIVV/oILSjCcAupMzn8JFBRy
+         BIsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=FsND2VD1tfMjTxIruUVsPqPLwbrqDp/vXALMQ2gLNXw=;
-        b=LuCIZK4nSq9YAafCfx2AwTgwUdB4SRo5nTdeHdewp7nLfU8JONCFSZAMN2hBi+ZvSS
-         qe5YOHCPO3erxfgN/9e7tz/SgKzVRA3cKoHzdkGhLdfBxO2pKxfA+rasHsdGzRErtH/L
-         YAuG8wJsH0eqEZeh+EVtc7yj3RvDcxEhtzwQHQxKklzNHFPYECgGovA45IggL4EMa/QJ
-         oLy9ToC9gW8FIvyID1aWDt9bGOR2Um54ZSh3HNN/+rRXj7luKz2l/bwMxQPTPCIxZV7s
-         1DjpcX7aIRGcyQVSLmyNt7/y+OBg1muURGrxdCrg4+r7UhpfRcakTNKW21mkyqctZbky
-         9uVQ==
-X-Gm-Message-State: AOAM5303RMFiycd+nY3u7/Tcmt4ZPLUcTMb4KS8LsgGhvpXWH5jC4C85
-        JBVDoQvgR7wal6WWeDYBHo8=
-X-Google-Smtp-Source: ABdhPJypUH5eDrOfeiJ2VnDjvRhr2Hh4r5maJpCtTbe7KRdg+Zq8A7+1jHkuJtKuivbhMmosDN4/dQ==
-X-Received: by 2002:a17:906:30d0:: with SMTP id b16mr26182913ejb.495.1628088107864;
-        Wed, 04 Aug 2021 07:41:47 -0700 (PDT)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id e27sm737994ejc.41.2021.08.04.07.41.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Aug 2021 07:41:47 -0700 (PDT)
-Subject: Re: [PATCH v2 3/7] arm64: dts: rockchip: rk3568-evb1-v10: add
- regulators of rk809 pmic
-To:     Michael Riesch <michael.riesch@wolfvision.net>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Liang Chen <cl@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Simon Xue <xxm@rock-chips.com>,
-        Jianqun Xu <jay.xu@rock-chips.com>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Zhang Changzhong <zhangchangzhong@huawei.com>
-References: <20210804130625.15449-1-michael.riesch@wolfvision.net>
- <20210804130625.15449-4-michael.riesch@wolfvision.net>
-From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <cf4bf613-6462-fac9-824d-71375b852adf@gmail.com>
-Date:   Wed, 4 Aug 2021 16:41:46 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=SECr+Us9Cf/Gvs+9Axv6k/jT6yduvmzCSZPno/cMwXg=;
+        b=i6ozAlrVsDStKork34uS1DyqyxxtB7N+5+R0vg1nd80Wp8JiBH33uHPNsjDE5YhQdf
+         s924vHmBUUNzIaNIMGXBtVTZ3Db+cA45BHaZPRrjcII6Z+aDiI0/bvHLmW9VkFQxo3ib
+         StdSiwfakYWuEwwq2XNuuGX1/Cup778uhrhiQ/tuNB+89I3mSVSeFqPx0zS+gNWZjwAr
+         ovUm2uKH3dAG6yPZXmwS8lkljVRcEsMDjVQw/i7veijEFBRDzxOQdlq01DJW3ApRM2qO
+         7T9pQ6+MnAp3C6g0KfyXCtHErCeIkjezX26/eZYKvSK3tjTdm5rotP/eg2HUUdDv3YXE
+         TICg==
+X-Gm-Message-State: AOAM533wtoyIF2p6NimQoHO4mwXzTTkg+WBlMoDnRuB1i4YqUmPabOiK
+        cQ5M7bJLACJoIYSLv70s16A=
+X-Google-Smtp-Source: ABdhPJxYL6BxYMsug5DWZ2ymXXVaxisiTIuVkW3kDQum2jb1Tc6R8sNesjrpl102Ixo82n/MTCGnhA==
+X-Received: by 2002:a05:6402:49a:: with SMTP id k26mr74673edv.279.1628088709732;
+        Wed, 04 Aug 2021 07:51:49 -0700 (PDT)
+Received: from skbuf ([188.25.144.60])
+        by smtp.gmail.com with ESMTPSA id c6sm1044261ede.48.2021.08.04.07.51.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Aug 2021 07:51:49 -0700 (PDT)
+Date:   Wed, 4 Aug 2021 17:51:47 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
+Cc:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org,
+        robh+dt@kernel.org, UNGLinuxDriver@microchip.com,
+        Woojung.Huh@microchip.com, hkallweit1@gmail.com,
+        davem@davemloft.net, kuba@kernel.org, linux-kernel@vger.kernel.org,
+        vivien.didelot@gmail.com, f.fainelli@gmail.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 net-next 05/10] net: dsa: microchip: add DSA support
+ for microchip lan937x
+Message-ID: <20210804145147.4ncxdgrfzlipsjuf@skbuf>
+References: <20210731150416.upe5nwkwvwajhwgg@skbuf>
+ <49678cce02ac03edc6bbbd1afb5f67606ac3efc2.camel@microchip.com>
+ <20210802121550.gqgbipqdvp5x76ii@skbuf>
+ <YQfvXTEbyYFMLH5u@lunn.ch>
+ <20210802135911.inpu6khavvwsfjsp@skbuf>
+ <50eb24a1e407b651eda7aeeff26d82d3805a6a41.camel@microchip.com>
+ <20210803235401.rctfylazg47cjah5@skbuf>
+ <20210804095954.GN22278@shell.armlinux.org.uk>
+ <20210804104625.d2qw3gr7algzppz5@skbuf>
+ <d10aa31f1258aa2975e3837acb09f26265da91eb.camel@microchip.com>
 MIME-Version: 1.0
-In-Reply-To: <20210804130625.15449-4-michael.riesch@wolfvision.net>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d10aa31f1258aa2975e3837acb09f26265da91eb.camel@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
-
-Missing commit message.
-
-On 8/4/21 3:06 PM, Michael Riesch wrote:
-> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
-> ---
->  .../boot/dts/rockchip/rk3568-evb1-v10.dts     | 206 ++++++++++++++++++
->  1 file changed, 206 insertions(+)
+On Wed, Aug 04, 2021 at 07:58:15PM +0530, Prasanna Vengateshan wrote:
+> On Wed, 2021-08-04 at 13:46 +0300, Vladimir Oltean wrote:
+> > The problem is that I have no clear migration path for the drivers I
+> > maintain, like sja1105, and I suspect that others might be in the exact
+> > same situation.
+> > 
+> > Currently, if the sja1105 needs to add internal delays in a MAC-to-MAC
+> > (fixed-link) setup, it does that based on the phy-mode string. So
+> > "rgmii-id" + "fixed-link" means for sja1105 "add RX and TX RGMII
+> > internal delays", even though the documentation now says "the MAC should
+> > not add the RX or TX delays in this case".
+> > 
+> > There are 2 cases to think about, old driver with new DT blob and new
+> > driver with old DT blob. If breakage is involved, I am not actually very
+> > interested in doing the migration, because even though the interpretation
+> > of the phy-mode string is inconsistent between the phy-handle and fixed-link
+> > case (which was deliberate), at least it currently does all that I need it to.
+> > 
+> > I am not even clear what is the expected canonical behavior for a MAC
+> > driver. It parses rx-internal-delay-ps and tx-internal-delay-ps, and
+> > then what? It treats all "rgmii*" phy-mode strings identically? Or is it
+> > an error to have "rgmii-rxid" for phy-mode and non-zero rx-internal-delay-ps?
+> > If it is an error, should all MAC drivers check for it? And if it is an
+> > error, does it not make migration even more difficult (adding an
+> > rx-internal-delay-ps property to a MAC OF node which already uses
+> > "rgmii-id" would be preferable to also having to change the "rgmii-id"
+> > to "rgmii", because an old kernel might also need to work with that DT
+> > blob, and that will ignore the new rx-internal-delay-ps property).
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-> index 65e536c78d2e..f682144a1892 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-> @@ -104,6 +104,203 @@
->  	status = "okay";
->  };
->  
-> +&i2c0 {
-> +	status = "okay";
-> +
-> +	rk809: pmic@20 {
-> +		compatible = "rockchip,rk809";
-> +		reg = <0x20>;
-> +		interrupt-parent = <&gpio0>;
-> +		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_LOW>;
-> +		#clock-cells = <1>;
+> 
+> Considering the PHY is responsible to add internal delays w.r.to phy-mode, "*-
+> tx-internal-delay-ps" approach that i was applying to different connections as
+> shown below by bringing up different examples.
+> 
+> 1) Fixed-link MAC-MAC: 
+>        port@4 {
+>             .....
+>             phy-mode = "rgmii";
+>             rx-internal-delay-ps = <xxx>;
+>             tx-internal-delay-ps = <xxx>;
+>             ethernet = <&ethernet>;
+>             fixed-link {
+>            	......
+>             };
+>           };
+> 
+> 2) Fixed-link MAC-Unknown:
+>         port@5 {
+>             ......
+>             phy-mode = "rgmii-id";
+>             rx-internal-delay-ps = <xxx>;
+>             tx-internal-delay-ps = <xxx>;
+>             fixed-link {
+>            .	....
+>             };
+>           };
+> 
+> 3) Fixed-link :
+>         port@5 {
+>             ......
+>             phy-mode = "rgmii-id";
+>             fixed-link {
+>               .....
+>             };
+>           };
+> 
+> From above examples,
+> 	a) MAC node is responsible to add RGMII delay by parsing "*-internal-
+> delay-ps" for (1) & (2). Its a known item in this discussion.
+> 	b) Is rgmii-* to be ignored by the MAC in (2) and just apply the delays
+> from MAC side? Because if its forced to have "rgmii", would it become just -
+> >interface=*_MODE_RGMII and affects legacy?
 
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pmic_int>;
+Yes, I think the MAC would have to accept any "rgmii*" phy-mode in
+fixed-link. The legacy behavior would be do to whatever it did before,
+and the new behavior would be to NOT apply any MAC-level delays based on
+the phy-mode value, but only based on the {rx,tx}-internal-delay-ps
+properties if these are present, or fall back to the legacy behavior if
+they aren't.
 
-pinctrl-names below pinctrl-0 like the rest of rk356x.dtsi
+This way:
+- New kernel with old DT blob falls back to legacy behavior
+- New kernel with new DT blob finds the explicit {rx,tx}-internal-delay-ps
+  properties and applies MAC-level delays only according to those, while
+  accepting any phy-mode string
+- Old kernel with new DT blob behaves the same as before, because it
+  does not parse {rx,tx}-internal-delay-ps and we will not change its
+  phy-mode.
 
-> +		rockchip,system-power-controller;
-> +		wakeup-source;
-> +
-> +		vcc1-supply = <&vcc3v3_sys>;
-> +		vcc2-supply = <&vcc3v3_sys>;
-> +		vcc3-supply = <&vcc3v3_sys>;
-> +		vcc4-supply = <&vcc3v3_sys>;
-> +		vcc5-supply = <&vcc3v3_sys>;
-> +		vcc6-supply = <&vcc3v3_sys>;
-> +		vcc7-supply = <&vcc3v3_sys>;
-> +		vcc8-supply = <&vcc3v3_sys>;
-> +		vcc9-supply = <&vcc3v3_sys>;
-> +
-> +		regulators {
-> +			vdd_logic: DCDC_REG1 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <500000>;
-> +				regulator-max-microvolt = <1350000>;
-> +				regulator-init-microvolt = <900000>;
-> +				regulator-ramp-delay = <6001>;
-> +				regulator-initial-mode = <0x2>;
-> +				regulator-name = "vdd_logic";
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vdd_gpu: DCDC_REG2 {
-> +				regulator-min-microvolt = <500000>;
-> +				regulator-max-microvolt = <1350000>;
-> +				regulator-init-microvolt = <900000>;
-> +				regulator-ramp-delay = <6001>;
-> +				regulator-initial-mode = <0x2>;
-> +				regulator-name = "vdd_gpu";
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcc_ddr: DCDC_REG3 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-initial-mode = <0x2>;
-> +				regulator-name = "vcc_ddr";
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +				};
-> +			};
-> +
-> +			vdd_npu: DCDC_REG4 {
+> 	c) if MAC follows standard delay, then it needs to be validated against
+> "*-internal-delay-ps", may be validating against single value and throw an
+> error. Might be okay.
 
-> +				regulator-min-microvolt = <500000>;
-> +				regulator-max-microvolt = <1350000>;
+Drivers with no legacy might throw an error if:
+- phy-mode == "rgmii-id" or "rgmii-rxid" and there is a non-zero rx-internal-delay-ps
+- phy-mode == "rgmii-id" or "rgmii-txid" and there is a non-zero tx-internal-delay-ps
 
-Exception to the sort rule:
-1: regulator-min-microvolt above regulator-max-microvolt
+but considering that most drivers already have a legacy to support, I'm
+not sure how useful that error will be.
 
-2: regulator-name above all other regulator properties.
+> 	d) For 3), Neither MAC nor other side will apply delays. Expected.
 
-The rest in alphabetical order.
-Fix them all.
+In the "new" behavior, correct. In "legacy" behavior, they might have to.
 
-> +				regulator-init-microvolt = <900000>;
-> +				regulator-ramp-delay = <6001>;
-> +				regulator-initial-mode = <0x2>;
-> +				regulator-name = "vdd_npu";
+> 3) MAC-PHY
+> 
+> 	i) &test3 {
+> 		phy-handle = <&phy0>;
+> 		phy-mode = "rgmii-id";
+> 		phy0: ethernet-phy@xx {
+> 			.....
+> 			rx-internal-delay = <xxx>;
+> 			tx-internal-delay = <xxx>;
+> 		};
+> 	  };
+> 
+> 	ii) &test4 {
+> 		phy-handle = <&phy0>;
+> 		phy-mode = "rgmii";
+>         	rx-internal-delay-ps = <xxx>;
+>         	tx-internal-delay-ps = <xxx>;
+> 		phy0: ethernet-phy@xx {
+> 			reg = <x>;
+> 	        };
+> 	     };
+> 
+> 
+> For 3(i), I assume phy would apply internal delay values by checking its phydev-
+> >interface.
 
-Add empty line between properties and a node.
+PHY drivers have a phy_get_internal_delay() helper that takes into
+consideration both the phy-mode value and the {rx,tx}-internal-delay
+properties. In example 3(i), the {rx,tx}-internal-delay properties would
+prevail as long as the PHY driver uses that helper.
 
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcc_1v8: DCDC_REG5 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-name = "vcc_1v8";
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vdda0v9_image: LDO_REG1 {
-> +				regulator-min-microvolt = <900000>;
-> +				regulator-max-microvolt = <900000>;
-> +				regulator-name = "vdda0v9_image";
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vdda_0v9: LDO_REG2 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <900000>;
-> +				regulator-max-microvolt = <900000>;
-> +				regulator-name = "vdda_0v9";
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vdda0v9_pmu: LDO_REG3 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <900000>;
-> +				regulator-max-microvolt = <900000>;
-> +				regulator-name = "vdda0v9_pmu";
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +					regulator-suspend-microvolt = <900000>;
-> +				};
-> +			};
-> +
-> +			vccio_acodec: LDO_REG4 {
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-name = "vccio_acodec";
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vccio_sd: LDO_REG5 {
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-name = "vccio_sd";
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcc3v3_pmu: LDO_REG6 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-name = "vcc3v3_pmu";
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +					regulator-suspend-microvolt = <3300000>;
-> +				};
-> +			};
-> +
-> +			vcca_1v8: LDO_REG7 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-name = "vcca_1v8";
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcca1v8_pmu: LDO_REG8 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-name = "vcca1v8_pmu";
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +					regulator-suspend-microvolt = <1800000>;
-> +				};
-> +			};
-> +
-> +			vcca1v8_image: LDO_REG9 {
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-name = "vcca1v8_image";
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcc_3v3: SWITCH_REG1 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-name = "vcc_3v3";
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcc3v3_sd: SWITCH_REG2 {
-> +				regulator-name = "vcc3v3_sd";
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +		};
-> +	};
-> +};
-> +
->  &mdio0 {
->  	rgmii_phy0: ethernet-phy@0 {
->  		compatible = "ethernet-phy-ieee802.3-c22";
-> @@ -124,6 +321,15 @@
->  	};
->  };
->  
-> +&pinctrl {
-> +	pmic {
-> +		pmic_int: pmic_int {
-> +			rockchip,pins =
-> +				<0 RK_PA3 RK_FUNC_GPIO &pcfg_pull_up>;
-> +		};
-> +	};
-> +};
-> +
->  &sdhci {
->  	bus-width = <8>;
->  	max-frequency = <200000000>;
+> For 3(ii), MAC would apply the delays.
+> 
+> Overall, only (b) need a right decision? or any other items are missed?
+> 
+> 
+> Prasanna V
 > 
