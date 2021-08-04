@@ -2,116 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B610C3DFF95
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 12:46:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68A183DFFA4
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 12:52:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236631AbhHDKqy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 06:46:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60160 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237585AbhHDKqu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 06:46:50 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 141FCC06179A;
-        Wed,  4 Aug 2021 03:46:29 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id x90so2900503ede.8;
-        Wed, 04 Aug 2021 03:46:29 -0700 (PDT)
+        id S237605AbhHDKws (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 06:52:48 -0400
+Received: from mail-eopbgr100138.outbound.protection.outlook.com ([40.107.10.138]:24270
+        "EHLO GBR01-LO2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S237593AbhHDKws (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Aug 2021 06:52:48 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XB7prQRO5YKi+HSryDAHohc5uc4T+48JKg9cakFnDSdzzJN26gTX3TTpQgKWcSyYh0loJIU8vaiFA9ea1t2kI7FtHeJSoiqzx7f/8rLFZ+B1o5v/7nzpcsZC1zDceGqlnMcik7WacT2j10maYvcSBzFcqCzCbs+IGvSOs6MRAA+0WjjH5eZ3QJcMThPBP9ejmsxQCJFsvD12IsZTe/greFYXjscHCcH0rZ/Si3O3ACftT8axollqqEHNhYRwniwWYwftXJlPB/BEwn1T8/CP/K8Z5mlqd0F1CkjConHjzYkpMY6xzD82JzFyEpHiVJCPeRHYbXJPNJtNloqAp09zrQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bA6cJ4oU849VwlKsl7dZEmm8uf7nMoXbMBq52m5LygE=;
+ b=cHm065U9ddY8yfFgEYCjQp+a9gcQQFcQBHlysUCV+5FSR40pE0Xo3F6aIVFp5O6jw3r08x9tach15sELleSlf03L7HOeTMEFNADyCO5cu3Zf4MwaCp5mX2IZDCwB3PAl/5mOI1AAkn1yGhdZAyN7OS3aMUY06OVZofWxrZj0orFfeaCL37IfVKbfOwn9bhVjNjqRN6Vx+jaKiiy2pJhuib6v+kQFAytbpYbOXh5l4371vJue8JnciI3lqndxUJKkL5i5CssnuztZ8kph3dAdjuk2ER7FmBeyd40dyDmRRAjnbtiz0kmDUV5QJJKMoIniyaNKLN+/KHR5VY+S+f/uCA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=sancloud.com; dmarc=pass action=none header.from=sancloud.com;
+ dkim=pass header.d=sancloud.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=9L3cJVVQelb8mm3bgvaYDE9PsBnoX1UyWVMN0IYtsbg=;
-        b=NBny/vMTDTtnR/MqVltdbk8YQBK7UATDXKe4NhF5RHBmiGNczry0Wl0gF8rQjiuRLL
-         k6WifVUDx/jrjpK6WOaWudPfD3CV6xS1mJst4fgeP3hjYzok5LzXncx3SH5kifHwjezu
-         jXKrg+jzuhkUdA06PfK/0sWoy1HgJ9VnX71UAoy122nmcXLd01DeNMzYkGeg5iZJcZ+w
-         1F+9NhTXeEAPoRmZz75MBqHgva4e8uLmXyiS+UtO5DrlztlcG/tspLd4BaIHBKn9EAXt
-         3r2kZpFUbUG/GOKZzD8m7kdcJVz7HPi5eMvsI0AtXcPLKCW+xZquaOGNaToI4eQGPsq/
-         ivyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=9L3cJVVQelb8mm3bgvaYDE9PsBnoX1UyWVMN0IYtsbg=;
-        b=dLzq6phhILTyTpg28df4eTxvO2O7O12tCFO/JxlBFDh6uAX3GxUdM+plHWXyAaVauV
-         40edASR+VYYAmsP2+7iQl9c415B8LHfr37PSSOqxXm2xWIL+hKDelmxIjQ071ITaZsD1
-         YhqoV89Z6TczDsF7XxvPComTQCiIOE89Kspzv6ywLEyL+Sj2chTAVaEsIDcJ1unpuj7b
-         ITUHydB7FI9B+84IbYvK344WZFGhgYUKtUVRPUf6IBY4JKvCOsgyiYkLF4iLqCnpogny
-         MkbUBuM0zQI3Xj1ynMaeuG/0cAzJHipvdFMmJgkM/HFyjNw+Wuj8TrSYbG6gN/p8Tno/
-         IFwg==
-X-Gm-Message-State: AOAM532DP+tAN6UDjylq6dvftlapIuguipWAsimyo/NAit1bxbJ5rrY8
-        zV9eZt4kK8LmzzsK1ke7lNQ=
-X-Google-Smtp-Source: ABdhPJxtqEkqeUbFsR3RS38YsZ6tDI+1xKcJnNcplUtU5+8wbZaFG7McFGCiR8SaUQJVAXT0O/HfSA==
-X-Received: by 2002:a05:6402:348c:: with SMTP id v12mr20246029edc.159.1628073987636;
-        Wed, 04 Aug 2021 03:46:27 -0700 (PDT)
-Received: from skbuf ([188.25.144.60])
-        by smtp.gmail.com with ESMTPSA id i11sm779208edu.97.2021.08.04.03.46.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Aug 2021 03:46:27 -0700 (PDT)
-Date:   Wed, 4 Aug 2021 13:46:25 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>,
-        Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org,
-        robh+dt@kernel.org, UNGLinuxDriver@microchip.com,
-        Woojung.Huh@microchip.com, hkallweit1@gmail.com,
-        davem@davemloft.net, kuba@kernel.org, linux-kernel@vger.kernel.org,
-        vivien.didelot@gmail.com, f.fainelli@gmail.com,
+ d=sancloud.onmicrosoft.com; s=selector2-sancloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bA6cJ4oU849VwlKsl7dZEmm8uf7nMoXbMBq52m5LygE=;
+ b=Ks7xhwEk4iYSD8nQjrOj53M2I+RSNPBEYxG09HwISvp2kJ8WTlB2DbIE1FVWpa9wVMHQ3Tb9KXIk8wVgAR/P+Ok2K+7fsrOIJMO8BKi/cdgE4SA/1E5H48eVsZOjci85Wnnen+NgNaghnM6NnhAnpHe87txgCrVYJenVQ3NlDEo=
+Authentication-Results: atomide.com; dkim=none (message not signed)
+ header.d=none;atomide.com; dmarc=none action=none header.from=sancloud.com;
+Received: from CWLP123MB2241.GBRP123.PROD.OUTLOOK.COM (2603:10a6:401:61::19)
+ by CWLP123MB4610.GBRP123.PROD.OUTLOOK.COM (2603:10a6:400:111::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.21; Wed, 4 Aug
+ 2021 10:52:34 +0000
+Received: from CWLP123MB2241.GBRP123.PROD.OUTLOOK.COM
+ ([fe80::dc2:e929:76be:a8b0]) by CWLP123MB2241.GBRP123.PROD.OUTLOOK.COM
+ ([fe80::dc2:e929:76be:a8b0%7]) with mapi id 15.20.4373.027; Wed, 4 Aug 2021
+ 10:52:34 +0000
+Date:   Wed, 4 Aug 2021 11:52:21 +0100
+From:   Paul Barker <paul.barker@sancloud.com>
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     Robert Nelson <robertcnelson@gmail.com>,
+        =?UTF-8?B?QmVub8OudA==?= Cousson <bcousson@baylibre.com>,
+        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 net-next 05/10] net: dsa: microchip: add DSA support
- for microchip lan937x
-Message-ID: <20210804104625.d2qw3gr7algzppz5@skbuf>
-References: <20210723173108.459770-1-prasanna.vengateshan@microchip.com>
- <20210723173108.459770-6-prasanna.vengateshan@microchip.com>
- <20210731150416.upe5nwkwvwajhwgg@skbuf>
- <49678cce02ac03edc6bbbd1afb5f67606ac3efc2.camel@microchip.com>
- <20210802121550.gqgbipqdvp5x76ii@skbuf>
- <YQfvXTEbyYFMLH5u@lunn.ch>
- <20210802135911.inpu6khavvwsfjsp@skbuf>
- <50eb24a1e407b651eda7aeeff26d82d3805a6a41.camel@microchip.com>
- <20210803235401.rctfylazg47cjah5@skbuf>
- <20210804095954.GN22278@shell.armlinux.org.uk>
+Subject: Re: [PATCH v2 0/4] Add support for the SanCloud BBE Lite
+Message-ID: <20210804115221.5650e440.paul.barker@sancloud.com>
+In-Reply-To: <YP/J+YC6GFeH+I5j@atomide.com>
+References: <20210720083928.10404-1-paul.barker@sancloud.com>
+        <YP/J+YC6GFeH+I5j@atomide.com>
+Organization: SanCloud Ltd
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; x86_64-suse-linux-gnu)
+Content-Type: multipart/signed; boundary="Sig_/_xTPGkthMKGd4.hzTlTmL/m";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+X-ClientProxiedBy: LNXP123CA0012.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:d2::24) To CWLP123MB2241.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:401:61::19)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210804095954.GN22278@shell.armlinux.org.uk>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from owl.home.b5net.uk (80.7.160.81) by LNXP123CA0012.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:d2::24) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.16 via Frontend Transport; Wed, 4 Aug 2021 10:52:33 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: b859d366-3c82-4cca-8acf-08d95735f6fd
+X-MS-TrafficTypeDiagnostic: CWLP123MB4610:
+X-Microsoft-Antispam-PRVS: <CWLP123MB461058441CC7DEB365BFC0B393F19@CWLP123MB4610.GBRP123.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2449;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: jD5xWEdrFeOQunHIWKfWRr/q96mENA5Nm67cQwjYcU3ljzwRJN4vM62mCjzhLkeLDP8wj5odkNIMCXSLAC1UY4AI8JLroXsHNGm/K0b8Vh5tiVJ+B/1bMv7BPUphVFqOeOSK5m88GJcEL9fZpP0oVWnKSFNbdmRBoQFhP7vEqiW5Y8vt9YlDf5N2en/RmJBkrJMgHIhqfNyCnrxAyyvoap/Vv+wGKOPnFlCbxPoM0h3dgyKurmHg3+mCJJtGzLL7jmI7wEZhYIWGBT8PK8YZxU1Lde7o9GRUe4hZyDBc93HqUEWdanImK0n9xCRAZYR7pqhWxmQ+m5HoMV8Cnf1YIWv6oc6SQ++H0AMgbINvPiJdleTfvOqmFUseZynQO8K4caHzNNLhfsM4+Sf81aayTCQPA3bS5GFHtZMWnFy007/r77sBCkD2za9zdfphnytgSOi6+8Q2nXE7DmWRXwfn3guLnUUMRCcp4upYLFlYRr0utc3g9ABmB9788r/07Uyp6wcuHFWq5bpWn3/BrWubezpe3fYL9sYAfE0fMeKaQOgJhrw/z4u7FSWdwcLiezTvADShbwAySmnJtFDF5Bs3yC86QHcp3Z2mmAgGVmty8f3zOOTYjsMpOfLTtdQPiak3qAF5dAA3nWDtDamV8+qU4q8YejtbGzL2s02LRpWJ8hmHj0Y/p0HAyMAATaYHV1vv+gX+HygxdyeOZTmHfKYNIrj+K7TCOUPf7MBqrNThT4tfJ97AYq5rGS8ssg/yckjz5HEXvwwxikYyBgy1OtuR/w==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CWLP123MB2241.GBRP123.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(376002)(366004)(136003)(346002)(396003)(39830400003)(52116002)(1076003)(83380400001)(86362001)(6486002)(5660300002)(6666004)(2906002)(478600001)(36916002)(966005)(6916009)(44832011)(8676002)(38350700002)(26005)(66556008)(186003)(54906003)(4326008)(6512007)(36756003)(38100700002)(66476007)(103116003)(2616005)(66946007)(956004)(316002)(8936002)(6506007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?cHlUqXN/HkNGqq891BYej3yGdua7XxQ0r3rpiLGXCQR3ulUnZnJncWMIdAXK?=
+ =?us-ascii?Q?Z3Mzy3xFeRvu7YXup11RtI5cy/1/J/AhCz4XzHPk2U1wRtM7yk4XtG7HdB+S?=
+ =?us-ascii?Q?UAeQXcVhW11epfbGk9i3PCjDrx8xxWvpvUbU+sVHCxpBSPp237iG3tHu8Mm9?=
+ =?us-ascii?Q?ujIWqY77ssmR8Leo+Qj2F5ESkD+U3aVZOYpRiO1qiFerNZTgybCKHtUwO0Ob?=
+ =?us-ascii?Q?prWS1Ltk4FQZIvnXRobWaPlpAfRbhx5+0Z3ELQWGLNpGBAJp0Q09KAUnMoYC?=
+ =?us-ascii?Q?nfTOHwxOH1sI1HbuWFLCKxEQUlIY8j8JvDFLz+Qxyar3y9NiqR1D6dGhDpeY?=
+ =?us-ascii?Q?Y3INvCui/05mgZdaaU/lWbQBouiHlyoMoSxo0mDwWagNQ8GF+ZCU3iVxUFyH?=
+ =?us-ascii?Q?H8mWhn1mOLcAKpx94B/JW9c+r2S3fEwn02aZ0p+IYozVPSs/35djXhPhRVbM?=
+ =?us-ascii?Q?21aQqJBkUMAuBy92IZ7Osoo8uU9n5nkh+S5pYtYf45cQ0RbRl7WjENGixKux?=
+ =?us-ascii?Q?rh+pmI2ctAjnvbv1O60qOnCNqBhNiimf7fQSnhPmS/MoG7LNlQ3N+QSeCGoV?=
+ =?us-ascii?Q?4H2WSIQLxi3lcVeWqgGUDRLKMq1SgZkB+UvOEvL+/RzKe3KWeVVpJUfC8k+f?=
+ =?us-ascii?Q?egoDjnE3h75NJCO0O2xLodAdiNC9hFY6dq8livz5C8tBS9+6GBX3S/CqNMkP?=
+ =?us-ascii?Q?63JQ+5kcsnePxSLYtLGaakgdY9xHrjgUoceYyvyBnSAAmC9PQwRvpRC8Qlfj?=
+ =?us-ascii?Q?8F7plHZa1vlXz6bjJm/oSL8I3qij0pPIFS6vwPKpEDfL0d0QPNTD3xmnovb1?=
+ =?us-ascii?Q?XM5pgNSNereKCOPj+zfCCmAp2ajpnDN6N0v58aMrwR+69vWt+dEJOJMOKzCk?=
+ =?us-ascii?Q?VErJWLxDtWLFDLrWiJexo/4GyRmwzb1C4oYflk6PuLID0MWzKVJd4jomVL02?=
+ =?us-ascii?Q?jZfEuP40t/MD8xvfhMNcVSWN33w+GYD8HY7nuNPUJoxJJJ9hrmjTkvBdeavI?=
+ =?us-ascii?Q?P78Z5vVMggo0r/rv0/ndACWzysO+R+L/s4bEdqZ4D1qPrEVcKpKoJlGzAnIK?=
+ =?us-ascii?Q?v2tLUQ6O4a/CbWCRXqqax426JJm42wwq4XBX+io+SZrPZ0HHCnmxFX2hPmol?=
+ =?us-ascii?Q?ozdlMg+plyjLR/xrJXSNS4t48T8C2pNq7qM+J0OlYPqfMYCkSPZ/eKbCd88d?=
+ =?us-ascii?Q?tECh2xfMvh2wllme8kYpa0PrjJmLV0qMSvEVANQTvwt+a4SW6xCaC+VaXcxN?=
+ =?us-ascii?Q?OHM0xZ2sQWuK61nRbbL+rvPxNo6+JcFy5+EZAiQGoqvdvrPLViwxUdCYLPwc?=
+ =?us-ascii?Q?AWnpDNeBPo40BGtJPKRME/UP?=
+X-OriginatorOrg: sancloud.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b859d366-3c82-4cca-8acf-08d95735f6fd
+X-MS-Exchange-CrossTenant-AuthSource: CWLP123MB2241.GBRP123.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Aug 2021 10:52:33.9229
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 840be37c-244a-450e-9bcc-2064862de1f4
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: pNyiujTJxzzsKX3rkOcr8V3EN3ZNzgnJ+JLjxW146xKX9f4xFZkM5ev7luVZk4JlVARTCevQna0wFNmkbWndsmFI986JxG6WPBqzpcl0AXQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWLP123MB4610
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 04, 2021 at 10:59:54AM +0100, Russell King (Oracle) wrote:
-> This is why we need to have a clear definition of what the various
-> RGMII interface types are, how and where they are applied, and make
-> sure everyone sticks to that. We have this documented in
-> Documentation/networking/phy.rst.
+--Sig_/_xTPGkthMKGd4.hzTlTmL/m
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-The problem is that I have no clear migration path for the drivers I
-maintain, like sja1105, and I suspect that others might be in the exact
-same situation.
+On Tue, 27 Jul 2021 11:55:21 +0300
+Tony Lindgren <tony@atomide.com> wrote:
 
-Currently, if the sja1105 needs to add internal delays in a MAC-to-MAC
-(fixed-link) setup, it does that based on the phy-mode string. So
-"rgmii-id" + "fixed-link" means for sja1105 "add RX and TX RGMII
-internal delays", even though the documentation now says "the MAC should
-not add the RX or TX delays in this case".
+> * Paul Barker <paul.barker@sancloud.com> [210720 11:40]:
+> > The Lite variant of the SanCloud BeagleBone Enhanced (BBE) removes the
+> > HDMI encoder, barometer and accelerometer chips and adds a Micron
+> > Authenta SPI flash chip. =20
+>=20
+> Thanks applying all for v5.15 merge window.
 
-There are 2 cases to think about, old driver with new DT blob and new
-driver with old DT blob. If breakage is involved, I am not actually very
-interested in doing the migration, because even though the interpretation
-of the phy-mode string is inconsistent between the phy-handle and fixed-link
-case (which was deliberate), at least it currently does all that I need it to.
+I tested the for-next branch of linux-omap to confirm that things
+worked with these patches applied. There was a NULL pointer
+dereference in ptp_clock_register() during boot. The fix appears to be
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?=
+id=3D55eac20617ca84129273ab248f4d7bfe456967de
+which went into 5.14-rc2.
 
-I am not even clear what is the expected canonical behavior for a MAC
-driver. It parses rx-internal-delay-ps and tx-internal-delay-ps, and
-then what? It treats all "rgmii*" phy-mode strings identically? Or is it
-an error to have "rgmii-rxid" for phy-mode and non-zero rx-internal-delay-ps?
-If it is an error, should all MAC drivers check for it? And if it is an
-error, does it not make migration even more difficult (adding an
-rx-internal-delay-ps property to a MAC OF node which already uses
-"rgmii-id" would be preferable to also having to change the "rgmii-id"
-to "rgmii", because an old kernel might also need to work with that DT
-blob, and that will ignore the new rx-internal-delay-ps property).
+Merging for-next with 5.14-rc4 resulted in things working as expected.
 
-Does qca8k_setup_of_rgmii_delay(), a very recent function, even do the
-right thing with rx-internal-delay-ps, or is it doing the exact opposite
-of the right thing (it applies rx-internal-delay-ps when in rgmii-id or
-rgmii-rxid mode).
+--=20
+Paul Barker
+Principal Software Engineer
+SanCloud Ltd
+
+--Sig_/_xTPGkthMKGd4.hzTlTmL/m
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYIAB0WIQS7m7rT1+CktY3YG1PYN3IfEvob6gUCYQpxZQAKCRDYN3IfEvob
+6nBVAQC/+P3MSffSpoxELLnNCB9473jM7T60O1JgOp2wnee8jwD/YLhEusXg+YS8
+S7Kr+7LM/CyfChVXH42vFZIjGuqV2wM=
+=xKoq
+-----END PGP SIGNATURE-----
+
+--Sig_/_xTPGkthMKGd4.hzTlTmL/m--
