@@ -2,68 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B10CD3DFDA9
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 11:09:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 209BD3DFDB2
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 11:10:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235991AbhHDJJa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 05:09:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52974 "EHLO mail.kernel.org"
+        id S236999AbhHDJKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 05:10:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53482 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235532AbhHDJJ3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 4 Aug 2021 05:09:29 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 99A2560240;
-        Wed,  4 Aug 2021 09:09:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1628068157;
-        bh=creleWvxNSfRIGwbE5dZBI+uVsF0jULHdz/WybQnPmI=;
+        id S236979AbhHDJKW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Aug 2021 05:10:22 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5787E60240;
+        Wed,  4 Aug 2021 09:10:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1628068209;
+        bh=9X4hL8TfLuspjEJ70He/hj+tn4fH/H3eNlS2f2ndoxM=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=oJ5tvJijoyGUheX8KdpFoaUeZUUMOkKvHJkaecL7WwooDQLyeKkGKDcZ0nxFjUH5R
-         zACPxg5kwtHACbRqPbBMWMz49XrrtbZoBmzdCI98/vXn/Q1xtHsJ+IyxVJACFjTLBr
-         p82cNmmlBCu/1cFvOkx/iqx94rz2zRwYAzFQr2bS0jBk/5vXMPVygWxFKjVyxl6m0X
-         imhTQOZ2XnhI6KW+vv2hvPOsRehFKkXnZx7a8XbVJr1hZ13qvjhtKVGcFCG3nJmTHb
-         BcrQ+xKYj3OdONXnVuLwpu3AcNc/OtEV47ryO2XTqmBA3Qk4WjrnDimP6zUlxFhfml
-         XdlS/OvaXK7Xw==
-Date:   Wed, 4 Aug 2021 17:09:11 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Martin Kepplinger <martin.kepplinger@puri.sm>,
-        devicetree@vger.kernel.org, festevam@gmail.com,
-        kernel@pengutronix.de, kernel@puri.sm, krzk@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-staging@lists.linux.dev, m.felsch@pengutronix.de,
-        mchehab@kernel.org, phone-devel@vger.kernel.org, robh@kernel.org,
-        slongerbeam@gmail.com
-Subject: Re: [PATCH v9 0/3] media: imx: add support for imx8mq MIPI RX
-Message-ID: <20210804090910.GC30984@dragon>
-References: <20210726082117.2423597-1-martin.kepplinger@puri.sm>
- <YP9aujiWH2Q/ghHK@pendragon.ideasonboard.com>
+        b=rXGa+WHPnySCeMTNtLIsO/kdHKYiEZq1T6/faJZEnj+zhHUAyq7pWT+Z3fJxMBEtM
+         IHh+amcv6TJagOcUhRdnb2Uz3kx5ZH2lH8zztQF3hk1Xi0VHDkrHV5aa+GXCn++0KC
+         /9DlvY0Uw7IBsSwlM8FwcztWIceVscmOQU/BtPJE=
+Date:   Wed, 4 Aug 2021 11:10:06 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Kalyan Thota <kalyan_t@codeaurora.org>
+Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        dianders@chromium.org, mkrishn@codeaurora.org,
+        saiprakash.ranjan@codeaurora.org, rnayak@codeaurora.org,
+        stable@vger.kernel.org
+Subject: Re: [v3] drm/msm/disp/dpu1: add safe lut config in dpu driver
+Message-ID: <YQpZbosqlBo9EkG6@kroah.com>
+References: <1628064990-6990-1-git-send-email-kalyan_t@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YP9aujiWH2Q/ghHK@pendragon.ideasonboard.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <1628064990-6990-1-git-send-email-kalyan_t@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 27, 2021 at 04:00:42AM +0300, Laurent Pinchart wrote:
-> Hi Martin,
+On Wed, Aug 04, 2021 at 01:16:30AM -0700, Kalyan Thota wrote:
+> Add safe lut configuration for all the targets in dpu
+> driver as per QOS recommendation.
 > 
-> On Mon, Jul 26, 2021 at 10:21:14AM +0200, Martin Kepplinger wrote:
-> > hi,
-> > 
-> > This patch series adds a driver for the i.MX8MQ CSI MIPI receiver / controller.
-> > 
-> > It includes the driver, the dt-bindings and the DT addition to the SoC dtsi.
-> > I test it using libcamera. Thanks to Laurent who helped a lot. I'm happy for
-> > any feedback,
+> Issue reported on SC7280:
 > 
-> No more feedback from me :-) I'll take patches 1/3 and 2/3 in my tree
-> and send a pull request.
+> With wait-for-safe feature in smmu enabled, RT client
+> buffer levels are checked to be safe before smmu invalidation.
+> Since display was always set to unsafe it was delaying the
+> invalidaiton process thus impacting the performance on NRT clients
+> such as eMMC and NVMe.
 > 
-> Shawn, could you please review 3/3 ?
+> Validated this change on SC7280, With this change eMMC performance
+> has improved significantly.
+> 
+> Changes in v1:
+> - Add fixes tag (Sai)
+> - CC stable kernel (Dimtry)
+> 
+> Changes in v2:
+> - Correct fixes tag with appropriate hash (stephen)
+> 
+> Fixes: 591e34a091d1 (drm/msm/disp/dpu1: add support for display
+> for SC7280 target)
+> Signed-off-by: Kalyan Thota <kalyan_t@codeaurora.org>
+> Tested-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org> (sc7280, sc7180)
+> ---
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c | 5 +++++
+>  1 file changed, 5 insertions(+)
 
-Yeah, it looks good, and I just picked it up.
+<formletter>
 
-Shawn
+This is not the correct way to submit patches for inclusion in the
+stable kernel tree.  Please read:
+    https://www.kernel.org/doc/html/latest/process/stable-kernel-rules.html
+for how to do this properly.
+
+</formletter>
