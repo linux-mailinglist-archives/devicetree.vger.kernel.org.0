@@ -2,147 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A8213DFBEC
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 09:19:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11EDA3DFC01
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 09:23:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235675AbhHDHTa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 03:19:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56728 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235762AbhHDHTN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 4 Aug 2021 03:19:13 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 625E760F8F;
-        Wed,  4 Aug 2021 07:19:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1628061541;
-        bh=+H9v5GjIE5Eik9iuQ3wu2uXDaeBxC37Uf+jlcQ4RMI8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=NGAkVlwXXMuFhU087pFHbMBw4KFpyKBaasbiFJrwmlBUHwwtbt8vVD54/8XXLFT4m
-         OqspaUAYPa8aRwF116gwclVXhsUWeKKacDsjRiF9c28u3q0ke5XhL3SdsR/E2BVbcu
-         NQ+kgA6elxuh2wOkYhAZsMizK+BecFCQaIKiYmJn2VRzkt6kjmfFrCHV3QVxuu00Xw
-         KLJ+otbB7D+OawqonSB1MhEdkFGGeR0q7oftvy7N6opvr92kB2AN8IqQfOXpJZdiVw
-         FE/3lHwwss2FkYFcXqMMQ08bt8HcBxdk0oz+gqYwvx4VbKCYGZUoofbgSHUfbmOdJn
-         WmlS6Y88evoYg==
-Received: by mail.kernel.org with local (Exim 4.94.2)
-        (envelope-from <mchehab@kernel.org>)
-        id 1mBBB5-000BlP-9c; Wed, 04 Aug 2021 09:18:59 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
-Subject: [PATCH v4 4/4] dt-bindings: phy: Add bindings for HiKey 970 PCIe PHY
-Date:   Wed,  4 Aug 2021 09:18:57 +0200
-Message-Id: <461495431dd28ad2779658659f137db4bd747aa8.1628061310.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1628061310.git.mchehab+huawei@kernel.org>
-References: <cover.1628061310.git.mchehab+huawei@kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
+        id S235745AbhHDHXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 03:23:25 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:8657 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S235736AbhHDHXY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 03:23:24 -0400
+X-IronPort-AV: E=Sophos;i="5.84,293,1620658800"; 
+   d="scan'208";a="89787602"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 04 Aug 2021 16:23:11 +0900
+Received: from localhost.localdomain (unknown [10.226.92.204])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id E29704010902;
+        Wed,  4 Aug 2021 16:23:07 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH] dt-bindings: mmc: renesas,sdhi: Document RZ/G2L bindings
+Date:   Wed,  4 Aug 2021 08:23:05 +0100
+Message-Id: <20210804072305.20932-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the bindings for HiKey 970 (hi3670) PCIe PHY
-interface, supported via the pcie-kirin driver.
+Document RZ/G2L SDHI controller bindings.
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 ---
- .../phy/hisilicon,phy-hi3670-pcie.yaml        | 82 +++++++++++++++++++
- 1 file changed, 82 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/phy/hisilicon,phy-hi3670-pcie.yaml
+ .../devicetree/bindings/mmc/renesas,sdhi.yaml | 97 ++++++++++++-------
+ 1 file changed, 62 insertions(+), 35 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/phy/hisilicon,phy-hi3670-pcie.yaml b/Documentation/devicetree/bindings/phy/hisilicon,phy-hi3670-pcie.yaml
-new file mode 100644
-index 000000000000..17367a0275fe
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/hisilicon,phy-hi3670-pcie.yaml
-@@ -0,0 +1,82 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/hisilicon,phy-hi3670-pcie.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+index 677989bc5924..ed05e49d61af 100644
+--- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
++++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+@@ -9,9 +9,6 @@ title: Renesas SDHI SD/MMC controller
+ maintainers:
+   - Wolfram Sang <wsa+renesas@sang-engineering.com>
+ 
+-allOf:
+-  - $ref: "mmc-controller.yaml"
+-
+ properties:
+   compatible:
+     oneOf:
+@@ -47,19 +44,20 @@ properties:
+           - const: renesas,sdhi-mmc-r8a77470 # RZ/G1C (SDHI/MMC IP)
+       - items:
+           - enum:
+-              - renesas,sdhi-r8a774a1 # RZ/G2M
+-              - renesas,sdhi-r8a774b1 # RZ/G2N
+-              - renesas,sdhi-r8a774c0 # RZ/G2E
+-              - renesas,sdhi-r8a774e1 # RZ/G2H
+-              - renesas,sdhi-r8a7795  # R-Car H3
+-              - renesas,sdhi-r8a7796  # R-Car M3-W
+-              - renesas,sdhi-r8a77961 # R-Car M3-W+
+-              - renesas,sdhi-r8a77965 # R-Car M3-N
+-              - renesas,sdhi-r8a77970 # R-Car V3M
+-              - renesas,sdhi-r8a77980 # R-Car V3H
+-              - renesas,sdhi-r8a77990 # R-Car E3
+-              - renesas,sdhi-r8a77995 # R-Car D3
+-              - renesas,sdhi-r8a779a0 # R-Car V3U
++              - renesas,sdhi-r8a774a1  # RZ/G2M
++              - renesas,sdhi-r8a774b1  # RZ/G2N
++              - renesas,sdhi-r8a774c0  # RZ/G2E
++              - renesas,sdhi-r8a774e1  # RZ/G2H
++              - renesas,sdhi-r8a7795   # R-Car H3
++              - renesas,sdhi-r8a7796   # R-Car M3-W
++              - renesas,sdhi-r8a77961  # R-Car M3-W+
++              - renesas,sdhi-r8a77965  # R-Car M3-N
++              - renesas,sdhi-r8a77970  # R-Car V3M
++              - renesas,sdhi-r8a77980  # R-Car V3H
++              - renesas,sdhi-r8a77990  # R-Car E3
++              - renesas,sdhi-r8a77995  # R-Car D3
++              - renesas,sdhi-r8a779a0  # R-Car V3U
++              - renesas,sdhi-r9a07g044 # RZ/G2{L,LC}
+           - const: renesas,rcar-gen3-sdhi # R-Car Gen3 or RZ/G2
+ 
+   reg:
+@@ -71,13 +69,11 @@ properties:
+ 
+   clocks:
+     minItems: 1
+-    maxItems: 2
++    maxItems: 4
+ 
+   clock-names:
+     minItems: 1
+-    items:
+-      - const: core
+-      - const: cd
++    maxItems: 4
+ 
+   dmas:
+     minItems: 4
+@@ -112,6 +108,52 @@ properties:
+ 
+   max-frequency: true
+ 
++allOf:
++  - $ref: "mmc-controller.yaml"
 +
-+title: HiSilicon Kirin970 PCIe PHY
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - renesas,sdhi-r7s72100
++              - renesas,sdhi-r7s9210
++    then:
++      properties:
++        clock-names:
++          items:
++            - const: core
++            - const: cd
++      required:
++        - clock-names
++      description:
++        The internal card detection logic that exists in these controllers is
++        sectioned off to be run by a separate second clock source to allow
++        the main core clock to be turned off to save power.
 +
-+maintainers:
-+  - Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: renesas,sdhi-r9a07g044
++    then:
++      properties:
++        clocks:
++          items:
++            - description: IMCLK, SDHI channel main clock1.
++            - description: IMCLK2, SDHI channel main clock2. When this clock is
++                           turned off, external SD card detection cannot be
++                           detected.
++            - description: CLK_HS, SDHI channel High speed clock which operates
++                           4 times that of SDHI channel main clock1.
++            - description: ACLK, SDHI channel bus clock.
++      required:
++        - resets
++    else:
++      properties:
++        clocks:
++          maxItems: 1
 +
-+description: |+
-+  Bindings for PCIe PHY on HiSilicon Kirin 970.
-+
-+properties:
-+  compatible:
-+    const: hisilicon,hi970-pcie-phy
-+
-+  "#phy-cells":
-+    const: 0
-+
-+  reg:
-+    maxItems: 1
-+    description: PHY Control registers
-+
-+  phy-supply:
-+    description: The PCIe PHY power supply
-+
-+  clocks:
-+    items:
-+      - description: PCIe PHY clock
-+      - description: PCIe AUX clock
-+      - description: PCIe APB PHY clock
-+      - description: PCIe APB SYS clock
-+      - description: PCIe ACLK clock
-+
-+  clock-names:
-+    items:
-+      - const: phy_ref
-+      - const: aux
-+      - const: apb_phy
-+      - const: apb_sys
-+      - const: aclk
-+
-+  hisilicon,eye-diagram-param:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description: Eye diagram for phy.
-+
-+required:
-+  - "#phy-cells"
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - hisilicon,eye-diagram-param
-+  - phy-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/hi3670-clock.h>
-+
-+    soc {
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+      pcie_phy: pcie-phy@fc000000 {
-+        compatible = "hisilicon,hi970-pcie-phy";
-+        reg = <0x0 0xfc000000 0x0 0x80000>;
-+        #phy-cells = <0>;
-+        phy-supply = <&ldo33>;
-+        clocks = <&crg_ctrl HI3670_CLK_GATE_PCIEPHY_REF>,
-+                 <&crg_ctrl HI3670_CLK_GATE_PCIEAUX>,
-+                 <&crg_ctrl HI3670_PCLK_GATE_PCIE_PHY>,
-+                 <&crg_ctrl HI3670_PCLK_GATE_PCIE_SYS>,
-+                 <&crg_ctrl HI3670_ACLK_GATE_PCIE>;
-+        clock-names = "phy_ref", "aux",
-+                      "apb_phy", "apb_sys", "aclk";
-+        hisilicon,eye-diagram-param = <0xffffffff 0xffffffff
-+                                       0xffffffff 0xffffffff 0xffffffff>;
-+      };
-+    };
+ required:
+   - compatible
+   - reg
+@@ -119,21 +161,6 @@ required:
+   - clocks
+   - power-domains
+ 
+-if:
+-  properties:
+-    compatible:
+-      contains:
+-        enum:
+-          - renesas,sdhi-r7s72100
+-          - renesas,sdhi-r7s9210
+-then:
+-  required:
+-    - clock-names
+-  description:
+-    The internal card detection logic that exists in these controllers is
+-    sectioned off to be run by a separate second clock source to allow
+-    the main core clock to be turned off to save power.
+-
+ unevaluatedProperties: false
+ 
+ examples:
 -- 
-2.31.1
+2.17.1
 
