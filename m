@@ -2,117 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1ED943DFE31
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 11:41:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 268943DFE78
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 11:56:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236545AbhHDJlX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 05:41:23 -0400
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:10843 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236511AbhHDJlW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 05:41:22 -0400
-Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
-  by alexa-out.qualcomm.com with ESMTP; 04 Aug 2021 02:41:10 -0700
-X-QCInternal: smtphost
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 04 Aug 2021 02:41:08 -0700
-X-QCInternal: smtphost
-Received: from kalyant-linux.qualcomm.com ([10.204.66.210])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 04 Aug 2021 15:10:31 +0530
-Received: by kalyant-linux.qualcomm.com (Postfix, from userid 94428)
-        id 244B54C65; Wed,  4 Aug 2021 02:40:30 -0700 (PDT)
-From:   Kalyan Thota <kalyan_t@codeaurora.org>
-To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     Kalyan Thota <kalyan_t@codeaurora.org>,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, mkrishn@codeaurora.org,
-        saiprakash.ranjan@codeaurora.org, rnayak@codeaurora.org,
-        stable@vger.kernel.org
-Subject: [Resend v3] drm/msm/disp/dpu1: add safe lut config in dpu driver
-Date:   Wed,  4 Aug 2021 02:40:28 -0700
-Message-Id: <1628070028-2616-1-git-send-email-kalyan_t@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+        id S237209AbhHDJ5G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 05:57:06 -0400
+Received: from comms.puri.sm ([159.203.221.185]:41608 "EHLO comms.puri.sm"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236659AbhHDJ5G (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Aug 2021 05:57:06 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id 0E811DFD3B;
+        Wed,  4 Aug 2021 02:56:24 -0700 (PDT)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id DQm56S8O-S3x; Wed,  4 Aug 2021 02:56:19 -0700 (PDT)
+Message-ID: <bf02db8325bb799a861ff7a924ab4d7d5b1df0cc.camel@puri.sm>
+Subject: Re: [PATCH v10 0/3] media: imx: add support for imx8mq MIPI RX
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+To:     Shawn Guo <shawnguo@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     dafna.hirschfeld@collabora.com, devicetree@vger.kernel.org,
+        festevam@gmail.com, kernel@pengutronix.de, kernel@puri.sm,
+        krzk@kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-imx@nxp.com, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-staging@lists.linux.dev,
+        m.felsch@pengutronix.de, mchehab@kernel.org,
+        phone-devel@vger.kernel.org, robh@kernel.org,
+        slongerbeam@gmail.com, Sascha Hauer <s.hauer@pengutronix.de>
+Date:   Wed, 04 Aug 2021 11:56:14 +0200
+In-Reply-To: <20210804093125.GE30984@dragon>
+References: <20210728091245.231043-1-martin.kepplinger@puri.sm>
+         <YQFcfbrTmGw4kZvQ@pendragon.ideasonboard.com>
+         <20210804093125.GE30984@dragon>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.3-1 
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add safe lut configuration for all the targets in dpu
-driver as per QOS recommendation.
+Am Mittwoch, dem 04.08.2021 um 17:31 +0800 schrieb Shawn Guo:
+> On Wed, Jul 28, 2021 at 04:32:45PM +0300, Laurent Pinchart wrote:
+> > Hi Martin,
+> > 
+> > On Wed, Jul 28, 2021 at 11:12:42AM +0200, Martin Kepplinger wrote:
+> > > hi,
+> > > 
+> > > This patch series adds a driver for the i.MX8MQ CSI MIPI receiver
+> > > / controller.
+> > > 
+> > > It includes the driver, the dt-bindings and the DT addition to
+> > > the SoC dtsi.
+> > > I test it using libcamera. Thanks to Laurent who helped a lot.
+> > > I'm happy for
+> > > any feedback,
+> > 
+> > Thank you for the series. I've submitted a pull request that
+> > contains
+> > patches 1/3 and 2/3.
+> > 
+> > Shawn, Sascha, how would you like to handle 3/3 ?
+> 
+> I picked up the 3/3 in v9, which I think is identical to this
+> version.
+> Otherwise, please let me know.
+> 
+> Shawn
 
-Issue reported on SC7280:
+it's identical, yes. thank you very much,
 
-With wait-for-safe feature in smmu enabled, RT client
-buffer levels are checked to be safe before smmu invalidation.
-Since display was always set to unsafe it was delaying the
-invalidaiton process thus impacting the performance on NRT clients
-such as eMMC and NVMe.
-
-Validated this change on SC7280, With this change eMMC performance
-has improved significantly.
-
-Changes in v2:
-- Add fixes tag (Sai)
-- CC stable kernel (Dimtry)
-
-Changes in v3:
-- Correct fixes tag with appropriate hash (stephen)
-- Resend patch adding reviewed by tag
-- Resend patch adding correct format for pushing into stable tree (Greg)
-
-Fixes: 591e34a091d1 ("drm/msm/disp/dpu1: add support for display for SC7280 target")
-Cc: stable@vger.kernel.org
-Signed-off-by: Kalyan Thota <kalyan_t@codeaurora.org>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Tested-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org> (sc7280, sc7180)
----
- drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-index d01c4c9..2e482cd 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-@@ -974,6 +974,7 @@ static const struct dpu_perf_cfg sdm845_perf_data = {
- 	.amortizable_threshold = 25,
- 	.min_prefill_lines = 24,
- 	.danger_lut_tbl = {0xf, 0xffff, 0x0},
-+	.safe_lut_tbl = {0xfff0, 0xf000, 0xffff},
- 	.qos_lut_tbl = {
- 		{.nentry = ARRAY_SIZE(sdm845_qos_linear),
- 		.entries = sdm845_qos_linear
-@@ -1001,6 +1002,7 @@ static const struct dpu_perf_cfg sc7180_perf_data = {
- 	.min_dram_ib = 1600000,
- 	.min_prefill_lines = 24,
- 	.danger_lut_tbl = {0xff, 0xffff, 0x0},
-+	.safe_lut_tbl = {0xfff0, 0xff00, 0xffff},
- 	.qos_lut_tbl = {
- 		{.nentry = ARRAY_SIZE(sc7180_qos_linear),
- 		.entries = sc7180_qos_linear
-@@ -1028,6 +1030,7 @@ static const struct dpu_perf_cfg sm8150_perf_data = {
- 	.min_dram_ib = 800000,
- 	.min_prefill_lines = 24,
- 	.danger_lut_tbl = {0xf, 0xffff, 0x0},
-+	.safe_lut_tbl = {0xfff8, 0xf000, 0xffff},
- 	.qos_lut_tbl = {
- 		{.nentry = ARRAY_SIZE(sm8150_qos_linear),
- 		.entries = sm8150_qos_linear
-@@ -1056,6 +1059,7 @@ static const struct dpu_perf_cfg sm8250_perf_data = {
- 	.min_dram_ib = 800000,
- 	.min_prefill_lines = 35,
- 	.danger_lut_tbl = {0xf, 0xffff, 0x0},
-+	.safe_lut_tbl = {0xfff0, 0xff00, 0xffff},
- 	.qos_lut_tbl = {
- 		{.nentry = ARRAY_SIZE(sc7180_qos_linear),
- 		.entries = sc7180_qos_linear
-@@ -1084,6 +1088,7 @@ static const struct dpu_perf_cfg sc7280_perf_data = {
- 	.min_dram_ib = 1600000,
- 	.min_prefill_lines = 24,
- 	.danger_lut_tbl = {0xffff, 0xffff, 0x0},
-+	.safe_lut_tbl = {0xff00, 0xff00, 0xffff},
- 	.qos_lut_tbl = {
- 		{.nentry = ARRAY_SIZE(sc7180_qos_macrotile),
- 		.entries = sc7180_qos_macrotile
--- 
-2.7.4
+                       martin
 
