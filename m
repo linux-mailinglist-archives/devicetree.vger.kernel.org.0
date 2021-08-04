@@ -2,54 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AEF03E0864
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 20:57:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E23793E0872
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 21:01:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239650AbhHDS5j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 14:57:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60570 "EHLO
+        id S237903AbhHDTCF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 15:02:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240388AbhHDS5f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 14:57:35 -0400
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EE9BC06179B
-        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 11:57:22 -0700 (PDT)
-Received: by mail-oi1-x22f.google.com with SMTP id 21so3989074oin.8
-        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 11:57:22 -0700 (PDT)
+        with ESMTP id S230063AbhHDTCF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 15:02:05 -0400
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D8BEC061799
+        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 12:01:52 -0700 (PDT)
+Received: by mail-ot1-x334.google.com with SMTP id a5-20020a05683012c5b029036edcf8f9a6so2597203otq.3
+        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 12:01:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=W0RU2njrJYwNw31OX+GKz1dnas7rS+0peN2BXk2nTOM=;
-        b=XQG1pb4WN8xpvB82dpmucAJRgEyqKxa/pnqs92acP0GjyGJg6pbgmHVkt4VIIBWHZ2
-         9lg1QU4BnUj9PaX5g6rsqOV31lVBH/YiGh5Muf2InY6gVAzhbwCNcNt0M9ZT1kilr1lB
-         peNOAvCJ/Gk4wKYe3BIAV7+jN1n2GxKn9pORY=
+        bh=4641MPkioKublOkHL4evZ5kS7fvIPpw+L1PqXgIieP8=;
+        b=GqkjpQMjn9YW6aAFi+Vp0+YrxgzlIVN3vDD/r/lSR6Zpe18H+WzZIXfnbSguXd5sKL
+         2Z3CdFOVNtk56T2xekum7tqzdP5f/8GxuJAZHNTWC73fSAMKNAcZghWnJzpMH6DFT6ND
+         23T185qFL3X/2ZYsssPjeD2+y7M6mHHG5mtOo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=W0RU2njrJYwNw31OX+GKz1dnas7rS+0peN2BXk2nTOM=;
-        b=IW+N56Znxxz4hv7SY2J8UJhUYLUNi3t3nTG733J41+XAzatxlMluvl0WHyVv3QA51k
-         oQuPs/0nHNpM2Oi6EybmmWNOTqqsRX+DBdZB6AAohpB3S+1m5+jEKmKSamVtQW++Bqm2
-         i4pqZUQsfNozMbl5egJMs8mpAqVuo95jHZ1fM5v8cvTyiJIt1+LhqIKfx1b9jiKUByoF
-         wNnY6wvBCn+XkqNF+O99ppZseMcFOuOWo4QonBjpwaixuVL802FmCbMdw3K28Md8pE4w
-         uIFTOPuavRQcov6S4atKugnRQpRvGyoypalCoKCbMK1evRP7PIKdcWsLw36I4ARpWXyp
-         Z9Fw==
-X-Gm-Message-State: AOAM533lR/7Su0YO7XIEhOtEHgS+q6Jj3yGwb3oK3G3YFFDGzFjycneQ
-        jZswRlgK7txArSvfkARQDQLYbWp02TV26TGZBwHW8Q==
-X-Google-Smtp-Source: ABdhPJxnaosSbnczMAr1y6z1t5NO2fUtY+Th+88s1vPF8mmT7ZwOvdJJWTYMH3xeYdgzDiiMnXNGokR3TdHCDuJICOc=
-X-Received: by 2002:a05:6808:619:: with SMTP id y25mr3998610oih.166.1628103441478;
- Wed, 04 Aug 2021 11:57:21 -0700 (PDT)
+        bh=4641MPkioKublOkHL4evZ5kS7fvIPpw+L1PqXgIieP8=;
+        b=scEDQnLg6B+FcvAABc1flGtnhkNB+BoILASwB9bJAW3iUZmkX9lhW/IVhCRPqGCAtk
+         I2+tZgKVUggFRCipQUc4ftCoYn53+sJDSAaMXy8yubU4M6Cgn2lVicLgOaz3wy3hdxer
+         v6pnmXf4GeK0Zfa2pqxhjbLIcvncAT2nKMEJFsZJDXEtl/TqjiHP+t0VlzqiB8YzvgJx
+         yfs5JulwxnjTJuGEPbfgI9Y4rM3IeYhwleZsIm4NFZJbn1UxXTLVf/r7vNTY0Ok1z+Ae
+         H6dL8bhGu5Q+hhzTnp6ozSdUk2bqqDyTzi8whULJ9Do2S4jeGQnTbGTJm0PPWsdzOcLv
+         ieeg==
+X-Gm-Message-State: AOAM530lsi0lPT/2Alp3YeIb5jyVC4+Aemu5V+rnrcooYhJ6uymzcSPy
+        KtTGU54PH++mWIj3NzBOOljBjPXpDUFQALi76F94og==
+X-Google-Smtp-Source: ABdhPJx2OkzKOmmq/s4XSPcU7nqbnZJdKgsYBlKrpDnpvRgoLEowSTouTJP69cnCrn0RYHIxfZzw76HULG++n4OxZlM=
+X-Received: by 2002:a05:6830:1490:: with SMTP id s16mr864327otq.233.1628103711737;
+ Wed, 04 Aug 2021 12:01:51 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 4 Aug 2021 11:57:20 -0700
+ HTTPREST; Wed, 4 Aug 2021 12:01:51 -0700
 MIME-Version: 1.0
-In-Reply-To: <1627581885-32165-4-git-send-email-sibis@codeaurora.org>
-References: <1627581885-32165-1-git-send-email-sibis@codeaurora.org> <1627581885-32165-4-git-send-email-sibis@codeaurora.org>
+In-Reply-To: <1627581885-32165-3-git-send-email-sibis@codeaurora.org>
+References: <1627581885-32165-1-git-send-email-sibis@codeaurora.org> <1627581885-32165-3-git-send-email-sibis@codeaurora.org>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.9.1
-Date:   Wed, 4 Aug 2021 11:57:20 -0700
-Message-ID: <CAE-0n5249t-DCDY0-HSV5EYN5yOv02NKJwKpibpL5NdTmnCrfg@mail.gmail.com>
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: sc7280: Fixup the cpufreq node
+Date:   Wed, 4 Aug 2021 12:01:51 -0700
+Message-ID: <CAE-0n53cH749NC9JPqJvMZGBQf47AZ3qY66eoqk2CiQHvuumkg@mail.gmail.com>
+Subject: Re: [PATCH 2/4] cpufreq: qcom: Re-arrange register offsets to support
+ per core L3 DCVS
 To:     Sibi Sankar <sibis@codeaurora.org>, bjorn.andersson@linaro.org,
         mka@chromium.org, robh+dt@kernel.org
 Cc:     viresh.kumar@linaro.org, agross@kernel.org, rjw@rjwysocki.net,
@@ -61,12 +62,85 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Sibi Sankar (2021-07-29 11:04:44)
-> Fixup the register regions used by the cpufreq node on SC7280 SoC to
-> support per core L3 DCVS.
+Quoting Sibi Sankar (2021-07-29 11:04:43)
+> Qualcomm SoCs (starting with SM8350) support per core voting for L3 cache
+> frequency.
+
+And the L3 cache frequency voting code can't be put into this cpufreq
+driver?
+
+> So, re-arrange the cpufreq register offsets to allow access for
+> the L3 interconnect to implement per core control. Also prevent binding
+> breakage caused by register offset shuffling by using the SM8250/SM8350
+> EPSS compatible.
 >
 > Fixes: 7dbd121a2c58 ("arm64: dts: qcom: sc7280: Add cpufreq hw node")
 > Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
 > ---
+>  drivers/cpufreq/qcom-cpufreq-hw.c | 23 +++++++++++++++++++----
+>  1 file changed, 19 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c b/drivers/cpufreq/qcom-cpufreq-hw.c
+> index f86859bf76f1..74ef3b38343b 100644
+> --- a/drivers/cpufreq/qcom-cpufreq-hw.c
+> +++ b/drivers/cpufreq/qcom-cpufreq-hw.c
+> @@ -28,6 +28,7 @@ struct qcom_cpufreq_soc_data {
+>         u32 reg_volt_lut;
+>         u32 reg_perf_state;
+>         u8 lut_row_size;
+> +       bool skip_enable;
+>  };
+>
+>  struct qcom_cpufreq_data {
+> @@ -257,19 +258,31 @@ static const struct qcom_cpufreq_soc_data qcom_soc_data = {
+>         .reg_volt_lut = 0x114,
+>         .reg_perf_state = 0x920,
+>         .lut_row_size = 32,
+> +       .skip_enable = false,
+>  };
+>
+>  static const struct qcom_cpufreq_soc_data epss_soc_data = {
+> +       .reg_freq_lut = 0x0,
+> +       .reg_volt_lut = 0x100,
+> +       .reg_perf_state = 0x220,
+> +       .lut_row_size = 4,
+> +       .skip_enable = true,
+> +};
+> +
+> +static const struct qcom_cpufreq_soc_data epss_sm8250_soc_data = {
+>         .reg_enable = 0x0,
+>         .reg_freq_lut = 0x100,
+>         .reg_volt_lut = 0x200,
+>         .reg_perf_state = 0x320,
+>         .lut_row_size = 4,
+> +       .skip_enable = false,
+>  };
+>
+>  static const struct of_device_id qcom_cpufreq_hw_match[] = {
+>         { .compatible = "qcom,cpufreq-hw", .data = &qcom_soc_data },
+>         { .compatible = "qcom,cpufreq-epss", .data = &epss_soc_data },
+> +       { .compatible = "qcom,sm8250-cpufreq-epss", .data = &epss_sm8250_soc_data },
+> +       { .compatible = "qcom,sm8350-cpufreq-epss", .data = &epss_sm8250_soc_data },
+>         {}
+>  };
+>  MODULE_DEVICE_TABLE(of, qcom_cpufreq_hw_match);
+> @@ -334,10 +347,12 @@ static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
+>         data->res = res;
+>
+>         /* HW should be in enabled state to proceed */
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+It looks odd that we're no longer making sure that the clk domain is
+enabled when we probe the driver. Why is that OK?
+
+> -       if (!(readl_relaxed(base + data->soc_data->reg_enable) & 0x1)) {
+> -               dev_err(dev, "Domain-%d cpufreq hardware not enabled\n", index);
+> -               ret = -ENODEV;
+> -               goto error;
+> +       if (!data->soc_data->skip_enable) {
+> +               if (!(readl_relaxed(base + data->soc_data->reg_enable) & 0x1)) {
+> +                       dev_err(dev, "Domain-%d cpufreq hardware not enabled\n", index);
+> +                       ret = -ENODEV;
+> +                       goto error;
+> +               }
+>         }
+>
