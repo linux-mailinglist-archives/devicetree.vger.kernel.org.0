@@ -2,275 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D73FC3DFCA9
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 10:19:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59E163DFCBA
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 10:24:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236162AbhHDITp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 04:19:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54248 "EHLO
+        id S236391AbhHDIYQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 04:24:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236290AbhHDITo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 04:19:44 -0400
-Received: from mail-qv1-xf49.google.com (mail-qv1-xf49.google.com [IPv6:2607:f8b0:4864:20::f49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2466DC0613D5
-        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 01:19:31 -0700 (PDT)
-Received: by mail-qv1-xf49.google.com with SMTP id dl20-20020ad44e140000b0290347c39b05c0so1264596qvb.3
-        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 01:19:31 -0700 (PDT)
+        with ESMTP id S236279AbhHDIYO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 04:24:14 -0400
+Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com [IPv6:2607:f8b0:4864:20::d30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E68FC0613D5;
+        Wed,  4 Aug 2021 01:24:01 -0700 (PDT)
+Received: by mail-io1-xd30.google.com with SMTP id z7so1474503iog.13;
+        Wed, 04 Aug 2021 01:24:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
-         :cc;
-        bh=Qdv1zhxh0PY/Xiuvh0QkKRmzFpu7CaVMvwBJEs74Yps=;
-        b=dxy3lZf5YUVgr4P1g5uOvCprfZ0RyOBv/QBETQ4uFBberuSq/IGm/GQOnNJp+ZGS7E
-         0eZeQypsH0P7e0MDBIvRAdVX/IVK4b+E7O+9fAKCtX1qkXXrfmv1piCw0oVypchs2vFC
-         PrYy2Y/bZbHjodKUdUe7WQroZxUzecJXpI9GfyqfwfwaUM10TOlIezXC6VgFmgxeuEwN
-         odbwnfpwJXLiZUSah2Bp1K+r++CtwirKd1V0hkLzBYTd2YfkHwPt5/qgQsLNZpH0FUm5
-         NDgXk7S0isC+Lq9dqohLMI9xGet3i3RW2099GWzvsmAtcM2DOupsk9FRULDL5F6lb5O8
-         mDYQ==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=eb+TKlXCM46Z6tbqcEsEswjl6rovh8B22X0RVpQXd7U=;
+        b=vCQAEFqQVzQV/2uc0cXBp8db0kmXGlPSb6MxGgezbVtonLlWfocTd7QymizEDqge54
+         dPUJRiPY1DpA5xune/betgMlO2377fzNlTa4ohK3zwFz+SN1z496brHSQjd98K78V7XV
+         6BXH5Uec/01ekh0nsqTIWjtYdLI0DrKvvrf441ZXpjTP1MyLItEO7bZ6A24hgy1WbMir
+         Ry7xDLdNw0356U8awJICY4GGjrkkw9jQXnnpYxxnMUXFOJkfSaa8PnW6j61Ok0IhIEeC
+         XfbIvyV9mkTfSvfjFiWDqv/Cg6xC+t5mdEf+NtCKmbLoB2NiAso896O9FBI9sYCgkReU
+         mV+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=Qdv1zhxh0PY/Xiuvh0QkKRmzFpu7CaVMvwBJEs74Yps=;
-        b=E8UnZRP0sVQ7qF4VztrD2bGsnOXX41lbWIPu7HsnOs05ZQGcrDz3K6692Uc/8KNDY0
-         JAEyXM2IHc3ForB0fVfX52v2eYBxrUAj+jcY1Vuvbzdarq1bHaOFOiCclQgA8DbCHZLh
-         8EPbaPUXLDPIuPQpHZ755KazYAb6HiAmCeUZvQ3jDlJTwKtW4I8Gg6pnh+jLaZoCqdDT
-         aXPTk/sfX5ITZpj6kPIUSYxGN7w2Uq4EXJn9ArAbX57fqm3v10tpby4sI8ATZViJyNfI
-         6PUhut+w8CzUBf6CqnYJxd1W4mkrWQHD5qsa9Gsl319mgcln6j80nRAbyz0w5bZ5imXb
-         LswA==
-X-Gm-Message-State: AOAM532pkyIx2DXATGCsHC9K6ZMAaciTuVFDPhguHd8v174k8ez+Uibk
-        Y3AMTOBw6pQ7MB5hSs/zMlCVltakZBTX
-X-Google-Smtp-Source: ABdhPJzuhKfJwvBzNgm/9/+FgHSe+RWiRCTdznI3q0TQJ5VkutynLvZzW8175Dcx9gS3PBdTEZLxJ6gnk3WZ
-X-Received: from kyletso.ntc.corp.google.com ([2401:fa00:fc:202:7eb8:c2f5:2e08:d4bc])
- (user=kyletso job=sendgmr) by 2002:a0c:9c4a:: with SMTP id
- w10mr25877813qve.14.1628065170297; Wed, 04 Aug 2021 01:19:30 -0700 (PDT)
-Date:   Wed,  4 Aug 2021 16:19:17 +0800
-In-Reply-To: <20210804081917.3390341-1-kyletso@google.com>
-Message-Id: <20210804081917.3390341-3-kyletso@google.com>
-Mime-Version: 1.0
-References: <20210804081917.3390341-1-kyletso@google.com>
-X-Mailer: git-send-email 2.32.0.554.ge1b32706d8-goog
-Subject: [PATCH v6 2/2] usb: typec: tcpm: Support non-PD mode
-From:   Kyle Tso <kyletso@google.com>
-To:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org
-Cc:     badhri@google.com, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Kyle Tso <kyletso@google.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=eb+TKlXCM46Z6tbqcEsEswjl6rovh8B22X0RVpQXd7U=;
+        b=Ko3H3kPSWC/JwJGkv1y57xA0viM2v0DfvKApY9KKFTB6iPGNE+XfhrGcAmNhi9EJzX
+         CZQHEdghtiylHXnzAgoLBAcn7tOWxwpYfm5ZvYFy87Ny9nPgi7KN9SxnmHfvQ+4mMB1i
+         MLlBDEgV83QRHbzKTtnzsRCrU5Ds1F3PGjBlNO4dc2S9ogRPJWKyta0Dab99xpleTchu
+         kgHC1CTNuyll1y0yD38QJe4+Fa6+VHRIghvm3Y6rCak+EBCcZd8fXmRUbhYKi6+NpdxW
+         qICcK5xSbG4Icm/lEfC4y9JPKqBBpZFoVI3kKbcGZ2SSYgFttbdTMOS9Y13RvPEl1Oxf
+         OWmA==
+X-Gm-Message-State: AOAM530l6E/JhmTG2rANifKW0/zkUjj90IufbPsO47lCyRdqU5g3USBf
+        VQAxBTqxlCWZi01Q7VK9J/Rk8zFNn2cYrYkXbPo=
+X-Google-Smtp-Source: ABdhPJyggLddJMxmH+EazD/b2CkCx2eAQUCXI3ipFEEkkszNqgKKJ057F38PpHH5uOWQQ58JJdUTU8a4DS0QQLx2X90=
+X-Received: by 2002:a6b:490d:: with SMTP id u13mr86293iob.176.1628065440657;
+ Wed, 04 Aug 2021 01:24:00 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210803084456.198-1-alistair@alistair23.me> <20210803084456.198-2-alistair@alistair23.me>
+ <YQlBtQDrVHqh3N5D@google.com>
+In-Reply-To: <YQlBtQDrVHqh3N5D@google.com>
+From:   Alistair Francis <alistair23@gmail.com>
+Date:   Wed, 4 Aug 2021 18:22:00 +1000
+Message-ID: <CAKmqyKMZWVx3KqeysUjOc29nuxnwJfZ3wjmWjVwk9tpQ4dkh-A@mail.gmail.com>
+Subject: Re: [PATCH v8 02/11] mfd: sy7636a: Initial commit
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Alistair Francis <alistair@alistair23.me>,
+        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
+        Mark Brown <broonie@kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Even if the Type-C controller supports PD, it is doable to disable PD
-capabilities with the current state machine in TCPM. Without enabling RX
-in low-level drivers and with skipping the power negotiation, the port
-is eligible to be a non-PD Type-C port. Use new flags whose values are
-populated from the device tree to decide the port PD capability. Adding
-"pd-disable" property in device tree indicates that the port does not
-support PD. If PD is not supported, the device tree property
-"typec-power-opmode" shall be added to specify the advertised Rp value
-if the port supports SRC role.
+On Tue, Aug 3, 2021 at 11:16 PM Lee Jones <lee.jones@linaro.org> wrote:
+>
+> On Tue, 03 Aug 2021, Alistair Francis wrote:
+>
+> > Initial support for the Silergy SY7636A Power Management chip.
+> >
+> > Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> > ---
+> >  drivers/mfd/Kconfig         |  9 +++++
+> >  drivers/mfd/Makefile        |  1 +
+> >  drivers/mfd/sy7636a.c       | 72 +++++++++++++++++++++++++++++++++++++
+> >  include/linux/mfd/sy7636a.h | 45 +++++++++++++++++++++++
+> >  4 files changed, 127 insertions(+)
+> >  create mode 100644 drivers/mfd/sy7636a.c
+> >  create mode 100644 include/linux/mfd/sy7636a.h
+> >
+> > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> > index 6a3fd2d75f96..b82208f0c79c 100644
+> > --- a/drivers/mfd/Kconfig
+> > +++ b/drivers/mfd/Kconfig
+> > @@ -1352,6 +1352,15 @@ config MFD_SYSCON
+> >         Select this option to enable accessing system control registers
+> >         via regmap.
+> >
+> > +config MFD_SY7636A
+> > +     tristate "Silergy SY7636A Power Management IC"
+> > +     select MFD_CORE
+> > +     select REGMAP_I2C
+> > +     depends on I2C
+> > +     help
+> > +       Select this option to enable support for the Silergy SY7636A
+> > +       Power Management IC.
+> > +
+> >  config MFD_DAVINCI_VOICECODEC
+> >       tristate
+> >       select MFD_CORE
+> > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> > index 8116c19d5fd4..cbe581e87fa9 100644
+> > --- a/drivers/mfd/Makefile
+> > +++ b/drivers/mfd/Makefile
+> > @@ -266,6 +266,7 @@ obj-$(CONFIG_MFD_KHADAS_MCU)      +=3D khadas-mcu.o
+> >  obj-$(CONFIG_MFD_ACER_A500_EC)       +=3D acer-ec-a500.o
+> >  obj-$(CONFIG_MFD_QCOM_PM8008)        +=3D qcom-pm8008.o
+> >
+> > +obj-$(CONFIG_MFD_SY7636A)    +=3D sy7636a.o
+> >  obj-$(CONFIG_SGI_MFD_IOC3)   +=3D ioc3.o
+> >  obj-$(CONFIG_MFD_SIMPLE_MFD_I2C)     +=3D simple-mfd-i2c.o
+> >  obj-$(CONFIG_MFD_INTEL_M10_BMC)   +=3D intel-m10-bmc.o
+> > diff --git a/drivers/mfd/sy7636a.c b/drivers/mfd/sy7636a.c
+> > new file mode 100644
+> > index 000000000000..f3ff93c7395d
+> > --- /dev/null
+> > +++ b/drivers/mfd/sy7636a.c
+> > @@ -0,0 +1,72 @@
+> > +// SPDX-License-Identifier: GPL-2.0+
+> > +/*
+> > + * MFD parent driver for SY7636A chip
+> > + *
+> > + * Copyright (C) 2021 reMarkable AS - http://www.remarkable.com/
+> > + *
+> > + * Authors: Lars Ivar Miljeteig <lars.ivar.miljeteig@remarkable.com>
+> > + *          Alistair Francis <alistair@alistair23.me>
+> > + *
+> > + * Based on the lp87565 driver by Keerthy <j-keerthy@ti.com>
+> > + */
+> > +
+> > +#include <linux/interrupt.h>
+> > +#include <linux/mfd/core.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of_device.h>
+> > +
+> > +#include <linux/mfd/sy7636a.h>
+> > +
+> > +static const struct regmap_config sy7636a_regmap_config =3D {
+> > +     .reg_bits =3D 8,
+> > +     .val_bits =3D 8,
+> > +};
+> > +
+> > +static const struct mfd_cell sy7636a_cells[] =3D {
+> > +     { .name =3D "sy7636a-regulator", },
+>
+> What kind of regulator is 'vcom'? LDO? DCDC?
 
-Signed-off-by: Kyle Tso <kyletso@google.com>
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
----
-Changes since v5:
-- Changed the property name
-- Added Acked-by tag
+Both I guess:
 
- drivers/usb/typec/tcpm/tcpm.c | 87 +++++++++++++++++++++++++++--------
- 1 file changed, 68 insertions(+), 19 deletions(-)
+"SY7636A is a single-chip power management IC (PMIC) designed for
+electronic paper display (EPD) applications. The device supports panel
+sizes up to 9.7 inches and larger. The device integrates two
+high-efficiency DC-DC boost converters, which are boosted to 25V and
+-20V by two charge pumps to provide gate driver power for the panel.
+Two tracking LDOs create a =C2=B115V source driver power supply that
+supports output currents up to 200mA. SY7636A also provides I2C
+interface control for specific panel requirements"
 
-diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
-index 5b22a1c931a9..12a022bb82cd 100644
---- a/drivers/usb/typec/tcpm/tcpm.c
-+++ b/drivers/usb/typec/tcpm/tcpm.c
-@@ -316,6 +316,7 @@ struct tcpm_port {
- 	struct typec_partner *partner;
- 
- 	enum typec_cc_status cc_req;
-+	enum typec_cc_status src_rp;	/* work only if pd_supported == false */
- 
- 	enum typec_cc_status cc1;
- 	enum typec_cc_status cc2;
-@@ -323,6 +324,7 @@ struct tcpm_port {
- 
- 	bool attached;
- 	bool connected;
-+	bool pd_supported;
- 	enum typec_port_type port_type;
- 
- 	/*
-@@ -815,6 +817,9 @@ static enum typec_cc_status tcpm_rp_cc(struct tcpm_port *port)
- 	int nr_pdo = port->nr_src_pdo;
- 	int i;
- 
-+	if (!port->pd_supported)
-+		return port->src_rp;
-+
- 	/*
- 	 * Search for first entry with matching voltage.
- 	 * It should report the maximum supported current.
-@@ -3568,9 +3573,11 @@ static int tcpm_src_attach(struct tcpm_port *port)
- 	if (ret < 0)
- 		return ret;
- 
--	ret = port->tcpc->set_pd_rx(port->tcpc, true);
--	if (ret < 0)
--		goto out_disable_mux;
-+	if (port->pd_supported) {
-+		ret = port->tcpc->set_pd_rx(port->tcpc, true);
-+		if (ret < 0)
-+			goto out_disable_mux;
-+	}
- 
- 	/*
- 	 * USB Type-C specification, version 1.2,
-@@ -3600,7 +3607,8 @@ static int tcpm_src_attach(struct tcpm_port *port)
- out_disable_vconn:
- 	tcpm_set_vconn(port, false);
- out_disable_pd:
--	port->tcpc->set_pd_rx(port->tcpc, false);
-+	if (port->pd_supported)
-+		port->tcpc->set_pd_rx(port->tcpc, false);
- out_disable_mux:
- 	tcpm_mux_set(port, TYPEC_STATE_SAFE, USB_ROLE_NONE,
- 		     TYPEC_ORIENTATION_NONE);
-@@ -3804,6 +3812,20 @@ static enum typec_pwr_opmode tcpm_get_pwr_opmode(enum typec_cc_status cc)
- 	}
- }
- 
-+static enum typec_cc_status tcpm_pwr_opmode_to_rp(enum typec_pwr_opmode opmode)
-+{
-+	switch (opmode) {
-+	case TYPEC_PWR_MODE_USB:
-+		return TYPEC_CC_RP_DEF;
-+	case TYPEC_PWR_MODE_1_5A:
-+		return TYPEC_CC_RP_1_5;
-+	case TYPEC_PWR_MODE_3_0A:
-+	case TYPEC_PWR_MODE_PD:
-+	default:
-+		return TYPEC_CC_RP_3_0;
-+	}
-+}
-+
- static void run_state_machine(struct tcpm_port *port)
- {
- 	int ret;
-@@ -3914,6 +3936,10 @@ static void run_state_machine(struct tcpm_port *port)
- 		if (port->ams == POWER_ROLE_SWAP ||
- 		    port->ams == FAST_ROLE_SWAP)
- 			tcpm_ams_finish(port);
-+		if (!port->pd_supported) {
-+			tcpm_set_state(port, SRC_READY, 0);
-+			break;
-+		}
- 		port->upcoming_state = SRC_SEND_CAPABILITIES;
- 		tcpm_ams_start(port, POWER_NEGOTIATION);
- 		break;
-@@ -4161,7 +4187,10 @@ static void run_state_machine(struct tcpm_port *port)
- 				current_lim = PD_P_SNK_STDBY_MW / 5;
- 			tcpm_set_current_limit(port, current_lim, 5000);
- 			tcpm_set_charge(port, true);
--			tcpm_set_state(port, SNK_WAIT_CAPABILITIES, 0);
-+			if (!port->pd_supported)
-+				tcpm_set_state(port, SNK_READY, 0);
-+			else
-+				tcpm_set_state(port, SNK_WAIT_CAPABILITIES, 0);
- 			break;
- 		}
- 		/*
-@@ -4389,7 +4418,8 @@ static void run_state_machine(struct tcpm_port *port)
- 		tcpm_set_vbus(port, true);
- 		if (port->ams == HARD_RESET)
- 			tcpm_ams_finish(port);
--		port->tcpc->set_pd_rx(port->tcpc, true);
-+		if (port->pd_supported)
-+			port->tcpc->set_pd_rx(port->tcpc, true);
- 		tcpm_set_attached_state(port, true);
- 		tcpm_set_state(port, SRC_UNATTACHED, PD_T_PS_SOURCE_ON);
- 		break;
-@@ -5898,6 +5928,7 @@ EXPORT_SYMBOL_GPL(tcpm_tcpc_reset);
- static int tcpm_fw_get_caps(struct tcpm_port *port,
- 			    struct fwnode_handle *fwnode)
- {
-+	const char *opmode_str;
- 	const char *cap_str;
- 	int ret;
- 	u32 mw, frs_current;
-@@ -5932,22 +5963,37 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
- 		return ret;
- 	port->typec_caps.type = ret;
- 	port->port_type = port->typec_caps.type;
-+	port->pd_supported = !fwnode_property_read_bool(fwnode, "pd-disable");
- 
- 	port->slow_charger_loop = fwnode_property_read_bool(fwnode, "slow-charger-loop");
- 	if (port->port_type == TYPEC_PORT_SNK)
- 		goto sink;
- 
--	/* Get source pdos */
--	ret = fwnode_property_count_u32(fwnode, "source-pdos");
--	if (ret <= 0)
--		return -EINVAL;
-+	/* Get Source PDOs for the PD port or Source Rp value for the non-PD port */
-+	if (port->pd_supported) {
-+		ret = fwnode_property_count_u32(fwnode, "source-pdos");
-+		if (ret == 0)
-+			return -EINVAL;
-+		else if (ret < 0)
-+			return ret;
- 
--	port->nr_src_pdo = min(ret, PDO_MAX_OBJECTS);
--	ret = fwnode_property_read_u32_array(fwnode, "source-pdos",
--					     port->src_pdo, port->nr_src_pdo);
--	if ((ret < 0) || tcpm_validate_caps(port, port->src_pdo,
--					    port->nr_src_pdo))
--		return -EINVAL;
-+		port->nr_src_pdo = min(ret, PDO_MAX_OBJECTS);
-+		ret = fwnode_property_read_u32_array(fwnode, "source-pdos",
-+						     port->src_pdo, port->nr_src_pdo);
-+		if (ret)
-+			return ret;
-+		ret = tcpm_validate_caps(port, port->src_pdo, port->nr_src_pdo);
-+		if (ret)
-+			return ret;
-+	} else {
-+		ret = fwnode_property_read_string(fwnode, "typec-power-opmode", &opmode_str);
-+		if (ret)
-+			return ret;
-+		ret = typec_find_pwr_opmode(opmode_str);
-+		if (ret < 0)
-+			return ret;
-+		port->src_rp = tcpm_pwr_opmode_to_rp(ret);
-+	}
- 
- 	if (port->port_type == TYPEC_PORT_SRC)
- 		return 0;
-@@ -5961,6 +6007,11 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
- 	if (port->typec_caps.prefer_role < 0)
- 		return -EINVAL;
- sink:
-+	port->self_powered = fwnode_property_read_bool(fwnode, "self-powered");
-+
-+	if (!port->pd_supported)
-+		return 0;
-+
- 	/* Get sink pdos */
- 	ret = fwnode_property_count_u32(fwnode, "sink-pdos");
- 	if (ret <= 0)
-@@ -5977,9 +6028,7 @@ static int tcpm_fw_get_caps(struct tcpm_port *port,
- 		return -EINVAL;
- 	port->operating_snk_mw = mw / 1000;
- 
--	port->self_powered = fwnode_property_read_bool(fwnode, "self-powered");
--
--	/* FRS can only be supported byb DRP ports */
-+	/* FRS can only be supported by DRP ports */
- 	if (port->port_type == TYPEC_PORT_DRP) {
- 		ret = fwnode_property_read_u32(fwnode, "new-source-frs-typec-current",
- 					       &frs_current);
--- 
-2.32.0.554.ge1b32706d8-goog
+Alistair
 
+>
+> > +     { .name =3D "sy7636a-temperature", },
+> > +     { .name =3D "sy7636a-thermal", },
+> > +};
+>
+> --
+> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
+> Senior Technical Lead - Developer Services
+> Linaro.org =E2=94=82 Open source software for Arm SoCs
+> Follow Linaro: Facebook | Twitter | Blog
