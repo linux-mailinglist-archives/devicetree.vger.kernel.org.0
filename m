@@ -2,106 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A8C723DFC03
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 09:24:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A9313DFC1B
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 09:30:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235837AbhHDHYP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 03:24:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41858 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235814AbhHDHYO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 03:24:14 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48875C0613D5
-        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 00:24:02 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1mBBFj-0007IB-7e; Wed, 04 Aug 2021 09:23:47 +0200
-Received: from pengutronix.de (unknown [IPv6:2a02:810a:8940:aa0:e44:2d7c:bf4a:7b36])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 6C26D6605BC;
-        Wed,  4 Aug 2021 07:23:43 +0000 (UTC)
-Date:   Wed, 4 Aug 2021 09:23:41 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-Cc:     Lokesh Vutla <lokeshvutla@ti.com>, Nishanth Menon <nm@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sriram Dash <sriram.dash@samsung.com>,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: net: can: Document power-domains property
-Message-ID: <20210804072341.l4flosh7rkvma22o@pengutronix.de>
-References: <20210802091822.16407-1-a-govindraju@ti.com>
+        id S235916AbhHDHa7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 03:30:59 -0400
+Received: from mout.gmx.net ([212.227.17.21]:49923 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235817AbhHDHa6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Aug 2021 03:30:58 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1628062222;
+        bh=P4wBvc85h3fXlWdQcXelaLmQpD4A4GD47g72UVNj57I=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=MY1RIEdV/YTZijOtU6ffuHajpvE/20+zoOy4oMIA9PMA3e8aXwTzaWPC7MBwPQv9v
+         zxZzXV80UaXChtfhqATFIYAKu67BsJ6Bz3v1inyeOEs2eNHmfydh/xW8GT3DvjbbGy
+         U9jSZDDOEcU1R6ZK2AfZFBmrKJZJ899NQx7CctXU=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [217.61.147.17] ([217.61.147.17]) by web-mail.gmx.net
+ (3c-app-gmx-bap67.server.lan [172.19.172.67]) (via HTTP); Wed, 4 Aug 2021
+ 09:30:21 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="sqkjar3j54e2j6hq"
-Content-Disposition: inline
-In-Reply-To: <20210802091822.16407-1-a-govindraju@ti.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Message-ID: <trinity-a5eeacb8-1625-4111-b613-19ee1609b902-1628062221917@3c-app-gmx-bap67>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Hsin-Yi Wang <hsinyi@chromium.org>
+Subject: Aw: [PATCH v8, 2/2] soc: mediatek: mmsys: Add mt8192 mmsys routing
+ table
+Content-Type: text/plain; charset=UTF-8
+Date:   Wed, 4 Aug 2021 09:30:21 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <1627894773-23872-3-git-send-email-yongqiang.niu@mediatek.com>
+References: <1627894773-23872-1-git-send-email-yongqiang.niu@mediatek.com>
+ <1627894773-23872-3-git-send-email-yongqiang.niu@mediatek.com>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:FTFMR063lUiqNFEXMYKR9Nt6kBJb+tvRQII2gEh1asf4eB17tIoXkk2zLgq9ZD1OfoZwa
+ zwQa5mpCvFQBtgET6CZ/J7NtfPT9Bk8eILs7hs9zUEJ356V/YkowKCFFYgFuC5vh804RgGRtvI7S
+ nN/4NVGY4SKwh3JwOyAbL5N6eyxGAapF+Qt7UbVMzOun+eMRCx/q2qjqlGp3A92+tmr3Oxt4iFpr
+ WxfpR8duyZViNpCMnmrdQSeLBnDM9/A+UnMfbmH4lXNI18H4pcGPM373s5b5GEWpkg89+mJ5Ihsq
+ mQ=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:pe3B7hYMLN8=:xYFKFGHPzPUBrVYDFk7erl
+ jCyPvToDYyqeGdTfuO5erRCplUODZQ2TuJJTXrNllkHHVX+Q/xgVq0GKWHQV3KLGEreWxpo7d
+ XuU/FRHqPq7uKnltpXonljHTWVPtSv+lp2tPV0+wDrTSU5vYIsrnacPtTmNg2KfT2xbuSKBIJ
+ g35lTXsvY70UqFgAtB5vAwdu6cvSdM1vEZFeBpbdJDDdPdVRnh77ajOPurEJTqVU+MO3PlP6e
+ VkRPJx0RikfPKW7fd6qRXqGal/KDecSIIxzjFCltzjLYdiYF+XRYwOzKeSGR95hMMMggCdMz8
+ iYtXCF1kkmI1b/gGBNPqktDysHJYfO6xC1mUr7zdhtpxS70PkdPdSKP/S/Q2PmzlrXpIPaPdv
+ 7F3/a30PnTmhxNZElXqCoFQJbFirK3s7LfuzbysOw5tuaTZpqF122rvWqEY6z/RdKlKIxsYKW
+ wPieYJYeNVnxgFZkdRfMjwEANhdYzIJkXUaiFwOKT4OydA9m1lie++9HLB7/ew7Irdhr/+2rI
+ 7xhz9zJtLT2d4i/64rW2kLhXWhraE7ZVKhbJtN21MRQ2eGC/VjY1ItEqfKl14UyNEL/CA/1ps
+ FlNKtiSJATQq/OkmLx0fiub23Mve1SBSNWj3XfP8ZsLlAIXg86oaBmnaaTyK3av+huAJ2RRtC
+ uZCpWZVNQUG02nrYcaOWBMtHWW3s4s/QfEcDp6rD05SgwQxnB04FXWgv3u8pDFGevUh4Xiu71
+ iiUOreyBgptkJa63QoxIL6RfHndWbwa8g8Cu+gMb6g4gxL2i7vV5zVXWV2oln6MXZt5fAtt5a
+ Dbie10PssSR6fDvZdVRpeDDnnoQ4EbTxssHUiZY1tjOlujPB48=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi
 
---sqkjar3j54e2j6hq
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+can you please test if your device still work after applying this
 
-On 02.08.2021 14:48:22, Aswath Govindraju wrote:
-> Document power-domains property for adding the Power domain provider.
->=20
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+https://patchwork.kernel.org/project/linux-mediatek/patch/20210729070549.5514-1-linux@fw-web.de/
 
-Applied to linux-can-next/testing.
+and
 
-BTW: TI's dkim is broken:
+duplicate value constants in your routes?
 
-|   =E2=9C=97 [PATCH v2] dt-bindings: net: can: Document power-domains prop=
-erty
-|     + Link: https://lore.kernel.org/r/20210802091822.16407-1-a-govindraju=
-@ti.com
-|     + Acked-by: Rob Herring <robh@kernel.org>
-|     + Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
-|   ---
-|   =E2=9C=97 BADSIG: DKIM/ti.com
+e.g. changing
 
-regards,
-Marc
++		DDP_COMPONENT_OVL_2L0, DDP_COMPONENT_RDMA0,
++		MT8192_DISP_OVL0_2L_MOUT_EN, MT8192_OVL0_MOUT_EN_DISP_RDMA0,
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+to
 
---sqkjar3j54e2j6hq
-Content-Type: application/pgp-signature; name="signature.asc"
++		DDP_COMPONENT_OVL_2L0, DDP_COMPONENT_RDMA0,
++		MT8192_DISP_OVL0_2L_MOUT_EN, MT8192_OVL0_MOUT_EN_DISP_RDMA0,
++		MT8192_OVL0_MOUT_EN_DISP_RDMA0
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAmEKQHsACgkQqclaivrt
-76lNRwf+LJv6+mLtM8GeYEzkRoHsLsugVutHrFlAP0iIKEHubqbIrBYKSXQ+Nukp
-KJD2A3nwJsEjwNbkfhSapiZHrRRB1pjfTNOEq8l+8pAShXXji/pzN1tRC+Vk66Fg
-TUdfLGCEXKQUqpniLE7Uke0QZn8rUz8ObxRKho5/0jrH9+49l1ZdeQRGTB4mbUmD
-JxWC3V0BME0+wqeHxnsKxLhsJji5AwcXsAnW8gFNC96tLmlNJB3erxg+RTcD803S
-B8m1sYbm/TB2phLF+W8yjQgtRopC/jFxMgenBQjmwM2euG8xwItAGQZ1ldnVLupw
-47LjpU12bjyyceebX30FcJaZEg7CQw==
-=p8BA
------END PGP SIGNATURE-----
-
---sqkjar3j54e2j6hq--
+regards Frank
