@@ -2,90 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 978383E0284
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 15:55:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D14513E0290
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 16:00:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238497AbhHDNzq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 09:55:46 -0400
-Received: from mout.kundenserver.de ([217.72.192.74]:55959 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238511AbhHDNzk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 09:55:40 -0400
-Received: from mail-wm1-f53.google.com ([209.85.128.53]) by
- mrelayeu.kundenserver.de (mreue109 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1MxmBc-1n4jGi12SM-00zFI1; Wed, 04 Aug 2021 15:55:26 +0200
-Received: by mail-wm1-f53.google.com with SMTP id d131-20020a1c1d890000b02902516717f562so1516857wmd.3;
-        Wed, 04 Aug 2021 06:55:26 -0700 (PDT)
-X-Gm-Message-State: AOAM5303ILmV8BKgi/SZR040uPX1afQSYRfNM2WqhFLZ/NkHbLFnuELr
-        1P0XtHM4pY7gVDLK214FKC+eme/6d3jk+VDGbUM=
-X-Google-Smtp-Source: ABdhPJwDFsHBF22f8Wqozeaut6UIlHtczJbkX0G3MU6rJlQNmQa5Uqm62X/H+k4KrenEDbOxO68Jg/vZ6B5uO0dsHAk=
-X-Received: by 2002:a1c:208e:: with SMTP id g136mr9939159wmg.142.1628085325875;
- Wed, 04 Aug 2021 06:55:25 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210804043439.11757-1-o.rempel@pengutronix.de>
-In-Reply-To: <20210804043439.11757-1-o.rempel@pengutronix.de>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Wed, 4 Aug 2021 15:55:10 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a0285V=N5HPS5grOTQ+q1HF8J6_PsxCLgLvYMsD0hVeUg@mail.gmail.com>
-Message-ID: <CAK8P3a0285V=N5HPS5grOTQ+q1HF8J6_PsxCLgLvYMsD0hVeUg@mail.gmail.com>
-Subject: Re: [PATCH v34 0/3] Mainline imx6 based SKOV boards
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, SoC Team <soc@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Sam Ravnborg <sam@ravnborg.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:XCcqNK5JlckTjb+hLwBfXaYnPANPzABvZEDtzdK+Nq1duykj8Yl
- JpgV7CdAM614Pw4RFFYrxrtUonHIUVwjZUNlE8kdmuRKXbcL2y/+gFq3YJHPo6OQPOV1iQD
- qDEf26kgaXd7r435Y8V2DZfXNxUPo/hAjR+lAYyZgKJtKGGTody5+s+TYEurVC9heTzv4bM
- mN7n8kESsJ6MOCvpd8Fhg==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:RKqE8Qi0Uk8=:kcPh2urtWp7BEfU81ZdsZ0
- R/vM2+n3ukG/dErbrTno828CmJTfvEDlyvvDrO7Z1E8DYxScNA8ORZ7oBA/PWRQRmBtsnI9O0
- OQCdD153bGLdOZ69R6fqemmddAFd9Iag9Govsft0O07Ba/9p3PryZNsHqnnV+WDa5A8h5Qyez
- S4Wl6oIojW+jRlWpunzlsBegb4m1zdj26SIdbJ6Mo60dU/4y4IfImBZ4HZ3uXrdJ9i5+7i6fc
- eAnnUWRYSNlfWDm4S8fxkVRiquA0GY4PqQuCK6Hh463R1BXSiOBqVIfwpb4U2EMI/5NGvmwEE
- EwZqkRqDYIUCfYf57egRm9DDSutREP/+L6FGo0YW9kgTgSzuqDFQtY0aT3HnQ7z+sz6JI02HF
- 2bWDVYD6vKbwZfg7l+Om+l3luKNdfO421juGUuq7C/kyf1X6NwUsvdNbzs1Sou+2Cj3pV1+UG
- en3dmSg4dLuG9Enw8dDOqbkdfPQULW3NRtnghDsfGSRT1ixO6qh1yo1OChX0G8Gfyv2fUoii7
- V2b74ZpvHPTScdj6h8Yvf/5KNzxhKep7HNgJmahvXbvzE1VA/k6FAI/VxX3avGEXRx31vmoxx
- f6Hv9T99bzGONqPUpBbjm1FDFToZ0Bk6FqFfIzyF7om/EhlW6dkU4a96nyiMTQq0FRZfa21lZ
- ap+TM9z52R6U/rJ9q24qUNlZOBuWmjU8hmH9/9UtdV/+T/UuHagyqUiIHp8ckaHYZC9hWD9gc
- l+x9xpdUi1YtVEf/kGK4Q7B7YeIgJmfNo94SrAdqrbA7Tu7Rj2oeacecYDPJujsALEdPyvTqZ
- hm/0jmuPg6owEKNjx8x+/sExHuFd9UFFnfUeG06XIt29p+WjhfjUehcg6mgkRmBuz0ucQwmOr
- Ban567U62oYSTHVZLqdycSmT9ukyQjcP7egUHP65WKciGS6Spr2W4xjJNcD8J3kbgc3/vrVWS
- R2lrXn2Ay87RVFaHijfbOtpnLghtuGyzOYSmvHIkNrjtjZ3haSYip
+        id S238053AbhHDOAu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 10:00:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48116 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238005AbhHDOAs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 10:00:48 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26D76C0613D5;
+        Wed,  4 Aug 2021 07:00:35 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id m12so2348951wru.12;
+        Wed, 04 Aug 2021 07:00:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=UQh0XuwEqlgV75Ps3B/F3ylifl0qiT4/8PBf3CQWjYw=;
+        b=eOyvHSKNYGyaO+vNyt8TYAy1znDJI8bWYgVrTFZz5Bh49tY0KEY5Vic1ZUjMTCQ6Yl
+         UI31ZFXG4+EiUC3ZBUz8GiMzvh8S1gGc+zUG/ytz21FqPFlmcYtaLyyxR/M0KN/pmzzo
+         rM5gOufWNkQvVvbbpKWbLqJygPdhOE9jxfriqlmd0j2OzS2+TmgAM9eYLVZz04EnCiku
+         OpqN3IitHJxMHd3XBRR6n9h2M0vrDdfe8YhC7GyyDQkVC+/U7JlkXVzfkurVPwfPHnoV
+         sAEvF+dCFHI/LLkvDOr0dejQSrPCGh9uEy10GzfLbWywyPBRPsVReY5ogQoIaBehq0iC
+         8UjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=UQh0XuwEqlgV75Ps3B/F3ylifl0qiT4/8PBf3CQWjYw=;
+        b=EbQTiklrTyGtRQKlX9lGu+hysj6BKVrkMI7wTUk7XZfRVrYXtWe9E1adkakMCcrYFQ
+         rGrh2sdSGOSU66CYbN31zRA5uQfo3HYVNUVV23UoGrjirC4MIw2D+xj9JBWm8RH2F2km
+         ooNqPGGiXyGolrhbviqnSKkyCLnE7g6R8zHfXXgntJPzgNplzwS64MuCapkruAiHPPs6
+         y2Jb+kfg3fRSWcrtOdlYLz8lrbi+nbNWs69vukpeJxtW+Zt5Nr3RWEUQPnNKeqamCyq+
+         4NrlU6ImjCnbRpzuVpHIyI/nTbnsgzGGd/JIrlPEPuMCHiVISJxXbtR3wEXgvp3V0iO9
+         oE7w==
+X-Gm-Message-State: AOAM532Wou+l+2/x8R6HTTTv/bRZWSNgvxz9alGqEHXESiswaqFQn2R1
+        BtoTTaQzP513L6krS5pvyDY=
+X-Google-Smtp-Source: ABdhPJzllF+zFHrspGUKzLn3qA7J6fHTwUA8j7nohSTy8ysuKuNFdqGA5vH04F7Jcz/A/DMK8TJUFA==
+X-Received: by 2002:a5d:6904:: with SMTP id t4mr28597192wru.187.1628085633684;
+        Wed, 04 Aug 2021 07:00:33 -0700 (PDT)
+Received: from localhost.localdomain ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id k1sm2812902wrz.61.2021.08.04.07.00.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Aug 2021 07:00:33 -0700 (PDT)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH] arm64: dts: meson: add audio playback to nexbox-a1
+Date:   Wed,  4 Aug 2021 14:00:29 +0000
+Message-Id: <20210804140029.4445-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 4, 2021 at 6:36 AM Oleksij Rempel <o.rempel@pengutronix.de> wrote:
->
-> changes v4:
-> - add vref-supply to adc@0
-> - split gpio assignment for the mdio node
+Add initial support limited to HDMI i2s and SPDIF (LPCM).
 
-Hi Oleksij,
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+ .../boot/dts/amlogic/meson-gxm-nexbox-a1.dts  | 61 +++++++++++++++++++
+ 1 file changed, 61 insertions(+)
 
-I've dropped the series from the soc patchwork, since this looks like
-something that
-should go through the i.MX tree. Please make it clear from the cover
-letter and from
-the 'to' list what you want to happen with the patches, and who should take care
-of them.
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
+index dfa7a37a1281..236c0a144142 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
+@@ -10,6 +10,7 @@
+ /dts-v1/;
+ 
+ #include "meson-gxm.dtsi"
++#include <dt-bindings/sound/meson-aiu.h>
+ 
+ / {
+ 	compatible = "nexbox,a1", "amlogic,s912", "amlogic,meson-gxm";
+@@ -24,6 +25,13 @@
+ 		stdout-path = "serial0:115200n8";
+ 	};
+ 
++	spdif_dit: audio-codec-0 {
++		#sound-dai-cells = <0>;
++		compatible = "linux,spdif-dit";
++		status = "okay";
++		sound-name-prefix = "DIT";
++	};
++
+ 	memory@0 {
+ 		device_type = "memory";
+ 		reg = <0x0 0x0 0x0 0x80000000>;
+@@ -75,6 +83,59 @@
+ 			};
+ 		};
+ 	};
++
++	sound {
++		compatible = "amlogic,gx-sound-card";
++		model = "NEXBOX-A1";
++		assigned-clocks = <&clkc CLKID_MPLL0>,
++				  <&clkc CLKID_MPLL1>,
++				  <&clkc CLKID_MPLL2>;
++		assigned-clock-parents = <0>, <0>, <0>;
++		assigned-clock-rates = <294912000>,
++				       <270950400>,
++				       <393216000>;
++		status = "okay";
++
++		dai-link-0 {
++			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
++		};
++
++		dai-link-1 {
++			sound-dai = <&aiu AIU_CPU CPU_SPDIF_FIFO>;
++		};
++
++		dai-link-2 {
++			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
++			dai-format = "i2s";
++			mclk-fs = <256>;
++
++			codec-0 {
++				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
++			};
++		};
++
++		dai-link-3 {
++			sound-dai = <&aiu AIU_CPU CPU_SPDIF_ENCODER>;
++
++			codec-0 {
++				sound-dai = <&spdif_dit>;
++			};
++		};
++
++		dai-link-4 {
++			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
++
++			codec-0 {
++				sound-dai = <&hdmi_tx>;
++			};
++		};
++	};
++};
++
++&aiu {
++	status = "okay";
++	pinctrl-0 = <&spdif_out_h_pins>;
++	pinctrl-names = "default";
+ };
+ 
+ &cec_AO {
+-- 
+2.17.1
 
-Any patches that are meant for platform maintainers should not get sent to
-soc@kernel.org. If you think you need me to review the patches, you can
-send them cc my personal address.
-
-      Arnd
