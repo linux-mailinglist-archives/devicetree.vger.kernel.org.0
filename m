@@ -2,145 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E23793E0872
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 21:01:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 736503E08AF
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 21:21:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237903AbhHDTCF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 15:02:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33380 "EHLO
+        id S234336AbhHDTV5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 15:21:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230063AbhHDTCF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 15:02:05 -0400
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D8BEC061799
-        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 12:01:52 -0700 (PDT)
-Received: by mail-ot1-x334.google.com with SMTP id a5-20020a05683012c5b029036edcf8f9a6so2597203otq.3
-        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 12:01:52 -0700 (PDT)
+        with ESMTP id S234054AbhHDTV4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 15:21:56 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A16C2C0613D5
+        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 12:21:43 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id y7so3821075ljp.3
+        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 12:21:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=4641MPkioKublOkHL4evZ5kS7fvIPpw+L1PqXgIieP8=;
-        b=GqkjpQMjn9YW6aAFi+Vp0+YrxgzlIVN3vDD/r/lSR6Zpe18H+WzZIXfnbSguXd5sKL
-         2Z3CdFOVNtk56T2xekum7tqzdP5f/8GxuJAZHNTWC73fSAMKNAcZghWnJzpMH6DFT6ND
-         23T185qFL3X/2ZYsssPjeD2+y7M6mHHG5mtOo=
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ylI9MXOs0Ir8PA1SSc4CWBUvb8oJBzOcDwis/U9YFVQ=;
+        b=X4MpP5DhkCDW/CMWbe1IZxRUGYUWQeM73N+vdca9xUIdVP0Y5juQKu4iNsxYX7MmYc
+         JP/2XHO+BXYeXnmy4snp3Sgoybts38cc2zI1AZdTx4O+7fyJ+i10Wtk2tIdasaLHK5SN
+         3sXBSXl91LZBjaq6Qv94le6sGurixI8Q1rHrorSjBI9bpPKk8hi4VVzHodPGrwexNnR3
+         Z9r4ihvDqWCMN/5NVPwiO0sB0VMZr6TlFT28No4CBfFnIo+WigR5oqKhPriocCvF0vM9
+         VvCamXc5yyY0MHzbn4YWbAVobGBuLT+VGZ9nCm3c3tTN9+hIy/xpH5aw4lLAIkQODV2W
+         rXrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=4641MPkioKublOkHL4evZ5kS7fvIPpw+L1PqXgIieP8=;
-        b=scEDQnLg6B+FcvAABc1flGtnhkNB+BoILASwB9bJAW3iUZmkX9lhW/IVhCRPqGCAtk
-         I2+tZgKVUggFRCipQUc4ftCoYn53+sJDSAaMXy8yubU4M6Cgn2lVicLgOaz3wy3hdxer
-         v6pnmXf4GeK0Zfa2pqxhjbLIcvncAT2nKMEJFsZJDXEtl/TqjiHP+t0VlzqiB8YzvgJx
-         yfs5JulwxnjTJuGEPbfgI9Y4rM3IeYhwleZsIm4NFZJbn1UxXTLVf/r7vNTY0Ok1z+Ae
-         H6dL8bhGu5Q+hhzTnp6ozSdUk2bqqDyTzi8whULJ9Do2S4jeGQnTbGTJm0PPWsdzOcLv
-         ieeg==
-X-Gm-Message-State: AOAM530lsi0lPT/2Alp3YeIb5jyVC4+Aemu5V+rnrcooYhJ6uymzcSPy
-        KtTGU54PH++mWIj3NzBOOljBjPXpDUFQALi76F94og==
-X-Google-Smtp-Source: ABdhPJx2OkzKOmmq/s4XSPcU7nqbnZJdKgsYBlKrpDnpvRgoLEowSTouTJP69cnCrn0RYHIxfZzw76HULG++n4OxZlM=
-X-Received: by 2002:a05:6830:1490:: with SMTP id s16mr864327otq.233.1628103711737;
- Wed, 04 Aug 2021 12:01:51 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 4 Aug 2021 12:01:51 -0700
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ylI9MXOs0Ir8PA1SSc4CWBUvb8oJBzOcDwis/U9YFVQ=;
+        b=mhYySt6UEz3L78Tkpvp5rNcBU+Gr3aHq9N4j7SKGF8urJKnnhphdvw6erWml4ADf0S
+         vJl+DKjSZ5Bc9SIzgkLyxmN55wb/QkXGHrpXyRQWcc9wesK+4ysRVAHxBQhmTSLU3C61
+         mkwAXOZXN3XQ3OQfuWFmTWFSVXuJ8G+G03sO4OdI7UYkpoFq7QKF7i54z9tcfjzA7x+7
+         VvccyeGXBfsKxeUJ7mhtdMr3q7T7vlWkYibYcGF4cV5Y4Q2olsnhzXDtgtULqMfxmMpd
+         IVfGfJX7Fiir7RV56xQErrXGLhfw7OA44yKO3zW6QssMJWuJdaWMY68ztrpwSHbkSWIu
+         9NXA==
+X-Gm-Message-State: AOAM531amVh7dlIcQhOl66W/RTbGbPTinzb2vE8UY0xAO3vS2loAH3/s
+        HblJboTx2VOKx+HAtMRCX7qT6aMK+O/IvE4Ah5C8mA==
+X-Google-Smtp-Source: ABdhPJxSA1V/rjr6BECMCBkSMvqgdG8Yhf5F4dByLuR2eLus55oS/5YtDzd9iMRxhd9NtXjxhgFa/N8SglbWP5DUc2A=
+X-Received: by 2002:a2e:888f:: with SMTP id k15mr609374lji.326.1628104901981;
+ Wed, 04 Aug 2021 12:21:41 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1627581885-32165-3-git-send-email-sibis@codeaurora.org>
-References: <1627581885-32165-1-git-send-email-sibis@codeaurora.org> <1627581885-32165-3-git-send-email-sibis@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Wed, 4 Aug 2021 12:01:51 -0700
-Message-ID: <CAE-0n53cH749NC9JPqJvMZGBQf47AZ3qY66eoqk2CiQHvuumkg@mail.gmail.com>
-Subject: Re: [PATCH 2/4] cpufreq: qcom: Re-arrange register offsets to support
- per core L3 DCVS
-To:     Sibi Sankar <sibis@codeaurora.org>, bjorn.andersson@linaro.org,
-        mka@chromium.org, robh+dt@kernel.org
-Cc:     viresh.kumar@linaro.org, agross@kernel.org, rjw@rjwysocki.net,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        dianders@chromium.org, tdas@codeaurora.org
+References: <20210726142943.27008-1-lukas.bulwahn@gmail.com> <20210726142943.27008-5-lukas.bulwahn@gmail.com>
+In-Reply-To: <20210726142943.27008-5-lukas.bulwahn@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 4 Aug 2021 21:21:30 +0200
+Message-ID: <CACRpkdYH=rQEK0sRU8DueUbvffe8DhKdH_nu7u4Pnk3MaBNmig@mail.gmail.com>
+Subject: Re: [PATCH v3 4/8] MAINTAINERS: rectify entries with
+ documentation-file-ref check
+To:     Lukas Bulwahn <lukas.bulwahn@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Yu Chen <chenyu56@huawei.com>,
+        Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Naga Sureshkumar Relli <nagasure@xilinx.com>,
+        Hans Ulli Kroll <ulli.kroll@googlemail.com>,
+        Deepak Saxena <dsaxena@plexity.net>,
+        Mirela Rabulea <mirela.rabulea@nxp.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
+        Wilken Gottwalt <wilken.gottwalt@posteo.net>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Joe Perches <joe@perches.com>,
+        Ralf Ramsauer <ralf.ramsauer@oth-regensburg.de>,
+        kernel-janitors@vger.kernel.org,
+        linux-kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Sibi Sankar (2021-07-29 11:04:43)
-> Qualcomm SoCs (starting with SM8350) support per core voting for L3 cache
-> frequency.
+On Mon, Jul 26, 2021 at 4:30 PM Lukas Bulwahn <lukas.bulwahn@gmail.com> wrote:
 
-And the L3 cache frequency voting code can't be put into this cpufreq
-driver?
+> A number of file entries can be automatically repaired with
+> ./scripts/documentation-file-ref-check --fix.
+>
+> The changes from this script were manually cross-checked for sanity.
+>
+> Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
 
-> So, re-arrange the cpufreq register offsets to allow access for
-> the L3 interconnect to implement per core control. Also prevent binding
-> breakage caused by register offset shuffling by using the SM8250/SM8350
-> EPSS compatible.
->
-> Fixes: 7dbd121a2c58 ("arm64: dts: qcom: sc7280: Add cpufreq hw node")
-> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
-> ---
->  drivers/cpufreq/qcom-cpufreq-hw.c | 23 +++++++++++++++++++----
->  1 file changed, 19 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c b/drivers/cpufreq/qcom-cpufreq-hw.c
-> index f86859bf76f1..74ef3b38343b 100644
-> --- a/drivers/cpufreq/qcom-cpufreq-hw.c
-> +++ b/drivers/cpufreq/qcom-cpufreq-hw.c
-> @@ -28,6 +28,7 @@ struct qcom_cpufreq_soc_data {
->         u32 reg_volt_lut;
->         u32 reg_perf_state;
->         u8 lut_row_size;
-> +       bool skip_enable;
->  };
->
->  struct qcom_cpufreq_data {
-> @@ -257,19 +258,31 @@ static const struct qcom_cpufreq_soc_data qcom_soc_data = {
->         .reg_volt_lut = 0x114,
->         .reg_perf_state = 0x920,
->         .lut_row_size = 32,
-> +       .skip_enable = false,
->  };
->
->  static const struct qcom_cpufreq_soc_data epss_soc_data = {
-> +       .reg_freq_lut = 0x0,
-> +       .reg_volt_lut = 0x100,
-> +       .reg_perf_state = 0x220,
-> +       .lut_row_size = 4,
-> +       .skip_enable = true,
-> +};
-> +
-> +static const struct qcom_cpufreq_soc_data epss_sm8250_soc_data = {
->         .reg_enable = 0x0,
->         .reg_freq_lut = 0x100,
->         .reg_volt_lut = 0x200,
->         .reg_perf_state = 0x320,
->         .lut_row_size = 4,
-> +       .skip_enable = false,
->  };
->
->  static const struct of_device_id qcom_cpufreq_hw_match[] = {
->         { .compatible = "qcom,cpufreq-hw", .data = &qcom_soc_data },
->         { .compatible = "qcom,cpufreq-epss", .data = &epss_soc_data },
-> +       { .compatible = "qcom,sm8250-cpufreq-epss", .data = &epss_sm8250_soc_data },
-> +       { .compatible = "qcom,sm8350-cpufreq-epss", .data = &epss_sm8250_soc_data },
->         {}
->  };
->  MODULE_DEVICE_TABLE(of, qcom_cpufreq_hw_match);
-> @@ -334,10 +347,12 @@ static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
->         data->res = res;
->
->         /* HW should be in enabled state to proceed */
+Thanks for fixing!
+Acked-by: Linus Walleij <linus.walleij@linaro.org>
 
-It looks odd that we're no longer making sure that the clk domain is
-enabled when we probe the driver. Why is that OK?
-
-> -       if (!(readl_relaxed(base + data->soc_data->reg_enable) & 0x1)) {
-> -               dev_err(dev, "Domain-%d cpufreq hardware not enabled\n", index);
-> -               ret = -ENODEV;
-> -               goto error;
-> +       if (!data->soc_data->skip_enable) {
-> +               if (!(readl_relaxed(base + data->soc_data->reg_enable) & 0x1)) {
-> +                       dev_err(dev, "Domain-%d cpufreq hardware not enabled\n", index);
-> +                       ret = -ENODEV;
-> +                       goto error;
-> +               }
->         }
->
+Yours,
+Linus Walleij
