@@ -2,104 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 267D73E09B9
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 23:02:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D26283E09C0
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 23:02:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238706AbhHDVCc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 17:02:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60514 "EHLO
+        id S238897AbhHDVCg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 17:02:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238592AbhHDVCc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 17:02:32 -0400
-Received: from mail-il1-x130.google.com (mail-il1-x130.google.com [IPv6:2607:f8b0:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32E34C061799
+        with ESMTP id S238923AbhHDVCe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 17:02:34 -0400
+Received: from mail-il1-x12d.google.com (mail-il1-x12d.google.com [IPv6:2607:f8b0:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2771C061799
         for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 14:02:19 -0700 (PDT)
-Received: by mail-il1-x130.google.com with SMTP id x7so2916223ilh.10
+Received: by mail-il1-x12d.google.com with SMTP id i9so2928894ilk.9
         for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 14:02:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=dX/WvZ71vHWRGig7P/Gktxx0GWORbXUaLwjhx4396BU=;
-        b=hVR0dnLKbZG1a54aqWJZVm6vL47u/5T9drt1m6xd6uvOE0t7xtSGCTK/FiCdBVKSmR
-         XoTgUIDut3i5gDpkES6sYtSNU+Lhw7vM6IOQs6nPTc3xo/A/DNM1Q8ReP3691gPELg2K
-         Ynii5j1uYAro2tIfa0oIS4Nec1AzLocZbCOEihgg0Y5htogVq0AF9wwjA7BwGuTTreMj
-         gcYoAqncvEspqp0ZI4G10XaMrRSafCCPDLNhhzO3WVyHqn7tX0o6ow3SZPmJsDRr/tjq
-         /iP2ii3M+ivM0sUFF86xo02FJfEviVIBf2maIoEDfrdhjuV/GpVJ9eHEYlK6/ZWAoDho
-         RL5w==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=stsCAhb9KyNn9NActCypTJWHTXz4zjhM13MZVyTCBnA=;
+        b=Urz7X5a+h1M5TrRqe4vxlM0lYfjjuDUEhvxjXMe38+AjpA2RJRhPkAAufCreOGnmYk
+         bRtGhkyCZeaxgbUCPM57CUBWJ6I2nZomrGnX88XAqom9y5De2lI4UIFbbgMh218QRqke
+         s71weIRu0oW/Ba78xA4hN71KNLH0wSZJ9ha71MHQnlkf0YdbXmV7SuEC/NG/3Es4ol8y
+         R3+1Ta5LfChZZaDLiJnYNc2jLakgg1IV2NJxz4jfJzdckad2a2hKngSLGZY3hXygQ+K2
+         u5YgbT3vEcKGup6sM6XjWbrqnjj+PAOQTywIN81kwwPyrezOpR9oGy/+VDB7EXK0oWKZ
+         +GNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=dX/WvZ71vHWRGig7P/Gktxx0GWORbXUaLwjhx4396BU=;
-        b=BpbrGNed4WuXNtJbhvosdH0VexvoDIfM8pyOHRQHBXhMJYVoiXtv/NNBaRxlldTUqE
-         KYMceFmC2d1x90/su9VKZxj7njqZCU1E+0DmIhhSbgQnb7TCfqbB6tIUFMl4sFSD9ckt
-         PNLcdxit50cxBQAbSNOX2Su7O1Eq1iPpKInVxnqwTNUgij1f0rRqlTfdU3l5j3FD1FTv
-         N45wxxdG+cxczjAGppCl0iI65YLNnr6WXbieuuaQt3Z9at5RtBKdHOXaH2lhDHA/jinm
-         nwNVERa6PNUExvH22WTbAm+vrNR3iIegFqqunEK5H53gwonV4z/YrdVy+quQPS7A7FfQ
-         u7wA==
-X-Gm-Message-State: AOAM5320b7s723AoPl++Vz1AbQWO8Uf3zJ9gha7WBhtEcKthDliAw7Vw
-        +OktaKVpFg62Zx5bdXT+7IyuHg==
-X-Google-Smtp-Source: ABdhPJzZWpDzmXe2TvYVNgx8qkqOVHqoq0iJQa56rhS/trE3dRhPSA8q9VtdSh5VgAS0evCePq9YHw==
-X-Received: by 2002:a92:b112:: with SMTP id t18mr567725ilh.36.1628110938400;
-        Wed, 04 Aug 2021 14:02:18 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=stsCAhb9KyNn9NActCypTJWHTXz4zjhM13MZVyTCBnA=;
+        b=JYa+ZYqCTeKz52cP6Mj89O3l8BDikEMDy8njpcXKPJBPBXOLEbUWV+SjsUyrSRw4H9
+         +RyOCWRMOq1pMFDAqbKXIXIY6H21rjkiCONND0au6U7QAVgFIOR5UD7uCptsBaIgh21i
+         42x+c3nPWHxgkIzA/haGNmwVpBxxIavxfm3wchlN281n6hXU5yo1B42K8xMBEkw5fOJy
+         yAG+EOB1V1Tj5ZpF/DiyIrF9qFIhMcu3vGqxS0BUerX2uYRwXppaHSXZR/1knSiuw0oN
+         BXv+sgojRTyd8ulOso7NnU3ULDPfPvqEadIJcX80kPzcPVjnAU0ZQOzIDGWeit++WZIX
+         8OSQ==
+X-Gm-Message-State: AOAM532S3lXNl7CYQKQRH60js3ulpwLtBRK2ct+ho3zFbljpLm9GGyTZ
+        Rk+DeCfDLnGbb4AOu0Kd/e6I9w==
+X-Google-Smtp-Source: ABdhPJySSRd5XcaUWfwDcgu6AKbzKExu52CNfJGfTR0DYT8gGkJkbsFR6aADf4U1iB+GRvDkqt22lQ==
+X-Received: by 2002:a92:da86:: with SMTP id u6mr213363iln.265.1628110939397;
+        Wed, 04 Aug 2021 14:02:19 -0700 (PDT)
 Received: from presto.localdomain (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
-        by smtp.gmail.com with ESMTPSA id d18sm1687396ile.32.2021.08.04.14.02.17
+        by smtp.gmail.com with ESMTPSA id d18sm1687396ile.32.2021.08.04.14.02.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Aug 2021 14:02:17 -0700 (PDT)
+        Wed, 04 Aug 2021 14:02:19 -0700 (PDT)
 From:   Alex Elder <elder@linaro.org>
 To:     bjorn.andersson@linaro.org, agross@kernel.org
 Cc:     robh+dt@kernel.org, elder@kernel.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 0/4] arm64: dts: qcom: IPA-related DTS updates
-Date:   Wed,  4 Aug 2021 16:02:10 -0500
-Message-Id: <20210804210214.1891755-1-elder@linaro.org>
+Subject: [PATCH 1/4] arm64: dts: qcom: sc7280: add IPA information
+Date:   Wed,  4 Aug 2021 16:02:11 -0500
+Message-Id: <20210804210214.1891755-2-elder@linaro.org>
 X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20210804210214.1891755-1-elder@linaro.org>
+References: <20210804210214.1891755-1-elder@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series includes four updates to DTS files for Qualcomm SoCs
-that include IPA.
+Add IPA-related nodes and definitions to "sc7280.dtsi", including
+the reserved memory area used for AP-based IPA firmware loading.
 
-Most of this series was posted once before, and accepted into the
-net-next/master branch by David Miller:
-  https://lore.kernel.org/netdev/20210719212456.3176086-1-elder@linaro.org/
+Signed-off-by: Alex Elder <elder@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 42 ++++++++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
 
-That series got reverted yesterday, meaning these patches can be
-taken in through the Qualcomm tree as intended:
-  https://lore.kernel.org/netdev/20210802233019.800250-1-elder@linaro.org/
-
-The first patch defines IPA information for the SC7280 SoC.  The
-second enables IPA for the SC7280 IDP platform, indicating the
-modem should perform early IPA initialization.
-
-The third patch adds the definition of a reserved memory area to
-hold IPA firmware for the SC7180 SoC; this is used if the modem does
-*not* do early IPA initialization.
-
-And the last patch fixes the definitions used for interconnects for
-the SM8350 SoC.  A corresponding update to the configuration data
-(IPA code) was posted earlier today:
-  https://lore.kernel.org/netdev/20210804135407.1358606-1-elder@linaro.org
-
-  					-Alex
-
-Alex Elder (4):
-  arm64: dts: qcom: sc7280: add IPA information
-  arm64: dts: qcom: sc7280: enable IPA for sc7280-idp
-  arm64: dts: qcom: sc7180: define ipa_fw_mem node
-  arm64: dts: qcom: sm8350: fix IPA interconnects
-
- arch/arm64/boot/dts/qcom/sc7180.dtsi    |  5 +++
- arch/arm64/boot/dts/qcom/sc7280-idp.dts |  5 +++
- arch/arm64/boot/dts/qcom/sc7280.dtsi    | 42 +++++++++++++++++++++++++
- arch/arm64/boot/dts/qcom/sm8350.dtsi    |  8 ++---
- 4 files changed, 55 insertions(+), 5 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 029723a75edef..5764c5b5cae17 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -69,6 +69,11 @@ cpucp_mem: memory@80b00000 {
+ 			no-map;
+ 			reg = <0x0 0x80b00000 0x0 0x100000>;
+ 		};
++
++		ipa_fw_mem: memory@8b700000 {
++			reg = <0 0x8b700000 0 0x10000>;
++			no-map;
++		};
+ 	};
+ 
+ 	cpus {
+@@ -568,6 +573,43 @@ mmss_noc: interconnect@1740000 {
+ 			qcom,bcm-voters = <&apps_bcm_voter>;
+ 		};
+ 
++		ipa: ipa@1e40000 {
++			compatible = "qcom,sc7280-ipa";
++
++			iommus = <&apps_smmu 0x480 0x0>,
++				 <&apps_smmu 0x482 0x0>;
++			reg = <0 0x1e40000 0 0x8000>,
++			      <0 0x1e50000 0 0x4ad0>,
++			      <0 0x1e04000 0 0x23000>;
++			reg-names = "ipa-reg",
++				    "ipa-shared",
++				    "gsi";
++
++			interrupts-extended = <&intc 0 654 IRQ_TYPE_EDGE_RISING>,
++					      <&intc 0 432 IRQ_TYPE_LEVEL_HIGH>,
++					      <&ipa_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
++					      <&ipa_smp2p_in 1 IRQ_TYPE_EDGE_RISING>;
++			interrupt-names = "ipa",
++					  "gsi",
++					  "ipa-clock-query",
++					  "ipa-setup-ready";
++
++			clocks = <&rpmhcc RPMH_IPA_CLK>;
++			clock-names = "core";
++
++			interconnects = <&aggre2_noc MASTER_IPA 0 &mc_virt SLAVE_EBI1 0>,
++					<&gem_noc MASTER_APPSS_PROC 0 &cnoc2 SLAVE_IPA_CFG 0>;
++			interconnect-names = "memory",
++					     "config";
++
++			qcom,smem-states = <&ipa_smp2p_out 0>,
++					   <&ipa_smp2p_out 1>;
++			qcom,smem-state-names = "ipa-clock-enabled-valid",
++						"ipa-clock-enabled";
++
++			status = "disabled";
++		};
++
+ 		tcsr_mutex: hwlock@1f40000 {
+ 			compatible = "qcom,tcsr-mutex", "syscon";
+ 			reg = <0 0x01f40000 0 0x40000>;
 -- 
 2.27.0
 
