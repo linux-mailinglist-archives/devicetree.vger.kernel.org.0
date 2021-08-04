@@ -2,189 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E2E173DFED3
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 12:03:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 641863DFF66
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 12:28:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236775AbhHDKDq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 06:03:46 -0400
-Received: from mail-eopbgr70052.outbound.protection.outlook.com ([40.107.7.52]:37637
-        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S236909AbhHDKDn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 4 Aug 2021 06:03:43 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TcYZaxYKDxO6EQDvlRYGRpLkZumwkMXnvQqfFusEtRchfFRzYWV92BQbCAwsbAbkeSVT0NEKJWasE91Wsg9nj0t0bshTX/AHgz13EncGezCRjwZR3BwYLPyPG2GPX8GlsGKG0ekScRUOsqse9nQyARdTFocXlMNGBJp/vPjoyPUJADR89G3jC2wnA8CuwVKwrsFdKiqnuNH+KLmFcFkBnXJyT7tAk8NgHPpeM86TZXegcYp+Bo6BtX6rIVs0SaMGMgGwO34zhFu9IeIj1rt9LchpOYO45K73ZrsQSg+zO4Izy/ev7b4bmD1EV2MNTLxk7VpaBNRj9l2+TTOd4o81gw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m8sqSpoqr1vXJNn3JPGLXjTBqRIoi2ouFNEbkOWcgc8=;
- b=JnFmZcNs9BHVzOVQ6+rSzAL+FfaNt17aK21AUaononVZ+C/0IM0jfxCm+xtkmxWKrX6qvQROplslChqrdn2khH/jzfaXDbdmkS74rVx3qwwOTtdTIjs/5EfnBmZPQsjWcH/S+LxVM5R6zNaecjbI0Oe50oWsoSrfMeSLH0TbODsX/mIR9C628Z8/WNnQCut7BffIJC5uWgGnfK31VNodBJoT21aloZDrBj8RsLf/FwrhlfuW0viP7fnQfCfSQqxazA+IWX2QHJ+D3IzuPn9G7j0c5fktNCbR36RV/qdYCnaK/ggj8AKLwbvxgaZ4k+v8wiGmIInryX+RZHCRZ5h3XA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wolfvision.net; dmarc=pass action=none
- header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m8sqSpoqr1vXJNn3JPGLXjTBqRIoi2ouFNEbkOWcgc8=;
- b=e3ssH+PFSGQJ12E3sc6IvNRWOx0XDnSH0gBdXGDpaBaJh75xYzS9zcqoC00pPg0G77MvEWS2dm9sEvG0nZnS2qYfMgkup7GH2TIGxeJ/Ys/jvRkBnvdCSSdgxkfbFVLr6oHwyp0x4dg61LGuLM4drCUVCA8FKjpi1lRZjeB4ntg=
-Authentication-Results: rock-chips.com; dkim=none (message not signed)
- header.d=none;rock-chips.com; dmarc=none action=none
- header.from=wolfvision.net;
-Received: from DBBPR08MB4523.eurprd08.prod.outlook.com (2603:10a6:10:c8::19)
- by DB9PR08MB6537.eurprd08.prod.outlook.com (2603:10a6:10:250::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.19; Wed, 4 Aug
- 2021 10:03:27 +0000
-Received: from DBBPR08MB4523.eurprd08.prod.outlook.com
- ([fe80::ade3:93e2:735c:c10b]) by DBBPR08MB4523.eurprd08.prod.outlook.com
- ([fe80::ade3:93e2:735c:c10b%7]) with mapi id 15.20.4394.016; Wed, 4 Aug 2021
- 10:03:27 +0000
-Subject: Re: [PATCH 5/5] arm64: dts: rockchip: rk3568-evb1-v10: add node for
- sd card
-To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>, Liang Chen <cl@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Simon Xue <xxm@rock-chips.com>
-References: <20210803185309.10013-1-michael.riesch@wolfvision.net>
- <20210803185309.10013-6-michael.riesch@wolfvision.net>
- <2936848.7s5MMGUR32@diego>
-From:   Michael Riesch <michael.riesch@wolfvision.net>
-Organization: WolfVision GmbH
-Message-ID: <ebddd74f-114f-1da4-8702-387338002551@wolfvision.net>
-Date:   Wed, 4 Aug 2021 12:03:25 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
-In-Reply-To: <2936848.7s5MMGUR32@diego>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PR0P264CA0211.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:100:1f::31) To DBBPR08MB4523.eurprd08.prod.outlook.com
- (2603:10a6:10:c8::19)
+        id S237283AbhHDK24 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 06:28:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56180 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237263AbhHDK24 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 06:28:56 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEABDC0613D5
+        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 03:28:43 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id k4so893131wms.3
+        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 03:28:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=pibRPync781Rey72XckhyktXKaHhuUD/jjwvrwByLTU=;
+        b=AEqHZY4Ua0OTOVBBOyyctVU3kaNOKXvJEV44OSQquvmFrUofuT2FpdlBiK08kbucTc
+         Ovrxx3a7PVozVuKm15Wk0qmCd68nfsRgd8ucTo4ww+skdi3BjnMneI5tXFgleCS6b4Jw
+         cIml3EmLHJHkyZIXemSIIGIB4PNaMdnuR4R14QIqFAznVnkeG11d4VWoIaR2sS6OrAUF
+         VmL+7pcM0bDjkM2+VKG2gkhKrFu1W460axDVG0BWexKJhWRXxrBpGpJ7NfFVWhbEa1cU
+         8eIMpC8W1LDjHcFZJyiyY5nGCfc3I3uGGFjn8/WraEGhNB0UbybhT/23vO3wk0agUw27
+         bTRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=pibRPync781Rey72XckhyktXKaHhuUD/jjwvrwByLTU=;
+        b=RIVbRjkQoCvrjSWgpewQcysZKpC25QsgvhUtFrTlBZiuMNA3KlRzSewp3SSpGpHivz
+         cAg+Ifqf+FLy8OEvCQVTo+Nag14wFyEikChqgjY4JI7LHEYzIx+nWyniDsj9HBov+I1j
+         m4uaThGOhAT9alwJ3MNkYX4bnJ+8AtfRVTLAGZqdRCeGC60qPtQiJ5FTGC4hCSBaWQMy
+         0Wx/aDpl2dQJo4RF5y/A5pUu7YwoCfx13gOGSxGq/RpXjeczfNLwBLoj0isFXpVXGyPL
+         eQ0PY8zlCPGsb1fA3CZnVq95ufSBsEYyLSyu0n/MQC6PrNTwBt7TQ17wj8Rek438LVHU
+         qUZA==
+X-Gm-Message-State: AOAM530m+CewX/Z88SH2Jx8m/nNFeDG9JdERqRz3wf2NQRC9BwY5vkq1
+        0En1q5Dcx6kpoUengJiy5tcTBQ==
+X-Google-Smtp-Source: ABdhPJyLL5+IQyQOwrQ3rdoeJ3/iG50sinQci9T23YfmDnbK/M6bQLaxlT/KON9NUBIJ1Yl5G07Ezw==
+X-Received: by 2002:a7b:cf12:: with SMTP id l18mr9004049wmg.130.1628072922530;
+        Wed, 04 Aug 2021 03:28:42 -0700 (PDT)
+Received: from google.com ([109.180.115.228])
+        by smtp.gmail.com with ESMTPSA id q14sm1930131wrs.8.2021.08.04.03.28.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Aug 2021 03:28:41 -0700 (PDT)
+Date:   Wed, 4 Aug 2021 11:28:39 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Alistair Francis <alistair23@gmail.com>
+Cc:     Alistair Francis <alistair@alistair23.me>,
+        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
+        Mark Brown <broonie@kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v8 02/11] mfd: sy7636a: Initial commit
+Message-ID: <YQpr1/PVFqHqs2Zv@google.com>
+References: <20210803084456.198-1-alistair@alistair23.me>
+ <20210803084456.198-2-alistair@alistair23.me>
+ <YQlBtQDrVHqh3N5D@google.com>
+ <CAKmqyKMZWVx3KqeysUjOc29nuxnwJfZ3wjmWjVwk9tpQ4dkh-A@mail.gmail.com>
+ <YQpYjEc9r8QGUhiD@google.com>
+ <CAKmqyKP79jXdGhMKYzA3ZOkkT6kb2buOSyYuaCS43SK9oe2ACw@mail.gmail.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.100.125] (91.118.163.37) by PR0P264CA0211.FRAP264.PROD.OUTLOOK.COM (2603:10a6:100:1f::31) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.15 via Frontend Transport; Wed, 4 Aug 2021 10:03:26 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 6815e54e-a041-4c22-5bcf-08d9572f1a7f
-X-MS-TrafficTypeDiagnostic: DB9PR08MB6537:
-X-Microsoft-Antispam-PRVS: <DB9PR08MB653789050ABE7F95F0915567F2F19@DB9PR08MB6537.eurprd08.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: iy7sIj01VtQcf+6v8WKYrTSZ+sh8Sm0nKNDbFIFuph9mm9LH5Kuyb8sbVafzJ6HsuW+77B1DncZQD6VvNP5l7pUwXGYTjBlJsqas6NmDgYhDLSO0NlWTEnKD+EdoyLqDrakffGx2U4we+parh1z1zAOsTs+Bk8bhte5fRVmLF6uNE5RjfGf/aAsl4IEx5sg35FnAOF6ArvPKsSATA5FICKUKIcjadEnE0mGTryQTFRRaTnF45AguHHUTv311DBsfEc5t/mSdSWs1rPUCHDZ+9vFhnXpU3vD/3z5XRvsn5gVTLcvrRN3p5VxRwdCkh4wdJoS5Cx+eblc3alUJkPh6IXscmhd/bXDOvqY9/aiDM7tBvDi6ev/c8oZNP2DIpsdl0jmDekXNc2EUyQ1Ox1xstdU6Vd7FrfQ2ev930ZI0vUIYbXzNv1kd82mZ8lsZ4YZODBBXRvoSZNhjHDSrVmw8TLbVK4wV8/QgbMb5aL1u54mQHPB00kp2uaKqZIdt7D1YQVRH+d+Ja6y0x+7uGjOnj4fzVvFdH3dueprtj4rrdxH6bSgBKnGgIclKXWgjMKY5V0wN2u+2vIHdgRiqHq9iQOO0b0WVI6s1amopfb3NedYrqgKEpP68xOtnINFn3jjs6gipvGnJguA/fvAd7iVArfb3wgZOwb5jKL2ZFkghkEZV482LjmAAUcS4IBPDwzCqiERlm+INVBGurfHWRpW+wPTSuGFEGOF2v8eehvk6nR+ycnZL5nQVnGFUlyIAg1N0Hm02PSZ5Xu6YFJyjDohjtQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR08MB4523.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(136003)(366004)(39840400004)(396003)(346002)(53546011)(5660300002)(26005)(6486002)(316002)(8676002)(86362001)(478600001)(36756003)(4326008)(956004)(16576012)(38350700002)(38100700002)(31696002)(31686004)(186003)(66476007)(54906003)(44832011)(52116002)(66946007)(8936002)(7416002)(66556008)(2906002)(36916002)(2616005)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Myt5ZGl3dTJhekNQT1FQYWNJS1RFVFRuaUFEMit4YmNGQ2FGekZQUlBDU3lV?=
- =?utf-8?B?eURJRUplZE13TDJCcDJTTWJPeVREb2I1TzhOajRaUkcvNlNYQ1pvT2Z3Mnl3?=
- =?utf-8?B?YlBzL2p6Q1cvaWcwQmZFczBNWkQxS3Y1ZUxmNmhpVjVCakRibEh5OHNpd0Fm?=
- =?utf-8?B?YldvU2txMTQxUlIveWtsRGNPVElSNUw1c09aRkdjNUVuTHBFYnZLdDRKekRi?=
- =?utf-8?B?MUFjZlVUQS91ZXNZRWtjaVVhQ0J3a3FCMTZlRmt2MEdDMUVIaEQ1eS8yb1d3?=
- =?utf-8?B?YWtTM3ZKYjJNNXVrM3F0N040ckNZYUhDT2tTR081eDVodFlVU2czcDdXcWFm?=
- =?utf-8?B?MHQrTmJsbmVLWEp2VE1kOXQyN2lsTFVnb2IrUHBGYjR5aWUzMlU1VGF1S040?=
- =?utf-8?B?Z2NQTXQzeitjOEo1RXJ4NGNuY3Z3b2hxbGYrVlZ2Myt4eFZLOE9oMDVsZERK?=
- =?utf-8?B?ZUtITmFVUytQMEU4SnNJZWFhRHpSaElTcWlhcXgxU1FGb2lvYWd1Sm1OSUw2?=
- =?utf-8?B?WmllK3Z0QUlYZ09GWXRPVDZwM3hwaGZHMjUvWS9nMEpKK2pEWXdQUkN0RjFY?=
- =?utf-8?B?WnJJNFB6eUgxRVdtZWZJMm5YSlpxcFpYekhYN3pWcXNUTVhUN29qaE9MYWR3?=
- =?utf-8?B?cWNVTVMzV0t3MGk5UjV2ekhhWnhvcWRvOWkyZ0o4QWhuNzZScWpUTDQ2MGFm?=
- =?utf-8?B?WEhVQk5QMS8rYTJaTVB0V05qRXl5THM4L05iZ0dSV2tkSno0ZExqeXVHdy9s?=
- =?utf-8?B?WHpsU0lueUQza1ZIR0xZTUtlWmgwaG4zaG1QTDRJL3d5UHNjMEJTcWI5KzJa?=
- =?utf-8?B?bVJNMU92eEpmWDUvUzZWM29jWUVHSndTdEhQTFZrQzB4OVZYYkhhL1Yxa09O?=
- =?utf-8?B?QjNPUTFHc2p1VTdVZHV3TmNUa1B1WWVIUDlZOXJ6YlhGejVrc1YzVkJKajZ3?=
- =?utf-8?B?RE1jYXZCa2hBNVh5V2grWjd1TVAyMVhVZ1gyNjRrcXpVOUhoTnlrbXdHaUJr?=
- =?utf-8?B?S3FtSUJJcU9GdlJtNGFKSm9rMXJNWFpvVDRtUnVDeVJacXFpTTNPUmlIR3Ax?=
- =?utf-8?B?d0d6YWJwbGR3d0V1Ym0yUFRBcnNlMVRkTlNBVVhqM2RYZTRNREVzOEhRMkRy?=
- =?utf-8?B?emFoVHJDREErZWlHcTJFMStsamNVUXdScFJtdTB2bnN3MlVkeEFYaURMTU55?=
- =?utf-8?B?TEZacVJMWUVLbHB6WlduMVRlQUxEZjRxWVBZRG8zbU9WbFNTNnJVNlBzUmRu?=
- =?utf-8?B?VGJRZ25NcHlxQnZVY1VaQkZEdVpOaVlyU0pKY2h2Zm04VmZiNHM4U1duWVB3?=
- =?utf-8?B?OVJIeW9Wb0JvUGtHaGFaNHJmbklZMkRzN1ZKaWNPWUJ4TnFvN0pGZ0lrcllz?=
- =?utf-8?B?NmJNYlg4YS9BWEsvT3YyeVVoRFFubWtXOG1WOGJoZDhOck5hbFMwTTY0YXlt?=
- =?utf-8?B?TUUvS0pLWEhMOEF4dTI2eUs3Mzl5MCt1cEZacERRbVBVRC84cDRMWVM1Mlc3?=
- =?utf-8?B?bE9acFN3dDl3ejFVSFlBZzM4Nm1VTWhyeXB6akVKSHQ5U1JSRHgyU1VpdWZ2?=
- =?utf-8?B?Z0ZkRDZPbmdsU01uTFI2VmRqd3BoK3lIV05kUUMxUzhGeXFVMm1Kd3d4Z3Bm?=
- =?utf-8?B?em51bXFoUWZ2ZC9DTUwzdXZqYUVKOFNwU3dSNzlsZGZRWEx1czA5dmFwOEk2?=
- =?utf-8?B?WnBCNzlmdWlEYlA3SWFlUlJTMlVZSENsZjdZM1NOWUQ1WjdIK1RtaGlvUVVN?=
- =?utf-8?Q?TP6GEHBD2AB1eMSaUvIQ1utwLHVCUESqDA8vPun?=
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6815e54e-a041-4c22-5bcf-08d9572f1a7f
-X-MS-Exchange-CrossTenant-AuthSource: DBBPR08MB4523.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Aug 2021 10:03:27.0448
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 368pccXmg4L2UfCPd3yw+SptkTN7hVVPEM5zJS8GMgUCRHo7X0Roem1bsf+OpZ9K7zzlbX+XoneczCz/fSQQRZ/QkVHGxZyb0CWKNe2MnAY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR08MB6537
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAKmqyKP79jXdGhMKYzA3ZOkkT6kb2buOSyYuaCS43SK9oe2ACw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Heiko,
+On Wed, 04 Aug 2021, Alistair Francis wrote:
 
-On 8/3/21 10:48 PM, Heiko Stübner wrote:
-> Am Dienstag, 3. August 2021, 20:53:09 CEST schrieb Michael Riesch:
->> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
->> ---
->>  arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts | 15 +++++++++++++++
->>  1 file changed, 15 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
->> index 3ac70a8183c4..b0f5aa8c979c 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
->> @@ -17,6 +17,7 @@
->>  		ethernet0 = &gmac0;
->>  		ethernet1 = &gmac1;
->>  		emmc = &sdhci;
->> +		sd = &sdmmc0;
+> On Wed, Aug 4, 2021 at 7:06 PM Lee Jones <lee.jones@linaro.org> wrote:
+> >
+> > On Wed, 04 Aug 2021, Alistair Francis wrote:
+> >
+> > > On Tue, Aug 3, 2021 at 11:16 PM Lee Jones <lee.jones@linaro.org> wrote:
+> > > >
+> > > > On Tue, 03 Aug 2021, Alistair Francis wrote:
+> > > >
+> > > > > Initial support for the Silergy SY7636A Power Management chip.
+> > > > >
+> > > > > Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> > > > > ---
+> > > > >  drivers/mfd/Kconfig         |  9 +++++
+> > > > >  drivers/mfd/Makefile        |  1 +
+> > > > >  drivers/mfd/sy7636a.c       | 72 +++++++++++++++++++++++++++++++++++++
+> > > > >  include/linux/mfd/sy7636a.h | 45 +++++++++++++++++++++++
+> > > > >  4 files changed, 127 insertions(+)
+> > > > >  create mode 100644 drivers/mfd/sy7636a.c
+> > > > >  create mode 100644 include/linux/mfd/sy7636a.h
+> > > > >
+> > > > > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> > > > > index 6a3fd2d75f96..b82208f0c79c 100644
+> > > > > --- a/drivers/mfd/Kconfig
+> > > > > +++ b/drivers/mfd/Kconfig
+> > > > > @@ -1352,6 +1352,15 @@ config MFD_SYSCON
+> > > > >         Select this option to enable accessing system control registers
+> > > > >         via regmap.
+> > > > >
+> > > > > +config MFD_SY7636A
+> > > > > +     tristate "Silergy SY7636A Power Management IC"
+> > > > > +     select MFD_CORE
+> > > > > +     select REGMAP_I2C
+> > > > > +     depends on I2C
+> > > > > +     help
+> > > > > +       Select this option to enable support for the Silergy SY7636A
+> > > > > +       Power Management IC.
+> > > > > +
+> > > > >  config MFD_DAVINCI_VOICECODEC
+> > > > >       tristate
+> > > > >       select MFD_CORE
+> > > > > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> > > > > index 8116c19d5fd4..cbe581e87fa9 100644
+> > > > > --- a/drivers/mfd/Makefile
+> > > > > +++ b/drivers/mfd/Makefile
+> > > > > @@ -266,6 +266,7 @@ obj-$(CONFIG_MFD_KHADAS_MCU)      += khadas-mcu.o
+> > > > >  obj-$(CONFIG_MFD_ACER_A500_EC)       += acer-ec-a500.o
+> > > > >  obj-$(CONFIG_MFD_QCOM_PM8008)        += qcom-pm8008.o
+> > > > >
+> > > > > +obj-$(CONFIG_MFD_SY7636A)    += sy7636a.o
+> > > > >  obj-$(CONFIG_SGI_MFD_IOC3)   += ioc3.o
+> > > > >  obj-$(CONFIG_MFD_SIMPLE_MFD_I2C)     += simple-mfd-i2c.o
+> > > > >  obj-$(CONFIG_MFD_INTEL_M10_BMC)   += intel-m10-bmc.o
+> > > > > diff --git a/drivers/mfd/sy7636a.c b/drivers/mfd/sy7636a.c
+> > > > > new file mode 100644
+> > > > > index 000000000000..f3ff93c7395d
+> > > > > --- /dev/null
+> > > > > +++ b/drivers/mfd/sy7636a.c
+> > > > > @@ -0,0 +1,72 @@
+> > > > > +// SPDX-License-Identifier: GPL-2.0+
+> > > > > +/*
+> > > > > + * MFD parent driver for SY7636A chip
+> > > > > + *
+> > > > > + * Copyright (C) 2021 reMarkable AS - http://www.remarkable.com/
+> > > > > + *
+> > > > > + * Authors: Lars Ivar Miljeteig <lars.ivar.miljeteig@remarkable.com>
+> > > > > + *          Alistair Francis <alistair@alistair23.me>
+> > > > > + *
+> > > > > + * Based on the lp87565 driver by Keerthy <j-keerthy@ti.com>
+> > > > > + */
+> > > > > +
+> > > > > +#include <linux/interrupt.h>
+> > > > > +#include <linux/mfd/core.h>
+> > > > > +#include <linux/module.h>
+> > > > > +#include <linux/of_device.h>
+> > > > > +
+> > > > > +#include <linux/mfd/sy7636a.h>
+> > > > > +
+> > > > > +static const struct regmap_config sy7636a_regmap_config = {
+> > > > > +     .reg_bits = 8,
+> > > > > +     .val_bits = 8,
+> > > > > +};
+> > > > > +
+> > > > > +static const struct mfd_cell sy7636a_cells[] = {
+> > > > > +     { .name = "sy7636a-regulator", },
+> > > >
+> > > > What kind of regulator is 'vcom'? LDO? DCDC?
+> > >
+> > > Both I guess:
+> > >
+> > > "SY7636A is a single-chip power management IC (PMIC) designed for
+> > > electronic paper display (EPD) applications. The device supports panel
+> > > sizes up to 9.7 inches and larger. The device integrates two
+> > > high-efficiency DC-DC boost converters, which are boosted to 25V and
+> > > -20V by two charge pumps to provide gate driver power for the panel.
+> > > Two tracking LDOs create a ±15V source driver power supply that
+> > > supports output currents up to 200mA. SY7636A also provides I2C
+> > > interface control for specific panel requirements"
+> >
+> > Is there a datasheet I could look at?
 > 
-> same thing as in the previous patch.
+> I have managed to find this:
 > 
-> I guess you may want something like
+> https://www.silergy.com/cn/productsview/SY7636ARMC
 > 
-> 	mmc0 = &sdhci;
-> 	mmc1 = &sdmmc0;
-> 
-> maybe?
+> which is in Chinese. The datasheet is behind a login page unfortunately.
 
-Thanks for the suggestion, I'll include it in the v2.
+Where did the snippet above come from then?
 
-Regards, Michael
+What documentation are you working to?
 
-> 
-> 
-> Heiko
-> 
->>  	};
->>  
->>  	chosen: chosen {
->> @@ -353,6 +354,20 @@
->>  	status = "okay";
->>  };
->>  
->> +&sdmmc0 {
->> +	bus-width = <4>;
->> +	cap-sd-highspeed;
->> +	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
->> +	disable-wp;
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd &sdmmc0_det>;
->> +	sd-uhs-sdr104;
->> +	supports-sd;
->> +	vmmc-supply = <&vcc3v3_sd>;
->> +	vqmmc-supply = <&vccio_sd>;
->> +	status = "okay";
->> +};
->> +
->>  &uart2 {
->>  	status = "okay";
->>  };
->>
-> 
-> 
-> 
-> 
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
