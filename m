@@ -2,132 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 356783E0923
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 22:05:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A022C3E0946
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 22:25:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240805AbhHDUFM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 16:05:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47598 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240801AbhHDUFM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 16:05:12 -0400
-Received: from mail-il1-x133.google.com (mail-il1-x133.google.com [IPv6:2607:f8b0:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 729ECC06179A
-        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 13:04:59 -0700 (PDT)
-Received: by mail-il1-x133.google.com with SMTP id j18so2778583ile.8
-        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 13:04:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=WpJTczWcMa/wlQB3c8ZVvUWtfwUJzoex9JrRy9qZMaU=;
-        b=V2EDbbaFFgv/yFfhmUf9155JJ/wIPornZXPN5AzHMdPUVi9oaTtJHHA3yLPuRQMgqy
-         zbJtaSsDaAy7JzbAIYII7nU0nm0OBeVxtXYt1k1K9NX0kzAQy8s15auhXOTIIAMAgmdB
-         asCu7p8zDWaWpxHnXDklH9PVT0bW6J2749f7WmmtsT5m+zt9IZ0cy7QwSbCNxVa4FzMp
-         EkftrmLD1ielcb7qYdXN2h202l07Z/vYeS1zutrclwZrikfMvFpQgy4DI2stqWPPh98m
-         Yk0xOk9+3dXTvCmwZ+HiDYSAViWN2YO/VPV7HPyZP5gecmsaIgoXo1qz5s9kD1kPjHHP
-         lu5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=WpJTczWcMa/wlQB3c8ZVvUWtfwUJzoex9JrRy9qZMaU=;
-        b=oNxu6H2OOOOn4peFQ3ow8ovcda02iXh/91j5AZbdTGrMzIXti7kYIZjVYg8Snah5Mk
-         pYQWmbjeFuBpMeEmoHDU+A5YBioanLXabGijK9M2YAAbhUq9sJ5v9HEXCRPjG6k747jG
-         eNBNKM86tZImdxRdn2cPBC6v3XjxcsZoFekcFx9348tsmMd0A/mLLSHxDZsQcUYL3GBS
-         jpjdcW+dXSk3UsDoynaAEq7WV0qD/qEzNr7egPGGefv1NW4YdbtWOYXIkkzAzCltny/s
-         VQCzLL3Edi0IttrDkE88/0cPiP5KkVKpXb0RSCyZM51BkgH1LcngBkWniEtqK8325PH9
-         qJ7w==
-X-Gm-Message-State: AOAM532gmqcAquzTCYfgBFKJZwMJBlVZT+If5Ra0ajP/DgbcqdNaJ+Mp
-        utGZqpiPnjcazyz8yzdaSoAX4YLIyKS2TA==
-X-Google-Smtp-Source: ABdhPJzJIABp7xpm/81s+uXVZS7zz3xFasgjCDYFrHACNOujmuT8N5qBYNf/d3dOd4DZdir1dr7VqA==
-X-Received: by 2002:a92:c8c1:: with SMTP id c1mr999791ilq.106.1628107498554;
-        Wed, 04 Aug 2021 13:04:58 -0700 (PDT)
-Received: from presto.localdomain (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
-        by smtp.gmail.com with ESMTPSA id f7sm1681097ils.42.2021.08.04.13.04.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Aug 2021 13:04:58 -0700 (PDT)
-From:   Alex Elder <elder@linaro.org>
-To:     robh+dt@kernel.org, bjorn.andersson@linaro.org, agross@kernel.org
-Cc:     elder@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: net: qcom,ipa: make imem interconnect optional
-Date:   Wed,  4 Aug 2021 15:04:55 -0500
-Message-Id: <20210804200455.1878582-1-elder@linaro.org>
-X-Mailer: git-send-email 2.27.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S239434AbhHDUZX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 16:25:23 -0400
+Received: from relmlor2.renesas.com ([210.160.252.172]:13749 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S237196AbhHDUZX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 16:25:23 -0400
+X-IronPort-AV: E=Sophos;i="5.84,295,1620658800"; 
+   d="scan'208";a="89824500"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 05 Aug 2021 05:25:08 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id A5A7940E2584;
+        Thu,  5 Aug 2021 05:25:05 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Alexandru Ardelean <aardelean@deviqon.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v4 0/3] Renesas RZ/G2L ADC driver support
+Date:   Wed,  4 Aug 2021 21:21:15 +0100
+Message-Id: <20210804202118.25745-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On some newer SoCs, the interconnect between IPA and SoC internal
-memory (imem) is not used.  Update the binding to indicate that
-having just the memory and config interconnects is another allowed
-configuration.
+Hi All,
 
-Signed-off-by: Alex Elder <elder@linaro.org>
----
-v2:  Now based on linux-next/master (not net-next/master)
+This patch series adds ADC support for Renesas RZ/G2L family.
 
-Rob, Bjorn, Andy:
+Patches apply on top of v5.14-rc2.
 
-This was posted as part of a small series once before, and accepted
-into the net-next/master branch by David Miller:
-  https://lore.kernel.org/netdev/20210719212456.3176086-1-elder@linaro.org/
+Cheers,
+Prabhakar
 
-That series got reverted yesterday:
-  https://lore.kernel.org/netdev/20210802233019.800250-1-elder@linaro.org/
+Changes for v4:
+* Fixed registering action to assert resets on failure/remove
+  as reported by Philip.
+* Fixed review comments suggested by Jonathan.
+* Included RB tag from Rob for patch 1/3
+* Note DTS patch applies on top of https://git.kernel.org/pub/scm/
+  linux/kernel/git/geert/renesas-devel.git/log/
+  ?h=renesas-arm-dt-for-v5.15
 
-Now I'm posting this patch again (by itself, and a little different
-this time based on input from Rob) so that this patch can be taken
-through the Qualcomm repository.  I will be posting other updates to
-DTS files in a separate series shortly.
+Changes for v3 (as requested by Jonathan):
+* Made use of FIELD_PREP()
+* Renamed _CLEAR to _MASK and inverted inline as required
+* Moved |= pair's on same lines
+* Made use of sysfs_emit() while reading the labels
+* Used for_each_bit_set() in rzg2l_adc_isr()
+* Renamed rzg2l_adc_parse_of() -> rzg2l_adc_parse_properties()
+* Used devm_add_action_or_reset() for asserting the reset signals and
+  disabling pm_runtime and eventually removing remove() callback
+* Added comments in isr handler for channel select interrupt
+* Moved enabling/disabling of pclk during hw init in rzg2l_adc_hw_init()
+* Dropped clock patch 3/4 (https://lore.kernel.org/patchwork/patch/1462152/)
+  from previous series as its queued up in renesas-clk-for-v5.15
 
-I didn't copy networking addressees this time...
+Changes for v2:
+* Update binding doc, dropped gpios/renesas-rzg2l,adc-trigger-mode
+  properties included channel property to represent each wired channel.
+* Fixed review comments pointed by Alexandru, implemented pm runtime
+  support, dropped mlock usage
+* Fixed review comments pointed by Jonathan, renamed the macros,
+  simplified the code.
+* Included clock and DT patches
 
-					-Alex
+v1: https://patchwork.kernel.org/project/linux-renesas-soc/cover/
+    20210629220328.13366-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
 
- .../devicetree/bindings/net/qcom,ipa.yaml     | 24 ++++++++++++-------
- 1 file changed, 16 insertions(+), 8 deletions(-)
+Lad Prabhakar (3):
+  dt-bindings: iio: adc: Add binding documentation for Renesas RZ/G2L
+    A/D converter
+  iio: adc: Add driver for Renesas RZ/G2L A/D converter
+  arm64: dts: renesas: r9a07g044: Add ADC node
 
-diff --git a/Documentation/devicetree/bindings/net/qcom,ipa.yaml b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-index ed88ba4b94df5..b8a0b392b24ea 100644
---- a/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-+++ b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-@@ -87,16 +87,24 @@ properties:
-       - const: ipa-setup-ready
- 
-   interconnects:
--    items:
--      - description: Interconnect path between IPA and main memory
--      - description: Interconnect path between IPA and internal memory
--      - description: Interconnect path between IPA and the AP subsystem
-+    oneOf:
-+      - items:
-+          - description: Path leading to system memory
-+          - description: Path between the AP and IPA config space
-+      - items:
-+          - description: Path leading to system memory
-+          - description: Path leading to internal memory
-+          - description: Path between the AP and IPA config space
- 
-   interconnect-names:
--    items:
--      - const: memory
--      - const: imem
--      - const: config
-+    oneOf:
-+      - items:
-+          - const: memory
-+          - const: config
-+      - items:
-+          - const: memory
-+          - const: imem
-+          - const: config
- 
-   qcom,smem-states:
-     $ref: /schemas/types.yaml#/definitions/phandle-array
+ .../bindings/iio/adc/renesas,rzg2l-adc.yaml   | 134 ++++
+ MAINTAINERS                                   |   8 +
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi    |  42 ++
+ drivers/iio/adc/Kconfig                       |  10 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/rzg2l_adc.c                   | 600 ++++++++++++++++++
+ 6 files changed, 795 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
+ create mode 100644 drivers/iio/adc/rzg2l_adc.c
+
 -- 
-2.27.0
+2.17.1
 
