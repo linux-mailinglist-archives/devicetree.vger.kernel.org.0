@@ -2,87 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 566A73DF9B9
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 04:37:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9D6B3DFA16
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 05:49:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231950AbhHDCiA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Aug 2021 22:38:00 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:18666 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234623AbhHDCh7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 22:37:59 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1628044667; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=AdSZAOo3QXrorQizvhdg24/idcUVBek6kZg6Gp4D9Vc=; b=gdqkbvH2sAPM3pRUJZmazNGON9Ba6PJftX3dsiiuHHxwdMXKGK1aGW/Z1pMCV8VkGty7sUv4
- E3lRVKjP0m50i76Kf7KWrBAKbaInV8VBdNXNmV/nvP0ASXv0OqPECf0SuyAFwEXuiqVaWJ5a
- 3sQeGcaV5YSmW6Wv1YnGq33AZDk=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
- 6109fd64ebcbc9cec91f3963 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 04 Aug 2021 02:37:24
- GMT
-Sender: luoj=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 4CAB6C43144; Wed,  4 Aug 2021 02:37:24 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
-Received: from [10.253.66.187] (unknown [180.166.53.21])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: luoj)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 8E5D9C433F1;
-        Wed,  4 Aug 2021 02:37:20 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 8E5D9C433F1
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=luoj@codeaurora.org
-Subject: Re: [PATCH 3/3] dt-bindings: net: rename Qualcomm IPQ MDIO bindings
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        David Miller <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Gross, Andy" <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Robert Marko <robert.marko@sartura.hr>,
-        netdev <netdev@vger.kernel.org>, linux-kernel@vger.kernel.org,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        devicetree@vger.kernel.org, Sricharan <sricharan@codeaurora.org>
-References: <20210729125358.5227-1-luoj@codeaurora.org>
- <20210729125358.5227-3-luoj@codeaurora.org>
- <CAL_Jsq+=Vyy7_EQ_A7JW4ZfqpPU=6eCyUYMnPORChGvefw-yTA@mail.gmail.com>
- <7873e70dcf4fe749521bd9c985571742@codeaurora.org> <YQf1jdsUc8S7tTBy@lunn.ch>
-From:   Jie Luo <luoj@codeaurora.org>
-Message-ID: <0eb8f82a-c03c-8ec5-7ac4-7835dd935c73@codeaurora.org>
-Date:   Wed, 4 Aug 2021 10:37:18 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+        id S232269AbhHDDtn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Aug 2021 23:49:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50786 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232192AbhHDDtm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Aug 2021 23:49:42 -0400
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF9F5C0613D5
+        for <devicetree@vger.kernel.org>; Tue,  3 Aug 2021 20:49:29 -0700 (PDT)
+Received: by mail-pj1-x1032.google.com with SMTP id j1so1103270pjv.3
+        for <devicetree@vger.kernel.org>; Tue, 03 Aug 2021 20:49:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=hy1NnP0wO2zT/VrMPRCtNkUc0gMbU7esFhgTPbbumaI=;
+        b=pV3LQkTEVPVFO26bH4qKathJhoDVM53Wle33GPuHirv2DuW2qDklwIScy2sYGP/qdo
+         G4Fmk/hM5GcDgdrbTSDp9aukIqKPSx6ouUAghX8NOe+h5E2A7j9bPvjpV/XTqKVKj9uo
+         F2fF/0YVnI2g2AAxnKAFhoz1HwI540CBzUl8YtRiX1g9l40QcPUnmzgIy+61h0NHsif7
+         phCMi0sqqj3sWKI9HBhiXrkLZXiHvVq5Zp/pu4c583bc9oFKSxPmWJ3qmkxAdQ0K2Pre
+         vagCPQZjsoHJUYzHOnegWEXQxrCooPRXeM0B8S1DSWq+ldZqIL/hwUbfTZBeTOeSuCZi
+         MPRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=hy1NnP0wO2zT/VrMPRCtNkUc0gMbU7esFhgTPbbumaI=;
+        b=IGi2Lz7Zesh13+bpygGkHqix1JBFdEMDRaPC6SqbAre4GuhalBawfPbqKOxlh0N+bJ
+         fexx8N4S/x2ODhIBDuDjlXhRtCJAeeUU/tm9g1Xc4ogR37Rmj7sakH2Gg53LkAsnpdya
+         on0HndDohwFm0xbC0pLnm0WCATXyiWDjE80Mn4jJ33nAa63brLXKt7mnEt/HPbJiyFU2
+         bPyDweVHK3GqQ9egjQbqCUTyOvn5BEQcv7HiTYx7La4bpxYcStvW8UcatsbXPYtfpyqk
+         LvGKa8dr05+DnI1rA8YVXlNaiRMekeFQCEbUO5SHZMAj3LkBCEzJc7sWUJ1qaqERwlql
+         t3Xg==
+X-Gm-Message-State: AOAM532CcPZtANWfUQ+gz+MG4xEntBuTU/oB7/4Q/XnIhBGmGuKbHKZS
+        K8P3nW0ot3lJumr1aLiUMRmhvQ==
+X-Google-Smtp-Source: ABdhPJzu/UIWjSp9w8Y+KDSNX/I9Gp6Tb85pVQV1NeAG9BQWHvOy0AKG892wKsDIlxZIxK3pOYSmvQ==
+X-Received: by 2002:a17:902:8ec7:b029:12c:6a1a:3e8d with SMTP id x7-20020a1709028ec7b029012c6a1a3e8dmr20768190plo.83.1628048969221;
+        Tue, 03 Aug 2021 20:49:29 -0700 (PDT)
+Received: from localhost ([122.172.201.85])
+        by smtp.gmail.com with ESMTPSA id b17sm739174pgl.61.2021.08.03.20.49.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Aug 2021 20:49:28 -0700 (PDT)
+Date:   Wed, 4 Aug 2021 09:19:26 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jason Wang <jasowang@redhat.com>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bill Mills <bill.mills@linaro.org>,
+        Alex =?utf-8?Q?Benn=C3=A9e?= <alex.bennee@linaro.org>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        Jie Deng <jie.deng@intel.com>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE" 
+        <virtualization@lists.linux-foundation.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+Subject: Re: [PATCH V4 3/5] dt-bindings: gpio: Add bindings for gpio-virtio
+Message-ID: <20210804034926.qtagdoopeaeaskaw@vireshk-i7>
+References: <cover.1627362340.git.viresh.kumar@linaro.org>
+ <acf7402ef4aabc0ad6295c32846f2bef1cd9b56a.1627362340.git.viresh.kumar@linaro.org>
+ <YQhKKyPmOUE8z+US@robh.at.kernel.org>
+ <20210803043014.paskwghdio6azplp@vireshk-i7>
+ <CAL_JsqJ6_ktTQKiy_xx9DhjQ3=imfvSZpBem5fXwVY7O49EgCw@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <YQf1jdsUc8S7tTBy@lunn.ch>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqJ6_ktTQKiy_xx9DhjQ3=imfvSZpBem5fXwVY7O49EgCw@mail.gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 03-08-21, 09:47, Rob Herring wrote:
+> n Mon, Aug 2, 2021 at 10:30 PM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+> >
+> > On 02-08-21, 13:40, Rob Herring wrote:
+> > > Humm, how does one implement interrupts without a parent interrupt? It
+> > > uses the parent virtio,mmio interrupt?
+> >
+> > Kind of, yeah, but not necessarily.
+> >
+> > The interrupt information is passed over buffers shared between host and guest.
+> > Now the guest may process the buffers when it receives a notification from the
+> > host, that will be at downpath of an interrupt for virtio,mmio. Or the guest may
+> > poll on the virtqueue and process any buffers as soon as they are made
+> > available, no interrupts then.
+> 
+> Okay, thanks for the explanation.
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-On 8/2/2021 9:39 PM, Andrew Lunn wrote:
->>> since the phylib code can't satisfy resetting PHY in IPQ chipset, phylib
->>> resets phy by
->>> configuring GPIO output value to 1, then to 0. however the PHY reset in
->>> IPQ chipset need
->>> to configuring GPIO output value to 0, then to 1 for the PHY reset, so i
->>> put the phy-reset-gpios here.
-> Look at the active low DT property of a GPIO.
->
->       Andrew
+Thanks for reviewing this Rob.
 
-> thanks Andrew, will update it in the next patch set.
+-- 
+viresh
