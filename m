@@ -2,186 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B10843DFE1E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 11:38:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B97103DFE22
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 11:38:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237092AbhHDJi1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 05:38:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44354 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237101AbhHDJiX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 05:38:23 -0400
-Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B560C061799;
-        Wed,  4 Aug 2021 02:38:10 -0700 (PDT)
-Received: by mail-io1-xd2a.google.com with SMTP id y1so1666594iod.10;
-        Wed, 04 Aug 2021 02:38:10 -0700 (PDT)
+        id S237113AbhHDJiy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 05:38:54 -0400
+Received: from mail-eopbgr1400110.outbound.protection.outlook.com ([40.107.140.110]:36640
+        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S237071AbhHDJiy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Aug 2021 05:38:54 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ltAwU5iPj401+cpivAO4z1xvkrLEeM3q4/VNIhtP19Nxpifqx/kb6kP/xjTTvlUbRHnG58c/zY1gWn58jViT0ebD/5qFrzWbgBS5RZ0fZSSHn8q3v3Dbrs2+brOcYo53O836TdZO3V0ZpwvAMCBMLzbPJ3SSvl32QrEF48Ispcb8sH5ZHwi8zeBFPCS+1TC9019aLyFdxxzX2p3+RltAWeYvX8PXx7pa9TTZW0l8P1heZoKWLs3cDtuUBnYxZtdQFVUXXe8/OLsSk/k8JfG+BhP6BojfM/pARVzEXdbttNFeRhc0h2bFvQAbaiwvXTsSaIwFgy+Hed6Grm39Stul2A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RxkGHeWYKsznXRtw7JdxZiZA9EbZ2bEoFWbvicoGQx0=;
+ b=jY3yNm26dZf+cu1hb0vjSvXosMyBetgHYS+hLeWvOZdjwq5oadwxLr9+c7tCqwPynwHhFgkcR/amxgiPHvmlm7zMWx/4A5RemIGwuMsZIup4zX4incyDMMtzLFMdqM9JP1CZOX1U/cw546PP7UaIdJ56egIesaCyR0Zaey/a89D/20VhIUVpJMh3nKLMm4ba8DaWcOxbqyFmUpAmswn6bbBFrLvpS0CorPgUDwpYx7iPkCUBTNBzhYgpFPZZFqDEDJzEAIf7isWOd1bQWj0Vumeo4cGxwxlVnMWaA/+LSkpzmc2y3qaFjfh36RlGZSJKOWWWxLwYcTt9y73OX9JAMg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=IfelQpsCk2dlINF9FFCZTuni2ibPe6+4gIAnhuY21DA=;
-        b=UXTmtNB5ldrjppN/daDbCwyPoNdxb4/Se8Y8s+f5aIGsnRxCW04IBvBCjAz00PWDAP
-         e7nfljw2k7P7USYvwEuh87MwSkoAW4XtUYf6i9fwOo0uWZUSj6o/beveNqX+ILF5AGYQ
-         JZWqeTyMcP86EwqFB5m+GibJvUwhy/GKMyL7mSvaOzgA2OTakU3i90o5tvtVRzTy1wLu
-         UXv20zGzK2cF8TtAD/G40jmdvHVTnhLh3P2y1B8mUK39Rqpe3MCBDJuLBtGkcNfZciL4
-         mUzMZ2h3y0h3/0MagNDBuk+l5bw93PqX9NJRAeJD/D+CKkpu9u/Nq233HAKzLlrKovzE
-         stVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=IfelQpsCk2dlINF9FFCZTuni2ibPe6+4gIAnhuY21DA=;
-        b=djdvPTDrWh1ecRN1+H+sDcL9fQPYGxxgvnN5vl7pcAe26YNoGfrgAJjDOwXhsK6aO6
-         /CtAdd9c8L98RHYZ0TRi4PPKwRC4gTk5MAjdaxmh9Hyer0Px5KIifxlsXxXM3mNLlm9h
-         JczFD9QDfY932JMD51E6AaOnuvqBCcdz2QREn10M8NSVDRC74VfktGgwwBRXwcVeYCIP
-         sTuhol2zwgKpDfF2RJohhLBgSHN4Kl2AHuOTguWQrtEmVah1hzWyLOPH9G5Oqr37tCaQ
-         n6jmDezDHYQ37jkhUtdqgBDnr4nhu5MC02dhjle2ZBHl6uo63rYFoX+n/8tnHXpHS5BX
-         7NHg==
-X-Gm-Message-State: AOAM530XshxJoqxJu6Mvopr8TmJvFgZHS15qlNxzllvqZMYr5NHj1nGl
-        lDjVF1/6CA8R7ANAVygwjoZrZI3SW+CdRKc1mn0=
-X-Google-Smtp-Source: ABdhPJy4d09HfTysXpHb3wis6SDAF0TjPV6izp1uKTttA1IPmLWsRseIQeRndBfkN1Ovcz4WC8iZaUke8E5xeQTPgXs=
-X-Received: by 2002:a5d:8e19:: with SMTP id e25mr673746iod.175.1628069889790;
- Wed, 04 Aug 2021 02:38:09 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210803084456.198-1-alistair@alistair23.me> <20210803084456.198-2-alistair@alistair23.me>
- <YQlBtQDrVHqh3N5D@google.com> <CAKmqyKMZWVx3KqeysUjOc29nuxnwJfZ3wjmWjVwk9tpQ4dkh-A@mail.gmail.com>
- <YQpYjEc9r8QGUhiD@google.com>
-In-Reply-To: <YQpYjEc9r8QGUhiD@google.com>
-From:   Alistair Francis <alistair23@gmail.com>
-Date:   Wed, 4 Aug 2021 19:37:42 +1000
-Message-ID: <CAKmqyKP79jXdGhMKYzA3ZOkkT6kb2buOSyYuaCS43SK9oe2ACw@mail.gmail.com>
-Subject: Re: [PATCH v8 02/11] mfd: sy7636a: Initial commit
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Alistair Francis <alistair@alistair23.me>,
-        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
-        Mark Brown <broonie@kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RxkGHeWYKsznXRtw7JdxZiZA9EbZ2bEoFWbvicoGQx0=;
+ b=fZCijuR2eG639o6WskJkYlTPZoGLcn8bdO6HEf2llyNQVSVZezz3e0+mf2moruDtEdu6oQTxjUA89xZGT/8nJ1kmu4yrBlD90YXJYTZ8Qs/AiLrU8+loqcH0vGLJcA2rIOf1Sa0MxELbUgGLxPxS16iE79W9myEv/DI4X9utTe4=
+Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com (2603:1096:404:d5::22)
+ by TYXPR01MB1552.jpnprd01.prod.outlook.com (2603:1096:403:11::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.20; Wed, 4 Aug
+ 2021 09:38:39 +0000
+Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com
+ ([fe80::7db6:310f:a5ed:82f6]) by TY2PR01MB3692.jpnprd01.prod.outlook.com
+ ([fe80::7db6:310f:a5ed:82f6%3]) with mapi id 15.20.4373.027; Wed, 4 Aug 2021
+ 09:38:39 +0000
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH v5 2/6] dt-bindings: phy: renesas,usb2-phy: Document
+ RZ/G2L phy bindings
+Thread-Topic: [PATCH v5 2/6] dt-bindings: phy: renesas,usb2-phy: Document
+ RZ/G2L phy bindings
+Thread-Index: AQHXgxkAw3mBso2vnEKBMhI9TQt7CatjIgpQ
+Date:   Wed, 4 Aug 2021 09:38:39 +0000
+Message-ID: <TY2PR01MB3692AD87163F3C1FAD471FBAD8F19@TY2PR01MB3692.jpnprd01.prod.outlook.com>
+References: <20210727185527.19907-1-biju.das.jz@bp.renesas.com>
+ <20210727185527.19907-3-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20210727185527.19907-3-biju.das.jz@bp.renesas.com>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: bp.renesas.com; dkim=none (message not signed)
+ header.d=none;bp.renesas.com; dmarc=none action=none header.from=renesas.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 79630e6c-109c-48ec-953a-08d9572ba3e1
+x-ms-traffictypediagnostic: TYXPR01MB1552:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <TYXPR01MB15521D37D5648DE65A9F278CD8F19@TYXPR01MB1552.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2733;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: k61YAlMHhxXJb4mCDq4rDape0cmduEQD/lQRMJIM2mjvhgsb44vzJiKasWE9AGWCr0bB4Lrc6hZe/3KjTYFGdUbc7yEXfWbaAgjZ0KetzbwEa1q81T2KCKCj20zLOj1MNW45572vyCEeX/OSKvaQbxfiXgXEpft4D8dRkNsajY1OEtVBhbcW9mlUGQSuUzu8FgfqcGmfMiz/qAfPo16dDXS+GZgUyrF0M9QMhmRVFhiZAol8Qm07APFY04yoH83NAtqVYSBZLsl0dktIprnYxiS8sesw4iuGmBTbyoro9rJRU7J0iROW7Xv2n8tjuiiQEVg+T2389PAGUCxp4JEx+mhAnKLetgLOsKjgQt6Orvr0/6GzvA0uktHwPJUGVtVenVcIRjmZXtIqAdj/yYdFORYN+kcQqTv99MC2hEu+9CLMGj5x0xNsupZZv4SOdUy2hJMP6Ent0r2nU1HYjAvPwfcSvZv3SMT3bB3BUSuaGLKycDrJNV8W7+2SAygjOaM3qk4/GqfZEtVJ64gMTiSepA6uxf/4nZHqHtp66rTW6p2JHiReQa1ccrCsu7VM5AxOCxu8IPXxsAvPtvaRjqt8nRx1/V7b7egm2gzWY6so2365Lsr2ZXH3SJtJ5ZdBhC8QDzuUuJsl2LKDGzzJHArZgwxW9qcAQCW5MQouzEQxMdlIoN9v1toYJH2Mt0p16b59BUoFyGvnXV2VkKj+uAQjxg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PR01MB3692.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(54906003)(4744005)(5660300002)(508600001)(9686003)(110136005)(86362001)(55236004)(2906002)(122000001)(186003)(7696005)(6506007)(38100700002)(33656002)(52536014)(316002)(71200400001)(76116006)(66556008)(66476007)(66946007)(55016002)(26005)(64756008)(8936002)(38070700005)(4326008)(8676002)(66446008);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Q4z5Eqtfb+BRXIkgtJYZml83mMlyep4UgMoWbkw2oxiGq8gSkTGeuzIjelQ7?=
+ =?us-ascii?Q?XJHuQq6hKLZlaD0nze+3PSRwaYUInw3Sj5HQpziRlVvdYEvgj054DNgOSn0m?=
+ =?us-ascii?Q?KaCTh1U2hRJVpbkD1elUR5R3ZEbjnvvXuQURRkKFIGIEK70Un7+oJAs0o0Tf?=
+ =?us-ascii?Q?HN0K6qy68P0DtMQMzRVZ0rKbCLpBrctJmx+zaL6FPvxoHz1bep4JOlio0Duh?=
+ =?us-ascii?Q?ICP9QRHQaPt1rNBP3HPBNADv9H7IxTqeS5NN3u/91/EJnoYeRutlnRgrOqJ5?=
+ =?us-ascii?Q?hGKU5DF9QHq06+rirffCbnDiy5Z8Gmcne4O3xos0HjnpiA4Tz7kFFwO0Pkzg?=
+ =?us-ascii?Q?OEnsQSKkMNUNJw0v6huE6doamZcOlwcc96RwVknsxNuVvAsDWfOQ45AbBsVw?=
+ =?us-ascii?Q?qKsj9CkNQgFCS+ILIiaRfA6MigckTXSFzC0kkrdS+UQNw8Ki6Cxq+Fpz0Kmk?=
+ =?us-ascii?Q?mrUnq6dT1403WAv7Z4s/fUsqKOson5Z46dxERJkphgFgH65oTTn5R+dGw1Db?=
+ =?us-ascii?Q?mnnsEIa05BbXu/xFGbyVD7Wzdho78O+bVZ9elLI8wEbCWAC9vw8aYUqcVxGA?=
+ =?us-ascii?Q?UDyeWVEj7KQCs0ZMHV/MoR1DFhQx9x670uMgVxMQfXc1S7ZO1/2cQl95gNBP?=
+ =?us-ascii?Q?7G/jxx9Eur3o3XjckxBa02LarbCod+Xva7Ioi13KGn8bFvlQDqJ9lWUo19FQ?=
+ =?us-ascii?Q?2jqw3Bi3OxDOl5Rzl1YnhvHLNqxlWzDjXMcRNrSAAL8W04yVcHWSCVNZPF+t?=
+ =?us-ascii?Q?/9SqhH64GY9zdZ9JqN8QGQxkTnwIEvzMuctGmb70Dk314X6WzdLcsOLzQN67?=
+ =?us-ascii?Q?WyOvzCtfSdEbz4q7ITATWy7oCpLEpnSRWHlg9rq+0qufgMYs8HtPoGr5RKIe?=
+ =?us-ascii?Q?EuS/Owv/s20wHzHCe4D0tbCzznVzWjVnuuep90OhrYOY53YIzQ3Pwc8oxgU5?=
+ =?us-ascii?Q?D6ciYQTE26qoZVze4kfUezhKoA/+qaU1YHktmGYRjjgJmVnZJo/TQ49d2u/M?=
+ =?us-ascii?Q?fsyXHammud60ZAB/lpYiuThpOGkiOSEHVM9r60o7k3i2e5qN5dus/eesFcJ/?=
+ =?us-ascii?Q?+cca8nS6epYiPSRkUD6pbBpcyKeqVPCntq0kCJUK5SLhPHnI1C77/ddtk01u?=
+ =?us-ascii?Q?GCyT1Obz8g9aG6xiF4Cb3amwzPnb9BvCEt+iSD5Z8vWtFetewyRq7cle5Eif?=
+ =?us-ascii?Q?2uGhipyekbPAi7GfqJbHz03HsxFU8hJgLPXmTs6b0tzPXPjKxI9ZqURJeg+O?=
+ =?us-ascii?Q?8T58rGwt/46S4di9MH6sjSzcJ1u/PsyT4vk9rA97mpJmVDkbdZEqRuxPXm46?=
+ =?us-ascii?Q?tkA2F/J7MzzqKUys0gdPhxhS?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY2PR01MB3692.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 79630e6c-109c-48ec-953a-08d9572ba3e1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Aug 2021 09:38:39.2617
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: +l3sAggNM1gMZ6Nk+tc2eFClpllRFrjbDtfoVKt96/DX475ZfWsv92/fsG2gBMedmKNgBSbyNtRQln5ueoMUfoCkPUWqw2ZQESJ5t7IW+5x79thSohjwuxnqPIyuz+Ud
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYXPR01MB1552
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 4, 2021 at 7:06 PM Lee Jones <lee.jones@linaro.org> wrote:
->
-> On Wed, 04 Aug 2021, Alistair Francis wrote:
->
-> > On Tue, Aug 3, 2021 at 11:16 PM Lee Jones <lee.jones@linaro.org> wrote:
-> > >
-> > > On Tue, 03 Aug 2021, Alistair Francis wrote:
-> > >
-> > > > Initial support for the Silergy SY7636A Power Management chip.
-> > > >
-> > > > Signed-off-by: Alistair Francis <alistair@alistair23.me>
-> > > > ---
-> > > >  drivers/mfd/Kconfig         |  9 +++++
-> > > >  drivers/mfd/Makefile        |  1 +
-> > > >  drivers/mfd/sy7636a.c       | 72 +++++++++++++++++++++++++++++++++=
-++++
-> > > >  include/linux/mfd/sy7636a.h | 45 +++++++++++++++++++++++
-> > > >  4 files changed, 127 insertions(+)
-> > > >  create mode 100644 drivers/mfd/sy7636a.c
-> > > >  create mode 100644 include/linux/mfd/sy7636a.h
-> > > >
-> > > > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> > > > index 6a3fd2d75f96..b82208f0c79c 100644
-> > > > --- a/drivers/mfd/Kconfig
-> > > > +++ b/drivers/mfd/Kconfig
-> > > > @@ -1352,6 +1352,15 @@ config MFD_SYSCON
-> > > >         Select this option to enable accessing system control regis=
-ters
-> > > >         via regmap.
-> > > >
-> > > > +config MFD_SY7636A
-> > > > +     tristate "Silergy SY7636A Power Management IC"
-> > > > +     select MFD_CORE
-> > > > +     select REGMAP_I2C
-> > > > +     depends on I2C
-> > > > +     help
-> > > > +       Select this option to enable support for the Silergy SY7636=
-A
-> > > > +       Power Management IC.
-> > > > +
-> > > >  config MFD_DAVINCI_VOICECODEC
-> > > >       tristate
-> > > >       select MFD_CORE
-> > > > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> > > > index 8116c19d5fd4..cbe581e87fa9 100644
-> > > > --- a/drivers/mfd/Makefile
-> > > > +++ b/drivers/mfd/Makefile
-> > > > @@ -266,6 +266,7 @@ obj-$(CONFIG_MFD_KHADAS_MCU)      +=3D khadas-m=
-cu.o
-> > > >  obj-$(CONFIG_MFD_ACER_A500_EC)       +=3D acer-ec-a500.o
-> > > >  obj-$(CONFIG_MFD_QCOM_PM8008)        +=3D qcom-pm8008.o
-> > > >
-> > > > +obj-$(CONFIG_MFD_SY7636A)    +=3D sy7636a.o
-> > > >  obj-$(CONFIG_SGI_MFD_IOC3)   +=3D ioc3.o
-> > > >  obj-$(CONFIG_MFD_SIMPLE_MFD_I2C)     +=3D simple-mfd-i2c.o
-> > > >  obj-$(CONFIG_MFD_INTEL_M10_BMC)   +=3D intel-m10-bmc.o
-> > > > diff --git a/drivers/mfd/sy7636a.c b/drivers/mfd/sy7636a.c
-> > > > new file mode 100644
-> > > > index 000000000000..f3ff93c7395d
-> > > > --- /dev/null
-> > > > +++ b/drivers/mfd/sy7636a.c
-> > > > @@ -0,0 +1,72 @@
-> > > > +// SPDX-License-Identifier: GPL-2.0+
-> > > > +/*
-> > > > + * MFD parent driver for SY7636A chip
-> > > > + *
-> > > > + * Copyright (C) 2021 reMarkable AS - http://www.remarkable.com/
-> > > > + *
-> > > > + * Authors: Lars Ivar Miljeteig <lars.ivar.miljeteig@remarkable.co=
-m>
-> > > > + *          Alistair Francis <alistair@alistair23.me>
-> > > > + *
-> > > > + * Based on the lp87565 driver by Keerthy <j-keerthy@ti.com>
-> > > > + */
-> > > > +
-> > > > +#include <linux/interrupt.h>
-> > > > +#include <linux/mfd/core.h>
-> > > > +#include <linux/module.h>
-> > > > +#include <linux/of_device.h>
-> > > > +
-> > > > +#include <linux/mfd/sy7636a.h>
-> > > > +
-> > > > +static const struct regmap_config sy7636a_regmap_config =3D {
-> > > > +     .reg_bits =3D 8,
-> > > > +     .val_bits =3D 8,
-> > > > +};
-> > > > +
-> > > > +static const struct mfd_cell sy7636a_cells[] =3D {
-> > > > +     { .name =3D "sy7636a-regulator", },
-> > >
-> > > What kind of regulator is 'vcom'? LDO? DCDC?
-> >
-> > Both I guess:
-> >
-> > "SY7636A is a single-chip power management IC (PMIC) designed for
-> > electronic paper display (EPD) applications. The device supports panel
-> > sizes up to 9.7 inches and larger. The device integrates two
-> > high-efficiency DC-DC boost converters, which are boosted to 25V and
-> > -20V by two charge pumps to provide gate driver power for the panel.
-> > Two tracking LDOs create a =C2=B115V source driver power supply that
-> > supports output currents up to 200mA. SY7636A also provides I2C
-> > interface control for specific panel requirements"
->
-> Is there a datasheet I could look at?
+Hi Biju-san,
 
-I have managed to find this:
+> From: Biju Das, Sent: Wednesday, July 28, 2021 3:55 AM
+>=20
+> Document USB phy bindings for RZ/G2L SoC.
+>=20
+> RZ/G2L USB2.0 phy uses line ctrl register for OTG_ID pin changes. It uses
+> a different OTG-BC interrupt bit for device recognition. Apart from this,
+> the PHY reset is controlled by USBPHY control IP and Document reset is a
+> required property.
+>=20
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-https://www.silergy.com/cn/productsview/SY7636ARMC
+Thank you for the patch!
 
-which is in Chinese. The datasheet is behind a login page unfortunately.
+Reviewed-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-Alistair
+Best regards,
+Yoshihiro Shimoda
 
->
-> --
-> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
-> Senior Technical Lead - Developer Services
-> Linaro.org =E2=94=82 Open source software for Arm SoCs
-> Follow Linaro: Facebook | Twitter | Blog
