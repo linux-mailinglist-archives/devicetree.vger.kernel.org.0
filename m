@@ -2,177 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 184A43E07B8
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 20:37:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 620C13E0844
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 20:49:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240333AbhHDShu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 14:37:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55940 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240325AbhHDSht (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 14:37:49 -0400
-Received: from mail-vs1-xe32.google.com (mail-vs1-xe32.google.com [IPv6:2607:f8b0:4864:20::e32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7D96C06179C
-        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 11:37:36 -0700 (PDT)
-Received: by mail-vs1-xe32.google.com with SMTP id j10so1546526vsl.10
-        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 11:37:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4v3mD/G2snz9EPb0n2yEtj1B1wrpxfXSkVM/rZ+bK44=;
-        b=UiEa1uta1KUv8TDKZIseoNOvN58KiK/nQxRPJnKuD5lTZrBcITzinwOi4xZm8Cf4H7
-         UiXfhR3HHnQsZdXRk1ePk1j0+K+W3KAgbIxU6qZuLGNoAozeTSlsHGPoM7wZY5MDzNcr
-         nveFZTkbRVI2YLs8FY39dWLY7KkMtLVbsWaz+tBzVbl9V8lH0yCJF0cQPx2vikXmRrG2
-         nUuq5oRb71+g/PXYHLEFMPSy6yT9mfdb8ACD9+l7s9e9iPFbUwtqj7AiMeAevCmCZCCb
-         JjlI17bXqD6S7+vljkvff8HX3byQ9kVXLeGHgLOhEdUm9VXdFRVnY2TRpbfwZKlBgO1i
-         O3Cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4v3mD/G2snz9EPb0n2yEtj1B1wrpxfXSkVM/rZ+bK44=;
-        b=q6xATqO1hfg7b+OVbqbMd/EXe/PhzA+WncpIckKCiJGKaZyrIihhyk/nGWU00UwgVU
-         tlquNu0ZxOln4x8V+YJS+dtyJEr49GdmxJgiQL97/tv6pJWUXGCKXwrst8QzoBNPg16T
-         8vZAaAyLHCPpushdVIiFBnx+xwFyby3nsf7PpLUQD+55Jkc9dLDdEyf9WeGRnUW0MFEE
-         pLu4WSZ1lx2ylBx836A0zm/3mMcDIY25XRAv/+lhy2EGjSrPSplnL99s3cjz3OFzWV8u
-         bJRYJpdw0/wUH46KL8S+bPtFxVL0a6pXuEWx+4Qx67GqHqjZP5UOkI/PWpnfex1Wv/PL
-         /5cQ==
-X-Gm-Message-State: AOAM531Vu9vGj2X/f2L1nfgU7JdSIP2doG9VGbj9ZxUllRuMrjQes63C
-        tByG4mjHuGnaVzbJvgZHzpJWi+smRZTpKUa9mLqLkg==
-X-Google-Smtp-Source: ABdhPJxf7txyKVStc9ONgBFPDBEr31m+shBvV8OvMRDu9d7Qql+uwVOjtKWRAB+wjysr6bHm+4qOzLKEIRe9Sx5O90o=
-X-Received: by 2002:a67:f60e:: with SMTP id k14mr1496697vso.30.1628102255703;
- Wed, 04 Aug 2021 11:37:35 -0700 (PDT)
+        id S239210AbhHDSuE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 14:50:04 -0400
+Received: from mail-eopbgr150081.outbound.protection.outlook.com ([40.107.15.81]:45692
+        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S239199AbhHDSuE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Aug 2021 14:50:04 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZPDTmwMOYuBV8s3I7y+ziKW+DMwFLoBOylNVS7zCsHDmnvL+/GPxh9/oqxLfcrF/mjt6cBymiPGjG7yCuki2q9xpgiM44TfQOxuszirrQvlqOiEKSYXnMl0tZ0oEoAtKpIzUIspxtNWaquNsjfh6hiGgVM0cTswz3XC2waPH+Aj7gHqPg7Y78OdBaqej8apr0VZ7dpbdY4ASsZXIEhnslF9JOCKIUOuQxxvS+yd12a0Ko34obnSTy0c0gPEX40J2KTm2eBummyNa9JzXcPb3Wpeg1GYNS7IVh25OJjhCMekgfbe+glEfvPDvBXVvj+99tQB8uifexV0a2X7XbQETcA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=aVdVaa59cR50AwvJZaU+PhsaR4OOqpP4RWh3NTJ1p10=;
+ b=ae8C2bHkdC4lVWImxVIkSqJ6n1/+uz04ryYC9Vq1zRIqfGiZRe8ryovSGOfEmvv+2JRjjZxapXuuGVC9dOjnQb2dTwUzgThU2h6wB1ej+MgnC9MgIcKbxD1yhxfhtSui+U/dqx6i0Q9haty897QE+AiEb3oAZsMBicQ7E6UJTmvS90XjbAB5G0+BbhnNJQe6ChO17ElsMgBIuNtE4DC2eQe0IP2Lc+1GQWz5fUp2GxdLxaj+V/8lP6sqGJ8Wl6C7x8Nd1s5mBIuRGdVpFfmUtfQWYn21Mr9AmO7/j4CWTs1QFTXYdhHlmAQz3RrT5TqK7bger3JDcIgLGFfYQqX1CQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=aVdVaa59cR50AwvJZaU+PhsaR4OOqpP4RWh3NTJ1p10=;
+ b=qMsq+ocqF6uu+VXabJ/sFNqpgZREYF+56zQOPhkLNoY/Avl8oVZDA4LF8/E0o3ZTc5TNv2pMRfEBf3LQaloRu9d29StvcTLRUYlP53BIAaP+XAaA4fnTnvYTjIZKx8SFpzctl8H7T8S210E6ldpuM/0tX/lfrF9ni4snfqEHsGw=
+Authentication-Results: huawei.com; dkim=none (message not signed)
+ header.d=none;huawei.com; dmarc=none action=none header.from=wolfvision.net;
+Received: from DBBPR08MB4523.eurprd08.prod.outlook.com (2603:10a6:10:c8::19)
+ by DB7PR08MB3547.eurprd08.prod.outlook.com (2603:10a6:10:4f::27) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.16; Wed, 4 Aug
+ 2021 18:49:48 +0000
+Received: from DBBPR08MB4523.eurprd08.prod.outlook.com
+ ([fe80::ade3:93e2:735c:c10b]) by DBBPR08MB4523.eurprd08.prod.outlook.com
+ ([fe80::ade3:93e2:735c:c10b%7]) with mapi id 15.20.4394.016; Wed, 4 Aug 2021
+ 18:49:48 +0000
+Subject: Re: [PATCH v2 7/7] arm64: dts: rockchip: rk3568-evb1-v10: add node
+ for sd card
+To:     Johan Jonker <jbx6244@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+        Liang Chen <cl@rock-chips.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Simon Xue <xxm@rock-chips.com>,
+        Jianqun Xu <jay.xu@rock-chips.com>,
+        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Zhang Changzhong <zhangchangzhong@huawei.com>
+References: <20210804130625.15449-1-michael.riesch@wolfvision.net>
+ <20210804130625.15449-8-michael.riesch@wolfvision.net>
+ <aa16ee55-e1de-adc8-51f0-8ceed136b911@gmail.com>
+From:   Michael Riesch <michael.riesch@wolfvision.net>
+Organization: WolfVision GmbH
+Message-ID: <68c6c548-ff07-da79-f75c-afb6a9846932@wolfvision.net>
+Date:   Wed, 4 Aug 2021 20:49:45 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
+In-Reply-To: <aa16ee55-e1de-adc8-51f0-8ceed136b911@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: ZR0P278CA0034.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:1c::21) To DBBPR08MB4523.eurprd08.prod.outlook.com
+ (2603:10a6:10:c8::19)
 MIME-Version: 1.0
-References: <20210730144922.29111-1-semen.protsenko@linaro.org>
- <20210730144922.29111-13-semen.protsenko@linaro.org> <15871f8ced3c757fad1ab3b6e62c4e64@misterjones.org>
- <CAPLW+4=v4bDcuxGVqs06mobGj34At4cD+vg48b4dPujarS07Tg@mail.gmail.com> <87k0l1w8y5.wl-maz@kernel.org>
-In-Reply-To: <87k0l1w8y5.wl-maz@kernel.org>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Wed, 4 Aug 2021 21:37:24 +0300
-Message-ID: <CAPLW+4mMF9B2BiY2hTgHz5=DNbDJZ7TDzt=Xefb5tDKwQhpEew@mail.gmail.com>
-Subject: Re: [PATCH 12/12] arm64: dts: exynos: Add Exynos850 SoC support
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
-        Ryu Euiyoul <ryu.real@samsung.com>,
-        Tom Gall <tom.gall@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [IPv6:2a05:1141:1c9:7c00:ad8b:c078:f634:d22a] (2a05:1141:1c9:7c00:ad8b:c078:f634:d22a) by ZR0P278CA0034.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:1c::21) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.15 via Frontend Transport; Wed, 4 Aug 2021 18:49:47 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 681d99fd-524f-46b8-1fcc-08d95778a25f
+X-MS-TrafficTypeDiagnostic: DB7PR08MB3547:
+X-Microsoft-Antispam-PRVS: <DB7PR08MB35472ED9D4CF086710F5DDA7F2F19@DB7PR08MB3547.eurprd08.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 9rg/PU/vDuOGwCvgjnQD3/UfzVLL660FdiH3/PwSJYLEj9oReXGbejSxLANU6ahWtLjOy5/PwRGVFZu2KonxCqM87824IeofT6mONnNJNAnJgvoDjdKIW2gDaLfdfUR7Rtkgfm85Xw2SrpNR2j2JnlsBRfGb4FNlnihThvGwBHjHQWeDT1bGH9mopgO3StMPhXgOyiWgEpq7wiGUi+mzXmd7X+6m7qLLHIiyPuMtPfn25dRFAmdxwjjdhHJlwC7X3SWU5EHPBFMh/OypR1febI0H+UJtwLdHPKGW+w+JGHtkoGLtb7G64HNC8NccKD14ZNvr74F0imDqo3tMgYwUaxJZbVY4+jcPcx83AG3OdrZKqiDFvWzqTaa2P32w++FzLCbyVCM/SMUrKqYjh+NZCZRHbJt7IEn+fq2GnIIC6/qfAHKqUuP8EZl4njDsRx5a9mzevFXDG0rSHDwX+AHZO+2udXEANYrkHUG6i6yc76niaJjsO3qtCbgTDN2LPYOM3BbTxtlyuyuEYwzaXrNuWoT5NVqM8jtLkkfLuntTAUQE/uiM3FALFI1KuyUtgfjZ2KViBS9u5KHDIPv/i8kfo8EKtFLG754CaSkmjv7jftUndHttTwIxgCi+LMid39+PvCfmsmYeWglmvQOZbe1wTric7UjesnVJLe2P2mzISe80bOke6JlwXt+n8CHOCtgIpJ3NpPjbROzyL77PlUGQj4xDwO1Bv7jZqTGdc2mkMKs=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR08MB4523.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(136003)(366004)(39830400003)(396003)(376002)(4326008)(478600001)(316002)(83380400001)(2906002)(52116002)(36916002)(54906003)(186003)(53546011)(8936002)(86362001)(38100700002)(36756003)(44832011)(66476007)(2616005)(66946007)(31686004)(66556008)(31696002)(8676002)(5660300002)(6486002)(7416002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?d29RcktzNXNDbnJJSW1ZM1JvSmxSeVNxeVVzYjZ3Q3cwWjB1Z1BSODlza3Ur?=
+ =?utf-8?B?NWFTeTl6emdld2VBdFFaNmdMS2kzcy9uTVNXc0tZbDZPV0lSVXhtdDc3QmQ0?=
+ =?utf-8?B?WWNHbUhpZXFUMDBvNnd6cm5qUC9aVVU2cjFPZm56SEJ0b3paeDRZWVV6Z0sv?=
+ =?utf-8?B?NkhyUVNwWHU5MWJ3TzFLYmRCa3Awdkw2RjBJSW9Yb1BPazNrNGZFU09kclBC?=
+ =?utf-8?B?QlF1akU0Rzk0eitudERSMW4zYUR1T2NGMXBVK1NVS0VCaDI3UC9PZlA0THRs?=
+ =?utf-8?B?NXR4VWtoOEwvbVBaZGx4T1BSZzhzLzFvR1lmeDZDejRJdWRXdktrcWloWlNP?=
+ =?utf-8?B?K3l2NUpPeXoxNEd6YzJJUUNwM0wyY1FrK1FCWTFDaHFKa0JyL0FUR0dlRkFa?=
+ =?utf-8?B?anp3TW1Ld2pJYWtRS0pDcklVY0hDeWdnMit4bDN4U0RFa0J2eENZSGtNSkRS?=
+ =?utf-8?B?WElwK1lVV3VidjMzWEZUd0hTazBkMDdaalp2K1JUS1ViUWZ3aDQ1eEJJeCtQ?=
+ =?utf-8?B?b3F6TWNLT0V5S1BBUldvVXBzSkdaeGVVa0hJR0NNdUR5QU9MNlBJTUJweGpI?=
+ =?utf-8?B?blhURHRxOXFreXZlQXRVWmdHdVpRMVcyVXhUSXVyUFdMbzZXQUZyOFJ0Q3dX?=
+ =?utf-8?B?UUZrK2g4ZzRyay9ZTnhBMnUvbTBQaEhrR0tEY1lJdlhaRGd2bjJVbzlQbEJy?=
+ =?utf-8?B?dmpiR0xScUtQVzhZNXJQQzJxMzUrWitoMXhHQm9BSzF4NVlPMlZzaDlMK1ZP?=
+ =?utf-8?B?cSthQVdPUWl3VGdIQVh0blQ3aC9BSG1GZkMvRFlJMzkzYXBxQlo0dW5IVTZU?=
+ =?utf-8?B?UWxleVp5M0xRMzBJWWF1aDIxS3I4UTRaQUJzMVRTRmw0VjZhcWZPa09aakJ6?=
+ =?utf-8?B?ZGc0T3RBcFhmUnVHQlE0MzB2WXJLT1ZSdjJKd1dvQzdhU3ZiQmVBblJhazYv?=
+ =?utf-8?B?QmNvYmRUaEZuVExlZlo0b2hOYyt1VVBRWExReWFHUjZZeEphbzQxWTV2Ty90?=
+ =?utf-8?B?eEZxVVo5TjliTUNvb3AvNFdOL1ZKNUlLN09XdkFQZmxDeHppMlVCZzE4b0x1?=
+ =?utf-8?B?bWdUZ2RQQzVhMzVLdGRsZHF3Wmt4Q2hlanBEZ2dvZHpBRUZTQ3g5QWd3ckQ2?=
+ =?utf-8?B?QlVXS21XYUZEM2Z0VGlpU3gxalRDbk0yc3czbHVLcnVzbk9qUC9leVhBQjZv?=
+ =?utf-8?B?Wjh2WHpHVzZsa1JvREdHVTQwcE91VjdFZFMweWVoeHVrc0lnRVBOSHRRSFpO?=
+ =?utf-8?B?MWVaOFJwS2h4OEd5S2QxdlFUV01zS0JkWDh3OUMxRmhPOGFOQjRubDM5NDJP?=
+ =?utf-8?B?TjFPS20vdFlXKytPVnJBczg1UTE1Nm1kbFhOaXM2cC9uR09FR2tINFdqZXEv?=
+ =?utf-8?B?eG9CRlVMNm9JVzRBenRja3N2LzdFYWJOZmFjM1dKbWJPT2t3eG9PcGs4SWxF?=
+ =?utf-8?B?Szh2SFBCd2YxV29Vd2oxVlRCMVhHLzRpUWNwRDBwT0VaS0pkUno0UzJSbGxB?=
+ =?utf-8?B?QndEcnFoa0RBVTBDU3FoM1dYaXgwaFE2Qkdxblowakh1dFVXWmdpNUxRaVB0?=
+ =?utf-8?B?dzRvTGdsOE1sdnhtazU0K1U0SHdNV2ZRSlJCcHJyZG1lNUJXTXU3eHEzbjlR?=
+ =?utf-8?B?RkFYM3F0OS9XdlRwcFEvNEFFTHJYUHVGd1haUkxwV0FWNGJqV0hGeTlGeEtL?=
+ =?utf-8?B?UHNUSkFsc0tnN2ptR1RVWm9DUUFXRndqa0hqcDk2aUswVHpqQWJRMmNjbHdF?=
+ =?utf-8?B?OWlnVlQ1azZkelY2Nll2SFBFWEVIQzRib0dTNGlsMHJPM1FudEdRaEJFTjRC?=
+ =?utf-8?B?WVZXR2tVTmRtUW9zZEpjeW94dzl4T3lBVGhxb0lzUFM4NHAwQXRzUXZGMm8v?=
+ =?utf-8?Q?8HHtLkXpIQI7F?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 681d99fd-524f-46b8-1fcc-08d95778a25f
+X-MS-Exchange-CrossTenant-AuthSource: DBBPR08MB4523.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Aug 2021 18:49:48.2640
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: DNHSe9G0d71GNXNO1UAeurtji8WBzKLftbmKcfW6CQEhkZ86PzfgaUhWoaj7ULdoE15ztRDnQzqcnDyZVektiELy3XIf6QK6Lals7BJPUic=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR08MB3547
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 4 Aug 2021 at 18:01, Marc Zyngier <maz@kernel.org> wrote:
->
-> On Wed, 04 Aug 2021 15:39:38 +0100,
-> Sam Protsenko <semen.protsenko@linaro.org> wrote:
->
-> > > You are also missing the hypervisor virtual timer interrupt.
-> > >
-> >
-> > Checked SoC TRM, there is no PPI for hypervisor virtual timer
-> > interrupt, and no mentioning of it at all. Likewise, I checked ARMv8
-> > ARM and TRM, almost no description of it. Also, I checked other
-> > platforms, and seems like everyone does the same (having only 4
-> > interrupts). And I wasn't able to find any documentation on that, so I
-> > guess I'll leave it as is, if you don't mind.
->
-> I *do* mind, and other DTs being wrong isn't a good enough excuse! ;-)
->
-> From the ARMv8 ARM (ARM DDI 0487G.b)
-> <quote>
-> D11.2.4 Timers
->
-> In an implementation of the Generic Timer that includes EL3, if EL3
-> can use AArch64, the following timers are implemented:
->
-> * An EL1 physical timer, that:
->   - In Secure state, can be accessed from EL1.
->   - In Non-secure state, can be accessed from EL1 unless those
->     accesses are trapped to EL2.
->     When this timer can be accessed from EL1, an EL1 control
->     determines whether it can be accessed from EL0.
-> * A Non-secure EL2 physical timer.
-> * A Secure EL3 physical timer. An EL3 control determines whether this
->   register is accessible from Secure EL1.
-> * An EL1 virtual timer.
-> * When FEAT_VHE is implemented, a Non-secure EL2 virtual timer.
-> * When FEAT_SEL2 is implemented, a Secure EL2 physical timer.
-> * When FEAT_SEL2 is implemented, a Secure EL2 virtual timer.
-> </quote>
->
-> Cortex-A55 being an ARMv8.2 implementation, it has FEAT_VHE, and thus
-> it does have a NS-EL2 virtual timer. This is further confirmed by the
-> TRM which documents CNTHV*_EL2 as valid system registers[1].
->
-> So the timer exists, the signal is routed out of the core, and it
-> is likely that it is connected to the GIC.
->
-> If the designers have omitted it, then it needs to be documented as
-> such.
->
+Hi Johan,
 
-Ok, I've checked thoroughly all docs again, and it seems like there is
-no dedicated PPI number for this "EL2 Hypervisor Virtual Timer" in
-Exynos850 SoC. The timer instance itself might exist of course, but
-interrupt line is probably wasn't connected to GIC by SoC designers,
-at least it's not documented.
+Thanks for your comments, I'll try to implement the requested changes
+and prepare a v3 tomorrow.
 
-Moreover, from [1,2] it looks like if it were existing it would have
-been PPI=12 (INTID=28). But in GIC-400 TRM this PPI is assigned to
-"Legacy FIQ signal", and all there is no PPI for Hypervisor Virtual
-Timer documented there as well. In Exynos850 TRM the source for this
-PPI's interrupt source is marked as "-", which means it's not used.
+On 8/4/21 4:30 PM, Johan Jonker wrote:
+> Hi Michael,
+> 
+> Could you add a commit message to all patches in this serie?
 
-So if you know something that I don't know -- please point me out the
-doc where this PPI line is documented. Otherwise I can add the comment
-to device tree, stating that this interrupt line is not present in
-SoC's GIC, i.e. something like this:
+Well the short commit message (i.e., the subject line) pretty much wraps
+it all up in my opinion, hence no need for an extended commit message.
+Is there anything in particular you would like to see or have explained
+that requires an extended message? I would like to refrain from adding
+an extended commit message just for the sake of having one.
 
-8<------------------------------------------------------------------------------->8
-    timer {
-        compatible = "arm,armv8-timer";
-        interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) |
-                      IRQ_TYPE_LEVEL_LOW)>,
-                 <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) |
-                      IRQ_TYPE_LEVEL_LOW)>,
-                 <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) |
-                      IRQ_TYPE_LEVEL_LOW)>,
-                 <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) |
-                      IRQ_TYPE_LEVEL_LOW)>;
-        /* Hypervisor Virtual Timer PPI is not present in this SoC GIC */
-    };
-8<------------------------------------------------------------------------------->8
+> On 8/4/21 3:06 PM, Michael Riesch wrote:
+>> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+>> ---
+>> v2:
+>> - rename alias to match convention
+>>
+>>  arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts | 15 +++++++++++++++
+>>  1 file changed, 15 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
+>> index ed96f27c64a3..c4da6436059d 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
+>> @@ -17,6 +17,7 @@
+>>  		ethernet0 = &gmac0;
+>>  		ethernet1 = &gmac1;
+> 
+>>  		mmc0 = &sdhci;
+>> +		mmc1 = &sdmmc0;
+> 
+> mmc aliases are sort on reg address based on availability without number
+> gap.
+> 
+> 	sdmmc0: mmc@fe2b0000 {}
+> 	sdhci: mmc@fe310000 {}
 
-Is that ok with you?
+I'll turn these around.
 
-[1] https://developer.arm.com/documentation/102379/0000/The-processor-timers?lang=en
-[2] https://gem5.googlesource.com/public/gem5/+/refs/heads/master/src/arch/arm/fastmodel/CortexA76/FastModelCortexA76.py#150
+>>  	};
+>>  
+>>  	chosen: chosen {
+>> @@ -353,6 +354,20 @@
+>>  	status = "okay";
+>>  };
+>>  
+>> +&sdmmc0 {
+>> +	bus-width = <4>;
+>> +	cap-sd-highspeed;
+>> +	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
+>> +	disable-wp;
+> 
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd &sdmmc0_det>;
+> 
+> pinctrl-names below pinctrl-0 like the rest of rk356x.dtsi
 
-> Thanks,
->
->         M.
->
-> [1] https://developer.arm.com/documentation/100442/0100/register-descriptions/aarch64-system-registers/aarch64-architectural-system-register-summary
->
-> --
-> Without deviation from the norm, progress is not possible.
+OK!
+
+>> +	sd-uhs-sdr104;
+> 
+>> +	supports-sd;
+> 
+> Check mmc-controller.yaml, rockchip-dw-mshc.yaml and
+> synopsys-dw-mshc-common.yaml for properties.
+
+I am afraid I don't quite follow. What exactly should I check? I am
+pretty sure that the properties I used are described in the mentioned
+yaml files.
+
+Regards, Michael
+
+> 
+>> +	vmmc-supply = <&vcc3v3_sd>;
+>> +	vqmmc-supply = <&vccio_sd>;
+>> +	status = "okay";
+>> +};
+>> +
+>>  &uart2 {
+>>  	status = "okay";
+>>  };
+>>
