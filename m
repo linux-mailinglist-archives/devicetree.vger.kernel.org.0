@@ -2,146 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF66B3E084A
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 20:50:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C60FE3E085E
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 20:56:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239377AbhHDSuc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 14:50:32 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:55812 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239295AbhHDSub (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 14:50:31 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 174IoATn080652;
-        Wed, 4 Aug 2021 13:50:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1628103010;
-        bh=Sf1IS8Hi9MP5nnvnMXuVrRpwWOFRmZK+iai4dE5d3lE=;
-        h=From:To:CC:Subject:Date;
-        b=qFcPqnaeh4FhCMrEaWnPLOsQnwoUzvcDFv2zXWL6HBsI4YAHcXN2YVtPjxdv85qdA
-         mdeS7Ny+IdVKsRpfSUAGuxAf0BXcMV+nnUjY09QaCLVfHuX3AXCCcBpgVi7orlhCBM
-         qC0peoNiHQnI+rwJDtHE6kByeVG09NH1E7KrgJgU=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 174IoAOj129147
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 4 Aug 2021 13:50:10 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 4 Aug
- 2021 13:50:09 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 4 Aug 2021 13:50:09 -0500
-Received: from lelv0597.itg.ti.com (lelv0597.itg.ti.com [10.181.64.32])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 174Io9jY108085;
-        Wed, 4 Aug 2021 13:50:09 -0500
-Received: from localhost ([10.250.68.246])
-        by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 174Io8jL015349;
-        Wed, 4 Aug 2021 13:50:09 -0500
-From:   Suman Anna <s-anna@ti.com>
-To:     Santosh Shilimkar <ssantosh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Grygorii Strashko <grygorii.strashko@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH v2] dt-bindings: soc: ti: pruss: Add dma-coherent property
-Date:   Wed, 4 Aug 2021 13:50:08 -0500
-Message-ID: <20210804185008.30096-1-s-anna@ti.com>
-X-Mailer: git-send-email 2.32.0
+        id S240186AbhHDS4n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 14:56:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60354 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239643AbhHDS4m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 14:56:42 -0400
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10A31C06179B
+        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 11:56:29 -0700 (PDT)
+Received: by mail-ot1-x32a.google.com with SMTP id h63-20020a9d14450000b02904ce97efee36so2574498oth.7
+        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 11:56:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=VcqvjU1bhq3QLbhM94VyWBNxMowkTRxB2SS37S2YMHU=;
+        b=eow6uihoHcyolO28gBNzCMo+OcLJeolWeLIfML7V5HBkrGBB2+RPREORTfmPViraQc
+         Utis+pBR22PU8tP3USQ7Vn4auPnVqU04uhgMtRgeHLloRRdcMsaJTc0wdBSyOIf7hiW0
+         jA6mZMzCH/w9Oczg1HXmHbHAvA4Dl7a6lj8Ig=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=VcqvjU1bhq3QLbhM94VyWBNxMowkTRxB2SS37S2YMHU=;
+        b=IAqn35Jp/lJ8DeDIODKQh9mhI5s64HVDIePZ369WmUYf8+b8ZhdUkvt24JpvQqLP7y
+         4pB+zsg/DevOx51pS+iGV9x3L9CkbfyEMwkr/gu69V1M8XIketBHFK1sgxwGoHL/xx9R
+         mjm6Wn7MjiHv0RkYYk9K5IE2B7k/asJeKfiDm31EkNDvlZKJ1BPGcU01Y5rfenAR/FXr
+         HBO+WNK1NgmRcreuCdCLmFNjbhfewQWQer3K5Ae7ZVVUv/XyIFVQd/oIMyKxYHnx8An3
+         OXJ2VM9l244hj8pYQ674mOTP7nO9/xcJOPqQYcCF/AbNVQgsu2NwtVPZupghvZtn+avc
+         C5bw==
+X-Gm-Message-State: AOAM532ucQ42tRWU6NlqHO4S/LaTIydCDKGoKF/4abAV+UQsWic/ed+f
+        OmL59h0dQCCa6bFXigSfjdiXScg56lgyi3X7R72Kdg==
+X-Google-Smtp-Source: ABdhPJzr7nO7f94SsRcOCzg0xCQZV6WBYtk8lxSr4M4jRgk8usQPXYX9eUO1QierzYm6lnMFOVeugytO9vsj9NDOexc=
+X-Received: by 2002:a05:6830:1490:: with SMTP id s16mr850033otq.233.1628103387954;
+ Wed, 04 Aug 2021 11:56:27 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 4 Aug 2021 11:56:27 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <1627581885-32165-2-git-send-email-sibis@codeaurora.org>
+References: <1627581885-32165-1-git-send-email-sibis@codeaurora.org> <1627581885-32165-2-git-send-email-sibis@codeaurora.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Wed, 4 Aug 2021 11:56:27 -0700
+Message-ID: <CAE-0n53YRQamHMcb1T0oRkSO0_Shhskzpr4oX60UpiEB8ZY63A@mail.gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: cpufreq: cpufreq-qcom-hw: Add compatible
+ for SM8250/8350
+To:     Sibi Sankar <sibis@codeaurora.org>, bjorn.andersson@linaro.org,
+        mka@chromium.org, robh+dt@kernel.org
+Cc:     viresh.kumar@linaro.org, agross@kernel.org, rjw@rjwysocki.net,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        dianders@chromium.org, tdas@codeaurora.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the PRUSS schema file to include the dma-coherent property
-that indicates the coherency of the IP. The PRUSS IPs on 66AK2G
-SoCs do use this property.
+Quoting Sibi Sankar (2021-07-29 11:04:42)
+> Re-arranging the register regions to support per core L3 DCVS would lead
+> to bindings breakage when using an older dt with a newer kernel. So,
+> document the EPSS compatible for SM8250/SM8350 SoCs and use them in the
+> CPUFreq-hw driver to prevent such breakages.
+>
+> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+> ---
 
-The new added dma-coherent property is a required property _only_
-for 66AK2G SoCs and is not required/applicable for other SoCs, so
-the binding is backward compatible for other SoCs. This update is
-being done before the corresponding dts nodes can be added for 66AK2G
-SoCs.
-
-Signed-off-by: Suman Anna <s-anna@ti.com>
-Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-v2: 
- - No code changes, only updated the patch description (added 2nd para) to 
-   address Rob's review comments
- - Picked up review tags
- - Patch is still on top of AM64 ICSSG binding update patch [1]
-v1: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20210730031901.26243-1-s-anna@ti.com/
-
-[1] https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210623165032.31223-2-s-anna@ti.com/
-
- .../devicetree/bindings/soc/ti/ti,pruss.yaml  | 37 +++++++++++++------
- 1 file changed, 25 insertions(+), 12 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
-index 47d7fd24bc56..9d128b9e7deb 100644
---- a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
-+++ b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
-@@ -85,6 +85,8 @@ properties:
-   dma-ranges:
-     maxItems: 1
- 
-+  dma-coherent: true
-+
-   power-domains:
-     description: |
-       This property is as per sci-pm-domain.txt.
-@@ -324,18 +326,29 @@ additionalProperties: false
- # - interrupt-controller
- # - pru
- 
--if:
--  properties:
--    compatible:
--      contains:
--        enum:
--          - ti,k2g-pruss
--          - ti,am654-icssg
--          - ti,j721e-icssg
--          - ti,am642-icssg
--then:
--  required:
--    - power-domains
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - ti,k2g-pruss
-+              - ti,am654-icssg
-+              - ti,j721e-icssg
-+              - ti,am642-icssg
-+    then:
-+      required:
-+        - power-domains
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - ti,k2g-pruss
-+    then:
-+      required:
-+        - dma-coherent
- 
- examples:
-   - |
--- 
-2.32.0
-
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
