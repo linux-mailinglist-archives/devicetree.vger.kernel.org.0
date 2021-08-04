@@ -2,177 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 421A83E0021
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 13:25:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A78A23E0039
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 13:33:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237104AbhHDLZs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 07:25:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40922 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237603AbhHDLZr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 07:25:47 -0400
-Received: from mail-vs1-xe2d.google.com (mail-vs1-xe2d.google.com [IPv6:2607:f8b0:4864:20::e2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3F7DC061798
-        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 04:25:34 -0700 (PDT)
-Received: by mail-vs1-xe2d.google.com with SMTP id a1so795249vsd.12
-        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 04:25:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=BRcASZ3r4m78SiEn9llZCC+xHa2OVesqEZ2kZNcyF+0=;
-        b=R5Z8/Oydbv1DFgn8j2y86z75E7K0sgshC0AiuLpz/gXjctZZXH98alk93grLkC+3Yb
-         ArE5iD44erF8OU1rN9zUSUYjtOV1CxMzrnO9UBK560P43Y0I5+vAv7wS6fn0Q25NLDHn
-         XE98JEAWNsXf9e0jyyDj8c4kXptlXMPdmnABFMIT7kC1ZklVQ3x6ENHmzoLi+eok3rKA
-         ChUJtFlanWvI4SGnSdBxpEOJIZuwCjgLtbaRTYIN6At0Eb65aVArjqMN0gW/3LAoeQIv
-         Vu+6cBjo+nTXivlzHoACFPmbjg3ToMlHmDiaeAZHbJbW+xK123H+r+XWI12WZ23bmOcx
-         b82Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=BRcASZ3r4m78SiEn9llZCC+xHa2OVesqEZ2kZNcyF+0=;
-        b=mdFjBo1yMCjGCNkQVWP6ixeUFipaSumtR4Qs8GOqRtlkO6FKm9Vwma4/oeDToI7Qpg
-         Ezfit2MWSUH37LET5UAuGyIgRw065lq6pIArQooZaU7yYwTj4VRcKKip9qYTcqgFl5ai
-         7NObzjoS3q8ObfiWb3XsPYbkaTbJragNRw5b7HTEOdfrp61bMpHUaSBnDjbAH6ROdYgJ
-         DXz2xz9+uGbSMNMNkajVGw4eJu34oIXfkFsooWhgnE6iwH/hrhMVyzO0haPRscJdwm7+
-         s6hcSvmuKzRKIFsjkQcJLSqE0dR/JbujfMDYcG2HeJCUGG9RlBXN2VvFuKNikXRMcGbM
-         nxpQ==
-X-Gm-Message-State: AOAM532gvMGPYEFCjRLvMXO15zePCyJ6fKf59aQF5li2ynP1c5Tvwlfe
-        w8qusEQVxTnjOFxt3puDsLkXH2UB6uB1YyoY3k17Hg==
-X-Google-Smtp-Source: ABdhPJwig6I24W8HDdZeZnOfWowvG1PB4luybcJODAJTfb7WUf1LZR2JsC2EWkttRkxulCzH4iNjnoVBAiBF7Gz/a58=
-X-Received: by 2002:a67:f6d8:: with SMTP id v24mr18645111vso.48.1628076333900;
- Wed, 04 Aug 2021 04:25:33 -0700 (PDT)
+        id S237361AbhHDLdn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 07:33:43 -0400
+Received: from mout.gmx.net ([212.227.17.21]:58305 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237000AbhHDLdn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Aug 2021 07:33:43 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1628076796;
+        bh=ff67APoHVniOOMt0cwe7Q/LFXBx0DO1rCUYFjM5SPiU=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=A4DpLSMGsTNcJhEVIZIX0JYPz4NLlphYSB/9/6ajkzGVKQYVG6NrMgbX4glOfLB/m
+         ZVcNZOnLI3eQXk7bzJ8X4yiX05nY+VtcWw0scXOlvW3Bknjx6EOnrPD1VpZMKnEq5Y
+         fWREb0mnmd054k4xpgS6QDESXTKGWVOLwOKMm484=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [217.61.147.17] ([217.61.147.17]) by web-mail.gmx.net
+ (3c-app-gmx-bap67.server.lan [172.19.172.67]) (via HTTP); Wed, 4 Aug 2021
+ 13:33:16 +0200
 MIME-Version: 1.0
-References: <20210721140424.725744-1-maxime@cerno.tech> <20210721140424.725744-26-maxime@cerno.tech>
- <20210723215724.GA2661499@robh.at.kernel.org>
-In-Reply-To: <20210723215724.GA2661499@robh.at.kernel.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 4 Aug 2021 13:24:57 +0200
-Message-ID: <CAPDyKFr8-+zqhZfALux8p6XaDbR2T-DSP=_Kx_6p_LqdCrmCAA@mail.gmail.com>
-Subject: Re: [PATCH 25/54] dt-bindings: mmc: Convert MMC Card binding to a schema
-To:     Rob Herring <robh@kernel.org>, Maxime Ripard <maxime@cerno.tech>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        DTML <devicetree@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        linux-mmc <linux-mmc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Message-ID: <trinity-62b8c96c-2408-46d3-9690-e78af2f0c250-1628076795963@3c-app-gmx-bap67>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Sungbo Eo <mans0n@gorani.run>, Min Guo <min.guo@mediatek.com>
+Cc:     linux-mediatek@lists.infradead.org,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Aw: Re:  [PATCH 0/2] Add MUSB for MT7623
+Content-Type: text/plain; charset=UTF-8
+Date:   Wed, 4 Aug 2021 13:33:16 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <f3607979-ea50-fc1c-0afe-a55881aa24f0@gorani.run>
+References: <20210803151320.71531-1-mans0n@gorani.run>
+ <trinity-0f9449b8-5114-46e5-9a4f-00b62155a938-1628010948338@3c-app-gmx-bs54>
+ <f3607979-ea50-fc1c-0afe-a55881aa24f0@gorani.run>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:aW7aDZrU2GL2RmeyjencG7kyYZUvA3SIsL8kdEa159ahF31Bfc6bcg0se/F1FQJUMRl/7
+ fndSvU8W13kKFBOS+y7Zxx3HiDz/L/jTf1WUoEKqL6sqsCc7nu/rs35bbTK+cMI4N/pqYrudzXt7
+ mhyKkA+YPBqQpC5mLpDLLYP9WnvhAycD+gJ0RU8ggjVP2YlRVK8sz0BPBtkyN9KDADyZW3oT+p7+
+ glqcyfoGX8kYS1On/w9ScM00tOwWtwl9zmcWwd0GqHfLE8QEjXrTIASmfVSyVm7Q+S2BatDCzkmg
+ bI=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:MWGHEi+iFo0=:/jSc6JzpIdUVdjAoOKpZR8
+ ciqXC+A849Qolk/zQmKqUBObRQ9eN6VjaoHXAdPcsOHAh7d0YTcl0OqB+hmYPn9xHbaYlJVMt
+ QNHPn16Ud9bJvdDmVuQsnGMsvXD1GbPRvBwkxieevyVl0VOhoxSAeH0rwjKO00/qRMFt1nw2X
+ OMiqey8zKkc5BJL3m65/6EiyQqLmDISpGsqU5YHnZuTSYRdadwBqYDxdhX9SlKYb9rv3Lf/ue
+ FN8G0y/TS8INTqz0u9alM28NEEXh4HRhKK32bN0q5bGRqWQ81OyMI7kG8f7oE4KqrDlCSXLKw
+ sq3V+Dg8IUZknXWu2DprXtX/i1jPGrFR1q9JpME45IVhPDc/pAA6Y32bdJAZMV7qOjGOYYZ40
+ lBnvxqmHHPC38R2tT9FSXKm0ib+ROqMQ+hkC5CKmgwRz73kL3nvM91g1hCxSS0lAChnx0bsnA
+ dfGSumSiFPPVkow/jWu1W1+OuVTZKbDERxuG9iEGqHEutXX4zraZp2JonP5JTS38If+0Xwhk1
+ bcgWFaQHDOCLGuogMznQmN+/SQfv/bdAQ+FWmCSRYBt6doqBFkN8JgtLsUhI2QOhEOMv7rul8
+ To66kn2S+R0XyHHJYubCxI0dazzf4jxIcv7cG7Bg/4oLxvhTyYs1epIBaiZUfZxdvZ6IX/7A7
+ 6aRm45uxQ9kXIQM7/viPoHQafQvGVUAxzBrksJhWIjn3bLa7PpBSKPTGR+SGIwPrApaa04me+
+ OOOxFkujAgpk2ZYeEBNnfpsHppxco6jdlEu3TFwK2qZCTYwpBPU2lIgPOCIg3+Ax/na+hMwQM
+ JopytI+thP795Nhxi8AUjmMRK8MvA5udnbpzrru1yzMemqhYJ4=
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 23 Jul 2021 at 23:57, Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, Jul 21, 2021 at 04:03:55PM +0200, Maxime Ripard wrote:
-> > MMC Cards can have an optional Device Tree binding to add
-> > non-discoverable properties.
-> >
-> > Now that we have the DT validation in place, let's convert the device
-> > tree bindings for that driver over to a YAML schema.
-> >
-> > Some of these properties were already described in the MMC controller
-> > binding, even though they are not generic and do not apply to any
-> > device, so we took the occasion to fix this.
-> >
-> > Cc: linux-mmc@vger.kernel.org
-> > Cc: Ulf Hansson <ulf.hansson@linaro.org>
-> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> > ---
-> >  .../devicetree/bindings/mmc/mmc-card.txt      | 30 ------------
-> >  .../devicetree/bindings/mmc/mmc-card.yaml     | 48 +++++++++++++++++++
-> >  .../bindings/mmc/mmc-controller.yaml          |  6 ---
-> >  3 files changed, 48 insertions(+), 36 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/mmc/mmc-card.txt
-> >  create mode 100644 Documentation/devicetree/bindings/mmc/mmc-card.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/mmc/mmc-card.txt b/Documentation/devicetree/bindings/mmc/mmc-card.txt
-> > deleted file mode 100644
-> > index 8d2d71758907..000000000000
-> > --- a/Documentation/devicetree/bindings/mmc/mmc-card.txt
-> > +++ /dev/null
-> > @@ -1,30 +0,0 @@
-> > -mmc-card / eMMC bindings
-> > -------------------------
-> > -
-> > -This documents describes the devicetree bindings for a mmc-host controller
-> > -child node describing a mmc-card / an eMMC, see "Use of Function subnodes"
-> > -in mmc.txt
-> > -
-> > -Required properties:
-> > --compatible : Must be "mmc-card"
-> > --reg        : Must be <0>
-> > -
-> > -Optional properties:
-> > --broken-hpi : Use this to indicate that the mmc-card has a broken hpi
-> > -              implementation, and that hpi should not be used
-> > -
-> > -Example:
-> > -
-> > -&mmc2 {
-> > -     pinctrl-names = "default";
-> > -     pinctrl-0 = <&mmc2_pins_a>;
-> > -     vmmc-supply = <&reg_vcc3v3>;
-> > -     bus-width = <8>;
-> > -     non-removable;
-> > -
-> > -     mmccard: mmccard@0 {
-> > -             reg = <0>;
-> > -             compatible = "mmc-card";
-> > -             broken-hpi;
-> > -     };
-> > -};
-> > diff --git a/Documentation/devicetree/bindings/mmc/mmc-card.yaml b/Documentation/devicetree/bindings/mmc/mmc-card.yaml
-> > new file mode 100644
-> > index 000000000000..aefdd8748b72
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mmc/mmc-card.yaml
-> > @@ -0,0 +1,48 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/mmc/mmc-card.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: MMC Card / eMMC Generic Device Tree Bindings
-> > +
-> > +maintainers:
-> > +  - Ulf Hansson <ulf.hansson@linaro.org>
-> > +
-> > +description: |
-> > +  This documents describes the devicetree bindings for a mmc-host controller
-> > +  child node describing a mmc-card / an eMMC.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: mmc-card
-> > +
-> > +  reg:
-> > +    const: 0
-> > +
-> > +  broken-hpi:
-> > +    $ref: /schemas/types.yaml#/definitions/flag
-> > +    description:
-> > +      Use this to indicate that the mmc-card has a broken hpi
-> > +      implementation, and that hpi should not be used.
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +additionalProperties: true
->
-> Like what? If there's other properties, then there should really be a
-> specific compatible.
+Hi,
 
-I agree.
+another strange thing is, after some bootups (i boot kernel from tftp, but=
+ also on full power cycle),
+musb-driver maps musb-hdrc.4.auto instead of #1
 
-Maxime, thanks for working on this. I assume you will be sending a new
-version that I can pick up?
+root@bpi-r2:~# dmesg | grep musb
+[    5.502914] musb-hdrc musb-hdrc.4.auto: MUSB HDRC host driver
+[    5.508782] musb-hdrc musb-hdrc.4.auto: new USB bus registered, assigne=
+d bus number 5
 
-[...]
+and then nothing works (no roleswitch, no power which does not work with p=
+inctl / without regulator).
+It's hard to test if things working before, do no more work if device is n=
+amed differently.
 
-Kind regards
-Uffe
+maybe Min Guo can help here?
+
+after bootup mode is b_idle in my case (currently do not change if i conne=
+ct otg cable)
+
+root@bpi-r2:~# cat /sys/devices/platform/11200000.usb/musb-hdrc.4.auto/mod=
+e
+b_idle
+
+regards Frank
