@@ -2,89 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC60C3E0158
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 14:43:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6651E3E0196
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 15:04:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238198AbhHDMoL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 08:44:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58688 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238181AbhHDMoJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 08:44:09 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA3D0C0613D5
-        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 05:43:56 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id x17so1123495wmc.5
-        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 05:43:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=6BWC3c/3rtkcV7WXMXe6RZt5i0F5nTHF+1FQsvoNiWc=;
-        b=DVq+BkOnipOsYifSFqEfB33PAboXxf4yC1DlXMX8OZjgBcWoDb/PvjiTQAM+pldWiF
-         WKx5n4lmIqxmpC/5uEwU0rnS3tgnX3U2RZn8iHSU9dVOfvxkTwajLHtnUDx24qUPwtBr
-         MfxPsHz4MOlIJ/6pPk6hj9vZiGX2SkkELFaMoiUCUrXZJecz7hTXTb8xf0X2C30F/XwL
-         oB0Xm03ETuwWIGXdfyZwXAvwck+hb70VSL6hFlS8a16kqAtvjY4YI3zZz9PPE4FVf22n
-         3+petT6681yrUhP0G0OKMgCS7WCDYPQk/KBJSJu7m0PHAdbTaimG6kublfgWXqIl3LWQ
-         eivQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=6BWC3c/3rtkcV7WXMXe6RZt5i0F5nTHF+1FQsvoNiWc=;
-        b=WYBg/FDXhr1Mey9eYgc9mhC9I5XEznjLPfJXSEroKvAJO5rGOr3drVZIpvDhKrP3jL
-         KZWiWl3gcuzXn70c2IVLeOa69IDnvH1Nb6Ax0y4ZDOH0PDvwKFxZ0PDpeJ5Si9drs+k8
-         vszil1A4jka+b0IBqWWkryNhjaTmJaP0uedaL+HpGpniSyrDTPgCmXkzKtgqvkh6THSc
-         HESi5UHHd9c3uys9CZdhJDIQMa0DvvX4o+a769JZHOsJR+Mx+iyNyMU+zY/Pk4FBmbpW
-         ZbfeQVTV2IL/GrlTH6zLLhgARBQYGy6129IqWK5Epuxqnm/UD4iLaCms/09mrb8vXSdM
-         QLbQ==
-X-Gm-Message-State: AOAM532Kv8Su0G4fCkSWht4DB6xnUw5AqsMIyPKdJbymVJ6WGzNzwde8
-        v7WXrcOUnGGwMDud4FyGExE6w9IlH/5Zaw==
-X-Google-Smtp-Source: ABdhPJwqlMcWUuT1k4rp9W71z1LZAiPVMqbRmaxo+YUt5J7u0104g6hRhluIpipBDZiacPGaHfD02A==
-X-Received: by 2002:a1c:7f50:: with SMTP id a77mr27174231wmd.163.1628081035533;
-        Wed, 04 Aug 2021 05:43:55 -0700 (PDT)
-Received: from google.com ([109.180.115.228])
-        by smtp.gmail.com with ESMTPSA id r129sm2215438wmr.7.2021.08.04.05.43.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Aug 2021 05:43:54 -0700 (PDT)
-Date:   Wed, 4 Aug 2021 13:43:52 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Alistair Francis <alistair@alistair23.me>
-Cc:     robh+dt@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-        linux-imx@nxp.com, kernel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alistair23@gmail.com
-Subject: Re: [PATCH v8 09/11] ARM: dts: imx7d: remarkable2: Enable
- silergy,sy7636a
-Message-ID: <YQqLiAtAtREWTvD7@google.com>
-References: <20210803084456.198-1-alistair@alistair23.me>
- <20210803084456.198-9-alistair@alistair23.me>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210803084456.198-9-alistair@alistair23.me>
+        id S238272AbhHDNEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 09:04:21 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:35482 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237040AbhHDNEU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 09:04:20 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1628082248; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=WYND7xh6faUgm457zJVmTZdDozZ5d4IopLtDep46s0o=; b=DL1jotojGey3PH2d16wM48DF3+TnhvzMJzhlUZE2vBZHmJ7uG0GVJwM2/eW9WzUF/suVFYDx
+ xO748s2uGjXV/ABuKnuK9uzBXw4fybOmV1AWnNSB+DscID6+VjMRh/JdIO4FGO0QDAmNtz8h
+ zaAE776q17RnbLT4SrOf+46muf4=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-east-1.postgun.com with SMTP id
+ 610a9036b4dfc4b0efea8f3f (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 04 Aug 2021 13:03:50
+ GMT
+Sender: rnayak=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 9F3BFC433D3; Wed,  4 Aug 2021 13:03:49 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from blr-ubuntu-173.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rnayak)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 959A2C433F1;
+        Wed,  4 Aug 2021 13:03:45 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 959A2C433F1
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
+From:   Rajendra Nayak <rnayak@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, skakit@codeaurora.org,
+        konrad.dybcio@somainline.org, swboyd@chromium.org,
+        dianders@chromium.org, mka@chromium.org,
+        Rajendra Nayak <rnayak@codeaurora.org>
+Subject: [PATCH v2 0/2] Add DT files for sc7280 IDP2 board
+Date:   Wed,  4 Aug 2021 18:33:17 +0530
+Message-Id: <1628082199-17002-1-git-send-email-rnayak@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 03 Aug 2021, Alistair Francis wrote:
+v2:
+* Added the google,piglin compatible for the IDP2 board
+* Rebased on the recent pmic cleanups [1]
+* Moved pmr735a_die_temp into idp dts
 
-> Enable the silergy,sy7636a and silergy,sy7636a-regulator on the
-> reMarkable2.
-> 
-> Signed-off-by: Alistair Francis <alistair@alistair23.me>
-> ---
->  arch/arm/boot/dts/imx7d-remarkable2.dts | 42 +++++++++++++++++++++++++
->  1 file changed, 42 insertions(+)
+The IDP2 board based off sc7280 SoC is derived from the existing
+IDP platform, but has some differences like
+* on board Embedded controller and H1 secure microprocessor
+* PMIC changes (some pmic functionality handled by EC)
+* MDP/Display power grid changes
+* USB configuration changes
 
-I don't see the DT documentation for this device.
+To handle the differences, all common functionality is now moved to
+sc7280-idp.dtsi, which is included in both sc7280-idp and sc7280-idp2
+dts files.
 
-Has it been accepted/merged already?
+Additional functionality differences in IDP2 as listed above will be
+added by subsequent patches, this series just makes sure we have the
+split done to handle the commonalities and differences.
+
+[1] https://lore.kernel.org/patchwork/patch/1471665/
+
+Rajendra Nayak (2):
+  dt-bindings: arm: qcom: Document qcom,sc7280-idp2 board
+  arm64: dts: qcom: sc7280-idp: Add device tree files for IDP2
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |   2 +
+ arch/arm64/boot/dts/qcom/Makefile                  |   1 +
+ arch/arm64/boot/dts/qcom/sc7280-idp.dts            | 328 +--------------------
+ .../dts/qcom/{sc7280-idp.dts => sc7280-idp.dtsi}   |  55 +---
+ arch/arm64/boot/dts/qcom/sc7280-idp2.dts           |  23 ++
+ 5 files changed, 29 insertions(+), 380 deletions(-)
+ copy arch/arm64/boot/dts/qcom/{sc7280-idp.dts => sc7280-idp.dtsi} (84%)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7280-idp2.dts
 
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
+
