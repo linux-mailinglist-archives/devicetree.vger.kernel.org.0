@@ -2,87 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DFD73E020E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 15:32:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 947773E026D
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 15:51:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236963AbhHDNci (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 09:32:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41658 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236649AbhHDNci (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 09:32:38 -0400
-Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB876C061798
-        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 06:32:25 -0700 (PDT)
-Received: by mail-qt1-x831.google.com with SMTP id l24so1370716qtj.4
-        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 06:32:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=civBfwB3HrpSlIjKk8pP7evwtiL4N367MAc+aTcz/k8=;
-        b=tYDhB8XRdjWX2pDVyog2BICL0SGFaer15flROq24PNXXcS94H0XULaC4ZFrvA/A3Oi
-         oeNKF3UKbuqZgvrjs/x1qA4zpLNZfhBH/anCiPcpYktQ6HcXYNFdV/RDs7pv4KHp7C5C
-         Q1FWEfzD8Gd8Ov8L/I94J2VWyuK5XM0nvzlN4wOblnVbZ5p1A2hngv04a61V0UdgB/5u
-         Ve/eJHWyv/SwrYBfq+NVPtWdEevzbxl9X0fORMy/xcLw5dEdGDndftIlChCZ505cTm39
-         5w9hfkbdLimiDUfBRqvrZQ04U6z9tDEHcRkjt25uyktHYK0nEybRxuqo0xJN3ACPqxtX
-         cvYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=civBfwB3HrpSlIjKk8pP7evwtiL4N367MAc+aTcz/k8=;
-        b=iBIz1mVjNyqY7/AnLZn708v1TRJi246CcrC8OsQFC/cFoj6ICHlV6uPGN3aX/UquDH
-         IseJavgxAS02BBGcsmhIaWp916+Bx3IoSGVcK1J4GfZ53/1IBI4FyvfWtOHU5A8chmLI
-         74pz7i55oNFEWXViXL+CvN3sYazEeodyKcsGt/O4O2sY4ldnX0ymtdzgP58uNqg9jdjw
-         HTozMFetRdMgGNWUTyyFTSMbd4dhjNGG/kOVOkhR501v/5z0jSdF35PggEI1cDMMSdBH
-         Hq6KcIqNRz/xPGpsIKQmegxM+BJy4uWIPytWczK/rWD5IaRUgNC0zBrqnw8xkVg3vruq
-         GIaQ==
-X-Gm-Message-State: AOAM5326QPGmuK/eWItzeKoG8xJFKtuLq3YUuuc4/tda1Tp1cSmNVWrM
-        hnu5CsaqasZMMUscA2nxQCYhEQ==
-X-Google-Smtp-Source: ABdhPJwB+xMBFnnnZHgiFAmAyEYSPVcPjFjU8xKJn9wvvvbdkYQLO4ea69Dm1RaiYgT6jL1gJBrlzA==
-X-Received: by 2002:ac8:7f85:: with SMTP id z5mr22980574qtj.354.1628083944949;
-        Wed, 04 Aug 2021 06:32:24 -0700 (PDT)
-Received: from pop-os.fios-router.home (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
-        by smtp.googlemail.com with ESMTPSA id r4sm860140qtc.66.2021.08.04.06.32.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Aug 2021 06:32:24 -0700 (PDT)
-From:   Thara Gopinath <thara.gopinath@linaro.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: sm8150-mtp: Add 8150 compatible string
-Date:   Wed,  4 Aug 2021 09:32:23 -0400
-Message-Id: <20210804133223.2503517-1-thara.gopinath@linaro.org>
-X-Mailer: git-send-email 2.25.1
+        id S236492AbhHDNvQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 09:51:16 -0400
+Received: from mout.kundenserver.de ([217.72.192.74]:38759 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237798AbhHDNvQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 09:51:16 -0400
+Received: from mail-wm1-f51.google.com ([209.85.128.51]) by
+ mrelayeu.kundenserver.de (mreue106 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1MoOpq-1mvLZO0uSG-00oobu; Wed, 04 Aug 2021 15:51:02 +0200
+Received: by mail-wm1-f51.google.com with SMTP id n12-20020a05600c3b8cb029025a67bbd40aso4020518wms.0;
+        Wed, 04 Aug 2021 06:51:02 -0700 (PDT)
+X-Gm-Message-State: AOAM530PmxCTTuHVC5UOsZvTJr2nLKlZ7fb2w0Bm4285dO1wUGlty/1U
+        Ti5ajmsX8Oydl87DQ4WhML2irZoQf0sI5wc/15g=
+X-Google-Smtp-Source: ABdhPJyNFXrQChPOLZS9aAXYYL1omRQ7dj4KugUgr5B6iGIyUO+NAtViqzCeM3ydmA0f6eM1ScWfqCiaf+g9Xa3Yeew=
+X-Received: by 2002:a05:600c:414b:: with SMTP id h11mr9756314wmm.120.1628085061870;
+ Wed, 04 Aug 2021 06:51:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210803124506.23365-1-patrice.chotard@foss.st.com>
+In-Reply-To: <20210803124506.23365-1-patrice.chotard@foss.st.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Wed, 4 Aug 2021 15:50:45 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a06_vUXghtvp4jTMEc4jV7RW8XmbUmgfrsoH_BSZ+awJQ@mail.gmail.com>
+Message-ID: <CAK8P3a06_vUXghtvp4jTMEc4jV7RW8XmbUmgfrsoH_BSZ+awJQ@mail.gmail.com>
+Subject: Re: [PATCH 0/4] ARM: dts: sti: remove clk_ignore_unused from bootargs
+To:     Patrice CHOTARD <patrice.chotard@foss.st.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Russell King - ARM Linux <linux@armlinux.org.uk>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>, SoC Team <soc@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:frLBf9x2o+kfql5pBavIFUHAETAwWb6nqbcy6V7fNiVPrxPBsg1
+ IR4m9kE5pWzO+yewKxCSgIGeOub/b9c0lKhq99/Vw0GjjNkyguvnBEjPmyeZ4OcuCWG8fUF
+ qmjfQrSPHuzt96p8746sPy2zSCJTbGhrJ6lzsXWSZgKX4cn0E2Kr5qtzB5YKgXOlTcPZsxJ
+ NjPqtZ07Z/tOHXHTNlyOQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:JQiVNUwaNE8=:7GSQo8ZXcJEaSmeZx/DDhV
+ 5f3ugmUyuQCbo6ByX5st7NSm+TXad/a/x1gtK7mTnV/EgrK5U/O3iyeFnZjXGZA6VfdvTCjeh
+ 9YRqLqI1ma/P3OPcvw+JcVrlzJ+nx+Isg0k4YU3WuQViBhUY8c0Y5+t6wtotGAqJ5BwfCpYja
+ AszS2/NNM8ZhxV7EvDRL+KK/7RRkuVyWTXTz+0s1uWau4iI4TgC/k2S93kPQs1mpd3Udxc7i5
+ vVA7f2wzXs1i9JWYJIclR0+hUtIVBO1LeaV474Q/uIiyMHUzoPHBX/vdCEOJ5tjm9aNyqJ9un
+ lciCckAffyh26IBEh7Ofkm6Ew7A7/BqtZDzJLN+4faquMLedLpusen74zYrAJ5TIHJ69c6o9A
+ OOIGu5kBugCXzdfVacUMDnMnG2nNCLMQv2Hjsd707z7sSiwLgkG9V9GbxpW8S6ZvqF+/NbzqT
+ 7t3oxZzxz4XioPtMmgB2O/QJEG3rrrRO2onnnOB2xtJIpojIB65pCcX/aclBIlVqdwHi1hxX2
+ oBzlPEvwOIhNteX7viASDndQ+jlZn3I9iqwmqyo3lTtn1wL7G3c2GaTjnK+7IQpcAJm57BKU7
+ UMSUiwys8d3SYnyAiASeabvvrwcf2MkLcgCzaUfv4ZVrvwyDnltes/o35/nO2aqorCwVRL0la
+ h+N5532m+j7qhJEgDraWslv4T9riW/PmmgspBqFM080zBkvDfwratHG1x+FxynJlpHJRRWkrw
+ sOJCmrm0i775V+QqKuh7Mi+Yo3FKJn0zzUIuPM+A2yKe2NC+V892+MjkeoiT8hHskq5HmQCdS
+ 6EAKcCd+snRPOAOeWNZkcMajmt+bP/f1+HXNMc97SdeD6W7zghSikg2Mz/DqT8aRP/APr5J
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add "qcom,sm8150" as one of the platform compatible strings.
-This will be later used by cpufreq-dt-platdev to exclude using
-cpufreq-dt cpufreq driver.
+On Tue, Aug 3, 2021 at 2:45 PM <patrice.chotard@foss.st.com> wrote:
+>
+> From: Patrice Chotard <patrice.chotard@foss.st.com>
+>
+> Remove clk_ignore_unused from bootargs from STi boards DT.
 
-Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8150-mtp.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+The patches look good to me, but I'm not sure what you expect me to do
+here, as you have added soc@kernel.org to Cc:, and other addresses to To:
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-index 53edf7541169..b484371a6044 100644
---- a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-@@ -15,7 +15,7 @@
- 
- / {
- 	model = "Qualcomm Technologies, Inc. SM8150 MTP";
--	compatible = "qcom,sm8150-mtp";
-+	compatible = "qcom,sm8150-mtp", "qcom,sm8150";
- 
- 	aliases {
- 		serial0 = &uart2;
--- 
-2.25.1
+I have dropped them from patchwork for the moment. When you want
+them to be applied to the soc tree, please resend or send a pull request
+to:soc@kernel.org, until then, please leave out that address so it does
+not get into patchwork.
 
+      Arnd
