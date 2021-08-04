@@ -2,114 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C099D3DFC9C
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 10:17:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 113B23DFCA4
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 10:19:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236225AbhHDIRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 04:17:24 -0400
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:8624 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236179AbhHDIRY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 04:17:24 -0400
-Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
-  by alexa-out.qualcomm.com with ESMTP; 04 Aug 2021 01:17:11 -0700
-X-QCInternal: smtphost
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 04 Aug 2021 01:17:09 -0700
-X-QCInternal: smtphost
-Received: from kalyant-linux.qualcomm.com ([10.204.66.210])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 04 Aug 2021 13:46:33 +0530
-Received: by kalyant-linux.qualcomm.com (Postfix, from userid 94428)
-        id 428CA4BA7; Wed,  4 Aug 2021 01:16:32 -0700 (PDT)
-From:   Kalyan Thota <kalyan_t@codeaurora.org>
-To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     Kalyan Thota <kalyan_t@codeaurora.org>,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, mkrishn@codeaurora.org,
-        saiprakash.ranjan@codeaurora.org, rnayak@codeaurora.org,
-        stable@vger.kernel.org
-Subject: [v3] drm/msm/disp/dpu1: add safe lut config in dpu driver
-Date:   Wed,  4 Aug 2021 01:16:30 -0700
-Message-Id: <1628064990-6990-1-git-send-email-kalyan_t@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+        id S236182AbhHDITi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 04:19:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54204 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232023AbhHDITh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 04:19:37 -0400
+Received: from mail-qt1-x849.google.com (mail-qt1-x849.google.com [IPv6:2607:f8b0:4864:20::849])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFED0C061798
+        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 01:19:23 -0700 (PDT)
+Received: by mail-qt1-x849.google.com with SMTP id m2-20020ac807c20000b0290269bd8044e1so709105qth.10
+        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 01:19:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=JaeVOCD1xjiNZOo9WK4DguArWkRWfpfwXcJD2bxAZ2E=;
+        b=RUoMD6rTY3IJ5/5+6xzAN02NV3WPmsnxPG+M6fxPeTNjvM/X4YQhwIGP2Rup96mqcI
+         BhViJzXZSQHeOTbN/UGP3oFMatd7QM8PuTjGcMQb6P+BUarMrSAj517wqzBc6UXudTGK
+         k3bubRgnXNyS+LnPV+vAuaWqRXr4bELD8I4x98i4v27VZYNpbblHw6B61CBOQnVXwQ10
+         CDP/9NmBDASfZkv6UeCrimgSd1Zoji+aEytv2Cu6cxJf1s4k/kG/r/5p0vPrCqPP/BG8
+         iWS0q32Muevk+q1Z2hFn+AfPpvNH/D/XyaN/8Hh6JMPPkwdclpQaDQRl2Zg6SNW+dFwG
+         CouQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=JaeVOCD1xjiNZOo9WK4DguArWkRWfpfwXcJD2bxAZ2E=;
+        b=EiZFLexJcoy+xLK/1mZXkbJA0x7PmqcJi/2Bh5aYEVRrsjLJnZz9CRNj5zeZBfeqEE
+         w5vWN0G9hPUqfcRFKj/EWhQ6d+HvZtruMFp7FaMV3I2z/9tcNns2NVnS5oPdC5ay4sxp
+         F8GJ8lTmEXkLlomLB1jSHnUgvayYKtzbicMlMD/aC3wMuL+UZ5E0/wvGUFN/us9q95bB
+         A0Vx2L32Ivb6n8xb5m6mkl229PXiz8q1FJFU+RKGhzb6gyM/Zr+O1yy6DXI7UZfLGwgb
+         gBpYfaMXreglxE5c0hkuMzyy9it6p7/hx3BE/3R6AJB7jQc7dd3REktntgTnyxNOMlGM
+         bH4g==
+X-Gm-Message-State: AOAM532I0KnJJ3YHCsDcJjGWoB3Bst8UovorzhcPYVnwyof9mKJP/RvV
+        koii12wI3BOZqBQaqjH+JQJY1N/w0M0s
+X-Google-Smtp-Source: ABdhPJz/Ubuo6nOoq/2uOV+UPUW4YrwJ1FpKt6WTzRBYNSlxeSoAHZr/LPGvs7Jk8Fk/VC6Wf5zixktUKiHw
+X-Received: from kyletso.ntc.corp.google.com ([2401:fa00:fc:202:7eb8:c2f5:2e08:d4bc])
+ (user=kyletso job=sendgmr) by 2002:a05:6214:1021:: with SMTP id
+ k1mr25874996qvr.4.1628065162885; Wed, 04 Aug 2021 01:19:22 -0700 (PDT)
+Date:   Wed,  4 Aug 2021 16:19:15 +0800
+Message-Id: <20210804081917.3390341-1-kyletso@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.32.0.554.ge1b32706d8-goog
+Subject: [PATCH v6 0/2] TCPM non-PD mode
+From:   Kyle Tso <kyletso@google.com>
+To:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
+        gregkh@linuxfoundation.org, robh+dt@kernel.org
+Cc:     badhri@google.com, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Kyle Tso <kyletso@google.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add safe lut configuration for all the targets in dpu
-driver as per QOS recommendation.
+(changed the property name only)
 
-Issue reported on SC7280:
+The reason for this patch is to let the device/system policy decide
+whether PD is going to be supported using devicetree properties.
 
-With wait-for-safe feature in smmu enabled, RT client
-buffer levels are checked to be safe before smmu invalidation.
-Since display was always set to unsafe it was delaying the
-invalidaiton process thus impacting the performance on NRT clients
-such as eMMC and NVMe.
+A new dt property "pd-disable" is introduced and TCPM uses this
+property as a flag to decide whether PD is supported. If the flag is
+false (the dt property is not present), the RX functionality of the
+low-level driver will not be enabled. The power negotiation related
+states will be skipped as well. If the flag is true, everything is a
+what it was before.
 
-Validated this change on SC7280, With this change eMMC performance
-has improved significantly.
+If "pd-disable" is present, and the port is SRC or DRP, another
+existing dt property "typec-power-opmode" needs to be specified to
+indicate which Rp value should be used when the port is SRC.
 
-Changes in v1:
-- Add fixes tag (Sai)
-- CC stable kernel (Dimtry)
+changes since v5:
+dt-bindings: connector: Add pd-disable property
+- Changed the property name to "pd-disable"
 
-Changes in v2:
-- Correct fixes tag with appropriate hash (stephen)
+usb: typec: tcpm: Support non-PD mode
+- Changed the property name to "pd-disable"
+- Added Acked-by tag
 
-Fixes: 591e34a091d1 (drm/msm/disp/dpu1: add support for display
-for SC7280 target)
-Signed-off-by: Kalyan Thota <kalyan_t@codeaurora.org>
-Tested-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org> (sc7280, sc7180)
----
- drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c | 5 +++++
- 1 file changed, 5 insertions(+)
+Kyle Tso (2):
+  dt-bindings: connector: Add pd-disable property
+  usb: typec: tcpm: Support non-PD mode
 
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-index d01c4c9..2e482cd 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-@@ -974,6 +974,7 @@ static const struct dpu_perf_cfg sdm845_perf_data = {
- 	.amortizable_threshold = 25,
- 	.min_prefill_lines = 24,
- 	.danger_lut_tbl = {0xf, 0xffff, 0x0},
-+	.safe_lut_tbl = {0xfff0, 0xf000, 0xffff},
- 	.qos_lut_tbl = {
- 		{.nentry = ARRAY_SIZE(sdm845_qos_linear),
- 		.entries = sdm845_qos_linear
-@@ -1001,6 +1002,7 @@ static const struct dpu_perf_cfg sc7180_perf_data = {
- 	.min_dram_ib = 1600000,
- 	.min_prefill_lines = 24,
- 	.danger_lut_tbl = {0xff, 0xffff, 0x0},
-+	.safe_lut_tbl = {0xfff0, 0xff00, 0xffff},
- 	.qos_lut_tbl = {
- 		{.nentry = ARRAY_SIZE(sc7180_qos_linear),
- 		.entries = sc7180_qos_linear
-@@ -1028,6 +1030,7 @@ static const struct dpu_perf_cfg sm8150_perf_data = {
- 	.min_dram_ib = 800000,
- 	.min_prefill_lines = 24,
- 	.danger_lut_tbl = {0xf, 0xffff, 0x0},
-+	.safe_lut_tbl = {0xfff8, 0xf000, 0xffff},
- 	.qos_lut_tbl = {
- 		{.nentry = ARRAY_SIZE(sm8150_qos_linear),
- 		.entries = sm8150_qos_linear
-@@ -1056,6 +1059,7 @@ static const struct dpu_perf_cfg sm8250_perf_data = {
- 	.min_dram_ib = 800000,
- 	.min_prefill_lines = 35,
- 	.danger_lut_tbl = {0xf, 0xffff, 0x0},
-+	.safe_lut_tbl = {0xfff0, 0xff00, 0xffff},
- 	.qos_lut_tbl = {
- 		{.nentry = ARRAY_SIZE(sc7180_qos_linear),
- 		.entries = sc7180_qos_linear
-@@ -1084,6 +1088,7 @@ static const struct dpu_perf_cfg sc7280_perf_data = {
- 	.min_dram_ib = 1600000,
- 	.min_prefill_lines = 24,
- 	.danger_lut_tbl = {0xffff, 0xffff, 0x0},
-+	.safe_lut_tbl = {0xff00, 0xff00, 0xffff},
- 	.qos_lut_tbl = {
- 		{.nentry = ARRAY_SIZE(sc7180_qos_macrotile),
- 		.entries = sc7180_qos_macrotile
+ .../bindings/connector/usb-connector.yaml     |  4 +
+ drivers/usb/typec/tcpm/tcpm.c                 | 87 +++++++++++++++----
+ 2 files changed, 72 insertions(+), 19 deletions(-)
+
 -- 
-2.7.4
+2.32.0.554.ge1b32706d8-goog
 
