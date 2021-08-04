@@ -2,156 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CE6A3E09E5
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 23:13:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E2B33E0A04
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 23:30:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229762AbhHDVOC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 17:14:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34930 "EHLO
+        id S231635AbhHDVbD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 17:31:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229743AbhHDVOB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 17:14:01 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0D65C061798
-        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 14:13:48 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id j3so4483417plx.4
-        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 14:13:48 -0700 (PDT)
+        with ESMTP id S230438AbhHDVbC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 17:31:02 -0400
+Received: from mail-vs1-xe2c.google.com (mail-vs1-xe2c.google.com [IPv6:2607:f8b0:4864:20::e2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43839C06179A
+        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 14:30:48 -0700 (PDT)
+Received: by mail-vs1-xe2c.google.com with SMTP id a1so1829827vsd.12
+        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 14:30:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20150623.gappssmtp.com; s=20150623;
-        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
-         :content-transfer-encoding;
-        bh=pWeVOPuGe2rwR/ROAXUfTRwXClu2H2NNWD6p4NOstS8=;
-        b=PwQjaVNp8FyJDWyiUT0Z8kpUGe8+CNzROVRPRHgR/dDii1HFfBEbPrU/LViRYGNseN
-         Goj+KxfWobnXG2w+YLWviBprLG/E4CYFs5ur6vBD4C4FjyBuhWYZBwdt9yS3hFRCov+O
-         05y8JHO7qSM6VF8APQ8FAENHjfM94RLB7TQbg2uSgzLFH1T75yxAq5MnrBIBQ/5i4OYl
-         EyjjbTHapBQVbJdkZoqYsUsEvzG2fwFK+Ua9xM1bWcClktpFT34aEgwdnOq3Zj2ivvXm
-         D6PIGidNR5JuWZWtkjLpC/B+UNKt/GVXYwGP4jiAiWFmcJ89K5kB9YCQV3nh5LJ/EoUS
-         +A2w==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=dxaJFL8Y5c22Jta0cMEZC2iEw41WS8AsvJV/yCHApHU=;
+        b=aFm4foLY/Ah5O7HrLETjBorHA/Cbd4vqMKInq5ZltFuYyRmeKeRRProzZ+QYj1F0ki
+         L2nCrSrSWq1ivhi/Sz+Tvs0z70lHYq8V5kPuzV4lb/KmyuYPEesHqj9zGjfXp81gNjwk
+         Hc8Y8XbiQQygnK8nDxfxY4Ea+ILEnS2D8ZLh6V01K3pd1mGl3frQ7WWWlHFzRfyNTfGU
+         j9IzlCghKlDvyGKZMPPu+sM+kackw0OGiBzo3/kNfT8KUCGiNk/ALNyTSEBJ8sZHhQ6i
+         t2uCyKv4JHyjy++JVm1Phmm+hJCtaJj8F1RV4pEnOFs9kYHFlXCAi4Rzj/26hZfjQ9OI
+         vPxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
-         :mime-version:content-transfer-encoding;
-        bh=pWeVOPuGe2rwR/ROAXUfTRwXClu2H2NNWD6p4NOstS8=;
-        b=lNIHfbXYCE1devCDDAPFOHFq4pX5ZN7MHKBTxZP50uIdyBFKwi0n5W1xjzagckW9Ld
-         aHojn0lSJUlwEl8IeDlR2EMSMe/1P/WXD64X6jO7tegKC/GSLNevAN4do5Qun3xhkfkq
-         nuppQb66Dy9D6XC80j6EhyI6aTrNpi50nge3WuP29ufH1cI7Us8Ggp0Mr5xW6nYZqKp8
-         1QkLsPrJUOYqTqrLuiEK8qDxAObHCS3rltjDLlBIPVmscWIttg+n/alsGoE7jBoEERks
-         g+ra1/qrUglb8GMAwpFIfMUMSf19sdwSIOtf+p/A6i7HPiV60Nu0i1VrlgGdnafWuqaa
-         JG2Q==
-X-Gm-Message-State: AOAM531pbiSTlgNwsHC82+qWzrKyvv6u7iAWwrYvdFzxR27WuYeYyFww
-        yvUt5esp9+561WGJ3VdtldUlkg==
-X-Google-Smtp-Source: ABdhPJxmNRnC1qh7wzjVxVKaFhVi5Z3hxxqwFofh38QlmmnLtXqmkYyJ4V9kVrsfo+kv7/42Wvm31A==
-X-Received: by 2002:a62:1d06:0:b029:3ab:9703:b6b8 with SMTP id d6-20020a621d060000b02903ab9703b6b8mr1372593pfd.0.1628111628112;
-        Wed, 04 Aug 2021 14:13:48 -0700 (PDT)
-Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
-        by smtp.gmail.com with ESMTPSA id w15sm3279146pjc.45.2021.08.04.14.13.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Aug 2021 14:13:47 -0700 (PDT)
-Date:   Wed, 04 Aug 2021 14:13:47 -0700 (PDT)
-X-Google-Original-Date: Wed, 04 Aug 2021 14:13:46 PDT (-0700)
-Subject:     Re: [PATCH v4] dt-bindings: riscv: add starfive jh7100 bindings
-In-Reply-To: <CAOnJCUL9uU5G1LOgfYPz9Ny77yFYaP5sgtdxG3_w=Zcsi+f96Q@mail.gmail.com>
-CC:     bmeng.cn@gmail.com, robh+dt@kernel.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        michael.zhu@starfivetech.com, tekkamanninja@gmail.com,
-        jack.zhu@starfivetech.com, leyfoon.tan@starfivetech.com,
-        geert@linux-m68k.org, kernel@esmil.dk, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     atishp@atishpatra.org, drew@beagleboard.org
-Message-ID: <mhng-c9300c9e-6877-492f-a290-7c51066d3920@palmerdabbelt-glaptop>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=dxaJFL8Y5c22Jta0cMEZC2iEw41WS8AsvJV/yCHApHU=;
+        b=qWXlCSO8MtLytNF/IKYAOKXKUBDbc4xBsQP9c0lFOndXsOz2x4xjCCHfX9YbEo5N23
+         Q3yaQYammgbJc8AXrHRkMviLfoqUjVTYjdOEFvzX4S67QdafV0WDK/n5TdtMvhSwZ7cv
+         VxJYTwOki54AzpIS7ESQKfKujgkMtLqilhy+fpY77qcg3Rq7drfAmHXm9xpUBbAZWCi3
+         n5XBqBuO9IvNgNom4PgeM1DgD10lCoErlVTvhjhATw+0V3/uvva8Q0Z5yB42Q/CvV6Z9
+         jJszQoeAz97tIli3I5by09qkIEp8ZB4v5Z17ht9jki+KgfWK7sT1VQO2MIIIWlXHnLBF
+         JIhA==
+X-Gm-Message-State: AOAM530Lo/sqTZZebrFYnPxp3yGfEYWGX3dVJEXiJFmFJsjQBvNq7VI9
+        wXXeQMWqARQG76vYM6zfHbOSr5uItXslMTDHNZiT0A==
+X-Google-Smtp-Source: ABdhPJxs3KtlDburhMJ7hb4H+QMZ+qFnQt7AfD5vKDnUEhepBfw+rufW06PMmUaJ+YMjNVp0Vvi4JO3VVZ/yl7ndwcc=
+X-Received: by 2002:a67:de06:: with SMTP id q6mr2048185vsk.57.1628112646443;
+ Wed, 04 Aug 2021 14:30:46 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210730144922.29111-1-semen.protsenko@linaro.org>
+ <20210730144922.29111-13-semen.protsenko@linaro.org> <15871f8ced3c757fad1ab3b6e62c4e64@misterjones.org>
+ <CAPLW+4=v4bDcuxGVqs06mobGj34At4cD+vg48b4dPujarS07Tg@mail.gmail.com> <bf21badb-804f-45f0-c02b-80ff57ab9931@canonical.com>
+In-Reply-To: <bf21badb-804f-45f0-c02b-80ff57ab9931@canonical.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Thu, 5 Aug 2021 00:30:34 +0300
+Message-ID: <CAPLW+4nY=hozOR+B_0sPZODrk9PXaXg+NB-9pVhDbAjEy7yjhg@mail.gmail.com>
+Subject: Re: [PATCH 12/12] arm64: dts: exynos: Add Exynos850 SoC support
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Marc Zyngier <maz@kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
+        Ryu Euiyoul <ryu.real@samsung.com>,
+        Tom Gall <tom.gall@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 04 Aug 2021 13:54:16 PDT (-0700), atishp@atishpatra.org wrote:
-> On Wed, Aug 4, 2021 at 1:33 PM Palmer Dabbelt <palmer@dabbelt.com> wrote:
->>
->> On Thu, 15 Jul 2021 19:17:23 PDT (-0700), bmeng.cn@gmail.com wrote:
->> > On Tue, Jul 13, 2021 at 2:34 PM Drew Fustini <drew@beagleboard.org> wrote:
->> >>
->> >> Add DT binding documentation for the StarFive JH7100 Soc [1] and the
->> >> BeagleV Starlight JH7100 board [2].
->> >>
->> >> [1] https://github.com/starfive-tech/beaglev_doc
->> >> [2] https://github.com/beagleboard/beaglev-starlight
->> >>
->> >> Signed-off-by: Drew Fustini <drew@beagleboard.org>
->> >> ---
->> >> v4 changes:
->> >> - removed JH7100 SoC revision number after discussion with Geert
->> >>
->> >> v3 changes:
->> >> - added revision number for the board and soc after question from Palmer
->> >>
->> >> v2 changes:
->> >> - removed "items:" entry that only had "const: starfive,jh7100"
->> >> - correct typo in Description:
->> >>
->> >> Results of running checks:
->> >>   $ make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- dt_binding_check \
->> >>     DT_SCHEMA_FILES=Documentation/devicetree/bindings/riscv/starfive.yaml
->> >>     CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
->> >>     DTEX    Documentation/devicetree/bindings/riscv/starfive.example.dts
->> >>     SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
->> >>     DTC     Documentation/devicetree/bindings/riscv/starfive.example.dt.yaml
->> >>     CHECK   Documentation/devicetree/bindings/riscv/starfive.example.dt.yaml
->> >>   $ make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- dtbs_check \
->> >>     DT_SCHEMA_FILES=Documentation/devicetree/bindings/riscv/starfive.yaml
->> >>     SYNC    include/config/auto.conf.cmd
->> >>     UPD     include/config/kernel.release
->> >>     SCHEMA  Documentation/devicetree/bindings/processed-schema.json
->> >>     DTC     arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dtb
->> >>     DTC     arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dt.yaml
->> >>     DTC     arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dt.yaml
->> >>     DTC     arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dt.yaml
->> >>     CHECK   arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dt.yaml
->> >>     CHECK   arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dt.yaml
->> >>     CHECK   arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dt.yaml
->> >>
->> >> The dts file is from vendor repo and is being cleaned up right now in
->> >> preperation for submitting to the mailing list:
->> >> https://github.com/starfive-tech/linux/tree/beaglev/arch/riscv/boot/dts/starfive
->> >>
->> >>  .../devicetree/bindings/riscv/starfive.yaml   | 27 +++++++++++++++++++
->> >>  1 file changed, 27 insertions(+)
->> >>  create mode 100644 Documentation/devicetree/bindings/riscv/starfive.yaml
->> >>
->> >
->> > Reviewed-by: Bin Meng <bmeng.cn@gmail.com>
->>
->> Thanks.  This is on for-next, as Rob suggested taking it via the RISC-V
->> tree.
->>
-> Given that beagleV starlight mass production is cancelled [1], are we
-> still upstreaming the support for this ?
+On Wed, 4 Aug 2021 at 21:36, Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+>
+> On 04/08/2021 16:39, Sam Protsenko wrote:
+> > Hi Marc,
+> >
+> > On Fri, 30 Jul 2021 at 19:50, Marc Zyngier <maz@kernel.org> wrote:
+> >>
+> >> On 2021-07-30 15:49, Sam Protsenko wrote:
+> >>> Samsung Exynos850 is ARMv8-based mobile-oriented SoC.
+> >>>
+> >>> Features:
+> >>>  * CPU: Cortex-A55 Octa (8 cores), up to 2 GHz
+> >>>  * Memory interface: LPDDR4/4x 2 channels (12.8 GB/s)
+> >>>  * SD/MMC: SD 3.0, eMMC5.1 DDR 8-bit
+> >>>  * Modem: 4G LTE, 3G, GSM/GPRS/EDGE
+> >>>  * RF: Quad GNSS, WiFi 5 (802.11ac), Bluetooth 5.0
+> >>>  * GPU: Mali-G52 MP1
+> >>>  * Codec: 1080p 60fps H64, HEVC, JPEG HW Codec
+> >>>  * Display: Full HD+ (2520x1080)@60fps LCD
+> >>>  * Camera: 16+5MP/13+8MP ISP, MIPI CSI 4/4/2, FD, DRC
+> >>>  * Connectivity: USB 2.0 DRD, USI (SPI/UART/I2C), HSI2C, I3C, ADC,
+> >>> Audio
+> >>>
+> >>> This patch adds minimal SoC support. Particular board device tree files
+> >>> can include exynos850.dtsi file to get SoC related nodes, and then
+> >>> reference those nodes further as needed.
+> >>>
+> >>> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> >>> ---
+> >>>  .../boot/dts/exynos/exynos850-pinctrl.dtsi    | 782 ++++++++++++++++++
+> >>>  arch/arm64/boot/dts/exynos/exynos850-usi.dtsi |  30 +
+> >>>  arch/arm64/boot/dts/exynos/exynos850.dtsi     | 245 ++++++
+> >>>  3 files changed, 1057 insertions(+)
+> >>>  create mode 100644 arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi
+> >>>  create mode 100644 arch/arm64/boot/dts/exynos/exynos850-usi.dtsi
+> >>>  create mode 100644 arch/arm64/boot/dts/exynos/exynos850.dtsi
+> >>>
+> >>> diff --git a/arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi
+> >>> b/arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi
+> >>> new file mode 100644
+> >>> index 000000000000..4cf0a22cc6db
+> >>
+> >> [...]
+> >>
+> >>> +     gic: interrupt-controller@12a00000 {
+> >>> +             compatible = "arm,cortex-a15-gic", "arm,cortex-a9-gic";
+> >>
+> >> One thing for sure, it cannot be both. And given that it is
+> >> an A55-based SoC, it isn't either. It is more likely a GIC400.
+> >>
+> >
+> > Yes, it's GIC-400, thanks for pointing that out. Will fix that in v2.
+> >
+> >>> +             #interrupt-cells = <3>;
+> >>> +             #address-cells = <0>;
+> >>> +             interrupt-controller;
+> >>> +             reg = <0x0 0x12a01000 0x1000>,
+> >>> +                   <0x0 0x12a02000 0x1000>,
+> >>
+> >> This is wrong. It is architecturally set to 8kB.
+> >>
+> >
+> > Nice catch! Actually there is an error (typo?) in SoC's TRM, saying
+> > that Virtual Interface Control Register starts at 0x3000 offset (from
+> > 0x12a00000), where it obviously should be 0x4000, that's probably
+> > where this dts error originates from. Btw, I'm also seeing the same
+> > error in exynos7.dtsi.
+>
+> What's the error exactly? The "Virtual interface control register"
+> offset (3rd region) is set properly to 0x4000 on Exynos7. Also one for
+> the Exynos5433 looks correct.
+>
 
-I'm not sure, but I wasn't quite sure where to have that discussion.  I 
-figured that the boards exist so there's no reason to shoot this down, 
-given that it's just the vendor DT list.  At a bare minimum there's out 
-of tree support for this, so having the DT strings defined seems sane as 
-that's a defacto interface with bootloaders.
+The issue is that 2nd region's size is 0x1000, but it must be 0x2000.
+It's defined by GIC-400 architecture, as I understand. Please look at
+[1], table 3-1 has very specific offsets and sizes for each functional
+block, and each particular SoC must adhere to that spec. So having
+0x1000 for 2nd region can't be correct. And because exynos7.dtsi has
+GIC-400 as well, and 0x1000 is specified there for 2nd region size
+too, so I presume there is the same mistake there.
 
-Maybe this is more of a question for Drew: I think we were all OK 
-working through the issues with the first-run chip when there was going 
-to be a lot of them, but with such a small number produced I'm not sure 
-if there's going to be enough interested to take on all that effort.  
+Can you please check the TRM for Exynos7 SoC (if you have one in your
+possession), and see if there is a typo there? E.g. in case of
+Exynos850 TRM I can see that in "Register Map Summary" section the
+offset for the first register (GICH_HCR) in "Virtual Interface Control
+Register" region is specified as 0x3000, where it should be 0x4000, so
+it's probably a typo. But the register description is correct, saying
+that: "Address = Base Address + 0x4000".
 
-I'm not quite sure where we stand on support for this: at some point 
-there were some ideas floating around as to a way to support it without 
-major software changes (allocating into the non-caching regions).  If 
-that pans out then I'm fine handling this, at least from the RISC-V 
-side, but if we're going to have to go through all the ISA/SBI stuff 
-then it's probably not worth it.  Also not sure if there are a bunch of 
-starfive-specific drivers that would be needed to make this boot, in 
-which case it's probably best to wait for whatever comes next.
+[1] https://developer.arm.com/documentation/ddi0471/b/programmers-model/gic-400-register-map
+
+> > Though I don't have a TRM for Exynos7 SoCs, so
+> > not sure if I should go ahead and fix that too. Anyway, for Exynos850,
+> > I'll fix that in v2 series.
+>
+>
+> However while we are at addresses - why are you using address-cells 2?
+> It adds everywhere additional 0x0 before actual address.
+>
+
+Right. For "cpus" node I'll change the address-cells to 1 in my v2
+series. I'll keep address-cells=2 for the root node, but I'm going to
+encapsulate some nodes into soc node (as you suggested earlier), where
+I'll make address-cells=1. That's pretty much how it's done in
+exynos7.dtsi and in exynos5433.dtsi, so I guess that's should be fine
+(to get rid of superfluous 0x0 and conform with other Exynos DTs)?
 
 >
-> [1] https://www.cnx-software.com/2021/07/31/beaglev-starlight-sbc-wont-be-mass-manufactured-redesigned-beaglev-risc-v-sbc-expected-in-q1-2022/
->> _______________________________________________
->> linux-riscv mailing list
->> linux-riscv@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> Best regards,
+> Krzysztof
