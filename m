@@ -2,90 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2C023E0621
-	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 18:46:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 660F03E063A
+	for <lists+devicetree@lfdr.de>; Wed,  4 Aug 2021 18:58:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239629AbhHDQqi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 12:46:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58870 "EHLO
+        id S239756AbhHDQ7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 12:59:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230021AbhHDQqh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 12:46:37 -0400
-Received: from yawp.biot.com (yawp.biot.com [IPv6:2a01:4f8:10a:8e::fce2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23D5FC0613D5
-        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 09:46:25 -0700 (PDT)
-Received: from debian-spamd by yawp.biot.com with sa-checked (Exim 4.93)
-        (envelope-from <bert@biot.com>)
-        id 1mBK2B-007EzF-3U
-        for devicetree@vger.kernel.org; Wed, 04 Aug 2021 18:46:23 +0200
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on yawp
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.4
-Received: from [2a02:578:460c:1:ae1f:6bff:fed1:9ca8]
-        by yawp.biot.com with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.93)
-        (envelope-from <bert@biot.com>)
-        id 1mBJzQ-007Euu-Vc; Wed, 04 Aug 2021 18:43:33 +0200
-Subject: Re: [PATCH 4/5] ARM: Add basic support for EcoNet EN7523 SoC
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Anshuman Khandual <anshuman.khandual@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        John Crispin <john@phrozen.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        YiFei Zhu <yifeifz2@illinois.edu>,
-        Mike Rapoport <rppt@kernel.org>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Kees Cook <keescook@chromium.org>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Felix Fietkau <nbd@nbd.name>
-References: <20210730134552.853350-1-bert@biot.com>
- <20210730134552.853350-5-bert@biot.com>
- <CAK8P3a3OuJ3pMSdEA4Rt3aWvvuX2+_Bg5x7-kZ1++fvvJvgGxA@mail.gmail.com>
-From:   Bert Vermeulen <bert@biot.com>
-Message-ID: <1e3070fe-b5da-0acc-f50b-b0986a1045cd@biot.com>
-Date:   Wed, 4 Aug 2021 18:43:32 +0200
+        with ESMTP id S239555AbhHDQ7D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 12:59:03 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2B60C0613D5;
+        Wed,  4 Aug 2021 09:58:49 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id u15so1606197wmj.1;
+        Wed, 04 Aug 2021 09:58:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=3Ssyrr/LekuqyfoFP6rWy6sS/bB/kXsH0XIHqq6qrRA=;
+        b=d6yEoAllZGCIiIueIGkiRtizcnZJvJZz/7grSWi60dtuThwbzCP0txQSI6PW24vBof
+         ujuku+sbZ68B5JTfrq6BT3/8UTDqIur4gqE10o6M4zIOLKbvrhAg1h7wozS5Wkd1Fwpq
+         oKkBNOOG780dSz0LDPznyhNlqAbwM9xh7fX+dLqS6F8FaEs88//3x20aubIhfqHYVneQ
+         fJq0dPwibQlpflo6yKIVqaqRAXWgVxlgMLj3mICKTVxcFq19v8K8uAdgAwmL+DWD3WMX
+         W4WhBAE/PhnqjBMDHkCsPVbaFJB7FHjHfHCPIVHud4TGPFAKiOqPzyKXKEwA53BHJgYB
+         HKEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=3Ssyrr/LekuqyfoFP6rWy6sS/bB/kXsH0XIHqq6qrRA=;
+        b=MPjuE40mArSQcTr47dzrbtMXNSI7ET6Z3C56ngVSSXefutsELXkyT6IB9hu6LpgyG7
+         wfb/qbPmFqLaDtLffApUePZ5UGLMXNyERkgJtki8XMQDPcCyCTQ2BcYtFmFuPJD8At+9
+         dCN2qLwnWl0wW17IBZuS9gtqaZ2QV3+7LvhK3cwMqjkiovE0japrS7dE+Nf4QvIMQwE5
+         y85lil1drR/y1AjZfeagmbaoXsRMyiB91UkJvAD+9kJ48ExXkiyjLgdBmDynp8bN00zU
+         uNeg59fEFlEjV7D/mzX8k5g9uGM6P0oGlyMESw24CWbJeGUp6oYjBOlTF+WYgWzdnltf
+         txtQ==
+X-Gm-Message-State: AOAM530pMn1xMsyDeJfgJ2MpSj/uZLJpAFS5xKarmZ8cTRs33kpoD8XA
+        sRcbypuBrrZy11XX/hkSeo8=
+X-Google-Smtp-Source: ABdhPJwafgMJoBvwzw0+RnBkoe8PPw1by0O0pbkbU82e5MFA8Z4ROKKfNhJh/lAx6gweEKQ7LWzKjA==
+X-Received: by 2002:a05:600c:acd:: with SMTP id c13mr526867wmr.189.1628096328471;
+        Wed, 04 Aug 2021 09:58:48 -0700 (PDT)
+Received: from ziggy.stardust (static-55-132-6-89.ipcom.comunitel.net. [89.6.132.55])
+        by smtp.gmail.com with ESMTPSA id q5sm3428112wrx.33.2021.08.04.09.58.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Aug 2021 09:58:48 -0700 (PDT)
+Subject: Re: [v15] dt-bindings: ARM: Mediatek: Add mmsys document binding for
+ MT8192
+To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20210802025839.16763-1-chun-jie.chen@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <aa0602cb-c4f3-53e0-7ce4-47e9eabe84ee@gmail.com>
+Date:   Wed, 4 Aug 2021 18:58:47 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-In-Reply-To: <CAK8P3a3OuJ3pMSdEA4Rt3aWvvuX2+_Bg5x7-kZ1++fvvJvgGxA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
+In-Reply-To: <20210802025839.16763-1-chun-jie.chen@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/30/21 4:48 PM, Arnd Bergmann wrote:
-> On Fri, Jul 30, 2021 at 3:45 PM Bert Vermeulen <bert@biot.com> wrote:
->> diff --git a/arch/arm/Makefile b/arch/arm/Makefile
->> index 173da685a52e..1bff0aa29c07 100644
->> --- a/arch/arm/Makefile
->> +++ b/arch/arm/Makefile
->> @@ -152,6 +152,7 @@ textofs-$(CONFIG_ARCH_MSM8X60) := 0x00208000
->>  textofs-$(CONFIG_ARCH_MSM8960) := 0x00208000
->>  textofs-$(CONFIG_ARCH_MESON) := 0x00208000
->>  textofs-$(CONFIG_ARCH_AXXIA) := 0x00308000
->> +textofs-$(CONFIG_ARCH_ECONET) := 0x00088000
+Hi Rob,
+
+On 02/08/2021 04:58, Chun-Jie Chen wrote:
+> This patch adds the mmsys document binding for MT8192 SoC.
 > 
-> Why is this needed?
+> Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+> Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+> Acked-by: Rob Herring <robh@kernel.org>
+> ---
+> This patch is based on 5.14-rc1 and [1].
 > 
-> Note also the comment directly above it exlaining
-> # Text offset. This list is sorted numerically by address in order to
-> # provide a means to avoid/resolve conflicts in multi-arch kernels.
+> Due to mmsys binding document has been converted to YAML format in [1],
+> so resend the patch in [2].
+> 
+> [1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=485165
+> [2] https://patchwork.kernel.org/project/linux-mediatek/patch/20210726105719.15793-3-chun-jie.chen@mediatek.com/
+> ---
+>  .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml         | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+> index 2d4ff0ce387b..f9ffa5b703a5 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+> @@ -29,6 +29,7 @@ properties:
+>                - mediatek,mt8167-mmsys
+>                - mediatek,mt8173-mmsys
+>                - mediatek,mt8183-mmsys
+> +              - mediatek,mt8192-mmsys
+>                - mediatek,mt8365-mmsys
+>            - const: syscon
+>        - items:
+> 
 
-I didn't make that patch, but it turns out it's needed to get PSCI working; 
-detection hangs without it. That makes no sense to me, but I'll examine further.
+This patch has a dependency to [1] which you merged in your tree. Would you mind
+to take this one as well?
 
+Acked-by: Matthias Brugger <matthias.bgg@gmail.com>
 
--- 
-Bert Vermeulen
-bert@biot.com
+Thanks,
+Matthias
+
+[1]
+https://patchwork.kernel.org/project/linux-mediatek/patch/20210519161847.3747352-1-fparent@baylibre.com/
