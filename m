@@ -2,71 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D522B3E1F87
-	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 01:49:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B1FF3E1F8F
+	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 01:51:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240993AbhHEXuI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 19:50:08 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37764 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240913AbhHEXuI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Aug 2021 19:50:08 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 82566610FF;
-        Thu,  5 Aug 2021 23:49:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1628207393;
-        bh=V2m0cMUtBRpLdmQUhz7CRPUwiosgV5Nj4ymrvGsBhTE=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=jHXxfBk9h03LTPzOt+gDHoTsNWmvz1aBsb0LedGizcWznENUUMWuONDNpkXGEGHib
-         VgJ2UK4XOSWOOmw50st5WaXvzsy4p28oDR77VYegqv9/p5eS9d5771sE57LLA30Q8r
-         tu8M1XK5wxNiiBWOI53PViPccgqlCTqRBz8ISdl+kEWqqeDcMAEZBesEQS3EWS5Epp
-         wewFc5IMoup6Na6qPEp5EZlVdO/li7/FWQmvKuoTTCgJhdsRA83HHatgXniSQHKKSr
-         vbNnIR9sCpU1ZmNU/fsCKPaxlsBfVyiCASrGzd/6/ChfgrVNj6IyQsO/XTlKoANyCc
-         KJk1poxYwvXhQ==
-Content-Type: text/plain; charset="utf-8"
+        id S242555AbhHEXvo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 19:51:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57788 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242500AbhHEXvo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 19:51:44 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63637C061799
+        for <devicetree@vger.kernel.org>; Thu,  5 Aug 2021 16:51:29 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id s22-20020a17090a1c16b0290177caeba067so18958003pjs.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Aug 2021 16:51:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=LvXvxc4FpfdQsNTQ2uP7M38rxQUNtPKsYk8dUCbk8vw=;
+        b=RFz/Y/FntKBu086yBh8DOvEcoTbXW+UBSqeBcOSLniuR8fpBhTS4XE4KGiQqVWqTlT
+         IByvUcFYRGdsnr80Wh7XaXMnHzQ/L0RXnuUg/7TP6zKxhc5pojD8RsY3/yOiXPcoPY7I
+         Pk327FGZesE/IJlh1S2JpNE024prgZBIy+WLM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=LvXvxc4FpfdQsNTQ2uP7M38rxQUNtPKsYk8dUCbk8vw=;
+        b=lUme8CKibrsDdTQdzzJ1L3Ialz/f/ovUmoKZs/995JkJExtHS/ieW4VUJmY6C6j+Q+
+         kozPhhQrkiYEAshRgBL3zTbXeAO/WKZxnBhYVIZe6sXYBp5py35isHAAWLgR04bAqm9k
+         rkbm1SXVFRyMtBCUELq34cjv3lobBbiy8PBPrcn3wmfya3SB8iSe8/pjWPMSG9QVuqY0
+         Qlmib/AcUElQtc7tsSX+1aom6lJa4UyVKhoUfUc1YQGlDODh8qUBB2TeqB6R0g1LcYEa
+         iOCZpI7PLID6AFG6g15kc6EipDjjLerKNcvxN47b1jBiTP8IzaQzSPW7t7gbKON1TlKu
+         ESqg==
+X-Gm-Message-State: AOAM530vTBhs9rK8HV6qrzBHALfhv0YUoIHjPmw/FLfUfG7XYFPHFqEp
+        /U9EmeAo+X53yRPXmX1HWxrfNw==
+X-Google-Smtp-Source: ABdhPJx7XizOixq0HL7mC9NkNAJ0u2Ph2L3oW2+f1ilfNne9wrBdgsgcQQu8QVqLF9KyU4Zt1X8+1g==
+X-Received: by 2002:a17:90a:9511:: with SMTP id t17mr17926916pjo.194.1628207488974;
+        Thu, 05 Aug 2021 16:51:28 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:8944:bd:9484:29e])
+        by smtp.gmail.com with UTF8SMTPSA id t22sm9144685pgv.35.2021.08.05.16.51.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Aug 2021 16:51:28 -0700 (PDT)
+Date:   Thu, 5 Aug 2021 16:51:27 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Alex Elder <elder@linaro.org>
+Cc:     bjorn.andersson@linaro.org, agross@kernel.org, robh+dt@kernel.org,
+        elder@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] arm64: dts: qcom: sc7280: add IPA information
+Message-ID: <YQx5f9dD9KOGrXao@google.com>
+References: <20210804210214.1891755-1-elder@linaro.org>
+ <20210804210214.1891755-2-elder@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <b98aeeee-c544-3025-cc06-ec04be7ab638@gmail.com>
-References: <20210726105719.15793-1-chun-jie.chen@mediatek.com> <20210726105719.15793-3-chun-jie.chen@mediatek.com> <162740843452.2368309.13157283201271440368@swboyd.mtv.corp.google.com> <b98aeeee-c544-3025-cc06-ec04be7ab638@gmail.com>
-Subject: Re: [v14 02/21] dt-bindings: ARM: Mediatek: Add mmsys document binding for MT8192
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 05 Aug 2021 16:49:52 -0700
-Message-ID: <162820739221.19113.17602385426851379006@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210804210214.1891755-2-elder@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Matthias Brugger (2021-08-05 08:35:09)
->=20
->=20
-> On 27/07/2021 19:53, Stephen Boyd wrote:
-> > Quoting Chun-Jie Chen (2021-07-26 03:57:00)
-> >> This patch adds the mmsys document binding for MT8192 SoC.
-> >>
-> >> Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
-> >> Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-> >> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-> >> Acked-by: Rob Herring <robh@kernel.org>
-> >> ---
-> >=20
-> > Applied to clk-next
-> >=20
->=20
-> Please drop this patch. The mmsys binding will change to yaml in this mer=
-ge
-> window and this will create a merge conflict.
->=20
+On Wed, Aug 04, 2021 at 04:02:11PM -0500, Alex Elder wrote:
+> Add IPA-related nodes and definitions to "sc7280.dtsi", including
+> the reserved memory area used for AP-based IPA firmware loading.
+> 
+> Signed-off-by: Alex Elder <elder@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 42 ++++++++++++++++++++++++++++
+>  1 file changed, 42 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 029723a75edef..5764c5b5cae17 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -69,6 +69,11 @@ cpucp_mem: memory@80b00000 {
+>  			no-map;
+>  			reg = <0x0 0x80b00000 0x0 0x100000>;
+>  		};
+> +
+> +		ipa_fw_mem: memory@8b700000 {
+> +			reg = <0 0x8b700000 0 0x10000>;
+> +			no-map;
+> +		};
+>  	};
+>  
+>  	cpus {
+> @@ -568,6 +573,43 @@ mmss_noc: interconnect@1740000 {
+>  			qcom,bcm-voters = <&apps_bcm_voter>;
+>  		};
+>  
+> +		ipa: ipa@1e40000 {
+> +			compatible = "qcom,sc7280-ipa";
+> +
+> +			iommus = <&apps_smmu 0x480 0x0>,
+> +				 <&apps_smmu 0x482 0x0>;
+> +			reg = <0 0x1e40000 0 0x8000>,
+> +			      <0 0x1e50000 0 0x4ad0>,
+> +			      <0 0x1e04000 0 0x23000>;
+> +			reg-names = "ipa-reg",
+> +				    "ipa-shared",
+> +				    "gsi";
+> +
+> +			interrupts-extended = <&intc 0 654 IRQ_TYPE_EDGE_RISING>,
+> +					      <&intc 0 432 IRQ_TYPE_LEVEL_HIGH>,
 
-It is particularly difficult to resolve? linux-next maintainers seem to
-have resolved it so I'm not very concerned.
+nit: use GIC_SPI for the interrupt type
 
-https://lore.kernel.org/r/20210728124304.1199-1-broonie@kernel.org
+> +					      <&ipa_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
+> +					      <&ipa_smp2p_in 1 IRQ_TYPE_EDGE_RISING>;
+> +			interrupt-names = "ipa",
+> +					  "gsi",
+> +					  "ipa-clock-query",
+> +					  "ipa-setup-ready";
+> +
+> +			clocks = <&rpmhcc RPMH_IPA_CLK>;
+> +			clock-names = "core";
+> +
+> +			interconnects = <&aggre2_noc MASTER_IPA 0 &mc_virt SLAVE_EBI1 0>,
+> +					<&gem_noc MASTER_APPSS_PROC 0 &cnoc2 SLAVE_IPA_CFG 0>;
+> +			interconnect-names = "memory",
+> +					     "config";
+> +
+> +			qcom,smem-states = <&ipa_smp2p_out 0>,
+> +					   <&ipa_smp2p_out 1>;
+> +			qcom,smem-state-names = "ipa-clock-enabled-valid",
+> +						"ipa-clock-enabled";
+> +
+> +			status = "disabled";
+> +		};
+> +
+
+I know little about IPA, but besides the nit this looks sane to me.
+
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
