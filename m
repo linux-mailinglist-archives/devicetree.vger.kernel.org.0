@@ -2,140 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 014BD3E14F7
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 14:44:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3301E3E1502
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 14:47:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240639AbhHEMog (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 08:44:36 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:44856 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240237AbhHEMof (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 08:44:35 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 175CiB74098873;
-        Thu, 5 Aug 2021 07:44:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1628167451;
-        bh=7pjBF/UArmuCRMUwAIcRjaLxP+RgNbRDP9R6RHrwlyQ=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=zQ6RBpyWvg9wdh690ULdv+F5GXCrDLt0ph7lklqCwRssh9EPG+pBMaqtP8lvF7zwt
-         z1WYUfk7TjKPzxRAl2EgV+5/H3fX9jMRA/i8D1+rm8IyNZfL6j8O4XYP6pc5GADcwH
-         NTvSPXu6rcwqaO8EIAm3TT+6JBN83MjEqBXNR3rM=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 175CiB8U045683
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 5 Aug 2021 07:44:11 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 5 Aug
- 2021 07:44:11 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Thu, 5 Aug 2021 07:44:11 -0500
-Received: from [10.250.232.51] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 175Ci7Rc026017;
-        Thu, 5 Aug 2021 07:44:08 -0500
-Subject: Re: [PATCH v2 0/6] CAN: Add support for CAN in AM65,J721e and AM64
-To:     Jan Kiszka <jan.kiszka@siemens.com>, Nishanth Menon <nm@ti.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Faiz Abbas <faiz_abbas@ti.com>
-References: <20210726101012.26983-1-a-govindraju@ti.com>
- <20210802124509.z23lfg7xxkqaakbo@truce>
- <36011cee-f617-02ed-7446-c297ba65e6bf@ti.com>
- <35b0e2dc-0591-0a2f-8e3d-4177792a13fa@siemens.com>
-From:   Aswath Govindraju <a-govindraju@ti.com>
-Message-ID: <cfd7df02-37ed-6286-0232-2e92bf1f67b4@ti.com>
-Date:   Thu, 5 Aug 2021 18:14:07 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S241467AbhHEMrV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 08:47:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55470 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S241459AbhHEMrU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Aug 2021 08:47:20 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A719C60E97;
+        Thu,  5 Aug 2021 12:47:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1628167626;
+        bh=kMQY6aXotHYC4p1x2ZCwkER9VrbqS7BOEPHl0qOdbl0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=fm3BZjczDQ2+LdzJrxVmZJRipDr45xGLn57fBW2eTDIubwQeumuffrzsf7geb1j4R
+         XXkaLI7Nm5IrK4oVJNRHaE7F5JS3s6UjGdj3Tc4Z7G6Xp7hSrkdaEXZfTC2ivzwoov
+         zpuxPEyjM5UjKKW9YYL6VsbKFrYteyQk0Vv5+bGq4/twGtG9Jgt7PnMAfqqG/AsAOi
+         w4j5Vhq/kAYiKMEOsV6p7Z9Wi29twv2wMRKhtkt8vRnJvMT4Wjk9Ur0uWuCMQsefoJ
+         JlQ1S2w3KUKxgxy9hdc+BanlCLF0m0k/bE22iZhGENI/ofXE395k35APuOGCZktaWd
+         +YeFftygtS5QQ==
+Date:   Thu, 5 Aug 2021 13:46:50 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     Jaehoon Chung <jh80.chung@samsung.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-mmc@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [BUG] mmc_regulator_set_ocr can't cope with regulator-fixed
+Message-ID: <20210805124650.GM26252@sirena.org.uk>
+References: <CGME20210804143357epcas1p1c67eca591d8bb557c11b8175baaa8550@epcas1p1.samsung.com>
+ <CAMdYzYrx8pgeyK7u=kcopZ+Wae+fQdr_uM4AuVjqWKfZYikgcA@mail.gmail.com>
+ <a9aa636e-326f-a848-dd69-41df87c013af@samsung.com>
+ <CAMdYzYr9PX-9=kkCAfGe8Q0-D+gRo_qCwse8SiGVsmod7fffiA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <35b0e2dc-0591-0a2f-8e3d-4177792a13fa@siemens.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="+2GlJm56SCtLHYlr"
+Content-Disposition: inline
+In-Reply-To: <CAMdYzYr9PX-9=kkCAfGe8Q0-D+gRo_qCwse8SiGVsmod7fffiA@mail.gmail.com>
+X-Cookie: MOUNT TAPE U1439 ON B3, NO RING
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jan,
 
-On 05/08/21 6:10 pm, Jan Kiszka wrote:
-> On 05.08.21 14:32, Aswath Govindraju wrote:
->> Hi,
->>
->> On 02/08/21 6:15 pm, Nishanth Menon wrote:
->>> On 15:40-20210726, Aswath Govindraju wrote:
->>>> The following series of patches add support for CAN in SoC's AM65, J721e
->>>> and AM64.
->>>>
->>>> This patch series is dependent on [1] and [2] and I have requested for an
->>>> immutable tag from the Marc Kleine-Budde(maintainer of net tree).
->>>>
->>>> [1] - https://lore.kernel.org/patchwork/patch/1423048/
->>>> [2] - https://www.spinics.net/lists/linux-can/msg08108.html
->>>>
->>>> changes since v1 -
->>>> - changed the message ram configuration to use the maximum value
->>>>   in each field, for better performance.
->>>>
->>>> Aswath Govindraju (3):
->>>>   arm64: dts: ti: am654-base-board: Disable mcan nodes
->>>>   arm64: dts: ti: k3-am64-main: Add support for MCAN
->>>>   arm64: dts: ti: k3-am642-evm/sk: Add support for main domain mcan
->>>>     nodes in EVM and disable them on SK
->>>>
->>>> Faiz Abbas (3):
->>>>   arm64: dts: ti: k3-am65-mcu: Add Support for MCAN
->>>>   arm64: dts: ti: k3-j721e: Add support for MCAN nodes
->>>>   arm64: dts: ti: k3-j721e-common-proc-board: Add support for mcu_mcan
->>>>     nodes
->>>
->>> I noticed in my checkup: https://pastebin.ubuntu.com/p/zSk39M943N/
->>> warnings with dtbs_check, I think the bindings need a little more help
->>> here (please also notice the iot platform warnings getting introduced).
->>>
->>
->> Jan,
->>
->> Can you please point me to the schematics for iot platform? Also, is CAN
->> subsystem brought out on the iot platform boards?
-> 
-> Schematics aren't publicly available. If you have specific questions, I
-> may help, though.
-> 
-> CAN is not in use yet (not connected AFAIK).
-> 
+--+2GlJm56SCtLHYlr
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Thank you for clarifying this. I will disable the CAN DT nodes in
-k3-am65-iot2050-common.dtsi in my respin.
+On Thu, Aug 05, 2021 at 07:38:06AM -0400, Peter Geis wrote:
 
-Thanks,
-Aswath
+> Also, I've got a possible fix to the dw-mmc issue, the following patch
+> changes the behavior to only enable a fixed regulator, not try to set
+> the voltage. It's a split between the behavior when vmmc isn't defined
+> at all and when its a variable regulator:
 
-> Jan
-> 
->>
->>> Since we are still working on the bindings[1], lets clean that up
->>> before we consider the dts addition. I suspect we need to cook this
->>> more towards the next cycle.
->>>
->>> [1] https://lore.kernel.org/patchwork/patch/1470806/
->>>
->>
->> Nishanth,
->>
->> Sorry for not taking of this earlier. I'll try to get everything ready
->> for next release.
->>
->> Thanks,
->> Aswath
->>
-> 
+One thing to watch out for with this approach is if there's things that
+really need a specific voltage to be set then you'll have to stop those
+things happening if you've got a voltage regulator that can't deliver a
+voltage in the required range.  I don't know if this affects MMC or not,
+if it's just a case of being less efficient it's not such an issue.
 
+> diff --git a/drivers/mmc/host/dw_mmc.c b/drivers/mmc/host/dw_mmc.c
+> index d333130d1531..b30102980261 100644
+> --- a/drivers/mmc/host/dw_mmc.c
+> +++ b/drivers/mmc/host/dw_mmc.c
+> @@ -1446,11 +1446,13 @@ static void dw_mci_set_ios(struct mmc_host
+> *mmc, struct mmc_ios *ios)
+>   switch (ios->power_mode) {
+>   case MMC_POWER_UP:
+>   if (!IS_ERR(mmc->supply.vmmc)) {
+> - ret = mmc_regulator_set_ocr(mmc, mmc->supply.vmmc,
+
+This patch is very whitespace damaged FWIW.
+
+--+2GlJm56SCtLHYlr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmEL3bkACgkQJNaLcl1U
+h9AITwf+MrB+PWNVhpqW56tmJ9SGz8jrEIwUWscQhB2kdQKUFfRkN5wgnUliCrN6
+z1aJqb2h4eiZWj5sVGXyQqMuFHRVh7+AIpXhkxPdBf7bn/CTJCgG13eOOP7FELnh
+A3Ax+i9Y2Hhz8GxVFlokMxrCZo20pS+Z4qCTrENO0rzSppWlogkS2CBFNDUGndNs
+lj8K9wLpqFSJFRPUqRdyohpR44cPpsB7hOfeJOh9Le+BdGfqMb2Zkhvwu++oP0is
+NTe/bxNPjb0ta+njFHhF8UOyaBuTa7DeH/9snbYazu70pOZa2bZKiIcMr18qZ0O9
+Edd5L///Ydo5pXWt+3UokRFB2cwkbw==
+=02YF
+-----END PGP SIGNATURE-----
+
+--+2GlJm56SCtLHYlr--
