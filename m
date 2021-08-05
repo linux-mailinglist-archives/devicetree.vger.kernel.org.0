@@ -2,115 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D3553E152F
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 14:57:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85C2A3E1534
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 14:59:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241545AbhHEM55 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 08:57:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49368 "EHLO
+        id S241538AbhHEM71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 08:59:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240155AbhHEM55 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 08:57:57 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28FC6C061765
-        for <devicetree@vger.kernel.org>; Thu,  5 Aug 2021 05:57:43 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id o10so7014617ljp.0
-        for <devicetree@vger.kernel.org>; Thu, 05 Aug 2021 05:57:43 -0700 (PDT)
+        with ESMTP id S241476AbhHEM70 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 08:59:26 -0400
+Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F41FC061765;
+        Thu,  5 Aug 2021 05:59:10 -0700 (PDT)
+Received: by mail-yb1-xb31.google.com with SMTP id p145so8806653ybg.6;
+        Thu, 05 Aug 2021 05:59:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=pZbqm5rS9uY9gmvr3en4eNyV6i6PzvdvqtugR3RNZI4=;
-        b=Zi5QS4ost9k+8KVdKBU7r03nUUtTVbc6SfPzr1I2afFxBj0e//LSNDbkaTWGXOSG9R
-         fOGgzBcnPf+yiFA67ZO1C95AvyNAvEMWxn/95Hkkq8fgtU8WcUT/UgLKmLwTxthcr9HL
-         Oj/4Kng4KtFmb934rG5hpXXxvCFHbsNG64AxzZ/P52ornKB29zHk+0ombK2+CqAK3Xkk
-         CBEOo0DzKaWgfdbGwpRR/Y96fmY00RfHlWJK6rpywrxrzgqut1vpb8wHlJQUCHqylzQX
-         WxTr5M95SKZgZaXGOnlm+gjD2caLSPuLc5GHKMszTovTLgYPWPz5LikLJsPUvo6/QABu
-         1K0g==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Gr9Gh5+vW9OZGr0SdSE84N+LH4Roo172IAFuTaYSsHc=;
+        b=UMF1LkczVhYv53Rkxvd68wjp6e1keFmFZHkecWPux656gXCsVPnbJmQrwxeHMrGaVD
+         U2JK6ZQL35+kYws5pOSCD3+CwEahggY2W7ThYoOrLs1i/cSyUOy1lOOtKNavUmAf5bNv
+         d2vMfAFOsx79YomW3JjfUvc5riwP3QXNui+VQyIhZlfmQWiK6hLfmNXvthfnUqjzzt8E
+         F1qg06+TUxyaMP/UEYgxXypYGl6NRGFKNGKoVsftBCz4NHyt1xBVbBASkvFnhwgJ3Wos
+         NEtiymokeRoVNOQsoRvIfeIQKtxYOuelB5482263D9uulsVostxXkvw/fNeVU+XfaQvY
+         MNgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=pZbqm5rS9uY9gmvr3en4eNyV6i6PzvdvqtugR3RNZI4=;
-        b=I14plKc45KhkoO3LbaNBFA2pd8LLCtfwOxwCpiyMs1HuMT40tuNF7hSCaMAfSpd87e
-         0m7PZxpOQo1AaAJbIELIAN4EJESIYEfZFvyfsX2oIQfJkTQgt1pmobSjPgE4w4dgWubx
-         fxMdvsE8xbZroEUF5zWgHp3HvrWiGCuaqyNf0/YD3L+eFCEWCmase/VwQqOZ83deIg82
-         gGz5Z1FMJzwiKtwJ7PHuHuAxRRHelL5JA7Xv248hUtHr62UXG5d1lKM6rk2xBRHgmmlV
-         4lt2IiFVZWYccEnfPOMR1faHTQCB04/NUvMlWe0ALJRcd+xg5jSrHGTwUnzFP5GJRtbw
-         3/UQ==
-X-Gm-Message-State: AOAM531cMWk0bSxze6wRvxFi23IwFuXFDRPZW8KYuNouQ/1qWYs/Slko
-        Q3i8KEZucMFnA9Dv7ooJLX+Efw==
-X-Google-Smtp-Source: ABdhPJyZl78mfSg8C4X8bMAPnoTfiSQY/0XoV8C1PnyrVYJoW6qOSWIY4BtAKOAyd3Ke5NxYYt08zg==
-X-Received: by 2002:a2e:7e0a:: with SMTP id z10mr3089416ljc.283.1628168261452;
-        Thu, 05 Aug 2021 05:57:41 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id m13sm509172lfu.5.2021.08.05.05.57.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Aug 2021 05:57:41 -0700 (PDT)
-Subject: Re: [PATCH v2] ARM: dts: qcom: apq8064: correct clock names
-To:     David Heidelberg <david@ixit.cz>, linus.walleij@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Brian Masney <masneyb@onstation.org>
-References: <20210707131453.24041-1-david@ixit.cz>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Message-ID: <5d11261e-592a-31cc-b3e2-5eee76681ec0@linaro.org>
-Date:   Thu, 5 Aug 2021 15:57:40 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Gr9Gh5+vW9OZGr0SdSE84N+LH4Roo172IAFuTaYSsHc=;
+        b=Tx3+Gb0dwI7yyVLqiESeIUb4YjY9UJgdXrpJYaGMx/L7+ieoKWotauUmvBH8FAr0B1
+         9kx6gpyrsmwKdwPYHyelrU92AIrdPGHnMCRBsKiBXRZLz44w6CmfBJQ57MGgsm/sbgL2
+         d+XEiK3f1c9Dv4fEzipvUepjNhYeB3v93phWBSuov4kFDC4HnAHA+QMQU9kgRAHGjb1b
+         gQ76LvY1o1Ns40wgjPhD4j3eg34NX0H5jeUsj8Hqj9ANfZLHULIpIPQwsgTKav+fsfXq
+         GGVsJM1T/Ma00iN0O1Q3LPPvKbmiAf/KR5z4a7qSm/qUZXGbxaHzQ1twd3uybN7w3Rmy
+         AEAQ==
+X-Gm-Message-State: AOAM533jIL49qoyK4YddaxXM4UmPfWHlOKykENDGrqdt6d+pDCqyMtc3
+        B/HdNq+TSj4rrsYg4TCK1JtOLZANPbx2V4I30kY=
+X-Google-Smtp-Source: ABdhPJzTFyojU4VvqWJeaPQvyuMEUhC/vsMMTaMSuA/VzNXwGQQ5ZzAWDGxr9U51I0oKJSPwO2T+SqlWDl7cNfFxIeg=
+X-Received: by 2002:a25:2cf:: with SMTP id 198mr5906026ybc.259.1628168349741;
+ Thu, 05 Aug 2021 05:59:09 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210707131453.24041-1-david@ixit.cz>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+References: <CGME20210804143357epcas1p1c67eca591d8bb557c11b8175baaa8550@epcas1p1.samsung.com>
+ <CAMdYzYrx8pgeyK7u=kcopZ+Wae+fQdr_uM4AuVjqWKfZYikgcA@mail.gmail.com>
+ <a9aa636e-326f-a848-dd69-41df87c013af@samsung.com> <CAMdYzYr9PX-9=kkCAfGe8Q0-D+gRo_qCwse8SiGVsmod7fffiA@mail.gmail.com>
+ <20210805124650.GM26252@sirena.org.uk>
+In-Reply-To: <20210805124650.GM26252@sirena.org.uk>
+From:   Peter Geis <pgwipeout@gmail.com>
+Date:   Thu, 5 Aug 2021 08:58:58 -0400
+Message-ID: <CAMdYzYpR6br7s1RD2ze92WzJjtEDZwy9qS6YhghgXy7F91keFg@mail.gmail.com>
+Subject: Re: [BUG] mmc_regulator_set_ocr can't cope with regulator-fixed
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Jaehoon Chung <jh80.chung@samsung.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-mmc@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/07/2021 16:14, David Heidelberg wrote:
-> Since new code doesn't take old clk names in account, it does fixes
-> error:
-> 
-> msm_dsi 4700000.mdss_dsi: dev_pm_opp_set_clkname: Couldn't find clock: -2
-> 
-> and following kernel oops introduced by
-> b0530eb1191 ("drm/msm/dpu: Use OPP API to set clk/perf state").
-> 
-> Also removes warning about deprecated clock names.
-> 
-> Tested against linux-5.10.y LTS on Nexus 7 2013.
-> 
-> Reviewed-by: Brian Masney <masneyb@onstation.org>
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+On Thu, Aug 5, 2021 at 8:47 AM Mark Brown <broonie@kernel.org> wrote:
+>
+> On Thu, Aug 05, 2021 at 07:38:06AM -0400, Peter Geis wrote:
+>
+> > Also, I've got a possible fix to the dw-mmc issue, the following patch
+> > changes the behavior to only enable a fixed regulator, not try to set
+> > the voltage. It's a split between the behavior when vmmc isn't defined
+> > at all and when its a variable regulator:
+>
+> One thing to watch out for with this approach is if there's things that
+> really need a specific voltage to be set then you'll have to stop those
+> things happening if you've got a voltage regulator that can't deliver a
+> voltage in the required range.  I don't know if this affects MMC or not,
+> if it's just a case of being less efficient it's not such an issue.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Yeah, but if this is a fixed regulator and it's a problem, then the
+hardware is screwed anyways.
 
-> ---
-> - v2 improved commit message, added R-b
-> 
->   arch/arm/boot/dts/qcom-apq8064.dtsi | 6 +++---
->   1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
-> index 6005620ac297..96b7755afabf 100644
-> --- a/arch/arm/boot/dts/qcom-apq8064.dtsi
-> +++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
-> @@ -1262,9 +1262,9 @@ dsi0: mdss_dsi@4700000 {
->   				<&mmcc DSI1_BYTE_CLK>,
->   				<&mmcc DSI_PIXEL_CLK>,
->   				<&mmcc DSI1_ESC_CLK>;
-> -			clock-names = "iface_clk", "bus_clk", "core_mmss_clk",
-> -					"src_clk", "byte_clk", "pixel_clk",
-> -					"core_clk";
-> +			clock-names = "iface", "bus", "core_mmss",
-> +					"src", "byte", "pixel",
-> +					"core";
->   
->   			assigned-clocks = <&mmcc DSI1_BYTE_SRC>,
->   					<&mmcc DSI1_ESC_SRC>,
-> 
+>
+> > diff --git a/drivers/mmc/host/dw_mmc.c b/drivers/mmc/host/dw_mmc.c
+> > index d333130d1531..b30102980261 100644
+> > --- a/drivers/mmc/host/dw_mmc.c
+> > +++ b/drivers/mmc/host/dw_mmc.c
+> > @@ -1446,11 +1446,13 @@ static void dw_mci_set_ios(struct mmc_host
+> > *mmc, struct mmc_ios *ios)
+> >   switch (ios->power_mode) {
+> >   case MMC_POWER_UP:
+> >   if (!IS_ERR(mmc->supply.vmmc)) {
+> > - ret = mmc_regulator_set_ocr(mmc, mmc->supply.vmmc,
+>
+> This patch is very whitespace damaged FWIW.
 
-
--- 
-With best wishes
-Dmitry
+Unfortunately gmail doesn't let you reply with patch sets without
+mangling them, so it's only useful as an example.
+If it seems sane I'll send it as a proper patch.
