@@ -2,276 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 258793E11AB
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 11:54:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDCA33E11C0
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 11:59:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239854AbhHEJyn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 05:54:43 -0400
-Received: from mail-eopbgr80041.outbound.protection.outlook.com ([40.107.8.41]:38296
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232930AbhHEJyn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Aug 2021 05:54:43 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cQSbm1B78zAsTZP8KQkwN7CYI4Z7oXvMhZKZyfeicACf39NMmWcgJwA0aeMOugiF8sRqEvJ8KF7X6pF5Z3JdoRpIOP88uOEorJwavm9Aw/bPduWeoTg2BpvIYTMj+i8W/C6mTVLgw6Xx++V80WK5pkOYgY3BBoAc1TRFXaskhLws2i7xdLRpVFpk4o+zEmLmYB/36p8sjfnSQLuJJ0N92BXB7iwtSmHa3x7GxNB1ZlCliZUjnRYYpGsrXcJ5YaAdZipUSA1rAIPePhSNS6JjRrkYeYGGtBu/wx5DR9v+LUXUBZc8EeTzN+E8GrwbtsOsz2oXGfUenghUc3DR76gu9w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=d2QKzc4ABg9T5PFat2o+mkAYImVoM2kTW8FXOdVvu6I=;
- b=Tn9j4vdnLIZE/hZfICkxekGVs8GxH1+4wREuhv8G41BUdxMDeY9Cd/D+jkhlBMgBsArwZ5InPsp6fbwmxSzySHXlo+DpxmOYRPSxrSG4wWPzlrIyB7kmHGDtmi4Fd5gENSeGzM/xkMA1OX7lhojmxhj0f3sVGGi1m3/QU87H/cBdPAaPRO/a1brrCITwbp9JGIrh9UHRsK63EkIdVT6j8GXi9lAjjTdineoIz72c7xgM8i+y3WqpAPwmTyZnV4GY74odEblu/VAzgHcdvca+CTMJUk5lMHMGwcck8yaout+s3T+j0ey9habQYkOoqE4ViG049LK8dF1V6HfqWpFwbA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=d2QKzc4ABg9T5PFat2o+mkAYImVoM2kTW8FXOdVvu6I=;
- b=Go2stngfrlO0O2ZsvuP3OzM4NZJiVOV3p+pPDGkrc88/RfoOplvoEspsma4VUTi7tDiE8qW56DyLMPm/eST3L+Qj2n3uIheQuyKygNkDIsdu+43Y99lVB3voHN0TkvO7WHqzFma3VJS+Ek8VCGeuFE022RKO72Jyz3KnYYvvF7s=
-Received: from AM5PR0402MB2756.eurprd04.prod.outlook.com
- (2603:10a6:203:99::22) by AM6PR04MB6744.eurprd04.prod.outlook.com
- (2603:10a6:20b:f6::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.25; Thu, 5 Aug
- 2021 09:54:27 +0000
-Received: from AM5PR0402MB2756.eurprd04.prod.outlook.com
- ([fe80::3839:217:6252:b1f8]) by AM5PR0402MB2756.eurprd04.prod.outlook.com
- ([fe80::3839:217:6252:b1f8%11]) with mapi id 15.20.4373.026; Thu, 5 Aug 2021
- 09:54:27 +0000
-From:   Peng Fan <peng.fan@nxp.com>
-To:     Lucas Stach <l.stach@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     dl-linux-imx <linux-imx@nxp.com>, Adam Ford <aford173@gmail.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Marek Vasut <marex@denx.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
+        id S240005AbhHEKAE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 06:00:04 -0400
+Received: from mailout3.samsung.com ([203.254.224.33]:21214 "EHLO
+        mailout3.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239957AbhHEKAD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 06:00:03 -0400
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20210805095948epoutp03ac458b49988a99dbcdb222f2305e1692~YYLM3PxfV1818818188epoutp03f
+        for <devicetree@vger.kernel.org>; Thu,  5 Aug 2021 09:59:48 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20210805095948epoutp03ac458b49988a99dbcdb222f2305e1692~YYLM3PxfV1818818188epoutp03f
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1628157588;
+        bh=CHAPGstxC+TDjJP5V8Gm/7yEvXUbbl/ZgdEEnyEgR/E=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=haCirjAaVWk4ygVwv1AmTmXl5WP7JwZ3m+lOATrZbdgA1Pev5auT2WfOP4mkdRDPz
+         DVEdLUqXcTpZ5787DxgJoHtQnedZsRI+JbYGOwMyJKDF0+Y52HUfXdSlByvJM9LOph
+         JHbGV9LRm90+obZ5rGfRxcTGjSs+ggmhjXPeYVR0=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+        epcas5p3.samsung.com (KnoxPortal) with ESMTP id
+        20210805095947epcas5p37a2a943873d88d220808bd34b0ff5fe7~YYLMl7iH22405524055epcas5p39;
+        Thu,  5 Aug 2021 09:59:47 +0000 (GMT)
+Received: from epsmges5p2new.samsung.com (unknown [182.195.38.177]) by
+        epsnrtp1.localdomain (Postfix) with ESMTP id 4GgPGl67w5z4x9Q2; Thu,  5 Aug
+        2021 09:59:43 +0000 (GMT)
+Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
+        epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        2A.3F.09595.886BB016; Thu,  5 Aug 2021 18:59:36 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
+        20210805095435epcas5p3a9aba4509a1521f611b9bc057e8c053b~YYGp3T4Pu1625916259epcas5p3E;
+        Thu,  5 Aug 2021 09:54:35 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20210805095435epsmtrp2a1e6d9877a124cd8313d23c3ef781509~YYGp2Yxfb2255722557epsmtrp2L;
+        Thu,  5 Aug 2021 09:54:35 +0000 (GMT)
+X-AuditID: b6c32a4a-eebff7000000257b-8d-610bb68867cb
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        E2.43.08289.B55BB016; Thu,  5 Aug 2021 18:54:35 +0900 (KST)
+Received: from alimakhtar02 (unknown [107.122.12.5]) by epsmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20210805095434epsmtip221542ab3aa113e5ea24044bc23daa2ae~YYGoYL_uN2105321053epsmtip2U;
+        Thu,  5 Aug 2021 09:54:33 +0000 (GMT)
+From:   "Alim Akhtar" <alim.akhtar@samsung.com>
+To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@canonical.com>,
+        "'Rob Herring'" <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "patchwork-lst@pengutronix.de" <patchwork-lst@pengutronix.de>
-Subject: RE: [PATCH v2 14/18] arm64: dts: imx8mm: add GPC node
-Thread-Topic: [PATCH v2 14/18] arm64: dts: imx8mm: add GPC node
-Thread-Index: AQHXfnGYmnQLLay8jEOIu9t6mhLyXqtkwtKw
-Date:   Thu, 5 Aug 2021 09:54:26 +0000
-Message-ID: <AM5PR0402MB27563F7D8CDF210F52220C5D88F29@AM5PR0402MB2756.eurprd04.prod.outlook.com>
-References: <20210716232916.3572966-1-l.stach@pengutronix.de>
- <20210721204703.1424034-1-l.stach@pengutronix.de>
- <20210721204703.1424034-15-l.stach@pengutronix.de>
-In-Reply-To: <20210721204703.1424034-15-l.stach@pengutronix.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: pengutronix.de; dkim=none (message not signed)
- header.d=none;pengutronix.de; dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 3eb0d397-a53e-484d-479e-08d957f7032a
-x-ms-traffictypediagnostic: AM6PR04MB6744:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <AM6PR04MB6744AF71CA98A5A9E7A0E17088F29@AM6PR04MB6744.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4941;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: vGd2lunjT/WZ5P9CnTO7zIaUDKjG2VI19n1NlY1dDfG3p4qDwmNuSzFk8f8cxTGmyJ9u/RUrsqQbRd4r/Ctzq58/PMUJyx0Diwx/luu7RmMJs68Vxx2LwXInMn5OU1Q+yPk04c6rXH3yWXyakrKBzdNh3T5PC2kmaphtPBhVMaRNWyFI0ESpLeYcDX66YWmOsUqFZB6FkYhE5gYoV0ieMfhRYF+PE6ICPN630R++C6KnqDPLqjppN0xPJaB+rpzaUajv0RKtuKSTHUXM/ivFSSraFHnXY0tljld5QZgJ7wyek3am4Eb/mZng1mYDc+4FznnBMbOCoDhB6alm4fPFhTuyqV37thRrou9ZRjcVZUIS+BOUEg5F5b+i9px910PIQfI7ZodnivPopQ+2/bVIe9woS/p7MyiVEwLUfOvc6OVrZpSulzkAj8SwubNI8axFsqHIKWw9NWcpsEDSgIBzN1C9LP7TjvTxl0AxnHWU1XYMXkS9DW6Fht4XyvC1+qGvs9iFgyq6eub16wGMYQ+22rbysIzx0cbYCjoydaHwN0iy+7FvQq8mkno0faU1bGMqvr3EPnbIMBP5jY+N+pN5WRtetAb2BeDLLi6K/v4VPsRqKq4lBssiEDtuxRvcvWuRjLaJeERF61RokPFhRWXveZ5qKt2s9oyY2Ga4+dsEBNuuMWiBxe+oajLyFSmS/yV8nve+KG1644451h8Iat4RCH4U9wNMtry1QVYbO0Ogzmc=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM5PR0402MB2756.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(346002)(366004)(396003)(39860400002)(376002)(6506007)(8936002)(33656002)(66476007)(83380400001)(186003)(66946007)(4326008)(26005)(8676002)(66556008)(5660300002)(64756008)(66446008)(9686003)(86362001)(52536014)(7416002)(316002)(71200400001)(55016002)(478600001)(76116006)(44832011)(54906003)(2906002)(122000001)(110136005)(7696005)(38100700002)(38070700005)(32563001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?3qtqe/ubjHs/TAVb/3yEJse2iESFV3oGe3ipkwOFCLYqh0LqgipoglgLwfn6?=
- =?us-ascii?Q?6+4BdVX8FrHXVN7S8JJ+Ppk1cndNKI5LozYWqzs84LZHBzc9DT+Vrsbyc0YC?=
- =?us-ascii?Q?oyOOa8lK4JAc9BaPOEH7QJEwTWMhJoBiK9/Q/9J6QsebfKpYPtdRWETRZ/4k?=
- =?us-ascii?Q?5DQxDsA3kdb4ePiJxfolybPCmKS2yrUtdXG0+I+j39dMtP3VBjY99lr8NXLN?=
- =?us-ascii?Q?vwiDr29F56w7c+L/IxBVaZJfwy+dJ4uYru2V0gWcd606ea+IqPsBxqSvRCFt?=
- =?us-ascii?Q?O4WzShzTKNmawxJ4rwJWZzcMMkgmEwCJCbN1SvqjI0gHJ660sreXbhkY0AqZ?=
- =?us-ascii?Q?iT87qU4L94IjNuwlsZtXahBPiuMewJwzXVvg9k5Pg02+7MS7rD80HVp1DRl3?=
- =?us-ascii?Q?oKYIUlrS0bhjKvqbCOaTWQX2IArkfCPb/41G1JdV0ivMc6lhyhs8aK2qod2R?=
- =?us-ascii?Q?f2pmM+wx1O4AkEflYWEJOcWQEuwbjl3Xz+JDk/BOIA4t6XL3EBsja3Hp1SNI?=
- =?us-ascii?Q?MVcctxgolvq2ZYhecR8EMT3KIvpGCRE15c1pO7EDulUm7QiLcv9Yd/EekrM3?=
- =?us-ascii?Q?fif2lg0IIQLAtyVu42Q5P/E6T2+qgEtkFw/n/Hbg1L07EliwWEDiG4O52tUu?=
- =?us-ascii?Q?sQl1JIJZEs92HDr2xj8CYy1jnB2OzmafU16iGF4QAilkKOPIE9QHSB4yCYvQ?=
- =?us-ascii?Q?x/QBBTkfTvFpNouYvqF2q2E3ukXpNayzD4L2zD6Yk4K6BNDJdkBIdlKF6vzK?=
- =?us-ascii?Q?WF9aiYXWnkjz6Z4OqdDnapm71lYQ/YgUP28qj8jEU5Z87JlqVu+0VHQnFvPk?=
- =?us-ascii?Q?OhBqJrH/duaAZSwhQR5vQcmI6w8y4nV94flE1H6Zt01bMZn4dMOlrezYJsW1?=
- =?us-ascii?Q?/U6P/EEGJod/TC7GDPwioir6cmwF3L/RATbRLx3ZJpW2Anl4HErsZmbmJeh/?=
- =?us-ascii?Q?U4dWmL+O7O01mC7gik007lbf92rDlqCclNp4sqb0AxKS+G1QjgDyshH1qaMf?=
- =?us-ascii?Q?QoUwjrF5+6CJhK+Okk7Ypj1dRTqINx3vGF6wWsAAT8/CtW6MCUtpHlrpI+CQ?=
- =?us-ascii?Q?YwYKb3kdcWYqwC1fktqYkBnPpZTkdevFCVuNR3UVPmDTnUnhN0A7nDhq/xzF?=
- =?us-ascii?Q?cH4BIypABfERB3KQWyzkdvo5vVc5W6w05WAyfehNFWdqI5Sprr6MjwHfIjc+?=
- =?us-ascii?Q?evFu/hqJjbvXAo26mj5PV7l1SOA8DAJR6ktuIw36HYfJS7eKi0q9mm0B5Y74?=
- =?us-ascii?Q?AQ/EiFkQiJkPWXRuic1nuSiL0Ma4Bxkz3b3VEvcEFyBvXiuNLQa2I157jIa9?=
- =?us-ascii?Q?2GHLB2URh+oe2zV0klrgqMz3?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        <linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Cc:     "'Chanwoo Choi'" <cw00.choi@samsung.com>,
+        "'Pankaj Dubey'" <pankaj.dubey@samsung.com>,
+        "'Sam Protsenko'" <semen.protsenko@linaro.org>,
+        "'Marc Zyngier'" <maz@kernel.org>
+In-Reply-To: <4fc60199-44cd-41ea-9178-92b131d21b73@canonical.com>
+Subject: RE: [PATCH] arm64: dts: exynos: correct GIC CPU interfaces address
+ range on Exynos7
+Date:   Thu, 5 Aug 2021 15:24:32 +0530
+Message-ID: <040901d789df$e5af4420$b10dcc60$@samsung.com>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM5PR0402MB2756.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3eb0d397-a53e-484d-479e-08d957f7032a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Aug 2021 09:54:26.9997
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: PSGUnS2uBJTxGCuNFpVAQR78pFdcZBANwS2bzSSpgBL/VZgu98xfgGt+2pxYdKW7oUNuSm5ccg0zwU07pBjAZQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB6744
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQGqCsm6I7l6cIRsiJEa3ZtJxO0jtAJYiPTmAtVSVZgBZ8MakQF0f/XuAkVHGEmrbS6MkA==
+Content-Language: en-in
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrPJsWRmVeSWpSXmKPExsWy7bCmlm7HNu5Eg8YLqhbXvzxntZh/5Byr
+        xca3P5gsNj2+xmpxedccNosZ5/cxWeycc5LVYtHWL+wWrXuPsFs879vH5MDlMauhl81j06pO
+        No871/aweWxeUu/Rt2UVo8fnTXIBbFHZNhmpiSmpRQqpecn5KZl56bZK3sHxzvGmZgaGuoaW
+        FuZKCnmJuam2Si4+AbpumTlAlykplCXmlAKFAhKLi5X07WyK8ktLUhUy8otLbJVSC1JyCkwK
+        9IoTc4tL89L18lJLrAwNDIxMgQoTsjPadx5jK7gsWvHz3meWBsYZQl2MnBwSAiYSO363s3Ux
+        cnEICexmlGhofsII4XxilLiz/Rg7hPOZUaJl0wR2mJZzp5+xQCR2MUp8uf0Kqv8lo8SL6TcZ
+        QarYBHQldixuA0uICHxjlFj+eQXYYGaBDYwSXRtnMIFUcQo4Skzq6QCzhQXiJOb8mQ1mswio
+        SFzcfQXI5uDgFbCU+NTMCRLmFRCUODnzCQuIzSygLbFs4WtmiJMUJH4+XcYKYosIhElcn9LH
+        ClEjLnH0Zw8zyF4JgR0cEjumfmCCaHCR6Gw6yAZhC0u8Or4F6jcpic/v9rKB7JUQyJbo2WUM
+        Ea6RWDrvGAuEbS9x4MocFpASZgFNifW79CHCshJTT61jgljLJ9H7+wnUJl6JHfNgbFWJ5ndX
+        ocZIS0zs7madwKg0C8lns5B8NgvJB7MQti1gZFnFKJlaUJybnlpsWmCUl1oOj/Hk/NxNjOCU
+        q+W1g/Hhgw96hxiZOBgPMUpwMCuJ8CYv5koU4k1JrKxKLcqPLyrNSS0+xGgKDO2JzFKiyfnA
+        pJ9XEm9oYmlgYmZmZmJpbGaoJM7LHv81QUggPbEkNTs1tSC1CKaPiYNTqoHJ78zntBunJPaW
+        9nQwFH2NMjx9seWxbehG4bALpv3S7yJFnknuV5U47Mxp9ehfziTe4rLz71+8mWlQsOx0XXvF
+        XNUP9i0LPAolrs2JP/uZz2uv0opJUWsCE9gl/KJj7yRdMK//oS6RXJNrplLL5Zlx7YXuGfXU
+        0mievl+njdoSd/Xphhspy6y4dtVdecP87e4J3uuvKxbOvnLjXGSL6HEXvz23Krc4eYZdupqq
+        lJPRuLK4+O3cPdwGWywkpQ7KJWrsUTAJ6Z637Ojv5x8Yl/ZsC/lTIrDOcfvfqftl9wlxMLNy
+        3FOPsl2Vvj0wxUNqztqyot0rfF7MXVDjLidtNdf15wcO30mpWzMma8hE7FRiKc5INNRiLipO
+        BADYLA1bQgQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprOIsWRmVeSWpSXmKPExsWy7bCSvG70Vu5Egx8blC2uf3nOajH/yDlW
+        i41vfzBZbHp8jdXi8q45bBYzzu9jstg55ySrxaKtX9gtWvceYbd43rePyYHLY1ZDL5vHplWd
+        bB53ru1h89i8pN6jb8sqRo/Pm+QC2KK4bFJSczLLUov07RK4Ml690S6YJVrx/uYxtgbGu4Jd
+        jJwcEgImEudOP2PpYuTiEBLYwSjR+mw1O0RCWuL6xglQtrDEyn/P2SGKnjNKbHy+iRkkwSag
+        K7FjcRsbSEJE4BejxJxz/5hBHGaBTYwSP1e/h2p5wiQx9cIksFmcAo4Sk3o6mEBsYYEYidal
+        s8BsFgEViYu7rwDZHBy8ApYSn5o5QcK8AoISJ2c+YQGxmQW0JXoftjLC2MsWvmaGOE9B4ufT
+        ZawgtohAmMT1KX2sEDXiEkd/9jBPYBSehWTULCSjZiEZNQtJywJGllWMkqkFxbnpucWGBUZ5
+        qeV6xYm5xaV56XrJ+bmbGMFxp6W1g3HPqg96hxiZOBgPMUpwMCuJ8CYv5koU4k1JrKxKLcqP
+        LyrNSS0+xCjNwaIkznuh62S8kEB6YklqdmpqQWoRTJaJg1Oqgcn0XcqGyD+62yTjpyh+n6J/
+        sGjC9cv32dnkHA4Z5Mt6Zjk0WsSeadBJCZtWe1XkVtSlb74xUXdE8h3f7H0z56PR64Xl5TeN
+        DjLM9DfsFKrXOPbOZ5vE7gMv9bevfMifvSa1e0Vf04FvP7Z/T9dfOeGrSfyDNsVFeyckCU9P
+        7j3Np63wX7HS2fB4HM+vmz4ZTzau4K3Sz++amSe7ZdOLaR/DtGLPvpnNXnbp7NTI1ofmf0tP
+        cNTuyVLc8MZt1abJs88+ubDHKk37wd7/6yKa/ET5Mi5EbPm89ejXtgOS2r9cs00kkl07FGan
+        bT65pXz+Lj2vhMknBZdoW1qlcG5msVrpv+Y190XnL3pz8xrC0h4osRRnJBpqMRcVJwIAGJhh
+        RCoDAAA=
+X-CMS-MailID: 20210805095435epcas5p3a9aba4509a1521f611b9bc057e8c053b
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20210805073653epcas5p21b4c2358b7de2b3c21dbc357af957137
+References: <20210805072110.4730-1-krzysztof.kozlowski@canonical.com>
+        <CGME20210805073653epcas5p21b4c2358b7de2b3c21dbc357af957137@epcas5p2.samsung.com>
+        <b0d6ff2a-24af-96c1-62a1-8b920c63e05a@canonical.com>
+        <03d701d789db$f275d290$d76177b0$@samsung.com>
+        <7c019443-6153-f059-418b-3b268750f7a8@canonical.com>
+        <4fc60199-44cd-41ea-9178-92b131d21b73@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Subject: [PATCH v2 14/18] arm64: dts: imx8mm: add GPC node
->=20
-> Add the DT node for the GPC, including all the PGC power domains, some of
-> them are not fully functional yet, as they require interaction with the b=
-lk-ctrls
-> to properly power up/down the peripherals.
->=20
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
 
-Reviewed-by: Peng Fan <peng.fan@nxp.com>
 
-> ---
->  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 107
-> ++++++++++++++++++++++
->  1 file changed, 107 insertions(+)
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzysztof.kozlowski=40canonical.com>
+> Sent: 05 August 2021 15:15
+> To: Alim Akhtar <alim.akhtar=40samsung.com>; 'Rob Herring'
+> <robh+dt=40kernel.org>; devicetree=40vger.kernel.org; linux-arm-
+> kernel=40lists.infradead.org; linux-samsung-soc=40vger.kernel.org; linux-
+> kernel=40vger.kernel.org
+> Cc: 'Chanwoo Choi' <cw00.choi=40samsung.com>; 'Pankaj Dubey'
+> <pankaj.dubey=40samsung.com>; 'Sam Protsenko'
+> <semen.protsenko=40linaro.org>; 'Marc Zyngier' <maz=40kernel.org>
+> Subject: Re: =5BPATCH=5D arm64: dts: exynos: correct GIC CPU interfaces a=
+ddress
+> range on Exynos7
 >=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> index a27e02bee6b4..1cdb475b5895 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> @@ -7,6 +7,8 @@
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/input/input.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/power/imx8mm-power.h>
-> +#include <dt-bindings/reset/imx8mq-reset.h>
->  #include <dt-bindings/thermal/thermal.h>
+> On 05/08/2021 11:43, Krzysztof Kozlowski wrote:
+> > On 05/08/2021 11:26, Alim Akhtar wrote:
+> >> Hi Krzysztof,
+> >>
+> >>> -----Original Message-----
+> >>> From: Krzysztof Kozlowski <krzysztof.kozlowski=40canonical.com>
+> >>> Sent: 05 August 2021 13:07
+> >>> To: Rob Herring <robh+dt=40kernel.org>; devicetree=40vger.kernel.org;
+> >>> linux- arm-kernel=40lists.infradead.org;
+> >>> linux-samsung-soc=40vger.kernel.org; linux- kernel=40vger.kernel.org
+> >>> Cc: Alim Akhtar <alim.akhtar=40samsung.com>; Chanwoo Choi
+> >>> <cw00.choi=40samsung.com>; Pankaj Dubey
+> <pankaj.dubey=40samsung.com>;
+> >>> Sam Protsenko <semen.protsenko=40linaro.org>; Marc Zyngier
+> >>> <maz=40kernel.org>
+> >>> Subject: Re: =5BPATCH=5D arm64: dts: exynos: correct GIC CPU interfac=
+es
+> >>> address range on Exynos7
+> >>>
+> >>> On 05/08/2021 09:21, Krzysztof Kozlowski wrote:
+> >>>> The GIC-400 CPU interfaces address range is defined as
+> >>>> 0x2000-0x3FFF (by ARM).
+> >>>>
+> >>>
+> >> Looking at DDI0471B_gic400_r0p1_trm.pdf, CPU interface range is
+> >> 0x0000 =7E 0x10000
+> >>
+> >>> I underestimated the issue - this is actually bug as there is a
+> >>> GICC_DIR register at offset 0x1000. Therefore:
+> >>>
+> >> Looking at the exynos7 and exynos5433 UMs looks like GICC_DIR is at
+> >> offset 0x2100 (from 0x1100_0000 GIC base) It is possible for you to cr=
+oss
+> check once?
+> >>
+> >
+> > That's a mistake in Exynos manual. GICC_DIR is at 0x1000:
 >=20
->  #include "imx8mm-pinfunc.h"
-> @@ -600,6 +602,111 @@ src: reset-controller@30390000 {
->  				interrupts =3D <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
->  				#reset-cells =3D <1>;
->  			};
-> +
-> +			gpc: gpc@303a0000 {
-> +				compatible =3D "fsl,imx8mm-gpc";
-> +				reg =3D <0x303a0000 0x10000>;
-> +				interrupts =3D <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
-> +				interrupt-parent =3D <&gic>;
-> +				interrupt-controller;
-> +				#interrupt-cells =3D <3>;
-> +
-> +				pgc {
-> +					#address-cells =3D <1>;
-> +					#size-cells =3D <0>;
-> +
-> +					pgc_hsiomix: power-domain@0 {
-> +						#power-domain-cells =3D <0>;
-> +						reg =3D <IMX8MM_POWER_DOMAIN_HSIOMIX>;
-> +						clocks =3D <&clk IMX8MM_CLK_USB_BUS>;
-> +						assigned-clocks =3D <&clk
-> IMX8MM_CLK_USB_BUS>;
-> +						assigned-clock-parents =3D <&clk
-> IMX8MM_SYS_PLL2_500M>;
-> +					};
-> +
-> +					pgc_pcie: power-domain@1 {
-> +						#power-domain-cells =3D <0>;
-> +						reg =3D <IMX8MM_POWER_DOMAIN_PCIE>;
-> +						power-domains =3D <&pgc_hsiomix>;
-> +						clocks =3D <&clk IMX8MM_CLK_PCIE1_ROOT>;
-> +					};
-> +
-> +					pgc_otg1: power-domain@2 {
-> +						#power-domain-cells =3D <0>;
-> +						reg =3D <IMX8MM_POWER_DOMAIN_OTG1>;
-> +						power-domains =3D <&pgc_hsiomix>;
-> +					};
-> +
-> +					pgc_otg2: power-domain@3 {
-> +						#power-domain-cells =3D <0>;
-> +						reg =3D <IMX8MM_POWER_DOMAIN_OTG2>;
-> +						power-domains =3D <&pgc_hsiomix>;
-> +					};
-> +
-> +					pgc_gpumix: power-domain@4 {
-> +						#power-domain-cells =3D <0>;
-> +						reg =3D <IMX8MM_POWER_DOMAIN_GPUMIX>;
-> +						clocks =3D <&clk
-> IMX8MM_CLK_GPU_BUS_ROOT>,
-> +							 <&clk IMX8MM_CLK_GPU_AHB>;
-> +						assigned-clocks =3D <&clk
-> IMX8MM_CLK_GPU_AXI>,
-> +								  <&clk IMX8MM_CLK_GPU_AHB>;
-> +						assigned-clock-parents =3D <&clk
-> IMX8MM_SYS_PLL1_800M>,
-> +									 <&clk
-> IMX8MM_SYS_PLL1_800M>;
-> +						assigned-clock-rates =3D <800000000>,
-> <400000000>;
-> +					};
-> +
-> +					pgc_gpu: power-domain@5 {
-> +						#power-domain-cells =3D <0>;
-> +						reg =3D <IMX8MM_POWER_DOMAIN_GPU>;
-> +						clocks =3D <&clk IMX8MM_CLK_GPU_AHB>,
-> +							 <&clk IMX8MM_CLK_GPU_BUS_ROOT>,
-> +							 <&clk IMX8MM_CLK_GPU2D_ROOT>,
-> +							 <&clk IMX8MM_CLK_GPU3D_ROOT>;
-> +						resets =3D <&src IMX8MQ_RESET_GPU_RESET>;
-> +						power-domains =3D <&pgc_gpumix>;
-> +					};
-> +
-> +					pgc_vpumix: power-domain@6 {
-> +						#power-domain-cells =3D <0>;
-> +						reg =3D <IMX8MM_POWER_DOMAIN_VPUMIX>;
-> +						clocks =3D <&clk
-> IMX8MM_CLK_VPU_DEC_ROOT>;
-> +						assigned-clocks =3D <&clk
-> IMX8MM_CLK_VPU_BUS>;
-> +						assigned-clock-parents =3D <&clk
-> IMX8MM_SYS_PLL1_800M>;
-> +						resets =3D <&src IMX8MQ_RESET_VPU_RESET>;
-> +					};
-> +
-> +					pgc_vpu_g1: power-domain@7 {
-> +						#power-domain-cells =3D <0>;
-> +						reg =3D <IMX8MM_POWER_DOMAIN_VPUG1>;
-> +					};
-> +
-> +					pgc_vpu_g2: power-domain@8 {
-> +						#power-domain-cells =3D <0>;
-> +						reg =3D <IMX8MM_POWER_DOMAIN_VPUG2>;
-> +					};
-> +
-> +					pgc_vpu_h1: power-domain@9 {
-> +						#power-domain-cells =3D <0>;
-> +						reg =3D <IMX8MM_POWER_DOMAIN_VPUH1>;
-> +					};
-> +
-> +					pgc_dispmix: power-domain@10 {
-> +						#power-domain-cells =3D <0>;
-> +						reg =3D <IMX8MM_POWER_DOMAIN_DISPMIX>;
-> +						clocks =3D <&clk
-> IMX8MM_CLK_DISP_APB_ROOT>,
-> +							 <&clk IMX8MM_CLK_DISP_AXI_ROOT>;
-> +						assigned-clocks =3D <&clk
-> IMX8MM_CLK_DISP_AXI>,
-> +								  <&clk IMX8MM_CLK_DISP_APB>;
-> +						assigned-clock-parents =3D <&clk
-> IMX8MM_SYS_PLL2_1000M>,
-> +									 <&clk
-> IMX8MM_SYS_PLL1_800M>;
-> +						assigned-clock-rates =3D <500000000>,
-> <200000000>;
-> +					};
-> +
-> +					pgc_mipi: power-domain@11 {
-> +						#power-domain-cells =3D <0>;
-> +						reg =3D <IMX8MM_POWER_DOMAIN_MIPI>;
-> +					};
-> +				};
-> +			};
->  		};
+> 0x1000 from CPU base offset, so 0x3000 from GIC base.
 >=20
->  		aips2: bus@30400000 {
-> --
-> 2.30.2
+> > https://developer.arm.com/documentation/ddi0471/b/programmers-
+> model/cp
+> > u-interface-register-summary
+> >
+> > We have discussion here:
+> > https://lore.kernel.org/linux-samsung-soc/0277c701-cc25-cdc5-d3b9-cf2c
+> >
+> c2ba4de5=40canonical.com/T/=23m1ced9a28bed27f5cf74e281fb68efe1b57d5609
+> e
+Thanks for pointing to this discussion, I missed this.
+Agreed.
+Feel Free to add
+Reviewed-by: Alim Akhtar <alim.akhtar=40samsung.com>
+
+> >
+> > Range of 0x10000 is definitely wrong as it overlaps with two other
+> > ranges.
+>=20
+>=20
+> Best regards,
+> Krzysztof
 
