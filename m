@@ -2,184 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6ED833E16A5
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 16:14:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9B363E1689
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 16:10:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241619AbhHEOOS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 10:14:18 -0400
-Received: from mo4-p04-ob.smtp.rzone.de ([81.169.146.178]:17421 "EHLO
-        mo4-p04-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240281AbhHEOOR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 10:14:17 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1628172486;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=CliIVqvNzA/bGBlLAYmf7rIejrGR22i5z/kGrFUsuDU=;
-    b=aQQJPEJ0jCM1iMaL2MFUfRGIIzKEaRcDNf2tGiFM8NcjZCfz4p8vQhjt1lrN7k83ZO
-    BzAU7bAQB9qHCReArzr1c6eZ37KgHwnTGuom6o8amMiIRiaD6CzR3lexc1yketsDJ/Jg
-    pIF7LOcdEkFt83UmjT+B1Z+Aoas3a6BwuStYAzUjWVtM1AIDYeiEiC30DeuJaIjTkK12
-    dEduqK0sP6iJghpdd/R5/cmb1H9RTxOFL47/C8jmtBLJKxB7OIZeELY0TjU2sBEBHQJb
-    MM/BWyMduC99sODYMs4Lx+Lwpd9KaVCIb4CMIanxDUVLhkiSzvEboTPjsPUg6/AjtFml
-    TKJg==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o12DNOsPj0lByOdbLzk="
-X-RZG-CLASS-ID: mo00
-Received: from iMac.fritz.box
-    by smtp.strato.de (RZmta 47.31.0 DYNA|AUTH)
-    with ESMTPSA id Q02727x75E85789
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Thu, 5 Aug 2021 16:08:05 +0200 (CEST)
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-To:     Paul Cercueil <paul@crapouillou.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        "H. Nikolaus Schaller" <hns@goldelico.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
-        Paul Boddie <paul@boddie.org.uk>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org
-Subject: [PATCH v2 8/8] [RFC] drm/ingenic: convert to component framework for jz4780 hdmi
-Date:   Thu,  5 Aug 2021 16:07:57 +0200
-Message-Id: <77554dd2612f418f6ab74a8be06c82b71410e0e6.1628172477.git.hns@goldelico.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1628172477.git.hns@goldelico.com>
-References: <cover.1628172477.git.hns@goldelico.com>
+        id S233046AbhHEOKi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 10:10:38 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:56452 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237597AbhHEOKi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Aug 2021 10:10:38 -0400
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1mBe4f-0007Cv-Qb; Thu, 05 Aug 2021 16:10:17 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Jianqun Xu <jay.xu@rock-chips.com>,
+        Peter Geis <pgwipeout@gmail.com>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Johan Jonker <jbx6244@gmail.com>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/3] soc: rockchip: io-domain: add rk3568 support
+Date:   Thu, 05 Aug 2021 16:10:17 +0200
+Message-ID: <2984191.q0ZmV6gNhb@diego>
+In-Reply-To: <CAMdYzYpxvEbc-gAk6xEkec-bXaqe7wNM0awRVAPV64v0OVcGSg@mail.gmail.com>
+References: <20210527082905.1447591-1-jay.xu@rock-chips.com> <20210527082905.1447591-3-jay.xu@rock-chips.com> <CAMdYzYpxvEbc-gAk6xEkec-bXaqe7wNM0awRVAPV64v0OVcGSg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch attempts to convert the ingenic-dw-hdmi driver
-into a version that uses the component framework.
+Am Donnerstag, 5. August 2021, 15:02:21 CEST schrieb Peter Geis:
+> On Thu, May 27, 2021 at 4:31 AM Jianqun Xu <jay.xu@rock-chips.com> wrote:
+> >
+> > The io-domain registers on RK3568 SoCs have three separated bits to
+> > enable/disable the 1.8v/2.5v/3.3v power.
+> >
+> > This patch make the write to be a operation, allow rk3568 uses a private
+> > register set function.
+> >
+> > Since the 2.5v is not used on RK3568, so the driver only set
+> > 1.8v [enable] + 3.3v [disable] for 1.8v mode
+> > 1.8v [disable] + 3.3v [enable] for 3.3v mode
+> 
+> Good Morning,
+> 
+> I see this still hasn't landed, but for what it's worth I've been
+> running it for months and it seems to work well.
+> (Also it's necessary for sdio support)
+> 
+> Tested on Quartz64 Model A, Quartz64 Model B.
+> So - Tested-by: Peter Geis <pgwipeout@gmail.com>
 
-Unfortunately the new version does not work.
+Just for people reading along, Michael has picked this up and adapted
+the binding addition to the already landed yaml conversion, see
 
-Debugging shows that ingenic_dw_hdmi_bind() is never called.
+https://lore.kernel.org/r/20210805120107.27007-1-michael.riesch@wolfvision.net
 
-Suggestions for reasons and fixes are welcome.
 
-Signed-off-by: Paul Boddie <paul@boddie.org.uk>
-Co-authored-by: Paul Boddie <paul@boddie.org.uk>
-Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
----
- drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c | 57 ++++++++++++++++++-----
- 1 file changed, 46 insertions(+), 11 deletions(-)
+Heiko
 
-diff --git a/drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c b/drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
-index 61e7a57d7cec1..a5ba0b69baa8c 100644
---- a/drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
-+++ b/drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
-@@ -1,17 +1,24 @@
- // SPDX-License-Identifier: GPL-2.0
- /* Copyright (C) 2011-2013 Freescale Semiconductor, Inc.
-- * Copyright (C) 2019, 2020 Paul Boddie <paul@boddie.org.uk>
-+ * Copyright (C) 2019, 2020, 2021 Paul Boddie <paul@boddie.org.uk>
-  *
-  * Derived from dw_hdmi-imx.c with i.MX portions removed.
-- * Probe and remove operations derived from rcar_dw_hdmi.c.
-  */
- 
-+#include <linux/component.h>
- #include <linux/module.h>
- #include <linux/platform_device.h>
- #include <linux/regmap.h>
- 
- #include <drm/bridge/dw_hdmi.h>
- #include <drm/drm_of.h>
-+#include <drm/drm_modeset_helper_vtables.h>
-+#include <drm/drm_simple_kms_helper.h>
-+
-+struct ingenic_dw_hdmi_encoder {
-+	struct drm_encoder encoder;
-+	struct dw_hdmi *hdmi;
-+};
- 
- static const struct dw_hdmi_mpll_config ingenic_mpll_cfg[] = {
- 	{ 45250000,  { { 0x01e0, 0x0000 }, { 0x21e1, 0x0000 }, { 0x41e2, 0x0000 } } },
-@@ -87,24 +94,52 @@ static const struct of_device_id ingenic_dw_hdmi_dt_ids[] = {
- };
- MODULE_DEVICE_TABLE(of, ingenic_dw_hdmi_dt_ids);
- 
--static int ingenic_dw_hdmi_probe(struct platform_device *pdev)
-+static int ingenic_dw_hdmi_bind(struct device *dev, struct device *master,
-+				void *data)
- {
--	struct dw_hdmi *hdmi;
-+	struct platform_device *pdev = to_platform_device(dev);
-+	struct drm_device *drm = data;
-+	struct drm_encoder *enc;
-+	struct ingenic_dw_hdmi_encoder *hdmi_encoder;
- 
--	hdmi = dw_hdmi_probe(pdev, &ingenic_dw_hdmi_plat_data);
--	if (IS_ERR(hdmi))
--		return PTR_ERR(hdmi);
-+	hdmi_encoder = drmm_simple_encoder_alloc(drm, struct ingenic_dw_hdmi_encoder,
-+						 encoder, DRM_MODE_ENCODER_TMDS);
-+	if (IS_ERR(hdmi_encoder))
-+		return PTR_ERR(hdmi_encoder);
- 
--	platform_set_drvdata(pdev, hdmi);
-+	enc = &hdmi_encoder->encoder;
-+	drm_encoder_helper_add(enc, NULL);
-+	hdmi_encoder->hdmi = dw_hdmi_bind(pdev, enc, &ingenic_dw_hdmi_plat_data);
-+
-+	if (IS_ERR(hdmi_encoder->hdmi))
-+		return PTR_ERR(hdmi_encoder->hdmi);
-+
-+	dev_set_drvdata(dev, hdmi_encoder->hdmi);
- 
- 	return 0;
- }
- 
--static int ingenic_dw_hdmi_remove(struct platform_device *pdev)
-+static void ingenic_dw_hdmi_unbind(struct device *dev, struct device *master,
-+				   void *data)
-+{
-+	struct dw_hdmi *hdmi = dev_get_drvdata(dev);
-+
-+	dw_hdmi_unbind(hdmi);
-+}
-+
-+static const struct component_ops ingenic_dw_hdmi_ops = {
-+	.bind	= ingenic_dw_hdmi_bind,
-+	.unbind	= ingenic_dw_hdmi_unbind,
-+};
-+
-+static int ingenic_dw_hdmi_probe(struct platform_device *pdev)
- {
--	struct dw_hdmi *hdmi = platform_get_drvdata(pdev);
-+	return component_add(&pdev->dev, &ingenic_dw_hdmi_ops);
-+}
- 
--	dw_hdmi_remove(hdmi);
-+static int ingenic_dw_hdmi_remove(struct platform_device *pdev)
-+{
-+	component_del(&pdev->dev, &ingenic_dw_hdmi_ops);
- 
- 	return 0;
- }
--- 
-2.31.1
+> 
+> >
+> > There is not register order requirement which has been cleared by our IC
+> > team.
+> >
+> > Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
+> > ---
+> > v2:
+> > - none
+> >  drivers/soc/rockchip/io-domain.c | 88 +++++++++++++++++++++++++++++---
+> >  1 file changed, 80 insertions(+), 8 deletions(-)
+> >
+> > diff --git a/drivers/soc/rockchip/io-domain.c b/drivers/soc/rockchip/io-domain.c
+> > index cf8182fc3642..13c446fd33a9 100644
+> > --- a/drivers/soc/rockchip/io-domain.c
+> > +++ b/drivers/soc/rockchip/io-domain.c
+> > @@ -51,13 +51,11 @@
+> >  #define RK3399_PMUGRF_CON0_VSEL                BIT(8)
+> >  #define RK3399_PMUGRF_VSEL_SUPPLY_NUM  9
+> >
+> > -struct rockchip_iodomain;
+> > +#define RK3568_PMU_GRF_IO_VSEL0                (0x0140)
+> > +#define RK3568_PMU_GRF_IO_VSEL1                (0x0144)
+> > +#define RK3568_PMU_GRF_IO_VSEL2                (0x0148)
+> >
+> > -struct rockchip_iodomain_soc_data {
+> > -       int grf_offset;
+> > -       const char *supply_names[MAX_SUPPLIES];
+> > -       void (*init)(struct rockchip_iodomain *iod);
+> > -};
+> > +struct rockchip_iodomain;
+> >
+> >  struct rockchip_iodomain_supply {
+> >         struct rockchip_iodomain *iod;
+> > @@ -66,13 +64,62 @@ struct rockchip_iodomain_supply {
+> >         int idx;
+> >  };
+> >
+> > +struct rockchip_iodomain_soc_data {
+> > +       int grf_offset;
+> > +       const char *supply_names[MAX_SUPPLIES];
+> > +       void (*init)(struct rockchip_iodomain *iod);
+> > +       int (*write)(struct rockchip_iodomain_supply *supply, int uV);
+> > +};
+> > +
+> >  struct rockchip_iodomain {
+> >         struct device *dev;
+> >         struct regmap *grf;
+> >         const struct rockchip_iodomain_soc_data *soc_data;
+> >         struct rockchip_iodomain_supply supplies[MAX_SUPPLIES];
+> > +       int (*write)(struct rockchip_iodomain_supply *supply, int uV);
+> >  };
+> >
+> > +static int rk3568_iodomain_write(struct rockchip_iodomain_supply *supply, int uV)
+> > +{
+> > +       struct rockchip_iodomain *iod = supply->iod;
+> > +       u32 is_3v3 = uV > MAX_VOLTAGE_1_8;
+> > +       u32 val0, val1;
+> > +       int b;
+> > +
+> > +       switch (supply->idx) {
+> > +       case 0: /* pmuio1 */
+> > +               break;
+> > +       case 1: /* pmuio2 */
+> > +               b = supply->idx;
+> > +               val0 = BIT(16 + b) | (is_3v3 ? 0 : BIT(b));
+> > +               b = supply->idx + 4;
+> > +               val1 = BIT(16 + b) | (is_3v3 ? BIT(b) : 0);
+> > +
+> > +               regmap_write(iod->grf, RK3568_PMU_GRF_IO_VSEL2, val0);
+> > +               regmap_write(iod->grf, RK3568_PMU_GRF_IO_VSEL2, val1);
+> > +               break;
+> > +       case 3: /* vccio2 */
+> > +               break;
+> > +       case 2: /* vccio1 */
+> > +       case 4: /* vccio3 */
+> > +       case 5: /* vccio4 */
+> > +       case 6: /* vccio5 */
+> > +       case 7: /* vccio6 */
+> > +       case 8: /* vccio7 */
+> > +               b = supply->idx - 1;
+> > +               val0 = BIT(16 + b) | (is_3v3 ? 0 : BIT(b));
+> > +               val1 = BIT(16 + b) | (is_3v3 ? BIT(b) : 0);
+> > +
+> > +               regmap_write(iod->grf, RK3568_PMU_GRF_IO_VSEL0, val0);
+> > +               regmap_write(iod->grf, RK3568_PMU_GRF_IO_VSEL1, val1);
+> > +               break;
+> > +       default:
+> > +               return -EINVAL;
+> > +       };
+> > +
+> > +       return 0;
+> > +}
+> > +
+> >  static int rockchip_iodomain_write(struct rockchip_iodomain_supply *supply,
+> >                                    int uV)
+> >  {
+> > @@ -136,7 +183,7 @@ static int rockchip_iodomain_notify(struct notifier_block *nb,
+> >                         return NOTIFY_BAD;
+> >         }
+> >
+> > -       ret = rockchip_iodomain_write(supply, uV);
+> > +       ret = supply->iod->write(supply, uV);
+> >         if (ret && event == REGULATOR_EVENT_PRE_VOLTAGE_CHANGE)
+> >                 return NOTIFY_BAD;
+> >
+> > @@ -398,6 +445,22 @@ static const struct rockchip_iodomain_soc_data soc_data_rk3399_pmu = {
+> >         .init = rk3399_pmu_iodomain_init,
+> >  };
+> >
+> > +static const struct rockchip_iodomain_soc_data soc_data_rk3568_pmu = {
+> > +       .grf_offset = 0x140,
+> > +       .supply_names = {
+> > +               "pmuio1",
+> > +               "pmuio2",
+> > +               "vccio1",
+> > +               "vccio2",
+> > +               "vccio3",
+> > +               "vccio4",
+> > +               "vccio5",
+> > +               "vccio6",
+> > +               "vccio7",
+> > +       },
+> > +       .write = rk3568_iodomain_write,
+> > +};
+> > +
+> >  static const struct rockchip_iodomain_soc_data soc_data_rv1108 = {
+> >         .grf_offset = 0x404,
+> >         .supply_names = {
+> > @@ -469,6 +532,10 @@ static const struct of_device_id rockchip_iodomain_match[] = {
+> >                 .compatible = "rockchip,rk3399-pmu-io-voltage-domain",
+> >                 .data = &soc_data_rk3399_pmu
+> >         },
+> > +       {
+> > +               .compatible = "rockchip,rk3568-pmu-io-voltage-domain",
+> > +               .data = &soc_data_rk3568_pmu
+> > +       },
+> >         {
+> >                 .compatible = "rockchip,rv1108-io-voltage-domain",
+> >                 .data = &soc_data_rv1108
+> > @@ -502,6 +569,11 @@ static int rockchip_iodomain_probe(struct platform_device *pdev)
+> >         match = of_match_node(rockchip_iodomain_match, np);
+> >         iod->soc_data = match->data;
+> >
+> > +       if (iod->soc_data->write)
+> > +               iod->write = iod->soc_data->write;
+> > +       else
+> > +               iod->write = rockchip_iodomain_write;
+> > +
+> >         parent = pdev->dev.parent;
+> >         if (parent && parent->of_node) {
+> >                 iod->grf = syscon_node_to_regmap(parent->of_node);
+> > @@ -562,7 +634,7 @@ static int rockchip_iodomain_probe(struct platform_device *pdev)
+> >                 supply->reg = reg;
+> >                 supply->nb.notifier_call = rockchip_iodomain_notify;
+> >
+> > -               ret = rockchip_iodomain_write(supply, uV);
+> > +               ret = iod->write(supply, uV);
+> >                 if (ret) {
+> >                         supply->reg = NULL;
+> >                         goto unreg_notify;
+> > --
+> > 2.25.1
+> >
+> >
+> >
+> >
+> > _______________________________________________
+> > Linux-rockchip mailing list
+> > Linux-rockchip@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> 
+
+
+
 
