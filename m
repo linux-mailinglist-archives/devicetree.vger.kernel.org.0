@@ -2,64 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42CBA3E0C9C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 05:01:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1798B3E0CC3
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 05:27:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235755AbhHEDBb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 23:01:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55218 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231617AbhHEDBa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 23:01:30 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E26E9C061765
-        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 20:01:16 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: ezequiel)
-        with ESMTPSA id B63181F43B34
-From:   Ezequiel Garcia <ezequiel@collabora.com>
-To:     devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@st.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>
-Subject: [PATCH v3 4/4] arm64: dts: rockchip: Enable the GPU on Quartz64 Model A
-Date:   Wed,  4 Aug 2021 23:59:48 -0300
-Message-Id: <20210805025948.10900-5-ezequiel@collabora.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210805025948.10900-1-ezequiel@collabora.com>
-References: <20210805025948.10900-1-ezequiel@collabora.com>
+        id S238480AbhHED1k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 23:27:40 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:56960 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231321AbhHED1k (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Aug 2021 23:27:40 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1628134046; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=83ejBFxG6PpaqEIAxOQakS7CpkA8CGMBWmlvjt7MCsA=; b=dfQCdwfCH7R9COxYwJ+Lj1oOxwFBbB6B0zudcs1COFvGvDwuja3DTqq8yatBuxa276hFUwKI
+ wGSkCvkY1rlp+6JPew2NJmNbnX/6BUgBoDwj1HM+5pNXpKReMUzUHq+8+zXXvqPxjEs8MmsC
+ iWkzmw9dVCW7+ZeOyvK6SDLHf4M=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
+ 610b5a9e041a739c4626865f (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 05 Aug 2021 03:27:26
+ GMT
+Sender: rnayak=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 5129CC4360C; Thu,  5 Aug 2021 03:27:25 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.0 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [192.168.1.102] (unknown [49.207.220.239])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rnayak)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 62504C433F1;
+        Thu,  5 Aug 2021 03:27:21 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 62504C433F1
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sc7280-idp: Add device tree
+ files for IDP2
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, skakit@codeaurora.org,
+        swboyd@chromium.org, dianders@chromium.org, mka@chromium.org
+References: <1628082199-17002-1-git-send-email-rnayak@codeaurora.org>
+ <1628082199-17002-3-git-send-email-rnayak@codeaurora.org>
+ <0cb8bf79-697c-ff16-e37e-d1c783f8a207@somainline.org>
+From:   Rajendra Nayak <rnayak@codeaurora.org>
+Message-ID: <8aaef1a2-269d-1077-7996-793045a04f7c@codeaurora.org>
+Date:   Thu, 5 Aug 2021 08:57:18 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <0cb8bf79-697c-ff16-e37e-d1c783f8a207@somainline.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the GPU core on the Pine64 Quartz64 Model A.
 
-Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+On 8/5/2021 1:17 AM, Konrad Dybcio wrote:
+> 
+> On 04.08.2021 15:03, Rajendra Nayak wrote:
+>> Move all the common device tree bits for both sc7280 IDPs into a
+>> sc7280-idp.dtsi and create 2 different dts files (sc7280-idp.dts
+>> and sc7280-idp2.dts) in order to manage differences across the
+>> IDP SKU1 and SKU2 Boards.
+>> PMR735A is present on IDP board only and is not present on IDP2.
+>>
+>> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/Makefile                  |   1 +
+>>   arch/arm64/boot/dts/qcom/sc7280-idp.dts            | 328 +--------------------
+> 
+> I'm still for calling this sc7280-idp-sku1/2.dts, but other than that it looks good.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-index b239f314b38a..2114c7404a07 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-@@ -147,6 +147,11 @@ &gmac1m0_clkinout
- 	status = "okay";
- };
- 
-+&gpu {
-+	mali-supply = <&vdd_gpu>;
-+	status = "okay";
-+};
-+
- &i2c0 {
- 	status = "okay";
- 
+sure, I'll just wait for others to chime in, and if that's the consensus I would be
+happy to re-spin.
+  
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+
+Thanks.
+
 -- 
-2.32.0
-
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
