@@ -2,244 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D9B363E1689
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 16:10:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1803A3E16FC
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 16:29:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233046AbhHEOKi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 10:10:38 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:56452 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237597AbhHEOKi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Aug 2021 10:10:38 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1mBe4f-0007Cv-Qb; Thu, 05 Aug 2021 16:10:17 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Jianqun Xu <jay.xu@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Johan Jonker <jbx6244@gmail.com>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/3] soc: rockchip: io-domain: add rk3568 support
-Date:   Thu, 05 Aug 2021 16:10:17 +0200
-Message-ID: <2984191.q0ZmV6gNhb@diego>
-In-Reply-To: <CAMdYzYpxvEbc-gAk6xEkec-bXaqe7wNM0awRVAPV64v0OVcGSg@mail.gmail.com>
-References: <20210527082905.1447591-1-jay.xu@rock-chips.com> <20210527082905.1447591-3-jay.xu@rock-chips.com> <CAMdYzYpxvEbc-gAk6xEkec-bXaqe7wNM0awRVAPV64v0OVcGSg@mail.gmail.com>
+        id S241962AbhHEO35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 10:29:57 -0400
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:40964 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S240801AbhHEO35 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 10:29:57 -0400
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 175EBmGX031318;
+        Thu, 5 Aug 2021 16:29:23 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=64HVz0Gg+wUo7z89cmaaEfQ54A59MSPLHnaUZCxYN+8=;
+ b=4L4CeUNf2sOsb8dX3pB3ooJ6Sbv97tbMXVQiszaUfnQ1dr/ytgBL5M5jfcezU+g66R45
+ tvaUPcthHSfmduxSGx7CsZMlX99N4BDWHGISL5LdG6pcgAb5wuiFBNZuJ6H6bmSq4M2k
+ WBh0uxqTxp54H/erqxdmyKxrlmR7MmORGbYYyZW5sBL+HbmwHpLx0HA3XxJLBqaiO1lG
+ UmwkhNgF57MZQcIEDX1N7rGWSQPxHoQPmdrl2vg4SwdkwfashSazYfhOd7i8SjA0u4W3
+ R9hdzF3LlxDCsDd4LNtjDLigyz47TTcxl7Pi0cSkef0OOmudIEu0BqaVgoccTi4UkWeg yQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 3a854tkmf9-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 05 Aug 2021 16:29:23 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1C97410002A;
+        Thu,  5 Aug 2021 16:29:22 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 008BD22FA5A;
+        Thu,  5 Aug 2021 16:29:21 +0200 (CEST)
+Received: from lmecxl0912.lme.st.com (10.75.127.45) by SFHDAG2NODE3.st.com
+ (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 5 Aug
+ 2021 16:29:21 +0200
+Subject: Re: [PATCH 1/7] dt-bindings: pinctrl: stm32: add new compatible for
+ STM32MP135 SoC
+To:     Linus Walleij <linus.walleij@linaro.org>, <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>, <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Jonathan Corbet <corbet@lwn.net>
+CC:     <linux-gpio@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+References: <20210723132810.25728-1-alexandre.torgue@foss.st.com>
+ <20210723132810.25728-2-alexandre.torgue@foss.st.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Message-ID: <1d7fe9a6-bf37-e8ca-1bc3-fda536a10359@foss.st.com>
+Date:   Thu, 5 Aug 2021 16:29:20 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+In-Reply-To: <20210723132810.25728-2-alexandre.torgue@foss.st.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG1NODE3.st.com (10.75.127.3) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
+ definitions=2021-08-05_05:2021-08-05,2021-08-05 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Donnerstag, 5. August 2021, 15:02:21 CEST schrieb Peter Geis:
-> On Thu, May 27, 2021 at 4:31 AM Jianqun Xu <jay.xu@rock-chips.com> wrote:
-> >
-> > The io-domain registers on RK3568 SoCs have three separated bits to
-> > enable/disable the 1.8v/2.5v/3.3v power.
-> >
-> > This patch make the write to be a operation, allow rk3568 uses a private
-> > register set function.
-> >
-> > Since the 2.5v is not used on RK3568, so the driver only set
-> > 1.8v [enable] + 3.3v [disable] for 1.8v mode
-> > 1.8v [disable] + 3.3v [enable] for 3.3v mode
+Hi Linus
+
+On 7/23/21 3:28 PM, Alexandre Torgue wrote:
+> New compatible to manage ball out and pin muxing of STM32MP135 SoC.
 > 
-> Good Morning,
+> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
 > 
-> I see this still hasn't landed, but for what it's worth I've been
-> running it for months and it seems to work well.
-> (Also it's necessary for sdio support)
-> 
-> Tested on Quartz64 Model A, Quartz64 Model B.
-> So - Tested-by: Peter Geis <pgwipeout@gmail.com>
-
-Just for people reading along, Michael has picked this up and adapted
-the binding addition to the already landed yaml conversion, see
-
-https://lore.kernel.org/r/20210805120107.27007-1-michael.riesch@wolfvision.net
-
-
-Heiko
-
-> 
-> >
-> > There is not register order requirement which has been cleared by our IC
-> > team.
-> >
-> > Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
-> > ---
-> > v2:
-> > - none
-> >  drivers/soc/rockchip/io-domain.c | 88 +++++++++++++++++++++++++++++---
-> >  1 file changed, 80 insertions(+), 8 deletions(-)
-> >
-> > diff --git a/drivers/soc/rockchip/io-domain.c b/drivers/soc/rockchip/io-domain.c
-> > index cf8182fc3642..13c446fd33a9 100644
-> > --- a/drivers/soc/rockchip/io-domain.c
-> > +++ b/drivers/soc/rockchip/io-domain.c
-> > @@ -51,13 +51,11 @@
-> >  #define RK3399_PMUGRF_CON0_VSEL                BIT(8)
-> >  #define RK3399_PMUGRF_VSEL_SUPPLY_NUM  9
-> >
-> > -struct rockchip_iodomain;
-> > +#define RK3568_PMU_GRF_IO_VSEL0                (0x0140)
-> > +#define RK3568_PMU_GRF_IO_VSEL1                (0x0144)
-> > +#define RK3568_PMU_GRF_IO_VSEL2                (0x0148)
-> >
-> > -struct rockchip_iodomain_soc_data {
-> > -       int grf_offset;
-> > -       const char *supply_names[MAX_SUPPLIES];
-> > -       void (*init)(struct rockchip_iodomain *iod);
-> > -};
-> > +struct rockchip_iodomain;
-> >
-> >  struct rockchip_iodomain_supply {
-> >         struct rockchip_iodomain *iod;
-> > @@ -66,13 +64,62 @@ struct rockchip_iodomain_supply {
-> >         int idx;
-> >  };
-> >
-> > +struct rockchip_iodomain_soc_data {
-> > +       int grf_offset;
-> > +       const char *supply_names[MAX_SUPPLIES];
-> > +       void (*init)(struct rockchip_iodomain *iod);
-> > +       int (*write)(struct rockchip_iodomain_supply *supply, int uV);
-> > +};
-> > +
-> >  struct rockchip_iodomain {
-> >         struct device *dev;
-> >         struct regmap *grf;
-> >         const struct rockchip_iodomain_soc_data *soc_data;
-> >         struct rockchip_iodomain_supply supplies[MAX_SUPPLIES];
-> > +       int (*write)(struct rockchip_iodomain_supply *supply, int uV);
-> >  };
-> >
-> > +static int rk3568_iodomain_write(struct rockchip_iodomain_supply *supply, int uV)
-> > +{
-> > +       struct rockchip_iodomain *iod = supply->iod;
-> > +       u32 is_3v3 = uV > MAX_VOLTAGE_1_8;
-> > +       u32 val0, val1;
-> > +       int b;
-> > +
-> > +       switch (supply->idx) {
-> > +       case 0: /* pmuio1 */
-> > +               break;
-> > +       case 1: /* pmuio2 */
-> > +               b = supply->idx;
-> > +               val0 = BIT(16 + b) | (is_3v3 ? 0 : BIT(b));
-> > +               b = supply->idx + 4;
-> > +               val1 = BIT(16 + b) | (is_3v3 ? BIT(b) : 0);
-> > +
-> > +               regmap_write(iod->grf, RK3568_PMU_GRF_IO_VSEL2, val0);
-> > +               regmap_write(iod->grf, RK3568_PMU_GRF_IO_VSEL2, val1);
-> > +               break;
-> > +       case 3: /* vccio2 */
-> > +               break;
-> > +       case 2: /* vccio1 */
-> > +       case 4: /* vccio3 */
-> > +       case 5: /* vccio4 */
-> > +       case 6: /* vccio5 */
-> > +       case 7: /* vccio6 */
-> > +       case 8: /* vccio7 */
-> > +               b = supply->idx - 1;
-> > +               val0 = BIT(16 + b) | (is_3v3 ? 0 : BIT(b));
-> > +               val1 = BIT(16 + b) | (is_3v3 ? BIT(b) : 0);
-> > +
-> > +               regmap_write(iod->grf, RK3568_PMU_GRF_IO_VSEL0, val0);
-> > +               regmap_write(iod->grf, RK3568_PMU_GRF_IO_VSEL1, val1);
-> > +               break;
-> > +       default:
-> > +               return -EINVAL;
-> > +       };
-> > +
-> > +       return 0;
-> > +}
-> > +
-> >  static int rockchip_iodomain_write(struct rockchip_iodomain_supply *supply,
-> >                                    int uV)
-> >  {
-> > @@ -136,7 +183,7 @@ static int rockchip_iodomain_notify(struct notifier_block *nb,
-> >                         return NOTIFY_BAD;
-> >         }
-> >
-> > -       ret = rockchip_iodomain_write(supply, uV);
-> > +       ret = supply->iod->write(supply, uV);
-> >         if (ret && event == REGULATOR_EVENT_PRE_VOLTAGE_CHANGE)
-> >                 return NOTIFY_BAD;
-> >
-> > @@ -398,6 +445,22 @@ static const struct rockchip_iodomain_soc_data soc_data_rk3399_pmu = {
-> >         .init = rk3399_pmu_iodomain_init,
-> >  };
-> >
-> > +static const struct rockchip_iodomain_soc_data soc_data_rk3568_pmu = {
-> > +       .grf_offset = 0x140,
-> > +       .supply_names = {
-> > +               "pmuio1",
-> > +               "pmuio2",
-> > +               "vccio1",
-> > +               "vccio2",
-> > +               "vccio3",
-> > +               "vccio4",
-> > +               "vccio5",
-> > +               "vccio6",
-> > +               "vccio7",
-> > +       },
-> > +       .write = rk3568_iodomain_write,
-> > +};
-> > +
-> >  static const struct rockchip_iodomain_soc_data soc_data_rv1108 = {
-> >         .grf_offset = 0x404,
-> >         .supply_names = {
-> > @@ -469,6 +532,10 @@ static const struct of_device_id rockchip_iodomain_match[] = {
-> >                 .compatible = "rockchip,rk3399-pmu-io-voltage-domain",
-> >                 .data = &soc_data_rk3399_pmu
-> >         },
-> > +       {
-> > +               .compatible = "rockchip,rk3568-pmu-io-voltage-domain",
-> > +               .data = &soc_data_rk3568_pmu
-> > +       },
-> >         {
-> >                 .compatible = "rockchip,rv1108-io-voltage-domain",
-> >                 .data = &soc_data_rv1108
-> > @@ -502,6 +569,11 @@ static int rockchip_iodomain_probe(struct platform_device *pdev)
-> >         match = of_match_node(rockchip_iodomain_match, np);
-> >         iod->soc_data = match->data;
-> >
-> > +       if (iod->soc_data->write)
-> > +               iod->write = iod->soc_data->write;
-> > +       else
-> > +               iod->write = rockchip_iodomain_write;
-> > +
-> >         parent = pdev->dev.parent;
-> >         if (parent && parent->of_node) {
-> >                 iod->grf = syscon_node_to_regmap(parent->of_node);
-> > @@ -562,7 +634,7 @@ static int rockchip_iodomain_probe(struct platform_device *pdev)
-> >                 supply->reg = reg;
-> >                 supply->nb.notifier_call = rockchip_iodomain_notify;
-> >
-> > -               ret = rockchip_iodomain_write(supply, uV);
-> > +               ret = iod->write(supply, uV);
-> >                 if (ret) {
-> >                         supply->reg = NULL;
-> >                         goto unreg_notify;
-> > --
-> > 2.25.1
-> >
-> >
-> >
-> >
-> > _______________________________________________
-> > Linux-rockchip mailing list
-> > Linux-rockchip@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> diff --git a/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
+> index 72877544ca78..dfee6d38a701 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
+> @@ -24,6 +24,7 @@ properties:
+>         - st,stm32f746-pinctrl
+>         - st,stm32f769-pinctrl
+>         - st,stm32h743-pinctrl
+> +      - st,stm32mp135-pinctrl
+>         - st,stm32mp157-pinctrl
+>         - st,stm32mp157-z-pinctrl
+>   
 > 
 
+If you are ok with this patch, can I take it in my tree to avoid yaml 
+validation issue ? If you disagree I'll wait the next cycle to take DT 
+patches.
 
-
-
+cheers
+alex
