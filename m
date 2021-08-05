@@ -2,131 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A5C223E1068
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 10:37:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A34B03E108A
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 10:48:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234841AbhHEIhx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 04:37:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45820 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231154AbhHEIhx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 04:37:53 -0400
-Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BE16C061765;
-        Thu,  5 Aug 2021 01:37:38 -0700 (PDT)
-Received: by mail-io1-xd32.google.com with SMTP id s184so5746139ios.2;
-        Thu, 05 Aug 2021 01:37:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=9TcUSgLl2dudlEV2Jarkl/ZU40krT4omoii/5z/6FNc=;
-        b=VKj9VAa8+Z2erKG8jBl5R8wVbAqltnG2jY6BZIlZUeDN9vMHAeWUXOoj94xufMFtr4
-         WA3TtE9hqd7EsWhdTw7YrGMndMF+Ng7m2OHVd4HPesBlOSkRg4JHwX+ZX9qDqmtG7amj
-         G4oGvNSKOWM4WYg2+YzYnrBRo1ZdCqaH+fJTe9nWfL1Ijjn+MICORA0pYEzyUjkoUs9T
-         s89c1gwJd0X4EGXZncAkD7MZNjZaWc8Wd3RuDN8WlXUDIDgEzizVcovj1G9sW2A6a5vd
-         Wi2WcFf5WIti003m2Ns+x1KMXrPK1Ddr34i29zzLCFAUdCINHj29z+wRbPZ6ATtRrdBb
-         kL7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=9TcUSgLl2dudlEV2Jarkl/ZU40krT4omoii/5z/6FNc=;
-        b=rhyvmwXg762zFj/vhZjfcMT+D7yW9zQtUnKLjnFm5neNWq/FO6/FDoxEs8lIqaJlCz
-         c6fymVfRwCVt9gTaW/6H2vpIn3jEnDELzIbGstf4yUUf7DwXEceWr/Thg04meTBLyoi4
-         cFfn8fVTVV1d7HvmSH9nvAomesGiifjvkZ3Tc/2ekcKXwYmIUikQplA+fXB9TWztTE5k
-         LvShZwonAfX+/7mD6yomzXIag8EdcDfHdsOpmkUMMSi2MbeC1qDeV7djBehQeajQH+67
-         Agx43Moa/5QQGl+evwQtm4PqLLmvY5j8D/oI8cGVj1hYBR9uUvpPX5h3dJlrnH6FF83c
-         G9Rg==
-X-Gm-Message-State: AOAM5333cPYUmqSJShJGegoR/rA5itOdDGKonW4O+YABuNu6iUYnqN1s
-        Jsg1mMJOAtcpliuPSbnCutlNdsSPF+E6bthOxHk=
-X-Google-Smtp-Source: ABdhPJychenUBvwLJgXVQE767sPn1pgz0quWLirlavjOKXwMQbJYNrJIWDCpQDCcMcBflx5C7yRn0Mok7aN6gYU9mgU=
-X-Received: by 2002:a6b:ef19:: with SMTP id k25mr381112ioh.42.1628152657792;
- Thu, 05 Aug 2021 01:37:37 -0700 (PDT)
+        id S237388AbhHEIsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 04:48:24 -0400
+Received: from muru.com ([72.249.23.125]:35994 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232009AbhHEIsY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Aug 2021 04:48:24 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 036C68061;
+        Thu,  5 Aug 2021 08:48:29 +0000 (UTC)
+Date:   Thu, 5 Aug 2021 11:48:08 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Paul Barker <paul.barker@sancloud.com>
+Cc:     Robert Nelson <robertcnelson@gmail.com>,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 0/4] Add support for the SanCloud BBE Lite
+Message-ID: <YQulyGLNNkyYcBSY@atomide.com>
+References: <20210720083928.10404-1-paul.barker@sancloud.com>
+ <YP/J+YC6GFeH+I5j@atomide.com>
+ <20210804115221.5650e440.paul.barker@sancloud.com>
 MIME-Version: 1.0
-References: <20210803084456.198-1-alistair@alistair23.me> <20210803084456.198-9-alistair@alistair23.me>
- <YQqLiAtAtREWTvD7@google.com> <CAKmqyKO_QeNTRZx9P9vhX7DQoBfE6igOtJroTEer-OKoVO-RGQ@mail.gmail.com>
- <YQugrBPkiSTfh8qB@google.com>
-In-Reply-To: <YQugrBPkiSTfh8qB@google.com>
-From:   Alistair Francis <alistair23@gmail.com>
-Date:   Thu, 5 Aug 2021 18:37:09 +1000
-Message-ID: <CAKmqyKMT6mDZuczsSbztiSVQsfYX1MNr6VsO_Y_3LEZ+w+YzcA@mail.gmail.com>
-Subject: Re: [PATCH v8 09/11] ARM: dts: imx7d: remarkable2: Enable silergy,sy7636a
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Alistair Francis <alistair@alistair23.me>,
-        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
-        Mark Brown <broonie@kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="LM9XEI8L+5xUn6r5"
+Content-Disposition: inline
+In-Reply-To: <20210804115221.5650e440.paul.barker@sancloud.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 5, 2021 at 6:26 PM Lee Jones <lee.jones@linaro.org> wrote:
->
-> On Thu, 05 Aug 2021, Alistair Francis wrote:
->
-> > On Wed, Aug 4, 2021 at 10:43 PM Lee Jones <lee.jones@linaro.org> wrote:
-> > >
-> > > On Tue, 03 Aug 2021, Alistair Francis wrote:
-> > >
-> > > > Enable the silergy,sy7636a and silergy,sy7636a-regulator on the
-> > > > reMarkable2.
-> > > >
-> > > > Signed-off-by: Alistair Francis <alistair@alistair23.me>
-> > > > ---
-> > > >  arch/arm/boot/dts/imx7d-remarkable2.dts | 42 +++++++++++++++++++++=
-++++
-> > > >  1 file changed, 42 insertions(+)
-> > >
-> > > I don't see the DT documentation for this device.
-> >
-> > Which device?
-> >
-> > The imx7d-remarkable2 is in current master and there is a single line
-> > at `Documentation/devicetree/bindings/arm/fsl.yaml`
-> >
-> > The silergy,sy7636a-regulator is also already in master, but it isn't
->
-> I think this is currently in -next.
 
-Sorry, I thought it was in mainline at this point.
+--LM9XEI8L+5xUn6r5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->
-> It won't land in Mainline (what I believe you're calling "master")
-> until the next merge window, which is about a month.
+* Paul Barker <paul.barker@sancloud.com> [210804 10:52]:
+> On Tue, 27 Jul 2021 11:55:21 +0300
+> Tony Lindgren <tony@atomide.com> wrote:
+>=20
+> > * Paul Barker <paul.barker@sancloud.com> [210720 11:40]:
+> > > The Lite variant of the SanCloud BeagleBone Enhanced (BBE) removes the
+> > > HDMI encoder, barometer and accelerometer chips and adds a Micron
+> > > Authenta SPI flash chip. =20
+> >=20
+> > Thanks applying all for v5.15 merge window.
+>=20
+> I tested the for-next branch of linux-omap to confirm that things
+> worked with these patches applied. There was a NULL pointer
+> dereference in ptp_clock_register() during boot. The fix appears to be
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit=
+/?id=3D55eac20617ca84129273ab248f4d7bfe456967de
+> which went into 5.14-rc2.
 
-Ah, yep. I meant to say mainline. Every project has different terminology.
+Yeah so it seems, too bad it was not there for -rc1 already.
 
->
-> > exposed to device tree and the compatible string shouldn't be included
-> > in this patch. I'll fix that.
->
-> Okay, this is essentially what I was getting at.
->
-> The node should really be documented and Acked by the DT guys.
+> Merging for-next with 5.14-rc4 resulted in things working as expected.
 
-Should the regulator have it's own DT binding documentation? From what
-I could tell just including it in mfd bindings was enough.
+OK thanks for checking.
 
->
-> ..
->
-> Anyway, I have a new toy for you to play with.
->
-> I'll Cc you on the patch.
+Regards,
 
-I'll keep a look out!
+Tony
 
-Alistair
 
->
-> --
-> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
-> Senior Technical Lead - Developer Services
-> Linaro.org =E2=94=82 Open source software for Arm SoCs
-> Follow Linaro: Facebook | Twitter | Blog
+
+--LM9XEI8L+5xUn6r5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEkgNvrZJU/QSQYIcQG9Q+yVyrpXMFAmELpcgACgkQG9Q+yVyr
+pXNH8RAAyABpBrVjH86mulZbiTQVaChUTMxQhcUcDPDYfNQAvqd6nfO3EFv4YoW7
+gCbDD1EBqarwd5/7KWg7MNChtUZ/tjnrFjqjpGo0UD/bjUjYdepAChHYpvuyk4ac
+v6+jSdFjIV70iraoPGGRy1qR1DEO1IsO0dMLsBsf9t8VU60a9IBdT4gEh8d84SdS
+dNIBDHb+pPbrlSoKwWE/THh9xIVA5byZtbTn97NXaPNnmIG3OMw1Ndj1hoWh5lOs
+6oHUyfadvRM8oB8WQlRjIYjnNRzMBI+8Tu5qqDD1wjS3NLTn06cHkRtCHUvklhoq
+BY+9vaTl8Zl6PTZIpMc+nVDpuwmfRZaFUte98e+0n2P2MOT/8osRVl67+6hIog+T
+OpI4ONHa8QX/i83GypviXH1LNj5UqXE8wyyVxmEpM1RG5EofDh/LxopU4PzTCDfE
+h6HW2PEFttt3RE/gvUldpx/GGxjnnleHj1nBCITv7PMi5z7dxl4I+azKzPATjDHQ
++0l32nd26yooKCp1F9FpgwU71Q+7jyl5c9zzk3Glxv/m0CdDyzaDadN67IGclXNx
+eeGe4LRNq9ETCc8hTuGepdpgk5581BzvPd8qguBKotnYoQGV0rQOERFwXAt1TPAw
+tBQ422Y3aOGHLpEPFCelXZrtCdLlmvvDdDTF+jybOj9hmrDWroI=
+=KlWf
+-----END PGP SIGNATURE-----
+
+--LM9XEI8L+5xUn6r5--
