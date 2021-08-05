@@ -2,176 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 477C53E0DF1
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 08:06:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DD6F3E0E57
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 08:29:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229892AbhHEGG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 02:06:27 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:52484 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234461AbhHEGG1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 02:06:27 -0400
-Received: from [IPv6:2a02:810a:880:f54:e5eb:348e:79df:e71f] (unknown [IPv6:2a02:810a:880:f54:e5eb:348e:79df:e71f])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: dafna)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 532A91F40F00;
-        Thu,  5 Aug 2021 07:06:11 +0100 (BST)
-Subject: Re: [PATCH v6 1/9] mtk-mdp: propagate errors from clock_on
-To:     Eizan Miyamoto <eizan@chromium.org>, linux-kernel@vger.kernel.org
-Cc:     wenst@chromium.org, houlong.wei@mediatek.com, yong.wu@mediatek.com,
-        enric.balletbo@collabora.com, devicetree@vger.kernel.org,
-        chunkuang.hu@kernel.org,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-References: <20210802121215.703023-1-eizan@chromium.org>
- <20210802220943.v6.1.I9db0d408ef79d300672ec0311a6bee9556801631@changeid>
-From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-Message-ID: <8fe5ac46-a9db-710e-a6d1-856805ab2773@collabora.com>
-Date:   Thu, 5 Aug 2021 08:06:07 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S235592AbhHEG3l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 02:29:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44670 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234535AbhHEG3k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 02:29:40 -0400
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0828FC061765;
+        Wed,  4 Aug 2021 23:29:26 -0700 (PDT)
+Received: by mail-pl1-x636.google.com with SMTP id u2so5841070plg.10;
+        Wed, 04 Aug 2021 23:29:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:mime-version:content-disposition;
+        bh=U53GwXYPNVuC1gL+sQD0tXMRZ6iejl3JWOU1xEqukTk=;
+        b=ach9Ysibc1+qPY3gNEAcvpur9xtW8yK4ei16NUX1LDj5nQTw/0aeFu+XNCu7/JwtHf
+         RAs09VadBj44MuoBrJw05L8TGSLPj3DdBXulL13Bf1zpypQD3UgV4NECuu5TqEHijmI2
+         QRxzciYP2H3KooXw75DZrYGNgqXQiPX5/Q/yIRnhs9N3EDboeq/5ZxuV2ct9E/ZIMM95
+         8j1Y5nFJWRP4mLyIvsgflxnXaexC81eX8MEl236b9DrDBiy3TTfzBKcxadTb35P99Bhd
+         nOXchdRhKbHJPcE97tYbb85a9zwqushZAFxQisMV9ku/7DfgvFZ6s2MZojmCJlDdyBT9
+         OJfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition;
+        bh=U53GwXYPNVuC1gL+sQD0tXMRZ6iejl3JWOU1xEqukTk=;
+        b=QKoM4fSHYzC1VnNSM1Zjvc4kne1hQjb3sA/j0yU/3sHOyMEJS1ZTKNmx2f90KVcj7m
+         03XP4JZ53NCavcCbyTogUkb9+5thieiBSDFUMYUvz7K2owqb44w6tA36z7p85WhRvRIi
+         BEBsHqnlU7ylr4fSTy8iBWJUX9r2MzZs1h5mGW2RhCHCVETfqOv9fogh7dzOZgV1lf4H
+         kctnPQiHsfcXPnKXAZt8Am5O3XAyyYvVLzFDRSRFRo7TgRwxP2i7YgybnZUoyru0QqpE
+         znMDRRCDOlctI4ojzl8tMA+msxvWpDi5noETbZe4et4XUj0hwdAF9G3/ToV5olWEAjgQ
+         VsNg==
+X-Gm-Message-State: AOAM532+kgmehnLTjdqJKjBuIM2Ff/9XUmEQnTls0qDbn2ij9kPdkVQD
+        ambUJTEprrj0wIeGCXFIWKZuYY/oRenczluBWRQ=
+X-Google-Smtp-Source: ABdhPJyPW415gwzwiMfbqVh5mv6MZKafTnj3YOo+j7pXiH2SnDDZzSlGt1N9fwAMU2uaw0Wr65AMlw==
+X-Received: by 2002:a05:6a00:b83:b029:352:9507:f3b9 with SMTP id g3-20020a056a000b83b02903529507f3b9mr3287576pfj.13.1628144965598;
+        Wed, 04 Aug 2021 23:29:25 -0700 (PDT)
+Received: from smtp.gmail.com ([2804:14c:73:9a01::1005])
+        by smtp.gmail.com with ESMTPSA id c27sm5138656pfj.34.2021.08.04.23.29.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Aug 2021 23:29:25 -0700 (PDT)
+Date:   Thu, 5 Aug 2021 03:29:21 -0300
+From:   Lucas Stankus <lucas.p.stankus@gmail.com>
+To:     lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
+        robh+dt@kernel.org, Dragos.Bogdan@analog.com,
+        Darius.Berghe@analog.com
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] iio: accel: Add support for ADXL313 accelerometer
+Message-ID: <cover.1628143857.git.lucas.p.stankus@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210802220943.v6.1.I9db0d408ef79d300672ec0311a6bee9556801631@changeid>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add driver support and dt-bindings documentation for ADXL313 digital
+accelerometer.
 
+Changelog v1 -> v2:
+- Add vs-supply, vdd-supply and interrupt-names fields in the dt doc
+- Add default case for switch statements
+- Use function pointer argument in core_probe for interface specific setup
+- Check `spi->mode & SPI_3WIRE` to enable the device's 3wire mode
+- Remove unnecessary 0s from id structs and commas after null terminators
 
-On 02.08.21 14:12, Eizan Miyamoto wrote:
-> Up until this change, many errors were logged but ignored when powering
-> on clocks inside mtk_mdp_core. This change tries to do a better job at
-> propagating errors back to the power management framework.
-> 
-> Signed-off-by: Eizan Miyamoto <eizan@chromium.org>
-> ---
-> 
-> (no changes since v1)
-> 
->   drivers/media/platform/mtk-mdp/mtk_mdp_comp.c | 25 ++++++++++++-----
->   drivers/media/platform/mtk-mdp/mtk_mdp_comp.h |  2 +-
->   drivers/media/platform/mtk-mdp/mtk_mdp_core.c | 27 ++++++++++++++-----
->   3 files changed, 39 insertions(+), 15 deletions(-)
-> 
-> diff --git a/drivers/media/platform/mtk-mdp/mtk_mdp_comp.c b/drivers/media/platform/mtk-mdp/mtk_mdp_comp.c
-> index b3426a551bea..76e295c8d9bc 100644
-> --- a/drivers/media/platform/mtk-mdp/mtk_mdp_comp.c
-> +++ b/drivers/media/platform/mtk-mdp/mtk_mdp_comp.c
-> @@ -13,10 +13,9 @@
->   
->   #include "mtk_mdp_comp.h"
->   
-> -
-> -void mtk_mdp_comp_clock_on(struct device *dev, struct mtk_mdp_comp *comp)
-> +int mtk_mdp_comp_clock_on(struct device *dev, struct mtk_mdp_comp *comp)
->   {
-> -	int i, err;
-> +	int i, err, status;
->   
->   	if (comp->larb_dev) {
->   		err = mtk_smi_larb_get(comp->larb_dev);
-> @@ -30,11 +29,23 @@ void mtk_mdp_comp_clock_on(struct device *dev, struct mtk_mdp_comp *comp)
->   		if (IS_ERR(comp->clk[i]))
->   			continue;
->   		err = clk_prepare_enable(comp->clk[i]);
-> -		if (err)
-> -			dev_err(dev,
-> -			"failed to enable clock, err %d. type:%d i:%d\n",
-> -				err, comp->type, i);
-> +		if (err) {
-> +			status = err;
-> +			dev_err(dev, "failed to enable clock, err %d. i:%d\n", err, i);
-> +			goto err_clk_prepare_enable;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +
-> +err_clk_prepare_enable:
-> +	for (--i; i >= 0; i--) {
-> +		if (IS_ERR(comp->clk[i]))
-> +			continue;
-> +		clk_disable_unprepare(comp->clk[i]);
->   	}
-> +
-> +	return status;
+Lucas Stankus (2):
+  dt-bindings: iio: accel: Add binding documentation for ADXL313
+  iio: accel: Add driver support for ADXL313
 
-There is an API function clk_bulk_prepare_enable to prepare and enable an array of clks
-so you can just use it.
+ .../bindings/iio/accel/adi,adxl313.yaml       |  90 +++++
+ MAINTAINERS                                   |   9 +
+ drivers/iio/accel/Kconfig                     |  29 ++
+ drivers/iio/accel/Makefile                    |   3 +
+ drivers/iio/accel/adxl313.h                   |  63 ++++
+ drivers/iio/accel/adxl313_core.c              | 321 ++++++++++++++++++
+ drivers/iio/accel/adxl313_i2c.c               |  65 ++++
+ drivers/iio/accel/adxl313_spi.c               |  85 +++++
+ 8 files changed, 665 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml
+ create mode 100644 drivers/iio/accel/adxl313.h
+ create mode 100644 drivers/iio/accel/adxl313_core.c
+ create mode 100644 drivers/iio/accel/adxl313_i2c.c
+ create mode 100644 drivers/iio/accel/adxl313_spi.c
 
->   }
->   
->   void mtk_mdp_comp_clock_off(struct device *dev, struct mtk_mdp_comp *comp)
-> diff --git a/drivers/media/platform/mtk-mdp/mtk_mdp_comp.h b/drivers/media/platform/mtk-mdp/mtk_mdp_comp.h
-> index 7897766c96bb..92ab5249bcad 100644
-> --- a/drivers/media/platform/mtk-mdp/mtk_mdp_comp.h
-> +++ b/drivers/media/platform/mtk-mdp/mtk_mdp_comp.h
-> @@ -41,7 +41,7 @@ int mtk_mdp_comp_init(struct device *dev, struct device_node *node,
->   		      struct mtk_mdp_comp *comp,
->   		      enum mtk_mdp_comp_type comp_type);
->   void mtk_mdp_comp_deinit(struct device *dev, struct mtk_mdp_comp *comp);
-> -void mtk_mdp_comp_clock_on(struct device *dev, struct mtk_mdp_comp *comp);
-> +int mtk_mdp_comp_clock_on(struct device *dev, struct mtk_mdp_comp *comp);
->   void mtk_mdp_comp_clock_off(struct device *dev, struct mtk_mdp_comp *comp);
->   
->   
-> diff --git a/drivers/media/platform/mtk-mdp/mtk_mdp_core.c b/drivers/media/platform/mtk-mdp/mtk_mdp_core.c
-> index 976aa1f4829b..412bbec0f735 100644
-> --- a/drivers/media/platform/mtk-mdp/mtk_mdp_core.c
-> +++ b/drivers/media/platform/mtk-mdp/mtk_mdp_core.c
-> @@ -52,13 +52,28 @@ static const struct of_device_id mtk_mdp_of_ids[] = {
->   };
->   MODULE_DEVICE_TABLE(of, mtk_mdp_of_ids);
->   
-> -static void mtk_mdp_clock_on(struct mtk_mdp_dev *mdp)
-> +static int mtk_mdp_clock_on(struct mtk_mdp_dev *mdp)
->   {
-> -	struct device *dev = &mdp->pdev->dev;
->   	struct mtk_mdp_comp *comp_node;
-> +	int status;
-> +	struct device *dev = &mdp->pdev->dev;
-> +	int err;
->   
-> -	list_for_each_entry(comp_node, &mdp->comp_list, node)
-> -		mtk_mdp_comp_clock_on(dev, comp_node);
-> +	list_for_each_entry(comp_node, &mdp->comp_list, node) {
-> +		err = mtk_mdp_comp_clock_on(dev, comp_node);
-> +		if (err) {
-> +			status = err;
+-- 
+2.32.0
 
-You can get rid of the new var 'status' and just return ret in case of error
-
-> +			goto err_mtk_mdp_comp_clock_on;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +
-> +err_mtk_mdp_comp_clock_on:
-> +	list_for_each_entry_continue_reverse(comp_node, &mdp->comp_list, node)
-> +		mtk_mdp_comp_clock_off(dev, comp_node);
-> +
-> +	return status;
->   }
->   
->   static void mtk_mdp_clock_off(struct mtk_mdp_dev *mdp)
-> @@ -274,9 +289,7 @@ static int __maybe_unused mtk_mdp_pm_resume(struct device *dev)
->   {
->   	struct mtk_mdp_dev *mdp = dev_get_drvdata(dev);
->   
-> -	mtk_mdp_clock_on(mdp);
-> -
-> -	return 0;
-> +	return mtk_mdp_clock_on(mdp);
->   }
->   
->   static int __maybe_unused mtk_mdp_suspend(struct device *dev)
-> 
