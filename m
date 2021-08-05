@@ -2,96 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1803A3E16FC
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 16:29:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 690853E1703
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 16:32:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241962AbhHEO35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 10:29:57 -0400
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:40964 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S240801AbhHEO35 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 10:29:57 -0400
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 175EBmGX031318;
-        Thu, 5 Aug 2021 16:29:23 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=64HVz0Gg+wUo7z89cmaaEfQ54A59MSPLHnaUZCxYN+8=;
- b=4L4CeUNf2sOsb8dX3pB3ooJ6Sbv97tbMXVQiszaUfnQ1dr/ytgBL5M5jfcezU+g66R45
- tvaUPcthHSfmduxSGx7CsZMlX99N4BDWHGISL5LdG6pcgAb5wuiFBNZuJ6H6bmSq4M2k
- WBh0uxqTxp54H/erqxdmyKxrlmR7MmORGbYYyZW5sBL+HbmwHpLx0HA3XxJLBqaiO1lG
- UmwkhNgF57MZQcIEDX1N7rGWSQPxHoQPmdrl2vg4SwdkwfashSazYfhOd7i8SjA0u4W3
- R9hdzF3LlxDCsDd4LNtjDLigyz47TTcxl7Pi0cSkef0OOmudIEu0BqaVgoccTi4UkWeg yQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 3a854tkmf9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 05 Aug 2021 16:29:23 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1C97410002A;
-        Thu,  5 Aug 2021 16:29:22 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 008BD22FA5A;
-        Thu,  5 Aug 2021 16:29:21 +0200 (CEST)
-Received: from lmecxl0912.lme.st.com (10.75.127.45) by SFHDAG2NODE3.st.com
- (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 5 Aug
- 2021 16:29:21 +0200
-Subject: Re: [PATCH 1/7] dt-bindings: pinctrl: stm32: add new compatible for
- STM32MP135 SoC
-To:     Linus Walleij <linus.walleij@linaro.org>, <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>, <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Jonathan Corbet <corbet@lwn.net>
-CC:     <linux-gpio@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-References: <20210723132810.25728-1-alexandre.torgue@foss.st.com>
- <20210723132810.25728-2-alexandre.torgue@foss.st.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-Message-ID: <1d7fe9a6-bf37-e8ca-1bc3-fda536a10359@foss.st.com>
-Date:   Thu, 5 Aug 2021 16:29:20 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S240960AbhHEOco (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 10:32:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42968 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233183AbhHEOcn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 10:32:43 -0400
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A156EC061765
+        for <devicetree@vger.kernel.org>; Thu,  5 Aug 2021 07:32:29 -0700 (PDT)
+Received: by mail-pj1-x1034.google.com with SMTP id l19so9325280pjz.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Aug 2021 07:32:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Hxir+KJT92ne4sjUq07glKFb4339EmPmh/a5GVlr1ko=;
+        b=k3719/z8eUSedQ6lU1Ji4Phj9b5Y8l0i6R93Er8eQtkwn8oV31S9CxSR/eMF8GtlH1
+         xjWqTZwBxPmQfL0Fm2rHuHHJMLShvWbTxr8VBc2YiKbAHxEuCChtZvgmN3DTD0imxKK1
+         oS6rtUVkpsmk2kEb9R0U4Csl2IWbJRtZsVqSOL202172DyPqWAoK0xb58hAC+b2bk0e9
+         JPaySdp1odFbAvM3gJRsak/89lSYGKrBbDzA9kH+zTUYhV0ir3IlKnGeeARonQYLnqUJ
+         mRH09CtOCUWg6lmFaIZdQKUR7lM5V4gSzK5N96JNSgwEQ48WmP5e+YtBxE/j4IRuEFNi
+         xYxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Hxir+KJT92ne4sjUq07glKFb4339EmPmh/a5GVlr1ko=;
+        b=SK0t29FvNwxlp1gMTnSHqs0ZKy1rg/OtzzPcNiEJZhgiusV7EmLtsF8HUBYxkr2iKh
+         3o7YOdFYqoYqXAupECG7aVMq59hfCqnpKRGrCNqf1Qhy8DAHUl9Jd2ylAzf1sadYdvrF
+         JmVdZGfTcsLN5X8jKSpE100BYTCNNBppN3tcJEIK6+PNkb91Q0OdXoWM3MbjOhAeoJS4
+         m+w3GqcMi4rKDyJLPgtwnX1vEuiKLieyR0xYgZUwksf9CY3nAIB4jqJ2HP5Uu3fwpe9l
+         RrSytpws7berdWEQF84PW8xKyc+aBOXSVuC3tEgOwXYx6Js3sYPDso6DUhglKQZGH+YF
+         J3xw==
+X-Gm-Message-State: AOAM533sXF6GEnllI9D/Sl+58Eacp1qKKWUEgN66oQ/6F+1Wl90ADL5D
+        KR4EYsPbS/WSUBJBEgy5o67IdCeKSZjdFJbY8lkL/g==
+X-Google-Smtp-Source: ABdhPJzmKvsuXnbAiJTCr2Ie3c70evLDQtBHyeupRXjhU286jch5hsPG3GMDBTl8uNZmPk7w39U7rdBJi7Zo+CSGIZw=
+X-Received: by 2002:a17:90a:604b:: with SMTP id h11mr4973185pjm.220.1628173948924;
+ Thu, 05 Aug 2021 07:32:28 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210723132810.25728-2-alexandre.torgue@foss.st.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.45]
-X-ClientProxiedBy: SFHDAG1NODE3.st.com (10.75.127.3) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
- definitions=2021-08-05_05:2021-08-05,2021-08-05 signatures=0
+References: <cover.1628172477.git.hns@goldelico.com> <15187eccabf39561de226acd8be40b93503cac49.1628172477.git.hns@goldelico.com>
+In-Reply-To: <15187eccabf39561de226acd8be40b93503cac49.1628172477.git.hns@goldelico.com>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Thu, 5 Aug 2021 16:32:17 +0200
+Message-ID: <CAG3jFyu50h2oLW0U6hJSpxiKp3Hb5Ow8Ujvg2qdKRuy+uhaahw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/8] drm/bridge: synopsis: Add mode_fixup and bridge
+ timings support
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     Paul Cercueil <paul@crapouillou.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-mips@vger.kernel.org,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        letux-kernel@openphoenux.org, Paul Boddie <paul@boddie.org.uk>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus
+Hey Nikolaus,
 
-On 7/23/21 3:28 PM, Alexandre Torgue wrote:
-> New compatible to manage ball out and pin muxing of STM32MP135 SoC.
-> 
-> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
-> index 72877544ca78..dfee6d38a701 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
-> @@ -24,6 +24,7 @@ properties:
->         - st,stm32f746-pinctrl
->         - st,stm32f769-pinctrl
->         - st,stm32h743-pinctrl
-> +      - st,stm32mp135-pinctrl
->         - st,stm32mp157-pinctrl
->         - st,stm32mp157-z-pinctrl
->   
-> 
+Thanks for submitting this series.
 
-If you are ok with this patch, can I take it in my tree to avoid yaml 
-validation issue ? If you disagree I'll wait the next cycle to take DT 
-patches.
+On Thu, 5 Aug 2021 at 16:08, H. Nikolaus Schaller <hns@goldelico.com> wrote:
+>
+> From: Paul Boddie <paul@boddie.org.uk>
+>
+> The platform-specific configuration structure is augmented with
+> mode_fixup and timings members so that specialisations of the
+> Synopsys driver can introduce mode flags and bus flags.
+>
+> Signed-off-by: Paul Boddie <paul@boddie.org.uk>
+> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
+> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+> ---
+>  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 16 ++++++++++++++++
+>  include/drm/bridge/dw_hdmi.h              |  5 +++++
+>  2 files changed, 21 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> index e7c7c9b9c646f..e8499eb11328c 100644
+> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> @@ -2810,6 +2810,19 @@ dw_hdmi_bridge_mode_valid(struct drm_bridge *bridge,
+>         return mode_status;
+>  }
+>
+> +static bool
+> +dw_hdmi_bridge_mode_fixup(struct drm_bridge *bridge,
+> +                         const struct drm_display_mode *mode,
+> +                         struct drm_display_mode *adjusted_mode)
+> +{
+> +       struct dw_hdmi *hdmi = bridge->driver_private;
+> +
+> +       if (hdmi->plat_data->mode_fixup)
+> +               return hdmi->plat_data->mode_fixup(bridge, mode, adjusted_mode);
+> +
+> +       return true;
+> +}
+> +
+>  static void dw_hdmi_bridge_mode_set(struct drm_bridge *bridge,
+>                                     const struct drm_display_mode *orig_mode,
+>                                     const struct drm_display_mode *mode)
+> @@ -2883,6 +2896,7 @@ static const struct drm_bridge_funcs dw_hdmi_bridge_funcs = {
+>         .atomic_disable = dw_hdmi_bridge_atomic_disable,
+>         .mode_set = dw_hdmi_bridge_mode_set,
+>         .mode_valid = dw_hdmi_bridge_mode_valid,
+> +       .mode_fixup = dw_hdmi_bridge_mode_fixup,
 
-cheers
-alex
+mode_fixup() has been deprecated[1] in favor of atomic_check(), care
+has to be taken when switching to atomic_check() as it has access to
+the full atomic commit.
+
+Looking at this driver, it's using mode_set as well, which should be fixed.
+
+[1] https://lore.kernel.org/dri-devel/20210722062246.2512666-8-sam@ravnborg.org/
+
+>         .detect = dw_hdmi_bridge_detect,
+>         .get_edid = dw_hdmi_bridge_get_edid,
+>  };
+> @@ -3364,6 +3378,8 @@ struct dw_hdmi *dw_hdmi_probe(struct platform_device *pdev,
+>  #ifdef CONFIG_OF
+>         hdmi->bridge.of_node = pdev->dev.of_node;
+>  #endif
+> +       if (plat_data->timings)
+> +               hdmi->bridge.timings = plat_data->timings;
+>
+>         memset(&pdevinfo, 0, sizeof(pdevinfo));
+>         pdevinfo.parent = dev;
+> diff --git a/include/drm/bridge/dw_hdmi.h b/include/drm/bridge/dw_hdmi.h
+> index 6a5716655619b..677137445d534 100644
+> --- a/include/drm/bridge/dw_hdmi.h
+> +++ b/include/drm/bridge/dw_hdmi.h
+> @@ -8,6 +8,7 @@
+>
+>  #include <sound/hdmi-codec.h>
+>
+> +struct drm_bridge;
+>  struct drm_display_info;
+>  struct drm_display_mode;
+>  struct drm_encoder;
+> @@ -140,6 +141,10 @@ struct dw_hdmi_plat_data {
+>         enum drm_mode_status (*mode_valid)(struct dw_hdmi *hdmi, void *data,
+>                                            const struct drm_display_info *info,
+>                                            const struct drm_display_mode *mode);
+> +       bool (*mode_fixup)(struct drm_bridge *bridge,
+> +                          const struct drm_display_mode *mode,
+> +                          struct drm_display_mode *adjusted_mode);
+> +       const struct drm_bridge_timings *timings;
+>
+>         /* Vendor PHY support */
+>         const struct dw_hdmi_phy_ops *phy_ops;
+> --
+> 2.31.1
+>
