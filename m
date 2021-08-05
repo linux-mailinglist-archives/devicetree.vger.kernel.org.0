@@ -2,155 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A73903E1B1A
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 20:18:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D435F3E1B32
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 20:25:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232969AbhHESSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 14:18:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39008 "EHLO
+        id S240172AbhHESZ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 14:25:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230209AbhHESSr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 14:18:47 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33ED5C061765;
-        Thu,  5 Aug 2021 11:18:33 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id k9so9653333edr.10;
-        Thu, 05 Aug 2021 11:18:33 -0700 (PDT)
+        with ESMTP id S241183AbhHESZw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 14:25:52 -0400
+Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83F76C061765
+        for <devicetree@vger.kernel.org>; Thu,  5 Aug 2021 11:25:37 -0700 (PDT)
+Received: by mail-oi1-x233.google.com with SMTP id bh26so7016267oib.10
+        for <devicetree@vger.kernel.org>; Thu, 05 Aug 2021 11:25:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ojNM9xV3H+nI1/a7NsvJNdRoof5hRfKC/9tKy/ZhcHw=;
-        b=olqN3ikMo81rNz4+DbVRQ5Gbl0vu0cGksnagpE9AgmSSecjhUJyB2hL20W+uRwdVkZ
-         cmeZCYW7JCSZ/NYW0/792UKXVObEHntrwM0GTVFi4UwIV/gNTlp2HXmft1lA96HTWIuY
-         bunfazBEz48qFAV19PJIS6M7B1NmkQhrW5o9iWBSgv8YZr7zlXEkqZ/758h1kjTJSA6H
-         4CpzFlazcO/6PiXkUUJuP6CNMezIy0+raIkR6RrivKelpHFimF71gUxhmbtION74UFwD
-         wwtoNDpw3trioZGMrWgBU0Alwn86VCLubOfleCkMpfO6DnO9roiE3VkgzfqqkB8qIhqp
-         Am9Q==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=gbLW+QJDyMH5Sf+1Cq2rIN5slJ0ZGcO1ZiPIvxeYo5w=;
+        b=edHXr9Em2Ae1iDzPPrZwEFUi2pZrq6mEx+CwbOtGzU/xz69mA/UXUkPeRrtIVdw/H7
+         Rg7Kz3vsJUP4zuvaBGEJXuRbBfQvE5waRO06uyVUVpNvUfN5tuHtDpT5uJrKvPWIkHy4
+         HyizBwDg/4vL19+901+B/P+dH7mPCyiPprMpo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ojNM9xV3H+nI1/a7NsvJNdRoof5hRfKC/9tKy/ZhcHw=;
-        b=TVglxS7nCYDb0vmfAqKI1NsCW0UqIlDvLNGGlmiMJx1V4vIaq6KHbcTQOK8BNURdM9
-         yDfHXBc7GgFTWyaAwkUm26dDHWczEvyFCjuNIoG7dX27hYwjBu2ivEnnSG+yGMJvm8GG
-         tb/mSaU8exN5UL3zw593RBNwytKkOQhenWUtvBCpA6WGveexLIVCcO00LOGinN/NMnwz
-         THKj26j6/Qs4E74K30+/CkdWRsjNZWScwVZPjD1uPY1g1JIzFteeNNQ568mOq+nHyjPp
-         smxjJ0LNdIPxbRv72Ya1D6GkVaObSXsYH0eiQ1br59EfMtUZC695Oe8S45z+KPe89crh
-         YRrA==
-X-Gm-Message-State: AOAM531Rk42NnYtXufRME4gGjbVoyMxK46Fl1aHpxAstPWx8gBIwCDNV
-        McJ/Zdwbhtwcchz/gOMi+SW04IZ+tpCP5xBbDYE=
-X-Google-Smtp-Source: ABdhPJxAQxK02kP1hoG/1FTsH5hCNBUCJGicnRD8GVaXqj7qpLOmlEdfipZjtgyGJx3opxXShvtRUFnXaflfYi8bGXY=
-X-Received: by 2002:a05:6402:cae:: with SMTP id cn14mr8314025edb.31.1628187511800;
- Thu, 05 Aug 2021 11:18:31 -0700 (PDT)
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=gbLW+QJDyMH5Sf+1Cq2rIN5slJ0ZGcO1ZiPIvxeYo5w=;
+        b=PN7lGv15WgkMjZOKfjjP5qZYvqVySH0RheCj0nh6/z7arcbjLK8gO7KHoRUXvI5II0
+         oW5Ydaauh0nox677TXR6AmPbBLE7PYfK4wBnChAdNTC2M2X08Xi3TDp2lxg/8tgF26iV
+         u0DNStndHV3f+9accAtXqLfBnZC4Z/JaKrl7pXeuSriBRGP3yhGRlivrjd7ROPye9e1W
+         0r151CgAfUJ5DE5bLkIlXk0ucXBkG8NTPZNE5HiKsPwYno1Fvd1L1xNOgMxW4jSw2tq4
+         K3WzzD4lCQrYBAG2EvlgeaFQeQ/gOhxoXzv11FQWY+aJoqAfUuygOoMpvaWxYcMvpPtw
+         QVeQ==
+X-Gm-Message-State: AOAM531V0b93ejmCQqfCKkxtAT6jNZPFVSnFvnzEYZ1NopEIGqejJOHt
+        1VSqRjx96lp++ey9QFcu2DOs/UJGeS9hYQ6ZVniUlA==
+X-Google-Smtp-Source: ABdhPJyccareZr9XYB2TNH6O7ILoE1pab7v0BuEsi+iAsQ3sDIOPWDdP+Rr3mQqXnnLWw+u1pFTieFO8dUukUSequwg=
+X-Received: by 2002:a54:468d:: with SMTP id k13mr12082607oic.125.1628187936930;
+ Thu, 05 Aug 2021 11:25:36 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 5 Aug 2021 11:25:36 -0700
 MIME-Version: 1.0
-References: <20210716103651.1455-1-linux.amoon@gmail.com> <20210716103651.1455-2-linux.amoon@gmail.com>
- <CAFBinCDeqauw_V-Vn9cat9HaCXj6HEMz6G+G+VbqCNtGEFGYzg@mail.gmail.com>
- <CANAwSgQ5PDGUWMH-jxnz5wwutUVniTn7RAe=4J=8-jbmqxYRRg@mail.gmail.com>
- <CAFBinCBhg+dije+3DvV_V_kqHv9q+r4EPxXCYFti6KuA4mK7KQ@mail.gmail.com>
- <CANAwSgT9-5zGr67aGzBmW6WDBfeiAvjv_zv2UbRC+YbgAGg==A@mail.gmail.com>
- <CAFBinCCGA0b=LVjbQood+iN+DHLodY0RJ-GrSOcgdzrDFJ25pQ@mail.gmail.com>
- <CAFBinCAohjxcsY3D1rdAiYVGL+==cnjzZxg1GmYxSNVhxSTDoA@mail.gmail.com> <CAFBinCAP_DDvPLn4h1yQKEdU_x1ovokHUTPeq3vNV_sDF8PcWg@mail.gmail.com>
-In-Reply-To: <CAFBinCAP_DDvPLn4h1yQKEdU_x1ovokHUTPeq3vNV_sDF8PcWg@mail.gmail.com>
-From:   Anand Moon <linux.amoon@gmail.com>
-Date:   Thu, 5 Aug 2021 23:48:20 +0530
-Message-ID: <CANAwSgS2vi7hZqX0LWxNTvk-3aN=n1fEErj4Zt0_4CCpZGyRkg@mail.gmail.com>
-Subject: Re: [PATCHv2 1/4] ARM: dts: meson8b: odroidc1: Add usb phy power node
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     linux-phy@lists.infradead.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        Matt Corallo <oc2udbzfd@mattcorallo.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Emiliano Ingrassia <ingrassia@epigenesys.com>,
-        devicetree <devicetree@vger.kernel.org>
+In-Reply-To: <352d549f40dfa2ae51589649652d2e97@codeaurora.org>
+References: <1627581885-32165-1-git-send-email-sibis@codeaurora.org>
+ <1627581885-32165-3-git-send-email-sibis@codeaurora.org> <CAE-0n53cH749NC9JPqJvMZGBQf47AZ3qY66eoqk2CiQHvuumkg@mail.gmail.com>
+ <352d549f40dfa2ae51589649652d2e97@codeaurora.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Thu, 5 Aug 2021 11:25:36 -0700
+Message-ID: <CAE-0n53b2M7hAw=NnUDW1_EG2N-521K=URQHmARH0DmLf7hwhA@mail.gmail.com>
+Subject: Re: [PATCH 2/4] cpufreq: qcom: Re-arrange register offsets to support
+ per core L3 DCVS
+To:     Sibi Sankar <sibis@codeaurora.org>
+Cc:     bjorn.andersson@linaro.org, mka@chromium.org, robh+dt@kernel.org,
+        viresh.kumar@linaro.org, agross@kernel.org, rjw@rjwysocki.net,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        dianders@chromium.org, tdas@codeaurora.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
+Quoting Sibi Sankar (2021-08-05 10:47:20)
+> Stephen,
+>
+> Thanks for taking time to review
+> the series.
+>
+> On 2021-08-05 00:31, Stephen Boyd wrote:
+> > Quoting Sibi Sankar (2021-07-29 11:04:43)
+> >> Qualcomm SoCs (starting with SM8350) support per core voting for L3
+> >> cache
+> >> frequency.
+> >
+> > And the L3 cache frequency voting code can't be put into this cpufreq
+> > driver?
+>
+> Yes, it could have gone either into
+> the cpufreq driver or l3 interconnect
+> provider driver. Taniya/Odelu preferred
+> the latter, because of the need for other
+> clients to vote for l3 frequencies in
+> the future.
 
-On Thu, 5 Aug 2021 at 03:28, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> On Sun, Jul 18, 2021 at 9:09 PM Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
-> >
-> > Hi Anand,
-> >
-> > On Sun, Jul 18, 2021 at 4:01 PM Martin Blumenstingl
-> > <martin.blumenstingl@googlemail.com> wrote:
-> > [...]
-> > > > From the schematics [1]
-> > > > https://dn.odroid.com/S805/Schematics/odroid-c1+_rev0.4_20160226.pdf
-> > > >
-> > > > You could find references to PWREN  <--- GPIOAO.BIT5
-> > > > The second reference is USB HOST Power Switch
-> > > > The third reference is USB HOST POWER.
-> > > >
-> > > > Hope I am clean in my thought process now.
-> > > Can you please point out the page numbers for me?
-> > >
-> > > What I am seeing on page 1 is:
-> > > GPIOAO_5 (called GPIOAO.BIT5) is connected as an INPUT to the USB_OTG
-> > > PWREN signal (that's the green box with the label "USB_OTG.SchDoc"
-> > > above it).
-> > I unfortunately missed your question on IRC on this topic:
-> > <armoon> xdarklight: just want to understand the confusion on PWREN,
-> > either is INPUT / OTPUT to usb hub am I correct
-> > My understanding of the INPUT/OUTPUT direction in the Odroid-C1
-> > schematics (which you linked) above is that the arrow direction shows
-> > whether it's an input or output.
-> > For example (all on page one):
-> > - HDMI_HPD is an input to the Meson8b SoC, arrow direction is: HDMI => S805
-> > - IR_IN is an input to the Meson8b SoC, arrow direction is: S805 <=
-> > GPIOAO.BIT7 IR_IN
-> > - PWM is an output, arrow direction is: S805 => PWM.C VCCK_PWM
-> > - 3.3V/1.8V switch for the SD card is an output, arrow direction is:
-> > S805 => GPIOAO.BIT3 TF_3V3N_1V8_EN
-> >
-> > That tells me: the arrow direction shows which connections are inputs
-> > or outputs.
-> > Some pins can be input and output at the same time (HDMI_CEC). But
-> > let's keep it simple for now any only look at inputs/output.
-> >
-> > Based on this information I am looking at the arrow direction for
-> > USB_OTG: GPIOAO.BIT5 PWREN <= S805
-> > So this confirms that GPIOAO_5 is an output to the SoC.
-> > Please note though that this part is not linked with any USB host
-> > connector, it's only linked to the USB OTG path.
-> >
-> > For the next part the S805 SoC is not involved:
-> > USB1 USB_HOST_PWR_SW PWREN <= PWREN USB_HUB_GL852G
-> > USB2 USB_HOST_PWR_SW PWREN <= PWREN USB_HUB_GL852G
-> > This tells me that the PWREN signal for the two USB_HOST_PWR_SW (USB
-> > host power switches / current limiters) is driven by the GL852G USB
-> > hub.
-> Hardkernel team responded on the Odroid forums to the request from Anand:
-> "Power-Enable signal to the USB load switch ICs is connected to the
-> USB hub controller.
-> It is not connected the CPU GPIO."
->
-> The regulator from Anand's patch is therefore connected to the micro USB port.
-> This means that the patch needs updating in case Anand wants to have
-> it included.
->
+What other clients are those?
 
-Yes, I will send a corrected version of the patches soon.
+> The other option to prevent
+> register re-arrangement would involve
+> using syscons from the cpufreq node, which
+> really wasn't necessary since there
+> wasn't any register overlap between the
+> two drivers.
+
+Let's not do that.
 
 >
-> Best regards,
-> Martin
+> >
+> >> So, re-arrange the cpufreq register offsets to allow access for
+> >> the L3 interconnect to implement per core control. Also prevent
+> >> binding
+> >> breakage caused by register offset shuffling by using the
+> >> SM8250/SM8350
+> >> EPSS compatible.
+> >>
+> >> Fixes: 7dbd121a2c58 ("arm64: dts: qcom: sc7280: Add cpufreq hw node")
+> >> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+> >> ---
+> >>  drivers/cpufreq/qcom-cpufreq-hw.c | 23 +++++++++++++++++++----
+> >>  1 file changed, 19 insertions(+), 4 deletions(-)
+> >>
+> >> diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c
+> >> b/drivers/cpufreq/qcom-cpufreq-hw.c
+> >> index f86859bf76f1..74ef3b38343b 100644
+> >> --- a/drivers/cpufreq/qcom-cpufreq-hw.c
+> >> +++ b/drivers/cpufreq/qcom-cpufreq-hw.c
+> >> @@ -28,6 +28,7 @@ struct qcom_cpufreq_soc_data {
+> >>         u32 reg_volt_lut;
+> >>         u32 reg_perf_state;
+> >>         u8 lut_row_size;
+> >> +       bool skip_enable;
+> >>  };
+> >>
+> >>  struct qcom_cpufreq_data {
+> >> @@ -257,19 +258,31 @@ static const struct qcom_cpufreq_soc_data
+> >> qcom_soc_data = {
+> >>         .reg_volt_lut = 0x114,
+> >>         .reg_perf_state = 0x920,
+> >>         .lut_row_size = 32,
+> >> +       .skip_enable = false,
+> >>  };
+> >>
+> >>  static const struct qcom_cpufreq_soc_data epss_soc_data = {
+> >> +       .reg_freq_lut = 0x0,
+> >> +       .reg_volt_lut = 0x100,
+> >> +       .reg_perf_state = 0x220,
+> >> +       .lut_row_size = 4,
+> >> +       .skip_enable = true,
+> >> +};
+> >> +
+> >> +static const struct qcom_cpufreq_soc_data epss_sm8250_soc_data = {
+> >>         .reg_enable = 0x0,
+> >>         .reg_freq_lut = 0x100,
+> >>         .reg_volt_lut = 0x200,
+> >>         .reg_perf_state = 0x320,
+> >>         .lut_row_size = 4,
+> >> +       .skip_enable = false,
+> >>  };
+> >>
+> >>  static const struct of_device_id qcom_cpufreq_hw_match[] = {
+> >>         { .compatible = "qcom,cpufreq-hw", .data = &qcom_soc_data },
+> >>         { .compatible = "qcom,cpufreq-epss", .data = &epss_soc_data },
+> >> +       { .compatible = "qcom,sm8250-cpufreq-epss", .data =
+> >> &epss_sm8250_soc_data },
+> >> +       { .compatible = "qcom,sm8350-cpufreq-epss", .data =
+> >> &epss_sm8250_soc_data },
+> >>         {}
+> >>  };
+> >>  MODULE_DEVICE_TABLE(of, qcom_cpufreq_hw_match);
+> >> @@ -334,10 +347,12 @@ static int qcom_cpufreq_hw_cpu_init(struct
+> >> cpufreq_policy *policy)
+> >>         data->res = res;
+> >>
+> >>         /* HW should be in enabled state to proceed */
+> >
+> > It looks odd that we're no longer making sure that the clk domain is
+> > enabled when we probe the driver. Why is that OK?
 >
->
-> [0] https://forum.odroid.com/viewtopic.php?p=332217#p332217
+> On newer EPSS hw it's no longer
+> required to perform the additional
+> hw enable check. IIRC we don't do
+> that on corresponding downstream
+> kernels as well.
 
-Thanks
--Anand
+It's fairly clear that we no longer perform the additional check. The
+question is why that's OK.
