@@ -2,181 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD9663E0FC5
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 09:58:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED68E3E0FD7
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 10:05:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239110AbhHEH7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 03:59:08 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33858 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236746AbhHEH7H (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Aug 2021 03:59:07 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5C0FD6104F;
-        Thu,  5 Aug 2021 07:58:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1628150334;
-        bh=VLknsodvrM25ND+q2Zj+641W3Gv+7CB4psNdhS3kxz0=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=VqhbEXN5PI6DwUvKqtkn10XVO4YuIhff+eXWTy/yKXc2ryKsB2ee4ld53RF3jkXiV
-         wfNL+0fiIj85UnbD6dOm3jv8FemjEV5wmYRhL2oRRG7FYDMmmsb9lHHQEOYe7dVyFk
-         l67GzvhfmmJsTRbgdEtvP0+ja5y7TqMG6YNPlGKGjx0OwwH8gKRsQOMC32nk5yu5uc
-         yf98mveCx4kZ/VL53vaQWam1C0obOVcxw2yW3Zs2MTTFuOUufowYDX9IwEfTFLzW5v
-         aSe0rAn3UuuXdWONRxFuDb3ZcfFN7JG4XYHuG8peANPnUSelyFhuIjvLxyHzlMtlvw
-         guyAgaus/K/wQ==
-Date:   Thu, 5 Aug 2021 09:58:48 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Rob Herring <robh@kernel.org>, Linuxarm <linuxarm@huawei.com>,
-        mauro.chehab@huawei.com
-Cc:     Binghui Wang <wangbinghui@hisilicon.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Xiaowei Song <songxiaowei@hisilicon.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        PCI <linux-pci@vger.kernel.org>, linux-phy@lists.infradead.org
-Subject: Re: [PATCH v3 0/4] DT schema changes for HiKey970 PCIe hardware to
- work
-Message-ID: <20210805095848.464cf85c@coco.lan>
-In-Reply-To: <20210805094612.2bc2c78f@coco.lan>
-References: <cover.1627965261.git.mchehab+huawei@kernel.org>
-        <CAL_JsqLjw=+szXWJjGe86tMc51NA-5j=jVSXUAWuKeZRuJNJUg@mail.gmail.com>
-        <20210804085045.3dddbb9c@coco.lan>
-        <YQrARd7wgYS1nywt@robh.at.kernel.org>
-        <20210805094612.2bc2c78f@coco.lan>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-redhat-linux-gnu)
+        id S236777AbhHEIFx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 04:05:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38546 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232559AbhHEIFw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 04:05:52 -0400
+Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34E78C061765;
+        Thu,  5 Aug 2021 01:05:38 -0700 (PDT)
+Received: by mail-io1-xd31.google.com with SMTP id y1so5613035iod.10;
+        Thu, 05 Aug 2021 01:05:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=CigNGT2AbpQ4wSDNvI4oyMY6a17yp6Be3VnQFnnxIus=;
+        b=JX7XqMPvKDwANHLr7Enzl+BbR0IM9eNOOR3t0GtMmz6BzEx/pFH+05ZcDMFFVitd9c
+         IC/2Aya2UKd+/QuB8Za9waPJHAiCfWB3oJhH1xWkE0HedjNlZoc4EdgozMsrexA2Jace
+         MIrUgzpSjoTv5j7X04YGWDHCvowVMbt8sc5zxzX0dxByq9d8ILrcDmyxNf+Sdgu3EctO
+         lp5T4eWZ2pZbrB9CeGiYts9fyyzpqFZLi36YatacdiicQX/EcJ0JDSNF77av6m9OM2Q4
+         c1/o2Z7wzCcwRVODHMh+rMlaMVUKM3ptLXDPbXB2XlkG4q8tBcVCQAtrQOZXCbSNm4Mj
+         zQJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=CigNGT2AbpQ4wSDNvI4oyMY6a17yp6Be3VnQFnnxIus=;
+        b=K7viJCEHTmHJeUUCt3ErdDUGIJoLOYY+DJBxZ3lUu10NtM4rG4hku23+WMuNdXdGop
+         dWn1o8PMPnYPaXjfybpclfRPS6lT2rXpo4LxQ84IZMEgqfivO/iROFY6nfdzerUlPBgx
+         Hw6mgZknTiRjylDfsDccr6jaTaFIFcNWarutUxZJs1a8t4owe0J+eJFRgwASW8T7QHyW
+         tFNpch/3CmHbBVkAHFp/CcnvV+Io4yuWP9aqbheaU17d0xE/NvKpQ75pQR3ITKuasWAI
+         hfD8afxuBzgAZ485awEjO3V5FWv2nr3ruZNwDQq1xKbq08RfQ/zJIUppDRWSRIrMMuqu
+         wHqg==
+X-Gm-Message-State: AOAM532nSHRRCMl5i8s+3KHSuSB31jDG7EryHdT+N9w6POUup0MGuw1K
+        fdqa+9J5WCADA7ntfMSfKEpiGcMJqp1fcu6s4RQ=
+X-Google-Smtp-Source: ABdhPJzNZBZGzsK7tlcjpKcsAXlaEqOYn7z2XrzBU57p8Gp2GSqg5xZGhQOyWMvdk4HUSzuxcdaWGxn7STU14selZn4=
+X-Received: by 2002:a5d:8541:: with SMTP id b1mr4078ios.105.1628150737727;
+ Thu, 05 Aug 2021 01:05:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20210803084456.198-1-alistair@alistair23.me> <20210803084456.198-9-alistair@alistair23.me>
+ <YQqLiAtAtREWTvD7@google.com>
+In-Reply-To: <YQqLiAtAtREWTvD7@google.com>
+From:   Alistair Francis <alistair23@gmail.com>
+Date:   Thu, 5 Aug 2021 18:05:00 +1000
+Message-ID: <CAKmqyKO_QeNTRZx9P9vhX7DQoBfE6igOtJroTEer-OKoVO-RGQ@mail.gmail.com>
+Subject: Re: [PATCH v8 09/11] ARM: dts: imx7d: remarkable2: Enable silergy,sy7636a
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Alistair Francis <alistair@alistair23.me>,
+        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
+        Mark Brown <broonie@kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Em Thu, 5 Aug 2021 09:46:12 +0200
-Mauro Carvalho Chehab <mchehab+huawei@kernel.org> escreveu:
+On Wed, Aug 4, 2021 at 10:43 PM Lee Jones <lee.jones@linaro.org> wrote:
+>
+> On Tue, 03 Aug 2021, Alistair Francis wrote:
+>
+> > Enable the silergy,sy7636a and silergy,sy7636a-regulator on the
+> > reMarkable2.
+> >
+> > Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> > ---
+> >  arch/arm/boot/dts/imx7d-remarkable2.dts | 42 +++++++++++++++++++++++++
+> >  1 file changed, 42 insertions(+)
+>
+> I don't see the DT documentation for this device.
 
-> Em Wed, 4 Aug 2021 10:28:53 -0600
-> Rob Herring <robh@kernel.org> escreveu:
-> 
-> > On Wed, Aug 04, 2021 at 08:50:45AM +0200, Mauro Carvalho Chehab wrote:  
-> > > Em Tue, 3 Aug 2021 16:11:42 -0600
-> > > Rob Herring <robh+dt@kernel.org> escreveu:
-> > >     
-> > > > On Mon, Aug 2, 2021 at 10:39 PM Mauro Carvalho Chehab
-> > > > <mchehab+huawei@kernel.org> wrote:    
-> > > > >
-> > > > > Hi Rob,
-> > > > >
-> > > > > That's the third version of the DT bindings for Kirin 970 PCIE and its
-> > > > > corresponding PHY.
-> > > > >
-> > > > > It is identical to v2, except by:
-> > > > >         -          pcie@7,0 { // Lane 7: Ethernet
-> > > > >         +          pcie@7,0 { // Lane 6: Ethernet      
-> > > > 
-> > > > Can you check whether you have DT node links in sysfs for the PCI
-> > > > devices? If you don't, then something is wrong still in the topology
-> > > > or the PCI core is failing to set the DT node pointer in struct
-> > > > device. Though you don't rely on that currently, we want the topology
-> > > > to match. It's possible this never worked on arm/arm64 as mainly
-> > > > powerpc relied on this.
-> > > >
-> > > > I'd like some way to validate the DT matches the PCI topology. We
-> > > > could have a tool that generates the DT structure based on the PCI
-> > > > topology.    
-> > > 
-> > > The of_node node link is on those places:
-> > > 
-> > > 	$ find /sys/devices/platform/soc/f4000000.pcie/ -name of_node
-> > > 	/sys/devices/platform/soc/f4000000.pcie/of_node
-> > > 	/sys/devices/platform/soc/f4000000.pcie/pci0000:00/0000:00:00.0/of_node
-> > > 	/sys/devices/platform/soc/f4000000.pcie/pci0000:00/0000:00:00.0/pci_bus/0000:01/of_node
-> > > 	/sys/devices/platform/soc/f4000000.pcie/pci0000:00/pci_bus/0000:00/of_node    
-> > 
-> > Looks like we're missing some... 
-> > 
-> > It's not immediately obvious to me what's wrong here. Only the root 
-> > bus is getting it's DT node set. The relevant code is pci_scan_device(), 
-> > pci_set_of_node() and pci_set_bus_of_node(). Give me a few days to try 
-> > to reproduce and debug it.  
-> 
-> I added a printk on both pci_set_*of_node() functions:
-> 
-> 	[    4.872991]  (null): pci_set_bus_of_node: of_node: /soc/pcie@f4000000
-> 	[    4.913806]  (null): pci_set_of_node: of_node: /soc/pcie@f4000000
-> 	[    4.978102] pci_bus 0000:01: pci_set_bus_of_node: of_node: /soc/pcie@f4000000/pcie@0,0
-> 	[    4.990622]  (null): pci_set_of_node: of_node: /soc/pcie@f4000000/pcie@0,0
-> 	[    5.052383] pci_bus 0000:02: pci_set_bus_of_node: of_node: (null)
-> 	[    5.059263]  (null): pci_set_of_node: of_node: (null)
-> 	[    5.085552]  (null): pci_set_of_node: of_node: (null)
-> 	[    5.112073]  (null): pci_set_of_node: of_node: (null)
-> 	[    5.138320]  (null): pci_set_of_node: of_node: (null)
-> 	[    5.164673]  (null): pci_set_of_node: of_node: (null)
-> 	[    5.233759] pci_bus 0000:03: pci_set_bus_of_node: of_node: (null)
-> 	[    5.240539]  (null): pci_set_of_node: of_node: (null)
-> 	[    5.310545] pci_bus 0000:04: pci_set_bus_of_node: of_node: (null)
-> 	[    5.324719] pci_bus 0000:05: pci_set_bus_of_node: of_node: (null)
-> 	[    5.338914] pci_bus 0000:06: pci_set_bus_of_node: of_node: (null)
-> 	[    5.345516]  (null): pci_set_of_node: of_node: (null)
-> 	[    5.415795] pci_bus 0000:07: pci_set_bus_of_node: of_node: (null)
+Which device?
 
-The enclosed patch makes the above a clearer:
+The imx7d-remarkable2 is in current master and there is a single line
+at `Documentation/devicetree/bindings/arm/fsl.yaml`
 
-	[    4.800975]  (null): pci_set_bus_of_node: of_node: /soc/pcie@f4000000
-	[    4.855983] pci 0000:00:00.0: pci_set_of_node: of_node: /soc/pcie@f4000000
-	[    4.879169] pci_bus 0000:01: pci_set_bus_of_node: of_node: /soc/pcie@f4000000/pcie@0,0
-	[    4.900602] pci 0000:01:00.0: pci_set_of_node: of_node: /soc/pcie@f4000000/pcie@0,0
-	[    4.953086] pci_bus 0000:02: pci_set_bus_of_node: of_node: (null)
-	[    4.968821] pci 0000:02:01.0: pci_set_of_node: of_node: (null)
-	[    5.003538] pci 0000:02:04.0: pci_set_of_node: of_node: (null)
-	[    5.041348] pci 0000:02:05.0: pci_set_of_node: of_node: (null)
-	[    5.092770] pci 0000:02:07.0: pci_set_of_node: of_node: (null)
-	[    5.118298] pci 0000:02:09.0: pci_set_of_node: of_node: (null)
-	[    5.178215] pci_bus 0000:03: pci_set_bus_of_node: of_node: (null)
-	[    5.198433] pci 0000:03:00.0: pci_set_of_node: of_node: (null)
-	[    5.233330] pci_bus 0000:04: pci_set_bus_of_node: of_node: (null)
-	[    5.247071] pci_bus 0000:05: pci_set_bus_of_node: of_node: (null)
-	[    5.260898] pci_bus 0000:06: pci_set_bus_of_node: of_node: (null)
-	[    5.293764] pci 0000:06:00.0: pci_set_of_node: of_node: (null)
-	[    5.332808] pci_bus 0000:07: pci_set_bus_of_node: of_node: (null)
+The silergy,sy7636a-regulator is also already in master, but it isn't
+exposed to device tree and the compatible string shouldn't be included
+in this patch. I'll fix that.
 
-> 
-> It sounds that the parent is missing when pci_set_bus_of_node() is
-> called on some places. I'll try to identify why.
-> 
-> Thanks,
-> Mauro
+Alistair
 
-Thanks,
-Mauro
-
-[PATCH] pci: setup PCI before setting the OF node
-
-With this change, it is easier to add a debug printk at
-pci_set_of_node() in order to address possible issues.
-
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-
-diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
-index 79177ac37880..c5dfc1afb1d3 100644
---- a/drivers/pci/probe.c
-+++ b/drivers/pci/probe.c
-@@ -2374,15 +2374,14 @@ static struct pci_dev *pci_scan_device(struct pci_bus *bus, int devfn)
- 	dev->vendor = l & 0xffff;
- 	dev->device = (l >> 16) & 0xffff;
- 
--	pci_set_of_node(dev);
--
- 	if (pci_setup_device(dev)) {
--		pci_release_of_node(dev);
- 		pci_bus_put(dev->bus);
- 		kfree(dev);
- 		return NULL;
- 	}
- 
-+	pci_set_of_node(dev);
-+
- 	return dev;
- }
- 
-
-
+>
+> Has it been accepted/merged already?
+>
+> --
+> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
+> Senior Technical Lead - Developer Services
+> Linaro.org =E2=94=82 Open source software for Arm SoCs
+> Follow Linaro: Facebook | Twitter | Blog
