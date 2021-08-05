@@ -2,171 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AA413E0C07
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 03:20:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E0C63E0C1C
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 03:34:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236569AbhHEBUM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 21:20:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32980 "EHLO
+        id S234862AbhHEBfJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 21:35:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231143AbhHEBUM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 21:20:12 -0400
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 367FEC061765;
-        Wed,  4 Aug 2021 18:19:58 -0700 (PDT)
-Received: by mail-pj1-x102a.google.com with SMTP id u13-20020a17090abb0db0290177e1d9b3f7so11612863pjr.1;
-        Wed, 04 Aug 2021 18:19:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=e3XwsW9dcpK2inuw4CP3wWTFfrJpkqjKUp1ALe4OcSw=;
-        b=czFhfxgAUEDaFdM3Hcun5CUGzve9qBhEHhdgHBmOX7olliuFKN8DXgEe+rmKmWat+L
-         9mJyEreTCcY9wJOpkumioORcnXgQzD2mgUmfb8cHczaZku6gWfEFHyDULFrbZ1Qkc2Fb
-         w63Puypnh8M8XBOv2KOl5W9ml8QulLssN8QoK10Wjo+2Y386UtpiMhlLjuhbVj4TdOuB
-         pvqKjUhBeZHINJCJM53M/eymo4U+UKhmtE5VcRQ+hQFyt9j6QvVl0xQWmwI7zrDcM1sm
-         tFrqNxnw9BmxW3fhzyQMf8dW7uptS6+uWujOdhQ9442difFXq0vS6iTGzqqcdk7ixPDW
-         IKmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=e3XwsW9dcpK2inuw4CP3wWTFfrJpkqjKUp1ALe4OcSw=;
-        b=uB/nbMJb/9dFMl2poOLPL9PWZOv/gHibgXOV4n3MA9FOn5DZ8T4Kjk4NoJ4xYJTTq4
-         pCwAAelo8e6a6RSSEgif3y2JGoVdZGY0FhJ39bVq95stMe3ReorA+uAlVKfZmOTOmWCP
-         5p0IMGNXCS8zUllcSQll1iA3V/9ZVZOzlSdOhRdO9lf+w2kjqLOYGndpD/y6j3E0tQIb
-         Gy19wSjrmmU0IWsI4+MSn+HjtmQKN3n/d3Hv6v9LAyX31k1J7/EagQSsBjowVZyhfFDk
-         /n2ID7xKHwzoNp144gBQkJKH+o08U0Hja50DbLjgYWcdCPpP2nDNesLiXMVUoMNIpyLs
-         8zgg==
-X-Gm-Message-State: AOAM533Rs7h60ybIjkmIOvCoojhjc9JNJ5fRXO1wlBEQf7iytBweiY3h
-        0cKLWzpFeOWR1bjXsFGtwjc=
-X-Google-Smtp-Source: ABdhPJwslt4nxz+RxhRYj1bs+nrlsiTP9TyPu0faSLQ6tV7d4GwOgf/ab8jE0Nsc/c/E4gjD42jt7w==
-X-Received: by 2002:a65:6088:: with SMTP id t8mr1796538pgu.371.1628126397724;
-        Wed, 04 Aug 2021 18:19:57 -0700 (PDT)
-Received: from taoren-ubuntu-R90MNF91 (c-73-252-146-110.hsd1.ca.comcast.net. [73.252.146.110])
-        by smtp.gmail.com with ESMTPSA id g11sm3775073pju.13.2021.08.04.18.19.56
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 04 Aug 2021 18:19:57 -0700 (PDT)
-Date:   Wed, 4 Aug 2021 18:19:51 -0700
-From:   Tao Ren <rentao.bupt@gmail.com>
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Tao Ren <taoren@fb.com>
-Subject: Re: [PATCH 6/6] ARM: dts: aspeed: Add Facebook Fuji (AST2600) BMC
-Message-ID: <20210805011951.GA28444@taoren-ubuntu-R90MNF91>
-References: <20210728233755.17963-1-rentao.bupt@gmail.com>
- <20210728233755.17963-7-rentao.bupt@gmail.com>
- <CACPK8XemZkV7nK_b4883DN+dJKhL=tXfqK6=DpHQe=fZRu_ETQ@mail.gmail.com>
+        with ESMTP id S234640AbhHEBfI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 21:35:08 -0400
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [IPv6:2001:67c:2050::465:101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39F75C061765;
+        Wed,  4 Aug 2021 18:34:55 -0700 (PDT)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:105:465:1:1:0])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4GgB4B36xPzQk2m;
+        Thu,  5 Aug 2021 03:34:50 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at heinlein-support.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gorani.run; s=MBO0001;
+        t=1628127286;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=ZE+O5cegW+iGebRWUhEH5E4wIAzdvgqgde4doV7RxnQ=;
+        b=vTi3Q3bMHhE54KV89e8W4EIYg7qQRDhTc58ZeJ0z1tt+6aDO+XQ6B/FMOvSOpgdS1NrvLi
+        UlXbHDDn6yTwNJ8Kxp0Rq4ikcIl35uwBFRBVQuJOEwH3wn9U4VXJO6/nQXhRKGdDkbLgvi
+        pDmT0bvrKUWzAkOcyMHdGnc8Y5bypaKdDX9CKkDc5JWyLMAlZemAQuYIj6osPdbQcBe1xD
+        sqjNvXTmGAgRrBnP2DxemGDX4mgM+UYNjSP2w6EhUKw+Xb6nNGyonL9R52NdSfnTuItalD
+        sKUBkehXbmmMqvcHzmoeEASFCXoced4ojdrp+zMzUn6mxptWLhRnBI6XrCUNWA==
+Received: from smtp1.mailbox.org ([80.241.60.240])
+        by spamfilter03.heinlein-hosting.de (spamfilter03.heinlein-hosting.de [80.241.56.117]) (amavisd-new, port 10030)
+        with ESMTP id gunOhzsQxFz4; Thu,  5 Aug 2021 03:34:45 +0200 (CEST)
+Subject: Re: Aw: Re: [PATCH 0/2] Add MUSB for MT7623
+To:     Frank Wunderlich <frank-w@public-files.de>
+Cc:     linux-mediatek@lists.infradead.org,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Min Guo <min.guo@mediatek.com>, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20210803151320.71531-1-mans0n@gorani.run>
+ <trinity-0f9449b8-5114-46e5-9a4f-00b62155a938-1628010948338@3c-app-gmx-bs54>
+ <f3607979-ea50-fc1c-0afe-a55881aa24f0@gorani.run>
+ <trinity-8910c659-6e4e-4979-a6d0-eaf5b8bee213-1628064668849@3c-app-gmx-bap67>
+From:   Sungbo Eo <mans0n@gorani.run>
+Message-ID: <a6f4d24f-c79b-35e4-43fb-90eb75623dc2@gorani.run>
+Date:   Thu, 5 Aug 2021 10:34:35 +0900
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACPK8XemZkV7nK_b4883DN+dJKhL=tXfqK6=DpHQe=fZRu_ETQ@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <trinity-8910c659-6e4e-4979-a6d0-eaf5b8bee213-1628064668849@3c-app-gmx-bap67>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 6EE5B1887
+X-Rspamd-UID: ce070d
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 05, 2021 at 12:28:02AM +0000, Joel Stanley wrote:
-> On Wed, 28 Jul 2021 at 23:38, <rentao.bupt@gmail.com> wrote:
-> >
-> > From: Tao Ren <rentao.bupt@gmail.com>
-> >
-> > Add initial version of device tree for Facebook Fuji (AST2600) BMC.
+On 2021-08-04 17:11, Frank Wunderlich wrote:
+>> Gesendet: Mittwoch, 04. August 2021 um 02:14 Uhr
+>> Von: "Sungbo Eo" <mans0n@gorani.run>
 > 
-> I like to read what kind of platform the BMC is going into if you can
-> add that detail, but it's not essential.
+>>> thanks for working on it. do both otg-roles (host/client) work on your device?
+>>
+>> Yes, I tested it with host mode and device mode.
+>> I also tried manual role-switch via sysfs and it worked with some prior setup.
+>> Note that my device has a USB Type-A connector and not micro B, so I can't help with id pin stuff...
+> 
+>>> but usb-stick is not powered (led of the stick is off) and of course i see no mass-storage device.
+>>
+>> I observed the same symptom (but different error log).
+>>
+>> [    2.722253] musb-hdrc musb-hdrc.1.auto: VBUS_ERROR in a_idle (80, <SessEnd), retry #0, port1 00000104
+>>
+>> In my case adding `regulator-always-on;` in the regulator node solved the problem temporarily.
+>> But after that I switched to relying on pinctrl.
+> 
+> i've found out that usb-stick is powered if i first connect otg-cable and then the stick to the cable...regulator always on does not change anything for me (only supporess "disabling vusb" message on boot). traceback on poweroff is still there.
 
-Sure. I will add more details in v2.
- 
-> > +&spi1 {
-> > +       status = "okay";
-> > +
-> > +       /*
-> > +        * Customize spi1 flash memory size to 32MB (maximum flash size on
-> > +        * the bus) to save vmalloc space.
-> > +        */
-> > +       reg = < 0x1e630000 0xc4
-> > +               0x30000000 0x2000000 >;
-> 
-> Which driver supports this?
-> 
-> It would be great to see Facebook work to get the SPI NOR driver for
-> the ast2600 merged to mainline.
-> 
-> I doubt the IBM team will get to this, as we are using eMMC instead.
+I tried to reproduce your usb-conn-gpio message on my machine but I failed.
+Probably because my USB port does not have ID pin...
 
-Ah, I just checked aspeed-g6.dtsi (ast2600-spi) in mainline and I thought
-the driver patches were also upstreamed. Let me remove the entry for now,
-and will add it back when the driver is ready.
+Currently OpenWrt does not enable CONFIG_POWER_RESET_MT6323 so I was not aware of the poweroff error.
+After I enabled it I got the same error and I could not resolve it... I'd better disable it for now.
 
 > 
-> > +
-> > +       flash@0 {
-> > +               status = "okay";
-> > +               m25p,fast-read;
-> > +               label = "spi1.0";
-> > +               spi-max-frequency = <5000000>;
-> > +
-> > +               partitions {
-> > +                       compatible = "fixed-partitions";
-> > +                       #address-cells = <1>;
-> > +                       #size-cells = <1>;
-> > +
-> > +                       flash1@0 {
-> > +                               reg = <0x0 0x2000000>;
-> > +                               label = "system-flash";
-> > +                       };
-> > +               };
-> > +       };
-> > +};
+> role switch happen on inserting stick into cable, not before (insert cable into r2) as i expected.
 > 
-> > +&ehci1 {
-> > +       status = "okay";
-> > +};
-> 
-> Have you verified that USB works with mainline? I've had reports of it
-> working on 5.8 but it seems to have regressed as of v5.10.
+> need to figure out which CONFIG options i need to get USB-Stick as mass storage working.
 
-It stopped working on ASPEED since commit 280a9045bb18 ("ehci: fix EHCI
-host controller initialization sequence"): ehci_handshake() returns
-error because HCHalted bit EHCI24[12] stays at 1.
-
-I have a dirty hack in my tree (ignoring the halt bit) and it "works" on
-AST2500 and AST2600. Let me send an email to openbmc and aspeed email
-groups to see if anyone has more context.
-
-Meanwhile, should I delete the entry until the fix is ready in driver?
- 
-> > +&mdio1 {
-> > +       status = "okay";
-> > +
-> > +       ethphy3: ethernet-phy@13 {
-> > +               compatible = "ethernet-phy-ieee802.3-c22";
-> > +               reg = <0x0d>;
-> > +       };
-> > +};
-> > +
-> > +&mac3 {
-> > +       phy-handle = <&ethphy3>;
-> 
-> status = okay?
-> 
-> You should specify the pinmux too I think, even if the default happens
-> to work, so that other devices cannot claim the pins.
-
-status is set in ast2600 common dtsi, but let me set it here to avoid
-confusion. Will update pinmux in v2. Thanks.
+Do you mean that vbus turns on but your usb stick is not detected?
+Does that change if you use `dr_mode = "host"`?
 
 > 
-> Cheers,
+> i wonder why it works on your board without the vusb/connector subnodes
+
+Do you mean vbus subnode in musb or vusb subnode in pmic?
+I've never used vusb node, it did not affect me in any way.
+When I used usb_vbus regulator node to enable vbus line, it did not turn on the line unless I added `regulator-always-on`...
+It seems the connector node is not really required for me.
+
 > 
-> Joel
+>> +&pio {
+>> +       musb_pins: musb {
+>> +               pins-musb {
+>> +                       pinmux = <MT7623_PIN_237_EXT_SDIO2_FUNC_DRV_VBUS>;
+>> +               };
+>> +       };
+>> +};
+> 
+> imho it's the same gpio used for regulator, right? whats the difference?
+> i tried this instead of the regulator-node => not powered (cable first, then stick).
 
-Cheers,
+I don't really know how it does work, but for me it does turn on vbus in host mode and turn it off in device mode.
+I imagined DRV_VBUS setup will make the musb controller itself (and not kernel) control the line as needed, but it's just my guess.
 
-Tao
+> 
+>> +&usb3 {
+>> +       pinctrl-names = "default";
+>> +       pinctrl-0 = <&musb_pins>;
+>> +       status = "okay";
+>> +
+>> +       dr_mode = "host";
+>> +
+>> +       connector {
+>> +               compatible = "usb-a-connector";
+>> +       };
+>> +};
+>>
+>> root@OpenWrt:~# lsusb -t
+>> /:  Bus 03.Port 1: Dev 1, Class=root_hub, Driver=musb-hdrc/1p, 480M
+>>     |__ Port 1: Dev 2, If 0, Class=, Driver=usb-storage, 480M
+>> /:  Bus 02.Port 1: Dev 1, Class=root_hub, Driver=xhci-mtk/1p, 5000M
+>> /:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=xhci-mtk/1p, 480M
+>>
