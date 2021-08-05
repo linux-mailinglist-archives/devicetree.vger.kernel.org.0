@@ -2,144 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D7BF3E1513
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 14:52:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D3553E152F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 14:57:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241505AbhHEMwl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 08:52:41 -0400
-Received: from frasgout.his.huawei.com ([185.176.79.56]:3595 "EHLO
-        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232692AbhHEMwk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 08:52:40 -0400
-Received: from fraeml707-chm.china.huawei.com (unknown [172.18.147.207])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4GgT5g6n2jz6FFn8;
-        Thu,  5 Aug 2021 20:52:07 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml707-chm.china.huawei.com (10.206.15.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Thu, 5 Aug 2021 14:52:24 +0200
-Received: from localhost (10.47.74.155) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Thu, 5 Aug 2021
- 13:52:23 +0100
-Date:   Thu, 5 Aug 2021 13:51:53 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-CC:     Jonathan Cameron <jic23@kernel.org>, <linux-iio@vger.kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>, <Michael.Hennerich@analog.com>,
-        <lars@metafoo.de>, <devicetree@vger.kernel.org>,
-        Nuno Sa <Nuno.Sa@analog.com>
-Subject: Re: [PATCH 00/17] iio:adc:ad7280a Cleanup and proposed staging
- graduation.
-Message-ID: <20210805135153.00004133@Huawei.com>
-In-Reply-To: <YQtgZMWv5nfMgP8/@marsc.168.1.7>
-References: <20210614113507.897732-1-jic23@kernel.org>
-        <YNIfkaRZtWIXPbAj@marsc.168.1.7>
-        <20210623093741.00007d1d@Huawei.com>
-        <20210711155051.713c1207@jic23-huawei>
-        <YOyFE/yHrLQxKpkU@marsc.168.1.7>
-        <YQtgZMWv5nfMgP8/@marsc.168.1.7>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
+        id S241545AbhHEM55 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 08:57:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49368 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240155AbhHEM55 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 08:57:57 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28FC6C061765
+        for <devicetree@vger.kernel.org>; Thu,  5 Aug 2021 05:57:43 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id o10so7014617ljp.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Aug 2021 05:57:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=pZbqm5rS9uY9gmvr3en4eNyV6i6PzvdvqtugR3RNZI4=;
+        b=Zi5QS4ost9k+8KVdKBU7r03nUUtTVbc6SfPzr1I2afFxBj0e//LSNDbkaTWGXOSG9R
+         fOGgzBcnPf+yiFA67ZO1C95AvyNAvEMWxn/95Hkkq8fgtU8WcUT/UgLKmLwTxthcr9HL
+         Oj/4Kng4KtFmb934rG5hpXXxvCFHbsNG64AxzZ/P52ornKB29zHk+0ombK2+CqAK3Xkk
+         CBEOo0DzKaWgfdbGwpRR/Y96fmY00RfHlWJK6rpywrxrzgqut1vpb8wHlJQUCHqylzQX
+         WxTr5M95SKZgZaXGOnlm+gjD2caLSPuLc5GHKMszTovTLgYPWPz5LikLJsPUvo6/QABu
+         1K0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=pZbqm5rS9uY9gmvr3en4eNyV6i6PzvdvqtugR3RNZI4=;
+        b=I14plKc45KhkoO3LbaNBFA2pd8LLCtfwOxwCpiyMs1HuMT40tuNF7hSCaMAfSpd87e
+         0m7PZxpOQo1AaAJbIELIAN4EJESIYEfZFvyfsX2oIQfJkTQgt1pmobSjPgE4w4dgWubx
+         fxMdvsE8xbZroEUF5zWgHp3HvrWiGCuaqyNf0/YD3L+eFCEWCmase/VwQqOZ83deIg82
+         gGz5Z1FMJzwiKtwJ7PHuHuAxRRHelL5JA7Xv248hUtHr62UXG5d1lKM6rk2xBRHgmmlV
+         4lt2IiFVZWYccEnfPOMR1faHTQCB04/NUvMlWe0ALJRcd+xg5jSrHGTwUnzFP5GJRtbw
+         3/UQ==
+X-Gm-Message-State: AOAM531cMWk0bSxze6wRvxFi23IwFuXFDRPZW8KYuNouQ/1qWYs/Slko
+        Q3i8KEZucMFnA9Dv7ooJLX+Efw==
+X-Google-Smtp-Source: ABdhPJyZl78mfSg8C4X8bMAPnoTfiSQY/0XoV8C1PnyrVYJoW6qOSWIY4BtAKOAyd3Ke5NxYYt08zg==
+X-Received: by 2002:a2e:7e0a:: with SMTP id z10mr3089416ljc.283.1628168261452;
+        Thu, 05 Aug 2021 05:57:41 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id m13sm509172lfu.5.2021.08.05.05.57.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Aug 2021 05:57:41 -0700 (PDT)
+Subject: Re: [PATCH v2] ARM: dts: qcom: apq8064: correct clock names
+To:     David Heidelberg <david@ixit.cz>, linus.walleij@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Brian Masney <masneyb@onstation.org>
+References: <20210707131453.24041-1-david@ixit.cz>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Message-ID: <5d11261e-592a-31cc-b3e2-5eee76681ec0@linaro.org>
+Date:   Thu, 5 Aug 2021 15:57:40 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
+In-Reply-To: <20210707131453.24041-1-david@ixit.cz>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.47.74.155]
-X-ClientProxiedBy: lhreml736-chm.china.huawei.com (10.201.108.87) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 5 Aug 2021 00:52:04 -0300
-Marcelo Schmitt <marcelo.schmitt1@gmail.com> wrote:
-
-> [...]
+On 07/07/2021 16:14, David Heidelberg wrote:
+> Since new code doesn't take old clk names in account, it does fixes
+> error:
 > 
-> > > 
-> > > Note there is loads of stuff that isn't implemented as it was developed alongside
-> > > this patch series to verify individual patches rather than with the intent of
-> > > actually emulating the device.
-> > >   
-> > OK, will be aware of that.
-> >   
-> > > It's hard coded to 2 a chain of 3 ad7280a devices because that seemed to hit most possible
-> > > corner cases.
-> > > 
-> > > The top commit has the launch string I'm using.  You'll need a filesystem, but
-> > > you can probably use one of the convenient ones debian posts as nocloud cloud
-> > > images. 
-> > > 
-> > > There is some info on that on people.kernel.org/jic23 as I wrote up how to test
-> > > CXL stuff on ARM recently and gave guidance on easy ways to get a filesystem.
-> > > http://cdimage.debian.org/cdimage/cloud/sid/daily/20210702-691/debian-sid-nocloud-arm64-daily-20210702-691.qcow2
-> > > will probably work and is more recent than the one linked from that blog post.   
-> > 
-> > I was using a debian imgage created from following the instructions on a
-> > tutorial pointed by the QEMU docs.
-> > https://translatedcode.wordpress.com/2017/07/24/installing-debian-on-qemus-64-bit-arm-virt-board/
-> > Anyhow, I'll chance to the nocloud one if see things don't get working.
-> >   
-> > > 
-> > > Give me a shout if you need more specific guidance than this very very rough guide!  
-> > 
-> > Sure, let's see if I can get through it now. Otherwise ...  
+> msm_dsi 4700000.mdss_dsi: dev_pm_opp_set_clkname: Couldn't find clock: -2
 > 
-> I've managed to get it running and see the emulated ad7280a working.
-> Still getting some trouble with the ad7150 emulation though.
-> I added a pull request with some comments about the ad7150 emulation on the
-> github repository. 
-
-Will take a look at some point.  Thanks.
-
-> Overall I don't think it was so hacky, I just wonder if it could have been
-> done more cleanly by passing a custom dtb in the launching string. The hacks
-> at virt.c are mostly to add the busses, add the device nodes, and connect
-> device gpio to interrupt lines. We could do it all by editing a dt, right?
-> Anyhow, thanks a lot for sharing this stuff.
-
-That's the alternative, though you also need to actually create the relevant
-devices.  The dtb stuff is lengthy but really simple to do, it's also somewhat
-resilient to other changes in how the virt model works (address changes etc).
-
-Given I was there anyway, it seemed easier to do it all in one place.
- 
+> and following kernel oops introduced by
+> b0530eb1191 ("drm/msm/dpu: Use OPP API to set clk/perf state").
 > 
-> >   
-> > > 
-> > > I mentioned this thread in the diversion the rust on linux thread took into
-> > > use of QEMU to emulate devices which motivated me to stop being lazy and at least
-> > > post this hideous version.  Probably the most useful bit is how to get a working
-> > > spi device emulated on the arm virt machine as that is very handy for all manner
-> > > of testing.  One day someone might implement a large set of IIO device emulation
-> > > and bolt it into a CI...  
-> > 
-> > Agree, it's hard to get IIO drivers runtime tested because we often don't
-> > have the required hardware to do it. I think emulation would help us with
-> > that or, at least, would give us a little bit more confidence in our
-> > changes than just relying on sharp eyes and compile/static tests.
-> > Puching that into a CI would also be rather nice.
-> >   
-> > > 
-> > > Jonathan
-> > >   
-> > > >   
-> > > > > 
-> > > > > Being able to see it running, I may feel more confident to provide a review
-> > > > > for this set :)    
+> Also removes warning about deprecated clock names.
 > 
-> Guess I've been too optimistic. The way things are going I may take a few
-> more weeks to have a closer look at all the patches. I'll try to make it
-> before the next merge window or give up otherwise. It's not reasonable to
-> ask you wait more since this set has been sitting on the list for so long.
-
-Don't worry about it.  Driver was in staging a long time. It can wait as
-long as we know it will move forwards eventually!
-
-Jonathan
-
+> Tested against linux-5.10.y LTS on Nexus 7 2013.
 > 
-> 
-> [...]
+> Reviewed-by: Brian Masney <masneyb@onstation.org>
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+> ---
+> - v2 improved commit message, added R-b
+> 
+>   arch/arm/boot/dts/qcom-apq8064.dtsi | 6 +++---
+>   1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
+> index 6005620ac297..96b7755afabf 100644
+> --- a/arch/arm/boot/dts/qcom-apq8064.dtsi
+> +++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
+> @@ -1262,9 +1262,9 @@ dsi0: mdss_dsi@4700000 {
+>   				<&mmcc DSI1_BYTE_CLK>,
+>   				<&mmcc DSI_PIXEL_CLK>,
+>   				<&mmcc DSI1_ESC_CLK>;
+> -			clock-names = "iface_clk", "bus_clk", "core_mmss_clk",
+> -					"src_clk", "byte_clk", "pixel_clk",
+> -					"core_clk";
+> +			clock-names = "iface", "bus", "core_mmss",
+> +					"src", "byte", "pixel",
+> +					"core";
+>   
+>   			assigned-clocks = <&mmcc DSI1_BYTE_SRC>,
+>   					<&mmcc DSI1_ESC_SRC>,
+> 
+
+
+-- 
+With best wishes
+Dmitry
