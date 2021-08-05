@@ -2,606 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 77FCB3E157C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 15:15:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA2643E1E5C
+	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 00:04:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241680AbhHENQF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 09:16:05 -0400
-Received: from mga04.intel.com ([192.55.52.120]:52221 "EHLO mga04.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241685AbhHENQD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Aug 2021 09:16:03 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10066"; a="212291009"
-X-IronPort-AV: E=Sophos;i="5.84,296,1620716400"; 
-   d="scan'208";a="212291009"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Aug 2021 06:15:49 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.84,296,1620716400"; 
-   d="scan'208";a="467504249"
-Received: from intel-z390-ud.iind.intel.com ([10.106.46.146])
-  by orsmga008.jf.intel.com with ESMTP; 05 Aug 2021 06:15:45 -0700
-From:   srikanth.thokala@intel.com
-To:     robh+dt@kernel.org, lorenzo.pieralisi@arm.com
-Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
-        lakshmi.bai.raja.subramanian@intel.com,
-        mallikarjunappa.sangannavar@intel.com, kw@linux.com,
-        maz@kernel.org, srikanth.thokala@intel.com
-Subject: [PATCH v11 2/2] PCI: keembay: Add support for Intel Keem Bay
-Date:   Fri,  6 Aug 2021 02:40:10 +0530
-Message-Id: <20210805211010.29484-3-srikanth.thokala@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210805211010.29484-1-srikanth.thokala@intel.com>
-References: <20210805211010.29484-1-srikanth.thokala@intel.com>
+        id S237601AbhHEWE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 18:04:56 -0400
+Received: from ns3020889.ip-5-39-64.eu ([5.39.64.141]:37318 "EHLO
+        server.example.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S237556AbhHEWEy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 18:04:54 -0400
+X-Greylist: delayed 107209 seconds by postgrey-1.27 at vger.kernel.org; Thu, 05 Aug 2021 18:04:36 EDT
+Received: by server.example.com (Postfix, from userid 1023)
+        id 961B8D4666D; Thu,  5 Aug 2021 21:15:41 +0000 (UTC)
+To:     devicetree@vger.kernel.org
+Subject: {Spam?} =?UTF-8?Q?Z._HD,Sehr_geehrte_/_r_Fondsempf=C3=A4nger?=
+Date:   Thu, 5 Aug 2021 21:15:41 +0000
+From:   "ANWALT BILBAO &EMMA ASSOZIIERT & CO..." 
+        <support@quali.speed.hebergement-com4design.fr>
+Reply-To: buroLotto.es@spainmail.com
+Message-ID: <0dfa5f5d22af5a85af2bcb53f59abbd0@www.quali.speed.hebergement-com4design.fr>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-yoursite-MailScanner-Information: Please contact the ISP for more information
+X-yoursite-MailScanner-ID: 961B8D4666D.AAD40
+X-yoursite-MailScanner: Found to be clean
+X-yoursite-MailScanner-SpamCheck: spam, SpamAssassin (cached, score=7.061,
+        required 6, ADVANCE_FEE_2_NEW_MONEY 0.15,
+        FREEMAIL_FORGED_REPLYTO 2.50, FREEMAIL_REPLYTO 1.00,
+        LOTS_OF_MONEY 0.00, MONEY_FREEMAIL_REPTO 2.43, MONEY_NOHTML 0.97,
+        NO_RELAYS -0.00, T_FILL_THIS_FORM_SHORT 0.01, XFER_LOTSA_MONEY 0.00)
+X-yoursite-MailScanner-SpamScore: sssssss
+X-yoursite-MailScanner-From: support@quali.speed.hebergement-com4design.fr
+X-Spam-Status: Yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Srikanth Thokala <srikanth.thokala@intel.com>
+Rechtsanwältin BILBAO &EMMA ASSOZIIERT & CO...
+#########################################
+AV/DE GRAN VIA NO.38k, 28008 MADRID.   SPAIN 
+TEL. ( 34) 602 810 185 FAX: ( 34) 931-702-120
+Eingetragener Fall NR: GY/Q3J63753 / SQQ/93000XS10.
 
-Add driver for Intel Keem Bay SoC PCIe controller. This controller
-is based on DesignWare PCIe core.
+Ihnen wird empfohlen, die folgenden Informationen an Ihre Bevollmächtigte zu senden. Rechtsanwältin  BILBAO & EMMA  ASSOZIIERT CO ERMÖGLICHT IHNEN DIE FREIGABE IHRES FONDS:Wir bitten dringend, Ihre E-Mails an unsere Büro-E-Mail zu beantworten, buroLotto.es@spainmail.com, 
 
-In Root Complex mode, only internal reference clock is possible for
-Keem Bay A0. For Keem Bay B0, external reference clock can be used
-and will be the default configuration. Currently, keembay_pcie_of_data
-structure has one member. It will be expanded later to handle this
-difference.
+Wir gratulieren und informieren Sie über die Auswahl des Geldpreises €935.470,00 EUROS, SOMMERBONANZA, EL GORDO DE LA PRIMITIVA LOTTERIE IN VERBINDUNG MIT EUROMILLIONS ESPAÑA INTERNATIONAL LOTTERIE BEFÖRDERUNG  PROGRAMM Madrid Spanien
 
-Endpoint mode link initialization is handled by the boot firmware.
+ Sehr Geehrter  Begünstigten, 
+Wir möchten Sie informieren, dass das Büro des nicht Beanspruchten Preisgeldes in Spanien,unsere Anwaltskanzlei ernannt hat, als gesetzliche Berater zu handeln, in der Verarbeitung und der Zahlung eines Preisgeldes, das auf Ihrem Namen gutgeschrieben wurde, und nun seit über zwei Jahren nicht beansprucht wurde.
 
-Signed-off-by: Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
-Acked-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Signed-off-by: Srikanth Thokala <srikanth.thokala@intel.com>
-Reviewed-by: Krzysztof Wilczyński <kw@linux.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- MAINTAINERS                               |   7 +
- drivers/pci/controller/dwc/Kconfig        |  28 ++
- drivers/pci/controller/dwc/Makefile       |   1 +
- drivers/pci/controller/dwc/pcie-keembay.c | 460 ++++++++++++++++++++++
- 4 files changed, 496 insertions(+)
- create mode 100644 drivers/pci/controller/dwc/pcie-keembay.c
+ Der Gesamtbetrag der ihnen zusteht beträgt momentan €935, 470, 15, cent.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index c9467d2839f5..b5b466cc7efe 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14430,6 +14430,13 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/pci/hisilicon-histb-pcie.txt
- F:	drivers/pci/controller/dwc/pcie-histb.c
+Der Gesamtbetrag der ihnen zusteht beträgt momentan  €935, 470, 15, neunhundert fünfunddreißigtausend, vierhundertsiebzig und fünfzehn Cent, Das ursprüngliche Preisgeld bertug €785.810, 15.00 EUROS. Siebenhundert Fünfundachtzigtausend Acht Hundertzehn Euro und fünfzehn Cent Diese Summe wurde fuer nun mehr als zwei Jahre,Gewinnbringend  angelegt,daher die aufstockung auf die oben genannte Gesamtsumme.Entsprechend dem Büros des nicht Beanspruchten  Preisgeldes,wurde dieses Geld als nicht beanspruchten Gewinn einer Lotterie Firma bei ihnen zum verwalten niedergelegt und  in ihrem namen versichert. Nach Ansicht der Lotterie Firma wurde ihnen das Geld nach einer Weihnachts Förderung Lotterie  zugesprochen. 
+
+ Die Kupons wurden von einer Investmentgesellschaft gekauft.Nach Ansicht der Lotterie Firma wurden sie damals Angeschrieben um Sie über dieses Geld zu informieren es hat sich aber leider bis zum Ablauf  der  gesetzten  Frist  keiner gemeldet um den Gewinn zu Beanspruchen. Dieses war der Grund weshalb das Geld zum verwalten niedergelegt wurde. Gemab des Spanischen Gesetzes muss der inhaber alle zwei Jahre ueber seinen vorhanden Gewinn informiert werden.Sollte dass Geld wieder nicht beansprucht werden,.wird der Gewinn abermals ueber eine Investierung gesellschaft fur eine weitere Periode von zwei Jahren angelegt werden.Wir sind daher, durch das Buro des nicht Beanspruchten Preisgelds beauftragt worden sie anzuschreiben.Dies ist eine Notifikation für das Beanspruchen dieses Gelds.
+
+Wir möchten sie darauf hinweisen, dass die Lotteriegesellschaft überprüfen und bestätigen wird ob ihre Identität  übereinstimmt bevor ihnen ihr Geld ausbezahlt wird.Wir werden sie beraten wie sie ihren Anspruch geltend machen.Bitte  setzen sie sich dafuer mit unserer Deutsch Spanisch oder Englisch Sprachigen Rechtsanwalt in Verbindung Rechtsanwältin: Bilbao & Emma ASSOZIIERT & CO.., TEL( 34) 602 810 185 & email,( Ihre Antwort sollte an diese E-MAIL-Adresse gerichtet, (promolottooffice@spainmail.com  )ist zustaendig fuer  Auszahlungen ins Ausland und wird ihnen in dieser sache zur seite stehen. Der Anspruch sollte vor den 30 August 2021 geltend  gemacht werden,da sonst dass Geld wieder angelegt werden wuerde.Wir freuen uns, von Ihnen zu hören, während wir Ihnen  unsere Rechtshilfe Versichern.
+
+Nachdem Sie die von Ihnen geforderten Daten bereitgestellt haben, können Sie davon ausgehen, dass Sie innerhalb weniger  Stunden direkt von diesem Büro erfahren werden. Bis dahin müssen wir Ihre Informationen verarbeitet und Ihre Fonds Akte für  die Zustellung vorbereitet haben, um Verzögerungen zu vermeiden. 
+Wir gehen davon aus, dass Sie die erläuternden Anweisungen und Anweisungen für den Erhalt Ihrer Prämien (935 €, 470, 15 Cent) verstehen, die Ihnen von der spanischen Euro Millones /El Gordo de la Primitiva International lotterie Madrid Spain legal zugesprochen werden.
+
+HINWEIS: Um unnötige Verzögerungen zu vermeiden, wenn es eine Änderung Ihrer Adresse oder Komplikationen geben, informieren Sie Ihren Agenten so schnell wie möglich, Ihr Agent wird 10% des Premium Preises bezahlt, da die Provision NACH Dem, was Sie Ihr Geld auf Ihr kostenpflichtiges Konto erhalten haben. Das Zahlungsbearbeitung Formular ist mit einer Fotokopie Ihres Ausweises auszufüllen und zur Überprüfung per Faxnummer zu senden: ( 34) 935457490 & E-Mail: Wir bitten dringend, Ihre E-Mails an unsere Büro-E-Mail zu beantworten  promolottooffice@spainmail.com
+
+Mit Freundlichen Grüßen
+Rechtsanwältin Bilbao & Emma ASSOZIIERT & CO..
+
+ANMELDEFORMULAR FÜR DEN GEWINNANSPRUCH Vom 28. Juni bis 30. August 2021
+Hinweis bitte geben Sie die folgenden Informationen, wie unten gefordert, faxen   34935457490 oder e mail: promolottooffice@spainmail.com ,es zurück in mein Büro sofort für uns in der Lage zu sein die Legalisierung Prozess Ihrer  Persönliche investiertes Preisgeld zu vervollständigen, und das Geld wird Ihnen von Zentralbank spain Int  ausgezahlt.  Alle Prozess Überprüfung durch unsere Kanzlei ist für Sie kostenlos, weil unsere Kosten werden von der internationalen  Lotto Kommission am Ende des Prozesses zu zahlen, wenn Sie Ihr Geld erhalten.Wenn Sie nicht die erforderlichen  Informationen vor der Zeit gegeben hat, können ist Anwaltskanzlei nicht haftbar gemacht werden, wenn Ihr Geld reinvestiert  wurde.
+
+Ein Bestätigungsschreiben wird Ihnen gefaxt werden sofort wenn wir komplette Überprüfung der Informationen die Sie uns zur  Verfügung stellen habe, Ich werde die Investmentbank unverzüglich über die von Ihnen angegebene Informationen zu kommen,  bevor sie werden mit Ihnen Kontakt aufnehmen für die ausZahlung von Ihrem Geld . Ihre Daten werden vertraulich gehalten  nach der Europäischen Union Datenschutzrecht.
+
+"Antworten Sie nicht auf die Absenderadresse oder die Quell-E-Mail-Adresse, es wird über den Computer gesendet virtuelle  Hilfe für die Antwort wird  nicht meine menschliche sondern Computer" Daher müssen Sie die Treuhänder über Telefon und E- Mail-Adresse oben" (ACHTUNG Wir (bitten Sie, auf diese E-Mail-Adresse zu antworten, (promolottooffice@spainmail.com )
+########################################################
+
+REF.NR:………………………………STAPELN Sie NR:…………………………
+Vorname:……………………Vor-NACHNAME…………………………………
+GEBURTSDATUM:……………………………BERUF:……………………………
+STRASSE:………………………………………PLZ/ORT…………………………
+ADRESSE:……………………………………………………………………………
+TELEFON:(___)……………………HANDY:(__)………………FAX (__)………
+EMAIL:…………………………………………………………Nationalitit:……
+
+HINWEIS: BANKVERBINDUNG IST NUR ERFORDERLICH, WENN SIE BESCHLIEßEN, IHREN GEWINN ZU ERHALTEN PER ÜBERWEISUNG
+
+Nachdem Sie die von Ihnen geforderten Daten bereitgestellt haben, können Sie davon ausgehen, dass Sie innerhalb weniger  Stunden direkt von diesem Büro erfahren werden. Bis dahin müssen wir Ihre Informationen verarbeitet und Ihre Fonds Akte für  die Zustellung vorbereitet haben, um Verzögerungen zu vermeiden. Wir gehen davon aus, dass Sie die erklärenden Anweisungen  und Anweisungen zum Einholen und Einholen Ihrer Auszeichnungen (€935,470,15 EUROS) verstehen, die Ihnen vom spanischen Euro Millones de La Primitiva International Madrid legal zugesprochen wurden
+
+BANK ZAHLUNGSOPTIONEN: A / BANKÜBERWEISUNG Oder BANK CERTIFIED CHECK (BANKDATEN SIND NUR NOTWENDIG, WENN SIE SICH FÜR EINE  BANKÜBERWEISUNG ENTSCHIEDEN HABEN)
+ZAHLUNGSOPTION: (A) BESTÄTIGTER SCHECK (BEZAHLEN Sie ÜBERTRAGUNG EIN
+
+BETRÄGE GEWONNEN: ……………………………………………………
+NAME DER BANK:……………………………………………………………
+KONTONUMMER:…………………………SWIFT-CODE:…………………
+ADRESSE DER BANK …………………………………………………………
+GEB-DATUM:…………Unterschrift …………(Erst bei hmeAbna)
+
+Rechtsanwältin  Bilbao & Emma Asociados, Abogados, Fiscal Y Accesorios horario de consultas Lunes.bis Samstag De. 09 - 16.30 Uhr  654280 / MLA & (Seien Sie informiert, dass Ihr Vertreter 10% des Preises als Provision erhält, wenn Sie Ihr Geld auf Ihrem  angegebenen Konto erhalten haben) Mitglied des Consejo de Constitucional de España, (ACHTUNG Wir bitten Sie, auf diese E-Mail-Adresse zu antworten (promolottooffice@spainmail.com) BÜRO-KONTOINFORMATIONEN- BANK NAME: P.F.S.SPAIN SL SWIFT CODE: PFSSESM1 IBAN: ES17 6713   0002 5700 0584 3906)COPYRIGHT 2019.LOTERIA SPANIEN. Alle Rechte vorbehalten. NUTZUNGSBEDINGUNGEN HANDELSPOLITIK DATENSCHUTZ VON BESCHWERDEN....
  
-+PCIE DRIVER FOR INTEL KEEM BAY
-+M:	Srikanth Thokala <srikanth.thokala@intel.com>
-+L:	linux-pci@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/pci/intel,keembay-pcie*
-+F:	drivers/pci/controller/dwc/pcie-keembay.c
-+
- PCIE DRIVER FOR MEDIATEK
- M:	Ryder Lee <ryder.lee@mediatek.com>
- M:	Jianjun Wang <jianjun.wang@mediatek.com>
-diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-index 423d35872ce4..04430ddde8c4 100644
---- a/drivers/pci/controller/dwc/Kconfig
-+++ b/drivers/pci/controller/dwc/Kconfig
-@@ -225,6 +225,34 @@ config PCIE_INTEL_GW
- 	  The PCIe controller uses the DesignWare core plus Intel-specific
- 	  hardware wrappers.
- 
-+config PCIE_KEEMBAY
-+	bool
-+
-+config PCIE_KEEMBAY_HOST
-+	bool "Intel Keem Bay PCIe controller - Host mode"
-+	depends on ARCH_KEEMBAY || COMPILE_TEST
-+	depends on PCI && PCI_MSI_IRQ_DOMAIN
-+	select PCIE_DW_HOST
-+	select PCIE_KEEMBAY
-+	help
-+	  Say 'Y' here to enable support for the PCIe controller in Keem Bay
-+	  to work in host mode.
-+	  The PCIe controller is based on DesignWare Hardware and uses
-+	  DesignWare core functions.
-+
-+config PCIE_KEEMBAY_EP
-+	bool "Intel Keem Bay PCIe controller - Endpoint mode"
-+	depends on ARCH_KEEMBAY || COMPILE_TEST
-+	depends on PCI && PCI_MSI_IRQ_DOMAIN
-+	depends on PCI_ENDPOINT
-+	select PCIE_DW_EP
-+	select PCIE_KEEMBAY
-+	help
-+	  Say 'Y' here to enable support for the PCIe controller in Keem Bay
-+	  to work in endpoint mode.
-+	  The PCIe controller is based on DesignWare Hardware and uses
-+	  DesignWare core functions.
-+
- config PCIE_KIRIN
- 	depends on OF && (ARM64 || COMPILE_TEST)
- 	bool "HiSilicon Kirin series SoCs PCIe controllers"
-diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
-index 9e6ce0dc2f53..8b3e7176b4bf 100644
---- a/drivers/pci/controller/dwc/Makefile
-+++ b/drivers/pci/controller/dwc/Makefile
-@@ -15,6 +15,7 @@ obj-$(CONFIG_PCIE_QCOM) += pcie-qcom.o
- obj-$(CONFIG_PCIE_ARMADA_8K) += pcie-armada8k.o
- obj-$(CONFIG_PCIE_ARTPEC6) += pcie-artpec6.o
- obj-$(CONFIG_PCIE_INTEL_GW) += pcie-intel-gw.o
-+obj-$(CONFIG_PCIE_KEEMBAY) += pcie-keembay.o
- obj-$(CONFIG_PCIE_KIRIN) += pcie-kirin.o
- obj-$(CONFIG_PCIE_HISI_STB) += pcie-histb.o
- obj-$(CONFIG_PCI_MESON) += pci-meson.o
-diff --git a/drivers/pci/controller/dwc/pcie-keembay.c b/drivers/pci/controller/dwc/pcie-keembay.c
-new file mode 100644
-index 000000000000..1ac29a6eef22
---- /dev/null
-+++ b/drivers/pci/controller/dwc/pcie-keembay.c
-@@ -0,0 +1,460 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * PCIe controller driver for Intel Keem Bay
-+ * Copyright (C) 2020 Intel Corporation
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/bits.h>
-+#include <linux/clk.h>
-+#include <linux/delay.h>
-+#include <linux/err.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/init.h>
-+#include <linux/iopoll.h>
-+#include <linux/irqchip/chained_irq.h>
-+#include <linux/kernel.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/pci.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+
-+#include "pcie-designware.h"
-+
-+/* PCIE_REGS_APB_SLV Registers */
-+#define PCIE_REGS_PCIE_CFG		0x0004
-+#define  PCIE_DEVICE_TYPE		BIT(8)
-+#define  PCIE_RSTN			BIT(0)
-+#define PCIE_REGS_PCIE_APP_CNTRL	0x0008
-+#define  APP_LTSSM_ENABLE		BIT(0)
-+#define PCIE_REGS_INTERRUPT_ENABLE	0x0028
-+#define  MSI_CTRL_INT_EN		BIT(8)
-+#define  EDMA_INT_EN			GENMASK(7, 0)
-+#define PCIE_REGS_INTERRUPT_STATUS	0x002c
-+#define  MSI_CTRL_INT			BIT(8)
-+#define PCIE_REGS_PCIE_SII_PM_STATE	0x00b0
-+#define  SMLH_LINK_UP			BIT(19)
-+#define  RDLH_LINK_UP			BIT(8)
-+#define  PCIE_REGS_PCIE_SII_LINK_UP	(SMLH_LINK_UP | RDLH_LINK_UP)
-+#define PCIE_REGS_PCIE_PHY_CNTL		0x0164
-+#define  PHY0_SRAM_BYPASS		BIT(8)
-+#define PCIE_REGS_PCIE_PHY_STAT		0x0168
-+#define  PHY0_MPLLA_STATE		BIT(1)
-+#define PCIE_REGS_LJPLL_STA		0x016c
-+#define  LJPLL_LOCK			BIT(0)
-+#define PCIE_REGS_LJPLL_CNTRL_0		0x0170
-+#define  LJPLL_EN			BIT(29)
-+#define  LJPLL_FOUT_EN			GENMASK(24, 21)
-+#define PCIE_REGS_LJPLL_CNTRL_2		0x0178
-+#define  LJPLL_REF_DIV			GENMASK(17, 12)
-+#define  LJPLL_FB_DIV			GENMASK(11, 0)
-+#define PCIE_REGS_LJPLL_CNTRL_3		0x017c
-+#define  LJPLL_POST_DIV3A		GENMASK(24, 22)
-+#define  LJPLL_POST_DIV2A		GENMASK(18, 16)
-+
-+#define PERST_DELAY_US		1000
-+#define AUX_CLK_RATE_HZ		24000000
-+
-+struct keembay_pcie {
-+	struct dw_pcie		pci;
-+	void __iomem		*apb_base;
-+	enum dw_pcie_device_mode mode;
-+
-+	struct clk		*clk_master;
-+	struct clk		*clk_aux;
-+	struct gpio_desc	*reset;
-+};
-+
-+struct keembay_pcie_of_data {
-+	enum dw_pcie_device_mode mode;
-+};
-+
-+static void keembay_ep_reset_assert(struct keembay_pcie *pcie)
-+{
-+	gpiod_set_value_cansleep(pcie->reset, 1);
-+	usleep_range(PERST_DELAY_US, PERST_DELAY_US + 500);
-+}
-+
-+static void keembay_ep_reset_deassert(struct keembay_pcie *pcie)
-+{
-+	/*
-+	 * Ensure that PERST# is asserted for a minimum of 100ms.
-+	 *
-+	 * For more details, refer to PCI Express Card Electromechanical
-+	 * Specification Revision 1.1, Table-2.4.
-+	 */
-+	msleep(100);
-+
-+	gpiod_set_value_cansleep(pcie->reset, 0);
-+	usleep_range(PERST_DELAY_US, PERST_DELAY_US + 500);
-+}
-+
-+static void keembay_pcie_ltssm_set(struct keembay_pcie *pcie, bool enable)
-+{
-+	u32 val;
-+
-+	val = readl(pcie->apb_base + PCIE_REGS_PCIE_APP_CNTRL);
-+	if (enable)
-+		val |= APP_LTSSM_ENABLE;
-+	else
-+		val &= ~APP_LTSSM_ENABLE;
-+	writel(val, pcie->apb_base + PCIE_REGS_PCIE_APP_CNTRL);
-+}
-+
-+static int keembay_pcie_link_up(struct dw_pcie *pci)
-+{
-+	struct keembay_pcie *pcie = dev_get_drvdata(pci->dev);
-+	u32 val;
-+
-+	val = readl(pcie->apb_base + PCIE_REGS_PCIE_SII_PM_STATE);
-+
-+	return (val & PCIE_REGS_PCIE_SII_LINK_UP) == PCIE_REGS_PCIE_SII_LINK_UP;
-+}
-+
-+static int keembay_pcie_start_link(struct dw_pcie *pci)
-+{
-+	struct keembay_pcie *pcie = dev_get_drvdata(pci->dev);
-+	u32 val;
-+	int ret;
-+
-+	if (pcie->mode == DW_PCIE_EP_TYPE)
-+		return 0;
-+
-+	keembay_pcie_ltssm_set(pcie, false);
-+
-+	ret = readl_poll_timeout(pcie->apb_base + PCIE_REGS_PCIE_PHY_STAT,
-+				 val, val & PHY0_MPLLA_STATE, 20,
-+				 500 * USEC_PER_MSEC);
-+	if (ret) {
-+		dev_err(pci->dev, "MPLLA is not locked\n");
-+		return ret;
-+	}
-+
-+	keembay_pcie_ltssm_set(pcie, true);
-+
-+	return 0;
-+}
-+
-+static void keembay_pcie_stop_link(struct dw_pcie *pci)
-+{
-+	struct keembay_pcie *pcie = dev_get_drvdata(pci->dev);
-+
-+	keembay_pcie_ltssm_set(pcie, false);
-+}
-+
-+static const struct dw_pcie_ops keembay_pcie_ops = {
-+	.link_up	= keembay_pcie_link_up,
-+	.start_link	= keembay_pcie_start_link,
-+	.stop_link	= keembay_pcie_stop_link,
-+};
-+
-+static inline struct clk *keembay_pcie_probe_clock(struct device *dev,
-+						   const char *id, u64 rate)
-+{
-+	struct clk *clk;
-+	int ret;
-+
-+	clk = devm_clk_get(dev, id);
-+	if (IS_ERR(clk))
-+		return clk;
-+
-+	if (rate) {
-+		ret = clk_set_rate(clk, rate);
-+		if (ret)
-+			return ERR_PTR(ret);
-+	}
-+
-+	ret = clk_prepare_enable(clk);
-+	if (ret)
-+		return ERR_PTR(ret);
-+
-+	ret = devm_add_action_or_reset(dev,
-+				       (void(*)(void *))clk_disable_unprepare,
-+				       clk);
-+	if (ret)
-+		return ERR_PTR(ret);
-+
-+	return clk;
-+}
-+
-+static int keembay_pcie_probe_clocks(struct keembay_pcie *pcie)
-+{
-+	struct dw_pcie *pci = &pcie->pci;
-+	struct device *dev = pci->dev;
-+
-+	pcie->clk_master = keembay_pcie_probe_clock(dev, "master", 0);
-+	if (IS_ERR(pcie->clk_master))
-+		return dev_err_probe(dev, PTR_ERR(pcie->clk_master),
-+				     "Failed to enable master clock");
-+
-+	pcie->clk_aux = keembay_pcie_probe_clock(dev, "aux", AUX_CLK_RATE_HZ);
-+	if (IS_ERR(pcie->clk_aux))
-+		return dev_err_probe(dev, PTR_ERR(pcie->clk_aux),
-+				     "Failed to enable auxiliary clock");
-+
-+	return 0;
-+}
-+
-+/*
-+ * Initialize the internal PCIe PLL in Host mode.
-+ * See the following sections in Keem Bay data book,
-+ * (1) 6.4.6.1 PCIe Subsystem Example Initialization,
-+ * (2) 6.8 PCIe Low Jitter PLL for Ref Clk Generation.
-+ */
-+static int keembay_pcie_pll_init(struct keembay_pcie *pcie)
-+{
-+	struct dw_pcie *pci = &pcie->pci;
-+	u32 val;
-+	int ret;
-+
-+	val = FIELD_PREP(LJPLL_REF_DIV, 0) | FIELD_PREP(LJPLL_FB_DIV, 0x32);
-+	writel(val, pcie->apb_base + PCIE_REGS_LJPLL_CNTRL_2);
-+
-+	val = FIELD_PREP(LJPLL_POST_DIV3A, 0x2) |
-+		FIELD_PREP(LJPLL_POST_DIV2A, 0x2);
-+	writel(val, pcie->apb_base + PCIE_REGS_LJPLL_CNTRL_3);
-+
-+	val = FIELD_PREP(LJPLL_EN, 0x1) | FIELD_PREP(LJPLL_FOUT_EN, 0xc);
-+	writel(val, pcie->apb_base + PCIE_REGS_LJPLL_CNTRL_0);
-+
-+	ret = readl_poll_timeout(pcie->apb_base + PCIE_REGS_LJPLL_STA,
-+				 val, val & LJPLL_LOCK, 20,
-+				 500 * USEC_PER_MSEC);
-+	if (ret)
-+		dev_err(pci->dev, "Low jitter PLL is not locked\n");
-+
-+	return ret;
-+}
-+
-+static void keembay_pcie_msi_irq_handler(struct irq_desc *desc)
-+{
-+	struct keembay_pcie *pcie = irq_desc_get_handler_data(desc);
-+	struct irq_chip *chip = irq_desc_get_chip(desc);
-+	u32 val, mask, status;
-+	struct pcie_port *pp;
-+
-+	/*
-+	 * Keem Bay PCIe Controller provides an additional IP logic on top of
-+	 * standard DWC IP to clear MSI IRQ by writing '1' to the respective
-+	 * bit of the status register.
-+	 *
-+	 * So, a chained irq handler is defined to handle this additional
-+	 * IP logic.
-+	 */
-+
-+	chained_irq_enter(chip, desc);
-+
-+	pp = &pcie->pci.pp;
-+	val = readl(pcie->apb_base + PCIE_REGS_INTERRUPT_STATUS);
-+	mask = readl(pcie->apb_base + PCIE_REGS_INTERRUPT_ENABLE);
-+
-+	status = val & mask;
-+
-+	if (status & MSI_CTRL_INT) {
-+		dw_handle_msi_irq(pp);
-+		writel(status, pcie->apb_base + PCIE_REGS_INTERRUPT_STATUS);
-+	}
-+
-+	chained_irq_exit(chip, desc);
-+}
-+
-+static int keembay_pcie_setup_msi_irq(struct keembay_pcie *pcie)
-+{
-+	struct dw_pcie *pci = &pcie->pci;
-+	struct device *dev = pci->dev;
-+	struct platform_device *pdev = to_platform_device(dev);
-+	int irq;
-+
-+	irq = platform_get_irq_byname(pdev, "pcie");
-+	if (irq < 0)
-+		return irq;
-+
-+	irq_set_chained_handler_and_data(irq, keembay_pcie_msi_irq_handler,
-+					 pcie);
-+
-+	return 0;
-+}
-+
-+static void keembay_pcie_ep_init(struct dw_pcie_ep *ep)
-+{
-+	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
-+	struct keembay_pcie *pcie = dev_get_drvdata(pci->dev);
-+
-+	writel(EDMA_INT_EN, pcie->apb_base + PCIE_REGS_INTERRUPT_ENABLE);
-+}
-+
-+static int keembay_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
-+				     enum pci_epc_irq_type type,
-+				     u16 interrupt_num)
-+{
-+	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
-+
-+	switch (type) {
-+	case PCI_EPC_IRQ_LEGACY:
-+		/* Legacy interrupts are not supported in Keem Bay */
-+		dev_err(pci->dev, "Legacy IRQ is not supported\n");
-+		return -EINVAL;
-+	case PCI_EPC_IRQ_MSI:
-+		return dw_pcie_ep_raise_msi_irq(ep, func_no, interrupt_num);
-+	case PCI_EPC_IRQ_MSIX:
-+		return dw_pcie_ep_raise_msix_irq(ep, func_no, interrupt_num);
-+	default:
-+		dev_err(pci->dev, "Unknown IRQ type %d\n", type);
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct pci_epc_features keembay_pcie_epc_features = {
-+	.linkup_notifier	= false,
-+	.msi_capable		= true,
-+	.msix_capable		= true,
-+	.reserved_bar		= BIT(BAR_1) | BIT(BAR_3) | BIT(BAR_5),
-+	.bar_fixed_64bit	= BIT(BAR_0) | BIT(BAR_2) | BIT(BAR_4),
-+	.align			= SZ_16K,
-+};
-+
-+static const struct pci_epc_features *
-+keembay_pcie_get_features(struct dw_pcie_ep *ep)
-+{
-+	return &keembay_pcie_epc_features;
-+}
-+
-+static const struct dw_pcie_ep_ops keembay_pcie_ep_ops = {
-+	.ep_init	= keembay_pcie_ep_init,
-+	.raise_irq	= keembay_pcie_ep_raise_irq,
-+	.get_features	= keembay_pcie_get_features,
-+};
-+
-+static const struct dw_pcie_host_ops keembay_pcie_host_ops = {
-+};
-+
-+static int keembay_pcie_add_pcie_port(struct keembay_pcie *pcie,
-+				      struct platform_device *pdev)
-+{
-+	struct dw_pcie *pci = &pcie->pci;
-+	struct pcie_port *pp = &pci->pp;
-+	struct device *dev = &pdev->dev;
-+	u32 val;
-+	int ret;
-+
-+	pp->ops = &keembay_pcie_host_ops;
-+	pp->msi_irq = -ENODEV;
-+
-+	ret = keembay_pcie_setup_msi_irq(pcie);
-+	if (ret)
-+		return ret;
-+
-+	pcie->reset = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(pcie->reset))
-+		return PTR_ERR(pcie->reset);
-+
-+	ret = keembay_pcie_probe_clocks(pcie);
-+	if (ret)
-+		return ret;
-+
-+	val = readl(pcie->apb_base + PCIE_REGS_PCIE_PHY_CNTL);
-+	val |= PHY0_SRAM_BYPASS;
-+	writel(val, pcie->apb_base + PCIE_REGS_PCIE_PHY_CNTL);
-+
-+	writel(PCIE_DEVICE_TYPE, pcie->apb_base + PCIE_REGS_PCIE_CFG);
-+
-+	ret = keembay_pcie_pll_init(pcie);
-+	if (ret)
-+		return ret;
-+
-+	val = readl(pcie->apb_base + PCIE_REGS_PCIE_CFG);
-+	writel(val | PCIE_RSTN, pcie->apb_base + PCIE_REGS_PCIE_CFG);
-+	keembay_ep_reset_deassert(pcie);
-+
-+	ret = dw_pcie_host_init(pp);
-+	if (ret) {
-+		keembay_ep_reset_assert(pcie);
-+		dev_err(dev, "Failed to initialize host: %d\n", ret);
-+		return ret;
-+	}
-+
-+	val = readl(pcie->apb_base + PCIE_REGS_INTERRUPT_ENABLE);
-+	if (IS_ENABLED(CONFIG_PCI_MSI))
-+		val |= MSI_CTRL_INT_EN;
-+	writel(val, pcie->apb_base + PCIE_REGS_INTERRUPT_ENABLE);
-+
-+	return 0;
-+}
-+
-+static int keembay_pcie_probe(struct platform_device *pdev)
-+{
-+	const struct keembay_pcie_of_data *data;
-+	struct device *dev = &pdev->dev;
-+	struct keembay_pcie *pcie;
-+	struct dw_pcie *pci;
-+	enum dw_pcie_device_mode mode;
-+
-+	data = device_get_match_data(dev);
-+	if (!data)
-+		return -ENODEV;
-+
-+	mode = (enum dw_pcie_device_mode)data->mode;
-+
-+	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
-+	if (!pcie)
-+		return -ENOMEM;
-+
-+	pci = &pcie->pci;
-+	pci->dev = dev;
-+	pci->ops = &keembay_pcie_ops;
-+
-+	pcie->mode = mode;
-+
-+	pcie->apb_base = devm_platform_ioremap_resource_byname(pdev, "apb");
-+	if (IS_ERR(pcie->apb_base))
-+		return PTR_ERR(pcie->apb_base);
-+
-+	platform_set_drvdata(pdev, pcie);
-+
-+	switch (pcie->mode) {
-+	case DW_PCIE_RC_TYPE:
-+		if (!IS_ENABLED(CONFIG_PCIE_KEEMBAY_HOST))
-+			return -ENODEV;
-+
-+		return keembay_pcie_add_pcie_port(pcie, pdev);
-+	case DW_PCIE_EP_TYPE:
-+		if (!IS_ENABLED(CONFIG_PCIE_KEEMBAY_EP))
-+			return -ENODEV;
-+
-+		pci->ep.ops = &keembay_pcie_ep_ops;
-+		return dw_pcie_ep_init(&pci->ep);
-+	default:
-+		dev_err(dev, "Invalid device type %d\n", pcie->mode);
-+		return -ENODEV;
-+	}
-+}
-+
-+static const struct keembay_pcie_of_data keembay_pcie_rc_of_data = {
-+	.mode = DW_PCIE_RC_TYPE,
-+};
-+
-+static const struct keembay_pcie_of_data keembay_pcie_ep_of_data = {
-+	.mode = DW_PCIE_EP_TYPE,
-+};
-+
-+static const struct of_device_id keembay_pcie_of_match[] = {
-+	{
-+		.compatible = "intel,keembay-pcie",
-+		.data = &keembay_pcie_rc_of_data,
-+	},
-+	{
-+		.compatible = "intel,keembay-pcie-ep",
-+		.data = &keembay_pcie_ep_of_data,
-+	},
-+	{}
-+};
-+
-+static struct platform_driver keembay_pcie_driver = {
-+	.driver = {
-+		.name = "keembay-pcie",
-+		.of_match_table = keembay_pcie_of_match,
-+		.suppress_bind_attrs = true,
-+	},
-+	.probe  = keembay_pcie_probe,
-+};
-+builtin_platform_driver(keembay_pcie_driver);
--- 
-2.17.1
+Diese E-Mail ist für den vorgesehenen Empfänger bestimmt und enthält Informationen, die vertraulich sein können. Wenn Sie nicht der beabsichtigte Empfänger sind, benachrichtigen Sie bitte den Absender per E-Mail und löschen Sie diese E-Mail aus Ihrem Posteingang. Jede unbefugte Nutzung oder Verbreitung dieser E-Mail, ganz oder teilweise, ist strengstens untersagt und kann rechtswidrig sein. Alle in dieser E-Mail enthaltenen Preisangebote sind nur indikativ und führen zu keiner rechtlich bindenden oder durchsetzbaren Verpflichtung. Sofern nicht ausdrücklich als beabsichtigter E-Vertrag bezeichnet, stellt diese E-Mail kein Vertragsangebot, keine Vertragsänderung oder eine Annahme eines Vertragsangebots dar.
+WWW.GORDO/ EUROMILLIONS ESPAÑA  Sitz der Gesellschaft: Torre Europa Paseo de la Barcelona 15. Planta 16 28006 • Madrid. (Spanien)
 
