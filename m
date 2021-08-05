@@ -2,114 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A99883E1131
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 11:20:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46CE93E1151
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 11:32:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232365AbhHEJUd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 05:20:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55636 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232258AbhHEJUc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 05:20:32 -0400
-Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E39DC061765;
-        Thu,  5 Aug 2021 02:20:17 -0700 (PDT)
-Received: by mail-io1-xd31.google.com with SMTP id y200so5869340iof.1;
-        Thu, 05 Aug 2021 02:20:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Gmxmbal5kN8ALwaA2TjN7nOaacEIqVHPBww5o4ZLZEc=;
-        b=OTPZ/ue8FcpPntTRetaZvV8hc8RlWy4XkuE+tMA6Qhva/AlRgX3auNlI7HPA6+z1o3
-         RQdc8lK1I0XdtJI+wvPo5hcETJGwZY7n8z+rIKfMMvwyUuP7J+/Zyg7x4ldMpuR+qC+D
-         X0V7XPd7lHhuJMx+yufSuxAxE8aloRNUKA6oOJ9Y+GpQN3rZ0TBLxhGMkbfXaY+gMMMk
-         5Hab3YAiMmwkbdY/qIvj5rRVxj08OiMDIl/xKygyhWEek6Cl0gyVorEotDqenuPEei5h
-         PFeiWo277J9nvXLcWtdbffBURbQzRqze1M9GrvmBL+FI7tvWiV2vM7PJvdbowaGyxUAU
-         BZVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Gmxmbal5kN8ALwaA2TjN7nOaacEIqVHPBww5o4ZLZEc=;
-        b=IzDzFJYPqHZR9lxkIZAzOMCl2K0yNqaampU4bShc8a9eoloXjqeOv11pCn3ZkpJeHv
-         t0KPojfzUXTKsU3RZ5IP7AmMTvJX5lhRhKASG7nbM/iNPv5MNgQY3/Yi4+Dxm6uuxkeq
-         pE7xea65HsiA4kDi9v8HgRjyZe5YFYZXRR23PTgjXeoubDaOgv66I0oSbQ1up5uBOi7O
-         QKwVHkBqoGl0j3SY21iEALAxVJko8XCjErfJGxbe0kdfNdcR4izxv15sdt1uTw1+gXrF
-         QeIkhWy2UDJVh/PN6Vt2g19bgnTeIY7NP87etl4nEQVo+FRLLLou6+58lxY5GR5REeTB
-         Xoww==
-X-Gm-Message-State: AOAM533x+EKr9ulVfXYRJWglKUbC1gVIOHEB/inaYlVBzpH1ZbuyJift
-        BFkpJB/Ab+QKXaqmXunrWvYoDd/p3ftCOyCfryM=
-X-Google-Smtp-Source: ABdhPJzj90GzKVMvuigvCbMYK6QaClIQIGsSj4o9T55BNJMS+gKSjLMfX+sql1HcMcsIKDElrvqSZjS0mJLvMJ7GhxQ=
-X-Received: by 2002:a02:b047:: with SMTP id q7mr3722748jah.130.1628155217097;
- Thu, 05 Aug 2021 02:20:17 -0700 (PDT)
+        id S229913AbhHEJcr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 05:32:47 -0400
+Received: from mailout3.samsung.com ([203.254.224.33]:53669 "EHLO
+        mailout3.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237944AbhHEJcr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 05:32:47 -0400
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20210805093230epoutp03cc390558849a974796273a223f06ec2a~YXzYJ1jkm2721227212epoutp031
+        for <devicetree@vger.kernel.org>; Thu,  5 Aug 2021 09:32:30 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20210805093230epoutp03cc390558849a974796273a223f06ec2a~YXzYJ1jkm2721227212epoutp031
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1628155951;
+        bh=4Sj9w1KreodUtPW30Wow7JUe/4/3NIZ0abD2ZJDPwPo=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=tDIw7ASSO6dWyWyVah9MZxvyk1Kv0ub4bU+rLifcyHExg2gn5PRz8b2KdpbfzzqK/
+         1WE5KF5LpKCrD/tVpEDkupgTy/DqfdrE4+xP/atABv8/2Xkdko82pc5vEk9LT38q01
+         dA1OQSYdQwYsAcFDf/u9puoZmj7f63McWyJnc3Gs=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas5p3.samsung.com (KnoxPortal) with ESMTP id
+        20210805093226epcas5p306cecb152db385353bbbe48bca790502~YXzT5i7Jp0150801508epcas5p3K;
+        Thu,  5 Aug 2021 09:32:26 +0000 (GMT)
+Received: from epsmges5p3new.samsung.com (unknown [182.195.38.181]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4GgNg73zHNz4x9Pt; Thu,  5 Aug
+        2021 09:32:19 +0000 (GMT)
+Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
+        epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        3D.D6.41701.D10BB016; Thu,  5 Aug 2021 18:32:13 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+        20210805092619epcas5p165c3a064056e0979cb8178e92fa7d206~YXt92jbe-0733707337epcas5p15;
+        Thu,  5 Aug 2021 09:26:19 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20210805092619epsmtrp255a4faeb5a8ecf0536c8dc21e9ad673e~YXt91tgJ90817208172epsmtrp24;
+        Thu,  5 Aug 2021 09:26:19 +0000 (GMT)
+X-AuditID: b6c32a4b-0abff7000001a2e5-08-610bb01da1f7
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        8B.E7.08394.ABEAB016; Thu,  5 Aug 2021 18:26:19 +0900 (KST)
+Received: from alimakhtar02 (unknown [107.122.12.5]) by epsmtip1.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20210805092617epsmtip19e4d2b50513b28b095bafeee586bc2d9~YXt8Wtl-10330303303epsmtip1F;
+        Thu,  5 Aug 2021 09:26:17 +0000 (GMT)
+From:   "Alim Akhtar" <alim.akhtar@samsung.com>
+To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@canonical.com>,
+        "'Rob Herring'" <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Cc:     "'Chanwoo Choi'" <cw00.choi@samsung.com>,
+        "'Pankaj Dubey'" <pankaj.dubey@samsung.com>,
+        "'Sam Protsenko'" <semen.protsenko@linaro.org>,
+        "'Marc Zyngier'" <maz@kernel.org>
+In-Reply-To: <b0d6ff2a-24af-96c1-62a1-8b920c63e05a@canonical.com>
+Subject: RE: [PATCH] arm64: dts: exynos: correct GIC CPU interfaces address
+ range on Exynos7
+Date:   Thu, 5 Aug 2021 14:56:14 +0530
+Message-ID: <03d701d789db$f275d290$d76177b0$@samsung.com>
 MIME-Version: 1.0
-References: <1627098243-2742-1-git-send-email-dillon.minfei@gmail.com>
- <1627098243-2742-3-git-send-email-dillon.minfei@gmail.com> <CACRpkdYReUdg_7oSTqcsA_+9tS9w6MH90=KV1rGyr4YWT=NW-w@mail.gmail.com>
-In-Reply-To: <CACRpkdYReUdg_7oSTqcsA_+9tS9w6MH90=KV1rGyr4YWT=NW-w@mail.gmail.com>
-From:   Dillon Min <dillon.minfei@gmail.com>
-Date:   Thu, 5 Aug 2021 17:19:41 +0800
-Message-ID: <CAL9mu0LfcLS1iNQnamxA_oTrxu8eEBpUm+u92V2d9-8qz6hvow@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] ARM: dts: stm32: fix dtbs_check warning on ili9341
- dts binding
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Alexandre TORGUE <Alexandre.torgue@foss.st.com>,
-        Peter Robinson <pbrobinson@gmail.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Dave Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>,
-        kbuild-all@lists.01.org, linux-stm32@st-md-mailman.stormreply.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQGqCsm6I7l6cIRsiJEa3ZtJxO0jtAJYiPTmAtVSVZirljKmUA==
+Content-Language: en-in
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrAJsWRmVeSWpSXmKPExsWy7bCmhq7sBu5Eg4udmhbXvzxntZh/5Byr
+        xca3P5gsNj2+xmpxedccNosZ5/cxWeycc5LVYtHWL+wWrXuPsFs879vH5MDlMauhl81j06pO
+        No871/aweWxeUu/Rt2UVo8fnTXIBbFHZNhmpiSmpRQqpecn5KZl56bZK3sHxzvGmZgaGuoaW
+        FuZKCnmJuam2Si4+AbpumTlAlykplCXmlAKFAhKLi5X07WyK8ktLUhUy8otLbJVSC1JyCkwK
+        9IoTc4tL89L18lJLrAwNDIxMgQoTsjOOHW1mKVgjWHHx4g/mBsY1fF2MnBwSAiYSx/vnMHcx
+        cnEICexmlJh0ZB8jhPOJUaLpxH1WCOcbo8TGlkZGmJbWqdfZIBJ7GSVmde+Acl4yStya/gqs
+        ik1AV2LH4jawhAhI+/LPK8AGMwtsYJTYt/ITWBWngKPEig8T2UBsYYE4iTl/ZjOB2CwCKhJn
+        XmwAs3kFLCVuf//GDGELSpyc+YQFxGYW0JZYtvA1M8RNChI/ny5jBbFFBJwkLj25xgRRIy5x
+        9GcP2HsSAls4JDZ9+8MG0eAi8eDxe6iHhCVeHd/CDmFLSXx+txeohgPIzpbo2WUMEa6RWDrv
+        GAuEbS9x4MocFpASZgFNifW79CHCshJTT62DWssn0fv7CRNEnFdixzwYW1Wi+d1VqDHSEhO7
+        u1knMCrNQvLZLCSfzULywSyEbQsYWVYxSqYWFOempxabFhjnpZbDozw5P3cTIzjpannvYHz0
+        4IPeIUYmDsZDjBIczEoivMmLuRKFeFMSK6tSi/Lji0pzUosPMZoCg3sis5Rocj4w7eeVxBua
+        WBqYmJmZmVgamxkqifOyx39NEBJITyxJzU5NLUgtgulj4uCUamB68aFq7+FPXglzAuvfr++1
+        O59waPXMoi4Tf+n5lb8y87KSJh239RcovPX4SOXX5Vb1ov6bN+qGfVjYk/L2XIK7aulTL4nb
+        f1h2lXH+ap1ru/ry8fUdq/59T/yQOa1W8jaD8YVVbkYnDTtUGPawFHWZG6729T1h5fzrqRoH
+        +9w9fpyrz6y9ZRVqPat+r+nFz/0ZAfndOfI3zwkuWhv17G+Q0J9NPO3XzBtqP5ww4Mp+eOwk
+        f0PTetENn4ImTD5ro83oIf5EZduGRKeA6wpb83mnrF00Od/6x6FW12t11iIvr74o41n6ySFn
+        59H+xavfpDdGLvj+YKHV+QCJV/Nf/gyaM+HXPCM3owjXmAXaV8UPKLEUZyQaajEXFScCAB5W
+        P/hDBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprBIsWRmVeSWpSXmKPExsWy7bCSnO7uddyJBp8fM1pc//Kc1WL+kXOs
+        Fhvf/mCy2PT4GqvF5V1z2CxmnN/HZLFzzklWi0Vbv7BbtO49wm7xvG8fkwOXx6yGXjaPTas6
+        2TzuXNvD5rF5Sb1H35ZVjB6fN8kFsEVx2aSk5mSWpRbp2yVwZVzbeoa94LtAxfPWl+wNjF95
+        uxg5OSQETCRap15nA7GFBHYzSmz8WAIRl5a4vnECO4QtLLHy33Mgmwuo5jmjxLQHD8Ea2AR0
+        JXYsbmMDSYgI/GKUmHPuHzOIwyywiVHi1+OtrBAtZxglvvafYAVp4RRwlFjxYSJYu7BAjETr
+        0llMIDaLgIrEmRcbwGxeAUuJ29+/MUPYghInZz5hAbGZBbQleh+2MsLYyxa+Zoa4T0Hi59Nl
+        YPNFBJwkLj25xgRRIy5x9GcP8wRG4VlIRs1CMmoWklGzkLQsYGRZxSiZWlCcm55bbFhgmJda
+        rlecmFtcmpeul5yfu4kRHHlamjsYt6/6oHeIkYmD8RCjBAezkghv8mKuRCHelMTKqtSi/Pii
+        0pzU4kOM0hwsSuK8F7pOxgsJpCeWpGanphakFsFkmTg4pRqYLkhzci0LXCX/wUOFw6/9xNxI
+        86Obj16s2OculiO0QnvTy7O+mT8/zlpcZBfAWiIt2/Xcq/f+VsnzVfcW17Pu/9F2tqJpi2rz
+        ueypwUJKCpMObmH3f30gJO5cVRGPx7m/sq5RT6I/cGz0C+Ppa9zzUOq79t8TbDfXcQW+/qpq
+        Nqn3TbX50ZmXNzaLsuWrGonx2Wzd6zd90Y1X6SJSdgLnjwgwOV9csmr2hElriw1cud95aPPu
+        uFGRqKAx7a6aR7m01TW7u9rmK47cObRL4Q1PWeCEDQVlsz49eW+z3Db9n3BM7onK057TmF5l
+        tdhFHXi/4XQBf36/9u7K7Sf5Dd9sZtj34f/l0iMr3d1UHe95KbEUZyQaajEXFScCAEu+D2cr
+        AwAA
+X-CMS-MailID: 20210805092619epcas5p165c3a064056e0979cb8178e92fa7d206
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20210805073653epcas5p21b4c2358b7de2b3c21dbc357af957137
+References: <20210805072110.4730-1-krzysztof.kozlowski@canonical.com>
+        <CGME20210805073653epcas5p21b4c2358b7de2b3c21dbc357af957137@epcas5p2.samsung.com>
+        <b0d6ff2a-24af-96c1-62a1-8b920c63e05a@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus
+Hi Krzysztof,
 
-Thanks.
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzysztof.kozlowski=40canonical.com>
+> Sent: 05 August 2021 13:07
+> To: Rob Herring <robh+dt=40kernel.org>; devicetree=40vger.kernel.org; lin=
+ux-
+> arm-kernel=40lists.infradead.org; linux-samsung-soc=40vger.kernel.org; li=
+nux-
+> kernel=40vger.kernel.org
+> Cc: Alim Akhtar <alim.akhtar=40samsung.com>; Chanwoo Choi
+> <cw00.choi=40samsung.com>; Pankaj Dubey <pankaj.dubey=40samsung.com>;
+> Sam Protsenko <semen.protsenko=40linaro.org>; Marc Zyngier
+> <maz=40kernel.org>
+> Subject: Re: =5BPATCH=5D arm64: dts: exynos: correct GIC CPU interfaces a=
+ddress
+> range on Exynos7
+>=20
+> On 05/08/2021 09:21, Krzysztof Kozlowski wrote:
+> > The GIC-400 CPU interfaces address range is defined as 0x2000-0x3FFF
+> > (by ARM).
+> >
+>=20
+Looking at DDI0471B_gic400_r0p1_trm.pdf, CPU interface range is 0x0000 =7E =
+0x10000
 
-On Thu, 5 Aug 2021 at 17:11, Linus Walleij <linus.walleij@linaro.org> wrote:
+> I underestimated the issue - this is actually bug as there is a GICC_DIR
+> register at offset 0x1000. Therefore:
+>=20
+Looking at the exynos7 and exynos5433 UMs looks like GICC_DIR is at offset =
+0x2100 (from 0x1100_0000 GIC base)
+It is possible for you to cross check once?
+
+> Fixes: b9024cbc937d (=22arm64: dts: Add initial device tree support for
+> exynos7=22)
+>=20
+> > Reported-by: Sam Protsenko <semen.protsenko=40linaro.org>
+> > Reported-by: Marc Zyngier <maz=40kernel.org>
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski=40canonical.com=
 >
-> On Sat, Jul 24, 2021 at 5:44 AM <dillon.minfei@gmail.com> wrote:
->
-> > From: Dillon Min <dillon.minfei@gmail.com>
-> >
-> > Since the compatible string defined from ilitek,ili9341.yaml is
-> > "st,sf-tc240t-9370-t", "ilitek,ili9341"
-> >
-> > so, append "ilitek,ili9341" to avoid the below dtbs_check warning.
-> >
-> > arch/arm/boot/dts/stm32f429-disco.dt.yaml: display@1: compatible:
-> > ['st,sf-tc240t-9370-t'] is too short
-> >
-> > Fixes: a726e2f000ec ("ARM: dts: stm32: enable ltdc binding with ili9341, gyro l3gd20 on stm32429-disco board")
-> > Signed-off-by: Dillon Min <dillon.minfei@gmail.com>
-> > Reported-by: kernel test robot <lkp@intel.com>
 > > ---
-> > v4: no change.
->
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
->
-> Please funnel this patch through the STM and ARM SoC tree.
+> >  arch/arm64/boot/dts/exynos/exynos7.dtsi =7C 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/exynos/exynos7.dtsi
+> > b/arch/arm64/boot/dts/exynos/exynos7.dtsi
+> > index 8b06397ba6e7..c73a597ca66e 100644
+> > --- a/arch/arm64/boot/dts/exynos/exynos7.dtsi
+> > +++ b/arch/arm64/boot/dts/exynos/exynos7.dtsi
+> > =40=40 -137,7 +137,7 =40=40 gic: interrupt-controller=4011001000 =7B
+> >  			=23address-cells =3D <0>;
+> >  			interrupt-controller;
+> >  			reg =3D	<0x11001000 0x1000>,
+> > -				<0x11002000 0x1000>,
+> > +				<0x11002000 0x2000>,
+> >  				<0x11004000 0x2000>,
+> >  				<0x11006000 0x2000>;
+> >  		=7D;
+> >
+>=20
+>=20
+> Best regards,
+> Krzysztof
 
-Sure, I will let Alex know. Thanks for your help on this driver.
-
-Hi Alex,
-Should I send v5 with Linus's Reviewed-by tag on this patch? thanks.
-
-Best Regards
-Dillon
-
->
-> Yours,
-> Linus Walleij
