@@ -2,173 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ECC5C3E1470
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 14:07:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6FCD3E1493
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 14:18:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239397AbhHEMHe convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 5 Aug 2021 08:07:34 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:55882 "EHLO gloria.sntech.de"
+        id S241285AbhHEMSR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 08:18:17 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46832 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232222AbhHEMHe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Aug 2021 08:07:34 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1mBc9S-0006hh-QB; Thu, 05 Aug 2021 14:07:06 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        David Wu <david.wu@rock-chips.com>
-Cc:     Simon Xue <xxm@rock-chips.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, Johan Jonker <jbx6244@gmail.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-iio@vger.kernel.org
-Subject: Re: [PATCH] iio: adc: rockchip_saradc: just get referenced voltage once at probe
-Date:   Thu, 05 Aug 2021 14:07:05 +0200
-Message-ID: <8912224.VV5PYv0bhD@diego>
-In-Reply-To: <8f5385a1-701c-4446-d238-90bee1c03675@rock-chips.com>
-References: <20210802090929.37970-1-xxm@rock-chips.com> <20210803135124.000072fe@Huawei.com> <8f5385a1-701c-4446-d238-90bee1c03675@rock-chips.com>
+        id S241273AbhHEMSO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Aug 2021 08:18:14 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B0D8760F02;
+        Thu,  5 Aug 2021 12:17:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1628165880;
+        bh=SnZyEDwSCGcMILVNay8kJLylO4dxnvZ30uP6PD40vys=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Pq8JnAHT0Nj6CCvb6OWE7mZTidN+sS03OJueS/j2ORg4/13bAzKPlhFvdYox8K1SK
+         g/+gUCNoRLLQAHIjX195xj/llPbClQTbV+ewbEh9g0Es0c4wcBuQwf5mJoTVnGOlRo
+         7LKvcavL2oHs7S6k6KFfEgkyqHxJlloXQK7G36mM=
+Date:   Thu, 5 Aug 2021 14:17:57 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Iwona Winiarska <iwona.winiarska@intel.com>
+Cc:     linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+        x86@kernel.org, devicetree@vger.kernel.org,
+        linux-aspeed@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org,
+        linux-doc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Andy Lutomirski <luto@kernel.org>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        Yazen Ghannam <yazen.ghannam@amd.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Tony Luck <tony.luck@intel.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Zev Weiss <zweiss@equinix.com>,
+        David Muller <d.mueller@elsoft.ch>
+Subject: Re: [PATCH v2 00/15] Introduce PECI subsystem
+Message-ID: <YQvW9Ua2PpuDQnji@kroah.com>
+References: <20210803113134.2262882-1-iwona.winiarska@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210803113134.2262882-1-iwona.winiarska@intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi David,
-
-Am Donnerstag, 5. August 2021, 13:56:18 CEST schrieb David Wu:
-> Hi Jonathan,
+On Tue, Aug 03, 2021 at 01:31:19PM +0200, Iwona Winiarska wrote:
+> Hi Greg,
 > 
-> 在 2021/8/3 下午8:51, Jonathan Cameron 写道:
-> > On Tue, 3 Aug 2021 11:09:47 +0800
-> > David Wu <david.wu@rock-chips.com> wrote:
-> > 
-> >> Hi Jonathan,
-> >>
-> >> 在 2021/8/2 下午6:42, Jonathan Cameron 写道:
-> >>> On Mon, 2 Aug 2021 17:09:29 +0800
-> >>> Simon Xue <xxm@rock-chips.com> wrote:
-> >>>    
-> >>>> From: David Wu <david.wu@rock-chips.com>
-> >>>>
-> >>>> The referenced voltage is not changed after initiation, so just only
-> >>>> get referenced voltage once.
-> >>> Hi David,
-> >>>
-> >>> Isn't this an external reference voltage?  If so how do you know
-> >>> it is not changed at runtime?  It might be unlikely and not happen
-> >>> on particular platforms, but that's not he same as saying it can never
-> >>> happen.  Clearly it's racey anyway if that does happen, but we definitely
-> >>> don't expect frequent voltage changes.
-> >>>    
-> >>
-> >> The current regulator is not changed and not subject to external
-> >> changes, this can reduce the getting voltage. Assuming that there will
-> >> be changes in the future, we then add the notify of the regulator, so
-> >> that the voltage change can be obtained.
-> > 
-> > If this patch added the notifier that would be a nice solution, but
-> > right now it potentially introduced a regression. You have made me a little curious...
-> > Are you seeing a significant cost to querying that regulator voltage?
-> > If so, I'd imagine it's a lack of caching in the regulator driver or similar.
-> > Scale readback via sysfs shouldn't be in a fast path anyway.
-> > 
-> > You can't depend on what boards today do, because someone with a board
-> > built tomorrow may well use an old kernel which supports the voltage
-> > changing, and then see a regression when they upgrade to the kernel
-> > containing this patch.
-> > 
-> 
-> For all current chips, the expected voltage is a fixed voltage, and 
-> don't want to change it in any process.:-)
-> 
-> So, if the voltage here does not change, then it can be obtained once in 
-> probe(), which can save the time of each acquisition. For example, the 
-> voltage of this regulator is obtained through i2c, which will increase 
-> some consumption every time.
+> This is a second round of patches introducing PECI subsystem.
+> I don't think it is ready to be applied right away (we're still
+> missing r-b's), but I hope we have chance to complete discussion in
+> the 5.15 development cycle. I would appreciate if you could take
+> a look.
 
-Jonathans request was to not think about "all current chips" but the
-general case, and as Jonathan said, adding that regulator notifier you
-already mentioned would be the nicest solution.
+I will wait to review this when you all feel it is ready so as to not
+waste my time finding things that you already know need to be resolved.
 
-So I think the easiest way is to just add the voltage notifier to your patch
-to make everyone happy ;-) .
+thanks,
 
-
-Heiko
-
-> 
-> > Jonathan
-> > 
-> >>
-> >>> Jonathan
-> >>>    
-> >>>>
-> >>>> Signed-off-by: Simon Xue <xxm@rock-chips.com>
-> >>>> Signed-off-by: David Wu <david.wu@rock-chips.com>
-> >>>> ---
-> >>>>    drivers/iio/adc/rockchip_saradc.c | 16 +++++++++-------
-> >>>>    1 file changed, 9 insertions(+), 7 deletions(-)
-> >>>>
-> >>>> diff --git a/drivers/iio/adc/rockchip_saradc.c b/drivers/iio/adc/rockchip_saradc.c
-> >>>> index f3eb8d2e50dc..cd33c0b9d3eb 100644
-> >>>> --- a/drivers/iio/adc/rockchip_saradc.c
-> >>>> +++ b/drivers/iio/adc/rockchip_saradc.c
-> >>>> @@ -49,6 +49,7 @@ struct rockchip_saradc {
-> >>>>    	struct clk		*clk;
-> >>>>    	struct completion	completion;
-> >>>>    	struct regulator	*vref;
-> >>>> +	int			uv_vref;
-> >>>>    	struct reset_control	*reset;
-> >>>>    	const struct rockchip_saradc_data *data;
-> >>>>    	u16			last_val;
-> >>>> @@ -105,13 +106,7 @@ static int rockchip_saradc_read_raw(struct iio_dev *indio_dev,
-> >>>>    		mutex_unlock(&indio_dev->mlock);
-> >>>>    		return IIO_VAL_INT;
-> >>>>    	case IIO_CHAN_INFO_SCALE:
-> >>>> -		ret = regulator_get_voltage(info->vref);
-> >>>> -		if (ret < 0) {
-> >>>> -			dev_err(&indio_dev->dev, "failed to get voltage\n");
-> >>>> -			return ret;
-> >>>> -		}
-> >>>> -
-> >>>> -		*val = ret / 1000;
-> >>>> +		*val = info->uv_vref / 1000;
-> >>>>    		*val2 = chan->scan_type.realbits;
-> >>>>    		return IIO_VAL_FRACTIONAL_LOG2;
-> >>>>    	default:
-> >>>> @@ -410,6 +405,13 @@ static int rockchip_saradc_probe(struct platform_device *pdev)
-> >>>>    		return ret;
-> >>>>    	}
-> >>>>    
-> >>>> +	info->uv_vref = regulator_get_voltage(info->vref);
-> >>>> +	if (info->uv_vref < 0) {
-> >>>> +		dev_err(&pdev->dev, "failed to get voltage\n");
-> >>>> +		ret = info->uv_vref;
-> >>>> +		return ret;
-> >>>> +	}
-> >>>> +
-> >>>>    	ret = clk_prepare_enable(info->pclk);
-> >>>>    	if (ret < 0) {
-> >>>>    		dev_err(&pdev->dev, "failed to enable pclk\n");
-> >>>
-> >>>
-> >>>
-> >>>    
-> >>
-> >>
-> > 
-> > 
-> > 
-> > 
-> 
-> 
-> 
-
-
-
-
+greg k-h
