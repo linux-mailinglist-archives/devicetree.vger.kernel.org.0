@@ -2,105 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F0073E0EBC
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 08:59:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4E943E0EFE
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 09:17:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231964AbhHEG7l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 02:59:41 -0400
-Received: from guitar.tcltek.co.il ([192.115.133.116]:33813 "EHLO
-        mx.tkos.co.il" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229869AbhHEG7l (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Aug 2021 02:59:41 -0400
-Received: from tarshish (unknown [10.0.8.3])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S230037AbhHEHRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 03:17:33 -0400
+Received: from smtp-relay-canonical-1.canonical.com ([185.125.188.121]:39744
+        "EHLO smtp-relay-canonical-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232167AbhHEHRc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 03:17:32 -0400
+Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by mx.tkos.co.il (Postfix) with ESMTPS id 98680440AEE;
-        Thu,  5 Aug 2021 09:59:04 +0300 (IDT)
-References: <cover.1620203062.git.baruch@tkos.co.il>
-User-agent: mu4e 1.4.15; emacs 27.1
-From:   Baruch Siach <baruch@tkos.co.il>
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Selvam Sathappan Periakaruppan <speriaka@codeaurora.org>,
-        Kathiravan T <kathirav@codeaurora.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
+        by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPS id C9B8940645
+        for <devicetree@vger.kernel.org>; Thu,  5 Aug 2021 07:17:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1628147837;
+        bh=6jE8SFRe7ptXY9h+Q9iewRO8CdNFo9CcZ4yJYWrZSWc=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=X8me6tE4lw5QmZkYAWw87/0jieDfkIdskKwB0YU2RfwGKgXXqTZJIuemK/wZpC543
+         XVtoiXvK94yHZqxU4E2BXK7cOMU9A23pzeELv3elWKjGK+6AhE9KDbbWftSpTMl5pA
+         lVvKYhcBknN+jOrTzeNKWd/0ecP5SWDNkl+upEioIUAmS205wgzBrdfhO6iPOutyDW
+         Y5BgGQSJfoZZpipnu5JjA3/O20DCR4/9HDOY23hn4DXHYtqskD3noQTNSCKoJK6A2R
+         QfB8e16w7ww2y3u9GCSpPP7nt6rFUQHMQb3MzMGVrXjachoHlbItsaWwLyUUYWH6o6
+         drTimwEheaPeA==
+Received: by mail-ej1-f69.google.com with SMTP id a17-20020a1709062b11b02905882d7951afso1714980ejg.4
+        for <devicetree@vger.kernel.org>; Thu, 05 Aug 2021 00:17:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=6jE8SFRe7ptXY9h+Q9iewRO8CdNFo9CcZ4yJYWrZSWc=;
+        b=Ju8tjtUP85/rNlJ1UGTmBoYxznXpc+UhWeRk74M1TRkBSgrtUxqi52YoJylhbip4W1
+         HAe+pmXGw2RG/86zSHupEbeWYoA6u4//065kxn1iUa2Kab3bArjpLOYC+liFTNMcL+KQ
+         AgUL6K9kxL7UXen59StkAWGtklJyLjznXskVA8Cl+wfaRl9NRM+TwFCSvkTHLkzH2GMc
+         +odf6vwnaGPETzxDCJg+b83RIBg314PbmhjfHKIXo2F3VgGgsgoBJghEJ3Q1oEdMdqlx
+         0/zBUfu2MCHVjtn9xxrtIewTPi7wrWNrtPkHwraQlUWoJyWElWwXqSBE/C//MqN6g0GK
+         S6IA==
+X-Gm-Message-State: AOAM533fwrQckVf0BrlBTQCnjX3tdKbqejRDnwaYzhS8vtozNnZhpSSJ
+        4ZjFo+sf1M/kjOC0hSiDxy5Ez2tMI46vp5Dn3CphZz0vtkojalk5ploWddvnNofg/7ycUqyjlC8
+        9e4IXIWyuvCaaUP+69vyDvOeMfioy3tLqSvjTCWQ=
+X-Received: by 2002:a17:906:814:: with SMTP id e20mr3376555ejd.497.1628147837568;
+        Thu, 05 Aug 2021 00:17:17 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwmqkhGtSvkGYoSPphNi/E1sqEExfzHFCc595MmtVHJLYYLMLjFqUPCQbwvvoYcfaH54ftfTQ==
+X-Received: by 2002:a17:906:814:: with SMTP id e20mr3376533ejd.497.1628147837423;
+        Thu, 05 Aug 2021 00:17:17 -0700 (PDT)
+Received: from [192.168.8.102] ([86.32.42.198])
+        by smtp.gmail.com with ESMTPSA id g10sm1391412ejj.44.2021.08.05.00.17.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Aug 2021 00:17:16 -0700 (PDT)
+Subject: Re: [PATCH 12/12] arm64: dts: exynos: Add Exynos850 SoC support
+To:     Sam Protsenko <semen.protsenko@linaro.org>
+Cc:     Marc Zyngier <maz@kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Robert Marko <robert.marko@sartura.hr>,
-        devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 0/6] arm64: IPQ6018 PCIe support
-In-reply-to: <cover.1620203062.git.baruch@tkos.co.il>
-Date:   Thu, 05 Aug 2021 09:58:57 +0300
-Message-ID: <87o8acxtqm.fsf@tarshish>
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
+        Ryu Euiyoul <ryu.real@samsung.com>,
+        Tom Gall <tom.gall@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+References: <20210730144922.29111-1-semen.protsenko@linaro.org>
+ <20210730144922.29111-13-semen.protsenko@linaro.org>
+ <15871f8ced3c757fad1ab3b6e62c4e64@misterjones.org>
+ <CAPLW+4=v4bDcuxGVqs06mobGj34At4cD+vg48b4dPujarS07Tg@mail.gmail.com>
+ <bf21badb-804f-45f0-c02b-80ff57ab9931@canonical.com>
+ <CAPLW+4nY=hozOR+B_0sPZODrk9PXaXg+NB-9pVhDbAjEy7yjhg@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <e264f96e-a230-456b-08a5-dbe3a31bdb43@canonical.com>
+Date:   Thu, 5 Aug 2021 09:17:14 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <CAPLW+4nY=hozOR+B_0sPZODrk9PXaXg+NB-9pVhDbAjEy7yjhg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lorenzo, Rob, Krzysztof,
+On 04/08/2021 23:30, Sam Protsenko wrote:
+>>>
+>>> Nice catch! Actually there is an error (typo?) in SoC's TRM, saying
+>>> that Virtual Interface Control Register starts at 0x3000 offset (from
+>>> 0x12a00000), where it obviously should be 0x4000, that's probably
+>>> where this dts error originates from. Btw, I'm also seeing the same
+>>> error in exynos7.dtsi.
+>>
+>> What's the error exactly? The "Virtual interface control register"
+>> offset (3rd region) is set properly to 0x4000 on Exynos7. Also one for
+>> the Exynos5433 looks correct.
+>>
+> 
+> The issue is that 2nd region's size is 0x1000, but it must be 0x2000.
+> It's defined by GIC-400 architecture, as I understand. Please look at
+> [1], table 3-1 has very specific offsets and sizes for each functional
+> block, and each particular SoC must adhere to that spec. So having
+> 0x1000 for 2nd region can't be correct. And because exynos7.dtsi has
+> GIC-400 as well, and 0x1000 is specified there for 2nd region size
+> too, so I presume there is the same mistake there.
 
-On Wed, May 05 2021, Baruch Siach wrote:
-> This series adds support for the single PCIe lane on IPQ6018 SoCs. The code is 
-> ported from downstream Codeaurora v5.4 kernel. The main difference from 
-> downstream code is the split of PCIe registers configuration from .init to 
-> .post_init, since it requires phy_power_on().
->
-> Tested on IPQ6010 based hardware.
+I understand, the range length has indeed same mistake. However it does
+not matter that much There are no registers pass 0x10C (so pass 0x1000).
+This address space is not used.
 
-It's been 3 months with no comment. Would you consider applying the dwc
-part (patches #1 and #2) for the v5.15 merge window?
+> Can you please check the TRM for Exynos7 SoC (if you have one in your
+> possession), and see if there is a typo there? E.g. in case of
+> Exynos850 TRM I can see that in "Register Map Summary" section the
+> offset for the first register (GICH_HCR) in "Virtual Interface Control
+> Register" region is specified as 0x3000, where it should be 0x4000, so
+> it's probably a typo. But the register description is correct, saying
+> that: "Address = Base Address + 0x4000".
 
-I tested the patches here successfully on top of v5.14-rc4.
+The starting addresses of each registers range is different issue and
+this one matters. Except same typo as you say, all looks good - they
+start at 0x4000.
 
-Thanks,
-baruch
+> 
+> [1] https://developer.arm.com/documentation/ddi0471/b/programmers-model/gic-400-register-map
 
->
-> Changes in v2:
->
->   * Add patch moving GEN3_RELATED macros to a common header
->
->   * Drop ATU configuration from pcie-qcom
->
->   * Remove local definition of common registers
->
->   * Use bulk clk and reset APIs
->
->   * Remove msi-parent from device-tree
->
-> Baruch Siach (3):
->   PCI: dwc: tegra: move GEN3_RELATED DBI register to common header
->   dt-bindings: phy: qcom,qmp: Add IPQ60xx PCIe PHY bindings
->   dt-bindings: pci: qcom: Document PCIe bindings for IPQ6018 SoC
->
-> Selvam Sathappan Periakaruppan (3):
->   PCI: qcom: add support for IPQ60xx PCIe controller
->   phy: qcom-qmp: add QMP V2 PCIe PHY support for ipq60xx
->   arm64: dts: ipq6018: Add pcie support
->
->  .../devicetree/bindings/pci/qcom,pcie.txt     |  24 +++
->  .../devicetree/bindings/phy/qcom,qmp-phy.yaml |  25 +++
->  arch/arm64/boot/dts/qcom/ipq6018.dtsi         |  99 ++++++++++++
->  drivers/pci/controller/dwc/pcie-designware.h  |   7 +
->  drivers/pci/controller/dwc/pcie-qcom.c        | 150 ++++++++++++++++++
->  drivers/pci/controller/dwc/pcie-tegra194.c    |   6 -
->  drivers/phy/qualcomm/phy-qcom-qmp.c           | 147 +++++++++++++++++
->  drivers/phy/qualcomm/phy-qcom-qmp.h           | 132 +++++++++++++++
->  8 files changed, 584 insertions(+), 6 deletions(-)
+> 
+>>> Though I don't have a TRM for Exynos7 SoCs, so
+>>> not sure if I should go ahead and fix that too. Anyway, for Exynos850,
+>>> I'll fix that in v2 series.
+>>
+>>
+>> However while we are at addresses - why are you using address-cells 2?
+>> It adds everywhere additional 0x0 before actual address.
+>>
+> 
+> Right. For "cpus" node I'll change the address-cells to 1 in my v2
+> series. I'll keep address-cells=2 for the root node, but I'm going to
+> encapsulate some nodes into soc node (as you suggested earlier), where
+> I'll make address-cells=1. That's pretty much how it's done in
+> exynos7.dtsi and in exynos5433.dtsi, so I guess that's should be fine
+> (to get rid of superfluous 0x0 and conform with other Exynos DTs)?
+
+Yes, thanks.
 
 
--- 
-                                                     ~. .~   Tk Open Systems
-=}------------------------------------------------ooO--U--Ooo------------{=
-   - baruch@tkos.co.il - tel: +972.52.368.4656, http://www.tkos.co.il -
+Best regards,
+Krzysztof
