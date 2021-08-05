@@ -2,103 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E7973E1914
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 18:07:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 953703E192A
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 18:11:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229775AbhHEQHx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 12:07:53 -0400
-Received: from mo4-p02-ob.smtp.rzone.de ([81.169.146.171]:18308 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229758AbhHEQHx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 12:07:53 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1628179642;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=TK4Z4SGFS8N8geJ9iPm+eTLiTkHLkJnX7aTss4SlKQM=;
-    b=ZXlkVoOBf575FzjuzPu7Z2k0mk6nsQYnpyymLg0ZhYe/I2KvVNqvKOVZa0uZ4tZQMP
-    gjFq6HmGXTQB+AcaNXcMG5FkwvkEo4QLWA4Wps/ewyASgGhtu306yP22re/vCGABvWOA
-    3Rq8dKeFNu0D2t76f/RdtWHkmCY1p2OvjofJrwNgLnaFcJ0mswQYykyVYyBCBA8pBSoY
-    E3EeSkfYoX3qz5mkhOU4Z8Kpfa0QlkTUAiLgJ6mHnzoNeM8UlQoFhfEH6lOGe7qYMIsU
-    z7bDicNTYPmpZGk51rIfXtKK1Y7mmDpklLF6L7A6A3N5JMfP5WEOdVd+xfPFbJ+hc0oF
-    BEPg==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj4Qpw9iZeHWElw4rovw=="
-X-RZG-CLASS-ID: mo00
-Received: from imac.fritz.box
-    by smtp.strato.de (RZmta 47.31.0 DYNA|AUTH)
-    with ESMTPSA id Q02727x75G7L7X8
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-    Thu, 5 Aug 2021 18:07:21 +0200 (CEST)
-Content-Type: text/plain;
-        charset=us-ascii
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
-Subject: Re: [PATCH v2 8/8] [RFC] drm/ingenic: convert to component framework
- for jz4780 hdmi
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <YQv+DC5yTEGlJYuD@pendragon.ideasonboard.com>
-Date:   Thu, 5 Aug 2021 18:07:20 +0200
-Cc:     Paul Cercueil <paul@crapouillou.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
-        Paul Boddie <paul@boddie.org.uk>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <BDF501D1-BA1D-4866-8EAF-3862F6CEC6F4@goldelico.com>
-References: <cover.1628172477.git.hns@goldelico.com>
- <77554dd2612f418f6ab74a8be06c82b71410e0e6.1628172477.git.hns@goldelico.com>
- <YQv+DC5yTEGlJYuD@pendragon.ideasonboard.com>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-X-Mailer: Apple Mail (2.3445.104.21)
+        id S230373AbhHEQLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 12:11:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37794 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231161AbhHEQLb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 12:11:31 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98AB0C0613D5;
+        Thu,  5 Aug 2021 09:11:14 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id e25-20020a05600c4b99b0290253418ba0fbso4104535wmp.1;
+        Thu, 05 Aug 2021 09:11:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3yVfr8nI8PLISyELvilTpZf23yuPK/Chs+AbBCYqhwI=;
+        b=o29RqF6g5OddzmP0Hm1cVDwOAgHgLA2Pe5tDHHWRxN1H7t5+3uec63+nx3i21s1fTs
+         s9Mf2mVR5b+qdPXUmgtW0BCdVV9FoJALKIp4MdFTLJ/HXFn0rdtxCMuCee0EEYHirJOD
+         ybBAvprn8fE/eRVEogGnL1caa1E5rZY0x0JF95gHFrceG/P4AhjmSERcndZTJzYH0fuO
+         aQEID/xeCw/Gm2o43uvniw8U3sna3ht13iwPsWtL9ugZwpuZmg4VXT5V6wOXokoHAtaz
+         yD6PLm/XcFEGyK8PYjvDBzOX9vceocPkkoWxxn62QwGn2vaO74tknn8/NrLGxyovmcuo
+         Zlpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3yVfr8nI8PLISyELvilTpZf23yuPK/Chs+AbBCYqhwI=;
+        b=nA9652cvLMA4d96xomHacssBiM/4jIhbIc7UyH6Udj1n9zjGB548agnbvnWMf4AycC
+         USBzVZyKoz8JYE9TfOIpWii8lwzzXevmZ7bjI461QGWYtDsuNqk1a3gBKyXzIfnrcf/h
+         WMW6WUgjx2cDcSUgeNTBEiA7z7fD4fIRyCE+NUV0Jz2FztTCIidoZIZ2HdEq8QClADf3
+         toiio59f/VFMJEkvpu3+k5GMQwOV3qPP8Q394y1qJkQWgsxsiwC7AasPdWpAHhJMfpHv
+         2vEuwOg1YG+XPJ2BNbSDEUhvz7P5Fe62k/Aaq742NRBPpuyKIymfoRxsk5tP6DAcAe/o
+         DC9g==
+X-Gm-Message-State: AOAM530C/KZyso1dVoFKesLRVS2cxpBB7GfloJTZlv4FL13rCduoY+Z8
+        yxfwp9fa9CGmyiC33wGuSYA=
+X-Google-Smtp-Source: ABdhPJzdBtA8C3ab4YGROs84S7Mh1Ga3np+vhm9BC6CQEldH4BttWOMOJH29A4kw8snvz14TXwKUNw==
+X-Received: by 2002:a05:600c:1ca7:: with SMTP id k39mr16580779wms.115.1628179873285;
+        Thu, 05 Aug 2021 09:11:13 -0700 (PDT)
+Received: from localhost (178-169-161-196.razgrad.ddns.bulsat.com. [178.169.161.196])
+        by smtp.gmail.com with ESMTPSA id w10sm6336007wrr.23.2021.08.05.09.11.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Aug 2021 09:11:12 -0700 (PDT)
+From:   Iskren Chernev <iskren.chernev@gmail.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Iskren Chernev <iskren.chernev@gmail.com>
+Subject: [PATCH v4 0/2] Add GCC for SM4250/6115
+Date:   Thu,  5 Aug 2021 19:11:05 +0300
+Message-Id: <20210805161107.1194521-1-iskren.chernev@gmail.com>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+This patch adds support for the Global Clock Controller on QCom SM4250 and
+SM6115, codename bengal. The code is taken from OnePlus repo [1]. The two
+platforms are identical so there is only one compat string.
 
-> Am 05.08.2021 um 17:04 schrieb Laurent Pinchart =
-<laurent.pinchart@ideasonboard.com>:
->=20
-> Hi Nikolaus,
->=20
-> Thank you for the patch.
->=20
-> On Thu, Aug 05, 2021 at 04:07:57PM +0200, H. Nikolaus Schaller wrote:
->> This patch attempts to convert the ingenic-dw-hdmi driver
->> into a version that uses the component framework.
->=20
-> Why ? What problem would this solve ?
+[1]: https://github.com/OnePlusOSS/android_kernel_oneplus_sm4250
 
-Well, it was suggested in a v1 we did post several months ago. I have =
-not
-looked up by whom and do not exactly remember the reasons.
+v1: https://lkml.org/lkml/2021/6/22/1131
+v2: https://lkml.org/lkml/2021/6/27/157
+v3: https://lkml.org/lkml/2021/8/1/68
 
-We now simply thought that it is common style since dome dw-hdmi drivers
-make use of it but some others don't. And we got it working without.
+Changes from v3:
+- removed test clock from driver/binding
+- fix GCC_SDCC2_BCR value as spotted by Konrad
+- simplified probe function
 
-If it is not needed/requested by anyone, we can drop it from v3 (or add =
-later).
+Changes from v2:
+- Suggested by Stephen Boyd
+  - switch to parent_data in place of parent_names
+- other
+  - drop parent refs to invalid clocks
+  - use pll-alpha regs when possible
+  - drop unused parent defs
+  - add pll test clock to bindings
 
-BR and thanks,
-Nikolaus=
+Changes from v1:
+- remove sm4250 compat, there will be a single sm6115.dtsi for both platforms
+
+Iskren Chernev (2):
+  dt-bindings: clk: qcom: gcc-sm6115: Document SM6115 GCC
+  clk: qcom: Add Global Clock controller (GCC) driver for SM6115
+
+ .../bindings/clock/qcom,gcc-sm6115.yaml       |   72 +
+ drivers/clk/qcom/Kconfig                      |    7 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/gcc-sm6115.c                 | 3544 +++++++++++++++++
+ include/dt-bindings/clock/qcom,gcc-sm6115.h   |  201 +
+ 5 files changed, 3825 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sm6115.yaml
+ create mode 100644 drivers/clk/qcom/gcc-sm6115.c
+ create mode 100644 include/dt-bindings/clock/qcom,gcc-sm6115.h
+
+
+base-commit: 8d4b477da1a807199ca60e0829357ce7aa6758d5
+-- 
+2.32.0
+
