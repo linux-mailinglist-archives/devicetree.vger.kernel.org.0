@@ -2,178 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D435F3E1B32
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 20:25:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDB853E1B4A
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 20:28:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240172AbhHESZ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 14:25:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40594 "EHLO
+        id S240880AbhHES3E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 14:29:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241183AbhHESZw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 14:25:52 -0400
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83F76C061765
-        for <devicetree@vger.kernel.org>; Thu,  5 Aug 2021 11:25:37 -0700 (PDT)
-Received: by mail-oi1-x233.google.com with SMTP id bh26so7016267oib.10
-        for <devicetree@vger.kernel.org>; Thu, 05 Aug 2021 11:25:37 -0700 (PDT)
+        with ESMTP id S241291AbhHES2x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 14:28:53 -0400
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B8D8C06179E
+        for <devicetree@vger.kernel.org>; Thu,  5 Aug 2021 11:28:38 -0700 (PDT)
+Received: by mail-pj1-x102a.google.com with SMTP id t7-20020a17090a5d87b029017807007f23so13741626pji.5
+        for <devicetree@vger.kernel.org>; Thu, 05 Aug 2021 11:28:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=gbLW+QJDyMH5Sf+1Cq2rIN5slJ0ZGcO1ZiPIvxeYo5w=;
-        b=edHXr9Em2Ae1iDzPPrZwEFUi2pZrq6mEx+CwbOtGzU/xz69mA/UXUkPeRrtIVdw/H7
-         Rg7Kz3vsJUP4zuvaBGEJXuRbBfQvE5waRO06uyVUVpNvUfN5tuHtDpT5uJrKvPWIkHy4
-         HyizBwDg/4vL19+901+B/P+dH7mPCyiPprMpo=
+        d=pdp7-com.20150623.gappssmtp.com; s=20150623;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=YGCouswH2GHW8Pe9yNUK7G9pYNQGrUoLBPY+7PuOUPI=;
+        b=XXVigsKYi2Ekgg4sTYHse/ofeYfpERaqCu3m9dcXsH/n+THel7lVyPzavfSXYdJ4sQ
+         WBQ9acW8B4ZCGjZuaB/if3rcAcACxCF43psx966LrPSVE3rrXJjr7hhdTEACLlH/KDxl
+         BC1hpzQxh6xcLPrj3vyAzPlu126jya2VB1B9Dn/zqSumtG9Y6FjU9XyPVYw38ehQ6pM6
+         VwMGViUWcqZOx/sW2iNyQ+gJQijCIo7hg0d+mNpuFStqbTt1Z1iItm9zkaN6qwi1KulM
+         VhBRGFpT6P3P6wxe9GI6Yab/v4E7fLUBlMjEHpp+MfyzATG7BuEG9Qz4nEaLwz6WlrRY
+         WSNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=gbLW+QJDyMH5Sf+1Cq2rIN5slJ0ZGcO1ZiPIvxeYo5w=;
-        b=PN7lGv15WgkMjZOKfjjP5qZYvqVySH0RheCj0nh6/z7arcbjLK8gO7KHoRUXvI5II0
-         oW5Ydaauh0nox677TXR6AmPbBLE7PYfK4wBnChAdNTC2M2X08Xi3TDp2lxg/8tgF26iV
-         u0DNStndHV3f+9accAtXqLfBnZC4Z/JaKrl7pXeuSriBRGP3yhGRlivrjd7ROPye9e1W
-         0r151CgAfUJ5DE5bLkIlXk0ucXBkG8NTPZNE5HiKsPwYno1Fvd1L1xNOgMxW4jSw2tq4
-         K3WzzD4lCQrYBAG2EvlgeaFQeQ/gOhxoXzv11FQWY+aJoqAfUuygOoMpvaWxYcMvpPtw
-         QVeQ==
-X-Gm-Message-State: AOAM531V0b93ejmCQqfCKkxtAT6jNZPFVSnFvnzEYZ1NopEIGqejJOHt
-        1VSqRjx96lp++ey9QFcu2DOs/UJGeS9hYQ6ZVniUlA==
-X-Google-Smtp-Source: ABdhPJyccareZr9XYB2TNH6O7ILoE1pab7v0BuEsi+iAsQ3sDIOPWDdP+Rr3mQqXnnLWw+u1pFTieFO8dUukUSequwg=
-X-Received: by 2002:a54:468d:: with SMTP id k13mr12082607oic.125.1628187936930;
- Thu, 05 Aug 2021 11:25:36 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 5 Aug 2021 11:25:36 -0700
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=YGCouswH2GHW8Pe9yNUK7G9pYNQGrUoLBPY+7PuOUPI=;
+        b=FJYkFrVrGV7U/E7yBwXdPkGVkbeViUZ4kyktHMdDifzxkddLWlYUXXI0fXkxFCtn7q
+         AFPVfD/KovyCkLEo+Fxi8cgjl+vGBBq9tZ4aCeBheMRNZG5/uyfkII6/E3QAvCtZZXtU
+         8b4ujMO5JyZkbYW6YxQTxqpD8RfhMEdP/4Kn7WP6s8Kiz0w+RmF9iy0pErwvoKTqg7L8
+         +xizNAfnUSGQtCcPMu2EM3dWyLovVt4UhGw17LxDq+e+uBpfJO2Q6FCEUogAvn34FLZC
+         YLyrYKtnDNJzbEP4OAznYNSbbbPDCrxgKLbhXg9iaYLCxNiQfPwUEVbOxxpgtms8jHkn
+         25AQ==
+X-Gm-Message-State: AOAM532WP6GUjaCwsiauvOU9We+Y/LSA4MMg2sGJI2VDr206Qu/ETcFv
+        K0dG/irFd1MqsFtJ1hkzrpOmLg==
+X-Google-Smtp-Source: ABdhPJwhAh8lgT+1ZMJecUd5olFPxP6rXJaigXlazVzjp7zvAweU5icsVR5dL9NjXJRvm7U1xXh7aA==
+X-Received: by 2002:aa7:83d0:0:b029:3c6:7261:ecb with SMTP id j16-20020aa783d00000b02903c672610ecbmr6507212pfn.61.1628188117531;
+        Thu, 05 Aug 2021 11:28:37 -0700 (PDT)
+Received: from x1 ([174.127.163.79])
+        by smtp.gmail.com with ESMTPSA id z24sm6696956pfn.150.2021.08.05.11.28.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Aug 2021 11:28:36 -0700 (PDT)
+Date:   Thu, 5 Aug 2021 11:28:35 -0700
+From:   Drew Fustini <drew@pdp7.com>
+To:     Atish Patra <atishp@atishpatra.org>
+Cc:     Emil Renner Berthing <kernel@esmil.dk>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Drew Fustini <drew@beagleboard.org>,
+        Bin Meng <bmeng.cn@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Michael Zhu <michael.zhu@starfivetech.com>,
+        Fu Wei <tekkamanninja@gmail.com>, jack.zhu@starfivetech.com,
+        leyfoon.tan@starfivetech.com,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4] dt-bindings: riscv: add starfive jh7100 bindings
+Message-ID: <20210805182835.GA52068@x1>
+References: <CAOnJCUL9uU5G1LOgfYPz9Ny77yFYaP5sgtdxG3_w=Zcsi+f96Q@mail.gmail.com>
+ <mhng-c9300c9e-6877-492f-a290-7c51066d3920@palmerdabbelt-glaptop>
+ <20210805023024.GA12312@x1>
+ <CANBLGcwczBsc-mfU2t9=7No7KhHfBFHFzGy=5hdyEE+4VN8ksg@mail.gmail.com>
+ <CAOnJCU+-orqjP5dND0QNh+08UhXitS=LPpg1VpnBcp=6YJU7EQ@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <352d549f40dfa2ae51589649652d2e97@codeaurora.org>
-References: <1627581885-32165-1-git-send-email-sibis@codeaurora.org>
- <1627581885-32165-3-git-send-email-sibis@codeaurora.org> <CAE-0n53cH749NC9JPqJvMZGBQf47AZ3qY66eoqk2CiQHvuumkg@mail.gmail.com>
- <352d549f40dfa2ae51589649652d2e97@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Thu, 5 Aug 2021 11:25:36 -0700
-Message-ID: <CAE-0n53b2M7hAw=NnUDW1_EG2N-521K=URQHmARH0DmLf7hwhA@mail.gmail.com>
-Subject: Re: [PATCH 2/4] cpufreq: qcom: Re-arrange register offsets to support
- per core L3 DCVS
-To:     Sibi Sankar <sibis@codeaurora.org>
-Cc:     bjorn.andersson@linaro.org, mka@chromium.org, robh+dt@kernel.org,
-        viresh.kumar@linaro.org, agross@kernel.org, rjw@rjwysocki.net,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        dianders@chromium.org, tdas@codeaurora.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAOnJCU+-orqjP5dND0QNh+08UhXitS=LPpg1VpnBcp=6YJU7EQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Sibi Sankar (2021-08-05 10:47:20)
-> Stephen,
->
-> Thanks for taking time to review
-> the series.
->
-> On 2021-08-05 00:31, Stephen Boyd wrote:
-> > Quoting Sibi Sankar (2021-07-29 11:04:43)
-> >> Qualcomm SoCs (starting with SM8350) support per core voting for L3
-> >> cache
-> >> frequency.
+On Thu, Aug 05, 2021 at 11:09:36AM -0700, Atish Patra wrote:
+> On Thu, Aug 5, 2021 at 1:13 AM Emil Renner Berthing <kernel@esmil.dk> wrote:
 > >
-> > And the L3 cache frequency voting code can't be put into this cpufreq
-> > driver?
->
-> Yes, it could have gone either into
-> the cpufreq driver or l3 interconnect
-> provider driver. Taniya/Odelu preferred
-> the latter, because of the need for other
-> clients to vote for l3 frequencies in
-> the future.
-
-What other clients are those?
-
-> The other option to prevent
-> register re-arrangement would involve
-> using syscons from the cpufreq node, which
-> really wasn't necessary since there
-> wasn't any register overlap between the
-> two drivers.
-
-Let's not do that.
-
->
+> > On Thu, 5 Aug 2021 at 04:30, Drew Fustini <drew@pdp7.com> wrote:
+> > > On Wed, Aug 04, 2021 at 02:13:47PM -0700, Palmer Dabbelt wrote:
+> > > > On Wed, 04 Aug 2021 13:54:16 PDT (-0700), atishp@atishpatra.org wrote:
+> > > > > On Wed, Aug 4, 2021 at 1:33 PM Palmer Dabbelt <palmer@dabbelt.com> wrote:
+> > > > > >
+> > > > > > On Thu, 15 Jul 2021 19:17:23 PDT (-0700), bmeng.cn@gmail.com wrote:
+> > > > > > > On Tue, Jul 13, 2021 at 2:34 PM Drew Fustini <drew@beagleboard.org> wrote:
+> > > > > > >>
+> > > > > > >> Add DT binding documentation for the StarFive JH7100 Soc [1] and the
+> > > > > > >> BeagleV Starlight JH7100 board [2].
+> > > > > > >>
+> > > > > > >> [1] https://github.com/starfive-tech/beaglev_doc
+> > > > > > >> [2] https://github.com/beagleboard/beaglev-starlight
+> > > > > > >>
+> > > > > > >> Signed-off-by: Drew Fustini <drew@beagleboard.org>
+> > > > > > >> ---
+> > > > > > >> v4 changes:
+> > > > > > >> - removed JH7100 SoC revision number after discussion with Geert
+> > > > > > >>
+> > > > > > >> v3 changes:
+> > > > > > >> - added revision number for the board and soc after question from Palmer
+> > > > > > >>
+> > > > > > >> v2 changes:
+> > > > > > >> - removed "items:" entry that only had "const: starfive,jh7100"
+> > > > > > >> - correct typo in Description:
+> > > > > > >>
+> > > > > > >> Results of running checks:
+> > > > > > >>   $ make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- dt_binding_check \
+> > > > > > >>     DT_SCHEMA_FILES=Documentation/devicetree/bindings/riscv/starfive.yaml
+> > > > > > >>     CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
+> > > > > > >>     DTEX    Documentation/devicetree/bindings/riscv/starfive.example.dts
+> > > > > > >>     SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
+> > > > > > >>     DTC     Documentation/devicetree/bindings/riscv/starfive.example.dt.yaml
+> > > > > > >>     CHECK   Documentation/devicetree/bindings/riscv/starfive.example.dt.yaml
+> > > > > > >>   $ make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- dtbs_check \
+> > > > > > >>     DT_SCHEMA_FILES=Documentation/devicetree/bindings/riscv/starfive.yaml
+> > > > > > >>     SYNC    include/config/auto.conf.cmd
+> > > > > > >>     UPD     include/config/kernel.release
+> > > > > > >>     SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+> > > > > > >>     DTC     arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dtb
+> > > > > > >>     DTC     arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dt.yaml
+> > > > > > >>     DTC     arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dt.yaml
+> > > > > > >>     DTC     arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dt.yaml
+> > > > > > >>     CHECK   arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dt.yaml
+> > > > > > >>     CHECK   arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dt.yaml
+> > > > > > >>     CHECK   arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dt.yaml
+> > > > > > >>
+> > > > > > >> The dts file is from vendor repo and is being cleaned up right now in
+> > > > > > >> preperation for submitting to the mailing list:
+> > > > > > >> https://github.com/starfive-tech/linux/tree/beaglev/arch/riscv/boot/dts/starfive
+> > > > > > >>
+> > > > > > >>  .../devicetree/bindings/riscv/starfive.yaml   | 27 +++++++++++++++++++
+> > > > > > >>  1 file changed, 27 insertions(+)
+> > > > > > >>  create mode 100644 Documentation/devicetree/bindings/riscv/starfive.yaml
+> > > > > > >>
+> > > > > > >
+> > > > > > > Reviewed-by: Bin Meng <bmeng.cn@gmail.com>
+> > > > > >
+> > > > > > Thanks.  This is on for-next, as Rob suggested taking it via the RISC-V
+> > > > > > tree.
+> > > > > >
+> > > > > Given that beagleV starlight mass production is cancelled [1], are we
+> > > > > still upstreaming the support for this ?
+> > > >
+> > > > I'm not sure, but I wasn't quite sure where to have that discussion.  I
+> > > > figured that the boards exist so there's no reason to shoot this down, given
+> > > > that it's just the vendor DT list.  At a bare minimum there's out of tree
+> > > > support for this, so having the DT strings defined seems sane as that's a
+> > > > defacto interface with bootloaders.
+> > > >
+> > > > Maybe this is more of a question for Drew: I think we were all OK working
+> > > > through the issues with the first-run chip when there was going to be a lot
+> > > > of them, but with such a small number produced I'm not sure if there's going
+> > > > to be enough interested to take on all that effort.
+> > > >
+> > > > I'm not quite sure where we stand on support for this: at some point there
+> > > > were some ideas floating around as to a way to support it without major
+> > > > software changes (allocating into the non-caching regions).  If that pans
+> > > > out then I'm fine handling this, at least from the RISC-V side, but if we're
+> > > > going to have to go through all the ISA/SBI stuff then it's probably not
+> > > > worth it.  Also not sure if there are a bunch of starfive-specific drivers
+> > > > that would be needed to make this boot, in which case it's probably best to
+> > > > wait for whatever comes next.
+> > >
+> > > I think that the discontinued beta prototype could be useful as a native
+> > > build host for those of you that have it and don't have an Unmatched.
 > >
-> >> So, re-arrange the cpufreq register offsets to allow access for
-> >> the L3 interconnect to implement per core control. Also prevent
-> >> binding
-> >> breakage caused by register offset shuffling by using the
-> >> SM8250/SM8350
-> >> EPSS compatible.
-> >>
-> >> Fixes: 7dbd121a2c58 ("arm64: dts: qcom: sc7280: Add cpufreq hw node")
-> >> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
-> >> ---
-> >>  drivers/cpufreq/qcom-cpufreq-hw.c | 23 +++++++++++++++++++----
-> >>  1 file changed, 19 insertions(+), 4 deletions(-)
-> >>
-> >> diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c
-> >> b/drivers/cpufreq/qcom-cpufreq-hw.c
-> >> index f86859bf76f1..74ef3b38343b 100644
-> >> --- a/drivers/cpufreq/qcom-cpufreq-hw.c
-> >> +++ b/drivers/cpufreq/qcom-cpufreq-hw.c
-> >> @@ -28,6 +28,7 @@ struct qcom_cpufreq_soc_data {
-> >>         u32 reg_volt_lut;
-> >>         u32 reg_perf_state;
-> >>         u8 lut_row_size;
-> >> +       bool skip_enable;
-> >>  };
-> >>
-> >>  struct qcom_cpufreq_data {
-> >> @@ -257,19 +258,31 @@ static const struct qcom_cpufreq_soc_data
-> >> qcom_soc_data = {
-> >>         .reg_volt_lut = 0x114,
-> >>         .reg_perf_state = 0x920,
-> >>         .lut_row_size = 32,
-> >> +       .skip_enable = false,
-> >>  };
-> >>
-> >>  static const struct qcom_cpufreq_soc_data epss_soc_data = {
-> >> +       .reg_freq_lut = 0x0,
-> >> +       .reg_volt_lut = 0x100,
-> >> +       .reg_perf_state = 0x220,
-> >> +       .lut_row_size = 4,
-> >> +       .skip_enable = true,
-> >> +};
-> >> +
-> >> +static const struct qcom_cpufreq_soc_data epss_sm8250_soc_data = {
-> >>         .reg_enable = 0x0,
-> >>         .reg_freq_lut = 0x100,
-> >>         .reg_volt_lut = 0x200,
-> >>         .reg_perf_state = 0x320,
-> >>         .lut_row_size = 4,
-> >> +       .skip_enable = false,
-> >>  };
-> >>
-> >>  static const struct of_device_id qcom_cpufreq_hw_match[] = {
-> >>         { .compatible = "qcom,cpufreq-hw", .data = &qcom_soc_data },
-> >>         { .compatible = "qcom,cpufreq-epss", .data = &epss_soc_data },
-> >> +       { .compatible = "qcom,sm8250-cpufreq-epss", .data =
-> >> &epss_sm8250_soc_data },
-> >> +       { .compatible = "qcom,sm8350-cpufreq-epss", .data =
-> >> &epss_sm8250_soc_data },
-> >>         {}
-> >>  };
-> >>  MODULE_DEVICE_TABLE(of, qcom_cpufreq_hw_match);
-> >> @@ -334,10 +347,12 @@ static int qcom_cpufreq_hw_cpu_init(struct
-> >> cpufreq_policy *policy)
-> >>         data->res = res;
-> >>
-> >>         /* HW should be in enabled state to proceed */
+> > Also according to this statement [1], they're still planning on
+> > producing new boards with the JH7100 (same chip as on the BeagleV
+> > prototype) at the end of Q3 and the JH7110 further in the future, so I
+> > still think it'd make sense to support those.
 > >
-> > It looks odd that we're no longer making sure that the clk domain is
-> > enabled when we probe the driver. Why is that OK?
->
-> On newer EPSS hw it's no longer
-> required to perform the additional
-> hw enable check. IIRC we don't do
-> that on corresponding downstream
-> kernels as well.
+> > [1]: https://www.design-reuse.com/news/50402/starfive-open-source-single-board-platform-q3-2021.html
+> >
+> 
+> 
+> 
+> > > The arch_sync_dma RFC from Atish [1] is key to the board running
+> > > mainline. Most of the peripherals (USB, SD card, ethernet) are already
+> > > supported by upstream Cadence and Synopsys drivers. However, the vendor
+> > > kernel used ifdef's to flush the L2 cache at several points in those
+> > > drivers and subsystem cores because the peripherals are on a non-cache
+> > > coherent interconnect.
+> > >
+> > > Without the proposed solution from Atish that uses the non-cached DDR
+> > > alias, then only serial console would work on mainline (assuming the
+> > > system is running from a ramdisk that the vendor uboot loaded).
+> > >
+> 
+> We need the clock patches as well. If there is an agreed effort to
+> upstream the clock patches
+> and other bare minimum patches, I am happy to revise the DMA patches as well.
+> 
+> However, I am not sure all the patches should be beagleV or
+> starfive/starlight given the new announcement
+> from StarFive. Does anybody know if they are going to mass produce the
+> exact same SBC (JH7100) or some variant of it ?
+> 
+> Maybe we should defer upstreaming until we see the new board ? We
+> probably don't want two different versions of upstreaming support
+> for the same board!
 
-It's fairly clear that we no longer perform the additional check. The
-question is why that's OK.
+The JH7100 was produced through MPW (multi-project wafer) runs and not
+as a full mask set for mass production. I don't know what quantity will
+exist beyond the 300 used on the beaglev starlight beta prototypes.
+
+Thanks,
+Drew
