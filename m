@@ -2,117 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E684E3E10A8
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 10:57:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97D1A3E10B5
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 11:00:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230298AbhHEI5X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 04:57:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50186 "EHLO
+        id S231173AbhHEJAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 05:00:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232535AbhHEI5W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 04:57:22 -0400
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A95F8C061765;
-        Thu,  5 Aug 2021 01:57:07 -0700 (PDT)
-Received: by mail-pj1-x1032.google.com with SMTP id t7-20020a17090a5d87b029017807007f23so9913476pji.5;
-        Thu, 05 Aug 2021 01:57:07 -0700 (PDT)
+        with ESMTP id S232365AbhHEJAs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 05:00:48 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FE58C061765
+        for <devicetree@vger.kernel.org>; Thu,  5 Aug 2021 02:00:33 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id z2so9723300lft.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Aug 2021 02:00:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=uBGvDrKwcptU4eI40KiqTkmrFiw969jPWA+k2q+CekM=;
-        b=kNboybg+6Kjx5JPc/fxOD0oELVczHRj++IDC4hjC0/OJk4oKrRyTu8M/whUk444G3z
-         z+fRzPQgeChY0IafDiRl71BHTnwukeLwafgpiosx++y30fCAqhxNrfr7UiEYDTKFvXr2
-         dqkQ+2Ld7LKQhj2ZzLXZejyt4Gq4hF4mWUougONkFY4DVy5NPITwb4kBmKAwwOQU6jCS
-         TrXao+msXwv0tXe0VFsDyhbi2/VrcLkNZA/Zg8EGlLXevzJnbH51b45b8ax4LMNkWFOS
-         5JhMONx+HcEtJwUORLuXLTA3HKm6vfMZfEJqpBIWJr0rKaIiwF5PZsUGvLMAlTf9WRFZ
-         1clg==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=JM9iCScYCnpkFv75a57i9R1ggfwz9cSCItbTqo7em1Y=;
+        b=y3DFpIbood6Z8HVNcmCAlTaEot6Fbw5o7WJl9eWitbrL8+PfBGI5MKkMbX1RwMyIdY
+         okgh1DYBe51yAea82bYFMeOaAAawG+Vsz6PZ2KFYAq4+Nf2mPue4mcekooPQjbRxQZ4Y
+         w/kjp82jR91Gm6dIlV70daROhz1ftlt3LYgSkktdBCUSVYQQTdHA/gtAEzQf6rtw2HG0
+         ZBpmwwafLVQr1eLEYnPtqmF33FOORr5Ea9VEblKDZT7m3Db33+653xOdMcl0bs2diGpO
+         4szt2EwU/V4z2wiB9ejUXeDw0SGdxbvNgqPve199hqwhSbqBFx6eAe8gONxd/fZrBkb+
+         m65w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=uBGvDrKwcptU4eI40KiqTkmrFiw969jPWA+k2q+CekM=;
-        b=pXGvNwVZnva4tM3ot8La1v6+h0vxKvVzHhm6/GynrF6qbJOzAyw5DTOlev0UHOBwK7
-         jFES3dsO0r7nz08Vuq2c+DNYn7TBH6tPznN9j5eSVQm5fqxRD24zsXzQ9TSUEKE0qkn1
-         WWSVGdyv00q84T658wljKv943cMKjazPV9rY9i2X07k66M9Bp0yUnUmh1bRZ+M6VHxac
-         YdKylDPBtX9caj9osrO8jtj7PnMF1KQe5d6Kn5YmysIH8+qnFdoixGKFfosKi2sVjumb
-         3Ea/eRc/0kv8YqckyAYO9zu1XOv0da2VNWoFb/bAbTqbEaA+/ScERdNrdtmILeJFi4s9
-         sOEQ==
-X-Gm-Message-State: AOAM5320ABO5INq83n5B49zcW7EByVArp8FU3ZYfZDoPV+PqI9dgYU7v
-        v+Jn7TFugLGb7UvkYeNEbuA=
-X-Google-Smtp-Source: ABdhPJwGKr4kXuL4EeyTRjdfibpMy6P+YgIwbVDl7RF3M2FKtZcBxPa+YY9mfpLYTvKBD5tas4xFWg==
-X-Received: by 2002:a17:902:6bc8:b029:117:6a8a:f7af with SMTP id m8-20020a1709026bc8b02901176a8af7afmr375795plt.51.1628153827200;
-        Thu, 05 Aug 2021 01:57:07 -0700 (PDT)
-Received: from [192.168.1.22] (amarseille-551-1-7-65.w92-145.abo.wanadoo.fr. [92.145.152.65])
-        by smtp.gmail.com with ESMTPSA id h20sm5911451pfn.173.2021.08.05.01.57.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Aug 2021 01:57:06 -0700 (PDT)
-Subject: Re: [PATCH v4 0/4] ARM: dts: NSP: add Meraki MX64/MX65 series
-To:     Matthew Hagan <mnhagan88@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20210625095000.3358973-1-mnhagan88@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <fefad5f1-a2be-0feb-6170-d1bf5a1d86a2@gmail.com>
-Date:   Thu, 5 Aug 2021 01:57:01 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+        bh=JM9iCScYCnpkFv75a57i9R1ggfwz9cSCItbTqo7em1Y=;
+        b=hQk2jfUgOs2t6IvLPp7ckNeAtCs8+27pW2HUSvLWM9zQHeUUZMcD0GbAN8AQRWEHVS
+         j5K58m+DPAIP0lMhp7QPoHOTe0FqR2R2SdjgSlbmZZl9MHK01cAgc+YRfVFYDW2LmOlc
+         RlOEacXK0UjuqRcUIM0TTfBcBmB1a+0oepREhvog5eCJJarxLWASpU8dkXMqsk5XXQVq
+         8hDCxnfHmtMXJg6iWn0LXiceK9A+s0b092/UMYfxzzkmoUnGjcuEQlWNwB9GdDviWZzS
+         mX11Y6ynnAvWezZ1yS/B6HTmp0bOjO9H8HcysHFQRojgZQx5x/lzQh4Fa2RHlZJs3E/d
+         iaHg==
+X-Gm-Message-State: AOAM532A0G56OORUEe49oF+Z8UGRpx7nNLcWonG2GO7P/RZVurkY7tGa
+        wMFdMnwzJi4BmqHSYeTw6pikhQ==
+X-Google-Smtp-Source: ABdhPJzQixjx47Qbe0Ei69raVXjb883x6nrjx9J9NurjcUaeS/CKWsa6LFRSjRXoGv0Z/+Hxj+Tz7g==
+X-Received: by 2002:a05:6512:53c:: with SMTP id o28mr2925415lfc.641.1628154031495;
+        Thu, 05 Aug 2021 02:00:31 -0700 (PDT)
+Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
+        by smtp.gmail.com with ESMTPSA id z1sm447901lfu.222.2021.08.05.02.00.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Aug 2021 02:00:31 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Sebastian Reichel <sre@kernel.org>,
+        Marcus Cooper <codekipper@gmail.com>
+Cc:     linux-pm@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 1/2 v2] dt-bindings: power: Extend battery bindings with type
+Date:   Thu,  5 Aug 2021 10:58:27 +0200
+Message-Id: <20210805085828.3451909-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <20210625095000.3358973-1-mnhagan88@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This adds a battery-type property and bindings for the different
+"technologies" that are used in Linux. More types can be added.
 
+This is needed to convert the custom ST-Ericsson AB8500 battery
+properties over to the generic battery bindings.
 
-On 6/25/2021 2:49 AM, Matthew Hagan wrote:
-> Changes from v2:
->   - Introduce boards to Makefile in same patch as the board dts is added
->     (Vladimir Oltean)
->   - Use alphabetical ordering for labels (Vladimir Oltean)
->   - Remove address-cells and size-cells in qca8337 switch nodes (Vladimir
->     Oltean)
->   - Remove "cpu" labels from switch nodes' CPU ports (Vladimir Oltean)
->   - Various LED fixes, utilising dt-bindings/leds/common.h and correctly
->     specifying LEDs in the form "led-N" and with the color/function/
->     function-enumerator properties.
->   - Fix PWM LEDs and corresponding pinctrl bindings. (Vladimir Oltean)
-> 
-> The following changes were submitted as a separate series:
->   - Introduce patches to disable QSPI by default and enable where used
->     (Vladimir Oltean)
->   - Move mdio@18032000 node from board related file to SoC (Vladimir
->     Oltean)
->   - In addition to above, relocate mdio-mux to bcm-nsp.dtsi and fix
->     the resulting usb3_phy issues
-> 
-> Changes from v3:
->   - Sort labels on mx64 a0 dts files into alphabetical order as well
->   - move include directives for input/input.h and leds/common.h to
->     bcm958625-mx6x-common.dtsi
->   - Whitespace fixes in bcm958625-mx6x-common.dtsi
->   - rename "senao_nvram" partition to "nvram"
-> 
-> Matthew Hagan (4):
->    ARM: dts: NSP: Add common bindings for MX64/MX65
->    ARM: dts: NSP: Add DT files for Meraki MX64 series
->    ARM: dts: NSP: Add DT files for Meraki MX65 series
->    dt-bindings: arm: bcm: NSP: add Meraki MX64/MX65
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ChangeLog v1->v2:
+- Add devicetree list to Cc
+- Use "device-chemistry" instead of "battery-type" as this
+  has precedence in standards.
+I need a bunch of new bindings for switch the STE AB8500 custom
+bindings out, but I need to start somewhere, this is as good as
+any place to start.
+---
+ .../devicetree/bindings/power/supply/battery.yaml  | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-Matt, should I be expecting a v5 based on Arnd's comments?
+diff --git a/Documentation/devicetree/bindings/power/supply/battery.yaml b/Documentation/devicetree/bindings/power/supply/battery.yaml
+index c3b4b7543591..d56ac484fec5 100644
+--- a/Documentation/devicetree/bindings/power/supply/battery.yaml
++++ b/Documentation/devicetree/bindings/power/supply/battery.yaml
+@@ -31,6 +31,20 @@ properties:
+   compatible:
+     const: simple-battery
+ 
++  device-chemistry:
++    description: This describes the chemical technology of the battery.
++    oneOf:
++      - const: nickel-cadmium
++      - const: nickel-metal-hydride
++      - const: lithium-ion
++        description: This is a blanket type for all lithium-ion batteries,
++          including those below. If possible, a precise compatible string
++          from below should be used, but sometimes it is unknown which specific
++          lithium ion battery is employed and this wide compatible can be used.
++      - const: lithium-ion-polymer
++      - const: lithium-ion-iron-phosphate
++      - const: lithium-ion-manganese-oxide
++
+   over-voltage-threshold-microvolt:
+     description: battery over-voltage limit
+ 
 -- 
-Florian
+2.31.1
+
