@@ -2,170 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE5763E0C74
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 04:30:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E0A53E0C8B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 04:56:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234087AbhHECal (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 22:30:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48538 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229713AbhHECal (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 22:30:41 -0400
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A6D3C0613C1
-        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 19:30:28 -0700 (PDT)
-Received: by mail-pl1-x630.google.com with SMTP id t3so5269511plg.9
-        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 19:30:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pdp7-com.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=vdygkbgOoifQ2P3uS173U/W4DkZaZSva1QHWbIr+JoI=;
-        b=eYBCE9AHR3MLbexOdgpJeNUt8ue0DcQvnep8V2CdXekpSbK750mX5sv5aI7XlzcNmf
-         ASxatPjlZ+xL8whJR888VZR30wYLyRHho8Tutpvv33YwC0VnTWYOnIs6sH+X0orilpS3
-         y+FKwls2Kvsn3hBENrdbuQrGCE1AhqFVkEtqkEq4H/VF1j0U0mDsHtrFknYVZu2i/Nxe
-         +8RfjhVvsQen/8b9D0D2JeI0nXqg9Ue9AfOYQ/7Yljd1REYtyY58HrNvtR2/0PU0PUul
-         3gLW0emPdallHJ8f8BDhgm6gN35aQRHNKVPN3Hi8prUBgytdQuM/MZ3Xf2MVLdErReY7
-         quVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=vdygkbgOoifQ2P3uS173U/W4DkZaZSva1QHWbIr+JoI=;
-        b=Nc4GwFhavj/wiuNDHETMiLK9gPC/OXuQvd5h6fbEwCdAlFew8bRzaCMwBzhvgALh2V
-         ktzonC32+r/QUxHictjaQT9oSm04iwF1+rrcTDVLQfL6Wi8056slUqdAau8PZ/6xw4wL
-         9SIoVpM42p+wXaMkV5XA1rQvQv4LGXSK6AM+wV/23UZ7mLPjIpYTbTkLMa/DXOkwcfzC
-         4jZrN/fm/BhxpaL5Ne9SZKTA3Ir9LXI+w2BtfjKpyOcSlrUl0DTx6m/nFsu8AjNjrIsf
-         fT25wOx4aoOHCUXeyOeBHFgI2DW1pPop+2AmX3cOKT29jOxsYG/w5Y1pSNoA3awP3MLZ
-         6p5w==
-X-Gm-Message-State: AOAM533b4NX0yUk4LkyjIK1CpUPmyxO3SIeS9NfLDlMSiCVSUKfR3heZ
-        fXplZhQ8I48lYNoTF6v+FGU2Eg==
-X-Google-Smtp-Source: ABdhPJySAd8vmVVvU3tqw0td5HWMMUYoY9S1Qy9OO1Zx+ygWd4e1FtwfDUEhJSRER70AzJoDJ01r5w==
-X-Received: by 2002:a63:1621:: with SMTP id w33mr539976pgl.291.1628130627580;
-        Wed, 04 Aug 2021 19:30:27 -0700 (PDT)
-Received: from x1 ([174.127.163.79])
-        by smtp.gmail.com with ESMTPSA id 22sm1918868pgn.88.2021.08.04.19.30.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Aug 2021 19:30:27 -0700 (PDT)
-Date:   Wed, 4 Aug 2021 19:30:24 -0700
-From:   Drew Fustini <drew@pdp7.com>
-To:     Palmer Dabbelt <palmer@dabbelt.com>
-Cc:     atishp@atishpatra.org, drew@beagleboard.org, bmeng.cn@gmail.com,
-        robh+dt@kernel.org, Paul Walmsley <paul.walmsley@sifive.com>,
-        michael.zhu@starfivetech.com, tekkamanninja@gmail.com,
-        jack.zhu@starfivetech.com, leyfoon.tan@starfivetech.com,
-        geert@linux-m68k.org, kernel@esmil.dk, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4] dt-bindings: riscv: add starfive jh7100 bindings
-Message-ID: <20210805023024.GA12312@x1>
-References: <CAOnJCUL9uU5G1LOgfYPz9Ny77yFYaP5sgtdxG3_w=Zcsi+f96Q@mail.gmail.com>
- <mhng-c9300c9e-6877-492f-a290-7c51066d3920@palmerdabbelt-glaptop>
+        id S230209AbhHEC44 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 22:56:56 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:50226 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229609AbhHEC44 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 22:56:56 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: ezequiel)
+        with ESMTPSA id C08151F40EF5
+Message-ID: <c52b31a6e66f46ad2b14ee96868e5c6b212d2b7f.camel@collabora.com>
+Subject: Re: [PATCH 3/4] arm64: dts: rockchip: Add GPU node for rk3568
+From:   Ezequiel Garcia <ezequiel@collabora.com>
+To:     Johan Jonker <jbx6244@gmail.com>, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@st.com>,
+        Peter Geis <pgwipeout@gmail.com>
+Date:   Wed, 04 Aug 2021 23:56:30 -0300
+In-Reply-To: <b19aa876-f78b-f6af-39e9-ff37fc19f09a@gmail.com>
+References: <20210730164515.83044-1-ezequiel@collabora.com>
+         <20210730164515.83044-4-ezequiel@collabora.com>
+         <b19aa876-f78b-f6af-39e9-ff37fc19f09a@gmail.com>
+Organization: Collabora
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.3-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <mhng-c9300c9e-6877-492f-a290-7c51066d3920@palmerdabbelt-glaptop>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 04, 2021 at 02:13:47PM -0700, Palmer Dabbelt wrote:
-> On Wed, 04 Aug 2021 13:54:16 PDT (-0700), atishp@atishpatra.org wrote:
-> > On Wed, Aug 4, 2021 at 1:33 PM Palmer Dabbelt <palmer@dabbelt.com> wrote:
-> > > 
-> > > On Thu, 15 Jul 2021 19:17:23 PDT (-0700), bmeng.cn@gmail.com wrote:
-> > > > On Tue, Jul 13, 2021 at 2:34 PM Drew Fustini <drew@beagleboard.org> wrote:
-> > > >>
-> > > >> Add DT binding documentation for the StarFive JH7100 Soc [1] and the
-> > > >> BeagleV Starlight JH7100 board [2].
-> > > >>
-> > > >> [1] https://github.com/starfive-tech/beaglev_doc
-> > > >> [2] https://github.com/beagleboard/beaglev-starlight
-> > > >>
-> > > >> Signed-off-by: Drew Fustini <drew@beagleboard.org>
-> > > >> ---
-> > > >> v4 changes:
-> > > >> - removed JH7100 SoC revision number after discussion with Geert
-> > > >>
-> > > >> v3 changes:
-> > > >> - added revision number for the board and soc after question from Palmer
-> > > >>
-> > > >> v2 changes:
-> > > >> - removed "items:" entry that only had "const: starfive,jh7100"
-> > > >> - correct typo in Description:
-> > > >>
-> > > >> Results of running checks:
-> > > >>   $ make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- dt_binding_check \
-> > > >>     DT_SCHEMA_FILES=Documentation/devicetree/bindings/riscv/starfive.yaml
-> > > >>     CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
-> > > >>     DTEX    Documentation/devicetree/bindings/riscv/starfive.example.dts
-> > > >>     SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
-> > > >>     DTC     Documentation/devicetree/bindings/riscv/starfive.example.dt.yaml
-> > > >>     CHECK   Documentation/devicetree/bindings/riscv/starfive.example.dt.yaml
-> > > >>   $ make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- dtbs_check \
-> > > >>     DT_SCHEMA_FILES=Documentation/devicetree/bindings/riscv/starfive.yaml
-> > > >>     SYNC    include/config/auto.conf.cmd
-> > > >>     UPD     include/config/kernel.release
-> > > >>     SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-> > > >>     DTC     arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dtb
-> > > >>     DTC     arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dt.yaml
-> > > >>     DTC     arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dt.yaml
-> > > >>     DTC     arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dt.yaml
-> > > >>     CHECK   arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dt.yaml
-> > > >>     CHECK   arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dt.yaml
-> > > >>     CHECK   arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dt.yaml
-> > > >>
-> > > >> The dts file is from vendor repo and is being cleaned up right now in
-> > > >> preperation for submitting to the mailing list:
-> > > >> https://github.com/starfive-tech/linux/tree/beaglev/arch/riscv/boot/dts/starfive
-> > > >>
-> > > >>  .../devicetree/bindings/riscv/starfive.yaml   | 27 +++++++++++++++++++
-> > > >>  1 file changed, 27 insertions(+)
-> > > >>  create mode 100644 Documentation/devicetree/bindings/riscv/starfive.yaml
-> > > >>
-> > > >
-> > > > Reviewed-by: Bin Meng <bmeng.cn@gmail.com>
-> > > 
-> > > Thanks.  This is on for-next, as Rob suggested taking it via the RISC-V
-> > > tree.
-> > > 
-> > Given that beagleV starlight mass production is cancelled [1], are we
-> > still upstreaming the support for this ?
+Hi Johan,
+
+Thanks for the review.
+
+On Fri, 2021-07-30 at 21:38 +0200, Johan Jonker wrote:
+> Hi Ezequiel,
 > 
-> I'm not sure, but I wasn't quite sure where to have that discussion.  I
-> figured that the boards exist so there's no reason to shoot this down, given
-> that it's just the vendor DT list.  At a bare minimum there's out of tree
-> support for this, so having the DT strings defined seems sane as that's a
-> defacto interface with bootloaders.
+> Some comments. Have a look if it's useful.
 > 
-> Maybe this is more of a question for Drew: I think we were all OK working
-> through the issues with the first-run chip when there was going to be a lot
-> of them, but with such a small number produced I'm not sure if there's going
-> to be enough interested to take on all that effort.
+> On 7/30/21 6:45 PM, Ezequiel Garcia wrote:
+> > Rockchip SoCs RK3566 and RK3568 have a Mali Gondul core
+> > which is based on the Bifrost architecture. It has
+> > one shader core and two execution engines.
+> > 
+> > Quoting the datasheet:
+> > 
+> > Mali-G52 1-Core-2EE
+> > * Support 1600Mpix/s fill rate when 800MHz clock frequency
+> > * Support 38.4GLOPs when 800MHz clock frequency
+> > 
+> > Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
+> > ---
+> >  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 47 ++++++++++++++++++++++++
+> >  1 file changed, 47 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> > index bef747fb1fe2..f4f400792659 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> > +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> > @@ -121,6 +121,35 @@ opp-1800000000 {
+> >                 };
+> >         };
+> >  
 > 
-> I'm not quite sure where we stand on support for this: at some point there
-> were some ideas floating around as to a way to support it without major
-> software changes (allocating into the non-caching regions).  If that pans
-> out then I'm fine handling this, at least from the RISC-V side, but if we're
-> going to have to go through all the ISA/SBI stuff then it's probably not
-> worth it.  Also not sure if there are a bunch of starfive-specific drivers
-> that would be needed to make this boot, in which case it's probably best to
-> wait for whatever comes next.
+> > +       gpu_opp_table: opp-table2 {
+> 
+>         gpu_opp_table: gpu-opp-table {
+> 
 
-I think that the discontinued beta prototype could be useful as a native
-build host for those of you that have it and don't have an Unmatched.
+Makes sense.
 
-The arch_sync_dma RFC from Atish [1] is key to the board running
-mainline. Most of the peripherals (USB, SD card, ethernet) are already
-supported by upstream Cadence and Synopsys drivers. However, the vendor
-kernel used ifdef's to flush the L2 cache at several points in those
-drivers and subsystem cores because the peripherals are on a non-cache
-coherent interconnect.
+> > +               compatible = "operating-points-v2";
+> > +
+> > +               opp-200000000 {
+> > +                       opp-hz = /bits/ 64 <200000000>;
+> > +                       opp-microvolt = <825000>;
+> > +               };
+> 
+> Similar to cpu0_opp_table keep the same style and add an empty line
+> between nodes.
+> 
 
-Without the proposed solution from Atish that uses the non-cached DDR
-alias, then only serial console would work on mainline (assuming the 
-system is running from a ramdisk that the vendor uboot loaded).
+Makes sense.
 
-Thanks,
-Drew
+> > +               opp-300000000 {
+> > +                       opp-hz = /bits/ 64 <300000000>;
+> > +                       opp-microvolt = <825000>;
+> > +               };
+> > +               opp-400000000 {
+> > +                       opp-hz = /bits/ 64 <400000000>;
+> > +                       opp-microvolt = <825000>;
+> > +               };
+> > +               opp-600000000 {
+> > +                       opp-hz = /bits/ 64 <600000000>;
+> > +                       opp-microvolt = <825000>;
+> > +               };
+> > +               opp-700000000 {
+> > +                       opp-hz = /bits/ 64 <700000000>;
+> > +                       opp-microvolt = <900000>;
+> > +               };
+> > +               opp-800000000 {
+> > +                       opp-hz = /bits/ 64 <800000000>;
+> > +                       opp-microvolt = <1000000>;
+> > +               };
+> > +       };
+> > +
+> >         firmware {
+> >                 scmi: scmi {
+> >                         compatible = "arm,scmi-smc";
+> > @@ -332,6 +361,24 @@ power-domain@RK3568_PD_RKVENC {
+> >                 };
+> >         };
+> >  
+> > +       gpu: gpu@fde60000 {
+> > +               compatible = "rockchip,rk3568-mali", "arm,mali-bifrost";
+> > +               reg = <0x0 0xfde60000 0x0 0x4000>;
+> 
+> > +
+> 
+> remove empty lines
+> 
 
-[1] https://lore.kernel.org/linux-riscv/CAOnJCU+ip1ccc9CrREi3c+15ue4Grcq+ENbQ+z_gh3CH249aAg@mail.gmail.com/T/#md422e9de172a179f8625c5bb595cf40e5942db67
+Makes sense.
+
+> > +               interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>,
+> > +                            <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>,
+> > +                            <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
+> > +               interrupt-names = "job", "mmu", "gpu";
+> 
+> > +
+> 
+> dito
+> 
+> > +               clocks = <&scmi_clk 1>, <&cru CLK_GPU>;
+> > +               clock-names = "core", "bus";
+> 
+> Not sure if it's possible, but could you keep them all a little bit in
+> the same order/style as arm,mali-400?
+> 
+> From arm,mali-utgard.yaml:
+> 
+>   clock-names:
+>     items:
+>       - const: bus
+>       - const: core
+> 
+
+Don't think we can do that in this case, as the first clock
+is already expected as the "core" one.
+
+These clocks might need some cleaner specification in the
+driver or the dt-binding (or both), but I'd like to defer
+that to the driver maintainers.
+
+
+-- 
+Kindly,
+Ezequiel
+
