@@ -2,115 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 834303E1A45
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 19:20:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 146153E1A9C
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 19:43:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239430AbhHERUi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 13:20:38 -0400
-Received: from mail-0201.mail-europe.com ([51.77.79.158]:53776 "EHLO
-        mail-0201.mail-europe.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230107AbhHERUi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 13:20:38 -0400
-Date:   Thu, 05 Aug 2021 17:19:44 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail; t=1628183990;
-        bh=Q0e3u15i1PAFg63iMP+b35YREVf5I1jWy7jkFOGimb8=;
-        h=Date:To:From:Cc:Reply-To:Subject:From;
-        b=ru/jpoHZaF0+zqT+SS4ttIG34OcfeGCHPEWs0dKerxQXDLOfUuaI2hp0WozBGeJKv
-         dNzBf9gsqozxYPNyykBCvGQ3xPNikduz2Tcj2NY7X/6eiat+/pXlVpdkUSHnL9IFmd
-         wyrbLFJ0ejNonKCSS5y0XE/A6i7/iKV3KstOVdMY=
-To:     bjorn.andersson@linaro.org, sboyd@kernel.org
-From:   Sireesh Kodali <sireeshkodali@protonmail.com>
-Cc:     agross@kernel.org, mturquette@baylibre.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Vladimir Lypak <junak.pub@gmail.com>,
-        Adam Skladowski <a_skl39@protonmail.com>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Sireesh Kodali <sireeshkodali@protonmail.com>
-Reply-To: Sireesh Kodali <sireeshkodali@protonmail.com>
-Subject: [PATCH 2/2] clk: qcom: rpmcc: Add support for MSM8953 RPM clocks.
-Message-ID: <QZ0fkozlubDdc7CvqjZPhAviFmjJ28ht7Y4PT3rYM@cp4-web-038.plabs.ch>
+        id S240038AbhHERnM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 13:43:12 -0400
+Received: from mail-dm3nam07on2086.outbound.protection.outlook.com ([40.107.95.86]:12480
+        "EHLO NAM02-DM3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S232410AbhHERnM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Aug 2021 13:43:12 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Bk2x/4ioWt/2JfMmdHwdAh9oNqD6VbpH9hWiSfSKvNEcHeMm2zqPJTHfST4TgCN9VjAacZW4z8NGXOzOAoOpAW+GZ/A/1p6RbjxI9TTB9MlkJI+XzEmts6jXnD+c4ygmJOjuQewkIdmo+YbLI/d6aT9u/CY49tJEA38Q8eA6mGdJdgSioPZ9+VSncIoagKGO+Txp2Yb5AGapYjIZbGr+BdYUm9GzEG/nBbUX+wTyEMOGxPBMVglwo4ZvthhsG3YuUsxauNf1BNFZBw4JBfPKryPXC5sSdqRs8ESlgw0BGqoPtofSejyJcjR+JfqHX8uHnviCMmDg9N1fqQpFaTdmiw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QQOvpshLD6RPuD9ApWEkAWQbRGq1hT3UsN/U+jTyRGg=;
+ b=COhlygLonUiJ756IbNBOSQHlyy18ttlcoYnhm/xkT+Cogq7W3D4XeGkE6w+HfqfxejQEAlyVFrwh02/6qeV7mAbIOGOOVTC5GPIeIp6S8MmTE1MGB+fAjtShiwAMyOzHkzAvnwCAWVE5fxnAXhu18MJOSQkYqGpfER/KCFtNN7uMIzjke97qcGkSg5d2uc69fI20GWWWxotza9LcYfY+wQUcbJ4gOJWViSQinV4a6wC4mNzgsMEyJ7zpo+K5HE3RJfHnxXONZBfVvGVVgfjZZjy7J/UB3lzGD503z2mWeVHO8LEXmDR4FVDR1o5sRpzrgupf1hdYWSJbcqN/b8/kiw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=arndb.de smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QQOvpshLD6RPuD9ApWEkAWQbRGq1hT3UsN/U+jTyRGg=;
+ b=PXRDuhVUpQE219piMI8AGzDj7dEdC7W73cAcJbknzsn15qbvgexJvikt5LAgdd5ZbebHbTUcJTga/z6T2vFMmgjW+0bGtReP5DIL9PvxbqMt3UTJYzixyx/PpegaVuMLPmhUagSXLuNKnqW2MVHKqWALew5wY2QKBHpJiZs2KUI=
+Received: from SN4PR0501CA0113.namprd05.prod.outlook.com
+ (2603:10b6:803:42::30) by PH0PR02MB7589.namprd02.prod.outlook.com
+ (2603:10b6:510:5a::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.15; Thu, 5 Aug
+ 2021 17:42:55 +0000
+Received: from SN1NAM02FT0046.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:803:42:cafe::19) by SN4PR0501CA0113.outlook.office365.com
+ (2603:10b6:803:42::30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.5 via Frontend
+ Transport; Thu, 5 Aug 2021 17:42:55 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; arndb.de; dkim=none (message not signed)
+ header.d=none;arndb.de; dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
+Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
+ SN1NAM02FT0046.mail.protection.outlook.com (10.97.5.4) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4394.16 via Frontend Transport; Thu, 5 Aug 2021 17:42:55 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Thu, 5 Aug 2021 10:42:46 -0700
+Received: from smtp.xilinx.com (172.19.127.95) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2176.2 via Frontend Transport; Thu, 5 Aug 2021 10:42:46 -0700
+Envelope-to: git@xilinx.com,
+ arnd@arndb.de,
+ zou_wei@huawei.com,
+ gregkh@linuxfoundation.org,
+ linus.walleij@linaro.org,
+ iwamatsu@nigauri.org,
+ bgolaszewski@baylibre.com,
+ robh+dt@kernel.org,
+ linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Received: from [10.140.6.35] (port=51088 helo=xhdsaipava40.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <piyush.mehta@xilinx.com>)
+        id 1mBhOH-0005Bw-0L; Thu, 05 Aug 2021 10:42:45 -0700
+From:   Piyush Mehta <piyush.mehta@xilinx.com>
+To:     <arnd@arndb.de>, <zou_wei@huawei.com>,
+        <gregkh@linuxfoundation.org>, <linus.walleij@linaro.org>,
+        <michal.simek@xilinx.com>, <wendy.liang@xilinx.com>,
+        <iwamatsu@nigauri.org>, <bgolaszewski@baylibre.com>,
+        <robh+dt@kernel.org>, <rajan.vaja@xilinx.com>
+CC:     <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <git@xilinx.com>, <sgoud@xilinx.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Piyush Mehta <piyush.mehta@xilinx.com>
+Subject: [PATCH V2 0/3] gpio: modepin: Add driver support for modepin GPIO controller
+Date:   Thu, 5 Aug 2021 23:12:16 +0530
+Message-ID: <20210805174219.3000667-1-piyush.mehta@xilinx.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: be715b52-313e-4461-5a71-08d9583874dc
+X-MS-TrafficTypeDiagnostic: PH0PR02MB7589:
+X-Microsoft-Antispam-PRVS: <PH0PR02MB7589B97E53E20EBD8366A744D4F29@PH0PR02MB7589.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:626;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: n7z5RppScppR8JamlBEvn2l6wSBlDlGFpzGVrPEPjVEXeru2asLMe67dewTTxNLDTwhF2RsYZzY8NLrh0UjyGNwygA19/zrBjLnS2gFg9vWjsLlE5a6OcYIhgexzZuk1/gej0zngh9ZGBFjrzup+1FdiecZM7f9qzlrIjBgpZMZ0pyqI3yi6IQN4PhGW1K9c4ZXRzqQqvk4W4qiE7rI3FXNPRJRISMktYH0i7IO50US5pJb8GSolBrmNg7eGLqyJXe3Qlk2IXwkXM2s9AmNXEjO+/Ruq6L+XbQR0wtc3QPY9HaHnapSp12Rchj0e6MnO2I6LZR9STiMvkdjugmYmKXBNctN5BQeoT1D+PvnYz4BkyJwPFroWYrVpApMxhw0ZGoJtjEwh47cu2+Dv/7GjIjXkszm6yy21gI1IGgN4I7owTKmMkx0/2avzRmD6/TruAhi5KQIquVCGDBf5DEhHAFGex5XhWp3gughdEsxEMPrMV/JOm5kapmidmUxHtyY45f9dPGai9g2TdsWbob2PCHqrpfdvDZRucw71Q1lo6nvALxt6AyqpD1YaSIcWFMc8xXT5srpTS7haqxhif/3ycEaQQ7BfmkN0o7NOWPl7dOEf0frskJFrJrYAllVXie6AGNC5pPVuQ/+NIL7Kh8k418ddkE0eujtxhY9bEoG+bGeBiatRWF5FUT5ne8D5p0fGMfTLKDEe+eGcSXY7H3l6cerGLYWlFW46Abq+bPIhPFZREtmCvloNjx59NKM4z1lsUm4FTsNgtJoCqMxGHhRH9rEan7msHjh+gndaNdonKlqE5I+g+uO08cnVyxYKyqu4luoWIy+yeH32x6F1jQoo3Q0tknysg/UlK1/Ou52KLhWDwuaHJCa9VEa0qXXLY5Na
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(46966006)(36840700001)(921005)(316002)(7416002)(44832011)(82310400003)(47076005)(6666004)(8676002)(186003)(2906002)(110136005)(107886003)(426003)(36860700001)(70586007)(83380400001)(2616005)(356005)(70206006)(1076003)(508600001)(9786002)(54906003)(4326008)(966005)(336012)(7636003)(5660300002)(36906005)(8936002)(26005)(7696005)(6636002)(36756003)(102446001)(83996005)(2101003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2021 17:42:55.0847
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: be715b52-313e-4461-5a71-08d9583874dc
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT0046.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR02MB7589
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vladimir Lypak <junak.pub@gmail.com>
+This patch adds support for the zynqmp modepin GPIO controller and
+documented for the same. GPIO modepin driver set and get the value and
+status of the PS_MODE pin, based on device-tree pin configuration.
+These four-bits boot-mode pins are dedicated configurable as input/output.
+After the stabilization of the system,these mode pins are sampled.
 
-Add definitions for RPM clocks used on MSM8953 platform.
+To access GPIO pins, added Xilinx ZynqMP firmware MDIO API support to
+set and get PS_MODE pins value and status. These APIs are interface
+APIs, between the mode pin controller driver and low-level API.
 
-Signed-off-by: Vladimir Lypak <junak.pub@gmail.com>
-Signed-off-by: Adam Skladowski <a_skl39@protonmail.com>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-Signed-off-by: Sireesh Kodali <sireeshkodali@protonmail.com>
 ---
- drivers/clk/qcom/clk-smd-rpm.c | 37 ++++++++++++++++++++++++++++++++++
- 1 file changed, 37 insertions(+)
+Changes in v2:
+- Added Xilinx ZynqMP firmware MMIO API support to set and get pin
+  value and status.
+- DT Documentation- Addressed review comments: Update commit message
+- Modepin driver- Addressed review comments:
+  - Update APIs
+  - Removed unwanted variables
+  - Handle return path for probe function
 
-diff --git a/drivers/clk/qcom/clk-smd-rpm.c b/drivers/clk/qcom/clk-smd-rpm.=
-c
-index 800b2fef1887..e99131016911 100644
---- a/drivers/clk/qcom/clk-smd-rpm.c
-+++ b/drivers/clk/qcom/clk-smd-rpm.c
-@@ -913,10 +913,47 @@ static const struct rpm_smd_clk_desc rpm_clk_sdm660 =
-=3D {
- =09.num_clks =3D ARRAY_SIZE(sdm660_clks),
- };
-=20
-+static struct clk_smd_rpm *msm8953_clks[] =3D {
-+=09[RPM_SMD_XO_CLK_SRC]=09=09=3D &sdm660_bi_tcxo,
-+=09[RPM_SMD_XO_A_CLK_SRC]=09=09=3D &sdm660_bi_tcxo_a,
-+=09[RPM_SMD_PCNOC_CLK]=09=09=3D &msm8916_pcnoc_clk,
-+=09[RPM_SMD_PCNOC_A_CLK]=09=09=3D &msm8916_pcnoc_a_clk,
-+=09[RPM_SMD_SNOC_CLK]=09=09=3D &msm8916_snoc_clk,
-+=09[RPM_SMD_SNOC_A_CLK]=09=09=3D &msm8916_snoc_a_clk,
-+=09[RPM_SMD_BIMC_CLK]=09=09=3D &msm8916_bimc_clk,
-+=09[RPM_SMD_BIMC_A_CLK]=09=09=3D &msm8916_bimc_a_clk,
-+=09[RPM_SMD_IPA_CLK]=09=09=3D &msm8976_ipa_clk,
-+=09[RPM_SMD_IPA_A_CLK]=09=09=3D &msm8976_ipa_a_clk,
-+=09[RPM_SMD_SYSMMNOC_CLK]=09=09=3D &msm8936_sysmmnoc_clk,
-+=09[RPM_SMD_SYSMMNOC_A_CLK]=09=3D &msm8936_sysmmnoc_a_clk,
-+=09[RPM_SMD_QDSS_CLK]=09=09=3D &msm8916_qdss_clk,
-+=09[RPM_SMD_QDSS_A_CLK]=09=09=3D &msm8916_qdss_a_clk,
-+=09[RPM_SMD_BB_CLK1]=09=09=3D &msm8916_bb_clk1,
-+=09[RPM_SMD_BB_CLK1_A]=09=09=3D &msm8916_bb_clk1_a,
-+=09[RPM_SMD_BB_CLK2]=09=09=3D &msm8916_bb_clk2,
-+=09[RPM_SMD_BB_CLK2_A]=09=09=3D &msm8916_bb_clk2_a,
-+=09[RPM_SMD_RF_CLK2]=09=09=3D &msm8916_rf_clk2,
-+=09[RPM_SMD_RF_CLK2_A]=09=09=3D &msm8916_rf_clk2_a,
-+=09[RPM_SMD_RF_CLK3]=09=09=3D &msm8992_ln_bb_clk,
-+=09[RPM_SMD_RF_CLK3_A]=09=09=3D &msm8992_ln_bb_a_clk,
-+=09[RPM_SMD_DIV_CLK2]=09=09=3D &msm8974_div_clk2,
-+=09[RPM_SMD_DIV_A_CLK2]=09=09=3D &msm8974_div_a_clk2,
-+=09[RPM_SMD_BB_CLK1_PIN]=09=09=3D &msm8916_bb_clk1_pin,
-+=09[RPM_SMD_BB_CLK1_A_PIN]=09=09=3D &msm8916_bb_clk1_a_pin,
-+=09[RPM_SMD_BB_CLK2_PIN]=09=09=3D &msm8916_bb_clk2_pin,
-+=09[RPM_SMD_BB_CLK2_A_PIN]=09=09=3D &msm8916_bb_clk2_a_pin,
-+};
-+
-+static const struct rpm_smd_clk_desc rpm_clk_msm8953 =3D {
-+=09.clks =3D msm8953_clks,
-+=09.num_clks =3D ARRAY_SIZE(msm8953_clks),
-+};
-+
- static const struct of_device_id rpm_smd_clk_match_table[] =3D {
- =09{ .compatible =3D "qcom,rpmcc-msm8226", .data =3D &rpm_clk_msm8974 },
- =09{ .compatible =3D "qcom,rpmcc-msm8916", .data =3D &rpm_clk_msm8916 },
- =09{ .compatible =3D "qcom,rpmcc-msm8936", .data =3D &rpm_clk_msm8936 },
-+=09{ .compatible =3D "qcom,rpmcc-msm8953", .data =3D &rpm_clk_msm8953 },
- =09{ .compatible =3D "qcom,rpmcc-msm8974", .data =3D &rpm_clk_msm8974 },
- =09{ .compatible =3D "qcom,rpmcc-msm8976", .data =3D &rpm_clk_msm8976 },
- =09{ .compatible =3D "qcom,rpmcc-msm8992", .data =3D &rpm_clk_msm8992 },
---=20
-2.32.0
+Review Comments:
+https://lore.kernel.org/linux-arm-kernel/20210624205055.GA1961487@robh.at.kernel.org/T/#u
+---
 
+Piyush Mehta (3):
+  firmware: zynqmp: Add MMIO read and write support for PS_MODE pin
+  dt-bindings: gpio: zynqmp: Add binding documentation for modepin
+  gpio: modepin: Add driver support for modepin GPIO controller
+
+ .../bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml    |  41 ++++++
+ drivers/firmware/xilinx/zynqmp.c                   |  46 ++++++
+ drivers/gpio/Kconfig                               |  12 ++
+ drivers/gpio/Makefile                              |   1 +
+ drivers/gpio/gpio-zynqmp-modepin.c                 | 158 +++++++++++++++++++++
+ include/linux/firmware/xlnx-zynqmp.h               |  14 ++
+ 6 files changed, 272 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml
+ create mode 100644 drivers/gpio/gpio-zynqmp-modepin.c
+
+-- 
+2.7.4
 
