@@ -2,67 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BBED3E153C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 15:02:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DC9D3E1545
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 15:06:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238277AbhHENCt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 09:02:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50452 "EHLO
+        id S239889AbhHENGV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 09:06:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232931AbhHENCt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 09:02:49 -0400
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ECD1C061765;
-        Thu,  5 Aug 2021 06:02:33 -0700 (PDT)
-Received: by mail-yb1-xb2a.google.com with SMTP id s48so8813302ybi.7;
-        Thu, 05 Aug 2021 06:02:33 -0700 (PDT)
+        with ESMTP id S232931AbhHENGU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 09:06:20 -0400
+Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12AFFC061765;
+        Thu,  5 Aug 2021 06:06:05 -0700 (PDT)
+Received: by mail-yb1-xb2b.google.com with SMTP id z18so8827329ybg.8;
+        Thu, 05 Aug 2021 06:06:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=k/SW0jT6wSJBaYFm6P4xqY8rSckS6wlmdeNG9tc9hKU=;
-        b=VfGm00bkQAnHpDptX5frFdxF99RwF0aAXCTj4vVJJOk+xPjSa4F8qs3LHx+C6RC5AM
-         /0KBAQoXb51c/iHpbzP69sDWMfI9gV7/8s3bUgmKlwplbJuvcGTD7xfVmRQ1D+JLbZAz
-         8zAAgsF/tfD6M29p/EMKbsk/cT7cnvU33F6YfuWYeaXvE7rhpMJEKaz2oBqnT2RjrvCm
-         ibb8FGKgmKSbCGJLQUZDwndmpWbxDRGDpWkLXMsckNBEh4cj+Aw780G4Oj3Fvm2qtpaE
-         flziK2gQ/Zt2MA04YbwVKXU7dBsk9wEnOnBIf0bnSM2kAes612NaXvO8xehztXYtx11/
-         hpsw==
+        bh=V+3eK9X/+QJLVWMPbMyMuZ4uj6Bn8K4ZuygACC4gU2w=;
+        b=SsSWIi5dsnn/PtYp5CwpZtsi//s0IiXytDajoLF2kL5oNgf95ZPBGHZwHJ0RbvKDzP
+         4HRQgi0iOYPBWFddL8AnLfFpRLpFzrnZ+AnwVILDpY9fPu8Y6h2MsAKK0tEO2vW8azZW
+         pG8i4WnpnUcrzrrE3d9t0l9suWUaypifa8KXJqL/nVTzvI59J0GbS7Yqc0bZvG0B9uis
+         3vQ3DNKcSFDU3a9P2EullD1voPK5mBZgv2Vr6k0Rl1IzzlG5gTFJvCLO0Xxqo5iD9ZvB
+         1hH6uWK1D4K0RD5NOub8OfojITjCU/+J6QB6PYczQmC4oebWmuluyU8q61gEqMpaf7OO
+         Efsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=k/SW0jT6wSJBaYFm6P4xqY8rSckS6wlmdeNG9tc9hKU=;
-        b=aEtS0SGYX2amIEnS+CLaHr2Fb7+gi1+/rcQ+aLIERyPjzlxt9YqQTJLXknpDej/WqV
-         NjqafJVIcVGc5TJ5isPFYUHIrYbKwrX+ogYPdwB3fvfLh5wvYGGTgDFaFhWVOElBCnbg
-         IEOHWgm9QI73oH/SU/eGCpbr6uTUQ9VkmSX6EUCDJRENiik6h8KJaPSvX0+ANzIWzxqO
-         76SZhIjfr5S02Mrll6yeogFI2TpdXxxHE2eEaNUp2catfnDlXis3idISek5KjuMcbJ7Q
-         znRyaaxCtaXjsCLMLOtKK29EyjqmZART5uqYf8Qo0VoKzjuUTrZrXlYEtrshuob7kIHM
-         hMHQ==
-X-Gm-Message-State: AOAM531Ad+ToFkb/6dnj8If1RvS+J3zwNKKFYec+6zKGYpHOQj0BUDti
-        64RMp+e414rRlMxZ3tL8qVl4rMGitwCYuXZUGtU=
-X-Google-Smtp-Source: ABdhPJy4wibB5neuDDeiv4z8apqDeZ4SkMstAanwZFLBBi6Aj5M6WO5fWhdWLudssjvtaB4gLLiv8ij9Bx8JVykrNcY=
-X-Received: by 2002:a5b:48f:: with SMTP id n15mr5953372ybp.457.1628168552519;
- Thu, 05 Aug 2021 06:02:32 -0700 (PDT)
+        bh=V+3eK9X/+QJLVWMPbMyMuZ4uj6Bn8K4ZuygACC4gU2w=;
+        b=djNH07KE2EUH/4UwegsV/skWuOhECCzmvSjiguJEHyktwd7k1YG9EwKmYcprFWgKN8
+         j5ZpWil4FsmGWrxv6otYsQWnVimuV03OFnzhlSMxSr1kTsg3ACy+V/htlTN3zLC71wSb
+         WZz0qXoLDwd12jRuXCarPad8ADAfH7GkfIPWNaW2JcPDVYpSFKnnRwzYX3wz8Nl7orI9
+         R6AUQh5k4d/nhvlTKN9WOqRzdf4TkHFuJVo9UdDcOGYmLw7rfBTfq0k/29DWuyT4s4GV
+         LaOLKY+eGttjQ1t3zDMHvuzlHzIsELfX7s3GDAuIimlXLpY31pHFL/3P+dYq5UPHyQfI
+         rhSg==
+X-Gm-Message-State: AOAM530Vy0Qb2sK2AYuMI/zmrKXf9Brb1voFyvP0mwuVKqt87Z4T8WG7
+        yyGIu/+7vhv2M88JcRp0vLqdy+yCrGge2nv32G0=
+X-Google-Smtp-Source: ABdhPJwRHXlRjNUCM/b/c/9/JyGupyFhEnzUeywDKVlarAuTiCReDwT++JtsdRC8RlvuLkz3QddBvurArfviIk8kKnM=
+X-Received: by 2002:a5b:303:: with SMTP id j3mr5543580ybp.433.1628168764334;
+ Thu, 05 Aug 2021 06:06:04 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210527082905.1447591-1-jay.xu@rock-chips.com> <20210527082905.1447591-3-jay.xu@rock-chips.com>
-In-Reply-To: <20210527082905.1447591-3-jay.xu@rock-chips.com>
+References: <20210805120107.27007-1-michael.riesch@wolfvision.net> <20210805120107.27007-3-michael.riesch@wolfvision.net>
+In-Reply-To: <20210805120107.27007-3-michael.riesch@wolfvision.net>
 From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Thu, 5 Aug 2021 09:02:21 -0400
-Message-ID: <CAMdYzYpxvEbc-gAk6xEkec-bXaqe7wNM0awRVAPV64v0OVcGSg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] soc: rockchip: io-domain: add rk3568 support
-To:     Jianqun Xu <jay.xu@rock-chips.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Lee Jones <lee.jones@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Johan Jonker <jbx6244@gmail.com>,
+Date:   Thu, 5 Aug 2021 09:05:53 -0400
+Message-ID: <CAMdYzYrpXs_vY6OxqL54xFsKu0TJu_G5myTTfOA8nAygkUJN5g@mail.gmail.com>
+Subject: Re: [PATCH v3 2/7] soc: rockchip: io-domain: add rk3568 support
+To:     Michael Riesch <michael.riesch@wolfvision.net>
+Cc:     devicetree@vger.kernel.org,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
         "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Liang Chen <cl@rock-chips.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Simon Xue <xxm@rock-chips.com>,
+        Jianqun Xu <jay.xu@rock-chips.com>,
+        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Zhang Changzhong <zhangchangzhong@huawei.com>,
+        Tobias Schramm <t.schramm@manjaro.org>,
+        Johan Jonker <jbx6244@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 27, 2021 at 4:31 AM Jianqun Xu <jay.xu@rock-chips.com> wrote:
+On Thu, Aug 5, 2021 at 8:01 AM Michael Riesch
+<michael.riesch@wolfvision.net> wrote:
+>
+> From: Jianqun Xu <jay.xu@rock-chips.com>
 >
 > The io-domain registers on RK3568 SoCs have three separated bits to
 > enable/disable the 1.8v/2.5v/3.3v power.
@@ -73,24 +86,16 @@ On Thu, May 27, 2021 at 4:31 AM Jianqun Xu <jay.xu@rock-chips.com> wrote:
 > Since the 2.5v is not used on RK3568, so the driver only set
 > 1.8v [enable] + 3.3v [disable] for 1.8v mode
 > 1.8v [disable] + 3.3v [enable] for 3.3v mode
-
-Good Morning,
-
-I see this still hasn't landed, but for what it's worth I've been
-running it for months and it seems to work well.
-(Also it's necessary for sdio support)
-
-Tested on Quartz64 Model A, Quartz64 Model B.
-So - Tested-by: Peter Geis <pgwipeout@gmail.com>
-
 >
 > There is not register order requirement which has been cleared by our IC
 > team.
+
+Tested on Quartz64 Model A, Quartz64 Model B.
+Tested-by: Peter Geis <pgwipeout@gmail.com>
+
 >
 > Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
 > ---
-> v2:
-> - none
 >  drivers/soc/rockchip/io-domain.c | 88 +++++++++++++++++++++++++++++---
 >  1 file changed, 80 insertions(+), 8 deletions(-)
 >
@@ -244,12 +249,5 @@ So - Tested-by: Peter Geis <pgwipeout@gmail.com>
 >                         supply->reg = NULL;
 >                         goto unreg_notify;
 > --
-> 2.25.1
+> 2.17.1
 >
->
->
->
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
