@@ -2,168 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84EA13E0FB4
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 09:55:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD9663E0FC5
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 09:58:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237843AbhHEHz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 03:55:29 -0400
-Received: from mail-co1nam11on2053.outbound.protection.outlook.com ([40.107.220.53]:61766
-        "EHLO NAM11-CO1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S236977AbhHEHz2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Aug 2021 03:55:28 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nwuG9PHXpOJ0yoZxLgvpgX+Ry/mYIjmiUnWhDioRi7KZTH73P5yJx2577dtuEkammzmUJaxuFQznBxv+eYg8U5QQ0iDkvXdyM8fxpxSvxtD+IBpvrrfLSmV8BV2S0bWh46VCnlfQBPlcMs/fS9doxDD4997CGhSj4CY6YcorUPh/BDPdQgAdDBoiugqj5eRowpO6w2XJC3CBJXEI+NoItMPgcFS9FnD9Vpapa2GZ8bX0QEnyv7c9K7MSstSAwc+mBRKtu3r8pAwpVYzCnu9i9XN00e1RCPgccMbibK0F9oKZ4ze/dP6RCxHeXYYS/Z1UiS9av2jRP7XVLPAKrxY4kw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=B+AZ5GWE6zK24ArJj5bRzzBWFig4nfuMiNvp7IeHj8I=;
- b=KHCqQ0xfhYuFi+ECWYPW+vyybvGlmhgMJRIr013B+KbslRJPOWiaCQe7hbqE5pCTzMV7omyYCFhZUAYVHmuASFALzrfomA7o62HATzDfCwO/ZAqWn1rImuY/jc0OKh4bN8q1mKgai9zO8bkc906q76s0vC1rVjUgA97He7N9bNKMc+uqLMKmZiCcXfciw/NKw1uBiFRZDY0bUh1w1MbKeO/yosmioH3uXBZNKoNMW+/P81tOJnYrw1KDxmaNUtY/tS5brtRdiO99/+Mm8FSZWJX1aEU5wZnBbp9gWZNc/t1XaMkbacRXwS692ATpiWxgKD+u15DEPi+a77aIHExy4Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=gmail.com smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=B+AZ5GWE6zK24ArJj5bRzzBWFig4nfuMiNvp7IeHj8I=;
- b=gq8m6Ssc93cJhWukEArT2u9Cyayw4ay/yShxiAgt/0hN9l3D0OzDoJHiruxIBwFbsHAlKVCMfki8CARQSwZNWHFg0vLpyVeXFzmg9+M6he3++h7UJsRUPCgckX5WxjcbRVoERPsO/d7Le2yjWXx7sbJ4wAvgyVJvETJ8IObjZzI=
-Received: from BN6PR14CA0017.namprd14.prod.outlook.com (2603:10b6:404:79::27)
- by DM6PR02MB7034.namprd02.prod.outlook.com (2603:10b6:5:257::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.22; Thu, 5 Aug
- 2021 07:55:13 +0000
-Received: from BN1NAM02FT036.eop-nam02.prod.protection.outlook.com
- (2603:10b6:404:79:cafe::65) by BN6PR14CA0017.outlook.office365.com
- (2603:10b6:404:79::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.15 via Frontend
- Transport; Thu, 5 Aug 2021 07:55:13 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
-Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
- BN1NAM02FT036.mail.protection.outlook.com (10.13.2.147) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4394.16 via Frontend Transport; Thu, 5 Aug 2021 07:55:13 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Thu, 5 Aug 2021 00:55:07 -0700
-Received: from smtp.xilinx.com (172.19.127.96) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Thu, 5 Aug 2021 00:55:07 -0700
-Envelope-to: git@xilinx.com,
- saikrishna12468@gmail.com,
- linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- gregkh@linuxfoundation.org,
- linus.walleij@linaro.org,
- robh@kernel.org
-Received: from [172.30.17.109] (port=57428)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1mBYBA-0003Ic-Jk; Thu, 05 Aug 2021 00:52:36 -0700
-Subject: Re: [PATCH 4/4] arm: dts: zynq: Replace 'io-standard' with
- 'power-source' property
-To:     Rob Herring <robh@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>
-CC:     Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        id S239110AbhHEH7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 03:59:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33858 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236746AbhHEH7H (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Aug 2021 03:59:07 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5C0FD6104F;
+        Thu,  5 Aug 2021 07:58:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1628150334;
+        bh=VLknsodvrM25ND+q2Zj+641W3Gv+7CB4psNdhS3kxz0=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=VqhbEXN5PI6DwUvKqtkn10XVO4YuIhff+eXWTy/yKXc2ryKsB2ee4ld53RF3jkXiV
+         wfNL+0fiIj85UnbD6dOm3jv8FemjEV5wmYRhL2oRRG7FYDMmmsb9lHHQEOYe7dVyFk
+         l67GzvhfmmJsTRbgdEtvP0+ja5y7TqMG6YNPlGKGjx0OwwH8gKRsQOMC32nk5yu5uc
+         yf98mveCx4kZ/VL53vaQWam1C0obOVcxw2yW3Zs2MTTFuOUufowYDX9IwEfTFLzW5v
+         aSe0rAn3UuuXdWONRxFuDb3ZcfFN7JG4XYHuG8peANPnUSelyFhuIjvLxyHzlMtlvw
+         guyAgaus/K/wQ==
+Date:   Thu, 5 Aug 2021 09:58:48 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Rob Herring <robh@kernel.org>, Linuxarm <linuxarm@huawei.com>,
+        mauro.chehab@huawei.com
+Cc:     Binghui Wang <wangbinghui@hisilicon.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Xiaowei Song <songxiaowei@hisilicon.com>,
+        devicetree@vger.kernel.org,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        git <git@xilinx.com>, <saikrishna12468@gmail.com>
-References: <1626868353-96475-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
- <1626868353-96475-5-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
- <YQMIhBPwcNw1YqMq@robh.at.kernel.org>
- <bc5185eb-8051-89ca-4a5f-c4e5fc90a7f2@xilinx.com>
- <CAL_Jsq+281knebcN--jQgYWtDQO4OV6ZO5CvnYpaYqrAaiGmPQ@mail.gmail.com>
-From:   Michal Simek <michal.simek@xilinx.com>
-Message-ID: <fd759de0-d74f-3aa1-ad46-e3ee7f7f7e3f@xilinx.com>
-Date:   Thu, 5 Aug 2021 09:52:33 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+        PCI <linux-pci@vger.kernel.org>, linux-phy@lists.infradead.org
+Subject: Re: [PATCH v3 0/4] DT schema changes for HiKey970 PCIe hardware to
+ work
+Message-ID: <20210805095848.464cf85c@coco.lan>
+In-Reply-To: <20210805094612.2bc2c78f@coco.lan>
+References: <cover.1627965261.git.mchehab+huawei@kernel.org>
+        <CAL_JsqLjw=+szXWJjGe86tMc51NA-5j=jVSXUAWuKeZRuJNJUg@mail.gmail.com>
+        <20210804085045.3dddbb9c@coco.lan>
+        <YQrARd7wgYS1nywt@robh.at.kernel.org>
+        <20210805094612.2bc2c78f@coco.lan>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <CAL_Jsq+281knebcN--jQgYWtDQO4OV6ZO5CvnYpaYqrAaiGmPQ@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 2a6a3665-0c17-4d43-e2ec-08d957e65b70
-X-MS-TrafficTypeDiagnostic: DM6PR02MB7034:
-X-Microsoft-Antispam-PRVS: <DM6PR02MB70343A49EEA1545AD9E3C3DFC6F29@DM6PR02MB7034.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: WuRssuWlvludF4Rqjhf6K8koj8R7IYaPnG/vwReAg3oDgWUdlTstbsja4Jr98hPujUfjrNpUjxtC3gmeTse98pdpp/zvh9Dz++wqBHYN4w+Ft5rsQljHVazohgF2GuisIGbuDrDar4izxRIbHiMG7zrjLy3QeB/5Niy2+9cbAOt5lgDViAI7anLLPsCTpNp4ID2GoD9XfHvh3yw/a0uY11wR2XY8B23zoKzX1z4CWnhjsXObz//RuJCL4yqWru/8+/A3mOURu5Hiu7SkoPvHKCpT4///AIq5CQdKdGAJygFfKVt2Ysjz/dgA5lnmrI3Vov9iwg0t3EyGDnCuZxYfJusLr6DrzPylsTdlE5H37jJOgWZJMz2Zhx3nM9GTXzkbDoXcBDW2E07B4YCgmn2nxaTDYRMUl03WNJ+AB4k1Oia/XdX/gv6mJSTO9mdvZFOIdAp2ao/EI4kOatPKNDLgOIEazaVnMw9s87+440rTun8k7qIPGmXrNDwGk2YWx4MlsMbZwRRq4HuDJbECjQfQjYRNHqfhWfwB97StB8WUNzKskAmVATrSjL6Xe4HUHlJ4Vh1YPK6WK9w+nu7w8P4c7gn2aL9orxbz9cuGS7AMT8t3ILx9YQ8oFPgT2OaiLKCuMxaiIlyCjaPK32wvCGw6L2h2dtgJll4CtX39FVfJ74pnY/dTzsy56eZnWyJuTH76o85hJAy6OlhrOmB9ZoZGfwKidKfh0Eqdsc18zdLyt31UM7tBamC2k71ZjqPdYX+1reSOszK1TxU0HuS6PKbppQ==
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(46966006)(36840700001)(70206006)(31696002)(4326008)(356005)(2906002)(36756003)(7636003)(26005)(70586007)(53546011)(6666004)(2616005)(9786002)(5660300002)(426003)(44832011)(186003)(316002)(110136005)(8936002)(82310400003)(36860700001)(336012)(8676002)(31686004)(47076005)(36906005)(54906003)(83380400001)(508600001)(50156003)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2021 07:55:13.6525
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2a6a3665-0c17-4d43-e2ec-08d957e65b70
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN1NAM02FT036.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR02MB7034
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Em Thu, 5 Aug 2021 09:46:12 +0200
+Mauro Carvalho Chehab <mchehab+huawei@kernel.org> escreveu:
 
-
-On 8/2/21 7:29 PM, Rob Herring wrote:
-> On Thu, Jul 29, 2021 at 10:59 PM Michal Simek <michal.simek@xilinx.com> wrote:
->>
->>
->>
->> On 7/29/21 9:59 PM, Rob Herring wrote:
->>> On Wed, Jul 21, 2021 at 05:22:33PM +0530, Sai Krishna Potthuri wrote:
->>>> Replace 'io-standard' property with 'power-source' property in all zynq dts
->>>> files to be in sync with Zynq pinctrl driver.
->>>>
->>>> Signed-off-by: Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>
->>>> ---
->>>>  arch/arm/boot/dts/zynq-ebaz4205.dts |  8 ++++----
->>>>  arch/arm/boot/dts/zynq-microzed.dts |  2 +-
->>>>  arch/arm/boot/dts/zynq-zc702.dts    | 20 ++++++++++----------
->>>>  arch/arm/boot/dts/zynq-zc706.dts    | 18 +++++++++---------
->>>>  4 files changed, 24 insertions(+), 24 deletions(-)
->>>>
->>>> diff --git a/arch/arm/boot/dts/zynq-ebaz4205.dts b/arch/arm/boot/dts/zynq-ebaz4205.dts
->>>> index b0b836aedd76..be7eae611fb7 100644
->>>> --- a/arch/arm/boot/dts/zynq-ebaz4205.dts
->>>> +++ b/arch/arm/boot/dts/zynq-ebaz4205.dts
->>>> @@ -57,7 +57,7 @@
->>>>
->>>>              conf {
->>>>                      groups = "gpio0_20_grp", "gpio0_32_grp";
->>>> -                    io-standard = <3>;
->>>> +                    power-source = <3>;
->>>
->>> This will break using a new DT with a kernel without patch 3.
->>>
->>
->> What do you suggest? Not to update any old DT?
+> Em Wed, 4 Aug 2021 10:28:53 -0600
+> Rob Herring <robh@kernel.org> escreveu:
 > 
-> Your options are don't change the dts files, patch 3 needs to go to
-> stable kernels, or you document the breakage (if you don't care).
+> > On Wed, Aug 04, 2021 at 08:50:45AM +0200, Mauro Carvalho Chehab wrote:  
+> > > Em Tue, 3 Aug 2021 16:11:42 -0600
+> > > Rob Herring <robh+dt@kernel.org> escreveu:
+> > >     
+> > > > On Mon, Aug 2, 2021 at 10:39 PM Mauro Carvalho Chehab
+> > > > <mchehab+huawei@kernel.org> wrote:    
+> > > > >
+> > > > > Hi Rob,
+> > > > >
+> > > > > That's the third version of the DT bindings for Kirin 970 PCIE and its
+> > > > > corresponding PHY.
+> > > > >
+> > > > > It is identical to v2, except by:
+> > > > >         -          pcie@7,0 { // Lane 7: Ethernet
+> > > > >         +          pcie@7,0 { // Lane 6: Ethernet      
+> > > > 
+> > > > Can you check whether you have DT node links in sysfs for the PCI
+> > > > devices? If you don't, then something is wrong still in the topology
+> > > > or the PCI core is failing to set the DT node pointer in struct
+> > > > device. Though you don't rely on that currently, we want the topology
+> > > > to match. It's possible this never worked on arm/arm64 as mainly
+> > > > powerpc relied on this.
+> > > >
+> > > > I'd like some way to validate the DT matches the PCI topology. We
+> > > > could have a tool that generates the DT structure based on the PCI
+> > > > topology.    
+> > > 
+> > > The of_node node link is on those places:
+> > > 
+> > > 	$ find /sys/devices/platform/soc/f4000000.pcie/ -name of_node
+> > > 	/sys/devices/platform/soc/f4000000.pcie/of_node
+> > > 	/sys/devices/platform/soc/f4000000.pcie/pci0000:00/0000:00:00.0/of_node
+> > > 	/sys/devices/platform/soc/f4000000.pcie/pci0000:00/0000:00:00.0/pci_bus/0000:01/of_node
+> > > 	/sys/devices/platform/soc/f4000000.pcie/pci0000:00/pci_bus/0000:00/of_node    
+> > 
+> > Looks like we're missing some... 
+> > 
+> > It's not immediately obvious to me what's wrong here. Only the root 
+> > bus is getting it's DT node set. The relevant code is pci_scan_device(), 
+> > pci_set_of_node() and pci_set_bus_of_node(). Give me a few days to try 
+> > to reproduce and debug it.  
+> 
+> I added a printk on both pci_set_*of_node() functions:
+> 
+> 	[    4.872991]  (null): pci_set_bus_of_node: of_node: /soc/pcie@f4000000
+> 	[    4.913806]  (null): pci_set_of_node: of_node: /soc/pcie@f4000000
+> 	[    4.978102] pci_bus 0000:01: pci_set_bus_of_node: of_node: /soc/pcie@f4000000/pcie@0,0
+> 	[    4.990622]  (null): pci_set_of_node: of_node: /soc/pcie@f4000000/pcie@0,0
+> 	[    5.052383] pci_bus 0000:02: pci_set_bus_of_node: of_node: (null)
+> 	[    5.059263]  (null): pci_set_of_node: of_node: (null)
+> 	[    5.085552]  (null): pci_set_of_node: of_node: (null)
+> 	[    5.112073]  (null): pci_set_of_node: of_node: (null)
+> 	[    5.138320]  (null): pci_set_of_node: of_node: (null)
+> 	[    5.164673]  (null): pci_set_of_node: of_node: (null)
+> 	[    5.233759] pci_bus 0000:03: pci_set_bus_of_node: of_node: (null)
+> 	[    5.240539]  (null): pci_set_of_node: of_node: (null)
+> 	[    5.310545] pci_bus 0000:04: pci_set_bus_of_node: of_node: (null)
+> 	[    5.324719] pci_bus 0000:05: pci_set_bus_of_node: of_node: (null)
+> 	[    5.338914] pci_bus 0000:06: pci_set_bus_of_node: of_node: (null)
+> 	[    5.345516]  (null): pci_set_of_node: of_node: (null)
+> 	[    5.415795] pci_bus 0000:07: pci_set_bus_of_node: of_node: (null)
 
-There is no intention to go to stable kernel and I don't think this is
-stable material. Linus has applied 3 patches and this one should go via
-my tree. It means I will make sure that this DT change will be in the
-tree when pinctrl changes are applied.
+The enclosed patch makes the above a clearer:
+
+	[    4.800975]  (null): pci_set_bus_of_node: of_node: /soc/pcie@f4000000
+	[    4.855983] pci 0000:00:00.0: pci_set_of_node: of_node: /soc/pcie@f4000000
+	[    4.879169] pci_bus 0000:01: pci_set_bus_of_node: of_node: /soc/pcie@f4000000/pcie@0,0
+	[    4.900602] pci 0000:01:00.0: pci_set_of_node: of_node: /soc/pcie@f4000000/pcie@0,0
+	[    4.953086] pci_bus 0000:02: pci_set_bus_of_node: of_node: (null)
+	[    4.968821] pci 0000:02:01.0: pci_set_of_node: of_node: (null)
+	[    5.003538] pci 0000:02:04.0: pci_set_of_node: of_node: (null)
+	[    5.041348] pci 0000:02:05.0: pci_set_of_node: of_node: (null)
+	[    5.092770] pci 0000:02:07.0: pci_set_of_node: of_node: (null)
+	[    5.118298] pci 0000:02:09.0: pci_set_of_node: of_node: (null)
+	[    5.178215] pci_bus 0000:03: pci_set_bus_of_node: of_node: (null)
+	[    5.198433] pci 0000:03:00.0: pci_set_of_node: of_node: (null)
+	[    5.233330] pci_bus 0000:04: pci_set_bus_of_node: of_node: (null)
+	[    5.247071] pci_bus 0000:05: pci_set_bus_of_node: of_node: (null)
+	[    5.260898] pci_bus 0000:06: pci_set_bus_of_node: of_node: (null)
+	[    5.293764] pci 0000:06:00.0: pci_set_of_node: of_node: (null)
+	[    5.332808] pci_bus 0000:07: pci_set_bus_of_node: of_node: (null)
+
+> 
+> It sounds that the parent is missing when pci_set_bus_of_node() is
+> called on some places. I'll try to identify why.
+> 
+> Thanks,
+> Mauro
 
 Thanks,
-Michal
+Mauro
+
+[PATCH] pci: setup PCI before setting the OF node
+
+With this change, it is easier to add a debug printk at
+pci_set_of_node() in order to address possible issues.
+
+Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+
+diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
+index 79177ac37880..c5dfc1afb1d3 100644
+--- a/drivers/pci/probe.c
++++ b/drivers/pci/probe.c
+@@ -2374,15 +2374,14 @@ static struct pci_dev *pci_scan_device(struct pci_bus *bus, int devfn)
+ 	dev->vendor = l & 0xffff;
+ 	dev->device = (l >> 16) & 0xffff;
+ 
+-	pci_set_of_node(dev);
+-
+ 	if (pci_setup_device(dev)) {
+-		pci_release_of_node(dev);
+ 		pci_bus_put(dev->bus);
+ 		kfree(dev);
+ 		return NULL;
+ 	}
+ 
++	pci_set_of_node(dev);
++
+ 	return dev;
+ }
+ 
+
+
