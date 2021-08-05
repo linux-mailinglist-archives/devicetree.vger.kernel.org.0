@@ -2,256 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A1E183E1593
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 15:22:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC95B3E15CB
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 15:36:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240523AbhHENW0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 09:22:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55038 "EHLO
+        id S241718AbhHENgX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 09:36:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240596AbhHENWY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 09:22:24 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C3CCC0613C1;
-        Thu,  5 Aug 2021 06:22:10 -0700 (PDT)
-Received: from [IPv6:2a02:810a:880:f54:e5eb:348e:79df:e71f] (unknown [IPv6:2a02:810a:880:f54:e5eb:348e:79df:e71f])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: dafna)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 68C5F1F43E6D;
-        Thu,  5 Aug 2021 14:22:06 +0100 (BST)
-Subject: Re: [PATCH v7 04/12] iommu/mediatek: Add device_link between the
- consumer and the larb devices
-To:     Yong Wu <yong.wu@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        with ESMTP id S232900AbhHENgX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 09:36:23 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9546AC061765;
+        Thu,  5 Aug 2021 06:36:08 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id c24so7839624lfi.11;
+        Thu, 05 Aug 2021 06:36:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=30uracpthIuXSs44lu6RRxWBv7NJjXzBaQjU8TB5510=;
+        b=M/nP1CM7xn+CZ7274z8465Yq2jf1/nVPXJZvFxFte+iStx8VnQzGCydzYwV9YZ3qy/
+         gi1PXGbBbs5VP7TKvXrabWmLYmPeGBazgZwyQAYFHrELvuVr+pFw1pCo6EgU4ftFslUE
+         ftS58qvHPqAbZB6Li/DVMVhdK7saB3qktcqvII94alvZpJD4MBWqyi79yTlXv8G1WH4q
+         uG3zZ20UNTUFzyoymNHt8ocDr/X3LRpbCg3U4zrYMxzp9LORkhCZe3phYxq1Wf377x7Q
+         SppvoPu7U/pBFw4MbqqqEVMvhm8I9OJPOu4bzzX7YnMPZmsu/c9yilWQhdXpdznDfHhw
+         /HdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=30uracpthIuXSs44lu6RRxWBv7NJjXzBaQjU8TB5510=;
+        b=eEa3eeHOoqbhkSI3+1csJDTqb5fU6/dJahK9PgIlMBtbUP6Jw39QtePwfs51ZxoV5m
+         XFOl4C8347upDDDBLfvJ51k4OD/v+73qUdQYCP4V9epcPdFX1e7aWVjrSdSw5lZ6flwM
+         VFBPmEvZOdGMv0FUNHtmyHG/vxN/xVxzD1EMGmGE/LuJC8CL9GZ3OSyJZb/IrbQXT+xL
+         W845KhbPyOF0+rUiWbRr5qRg9wiOPIiLnndZagkLg+4I9Tf+iMF4NI1lXw7LNwYIrId5
+         4tUW9ds9yfnJPVlPL3OrMoQpuKnibN+REOqxwqpcupOUQ4SnQgbjAiKqzdqhOAIw0get
+         E4dA==
+X-Gm-Message-State: AOAM531BrMYOXjEOkCZveMD6kTt7mWRRdmDmRStfy5pTGCVGnrLokTFH
+        XM8b4Vo5FnBlaAdFHfLr7MSwUcn8FGmX1YOA
+X-Google-Smtp-Source: ABdhPJw2fPHEeV+vd6pzesnCmhAxkmBbMI0INtbdI/2mGN2zSGItLyeYPaCet25Itf6BhkoHATeH+A==
+X-Received: by 2002:a19:5202:: with SMTP id m2mr247398lfb.581.1628170566923;
+        Thu, 05 Aug 2021 06:36:06 -0700 (PDT)
+Received: from nergzd-desktop.localdomain ([62.122.67.26])
+        by smtp.gmail.com with ESMTPSA id t3sm516232lfe.241.2021.08.05.06.36.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Aug 2021 06:36:06 -0700 (PDT)
+From:   Markuss Broks <markuss.broks@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     linus.walleij@linaro.org, phone-devel@vger.kernel.org,
+        Markuss Broks <markuss.broks@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
         David Airlie <airlied@linux.ie>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc:     Evan Green <evgreen@chromium.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Will Deacon <will.deacon@arm.com>,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>, anan.sun@mediatek.com,
-        ming-fan.chen@mediatek.com, yi.kuo@mediatek.com,
-        acourbot@chromium.org, linux-media@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Xia Jiang <xia.jiang@mediatek.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Eizan Miyamoto <eizan@chromium.org>,
-        anthony.huang@mediatek.com,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Collabora Kernel ML <kernel@collabora.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>
-References: <20210730025238.22456-1-yong.wu@mediatek.com>
- <20210730025238.22456-5-yong.wu@mediatek.com>
-From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-Message-ID: <3f359c03-df44-2410-3172-2f17e620cada@collabora.com>
-Date:   Thu, 5 Aug 2021 15:22:03 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Subject: [PATCH 0/2] Add support for Samsung S6D27A1 display panel
+Date:   Thu,  5 Aug 2021 16:33:40 +0300
+Message-Id: <20210805133343.27032-1-markuss.broks@gmail.com>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <YQmG6EbBherV+8px@ravnborg.org>
+References: <YQmG6EbBherV+8px@ravnborg.org>
 MIME-Version: 1.0
-In-Reply-To: <20210730025238.22456-5-yong.wu@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add support for Samsung Mobile Displays(SMD) Samsung S6D27A1 panel.
+This display panel is used on Samsung mobile devices such as
+Samsung Galaxy Ace 2 (GT-I8160) also known as Codina.
 
+Markuss Broks (2):
+  drm/panel: Add DT bindings for Samsung S6D27A1 display panel
+  drm/panel: s6d27a1: Add driver for Samsung S6D27A1 display panel
 
-On 30.07.21 04:52, Yong Wu wrote:
-> MediaTek IOMMU-SMI diagram is like below. all the consumer connect with
-> smi-larb, then connect with smi-common.
-> 
->          M4U
->           |
->      smi-common
->           |
->    -------------
->    |         |    ...
->    |         |
-> larb1     larb2
->    |         |
-> vdec       venc
-> 
-> When the consumer works, it should enable the smi-larb's power which
-> also need enable the smi-common's power firstly.
-> 
-> Thus, First of all, use the device link connect the consumer and the
-> smi-larbs. then add device link between the smi-larb and smi-common.
-> 
-> This patch adds device_link between the consumer and the larbs.
-> 
-> When device_link_add, I add the flag DL_FLAG_STATELESS to avoid calling
-> pm_runtime_xx to keep the original status of clocks. It can avoid two
-> issues:
-> 1) Display HW show fastlogo abnormally reported in [1]. At the beggining,
-> all the clocks are enabled before entering kernel, but the clocks for
-> display HW(always in larb0) will be gated after clk_enable and clk_disable
-> called from device_link_add(->pm_runtime_resume) and rpm_idle. The clock
-> operation happened before display driver probe. At that time, the display
-> HW will be abnormal.
-> 
-> 2) A deadlock issue reported in [2]. Use DL_FLAG_STATELESS to skip
-> pm_runtime_xx to avoid the deadlock.
-> 
-> Corresponding, DL_FLAG_AUTOREMOVE_CONSUMER can't be added, then
-> device_link_removed should be added explicitly.
-> 
-> [1] https://lore.kernel.org/linux-mediatek/1564213888.22908.4.camel@mhfsdcap03/
-> [2] https://lore.kernel.org/patchwork/patch/1086569/
-> 
-> Suggested-by: Tomasz Figa <tfiga@chromium.org>
-> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> Tested-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com> # on mt8173
+ .../display/panel/samsung,s6d27a1.yaml        |  97 ++++++
+ drivers/gpu/drm/panel/Kconfig                 |  11 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ drivers/gpu/drm/panel/panel-samsung-s6d27a1.c | 323 ++++++++++++++++++
+ 4 files changed, 432 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/samsung,s6d27a1.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-samsung-s6d27a1.c
 
-Hi, unfortunately, I have to take back the Tested-by tag.
-I am now testing the mtk-vcodec with latest kernel + patches sent from the mailing list:
-https://gitlab.collabora.com/eballetbo/linux/-/commits/topic/chromeos/chromeos-5.14
-which includes this patchset.
+-- 
+2.32.0
 
-On chromeos I open a video conference with googl-meet which cause the mtk-vcodec vp8 encoder to run.
-If I kill it with `killall -9 chrome` I get some page fault messages from the iommu:
-
-[  837.255952] mtk-iommu 10205000.iommu: fault type=0x5 iova=0xfcff0001 pa=0x0 larb=0 port=0 layer=1 read
-[  837.265696] mtk-iommu 10205000.iommu: fault type=0x5 iova=0xfcff0001 pa=0x0 larb=0 port=0 layer=1 read
-[  837.282367] mtk-iommu 10205000.iommu: fault type=0x5 iova=0xfcff0001 pa=0x0 larb=0 port=0 layer=1 read
-[  837.299028] mtk-iommu 10205000.iommu: fault type=0x5 iova=0xfcff0001 pa=0x0 larb=0 port=0 layer=1 read
-[  837.315683] mtk-iommu 10205000.iommu: fault type=0x5 iova=0xfcff0001 pa=0x0 larb=0 port=0 layer=1 read
-[  837.332345] mtk-iommu 10205000.iommu: fault type=0x5 iova=0xfcff0001 pa=0x0 larb=0 port=0 layer=1 read
-[  837.349004] mtk-iommu 10205000.iommu: fault type=0x5 iova=0xfcff0001 pa=0x0 larb=0 port=0 layer=1 read
-[  837.365665] mtk-iommu 10205000.iommu: fault type=0x5 iova=0xfcff0001 pa=0x0 larb=0 port=0 layer=1 read
-[  837.382329] mtk-iommu 10205000.iommu: fault type=0x5 iova=0xfcff0001 pa=0x0 larb=0 port=0 layer=1 read
-[  837.400002] mtk-iommu 10205000.iommu: fault type=0x5 iova=0xfcff0001 pa=0x0 larb=0 port=0 layer=1 read
-
-In addition, running the encoder tests from the shell:
-
-sudo --user=#1000 /usr/local/libexec/chrome-binary-tests/video_encode_accelerator_tests --gtest_filter=VideoEncoderTest.FlushAtEndOfStream_Multiple*  --codec=vp8 /usr/local/share/tast/data/chromiumos/tast/local/bundles/cros/video/data/tulip2-320x180.yuv --disable_validator
-
-At some point it fails with the error
-
-[ 5472.161821] [MTK_V4L2][ERROR] mtk_vcodec_wait_for_done_ctx:32: [290] ctx->type=1, cmd=1, wait_event_interruptible_timeout time=1000ms out 0 0!
-[ 5472.174678] [MTK_VCODEC][ERROR][290]: vp8_enc_encode_frame() irq_status=0 failed
-[ 5472.182687] [MTK_V4L2][ERROR] mtk_venc_worker:1239: venc_if_encode failed=-5
-
-
-If you have any idea of what might be the problem or how to debug?
-
-Thanks,
-Dafna
-
-> ---
->   drivers/iommu/mtk_iommu.c    | 22 ++++++++++++++++++++++
->   drivers/iommu/mtk_iommu_v1.c | 20 +++++++++++++++++++-
->   2 files changed, 41 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-> index a02dde094788..ee742900cf4b 100644
-> --- a/drivers/iommu/mtk_iommu.c
-> +++ b/drivers/iommu/mtk_iommu.c
-> @@ -571,22 +571,44 @@ static struct iommu_device *mtk_iommu_probe_device(struct device *dev)
->   {
->   	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
->   	struct mtk_iommu_data *data;
-> +	struct device_link *link;
-> +	struct device *larbdev;
-> +	unsigned int larbid;
->   
->   	if (!fwspec || fwspec->ops != &mtk_iommu_ops)
->   		return ERR_PTR(-ENODEV); /* Not a iommu client device */
->   
->   	data = dev_iommu_priv_get(dev);
->   
-> +	/*
-> +	 * Link the consumer device with the smi-larb device(supplier)
-> +	 * The device in each a larb is a independent HW. thus only link
-> +	 * one larb here.
-> +	 */
-> +	larbid = MTK_M4U_TO_LARB(fwspec->ids[0]);
-> +	larbdev = data->larb_imu[larbid].dev;
-> +	link = device_link_add(dev, larbdev,
-> +			       DL_FLAG_PM_RUNTIME | DL_FLAG_STATELESS);
-> +	if (!link)
-> +		dev_err(dev, "Unable to link %s\n", dev_name(larbdev));
->   	return &data->iommu;
->   }
->   
->   static void mtk_iommu_release_device(struct device *dev)
->   {
->   	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
-> +	struct mtk_iommu_data *data;
-> +	struct device *larbdev;
-> +	unsigned int larbid;
->   
->   	if (!fwspec || fwspec->ops != &mtk_iommu_ops)
->   		return;
->   
-> +	data = dev_iommu_priv_get(dev);
-> +	larbid = MTK_M4U_TO_LARB(fwspec->ids[0]);
-> +	larbdev = data->larb_imu[larbid].dev;
-> +	device_link_remove(dev, larbdev);
-> +
->   	iommu_fwspec_free(dev);
->   }
->   
-> diff --git a/drivers/iommu/mtk_iommu_v1.c b/drivers/iommu/mtk_iommu_v1.c
-> index c259433f1130..806d4200665b 100644
-> --- a/drivers/iommu/mtk_iommu_v1.c
-> +++ b/drivers/iommu/mtk_iommu_v1.c
-> @@ -424,7 +424,9 @@ static struct iommu_device *mtk_iommu_probe_device(struct device *dev)
->   	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
->   	struct of_phandle_args iommu_spec;
->   	struct mtk_iommu_data *data;
-> -	int err, idx = 0;
-> +	int err, idx = 0, larbid;
-> +	struct device_link *link;
-> +	struct device *larbdev;
->   
->   	/*
->   	 * In the deferred case, free the existed fwspec if the dev already has,
-> @@ -454,6 +456,14 @@ static struct iommu_device *mtk_iommu_probe_device(struct device *dev)
->   
->   	data = dev_iommu_priv_get(dev);
->   
-> +	/* Link the consumer device with the smi-larb device(supplier) */
-> +	larbid = mt2701_m4u_to_larb(fwspec->ids[0]);
-> +	larbdev = data->larb_imu[larbid].dev;
-> +	link = device_link_add(dev, larbdev,
-> +			       DL_FLAG_PM_RUNTIME | DL_FLAG_STATELESS);
-> +	if (!link)
-> +		dev_err(dev, "Unable to link %s\n", dev_name(larbdev));
-> +
->   	return &data->iommu;
->   }
->   
-> @@ -474,10 +484,18 @@ static void mtk_iommu_probe_finalize(struct device *dev)
->   static void mtk_iommu_release_device(struct device *dev)
->   {
->   	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
-> +	struct mtk_iommu_data *data;
-> +	struct device *larbdev;
-> +	unsigned int larbid;
->   
->   	if (!fwspec || fwspec->ops != &mtk_iommu_ops)
->   		return;
->   
-> +	data = dev_iommu_priv_get(dev);
-> +	larbid = mt2701_m4u_to_larb(fwspec->ids[0]);
-> +	larbdev = data->larb_imu[larbid].dev;
-> +	device_link_remove(dev, larbdev);
-> +
->   	iommu_fwspec_free(dev);
->   }
->   
-> 
