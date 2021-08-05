@@ -2,158 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D81AA3E10A3
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 10:56:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E684E3E10A8
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 10:57:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239659AbhHEI4N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 04:56:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49910 "EHLO
+        id S230298AbhHEI5X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 04:57:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232651AbhHEI4N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 04:56:13 -0400
-Received: from mail-il1-x135.google.com (mail-il1-x135.google.com [IPv6:2607:f8b0:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B08E3C061765;
-        Thu,  5 Aug 2021 01:55:59 -0700 (PDT)
-Received: by mail-il1-x135.google.com with SMTP id x7so4336409ilh.10;
-        Thu, 05 Aug 2021 01:55:59 -0700 (PDT)
+        with ESMTP id S232535AbhHEI5W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 04:57:22 -0400
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A95F8C061765;
+        Thu,  5 Aug 2021 01:57:07 -0700 (PDT)
+Received: by mail-pj1-x1032.google.com with SMTP id t7-20020a17090a5d87b029017807007f23so9913476pji.5;
+        Thu, 05 Aug 2021 01:57:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gzmhApPj8HKqYSRf21gqLOYpahW4Hf0SxEjn45dssUM=;
-        b=TOTf9psJWunXK13kHgtY8TiWSVBgt5Vzq7W3W8AQ6vfyunOVZEh0Qg4+gWIaULVC0g
-         U3YhP0DGAJBbmfrkgJEG1F3KzQp2r86sDY8FA4NRqzJFZVplKdW1VXiss+CkUgIVFlHY
-         1AScnG9bhXvzFieoJZX0UsqLYilrjUrI/OQe5yDln9R0bPAl+gjRmsFEH07AqF30YWzf
-         ITB/9oa3eXMfGlktXJpWD/8UHgFfsPXBT3zWtvvJCNHBegdJVKz1bP3KPigPDera7nA5
-         ViBZAMJxF0nDwi4qDAhUT12fx7jCiepxmlN3eWPhh+rNERgLcXgkD/ePxOYnQOfNRHWn
-         nplg==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=uBGvDrKwcptU4eI40KiqTkmrFiw969jPWA+k2q+CekM=;
+        b=kNboybg+6Kjx5JPc/fxOD0oELVczHRj++IDC4hjC0/OJk4oKrRyTu8M/whUk444G3z
+         z+fRzPQgeChY0IafDiRl71BHTnwukeLwafgpiosx++y30fCAqhxNrfr7UiEYDTKFvXr2
+         dqkQ+2Ld7LKQhj2ZzLXZejyt4Gq4hF4mWUougONkFY4DVy5NPITwb4kBmKAwwOQU6jCS
+         TrXao+msXwv0tXe0VFsDyhbi2/VrcLkNZA/Zg8EGlLXevzJnbH51b45b8ax4LMNkWFOS
+         5JhMONx+HcEtJwUORLuXLTA3HKm6vfMZfEJqpBIWJr0rKaIiwF5PZsUGvLMAlTf9WRFZ
+         1clg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gzmhApPj8HKqYSRf21gqLOYpahW4Hf0SxEjn45dssUM=;
-        b=iYQcSkEEN+wvYRGP6jF+uT8lHPQSWPRFvb9Bx21zdtX5Prbsq/A5xohDHHkbmmWidH
-         mupVSJ2IHpgG8N81vmUF7cmTrHi9UnLMGdWpfjZ4SCwRHK6v+Cry/MD6yK8exp2KlKhK
-         VkhcgvMwObv+Kc0YQKp08zxLnqtQsK48tzmmVKkhtg+7GJ6Q6TNb7xQu4NRKrSRtcp4x
-         rOlK1f27Hah4YV/SeJku28CgvddveRC+1PeyFTSl6EueN9555oqePvbsFmy30jWBy9xr
-         CdZhJu7tp/GC5Wzk2qxj70tUXBN86xXcCgbw087sxfGN2DZk6UAtjne+W+n75xxC59O5
-         vFQQ==
-X-Gm-Message-State: AOAM5300alSulMHxyOkYWkiIRUG5T9ZOecyUn90/ivmFwWLVMyYccM8k
-        kK148kfHQcWLU4x7Jl7KnjhST7IRu+mY6TodWPtiYRwof63CfpjJ
-X-Google-Smtp-Source: ABdhPJwE6/hjmNRFCTdKVvlJC0gbv70mRmlYMEcT7G0uSTjPkThFyytPoqX7/kmL1I7cGXdcgbE94sArd3GVW8kQtzU=
-X-Received: by 2002:a05:6e02:13b3:: with SMTP id h19mr244834ilo.218.1628153759089;
- Thu, 05 Aug 2021 01:55:59 -0700 (PDT)
-MIME-Version: 1.0
-References: <1627098243-2742-1-git-send-email-dillon.minfei@gmail.com>
-In-Reply-To: <1627098243-2742-1-git-send-email-dillon.minfei@gmail.com>
-From:   Dillon Min <dillon.minfei@gmail.com>
-Date:   Thu, 5 Aug 2021 16:55:23 +0800
-Message-ID: <CAL9mu0+P4U+2tyA7CGCcP6riWXzKSpCWpNxKi3MvTt8Abiwtow@mail.gmail.com>
-Subject: Re: [PATCH v4 0/3] Add ilitek ili9341 panel driver
-To:     laurent.pinchart@ideasonboard.com,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Dave Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=uBGvDrKwcptU4eI40KiqTkmrFiw969jPWA+k2q+CekM=;
+        b=pXGvNwVZnva4tM3ot8La1v6+h0vxKvVzHhm6/GynrF6qbJOzAyw5DTOlev0UHOBwK7
+         jFES3dsO0r7nz08Vuq2c+DNYn7TBH6tPznN9j5eSVQm5fqxRD24zsXzQ9TSUEKE0qkn1
+         WWSVGdyv00q84T658wljKv943cMKjazPV9rY9i2X07k66M9Bp0yUnUmh1bRZ+M6VHxac
+         YdKylDPBtX9caj9osrO8jtj7PnMF1KQe5d6Kn5YmysIH8+qnFdoixGKFfosKi2sVjumb
+         3Ea/eRc/0kv8YqckyAYO9zu1XOv0da2VNWoFb/bAbTqbEaA+/ScERdNrdtmILeJFi4s9
+         sOEQ==
+X-Gm-Message-State: AOAM5320ABO5INq83n5B49zcW7EByVArp8FU3ZYfZDoPV+PqI9dgYU7v
+        v+Jn7TFugLGb7UvkYeNEbuA=
+X-Google-Smtp-Source: ABdhPJwGKr4kXuL4EeyTRjdfibpMy6P+YgIwbVDl7RF3M2FKtZcBxPa+YY9mfpLYTvKBD5tas4xFWg==
+X-Received: by 2002:a17:902:6bc8:b029:117:6a8a:f7af with SMTP id m8-20020a1709026bc8b02901176a8af7afmr375795plt.51.1628153827200;
+        Thu, 05 Aug 2021 01:57:07 -0700 (PDT)
+Received: from [192.168.1.22] (amarseille-551-1-7-65.w92-145.abo.wanadoo.fr. [92.145.152.65])
+        by smtp.gmail.com with ESMTPSA id h20sm5911451pfn.173.2021.08.05.01.57.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Aug 2021 01:57:06 -0700 (PDT)
+Subject: Re: [PATCH v4 0/4] ARM: dts: NSP: add Meraki MX64/MX65 series
+To:     Matthew Hagan <mnhagan88@gmail.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alexandre TORGUE <alexandre.torgue@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>,
-        Peter Robinson <pbrobinson@gmail.com>
-Cc:     kbuild-all@lists.01.org, linux-stm32@st-md-mailman.stormreply.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20210625095000.3358973-1-mnhagan88@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <fefad5f1-a2be-0feb-6170-d1bf5a1d86a2@gmail.com>
+Date:   Thu, 5 Aug 2021 01:57:01 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
+MIME-Version: 1.0
+In-Reply-To: <20210625095000.3358973-1-mnhagan88@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi All
 
-Just a gentle ping, thanks.
 
-Best regards.
-Dillon
+On 6/25/2021 2:49 AM, Matthew Hagan wrote:
+> Changes from v2:
+>   - Introduce boards to Makefile in same patch as the board dts is added
+>     (Vladimir Oltean)
+>   - Use alphabetical ordering for labels (Vladimir Oltean)
+>   - Remove address-cells and size-cells in qca8337 switch nodes (Vladimir
+>     Oltean)
+>   - Remove "cpu" labels from switch nodes' CPU ports (Vladimir Oltean)
+>   - Various LED fixes, utilising dt-bindings/leds/common.h and correctly
+>     specifying LEDs in the form "led-N" and with the color/function/
+>     function-enumerator properties.
+>   - Fix PWM LEDs and corresponding pinctrl bindings. (Vladimir Oltean)
+> 
+> The following changes were submitted as a separate series:
+>   - Introduce patches to disable QSPI by default and enable where used
+>     (Vladimir Oltean)
+>   - Move mdio@18032000 node from board related file to SoC (Vladimir
+>     Oltean)
+>   - In addition to above, relocate mdio-mux to bcm-nsp.dtsi and fix
+>     the resulting usb3_phy issues
+> 
+> Changes from v3:
+>   - Sort labels on mx64 a0 dts files into alphabetical order as well
+>   - move include directives for input/input.h and leds/common.h to
+>     bcm958625-mx6x-common.dtsi
+>   - Whitespace fixes in bcm958625-mx6x-common.dtsi
+>   - rename "senao_nvram" partition to "nvram"
+> 
+> Matthew Hagan (4):
+>    ARM: dts: NSP: Add common bindings for MX64/MX65
+>    ARM: dts: NSP: Add DT files for Meraki MX64 series
+>    ARM: dts: NSP: Add DT files for Meraki MX65 series
+>    dt-bindings: arm: bcm: NSP: add Meraki MX64/MX65
 
-On Sat, 24 Jul 2021 at 11:44, <dillon.minfei@gmail.com> wrote:
->
-> From: Dillon Min <dillon.minfei@gmail.com>
->
-> Since the st,sf-tc240t-9370-t dts binding already exist in stm32f429-disco.dts
-> but, the panel driver didn't get accepted from mainline. it's time to submit
-> patch fot it.
->
-> This driver can support two different interface by different dts bindings:
-> - spi+dpi, use spi to configure register, dpi for graphic data.
->   st,sf-tc240t-9370-t
-> - only spi, just like tiny/ili9341.c (actually, this part is copy from tiny)
->   adafruit,yx240qv29
->
-> I was submited the first patch last year, you can find it at [1].
-> this patch has one major difference from that one, which is replace the low
-> level communication way, from spi_sync() to mipi_dbi_{command,
-> command_stackbuf}() interface, referred from Linus's patch [2].
->
-> both the two dpi/dbi interface was tested on stm32f429-disco board, if anyone
-> want to verify this patch, you need apply the clk patch for this board first,
-> you can get it from [3].
->
-> [1] "drm/panel: Add ilitek ili9341 panel driver"
-> https://lore.kernel.org/lkml/1590378348-8115-7-git-send-email-dillon.minfei@gmail.com/
->
-> [2] "drm/panel: s6e63m0: Switch to DBI abstraction for SPI"
-> https://lore.kernel.org/dri-devel/20210611214243.669892-1-linus.walleij@linaro.org/
->
-> [3]
-> https://lore.kernel.org/lkml/1590378348-8115-6-git-send-email-dillon.minfei@gmail.com/
->
-> v4:
-> - fix m68k-allmodconfig build error which reported by lkp, thanks.
-> - add Copyright 2018 David Lechner <david@lechnology.com>.
-> v3 link:
-> https://lore.kernel.org/lkml/1627013203-23099-1-git-send-email-dillon.minfei@gmail.com/
->
-> v3:
-> - add Fixes tags.
-> - collect reviewed-by tags from linus and jagan.
-> - replace DRM_ERROR() with dev_err() or drm_err().
-> - remove kernel-doc markers from struct ili9341_config{}.
-> - reorder include headers.
-> - remove the struct device *dev from struct ili9341{}.
-> - restructure the ili9341_probe() function, add two ili9341_{dbi,dpi)_probe()
->   to make it more readable according to jagan's suggestion, thanks.
->
-> for the full drm driver exist in drm/panel need Sam and Laurent's feedback.
-> so, not cover this part at this time, will be update later.
->
-> v2 link:
-> https://lore.kernel.org/lkml/1626853288-31223-1-git-send-email-dillon.minfei@gmail.com/
->
-> v2:
-> - replace vcc regulator to bulk regulators in driver, from linus suggestion.
-> - fix dtbs_check warnings on ili9341 dts binding check.
-> - add bulk regulation node in ilitek,ili9341.yaml.
-> v1 link:
-> https://lore.kernel.org/lkml/1626430843-23823-1-git-send-email-dillon.minfei@gmail.com/
->
-> Dillon Min (3):
->   dt-bindings: display: panel: Add ilitek ili9341 panel bindings
->   ARM: dts: stm32: fix dtbs_check warning on ili9341 dts binding
->   drm/panel: Add ilitek ili9341 panel driver
->
->  .../bindings/display/panel/ilitek,ili9341.yaml     |  78 ++
->  arch/arm/boot/dts/stm32f429-disco.dts              |   2 +-
->  drivers/gpu/drm/panel/Kconfig                      |  12 +
->  drivers/gpu/drm/panel/Makefile                     |   1 +
->  drivers/gpu/drm/panel/panel-ilitek-ili9341.c       | 792 +++++++++++++++++++++
->  5 files changed, 884 insertions(+), 1 deletion(-)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
->  create mode 100644 drivers/gpu/drm/panel/panel-ilitek-ili9341.c
->
-> --
-> 1.9.1
->
+Matt, should I be expecting a v5 based on Arnd's comments?
+-- 
+Florian
