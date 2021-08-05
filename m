@@ -2,155 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 389D43E145A
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 14:02:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECC5C3E1470
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 14:07:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235848AbhHEMCV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 08:02:21 -0400
-Received: from mail-eopbgr00088.outbound.protection.outlook.com ([40.107.0.88]:52366
-        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S241233AbhHEMCE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Aug 2021 08:02:04 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Lo2p6ItmrYvtbgXu+PjwllHGsrSWlGBptHFdZUbLQD51hOSMhq3TzWSkrXCmULCx0Aft+QK7Hz5JcXRLgibrBXINMzHWIEmVN5ThgVRH8tPEHZQ1Hq+mkpRYPxBn6tjacu0wz/YBVtXPr3UZv2RFLGBBOGxxnD9Bwx53SvM8ntXIcPZvXvi9LNNahb2fjp8tpAxLdF/hEs2LpGLxJ0Rtu0KBNdS9ZfmWdM1+bUdQb43IKfJfDhwMjgHK1RHuMYr7KSnuc1LicigCCk+E6J2AkXxiad86pKSij4EGJSN0e3K2ka18poyWb0sRzsxXHx+jc25J4mFcmec9By9XYF7JiA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qGM7xdNl8qTh+F2OjSu0oxVzXyI1trZBaIy6nQkBlTA=;
- b=AvJpniLwSFqad3S8+4eVifOLqlEZA6U8ur/HLHTZ4qrsxVvKOu0unNDLYgzu46ANYVeLn2DTWtKiJ+QsyCqK3e/rToCy6rCf6+af2bGufzz7cANcs6cgkS/U1nXSQJlf2DLYWqw+ZhedgVP9jBIbFrGgugMFUooJicNUk/MdR6h7yVtkqCLqufQY3dLT5Y8WkzvaWD9ftvTsGbSZn1Idy5btzjnjVgiQzMI7kp7pQEwHLqByk6K6jxRxV70Ie1YyOjipElG0qAspSRqUo0JhxyX9HVQZQNXozld9oDcGUzo0Mq50owxeTc6Kt1kjeFz0EnFIN0zhftOTvlZOFX84hw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wolfvision.net; dmarc=pass action=none
- header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qGM7xdNl8qTh+F2OjSu0oxVzXyI1trZBaIy6nQkBlTA=;
- b=z2FZH9fYRay4LqFhJjZJ8tDkM9BpwePltAkNkGTXgc1KwNerejWIzbgvERHyuDdqj3gEv0cPGBAKkOk61iJtqhgJIh6hkw4nNjeCsSbm0zwssdyxspiNh1mSyRaZqLoAM75xLI3JmIZssT+WvulfpU/Mc1H6jtApMLmaALXkFNg=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none
- header.from=wolfvision.net;
-Received: from DBBPR08MB4523.eurprd08.prod.outlook.com (2603:10a6:10:c8::19)
- by DB7PR08MB3865.eurprd08.prod.outlook.com (2603:10a6:10:74::25) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.25; Thu, 5 Aug
- 2021 12:01:33 +0000
-Received: from DBBPR08MB4523.eurprd08.prod.outlook.com
- ([fe80::ade3:93e2:735c:c10b]) by DBBPR08MB4523.eurprd08.prod.outlook.com
- ([fe80::ade3:93e2:735c:c10b%7]) with mapi id 15.20.4394.016; Thu, 5 Aug 2021
- 12:01:33 +0000
-From:   Michael Riesch <michael.riesch@wolfvision.net>
-To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Liang Chen <cl@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Simon Xue <xxm@rock-chips.com>,
-        Jianqun Xu <jay.xu@rock-chips.com>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Zhang Changzhong <zhangchangzhong@huawei.com>,
-        Tobias Schramm <t.schramm@manjaro.org>,
-        Johan Jonker <jbx6244@gmail.com>
-Subject: [PATCH v3 7/7] arm64: dts: rockchip: rk3568-evb1-v10: add pinctrl and alias to emmc node
-Date:   Thu,  5 Aug 2021 14:01:07 +0200
-Message-Id: <20210805120107.27007-8-michael.riesch@wolfvision.net>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210805120107.27007-1-michael.riesch@wolfvision.net>
-References: <20210805120107.27007-1-michael.riesch@wolfvision.net>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: VI1PR04CA0099.eurprd04.prod.outlook.com
- (2603:10a6:803:64::34) To DBBPR08MB4523.eurprd08.prod.outlook.com
- (2603:10a6:10:c8::19)
+        id S239397AbhHEMHe convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 5 Aug 2021 08:07:34 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:55882 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232222AbhHEMHe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Aug 2021 08:07:34 -0400
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1mBc9S-0006hh-QB; Thu, 05 Aug 2021 14:07:06 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        David Wu <david.wu@rock-chips.com>
+Cc:     Simon Xue <xxm@rock-chips.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, Johan Jonker <jbx6244@gmail.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-iio@vger.kernel.org
+Subject: Re: [PATCH] iio: adc: rockchip_saradc: just get referenced voltage once at probe
+Date:   Thu, 05 Aug 2021 14:07:05 +0200
+Message-ID: <8912224.VV5PYv0bhD@diego>
+In-Reply-To: <8f5385a1-701c-4446-d238-90bee1c03675@rock-chips.com>
+References: <20210802090929.37970-1-xxm@rock-chips.com> <20210803135124.000072fe@Huawei.com> <8f5385a1-701c-4446-d238-90bee1c03675@rock-chips.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from carlos.wolfvision-at.intra (91.118.163.37) by VI1PR04CA0099.eurprd04.prod.outlook.com (2603:10a6:803:64::34) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.17 via Frontend Transport; Thu, 5 Aug 2021 12:01:31 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0362f7a2-7a29-47e1-181b-08d95808c43e
-X-MS-TrafficTypeDiagnostic: DB7PR08MB3865:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DB7PR08MB3865C734A0C6A3B1CB1D490EF2F29@DB7PR08MB3865.eurprd08.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: x65xH0eq04fYIXy3Z8Xy8DajLtWj4dcEfgV3GnU/FOMFoxSCcckMWOXymW7CwZ/U2UsluBiYVtLvwgs7KGuiU3RCwm4BGw7aRgCAqN5IppgPMmqIKMOPGi8BHhzJQ0/9/hoGV6qfqDWpH/2y7EBeMCqff+vySXbSVp+itNWBSreSOdfS6KfpoN0sb/anWgFwYDqBeVHuptYU6JKHespEkBTny+aj3vXTFqg9pgE32EASFSMg5znAoBEtq/NEJuA/figZ53z1wiGWP24/DWGYVo+6a0CQc1/lqDqbXHhCp1/e0ctGty3ulqZMU709cXdXiTiNhBWBCG3F49cVWlGFB6TeE5ezjjpyxwXNRzXfOFQ43fqQgB4698D9iSEG47J3AMdkw3EROSXTlPaqsvr3oZ0J+41QotJ7XTwVyoPn/6FuyZQXJI463nuHFB8oFPH2fDCJNFnm0euV4SPHTAGiA20ADKxrRxhJiTdTGJ0+J2HszDgbv65WChXea+RMUDO9kxfwsIqz2umiG6aS2AfUCt7i6FoErQL5AnSR9V0KEdZ3JyTqnl4TUB8KfwL7ORaWQ90HhKTOJRAZjjKRwSsCLR+fHBtvCoTnNPN33Y4Xb/Ep212I5MT+OHZioDrHYNQD6lILJ3SRL+lSPvMoSqGDBOfP1B9TavnW0btGMcW1RpJtL0HZP72BZmyT89FF4l/iDJWbRVUHLSJ7/uwgUEJ7UA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR08MB4523.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(6512007)(8936002)(5660300002)(8676002)(6666004)(6486002)(26005)(38100700002)(36756003)(2906002)(6506007)(4326008)(66946007)(508600001)(66556008)(7416002)(66476007)(4744005)(1076003)(38350700002)(956004)(44832011)(2616005)(54906003)(52116002)(186003)(316002)(86362001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ho7hqzXwtUVO6PcMr4HtDvJL8lJo8dSvv7X2jUM9Lli3QvV28pPssTGJGi9Z?=
- =?us-ascii?Q?dbMqCym6I7GG/ys/HhI+Dgt5Cyxc4rcOO9Dm8R7i7kV6J+HrqS6rk8bG6OLU?=
- =?us-ascii?Q?i3tdiWw/hLOZUYMwo+FxgBi/OgOXMt/EzLo5dfi6ZtlyBRr55wmod++C4xF5?=
- =?us-ascii?Q?x85FznSoygT8s8h4p6uOX+/SYRYi02xHCBPguh/lEabp8JyHdrI7dk928qjJ?=
- =?us-ascii?Q?Pd4UGKzBgKtqAsrVWasqe8DSnmCM3ifI9Y8x8zE5/SVVolAsLKowpM6eLPBP?=
- =?us-ascii?Q?VMf6tX7xhxF+mGH0KQH3RL7707wq7UwMgqcSXQqS0uQJRlqbq3VL+Kvs/S/k?=
- =?us-ascii?Q?Fl5x8jbZJm8vY7mTX6s4rk0q5BWPZTE7kXE2zbV4hsBtfMzR8ThPlJ18kau9?=
- =?us-ascii?Q?pf6ObEdNNqehNNP0N3oR4hQdwFdfS7jSiS2laqAuwoC7T+687mElwg18JcJT?=
- =?us-ascii?Q?EJMbJfVNGwzTh9s2wmGzvxeVBlDKIZGtaFBX+gZ4GeAsE/tQFBr08vdDecBh?=
- =?us-ascii?Q?YyhEuip/F/Wmac1ZJ3BTZPJdWm1ORAqX6vnpcCg4eg+sEEWDEL2mNy9mUxm6?=
- =?us-ascii?Q?tjqH2yhGAJ7dqZv9F1B0jUfqG6wScsZlsXL3CSwQNxxCu96StLVLW0ySrPFz?=
- =?us-ascii?Q?CHcfaMKEMQH24+XHqx3w3L/qr72VKXooE/BQ1x0RyibjbqR+PAJcObKsvYJ1?=
- =?us-ascii?Q?Wgan0RbxgHUyHrnyijROS3aDkm7oqq3jaUK5AUbKe93EcF6p8DGDy6k3rSdm?=
- =?us-ascii?Q?a5mr1t2paCXRnE8vkJf4X6FpWEJWGGNGL9TucavtUTrK9gujVCPH7VFjfMVu?=
- =?us-ascii?Q?Ievton+eYGeYK2voTGE/aoeIssB31q+rTIb5FdDVhMg6KC2/C3KgtEAE6/Du?=
- =?us-ascii?Q?dqk1naU3FcyZyWKGByYBMvmB0XRzLTEjgn3R6N1El0hvShJnawlCbcnTbQ+j?=
- =?us-ascii?Q?KELYIUegl09WTKIByDHJHuqJL09DoF7cjgocmKVLYXjzU8rlSqgKswNaTBRj?=
- =?us-ascii?Q?7xgBgyrHxJB+dcYhWExjQbYuzCO+gBRoz+YFPYgRhkHk98UuRw5I6rB7lJ3H?=
- =?us-ascii?Q?TaHbAkwYINvV8pKXHtEma3U2ubxy88LL3WNa5pvrvlW08npIuY9HO+/nH3o8?=
- =?us-ascii?Q?I2u09aJO2qrCZ4aj0LbQjJDrD8R7kf0V60+8b67GDi7RdHFhDJp1ryHeyExV?=
- =?us-ascii?Q?RDkP3bdReV5TGeJGS3BDYlSoasW5jfSDhdIVt3k0rekZsmPSg2cyC4RIK7Yi?=
- =?us-ascii?Q?YYs1G4NKKlBx51uY4+HC6MBglbyZisxhj5PAHzKN/2XPhIPhsUjr6d1Ab9AS?=
- =?us-ascii?Q?CCiBhP8abtDT3qSTwKJEZVLv?=
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0362f7a2-7a29-47e1-181b-08d95808c43e
-X-MS-Exchange-CrossTenant-AuthSource: DBBPR08MB4523.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2021 12:01:32.7031
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0N5yDLb6C2DVyWmsOIjRqcxwZTCvNDRyWTxr1wVC+YHvTVoS1Thnl8gET5HA44jLqJHEPWR3gVovGToP18Qia5yRF28v/X5jUUAsZ7kJ07U=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR08MB3865
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since the EMMC pins can be used for other functions as well, we need to
-configure the pinctrl.
+Hi David,
 
-Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
----
-v3:
-- revise alias
+Am Donnerstag, 5. August 2021, 13:56:18 CEST schrieb David Wu:
+> Hi Jonathan,
+> 
+> 在 2021/8/3 下午8:51, Jonathan Cameron 写道:
+> > On Tue, 3 Aug 2021 11:09:47 +0800
+> > David Wu <david.wu@rock-chips.com> wrote:
+> > 
+> >> Hi Jonathan,
+> >>
+> >> 在 2021/8/2 下午6:42, Jonathan Cameron 写道:
+> >>> On Mon, 2 Aug 2021 17:09:29 +0800
+> >>> Simon Xue <xxm@rock-chips.com> wrote:
+> >>>    
+> >>>> From: David Wu <david.wu@rock-chips.com>
+> >>>>
+> >>>> The referenced voltage is not changed after initiation, so just only
+> >>>> get referenced voltage once.
+> >>> Hi David,
+> >>>
+> >>> Isn't this an external reference voltage?  If so how do you know
+> >>> it is not changed at runtime?  It might be unlikely and not happen
+> >>> on particular platforms, but that's not he same as saying it can never
+> >>> happen.  Clearly it's racey anyway if that does happen, but we definitely
+> >>> don't expect frequent voltage changes.
+> >>>    
+> >>
+> >> The current regulator is not changed and not subject to external
+> >> changes, this can reduce the getting voltage. Assuming that there will
+> >> be changes in the future, we then add the notify of the regulator, so
+> >> that the voltage change can be obtained.
+> > 
+> > If this patch added the notifier that would be a nice solution, but
+> > right now it potentially introduced a regression. You have made me a little curious...
+> > Are you seeing a significant cost to querying that regulator voltage?
+> > If so, I'd imagine it's a lack of caching in the regulator driver or similar.
+> > Scale readback via sysfs shouldn't be in a fast path anyway.
+> > 
+> > You can't depend on what boards today do, because someone with a board
+> > built tomorrow may well use an old kernel which supports the voltage
+> > changing, and then see a regression when they upgrade to the kernel
+> > containing this patch.
+> > 
+> 
+> For all current chips, the expected voltage is a fixed voltage, and 
+> don't want to change it in any process.:-)
+> 
+> So, if the voltage here does not change, then it can be obtained once in 
+> probe(), which can save the time of each acquisition. For example, the 
+> voltage of this regulator is obtained through i2c, which will increase 
+> some consumption every time.
 
- arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts | 3 +++
- 1 file changed, 3 insertions(+)
+Jonathans request was to not think about "all current chips" but the
+general case, and as Jonathan said, adding that regulator notifier you
+already mentioned would be the nicest solution.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-index 1c34d529b771..1bc79e95b2fb 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-@@ -17,6 +17,7 @@
- 		ethernet0 = &gmac0;
- 		ethernet1 = &gmac1;
- 		mmc0 = &sdmmc0;
-+		mmc1 = &sdhci;
- 	};
- 
- 	chosen: chosen {
-@@ -363,6 +364,8 @@
- 	bus-width = <8>;
- 	max-frequency = <200000000>;
- 	non-removable;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&emmc_bus8 &emmc_clk &emmc_cmd &emmc_datastrobe>;
- 	status = "okay";
- };
- 
--- 
-2.17.1
+So I think the easiest way is to just add the voltage notifier to your patch
+to make everyone happy ;-) .
+
+
+Heiko
+
+> 
+> > Jonathan
+> > 
+> >>
+> >>> Jonathan
+> >>>    
+> >>>>
+> >>>> Signed-off-by: Simon Xue <xxm@rock-chips.com>
+> >>>> Signed-off-by: David Wu <david.wu@rock-chips.com>
+> >>>> ---
+> >>>>    drivers/iio/adc/rockchip_saradc.c | 16 +++++++++-------
+> >>>>    1 file changed, 9 insertions(+), 7 deletions(-)
+> >>>>
+> >>>> diff --git a/drivers/iio/adc/rockchip_saradc.c b/drivers/iio/adc/rockchip_saradc.c
+> >>>> index f3eb8d2e50dc..cd33c0b9d3eb 100644
+> >>>> --- a/drivers/iio/adc/rockchip_saradc.c
+> >>>> +++ b/drivers/iio/adc/rockchip_saradc.c
+> >>>> @@ -49,6 +49,7 @@ struct rockchip_saradc {
+> >>>>    	struct clk		*clk;
+> >>>>    	struct completion	completion;
+> >>>>    	struct regulator	*vref;
+> >>>> +	int			uv_vref;
+> >>>>    	struct reset_control	*reset;
+> >>>>    	const struct rockchip_saradc_data *data;
+> >>>>    	u16			last_val;
+> >>>> @@ -105,13 +106,7 @@ static int rockchip_saradc_read_raw(struct iio_dev *indio_dev,
+> >>>>    		mutex_unlock(&indio_dev->mlock);
+> >>>>    		return IIO_VAL_INT;
+> >>>>    	case IIO_CHAN_INFO_SCALE:
+> >>>> -		ret = regulator_get_voltage(info->vref);
+> >>>> -		if (ret < 0) {
+> >>>> -			dev_err(&indio_dev->dev, "failed to get voltage\n");
+> >>>> -			return ret;
+> >>>> -		}
+> >>>> -
+> >>>> -		*val = ret / 1000;
+> >>>> +		*val = info->uv_vref / 1000;
+> >>>>    		*val2 = chan->scan_type.realbits;
+> >>>>    		return IIO_VAL_FRACTIONAL_LOG2;
+> >>>>    	default:
+> >>>> @@ -410,6 +405,13 @@ static int rockchip_saradc_probe(struct platform_device *pdev)
+> >>>>    		return ret;
+> >>>>    	}
+> >>>>    
+> >>>> +	info->uv_vref = regulator_get_voltage(info->vref);
+> >>>> +	if (info->uv_vref < 0) {
+> >>>> +		dev_err(&pdev->dev, "failed to get voltage\n");
+> >>>> +		ret = info->uv_vref;
+> >>>> +		return ret;
+> >>>> +	}
+> >>>> +
+> >>>>    	ret = clk_prepare_enable(info->pclk);
+> >>>>    	if (ret < 0) {
+> >>>>    		dev_err(&pdev->dev, "failed to enable pclk\n");
+> >>>
+> >>>
+> >>>
+> >>>    
+> >>
+> >>
+> > 
+> > 
+> > 
+> > 
+> 
+> 
+> 
+
+
+
 
