@@ -2,114 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48ADF3E10B7
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 11:02:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 334FB3E10C2
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 11:04:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232591AbhHEJCh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 05:02:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51372 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232517AbhHEJCg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 05:02:36 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBD3EC061765;
-        Thu,  5 Aug 2021 02:02:21 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id b13so5539145wrs.3;
-        Thu, 05 Aug 2021 02:02:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=xBlRW4pHwPqeNhDYb3jb+UKe1vgH2+ct0ssi2hqlwPM=;
-        b=T/NNtBWp1hlPqv+7LVAlo4n5mwPuaPeTKAQZUALxBb0FAeCToK7EqgYlUFOl3+nh4o
-         YN9SoH0koBcHle96RWaKXYda49qYxkrqzOGQWmH0WxCM0CaPN4twacDWy3JA4m4ZUn6Q
-         pOp6KV0Ll6eFYk3Nm31HaVFfpilsBM09wtzGy84q5Mqkm0M+xWxkHyH9dQd6v5iSTyZQ
-         Dhly2i7XPGmoeUzcIU9IJ3guaanU+lgHjMEjUtCTtVGS0vKhLhDLaFscjtv081YZXYDd
-         49+zaYI+Q4ZPYyMjZXobg+Va33wS3pZM9pBMUMILVjBo+mhnZf9b1GgShs5Z0fzgOgCw
-         detA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=xBlRW4pHwPqeNhDYb3jb+UKe1vgH2+ct0ssi2hqlwPM=;
-        b=SRWrqKJqQe5/8OXOUJR0e3NCBYcFvTFGyJ3r27AOGJnluxwiJEZw0MoQQf6NDJ7FiW
-         RRuj/0YFtLqkhXqE2wjgULXCtWwWa2HiHdBzDY7jIOslPdq5uVxkWh2Je6OhXKCQ8rja
-         sl67694Qx9d5FCwPkudu9qSzP0p5YShzT6WXsQsR0me/xMcEBFxz86Zl48tEUXG4YEl8
-         pHes+fZpFyIf/W6idDfSwypjG9yIcLFU+PgMXn2lmJg4SFolmrr9nyvdeSXVbZ5YO26o
-         js4um9KjymUp296eCdm5gO2RtmH09t1LBTuhszXFrQ4sYOO0Bzn075VhNtSrYS3iEJum
-         8Y9w==
-X-Gm-Message-State: AOAM530Ckb8dAnbD1DuLOimaTCTJJsRRRnFZHfAkoq3XKZB3Ttj5IP0Y
-        2YBNLtsnUWHrnLAKZRNosx6xW0vK0tLg4g==
-X-Google-Smtp-Source: ABdhPJzKbFRpmxJ0dvD48+AuEhrq0GTbFHBf7r/VfElGFxVhmyP60WIE14hxSG+ITUCWJx5wGhBKeQ==
-X-Received: by 2002:a5d:4ac5:: with SMTP id y5mr3995180wrs.125.1628154140435;
-        Thu, 05 Aug 2021 02:02:20 -0700 (PDT)
-Received: from ziggy.stardust (static-55-132-6-89.ipcom.comunitel.net. [89.6.132.55])
-        by smtp.gmail.com with ESMTPSA id t1sm4901451wma.28.2021.08.05.02.02.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Aug 2021 02:02:19 -0700 (PDT)
-Subject: Re: [PATCH v4 1/3] arm: dts: mt8135: Move pinfunc to
- include/dt-bindings/pinctrl
-To:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     Enric Balletbo Serra <eballetbo@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Andy Teng <andy.teng@mediatek.com>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20210804044033.3047296-1-hsinyi@chromium.org>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <d48087c2-ddff-0c58-c7e6-a0ba526a393f@gmail.com>
-Date:   Thu, 5 Aug 2021 11:02:18 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+        id S237007AbhHEJE5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 05:04:57 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60946 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231865AbhHEJE5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Aug 2021 05:04:57 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6396D60E8D;
+        Thu,  5 Aug 2021 09:04:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1628154283;
+        bh=iS6H6YaZt439MG1gVB47NVuu85jYESbYxNTfU/8PEnM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=hbJ5g/NNnCCW+jA0A4ZZ5KdY1JyMfvwfyO9KWCwCvd1DJPAXjTsfRwd8X4ws5bJ4R
+         A5NSegHArwwjcR7N7OCsS1wM4S3XO2dAE1K3cR1c/md+nmo1nHP55ipED/Thvr5r5W
+         SRKHVl2LEgZSXIG2n/uMeWjJpDGh+/hPItwQNqzV0FH+FS9+EnyEK3RHGG0DP0LCpN
+         VL8Gpe623FYgMh5zf32gu2zxpulBYScdnuwCVhRNZ6SNAherlde8XsIIXkCxoJknGU
+         PKaw8jjrUkyC6lHG+QS38/HQPZIPXHKYBZ/DmnhIRk+drRvytm9mqmKXAWeqKE3fMm
+         8GorOUtKls+mA==
+Received: by mail.kernel.org with local (Exim 4.94.2)
+        (envelope-from <mchehab@kernel.org>)
+        id 1mBZIu-001Eie-71; Thu, 05 Aug 2021 11:04:40 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Wei Xu <xuwei5@hisilicon.com>
+Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: HiSilicon: hi3660: address a PCI warning
+Date:   Thu,  5 Aug 2021 11:04:38 +0200
+Message-Id: <498ca4c17f018a234817cccd35cdaba3e3884b42.1628154271.git.mchehab+huawei@kernel.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <20210804044033.3047296-1-hsinyi@chromium.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+When the driver is registered, it produces a warning when
+registering the PCI bridge:
 
-On 04/08/2021 06:40, Hsin-Yi Wang wrote:
-> Move mt8135-pinfunc.h into include/dt-bindings/pinctrl so that we can
-> include it in yaml examples.
-> 
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> ---
->  arch/arm/boot/dts/mt8135.dtsi                                   | 2 +-
->  .../boot/dts => include/dt-bindings/pinctrl}/mt8135-pinfunc.h   | 0
->  2 files changed, 1 insertion(+), 1 deletion(-)
->  rename {arch/arm/boot/dts => include/dt-bindings/pinctrl}/mt8135-pinfunc.h (100%)
-> 
+	[    5.363450] pci_bus 0000:00: root bus resource [bus 00-01]
+	[    5.396998] pci_bus 0000:01: busn_res: can not insert [bus 01-ff] under [bus 00-01] (conflicts with (null) [bus 00-01])
+	[    5.284831] pci 0000:00:00.0: PCI bridge to [bus 01-ff]
 
-If that's fine with you, I'll take patch 1+2 through my tree. IMHO the best for
-patch 3 would be to go through your tree.
+The reason is that the bus-range is wrong. Address it.
 
-Sounds good?
+Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+---
+ arch/arm64/boot/dts/hisilicon/hi3660.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Regards,
-Matthias
+diff --git a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
+index f1ec87c05842..cf2079590ad8 100644
+--- a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
++++ b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
+@@ -1002,7 +1002,7 @@ pcie@f4000000 {
+ 			      <0x0 0xf3f20000 0x0 0x40000>,
+ 			      <0x0 0xf5000000 0x0 0x2000>;
+ 			reg-names = "dbi", "apb", "phy", "config";
+-			bus-range = <0x0  0x1>;
++			bus-range = <0x0  0xff>;
+ 			#address-cells = <3>;
+ 			#size-cells = <2>;
+ 			device_type = "pci";
+-- 
+2.31.1
 
-> diff --git a/arch/arm/boot/dts/mt8135.dtsi b/arch/arm/boot/dts/mt8135.dtsi
-> index 0e4e835026db0..a031b36363187 100644
-> --- a/arch/arm/boot/dts/mt8135.dtsi
-> +++ b/arch/arm/boot/dts/mt8135.dtsi
-> @@ -9,7 +9,7 @@
->  #include <dt-bindings/interrupt-controller/irq.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/reset/mt8135-resets.h>
-> -#include "mt8135-pinfunc.h"
-> +#include <dt-bindings/pinctrl/mt8135-pinfunc.h>
->  
->  / {
->  	#address-cells = <2>;
-> diff --git a/arch/arm/boot/dts/mt8135-pinfunc.h b/include/dt-bindings/pinctrl/mt8135-pinfunc.h
-> similarity index 100%
-> rename from arch/arm/boot/dts/mt8135-pinfunc.h
-> rename to include/dt-bindings/pinctrl/mt8135-pinfunc.h
-> 
