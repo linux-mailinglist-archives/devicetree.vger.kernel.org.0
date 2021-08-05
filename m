@@ -2,121 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BDA513E0C63
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 04:17:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE5763E0C74
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 04:30:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229771AbhHECRk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 22:17:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45682 "EHLO
+        id S234087AbhHECal (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 22:30:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229713AbhHECRk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 22:17:40 -0400
-Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99A16C0613C1;
-        Wed,  4 Aug 2021 19:17:26 -0700 (PDT)
-Received: by mail-qk1-x729.google.com with SMTP id 14so4848454qkc.4;
-        Wed, 04 Aug 2021 19:17:26 -0700 (PDT)
+        with ESMTP id S229713AbhHECal (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Aug 2021 22:30:41 -0400
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A6D3C0613C1
+        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 19:30:28 -0700 (PDT)
+Received: by mail-pl1-x630.google.com with SMTP id t3so5269511plg.9
+        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 19:30:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=rkGOSVQF9TOhjzyiUoCJV05ZbHNx5GT+bf4KeZ6f2IA=;
-        b=B/uPjSmx60H4ihwfZ8wtzF6CYCbTEPVmk4keYAeCgxiUr7EbcO/Xr18Udj7qjH5pDi
-         +hLao+j9kUFgzdXaH/y6DvRYXsBXnRnMH9bAa2Mo3Heh8Xn1tVLhLpaZSygh2NrmMsQB
-         KSa+jXTwJWa9pcw6CjXCG92kKr9d5tF9FPV/Q=
+        d=pdp7-com.20150623.gappssmtp.com; s=20150623;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=vdygkbgOoifQ2P3uS173U/W4DkZaZSva1QHWbIr+JoI=;
+        b=eYBCE9AHR3MLbexOdgpJeNUt8ue0DcQvnep8V2CdXekpSbK750mX5sv5aI7XlzcNmf
+         ASxatPjlZ+xL8whJR888VZR30wYLyRHho8Tutpvv33YwC0VnTWYOnIs6sH+X0orilpS3
+         y+FKwls2Kvsn3hBENrdbuQrGCE1AhqFVkEtqkEq4H/VF1j0U0mDsHtrFknYVZu2i/Nxe
+         +8RfjhVvsQen/8b9D0D2JeI0nXqg9Ue9AfOYQ/7Yljd1REYtyY58HrNvtR2/0PU0PUul
+         3gLW0emPdallHJ8f8BDhgm6gN35aQRHNKVPN3Hi8prUBgytdQuM/MZ3Xf2MVLdErReY7
+         quVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=rkGOSVQF9TOhjzyiUoCJV05ZbHNx5GT+bf4KeZ6f2IA=;
-        b=mncUUw4yicUrLWFApbuXw+JkfqeZCMdVk/hkgGhk/Yra9d45VPnXJIAGXo74TQ8Kxy
-         rETq7bdGuc+y6IAbiSUNjodkNqpx3tAiOafg+YSUekBcPVeLP7WL8OBCLKpIjvu+DG3q
-         hs7Uze7xDrPpdjGLf/YTl1Fv5TjSJx+4+Kzsm+NsLbrEdNs8Rt/krFNr7WkBg5czJ20A
-         FSR7n3GpQvs26VRbN5pT0GY5XoWSjmYPMQLRbizM5dvyDB5YGtC4yS6IjiGvdm41Uv5t
-         s2bzCUROpBas+U3F9ScFMyFsvBvhuHDliBsuNX92OjSGXyulMMK2te3mPxHOi9D9EAsX
-         qQKA==
-X-Gm-Message-State: AOAM530cXzZfLHod8Qt+mblGt0Iw2zYEO7CBOyktn2IQRs+4c4kjcXxa
-        iA0mApyW7xwbZ7PrKECkvOUu0olPGVlAT2F3xjs=
-X-Google-Smtp-Source: ABdhPJysI08p+xS1rb4jB6N4wAriNvzo2kltaAaQt1+UjwLYcRVjKGA2lAJPptqP1gzrQhP151sLslPnoPHg6ECB8Y8=
-X-Received: by 2002:a05:620a:893:: with SMTP id b19mr2511179qka.487.1628129845723;
- Wed, 04 Aug 2021 19:17:25 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=vdygkbgOoifQ2P3uS173U/W4DkZaZSva1QHWbIr+JoI=;
+        b=Nc4GwFhavj/wiuNDHETMiLK9gPC/OXuQvd5h6fbEwCdAlFew8bRzaCMwBzhvgALh2V
+         ktzonC32+r/QUxHictjaQT9oSm04iwF1+rrcTDVLQfL6Wi8056slUqdAau8PZ/6xw4wL
+         9SIoVpM42p+wXaMkV5XA1rQvQv4LGXSK6AM+wV/23UZ7mLPjIpYTbTkLMa/DXOkwcfzC
+         4jZrN/fm/BhxpaL5Ne9SZKTA3Ir9LXI+w2BtfjKpyOcSlrUl0DTx6m/nFsu8AjNjrIsf
+         fT25wOx4aoOHCUXeyOeBHFgI2DW1pPop+2AmX3cOKT29jOxsYG/w5Y1pSNoA3awP3MLZ
+         6p5w==
+X-Gm-Message-State: AOAM533b4NX0yUk4LkyjIK1CpUPmyxO3SIeS9NfLDlMSiCVSUKfR3heZ
+        fXplZhQ8I48lYNoTF6v+FGU2Eg==
+X-Google-Smtp-Source: ABdhPJySAd8vmVVvU3tqw0td5HWMMUYoY9S1Qy9OO1Zx+ygWd4e1FtwfDUEhJSRER70AzJoDJ01r5w==
+X-Received: by 2002:a63:1621:: with SMTP id w33mr539976pgl.291.1628130627580;
+        Wed, 04 Aug 2021 19:30:27 -0700 (PDT)
+Received: from x1 ([174.127.163.79])
+        by smtp.gmail.com with ESMTPSA id 22sm1918868pgn.88.2021.08.04.19.30.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Aug 2021 19:30:27 -0700 (PDT)
+Date:   Wed, 4 Aug 2021 19:30:24 -0700
+From:   Drew Fustini <drew@pdp7.com>
+To:     Palmer Dabbelt <palmer@dabbelt.com>
+Cc:     atishp@atishpatra.org, drew@beagleboard.org, bmeng.cn@gmail.com,
+        robh+dt@kernel.org, Paul Walmsley <paul.walmsley@sifive.com>,
+        michael.zhu@starfivetech.com, tekkamanninja@gmail.com,
+        jack.zhu@starfivetech.com, leyfoon.tan@starfivetech.com,
+        geert@linux-m68k.org, kernel@esmil.dk, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4] dt-bindings: riscv: add starfive jh7100 bindings
+Message-ID: <20210805023024.GA12312@x1>
+References: <CAOnJCUL9uU5G1LOgfYPz9Ny77yFYaP5sgtdxG3_w=Zcsi+f96Q@mail.gmail.com>
+ <mhng-c9300c9e-6877-492f-a290-7c51066d3920@palmerdabbelt-glaptop>
 MIME-Version: 1.0
-References: <20210728233755.17963-1-rentao.bupt@gmail.com> <20210728233755.17963-7-rentao.bupt@gmail.com>
- <CACPK8XemZkV7nK_b4883DN+dJKhL=tXfqK6=DpHQe=fZRu_ETQ@mail.gmail.com>
- <20210805011951.GA28444@taoren-ubuntu-R90MNF91> <CACPK8XcwsOa5NzsUZeiv5qdWV5H6HBa7WK+cwbnqayP4zhoNkg@mail.gmail.com>
- <20210805020946.GA29371@taoren-ubuntu-R90MNF91>
-In-Reply-To: <20210805020946.GA29371@taoren-ubuntu-R90MNF91>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Thu, 5 Aug 2021 02:17:13 +0000
-Message-ID: <CACPK8XfewBvd4BLgkgkC0DBzVk5pmV4ZTVaVt=otrKfqJ6m5Lg@mail.gmail.com>
-Subject: Re: [PATCH 6/6] ARM: dts: aspeed: Add Facebook Fuji (AST2600) BMC
-To:     Tao Ren <rentao.bupt@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Tao Ren <taoren@fb.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <mhng-c9300c9e-6877-492f-a290-7c51066d3920@palmerdabbelt-glaptop>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 5 Aug 2021 at 02:09, Tao Ren <rentao.bupt@gmail.com> wrote:
->
-> On Thu, Aug 05, 2021 at 01:37:29AM +0000, Joel Stanley wrote:
-> > On Thu, 5 Aug 2021 at 01:20, Tao Ren <rentao.bupt@gmail.com> wrote:
-> > > > > +&ehci1 {
-> > > > > +       status = "okay";
-> > > > > +};
+On Wed, Aug 04, 2021 at 02:13:47PM -0700, Palmer Dabbelt wrote:
+> On Wed, 04 Aug 2021 13:54:16 PDT (-0700), atishp@atishpatra.org wrote:
+> > On Wed, Aug 4, 2021 at 1:33 PM Palmer Dabbelt <palmer@dabbelt.com> wrote:
+> > > 
+> > > On Thu, 15 Jul 2021 19:17:23 PDT (-0700), bmeng.cn@gmail.com wrote:
+> > > > On Tue, Jul 13, 2021 at 2:34 PM Drew Fustini <drew@beagleboard.org> wrote:
+> > > >>
+> > > >> Add DT binding documentation for the StarFive JH7100 Soc [1] and the
+> > > >> BeagleV Starlight JH7100 board [2].
+> > > >>
+> > > >> [1] https://github.com/starfive-tech/beaglev_doc
+> > > >> [2] https://github.com/beagleboard/beaglev-starlight
+> > > >>
+> > > >> Signed-off-by: Drew Fustini <drew@beagleboard.org>
+> > > >> ---
+> > > >> v4 changes:
+> > > >> - removed JH7100 SoC revision number after discussion with Geert
+> > > >>
+> > > >> v3 changes:
+> > > >> - added revision number for the board and soc after question from Palmer
+> > > >>
+> > > >> v2 changes:
+> > > >> - removed "items:" entry that only had "const: starfive,jh7100"
+> > > >> - correct typo in Description:
+> > > >>
+> > > >> Results of running checks:
+> > > >>   $ make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- dt_binding_check \
+> > > >>     DT_SCHEMA_FILES=Documentation/devicetree/bindings/riscv/starfive.yaml
+> > > >>     CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
+> > > >>     DTEX    Documentation/devicetree/bindings/riscv/starfive.example.dts
+> > > >>     SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
+> > > >>     DTC     Documentation/devicetree/bindings/riscv/starfive.example.dt.yaml
+> > > >>     CHECK   Documentation/devicetree/bindings/riscv/starfive.example.dt.yaml
+> > > >>   $ make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- dtbs_check \
+> > > >>     DT_SCHEMA_FILES=Documentation/devicetree/bindings/riscv/starfive.yaml
+> > > >>     SYNC    include/config/auto.conf.cmd
+> > > >>     UPD     include/config/kernel.release
+> > > >>     SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+> > > >>     DTC     arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dtb
+> > > >>     DTC     arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dt.yaml
+> > > >>     DTC     arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dt.yaml
+> > > >>     DTC     arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dt.yaml
+> > > >>     CHECK   arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dt.yaml
+> > > >>     CHECK   arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dt.yaml
+> > > >>     CHECK   arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dt.yaml
+> > > >>
+> > > >> The dts file is from vendor repo and is being cleaned up right now in
+> > > >> preperation for submitting to the mailing list:
+> > > >> https://github.com/starfive-tech/linux/tree/beaglev/arch/riscv/boot/dts/starfive
+> > > >>
+> > > >>  .../devicetree/bindings/riscv/starfive.yaml   | 27 +++++++++++++++++++
+> > > >>  1 file changed, 27 insertions(+)
+> > > >>  create mode 100644 Documentation/devicetree/bindings/riscv/starfive.yaml
+> > > >>
 > > > >
-> > > > Have you verified that USB works with mainline? I've had reports of it
-> > > > working on 5.8 but it seems to have regressed as of v5.10.
-> > >
-> > > It stopped working on ASPEED since commit 280a9045bb18 ("ehci: fix EHCI
-> > > host controller initialization sequence"): ehci_handshake() returns
-> > > error because HCHalted bit EHCI24[12] stays at 1.
-> > >
-> > > I have a dirty hack in my tree (ignoring the halt bit) and it "works" on
-> > > AST2500 and AST2600. Let me send an email to openbmc and aspeed email
-> > > groups to see if anyone has more context.
-> >
-> > We discovered the same, except in my testing it wasn't actually
-> > "working" on my EVB. I have a A3 EVB on my desk and when plugging in a
-> > USB key nothing happened.
->
-> We have a non-removable USB device on Fuji (AST2600) BMC and it can be
-> enumerated successfully (after applying the hack). Let me vist the lab
-> and plug a USB key to CMM (AST2500) BMC sometime next week. Will collect
-> results and send out email then.
+> > > > Reviewed-by: Bin Meng <bmeng.cn@gmail.com>
+> > > 
+> > > Thanks.  This is on for-next, as Rob suggested taking it via the RISC-V
+> > > tree.
+> > > 
+> > Given that beagleV starlight mass production is cancelled [1], are we
+> > still upstreaming the support for this ?
+> 
+> I'm not sure, but I wasn't quite sure where to have that discussion.  I
+> figured that the boards exist so there's no reason to shoot this down, given
+> that it's just the vendor DT list.  At a bare minimum there's out of tree
+> support for this, so having the DT strings defined seems sane as that's a
+> defacto interface with bootloaders.
+> 
+> Maybe this is more of a question for Drew: I think we were all OK working
+> through the issues with the first-run chip when there was going to be a lot
+> of them, but with such a small number produced I'm not sure if there's going
+> to be enough interested to take on all that effort.
+> 
+> I'm not quite sure where we stand on support for this: at some point there
+> were some ideas floating around as to a way to support it without major
+> software changes (allocating into the non-caching regions).  If that pans
+> out then I'm fine handling this, at least from the RISC-V side, but if we're
+> going to have to go through all the ISA/SBI stuff then it's probably not
+> worth it.  Also not sure if there are a bunch of starfive-specific drivers
+> that would be needed to make this boot, in which case it's probably best to
+> wait for whatever comes next.
 
-Thanks!
+I think that the discontinued beta prototype could be useful as a native
+build host for those of you that have it and don't have an Unmatched.
 
-> > > status is set in ast2600 common dtsi, but let me set it here to avoid
-> > > confusion. Will update pinmux in v2. Thanks.
-> >
-> > Are you looking at mainline? I think it's disabled by default there:
-> >
-> > https://elixir.bootlin.com/linux/latest/source/arch/arm/boot/dts/aspeed-g6.dtsi#L246
->
-> Sorry for the confusion, Joel. I mean the device is enabled in
-> "ast2600-facebook-netbmc-common.dtsi" (patch #3 in the series). Do we
-> still need to set status to "okay" explicitly in platform dts (to avoid
-> confusion)?
+The arch_sync_dma RFC from Atish [1] is key to the board running
+mainline. Most of the peripherals (USB, SD card, ethernet) are already
+supported by upstream Cadence and Synopsys drivers. However, the vendor
+kernel used ifdef's to flush the L2 cache at several points in those
+drivers and subsystem cores because the peripherals are on a non-cache
+coherent interconnect.
 
-I see, thanks for explaining. It's a downside of the device tree
-bindings for the ethernet device.
+Without the proposed solution from Atish that uses the non-cached DDR
+alias, then only serial console would work on mainline (assuming the 
+system is running from a ramdisk that the vendor uboot loaded).
 
-Given you will be the one working with the board, I think it's up to
-you how you lay it out. You could choose to add a comment to the
-platform dts, or put the hunk you currently have in the common.dtsi in
-the platform.
+Thanks,
+Drew
 
->
-> &mac3 {
->         status = "okay";
->         phy-mode = "rgmii";
->         pinctrl-names = "default";
->         pinctrl-0 = <&pinctrl_rgmii4_default>;
-> };
+[1] https://lore.kernel.org/linux-riscv/CAOnJCU+ip1ccc9CrREi3c+15ue4Grcq+ENbQ+z_gh3CH249aAg@mail.gmail.com/T/#md422e9de172a179f8625c5bb595cf40e5942db67
