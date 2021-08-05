@@ -2,95 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1798B3E0CC3
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 05:27:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5A9B3E0CCD
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 05:36:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238480AbhHED1k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Aug 2021 23:27:40 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:56960 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231321AbhHED1k (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 4 Aug 2021 23:27:40 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1628134046; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=83ejBFxG6PpaqEIAxOQakS7CpkA8CGMBWmlvjt7MCsA=; b=dfQCdwfCH7R9COxYwJ+Lj1oOxwFBbB6B0zudcs1COFvGvDwuja3DTqq8yatBuxa276hFUwKI
- wGSkCvkY1rlp+6JPew2NJmNbnX/6BUgBoDwj1HM+5pNXpKReMUzUHq+8+zXXvqPxjEs8MmsC
- iWkzmw9dVCW7+ZeOyvK6SDLHf4M=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
- 610b5a9e041a739c4626865f (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 05 Aug 2021 03:27:26
- GMT
-Sender: rnayak=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 5129CC4360C; Thu,  5 Aug 2021 03:27:25 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.0 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [192.168.1.102] (unknown [49.207.220.239])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: rnayak)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 62504C433F1;
-        Thu,  5 Aug 2021 03:27:21 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 62504C433F1
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sc7280-idp: Add device tree
- files for IDP2
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>, agross@kernel.org,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, skakit@codeaurora.org,
-        swboyd@chromium.org, dianders@chromium.org, mka@chromium.org
-References: <1628082199-17002-1-git-send-email-rnayak@codeaurora.org>
- <1628082199-17002-3-git-send-email-rnayak@codeaurora.org>
- <0cb8bf79-697c-ff16-e37e-d1c783f8a207@somainline.org>
-From:   Rajendra Nayak <rnayak@codeaurora.org>
-Message-ID: <8aaef1a2-269d-1077-7996-793045a04f7c@codeaurora.org>
-Date:   Thu, 5 Aug 2021 08:57:18 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+        id S233293AbhHEDhE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Aug 2021 23:37:04 -0400
+Received: from mail-eopbgr20088.outbound.protection.outlook.com ([40.107.2.88]:4102
+        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231893AbhHEDhE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Aug 2021 23:37:04 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RrpZEKEdR8j3l7h5We9DP4evPoQ60e6kbqAXSdyPOMaSqqlORbaY/d6GpZmVL9wNWa0XD40Up29acO8NQ0MZeensn2iLbCJpDxrBH1Dax4UQBh76n7fsshbuV5CgV0tdDkQtOS3Wrop8wjZkYhF23ouC7U7rdblGu6xKBo6Wq1tMgW9YbNrE9LaarQFqJ4ldWdsbrtyWSA+3Ys0zzdiU50eN/OGTdWDFBLocxJFkx/DAsytMZIjN+pyyT3RGAmAD3VwikWsNeVRPRIF16hkoxTZNkDmKZ1PfMvk2nrOv+tOVhVvNPxE2Vl9+2eYjyKBSb3BwfnL8HHGIrN+RXZvlqQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dK9ZMIR7SlQ9y5oMjwfMSD6Ox/yvu3e459K9SkrNgZo=;
+ b=LsJp90473yxsAufU4hsAlTPHmVmd+eYC7s1VH1JFXe0eskmwBVFbOz37iIGWdNKokTckxDuunTicuJdmkBjCaXcT3RTFu29aPr6bWE7WEPVtqkMWF1DWOnQFP80l0zVFxm160kppVI/BcWQTcGUZwRwJWe5pls+hmBz/1zhOq02LLB/U/73uv4RbyOvkI3bHMUnANViuxOFzXtZ9Q3Cydz6uSFRFfDVF+3PdtWIJEAdSmYFch/Jt9p2dUzYVHNe0ZaC3yKCHMlUt6yonP8sqIaqm4rtdIoUx8VCyClyLb0yFH+UnBlcqNB31UIrFW0f4LpgqdFUzJdRwJF12xq1hEw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dK9ZMIR7SlQ9y5oMjwfMSD6Ox/yvu3e459K9SkrNgZo=;
+ b=iCU7oMkmpYR5ftnXqRj3ciRBXSw7VD36pIp11hXSduvcV/kf7jNB1iAStubxS9CzrjGldjeHtw284SSBvlYP9AjkwXaqAANi1UKJwyhXFrV5kDDtJS+RoY5K15xng5Uetu+VQIDblxBC2+FmL4oMTQFMUEEzwrVVXnlEeF+ZeV0=
+Authentication-Results: lists.infradead.org; dkim=none (message not signed)
+ header.d=none;lists.infradead.org; dmarc=none action=none
+ header.from=nxp.com;
+Received: from DB9PR04MB8477.eurprd04.prod.outlook.com (2603:10a6:10:2c3::11)
+ by DU2PR04MB8837.eurprd04.prod.outlook.com (2603:10a6:10:2e0::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.15; Thu, 5 Aug
+ 2021 03:36:38 +0000
+Received: from DB9PR04MB8477.eurprd04.prod.outlook.com
+ ([fe80::9daa:ab21:f749:36d2]) by DB9PR04MB8477.eurprd04.prod.outlook.com
+ ([fe80::9daa:ab21:f749:36d2%9]) with mapi id 15.20.4394.016; Thu, 5 Aug 2021
+ 03:36:38 +0000
+From:   Dong Aisheng <aisheng.dong@nxp.com>
+To:     linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-imx@nxp.com,
+        kernel@pengutronix.de, aisheng.dong@nxp.com, dongas86@gmail.com,
+        robh+dt@kernel.org, shawnguo@kernel.org, peng.fan@nxp.com
+Subject: [PATCH 0/2] rtc: add imx rpmsg rtc support
+Date:   Thu,  5 Aug 2021 11:35:44 +0800
+Message-Id: <20210805033546.1390950-1-aisheng.dong@nxp.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR02CA0059.apcprd02.prod.outlook.com
+ (2603:1096:4:54::23) To DB9PR04MB8477.eurprd04.prod.outlook.com
+ (2603:10a6:10:2c3::11)
 MIME-Version: 1.0
-In-Reply-To: <0cb8bf79-697c-ff16-e37e-d1c783f8a207@somainline.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.66) by SG2PR02CA0059.apcprd02.prod.outlook.com (2603:1096:4:54::23) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.15 via Frontend Transport; Thu, 5 Aug 2021 03:36:35 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 00e4b489-7211-44e0-2e1e-08d957c23b68
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8837:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DU2PR04MB8837B1641737D1EE9AB96FF380F29@DU2PR04MB8837.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2331;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: lL2T5CgmdjwdB1qN0gg709mzQim4/XgCjx4JBjRwd+HC6n7hU+FJ1Ab6YYv9hZYYCyIu2/YTA8kfnfb5iCAlHAeTsGiVgl8ApA7vwkyCa5Va8nzoIuELABos+JEsFdv8WuEacwjq0kO2iYqroWgmqWIYnit9q70u+15bWyn+0Tco+GCSKv4KWzKsjN7/bw63F93TvMkgVPkTr/tqD3fEPmuUZLQW2AU/cXYc0x5MHdIhGMGM3h6W36X2GXMLu2daEGlOu96FDqbX8DYgNrIl9ydQGJDy3/ZrjVhXkliUluAhhAzwJvCpbYYIU5DpkZ4KJhesVI1WBn/P0MgHntlAdpTQmyAL01z/CIL/+FVhdF4NU/ct0nwnIa53IKR3Aq8J/vrEn+kdEU8eRaG355Gr9DC3bo5GmkE+M0AmgYRYLrWl8gfpJfDHCBnB9qm6y/VXzjAcAwKj3vD38hs7KH+OpEdd/8DPuCTZOzARK1G+zBgIn7wxOwLTsQVQCOZn/zso0AWM9OAzt553zPB6iSTj3FxvgmhFWMuT0Jf/wRXgN42md3fhV7r6KLnoqS74eNbzB6iF3ZxfyzEqpUgTlIsgyWSsGWGfMgv7OtGIoEiiSFWmiMo7H2+GB8zZzE1ZqymaA1uEI4dWErpXjWnGn9+C+NAniuGxelxeH/g/Cy7GfVKvOlyw/LM5jDjZvUJ52Toq96kk7lTlILaxEHoISko7gQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB8477.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(396003)(366004)(136003)(39860400002)(376002)(36756003)(8936002)(6512007)(316002)(1076003)(86362001)(6486002)(52116002)(4744005)(2616005)(956004)(38350700002)(2906002)(38100700002)(6506007)(478600001)(26005)(5660300002)(66476007)(6666004)(66946007)(186003)(4326008)(8676002)(66556008);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?PFwsgTF/XfhmqqyspBz8Jw+uuBvT8Q94GOl5rXXIV3nF61eSEjWW2SCRhfQU?=
+ =?us-ascii?Q?aA8CJiC++JarrfHbJsVqVJivQG4/dD/Kjp4V5R/9nkaO+nMfS5AZ47u9/Y1e?=
+ =?us-ascii?Q?nKnDdmHOPvC2FVKYQw6tUGMuHl+X51Fqdgm6/7YGHQu7v7QCtjZ3G4b6wVnc?=
+ =?us-ascii?Q?C0APoNLu5HA8UYeuLiqjeNg9bdNl9KyUvs4X5SgLK9rKh3YHH2wy/rm5DHVh?=
+ =?us-ascii?Q?R245DJno4omP48xOKC4ZPnH8KBTlqvdTHU6dHA+ys3xDqglFVrq9rc1yJIFC?=
+ =?us-ascii?Q?/RFQV1oGOL32azJ0AKH0ZlzNaEE84w9z71eW7wyhWW0w6ImuWTP5L/JV7C+x?=
+ =?us-ascii?Q?03K+MAojON5YQLAME9jmhW04SfVNMBkGrJmhfvnAAjgqqwoQcGLd5i7p/A/a?=
+ =?us-ascii?Q?EWPRSs1NrL01bk8CLcNzdMlwHt9biqSmXMQTxvs81/sGm3TvigS/GNACcT7W?=
+ =?us-ascii?Q?7U86y8YQBZFixEeEwWFCWgPRqmzIul/dalwwcS0jB+mNP/+TxJUbc1WDYaf4?=
+ =?us-ascii?Q?WbwJJqyAZ4QUZLEk4rZoGOSO47/8BKApjvIUMmfbQWkO9jmSzV53a8v47QmN?=
+ =?us-ascii?Q?AsrrlJcT4F8q8EeujVgCd9Khccql4a7MwdM0k9MDosDtHYq1wjY0y8xKlrDO?=
+ =?us-ascii?Q?CM2NEs41rMLUkAU0ZXpGww/RjI5HEWq22aEnbe8qqPCc9AUwHr1u1sLOgRKy?=
+ =?us-ascii?Q?K7uaI6cqlVUQOKaMbkn+lNzr5iV/59GwgOjCC5Z4SbcGqTyw35yr0bsUNt6b?=
+ =?us-ascii?Q?dVg8v87IEyxYDPktEqsy+/xmmLMjYvx2p8tH0+4U43LM4Vt5qscHKDBd27D0?=
+ =?us-ascii?Q?XwDlWKS5aJsqHvOJOM74u5O2yFyP5Sx5P5btgfNIqv8DTRt59YMRRRIw+BMP?=
+ =?us-ascii?Q?sukayLiyHWQTqHxb2zOOQPr7vFGsXHhf+aG2DLMET/bA7bMd1QQIi4aKtNOB?=
+ =?us-ascii?Q?O+dI1sNBtogdSKZ3E3vSZJVJqYSgDHdWE7VwlvKLZ5LUf9eK865tfczVap/b?=
+ =?us-ascii?Q?YqNdhIvYKDcv7JIOIEYX0hijs3ebGL5ObUdCfBWu8imKxq6y2O+xT1zM5IUR?=
+ =?us-ascii?Q?TBdLXIzFu3RZ6GVkN6iz2/zAJk2Y3Ca98mGjifC1PhO+l4I37BMGfE/Fu/LW?=
+ =?us-ascii?Q?RItC8zm8eFCFahyY/+73dXrcZZX7zuGhx7bnG/R+CqP8x6fCJUGjNj1SR5Qs?=
+ =?us-ascii?Q?C4P/R5zVmi/EosOP5JJIjMi+0ZvhadQ9zWDTUAc6h1qvXj5RuBLmW+2aLDdZ?=
+ =?us-ascii?Q?+A6gw1+mNpi0n0AXCBO0pG0NJ6tthIYDq4JCxYUorDYU8VZjOvWBKRYt30qr?=
+ =?us-ascii?Q?uv21Ge/kxeyLUAaMqfMXrYmJ?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 00e4b489-7211-44e0-2e1e-08d957c23b68
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB8477.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2021 03:36:38.4329
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7umDVu774oP5iSfugG3137OFDxXdoddo+AtFdN3vOc1vRrxNkAwaQb+YECnV16runK1+ybuFR/VYxyfxOpHorQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8837
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add imx rpmsg rtc driver support
 
-On 8/5/2021 1:17 AM, Konrad Dybcio wrote:
-> 
-> On 04.08.2021 15:03, Rajendra Nayak wrote:
->> Move all the common device tree bits for both sc7280 IDPs into a
->> sc7280-idp.dtsi and create 2 different dts files (sc7280-idp.dts
->> and sc7280-idp2.dts) in order to manage differences across the
->> IDP SKU1 and SKU2 Boards.
->> PMR735A is present on IDP board only and is not present on IDP2.
->>
->> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
->> ---
->>   arch/arm64/boot/dts/qcom/Makefile                  |   1 +
->>   arch/arm64/boot/dts/qcom/sc7280-idp.dts            | 328 +--------------------
-> 
-> I'm still for calling this sc7280-idp-sku1/2.dts, but other than that it looks good.
+The driver needs cowork with pm rpmsg on imx7ulp but no compilation
+dependency.
 
-sure, I'll just wait for others to chime in, and if that's the consensus I would be
-happy to re-spin.
-  
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+Dong Aisheng (2):
+  ARM: dts: imx7ulp: add cm4 support
+  rtc: imx-rpmsg: Add i.MX RPMSG RTC support
 
-Thanks.
+ arch/arm/boot/dts/imx7ulp-evk-m4.dtsi |  48 ++++
+ arch/arm/boot/dts/imx7ulp-evk.dts     |   1 +
+ arch/arm/boot/dts/imx7ulp.dtsi        |   7 +
+ drivers/rtc/Kconfig                   |  10 +
+ drivers/rtc/Makefile                  |   1 +
+ drivers/rtc/rtc-imx-rpmsg.c           | 301 ++++++++++++++++++++++++++
+ include/linux/firmware/imx/rpmsg.h    |  37 ++++
+ 7 files changed, 405 insertions(+)
+ create mode 100644 arch/arm/boot/dts/imx7ulp-evk-m4.dtsi
+ create mode 100644 drivers/rtc/rtc-imx-rpmsg.c
+ create mode 100644 include/linux/firmware/imx/rpmsg.h
 
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+2.25.1
+
