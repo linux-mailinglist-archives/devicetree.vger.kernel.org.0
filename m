@@ -2,65 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E0A153E1E76
-	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 00:11:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AD653E1E8F
+	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 00:24:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234312AbhHEWLQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 18:11:16 -0400
-Received: from mail.manjaro.org ([116.203.91.91]:59226 "EHLO mail.manjaro.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231337AbhHEWLQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Aug 2021 18:11:16 -0400
-X-Greylist: delayed 325 seconds by postgrey-1.27 at vger.kernel.org; Thu, 05 Aug 2021 18:11:16 EDT
-From:   Dan Johansen <strit@manjaro.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-        t=1628201134;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=n9PerTqiOhSYPAMhgipyu0mDMtUeEGLOP38xaaVz54g=;
-        b=n5YRiBm8ER+k0J5kntSZAUKoN2fk3mdzRN6iWZHaYnVqweiiGyauJgZGBwydjph9wTrX6D
-        eIIiKym2ZZx18Qxd6ZQUr9iV4bsW7BgxwnJguLQ+/r27ZjhkiESNZyzODtWiHxP6N1u5xb
-        XWhK8H30Da9QScTfAXtkqV9vyC0niFE8+5L1J7vnnDLdvvAnKYh8T7/FlY1UdFwY6IkPMb
-        wqz1AaxfiDMesBEC+yNTRE9jn1Mht7kNo6gCckm1Uck1hQ7Sv7cMif1lPRQJugQGaLbb0H
-        hSRYJ2wsjdfJiji8LzqaqNcOXc1AzlqfZpwGFqDJvdw4+MKoe/Xa61JESd6RMQ==
-To:     robh+dt@kernel.org, heiko@sntech.de
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        strit@manjaro.org, linux-rockchip@lists.infradead.org
-Subject: [PATCH] arm64: dts: rockchip: Setup USB typec port as datarole on
-Date:   Fri,  6 Aug 2021 00:04:27 +0200
-Message-Id: <20210805220426.2693062-1-strit@manjaro.org>
+        id S238572AbhHEWY1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 18:24:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38138 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237315AbhHEWY0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 18:24:26 -0400
+Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [IPv6:2001:4b7a:2000:18::169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22B24C0613D5
+        for <devicetree@vger.kernel.org>; Thu,  5 Aug 2021 15:24:12 -0700 (PDT)
+Received: from localhost.localdomain (83.6.167.155.neoplus.adsl.tpnet.pl [83.6.167.155])
+        by m-r2.th.seeweb.it (Postfix) with ESMTPA id BDC213F367;
+        Fri,  6 Aug 2021 00:24:07 +0200 (CEST)
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+To:     ~postmarketos/upstreaming@lists.sr.ht
+Cc:     martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: clock: qcom: rpmcc: Document MDM9607 compatible
+Date:   Fri,  6 Aug 2021 00:23:59 +0200
+Message-Id: <20210805222400.39027-1-konrad.dybcio@somainline.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-        auth=pass smtp.auth=strit@manjaro.org smtp.mailfrom=strit@manjaro.org
-X-Spam: Yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some chargers try to put the charged device into device data
-role. Before this commit this condition caused the tcpm state machine to
-issue a hard reset due to a capability missmatch.
+Add the dt-binding for the RPM Clock Controller on the MDM9607 SoC.
 
-Signed-off-by: Dan Johansen <strit@manjaro.org>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 ---
- arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Documentation/devicetree/bindings/clock/qcom,rpmcc.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-index 2b5f001ff4a6..2115e03a59d7 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-@@ -711,7 +711,7 @@ fusb0: fusb30x@22 {
+diff --git a/Documentation/devicetree/bindings/clock/qcom,rpmcc.txt b/Documentation/devicetree/bindings/clock/qcom,rpmcc.txt
+index 6cf5a7ec2b4c..d31d98437d11 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,rpmcc.txt
++++ b/Documentation/devicetree/bindings/clock/qcom,rpmcc.txt
+@@ -10,6 +10,7 @@ Required properties :
+ - compatible : shall contain only one of the following. The generic
+                compatible "qcom,rpmcc" should be also included.
  
- 		connector {
- 			compatible = "usb-c-connector";
--			data-role = "host";
-+			data-role = "dual";
- 			label = "USB-C";
- 			op-sink-microwatt = <1000000>;
- 			power-role = "dual";
++			"qcom,rpmcc-mdm9607", "qcom,rpmcc"
+ 			"qcom,rpmcc-msm8660", "qcom,rpmcc"
+ 			"qcom,rpmcc-apq8060", "qcom,rpmcc"
+ 			"qcom,rpmcc-msm8226", "qcom,rpmcc"
 -- 
 2.32.0
 
