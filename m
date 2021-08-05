@@ -2,88 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A14643E0CFD
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 06:05:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A017C3E0D6A
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 06:57:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230457AbhHEEFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 00:05:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41192 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbhHEEFu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 00:05:50 -0400
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DDE4C0613D5
-        for <devicetree@vger.kernel.org>; Wed,  4 Aug 2021 21:05:37 -0700 (PDT)
-Received: by mail-pj1-x1035.google.com with SMTP id b1-20020a17090a8001b029017700de3903so7545018pjn.1
-        for <devicetree@vger.kernel.org>; Wed, 04 Aug 2021 21:05:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=/tmrG3FNtvqmHMxfNd/70AdCn3lth7qM0+cOOLSMGRw=;
-        b=n9nKcnvu1TGK246QsMUW5hEHiQdw7jid0rI8Ai2n3Q6YF5HO71e8vyOF8h6RRBOfKp
-         Ax1Mus2CrSKnM70CTTAG2iYZE1GCkJBZjBqmeq6SAyntruRPoNCDGMxodU3FNzPQPf5R
-         5SmvUXPxtI1QPlsqolZ+h1Gu4GhBSjY2n5ZjpM+4pxQImBejAQJStgy8wouoKSm8IX89
-         01L64ptvJvD09cyynbbPhFnLj5wjHR69d/H104GfUVCxGWzls6yO0ZkX5+uenUeXlSO7
-         0tEvspnNsLl0uYGT3pMty6INrvcrix/th2DVXWOAnq5VOTmTzeLZNJzv0lotVDyUQQ23
-         JgCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=/tmrG3FNtvqmHMxfNd/70AdCn3lth7qM0+cOOLSMGRw=;
-        b=NAmZWdObRVjOfH5a+GUUnq68AFZ0FiL8ZNe2EMnZijQeFK/fgdxbeBWOwtXzxvXvEf
-         jrEANrBsgSyutZPSI3ErzebxMS6DoacD6CMD34Td3xAkJXawC9yGlME/j7/a5lq4lav8
-         un4bmUY4eBT/31x1JSV47NPFIadAwC2aDVs3xr0NiDz98zI2Qtpj6zFmT69+vb7AshaX
-         1efE75cw2EKWoSlbUPS4yPIU4OY2xAg71dDXlScKo4RzWEqYkrcKOuXcrP00aehbVRjv
-         /xZfogcZtP5BzFindpCxdvTMLUQxWdOeh2DOe/k0F219VPQ1nlmebdyBN2MDh6p4G71B
-         jwDQ==
-X-Gm-Message-State: AOAM530E6rdmvGLOFwxP4o/t8rdqsf8+InFBgKopnLmZOJtPbym8hGuL
-        ByCDE7VWtzmt3rmXjFOlldUK3g==
-X-Google-Smtp-Source: ABdhPJz3BjNgAWw0KM1IUvz+qiNMzaEqBaeVS0JDBOjG/zw/L3WF9l+vFaGNLvHO3cCPmwhNKoQKDg==
-X-Received: by 2002:a17:90a:2ec6:: with SMTP id h6mr12940123pjs.9.1628136337051;
-        Wed, 04 Aug 2021 21:05:37 -0700 (PDT)
-Received: from localhost ([122.172.201.85])
-        by smtp.gmail.com with ESMTPSA id w186sm4779223pfw.106.2021.08.04.21.05.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Aug 2021 21:05:36 -0700 (PDT)
-Date:   Thu, 5 Aug 2021 09:35:34 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Roja Rani Yarubandi <rojay@codeaurora.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: Re: [PATCH v5 1/2] PM / Domains: Add support for 'required-opps' to
- set default perf state
-Message-ID: <20210805040534.bmscqfjb6etywmu3@vireshk-i7>
-References: <1626764876-10229-1-git-send-email-rnayak@codeaurora.org>
- <1626764876-10229-2-git-send-email-rnayak@codeaurora.org>
- <CAPDyKFrzHD6rXP5TnqrAVnrZExc2JLFe3HoGF+yM_tsaZYwh8g@mail.gmail.com>
- <35950d34-5cab-1b09-9864-49217a83f68d@codeaurora.org>
- <6fe7d326-1822-5a49-cca7-df9a2739dca8@codeaurora.org>
- <CAPDyKFrTQ0jy_u_oPN3kAXkd+FYMpHmStuU2pm8FHLa_OvXzBA@mail.gmail.com>
+        id S235262AbhHEE5e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 00:57:34 -0400
+Received: from wnew4-smtp.messagingengine.com ([64.147.123.18]:48745 "EHLO
+        wnew4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230337AbhHEE5d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 00:57:33 -0400
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailnew.west.internal (Postfix) with ESMTP id DE3A12B004AB;
+        Thu,  5 Aug 2021 00:57:18 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Thu, 05 Aug 2021 00:57:19 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm3; bh=E52/j2R5l9gMw0d5KOs9lNmLDB
+        fBSjHZQgpnRrtTk1s=; b=NHPC6tkxnh87VKuo8T9vd7Jc/E/Mx3cEBA3pb+fX4l
+        Qz6wed6s8n1j2Hnx1m+CGxA8gZP2N/FfmLWFkp0epKc0WgwTjEu8/vZD7a7I1X5h
+        zvNynYOQMnxV3+5OHvr4s3t3RSyDIoSkZ++JK47KlQdgP4nnKiRXSuc2N/zmCPTR
+        kZMR+39VC9/ohiFe1sPWBLJQcErk3ADWWP2bwiql3hFzGlYor36aAcuuqJDbtQ0X
+        6VojGZiYRrc25WA5jqg4LtDxTsVyLGhlTHxdi64O1YWtDnG7vXl5uLFxLN/WGIiJ
+        RwZ89lYYkUqOugF/0uaODSDPmNAwHcempcM3+VphQH4Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=E52/j2R5l9gMw0d5K
+        Os9lNmLDBfBSjHZQgpnRrtTk1s=; b=FBhWOgyQ2Ayc62M4Y+Qt85IMXeckICQVy
+        iqmGSPj3hWrL6kvQbige2UKmDTIHwAGV/Tdzvn+XoO3LNqHONb1ynIsnCKE/afyS
+        wBaL7dWs6LmHNgDOyn6hucnmTDkSMToltQecY2anP+fNYbitPyc3PqUfgXT1XgTn
+        llwKoOZwNTf3x5VLSUth7IXrnkk+YxWvvktZSBHjWU6AmeiU6IfsZpf2qOd3V+U1
+        0TZivQebv6174GCb3o2X+rh76fwfcX5MmZb32b6+sL/lvX5NO9XPg4LxW6cf2b+B
+        G4AUuyEAyK3zLTsNKvjWGW6VflZfN+Wy/H2d3ikDVVLEo4vRen4Mg==
+X-ME-Sender: <xms:rW8LYRy7oPwvjhsPaNLPuRPcZZL7DKZX6OzzQ4pLln8_rU3wRLEuIQ>
+    <xme:rW8LYRTvUAY9Q419MzIQQ_trLHNT01PA5CMbP8hX90SevE9mQpf-Iyhk9PPgtTJPS
+    Wz4OgFjHIgwaKDlaQ>
+X-ME-Received: <xmr:rW8LYbUbEh2-3okRdaZ0wswCn7uk1eWp-0RP0GPOmGN_hEo02UMMbewLCi_Nk1-JZr2n7iE2T6NLsqszWH7ve8OEaDyDJlciLIGGCj3l1RmJCCi-rm_uHE3rbC217LSd4699cg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrieekgdekhecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomhepufgrmhhuvghlucfj
+    ohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecuggftrfgrth
+    htvghrnhepieetkefhheduudfgledtudefjeejfeegveehkeeufffhhfejkeehiefftdev
+    tdevnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepsh
+    grmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:rW8LYTjWWWujfkaoVyLsK4W0AKJMEVS2g3xmT0HdHGqNZIV9bB_G2w>
+    <xmx:rW8LYTBKmrOK7fC3s_xM_r7iMrXjTKQcLp-KUOb966MaT2gkUQLYtA>
+    <xmx:rW8LYcJSf5wID8HepurG2sRnyyWfvkk8whqsE_vb-eIGukgLOu4Jag>
+    <xmx:rm8LYX7I5_zX1DqK7PCNqvbfMp_TURXs8FArdfIgIZsvtL1xlMWzxFlrgbc>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 5 Aug 2021 00:57:16 -0400 (EDT)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-watchdog@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Samuel Holland <samuel@sholland.org>
+Subject: [PATCH v2 1/3] dt-bindings: watchdog: sunxi: Add compatible for R329
+Date:   Wed,  4 Aug 2021 23:57:14 -0500
+Message-Id: <20210805045716.46141-1-samuel@sholland.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAPDyKFrTQ0jy_u_oPN3kAXkd+FYMpHmStuU2pm8FHLa_OvXzBA@mail.gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04-08-21, 13:39, Ulf Hansson wrote:
-> Viresh, would it make sense to remove that print? I mean, the
-> required-opps property could be considered as optional and it seems a
-> bit silly that a pre-parsing of the property is needed to figure that
-> out.
+On existing SoCs, the watchdog has a single clock input: HOSC (OSC24M)
+divided by 750.  However, starting with R329, LOSC (OSC32k) is added as
+an alternative clock source, with a bit to switch between them.
 
-Sure, np.
+Since 24 MHz / 750 == 32 kHz, not 32.768 kHz, the hardware adjusts the
+cycle counts to keep the timeouts independent of the clock source. This
+keeps the programming interface backward-compatible.
 
+R329 also adds two new registers, to allow software to immediately drive
+the SoC reset signal.
+
+Signed-off-by: Samuel Holland <samuel@sholland.org>
+---
+Changes v1 to v2:
+ - Switch from enum to const
+ - Add descriptions to "clocks" items
+
+ .../watchdog/allwinner,sun4i-a10-wdt.yaml     | 32 ++++++++++++++++++-
+ 1 file changed, 31 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+index 9aa3c313c49f..8fa5b0d32381 100644
+--- a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
++++ b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+@@ -24,6 +24,7 @@ properties:
+               - allwinner,sun50i-a100-wdt
+               - allwinner,sun50i-h6-wdt
+               - allwinner,sun50i-h616-wdt
++              - allwinner,sun50i-r329-wdt
+           - const: allwinner,sun6i-a31-wdt
+       - items:
+           - const: allwinner,suniv-f1c100s-wdt
+@@ -33,7 +34,18 @@ properties:
+     maxItems: 1
+ 
+   clocks:
+-    maxItems: 1
++    minItems: 1
++    maxItems: 2
++    items:
++      - description: High-frequency oscillator input, divided internally
++      - description: Low-frequency oscillator input, only found on some variants
++
++  clock-names:
++    minItems: 1
++    maxItems: 2
++    items:
++      - const: hosc
++      - const: losc
+ 
+   interrupts:
+     maxItems: 1
+@@ -44,6 +56,24 @@ required:
+   - clocks
+   - interrupts
+ 
++if:
++  properties:
++    compatible:
++      contains:
++        enum:
++          - allwinner,sun50i-r329-wdt
++
++then:
++  properties:
++    clocks:
++      minItems: 2
++
++    clock-names:
++      minItems: 2
++
++  required:
++    - clock-names
++
+ unevaluatedProperties: false
+ 
+ examples:
 -- 
-viresh
+2.31.1
+
