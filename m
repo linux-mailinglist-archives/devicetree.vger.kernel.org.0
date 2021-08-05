@@ -2,203 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 92AC63E1AF8
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 20:09:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A73903E1B1A
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 20:18:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232818AbhHESKC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 14:10:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37006 "EHLO
+        id S232969AbhHESSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 14:18:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240914AbhHESKC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 14:10:02 -0400
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B5F6C0613D5
-        for <devicetree@vger.kernel.org>; Thu,  5 Aug 2021 11:09:47 -0700 (PDT)
-Received: by mail-yb1-xb2b.google.com with SMTP id m193so10447840ybf.9
-        for <devicetree@vger.kernel.org>; Thu, 05 Aug 2021 11:09:47 -0700 (PDT)
+        with ESMTP id S230209AbhHESSr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 14:18:47 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33ED5C061765;
+        Thu,  5 Aug 2021 11:18:33 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id k9so9653333edr.10;
+        Thu, 05 Aug 2021 11:18:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=atishpatra.org; s=google;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=U8HsCzGiYHCZBDfypa8N82te7eUp4Bk6shNFm27b7NU=;
-        b=qp80yKWHYgvCk7Z/Cx/rUSLn80PPXquMnWUxPFG7j5q68E79Fs4N4Z8q5L0km8sqWh
-         +yXPaSPw3HA9dyjXFvYqNuNhui4G+MyGHmuwIcKd2mrLQY0+UuO+IzwuQD/hs/HOvUaf
-         PNb7i5anWuNHNbuuxvkfhvpYx7Z4UM4K2O4aA=
+        bh=ojNM9xV3H+nI1/a7NsvJNdRoof5hRfKC/9tKy/ZhcHw=;
+        b=olqN3ikMo81rNz4+DbVRQ5Gbl0vu0cGksnagpE9AgmSSecjhUJyB2hL20W+uRwdVkZ
+         cmeZCYW7JCSZ/NYW0/792UKXVObEHntrwM0GTVFi4UwIV/gNTlp2HXmft1lA96HTWIuY
+         bunfazBEz48qFAV19PJIS6M7B1NmkQhrW5o9iWBSgv8YZr7zlXEkqZ/758h1kjTJSA6H
+         4CpzFlazcO/6PiXkUUJuP6CNMezIy0+raIkR6RrivKelpHFimF71gUxhmbtION74UFwD
+         wwtoNDpw3trioZGMrWgBU0Alwn86VCLubOfleCkMpfO6DnO9roiE3VkgzfqqkB8qIhqp
+         Am9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=U8HsCzGiYHCZBDfypa8N82te7eUp4Bk6shNFm27b7NU=;
-        b=PvpedRk89K9/ycPU/874xLz4vOvcxWmuA3HwBWVFDOKmfZi8t9iS5PC4UW/BN5F2Fh
-         y5OUoAZysSjf5n2D9ZJx8GM0esv+jiQ98xYoz7ptjMk5CN4jJjdfc1cLCmeIW5lnORnM
-         VgZOkCCJQMD3KZqxvF7f4j5oC/L8nNAnk1zfGK/ryCy4yiNimEfWF0JBM6r5nBAFUWOF
-         OW3z/Yp9++0DUZIQrvhejf5S/OBSlFhCqqMlg4xygog0B6ljH0RP7J472Xg82phwMJf6
-         5dqhbSCxCTZqhwbz9CfjcdayWc1w4+fPTmzcll5+Uju8JrbHnpgLysU27+ru+19v68BW
-         1LpA==
-X-Gm-Message-State: AOAM531R3t92Ry4x+eoDwUHasJU10DWqx4i+rYL+/T4luei9X6Oglqjn
-        lyIYAr/lZZQvqpIWWzxmWG5oaoDAnUC+7pnqfg+h
-X-Google-Smtp-Source: ABdhPJzOJ3LNizTbKDigKKWFg+6t1R1Utwh0pqRKavYrB9YN400Yh0NfZj/2noUPVsnFCijHcD83n2PccSv8FNwPPjk=
-X-Received: by 2002:a25:3bcb:: with SMTP id i194mr7335693yba.442.1628186986830;
- Thu, 05 Aug 2021 11:09:46 -0700 (PDT)
+        bh=ojNM9xV3H+nI1/a7NsvJNdRoof5hRfKC/9tKy/ZhcHw=;
+        b=TVglxS7nCYDb0vmfAqKI1NsCW0UqIlDvLNGGlmiMJx1V4vIaq6KHbcTQOK8BNURdM9
+         yDfHXBc7GgFTWyaAwkUm26dDHWczEvyFCjuNIoG7dX27hYwjBu2ivEnnSG+yGMJvm8GG
+         tb/mSaU8exN5UL3zw593RBNwytKkOQhenWUtvBCpA6WGveexLIVCcO00LOGinN/NMnwz
+         THKj26j6/Qs4E74K30+/CkdWRsjNZWScwVZPjD1uPY1g1JIzFteeNNQ568mOq+nHyjPp
+         smxjJ0LNdIPxbRv72Ya1D6GkVaObSXsYH0eiQ1br59EfMtUZC695Oe8S45z+KPe89crh
+         YRrA==
+X-Gm-Message-State: AOAM531Rk42NnYtXufRME4gGjbVoyMxK46Fl1aHpxAstPWx8gBIwCDNV
+        McJ/Zdwbhtwcchz/gOMi+SW04IZ+tpCP5xBbDYE=
+X-Google-Smtp-Source: ABdhPJxAQxK02kP1hoG/1FTsH5hCNBUCJGicnRD8GVaXqj7qpLOmlEdfipZjtgyGJx3opxXShvtRUFnXaflfYi8bGXY=
+X-Received: by 2002:a05:6402:cae:: with SMTP id cn14mr8314025edb.31.1628187511800;
+ Thu, 05 Aug 2021 11:18:31 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAOnJCUL9uU5G1LOgfYPz9Ny77yFYaP5sgtdxG3_w=Zcsi+f96Q@mail.gmail.com>
- <mhng-c9300c9e-6877-492f-a290-7c51066d3920@palmerdabbelt-glaptop>
- <20210805023024.GA12312@x1> <CANBLGcwczBsc-mfU2t9=7No7KhHfBFHFzGy=5hdyEE+4VN8ksg@mail.gmail.com>
-In-Reply-To: <CANBLGcwczBsc-mfU2t9=7No7KhHfBFHFzGy=5hdyEE+4VN8ksg@mail.gmail.com>
-From:   Atish Patra <atishp@atishpatra.org>
-Date:   Thu, 5 Aug 2021 11:09:36 -0700
-Message-ID: <CAOnJCU+-orqjP5dND0QNh+08UhXitS=LPpg1VpnBcp=6YJU7EQ@mail.gmail.com>
-Subject: Re: [PATCH v4] dt-bindings: riscv: add starfive jh7100 bindings
-To:     Emil Renner Berthing <kernel@esmil.dk>
-Cc:     Drew Fustini <drew@pdp7.com>, Palmer Dabbelt <palmer@dabbelt.com>,
-        Drew Fustini <drew@beagleboard.org>,
-        Bin Meng <bmeng.cn@gmail.com>,
+References: <20210716103651.1455-1-linux.amoon@gmail.com> <20210716103651.1455-2-linux.amoon@gmail.com>
+ <CAFBinCDeqauw_V-Vn9cat9HaCXj6HEMz6G+G+VbqCNtGEFGYzg@mail.gmail.com>
+ <CANAwSgQ5PDGUWMH-jxnz5wwutUVniTn7RAe=4J=8-jbmqxYRRg@mail.gmail.com>
+ <CAFBinCBhg+dije+3DvV_V_kqHv9q+r4EPxXCYFti6KuA4mK7KQ@mail.gmail.com>
+ <CANAwSgT9-5zGr67aGzBmW6WDBfeiAvjv_zv2UbRC+YbgAGg==A@mail.gmail.com>
+ <CAFBinCCGA0b=LVjbQood+iN+DHLodY0RJ-GrSOcgdzrDFJ25pQ@mail.gmail.com>
+ <CAFBinCAohjxcsY3D1rdAiYVGL+==cnjzZxg1GmYxSNVhxSTDoA@mail.gmail.com> <CAFBinCAP_DDvPLn4h1yQKEdU_x1ovokHUTPeq3vNV_sDF8PcWg@mail.gmail.com>
+In-Reply-To: <CAFBinCAP_DDvPLn4h1yQKEdU_x1ovokHUTPeq3vNV_sDF8PcWg@mail.gmail.com>
+From:   Anand Moon <linux.amoon@gmail.com>
+Date:   Thu, 5 Aug 2021 23:48:20 +0530
+Message-ID: <CANAwSgS2vi7hZqX0LWxNTvk-3aN=n1fEErj4Zt0_4CCpZGyRkg@mail.gmail.com>
+Subject: Re: [PATCHv2 1/4] ARM: dts: meson8b: odroidc1: Add usb phy power node
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     linux-phy@lists.infradead.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org,
+        Linux Kernel <linux-kernel@vger.kernel.org>,
+        Matt Corallo <oc2udbzfd@mattcorallo.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Michael Zhu <michael.zhu@starfivetech.com>,
-        Fu Wei <tekkamanninja@gmail.com>, jack.zhu@starfivetech.com,
-        leyfoon.tan@starfivetech.com,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Emiliano Ingrassia <ingrassia@epigenesys.com>,
+        devicetree <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 5, 2021 at 1:13 AM Emil Renner Berthing <kernel@esmil.dk> wrote:
+Hi Martin,
+
+On Thu, 5 Aug 2021 at 03:28, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
 >
-> On Thu, 5 Aug 2021 at 04:30, Drew Fustini <drew@pdp7.com> wrote:
-> > On Wed, Aug 04, 2021 at 02:13:47PM -0700, Palmer Dabbelt wrote:
-> > > On Wed, 04 Aug 2021 13:54:16 PDT (-0700), atishp@atishpatra.org wrote:
-> > > > On Wed, Aug 4, 2021 at 1:33 PM Palmer Dabbelt <palmer@dabbelt.com> wrote:
-> > > > >
-> > > > > On Thu, 15 Jul 2021 19:17:23 PDT (-0700), bmeng.cn@gmail.com wrote:
-> > > > > > On Tue, Jul 13, 2021 at 2:34 PM Drew Fustini <drew@beagleboard.org> wrote:
-> > > > > >>
-> > > > > >> Add DT binding documentation for the StarFive JH7100 Soc [1] and the
-> > > > > >> BeagleV Starlight JH7100 board [2].
-> > > > > >>
-> > > > > >> [1] https://github.com/starfive-tech/beaglev_doc
-> > > > > >> [2] https://github.com/beagleboard/beaglev-starlight
-> > > > > >>
-> > > > > >> Signed-off-by: Drew Fustini <drew@beagleboard.org>
-> > > > > >> ---
-> > > > > >> v4 changes:
-> > > > > >> - removed JH7100 SoC revision number after discussion with Geert
-> > > > > >>
-> > > > > >> v3 changes:
-> > > > > >> - added revision number for the board and soc after question from Palmer
-> > > > > >>
-> > > > > >> v2 changes:
-> > > > > >> - removed "items:" entry that only had "const: starfive,jh7100"
-> > > > > >> - correct typo in Description:
-> > > > > >>
-> > > > > >> Results of running checks:
-> > > > > >>   $ make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- dt_binding_check \
-> > > > > >>     DT_SCHEMA_FILES=Documentation/devicetree/bindings/riscv/starfive.yaml
-> > > > > >>     CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
-> > > > > >>     DTEX    Documentation/devicetree/bindings/riscv/starfive.example.dts
-> > > > > >>     SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
-> > > > > >>     DTC     Documentation/devicetree/bindings/riscv/starfive.example.dt.yaml
-> > > > > >>     CHECK   Documentation/devicetree/bindings/riscv/starfive.example.dt.yaml
-> > > > > >>   $ make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- dtbs_check \
-> > > > > >>     DT_SCHEMA_FILES=Documentation/devicetree/bindings/riscv/starfive.yaml
-> > > > > >>     SYNC    include/config/auto.conf.cmd
-> > > > > >>     UPD     include/config/kernel.release
-> > > > > >>     SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-> > > > > >>     DTC     arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dtb
-> > > > > >>     DTC     arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dt.yaml
-> > > > > >>     DTC     arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dt.yaml
-> > > > > >>     DTC     arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dt.yaml
-> > > > > >>     CHECK   arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dt.yaml
-> > > > > >>     CHECK   arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dt.yaml
-> > > > > >>     CHECK   arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dt.yaml
-> > > > > >>
-> > > > > >> The dts file is from vendor repo and is being cleaned up right now in
-> > > > > >> preperation for submitting to the mailing list:
-> > > > > >> https://github.com/starfive-tech/linux/tree/beaglev/arch/riscv/boot/dts/starfive
-> > > > > >>
-> > > > > >>  .../devicetree/bindings/riscv/starfive.yaml   | 27 +++++++++++++++++++
-> > > > > >>  1 file changed, 27 insertions(+)
-> > > > > >>  create mode 100644 Documentation/devicetree/bindings/riscv/starfive.yaml
-> > > > > >>
-> > > > > >
-> > > > > > Reviewed-by: Bin Meng <bmeng.cn@gmail.com>
-> > > > >
-> > > > > Thanks.  This is on for-next, as Rob suggested taking it via the RISC-V
-> > > > > tree.
-> > > > >
-> > > > Given that beagleV starlight mass production is cancelled [1], are we
-> > > > still upstreaming the support for this ?
+> On Sun, Jul 18, 2021 at 9:09 PM Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+> >
+> > Hi Anand,
+> >
+> > On Sun, Jul 18, 2021 at 4:01 PM Martin Blumenstingl
+> > <martin.blumenstingl@googlemail.com> wrote:
+> > [...]
+> > > > From the schematics [1]
+> > > > https://dn.odroid.com/S805/Schematics/odroid-c1+_rev0.4_20160226.pdf
+> > > >
+> > > > You could find references to PWREN  <--- GPIOAO.BIT5
+> > > > The second reference is USB HOST Power Switch
+> > > > The third reference is USB HOST POWER.
+> > > >
+> > > > Hope I am clean in my thought process now.
+> > > Can you please point out the page numbers for me?
 > > >
-> > > I'm not sure, but I wasn't quite sure where to have that discussion.  I
-> > > figured that the boards exist so there's no reason to shoot this down, given
-> > > that it's just the vendor DT list.  At a bare minimum there's out of tree
-> > > support for this, so having the DT strings defined seems sane as that's a
-> > > defacto interface with bootloaders.
-> > >
-> > > Maybe this is more of a question for Drew: I think we were all OK working
-> > > through the issues with the first-run chip when there was going to be a lot
-> > > of them, but with such a small number produced I'm not sure if there's going
-> > > to be enough interested to take on all that effort.
-> > >
-> > > I'm not quite sure where we stand on support for this: at some point there
-> > > were some ideas floating around as to a way to support it without major
-> > > software changes (allocating into the non-caching regions).  If that pans
-> > > out then I'm fine handling this, at least from the RISC-V side, but if we're
-> > > going to have to go through all the ISA/SBI stuff then it's probably not
-> > > worth it.  Also not sure if there are a bunch of starfive-specific drivers
-> > > that would be needed to make this boot, in which case it's probably best to
-> > > wait for whatever comes next.
+> > > What I am seeing on page 1 is:
+> > > GPIOAO_5 (called GPIOAO.BIT5) is connected as an INPUT to the USB_OTG
+> > > PWREN signal (that's the green box with the label "USB_OTG.SchDoc"
+> > > above it).
+> > I unfortunately missed your question on IRC on this topic:
+> > <armoon> xdarklight: just want to understand the confusion on PWREN,
+> > either is INPUT / OTPUT to usb hub am I correct
+> > My understanding of the INPUT/OUTPUT direction in the Odroid-C1
+> > schematics (which you linked) above is that the arrow direction shows
+> > whether it's an input or output.
+> > For example (all on page one):
+> > - HDMI_HPD is an input to the Meson8b SoC, arrow direction is: HDMI => S805
+> > - IR_IN is an input to the Meson8b SoC, arrow direction is: S805 <=
+> > GPIOAO.BIT7 IR_IN
+> > - PWM is an output, arrow direction is: S805 => PWM.C VCCK_PWM
+> > - 3.3V/1.8V switch for the SD card is an output, arrow direction is:
+> > S805 => GPIOAO.BIT3 TF_3V3N_1V8_EN
 > >
-> > I think that the discontinued beta prototype could be useful as a native
-> > build host for those of you that have it and don't have an Unmatched.
+> > That tells me: the arrow direction shows which connections are inputs
+> > or outputs.
+> > Some pins can be input and output at the same time (HDMI_CEC). But
+> > let's keep it simple for now any only look at inputs/output.
+> >
+> > Based on this information I am looking at the arrow direction for
+> > USB_OTG: GPIOAO.BIT5 PWREN <= S805
+> > So this confirms that GPIOAO_5 is an output to the SoC.
+> > Please note though that this part is not linked with any USB host
+> > connector, it's only linked to the USB OTG path.
+> >
+> > For the next part the S805 SoC is not involved:
+> > USB1 USB_HOST_PWR_SW PWREN <= PWREN USB_HUB_GL852G
+> > USB2 USB_HOST_PWR_SW PWREN <= PWREN USB_HUB_GL852G
+> > This tells me that the PWREN signal for the two USB_HOST_PWR_SW (USB
+> > host power switches / current limiters) is driven by the GL852G USB
+> > hub.
+> Hardkernel team responded on the Odroid forums to the request from Anand:
+> "Power-Enable signal to the USB load switch ICs is connected to the
+> USB hub controller.
+> It is not connected the CPU GPIO."
 >
-> Also according to this statement [1], they're still planning on
-> producing new boards with the JH7100 (same chip as on the BeagleV
-> prototype) at the end of Q3 and the JH7110 further in the future, so I
-> still think it'd make sense to support those.
->
-> [1]: https://www.design-reuse.com/news/50402/starfive-open-source-single-board-platform-q3-2021.html
+> The regulator from Anand's patch is therefore connected to the micro USB port.
+> This means that the patch needs updating in case Anand wants to have
+> it included.
 >
 
+Yes, I will send a corrected version of the patches soon.
 
+>
+> Best regards,
+> Martin
+>
+>
+> [0] https://forum.odroid.com/viewtopic.php?p=332217#p332217
 
-> > The arch_sync_dma RFC from Atish [1] is key to the board running
-> > mainline. Most of the peripherals (USB, SD card, ethernet) are already
-> > supported by upstream Cadence and Synopsys drivers. However, the vendor
-> > kernel used ifdef's to flush the L2 cache at several points in those
-> > drivers and subsystem cores because the peripherals are on a non-cache
-> > coherent interconnect.
-> >
-> > Without the proposed solution from Atish that uses the non-cached DDR
-> > alias, then only serial console would work on mainline (assuming the
-> > system is running from a ramdisk that the vendor uboot loaded).
-> >
-
-We need the clock patches as well. If there is an agreed effort to
-upstream the clock patches
-and other bare minimum patches, I am happy to revise the DMA patches as well.
-
-However, I am not sure all the patches should be beagleV or
-starfive/starlight given the new announcement
-from StarFive. Does anybody know if they are going to mass produce the
-exact same SBC (JH7100) or some variant of it ?
-
-Maybe we should defer upstreaming until we see the new board ? We
-probably don't want two different versions of upstreaming support
-for the same board!
-
-> > Thanks,
-> > Drew
-> >
-> > [1] https://lore.kernel.org/linux-riscv/CAOnJCU+ip1ccc9CrREi3c+15ue4Grcq+ENbQ+z_gh3CH249aAg@mail.gmail.com/T/#md422e9de172a179f8625c5bb595cf40e5942db67
-
-
-
--- 
-Regards,
-Atish
+Thanks
+-Anand
