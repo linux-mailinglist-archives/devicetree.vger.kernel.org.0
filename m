@@ -2,186 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18C8C3E1780
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 17:05:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78DC93E1796
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 17:08:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234862AbhHEPFQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 11:05:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50352 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230183AbhHEPFP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 11:05:15 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B486C061765;
-        Thu,  5 Aug 2021 08:05:01 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id AD527E04;
-        Thu,  5 Aug 2021 17:04:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1628175896;
-        bh=TEJORNSttP9WWJ4+Duss24NQytGVgycAdaJHtji+RJg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=wWF7sGskHUTcMF1oSUefAiPeLWc0md5mV5Z1rg9pU7EAfAjWrqa3XbE8MVQZfkjm9
-         WEbUGfYCJqmHGbBhryEnmaxbw6xd8Tsl+x51s7XOqfJobUtG7ndmHIMVgAC9JCzdVp
-         FwAjt8CyGMsQ1EIWAK7ZuuGjgAeY6gkKdtDU5S1w=
-Date:   Thu, 5 Aug 2021 18:04:44 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Paul Cercueil <paul@crapouillou.net>,
+        id S238638AbhHEPIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 11:08:54 -0400
+Received: from relay2-d.mail.gandi.net ([217.70.183.194]:57117 "EHLO
+        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238005AbhHEPIy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 11:08:54 -0400
+Received: (Authenticated sender: thomas.perrot@bootlin.com)
+        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 36A3740004;
+        Thu,  5 Aug 2021 15:08:38 +0000 (UTC)
+From:   Thomas Perrot <thomas.perrot@bootlin.com>
+To:     devicetree@vger.kernel.org
+Cc:     Thomas Perrot <thomas.perrot@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
-        Paul Boddie <paul@boddie.org.uk>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v2 8/8] [RFC] drm/ingenic: convert to component framework
- for jz4780 hdmi
-Message-ID: <YQv+DC5yTEGlJYuD@pendragon.ideasonboard.com>
-References: <cover.1628172477.git.hns@goldelico.com>
- <77554dd2612f418f6ab74a8be06c82b71410e0e6.1628172477.git.hns@goldelico.com>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Subject: [PATCH] ARM: dts: imx7: add ftm nodes for Flex Timers
+Date:   Thu,  5 Aug 2021 17:06:33 +0200
+Message-Id: <20210805150633.348451-1-thomas.perrot@bootlin.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <77554dd2612f418f6ab74a8be06c82b71410e0e6.1628172477.git.hns@goldelico.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nikolaus,
+The i.MX7 has two possible Flex Timers, disabled by default. Moreover, the
+block is the same as LS1021a, then the drivers can be used as-is.
 
-Thank you for the patch.
+Signed-off-by: Thomas Perrot <thomas.perrot@bootlin.com>
+---
+ arch/arm/boot/dts/imx7s.dtsi | 28 ++++++++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
-On Thu, Aug 05, 2021 at 04:07:57PM +0200, H. Nikolaus Schaller wrote:
-> This patch attempts to convert the ingenic-dw-hdmi driver
-> into a version that uses the component framework.
-
-Why ? What problem would this solve ?
-
-> Unfortunately the new version does not work.
-> 
-> Debugging shows that ingenic_dw_hdmi_bind() is never called.
-> 
-> Suggestions for reasons and fixes are welcome.
-> 
-> Signed-off-by: Paul Boddie <paul@boddie.org.uk>
-> Co-authored-by: Paul Boddie <paul@boddie.org.uk>
-> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
-> ---
->  drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c | 57 ++++++++++++++++++-----
->  1 file changed, 46 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c b/drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
-> index 61e7a57d7cec1..a5ba0b69baa8c 100644
-> --- a/drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
-> +++ b/drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
-> @@ -1,17 +1,24 @@
->  // SPDX-License-Identifier: GPL-2.0
->  /* Copyright (C) 2011-2013 Freescale Semiconductor, Inc.
-> - * Copyright (C) 2019, 2020 Paul Boddie <paul@boddie.org.uk>
-> + * Copyright (C) 2019, 2020, 2021 Paul Boddie <paul@boddie.org.uk>
->   *
->   * Derived from dw_hdmi-imx.c with i.MX portions removed.
-> - * Probe and remove operations derived from rcar_dw_hdmi.c.
->   */
->  
-> +#include <linux/component.h>
->  #include <linux/module.h>
->  #include <linux/platform_device.h>
->  #include <linux/regmap.h>
->  
->  #include <drm/bridge/dw_hdmi.h>
->  #include <drm/drm_of.h>
-> +#include <drm/drm_modeset_helper_vtables.h>
-> +#include <drm/drm_simple_kms_helper.h>
-> +
-> +struct ingenic_dw_hdmi_encoder {
-> +	struct drm_encoder encoder;
-> +	struct dw_hdmi *hdmi;
-> +};
->  
->  static const struct dw_hdmi_mpll_config ingenic_mpll_cfg[] = {
->  	{ 45250000,  { { 0x01e0, 0x0000 }, { 0x21e1, 0x0000 }, { 0x41e2, 0x0000 } } },
-> @@ -87,24 +94,52 @@ static const struct of_device_id ingenic_dw_hdmi_dt_ids[] = {
->  };
->  MODULE_DEVICE_TABLE(of, ingenic_dw_hdmi_dt_ids);
->  
-> -static int ingenic_dw_hdmi_probe(struct platform_device *pdev)
-> +static int ingenic_dw_hdmi_bind(struct device *dev, struct device *master,
-> +				void *data)
->  {
-> -	struct dw_hdmi *hdmi;
-> +	struct platform_device *pdev = to_platform_device(dev);
-> +	struct drm_device *drm = data;
-> +	struct drm_encoder *enc;
-> +	struct ingenic_dw_hdmi_encoder *hdmi_encoder;
->  
-> -	hdmi = dw_hdmi_probe(pdev, &ingenic_dw_hdmi_plat_data);
-> -	if (IS_ERR(hdmi))
-> -		return PTR_ERR(hdmi);
-> +	hdmi_encoder = drmm_simple_encoder_alloc(drm, struct ingenic_dw_hdmi_encoder,
-> +						 encoder, DRM_MODE_ENCODER_TMDS);
-> +	if (IS_ERR(hdmi_encoder))
-> +		return PTR_ERR(hdmi_encoder);
->  
-> -	platform_set_drvdata(pdev, hdmi);
-> +	enc = &hdmi_encoder->encoder;
-> +	drm_encoder_helper_add(enc, NULL);
-> +	hdmi_encoder->hdmi = dw_hdmi_bind(pdev, enc, &ingenic_dw_hdmi_plat_data);
-> +
-> +	if (IS_ERR(hdmi_encoder->hdmi))
-> +		return PTR_ERR(hdmi_encoder->hdmi);
-> +
-> +	dev_set_drvdata(dev, hdmi_encoder->hdmi);
->  
->  	return 0;
->  }
->  
-> -static int ingenic_dw_hdmi_remove(struct platform_device *pdev)
-> +static void ingenic_dw_hdmi_unbind(struct device *dev, struct device *master,
-> +				   void *data)
-> +{
-> +	struct dw_hdmi *hdmi = dev_get_drvdata(dev);
-> +
-> +	dw_hdmi_unbind(hdmi);
-> +}
-> +
-> +static const struct component_ops ingenic_dw_hdmi_ops = {
-> +	.bind	= ingenic_dw_hdmi_bind,
-> +	.unbind	= ingenic_dw_hdmi_unbind,
-> +};
-> +
-> +static int ingenic_dw_hdmi_probe(struct platform_device *pdev)
->  {
-> -	struct dw_hdmi *hdmi = platform_get_drvdata(pdev);
-> +	return component_add(&pdev->dev, &ingenic_dw_hdmi_ops);
-> +}
->  
-> -	dw_hdmi_remove(hdmi);
-> +static int ingenic_dw_hdmi_remove(struct platform_device *pdev)
-> +{
-> +	component_del(&pdev->dev, &ingenic_dw_hdmi_ops);
->  
->  	return 0;
->  }
-
+diff --git a/arch/arm/boot/dts/imx7s.dtsi b/arch/arm/boot/dts/imx7s.dtsi
+index a22d41e0cf31..1843fc053870 100644
+--- a/arch/arm/boot/dts/imx7s.dtsi
++++ b/arch/arm/boot/dts/imx7s.dtsi
+@@ -707,6 +707,34 @@ ecspi4: spi@30630000 {
+ 				status = "disabled";
+ 			};
+ 
++			ftm1: pwm@30640000 {
++				compatible = "fsl,vf610-ftm-pwm";
++				reg = <0x30640000 0x10000>;
++				#pwm-cells = <3>;
++				interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
++				clock-names = "ftm_sys", "ftm_ext",
++				"ftm_fix", "ftm_cnt_clk_en";
++				clocks = <&clks IMX7D_FLEXTIMER1_ROOT_CLK>,
++					<&clks IMX7D_FLEXTIMER1_ROOT_CLK>,
++					<&clks IMX7D_FLEXTIMER1_ROOT_CLK>,
++					<&clks IMX7D_FLEXTIMER1_ROOT_CLK>;
++				status = "disabled";
++			};
++
++			ftm2: pwm@30650000 {
++				compatible = "fsl,vf610-ftm-pwm";
++				reg = <0x30650000 0x10000>;
++				#pwm-cells = <3>;
++				interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
++				clock-names = "ftm_sys", "ftm_ext",
++				"ftm_fix", "ftm_cnt_clk_en";
++				clocks = <&clks IMX7D_FLEXTIMER2_ROOT_CLK>,
++					<&clks IMX7D_FLEXTIMER2_ROOT_CLK>,
++					<&clks IMX7D_FLEXTIMER2_ROOT_CLK>,
++					<&clks IMX7D_FLEXTIMER2_ROOT_CLK>;
++				status = "disabled";
++			};
++
+ 			pwm1: pwm@30660000 {
+ 				compatible = "fsl,imx7d-pwm", "fsl,imx27-pwm";
+ 				reg = <0x30660000 0x10000>;
 -- 
-Regards,
+2.31.1
 
-Laurent Pinchart
