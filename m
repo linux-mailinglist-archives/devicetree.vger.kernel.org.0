@@ -2,99 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EBD43E1108
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 11:17:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 836F33E110E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 11:17:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239544AbhHEJRm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 05:17:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54916 "EHLO
+        id S239853AbhHEJRw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 05:17:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239416AbhHEJRl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 05:17:41 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20788C061765
-        for <devicetree@vger.kernel.org>; Thu,  5 Aug 2021 02:17:27 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id c9so5558600wri.8
-        for <devicetree@vger.kernel.org>; Thu, 05 Aug 2021 02:17:27 -0700 (PDT)
+        with ESMTP id S239818AbhHEJRs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 05:17:48 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82CA2C0613C1;
+        Thu,  5 Aug 2021 02:17:33 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id k38-20020a05600c1ca6b029025af5e0f38bso5739425wms.5;
+        Thu, 05 Aug 2021 02:17:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=fzThuEjTrYhg1qOmjws2RuEPYFGd40kLfkIG1ZhFyqU=;
-        b=H9MbDpONaMfqEQsHonMKiW0qkmxYLMwS0uRUZg6wtXAdVU5M/dJLOsFiJe5OER+G1p
-         IFQupaw/WaJxRHlv064WK/6b2o0QsZxtImi+8S22GS74wVbd37V2WeDQfMiWJTJlw+wJ
-         oopRPsr0AIOCDAPlEj9HWzlN8FaRlH5HJI5fDhhURhHhxQYvTYoQVCzpIRS+UhF7Vdcj
-         /I1SZFFnYCwuv2tbAaJ7RZ6coY/XmZ+vSq8Kfsjaddy5+fmq2x6h8Mg1DZL1TY8EaMOR
-         QTypTYgGMOvWudH0T1SP1QaR3ZNYKrsTA1NUmQy+GNoNEzpLNMkofeSPXk6EFmZOHrNG
-         h8Mg==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=kCcVZEkYGRKFKKDWnwfipeEmkrP7zTh5P/d+2TB0cUM=;
+        b=CecqXqs6u0MwWRSNJzmPq7ZV9p5HS1nJTgxLI1+KshvG77X4R7GDcvsBNos2j+7GPI
+         OhxZg8ddcYi/Ospo5gRFQefQAjBmlTY75Bh3VQ4c47DVKruUvGaLLXk7+tGv4sVq3neH
+         RQhvSRahFuwTeqiQuH9gexX/J7QYVKaE8FHdOYBLQHshHFfxOF2OqkWcBoeruiDPQ6Dw
+         xPOua4v2s0dNKzrTX940Ocr3o6FsmBi7e/w5tTSwrpiRw/UHeO6+aO5ZYB3IOPbBrbNy
+         5jpgXPcMephl4nYOj5jg8xJ7kIfVxVSiHfIRN6URaO2YQUNtTbreY4u/lXVFltT/8mCC
+         2zxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=fzThuEjTrYhg1qOmjws2RuEPYFGd40kLfkIG1ZhFyqU=;
-        b=UfkPxQdREazCz680icEW3pqVEpeHNds7Rb8zU1mMcaJz+3tb13Gl4g7QJHAiLn4hU5
-         EPzwwoeqSr7KOYA1bMBg+upZxXAfH2+uxabhI3iEC3dpbD19EJpKCYd40OegcYWA24mr
-         BHEZ5WFkbEcAhTKbxC6B//sow0pHaAxg/OxBaSqnHtZj+j9p9ehJNzx7hOza3DVuOjHW
-         qTiGufPNGiU9gxcZqeKYKrsMiO/3PTpJTNnwq5Qbjge+eVYV6FPRokvi7fHBzx2160Gu
-         vJQ3DpHN/AX+fjyQQBHrGlXKxtJybD2UrpfBlGoli5/WLFpmFQEPzxpWk63W8tbPJX64
-         5w3w==
-X-Gm-Message-State: AOAM5313xxxmjfbhAovKWFbq9JAilMQekeLEDCCuMFjTlUbazAyj/bY9
-        oVERGrxkvLw0AzuMwK/Mztw56Q==
-X-Google-Smtp-Source: ABdhPJxWILAsnwsT+9R3gsOKWSUR18ggJyUkK0YIVKtH9k/P3tlswSZoHeyJCACfIZYqUmV1QJxxTw==
-X-Received: by 2002:adf:d20c:: with SMTP id j12mr4026181wrh.74.1628155045815;
-        Thu, 05 Aug 2021 02:17:25 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id d16sm5400324wrx.76.2021.08.05.02.17.24
+        bh=kCcVZEkYGRKFKKDWnwfipeEmkrP7zTh5P/d+2TB0cUM=;
+        b=IojitkZTByWQ8ZXa/qntgkqa/QZMiI/5pi3CXtmC4+NYKiMK8wcWUHWqcjxv+O1BBB
+         9J1R9FGl9l986/86vpOk7g12B8mR9mkwvOTgcpUGoQWuegng3X+6ok8whIB97qaECKdx
+         wrBa4ptL/nqjXngzDqUBJQBze0gqjOTRqitvL/m5+TpmlB4/wPkLJnVbDchhIWesYtWL
+         3v2kfoL8sW3Y9GboYuPXAZdvH9eqhLJ0YFHvTR+CU/qfl3zZ/qzi/y6sIRdmg5FEaGSn
+         nKTdjpqpoxmVyRh7WahMMUUNdaJEBUTnAI99lOBEadyzesraARM5ZpQImBLyTdyV1sfi
+         uCIw==
+X-Gm-Message-State: AOAM530rdZ5p7XoSuq+lE+BxWCDiRr1/liPFvMQKLrKjq5JpRiOTXSWP
+        /7JhQdfKD0b2GlqOGRyx+TE=
+X-Google-Smtp-Source: ABdhPJw15xqh1brrWI8Pf+be3kDcHP2cDuDoXwAt8GH1TssNeJErGCOUrxxWHyXbeJuwraVEQA2/5Q==
+X-Received: by 2002:a7b:c779:: with SMTP id x25mr13865095wmk.88.1628155052199;
+        Thu, 05 Aug 2021 02:17:32 -0700 (PDT)
+Received: from localhost (178-169-161-196.razgrad.ddns.bulsat.com. [178.169.161.196])
+        by smtp.gmail.com with ESMTPSA id l5sm6238776wrc.90.2021.08.05.02.17.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Aug 2021 02:17:25 -0700 (PDT)
-Subject: Re: [PATCH v3 12/20] ASoC: dt-bindings: q6dsp-clocks: add q6prm
- clocks compatible
-To:     Mark Brown <broonie@kernel.org>
-Cc:     bjorn.andersson@linaro.org, robh@kernel.org, plai@codeaurora.org,
-        tiwai@suse.de, devicetree@vger.kernel.org, perex@perex.cz,
-        alsa-devel@alsa-project.org, lgirdwood@gmail.com,
-        bgoswami@codeaurora.org
-References: <20210803125411.28066-1-srinivas.kandagatla@linaro.org>
- <20210803125411.28066-13-srinivas.kandagatla@linaro.org>
- <20210804180249.GH26252@sirena.org.uk>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <c07fc981-8eed-8333-fd4a-4521efc8da6c@linaro.org>
-Date:   Thu, 5 Aug 2021 10:17:24 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        Thu, 05 Aug 2021 02:17:31 -0700 (PDT)
+From:   Iskren Chernev <iskren.chernev@gmail.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Iskren Chernev <iskren.chernev@gmail.com>
+Subject: [PATCH v1 0/2] Add UFS PHY support for SM6115/4250
+Date:   Thu,  5 Aug 2021 12:17:25 +0300
+Message-Id: <20210805091727.942471-1-iskren.chernev@gmail.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-In-Reply-To: <20210804180249.GH26252@sirena.org.uk>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks Mark for the review,
+The UFS PHY found on SM6115/4250 is named v3-660, found on cheaper qcom devices
+(possibly starting with sdm660), but up until recently wasn't used much due to
+prevalence of sdhc port for internal storage/sdcard.
 
-On 04/08/2021 19:02, Mark Brown wrote:
-> On Tue, Aug 03, 2021 at 01:54:03PM +0100, Srinivas Kandagatla wrote:
-> 
->> +    enum:
->> +      - qcom,q6afe-clocks
->> +      - qcom,q6prm-clocks
-> 
-> Again, what do these mean?  One of the goals with DT bindings
-> documentation is to be able to relate hardware to bindings.
-> 
-Old Elite QDSP framework has service called "Audio Front End" aka q6afe 
-which is responsible for managing the LPASS Audio clocks. So We endup 
-with "qcom,q6afe-clocks" in the past to represent this.
+The name is a bit misleading, because most of the registers found on v3-660
+don't share much in common with v3.
+
+The register values/sequences are taken from OnePlus repo [1].
+
+[1] https://github.com/OnePlusOSS/android_kernel_oneplus_sm4250
+
+Iskren Chernev (2):
+  dt-bindings: phy: qcom,qmp: Add SM6115 UFS PHY bindings
+  phy: qcom-qmp: Add support for SM6115 UFS phy
+
+ .../devicetree/bindings/phy/qcom,qmp-phy.yaml |   1 +
+ drivers/phy/qualcomm/phy-qcom-qmp.c           | 124 ++++++++++++++
+ drivers/phy/qualcomm/phy-qcom-qmp.h           | 153 ++++++++++++++++++
+ 3 files changed, 278 insertions(+)
 
 
-With New AudioReach framework this functionality is now managed by 
-"Proxy Resource Manager" aka q6prm.
+base-commit: 8d4b477da1a807199ca60e0829357ce7aa6758d5
+-- 
+2.32.0
 
-I will rename "qcom,q6prm-clocks" to "qcom,q6prm-lpass-clocks"
-
-to be more explicit about the hardware LPASS (Low Power Audio Sub 
-System)IP here.
-
---srini
