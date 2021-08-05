@@ -2,449 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B53F83E1002
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 10:13:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4679A3E1004
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 10:14:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239252AbhHEIN5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 04:13:57 -0400
-Received: from relay9-d.mail.gandi.net ([217.70.183.199]:38213 "EHLO
-        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237051AbhHEIN5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 04:13:57 -0400
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 0DCF7FF804;
-        Thu,  5 Aug 2021 08:13:40 +0000 (UTC)
-Date:   Thu, 5 Aug 2021 10:13:40 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Dong Aisheng <aisheng.dong@nxp.com>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-imx@nxp.com,
-        kernel@pengutronix.de, dongas86@gmail.com, robh+dt@kernel.org,
-        shawnguo@kernel.org, peng.fan@nxp.com,
-        Alessandro Zummo <a.zummo@towertech.it>
-Subject: Re: [PATCH 2/2] rtc: imx-rpmsg: Add i.MX RPMSG RTC support
-Message-ID: <YQudtCoUhjZYEt/l@piout.net>
-References: <20210805033546.1390950-1-aisheng.dong@nxp.com>
- <20210805033546.1390950-3-aisheng.dong@nxp.com>
+        id S237051AbhHEION (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 04:14:13 -0400
+Received: from mail-yb1-f171.google.com ([209.85.219.171]:46038 "EHLO
+        mail-yb1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236074AbhHEION (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 04:14:13 -0400
+Received: by mail-yb1-f171.google.com with SMTP id a201so7723421ybg.12;
+        Thu, 05 Aug 2021 01:13:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=E4JiRs4SLIpq2z7YmzfETWqM01LASuIHNJhpMEvug1s=;
+        b=TtYk/EqiIApQ9bRPERgr545zgVSjiHshrg/b8FqhaTv4nMpXBG0UevejO/n9l3o30O
+         k/DcN0J4kSf2NFPf6syFBMwDfMKMPlt5vnEEi5O3W1C7pSakhGtGvCZBt5F8l5fLZ25P
+         kfmsNGKVPHON5iaXZk1BKbwqasqDo2BciPjDwzCGhFceXp3AvT/vtutsk8du7h9CfyD1
+         QF8+FaeMTCwn5MrDG1IP4zxnaVqV09g7v8jePCQJDKjAT1Skpik0/KssthNoigDofgvE
+         kp76REqgDs/L/UfUZKApoKfX1VJjY7Vb7NB4JydxIQaxC5iYlCH9MhJxkL6xXXU9PVHE
+         5cag==
+X-Gm-Message-State: AOAM532+XH9etElBdQbquSq0I/mIbtDpPf8DSxG4Uwxf7BUW5M61JwqO
+        Mkmmiwvh6h2ylOrJB4Lxgf3KurSVpsCWY+HckkE=
+X-Google-Smtp-Source: ABdhPJzsnmXBTwXVtAmKIPdr1xZOgPa9wWKTWsAgJUABTvuNi+iyrHPRqfp+0uiX1JT7I9tADwhB7lUvW81pL2PsVQk=
+X-Received: by 2002:a25:4907:: with SMTP id w7mr4420162yba.393.1628151237954;
+ Thu, 05 Aug 2021 01:13:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210805033546.1390950-3-aisheng.dong@nxp.com>
+References: <CAOnJCUL9uU5G1LOgfYPz9Ny77yFYaP5sgtdxG3_w=Zcsi+f96Q@mail.gmail.com>
+ <mhng-c9300c9e-6877-492f-a290-7c51066d3920@palmerdabbelt-glaptop> <20210805023024.GA12312@x1>
+In-Reply-To: <20210805023024.GA12312@x1>
+From:   Emil Renner Berthing <kernel@esmil.dk>
+Date:   Thu, 5 Aug 2021 10:13:46 +0200
+Message-ID: <CANBLGcwczBsc-mfU2t9=7No7KhHfBFHFzGy=5hdyEE+4VN8ksg@mail.gmail.com>
+Subject: Re: [PATCH v4] dt-bindings: riscv: add starfive jh7100 bindings
+To:     Drew Fustini <drew@pdp7.com>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Drew Fustini <drew@beagleboard.org>,
+        Bin Meng <bmeng.cn@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Michael Zhu <michael.zhu@starfivetech.com>,
+        Fu Wei <tekkamanninja@gmail.com>, jack.zhu@starfivetech.com,
+        leyfoon.tan@starfivetech.com,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+On Thu, 5 Aug 2021 at 04:30, Drew Fustini <drew@pdp7.com> wrote:
+> On Wed, Aug 04, 2021 at 02:13:47PM -0700, Palmer Dabbelt wrote:
+> > On Wed, 04 Aug 2021 13:54:16 PDT (-0700), atishp@atishpatra.org wrote:
+> > > On Wed, Aug 4, 2021 at 1:33 PM Palmer Dabbelt <palmer@dabbelt.com> wrote:
+> > > >
+> > > > On Thu, 15 Jul 2021 19:17:23 PDT (-0700), bmeng.cn@gmail.com wrote:
+> > > > > On Tue, Jul 13, 2021 at 2:34 PM Drew Fustini <drew@beagleboard.org> wrote:
+> > > > >>
+> > > > >> Add DT binding documentation for the StarFive JH7100 Soc [1] and the
+> > > > >> BeagleV Starlight JH7100 board [2].
+> > > > >>
+> > > > >> [1] https://github.com/starfive-tech/beaglev_doc
+> > > > >> [2] https://github.com/beagleboard/beaglev-starlight
+> > > > >>
+> > > > >> Signed-off-by: Drew Fustini <drew@beagleboard.org>
+> > > > >> ---
+> > > > >> v4 changes:
+> > > > >> - removed JH7100 SoC revision number after discussion with Geert
+> > > > >>
+> > > > >> v3 changes:
+> > > > >> - added revision number for the board and soc after question from Palmer
+> > > > >>
+> > > > >> v2 changes:
+> > > > >> - removed "items:" entry that only had "const: starfive,jh7100"
+> > > > >> - correct typo in Description:
+> > > > >>
+> > > > >> Results of running checks:
+> > > > >>   $ make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- dt_binding_check \
+> > > > >>     DT_SCHEMA_FILES=Documentation/devicetree/bindings/riscv/starfive.yaml
+> > > > >>     CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
+> > > > >>     DTEX    Documentation/devicetree/bindings/riscv/starfive.example.dts
+> > > > >>     SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
+> > > > >>     DTC     Documentation/devicetree/bindings/riscv/starfive.example.dt.yaml
+> > > > >>     CHECK   Documentation/devicetree/bindings/riscv/starfive.example.dt.yaml
+> > > > >>   $ make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- dtbs_check \
+> > > > >>     DT_SCHEMA_FILES=Documentation/devicetree/bindings/riscv/starfive.yaml
+> > > > >>     SYNC    include/config/auto.conf.cmd
+> > > > >>     UPD     include/config/kernel.release
+> > > > >>     SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+> > > > >>     DTC     arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dtb
+> > > > >>     DTC     arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dt.yaml
+> > > > >>     DTC     arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dt.yaml
+> > > > >>     DTC     arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dt.yaml
+> > > > >>     CHECK   arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dt.yaml
+> > > > >>     CHECK   arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dt.yaml
+> > > > >>     CHECK   arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dt.yaml
+> > > > >>
+> > > > >> The dts file is from vendor repo and is being cleaned up right now in
+> > > > >> preperation for submitting to the mailing list:
+> > > > >> https://github.com/starfive-tech/linux/tree/beaglev/arch/riscv/boot/dts/starfive
+> > > > >>
+> > > > >>  .../devicetree/bindings/riscv/starfive.yaml   | 27 +++++++++++++++++++
+> > > > >>  1 file changed, 27 insertions(+)
+> > > > >>  create mode 100644 Documentation/devicetree/bindings/riscv/starfive.yaml
+> > > > >>
+> > > > >
+> > > > > Reviewed-by: Bin Meng <bmeng.cn@gmail.com>
+> > > >
+> > > > Thanks.  This is on for-next, as Rob suggested taking it via the RISC-V
+> > > > tree.
+> > > >
+> > > Given that beagleV starlight mass production is cancelled [1], are we
+> > > still upstreaming the support for this ?
+> >
+> > I'm not sure, but I wasn't quite sure where to have that discussion.  I
+> > figured that the boards exist so there's no reason to shoot this down, given
+> > that it's just the vendor DT list.  At a bare minimum there's out of tree
+> > support for this, so having the DT strings defined seems sane as that's a
+> > defacto interface with bootloaders.
+> >
+> > Maybe this is more of a question for Drew: I think we were all OK working
+> > through the issues with the first-run chip when there was going to be a lot
+> > of them, but with such a small number produced I'm not sure if there's going
+> > to be enough interested to take on all that effort.
+> >
+> > I'm not quite sure where we stand on support for this: at some point there
+> > were some ideas floating around as to a way to support it without major
+> > software changes (allocating into the non-caching regions).  If that pans
+> > out then I'm fine handling this, at least from the RISC-V side, but if we're
+> > going to have to go through all the ISA/SBI stuff then it's probably not
+> > worth it.  Also not sure if there are a bunch of starfive-specific drivers
+> > that would be needed to make this boot, in which case it's probably best to
+> > wait for whatever comes next.
+>
+> I think that the discontinued beta prototype could be useful as a native
+> build host for those of you that have it and don't have an Unmatched.
 
-On 05/08/2021 11:35:46+0800, Dong Aisheng wrote:
-> Add i.MX RPMSG RTC support.
-> 
+Also according to this statement [1], they're still planning on
+producing new boards with the JH7100 (same chip as on the BeagleV
+prototype) at the end of Q3 and the JH7110 further in the future, so I
+still think it'd make sense to support those.
 
-You definitively need to elaborate why this is necessary and why
-rtc-imx-sc.c has not been reused. I'm not going to take a new driver for
-each version of the CM4 firmware.
+[1]: https://www.design-reuse.com/news/50402/starfive-open-source-single-board-platform-q3-2021.html
 
-> Cc: Alessandro Zummo <a.zummo@towertech.it>
-> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
-> ---
->  drivers/rtc/Kconfig                |  10 +
->  drivers/rtc/Makefile               |   1 +
->  drivers/rtc/rtc-imx-rpmsg.c        | 301 +++++++++++++++++++++++++++++
->  include/linux/firmware/imx/rpmsg.h |  37 ++++
->  4 files changed, 349 insertions(+)
->  create mode 100644 drivers/rtc/rtc-imx-rpmsg.c
->  create mode 100644 include/linux/firmware/imx/rpmsg.h
-> 
-> diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
-> index 12153d5801ce..f0e6c4dd8965 100644
-> --- a/drivers/rtc/Kconfig
-> +++ b/drivers/rtc/Kconfig
-> @@ -1763,6 +1763,16 @@ config RTC_DRV_SNVS
->  	   This driver can also be built as a module, if so, the module
->  	   will be called "rtc-snvs".
->  
-> +config RTC_DRV_IMX_RPMSG
-> +	tristate "NXP RPMSG RTC support"
-> +	select RPMSG_VIRTIO
-> +	depends on ARCH_MXC || COMPILE_TEST
-> +	depends on IMX_REMOTEPROC
-> +	depends on OF
-> +	help
-> +	   If you say yes here you get support for the NXP RPMSG
-> +	   RTC module.
-> +
->  config RTC_DRV_IMX_SC
->  	depends on IMX_SCU
->  	depends on HAVE_ARM_SMCCC
-> diff --git a/drivers/rtc/Makefile b/drivers/rtc/Makefile
-> index 2dd0dd956b0e..9cebfddcc245 100644
-> --- a/drivers/rtc/Makefile
-> +++ b/drivers/rtc/Makefile
-> @@ -72,6 +72,7 @@ obj-$(CONFIG_RTC_DRV_GOLDFISH)	+= rtc-goldfish.o
->  obj-$(CONFIG_RTC_DRV_HID_SENSOR_TIME) += rtc-hid-sensor-time.o
->  obj-$(CONFIG_RTC_DRV_HYM8563)	+= rtc-hym8563.o
->  obj-$(CONFIG_RTC_DRV_IMXDI)	+= rtc-imxdi.o
-> +obj-$(CONFIG_RTC_DRV_IMX_RPMSG)	+= rtc-imx-rpmsg.o
->  obj-$(CONFIG_RTC_DRV_IMX_SC)	+= rtc-imx-sc.o
->  obj-$(CONFIG_RTC_DRV_ISL12022)	+= rtc-isl12022.o
->  obj-$(CONFIG_RTC_DRV_ISL12026)	+= rtc-isl12026.o
-> diff --git a/drivers/rtc/rtc-imx-rpmsg.c b/drivers/rtc/rtc-imx-rpmsg.c
-> new file mode 100644
-> index 000000000000..0d6d4b18159e
-> --- /dev/null
-> +++ b/drivers/rtc/rtc-imx-rpmsg.c
-> @@ -0,0 +1,301 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright 2017-2021 NXP
-> + */
-> +
-> +#include <linux/firmware/imx/rpmsg.h>
-> +#include <linux/init.h>
-> +#include <linux/io.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/pm_qos.h>
-> +#include <linux/rpmsg.h>
-> +#include <linux/rtc.h>
-> +
-> +#define RPMSG_TIMEOUT 1000
-> +
-> +#define RTC_RPMSG_SEND		0x0
-> +#define RTC_RPMSG_RECEIVE	0x1
-> +#define RTC_RPMSG_NOTIFY	0x2
-> +
-> +enum rtc_rpmsg_cmd {
-> +	RTC_RPMSG_SET_TIME,
-> +	RTC_RPMSG_GET_TIME,
-> +	RTC_RPMSG_SET_ALARM,
-> +	RTC_RPMSG_GET_ALARM,
-> +	RTC_RPMSG_ENABLE_ALARM,
-> +};
-> +
-> +struct rtc_rpmsg_data {
-> +	struct imx_rpmsg_head header;
-> +	u8 reserved0;
-> +	union {
-> +		u8 reserved1;
-> +		u8 ret;
-> +	};
-> +	union {
-> +		u32 reserved2;
-> +		u32 sec;
-> +	};
-> +	union {
-> +		u8 enable;
-> +		u8 reserved3;
-> +	};
-> +	union {
-> +		u8 pending;
-> +		u8 reserved4;
-> +	};
-> +} __packed;
-> +
-> +struct rtc_rpmsg_info {
-> +	struct rpmsg_device *rpdev;
-> +	struct rtc_rpmsg_data *msg;
-> +	struct pm_qos_request pm_qos_req;
-> +	struct completion cmd_complete;
-> +	struct mutex lock;
-> +	struct rtc_device *rtc;
-> +};
-> +
-> +static int rtc_send_message(struct rtc_rpmsg_info *info,
-> +			    struct rtc_rpmsg_data *msg, bool ack)
-> +{
-> +	struct device *dev = &info->rpdev->dev;
-> +	int err;
-> +
-> +	mutex_lock(&info->lock);
-> +
-> +	cpu_latency_qos_add_request(&info->pm_qos_req, 0);
-> +	reinit_completion(&info->cmd_complete);
-> +
-> +	err = rpmsg_send(info->rpdev->ept, (void *)msg, sizeof(*msg));
-> +	if (err) {
-> +		dev_err(dev, "rpmsg send failed: %d\n", err);
-> +		goto err_out;
-> +	}
-> +
-> +	if (ack) {
-> +		err = wait_for_completion_timeout(&info->cmd_complete,
-> +						  msecs_to_jiffies(RPMSG_TIMEOUT));
-> +		if (!err) {
-> +			dev_err(dev, "rpmsg send timeout\n");
-> +			err = -ETIMEDOUT;
-> +			goto err_out;
-> +		}
-> +
-> +		if (info->msg->ret != 0) {
-> +			dev_err(dev, "rpmsg not ack %d\n", info->msg->ret);
-> +			err = -EINVAL;
-> +			goto err_out;
-> +		}
-> +
-> +		err = 0;
-> +	}
-> +
-> +err_out:
-> +	cpu_latency_qos_remove_request(&info->pm_qos_req);
-> +	mutex_unlock(&info->lock);
-> +
-> +	return err;
-> +}
-> +
-> +static int imx_rpmsg_rtc_read_time(struct device *dev, struct rtc_time *tm)
-> +{
-> +	struct rtc_rpmsg_info *rtc_rpmsg = dev_get_drvdata(dev);
-> +	struct rtc_rpmsg_data msg;
-> +	int ret;
-> +
-> +	msg.header.cate = IMX_RPMSG_RTC;
-> +	msg.header.major = IMX_RMPSG_MAJOR;
-> +	msg.header.minor = IMX_RMPSG_MINOR;
-> +	msg.header.type = RTC_RPMSG_SEND;
-> +	msg.header.cmd = RTC_RPMSG_GET_TIME;
-> +
-> +	ret = rtc_send_message(rtc_rpmsg, &msg, true);
-> +	if (ret)
-> +		return ret;
-> +
-> +	rtc_time64_to_tm(rtc_rpmsg->msg->sec, tm);
-> +
-> +	return 0;
-> +}
-> +
-> +static int imx_rpmsg_rtc_set_time(struct device *dev, struct rtc_time *tm)
-> +{
-> +	struct rtc_rpmsg_info *rtc_rpmsg = dev_get_drvdata(dev);
-> +	struct rtc_rpmsg_data msg;
-> +	unsigned long time;
-> +	int ret;
-> +
-> +	time = rtc_tm_to_time64(tm);
-> +
-> +	msg.header.cate = IMX_RPMSG_RTC;
-> +	msg.header.major = IMX_RMPSG_MAJOR;
-> +	msg.header.minor = IMX_RMPSG_MINOR;
-> +	msg.header.type = RTC_RPMSG_SEND;
-> +	msg.header.cmd = RTC_RPMSG_SET_TIME;
-> +	msg.sec = time;
-> +
-> +	ret = rtc_send_message(rtc_rpmsg, &msg, true);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static int imx_rpmsg_rtc_read_alarm(struct device *dev, struct rtc_wkalrm *alrm)
-> +{
-> +	struct rtc_rpmsg_info *rtc_rpmsg = dev_get_drvdata(dev);
-> +	struct rtc_rpmsg_data msg;
-> +	int ret;
-> +
-> +	msg.header.cate = IMX_RPMSG_RTC;
-> +	msg.header.major = IMX_RMPSG_MAJOR;
-> +	msg.header.minor = IMX_RMPSG_MINOR;
-> +	msg.header.type = RTC_RPMSG_SEND;
-> +	msg.header.cmd = RTC_RPMSG_GET_ALARM;
-> +
-> +	ret = rtc_send_message(rtc_rpmsg, &msg, true);
-> +	if (ret)
-> +		return ret;
-> +
-> +	rtc_time64_to_tm(rtc_rpmsg->msg->sec, &alrm->time);
-> +	alrm->pending = rtc_rpmsg->msg->pending;
-> +
-> +	return 0;
-> +}
-> +
-> +static int imx_rpmsg_rtc_alarm_irq_enable(struct device *dev,
-> +	unsigned int enable)
-> +{
-> +	struct rtc_rpmsg_info *rtc_rpmsg = dev_get_drvdata(dev);
-> +	struct rtc_rpmsg_data msg;
-> +	int ret;
-> +
-> +	msg.header.cate = IMX_RPMSG_RTC;
-> +	msg.header.major = IMX_RMPSG_MAJOR;
-> +	msg.header.minor = IMX_RMPSG_MINOR;
-> +	msg.header.type = RTC_RPMSG_SEND;
-> +	msg.header.cmd = RTC_RPMSG_ENABLE_ALARM;
-> +	msg.enable = enable;
-> +
-> +	ret = rtc_send_message(rtc_rpmsg, &msg, true);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static int imx_rpmsg_rtc_set_alarm(struct device *dev, struct rtc_wkalrm *alrm)
-> +{
-> +	struct rtc_rpmsg_info *rtc_rpmsg = dev_get_drvdata(dev);
-> +	struct rtc_rpmsg_data msg;
-> +	unsigned long time;
-> +	int ret;
-> +
-> +	time = rtc_tm_to_time64(&alrm->time);
-> +
-> +	msg.header.cate = IMX_RPMSG_RTC;
-> +	msg.header.major = IMX_RMPSG_MAJOR;
-> +	msg.header.minor = IMX_RMPSG_MINOR;
-> +	msg.header.type = RTC_RPMSG_SEND;
-> +	msg.header.cmd = RTC_RPMSG_SET_ALARM;
-> +	msg.sec = time;
-> +	msg.enable = alrm->enabled;
-> +
-> +	ret = rtc_send_message(rtc_rpmsg, &msg, true);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct rtc_class_ops imx_rpmsg_rtc_ops = {
-> +	.read_time = imx_rpmsg_rtc_read_time,
-> +	.set_time = imx_rpmsg_rtc_set_time,
-> +	.read_alarm = imx_rpmsg_rtc_read_alarm,
-> +	.set_alarm = imx_rpmsg_rtc_set_alarm,
-> +	.alarm_irq_enable = imx_rpmsg_rtc_alarm_irq_enable,
-> +};
-> +
-> +static int rtc_rpmsg_probe(struct rpmsg_device *rpdev)
-> +{
-> +	struct device *dev = &rpdev->dev;
-> +	struct rtc_rpmsg_info *rtc_rpmsg;
-> +
-> +	dev_info(dev, "new channel: 0x%x -> 0x%x\n", rpdev->src, rpdev->dst);
-> +
-> +	rtc_rpmsg = devm_kzalloc(dev, sizeof(*rtc_rpmsg), GFP_KERNEL);
-> +	if (!rtc_rpmsg)
-> +		return -ENOMEM;
-> +
-> +	rtc_rpmsg->rpdev = rpdev;
-> +	mutex_init(&rtc_rpmsg->lock);
-> +	init_completion(&rtc_rpmsg->cmd_complete);
-> +
-> +	dev_set_drvdata(dev, rtc_rpmsg);
-> +
-> +	device_init_wakeup(dev, true);
-> +
-> +	rtc_rpmsg->rtc = devm_rtc_device_register(dev, "rtc-rpmsg",
-> +						  &imx_rpmsg_rtc_ops,
-> +						  THIS_MODULE);
-> +	if (IS_ERR(rtc_rpmsg->rtc)) {
-> +		dev_err(dev, "failed to register rtc rpmsg: %ld\n", PTR_ERR(rtc_rpmsg->rtc));
-> +		return PTR_ERR(rtc_rpmsg->rtc);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void rtc_rpmsg_remove(struct rpmsg_device *rpdev)
-> +{
-> +	dev_info(&rpdev->dev, "rtc rpmsg driver is removed\n");
-> +}
-> +
-> +static int rtc_rpmsg_cb(struct rpmsg_device *rpdev, void *data, int len,
-> +			void *priv, u32 src)
-> +{
-> +	struct rtc_rpmsg_info *rtc_rpmsg = dev_get_drvdata(&rpdev->dev);
-> +	struct rtc_rpmsg_data *msg = (struct rtc_rpmsg_data *)data;
-> +
-> +	rtc_rpmsg->msg = msg;
-> +
-> +	if (msg->header.type == RTC_RPMSG_RECEIVE)
-> +		complete(&rtc_rpmsg->cmd_complete);
-> +	else if (msg->header.type == RTC_RPMSG_NOTIFY)
-> +		rtc_update_irq(rtc_rpmsg->rtc, 1, RTC_IRQF);
-> +	else
-> +		dev_err(&rpdev->dev, "wrong command type!\n");
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct rpmsg_device_id rtc_rpmsg_id_table[] = {
-> +	{ .name	= "rpmsg-rtc-channel" },
-> +	{ },
-> +};
-> +
-> +static struct rpmsg_driver rtc_rpmsg_driver = {
-> +	.drv.name	= "imx_rtc_rpmsg",
-> +	.probe		= rtc_rpmsg_probe,
-> +	.remove		= rtc_rpmsg_remove,
-> +	.callback	= rtc_rpmsg_cb,
-> +	.id_table	= rtc_rpmsg_id_table,
-> +};
-> +
-> +/*
-> + * imx m4 has a limitation that we can't read data during ns process.
-> + * So register rtc a little bit late as rtc core will read data during
-> + * register process
-> + */
-> +static int __init rtc_rpmsg_init(void)
-> +{
-> +	return register_rpmsg_driver(&rtc_rpmsg_driver);
-> +}
-> +late_initcall(rtc_rpmsg_init);
-> +
-> +MODULE_AUTHOR("Dong Aisheng <aisheng.dong@nxp.com>");
-> +MODULE_DESCRIPTION("NXP i.MX RPMSG RTC Driver");
-> +MODULE_ALIAS("platform:imx_rtc_rpmsg");
-> +MODULE_LICENSE("GPL");
-> diff --git a/include/linux/firmware/imx/rpmsg.h b/include/linux/firmware/imx/rpmsg.h
-> new file mode 100644
-> index 000000000000..20bcce23c917
-> --- /dev/null
-> +++ b/include/linux/firmware/imx/rpmsg.h
-> @@ -0,0 +1,37 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (C) 2019-2021 NXP.
-> + */
-> +
-> +#ifndef __LINUX_IMX_RPMSG_H__
-> +#define __LINUX_IMX_RPMSG_H__
-> +
-> +#include <linux/types.h>
-> +
-> +/*
-> + * Global header file for iMX RPMSG
-> + */
-> +
-> +/* Category define */
-> +#define IMX_RMPSG_LIFECYCLE     1
-> +#define IMX_RPMSG_PMIC          2
-> +#define IMX_RPMSG_AUDIO         3
-> +#define IMX_RPMSG_KEY           4
-> +#define IMX_RPMSG_GPIO          5
-> +#define IMX_RPMSG_RTC           6
-> +#define IMX_RPMSG_SENSOR        7
-> +
-> +/* rpmsg version */
-> +#define IMX_RMPSG_MAJOR         1
-> +#define IMX_RMPSG_MINOR         0
-> +
-> +struct imx_rpmsg_head {
-> +	u8 cate;
-> +	u8 major;
-> +	u8 minor;
-> +	u8 type;
-> +	u8 cmd;
-> +	u8 reserved[5];
-> +} __packed;
-> +
-> +#endif /* __LINUX_IMX_RPMSG_H__ */
-> -- 
-> 2.25.1
-> 
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> The arch_sync_dma RFC from Atish [1] is key to the board running
+> mainline. Most of the peripherals (USB, SD card, ethernet) are already
+> supported by upstream Cadence and Synopsys drivers. However, the vendor
+> kernel used ifdef's to flush the L2 cache at several points in those
+> drivers and subsystem cores because the peripherals are on a non-cache
+> coherent interconnect.
+>
+> Without the proposed solution from Atish that uses the non-cached DDR
+> alias, then only serial console would work on mainline (assuming the
+> system is running from a ramdisk that the vendor uboot loaded).
+>
+> Thanks,
+> Drew
+>
+> [1] https://lore.kernel.org/linux-riscv/CAOnJCU+ip1ccc9CrREi3c+15ue4Grcq+ENbQ+z_gh3CH249aAg@mail.gmail.com/T/#md422e9de172a179f8625c5bb595cf40e5942db67
