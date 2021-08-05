@@ -2,54 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D7163E10E4
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 11:10:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 845263E10E9
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 11:11:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234559AbhHEJLB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 05:11:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53396 "EHLO
+        id S231846AbhHEJMA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 05:12:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229913AbhHEJLB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 05:11:01 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D664C0613C1
-        for <devicetree@vger.kernel.org>; Thu,  5 Aug 2021 02:10:46 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id bq29so9746913lfb.5
-        for <devicetree@vger.kernel.org>; Thu, 05 Aug 2021 02:10:46 -0700 (PDT)
+        with ESMTP id S231775AbhHEJL7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 05:11:59 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B46ADC0613C1
+        for <devicetree@vger.kernel.org>; Thu,  5 Aug 2021 02:11:45 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id c24so6425271lfi.11
+        for <devicetree@vger.kernel.org>; Thu, 05 Aug 2021 02:11:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=GJwSqkoynJ2MGVTaxaCF6tjvxxMA2tETgRViwoLL+uA=;
-        b=BdFbpdP8kIg3G9AXQcWSIAeuhscjDoUZNHs6tTtydjVKNUqX6XH/PSRXgAvDDkibyH
-         5y1QnI6iyG41rUI4BShiWsjCdK9reMem48YfsrqtBHdjkZ/XH+7NfJ+Fp2W+rvSiXgIj
-         KDzQQqJGe57bSr7SJNVLID1dJ7Ja1FgI6yo4Qu25gQia7UNjomXH2lFAS5NmjX7WzsWP
-         7yol4EFp/gL0Qs9PjkuGiH0wi/O1hWWB9WpeJuEpUYm4b83BPy5lLxvlRxVq3VWu52AX
-         EJs2V9pNjHHKlGmtbjwr7Ripm4xap7zc2hd36d6NtjMcalc9jcX66PggfAmfrUt4wDpy
-         6L3A==
+        bh=JGy6Zf1Gz/DvNLOUOgVqZw1voM6TCsaMrfyL2VVTA2M=;
+        b=Czpou3fdBuvMRgQdRobXPBNmSPmet30GmWm2xaQ8xlkiaXiT9pq1VJ5Sz3m72V5qwc
+         3gA09WBzEqX4wBMbAWb2aL+u3uxCI5tSmxJK2GrkgtzaztR0jzf0hXqnh/rxekaLRzCH
+         XQ9NRRqtzN5mRX5BxSFi8xj4rJHxMs28Tw4tL+iOXcP378akJNAZm9rLVJ3kQ7Gx/wqU
+         hmc9MxNHu7e2hVUrAzorRfo7qKK8MPzvzo8I0Z4M4QcsLfDNwbKFbO3Onvasga885UF+
+         MuD438vz+7ymSeAsFMLiFokCcNh8DTEfPEy5F5HPk3V4dvqE2xr2ESyF0X6dAPBaiE+4
+         WRVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=GJwSqkoynJ2MGVTaxaCF6tjvxxMA2tETgRViwoLL+uA=;
-        b=UEWLQ69uplMODt//xHfK+49/FYDOmPA8omE/zWegBs7wJ1pgouaAvx1ir8/ud87Cfk
-         ix/Mt+NfzAPBHWPORAeXng2mfIv3SshN372KNqwE37XyEWktKnw2t9V3/IgNkOXLacEH
-         xcFtm0InmNvBT4FHkBNHL50CsLrp5Pyqh3PSnI7bjMtsiyB0Ie2dhCWukg4G8GgmALLe
-         RGaQdwZVMuWpoHpmXzYtiCDJo9Cdqx/EVRA/+cFOfgdBpRfBLSMFs2JWGVNBIkM3uKvI
-         d8lKxbgzZ/uYiat6PHgYw9qv8XmiAFkirVCFfsGtWEEU/2BNgEsZWAd+wyKUKAUaAJNz
-         5+vA==
-X-Gm-Message-State: AOAM531hw+AZ36sC3m69R/p1e9fjHwl6EUeV17IbdBug7iH9oUWD6jMY
-        UgY+qt+2cCiTX8bDwQnc+XSAASq39CwNB0tYY3iBkQ==
-X-Google-Smtp-Source: ABdhPJzZpUm8mUiTLlF2l2RaGugFmMpQMMqoQ5ipZx5ajfXnBZ534P16n8WUxjIaWbrbZLOd9+eZHKDTwonxKjv8meI=
-X-Received: by 2002:ac2:4d0f:: with SMTP id r15mr2833139lfi.649.1628154644990;
- Thu, 05 Aug 2021 02:10:44 -0700 (PDT)
+        bh=JGy6Zf1Gz/DvNLOUOgVqZw1voM6TCsaMrfyL2VVTA2M=;
+        b=lzfFBUD0RCLw3lCpt/SCK1sw/1TpJVSz2pOScIi6NyJJIudaGkdcba5v3/gfWcIuIJ
+         7+vTuvzd6tsNV9C7iMLIGmNnDc8t+gGmgiUGTmrFvuZybSsjz2EEvbzTFaomVSdi+rlL
+         4+rfIKuUpn1hQiBE5zymoCdFoeF+IQX9EMEXlpIdZKXeAF5elpd4XDh058GnxxDIq/lZ
+         1VWXyDe1DgZZP0gfXrSss5aOTwZX/t4w9AGLCqCsHa1MGv5JTPiVlIiY2XD0lC2ybTJP
+         jdOAWJfA18OjBjnj9nNcCd44DXH/Iyua0GwG+IEHFagOixxqC72exbCh94SG+TjJlaiV
+         eEdQ==
+X-Gm-Message-State: AOAM532R8/qXHMvZKnR0T51TVfEtgQJqXZYfgiyc3Ak8RCa4YJlXSjti
+        ayYlrqZGE7i7su54pe7AWc09kr+bQ+4zZQyxOiXQ1A==
+X-Google-Smtp-Source: ABdhPJxrf9wmOoKiTifiOSKjkHpaxgSpZEW0ggxZq8N4Li6hZYEwsHuFZuOzq7JEu33rr4FIZfdLktcn7Mucw0+3gv4=
+X-Received: by 2002:a05:6512:132a:: with SMTP id x42mr2814304lfu.291.1628154703391;
+ Thu, 05 Aug 2021 02:11:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <1627098243-2742-1-git-send-email-dillon.minfei@gmail.com> <1627098243-2742-4-git-send-email-dillon.minfei@gmail.com>
-In-Reply-To: <1627098243-2742-4-git-send-email-dillon.minfei@gmail.com>
+References: <1627098243-2742-1-git-send-email-dillon.minfei@gmail.com> <1627098243-2742-3-git-send-email-dillon.minfei@gmail.com>
+In-Reply-To: <1627098243-2742-3-git-send-email-dillon.minfei@gmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 5 Aug 2021 11:10:33 +0200
-Message-ID: <CACRpkdYzrpHgDCW2UXNnFk-NpC_yM5xeSe_jBDJMGa6==5SHXw@mail.gmail.com>
-Subject: Re: [PATCH v4 3/3] drm/panel: Add ilitek ili9341 panel driver
+Date:   Thu, 5 Aug 2021 11:11:31 +0200
+Message-ID: <CACRpkdYReUdg_7oSTqcsA_+9tS9w6MH90=KV1rGyr4YWT=NW-w@mail.gmail.com>
+Subject: Re: [PATCH v4 2/3] ARM: dts: stm32: fix dtbs_check warning on ili9341
+ dts binding
 To:     dillon min <dillon.minfei@gmail.com>
 Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
@@ -75,22 +76,23 @@ On Sat, Jul 24, 2021 at 5:44 AM <dillon.minfei@gmail.com> wrote:
 
 > From: Dillon Min <dillon.minfei@gmail.com>
 >
-> This driver combines tiny/ili9341.c mipi_dbi_interface driver
-> with mipi_dpi_interface driver, can support ili9341 with serial
-> mode and parallel rgb interface mode by different dts bindings.
+> Since the compatible string defined from ilitek,ili9341.yaml is
+> "st,sf-tc240t-9370-t", "ilitek,ili9341"
 >
+> so, append "ilitek,ili9341" to avoid the below dtbs_check warning.
+>
+> arch/arm/boot/dts/stm32f429-disco.dt.yaml: display@1: compatible:
+> ['st,sf-tc240t-9370-t'] is too short
+>
+> Fixes: a726e2f000ec ("ARM: dts: stm32: enable ltdc binding with ili9341, gyro l3gd20 on stm32429-disco board")
 > Signed-off-by: Dillon Min <dillon.minfei@gmail.com>
 > Reported-by: kernel test robot <lkp@intel.com>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Reviewed-by: Jagan Teki <jagan@amarulasolutions.com>
 > ---
-> v4:
-> - fix m68k-allmodconfig build error which reported by lkp, thanks.
-> - add Copyright 2018 David Lechner <david@lechnology.com>.
+> v4: no change.
 
-Patch applied to drm-misc-next
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Thanks for working on this driver!
+Please funnel this patch through the STM and ARM SoC tree.
 
 Yours,
 Linus Walleij
