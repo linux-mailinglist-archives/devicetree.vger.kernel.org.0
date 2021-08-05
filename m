@@ -2,29 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DBD43E0F30
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 09:30:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF9633E0F50
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 09:35:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234413AbhHEHav (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 03:30:51 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38408 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231499AbhHEHau (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Aug 2021 03:30:50 -0400
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S238005AbhHEHfd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 03:35:33 -0400
+Received: from smtp-relay-canonical-1.canonical.com ([185.125.188.121]:41236
+        "EHLO smtp-relay-canonical-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232446AbhHEHfa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 03:35:30 -0400
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0812960F58;
-        Thu,  5 Aug 2021 07:30:37 +0000 (UTC)
-Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1mBXpr-0034o3-4w; Thu, 05 Aug 2021 08:30:35 +0100
-Date:   Thu, 05 Aug 2021 08:30:30 +0100
-Message-ID: <87zgtwbb6x.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+        by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPS id 8DDC240657
+        for <devicetree@vger.kernel.org>; Thu,  5 Aug 2021 07:35:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1628148915;
+        bh=kMB7D3FwR8aaeZ7GkcRhY+XNtv5mwLtm+gleHTDDxFM=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=EnE+j7w+mzM/GGxTNmzLNvQAECanfEaKQ/M2GY3cMxUPS6+PsGLvMarlG9Ay/6Vnm
+         8z5Lb23Xp3+uH3vktxe40uNMmfasCFNH9hxoFbASd3YhHbOdV3PINLef0R+AiXquaB
+         yTDaA41ZHdNgdRXKRTTEwVBLdLyteJSuQT7RbzyZGfk+Bz/thNXX6l+RNBEz0fIRnz
+         9fnWx9TdoXCzBC4uJPjYVXAUW3BzPOAk1Bh+UJeDd627m2ML/LnSRpxQGSqz1LFAr1
+         Vi+gjAISUpEml3WugPvJM8AxRgt4J1I6H09/xC5ke4GW/Wyws3530jkYGfYRwcbxnG
+         Kv1QfetpD+3rA==
+Received: by mail-ed1-f70.google.com with SMTP id u4-20020a50eac40000b02903bddc52675eso2552308edp.4
+        for <devicetree@vger.kernel.org>; Thu, 05 Aug 2021 00:35:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=kMB7D3FwR8aaeZ7GkcRhY+XNtv5mwLtm+gleHTDDxFM=;
+        b=nRrpQn3sPhR/nNKY5KOoXkOkBV5aKDzYPstlyOSAfAT7Ykq8+qzb5LYhMIo6DcaZ4Y
+         JOPYvo5VyQjjwytVVP4IMHeIpOff0vrhAat4iG5BTW7xohZsMAmG8phH73UMOC6mmriN
+         f1W4mLN/FsxD3oNJPCzM9xjEWiQl2CgzVu4wi8VV9eaXbAZelqx2xDC9OsGmZiZDAgXg
+         /1pLYcQPc258jNXlvgqJrc7gdDrQjps7jyhW0SIR/45hOmaieCsqjZGMaz3FmFjgHeNW
+         DO/LlEoBbKPGJ1dTZP99Xxqdqsp1sBgAZh44BXMjwJCIlVxhcqLWQCHQceRlWsS4QAov
+         qIFw==
+X-Gm-Message-State: AOAM5327Yb8oMQsUNSNYNJD8F/ZkZIZ6BU+YcakSGOrb0X445/z2qwpM
+        FXpiJwPykpQbqC9De5kgJ1cvHACRi6AMfqcSU7isrI6yImxlGWlYO7R0TtTyBClIxFvOkl1K3Qs
+        CgXyCpnB9BpjWEGPkOIjr/S1mbNSGCMLbbyNtqWg=
+X-Received: by 2002:a17:906:a0a:: with SMTP id w10mr3499012ejf.416.1628148915208;
+        Thu, 05 Aug 2021 00:35:15 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyPcQUWoeFo8Oc3RFUk7sBrXe1NGu+OxbWafCL6RAdlu//8RMlDAyb13M9QoYaDGHWGqoadKg==
+X-Received: by 2002:a17:906:a0a:: with SMTP id w10mr3499000ejf.416.1628148915094;
+        Thu, 05 Aug 2021 00:35:15 -0700 (PDT)
+Received: from [192.168.8.102] ([86.32.42.198])
+        by smtp.gmail.com with ESMTPSA id r16sm1886421edt.15.2021.08.05.00.35.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Aug 2021 00:35:14 -0700 (PDT)
+Subject: Re: [PATCH 12/12] arm64: dts: exynos: Add Exynos850 SoC support
+To:     Marc Zyngier <maz@kernel.org>
 Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
         Sylwester Nawrocki <s.nawrocki@samsung.com>,
         Chanwoo Choi <cw00.choi@samsung.com>,
@@ -48,65 +79,72 @@ Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
         "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
-Subject: Re: [PATCH 12/12] arm64: dts: exynos: Add Exynos850 SoC support
-In-Reply-To: <e264f96e-a230-456b-08a5-dbe3a31bdb43@canonical.com>
 References: <20210730144922.29111-1-semen.protsenko@linaro.org>
-        <20210730144922.29111-13-semen.protsenko@linaro.org>
-        <15871f8ced3c757fad1ab3b6e62c4e64@misterjones.org>
-        <CAPLW+4=v4bDcuxGVqs06mobGj34At4cD+vg48b4dPujarS07Tg@mail.gmail.com>
-        <bf21badb-804f-45f0-c02b-80ff57ab9931@canonical.com>
-        <CAPLW+4nY=hozOR+B_0sPZODrk9PXaXg+NB-9pVhDbAjEy7yjhg@mail.gmail.com>
-        <e264f96e-a230-456b-08a5-dbe3a31bdb43@canonical.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: krzysztof.kozlowski@canonical.com, semen.protsenko@linaro.org, s.nawrocki@samsung.com, cw00.choi@samsung.com, linus.walleij@linaro.org, tomasz.figa@gmail.com, robh+dt@kernel.org, sboyd@kernel.org, mturquette@baylibre.com, jirislaby@kernel.org, gregkh@linuxfoundation.org, ckeepax@opensource.wolfsonmicro.com, ryu.real@samsung.com, tom.gall@linaro.org, sumit.semwal@linaro.org, john.stultz@linaro.org, amit.pundir@linaro.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, linux-serial@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+ <20210730144922.29111-13-semen.protsenko@linaro.org>
+ <15871f8ced3c757fad1ab3b6e62c4e64@misterjones.org>
+ <CAPLW+4=v4bDcuxGVqs06mobGj34At4cD+vg48b4dPujarS07Tg@mail.gmail.com>
+ <bf21badb-804f-45f0-c02b-80ff57ab9931@canonical.com>
+ <CAPLW+4nY=hozOR+B_0sPZODrk9PXaXg+NB-9pVhDbAjEy7yjhg@mail.gmail.com>
+ <e264f96e-a230-456b-08a5-dbe3a31bdb43@canonical.com>
+ <87zgtwbb6x.wl-maz@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <f9b233bb-628f-1a0f-468c-8a6c7d2b23a4@canonical.com>
+Date:   Thu, 5 Aug 2021 09:35:12 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+MIME-Version: 1.0
+In-Reply-To: <87zgtwbb6x.wl-maz@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 05 Aug 2021 08:17:14 +0100,
-Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote:
+On 05/08/2021 09:30, Marc Zyngier wrote:
+> On Thu, 05 Aug 2021 08:17:14 +0100,
+> Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote:
+>>
+>> On 04/08/2021 23:30, Sam Protsenko wrote:
+>>>>>
+>>>>> Nice catch! Actually there is an error (typo?) in SoC's TRM, saying
+>>>>> that Virtual Interface Control Register starts at 0x3000 offset (from
+>>>>> 0x12a00000), where it obviously should be 0x4000, that's probably
+>>>>> where this dts error originates from. Btw, I'm also seeing the same
+>>>>> error in exynos7.dtsi.
+>>>>
+>>>> What's the error exactly? The "Virtual interface control register"
+>>>> offset (3rd region) is set properly to 0x4000 on Exynos7. Also one for
+>>>> the Exynos5433 looks correct.
+>>>>
+>>>
+>>> The issue is that 2nd region's size is 0x1000, but it must be 0x2000.
+>>> It's defined by GIC-400 architecture, as I understand. Please look at
+>>> [1], table 3-1 has very specific offsets and sizes for each functional
+>>> block, and each particular SoC must adhere to that spec. So having
+>>> 0x1000 for 2nd region can't be correct. And because exynos7.dtsi has
+>>> GIC-400 as well, and 0x1000 is specified there for 2nd region size
+>>> too, so I presume there is the same mistake there.
+>>
+>> I understand, the range length has indeed same mistake. However it does
+>> not matter that much There are no registers pass 0x10C (so pass 0x1000).
+>> This address space is not used.
 > 
-> On 04/08/2021 23:30, Sam Protsenko wrote:
-> >>>
-> >>> Nice catch! Actually there is an error (typo?) in SoC's TRM, saying
-> >>> that Virtual Interface Control Register starts at 0x3000 offset (from
-> >>> 0x12a00000), where it obviously should be 0x4000, that's probably
-> >>> where this dts error originates from. Btw, I'm also seeing the same
-> >>> error in exynos7.dtsi.
-> >>
-> >> What's the error exactly? The "Virtual interface control register"
-> >> offset (3rd region) is set properly to 0x4000 on Exynos7. Also one for
-> >> the Exynos5433 looks correct.
-> >>
-> > 
-> > The issue is that 2nd region's size is 0x1000, but it must be 0x2000.
-> > It's defined by GIC-400 architecture, as I understand. Please look at
-> > [1], table 3-1 has very specific offsets and sizes for each functional
-> > block, and each particular SoC must adhere to that spec. So having
-> > 0x1000 for 2nd region can't be correct. And because exynos7.dtsi has
-> > GIC-400 as well, and 0x1000 is specified there for 2nd region size
-> > too, so I presume there is the same mistake there.
+> I have no idea which spec you are looking at, but the GICv2
+> architecture (of which GIC400 is an implementation) definitely has a
+> register in the second 4kB page of the CPU interface. It contains the
+> GICC_DIR register, which is used to deactivate an interrupt when
+> EOIMode==1.
 > 
-> I understand, the range length has indeed same mistake. However it does
-> not matter that much There are no registers pass 0x10C (so pass 0x1000).
-> This address space is not used.
+> Linux actively uses it when started at EL2.
 
-I have no idea which spec you are looking at, but the GICv2
-architecture (of which GIC400 is an implementation) definitely has a
-register in the second 4kB page of the CPU interface. It contains the
-GICC_DIR register, which is used to deactivate an interrupt when
-EOIMode==1.
+I was checking Exynos TRM and it seems it has one more bug... The ARM
+datasheet [1] indeed mentions GICC_DIR at 0x1000. I'll add "Fixes" tag
+to my fix for Exynos7.
 
-Linux actively uses it when started at EL2.
+https://developer.arm.com/documentation/ddi0471/b/programmers-model/cpu-interface-register-summary
 
-	M.
 
--- 
-Without deviation from the norm, progress is not possible.
+
+Best regards,
+Krzysztof
