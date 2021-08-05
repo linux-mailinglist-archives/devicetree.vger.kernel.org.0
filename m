@@ -2,99 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED68E3E0FD7
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 10:05:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C6283E0FFE
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 10:13:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236777AbhHEIFx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 04:05:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38546 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232559AbhHEIFw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 04:05:52 -0400
-Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34E78C061765;
-        Thu,  5 Aug 2021 01:05:38 -0700 (PDT)
-Received: by mail-io1-xd31.google.com with SMTP id y1so5613035iod.10;
-        Thu, 05 Aug 2021 01:05:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=CigNGT2AbpQ4wSDNvI4oyMY6a17yp6Be3VnQFnnxIus=;
-        b=JX7XqMPvKDwANHLr7Enzl+BbR0IM9eNOOR3t0GtMmz6BzEx/pFH+05ZcDMFFVitd9c
-         IC/2Aya2UKd+/QuB8Za9waPJHAiCfWB3oJhH1xWkE0HedjNlZoc4EdgozMsrexA2Jace
-         MIrUgzpSjoTv5j7X04YGWDHCvowVMbt8sc5zxzX0dxByq9d8ILrcDmyxNf+Sdgu3EctO
-         lp5T4eWZ2pZbrB9CeGiYts9fyyzpqFZLi36YatacdiicQX/EcJ0JDSNF77av6m9OM2Q4
-         c1/o2Z7wzCcwRVODHMh+rMlaMVUKM3ptLXDPbXB2XlkG4q8tBcVCQAtrQOZXCbSNm4Mj
-         zQJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=CigNGT2AbpQ4wSDNvI4oyMY6a17yp6Be3VnQFnnxIus=;
-        b=K7viJCEHTmHJeUUCt3ErdDUGIJoLOYY+DJBxZ3lUu10NtM4rG4hku23+WMuNdXdGop
-         dWn1o8PMPnYPaXjfybpclfRPS6lT2rXpo4LxQ84IZMEgqfivO/iROFY6nfdzerUlPBgx
-         Hw6mgZknTiRjylDfsDccr6jaTaFIFcNWarutUxZJs1a8t4owe0J+eJFRgwASW8T7QHyW
-         tFNpch/3CmHbBVkAHFp/CcnvV+Io4yuWP9aqbheaU17d0xE/NvKpQ75pQR3ITKuasWAI
-         hfD8afxuBzgAZ485awEjO3V5FWv2nr3ruZNwDQq1xKbq08RfQ/zJIUppDRWSRIrMMuqu
-         wHqg==
-X-Gm-Message-State: AOAM532nSHRRCMl5i8s+3KHSuSB31jDG7EryHdT+N9w6POUup0MGuw1K
-        fdqa+9J5WCADA7ntfMSfKEpiGcMJqp1fcu6s4RQ=
-X-Google-Smtp-Source: ABdhPJzNZBZGzsK7tlcjpKcsAXlaEqOYn7z2XrzBU57p8Gp2GSqg5xZGhQOyWMvdk4HUSzuxcdaWGxn7STU14selZn4=
-X-Received: by 2002:a5d:8541:: with SMTP id b1mr4078ios.105.1628150737727;
- Thu, 05 Aug 2021 01:05:37 -0700 (PDT)
+        id S239048AbhHEINu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 04:13:50 -0400
+Received: from mail-out.m-online.net ([212.18.0.9]:47165 "EHLO
+        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237051AbhHEINt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 04:13:49 -0400
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 4GgLwC2HM5z1qy54;
+        Thu,  5 Aug 2021 10:13:31 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 4GgLwC0JMPz1qvtY;
+        Thu,  5 Aug 2021 10:13:31 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id xPOGeJl5EZxV; Thu,  5 Aug 2021 10:13:29 +0200 (CEST)
+X-Auth-Info: Kw+0VKHwCc7/D60xsxiPGmSjDWShc6pKBsWCauRJElVomF3qtN3els56nsBMTkNT
+Received: from igel.home (ppp-46-244-179-131.dynamic.mnet-online.de [46.244.179.131])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Thu,  5 Aug 2021 10:13:29 +0200 (CEST)
+Received: by igel.home (Postfix, from userid 1000)
+        id 929B52C02D9; Thu,  5 Aug 2021 10:13:28 +0200 (CEST)
+From:   Andreas Schwab <schwab@linux-m68k.org>
+To:     Drew Fustini <drew@pdp7.com>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>, atishp@atishpatra.org,
+        drew@beagleboard.org, bmeng.cn@gmail.com, robh+dt@kernel.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        michael.zhu@starfivetech.com, tekkamanninja@gmail.com,
+        jack.zhu@starfivetech.com, leyfoon.tan@starfivetech.com,
+        geert@linux-m68k.org, kernel@esmil.dk, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4] dt-bindings: riscv: add starfive jh7100 bindings
+References: <CAOnJCUL9uU5G1LOgfYPz9Ny77yFYaP5sgtdxG3_w=Zcsi+f96Q@mail.gmail.com>
+        <mhng-c9300c9e-6877-492f-a290-7c51066d3920@palmerdabbelt-glaptop>
+        <20210805023024.GA12312@x1>
+X-Yow:  I HAVE to buy a new ``DODGE MISER'' and two dozen JORDACHE
+ JEANS because my viewscreen is ``USER-FRIENDLY''!!
+Date:   Thu, 05 Aug 2021 10:13:28 +0200
+In-Reply-To: <20210805023024.GA12312@x1> (Drew Fustini's message of "Wed, 4
+        Aug 2021 19:30:24 -0700")
+Message-ID: <87fsvotil3.fsf@igel.home>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/27.2 (gnu/linux)
 MIME-Version: 1.0
-References: <20210803084456.198-1-alistair@alistair23.me> <20210803084456.198-9-alistair@alistair23.me>
- <YQqLiAtAtREWTvD7@google.com>
-In-Reply-To: <YQqLiAtAtREWTvD7@google.com>
-From:   Alistair Francis <alistair23@gmail.com>
-Date:   Thu, 5 Aug 2021 18:05:00 +1000
-Message-ID: <CAKmqyKO_QeNTRZx9P9vhX7DQoBfE6igOtJroTEer-OKoVO-RGQ@mail.gmail.com>
-Subject: Re: [PATCH v8 09/11] ARM: dts: imx7d: remarkable2: Enable silergy,sy7636a
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Alistair Francis <alistair@alistair23.me>,
-        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
-        Mark Brown <broonie@kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 4, 2021 at 10:43 PM Lee Jones <lee.jones@linaro.org> wrote:
->
-> On Tue, 03 Aug 2021, Alistair Francis wrote:
->
-> > Enable the silergy,sy7636a and silergy,sy7636a-regulator on the
-> > reMarkable2.
-> >
-> > Signed-off-by: Alistair Francis <alistair@alistair23.me>
-> > ---
-> >  arch/arm/boot/dts/imx7d-remarkable2.dts | 42 +++++++++++++++++++++++++
-> >  1 file changed, 42 insertions(+)
->
-> I don't see the DT documentation for this device.
+On Aug 04 2021, Drew Fustini wrote:
 
-Which device?
+> The arch_sync_dma RFC from Atish [1] is key to the board running
+> mainline.
 
-The imx7d-remarkable2 is in current master and there is a single line
-at `Documentation/devicetree/bindings/arm/fsl.yaml`
+It still has issues, though.
 
-The silergy,sy7636a-regulator is also already in master, but it isn't
-exposed to device tree and the compatible string shouldn't be included
-in this patch. I'll fix that.
+https://github.com/starfive-tech/linux/issues/1#issuecomment-879910372
 
-Alistair
+Andreas.
 
->
-> Has it been accepted/merged already?
->
-> --
-> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
-> Senior Technical Lead - Developer Services
-> Linaro.org =E2=94=82 Open source software for Arm SoCs
-> Follow Linaro: Facebook | Twitter | Blog
+-- 
+Andreas Schwab, schwab@linux-m68k.org
+GPG Key fingerprint = 7578 EB47 D4E5 4D69 2510  2552 DF73 E780 A9DA AEC1
+"And now for something completely different."
