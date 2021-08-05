@@ -2,235 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7700A3E1975
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 18:27:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FCCB3E19BD
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 18:39:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230251AbhHEQ2B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 12:28:01 -0400
-Received: from foss.arm.com ([217.140.110.172]:50158 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229762AbhHEQ2A (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Aug 2021 12:28:00 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0BAFC31B;
-        Thu,  5 Aug 2021 09:27:46 -0700 (PDT)
-Received: from [10.57.36.146] (unknown [10.57.36.146])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BC38C3F66F;
-        Thu,  5 Aug 2021 09:27:42 -0700 (PDT)
-Subject: Re: [PATCH v3 2/7] soc: rockchip: io-domain: add rk3568 support
-To:     Michael Riesch <michael.riesch@wolfvision.net>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Liang Chen <cl@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Simon Xue <xxm@rock-chips.com>,
-        Jianqun Xu <jay.xu@rock-chips.com>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Zhang Changzhong <zhangchangzhong@huawei.com>,
-        Tobias Schramm <t.schramm@manjaro.org>,
-        Johan Jonker <jbx6244@gmail.com>
-References: <20210805120107.27007-1-michael.riesch@wolfvision.net>
- <20210805120107.27007-3-michael.riesch@wolfvision.net>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <8008800c-c518-30d4-edcf-57566e7a1251@arm.com>
-Date:   Thu, 5 Aug 2021 17:27:36 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+        id S232466AbhHEQkB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 12:40:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44564 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232382AbhHEQkA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 12:40:00 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B160C0613D5
+        for <devicetree@vger.kernel.org>; Thu,  5 Aug 2021 09:39:46 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id u5-20020a17090ae005b029017842fe8f82so1627565pjy.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Aug 2021 09:39:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=7pYOTxFSGlVG5k+ImUegey8RcLkXqCgr668GTeSPHPU=;
+        b=Jn/G+UgdcAUA+RNcG+K+xN77o0Vtf7I5+b0PYTCQH54VcojkqRE4m2RX+sNs99Pne5
+         DfXYrGLSBjVCQisktLZDkBv418FebTKvxeQhDlFeKL1AKOvkQsalQUuaE3CEa8oGp97C
+         kVTnUcEuz7zDLH6PLyAMa9qIpVVbkLL3hy4W9BH3YZeXrRrGZYuKOrhUpIdFpnLy1E31
+         KgSrnshbi56salKQxybv1HQYFRkH5rhYntU4Pd1vTfV7jjpeUI60knO/2JinbQd4IbND
+         TVXJuGDbOQRXEEyTRKQMlvk85UTNY/xFPzZYtu7kOwLqr7Gz5HwjheTpEOb2+0rcauh4
+         jA3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=7pYOTxFSGlVG5k+ImUegey8RcLkXqCgr668GTeSPHPU=;
+        b=iLP+aFO/UFKiVuc6nkcfb1EAs+iKKBZKvJKQPl6+htexWdWtQa9vCN32b3butp9Dxv
+         CFvPpbTl0JDYJiglI5g+/cRBWCBl39QosVtoEwTB2gViorMsYN5wIutO7Q5563pVWRsA
+         VMpjeyvPWCi3FnQFCBCwwsAzBuxUho/PU+mserD1mAk9OdI+dcUR9fJhsEwZQrYdSD/b
+         9ODN8Zn0wGdScm+MTx3IvXsUbxMWKBMHtgXgafVLWdlnvam3kVtIcqLVqdXZFRnZzhih
+         5s7xQYbnfGyx/XegJIPlLSmU3/vD1ds+IwZclfzOaJFuXmpaizg4ASfWQEHMwpcCGtwV
+         y5mg==
+X-Gm-Message-State: AOAM533te4x8IFYTBPbUYszNRAZT4R7sTlPLQluvrLCzL/skfCK84CZ6
+        pUkX+VtqhEFeT0uVhx5s6EMFjQ==
+X-Google-Smtp-Source: ABdhPJxCd4yhk5SyGoctI04Un47NU06NnSRlptmb1cq/6/73OZdxHd02cj7EuShbM5+lMgE//H5Crw==
+X-Received: by 2002:a17:90b:21c9:: with SMTP id ll9mr16442150pjb.161.1628181585971;
+        Thu, 05 Aug 2021 09:39:45 -0700 (PDT)
+Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id x14sm7259129pfa.127.2021.08.05.09.39.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Aug 2021 09:39:45 -0700 (PDT)
+Date:   Thu, 5 Aug 2021 10:39:43 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Dong Aisheng <aisheng.dong@nxp.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-remoteproc@vger.kernel.org, dongas86@gmail.com,
+        peng.fan@nxp.com, linux-imx@nxp.com, robh+dt@kernel.org,
+        shawnguo@kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH 1/2] arm64: dts: imx8mq: add remoteproc m4 support
+Message-ID: <20210805163943.GE3205691@p14s>
+References: <20210805091218.1626290-1-aisheng.dong@nxp.com>
 MIME-Version: 1.0
-In-Reply-To: <20210805120107.27007-3-michael.riesch@wolfvision.net>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210805091218.1626290-1-aisheng.dong@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-08-05 13:01, Michael Riesch wrote:
-> From: Jianqun Xu <jay.xu@rock-chips.com>
-> 
-> The io-domain registers on RK3568 SoCs have three separated bits to
-> enable/disable the 1.8v/2.5v/3.3v power.
-> 
-> This patch make the write to be a operation, allow rk3568 uses a private
-> register set function.
-> 
-> Since the 2.5v is not used on RK3568, so the driver only set
+Same for this set - I need Peng to add his RB _and_ TB tags to it before I
+consider for review.  Also, please start adding cover letters to your patchsets.
 
-FWIW, this seems at odds with what the first paragraph says - can anyone 
-clarify what exactly "not used" means here? Is it that the I/O domain 
-controller has been redesigned to support more than two logic levels on 
-the new generation of SoCs, but RK3568's I/O pads still only physically 
-support 1.8v and 3.3v; or is it that it *can* support 2.5v as well but 
-no currently-known RK3568-based designs use that?
+Thanks,
+Mathieu
 
-In the former case it's just a wording issue in the commit message, but 
-in the latter it's arguably worth implementing support now for the sake 
-of future compatibility.
-
-Robin.
-
-> 1.8v [enable] + 3.3v [disable] for 1.8v mode
-> 1.8v [disable] + 3.3v [enable] for 3.3v mode
+On Thu, Aug 05, 2021 at 05:12:17PM +0800, Dong Aisheng wrote:
+> Add cm4 remoteproc which supports rpmsg naming service.
+> It needs vdevbuffer and a pair of vrings and 16MB reserved memory.
 > 
-> There is not register order requirement which has been cleared by our IC
-> team.
-> 
-> Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
+> Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
 > ---
->   drivers/soc/rockchip/io-domain.c | 88 +++++++++++++++++++++++++++++---
->   1 file changed, 80 insertions(+), 8 deletions(-)
+>  arch/arm64/boot/dts/freescale/Makefile        |  1 +
+>  .../boot/dts/freescale/imx8mq-evk-rpmsg.dts   | 72 +++++++++++++++++++
+>  2 files changed, 73 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-evk-rpmsg.dts
 > 
-> diff --git a/drivers/soc/rockchip/io-domain.c b/drivers/soc/rockchip/io-domain.c
-> index cf8182fc3642..13c446fd33a9 100644
-> --- a/drivers/soc/rockchip/io-domain.c
-> +++ b/drivers/soc/rockchip/io-domain.c
-> @@ -51,13 +51,11 @@
->   #define RK3399_PMUGRF_CON0_VSEL		BIT(8)
->   #define RK3399_PMUGRF_VSEL_SUPPLY_NUM	9
->   
-> -struct rockchip_iodomain;
-> +#define RK3568_PMU_GRF_IO_VSEL0		(0x0140)
-> +#define RK3568_PMU_GRF_IO_VSEL1		(0x0144)
-> +#define RK3568_PMU_GRF_IO_VSEL2		(0x0148)
->   
-> -struct rockchip_iodomain_soc_data {
-> -	int grf_offset;
-> -	const char *supply_names[MAX_SUPPLIES];
-> -	void (*init)(struct rockchip_iodomain *iod);
-> -};
-> +struct rockchip_iodomain;
->   
->   struct rockchip_iodomain_supply {
->   	struct rockchip_iodomain *iod;
-> @@ -66,13 +64,62 @@ struct rockchip_iodomain_supply {
->   	int idx;
->   };
->   
-> +struct rockchip_iodomain_soc_data {
-> +	int grf_offset;
-> +	const char *supply_names[MAX_SUPPLIES];
-> +	void (*init)(struct rockchip_iodomain *iod);
-> +	int (*write)(struct rockchip_iodomain_supply *supply, int uV);
-> +};
+> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+> index 4b4785d86324..687ad9d68a85 100644
+> --- a/arch/arm64/boot/dts/freescale/Makefile
+> +++ b/arch/arm64/boot/dts/freescale/Makefile
+> @@ -49,6 +49,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mn-var-som-symphony.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mq-evk.dtb
+> +dtb-$(CONFIG_ARCH_MXC) += imx8mq-evk-rpmsg.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mq-hummingboard-pulse.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mq-kontron-pitx-imx8m.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-devkit.dtb
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-evk-rpmsg.dts b/arch/arm64/boot/dts/freescale/imx8mq-evk-rpmsg.dts
+> new file mode 100644
+> index 000000000000..4a8911087e5f
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq-evk-rpmsg.dts
+> @@ -0,0 +1,72 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright 2019-2021 NXP
+> + */
 > +
->   struct rockchip_iodomain {
->   	struct device *dev;
->   	struct regmap *grf;
->   	const struct rockchip_iodomain_soc_data *soc_data;
->   	struct rockchip_iodomain_supply supplies[MAX_SUPPLIES];
-> +	int (*write)(struct rockchip_iodomain_supply *supply, int uV);
->   };
->   
-> +static int rk3568_iodomain_write(struct rockchip_iodomain_supply *supply, int uV)
-> +{
-> +	struct rockchip_iodomain *iod = supply->iod;
-> +	u32 is_3v3 = uV > MAX_VOLTAGE_1_8;
-> +	u32 val0, val1;
-> +	int b;
+> +#include "imx8mq-evk.dts"
 > +
-> +	switch (supply->idx) {
-> +	case 0: /* pmuio1 */
-> +		break;
-> +	case 1: /* pmuio2 */
-> +		b = supply->idx;
-> +		val0 = BIT(16 + b) | (is_3v3 ? 0 : BIT(b));
-> +		b = supply->idx + 4;
-> +		val1 = BIT(16 + b) | (is_3v3 ? BIT(b) : 0);
+> +/ {
+> +	reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
 > +
-> +		regmap_write(iod->grf, RK3568_PMU_GRF_IO_VSEL2, val0);
-> +		regmap_write(iod->grf, RK3568_PMU_GRF_IO_VSEL2, val1);
-> +		break;
-> +	case 3: /* vccio2 */
-> +		break;
-> +	case 2: /* vccio1 */
-> +	case 4: /* vccio3 */
-> +	case 5: /* vccio4 */
-> +	case 6: /* vccio5 */
-> +	case 7: /* vccio6 */
-> +	case 8: /* vccio7 */
-> +		b = supply->idx - 1;
-> +		val0 = BIT(16 + b) | (is_3v3 ? 0 : BIT(b));
-> +		val1 = BIT(16 + b) | (is_3v3 ? BIT(b) : 0);
+> +		vdev0vring0: vdev0vring0@b8000000 {
+> +			reg = <0 0xb8000000 0 0x8000>;
+> +			no-map;
+> +		};
 > +
-> +		regmap_write(iod->grf, RK3568_PMU_GRF_IO_VSEL0, val0);
-> +		regmap_write(iod->grf, RK3568_PMU_GRF_IO_VSEL1, val1);
-> +		break;
-> +	default:
-> +		return -EINVAL;
+> +		vdev0vring1: vdev0vring1@b8008000 {
+> +			reg = <0 0xb8008000 0 0x8000>;
+> +			no-map;
+> +		};
+> +
+> +		rsc_table: rsc-table@b80ff000 {
+> +			reg = <0 0xb80ff000 0 0x1000>;
+> +			no-map;
+> +		};
+> +
+> +		vdevbuffer: vdevbuffer@b8400000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0 0xb8400000 0 0x100000>;
+> +			no-map;
+> +		};
+> +
+> +		remoteproc@80000000 {
+> +			reg = <0 0x80000000 0 0x1000000>;
+> +			no-map;
+> +		};
 > +	};
 > +
-> +	return 0;
-> +}
-> +
->   static int rockchip_iodomain_write(struct rockchip_iodomain_supply *supply,
->   				   int uV)
->   {
-> @@ -136,7 +183,7 @@ static int rockchip_iodomain_notify(struct notifier_block *nb,
->   			return NOTIFY_BAD;
->   	}
->   
-> -	ret = rockchip_iodomain_write(supply, uV);
-> +	ret = supply->iod->write(supply, uV);
->   	if (ret && event == REGULATOR_EVENT_PRE_VOLTAGE_CHANGE)
->   		return NOTIFY_BAD;
->   
-> @@ -398,6 +445,22 @@ static const struct rockchip_iodomain_soc_data soc_data_rk3399_pmu = {
->   	.init = rk3399_pmu_iodomain_init,
->   };
->   
-> +static const struct rockchip_iodomain_soc_data soc_data_rk3568_pmu = {
-> +	.grf_offset = 0x140,
-> +	.supply_names = {
-> +		"pmuio1",
-> +		"pmuio2",
-> +		"vccio1",
-> +		"vccio2",
-> +		"vccio3",
-> +		"vccio4",
-> +		"vccio5",
-> +		"vccio6",
-> +		"vccio7",
-> +	},
-> +	.write = rk3568_iodomain_write,
+> +	imx8mq-cm4 {
+> +		compatible = "fsl,imx8mq-cm4";
+> +		clocks = <&clk IMX8MQ_CLK_M4_DIV>;
+> +		mbox-names = "tx", "rx", "rxdb";
+> +		mboxes = <&mu 0 1
+> +			  &mu 1 1
+> +			  &mu 3 1>;
+> +		memory-region = <&vdevbuffer>, <&vdev0vring0>, <&vdev0vring1>,
+> +				<&rsc_table>;
+> +		syscon = <&src>;
+> +	};
 > +};
 > +
->   static const struct rockchip_iodomain_soc_data soc_data_rv1108 = {
->   	.grf_offset = 0x404,
->   	.supply_names = {
-> @@ -469,6 +532,10 @@ static const struct of_device_id rockchip_iodomain_match[] = {
->   		.compatible = "rockchip,rk3399-pmu-io-voltage-domain",
->   		.data = &soc_data_rk3399_pmu
->   	},
-> +	{
-> +		.compatible = "rockchip,rk3568-pmu-io-voltage-domain",
-> +		.data = &soc_data_rk3568_pmu
-> +	},
->   	{
->   		.compatible = "rockchip,rv1108-io-voltage-domain",
->   		.data = &soc_data_rv1108
-> @@ -502,6 +569,11 @@ static int rockchip_iodomain_probe(struct platform_device *pdev)
->   	match = of_match_node(rockchip_iodomain_match, np);
->   	iod->soc_data = match->data;
->   
-> +	if (iod->soc_data->write)
-> +		iod->write = iod->soc_data->write;
-> +	else
-> +		iod->write = rockchip_iodomain_write;
+> +/*
+> + * Below devices are allocated on remoteproc
+> + */
 > +
->   	parent = pdev->dev.parent;
->   	if (parent && parent->of_node) {
->   		iod->grf = syscon_node_to_regmap(parent->of_node);
-> @@ -562,7 +634,7 @@ static int rockchip_iodomain_probe(struct platform_device *pdev)
->   		supply->reg = reg;
->   		supply->nb.notifier_call = rockchip_iodomain_notify;
->   
-> -		ret = rockchip_iodomain_write(supply, uV);
-> +		ret = iod->write(supply, uV);
->   		if (ret) {
->   			supply->reg = NULL;
->   			goto unreg_notify;
+> +&i2c2 {
+> +	status = "disabled";
+> +};
+> +
+> +&pwm4 {
+> +	status = "disabled";
+> +};
+> +
+> +&tmu {
+> +	status = "disabled";
+> +};
+> +
+> +&uart2 {
+> +	status = "disabled";
+> +};
+> -- 
+> 2.25.1
 > 
