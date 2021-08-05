@@ -2,149 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C65E3E0D96
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 07:12:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 477C53E0DF1
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 08:06:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231500AbhHEFND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 01:13:03 -0400
-Received: from wnew4-smtp.messagingengine.com ([64.147.123.18]:56649 "EHLO
-        wnew4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236989AbhHEFNC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 01:13:02 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.west.internal (Postfix) with ESMTP id 62E3E2B00475;
-        Thu,  5 Aug 2021 01:12:48 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Thu, 05 Aug 2021 01:12:49 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm3; bh=twhTTkXFTaNa0
-        JKFc4hyiam+oxDA9ilOzTNkxYn0QVU=; b=PkXgn16HgvSTUUdp6giJJ9zviZhK5
-        YoexSA5yHmTUNPltoiP5mAxmqsWqgUCAFZE9ck3QdGZTqRC/vtAM8R4VJIWB+dan
-        BHlYAj/FRZH5J8p4tWMd8xf+V9LK1jsbDbPdsjIhzKBq50zp6VSCjae3oIvSkoRN
-        XmhXcUJwn0R8z0jfTweb1SaTF44lplH/G5fkKyRMUgFZVLwjNT2rXS+OnnYABXlF
-        fYMwwB6BIa6FOgPfBsyyU55jW7OzY2EA5QQuJxZDR0eXIpgx4Snrwck0FrzURLwY
-        jpg3stCs9G9kKmtSwgcoTK9E5uyEvx6cYdTxoiD3sA+CNrP0PDMguZYBw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=twhTTkXFTaNa0JKFc4hyiam+oxDA9ilOzTNkxYn0QVU=; b=N91rrRY5
-        cU4Qo/kWYt562kutCyBFODu28K8np5yaqzV2WJD+iZCVFY7nam/DScOE3Qrm2P0g
-        nlbkOojuvniVOAkcDpY7ZnZnb46NzVtLFPFO6MLzISFjK1Nw8L2nLOhTZYIXY94z
-        zThs9JdJw8qOMfg8ipCzSPc0+oUd7yY3hj65llYkElpMYzOHSj41vFzFYnwbmhKY
-        JB1K+64R6y78VQZimEM8oJYlEgP69h9mqe4syOb9Gv45LP00CXaARLYkRqJDZBB4
-        4w0iIgAPEkbap92NYBvUswR3qMmcpSmuEbWBtna9699VNyQ1elDnj16X5xX3iU0W
-        5/0kpuf+3K/PDA==
-X-ME-Sender: <xms:T3MLYWK6nCm4i-mYnGmkteOFDD1aCVb_G5BdRaH-tjiCPYFOvr_BOA>
-    <xme:T3MLYeKDfZ1nJfGM4oS8kiKpdj1U37rR81uGRturVC7SIKi6ovQQZGy2JmJ0kh6yB
-    CY16AGukMX3xIU8bw>
-X-ME-Received: <xmr:T3MLYWuLplqQJKYJ-ZHws7fvEMBEwB9e7gH0doed8V2P98UJLWrlBkjNjWyaBXiVyiM3XOPE2xEEaZoSu6qg0FGri3Tr7pySAfzAEMWpBYgfcJSC8laqn5ucPPUHsnvdzjyROw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrieekgdekkecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepufgrmhhuvghl
-    ucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecuggftrf
-    grthhtvghrnhepudfhjeefvdfhgfefheetgffhieeigfefhefgvddvveefgeejheejvdfg
-    jeehueeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    epshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:T3MLYbbqss8FZWj0XX95tEdKX2-GRp5eNXjiiz9qFXZOR-th-7iacw>
-    <xmx:T3MLYdY3GZ4Z9redfNmlvcCCsBjFUbqHWv5RscupUckzgU39W7_kbA>
-    <xmx:T3MLYXCmFYed_WBYgpPCRlzJA0OuSlEHpvAcNpFA5A8KnmPT9qrGrQ>
-    <xmx:UHMLYaRrNXS7u6bEAL8qs-tiRjPOZZ-gMY0gh8VKeU-M1SMVxyOBQCcBg4M>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 5 Aug 2021 01:12:47 -0400 (EDT)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Hans de Goede <hdegoede@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
-        Samuel Holland <samuel@sholland.org>,
-        Ondrej Jirman <megous@megous.com>
-Subject: [PATCH resend v3 2/2] input: sun4i-lradc-keys - Add wakup support
-Date:   Thu,  5 Aug 2021 00:12:41 -0500
-Message-Id: <20210805051241.47168-3-samuel@sholland.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210805051241.47168-1-samuel@sholland.org>
-References: <20210805051241.47168-1-samuel@sholland.org>
+        id S229892AbhHEGG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 02:06:27 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:52484 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234461AbhHEGG1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 02:06:27 -0400
+Received: from [IPv6:2a02:810a:880:f54:e5eb:348e:79df:e71f] (unknown [IPv6:2a02:810a:880:f54:e5eb:348e:79df:e71f])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: dafna)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 532A91F40F00;
+        Thu,  5 Aug 2021 07:06:11 +0100 (BST)
+Subject: Re: [PATCH v6 1/9] mtk-mdp: propagate errors from clock_on
+To:     Eizan Miyamoto <eizan@chromium.org>, linux-kernel@vger.kernel.org
+Cc:     wenst@chromium.org, houlong.wei@mediatek.com, yong.wu@mediatek.com,
+        enric.balletbo@collabora.com, devicetree@vger.kernel.org,
+        chunkuang.hu@kernel.org,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
+        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+References: <20210802121215.703023-1-eizan@chromium.org>
+ <20210802220943.v6.1.I9db0d408ef79d300672ec0311a6bee9556801631@changeid>
+From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+Message-ID: <8fe5ac46-a9db-710e-a6d1-856805ab2773@collabora.com>
+Date:   Thu, 5 Aug 2021 08:06:07 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210802220943.v6.1.I9db0d408ef79d300672ec0311a6bee9556801631@changeid>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ondrej Jirman <megous@megous.com>
 
-Allow the driver to wake the system on key press if the "wakeup-source"
-property is provided in the device tree. Using the LRADC as a wakeup
-source requires keeping the AVCC domain active during sleep. Since this
-has a nontrivial impact on power consumption (sometimes doubling it),
-disable the LRADC wakeup source by default.
 
-Acked-by: Maxime Ripard <mripard@kernel.org>
-Reviewed-by: Hans de Goede <hdegoede@redhat.com>
-Signed-off-by: Ondrej Jirman <megous@megous.com>
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
- drivers/input/keyboard/sun4i-lradc-keys.c | 20 ++++++++++++++++----
- 1 file changed, 16 insertions(+), 4 deletions(-)
+On 02.08.21 14:12, Eizan Miyamoto wrote:
+> Up until this change, many errors were logged but ignored when powering
+> on clocks inside mtk_mdp_core. This change tries to do a better job at
+> propagating errors back to the power management framework.
+> 
+> Signed-off-by: Eizan Miyamoto <eizan@chromium.org>
+> ---
+> 
+> (no changes since v1)
+> 
+>   drivers/media/platform/mtk-mdp/mtk_mdp_comp.c | 25 ++++++++++++-----
+>   drivers/media/platform/mtk-mdp/mtk_mdp_comp.h |  2 +-
+>   drivers/media/platform/mtk-mdp/mtk_mdp_core.c | 27 ++++++++++++++-----
+>   3 files changed, 39 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/media/platform/mtk-mdp/mtk_mdp_comp.c b/drivers/media/platform/mtk-mdp/mtk_mdp_comp.c
+> index b3426a551bea..76e295c8d9bc 100644
+> --- a/drivers/media/platform/mtk-mdp/mtk_mdp_comp.c
+> +++ b/drivers/media/platform/mtk-mdp/mtk_mdp_comp.c
+> @@ -13,10 +13,9 @@
+>   
+>   #include "mtk_mdp_comp.h"
+>   
+> -
+> -void mtk_mdp_comp_clock_on(struct device *dev, struct mtk_mdp_comp *comp)
+> +int mtk_mdp_comp_clock_on(struct device *dev, struct mtk_mdp_comp *comp)
+>   {
+> -	int i, err;
+> +	int i, err, status;
+>   
+>   	if (comp->larb_dev) {
+>   		err = mtk_smi_larb_get(comp->larb_dev);
+> @@ -30,11 +29,23 @@ void mtk_mdp_comp_clock_on(struct device *dev, struct mtk_mdp_comp *comp)
+>   		if (IS_ERR(comp->clk[i]))
+>   			continue;
+>   		err = clk_prepare_enable(comp->clk[i]);
+> -		if (err)
+> -			dev_err(dev,
+> -			"failed to enable clock, err %d. type:%d i:%d\n",
+> -				err, comp->type, i);
+> +		if (err) {
+> +			status = err;
+> +			dev_err(dev, "failed to enable clock, err %d. i:%d\n", err, i);
+> +			goto err_clk_prepare_enable;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +
+> +err_clk_prepare_enable:
+> +	for (--i; i >= 0; i--) {
+> +		if (IS_ERR(comp->clk[i]))
+> +			continue;
+> +		clk_disable_unprepare(comp->clk[i]);
+>   	}
+> +
+> +	return status;
 
-diff --git a/drivers/input/keyboard/sun4i-lradc-keys.c b/drivers/input/keyboard/sun4i-lradc-keys.c
-index 4a796bed48ac..af1683d68c8c 100644
---- a/drivers/input/keyboard/sun4i-lradc-keys.c
-+++ b/drivers/input/keyboard/sun4i-lradc-keys.c
-@@ -22,6 +22,8 @@
- #include <linux/module.h>
- #include <linux/of_platform.h>
- #include <linux/platform_device.h>
-+#include <linux/pm_wakeirq.h>
-+#include <linux/pm_wakeup.h>
- #include <linux/regulator/consumer.h>
- #include <linux/slab.h>
- 
-@@ -226,8 +228,7 @@ static int sun4i_lradc_probe(struct platform_device *pdev)
- {
- 	struct sun4i_lradc_data *lradc;
- 	struct device *dev = &pdev->dev;
--	int i;
--	int error;
-+	int error, i, irq;
- 
- 	lradc = devm_kzalloc(dev, sizeof(struct sun4i_lradc_data), GFP_KERNEL);
- 	if (!lradc)
-@@ -272,8 +273,11 @@ static int sun4i_lradc_probe(struct platform_device *pdev)
- 	if (IS_ERR(lradc->base))
- 		return PTR_ERR(lradc->base);
- 
--	error = devm_request_irq(dev, platform_get_irq(pdev, 0),
--				 sun4i_lradc_irq, 0,
-+	irq = platform_get_irq(pdev, 0);
-+	if (irq < 0)
-+		return irq;
-+
-+	error = devm_request_irq(dev, irq, sun4i_lradc_irq, 0,
- 				 "sun4i-a10-lradc-keys", lradc);
- 	if (error)
- 		return error;
-@@ -282,6 +286,14 @@ static int sun4i_lradc_probe(struct platform_device *pdev)
- 	if (error)
- 		return error;
- 
-+	if (device_property_read_bool(dev, "wakeup-source")) {
-+		device_set_wakeup_capable(dev, true);
-+
-+		error = dev_pm_set_wake_irq(dev, irq);
-+		if (error)
-+			dev_warn(dev, "Failed to set wake IRQ\n");
-+	}
-+
- 	return 0;
- }
- 
--- 
-2.26.3
+There is an API function clk_bulk_prepare_enable to prepare and enable an array of clks
+so you can just use it.
 
+>   }
+>   
+>   void mtk_mdp_comp_clock_off(struct device *dev, struct mtk_mdp_comp *comp)
+> diff --git a/drivers/media/platform/mtk-mdp/mtk_mdp_comp.h b/drivers/media/platform/mtk-mdp/mtk_mdp_comp.h
+> index 7897766c96bb..92ab5249bcad 100644
+> --- a/drivers/media/platform/mtk-mdp/mtk_mdp_comp.h
+> +++ b/drivers/media/platform/mtk-mdp/mtk_mdp_comp.h
+> @@ -41,7 +41,7 @@ int mtk_mdp_comp_init(struct device *dev, struct device_node *node,
+>   		      struct mtk_mdp_comp *comp,
+>   		      enum mtk_mdp_comp_type comp_type);
+>   void mtk_mdp_comp_deinit(struct device *dev, struct mtk_mdp_comp *comp);
+> -void mtk_mdp_comp_clock_on(struct device *dev, struct mtk_mdp_comp *comp);
+> +int mtk_mdp_comp_clock_on(struct device *dev, struct mtk_mdp_comp *comp);
+>   void mtk_mdp_comp_clock_off(struct device *dev, struct mtk_mdp_comp *comp);
+>   
+>   
+> diff --git a/drivers/media/platform/mtk-mdp/mtk_mdp_core.c b/drivers/media/platform/mtk-mdp/mtk_mdp_core.c
+> index 976aa1f4829b..412bbec0f735 100644
+> --- a/drivers/media/platform/mtk-mdp/mtk_mdp_core.c
+> +++ b/drivers/media/platform/mtk-mdp/mtk_mdp_core.c
+> @@ -52,13 +52,28 @@ static const struct of_device_id mtk_mdp_of_ids[] = {
+>   };
+>   MODULE_DEVICE_TABLE(of, mtk_mdp_of_ids);
+>   
+> -static void mtk_mdp_clock_on(struct mtk_mdp_dev *mdp)
+> +static int mtk_mdp_clock_on(struct mtk_mdp_dev *mdp)
+>   {
+> -	struct device *dev = &mdp->pdev->dev;
+>   	struct mtk_mdp_comp *comp_node;
+> +	int status;
+> +	struct device *dev = &mdp->pdev->dev;
+> +	int err;
+>   
+> -	list_for_each_entry(comp_node, &mdp->comp_list, node)
+> -		mtk_mdp_comp_clock_on(dev, comp_node);
+> +	list_for_each_entry(comp_node, &mdp->comp_list, node) {
+> +		err = mtk_mdp_comp_clock_on(dev, comp_node);
+> +		if (err) {
+> +			status = err;
+
+You can get rid of the new var 'status' and just return ret in case of error
+
+> +			goto err_mtk_mdp_comp_clock_on;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +
+> +err_mtk_mdp_comp_clock_on:
+> +	list_for_each_entry_continue_reverse(comp_node, &mdp->comp_list, node)
+> +		mtk_mdp_comp_clock_off(dev, comp_node);
+> +
+> +	return status;
+>   }
+>   
+>   static void mtk_mdp_clock_off(struct mtk_mdp_dev *mdp)
+> @@ -274,9 +289,7 @@ static int __maybe_unused mtk_mdp_pm_resume(struct device *dev)
+>   {
+>   	struct mtk_mdp_dev *mdp = dev_get_drvdata(dev);
+>   
+> -	mtk_mdp_clock_on(mdp);
+> -
+> -	return 0;
+> +	return mtk_mdp_clock_on(mdp);
+>   }
+>   
+>   static int __maybe_unused mtk_mdp_suspend(struct device *dev)
+> 
