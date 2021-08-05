@@ -2,55 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D80E53E10DE
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 11:09:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D7163E10E4
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 11:10:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232756AbhHEJJT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 05:09:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53016 "EHLO
+        id S234559AbhHEJLB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 05:11:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230407AbhHEJJS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 05:09:18 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32F14C0613C1
-        for <devicetree@vger.kernel.org>; Thu,  5 Aug 2021 02:09:04 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id y34so9682141lfa.8
-        for <devicetree@vger.kernel.org>; Thu, 05 Aug 2021 02:09:04 -0700 (PDT)
+        with ESMTP id S229913AbhHEJLB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 05:11:01 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D664C0613C1
+        for <devicetree@vger.kernel.org>; Thu,  5 Aug 2021 02:10:46 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id bq29so9746913lfb.5
+        for <devicetree@vger.kernel.org>; Thu, 05 Aug 2021 02:10:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=8fY/oxeThB23V+9UG1Edzhasn4C+9ragDJgqZ7k9gIw=;
-        b=H49voNK1g+G8urIyGYiAgsJPEAbkGA6DS0f+onn3MiQT2Su6rWS4gKB7NCYVSHsRsr
-         dl1CGmKWiTmd9NPn8MdOp6Hfb4ghau3PWU4670rnDYv0GuqdtX91YasNnuxoQRdbNE+0
-         O3FXuc8lVPWMvg00OyZkUCg7LFHpMW+eZvOL2Z0nzI/aXYslgWuJbXDtR+P76dcTxMF8
-         rdRDG74oSWg/O05nwExHu4GoAoSgkcfIhx3pmDGh9L6aY364AaF1ROfpoU1KauKVULjf
-         FmrxPhVj4L17We+I4zMT19/47onr4iF7btZGkwb54yYmD9y23RlPcxKp31vopw7oA8JC
-         8JNQ==
+        bh=GJwSqkoynJ2MGVTaxaCF6tjvxxMA2tETgRViwoLL+uA=;
+        b=BdFbpdP8kIg3G9AXQcWSIAeuhscjDoUZNHs6tTtydjVKNUqX6XH/PSRXgAvDDkibyH
+         5y1QnI6iyG41rUI4BShiWsjCdK9reMem48YfsrqtBHdjkZ/XH+7NfJ+Fp2W+rvSiXgIj
+         KDzQQqJGe57bSr7SJNVLID1dJ7Ja1FgI6yo4Qu25gQia7UNjomXH2lFAS5NmjX7WzsWP
+         7yol4EFp/gL0Qs9PjkuGiH0wi/O1hWWB9WpeJuEpUYm4b83BPy5lLxvlRxVq3VWu52AX
+         EJs2V9pNjHHKlGmtbjwr7Ripm4xap7zc2hd36d6NtjMcalc9jcX66PggfAmfrUt4wDpy
+         6L3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=8fY/oxeThB23V+9UG1Edzhasn4C+9ragDJgqZ7k9gIw=;
-        b=Ox1DhizwuTqd1UZjPfFR61aErffnTC/IxdrKuvGNEvLLnAmcvmrFCzpc1t/4I52CoX
-         AGMr2VtxySioYRTeZczpQQPUS0pkxIu/V52zQInX7D0Tj8ca1+Xd8vZk+rljLCIyC3RY
-         hSC6Wsg19aVXeWN8HHpDf/NkdqkIorxHmcBj1LAQ/2/jXysDWW6H8Sxyhzfklsw1oTJ8
-         MJfgrFXo8zJIDo9rHetP8Py2BLVa0dxbG+N3Q44DNJXS8jhUSBhQwIz6YrV+56CK70vk
-         C6uA06V5ukfF6i4AvrYer47HMqd4r9gJZvtYCIPBW9sTuPD6HSjykJIejJlPS2rSf2qx
-         twRA==
-X-Gm-Message-State: AOAM533oBViZu5Y+HaYRaKkEpFBTJHHGNx26Z0e9nfLv7FdDp1JXE53x
-        RBs0GBvAIjJFmJvogL7tHDi8CW76MlGEIqa5L50vQQ==
-X-Google-Smtp-Source: ABdhPJxqty0NGuXhYp4Sy3H2W5aZNxbWZCoi8hI7ymIGAcMh8xNGz6zqsExVUV5mnZ5ZSm+iwxpYBLFqDqCMYi8/beg=
-X-Received: by 2002:a05:6512:1084:: with SMTP id j4mr2991518lfg.586.1628154542193;
- Thu, 05 Aug 2021 02:09:02 -0700 (PDT)
+        bh=GJwSqkoynJ2MGVTaxaCF6tjvxxMA2tETgRViwoLL+uA=;
+        b=UEWLQ69uplMODt//xHfK+49/FYDOmPA8omE/zWegBs7wJ1pgouaAvx1ir8/ud87Cfk
+         ix/Mt+NfzAPBHWPORAeXng2mfIv3SshN372KNqwE37XyEWktKnw2t9V3/IgNkOXLacEH
+         xcFtm0InmNvBT4FHkBNHL50CsLrp5Pyqh3PSnI7bjMtsiyB0Ie2dhCWukg4G8GgmALLe
+         RGaQdwZVMuWpoHpmXzYtiCDJo9Cdqx/EVRA/+cFOfgdBpRfBLSMFs2JWGVNBIkM3uKvI
+         d8lKxbgzZ/uYiat6PHgYw9qv8XmiAFkirVCFfsGtWEEU/2BNgEsZWAd+wyKUKAUaAJNz
+         5+vA==
+X-Gm-Message-State: AOAM531hw+AZ36sC3m69R/p1e9fjHwl6EUeV17IbdBug7iH9oUWD6jMY
+        UgY+qt+2cCiTX8bDwQnc+XSAASq39CwNB0tYY3iBkQ==
+X-Google-Smtp-Source: ABdhPJzZpUm8mUiTLlF2l2RaGugFmMpQMMqoQ5ipZx5ajfXnBZ534P16n8WUxjIaWbrbZLOd9+eZHKDTwonxKjv8meI=
+X-Received: by 2002:ac2:4d0f:: with SMTP id r15mr2833139lfi.649.1628154644990;
+ Thu, 05 Aug 2021 02:10:44 -0700 (PDT)
 MIME-Version: 1.0
-References: <1627098243-2742-1-git-send-email-dillon.minfei@gmail.com> <1627098243-2742-2-git-send-email-dillon.minfei@gmail.com>
-In-Reply-To: <1627098243-2742-2-git-send-email-dillon.minfei@gmail.com>
+References: <1627098243-2742-1-git-send-email-dillon.minfei@gmail.com> <1627098243-2742-4-git-send-email-dillon.minfei@gmail.com>
+In-Reply-To: <1627098243-2742-4-git-send-email-dillon.minfei@gmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 5 Aug 2021 11:08:51 +0200
-Message-ID: <CACRpkdYEWDKrcUGcnDLKrx7+cGH4BvKLC0du1wYpkXTiJwn8_g@mail.gmail.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: display: panel: Add ilitek ili9341
- panel bindings
+Date:   Thu, 5 Aug 2021 11:10:33 +0200
+Message-ID: <CACRpkdYzrpHgDCW2UXNnFk-NpC_yM5xeSe_jBDJMGa6==5SHXw@mail.gmail.com>
+Subject: Re: [PATCH v4 3/3] drm/panel: Add ilitek ili9341 panel driver
 To:     dillon min <dillon.minfei@gmail.com>
 Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
@@ -76,16 +75,22 @@ On Sat, Jul 24, 2021 at 5:44 AM <dillon.minfei@gmail.com> wrote:
 
 > From: Dillon Min <dillon.minfei@gmail.com>
 >
-> Add documentation for "ilitek,ili9341" panel.
+> This driver combines tiny/ili9341.c mipi_dbi_interface driver
+> with mipi_dpi_interface driver, can support ili9341 with serial
+> mode and parallel rgb interface mode by different dts bindings.
 >
 > Signed-off-by: Dillon Min <dillon.minfei@gmail.com>
+> Reported-by: kernel test robot <lkp@intel.com>
 > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Link: https://lore.kernel.org/lkml/1626853288-31223-2-git-send-email-dillon.minfei@gmail.com/
+> Reviewed-by: Jagan Teki <jagan@amarulasolutions.com>
+> ---
+> v4:
+> - fix m68k-allmodconfig build error which reported by lkp, thanks.
+> - add Copyright 2018 David Lechner <david@lechnology.com>.
 
-Patch applied to drm-misc-next.
+Patch applied to drm-misc-next
 
-Thanks for working on this!
+Thanks for working on this driver!
 
 Yours,
 Linus Walleij
