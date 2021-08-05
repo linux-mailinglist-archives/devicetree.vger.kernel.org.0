@@ -2,454 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C211C3E1356
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 12:59:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 646643E1381
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 13:08:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240612AbhHEK7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 06:59:30 -0400
-Received: from foss.arm.com ([217.140.110.172]:42806 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240080AbhHEK73 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Aug 2021 06:59:29 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 895CB1FB;
-        Thu,  5 Aug 2021 03:59:15 -0700 (PDT)
-Received: from lpieralisi (e121166-lin.cambridge.arm.com [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 144853F719;
-        Thu,  5 Aug 2021 03:59:13 -0700 (PDT)
-Date:   Thu, 5 Aug 2021 11:59:08 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-pci@vger.kernel.org,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        devicetree@vger.kernel.org, punit1.agrawal@toshiba.co.jp,
-        yuji2.ishikawa@toshiba.co.jp, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/3] PCI: visconti: Add Toshiba Visconti PCIe host
- controller driver
-Message-ID: <20210805105908.GA19244@lpieralisi>
-References: <20210723221421.113575-1-nobuhiro1.iwamatsu@toshiba.co.jp>
- <20210723221421.113575-3-nobuhiro1.iwamatsu@toshiba.co.jp>
-MIME-Version: 1.0
+        id S240690AbhHELIM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 07:08:12 -0400
+Received: from mail-co1nam11on2131.outbound.protection.outlook.com ([40.107.220.131]:29088
+        "EHLO NAM11-CO1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S240579AbhHELIM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Aug 2021 07:08:12 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cnjMUpwhsNsDxAb6rc3sxOk39BKdHpKuh50fqp8ngUq7QTpan4TuC8J9zkr+tQOnMnfr24y8iZK3q2Tw1r2oE2sFVIn7oiVyECbz7wSJUvWCFa25jNXR6Svo4YH0HjTWVHH0CVbqVzy89AvoErJgxM7upElv7+CTK78/q98kgzUvAhGXqL582ciC5ml7/0s3hgnn+MzXNSjzgvIcgdCuA5ObS6jWFPHRpT1ov4pWyKmMTHw9GLuEN0XY7pGibp7iKNGEwnDUmWs479YKVUi7gyQUJRaNTftFRvab9EsaJVQp5YFKKH36KMK2EV5qaSACmOlP/qILy4NsgzTV3ISWqg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5jm1yErAlZG4d+Ypt/Woxl4UH+n+0VhfEjRSo/ZCJBc=;
+ b=h0/i7JY+oPxOoNXnDwnm3voV3zorRPrYmAEn3eLosr97wCTQTC1TFynKB/xdJXzPnymO0/9Jbi+40fVE0/rTcgPLmw0KztYL2gV0IgCxbUKfBr9VvE2XBGeNsi88XykpSY05jF5jgTKUyM4ssA0ilySOxnm0rfIDfAdt0dS1ZutjIFOHDF6jVJR+8VbXG6o2rrLvZn0VvbdlFMzrPGGCP2vBeVuL5cMH0daqDR7iLfRe+GtH7EZbBuQiDJoQ1AHJHMXWeGmUyx7AqDCERT53j8m8loMKRIcGaIs9S82l6MOrTuFOYS6G5mV0R18+VYjFpMEvqWe66WDDjncC2tFDaA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
+ header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5jm1yErAlZG4d+Ypt/Woxl4UH+n+0VhfEjRSo/ZCJBc=;
+ b=2nlkmQ5MmG1tBRFr6c8pwwUOt1jdp2DqTKGcCBsj5P7zmvBHR4yHzdAFDiZ74lXQkB8QzDiuJYBiN3ANA6v+bzKTL9/k1c9GgEpXT/p1VzypuJYs11qScovysZAuuU/7YaTTzrIhvoABHoyDHYXD+Vd3OS3GdzF+OV5HziX2/gw=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none
+ header.from=analogixsemi.com;
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
+ by BYAPR04MB4901.namprd04.prod.outlook.com (2603:10b6:a03:4f::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.24; Thu, 5 Aug
+ 2021 11:07:55 +0000
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::5c0e:fbe5:2bd6:ec6]) by BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::5c0e:fbe5:2bd6:ec6%3]) with mapi id 15.20.4394.018; Thu, 5 Aug 2021
+ 11:07:55 +0000
+Date:   Thu, 5 Aug 2021 19:07:44 +0800
+From:   Xin Ji <xji@analogixsemi.com>
+To:     Rob Herring <robh+dt@kernel.org>, David Airlie <airlied@linux.ie>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     Daniel Vetter <daniel@ffwll.ch>, Sam Ravnborg <sam@ravnborg.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Ricardo =?iso-8859-1?Q?Ca=F1uelo?= 
+        <ricardo.canuelo@collabora.com>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, Bernie Liang <bliang@analogixsemi.com>,
+        Sheng Pan <span@analogixsemi.com>,
+        Zhen Li <zhenli@analogixsemi.com>, linux-kernel@vger.kernel.org
+Subject: [PATCH v11 0/4] Add MIPI rx DPI support
+Message-ID: <cover.1628161369.git.xji@analogixsemi.com>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210723221421.113575-3-nobuhiro1.iwamatsu@toshiba.co.jp>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+X-ClientProxiedBy: HK2PR02CA0182.apcprd02.prod.outlook.com
+ (2603:1096:201:21::18) To BY5PR04MB6739.namprd04.prod.outlook.com
+ (2603:10b6:a03:229::8)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from anxtwsw-Precision-3640-Tower (60.251.58.79) by HK2PR02CA0182.apcprd02.prod.outlook.com (2603:1096:201:21::18) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.15 via Frontend Transport; Thu, 5 Aug 2021 11:07:54 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 2e117450-16bc-4e28-aa9b-08d958014650
+X-MS-TrafficTypeDiagnostic: BYAPR04MB4901:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <BYAPR04MB4901B6138C5FDCFD39791969C7F29@BYAPR04MB4901.namprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: B/qbCsQG5pVeZocHrLO2+EGe1CnrV4yDhVxeb1xh2/oeyNZb9ed+VVOxB7LfQmcBp+KHoSoEla8QA9HFKHTFSjYex/LwN3uQbssScrcJeuan7l5ab7y2TBMS32jLRAKmSSjVmBPQ4JZoGhF6tju+KBpeQax+VpzN/F16+Ud7VM9n6iFNZ45pddfEeC1LomQCz/H38vlNHbt2AcllUGP8MnjaEs+Ho7Ul0c8goeZ2kqUaeePv6sI9Xukm0iY8/+GGidMsPeuuqB/TGu4gyZskHCFQOON5zczeWKb7Z0z8bMDk4LRT0a9Q2RBc6+QrxpiBHkLcA25btXOIDsuUKV9FjkCY8W76syc8TiJjHGhh8JgJ+WioYRYHKwhXPvvg8EeUiB6Uv3CPrZ//+XIdsHJzDt+zOTQxcUFllmecwjz9S7MPFwybfEnkFtYuN8XSrOfac/tkmOomCzqh+PeIiT5GYBk94aZoxjtbPoUHB6J+HRhsyOtrwjAEHJC6dNW/4HjnVsESAXbld6qcIsFFPYiigf4y3f2o+5hZAYW0q+iIx9Jwoov8iGBKcXVo7KS0Sv7rxuYbbjrrefT9vCP9L4V8dQJdpJbVIEW5qB68f9IpLQ4pm2mdOWI3CbH/HA1zR+KS8NTQ4Y7lVZFZjvnw6X8YoheThq3+ZlhGOG4zyc4TU2FeKUWXrd7DxuSXInraEFfb
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(346002)(136003)(376002)(396003)(366004)(39850400004)(86362001)(4326008)(36756003)(2616005)(26005)(55236004)(6486002)(956004)(38100700002)(38350700002)(52116002)(83380400001)(6496006)(54906003)(8676002)(2906002)(8936002)(5660300002)(316002)(66556008)(7416002)(6666004)(478600001)(186003)(66476007)(110136005)(66946007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?upBeGvXRgQpNrZthThJgaJeMtAWEGVClbBMD3EoTGinqzaC/h1sS911ZLNOQ?=
+ =?us-ascii?Q?AZ3cMNMFREuvXnpVINwky0CuRcKC0csS6jYn8eW7Ah1dzwJypLPDHl/xkrJp?=
+ =?us-ascii?Q?Al1mYTvlrS6aIXK9crJVuTYtqBjEBq/6YEVXjqPXD9PCnQ9tHM6MVKhcmu8Z?=
+ =?us-ascii?Q?3XCKkKVs0TvjQ0KTmWgWgz3otVPQ31LS6ik4/JRyQklHTxxgo9u/9bQ+ORLa?=
+ =?us-ascii?Q?Qy8GFZNEKre5rSy1RgNziZQGzryX9x/yInT4D5Suf5BJpPjTN/tKWY0g6Uqt?=
+ =?us-ascii?Q?7NJdRxWFy4V+XYVRRAgtKecnoqVDwjlxoV3D1a9Yv+2MdLBFbIBlXdWdCiKG?=
+ =?us-ascii?Q?T2u4F+oJBJ19WgPCkdI/UUzG23MUyDtrlAjTJCbbqk7pZVJEVmxc51m6vYKc?=
+ =?us-ascii?Q?2ORSI7lIrUhr+0+Fm3Mx+u/pRvyWi0TxZexW9SDHpk6PqXhxRVsUeJXgpODt?=
+ =?us-ascii?Q?/Pq6yHApQ3T5FOfCKn8OVEEaW3pyWIWL8n/GtnFpCsqeBC4Y1NqQyHQeDktg?=
+ =?us-ascii?Q?p1e9D0MUiSNHPA+hbqGXIL6z5RaQ1NX1zx7lIWHab1ToI+3I85xZZGCCqzhd?=
+ =?us-ascii?Q?0ZDghI8s9/sSGlCJvTkQ6WprZ94nnY/4TzyDWnSA2VqxGZ75AkSDKRKCCukT?=
+ =?us-ascii?Q?O/b36yRW3ukxOZ4ISn7ZJ7m0Vy3Teh3IEiQ/85FGIjFoa9iyWDJa0YD3woys?=
+ =?us-ascii?Q?HKNxC167wno3nt9X9SsgMBjpT7zTeK/j768gjK9T2IFOkqUo+kG5VLfVykJJ?=
+ =?us-ascii?Q?ikD/4YaFMefQJW+vREJlMtrCIUAOFqHyedFv+Jsqw9mc88FdZUvwtSqmb+tI?=
+ =?us-ascii?Q?5fWRUoSodnmQ/WZs5CnLWtXW3sC+ISeuIsEn02H4vmsPqHT7c4WGBr+/7UmK?=
+ =?us-ascii?Q?BlXoWNJt4+zp60oMsxXV2bK9WqKFoETjyyNaek3Cws4ZRQd9RY69SCEt5kse?=
+ =?us-ascii?Q?KwFaFh9KCBnTcsg3jUIGxLP2m9bCoWSJ9GC/UUIxmnnnBCiZgBbQEewoBIAf?=
+ =?us-ascii?Q?lurjpOsQVzHdeWhlSxi/6HqWlJoTxHD5QeDBFUmJhhnQxjnF8LVBsyEr3Hti?=
+ =?us-ascii?Q?T3f+awcBYOxiiXNHM19rXbj9xwJCPfG3qG+TH+RidBRkOEbUmSYJebwl0vKr?=
+ =?us-ascii?Q?hCpN/oMQL1lorilxH4YRCzmgchRX93WMq0laqKyRBYSm63f0crjioMZRmbKI?=
+ =?us-ascii?Q?nlXSJ/ImwEZSDNBLiNzOLNJ0mBEa+VA4p+SUmosMJ/iFyMgPeU65dop5t/nF?=
+ =?us-ascii?Q?+6yTaAE+0DHxJymDujysIiLbVdh58lWEhU/MDF4ag3d8RP9096ImqbtN2mGy?=
+ =?us-ascii?Q?vaQw29+KNMujWGZj1rIQMK7N?=
+X-OriginatorOrg: analogixsemi.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2e117450-16bc-4e28-aa9b-08d958014650
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR04MB6739.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2021 11:07:55.1252
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 950OkklFD9tb1mPchANI6eoYTosTCVvkzCkGKmTwreTp5MGYgFZQLHBt1+Sv/vJtaH12tFnqO7Wz3tfWTib1Wg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR04MB4901
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 24, 2021 at 07:14:20AM +0900, Nobuhiro Iwamatsu wrote:
-> Add support to PCIe RC controller on Toshiba Visconti ARM SoCs. PCIe
-> controller is based of Synopsys DesignWare PCIe core.
-> 
-> This patch does not yet use the clock framework to control the clock.
-> This will be replaced in the future.
+Hi all, this patch series implement MIPI rx DPI feature. Please help to review.
 
-This is not relevant information. I expect the commit log to describe
-the change and the reasons behind the choices.
+This is the v11 version, rebase all patches on the latest code.
+Any mistakes, please let me know, I'll fix it in the next series.
 
-Speaking of which, I'd like to understand what
+Change history:
+v11: Fix Rob Herring comment
+ - Move swing register description in property.
+ - Remove additional property.
 
-> This patch does not yet use the clock framework to control the clock.
+v10: Fix Rob Herring and Laurent Pinchart comments
+ - Add more description about lane swing configuration in commit
+   message.
 
-means and why it can't be done within this series.
+v9: Fix Neil Amstrong comment
+ - use macro define 'V4L2_FWNODE_BUS_TYPE_PARALLEL' instead of fixing
+   value.
 
-> Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-> Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> 
-> ---
->  drivers/pci/controller/dwc/Kconfig         |   9 +
->  drivers/pci/controller/dwc/Makefile        |   1 +
->  drivers/pci/controller/dwc/pcie-visconti.c | 333 +++++++++++++++++++++
->  3 files changed, 343 insertions(+)
->  create mode 100644 drivers/pci/controller/dwc/pcie-visconti.c
-> 
-> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-> index 423d35872ce4..7c3dcb86fcad 100644
-> --- a/drivers/pci/controller/dwc/Kconfig
-> +++ b/drivers/pci/controller/dwc/Kconfig
-> @@ -286,6 +286,15 @@ config PCIE_TEGRA194_EP
->  	  in order to enable device-specific features PCIE_TEGRA194_EP must be
->  	  selected. This uses the DesignWare core.
->  
-> +config PCIE_VISCONTI_HOST
-> +	bool "Toshiba Visconti PCIe controllers"
-> +	depends on ARCH_VISCONTI || COMPILE_TEST
-> +	depends on PCI_MSI_IRQ_DOMAIN
-> +	select PCIE_DW_HOST
-> +	help
-> +	  Say Y here if you want PCIe controller support on Toshiba Visconti SoC.
-> +	  This driver supports TMPV7708 SoC.
-> +
->  config PCIE_UNIPHIER
->  	bool "Socionext UniPhier PCIe host controllers"
->  	depends on ARCH_UNIPHIER || COMPILE_TEST
-> diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
-> index eca805c1a023..0b569d54deb3 100644
-> --- a/drivers/pci/controller/dwc/Makefile
-> +++ b/drivers/pci/controller/dwc/Makefile
-> @@ -20,6 +20,7 @@ obj-$(CONFIG_PCIE_HISI_STB) += pcie-histb.o
->  obj-$(CONFIG_PCI_MESON) += pci-meson.o
->  obj-$(CONFIG_PCIE_UNIPHIER) += pcie-uniphier.o
->  obj-$(CONFIG_PCIE_UNIPHIER_EP) += pcie-uniphier-ep.o
-> +obj-$(CONFIG_PCIE_VISCONTI_HOST) += pcie-visconti.o
->  
->  # The following drivers are for devices that use the generic ACPI
->  # pci_root.c driver but don't support standard ECAM config access.
-> diff --git a/drivers/pci/controller/dwc/pcie-visconti.c b/drivers/pci/controller/dwc/pcie-visconti.c
-> new file mode 100644
-> index 000000000000..f01a670cdf5d
-> --- /dev/null
-> +++ b/drivers/pci/controller/dwc/pcie-visconti.c
-> @@ -0,0 +1,333 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * DWC PCIe RC driver for Toshiba Visconti ARM SoC
-> + *
-> + * Copyright (C) 2021 Toshiba Electronic Device & Storage Corporation
-> + * Copyright (C) 2021 TOSHIBA CORPORATION
-> + *
-> + * Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/gpio.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/init.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/kernel.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/pci.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/resource.h>
-> +#include <linux/types.h>
-> +
-> +#include "pcie-designware.h"
-> +#include "../../pci.h"
-> +
-> +struct visconti_pcie {
-> +	struct dw_pcie pci;
-> +	void __iomem *ulreg_base;
-> +	void __iomem *smu_base;
-> +	void __iomem *mpu_base;
-> +	struct clk *refclk;
-> +	struct clk *coreclk;
-> +	struct clk *auxclk;
-> +};
-> +
-> +#define PCIE_UL_REG_S_PCIE_MODE		0x00F4
-> +#define  PCIE_UL_REG_S_PCIE_MODE_EP	0x00
-> +#define  PCIE_UL_REG_S_PCIE_MODE_RC	0x04
-> +
-> +#define PCIE_UL_REG_S_PERSTN_CTRL	0x00F8
-> +#define  PCIE_UL_IOM_PCIE_PERSTN_I_EN	BIT(3)
-> +#define  PCIE_UL_DIRECT_PERSTN_EN	BIT(2)
-> +#define  PCIE_UL_PERSTN_OUT		BIT(1)
-> +#define  PCIE_UL_DIRECT_PERSTN		BIT(0)
-> +#define  PCIE_UL_REG_S_PERSTN_CTRL_INIT	(PCIE_UL_IOM_PCIE_PERSTN_I_EN | \
-> +					 PCIE_UL_DIRECT_PERSTN_EN | \
-> +					 PCIE_UL_DIRECT_PERSTN)
-> +
-> +#define PCIE_UL_REG_S_PHY_INIT_02	0x0104
-> +#define  PCIE_UL_PHY0_SRAM_EXT_LD_DONE	BIT(0)
-> +
-> +#define PCIE_UL_REG_S_PHY_INIT_03	0x0108
-> +#define  PCIE_UL_PHY0_SRAM_INIT_DONE	BIT(0)
-> +
-> +#define PCIE_UL_REG_S_INT_EVENT_MASK1	0x0138
-> +#define  PCIE_UL_CFG_PME_INT		BIT(0)
-> +#define  PCIE_UL_CFG_LINK_EQ_REQ_INT	BIT(1)
-> +#define  PCIE_UL_EDMA_INT0		BIT(2)
-> +#define  PCIE_UL_EDMA_INT1		BIT(3)
-> +#define  PCIE_UL_EDMA_INT2		BIT(4)
-> +#define  PCIE_UL_EDMA_INT3		BIT(5)
-> +#define  PCIE_UL_S_INT_EVENT_MASK1_ALL  (PCIE_UL_CFG_PME_INT | \
-> +					 PCIE_UL_CFG_LINK_EQ_REQ_INT | \
-> +					 PCIE_UL_EDMA_INT0 | \
-> +					 PCIE_UL_EDMA_INT1 | \
-> +					 PCIE_UL_EDMA_INT2 | \
-> +					 PCIE_UL_EDMA_INT3)
-> +
-> +#define PCIE_UL_REG_S_SB_MON		0x0198
-> +#define PCIE_UL_REG_S_SIG_MON		0x019C
-> +#define  PCIE_UL_CORE_RST_N_MON		BIT(0)
-> +
-> +#define PCIE_UL_REG_V_SII_DBG_00	0x0844
-> +#define PCIE_UL_REG_V_SII_GEN_CTRL_01	0x0860
-> +#define  PCIE_UL_APP_LTSSM_ENABLE	BIT(0)
-> +
-> +#define PCIE_UL_REG_V_PHY_ST_00		0x0864
-> +#define  PCIE_UL_SMLH_LINK_UP		BIT(0)
-> +
-> +#define PCIE_UL_REG_V_PHY_ST_02		0x0868
-> +#define  PCIE_UL_S_DETECT_ACT		0x01
-> +#define  PCIE_UL_S_L0			0x11
-> +
-> +#define PISMU_CKON_PCIE			0x0038
-> +#define  PISMU_CKON_PCIE_AUX_CLK	BIT(1)
-> +#define  PISMU_CKON_PCIE_MSTR_ACLK	BIT(0)
-> +
-> +#define PISMU_RSOFF_PCIE		0x0538
-> +#define  PISMU_RSOFF_PCIE_ULREG_RST_N	BIT(1)
-> +#define  PISMU_RSOFF_PCIE_PWR_UP_RST_N	BIT(0)
-> +
-> +#define PCIE_MPU_REG_MP_EN		0x0
-> +#define  MPU_MP_EN_DISABLE		BIT(0)
-> +
-> +/* Access registers in PCIe ulreg */
-> +static void visconti_ulreg_writel(struct visconti_pcie *pcie, u32 val, u32 reg)
-> +{
-> +	writel_relaxed(val, pcie->ulreg_base + reg);
-> +}
-> +
-> +static u32 visconti_ulreg_readl(struct visconti_pcie *pcie, u32 reg)
-> +{
-> +	return readl_relaxed(pcie->ulreg_base + reg);
-> +}
-> +
-> +/* Access registers in PCIe smu */
-> +static void visconti_smu_writel(struct visconti_pcie *pcie, u32 val, u32 reg)
-> +{
-> +	writel_relaxed(val, pcie->smu_base + reg);
-> +}
-> +
-> +/* Access registers in PCIe mpu */
-> +static void visconti_mpu_writel(struct visconti_pcie *pcie, u32 val, u32 reg)
-> +{
-> +	writel_relaxed(val, pcie->mpu_base + reg);
-> +}
-> +
-> +static u32 visconti_mpu_readl(struct visconti_pcie *pcie, u32 reg)
-> +{
-> +	return readl_relaxed(pcie->mpu_base + reg);
-> +}
-> +
-> +static int visconti_pcie_link_up(struct dw_pcie *pci)
-> +{
-> +	struct visconti_pcie *pcie = dev_get_drvdata(pci->dev);
-> +	void __iomem *addr = pcie->ulreg_base;
-> +	u32 val = readl_relaxed(addr + PCIE_UL_REG_V_PHY_ST_02);
-> +
-> +	return !!(val & PCIE_UL_S_L0);
-> +}
-> +
-> +static int visconti_pcie_start_link(struct dw_pcie *pci)
-> +{
-> +	struct visconti_pcie *pcie = dev_get_drvdata(pci->dev);
-> +	void __iomem *addr = pcie->ulreg_base;
-> +	u32 val;
-> +	int ret;
-> +
-> +	visconti_ulreg_writel(pcie, PCIE_UL_APP_LTSSM_ENABLE,
-> +			      PCIE_UL_REG_V_SII_GEN_CTRL_01);
-> +
-> +	ret = readl_relaxed_poll_timeout(addr + PCIE_UL_REG_V_PHY_ST_02,
-> +					 val, (val & PCIE_UL_S_L0),
-> +					 90000, 100000);
-> +	if (ret)
-> +		return ret;
-> +
-> +	visconti_ulreg_writel(pcie, PCIE_UL_S_INT_EVENT_MASK1_ALL,
-> +			      PCIE_UL_REG_S_INT_EVENT_MASK1);
-> +
-> +	if (dw_pcie_link_up(pci)) {
-> +		val = visconti_mpu_readl(pcie, PCIE_MPU_REG_MP_EN);
-> +		visconti_mpu_writel(pcie, val & ~MPU_MP_EN_DISABLE,
-> +				    PCIE_MPU_REG_MP_EN);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void visconti_pcie_stop_link(struct dw_pcie *pci)
-> +{
-> +	struct visconti_pcie *pcie = dev_get_drvdata(pci->dev);
-> +	u32 val;
-> +
-> +	val = visconti_ulreg_readl(pcie, PCIE_UL_REG_V_SII_GEN_CTRL_01);
-> +	val &= ~PCIE_UL_APP_LTSSM_ENABLE;
-> +	visconti_ulreg_writel(pcie, val, PCIE_UL_REG_V_SII_GEN_CTRL_01);
-> +
-> +	val = visconti_mpu_readl(pcie, PCIE_MPU_REG_MP_EN);
-> +	visconti_mpu_writel(pcie, val | MPU_MP_EN_DISABLE, PCIE_MPU_REG_MP_EN);
-> +}
-> +
-> +/*
-> + * In this SoC specification, the CPU bus outputs the offset value from
-> + * 0x40000000 to the PCIE bus, so 0x40000000 is subtracted from the CPU
-> + * bus address. This 0x40000000 is also based on io_base from DT.
-> + */
-> +static u64 visconti_pcie_cpu_addr_fixup(struct dw_pcie *pci, u64 cpu_addr)
-> +{
-> +	struct pcie_port *pp = &pci->pp;
-> +
-> +	return cpu_addr & ~pp->io_base;
-> +}
-> +
-> +static const struct dw_pcie_ops dw_pcie_ops = {
-> +	.cpu_addr_fixup = visconti_pcie_cpu_addr_fixup,
-> +	.link_up = visconti_pcie_link_up,
-> +	.start_link = visconti_pcie_start_link,
-> +	.stop_link = visconti_pcie_stop_link,
-> +};
-> +
-> +static int visconti_pcie_host_init(struct pcie_port *pp)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	struct visconti_pcie *pcie = dev_get_drvdata(pci->dev);
-> +	void __iomem *addr;
-> +	int err;
-> +	u32 val;
-> +
-> +	visconti_smu_writel(pcie,
-> +			    PISMU_CKON_PCIE_AUX_CLK | PISMU_CKON_PCIE_MSTR_ACLK,
-> +			    PISMU_CKON_PCIE);
-> +	ndelay(250);
-> +
-> +	visconti_smu_writel(pcie, PISMU_RSOFF_PCIE_ULREG_RST_N,
-> +			    PISMU_RSOFF_PCIE);
-> +	visconti_ulreg_writel(pcie, PCIE_UL_REG_S_PCIE_MODE_RC,
-> +			      PCIE_UL_REG_S_PCIE_MODE);
-> +
-> +	val = PCIE_UL_REG_S_PERSTN_CTRL_INIT;
-> +	visconti_ulreg_writel(pcie, val, PCIE_UL_REG_S_PERSTN_CTRL);
-> +	udelay(100);
-> +
-> +	val |= PCIE_UL_PERSTN_OUT;
-> +	visconti_ulreg_writel(pcie, val, PCIE_UL_REG_S_PERSTN_CTRL);
-> +	udelay(100);
-> +
-> +	visconti_smu_writel(pcie, PISMU_RSOFF_PCIE_PWR_UP_RST_N,
-> +			    PISMU_RSOFF_PCIE);
-> +
-> +	addr = pcie->ulreg_base + PCIE_UL_REG_S_PHY_INIT_03;
-> +	err = readl_relaxed_poll_timeout(addr, val,
-> +					 (val & PCIE_UL_PHY0_SRAM_INIT_DONE),
-> +					 100, 1000);
-> +	if (err)
-> +		return err;
-> +
-> +	visconti_ulreg_writel(pcie, PCIE_UL_PHY0_SRAM_EXT_LD_DONE,
-> +			      PCIE_UL_REG_S_PHY_INIT_02);
-> +
-> +	addr = pcie->ulreg_base + PCIE_UL_REG_S_SIG_MON;
-> +	return readl_relaxed_poll_timeout(addr, val,
-> +					  (val & PCIE_UL_CORE_RST_N_MON), 100,
-> +					  1000);
-> +}
-> +
-> +static const struct dw_pcie_host_ops visconti_pcie_host_ops = {
-> +	.host_init = visconti_pcie_host_init,
-> +};
-> +
-> +static int visconti_get_resources(struct platform_device *pdev,
-> +				  struct visconti_pcie *pcie)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +
-> +	pcie->ulreg_base = devm_platform_ioremap_resource_byname(pdev, "ulreg");
-> +	if (IS_ERR(pcie->ulreg_base))
-> +		return PTR_ERR(pcie->ulreg_base);
-> +
-> +	pcie->smu_base = devm_platform_ioremap_resource_byname(pdev, "smu");
-> +	if (IS_ERR(pcie->smu_base))
-> +		return PTR_ERR(pcie->smu_base);
-> +
-> +	pcie->mpu_base = devm_platform_ioremap_resource_byname(pdev, "mpu");
-> +	if (IS_ERR(pcie->mpu_base))
-> +		return PTR_ERR(pcie->mpu_base);
-> +
-> +	pcie->refclk = devm_clk_get(dev, "ref");
-> +	if (IS_ERR(pcie->refclk))
-> +		return dev_err_probe(dev, PTR_ERR(pcie->refclk),
-> +				     "Failed to get ref clock\n");
-> +
-> +	pcie->coreclk = devm_clk_get(dev, "core");
-> +	if (IS_ERR(pcie->coreclk))
-> +		return dev_err_probe(dev, PTR_ERR(pcie->coreclk),
-> +				     "Failed to get core clock\n");
-> +
-> +	pcie->auxclk = devm_clk_get(dev, "aux");
-> +	if (IS_ERR(pcie->auxclk))
-> +		return dev_err_probe(dev, PTR_ERR(pcie->auxclk),
-> +				     "Failed to get aux clock\n");
-> +
-> +	return 0;
-> +}
-> +
-> +static int
-> +visconti_add_pcie_port(struct visconti_pcie *pcie, struct platform_device *pdev)
+v8: Fix Laurent Pinchart comment
+ - Expand the commit message.
 
-Nit: don't split lines like this, it is better to keep return value
-type and function name in one single line.
+v7:
+ - Rebase DT on the latest branch 'drm-misc-next'.
+ - Remove HDCP patch.
 
-Do it like this:
+v6: Fix kernel robot compile warning
 
-static int visconti_add_pcie_port(struct visconti_pcie *pcie,
- 				  struct platform_device *pdev)
+v5: Fix Rob Herring, Hsin-Yi, Robert Foss comments
+ - Rebase code on the branch 'drm-misc-next', refer video-interfaces.yaml
+ - Seprate HDCP function to a new patch
+ - Fix driver not correctly get 'bus-type' 'data-lanes'
+ - Add audio HDMI codec function support
 
-Lorenzo
+v4: Fix Rob Herring comment
+ - Rebase code on the branch 'drm-misc-next'
+ - Change 'analogix,hdcp-support' type to boolean
 
-> +{
-> +	struct dw_pcie *pci = &pcie->pci;
-> +	struct pcie_port *pp = &pci->pp;
-> +	struct device *dev = &pdev->dev;
-> +
-> +	pp->irq = platform_get_irq_byname(pdev, "intr");
-> +	if (pp->irq < 0) {
-> +		dev_err(dev, "Interrupt intr is missing");
-> +		return pp->irq;
-> +	}
-> +
-> +	pp->ops = &visconti_pcie_host_ops;
-> +
-> +	return dw_pcie_host_init(pp);
-> +}
-> +
-> +static int visconti_pcie_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct visconti_pcie *pcie;
-> +	struct dw_pcie *pci;
-> +	int ret;
-> +
-> +	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
-> +	if (!pcie)
-> +		return -ENOMEM;
-> +
-> +	pci = &pcie->pci;
-> +	pci->dev = dev;
-> +	pci->ops = &dw_pcie_ops;
-> +
-> +	ret = visconti_get_resources(pdev, pcie);
-> +	if (ret)
-> +		return ret;
-> +
-> +	platform_set_drvdata(pdev, pcie);
-> +
-> +	return visconti_add_pcie_port(pcie, pdev);
-> +}
-> +
-> +static const struct of_device_id visconti_pcie_match[] = {
-> +	{ .compatible = "toshiba,visconti-pcie" },
-> +	{},
-> +};
-> +
-> +static struct platform_driver visconti_pcie_driver = {
-> +	.probe = visconti_pcie_probe,
-> +	.driver = {
-> +		.name = "visconti-pcie",
-> +		.of_match_table = visconti_pcie_match,
-> +		.suppress_bind_attrs = true,
-> +	},
-> +};
-> +
-> +builtin_platform_driver(visconti_pcie_driver);
-> -- 
-> 2.32.0
-> 
-> 
+v3: Fix Rob Herring, Dan Carpenter, Nicolas comment
+ - Split the patch, fix not correct return data
+ - Fix several coding format
+ - Split DP tx swing register setting to two property
+ - Add HDCP support vender flag
+ - remove 'analogix,swing-setting' and 'analogix,mipi-dpi-in' property
+
+v2: Fix Rob Herring comment
+ - Fix yamllint warnings/errors in analogix,anx7625.yaml
+ - Fix kernel robot compile warning
+
+v1: initial MIPI rx DPI feature support
+
+Xin Ji (4):
+  dt-bindings:drm/bridge:anx7625:add vendor define
+  drm/bridge: anx7625: fix not correct return value
+  drm/bridge: anx7625: add MIPI DPI input feature
+  drm/bridge: anx7625: add HDMI audio function
+
+ .../display/bridge/analogix,anx7625.yaml      |  65 ++-
+ drivers/gpu/drm/bridge/analogix/anx7625.c     | 458 ++++++++++++++++--
+ drivers/gpu/drm/bridge/analogix/anx7625.h     |  23 +-
+ 3 files changed, 491 insertions(+), 55 deletions(-)
+
+-- 
+2.25.1
+
