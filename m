@@ -2,74 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 334FB3E10C2
-	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 11:04:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA26B3E10CB
+	for <lists+devicetree@lfdr.de>; Thu,  5 Aug 2021 11:06:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237007AbhHEJE5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 05:04:57 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60946 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231865AbhHEJE5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Aug 2021 05:04:57 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6396D60E8D;
-        Thu,  5 Aug 2021 09:04:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1628154283;
-        bh=iS6H6YaZt439MG1gVB47NVuu85jYESbYxNTfU/8PEnM=;
-        h=From:To:Cc:Subject:Date:From;
-        b=hbJ5g/NNnCCW+jA0A4ZZ5KdY1JyMfvwfyO9KWCwCvd1DJPAXjTsfRwd8X4ws5bJ4R
-         A5NSegHArwwjcR7N7OCsS1wM4S3XO2dAE1K3cR1c/md+nmo1nHP55ipED/Thvr5r5W
-         SRKHVl2LEgZSXIG2n/uMeWjJpDGh+/hPItwQNqzV0FH+FS9+EnyEK3RHGG0DP0LCpN
-         VL8Gpe623FYgMh5zf32gu2zxpulBYScdnuwCVhRNZ6SNAherlde8XsIIXkCxoJknGU
-         PKaw8jjrUkyC6lHG+QS38/HQPZIPXHKYBZ/DmnhIRk+drRvytm9mqmKXAWeqKE3fMm
-         8GorOUtKls+mA==
-Received: by mail.kernel.org with local (Exim 4.94.2)
-        (envelope-from <mchehab@kernel.org>)
-        id 1mBZIu-001Eie-71; Thu, 05 Aug 2021 11:04:40 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Wei Xu <xuwei5@hisilicon.com>
-Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: HiSilicon: hi3660: address a PCI warning
-Date:   Thu,  5 Aug 2021 11:04:38 +0200
-Message-Id: <498ca4c17f018a234817cccd35cdaba3e3884b42.1628154271.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.31.1
+        id S238936AbhHEJGw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 05:06:52 -0400
+Received: from mail-0301.mail-europe.com ([188.165.51.139]:47407 "EHLO
+        mail-0301.mail-europe.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232681AbhHEJGw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 05:06:52 -0400
+Date:   Thu, 05 Aug 2021 09:06:30 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail; t=1628154394;
+        bh=j53Cevesc3Wmn62wus/pwHZWo27XvHlCptqo+u/7Ve4=;
+        h=Date:To:From:Cc:Reply-To:Subject:From;
+        b=c2CQNTG4pWH7qBOmB1vWRF2zrbZtUPNOMMA3TlkniqddsodmLqQL0swRkroiUDhsi
+         MHyRKNdtcdLdTpkr83T6lc7b2xJNAXXURM8WrfA9AVkY/SaX8W2Vxw6x8kEGRLApwU
+         Ph5m+ym5lvCfd/5n42unX5tb3Ys0o0LAtDuGuG3s=
+To:     bjorn.andersson@linaro.org
+From:   Sireesh Kodali <sireeshkodali@protonmail.com>
+Cc:     agross@kernel.org, mturquette@baylibre.com, robh+dt@kernel.org,
+        sboyd@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Sireesh Kodali <sireeshkodali@protonmail.com>
+Reply-To: Sireesh Kodali <sireeshkodali@protonmail.com>
+Subject: [PATCH RESEND 0/2] Add GCC for MSM8953
+Message-ID: <KH2Sf97Sip3ObMRsBE9fBPLUML3cSrOXm4zG2qT7Tc@cp7-web-041.plabs.ch>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When the driver is registered, it produces a warning when
-registering the PCI bridge:
+Apologies, resending because I tried sending from disroot.org, which is
+a banned host on vger. Please ignore the previous patches if they
+reached you.
 
-	[    5.363450] pci_bus 0000:00: root bus resource [bus 00-01]
-	[    5.396998] pci_bus 0000:01: busn_res: can not insert [bus 01-ff] under [bus 00-01] (conflicts with (null) [bus 00-01])
-	[    5.284831] pci 0000:00:00.0: PCI bridge to [bus 01-ff]
+Hi,
 
-The reason is that the bus-range is wrong. Address it.
+This patch adds support for the Global Clock Controller found on the
+MSM8953 Platform (SDM450, SDA450, SDM625, SDM632, APQ8053). Since all SoCs
+based on the MSM8953 platform are identical with respect to clocks, a
+single compatible is used.
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- arch/arm64/boot/dts/hisilicon/hi3660.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Vladimir Lypak (2):
+  dt-bindings: clock: add Qualcomm MSM8953 GCC driver bindings
+  clk: qcom: Add Global Clock Controller driver for MSM8953
 
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-index f1ec87c05842..cf2079590ad8 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-@@ -1002,7 +1002,7 @@ pcie@f4000000 {
- 			      <0x0 0xf3f20000 0x0 0x40000>,
- 			      <0x0 0xf5000000 0x0 0x2000>;
- 			reg-names = "dbi", "apb", "phy", "config";
--			bus-range = <0x0  0x1>;
-+			bus-range = <0x0  0xff>;
- 			#address-cells = <3>;
- 			#size-cells = <2>;
- 			device_type = "pci";
--- 
-2.31.1
+ .../devicetree/bindings/clock/qcom,gcc.yaml   |    2 +
+ drivers/clk/qcom/Kconfig                      |    8 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/gcc-msm8953.c                | 4250 +++++++++++++++++
+ include/dt-bindings/clock/qcom,gcc-msm8953.h  |  234 +
+ 5 files changed, 4495 insertions(+)
+ create mode 100644 drivers/clk/qcom/gcc-msm8953.c
+ create mode 100644 include/dt-bindings/clock/qcom,gcc-msm8953.h
+
+--=20
+2.32.0
+
 
