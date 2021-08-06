@@ -2,144 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D2CE3E2FCB
-	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 21:38:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C86BD3E2FD9
+	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 21:48:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230090AbhHFTiW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Aug 2021 15:38:22 -0400
-Received: from relay10.mail.gandi.net ([217.70.178.230]:41229 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229748AbhHFTiW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 15:38:22 -0400
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 9F8D4240006;
-        Fri,  6 Aug 2021 19:38:03 +0000 (UTC)
-Date:   Fri, 6 Aug 2021 21:38:03 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Romain Perier <romain.perier@gmail.com>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Daniel Palmer <daniel@0x0f.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/3] rtc: Add support for the MSTAR MSC313 RTC
-Message-ID: <YQ2Pm7nrEFmdS6Ky@piout.net>
-References: <20210801160921.233081-1-romain.perier@gmail.com>
- <20210801160921.233081-3-romain.perier@gmail.com>
+        id S244047AbhHFTsU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Aug 2021 15:48:20 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36414 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229748AbhHFTsT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Aug 2021 15:48:19 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A04BC611BF;
+        Fri,  6 Aug 2021 19:48:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1628279283;
+        bh=A6nLSI9mCf6mhp34t8GesHN20NVCy2XtPV0FcrWZoyY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=aHwyEPqZQjQqD/Z98svs+HauUDSyCNlqKKe7OApL00K7PMn96Y5CvQItAIjqabxoP
+         Rpai4fhu5SM+A73eQTE2WsjX6lGvA/j8vvWkSTrnZk0O32dSMJm8/OF+L8icGy5Hbs
+         VTKWiw9rTcV3cGa03KcznUgexrj5DcehKjYTue2AVM5w2ce7IoPbpKzSewhwvm7+EI
+         2zjItvepB0O5VzjQZBAo5TM6On8jxJnjCW0EmK2wmdBwjEb7DwD8EA0wl8RXCaNHSq
+         R2FpDJTuj/ppy/Gx1eS8HEBC01HO1Z6vggmytuY8SjKRly9r1zUm2EhSys64w1AdQC
+         AVgei3lb3X/lA==
+Received: by mail-ej1-f51.google.com with SMTP id hw6so16829720ejc.10;
+        Fri, 06 Aug 2021 12:48:03 -0700 (PDT)
+X-Gm-Message-State: AOAM533ZVQzc/77zDBxyqRxnFNBk061GCYZOe6Io2tzxKYU+kneXXgAy
+        4DaNIbnuiZU4R7fZJKU6sf9O8l5yPT3h+a4WqQ==
+X-Google-Smtp-Source: ABdhPJzchWTvDeHq2trbxdxbRY5qp5nwFN4uSbf8D1NAK7KPGhs0/CO4eEDCG1J5SF8SgKAnHxpX2jEhCXIqQcnyhlU=
+X-Received: by 2002:a17:906:8cd:: with SMTP id o13mr11272506eje.341.1628279282121;
+ Fri, 06 Aug 2021 12:48:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210801160921.233081-3-romain.perier@gmail.com>
+References: <cover.1620203062.git.baruch@tkos.co.il> <c15ac1443ec765e32a2801241dcd8e924abc769b.1620203062.git.baruch@tkos.co.il>
+In-Reply-To: <c15ac1443ec765e32a2801241dcd8e924abc769b.1620203062.git.baruch@tkos.co.il>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 6 Aug 2021 13:47:50 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+SBRP4n-0Q9RShxj2Od-EGpBURNUZo8fLnscOY-m7SmA@mail.gmail.com>
+Message-ID: <CAL_Jsq+SBRP4n-0Q9RShxj2Od-EGpBURNUZo8fLnscOY-m7SmA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/6] PCI: dwc: tegra: move GEN3_RELATED DBI register to
+ common header
+To:     Baruch Siach <baruch@tkos.co.il>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Selvam Sathappan Periakaruppan <speriaka@codeaurora.org>,
+        Kathiravan T <kathirav@codeaurora.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Robert Marko <robert.marko@sartura.hr>,
+        devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
+        PCI <linux-pci@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+On Wed, May 5, 2021 at 3:18 AM Baruch Siach <baruch@tkos.co.il> wrote:
+>
+> These are common dwc macros that will be used for other platforms.
+>
+> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
+> ---
+>  drivers/pci/controller/dwc/pcie-designware.h | 6 ++++++
+>  drivers/pci/controller/dwc/pcie-tegra194.c   | 6 ------
+>  2 files changed, 6 insertions(+), 6 deletions(-)
 
-On 01/08/2021 18:09:20+0200, Romain Perier wrote:
-> +static int msc313_rtc_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct msc313_rtc *priv;
-> +	int ret;
-> +	int irq;
-> +	unsigned long rate;
-> +	u16 reg;
-> +
-> +	priv = devm_kzalloc(&pdev->dev, sizeof(struct msc313_rtc), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->rtc_base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(priv->rtc_base))
-> +		return PTR_ERR(priv->rtc_base);
-> +
-> +	irq = platform_get_irq(pdev, 0);
-> +	if (irq < 0)
-> +		return -EINVAL;
-> +
-> +	priv->rtc_dev = devm_rtc_allocate_device(dev);
-> +	if (IS_ERR(priv->rtc_dev))
-> +		return PTR_ERR(priv->rtc_dev);
-> +
-> +	priv->rtc_dev->ops = &msc313_rtc_ops;
-> +	priv->rtc_dev->range_min = RTC_TIMESTAMP_BEGIN_0000;
-
-I'm pretty sure this doesn't fit in this RTC registers, you should
-probably leave range_min to 0 (i.e. not set it at all).
-
-> +	priv->rtc_dev->range_max = U32_MAX - 1; /* 2106-02-07 06:28:14 */
-
-I guess this one should be U32_MAX
-> +
-> +	ret = devm_request_irq(dev, irq, msc313_rtc_interrupt, IRQF_SHARED,
-> +			       dev_name(&pdev->dev), &pdev->dev);
-> +	if (ret) {
-> +		dev_err(dev, "Could not request IRQ\n");
-> +		return ret;
-> +	}
-> +
-> +	priv->clk = devm_clk_get(dev, NULL);
-> +	if (IS_ERR(priv->clk)) {
-> +		dev_err(dev, "No input reference clock\n");
-> +		return PTR_ERR(priv->clk);
-> +	}
-> +
-> +	ret = clk_prepare_enable(priv->clk);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to enable the reference clock, %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = devm_add_action_or_reset(dev, (void (*) (void *))clk_disable_unprepare, priv->clk);
-> +	if (ret)
-> +		return ret;
-> +
-> +	rate = clk_get_rate(priv->clk);
-> +	writew(rate & 0xFFFF, priv->rtc_base + REG_RTC_FREQ_CW_L);
-> +	writew((rate >> 16) & 0xFFFF, priv->rtc_base + REG_RTC_FREQ_CW_H);
-> +
-> +	reg = readw(priv->rtc_base + REG_RTC_CTRL);
-> +	reg |= CNT_EN_BIT;
-> +	writew(reg, priv->rtc_base + REG_RTC_CTRL);
-> +
-
-If on POR, CNT_EN_BIT is not set, then it would be nice to use that to
-know whether the RTC is properly set. You can then check CNT_EN_BIT in
-.read_time and return -EINVAL if it is not set. Then you can set the bit
-in .set_time. It is anyway useless to let the RTC running if it is not
-set.
-
-> +	platform_set_drvdata(pdev, priv);
-> +
-> +	return devm_rtc_register_device(priv->rtc_dev);
-> +}
-> +
-> +static const struct of_device_id msc313_rtc_of_match_table[] = {
-> +	{ .compatible = "mstar,msc313-rtc" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, ms_rtc_of_match_table);
-> +
-> +static struct platform_driver msc313_rtc_driver = {
-> +	.probe = msc313_rtc_probe,
-> +	.driver = {
-> +		.name = "msc313-rtc",
-> +		.of_match_table = msc313_rtc_of_match_table,
-> +	},
-> +};
-> +
-> +module_platform_driver(msc313_rtc_driver);
-> +
-> +MODULE_AUTHOR("Daniel Palmer <daniel@thingy.jp>");
-> +MODULE_AUTHOR("Romain Perier <romain.perier@gmail.com>");
-> +MODULE_DESCRIPTION("MStar RTC Driver");
-> +MODULE_LICENSE("GPL v2");
-> -- 
-> 2.30.2
-> 
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Reviewed-by: Rob Herring <robh@kernel.org>
