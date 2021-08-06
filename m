@@ -2,89 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 603713E2EBA
-	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 19:07:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93B893E2EFC
+	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 19:49:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229803AbhHFRHm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Aug 2021 13:07:42 -0400
-Received: from mail-io1-f42.google.com ([209.85.166.42]:42661 "EHLO
-        mail-io1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229636AbhHFRHl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 13:07:41 -0400
-Received: by mail-io1-f42.google.com with SMTP id h1so12486012iol.9;
-        Fri, 06 Aug 2021 10:07:24 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=LJWMUp8Sjeu1pu7rDiCez6vwWxz1Wf2LthgTkCA7VgI=;
-        b=nwxdkzBg15lgH9BPl3/0LvegwcfJAGbDUwrlvQcI7y/pxa+1Kfw9DdhHrjqqyKnt+3
-         J2bQc6LrzLSIu1tXy3B/yYXWf2UM22a8h3SaHm62Of0Gyl4Et5Sq5xXJrlGLluMXupW8
-         e11WwUVXlvXG6NcUD0uphBpn2kv+0e7/I8bx5ZMdbpbXCaVhcM5PDtNR6QnWV3gnVRs6
-         U41Dne5dJON3dWGPfntHrvJ6H8MIuPSdbRyoFQIPVX/dei9j5TDPpprXB24E+pugY5Tz
-         kxHwptp/G/qmvZT1NsWA1rbHfpYfkITukq92mYQWI2CvBsF3GCD5Y1bAcTSY4kJQijaa
-         bhsw==
-X-Gm-Message-State: AOAM530YGGqCjedRnRUbh36nh6Ce6iflH4bg8CVzZQ7d74weNUpbxOvt
-        vw1NWJKnCB/5/1HkQSXGCQ==
-X-Google-Smtp-Source: ABdhPJyKQmErQitL7sFeN4Q8+2A+XTj6mUFXEOGDgxix6pRob33Strko9MQChcerbRNQcjAU7QVF5A==
-X-Received: by 2002:a02:90d0:: with SMTP id c16mr10662905jag.106.1628269644318;
-        Fri, 06 Aug 2021 10:07:24 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id a2sm4836361ili.40.2021.08.06.10.07.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Aug 2021 10:07:23 -0700 (PDT)
-Received: (nullmailer pid 1430714 invoked by uid 1000);
-        Fri, 06 Aug 2021 17:07:21 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Lucas Stankus <lucas.p.stankus@gmail.com>
-Cc:     Michael.Hennerich@analog.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, Dragos.Bogdan@analog.com,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        lars@metafoo.de, jic23@kernel.org, Darius.Berghe@analog.com
-In-Reply-To: <ad64c93df8c43c66dcb64fe8ec0c0f6b91b3c697.1628143857.git.lucas.p.stankus@gmail.com>
-References: <cover.1628143857.git.lucas.p.stankus@gmail.com> <ad64c93df8c43c66dcb64fe8ec0c0f6b91b3c697.1628143857.git.lucas.p.stankus@gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: accel: Add binding documentation for ADXL313
-Date:   Fri, 06 Aug 2021 11:07:21 -0600
-Message-Id: <1628269641.621456.1430713.nullmailer@robh.at.kernel.org>
+        id S231822AbhHFRtg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Aug 2021 13:49:36 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36712 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231776AbhHFRtg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Aug 2021 13:49:36 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6A8F1610E7;
+        Fri,  6 Aug 2021 17:49:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1628272160;
+        bh=T7XbKNjz6J9bdpleiSzEHZfZGDNL3V/Rt8lKFm7vdVI=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=qehl2nYGu56NQ47YvZFb3tco6q5uF6+RgLz1Kn3KSngor7+15bJVjupCtFsHtlJm5
+         Jgniw7UjdxMvraFBDsq0orNLK92elvMPSHcGjXwkvMA+6fiVbHRqoYqwjc21b+awvV
+         /pbrbeMp6W1j4eN3+GBjqMpOTRhW0DFMkiPReSNTSxyBEuKYi/CC0Jacy6WEGThrdH
+         tPl/XiPEJxNKmoHE2GN/ndBSeBB64dLJsSgWzq5M4odHaFpnZK9wddB5lxSV552tt4
+         k3pGnMXJs13mqRPLQvDtprHOE5jMpGMNF4US0eUt02ghnSVyTw8g+2++lz3J2LXC4L
+         mpkbSXSuftc0g==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1627972461-2627-5-git-send-email-hsin-hsiung.wang@mediatek.com>
+References: <1627972461-2627-1-git-send-email-hsin-hsiung.wang@mediatek.com> <1627972461-2627-5-git-send-email-hsin-hsiung.wang@mediatek.com>
+Subject: Re: [PATCH v10 4/5] spmi: mediatek: Add support for MT8195
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Henry Chen <henryc.chen@mediatek.com>
+To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 06 Aug 2021 10:49:19 -0700
+Message-ID: <162827215909.1975443.852277412377742323@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 05 Aug 2021 03:29:37 -0300, Lucas Stankus wrote:
-> Add device tree binding documentation for ADXL313 3-axis accelerometer.
-> 
-> Signed-off-by: Lucas Stankus <lucas.p.stankus@gmail.com>
+Quoting Hsin-Hsiung Wang (2021-08-02 23:34:20)
+> From: Henry Chen <henryc.chen@mediatek.com>
+>=20
+> Add spmi support for MT8195.
+>=20
+> Signed-off-by: Henry Chen <henryc.chen@mediatek.com>
+
+Missing Signed-off-by from hsin-hsiung.wang here
+
 > ---
->  .../bindings/iio/accel/adi,adxl313.yaml       | 90 +++++++++++++++++++
+> changes since v9:
+> - No change.
+> ---
+>  drivers/spmi/spmi-mtk-pmif.c | 90 ++++++++++++++++++++++++++++++++++++
 >  1 file changed, 90 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml
-> 
+>=20
+> diff --git a/drivers/spmi/spmi-mtk-pmif.c b/drivers/spmi/spmi-mtk-pmif.c
+> index 94c45d46ab0c..0c320801c9d5 100644
+> --- a/drivers/spmi/spmi-mtk-pmif.c
+> +++ b/drivers/spmi/spmi-mtk-pmif.c
+> @@ -348,6 +427,14 @@ static const struct pmif_data mt6873_pmif_arb =3D {
+>         .soc_chan =3D 2,
+>  };
+> =20
+> +static const struct pmif_data mt8195_pmif_arb[] =3D {
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+This is an array of type pmif_data.
 
-yamllint warnings/errors:
+> +       {
+> +               .regs =3D mt8195_regs,
+> +               .spmimst_regs =3D mt8195_spmi_regs,
+> +               .soc_chan =3D 2,
+> +       },
+> +};
+> +
+>  static int mtk_spmi_probe(struct platform_device *pdev)
+>  {
+>         struct pmif *arb;
+> @@ -444,6 +531,9 @@ static const struct of_device_id mtk_spmi_match_table=
+[] =3D {
+>         {
+>                 .compatible =3D "mediatek,mt6873-spmi",
+>                 .data =3D &mt6873_pmif_arb,
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml: properties:interrupt-names:items: {'enum': ['INT1', 'INT2']} is not of type 'array'
-	from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml: ignoring, error in schema: properties: interrupt-names: items
-warning: no schema found in file: ./Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml
-Documentation/devicetree/bindings/iio/accel/adi,adxl313.example.dt.yaml:0:0: /example-0/i2c0/accelerometer@53: failed to match any schema with compatible: ['adi,adxl313']
-Documentation/devicetree/bindings/iio/accel/adi,adxl313.example.dt.yaml:0:0: /example-1/spi/accelerometer@0: failed to match any schema with compatible: ['adi,adxl313']
+mt6873_pmif_arb is not an array, see the context header above.
 
-doc reference errors (make refcheckdocs):
+How does this work? Has this been tested?
 
-See https://patchwork.ozlabs.org/patch/1513753
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+> +       }, {
+> +               .compatible =3D "mediatek,mt8195-spmi",
+> +               .data =3D &mt8195_pmif_arb,
+>         }, {
+>                 /* sentinel */
+>         },
+> --=20
+> 2.18.0
+>
