@@ -2,67 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C24693E314E
-	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 23:44:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 245EF3E3156
+	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 23:46:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244031AbhHFVpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Aug 2021 17:45:14 -0400
-Received: from mail-io1-f47.google.com ([209.85.166.47]:36836 "EHLO
-        mail-io1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241587AbhHFVpO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 17:45:14 -0400
-Received: by mail-io1-f47.google.com with SMTP id f11so14168433ioj.3;
-        Fri, 06 Aug 2021 14:44:56 -0700 (PDT)
+        id S244507AbhHFVrN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Aug 2021 17:47:13 -0400
+Received: from mail-io1-f51.google.com ([209.85.166.51]:42975 "EHLO
+        mail-io1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241587AbhHFVrM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 17:47:12 -0400
+Received: by mail-io1-f51.google.com with SMTP id h1so14176043iol.9;
+        Fri, 06 Aug 2021 14:46:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=OiJRnkJaUjfv/aLiJhC4+fz+0EuCXrsBg4+ADr+wcwA=;
-        b=ASzVSkMFjNHsGosgd71SD8A2L1BafojMpVMLrgYGtIJaH7bOZ0BJZCf0m4GqEpdz6R
-         1UNZEoKRRNhGIbkdwPHjdSezvJJR0SE2aFe6hy/i/aeq+EW7Vz3ndruP1MVd2qugfFt5
-         KXCVHNwftMNuezTTycYmqFL1I5qxX2LBR/IALa9SDegTKtpMglwiAeakW2fHHebX0TVN
-         G5ZYCc/iErG6uAAomI2qO8/rMsByFeo4pBHEnnasUdjSAA0qFYzuhe4PjhKel0MGntLC
-         PRGqDHlSlzqcAZlAd8q07deo2uzvz9NBPGDjTkmu/N91OpLUl7/fZpIxlmrqRYYHHGMG
-         2mRA==
-X-Gm-Message-State: AOAM532V8gWiB69xuVWcZjB7PTWjz0OstPjYxCo38g+EG6dRJI/cCG4y
-        RYJ02+dyjvLmCuO2cNYpLQ==
-X-Google-Smtp-Source: ABdhPJwLfIBh9khfUI7Z/9TbGgFOAVVJ+cjV1JQDbb3YB5JIM5Bc430e/apfLRVKBcGRXjsQfcPU9g==
-X-Received: by 2002:a6b:ba02:: with SMTP id k2mr575119iof.164.1628286296708;
-        Fri, 06 Aug 2021 14:44:56 -0700 (PDT)
+        bh=t8k1FSkghnl3otNc+cNSXzcyGnQ5mEMP3gk5vD8jYT0=;
+        b=Z/hEIcm+75iJjYTxJpPbM0zXsM1PMlc0V20sk6459Qo7qveOIP5xd/aKFhVIjXgmfd
+         BFm9GZoRQ9FPFYqDkobpqb2AJX9XLShYH/4ACcQ2tTAIl7Gme1Vi+aai7k9rZeQCD2Uj
+         vxiz4VyEw/CmAascAlylRqfetE8V72WGTblJyaG9+ARQ06yEzY3VXIvW0b3DRuneREJj
+         UImj7hOQ50rHgWWOfqdDx4aSVpeQz0ad2K237brsD4pxY4E6sQCCQJw3cFpIF2gywx8b
+         R5OHWBcF6yvv+8GlorTh9DDAlcUnGJeFmjmHIFhRwnKjJnCEuLiGvT9pngUv6tqtQqe+
+         m0vg==
+X-Gm-Message-State: AOAM532UapVFFiQcq15kBQnCgdfr3Y6he0Uel5peVbsAm6/tzDI/RyTb
+        aaFQfLB9ldq9AZHSJ+Oklg==
+X-Google-Smtp-Source: ABdhPJzjqP+aoHh5yEK/ZvPLCNSdC+tf7BH4sBq/dQJUJPAOMfIcAExlJl2QPZW9IsHaTi80jXt05A==
+X-Received: by 2002:a92:9412:: with SMTP id c18mr1703496ili.38.1628286416290;
+        Fri, 06 Aug 2021 14:46:56 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id f5sm5329303ilr.72.2021.08.06.14.44.55
+        by smtp.gmail.com with ESMTPSA id x6sm3909883ilp.71.2021.08.06.14.46.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Aug 2021 14:44:55 -0700 (PDT)
-Received: (nullmailer pid 1858212 invoked by uid 1000);
-        Fri, 06 Aug 2021 21:44:54 -0000
-Date:   Fri, 6 Aug 2021 15:44:54 -0600
+        Fri, 06 Aug 2021 14:46:55 -0700 (PDT)
+Received: (nullmailer pid 1861306 invoked by uid 1000);
+        Fri, 06 Aug 2021 21:46:53 -0000
+Date:   Fri, 6 Aug 2021 15:46:53 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Icenowy Zheng <icenowy@sipeed.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH 1/4] dt-bindings: vendor-prefixes: add Zhishengxin
-Message-ID: <YQ2tVnKsLNTn4tUF@robh.at.kernel.org>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/4] dt-bindings: display: add binding for simple-dbi
+ panels
+Message-ID: <YQ2tzZp9ow6WDaBR@robh.at.kernel.org>
 References: <20210802063538.75583-1-icenowy@sipeed.com>
- <20210802063538.75583-2-icenowy@sipeed.com>
+ <20210802063538.75583-3-icenowy@sipeed.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210802063538.75583-2-icenowy@sipeed.com>
+In-Reply-To: <20210802063538.75583-3-icenowy@sipeed.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 02 Aug 2021 14:35:35 +0800, Icenowy Zheng wrote:
-> Shenzhen Zhishengxin Technology Co., Ltd. is a LCD module supplier.
-> 
-> Add vendor prefix for it.
+On Mon, Aug 02, 2021 at 02:35:36PM +0800, Icenowy Zheng wrote:
+> As we're going to introduce a driver for MIPI DBI panels that need only
+> standard MIPI-DCS commands to initialize (usually because the controller
+> has some configuration pre-programmed), add a DT binding file for it,
+> which now includes only one DBI Type C Option 3 panel, ZSX154-B1206.
 > 
 > Signed-off-by: Icenowy Zheng <icenowy@sipeed.com>
 > ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../bindings/display/simple-dbi.yaml          | 72 +++++++++++++++++++
+>  1 file changed, 72 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/simple-dbi.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/display/simple-dbi.yaml b/Documentation/devicetree/bindings/display/simple-dbi.yaml
+> new file mode 100644
+> index 000000000000..f49b0fda0935
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/simple-dbi.yaml
+> @@ -0,0 +1,72 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
 
-Acked-by: Rob Herring <robh@kernel.org>
+checkpatch.pl will tell you this should be dual licensed.
