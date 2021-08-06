@@ -2,124 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ECFDD3E2207
-	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 05:02:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C03A3E2306
+	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 07:49:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238790AbhHFDCu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 23:02:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44074 "EHLO
+        id S243152AbhHFFtp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Aug 2021 01:49:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230127AbhHFDCt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 23:02:49 -0400
-Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D4F1C061798;
-        Thu,  5 Aug 2021 20:02:34 -0700 (PDT)
-Received: by mail-ot1-x32b.google.com with SMTP id o2-20020a9d22020000b0290462f0ab0800so7410356ota.11;
-        Thu, 05 Aug 2021 20:02:34 -0700 (PDT)
+        with ESMTP id S243079AbhHFFto (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 01:49:44 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6F7AC061798;
+        Thu,  5 Aug 2021 22:49:28 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id u21-20020a17090a8915b02901782c36f543so11803408pjn.4;
+        Thu, 05 Aug 2021 22:49:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=EA05tSQWqSs4HKkvaMBpD7HoBLTyMYIgWdky50GfsB8=;
-        b=kNMZYDjdidsmhRJ6GOD0Zi5nQ4FaLJMbn2MkdS+1DNbUOc55MxRWQ9qIrM5W1uALWP
-         xYXviusk0sFAGolTJWPQJ3+W39fG6zC/UfjqbEoEdGK92et4yLNULkjl80IWx2VYa/Hf
-         nvxmHxpszIbY9rwXIR9PRv+WmsnEDZbuUFihGYdeO84W4mo4BPxYQEwwfq7bOLdjL1QW
-         YqTC01gcxvzSEaZ/vMO9/+XKMdwD+LJjNuIkZGAaIke0CBBh3M8FiPhZq8jrGaX+klUm
-         UXRacezk+Yfk62zKpgeyYpjUZ4bMfTBLtvsgqmIdm2tAONCFATtLMxyzmoFiqXjx+UEy
-         /Cjg==
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zqMZMqZJHFbP2V0kxEUSf4W659vCCPUOGtyXObXbhd4=;
+        b=FEA/jsHnYicr8hEmI9Hd6v+L9GtwBlSEh7zhEwMiFbdVuhL5GvVUXEf26vRYX4jQn7
+         rCJWXVgDmkaj3RStDaHNBVk2ceo49m1MkIWbi/yzsH7BBW7YDZk0jYfpkz5RXcqo/fEo
+         UwV0OqrrQq2ZeQRmuLSABvtv4xOZFYq6sN5mrYdAfCumJGB0dayv8OIC/BwMizokUJko
+         mA//yFub12pd+E1cxoVYx7kVzRhvm+suJqri4e60jLWdQ9pd0EkOeDecZLpV8g+aBkjK
+         Nr75J3P2ggECgTL0Un5yiTJ0GWAYt0a4QKmU0aPcFaYrUpdoRWx0Et+M8dolqy4DvrI1
+         8cIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=EA05tSQWqSs4HKkvaMBpD7HoBLTyMYIgWdky50GfsB8=;
-        b=Qu8B/PdbkTBYcLHAyX1WrRlFS2WGgU/wGiy1g/4tmn0KcP8NmcK1qyy9hcdKLoTTjB
-         m1656+IEYevBgCxOgHjTNwlOBVezC4jfW2SWtcXzOSNMDl0bsZQPPp1p1rpLC4aPuUfT
-         g/xBHVtowPdfZYEr2Q61aOGY4zd4A9hM5JufsfR3HoM408K32FAwKCEJtoBvi7SZaH8A
-         ipOgdNc4305sC4yW75lV3x7a+QjpRUQrHXUt5v9PXewu9wAXomMm1SC4XFLqgipuRt07
-         gBnr4cygffiDRXR1JteJfWBqGRNXycbptIJfdnN6TY2DrbLKYsD0niOvsHJXqbsgItsX
-         lBtg==
-X-Gm-Message-State: AOAM532wFRC5vGfZS+iW/ZXVx5FjON2JiMjq1cKhVR6DwI2DaF3TDG8J
-        0pGfQ5VAeMtnoLjPu1bqlHs=
-X-Google-Smtp-Source: ABdhPJwfYB6fS6GG/E20fTPdKfxYyTtuw5Bp2moupTwoHqmOheH4cOjZnRCFfpzfeqFM0ebpRwr7Dw==
-X-Received: by 2002:a05:6830:144f:: with SMTP id w15mr2065560otp.161.1628218953849;
-        Thu, 05 Aug 2021 20:02:33 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id bc42sm1101795oob.39.2021.08.05.20.02.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Aug 2021 20:02:33 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Subject: Re: [v8,1/2] dt-bindings: reset: mt8195: add toprgu reset-controller
- header file
-To:     Christine Zhu <Christine.Zhu@mediatek.com>, wim@linux-watchdog.org,
-        robh+dt@kernel.org, matthias.bgg@gmail.com
-Cc:     srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        seiya.wang@mediatek.com
-References: <20210806023606.16867-1-Christine.Zhu@mediatek.com>
- <20210806023606.16867-2-Christine.Zhu@mediatek.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Message-ID: <daa97d7e-2184-0b1e-3afd-c357b022c966@roeck-us.net>
-Date:   Thu, 5 Aug 2021 20:02:31 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=zqMZMqZJHFbP2V0kxEUSf4W659vCCPUOGtyXObXbhd4=;
+        b=oBIk5+xoiSbTK8zesM3A+N+TWYMWlUuEfQEkt1Jn2vbbe2kaKfcU6ieGtwXO7eqcPN
+         UDH1nByndZhUrSQ+JtZhJBm7Yxfp3mE5aRxY3j450HQB6R1cjlt2oXrA7eT4CwD61jHs
+         MhgBgkuewmHQgxK7WACNEwzXUdQdR3mEJhWi1ZeISqejoDVnLyZuycr3LSUBqurbUoz8
+         v1bkgxkWgTw0CAJ1Ahm2nJhYOMFIzyi7ydxlGjE1Ul0w9FiGFmGU/ij5R3j+FoiNz5GS
+         Lh6DujRJgSsgYy9C2r2/S0u424MwBMGA2l9PwtBXdSOqRWbhexiBsZy8iQZgb/qnsROv
+         /FbA==
+X-Gm-Message-State: AOAM532j57f9ZfOgvncRzlsFUpByfYdqHAsXjy6SWfydZkFBrFqQwxWp
+        tm+kWsJykWUJVvoU9e5K1YQ=
+X-Google-Smtp-Source: ABdhPJyAhj0uidaqzzVLr1t2NkUtFKfKpVBBS+rg0myzv8o9nBjCsMfLgZL8Wt00+07AUc33CFduMQ==
+X-Received: by 2002:a65:670f:: with SMTP id u15mr1282279pgf.205.1628228968377;
+        Thu, 05 Aug 2021 22:49:28 -0700 (PDT)
+Received: from voyager.lan ([45.124.203.15])
+        by smtp.gmail.com with ESMTPSA id z2sm10902205pgz.43.2021.08.05.22.49.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Aug 2021 22:49:27 -0700 (PDT)
+Sender: "joel.stan@gmail.com" <joel.stan@gmail.com>
+From:   Joel Stanley <joel@jms.id.au>
+To:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Stafford Horne <shorne@gmail.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Anton Blanchard <anton@ozlabs.org>,
+        Gabriel Somlo <gsomlo@gmail.com>, David Shah <dave@ds0.me>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mateusz Holenko <mholenko@antmicro.com>,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] net: Add LiteETH network driver
+Date:   Fri,  6 Aug 2021 15:19:02 +0930
+Message-Id: <20210806054904.534315-1-joel@jms.id.au>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-In-Reply-To: <20210806023606.16867-2-Christine.Zhu@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/5/21 7:36 PM, Christine Zhu wrote:
-> Add toprgu reset-controller header file for MT8195 platform.
-> 
-> Signed-off-by: Christine Zhu <Christine.Zhu@mediatek.com>
-> Acked-by: Rob Herring <robh@kernel.org>
+This adds a driver for the LiteX network device, LiteETH.
 
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+It is a simple driver for the FPGA based Ethernet device used in various
+RISC-V, PowerPC's microwatt, OpenRISC's mor1k and other FPGA based
+systems on chip.
 
-> ---
->   include/dt-bindings/reset/mt8195-resets.h | 29 +++++++++++++++++++++++
->   1 file changed, 29 insertions(+)
->   create mode 100644 include/dt-bindings/reset/mt8195-resets.h
-> 
-> diff --git a/include/dt-bindings/reset/mt8195-resets.h b/include/dt-bindings/reset/mt8195-resets.h
-> new file mode 100644
-> index 000000000000..a26bccc8b957
-> --- /dev/null
-> +++ b/include/dt-bindings/reset/mt8195-resets.h
-> @@ -0,0 +1,29 @@
-> +/* SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)*/
-> +/*
-> + * Copyright (c) 2021 MediaTek Inc.
-> + * Author: Christine Zhu <christine.zhu@mediatek.com>
-> + */
-> +
-> +#ifndef _DT_BINDINGS_RESET_CONTROLLER_MT8195
-> +#define _DT_BINDINGS_RESET_CONTROLLER_MT8195
-> +
-> +#define MT8195_TOPRGU_CONN_MCU_SW_RST          0
-> +#define MT8195_TOPRGU_INFRA_GRST_SW_RST        1
-> +#define MT8195_TOPRGU_APU_SW_RST               2
-> +#define MT8195_TOPRGU_INFRA_AO_GRST_SW_RST     6
-> +#define MT8195_TOPRGU_MMSYS_SW_RST             7
-> +#define MT8195_TOPRGU_MFG_SW_RST               8
-> +#define MT8195_TOPRGU_VENC_SW_RST              9
-> +#define MT8195_TOPRGU_VDEC_SW_RST              10
-> +#define MT8195_TOPRGU_IMG_SW_RST               11
-> +#define MT8195_TOPRGU_APMIXEDSYS_SW_RST        13
-> +#define MT8195_TOPRGU_AUDIO_SW_RST             14
-> +#define MT8195_TOPRGU_CAMSYS_SW_RST            15
-> +#define MT8195_TOPRGU_EDPTX_SW_RST             16
-> +#define MT8195_TOPRGU_ADSPSYS_SW_RST           21
-> +#define MT8195_TOPRGU_DPTX_SW_RST              22
-> +#define MT8195_TOPRGU_SPMI_MST_SW_RST          23
-> +
-> +#define MT8195_TOPRGU_SW_RST_NUM               16
-> +
-> +#endif  /* _DT_BINDINGS_RESET_CONTROLLER_MT8195 */
-> 
+Joel Stanley (2):
+  dt-bindings: net: Add bindings for LiteETH
+  net: Add driver for LiteX's LiteETH network interface
+
+ .../bindings/net/litex,liteeth.yaml           |  62 ++++
+ drivers/net/ethernet/Kconfig                  |   1 +
+ drivers/net/ethernet/Makefile                 |   1 +
+ drivers/net/ethernet/litex/Kconfig            |  24 ++
+ drivers/net/ethernet/litex/Makefile           |   5 +
+ drivers/net/ethernet/litex/litex_liteeth.c    | 340 ++++++++++++++++++
+ 6 files changed, 433 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/litex,liteeth.yaml
+ create mode 100644 drivers/net/ethernet/litex/Kconfig
+ create mode 100644 drivers/net/ethernet/litex/Makefile
+ create mode 100644 drivers/net/ethernet/litex/litex_liteeth.c
+
+-- 
+2.32.0
 
