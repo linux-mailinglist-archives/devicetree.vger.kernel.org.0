@@ -2,268 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CECB3E271C
-	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 11:19:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E3A03E274C
+	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 11:32:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244490AbhHFJUA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Aug 2021 05:20:00 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:33072 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S244544AbhHFJSr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 6 Aug 2021 05:18:47 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1mBvzT-0003IF-71; Fri, 06 Aug 2021 11:18:07 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Michael Riesch <michael.riesch@wolfvision.net>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Robin Murphy <robin.murphy@arm.com>,
-        Jianqun Xu <jay.xu@rock-chips.com>, kever.yang@rock-chips.com
-Cc:     Rob Herring <robh+dt@kernel.org>, Liang Chen <cl@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Simon Xue <xxm@rock-chips.com>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Zhang Changzhong <zhangchangzhong@huawei.com>,
-        Tobias Schramm <t.schramm@manjaro.org>,
-        Johan Jonker <jbx6244@gmail.com>
-Subject: Re: [PATCH v3 2/7] soc: rockchip: io-domain: add rk3568 support
-Date:   Fri, 06 Aug 2021 11:18:06 +0200
-Message-ID: <3206032.SvYEEZNnvj@diego>
-In-Reply-To: <8008800c-c518-30d4-edcf-57566e7a1251@arm.com>
-References: <20210805120107.27007-1-michael.riesch@wolfvision.net> <20210805120107.27007-3-michael.riesch@wolfvision.net> <8008800c-c518-30d4-edcf-57566e7a1251@arm.com>
+        id S244430AbhHFJc4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Aug 2021 05:32:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46414 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231553AbhHFJcz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 05:32:55 -0400
+Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 778FAC061798
+        for <devicetree@vger.kernel.org>; Fri,  6 Aug 2021 02:32:40 -0700 (PDT)
+Received: by mail-vs1-xe31.google.com with SMTP id k24so4826372vsg.9
+        for <devicetree@vger.kernel.org>; Fri, 06 Aug 2021 02:32:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hG7ad08wIaDvmaneskOxS98xzOuakO0shjMfqcJhf/0=;
+        b=hMu6wdmsIydv5n9UioqGMhi3NdWSB/gd114kREAS+K9yylruPgSJndFExuw8ozfeGO
+         GdtAjzm8rBOTxnmkHvqbu7kIjYoIlQVlFMcJu6gZwcMsEnTfAgWtR5bOCu8ULScBXQJJ
+         VcVw53SwVoCGiEySclc/39VPhrTmkILFH5aNXYcXbTYJcXc84+XPdsNGt04gU3EXEknv
+         987It+qBSY6m5j60ObfZ1xEocKkPVA3EMrVmgLpNOp2DRns9mVHCVAA1aakeRdTw5JoO
+         Z4/7cRQBAk228VIIWMTo+Wx8N4HchVa6WWVCZYoGpKP+CER9LgvANl5oVUC3K7A2/y04
+         5OPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hG7ad08wIaDvmaneskOxS98xzOuakO0shjMfqcJhf/0=;
+        b=G9q9QbYsKSprOts/vVoTYg6KG38t+NxHtpjd4nPxhcU82i+qbqDUZVsBD8ofOrWVGG
+         3FASCXKfNl3kw5pBxdHX2Sqz3GOeAtYd9zwTHbPLwzDrjUjTX4hBcuwTH+50xZPIDkxk
+         uT7wOfprQ8b/BWnnpJX6MPF+FFx8znBZ6utVCjstHlSQQSCyWoErHjzhK9dPZ+pE2GVY
+         BZ1UGyJ+BIi5sfSP3aeo13rjtaSL2XOtLi/As8mMG+NaN1WzofAejYiruvMDnSDvr05/
+         wWltg70SdiIb464pOEapfrHyVC50lIXgToNglWa976A7oTVa+yJmilY13CjYmE7anFIP
+         b0mw==
+X-Gm-Message-State: AOAM531Fco9mLMUU4glJYcSW6xajh3cTH3k7i7JTUtgmlb++1SZPma2e
+        WVFOaeAI+J1do/VSTZl7IazrSwXncf3C/o2nf5A7YA==
+X-Google-Smtp-Source: ABdhPJynKc93n6ipIB8hMXdJbwfMvreyYjrVW9QsyI+/iIksqcj/6XpbRPGThpwYkyD6MPj4X1c9cqd6zqik6xU3kn8=
+X-Received: by 2002:a67:7c14:: with SMTP id x20mr8347304vsc.42.1628242359627;
+ Fri, 06 Aug 2021 02:32:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+References: <1628074696-7979-1-git-send-email-rnayak@codeaurora.org> <1628074696-7979-2-git-send-email-rnayak@codeaurora.org>
+In-Reply-To: <1628074696-7979-2-git-send-email-rnayak@codeaurora.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Fri, 6 Aug 2021 11:32:03 +0200
+Message-ID: <CAPDyKFrebwt5=S7hqXvcqRvt+-EXLcVmRSRZt1uPf-9n7_pRDg@mail.gmail.com>
+Subject: Re: [PATCH v6 1/2] PM / Domains: Add support for 'required-opps' to
+ set default perf state
+To:     Rajendra Nayak <rnayak@codeaurora.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Roja Rani Yarubandi <rojay@codeaurora.org>,
+        Stephan Gerhold <stephan@gerhold.net>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Robin,
+On Wed, 4 Aug 2021 at 12:58, Rajendra Nayak <rnayak@codeaurora.org> wrote:
+>
+> Some devices within power domains with performance states do not
+> support DVFS, but still need to vote on a default/static state
+> while they are active. They can express this using the 'required-opps'
+> property in device tree, which points to the phandle of the OPP
+> supported by the corresponding power-domains.
+>
+> Add support to parse this information from DT and then set the
+> specified performance state during attach and drop it on detach.
+> runtime suspend/resume callbacks already have logic to drop/set
+> the vote as needed and should take care of dropping the default
+> perf state vote on runtime suspend and restore it back on runtime
+> resume.
+>
+> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
+> ---
+>  drivers/base/power/domain.c | 28 ++++++++++++++++++++++++++--
+>  include/linux/pm_domain.h   |  1 +
+>  2 files changed, 27 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/base/power/domain.c b/drivers/base/power/domain.c
+> index a934c67..b9b5a9b 100644
+> --- a/drivers/base/power/domain.c
+> +++ b/drivers/base/power/domain.c
+> @@ -2598,6 +2598,12 @@ static void genpd_dev_pm_detach(struct device *dev, bool power_off)
+>
+>         dev_dbg(dev, "removing from PM domain %s\n", pd->name);
+>
+> +       /* Drop the default performance state */
+> +       if (dev_gpd_data(dev)->default_pstate) {
+> +               dev_pm_genpd_set_performance_state(dev, 0);
+> +               dev_gpd_data(dev)->default_pstate = 0;
+> +       }
+> +
+>         for (i = 1; i < GENPD_RETRY_MAX_MS; i <<= 1) {
+>                 ret = genpd_remove_device(pd, dev);
+>                 if (ret != -EAGAIN)
+> @@ -2637,6 +2643,8 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
+>  {
+>         struct of_phandle_args pd_args;
+>         struct generic_pm_domain *pd;
+> +       struct device_node *np;
+> +       int pstate;
+>         int ret;
+>
+>         ret = of_parse_phandle_with_args(dev->of_node, "power-domains",
+> @@ -2675,10 +2683,26 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
+>                 genpd_unlock(pd);
+>         }
+>
+> -       if (ret)
+> +       if (ret) {
+>                 genpd_remove_device(pd, dev);
+> +               return -EPROBE_DEFER;
+> +       }
+> +
+> +       /* Set the default performance state */
+> +       np = dev->of_node;
+> +       if (of_parse_phandle(np, "required-opps", index)) {
 
-Am Donnerstag, 5. August 2021, 18:27:36 CEST schrieb Robin Murphy:
-> On 2021-08-05 13:01, Michael Riesch wrote:
-> > From: Jianqun Xu <jay.xu@rock-chips.com>
-> > 
-> > The io-domain registers on RK3568 SoCs have three separated bits to
-> > enable/disable the 1.8v/2.5v/3.3v power.
-> > 
-> > This patch make the write to be a operation, allow rk3568 uses a private
-> > register set function.
-> > 
-> > Since the 2.5v is not used on RK3568, so the driver only set
-> 
-> FWIW, this seems at odds with what the first paragraph says - can anyone 
-> clarify what exactly "not used" means here? Is it that the I/O domain 
-> controller has been redesigned to support more than two logic levels on 
-> the new generation of SoCs, but RK3568's I/O pads still only physically 
-> support 1.8v and 3.3v; or is it that it *can* support 2.5v as well but 
-> no currently-known RK3568-based designs use that?
-> 
-> In the former case it's just a wording issue in the commit message, but 
-> in the latter it's arguably worth implementing support now for the sake 
-> of future compatibility.
+Looks like Viresh thinks it's a good idea to drop the error print in
+of_get_required_opp_performance_state() when there is no
+"required-opps" specifier.
 
-I hadn't looked that deeply into the rk356x io-domain config, but at least
-on a register level in the TRM it seems there are separate bits for
-"3.3V control", "2.5V control", "1.8V control" [0] for each io-domain.
+Would you mind folding in a patch for that in the series, so this code
+can be simplified according to our earlier discussions?
 
-Of course the documentation is otherwise somewhat sparse.
+> +               pstate = of_get_required_opp_performance_state(np, index);
+> +               if (pstate < 0) {
+> +                       ret = pstate;
+> +                       dev_err(dev, "failed to set required performance state for power-domain %s: %d\n",
+> +                               pd->name, ret);
+> +               } else {
+> +                       dev_pm_genpd_set_performance_state(dev, pstate);
+> +                       dev_gpd_data(dev)->default_pstate = pstate;
+> +               }
+> +       }
+>
+> -       return ret ? -EPROBE_DEFER : 1;
+> +       return ret ? ret : 1;
+>  }
+>
+>  /**
+> diff --git a/include/linux/pm_domain.h b/include/linux/pm_domain.h
+> index 21a0577..67017c9 100644
+> --- a/include/linux/pm_domain.h
+> +++ b/include/linux/pm_domain.h
+> @@ -198,6 +198,7 @@ struct generic_pm_domain_data {
+>         struct notifier_block *power_nb;
+>         int cpu;
+>         unsigned int performance_state;
+> +       unsigned int default_pstate;
+>         unsigned int rpm_pstate;
+>         ktime_t next_wakeup;
+>         void *data;
 
-Maybe Jay or Kever [added] can explain a bit more about the 3 voltage
-levels.
+Other than the above, this looks good to me!
 
-
-In general though, I tend to find the approach good enough for now.
-
-Especially as the io-domain stuff is always said to "can cause damage
-to the soc if used incorrectly" and it looks like nobody (including
-Rockchip) seems to have actual hardware using these 2.5V levels right now.
-
-So having code in there that no-one ever tested doesn't feel too good ;-)
-
-Adding this later when needed should be somewhat easy, as it really only
-needs adding of handling that 3rd control bit per domain.
-
-
-Heiko
-
-
-
-[0] what happens if none of the 3 is active? ;-)
-
-
-> 
-> Robin.
-> 
-> > 1.8v [enable] + 3.3v [disable] for 1.8v mode
-> > 1.8v [disable] + 3.3v [enable] for 3.3v mode
-> > 
-> > There is not register order requirement which has been cleared by our IC
-> > team.
-> > 
-> > Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
-> > ---
-> >   drivers/soc/rockchip/io-domain.c | 88 +++++++++++++++++++++++++++++---
-> >   1 file changed, 80 insertions(+), 8 deletions(-)
-> > 
-> > diff --git a/drivers/soc/rockchip/io-domain.c b/drivers/soc/rockchip/io-domain.c
-> > index cf8182fc3642..13c446fd33a9 100644
-> > --- a/drivers/soc/rockchip/io-domain.c
-> > +++ b/drivers/soc/rockchip/io-domain.c
-> > @@ -51,13 +51,11 @@
-> >   #define RK3399_PMUGRF_CON0_VSEL		BIT(8)
-> >   #define RK3399_PMUGRF_VSEL_SUPPLY_NUM	9
-> >   
-> > -struct rockchip_iodomain;
-> > +#define RK3568_PMU_GRF_IO_VSEL0		(0x0140)
-> > +#define RK3568_PMU_GRF_IO_VSEL1		(0x0144)
-> > +#define RK3568_PMU_GRF_IO_VSEL2		(0x0148)
-> >   
-> > -struct rockchip_iodomain_soc_data {
-> > -	int grf_offset;
-> > -	const char *supply_names[MAX_SUPPLIES];
-> > -	void (*init)(struct rockchip_iodomain *iod);
-> > -};
-> > +struct rockchip_iodomain;
-> >   
-> >   struct rockchip_iodomain_supply {
-> >   	struct rockchip_iodomain *iod;
-> > @@ -66,13 +64,62 @@ struct rockchip_iodomain_supply {
-> >   	int idx;
-> >   };
-> >   
-> > +struct rockchip_iodomain_soc_data {
-> > +	int grf_offset;
-> > +	const char *supply_names[MAX_SUPPLIES];
-> > +	void (*init)(struct rockchip_iodomain *iod);
-> > +	int (*write)(struct rockchip_iodomain_supply *supply, int uV);
-> > +};
-> > +
-> >   struct rockchip_iodomain {
-> >   	struct device *dev;
-> >   	struct regmap *grf;
-> >   	const struct rockchip_iodomain_soc_data *soc_data;
-> >   	struct rockchip_iodomain_supply supplies[MAX_SUPPLIES];
-> > +	int (*write)(struct rockchip_iodomain_supply *supply, int uV);
-> >   };
-> >   
-> > +static int rk3568_iodomain_write(struct rockchip_iodomain_supply *supply, int uV)
-> > +{
-> > +	struct rockchip_iodomain *iod = supply->iod;
-> > +	u32 is_3v3 = uV > MAX_VOLTAGE_1_8;
-> > +	u32 val0, val1;
-> > +	int b;
-> > +
-> > +	switch (supply->idx) {
-> > +	case 0: /* pmuio1 */
-> > +		break;
-> > +	case 1: /* pmuio2 */
-> > +		b = supply->idx;
-> > +		val0 = BIT(16 + b) | (is_3v3 ? 0 : BIT(b));
-> > +		b = supply->idx + 4;
-> > +		val1 = BIT(16 + b) | (is_3v3 ? BIT(b) : 0);
-> > +
-> > +		regmap_write(iod->grf, RK3568_PMU_GRF_IO_VSEL2, val0);
-> > +		regmap_write(iod->grf, RK3568_PMU_GRF_IO_VSEL2, val1);
-> > +		break;
-> > +	case 3: /* vccio2 */
-> > +		break;
-> > +	case 2: /* vccio1 */
-> > +	case 4: /* vccio3 */
-> > +	case 5: /* vccio4 */
-> > +	case 6: /* vccio5 */
-> > +	case 7: /* vccio6 */
-> > +	case 8: /* vccio7 */
-> > +		b = supply->idx - 1;
-> > +		val0 = BIT(16 + b) | (is_3v3 ? 0 : BIT(b));
-> > +		val1 = BIT(16 + b) | (is_3v3 ? BIT(b) : 0);
-> > +
-> > +		regmap_write(iod->grf, RK3568_PMU_GRF_IO_VSEL0, val0);
-> > +		regmap_write(iod->grf, RK3568_PMU_GRF_IO_VSEL1, val1);
-> > +		break;
-> > +	default:
-> > +		return -EINVAL;
-> > +	};
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >   static int rockchip_iodomain_write(struct rockchip_iodomain_supply *supply,
-> >   				   int uV)
-> >   {
-> > @@ -136,7 +183,7 @@ static int rockchip_iodomain_notify(struct notifier_block *nb,
-> >   			return NOTIFY_BAD;
-> >   	}
-> >   
-> > -	ret = rockchip_iodomain_write(supply, uV);
-> > +	ret = supply->iod->write(supply, uV);
-> >   	if (ret && event == REGULATOR_EVENT_PRE_VOLTAGE_CHANGE)
-> >   		return NOTIFY_BAD;
-> >   
-> > @@ -398,6 +445,22 @@ static const struct rockchip_iodomain_soc_data soc_data_rk3399_pmu = {
-> >   	.init = rk3399_pmu_iodomain_init,
-> >   };
-> >   
-> > +static const struct rockchip_iodomain_soc_data soc_data_rk3568_pmu = {
-> > +	.grf_offset = 0x140,
-> > +	.supply_names = {
-> > +		"pmuio1",
-> > +		"pmuio2",
-> > +		"vccio1",
-> > +		"vccio2",
-> > +		"vccio3",
-> > +		"vccio4",
-> > +		"vccio5",
-> > +		"vccio6",
-> > +		"vccio7",
-> > +	},
-> > +	.write = rk3568_iodomain_write,
-> > +};
-> > +
-> >   static const struct rockchip_iodomain_soc_data soc_data_rv1108 = {
-> >   	.grf_offset = 0x404,
-> >   	.supply_names = {
-> > @@ -469,6 +532,10 @@ static const struct of_device_id rockchip_iodomain_match[] = {
-> >   		.compatible = "rockchip,rk3399-pmu-io-voltage-domain",
-> >   		.data = &soc_data_rk3399_pmu
-> >   	},
-> > +	{
-> > +		.compatible = "rockchip,rk3568-pmu-io-voltage-domain",
-> > +		.data = &soc_data_rk3568_pmu
-> > +	},
-> >   	{
-> >   		.compatible = "rockchip,rv1108-io-voltage-domain",
-> >   		.data = &soc_data_rv1108
-> > @@ -502,6 +569,11 @@ static int rockchip_iodomain_probe(struct platform_device *pdev)
-> >   	match = of_match_node(rockchip_iodomain_match, np);
-> >   	iod->soc_data = match->data;
-> >   
-> > +	if (iod->soc_data->write)
-> > +		iod->write = iod->soc_data->write;
-> > +	else
-> > +		iod->write = rockchip_iodomain_write;
-> > +
-> >   	parent = pdev->dev.parent;
-> >   	if (parent && parent->of_node) {
-> >   		iod->grf = syscon_node_to_regmap(parent->of_node);
-> > @@ -562,7 +634,7 @@ static int rockchip_iodomain_probe(struct platform_device *pdev)
-> >   		supply->reg = reg;
-> >   		supply->nb.notifier_call = rockchip_iodomain_notify;
-> >   
-> > -		ret = rockchip_iodomain_write(supply, uV);
-> > +		ret = iod->write(supply, uV);
-> >   		if (ret) {
-> >   			supply->reg = NULL;
-> >   			goto unreg_notify;
-> > 
-> 
-
-
-
-
+Kind regards
+Uffe
