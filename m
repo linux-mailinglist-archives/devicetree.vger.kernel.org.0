@@ -2,136 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4735B3E24EE
-	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 10:15:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44CC23E2614
+	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 10:28:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243824AbhHFIPZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Aug 2021 04:15:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56470 "EHLO
+        id S244378AbhHFI2d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Aug 2021 04:28:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243770AbhHFIPK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 04:15:10 -0400
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FB07C06179F;
-        Fri,  6 Aug 2021 01:14:51 -0700 (PDT)
-Received: by mail-pj1-x1035.google.com with SMTP id m10-20020a17090a34cab0290176b52c60ddso16310438pjf.4;
-        Fri, 06 Aug 2021 01:14:51 -0700 (PDT)
+        with ESMTP id S244544AbhHFI2b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 04:28:31 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D5C2C00F7B3
+        for <devicetree@vger.kernel.org>; Fri,  6 Aug 2021 01:23:31 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id qk33so13860684ejc.12
+        for <devicetree@vger.kernel.org>; Fri, 06 Aug 2021 01:23:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=EA8/NMEQ1/xPrB1n9sMj1XYF0fWKh0U0LaqEd2bvscI=;
-        b=IVThQKyvn2gxNJXnpFLRy2/6zL46SUnW9e68RZRuqE0OJSSzaeKQCfdAaCrcwSefTV
-         9mXe3B/Hsky78FMQ7M5DXshJVKO176KLEh2fqyi72GPa3f0qvamAIdR5IlxaBbVuuosz
-         yOTQthryqUIGVGGXuVGZGAlRp2iPuXSGySJcw+JD+3FoeQiBgVQf5j5fnuOD+b4OUZsU
-         XZ3kgOlzGypYT8bCQ7giTdHs+DjDCWTZEX+TV0pgVYkrDi6+iqz69fwXmtvgEA/kyded
-         RnqD6PtrgKyOheu/asqpIq4ddrKVzakkLAeVe0SiCc3qSlde04Orp4+i/yXSWjU9rRmh
-         naxA==
+        bh=bPpVwfXKyJ8nNQmnXadv/Kw1IpulMAFBz7mWmxslOEo=;
+        b=nkWTak2PFWnIb+oJeDC3piekjd+tI+8dYlftQcWBHVTgDrdBUmfqKO+HOpwnuC/Zkv
+         GWacANRJ160tspWCMJT26Gr0UKkltta2Eqt8y0NrIDGDTA9GuzJ+uolo744Wg3h886OY
+         x2OwhMPpBs8Mi7x7OFCvXoc76jRuB6+MnUz/pvNUhTFQjJtNM3L1MH1CwD57rtWpJPSt
+         JKNhh4TClC50OrvGZa1TfIyw+BAHw7HPk6bkcTrCYl3j3sb5sOHgRZVe9ttayTf5PQ0M
+         oHRto1zJZylkBXv0eRCVwAz+yTmyZzf1IuKTpZOVhCv2RC8L+tr96Jj/2BI1mFoboWna
+         i9QQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=EA8/NMEQ1/xPrB1n9sMj1XYF0fWKh0U0LaqEd2bvscI=;
-        b=Soncf3bWIGQWwCkqnXOP6zUwG8xyZ0jYm8KYIwfMzogPMiJT5XeSix+00NTMtqM/SF
-         joOeZvCQFqLuYVK4ZAb32d8tKwb3j6SCPMbBEuZ0Lk0oMOV590jdUH/cEd3D51A/GWIW
-         u9oM+tum1WAxZvaWgqmC5KR8cwB2bBkfSzd23VJVdW63DOUCzm0FoXkMnzM+OQbG8whx
-         1bklcy0hO2El9icNvti4utwY4AMO56H6WdXeo6+V1LQhW6u2kE5nXPtOqBcm6TTTPKSE
-         MJY7GN8bQ5cuTh6SNZFTG3WCWmxTp9ATgmii1+st/N5cEQ63d7vb/8G4dyRklwAV1QJt
-         oPsQ==
-X-Gm-Message-State: AOAM532oxNlQGiTzKk8JHk6uX9X0k37z1Al0NoTYAZqzYozRWdLIw7JP
-        bKoTxChKzZbbSr8j5BmZiBFVMGfOrQApo8Dg
-X-Google-Smtp-Source: ABdhPJydzGuINtfzjJ4rc0aYtY1YDr0eByVPskQaH4/Cy/8RSUEwiYmxXRgr1K8xjCX86Q9WHlu6Og==
-X-Received: by 2002:a62:b414:0:b029:317:52d:7fd5 with SMTP id h20-20020a62b4140000b0290317052d7fd5mr9568253pfn.30.1628237690428;
-        Fri, 06 Aug 2021 01:14:50 -0700 (PDT)
-Received: from [192.168.0.104] ([122.187.88.150])
-        by smtp.gmail.com with ESMTPSA id k200sm9829958pfd.46.2021.08.06.01.14.47
+        bh=bPpVwfXKyJ8nNQmnXadv/Kw1IpulMAFBz7mWmxslOEo=;
+        b=H4LDKziiDvn49uJlw0dpBG9xhzoYhalHiQKqxEIWya9/cLKR3nNeZjJtwBOqBT17aZ
+         P6WsGB2fGLUXXL9WtKKJZrhw7KS790vinPz076xFbd67pX2KJ0c1i5e834ODwYAKoi0x
+         /kKydHoW1COkBzv04WdpX6fBEevmr3z3t1Mk1/wljRPLXM4HEtaMIJwndg4mvPwYooZP
+         1b2dPn2aa518vw9z0Tz9ebAzJghotwYCmp0KvhrVukbWudnU27QYQAD6M4LA6ysDNfVu
+         zbsHeTMRvkmNQV9cnwCx/94xgl560RwmPlAXcQe8NylrJ0rjt4abIbDDlceQ5NuowjSn
+         Ve3w==
+X-Gm-Message-State: AOAM530q6+IS3IRXvtv9dGyTFkeBzfsKOxr3Z3quM9hBlJ+FvbA41cwb
+        nELNTJvAW+AjNiboURKtJoOXtQ==
+X-Google-Smtp-Source: ABdhPJxASobp9Q07krVdlvt3g2iYoOFnpP26CLycDvW6oq2OinajoPrDGgdLBL8WsPqK0BNZCB8pqg==
+X-Received: by 2002:a17:906:d7b2:: with SMTP id pk18mr8721287ejb.541.1628238209969;
+        Fri, 06 Aug 2021 01:23:29 -0700 (PDT)
+Received: from [192.168.0.105] (nat-35.starnet.cz. [178.255.168.35])
+        by smtp.gmail.com with ESMTPSA id k20sm2605200ejr.93.2021.08.06.01.23.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Aug 2021 01:14:50 -0700 (PDT)
-Subject: Re: [BUG] mmc_regulator_set_ocr can't cope with regulator-fixed
-To:     Mark Brown <broonie@kernel.org>, Peter Geis <pgwipeout@gmail.com>
-Cc:     Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-mmc@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        devicetree@vger.kernel.org
-References: <CGME20210804143357epcas1p1c67eca591d8bb557c11b8175baaa8550@epcas1p1.samsung.com>
- <CAMdYzYrx8pgeyK7u=kcopZ+Wae+fQdr_uM4AuVjqWKfZYikgcA@mail.gmail.com>
- <a9aa636e-326f-a848-dd69-41df87c013af@samsung.com>
- <CAMdYzYr9PX-9=kkCAfGe8Q0-D+gRo_qCwse8SiGVsmod7fffiA@mail.gmail.com>
- <20210805124650.GM26252@sirena.org.uk>
- <CAMdYzYpR6br7s1RD2ze92WzJjtEDZwy9qS6YhghgXy7F91keFg@mail.gmail.com>
- <20210805130842.GO26252@sirena.org.uk>
-From:   Ravikumar Kattekola <callmerk1986@gmail.com>
-Message-ID: <81006771-99bf-a5f9-4001-2cf3dc84f69d@gmail.com>
-Date:   Fri, 6 Aug 2021 13:44:45 +0530
+        Fri, 06 Aug 2021 01:23:29 -0700 (PDT)
+Subject: Re: [PATCH v2 00/33] arm64: zynqmp: Extend board description
+To:     Michal Simek <michal.simek@xilinx.com>,
+        linux-kernel@vger.kernel.org, git@xilinx.com,
+        Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Michael Walle <michael@walle.cc>,
+        Quanyang Wang <quanyang.wang@windriver.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <cover.1623684253.git.michal.simek@xilinx.com>
+From:   Michal Simek <monstr@monstr.eu>
+Message-ID: <4380bec9-a451-52fe-a49f-e305821f7ee9@monstr.eu>
+Date:   Fri, 6 Aug 2021 10:23:28 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-In-Reply-To: <20210805130842.GO26252@sirena.org.uk>
-Content-Type: text/plain; charset=windows-1252; format=flowed
+In-Reply-To: <cover.1623684253.git.michal.simek@xilinx.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-Resending my reply as my Mail client settings prevented delivery
 
-On 05/08/21 6:38 pm, Mark Brown wrote:
-> On Thu, Aug 05, 2021 at 08:58:58AM -0400, Peter Geis wrote:
->> On Thu, Aug 5, 2021 at 8:47 AM Mark Brown <broonie@kernel.org> wrote:
+
+On 6/14/21 5:25 PM, Michal Simek wrote:
+> Hi,
 > 
->>> One thing to watch out for with this approach is if there's things that
->>> really need a specific voltage to be set then you'll have to stop those
->>> things happening if you've got a voltage regulator that can't deliver a
->>> voltage in the required range.  I don't know if this affects MMC or not,
->>> if it's just a case of being less efficient it's not such an issue.
+> over years couple of drivers were upstream and it is time to sync it up.
+> On the top of it also adding new Kria boards which are using new overlay
+> infrastructure which check if that overlays can be applied to base DT file.
 > 
->> Yeah, but if this is a fixed regulator and it's a problem, then the
->> hardware is screwed anyways.
+> Thanks,
+> Michal
 > 
-> Well, the fact that the voltage is being changed at runtime indicates
-> that we're changing something from whatever was in the fixed setup - it
-> can sometimes be that we don't have access to some higher performance or
-> lower power features for example.  That's not ideal but works perfectly
-> safely.
+> Changes in v2:
+> - Add reviewed-by from Laurent
+> - New patch in the series
+> - New patch in the series
+> - Use sugar syntax - reported by Geert
+> - Update copyright years
+> - Fix SD3.0 comment alignment
+> - Remove one newline from Makefile
 > 
-Suggested approach of checking "mmc->ocr_avail" might work.
+> Amit Kumar Mahapatra (1):
+>   arm64: zynqmp: Do not duplicate flash partition label property
+> 
+> Michal Simek (29):
+>   arm64: zynqmp: Disable CCI by default
+>   arm64: zynqmp: Enable fpd_dma for zcu104 platforms
+>   arm64: zynqmp: Fix irps5401 device nodes
+>   arm64: zynqmp: Add pinctrl description for all boards
+>   arm64: zynqmp: Correct zcu111 psgtr description
+>   arm64: zynqmp: Wire psgtr for zc1751-xm015
+>   arm64: zynqmp: Correct psgtr description for zcu100-revC
+>   arm64: zynqmp: Add phy description for usb3.0
+>   arm64: zynqmp: Disable WP on zcu111
+>   arm64: zynqmp: Add missing mio-bank properties to dc1 and dc5
+>   arm64: zynqmp: Wire DP and DPDMA for dc1/dc4
+>   arm64: zynqmp: Enable nand driver for dc2 and dc3
+>   arm64: zynqmp: Remove additional newline
+>   arm64: zynqmp: Move clock node to zynqmp-clk-ccf.dtsi
+>   arm64: zynqmp: Add nvmem alises for eeproms
+>   arm64: zynqmp: List reset property for ethernet phy
+>   arm64: zynqmp: Remove can aliases from zc1751
+>   arm64: zynqmp: Move DP nodes to the end of file on zcu106
+>   arm64: zynqmp: Add note about UHS mode on some boards
+>   arm64: zynqmp: Remove information about dma clock on zcu106
+>   arm64: zynqmp: Wire qspi on multiple boards
+>   arm64: zynqmp: Move rtc to different location on zcu104-revA
+>   arm64: zynqmp: Add reset description for sata
+>   arm64: zynqmp: Sync psgtr node location with zcu104-revA
+>   arm64: zynqmp: Remove description for 8T49N287 and si5382 chips
+>   arm64: zynqmp: Add support for zcu102-rev1.1 board
+>   arm64: zynqmp: Enable xlnx,zynqmp-dwc3 driver for xilinx boards
+>   arm64: zynqmp: Add psgtr description to zc1751 dc1 board
+>   arm64: zynqmp: Add support for Xilinx Kria SOM board
+> 
+> Mounika Grace Akula (1):
+>   arm64: zynqmp: Add reset-on-timeout to all boards and modify default
+>     timeout value
+> 
+> Srinivas Neeli (1):
+>   arm64: zynqmp: Update rtc calibration value
+> 
+> Stefano Stabellini (1):
+>   arm64: zynqmp: Add missing SMID for pcie to zynqmp.dtsi
+> 
+>  .../devicetree/bindings/arm/xilinx.yaml       |  32 ++
+>  arch/arm64/boot/dts/xilinx/Makefile           |  11 +
+>  .../arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi |  13 +-
+>  .../boot/dts/xilinx/zynqmp-sck-kv-g-revA.dts  | 335 +++++++++++++++++
+>  .../boot/dts/xilinx/zynqmp-sck-kv-g-revB.dts  | 318 ++++++++++++++++
+>  .../boot/dts/xilinx/zynqmp-sm-k26-revA.dts    | 289 +++++++++++++++
+>  .../boot/dts/xilinx/zynqmp-smk-k26-revA.dts   |  21 ++
+>  .../boot/dts/xilinx/zynqmp-zc1232-revA.dts    |  16 +-
+>  .../boot/dts/xilinx/zynqmp-zc1254-revA.dts    |  16 +-
+>  .../dts/xilinx/zynqmp-zc1751-xm015-dc1.dts    | 298 ++++++++++++++-
+>  .../dts/xilinx/zynqmp-zc1751-xm016-dc2.dts    | 342 +++++++++++++++++-
+>  .../dts/xilinx/zynqmp-zc1751-xm017-dc3.dts    |  23 +-
+>  .../dts/xilinx/zynqmp-zc1751-xm018-dc4.dts    |  24 +-
+>  .../dts/xilinx/zynqmp-zc1751-xm019-dc5.dts    | 330 ++++++++++++++++-
+>  .../boot/dts/xilinx/zynqmp-zcu100-revC.dts    | 264 +++++++++++++-
+>  .../boot/dts/xilinx/zynqmp-zcu102-rev1.1.dts  |  15 +
+>  .../boot/dts/xilinx/zynqmp-zcu102-revA.dts    | 321 +++++++++++++++-
+>  .../boot/dts/xilinx/zynqmp-zcu102-revB.dts    |   3 +-
+>  .../boot/dts/xilinx/zynqmp-zcu104-revA.dts    | 292 ++++++++++++++-
+>  .../boot/dts/xilinx/zynqmp-zcu104-revC.dts    | 250 ++++++++++++-
+>  .../boot/dts/xilinx/zynqmp-zcu106-revA.dts    | 341 ++++++++++++++++-
+>  .../boot/dts/xilinx/zynqmp-zcu111-revA.dts    | 275 +++++++++++++-
+>  arch/arm64/boot/dts/xilinx/zynqmp.dtsi        |  99 +++--
+>  23 files changed, 3833 insertions(+), 95 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dts
+>  create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dts
+>  create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
+>  create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-smk-k26-revA.dts
+>  create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.1.dts
+> 
 
-But, IMO mmc core should check if the voltage can be changed or not
+Applied 1-30, 32.
 
-before trying to do regulator_set_voltage() in mmc_regulator_set_ocr().
+31 and 33 requires newer version.
 
-Wouldn't that be better and solve this issue for other hosts as well.
+Thanks,
+Michal
 
-Something like below in mmc_regulator_set_ocr ():
+-- 
+Michal Simek, Ing. (M.Eng), OpenPGP -> KeyID: FE3D1F91
+w: www.monstr.eu p: +42-0-721842854
+Maintainer of Linux kernel - Xilinx Microblaze
+Maintainer of Linux kernel - Xilinx Zynq ARM and ZynqMP ARM64 SoCs
+U-Boot custodian - Xilinx Microblaze/Zynq/ZynqMP/Versal SoCs
 
-+               result = regulator_check_voltage_constraints(supply,
-+                       min_uV, max_uV);
-+               if(!result) {
-+                       result = regulator_set_voltage(supply, min_uV, 
-max_uV);
-+                       if (result != -EINVAL && !mmc->regulator_enabled) {
-+                               result = regulator_enable(supply);
-+                               if (!result)
-+                                       mmc->regulator_enabled = true;
-+                       }
 
-We could wrap the existing check_voltage function
 
-+/* Check voltage constraints helper function */
-+int regulator_check_voltage_constraints(struct regulator *regulator,
-+                                       int min_uV, int max_uV)
-+{
-+       return regulator_check_voltage(regulator->rdev, &min_uV, &max_uV);
-+}
-+EXPORT_SYMBOL_GPL(regulator_check_voltage_constraints);
-
-I hope this makes sense.
-
-Regards,
-RK
