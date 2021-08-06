@@ -2,165 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 397F53E27F6
-	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 11:59:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E11A63E2805
+	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 12:05:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244815AbhHFKAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Aug 2021 06:00:01 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:33294 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S244796AbhHFJ77 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 6 Aug 2021 05:59:59 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1mBwdf-0003ST-9D; Fri, 06 Aug 2021 11:59:39 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Jonathan Cameron <jic23@kernel.org>, Simon Xue <xxm@rock-chips.com>
-Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, Johan Jonker <jbx6244@gmail.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-iio@vger.kernel.org, David Wu <david.wu@rock-chips.com>,
-        Simon Xue <xxm@rock-chips.com>
-Subject: Re: [PATCH v1] iio: adc: rockchip_saradc: just get referenced voltage once at probe
-Date:   Fri, 06 Aug 2021 11:59:38 +0200
-Message-ID: <2090286.yIU609i1g2@diego>
-In-Reply-To: <20210806080244.223907-1-xxm@rock-chips.com>
-References: <20210806080244.223907-1-xxm@rock-chips.com>
+        id S244818AbhHFKFW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Aug 2021 06:05:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53916 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244783AbhHFKFV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 06:05:21 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B21D7C061798
+        for <devicetree@vger.kernel.org>; Fri,  6 Aug 2021 03:05:05 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id i6so12349597edu.1
+        for <devicetree@vger.kernel.org>; Fri, 06 Aug 2021 03:05:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WDSFc/YFGROeBwra2NE5wlZ1pD4ayBay+gG3STbLHu0=;
+        b=qfLFEJkym59HwX9J/ELX95EwPqTjAQ4o0ywbuG8nRSkRfjL2XwVd5lyRrV0WGK6pWb
+         xKMyBQw6IpzL5KsTzLwzRPUyoTNKKuxmpw6ui5/sl0UXWtYvvdy3V+Kc2f1RhNx6U/e8
+         5ag4szrGir0IWddIJ6z/3LXdnHXFhIpjoUwYTm+U2QIANQsJyCauqEFAJYODCBW3rVTW
+         ejNJdQZ22P5R/O3LinT1hHSUoNtvDZxM+cKnvWRvaWSLKo1dDbOZdRVzQjPlnrtyBoDS
+         AQN3nnC2spsASjdY4SjRx0g5jeaJmJ00Vx0+J/Zy94Mo1U1V4v8y90F1lRQt7eDuI8LR
+         l+Uw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=WDSFc/YFGROeBwra2NE5wlZ1pD4ayBay+gG3STbLHu0=;
+        b=VdhhKD9Gft7EsbJsRCw2PIgEZrnJBKV07KoJsYDyQOR99j28SpqMOQ+xJhEULzKoWB
+         oYAjsJuR97KtAatdJDvp81K60dhbX4S2Oo7Gr/UFNKS5wCHAWaYvgf2IflaV1gOrHFp/
+         yYSYbd/333UXy6pIHV2aV8gLe7IUhQB0fF9ZOY6YhWen1Cl5zAM5n3rKoT2R3p1QZyu2
+         p9TkcrfEMP+R5Fu34ODx1lkT1evcCmNdVuK3NMrtTVH4kjJ6wzFMPqgElkkBMZjniBNp
+         vFxuCRDEYEx1r+pE5z+9Dd33qzqQPtSY/xP+dARnh4oRfPnEhoOSdXdIor31H2qFqERX
+         9fyw==
+X-Gm-Message-State: AOAM533r9WcvP6gyup7aChYyrzCKzpcZF4qd6OJSQU7fKekw6P4lcNgf
+        6SFlN3Dm6GUA2xdhemxHeCYlrQ==
+X-Google-Smtp-Source: ABdhPJxeU0gz5fAf7JuAKGWgvm+A1QMkSuRIokztt3lVZM5Vwkw8ea9rC+kh7PC5+JpGYxOxh2HmdQ==
+X-Received: by 2002:a05:6402:27cf:: with SMTP id c15mr12053766ede.268.1628244304263;
+        Fri, 06 Aug 2021 03:05:04 -0700 (PDT)
+Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
+        by smtp.gmail.com with ESMTPSA id v8sm2712463ejy.79.2021.08.06.03.05.03
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 06 Aug 2021 03:05:03 -0700 (PDT)
+Sender: Michal Simek <monstr@monstr.eu>
+From:   Michal Simek <michal.simek@xilinx.com>
+To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
+        michal.simek@xilinx.com, git@xilinx.com
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] arm64: zynqmp: Enable gpio and qspi for zc1275-revA
+Date:   Fri,  6 Aug 2021 12:05:02 +0200
+Message-Id: <839d833133318feeb2755c4431204b0ef4788cce.1628244299.git.michal.simek@xilinx.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Simon,
+Add missing gpio and qspio for zc1275-revA board.
 
-Am Freitag, 6. August 2021, 10:02:44 CEST schrieb Simon Xue:
-> From: David Wu <david.wu@rock-chips.com>
-> 
-> Add voltage notifier, no need to query regulator voltage for
-> every saradc read, just get regulator voltage once at probe.
-> 
-> Signed-off-by: Simon Xue <xxm@rock-chips.com>
-> Signed-off-by: David Wu <david.wu@rock-chips.com>
+Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+---
 
-thanks for picking up the suggestion for the regulator notifier :-) .
+ .../boot/dts/xilinx/zynqmp-zc1275-revA.dts     | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
 
-Please also adapt the commit message to include that information though
-and please also increase the versioning ... this definitly isn't v1 ;-) .
-
-One more thing down below.
-
-> ---
->  drivers/iio/adc/rockchip_saradc.c | 35 ++++++++++++++++++++++++-------
->  1 file changed, 28 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/rockchip_saradc.c b/drivers/iio/adc/rockchip_saradc.c
-> index f3eb8d2e50dc..d8b0954aeb43 100644
-> --- a/drivers/iio/adc/rockchip_saradc.c
-> +++ b/drivers/iio/adc/rockchip_saradc.c
-> @@ -49,10 +49,12 @@ struct rockchip_saradc {
->  	struct clk		*clk;
->  	struct completion	completion;
->  	struct regulator	*vref;
-> +	int			uv_vref;
->  	struct reset_control	*reset;
->  	const struct rockchip_saradc_data *data;
->  	u16			last_val;
->  	const struct iio_chan_spec *last_chan;
-> +	struct notifier_block nb;
->  };
->  
->  static void rockchip_saradc_power_down(struct rockchip_saradc *info)
-> @@ -105,13 +107,7 @@ static int rockchip_saradc_read_raw(struct iio_dev *indio_dev,
->  		mutex_unlock(&indio_dev->mlock);
->  		return IIO_VAL_INT;
->  	case IIO_CHAN_INFO_SCALE:
-> -		ret = regulator_get_voltage(info->vref);
-> -		if (ret < 0) {
-> -			dev_err(&indio_dev->dev, "failed to get voltage\n");
-> -			return ret;
-> -		}
-> -
-> -		*val = ret / 1000;
-> +		*val = info->uv_vref / 1000;
->  		*val2 = chan->scan_type.realbits;
->  		return IIO_VAL_FRACTIONAL_LOG2;
->  	default:
-> @@ -298,6 +294,19 @@ static irqreturn_t rockchip_saradc_trigger_handler(int irq, void *p)
->  	return IRQ_HANDLED;
->  }
->  
-> +static int rockchip_saradc_volt_notify(struct notifier_block *nb,
-> +						   unsigned long event,
-> +						   void *data)
-> +{
-> +	struct rockchip_saradc *info =
-> +			container_of(nb, struct rockchip_saradc, nb);
-> +
-> +	if (event & REGULATOR_EVENT_VOLTAGE_CHANGE)
-> +		info->uv_vref = (unsigned long)data;
-> +
-> +	return NOTIFY_OK;
-> +}
-> +
-
-You probably want an devm-action to unregister the notifier
-on device removal. Something like this and the addition in _probe().
-
-static void rockchip_saradc_regulator_action(void *data)
-{
-	struct rockchip_saradc *info = data;
-
-	regulator_unregister_notifier(info->vref, &info->nb);
-}
-
->  static int rockchip_saradc_probe(struct platform_device *pdev)
->  {
->  	struct rockchip_saradc *info = NULL;
-> @@ -410,6 +419,13 @@ static int rockchip_saradc_probe(struct platform_device *pdev)
->  		return ret;
->  	}
->  
-> +	info->uv_vref = regulator_get_voltage(info->vref);
-> +	if (info->uv_vref < 0) {
-> +		dev_err(&pdev->dev, "failed to get voltage\n");
-> +		ret = info->uv_vref;
-> +		return ret;
-> +	}
-> +
->  	ret = clk_prepare_enable(info->pclk);
->  	if (ret < 0) {
->  		dev_err(&pdev->dev, "failed to enable pclk\n");
-> @@ -450,6 +466,11 @@ static int rockchip_saradc_probe(struct platform_device *pdev)
->  	if (ret)
->  		return ret;
->  
-> +	info->nb.notifier_call = rockchip_saradc_volt_notify;
-> +	ret = regulator_register_notifier(info->vref, &info->nb);
-> +	if (ret)
-> +		return ret;
-> +
-
-	ret = devm_add_action_or_reset(&pdev->dev, rockchip_saradc_regulator_action, info);
-	if (ret)
-		goto ret;
-
-This ties the unregistration nicely into the devm-framework and thus
-doesn't require any additional error handling, as the "action" is also
-directly called if devm_add_action fails.
-
-
-Heiko
-
->  	return devm_iio_device_register(&pdev->dev, indio_dev);
->  }
->  
-> 
-
-
-
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dts
+index 66a90483b004..e971ba8c1418 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dts
+@@ -2,7 +2,7 @@
+ /*
+  * dts file for Xilinx ZynqMP ZC1275
+  *
+- * (C) Copyright 2017 - 2019, Xilinx, Inc.
++ * (C) Copyright 2017 - 2021, Xilinx, Inc.
+  *
+  * Michal Simek <michal.simek@xilinx.com>
+  * Siva Durga Prasad Paladugu <sivadur@xilinx.com>
+@@ -20,6 +20,7 @@ / {
+ 	aliases {
+ 		serial0 = &uart0;
+ 		serial1 = &dcc;
++		spi0 = &qspi;
+ 	};
+ 
+ 	chosen {
+@@ -37,6 +38,21 @@ &dcc {
+ 	status = "okay";
+ };
+ 
++&gpio {
++	status = "okay";
++};
++
++&qspi {
++	status = "okay";
++	flash@0 {
++		compatible = "m25p80", "jedec,spi-nor";
++		reg = <0x0>;
++		spi-tx-bus-width = <1>;
++		spi-rx-bus-width = <4>;
++		spi-max-frequency = <108000000>;
++	};
++};
++
+ &uart0 {
+ 	status = "okay";
+ };
+-- 
+2.32.0
 
