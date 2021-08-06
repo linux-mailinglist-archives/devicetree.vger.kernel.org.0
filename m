@@ -2,104 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 93B893E2EFC
-	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 19:49:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28E033E2F27
+	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 20:10:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231822AbhHFRtg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Aug 2021 13:49:36 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36712 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231776AbhHFRtg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 6 Aug 2021 13:49:36 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6A8F1610E7;
-        Fri,  6 Aug 2021 17:49:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1628272160;
-        bh=T7XbKNjz6J9bdpleiSzEHZfZGDNL3V/Rt8lKFm7vdVI=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=qehl2nYGu56NQ47YvZFb3tco6q5uF6+RgLz1Kn3KSngor7+15bJVjupCtFsHtlJm5
-         Jgniw7UjdxMvraFBDsq0orNLK92elvMPSHcGjXwkvMA+6fiVbHRqoYqwjc21b+awvV
-         /pbrbeMp6W1j4eN3+GBjqMpOTRhW0DFMkiPReSNTSxyBEuKYi/CC0Jacy6WEGThrdH
-         tPl/XiPEJxNKmoHE2GN/ndBSeBB64dLJsSgWzq5M4odHaFpnZK9wddB5lxSV552tt4
-         k3pGnMXJs13mqRPLQvDtprHOE5jMpGMNF4US0eUt02ghnSVyTw8g+2++lz3J2LXC4L
-         mpkbSXSuftc0g==
-Content-Type: text/plain; charset="utf-8"
+        id S242687AbhHFSKV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Aug 2021 14:10:21 -0400
+Received: from mail-io1-f47.google.com ([209.85.166.47]:41595 "EHLO
+        mail-io1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242669AbhHFSKV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 14:10:21 -0400
+Received: by mail-io1-f47.google.com with SMTP id 188so11238417ioa.8;
+        Fri, 06 Aug 2021 11:10:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=o/8DRycRobICyqdVPBp3gqhmLeKbJ8RCg30DsK2AwgU=;
+        b=OPvhr43OHLfdnuirwEFV1ZOhh/0meQWttEuWpuHUZAkx+wFu/OkWBgH3IIsECn1wyf
+         DJticm2m4cekiX3FjGyBvAJDoJSL26PB5Zck+UOqNETNlD37qW7bstARhLhvN5zQbgni
+         BPVy4ikRp6VwcaBrfrDEoJ2XFI0FfrDpROv82GYKtjn4uFoAIC/O6KCihbrBxElqKZjV
+         0bSYz/BAw369KRo6BOZOeTPZcVPEMK1ZV/ngGp66IzpdFCA/XkyhglsJNeg10GibFH+p
+         vYU2rYuv162bhZ3xeZO3RZc8rPL3CXGLT7gNN33zsxOVtUCBzasTlgYlPc2ECiPfbbKS
+         HxLw==
+X-Gm-Message-State: AOAM533Rg+7GzxG0/Y0I0en+aOM3mr+ADLIfKM9kaveWCA40DQbtfIMx
+        wqAYJnlesDa9P/Jd11THXg==
+X-Google-Smtp-Source: ABdhPJweqBQ0MpjChKWGENKXYts+lCl0cKtq//sqSkoef9cKusimZTfHxztqZjfbeTHS0bgpMz2qRw==
+X-Received: by 2002:a5e:a908:: with SMTP id c8mr450324iod.116.1628273403783;
+        Fri, 06 Aug 2021 11:10:03 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id l5sm5760438ion.44.2021.08.06.11.10.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Aug 2021 11:10:03 -0700 (PDT)
+Received: (nullmailer pid 1526278 invoked by uid 1000);
+        Fri, 06 Aug 2021 18:10:00 -0000
+Date:   Fri, 6 Aug 2021 12:10:00 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Lucas Stankus <lucas.p.stankus@gmail.com>
+Cc:     lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
+        Dragos.Bogdan@analog.com, Darius.Berghe@analog.com,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: accel: Add binding
+ documentation for ADXL313
+Message-ID: <YQ16+AlpmxhVIBhE@robh.at.kernel.org>
+References: <cover.1628143857.git.lucas.p.stankus@gmail.com>
+ <ad64c93df8c43c66dcb64fe8ec0c0f6b91b3c697.1628143857.git.lucas.p.stankus@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1627972461-2627-5-git-send-email-hsin-hsiung.wang@mediatek.com>
-References: <1627972461-2627-1-git-send-email-hsin-hsiung.wang@mediatek.com> <1627972461-2627-5-git-send-email-hsin-hsiung.wang@mediatek.com>
-Subject: Re: [PATCH v10 4/5] spmi: mediatek: Add support for MT8195
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Henry Chen <henryc.chen@mediatek.com>
-To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 06 Aug 2021 10:49:19 -0700
-Message-ID: <162827215909.1975443.852277412377742323@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ad64c93df8c43c66dcb64fe8ec0c0f6b91b3c697.1628143857.git.lucas.p.stankus@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Hsin-Hsiung Wang (2021-08-02 23:34:20)
-> From: Henry Chen <henryc.chen@mediatek.com>
->=20
-> Add spmi support for MT8195.
->=20
-> Signed-off-by: Henry Chen <henryc.chen@mediatek.com>
-
-Missing Signed-off-by from hsin-hsiung.wang here
-
+On Thu, Aug 05, 2021 at 03:29:37AM -0300, Lucas Stankus wrote:
+> Add device tree binding documentation for ADXL313 3-axis accelerometer.
+> 
+> Signed-off-by: Lucas Stankus <lucas.p.stankus@gmail.com>
 > ---
-> changes since v9:
-> - No change.
-> ---
->  drivers/spmi/spmi-mtk-pmif.c | 90 ++++++++++++++++++++++++++++++++++++
+>  .../bindings/iio/accel/adi,adxl313.yaml       | 90 +++++++++++++++++++
 >  1 file changed, 90 insertions(+)
->=20
-> diff --git a/drivers/spmi/spmi-mtk-pmif.c b/drivers/spmi/spmi-mtk-pmif.c
-> index 94c45d46ab0c..0c320801c9d5 100644
-> --- a/drivers/spmi/spmi-mtk-pmif.c
-> +++ b/drivers/spmi/spmi-mtk-pmif.c
-> @@ -348,6 +427,14 @@ static const struct pmif_data mt6873_pmif_arb =3D {
->         .soc_chan =3D 2,
->  };
-> =20
-> +static const struct pmif_data mt8195_pmif_arb[] =3D {
-
-This is an array of type pmif_data.
-
-> +       {
-> +               .regs =3D mt8195_regs,
-> +               .spmimst_regs =3D mt8195_spmi_regs,
-> +               .soc_chan =3D 2,
-> +       },
-> +};
+>  create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml
+> new file mode 100644
+> index 000000000000..fea03b6790f3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml
+> @@ -0,0 +1,90 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/accel/adi,adxl313.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  static int mtk_spmi_probe(struct platform_device *pdev)
->  {
->         struct pmif *arb;
-> @@ -444,6 +531,9 @@ static const struct of_device_id mtk_spmi_match_table=
-[] =3D {
->         {
->                 .compatible =3D "mediatek,mt6873-spmi",
->                 .data =3D &mt6873_pmif_arb,
+> +title: Analog Devices ADXL313 3-Axis Digital Accelerometer
+> +
+> +maintainers:
+> +  - Lucas Stankus <lucas.p.stankus@gmail.com>
+> +
+> +description: |
+> +  Analog Devices ADXL313 3-Axis Digital Accelerometer that supports
+> +  both I2C & SPI interfaces.
+> +    https://www.analog.com/en/products/adxl313.html
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,adxl313
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-3wire: true
+> +
+> +  spi-cpha: true
+> +
+> +  spi-cpol: true
 
-mt6873_pmif_arb is not an array, see the context header above.
+These 3 generally shouldn't be needed, but can be set from the driver. 
+If they are valid, is any combination of them really valid?
 
-How does this work? Has this been tested?
+> +
+> +  spi-max-frequency: true
+> +
+> +  vs-supply:
+> +    description: Regulator that supplies power to the accelerometer
+> +
+> +  vdd-supply:
+> +    description: Regulator that supplies the digital interface supply voltage
+> +
+> +  interrupts:
+> +    maxItems: 2
 
-> +       }, {
-> +               .compatible =3D "mediatek,mt8195-spmi",
-> +               .data =3D &mt8195_pmif_arb,
->         }, {
->                 /* sentinel */
->         },
-> --=20
-> 2.18.0
->
+This means there must be 2 entries. If 1 is valid, you need 'minItems'.
+
+> +
+> +  interrupt-names:
+> +    maxItems: 2
+
+You need 'minItems' too to fix the error.
+
+> +    items:
+> +      enum:
+> +        - INT1
+> +        - INT2
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c0 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        /* Example for a I2C device node */
+> +        accelerometer@53 {
+> +            compatible = "adi,adxl313";
+> +            reg = <0x53>;
+> +            interrupt-parent = <&gpio0>;
+> +            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+> +            interrupt-names = "INT1";
+> +        };
+> +    };
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        /* Example for a SPI device node */
+> +        accelerometer@0 {
+> +            compatible = "adi,adxl313";
+> +            reg = <0>;
+> +            spi-max-frequency = <5000000>;
+> +            spi-cpol;
+> +            spi-cpha;
+> +            interrupt-parent = <&gpio0>;
+> +            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+> +            interrupt-names = "INT1";
+> +        };
+> +    };
+> -- 
+> 2.32.0
+> 
+> 
