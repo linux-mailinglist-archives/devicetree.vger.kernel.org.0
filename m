@@ -2,86 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8F383E29FD
-	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 13:45:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D79B3E2A05
+	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 13:47:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241340AbhHFLqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Aug 2021 07:46:14 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52328 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241873AbhHFLqN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 6 Aug 2021 07:46:13 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6A62F60EBC;
-        Fri,  6 Aug 2021 11:45:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1628250358;
-        bh=lc7TjjkywpgZUl0uKJvryhmrqgXPv4TdZTjYg6zyHyw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Hm183JOENzsjSiX628aQnr1XsYwuCzVRLy9DTh7ni9/LUnxWIHFKwi4IRB7T8LNFy
-         ms2tvAQlatOLOm+QP9KKtPLAFC64lPOT8eqdsfiymOW9yyXNGdUbma+TMKzJ2hSKLX
-         0UI1m6JFr1D5iAtViAQmXoDNUlzuqoY7SnCACcorr1Cz/2xOZ0BW98ZYmOZJr6O1qk
-         HM3KCT4LNk8IggmlnhAC+P9IpZG11VhdKuzwVeipNyLR8eZlY8MOxnY/ymxJdBPgZt
-         jNJhZRYuHpMixPJAKCnCN1XZs6Ll/i9BzxkLFfnSom8WIFrPj2dUtooEUyCm7e9z1k
-         5CTyOD1TWOQAA==
-Date:   Fri, 6 Aug 2021 12:45:41 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Alistair Francis <alistair@alistair23.me>, robh+dt@kernel.org,
-        lgirdwood@gmail.com, linux-imx@nxp.com, kernel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alistair23@gmail.com
-Subject: Re: [PATCH v9 03/12] mfd: simple-mfd-i2c: Save the register client
- data
-Message-ID: <20210806114541.GY26252@sirena.org.uk>
-References: <20210806091058.141-1-alistair@alistair23.me>
- <20210806091058.141-4-alistair@alistair23.me>
- <YQ0fPEeZGYe7f1cC@google.com>
+        id S231804AbhHFLrz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Aug 2021 07:47:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49736 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229819AbhHFLry (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 07:47:54 -0400
+Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40E5CC061798;
+        Fri,  6 Aug 2021 04:47:39 -0700 (PDT)
+Received: by mail-io1-xd32.google.com with SMTP id 188so9210435ioa.8;
+        Fri, 06 Aug 2021 04:47:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=zLpVKTCFA11+OnC1v/3aHjajQo+lN8JISFoIQ0gJsWw=;
+        b=hu9A7sDTQ5CTLyXUMb5kB1I1W1H5EZNTuovyxktDPPEAO5OnPRdeBrMpZCZeLbJOlc
+         /Zu4TAyQPSo1dTrgbymhgLaW2AwBi9vu6dFJPOnet17QVukPhOjRVussRd6MNrdmMbVO
+         cyr3ZQe5UdsvJCQCAXGiPWPz8AKUq6ZMk9YWP9DOCUOqdwnue5hicnxVZe5oNc8pDUTt
+         Bor14wUM2ozGZcSTXm29zchCH2xImMpLps8RncD1TR5WLsY6V1D769l5hRCwJWL/n21p
+         5xq4/gANiiC/3GkvgylENzuJLJQsPeqO/cU9TDdw1QkixzxjHLCS9esRaHkpacXHk+GG
+         bqeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=zLpVKTCFA11+OnC1v/3aHjajQo+lN8JISFoIQ0gJsWw=;
+        b=boOGfMSQJYkz3FOtBHxknox3Js8DQ65JvLGft+YIxZTvnFe3zmmOOY3M2+QI0X6M48
+         SzsWq6Jrqr7oSOg4CEWEU3o8drWhQL7SBNfS8lq9i7wkbpd2d4ZAGH3VFSbm/mVmb+/G
+         cgdf8WREAijMbYiHqweVD1bhRjjLMgk3UkooEtDwqoS50NqTBNCB0VuofEC0e+eTAHZt
+         sedOC6OzRvhLURL364F5bBJ7xdwS1tZYWaZuNmk9puriVHj9nkvUnPPWAhIe1ryoBigj
+         0wZ0jRBPvsIIe7DuEd8igO5eKH6tgV068J7tm6l4XmnRauoCYCzpF3ZHqMj0sz0o+Xmj
+         IFVw==
+X-Gm-Message-State: AOAM532R/hMWMkPYqUCn16Lje3CeE/QqmohScHJQKWAeSxbCXQ1mJf5Z
+        gxH+P1P0kX5p6y6rNcT9o6huQkhR8BhuxoWF4H0=
+X-Google-Smtp-Source: ABdhPJzhZNlw9cWh7E098WLU6XWzjiUzPFJygP7XHy5Y/EnBmPJyrPMNj9BJYH5dgtffBynVPF4A+9oJ8woXfoCYzz4=
+X-Received: by 2002:a02:cc22:: with SMTP id o2mr9334421jap.26.1628250458544;
+ Fri, 06 Aug 2021 04:47:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="pDtNmxPr5KTxcQ6Z"
-Content-Disposition: inline
-In-Reply-To: <YQ0fPEeZGYe7f1cC@google.com>
-X-Cookie: MOUNT TAPE U1439 ON B3, NO RING
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20210806091058.141-1-alistair@alistair23.me> <20210806091058.141-3-alistair@alistair23.me>
+ <YQ0fi8pV1DNZd4nP@google.com>
+In-Reply-To: <YQ0fi8pV1DNZd4nP@google.com>
+From:   Alistair Francis <alistair23@gmail.com>
+Date:   Fri, 6 Aug 2021 21:47:12 +1000
+Message-ID: <CAKmqyKN6PJR6CiyZ-DVFf7FJVh2B36RGmHBrd+9owABzw8p_iQ@mail.gmail.com>
+Subject: Re: [PATCH v9 02/12] mfd: simple-mfd-i2c: Add a Kconfig name
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Alistair Francis <alistair@alistair23.me>,
+        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
+        Mark Brown <broonie@kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---pDtNmxPr5KTxcQ6Z
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Fri, Aug 06, 2021 at 12:38:36PM +0100, Lee Jones wrote:
+On Fri, Aug 6, 2021 at 9:39 PM Lee Jones <lee.jones@linaro.org> wrote:
+>
 > On Fri, 06 Aug 2021, Alistair Francis wrote:
+>
+> > Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> > ---
+> >  drivers/mfd/Kconfig | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> > index 6a3fd2d75f96..09a939f8b7ff 100644
+> > --- a/drivers/mfd/Kconfig
+> > +++ b/drivers/mfd/Kconfig
+> > @@ -1176,7 +1176,7 @@ config MFD_SI476X_CORE
+> >         module will be called si476x-core.
+> >
+> >  config MFD_SIMPLE_MFD_I2C
+> > -     tristate
+> > +     tristate "Simple MFD device"
+> >       depends on I2C
+> >       select REGMAP_I2C
+> >       help
+>
+> For what purpose?
 
-> > +	i2c_set_clientdata(i2c, regmap);
-> > +
+It makes it easier to enable in menuconfig. That's the main reason :)
 
-> No need to store this here.
+Alistair
 
-> Just do this in the child device:
-
->      dev_get_regmap(pdev->dev.parent, NULL);
-
-Note that dev_get_regmap() is relatively expensive compared to a simple
-driver data reference since it needs to go search for the device to find
-the regmap, it's not the end of the world especially in the context of
-doing I2C I/O but storing it isn't a terrible idea.
-
---pDtNmxPr5KTxcQ6Z
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmENIOQACgkQJNaLcl1U
-h9DxJQf/TuyP2y3UfrP+x/Wbj5TUX4a0xU78jS7hhKqNUubUfUVUt+3e2HWDFn0S
-7L/kD0+2R2LgseDvTaEesgsh2pG3zoFdmLUESXJ2jXjNFMEs5ghnl2f6UFN0Xhbq
-WhwTOq7czFXuPrsGn/ENBhS4CMZtEy9VyBGADad+9ywJ9mSVrk+G1C3kVL9noefx
-TFIMsSOYOyeoFy3SQSGpOuSzvEfc3QT84QLdO0iF3EHyR4pyTaRSbDhMrvCuiQ1v
-y4icrwxHH3yH28LcErkBRzsDrwoRrVW5E/a0R3L6cK9niAl5cMxIkvu7w/rg/WqZ
-bwM487Xppc5FK6NmjakYEKnrOsmPQA==
-=v6hN
------END PGP SIGNATURE-----
-
---pDtNmxPr5KTxcQ6Z--
+>
+> --
+> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
+> Senior Technical Lead - Developer Services
+> Linaro.org =E2=94=82 Open source software for Arm SoCs
+> Follow Linaro: Facebook | Twitter | Blog
