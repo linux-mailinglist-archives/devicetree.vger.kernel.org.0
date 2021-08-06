@@ -2,70 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C7473E1F9C
-	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 01:55:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC4A73E211C
+	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 03:43:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242642AbhHEXzm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 19:55:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58712 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242598AbhHEXzl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 19:55:41 -0400
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81E7EC061798
-        for <devicetree@vger.kernel.org>; Thu,  5 Aug 2021 16:55:25 -0700 (PDT)
-Received: by mail-pj1-x1030.google.com with SMTP id l19so12971660pjz.0
-        for <devicetree@vger.kernel.org>; Thu, 05 Aug 2021 16:55:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=1C+VxXWMleoDYXEM45pGL9SKotZgsC/xVSWfXxI+Hfw=;
-        b=haT0giKocqtfVB9K9Fo4/r/rmhv5odvT/bDbSH1qqST7gkVOpf/o6T7xJNlL10pbrp
-         voN/P4e0861KcuaT5dIrwKRqdl4QzLWqgIq8YV7Md7Zs9mHUWhSP4GzjlO4lRo/NHjuJ
-         mKbMBWNq3TY6cTIFlTlp+3Cu/9zl9/ttAJTBU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=1C+VxXWMleoDYXEM45pGL9SKotZgsC/xVSWfXxI+Hfw=;
-        b=JtcsucfrmJ+ccGrfuDRrh1L7roRDBnRNToDy0lluZaSoLWWN3TdPSilW9e+i+RXSYU
-         fgstUWWB5Mb9F9D2Bub2DOpOtbYKqyxEhFuBGb0QK4+qbxN4tZqC4PfZZL4/ZM49i4uA
-         UPoIh2aL6wKZWx1be+MD4yDpz0+mYMmmnkb32E6uWiJMvnrhDcEipxGyw6OurJ/fX9qt
-         HPN8KojgAff6rAXJJhjScxA5tCXLmkz65nl0HOnaMGZD1IzOGs8dYRM6g6AFgoUzmK1S
-         Qea+PTlEXZ20TZ0r0uSiq/DtWwEeR4auwEhyELV46O/sLXzV2bOtwnEOyU07vkN3w69D
-         G0LQ==
-X-Gm-Message-State: AOAM533+1HxhoTjTXqSvN0XOqWYwLVjSF7pl0/V6QhCwDYGqqou3ZXpi
-        QI0e47q/jyIdiHCx2Tm+LbO0MQ==
-X-Google-Smtp-Source: ABdhPJzdxyBw/J+PaVikuCIniaWJD5K3etzXckn2Z5w/jSiCkeLEqwY/NnNDwR5lHivbEkKjvD++xA==
-X-Received: by 2002:a17:90b:80c:: with SMTP id bk12mr7407351pjb.69.1628207725170;
-        Thu, 05 Aug 2021 16:55:25 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:8944:bd:9484:29e])
-        by smtp.gmail.com with UTF8SMTPSA id c26sm1724774pfo.3.2021.08.05.16.55.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Aug 2021 16:55:24 -0700 (PDT)
-Date:   Thu, 5 Aug 2021 16:55:23 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Alex Elder <elder@linaro.org>
-Cc:     bjorn.andersson@linaro.org, agross@kernel.org, robh+dt@kernel.org,
-        elder@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: sc7180: define ipa_fw_mem node
-Message-ID: <YQx6a+Q5uwkEZFbB@google.com>
-References: <20210804210214.1891755-1-elder@linaro.org>
- <20210804210214.1891755-4-elder@linaro.org>
+        id S240808AbhHFBnZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 21:43:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34160 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229510AbhHFBnY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Aug 2021 21:43:24 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A7D6C60FE7;
+        Fri,  6 Aug 2021 01:43:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1628214189;
+        bh=AjuaZkcbeAR7e48uZ70iOG0vcwfUcBkQpAwgLstpTbo=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=iDEYnl5DBjb9QXlfY2bZqmfPU7j6x5MYv9i9NMXrG79oT5ar1Lc3gtTVCtske8spb
+         D5gso1ojexCPAejKnxrdWajBTL42YZQYewfxNj2VsLwwdQeaQ7X8lVcuuDD9262fwb
+         c5yVL0dB3jQJRWy8vuzC064nm9DEnHc4L9iv5wy4owKZgJii5uXrCBMSwYp+Nvdbrn
+         Jesg2UsPxy2odJNewiNva9q5ghS658y8IsV/wLX9fbQbZpraPAzsbYD/4y8BoLFGnv
+         tK4MrvdgeYHl9myPHTaws0Nck1ttxZ/fnViwMdqo45cKOOZIFSOZJxz5dldTiLVSOH
+         yfgfeyUqAXB9g==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210804210214.1891755-4-elder@linaro.org>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <c662hoLme5MIdelk5BVPsVgN77IqTLS0KwYwpauJiDs@cp3-web-047.plabs.ch>
+References: <c662hoLme5MIdelk5BVPsVgN77IqTLS0KwYwpauJiDs@cp3-web-047.plabs.ch>
+Subject: Re: [PATCH 1/2] dt-bindings: clock: qcom-rpmcc: Add compatible for MSM8953 SoC
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     agross@kernel.org, mturquette@baylibre.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Vladimir Lypak <junak.pub@gmail.com>,
+        Sireesh Kodali <sireeshkodali@protonmail.com>
+To:     Sireesh Kodali <sireeshkodali@protonmail.com>,
+        bjorn.andersson@linaro.org
+Date:   Thu, 05 Aug 2021 18:43:08 -0700
+Message-ID: <162821418844.19113.13000250471134426704@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 04, 2021 at 04:02:13PM -0500, Alex Elder wrote:
-> Define the reserved memory space used for IPA firmware for the
-> Qualcomm SC7180 SoC.
-> 
-> Signed-off-by: Alex Elder <elder@linaro.org>
+Quoting Sireesh Kodali (2021-08-05 10:19:29)
+> From: Vladimir Lypak <junak.pub@gmail.com>
+>=20
+> Add compatible for MSM8953 SoC.
+>=20
+> Signed-off-by: Vladimir Lypak <junak.pub@gmail.com>
+> Signed-off-by: Sireesh Kodali <sireeshkodali@protonmail.com>
+> ---
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+Applied to clk-next
