@@ -2,71 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 41E213E30B4
-	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 23:12:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F18B3E30B9
+	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 23:13:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231612AbhHFVMf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Aug 2021 17:12:35 -0400
-Received: from mail-io1-f42.google.com ([209.85.166.42]:37734 "EHLO
-        mail-io1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231431AbhHFVMf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 17:12:35 -0400
-Received: by mail-io1-f42.google.com with SMTP id l20so11854976iom.4
-        for <devicetree@vger.kernel.org>; Fri, 06 Aug 2021 14:12:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=6hS8ykCw7g7b36b13On/+bS3wA6rogjOjcEt652UJLU=;
-        b=BhrlRUb8v0rHuKKeJnplwzACh9RNaOSWJclvP6cSdBFoX8DBvPvGj7CaX+oCEDIqLL
-         ByNgBk0zpNIrykEBteRifcCQKQfLN48R5sNs+oOnapZ1LUifl0kKo4zBCKGi4UHst6qv
-         cwmxEo5A71Rh8ZMnpuScuu/qUdWBudbnV+/MOwV6Ru4ed8cWir2EHB3kQa07fTpHA+ZS
-         c2SD4Wwq3Go/63WcZI0Pj72nDYbp5h6jcZugPcRi6+JKLGhcnbxcA6g6aspRBrlvJ4/I
-         dUFHZe9YMirRzbFVSzq7bK3TwFr2kFDV/Pb7OSk8KmWyXkKH/x+jIo2BfNExbICOse6o
-         onaA==
-X-Gm-Message-State: AOAM530KRbLJ58pvXwTBQfkmLU76PnwKpXtQ48A/qv6Hh6GZzgw/xNUh
-        nOERvdm1/WyT3r5zUoHfLQ==
-X-Google-Smtp-Source: ABdhPJwHq7VSa7ihg5l7BuNBvgdu1IygviscRzVXzncG/gFMi2ugiudAjwhJ63egrjS9jCG56BOPlQ==
-X-Received: by 2002:a05:6602:713:: with SMTP id f19mr121581iox.140.1628284338901;
-        Fri, 06 Aug 2021 14:12:18 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id u9sm3001752ilv.75.2021.08.06.14.12.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Aug 2021 14:12:18 -0700 (PDT)
-Received: (nullmailer pid 1807140 invoked by uid 1000);
-        Fri, 06 Aug 2021 21:12:16 -0000
-Date:   Fri, 6 Aug 2021 15:12:16 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     Scott Branden <sbranden@broadcom.com>,
-        linux-rpi-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        Ray Jui <rjui@broadcom.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 6/9] dt-bindings: arm: bcm2835: Add Raspberry Pi Compute
- Module 4
-Message-ID: <YQ2lsAbidGvP3Lub@robh.at.kernel.org>
-References: <1627820932-7247-1-git-send-email-stefan.wahren@i2se.com>
- <1627820932-7247-7-git-send-email-stefan.wahren@i2se.com>
+        id S238300AbhHFVNd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Aug 2021 17:13:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:32878 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231431AbhHFVNd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Aug 2021 17:13:33 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D9CAB61184;
+        Fri,  6 Aug 2021 21:13:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1628284397;
+        bh=VamfysyfMJ6hiOGFjc2j6AndOlXtXFDk6eG4aqGHU3A=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=VaJBTjKrRs0kBrbzaBFwUlFfRe/wI4/WEMpS7CidiqQte3XEOMi0QMDPNY37Xw9R9
+         Oiht/X4EZjIuv66GcVsfll1afAuvpked2z2IQWiE1rQWAYTFPLk6U9dXVtxTgyGLBw
+         bFUh0hVqXmZz/uZr0wXsG0M8TwiWYduHK/4oOIkx0dIn1dM38aQuhARc063Ud9OhmY
+         oskS3rWZPDfKfv2OeLXgRWoUldaNxb2OVzeIHbAaPJ7qsqQS+TMe4Tftc3F/DtGXqG
+         tstUdnUM/s5QDCz2J8PrGZ9xe9F0wJrtvf0NUgkoaNI0cMryh3yE8NO+wQET2BqsvH
+         hLd/YvGcq4R8A==
+Received: by earth.universe (Postfix, from userid 1000)
+        id DE7253C0C99; Fri,  6 Aug 2021 23:13:14 +0200 (CEST)
+Date:   Fri, 6 Aug 2021 23:13:14 +0200
+From:   Sebastian Reichel <sre@kernel.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <treding@nvidia.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>,
+        Peter Chen <peter.chen@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        David Heidelberg <david@ixit.cz>, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v6 05/12] dt-bindings: power: supply: smb347-charger:
+ Document USB VBUS regulator
+Message-ID: <20210806211314.sfjl5jke27hz3jj7@earth.universe>
+References: <20210731173842.19643-1-digetx@gmail.com>
+ <20210731173842.19643-6-digetx@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="rxizn6tonuqcuyrj"
 Content-Disposition: inline
-In-Reply-To: <1627820932-7247-7-git-send-email-stefan.wahren@i2se.com>
+In-Reply-To: <20210731173842.19643-6-digetx@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 01 Aug 2021 14:28:49 +0200, Stefan Wahren wrote:
-> Add the Raspberry Pi Compute Module 4 to DT schema.
-> 
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-> ---
->  Documentation/devicetree/bindings/arm/bcm/bcm2835.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
 
-Acked-by: Rob Herring <robh@kernel.org>
+--rxizn6tonuqcuyrj
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+On Sat, Jul 31, 2021 at 08:38:35PM +0300, Dmitry Osipenko wrote:
+> SMB347 can supply power to USB VBUS, which is required by OTG-cable
+> devices that want to switch USB port into the host mode. Add USB VBUS
+> regulator properties.
+>=20
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> ---
+
+Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+
+-- Sebastian
+
+>  .../power/supply/summit,smb347-charger.yaml   | 30 +++++++++++++++++++
+>  .../dt-bindings/power/summit,smb347-charger.h |  4 +++
+>  2 files changed, 34 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/power/supply/summit,smb347=
+-charger.yaml b/Documentation/devicetree/bindings/power/supply/summit,smb34=
+7-charger.yaml
+> index 983fc215c1e5..20862cdfc116 100644
+> --- a/Documentation/devicetree/bindings/power/supply/summit,smb347-charge=
+r.yaml
+> +++ b/Documentation/devicetree/bindings/power/supply/summit,smb347-charge=
+r.yaml
+> @@ -73,6 +73,26 @@ properties:
+>        - 1 # SMB3XX_SOFT_TEMP_COMPENSATE_CURRENT Current compensation
+>        - 2 # SMB3XX_SOFT_TEMP_COMPENSATE_VOLTAGE Voltage compensation
+> =20
+> +  summit,inok-polarity:
+> +    description: |
+> +      Polarity of INOK signal indicating presence of external power supp=
+ly.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum:
+> +      - 0 # SMB3XX_SYSOK_INOK_ACTIVE_LOW
+> +      - 1 # SMB3XX_SYSOK_INOK_ACTIVE_HIGH
+> +
+> +  usb-vbus:
+> +    $ref: "../../regulator/regulator.yaml#"
+> +    type: object
+> +
+> +    properties:
+> +      summit,needs-inok-toggle:
+> +        type: boolean
+> +        description: INOK signal is fixed and polarity needs to be toggl=
+ed
+> +                     in order to enable/disable output mode.
+> +
+> +    unevaluatedProperties: false
+> +
+>  allOf:
+>    - if:
+>        properties:
+> @@ -134,6 +154,7 @@ examples:
+>              reg =3D <0x7f>;
+> =20
+>              summit,enable-charge-control =3D <SMB3XX_CHG_ENABLE_PIN_ACTI=
+VE_HIGH>;
+> +            summit,inok-polarity =3D <SMB3XX_SYSOK_INOK_ACTIVE_LOW>;
+>              summit,chip-temperature-threshold-celsius =3D <110>;
+>              summit,mains-current-limit-microamp =3D <2000000>;
+>              summit,usb-current-limit-microamp =3D <500000>;
+> @@ -141,6 +162,15 @@ examples:
+>              summit,enable-mains-charging;
+> =20
+>              monitored-battery =3D <&battery>;
+> +
+> +            usb-vbus {
+> +                regulator-name =3D "usb_vbus";
+> +                regulator-min-microvolt =3D <5000000>;
+> +                regulator-max-microvolt =3D <5000000>;
+> +                regulator-min-microamp =3D <750000>;
+> +                regulator-max-microamp =3D <750000>;
+> +                summit,needs-inok-toggle;
+> +            };
+>          };
+>      };
+> =20
+> diff --git a/include/dt-bindings/power/summit,smb347-charger.h b/include/=
+dt-bindings/power/summit,smb347-charger.h
+> index d918bf321a71..3205699b5e41 100644
+> --- a/include/dt-bindings/power/summit,smb347-charger.h
+> +++ b/include/dt-bindings/power/summit,smb347-charger.h
+> @@ -16,4 +16,8 @@
+>  #define SMB3XX_CHG_ENABLE_PIN_ACTIVE_LOW	1
+>  #define SMB3XX_CHG_ENABLE_PIN_ACTIVE_HIGH	2
+> =20
+> +/* Polarity of INOK signal */
+> +#define SMB3XX_SYSOK_INOK_ACTIVE_LOW		0
+> +#define SMB3XX_SYSOK_INOK_ACTIVE_HIGH		1
+> +
+>  #endif
+> --=20
+> 2.32.0
+>=20
+
+--rxizn6tonuqcuyrj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmENpeMACgkQ2O7X88g7
++ppzLQ//eHaRl42dx9MzVCV2u+n1cPFnsVduPyX5XgdRQ+66+FtZWVsdOO6X32en
+lyuHqro4b6aV+rtHvlcr4VY+ZRJql6PycGWvrAXgRKHx1Sx/etrdAH93kFQxnllV
+6W+LmkMelL/Ng7qtf4Tg302CWGESnDX1u8doIXWoGI7BC+oOC5XjsJf9F3GNLmr0
+uPUqf8bVdKbtP0wuxRNiw9NoMS34fCvmB2MzylNlksmnWF6aVVqY/MPXtKkCQO1g
+I2X/4/4BlwhkzPYuOuO3iEYdTuo4e6FQ1KZUWIDnGAfs79HqZO967pDvPz6hRwWN
+R6oa8pqPDymRPV1Tb0jvhCvRByaoa2Zo6cHSW2aowf7CdorVrnB8/Rfh/s/GLvfx
+lU5UvVsFo0TlE2WpPSNtM48qd6VZek0CxWIsaWwZuIbJp9qVvg3tdUFsqDNDEbiA
+y8x2ei2wSyi7kpdycd1ilIcHmBczLUkXUKQso9FrYlFmkosmpacx6K0coUrYbFEl
+3O3P+hcua2rK3/g58ZcRluL9mJ0qmprET8Gxil85H7BUkvJ/oakPREorSv5LQcic
+dQW/9ol+cCKQe+3nLfGIhKnWBYI0LIvxMvR/DEO1dsjhwcg5EU2//22yQXPnjNwM
+jLhNT7G/zVRD2dkxJO/o76tGSZ0TVsiYFBMFpU91a0Fvfieacyk=
+=UOZ/
+-----END PGP SIGNATURE-----
+
+--rxizn6tonuqcuyrj--
