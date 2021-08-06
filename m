@@ -2,178 +2,326 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EEC5B3E31F8
-	for <lists+devicetree@lfdr.de>; Sat,  7 Aug 2021 00:57:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DC0C3E320C
+	for <lists+devicetree@lfdr.de>; Sat,  7 Aug 2021 01:10:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243612AbhHFW5w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Aug 2021 18:57:52 -0400
-Received: from mail.xenproject.org ([104.130.215.37]:41808 "EHLO
-        mail.xenproject.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230280AbhHFW5v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 18:57:51 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=xen.org;
-        s=20200302mail; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
-        MIME-Version:Date:Message-ID:From:References:Cc:To:Subject;
-        bh=4ZXc50mVz8YVZfeWK8lJW68vjDv15psgPzgw5qxkGR8=; b=lfJCG3jGxM+4dIbOFtL/GHig9v
-        PPTNQM4Kcvo+6Nk2bPw/4juL98puSj/z56TiZXEqfmbnXh09TMu+m16larCWXCwHfji4gTd7g9BsV
-        qaG5VOGHsL88bQoucT+eH4r0+9bSmxDQjyGhQMq8mO0KeSF5Swxx8Fq+uheX6R+Ontjs=;
-Received: from xenbits.xenproject.org ([104.239.192.120])
-        by mail.xenproject.org with esmtp (Exim 4.92)
-        (envelope-from <julien@xen.org>)
-        id 1mC8mU-0001xU-SF; Fri, 06 Aug 2021 22:57:34 +0000
-Received: from gw1.octic.net ([81.187.162.82] helo=a483e7b01a66.ant.amazon.com)
-        by xenbits.xenproject.org with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.92)
-        (envelope-from <julien@xen.org>)
-        id 1mC8mU-0006sj-Mp; Fri, 06 Aug 2021 22:57:34 +0000
-Subject: Re: Clarification regarding updating "Xen hypervisor device tree
- bindings on Arm"
-To:     Stefano Stabellini <sstabellini@kernel.org>
-Cc:     Oleksandr Tyshchenko <olekstysh@gmail.com>, robh+dt@kernel.org,
-        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
-References: <CAPD2p-kPXFgaLtwy95ZswYUK3xCDaxC4L85vQw=EvTWgehJ7-A@mail.gmail.com>
- <alpine.DEB.2.21.2108061306140.18743@sstabellini-ThinkPad-T480s>
- <f45250de-fdca-18c4-044b-276d0ff66b05@xen.org>
- <alpine.DEB.2.21.2108061519500.18743@sstabellini-ThinkPad-T480s>
-From:   Julien Grall <julien@xen.org>
-Message-ID: <fa3ad927-14c8-59ac-6cdc-673c65850ac6@xen.org>
-Date:   Fri, 6 Aug 2021 23:57:32 +0100
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0)
- Gecko/20100101 Thunderbird/78.12.0
+        id S244503AbhHFXKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Aug 2021 19:10:48 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41748 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230280AbhHFXKs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Aug 2021 19:10:48 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A21FC6115C;
+        Fri,  6 Aug 2021 23:10:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1628291432;
+        bh=p48bgKa6K3uyQYwKcsxKZnBAREoH61c0SPh2wPer6gs=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=ra3Q+VbQ7qXmg8TE9XpSs7K/rNc6mLqNdNIPgmS3Y9cuHf+1dPGE8CFgGf0Gm4Zj7
+         cMa/2IP9VMA4BQVYJ5iKbkqBhZdlEgpo2+ygYYeXyE8sa6z/GOB7EzQzMPjc+t36q0
+         EQ9YybmqGL5+i9DRGmroRL9tHnTSMYZ6m3ar5c8Xfq8gUcGgYq9xk+1etkzUU+Izgj
+         1ulrLWWPR39URllYMQnpJjPKoI1ao29z3dkgYQyyq8Pw41Vn9xDjoWj8NwYNvJjIRe
+         qTjPYh92oo5RDU7Ygb0YXjelDCmuDgacEzOpLHmhhrQjIz3gp6/dycmG/qC+LwRmOl
+         i7HBefFT18B4g==
+Date:   Fri, 6 Aug 2021 16:10:30 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stafford Horne <shorne@gmail.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Anton Blanchard <anton@ozlabs.org>,
+        Gabriel Somlo <gsomlo@gmail.com>, David Shah <dave@ds0.me>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mateusz Holenko <mholenko@antmicro.com>,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] net: Add driver for LiteX's LiteETH network
+ interface
+Message-ID: <20210806161030.52a7ae93@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <20210806054904.534315-3-joel@jms.id.au>
+References: <20210806054904.534315-1-joel@jms.id.au>
+        <20210806054904.534315-3-joel@jms.id.au>
 MIME-Version: 1.0
-In-Reply-To: <alpine.DEB.2.21.2108061519500.18743@sstabellini-ThinkPad-T480s>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stefano,
-
-On 06/08/2021 23:26, Stefano Stabellini wrote:
-> On Fri, 6 Aug 2021, Julien Grall wrote:
->> Hi Stefano,
->>
->> On 06/08/2021 21:15, Stefano Stabellini wrote:
->>> On Fri, 6 Aug 2021, Oleksandr Tyshchenko wrote:
->>>> Hello, all.
->>>>
->>>> I would like to clarify some bits regarding a possible update for "Xen
->>>> device tree bindings for the guest" [1].
->>>>
->>>> A bit of context:
->>>> We are considering extending "reg" property under the hypervisor node and
->>>> we would like to avoid breaking backward compatibility.
->>>> So far, the "reg" was used to carry a single region for the grant table
->>>> mapping only and it's size is quite small for the new improvement
->>>> we are currently working on.
->>>>
->>>> What we want to do is to extend the current region [reg: 0] and add an
->>>> extra regions [reg: 1-N] to be used as a safe address space for any
->>>> Xen specific mappings. But, we need to be careful about running "new"
->>>> guests (with the improvement being built-in already) on "old" Xen
->>>> which is not aware of the extended regions, so we need the binding to be
->>>> extended in a backward compatible way. In order to detect whether
->>>> we are running on top of the "new" Xen (and it provides us enough space to
->>>> be used for improvement), we definitely need some sign to
->>>> indicate that.
->>>>
->>>> Could you please clarify, how do you expect the binding to be changed in
->>>> the backward compatible way?
->>>> - by adding an extra compatible (as it is a change of the binding
->>>> technically)
->>>> - by just adding new property (xen,***) to indicate that "reg" contains
->>>> enough space
->>>> - other option
->>>    
->>> The current description is:
->>>
->>> - reg: specifies the base physical address and size of a region in
->>>     memory where the grant table should be mapped to, using an
->>>     HYPERVISOR_memory_op hypercall [...]
->>>
->>>
->>> Although it says "a region" I think that adding multiple ranges would be
->>> fine and shouldn't break backward compatibility.
->>>
->>> In addition, the purpose of the region was described as "where the grant
->>> table should be mapped". In other words, it is a safe address range
->>> where the OS can map Xen special pages.
->>>
->>> Your proposal is to extend the region to be bigger to allow the OS to
->>> map more Xen special pages. I think it is a natural extension to the
->>> binding, which should be backward compatible.
->>
->> I agree that extending the reg (or even adding a second region) should be fine
->> for older OS.
->>
->>>
->>> Rob, I am not sure what is commonly done in these cases. Maybe we just
->>> need an update to the description of the binding? I am also fine with
->>> adding a new compatible string if needed.
->>
->> So the trouble is how a newer Linux version knows that the region is big
->> enough to deal with all the foreign/grant mapping?
->>
->> If you run on older Xen, then the region will only be 16MB. This means the
->> Linux will have to fallback on stealing RAM as it is today.
->>
->> IOW, XSA-300 will still be a thing. On newer Xen (or toolstack), we ideally
->> want the OS to not fallback on stealing RAM (and close XSA-300). This is where
->> we need a way to advertise it.
->>
->> The question here is whether we want to use a property or a compatible for
->> this.
->>
->> I am leaning towards the latter because this is an extension of the bindings.
->> However, I wasn't entirely whether this was a normal way to do it.
+On Fri,  6 Aug 2021 15:19:04 +0930 Joel Stanley wrote:
+> LiteX is a soft system-on-chip that targets FPGAs. LiteETH is a basic
+> network device that is commonly used in LiteX designs.
 > 
-> Although I think it would be OK to have a new compatible string, am I
-> not sure we need it.
+> The driver was first written in 2017 and has been maintained by the
+> LiteX community in various trees. Thank you to all who have contributed.
 
-Let's assume we don't add a new compatible string, property... How do 
-would you prevent the following two issues?
-   1) XSA-300: A frontend can DoS the backend
-   2) Existing Xen expects the grant-table to be mapped at the exact 
-same place.
+> +config NET_VENDOR_LITEX
+> +	bool "LiteX devices"
+> +	default y
+> +	help
+> +	  If you have a network (Ethernet) card belonging to this class, say Y.
+> +
+> +	  Note that the answer to this question doesn't directly affect the
+> +	  kernel: saying N will just cause the configurator to skip all
+> +	  the questions about LiteX devices. If you say Y, you will be asked
+> +	  for your specific card in the following questions.
 
-2# could potentially be solved by reserved the first range for the grant 
-table. For 1#, I think we need a compatible string (or property).
+Maybe mention where the device is usually found (FPGAs) like you did in
+the commit message, to help folks make a decision here?
 
-What else do you have in mind?
+> +config LITEX_LITEETH
+> +	tristate "LiteX Ethernet support"
+> +	help
+> +	  If you wish to compile a kernel for hardware with a LiteX LiteEth
+> +	  device then you should answer Y to this.
 
-FAOD, relying on the region to always be big enough would not be an 
-acceptable solution to me :). A frontend may find a new way for a 
-frontend to exhaust the region (*hint* virtio *hint*).
+> +struct liteeth {
+> +	void __iomem *base;
+> +	void __iomem *mdio_base;
+> +	struct net_device *netdev;
+> +	struct device *dev;
+> +	struct mii_bus *mii_bus;
 
-> 
-> In any case, we'll have to be able to recognize and handle the case
-> where we run out of the space in the provided region. If the region is
-> too small (16MB) then it just means we'll run out of space immediately
-> after mapping the grant table. Then, we'll have to use other techniques.
+unused field
 
-Right, one of the other techniques is likely to steal RAM page. Which 
-means that a frontend could potentially DoS the backend. This will be a 
-lot easier to trigger with virtio as the DM tends to cache the mappings.
+> +
+> +	/* Link management */
+> +	int cur_duplex;
+> +	int cur_speed;
+> +
+> +	/* Tx */
+> +	int tx_slot;
+> +	int num_tx_slots;
+> +	void __iomem *tx_base;
+> +
+> +	/* Rx */
+> +	int rx_slot;
+> +	int num_rx_slots;
+> +	void __iomem *rx_base;
+> +};
+> +
+> +
+> +static int liteeth_rx(struct net_device *netdev)
+> +{
+> +	struct liteeth *priv = netdev_priv(netdev);
+> +	struct sk_buff *skb;
+> +	unsigned char *data;
+> +	u8 rx_slot;
+> +	int len;
+> +
+> +	rx_slot = readb(priv->base + LITEETH_WRITER_SLOT);
+> +	len = readl(priv->base + LITEETH_WRITER_LENGTH);
+> +
+> +	skb = netdev_alloc_skb(netdev, len + NET_IP_ALIGN);
 
-So I think we ought to prevent stealing the RAM if a new kernel is 
-running on a new Xen.
+netdev_alloc_skb_ip_align() ...
 
-> 
-> Or perhaps you think that if we had a new compatible string to say "Xen
-> binding with a larger region" then we could get away with a simpler
-> implementation in Linux, one that doesn't handle the case where we run
-> out of space in the region? If that was the case, then I agree that it
-> would be worthwhile adding a new compatible.
+> +	if (!skb) {
+> +		netdev_err(netdev, "couldn't get memory");
 
-We will need to keep the code to steal RAM for the forseeable future 
-because a newer Linux may run on an older Xen setup. So simplicity is 
-not the reason here.
+\n at the end? You can skip it but be consistent across messages
 
-I have provided the reason above.
+> +		netdev->stats.rx_dropped++;
+> +		return NET_RX_DROP;
+> +	}
+> +
+> +	/* Ensure alignemnt of the ip header within the skb */
+> +	skb_reserve(skb, NET_IP_ALIGN);
 
-Cheers,
+... then skip this
 
--- 
-Julien Grall
+> +	if (len == 0 || len > 2048)
+> +		return NET_RX_DROP;
+
+Should this be counted somehow?
+
+> +	data = skb_put(skb, len);
+> +	memcpy_fromio(data, priv->rx_base + rx_slot * LITEETH_BUFFER_SIZE, len);
+> +	skb->protocol = eth_type_trans(skb, netdev);
+> +
+> +	netdev->stats.rx_packets++;
+> +	netdev->stats.rx_bytes += len;
+> +
+> +	return netif_rx(skb);
+> +}
+> +
+> +static irqreturn_t liteeth_interrupt(int irq, void *dev_id)
+> +{
+> +	struct net_device *netdev = dev_id;
+> +	struct liteeth *priv = netdev_priv(netdev);
+> +	u8 reg;
+> +
+> +	reg = readb(priv->base + LITEETH_READER_EV_PENDING);
+> +	if (reg) {
+> +		netdev->stats.tx_packets++;
+> +		writeb(reg, priv->base + LITEETH_READER_EV_PENDING);
+> +	}
+> +
+> +	reg = readb(priv->base + LITEETH_WRITER_EV_PENDING);
+> +	if (reg) {
+> +		liteeth_rx(netdev);
+> +		writeb(reg, priv->base + LITEETH_WRITER_EV_PENDING);
+> +	}
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int liteeth_open(struct net_device *netdev)
+> +{
+> +	struct liteeth *priv = netdev_priv(netdev);
+> +	int err;
+> +
+> +	/* Clear pending events */
+> +	writeb(1, priv->base + LITEETH_WRITER_EV_PENDING);
+> +	writeb(1, priv->base + LITEETH_READER_EV_PENDING);
+> +
+> +	err = request_irq(netdev->irq, liteeth_interrupt, 0, netdev->name, netdev);
+> +	if (err) {
+> +		netdev_err(netdev, "failed to request irq %d\n", netdev->irq);
+> +		return err;
+> +	}
+> +
+> +	/* Enable IRQs */
+> +	writeb(1, priv->base + LITEETH_WRITER_EV_ENABLE);
+> +	writeb(1, priv->base + LITEETH_READER_EV_ENABLE);
+> +
+> +	/* TODO: Remove these once we have working mdio support */
+> +	priv->cur_duplex = DUPLEX_FULL;
+> +	priv->cur_speed = SPEED_100;
+
+please remove the fields until they're actually used
+
+> +	netif_carrier_on(netdev);
+> +
+> +	netif_start_queue(netdev);
+> +
+> +	return 0;
+> +}
+> +
+> +static int liteeth_stop(struct net_device *netdev)
+> +{
+> +	struct liteeth *priv = netdev_priv(netdev);
+
+carrier_off() for symmetry?
+
+> +	netif_stop_queue(netdev);
+> +
+> +	writeb(0, priv->base + LITEETH_WRITER_EV_ENABLE);
+> +	writeb(0, priv->base + LITEETH_READER_EV_ENABLE);
+> +
+> +	free_irq(netdev->irq, netdev);
+> +	return 0;
+> +}
+> +
+> +static int liteeth_start_xmit(struct sk_buff *skb, struct net_device *netdev)
+> +{
+> +	struct liteeth *priv = netdev_priv(netdev);
+> +	void __iomem *txbuffer;
+> +	int ret;
+> +	u8 val;
+> +
+> +	/* Reject oversize packets */
+> +	if (unlikely(skb->len > MAX_PKT_SIZE)) {
+> +		if (net_ratelimit())
+> +			netdev_dbg(netdev, "tx packet too big\n");
+> +		goto drop;
+> +	}
+> +
+> +	txbuffer = priv->tx_base + priv->tx_slot * LITEETH_BUFFER_SIZE;
+> +	memcpy_toio(txbuffer, skb->data, skb->len);
+> +	writeb(priv->tx_slot, priv->base + LITEETH_READER_SLOT);
+> +	writew(skb->len, priv->base + LITEETH_READER_LENGTH);
+> +
+> +	ret = readl_poll_timeout_atomic(priv->base + LITEETH_READER_READY, val, val, 5, 1000);
+
+Why the need for poll if there is an interrupt?
+Why not stop the Tx queue once you're out of slots and restart 
+it when the completion interrupt comes?
+
+> +	if (ret == -ETIMEDOUT) {
+> +		netdev_err(netdev, "LITEETH_READER_READY timed out\n");
+
+ratelimit this as well, please
+
+> +		goto drop;
+> +	}
+> +
+> +	writeb(1, priv->base + LITEETH_READER_START);
+> +
+> +	netdev->stats.tx_bytes += skb->len;
+
+Please count bytes and packets in the same place
+
+> +	priv->tx_slot = (priv->tx_slot + 1) % priv->num_tx_slots;
+> +	dev_kfree_skb_any(skb);
+> +	return NETDEV_TX_OK;
+> +drop:
+> +	/* Drop the packet */
+> +	dev_kfree_skb_any(skb);
+> +	netdev->stats.tx_dropped++;
+> +
+> +	return NETDEV_TX_OK;
+> +}
+
+> +static int liteeth_probe(struct platform_device *pdev)
+> +{
+> +	struct net_device *netdev;
+> +	void __iomem *buf_base;
+> +	struct resource *res;
+> +	struct liteeth *priv;
+> +	int irq, err;
+> +
+> +	netdev = alloc_etherdev(sizeof(*priv));
+> +	if (!netdev)
+> +		return -ENOMEM;
+> +
+> +	priv = netdev_priv(netdev);
+> +	priv->netdev = netdev;
+> +	priv->dev = &pdev->dev;
+> +
+> +	irq = platform_get_irq(pdev, 0);
+> +	if (irq < 0) {
+> +		dev_err(&pdev->dev, "Failed to get IRQ\n");
+> +		goto err;
+
+`err` variable is not set here, you'd return 0
+
+> +	}
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	priv->base = devm_ioremap_resource(&pdev->dev, res);
+> +	if (IS_ERR(priv->base)) {
+> +		err = PTR_ERR(priv->base);
+> +		goto err;
+> +	}
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
+> +	priv->mdio_base = devm_ioremap_resource(&pdev->dev, res);
+> +	if (IS_ERR(priv->mdio_base)) {
+> +		err = PTR_ERR(priv->mdio_base);
+> +		goto err;
+> +	}
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 2);
+> +	buf_base = devm_ioremap_resource(&pdev->dev, res);
+> +	if (IS_ERR(buf_base)) {
+> +		err = PTR_ERR(buf_base);
+> +		goto err;
+> +	}
+> +
+> +	err = of_property_read_u32(pdev->dev.of_node, "rx-fifo-depth",
+> +			&priv->num_rx_slots);
+
+Please run checkpatch --strict and fix what it points out
+
+> +	if (err) {
+> +		dev_err(&pdev->dev, "unable to get rx-fifo-depth\n");
+> +		goto err;
+> +	}
+
+> +	return 0;
+> +err:
+> +	free_netdev(netdev);
+> +	return err;
+> +}
