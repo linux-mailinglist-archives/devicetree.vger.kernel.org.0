@@ -2,199 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28FBF3E236B
-	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 08:42:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62D1C3E23BB
+	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 09:09:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234937AbhHFGnJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Aug 2021 02:43:09 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:53363 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243420AbhHFGnI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 02:43:08 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1628232173; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=d+wULbWjBRllkEa5XIMxDJfmrRItDoUDZncVMJPdisU=;
- b=CVMZ+3I5YTlkFqfUSw9+8tjAhILAoVPMIQShQlM99+/vvB4JTq1Ij0t2G/SknyQCRWluCR6Q
- stj2zXDE104yuCmlolnDNw6Xg/15PbFuKCDHcH7qfYaYtCXCQLUEhnq32d00t4E7gMbiw3Jy
- Be3fThngrfF4iSILSwKIqQJYQhc=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
- 610cd9e48c78eaf808be8717 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 06 Aug 2021 06:42:44
- GMT
-Sender: sibis=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id BFDA8C433D3; Fri,  6 Aug 2021 06:42:44 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: sibis)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 19E5BC433F1;
-        Fri,  6 Aug 2021 06:42:43 +0000 (UTC)
+        id S243459AbhHFHJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Aug 2021 03:09:50 -0400
+Received: from regular1.263xmail.com ([211.150.70.195]:36814 "EHLO
+        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242908AbhHFHJt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 03:09:49 -0400
+Received: from localhost (unknown [192.168.167.13])
+        by regular1.263xmail.com (Postfix) with ESMTP id 202D91CDF;
+        Fri,  6 Aug 2021 15:09:26 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-SKE-CHECKED: 1
+X-ABS-CHECKED: 1
+X-ANTISPAM-LEVEL: 2
+Received: from [172.16.12.8] (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P22194T140002758489856S1628233765777467_;
+        Fri, 06 Aug 2021 15:09:26 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <ee26124f85b846229d6d28b4186f93ec>
+X-RL-SENDER: david.wu@rock-chips.com
+X-SENDER: wdc@rock-chips.com
+X-LOGIN-NAME: david.wu@rock-chips.com
+X-FST-TO: linux-iio@vger.kernel.org
+X-RCPT-COUNT: 11
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+Subject: Re: [PATCH] iio: adc: rockchip_saradc: just get referenced voltage
+ once at probe
+To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Cc:     Simon Xue <xxm@rock-chips.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, Johan Jonker <jbx6244@gmail.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-iio@vger.kernel.org
+References: <20210802090929.37970-1-xxm@rock-chips.com>
+ <20210803135124.000072fe@Huawei.com>
+ <8f5385a1-701c-4446-d238-90bee1c03675@rock-chips.com>
+ <8912224.VV5PYv0bhD@diego>
+From:   David Wu <david.wu@rock-chips.com>
+Message-ID: <51525056-ee43-1880-5a5b-547decd904f4@rock-chips.com>
+Date:   Fri, 6 Aug 2021 15:09:25 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Fri, 06 Aug 2021 12:12:42 +0530
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     bjorn.andersson@linaro.org, mka@chromium.org, robh+dt@kernel.org,
-        viresh.kumar@linaro.org, agross@kernel.org, rjw@rjwysocki.net,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        dianders@chromium.org, tdas@codeaurora.org
-Subject: Re: [PATCH 2/4] cpufreq: qcom: Re-arrange register offsets to support
- per core L3 DCVS
-In-Reply-To: <CAE-0n53b2M7hAw=NnUDW1_EG2N-521K=URQHmARH0DmLf7hwhA@mail.gmail.com>
-References: <1627581885-32165-1-git-send-email-sibis@codeaurora.org>
- <1627581885-32165-3-git-send-email-sibis@codeaurora.org>
- <CAE-0n53cH749NC9JPqJvMZGBQf47AZ3qY66eoqk2CiQHvuumkg@mail.gmail.com>
- <352d549f40dfa2ae51589649652d2e97@codeaurora.org>
- <CAE-0n53b2M7hAw=NnUDW1_EG2N-521K=URQHmARH0DmLf7hwhA@mail.gmail.com>
-Message-ID: <da0ea9c90d93e9e5f94e9cdb426e304b@codeaurora.org>
-X-Sender: sibis@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+In-Reply-To: <8912224.VV5PYv0bhD@diego>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-08-05 23:55, Stephen Boyd wrote:
-> Quoting Sibi Sankar (2021-08-05 10:47:20)
->> Stephen,
->> 
->> Thanks for taking time to review
->> the series.
->> 
->> On 2021-08-05 00:31, Stephen Boyd wrote:
->> > Quoting Sibi Sankar (2021-07-29 11:04:43)
->> >> Qualcomm SoCs (starting with SM8350) support per core voting for L3
->> >> cache
->> >> frequency.
->> >
->> > And the L3 cache frequency voting code can't be put into this cpufreq
->> > driver?
->> 
->> Yes, it could have gone either into
->> the cpufreq driver or l3 interconnect
->> provider driver. Taniya/Odelu preferred
->> the latter, because of the need for other
->> clients to vote for l3 frequencies in
->> the future.
+Hi Heiko, Jonathan
+
+we are adding the notifier for this patch, indeed for future consideration.
+
+Thanks.
+
+在 2021/8/5 下午8:07, Heiko Stübner 写道:
+> Hi David,
 > 
-> What other clients are those?
-
-https://lore.kernel.org/lkml/20190814152116.GB28465@jcrouse1-lnx.qualcomm.com/
-
-GPU was supposed to be one of the
-other clients that would vote for
-l3.
-
+> Am Donnerstag, 5. August 2021, 13:56:18 CEST schrieb David Wu:
+>> Hi Jonathan,
+>>
+>> 在 2021/8/3 下午8:51, Jonathan Cameron 写道:
+>>> On Tue, 3 Aug 2021 11:09:47 +0800
+>>> David Wu <david.wu@rock-chips.com> wrote:
+>>>
+>>>> Hi Jonathan,
+>>>>
+>>>> 在 2021/8/2 下午6:42, Jonathan Cameron 写道:
+>>>>> On Mon, 2 Aug 2021 17:09:29 +0800
+>>>>> Simon Xue <xxm@rock-chips.com> wrote:
+>>>>>     
+>>>>>> From: David Wu <david.wu@rock-chips.com>
+>>>>>>
+>>>>>> The referenced voltage is not changed after initiation, so just only
+>>>>>> get referenced voltage once.
+>>>>> Hi David,
+>>>>>
+>>>>> Isn't this an external reference voltage?  If so how do you know
+>>>>> it is not changed at runtime?  It might be unlikely and not happen
+>>>>> on particular platforms, but that's not he same as saying it can never
+>>>>> happen.  Clearly it's racey anyway if that does happen, but we definitely
+>>>>> don't expect frequent voltage changes.
+>>>>>     
+>>>>
+>>>> The current regulator is not changed and not subject to external
+>>>> changes, this can reduce the getting voltage. Assuming that there will
+>>>> be changes in the future, we then add the notify of the regulator, so
+>>>> that the voltage change can be obtained.
+>>>
+>>> If this patch added the notifier that would be a nice solution, but
+>>> right now it potentially introduced a regression. You have made me a little curious...
+>>> Are you seeing a significant cost to querying that regulator voltage?
+>>> If so, I'd imagine it's a lack of caching in the regulator driver or similar.
+>>> Scale readback via sysfs shouldn't be in a fast path anyway.
+>>>
+>>> You can't depend on what boards today do, because someone with a board
+>>> built tomorrow may well use an old kernel which supports the voltage
+>>> changing, and then see a regression when they upgrade to the kernel
+>>> containing this patch.
+>>>
+>>
+>> For all current chips, the expected voltage is a fixed voltage, and
+>> don't want to change it in any process.:-)
+>>
+>> So, if the voltage here does not change, then it can be obtained once in
+>> probe(), which can save the time of each acquisition. For example, the
+>> voltage of this regulator is obtained through i2c, which will increase
+>> some consumption every time.
 > 
->> The other option to prevent
->> register re-arrangement would involve
->> using syscons from the cpufreq node, which
->> really wasn't necessary since there
->> wasn't any register overlap between the
->> two drivers.
+> Jonathans request was to not think about "all current chips" but the
+> general case, and as Jonathan said, adding that regulator notifier you
+> already mentioned would be the nicest solution.
 > 
-> Let's not do that.
+> So I think the easiest way is to just add the voltage notifier to your patch
+> to make everyone happy ;-) .
 > 
->> 
->> >
->> >> So, re-arrange the cpufreq register offsets to allow access for
->> >> the L3 interconnect to implement per core control. Also prevent
->> >> binding
->> >> breakage caused by register offset shuffling by using the
->> >> SM8250/SM8350
->> >> EPSS compatible.
->> >>
->> >> Fixes: 7dbd121a2c58 ("arm64: dts: qcom: sc7280: Add cpufreq hw node")
->> >> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
->> >> ---
->> >>  drivers/cpufreq/qcom-cpufreq-hw.c | 23 +++++++++++++++++++----
->> >>  1 file changed, 19 insertions(+), 4 deletions(-)
->> >>
->> >> diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c
->> >> b/drivers/cpufreq/qcom-cpufreq-hw.c
->> >> index f86859bf76f1..74ef3b38343b 100644
->> >> --- a/drivers/cpufreq/qcom-cpufreq-hw.c
->> >> +++ b/drivers/cpufreq/qcom-cpufreq-hw.c
->> >> @@ -28,6 +28,7 @@ struct qcom_cpufreq_soc_data {
->> >>         u32 reg_volt_lut;
->> >>         u32 reg_perf_state;
->> >>         u8 lut_row_size;
->> >> +       bool skip_enable;
->> >>  };
->> >>
->> >>  struct qcom_cpufreq_data {
->> >> @@ -257,19 +258,31 @@ static const struct qcom_cpufreq_soc_data
->> >> qcom_soc_data = {
->> >>         .reg_volt_lut = 0x114,
->> >>         .reg_perf_state = 0x920,
->> >>         .lut_row_size = 32,
->> >> +       .skip_enable = false,
->> >>  };
->> >>
->> >>  static const struct qcom_cpufreq_soc_data epss_soc_data = {
->> >> +       .reg_freq_lut = 0x0,
->> >> +       .reg_volt_lut = 0x100,
->> >> +       .reg_perf_state = 0x220,
->> >> +       .lut_row_size = 4,
->> >> +       .skip_enable = true,
->> >> +};
->> >> +
->> >> +static const struct qcom_cpufreq_soc_data epss_sm8250_soc_data = {
->> >>         .reg_enable = 0x0,
->> >>         .reg_freq_lut = 0x100,
->> >>         .reg_volt_lut = 0x200,
->> >>         .reg_perf_state = 0x320,
->> >>         .lut_row_size = 4,
->> >> +       .skip_enable = false,
->> >>  };
->> >>
->> >>  static const struct of_device_id qcom_cpufreq_hw_match[] = {
->> >>         { .compatible = "qcom,cpufreq-hw", .data = &qcom_soc_data },
->> >>         { .compatible = "qcom,cpufreq-epss", .data = &epss_soc_data },
->> >> +       { .compatible = "qcom,sm8250-cpufreq-epss", .data =
->> >> &epss_sm8250_soc_data },
->> >> +       { .compatible = "qcom,sm8350-cpufreq-epss", .data =
->> >> &epss_sm8250_soc_data },
->> >>         {}
->> >>  };
->> >>  MODULE_DEVICE_TABLE(of, qcom_cpufreq_hw_match);
->> >> @@ -334,10 +347,12 @@ static int qcom_cpufreq_hw_cpu_init(struct
->> >> cpufreq_policy *policy)
->> >>         data->res = res;
->> >>
->> >>         /* HW should be in enabled state to proceed */
->> >
->> > It looks odd that we're no longer making sure that the clk domain is
->> > enabled when we probe the driver. Why is that OK?
->> 
->> On newer EPSS hw it's no longer
->> required to perform the additional
->> hw enable check. IIRC we don't do
->> that on corresponding downstream
->> kernels as well.
 > 
-> It's fairly clear that we no longer perform the additional check. The
-> question is why that's OK.
-
-Taniya probably would know more
-about the history behind the change.
-I'll dig up more info regarding ^^
-and update the thread.
+> Heiko
+> 
+>>
+>>> Jonathan
+>>>
+>>>>
+>>>>> Jonathan
+>>>>>     
+>>>>>>
+>>>>>> Signed-off-by: Simon Xue <xxm@rock-chips.com>
+>>>>>> Signed-off-by: David Wu <david.wu@rock-chips.com>
+>>>>>> ---
+>>>>>>     drivers/iio/adc/rockchip_saradc.c | 16 +++++++++-------
+>>>>>>     1 file changed, 9 insertions(+), 7 deletions(-)
+>>>>>>
+>>>>>> diff --git a/drivers/iio/adc/rockchip_saradc.c b/drivers/iio/adc/rockchip_saradc.c
+>>>>>> index f3eb8d2e50dc..cd33c0b9d3eb 100644
+>>>>>> --- a/drivers/iio/adc/rockchip_saradc.c
+>>>>>> +++ b/drivers/iio/adc/rockchip_saradc.c
+>>>>>> @@ -49,6 +49,7 @@ struct rockchip_saradc {
+>>>>>>     	struct clk		*clk;
+>>>>>>     	struct completion	completion;
+>>>>>>     	struct regulator	*vref;
+>>>>>> +	int			uv_vref;
+>>>>>>     	struct reset_control	*reset;
+>>>>>>     	const struct rockchip_saradc_data *data;
+>>>>>>     	u16			last_val;
+>>>>>> @@ -105,13 +106,7 @@ static int rockchip_saradc_read_raw(struct iio_dev *indio_dev,
+>>>>>>     		mutex_unlock(&indio_dev->mlock);
+>>>>>>     		return IIO_VAL_INT;
+>>>>>>     	case IIO_CHAN_INFO_SCALE:
+>>>>>> -		ret = regulator_get_voltage(info->vref);
+>>>>>> -		if (ret < 0) {
+>>>>>> -			dev_err(&indio_dev->dev, "failed to get voltage\n");
+>>>>>> -			return ret;
+>>>>>> -		}
+>>>>>> -
+>>>>>> -		*val = ret / 1000;
+>>>>>> +		*val = info->uv_vref / 1000;
+>>>>>>     		*val2 = chan->scan_type.realbits;
+>>>>>>     		return IIO_VAL_FRACTIONAL_LOG2;
+>>>>>>     	default:
+>>>>>> @@ -410,6 +405,13 @@ static int rockchip_saradc_probe(struct platform_device *pdev)
+>>>>>>     		return ret;
+>>>>>>     	}
+>>>>>>     
+>>>>>> +	info->uv_vref = regulator_get_voltage(info->vref);
+>>>>>> +	if (info->uv_vref < 0) {
+>>>>>> +		dev_err(&pdev->dev, "failed to get voltage\n");
+>>>>>> +		ret = info->uv_vref;
+>>>>>> +		return ret;
+>>>>>> +	}
+>>>>>> +
+>>>>>>     	ret = clk_prepare_enable(info->pclk);
+>>>>>>     	if (ret < 0) {
+>>>>>>     		dev_err(&pdev->dev, "failed to enable pclk\n");
+>>>>>
+>>>>>
+>>>>>
+>>>>>     
+>>>>
+>>>>
+>>>
+>>>
+>>>
+>>>
+>>
+>>
+>>
+> 
+> 
+> 
+> 
+> 
+> 
+> 
 
 
--- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project.
