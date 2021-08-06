@@ -2,85 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 664C93E2894
-	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 12:29:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DC7D3E289B
+	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 12:31:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244970AbhHFKaC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Aug 2021 06:30:02 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:50658 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S231693AbhHFKaB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 06:30:01 -0400
-X-IronPort-AV: E=Sophos;i="5.84,300,1620658800"; 
-   d="scan'208";a="90032332"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 06 Aug 2021 19:29:46 +0900
-Received: from localhost.localdomain (unknown [10.226.92.62])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 2F76542208EF;
-        Fri,  6 Aug 2021 19:29:43 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v4 2/3] ASoC: dt-bindings: sound: renesas,rz-ssi: Update slave dma channel configuration parameters
-Date:   Fri,  6 Aug 2021 11:29:29 +0100
-Message-Id: <20210806102930.3024-3-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210806102930.3024-1-biju.das.jz@bp.renesas.com>
-References: <20210806102930.3024-1-biju.das.jz@bp.renesas.com>
+        id S237391AbhHFKbl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Aug 2021 06:31:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60252 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S245045AbhHFKbl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 06:31:41 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A787CC061798
+        for <devicetree@vger.kernel.org>; Fri,  6 Aug 2021 03:31:24 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id ec13so12466258edb.0
+        for <devicetree@vger.kernel.org>; Fri, 06 Aug 2021 03:31:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/SdOA0uji50FSR13/XDPx4weRv/KxkeY+zmfiRSKHVU=;
+        b=YLQ0ExyEqhh+Ndr0E2FoKznXutZgcW6fp6swLkYTyCT+jp+/dNxi8HGdEgO1LdgkgS
+         AeUDS3Ivq9l1+Ux57KggrGJzBgelk4g9GudQLZ+mv7lF8AwhPyQQMWeLK+9ucH+uEkxp
+         zqWAcZDCbO7sC9X5qRbBe7I1isNpXJRI2LVuTvbz46tAYGJ6ho3WXTY5x3N8/1RdWcWo
+         yM0ly0MAxiSNN+X2ji4gW2O0wKwA35LCNnBhkFrjGmh2fz+O3/4NOQP6YLkqG1rz4lUp
+         P+kHok44xVzRkO3/lBmeMVeiNTggc7v0HgoUN76eI+hlSiMHVND5Cj0CJdxfzAUJcuV7
+         qBqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=/SdOA0uji50FSR13/XDPx4weRv/KxkeY+zmfiRSKHVU=;
+        b=BJKqxwS0KVGW6Rn2wZwCqeLCNAMIvHjUgkxISeyVDlY5Uum9bxuw9Uffa1RtHFCJVS
+         V6yxVQNDZWaboVCD7EMZAn+ItWvOFGJjne14kTeZBD7oT6vBNHgcMlbuWyReNIvfvtLv
+         FWX3GbQKAUyI3YwSboM9Bo5hfyVwXpUbA92J2xh6V0uT9BzQ1hvDfmomBxFGcc7gjKxm
+         OFwOB3mWZfxcnG7ZwVu+3Wg5zeyUPxQxQlnLVSYz7B6FwlFkKChy6k42oqWGqiV739Ug
+         YERWswcZIMcxUWgwe1dD2XyNv0Fnh8O4LWav0Jt6vgRwj1s+KrrKj9iDvAjqJbCkJkBg
+         gyug==
+X-Gm-Message-State: AOAM530wboc06cYkfjIpcewCEiF/e2g+C1FVFLeRhwbSt19J9QP4HN8V
+        Bcm/B72Ka6A9tYSo8DX4mR7odw==
+X-Google-Smtp-Source: ABdhPJwHmikLlTk+xILgOuQnia/v0mNRSDmWhPkeIRoviyGlpipqMGrdAl3VymOjhcMHhL5XIL+oMQ==
+X-Received: by 2002:a05:6402:1289:: with SMTP id w9mr12075996edv.127.1628245883311;
+        Fri, 06 Aug 2021 03:31:23 -0700 (PDT)
+Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
+        by smtp.gmail.com with ESMTPSA id ec38sm3615755edb.40.2021.08.06.03.31.22
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 06 Aug 2021 03:31:23 -0700 (PDT)
+Sender: Michal Simek <monstr@monstr.eu>
+From:   Michal Simek <michal.simek@xilinx.com>
+To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
+        michal.simek@xilinx.com, git@xilinx.com
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: timer: Remove binding for energymicro,efm32-timer.txt
+Date:   Fri,  6 Aug 2021 12:31:22 +0200
+Message-Id: <571fc4b2e6d41c61b7f4445601a79bb50aace2e7.1628245879.git.michal.simek@xilinx.com>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DMAC driver on RZ/G2L expects the slave channel configuration
-to be passed in dmas property.
-This patch updates the example node to include the encoded slave
-channel configuration.
+The driver has been removed by commit 523d83ef0979
+("clocksource/drivers/efm32: Drop unused timer code") that's why binding
+doc shouldn't be also valid anymore.
 
-Fixes: 5df6dfbb6de815ba3a("ASoC: dt-bindings: sound: renesas,rz-ssi: Document DMA support")
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 ---
-Note:-
- This patch is based on [1]
- [1]:- https://patchwork.kernel.org/project/linux-renesas-soc/patch/20210806095322.2326-2-biju.das.jz@bp.renesas.com/
 
-v3->v4:
- * Updated bindings as the DMAC driver on RZ/G2L expects the
-   slave channel configuration to be passed in dmas property.
-v2->v3:
- * Merged the binding patch with dmas added
- * Updated dt binding example with encoded #dma-cells value.
-v1->v2:
- * Rebased on 5.14-rc2.
----
- Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../timer/energymicro,efm32-timer.txt         | 23 -------------------
+ 1 file changed, 23 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/timer/energymicro,efm32-timer.txt
 
-diff --git a/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml b/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml
-index 471937cb8d05..9923e7b8264f 100644
---- a/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml
-+++ b/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml
-@@ -93,8 +93,8 @@ examples:
-             clock-names = "ssi", "ssi_sfr", "audio_clk1", "audio_clk2";
-             power-domains = <&cpg>;
-             resets = <&cpg R9A07G044_SSI0_RST_M2_REG>;
--            dmas = <&dmac 0x255>,
--                   <&dmac 0x256>;
-+            dmas = <&dmac 0x2655>,
-+                   <&dmac 0x2656>;
-             dma-names = "tx", "rx";
-             #sound-dai-cells = <0>;
-     };
+diff --git a/Documentation/devicetree/bindings/timer/energymicro,efm32-timer.txt b/Documentation/devicetree/bindings/timer/energymicro,efm32-timer.txt
+deleted file mode 100644
+index e502c11b2211..000000000000
+--- a/Documentation/devicetree/bindings/timer/energymicro,efm32-timer.txt
++++ /dev/null
+@@ -1,23 +0,0 @@
+-* EFM32 timer hardware
+-
+-The efm32 Giant Gecko SoCs come with four 16 bit timers. Two counters can be
+-connected to form a 32 bit counter. Each timer has three Compare/Capture
+-channels and can be used as PWM or Quadrature Decoder. Available clock sources
+-are the cpu's HFPERCLK (with a 10-bit prescaler) or an external pin.
+-
+-Required properties:
+-- compatible : Should be "energymicro,efm32-timer"
+-- reg : Address and length of the register set
+-- clocks : Should contain a reference to the HFPERCLK
+-
+-Optional properties:
+-- interrupts : Reference to the timer interrupt
+-
+-Example:
+-
+-timer@40010c00 {
+-	compatible = "energymicro,efm32-timer";
+-	reg = <0x40010c00 0x400>;
+-	interrupts = <14>;
+-	clocks = <&cmu clk_HFPERCLKTIMER3>;
+-};
 -- 
-2.17.1
+2.32.0
 
