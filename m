@@ -2,129 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55BB43E3134
-	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 23:37:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC25A3E3139
+	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 23:39:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240993AbhHFVhc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Aug 2021 17:37:32 -0400
-Received: from mail-io1-f44.google.com ([209.85.166.44]:37861 "EHLO
-        mail-io1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240808AbhHFVhb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 17:37:31 -0400
-Received: by mail-io1-f44.google.com with SMTP id l20so11987443iom.4;
-        Fri, 06 Aug 2021 14:37:15 -0700 (PDT)
+        id S243893AbhHFVjW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Aug 2021 17:39:22 -0400
+Received: from mail-io1-f48.google.com ([209.85.166.48]:37678 "EHLO
+        mail-io1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231865AbhHFVjV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 17:39:21 -0400
+Received: by mail-io1-f48.google.com with SMTP id l20so11996194iom.4;
+        Fri, 06 Aug 2021 14:39:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=O/ZVuXX1p8CqDOt58VogWKvsIhRU1cmOHYxxfCm/Ft4=;
-        b=VF2SHMH10iIa9g6vqDjroLOHNrHohpCG4Svkwn3HnaLQZCBocKf3NJZbSy0MLJygoN
-         qWbJyDe0E0bc0dwsXE9P7l7lBpoXzBk5zCpWasOqSfLuBlpuDk+xu54omoI3+uwvJRzy
-         eRy6pZMVKpwCArB6z57siDn41lPRUUWtnQd98HlY7MVpGLmji7ij5E5J02PxPHZrKhLm
-         RKCUTQupf7E1Y/JmJDOIpSem8ztQsGpZHUYjGtJUy+6RbgZOKpMTllubWlTD79qyMnwW
-         R8T4E+Dlipx3BZm3iqDlimpE/rAExF3E2Mj92HQDekeZKFxWSZAda+12oh1Z71ff6eOz
-         Atqw==
-X-Gm-Message-State: AOAM532adoBARD+oNN/wKBbaFOyy6FEwzeP+07ruAYgsT//vcKv1Ro43
-        8dP0G3lE4+kHZVtL4GtZXg==
-X-Google-Smtp-Source: ABdhPJwc6r7sl/xJRV/BUpj6QYZkJef2zlWA1o733Pbor7wK9pSThcU+QzmCWAl1PKdug0lGD4SmYQ==
-X-Received: by 2002:a92:4b0a:: with SMTP id m10mr29839ilg.163.1628285835172;
-        Fri, 06 Aug 2021 14:37:15 -0700 (PDT)
+        bh=7de5tolBWZq18Zw+L/U81d1pEQY7EMCoZVERp/FRCDI=;
+        b=eUwCudNBPB0ICtwTO5YWosz2wWMlp+IT0jUPMut3h00O8XqM01WZCBV55qjCQjNO6E
+         7sjHCjsOs8YgMajE/4pE1kN3UVRAsrfKtQ8/Opqnf+g9Ty9IBKTvPfajpn8ILEk0qMyR
+         6/4/Sf3moVGc54paIFMfMlz3Xy2Ovt0Rn/Wp8goTvHvBZJtgQGb8OrUz/iIBOB/IoRu/
+         u9C/UbGWXT7OebEvi0MYuAXqTuvLLRDG5mx2ZxoKbeU4uOTymC/mHDD+1hHqKEC995Fm
+         yhxM1pJRDKJcvKliDKlBObeV+gNe2X+Gpn4SlrvJWOvBcrPq1tDUHqVJVUBiS5H6ZcAv
+         NtvA==
+X-Gm-Message-State: AOAM532dMLk7LcYzEMk/7a5/vH8EqtLqj2SbyK9qjOGSBMpDnLPiv5ot
+        dFkD9Dwqw+XhRlhmAy6anA==
+X-Google-Smtp-Source: ABdhPJxTLbGslSUzO7Jkq47TbQYUHxhicw/Ad6Gy5IXySA7I7XS1Ra9f5bmquX4igCtvfeuiJxghCw==
+X-Received: by 2002:a02:9082:: with SMTP id x2mr8076067jaf.44.1628285944257;
+        Fri, 06 Aug 2021 14:39:04 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id d20sm5033656iow.33.2021.08.06.14.37.13
+        by smtp.gmail.com with ESMTPSA id k13sm4911260ilv.18.2021.08.06.14.39.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Aug 2021 14:37:14 -0700 (PDT)
-Received: (nullmailer pid 1845465 invoked by uid 1000);
-        Fri, 06 Aug 2021 21:37:13 -0000
-Date:   Fri, 6 Aug 2021 15:37:13 -0600
+        Fri, 06 Aug 2021 14:39:03 -0700 (PDT)
+Received: (nullmailer pid 1848297 invoked by uid 1000);
+        Fri, 06 Aug 2021 21:39:01 -0000
+Date:   Fri, 6 Aug 2021 15:39:01 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Romain Perier <romain.perier@gmail.com>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Daniel Palmer <daniel@0x0f.com>, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: rtc: Add Mstar MSC313e RTC
- devicetree bindings documentation
-Message-ID: <YQ2riRW1hZmn6x4B@robh.at.kernel.org>
-References: <20210801160921.233081-1-romain.perier@gmail.com>
- <20210801160921.233081-2-romain.perier@gmail.com>
+To:     Jitao Shi <jitao.shi@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, ck.hu@mediatek.com,
+        stonea168@163.com, huijuan.xie@mediatek.com,
+        rex-bc.chen@mediatek.com, shuijing.li@mediatek.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 1/2] dt-bindings: drm/bridge: anx7625: add
+ force_dsi_end_without_null
+Message-ID: <YQ2r9ZJHLdiN5/BZ@robh.at.kernel.org>
+References: <20210802010711.169080-1-jitao.shi@mediatek.com>
+ <20210802010711.169080-2-jitao.shi@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210801160921.233081-2-romain.perier@gmail.com>
+In-Reply-To: <20210802010711.169080-2-jitao.shi@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Aug 01, 2021 at 06:09:19PM +0200, Romain Perier wrote:
-> This adds the documentation for the devicetree bindings of the Mstar
-> MSC313e RTC driver, found from MSC313e SoCs and newer.
+On Mon, Aug 02, 2021 at 09:07:10AM +0800, Jitao Shi wrote:
+> The force_dsi_end_without_null requires the dsi host ent at
+> the same time in line.
 > 
-> Signed-off-by: Romain Perier <romain.perier@gmail.com>
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
 > ---
->  .../bindings/rtc/mstar,msc313-rtc.yaml        | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/rtc/mstar,msc313-rtc.yaml
+>  .../bindings/display/bridge/analogix,anx7625.yaml           | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/rtc/mstar,msc313-rtc.yaml b/Documentation/devicetree/bindings/rtc/mstar,msc313-rtc.yaml
-> new file mode 100644
-> index 000000000000..62bc12b1feb6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rtc/mstar,msc313-rtc.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: GPL-2.0
+> diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> index ab48ab2f4240..8b868a6a3d60 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> @@ -43,6 +43,11 @@ properties:
+>    vdd33-supply:
+>      description: Regulator that provides the supply 3.3V power.
+>  
+> +  force_dsi_end_without_null:
+> +    description: |
+> +      Requires the dsi host send the dsi packets on all lanes aligned
+> +      at the end.
 
-As checkpatch.pl will tell you, should be dual licensed.
+Can't this be implied from the compatible string if it is a property of 
+this chip? 
 
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rtc/mstar,msc313-rtc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mstar MSC313e RTC Device Tree Bindings
-> +
-> +allOf:
-> +  - $ref: "rtc.yaml#"
-> +
-> +maintainers:
-> +  - Daniel Palmer <daniel@0x0f.com>
-> +  - Romain Perier <romain.perier@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mstar,msc313-rtc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  start-year: true
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    rtc@2400 {
-> +        compatible = "mstar,msc313-rtc";
-> +        reg = <0x2400 0x40>;
-> +        clocks = <&xtal_div2>;
-> +        interrupts-extended = <&intc_irq GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
-> +    };
-> +...
-> -- 
-> 2.30.2
-> 
-> 
