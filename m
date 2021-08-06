@@ -2,175 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28E033E2F27
-	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 20:10:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D2CE3E2FCB
+	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 21:38:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242687AbhHFSKV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Aug 2021 14:10:21 -0400
-Received: from mail-io1-f47.google.com ([209.85.166.47]:41595 "EHLO
-        mail-io1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242669AbhHFSKV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 14:10:21 -0400
-Received: by mail-io1-f47.google.com with SMTP id 188so11238417ioa.8;
-        Fri, 06 Aug 2021 11:10:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=o/8DRycRobICyqdVPBp3gqhmLeKbJ8RCg30DsK2AwgU=;
-        b=OPvhr43OHLfdnuirwEFV1ZOhh/0meQWttEuWpuHUZAkx+wFu/OkWBgH3IIsECn1wyf
-         DJticm2m4cekiX3FjGyBvAJDoJSL26PB5Zck+UOqNETNlD37qW7bstARhLhvN5zQbgni
-         BPVy4ikRp6VwcaBrfrDEoJ2XFI0FfrDpROv82GYKtjn4uFoAIC/O6KCihbrBxElqKZjV
-         0bSYz/BAw369KRo6BOZOeTPZcVPEMK1ZV/ngGp66IzpdFCA/XkyhglsJNeg10GibFH+p
-         vYU2rYuv162bhZ3xeZO3RZc8rPL3CXGLT7gNN33zsxOVtUCBzasTlgYlPc2ECiPfbbKS
-         HxLw==
-X-Gm-Message-State: AOAM533Rg+7GzxG0/Y0I0en+aOM3mr+ADLIfKM9kaveWCA40DQbtfIMx
-        wqAYJnlesDa9P/Jd11THXg==
-X-Google-Smtp-Source: ABdhPJweqBQ0MpjChKWGENKXYts+lCl0cKtq//sqSkoef9cKusimZTfHxztqZjfbeTHS0bgpMz2qRw==
-X-Received: by 2002:a5e:a908:: with SMTP id c8mr450324iod.116.1628273403783;
-        Fri, 06 Aug 2021 11:10:03 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id l5sm5760438ion.44.2021.08.06.11.10.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Aug 2021 11:10:03 -0700 (PDT)
-Received: (nullmailer pid 1526278 invoked by uid 1000);
-        Fri, 06 Aug 2021 18:10:00 -0000
-Date:   Fri, 6 Aug 2021 12:10:00 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Lucas Stankus <lucas.p.stankus@gmail.com>
-Cc:     lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
-        Dragos.Bogdan@analog.com, Darius.Berghe@analog.com,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: accel: Add binding
- documentation for ADXL313
-Message-ID: <YQ16+AlpmxhVIBhE@robh.at.kernel.org>
-References: <cover.1628143857.git.lucas.p.stankus@gmail.com>
- <ad64c93df8c43c66dcb64fe8ec0c0f6b91b3c697.1628143857.git.lucas.p.stankus@gmail.com>
+        id S230090AbhHFTiW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Aug 2021 15:38:22 -0400
+Received: from relay10.mail.gandi.net ([217.70.178.230]:41229 "EHLO
+        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229748AbhHFTiW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 15:38:22 -0400
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 9F8D4240006;
+        Fri,  6 Aug 2021 19:38:03 +0000 (UTC)
+Date:   Fri, 6 Aug 2021 21:38:03 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Romain Perier <romain.perier@gmail.com>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/3] rtc: Add support for the MSTAR MSC313 RTC
+Message-ID: <YQ2Pm7nrEFmdS6Ky@piout.net>
+References: <20210801160921.233081-1-romain.perier@gmail.com>
+ <20210801160921.233081-3-romain.perier@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ad64c93df8c43c66dcb64fe8ec0c0f6b91b3c697.1628143857.git.lucas.p.stankus@gmail.com>
+In-Reply-To: <20210801160921.233081-3-romain.perier@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 05, 2021 at 03:29:37AM -0300, Lucas Stankus wrote:
-> Add device tree binding documentation for ADXL313 3-axis accelerometer.
-> 
-> Signed-off-by: Lucas Stankus <lucas.p.stankus@gmail.com>
-> ---
->  .../bindings/iio/accel/adi,adxl313.yaml       | 90 +++++++++++++++++++
->  1 file changed, 90 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml
-> new file mode 100644
-> index 000000000000..fea03b6790f3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml
-> @@ -0,0 +1,90 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/accel/adi,adxl313.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices ADXL313 3-Axis Digital Accelerometer
-> +
-> +maintainers:
-> +  - Lucas Stankus <lucas.p.stankus@gmail.com>
-> +
-> +description: |
-> +  Analog Devices ADXL313 3-Axis Digital Accelerometer that supports
-> +  both I2C & SPI interfaces.
-> +    https://www.analog.com/en/products/adxl313.html
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,adxl313
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-3wire: true
-> +
-> +  spi-cpha: true
-> +
-> +  spi-cpol: true
+Hello,
 
-These 3 generally shouldn't be needed, but can be set from the driver. 
-If they are valid, is any combination of them really valid?
+On 01/08/2021 18:09:20+0200, Romain Perier wrote:
+> +static int msc313_rtc_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct msc313_rtc *priv;
+> +	int ret;
+> +	int irq;
+> +	unsigned long rate;
+> +	u16 reg;
+> +
+> +	priv = devm_kzalloc(&pdev->dev, sizeof(struct msc313_rtc), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->rtc_base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(priv->rtc_base))
+> +		return PTR_ERR(priv->rtc_base);
+> +
+> +	irq = platform_get_irq(pdev, 0);
+> +	if (irq < 0)
+> +		return -EINVAL;
+> +
+> +	priv->rtc_dev = devm_rtc_allocate_device(dev);
+> +	if (IS_ERR(priv->rtc_dev))
+> +		return PTR_ERR(priv->rtc_dev);
+> +
+> +	priv->rtc_dev->ops = &msc313_rtc_ops;
+> +	priv->rtc_dev->range_min = RTC_TIMESTAMP_BEGIN_0000;
 
-> +
-> +  spi-max-frequency: true
-> +
-> +  vs-supply:
-> +    description: Regulator that supplies power to the accelerometer
-> +
-> +  vdd-supply:
-> +    description: Regulator that supplies the digital interface supply voltage
-> +
-> +  interrupts:
-> +    maxItems: 2
+I'm pretty sure this doesn't fit in this RTC registers, you should
+probably leave range_min to 0 (i.e. not set it at all).
 
-This means there must be 2 entries. If 1 is valid, you need 'minItems'.
+> +	priv->rtc_dev->range_max = U32_MAX - 1; /* 2106-02-07 06:28:14 */
 
+I guess this one should be U32_MAX
 > +
-> +  interrupt-names:
-> +    maxItems: 2
+> +	ret = devm_request_irq(dev, irq, msc313_rtc_interrupt, IRQF_SHARED,
+> +			       dev_name(&pdev->dev), &pdev->dev);
+> +	if (ret) {
+> +		dev_err(dev, "Could not request IRQ\n");
+> +		return ret;
+> +	}
+> +
+> +	priv->clk = devm_clk_get(dev, NULL);
+> +	if (IS_ERR(priv->clk)) {
+> +		dev_err(dev, "No input reference clock\n");
+> +		return PTR_ERR(priv->clk);
+> +	}
+> +
+> +	ret = clk_prepare_enable(priv->clk);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to enable the reference clock, %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = devm_add_action_or_reset(dev, (void (*) (void *))clk_disable_unprepare, priv->clk);
+> +	if (ret)
+> +		return ret;
+> +
+> +	rate = clk_get_rate(priv->clk);
+> +	writew(rate & 0xFFFF, priv->rtc_base + REG_RTC_FREQ_CW_L);
+> +	writew((rate >> 16) & 0xFFFF, priv->rtc_base + REG_RTC_FREQ_CW_H);
+> +
+> +	reg = readw(priv->rtc_base + REG_RTC_CTRL);
+> +	reg |= CNT_EN_BIT;
+> +	writew(reg, priv->rtc_base + REG_RTC_CTRL);
+> +
 
-You need 'minItems' too to fix the error.
+If on POR, CNT_EN_BIT is not set, then it would be nice to use that to
+know whether the RTC is properly set. You can then check CNT_EN_BIT in
+.read_time and return -EINVAL if it is not set. Then you can set the bit
+in .set_time. It is anyway useless to let the RTC running if it is not
+set.
 
-> +    items:
-> +      enum:
-> +        - INT1
-> +        - INT2
+> +	platform_set_drvdata(pdev, priv);
 > +
-> +required:
-> +  - compatible
-> +  - reg
+> +	return devm_rtc_register_device(priv->rtc_dev);
+> +}
 > +
-> +additionalProperties: false
+> +static const struct of_device_id msc313_rtc_of_match_table[] = {
+> +	{ .compatible = "mstar,msc313-rtc" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, ms_rtc_of_match_table);
 > +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c0 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
+> +static struct platform_driver msc313_rtc_driver = {
+> +	.probe = msc313_rtc_probe,
+> +	.driver = {
+> +		.name = "msc313-rtc",
+> +		.of_match_table = msc313_rtc_of_match_table,
+> +	},
+> +};
 > +
-> +        /* Example for a I2C device node */
-> +        accelerometer@53 {
-> +            compatible = "adi,adxl313";
-> +            reg = <0x53>;
-> +            interrupt-parent = <&gpio0>;
-> +            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-> +            interrupt-names = "INT1";
-> +        };
-> +    };
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
+> +module_platform_driver(msc313_rtc_driver);
 > +
-> +        /* Example for a SPI device node */
-> +        accelerometer@0 {
-> +            compatible = "adi,adxl313";
-> +            reg = <0>;
-> +            spi-max-frequency = <5000000>;
-> +            spi-cpol;
-> +            spi-cpha;
-> +            interrupt-parent = <&gpio0>;
-> +            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-> +            interrupt-names = "INT1";
-> +        };
-> +    };
+> +MODULE_AUTHOR("Daniel Palmer <daniel@thingy.jp>");
+> +MODULE_AUTHOR("Romain Perier <romain.perier@gmail.com>");
+> +MODULE_DESCRIPTION("MStar RTC Driver");
+> +MODULE_LICENSE("GPL v2");
 > -- 
-> 2.32.0
+> 2.30.2
 > 
-> 
+
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
