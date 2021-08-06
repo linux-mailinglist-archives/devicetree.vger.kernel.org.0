@@ -2,182 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ABEAC3E2EA9
-	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 18:58:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DE153E2EBD
+	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 19:07:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239434AbhHFQ6O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Aug 2021 12:58:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36020 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239269AbhHFQ6N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 12:58:13 -0400
-Received: from mail-vs1-xe2a.google.com (mail-vs1-xe2a.google.com [IPv6:2607:f8b0:4864:20::e2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF173C061798
-        for <devicetree@vger.kernel.org>; Fri,  6 Aug 2021 09:57:56 -0700 (PDT)
-Received: by mail-vs1-xe2a.google.com with SMTP id x144so5636917vsx.3
-        for <devicetree@vger.kernel.org>; Fri, 06 Aug 2021 09:57:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=jyRdCsrj1GlEr3i17zCrA/RuqWCQgwoVhsTIqjVReGU=;
-        b=nw1Ts52SCu6B1wsbHInWfDu47KHigBfQozSZLjBb5uG4y8/sFe4OzQZByR10dzSDEs
-         VpeJMGrhJ4imYXUKE407mfRV/2sXCbQdp5Xgmmh8mxxdafY5TAYqvoA7yiD/X1OBJfDv
-         L38Qz5zSW759Tlgb4Re6g7MVPiM120RfUVHS8XfxJEZdfEjK+QTf40Gx7FdUgzYvLs3O
-         7i4rU/tFT/CTMvwz2RBJem3GMzZehap/lEWlgCBkZ2F7vtXIZ4GH4O5ex6HqecyGdJYb
-         jRuiffdHUN8YpCLTZ5ryZeEVHQzo7JSv9v3Omt524ezJTQciAhiRlSJMCKZf2/Q+LwXz
-         hUXg==
+        id S229636AbhHFRHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Aug 2021 13:07:45 -0400
+Received: from mail-io1-f52.google.com ([209.85.166.52]:43613 "EHLO
+        mail-io1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240082AbhHFRHo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 13:07:44 -0400
+Received: by mail-io1-f52.google.com with SMTP id y1so12532331iod.10;
+        Fri, 06 Aug 2021 10:07:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=jyRdCsrj1GlEr3i17zCrA/RuqWCQgwoVhsTIqjVReGU=;
-        b=t5zHiWywHz6e5pU2MeiRro0heDcKk3kfv7xS2eQ6wmnRE6nZgCWCqGXCypyhHTx9yU
-         TZSh1z7bXnXAG9nBRLtm4aNZ6UGW+7PD7351/+dB5Tx/OENvKFXB0LbWYXt9cKryVx86
-         +5irq8BRzsd1fpe44t7a9CKXq1M75+HXVZx8KQv5QNwd6LZKhxodRpEnv1URomVO3QsN
-         epNm3XyfRuj/HrmsQvPwgZOckLQbDfTrPxqA7Ub+oOcu79ekyP2EJNKRFzBPsBRLxL9/
-         bZRz89XIabL3PKraUcKTMUArzdqfYkz/rtadr3B7PnayjwRVwQNDRgnp9D/7uLhUChAv
-         t12Q==
-X-Gm-Message-State: AOAM533zm2T6diw4SAEi1z5YzQPwvnXFhDAVsJmMc52CBKKTjfvBUQ7o
-        M6sbMCr5jKXPcViJu5BbXfMZBwxv7334FOzSdffaPw==
-X-Google-Smtp-Source: ABdhPJzTq25yNSWiZXX2jLUbzoFsDlhmE5adtlQiqtv29jZT5m3Z+k1kQXXoo4aeW5KqY9IKZmmCWimAcVFI3/TcDgk=
-X-Received: by 2002:a05:6102:ecb:: with SMTP id m11mr9911739vst.34.1628269075986;
- Fri, 06 Aug 2021 09:57:55 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210730144922.29111-1-semen.protsenko@linaro.org>
- <20210730144922.29111-13-semen.protsenko@linaro.org> <455cfb5e-dff7-a5c0-3875-49abe3e900f3@canonical.com>
- <CAPLW+4nDS0atrbUFagDA0W_Ky5MvOiY+N+NQoQ+me4pndp_iWg@mail.gmail.com>
- <68734f6c-fc76-595c-8d34-8924dbbbb845@canonical.com> <CAPLW+4n_JKj5xeBHXONcv__vyAFvx3fhXoxJa17NTHK1RSJFJw@mail.gmail.com>
- <b753796c-2ce6-4166-7c20-289e950237ad@canonical.com> <bb08f7a4-1da9-fb20-f091-6a3c37a1f898@canonical.com>
-In-Reply-To: <bb08f7a4-1da9-fb20-f091-6a3c37a1f898@canonical.com>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Fri, 6 Aug 2021 19:57:43 +0300
-Message-ID: <CAPLW+4=7n3a2FL9YHYj8dPn+2obFLHvW6DpsDjnG-bxX9--HbQ@mail.gmail.com>
-Subject: Re: [PATCH 12/12] arm64: dts: exynos: Add Exynos850 SoC support
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     =?UTF-8?Q?Pawe=C5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
-        Ryu Euiyoul <ryu.real@samsung.com>,
-        Tom Gall <tom.gall@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=SpX7SebU2UFWPMjyIRX9LOsjqpj+MU1ElfcHAk1jVTU=;
+        b=gUgBluZ45TeVtRP67bdOpZTWVX0BonGQvIKOFw/BgmFh9SyygAzgBtYwxQvXaFYMfO
+         YNhZEm4potzdcaP96hCmvElPDIwhY92xxA/BTzNLIgdQacPuvmPcQAFJ8A26+ld/VfOA
+         a9wPjKLk96ugP81nUEnRyRyougMqsmsGvmax//Wv+kB4SkcpDA6lgi7k+XaXMzFjlzVo
+         C9/tlWz6RTzmYIW6BafZcPN5v2flA4bIkA8NzE6KZyyo7Mj328CNL6myP8jkg4VwpF4g
+         l6a/3IxsPj/A7QN7GVj1W78Aq5O2fTgzd11BQyt76ApY5k7/QytglX0hCRTArk92IeDB
+         xoBQ==
+X-Gm-Message-State: AOAM5335k8Ku4kVBB9yj1rJgvFit89zIbj1sx1EjZOyUe8pxsIiZ7u3g
+        PuXi/dxwrKDolA+pxi32ng==
+X-Google-Smtp-Source: ABdhPJx9BHZs01DJ9w8bSbshfXN5wKPnFE66REvokwLZ5nH98ij84/K6YyJWpUXHwa29IV/F2N6V3A==
+X-Received: by 2002:a05:6e02:1a03:: with SMTP id s3mr645202ild.63.1628269646869;
+        Fri, 06 Aug 2021 10:07:26 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id u12sm4817839ill.55.2021.08.06.10.07.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Aug 2021 10:07:26 -0700 (PDT)
+Received: (nullmailer pid 1430717 invoked by uid 1000);
+        Fri, 06 Aug 2021 17:07:21 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        netdev@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        David Shah <dave@ds0.me>, Anton Blanchard <anton@ozlabs.org>,
+        Stafford Horne <shorne@gmail.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Mateusz Holenko <mholenko@antmicro.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Gabriel Somlo <gsomlo@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>
+In-Reply-To: <20210806054904.534315-2-joel@jms.id.au>
+References: <20210806054904.534315-1-joel@jms.id.au> <20210806054904.534315-2-joel@jms.id.au>
+Subject: Re: [PATCH 1/2] dt-bindings: net: Add bindings for LiteETH
+Date:   Fri, 06 Aug 2021 11:07:21 -0600
+Message-Id: <1628269641.635234.1430716.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 6 Aug 2021 at 15:48, Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> On 06/08/2021 14:32, Krzysztof Kozlowski wrote:
-> > On 06/08/2021 14:07, Sam Protsenko wrote:
-> >> On Fri, 6 Aug 2021 at 10:49, Krzysztof Kozlowski
-> >> <krzysztof.kozlowski@canonical.com> wrote:
-> >>>
-> >>> On 06/08/2021 01:06, Sam Protsenko wrote:
-> >>>> On Sat, 31 Jul 2021 at 12:03, Krzysztof Kozlowski
-> >>>> <krzysztof.kozlowski@canonical.com> wrote:
-> >>>>
-> >>>>>>
-> >>>>>> This patch adds minimal SoC support. Particular board device tree =
-files
-> >>>>>> can include exynos850.dtsi file to get SoC related nodes, and then
-> >>>>>> reference those nodes further as needed.
-> >>>>>>
-> >>>>>> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> >>>>>> ---
-> >>>>>>  .../boot/dts/exynos/exynos850-pinctrl.dtsi    | 782 +++++++++++++=
-+++++
-> >>>>>>  arch/arm64/boot/dts/exynos/exynos850-usi.dtsi |  30 +
-> >>>>>>  arch/arm64/boot/dts/exynos/exynos850.dtsi     | 245 ++++++
-> >>>>>
-> >>>>> Not buildable. Missing Makefile, missing DTS. Please submit with in=
-itial
-> >>>>> DTS, otherwise no one is able to verify it even compiles.
-> >>>>>
-> >>>>
-> >>>> This device is not available for purchase yet. I'll send the patch f=
-or
-> >>>> board dts once it's announced. I can do all the testing for now, if
-> >>>> you have any specific requests. Would it be possible for us to revie=
-w
-> >>>> and apply only SoC support for now? Will send v2 soon...
-> >>>
-> >>> What you propose is equal to adding a driver (C source code) without
-> >>> ability to compile it. What's the point of having it in the kernel? I=
-t's
-> >>> unverifiable, unbuildable and unusable.
-> >>>
-> >>
-> >> Yes, I understand. That's adding code with no users, and it's not a
-> >> good practice.
-> >>
-> >>> We can review the DTSI however merging has to be with a DTS. Usually =
-the
-> >>> SoC vendor adds first an evalkit (e.g. SMDK board). Maybe you have on=
-e
-> >>> for Exynos850? Otherwise if you cannot disclose the actual board, the
-> >>> DTSI will have to wait. You can submit drivers, though.
-> >>>
-> >>
-> >> Sure, let's go this way. I'll send v2 soon. Improving patches and
-> >> having Reviewed-by tag for those would good enough for me at this
-> >> point. I'll continue to prepare another Exynos850 related patches
-> >> until the actual board is announced, like proper clock driver, reset,
-> >> MMC, etc. Is it ok if I send those for a review too (so I can fix all
-> >> issues ahead)?
-> >
-> > Sure, prepare all necessary drivers earlier. I suspect clocks will be a
-> > real pain because of significant changes modeled in vendor kernel. I
-> > remember Pawe=C5=82 Chmiel (+Cc) was doing something for these:
-> > https://github.com/PabloPL/linux/tree/exynos7420
-> >
-> > I mentioned before - you should also modify the chipid driver. Check
-> > also other drivers in drivers/soc/samsung, although some are needed onl=
-y
-> > for suspend&resume.
-> >
+On Fri, 06 Aug 2021 15:19:03 +0930, Joel Stanley wrote:
+> LiteETH is a small footprint and configurable Ethernet core for FPGA
+> based system on chips.
+> 
+> Signed-off-by: Joel Stanley <joel@jms.id.au>
+> ---
+>  .../bindings/net/litex,liteeth.yaml           | 62 +++++++++++++++++++
+>  1 file changed, 62 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/litex,liteeth.yaml
+> 
 
-Yes, in due course... There won't be much problems with chip-id
-driver. But pretty much all platform drivers depend on clk, and that
-one I'm afraid I'll have to implement from scratch. Will take me a
-while, as vendor's codebase for clk driver is huge and depend on
-another huge non-upstreamable abstraction layer framework they have,
-and also they have kind of strange home brewed composite clocks...
-Anyway, that's what I'm going to look into next.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Btw, I just sent v2 :)
+yamllint warnings/errors:
 
->
-> You can also take a look at Exynos8895 efforts:
-> https://github.com/ivoszbg/linux/commits/for-upstream/exynos8895
->
-> Since knowledge, datasheets and efforts are quite spread all over, I
-> keep track of some work here:
-> https://exynos.wiki.kernel.org/community
->
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/litex,liteeth.example.dt.yaml: example-0: ethernet@8020000:reg:0: [134352896, 256, 134350848, 256, 134414336, 8192] is too long
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/litex,liteeth.example.dt.yaml: ethernet@8020000: reg: [[134352896, 256, 134350848, 256, 134414336, 8192]] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/litex,liteeth.yaml
 
-Thanks, Krzysztof! I'm sure that info will help a lot with further
-work, like clock driver.
+doc reference errors (make refcheckdocs):
 
->
-> Best regards,
-> Krzysztof
+See https://patchwork.ozlabs.org/patch/1514186
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
