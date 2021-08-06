@@ -2,103 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EFC03E3085
-	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 22:45:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01CB23E3092
+	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 22:53:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245069AbhHFUqI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Aug 2021 16:46:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58450 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245169AbhHFUqI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 16:46:08 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB2F0C0613CF;
-        Fri,  6 Aug 2021 13:45:50 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id h13so12590667wrp.1;
-        Fri, 06 Aug 2021 13:45:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=3wJQqYROu53OkfXOxiXbXsaK10t0gPF2sKNTrvl8ijI=;
-        b=BzHquhrgcHqfReZNU2wYHzGqZKMPL0CTZ2OkJbkm9j88UaZl0n/9hJlScWFv6KpTrt
-         xrLl3Rm4a3jimEJsAkyv68TBZYE4pe4si0m6lmObgYnKIcaJqraxpPvbC4/Rgx/q32Eo
-         EK1Jeg3O4sAD0XrAqySM0nDVrV4i+55GPNo05aiKWTGhAhj+RzI8PCK+sSV2PKaHyLVl
-         HKCPyV+JoV9U8NyumlbBTW/ZvQmiStt+svyBOvhcmWhPk1haS7kcdxnqYGpohgzVNVEO
-         nIst7Goz3Y6xcPF4zhsQKfhiLOunISdG2u+O1c+U3Z0AQK2c8/TBkGAwyetmmmchfRo0
-         nwzQ==
+        id S236234AbhHFUxC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Aug 2021 16:53:02 -0400
+Received: from mail-io1-f46.google.com ([209.85.166.46]:44575 "EHLO
+        mail-io1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235545AbhHFUxB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 16:53:01 -0400
+Received: by mail-io1-f46.google.com with SMTP id d22so13933240ioy.11;
+        Fri, 06 Aug 2021 13:52:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=3wJQqYROu53OkfXOxiXbXsaK10t0gPF2sKNTrvl8ijI=;
-        b=mHmCXZPcM+6gClmpAJWVNa6BQuEz/LhBWfYn5np6eHpD9fAsvw+Xo22ytRsJHpUWDq
-         FTuSeI6T15aZVLJ8pSKTvFiEXDhx88+Fd5T+6vBTfgtXNKAHKzPdiux4pVSOOPud/2mG
-         7vVJfvsjej5cWmhH3jLMhuG7rEtnMUtGV5Y13Bn6uMpAzw/47Cs9KKc2F5h5XqNwYOTT
-         /BAbhA0ngczDTVQTdZnhrDGVnsAz36lxPq7qyEd+HKdUKuXz2yyi1U6nHtrx09YF+hPK
-         xofPeNNoSRucUatV2UtN09XnCuDjcHUd2eMwnZ7xrn+BQGR5eBS99NBR6+T6OIxayhMb
-         00KQ==
-X-Gm-Message-State: AOAM531HVVh47dyS8m6Q0N+BfjcUpBI7FFBmo2AHIHjafQoFm4BB8Wav
-        B5Kc7FRAlIEkCWnLd6p87OU=
-X-Google-Smtp-Source: ABdhPJzgkqKvOTrcDSDK0+Ko6rn4b8UY3tvzal+b9Qp58RK6njFRYCHGasTaYuCovTJ4qVEYOG2TaA==
-X-Received: by 2002:adf:fc50:: with SMTP id e16mr13123857wrs.382.1628282749109;
-        Fri, 06 Aug 2021 13:45:49 -0700 (PDT)
-Received: from cluster5 ([80.76.206.81])
-        by smtp.gmail.com with ESMTPSA id a12sm13029248wmj.22.2021.08.06.13.45.48
-        (version=TLS1 cipher=ECDHE-ECDSA-AES128-SHA bits=128/128);
-        Fri, 06 Aug 2021 13:45:48 -0700 (PDT)
-From:   Matthew Hagan <mnhagan88@gmail.com>
-Cc:     Vladimir Oltean <olteanv@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Matthew Hagan <mnhagan88@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=NVLyAZM767lCQjYHXP5y7pQwa3Dn1l6PYLmN/KqVz0o=;
+        b=r6hm8DTiJyLoj65BT7erlP4OOQu4HrirIQsgG8ibHIBjQr4nF/ear4I4xzZersbnAV
+         KfxyzBkERB8A9YZ9ytEK9vnopHKpClS/8Df3HYQtoNzWvNu9854I40bRs6Gt0BpFbViB
+         0ZnDkMM3Mtroq12bBPWaTXAY0DIUxh8kJ87aagzwveVHUKlkbnFpBYxqsjzg63SS47kc
+         lnPVk38EkIggV1DOUyfTJBUY2ehjG1arn55mqgriPMSal1umlKE4JBfbC8nGsFUSxewS
+         g/Wwo91+or4i4tLWrUy7iWrv2JkB/cshoSYcJYo1fu+h3bh2xOaFpWFHYJ1eQVQFUzAk
+         yS+g==
+X-Gm-Message-State: AOAM533CCVS2/y0lUvz3GOnXKppIMeJzUdUIKzmXXgCg47ZN37JiwLKN
+        cchB2CQZwtUruSrQFWCroQ==
+X-Google-Smtp-Source: ABdhPJyqR5Qdm+ZUCNfw8o71loW7W+tR7K9SO6snsI4KLMvaPTUL4AzzZcbIs14hJ813EUljIw8hrA==
+X-Received: by 2002:a92:b112:: with SMTP id t18mr1836724ilh.36.1628283164111;
+        Fri, 06 Aug 2021 13:52:44 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id d18sm5195594ile.32.2021.08.06.13.52.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Aug 2021 13:52:43 -0700 (PDT)
+Received: (nullmailer pid 1776741 invoked by uid 1000);
+        Fri, 06 Aug 2021 20:52:41 -0000
+Date:   Fri, 6 Aug 2021 14:52:41 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Mark Rutland <mark.rutland@arm.com>, Bert Vermeulen <bert@biot.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
         Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v5 5/5] dt-bindings: arm: bcm: NSP: add Meraki MX64/MX65
-Date:   Fri,  6 Aug 2021 21:44:36 +0100
-Message-Id: <20210806204446.2981299-6-mnhagan88@gmail.com>
-X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20210806204446.2981299-1-mnhagan88@gmail.com>
-References: <20210806204446.2981299-1-mnhagan88@gmail.com>
+        soc@kernel.org, John Crispin <john@phrozen.org>,
+        Felix Fietkau <nbd@nbd.name>
+Subject: Re: [PATCH 3/5] ARM: dts: Add basic support for EcoNet EN7523
+Message-ID: <YQ2hGd1cERLbfjJ6@robh.at.kernel.org>
+References: <20210730134552.853350-1-bert@biot.com>
+ <20210730134552.853350-4-bert@biot.com>
+ <20210730145901.GC19569@C02TD0UTHF1T.local>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210730145901.GC19569@C02TD0UTHF1T.local>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for the Meraki MX64/MX65 series.
+On Fri, Jul 30, 2021 at 03:59:01PM +0100, Mark Rutland wrote:
+> On Fri, Jul 30, 2021 at 03:45:50PM +0200, Bert Vermeulen wrote:
+> > From: John Crispin <john@phrozen.org>
+> > 
+> > Add basic support for EcoNet EN7523, enough for booting to console.
+> > 
+> > The UART is basically 8250-compatible, except for the clock selection.
+> > A clock-frequency value is synthesized to get this to run at 115200 bps.
+> > 
+> > Signed-off-by: John Crispin <john@phrozen.org>
+> > Signed-off-by: Bert Vermeulen <bert@biot.com>
+> > ---
+> >  arch/arm/boot/dts/Makefile       |   2 +
+> >  arch/arm/boot/dts/en7523-evb.dts |  17 ++++
+> >  arch/arm/boot/dts/en7523.dtsi    | 128 +++++++++++++++++++++++++++++++
+> >  3 files changed, 147 insertions(+)
+> >  create mode 100644 arch/arm/boot/dts/en7523-evb.dts
+> >  create mode 100644 arch/arm/boot/dts/en7523.dtsi
+> > 
+> 
+> > +	cpus {
+> > +		#address-cells = <1>;
+> > +		#size-cells = <0>;
+> 
+> > +		cpu0: cpu@0 {
+> > +			device_type = "cpu";
+> > +			compatible = "arm,cortex-a7";
+> > +			reg = <0x0>;
+> > +			enable-method = "psci";
+> > +			clock-frequency = <80000000>;
+> > +			next-level-cache = <&L2_0>;
+> > +
+> > +		};
+> 
+> > +	gic: interrupt-controller@09000000 {
+> > +		compatible = "arm,gic-v3";
+> > +		interrupt-controller;
+> > +		#interrupt-cells = <3>;
+> > +		#address-cells = <1>;
+> > +		#size-cells = <1>;
+> > +		reg = <0x09000000 0x20000>,
+> > +			  <0x09080000 0x80000>;
+> > +		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
+> > +
+> > +		its: gic-its@09020000 {
+> > +			compatible = "arm,gic-v3-its";
+> > +			msi-controller;
+> > +			#msi-cell = <1>;
+> 
+> Missing 's' here for '#msi-cells'.
 
-Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
-Acked-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/arm/bcm/brcm,nsp.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+No need for a human to be checking this, the DT schemas will check this. 
+Please run 'make dtbs_checks' on this. New platforms should be free of 
+warnings ideally.
 
-diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,nsp.yaml b/Documentation/devicetree/bindings/arm/bcm/brcm,nsp.yaml
-index 78dfa315f3d0..7d184ba7d180 100644
---- a/Documentation/devicetree/bindings/arm/bcm/brcm,nsp.yaml
-+++ b/Documentation/devicetree/bindings/arm/bcm/brcm,nsp.yaml
-@@ -62,6 +62,12 @@ properties:
-           - enum:
-               - brcm,bcm958625hr
-               - brcm,bcm958625k
-+              - meraki,mx64
-+              - meraki,mx64-a0
-+              - meraki,mx64w
-+              - meraki,mx64w-a0
-+              - meraki,mx65
-+              - meraki,mx65w
-           - const: brcm,bcm58625
-           - const: brcm,nsp
- 
--- 
-2.26.3
-
+Rob
