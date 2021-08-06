@@ -2,57 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 766623E214A
-	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 03:53:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 467533E2183
+	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 04:30:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231281AbhHFBxt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Aug 2021 21:53:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35954 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230437AbhHFBxs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Aug 2021 21:53:48 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A845560200;
-        Fri,  6 Aug 2021 01:53:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1628214813;
-        bh=P2O5IdAFvpyNcmLz3uAuQrdegsZnkbld/HJJ4sKU0U0=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=hHTwfjbtEjZ/FJN1xsNi5WWoDbe+Xic09Yj3lKNJvJGd/+FEOIuyyLph9M3xoJB7b
-         Oh/8PL7//rhER8goNANJ9vaipdSLRZAOFK2WUbqrZRQZWZwPUSzguKd9ShRdhw73WF
-         fQoKgyadqtaJPL8rOJcg9j2nRDxYh4q9CkEYV8bPLkMG/34LhTCJ2Pc38cJCnAFLmA
-         im81U/noF9egV9E856ce55ZSoiq7/oOT/TErDZnNytrqPC9YfbJm00GoJvtKBhf0tC
-         6UdkcmmseTiUjRKjKqyx899XkqvhIOJPgqd+jj0F4yF+p/zhkpfK5Lb5uoJM4nfAbL
-         srxgz8Ul7gt4w==
-Content-Type: text/plain; charset="utf-8"
+        id S238523AbhHFCbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Aug 2021 22:31:05 -0400
+Received: from mo-csw1116.securemx.jp ([210.130.202.158]:50840 "EHLO
+        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235436AbhHFCbE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Aug 2021 22:31:04 -0400
+Received: by mo-csw.securemx.jp (mx-mo-csw1116) id 1762UM0Z018226; Fri, 6 Aug 2021 11:30:22 +0900
+X-Iguazu-Qid: 2wHH6p2Z55RWRMUUb5
+X-Iguazu-QSIG: v=2; s=0; t=1628217021; q=2wHH6p2Z55RWRMUUb5; m=XhIfeWvlkywXvJV7VPOP/gYb0Hv37lf82puMh8EKdu8=
+Received: from imx12-a.toshiba.co.jp (imx12-a.toshiba.co.jp [61.202.160.135])
+        by relay.securemx.jp (mx-mr1110) id 1762UJYa001048
+        (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
+        Fri, 6 Aug 2021 11:30:20 +0900
+Received: from enc02.toshiba.co.jp (enc02.toshiba.co.jp [61.202.160.51])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by imx12-a.toshiba.co.jp (Postfix) with ESMTPS id BB69910013E;
+        Fri,  6 Aug 2021 11:30:19 +0900 (JST)
+Received: from hop101.toshiba.co.jp ([133.199.85.107])
+        by enc02.toshiba.co.jp  with ESMTP id 1762UJOf000469;
+        Fri, 6 Aug 2021 11:30:19 +0900
+Date:   Fri, 6 Aug 2021 11:30:17 +0900
+From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-pci@vger.kernel.org,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        devicetree@vger.kernel.org, punit1.agrawal@toshiba.co.jp,
+        yuji2.ishikawa@toshiba.co.jp, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 2/3] PCI: visconti: Add Toshiba Visconti PCIe host
+ controller driver
+X-TSB-HOP: ON
+Message-ID: <20210806023017.jtd3uk3p7fgupy4m@toshiba.co.jp>
+References: <20210723221421.113575-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <20210723221421.113575-3-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <20210805105908.GA19244@lpieralisi>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210704024032.11559-5-shawn.guo@linaro.org>
-References: <20210704024032.11559-1-shawn.guo@linaro.org> <20210704024032.11559-5-shawn.guo@linaro.org>
-Subject: Re: [PATCH v2 4/4] clk: qcom: a53-pll: Add MSM8939 a53pll support
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
-        Benjamin Li <benl@squareup.com>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        Shawn Guo <shawn.guo@linaro.org>
-To:     Shawn Guo <shawn.guo@linaro.org>
-Date:   Thu, 05 Aug 2021 18:53:32 -0700
-Message-ID: <162821481259.19113.9779145389513383105@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210805105908.GA19244@lpieralisi>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Shawn Guo (2021-07-03 19:40:32)
-> MSM8939 has 3 a53pll clocks with different frequency table for Cluster0,
-> Cluster1 and CCI.  It adds function qcom_a53pll_get_freq_tbl() to create
-> pll_freq_tbl from OPP, so that those a53pll frequencies can be defined
-> in DT with operating-points-v2 bindings rather than being coded in the
-> driver.  In this case, one compatible rather than three would be needed
-> for these 3 a53pll clocks.
->=20
-> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
-> ---
+Hi,
 
-Applied to clk-next
+Thank you for your review.
+
+On Thu, Aug 05, 2021 at 11:59:08AM +0100, Lorenzo Pieralisi wrote:
+> On Sat, Jul 24, 2021 at 07:14:20AM +0900, Nobuhiro Iwamatsu wrote:
+> > Add support to PCIe RC controller on Toshiba Visconti ARM SoCs. PCIe
+> > controller is based of Synopsys DesignWare PCIe core.
+> > 
+> > This patch does not yet use the clock framework to control the clock.
+> > This will be replaced in the future.
+> 
+> This is not relevant information. I expect the commit log to describe
+> the change and the reasons behind the choices.
+
+OK, I will drop this sentence.
+
+> 
+> Speaking of which, I'd like to understand what
+> 
+> > This patch does not yet use the clock framework to control the clock.
+> 
+> means and why it can't be done within this series.
+
+Visconti5 has a clock control IP, but the driver for this is still under
+development and has not been applied into mainline. Instead, the clock
+for this driver is running using DT's fixed-clock. This will be
+replaced by a clock driver.
+
+> 
+> > Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+> > Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> > 
+> > ---
+> >  drivers/pci/controller/dwc/Kconfig         |   9 +
+> >  drivers/pci/controller/dwc/Makefile        |   1 +
+> >  drivers/pci/controller/dwc/pcie-visconti.c | 333 +++++++++++++++++++++
+> >  3 files changed, 343 insertions(+)
+> >  create mode 100644 drivers/pci/controller/dwc/pcie-visconti.c
+> > 
+
+<snip>
+
+> > +
+> > +static int
+> > +visconti_add_pcie_port(struct visconti_pcie *pcie, struct platform_device *pdev)
+> 
+> Nit: don't split lines like this, it is better to keep return value
+> type and function name in one single line.
+> 
+> Do it like this:
+> 
+> static int visconti_add_pcie_port(struct visconti_pcie *pcie,
+>  				  struct platform_device *pdev)
+> 
+
+OK, I will fix in v6.
+
+> Lorenzo
+> 
+
+
+Best regards,
+  Nobuhiro
+
