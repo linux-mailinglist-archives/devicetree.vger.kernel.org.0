@@ -2,138 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 69ADA3E26B2
-	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 11:03:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C6603E26CD
+	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 11:11:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243915AbhHFJDP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Aug 2021 05:03:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39392 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243794AbhHFJDO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 05:03:14 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2584DC061799
-        for <devicetree@vger.kernel.org>; Fri,  6 Aug 2021 02:02:58 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id o10so11005151ljp.0
-        for <devicetree@vger.kernel.org>; Fri, 06 Aug 2021 02:02:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Pdz+F0PxTcBoWBPi7w93ZPa5df8AmKqUiM4AHtMKqjM=;
-        b=HRDupAr1I+CswQ0FGrJ7o7eBsDG2I267kRrxFv0UNPplUMlZldUsOtmZo/FUfNJLcN
-         uSlGrsNpI1quZZwG6soDUNyoq6+UonjF+z4LtYGwUILwev63l/GRJ0W9VVAKil5k8F6g
-         L+4HUPyUp1CmLnCk/mzjA4he+UWunVEG0siwqQB9aj+y1+NR3NP6GPz4suvGZWlwRv2K
-         nJqk6u+4nfI7YrOSkt1WsPaDDL9M0fhPG9XnlMzrxF2VkX8VT2Oi7Qay52kdsRQnoWle
-         +oJvq8i63LH6X3Lkb2Fdkha8KlBOPy32Y24MXodl52/2HfqScqUD/ryYojGRozjiQX+e
-         nerA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Pdz+F0PxTcBoWBPi7w93ZPa5df8AmKqUiM4AHtMKqjM=;
-        b=plHeoH9r8PWjstIYIwLL1HV3EqIuY3rnm1cVZOdpxlpfmnLq99AorDSpKuufeZI0/0
-         4ilrdEqAhVi/cr6p2sx7VcqMVJnbEfuSBk8Tk/74xZwH6BRXbTq+SYw70tMr1wo/+Msf
-         tNclKVir8/pZLAug+wmwuZt8+GwzNsiN9aUGQ0DFA3286AqSgo5itYFwb0/FAKoaA8FB
-         YaXSpY+x7lJIjxnE4hg9ahAeIrPPxn082rDlT4P0Y1ADBiFb7eA/G5VE5DK5Gzqy5qro
-         2wB++v31NhVb0MVFR87Kt8PeKdyMB778z1njhKyShBC7SaQoCY2k2WfaWuJ0H5+bOsO4
-         lb3Q==
-X-Gm-Message-State: AOAM532Xx0UMvT/UKzSWvV5PHwBPixrtGpCeMjCZxoti20FuLH4NBx4s
-        s+qaNzNDUhk0dSrAmD0EovEP7A==
-X-Google-Smtp-Source: ABdhPJzIb/d74o4UoAR6WzeLTKhrVQWDJkMDEKcrCH8TOG/8QoAJgTAJvlXboDgchGXJVpK4rvTg+A==
-X-Received: by 2002:a2e:82d5:: with SMTP id n21mr5983933ljh.126.1628240576384;
-        Fri, 06 Aug 2021 02:02:56 -0700 (PDT)
-Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
-        by smtp.gmail.com with ESMTPSA id s18sm640799lje.25.2021.08.06.02.02.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Aug 2021 02:02:56 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Sebastian Reichel <sre@kernel.org>
-Cc:     linux-pm@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: power: Bindings for Samsung batteries
-Date:   Fri,  6 Aug 2021 11:00:50 +0200
-Message-Id: <20210806090050.3510671-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.31.1
+        id S243980AbhHFJL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Aug 2021 05:11:28 -0400
+Received: from out2-smtp.messagingengine.com ([66.111.4.26]:58525 "EHLO
+        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S242767AbhHFJL2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 05:11:28 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id BDC665C00A5;
+        Fri,  6 Aug 2021 05:11:11 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Fri, 06 Aug 2021 05:11:11 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
+         h=from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm1; bh=2jOybSs9TtAexc1FVgXsMMKDxA
+        C3jAkiB3EktBm34Hg=; b=iMbyNR0xJUcFCOUhXU+iuHZXw2XItkl9REyT/UldQx
+        cWjUGdYDew0wrHeiz6/trVxw5rpUMn5LkjVqb/m3nCoLMW9RJWu1gYBLpY10PduA
+        PQIpKJKyYnlrrdmowuI0NyAiDi8RMG4z+HR7qHO7pFaowymbiDiU72GPK7Z+9aDZ
+        hF5J3nkBQBotyhzikDcZsf8ShvLLwC7SId6nt99auSNQ+VZ1MOsNIvf/ByJeqEI3
+        hQix1noiAVpp1CKnRzv6lZP7P/k0XmWu+E2nOhznFZAlIrtEtg2SoTvAdK2dFgQc
+        9t0/Nf7hDj23Wz2EOiylxFuvZuzPrztEnwZo+wB+vOLQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=2jOybSs9TtAexc1FV
+        gXsMMKDxAC3jAkiB3EktBm34Hg=; b=rkXkWOdWFjH2iYYtyey8SDE7QZMUvxTQ7
+        cAym4hMDt6nplR3opieYqoyogGtF9ZDdkiKrrxAarKEEf6crMOCotGlXwU8Xo5oS
+        5/lYxj3zM800VUiD7cxpQ7jiQ0SgeksVMWhWU876mbRZeVDLzX/mM4wbu2+LR5Dk
+        o+EEGtsNdo+s7hsOsZ/K/13pQNOwWfrxN/ruickwyyn1vGSX1NFPGBnDBdHmOyv6
+        DnBnKjDUheiFojRm9A9laaYdojGFl1ugUvBu9H0MXTWlFlnT75COx0jdukVMgtje
+        MNxSHHgvaOhTtaq+scinBzK3M4X7UF8l2E0e/2z9mpKsOoSiHjYdQ==
+X-ME-Sender: <xms:rvwMYREocutIzwxWnx7r5ZJTHNQoqWncioksT_IaVWcwoAhihLf1pw>
+    <xme:rvwMYWVxPMWAkVyVl5ukI9O1bEYO1QtdnQ9pCRzcqcGGMbCrNbZ8QtFJjCL7R_1fL
+    vdtwCoYhDTl5sn2HT4>
+X-ME-Received: <xmr:rvwMYTJeGV-1VSKR8HDh_4yt1BnI65v6T85wJN0z0R5wz2JLzCQI0lGWwMy4fmfwMDKw1_XffPTJeJ0c2uAgL6Yo6CrxvOccpTiTgmGnnxWOoA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrjedugdduudcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffoggfgsedtkeertdertd
+    dtnecuhfhrohhmpeetlhhishhtrghirhcuhfhrrghntghishcuoegrlhhishhtrghirhes
+    rghlihhsthgrihhrvdefrdhmvgeqnecuggftrfgrthhtvghrnhepjeeliefhvdetgfdtte
+    fhtdegffdtiefffeejiefffeevueeljeehjeevhfffueeknecuvehluhhsthgvrhfuihii
+    vgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghlihhsthgrihhrsegrlhhishhtrg
+    hirhdvfedrmhgv
+X-ME-Proxy: <xmx:rvwMYXFzab_sXSCLcJFm56r0_E8UWgg7fpW94i_j2y5rzIwN11b92A>
+    <xmx:rvwMYXVxDeSay2sAiOXQIyGhm4gFhQEw-NRp012eB7zaWe8QAGA4Ew>
+    <xmx:rvwMYSMJa7xSQItov_Iz7tsU-k1xLjfMYdyzfWquxP-jtnzyzPU-jA>
+    <xmx:r_wMYeEeacEyFxc7XEPBoDZYfj_et614AEelIsb5yJ4GFanHzjlbYQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 6 Aug 2021 05:11:06 -0400 (EDT)
+From:   Alistair Francis <alistair@alistair23.me>
+To:     lee.jones@linaro.org, robh+dt@kernel.org, lgirdwood@gmail.com,
+        broonie@kernel.org, linux-imx@nxp.com, kernel@pengutronix.de
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        alistair23@gmail.com, Alistair Francis <alistair@alistair23.me>
+Subject: [PATCH v9 00/12] Add support for the silergy,sy7636a
+Date:   Fri,  6 Aug 2021 19:10:46 +1000
+Message-Id: <20210806091058.141-1-alistair@alistair23.me>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds device tree bindings for Samsung SDI batteries.
-Everything can be determined from the product number so the entire
-battery is just a specific compatible string.
+This series applied on top of the "mfd: simple-mfd-i2c: Add support for 
+registering devices via MFD cells" patch. Once "mfd: simple-mfd-i2c: Add 
+support for registering devices via MFD cells" is merged this series is
+ready to go.
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- .../power/supply/samsung,battery.yaml         | 56 +++++++++++++++++++
- 1 file changed, 56 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/power/supply/samsung,battery.yaml
+v9:
+ - Convert to use the simple-mfd-i2c instead
 
-diff --git a/Documentation/devicetree/bindings/power/supply/samsung,battery.yaml b/Documentation/devicetree/bindings/power/supply/samsung,battery.yaml
-new file mode 100644
-index 000000000000..40292d581b10
---- /dev/null
-+++ b/Documentation/devicetree/bindings/power/supply/samsung,battery.yaml
-@@ -0,0 +1,56 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/power/supply/samsung,battery.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Samsung SDI Batteries
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description: |
-+  Samsung SDI (Samsung Digital Interface) batteries are all different versions
-+  of lithium ion chemistry devices used for mobile phones, laptops and other
-+  portable electronics. The batteries are adapted to a specific product and
-+  the physical restrictions make it impossible to use another battery with the
-+  product, so product device trees can specify these batteries. Operating
-+  systems should determine hardware characteristics of the batteries from the
-+  compatible string.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: samsung,eb-l1m7flu
-+        description: 3.8V 1500 mAh battery used in Samsung GT-I8190
-+      - const: samsung,eb425161la
-+        description: 3.8V 1500 mAh battery used in Samsung SGH-T599 and SGH-I407
-+      - const: samsung,eb425161lu
-+        description: 3.8V 1500 mAh battery used in Samsung GT-I8160
-+      - const: samsung,eb485159lu
-+        description: 3.8V 1700 mAh battery used in Samsung GT-S7710
-+      - const: samsung,eb535151vu
-+        description: 3.8V 1500 mAh battery used in Samsung GT-I9070
-+      - const: samsung,eb585157lu
-+        description: 3.8V 2000 mAh battery used in Samsung GT-I8530
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    power {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      battery: battery {
-+        compatible = "samsung,eb425161la";
-+      };
-+
-+      charger@11 {
-+        reg = <0x11>;
-+        monitored-battery = <&battery>;
-+      };
-+    };
+Alistair Francis (12):
+  dt-bindings: mfd: Initial commit of silergy,sy7636a.yaml
+  mfd: simple-mfd-i2c: Add a Kconfig name
+  mfd: simple-mfd-i2c: Save the register client data
+  mfd: simple-mfd-i2c: Enable support for the silergy,sy7636a
+  regulator: sy7636a: Use the regmap directly
+  regulator: sy7636a: Remove requirement on sy7636a mfd
+  thermal: sy7636a: Add thermal driver for sy7636a
+  hwmon: sy7636a: Add temperature driver for sy7636a
+  ARM: imx_v6_v7_defconfig: Enable silergy,sy7636a
+  ARM: dts: imx7d: remarkable2: Enable silergy,sy7636a
+  ARM: imx_v6_v7_defconfig: Enable backlight class devices
+  ARM: dts: imx7d: remarkable2: Enable lcdif
+
+ .../bindings/mfd/silergy,sy7636a.yaml         |  79 ++++++++++++
+ arch/arm/boot/dts/imx7d-remarkable2.dts       | 115 ++++++++++++++++++
+ arch/arm/configs/imx_v6_v7_defconfig          |   5 +
+ drivers/hwmon/Kconfig                         |  10 ++
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/sy7636a-hwmon.c                 |  77 ++++++++++++
+ drivers/mfd/Kconfig                           |   2 +-
+ drivers/mfd/simple-mfd-i2c.c                  |  14 +++
+ drivers/regulator/Kconfig                     |   1 -
+ drivers/regulator/sy7636a-regulator.c         |  13 +-
+ drivers/thermal/Kconfig                       |   6 +
+ drivers/thermal/Makefile                      |   1 +
+ drivers/thermal/sy7636a_thermal.c             |  91 ++++++++++++++
+ include/linux/mfd/sy7636a.h                   |  41 +++++++
+ 14 files changed, 447 insertions(+), 9 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/silergy,sy7636a.yaml
+ create mode 100644 drivers/hwmon/sy7636a-hwmon.c
+ create mode 100644 drivers/thermal/sy7636a_thermal.c
+ create mode 100644 include/linux/mfd/sy7636a.h
+
 -- 
 2.31.1
 
