@@ -2,152 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 633953E2918
-	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 13:06:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6247E3E2989
+	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 13:28:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245299AbhHFLGp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Aug 2021 07:06:45 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:33742 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S245261AbhHFLGo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 6 Aug 2021 07:06:44 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1mBxgG-0003m7-EB; Fri, 06 Aug 2021 13:06:24 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Jonathan Cameron <jic23@kernel.org>, Simon Xue <xxm@rock-chips.com>
-Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, Johan Jonker <jbx6244@gmail.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-iio@vger.kernel.org, David Wu <david.wu@rock-chips.com>,
-        Simon Xue <xxm@rock-chips.com>
-Subject: Re: [PATCH v2] iio: adc: rockchip_saradc: add voltage notifier so get referenced voltage once at probe
-Date:   Fri, 06 Aug 2021 13:06:23 +0200
-Message-ID: <5442190.6fTUFtlzNn@diego>
-In-Reply-To: <20210806105524.231838-1-xxm@rock-chips.com>
-References: <20210806105524.231838-1-xxm@rock-chips.com>
+        id S242900AbhHFL2l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Aug 2021 07:28:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45090 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231882AbhHFL2k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 07:28:40 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F0B6C061798;
+        Fri,  6 Aug 2021 04:28:24 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id m12so10619048wru.12;
+        Fri, 06 Aug 2021 04:28:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=to:cc:references:from:subject:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=d8FSL7ZCHhgZJIiY+idJw40OTs70Iw57nrfJP9BGnbE=;
+        b=cAxKsiIaDgfRnuK/zxPsdagpkDcHcEQp5x82mqYiacbzYQa3b0Zu6LFIilYHKIVPdR
+         rKu1lxz4DWx6nkMHVgdDVchdZWQjp8L7BPpKS9SQzBLXkzMDcl6alTwARujqfvTWttKd
+         xIZy2d53EtPkoJN6x6qi9/OwutqKvxidTFBfqPL7gwuuazxQY1xF7um9sBOSD+M7dnW6
+         iC+UO/Rgt0wnvV5NQXSkEqkDATOupE9PWXVpeOPFdrwTkhIWV8t6rQ3jwYjDB7XBrb4X
+         RMO6egnUCa+vQyRJ6ivPZ/yIsG5Gn3DHedzcV+EZc1wLwFOktehl6pqlIH/L74KJNDMi
+         OQTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=d8FSL7ZCHhgZJIiY+idJw40OTs70Iw57nrfJP9BGnbE=;
+        b=XN2PEuTCbKFcNd/jYVg/qsvPpMrfGekTMRwqkocZM7rrXjVqeeZw1lbXOxPAtFIc96
+         YrXo5sGUE285PttkPosKxSqAopoBgAIkNMvkKOhHbOg1DKCXgcktikImEk3ce0Tt4KYB
+         NGFtbV8PZaO/uf7RkxDebkIx0AmZN0hjR+MDANHU7P7/o3ZWM9e4Gl85XNfXsYp1mg2Z
+         3zKNdRR3R/rOWlNifg2yMEumR1ltxTp3OLm+VuHOH1c8leiyesLfbJhmdXg+aJ/Sv7f9
+         UNMnLfdPH/5Oko/Eq2/04gTwZjDhdwf1+yBmJomI7yI5lWnJveMQyvrtLqIa0/AvNxVm
+         sZog==
+X-Gm-Message-State: AOAM530zktVy8PsE40Py+l54ioiI/2tuGyiYy2HwTaM5XKrIaZGgP57Z
+        /wWYX7bEwC7KB9piT9/ptqU=
+X-Google-Smtp-Source: ABdhPJwVaisygyPEmh8rvqau5LUUoWi2AYDqvKoquWsOcIg0kkdBtKCdCMtJJY8NSXuStdH+ruD4dA==
+X-Received: by 2002:adf:f707:: with SMTP id r7mr9920048wrp.175.1628249302788;
+        Fri, 06 Aug 2021 04:28:22 -0700 (PDT)
+Received: from ziggy.stardust (static-55-132-6-89.ipcom.comunitel.net. [89.6.132.55])
+        by smtp.gmail.com with ESMTPSA id j1sm11411934wmo.4.2021.08.06.04.28.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Aug 2021 04:28:22 -0700 (PDT)
+To:     "jason-jh.lin" <jason-jh.lin@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        fshao@chromium.org
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Fabien Parent <fparent@baylibre.com>, hsinyi@chromium.org,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        nancy.lin@mediatek.com, singo.chang@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+References: <20210805205226.24880-1-jason-jh.lin@mediatek.com>
+ <20210805205226.24880-3-jason-jh.lin@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Subject: Re: [PATCH v6 2/7] soc: mediatek: add mtk-mmsys support for mt8195
+ vdosys0
+Message-ID: <28cc4599-6eda-4784-3d8f-4570c9ab60e8@gmail.com>
+Date:   Fri, 6 Aug 2021 13:28:21 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+In-Reply-To: <20210805205226.24880-3-jason-jh.lin@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Freitag, 6. August 2021, 12:55:24 CEST schrieb Simon Xue:
-> From: David Wu <david.wu@rock-chips.com>
+Hi Jason,
+
+On 05/08/2021 22:52, jason-jh.lin wrote:
+> Add mt8195 vdosys0 clock driver name and routing table to
+> the driver data of mtk-mmsys.
 > 
-> Add voltage notifier, no need to query regulator voltage for
-> every saradc read, just get regulator voltage once at probe.
+
+I'd like to see the implementation of vdosys1 as well, to better understand why
+we need two compatibles.
+
+> Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
+> ---
+> This patch is base on [1]
 > 
-> Signed-off-by: Simon Xue <xxm@rock-chips.com>
-> Signed-off-by: David Wu <david.wu@rock-chips.com>
-> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+> [1] dt-bindings: arm: mediatek: mmsys: add mt8195 SoC binding
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20210805171346.24249-2-jason-jh.lin@mediatek.com/
 
-patch looks great to me now :-)
-
-
-Thanks
-Heiko
+Please add the binding description to this series.
 
 > ---
->  drivers/iio/adc/rockchip_saradc.c | 47 ++++++++++++++++++++++++++-----
->  1 file changed, 40 insertions(+), 7 deletions(-)
+>  drivers/soc/mediatek/mt8195-mmsys.h    | 96 ++++++++++++++++++++++++++
+>  drivers/soc/mediatek/mtk-mmsys.c       | 11 +++
+>  include/linux/soc/mediatek/mtk-mmsys.h |  9 +++
+>  3 files changed, 116 insertions(+)
+>  create mode 100644 drivers/soc/mediatek/mt8195-mmsys.h
 > 
-> diff --git a/drivers/iio/adc/rockchip_saradc.c b/drivers/iio/adc/rockchip_saradc.c
-> index f3eb8d2e50dc..295da1ad6edb 100644
-> --- a/drivers/iio/adc/rockchip_saradc.c
-> +++ b/drivers/iio/adc/rockchip_saradc.c
-> @@ -49,10 +49,12 @@ struct rockchip_saradc {
->  	struct clk		*clk;
->  	struct completion	completion;
->  	struct regulator	*vref;
-> +	int			uv_vref;
->  	struct reset_control	*reset;
->  	const struct rockchip_saradc_data *data;
->  	u16			last_val;
->  	const struct iio_chan_spec *last_chan;
-> +	struct notifier_block nb;
->  };
->  
->  static void rockchip_saradc_power_down(struct rockchip_saradc *info)
-> @@ -105,13 +107,7 @@ static int rockchip_saradc_read_raw(struct iio_dev *indio_dev,
->  		mutex_unlock(&indio_dev->mlock);
->  		return IIO_VAL_INT;
->  	case IIO_CHAN_INFO_SCALE:
-> -		ret = regulator_get_voltage(info->vref);
-> -		if (ret < 0) {
-> -			dev_err(&indio_dev->dev, "failed to get voltage\n");
-> -			return ret;
-> -		}
-> -
-> -		*val = ret / 1000;
-> +		*val = info->uv_vref / 1000;
->  		*val2 = chan->scan_type.realbits;
->  		return IIO_VAL_FRACTIONAL_LOG2;
->  	default:
-> @@ -298,6 +294,26 @@ static irqreturn_t rockchip_saradc_trigger_handler(int irq, void *p)
->  	return IRQ_HANDLED;
->  }
->  
-> +static int rockchip_saradc_volt_notify(struct notifier_block *nb,
-> +						   unsigned long event,
-> +						   void *data)
-> +{
-> +	struct rockchip_saradc *info =
-> +			container_of(nb, struct rockchip_saradc, nb);
+> diff --git a/drivers/soc/mediatek/mt8195-mmsys.h b/drivers/soc/mediatek/mt8195-mmsys.h
+> new file mode 100644
+> index 000000000000..9339a786ec5d
+> --- /dev/null
+> +++ b/drivers/soc/mediatek/mt8195-mmsys.h
+> @@ -0,0 +1,96 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
 > +
-> +	if (event & REGULATOR_EVENT_VOLTAGE_CHANGE)
-> +		info->uv_vref = (unsigned long)data;
+> +#ifndef __SOC_MEDIATEK_MT8195_MMSYS_H
+> +#define __SOC_MEDIATEK_MT8195_MMSYS_H
 > +
-> +	return NOTIFY_OK;
-> +}
+> +#define MT8195_VDO0_OVL_MOUT_EN					0xf14
+> +#define MT8195_MOUT_DISP_OVL0_TO_DISP_RDMA0			BIT(0)
+> +#define MT8195_MOUT_DISP_OVL0_TO_DISP_WDMA0			BIT(1)
+> +#define MT8195_MOUT_DISP_OVL0_TO_DISP_OVL1			BIT(2)
+> +#define MT8195_MOUT_DISP_OVL1_TO_DISP_RDMA1			BIT(4)
+> +#define MT8195_MOUT_DISP_OVL1_TO_DISP_WDMA1			BIT(5)
+> +#define MT8195_MOUT_DISP_OVL1_TO_DISP_OVL0			BIT(6)
 > +
-> +static void rockchip_saradc_regulator_action(void *data)
-> +{
-> +	struct rockchip_saradc *info = data;
+> +#define MT8195_VDO0_SEL_IN					0xf34
+> +#define MT8195_SEL_IN_VPP_MERGE_FROM_DSC_WRAP0_OUT		(0 << 0)
+> +#define MT8195_SEL_IN_VPP_MERGE_FROM_DISP_DITHER1		(1 << 0)
+> +#define MT8195_SEL_IN_VPP_MERGE_FROM_VDO1_VIRTUAL0		(2 << 0)
+> +#define MT8195_SEL_IN_DSC_WRAP0_IN_FROM_DISP_DITHER0		(0 << 4)
+> +#define MT8195_SEL_IN_DSC_WRAP0_IN_FROM_VPP_MERGE		(1 << 4)
+> +#define MT8195_SEL_IN_DSC_WRAP1_IN_FROM_DISP_DITHER1		(0 << 5)
+> +#define MT8195_SEL_IN_DSC_WRAP1_IN_FROM_VPP_MERGE		(1 << 5)
+> +#define MT8195_SEL_IN_SINA_VIRTUAL0_FROM_VPP_MERGE		(0 << 8)
+> +#define MT8195_SEL_IN_SINA_VIRTUAL0_FROM_DSC_WRAP1_OUT		(1 << 8)
+> +#define MT8195_SEL_IN_SINB_VIRTUAL0_FROM_DSC_WRAP0_OUT		(0 << 9)
+> +#define MT8195_SEL_IN_DP_INTF0_FROM_DSC_WRAP1_OUT		(0 << 12)
+> +#define MT8195_SEL_IN_DP_INTF0_FROM_VPP_MERGE			(1 << 12)
+> +#define MT8195_SEL_IN_DP_INTF0_FROM_VDO1_VIRTUAL0		(2 << 12)
+> +#define MT8195_SEL_IN_DSI0_FROM_DSC_WRAP0_OUT			(0 << 16)
+> +#define MT8195_SEL_IN_DSI0_FROM_DISP_DITHER0			(1 << 16)
+> +#define MT8195_SEL_IN_DSI1_FROM_DSC_WRAP1_OUT			(0 << 17)
+> +#define MT8195_SEL_IN_DSI1_FROM_VPP_MERGE			(1 << 17)
+> +#define MT8195_SEL_IN_DISP_WDMA1_FROM_DISP_OVL1			(0 << 20)
+> +#define MT8195_SEL_IN_DISP_WDMA1_FROM_VPP_MERGE			(1 << 20)
+> +#define MT8195_SEL_IN_DSC_WRAP1_OUT_FROM_DSC_WRAP1_IN		(0 << 21)
+> +#define MT8195_SEL_IN_DSC_WRAP1_OUT_FROM_DISP_DITHER1		(1 << 21)
+> +#define MT8195_SEL_IN_DISP_WDMA0_FROM_DISP_OVL0			(0 << 22)
+> +#define MT8195_SEL_IN_DISP_WDMA0_FROM_VPP_MERGE			(1 << 22)
 > +
-> +	regulator_unregister_notifier(info->vref, &info->nb);
-> +}
+> +#define MT8195_VDO0_SEL_OUT					0xf38
+> +#define MT8195_SOUT_DISP_DITHER0_TO_DSC_WRAP0_IN		(0 << 0)
+> +#define MT8195_SOUT_DISP_DITHER0_TO_DSI0			(1 << 0)
+> +#define MT8195_SOUT_DISP_DITHER1_TO_DSC_WRAP1_IN		(0 << 1)
+> +#define MT8195_SOUT_DISP_DITHER1_TO_VPP_MERGE			(1 << 1)
+> +#define MT8195_SOUT_DISP_DITHER1_TO_DSC_WRAP1_OUT		(2 << 1)
+> +#define MT8195_SOUT_VDO1_VIRTUAL0_TO_VPP_MERGE			(0 << 4)
+> +#define MT8195_SOUT_VDO1_VIRTUAL0_TO_DP_INTF0			(1 << 4)
+> +#define MT8195_SOUT_VPP_MERGE_TO_DSI1				(0 << 8)
+> +#define MT8195_SOUT_VPP_MERGE_TO_DP_INTF0			(1 << 8)
+> +#define MT8195_SOUT_VPP_MERGE_TO_SINA_VIRTUAL0			(2 << 8)
+> +#define MT8195_SOUT_VPP_MERGE_TO_DISP_WDMA1			(3 << 8)
+> +#define MT8195_SOUT_VPP_MERGE_TO_DSC_WRAP0_IN			(4 << 8)
+> +#define MT8195_SOUT_VPP_MERGE_TO_DSC_WRAP1_IN			(0 << 11)
+> +#define MT8195_SOUT_VPP_MERGE_TO_DISP_WDMA0			(1 << 11)
+> +#define MT8195_SOUT_DSC_WRAP0_OUT_TO_DSI0			(0 << 12)
+> +#define MT8195_SOUT_DSC_WRAP0_OUT_TO_SINB_VIRTUAL0		(1 << 12)
+> +#define MT8195_SOUT_DSC_WRAP0_OUT_TO_VPP_MERGE			(2 << 12)
+> +#define MT8195_SOUT_DSC_WRAP1_OUT_TO_DSI1			(0 << 16)
+> +#define MT8195_SOUT_DSC_WRAP1_OUT_TO_DP_INTF0			(1 << 16)
+> +#define MT8195_SOUT_DSC_WRAP1_OUT_TO_SINA_VIRTUAL0		(2 << 16)
+> +#define MT8195_SOUT_DSC_WRAP1_OUT_TO_VPP_MERGE			(3 << 16)
 > +
->  static int rockchip_saradc_probe(struct platform_device *pdev)
->  {
->  	struct rockchip_saradc *info = NULL;
-> @@ -410,6 +426,13 @@ static int rockchip_saradc_probe(struct platform_device *pdev)
->  		return ret;
->  	}
->  
-> +	info->uv_vref = regulator_get_voltage(info->vref);
-> +	if (info->uv_vref < 0) {
-> +		dev_err(&pdev->dev, "failed to get voltage\n");
-> +		ret = info->uv_vref;
-> +		return ret;
-> +	}
-> +
->  	ret = clk_prepare_enable(info->pclk);
->  	if (ret < 0) {
->  		dev_err(&pdev->dev, "failed to enable pclk\n");
-> @@ -450,6 +473,16 @@ static int rockchip_saradc_probe(struct platform_device *pdev)
->  	if (ret)
->  		return ret;
->  
-> +	info->nb.notifier_call = rockchip_saradc_volt_notify;
-> +	ret = regulator_register_notifier(info->vref, &info->nb);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = devm_add_action_or_reset(&pdev->dev,
-> +				       rockchip_saradc_regulator_action, info);
-> +	if (ret)
-> +		return ret;
-> +
->  	return devm_iio_device_register(&pdev->dev, indio_dev);
->  }
->  
-> 
+> +static const struct mtk_mmsys_routes mmsys_mt8195_routing_table[] = {
+> +	{
+> +		DDP_COMPONENT_OVL0, DDP_COMPONENT_RDMA0,
+> +		MT8195_VDO0_OVL_MOUT_EN, MT8195_MOUT_DISP_OVL0_TO_DISP_RDMA0
 
+Please update the struct to the new version that includes a mask field.
 
-
-
+Regards,
+Matthias
