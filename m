@@ -2,209 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62D1C3E23BB
-	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 09:09:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 832C43E23E5
+	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 09:21:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243459AbhHFHJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Aug 2021 03:09:50 -0400
-Received: from regular1.263xmail.com ([211.150.70.195]:36814 "EHLO
-        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242908AbhHFHJt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 03:09:49 -0400
-Received: from localhost (unknown [192.168.167.13])
-        by regular1.263xmail.com (Postfix) with ESMTP id 202D91CDF;
-        Fri,  6 Aug 2021 15:09:26 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-SKE-CHECKED: 1
-X-ABS-CHECKED: 1
-X-ANTISPAM-LEVEL: 2
-Received: from [172.16.12.8] (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P22194T140002758489856S1628233765777467_;
-        Fri, 06 Aug 2021 15:09:26 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <ee26124f85b846229d6d28b4186f93ec>
-X-RL-SENDER: david.wu@rock-chips.com
-X-SENDER: wdc@rock-chips.com
-X-LOGIN-NAME: david.wu@rock-chips.com
-X-FST-TO: linux-iio@vger.kernel.org
-X-RCPT-COUNT: 11
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-Subject: Re: [PATCH] iio: adc: rockchip_saradc: just get referenced voltage
- once at probe
-To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Cc:     Simon Xue <xxm@rock-chips.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, Johan Jonker <jbx6244@gmail.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-iio@vger.kernel.org
-References: <20210802090929.37970-1-xxm@rock-chips.com>
- <20210803135124.000072fe@Huawei.com>
- <8f5385a1-701c-4446-d238-90bee1c03675@rock-chips.com>
- <8912224.VV5PYv0bhD@diego>
-From:   David Wu <david.wu@rock-chips.com>
-Message-ID: <51525056-ee43-1880-5a5b-547decd904f4@rock-chips.com>
-Date:   Fri, 6 Aug 2021 15:09:25 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S242234AbhHFHVM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Aug 2021 03:21:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44032 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243614AbhHFHVM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 03:21:12 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E69ECC061799
+        for <devicetree@vger.kernel.org>; Fri,  6 Aug 2021 00:20:55 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1mBu9y-0002hU-1c; Fri, 06 Aug 2021 09:20:50 +0200
+Received: from pengutronix.de (unknown [IPv6:2a02:810a:8940:aa0:66f0:974b:98ab:a2fd])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 1B0BC661BEA;
+        Fri,  6 Aug 2021 07:20:46 +0000 (UTC)
+Date:   Fri, 6 Aug 2021 09:20:45 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Dario Binacchi <dariobin@libero.it>
+Cc:     linux-kernel@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        devicetree@vger.kernel.org, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org
+Subject: Re: [PATCH v5] dt-bindings: net: can: c_can: convert to json-schema
+Message-ID: <20210806072045.akase7hseu4wrxxt@pengutronix.de>
+References: <20210805192750.9051-1-dariobin@libero.it>
 MIME-Version: 1.0
-In-Reply-To: <8912224.VV5PYv0bhD@diego>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ywt3kfhn3c2zmo73"
+Content-Disposition: inline
+In-Reply-To: <20210805192750.9051-1-dariobin@libero.it>
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Heiko, Jonathan
 
-we are adding the notifier for this patch, indeed for future consideration.
+--ywt3kfhn3c2zmo73
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks.
+On 05.08.2021 21:27:50, Dario Binacchi wrote:
+> Convert the Bosch C_CAN/D_CAN controller device tree binding
+> documentation to json-schema.
+>=20
+> Document missing properties.
+> Remove "ti,hwmods" as it is no longer used in TI dts.
+> Make "clocks" required as it is used in all dts.
+> Update the examples.
+>=20
+> Signed-off-by: Dario Binacchi <dariobin@libero.it>
 
-在 2021/8/5 下午8:07, Heiko Stübner 写道:
-> Hi David,
-> 
-> Am Donnerstag, 5. August 2021, 13:56:18 CEST schrieb David Wu:
->> Hi Jonathan,
->>
->> 在 2021/8/3 下午8:51, Jonathan Cameron 写道:
->>> On Tue, 3 Aug 2021 11:09:47 +0800
->>> David Wu <david.wu@rock-chips.com> wrote:
->>>
->>>> Hi Jonathan,
->>>>
->>>> 在 2021/8/2 下午6:42, Jonathan Cameron 写道:
->>>>> On Mon, 2 Aug 2021 17:09:29 +0800
->>>>> Simon Xue <xxm@rock-chips.com> wrote:
->>>>>     
->>>>>> From: David Wu <david.wu@rock-chips.com>
->>>>>>
->>>>>> The referenced voltage is not changed after initiation, so just only
->>>>>> get referenced voltage once.
->>>>> Hi David,
->>>>>
->>>>> Isn't this an external reference voltage?  If so how do you know
->>>>> it is not changed at runtime?  It might be unlikely and not happen
->>>>> on particular platforms, but that's not he same as saying it can never
->>>>> happen.  Clearly it's racey anyway if that does happen, but we definitely
->>>>> don't expect frequent voltage changes.
->>>>>     
->>>>
->>>> The current regulator is not changed and not subject to external
->>>> changes, this can reduce the getting voltage. Assuming that there will
->>>> be changes in the future, we then add the notify of the regulator, so
->>>> that the voltage change can be obtained.
->>>
->>> If this patch added the notifier that would be a nice solution, but
->>> right now it potentially introduced a regression. You have made me a little curious...
->>> Are you seeing a significant cost to querying that regulator voltage?
->>> If so, I'd imagine it's a lack of caching in the regulator driver or similar.
->>> Scale readback via sysfs shouldn't be in a fast path anyway.
->>>
->>> You can't depend on what boards today do, because someone with a board
->>> built tomorrow may well use an old kernel which supports the voltage
->>> changing, and then see a regression when they upgrade to the kernel
->>> containing this patch.
->>>
->>
->> For all current chips, the expected voltage is a fixed voltage, and
->> don't want to change it in any process.:-)
->>
->> So, if the voltage here does not change, then it can be obtained once in
->> probe(), which can save the time of each acquisition. For example, the
->> voltage of this regulator is obtained through i2c, which will increase
->> some consumption every time.
-> 
-> Jonathans request was to not think about "all current chips" but the
-> general case, and as Jonathan said, adding that regulator notifier you
-> already mentioned would be the nicest solution.
-> 
-> So I think the easiest way is to just add the voltage notifier to your patch
-> to make everyone happy ;-) .
-> 
-> 
-> Heiko
-> 
->>
->>> Jonathan
->>>
->>>>
->>>>> Jonathan
->>>>>     
->>>>>>
->>>>>> Signed-off-by: Simon Xue <xxm@rock-chips.com>
->>>>>> Signed-off-by: David Wu <david.wu@rock-chips.com>
->>>>>> ---
->>>>>>     drivers/iio/adc/rockchip_saradc.c | 16 +++++++++-------
->>>>>>     1 file changed, 9 insertions(+), 7 deletions(-)
->>>>>>
->>>>>> diff --git a/drivers/iio/adc/rockchip_saradc.c b/drivers/iio/adc/rockchip_saradc.c
->>>>>> index f3eb8d2e50dc..cd33c0b9d3eb 100644
->>>>>> --- a/drivers/iio/adc/rockchip_saradc.c
->>>>>> +++ b/drivers/iio/adc/rockchip_saradc.c
->>>>>> @@ -49,6 +49,7 @@ struct rockchip_saradc {
->>>>>>     	struct clk		*clk;
->>>>>>     	struct completion	completion;
->>>>>>     	struct regulator	*vref;
->>>>>> +	int			uv_vref;
->>>>>>     	struct reset_control	*reset;
->>>>>>     	const struct rockchip_saradc_data *data;
->>>>>>     	u16			last_val;
->>>>>> @@ -105,13 +106,7 @@ static int rockchip_saradc_read_raw(struct iio_dev *indio_dev,
->>>>>>     		mutex_unlock(&indio_dev->mlock);
->>>>>>     		return IIO_VAL_INT;
->>>>>>     	case IIO_CHAN_INFO_SCALE:
->>>>>> -		ret = regulator_get_voltage(info->vref);
->>>>>> -		if (ret < 0) {
->>>>>> -			dev_err(&indio_dev->dev, "failed to get voltage\n");
->>>>>> -			return ret;
->>>>>> -		}
->>>>>> -
->>>>>> -		*val = ret / 1000;
->>>>>> +		*val = info->uv_vref / 1000;
->>>>>>     		*val2 = chan->scan_type.realbits;
->>>>>>     		return IIO_VAL_FRACTIONAL_LOG2;
->>>>>>     	default:
->>>>>> @@ -410,6 +405,13 @@ static int rockchip_saradc_probe(struct platform_device *pdev)
->>>>>>     		return ret;
->>>>>>     	}
->>>>>>     
->>>>>> +	info->uv_vref = regulator_get_voltage(info->vref);
->>>>>> +	if (info->uv_vref < 0) {
->>>>>> +		dev_err(&pdev->dev, "failed to get voltage\n");
->>>>>> +		ret = info->uv_vref;
->>>>>> +		return ret;
->>>>>> +	}
->>>>>> +
->>>>>>     	ret = clk_prepare_enable(info->pclk);
->>>>>>     	if (ret < 0) {
->>>>>>     		dev_err(&pdev->dev, "failed to enable pclk\n");
->>>>>
->>>>>
->>>>>
->>>>>     
->>>>
->>>>
->>>
->>>
->>>
->>>
->>
->>
->>
-> 
-> 
-> 
-> 
-> 
-> 
-> 
+[...]
 
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - bosch,d_can
+> +
+> +then:
+> +  properties:
+> +    interrupts:
+> +      minItems: 4
+> +      maxItems: 4
 
+The driver uses only 1 interrupt, on the other hand the only in-tree
+user the bosch,d_can compatible specifies 4 interrupts.
+
+Marc
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+--ywt3kfhn3c2zmo73
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAmEM4ssACgkQqclaivrt
+76kH+wf/Us0Znp2pcbUwxbQq8O11+Bbroua1J8Na8qc7NwTESuk9N2Qu0zpUO8Tz
+oTTsibqJD9m3Z3AXxILJcv0mueNL4NbvFdjQ2hd7kl28X7B1KgqJvx63DLRrI9Vp
+ZtY1ve+ZEqf1ZwG0CnHThvLBqAR0102h29X7HrjS1JGD9mVNXiobqArfcLfh5Lpu
+7rGXUYj6OtQmg+QoWsduOpMAwod91M0bCkvGuTDZGqdCOxyTb/TZPZTtQOTS0e2Z
+FBSD8hp8mp4AffaX3MXe2rEbDCSY/ZRFlhth3WRigVSu0rpf5m0al9QiRcOe9nUc
+0hcetz9jGIIn4gNvOm6nxBKRXO10MA==
+=Boa7
+-----END PGP SIGNATURE-----
+
+--ywt3kfhn3c2zmo73--
