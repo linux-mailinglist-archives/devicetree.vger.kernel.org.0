@@ -2,170 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 349E13E29BB
-	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 13:33:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C50FC3E29D2
+	for <lists+devicetree@lfdr.de>; Fri,  6 Aug 2021 13:38:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245547AbhHFLdX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Aug 2021 07:33:23 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:1563 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245541AbhHFLdW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 07:33:22 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1628249588; x=1659785588;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=uQOYpWS7Qrcgkx+VH2ts2v8g+61j0yRDKNU96qalLg4=;
-  b=Rnm9vVU5D4m8Qf489qC5xnKgVPQshdxz7UuHBE3QzbqHh7BpcQxGsmT/
-   LX0kev5uJVJXtqM130zGBvBOQWqPEQvZX+4eB3Rxwk+6wh5caAlPJ1DLZ
-   HRrn1+OVaFouaCr9z5KK2YUDBKImECLEatD9aIqxYVq6MlmOcdb2goE99
-   QrIyttTcnxdeF6Wf8o3fZT2m5wrKT4I7NllzEyVlrmRG2fEfltnivv6XT
-   94Oy7UCSnUXroBSAwfYOrsUWel4xS5zil3oSMFw+9sQbfZ2ZqwaXi2w/J
-   7+O3QebU6nRwJpkEJpA6VVGKGp4rWGd8UkyBBgF6BBSSrt5q12OegLgYG
-   A==;
-IronPort-SDR: N9C65RxcqZ5RibRA/eC5z1L/pV/gBDNOXlTzOYwpwpNylUaCJ3ylAAuoEdKVouZqPp4Vselt0P
- MJ6I92rqREF/8FpbNcqfE42jxt/mf/g/8SXuASVY0le5hSmWoblXXybnPCXG+IR8FCp8e3aEta
- mu7+SBZssYCxwVfwV/bOnOYuecFjhWjmfMJR3rBUyKFa5EF1StPR42VxSPfA9+qmk4jyC8C2ua
- dfWeoKyUFvVflXXwDZTSYMvTq2r6B8MbWGbZNCUZWcmwJneYD8YaxqoE+xYCXmjfdm3i17Wr49
- ATbysUABDpGKTeuoQyDN7edy
-X-IronPort-AV: E=Sophos;i="5.84,300,1620716400"; 
-   d="scan'208";a="131292938"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 06 Aug 2021 04:33:06 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Fri, 6 Aug 2021 04:33:04 -0700
-Received: from m18063-ThinkPad-T460p.mchp-main.com (10.10.115.15) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Fri, 6 Aug 2021 04:32:59 -0700
-From:   Claudiu Beznea <claudiu.beznea@microchip.com>
-To:     <ulf.hansson@linaro.org>, <robh+dt@kernel.org>,
-        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <ludovic.desroches@microchip.com>
-CC:     <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        "Eugen Hristev" <eugen.hristev@microchip.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>
-Subject: [PATCH 4/4] ARM: dts: at91: sama5d27_wlsom1: add wifi device
-Date:   Fri, 6 Aug 2021 14:30:01 +0300
-Message-ID: <20210806113001.821660-5-claudiu.beznea@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210806113001.821660-1-claudiu.beznea@microchip.com>
-References: <20210806113001.821660-1-claudiu.beznea@microchip.com>
+        id S241722AbhHFLi5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Aug 2021 07:38:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47514 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240755AbhHFLi4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 07:38:56 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BF6AC061799
+        for <devicetree@vger.kernel.org>; Fri,  6 Aug 2021 04:38:40 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id z4so10664703wrv.11
+        for <devicetree@vger.kernel.org>; Fri, 06 Aug 2021 04:38:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=s9wnVnDyd/BCxuk/HASH4KODRxCJv7VlRo5y7kgnv28=;
+        b=qJk2DxUF3xFKcfqISlcX5FsEolwmVRPARV1u5OIJr2JkgRn8MxeQrgpdJwgictJQXW
+         68MHh5DsUeRKtY7grsf24MV7xFCfhzlIG192rze6AAV/bhP7kl6fotqQeK5N3VRBqLGf
+         TLkFsGzO74BAZcl2NPQaVsPyof91VeIkrheYpzMBd1h5DCTbcQCaTez7DlVlOgIsa4G5
+         QCTSPib/tvfv+yBnDp69b1NlqIK1JhSy/shdWP0AOeKXaBwQJEu1Vm7qCo3I4+CMeUrG
+         IBwq675kfMkljraZull58XzT2wlvm6x2KrXxl/HAddxt+wUxKsIFSStuY+XGKHNSgvMd
+         PrdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=s9wnVnDyd/BCxuk/HASH4KODRxCJv7VlRo5y7kgnv28=;
+        b=NxMgrjx9MZ6QyWWhbNyAOhT78PEw4qEU5xIj3grJLsOUPOvDZJAQe6g+8sKoE1jwGR
+         OBzaT75kHqor/swsaWJwBiV0HFlF32ZWfsrcUnSNzPuYEH8U291ehYxwBl3tBKv4r7lk
+         KY//CnIxrQJq/nTLjVPW8MX/4NOmc2+Jiziw+m7utKRNWSgq7ciYKis6QK75JTLWbm6M
+         nZDzoyVixbQElmBEQzzzgEhTdh2GDXDvXc17J+r54DNzN0PfZlnkyxbmmJl34EtfoLs9
+         AbfEImwCQ1yYW5ReATcueNeh9spKlQx1DZti71DmG2go69Due17JNMutSP4a17iRJsbd
+         imtA==
+X-Gm-Message-State: AOAM5317bZtET30lenIWqZz3RjB9irbl8AEEhUZ2xUFurOKaqSAx8qQI
+        liaCXHUomPRrmW+H69YJZ/O+Jw==
+X-Google-Smtp-Source: ABdhPJy3RvWjqo+uo7Q4r/toVYPAJ3vfivdBc8oWppyqpHaF+NSsJEUDyP5mAgQrwCkNPSzB2L393A==
+X-Received: by 2002:a5d:6a89:: with SMTP id s9mr10293739wru.309.1628249918939;
+        Fri, 06 Aug 2021 04:38:38 -0700 (PDT)
+Received: from google.com ([109.180.115.228])
+        by smtp.gmail.com with ESMTPSA id l5sm10683955wrc.90.2021.08.06.04.38.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Aug 2021 04:38:38 -0700 (PDT)
+Date:   Fri, 6 Aug 2021 12:38:36 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Alistair Francis <alistair@alistair23.me>
+Cc:     robh+dt@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
+        linux-imx@nxp.com, kernel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        alistair23@gmail.com
+Subject: Re: [PATCH v9 03/12] mfd: simple-mfd-i2c: Save the register client
+ data
+Message-ID: <YQ0fPEeZGYe7f1cC@google.com>
+References: <20210806091058.141-1-alistair@alistair23.me>
+ <20210806091058.141-4-alistair@alistair23.me>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+In-Reply-To: <20210806091058.141-4-alistair@alistair23.me>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Eugen Hristev <eugen.hristev@microchip.com>
+On Fri, 06 Aug 2021, Alistair Francis wrote:
 
-SAMA5D27 WLSOM1 boards has a WILC3000 device soldered. Add proper
-device tree nodes for this.
+> Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> ---
+>  drivers/mfd/simple-mfd-i2c.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/mfd/simple-mfd-i2c.c b/drivers/mfd/simple-mfd-i2c.c
+> index 583e8c7924af..633a2b28b6cb 100644
+> --- a/drivers/mfd/simple-mfd-i2c.c
+> +++ b/drivers/mfd/simple-mfd-i2c.c
+> @@ -48,6 +48,8 @@ static int simple_mfd_i2c_probe(struct i2c_client *i2c)
+>  	if (IS_ERR(regmap))
+>  		return PTR_ERR(regmap);
+>  
+> +	i2c_set_clientdata(i2c, regmap);
+> +
 
-[eugen.hristev: original author of this code]
-Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
-[nicolas.ferre: original author of this code]
-Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-[claudiu.beznea: adapt for mmc-pwrseq-sd8787, commit message]
-Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
----
- arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi | 72 +++++++++++++++++++++
- 1 file changed, 72 insertions(+)
+No need to store this here.
 
-diff --git a/arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi b/arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi
-index 025a78310e3a..de8bb3439aef 100644
---- a/arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi
-+++ b/arch/arm/boot/dts/at91-sama5d27_wlsom1.dtsi
-@@ -30,6 +30,16 @@ main_xtal {
- 			clock-frequency = <24000000>;
- 		};
- 	};
-+
-+	wifi_pwrseq: wifi_pwrseq {
-+		compatible = "mmc-pwrseq-sd8787";
-+		reset-gpios = <&pioA PIN_PA27 GPIO_ACTIVE_HIGH>;
-+		powerdown-gpios = <&pioA PIN_PA29 GPIO_ACTIVE_HIGH>;
-+		reset-power-delay-ms = <5>;
-+		pinctrl-0 = <&pinctrl_wilc_pwrseq>;
-+		pinctrl-names = "default";
-+		status = "okay";
-+	};
- };
- 
- &flx1 {
-@@ -310,5 +320,67 @@ pinctrl_qspi1_default: qspi1_default {
- 			 <PIN_PB10__QSPI1_IO3>;
- 		bias-pull-up;
- 	};
-+
-+	pinctrl_sdmmc1_default: sdmmc1_default {
-+		cmd-data {
-+			pinmux = <PIN_PA28__SDMMC1_CMD>,
-+				 <PIN_PA18__SDMMC1_DAT0>,
-+				 <PIN_PA19__SDMMC1_DAT1>,
-+				 <PIN_PA20__SDMMC1_DAT2>,
-+				 <PIN_PA21__SDMMC1_DAT3>;
-+			bias-disable;
-+		};
-+
-+		conf-ck {
-+			pinmux = <PIN_PA22__SDMMC1_CK>;
-+			bias-disable;
-+		};
-+	};
-+
-+	pinctrl_wilc_default: wilc_default {
-+		conf-irq {
-+			pinmux = <PIN_PB25__GPIO>;
-+			bias-disable;
-+		};
-+	};
-+
-+	pinctrl_wilc_pwrseq: wilc_pwrseq {
-+		conf-ce-nrst {
-+			pinmux = <PIN_PA27__GPIO>,
-+				 <PIN_PA29__GPIO>;
-+			bias-disable;
-+		};
-+
-+		conf-rtcclk {
-+			pinmux = <PIN_PB13__PCK1>;
-+			bias-disable;
-+		};
-+	};
-+};
-+
-+&sdmmc1 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	bus-width = <4>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_sdmmc1_default>;
-+	mmc-pwrseq = <&wifi_pwrseq>;
-+	no-1-8-v;
-+	non-removable;
-+	status = "okay";
-+
-+	wilc: wilc@0 {
-+		reg = <0>;
-+		bus-width = <4>;
-+		compatible = "microchip,wilc3000", "microchip,wilc1000";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_wilc_default>;
-+		irq-gpios = <&pioA PIN_PB25 GPIO_ACTIVE_LOW>;
-+		clocks = <&pmc PMC_TYPE_SYSTEM 9>;
-+		clock-names = "rtc";
-+		assigned-clocks = <&pmc PMC_TYPE_SYSTEM 9>;
-+		assigned-clock-rates = <32768>;
-+		status = "okay";
-+	};
- };
- 
+Just do this in the child device:
+
+     dev_get_regmap(pdev->dev.parent, NULL);
+
+>  	/* If no MFD cells are spedified, use register the DT child nodes instead */
+>  	if (!simple_mfd_data || !simple_mfd_data->mfd_cell)
+>  		return devm_of_platform_populate(&i2c->dev);
+
 -- 
-2.25.1
-
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
