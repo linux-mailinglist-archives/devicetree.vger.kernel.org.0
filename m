@@ -2,84 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC37B3E33DD
-	for <lists+devicetree@lfdr.de>; Sat,  7 Aug 2021 09:06:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF7DC3E3463
+	for <lists+devicetree@lfdr.de>; Sat,  7 Aug 2021 11:43:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231444AbhHGHGl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Aug 2021 03:06:41 -0400
-Received: from jabberwock.ucw.cz ([46.255.230.98]:53274 "EHLO
-        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230297AbhHGHGl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Aug 2021 03:06:41 -0400
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 0DAB81C0B7C; Sat,  7 Aug 2021 09:06:23 +0200 (CEST)
-Date:   Sat, 7 Aug 2021 09:06:22 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Guido =?iso-8859-1?Q?G=FCnther?= <guido.gunther@puri.sm>
-Cc:     Sakari Ailus <sakari.ailus@iki.fi>,
-        Martin Kepplinger <martin.kepplinger@puri.sm>,
-        krzysztof.kozlowski@canonical.com,
-        laurent.pinchart@ideasonboard.com, devicetree@vger.kernel.org,
-        kernel@puri.sm, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, mchehab@kernel.org,
-        paul.kocialkowski@bootlin.com, phone-devel@vger.kernel.org,
-        robh@kernel.org, shawnx.tu@intel.com
-Subject: Re: [PATCH v6 5/5] arm64: defconfig: enable VIDEO_HI846
-Message-ID: <20210807070622.GA25211@amd>
-References: <20210628101054.828579-1-martin.kepplinger@puri.sm>
- <20210628101054.828579-6-martin.kepplinger@puri.sm>
- <20210708130003.GA3@valkosipuli.retiisi.eu>
- <YOcWCVSXfV+cKJ6H@qwark.sigxcpu.org>
+        id S231808AbhHGJoM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Aug 2021 05:44:12 -0400
+Received: from elvis.franken.de ([193.175.24.41]:50725 "EHLO elvis.franken.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231687AbhHGJoM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 7 Aug 2021 05:44:12 -0400
+Received: from uucp (helo=alpha)
+        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
+        id 1mCIru-0007FW-00; Sat, 07 Aug 2021 11:43:50 +0200
+Received: by alpha.franken.de (Postfix, from userid 1000)
+        id A6D05C0661; Sat,  7 Aug 2021 11:28:19 +0200 (CEST)
+Date:   Sat, 7 Aug 2021 11:28:19 +0200
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     Jiaxun Yang <jiaxun.yang@flygoat.com>
+Cc:     linux-mips@vger.kernel.org, mturquette@baylibre.com,
+        daniel.lezcano@linaro.org, linus.walleij@linaro.org,
+        vkoul@kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 0/9] MIPS: Migrate pistachio to generic kernel
+Message-ID: <20210807092819.GA4506@alpha.franken.de>
+References: <20210723022543.4095-1-jiaxun.yang@flygoat.com>
+ <1bb80cdf-f7d5-f99f-a4f3-635552df916b@flygoat.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="vtzGhvizbBRQ85DL"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <YOcWCVSXfV+cKJ6H@qwark.sigxcpu.org>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1bb80cdf-f7d5-f99f-a4f3-635552df916b@flygoat.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, Aug 07, 2021 at 11:06:12AM +0800, Jiaxun Yang wrote:
+> 
+> 
+> 在 2021/7/23 上午10:25, Jiaxun Yang 写道:
+> > I'm lucky enough to get a Creator CI40 board from dusts.
+> > This patchset move it to gerneic kernel to reduce maintenance burden.
+> > It have been tested with SD Card boot.
+> 
+> Hi Thomas,
+> 
+> For the series, the pinctrl one have been applied by subsystem maintainer
+> and
+> rests have been acked by subsystem maintainers, could you please apply them
+> to MIPS tree?
 
---vtzGhvizbBRQ85DL
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+sure that's my plan.
 
-Hi!
+Thomas.
 
-> > > Build the driver for the Hi-846 camera by default on arm64 where it's
-> > > going to be used on at least the imx8mq-librem5 board.
-> > >=20
-> > > Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
-=2E.
-> > There appear to be a other sensor drivers though.
-> >=20
-> > Is there a defconfig for the librem5 board?
->=20
-> arm64 has a single defconfig, there are no board specific ones (and
-> afaik they're not wanted either) so I think enabling it as a module is
-> the only way.
-
-Given that other arm64 machines are basically devboards, and librem5
-is a phone... where you expect tighter sw/hw configuration, maybe it
-should have a separate defconfig.
-
-Best regards,
-								Pavel
---=20
-http://www.livejournal.com/~pavelmachek
-
---vtzGhvizbBRQ85DL
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
-
-iEYEARECAAYFAmEOMO0ACgkQMOfwapXb+vK77gCgpYzyL9RXKKjc2f7cfW+IWz+B
-gWsAoKsV7p8tytKZYBFKu61kVHuaFkWs
-=ngWb
------END PGP SIGNATURE-----
-
---vtzGhvizbBRQ85DL--
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
