@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DC243E3769
-	for <lists+devicetree@lfdr.de>; Sun,  8 Aug 2021 00:38:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 983D33E376C
+	for <lists+devicetree@lfdr.de>; Sun,  8 Aug 2021 00:41:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229797AbhHGWi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Aug 2021 18:38:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56952 "EHLO
+        id S229899AbhHGWmC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Aug 2021 18:42:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229743AbhHGWi2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Aug 2021 18:38:28 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EB2BC0613D3
-        for <devicetree@vger.kernel.org>; Sat,  7 Aug 2021 15:38:10 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id u3so25818774lff.9
-        for <devicetree@vger.kernel.org>; Sat, 07 Aug 2021 15:38:10 -0700 (PDT)
+        with ESMTP id S229854AbhHGWmC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Aug 2021 18:42:02 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FC0AC0613D3
+        for <devicetree@vger.kernel.org>; Sat,  7 Aug 2021 15:41:43 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id x9so15727915ljj.2
+        for <devicetree@vger.kernel.org>; Sat, 07 Aug 2021 15:41:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=Lj89aSQV7OCOrepNKn8koFUUrCNiOnfBqunvMMwzNw8=;
-        b=oh7DQA5GxYuqxO4BZrykAhKNgaCAYME7OWjMo/uOvn1pw1az/pLIOa4YTbr7jJ5i3+
-         M0TrPWjgVIhRP6ayY8ABnAQaVoiNCM9EN7vSxgmlLZoFyGVjvy9JuatUzFmp8fd1I3lp
-         j9YxntVjVbdq5tqJknAbwvBpm5zGCvgDQDV9BnMVDgUhHt9DQ3aCVZkKfcftoVhtC0W2
-         sEHvusMNS5VrWqpFdPclhyfB8sZZVFNZyd0iaFsG2ceAoG62pOKMryAV6d6kMvOf67OG
-         5agI0NJnowmzqbfOFOsm1a25FcwYvz1VDfMT2op3NBtkM6mgWhxuRMW+Gx1xTHu/ZSQl
-         VzqQ==
+        bh=6hVw1r1xpEEInLXXoh33JupWqqEySNuELXLxCfeyrys=;
+        b=RcsslV0xypOfQvV0lHtWdMMrmMoto9aibjGdTKlZ6OdVZsgthRLJWU3VBcar1WBu+4
+         4WNOvmiLtnedt0KjCDiLGHCiTAYaHWeAy3WzUhsOAHFMgQ4Too5QCUh/bvkR6NhoA5Fd
+         LV1ILblpt2cVewmiYg1QYCSstJjV44chQKGk5SqAAQu8Tf3cf4DIuYTf7wQaJH738Pi7
+         zJdbwmXNUrknrCJJUUSZBTqyyNJYPbshkfB+aGmZpC584KtfGFHijNmxng9tENAQ7P23
+         CNnM8jDfIwB2A3eY1JCSZi26mba09h4ol+UnZluoX0KCHKCK0Qw6eCpDrM76M3h5ucFD
+         vrDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=Lj89aSQV7OCOrepNKn8koFUUrCNiOnfBqunvMMwzNw8=;
-        b=V7diP+KUxQf74p4CgtU161SITUe+mh/G7oSkJD9r5HxO6osq6SEPlqiPYjqNi2cA38
-         lSv5YQhK+S6IfsqJ2TBscpOke85IE5duYvYVklxcGwUzHCpblNATebKOHnyeTK9YZWLu
-         TTvSygooiHKFUklAHLM4e/X800Xmzcsk66PX/8AUL2ZCbf/a818YWAKzCPUs/uC3T2St
-         JQoR27QJ+CGEnoWusu3gfVPAsAjhzdHjPeWK3nSIj+VgtHTZGN6ewkW6mP4J2fIiqdAA
-         88VzRQ8NKUr3JHRABn04PCNALG+mVjSs9u3SGE+uIDNWOEsvXBucbStDyKpjk5bNc4iO
-         Chlg==
-X-Gm-Message-State: AOAM531uqKquaoo13v5uLj725XUrDhSkyZQDLloj6JUGnd+8oEc/2Lzl
-        y/DX+ByX7ZFnBOQpxnJw13ZcpY0OfhQrzPkuXZBXbw==
-X-Google-Smtp-Source: ABdhPJygNJetu7Q3WHCj4Rb3EJS60ayEOW6Cf3me7T+gPMKRUGV5KHs8bfbUiAmOv/uIL8pe6VU7fSK5IaW9mbhg+w8=
-X-Received: by 2002:a05:6512:1084:: with SMTP id j4mr12499776lfg.586.1628375888754;
- Sat, 07 Aug 2021 15:38:08 -0700 (PDT)
+        bh=6hVw1r1xpEEInLXXoh33JupWqqEySNuELXLxCfeyrys=;
+        b=EKyywvNhJL6xFdK52vfeJp9waBF9/UqfKnYhvgSHo5JZxeUf5+QLC5zKHCHVT/tYkS
+         JYoGeGegxAffv6yVckdcrbA9GUk+c7ArOSEL+US1cWdxOSxziL5EPEBXEufW8ds/o9XI
+         75dnnZxWZGVHQ3dycw69D/25lSpXe37BWCXR4AQwKvmSsqKR5vKsFcLaHTaG8vY/4aZP
+         mTHxYvlMwytTc9is1+2LCUfUwgUtqiw/VIH5hdg+Wle8mdzrZb4QWy1fj/6m+e4S9oRD
+         DwFROdxHAGQYCdAGKMXZhvKKX8jut96Swn9qj8aWSSb4+MRZSXIkBcs0MDAbCXUOSxWQ
+         GDPQ==
+X-Gm-Message-State: AOAM5303HjO3tsuij38YDmFDo/sD1+i8eAaBh/EW026bqUj3/I36ljnP
+        GS6BmYn6PbiR5O+k4OFblc7ISID8cevnr2VngDuahQ==
+X-Google-Smtp-Source: ABdhPJwJvd9YehjH3Z7NxGJZ4qtVeQRm9MP0I86bEkJjIUPV/Ii2uwT9draQbeHYvx/NrjwYUO1yGuqblYUBqBwqnxw=
+X-Received: by 2002:a05:651c:1318:: with SMTP id u24mr10696662lja.200.1628376101474;
+ Sat, 07 Aug 2021 15:41:41 -0700 (PDT)
 MIME-Version: 1.0
 References: <YQw7M7OF6OZLcLjk@ravnborg.org> <20210807133111.5935-1-markuss.broks@gmail.com>
- <20210807133111.5935-3-markuss.broks@gmail.com>
-In-Reply-To: <20210807133111.5935-3-markuss.broks@gmail.com>
+ <20210807133111.5935-2-markuss.broks@gmail.com>
+In-Reply-To: <20210807133111.5935-2-markuss.broks@gmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 8 Aug 2021 00:37:57 +0200
-Message-ID: <CACRpkdYu5fdLvSYPV=fs0ry59abpTWoVVkKpd9cApSbmyssjmw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] drm/panel: s6d27a1: Add driver for Samsung S6D27A1
+Date:   Sun, 8 Aug 2021 00:41:30 +0200
+Message-ID: <CACRpkda5CX2AVh4=Kt7Fn_6TrW7btX0Vqb30-60SMG5u05JBgg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] drm/panel: Add DT bindings for Samsung S6D27A1
  display panel
 To:     Markuss Broks <markuss.broks@gmail.com>
 Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
@@ -66,26 +66,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Markuss,
-
-this is looking really good, the following is just nitty gritty details
-I could fix while applying, we're mostly waiting for DT review now.
-
 On Sat, Aug 7, 2021 at 3:31 PM Markuss Broks <markuss.broks@gmail.com> wrote:
 
-> +       /*
-> +        * Exit sleep mode and initialize display - some hammering is
-> +        * necessary.
-> +        */
-> +       mipi_dbi_command(dbi, MIPI_DCS_EXIT_SLEEP_MODE);
-> +       mipi_dbi_command(dbi, MIPI_DCS_EXIT_SLEEP_MODE);
+> This adds device-tree bindings for the Samsung S6D27A1 RGB
+> DPI display panel.
+>
+> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
+>
+> v1 -> v2:
+> changed additionalProperties to unevaluatedProperties;
+> added vci-supply and vccio-supply as required;
 
-Check if this hammering is really necessary on s6d27a1, on Widechips
-this is just a bug, what happens if you put just one of them?
+These bindings look good to me:
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-> +       msleep(50);
-
-This should be msleep(120) on s6d27a1 (according to board-codina-mcde.c)
+Will give DT reviewers some slack before applying the patches.
 
 Yours,
 Linus Walleij
