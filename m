@@ -2,105 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE7CA3E36EF
-	for <lists+devicetree@lfdr.de>; Sat,  7 Aug 2021 21:19:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DC243E3769
+	for <lists+devicetree@lfdr.de>; Sun,  8 Aug 2021 00:38:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229743AbhHGTUJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Aug 2021 15:20:09 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:38432 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229565AbhHGTUI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 7 Aug 2021 15:20:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=s83klAhmciDbx+1XFJaV0CS4/5F56HShYxU1P/qX0Ks=; b=MI6b8vpa5nR2Qpkra8VZbocKik
-        2zJ8B8KZHiESk78lkoiH+MfUSpqkhgsrVbV50xIgE10A9OrcFdJhRqHJzjBaRhqmlo8n/cCJ/Y+N3
-        c+BxwtjMBUBea0kKA7Dx0/MjQLerTYktrgCBW+GX8edOMxoKLrT/1d6neUkMbyIg0sEw=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mCRrC-00GW1L-DC; Sat, 07 Aug 2021 21:19:42 +0200
-Date:   Sat, 7 Aug 2021 21:19:42 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stafford Horne <shorne@gmail.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Anton Blanchard <anton@ozlabs.org>,
-        Gabriel Somlo <gsomlo@gmail.com>, David Shah <dave@ds0.me>,
-        Karol Gugala <kgugala@antmicro.com>,
-        Mateusz Holenko <mholenko@antmicro.com>,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] net: Add driver for LiteX's LiteETH network interface
-Message-ID: <YQ7czmvIm6FTZAol@lunn.ch>
-References: <20210806054904.534315-1-joel@jms.id.au>
- <20210806054904.534315-3-joel@jms.id.au>
+        id S229797AbhHGWi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Aug 2021 18:38:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56952 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229743AbhHGWi2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Aug 2021 18:38:28 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EB2BC0613D3
+        for <devicetree@vger.kernel.org>; Sat,  7 Aug 2021 15:38:10 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id u3so25818774lff.9
+        for <devicetree@vger.kernel.org>; Sat, 07 Aug 2021 15:38:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Lj89aSQV7OCOrepNKn8koFUUrCNiOnfBqunvMMwzNw8=;
+        b=oh7DQA5GxYuqxO4BZrykAhKNgaCAYME7OWjMo/uOvn1pw1az/pLIOa4YTbr7jJ5i3+
+         M0TrPWjgVIhRP6ayY8ABnAQaVoiNCM9EN7vSxgmlLZoFyGVjvy9JuatUzFmp8fd1I3lp
+         j9YxntVjVbdq5tqJknAbwvBpm5zGCvgDQDV9BnMVDgUhHt9DQ3aCVZkKfcftoVhtC0W2
+         sEHvusMNS5VrWqpFdPclhyfB8sZZVFNZyd0iaFsG2ceAoG62pOKMryAV6d6kMvOf67OG
+         5agI0NJnowmzqbfOFOsm1a25FcwYvz1VDfMT2op3NBtkM6mgWhxuRMW+Gx1xTHu/ZSQl
+         VzqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Lj89aSQV7OCOrepNKn8koFUUrCNiOnfBqunvMMwzNw8=;
+        b=V7diP+KUxQf74p4CgtU161SITUe+mh/G7oSkJD9r5HxO6osq6SEPlqiPYjqNi2cA38
+         lSv5YQhK+S6IfsqJ2TBscpOke85IE5duYvYVklxcGwUzHCpblNATebKOHnyeTK9YZWLu
+         TTvSygooiHKFUklAHLM4e/X800Xmzcsk66PX/8AUL2ZCbf/a818YWAKzCPUs/uC3T2St
+         JQoR27QJ+CGEnoWusu3gfVPAsAjhzdHjPeWK3nSIj+VgtHTZGN6ewkW6mP4J2fIiqdAA
+         88VzRQ8NKUr3JHRABn04PCNALG+mVjSs9u3SGE+uIDNWOEsvXBucbStDyKpjk5bNc4iO
+         Chlg==
+X-Gm-Message-State: AOAM531uqKquaoo13v5uLj725XUrDhSkyZQDLloj6JUGnd+8oEc/2Lzl
+        y/DX+ByX7ZFnBOQpxnJw13ZcpY0OfhQrzPkuXZBXbw==
+X-Google-Smtp-Source: ABdhPJygNJetu7Q3WHCj4Rb3EJS60ayEOW6Cf3me7T+gPMKRUGV5KHs8bfbUiAmOv/uIL8pe6VU7fSK5IaW9mbhg+w8=
+X-Received: by 2002:a05:6512:1084:: with SMTP id j4mr12499776lfg.586.1628375888754;
+ Sat, 07 Aug 2021 15:38:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210806054904.534315-3-joel@jms.id.au>
+References: <YQw7M7OF6OZLcLjk@ravnborg.org> <20210807133111.5935-1-markuss.broks@gmail.com>
+ <20210807133111.5935-3-markuss.broks@gmail.com>
+In-Reply-To: <20210807133111.5935-3-markuss.broks@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Sun, 8 Aug 2021 00:37:57 +0200
+Message-ID: <CACRpkdYu5fdLvSYPV=fs0ry59abpTWoVVkKpd9cApSbmyssjmw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] drm/panel: s6d27a1: Add driver for Samsung S6D27A1
+ display panel
+To:     Markuss Broks <markuss.broks@gmail.com>
+Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        Dave Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, phone-devel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +static void liteeth_reset_hw(struct liteeth *priv)
-> +{
-> +	/* Reset, twice */
-> +	writeb(0, priv->base + LITEETH_PHY_CRG_RESET);
-> +	udelay(10);
-> +	writeb(1, priv->base + LITEETH_PHY_CRG_RESET);
-> +	udelay(10);
-> +	writeb(0, priv->base + LITEETH_PHY_CRG_RESET);
-> +	udelay(10);
+Hi Markuss,
 
-What is this actually resetting?
+this is looking really good, the following is just nitty gritty details
+I could fix while applying, we're mostly waiting for DT review now.
 
-> +static int liteeth_probe(struct platform_device *pdev)
-> +{
-> +	struct net_device *netdev;
-> +	void __iomem *buf_base;
-> +	struct resource *res;
-> +	struct liteeth *priv;
-> +	int irq, err;
-> +
-> +	netdev = alloc_etherdev(sizeof(*priv));
-> +	if (!netdev)
-> +		return -ENOMEM;
-> +
-> +	priv = netdev_priv(netdev);
-> +	priv->netdev = netdev;
-> +	priv->dev = &pdev->dev;
-> +
-> +	irq = platform_get_irq(pdev, 0);
-> +	if (irq < 0) {
-> +		dev_err(&pdev->dev, "Failed to get IRQ\n");
-> +		goto err;
-> +	}
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	priv->base = devm_ioremap_resource(&pdev->dev, res);
-> +	if (IS_ERR(priv->base)) {
-> +		err = PTR_ERR(priv->base);
-> +		goto err;
-> +	}
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
-> +	priv->mdio_base = devm_ioremap_resource(&pdev->dev, res);
-> +	if (IS_ERR(priv->mdio_base)) {
-> +		err = PTR_ERR(priv->mdio_base);
-> +		goto err;
-> +	}
+On Sat, Aug 7, 2021 at 3:31 PM Markuss Broks <markuss.broks@gmail.com> wrote:
 
-So you don't have any PHY handling, or any MDIO bus master code. So i
-would drop this, until the MDIO architecture question is answered. I
-also wonder how much use the MAC driver is without any PHY code?
-Unless you have a good reason, i don't think we should merge this
-until it makes the needed calls into phylib. It is not much code to
-add.
+> +       /*
+> +        * Exit sleep mode and initialize display - some hammering is
+> +        * necessary.
+> +        */
+> +       mipi_dbi_command(dbi, MIPI_DCS_EXIT_SLEEP_MODE);
+> +       mipi_dbi_command(dbi, MIPI_DCS_EXIT_SLEEP_MODE);
 
-	Andrew
+Check if this hammering is really necessary on s6d27a1, on Widechips
+this is just a bug, what happens if you put just one of them?
+
+> +       msleep(50);
+
+This should be msleep(120) on s6d27a1 (according to board-codina-mcde.c)
+
+Yours,
+Linus Walleij
