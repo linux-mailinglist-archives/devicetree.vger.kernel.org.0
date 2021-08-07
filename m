@@ -2,96 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD0D53E3663
-	for <lists+devicetree@lfdr.de>; Sat,  7 Aug 2021 19:00:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 496343E367F
+	for <lists+devicetree@lfdr.de>; Sat,  7 Aug 2021 19:26:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229869AbhHGRBL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Aug 2021 13:01:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40844 "EHLO
+        id S229565AbhHGR1H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Aug 2021 13:27:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229776AbhHGRA4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Aug 2021 13:00:56 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1AF4C06179A;
-        Sat,  7 Aug 2021 10:00:14 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id hw6so20995653ejc.10;
-        Sat, 07 Aug 2021 10:00:14 -0700 (PDT)
+        with ESMTP id S229464AbhHGR1G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Aug 2021 13:27:06 -0400
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FF97C0613CF;
+        Sat,  7 Aug 2021 10:26:49 -0700 (PDT)
+Received: by mail-pl1-x62e.google.com with SMTP id j3so11582528plx.4;
+        Sat, 07 Aug 2021 10:26:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=1EJJUbdL6WaXY+N4elk2flfwKD7mCnq0x6VxUqgRTp8=;
-        b=jFX7EI4aY19oVK3JUJCL4yCqND4HZKXiB3gsEKwUH2+xaqX5kYPNmZIy1FJ+/HVRed
-         MUhNhu4Gebrf7FATjAAHDgOC10/1oT9bVMXBn1vnwmeQl0zIgAv+e1I5+NmucXlM10VS
-         7pSyuA6gWOSEpWgLsUyZYokWf5d1hMdcgVXa27bY9tfpQtdrYWq/e8BU0cejKzIWwvL/
-         UKBvTwHDsmGixiPZqcOzMlbeXiB8Lw7lthT4uJxEq7WeBdSfnoCBOMjxQ7ejQ1jbZGmS
-         bY9e5q5u0yv+wozyNqaetxzc9DcPHc1CgCcQLF+PeY26LQgTy1lWKwHneGgAelSYaXS8
-         9hWA==
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=0d5C7EFr+pHAYEI9Rz32IM1KwO3F7Q5NLKcNkQW4LNo=;
+        b=qh8JnBJKrlOUh0tE+D+6FZNRQDtrQLGh8taf+5wyD0tUVcuRci6T+lXC0SuQ8IdPya
+         DFX0UYmAO2zIkk7xLj6jjTZk+c41DamW/DkbmbAgvScwBy7z9tx7qpO9cyQ62fcRdK+m
+         K3Kbk8rVOise3+xH331zy9sJSewdkzQjZFTBeqpzAmvnCkDW5qgDO77yrZVSZqxN4CaB
+         CSVy2Hqic3Vr+LJ8YHUdFXCfPDVapyHa8+4bq+GuxGEJrvmz+XtP+u6Q2pIJpTd8w5Z6
+         jVSJAcXIVEmAEk9Qmmj/gbxb2hq8FijdLinPSDv7rgGJ3DYCOD0MKaYryjybQaF/HixO
+         UHZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=1EJJUbdL6WaXY+N4elk2flfwKD7mCnq0x6VxUqgRTp8=;
-        b=UAcfu1uaFiFFZEqS0Eox4rpnUPnEckC/2ooviHLfOy75cfSqsJHNRuq5eQp3/3ZKuB
-         SEcJa75tLsLLr37Mold+E6sQSAGT3ZF8UiipGcwk8ox/BcdArnlVWYs22iPELrAu9DHv
-         38PtAJ25w7SbVWzZmHVyaeIjzmmqAn7ifHUO1hjZQoX6Dhdb5oQUmGOzWtQZ/Oby87HW
-         0tbMM4PNx5c7LU7u0Fx+i54w0IEaOI4xF1LSZ3yo4Y+p1gqRnlxX6c0bFJYSwTNrqu85
-         hduWcUvpIZtEcS5Qd0cnQYOIviYrlnegEp63DLk9JmiJtnDxm4i2JUh8r70qNe3z0cz7
-         1kEA==
-X-Gm-Message-State: AOAM533tpP6GGcJCNFmud6amOhm5+QKW4jufyzql1zSR/vS3LDP5pRrR
-        D5xAW7M0hL5iNfnu4yWR+Zw=
-X-Google-Smtp-Source: ABdhPJzM3ueNnAscJQGbz7Ma0xs1PETVVbDvqaeKzPUHCGpaKiBTbbiGyjcmljh/0sC1WplrGfFklw==
-X-Received: by 2002:a17:907:a075:: with SMTP id ia21mr14985012ejc.147.1628355613332;
-        Sat, 07 Aug 2021 10:00:13 -0700 (PDT)
-Received: from skbuf ([188.25.144.60])
-        by smtp.gmail.com with ESMTPSA id u4sm3962185eje.81.2021.08.07.10.00.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Aug 2021 10:00:12 -0700 (PDT)
-Date:   Sat, 7 Aug 2021 20:00:09 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
-        Prasanna Vengateshan <prasanna.vengateshan@microchip.com>,
-        netdev@vger.kernel.org, robh+dt@kernel.org,
-        UNGLinuxDriver@microchip.com, Woojung.Huh@microchip.com,
-        hkallweit1@gmail.com, davem@davemloft.net, kuba@kernel.org,
-        linux-kernel@vger.kernel.org, vivien.didelot@gmail.com,
-        f.fainelli@gmail.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 net-next 05/10] net: dsa: microchip: add DSA support
- for microchip lan937x
-Message-ID: <20210807170009.q2gjoraaheps2tub@skbuf>
-References: <20210731150416.upe5nwkwvwajhwgg@skbuf>
- <49678cce02ac03edc6bbbd1afb5f67606ac3efc2.camel@microchip.com>
- <20210802121550.gqgbipqdvp5x76ii@skbuf>
- <YQfvXTEbyYFMLH5u@lunn.ch>
- <20210802135911.inpu6khavvwsfjsp@skbuf>
- <50eb24a1e407b651eda7aeeff26d82d3805a6a41.camel@microchip.com>
- <20210803235401.rctfylazg47cjah5@skbuf>
- <20210804095954.GN22278@shell.armlinux.org.uk>
- <20210804104625.d2qw3gr7algzppz5@skbuf>
- <YQ6pc6EZRLftmRh3@lunn.ch>
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=0d5C7EFr+pHAYEI9Rz32IM1KwO3F7Q5NLKcNkQW4LNo=;
+        b=oWAwItTU+VuHHU+LdNn7D0U0xmst5fgm3N3sfURjVXggJqj6LObd9Awxo6zKDmOjKV
+         famsBzCCCuK2LxHcvcdhwKZOlzuGl0wPwNOGDg9GFkFRRM4qUwrnGun1xraYspPzNRBh
+         O57YzLmx3kyuFw3aa3g3PkfTJP1hgFebeSDYyQvRIBw5ksJEgMl663WElmfHQBocLJEw
+         iGu07ElTwvo5Vnek7fIhpmAO3KRPC7a+jHUrXlC1R2+G3LL0FPLfiorxNH7u/40oZPL+
+         Yu914COmrCnslsXriABOyHJ5VbdRZtOwHuLht4PVefyI1ybK5CsR7mZC6ttMb0jnu/wR
+         /VtA==
+X-Gm-Message-State: AOAM530vgrmldjk8c7/nQaOOtUBHfEM9Kof/L4l2PFl6tXK9eTmVsZ36
+        EJtD7qEH6qA5hcy3Z6wHD9vBEL9o89pJGaOo
+X-Google-Smtp-Source: ABdhPJw+YJRRF/wF+ZDUlRzpS4uKxwRE6k7Il63IwY5tcpF2OTJNuWFse5bxv78jwgoFMoaUaOg8Jw==
+X-Received: by 2002:a05:6a00:721:b029:3c7:623e:a871 with SMTP id 1-20020a056a000721b02903c7623ea871mr10703947pfm.9.1628357208219;
+        Sat, 07 Aug 2021 10:26:48 -0700 (PDT)
+Received: from ?IPv6:2409:4072:92:61e9:38ed:54e8:b166:da11? ([2409:4072:92:61e9:38ed:54e8:b166:da11])
+        by smtp.gmail.com with ESMTPSA id w67sm14773160pfc.31.2021.08.07.10.26.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 07 Aug 2021 10:26:47 -0700 (PDT)
+Subject: Re: [PATCH 2/2] iio: potentiometer: Add driver support for AD5110
+To:     Lars-Peter Clausen <lars@metafoo.de>, Dragos.Bogdan@analog.com,
+        Darius.Berghe@analog.com, Rob Herring <robh+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org
+References: <20210807050900.10075-1-dmugil2000@gmail.com>
+ <20210807050900.10075-3-dmugil2000@gmail.com>
+ <53306463-668e-e291-4539-caca2352ea05@metafoo.de>
+From:   Mugilraj Dhavachelvan <dmugil2000@gmail.com>
+Message-ID: <9b58fb0c-245d-795f-2124-6cc2020bc8c5@gmail.com>
+Date:   Sat, 7 Aug 2021 22:56:32 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YQ6pc6EZRLftmRh3@lunn.ch>
+In-Reply-To: <53306463-668e-e291-4539-caca2352ea05@metafoo.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 07, 2021 at 05:40:35PM +0200, Andrew Lunn wrote:
-> I suspect it is a 50/50 roll of a dice what rx and tx actually
-> mean. Is it from the perspective of the MAC or the PHY? Luckily,
-> rgmii-rxid and rgmii-txid don't appear in DT very often.
 
-I checked an NXP board schematic which has both, and:
 
-When you connect a MAC to a PHY using RGMII, the RXD[3:0] pins of the
-MAC connect to the RXD[3:0] pins of the PHY, and the TXD[3:0] goes to
-TXD[3:0]. So it is neither the perspective of the MAC nor of the PHY.
+On 07/08/21 5:41 pm, Lars-Peter Clausen wrote:
+> On 8/7/21 7:08 AM, Mugilraj Dhavachelvan wrote:
+>> The AD5110/AD5112/AD5114 provide a nonvolatile solution
+>> for 128-/64-/32-position adjustment applications, offering
+>> guaranteed low resistor tolerance errors of ±8% and up to
+>> ±6 mA current density.
+>>
+>> Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/AD5110_5112_5114.pdf
+>> Signed-off-by: Mugilraj Dhavachelvan <dmugil2000@gmail.com>
+> 
+> Thanks for the patch. This looks really good> 
+> 
+>> [...]
+>>
+>> +static int ad5110_write(struct ad5110_data *data, u8 cmd, u8 val)
+>> +{
+>> +    int ret;
+>> +
+>> +    mutex_lock(&data->lock);
+>> +    data->buf[0] = cmd;
+>> +    data->buf[1] = val;
+>> +
+>> +    ret = i2c_master_send_dmasafe(data->client, data->buf, sizeof(data->buf));
+>> +    mutex_unlock(&data->lock);
+> 
+> This returns the number of bytes written, which can be less then the number of bytes requested if there was an error. This should check if the right amount of bytes was written and return -EIO otherwise. Same for the other places that read/write from I2C.
 
-When you connect a MAC to a MAC using RGMII, the RXD[3:0] of one MAC
-goes to the TXD[3:0] of the other, and vice versa.
-
-Nonetheless, a phy-mode of "rgmii-rxid" always means to the local MAC
-that "the RX delays have been dealt with" - either by PCB traces, or a
-remote MAC applying TX delay, or the PHY applying RX delay.
+Fixed in v2.
+> 
+>> +
+>> +    return ret < 0 ? ret : 0;
+>> +}
+>> +
+>> +static int ad5110_resistor_tol(struct ad5110_data *data, u8 cmd, int val)
+>> +{
+>> +    int ret;
+>> +
+>> +    ret = ad5110_read(data, cmd, &val);
+>> +    if (ret)
+>> +        return ret;
+>> +
+>> +    data->tol = FIELD_GET(GENMASK(6, 3), val);
+>> +    data->tol = ((val & GENMASK(2, 0)) * 1000 / 8) + data->tol * 1000;
+>> +    data->tol = data->cfg->kohms * data->tol / 100;
+> 
+> This is not wrong, but it can be implemented a bit simpler. The tolerance is encoded as a fixed point number, you don't have to treat them as two independent fields, but can treat it as one fixed point number.
+> 
+>     data->tol = data->cfg->kohms * (val & GENMASK(6, 0)) * 1000 / 100 / 8;
+> 
+Great, Fixed in v2.
+> 
+>> +    if (!(val & BIT(7)))
+>> +        data->tol *= -1;
+>> +
+>> +    return 0;
+>> +}
+>> +
+>> +static ssize_t ad5110_eeprom_read(struct device *dev,
+>> +                      struct device_attribute *attr,
+>> +                      char *buf)
+>> +{
+>> +    struct iio_dev *indio_dev = dev_to_iio_dev(dev);
+>> +    struct ad5110_data *data = iio_priv(indio_dev);
+>> +    int val = AD5110_WIPER_POS;
+>> +    int ret;
+>> +
+>> +    ret = ad5110_read(data, AD5110_EEPROM_RD, &val);
+>> +    if (ret)
+>> +        return ret;
+> Maybe apply shift to get consistent behavior with `raw`.
+Fixed in v2.
+>> +
+>> +    return iio_format_value(buf, IIO_VAL_INT, 1, &val);
+>> +}
+>> +
+>> +static ssize_t ad5110_eeprom_write(struct device *dev,
+>> +                       struct device_attribute *attr,
+>> +                       const char *buf, size_t len)
+>> +{
+>> +    struct iio_dev *indio_dev = dev_to_iio_dev(dev);
+>> +    struct ad5110_data *data = iio_priv(indio_dev);
+>> +    int ret;
+>> +
+>> +    ret = ad5110_write(data, AD5110_EEPROM_WR, 0);
+>> +    if (ret) {
+>> +        dev_err(&data->client->dev, "RDAC to EEPROM write failed\n");
+>> +        return ret;
+>> +    }
+>> +    msleep(20);
+>> +
+>> +    return len;
+>> +}
+>> +
+>> +static IIO_DEVICE_ATTR(wiper_pos_eeprom, 0644,
+>> +               ad5110_eeprom_read,
+>> +               ad5110_eeprom_write, 0);
+> This is new custom ABI and needs to be documentedI'm not aware of this, fixed in v2.
+>> +static int ad5110_write_raw(struct iio_dev *indio_dev,
+>> +                struct iio_chan_spec const *chan,
+>> +                int val, int val2, long mask)
+>> +{
+>> +    struct ad5110_data *data = iio_priv(indio_dev);
+>> +    int ret;
+>> +
+>> +    switch (mask) {
+>> +    case IIO_CHAN_INFO_RAW:
+>> +        if (val >= data->cfg->max_pos || val < 0)
+> val == data->cfg->max_pos is a valid setting. Writing max_pos puts it in top-scale mode which gives maximum resistance.
+Fixed in v2.
+>> +            return -EINVAL;
+>> +
+>> +        return ad5110_write(data, AD5110_RDAC_WR, val << data->cfg->shift);
+>> +    case IIO_CHAN_INFO_ENABLE:
+>> +        if (val < 0 || val > 1)
+>> +            return -EINVAL;
+>> +        if (data->enable == val)
+>> +            return 0;
+>> +        ret = ad5110_write(data, AD5110_SHUTDOWN, val);
+> Doesn't val have to be inverted to get the right behaviorI just replicated the datasheet operation. 
+You mean,
+ 1 - shutdown off
+ 0 - shutdown on
+If yes, then the user won't get confused with the datasheet and the behavior of the driver?
+Or Is it work like this? But yeah even I like this change it's more convenient.
+>> +        if (ret)
+>> +            return ret;
+>> +        data->enable = val;
+>> +        return 0;
+>> +    default:
+>> +        return -EINVAL;
+>> +    }
+>> +}
+> [...]
+Thanks for feedback!!
