@@ -2,87 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE1203E3308
-	for <lists+devicetree@lfdr.de>; Sat,  7 Aug 2021 05:51:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE5433E3378
+	for <lists+devicetree@lfdr.de>; Sat,  7 Aug 2021 06:51:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230459AbhHGDvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Aug 2021 23:51:41 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:38530 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230144AbhHGDvk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Aug 2021 23:51:40 -0400
-X-UUID: 11b4f14afcaa43639879aa32b0437f36-20210807
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=xbNG7nvc2tiwREXnAuN36W+NorCMrtpqAbkcTeVJiiY=;
-        b=fgNeYqq1+CCTZ/LQYe+hOZRUJZX73l5Vlt0v/qJeAsp9utx4F8DFwat89XwRoPbRxSh023q43+lMzkQQFZeVlO/JoVYC5bBBwTjiYYUJOyIgKWuQSsBIC/h5dPqox991VVJa+/GdIZqhjs5izyblt0A7ITUJ9yqVFR+LqoGaTzA=;
-X-UUID: 11b4f14afcaa43639879aa32b0437f36-20210807
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <hsin-hsiung.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1016640068; Sat, 07 Aug 2021 11:51:20 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Sat, 7 Aug 2021 11:51:18 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sat, 7 Aug 2021 11:51:18 +0800
-Message-ID: <1628308278.23588.3.camel@mtksdaap41>
-Subject: Re: [PATCH v10 4/5] spmi: mediatek: Add support for MT8195
-From:   Hsin-hsiung Wang <hsin-hsiung.wang@mediatek.com>
-To:     Stephen Boyd <sboyd@kernel.org>
-CC:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Henry Chen <henryc.chen@mediatek.com>
-Date:   Sat, 7 Aug 2021 11:51:18 +0800
-In-Reply-To: <162827215909.1975443.852277412377742323@swboyd.mtv.corp.google.com>
-References: <1627972461-2627-1-git-send-email-hsin-hsiung.wang@mediatek.com>
-         <1627972461-2627-5-git-send-email-hsin-hsiung.wang@mediatek.com>
-         <162827215909.1975443.852277412377742323@swboyd.mtv.corp.google.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S230492AbhHGEvn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Aug 2021 00:51:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51766 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230150AbhHGEvm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Aug 2021 00:51:42 -0400
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8F74C0613CF;
+        Fri,  6 Aug 2021 21:51:24 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id u16so9910442ple.2;
+        Fri, 06 Aug 2021 21:51:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=GX4fAo4gZowc2/UObZ0IC1xUUvBo7nyrkPAPltf/NFI=;
+        b=p8CK2a9BidNO2in0zHu5N/7NyeyvP1ZFpEPF5/4sd51eyRSOnXTuyiXU+BUm/tm21j
+         adFPUIdtR/JJlT9nXg3t6KHre4m9limmYhiklrzOrx9lFgF1j+bq53QABu5WAcYtZXq2
+         rAZdbgcJIlwvpDgAsfyVq6lcswP2oNs7F+CxZV+t95dAMjbyovAgOFt9XuHkeKfAMnkK
+         EhtPeyZ0dzaZfeQPGnn6Uwhm6gGNLsZM/jVY59+gZze8LEovsME5uDX/dz0EQupI56S8
+         3zmkpaRAmfSqguIrPR8J+ux3Fl21D0hog2RpUPToCxwP6mZc8j/ZnuDs3/RrNJpEnal4
+         O+vg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=GX4fAo4gZowc2/UObZ0IC1xUUvBo7nyrkPAPltf/NFI=;
+        b=oxGZv3VKd7VTE68O7xRmPnTGgobIJe0cwUiOhVt7dNmk8t5RIIrW+649kBr+jeTSU0
+         PtCCNnrQr6GhxBDiIO6U87iDE3Iy0JqQwsOjz8eCDNYFjT8P9iTmzMfai/enTAKkcDl2
+         oftpqXhaskMyP/l11lP8c6ra7X2KquE0E5svptg6dgcn0HxL/lp15kaZZvyHWedmt3Wx
+         qyJRzCGi9qeylsfHlVWX+yka3UGg/igZd8kZFw5KuhickzOYCdK7mUUECZj3ddv6ZVyG
+         1lpoy0Wq97q7SeG/hi9rQ1kOFPBm78fb1dnvbs9iDwVpM7yBQk7t4sP+h3g2Ujh/AC5e
+         asWQ==
+X-Gm-Message-State: AOAM531jC7FwLI1Hr613NRJ/xh9cUij+lyU6mLenHS07oUmcLKVZDa2S
+        0PZ7CH7wNnwPxEPaFSx0PtE=
+X-Google-Smtp-Source: ABdhPJzzn1sM7j2m2fnuwkSOTvNQa7eJqaMQuqUlMwG2/B+bMbE4y2NwCxps3TK+fhyFCYZLyLvXTw==
+X-Received: by 2002:a17:902:6b09:b029:129:c61e:e31a with SMTP id o9-20020a1709026b09b0290129c61ee31amr11313997plk.57.1628311884405;
+        Fri, 06 Aug 2021 21:51:24 -0700 (PDT)
+Received: from sol (106-69-178-229.dyn.iinet.net.au. [106.69.178.229])
+        by smtp.gmail.com with ESMTPSA id f4sm13544176pgs.3.2021.08.06.21.51.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Aug 2021 21:51:23 -0700 (PDT)
+Date:   Sat, 7 Aug 2021 12:51:16 +0800
+From:   Kent Gibson <warthog618@gmail.com>
+To:     Dipen Patel <dipenp@nvidia.com>
+Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
+        bgolaszewski@baylibre.com, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [RFC 03/11] hte: Add tegra194 HTE kernel provider
+Message-ID: <20210807045116.GA13675@sol>
+References: <20210625235532.19575-1-dipenp@nvidia.com>
+ <20210625235532.19575-4-dipenp@nvidia.com>
+ <20210701142156.GA34285@sol>
+ <52768891-6c01-7588-e557-5c9eae5375b6@nvidia.com>
+ <20210731154323.GA24906@sol>
+ <1ff6df66-9895-bd42-322a-515327f30366@nvidia.com>
+ <20210807030746.GA9850@sol>
+ <91a173b3-18dc-5d6b-002f-893e7478717b@nvidia.com>
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <91a173b3-18dc-5d6b-002f-893e7478717b@nvidia.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksDQpzb3JyeSBmb3IgbWlzc2luZyBvdGhlciBjb21tZW50cywgSSB3aWxsIGNvbmZpcm0gaXQg
-aW50ZXJuYWxseSBhbmQNCnVwZGF0ZSBpdC4NCg0KVGhhbmtzIGEgbG90Lg0KDQpPbiBGcmksIDIw
-MjEtMDgtMDYgYXQgMTA6NDkgLTA3MDAsIFN0ZXBoZW4gQm95ZCB3cm90ZToNCj4gUXVvdGluZyBI
-c2luLUhzaXVuZyBXYW5nICgyMDIxLTA4LTAyIDIzOjM0OjIwKQ0KPiA+IEZyb206IEhlbnJ5IENo
-ZW4gPGhlbnJ5Yy5jaGVuQG1lZGlhdGVrLmNvbT4NCj4gPiANCj4gPiBBZGQgc3BtaSBzdXBwb3J0
-IGZvciBNVDgxOTUuDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogSGVucnkgQ2hlbiA8aGVucnlj
-LmNoZW5AbWVkaWF0ZWsuY29tPg0KPiANCj4gTWlzc2luZyBTaWduZWQtb2ZmLWJ5IGZyb20gaHNp
-bi1oc2l1bmcud2FuZyBoZXJlDQo+IA0KPiA+IC0tLQ0KPiA+IGNoYW5nZXMgc2luY2Ugdjk6DQo+
-ID4gLSBObyBjaGFuZ2UuDQo+ID4gLS0tDQo+ID4gIGRyaXZlcnMvc3BtaS9zcG1pLW10ay1wbWlm
-LmMgfCA5MCArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysNCj4gPiAgMSBmaWxl
-IGNoYW5nZWQsIDkwIGluc2VydGlvbnMoKykNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9zcG1pL3NwbWktbXRrLXBtaWYuYyBiL2RyaXZlcnMvc3BtaS9zcG1pLW10ay1wbWlmLmMNCj4g
-PiBpbmRleCA5NGM0NWQ0NmFiMGMuLjBjMzIwODAxYzlkNSAxMDA2NDQNCj4gPiAtLS0gYS9kcml2
-ZXJzL3NwbWkvc3BtaS1tdGstcG1pZi5jDQo+ID4gKysrIGIvZHJpdmVycy9zcG1pL3NwbWktbXRr
-LXBtaWYuYw0KPiA+IEBAIC0zNDgsNiArNDI3LDE0IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgcG1p
-Zl9kYXRhIG10Njg3M19wbWlmX2FyYiA9IHsNCj4gPiAgICAgICAgIC5zb2NfY2hhbiA9IDIsDQo+
-ID4gIH07DQo+ID4gIA0KPiA+ICtzdGF0aWMgY29uc3Qgc3RydWN0IHBtaWZfZGF0YSBtdDgxOTVf
-cG1pZl9hcmJbXSA9IHsNCj4gDQo+IFRoaXMgaXMgYW4gYXJyYXkgb2YgdHlwZSBwbWlmX2RhdGEu
-DQo+IA0KPiA+ICsgICAgICAgew0KPiA+ICsgICAgICAgICAgICAgICAucmVncyA9IG10ODE5NV9y
-ZWdzLA0KPiA+ICsgICAgICAgICAgICAgICAuc3BtaW1zdF9yZWdzID0gbXQ4MTk1X3NwbWlfcmVn
-cywNCj4gPiArICAgICAgICAgICAgICAgLnNvY19jaGFuID0gMiwNCj4gPiArICAgICAgIH0sDQo+
-ID4gK307DQo+ID4gKw0KPiA+ICBzdGF0aWMgaW50IG10a19zcG1pX3Byb2JlKHN0cnVjdCBwbGF0
-Zm9ybV9kZXZpY2UgKnBkZXYpDQo+ID4gIHsNCj4gPiAgICAgICAgIHN0cnVjdCBwbWlmICphcmI7
-DQo+ID4gQEAgLTQ0NCw2ICs1MzEsOSBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IG9mX2RldmljZV9p
-ZCBtdGtfc3BtaV9tYXRjaF90YWJsZVtdID0gew0KPiA+ICAgICAgICAgew0KPiA+ICAgICAgICAg
-ICAgICAgICAuY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDY4NzMtc3BtaSIsDQo+ID4gICAgICAg
-ICAgICAgICAgIC5kYXRhID0gJm10Njg3M19wbWlmX2FyYiwNCj4gDQo+IG10Njg3M19wbWlmX2Fy
-YiBpcyBub3QgYW4gYXJyYXksIHNlZSB0aGUgY29udGV4dCBoZWFkZXIgYWJvdmUuDQo+IA0KPiBI
-b3cgZG9lcyB0aGlzIHdvcms/IEhhcyB0aGlzIGJlZW4gdGVzdGVkPw0KPiANCj4gPiArICAgICAg
-IH0sIHsNCj4gPiArICAgICAgICAgICAgICAgLmNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTk1
-LXNwbWkiLA0KPiA+ICsgICAgICAgICAgICAgICAuZGF0YSA9ICZtdDgxOTVfcG1pZl9hcmIsDQo+
-ID4gICAgICAgICB9LCB7DQo+ID4gICAgICAgICAgICAgICAgIC8qIHNlbnRpbmVsICovDQo+ID4g
-ICAgICAgICB9LA0KPiA+IC0tIA0KPiA+IDIuMTguMA0KPiA+DQoNCg==
+On Fri, Aug 06, 2021 at 09:52:54PM -0700, Dipen Patel wrote:
+> 
+> On 8/6/21 8:07 PM, Kent Gibson wrote:
+> > On Fri, Aug 06, 2021 at 07:41:09PM -0700, Dipen Patel wrote:
+> >> On 7/31/21 8:43 AM, Kent Gibson wrote:
+> >>> On Wed, Jul 28, 2021 at 04:59:08PM -0700, Dipen Patel wrote:
+> >>>> Thanks Kent for the review comment. My responses inline.
+> >>>>
 
+<snip>
+
+> >
+> >> 2. Does hte handler solution create race between two handlers? i.e. edge_irq_handler and
+> >>
+> >> hte_handler, for the worst case scenario as below?
+> >>
+> > No.  If hardware timestamp is selected then no irq is requested from the
+> > irq subsystem for that line - only from the hte subsystem instead.
+> > So there will be no edge_irq_handler call for that line, so no possible race.
+> 
+> That is not possible for certain providers, for example the one I am dealing
+> 
+> with which requires GPIO line to be requested as input and IRQ needs to
+> 
+> be enabled on them.
+> 
+
+So, for your hte subsystem to work, the consumer has to also request
+a line from the irq subsystem?  That makes sense to you?
+Have hte do that, rather than the consumer.
+
+And another reason it makes sense to integrate this with irq...
+
+Cheers,
+Kent.
