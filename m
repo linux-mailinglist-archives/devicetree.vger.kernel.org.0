@@ -2,83 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 10DE83E34D9
-	for <lists+devicetree@lfdr.de>; Sat,  7 Aug 2021 12:37:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 731ED3E34DE
+	for <lists+devicetree@lfdr.de>; Sat,  7 Aug 2021 12:40:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231612AbhHGKhx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Aug 2021 06:37:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42394 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231834AbhHGKhu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Aug 2021 06:37:50 -0400
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1ED1DC0613CF;
-        Sat,  7 Aug 2021 03:37:33 -0700 (PDT)
-Received: by mail-pl1-x62c.google.com with SMTP id c16so10640377plh.7;
-        Sat, 07 Aug 2021 03:37:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=cOqop49TO9y4iKlVvaZlNAFE274ACz5k07MpZwKL26g=;
-        b=Bv3rSHN2iQk1YdtOZV+oPO7kNdI+98gUGdMBh0AkIr7PitjVuURcz5/0vDDB+3p2x4
-         tYzks2qCpGrhtPHMwfEu+N4pAZ56oYQ8euVtIKM6d8NJaRiWmV+YnUxbi+ExQcZ4pcPD
-         ikCzjnn7QJWqoOU7Av/VbazABcQ8VHBQq80u373HKqvoMTz5mOFVSBEE6vdZE+TR9fjd
-         6jAIaaSTuZPfuyUva2R4ElvjmcHItJEg34H+ds2EziQmN1sm3fImMI9gZNt8m7UJ4048
-         nqY+yQ0i606NKCO+leA0fvjRbOZm1hsUX3o1mDb7u2rRzveemXHSNrSirX8zPKZUDCbh
-         i2RQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=cOqop49TO9y4iKlVvaZlNAFE274ACz5k07MpZwKL26g=;
-        b=GY3iPyrvRKewUYCeLtYdZicTSkaWflmyQV61UrvcMvlJrYti5sA4GvKOLxtaU2j5XW
-         gu2MeptcXDhI30ZOYoqLLeSnkjDVl5GukHvuGYKvKbYue25nm5u5dldTsXjnpML5com+
-         kaLybah7YCxgErcVp6H/6uWFkc9inzjAQLl29hKWjs1aL+S39ZGaihjsstIWyoSstFwN
-         GmHOZfaQ+uJCJ2Bk2QNNRfpb8ZE9Qf/b3qPMKGbE/KBWnngDkdWZeVGpGOYD4Mp9fx3i
-         DjIwF776jWEo39L00Hd64YhRKucv1YVWFOam+NiKDSgpe/UXcYiwtbCKt4lNT83Uz5dB
-         fe9Q==
-X-Gm-Message-State: AOAM532VVhwNOSz/0/t50GWSG2rzbsdxE7vh3namksbxIR2OZdgT2MKv
-        1+hBBVuEHxvzPRvX4BajgzBciAOXZeyFpsYnTdoP8V+y33w=
-X-Google-Smtp-Source: ABdhPJyZkbcJ7w1Xu92vuQiCpBzQFI/sjQ2dQTNJrwxePMa9aUSvWB445uc08XeRtyzX/MrA+0VvHZl0zuKpcrQnVLQ=
-X-Received: by 2002:a17:90b:33c5:: with SMTP id lk5mr26016485pjb.129.1628332652567;
- Sat, 07 Aug 2021 03:37:32 -0700 (PDT)
+        id S231975AbhHGKkN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Aug 2021 06:40:13 -0400
+Received: from out3-smtp.messagingengine.com ([66.111.4.27]:36733 "EHLO
+        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231866AbhHGKkM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Aug 2021 06:40:12 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id 75D585C00C2;
+        Sat,  7 Aug 2021 06:39:53 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute3.internal (MEProxy); Sat, 07 Aug 2021 06:39:53 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
+         h=from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm1; bh=qBlHc/HzAsSKMeFA1XMS6ZPxfm
+        sCIHtt2iKmIwR3PKY=; b=ZI1i3pU7JmexFwteQ+DC5PER7UCUAHT9Q6dcZ6Tk5X
+        jLleqKpG8nKvpnjNJ6XI8KeAnv/0lDqR80/BRBXgRLGxuSynFWN3Hncb/XS6RV7u
+        FB9v/9hU/RooHqzoJ6Qtdvlsvi3zKQqh0PbwrDAtyQVQuxaE94ZXqhmW1azVAtzP
+        ER5RDZ7+GQwgFqE1z9y8IkFP4T2+xs7SPqm6hFBPNMf+2wvrZ7JUO6mEQ9WVuiKw
+        Ai/oGaSBdLl73wCLGohTMjXJ8OlGJSq2WBHrrn2d8p92m/1ipQo3uJKJwIyLzdUy
+        as1q4F8eQYKvPXHsJd0pv1mr0JJnYG9nw1mk9EftgUCg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=qBlHc/HzAsSKMeFA1
+        XMS6ZPxfmsCIHtt2iKmIwR3PKY=; b=D/EbGsvnMDKSmyGg5VQlFs1WTC+9QnvK4
+        nm+X/4vmHmoA+SpyBjg/nDyOcIr2ozYRQAvyNy1x3du6GWJEc+jFI1kUf7mbhAHF
+        XEkOLCUvAvsVjoz9aq7/83TH2KTmmt4qonDmEGAnjkxUJLXHf39Cofi07PngZnrj
+        bwNwAPVt5XjFXh9pXe0fmt/kpKVlomJwdFQPY1xZa21pfLApBOYQ71m0XdmXlAw7
+        4K2MhqYwqYTNJk6Fb5tp9HRKIxAPrzFU/tCa5FV1MMXERXbEh3viZm6p0OS3qRb5
+        cPv3BeQuZr/R0D7ixlaTp4qM3Pqpwy20wfi6RjplBEqb4Ft/baAEw==
+X-ME-Sender: <xms:-GIOYa05UfqKGqGPxUXGxiCYKnkPUaR3LxKf5_l1WhTDnx4bOaV99w>
+    <xme:-GIOYdEY2QeEqJYIJvdZNfVSMKoc0oZH7dG12tIskxQUjtM_CU54aEajstZaWj9Sz
+    G9gi34_aHWwX-qBByE>
+X-ME-Received: <xmr:-GIOYS6vx3nYbXnuF-rZNbV6xlR88_htdsYI5YhZJUU0L88kNaoxGLhFYnP-ZNS5gNyTpfmOa9OEi1rZ-D0SK4tP2EcChY0t3N_5qzcGc9PAGSYbaQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrjeefgdefudcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffoggfgsedtkeertdertd
+    dtnecuhfhrohhmpeetlhhishhtrghirhcuhfhrrghntghishcuoegrlhhishhtrghirhes
+    rghlihhsthgrihhrvdefrdhmvgeqnecuggftrfgrthhtvghrnhepjeeliefhvdetgfdtte
+    fhtdegffdtiefffeejiefffeevueeljeehjeevhfffueeknecuvehluhhsthgvrhfuihii
+    vgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghlihhsthgrihhrsegrlhhishhtrg
+    hirhdvfedrmhgv
+X-ME-Proxy: <xmx:-GIOYb1WtOg8EmnhkRWv2Q9CV5MlvmZYW-PoGmLG71N4H6QWzxUMXw>
+    <xmx:-GIOYdGANjM0NJuuZN0dA0iab5YK0y9KIhlACEYCLWSMFzKYbhiGVg>
+    <xmx:-GIOYU87g0XdueV5s7M2jtwz_I1a8TQpaXC5o9n9CVZDz3DfpTbViQ>
+    <xmx:-WIOYU15bkEwZAmegQxDQsdQdkCfB4f44z_7bFDX8d8CjPzfdrxkGw>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 7 Aug 2021 06:39:48 -0400 (EDT)
+From:   Alistair Francis <alistair@alistair23.me>
+To:     lee.jones@linaro.org, robh+dt@kernel.org, lgirdwood@gmail.com,
+        broonie@kernel.org, linux-imx@nxp.com, kernel@pengutronix.de
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        alistair23@gmail.com, Alistair Francis <alistair@alistair23.me>
+Subject: [PATCH v10 00/11] Add support for the silergy,sy7636a
+Date:   Sat,  7 Aug 2021 20:39:29 +1000
+Message-Id: <20210807103940.152-1-alistair@alistair23.me>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20210806105524.231838-1-xxm@rock-chips.com>
-In-Reply-To: <20210806105524.231838-1-xxm@rock-chips.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Sat, 7 Aug 2021 13:36:56 +0300
-Message-ID: <CAHp75VcSMx3CPt9cgzdZ63xRrowm1H+Jpbhd5W74oeVBUY34WQ@mail.gmail.com>
-Subject: Re: [PATCH v2] iio: adc: rockchip_saradc: add voltage notifier so get
- referenced voltage once at probe
-To:     Simon Xue <xxm@rock-chips.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        David Wu <david.wu@rock-chips.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 6, 2021 at 6:24 PM Simon Xue <xxm@rock-chips.com> wrote:
->
-> From: David Wu <david.wu@rock-chips.com>
->
-> Add voltage notifier, no need to query regulator voltage for
-> every saradc read, just get regulator voltage once at probe.
->
-> Signed-off-by: Simon Xue <xxm@rock-chips.com>
-> Signed-off-by: David Wu <david.wu@rock-chips.com>
+This series applied on top of the "mfd: simple-mfd-i2c: Add support for
+registering devices via MFD cells" patch. Once "mfd: simple-mfd-i2c: Add
+support for registering devices via MFD cells" is merged this series is
+ready to go.
 
-The order of SoB tags seems wrong or Co-developed-by is missed.
+v10:
+ - Use dev_get_regmap() instead of dev_get_drvdata()
+v9:
+ - Convert to use the simple-mfd-i2c instead
+
+Alistair Francis (11):
+  dt-bindings: mfd: Initial commit of silergy,sy7636a.yaml
+  mfd: simple-mfd-i2c: Add a Kconfig name
+  mfd: simple-mfd-i2c: Enable support for the silergy,sy7636a
+  regulator: sy7636a: Use the regmap directly
+  regulator: sy7636a: Remove requirement on sy7636a mfd
+  thermal: sy7636a: Add thermal driver for sy7636a
+  hwmon: sy7636a: Add temperature driver for sy7636a
+  ARM: imx_v6_v7_defconfig: Enable silergy,sy7636a
+  ARM: dts: imx7d: remarkable2: Enable silergy,sy7636a
+  ARM: imx_v6_v7_defconfig: Enable backlight class devices
+  ARM: dts: imx7d: remarkable2: Enable lcdif
+
+ .../bindings/mfd/silergy,sy7636a.yaml         |  79 ++++++++++++
+ arch/arm/boot/dts/imx7d-remarkable2.dts       | 115 ++++++++++++++++++
+ arch/arm/configs/imx_v6_v7_defconfig          |   5 +
+ drivers/hwmon/Kconfig                         |  10 ++
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/sy7636a-hwmon.c                 |  77 ++++++++++++
+ drivers/mfd/Kconfig                           |   2 +-
+ drivers/mfd/simple-mfd-i2c.c                  |  12 ++
+ drivers/regulator/Kconfig                     |   1 -
+ drivers/regulator/sy7636a-regulator.c         |  13 +-
+ drivers/thermal/Kconfig                       |   6 +
+ drivers/thermal/Makefile                      |   1 +
+ drivers/thermal/sy7636a_thermal.c             |  91 ++++++++++++++
+ include/linux/mfd/sy7636a.h                   |  41 +++++++
+ 14 files changed, 445 insertions(+), 9 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/silergy,sy7636a.yaml
+ create mode 100644 drivers/hwmon/sy7636a-hwmon.c
+ create mode 100644 drivers/thermal/sy7636a_thermal.c
+ create mode 100644 include/linux/mfd/sy7636a.h
 
 -- 
-With Best Regards,
-Andy Shevchenko
+2.31.1
+
