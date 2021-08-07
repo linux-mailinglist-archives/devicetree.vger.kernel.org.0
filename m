@@ -2,223 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 532C03E3687
-	for <lists+devicetree@lfdr.de>; Sat,  7 Aug 2021 19:34:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D779E3E36E8
+	for <lists+devicetree@lfdr.de>; Sat,  7 Aug 2021 21:05:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229577AbhHGRer (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Aug 2021 13:34:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48240 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229464AbhHGRer (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Aug 2021 13:34:47 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1203DC0613CF;
-        Sat,  7 Aug 2021 10:34:29 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id mt6so21465002pjb.1;
-        Sat, 07 Aug 2021 10:34:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:from:to:references:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=t7bTmWC+qKcdA7NLxNga3iR1jXOFJu4plAdNWHvCPVI=;
-        b=F8BNco+mhTQsTGtrOwf56Dhl9Vt8RVfkmraKHXekG9wIj0hmPapd2zIY97e7bXKnCH
-         1+teFvBrR3KxrUKV6B3Lgo8p8LSvIEt49BmyXgTkabSv9oRg9h4drIrYIa+o9uPZBjwm
-         oYwIrpsBL5XFUtRcORlGfvQjclvOVPw5skljRFQVG9tmpxHY0Sj6ZPJnyY6hyrnYLQVF
-         4VxOSBfba+AfKR0FbcgrkKeoeq9S2RyTt0BkI9NP/Nte66X0GZtNbf/vQACHFvTCvohG
-         vj72MILcMOx1KKdCFAnEpVgUqtc5+RoxtE+Q+9p0qH1FvIqyOniRp5z47gr9R7hagp+5
-         2GrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:from:to:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=t7bTmWC+qKcdA7NLxNga3iR1jXOFJu4plAdNWHvCPVI=;
-        b=I0H4O3lKMAV/rkcrQYPLEWFOhRY9IGOUIj+29O2GlzQdvebbjMoTXR33vrmXS8VRNc
-         1Mvzbrl6xy23deT2ZPoMxoYkPnVVCIN/Q/V7GiQUu9lzJr4OrmPm9sJdWoyEPEJPIQng
-         +68Gg4efqDUUreo9fxzeN8XqR7IsAi/0UjeelpJku6fjEIHUoz0df6Wtzu6v/zVylg5e
-         AWLX0QxT4d3WAe9J1a63QaYwetfnAxbN2hRjTDyFLfyfWQhmP+xqc/b4NDgYGIs57nfX
-         paOkzelCJ41fs4P/mVLs5L0T2q2cKw4t/wPuHXdT03wFttd6lKYuwcI8kPIqKp1RmFoO
-         bgEw==
-X-Gm-Message-State: AOAM532dYuQh86VBL9d5IuOidTeGcAreacJfiwYPsIEGy+vw9SxHCZjd
-        ChcJTRl14RnnIBX2l8AIimt6o4Shzq+W6UKo
-X-Google-Smtp-Source: ABdhPJzWwkIRetrjWGd8ubnR9rtch5yOyR+TTkBMXWEmVLnHgSM5Q5E2wF+RI//MFaY/KCtdyhTdOQ==
-X-Received: by 2002:a17:90a:9b13:: with SMTP id f19mr26345668pjp.224.1628357668107;
-        Sat, 07 Aug 2021 10:34:28 -0700 (PDT)
-Received: from ?IPv6:2409:4072:92:61e9:38ed:54e8:b166:da11? ([2409:4072:92:61e9:38ed:54e8:b166:da11])
-        by smtp.gmail.com with ESMTPSA id j128sm15255123pfd.38.2021.08.07.10.34.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 07 Aug 2021 10:34:27 -0700 (PDT)
-Subject: Re: [PATCH 2/2] iio: potentiometer: Add driver support for AD5110
-From:   Mugilraj Dhavachelvan <dmugil2000@gmail.com>
-To:     Lars-Peter Clausen <lars@metafoo.de>, Dragos.Bogdan@analog.com,
-        Darius.Berghe@analog.com, Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org
-References: <20210807050900.10075-1-dmugil2000@gmail.com>
- <20210807050900.10075-3-dmugil2000@gmail.com>
- <53306463-668e-e291-4539-caca2352ea05@metafoo.de>
- <9b58fb0c-245d-795f-2124-6cc2020bc8c5@gmail.com>
-Message-ID: <66d670d6-0374-88ae-c4c1-efd60b54bbd2@gmail.com>
-Date:   Sat, 7 Aug 2021 23:04:18 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S229471AbhHGTFf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Aug 2021 15:05:35 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:38408 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229464AbhHGTFf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 7 Aug 2021 15:05:35 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=kn6cL09Y4NMxxmqQnsrVBNiHMYyVkK31PINrCIN33Ng=; b=uQiZf+RdEytsY/zD0ZsCeJSOBS
+        5DpjrN8NCiQ0zTiJosZEaRGs2PbJo5j5Dv4PpxQA/S2/0TxRn5VeCbsxDh/9PEe/DiqLacgSFQ76h
+        12Xj4W9GulTn4OIlxpmdS47M+fwriBIiG3LIgvSCl6DnE0V2h+TIfdp03XnAgoyKOTGE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mCRd0-00GVy6-CR; Sat, 07 Aug 2021 21:05:02 +0200
+Date:   Sat, 7 Aug 2021 21:05:02 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stafford Horne <shorne@gmail.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Anton Blanchard <anton@ozlabs.org>,
+        Gabriel Somlo <gsomlo@gmail.com>, David Shah <dave@ds0.me>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mateusz Holenko <mholenko@antmicro.com>,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: net: Add bindings for LiteETH
+Message-ID: <YQ7ZXu7hHTCNBwNz@lunn.ch>
+References: <20210806054904.534315-1-joel@jms.id.au>
+ <20210806054904.534315-2-joel@jms.id.au>
 MIME-Version: 1.0
-In-Reply-To: <9b58fb0c-245d-795f-2124-6cc2020bc8c5@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210806054904.534315-2-joel@jms.id.au>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sorry some formatting issues happened in my previous mail.
+On Fri, Aug 06, 2021 at 03:19:03PM +0930, Joel Stanley wrote:
+> LiteETH is a small footprint and configurable Ethernet core for FPGA
+> based system on chips.
+> 
+> Signed-off-by: Joel Stanley <joel@jms.id.au>
+> ---
+>  .../bindings/net/litex,liteeth.yaml           | 62 +++++++++++++++++++
+>  1 file changed, 62 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/litex,liteeth.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/litex,liteeth.yaml b/Documentation/devicetree/bindings/net/litex,liteeth.yaml
+> new file mode 100644
+> index 000000000000..e2a837dbfdaa
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/litex,liteeth.yaml
+> @@ -0,0 +1,62 @@
+> +# SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/litex,liteeth.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: LiteX LiteETH ethernet device
+> +
+> +maintainers:
+> +  - Joel Stanley <joel@jms.id.au>
+> +
+> +description: |
+> +  LiteETH is a small footprint and configurable Ethernet core for FPGA based
+> +  system on chips.
+> +
+> +  The hardware source is Open Source and can be found on at
+> +  https://github.com/enjoy-digital/liteeth/.
+> +
+> +properties:
+> +  compatible:
+> +    const: litex,liteeth
+> +
+> +  reg:
+> +    minItems: 3
+> +    items:
+> +      - description: MAC registers
+> +      - description: MDIO registers
+> +      - description: Packet buffer
 
-On 07/08/21 10:56 pm, Mugilraj Dhavachelvan wrote:
-> 
-> 
-> On 07/08/21 5:41 pm, Lars-Peter Clausen wrote:
->> On 8/7/21 7:08 AM, Mugilraj Dhavachelvan wrote:
->>> The AD5110/AD5112/AD5114 provide a nonvolatile solution
->>> for 128-/64-/32-position adjustment applications, offering
->>> guaranteed low resistor tolerance errors of ±8% and up to
->>> ±6 mA current density.
->>>
->>> Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/AD5110_5112_5114.pdf
->>> Signed-off-by: Mugilraj Dhavachelvan <dmugil2000@gmail.com>
->>
->> Thanks for the patch. This looks really good> 
->>
->>> [...]
->>>
->>> +static int ad5110_write(struct ad5110_data *data, u8 cmd, u8 val)
->>> +{
->>> +    int ret;
->>> +
->>> +    mutex_lock(&data->lock);
->>> +    data->buf[0] = cmd;
->>> +    data->buf[1] = val;
->>> +
->>> +    ret = i2c_master_send_dmasafe(data->client, data->buf, sizeof(data->buf));
->>> +    mutex_unlock(&data->lock);
->>
->> This returns the number of bytes written, which can be less then the number of bytes requested if there was an error. This should check if the right amount of bytes was written and return -EIO otherwise. Same for the other places that read/write from I2C.
-> 
-> Fixed in v2.
->>
->>> +
->>> +    return ret < 0 ? ret : 0;
->>> +}
->>> +
->>> +static int ad5110_resistor_tol(struct ad5110_data *data, u8 cmd, int val)
->>> +{
->>> +    int ret;
->>> +
->>> +    ret = ad5110_read(data, cmd, &val);
->>> +    if (ret)
->>> +        return ret;
->>> +
->>> +    data->tol = FIELD_GET(GENMASK(6, 3), val);
->>> +    data->tol = ((val & GENMASK(2, 0)) * 1000 / 8) + data->tol * 1000;
->>> +    data->tol = data->cfg->kohms * data->tol / 100;
->>
->> This is not wrong, but it can be implemented a bit simpler. The tolerance is encoded as a fixed point number, you don't have to treat them as two independent fields, but can treat it as one fixed point number.
->>
->>     data->tol = data->cfg->kohms * (val & GENMASK(6, 0)) * 1000 / 100 / 8;
->>
-> Great, Fixed in v2.
->>
->>> +    if (!(val & BIT(7)))
->>> +        data->tol *= -1;
->>> +
->>> +    return 0;
->>> +}
->>> +
->>> +static ssize_t ad5110_eeprom_read(struct device *dev,
->>> +                      struct device_attribute *attr,
->>> +                      char *buf)
->>> +{
->>> +    struct iio_dev *indio_dev = dev_to_iio_dev(dev);
->>> +    struct ad5110_data *data = iio_priv(indio_dev);
->>> +    int val = AD5110_WIPER_POS;
->>> +    int ret;
->>> +
->>> +    ret = ad5110_read(data, AD5110_EEPROM_RD, &val);
->>> +    if (ret)
->>> +        return ret;
->> Maybe apply shift to get consistent behavior with `raw`.
-> Fixed in v2.
->>> +
->>> +    return iio_format_value(buf, IIO_VAL_INT, 1, &val);
->>> +}
->>> +
->>> +static ssize_t ad5110_eeprom_write(struct device *dev,
->>> +                       struct device_attribute *attr,
->>> +                       const char *buf, size_t len)
->>> +{
->>> +    struct iio_dev *indio_dev = dev_to_iio_dev(dev);
->>> +    struct ad5110_data *data = iio_priv(indio_dev);
->>> +    int ret;
->>> +
->>> +    ret = ad5110_write(data, AD5110_EEPROM_WR, 0);
->>> +    if (ret) {
->>> +        dev_err(&data->client->dev, "RDAC to EEPROM write failed\n");
->>> +        return ret;
->>> +    }
->>> +    msleep(20);
->>> +
->>> +    return len;
->>> +}
->>> +
->>> +static IIO_DEVICE_ATTR(wiper_pos_eeprom, 0644,
->>> +               ad5110_eeprom_read,
->>> +               ad5110_eeprom_write, 0);
->> This is new custom ABI and needs to be documented
+Hi Joel
 
-> I'm not aware of this, fixed in v2.
->>> +static int ad5110_write_raw(struct iio_dev *indio_dev,
->>> +                struct iio_chan_spec const *chan,
->>> +                int val, int val2, long mask)
->>> +{
->>> +    struct ad5110_data *data = iio_priv(indio_dev);
->>> +    int ret;
->>> +
->>> +    switch (mask) {
->>> +    case IIO_CHAN_INFO_RAW:
->>> +        if (val >= data->cfg->max_pos || val < 0)
->> val == data->cfg->max_pos is a valid setting. Writing max_pos puts it in top-scale mode which gives maximum resistance.
-> Fixed in v2.
->>> +            return -EINVAL;
->>> +
->>> +        return ad5110_write(data, AD5110_RDAC_WR, val << data->cfg->shift);
->>> +    case IIO_CHAN_INFO_ENABLE:
->>> +        if (val < 0 || val > 1)
->>> +            return -EINVAL;
->>> +        if (data->enable == val)
->>> +            return 0;
->>> +        ret = ad5110_write(data, AD5110_SHUTDOWN, val);
->> Doesn't val have to be inverted to get the right behavior
+How configurable is the synthesis? Can the MDIO bus be left out? You
+can have only the MDIO bus and no MAC?
 
-> I just replicated the datasheet operation. 
-> You mean,
->  1 - shutdown off
->  0 - shutdown on
-> If yes, then the user won't get confused with the datasheet and the behavior of the driver?
-> Or Is it work like this? But yeah even I like this change it's more convenient.
->>> +        if (ret)
->>> +            return ret;
->>> +        data->enable = val;
->>> +        return 0;
->>> +    default:
->>> +        return -EINVAL;
->>> +    }
->>> +}
->> [...]
-> Thanks for feedback!!
-> 
+I've not looked at the driver yet, but if the MDIO bus has its own
+address space, you could consider making it a standalone
+device. Somebody including two or more LiteETH blocks could then have
+one shared MDIO bus. That is a supported Linux architecture.
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  rx-fifo-depth:
+> +    description: Receive FIFO size, in units of 2048 bytes
+> +
+> +  tx-fifo-depth:
+> +    description: Transmit FIFO size, in units of 2048 bytes
+> +
+> +  mac-address:
+> +    description: MAC address to use
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    mac: ethernet@8020000 {
+> +        compatible = "litex,liteeth";
+> +        reg = <0x8021000 0x100
+> +               0x8020800 0x100
+> +               0x8030000 0x2000>;
+> +        rx-fifo-depth = <2>;
+> +        tx-fifo-depth = <2>;
+> +        interrupts = <0x11 0x1>;
+> +    };
+
+You would normally expect to see some MDIO properties here, a link to
+the standard MDIO yaml, etc.
+
+    Andrew
