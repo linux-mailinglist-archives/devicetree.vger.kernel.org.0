@@ -2,61 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B20D3E35D6
-	for <lists+devicetree@lfdr.de>; Sat,  7 Aug 2021 16:17:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF3873E362A
+	for <lists+devicetree@lfdr.de>; Sat,  7 Aug 2021 17:40:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232382AbhHGOR0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Aug 2021 10:17:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33704 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232313AbhHGORZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Aug 2021 10:17:25 -0400
-Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DF85C0613D3
-        for <devicetree@vger.kernel.org>; Sat,  7 Aug 2021 07:17:07 -0700 (PDT)
-Received: by mail-qt1-x831.google.com with SMTP id l24so8792255qtj.4
-        for <devicetree@vger.kernel.org>; Sat, 07 Aug 2021 07:17:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=0g6E9ZWqmNwHUiwpoM21iPmP3L/rajbfelysOLVGPxg=;
-        b=WTxxm4LciBqBEdz0aEkR/zwaE5cRDXpOK/V3ZUAWuaqK3p0o2BYaOamyf4aMeIo2oL
-         phfTmVEGkA872XLN5/yipoECWaTaSkoFOWOmrG6AmCvvEOTDB4yfxRHNeRmVy6z6Lxqx
-         JDehul7ze1fXvsMLxNj51yFSzdKnZbXjB7O7D23SNDXn5FL95mCBwEActh2vjZsigZFt
-         HoSv2ogACWwjY+5iPbEgpChBmvUO19kovK7D9Dwqe32cC7H/SDVyv0XtMDh69T6letx7
-         WdGFIhXUUpoFZf9alO7Jm6r0+ZHmJt9osXZEwAw5vqezAiq9q7Y2WT5gyf9g5h5hYi5f
-         imsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=0g6E9ZWqmNwHUiwpoM21iPmP3L/rajbfelysOLVGPxg=;
-        b=Dyp5JIeQdxnBFT5O9PvMBQ9MtqoZrCk/3bFKU5MDH9nSUJiWWJHLQ3pjtB4TQozJeC
-         AZGjUxPK0ovekCxLrYvbFlWJ4zD6OYNVGQyHjPRVFbs+dJ5Sy+AAAvl9i23ARUDUmTeq
-         /B2z0yjxZqR52/8zYt0LLkpeG9UTsSt/fj72VLccpIGSltGVGF/xrAQ0zo/HhYMlsScr
-         ttzfRPTwNGgwjo1Sv7B6IFd8XikilwCQ8rdYEVb0B3aVOOmfiDpGwWnpv1vfwGbW6LCh
-         uY2JJ6qp6euclhNlP5MzM1+NBQQkANEFmd9OedRNlgkdebXLSWI/3t5cVdMR+knoWyif
-         xhBQ==
-X-Gm-Message-State: AOAM530+v97sg7iazBp3aTpsBl547WAFniSpDmYlien6x3q9GgCj9GFB
-        DSfB7qklOV1teB1WpbO1n1HpA7p9qCRWoJzIZPA=
-X-Google-Smtp-Source: ABdhPJw/7cWNOjGgqRgeFLZoWUO56Xn1G4fGciTanwIuWO1h3+nhdM2ZWT3utfnplQO3U7c8lpHUnTrBMSZ9GS4Hf08=
-X-Received: by 2002:aed:2103:: with SMTP id 3mr13081244qtc.109.1628345826680;
- Sat, 07 Aug 2021 07:17:06 -0700 (PDT)
+        id S231491AbhHGPlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Aug 2021 11:41:02 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:38236 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229828AbhHGPlC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 7 Aug 2021 11:41:02 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=ljG+gOgPhLlIz+lF+PzNSjVAdj+ITrjpHY3qF3K40KI=; b=g46H/LDkYQ6QABx6TRj66BCzfk
+        tD2triw69MSMuR0BVTahWTRFR2XuOtxStoGwARv5iEStVYURGkVIuoChIy47fid58dtnu29l9iVvK
+        gNzi8D1IHKfGhen1wvFe8Akp3XPyUc4ZLW4O39DtYexQFz0UTu6eUvM/X0fLODy5Izl8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mCOR9-00GVPH-Ra; Sat, 07 Aug 2021 17:40:35 +0200
+Date:   Sat, 7 Aug 2021 17:40:35 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        Prasanna Vengateshan <prasanna.vengateshan@microchip.com>,
+        netdev@vger.kernel.org, robh+dt@kernel.org,
+        UNGLinuxDriver@microchip.com, Woojung.Huh@microchip.com,
+        hkallweit1@gmail.com, davem@davemloft.net, kuba@kernel.org,
+        linux-kernel@vger.kernel.org, vivien.didelot@gmail.com,
+        f.fainelli@gmail.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 net-next 05/10] net: dsa: microchip: add DSA support
+ for microchip lan937x
+Message-ID: <YQ6pc6EZRLftmRh3@lunn.ch>
+References: <20210723173108.459770-6-prasanna.vengateshan@microchip.com>
+ <20210731150416.upe5nwkwvwajhwgg@skbuf>
+ <49678cce02ac03edc6bbbd1afb5f67606ac3efc2.camel@microchip.com>
+ <20210802121550.gqgbipqdvp5x76ii@skbuf>
+ <YQfvXTEbyYFMLH5u@lunn.ch>
+ <20210802135911.inpu6khavvwsfjsp@skbuf>
+ <50eb24a1e407b651eda7aeeff26d82d3805a6a41.camel@microchip.com>
+ <20210803235401.rctfylazg47cjah5@skbuf>
+ <20210804095954.GN22278@shell.armlinux.org.uk>
+ <20210804104625.d2qw3gr7algzppz5@skbuf>
 MIME-Version: 1.0
-Received: by 2002:a37:354:0:0:0:0:0 with HTTP; Sat, 7 Aug 2021 07:17:05 -0700 (PDT)
-Reply-To: lindaben666@gmail.com
-From:   Miss Linda <nmalachoski@gmail.com>
-Date:   Sat, 7 Aug 2021 14:17:06 +0000
-Message-ID: <CANC5VSNEuG1omei293zgO3GQp91zU1eUNwkXtAx-3zjLdPiaGA@mail.gmail.com>
-Subject: My friend
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210804104625.d2qw3gr7algzppz5@skbuf>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-My friend,
-Please I need your help and assistance in the transfer of my
-inheritance fund to your bank account,
-I will give you full details on why i want to do this, please reply to this mail
-From Linda Ben
+> I am not even clear what is the expected canonical behavior for a MAC
+> driver. It parses rx-internal-delay-ps and tx-internal-delay-ps, and
+> then what?
+
+So best practices are based around a MAC-PHY link. phy-mode is passed
+to the PHY, and the MAC does not act upon it. MAC rx-internal-delay-ps
+and tx-internal-delay-ps can be used to fine tune the link. You can
+use them to add and sometimes subtract small amounts of delay.
+
+> It treats all "rgmii*" phy-mode strings identically? Or is it an
+> error to have "rgmii-rxid" for phy-mode and non-zero
+> rx-internal-delay-ps?
+
+I would say the first is correct, the second statement is false. You
+should always be able to fine tune the link, independent of the PHY
+mode.
+
+We also have to consider the case when the PHY is not actually able to
+implement the delay. It hopefully returns -EOPNOTSUPP for anything
+other than "rgmii". You can then put the full 2ns delay into
+tx-internal-delay-ps nd rx-internal-delay-ps.
+
+And lastly there is one MAC driver which mostly ignores these best
+practices because the vendor crap tree always did the delay in the
+MAC. It correctly masks the phy-mode, so the PHY does not add delays.
+
+For MAC-MAC and fixed link best practices are very fuzzily defined.
+It is not something we have much of in the kernel. We might also want
+to narrow the discussion down to MACs within a switch. MACs within in
+NIC should probably follow the best practices for a MAC-PHY link, even
+if it is actually a switch on the other end.
+
+I also agree with Russell that mv88e6xxx is probably broken for a
+MAC-PHY link. It is known to work for a Marvell DSA in MAC-MAC link,
+we have boards doing that.
+
+It seems like a switch MAC should parse rx-internal-delay-ps and
+tx-internal-delay-ps and apply them independent of the phy-mode. That
+keeps it consistent with MAC-PHY. And if there is a PHY connected,
+pass the phy-mode on unmasked.
+
+So that we don't break mv88e6xxx, for a CPU or DSA port, we probably
+should continue to locally implement the delay, with the assumption
+there is no PHY, it is a MAC-MAC link. We probably want to patch
+mv88e6xxx to do nothing for user ports.
+
+I suspect it is a 50/50 roll of a dice what rx and tx actually
+mean. Is it from the perspective of the MAC or the PHY? Luckily,
+rgmii-rxid and rgmii-txid don't appear in DT very often.
+
+   Andrew
