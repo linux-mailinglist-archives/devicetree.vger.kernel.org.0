@@ -2,133 +2,305 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 29AFC3E3B55
-	for <lists+devicetree@lfdr.de>; Sun,  8 Aug 2021 18:20:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A485A3E3B9C
+	for <lists+devicetree@lfdr.de>; Sun,  8 Aug 2021 18:33:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230169AbhHHQUb convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sun, 8 Aug 2021 12:20:31 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45114 "EHLO mail.kernel.org"
+        id S231326AbhHHQeC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Aug 2021 12:34:02 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52608 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230049AbhHHQUa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 8 Aug 2021 12:20:30 -0400
+        id S230049AbhHHQeB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 8 Aug 2021 12:34:01 -0400
 Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4322760F38;
-        Sun,  8 Aug 2021 16:20:07 +0000 (UTC)
-Date:   Sun, 8 Aug 2021 17:22:57 +0100
+        by mail.kernel.org (Postfix) with ESMTPSA id B389C60E52;
+        Sun,  8 Aug 2021 16:33:40 +0000 (UTC)
+Date:   Sun, 8 Aug 2021 17:36:30 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Mugilraj Dhavachelvan <dmugil2000@gmail.com>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>, Dragos.Bogdan@analog.com,
-        Darius.Berghe@analog.com, Rob Herring <robh+dt@kernel.org>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org
-Subject: Re: [PATCH 2/2] iio: potentiometer: Add driver support for AD5110
-Message-ID: <20210808172257.59b13400@jic23-huawei>
-In-Reply-To: <66d670d6-0374-88ae-c4c1-efd60b54bbd2@gmail.com>
-References: <20210807050900.10075-1-dmugil2000@gmail.com>
-        <20210807050900.10075-3-dmugil2000@gmail.com>
-        <53306463-668e-e291-4539-caca2352ea05@metafoo.de>
-        <9b58fb0c-245d-795f-2124-6cc2020bc8c5@gmail.com>
-        <66d670d6-0374-88ae-c4c1-efd60b54bbd2@gmail.com>
+To:     Liam Beguin <liambeguin@gmail.com>
+Cc:     lars@metafoo.de, Michael.Hennerich@analog.com,
+        charles-antoine.couret@essensium.com, Nuno.Sa@analog.com,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH v5 3/5] iio: adc: ad7949: add support for internal vref
+Message-ID: <20210808173630.5c384a4b@jic23-huawei>
+In-Reply-To: <20210808015659.2955443-4-liambeguin@gmail.com>
+References: <20210808015659.2955443-1-liambeguin@gmail.com>
+        <20210808015659.2955443-4-liambeguin@gmail.com>
 X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 7 Aug 2021 23:04:18 +0530
-Mugilraj Dhavachelvan <dmugil2000@gmail.com> wrote:
+On Sat,  7 Aug 2021 21:56:57 -0400
+Liam Beguin <liambeguin@gmail.com> wrote:
 
-> Sorry some formatting issues happened in my previous mail.
+> From: Liam Beguin <lvb@xiphos.com>
 > 
-> On 07/08/21 10:56 pm, Mugilraj Dhavachelvan wrote:
-> > 
-> > 
-> > On 07/08/21 5:41 pm, Lars-Peter Clausen wrote:  
-> >> On 8/7/21 7:08 AM, Mugilraj Dhavachelvan wrote:  
-> >>> The AD5110/AD5112/AD5114 provide a nonvolatile solution
-> >>> for 128-/64-/32-position adjustment applications, offering
-> >>> guaranteed low resistor tolerance errors of ±8% and up to
-> >>> ±6 mA current density.
-> >>>
-> >>> Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/AD5110_5112_5114.pdf
-> >>> Signed-off-by: Mugilraj Dhavachelvan <dmugil2000@gmail.com>  
-> >>
-> >> Thanks for the patch. This looks really good> 
-> >>  
->
-
-...
-
-> >>> +
-> >>> +static IIO_DEVICE_ATTR(wiper_pos_eeprom, 0644,
-> >>> +               ad5110_eeprom_read,
-> >>> +               ad5110_eeprom_write, 0);  
-> >> This is new custom ABI and needs to be documented  
-
-We have existing similar ABI in dac/mcp4725 which is simply
-called store_eeprom
-
-It's in the main docs
-Documentation/ABI/testing/sysfs-bus-iio as storing
-device configuration.  I'm guessing this device doesn't have
-other configuration so that description will work?
-
-
+> Add support for selecting a custom reference voltage from the
+> devicetree. If an external source is used, a vref regulator should be
+> defined in the devicetree.
 > 
-> > I'm not aware of this, fixed in v2.  
-> >>> +static int ad5110_write_raw(struct iio_dev *indio_dev,
-> >>> +                struct iio_chan_spec const *chan,
-> >>> +                int val, int val2, long mask)
-> >>> +{
-> >>> +    struct ad5110_data *data = iio_priv(indio_dev);
-> >>> +    int ret;
-> >>> +
-> >>> +    switch (mask) {
-> >>> +    case IIO_CHAN_INFO_RAW:
-> >>> +        if (val >= data->cfg->max_pos || val < 0)  
-> >> val == data->cfg->max_pos is a valid setting. Writing max_pos puts it in top-scale mode which gives maximum resistance.  
-> > Fixed in v2.  
-> >>> +            return -EINVAL;
-> >>> +
-> >>> +        return ad5110_write(data, AD5110_RDAC_WR, val << data->cfg->shift);
-> >>> +    case IIO_CHAN_INFO_ENABLE:
-> >>> +        if (val < 0 || val > 1)
-> >>> +            return -EINVAL;
-> >>> +        if (data->enable == val)
-> >>> +            return 0;
-> >>> +        ret = ad5110_write(data, AD5110_SHUTDOWN, val);  
-> >> Doesn't val have to be inverted to get the right behavior  
+> Signed-off-by: Liam Beguin <lvb@xiphos.com>
+
+Hi Liam, I'm not sure the parsing of the child nodes will work if using
+an external reference. See below.
+
+Jonathan
+
+> ---
+>  drivers/iio/adc/ad7949.c | 140 ++++++++++++++++++++++++++++++++++-----
+>  1 file changed, 122 insertions(+), 18 deletions(-)
 > 
-> > I just replicated the datasheet operation. 
-> > You mean,
-> >  1 - shutdown off
-> >  0 - shutdown on
-> > If yes, then the user won't get confused with the datasheet and the behavior of the driver?
-> > Or Is it work like this? But yeah even I like this change it's more convenient.  
+> diff --git a/drivers/iio/adc/ad7949.c b/drivers/iio/adc/ad7949.c
+> index 3f94ae639a44..14a7c79d637e 100644
+> --- a/drivers/iio/adc/ad7949.c
+> +++ b/drivers/iio/adc/ad7949.c
+> @@ -35,7 +35,11 @@
+>  
+>  /* REF: reference/buffer selection */
+>  #define AD7949_CFG_BIT_REF		GENMASK(5, 3)
+> -#define AD7949_CFG_VAL_REF_EXT_BUF		7
+> +#define AD7949_CFG_VAL_REF_EXT_TEMP_BUF		3
+> +#define AD7949_CFG_VAL_REF_EXT_TEMP		2
+> +#define AD7949_CFG_VAL_REF_INT_4096		1
+> +#define AD7949_CFG_VAL_REF_INT_2500		0
+> +#define AD7949_CFG_VAL_REF_EXTERNAL		BIT(1)
+>  
+>  /* SEQ: channel sequencer. Allows for scanning channels */
+>  #define AD7949_CFG_BIT_SEQ		GENMASK(2, 1)
+> @@ -60,6 +64,14 @@ static const struct ad7949_adc_spec ad7949_adc_spec[] = {
+>  	[ID_AD7689] = { .num_channels = 8, .resolution = 16 },
+>  };
+>  
+> +/**
+> + * struct ad7949_channel - ADC Channel parameters
+> + * @refsel: reference selection
+> + */
+> +struct ad7949_channel {
+> +	u32 refsel;
+> +};
+> +
+>  /**
+>   * struct ad7949_adc_chip - AD ADC chip
+>   * @lock: protects write sequences
+> @@ -78,6 +90,7 @@ struct ad7949_adc_chip {
+>  	struct regulator *vref;
+>  	struct iio_dev *indio_dev;
+>  	struct spi_device *spi;
+> +	struct ad7949_channel *channels;
+>  	u8 resolution;
+>  	u8 bits_per_word;
+>  	u16 cfg;
+> @@ -136,6 +149,7 @@ static int ad7949_spi_read_channel(struct ad7949_adc_chip *ad7949_adc, int *val,
+>  	int ret;
+>  	int i;
+>  	struct spi_message msg;
+> +	struct ad7949_channel *ad7949_chan = &ad7949_adc->channels[channel];
+>  	struct spi_transfer tx[] = {
+>  		{
+>  			.len = 2,
+> @@ -156,8 +170,9 @@ static int ad7949_spi_read_channel(struct ad7949_adc_chip *ad7949_adc, int *val,
+>  	 */
+>  	for (i = 0; i < 2; i++) {
+>  		ret = ad7949_spi_write_cfg(ad7949_adc,
+> -					   FIELD_PREP(AD7949_CFG_BIT_INX, channel),
+> -					   AD7949_CFG_BIT_INX);
+> +					   FIELD_PREP(AD7949_CFG_BIT_INX, channel) |
+> +					   FIELD_PREP(AD7949_CFG_BIT_REF, ad7949_chan->refsel),
+> +					   AD7949_CFG_BIT_INX | AD7949_CFG_BIT_REF);
+>  		if (ret)
+>  			return ret;
+>  		if (channel == ad7949_adc->current_channel)
+> @@ -225,6 +240,7 @@ static int ad7949_spi_read_raw(struct iio_dev *indio_dev,
+>  			   int *val, int *val2, long mask)
+>  {
+>  	struct ad7949_adc_chip *ad7949_adc = iio_priv(indio_dev);
+> +	struct ad7949_channel *ad7949_chan = &ad7949_adc->channels[chan->channel];
+>  	int ret;
+>  
+>  	if (!val)
+> @@ -242,12 +258,26 @@ static int ad7949_spi_read_raw(struct iio_dev *indio_dev,
+>  		return IIO_VAL_INT;
+>  
+>  	case IIO_CHAN_INFO_SCALE:
+> -		ret = regulator_get_voltage(ad7949_adc->vref);
+> -		if (ret < 0)
+> -			return ret;
+> +		switch (ad7949_chan->refsel) {
+> +		case AD7949_CFG_VAL_REF_INT_2500:
+> +			*val = 2500;
+> +			break;
+> +		case AD7949_CFG_VAL_REF_INT_4096:
+> +			*val = 4096;
+> +			break;
+> +		case AD7949_CFG_VAL_REF_EXT_TEMP:
+> +		case AD7949_CFG_VAL_REF_EXT_TEMP_BUF:
+> +			ret = regulator_get_voltage(ad7949_adc->vref);
+> +			if (ret < 0)
+> +				return ret;
+> +
+> +			/* convert value back to mV */
+> +			*val = ret / 1000;
+> +			break;
+> +		}
+>  
+> -		*val = ret / 5000;
+> -		return IIO_VAL_INT;
+> +		*val2 = (1 << ad7949_adc->resolution) - 1;
+> +		return IIO_VAL_FRACTIONAL;
+>  	}
+>  
+>  	return -EINVAL;
+> @@ -286,7 +316,7 @@ static int ad7949_spi_init(struct ad7949_adc_chip *ad7949_adc)
+>  		FIELD_PREP(AD7949_CFG_BIT_INCC, AD7949_CFG_VAL_INCC_UNIPOLAR_GND) |
+>  		FIELD_PREP(AD7949_CFG_BIT_INX, ad7949_adc->current_channel) |
+>  		FIELD_PREP(AD7949_CFG_BIT_BW_FULL, 1) |
+> -		FIELD_PREP(AD7949_CFG_BIT_REF, AD7949_CFG_VAL_REF_EXT_BUF) |
+> +		FIELD_PREP(AD7949_CFG_BIT_REF, ad7949_adc->channels[0].refsel) |
+>  		FIELD_PREP(AD7949_CFG_BIT_SEQ, 0x0) |
+>  		FIELD_PREP(AD7949_CFG_BIT_RBN, 1);
+>  
+> @@ -302,14 +332,24 @@ static int ad7949_spi_init(struct ad7949_adc_chip *ad7949_adc)
+>  	return ret;
+>  }
+>  
+> +static void ad7949_disable_reg(void *reg)
+> +{
+> +	regulator_disable(reg);
+> +}
+> +
+>  static int ad7949_spi_probe(struct spi_device *spi)
+>  {
+>  	u32 spi_ctrl_mask = spi->controller->bits_per_word_mask;
+>  	struct device *dev = &spi->dev;
+>  	const struct ad7949_adc_spec *spec;
+>  	struct ad7949_adc_chip *ad7949_adc;
+> +	struct ad7949_channel *ad7949_chan;
+> +	struct fwnode_handle *child;
+>  	struct iio_dev *indio_dev;
+> +	int mode;
+> +	u32 tmp;
+>  	int ret;
+> +	int i;
+>  
+>  	indio_dev = devm_iio_device_alloc(dev, sizeof(*ad7949_adc));
+>  	if (!indio_dev) {
+> @@ -343,16 +383,82 @@ static int ad7949_spi_probe(struct spi_device *spi)
+>  		return -EINVAL;
+>  	}
+>  
+> -	ad7949_adc->vref = devm_regulator_get(dev, "vref");
+> +	/* Setup external voltage ref, buffered? */
+> +	ad7949_adc->vref = devm_regulator_get_optional(dev, "vrefin");
+>  	if (IS_ERR(ad7949_adc->vref)) {
+> -		dev_err(dev, "fail to request regulator\n");
+> -		return PTR_ERR(ad7949_adc->vref);
+> +		ret = PTR_ERR(ad7949_adc->vref);
+> +		if (ret != -ENODEV)
+> +			return ret;
+> +		/* unbuffered? */
+> +		ad7949_adc->vref = devm_regulator_get_optional(dev, "vref");
+> +		if (IS_ERR(ad7949_adc->vref)) {
+> +			ret = PTR_ERR(ad7949_adc->vref);
+> +			if (ret != -ENODEV)
+> +				return ret;
+> +			/* Internal then */
+> +			mode = AD7949_CFG_VAL_REF_INT_4096;
+> +		} else {
+> +			mode = AD7949_CFG_VAL_REF_EXT_TEMP;
+> +		}
+> +	} else {
+> +		mode = AD7949_CFG_VAL_REF_EXT_TEMP_BUF;
+>  	}
+>  
+> -	ret = regulator_enable(ad7949_adc->vref);
+> -	if (ret < 0) {
+> -		dev_err(dev, "fail to enable regulator\n");
+> -		return ret;
+> +	if (mode & AD7949_CFG_VAL_REF_EXTERNAL) {
+> +		ret = regulator_enable(ad7949_adc->vref);
+> +		if (ret < 0) {
+> +			dev_err(dev, "fail to enable regulator\n");
+> +			return ret;
+> +		}
+> +
+> +		ret = devm_add_action_or_reset(dev, ad7949_disable_reg,
+> +					       ad7949_adc->vref);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	ad7949_adc->channels = devm_kcalloc(dev, spec->num_channels,
+> +					    sizeof(*ad7949_adc->channels),
+> +					    GFP_KERNEL);
+> +	if (!ad7949_adc->channels) {
+> +		dev_err(dev, "unable to allocate ADC channels\n");
+> +		return -ENOMEM;
+> +	}
+> +
+> +	/* Initialize all channel structures */
+> +	for (i = 0; i < spec->num_channels; i++)
+> +		ad7949_adc->channels[i].refsel = mode;
+> +
+> +	/* Read channel specific information form the devicetree */
+> +	device_for_each_child_node(dev, child) {
+> +		ret = fwnode_property_read_u32(child, "reg", &i);
+> +		if (ret) {
+> +			dev_err(dev, "missing reg property in %pfw\n", child);
+> +			fwnode_handle_put(child);
+> +			return ret;
+> +		}
+> +
+> +		ad7949_chan = &ad7949_adc->channels[i];
+> +
+> +		ret = fwnode_property_read_u32(child, "adi,internal-ref-microvolt", &tmp);
+> +		if (ret < 0 && ret != -EINVAL) {
+> +			dev_err(dev, "invalid internal reference in %pfw\n", child);
+> +			fwnode_handle_put(child);
+> +			return ret;
+> +		}
 
-ABI has to be consistent and writing an enable attribute with 1 has to mean enabling it whatever
-approach the datasheet takes to describe things.  Most users don't read
-datasheets so interface needs to be intuitive.
+So if we are using external voltage, then we'd not expect this to exist. 
+ret != -EINVAL should deal with that.  However, we then hit the following switch
+and temp isn't set to an appropriate value so we get the error.
 
-> >>> +        if (ret)
-> >>> +            return ret;
-> >>> +        data->enable = val;
-> >>> +        return 0;
-> >>> +    default:
-> >>> +        return -EINVAL;
-> >>> +    }
-> >>> +}  
-> >> [...]  
-> > Thanks for feedback!!
-> >   
+Am I missing something?
+
+> +
+> +		switch (tmp) {
+> +		case 2500000:
+> +			ad7949_chan->refsel = AD7949_CFG_VAL_REF_INT_2500;
+> +			break;
+> +		case 4096000:
+> +			ad7949_chan->refsel = AD7949_CFG_VAL_REF_INT_4096;
+> +			break;
+> +		default:
+> +			dev_err(dev, "unsupported internal voltage reference\n");
+> +			fwnode_handle_put(child);
+> +			return -EINVAL;
+> +		}
+>  	}
+>  
+>  	mutex_init(&ad7949_adc->lock);
+> @@ -373,7 +479,6 @@ static int ad7949_spi_probe(struct spi_device *spi)
+>  
+>  err:
+>  	mutex_destroy(&ad7949_adc->lock);
+> -	regulator_disable(ad7949_adc->vref);
+>  
+>  	return ret;
+>  }
+> @@ -385,7 +490,6 @@ static int ad7949_spi_remove(struct spi_device *spi)
+>  
+>  	iio_device_unregister(indio_dev);
+>  	mutex_destroy(&ad7949_adc->lock);
+> -	regulator_disable(ad7949_adc->vref);
+>  
+>  	return 0;
+>  }
 
