@@ -2,153 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 826A33E3AFC
-	for <lists+devicetree@lfdr.de>; Sun,  8 Aug 2021 17:03:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CE883E3B17
+	for <lists+devicetree@lfdr.de>; Sun,  8 Aug 2021 17:29:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231414AbhHHPEE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Aug 2021 11:04:04 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46892 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231137AbhHHPEB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 8 Aug 2021 11:04:01 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 895416054E;
-        Sun,  8 Aug 2021 15:03:39 +0000 (UTC)
-Date:   Sun, 8 Aug 2021 16:06:28 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Puranjay Mohan <puranjay12@gmail.com>
-Cc:     Michael.Hennerich@analog.com, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        lars@metafoo.de, Dragos.Bogdan@analog.com,
-        Darius.Berghe@analog.com, robh+dt@kernel.org
-Subject: Re: [PATCH v8 1/3] dt-bindings: iio: accel: Add DT binding doc for
- ADXL355
-Message-ID: <20210808160628.7b031948@jic23-huawei>
-In-Reply-To: <20210804140309.31468-2-puranjay12@gmail.com>
-References: <20210804140309.31468-1-puranjay12@gmail.com>
-        <20210804140309.31468-2-puranjay12@gmail.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        id S231967AbhHHPaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Aug 2021 11:30:01 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.54]:23002 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229923AbhHHPaB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Aug 2021 11:30:01 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1628436578;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=Xo5z8Fn+SltMLL04pMqFkZRQFAXy/ruqbXV6MhAwFYw=;
+    b=K2+h427U0zlskFL0emrv4Z20XmtmhcSUd7aHFYCC3+sOAPun2gRr5Ni5N7/WuZ6ShE
+    z3LXHYPrR3Ojjn8cCLmt/S1s5x5fGo2XXistkwvQ9JfpmNvEv+H+hTqz5BXHlzc0C2GP
+    +qMqE4TouttdO3Yvdej+7FR0mFNvS9Z9Evhd2TrMNaTFK/eceMKP/kkujWDyfiElQ1C+
+    nUWC+WHY2M8Y+JkfMT9bZiB313klNTTME4EM+3pZ2zykyHISMvDUf3xxaFQU/1R9B2g8
+    qMsvBQqmCx94TvJORVfurBTUJzfC6yKCJpJgYC7KOyvPt1bwXhH+4MfGTWN9JmPZ+k+x
+    sEQw==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8p6E1A=="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.31.0 DYNA|AUTH)
+    with ESMTPSA id L01e9cx78FTbLv5
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Sun, 8 Aug 2021 17:29:37 +0200 (CEST)
+Date:   Sun, 8 Aug 2021 17:29:30 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Shawn Guo <shawn.guo@linaro.org>
+Cc:     Konrad Dybcio <konradybcio@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 2/2] drm/panel: Add Truly NT35521 panel driver
+Message-ID: <YQ/4WkA9ajpQx06A@gerhold.net>
+References: <20210804081352.30595-1-shawn.guo@linaro.org>
+ <20210804081352.30595-3-shawn.guo@linaro.org>
+ <YQqDb5eFqIx8tvAL@gerhold.net>
+ <20210808134456.GB6795@dragon>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210808134456.GB6795@dragon>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed,  4 Aug 2021 19:33:07 +0530
-Puranjay Mohan <puranjay12@gmail.com> wrote:
-
-> Add devicetree binding document for ADXL355, a 3-Axis MEMS Accelerometer.
+On Sun, Aug 08, 2021 at 09:44:57PM +0800, Shawn Guo wrote:
+> On Wed, Aug 04, 2021 at 02:09:19PM +0200, Stephan Gerhold wrote:
+> > On Wed, Aug 04, 2021 at 04:13:52PM +0800, Shawn Guo wrote:
+> > > + ...
+> > > +	nt_dcs_write(0xb1, 0x6c, 0x21);
+> > > +	nt_dcs_write(0xf0, 0x55, 0xaa, 0x52, 0x00, 0x00);
+> > > +	nt_dcs_write(0x35, 0x00);
+> > > +	nt_gen_write(0x11, 0x00);
+> > > +	msleep(120);
+> > > +	nt_gen_write(0x29, 0x00);
+> > > +	usleep_range(1000, 1500);
+> > > +	nt_dcs_write(0x53, 0x24);
+> > 
+> > Did you mix up "nt_dcs_write" and "nt_gen_write" here?
+> > The nt_gen_write(0x11, 0x00); looks like MIPI_DCS_EXIT_SLEEP_MODE
+> > and the nt_gen_write(0x29, 0x00); looks like MIPI_DCS_SET_DISPLAY_ON.
+> > 
+> > For reference you can pull your original reference DTB from Sony through
+> > my panel driver generator: https://github.com/msm8916-mainline/linux-mdss-dsi-panel-driver-generator
 > 
-> Signed-off-by: Puranjay Mohan <puranjay12@gmail.com>
+> Wow, very nice!  It really deserves wider spread!
+> 
+> > 
+> > It produces the following (I compiled "msm8939-kanuti_tulip.dtb"
+> > from https://github.com/sonyxperiadev/kernel/tree/aosp/LA.BR.1.3.3_rb2.14,
+> > not sure if that is right):
+> > 
+> > 	// ...
+> > 	dsi_generic_write_seq(dsi, 0x35, 0x00);
+> > 
+> > 	ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
+> > 	if (ret < 0) {
+> > 		dev_err(dev, "Failed to exit sleep mode: %d\n", ret);
+> > 		return ret;
+> > 	}
+> > 	msleep(120);
+> > 
+> > 	ret = mipi_dsi_dcs_set_display_on(dsi);
+> > 	if (ret < 0) {
+> > 		dev_err(dev, "Failed to set display on: %d\n", ret);
+> > 		return ret;
+> > 	}
+> > 	usleep_range(1000, 2000);
+> > 
+> > 	dsi_generic_write_seq(dsi, 0x53, 0x24);
+> > 
+> > Which also suggests that generic and DCS writes are mixed up here.
+> > 
+> > Note however that you could not use the generated driver as-is,
+> > because Sony seems to use their own display driver instead of Qualcomm's
+> > and some things seem to be different.
+> 
+> I re-created the driver using your generator.  With modeling the 5v
+> control GPIOs with regulators and adding backlight-gpios support, the
+> driver works quite nicely, except the following two problems:
+> 
+> 1) I have to drop the MIPI_DSI_MODE_LPM configuration from .update_status
+>    hook. Otherwise brightness did not get updated to panel.
+> 
+> ---8<------
+> diff --git a/drivers/gpu/drm/panel/panel-sony-tulip-truly-nt35521.c b/drivers/gpu/drm/panel/panel-sony-tulip-truly-nt35521.c
+> index 31e5f942a039..eba926c6f722 100644
+> --- a/drivers/gpu/drm/panel/panel-sony-tulip-truly-nt35521.c
+> +++ b/drivers/gpu/drm/panel/panel-sony-tulip-truly-nt35521.c
+> @@ -420,33 +420,23 @@ static int truly_nt35521_bl_update_status(struct backlight_device *bl)
+>         u16 brightness = backlight_get_brightness(bl);
+>         int ret;
+>  
+> -       dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
+> -
+>         ret = mipi_dsi_dcs_set_display_brightness(dsi, brightness);
+>         if (ret < 0)
+>                 return ret;
+>  
+> -       dsi->mode_flags |= MIPI_DSI_MODE_LPM;
+> -
+>         return 0;
+>  }
+> ------>8---
+> 
 
-Looks good to me. I'll pick this up once Rob and anyone else interested
-has had time to take a look assuming they don't ask for any changes.
+I have to admit I don't know much about Low Power Mode vs High Speed
+Mode. As long it works it is good I guess :-)
+
+> 2) The driver works good, if the kernel is launched via "fastboot boot".
+>    But if the kernel is flashed to eMMC and launched by bootloader with
+>    splash screen, kernel will fail to bring up the panel.  After kernel
+>    boots up, a blank & unblank cycle can get panel work though.
+> 
+> The problem 2) is not driver generator related.  @Konrad, did you see
+> it on asus-z00t-tm5p5-n35596 driver?
+> 
+
+Do you have CONFIG_DRM_MSM=y (built-in) instead of =m (module) maybe?
+I think a similar issue exists on MSM8916 but it does not happen
+for some reason if CONFIG_DRM_MSM=m instead of =y. Somehow having it
+load later during the boot process fixes some things there.
 
 Thanks,
-
-Jonathan
-
-
-> ---
->  .../bindings/iio/accel/adi,adxl355.yaml       | 88 +++++++++++++++++++
->  1 file changed, 88 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adxl355.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl355.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adxl355.yaml
-> new file mode 100644
-> index 000000000..5da3fd5ad
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl355.yaml
-> @@ -0,0 +1,88 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/accel/adi,adxl355.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices ADXL355 3-Axis, Low noise MEMS Accelerometer
-> +
-> +maintainers:
-> +  - Puranjay Mohan <puranjay12@gmail.com>
-> +
-> +description: |
-> +  Analog Devices ADXL355 3-Axis, Low noise MEMS Accelerometer that supports
-> +  both I2C & SPI interfaces
-> +    https://www.analog.com/en/products/adxl355.html
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,adxl355
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 3
-> +    description: |
-> +      Type should be IRQ_TYPE_LEVEL_HIGH.
-> +      Three configurable interrupt lines exist.
-> +
-> +  interrupt-names:
-> +    description: Specify which interrupt line is in use.
-> +    items:
-> +      enum:
-> +        - INT1
-> +        - INT2
-> +        - DRDY
-> +    minItems: 1
-> +    maxItems: 3
-> +
-> +  vdd-supply:
-> +    description: Regulator that provides power to the sensor
-> +
-> +  vddio-supply:
-> +    description: Regulator that provides power to the bus
-> +
-> +  spi-max-frequency: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +        #include <dt-bindings/gpio/gpio.h>
-> +        #include <dt-bindings/interrupt-controller/irq.h>
-> +        i2c {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                /* Example for a I2C device node */
-> +                accelerometer@1d {
-> +                        compatible = "adi,adxl355";
-> +                        reg = <0x1d>;
-> +                        interrupt-parent = <&gpio>;
-> +                        interrupts = <25 IRQ_TYPE_EDGE_RISING>;
-> +                        interrupt-names = "DRDY";
-> +                };
-> +        };
-> +  - |
-> +        #include <dt-bindings/gpio/gpio.h>
-> +        #include <dt-bindings/interrupt-controller/irq.h>
-> +        spi {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                accelerometer@0 {
-> +                        compatible = "adi,adxl355";
-> +                        reg = <0>;
-> +                        spi-max-frequency = <1000000>;
-> +                        interrupt-parent = <&gpio>;
-> +                        interrupts = <25 IRQ_TYPE_EDGE_RISING>;
-> +                        interrupt-names = "DRDY";
-> +                };
-> +        };
-
+Stephan
