@@ -2,157 +2,367 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CE883E3B17
-	for <lists+devicetree@lfdr.de>; Sun,  8 Aug 2021 17:29:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B26EE3E3B11
+	for <lists+devicetree@lfdr.de>; Sun,  8 Aug 2021 17:26:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231967AbhHHPaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Aug 2021 11:30:01 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.54]:23002 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229923AbhHHPaB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Aug 2021 11:30:01 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1628436578;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=Xo5z8Fn+SltMLL04pMqFkZRQFAXy/ruqbXV6MhAwFYw=;
-    b=K2+h427U0zlskFL0emrv4Z20XmtmhcSUd7aHFYCC3+sOAPun2gRr5Ni5N7/WuZ6ShE
-    z3LXHYPrR3Ojjn8cCLmt/S1s5x5fGo2XXistkwvQ9JfpmNvEv+H+hTqz5BXHlzc0C2GP
-    +qMqE4TouttdO3Yvdej+7FR0mFNvS9Z9Evhd2TrMNaTFK/eceMKP/kkujWDyfiElQ1C+
-    nUWC+WHY2M8Y+JkfMT9bZiB313klNTTME4EM+3pZ2zykyHISMvDUf3xxaFQU/1R9B2g8
-    qMsvBQqmCx94TvJORVfurBTUJzfC6yKCJpJgYC7KOyvPt1bwXhH+4MfGTWN9JmPZ+k+x
-    sEQw==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8p6E1A=="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.31.0 DYNA|AUTH)
-    with ESMTPSA id L01e9cx78FTbLv5
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Sun, 8 Aug 2021 17:29:37 +0200 (CEST)
-Date:   Sun, 8 Aug 2021 17:29:30 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Shawn Guo <shawn.guo@linaro.org>
-Cc:     Konrad Dybcio <konradybcio@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 2/2] drm/panel: Add Truly NT35521 panel driver
-Message-ID: <YQ/4WkA9ajpQx06A@gerhold.net>
-References: <20210804081352.30595-1-shawn.guo@linaro.org>
- <20210804081352.30595-3-shawn.guo@linaro.org>
- <YQqDb5eFqIx8tvAL@gerhold.net>
- <20210808134456.GB6795@dragon>
+        id S231270AbhHHP1I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Aug 2021 11:27:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50310 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229923AbhHHP1I (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 8 Aug 2021 11:27:08 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7ED3860FD8;
+        Sun,  8 Aug 2021 15:26:47 +0000 (UTC)
+Date:   Sun, 8 Aug 2021 16:29:36 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Puranjay Mohan <puranjay12@gmail.com>
+Cc:     Michael.Hennerich@analog.com, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        lars@metafoo.de, Dragos.Bogdan@analog.com, Darius.Berghe@analog.com
+Subject: Re: [PATCH v8 3/3] iio: accel: adxl355: Add triggered buffer
+ support
+Message-ID: <20210808162936.7066403b@jic23-huawei>
+In-Reply-To: <20210804140309.31468-4-puranjay12@gmail.com>
+References: <20210804140309.31468-1-puranjay12@gmail.com>
+        <20210804140309.31468-4-puranjay12@gmail.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210808134456.GB6795@dragon>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Aug 08, 2021 at 09:44:57PM +0800, Shawn Guo wrote:
-> On Wed, Aug 04, 2021 at 02:09:19PM +0200, Stephan Gerhold wrote:
-> > On Wed, Aug 04, 2021 at 04:13:52PM +0800, Shawn Guo wrote:
-> > > + ...
-> > > +	nt_dcs_write(0xb1, 0x6c, 0x21);
-> > > +	nt_dcs_write(0xf0, 0x55, 0xaa, 0x52, 0x00, 0x00);
-> > > +	nt_dcs_write(0x35, 0x00);
-> > > +	nt_gen_write(0x11, 0x00);
-> > > +	msleep(120);
-> > > +	nt_gen_write(0x29, 0x00);
-> > > +	usleep_range(1000, 1500);
-> > > +	nt_dcs_write(0x53, 0x24);
-> > 
-> > Did you mix up "nt_dcs_write" and "nt_gen_write" here?
-> > The nt_gen_write(0x11, 0x00); looks like MIPI_DCS_EXIT_SLEEP_MODE
-> > and the nt_gen_write(0x29, 0x00); looks like MIPI_DCS_SET_DISPLAY_ON.
-> > 
-> > For reference you can pull your original reference DTB from Sony through
-> > my panel driver generator: https://github.com/msm8916-mainline/linux-mdss-dsi-panel-driver-generator
+On Wed,  4 Aug 2021 19:33:09 +0530
+Puranjay Mohan <puranjay12@gmail.com> wrote:
+
+> Provide a way for continuous data capture by setting up buffer support. The
+> data ready signal exposed at the DRDY pin of the ADXL355 is exploited as
+> a hardware interrupt which triggers to fill the buffer.
 > 
-> Wow, very nice!  It really deserves wider spread!
+> Signed-off-by: Puranjay Mohan <puranjay12@gmail.com>
+
+Hi Puranjay,
+
+This device has a hardware fifo, so we need to be careful how we add
+trigger support such that we can enable that smoothly.
+
+There are a few things in here that suggest this isn't tested as much
+as I'd expect for a submission.  If you are posting early, but need
+to do more testing, please state that clearly.
+
+Jonathan
+
+> ---
+>  drivers/iio/accel/Kconfig        |   4 ++
+>  drivers/iio/accel/adxl355.h      |   2 +-
+>  drivers/iio/accel/adxl355_core.c | 102 ++++++++++++++++++++++++++++++-
+>  drivers/iio/accel/adxl355_i2c.c  |   3 +-
+>  drivers/iio/accel/adxl355_spi.c  |   2 +-
+>  5 files changed, 108 insertions(+), 5 deletions(-)
 > 
-> > 
-> > It produces the following (I compiled "msm8939-kanuti_tulip.dtb"
-> > from https://github.com/sonyxperiadev/kernel/tree/aosp/LA.BR.1.3.3_rb2.14,
-> > not sure if that is right):
-> > 
-> > 	// ...
-> > 	dsi_generic_write_seq(dsi, 0x35, 0x00);
-> > 
-> > 	ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
-> > 	if (ret < 0) {
-> > 		dev_err(dev, "Failed to exit sleep mode: %d\n", ret);
-> > 		return ret;
-> > 	}
-> > 	msleep(120);
-> > 
-> > 	ret = mipi_dsi_dcs_set_display_on(dsi);
-> > 	if (ret < 0) {
-> > 		dev_err(dev, "Failed to set display on: %d\n", ret);
-> > 		return ret;
-> > 	}
-> > 	usleep_range(1000, 2000);
-> > 
-> > 	dsi_generic_write_seq(dsi, 0x53, 0x24);
-> > 
-> > Which also suggests that generic and DCS writes are mixed up here.
-> > 
-> > Note however that you could not use the generated driver as-is,
-> > because Sony seems to use their own display driver instead of Qualcomm's
-> > and some things seem to be different.
-> 
-> I re-created the driver using your generator.  With modeling the 5v
-> control GPIOs with regulators and adding backlight-gpios support, the
-> driver works quite nicely, except the following two problems:
-> 
-> 1) I have to drop the MIPI_DSI_MODE_LPM configuration from .update_status
->    hook. Otherwise brightness did not get updated to panel.
-> 
-> ---8<------
-> diff --git a/drivers/gpu/drm/panel/panel-sony-tulip-truly-nt35521.c b/drivers/gpu/drm/panel/panel-sony-tulip-truly-nt35521.c
-> index 31e5f942a039..eba926c6f722 100644
-> --- a/drivers/gpu/drm/panel/panel-sony-tulip-truly-nt35521.c
-> +++ b/drivers/gpu/drm/panel/panel-sony-tulip-truly-nt35521.c
-> @@ -420,33 +420,23 @@ static int truly_nt35521_bl_update_status(struct backlight_device *bl)
->         u16 brightness = backlight_get_brightness(bl);
->         int ret;
+> diff --git a/drivers/iio/accel/Kconfig b/drivers/iio/accel/Kconfig
+> index d0c45c809..9c16c1841 100644
+> --- a/drivers/iio/accel/Kconfig
+> +++ b/drivers/iio/accel/Kconfig
+> @@ -69,6 +69,8 @@ config ADXL355_I2C
+>  	depends on I2C
+>  	select ADXL355
+>  	select REGMAP_I2C
+> +	select IIO_BUFFER
+> +	select IIO_TRIGGERED_BUFFER
+>  	help
+>  	  Say Y here if you want to build i2c support for the Analog Devices
+>  	  ADXL355 3-axis digital accelerometer.
+> @@ -82,6 +84,8 @@ config ADXL355_SPI
+>  	depends on SPI
+>  	select ADXL355
+>  	select REGMAP_SPI
+> +	select IIO_BUFFER
+> +	select IIO_TRIGGERED_BUFFER
+>  	help
+>  	  Say Y here if you want to build spi support for the Analog Devices
+>  	  ADXL355 3-axis digital accelerometer.
+> diff --git a/drivers/iio/accel/adxl355.h b/drivers/iio/accel/adxl355.h
+> index 322b0abb8..f0a376e6d 100644
+> --- a/drivers/iio/accel/adxl355.h
+> +++ b/drivers/iio/accel/adxl355.h
+> @@ -15,5 +15,5 @@ extern const struct regmap_access_table adxl355_readable_regs_tbl;
+>  extern const struct regmap_access_table adxl355_writeable_regs_tbl;
 >  
-> -       dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
-> -
->         ret = mipi_dsi_dcs_set_display_brightness(dsi, brightness);
->         if (ret < 0)
->                 return ret;
+>  int adxl355_core_probe(struct device *dev, struct regmap *regmap,
+> -		       const char *name);
+> +		       const char *name, int irq);
+>  #endif /* _ADXL355_H_ */
+> diff --git a/drivers/iio/accel/adxl355_core.c b/drivers/iio/accel/adxl355_core.c
+> index 47fbb31bc..f9dc2a530 100644
+> --- a/drivers/iio/accel/adxl355_core.c
+> +++ b/drivers/iio/accel/adxl355_core.c
+> @@ -9,6 +9,10 @@
 >  
-> -       dsi->mode_flags |= MIPI_DSI_MODE_LPM;
-> -
->         return 0;
+>  #include <asm/unaligned.h>
+>  #include <linux/bitfield.h>
+> +#include <linux/iio/buffer.h>
+> +#include <linux/iio/trigger.h>
+> +#include <linux/iio/triggered_buffer.h>
+> +#include <linux/iio/trigger_consumer.h>
+>  #include <linux/iio/iio.h>
+>  #include <linux/limits.h>
+>  #include <linux/math64.h>
+> @@ -172,6 +176,7 @@ static const struct adxl355_chan_info adxl355_chans[] = {
+>  };
+>  
+>  struct adxl355_data {
+> +	int irq;
+>  	struct regmap *regmap;
+>  	struct device *dev;
+>  	struct mutex lock; /* lock to protect op_mode */
+> @@ -181,6 +186,12 @@ struct adxl355_data {
+>  	int calibbias[3];
+>  	int adxl355_hpf_3db_table[7][2];
+>  	u8 transf_buf[3] ____cacheline_aligned;
+> +	struct iio_trigger      *dready_trig;
+> +	/* Ensure correct alignment of timestamp when present */
+> +	struct {
+> +		__be32 channels[3];
+> +		s64 ts;
+> +	} buffer ____cacheline_aligned;
+
+Interesting quirk here is that we need to ensure that any of the
+buffers used for DMA don't share a cacheline with other data, but we don't
+need to ensure they don't share with each other.  As such, this can
+share fine with transf_buf, but definitely not with dready_trig (which
+can't share with transf_buf like it is right now).
+
+So reorder to put the various DMA safe buffers at the end, and ensure
+the first one is cacheline aligned.
+
+Even better, given you can only safely access one at a time anyway
+(and I think you always hold the lock so that is fine), put them in a union
+to make it explicit that only one is used at a time.
+
+struct iio_trigger *dready_trig;
+union {
+	u8 trans_buf[3];
+	struct {
+		__be32 channels[3];
+		s64 ts;
+	} buffer;
+} ___cacheline_algned;
+or something like that.
+
+
+
+>  };
+>  
+>  static int adxl355_set_op_mode(struct adxl355_data *data,
+> @@ -499,12 +510,46 @@ static int adxl355_read_avail(struct iio_dev *indio_dev,
+>  	}
 >  }
-> ------>8---
-> 
+>  
+> +static const unsigned long adxl355_avail_scan_masks[] = {
+> +	GENMASK(3, 0),
+> +	0
+> +};
+> +
+>  static const struct iio_info adxl355_info = {
+>  	.read_raw	= adxl355_read_raw,
+>  	.write_raw	= adxl355_write_raw,
+>  	.read_avail	= &adxl355_read_avail
+>  };
+>  
+> +static const struct iio_trigger_ops adxl355_trigger_ops = {
+> +	.validate_device = &iio_trigger_validate_own_device,
 
-I have to admit I don't know much about Low Power Mode vs High Speed
-Mode. As long it works it is good I guess :-)
+No means of turning it on?
 
-> 2) The driver works good, if the kernel is launched via "fastboot boot".
->    But if the kernel is flashed to eMMC and launched by bootloader with
->    splash screen, kernel will fail to bring up the panel.  After kernel
->    boots up, a blank & unblank cycle can get panel work though.
-> 
-> The problem 2) is not driver generator related.  @Konrad, did you see
-> it on asus-z00t-tm5p5-n35596 driver?
-> 
+> +};
+> +
+> +static irqreturn_t adxl355_trigger_handler(int irq, void *p)
+> +{
+> +	struct iio_poll_func *pf = p;
+> +	struct iio_dev *indio_dev = pf->indio_dev;
+> +	struct adxl355_data *data = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	mutex_lock(&data->lock);
+> +
+> +	ret = regmap_bulk_read(data->regmap, ADXL355_XDATA3_REG,
+> +			       data->buffer.channels,
+> +			       9);
 
-Do you have CONFIG_DRM_MSM=y (built-in) instead of =m (module) maybe?
-I think a similar issue exists on MSM8916 but it does not happen
-for some reason if CONFIG_DRM_MSM=m instead of =y. Somehow having it
-load later during the boot process fixes some things there.
+That doesn't look right.  you are reading 9 bytes into an array of 3 __be32 channels.
+You should check the data is turning up where it should.
 
-Thanks,
-Stephan
+
+> +	if (ret)
+> +		goto out_unlock_notify;
+> +
+> +	iio_push_to_buffers_with_timestamp(indio_dev, &data->buffer,
+> +					   pf->timestamp);
+> +
+> +out_unlock_notify:
+> +	mutex_unlock(&data->lock);
+> +	iio_trigger_notify_done(indio_dev->trig);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+>  #define ADXL355_ACCEL_CHANNEL(index, reg, axis) {			\
+>  	.type = IIO_ACCEL,						\
+>  	.address = reg,							\
+> @@ -518,6 +563,7 @@ static const struct iio_info adxl355_info = {
+>  	.info_mask_shared_by_type_available =				\
+>  		BIT(IIO_CHAN_INFO_SAMP_FREQ) |				\
+>  		BIT(IIO_CHAN_INFO_HIGH_PASS_FILTER_3DB_FREQUENCY),	\
+> +	.scan_index = index,						\
+>  	.scan_type = {							\
+>  		.sign = 's',						\
+>  		.realbits = 20,						\
+> @@ -537,17 +583,56 @@ static const struct iio_chan_spec adxl355_channels[] = {
+>  		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+>  				      BIT(IIO_CHAN_INFO_SCALE) |
+>  				      BIT(IIO_CHAN_INFO_OFFSET),
+> +		.scan_index = 3,
+>  		.scan_type = {
+>  			.sign = 's',
+>  			.realbits = 12,
+>  			.storagebits = 16,
+>  			.endianness = IIO_BE,
+>  		},
+> -	}
+> +	},
+
+If you do end up respinning patch 2, add the comma in that patch as it'll reduced
+noise here.
+
+> +	IIO_CHAN_SOFT_TIMESTAMP(4)
+>  };
+>  
+> +static int adxl355_probe_trigger(struct iio_dev *indio_dev)
+> +{
+> +	struct adxl355_data *data = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	if (!data->irq) {
+> +		dev_info(data->dev, "no irq, using polling\n");
+> +		return 0;
+> +	}
+> +
+> +	data->dready_trig = devm_iio_trigger_alloc(data->dev, "%s-dev%d",
+> +						   indio_dev->name,
+> +						   indio_dev->id);
+> +	if (!data->dready_trig)
+> +		return -ENOMEM;
+> +
+> +	data->dready_trig->ops = &adxl355_trigger_ops;
+> +	iio_trigger_set_drvdata(data->dready_trig, indio_dev);
+> +
+> +	ret = devm_request_irq(data->dev, data->irq,
+> +			       &iio_trigger_generic_data_rdy_poll,
+> +			       IRQF_ONESHOT, "adxl355_irq", data->dready_trig);
+> +	if (ret < 0)
+> +		return dev_err_probe(data->dev, ret, "request irq %d failed\n",
+> +				     data->irq);
+> +
+> +	ret = devm_iio_trigger_register(data->dev, data->dready_trig);
+> +	if (ret) {
+> +		dev_err(data->dev, "iio trigger register failed\n");
+> +		return ret;
+> +	}
+> +
+> +	indio_dev->trig = iio_trigger_get(data->dready_trig);
+> +
+> +	return 0;
+> +}
+> +
+>  int adxl355_core_probe(struct device *dev, struct regmap *regmap,
+> -		       const char *name)
+> +		       const char *name, int irq)
+>  {
+>  	struct adxl355_data *data;
+>  	struct iio_dev *indio_dev;
+> @@ -560,6 +645,7 @@ int adxl355_core_probe(struct device *dev, struct regmap *regmap,
+>  	data = iio_priv(indio_dev);
+>  	data->regmap = regmap;
+>  	data->dev = dev;
+> +	data->irq = irq;
+>  	data->op_mode = ADXL355_STANDBY;
+>  	mutex_init(&data->lock);
+>  
+> @@ -568,6 +654,7 @@ int adxl355_core_probe(struct device *dev, struct regmap *regmap,
+>  	indio_dev->modes = INDIO_DIRECT_MODE;
+>  	indio_dev->channels = adxl355_channels;
+>  	indio_dev->num_channels = ARRAY_SIZE(adxl355_channels);
+> +	indio_dev->available_scan_masks = adxl355_avail_scan_masks;
+>  
+>  	ret = adxl355_setup(data);
+>  	if (ret < 0) {
+> @@ -575,6 +662,17 @@ int adxl355_core_probe(struct device *dev, struct regmap *regmap,
+>  		return ret;
+>  	}
+>  
+> +	ret = devm_iio_triggered_buffer_setup(dev, indio_dev,
+> +					      &iio_pollfunc_store_time,
+> +					      &adxl355_trigger_handler, NULL);
+> +	if (ret < 0)
+
+if (ret) preferred, because it is more consistent with returning devm_iio_device_register()
+below (where we are assuming negative or 0 only)
+
+> +		return dev_err_probe(dev, ret,
+> +				     "iio triggered buffer setup failed\n");
+> +
+> +	ret = adxl355_probe_trigger(indio_dev);
+> +	if (ret < 0)
+> +		return ret;
+> +
+>  	return devm_iio_device_register(dev, indio_dev);
+>  }
+>  EXPORT_SYMBOL_GPL(adxl355_core_probe);
+> diff --git a/drivers/iio/accel/adxl355_i2c.c b/drivers/iio/accel/adxl355_i2c.c
+> index e3070ee81..c18521819 100644
+> --- a/drivers/iio/accel/adxl355_i2c.c
+> +++ b/drivers/iio/accel/adxl355_i2c.c
+> @@ -31,7 +31,8 @@ static int adxl355_i2c_probe(struct i2c_client *client)
+>  		return PTR_ERR(regmap);
+>  	}
+>  
+> -	return adxl355_core_probe(&client->dev, regmap, client->name);
+> +	return adxl355_core_probe(&client->dev, regmap, client->name,
+> +				  client->irq);
+
+We can't just use the first interrupt (which this corresponds to) because
+the device supports 3 and who knows if this is the right one?
+
+Now to solve this, we run into a 'fun' issue.  We want to use the generic
+firmware property interfaces (include/linux/property.h) but that doesn't
+include a fwnode_irq_get_by_name()
+
+We've had some recent discussion about this:
+https://lore.kernel.org/linux-iio/20210724190614.3593dcd1@jic23-huawei/
+
+If it is something you would like to take on, that would be great.
+If not, for now use the of_irq_get_byname() method but add a comment
+saying it would good to move to a generic version.
+
+>  }
+>  
+>  static const struct i2c_device_id adxl355_i2c_id[] = {
+> diff --git a/drivers/iio/accel/adxl355_spi.c b/drivers/iio/accel/adxl355_spi.c
+> index a16bd1407..f9ba153f6 100644
+> --- a/drivers/iio/accel/adxl355_spi.c
+> +++ b/drivers/iio/accel/adxl355_spi.c
+> @@ -34,7 +34,7 @@ static int adxl355_spi_probe(struct spi_device *spi)
+>  		return PTR_ERR(regmap);
+>  	}
+>  
+> -	return adxl355_core_probe(&spi->dev, regmap, id->name);
+> +	return adxl355_core_probe(&spi->dev, regmap, id->name, spi->irq);
+>  }
+>  
+>  static const struct spi_device_id adxl355_spi_id[] = {
+
