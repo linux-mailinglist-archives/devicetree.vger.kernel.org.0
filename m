@@ -2,378 +2,313 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 16E233E3797
-	for <lists+devicetree@lfdr.de>; Sun,  8 Aug 2021 01:39:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6DD63E37D8
+	for <lists+devicetree@lfdr.de>; Sun,  8 Aug 2021 03:57:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229797AbhHGXkP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Aug 2021 19:40:15 -0400
-Received: from mailgate.ics.forth.gr ([139.91.1.2]:61380 "EHLO
-        mailgate.ics.forth.gr" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229578AbhHGXkP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Aug 2021 19:40:15 -0400
-X-Greylist: delayed 2052 seconds by postgrey-1.27 at vger.kernel.org; Sat, 07 Aug 2021 19:40:14 EDT
-Received: from av3.ics.forth.gr (av3in.ics.forth.gr [139.91.1.77])
-        by mailgate.ics.forth.gr (8.15.2/ICS-FORTH/V10-1.8-GATE) with ESMTP id 177N5gKd095300
-        for <devicetree@vger.kernel.org>; Sun, 8 Aug 2021 02:05:43 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; d=ics.forth.gr; s=av; c=relaxed/simple;
-        q=dns/txt; i=@ics.forth.gr; t=1628377537; x=1630969537;
-        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=ehVNo9Zi6sdRJRX9bB3/TWxcekSmcVgfmBxE6YPsI3w=;
-        b=Vn8KLoierPuHI8MW2ysbxFsNs0R1/d7q+WCPqL0FP1hL8/Wqy1DjHIOGF1iDgnEp
-        ip068onKSeeJlurh58tuPFvFS6/SIMVfsQlkL4Bji7odXo3patdPYge8BN14Zna/
-        86JUWEuMBm7gNd1Cjex5BiqQdjZb+oBkuVtlt4W3SzAszGa3subTJozdpBOkcDZP
-        MIHpEk2dDINwVznQgyddcp8awdY24WmL07t3hiZI+CfyDczQWfX1COnljU/g/eH1
-        gxZcOO9ulb2C1V7eqTmtM4YSTSlF1g5f6LVE0Drv0KKMz+ptdpYNS/ke4hG9dvxx
-        2GtZ2CqaGS26bodX1D0t2w==;
-X-AuditID: 8b5b014d-b84f570000005d46-b6-610f11c161ba
-Received: from enigma.ics.forth.gr (webmail.ics.forth.gr [139.91.151.35])
-        by av3.ics.forth.gr (Symantec Messaging Gateway) with SMTP id A6.94.23878.1C11F016; Sun,  8 Aug 2021 02:05:37 +0300 (EEST)
-X-ICS-AUTH-INFO: Authenticated user:  at ics.forth.gr
+        id S229974AbhHHB5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Aug 2021 21:57:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43148 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229882AbhHHB5u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Aug 2021 21:57:50 -0400
+Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18DDDC061760;
+        Sat,  7 Aug 2021 18:57:31 -0700 (PDT)
+Received: by mail-qv1-xf29.google.com with SMTP id s11so7180817qvz.7;
+        Sat, 07 Aug 2021 18:57:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=eWNxPiP1jfrKqmQ3qcfNiXA7SOGFgEh6fUX4gAfkBb8=;
+        b=nZPZrtm7wM8PJoYxSnv3bWUa5GoLv0BeBJOJnHw5QP1fpjMjBCugAOa0hFokDfDW9B
+         skqGLe6IWEu8mqXE//JOZdiIP3y7LG5DcQ5gCNEw3ZzmH8/YCZNrmpv7kaIacZMCJH65
+         XBiAQ7yHx0REzKGLyjacXNG7kenqhp9/ZdjFi1RK86rH4+jKytFAPPc0fieDyIRwx79d
+         dH6Csr84UyrmAufxw2GWsAr0eNL6/Awn/hBW6kLm83/yDRgRzxIpXMDRu6shfm3RKCse
+         thbXTksBzzyBIRz6TGrhHMVqoKF6VggiPcykkSDmTZXwsV7dAt6FCIq76Po4eigAgPfj
+         gCtQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=eWNxPiP1jfrKqmQ3qcfNiXA7SOGFgEh6fUX4gAfkBb8=;
+        b=muX9UUuIkT1PS2jBRUhbncbYa+cicnJqP/w52c7s+PKi58peftrOEcS3tVSR32+jk5
+         SKaNDN5upTVPgAroTQUnAnVs4//Q35UDBkUGsu7dNTFTr8YtmRLer6RIBkG0tVnbVxvm
+         SG6NxMDRk4/LDp0ZGhlKYXjZA1QJTlJrYk4hDD5hoQU51hVrRQ1XqrVtXanjZwQYhvM3
+         KP4G3Kgh7hOkNRMZVFePAZxDobs6EpbrSmKkq6PQTtOYR2DHNn+8zdGJlVSnue2jT5vQ
+         NTeTpVz9dWp2aU0NEpMU886wy8hHWZYZBi1Fl5Jb7CQPobDUUhmwz9JWxySVJ24tjv12
+         s+CA==
+X-Gm-Message-State: AOAM5319IBMsd9u7DRozzwg2ukxpH02bNEiajGOnpj36hMQNqjbBJfkz
+        YaU0l/IzCB6UV476D7M9HKs=
+X-Google-Smtp-Source: ABdhPJyn9wuwQBO0PHZ5CMZWt13+PLmSl74jjOLWO77MNEgHyyJqm2XQ6SQ7pwv8eRwp7tJ2MEO6MQ==
+X-Received: by 2002:a05:6214:2ce:: with SMTP id g14mr17847863qvu.46.1628387850076;
+        Sat, 07 Aug 2021 18:57:30 -0700 (PDT)
+Received: from shaak.xiphos.ca (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
+        by smtp.gmail.com with ESMTPSA id k24sm1569612qki.11.2021.08.07.18.57.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 07 Aug 2021 18:57:29 -0700 (PDT)
+From:   Liam Beguin <liambeguin@gmail.com>
+To:     liambeguin@gmail.com, lars@metafoo.de,
+        Michael.Hennerich@analog.com, jic23@kernel.org,
+        charles-antoine.couret@essensium.com, Nuno.Sa@analog.com
+Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org
+Subject: [PATCH v5 0/5] AD7949 Fixes
+Date:   Sat,  7 Aug 2021 21:56:54 -0400
+Message-Id: <20210808015659.2955443-1-liambeguin@gmail.com>
+X-Mailer: git-send-email 2.32.0.452.g940fe202adcb
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
 Content-Transfer-Encoding: 8bit
-Date:   Sun, 08 Aug 2021 02:05:34 +0300
-From:   Nick Kossifidis <mick@ics.forth.gr>
-To:     Mike Rapoport <rppt@kernel.org>
-Cc:     Andrew Morton <akpm@linux-foundation.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Andy Lutomirski <luto@kernel.org>,
-        Borislav Petkov <bp@alien8.de>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Christian Borntraeger <borntraeger@de.ibm.com>,
-        Dave Hansen <dave.hansen@linux.intel.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "H. Peter Anvin" <hpa@zytor.com>,
-        Heiko Carstens <hca@linux.ibm.com>,
-        Ingo Molnar <mingo@redhat.com>,
-        "Kirill A. Shutemov" <kirill@shutemov.name>,
-        Len Brown <lenb@kernel.org>, Marc Zyngier <maz@kernel.org>,
-        Mike Rapoport <rppt@linux.ibm.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Peter Zijlstra <peterz@infradead.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Vasily Gorbik <gor@linux.ibm.com>,
-        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-        kvmarm@lists.cs.columbia.edu, linux-acpi@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-mm@kvack.org,
-        linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
-        x86@kernel.org
-Subject: Re: [PATCH v2] memblock: make memblock_find_in_range method private
-Organization: FORTH
-In-Reply-To: <20210802063737.22733-1-rppt@kernel.org>
-References: <20210802063737.22733-1-rppt@kernel.org>
-Message-ID: <d0965f23c7ffb6b46a5b033fe242fc25@mailhost.ics.forth.gr>
-X-Sender: mick@mailhost.ics.forth.gr
-User-Agent: Roundcube Webmail/1.3.16
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Sf1CTdRzH++559jwPy8GzseQJU7qZ5+nZzAruc1ZaavJoCnbnZWdXuMsn
-        RiFyY3LU6TkaoPxspoQ848doBR4329puDbgGbOxCiFBHt7NyHYqFCxTbEHZhEBvXHf+97v15
-        3+fz+uNDYVKDMJnKydNw6jxlrpwQ4ZXv1K191i1JUD4XHFgPDRYzAY45noS6S04cwtZ5AqZa
-        qxDctZ5B0OwdFkL95AIB1/gZIehMFgImmtoRfPFtEpjPtWDw92A/CZ237hHQ1v0ZAtuYXwgj
-        XQ0ElNscCH43Lwjhu3AJAfoWHQaeWheCq12XhdDZMCAEX69RAMGRKgzK+ATor+4VwNCPPiGU
-        urwkeC1OAdy4oCXAbqvFoO9TNwYlN1MhYh0TvrqOnS2twdlSXxvOmpvMiB3xX8fYyWAQZ923
-        PQTbd3aaZDv5AMnaL21kbe3lBGsLfU6y94eHSfbKxTmc1X/Zi9imgTfZnkYzeYA5LHr5KJeb
-        U8ipN287IlLVG8j8XzKLrn1jwLTIsa0CURRDv8j45gsrkIiS0j8gZtZvxCpQ3GKeyhhc5SjK
-        YlrCDNTfwaOM0cDU/tyDljiF0TkMsT5Or2OK9WOxnKA3MM0+d6wvo9cys6ZubKlfvILhJ5+K
-        ciK9jwkOm8goJ9CJTChwXRjluMW7v45eie2RLrpdqKzGlhx2MaG6B4Ilt2eYB3OjZNT/iUW2
-        N8r1SMIvM+WXmfLLTI0Ia0e0svAFRc77BYoPjqs1KkW22oZi/4P2d6Df7PcUHiSgkAcxFCaX
-        iS0X45VS8VHlx59w6uNZ6hO5XIEHraJweZJYrNBnSelspYb7iOPyOfX/UwEVl6wV1PNPG8mX
-        DFpTsPGQzP39TsmmO6tP2ncv6M4VzVc57696bHTs8qm+vYcOjpdmqsxZ0LohObjj6hrvdq1f
-        I/mnLPHRG5E9zh0tt1wZoeffSlOlNuklJfFTp/l/WwfzxR++W5OW8soNa2Bkxhx5eHJ3w3RN
-        +t1NCfuO+eP3q/plzZX6mYk/u3em3JwOPVp/Xl8k+Utr+urE3qSuY18nD7auxL0R0dsZ40+u
-        TpcoTX7f0EQ483RwaOjIH6fSqJQ9Z19bk/X6rnLXe2EnFbKczwxtXoFryrYatyQGHk5VR/J0
-        /Nbtgx0yWx3nuC05iGUECouyO6zpjx/+abojfGCcaps707OyWI4XqJRbNmLqAuV/e64RJK4D
-        AAA=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Στις 2021-08-02 09:37, Mike Rapoport έγραψε:
-> From: Mike Rapoport <rppt@linux.ibm.com>
-> 
-> There are a lot of uses of memblock_find_in_range() along with
-> memblock_reserve() from the times memblock allocation APIs did not 
-> exist.
-> 
-> memblock_find_in_range() is the very core of memblock allocations, so 
-> any
-> future changes to its internal behaviour would mandate updates of all 
-> the
-> users outside memblock.
-> 
-> Replace the calls to memblock_find_in_range() with an equivalent calls 
-> to
-> memblock_phys_alloc() and memblock_phys_alloc_range() and make
-> memblock_find_in_range() private method of memblock.
-> 
-> This simplifies the callers, ensures that (unlikely) errors in
-> memblock_reserve() are handled and improves maintainability of
-> memblock_find_in_range().
-> 
-> Signed-off-by: Mike Rapoport <rppt@linux.ibm.com>
-> ---
-> v2: don't change error message in arm::reserve_crashkernel(), per 
-> Russell
-> v1: https://lore.kernel.org/lkml/20210730104039.7047-1-rppt@kernel.org
-> 
->  arch/arm/kernel/setup.c           | 18 +++++--------
->  arch/arm64/kvm/hyp/reserved_mem.c |  9 +++----
->  arch/arm64/mm/init.c              | 36 ++++++++-----------------
->  arch/mips/kernel/setup.c          | 14 +++++-----
->  arch/riscv/mm/init.c              | 44 ++++++++++---------------------
->  arch/s390/kernel/setup.c          | 10 ++++---
->  arch/x86/kernel/aperture_64.c     |  5 ++--
->  arch/x86/mm/init.c                | 21 +++++++++------
->  arch/x86/mm/numa.c                |  5 ++--
->  arch/x86/mm/numa_emulation.c      |  5 ++--
->  arch/x86/realmode/init.c          |  2 +-
->  drivers/acpi/tables.c             |  5 ++--
->  drivers/base/arch_numa.c          |  5 +---
->  drivers/of/of_reserved_mem.c      | 12 ++++++---
->  include/linux/memblock.h          |  2 --
->  mm/memblock.c                     |  2 +-
->  16 files changed, 78 insertions(+), 117 deletions(-)
-> 
-> diff --git a/arch/arm/kernel/setup.c b/arch/arm/kernel/setup.c
-> index f97eb2371672..67f5421b2af7 100644
-> --- a/arch/arm/kernel/setup.c
-> +++ b/arch/arm/kernel/setup.c
-> @@ -1012,31 +1012,25 @@ static void __init reserve_crashkernel(void)
->  		unsigned long long lowmem_max = __pa(high_memory - 1) + 1;
->  		if (crash_max > lowmem_max)
->  			crash_max = lowmem_max;
-> -		crash_base = memblock_find_in_range(CRASH_ALIGN, crash_max,
-> -						    crash_size, CRASH_ALIGN);
-> +
-> +		crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
-> +						       CRASH_ALIGN, crash_max);
->  		if (!crash_base) {
->  			pr_err("crashkernel reservation failed - No suitable area 
-> found.\n");
->  			return;
->  		}
->  	} else {
-> +		unsigned long long crash_max = crash_base + crash_size;
->  		unsigned long long start;
-> 
-> -		start = memblock_find_in_range(crash_base,
-> -					       crash_base + crash_size,
-> -					       crash_size, SECTION_SIZE);
-> +		start = memblock_phys_alloc_range(crash_size, SECTION_SIZE,
-> +						  crash_base, crash_max);
->  		if (start != crash_base) {
->  			pr_err("crashkernel reservation failed - memory is in use.\n");
->  			return;
->  		}
->  	}
-> 
-> -	ret = memblock_reserve(crash_base, crash_size);
-> -	if (ret < 0) {
-> -		pr_warn("crashkernel reservation failed - memory is in use 
-> (0x%lx)\n",
-> -			(unsigned long)crash_base);
-> -		return;
-> -	}
-> -
->  	pr_info("Reserving %ldMB of memory at %ldMB for crashkernel (System
-> RAM: %ldMB)\n",
->  		(unsigned long)(crash_size >> 20),
->  		(unsigned long)(crash_base >> 20),
-> diff --git a/arch/arm64/kvm/hyp/reserved_mem.c
-> b/arch/arm64/kvm/hyp/reserved_mem.c
-> index d654921dd09b..578670e3f608 100644
-> --- a/arch/arm64/kvm/hyp/reserved_mem.c
-> +++ b/arch/arm64/kvm/hyp/reserved_mem.c
-> @@ -92,12 +92,10 @@ void __init kvm_hyp_reserve(void)
->  	 * this is unmapped from the host stage-2, and fallback to PAGE_SIZE.
->  	 */
->  	hyp_mem_size = hyp_mem_pages << PAGE_SHIFT;
-> -	hyp_mem_base = memblock_find_in_range(0, memblock_end_of_DRAM(),
-> -					      ALIGN(hyp_mem_size, PMD_SIZE),
-> -					      PMD_SIZE);
-> +	hyp_mem_base = memblock_phys_alloc(ALIGN(hyp_mem_size, PMD_SIZE),
-> +					   PMD_SIZE);
->  	if (!hyp_mem_base)
-> -		hyp_mem_base = memblock_find_in_range(0, memblock_end_of_DRAM(),
-> -						      hyp_mem_size, PAGE_SIZE);
-> +		hyp_mem_base = memblock_phys_alloc(hyp_mem_size, PAGE_SIZE);
->  	else
->  		hyp_mem_size = ALIGN(hyp_mem_size, PMD_SIZE);
-> 
-> @@ -105,7 +103,6 @@ void __init kvm_hyp_reserve(void)
->  		kvm_err("Failed to reserve hyp memory\n");
->  		return;
->  	}
-> -	memblock_reserve(hyp_mem_base, hyp_mem_size);
-> 
->  	kvm_info("Reserved %lld MiB at 0x%llx\n", hyp_mem_size >> 20,
->  		 hyp_mem_base);
-> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
-> index 8490ed2917ff..d566478a06dd 100644
-> --- a/arch/arm64/mm/init.c
-> +++ b/arch/arm64/mm/init.c
-> @@ -74,6 +74,7 @@ phys_addr_t arm64_dma_phys_limit __ro_after_init;
->  static void __init reserve_crashkernel(void)
->  {
->  	unsigned long long crash_base, crash_size;
-> +	unsigned long crash_max = arm64_dma_phys_limit;
->  	int ret;
-> 
->  	ret = parse_crashkernel(boot_command_line, memblock_phys_mem_size(),
-> @@ -84,33 +85,18 @@ static void __init reserve_crashkernel(void)
-> 
->  	crash_size = PAGE_ALIGN(crash_size);
-> 
-> -	if (crash_base == 0) {
-> -		/* Current arm64 boot protocol requires 2MB alignment */
-> -		crash_base = memblock_find_in_range(0, arm64_dma_phys_limit,
-> -				crash_size, SZ_2M);
-> -		if (crash_base == 0) {
-> -			pr_warn("cannot allocate crashkernel (size:0x%llx)\n",
-> -				crash_size);
-> -			return;
-> -		}
-> -	} else {
-> -		/* User specifies base address explicitly. */
-> -		if (!memblock_is_region_memory(crash_base, crash_size)) {
-> -			pr_warn("cannot reserve crashkernel: region is not memory\n");
-> -			return;
-> -		}
-> +	/* User specifies base address explicitly. */
-> +	if (crash_base)
-> +		crash_max = crash_base + crash_size;
-> 
-> -		if (memblock_is_region_reserved(crash_base, crash_size)) {
-> -			pr_warn("cannot reserve crashkernel: region overlaps reserved 
-> memory\n");
-> -			return;
-> -		}
-> -
-> -		if (!IS_ALIGNED(crash_base, SZ_2M)) {
-> -			pr_warn("cannot reserve crashkernel: base address is not 2MB 
-> aligned\n");
-> -			return;
-> -		}
-> +	/* Current arm64 boot protocol requires 2MB alignment */
-> +	crash_base = memblock_phys_alloc_range(crash_size, SZ_2M,
-> +					       crash_base, crash_max);
-> +	if (!crash_base) {
-> +		pr_warn("cannot allocate crashkernel (size:0x%llx)\n",
-> +			crash_size);
-> +		return;
->  	}
-> -	memblock_reserve(crash_base, crash_size);
-> 
->  	pr_info("crashkernel reserved: 0x%016llx - 0x%016llx (%lld MB)\n",
->  		crash_base, crash_base + crash_size, crash_size >> 20);
-> diff --git a/arch/mips/kernel/setup.c b/arch/mips/kernel/setup.c
-> index 23a140327a0b..f979adfd4fc2 100644
-> --- a/arch/mips/kernel/setup.c
-> +++ b/arch/mips/kernel/setup.c
-> @@ -452,8 +452,9 @@ static void __init mips_parse_crashkernel(void)
->  		return;
-> 
->  	if (crash_base <= 0) {
-> -		crash_base = memblock_find_in_range(CRASH_ALIGN, CRASH_ADDR_MAX,
-> -							crash_size, CRASH_ALIGN);
-> +		crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
-> +						       CRASH_ALIGN,
-> +						       CRASH_ADDR_MAX);
->  		if (!crash_base) {
->  			pr_warn("crashkernel reservation failed - No suitable area 
-> found.\n");
->  			return;
-> @@ -461,8 +462,9 @@ static void __init mips_parse_crashkernel(void)
->  	} else {
->  		unsigned long long start;
-> 
-> -		start = memblock_find_in_range(crash_base, crash_base + crash_size,
-> -						crash_size, 1);
-> +		start = memblock_phys_alloc_range(crash_size, 1,
-> +						  crash_base,
-> +						  crash_base + crash_size);
->  		if (start != crash_base) {
->  			pr_warn("Invalid memory region reserved for crash kernel\n");
->  			return;
-> @@ -656,10 +658,6 @@ static void __init arch_mem_init(char **cmdline_p)
->  	mips_reserve_vmcore();
-> 
->  	mips_parse_crashkernel();
-> -#ifdef CONFIG_KEXEC
-> -	if (crashk_res.start != crashk_res.end)
-> -		memblock_reserve(crashk_res.start, resource_size(&crashk_res));
-> -#endif
->  	device_tree_init();
-> 
->  	/*
-> diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
-> index a14bf3910eec..88649337c568 100644
-> --- a/arch/riscv/mm/init.c
-> +++ b/arch/riscv/mm/init.c
-> @@ -812,38 +812,22 @@ static void __init reserve_crashkernel(void)
-> 
->  	crash_size = PAGE_ALIGN(crash_size);
-> 
-> -	if (crash_base == 0) {
-> -		/*
-> -		 * Current riscv boot protocol requires 2MB alignment for
-> -		 * RV64 and 4MB alignment for RV32 (hugepage size)
-> -		 */
-> -		crash_base = memblock_find_in_range(search_start, search_end,
-> -						    crash_size, PMD_SIZE);
-> -
-> -		if (crash_base == 0) {
-> -			pr_warn("crashkernel: couldn't allocate %lldKB\n",
-> -				crash_size >> 10);
-> -			return;
-> -		}
-> -	} else {
-> -		/* User specifies base address explicitly. */
-> -		if (!memblock_is_region_memory(crash_base, crash_size)) {
-> -			pr_warn("crashkernel: requested region is not memory\n");
-> -			return;
-> -		}
-> -
-> -		if (memblock_is_region_reserved(crash_base, crash_size)) {
-> -			pr_warn("crashkernel: requested region is reserved\n");
-> -			return;
-> -		}
-> -
-> +	if (crash_base) {
-> +		search_start = crash_base;
-> +		search_end = crash_base + crash_size;
-> +	}
-> 
-> -		if (!IS_ALIGNED(crash_base, PMD_SIZE)) {
-> -			pr_warn("crashkernel: requested region is misaligned\n");
-> -			return;
-> -		}
-> +	/*
-> +	 * Current riscv boot protocol requires 2MB alignment for
-> +	 * RV64 and 4MB alignment for RV32 (hugepage size)
-> +	 */
-> +	crash_base = memblock_phys_alloc_range(crash_size, PMD_SIZE,
-> +					       search_start, search_end);
-> +	if (crash_base == 0) {
-> +		pr_warn("crashkernel: couldn't allocate %lldKB\n",
-> +			crash_size >> 10);
-> +		return;
->  	}
-> -	memblock_reserve(crash_base, crash_size);
-> 
->  	pr_info("crashkernel: reserved 0x%016llx - 0x%016llx (%lld MB)\n",
->  		crash_base, crash_base + crash_size, crash_size >> 20);
+While working on another series[1] I ran into issues where my SPI
+controller would fail to handle 14-bit and 16-bit SPI messages. This
+addresses that issue and adds support for selecting a different voltage
+reference source from the devicetree.
 
-For the riscv part:
+V1 was base on a series[2] that seems to not have made it all the way,
+and was tested on an ad7689.
 
-Acked-by: Nick Kossifidis <mick@ics.forth.gr>
+[1] https://patchwork.kernel.org/project/linux-iio/list/?series=511545
+[2] https://patchwork.kernel.org/project/linux-iio/list/?series=116971&state=%2A&archive=both
+
+Changes since v4:
+- fix premature deletion of define
+- use separate be16 buffer for 8-bit transfers
+- switch to devm_regulator_get_optional()
+- fix vref setup
+- apply Reviewed-by
+
+Changes since v3:
+- use cpu_to_be16 and be16_to_cpu instead of manual conversion
+- use pointers to channel structures instead of copies
+- switch to generic device firmware property API
+- use standard unit suffix names (mV to microvolt)
+- switch to devm_iio_device_register() for additional cleanup
+
+Changes since v2:
+- add comments to ambiguous register names
+- fix be16 definition of the adc buffer
+- fix BPW logic
+- rework vref support
+  - support per channel vref selection
+  - infer reference select value based on DT parameters
+  - update dt-binding
+
+Changes since v1:
+- add default case in read/write size cases
+- drop of_node change as the core already takes care of it
+- check dt user input in probe
+- move description at the top of dt-binding definition
+- drop AllOf block in dt-binding
+
+Thanks for your time,
+Liam
+
+Liam Beguin (5):
+  iio: adc: ad7949: define and use bitfield names
+  iio: adc: ad7949: fix spi messages on non 14-bit controllers
+  iio: adc: ad7949: add support for internal vref
+  dt-bindings: iio: adc: ad7949: add per channel reference
+  iio: adc: ad7949: use devm managed functions
+
+ .../bindings/iio/adc/adi,ad7949.yaml          |  69 ++++-
+ drivers/iio/adc/ad7949.c                      | 281 ++++++++++++++----
+ 2 files changed, 291 insertions(+), 59 deletions(-)
+
+Range-diff against v4:
+1:  8760b368f971 ! 1:  a5c211185661 iio: adc: ad7949: define and use bitfield names
+    @@ drivers/iio/adc/ad7949.c
+      #define AD7949_MASK_TOTAL		GENMASK(13, 0)
+     -#define AD7949_OFFSET_CHANNEL_SEL	7
+     -#define AD7949_CFG_READ_BACK		0x1
+    --#define AD7949_CFG_REG_SIZE_BITS	14
+    -+
+    + #define AD7949_CFG_REG_SIZE_BITS	14
+    + 
+     +/* CFG: Configuration Update */
+     +#define AD7949_CFG_BIT_OVERWRITE	BIT(13)
+     +
+    @@ drivers/iio/adc/ad7949.c
+     +
+     +/* RB: Read back the CFG register */
+     +#define AD7949_CFG_BIT_RBN		BIT(0)
+    - 
+    ++
+      enum {
+      	ID_AD7949 = 0,
+    + 	ID_AD7682,
+     @@ drivers/iio/adc/ad7949.c: static int ad7949_spi_read_channel(struct ad7949_adc_chip *ad7949_adc, int *val,
+      	 */
+      	for (i = 0; i < 2; i++) {
+2:  7b1484f2fc4c ! 2:  df2f6df8f3d5 iio: adc: ad7949: fix spi messages on non 14-bit controllers
+    @@ Commit message
+         Signed-off-by: Liam Beguin <lvb@xiphos.com>
+     
+      ## drivers/iio/adc/ad7949.c ##
+    +@@
+    + #include <linux/bitfield.h>
+    + 
+    + #define AD7949_MASK_TOTAL		GENMASK(13, 0)
+    +-#define AD7949_CFG_REG_SIZE_BITS	14
+    + 
+    + /* CFG: Configuration Update */
+    + #define AD7949_CFG_BIT_OVERWRITE	BIT(13)
+     @@ drivers/iio/adc/ad7949.c: static const struct ad7949_adc_spec ad7949_adc_spec[] = {
+       * @indio_dev: reference to iio structure
+       * @spi: reference to spi structure
+    @@ drivers/iio/adc/ad7949.c: static const struct ad7949_adc_spec ad7949_adc_spec[]
+       * @cfg: copy of the configuration register
+       * @current_channel: current channel in use
+       * @buffer: buffer to send / receive data to / from device
+    ++ * @buf8b: be16 buffer to exchange data with the device in 8-bit transfers
+    +  */
+    + struct ad7949_adc_chip {
+    + 	struct mutex lock;
+     @@ drivers/iio/adc/ad7949.c: struct ad7949_adc_chip {
+      	struct iio_dev *indio_dev;
+      	struct spi_device *spi;
+    @@ drivers/iio/adc/ad7949.c: struct ad7949_adc_chip {
+      	u16 cfg;
+      	unsigned int current_channel;
+      	u16 buffer ____cacheline_aligned;
+    -@@ drivers/iio/adc/ad7949.c: static int ad7949_spi_write_cfg(struct ad7949_adc_chip *ad7949_adc, u16 val,
+    ++	__be16 buf8b;
+    + };
+    + 
+    + static int ad7949_spi_write_cfg(struct ad7949_adc_chip *ad7949_adc, u16 val,
+      				u16 mask)
+      {
+      	int ret;
+    @@ drivers/iio/adc/ad7949.c: static int ad7949_spi_write_cfg(struct ad7949_adc_chip
+      	struct spi_message msg;
+      	struct spi_transfer tx[] = {
+      		{
+    - 			.tx_buf = &ad7949_adc->buffer,
+    +-			.tx_buf = &ad7949_adc->buffer,
+      			.len = 2,
+     -			.bits_per_word = bits_per_word,
+     +			.bits_per_word = ad7949_adc->bits_per_word,
+      		},
+      	};
+      
+    -+	ad7949_adc->buffer = 0;
+      	ad7949_adc->cfg = (val & mask) | (ad7949_adc->cfg & ~mask);
+     -	ad7949_adc->buffer = ad7949_adc->cfg << shift;
+     +
+     +	switch (ad7949_adc->bits_per_word) {
+     +	case 16:
+    ++		tx[0].tx_buf = &ad7949_adc->buffer;
+     +		ad7949_adc->buffer = ad7949_adc->cfg << 2;
+     +		break;
+     +	case 14:
+    ++		tx[0].tx_buf = &ad7949_adc->buffer;
+     +		ad7949_adc->buffer = ad7949_adc->cfg;
+     +		break;
+     +	case 8:
+     +		/* Here, type is big endian as it must be sent in two transfers */
+    -+		ad7949_adc->buffer = (u16)cpu_to_be16(ad7949_adc->cfg << 2);
+    ++		tx[0].tx_buf = &ad7949_adc->buf8b;
+    ++		ad7949_adc->buf8b = cpu_to_be16(ad7949_adc->cfg << 2);
+     +		break;
+     +	default:
+     +		dev_err(&ad7949_adc->indio_dev->dev, "unsupported BPW\n");
+    @@ drivers/iio/adc/ad7949.c: static int ad7949_spi_read_channel(struct ad7949_adc_c
+      	struct spi_message msg;
+      	struct spi_transfer tx[] = {
+      		{
+    - 			.rx_buf = &ad7949_adc->buffer,
+    +-			.rx_buf = &ad7949_adc->buffer,
+      			.len = 2,
+     -			.bits_per_word = bits_per_word,
+     +			.bits_per_word = ad7949_adc->bits_per_word,
+      		},
+      	};
+      
+    ++	if (ad7949_adc->bits_per_word == 8)
+    ++		tx[0].rx_buf = &ad7949_adc->buf8b;
+    ++	else
+    ++		tx[0].rx_buf = &ad7949_adc->buffer;
+    ++
+    + 	/*
+    + 	 * 1: write CFG for sample N and read old data (sample N-2)
+    + 	 * 2: if CFG was not changed since sample N-1 then we'll get good data
+    +@@ drivers/iio/adc/ad7949.c: static int ad7949_spi_read_channel(struct ad7949_adc_chip *ad7949_adc, int *val,
+    + 	}
+    + 
+    + 	/* 3: write something and read actual data */
+    +-	ad7949_adc->buffer = 0;
+    + 	spi_message_init_with_transfers(&msg, tx, 1);
+    + 	ret = spi_sync(ad7949_adc->spi, &msg);
+    + 	if (ret)
+     @@ drivers/iio/adc/ad7949.c: static int ad7949_spi_read_channel(struct ad7949_adc_chip *ad7949_adc, int *val,
+      
+      	ad7949_adc->current_channel = channel;
+    @@ drivers/iio/adc/ad7949.c: static int ad7949_spi_read_channel(struct ad7949_adc_c
+     +		break;
+     +	case 8:
+     +		/* Here, type is big endian as data was sent in two transfers */
+    -+		*val = be16_to_cpu(ad7949_adc->buffer);
+    ++		*val = be16_to_cpu(ad7949_adc->buf8b);
+     +		/* Shift-out padding bits */
+     +		*val >>= 16 - ad7949_adc->resolution;
+     +		break;
+3:  41c4ab9c5e19 ! 3:  8a33618a4f90 iio: adc: ad7949: add support for internal vref
+    @@ drivers/iio/adc/ad7949.c: static int ad7949_spi_read_channel(struct ad7949_adc_c
+     +	struct ad7949_channel *ad7949_chan = &ad7949_adc->channels[channel];
+      	struct spi_transfer tx[] = {
+      		{
+    - 			.rx_buf = &ad7949_adc->buffer,
+    + 			.len = 2,
+     @@ drivers/iio/adc/ad7949.c: static int ad7949_spi_read_channel(struct ad7949_adc_chip *ad7949_adc, int *val,
+      	 */
+      	for (i = 0; i < 2; i++) {
+    @@ drivers/iio/adc/ad7949.c: static int ad7949_spi_probe(struct spi_device *spi)
+      
+     -	ad7949_adc->vref = devm_regulator_get(dev, "vref");
+     +	/* Setup external voltage ref, buffered? */
+    -+	ad7949_adc->vref = devm_regulator_get(dev, "vrefin");
+    ++	ad7949_adc->vref = devm_regulator_get_optional(dev, "vrefin");
+      	if (IS_ERR(ad7949_adc->vref)) {
+     -		dev_err(dev, "fail to request regulator\n");
+     -		return PTR_ERR(ad7949_adc->vref);
+    ++		ret = PTR_ERR(ad7949_adc->vref);
+    ++		if (ret != -ENODEV)
+    ++			return ret;
+     +		/* unbuffered? */
+    -+		ad7949_adc->vref = devm_regulator_get(dev, "vref");
+    ++		ad7949_adc->vref = devm_regulator_get_optional(dev, "vref");
+     +		if (IS_ERR(ad7949_adc->vref)) {
+    ++			ret = PTR_ERR(ad7949_adc->vref);
+    ++			if (ret != -ENODEV)
+    ++				return ret;
+     +			/* Internal then */
+     +			mode = AD7949_CFG_VAL_REF_INT_4096;
+    ++		} else {
+    ++			mode = AD7949_CFG_VAL_REF_EXT_TEMP;
+     +		}
+    -+		mode = AD7949_CFG_VAL_REF_EXT_TEMP;
+    ++	} else {
+    ++		mode = AD7949_CFG_VAL_REF_EXT_TEMP_BUF;
+      	}
+    -+	mode = AD7949_CFG_VAL_REF_EXT_TEMP_BUF;
+      
+     -	ret = regulator_enable(ad7949_adc->vref);
+     -	if (ret < 0) {
+4:  9cb48acbd05b ! 4:  7612ff29db6b dt-bindings: iio: adc: ad7949: add per channel reference
+    @@ Commit message
+         calculation.
+     
+         Signed-off-by: Liam Beguin <lvb@xiphos.com>
+    +    Reviewed-by: Rob Herring <robh@kernel.org>
+     
+      ## Documentation/devicetree/bindings/iio/adc/adi,ad7949.yaml ##
+     @@ Documentation/devicetree/bindings/iio/adc/adi,ad7949.yaml: properties:
+5:  c48eb017058c = 5:  74ee82caba57 iio: adc: ad7949: use devm managed functions
+
+base-commit: 6cbb3aa0f9d5d23221df787cf36f74d3866fdb78
+-- 
+2.32.0.452.g940fe202adcb
+
