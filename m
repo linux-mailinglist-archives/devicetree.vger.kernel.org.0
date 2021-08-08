@@ -2,130 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AE2F3E37E6
-	for <lists+devicetree@lfdr.de>; Sun,  8 Aug 2021 03:57:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B59B43E3820
+	for <lists+devicetree@lfdr.de>; Sun,  8 Aug 2021 05:50:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230170AbhHHB6B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Aug 2021 21:58:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43172 "EHLO
+        id S229977AbhHHDvP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Aug 2021 23:51:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230222AbhHHB5y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Aug 2021 21:57:54 -0400
-Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8C31C061760;
-        Sat,  7 Aug 2021 18:57:35 -0700 (PDT)
-Received: by mail-qv1-xf34.google.com with SMTP id js7so7185389qvb.4;
-        Sat, 07 Aug 2021 18:57:35 -0700 (PDT)
+        with ESMTP id S229882AbhHHDvP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Aug 2021 23:51:15 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA424C0613CF
+        for <devicetree@vger.kernel.org>; Sat,  7 Aug 2021 20:50:55 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id m18so7101878ljo.1
+        for <devicetree@vger.kernel.org>; Sat, 07 Aug 2021 20:50:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=gD90amiT9YOyeKllxReMYt4NwrWNc35BmzbD4M2saFY=;
-        b=EZtl5AHp+Pb02/ZMz2IKhSGMmiHPJZITQTTnMUFJZKqRvL3RV9vOPEMZl/uma2WXKy
-         VREWmDFvf3S3+hEwJ/+MYn8h9ddsPoongUw/2OQkWw7/x/QcTRycVauBAx1RNquF/Ry/
-         Lui4iMMhYGVz32BvdhrJl6YOap9tubx0dr0AXGGZj5hevuq21Z8/WnDYHoZkyM16/lYo
-         DMtj88morEj/yiIgciwfIglnohFUIexODtbPM8Njqc0h3F+jgqLRGXWjLXHo5oFp1Q7i
-         Tez8gkWI5Gpb6G5ZPFiMNpHzT+QrU0bWGajtU26TxtfAfkAYYV/2t9d4EfFu2vIsyihq
-         ndbg==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mvlrtM+yBNUdex1HY9xYdk9KI9SkZNw8iEdfyc3oX4o=;
+        b=nAK40s/rqTAOtL/6azfYvLR60IX4nNzmH4gEJWXDP2xA/0ZdiK2EfFvbfNCjyNkF4Q
+         H/hMU2ukO9kUUFcY3NCW0YtU0vFDtABOAaS5WpuH/8ohwsWrpNB/nB0XVx9foeT90Y8r
+         XMRxwBmyl6evABCnAtIQ4rvtkS8S4cOIr2izCfYKA8CWxAl0ZHInZ7/2VXmbPCnu2gyF
+         Ss1rF93hOJ9AkCONHsGJVVYGFBLzUfySJSyM7xbZPu8x1pYovrbkeZ9v/GP0ZAgf8WnT
+         HiIcCK2iYl4uFVruSEEIicDEA22pwvC8PeB+30rs9r8n8d9ciE7NlryKGUa9ZM33wYCL
+         o7Ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=gD90amiT9YOyeKllxReMYt4NwrWNc35BmzbD4M2saFY=;
-        b=Zx5vaZNXfX3cBMGw8shjL1Cm+TfRWLr0iowkGcAWwpBjmGbbUEZQIDmVJ2jNx904w3
-         5Ii6ojlQmrVDmWyLDA4QSy3WUmTrjBrV/NXxxMDceRuukt3psygQqA2NjdyvnjWkYGx6
-         OhnJe7bzdxX1ex660VZioWmDvmdFGnz7JQAzV4KhDiz/O1GkfN0NQPK/yI9LqcTGaKRu
-         9rYFaIkUE9X6zieDrdaJuOtM79Gj7uzZjfzLlpmiykXfKosOPmDipnkzC+azXH6jITMS
-         NpMcq6HeIodWYIcwpN36oNTJlyRvNSuPrAh8OXgU9mIeaURBc6Dho85LY5rMCX/aVIQ1
-         Q8xQ==
-X-Gm-Message-State: AOAM530vAhnC0nhETlqoeiWbj43z5/DYB2CAdnsquJtPG/xO6qJers37
-        O+InaJV86lGRMSxRAFT0IN8=
-X-Google-Smtp-Source: ABdhPJyPFnuyJGoPvZRayd0TKP+lE12TNqhsQhABnKW06y8imG2MVHYODNASrMTqsWWuiJo0hsR4Pg==
-X-Received: by 2002:a0c:e6cc:: with SMTP id l12mr6896739qvn.48.1628387855002;
-        Sat, 07 Aug 2021 18:57:35 -0700 (PDT)
-Received: from shaak.xiphos.ca (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
-        by smtp.gmail.com with ESMTPSA id k24sm1569612qki.11.2021.08.07.18.57.34
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mvlrtM+yBNUdex1HY9xYdk9KI9SkZNw8iEdfyc3oX4o=;
+        b=ggZFdE9T8Oqw/Gji+M1jvduBq0ZMToBf/bypO2y0CEBpBSX4g70zdhDVRei3W/ma0j
+         LzqDYZNfs0d5P7A8wXezFTM/cS6WkIaO99J+4BOZgFSkwKVZpYJd/IYtSpwfb83l9nLs
+         ne5cB2JY6UDvonS9jxGl/eaRQLapmRDYpzFd0+QX5Xi6gSAGceVoW+4GOKZpU4Dvaszd
+         MR5kubwwsdz8/dW2fRJK7HcjCr5+7dofOyJFrCOZMuXh3bI1zSDxKiZ6jun9TItqnGHt
+         TiMmsAl+9baLrrI6+huxHXW56doGq8cseZ7hfsOEne04zFcWfsv2NCV+BPzdry7ufy8a
+         zTiw==
+X-Gm-Message-State: AOAM530qmlwTqj7/0SzvsHEDOHe0u6mXp+tMNbdjNu4IO2edr1lT+kaP
+        avWsBcbUNJAJtDS+dhHkOfooQQ==
+X-Google-Smtp-Source: ABdhPJzQfBSCmGTUgsreBNAD6M+Ta2IA1JJIjYcQAPVgnZTM/97yGYPEp0sADjA69RdFRhgNjCn14g==
+X-Received: by 2002:a2e:2f05:: with SMTP id v5mr11336246ljv.66.1628394654090;
+        Sat, 07 Aug 2021 20:50:54 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id o1sm1307998lfl.67.2021.08.07.20.50.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Aug 2021 18:57:34 -0700 (PDT)
-From:   Liam Beguin <liambeguin@gmail.com>
-To:     liambeguin@gmail.com, lars@metafoo.de,
-        Michael.Hennerich@analog.com, jic23@kernel.org,
-        charles-antoine.couret@essensium.com, Nuno.Sa@analog.com
-Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-Subject: [PATCH v5 5/5] iio: adc: ad7949: use devm managed functions
-Date:   Sat,  7 Aug 2021 21:56:59 -0400
-Message-Id: <20210808015659.2955443-6-liambeguin@gmail.com>
-X-Mailer: git-send-email 2.32.0.452.g940fe202adcb
-In-Reply-To: <20210808015659.2955443-1-liambeguin@gmail.com>
-References: <20210808015659.2955443-1-liambeguin@gmail.com>
+        Sat, 07 Aug 2021 20:50:53 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: add bindings for the Sharp LS060T1SX01 panel
+Date:   Sun,  8 Aug 2021 06:50:52 +0300
+Message-Id: <20210808035053.58074-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Liam Beguin <lvb@xiphos.com>
+Add devicetree bindings for the Sharp LS060T1SX01 6.0" FullHD panel
+using NT35695 driver. This panel can be found i.e. in the Dragonboard
+Display Adapter bundle.
 
-Switch to devm_iio_device_register to finalize devm migration.
-This removes the use for iio_device_unregister() and since
-mutex_destroy() is not necessary here, remove it altogether.
-
-Signed-off-by: Liam Beguin <lvb@xiphos.com>
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/iio/adc/ad7949.c | 25 +++----------------------
- 1 file changed, 3 insertions(+), 22 deletions(-)
+ .../display/panel/sharp,ls060t1sx01.yaml      | 51 +++++++++++++++++++
+ 1 file changed, 51 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/sharp,ls060t1sx01.yaml
 
-diff --git a/drivers/iio/adc/ad7949.c b/drivers/iio/adc/ad7949.c
-index 14a7c79d637e..71561eb7898e 100644
---- a/drivers/iio/adc/ad7949.c
-+++ b/drivers/iio/adc/ad7949.c
-@@ -466,34 +466,16 @@ static int ad7949_spi_probe(struct spi_device *spi)
- 	ret = ad7949_spi_init(ad7949_adc);
- 	if (ret) {
- 		dev_err(dev, "enable to init this device: %d\n", ret);
--		goto err;
-+		return ret;
- 	}
- 
--	ret = iio_device_register(indio_dev);
--	if (ret) {
-+	ret = devm_iio_device_register(dev, indio_dev);
-+	if (ret)
- 		dev_err(dev, "fail to register iio device: %d\n", ret);
--		goto err;
--	}
--
--	return 0;
--
--err:
--	mutex_destroy(&ad7949_adc->lock);
- 
- 	return ret;
- }
- 
--static int ad7949_spi_remove(struct spi_device *spi)
--{
--	struct iio_dev *indio_dev = spi_get_drvdata(spi);
--	struct ad7949_adc_chip *ad7949_adc = iio_priv(indio_dev);
--
--	iio_device_unregister(indio_dev);
--	mutex_destroy(&ad7949_adc->lock);
--
--	return 0;
--}
--
- static const struct of_device_id ad7949_spi_of_id[] = {
- 	{ .compatible = "adi,ad7949" },
- 	{ .compatible = "adi,ad7682" },
-@@ -516,7 +498,6 @@ static struct spi_driver ad7949_spi_driver = {
- 		.of_match_table	= ad7949_spi_of_id,
- 	},
- 	.probe	  = ad7949_spi_probe,
--	.remove   = ad7949_spi_remove,
- 	.id_table = ad7949_spi_id,
- };
- module_spi_driver(ad7949_spi_driver);
+diff --git a/Documentation/devicetree/bindings/display/panel/sharp,ls060t1sx01.yaml b/Documentation/devicetree/bindings/display/panel/sharp,ls060t1sx01.yaml
+new file mode 100644
+index 000000000000..e749f20d34aa
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/sharp,ls060t1sx01.yaml
+@@ -0,0 +1,51 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/sharp,ls043t1le01.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Sharp Microelectronics 6.0" FullHD TFT LCD panel
++
++maintainers:
++  - Dmitry Baryskov <dmitry.baryshkov@linaro.org>
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  compatible:
++    const: sharp,ls060t1sx01
++
++  reg: true
++  backlight: true
++  reset-gpios: true
++  port: true
++
++  avdd-supply:
++    description: handle of the regulator that provides the supply voltage
++
++required:
++  - compatible
++  - reg
++  - avdd-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    dsi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        panel@0 {
++            compatible = "sharp,ls060t1sx01";
++            reg = <0>;
++            avdd-supply = <&pm8941_l22>;
++            backlight = <&backlight>;
++            reset-gpios = <&pm8916_gpios 25 GPIO_ACTIVE_LOW>;
++        };
++    };
++
++...
 -- 
-2.32.0.452.g940fe202adcb
+2.30.2
 
