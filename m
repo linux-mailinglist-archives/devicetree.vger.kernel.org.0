@@ -2,87 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AEFC3E3B31
-	for <lists+devicetree@lfdr.de>; Sun,  8 Aug 2021 17:49:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29AFC3E3B55
+	for <lists+devicetree@lfdr.de>; Sun,  8 Aug 2021 18:20:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232154AbhHHPt2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Aug 2021 11:49:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59508 "EHLO mail.kernel.org"
+        id S230169AbhHHQUb convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sun, 8 Aug 2021 12:20:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45114 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229923AbhHHPt1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 8 Aug 2021 11:49:27 -0400
+        id S230049AbhHHQUa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 8 Aug 2021 12:20:30 -0400
 Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DA92A6044F;
-        Sun,  8 Aug 2021 15:49:05 +0000 (UTC)
-Date:   Sun, 8 Aug 2021 16:51:55 +0100
+        by mail.kernel.org (Postfix) with ESMTPSA id 4322760F38;
+        Sun,  8 Aug 2021 16:20:07 +0000 (UTC)
+Date:   Sun, 8 Aug 2021 17:22:57 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        Hans de Goede <hdegoede@redhat.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Nikita Travkin <nikita@trvn.ru>
-Subject: Re: [PATCH v2 0/4] iio: accel: bmc150: Add support for INT2 and
- BMC156
-Message-ID: <20210808165155.161ecfcb@jic23-huawei>
-In-Reply-To: <20210802155657.102766-1-stephan@gerhold.net>
-References: <20210802155657.102766-1-stephan@gerhold.net>
+To:     Mugilraj Dhavachelvan <dmugil2000@gmail.com>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>, Dragos.Bogdan@analog.com,
+        Darius.Berghe@analog.com, Rob Herring <robh+dt@kernel.org>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org
+Subject: Re: [PATCH 2/2] iio: potentiometer: Add driver support for AD5110
+Message-ID: <20210808172257.59b13400@jic23-huawei>
+In-Reply-To: <66d670d6-0374-88ae-c4c1-efd60b54bbd2@gmail.com>
+References: <20210807050900.10075-1-dmugil2000@gmail.com>
+        <20210807050900.10075-3-dmugil2000@gmail.com>
+        <53306463-668e-e291-4539-caca2352ea05@metafoo.de>
+        <9b58fb0c-245d-795f-2124-6cc2020bc8c5@gmail.com>
+        <66d670d6-0374-88ae-c4c1-efd60b54bbd2@gmail.com>
 X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon,  2 Aug 2021 17:56:53 +0200
-Stephan Gerhold <stephan@gerhold.net> wrote:
+On Sat, 7 Aug 2021 23:04:18 +0530
+Mugilraj Dhavachelvan <dmugil2000@gmail.com> wrote:
 
-> This series makes it possible to set up interrupts with the BMC150 driver
-> on boards where only the INT2 pin is connected (and not INT1). This is
-> particularly always the case for BMC156 since for some reason it only
-> has the INT2 pin and not the INT1 pin.
+> Sorry some formatting issues happened in my previous mail.
 > 
-> These changes were already partially discussed here:
-> https://lore.kernel.org/linux-iio/YMOphuXSoODIVX06@gerhold.net/
+> On 07/08/21 10:56 pm, Mugilraj Dhavachelvan wrote:
+> > 
+> > 
+> > On 07/08/21 5:41 pm, Lars-Peter Clausen wrote:  
+> >> On 8/7/21 7:08 AM, Mugilraj Dhavachelvan wrote:  
+> >>> The AD5110/AD5112/AD5114 provide a nonvolatile solution
+> >>> for 128-/64-/32-position adjustment applications, offering
+> >>> guaranteed low resistor tolerance errors of ±8% and up to
+> >>> ±6 mA current density.
+> >>>
+> >>> Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/AD5110_5112_5114.pdf
+> >>> Signed-off-by: Mugilraj Dhavachelvan <dmugil2000@gmail.com>  
+> >>
+> >> Thanks for the patch. This looks really good> 
+> >>  
+>
 
-Hopefully one of us or someone else will come back to this and
-figure out a clean solution to generic fw support for getting named IRQs.
-In the meantime this will be fine for this particular driver.
+...
 
-Some fun to look forwards to ;)
+> >>> +
+> >>> +static IIO_DEVICE_ATTR(wiper_pos_eeprom, 0644,
+> >>> +               ad5110_eeprom_read,
+> >>> +               ad5110_eeprom_write, 0);  
+> >> This is new custom ABI and needs to be documented  
 
-Applied to the togreg branch of iio.git and pushed out as testing for 0-day
-to poke at it and see what we missed.
+We have existing similar ABI in dac/mcp4725 which is simply
+called store_eeprom
 
-Thanks,
+It's in the main docs
+Documentation/ABI/testing/sysfs-bus-iio as storing
+device configuration.  I'm guessing this device doesn't have
+other configuration so that description will work?
 
-Jonathan
 
 > 
-> Changes in v2:
->   - PATCH 1/4: Clarify order of "interrupts" with "interrupt-names"
->   - PATCH 4/4: Wrap a long line, clarify BOSCH_UNKNOWN with a comment
+> > I'm not aware of this, fixed in v2.  
+> >>> +static int ad5110_write_raw(struct iio_dev *indio_dev,
+> >>> +                struct iio_chan_spec const *chan,
+> >>> +                int val, int val2, long mask)
+> >>> +{
+> >>> +    struct ad5110_data *data = iio_priv(indio_dev);
+> >>> +    int ret;
+> >>> +
+> >>> +    switch (mask) {
+> >>> +    case IIO_CHAN_INFO_RAW:
+> >>> +        if (val >= data->cfg->max_pos || val < 0)  
+> >> val == data->cfg->max_pos is a valid setting. Writing max_pos puts it in top-scale mode which gives maximum resistance.  
+> > Fixed in v2.  
+> >>> +            return -EINVAL;
+> >>> +
+> >>> +        return ad5110_write(data, AD5110_RDAC_WR, val << data->cfg->shift);
+> >>> +    case IIO_CHAN_INFO_ENABLE:
+> >>> +        if (val < 0 || val > 1)
+> >>> +            return -EINVAL;
+> >>> +        if (data->enable == val)
+> >>> +            return 0;
+> >>> +        ret = ad5110_write(data, AD5110_SHUTDOWN, val);  
+> >> Doesn't val have to be inverted to get the right behavior  
 > 
-> v1: https://lore.kernel.org/linux-iio/20210719112156.27087-1-stephan@gerhold.net/
-> 
-> Stephan Gerhold (4):
->   dt-bindings: iio: accel: bma255: Add interrupt-names
->   dt-bindings: iio: accel: bma255: Add bosch,bmc156_accel
->   iio: accel: bmc150: Make it possible to configure INT2 instead of INT1
->   iio: accel: bmc150: Add support for BMC156
-> 
->  .../bindings/iio/accel/bosch,bma255.yaml      | 34 +++++++-
->  drivers/iio/accel/Kconfig                     |  5 +-
->  drivers/iio/accel/bmc150-accel-core.c         | 78 +++++++++++++++----
->  drivers/iio/accel/bmc150-accel-i2c.c          | 10 ++-
->  drivers/iio/accel/bmc150-accel-spi.c          | 10 ++-
->  drivers/iio/accel/bmc150-accel.h              | 20 ++++-
->  6 files changed, 134 insertions(+), 23 deletions(-)
-> 
+> > I just replicated the datasheet operation. 
+> > You mean,
+> >  1 - shutdown off
+> >  0 - shutdown on
+> > If yes, then the user won't get confused with the datasheet and the behavior of the driver?
+> > Or Is it work like this? But yeah even I like this change it's more convenient.  
+
+ABI has to be consistent and writing an enable attribute with 1 has to mean enabling it whatever
+approach the datasheet takes to describe things.  Most users don't read
+datasheets so interface needs to be intuitive.
+
+> >>> +        if (ret)
+> >>> +            return ret;
+> >>> +        data->enable = val;
+> >>> +        return 0;
+> >>> +    default:
+> >>> +        return -EINVAL;
+> >>> +    }
+> >>> +}  
+> >> [...]  
+> > Thanks for feedback!!
+> >   
 
