@@ -2,80 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A1093E41C6
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 10:48:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A4F63E41DF
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 10:53:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234045AbhHIIsl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 04:48:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50938 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233940AbhHIIsj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 04:48:39 -0400
-Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AFDCC0613CF
-        for <devicetree@vger.kernel.org>; Mon,  9 Aug 2021 01:48:18 -0700 (PDT)
-Received: by mail-yb1-xb36.google.com with SMTP id z128so28040616ybc.10
-        for <devicetree@vger.kernel.org>; Mon, 09 Aug 2021 01:48:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=VVQ41jigFzaVThfinrkRkfMZAgwQAuE1SWL+9+k/kFw=;
-        b=lXnRg/2ju7W2iTvIbCYdEuvpRM9fQiVFEzfSccrHIIDmsftL3I1GxMXMN4Oh2T73GY
-         XtD8BClYx4pMrmUNRya/Rk1Aw094+8ZuQKdBfjKgY5qLLQpmaowjAzAfaFCNPcElFjSe
-         rgGypMyKl8g8+XgPiYInR8TkNau3fSOjSOSowN4sLxFM+CLBDhDRF8GpUgzuDjFMRVjr
-         4c1WBKDZ6Ec1z2P/C74j/F8rUvAY5DB3AVbUw+hdNIDGsxn/dEZhrBH2CrjJvlW1079R
-         /0RJjMpOeH3qKWMIyRmVsJJwDrqRa8OPZjxWQaQiRI8yhPd1gEqoWbITjtxxTJFlQRxY
-         Q03w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=VVQ41jigFzaVThfinrkRkfMZAgwQAuE1SWL+9+k/kFw=;
-        b=ZgBbRPAiluBxbNG3mCbxcjgBG4bBtJwiX5LuiC8HV/OUDMtIrQIAP86edtzD1PUIvD
-         FW43nP3hxL2W+sSCADFshh7SFVfcrpCKyQljiTPsg9KoVIwQdfk4AY0yTfu6Mtf/GEuJ
-         nvLXFQcdiXijlsLtgzW1wEBvAxfu0hPOm98l1nH7korL50Jd4dj7jT3MXqPRhzFvfuUB
-         6bIYjIKQYk6oOCaoTvo/pMIW8NMFg5zqeCASSKtXgYgXGuqPJU4M1PmGrUNDMOYdtD3F
-         05SH8rFjJBhUM53hIGKM7gUZrl3HgTv5EWUzLIlTNPuM3EIXt3/1vHbbeM763kYe884c
-         8kmg==
-X-Gm-Message-State: AOAM533EO6lUWjdQzvKZZpZZSRlCSkZrbc9ywaO1UtbkRLYFpWrx2q9c
-        TcYjyoH1jEcFULkNto3urIvjc7uCsQD9wNzp0i8=
-X-Google-Smtp-Source: ABdhPJyvExsyzGRULTs1EtYI447/HTG/dhckSXaq7LrMGUVBMrESl+X2oaWgCYZBGp5erR6oBEFM+E3ZuaCxOCu6xLw=
-X-Received: by 2002:a25:3748:: with SMTP id e69mr21226204yba.25.1628498897445;
- Mon, 09 Aug 2021 01:48:17 -0700 (PDT)
+        id S234061AbhHIIxq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 04:53:46 -0400
+Received: from m12-12.163.com ([220.181.12.12]:37976 "EHLO m12-12.163.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234003AbhHIIxq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Aug 2021 04:53:46 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+        s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=cLjD1
+        QazKK6TLOJDaWUarO+saBlohSORuEDe9dMn5vE=; b=Vwz7LEDTbr6dcr/oifLzR
+        AURQHSDY8hmSTPs6Ggdq560j4nYqkcbEms84YdbnlHptMzYSqT+Qjk6pxFN7KRZi
+        Eks+gHQN2NNHmFNC78deV/PmFyeeEbXNmi2sLmGkTBg2+jqM+jt8242qzBe0OYq3
+        tRjXmZHNvbi3JxsLTAm8qI=
+Received: from asura.lan (unknown [182.149.135.186])
+        by smtp8 (Coremail) with SMTP id DMCowADnNDrt7BBhQuZhTA--.28173S2;
+        Mon, 09 Aug 2021 16:53:03 +0800 (CST)
+From:   chaochao2021666@163.com
+To:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Chao Zeng <chao.zeng@siemens.com>
+Subject: [PATCH 1/2] dt-bindings:dp83867:Add binding for the status led
+Date:   Mon,  9 Aug 2021 16:52:13 +0800
+Message-Id: <20210809085213.324129-1-chaochao2021666@163.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Received: by 2002:a05:7000:970e:0:0:0:0 with HTTP; Mon, 9 Aug 2021 01:48:17
- -0700 (PDT)
-Reply-To: mrs.nicole111@gmail.com
-From:   Mrs Nicole Benoite Marois <mr.brightotabor@gmail.com>
-Date:   Mon, 9 Aug 2021 01:48:17 -0700
-Message-ID: <CAEuX2_7b7XcWjpF-aMS2XMA-BBNCxdz6aXvmJq9NYQpzCLsoxg@mail.gmail.com>
-Subject: 
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: DMCowADnNDrt7BBhQuZhTA--.28173S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7CFy3Cry3ZF1rJr1xAFWrXwb_yoW8KFW5pF
+        sFvas7Gr12yF47JwsaqFn3Cr1fXw18Xr9FkFyq9w1qya98Aa1ftr4YgF4UXF48urZ5JFy7
+        JFZ8Wr4UKF9Iyw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+        9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jqT5dUUUUU=
+X-Originating-IP: [182.149.135.186]
+X-CM-SenderInfo: 5fkd0uhkdrjiasrwlli6rwjhhfrp/1tbi3w-pdWB0HGzM6wAAsP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Beloved
+From: Chao Zeng <chao.zeng@siemens.com>
 
-I am Mrs Nicole Benoite Marois and i have been suffering from ovarian
-cancer disease and the doctor says that i have just few days to leave.
-I am from (Paris) France but based in Africa Burkina Faso since eight
-years ago as a business woman dealing with gold exportation
+The phy status led of each of board maybe different.
+Provide a method to custom phy status led behavior.
 
-Now that i am about to end the race like this, without any family
-members and no child. I have $3 Million US DOLLARS in Africa
-Development Bank (ADB) Burkina Faso which i instructed the bank to remit and
-give to Orphanage & Teaching Volunteer Work here in Burkina
+Datasheet:
+http://www.ti.com/product/DP83867IR/datasheet
 
-I also have $4.5 Million US Dollars at Eco-Bank here in Burkina Faso
-and i instructed the bank to transfer the fund to you as foreigner
-that will apply to the bank after i have gone, that they should
-release the fund to him/her,but you will assure me that you will take
-50% of the fund and give 50% to the orphanages home in your country
-for my heart to rest.
+Signed-off-by: Chao Zeng <chao.zeng@siemens.com>
+---
+ .../devicetree/bindings/net/ti,dp83867.yaml    |  6 ++++++
+ include/dt-bindings/net/ti-dp83867.h           | 18 ++++++++++++++++++
+ 2 files changed, 24 insertions(+)
 
-Hoping you will understand my point regarding my message.
+diff --git a/Documentation/devicetree/bindings/net/ti,dp83867.yaml b/Documentation/devicetree/bindings/net/ti,dp83867.yaml
+index 047d757e8d82..a46a437818f2 100644
+--- a/Documentation/devicetree/bindings/net/ti,dp83867.yaml
++++ b/Documentation/devicetree/bindings/net/ti,dp83867.yaml
+@@ -106,6 +106,12 @@ properties:
+       Transmitt FIFO depth- see dt-bindings/net/ti-dp83867.h for applicable
+       values.
+ 
++  ti,led-sel:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      This configure the status led. See dt-bindings/net/ti-dp83867.h
++      for different status led settings,select different configures
++
+ required:
+   - reg
+ 
+diff --git a/include/dt-bindings/net/ti-dp83867.h b/include/dt-bindings/net/ti-dp83867.h
+index 6fc4b445d3a1..de59c3a42c1e 100644
+--- a/include/dt-bindings/net/ti-dp83867.h
++++ b/include/dt-bindings/net/ti-dp83867.h
+@@ -48,6 +48,24 @@
+ #define DP83867_CLK_O_SEL_CHN_C_TCLK		0xA
+ #define DP83867_CLK_O_SEL_CHN_D_TCLK		0xB
+ #define DP83867_CLK_O_SEL_REF_CLK		0xC
++
++/* Led configuration flag*/
++#define DP83867_LINK_ESTABLISHED				0x0
++#define DP83867_RECEIVE_TRANSMIT_ACTIVITY		0x1
++#define DP83867_TRANSMIT_ACTIVITY				0x2
++#define DP83867_RECEIVE_ACTIVITY				0x3
++#define DP83867_COLLISION_DETECTED				0x4
++#define DP83867_LINK_ESTABLISHED_1000BT			0x5
++#define DP83867_LINK_ESTABLISHED_100BTX			0x6
++#define DP83867_LINK_ESTABLISHED_10BT			0x7
++#define DP83867_LINK_ESTABLISHED_10_100_BT		0x8
++#define DP83867_LINK_ESTABLISHED_100_1000_BT	0x9
++#define DP83867_FULL_DUPLEX						0xA
++#define DP83867_LINK_ESTABLISHED_BLINK_TRANSMIT_RECEIVE 0xB
++#define DP83867_RESERVED						0xC
++#define DP83867_RECEIVE_TRANSMIT_ERROR			0xD
++#define DP83867_RECEIVE_ERROR					0xE
++
+ /* Special flag to indicate clock should be off */
+ #define DP83867_CLK_O_SEL_OFF			0xFFFFFFFF
+ #endif
+-- 
+2.32.0
 
-Yours fairly friend,
-Mrs Nicole Benoite Marois.
+
