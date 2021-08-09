@@ -2,218 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4A5C3E43EB
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 12:27:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75BF23E4400
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 12:40:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232963AbhHIK2F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 06:28:05 -0400
-Received: from rtits2.realtek.com ([211.75.126.72]:55987 "EHLO
-        rtits2.realtek.com.tw" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233500AbhHIK2D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 06:28:03 -0400
-Authenticated-By: 
-X-SpamFilter-By: ArmorX SpamTrap 5.73 with qID 179ARFs54006813, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36502.realtek.com.tw[172.21.6.25])
-        by rtits2.realtek.com.tw (8.15.2/2.71/5.88) with ESMTPS id 179ARFs54006813
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Mon, 9 Aug 2021 18:27:15 +0800
-Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
- RTEXH36502.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Mon, 9 Aug 2021 18:27:14 +0800
-Received: from RTEXMBS01.realtek.com.tw (172.21.6.94) by
- RTEXMBS04.realtek.com.tw (172.21.6.97) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Mon, 9 Aug 2021 18:27:14 +0800
-Received: from RTEXMBS01.realtek.com.tw ([fe80::50bb:7602:98b5:697f]) by
- RTEXMBS01.realtek.com.tw ([fe80::50bb:7602:98b5:697f%5]) with mapi id
- 15.01.2106.013; Mon, 9 Aug 2021 18:27:14 +0800
-Content-Type: multipart/mixed;
-        boundary="_000_ce9e2f298f0c4fc59f756c39736a297arealtekcom_"
-From:   Jack Yu <jack.yu@realtek.com>
-To:     "broonie@kernel.org" <broonie@kernel.org>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "robh@kernel.org" <robh@kernel.org>
-CC:     "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "Flove(HsinFu)" <flove@realtek.com>,
-        Oder Chiou <oder_chiou@realtek.com>,
-        =?big5?B?U2h1bWluZyBbrVOu0bvKXQ==?= <shumingf@realtek.com>,
-        =?big5?B?RGVyZWsgW6TovHe4cV0=?= <derek.fang@realtek.com>,
-        =?big5?B?a2VudF9jaGVuQHJlYWx0ZWsuY29tIFuzr6vYp7td?= 
-        <kent_chen@realtek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: [PATCH 2/2] ASoC: dt-bindings: rt1015p: add new compatible id
-Thread-Topic: [PATCH 2/2] ASoC: dt-bindings: rt1015p: add new compatible id
-Thread-Index: AdeNCR5XEhUWt6TcSgGLE9pKpAztpw==
-Date:   Mon, 9 Aug 2021 10:27:14 +0000
-Message-ID: <ce9e2f298f0c4fc59f756c39736a297a@realtek.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: <ce9e2f298f0c4fc59f756c39736a297a@realtek.com>
-x-originating-ip: [172.22.102.167]
-x-kse-serverinfo: RTEXMBS04.realtek.com.tw, 9
-x-kse-attachmentfiltering-interceptor-info: no applicable attachment filtering
- rules found
-x-kse-antivirus-interceptor-info: scan successful
-x-kse-antivirus-info: =?big5?B?Q2xlYW4sIGJhc2VzOiAyMDIxLzgvOSCkV6TIIDA3OjA0OjAw?=
-x-kse-bulkmessagesfiltering-scan-result: protection disabled
+        id S233496AbhHIKk3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 06:40:29 -0400
+Received: from smtp-relay-canonical-0.canonical.com ([185.125.188.120]:39774
+        "EHLO smtp-relay-canonical-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234025AbhHIKk2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 06:40:28 -0400
+Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-canonical-0.canonical.com (Postfix) with ESMTPS id C0A9C3F0AC
+        for <devicetree@vger.kernel.org>; Mon,  9 Aug 2021 10:40:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1628505606;
+        bh=A7M2AilJW/lVZdtGV4sHBiigy49SQd+8vPDsg10Wywg=;
+        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+         MIME-Version:Content-Type;
+        b=k/7c+xZYb+pCLrxegcApY7ek2ySOXse7xTjlYou9FCyCJyqVvp2A34qRNMFPbOaLL
+         69pOk3ybnCb/2iUiBxLQnCA6Dc0fPGywh19T4kZQ9teE8x2UzvtogMz+TRrJrxV6Pd
+         9+JZ/IgsqSTx/WvnivQYjMHeWeqFnfPaP8AVQHIQZ3DW7tGmQwUltb/LpErGRUWO4I
+         ikITfmGmot1a1ytNZdM9y2RcE6XQ3u4Q+tOwn8U5vlQlqbJpR6sWtK6soRZLrF5MMM
+         l1DLAW2zghN/lflq6n8iUXxNtgznlPpMsS2BpxFOgCa9qEvM5dCRJD8ciAzP8k8tNE
+         OQsONNZWLWN/Q==
+Received: by mail-ej1-f69.google.com with SMTP id k22-20020a1709061596b02905a370b2f477so4373559ejd.17
+        for <devicetree@vger.kernel.org>; Mon, 09 Aug 2021 03:40:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=A7M2AilJW/lVZdtGV4sHBiigy49SQd+8vPDsg10Wywg=;
+        b=LLJqCeJYYn2bIBm+wkLYG6W6LCkXsdpPh6IXSJQBCtCPAnA/c1VrY8HdHUmnZbXc3Y
+         oWzGnjRz3JakJnAP6PlxXRYXb4+3R0ibvjD6jTF+t27S5WFKHz49PXvLEPczZm0nVOq0
+         /pdzcafLgWcTtVT4toDW0OrpZ9LcEGDwdTUOzudGFk9o+zlyPTYsICWCi9G4Lu9apA8n
+         EG91sH0d9s90ddPHL0KmSSPiJplioWgbgW1jsb1VsGLrt5XdvLkQrd4WQNHCoJwyfhzV
+         BwFmpBoETOAdwOOCHthKKjNRssQjjm4HQ4VmlhKhMgFhcSHNPspAJ0M9kVhfvORqvCG5
+         LiWg==
+X-Gm-Message-State: AOAM5334tAJ79fF8PniuEs+qvNP2NB7GnhaQwKNmRT8uCRNHaRQcIXUp
+        p0IB35kgVKBHBe7np8sDqF7tchKDOrTXQES/JS62hSzcm7WGctRZ+8oDPbmZm0F/UuL2E2VKLAQ
+        +sX/SFIX+LFEUUiNNpFUuJn+SnzcohB4E+b8U7Dw=
+X-Received: by 2002:a17:906:58d1:: with SMTP id e17mr19211168ejs.383.1628505606566;
+        Mon, 09 Aug 2021 03:40:06 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxwNBxDVyqZJE/20HBUWBb/vMu6ZRyYBzmBGhNHn0UTFRQjlV7SS2wC1vaJWHqvsUUWRYmyTg==
+X-Received: by 2002:a17:906:58d1:: with SMTP id e17mr19211154ejs.383.1628505606444;
+        Mon, 09 Aug 2021 03:40:06 -0700 (PDT)
+Received: from localhost.localdomain ([86.32.42.198])
+        by smtp.gmail.com with ESMTPSA id dg24sm1314968edb.6.2021.08.09.03.40.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Aug 2021 03:40:05 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
+        Pankaj Dubey <pankaj.dubey@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Marc Zyngier <maz@kernel.org>
+Subject: Re: [PATCH] arm64: dts: exynos: correct GIC CPU interfaces address range on Exynos7
+Date:   Mon,  9 Aug 2021 12:38:13 +0200
+Message-Id: <162850548977.33781.16424242900051733609.b4-ty@canonical.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210805072110.4730-1-krzysztof.kozlowski@canonical.com>
+References: <20210805072110.4730-1-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
-X-KSE-ServerInfo: RTEXH36502.realtek.com.tw, 9
-X-KSE-Attachment-Filter-Triggered-Rules: Clean
-X-KSE-Attachment-Filter-Triggered-Filters: Clean
-X-KSE-BulkMessagesFiltering-Scan-Result: protection disabled
-X-KSE-AntiSpam-Outbound-Interceptor-Info: scan successful
-X-KSE-AntiSpam-Version: 5.9.20, Database issued on: 08/09/2021 10:15:06
-X-KSE-AntiSpam-Status: KAS_STATUS_NOT_DETECTED
-X-KSE-AntiSpam-Method: none
-X-KSE-AntiSpam-Rate: 0
-X-KSE-AntiSpam-Info: Lua profiles 165459 [Aug 09 2021]
-X-KSE-AntiSpam-Info: Version: 5.9.20.0
-X-KSE-AntiSpam-Info: Envelope from: jack.yu@realtek.com
-X-KSE-AntiSpam-Info: LuaCore: 454 454 39c6e442fd417993330528e7f9d13ac1bf7fdf8c
-X-KSE-AntiSpam-Info: {tnef_exp}
-X-KSE-AntiSpam-Info: {Tracking_from_domain_doesnt_match_to}
-X-KSE-AntiSpam-Info: realtek.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2
-X-KSE-AntiSpam-Info: {Track_Chinese_Simplified, headers_charset}
-X-KSE-AntiSpam-Info: Rate: 0
-X-KSE-AntiSpam-Info: Status: not_detected
-X-KSE-AntiSpam-Info: Method: none
-X-KSE-AntiSpam-Info: Auth:dkim=none
-X-KSE-Antiphishing-Info: Clean
-X-KSE-Antiphishing-ScanningType: Heuristic
-X-KSE-Antiphishing-Method: None
-X-KSE-Antiphishing-Bases: 08/09/2021 10:18:00
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---_000_ce9e2f298f0c4fc59f756c39736a297arealtekcom_
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
+On Thu, 5 Aug 2021 09:21:10 +0200, Krzysztof Kozlowski wrote:
+> The GIC-400 CPU interfaces address range is defined as 0x2000-0x3FFF (by
+> ARM).
 
-QWRkIG5ldyBjb21wYXRpYmxlIElEIGZvciBydDEwMTVwIGluIGR0LWJpbmRpbmdzIGRvY3VtZW50
-Lg0KDQpTaWduZWQtb2ZmLWJ5OiBKYWNrIFl1IDxqYWNrLnl1QHJlYWx0ZWsuY29tPg0KLS0tDQog
-RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NvdW5kL3JlYWx0ZWsscnQxMDE1cC55
-YW1sIHwgNCArKystDQogMSBmaWxlIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlv
-bigtKQ0KDQpkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3Nv
-dW5kL3JlYWx0ZWsscnQxMDE1cC55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
-bmdzL3NvdW5kL3JlYWx0ZWsscnQxMDE1cC55YW1sDQppbmRleCA2NDRiNjhlZGYzZTEuLjhmY2I1
-Zjc5YTFiNSAxMDA2NDQNCi0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9z
-b3VuZC9yZWFsdGVrLHJ0MTAxNXAueWFtbA0KKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
-L2JpbmRpbmdzL3NvdW5kL3JlYWx0ZWsscnQxMDE1cC55YW1sDQpAQCAtMTUsNyArMTUsOSBAQCBk
-ZXNjcmlwdGlvbjogfA0KIA0KIHByb3BlcnRpZXM6DQogICBjb21wYXRpYmxlOg0KLSAgICBjb25z
-dDogcmVhbHRlayxydDEwMTVwDQorICAgICAgb25lT2Y6DQorICAgICAgICBjb25zdDogcmVhbHRl
-ayxydDEwMTVwDQorICAgICAgICBjb25zdDogcmVhbHRlayxydDEwMTlwDQogDQogICBzZGItZ3Bp
-b3M6DQogICAgIGRlc2NyaXB0aW9uOg0KLS0gDQoyLjMxLjENCg0K
+Applied, thanks!
 
---_000_ce9e2f298f0c4fc59f756c39736a297arealtekcom_
-Content-Disposition: attachment; filename="winmail.dat"
-Content-Transfer-Encoding: base64
-Content-Type: application/ms-tnef; name="winmail.dat"
+[1/1] arm64: dts: exynos: correct GIC CPU interfaces address range on Exynos7
+      commit: 01c72cad790cb6cd3ccbe4c1402b6cb6c6bbffd0
 
-eJ8+InlVAQaQCAAEAAAAAAABAAEAAQeQBgAIAAAAtgMAAAAAAAC5AAEJgAEAIQAAADcyMDVDQUM0
-QTMxOUI1NEM5Rjk0OTY1RjQyRDhBN0VBAEsHAQ2ABAACAAAAAgACAAEFgAMADgAAAOUHCAAJAAoA
-GwAOAAEAMQEBIIADAA4AAADlBwgACQAKABsADgABADEBAQiABwAYAAAASVBNLk1pY3Jvc29mdCBN
-YWlsLk5vdGUAMQgBBIABAD4AAABbUEFUQ0ggMi8yXSBBU29DOiBkdC1iaW5kaW5nczogcnQxMDE1
-cDogYWRkIG5ldyBjb21wYXRpYmxlIGlkAH8TAQuAAQAhAAAANzIwNUNBQzRBMzE5QjU0QzlGOTQ5
-NjVGNDJEOEE3RUEASwcBA5AGACQVAABJAAAAAgF/AAEAAAAvAAAAPGNlOWUyZjI5OGYwYzRmYzU5
-Zjc1NmMzOTczNmEyOTdhQHJlYWx0ZWsuY29tPgAACwAfDgAAAAACAQkQAQAAAKACAACcAgAA2AQA
-AExaRnWVJ8G5YQAKZmJpZAQAAGNjwHBnMTI1MgD+A0PwdGV4dAH3AqQD4wIABGNoCsBzZXQwIO8H
-bQKDAFARTTIKgAa0AoCWfQqACMg7CWIxOQ7AvwnDFnIKMhZxAoAVYioJsHMJ8ASQYXQFsg5QA2Bz
-om8BgCBFeBHBbhgwXQZSdgSQF7YCEHIAwHR9CFBuGjEQIAXABaAbZGSaIANSIBAiF7JcdgiQ5Hdr
-C4BkNR1TBPAHQA0XcDAKcRfyYmttawZzAZAAICBCTV9C4EVHSU59CvwB8QvxeCBBZBxgGFAH4AWg
-bZkKsHRpAmAZ4ElEHHCHBbEAIB6QMTVwIAuAcCBkdC0NwB3AC4BnYQQgZG9jdQeAAjAuNFxsC4Bl
-CoElVFNpUmcYUGQtGTBmJBB5CDogSgDQayBZdQggPGonIS55dUBfCXAHQBAgJ9AiIT4lRS1zKVAl
-RSBEJMUiYQIgL1sBAB1gYxIQCdEvJCYv1RkgdR3ALyglLCNFJ+AEYW0DIHwgNCArey4QKXcxHHAD
-EBngGZRkeCwgMyOxEgAAICqhc/goKykvsC7QAQAecCqSuCgtKSVMDeABICApUORnaQVAYS8qDysf
-LC/9LThiM180bzV/LSglRR2xARAwIDY0NGI2OIkJgGYzF3AuLjgRsIBiNWY3OWExPPD/LsAeoDvh
-KOgzPzg/OU86X38KgC4RNy8/r0C/Qc8KgEBmQDLQI4AsNy4AR8E5viBHgQEABPRD8SbwfCmGtSmG
-cANgcDAiB5A6KYa/S6AiKEsmPoBLowCAdCbwH0XdQoZNAkugAiBlT2a/SyZPFU0vTj9QjzYnOU6W
-o0n3S6BzZGIy8HBD8B9LGkugSKoo50n2Mi4zHzyQAFAlWxVCWnAfAEIAAQAAABAAAABKAGEAYwBr
-ACAAWQB1AAAAHwBlAAEAAAAoAAAAagBhAGMAawAuAHkAdQBAAHIAZQBhAGwAdABlAGsALgBjAG8A
-bQAAAB8AZAABAAAACgAAAFMATQBUAFAAAAAAAAIBQQABAAAAWgAAAAAAAACBKx+kvqMQGZ1uAN0B
-D1QCAAAAgEoAYQBjAGsAIABZAHUAAABTAE0AVABQAAAAagBhAGMAawAuAHkAdQBAAHIAZQBhAGwA
-dABlAGsALgBjAG8AbQAAAAAAHwACXQEAAAAoAAAAagBhAGMAawAuAHkAdQBAAHIAZQBhAGwAdABl
-AGsALgBjAG8AbQAAAB8A5V8BAAAAMAAAAHMAaQBwADoAagBhAGMAawAuAHkAdQBAAHIAZQBhAGwA
-dABlAGsALgBjAG8AbQAAAB8AGgwBAAAAEAAAAEoAYQBjAGsAIABZAHUAAAAfAB8MAQAAACgAAABq
-AGEAYwBrAC4AeQB1AEAAcgBlAGEAbAB0AGUAawAuAGMAbwBtAAAAHwAeDAEAAAAKAAAAUwBNAFQA
-UAAAAAAAAgEZDAEAAABaAAAAAAAAAIErH6S+oxAZnW4A3QEPVAIAAACASgBhAGMAawAgAFkAdQAA
-AFMATQBUAFAAAABqAGEAYwBrAC4AeQB1AEAAcgBlAGEAbAB0AGUAawAuAGMAbwBtAAAAAAAfAAFd
-AQAAACgAAABqAGEAYwBrAC4AeQB1AEAAcgBlAGEAbAB0AGUAawAuAGMAbwBtAAAACwBAOgEAAAAf
-ABoAAQAAABIAAABJAFAATQAuAE4AbwB0AGUAAAAAAAMA8T8EBAAACwBAOgEAAAADAP0/tgMAAAIB
-CzABAAAAEAAAAHIFysSjGbVMn5SWX0LYp+oDABcAAQAAAEAAOQAALbMeCY3XAUAACDB5lLgeCY3X
-AQsAKQAAAAAAHwDZPwEAAAAAAgAAQQBkAGQAIABuAGUAdwAgAGMAbwBtAHAAYQB0AGkAYgBsAGUA
-IABJAEQAIABmAG8AcgAgAHIAdAAxADAAMQA1AHAAIABpAG4AIABkAHQALQBiAGkAbgBkAGkAbgBn
-AHMAIABkAG8AYwB1AG0AZQBuAHQALgANAAoADQAKAFMAaQBnAG4AZQBkAC0AbwBmAGYALQBiAHkA
-OgAgAEoAYQBjAGsAIABZAHUAIAA8AGoAYQBjAGsALgB5AHUAQAByAGUAYQBsAHQAZQBrAC4AYwBv
-AG0APgANAAoALQAtAC0ADQAKACAARABvAGMAdQBtAGUAbgB0AGEAdABpAG8AbgAvAGQAZQB2AGkA
-YwBlAHQAcgBlAGUALwBiAGkAbgBkAGkAbgBnAHMALwBzAG8AdQBuAGQALwByAGUAYQBsAHQAZQBr
-ACwAcgB0ADEAMAAxADUAcAAuAHkAYQBtAGwAIAB8ACAANAAgACsAKwArAC0ADQAKACAAMQAgAGYA
-aQBsAGUAIABjAGgAYQBuAGcAZQBkACwAIAAzACAAaQBuAHMAZQByAHQAaQBvAG4AcwAoACsAKQAs
-ACAAMQAgAGQAZQBsAGUAdABpAG8AbgAoAC0AKQANAAoADQAKAGQAaQBmAGYAIAAtAC0AZwBpAHQA
-IABhAC8ARABvAGMAdQBtAGUAAAALAACACCAGAAAAAADAAAAAAAAARgAAAAAUhQAAAQAAAB8AAICG
-AwIAAAAAAMAAAAAAAABGAQAAAB4AAABhAGMAYwBlAHAAdABsAGEAbgBnAHUAYQBnAGUAAAAAAAEA
-AAAaAAAAegBoAC0AVABXACwAIABlAG4ALQBVAFMAAAAAAAMAAIAIIAYAAAAAAMAAAAAAAABGAQAA
-ADIAAABFAHgAYwBoAGEAbgBnAGUAQQBwAHAAbABpAGMAYQB0AGkAbwBuAEYAbABhAGcAcwAAAAAA
-IAAAAEgAAIAIIAYAAAAAAMAAAAAAAABGAQAAACIAAABOAGUAdAB3AG8AcgBrAE0AZQBzAHMAYQBn
-AGUASQBkAAAAAAD4KI0/K6tpQqyfCNlbIEFJHwAAgBOP8kH0gxRBpYTu21prC/8BAAAAFgAAAEMA
-bABpAGUAbgB0AEkAbgBmAG8AAAAAAAEAAAAqAAAAQwBsAGkAZQBuAHQAPQBNAFMARQB4AGMAaABh
-AG4AZwBlAFIAUABDAAAAAAAfAPo/AQAAABAAAABKAGEAYwBrACAAWQB1AAAAHwA3AAEAAAB8AAAA
-WwBQAEEAVABDAEgAIAAyAC8AMgBdACAAQQBTAG8AQwA6ACAAZAB0AC0AYgBpAG4AZABpAG4AZwBz
-ADoAIAByAHQAMQAwADEANQBwADoAIABhAGQAZAAgAG4AZQB3ACAAYwBvAG0AcABhAHQAaQBiAGwA
-ZQAgAGkAZAAAAB8APQABAAAAAgAAAAAAAAADADYAAAAAAAIBcQABAAAAFgAAAAHXjQkeVxIVFrek
-3EoBixPaSqQM7acAAB8AcAABAAAAfAAAAFsAUABBAFQAQwBIACAAMgAvADIAXQAgAEEAUwBvAEMA
-OgAgAGQAdAAtAGIAaQBuAGQAaQBuAGcAcwA6ACAAcgB0ADEAMAAxADUAcAA6ACAAYQBkAGQAIABu
-AGUAdwAgAGMAbwBtAHAAYQB0AGkAYgBsAGUAIABpAGQAAAAfADUQAQAAAF4AAAA8AGMAZQA5AGUA
-MgBmADIAOQA4AGYAMABjADQAZgBjADUAOQBmADcANQA2AGMAMwA5ADcAMwA2AGEAMgA5ADcAYQBA
-AHIAZQBhAGwAdABlAGsALgBjAG8AbQA+AAAAAAADAN4/tgMAAAMAExIAAAAAAgEAgBOP8kH0gxRB
-pYTu21prC/8BAAAALgAAAEgAZQBhAGQAZQByAEIAbwBkAHkARgByAGEAZwBtAGUAbgB0AEwAaQBz
-AHQAAAAAAAEAAAAiAAAAAQAKAAAABAAAAAAAAAAUAAAAAAAAAAAAAAD/////AAAAAAAACwAAgBOP
-8kH0gxRBpYTu21prC/8BAAAAHAAAAEgAYQBzAFEAdQBvAHQAZQBkAFQAZQB4AHQAAAAAAAAACwAA
-gBOP8kH0gxRBpYTu21prC/8BAAAAKAAAAEkAcwBRAHUAbwB0AGUAZABUAGUAeAB0AEMAaABhAG4A
-ZwBlAGQAAAAAAAAAQAAHMF0xsB4JjdcBAgELAAEAAAAQAAAAcgXKxKMZtUyflJZfQtin6gMAJgAA
-AAAACwAGDAAAAAACARAwAQAAAEYAAAAAAAAA2+nESiSg50GTGyq7K7NtTAcATLd9DVWheUS+c4U5
-YtAApQAAAGlg9wAAMq84BUqwTkaAx8c4IroPWgAAAdeoiQAAAAACARMwAQAAABAAAAASFRa3pNxK
-AYsT2kqkDO2nAgEUMAEAAAAMAAAAMAAAAEsiBS5BAAAAHwD4PwEAAAAQAAAASgBhAGMAawAgAFkA
-dQAAAB8AIkABAAAABgAAAEUAWAAAAAAAHwAjQAEAAAC2AAAALwBPAD0AUgBUAEUAWABDAEgALwBP
-AFUAPQBFAFgAQwBIAEEATgBHAEUAIABBAEQATQBJAE4ASQBTAFQAUgBBAFQASQBWAEUAIABHAFIA
-TwBVAFAAIAAoAEYAWQBEAEkAQgBPAEgARgAyADMAUwBQAEQATABUACkALwBDAE4APQBSAEUAQwBJ
-AFAASQBFAE4AVABTAC8AQwBOAD0AVQBTAEUAUgA1ADkAOAA2ADUAMQAwADkAAAAAAB8AJEABAAAA
-BgAAAEUAWAAAAAAAHwAlQAEAAAC2AAAALwBPAD0AUgBUAEUAWABDAEgALwBPAFUAPQBFAFgAQwBI
-AEEATgBHAEUAIABBAEQATQBJAE4ASQBTAFQAUgBBAFQASQBWAEUAIABHAFIATwBVAFAAIAAoAEYA
-WQBEAEkAQgBPAEgARgAyADMAUwBQAEQATABUACkALwBDAE4APQBSAEUAQwBJAFAASQBFAE4AVABT
-AC8AQwBOAD0AVQBTAEUAUgA1ADkAOAA2ADUAMQAwADkAAAAAAB8AMEABAAAAEAAAAEoAYQBjAGsA
-IABZAHUAAAAfADFAAQAAABAAAABKAGEAYwBrACAAWQB1AAAAHwA4QAEAAAAQAAAASgBhAGMAawAg
-AFkAdQAAAB8AOUABAAAAEAAAAEoAYQBjAGsAIABZAHUAAAADAFlAAAAAAAMAWkAAAAAAAwAJWQEA
-AAAfAApdAQAAACgAAABqAGEAYwBrAC4AeQB1AEAAcgBlAGEAbAB0AGUAawAuAGMAbwBtAAAAHwAL
-XQEAAAAoAAAAagBhAGMAawAuAHkAdQBAAHIAZQBhAGwAdABlAGsALgBjAG8AbQAAAB8AAIAfpOsz
-qHouQr57eeGpjlSzAQAAADgAAABDAG8AbgB2AGUAcgBzAGEAdABpAG8AbgBJAG4AZABlAHgAVABy
-AGEAYwBrAGkAbgBnAEUAeAAAAAEAAAAkAQAASQBJAD0AWwBDAEkARAA9AGIANwAxADYAMQA1ADEA
-MgAtAGQAYwBhADQALQAwADEANABhAC0AOABiADEAMwAtAGQAYQA0AGEAYQA0ADAAYwBlAGQAYQA3
-ADsASQBEAFgASABFAEEARAA9AEQANwA4AEQAMAA5ADEARQA1ADcAOwBJAEQAWABDAE8AVQBOAFQA
-PQAxAF0AOwBQAFMAPQBVAG4AawBuAG8AdwBuADsAVgBlAHIAcwBpAG8AbgA9AFYAZQByAHMAaQBv
-AG4AIAAxADUALgAxACAAKABCAHUAaQBsAGQAIAAyADEAMAA2AC4AMAApACwAIABTAHQAYQBnAGUA
-PQBIADQAOwBVAFAAPQAxADAAOwBEAFAAPQAxAEMANQAAAAsAAIAIIAYAAAAAAMAAAAAAAABGAAAA
-AIKFAAAAAAAAAwANNP0/AAAfAACAhgMCAAAAAADAAAAAAAAARgEAAAAgAAAAeAAtAG0AcwAtAGgA
-YQBzAC0AYQB0AHQAYQBjAGgAAAABAAAAAgAAAAAAAAAfAACAhgMCAAAAAADAAAAAAAAARgEAAAAi
-AAAAeAAtAG8AcgBpAGcAaQBuAGEAdABpAG4AZwAtAGkAcAAAAAAAAQAAACIAAABbADEANwAyAC4A
-MgAyAC4AMQAwADIALgAxADYANwBdAAAAAAAfAACAhgMCAAAAAADAAAAAAAAARgEAAAAiAAAAeAAt
-AGsAcwBlAC0AcwBlAHIAdgBlAHIAaQBuAGYAbwAAAAAAAQAAADgAAABSAFQARQBYAE0AQgBTADAA
-NAAuAHIAZQBhAGwAdABlAGsALgBjAG8AbQAuAHQAdwAsACAAOQAAAB8AAICGAwIAAAAAAMAAAAAA
-AABGAQAAAFYAAAB4AC0AawBzAGUALQBhAHQAdABhAGMAaABtAGUAbgB0AGYAaQBsAHQAZQByAGkA
-bgBnAC0AaQBuAHQAZQByAGMAZQBwAHQAbwByAC0AaQBuAGYAbwAAAAAAAQAAAF4AAABuAG8AIABh
-AHAAcABsAGkAYwBhAGIAbABlACAAYQB0AHQAYQBjAGgAbQBlAG4AdAAgAGYAaQBsAHQAZQByAGkA
-bgBnACAAcgB1AGwAZQBzACAAZgBvAHUAbgBkAAAAAAAfAACAhgMCAAAAAADAAAAAAAAARgEAAABC
-AAAAeAAtAGsAcwBlAC0AYQBuAHQAaQB2AGkAcgB1AHMALQBpAG4AdABlAHIAYwBlAHAAdABvAHIA
-LQBpAG4AZgBvAAAAAAABAAAAIAAAAHMAYwBhAG4AIABzAHUAYwBjAGUAcwBzAGYAdQBsAAAAHwAA
-gIYDAgAAAAAAwAAAAAAAAEYBAAAAKgAAAHgALQBrAHMAZQAtAGEAbgB0AGkAdgBpAHIAdQBzAC0A
-aQBuAGYAbwAAAAAAAQAAAEYAAABDAGwAZQBhAG4ALAAgAGIAYQBzAGUAcwA6ACAAMgAwADIAMQAv
-ADgALwA5ACAACk5IUyAAMAA3ADoAMAA0ADoAMAAwAAAAAAAfAACAhgMCAAAAAADAAAAAAAAARgEA
-AABQAAAAeAAtAGsAcwBlAC0AYgB1AGwAawBtAGUAcwBzAGEAZwBlAHMAZgBpAGwAdABlAHIAaQBu
-AGcALQBzAGMAYQBuAC0AcgBlAHMAdQBsAHQAAAABAAAAKAAAAHAAcgBvAHQAZQBjAHQAaQBvAG4A
-IABkAGkAcwBhAGIAbABlAGQAAABorg==
-
---_000_ce9e2f298f0c4fc59f756c39736a297arealtekcom_--
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
