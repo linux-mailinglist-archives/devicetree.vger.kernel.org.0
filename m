@@ -2,95 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6C653E4125
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 09:53:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E92183E4134
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 09:58:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233550AbhHIHx4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 03:53:56 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:49546 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233543AbhHIHx4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 03:53:56 -0400
-Received: from [IPv6:2a02:810a:880:f54:bc37:c53f:a9f8:ed01] (unknown [IPv6:2a02:810a:880:f54:bc37:c53f:a9f8:ed01])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: dafna)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id DC7831F4223F;
-        Mon,  9 Aug 2021 08:53:34 +0100 (BST)
-Subject: Re: [PATCH v6 2/9] mtk-mdp: add driver to probe mdp components
-To:     Eizan Miyamoto <eizan@google.com>
-Cc:     linux-kernel@vger.kernel.org, wenst@chromium.org,
-        houlong.wei@mediatek.com, yong.wu@mediatek.com,
-        enric.balletbo@collabora.com, devicetree@vger.kernel.org,
-        chunkuang.hu@kernel.org,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-References: <20210802121215.703023-1-eizan@chromium.org>
- <20210802220943.v6.2.Ie6d1e6e39cf9b5d6b2108ae1096af34c3d55880b@changeid>
- <0aff1abb-734f-c714-6ecc-c906862255c3@collabora.com>
- <CAOak1e8n6JpNKODfM57OTtbCNz8UBbj+wefwipVWP_Ep6SHmHA@mail.gmail.com>
-From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-Message-ID: <014b8075-8588-d741-e6f2-edc0567e8c8f@collabora.com>
-Date:   Mon, 9 Aug 2021 09:53:32 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S233619AbhHIH6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 03:58:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39550 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233476AbhHIH6o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 03:58:44 -0400
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C6D6C0613CF;
+        Mon,  9 Aug 2021 00:58:23 -0700 (PDT)
+Received: by mail-pj1-x102b.google.com with SMTP id ca5so26586779pjb.5;
+        Mon, 09 Aug 2021 00:58:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UbnfIseIdRUiYY5Rd1yC66CYf+wGkmSvk4ybj5gum1M=;
+        b=dArC/b5Dz20nE50yWMHVQwtXWp0FAIy5V/ptlB678aFeEitUFreshNQI4pzGB0OwNa
+         PaIXV2LNEmsrDUEKdr2zJdWs4SUChOueZiLXrw95n9RRzJk9abnTBIFdk42y2NWTw4O3
+         QTVrW4i9JGrJdMqoTNRRBaghdknw9e3VOxytl7JxDEXikaE9JqRPgHHYXR/s5pyB4OgN
+         ttGZbmRdes0UwBfLeQHFn/dxE7jAf/JlZd1l41MpZJlj7GKxuVmZX1W7wnlE5r8wdwLV
+         CvTK0jcYXcFvM/m6RbH7gW1UIEO+LjT7E1XzC8Mm7oo0U8AXgBqE6hK3whQbIhy39sI8
+         M0Tg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UbnfIseIdRUiYY5Rd1yC66CYf+wGkmSvk4ybj5gum1M=;
+        b=lQSparpM6OBXHDfEan9yy0FYFCwrwFdCGI0gOWDNAcZuDIItB0KGEynKrxNHyj97IO
+         ImL0H2FYdCbIvK1N2/JiyKfUDZIBBY3X5Z2vhNcYJtwVzqyBzMtHXqkO4Pl7Pf7BenBS
+         kSNTpFyHuLS/1kTgMIpPKH0UUmldfbBr1otGpC1JOWYeT/yl0oWdEldgM5ftQm4mwQnF
+         fKz4+pwArb4ChLm3qcSFwmSTeaSHkZxzGaNSAOe4s7DebBhVWT7KQJ+kmLUyIMr9Flr5
+         RICgP5jcwARX1ITnsYRE2rGuEiuHyBmwbW+qBH5KWy5tgGEcepcuHR96BDdfupkx4bIp
+         rAgQ==
+X-Gm-Message-State: AOAM532bA6g7xLovU8mNnHt8qo2mB6JzP6p5yeZb2jGyCK6d1bC1GVed
+        9JnU9yqnfCZ5hgPwVhZpBP8=
+X-Google-Smtp-Source: ABdhPJxhvdmOQOqlZ8ghgItK1lQs+IVwGjOSEULdwBrPhfmAJrHXUPSYmSyKmsNByAr40Yl9wpg3Pg==
+X-Received: by 2002:a17:90a:d910:: with SMTP id c16mr15400549pjv.154.1628495902622;
+        Mon, 09 Aug 2021 00:58:22 -0700 (PDT)
+Received: from localhost.localdomain ([2409:4072:188:d7b2:ea47:4575:ff46:5465])
+        by smtp.googlemail.com with ESMTPSA id b17sm21425112pgl.61.2021.08.09.00.58.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Aug 2021 00:58:21 -0700 (PDT)
+From:   Mugilraj Dhavachelvan <dmugil2000@gmail.com>
+To:     Dragos.Bogdan@analog.com, Darius.Berghe@analog.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Mugilraj Dhavachelvan <dmugil2000@gmail.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org
+Subject: [PATCH v2 0/2] iio: potentiometer: Add driver support for AD5110
+Date:   Mon,  9 Aug 2021 13:27:18 +0530
+Message-Id: <20210809075745.160042-1-dmugil2000@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <CAOak1e8n6JpNKODfM57OTtbCNz8UBbj+wefwipVWP_Ep6SHmHA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add dt-bindings and driver support for AD5110, a Nonvolatile 
+Digital Potentiometer.
 
+Changes since v1:
+ - Drop 'shared_by_type' since it's a single channel
+ - Add error check for i2c read/write data bytes
+ - Simplified calculation for tolerance
+ - Add shift for eeprom wiper pos read
+ - Change new custom ABI to existing ABI
+ - Allow top-scale mode by writting max_pos to val
 
-On 09.08.21 05:23, Eizan Miyamoto wrote:
-> Hi Dafna,
-> 
-> On Thu, Aug 5, 2021 at 4:40 PM Dafna Hirschfeld
-> <dafna.hirschfeld@collabora.com> wrote:
->>> +int mtk_mdp_comp_init(struct mtk_mdp_comp *comp, struct device *dev)
->>
->> This function can be static
-> 
-> If it's all the same to you, are you okay for me to make this change either:
-> - If upstream requests changes be made to this series, I will include
-> this suggestion
-> - If the series is accepted as-is, I will make a follow-up patch
-> 
-> This is to reduce workload on reviewers having to re-ack changes for
-> (what I hope you agree is) a nit.
+Mugilraj Dhavachelvan (2):
+  dt-bindings: iio: potentiometer: Add AD5110 in trivial-devices
+  iio: potentiometer: Add driver support for AD5110
 
-I think you can keep the review-by tag of the reviewers since this is just a nit.
-So sending a new version won't need a re-ack from the reviewers.
+ .../devicetree/bindings/trivial-devices.yaml  |   2 +
+ MAINTAINERS                                   |   6 +
+ drivers/iio/potentiometer/Kconfig             |  10 +
+ drivers/iio/potentiometer/Makefile            |   1 +
+ drivers/iio/potentiometer/ad5110.c            | 339 ++++++++++++++++++
+ 5 files changed, 358 insertions(+)
+ create mode 100644 drivers/iio/potentiometer/ad5110.c
 
-You can send it also as a separate patch. I don't care too much.
+-- 
+2.25.1
 
-> 
-> If you don't agree, I will happily oblige and make the change and
-> upload a new version of the series.
-> 
->>>        for (i = 0; i < ARRAY_SIZE(comp->clk); i++) {
->>>                comp->clk[i] = of_clk_get(node, i);
->>
->> that iteration can be replaced with clk_bulk_get
-> 
-> As per Enric's suggestion in response to "propagate errors from
-> clock_on" in this series, are you okay for me to make the change in a
-> follow-up patch?
-
-yes,
-
-Thanks,
-Dafna
-
-> 
-> Thanks again for your review,
-> 
-> Eizan
-> 
