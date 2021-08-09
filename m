@@ -2,81 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F31763E4618
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 15:06:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E23B3E4621
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 15:07:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233614AbhHINHB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 09:07:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48330 "EHLO mail.kernel.org"
+        id S235247AbhHINHe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 09:07:34 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:20055 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235120AbhHINGx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Aug 2021 09:06:53 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id BCC3B61019;
-        Mon,  9 Aug 2021 13:06:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1628514393;
-        bh=CRqBoGFylYHRZ1UbXvc/U4Ue+E5qLCQBP7JZAgce/N0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=OQBxW0IYh7CRpz79C5+yLw6/UkgLqIqg+a3kiPEh25bvAvLGZVWPYotYt2zC/Kkpe
-         PBxLyo2rMqNhxPxX7cSpqJ7UNqB+iFCP2da1J3HZHHCLBzwyViv8amP3RynYXVrZ0C
-         zfDx6pi3SX8GDyeWZPFagOqqEd/y+9lT6zDdDpxKBETwBGB2kmMqliqCbvYKL3GNPe
-         e3D6uCeTtOgIbR9H2tGqn24VB/GKJF/FbxBZ4bh0kh16fmmpLaUVezdM8d6UGM6GXa
-         fNaw9kFw2x6Vynx2/BeIeulHYOvMuENe33pbUWaCbJyMMJDf4O/mI8JX/9dpaJpV5o
-         SxIYvsDS2an5w==
-From:   Mark Brown <broonie@kernel.org>
-To:     robh+dt@kernel.org, Alistair Francis <alistair@alistair23.me>,
-        kernel@pengutronix.de, lee.jones@linaro.org, linux-imx@nxp.com,
-        lgirdwood@gmail.com
-Cc:     Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        alistair23@gmail.com, linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v9 00/12] Add support for the silergy,sy7636a
-Date:   Mon,  9 Aug 2021 14:06:06 +0100
-Message-Id: <162851420625.43909.14537871976699842823.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210806091058.141-1-alistair@alistair23.me>
-References: <20210806091058.141-1-alistair@alistair23.me>
+        id S234990AbhHINHc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Aug 2021 09:07:32 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1628514432; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=syRAAEn6ukIppn65P9Lof264WUDrsD4lX0IMZ1u8oAc=; b=Z4G0GqVqpK6cDfIo3/Jb7CRBhUNR1nn2TUrMzlI5gNJJKWlllQd3zXk5evJQJ42NW0vkrK1e
+ 3Ysdm+69x11GsYnEiQfXypClIzJEL0hlei1+PiBQ/v/lSo4j8DncstkSFqZ98CP3JUhoHIaN
+ +BKWWaupHhB4UdDVUfFVt5+0hko=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
+ 6111286ab14e7e2ecb3b40a0 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 09 Aug 2021 13:06:50
+ GMT
+Sender: luoj=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id B7AE4C43144; Mon,  9 Aug 2021 13:06:50 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
+Received: from [10.92.0.248] (unknown [180.166.53.36])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: luoj)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id DD19CC433D3;
+        Mon,  9 Aug 2021 13:06:45 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org DD19CC433D3
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=luoj@codeaurora.org
+Subject: Re: [PATCH] dt-bindings: net: Add the properties for ipq4019 MDIO
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, davem@davemloft.net,
+        kuba@kernel.org, robh+dt@kernel.org, robert.marko@sartura.hr,
+        linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        sricharan@codeaurora.org
+References: <20210808075328.30961-1-luoj@codeaurora.org>
+ <YQ/8q6gR6Eji2hKD@lunn.ch>
+From:   Jie Luo <luoj@codeaurora.org>
+Message-ID: <ba6f3daa-7b1c-dd66-f803-c049e1fc3e8a@codeaurora.org>
+Date:   Mon, 9 Aug 2021 21:06:43 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <YQ/8q6gR6Eji2hKD@lunn.ch>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 6 Aug 2021 19:10:46 +1000, Alistair Francis wrote:
-> This series applied on top of the "mfd: simple-mfd-i2c: Add support for
-> registering devices via MFD cells" patch. Once "mfd: simple-mfd-i2c: Add
-> support for registering devices via MFD cells" is merged this series is
-> ready to go.
-> 
-> v9:
->  - Convert to use the simple-mfd-i2c instead
-> 
-> [...]
 
-Applied to
+On 8/8/2021 11:47 PM, Andrew Lunn wrote:
+> On Sun, Aug 08, 2021 at 03:53:28PM +0800, Luo Jie wrote:
+>> The new added properties resource "reg" is for configuring
+>> ethernet LDO in the IPQ5018 chipset, the property "clocks"
+>> is for configuring the MDIO clock source frequency.
+>>
+>> This patch depends on the following patch:
+>> Commit 2b8951cb4670 ("net: mdio: Add the reset function for IPQ MDIO
+>> driver")
+> Please always make binding patches part of the series containing the
+> driver code. We sometimes need to see both to do a proper review.
+>
+> Add a comment about when the second address range and clock is
+> required. Does qcom,ipq5018-mdio require them?
+>
+> 	  Andrew
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+Hi Andrew,
 
-Thanks!
+yes, the second address range is only required for qcom,ipq5018-mdio 
+currently,
 
-[05/12] regulator: sy7636a: Use the regmap directly
-        commit: 27fdd3bbb7a13830c05b6bf777e45c392cb00f63
+will document it in next patch set, and send it with the drive code 
+patch, thanks
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+for the comments and review.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
