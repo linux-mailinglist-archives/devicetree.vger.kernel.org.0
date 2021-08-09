@@ -2,117 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DFDCB3E45E9
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 14:49:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC4FF3E45F7
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 14:57:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231478AbhHIMuB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 08:50:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36142 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233365AbhHIMuA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Aug 2021 08:50:00 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 29B396103B;
-        Mon,  9 Aug 2021 12:49:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1628513380;
-        bh=HiL45mc8BBJf4XGJxHdRi692t4yfB8rW7Eu6+7IFQIY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=XjV5BsQ79iGc6KjcbzdbTkF4g5CznHUMf1isFQkc5qmnLcMe0/f2WtEtHJoBPmofO
-         fXZ5COLMo/c2l9veslFtXsRmNiCYZSG5dCj7qeZCKQ5KFXnwM1tKAUcsLPvyV1gz47
-         jxDAJ1PDbw3TRdVQ9Y1uvBYgFio8vqFPtA1+LL/W4rAaQO22dKKw6rOMR7WOJ8R7Ff
-         nsx9lkymQ842eJKIAx7szc0tyu1bBfJWSRGjNmRmQTHjpg+UUAr9A4IEaEncllU357
-         y/0L08sHgB+qYFv8g5/Fk2/pnwaxxuUPNDdjg5mOYlCebNxhVpiY8gkIDBpUfXmo/7
-         Ewc4f/LK82HmQ==
-Received: by mail-ot1-f52.google.com with SMTP id v24-20020a0568300918b02904f3d10c9742so14435162ott.4;
-        Mon, 09 Aug 2021 05:49:40 -0700 (PDT)
-X-Gm-Message-State: AOAM533cRBIwZ1n0Ck88F2augbgu+AXw9J7aPsbpSSYCcHQGwAOXoPxV
-        Ki5nwCWQ9QLi5WaX92JrB8Cplq2edU4roPga+Tw=
-X-Google-Smtp-Source: ABdhPJwYbKYfkJ7LlR5zDO3AgHbE+zPpStJL+ozb6ycoMhStYzCkKrUlSrMFFtS4MDFkai4LqE8KFKaSDZqSZEHyHGo=
-X-Received: by 2002:a9d:5cb:: with SMTP id 69mr16831515otd.90.1628513379474;
- Mon, 09 Aug 2021 05:49:39 -0700 (PDT)
+        id S233855AbhHIM6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 08:58:06 -0400
+Received: from mail-vk1-f179.google.com ([209.85.221.179]:34401 "EHLO
+        mail-vk1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233342AbhHIM6F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 08:58:05 -0400
+Received: by mail-vk1-f179.google.com with SMTP id x11so3908034vke.1;
+        Mon, 09 Aug 2021 05:57:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=8YyANyuZR7fYPTEivb2A77rPthj74HCMJFLYlpLjhb4=;
+        b=JHl0Wpqlw4+rEhyCZiZudmmLXovJ/7qPMEnQkSaj8VsXg9iw+C2fE/OkqbZ5Gn7NSj
+         3pybdxret/bV1eP8imGReJ6cU1IAWwPdrw9wTuJHD+wGwd5aKb6VGkw+uwY2IWHxNuEb
+         NPzGjrQubxTwtoS57ffsILhp6zo7tdTZQwoabU3+IKrWAY9+F0SM8lBPiCpPK6TcigJA
+         pjW43kReh1p+cEUM7UZ0Qsk1kMl9SE8axGdZNsY3YREdQD40Z+/5X4/RSZokNwv83bhf
+         IxUyjRoM+lq3fFyfAIvqrsIpo+1yWxQpKz2DfVqR4mVc+R+vh2jIdawCNgQpsIIERDv0
+         5qrA==
+X-Gm-Message-State: AOAM5302/2M5VnsZ2Ab2F/nmk0JQLqMfuCdW9WkPee/9dmHeKZw7wbrO
+        RrSVeaiGUesKcaRg2c5L64dwBgp9qscSq74DbsY=
+X-Google-Smtp-Source: ABdhPJy3oD8kwL2fKgjd1+x6oD9DrDy3lnCulPeZeuWofPVdmbjqf9lmI9L+WnkYPGr3ewE9j3BxXIRigNiej0QJHFk=
+X-Received: by 2002:a1f:fc03:: with SMTP id a3mr13722921vki.1.1628513864509;
+ Mon, 09 Aug 2021 05:57:44 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210730134552.853350-1-bert@biot.com> <20210730134552.853350-5-bert@biot.com>
- <CAK8P3a3OuJ3pMSdEA4Rt3aWvvuX2+_Bg5x7-kZ1++fvvJvgGxA@mail.gmail.com>
- <1e3070fe-b5da-0acc-f50b-b0986a1045cd@biot.com> <CAMuHMdWni=2ggV7dQiy-nfF1nOmKferbZOCkLp0kDsvMNfwF2Q@mail.gmail.com>
-In-Reply-To: <CAMuHMdWni=2ggV7dQiy-nfF1nOmKferbZOCkLp0kDsvMNfwF2Q@mail.gmail.com>
-From:   Ard Biesheuvel <ardb@kernel.org>
-Date:   Mon, 9 Aug 2021 14:49:28 +0200
-X-Gmail-Original-Message-ID: <CAMj1kXFUpb6JYndtX9LPpr-dOFQ2-m7n0z70+7Bh-JHhnfoMpw@mail.gmail.com>
-Message-ID: <CAMj1kXFUpb6JYndtX9LPpr-dOFQ2-m7n0z70+7Bh-JHhnfoMpw@mail.gmail.com>
-Subject: Re: [PATCH 4/5] ARM: Add basic support for EcoNet EN7523 SoC
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Bert Vermeulen <bert@biot.com>, Arnd Bergmann <arnd@arndb.de>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andrew Morton <akpm@linux-foundation.org>,
+References: <20210806102930.3024-1-biju.das.jz@bp.renesas.com> <20210806102930.3024-3-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20210806102930.3024-3-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 9 Aug 2021 14:57:33 +0200
+Message-ID: <CAMuHMdVnU4HSXCr08WEiVmYCNoRBcdZGOfS7mwmS_euo2RZaEA@mail.gmail.com>
+Subject: Re: [PATCH v4 2/3] ASoC: dt-bindings: sound: renesas,rz-ssi: Update
+ slave dma channel configuration parameters
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        ALSA Development Mailing List <alsa-devel@alsa-project.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
-        Anshuman Khandual <anshuman.khandual@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        John Crispin <john@phrozen.org>,
-        YiFei Zhu <yifeifz2@illinois.edu>,
-        Mike Rapoport <rppt@kernel.org>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Kees Cook <keescook@chromium.org>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Felix Fietkau <nbd@nbd.name>
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 9 Aug 2021 at 14:46, Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hoi Bert,
->
-> On Wed, Aug 4, 2021 at 6:43 PM Bert Vermeulen <bert@biot.com> wrote:
-> > On 7/30/21 4:48 PM, Arnd Bergmann wrote:
-> > > On Fri, Jul 30, 2021 at 3:45 PM Bert Vermeulen <bert@biot.com> wrote:
-> > >> diff --git a/arch/arm/Makefile b/arch/arm/Makefile
-> > >> index 173da685a52e..1bff0aa29c07 100644
-> > >> --- a/arch/arm/Makefile
-> > >> +++ b/arch/arm/Makefile
-> > >> @@ -152,6 +152,7 @@ textofs-$(CONFIG_ARCH_MSM8X60) := 0x00208000
-> > >>  textofs-$(CONFIG_ARCH_MSM8960) := 0x00208000
-> > >>  textofs-$(CONFIG_ARCH_MESON) := 0x00208000
-> > >>  textofs-$(CONFIG_ARCH_AXXIA) := 0x00308000
-> > >> +textofs-$(CONFIG_ARCH_ECONET) := 0x00088000
-> > >
-> > > Why is this needed?
-> > >
-> > > Note also the comment directly above it exlaining
-> > > # Text offset. This list is sorted numerically by address in order to
-> > > # provide a means to avoid/resolve conflicts in multi-arch kernels.
-> >
-> > I didn't make that patch, but it turns out it's needed to get PSCI working;
-> > detection hangs without it. That makes no sense to me, but I'll examine further.
->
-> Probably PSCI relies on the memory contents at the start of RAM not
-> being overwritten?
-> Does it help if you remove the first 512 KiB from the /memory node
+Hi Biju,
 
-I /think/ we rely on the first memblock being mappable using section
-mappings, so it might be better to remove the first 1 MB (or 2 MB in
-case the platform is LPAE capable). Note that this memory is discarded
-in any case, so this change is not as costly as it may seem.
+On Fri, Aug 6, 2021 at 12:29 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> The DMAC driver on RZ/G2L expects the slave channel configuration
+> to be passed in dmas property.
+> This patch updates the example node to include the encoded slave
+> channel configuration.
+>
+> Fixes: 5df6dfbb6de815ba3a("ASoC: dt-bindings: sound: renesas,rz-ssi: Document DMA support")
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
+> v3->v4:
+>  * Updated bindings as the DMAC driver on RZ/G2L expects the
+>    slave channel configuration to be passed in dmas property.
 
-> (which should be declared in en7523-evb.dts instead of en7523.dtsi
-> BTW)?
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+Thanks for the update!
+
+> --- a/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml
+> +++ b/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml
+> @@ -93,8 +93,8 @@ examples:
+>              clock-names = "ssi", "ssi_sfr", "audio_clk1", "audio_clk2";
+>              power-domains = <&cpg>;
+>              resets = <&cpg R9A07G044_SSI0_RST_M2_REG>;
+> -            dmas = <&dmac 0x255>,
+> -                   <&dmac 0x256>;
+> +            dmas = <&dmac 0x2655>,
+> +                   <&dmac 0x2656>;
+>              dma-names = "tx", "rx";
+>              #sound-dai-cells = <0>;
+>      };
+
+I think it would be good to describe the expected format in the description
+for the dmas property, so the DTS writer knows what the numerical
+values in the example really mean.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
