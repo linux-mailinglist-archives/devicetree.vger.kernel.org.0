@@ -2,396 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B34B3E4C5A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 20:47:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7DF23E4C67
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 20:52:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235466AbhHISrz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 14:47:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48278 "EHLO
+        id S235715AbhHISwW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 14:52:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230175AbhHISry (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 14:47:54 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A886EC0613D3
-        for <devicetree@vger.kernel.org>; Mon,  9 Aug 2021 11:47:33 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id x7so13477393ljn.10
-        for <devicetree@vger.kernel.org>; Mon, 09 Aug 2021 11:47:33 -0700 (PDT)
+        with ESMTP id S235628AbhHISwW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 14:52:22 -0400
+Received: from mail-vk1-xa31.google.com (mail-vk1-xa31.google.com [IPv6:2607:f8b0:4864:20::a31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 604B9C061799
+        for <devicetree@vger.kernel.org>; Mon,  9 Aug 2021 11:52:01 -0700 (PDT)
+Received: by mail-vk1-xa31.google.com with SMTP id x11so4192361vke.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Aug 2021 11:52:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=2NuxqmTu26gL3l0KkBiFI+twGVwEKQUzOymEfYqPCgE=;
-        b=chGUOJuhRFDNXzj5UO+Am5G7jevsTd4p5lJaKcuiu84LcpkXFjLYvQl40q/2gFqkzv
-         6kFaUN+lrh1B1E7rGamU0ODBMyVbw38WCMgHAv0vHac1z/KI+5Q9kS33SZw5Vyx10/Ep
-         UV7Ib6D63UM3WRIM5+/5E08s5szxuE/4fIe8/3z9iRn24JUg4VEqUNxzt5XkoVQU0D0L
-         mghkTR7bTCbaTsiMMLSPa/Ixnnd2trvyv2GuAfGMSdOq6dRR2KMTuSqUKAwPvVQqJETz
-         aoLU/nBl220qp6TU6JN1BMeql3CfUFPOFF9RX6GzHz0JDtUSMewH/iMSVyboggoNhURF
-         eJVQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=d/b2tS7YMRHPjI6VGiV4WlYzcCT+N2pnoJeTL1fGmn8=;
+        b=x+VgKgaGdpHjdkRUURCM+NYQxSTBy0MkPCmpbM3VIbSGIOsKT8McvVHvOqpCfPDp7H
+         M4W8cRoidhuJJ6xT+Q0fvemdLheGyBHuuf5PbDY/5f/gJVpiXvdbLy8wi5Fwg9b41XRO
+         y0nFK2KV9XPrj+MkW1Ph1EeavmWj8Yhtfftbfkr0al6WVOiySz908r+BA0cssptNHJQc
+         6Z4Rfg52GaKWJPr5qdvIIg51iZXrOjEC+yV4RslNN/Crz2zsd1wfyKnhglVo780qMky2
+         4hfrfphfWh78WUlxasiDzHL7OqWsWdhaRa6FjMADzGi5pnL3DD5vxXq06vA/PITiesQu
+         WXiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=2NuxqmTu26gL3l0KkBiFI+twGVwEKQUzOymEfYqPCgE=;
-        b=iu+c3KfiO3rP1FvWc1IZY2EoVdh+72acaVzwXIIsVmLRzTRE/tUOKJDHkaJohffIOf
-         VbJ0/pg6cSnUjeHzFjUyIvQVLeXgZcPBQo4HMf8NkXhsBITd6RqRDW5i5NUTwtKys9As
-         VXTELFE99M6frBqUPG6meOrrQhVvVjpqaI6j85KUOmAOt5EnK67UFs8KgDixER2yGQjQ
-         lQ1eaBBp1WfcKcC87oKe7houGGS1raURfQUCr8xJf2uXnQ9gigi7CDaJxvnr72oGe4yJ
-         3VuBYtd8kwPypwJzDiiGJgidHSuV2h7FMbwksCKCfNPdTjshQaczkVQ5a+izuuu8hs5A
-         bB0g==
-X-Gm-Message-State: AOAM531ZOayyrXmm5483K2h3eIrce0Vy/d1dRdCsq2BelQzuvkak+hWG
-        n0Ilf7R6zbhM1LNDi7F7/aD85A==
-X-Google-Smtp-Source: ABdhPJzJnB5U4u591lVj1+c6c6KwFiZ9TZO9UgDBRg5Qs3oG4DlxPwKndxaiWr2bC9w1fwjE1D8xyQ==
-X-Received: by 2002:a2e:7d08:: with SMTP id y8mr17007417ljc.314.1628534851967;
-        Mon, 09 Aug 2021 11:47:31 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id u22sm1216128lff.270.2021.08.09.11.47.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Aug 2021 11:47:31 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v2 2/2] drm/panel: Add support for Sharp LS060T1SX01 panel
-Date:   Mon,  9 Aug 2021 21:47:12 +0300
-Message-Id: <20210809184712.203791-3-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210809184712.203791-1-dmitry.baryshkov@linaro.org>
-References: <20210809184712.203791-1-dmitry.baryshkov@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=d/b2tS7YMRHPjI6VGiV4WlYzcCT+N2pnoJeTL1fGmn8=;
+        b=pMbuQLSWjSBB6b29O+tWwR8Ct2aoIvhzGnaV7UiUWxZNrHh9UiJJmpxTppYSZX1xB4
+         L/8K6teqO/09jwGEjWJXcmASOacXGucpicE2XD9P+5vQBRIOjhckmnp+3yZ82UWmZmzw
+         yyqUsYw9zp2+DFReGv8gzwYa45DpuVRBeIpdhjBDNhP0ehkg7FRsVMa/MFr8ZHXaL1jz
+         DRpLf5SxLoJKQdKxDP7Bz6LQiKAtWlkcnAcGWUpdVlxMewyGXEe5PfbGv9Dmo+bW4DCg
+         16og3S4mRR9ZzBLG2ewHtLAUkf8ngbc8xfjYSOcq4Qz8DsTNDjGqad8MRKn92m0KCZzx
+         djRg==
+X-Gm-Message-State: AOAM5312/cKi2nTstNqb4Rv9mstS+xn3c2vW4AxpsRJxSmpXuiTRgeeL
+        cL1/qjk1uK3KP+f5FvttkmX7C4nXuHY2KJwBtIneLg==
+X-Google-Smtp-Source: ABdhPJztTV7fFHE7DAa32TUbP4AmYOxZsrntgIge/gVbMCQBwXCNWE/Kq/pQ1JbUoXC+yXA/gvcXiKD7IlttIEP5jKE=
+X-Received: by 2002:a1f:6203:: with SMTP id w3mr15362595vkb.24.1628535120427;
+ Mon, 09 Aug 2021 11:52:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210806152146.16107-1-semen.protsenko@linaro.org>
+ <20210806152146.16107-8-semen.protsenko@linaro.org> <7110b1e2-1aee-6ddf-803f-ee392e494f2d@canonical.com>
+In-Reply-To: <7110b1e2-1aee-6ddf-803f-ee392e494f2d@canonical.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Mon, 9 Aug 2021 21:51:48 +0300
+Message-ID: <CAPLW+4=yK-dfWjKjLEOKL2o2sG1eyqSNqgVCnQNYvbUHo+Om4w@mail.gmail.com>
+Subject: Re: [PATCH v2 7/8] clk: samsung: Add Exynos850 clock driver stub
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        =?UTF-8?Q?Pawe=C5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
+        Ryu Euiyoul <ryu.real@samsung.com>,
+        Tom Gall <tom.gall@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add driver to support Sharp LS06T1SX01 FullHD panel. The panel uses
-nt35695 driver IC. For example this LCD module can be found in the
-kwaek.ca Dragonboard Display Adapter Bundle.
+On Mon, 9 Aug 2021 at 13:55, Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+>
+> On 06/08/2021 17:21, Sam Protsenko wrote:
+> > For now it's just a stub driver to make the serial driver work. Later it
+> > will be implemented properly. This driver doesn't really change clocks,
+> > only registers the UART clock as a fixed-rate clock. Without this clock
+> > driver the UART driver won't work, as it's trying to obtain "uart" clock
+> > and fails if it's not able to.
+>
+> You know that as temporary solution you can add necessary clocks
+> directly in your DTS as fixed-rate-clocks? Effect would be quite similar
+> to the one here for UART driver but instead adding some temporary code
+> you would add temporary DTS nodes and references.
+>
+> I am fine with this approach although the binding (if ever defined...)
+> would need to be marked as experimental.
+>
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- drivers/gpu/drm/panel/Kconfig                 |  10 +
- drivers/gpu/drm/panel/Makefile                |   1 +
- .../gpu/drm/panel/panel-sharp-ls060t1sx01.c   | 274 ++++++++++++++++++
- 3 files changed, 285 insertions(+)
- create mode 100644 drivers/gpu/drm/panel/panel-sharp-ls060t1sx01.c
+Let's keep this driver then. My next step would be implementing the
+proper clk driver, so this review would be a good starting point for
+me. I will, of course, address your other comments.
 
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index 4894913936e9..08f85a5ff738 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -451,6 +451,16 @@ config DRM_PANEL_SHARP_LS043T1LE01
- 	  Say Y here if you want to enable support for Sharp LS043T1LE01 qHD
- 	  (540x960) DSI panel as found on the Qualcomm APQ8074 Dragonboard
- 
-+config DRM_PANEL_SHARP_LS060T1SX01
-+	tristate "Sharp LS060T1SX01 FullHD video mode panel"
-+	depends on OF
-+	depends on DRM_MIPI_DSI
-+	depends on BACKLIGHT_CLASS_DEVICE
-+	help
-+	  Say Y here if you want to enable support for Sharp LS060T1SX01 6.0"
-+	  FullHD (1080x1920) DSI panel as found in Dragonboard Display Adapter
-+	  Bundle.
-+
- config DRM_PANEL_SITRONIX_ST7701
- 	tristate "Sitronix ST7701 panel driver"
- 	depends on OF
-diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index cae4d976c069..7dd6bd755e13 100644
---- a/drivers/gpu/drm/panel/Makefile
-+++ b/drivers/gpu/drm/panel/Makefile
-@@ -47,6 +47,7 @@ obj-$(CONFIG_DRM_PANEL_SEIKO_43WVF1G) += panel-seiko-43wvf1g.o
- obj-$(CONFIG_DRM_PANEL_SHARP_LQ101R1SX01) += panel-sharp-lq101r1sx01.o
- obj-$(CONFIG_DRM_PANEL_SHARP_LS037V7DW01) += panel-sharp-ls037v7dw01.o
- obj-$(CONFIG_DRM_PANEL_SHARP_LS043T1LE01) += panel-sharp-ls043t1le01.o
-+obj-$(CONFIG_DRM_PANEL_SHARP_LS060T1SX01) += panel-sharp-ls060t1sx01.o
- obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7701) += panel-sitronix-st7701.o
- obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7703) += panel-sitronix-st7703.o
- obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7789V) += panel-sitronix-st7789v.o
-diff --git a/drivers/gpu/drm/panel/panel-sharp-ls060t1sx01.c b/drivers/gpu/drm/panel/panel-sharp-ls060t1sx01.c
-new file mode 100644
-index 000000000000..4fece00e6156
---- /dev/null
-+++ b/drivers/gpu/drm/panel/panel-sharp-ls060t1sx01.c
-@@ -0,0 +1,274 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+// Copyright (c) 2021 Linaro Ltd.
-+// Generated with linux-mdss-dsi-panel-driver-generator from vendor device tree:
-+//   Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
-+
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/regulator/consumer.h>
-+
-+#include <video/mipi_display.h>
-+
-+#include <drm/drm_mipi_dsi.h>
-+#include <drm/drm_modes.h>
-+#include <drm/drm_panel.h>
-+
-+struct sharp_ls060 {
-+	struct drm_panel panel;
-+	struct mipi_dsi_device *dsi;
-+	struct regulator *supply;
-+	struct gpio_desc *reset_gpio;
-+	bool prepared;
-+};
-+
-+static inline struct sharp_ls060 *to_sharp_ls060(struct drm_panel *panel)
-+{
-+	return container_of(panel, struct sharp_ls060, panel);
-+}
-+
-+#define dsi_dcs_write_seq(dsi, seq...) ({				\
-+		static const u8 d[] = { seq };				\
-+									\
-+		mipi_dsi_dcs_write_buffer(dsi, d, ARRAY_SIZE(d));	\
-+	})
-+
-+static void sharp_ls060_reset(struct sharp_ls060 *ctx)
-+{
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-+	usleep_range(10000, 11000);
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+	usleep_range(10000, 11000);
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-+	usleep_range(10000, 11000);
-+}
-+
-+static int sharp_ls060_on(struct sharp_ls060 *ctx)
-+{
-+	struct mipi_dsi_device *dsi = ctx->dsi;
-+	struct device *dev = &dsi->dev;
-+	int ret;
-+
-+	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
-+
-+	ret = dsi_dcs_write_seq(dsi, 0xbb, 0x13);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to send command: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = dsi_dcs_write_seq(dsi, MIPI_DCS_WRITE_MEMORY_START);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to send command: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to exit sleep mode: %d\n", ret);
-+		return ret;
-+	}
-+	msleep(120);
-+
-+	ret = mipi_dsi_dcs_set_display_on(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to set display on: %d\n", ret);
-+		return ret;
-+	}
-+	msleep(50);
-+
-+	return 0;
-+}
-+
-+static int sharp_ls060_off(struct sharp_ls060 *ctx)
-+{
-+	struct mipi_dsi_device *dsi = ctx->dsi;
-+	struct device *dev = &dsi->dev;
-+	int ret;
-+
-+	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
-+
-+	ret = mipi_dsi_dcs_set_display_off(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to set display off: %d\n", ret);
-+		return ret;
-+	}
-+	usleep_range(2000, 3000);
-+
-+	ret = mipi_dsi_dcs_enter_sleep_mode(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to enter sleep mode: %d\n", ret);
-+		return ret;
-+	}
-+	msleep(121);
-+
-+	return 0;
-+}
-+
-+static int sharp_ls060_prepare(struct drm_panel *panel)
-+{
-+	struct sharp_ls060 *ctx = to_sharp_ls060(panel);
-+	struct device *dev = &ctx->dsi->dev;
-+	int ret;
-+
-+	if (ctx->prepared)
-+		return 0;
-+
-+	ret = regulator_enable(ctx->supply);
-+	if (ret < 0)
-+		return ret;
-+
-+	sharp_ls060_reset(ctx);
-+
-+	ret = sharp_ls060_on(ctx);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to initialize panel: %d\n", ret);
-+		regulator_disable(ctx->supply);
-+		gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+		return ret;
-+	}
-+
-+	ctx->prepared = true;
-+	return 0;
-+}
-+
-+static int sharp_ls060_unprepare(struct drm_panel *panel)
-+{
-+	struct sharp_ls060 *ctx = to_sharp_ls060(panel);
-+	struct device *dev = &ctx->dsi->dev;
-+	int ret;
-+
-+	if (!ctx->prepared)
-+		return 0;
-+
-+	ret = sharp_ls060_off(ctx);
-+	if (ret < 0)
-+		dev_err(dev, "Failed to un-initialize panel: %d\n", ret);
-+
-+	regulator_disable(ctx->supply);
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+
-+	ctx->prepared = false;
-+	return 0;
-+}
-+
-+static const struct drm_display_mode sharp_ls060_mode = {
-+	.clock = (1080 + 96 + 16 + 64) * (1920 + 4 + 1 + 16) * 60 / 1000,
-+	.hdisplay = 1080,
-+	.hsync_start = 1080 + 96,
-+	.hsync_end = 1080 + 96 + 16,
-+	.htotal = 1080 + 96 + 16 + 64,
-+	.vdisplay = 1920,
-+	.vsync_start = 1920 + 4,
-+	.vsync_end = 1920 + 4 + 1,
-+	.vtotal = 1920 + 4 + 1 + 16,
-+	.width_mm = 75,
-+	.height_mm = 132,
-+};
-+
-+static int sharp_ls060_get_modes(struct drm_panel *panel,
-+				 struct drm_connector *connector)
-+{
-+	struct drm_display_mode *mode;
-+
-+	mode = drm_mode_duplicate(connector->dev, &sharp_ls060_mode);
-+	if (!mode)
-+		return -ENOMEM;
-+
-+	drm_mode_set_name(mode);
-+
-+	mode->type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED;
-+	connector->display_info.width_mm = mode->width_mm;
-+	connector->display_info.height_mm = mode->height_mm;
-+	drm_mode_probed_add(connector, mode);
-+
-+	return 1;
-+}
-+
-+static const struct drm_panel_funcs sharp_ls060_panel_funcs = {
-+	.prepare = sharp_ls060_prepare,
-+	.unprepare = sharp_ls060_unprepare,
-+	.get_modes = sharp_ls060_get_modes,
-+};
-+
-+static int sharp_ls060_probe(struct mipi_dsi_device *dsi)
-+{
-+	struct device *dev = &dsi->dev;
-+	struct sharp_ls060 *ctx;
-+	int ret;
-+
-+	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
-+	if (!ctx)
-+		return -ENOMEM;
-+
-+	ctx->supply = devm_regulator_get(dev, "avdd");
-+	if (IS_ERR(ctx->supply))
-+		return PTR_ERR(ctx->supply);
-+
-+	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(ctx->reset_gpio))
-+		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
-+				     "Failed to get reset-gpios\n");
-+
-+	ctx->dsi = dsi;
-+	mipi_dsi_set_drvdata(dsi, ctx);
-+
-+	dsi->lanes = 4;
-+	dsi->format = MIPI_DSI_FMT_RGB888;
-+	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
-+			  MIPI_DSI_MODE_EOT_PACKET |
-+			  MIPI_DSI_CLOCK_NON_CONTINUOUS;
-+
-+	drm_panel_init(&ctx->panel, dev, &sharp_ls060_panel_funcs,
-+		       DRM_MODE_CONNECTOR_DSI);
-+
-+	ret = drm_panel_of_backlight(&ctx->panel);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to get backlight\n");
-+
-+	drm_panel_add(&ctx->panel);
-+
-+	ret = mipi_dsi_attach(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to attach to DSI host: %d\n", ret);
-+		drm_panel_remove(&ctx->panel);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int sharp_ls060_remove(struct mipi_dsi_device *dsi)
-+{
-+	struct sharp_ls060 *ctx = mipi_dsi_get_drvdata(dsi);
-+	int ret;
-+
-+	ret = mipi_dsi_detach(dsi);
-+	if (ret < 0)
-+		dev_err(&dsi->dev, "Failed to detach from DSI host: %d\n", ret);
-+
-+	drm_panel_remove(&ctx->panel);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id sharp_ls060t1sx01_of_match[] = {
-+	{ .compatible = "sharp,ls060t1sx01" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, sharp_ls060t1sx01_of_match);
-+
-+static struct mipi_dsi_driver sharp_ls060_driver = {
-+	.probe = sharp_ls060_probe,
-+	.remove = sharp_ls060_remove,
-+	.driver = {
-+		.name = "panel-sharp-ls060t1sx01",
-+		.of_match_table = sharp_ls060t1sx01_of_match,
-+	},
-+};
-+module_mipi_dsi_driver(sharp_ls060_driver);
-+
-+MODULE_AUTHOR("Dmitry Baryshkov <dmitry.baryshkov@linaro.org>");
-+MODULE_DESCRIPTION("DRM driver for Sharp LS060T1SX01 1080p video mode dsi panel");
-+MODULE_LICENSE("GPL v2");
--- 
-2.30.2
+> >
+> > In order to get a functional serial console we have to implement that
+> > minimal clock driver with "uart" clock. It's not necessary to actually
+> > configure clocks, as those are already configured in bootloader, so
+> > kernel can rely on that for now.
+> >
+> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> > ---
+> > Changes in v2:
+> >   - Used hard coded clock indexes, as clock bindings were removed; will
+> >     add clock bindings back (reimplemented) once proper clock driver is
+> >     ready
+> >   - Removed .data = 0 for exynos850-oscclk, as it's in BSS section
+> >   - Removed comma for terminator {}
+> >   - Made exynos850_clk_init() static
+> >   - Removed checking np for NULL, as it's already done in of_iomap()
+> >
+> >  drivers/clk/samsung/Makefile        |  1 +
+> >  drivers/clk/samsung/clk-exynos850.c | 64 +++++++++++++++++++++++++++++
+> >  2 files changed, 65 insertions(+)
+> >  create mode 100644 drivers/clk/samsung/clk-exynos850.c
+> >
+> > diff --git a/drivers/clk/samsung/Makefile b/drivers/clk/samsung/Makefile
+> > index 028b2e27a37e..c46cf11e4d0b 100644
+> > --- a/drivers/clk/samsung/Makefile
+> > +++ b/drivers/clk/samsung/Makefile
+> > @@ -17,6 +17,7 @@ obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)       += clk-exynos5433.o
+> >  obj-$(CONFIG_EXYNOS_AUDSS_CLK_CON) += clk-exynos-audss.o
+> >  obj-$(CONFIG_EXYNOS_CLKOUT)  += clk-exynos-clkout.o
+> >  obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)        += clk-exynos7.o
+> > +obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)        += clk-exynos850.o
+> >  obj-$(CONFIG_S3C2410_COMMON_CLK)+= clk-s3c2410.o
+> >  obj-$(CONFIG_S3C2410_COMMON_DCLK)+= clk-s3c2410-dclk.o
+> >  obj-$(CONFIG_S3C2412_COMMON_CLK)+= clk-s3c2412.o
+> > diff --git a/drivers/clk/samsung/clk-exynos850.c b/drivers/clk/samsung/clk-exynos850.c
+> > new file mode 100644
+> > index 000000000000..36c7c7fe7cf0
+> > --- /dev/null
+> > +++ b/drivers/clk/samsung/clk-exynos850.c
+> > @@ -0,0 +1,64 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Copyright (C) 2019 Samsung Electronics Co., Ltd.
+> > + * Copyright (C) 2021 Linaro Ltd.
+> > + *
+> > + * Common Clock Framework support for Exynos850 SoC.
+> > + */
+> > +
+> > +#include <linux/clk.h>
+> > +#include <linux/clkdev.h>
+> > +#include <linux/clk-provider.h>
+> > +#include <linux/of.h>
+> > +#include <linux/of_address.h>
+> > +
+> > +#include "clk.h"
+> > +
+> > +/* Will be extracted to bindings header once proper clk driver is implemented */
+> > +#define OSCCLK               1
+> > +#define DOUT_UART    2
+> > +#define CLK_NR_CLKS  3
+> > +
+> > +/* Fixed rate clocks generated outside the SoC */
+> > +static struct samsung_fixed_rate_clock exynos850_fixed_rate_ext_clks[] __initdata = {
+> > +     FRATE(OSCCLK, "fin_pll", NULL, 0, 26000000),
+> > +};
+> > +
+> > +/*
+> > + * Model the UART clock as a fixed-rate clock for now, to make serial driver
+> > + * work. This clock is already configured in the bootloader.
+> > + */
+> > +static const struct samsung_fixed_rate_clock exynos850_peri_clks[] __initconst = {
+> > +     FRATE(DOUT_UART, "DOUT_UART", NULL, 0, 200000000),
+> > +};
+> > +
+> > +static const struct of_device_id ext_clk_match[] __initconst = {
+> > +     { .compatible = "samsung,exynos850-oscclk" },
+> > +     {}
+> > +};
+> > +
+> > +static void __init exynos850_clk_init(struct device_node *np)
+> > +{
+> > +     void __iomem *reg_base;
+> > +     struct samsung_clk_provider *ctx;
+> > +
+> > +     reg_base = of_iomap(np, 0);
+> > +     if (!reg_base)
+> > +             panic("%s: failed to map registers\n", __func__);
+> > +
+> > +     ctx = samsung_clk_init(np, reg_base, CLK_NR_CLKS);
+> > +     if (!ctx)
+> > +             panic("%s: unable to allocate ctx\n", __func__);
+>
+> Not needed, the samsung_clk_init() panics or returns valid memory.
+>
 
+Done. Btw, I noticed that similar check is present in clk-exynos5433.c.
+
+> > +
+> > +     samsung_clk_of_register_fixed_ext(ctx,
+> > +                     exynos850_fixed_rate_ext_clks,
+> > +                     ARRAY_SIZE(exynos850_fixed_rate_ext_clks),
+> > +                     ext_clk_match);
+> > +
+> > +     samsung_clk_register_fixed_rate(ctx, exynos850_peri_clks,
+> > +                     ARRAY_SIZE(exynos850_peri_clks));
+> > +
+> > +     samsung_clk_of_add_provider(np, ctx);
+> > +}
+> > +
+> > +CLK_OF_DECLARE(exynos850_clk, "samsung,exynos850-clock", exynos850_clk_init);
+> >
+>
+> Best regards,
+> Krzysztof
