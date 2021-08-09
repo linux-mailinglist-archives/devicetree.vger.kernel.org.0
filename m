@@ -2,112 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E9693E445A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 13:01:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 852F83E4469
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 13:09:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234949AbhHILBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 07:01:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53958 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234948AbhHILBz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 07:01:55 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41AA1C0613D3
-        for <devicetree@vger.kernel.org>; Mon,  9 Aug 2021 04:01:35 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1mD328-0003RL-TW; Mon, 09 Aug 2021 13:01:28 +0200
-Message-ID: <8ea33d97fb3f7abb2d80b11db28cce8c01932a09.camel@pengutronix.de>
-Subject: Re: [PATCH v2 00/18] i.MX8MM GPC improvements and BLK_CTRL driver
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     NXP Linux Team <linux-imx@nxp.com>, Adam Ford <aford173@gmail.com>,
-        Peng Fan <peng.fan@nxp.com>, Marek Vasut <marex@denx.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        kernel@pengutronix.de, patchwork-lst@pengutronix.de
-Date:   Mon, 09 Aug 2021 13:01:27 +0200
-In-Reply-To: <8de1cd0a-4d91-60e2-61e6-9f903bbf546b@kontron.de>
-References: <20210716232916.3572966-1-l.stach@pengutronix.de>
-         <20210721204703.1424034-1-l.stach@pengutronix.de>
-         <818b52fe-8fa6-b47a-6dde-783ac378c603@kontron.de>
-         <8de1cd0a-4d91-60e2-61e6-9f903bbf546b@kontron.de>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.3 (3.40.3-1.fc34) 
+        id S234646AbhHILJZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 07:09:25 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:25005 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233660AbhHILJY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Aug 2021 07:09:24 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1628507344; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=iVGYr8BvmR6QN2P1ZSMux09dzqkFjV+3tlj3x4l+kQ8=; b=hPCGeaInrUZssdLVyIo1Z574oIANIG3FWQCmLaQ8uS/Yz3PxRaK3MkBL7yLb1IVvwzl28fjP
+ 9OzhFMuW3vreYNHzi+agDEkgRTiKq1R4gt6o27GdB6wNPvBeVseBHGcnENEsRkn2c7DbL939
+ x9X74YFqM+fQSp7bsni5pC85bnQ=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
+ 61110cc98c78eaf8089be407 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 09 Aug 2021 11:08:57
+ GMT
+Sender: rnayak=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 41654C433F1; Mon,  9 Aug 2021 11:08:57 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [192.168.1.100] (unknown [49.207.220.239])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rnayak)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4BFD7C433D3;
+        Mon,  9 Aug 2021 11:08:52 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 4BFD7C433D3
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
+Subject: Re: [PATCH v6 1/2] PM / Domains: Add support for 'required-opps' to
+ set default perf state
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Roja Rani Yarubandi <rojay@codeaurora.org>,
+        Stephan Gerhold <stephan@gerhold.net>
+References: <1628074696-7979-1-git-send-email-rnayak@codeaurora.org>
+ <1628074696-7979-2-git-send-email-rnayak@codeaurora.org>
+ <CAPDyKFrebwt5=S7hqXvcqRvt+-EXLcVmRSRZt1uPf-9n7_pRDg@mail.gmail.com>
+From:   Rajendra Nayak <rnayak@codeaurora.org>
+Message-ID: <2afd0fac-ed28-c090-a345-3fd4284b4125@codeaurora.org>
+Date:   Mon, 9 Aug 2021 16:38:50 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
+In-Reply-To: <CAPDyKFrebwt5=S7hqXvcqRvt+-EXLcVmRSRZt1uPf-9n7_pRDg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Frieder,
 
-Am Donnerstag, dem 05.08.2021 um 20:56 +0200 schrieb Frieder Schrempf:
-> On 05.08.21 12:18, Frieder Schrempf wrote:
-> > On 21.07.21 22:46, Lucas Stach wrote:
-> > > Hi all,
-> > > 
-> > > second revision of the GPC improvements and BLK_CTRL driver to make use
-> > > of all the power-domains on the i.MX8MM. I'm not going to repeat the full
-> > > blurb from the v1 cover letter here, but if you are not familiar with
-> > > i.MX8MM power domains, it may be worth a read.
-> > > 
-> > > This 2nd revision fixes the DT bindings to be valid yaml, some small
-> > > failure path issues and most importantly the interaction with system
-> > > suspend/resume. With the previous version some of the power domains
-> > > would not come up correctly after a suspend/resume cycle.
-> > > 
-> > > Updated testing git trees here, disclaimer still applies:
-> > > https://git.pengutronix.de/cgit/lst/linux/log/?h=imx8m-power-domains
-> > > https://git.pengutronix.de/cgit/lst/linux/log/?h=imx8m-power-domains-testing
-> > 
-> > I finally did some tests on my side using USB, GPU and DSI (no PCIe, VPU, CSI so far) and the results are promising. Thanks for the effort!
-> > 
-> > I will try to run some more automated suspend/resume and reboot test cycles over the weekend and report the results here afterwards.
-> > 
-> 
-> Unfortunately I got some results sooner than I had hoped. I set up a simple loop to suspend/resume every few seconds and on the first run it took around 2-3 hours for the device to lock up on resume. On the second run it took less than half an hour. I had glmark2-es2-drm running in the background, but it looks like it crashed at some point before the lockup occurred.
-> 
-> Of course this could also be unrelated and caused by some peripheral driver or something but the first suspicion is definitely the power domains.
-> 
-> If you have any suggestions for which debug options to enable or where to add some printks, please let me know. If I do another run I would like to make sure that the resulting logs are helpful for debugging.
-> 
-> And I would appreciate if someone else could try to reproduce this problem on his/her side. I use this simple script for testing:
-> 
-> #!/bin/sh
-> 
-> glmark2-es2-drm &
-> 
-> while true;
-> do
->     echo +10 > /sys/class/rtc/rtc0/wakealarm
->     echo mem > /sys/power/state
->     sleep 5
-> done;
 
-Hm, that's unfortunate.
+On 8/6/2021 3:02 PM, Ulf Hansson wrote:
+> On Wed, 4 Aug 2021 at 12:58, Rajendra Nayak <rnayak@codeaurora.org> wrote:
+>>
+>> Some devices within power domains with performance states do not
+>> support DVFS, but still need to vote on a default/static state
+>> while they are active. They can express this using the 'required-opps'
+>> property in device tree, which points to the phandle of the OPP
+>> supported by the corresponding power-domains.
+>>
+>> Add support to parse this information from DT and then set the
+>> specified performance state during attach and drop it on detach.
+>> runtime suspend/resume callbacks already have logic to drop/set
+>> the vote as needed and should take care of dropping the default
+>> perf state vote on runtime suspend and restore it back on runtime
+>> resume.
+>>
+>> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
+>> ---
+>>   drivers/base/power/domain.c | 28 ++++++++++++++++++++++++++--
+>>   include/linux/pm_domain.h   |  1 +
+>>   2 files changed, 27 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/base/power/domain.c b/drivers/base/power/domain.c
+>> index a934c67..b9b5a9b 100644
+>> --- a/drivers/base/power/domain.c
+>> +++ b/drivers/base/power/domain.c
+>> @@ -2598,6 +2598,12 @@ static void genpd_dev_pm_detach(struct device *dev, bool power_off)
+>>
+>>          dev_dbg(dev, "removing from PM domain %s\n", pd->name);
+>>
+>> +       /* Drop the default performance state */
+>> +       if (dev_gpd_data(dev)->default_pstate) {
+>> +               dev_pm_genpd_set_performance_state(dev, 0);
+>> +               dev_gpd_data(dev)->default_pstate = 0;
+>> +       }
+>> +
+>>          for (i = 1; i < GENPD_RETRY_MAX_MS; i <<= 1) {
+>>                  ret = genpd_remove_device(pd, dev);
+>>                  if (ret != -EAGAIN)
+>> @@ -2637,6 +2643,8 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
+>>   {
+>>          struct of_phandle_args pd_args;
+>>          struct generic_pm_domain *pd;
+>> +       struct device_node *np;
+>> +       int pstate;
+>>          int ret;
+>>
+>>          ret = of_parse_phandle_with_args(dev->of_node, "power-domains",
+>> @@ -2675,10 +2683,26 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
+>>                  genpd_unlock(pd);
+>>          }
+>>
+>> -       if (ret)
+>> +       if (ret) {
+>>                  genpd_remove_device(pd, dev);
+>> +               return -EPROBE_DEFER;
+>> +       }
+>> +
+>> +       /* Set the default performance state */
+>> +       np = dev->of_node;
+>> +       if (of_parse_phandle(np, "required-opps", index)) {
+> 
+> Looks like Viresh thinks it's a good idea to drop the error print in
+> of_get_required_opp_performance_state() when there is no
+> "required-opps" specifier.
+> 
+> Would you mind folding in a patch for that in the series, so this code
+> can be simplified according to our earlier discussions?
 
-I'm back from a two week vacation, but it looks like I won't have much
-time available to look into this issue soon. It would be very helpful
-if you could try to pinpoint the hang a bit more.  If you can reproduce
-the hang with no_console_suspend you might be able to extract a bit
-more info in which stage the hang happens (suspend, resume, TF-A, etc.)
-If the hang is in the kernel you might be able to add some prints to
-the suspend/resume paths to be able to track down the exact point of
-the hang.
+Sure, I can do that, apart from the error print, the function currently also
+returns a -EINVAL in case of the missing 'required-opps', are we suggesting
+we change that to not return an error also?
 
-I'm happy to look into the issue once it's better known where to look,
-but I fear that I won't have time to do the above investigation myself
-short term. Frieder, is this something you could help with over the
-next few days?
+Since this is completely optional in the device node, we would want the function to
+ideally not return error and only do so in case 'required-opps' exists and the
+translation to performance state fails.
+I am not sure that's the behavior we expect in case of 'required-opps' in the OPP
+tables also, Viresh?
 
-Regards,
-Lucas
+> 
+>> +               pstate = of_get_required_opp_performance_state(np, index);
+>> +               if (pstate < 0) {
+>> +                       ret = pstate;
+>> +                       dev_err(dev, "failed to set required performance state for power-domain %s: %d\n",
+>> +                               pd->name, ret);
+>> +               } else {
+>> +                       dev_pm_genpd_set_performance_state(dev, pstate);
+>> +                       dev_gpd_data(dev)->default_pstate = pstate;
+>> +               }
+>> +       }
+>>
+>> -       return ret ? -EPROBE_DEFER : 1;
+>> +       return ret ? ret : 1;
+>>   }
+>>
+>>   /**
+>> diff --git a/include/linux/pm_domain.h b/include/linux/pm_domain.h
+>> index 21a0577..67017c9 100644
+>> --- a/include/linux/pm_domain.h
+>> +++ b/include/linux/pm_domain.h
+>> @@ -198,6 +198,7 @@ struct generic_pm_domain_data {
+>>          struct notifier_block *power_nb;
+>>          int cpu;
+>>          unsigned int performance_state;
+>> +       unsigned int default_pstate;
+>>          unsigned int rpm_pstate;
+>>          ktime_t next_wakeup;
+>>          void *data;
+> 
+> Other than the above, this looks good to me!
+> 
+> Kind regards
+> Uffe
+> 
 
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
