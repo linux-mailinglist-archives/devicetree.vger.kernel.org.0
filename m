@@ -2,209 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A25CB3E4D2D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 21:40:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09F133E4D64
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 21:49:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234316AbhHITk1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 15:40:27 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51468 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234135AbhHITk0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Aug 2021 15:40:26 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3399761019;
-        Mon,  9 Aug 2021 19:40:03 +0000 (UTC)
-Date:   Mon, 9 Aug 2021 20:42:53 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     "Liam Beguin" <liambeguin@gmail.com>
-Cc:     <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
-        <charles-antoine.couret@essensium.com>, <Nuno.Sa@analog.com>,
-        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
-Subject: Re: [PATCH v5 3/5] iio: adc: ad7949: add support for internal vref
-Message-ID: <20210809204253.357f97b2@jic23-huawei>
-In-Reply-To: <CDEHT583QT0A.2QAXX9AC2FMLO@shaak>
-References: <20210808015659.2955443-1-liambeguin@gmail.com>
-        <20210808015659.2955443-4-liambeguin@gmail.com>
-        <20210808173630.5c384a4b@jic23-huawei>
-        <CDEHT583QT0A.2QAXX9AC2FMLO@shaak>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        id S235800AbhHITte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 15:49:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34342 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236116AbhHITtc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 15:49:32 -0400
+Received: from mail-ua1-x935.google.com (mail-ua1-x935.google.com [IPv6:2607:f8b0:4864:20::935])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CF0CC061798
+        for <devicetree@vger.kernel.org>; Mon,  9 Aug 2021 12:49:12 -0700 (PDT)
+Received: by mail-ua1-x935.google.com with SMTP id a4so4079768uae.6
+        for <devicetree@vger.kernel.org>; Mon, 09 Aug 2021 12:49:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hS6mugWBVrdBQ+s7IARTItkpVBPXB78DcP4vbl3NLWs=;
+        b=QY6l0sqm3EoO1m/gimf3XnQgtuS8sTIBI7UqsEBihWhm5H7qzrLmVtwxNt0QmHTT3J
+         t1VgtqEiZaEuEO++9s7QLSzCvVvQbM5k7ZdkksIDZ+g4wC48oPtTeVNDz+lSDR6VVkiB
+         SUSEgu7LOJVX/1Gr9kFZk0RTKoBSpIPX0e9dLq8tmGwwq7q3wlamtQy5c8lpUo/E3QJQ
+         TnD8XnZZt29w18gb/nz1EMdtolhsYjU9f94oB4MQsGeqfVx8q/Xt0zTlr47cLtdhvuVY
+         kfFoAOMgnJSV4oOjRrN1B7bLOXzRTBrrLMJF1dvsK2ZsKigwAjsrW5D6yM2VU4fTVogy
+         aVKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hS6mugWBVrdBQ+s7IARTItkpVBPXB78DcP4vbl3NLWs=;
+        b=lqmEjsLSHGNFYBH6yQMLPL3+UUI2Lm9NdWbztyfrqLVuOV3+1+lsmip3NFjHV1n7UZ
+         8SsKdMKP6z2nDkMa4BvmgzdMtz+KDP1LaB+DIFlNc9WEDQGOOvYVjkAIALbu/+Zm200R
+         RPiTkyjRkCeJ+Yux5sRm90QgEnG49Lxb2mrHRzeUZEZoiwGfufsC2aAPXk5x1qz4TFBI
+         UAw4tjcGgmX/ZTBHfysMC7OsEQwr+VuKMlRfMd7xwMIiWrBIXqgga+utN67ipXyibEeC
+         9czfq6Pi4z9dvicvxla2XaXTfWJa2h+vgwOWE2JRdYiw9FS8fJikuVDla5LAp57PNglc
+         qlUQ==
+X-Gm-Message-State: AOAM530NKqan6mG6BvQaJsuN6u460FGIuQj6T3GtCmblt3PMUwDc6SjD
+        zzSFm5E+w1xs3oQmB+T2bQmHbFNgw4tgML5u7Bkkmw==
+X-Google-Smtp-Source: ABdhPJy/Qhm5JfnmTrQPU4LpGpAFA7J5SesGxho4OVHDozLtLefBxN5PeCdlTmo330sDP43G5PnlmowL0u+AlzB4BG4=
+X-Received: by 2002:ab0:7014:: with SMTP id k20mr3973392ual.9.1628538551175;
+ Mon, 09 Aug 2021 12:49:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20210806152146.16107-1-semen.protsenko@linaro.org>
+ <20210806152146.16107-8-semen.protsenko@linaro.org> <3add6f87-7293-e1ae-8f9e-c69e9de18cf5@canonical.com>
+In-Reply-To: <3add6f87-7293-e1ae-8f9e-c69e9de18cf5@canonical.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Mon, 9 Aug 2021 22:48:59 +0300
+Message-ID: <CAPLW+4=-uUcoLCjjBAC2K5NLswnXGXW1qrsTJrb_uZDgOQ5Ehw@mail.gmail.com>
+Subject: Re: [PATCH v2 7/8] clk: samsung: Add Exynos850 clock driver stub
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        =?UTF-8?Q?Pawe=C5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
+        Ryu Euiyoul <ryu.real@samsung.com>,
+        Tom Gall <tom.gall@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-...
- > +
-> > >  static int ad7949_spi_probe(struct spi_device *spi)
-> > >  {
-> > >  	u32 spi_ctrl_mask = spi->controller->bits_per_word_mask;
-> > >  	struct device *dev = &spi->dev;
-> > >  	const struct ad7949_adc_spec *spec;
-> > >  	struct ad7949_adc_chip *ad7949_adc;
-> > > +	struct ad7949_channel *ad7949_chan;
-> > > +	struct fwnode_handle *child;
-> > >  	struct iio_dev *indio_dev;
-> > > +	int mode;
-> > > +	u32 tmp;
-> > >  	int ret;
-> > > +	int i;
-> > >  
-> > >  	indio_dev = devm_iio_device_alloc(dev, sizeof(*ad7949_adc));
-> > >  	if (!indio_dev) {
-> > > @@ -343,16 +383,82 @@ static int ad7949_spi_probe(struct spi_device *spi)
-> > >  		return -EINVAL;
-> > >  	}
-> > >  
-> > > -	ad7949_adc->vref = devm_regulator_get(dev, "vref");
-> > > +	/* Setup external voltage ref, buffered? */
-> > > +	ad7949_adc->vref = devm_regulator_get_optional(dev, "vrefin");
-> > >  	if (IS_ERR(ad7949_adc->vref)) {
-> > > -		dev_err(dev, "fail to request regulator\n");
-> > > -		return PTR_ERR(ad7949_adc->vref);
-> > > +		ret = PTR_ERR(ad7949_adc->vref);
-> > > +		if (ret != -ENODEV)
-> > > +			return ret;
-> > > +		/* unbuffered? */
-> > > +		ad7949_adc->vref = devm_regulator_get_optional(dev, "vref");
-> > > +		if (IS_ERR(ad7949_adc->vref)) {
-> > > +			ret = PTR_ERR(ad7949_adc->vref);
-> > > +			if (ret != -ENODEV)
-> > > +				return ret;
-> > > +			/* Internal then */
-> > > +			mode = AD7949_CFG_VAL_REF_INT_4096;
-> > > +		} else {
-> > > +			mode = AD7949_CFG_VAL_REF_EXT_TEMP;
-> > > +		}
-> > > +	} else {
-> > > +		mode = AD7949_CFG_VAL_REF_EXT_TEMP_BUF;
-> > >  	}
-> > >  
-> > > -	ret = regulator_enable(ad7949_adc->vref);
-> > > -	if (ret < 0) {
-> > > -		dev_err(dev, "fail to enable regulator\n");
-> > > -		return ret;
-> > > +	if (mode & AD7949_CFG_VAL_REF_EXTERNAL) {
-> > > +		ret = regulator_enable(ad7949_adc->vref);
-> > > +		if (ret < 0) {
-> > > +			dev_err(dev, "fail to enable regulator\n");
-> > > +			return ret;
-> > > +		}
-> > > +
-> > > +		ret = devm_add_action_or_reset(dev, ad7949_disable_reg,
-> > > +					       ad7949_adc->vref);
-> > > +		if (ret)
-> > > +			return ret;
-> > > +	}
-> > > +
-> > > +	ad7949_adc->channels = devm_kcalloc(dev, spec->num_channels,
-> > > +					    sizeof(*ad7949_adc->channels),
-> > > +					    GFP_KERNEL);
-> > > +	if (!ad7949_adc->channels) {
-> > > +		dev_err(dev, "unable to allocate ADC channels\n");
-> > > +		return -ENOMEM;
-> > > +	}
-> > > +
-> > > +	/* Initialize all channel structures */
-> > > +	for (i = 0; i < spec->num_channels; i++)
-> > > +		ad7949_adc->channels[i].refsel = mode;
-> > > +
-> > > +	/* Read channel specific information form the devicetree */
-> > > +	device_for_each_child_node(dev, child) {
-> > > +		ret = fwnode_property_read_u32(child, "reg", &i);
-> > > +		if (ret) {
-> > > +			dev_err(dev, "missing reg property in %pfw\n", child);
-> > > +			fwnode_handle_put(child);
-> > > +			return ret;
-> > > +		}
-> > > +
-> > > +		ad7949_chan = &ad7949_adc->channels[i];
-> > > +
-> > > +		ret = fwnode_property_read_u32(child, "adi,internal-ref-microvolt", &tmp);
-> > > +		if (ret < 0 && ret != -EINVAL) {
-> > > +			dev_err(dev, "invalid internal reference in %pfw\n", child);
-> > > +			fwnode_handle_put(child);
-> > > +			return ret;
-> > > +		}  
-> 
-> Hi Jonathan,
-> 
+On Mon, 9 Aug 2021 at 14:23, Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+>
+> On 06/08/2021 17:21, Sam Protsenko wrote:
+> > For now it's just a stub driver to make the serial driver work. Later it
+> > will be implemented properly. This driver doesn't really change clocks,
+> > only registers the UART clock as a fixed-rate clock. Without this clock
+> > driver the UART driver won't work, as it's trying to obtain "uart" clock
+> > and fails if it's not able to.
 > >
-> > So if we are using external voltage, then we'd not expect this to exist.
-> > ret != -EINVAL should deal with that. However, we then hit the following
-> > switch
-> > and temp isn't set to an appropriate value so we get the error.
+> > In order to get a functional serial console we have to implement that
+> > minimal clock driver with "uart" clock. It's not necessary to actually
+> > configure clocks, as those are already configured in bootloader, so
+> > kernel can rely on that for now.
 > >
-> > Am I missing something?  
-> 
-> You're right that using an external reference, will cause this to fail.
-> My apologies, I've done a poor job of testing the last two revisions of
-> this patch. I'll do better.
-> 
-> Since a regulator is also required when we're using an external source,
-> I'll add a check for that. Something like this:
-> 
-> 	ret = fwnode_property_read_u32(child, "adi,internal-ref-microvolt", &tmp);
-> 	if (ret == -EINVAL && mode & AD7949_CFG_VAL_REF_EXTERNAL) {
-> 		continue;
-> 	} else if (ret < 0) {
-> 		dev_err(dev, "invalid voltage reference in %pfw\n", child);
-> 		fwnode_handle_put(child);
-> 		return ret;
-> 	}
+> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> > ---
+> > Changes in v2:
+> >   - Used hard coded clock indexes, as clock bindings were removed; will
+> >     add clock bindings back (reimplemented) once proper clock driver is
+> >     ready
+> >   - Removed .data = 0 for exynos850-oscclk, as it's in BSS section
+> >   - Removed comma for terminator {}
+> >   - Made exynos850_clk_init() static
+> >   - Removed checking np for NULL, as it's already done in of_iomap()
+> >
+> >  drivers/clk/samsung/Makefile        |  1 +
+> >  drivers/clk/samsung/clk-exynos850.c | 64 +++++++++++++++++++++++++++++
+> >  2 files changed, 65 insertions(+)
+> >  create mode 100644 drivers/clk/samsung/clk-exynos850.c
+> >
+> > diff --git a/drivers/clk/samsung/Makefile b/drivers/clk/samsung/Makefile
+> > index 028b2e27a37e..c46cf11e4d0b 100644
+> > --- a/drivers/clk/samsung/Makefile
+> > +++ b/drivers/clk/samsung/Makefile
+> > @@ -17,6 +17,7 @@ obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)       += clk-exynos5433.o
+> >  obj-$(CONFIG_EXYNOS_AUDSS_CLK_CON) += clk-exynos-audss.o
+> >  obj-$(CONFIG_EXYNOS_CLKOUT)  += clk-exynos-clkout.o
+> >  obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)        += clk-exynos7.o
+> > +obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)        += clk-exynos850.o
+> >  obj-$(CONFIG_S3C2410_COMMON_CLK)+= clk-s3c2410.o
+> >  obj-$(CONFIG_S3C2410_COMMON_DCLK)+= clk-s3c2410-dclk.o
+> >  obj-$(CONFIG_S3C2412_COMMON_CLK)+= clk-s3c2412.o
+> > diff --git a/drivers/clk/samsung/clk-exynos850.c b/drivers/clk/samsung/clk-exynos850.c
+> > new file mode 100644
+> > index 000000000000..36c7c7fe7cf0
+> > --- /dev/null
+> > +++ b/drivers/clk/samsung/clk-exynos850.c
+> > @@ -0,0 +1,64 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Copyright (C) 2019 Samsung Electronics Co., Ltd.
+> > + * Copyright (C) 2021 Linaro Ltd.
+> > + *
+> > + * Common Clock Framework support for Exynos850 SoC.
+> > + */
+> > +
+> > +#include <linux/clk.h>
+> > +#include <linux/clkdev.h>
+> > +#include <linux/clk-provider.h>
+> > +#include <linux/of.h>
+> > +#include <linux/of_address.h>
+> > +
+> > +#include "clk.h"
+> > +
+> > +/* Will be extracted to bindings header once proper clk driver is implemented */
+> > +#define OSCCLK               1
+> > +#define DOUT_UART    2
+> > +#define CLK_NR_CLKS  3
+> > +
+> > +/* Fixed rate clocks generated outside the SoC */
+> > +static struct samsung_fixed_rate_clock exynos850_fixed_rate_ext_clks[] __initdata = {
+> > +     FRATE(OSCCLK, "fin_pll", NULL, 0, 26000000),
+> > +};
+> > +
+> > +/*
+> > + * Model the UART clock as a fixed-rate clock for now, to make serial driver
+> > + * work. This clock is already configured in the bootloader.
+> > + */
+> > +static const struct samsung_fixed_rate_clock exynos850_peri_clks[] __initconst = {
+> > +     FRATE(DOUT_UART, "DOUT_UART", NULL, 0, 200000000),
+> > +};
+> > +
+> > +static const struct of_device_id ext_clk_match[] __initconst = {
+> > +     { .compatible = "samsung,exynos850-oscclk" },
+>
+> One more thing - I am not sure anymore if this is correct. AFAIR, we
+> wanted to drop compatibles for external clocks.
+>
 
-Makes sense.
+I'll remove oscclk from the clock driver and device tree. It's not
+needed right now anyway, as that driver is just a stub.
 
-> 
-> Given that we can now have a different scale for each channel based on
-> the vref source, should BIT(IIO_CHAN_INFO_SCALE) be moved to
-> .info_mask_separate in the channel definition?
-Yes, good point.
+But I'd still like to know the proper way to define external clocks. I
+can see that in exynos7.dtsi and exynos5433.dtsi there is just regular
+fixed clock defined for "oscclk" (or "fin_pll"), and then that clock
+is referenced in corresponding clock driver by its
+'clock-output-names' property. I guess that approach is the
+recommended one?
 
-Hopefully no one will notice the ABI change *crosses fingers*.
+> Chanwoo, Sylwester, Tomasz,
+> Do you remember the recommended approach? Shall it be like Exynos542x
+> (samsung,exynos5420-oscclk) or Exynos5433?
+>
+>
+> BTW, I am now converting some of existing clock controller bindings to
+> dtschema.
+>
 
-Jonathan
+I'll try to review those in a day, that might also be helpful when I
+get to clk implementation. Btw, thank you for reviewing my patches in
+such a quick pace!
 
-> 
-> Thanks,
-> Liam
-> 
-> >  
-> > > +
-> > > +		switch (tmp) {
-> > > +		case 2500000:
-> > > +			ad7949_chan->refsel = AD7949_CFG_VAL_REF_INT_2500;
-> > > +			break;
-> > > +		case 4096000:
-> > > +			ad7949_chan->refsel = AD7949_CFG_VAL_REF_INT_4096;
-> > > +			break;
-> > > +		default:
-> > > +			dev_err(dev, "unsupported internal voltage reference\n");
-> > > +			fwnode_handle_put(child);
-> > > +			return -EINVAL;
-> > > +		}
-> > >  	}
-> > >  
-> > >  	mutex_init(&ad7949_adc->lock);
-> > > @@ -373,7 +479,6 @@ static int ad7949_spi_probe(struct spi_device *spi)
-> > >  
-> > >  err:
-> > >  	mutex_destroy(&ad7949_adc->lock);
-> > > -	regulator_disable(ad7949_adc->vref);
-> > >  
-> > >  	return ret;
-> > >  }
-> > > @@ -385,7 +490,6 @@ static int ad7949_spi_remove(struct spi_device *spi)
-> > >  
-> > >  	iio_device_unregister(indio_dev);
-> > >  	mutex_destroy(&ad7949_adc->lock);
-> > > -	regulator_disable(ad7949_adc->vref);
-> > >  
-> > >  	return 0;
-> > >  }  
-> 
-
+> Best regards,
+> Krzysztof
