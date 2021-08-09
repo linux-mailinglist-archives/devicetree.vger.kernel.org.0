@@ -2,193 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 852F83E4469
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 13:09:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD98C3E4474
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 13:15:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234646AbhHILJZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 07:09:25 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:25005 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233660AbhHILJY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Aug 2021 07:09:24 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1628507344; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=iVGYr8BvmR6QN2P1ZSMux09dzqkFjV+3tlj3x4l+kQ8=; b=hPCGeaInrUZssdLVyIo1Z574oIANIG3FWQCmLaQ8uS/Yz3PxRaK3MkBL7yLb1IVvwzl28fjP
- 9OzhFMuW3vreYNHzi+agDEkgRTiKq1R4gt6o27GdB6wNPvBeVseBHGcnENEsRkn2c7DbL939
- x9X74YFqM+fQSp7bsni5pC85bnQ=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 61110cc98c78eaf8089be407 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 09 Aug 2021 11:08:57
- GMT
-Sender: rnayak=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 41654C433F1; Mon,  9 Aug 2021 11:08:57 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [192.168.1.100] (unknown [49.207.220.239])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: rnayak)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4BFD7C433D3;
-        Mon,  9 Aug 2021 11:08:52 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 4BFD7C433D3
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
-Subject: Re: [PATCH v6 1/2] PM / Domains: Add support for 'required-opps' to
- set default perf state
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Roja Rani Yarubandi <rojay@codeaurora.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-References: <1628074696-7979-1-git-send-email-rnayak@codeaurora.org>
- <1628074696-7979-2-git-send-email-rnayak@codeaurora.org>
- <CAPDyKFrebwt5=S7hqXvcqRvt+-EXLcVmRSRZt1uPf-9n7_pRDg@mail.gmail.com>
-From:   Rajendra Nayak <rnayak@codeaurora.org>
-Message-ID: <2afd0fac-ed28-c090-a345-3fd4284b4125@codeaurora.org>
-Date:   Mon, 9 Aug 2021 16:38:50 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+        id S234948AbhHILPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 07:15:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56944 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234947AbhHILPV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 07:15:21 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5C12C061796
+        for <devicetree@vger.kernel.org>; Mon,  9 Aug 2021 04:15:00 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id x17so10303834wmc.5
+        for <devicetree@vger.kernel.org>; Mon, 09 Aug 2021 04:15:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=23XgZexrUsddqZ/0QoEhj1StKJdILOeiFyE+gUWeoVs=;
+        b=j53sNv6iuvmM5Crij2Oa2oSOLKhEpFibtO5Ocuc6bVkhPA0LOk94IidSd+hmmMcgQl
+         gCvvk6g40W7Sj2r81ULlP1t/vw1NHKk8xY7MK9sGukiZjr7XpmMi8jdl0akEm3YAZFGs
+         VO9hzxQN8u0tr+4UdZcJ5VBWBWwxoILqcVplmsxubOxrBg6IJkadzrQna68AihX1sz0o
+         7tNGxffIDKXB1zz5f5u1V71zQiketP3lq1RYHTN8LInFLAQb1OmGfguCmCgqbcB+caj9
+         mHagQPB3ENmL0gIMbcFq/phQfPFNjV+JQZ+2IByx+cA20FZrVqhBQ8r0YqOThV59y5XD
+         PAwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=23XgZexrUsddqZ/0QoEhj1StKJdILOeiFyE+gUWeoVs=;
+        b=n/tLsFsd6gNAIHstM6lC5lNQONaJfz+SqNlF8Y/afoUmtw05Olk+0+loDdticMu1NM
+         U4wrBSEKbcBwQx1ysoDgLH0cATnw7UBHXh4yYB9EzkNLkirD1q+AqxvVDu95LlWdS4Ey
+         WkeMw/ys4ocHmPdLwebJUKXjoyfDMl3bgccB5+O5wetERrizfQN95Irs1O9G80Xy8g9r
+         FH7/B14MDt+gR9ZhqerpExM56uzwF4XiZtylk04ahlApbn8TPS5x0OKxBVkrRoVlLWT6
+         XKBeNDz5xnNupvYY9XcEd4S6CY5H2ODdNREWzpsBMflmaalN+83gWZa2lBcgAdm/pyh3
+         7/+A==
+X-Gm-Message-State: AOAM530vorhRVnGqJp9mCvDqY1q6ZwbyHVSLrHYui53jTdIdFLxoFLlg
+        l1lfW6liLzZ4agn//0lRQW5jnA==
+X-Google-Smtp-Source: ABdhPJxBIr0k/lTEQBF0PP9gNaayRi9tPFsFuKqTZ0K6LHv2bq0mixcJszW2ShaL8I1rjllJd5QfNA==
+X-Received: by 2002:a7b:c083:: with SMTP id r3mr16699033wmh.65.1628507699554;
+        Mon, 09 Aug 2021 04:14:59 -0700 (PDT)
+Received: from google.com ([95.146.142.85])
+        by smtp.gmail.com with ESMTPSA id y192sm18749761wmy.1.2021.08.09.04.14.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Aug 2021 04:14:59 -0700 (PDT)
+Date:   Mon, 9 Aug 2021 12:14:57 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Alistair Francis <alistair@alistair23.me>, robh+dt@kernel.org,
+        lgirdwood@gmail.com, linux-imx@nxp.com, kernel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        alistair23@gmail.com
+Subject: Re: [PATCH v9 03/12] mfd: simple-mfd-i2c: Save the register client
+ data
+Message-ID: <YREOMY4Q5xY8Qn9N@google.com>
+References: <20210806091058.141-1-alistair@alistair23.me>
+ <20210806091058.141-4-alistair@alistair23.me>
+ <YQ0fPEeZGYe7f1cC@google.com>
+ <20210806114541.GY26252@sirena.org.uk>
 MIME-Version: 1.0
-In-Reply-To: <CAPDyKFrebwt5=S7hqXvcqRvt+-EXLcVmRSRZt1uPf-9n7_pRDg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210806114541.GY26252@sirena.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 06 Aug 2021, Mark Brown wrote:
 
+> On Fri, Aug 06, 2021 at 12:38:36PM +0100, Lee Jones wrote:
+> > On Fri, 06 Aug 2021, Alistair Francis wrote:
+> 
+> > > +	i2c_set_clientdata(i2c, regmap);
+> > > +
+> 
+> > No need to store this here.
+> 
+> > Just do this in the child device:
+> 
+> >      dev_get_regmap(pdev->dev.parent, NULL);
+> 
+> Note that dev_get_regmap() is relatively expensive compared to a simple
+> driver data reference since it needs to go search for the device to find
+> the regmap, it's not the end of the world especially in the context of
+> doing I2C I/O but storing it isn't a terrible idea.
 
-On 8/6/2021 3:02 PM, Ulf Hansson wrote:
-> On Wed, 4 Aug 2021 at 12:58, Rajendra Nayak <rnayak@codeaurora.org> wrote:
->>
->> Some devices within power domains with performance states do not
->> support DVFS, but still need to vote on a default/static state
->> while they are active. They can express this using the 'required-opps'
->> property in device tree, which points to the phandle of the OPP
->> supported by the corresponding power-domains.
->>
->> Add support to parse this information from DT and then set the
->> specified performance state during attach and drop it on detach.
->> runtime suspend/resume callbacks already have logic to drop/set
->> the vote as needed and should take care of dropping the default
->> perf state vote on runtime suspend and restore it back on runtime
->> resume.
->>
->> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
->> ---
->>   drivers/base/power/domain.c | 28 ++++++++++++++++++++++++++--
->>   include/linux/pm_domain.h   |  1 +
->>   2 files changed, 27 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/base/power/domain.c b/drivers/base/power/domain.c
->> index a934c67..b9b5a9b 100644
->> --- a/drivers/base/power/domain.c
->> +++ b/drivers/base/power/domain.c
->> @@ -2598,6 +2598,12 @@ static void genpd_dev_pm_detach(struct device *dev, bool power_off)
->>
->>          dev_dbg(dev, "removing from PM domain %s\n", pd->name);
->>
->> +       /* Drop the default performance state */
->> +       if (dev_gpd_data(dev)->default_pstate) {
->> +               dev_pm_genpd_set_performance_state(dev, 0);
->> +               dev_gpd_data(dev)->default_pstate = 0;
->> +       }
->> +
->>          for (i = 1; i < GENPD_RETRY_MAX_MS; i <<= 1) {
->>                  ret = genpd_remove_device(pd, dev);
->>                  if (ret != -EAGAIN)
->> @@ -2637,6 +2643,8 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
->>   {
->>          struct of_phandle_args pd_args;
->>          struct generic_pm_domain *pd;
->> +       struct device_node *np;
->> +       int pstate;
->>          int ret;
->>
->>          ret = of_parse_phandle_with_args(dev->of_node, "power-domains",
->> @@ -2675,10 +2683,26 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
->>                  genpd_unlock(pd);
->>          }
->>
->> -       if (ret)
->> +       if (ret) {
->>                  genpd_remove_device(pd, dev);
->> +               return -EPROBE_DEFER;
->> +       }
->> +
->> +       /* Set the default performance state */
->> +       np = dev->of_node;
->> +       if (of_parse_phandle(np, "required-opps", index)) {
-> 
-> Looks like Viresh thinks it's a good idea to drop the error print in
-> of_get_required_opp_performance_state() when there is no
-> "required-opps" specifier.
-> 
-> Would you mind folding in a patch for that in the series, so this code
-> can be simplified according to our earlier discussions?
-
-Sure, I can do that, apart from the error print, the function currently also
-returns a -EINVAL in case of the missing 'required-opps', are we suggesting
-we change that to not return an error also?
-
-Since this is completely optional in the device node, we would want the function to
-ideally not return error and only do so in case 'required-opps' exists and the
-translation to performance state fails.
-I am not sure that's the behavior we expect in case of 'required-opps' in the OPP
-tables also, Viresh?
-
-> 
->> +               pstate = of_get_required_opp_performance_state(np, index);
->> +               if (pstate < 0) {
->> +                       ret = pstate;
->> +                       dev_err(dev, "failed to set required performance state for power-domain %s: %d\n",
->> +                               pd->name, ret);
->> +               } else {
->> +                       dev_pm_genpd_set_performance_state(dev, pstate);
->> +                       dev_gpd_data(dev)->default_pstate = pstate;
->> +               }
->> +       }
->>
->> -       return ret ? -EPROBE_DEFER : 1;
->> +       return ret ? ret : 1;
->>   }
->>
->>   /**
->> diff --git a/include/linux/pm_domain.h b/include/linux/pm_domain.h
->> index 21a0577..67017c9 100644
->> --- a/include/linux/pm_domain.h
->> +++ b/include/linux/pm_domain.h
->> @@ -198,6 +198,7 @@ struct generic_pm_domain_data {
->>          struct notifier_block *power_nb;
->>          int cpu;
->>          unsigned int performance_state;
->> +       unsigned int default_pstate;
->>          unsigned int rpm_pstate;
->>          ktime_t next_wakeup;
->>          void *data;
-> 
-> Other than the above, this looks good to me!
-> 
-> Kind regards
-> Uffe
-> 
+It would be nice if someone could do some metrics on this.
 
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
