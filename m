@@ -2,107 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1ABCC3E4F25
-	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 00:26:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D537F3E4F5D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Aug 2021 00:38:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236658AbhHIW1M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 18:27:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41768 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233660AbhHIW1L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 18:27:11 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B08D9C0613D3;
-        Mon,  9 Aug 2021 15:26:50 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id p38so9658318lfa.0;
-        Mon, 09 Aug 2021 15:26:50 -0700 (PDT)
+        id S236811AbhHIWjC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 18:39:02 -0400
+Received: from mail-eopbgr80059.outbound.protection.outlook.com ([40.107.8.59]:29414
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S236227AbhHIWiz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Aug 2021 18:38:55 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PeA6Zcy54ZOo9mWU10IlSUID+UClhTwxVXt2c976Jp/c6v+ywi8X7stBKmjD+KV4qOEPUeShKRjTuAqiZltNwtz9ZSy2OR+xnvbN1N8PMjAIiKcORicQhLvDRpYiuBSXU48IadweoL9aI8P4mC9ZquHiEcDYQ4hE+U1o3B9M1zPL+pOR62ncHwDWuoljZ/WBDYHZ0zM19ouI8y5gkLxhTZc6H/eu93622dEOKDO3mtpFS7NUBQXGtf1kx2F6BfDAWxaWe3E/uXJjIT8SmlVhCfjrihCvbjqki7748Vua9nt+DwHKsjkKsou4iMrf/Vhl82Wb7wdxNLsj5C78GE+naQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=S+nJmyFk36UuCk/1X0MI6uHACXVvXxr8/JiCWOXMhl4=;
+ b=nuznV5biHcWqtWM0uR8hscaThdvCp5HYWlf9fNnR4U7uNPeobNjKd/rnrtcr/KLA8/GMnSigjqVB7bundK7K+oZE+sTQ9O43i+hUDpmHD5QBrPtJV5QNSSJtZcUWtwUfqQ7Gr7/1cvp/rSdUp624jyq9+j9mD+zPdoze6Qeqf4e4mx1oSazEft0yvWqpKsdARUqS6kcCfaMfqkhBMVbXM+I2FDgxmcCz8AU+gX7mhid+74jEpXKMQbOOI09FgfFXBAxoEyDUExmhw6bXx4/NV1e26LBDcq6PX9W/2C+Db4z51oBue6Fy/jD5Y3b3wtlS9GkgthaOG/PxF+wHtquEkA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
+ dkim=pass header.d=seco.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=N/whK2ArPuahMrM2cd5J1XOG8XcsWkVdPG8JL6J/dco=;
-        b=OQQoY9JTkgZ+eeE84IsXtazaykY74v6n1xmcL8OKEj6ywKOp1zCdL5ab06V8pH3GIh
-         cHQELYZ6wlJsgt9bd+gql97JS+8HVdCFGID1ifmYnQP2W/dkpPFA4OT6fImuO9oSrYEs
-         S3zEIJ5svweqcwgIkTOivpU7EptcUYX5DOpDAGVrojxHAomUD18vfM1TY/nWsSn3pp6k
-         aKu8UA+vHPop+LyuB0GMrwotbuke9Vu7uM6eq91K8+kbgegPrJ5AIHuV3uDola7Jy1Zl
-         ZvZ64p7hco2iUsaInMBfwHXUOaHpOSRZ+K6zpw0b724Wi9bj9vvMvOVDQss3DBGs/bFy
-         AykQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=N/whK2ArPuahMrM2cd5J1XOG8XcsWkVdPG8JL6J/dco=;
-        b=DW0W1w/UdchvZulvSrxoqZMkjOJT/QY7a08Bx7RqI0nAaL/SQbUP7ckLIcOQNdy3L6
-         pUfBk0Qc2HcF3wRc5TJcfDconfGGjnaOFyAKahJG8ebtnyQpeS3GyxvGIA9AZiu8laLC
-         1U6MiFF17tptvH88ucLmm+uUxZvRJ/hmjMLy6XQxqg6s7cuuh3S2shltkN6eSPF7q29y
-         8U8DB+lLU27hR5adcd9AkfgWOdMI8qefkSSNJr0NuSj6NBVQzJJMwda8JDRiUE9+r/dr
-         SrYqTRY9iwILNxsIrrO3+nadvlsSYwviQ/ZNqmK4gnHklI3hXlNGvR/gzK0lD3xzGQN7
-         UTrA==
-X-Gm-Message-State: AOAM530W6Nl0lZX95sfpUjiNnyBiU8m1k69gW8GT+tra9FA3Yaicx4L0
-        ifzRnLnoXeSsdxqh8FMFXH/zsZI+9YY=
-X-Google-Smtp-Source: ABdhPJxTvlD8j92g4+drEBzsM/F8WCazuqFL8+afwB97ArNej7RnaTkv8ZpdSztaBssc0qOsbQWPFA==
-X-Received: by 2002:a05:6512:1281:: with SMTP id u1mr19456096lfs.136.1628548009126;
-        Mon, 09 Aug 2021 15:26:49 -0700 (PDT)
-Received: from [192.168.2.145] (46-138-117-53.dynamic.spd-mgts.ru. [46.138.117.53])
-        by smtp.googlemail.com with ESMTPSA id g5sm1706297ljn.78.2021.08.09.15.26.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Aug 2021 15:26:48 -0700 (PDT)
-Subject: Re: [PATCH v6 1/2] PM / Domains: Add support for 'required-opps' to
- set default perf state
-To:     Rajendra Nayak <rnayak@codeaurora.org>, ulf.hansson@linaro.org,
-        bjorn.andersson@linaro.org, viresh.kumar@linaro.org
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        swboyd@chromium.org, rojay@codeaurora.org, stephan@gerhold.net
-References: <1628074696-7979-1-git-send-email-rnayak@codeaurora.org>
- <1628074696-7979-2-git-send-email-rnayak@codeaurora.org>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <f58e631d-67a7-4981-ce59-6a4772b44564@gmail.com>
-Date:   Tue, 10 Aug 2021 01:26:47 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
-MIME-Version: 1.0
-In-Reply-To: <1628074696-7979-2-git-send-email-rnayak@codeaurora.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+ d=secospa.onmicrosoft.com; s=selector2-secospa-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=S+nJmyFk36UuCk/1X0MI6uHACXVvXxr8/JiCWOXMhl4=;
+ b=MKTclY9D145XQPXTJgscjiSaClUvHn7Yp/TRuHnzR4dHlwRcE4504dKtjoefA1WbEuV61kLg6DbPxz7IzTBeTl+VDyOQbi0ww1WYsR9VUms5d/SUu6NZzSOAXX3tgInGOoa552GuzDyMj+VRdCa6eYQ/CmFui4ww1Av0gy/azQM=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none header.from=seco.com;
+Received: from DB7PR03MB4523.eurprd03.prod.outlook.com (2603:10a6:10:19::27)
+ by DBAPR03MB6390.eurprd03.prod.outlook.com (2603:10a6:10:17f::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.16; Mon, 9 Aug
+ 2021 22:38:31 +0000
+Received: from DB7PR03MB4523.eurprd03.prod.outlook.com
+ ([fe80::dc6c:815b:2062:d1f1]) by DB7PR03MB4523.eurprd03.prod.outlook.com
+ ([fe80::dc6c:815b:2062:d1f1%7]) with mapi id 15.20.4394.023; Mon, 9 Aug 2021
+ 22:38:31 +0000
+From:   Sean Anderson <sean.anderson@seco.com>
+To:     linux-clk@vger.kernel.org, Luca Ceresoli <luca@lucaceresoli.net>
+Cc:     Adam Ford <aford173@gmail.com>, Stephen Boyd <sboyd@kernel.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Sean Anderson <sean.anderson@seco.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v7 1/3] dt-bindings: clk: vc5: Add properties for configuring the SD/OE pin
+Date:   Mon,  9 Aug 2021 18:38:11 -0400
+Message-Id: <20210809223813.3766204-1-sean.anderson@seco.com>
+X-Mailer: git-send-email 2.25.1
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BLAPR03CA0076.namprd03.prod.outlook.com
+ (2603:10b6:208:329::21) To DB7PR03MB4523.eurprd03.prod.outlook.com
+ (2603:10a6:10:19::27)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from plantagenet.inhand.com (50.195.82.171) by BLAPR03CA0076.namprd03.prod.outlook.com (2603:10b6:208:329::21) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.17 via Frontend Transport; Mon, 9 Aug 2021 22:38:30 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: c4e799e8-97bb-439c-0dc6-08d95b866a4f
+X-MS-TrafficTypeDiagnostic: DBAPR03MB6390:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DBAPR03MB6390958B5DCFF4E54BBB5E3096F69@DBAPR03MB6390.eurprd03.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: bHqp+xfEuQX5ZUEQSCxg4TyXvDHX/IiCKaR22EcplsLkwl7eOwm30jk8/NN0E1v1eaJ02hRlOh/GpF3kutzQD/UGhcUVkuGiG3WjPpNVrunyQMRKeNEsKfsDKhGGVZh3Sdwc7QVkVyBanVU54beeML54xninkj19wAsX55xaWmsMy1kgAttrJT5otFEiDOqc5XHmJZOC4zWeGHcsmdsqpelqhFUPw8mYbIaJv2e20nm3eO0tEA5Bz1BOiUktp+8J5V16Dr8Oz7AKbSkvzKmaK1lj0E+ssZu116ko8LQuDWL70RTQ+cIGsGjmgP8WqMhFy0TIFPleCtbPyrKEmO2kiy30sdJkuPIkcYBMwNukL9GcL7JkQcB332J7E9nxNo0Mvpq1n/m/M8KlvDHR5w3OajgdpO3CSl2CRRaWvGrXOfvQOg3kC5CO18Fu9z091G7mu9eKrEWuhCE9Ii8RAnkehvglMB2hknOJfFZv4HGRHJsPt3ICsvtVFyybXNJ6pDxxHaY3XphcTCB0Hhz98Vx0NgysrVv0gZ8qEOFLRc2qGR2IOSE0BkcVXDFqBNC5XJZjr614ZxentPM8WZEiJHN+If9yZn4yxSqejDFm8LUe7GfcKYyh4zxQzu2qouWHYApPPCr/28CU4WXw1EOgj7mKvSRLOYqMC8Rhj0P+hEx80a/4uQj2sOXn2qfV9U6NzZikoUGqC9zN+ejMtXzDTHlvog==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4523.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(346002)(136003)(366004)(396003)(376002)(39830400003)(38100700002)(8676002)(38350700002)(1076003)(44832011)(66946007)(54906003)(316002)(66476007)(83380400001)(66556008)(26005)(5660300002)(8936002)(478600001)(6506007)(6512007)(6486002)(36756003)(52116002)(186003)(86362001)(6666004)(4326008)(956004)(2906002)(6916009)(2616005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?D2Kj9W/apFowZrGOcY7eXZs53iOsCFnCz7eGNJkTzT4F3rt/CKf0++wmP1sE?=
+ =?us-ascii?Q?1WK8YRwYbYqrWKiuyYlua7CJZHGjj/Sz+Y8zf3nm01PF3UTtgIxgt/vx10rj?=
+ =?us-ascii?Q?t31jbI8elFKPi8NzanyIOE4pHsew2bxo92o1lYRvuoylrZIxtl+3wXw78FQA?=
+ =?us-ascii?Q?zBexqpFO6ddOwSRTW96RQ8g9Gg+4/4iVGbsMGq1PWsHNx72fKPATWoud4nT7?=
+ =?us-ascii?Q?OW/Ajb5vzJmVxLLo5ZVVcaX8bBiNxuLK0V3KFNaL99lvxX/JaE54G48sikge?=
+ =?us-ascii?Q?2pGwTZ8XSQfyY3wnh2+m9FuRtMgVGN8wAP4e99jqMs6eEFq53yvr1K/MPvGX?=
+ =?us-ascii?Q?uzwSbx5wvyrDALPtsd1v1ya2eXG7inicRBcphQAQMIY4+4T/UWohc25xU0VR?=
+ =?us-ascii?Q?wf6LH9GAQPyElDvz7JATj5KiU59zGz8+gt+PPRW8dVs3bbZnG3zoEwHua8ld?=
+ =?us-ascii?Q?8AdtruihvksIFfALVjMq+PG3GjKD94A6eK/nwjn6cGTg8qX3eCCXQOg11wAm?=
+ =?us-ascii?Q?yURGPZeAGaY+q8C6CCknHeyYnIdWtj45SMzswfMA8onKyIRbFANRyW41X776?=
+ =?us-ascii?Q?/vw5p3XfA2P762CBvL551iwCjuZHvGr9Q0GX8JK/jHhajGsdsdXBf/Uq6gBj?=
+ =?us-ascii?Q?I+k/RI1rBn+aWYTpqwl8zsze/Hip3HdmrULctIi8zQrEvntBhiSl+JKde5CE?=
+ =?us-ascii?Q?sT1DVQRvO3rds2fAsnQ0Jpc94V8V+DQg0vcldBoE3p2kl3iEzoqFXpy8jICC?=
+ =?us-ascii?Q?P67R9HnLXhSk8CKwCmE0f57xRYf4ikph5yoKY/jKNueRNNSgJPU/t+PxYIXU?=
+ =?us-ascii?Q?ZrIlfaObp4xPCIl3lsmRmZZuUYD3S/tmLHL8L40mHE+y9JFPB8jReI2WqCHj?=
+ =?us-ascii?Q?bImF3+ok0/jcIGqOo94v+uC2uyNkIxhpAdr658VwYSvwe70XuhuXCgSXes5J?=
+ =?us-ascii?Q?P4EJFYgLEj0xcDABkaJQnpY0xJj/CgVzchSNDUfRhx+dWUhxTa9rXeiH3STc?=
+ =?us-ascii?Q?yL3ouOBO8QYZ/pPaEvOIo1Z4oEQz4DjCcE2wHvjR2hgdK7I8EtDdMyYPQxCI?=
+ =?us-ascii?Q?m3Gr5lKjtE5F4bc7IkyF/+y1noxe2fqTCS4ZsiXYVlNrvB004UYw93S32ARe?=
+ =?us-ascii?Q?ctBL4uxUI3Zd9xDKQ+tGLOYMaUuWPe2ZQ2RXA4MXD9LfJ+SIn6Sz265M5x2z?=
+ =?us-ascii?Q?Dvkv04upOFmXWPc18Z1mZNPRkYtYuGuR3jk72qV8U4RuQ3Nfi/7S0q5iOhH2?=
+ =?us-ascii?Q?wGX8/6Mixl+SxnbQME3oCCH/1vmm+iZKvVH8P9xwOixDyrTFq5/qBcnA3FTP?=
+ =?us-ascii?Q?0XXgV0bmWqzKC95dse3B14Jq?=
+X-OriginatorOrg: seco.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c4e799e8-97bb-439c-0dc6-08d95b866a4f
+X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4523.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Aug 2021 22:38:31.7946
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: gH8tZ7nRVGdZf1PSG3GxM7Hy3h4EORK6bb9EBVmjKAg2KpvxKYN+cgbw4SlBHI8SCayCY7ryAQ4henEo5ZiTsw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR03MB6390
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-04.08.2021 13:58, Rajendra Nayak пишет:
-> @@ -2637,6 +2643,8 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
->  {
->  	struct of_phandle_args pd_args;
->  	struct generic_pm_domain *pd;
-> +	struct device_node *np;
-> +	int pstate;
->  	int ret;
->  
->  	ret = of_parse_phandle_with_args(dev->of_node, "power-domains",
-> @@ -2675,10 +2683,26 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
->  		genpd_unlock(pd);
->  	}
->  
-> -	if (ret)
-> +	if (ret) {
->  		genpd_remove_device(pd, dev);
-> +		return -EPROBE_DEFER;
-> +	}
-> +
-> +	/* Set the default performance state */
-> +	np = dev->of_node;
-> +	if (of_parse_phandle(np, "required-opps", index)) {
-> +		pstate = of_get_required_opp_performance_state(np, index);
-> +		if (pstate < 0) {
-> +			ret = pstate;
-> +			dev_err(dev, "failed to set required performance state for power-domain %s: %d\n",
-> +				pd->name, ret);
-> +		} else {
-> +			dev_pm_genpd_set_performance_state(dev, pstate);
-> +			dev_gpd_data(dev)->default_pstate = pstate;
-> +		}
-> +	}
+These properties allow configuring the SD/OE pin as described in the
+datasheet.
 
-Why performance state is set after genpd_power_on()?
+Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Luca Ceresoli <luca@lucaceresoli.net>
+---
+
+(no changes since v6)
+
+Changes in v6:
+- Use tri-state properties
+
+Changes in v5:
+- Don't use dummy if's for oneOfs under allOfs
+
+Changes in v4:
+- Specify that bindings should specify these properties, but don't make
+  any guarantees about the driver's behavior when they are not present.
+- Clarify description of idt,(en|dis)able-shutdown properties.
+- Make opposing properties mutually exclusive.
+- Add these properties to the example.
+
+Changes in v3:
+- Add idt,disable-shutdown and idt,output-enable-active-low to allow for
+  a default of not changing the SP/SH bits at all.
+
+Changes in v2:
+- Rename idt,sd-active-high to idt,output-enable-active-high
+- Add idt,enable-shutdown
+
+ .../bindings/clock/idt,versaclock5.yaml       | 40 +++++++++++++++++++
+ 1 file changed, 40 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+index 28675b0b80f1..e9fc781a21b5 100644
+--- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
++++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+@@ -30,6 +30,20 @@ description: |
+     3 -- OUT3
+     4 -- OUT4
+ 
++  The idt,shutdown and idt,output-enable-active properties control the
++  SH (en_global_shutdown) and SP bits of the Primary Source and Shutdown
++  Register, respectively. Their behavior is summarized by the following
++  table:
++
++  SH SP Output when the SD/OE pin is Low/High
++  == == =====================================
++   0  0 Active/Inactive
++   0  1 Inactive/Active
++   1  0 Active/Shutdown
++   1  1 Inactive/Shutdown
++
++  The case where SH and SP are both 1 is likely not very interesting.
++
+ maintainers:
+   - Luca Ceresoli <luca@lucaceresoli.net>
+ 
+@@ -64,6 +78,26 @@ properties:
+     maximum: 22760
+     description: Optional load capacitor for XTAL1 and XTAL2
+ 
++  idt,shutdown:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1]
++    description: |
++      If 1, this enables the shutdown functionality: the chip will be
++      shut down if the SD/OE pin is driven high. If 0, this disables the
++      shutdown functionality: the chip will never be shut down based on
++      the value of the SD/OE pin. This property corresponds to the SH
++      bit of the Primary Source and Shutdown Register.
++
++  idt,output-enable-active:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1]
++    description: |
++      If 1, this enables output when the SD/OE pin is high, and disables
++      output when the SD/OE pin is low. If 0, this disables output when
++      the SD/OE pin is high, and enables output when the SD/OE pin is
++      low. This corresponds to the SP bit of the Primary Source and
++      Shutdown Register.
++
+ patternProperties:
+   "^OUT[1-4]$":
+     type: object
+@@ -89,6 +123,8 @@ required:
+   - compatible
+   - reg
+   - '#clock-cells'
++  - idt,shutdown
++  - idt,output-enable-active
+ 
+ allOf:
+   - if:
+@@ -138,6 +174,10 @@ examples:
+             clocks = <&ref25m>;
+             clock-names = "xin";
+ 
++            /* Set the SD/OE pin's settings */
++            idt,shutdown = <0>;
++            idt,output-enable-active = <0>;
++
+             OUT1 {
+                 idt,drive-mode = <VC5_CMOSD>;
+                 idt,voltage-microvolts = <1800000>;
+-- 
+2.25.1
+
