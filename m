@@ -2,33 +2,33 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CB0E3E4A09
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 18:32:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 841023E4A35
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 18:47:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234085AbhHIQdA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 12:33:00 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:35445 "EHLO
+        id S233472AbhHIQrv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 12:47:51 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:34969 "EHLO
         so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233620AbhHIQcd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 12:32:33 -0400
+        with ESMTP id S233384AbhHIQru (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 12:47:50 -0400
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1628526732; h=Message-ID: References: In-Reply-To: Subject:
+ s=smtp; t=1628527650; h=Message-ID: References: In-Reply-To: Subject:
  Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=ScGC4Wqnf3TqhG3D0GIJYJnUSJr2rvY61q05HrRAX9w=;
- b=SYEm/M59/BN4dmuzTXtDwuUUU77ch/stdsR3/9bLPFm0F4DWDFwONFJX5QDNOpWKaH0vQlbx
- m1rAVVEzG0WIdIFA09N+3/JaLBvcwTRpX+9u8rYpDUqDY7C7f/LBh7qFFQuvxaIezrUeNxJl
- mfC4F+vzXa6LvXcviCpiYBKy2Js=
+ MIME-Version: Sender; bh=yUxHTAvfQ3lFYbw5/P/m+T6OTXizyFzlcN9gu+Rsslw=;
+ b=v+S8YxdLY3pUercsQl2jjwunQefXP1DE6t0WY4UdMgeP9Vsc82puja0DHi/mgTYmYavxnymy
+ qsbEzPLMD8eaazz2S8cvjb0S+Mp3vQIt8CkRiGRaA3FYaSc4qJWZkDdXMFEsqxlYlnChxrPV
+ C94jfeDGPjd+OsbUfB9l9k+0ssE=
 X-Mailgun-Sending-Ip: 198.61.254.9
 X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 61115873f746c298d974aec1 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 09 Aug 2021 16:31:47
+ smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
+ 61115c1ab14e7e2ecba13dde (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 09 Aug 2021 16:47:22
  GMT
 Sender: okukatla=codeaurora.org@mg.codeaurora.org
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 80F2BC43144; Mon,  9 Aug 2021 16:31:47 +0000 (UTC)
+        id 3B055C43217; Mon,  9 Aug 2021 16:47:22 +0000 (UTC)
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
         aws-us-west-2-caf-mail-1.web.codeaurora.org
 X-Spam-Level: 
@@ -38,80 +38,73 @@ Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
         (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
         (No client certificate requested)
         (Authenticated sender: okukatla)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id D1736C43460;
-        Mon,  9 Aug 2021 16:31:46 +0000 (UTC)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 5F9ACC433D3;
+        Mon,  9 Aug 2021 16:47:18 +0000 (UTC)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII;
  format=flowed
 Content-Transfer-Encoding: 7bit
-Date:   Mon, 09 Aug 2021 22:01:46 +0530
+Date:   Mon, 09 Aug 2021 22:17:18 +0530
 From:   okukatla@codeaurora.org
 To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>, Georgi Djakov <djakov@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sibi Sankar <sibis@codeaurora.org>, bjorn.andersson@linaro.org,
-        devicetree@vger.kernel.org, evgreen@google.com,
-        georgi.djakov@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        bjorn.andersson@linaro.org, devicetree@vger.kernel.org,
+        evgreen@google.com, georgi.djakov@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         seansw@qti.qualcomm.com, elder@linaro.org,
-        linux-arm-msm-owner@vger.kernel.org
-Subject: Re: [V4 1/3] dt-bindings: interconnect: Add EPSS L3 DT binding on
- SC7280
-In-Reply-To: <CAE-0n51btkt9ehEFrm+WucP90ZufKw1PEQqzNGVDRy51jByXkw@mail.gmail.com>
+        linux-pm@vger.kernel.org, linux-arm-msm-owner@vger.kernel.org
+Subject: Re: [V4 3/3] arm64: dts: qcom: sc7280: Add EPSS L3 interconnect
+ provider
+In-Reply-To: <CAE-0n52XPJ7COZc7Zy=721-FGPX9D=vSFR_qccL86UXuABuy9Q@mail.gmail.com>
 References: <1624015734-16778-1-git-send-email-okukatla@codeaurora.org>
- <1624015734-16778-2-git-send-email-okukatla@codeaurora.org>
- <CAE-0n51btkt9ehEFrm+WucP90ZufKw1PEQqzNGVDRy51jByXkw@mail.gmail.com>
-Message-ID: <618b3a664b3556718a867e815e94578f@codeaurora.org>
+ <1624015734-16778-4-git-send-email-okukatla@codeaurora.org>
+ <CAE-0n52XPJ7COZc7Zy=721-FGPX9D=vSFR_qccL86UXuABuy9Q@mail.gmail.com>
+Message-ID: <74e3a26642342e88cb93c4e1aee62705@codeaurora.org>
 X-Sender: okukatla@codeaurora.org
 User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks Stephen for the reviews!
-
-On 2021-07-09 04:52, Stephen Boyd wrote:
-> Quoting Odelu Kukatla (2021-06-18 04:28:52)
->> Add Epoch Subsystem (EPSS) L3 interconnect provider binding on SC7280
+On 2021-07-09 04:34, Stephen Boyd wrote:
+> Quoting Odelu Kukatla (2021-06-18 04:28:54)
+>> Add Epoch Subsystem (EPSS) L3 interconnect provider node on SC7280
 >> SoCs.
 >> 
 >> Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
 >> ---
->>  .../devicetree/bindings/interconnect/qcom,osm-l3.yaml          |  9 
->> ++++++++-
->>  include/dt-bindings/interconnect/qcom,osm-l3.h                 | 10 
->> +++++++++-
->>  2 files changed, 17 insertions(+), 2 deletions(-)
+>>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 9 +++++++++
+>>  1 file changed, 9 insertions(+)
 >> 
->> diff --git 
->> a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml 
->> b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
->> index d6a95c3..9f67c8e 100644
->> --- a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
->> +++ b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
->> @@ -18,12 +18,19 @@ properties:
->>    compatible:
->>      enum:
->>        - qcom,sc7180-osm-l3
->> +      - qcom,sc7280-epss-l3
->>        - qcom,sdm845-osm-l3
->>        - qcom,sm8150-osm-l3
->>        - qcom,sm8250-epss-l3
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi 
+>> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> index 38a7f55..7690d7e 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> @@ -1153,6 +1153,15 @@
+>>                         };
+>>                 };
 >> 
->>    reg:
->> -    maxItems: 1
->> +    minItems: 1
->> +    maxItems: 4
+>> +               epss_l3: interconnect@18590000 {
+>> +                       compatible = "qcom,sc7280-epss-l3";
+>> +                       reg = <0 0x18590000 0 1000>, <0 0x18591000 0 
+>> 0x100>,
+>> +                               <0 0x18592000 0 0x100>, <0 0x18593000 
+>> 0 0x100>;
+>> +                       clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc 
+>> GCC_GPLL0>;
+>> +                       clock-names = "xo", "alternate";
+>> +                       #interconnect-cells = <1>;
+>> +               };
 > 
-> Can we base this on the compatible string so that only sc7280-epss-l3
-> requires 4 items? and then the others require 1 reg property?
+> Is this inside the soc node? Because it should be but then the next 
+> node
+> is called 'interconnect' and has no address so that is probably outside
+> the soc node. Please put nodes with a reg property like this into the
+> soc node.
 > 
-Done, Addressing this in new revision.
->> +    items:
->> +      - description: OSM clock domain-0 base address and size
->> +      - description: OSM clock domain-1 base address and size
->> +      - description: OSM clock domain-2 base address and size
->> +      - description: OSM clock domain-3 base address and size
->> 
->>    clocks:
->>      items:
+no, will move this into soc node in v5.
+>> +
+>>                 clk_virt: interconnect {
+>>                         compatible = "qcom,sc7280-clk-virt";
+>>                         #interconnect-cells = <2>;
