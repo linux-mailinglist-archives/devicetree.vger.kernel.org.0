@@ -2,198 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F2CB3E4926
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 17:49:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACE8D3E4934
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 17:51:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235863AbhHIPtb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 11:49:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35150 "EHLO
+        id S235799AbhHIPuX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 11:50:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235826AbhHIPtH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 11:49:07 -0400
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF5B5C0613D3;
-        Mon,  9 Aug 2021 08:48:46 -0700 (PDT)
-Received: by mail-yb1-xb2b.google.com with SMTP id j77so30390773ybj.3;
-        Mon, 09 Aug 2021 08:48:46 -0700 (PDT)
+        with ESMTP id S235638AbhHIPuP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 11:50:15 -0400
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0CAAC0617B1
+        for <devicetree@vger.kernel.org>; Mon,  9 Aug 2021 08:49:54 -0700 (PDT)
+Received: by mail-pj1-x102b.google.com with SMTP id pj14-20020a17090b4f4eb029017786cf98f9so553795pjb.2
+        for <devicetree@vger.kernel.org>; Mon, 09 Aug 2021 08:49:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=CttDxHiCnPodE+fRVXutDrc3UtK9OxegaBoQba6T7pg=;
-        b=HSNxa2u8osQbqxNs8P6Yow3+3cv6sFFXG7vuRpeSOrtXnoQ9NIs1NzgEQ3bPz9vrF8
-         CzUzTyZ/kpguld6CZ2y6TpVHCA0J/WQUjGCBnK6eT8r6wdyso6LNH6MlLwyEteO9Ki+M
-         XQIpH1yVy9eB/16PnXa40PlU+GDorTpOKWWXsJRo1Ev9hCfPDGIwWW+X/wB5btHSh78A
-         HRXaCwxwdvewUK/Qj8OUAGwzlIHGj+PJSfuaBu9d876+cZ9vZ6WyIj/RfgboWgvDKidT
-         4Yqsce1J40lFu73UHz+bVpWONsl0qiJz4trpIddBFEtaUsjyysL1XodCku/3ZVnRZYUb
-         UHEw==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=iypo2g0ksb3hPluHjo2K3HuanpxIhf/GrkPA0tdbfM4=;
+        b=A/ObNU1jSuENPCBvXTFJQ0CAkMveWR7KjK0AqFrKxEkqDaQnvONeuIIl/kYK7m2Gyd
+         5DTnTjL2lqgzBnFT5RQkzx9NKgaLXbTBeez9RE+JwI4clf6czQvVVkQNERZH2mMFhl9G
+         pCu4p5LHWCUrATnTqb72m5WhE3hwVzPaALCkw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CttDxHiCnPodE+fRVXutDrc3UtK9OxegaBoQba6T7pg=;
-        b=GOlq8tbrYSghkYNumIvCmcqzP9j6N5MTE3MSjE+BkTnPdEThs8tuJo4i3/uT2I9g87
-         FyGomH9ioeZa1kyXrA6Rqmg5rR1ow1KOhvfREqFpryV6QDaxiW8eKdk9lIbHnjChTlNL
-         ss0HBNUFgEtPRX2UokKuDDhhBzKupxnJkANZhhNuu2E7g+2uBSwjW70SA+Z+Rzuq7j9t
-         KzXkC1Hwq0zdPCow6/GZEmFL8xkNAhzJzdc6dHqbG+LMhDCB9mkCNFFxCW1+jAd3ztNC
-         0iCgOni9kt0fTYmyNXXysG5/lB0IQtut3OlhXdj2d+fVo/YcU/HW1WuuANQewQ2pNZms
-         NizQ==
-X-Gm-Message-State: AOAM532gXUtjcoRDdp7z6DAjzEKXQARzLKfMZqy11R4ElUy1GJ1WP1Np
-        j6pME4lJAIOJKfRQwvtvsYCsSrQZsBFCfYG0GQ4=
-X-Google-Smtp-Source: ABdhPJx2fmwsYZrAdA/dVqw0R46k9XdivjCwFnQGurTZ8bcpvGyuWuvhsRqVC4wmjDtleYKdnU8JdnU9oa37iK0Uajc=
-X-Received: by 2002:a5b:2cf:: with SMTP id h15mr25624687ybp.426.1628524126062;
- Mon, 09 Aug 2021 08:48:46 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210727133022.634-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20210727133022.634-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210809132605.m76mnxkp6bdcn77c@pengutronix.de>
-In-Reply-To: <20210809132605.m76mnxkp6bdcn77c@pengutronix.de>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Mon, 9 Aug 2021 16:48:20 +0100
-Message-ID: <CA+V-a8uDPn83W6wi2Jq8VFrBeGSVMPMiFmXGV2z=L8xxZteFNQ@mail.gmail.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: net: can: renesas,rcar-canfd:
- Document RZ/G2L SoC
-To:     Marc Kleine-Budde <mkl@pengutronix.de>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=iypo2g0ksb3hPluHjo2K3HuanpxIhf/GrkPA0tdbfM4=;
+        b=fvGBtFGpltBtpDj3XgDj+nVjLGoG34o+Kr1V3/vytahG3rshAcpRkpGKC5nOkq+EQh
+         K0z8kbzRblhAZlXhwF1ONj8ShNUmbQjkaquoAnjGivKaq4rnzH+bgSB90ByFSY2geBXt
+         XK1ilHuDRM+o7OvkclVvof4wyQIwl+MxzLK6uoulEE0GIHYZrETi7tS+gUwLc/0Iwj03
+         ey5WCf3J+lfEyQHnFDGMG0dUBjlGUgK04sKYUbELVRC89mOAoDJljwP1D4X0fKZcDsWl
+         CLyyDY1UmlMeYyJhq+FaQpeY6lN9VsRwajU++fI4DNK0rJFlntHD54N1fq4lvRlrhhzP
+         RgyA==
+X-Gm-Message-State: AOAM531MfnN/8UQ6FUpUoL6Asf4Wnt8vU7saJuD6WSf2emHdVVvAanww
+        HGzaua5yH3nuC9252dkWl34Qvg==
+X-Google-Smtp-Source: ABdhPJzHGnienAihLc95zBhFzzpY3gXspxszzg17Vbsfm7mbo6WiEiHCqewBRh0uVCyFhqXtvcwHFg==
+X-Received: by 2002:a17:90a:6c45:: with SMTP id x63mr36125760pjj.0.1628524194146;
+        Mon, 09 Aug 2021 08:49:54 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:6914:ad55:5b1:543c])
+        by smtp.gmail.com with UTF8SMTPSA id j13sm23205367pgp.29.2021.08.09.08.49.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Aug 2021 08:49:53 -0700 (PDT)
+Date:   Mon, 9 Aug 2021 08:49:50 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
         Rob Herring <robh+dt@kernel.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-can@vger.kernel.org, netdev <netdev@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        Frank Rowand <frowand.list@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>
+Cc:     Bastien Nocera <hadess@hadess.net>,
+        Peter Chen <peter.chen@kernel.org>, devicetree@vger.kernel.org,
+        Michal Simek <michal.simek@xilinx.com>,
+        linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-usb@vger.kernel.org,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Al Cooper <alcooperx@gmail.com>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Andy Gross <agross@kernel.org>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Nishanth Menon <nm@ti.com>,
+        Pawel Laszczak <pawell@cadence.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v15 0/6] usb: misc: Add onboard_usb_hub driver
+Message-ID: <YRFOnhJkB2vi/zwD@google.com>
+References: <20210727004118.2583774-1-mka@chromium.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210727004118.2583774-1-mka@chromium.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marc,
+Hi Greg,
 
-On Mon, Aug 9, 2021 at 2:26 PM Marc Kleine-Budde <mkl@pengutronix.de> wrote:
->
-> On 27.07.2021 14:30:20, Lad Prabhakar wrote:
-> > Add CANFD binding documentation for Renesas RZ/G2L SoC.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > ---
-> >  .../bindings/net/can/renesas,rcar-canfd.yaml  | 69 +++++++++++++++++--
-> >  1 file changed, 63 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-> > index 0b33ba9ccb47..546c6e6d2fb0 100644
-> > --- a/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-> > +++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-canfd.yaml
-> > @@ -30,13 +30,15 @@ properties:
-> >                - renesas,r8a77995-canfd     # R-Car D3
-> >            - const: renesas,rcar-gen3-canfd # R-Car Gen3 and RZ/G2
-> >
-> > +      - items:
-> > +          - enum:
-> > +              - renesas,r9a07g044-canfd    # RZ/G2{L,LC}
-> > +          - const: renesas,rzg2l-canfd     # RZ/G2L family
-> > +
-> >    reg:
-> >      maxItems: 1
-> >
-> > -  interrupts:
-> > -    items:
-> > -      - description: Channel interrupt
-> > -      - description: Global interrupt
-> > +  interrupts: true
-> >
-> >    clocks:
-> >      maxItems: 3
-> > @@ -50,8 +52,7 @@ properties:
-> >    power-domains:
-> >      maxItems: 1
-> >
-> > -  resets:
-> > -    maxItems: 1
-> > +  resets: true
-> >
-> >    renesas,no-can-fd:
-> >      $ref: /schemas/types.yaml#/definitions/flag
-> > @@ -91,6 +92,62 @@ required:
-> >    - channel0
-> >    - channel1
-> >
-> > +if:
-> > +  properties:
-> > +    compatible:
-> > +      contains:
-> > +        enum:
-> > +          - renesas,rzg2l-canfd
-> > +then:
-> > +  properties:
-> > +    interrupts:
-> > +      items:
-> > +        - description: CAN global error interrupt
-> > +        - description: CAN receive FIFO interrupt
-> > +        - description: CAN0 error interrupt
-> > +        - description: CAN0 transmit interrupt
-> > +        - description: CAN0 transmit/receive FIFO receive completion interrupt
-> > +        - description: CAN1 error interrupt
-> > +        - description: CAN1 transmit interrupt
-> > +        - description: CAN1 transmit/receive FIFO receive completion interrupt
-> > +
-> > +    interrupt-names:
-> > +      items:
-> > +        - const: g_err
-> > +        - const: g_recc
-> > +        - const: ch0_err
-> > +        - const: ch0_rec
-> > +        - const: ch0_trx
-> > +        - const: ch1_err
-> > +        - const: ch1_rec
-> > +        - const: ch1_trx
-> > +
-> > +    resets:
-> > +      maxItems: 2
-> > +
-> > +    reset-names:
-> > +      items:
-> > +        - const: rstp_n
-> > +        - const: rstc_n
-> > +
-> > +  required:
-> > +    - interrupt-names
-> > +    - reset-names
-> > +else:
-> > +  properties:
-> > +    interrupts:
-> > +      items:
-> > +        - description: Channel interrupt
-> > +        - description: Global interrupt
-> > +
-> > +    interrupt-names:
-> > +      items:
-> > +        - const: ch_int
-> > +        - const: g_int
->
-> Are you adding the new interrupt-names to the existing DTs, too?
-> Otherwise this patch will generate more warnings in the existing DTs.
->
-For non RZ/G2L family interrupt-names property is not marked as
-required property so dtbs_check won't complain. Once we have added
-interrupt names in all the SoC DTSI's we will mark it as required
-property for the rest of the SoC's.
+Just wanted to check if this series is still on your radar. Is
+there anything that blocks it from landing (further ACKs, ...)?
 
-Cheers,
-Prabhakar
+Thanks
 
-> regards,
-> Marc
->
-> --
-> Pengutronix e.K.                 | Marc Kleine-Budde           |
-> Embedded Linux                   | https://www.pengutronix.de  |
-> Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-> Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+Matthias
+
+On Mon, Jul 26, 2021 at 05:41:12PM -0700, Matthias Kaehlcke wrote:
+> This series adds:
+> - the onboard_usb_hub_driver
+> - glue in the xhci-plat driver to create and destroy the
+>   onboard_usb_hub platform devices if needed
+> - a device tree binding for the Realtek RTS5411 USB hub controller
+> - device tree changes that add RTS5411 entries for the QCA SC7180
+>   based boards trogdor and lazor
+> - a couple of stubs for platform device functions to avoid
+>   unresolved symbols with certain kernel configs
+> 
+> The main issue the driver addresses is that a USB hub needs to be
+> powered before it can be discovered. For discrete onboard hubs (an
+> example for such a hub is the Realtek RTS5411) this is often solved
+> by supplying the hub with an 'always-on' regulator, which is kind
+> of a hack. Some onboard hubs may require further initialization
+> steps, like changing the state of a GPIO or enabling a clock, which
+> requires even more hacks. This driver creates a platform device
+> representing the hub which performs the necessary initialization.
+> Currently it only supports switching on a single regulator, support
+> for multiple regulators or other actions can be added as needed.
+> Different initialization sequences can be supported based on the
+> compatible string.
+> 
+> Besides performing the initialization the driver can be configured
+> to power the hub off during system suspend. This can help to extend
+> battery life on battery powered devices which have no requirements
+> to keep the hub powered during suspend. The driver can also be
+> configured to leave the hub powered when a wakeup capable USB device
+> is connected when suspending, and power it off otherwise.
+> 
+> Changes in v15:
+> - adjusted dependencies of USB_DWC3_CORE to make sure it can only
+>   be enabled when at least one of USB_DWC3_HOST, USB_DWC3_GADGET
+>   or USB_DWC3_DUAL_ROLE is selectable
+> 
+> Changes in v14:
+> - rebased on top of v5.14-rc1
+> - dropped DT binding patch which landed in v5.13
+> 
+> Changes in v13:
+> - added patch "usb: Specify dependency on USB_XHCI_PLATFORM with
+>   'depends on'" to the series to avoid Kconfig conflicts
+> - added patch "arm64: defconfig: Explicitly enable USB_XHCI_PLATFORM"
+>   to the series to keep effective defconfig unchanged
+> 
+> Changes in v12:
+> - onboard_hub driver: use IS_ENABLED(CONFIG_USB_ONBOARD_HUB_MODULE)
+>   in onboard_hub.h to also check for the driver built as module
+> - onboard_hub_driver: include onboard_hub.h again to make sure there
+>   are prototype declarations for the public functions
+> 
+> Changes in v11:
+> - support multiple onboard hubs connected to the same parent
+> - don't include ‘onboard_hub.h’ from the onboard hub driver
+> 
+> Changes in v10:
+> - always use of_is_onboard_usb_hub() stub unless ONBOARD_USB_HUB=y/m
+> - keep 'regulator-boot-on' property for pp3300_hub
+> 
+> Changes in v9:
+> - added dependency on ONBOARD_USB_HUB (or !!ONBOARD_USB_HUB) to
+>   USB_PLATFORM_XHCI
+> 
+> Changes in v7:
+> - updated DT binding
+> - series rebased on qcom/arm64-for-5.13
+> 
+> Changes in v6:
+> - updated summary
+> 
+> Changes in v5:
+> - cover letter added
+> 
+> Matthias Kaehlcke (6):
+>   usb: misc: Add onboard_usb_hub driver
+>   of/platform: Add stubs for of_platform_device_create/destroy()
+>   arm64: defconfig: Explicitly enable USB_XHCI_PLATFORM
+>   usb: Specify dependencies on USB_XHCI_PLATFORM with 'depends on'
+>   usb: host: xhci-plat: Create platform device for onboard hubs in
+>     probe()
+>   arm64: dts: qcom: sc7180-trogdor: Add nodes for onboard USB hub
+> 
+>  .../sysfs-bus-platform-onboard-usb-hub        |   8 +
+>  MAINTAINERS                                   |   7 +
+>  .../boot/dts/qcom/sc7180-trogdor-lazor-r0.dts |  19 +-
+>  .../boot/dts/qcom/sc7180-trogdor-lazor-r1.dts |  12 +-
+>  .../arm64/boot/dts/qcom/sc7180-trogdor-r1.dts |  19 +-
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  |  19 +-
+>  arch/arm64/configs/defconfig                  |   1 +
+>  drivers/usb/cdns3/Kconfig                     |   2 +-
+>  drivers/usb/dwc3/Kconfig                      |   5 +-
+>  drivers/usb/host/Kconfig                      |   5 +-
+>  drivers/usb/host/xhci-plat.c                  |   6 +
+>  drivers/usb/host/xhci.h                       |   2 +
+>  drivers/usb/misc/Kconfig                      |  17 +
+>  drivers/usb/misc/Makefile                     |   1 +
+>  drivers/usb/misc/onboard_usb_hub.c            | 497 ++++++++++++++++++
+>  include/linux/of_platform.h                   |  22 +-
+>  include/linux/usb/onboard_hub.h               |  18 +
+>  17 files changed, 621 insertions(+), 39 deletions(-)
+>  create mode 100644 Documentation/ABI/testing/sysfs-bus-platform-onboard-usb-hub
+>  create mode 100644 drivers/usb/misc/onboard_usb_hub.c
+>  create mode 100644 include/linux/usb/onboard_hub.h
+> 
+> -- 
+> 2.32.0.432.gabb21c7263-goog
+> 
