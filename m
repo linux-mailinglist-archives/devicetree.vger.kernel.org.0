@@ -2,83 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 330B63E494E
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 17:55:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 440FA3E4972
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 18:08:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235842AbhHIPzY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 11:55:24 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53866 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235890AbhHIPzW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Aug 2021 11:55:22 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A951361056;
-        Mon,  9 Aug 2021 15:55:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1628524502;
-        bh=W3pO8W0KJSy21xkzS1pcJP2BKEiaIyTIyjakzt2o/Ps=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=qQ2j39Ajiy8hvDtZrnbFBe77bwYSpywu6kbo3bWaiwVvbZjb73PCxtcr0COshzwul
-         5I3maLb0I6Fm1gV8IgTxyOgsRVQXlLIBGrfFJeNJmc8V/DgD3Vkwu4SYJgkMhwVGXz
-         77MJMEwTT7ZaASkRKTTJ+HVb3/nBJ5xh9lgUoi4V7d+OdVY9ndSJOvuiBaAEGuedz9
-         Gsh0aUu2qFu6Rt8u5D+M4WGNW7i/gknU5yIlggskG1qI9hw1SmWK+1EHdbQvUZlpca
-         CQc8SeiBexX1WWcUnDvzam+FC45ryePDiBY8zbYdeA/QhCUtH/A04EPXi7q/AWqf+k
-         3RL8fRtVdUNPA==
-From:   Mark Brown <broonie@kernel.org>
-To:     robh@kernel.org, Jack Yu <jack.yu@realtek.com>, lgirdwood@gmail.com
-Cc:     Mark Brown <broonie@kernel.org>,
-        "Flove(HsinFu)" <flove@realtek.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Derek=20=5B=E6=96=B9=E5=BE=B7=E7=BE=A9=5D?= 
-        <derek.fang@realtek.com>, alsa-devel@alsa-project.org,
-        =?UTF-8?q?Shuming=20=5B=E8=8C=83=E6=9B=B8=E9=8A=98=5D?= 
-        <shumingf@realtek.com>, Oder Chiou <oder_chiou@realtek.com>,
-        lars@metafoo.de,
-        =?UTF-8?q?kent=5Fchen=20=40=20realtek=20=2E=20com=20=5B=E9=99=B3=E5=BB=BA=E5=AE=8F=5D?= 
-        <kent_chen@realtek.com>
-Subject: Re: [PATCH 1/2] ASoC: rt1015p: add new acpi id and comapatible id
-Date:   Mon,  9 Aug 2021 16:54:36 +0100
-Message-Id: <162852418088.21716.15412811132955133865.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <22be83429956486f9f64b424c26be810@realtek.com>
-References: <22be83429956486f9f64b424c26be810@realtek.com>
+        id S230048AbhHIQIj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 12:08:39 -0400
+Received: from smtp-relay-canonical-0.canonical.com ([185.125.188.120]:44344
+        "EHLO smtp-relay-canonical-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229483AbhHIQIi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 12:08:38 -0400
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-canonical-0.canonical.com (Postfix) with ESMTPS id 5378B3F347
+        for <devicetree@vger.kernel.org>; Mon,  9 Aug 2021 16:08:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1628525297;
+        bh=dYynETD7e7Go9Y3JtAn5FrP3ZxbiVg1MuIylXG2rAf8=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=pyGhmHpfOH+p4Aqapn+twQco7LEoCG1gYBl9POr4f3LhdJt70NCdLVLm2jG6Yfz10
+         9pPa29XIwscOAYrlr3ik1qI2zXlFlBJwA2/43BIWwgivjg4wzQ+UHp8wfOjq1Hg5Af
+         JG/B+Q8mHKGZ2kNX/5IcRieQB1Ks0ZLGl+Lzjh1pQc+lObEtpThMzTWeD2kg5FiSV7
+         IbwV1UAOHdTGeJjhcNgHiSvI9lhhRDDGndh2a8A5Lwvhb1W4gD4n8ZUMn+ixhMfwra
+         n529bvMH3EaywjyK2xwQUxn1iuAHpIx6It3kuY2Rd+yZHTYeJh+McDhiFcbMZQ7ksw
+         N9dJhNtVCzc1w==
+Received: by mail-ed1-f71.google.com with SMTP id d6-20020a50f6860000b02903bc068b7717so9155279edn.11
+        for <devicetree@vger.kernel.org>; Mon, 09 Aug 2021 09:08:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=dYynETD7e7Go9Y3JtAn5FrP3ZxbiVg1MuIylXG2rAf8=;
+        b=BGXReyriq96h7qcJMjy9hSl83nKLQyUx5SewRtA89N/aGh4oTGSddX+uJHSlDlx4FQ
+         uL6WuBDGDKxXTySwQDb/zlzQS/wSrEBlHX58PX4HFhKfrdHupRHlkFkJzJdWkn1wcoGD
+         t0aZOPlE7lDFrzpsIJ+vlqhAZWd9JUyX1M65b1jT+Uyx36DjUjGF4KqS4CqrTE2QoU8q
+         d7etktowbbXVdiEbi5slrlBOyG4FlLWb4dIjl03HZWg4lOk62LEJ1lHM6SdqZ6xh5ZUE
+         XwE9BwKy9fJo05HiyxF0PTFCInHG6PsluW1r/BPHaDVbngI1blwjNO2UaWkj/6ExOc3M
+         NgCg==
+X-Gm-Message-State: AOAM532rOgs9Oi1ACNaV28j6e8Y5VMa1SQmbhrL7Vp41af7lZTTqQ5xY
+        5K1YBZXCAgFy9LY6lOLKZ8z/m/jBttT0aNYAG953fLTUlMHZYcqW7El2dOauJbZxDS+eQ/LZwH6
+        xUHgORKzwf/GTfqgxoHO73oWD8cGeJ5/DQtnL9no=
+X-Received: by 2002:a05:6402:4246:: with SMTP id g6mr30558359edb.95.1628525296919;
+        Mon, 09 Aug 2021 09:08:16 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwqPYbBDvdZ6Zu8eRL5FMWxXMVz1K8C56iPevCS7X6zyD5UDOu9mh2jlErjtcaIA6EgN/i2TA==
+X-Received: by 2002:a05:6402:4246:: with SMTP id g6mr30558336edb.95.1628525296752;
+        Mon, 09 Aug 2021 09:08:16 -0700 (PDT)
+Received: from [192.168.8.102] ([86.32.42.198])
+        by smtp.gmail.com with ESMTPSA id m3sm8239214edb.7.2021.08.09.09.08.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Aug 2021 09:08:16 -0700 (PDT)
+Subject: Re: [PATCH 2/3] dt-bindings: clock: samsung: convert S5Pv210 AudSS to
+ dtschema
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Stephen Boyd <sboyd@kernel.org>
+References: <20210809135942.100744-1-krzysztof.kozlowski@canonical.com>
+ <20210809135942.100744-3-krzysztof.kozlowski@canonical.com>
+ <1628523608.157762.3895394.nullmailer@robh.at.kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <3ba3aeee-7ee2-2b38-397a-71ea1543163e@canonical.com>
+Date:   Mon, 9 Aug 2021 18:08:14 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <1628523608.157762.3895394.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 9 Aug 2021 10:27:05 +0000, Jack Yu wrote:
-> Add new acpi id and compatible id for rt1015p.
+On 09/08/2021 17:40, Rob Herring wrote:
+> On Mon, 09 Aug 2021 15:59:41 +0200, Krzysztof Kozlowski wrote:
+>> Convert Samsung S5Pv210 Audio SubSystem clock controller bindings to DT
+>> schema format using json-schema.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>> ---
+>>  .../bindings/clock/clk-s5pv210-audss.txt      | 53 -------------
+>>  .../clock/samsung,s5pv210-audss-clock.yaml    | 75 +++++++++++++++++++
+>>  2 files changed, 75 insertions(+), 53 deletions(-)
+>>  delete mode 100644 Documentation/devicetree/bindings/clock/clk-s5pv210-audss.txt
+>>  create mode 100644 Documentation/devicetree/bindings/clock/samsung,s5pv210-audss-clock.yaml
+>>
 > 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
 > 
+> yamllint warnings/errors:
 > 
-> 
+> dtschema/dtc warnings/errors:
+> Error: Documentation/devicetree/bindings/clock/samsung,s5pv210-audss-clock.example.dts:24.31-32 syntax error
+> FATAL ERROR: Unable to parse input tree
+> make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/clock/samsung,s5pv210-audss-clock.example.dt.yaml] Error 1
+> make[1]: *** Waiting for unfinished jobs....
+> make: *** [Makefile:1419: dt_binding_check] Error 2
 
-Applied to
+Thanks, I'll fix it in v2.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Thanks!
-
-[1/2] ASoC: rt1015p: add new acpi id and comapatible id
-      commit: 6d0a764d418fb508119e129c73f39ecc66826675
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Best regards,
+Krzysztof
