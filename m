@@ -2,74 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A80FD3E3F5B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 07:20:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 675433E40DA
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 09:32:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233141AbhHIFUd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 01:20:33 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:39242 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S233038AbhHIFUa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 01:20:30 -0400
-X-UUID: 3a589e41452845da86beb78577f88d14-20210809
-X-UUID: 3a589e41452845da86beb78577f88d14-20210809
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <tinghan.shen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 654624063; Mon, 09 Aug 2021 13:20:04 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 9 Aug 2021 13:20:02 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 9 Aug 2021 13:20:02 +0800
-From:   Tinghan Shen <tinghan.shen@mediatek.com>
-To:     <ohad@wizery.com>, <bjorn.andersson@linaro.org>,
-        <mathieu.poirier@linaro.org>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>, <krzysztof.kozlowski@canonical.com>,
-        <shawnguo@kernel.org>, <sam@ravnborg.org>,
-        <linux@rempel-privat.de>, <daniel@0x0f.com>,
-        <Max.Merchel@tq-group.com>, <geert+renesas@glider.be>,
-        <fanghao11@huawei.com>
-CC:     <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Tinghan Shen <tinghan.shen@mediatek.com>
-Subject: [PATCH v6 6/6] arm64: dts: mt8183: change rpmsg property name
-Date:   Mon, 9 Aug 2021 13:19:59 +0800
-Message-ID: <20210809051959.31136-7-tinghan.shen@mediatek.com>
-X-Mailer: git-send-email 2.15.GIT
-In-Reply-To: <20210809051959.31136-1-tinghan.shen@mediatek.com>
-References: <20210809051959.31136-1-tinghan.shen@mediatek.com>
+        id S233452AbhHIHdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 03:33:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33602 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233445AbhHIHdF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 03:33:05 -0400
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46349C061796
+        for <devicetree@vger.kernel.org>; Mon,  9 Aug 2021 00:32:43 -0700 (PDT)
+Received: by mail-pl1-x630.google.com with SMTP id k2so15371736plk.13
+        for <devicetree@vger.kernel.org>; Mon, 09 Aug 2021 00:32:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=NVCCSnIXYykkg2R7yVA5Ld91gUKOn2zITwPVLJyBQvQ=;
+        b=JJ0xgqBnD9h/5UXKJJkdIH5qjmoVw6ZhAxv2ayd+S0yB+m/LShHqM8AynrVtiYUuPD
+         alwnu+6AGSPiAaPuawgIIconPh0TGQkupInxxbQwuXXiLrMagcGMZJzAZPpnexiGg+6Q
+         yKPYKw7FJTDbtEkvB2KSnDDzvYmbkM/E5jEWg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=NVCCSnIXYykkg2R7yVA5Ld91gUKOn2zITwPVLJyBQvQ=;
+        b=TNTxuXMGp+Me6LzVh02o+pAOdI1mXhemk7pnEsTAXJKlSzBGOeMO3dDw32iULaAv/Z
+         X1+OEW8DzLCrTSCy8st+t6QVUtkxl94JSuuitJ/hCZC0L+/Uz31S5KO+0G2XJoosPP7H
+         DWQo6yae9MRvDC+WLHMk0KY0+pyDxXpbEugcb1/2pzb4Gx3I0QhyhILwlPNBTWNBEqgG
+         +OuQummslcjADwjt8GkoVW7gR2FyXV8UEotKNrasYmI+/Uz8zDOIXJkR6RsLFZaNiw2C
+         niVXxvccVvFzGHYR4PyK2Gm8NH0cf03FQETjUYxx/za6GcP10fZTPNuzcHylWZjQmofk
+         wZZg==
+X-Gm-Message-State: AOAM532bLVLtUaQVs52BHUUEWuMLcREa5P4LXGz22RdlcaeDr3CwcgDi
+        XAyEKuntB0iQonjRssiHgeJRbAhW27rYcIyX6FBCDw==
+X-Google-Smtp-Source: ABdhPJzPT1GiwQpBd6U/85ILPMLMrLPdsU7/6fuodJb9JGdW/fcRu0XqgpdJcPoOgwhC12HFQLmJTOHVjKPOQOD+oQ8=
+X-Received: by 2002:a17:90b:102:: with SMTP id p2mr150614pjz.126.1628494362683;
+ Mon, 09 Aug 2021 00:32:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+References: <1627635002-24521-1-git-send-email-chunfeng.yun@mediatek.com> <1627635002-24521-9-git-send-email-chunfeng.yun@mediatek.com>
+In-Reply-To: <1627635002-24521-9-git-send-email-chunfeng.yun@mediatek.com>
+From:   Ikjoon Jang <ikjn@chromium.org>
+Date:   Mon, 9 Aug 2021 15:32:31 +0800
+Message-ID: <CAATdQgA4qwKb=Uee1pUj-Fk8G31zA40OD7o49W1YLUhZh7BHWA@mail.gmail.com>
+Subject: Re: [PATCH 09/11] usb: xhci-mtk: check boundary before check tt
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-usb@vger.kernel.org,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Eddie Hung <eddie.hung@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The rpmsg property name is changed to "mediatek," to sync with the
-vendor name defined in vendor-prefixes.yaml.
+Hi Chunfeng,
 
-Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Fri, Jul 30, 2021 at 4:50 PM Chunfeng Yun <chunfeng.yun@mediatek.com> wrote:
+>
+> check_sch_tt() will access fs_bus_bw[] array, check boundary
+> firstly to avoid out-of-bounds issue.
+>
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> ---
+>  drivers/usb/host/xhci-mtk-sch.c | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/usb/host/xhci-mtk-sch.c b/drivers/usb/host/xhci-mtk-sch.c
+> index 10c0f0f6461f..c2f13d69c607 100644
+> --- a/drivers/usb/host/xhci-mtk-sch.c
+> +++ b/drivers/usb/host/xhci-mtk-sch.c
+> @@ -600,13 +600,14 @@ static int check_sch_bw(struct mu3h_sch_bw_info *sch_bw,
+>          * and find a microframe where its worst bandwidth is minimum.
+>          */
+>         for (offset = 0; offset < sch_ep->esit; offset++) {
+> -               ret = check_sch_tt(sch_ep, offset);
+> -               if (ret)
+> -                       continue;
+>
+>                 if ((offset + sch_ep->num_budget_microframes) > esit_boundary)
+>                         break;
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-index ae549d55a94f..30df2754be6d 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-@@ -752,7 +752,7 @@
- 
- 	cros_ec {
- 		compatible = "google,cros-ec-rpmsg";
--		mtk,rpmsg-name = "cros-ec-rpmsg";
-+		mediatek,rpmsg-name = "cros-ec-rpmsg";
- 	};
- };
- 
--- 
-2.18.0
+Instead of dropping it,
+I'm wondering if it should be checked against (offset & 63) == 0 when it's 64?
 
+>
+> +               ret = check_sch_tt(sch_ep, offset);
+> +               if (ret)
+> +                       continue;
+> +
+>                 worst_bw = get_max_bw(sch_bw, sch_ep, offset);
+>                 if (worst_bw > bw_boundary)
+>                         continue;
+> --
+> 2.18.0
+>
