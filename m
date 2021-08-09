@@ -2,489 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EAAEC3E413D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 09:58:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A59BC3E4141
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 09:59:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233697AbhHIH7R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 03:59:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39712 "EHLO
+        id S233701AbhHIH7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 03:59:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233550AbhHIH7Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 03:59:16 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE877C0613CF;
-        Mon,  9 Aug 2021 00:58:56 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id a8so26575934pjk.4;
-        Mon, 09 Aug 2021 00:58:56 -0700 (PDT)
+        with ESMTP id S233724AbhHIH7k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 03:59:40 -0400
+Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C32B1C061796;
+        Mon,  9 Aug 2021 00:59:17 -0700 (PDT)
+Received: by mail-qk1-x736.google.com with SMTP id az7so17440822qkb.5;
+        Mon, 09 Aug 2021 00:59:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=OjKgyLGk5QXJwMn8JB6IULyo9wyDE7g8l4mw+kgdlPE=;
-        b=Gy5MrbCYY8mESJVQZmz6kld0DTShLx5Tj8vna1x/lR6FEtLH8z0mD9b9dEwcKntWLY
-         Tr+wIlIallKpqtx+caNQ/6Sx6Xu/0Dw5+WE4SMiSRHw9LlnN6huFDM8VM7WdlbiD5UiK
-         GN1qBz0/BZBclQxjJWZedkX7TbsWgxSCndKLgZ+VztjE/kGjpB4pGiPWItf5Y2+SFbuB
-         qzrrimfCKlMKvLuqqL3tbBOC1f350c10wDi6tdtvtHreXRpnbyAQ99k7nTwgySGSmphm
-         i4o8FtFRBkuWHULJdW9DlyZZAQJM+M80/+/6mwQypETGakKMoj2wCgt6IqZJET1ph/39
-         NZpA==
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=yZGwaoW+74yOYe7AWTee01O7ZajaTQrxGSp7Oi3hbfk=;
+        b=Sd9ib6YPdjx7zYxuYPXDWNAWapxYFrhQ7GaLVqFkwbgYz1yKsgeDeAhpfV7DRE12wQ
+         FC0kN9mfn8J+PvgwvEeNNzmE8o8o01NO8shIaQPc7YiVnrvH3xNqB8MLlLqEUOFGgkyG
+         MJU07wM1byXc05jYW6kjKbSQt4IlqWhdisib0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=OjKgyLGk5QXJwMn8JB6IULyo9wyDE7g8l4mw+kgdlPE=;
-        b=lZIZ3LzVz5HrkwWe2UO+HkNvQ45vYvaukKtOjLyqpssdDO0vgqSswXFyuLLhY6unLC
-         bL6crzu9b1vXQQie0pv5yLP9kH1KTpMtcpOcdKVlkV4vZy7tM6v2Lm/qkRpkZrSluazh
-         bDVRByC+8b+vwZcG6ro0qr4fkLTHufWOf9lIC0HhZuNmQUbt9B9/t4UQKgILLQ+0quic
-         fxY8eMzhD7o8Oot86ryStSe3/M7gJyyOtDr6SIXs/pf2t01aLKYyZNwtEbQh254CCjr2
-         bCsl1weSRuFDzK1uIFT+5B8oPcH7cN+6iX8hqEcdElFxtp0X+WimgByPcEKVuv/TlTXc
-         y24A==
-X-Gm-Message-State: AOAM532Z/+4Oe9B/yQuGHiZ1VnwSRjPAHutNvDjtR5bwtDJIbBnPckbD
-        vGDWVkaNW9Xaa27z3JoOtMM=
-X-Google-Smtp-Source: ABdhPJxmrFf5YdXComYEuptgjdSZ14t+sToAMlnj5LFbycmTSv3tIAwkI6bpy8Zx0s4o7UZ4BbgI7A==
-X-Received: by 2002:a17:902:b783:b029:12c:a6a3:21e with SMTP id e3-20020a170902b783b029012ca6a3021emr4642581pls.72.1628495936131;
-        Mon, 09 Aug 2021 00:58:56 -0700 (PDT)
-Received: from localhost.localdomain ([2409:4072:188:d7b2:ea47:4575:ff46:5465])
-        by smtp.googlemail.com with ESMTPSA id b17sm21425112pgl.61.2021.08.09.00.58.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Aug 2021 00:58:55 -0700 (PDT)
-From:   Mugilraj Dhavachelvan <dmugil2000@gmail.com>
-To:     Dragos.Bogdan@analog.com, Darius.Berghe@analog.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Mugilraj Dhavachelvan <dmugil2000@gmail.com>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        Slawomir Stepien <sst@poczta.fm>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org
-Subject: [PATCH v2 2/2] iio: potentiometer: Add driver support for AD5110
-Date:   Mon,  9 Aug 2021 13:27:20 +0530
-Message-Id: <20210809075745.160042-3-dmugil2000@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210809075745.160042-1-dmugil2000@gmail.com>
-References: <20210809075745.160042-1-dmugil2000@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=yZGwaoW+74yOYe7AWTee01O7ZajaTQrxGSp7Oi3hbfk=;
+        b=PFcwshiF1pKaL1blPQwV1fpABIVwZcrVNURVNNeAX8o4+h1X1hih5dVFtPaEvPhXgg
+         gelLj6vlEBvBSB2PbJHPhPhZ/DIa/PHPT9JgHo9niTkP9UcjMeTotX+NFA/i9lU93cGx
+         TvqvDE7DDgWfwo0FKbj8L7VPspPYlz2UmfwGyhLV43Yb7mk7JAzcv6xTz5Eoi+gaHJZR
+         d6AF6V3YcUCxJ39OlTIWKnqmcpRQKyviPf1WLNPy0++ePpsmsJPyi98DMXCBU7+7adUV
+         7WyMcdgjjZ9duIwJDt9dGi2qWRfQ+Iblk8I8bzH1xxEw/jbM2P2yczw5Y6Jvzum6sXLt
+         GQEA==
+X-Gm-Message-State: AOAM531196eayj8r4AKCu92OSOBpecUhcceqLrDD8jiq6MODOEx2PZzN
+        G+UA7hTzUfExzXqvbOxhA1AJ4PZipQGbiJ9PFtg=
+X-Google-Smtp-Source: ABdhPJwLEOCQ5lbLi4Tznra9/LzTGpXcz9WmNQUddJipFMnMKm8yq9gpXeFX5iVT/d1ZsuyvsYrhaN+GCEPWi7A/6rY=
+X-Received: by 2002:ae9:e704:: with SMTP id m4mr14345023qka.465.1628495956905;
+ Mon, 09 Aug 2021 00:59:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20210806054904.534315-1-joel@jms.id.au> <20210806054904.534315-2-joel@jms.id.au>
+ <YQ7ZXu7hHTCNBwNz@lunn.ch>
+In-Reply-To: <YQ7ZXu7hHTCNBwNz@lunn.ch>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Mon, 9 Aug 2021 07:59:05 +0000
+Message-ID: <CACPK8XdKi3f60h2PNjuWsEiw5Rz+F7Ngtw0yF0ZOg+N3kOy0tQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: net: Add bindings for LiteETH
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stafford Horne <shorne@gmail.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Anton Blanchard <anton@ozlabs.org>,
+        Gabriel Somlo <gsomlo@gmail.com>, David Shah <dave@ds0.me>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mateusz Holenko <mholenko@antmicro.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Networking <netdev@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The AD5110/AD5112/AD5114 provide a nonvolatile solution
-for 128-/64-/32-position adjustment applications, offering
-guaranteed low resistor tolerance errors of ±8% and up to
-±6 mA current density.
+On Sat, 7 Aug 2021 at 19:05, Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> On Fri, Aug 06, 2021 at 03:19:03PM +0930, Joel Stanley wrote:
+> > LiteETH is a small footprint and configurable Ethernet core for FPGA
+> > based system on chips.
+> >
+> > Signed-off-by: Joel Stanley <joel@jms.id.au>
+> > ---
+> >  .../bindings/net/litex,liteeth.yaml           | 62 +++++++++++++++++++
+> >  1 file changed, 62 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/net/litex,liteeth.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/net/litex,liteeth.yaml b/Documentation/devicetree/bindings/net/litex,liteeth.yaml
+> > new file mode 100644
+> > index 000000000000..e2a837dbfdaa
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/net/litex,liteeth.yaml
+> > @@ -0,0 +1,62 @@
+> > +# SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/net/litex,liteeth.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: LiteX LiteETH ethernet device
+> > +
+> > +maintainers:
+> > +  - Joel Stanley <joel@jms.id.au>
+> > +
+> > +description: |
+> > +  LiteETH is a small footprint and configurable Ethernet core for FPGA based
+> > +  system on chips.
+> > +
+> > +  The hardware source is Open Source and can be found on at
+> > +  https://github.com/enjoy-digital/liteeth/.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: litex,liteeth
+> > +
+> > +  reg:
+> > +    minItems: 3
+> > +    items:
+> > +      - description: MAC registers
+> > +      - description: MDIO registers
+> > +      - description: Packet buffer
+>
+> Hi Joel
+>
+> How configurable is the synthesis? Can the MDIO bus be left out? You
+> can have only the MDIO bus and no MAC?
+>
+> I've not looked at the driver yet, but if the MDIO bus has its own
+> address space, you could consider making it a standalone
+> device. Somebody including two or more LiteETH blocks could then have
+> one shared MDIO bus. That is a supported Linux architecture.
 
-Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/AD5110_5112_5114.pdf
-Signed-off-by: Mugilraj Dhavachelvan <dmugil2000@gmail.com>
----
- MAINTAINERS                        |   6 +
- drivers/iio/potentiometer/Kconfig  |  10 +
- drivers/iio/potentiometer/Makefile |   1 +
- drivers/iio/potentiometer/ad5110.c | 339 +++++++++++++++++++++++++++++
- 4 files changed, 356 insertions(+)
- create mode 100644 drivers/iio/potentiometer/ad5110.c
+It's currently integrated as one device. If you instatined two blocks,
+you would end up with two mdio controllers, each inside those two
+liteeth blocks.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index bd7aff0c120f..cf6e73b87b6e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -452,6 +452,12 @@ S:	Maintained
- W:	https://parisc.wiki.kernel.org/index.php/AD1889
- F:	sound/pci/ad1889.*
- 
-+AD5110 ANALOG DEVICES DIGITAL POTENTIOMETERS DRIVER
-+M:	Mugilraj Dhavachelvan <dmugil2000@gmail.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Supported
-+F:	drivers/iio/potentiometer/ad5110.c
-+
- AD525X ANALOG DEVICES DIGITAL POTENTIOMETERS DRIVER
- M:	Michael Hennerich <michael.hennerich@analog.com>
- S:	Supported
-diff --git a/drivers/iio/potentiometer/Kconfig b/drivers/iio/potentiometer/Kconfig
-index 4cac0173db8b..832df8da2bc6 100644
---- a/drivers/iio/potentiometer/Kconfig
-+++ b/drivers/iio/potentiometer/Kconfig
-@@ -6,6 +6,16 @@
- 
- menu "Digital potentiometers"
- 
-+config AD5110
-+	tristate "Analog Devices AD5110 and similar Digital Potentiometer driver"
-+	depends on I2C
-+	help
-+	  Say yes here to build support for the Analog Devices AD5110, AD5112 
-+	  and AD5114 digital potentiometer chip.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called ad5110.
-+
- config AD5272
- 	tristate "Analog Devices AD5272 and similar Digital Potentiometer driver"
- 	depends on I2C
-diff --git a/drivers/iio/potentiometer/Makefile b/drivers/iio/potentiometer/Makefile
-index 091adf3cdd0b..5ebb8e3bbd76 100644
---- a/drivers/iio/potentiometer/Makefile
-+++ b/drivers/iio/potentiometer/Makefile
-@@ -4,6 +4,7 @@
- #
- 
- # When adding new entries keep the list in alphabetical order
-+obj-$(CONFIG_AD5110) += ad5110.o
- obj-$(CONFIG_AD5272) += ad5272.o
- obj-$(CONFIG_DS1803) += ds1803.o
- obj-$(CONFIG_MAX5432) += max5432.o
-diff --git a/drivers/iio/potentiometer/ad5110.c b/drivers/iio/potentiometer/ad5110.c
-new file mode 100644
-index 000000000000..4ba76e968edb
---- /dev/null
-+++ b/drivers/iio/potentiometer/ad5110.c
-@@ -0,0 +1,339 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Analog Devices AD5110 digital potentiometer driver
-+ *
-+ * Copyright (C) 2021 Mugilraj Dhavachelvan <dmugil2000@gmail.com>
-+ *
-+ * Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/AD5110_5112_5114.pdf
-+ *
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/delay.h>
-+#include <linux/device.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+
-+#include <linux/iio/iio.h>
-+#include <linux/iio/sysfs.h>
-+
-+/* AD5110 commands */
-+#define AD5110_EEPROM_WR	1
-+#define AD5110_RDAC_WR		2
-+#define AD5110_SHUTDOWN	3
-+#define AD5110_RESET		4
-+#define AD5110_RDAC_RD		5
-+#define AD5110_EEPROM_RD	6
-+
-+/* AD5110_EEPROM_RD data */
-+#define AD5110_WIPER_POS	0
-+#define AD5110_RESISTOR_TOL	1
-+
-+#define WIPER_RESISTANCE	70
-+
-+struct ad5110_cfg {
-+	int max_pos;
-+	int kohms;
-+	int shift;
-+};
-+
-+enum ad5110_type {
-+	AD5110_10,
-+	AD5110_80,
-+	AD5112_05,
-+	AD5112_10,
-+	AD5112_80,
-+	AD5114_10,
-+	AD5114_80,
-+};
-+
-+static const struct ad5110_cfg ad5110_cfg[] = {
-+	[AD5110_10] = { .max_pos = 128, .kohms = 10 },
-+	[AD5110_80] = { .max_pos = 128, .kohms = 80 },
-+	[AD5112_05] = { .max_pos = 64, .kohms = 5, .shift = 1 },
-+	[AD5112_10] = { .max_pos = 64, .kohms = 10, .shift = 1 },
-+	[AD5112_80] = { .max_pos = 64, .kohms = 80, .shift = 1 },
-+	[AD5114_10] = { .max_pos = 32, .kohms = 10, .shift = 2 },
-+	[AD5114_80] = { .max_pos = 32, .kohms = 80, .shift = 2 },
-+};
-+
-+struct ad5110_data {
-+	struct i2c_client       *client;
-+	s16			tol;		/* resistor tolerance */
-+	bool			enable;
-+	struct mutex            lock;
-+	const struct ad5110_cfg	*cfg;
-+	/*
-+	 * DMA (thus cache coherency maintenance) requires the
-+	 * transfer buffers to live in their own cache lines.
-+	 */
-+	u8			buf[2] ____cacheline_aligned;
-+};
-+
-+static const struct iio_chan_spec ad5110_channels[] = {
-+	{
-+		.type = IIO_RESISTANCE,
-+		.output = 1,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) | BIT(IIO_CHAN_INFO_OFFSET) |
-+					BIT(IIO_CHAN_INFO_SCALE) | BIT(IIO_CHAN_INFO_ENABLE),
-+	}
-+};
-+
-+static int ad5110_read(struct ad5110_data *data, u8 cmd, int *val)
-+{
-+	int ret;
-+
-+	mutex_lock(&data->lock);
-+	data->buf[0] = cmd;
-+	data->buf[1] = *val;
-+
-+	ret = i2c_master_send_dmasafe(data->client, data->buf, sizeof(data->buf));
-+	if (ret != sizeof(data->buf)) {
-+		ret = -EIO;
-+		goto error;
-+	}
-+
-+	ret = i2c_master_recv_dmasafe(data->client, data->buf, 1);
-+	if (ret != 1) {
-+		ret = -EIO;
-+		goto error;
-+	}
-+
-+	*val = data->buf[0];
-+	ret = 0;
-+
-+error:
-+	mutex_unlock(&data->lock);
-+	return ret;
-+}
-+
-+static int ad5110_write(struct ad5110_data *data, u8 cmd, u8 val)
-+{
-+	int ret;
-+
-+	mutex_lock(&data->lock);
-+	data->buf[0] = cmd;
-+	data->buf[1] = val;
-+
-+	ret = i2c_master_send_dmasafe(data->client, data->buf, sizeof(data->buf));
-+	if (ret != sizeof(data->buf))
-+		ret = -EIO;
-+
-+	mutex_unlock(&data->lock);
-+
-+	return ret < 0 ? ret : 0;
-+}
-+
-+static int ad5110_resistor_tol(struct ad5110_data *data, u8 cmd, int val)
-+{
-+	int ret;
-+
-+	ret = ad5110_read(data, cmd, &val);
-+	if (ret)
-+		return ret;
-+
-+	data->tol = data->cfg->kohms * (val & GENMASK(6, 0)) * 10 / 8;
-+	if (!(val & BIT(7)))
-+		data->tol *= -1;
-+
-+	return 0;
-+}
-+
-+static ssize_t ad5110_eeprom_read(struct device *dev,
-+				  struct device_attribute *attr,
-+				  char *buf)
-+{
-+	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-+	struct ad5110_data *data = iio_priv(indio_dev);
-+	int val = AD5110_WIPER_POS;
-+	int ret;
-+
-+	ret = ad5110_read(data, AD5110_EEPROM_RD, &val);
-+	if (ret)
-+		return ret;
-+
-+	val = val >> data->cfg->shift;
-+	return iio_format_value(buf, IIO_VAL_INT, 1, &val);
-+}
-+
-+static ssize_t ad5110_eeprom_write(struct device *dev,
-+				   struct device_attribute *attr,
-+				   const char *buf, size_t len)
-+{
-+	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-+	struct ad5110_data *data = iio_priv(indio_dev);
-+	int ret;
-+
-+	ret = ad5110_write(data, AD5110_EEPROM_WR, 0);
-+	if (ret) {
-+		dev_err(&data->client->dev, "RDAC to EEPROM write failed\n");
-+		return ret;
-+	}
-+	msleep(20);
-+
-+	return len;
-+}
-+
-+static IIO_DEVICE_ATTR(store_eeprom, 0644,
-+		       ad5110_eeprom_read,
-+		       ad5110_eeprom_write, 0);
-+
-+static struct attribute *ad5110_attributes[] = {
-+	&iio_dev_attr_store_eeprom.dev_attr.attr,
-+	NULL,
-+};
-+
-+static const struct attribute_group ad5110_attribute_group = {
-+	.attrs = ad5110_attributes,
-+};
-+
-+static int ad5110_read_raw(struct iio_dev *indio_dev,
-+			   struct iio_chan_spec const *chan,
-+			   int *val, int *val2, long mask)
-+{
-+	struct ad5110_data *data = iio_priv(indio_dev);
-+	int ret;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		ret = ad5110_read(data, AD5110_RDAC_RD, val);
-+		if (ret)
-+			return ret;
-+
-+		*val = *val >> data->cfg->shift;
-+		return IIO_VAL_INT;
-+	case IIO_CHAN_INFO_OFFSET:
-+		*val = WIPER_RESISTANCE * data->cfg->max_pos;
-+		*val2 = 1000 * data->cfg->kohms + data->tol;
-+		return IIO_VAL_FRACTIONAL;
-+	case IIO_CHAN_INFO_SCALE:
-+		*val = 1000 * data->cfg->kohms + data->tol;
-+		*val2 = data->cfg->max_pos;
-+		return IIO_VAL_FRACTIONAL;
-+	case IIO_CHAN_INFO_ENABLE:
-+		*val = data->enable;
-+		return IIO_VAL_INT;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int ad5110_write_raw(struct iio_dev *indio_dev,
-+			    struct iio_chan_spec const *chan,
-+			    int val, int val2, long mask)
-+{
-+	struct ad5110_data *data = iio_priv(indio_dev);
-+	int ret;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		if (val > data->cfg->max_pos || val < 0)
-+			return -EINVAL;
-+
-+		return ad5110_write(data, AD5110_RDAC_WR, val << data->cfg->shift);
-+	case IIO_CHAN_INFO_ENABLE:
-+		if (val < 0 || val > 1)
-+			return -EINVAL;
-+		if (data->enable == val)
-+			return 0;
-+		ret = ad5110_write(data, AD5110_SHUTDOWN, val ? 0 : 1);
-+		if (ret)
-+			return ret;
-+		data->enable = val;
-+		return 0;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct iio_info ad5110_info = {
-+	.read_raw = ad5110_read_raw,
-+	.write_raw = ad5110_write_raw,
-+	.attrs = &ad5110_attribute_group,
-+};
-+
-+#define AD5110_COMPATIBLE(of_compatible, cfg) {	\
-+			.compatible = of_compatible,	\
-+			.data = &ad5110_cfg[cfg],	\
-+}
-+
-+static const struct of_device_id ad5110_of_match[] = {
-+	AD5110_COMPATIBLE("adi,ad5110-10", AD5110_10),
-+	AD5110_COMPATIBLE("adi,ad5110-80", AD5110_80),
-+	AD5110_COMPATIBLE("adi,ad5112-05", AD5112_05),
-+	AD5110_COMPATIBLE("adi,ad5112-10", AD5112_10),
-+	AD5110_COMPATIBLE("adi,ad5112-80", AD5112_80),
-+	AD5110_COMPATIBLE("adi,ad5114-10", AD5114_10),
-+	AD5110_COMPATIBLE("adi,ad5114-80", AD5114_80),
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, ad5110_of_match);
-+
-+static const struct i2c_device_id ad5110_id[] = {
-+	{ "ad5110-10", AD5110_10 },
-+	{ "ad5110-80", AD5110_80 },
-+	{ "ad5112-05", AD5112_05 },
-+	{ "ad5112-10", AD5112_10 },
-+	{ "ad5112-80", AD5112_80 },
-+	{ "ad5114-10", AD5114_10 },
-+	{ "ad5114-80", AD5114_80 },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, ad5110_id);
-+
-+static int ad5110_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct iio_dev *indio_dev;
-+	struct ad5110_data *data;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	data = iio_priv(indio_dev);
-+	data->client = client;
-+	mutex_init(&data->lock);
-+	data->enable = 1;
-+	data->cfg = device_get_match_data(dev);
-+	if (!data->cfg)
-+		data->cfg = &ad5110_cfg[i2c_match_id(ad5110_id, client)->driver_data];
-+
-+	/* refresh RDAC register with EEPROM */
-+	ret = ad5110_write(data, AD5110_RESET, 0);
-+	if (ret) {
-+		dev_err(dev, "Refresh RDAC with EEPROM failed\n");
-+		return ret;
-+	}
-+
-+	ret = ad5110_resistor_tol(data, AD5110_EEPROM_RD, AD5110_RESISTOR_TOL);
-+	if (ret) {
-+		dev_err(dev, "Read resistor tolerance failed\n");
-+		return ret;
-+	}
-+
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+	indio_dev->info = &ad5110_info;
-+	indio_dev->channels = ad5110_channels;
-+	indio_dev->num_channels = ARRAY_SIZE(ad5110_channels);
-+	indio_dev->name = client->name;
-+
-+	return devm_iio_device_register(dev, indio_dev);
-+}
-+
-+static struct i2c_driver ad5110_driver = {
-+	.driver = {
-+		.name	= "ad5110",
-+		.of_match_table = ad5110_of_match,
-+	},
-+	.probe_new	= ad5110_probe,
-+	.id_table	= ad5110_id,
-+};
-+
-+module_i2c_driver(ad5110_driver);
-+
-+MODULE_AUTHOR("Mugilraj Dhavachelvan <dmugil2000@gmail.com>");
-+MODULE_DESCRIPTION("AD5110 digital potentiometer");
-+MODULE_LICENSE("GPL v2");
-+
--- 
-2.25.1
+Obviously being software someone could change that. We've had a few
+discussions about the infinite possibilities of a soft SoC and what
+that means for adding driver support to mainline. I think having some
+basic driver support is useful, particularly as we then get close
+review as Jakub provided.
 
+The liteeth block has seen a lot of use under Linux by risc-v
+(vexriscv), powerpc (microwatt), and openrisc (mor1k) designs. The
+microwatt and or1k designs have mainline support, making them easy to
+test. This driver will support the normal configurations of those
+platforms.
+
+As the soft core project evolves, we can revisit what goes in
+mainline, how flexible that driver support needs to be, and how best
+to manage that.
+
+>
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  rx-fifo-depth:
+> > +    description: Receive FIFO size, in units of 2048 bytes
+> > +
+> > +  tx-fifo-depth:
+> > +    description: Transmit FIFO size, in units of 2048 bytes
+> > +
+> > +  mac-address:
+> > +    description: MAC address to use
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    mac: ethernet@8020000 {
+> > +        compatible = "litex,liteeth";
+> > +        reg = <0x8021000 0x100
+> > +               0x8020800 0x100
+> > +               0x8030000 0x2000>;
+> > +        rx-fifo-depth = <2>;
+> > +        tx-fifo-depth = <2>;
+> > +        interrupts = <0x11 0x1>;
+> > +    };
+>
+> You would normally expect to see some MDIO properties here, a link to
+> the standard MDIO yaml, etc.
+
+Do you have a favourite example that I could follow?
