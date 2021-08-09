@@ -2,93 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5CB63E3EC9
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 06:20:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35BB73E3F15
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 06:39:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231379AbhHIEUs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 00:20:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47668 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230394AbhHIEUq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 00:20:46 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08258C06175F
-        for <devicetree@vger.kernel.org>; Sun,  8 Aug 2021 21:20:27 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id ca5so25925638pjb.5
-        for <devicetree@vger.kernel.org>; Sun, 08 Aug 2021 21:20:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=sCRNReZaLDOQvPH4KjWdDvX5jH3hpYmDMhYSFZyyI+4=;
-        b=Y2cgxiqH5ucNbGsSAAImYyUocfH0pYvQ/coZ86iqCrsJkzlYSWBx9tWk+1NJaVnNV2
-         hQvTaDaiMT1AtbVhZH1MeUdyfYKcUgIJr4GqqxvL4RUGLOCTseH1Ztae8tRkA81HhuWZ
-         9M4m1GSf5oXE71XG2tpY3yFNX/KfI0M7YpkAhOBlROHeD3w6m3R5rG2zXdbvu6fXSYZz
-         7Endw//3IknW/uOq95mGC8mbGd2212mbqesZ542mHDDzBVM5TQaYKTwNUsyD+URf3hzf
-         LtMKFVSGfyJBo+PCFWJfCRfzwbKwQ7OKeRBkD44kvXAIEGl9W3IXExeJBvI/59b6GhD8
-         KRUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=sCRNReZaLDOQvPH4KjWdDvX5jH3hpYmDMhYSFZyyI+4=;
-        b=Z2dT0AnQqexqSR6TqgRFT/+xKesyhZrEXTfuFhra4SXKMvJXBqk/StiCiGQiT+tzD2
-         ClV/QKqqn5DaKzpiIeZv+EBsyukr2o+f9S/1L2b8DzP8APrMR+5I22eTHCLM1ZX0kV9C
-         YheQXt9bYNma79QzWHWOpPaDqeD0wqUCgnutkgcGX2YPHMjTr5kxXg1xg2hVMn4h8T4L
-         4IxBljLMw90F7XyGYy9y539hXq3W2wALRUxpgb8zxr3/gg4ZegDkN8lpVKxD96oQF7h5
-         6l5hIffRsek7Fmp1MHE+vCWLrtD/nIf8FhbakxC+m/11aE1so5H9HP9BaqbYPxWbeW0J
-         XCnw==
-X-Gm-Message-State: AOAM533ERHLa9OxmfSK3j2Jh0bcGGvfXb2Y1JNVleabd5YJPJ1IVjIdH
-        km9zdkD9V7jY9rQdYFQUoTG1Cg==
-X-Google-Smtp-Source: ABdhPJw45E670g4FSxxD+rVM8EYpeAPwFPVtdr+ur4PMyAaH0Tk3nJXWf7iYnvPpAzNVE33FMf5Gkw==
-X-Received: by 2002:a17:902:8648:b029:129:dda4:ddc2 with SMTP id y8-20020a1709028648b0290129dda4ddc2mr10796851plt.4.1628482826555;
-        Sun, 08 Aug 2021 21:20:26 -0700 (PDT)
-Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id q19sm17263736pfk.49.2021.08.08.21.20.23
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Sun, 08 Aug 2021 21:20:26 -0700 (PDT)
-Date:   Mon, 9 Aug 2021 12:20:19 +0800
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Konrad Dybcio <konradybcio@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        id S232971AbhHIEjZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 00:39:25 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:32782 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229483AbhHIEjZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 00:39:25 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1794cvPi053042;
+        Sun, 8 Aug 2021 23:38:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1628483937;
+        bh=hMEiItd4QIo4kUch+Bv4wxFa1pGf9jYfLXOUQKMNT9c=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=Ya6hTTCh6Z7M+W/aQX7PqEmbNqGEx6NYfAWn1NIiZsMUiLRt4foKZqYuHG59j5RDx
+         j2m8vmxGanp/w6jEORH1KCAfIfTzcuiXDuEpJhxcbycnFWxJoC9Z9gl+RK7nrCr9DM
+         rXiMX/KLjYevkasV/uODWhOkrNN1TIkSRf9F43NQ=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1794cvLJ067738
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sun, 8 Aug 2021 23:38:57 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Sun, 8 Aug
+ 2021 23:38:57 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Sun, 8 Aug 2021 23:38:57 -0500
+Received: from [10.250.235.70] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1794crVI008485;
+        Sun, 8 Aug 2021 23:38:53 -0500
+Subject: Re: [PATCH v2 1/3] dt-bindings: PCI: ti,j721e: Add bindings to
+ specify legacy interrupts
+To:     Marc Zyngier <maz@kernel.org>
+CC:     Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 2/2] drm/panel: Add Truly NT35521 panel driver
-Message-ID: <20210809042018.GD6795@dragon>
-References: <20210804081352.30595-1-shawn.guo@linaro.org>
- <20210804081352.30595-3-shawn.guo@linaro.org>
- <YQqDb5eFqIx8tvAL@gerhold.net>
- <20210808134456.GB6795@dragon>
- <YQ/4WkA9ajpQx06A@gerhold.net>
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Tom Joseph <tjoseph@cadence.com>, <linux-omap@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+References: <20210804132912.30685-1-kishon@ti.com>
+ <20210804132912.30685-2-kishon@ti.com> <87im0lw8qy.wl-maz@kernel.org>
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+Message-ID: <14717d53-1727-509c-9a62-02c1e8c5736e@ti.com>
+Date:   Mon, 9 Aug 2021 10:08:47 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YQ/4WkA9ajpQx06A@gerhold.net>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <87im0lw8qy.wl-maz@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Aug 08, 2021 at 05:29:30PM +0200, Stephan Gerhold wrote:
-> > 2) The driver works good, if the kernel is launched via "fastboot boot".
-> >    But if the kernel is flashed to eMMC and launched by bootloader with
-> >    splash screen, kernel will fail to bring up the panel.  After kernel
-> >    boots up, a blank & unblank cycle can get panel work though.
-> > 
-> > The problem 2) is not driver generator related.  @Konrad, did you see
-> > it on asus-z00t-tm5p5-n35596 driver?
-> > 
+Hi Marc,
+
+On 04/08/21 8:35 pm, Marc Zyngier wrote:
+> On Wed, 04 Aug 2021 14:29:10 +0100,
+> Kishon Vijay Abraham I <kishon@ti.com> wrote:
+>>
+>> Add bindings to specify interrupt controller for legacy interrupts.
+>>
+>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+>> ---
+>>  .../bindings/pci/ti,j721e-pci-host.yaml           | 15 +++++++++++++++
+>>  1 file changed, 15 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+>> index cc900202df29..f461d7b4c0cc 100644
+>> --- a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+>> +++ b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+>> @@ -74,6 +74,11 @@ properties:
+>>  
+>>    msi-map: true
+>>  
+>> +patternProperties:
+>> +  "interrupt-controller":
+>> +    type: object
+>> +    description: interrupt controller to handle legacy interrupts.
+>> +
+>>  required:
+>>    - compatible
+>>    - reg
+>> @@ -97,6 +102,8 @@ unevaluatedProperties: false
+>>  
+>>  examples:
+>>    - |
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>>      #include <dt-bindings/soc/ti,sci_pm_domain.h>
+>>      #include <dt-bindings/gpio/gpio.h>
+>>  
+>> @@ -131,5 +138,13 @@ examples:
+>>              ranges = <0x01000000 0x0 0x10001000  0x00 0x10001000  0x0 0x0010000>,
+>>                       <0x02000000 0x0 0x10011000  0x00 0x10011000  0x0 0x7fef000>;
+>>              dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
+>> +
+>> +
+>> +            pcie0_intc: interrupt-controller {
+>> +                    interrupt-controller;
+>> +                    #interrupt-cells = <1>;
+>> +                    interrupt-parent = <&gic500>;
+>> +                    interrupts = <GIC_SPI 312 IRQ_TYPE_EDGE_RISING>;
 > 
-> Do you have CONFIG_DRM_MSM=y (built-in) instead of =m (module) maybe?
-> I think a similar issue exists on MSM8916 but it does not happen
-> for some reason if CONFIG_DRM_MSM=m instead of =y. Somehow having it
-> load later during the boot process fixes some things there.
+> Are you sure about the edge signalling? How is the interrupt
+> retriggered when the input is still high, which could well be the case
+> for shared INTx?
 
-Indeed!  I have CONFIG_DRM_MSM=y in my build, and changing it to module
-removes the problem.  Thanks much for the hint, Stephan!
+There is a EOI register which is used for re-triggering the interrupt.
+That functionality is broken in J721E but is fixed in J7200 (the
+following two patches in the series deals with that).
 
-Shawn
+Thanks,
+Kishon
