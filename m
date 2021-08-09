@@ -2,128 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 887FE3E454D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 14:05:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1C0E3E4555
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 14:07:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234635AbhHIMGH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 08:06:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40036 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235305AbhHIMEL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 08:04:11 -0400
-Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A9E8C0613D3;
-        Mon,  9 Aug 2021 05:03:51 -0700 (PDT)
-Received: by mail-qk1-x72c.google.com with SMTP id y130so5340924qkb.6;
-        Mon, 09 Aug 2021 05:03:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=vOrmXw6xMZz6x2vI7mFxWDMo2fJoo8txxv+fx5TuKHI=;
-        b=Izc0XFr/vVLcC5AtUwCgx/4jqGzyuoqcGztO1p4kjKnxPK68oYrhwm9+HY0jGq/0rP
-         WGPj9XBEPRODYOBPyGmdfNo5fAFu8Q7ykHj0yy8bZS68YKajPxzLoZR2ansWoAcfaC0C
-         nkUQR8NbGe9PoaXa0YrpXYcrj1Q0OJajSbtTg=
+        id S234717AbhHIMHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 08:07:55 -0400
+Received: from smtp-relay-canonical-1.canonical.com ([185.125.188.121]:45480
+        "EHLO smtp-relay-canonical-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234060AbhHIMHy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 08:07:54 -0400
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPS id A61CC40645
+        for <devicetree@vger.kernel.org>; Mon,  9 Aug 2021 12:07:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1628510853;
+        bh=2daM3RukL8uFtRevasOftGMEg/bNtv3suJb8BFZCflI=;
+        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+        b=HrJXgGxQbNRB/JIy3TLD9IYpDCAdMOkQC+uEfu87uJaeWcrn04AgoTPn7s6U1CSF/
+         5Ddc96djkSQupaf4no/BNja2RdIkWkUSxh8yypCnuVCqc85x2wdDsVHyzCItYUNuFN
+         tOfcjCwuruhydHqVTnKaohK5EdVH/sF6v0S0iQuiCQ9iq6z60u6jpYjfvXl9oifRKY
+         iz03B4aaBVbY6/q2xwDcOQGvcjNVoHEiXyffQEXNGHFW3WwFuOBlWjN4AAHuklMOct
+         yIvtOftxY13LDZeGpWiN5lbXINWzBaOdgCL+w4bROBVdd51uSofaHdRRquBqoBU02m
+         9Rthojrkn0eCg==
+Received: by mail-ed1-f71.google.com with SMTP id y22-20020a0564023596b02903bd9452ad5cso8741288edc.20
+        for <devicetree@vger.kernel.org>; Mon, 09 Aug 2021 05:07:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=vOrmXw6xMZz6x2vI7mFxWDMo2fJoo8txxv+fx5TuKHI=;
-        b=cB3RaBYqojMpZq+VWDnU8MAqdafrzRNOPjbn63vjvURGpHtzn59VhrJKtEEek38MQa
-         /Mj3MdXeX8Gdp6M/kG0yOTEtu2OUwxuKuoxEyo1LtSfyNCAsZLmQ4B6ycJa6iLM69CLF
-         WmIlZ4x0kKHTtCok1tZD6bjBCdYlmJbbs9hMtQ6smxWu9w8KKnpGjoFrIuTCJ16qkLX8
-         iz4g1PE60Px201Ccxy6V0XK6tL+5pk6SG3Hx05KszOdbgitax2qlPXgtOce4mvCIfja6
-         W9usSuj3HclggVP7DFfhaQwNnQqRpuFXyOYV8m38qycG9O2P3sGnj+Q1CmIJX1zmD8su
-         jecA==
-X-Gm-Message-State: AOAM530iP2w2ygE0ce+mOFZDmPpxq7Gk3f6jCX9tOoU2EXn3zqAOcZ/0
-        MDKIXbPrVtMPUWYfnvStZpLdRAzRSpWaaeHNk4A=
-X-Google-Smtp-Source: ABdhPJwtvid5gqf7+QI1oj9Cie1nf6YXVEoRhE2++B1JGzipCkBMZfulQeetLDkW12/5AIhsY5pzpcPnVyt+yfTWhg8=
-X-Received: by 2002:a37:a4c4:: with SMTP id n187mr18359865qke.55.1628510629375;
- Mon, 09 Aug 2021 05:03:49 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210806054904.534315-1-joel@jms.id.au> <20210806054904.534315-3-joel@jms.id.au>
- <20210806161030.52a7ae93@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20210806161030.52a7ae93@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Mon, 9 Aug 2021 12:03:36 +0000
-Message-ID: <CACPK8XcCjNWm=85uXX2tubP=WAgfF8ewqMAMWO_wJVeHB-U_0w@mail.gmail.com>
-Subject: Re: [PATCH 2/2] net: Add driver for LiteX's LiteETH network interface
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     "David S . Miller" <davem@davemloft.net>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2daM3RukL8uFtRevasOftGMEg/bNtv3suJb8BFZCflI=;
+        b=cnZvWKWRocTLSbNWDAuNlgTqcGXEuKpOFYzZCQEEFQ1ysQ6HQL31qNJ/T1CX024zAw
+         Tvj2EFHH79cBXHq+aUipSMk6gVGQ/NLB7eZLdfSWdZGJSqGUjRW376HNA1SOdU5slXQI
+         OoOx9exLqKWDu8jXvijt4dEZVCDCgYjKWFsh7d1/29e4aWnyGjHcKfOWvppe+6ySjM5K
+         J4AN6cLBckTV6EaUiGMYUuJUPX3vwWrtq2iQm9hdPg8/w6R1L3adO5VclVhN1lMJ4jRc
+         Rnvus25y52XFW7O8QOK5i8STAHo/Z57P5nBrtNatE8wwO9xbG/idaVTjhPdyADy0PymH
+         3iIg==
+X-Gm-Message-State: AOAM531ZD5lMHZ/Aytb5v72NVHztTfbucmFK07xYdAuO2+W7MM86Hm6d
+        Dzo9LRG3cWghJ+LxdcRyRfwMIovL+WJILGURD0Tj7gYvtP3DpnqGEr+g9aHIOVOFVpmLk2M/4hZ
+        UAad4Hu/nVyWdjMJVwuQs0vSHcZKTfZFnJO8ztYM=
+X-Received: by 2002:a17:906:d52:: with SMTP id r18mr21995418ejh.47.1628510853334;
+        Mon, 09 Aug 2021 05:07:33 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzOfuGtnOAZvjuBVRJBY5cSEj1w1cOneBCKbYYYklM3mbay8F5lsgcyWvB6Nbuj78CYpk7/Ag==
+X-Received: by 2002:a17:906:d52:: with SMTP id r18mr21995394ejh.47.1628510853144;
+        Mon, 09 Aug 2021 05:07:33 -0700 (PDT)
+Received: from localhost.localdomain ([86.32.42.198])
+        by smtp.gmail.com with ESMTPSA id i6sm8084863edt.28.2021.08.09.05.07.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Aug 2021 05:07:32 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Stafford Horne <shorne@gmail.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Anton Blanchard <anton@ozlabs.org>,
-        Gabriel Somlo <gsomlo@gmail.com>, David Shah <dave@ds0.me>,
-        Karol Gugala <kgugala@antmicro.com>,
-        Mateusz Holenko <mholenko@antmicro.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Networking <netdev@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Sam Protsenko <semen.protsenko@linaro.org>
+Subject: [PATCH 1/3] dt-bindings: clock: samsung: convert Exynos5250 to dtschema
+Date:   Mon,  9 Aug 2021 14:05:42 +0200
+Message-Id: <20210809120544.56596-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for the review Jakub.
+Convert Samsung Exynos5250 clock controller bindings to DT schema format
+using json-schema.
 
-On Fri, 6 Aug 2021 at 23:10, Jakub Kicinski <kuba@kernel.org> wrote:
-> > +static int liteeth_start_xmit(struct sk_buff *skb, struct net_device *netdev)
-> > +{
-> > +     struct liteeth *priv = netdev_priv(netdev);
-> > +     void __iomem *txbuffer;
-> > +     int ret;
-> > +     u8 val;
-> > +
-> > +     /* Reject oversize packets */
-> > +     if (unlikely(skb->len > MAX_PKT_SIZE)) {
-> > +             if (net_ratelimit())
-> > +                     netdev_dbg(netdev, "tx packet too big\n");
-> > +             goto drop;
-> > +     }
-> > +
-> > +     txbuffer = priv->tx_base + priv->tx_slot * LITEETH_BUFFER_SIZE;
-> > +     memcpy_toio(txbuffer, skb->data, skb->len);
-> > +     writeb(priv->tx_slot, priv->base + LITEETH_READER_SLOT);
-> > +     writew(skb->len, priv->base + LITEETH_READER_LENGTH);
-> > +
-> > +     ret = readl_poll_timeout_atomic(priv->base + LITEETH_READER_READY, val, val, 5, 1000);
->
-> Why the need for poll if there is an interrupt?
-> Why not stop the Tx queue once you're out of slots and restart
-> it when the completion interrupt comes?
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+---
+ .../bindings/clock/exynos5250-clock.txt       | 41 ----------------
+ .../bindings/clock/samsung,exynos-clock.yaml  | 48 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 3 files changed, 49 insertions(+), 41 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/exynos5250-clock.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/samsung,exynos-clock.yaml
 
-That makes sense.
+diff --git a/Documentation/devicetree/bindings/clock/exynos5250-clock.txt b/Documentation/devicetree/bindings/clock/exynos5250-clock.txt
+deleted file mode 100644
+index aff266a12eeb..000000000000
+--- a/Documentation/devicetree/bindings/clock/exynos5250-clock.txt
++++ /dev/null
+@@ -1,41 +0,0 @@
+-* Samsung Exynos5250 Clock Controller
+-
+-The Exynos5250 clock controller generates and supplies clock to various
+-controllers within the Exynos5250 SoC.
+-
+-Required Properties:
+-
+-- compatible: should be one of the following.
+-  - "samsung,exynos5250-clock" - controller compatible with Exynos5250 SoC.
+-
+-- reg: physical base address of the controller and length of memory mapped
+-  region.
+-
+-- #clock-cells: should be 1.
+-
+-Each clock is assigned an identifier and client nodes can use this identifier
+-to specify the clock which they consume.
+-
+-All available clocks are defined as preprocessor macros in
+-dt-bindings/clock/exynos5250.h header and can be used in device
+-tree sources.
+-
+-Example 1: An example of a clock controller node is listed below.
+-
+-	clock: clock-controller@10010000 {
+-		compatible = "samsung,exynos5250-clock";
+-		reg = <0x10010000 0x30000>;
+-		#clock-cells = <1>;
+-	};
+-
+-Example 2: UART controller node that consumes the clock generated by the clock
+-	   controller. Refer to the standard clock bindings for information
+-	   about 'clocks' and 'clock-names' property.
+-
+-	serial@13820000 {
+-		compatible = "samsung,exynos4210-uart";
+-		reg = <0x13820000 0x100>;
+-		interrupts = <0 54 0>;
+-		clocks = <&clock CLK_UART2>, <&clock CLK_SCLK_UART2>;
+-		clock-names = "uart", "clk_uart_baud0";
+-	};
+diff --git a/Documentation/devicetree/bindings/clock/samsung,exynos-clock.yaml b/Documentation/devicetree/bindings/clock/samsung,exynos-clock.yaml
+new file mode 100644
+index 000000000000..cd6567bd8cc7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/samsung,exynos-clock.yaml
+@@ -0,0 +1,48 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/samsung,exynos-clock.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Samsung Exynos SoC clock controller
++
++maintainers:
++  - Chanwoo Choi <cw00.choi@samsung.com>
++  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
++  - Sylwester Nawrocki <s.nawrocki@samsung.com>
++  - Tomasz Figa <tomasz.figa@gmail.com>
++
++description: |
++  All available clocks are defined as preprocessor macros in
++  dt-bindings/clock/ headers.
++
++properties:
++  compatible:
++    const: samsung,exynos5250-clock
++
++  assigned-clocks: true
++  assigned-clock-parents: true
++  assigned-clock-rates: true
++  clocks: true
++
++  "#clock-cells":
++    const: 1
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - "#clock-cells"
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/exynos5250.h>
++    clock: clock-controller@10010000 {
++        compatible = "samsung,exynos5250-clock";
++        reg = <0x10010000 0x30000>;
++        #clock-cells = <1>;
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 36aee8517ab0..2dbacacac3f5 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -16491,6 +16491,7 @@ L:	linux-samsung-soc@vger.kernel.org
+ S:	Supported
+ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/snawrocki/clk.git
+ F:	Documentation/devicetree/bindings/clock/exynos*.txt
++F:	Documentation/devicetree/bindings/clock/samsung,*.yaml
+ F:	Documentation/devicetree/bindings/clock/samsung,s3c*
+ F:	Documentation/devicetree/bindings/clock/samsung,s5p*
+ F:	drivers/clk/samsung/
+-- 
+2.30.2
 
-In testing I have not been able to hit the LITEETH_READER_READY
-not-ready state. I assume it's there to say that the slots are full.
-
->
-> > +     if (ret == -ETIMEDOUT) {
-> > +             netdev_err(netdev, "LITEETH_READER_READY timed out\n");
->
-> ratelimit this as well, please
->
-> > +             goto drop;
-> > +     }
-> > +
-> > +     writeb(1, priv->base + LITEETH_READER_START);
-> > +
-> > +     netdev->stats.tx_bytes += skb->len;
->
-> Please count bytes and packets in the same place
-
-AFAIK we don't know the length when the interrupt comes in, so we need
-to count both here in xmit?
-
->
-> > +     priv->tx_slot = (priv->tx_slot + 1) % priv->num_tx_slots;
-> > +     dev_kfree_skb_any(skb);
-> > +     return NETDEV_TX_OK;
-> > +drop:
-> > +     /* Drop the packet */
-> > +     dev_kfree_skb_any(skb);
-> > +     netdev->stats.tx_dropped++;
-> > +
-> > +     return NETDEV_TX_OK;
-> > +}
