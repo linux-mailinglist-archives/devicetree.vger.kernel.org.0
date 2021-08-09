@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9706C3E4419
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 12:45:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 293C73E4426
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 12:47:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234398AbhHIKqS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 06:46:18 -0400
-Received: from smtp-relay-canonical-1.canonical.com ([185.125.188.121]:40582
-        "EHLO smtp-relay-canonical-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234738AbhHIKqP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 06:46:15 -0400
-Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
+        id S234773AbhHIKr3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 06:47:29 -0400
+Received: from smtp-relay-canonical-0.canonical.com ([185.125.188.120]:40428
+        "EHLO smtp-relay-canonical-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234739AbhHIKq4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 06:46:56 -0400
+Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPS id B16913F102
-        for <devicetree@vger.kernel.org>; Mon,  9 Aug 2021 10:45:53 +0000 (UTC)
+        by smtp-relay-canonical-0.canonical.com (Postfix) with ESMTPS id C66163F352
+        for <devicetree@vger.kernel.org>; Mon,  9 Aug 2021 10:46:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1628505953;
-        bh=pwc/Ajo5YOokojxDuHXAQR0/29n7VNaZg9Jjhi/i3UA=;
+        s=20210705; t=1628505994;
+        bh=yt7czbeHRo3zFzMadQuUQl5b/q3O9yrC7ug3tMqy3VU=;
         h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
          In-Reply-To:Content-Type;
-        b=WQb+v8u0z2S4jCRVPUc7hnhg6oExqU8FtV6s7rb1kMSkcWahKx6wfhy6ESh5vJoYb
-         RxkMej8JOfUbtHDfqjQVQxJq468/s371ascT39XknDWf2PbMOgWYnZcVcaSonfdifc
-         3WZr/jiSx3a1Z6wvZ0baW8NtA/cAIvZPKvaT1qxTPEhQRtU7B497vvLxoUAV9IBpKO
-         eejHAoQcQSak2dYi0gwP2ALguc94roCKXpVesihugKZmdJsmYUu5Bp0tl1v5uTYNnV
-         oqLD1Sjwkom1LIT3+ZmZ2Fp5BEIWwPsgzOS9UpfWob4t9AkeA+qh9M/s8W3WfxznXH
-         Qn2Xyr/HMFK9g==
-Received: by mail-ed1-f72.google.com with SMTP id y22-20020a0564023596b02903bd9452ad5cso8642554edc.20
-        for <devicetree@vger.kernel.org>; Mon, 09 Aug 2021 03:45:53 -0700 (PDT)
+        b=T2I//A3OdJNiwAnnwG3hT+O4mwcjbz0BPDHopOluAyWcBSK65/AosoSK8w8LyzkgL
+         klGHexrmHTzmfKXVZVxbswWlzw49xZb5q8bu7PnhtASiE+U3bsmsnq9PInSVL4cPuo
+         9Q380IOMtaGKrTZwESHjWcJ+rZYvhkTbQA+MOsyWmsLehJMEix1OyrtaLeQpZAD3Dz
+         OPAEyUMDASq+A1KKSy6H+Dz2Mw2AsVf6gDbZCPXNpI3WxOnbfssBPo/pYOmWyDnq/T
+         maBXZiLYunC3JSKwm91fFo9/BNpbsEA+5X66A9h0oNmBq1DVtcS9SRvph9cxWRYmY3
+         P2Dffxlzr5E/Q==
+Received: by mail-lf1-f72.google.com with SMTP id p3-20020a0565121383b0290384997a48fcso5985157lfa.21
+        for <devicetree@vger.kernel.org>; Mon, 09 Aug 2021 03:46:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=pwc/Ajo5YOokojxDuHXAQR0/29n7VNaZg9Jjhi/i3UA=;
-        b=UZ0/4TltXwJAVnPitgEGX+XJrDtX5Pv3qij8XbRIw6w+T1Ld6RNql/p5c2A46eZ77j
-         mOc/ipe8pzgaECf9MG6V0re0RRBribecfkYFtpqsUTRNQDnj287ISsW1n5AfxC1vWVCF
-         8Y4SIjd3SECRkjolMikElKGSvirSuz7EForxIpHF+K+Z2uzjlr+YOCFEtTIiAKabcdPq
-         rRYHrJa1Erht3IQHXNR1/Us0INVf7w8thbQdhrk2CpbLklTq+xg3rdDlWiH4NC0wepcC
-         hj36se2vFoNHVlEXNnq2Nf2CVwPVN9Qo4XJpxzy4/8e2XNAgh7Q1kp0zNFv78vTHsrdk
-         j8uA==
-X-Gm-Message-State: AOAM530P9ntfPOrC3WXR6tz9JeryLhctRHprdofwjOuMj+kJ8L6OYRpS
-        f3voPOy8RwQFBjkYtk4gWm7grxRoojE4dfoCP5ob9oP1PxZAtOGmBASaMNwQX1XResR/Jovz8Dv
-        y+a7KoRDAUKS4DwisZXphowzT2LGm4pOvrO3/kmU=
-X-Received: by 2002:aa7:c5c4:: with SMTP id h4mr5179328eds.108.1628505953488;
-        Mon, 09 Aug 2021 03:45:53 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyFSBcXzH8i0TbMJa2dVdWnWI4e22vKyQF/gVsYMDX7OTcWMN3P9vHHAxa6pmNrrW6QiFGZ8w==
-X-Received: by 2002:aa7:c5c4:: with SMTP id h4mr5179300eds.108.1628505953372;
-        Mon, 09 Aug 2021 03:45:53 -0700 (PDT)
+        bh=yt7czbeHRo3zFzMadQuUQl5b/q3O9yrC7ug3tMqy3VU=;
+        b=RHhz7HTGVnv4jA5mfIVwZe6tW1p6UZ9StKClOtcp9OnuXDaAEF4ch0ZAWCdjybQ7y6
+         ngYy8K2o9O3nJufy5W4Il6sy50RwpOZ7KeFm74si7iX4YF7NpL01xXt0MoU/2R99p8eA
+         08staNvDDbX0y/sSq/k6LNYq0Cq0It6yy7uAJWnWRrTlrYFdqNG0OjYgmvxArdGlUP/b
+         rbJpnAxePY1XMYVTRS9T/C031YzS6QSxokwo8yBVqqNGxzGPoEFlYcHIEhBNkAzrEWvm
+         jHx8I3mtG/AL86MrOgUbYiQTxDxZll85JLbAUi0NqKtuwJHJy27iI+mpN+J6pSIjVQTU
+         CWew==
+X-Gm-Message-State: AOAM533IG/GDg2f/TRu6Gy82wHpZ52UaYV2XFWmZjFx2be1BKsjvxhDI
+        aKOpTd4PU2SQbcnDqGOxmJQtXGzA8HOYu+0lMTcRGG8s3JUUArzfDa9l05IT3ocfcLNaKATxPnk
+        lddPby9ofmudTdh7ttG+mqvCm0c7E42i48+cO5Lc=
+X-Received: by 2002:a17:906:4346:: with SMTP id z6mr2946652ejm.403.1628505982425;
+        Mon, 09 Aug 2021 03:46:22 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwilRElb69ECVZp5XBCmIh/rGOdeWiuwyHyABm9gfRG9GvWksDs334T+DetejTgQ1+PQ9rACw==
+X-Received: by 2002:a17:906:4346:: with SMTP id z6mr2946634ejm.403.1628505982295;
+        Mon, 09 Aug 2021 03:46:22 -0700 (PDT)
 Received: from [192.168.8.102] ([86.32.42.198])
-        by smtp.gmail.com with ESMTPSA id m25sm2212168edv.81.2021.08.09.03.45.51
+        by smtp.gmail.com with ESMTPSA id f5sm5733019ejj.45.2021.08.09.03.46.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Aug 2021 03:45:53 -0700 (PDT)
-Subject: Re: [PATCH v2 4/8] tty: serial: samsung: Init USI to keep clocks
- running
+        Mon, 09 Aug 2021 03:46:21 -0700 (PDT)
+Subject: Re: [PATCH v2 6/8] tty: serial: samsung: Add Exynos850 SoC data
 To:     Sam Protsenko <semen.protsenko@linaro.org>,
         Sylwester Nawrocki <s.nawrocki@samsung.com>,
         Chanwoo Choi <cw00.choi@samsung.com>,
@@ -78,14 +77,14 @@ Cc:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
         linux-serial@vger.kernel.org
 References: <20210806152146.16107-1-semen.protsenko@linaro.org>
- <20210806152146.16107-5-semen.protsenko@linaro.org>
+ <20210806152146.16107-7-semen.protsenko@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <85df3188-0227-f926-61bf-30db1a5ef41d@canonical.com>
-Date:   Mon, 9 Aug 2021 12:45:50 +0200
+Message-ID: <6169e25b-2829-628a-f910-348ddd4b3030@canonical.com>
+Date:   Mon, 9 Aug 2021 12:46:19 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <20210806152146.16107-5-semen.protsenko@linaro.org>
+In-Reply-To: <20210806152146.16107-7-semen.protsenko@linaro.org>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -94,47 +93,22 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 06/08/2021 17:21, Sam Protsenko wrote:
-> UART block is a part of USI (Universal Serial Interface) IP-core in
-> Samsung SoCs since Exynos9810 (e.g. in Exynos850). USI allows one to
-> enable one of three types of serial interface: UART, SPI or I2C. That's
-> possible because USI shares almost all internal circuits within each
-> protocol. USI also provides some additional registers so it's possible
-> to configure it.
-> 
-> One USI register called USI_OPTION has reset value of 0x0. Because of
-> this the clock gating behavior is controlled by hardware (HWACG =
-> Hardware Auto Clock Gating), which simply means the serial won't work
-> after reset as is. In order to make it work, USI_OPTION[2:1] bits must
-> be set to 0b01, so that HWACG is controlled manually (by software).
-> Bits meaning:
->   - CLKREQ_ON = 1: clock is continuously provided to IP
->   - CLKSTOP_ON = 0: drive IP_CLKREQ to High (needs to be set along with
->                     CLKREQ_ON = 1)
-> 
-> USI is not present on older chips, like s3c2410, s3c2412, s3c2440,
-> s3c6400, s5pv210, exynos5433, exynos4210. So the new boolean field
-> '.has_usi' was added to struct s3c24xx_uart_info. USI registers will be
-> only actually accessed when '.has_usi' field is set to "1".
-> 
-> This feature is needed for further serial enablement on Exynos850, but
-> some other new Exynos chips (like Exynos9810) may benefit from this
-> feature as well.
+> Add serial driver data for Exynos850 SoC. This driver data is basically
+> reusing EXYNOS_COMMON_SERIAL_DRV_DATA, which is common for all Exynos
+> chips, but also enables USI init, which was added in previous commit:
+> "tty: serial: samsung: Init USI to keep clocks running".
 > 
 > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
 > ---
 > Changes in v2:
->   - Non-intrusive modification of USI registers
->   - Improved comments
->   - Rearranged USI register definitions to conform with existing style
+>   - Fixed default fifo sizes
 > 
->  drivers/tty/serial/samsung_tty.c | 32 +++++++++++++++++++++++++++++++-
->  include/linux/serial_s3c.h       |  9 +++++++++
->  2 files changed, 40 insertions(+), 1 deletion(-)
+>  drivers/tty/serial/samsung_tty.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
 > 
 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-
 
 
 Best regards,
