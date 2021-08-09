@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 058923E3E3B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 05:23:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A032B3E3E3E
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 05:24:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232769AbhHIDXo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Aug 2021 23:23:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34920 "EHLO
+        id S232845AbhHIDYS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Aug 2021 23:24:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231675AbhHIDXn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Aug 2021 23:23:43 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 689A9C061760
-        for <devicetree@vger.kernel.org>; Sun,  8 Aug 2021 20:23:23 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id x8so31045844lfe.3
-        for <devicetree@vger.kernel.org>; Sun, 08 Aug 2021 20:23:23 -0700 (PDT)
+        with ESMTP id S232839AbhHIDYR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Aug 2021 23:24:17 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BBCFC06175F
+        for <devicetree@vger.kernel.org>; Sun,  8 Aug 2021 20:23:57 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id m9so21607922ljp.7
+        for <devicetree@vger.kernel.org>; Sun, 08 Aug 2021 20:23:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=Mxoe8ehx2Vi2y4afm7gLthqvb5ao6MbjaelzeHBMKik=;
-        b=q/Zl/iRSG6c/YsgaY48vbGEN4c/w8jgzqDkmTLGeAD/ceUoxEHEV0of9v0CfFN4sYp
-         /jQhut2BLnjKmy6ddXsA10qPQDJMcrQJY5PKNPChLVZCH29Tm4tiUWCL3CbHW6VDKbwg
-         xuzKN73tQPqLuA4lHVClUCcueQyvJgX6YYcEagQ63LxV1LUdQOzEuBUCMGRlSYHpmDGl
-         zoCFc844we/Ko56ys3bmodpP5EkXbX2fSFtBKeu9B2ABgwQTCEf6zseqC0SpawMLt3pM
-         6fwaiLb700kqRIoywGMqEzWt1X6MxF5u3zxXTHJzIpGVNpbYHrztTQIv9904UDgLAj8E
-         8JTw==
+        bh=DeHqVi50CBdFqd2+LMixauUxIiHfce3Yzl/5XSJiGW4=;
+        b=udwP6An1CopsSJoND9TlRMg9C+2um44ZaVmKGf2a64xc4zfU4B+ba9JQrNJi7MAs8M
+         TYEk25w2jsN0FflqKdIu+nBRbjdZX+LZiiFcR+9C+rPscQrfWRvUbTHVO73bRfAtJgCy
+         xy3oLjEh4rLObEK2Lh+uFTsJBKhqqcJzPmrWpmjkjL8Ut9li5azzrDc9cYodoVsM9r1l
+         61bL4/j+xEgq3dG5qbFQuOy+c2KRplm2ID2KeD3hrVxRWz5+6coq92wN9tfRVx1ktKCH
+         TSA4/f1IBPIOMagR2QvkrAo5oXxfJKHihMqLSfevR2stW/TMZFnJuoxCdMvlBPrlhMnC
+         1dzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=Mxoe8ehx2Vi2y4afm7gLthqvb5ao6MbjaelzeHBMKik=;
-        b=bv5xQ21XA+toi/o+Ipb+0AI1L6d8Zi3EAQ3M3P3T7hoNCPVH5LTILHtyg56omzNNyM
-         EiJdD51Y/v4xUr59CZJaF9jL9orBRqjbxumVDLUDarrRnBvlbBRyQHByYUd6TGAp07/b
-         lXwVaeq57xcCXqsk6BxQ6Ut0WZ8ClQa+q3JXda7h8eokFoBCnA6Lgfka512VNLdsilvA
-         E43lymqmihBcXFXAHa0q3YZDB58kMduN89bCpOXsEG+FlPUPJ7qpiFhwSj9pAli/7Ixt
-         Ac5uxtE4pvKrgtGDp2f2n9u0Bo+31Xm7sAnzG8nd+nTzpDbRT8vtAL3PvCPqCNjTr8LJ
-         EmDw==
-X-Gm-Message-State: AOAM532vWgDCe4anWK9pMMLZ0V8kOnodG1C+IoGOSGjYab0wKftXFPSM
-        zbTxAGxjvBmp3y0it5doYwoWV9kEh3vxr7cGlC9wnQ==
-X-Google-Smtp-Source: ABdhPJyF5d28CUqPE1qLCZjGKLbJzgTLfTykog6rlo7Obra6pUgcXcZSei8APEftxH0BfOw8s8nvQbvyRxvAdceRU0c=
-X-Received: by 2002:a19:da01:: with SMTP id r1mr6694335lfg.437.1628479401416;
- Sun, 08 Aug 2021 20:23:21 -0700 (PDT)
+        bh=DeHqVi50CBdFqd2+LMixauUxIiHfce3Yzl/5XSJiGW4=;
+        b=MunuAC2Aki/vEVLy45h+E+CQevXVDDDg5k8NnsEH99ZcImLUnQ6mU2fXzrocjoX0VK
+         BDQFu8E6Htg5hLjgHr46dp1D6ygZiCyITGG0nHb/FxexECFAtDgus0CgazfQURtvfxuE
+         bOLMB4SfahERBHEygBtd0KZ+csnRwUQN91JgJLJI3IB94C8iypz0lzctUwsvw3ExR+AW
+         Q5tjG7nSeAD9fA+AtIZDpxZU4qBEEf7NmnZsoR4vhCWBOEXjZNdkJioD5Ri5r7NYsNFr
+         RWYQlNPtv1MRIzRriPARULvJzZH0srwn1x0dPOXDiXDtXvuzvQ0sYQZ/RSE1wmGKRYDx
+         sjzA==
+X-Gm-Message-State: AOAM5321b1zB2nCm3+yFsO11fyL7FxujEq6AVGj1fMFnSk5wiu2Uyi8G
+        XUKmq6n5rlpy/aL9esS+mzSmwJQ+fN5yPJdFzvKBFg==
+X-Google-Smtp-Source: ABdhPJzWrze6pAE8SouLNWKvQSYVzPjq/X4MfGn/t6RZQRfJMwb3DGCw0Pw2Pt5DPOfM3ZweoUmSdCNVONUnlfB2Cpo=
+X-Received: by 2002:a2e:9e0b:: with SMTP id e11mr14181716ljk.423.1628479435239;
+ Sun, 08 Aug 2021 20:23:55 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210802121215.703023-1-eizan@chromium.org> <20210802220943.v6.1.I9db0d408ef79d300672ec0311a6bee9556801631@changeid>
- <8fe5ac46-a9db-710e-a6d1-856805ab2773@collabora.com>
-In-Reply-To: <8fe5ac46-a9db-710e-a6d1-856805ab2773@collabora.com>
+References: <20210802121215.703023-1-eizan@chromium.org> <20210802220943.v6.2.Ie6d1e6e39cf9b5d6b2108ae1096af34c3d55880b@changeid>
+ <0aff1abb-734f-c714-6ecc-c906862255c3@collabora.com>
+In-Reply-To: <0aff1abb-734f-c714-6ecc-c906862255c3@collabora.com>
 From:   Eizan Miyamoto <eizan@google.com>
-Date:   Mon, 9 Aug 2021 13:23:04 +1000
-Message-ID: <CAOak1e_xw84Q+ikAn7TEqie00Sbv4Qpaax==jZ5MJVfPP1pf0Q@mail.gmail.com>
-Subject: Re: [PATCH v6 1/9] mtk-mdp: propagate errors from clock_on
+Date:   Mon, 9 Aug 2021 13:23:37 +1000
+Message-ID: <CAOak1e8n6JpNKODfM57OTtbCNz8UBbj+wefwipVWP_Ep6SHmHA@mail.gmail.com>
+Subject: Re: [PATCH v6 2/9] mtk-mdp: add driver to probe mdp components
 To:     Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
 Cc:     linux-kernel@vger.kernel.org, wenst@chromium.org,
         houlong.wei@mediatek.com, yong.wu@mediatek.com,
@@ -67,49 +67,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dafna, thank you very much for spending time to review the patch,
-your time spent is very much appreciated.
+Hi Dafna,
 
-On Thu, Aug 5, 2021 at 4:06 PM Dafna Hirschfeld
+On Thu, Aug 5, 2021 at 4:40 PM Dafna Hirschfeld
 <dafna.hirschfeld@collabora.com> wrote:
-> > +err_clk_prepare_enable:
-> > +     for (--i; i >= 0; i--) {
-> > +             if (IS_ERR(comp->clk[i]))
-> > +                     continue;
-> > +             clk_disable_unprepare(comp->clk[i]);
-> >       }
-> > +
-> > +     return status;
+> > +int mtk_mdp_comp_init(struct mtk_mdp_comp *comp, struct device *dev)
 >
-> There is an API function clk_bulk_prepare_enable to prepare and enable an array of clks
-> so you can just use it.
+> This function can be static
 
-As per Enric's suggestion earlier in this email thread, are you OK
-with me making this change in a follow-up patch, particularly since
-the logic as it is was preserved from previous functionality?
+If it's all the same to you, are you okay for me to make this change either:
+- If upstream requests changes be made to this series, I will include
+this suggestion
+- If the series is accepted as-is, I will make a follow-up patch
 
-> > -static void mtk_mdp_clock_on(struct mtk_mdp_dev *mdp)
-> > +static int mtk_mdp_clock_on(struct mtk_mdp_dev *mdp)
-> >   {
-> > -     struct device *dev = &mdp->pdev->dev;
-> >       struct mtk_mdp_comp *comp_node;
-> > +     int status;
-> > +     struct device *dev = &mdp->pdev->dev;
-> > +     int err;
-> >
-> > -     list_for_each_entry(comp_node, &mdp->comp_list, node)
-> > -             mtk_mdp_comp_clock_on(dev, comp_node);
-> > +     list_for_each_entry(comp_node, &mdp->comp_list, node) {
-> > +             err = mtk_mdp_comp_clock_on(dev, comp_node);
-> > +             if (err) {
-> > +                     status = err;
+This is to reduce workload on reviewers having to re-ack changes for
+(what I hope you agree is) a nit.
+
+If you don't agree, I will happily oblige and make the change and
+upload a new version of the series.
+
+> >       for (i = 0; i < ARRAY_SIZE(comp->clk); i++) {
+> >               comp->clk[i] = of_clk_get(node, i);
 >
-> You can get rid of the new var 'status' and just return ret in case of error
+> that iteration can be replaced with clk_bulk_get
 
-This seems like a nit (please let me know if you disagree), and it's
-also cleaned up in a follow-on patch in the series ("don't
-pm_run_time_get/put for master comp in clock_on"). Is making the
-change you are suggesting here something that should require uploading
-a new series version?
+As per Enric's suggestion in response to "propagate errors from
+clock_on" in this series, are you okay for me to make the change in a
+follow-up patch?
+
+Thanks again for your review,
 
 Eizan
