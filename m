@@ -2,246 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 538433E443A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 12:53:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9706C3E4419
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 12:45:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234354AbhHIKyC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 06:54:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52188 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234353AbhHIKyB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 06:54:01 -0400
-X-Greylist: delayed 563 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 09 Aug 2021 03:53:41 PDT
-Received: from antares.kleine-koenig.org (antares.kleine-koenig.org [IPv6:2a01:4f8:c0c:3a97::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B5B0C0613D3
-        for <devicetree@vger.kernel.org>; Mon,  9 Aug 2021 03:53:41 -0700 (PDT)
-Received: by antares.kleine-koenig.org (Postfix, from userid 1000)
-        id 27D9CC31FB5; Mon,  9 Aug 2021 12:44:15 +0200 (CEST)
-From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-oxnas@groups.io
-Subject: [PATCH] ARM: oxnas: Add basic support for Zyxel NSA210
-Date:   Mon,  9 Aug 2021 12:43:51 +0200
-Message-Id: <20210809104351.2050187-1-uwe@kleine-koenig.org>
-X-Mailer: git-send-email 2.30.2
+        id S234398AbhHIKqS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 06:46:18 -0400
+Received: from smtp-relay-canonical-1.canonical.com ([185.125.188.121]:40582
+        "EHLO smtp-relay-canonical-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234738AbhHIKqP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Aug 2021 06:46:15 -0400
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPS id B16913F102
+        for <devicetree@vger.kernel.org>; Mon,  9 Aug 2021 10:45:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1628505953;
+        bh=pwc/Ajo5YOokojxDuHXAQR0/29n7VNaZg9Jjhi/i3UA=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=WQb+v8u0z2S4jCRVPUc7hnhg6oExqU8FtV6s7rb1kMSkcWahKx6wfhy6ESh5vJoYb
+         RxkMej8JOfUbtHDfqjQVQxJq468/s371ascT39XknDWf2PbMOgWYnZcVcaSonfdifc
+         3WZr/jiSx3a1Z6wvZ0baW8NtA/cAIvZPKvaT1qxTPEhQRtU7B497vvLxoUAV9IBpKO
+         eejHAoQcQSak2dYi0gwP2ALguc94roCKXpVesihugKZmdJsmYUu5Bp0tl1v5uTYNnV
+         oqLD1Sjwkom1LIT3+ZmZ2Fp5BEIWwPsgzOS9UpfWob4t9AkeA+qh9M/s8W3WfxznXH
+         Qn2Xyr/HMFK9g==
+Received: by mail-ed1-f72.google.com with SMTP id y22-20020a0564023596b02903bd9452ad5cso8642554edc.20
+        for <devicetree@vger.kernel.org>; Mon, 09 Aug 2021 03:45:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=pwc/Ajo5YOokojxDuHXAQR0/29n7VNaZg9Jjhi/i3UA=;
+        b=UZ0/4TltXwJAVnPitgEGX+XJrDtX5Pv3qij8XbRIw6w+T1Ld6RNql/p5c2A46eZ77j
+         mOc/ipe8pzgaECf9MG6V0re0RRBribecfkYFtpqsUTRNQDnj287ISsW1n5AfxC1vWVCF
+         8Y4SIjd3SECRkjolMikElKGSvirSuz7EForxIpHF+K+Z2uzjlr+YOCFEtTIiAKabcdPq
+         rRYHrJa1Erht3IQHXNR1/Us0INVf7w8thbQdhrk2CpbLklTq+xg3rdDlWiH4NC0wepcC
+         hj36se2vFoNHVlEXNnq2Nf2CVwPVN9Qo4XJpxzy4/8e2XNAgh7Q1kp0zNFv78vTHsrdk
+         j8uA==
+X-Gm-Message-State: AOAM530P9ntfPOrC3WXR6tz9JeryLhctRHprdofwjOuMj+kJ8L6OYRpS
+        f3voPOy8RwQFBjkYtk4gWm7grxRoojE4dfoCP5ob9oP1PxZAtOGmBASaMNwQX1XResR/Jovz8Dv
+        y+a7KoRDAUKS4DwisZXphowzT2LGm4pOvrO3/kmU=
+X-Received: by 2002:aa7:c5c4:: with SMTP id h4mr5179328eds.108.1628505953488;
+        Mon, 09 Aug 2021 03:45:53 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyFSBcXzH8i0TbMJa2dVdWnWI4e22vKyQF/gVsYMDX7OTcWMN3P9vHHAxa6pmNrrW6QiFGZ8w==
+X-Received: by 2002:aa7:c5c4:: with SMTP id h4mr5179300eds.108.1628505953372;
+        Mon, 09 Aug 2021 03:45:53 -0700 (PDT)
+Received: from [192.168.8.102] ([86.32.42.198])
+        by smtp.gmail.com with ESMTPSA id m25sm2212168edv.81.2021.08.09.03.45.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Aug 2021 03:45:53 -0700 (PDT)
+Subject: Re: [PATCH v2 4/8] tty: serial: samsung: Init USI to keep clocks
+ running
+To:     Sam Protsenko <semen.protsenko@linaro.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        =?UTF-8?Q?Pawe=c5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>
+Cc:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Charles Keepax <ckeepax@opensource.wolfsonmicro.com>,
+        Ryu Euiyoul <ryu.real@samsung.com>,
+        Tom Gall <tom.gall@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        John Stultz <john.stultz@linaro.org>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-serial@vger.kernel.org
+References: <20210806152146.16107-1-semen.protsenko@linaro.org>
+ <20210806152146.16107-5-semen.protsenko@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <85df3188-0227-f926-61bf-30db1a5ef41d@canonical.com>
+Date:   Mon, 9 Aug 2021 12:45:50 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Patch-Hashes: v=1; h=sha256; i=2WLiqSIK2DZ2fBJHwbPXtZpQy6Ja3F3n0+qWfjGUYyg=; m=JF0Saz+zURrIOs0oVur2l9XnTlvtHIiQBEL7NIza7AA=; p=WFskAoKpkFrr7bTKPqCFeAks3nLoxk4kmUd01SHoFE0=; g=1c1a2c1298278170f31b6795ae792e3231f0b0e3
-X-Patch-Sig: m=pgp; i=uwe@kleine-koenig.org; s=0x0D2511F322BFAB1C1580266BE2DCDD9132669BD6; b=iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmERBuQACgkQwfwUeK3K7An4LAf/fx0 M02RinCHyn9yvmMMEx/6xCGwPY89qlvmw64/E4k6GoLX+DnZzZGCDWRLtznvcO/jdZy+ODyqucRnY 3HRpmvkSY4n73d0cTmxjUOGvFaziCisX5RhfmJh4nqA+H5JJwa57WXnOdVqhDYRbc5/gVCdracX+t Nyg8EdxAOfJmHVXH4L+DxKz19yPBvDk82w0w+wO1kGVz6DIPopL7+xbqX4fZcGDH28EKIvECTIAWA qz6xi+Ij4rWjZt0xkAIWEuMTHGFArzkHuzClJ4bUcRNiw92IRJWEBaQQE1F7k7TuUOOl++vzsGw9C RW9UaKVQ+YrwAXQPA89yRE+OAiCb+jA==
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210806152146.16107-5-semen.protsenko@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is a one bay NAS originally shipping Linux 2.6.24.4. It features
+On 06/08/2021 17:21, Sam Protsenko wrote:
+> UART block is a part of USI (Universal Serial Interface) IP-core in
+> Samsung SoCs since Exynos9810 (e.g. in Exynos850). USI allows one to
+> enable one of three types of serial interface: UART, SPI or I2C. That's
+> possible because USI shares almost all internal circuits within each
+> protocol. USI also provides some additional registers so it's possible
+> to configure it.
+> 
+> One USI register called USI_OPTION has reset value of 0x0. Because of
+> this the clock gating behavior is controlled by hardware (HWACG =
+> Hardware Auto Clock Gating), which simply means the serial won't work
+> after reset as is. In order to make it work, USI_OPTION[2:1] bits must
+> be set to 0b01, so that HWACG is controlled manually (by software).
+> Bits meaning:
+>   - CLKREQ_ON = 1: clock is continuously provided to IP
+>   - CLKSTOP_ON = 0: drive IP_CLKREQ to High (needs to be set along with
+>                     CLKREQ_ON = 1)
+> 
+> USI is not present on older chips, like s3c2410, s3c2412, s3c2440,
+> s3c6400, s5pv210, exynos5433, exynos4210. So the new boolean field
+> '.has_usi' was added to struct s3c24xx_uart_info. USI registers will be
+> only actually accessed when '.has_usi' field is set to "1".
+> 
+> This feature is needed for further serial enablement on Exynos850, but
+> some other new Exynos chips (like Exynos9810) may benefit from this
+> feature as well.
+> 
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> ---
+> Changes in v2:
+>   - Non-intrusive modification of USI registers
+>   - Improved comments
+>   - Rearranged USI register definitions to conform with existing style
+> 
+>  drivers/tty/serial/samsung_tty.c | 32 +++++++++++++++++++++++++++++++-
+>  include/linux/serial_s3c.h       |  9 +++++++++
+>  2 files changed, 40 insertions(+), 1 deletion(-)
+> 
 
- - 128 MiB RAM
- - 2x eSATA (1x internal, 1x external)
- - 2x USB 2.0
- - 4 MiB NOR
- - battery powered RTC on i2c (PCF8563)
- - 1x GBit ethernet
 
-For now only the low-hanging fruits are added to the device tree, eSATA,
-USB, i2c and networking needs more work as there are no drivers
-available.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-Such a machine was offered to me by Richard Fröhning. Thanks!
 
-Signed-off-by: Uwe Kleine-König <uwe@kleine-koenig.org>
----
- .../devicetree/bindings/arm/oxnas.txt         |   1 +
- arch/arm/boot/dts/Makefile                    |   1 +
- arch/arm/boot/dts/ox810se-zyxel-nsa210.dts    | 156 ++++++++++++++++++
- 3 files changed, 158 insertions(+)
- create mode 100644 arch/arm/boot/dts/ox810se-zyxel-nsa210.dts
 
-diff --git a/Documentation/devicetree/bindings/arm/oxnas.txt b/Documentation/devicetree/bindings/arm/oxnas.txt
-index ac64e60f99f1..c1529d6c9666 100644
---- a/Documentation/devicetree/bindings/arm/oxnas.txt
-+++ b/Documentation/devicetree/bindings/arm/oxnas.txt
-@@ -11,4 +11,5 @@ Boards with the OX820 SoC shall have the following properties:
- 
- Board compatible values:
-   - "wd,mbwe" (OX810SE)
-+  - "zyxel,nsa210" (OX810SE)
-   - "cloudengines,pogoplugv3" (OX820)
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 863347b6b65e..720b7d7e342a 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -913,6 +913,7 @@ dtb-$(CONFIG_ARCH_PXA) += \
- 	pxa300-raumfeld-speaker-s.dtb
- dtb-$(CONFIG_ARCH_OXNAS) += \
- 	ox810se-wd-mbwe.dtb \
-+	ox810se-zyxel-nsa210.dtb \
- 	ox820-cloudengines-pogoplug-series-3.dtb
- dtb-$(CONFIG_ARCH_QCOM) += \
- 	qcom-apq8060-dragonboard.dtb \
-diff --git a/arch/arm/boot/dts/ox810se-zyxel-nsa210.dts b/arch/arm/boot/dts/ox810se-zyxel-nsa210.dts
-new file mode 100644
-index 000000000000..88d0e065cf99
---- /dev/null
-+++ b/arch/arm/boot/dts/ox810se-zyxel-nsa210.dts
-@@ -0,0 +1,156 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Device tree file for Zyxel NSA-210
-+ */
-+
-+/dts-v1/;
-+#include "ox810se.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	model = "Zyxel NSA-210";
-+
-+	compatible = "zyxel,nsa210", "oxsemi,ox810se";
-+
-+	chosen {
-+		bootargs = "console=ttyS2,115200n8";
-+	};
-+
-+	memory {
-+		reg = <0x48000000 0x8000000>;
-+	};
-+
-+	aliases {
-+		serial2 = &uart2;
-+	};
-+
-+	flash@41000000 {
-+		compatible = "cfi-flash";
-+		reg = <0x41000000 0x00400000>;
-+		bank-width = <1>;
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			partitions@0 {
-+				label = "uboot";
-+				reg = <0x00000000 0x00020000>;
-+			};
-+
-+			partitions@1 {
-+				label = "kernel";
-+				reg = <0x00020000 0x001c0000>;
-+			};
-+
-+			partitions@2 {
-+				label = "initrd";
-+				reg = <0x001e0000 0x001a0000>;
-+			};
-+
-+			partitions@3 {
-+				label = "etc";
-+				reg = <0x00380000 0x00070000>;
-+			};
-+
-+			/* 448k gap */
-+
-+			partitions@4 {
-+				label = "env1";
-+				reg = <0x003fc000 0x00002000>;
-+			};
-+
-+			partitions@5 {
-+				label = "env2";
-+				reg = <0x003fe000 0x00002000>;
-+			};
-+		};
-+	};
-+
-+	keys {
-+		compatible = "gpio-keys";
-+
-+		reset {
-+			label = "Reset";
-+			gpios = <&gpio0 2 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		power {
-+			label = "Power";
-+			gpios = <&gpio0 4 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		sync {
-+			label = "Copy/Sync";
-+			gpio = <&gpio0 10 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		/*
-+		 * The vendor U-Boot enables a PWM to make this LED blink during boot.
-+		 * This must be disabled to be able to drive the LED using the
-+		 * GPIO as defined here by unsetting bit 9 in the
-+		 * SYS_CTRL_GPIO_PWMSEL_CTRL_0 register.
-+		 * E.g. do before starting Linux: mw 0x4500009c 0
-+		 */
-+		led1 {
-+			label = "nsa210:green:sys";
-+			gpios = <&gpio0 9 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led2 {
-+			label = "nsa210:red:hdd";
-+			gpios = <&gpio0 27 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led3 {
-+			label = "nsa210:green:hdd";
-+			gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led4 {
-+			label = "nsa210:red:usb";
-+			gpios = <&gpio1 0 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led5 {
-+			label = "nsa210:green:usb";
-+			gpios = <&gpio0 31 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led6 {
-+			label = "nsa210:red:esata";
-+			gpios = <&gpio0 28 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led7 {
-+			label = "nsa210:green:esata";
-+			gpios = <&gpio0 26 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led8 {
-+			label = "nsa210:red:copy";
-+			gpios = <&gpio0 24 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led9 {
-+			label = "nsa210:green:copy";
-+			gpios = <&gpio1 1 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+};
-+
-+&uart2 {
-+	/*
-+	 * To make this device work as expected bit 2 of register
-+	 * SYS_CTRL_UART_CTRL must be set. Otherwise the interrupt doesn't
-+	 * trigger, so console messages make it through, but userspace cannot
-+	 * make use of it.
-+	 * E.g. do before starting Linux: mw 0x45000094 4
-+	 */
-+	status = "okay";
-+};
--- 
-2.30.2
-
+Best regards,
+Krzysztof
