@@ -2,42 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDC333E4727
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 16:05:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 428D63E472F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 16:06:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233558AbhHIOGC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Aug 2021 10:06:02 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35662 "EHLO mail.kernel.org"
+        id S234054AbhHIOGg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Aug 2021 10:06:36 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36752 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231478AbhHIOGB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Aug 2021 10:06:01 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C3BB760F35;
-        Mon,  9 Aug 2021 14:05:40 +0000 (UTC)
+        id S234105AbhHIOGe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Aug 2021 10:06:34 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id F157F61075;
+        Mon,  9 Aug 2021 14:06:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1628517940;
-        bh=B16BkVOlzvMofRNxZCCPfBpfJWKgMemm4c5pHZIX5uE=;
+        s=k20201202; t=1628517974;
+        bh=KK7jjN23raVktev4HSd9TJQBS5GWAZQ4yGJxFG4+9Iw=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=P/rj+RsZilC5qcXQ/+8k1PaWasOHfI6V7uARzwTxsJxOtKgBnRiawROZavf8ARIk1
-         VfkoxdO3tgLoju+FV2uKH1olUAnunxOnd4esoz/i7R801K0z0AjzorDn5c+Zn1Ovu3
-         pEyJ9FVykcNU+88fLz9pHKHfKtMQsYpGjlIX3Y75Z+ZsStwbhFkZ3RpmwWpdgrs4i9
-         AoO0HEgbca8ZtVyNsTjos3Kg3/jNHrI3DvMxBjbOrvH/JttZSlZmR3pqVvOeWrxHGi
-         5OPdYG/jTQRpPN/r5Hi+T/wOBDhpbg/SHcZ3ljwR1q7tT2iDlxNqudcW//kF7Qgaee
-         7OKfeKQXXRkIQ==
-Received: by mail-ed1-f46.google.com with SMTP id f13so24730043edq.13;
-        Mon, 09 Aug 2021 07:05:40 -0700 (PDT)
-X-Gm-Message-State: AOAM532Ie0lPdXLfZikp3rQpAEP7uCVy2POBbVtvMSXSkE10nGcOgEGG
-        w2BQhXFyavxWXscxp6MDPzHRNJeI9hUckQmVBQ==
-X-Google-Smtp-Source: ABdhPJzq3vGkwq0LwxmantDeoehWwnPrH+tI1JJ76dOOXmOZpmtTgTRuHk9cLXTrSQ0qQJPtXQG+i+a4FW+Oe+pp8Ms=
-X-Received: by 2002:a05:6402:648:: with SMTP id u8mr30935144edx.162.1628517939275;
- Mon, 09 Aug 2021 07:05:39 -0700 (PDT)
+        b=gapdlvZdDjM7nAfH4De8Tp/fNVqYGRPOQEEDAY22tpQ28YQ4Eq25cjIIjIYJrFIIA
+         WamRLl1S+d5Aa8qWLS99G+z8dOw6HF6CQr9QYeAvG6DfVqJa6PJXFvZOQsm/DkSGrT
+         tbWkn5d7HcrbV7kFOjsKNzrVp+i585sPACJwPR6+I6DCZOg4Rk2YFJo/WglPyJZ7n/
+         qoJkv+OhhUr1xOlRl7pcDyF0eETDB4ffepz6EAo/IGgeVWwJyXVyp9DigqrF8nUKMz
+         Es2UKL0Tspm5pOLOHra4Yb34pPy+QIGnKPadslbyGqJ3FtoJC/jUe0RfLpJ7LuuwrB
+         PemyGUyWCi41g==
+Received: by mail-ed1-f48.google.com with SMTP id y7so24761185eda.5;
+        Mon, 09 Aug 2021 07:06:13 -0700 (PDT)
+X-Gm-Message-State: AOAM5312pWHNC0lt0yjOiY4h4DhOakl+di/4TNCw1/YRYAZb77PdZajc
+        gI1yyfnN09HXWyEEcYhdOEDmk/2SeOK4FsN1Ow==
+X-Google-Smtp-Source: ABdhPJy8JViocynBWXM9L3xsiyYJiSRcSybIkGik7L3z/aNO5GB4LmezUH2JyaLyyG+6uSQVvQ4XXt4q4R0gt+0l8RM=
+X-Received: by 2002:a05:6402:718:: with SMTP id w24mr29623490edx.49.1628517972496;
+ Mon, 09 Aug 2021 07:06:12 -0700 (PDT)
 MIME-Version: 1.0
-References: <20201023133130.194140-1-fparent@baylibre.com> <20201023133130.194140-6-fparent@baylibre.com>
-In-Reply-To: <20201023133130.194140-6-fparent@baylibre.com>
+References: <20201023133130.194140-1-fparent@baylibre.com> <20201023133130.194140-3-fparent@baylibre.com>
+In-Reply-To: <20201023133130.194140-3-fparent@baylibre.com>
 From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Mon, 9 Aug 2021 22:05:28 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_-9zscXmC83oDkk-JZvnooZbiqtei+R2+c=VhBJ7xW84A@mail.gmail.com>
-Message-ID: <CAAOTY_-9zscXmC83oDkk-JZvnooZbiqtei+R2+c=VhBJ7xW84A@mail.gmail.com>
-Subject: Re: [PATCH v2 5/5] drm/mediatek: Add support for main DDP path on MT8167
+Date:   Mon, 9 Aug 2021 22:06:01 +0800
+X-Gmail-Original-Message-ID: <CAAOTY__-E19JJiw=0X=Kdm9afWSTCeoYFKJAVJObrikfhV=BVA@mail.gmail.com>
+Message-ID: <CAAOTY__-E19JJiw=0X=Kdm9afWSTCeoYFKJAVJObrikfhV=BVA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] dt-bindings: display: mediatek: dsi: add
+ documentation for MT8167 SoC
 To:     Fabien Parent <fparent@baylibre.com>
 Cc:     "moderated list:ARM/Mediatek SoC support" 
         <linux-mediatek@lists.infradead.org>,
@@ -63,8 +64,7 @@ Fabien Parent <fparent@baylibre.com> =E6=96=BC 2020=E5=B9=B410=E6=9C=8823=
 =E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=889:31=E5=AF=AB=E9=81=93=EF=BC=
 =9A
 >
-> Add the main (DSI) drm display path for MT8167.
->
+> Add binding documentation for the MT8167 SoC.
 
 Applied to mediatek-drm-next [1], thanks.
 
@@ -74,123 +74,42 @@ log/?h=3Dmediatek-drm-next
 Regards,
 Chun-Kuang.
 
+>
 > Signed-off-by: Fabien Parent <fparent@baylibre.com>
 > ---
 >
 > Changelog:
 >
-> V2: No change
+> V2: removed part that added a new clock
 >
->  drivers/gpu/drm/mediatek/mtk_drm_drv.c | 38 ++++++++++++++++++++++++++
->  1 file changed, 38 insertions(+)
+>  .../devicetree/bindings/display/mediatek/mediatek,dsi.txt     | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/med=
-iatek/mtk_drm_drv.c
-> index 59c85c63b7cc..3952435093fe 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> @@ -112,6 +112,17 @@ static const enum mtk_ddp_comp_id mt2712_mtk_ddp_thi=
-rd[] =3D {
->         DDP_COMPONENT_PWM2,
->  };
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+dsi.txt b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.t=
+xt
+> index f06f24d405a5..6a10de812158 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.txt
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.txt
+> @@ -7,7 +7,7 @@ channel output.
 >
-> +static enum mtk_ddp_comp_id mt8167_mtk_ddp_main[] =3D {
-> +       DDP_COMPONENT_OVL0,
-> +       DDP_COMPONENT_COLOR0,
-> +       DDP_COMPONENT_CCORR,
-> +       DDP_COMPONENT_AAL0,
-> +       DDP_COMPONENT_GAMMA,
-> +       DDP_COMPONENT_DITHER,
-> +       DDP_COMPONENT_RDMA0,
-> +       DDP_COMPONENT_DSI0,
-> +};
-> +
->  static const enum mtk_ddp_comp_id mt8173_mtk_ddp_main[] =3D {
->         DDP_COMPONENT_OVL0,
->         DDP_COMPONENT_COLOR0,
-> @@ -163,6 +174,11 @@ static const struct mtk_mmsys_driver_data mt8173_mms=
-ys_driver_data =3D {
->         .ext_len =3D ARRAY_SIZE(mt8173_mtk_ddp_ext),
->  };
+>  Required properties:
+>  - compatible: "mediatek,<chip>-dsi"
+> -- the supported chips are mt2701, mt7623, mt8173 and mt8183.
+> +- the supported chips are mt2701, mt7623, mt8167, mt8173 and mt8183.
+>  - reg: Physical base address and length of the controller's registers
+>  - interrupts: The interrupt signal from the function block.
+>  - clocks: device clocks
+> @@ -26,7 +26,7 @@ The MIPI TX configuration module controls the MIPI D-PH=
+Y.
 >
-> +static const struct mtk_mmsys_driver_data mt8167_mmsys_driver_data =3D {
-> +       .main_path =3D mt8167_mtk_ddp_main,
-> +       .main_len =3D ARRAY_SIZE(mt8167_mtk_ddp_main),
-> +};
-> +
->  static int mtk_drm_kms_init(struct drm_device *drm)
->  {
->         struct mtk_drm_private *private =3D drm->dev_private;
-> @@ -401,26 +417,42 @@ static const struct component_master_ops mtk_drm_op=
-s =3D {
->  static const struct of_device_id mtk_ddp_comp_dt_ids[] =3D {
->         { .compatible =3D "mediatek,mt2701-disp-ovl",
->           .data =3D (void *)MTK_DISP_OVL },
-> +       { .compatible =3D "mediatek,mt8167-disp-ovl",
-> +         .data =3D (void *)MTK_DISP_OVL },
->         { .compatible =3D "mediatek,mt8173-disp-ovl",
->           .data =3D (void *)MTK_DISP_OVL },
->         { .compatible =3D "mediatek,mt2701-disp-rdma",
->           .data =3D (void *)MTK_DISP_RDMA },
-> +       { .compatible =3D "mediatek,mt8167-disp-rdma",
-> +         .data =3D (void *)MTK_DISP_RDMA },
->         { .compatible =3D "mediatek,mt8173-disp-rdma",
->           .data =3D (void *)MTK_DISP_RDMA },
->         { .compatible =3D "mediatek,mt8173-disp-wdma",
->           .data =3D (void *)MTK_DISP_WDMA },
-> +       { .compatible =3D "mediatek,mt8167-disp-ccorr",
-> +         .data =3D (void *)MTK_DISP_CCORR },
->         { .compatible =3D "mediatek,mt2701-disp-color",
->           .data =3D (void *)MTK_DISP_COLOR },
-> +       { .compatible =3D "mediatek,mt8167-disp-color",
-> +         .data =3D (void *)MTK_DISP_COLOR },
->         { .compatible =3D "mediatek,mt8173-disp-color",
->           .data =3D (void *)MTK_DISP_COLOR },
-> +       { .compatible =3D "mediatek,mt8167-disp-aal",
-> +         .data =3D (void *)MTK_DISP_AAL},
->         { .compatible =3D "mediatek,mt8173-disp-aal",
->           .data =3D (void *)MTK_DISP_AAL},
-> +       { .compatible =3D "mediatek,mt8167-disp-gamma",
-> +         .data =3D (void *)MTK_DISP_GAMMA, },
->         { .compatible =3D "mediatek,mt8173-disp-gamma",
->           .data =3D (void *)MTK_DISP_GAMMA, },
-> +       { .compatible =3D "mediatek,mt8167-disp-dither",
-> +         .data =3D (void *)MTK_DISP_DITHER },
->         { .compatible =3D "mediatek,mt8173-disp-ufoe",
->           .data =3D (void *)MTK_DISP_UFOE },
->         { .compatible =3D "mediatek,mt2701-dsi",
->           .data =3D (void *)MTK_DSI },
-> +       { .compatible =3D "mediatek,mt8167-dsi",
-> +         .data =3D (void *)MTK_DSI },
->         { .compatible =3D "mediatek,mt8173-dsi",
->           .data =3D (void *)MTK_DSI },
->         { .compatible =3D "mediatek,mt2701-dpi",
-> @@ -431,10 +463,14 @@ static const struct of_device_id mtk_ddp_comp_dt_id=
-s[] =3D {
->           .data =3D (void *)MTK_DISP_MUTEX },
->         { .compatible =3D "mediatek,mt2712-disp-mutex",
->           .data =3D (void *)MTK_DISP_MUTEX },
-> +       { .compatible =3D "mediatek,mt8167-disp-mutex",
-> +         .data =3D (void *)MTK_DISP_MUTEX },
->         { .compatible =3D "mediatek,mt8173-disp-mutex",
->           .data =3D (void *)MTK_DISP_MUTEX },
->         { .compatible =3D "mediatek,mt2701-disp-pwm",
->           .data =3D (void *)MTK_DISP_BLS },
-> +       { .compatible =3D "mediatek,mt8167-disp-pwm",
-> +         .data =3D (void *)MTK_DISP_PWM },
->         { .compatible =3D "mediatek,mt8173-disp-pwm",
->           .data =3D (void *)MTK_DISP_PWM },
->         { .compatible =3D "mediatek,mt8173-disp-od",
-> @@ -449,6 +485,8 @@ static const struct of_device_id mtk_drm_of_ids[] =3D=
- {
->           .data =3D &mt7623_mmsys_driver_data},
->         { .compatible =3D "mediatek,mt2712-mmsys",
->           .data =3D &mt2712_mmsys_driver_data},
-> +       { .compatible =3D "mediatek,mt8167-mmsys",
-> +         .data =3D &mt8167_mmsys_driver_data},
->         { .compatible =3D "mediatek,mt8173-mmsys",
->           .data =3D &mt8173_mmsys_driver_data},
->         { }
+>  Required properties:
+>  - compatible: "mediatek,<chip>-mipi-tx"
+> -- the supported chips are mt2701, 7623, mt8173 and mt8183.
+> +- the supported chips are mt2701, 7623, mt8167, mt8173 and mt8183.
+>  - reg: Physical base address and length of the controller's registers
+>  - clocks: PLL reference clock
+>  - clock-output-names: name of the output clock line to the DSI encoder
 > --
 > 2.28.0
 >
