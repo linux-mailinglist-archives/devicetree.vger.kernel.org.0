@@ -2,121 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA4AF3E3E22
-	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 05:08:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C9F33E3E38
+	for <lists+devicetree@lfdr.de>; Mon,  9 Aug 2021 05:21:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232786AbhHIDJH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Aug 2021 23:09:07 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:44912 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S232804AbhHIDJF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Aug 2021 23:09:05 -0400
-X-UUID: 48606c964f6e4a71ae7f57959fe9ea73-20210809
-X-UUID: 48606c964f6e4a71ae7f57959fe9ea73-20210809
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <nina-cm.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1915852948; Mon, 09 Aug 2021 11:08:42 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs02n2.mediatek.inc (172.21.101.101) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 9 Aug 2021 11:08:39 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 9 Aug 2021 11:08:39 +0800
-From:   Nina Wu <nina-cm.wu@mediatek.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Nina Wu <Nina-CM.Wu@mediatek.com>,
-        Neal Liu <neal.liu@mediatek.com>,
-        Zhen Lei <thunder.leizhen@huawei.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <Jackson-kt.Chang@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [v4 7/7] arm64: dts: mt8192: Add devapc node
-Date:   Mon, 9 Aug 2021 11:08:19 +0800
-Message-ID: <1628478499-29460-7-git-send-email-nina-cm.wu@mediatek.com>
-X-Mailer: git-send-email 2.6.4
-In-Reply-To: <1628478499-29460-1-git-send-email-nina-cm.wu@mediatek.com>
-References: <1628478499-29460-1-git-send-email-nina-cm.wu@mediatek.com>
+        id S231675AbhHIDVc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Aug 2021 23:21:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34424 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229942AbhHIDVb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Aug 2021 23:21:31 -0400
+Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2441C061757;
+        Sun,  8 Aug 2021 20:21:10 -0700 (PDT)
+Received: by mail-qk1-x729.google.com with SMTP id y130so4294963qkb.6;
+        Sun, 08 Aug 2021 20:21:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=QAh+pRTFBMAr0+T9wtQVR3MusEWk4kYhdCUk1mCd9nw=;
+        b=atyxxfBd1TD6a0f9xFNLmjNeJLyGzB1GGvFmE9PI2YqifBZr9ccFNl9mIpeLjtR8Dc
+         u6yZiPJHQAF0SCQLBYtp3SKuDEqClNnsII2RbWxd5TlVk1ZDm1M/hvOy01axv4etNLcT
+         ME5d7UxocnwooPI3ReE5bPdEP+cMxDpvcjAiM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QAh+pRTFBMAr0+T9wtQVR3MusEWk4kYhdCUk1mCd9nw=;
+        b=kwus3PQb2YVyle6chlp5JenOLN6iWW7Q7ja8gh3uISWvvjRqFwTOerpKWtw/Qf6hoO
+         JcW83BE40DzdPAj33X2SGsLeDh5CJ3fIYxTL2JR+r/tuAkp4CjbUtdYzniJn4SzpC2tx
+         +OLpQrSJ0CvtP+vVviFk50XDp4HqyWXbatelWQFYl3oLd/abt4NoLWKEMfXSA0gw2SQU
+         DbVLlduSk3BUWnTRMnpPQlgBuoJi4SbrIsv7OBy8WBuhlB39UZ+5qETczJKA5qV6QjC/
+         uMptiYqP8TFFma6IqwAcyHGfJAO1aMpXBwfNR/5XSRdyOSBRbl7YwU2PV8e6XInZ9aga
+         11Ig==
+X-Gm-Message-State: AOAM532gg5X7iOk6toVyD4RCx6gkWWqQdq88mxroDPfw2asV/F7g1MyB
+        yRuxG9CK/TF/gzsDYaIn7THTTAMePL1AlnImsrY=
+X-Google-Smtp-Source: ABdhPJxVTlKiAdXt0XMifFnR8/gPBBXfovIot4eZ4giZMm0DbLu6mhlQdSB4UldYT1OJ33vn+O603JvRkwxa247KBg0=
+X-Received: by 2002:a05:620a:19a8:: with SMTP id bm40mr7386566qkb.66.1628479269896;
+ Sun, 08 Aug 2021 20:21:09 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-To:     unlisted-recipients:; (no To-header on input)
+References: <20210806054904.534315-1-joel@jms.id.au> <20210806054904.534315-3-joel@jms.id.au>
+ <YQ7czmvIm6FTZAol@lunn.ch>
+In-Reply-To: <YQ7czmvIm6FTZAol@lunn.ch>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Mon, 9 Aug 2021 03:20:57 +0000
+Message-ID: <CACPK8XdOUhz8U0NqOcLRPC3=rjfVB1FFhwyJzMy2AE+7Omm_2g@mail.gmail.com>
+Subject: Re: [PATCH 2/2] net: Add driver for LiteX's LiteETH network interface
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stafford Horne <shorne@gmail.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Anton Blanchard <anton@ozlabs.org>,
+        Gabriel Somlo <gsomlo@gmail.com>, David Shah <dave@ds0.me>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mateusz Holenko <mholenko@antmicro.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Networking <netdev@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nina Wu <Nina-CM.Wu@mediatek.com>
+On Sat, 7 Aug 2021 at 19:19, Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> > +static void liteeth_reset_hw(struct liteeth *priv)
+> > +{
+> > +     /* Reset, twice */
+> > +     writeb(0, priv->base + LITEETH_PHY_CRG_RESET);
+> > +     udelay(10);
+> > +     writeb(1, priv->base + LITEETH_PHY_CRG_RESET);
+> > +     udelay(10);
+> > +     writeb(0, priv->base + LITEETH_PHY_CRG_RESET);
+> > +     udelay(10);
+>
+> What is this actually resetting?
 
-Add devapc nodes to mt8192.
+This comes from the reference firmware that many (but not all) litex
+systems run before loading their operating system.
 
-Signed-off-by: Nina Wu <Nina-CM.Wu@mediatek.com>
----
-This patch depends on "Add dt-bindings of MT8192 clocks" [1]
-and "Add mt8192 clock controllers" [2]
+I'm not completely sure how necessary it still is; I will drop it for now.
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/include/dt-bindings/clock/mt8192-clk.h?h=next-20210806&id=f35f1a23e0e12e3173e9e9dedbc150d139027189
-[2] https://patchwork.kernel.org/project/linux-mediatek/patch/20210727023205.20319-2-chun-jie.chen@mediatek.com/
----
- arch/arm64/boot/dts/mediatek/mt8192.dtsi | 36 ++++++++++++++++++++++++++++++++
- 1 file changed, 36 insertions(+)
+>
+> > +static int liteeth_probe(struct platform_device *pdev)
+> > +{
+> > +     struct net_device *netdev;
+> > +     void __iomem *buf_base;
+> > +     struct resource *res;
+> > +     struct liteeth *priv;
+> > +     int irq, err;
+> > +
+> > +     netdev = alloc_etherdev(sizeof(*priv));
+> > +     if (!netdev)
+> > +             return -ENOMEM;
+> > +
+> > +     priv = netdev_priv(netdev);
+> > +     priv->netdev = netdev;
+> > +     priv->dev = &pdev->dev;
+> > +
+> > +     irq = platform_get_irq(pdev, 0);
+> > +     if (irq < 0) {
+> > +             dev_err(&pdev->dev, "Failed to get IRQ\n");
+> > +             goto err;
+> > +     }
+> > +
+> > +     res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> > +     priv->base = devm_ioremap_resource(&pdev->dev, res);
+> > +     if (IS_ERR(priv->base)) {
+> > +             err = PTR_ERR(priv->base);
+> > +             goto err;
+> > +     }
+> > +
+> > +     res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
+> > +     priv->mdio_base = devm_ioremap_resource(&pdev->dev, res);
+> > +     if (IS_ERR(priv->mdio_base)) {
+> > +             err = PTR_ERR(priv->mdio_base);
+> > +             goto err;
+> > +     }
+>
+> So you don't have any PHY handling, or any MDIO bus master code. So i
+> would drop this, until the MDIO architecture question is answered. I
+> also wonder how much use the MAC driver is without any PHY code?
+> Unless you have a good reason, i don't think we should merge this
+> until it makes the needed calls into phylib. It is not much code to
+> add.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index 6b22441..accbd07 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -517,6 +517,33 @@
- 			clock-names = "clk13m";
- 		};
- 
-+		devapc_infra: devapc@10207000 {
-+			compatible = "mediatek,mt8192-devapc";
-+			reg = <0 0x10207000 0 0x1000>;
-+			vio-idx-num = <367>;
-+			interrupts = <GIC_SPI 187 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&infracfg CLK_INFRA_DEVICE_APC>;
-+			clock-names = "devapc-infra-clock";
-+		};
-+
-+		devapc_peri: devapc@10274000 {
-+			compatible = "mediatek,mt8192-devapc";
-+			reg = <0 0x10274000 0 0x1000>;
-+			vio-idx-num = <292>;
-+			interrupts = <GIC_SPI 187 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&infracfg CLK_INFRA_DEVICE_APC>;
-+			clock-names = "devapc-infra-clock";
-+		};
-+
-+		devapc_peri2: devapc@10275000 {
-+			compatible = "mediatek,mt8192-devapc";
-+			reg = <0 0x10275000 0 0x1000>;
-+			vio-idx-num = <242>;
-+			interrupts = <GIC_SPI 187 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&infracfg CLK_INFRA_DEVICE_APC>;
-+			clock-names = "devapc-infra-clock";
-+		};
-+
- 		scp_adsp: clock-controller@10720000 {
- 			compatible = "mediatek,mt8192-scp_adsp";
- 			reg = <0 0x10720000 0 0x1000>;
-@@ -661,6 +688,15 @@
- 			status = "disabled";
- 		};
- 
-+		devapc_peri_par: devapc@11020000 {
-+			compatible = "mediatek,mt8192-devapc";
-+			reg = <0 0x11020000 0 0x1000>;
-+			vio-idx-num = <58>;
-+			interrupts = <GIC_SPI 187 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&infracfg CLK_INFRA_DEVICE_APC>;
-+			clock-names = "devapc-infra-clock";
-+		};
-+
- 		nor_flash: spi@11234000 {
- 			compatible = "mediatek,mt8192-nor";
- 			reg = <0 0x11234000 0 0xe0>;
--- 
-2.6.4
-
+You mean I should skip out the parsing of the mdio base until I'm
+using it? That's reasonable.
